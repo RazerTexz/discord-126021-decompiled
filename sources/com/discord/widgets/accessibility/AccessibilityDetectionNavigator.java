@@ -28,7 +28,7 @@ public final class AccessibilityDetectionNavigator {
 
     /* JADX INFO: renamed from: com.discord.widgets.accessibility.AccessibilityDetectionNavigator$enqueueNoticeWhenEnabled$1 */
     /* JADX INFO: compiled from: AccessibilityDetectionNavigator.kt */
-    public static final /* synthetic */ class C71361 extends C12236k implements Function1<AccessibilityState, Unit> {
+    public final /* synthetic */ class C71361 extends C12236k implements Function1<AccessibilityState, Unit> {
         public C71361(AccessibilityDetectionNavigator accessibilityDetectionNavigator) {
             super(1, accessibilityDetectionNavigator, AccessibilityDetectionNavigator.class, "showAccessibilityDetectionDialog", "showAccessibilityDetectionDialog(Lcom/discord/utilities/accessibility/AccessibilityState;)V", 0);
         }
@@ -48,7 +48,7 @@ public final class AccessibilityDetectionNavigator {
 
     /* JADX INFO: renamed from: com.discord.widgets.accessibility.AccessibilityDetectionNavigator$showAccessibilityDetectionDialog$1 */
     /* JADX INFO: compiled from: AccessibilityDetectionNavigator.kt */
-    public static final class C71371 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C71371 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public static final C71371 INSTANCE = new C71371();
 
         public C71371() {
@@ -76,14 +76,14 @@ public final class AccessibilityDetectionNavigator {
     private AccessibilityDetectionNavigator() {
     }
 
+    public final void enqueueNoticeWhenEnabled(AppComponent appComponent) {
+        C12238m.checkNotNullParameter(appComponent, "appComponent");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(AccessibilityMonitor.INSTANCE.getINSTANCE().observeAccessibilityState(), appComponent, null, 2, null), (Class<?>) AccessibilityDetectionNavigator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71361(this));
+    }
+
     private final void showAccessibilityDetectionDialog(AccessibilityState accessibilityState) {
         if (accessibilityState.getFeatures().contains(AccessibilityFeatureFlags.SCREENREADER)) {
             StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice("ALLOW_ACCESSIBILITY_DETECTION_DIALOG", null, 0L, 0, true, null, 0L, false, 0L, C71371.INSTANCE, 486, null));
         }
-    }
-
-    public final void enqueueNoticeWhenEnabled(AppComponent appComponent) {
-        C12238m.checkNotNullParameter(appComponent, "appComponent");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(AccessibilityMonitor.INSTANCE.getINSTANCE().observeAccessibilityState(), appComponent, null, 2, null), (Class<?>) AccessibilityDetectionNavigator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71361(this));
     }
 }

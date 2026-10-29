@@ -30,6 +30,10 @@ public final /* data */ class ChannelListItemActiveEventData {
         this.eventId = l;
     }
 
+    public final List<UserGuildMember> component4() {
+        return this.speakers;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ChannelListItemActiveEventData copy$default(ChannelListItemActiveEventData channelListItemActiveEventData, String str, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, int i, List list, boolean z2, boolean z3, Long l, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -61,40 +65,6 @@ public final /* data */ class ChannelListItemActiveEventData {
         return channelListItemActiveEventData.copy(str, guildScheduledEventLocationInfo2, i3, list2, z4, z5, l);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTopic() {
-        return this.topic;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildScheduledEventLocationInfo getLocationInfo() {
-        return this.locationInfo;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getAudienceSize() {
-        return this.audienceSize;
-    }
-
-    public final List<UserGuildMember> component4() {
-        return this.speakers;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getConnected() {
-        return this.connected;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsSpeaker() {
-        return this.isSpeaker;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Long getEventId() {
-        return this.eventId;
-    }
-
     public final ChannelListItemActiveEventData copy(String topic, GuildScheduledEventLocationInfo locationInfo, int audienceSize, List<UserGuildMember> speakers, boolean connected, boolean isSpeaker, Long eventId) {
         C12238m.checkNotNullParameter(locationInfo, "locationInfo");
         C12238m.checkNotNullParameter(speakers, "speakers");
@@ -112,16 +82,41 @@ public final /* data */ class ChannelListItemActiveEventData {
         return C12238m.areEqual(this.topic, channelListItemActiveEventData.topic) && C12238m.areEqual(this.locationInfo, channelListItemActiveEventData.locationInfo) && this.audienceSize == channelListItemActiveEventData.audienceSize && C12238m.areEqual(this.speakers, channelListItemActiveEventData.speakers) && this.connected == channelListItemActiveEventData.connected && this.isSpeaker == channelListItemActiveEventData.isSpeaker && C12238m.areEqual(this.eventId, channelListItemActiveEventData.eventId);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getAudienceSize() {
         return this.audienceSize;
+    }
+
+    public final int getAudienceSize() {
+        return this.audienceSize;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getConnected() {
+        return this.connected;
     }
 
     public final boolean getConnected() {
         return this.connected;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final Long getEventId() {
         return this.eventId;
+    }
+
+    public final Long getEventId() {
+        return this.eventId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsSpeaker() {
+        return this.isSpeaker;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final GuildScheduledEventLocationInfo getLocationInfo() {
+        return this.locationInfo;
     }
 
     public final GuildScheduledEventLocationInfo getLocationInfo() {
@@ -130,6 +125,11 @@ public final /* data */ class ChannelListItemActiveEventData {
 
     public final List<UserGuildMember> getSpeakers() {
         return this.speakers;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTopic() {
+        return this.topic;
     }
 
     public final String getTopic() {

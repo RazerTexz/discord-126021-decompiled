@@ -53,26 +53,9 @@ public final class WidgetCreateChannelAddMember extends AppFragment {
     private WidgetChannelSettingsAddMemberFragment fragment;
     private final LoggingConfig loggingConfig;
 
-    /* JADX INFO: compiled from: WidgetCreateChannelAddMember.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context, long channelId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            C0870j.m156d(context, WidgetCreateChannelAddMember.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetCreateChannelAddMember$addPermissionOverwrites$1 */
     /* JADX INFO: compiled from: WidgetCreateChannelAddMember.kt */
-    public static final class C75571 extends AbstractC12240o implements Function1<List<? extends Void>, Unit> {
+    public final class C75571 extends AbstractC12240o implements Function1<List<? extends Void>, Unit> {
         public C75571() {
             super(1);
         }
@@ -95,7 +78,7 @@ public final class WidgetCreateChannelAddMember extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetCreateChannelAddMember$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetCreateChannelAddMember.kt */
-    public static final class C75581 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C75581 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C75581() {
             super(1);
         }
@@ -114,7 +97,7 @@ public final class WidgetCreateChannelAddMember extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetCreateChannelAddMember$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetCreateChannelAddMember.kt */
-    public static final class C75592 extends AbstractC12240o implements Function1<Map<Long, ? extends PermissionOverwrite.Type>, Unit> {
+    public final class C75592 extends AbstractC12240o implements Function1<Map<Long, ? extends PermissionOverwrite.Type>, Unit> {
         public C75592() {
             super(1);
         }
@@ -140,6 +123,23 @@ public final class WidgetCreateChannelAddMember extends AppFragment {
                     widgetCreateChannelAddMember.addPermissionOverwrites(map2);
                 }
             }, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCreateChannelAddMember.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context, long channelId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            C0870j.m156d(context, WidgetCreateChannelAddMember.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

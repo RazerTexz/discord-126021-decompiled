@@ -30,6 +30,18 @@ public final class C2724z implements InterfaceC2710l {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    public void close() throws IOException {
+        try {
+            this.f6645a.close();
+        } finally {
+            if (this.f6647c) {
+                this.f6647c = false;
+                this.f6646b.close();
+            }
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
     /* JADX INFO: renamed from: a */
     public long mo2586a(C2712n c2712n) throws IOException {
         C2712n c2712n2 = c2712n;
@@ -45,18 +57,6 @@ public final class C2724z implements InterfaceC2710l {
         this.f6647c = true;
         this.f6646b.mo2852a(c2712n2);
         return this.f6648d;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() throws IOException {
-        try {
-            this.f6645a.close();
-        } finally {
-            if (this.f6647c) {
-                this.f6647c = false;
-                this.f6646b.close();
-            }
-        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l

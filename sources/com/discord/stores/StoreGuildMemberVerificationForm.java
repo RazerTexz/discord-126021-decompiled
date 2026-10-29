@@ -28,97 +28,18 @@ public final class StoreGuildMemberVerificationForm extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-    public enum FetchStates {
-        FETCHING,
-        FAILED,
-        SUCCEEDED
-    }
-
-    /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-    public static final /* data */ class MemberVerificationFormData {
-        private final FetchStates fetchState;
-        private final ModelMemberVerificationForm form;
-
-        public MemberVerificationFormData(FetchStates fetchStates, ModelMemberVerificationForm modelMemberVerificationForm) {
-            C12238m.checkNotNullParameter(fetchStates, "fetchState");
-            this.fetchState = fetchStates;
-            this.form = modelMemberVerificationForm;
-        }
-
-        public static /* synthetic */ MemberVerificationFormData copy$default(MemberVerificationFormData memberVerificationFormData, FetchStates fetchStates, ModelMemberVerificationForm modelMemberVerificationForm, int i, Object obj) {
-            if ((i & 1) != 0) {
-                fetchStates = memberVerificationFormData.fetchState;
-            }
-            if ((i & 2) != 0) {
-                modelMemberVerificationForm = memberVerificationFormData.form;
-            }
-            return memberVerificationFormData.copy(fetchStates, modelMemberVerificationForm);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final FetchStates getFetchState() {
-            return this.fetchState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelMemberVerificationForm getForm() {
-            return this.form;
-        }
-
-        public final MemberVerificationFormData copy(FetchStates fetchState, ModelMemberVerificationForm form) {
-            C12238m.checkNotNullParameter(fetchState, "fetchState");
-            return new MemberVerificationFormData(fetchState, form);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof MemberVerificationFormData)) {
-                return false;
-            }
-            MemberVerificationFormData memberVerificationFormData = (MemberVerificationFormData) other;
-            return C12238m.areEqual(this.fetchState, memberVerificationFormData.fetchState) && C12238m.areEqual(this.form, memberVerificationFormData.form);
-        }
-
-        public final FetchStates getFetchState() {
-            return this.fetchState;
-        }
-
-        public final ModelMemberVerificationForm getForm() {
-            return this.form;
-        }
-
-        public int hashCode() {
-            FetchStates fetchStates = this.fetchState;
-            int iHashCode = (fetchStates != null ? fetchStates.hashCode() : 0) * 31;
-            ModelMemberVerificationForm modelMemberVerificationForm = this.form;
-            return iHashCode + (modelMemberVerificationForm != null ? modelMemberVerificationForm.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("MemberVerificationFormData(fetchState=");
-            sbM833U.append(this.fetchState);
-            sbM833U.append(", form=");
-            sbM833U.append(this.form);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$fetchMemberVerificationForm$1 */
     /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-    public static final class C60351 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60351 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$fetchMemberVerificationForm$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelMemberVerificationForm, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelMemberVerificationForm, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$fetchMemberVerificationForm$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-            public static final class C132551 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132551 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ModelMemberVerificationForm $memberVerificationForm;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -159,11 +80,11 @@ public final class StoreGuildMemberVerificationForm extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$fetchMemberVerificationForm$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$fetchMemberVerificationForm$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -223,7 +144,7 @@ public final class StoreGuildMemberVerificationForm extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberVerificationForm$observeMemberVerificationFormData$1 */
     /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
-    public static final class C60361 extends AbstractC12240o implements Function0<MemberVerificationFormData> {
+    public final class C60361 extends AbstractC12240o implements Function0<MemberVerificationFormData> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -239,8 +160,95 @@ public final class StoreGuildMemberVerificationForm extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
+    public enum FetchStates {
+        FETCHING,
+        FAILED,
+        SUCCEEDED
+    }
+
+    /* JADX INFO: compiled from: StoreGuildMemberVerificationForm.kt */
+    public final /* data */ class MemberVerificationFormData {
+        private final FetchStates fetchState;
+        private final ModelMemberVerificationForm form;
+
+        public MemberVerificationFormData(FetchStates fetchStates, ModelMemberVerificationForm modelMemberVerificationForm) {
+            C12238m.checkNotNullParameter(fetchStates, "fetchState");
+            this.fetchState = fetchStates;
+            this.form = modelMemberVerificationForm;
+        }
+
+        public static /* synthetic */ MemberVerificationFormData copy$default(MemberVerificationFormData memberVerificationFormData, FetchStates fetchStates, ModelMemberVerificationForm modelMemberVerificationForm, int i, Object obj) {
+            if ((i & 1) != 0) {
+                fetchStates = memberVerificationFormData.fetchState;
+            }
+            if ((i & 2) != 0) {
+                modelMemberVerificationForm = memberVerificationFormData.form;
+            }
+            return memberVerificationFormData.copy(fetchStates, modelMemberVerificationForm);
+        }
+
+        public final MemberVerificationFormData copy(FetchStates fetchState, ModelMemberVerificationForm form) {
+            C12238m.checkNotNullParameter(fetchState, "fetchState");
+            return new MemberVerificationFormData(fetchState, form);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof MemberVerificationFormData)) {
+                return false;
+            }
+            MemberVerificationFormData memberVerificationFormData = (MemberVerificationFormData) other;
+            return C12238m.areEqual(this.fetchState, memberVerificationFormData.fetchState) && C12238m.areEqual(this.form, memberVerificationFormData.form);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final FetchStates getFetchState() {
+            return this.fetchState;
+        }
+
+        public final FetchStates getFetchState() {
+            return this.fetchState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ModelMemberVerificationForm getForm() {
+            return this.form;
+        }
+
+        public final ModelMemberVerificationForm getForm() {
+            return this.form;
+        }
+
+        public int hashCode() {
+            FetchStates fetchStates = this.fetchState;
+            int iHashCode = (fetchStates != null ? fetchStates.hashCode() : 0) * 31;
+            ModelMemberVerificationForm modelMemberVerificationForm = this.form;
+            return iHashCode + (modelMemberVerificationForm != null ? modelMemberVerificationForm.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("MemberVerificationFormData(fetchState=");
+            sbM833U.append(this.fetchState);
+            sbM833U.append(", form=");
+            sbM833U.append(this.form);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+    }
+
     public /* synthetic */ StoreGuildMemberVerificationForm(Dispatcher dispatcher, RestAPI restAPI, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
+    }
+
+    public final void fetchMemberVerificationForm(long guildId) {
+        this.dispatcher.schedule(new C60351(guildId));
+    }
+
+    public final MemberVerificationFormData getMemberVerificationFormData(long guildId) {
+        return this.memberVerificationFormSnapshot.get(Long.valueOf(guildId));
     }
 
     @StoreThread
@@ -259,14 +267,6 @@ public final class StoreGuildMemberVerificationForm extends StoreV2 {
     private final void handleMemberVerificationFormFetchSuccess(long guildId, ModelMemberVerificationForm memberVerificationForm) {
         this.memberVerificationFormState.put(Long.valueOf(guildId), new MemberVerificationFormData(FetchStates.SUCCEEDED, memberVerificationForm));
         markChanged();
-    }
-
-    public final void fetchMemberVerificationForm(long guildId) {
-        this.dispatcher.schedule(new C60351(guildId));
-    }
-
-    public final MemberVerificationFormData getMemberVerificationFormData(long guildId) {
-        return this.memberVerificationFormSnapshot.get(Long.valueOf(guildId));
     }
 
     public final Observable<MemberVerificationFormData> observeMemberVerificationFormData(long guildId) {

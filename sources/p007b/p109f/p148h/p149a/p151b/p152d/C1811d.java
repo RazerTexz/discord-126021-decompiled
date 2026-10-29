@@ -9,6 +9,10 @@ import p007b.p109f.p148h.p149a.p151b.InterfaceC1806b;
 /* JADX INFO: loaded from: classes.dex */
 public class C1811d implements InterfaceC1806b {
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
+    public void clear() {
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
     /* JADX INFO: renamed from: a */
     public CloseableReference<Bitmap> mo1151a(int i, int i2, int i3) {
         return null;
@@ -23,10 +27,6 @@ public class C1811d implements InterfaceC1806b {
     /* JADX INFO: renamed from: c */
     public boolean mo1153c(int i) {
         return false;
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
-    public void clear() {
     }
 
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b

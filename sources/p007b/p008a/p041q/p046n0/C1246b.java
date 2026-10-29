@@ -15,7 +15,7 @@ public final class C1246b extends TimerTask {
 
     /* JADX INFO: renamed from: b.a.q.n0.b$a */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class a extends AbstractC12240o implements Function0<Unit> {
+    public final class a extends AbstractC12240o implements Function0<Unit> {
         public a() {
             super(0);
         }

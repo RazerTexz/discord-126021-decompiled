@@ -30,7 +30,7 @@ public final class C11255e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e0$a */
     /* JADX INFO: compiled from: ReflectionObjectRenderer.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11326c1, CharSequence> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11326c1, CharSequence> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22350j = new a();
@@ -51,7 +51,7 @@ public final class C11255e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e0$b */
     /* JADX INFO: compiled from: ReflectionObjectRenderer.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11326c1, CharSequence> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11326c1, CharSequence> {
 
         /* JADX INFO: renamed from: j */
         public static final b f22351j = new b();

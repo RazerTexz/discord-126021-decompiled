@@ -68,7 +68,7 @@ public class C1833d {
     }
 
     /* JADX INFO: renamed from: b */
-    public static C1832c m1174b(InputStream inputStream) {
+    public static C1832c m1174b(InputStream inputStream) throws Throwable {
         try {
             return m1173a(inputStream);
         } catch (IOException e) {

@@ -90,23 +90,6 @@ public class C1779m extends C1772g implements InterfaceC1776j {
         this.f3392D = new RectF();
     }
 
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
-    /* JADX INFO: renamed from: a */
-    public void mo1106a(int i, float f) {
-        this.f3402w = i;
-        this.f3401v = f;
-        m1115p();
-        invalidateSelf();
-    }
-
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
-    /* JADX INFO: renamed from: c */
-    public void mo1107c(boolean z2) {
-        this.f3400u = z2;
-        m1115p();
-        invalidateSelf();
-    }
-
     @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         this.f3394o.set(getBounds());
@@ -184,6 +167,65 @@ public class C1779m extends C1772g implements InterfaceC1776j {
         }
     }
 
+    /* JADX INFO: renamed from: p */
+    public final void m1115p() {
+        float[] fArr;
+        this.f3390B.reset();
+        this.f3391C.reset();
+        this.f3392D.set(getBounds());
+        RectF rectF = this.f3392D;
+        float f = this.f3404y;
+        rectF.inset(f, f);
+        if (this.f3393n == 1) {
+            this.f3390B.addRect(this.f3392D, Path.Direction.CW);
+        }
+        if (this.f3400u) {
+            this.f3390B.addCircle(this.f3392D.centerX(), this.f3392D.centerY(), Math.min(this.f3392D.width(), this.f3392D.height()) / 2.0f, Path.Direction.CW);
+        } else {
+            this.f3390B.addRoundRect(this.f3392D, this.f3397r, Path.Direction.CW);
+        }
+        RectF rectF2 = this.f3392D;
+        float f2 = -this.f3404y;
+        rectF2.inset(f2, f2);
+        RectF rectF3 = this.f3392D;
+        float f3 = this.f3401v / 2.0f;
+        rectF3.inset(f3, f3);
+        if (this.f3400u) {
+            this.f3391C.addCircle(this.f3392D.centerX(), this.f3392D.centerY(), Math.min(this.f3392D.width(), this.f3392D.height()) / 2.0f, Path.Direction.CW);
+        } else {
+            int i = 0;
+            while (true) {
+                fArr = this.f3398s;
+                if (i >= fArr.length) {
+                    break;
+                }
+                fArr[i] = (this.f3397r[i] + this.f3404y) - (this.f3401v / 2.0f);
+                i++;
+            }
+            this.f3391C.addRoundRect(this.f3392D, fArr, Path.Direction.CW);
+        }
+        RectF rectF4 = this.f3392D;
+        float f4 = (-this.f3401v) / 2.0f;
+        rectF4.inset(f4, f4);
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
+    /* JADX INFO: renamed from: a */
+    public void mo1106a(int i, float f) {
+        this.f3402w = i;
+        this.f3401v = f;
+        m1115p();
+        invalidateSelf();
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
+    /* JADX INFO: renamed from: c */
+    public void mo1107c(boolean z2) {
+        this.f3400u = z2;
+        m1115p();
+        invalidateSelf();
+    }
+
     @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
     /* JADX INFO: renamed from: e */
     public void mo1108e(boolean z2) {
@@ -237,47 +279,5 @@ public class C1779m extends C1772g implements InterfaceC1776j {
             drawable.setBounds(rect);
         }
         m1115p();
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final void m1115p() {
-        float[] fArr;
-        this.f3390B.reset();
-        this.f3391C.reset();
-        this.f3392D.set(getBounds());
-        RectF rectF = this.f3392D;
-        float f = this.f3404y;
-        rectF.inset(f, f);
-        if (this.f3393n == 1) {
-            this.f3390B.addRect(this.f3392D, Path.Direction.CW);
-        }
-        if (this.f3400u) {
-            this.f3390B.addCircle(this.f3392D.centerX(), this.f3392D.centerY(), Math.min(this.f3392D.width(), this.f3392D.height()) / 2.0f, Path.Direction.CW);
-        } else {
-            this.f3390B.addRoundRect(this.f3392D, this.f3397r, Path.Direction.CW);
-        }
-        RectF rectF2 = this.f3392D;
-        float f2 = -this.f3404y;
-        rectF2.inset(f2, f2);
-        RectF rectF3 = this.f3392D;
-        float f3 = this.f3401v / 2.0f;
-        rectF3.inset(f3, f3);
-        if (this.f3400u) {
-            this.f3391C.addCircle(this.f3392D.centerX(), this.f3392D.centerY(), Math.min(this.f3392D.width(), this.f3392D.height()) / 2.0f, Path.Direction.CW);
-        } else {
-            int i = 0;
-            while (true) {
-                fArr = this.f3398s;
-                if (i >= fArr.length) {
-                    break;
-                }
-                fArr[i] = (this.f3397r[i] + this.f3404y) - (this.f3401v / 2.0f);
-                i++;
-            }
-            this.f3391C.addRoundRect(this.f3392D, fArr, Path.Direction.CW);
-        }
-        RectF rectF4 = this.f3392D;
-        float f4 = (-this.f3401v) / 2.0f;
-        rectF4.inset(f4, f4);
     }
 }

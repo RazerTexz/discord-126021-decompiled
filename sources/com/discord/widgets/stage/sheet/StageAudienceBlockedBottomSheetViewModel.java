@@ -40,7 +40,7 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.StageAudienceBlockedBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-    public static final /* synthetic */ class C100161 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C100161 extends C12236k implements Function1<StoreState, Unit> {
         public C100161(StageAudienceBlockedBottomSheetViewModel stageAudienceBlockedBottomSheetViewModel) {
             super(1, stageAudienceBlockedBottomSheetViewModel, StageAudienceBlockedBottomSheetViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/stage/sheet/StageAudienceBlockedBottomSheetViewModel$StoreState;)V", 0);
         }
@@ -59,7 +59,7 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,7 +90,7 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Set<Long> blockedUsers;
         private final CallModel callModel;
         private final long channelId;
@@ -103,6 +103,14 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
             this.callModel = callModel;
             this.blockedUsers = set;
             this.stageRoles = map;
+        }
+
+        public final Set<Long> component3() {
+            return this.blockedUsers;
+        }
+
+        public final Map<Long, StageRoles> component4() {
+            return this.stageRoles;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -123,24 +131,6 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
                 map = storeState.stageRoles;
             }
             return storeState.copy(j2, callModel2, set2, map);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CallModel getCallModel() {
-            return this.callModel;
-        }
-
-        public final Set<Long> component3() {
-            return this.blockedUsers;
-        }
-
-        public final Map<Long, StageRoles> component4() {
-            return this.stageRoles;
         }
 
         public final StoreState copy(long channelId, CallModel callModel, Set<Long> blockedUsers, Map<Long, StageRoles> stageRoles) {
@@ -164,8 +154,18 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
             return this.blockedUsers;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CallModel getCallModel() {
             return this.callModel;
+        }
+
+        public final CallModel getCallModel() {
+            return this.callModel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
@@ -199,10 +199,10 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -211,7 +211,7 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
         }
 
         /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Channel channel;
             private final List<MGRecyclerDataPayload> listItems;
 
@@ -225,6 +225,10 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
                 this.listItems = list;
             }
 
+            public final List<MGRecyclerDataPayload> component2() {
+                return this.listItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Channel channel, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -234,15 +238,6 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
                     list = loaded.listItems;
                 }
                 return loaded.copy(channel, list);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            public final List<MGRecyclerDataPayload> component2() {
-                return this.listItems;
             }
 
             public final Loaded copy(Channel channel, List<? extends MGRecyclerDataPayload> listItems) {
@@ -260,6 +255,11 @@ public final class StageAudienceBlockedBottomSheetViewModel extends AbstractC085
                 }
                 Loaded loaded = (Loaded) other;
                 return C12238m.areEqual(this.channel, loaded.channel) && C12238m.areEqual(this.listItems, loaded.listItems);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {

@@ -39,18 +39,18 @@ public final class WidgetHubEventsPageAdapter extends RecyclerView.Adapter<Widge
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         return this.items.get(position).getViewType();
     }
 
     public final List<HubEventsPage> getItems() {
         return this.items;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     @SuppressLint({"NotifyDataSetChanged"})

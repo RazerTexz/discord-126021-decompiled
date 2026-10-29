@@ -11,14 +11,14 @@ import p007b.p195g.p196a.p205c.p219i0.C2342d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2200u {
 
+    /* JADX INFO: renamed from: c */
+    public final AbstractC2165b f4750c;
+
     /* JADX INFO: renamed from: a */
     public static final C2195p[] f4748a = new C2195p[0];
 
     /* JADX INFO: renamed from: b */
     public static final Annotation[] f4749b = new Annotation[0];
-
-    /* JADX INFO: renamed from: c */
-    public final AbstractC2165b f4750c;
 
     public C2200u(AbstractC2165b abstractC2165b) {
         this.f4750c = abstractC2165b;

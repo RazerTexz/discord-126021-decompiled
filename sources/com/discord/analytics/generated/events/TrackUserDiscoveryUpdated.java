@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserDiscoveryUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserDiscoveryUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean hasName = null;
+    private final Boolean contactSyncEnabled = null;
     private final Boolean discoverableEmail = null;
     private final Boolean discoverablePhone = null;
-    private final Boolean contactSyncEnabled = null;
+    private final Boolean hasName = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_discovery_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackUserDiscoveryUpdated implements AnalyticsSche
         }
         TrackUserDiscoveryUpdated trackUserDiscoveryUpdated = (TrackUserDiscoveryUpdated) other;
         return C12238m.areEqual(this.hasName, trackUserDiscoveryUpdated.hasName) && C12238m.areEqual(this.discoverableEmail, trackUserDiscoveryUpdated.discoverableEmail) && C12238m.areEqual(this.discoverablePhone, trackUserDiscoveryUpdated.discoverablePhone) && C12238m.areEqual(this.contactSyncEnabled, trackUserDiscoveryUpdated.contactSyncEnabled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

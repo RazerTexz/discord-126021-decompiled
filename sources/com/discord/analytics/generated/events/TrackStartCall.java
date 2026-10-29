@@ -10,18 +10,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStartCall.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStartCall implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long messageId = null;
     private final List<Long> recipientIds = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "start_call";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackStartCall implements AnalyticsSchema, TrackBa
         }
         TrackStartCall trackStartCall = (TrackStartCall) other;
         return C12238m.areEqual(this.channelId, trackStartCall.channelId) && C12238m.areEqual(this.channelType, trackStartCall.channelType) && C12238m.areEqual(this.messageId, trackStartCall.messageId) && C12238m.areEqual(this.recipientIds, trackStartCall.recipientIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -71,22 +71,6 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
     @VisibleForTesting
     public static final Object SELECTOR_TOGGLE_TAG = "SELECTOR_TOGGLE_TAG";
 
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$a */
-    public class RunnableC10885a implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f20957j;
-
-        public RunnableC10885a(int i) {
-            this.f20957j = i;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            MaterialCalendar.this.recyclerView.smoothScrollToPosition(this.f20957j);
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$b */
     public class C10886b extends AccessibilityDelegateCompat {
         public C10886b(MaterialCalendar materialCalendar) {
@@ -126,48 +110,6 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
     /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$d */
     public class C10888d implements InterfaceC10896l {
         public C10888d() {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$e */
-    public class C10889e extends RecyclerView.ItemDecoration {
-
-        /* JADX INFO: renamed from: a */
-        public final Calendar f20962a = C4401l.m6076i();
-
-        /* JADX INFO: renamed from: b */
-        public final Calendar f20963b = C4401l.m6076i();
-
-        public C10889e() {
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-        public void onDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
-            if ((recyclerView.getAdapter() instanceof YearGridAdapter) && (recyclerView.getLayoutManager() instanceof GridLayoutManager)) {
-                YearGridAdapter yearGridAdapter = (YearGridAdapter) recyclerView.getAdapter();
-                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-                for (Pair<Long, Long> pair : MaterialCalendar.this.dateSelector.getSelectedRanges()) {
-                    Long l = pair.first;
-                    if (l != null && pair.second != null) {
-                        this.f20962a.setTimeInMillis(l.longValue());
-                        this.f20963b.setTimeInMillis(pair.second.longValue());
-                        int iM9142a = yearGridAdapter.m9142a(this.f20962a.get(1));
-                        int iM9142a2 = yearGridAdapter.m9142a(this.f20963b.get(1));
-                        View viewFindViewByPosition = gridLayoutManager.findViewByPosition(iM9142a);
-                        View viewFindViewByPosition2 = gridLayoutManager.findViewByPosition(iM9142a2);
-                        int spanCount = iM9142a / gridLayoutManager.getSpanCount();
-                        int spanCount2 = iM9142a2 / gridLayoutManager.getSpanCount();
-                        for (int i = spanCount; i <= spanCount2; i++) {
-                            View viewFindViewByPosition3 = gridLayoutManager.findViewByPosition(gridLayoutManager.getSpanCount() * i);
-                            if (viewFindViewByPosition3 != null) {
-                                int top = viewFindViewByPosition3.getTop() + MaterialCalendar.this.calendarStyle.f11587d.f11578a.top;
-                                int bottom = viewFindViewByPosition3.getBottom() - MaterialCalendar.this.calendarStyle.f11587d.f11578a.bottom;
-                                canvas.drawRect(i == spanCount ? (viewFindViewByPosition.getWidth() / 2) + viewFindViewByPosition.getLeft() : 0, top, i == spanCount2 ? (viewFindViewByPosition2.getWidth() / 2) + viewFindViewByPosition2.getLeft() : recyclerView.getWidth(), bottom, MaterialCalendar.this.calendarStyle.f11591h);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -211,6 +153,32 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
             MaterialButton materialButton = this.f20967b;
             MonthsPagerAdapter monthsPagerAdapter = this.f20966a;
             materialButton.setText(monthsPagerAdapter.f20992b.getStart().m9138m(iFindFirstVisibleItemPosition).m9137l(monthsPagerAdapter.f20991a));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$k */
+    public enum EnumC10895k {
+        DAY,
+        YEAR
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$l */
+    public interface InterfaceC10896l {
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$a */
+    public class RunnableC10885a implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f20957j;
+
+        public RunnableC10885a(int i) {
+            this.f20957j = i;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            MaterialCalendar.this.recyclerView.smoothScrollToPosition(this.f20957j);
         }
     }
 
@@ -263,16 +231,6 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$k */
-    public enum EnumC10895k {
-        DAY,
-        YEAR
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$l */
-    public interface InterfaceC10896l {
-    }
-
     private void addActionsToMonthNavigation(@NonNull View view, @NonNull MonthsPagerAdapter monthsPagerAdapter) {
         MaterialButton materialButton = (MaterialButton) view.findViewById(C10817R.id.month_navigation_fragment_toggle);
         materialButton.setTag(SELECTOR_TOGGLE_TAG);
@@ -291,35 +249,14 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
         materialButton2.setOnClickListener(new ViewOnClickListenerC10894j(monthsPagerAdapter));
     }
 
-    @NonNull
-    private RecyclerView.ItemDecoration createItemDecoration() {
-        return new C10889e();
-    }
-
-    @Px
-    public static int getDayHeight(@NonNull Context context) {
-        return context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_calendar_day_height);
-    }
-
-    @NonNull
-    public static <T> MaterialCalendar<T> newInstance(@NonNull DateSelector<T> dateSelector, @StyleRes int i, @NonNull CalendarConstraints calendarConstraints) {
-        MaterialCalendar<T> materialCalendar = new MaterialCalendar<>();
-        Bundle bundle = new Bundle();
-        bundle.putInt(THEME_RES_ID_KEY, i);
-        bundle.putParcelable(GRID_SELECTOR_KEY, dateSelector);
-        bundle.putParcelable(CALENDAR_CONSTRAINTS_KEY, calendarConstraints);
-        bundle.putParcelable(CURRENT_MONTH_KEY, calendarConstraints.getOpenAt());
-        materialCalendar.setArguments(bundle);
-        return materialCalendar;
-    }
-
-    private void postSmoothRecyclerViewScroll(int i) {
-        this.recyclerView.post(new RunnableC10885a(i));
-    }
-
     @Override // p007b.p225i.p226a.p341g.p345d.AbstractC4398i
     public boolean addOnSelectionChangedListener(@NonNull OnSelectionChangedListener<S> onSelectionChangedListener) {
         return super.addOnSelectionChangedListener(onSelectionChangedListener);
+    }
+
+    @NonNull
+    private RecyclerView.ItemDecoration createItemDecoration() {
+        return new C10889e();
     }
 
     @Nullable
@@ -342,9 +279,26 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
         return this.dateSelector;
     }
 
+    @Px
+    public static int getDayHeight(@NonNull Context context) {
+        return context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_calendar_day_height);
+    }
+
     @NonNull
     public LinearLayoutManager getLayoutManager() {
         return (LinearLayoutManager) this.recyclerView.getLayoutManager();
+    }
+
+    @NonNull
+    public static <T> MaterialCalendar<T> newInstance(@NonNull DateSelector<T> dateSelector, @StyleRes int i, @NonNull CalendarConstraints calendarConstraints) {
+        MaterialCalendar<T> materialCalendar = new MaterialCalendar<>();
+        Bundle bundle = new Bundle();
+        bundle.putInt(THEME_RES_ID_KEY, i);
+        bundle.putParcelable(GRID_SELECTOR_KEY, dateSelector);
+        bundle.putParcelable(CALENDAR_CONSTRAINTS_KEY, calendarConstraints);
+        bundle.putParcelable(CURRENT_MONTH_KEY, calendarConstraints.getOpenAt());
+        materialCalendar.setArguments(bundle);
+        return materialCalendar;
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -414,6 +368,10 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
         bundle.putParcelable(CURRENT_MONTH_KEY, this.current);
     }
 
+    private void postSmoothRecyclerViewScroll(int i) {
+        this.recyclerView.post(new RunnableC10885a(i));
+    }
+
     public void setCurrentMonth(Month month) {
         MonthsPagerAdapter monthsPagerAdapter = (MonthsPagerAdapter) this.recyclerView.getAdapter();
         int iM9139o = monthsPagerAdapter.f20992b.getStart().m9139o(month);
@@ -453,6 +411,48 @@ public final class MaterialCalendar<S> extends AbstractC4398i<S> {
             setSelector(enumC10895k);
         } else if (enumC10895k2 == enumC10895k) {
             setSelector(enumC10895k3);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialCalendar$e */
+    public class C10889e extends RecyclerView.ItemDecoration {
+
+        /* JADX INFO: renamed from: a */
+        public final Calendar f20962a = C4401l.m6076i();
+
+        /* JADX INFO: renamed from: b */
+        public final Calendar f20963b = C4401l.m6076i();
+
+        public C10889e() {
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+        public void onDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
+            if ((recyclerView.getAdapter() instanceof YearGridAdapter) && (recyclerView.getLayoutManager() instanceof GridLayoutManager)) {
+                YearGridAdapter yearGridAdapter = (YearGridAdapter) recyclerView.getAdapter();
+                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+                for (Pair<Long, Long> pair : MaterialCalendar.this.dateSelector.getSelectedRanges()) {
+                    Long l = pair.first;
+                    if (l != null && pair.second != null) {
+                        this.f20962a.setTimeInMillis(l.longValue());
+                        this.f20963b.setTimeInMillis(pair.second.longValue());
+                        int iM9142a = yearGridAdapter.m9142a(this.f20962a.get(1));
+                        int iM9142a2 = yearGridAdapter.m9142a(this.f20963b.get(1));
+                        View viewFindViewByPosition = gridLayoutManager.findViewByPosition(iM9142a);
+                        View viewFindViewByPosition2 = gridLayoutManager.findViewByPosition(iM9142a2);
+                        int spanCount = iM9142a / gridLayoutManager.getSpanCount();
+                        int spanCount2 = iM9142a2 / gridLayoutManager.getSpanCount();
+                        for (int i = spanCount; i <= spanCount2; i++) {
+                            View viewFindViewByPosition3 = gridLayoutManager.findViewByPosition(gridLayoutManager.getSpanCount() * i);
+                            if (viewFindViewByPosition3 != null) {
+                                int top = viewFindViewByPosition3.getTop() + MaterialCalendar.this.calendarStyle.f11587d.f11578a.top;
+                                int bottom = viewFindViewByPosition3.getBottom() - MaterialCalendar.this.calendarStyle.f11587d.f11578a.bottom;
+                                canvas.drawRect(i == spanCount ? (viewFindViewByPosition.getWidth() / 2) + viewFindViewByPosition.getLeft() : 0, top, i == spanCount2 ? (viewFindViewByPosition2.getWidth() / 2) + viewFindViewByPosition2.getLeft() : recyclerView.getWidth(), bottom, MaterialCalendar.this.calendarStyle.f11591h);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

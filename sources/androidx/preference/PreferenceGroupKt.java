@@ -16,7 +16,7 @@ public final class PreferenceGroupKt {
 
     /* JADX INFO: renamed from: androidx.preference.PreferenceGroupKt$iterator$1 */
     /* JADX INFO: compiled from: PreferenceGroup.kt */
-    public static final class C05231 implements Iterator<Preference>, InterfaceC12228a {
+    public final class C05231 implements Iterator<Preference>, InterfaceC12228a {
         public final /* synthetic */ PreferenceGroup $this_iterator;
         private int index;
 

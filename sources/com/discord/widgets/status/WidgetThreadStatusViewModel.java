@@ -43,7 +43,7 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatusViewModel$1 */
     /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-    public static final class C101151 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C101151 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C101151() {
             super(1);
         }
@@ -62,8 +62,30 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreThreadsActiveJoined storeThreadsActiveJoined, StoreChannelsSelected storeChannelsSelected, StoreChannels storeChannels, StorePermissions storePermissions, StoreExperiments storeExperiments, int i, Object obj) {
+            if ((i & 1) != 0) {
+                storeThreadsActiveJoined = StoreStream.INSTANCE.getThreadsActiveJoined();
+            }
+            if ((i & 2) != 0) {
+                storeChannelsSelected = StoreStream.INSTANCE.getChannelsSelected();
+            }
+            StoreChannelsSelected storeChannelsSelected2 = storeChannelsSelected;
+            if ((i & 4) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            StoreChannels storeChannels2 = storeChannels;
+            if ((i & 8) != 0) {
+                storePermissions = StoreStream.INSTANCE.getPermissions();
+            }
+            StorePermissions storePermissions2 = storePermissions;
+            if ((i & 16) != 0) {
+                storeExperiments = StoreStream.INSTANCE.getExperiments();
+            }
+            return companion.observeStoreState(storeThreadsActiveJoined, storeChannelsSelected2, storeChannels2, storePermissions2, storeExperiments);
         }
 
         private final Observable<StoreState> observeStoreState(final StoreThreadsActiveJoined storeThreadsActiveJoined, StoreChannelsSelected storeChannelsSelected, final StoreChannels storeChannels, final StorePermissions storePermissions, final StoreExperiments storeExperiments) {
@@ -97,38 +119,16 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             return observableM11099Y;
         }
 
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreThreadsActiveJoined storeThreadsActiveJoined, StoreChannelsSelected storeChannelsSelected, StoreChannels storeChannels, StorePermissions storePermissions, StoreExperiments storeExperiments, int i, Object obj) {
-            if ((i & 1) != 0) {
-                storeThreadsActiveJoined = StoreStream.INSTANCE.getThreadsActiveJoined();
-            }
-            if ((i & 2) != 0) {
-                storeChannelsSelected = StoreStream.INSTANCE.getChannelsSelected();
-            }
-            StoreChannelsSelected storeChannelsSelected2 = storeChannelsSelected;
-            if ((i & 4) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            StoreChannels storeChannels2 = storeChannels;
-            if ((i & 8) != 0) {
-                storePermissions = StoreStream.INSTANCE.getPermissions();
-            }
-            StorePermissions storePermissions2 = storePermissions;
-            if ((i & 16) != 0) {
-                storeExperiments = StoreStream.INSTANCE.getExperiments();
-            }
-            return companion.observeStoreState(storeThreadsActiveJoined, storeChannelsSelected2, storeChannels2, storePermissions2, storeExperiments);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-    public static abstract class Status {
+    public abstract class Status {
 
         /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-        public static final /* data */ class Archived extends Status {
+        public final /* data */ class Archived extends Status {
             private final boolean canArchive;
             private final boolean isLocked;
 
@@ -148,16 +148,6 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
                 return archived.copy(z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsLocked() {
-                return this.isLocked;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanArchive() {
-                return this.canArchive;
-            }
-
             public final Archived copy(boolean isLocked, boolean canArchive) {
                 return new Archived(isLocked, canArchive);
             }
@@ -173,8 +163,18 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
                 return this.isLocked == archived.isLocked && this.canArchive == archived.canArchive;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getCanArchive() {
                 return this.canArchive;
+            }
+
+            public final boolean getCanArchive() {
+                return this.canArchive;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsLocked() {
+                return this.isLocked;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -209,7 +209,7 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-        public static final class Hide extends Status {
+        public final class Hide extends Status {
             public static final Hide INSTANCE = new Hide();
 
             private Hide() {
@@ -218,7 +218,7 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-        public static final class Unjoined extends Status {
+        public final class Unjoined extends Status {
             public static final Unjoined INSTANCE = new Unjoined();
 
             private Unjoined() {
@@ -235,7 +235,7 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> activeJoinedThreads;
         private final boolean canAccessRedesignedForumChannels;
         private final boolean canArchive;
@@ -252,6 +252,10 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             this.canArchive = z2;
             this.isModerator = z3;
             this.canAccessRedesignedForumChannels = z4;
+        }
+
+        public final Map<Long, Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> component1() {
+            return this.activeJoinedThreads;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -281,35 +285,6 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             return storeState.copy(map, channel3, channel4, z5, z6, z4);
         }
 
-        public final Map<Long, Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> component1() {
-            return this.activeJoinedThreads;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getSelectedChannel() {
-            return this.selectedChannel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getParentChannel() {
-            return this.parentChannel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getCanArchive() {
-            return this.canArchive;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanAccessRedesignedForumChannels() {
-            return this.canAccessRedesignedForumChannels;
-        }
-
         public final StoreState copy(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> activeJoinedThreads, Channel selectedChannel, Channel parentChannel, boolean canArchive, boolean isModerator, boolean canAccessRedesignedForumChannels) {
             C12238m.checkNotNullParameter(activeJoinedThreads, "activeJoinedThreads");
             return new StoreState(activeJoinedThreads, selectedChannel, parentChannel, canArchive, isModerator, canAccessRedesignedForumChannels);
@@ -330,16 +305,41 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             return this.activeJoinedThreads;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getCanAccessRedesignedForumChannels() {
             return this.canAccessRedesignedForumChannels;
+        }
+
+        public final boolean getCanAccessRedesignedForumChannels() {
+            return this.canAccessRedesignedForumChannels;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getCanArchive() {
+            return this.canArchive;
         }
 
         public final boolean getCanArchive() {
             return this.canArchive;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getParentChannel() {
             return this.parentChannel;
+        }
+
+        public final Channel getParentChannel() {
+            return this.parentChannel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getSelectedChannel() {
+            return this.selectedChannel;
         }
 
         public final Channel getSelectedChannel() {
@@ -403,7 +403,7 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetThreadStatusViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isLoading;
         private final Status threadStatus;
 
@@ -423,16 +423,6 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             return viewState.copy(status, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Status getThreadStatus() {
-            return this.threadStatus;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsLoading() {
-            return this.isLoading;
-        }
-
         public final ViewState copy(Status threadStatus, boolean isLoading) {
             C12238m.checkNotNullParameter(threadStatus, "threadStatus");
             return new ViewState(threadStatus, isLoading);
@@ -447,6 +437,16 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             }
             ViewState viewState = (ViewState) other;
             return C12238m.areEqual(this.threadStatus, viewState.threadStatus) && this.isLoading == viewState.isLoading;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsLoading() {
+            return this.isLoading;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Status getThreadStatus() {
+            return this.threadStatus;
         }
 
         public final Status getThreadStatus() {
@@ -499,6 +499,10 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
         publishSubject.f27650k.onNext(new WidgetThreadStatus.Event.Error(code));
     }
 
+    public final Observable<StoreState> getStoreStateObservable() {
+        return this.storeStateObservable;
+    }
+
     private final void handleStoreState(StoreState storeState) {
         Status archived;
         this.currentStoreState = storeState;
@@ -533,21 +537,6 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
         updateViewWithStatus(archived);
     }
 
-    private final void updateViewLoading(boolean isLoading) {
-        ViewState viewState = getViewState();
-        if (viewState != null) {
-            updateViewState(ViewState.copy$default(viewState, null, isLoading, 1, null));
-        }
-    }
-
-    private final void updateViewWithStatus(Status status) {
-        updateViewState(new ViewState(status, false, 2, null));
-    }
-
-    public final Observable<StoreState> getStoreStateObservable() {
-        return this.storeStateObservable;
-    }
-
     public final Observable<WidgetThreadStatus.Event> observeEvents() {
         PublishSubject<WidgetThreadStatus.Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -577,6 +566,17 @@ public final class WidgetThreadStatusViewModel extends AbstractC0859d0<ViewState
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.editThread(id2, new RestAPIParams.ThreadSettings(bool, storeState.isModerator() ? bool : null, null, 4, null)), false, 1, null), this, null, 2, null), (Class<?>) WidgetThreadStatusViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C10117x32a829cc(this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C10118x32a829cd(this)), WidgetThreadStatusViewModel$onUnarchiveTapped$1$2.INSTANCE);
         }
         updateViewLoading(true);
+    }
+
+    private final void updateViewLoading(boolean isLoading) {
+        ViewState viewState = getViewState();
+        if (viewState != null) {
+            updateViewState(ViewState.copy$default(viewState, null, isLoading, 1, null));
+        }
+    }
+
+    private final void updateViewWithStatus(Status status) {
+        updateViewState(new ViewState(status, false, 2, null));
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

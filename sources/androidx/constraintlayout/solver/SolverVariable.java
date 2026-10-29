@@ -45,7 +45,7 @@ public class SolverVariable {
     public int usageInRowCount;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.SolverVariable$1 */
-    public static /* synthetic */ class C01831 {
+    public /* synthetic */ class C01831 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type;
 
         static {
@@ -101,6 +101,39 @@ public class SolverVariable {
         this.mType = type;
     }
 
+    public final void addToRow(ArrayRow arrayRow) {
+        int i = 0;
+        while (true) {
+            int i2 = this.mClientEquationsCount;
+            if (i >= i2) {
+                ArrayRow[] arrayRowArr = this.mClientEquations;
+                if (i2 >= arrayRowArr.length) {
+                    this.mClientEquations = (ArrayRow[]) Arrays.copyOf(arrayRowArr, arrayRowArr.length * 2);
+                }
+                ArrayRow[] arrayRowArr2 = this.mClientEquations;
+                int i3 = this.mClientEquationsCount;
+                arrayRowArr2[i3] = arrayRow;
+                this.mClientEquationsCount = i3 + 1;
+                return;
+            }
+            if (this.mClientEquations[i] == arrayRow) {
+                return;
+            } else {
+                i++;
+            }
+        }
+    }
+
+    public void clearStrengths() {
+        for (int i = 0; i < 9; i++) {
+            this.strengthVector[i] = 0.0f;
+        }
+    }
+
+    public String getName() {
+        return this.mName;
+    }
+
     private static String getUniqueName(Type type, String str) {
         if (str != null) {
             StringBuilder sbM833U = C1643a.m833U(str);
@@ -148,39 +181,6 @@ public class SolverVariable {
 
     public static void increaseErrorId() {
         uniqueErrorId++;
-    }
-
-    public final void addToRow(ArrayRow arrayRow) {
-        int i = 0;
-        while (true) {
-            int i2 = this.mClientEquationsCount;
-            if (i >= i2) {
-                ArrayRow[] arrayRowArr = this.mClientEquations;
-                if (i2 >= arrayRowArr.length) {
-                    this.mClientEquations = (ArrayRow[]) Arrays.copyOf(arrayRowArr, arrayRowArr.length * 2);
-                }
-                ArrayRow[] arrayRowArr2 = this.mClientEquations;
-                int i3 = this.mClientEquationsCount;
-                arrayRowArr2[i3] = arrayRow;
-                this.mClientEquationsCount = i3 + 1;
-                return;
-            }
-            if (this.mClientEquations[i] == arrayRow) {
-                return;
-            } else {
-                i++;
-            }
-        }
-    }
-
-    public void clearStrengths() {
-        for (int i = 0; i < 9; i++) {
-            this.strengthVector[i] = 0.0f;
-        }
-    }
-
-    public String getName() {
-        return this.mName;
     }
 
     public final void removeFromRow(ArrayRow arrayRow) {

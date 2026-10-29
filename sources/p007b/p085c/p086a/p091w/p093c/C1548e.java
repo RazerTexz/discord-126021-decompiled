@@ -14,12 +14,6 @@ public class C1548e extends AbstractC1549f<Integer> {
         super(list);
     }
 
-    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a
-    /* JADX INFO: renamed from: f */
-    public Object mo728f(C1501a c1501a, float f) {
-        return Integer.valueOf(m741j(c1501a, f));
-    }
-
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
     java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
     	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
@@ -50,5 +44,11 @@ public class C1548e extends AbstractC1549f<Integer> {
         int i2 = c1501a.f2325j;
         PointF pointF = C1498f.f2308a;
         return (int) ((f * (i2 - i)) + i);
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a
+    /* JADX INFO: renamed from: f */
+    public Object mo728f(C1501a c1501a, float f) {
+        return Integer.valueOf(m741j(c1501a, f));
     }
 }

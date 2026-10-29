@@ -17,7 +17,7 @@ public final class LocationCompat {
     private static Method sSetIsFromMockProviderMethod;
 
     @RequiresApi(17)
-    public static class Api17Impl {
+    public class Api17Impl {
         private Api17Impl() {
         }
 
@@ -28,7 +28,7 @@ public final class LocationCompat {
     }
 
     @RequiresApi(18)
-    public static class Api18Impl {
+    public class Api18Impl {
         private Api18Impl() {
         }
 

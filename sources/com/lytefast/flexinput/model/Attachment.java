@@ -14,6 +14,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import p007b.p085c.p086a.p087a0.C1460d;
 import p007b.p100d.p104b.p105a.C1643a;
@@ -24,19 +25,34 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Attachment.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class Attachment<T> implements Parcelable {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String SPOILER_PREFIX = "SPOILER_";
     private final T data;
     private final String displayName;
     private final long id;
     private boolean spoiler;
     private final Uri uri;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final Parcelable.Creator<Attachment<?>> CREATOR = new C11189a();
 
+    /* JADX INFO: renamed from: com.lytefast.flexinput.model.Attachment$a */
     /* JADX INFO: compiled from: Attachment.kt */
-    public static final class Companion {
+    public final class C11189a implements Parcelable.Creator<Attachment<?>> {
+        @Override // android.os.Parcelable.Creator
+        public Attachment<?> createFromParcel(Parcel parcel) {
+            C12238m.checkNotNullParameter(parcel, "parcelIn");
+            return new Attachment<>(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public Attachment<?>[] newArray(int i) {
+            return new Attachment[i];
+        }
+    }
+
+    /* JADX INFO: compiled from: Attachment.kt */
+    public final class Companion {
         public Companion() {
         }
 
@@ -53,7 +69,7 @@ public class Attachment<T> implements Parcelable {
 
         /* JADX WARN: Code duplicated, block: B:39:0x00a3  */
         /* JADX INFO: renamed from: b */
-        public final Attachment<Uri> m9296b(Uri uri, ContentResolver contentResolver) throws IOException {
+        public final Attachment<Uri> m9296b(Uri uri, ContentResolver contentResolver) throws IllegalAccessException, IOException, InvocationTargetException {
             String lastPathSegment;
             int columnIndex;
             C12238m.checkNotNullParameter(uri, "$this$toAttachment");
@@ -162,21 +178,6 @@ public class Attachment<T> implements Parcelable {
         }
     }
 
-    /* JADX INFO: renamed from: com.lytefast.flexinput.model.Attachment$a */
-    /* JADX INFO: compiled from: Attachment.kt */
-    public static final class C11189a implements Parcelable.Creator<Attachment<?>> {
-        @Override // android.os.Parcelable.Creator
-        public Attachment<?> createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "parcelIn");
-            return new Attachment<>(parcel);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public Attachment<?>[] newArray(int i) {
-            return new Attachment[i];
-        }
-    }
-
     public Attachment(long j, Uri uri, String str, T t, boolean z2) {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(str, "displayName");
@@ -185,14 +186,6 @@ public class Attachment<T> implements Parcelable {
         this.displayName = str;
         this.data = t;
         this.spoiler = z2;
-    }
-
-    public static final Attachment<Uri> toAttachment(Uri uri, ContentResolver contentResolver) {
-        return INSTANCE.m9296b(uri, contentResolver);
-    }
-
-    public static final Attachment<InputContentInfoCompat> toAttachment(InputContentInfoCompat inputContentInfoCompat, ContentResolver contentResolver, boolean z2, String str) {
-        return INSTANCE.m9297c(inputContentInfoCompat, contentResolver, z2, str);
     }
 
     @Override // android.os.Parcelable
@@ -234,6 +227,14 @@ public class Attachment<T> implements Parcelable {
 
     public final void setSpoiler(boolean z2) {
         this.spoiler = z2;
+    }
+
+    public static final Attachment<Uri> toAttachment(Uri uri, ContentResolver contentResolver) {
+        return INSTANCE.m9296b(uri, contentResolver);
+    }
+
+    public static final Attachment<InputContentInfoCompat> toAttachment(InputContentInfoCompat inputContentInfoCompat, ContentResolver contentResolver, boolean z2, String str) {
+        return INSTANCE.m9297c(inputContentInfoCompat, contentResolver, z2, str);
     }
 
     @Override // android.os.Parcelable

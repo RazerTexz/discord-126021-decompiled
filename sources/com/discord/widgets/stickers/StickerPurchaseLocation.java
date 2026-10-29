@@ -17,7 +17,7 @@ public enum StickerPurchaseLocation {
     private final String analyticsValue;
 
     /* JADX INFO: compiled from: StickerPurchaseLocation.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;

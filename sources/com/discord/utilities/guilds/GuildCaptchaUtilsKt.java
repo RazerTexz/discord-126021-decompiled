@@ -28,7 +28,7 @@ public final class GuildCaptchaUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.guilds.GuildCaptchaUtilsKt$handleHttpException$1 */
     /* JADX INFO: compiled from: GuildCaptchaUtils.kt */
-    public static final class C67651 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+    public final class C67651 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
         public final /* synthetic */ InviteArgs $args;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -53,7 +53,7 @@ public final class GuildCaptchaUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.guilds.GuildCaptchaUtilsKt$handleHttpException$2 */
     /* JADX INFO: compiled from: GuildCaptchaUtils.kt */
-    public static final class C67662 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+    public final class C67662 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
         public final /* synthetic */ JoinArgs $args;
         public final /* synthetic */ Context $context;
 

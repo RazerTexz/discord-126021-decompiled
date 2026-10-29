@@ -51,7 +51,7 @@ public class AppMeasurement {
     public final boolean f20655d;
 
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
-    public static class ConditionalUserProperty {
+    public class ConditionalUserProperty {
 
         @Keep
         public boolean mActive;
@@ -187,30 +187,6 @@ public class AppMeasurement {
         this.f20655d = false;
     }
 
-    @RequiresPermission(allOf = {"android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"})
-    @Keep
-    @Deprecated
-    public static AppMeasurement getInstance(Context context) {
-        InterfaceC3988b7 interfaceC3988b7;
-        if (f20652a == null) {
-            synchronized (AppMeasurement.class) {
-                if (f20652a == null) {
-                    try {
-                        interfaceC3988b7 = (InterfaceC3988b7) Class.forName("com.google.firebase.analytics.FirebaseAnalytics").getDeclaredMethod("getScionFrontendApiImplementation", Context.class, Bundle.class).invoke(null, context, null);
-                    } catch (ClassNotFoundException | Exception unused) {
-                        interfaceC3988b7 = null;
-                    }
-                    if (interfaceC3988b7 != null) {
-                        f20652a = new AppMeasurement(interfaceC3988b7);
-                    } else {
-                        f20652a = new AppMeasurement(C4202u4.m5933b(context, new zzae(0L, 0L, true, null, null, null, null), null));
-                    }
-                }
-            }
-        }
-        return f20652a;
-    }
-
     @Keep
     public void beginAdUnitExposure(@NonNull @Size(min = 1) String str) {
         if (this.f20655d) {
@@ -317,6 +293,30 @@ public class AppMeasurement {
     @Keep
     public String getGmpAppId() {
         return this.f20655d ? this.f20654c.mo5505d() : this.f20653b.m5948s().m5552O();
+    }
+
+    @RequiresPermission(allOf = {"android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"})
+    @Keep
+    @Deprecated
+    public static AppMeasurement getInstance(Context context) {
+        InterfaceC3988b7 interfaceC3988b7;
+        if (f20652a == null) {
+            synchronized (AppMeasurement.class) {
+                if (f20652a == null) {
+                    try {
+                        interfaceC3988b7 = (InterfaceC3988b7) Class.forName("com.google.firebase.analytics.FirebaseAnalytics").getDeclaredMethod("getScionFrontendApiImplementation", Context.class, Bundle.class).invoke(null, context, null);
+                    } catch (ClassNotFoundException | Exception unused) {
+                        interfaceC3988b7 = null;
+                    }
+                    if (interfaceC3988b7 != null) {
+                        f20652a = new AppMeasurement(interfaceC3988b7);
+                    } else {
+                        f20652a = new AppMeasurement(C4202u4.m5933b(context, new zzae(0L, 0L, true, null, null, null, null), null));
+                    }
+                }
+            }
+        }
+        return f20652a;
     }
 
     @Keep

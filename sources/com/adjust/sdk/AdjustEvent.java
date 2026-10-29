@@ -5,7 +5,6 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AdjustEvent {
-    private static ILogger logger = AdjustFactory.getLogger();
     public String callbackId;
     public Map<String, String> callbackParameters;
     public String currency;
@@ -13,10 +12,33 @@ public class AdjustEvent {
     public String orderId;
     public Map<String, String> partnerParameters;
     public Double revenue;
+    private static ILogger logger = AdjustFactory.getLogger();
 
     public AdjustEvent(String str) {
         if (checkEventToken(str, logger)) {
             this.eventToken = str;
+        }
+    }
+
+    public void addCallbackParameter(String str, String str2) {
+        if (Util.isValidParameter(str, "key", "Callback") && Util.isValidParameter(str2, "value", "Callback")) {
+            if (this.callbackParameters == null) {
+                this.callbackParameters = new LinkedHashMap();
+            }
+            if (this.callbackParameters.put(str, str2) != null) {
+                logger.warn("Key %s was overwritten", str);
+            }
+        }
+    }
+
+    public void addPartnerParameter(String str, String str2) {
+        if (Util.isValidParameter(str, "key", "Partner") && Util.isValidParameter(str2, "value", "Partner")) {
+            if (this.partnerParameters == null) {
+                this.partnerParameters = new LinkedHashMap();
+            }
+            if (this.partnerParameters.put(str, str2) != null) {
+                logger.warn("Key %s was overwritten", str);
+            }
         }
     }
 
@@ -51,28 +73,6 @@ public class AdjustEvent {
             return false;
         }
         return true;
-    }
-
-    public void addCallbackParameter(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Callback") && Util.isValidParameter(str2, "value", "Callback")) {
-            if (this.callbackParameters == null) {
-                this.callbackParameters = new LinkedHashMap();
-            }
-            if (this.callbackParameters.put(str, str2) != null) {
-                logger.warn("Key %s was overwritten", str);
-            }
-        }
-    }
-
-    public void addPartnerParameter(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Partner") && Util.isValidParameter(str2, "value", "Partner")) {
-            if (this.partnerParameters == null) {
-                this.partnerParameters = new LinkedHashMap();
-            }
-            if (this.partnerParameters.put(str, str2) != null) {
-                logger.warn("Key %s was overwritten", str);
-            }
-        }
     }
 
     public boolean isValid() {

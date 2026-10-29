@@ -23,7 +23,7 @@ public final class CollectionTypeAdapterFactory implements InterfaceC4911o {
     /* JADX INFO: renamed from: j */
     public final C4922g f21513j;
 
-    public static final class Adapter<E> extends TypeAdapter<Collection<E>> {
+    public final class Adapter<E> extends TypeAdapter<Collection<E>> {
 
         /* JADX INFO: renamed from: a */
         public final TypeAdapter<E> f21514a;

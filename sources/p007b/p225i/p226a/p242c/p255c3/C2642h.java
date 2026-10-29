@@ -32,6 +32,12 @@ import p007b.p225i.p355b.p357b.C4514k0;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2642h extends AbstractC2646l {
 
+    /* JADX INFO: renamed from: e */
+    public final InterfaceC2644j.b f6195e;
+
+    /* JADX INFO: renamed from: f */
+    public final AtomicReference<d> f6196f;
+
     /* JADX INFO: renamed from: b */
     public static final int[] f6192b = new int[0];
 
@@ -61,15 +67,9 @@ public class C2642h extends AbstractC2646l {
         }
     });
 
-    /* JADX INFO: renamed from: e */
-    public final InterfaceC2644j.b f6195e;
-
-    /* JADX INFO: renamed from: f */
-    public final AtomicReference<d> f6196f;
-
     /* JADX INFO: renamed from: b.i.a.c.c3.h$b */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class b implements Comparable<b> {
+    public final class b implements Comparable<b> {
 
         /* JADX INFO: renamed from: j */
         public final boolean f6197j;
@@ -209,7 +209,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$c */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class c implements Comparable<c> {
+    public final class c implements Comparable<c> {
 
         /* JADX INFO: renamed from: j */
         public final boolean f6211j;
@@ -231,10 +231,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$d */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class d extends C2650p implements InterfaceC2963w0 {
-
-        /* JADX INFO: renamed from: I */
-        public static final d f6213I = new e().m2745d();
+    public final class d extends C2650p implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: J */
         public final int f6214J;
@@ -274,6 +271,9 @@ public class C2642h extends AbstractC2646l {
 
         /* JADX INFO: renamed from: V */
         public final SparseBooleanArray f6226V;
+
+        /* JADX INFO: renamed from: I */
+        public static final d f6213I = new e().m2745d();
 
         public d(e eVar, a aVar) {
             super(eVar);
@@ -385,7 +385,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$f */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class f implements InterfaceC2963w0 {
+    public final class f implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         public final int f6240j;
@@ -414,7 +414,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$g */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class g implements Comparable<g> {
+    public final class g implements Comparable<g> {
 
         /* JADX INFO: renamed from: j */
         public final boolean f6243j;
@@ -502,7 +502,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$h */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class h implements Comparable<h> {
+    public final class h implements Comparable<h> {
 
         /* JADX INFO: renamed from: j */
         public final boolean f6252j;
@@ -705,7 +705,7 @@ public class C2642h extends AbstractC2646l {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.h$e */
     /* JADX INFO: compiled from: DefaultTrackSelector.java */
-    public static final class e extends C2650p.a {
+    public final class e extends C2650p.a {
 
         /* JADX INFO: renamed from: A */
         public boolean f6227A;
@@ -754,6 +754,26 @@ public class C2642h extends AbstractC2646l {
             m2746e();
         }
 
+        /* JADX INFO: renamed from: d */
+        public d m2745d() {
+            return new d(this, null);
+        }
+
+        /* JADX INFO: renamed from: e */
+        public final void m2746e() {
+            this.f6238y = true;
+            this.f6239z = false;
+            this.f6227A = true;
+            this.f6228B = true;
+            this.f6229C = false;
+            this.f6230D = false;
+            this.f6231E = false;
+            this.f6232F = 0;
+            this.f6233G = true;
+            this.f6234H = false;
+            this.f6235I = true;
+        }
+
         @Override // p007b.p225i.p226a.p242c.p255c3.C2650p.a
         /* JADX INFO: renamed from: a */
         public C2650p.a mo2742a(Context context) {
@@ -775,26 +795,6 @@ public class C2642h extends AbstractC2646l {
         public C2650p.a mo2744c(Context context, boolean z2) {
             super.mo2744c(context, z2);
             return this;
-        }
-
-        /* JADX INFO: renamed from: d */
-        public d m2745d() {
-            return new d(this, null);
-        }
-
-        /* JADX INFO: renamed from: e */
-        public final void m2746e() {
-            this.f6238y = true;
-            this.f6239z = false;
-            this.f6227A = true;
-            this.f6228B = true;
-            this.f6229C = false;
-            this.f6230D = false;
-            this.f6231E = false;
-            this.f6232F = 0;
-            this.f6233G = true;
-            this.f6234H = false;
-            this.f6235I = true;
         }
 
         @Deprecated

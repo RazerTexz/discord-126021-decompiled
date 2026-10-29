@@ -10,16 +10,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackBotAbused.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackBotAbused implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long botId = null;
     private final CharSequence reason = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "bot_abused";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackBotAbused implements AnalyticsSchema, TrackBa
         }
         TrackBotAbused trackBotAbused = (TrackBotAbused) other;
         return C12238m.areEqual(this.botId, trackBotAbused.botId) && C12238m.areEqual(this.reason, trackBotAbused.reason);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

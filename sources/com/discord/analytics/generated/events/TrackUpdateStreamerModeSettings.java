@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUpdateStreamerModeSettings.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUpdateStreamerModeSettings implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean automatic = null;
     private final Boolean disableNotifications = null;
     private final Boolean disableSounds = null;
     private final Boolean enabled = null;
     private final Boolean hideInstantInvites = null;
     private final Boolean hidePersonalInfo = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "update_streamer_mode_settings";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackUpdateStreamerModeSettings implements Analyti
         }
         TrackUpdateStreamerModeSettings trackUpdateStreamerModeSettings = (TrackUpdateStreamerModeSettings) other;
         return C12238m.areEqual(this.automatic, trackUpdateStreamerModeSettings.automatic) && C12238m.areEqual(this.disableNotifications, trackUpdateStreamerModeSettings.disableNotifications) && C12238m.areEqual(this.disableSounds, trackUpdateStreamerModeSettings.disableSounds) && C12238m.areEqual(this.enabled, trackUpdateStreamerModeSettings.enabled) && C12238m.areEqual(this.hideInstantInvites, trackUpdateStreamerModeSettings.hideInstantInvites) && C12238m.areEqual(this.hidePersonalInfo, trackUpdateStreamerModeSettings.hidePersonalInfo);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

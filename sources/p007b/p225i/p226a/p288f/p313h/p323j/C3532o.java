@@ -23,12 +23,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3403e;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3532o extends AbstractC3509e implements Closeable {
 
-    /* JADX INFO: renamed from: l */
-    public static final String f9768l = String.format("CREATE TABLE IF NOT EXISTS %s ( '%s' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%s' INTEGER NOT NULL, '%s' TEXT NOT NULL, '%s' TEXT NOT NULL, '%s' INTEGER);", "hits2", "hit_id", "hit_time", "hit_url", "hit_string", "hit_app_id");
-
-    /* JADX INFO: renamed from: m */
-    public static final String f9769m = String.format("SELECT MAX(%s) FROM %s WHERE 1;", "hit_time", "hits2");
-
     /* JADX INFO: renamed from: n */
     public final C3534p f9770n;
 
@@ -38,6 +32,12 @@ public final class C3532o extends AbstractC3509e implements Closeable {
     /* JADX INFO: renamed from: p */
     public final C3553y0 f9772p;
 
+    /* JADX INFO: renamed from: l */
+    public static final String f9768l = String.format("CREATE TABLE IF NOT EXISTS %s ( '%s' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%s' INTEGER NOT NULL, '%s' TEXT NOT NULL, '%s' TEXT NOT NULL, '%s' INTEGER);", "hits2", "hit_id", "hit_time", "hit_url", "hit_string", "hit_app_id");
+
+    /* JADX INFO: renamed from: m */
+    public static final String f9769m = String.format("SELECT MAX(%s) FROM %s WHERE 1;", "hit_time", "hits2");
+
     public C3532o(C3515g c3515g) {
         super(c3515g);
         this.f9771o = new C3553y0(this.f9684j.f9724d);
@@ -45,9 +45,20 @@ public final class C3532o extends AbstractC3509e implements Closeable {
         this.f9770n = new C3534p(this, c3515g.f9722b, "google_analytics_v4.db");
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public final void close() {
+        try {
+            this.f9770n.close();
+        } catch (SQLiteException e) {
+            m4426A("Sql error closing database", e);
+        } catch (IllegalStateException e2) {
+            m4426A("Error closing database", e2);
+        }
+    }
+
+    public final void endTransaction() {
+        m4444N();
+        m4468O().endTransaction();
     }
 
     /* JADX INFO: renamed from: O */
@@ -192,10 +203,6 @@ public final class C3532o extends AbstractC3509e implements Closeable {
             m4440y("Database error", str, e);
             throw e;
         }
-        if (cursorRawQuery != null) {
-            cursorRawQuery.close();
-        }
-        throw th;
     }
 
     /* JADX INFO: renamed from: W */
@@ -224,20 +231,9 @@ public final class C3532o extends AbstractC3509e implements Closeable {
         }
     }
 
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public final void close() {
-        try {
-            this.f9770n.close();
-        } catch (SQLiteException e) {
-            m4426A("Sql error closing database", e);
-        } catch (IllegalStateException e2) {
-            m4426A("Error closing database", e2);
-        }
-    }
-
-    public final void endTransaction() {
-        m4444N();
-        m4468O().endTransaction();
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
     }
 
     public final void setTransactionSuccessful() {

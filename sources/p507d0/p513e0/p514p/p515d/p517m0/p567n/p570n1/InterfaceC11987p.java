@@ -7,7 +7,7 @@ public interface InterfaceC11987p extends InterfaceC11985n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.n1.p$a */
     /* JADX INFO: compiled from: TypeSystemContext.kt */
-    public static final class a {
+    public final class a {
         public static boolean isMarkedNullable(InterfaceC11987p interfaceC11987p, InterfaceC11979h interfaceC11979h) {
             return InterfaceC11985n.a.isMarkedNullable(interfaceC11987p, interfaceC11979h);
         }

@@ -28,21 +28,21 @@ import p600f0.p601e0.p612m.AbstractC12349c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12363g {
 
+    /* JADX INFO: renamed from: b */
+    public static final a f25904b = new a(null);
+
     /* JADX INFO: renamed from: c */
     public final Set<b> f25905c;
 
     /* JADX INFO: renamed from: d */
     public final AbstractC12349c f25906d;
 
-    /* JADX INFO: renamed from: b */
-    public static final a f25904b = new a(null);
-
     /* JADX INFO: renamed from: a */
     public static final C12363g f25903a = new C12363g(C12163u.toSet(new ArrayList()), null, 2);
 
     /* JADX INFO: renamed from: f0.g$a */
     /* JADX INFO: compiled from: CertificatePinner.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -66,7 +66,7 @@ public final class C12363g {
 
     /* JADX INFO: renamed from: f0.g$b */
     /* JADX INFO: compiled from: CertificatePinner.kt */
-    public static final class b {
+    public final class b {
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
@@ -106,8 +106,24 @@ public final class C12363g {
         this.f25906d = null;
     }
 
+    public boolean equals(Object obj) {
+        if (obj instanceof C12363g) {
+            C12363g c12363g = (C12363g) obj;
+            if (C12238m.areEqual(c12363g.f25905c, this.f25905c) && C12238m.areEqual(c12363g.f25906d, this.f25906d)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        int iHashCode = (this.f25905c.hashCode() + 1517) * 41;
+        AbstractC12349c abstractC12349c = this.f25906d;
+        return iHashCode + (abstractC12349c != null ? abstractC12349c.hashCode() : 0);
+    }
+
     /* JADX INFO: renamed from: a */
-    public final void m10368a(String str, Function0<? extends List<? extends X509Certificate>> function0) {
+    public final void m10368a(String str, Function0<? extends List<? extends X509Certificate>> function0) throws SSLPeerUnverifiedException {
         C12238m.checkParameterIsNotNull(str, "hostname");
         C12238m.checkParameterIsNotNull(function0, "cleanedPeerCertificatesFn");
         C12238m.checkParameterIsNotNull(str, "hostname");
@@ -178,22 +194,6 @@ public final class C12363g {
     public final C12363g m10369b(AbstractC12349c abstractC12349c) {
         C12238m.checkParameterIsNotNull(abstractC12349c, "certificateChainCleaner");
         return C12238m.areEqual(this.f25906d, abstractC12349c) ? this : new C12363g(this.f25905c, abstractC12349c);
-    }
-
-    public boolean equals(Object obj) {
-        if (obj instanceof C12363g) {
-            C12363g c12363g = (C12363g) obj;
-            if (C12238m.areEqual(c12363g.f25905c, this.f25905c) && C12238m.areEqual(c12363g.f25906d, this.f25906d)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int hashCode() {
-        int iHashCode = (this.f25905c.hashCode() + 1517) * 41;
-        AbstractC12349c abstractC12349c = this.f25906d;
-        return iHashCode + (abstractC12349c != null ? abstractC12349c.hashCode() : 0);
     }
 
     public C12363g(Set<b> set, AbstractC12349c abstractC12349c) {

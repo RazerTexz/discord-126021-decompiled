@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationSent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationSent implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean hasApnsToken = null;
+    private final Boolean hasGcmToken = null;
     private final CharSequence notifType = null;
     private final Long notifUserId = null;
     private final Long relType = null;
-    private final Boolean hasApnsToken = null;
-    private final Boolean hasGcmToken = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "notification_sent";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
         }
         TrackNotificationSent trackNotificationSent = (TrackNotificationSent) other;
         return C12238m.areEqual(this.notifType, trackNotificationSent.notifType) && C12238m.areEqual(this.notifUserId, trackNotificationSent.notifUserId) && C12238m.areEqual(this.relType, trackNotificationSent.relType) && C12238m.areEqual(this.hasApnsToken, trackNotificationSent.hasApnsToken) && C12238m.areEqual(this.hasGcmToken, trackNotificationSent.hasGcmToken);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

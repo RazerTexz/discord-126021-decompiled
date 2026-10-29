@@ -11,16 +11,6 @@ public final /* data */ class ApplicationAsset {
     private final String name;
     private final int type;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class ApplicationAsset {
         }
         ApplicationAsset applicationAsset = (ApplicationAsset) other;
         return this.id == applicationAsset.id && this.type == applicationAsset.type && C12238m.areEqual(this.name, applicationAsset.name);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public int hashCode() {

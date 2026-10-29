@@ -36,7 +36,7 @@ public final class StickerPremiumUpsellDialog extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: StickerPremiumUpsellDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

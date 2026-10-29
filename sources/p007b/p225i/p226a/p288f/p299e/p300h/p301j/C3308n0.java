@@ -24,9 +24,19 @@ public final class C3308n0 extends AbstractC3288e0<Void> {
         this.f9436c = c3285d0;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
-    /* JADX INFO: renamed from: d */
-    public final /* bridge */ /* synthetic */ void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3288e0
+    /* JADX INFO: renamed from: h */
+    public final void mo4075h(C3293g.a<?> aVar) throws RemoteException {
+        AbstractC3305m<C3266a.b, ?> abstractC3305m = this.f9436c.f9360a;
+        C3266a.f fVar = aVar.f9393b;
+        TaskCompletionSource<T> taskCompletionSource = this.f9367b;
+        C4312v c4312v = (C4312v) abstractC3305m;
+        Objects.requireNonNull(c4312v);
+        c4312v.f11435b.mo5981a((C4280f) fVar, C4286i.m5983j(c4312v.f11436c, taskCompletionSource));
+        C3301k.a<?> aVar2 = this.f9436c.f9360a.f9435a.f9430c;
+        if (aVar2 != null) {
+            aVar.f9398g.put(aVar2, this.f9436c);
+        }
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3306m0
@@ -44,18 +54,8 @@ public final class C3308n0 extends AbstractC3288e0<Void> {
         return false;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3288e0
-    /* JADX INFO: renamed from: h */
-    public final void mo4075h(C3293g.a<?> aVar) throws RemoteException {
-        AbstractC3305m<C3266a.b, ?> abstractC3305m = this.f9436c.f9360a;
-        C3266a.f fVar = aVar.f9393b;
-        TaskCompletionSource<T> taskCompletionSource = this.f9367b;
-        C4312v c4312v = (C4312v) abstractC3305m;
-        Objects.requireNonNull(c4312v);
-        c4312v.f11435b.mo5981a((C4280f) fVar, C4286i.m5983j(c4312v.f11436c, taskCompletionSource));
-        C3301k.a<?> aVar2 = this.f9436c.f9360a.f9435a.f9430c;
-        if (aVar2 != null) {
-            aVar.f9398g.put(aVar2, this.f9436c);
-        }
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
+    /* JADX INFO: renamed from: d */
+    public final /* bridge */ /* synthetic */ void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
     }
 }

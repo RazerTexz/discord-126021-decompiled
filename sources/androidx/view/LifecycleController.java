@@ -53,14 +53,14 @@ public final class LifecycleController {
         }
     }
 
-    private final void handleDestroy(Job parentJob) {
-        C3404f.m4343t(parentJob, null, 1, null);
-        finish();
-    }
-
     @MainThread
     public final void finish() {
         this.lifecycle.removeObserver(this.observer);
         this.dispatchQueue.finish();
+    }
+
+    private final void handleDestroy(Job parentJob) {
+        C3404f.m4343t(parentJob, null, 1, null);
+        finish();
     }
 }

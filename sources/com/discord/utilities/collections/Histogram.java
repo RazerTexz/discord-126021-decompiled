@@ -24,7 +24,7 @@ public final class Histogram {
     private long total;
 
     /* JADX INFO: compiled from: Histogram.kt */
-    public static final /* data */ class Report {
+    public final /* data */ class Report {
         private final double average;
         private final int bucketCount;
         private final long count;
@@ -49,56 +49,6 @@ public final class Histogram {
             this.percentile95 = j8;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getMin() {
-            return this.min;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final long getPercentile95() {
-            return this.percentile95;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getMax() {
-            return this.max;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final double getAverage() {
-            return this.average;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getCount() {
-            return this.count;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getBucketCount() {
-            return this.bucketCount;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getPercentile25() {
-            return this.percentile25;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final long getPercentile50() {
-            return this.percentile50;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final long getPercentile75() {
-            return this.percentile75;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final long getPercentile90() {
-            return this.percentile90;
-        }
-
         public final Report copy(long min, long max, double average, long count, int bucketCount, long percentile25, long percentile50, long percentile75, long percentile90, long percentile95) {
             return new Report(min, max, average, count, bucketCount, percentile25, percentile50, percentile75, percentile90, percentile95);
         }
@@ -114,40 +64,90 @@ public final class Histogram {
             return this.min == report.min && this.max == report.max && Double.compare(this.average, report.average) == 0 && this.count == report.count && this.bucketCount == report.bucketCount && this.percentile25 == report.percentile25 && this.percentile50 == report.percentile50 && this.percentile75 == report.percentile75 && this.percentile90 == report.percentile90 && this.percentile95 == report.percentile95;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final double getAverage() {
             return this.average;
+        }
+
+        public final double getAverage() {
+            return this.average;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getBucketCount() {
+            return this.bucketCount;
         }
 
         public final int getBucketCount() {
             return this.bucketCount;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final long getCount() {
             return this.count;
+        }
+
+        public final long getCount() {
+            return this.count;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getMax() {
+            return this.max;
         }
 
         public final long getMax() {
             return this.max;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getMin() {
             return this.min;
+        }
+
+        public final long getMin() {
+            return this.min;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final long getPercentile25() {
+            return this.percentile25;
         }
 
         public final long getPercentile25() {
             return this.percentile25;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final long getPercentile50() {
             return this.percentile50;
+        }
+
+        public final long getPercentile50() {
+            return this.percentile50;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final long getPercentile75() {
+            return this.percentile75;
         }
 
         public final long getPercentile75() {
             return this.percentile75;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final long getPercentile90() {
             return this.percentile90;
+        }
+
+        public final long getPercentile90() {
+            return this.percentile90;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final long getPercentile95() {
+            return this.percentile95;
         }
 
         public final long getPercentile95() {

@@ -9,28 +9,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionPlanUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
+    private final Long createdAt = null;
+    private final Long currentPeriodEnd = null;
+    private final Long currentPeriodStart = null;
+    private final Long paymentGateway = null;
     private final CharSequence paymentGatewayPlanId = null;
     private final Long planId = null;
-    private final Long paymentGateway = null;
-    private final Long createdAt = null;
-    private final Long currentPeriodStart = null;
-    private final Long currentPeriodEnd = null;
-    private final Long previousSubscriptionId = null;
-    private final Long previousSubscriptionType = null;
+    private final Long previousCurrentPeriodEnd = null;
+    private final Long previousCurrentPeriodStart = null;
     private final CharSequence previousPaymentGatewayPlanId = null;
     private final Long previousPlanId = null;
-    private final Long previousCurrentPeriodStart = null;
-    private final Long previousCurrentPeriodEnd = null;
+    private final Long previousSubscriptionId = null;
+    private final Long previousSubscriptionType = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_plan_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -41,6 +35,12 @@ public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsS
         }
         TrackSubscriptionPlanUpdated trackSubscriptionPlanUpdated = (TrackSubscriptionPlanUpdated) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionPlanUpdated.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionPlanUpdated.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionPlanUpdated.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionPlanUpdated.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionPlanUpdated.paymentGateway) && C12238m.areEqual(this.createdAt, trackSubscriptionPlanUpdated.createdAt) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionPlanUpdated.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionPlanUpdated.currentPeriodEnd) && C12238m.areEqual(this.previousSubscriptionId, trackSubscriptionPlanUpdated.previousSubscriptionId) && C12238m.areEqual(this.previousSubscriptionType, trackSubscriptionPlanUpdated.previousSubscriptionType) && C12238m.areEqual(this.previousPaymentGatewayPlanId, trackSubscriptionPlanUpdated.previousPaymentGatewayPlanId) && C12238m.areEqual(this.previousPlanId, trackSubscriptionPlanUpdated.previousPlanId) && C12238m.areEqual(this.previousCurrentPeriodStart, trackSubscriptionPlanUpdated.previousCurrentPeriodStart) && C12238m.areEqual(this.previousCurrentPeriodEnd, trackSubscriptionPlanUpdated.previousCurrentPeriodEnd);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

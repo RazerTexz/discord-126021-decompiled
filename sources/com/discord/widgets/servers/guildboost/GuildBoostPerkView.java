@@ -40,7 +40,7 @@ public final class GuildBoostPerkView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostPerkView$configure$1 */
     /* JADX INFO: compiled from: GuildBoostPerkView.kt */
-    public static final class C94981 extends AbstractC12240o implements Function2<Integer, Boolean, Integer> {
+    public final class C94981 extends AbstractC12240o implements Function2<Integer, Boolean, Integer> {
         public static final C94981 INSTANCE = new C94981();
 
         public C94981() {
@@ -62,31 +62,6 @@ public final class GuildBoostPerkView extends RelativeLayout {
         ViewNitroBoostPerksBinding viewNitroBoostPerksBindingM8400a = ViewNitroBoostPerksBinding.m8400a(LayoutInflater.from(getContext()), this, true);
         C12238m.checkNotNullExpressionValue(viewNitroBoostPerksBindingM8400a, "ViewNitroBoostPerksBindi…rom(context), this, true)");
         this.binding = viewNitroBoostPerksBindingM8400a;
-    }
-
-    private final void initialize() {
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = this.binding.f15522c;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.perksLevelContentsRecycler");
-        this.adapter = (GuildBoostPerkViewAdapter) companion.configure(new GuildBoostPerkViewAdapter(recyclerView));
-        this.binding.f15522c.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() { // from class: com.discord.widgets.servers.guildboost.GuildBoostPerkView.initialize.1
-            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                C12238m.checkNotNullParameter(rv, "rv");
-                C12238m.checkNotNullParameter(e, "e");
-                return e.getAction() == 2;
-            }
-
-            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-            }
-
-            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                C12238m.checkNotNullParameter(rv, "rv");
-                C12238m.checkNotNullParameter(e, "e");
-            }
-        });
     }
 
     public final void configure(int premiumTier, int currentPremiumTier, long guildId) {
@@ -170,6 +145,31 @@ public final class GuildBoostPerkView extends RelativeLayout {
             C12238m.throwUninitializedPropertyAccessException("adapter");
         }
         guildBoostPerkViewAdapter.configure(C12272c.m10145z(mutableList));
+    }
+
+    private final void initialize() {
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
+        RecyclerView recyclerView = this.binding.f15522c;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.perksLevelContentsRecycler");
+        this.adapter = (GuildBoostPerkViewAdapter) companion.configure(new GuildBoostPerkViewAdapter(recyclerView));
+        this.binding.f15522c.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() { // from class: com.discord.widgets.servers.guildboost.GuildBoostPerkView.initialize.1
+            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                C12238m.checkNotNullParameter(rv, "rv");
+                C12238m.checkNotNullParameter(e, "e");
+                return e.getAction() == 2;
+            }
+
+            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+
+            @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                C12238m.checkNotNullParameter(rv, "rv");
+                C12238m.checkNotNullParameter(e, "e");
+            }
+        });
     }
 
     public GuildBoostPerkView(Context context, AttributeSet attributeSet) {

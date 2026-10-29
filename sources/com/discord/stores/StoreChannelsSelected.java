@@ -65,11 +65,168 @@ public final class StoreChannelsSelected extends StoreV2 {
     private static final StoreChannelsSelected$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreChannelsSelected$Companion$InitializedUpdateSource$1
     };
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeId$1 */
     /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static abstract class ResolvedSelectedChannel {
+    public final class C58321 extends AbstractC12240o implements Function0<Long> {
+        public C58321() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return Long.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final long invoke2() {
+            return StoreChannelsSelected.this.getId();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observePreviousId$1 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58341 extends AbstractC12240o implements Function0<Long> {
+        public C58341() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return Long.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final long invoke2() {
+            return StoreChannelsSelected.this.previouslySelectedChannel.getId();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeResolvedSelectedChannel$1 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58351 extends AbstractC12240o implements Function0<ResolvedSelectedChannel> {
+        public C58351() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ResolvedSelectedChannel invoke() {
+            return StoreChannelsSelected.this.selectedChannel;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeSelectedChannel$1 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58361 extends AbstractC12240o implements Function0<Channel> {
+        public C58361() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Channel invoke() {
+            return StoreChannelsSelected.this.getSelectedChannel();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$1 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58371 extends AbstractC12240o implements Function0<ResolvedSelectedChannel> {
+        public final /* synthetic */ Map $allChannels;
+        public final /* synthetic */ UserChannelSelection $channelSelection;
+        public final /* synthetic */ boolean $isChannelStoreInitializedForAuthedUser;
+        public final /* synthetic */ Map $permissionsForChannelsInGuild;
+        public final /* synthetic */ long $selectedGuildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58371(UserChannelSelection userChannelSelection, Map map, long j, Map map2, boolean z2) {
+            super(0);
+            this.$channelSelection = userChannelSelection;
+            this.$allChannels = map;
+            this.$selectedGuildId = j;
+            this.$permissionsForChannelsInGuild = map2;
+            this.$isChannelStoreInitializedForAuthedUser = z2;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ResolvedSelectedChannel invoke() {
+            UserChannelSelection userChannelSelection = this.$channelSelection;
+            return StoreChannelsSelected.this.resolveSelectedChannel(this.$channelSelection, userChannelSelection != null ? StoreChannelsSelected.this.storeChannels.getChannel(userChannelSelection.getId()) : null, this.$allChannels, this.$selectedGuildId, this.$permissionsForChannelsInGuild, this.$isChannelStoreInitializedForAuthedUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$2 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58382 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C58382() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            StoreChannelsSelected.this.validateSelectedChannelSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$3 */
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public final class C58393 extends AbstractC12240o implements Function1<ResolvedSelectedChannel, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ ResolvedSelectedChannel $selected;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(ResolvedSelectedChannel resolvedSelectedChannel) {
+                super(0);
+                this.$selected = resolvedSelectedChannel;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreChannelsSelected storeChannelsSelected = StoreChannelsSelected.this;
+                ResolvedSelectedChannel resolvedSelectedChannel = this.$selected;
+                C12238m.checkNotNullExpressionValue(resolvedSelectedChannel, "selected");
+                storeChannelsSelected.onSelectedChannelResolved(resolvedSelectedChannel);
+            }
+        }
+
+        public C58393() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ResolvedSelectedChannel resolvedSelectedChannel) {
+            invoke2(resolvedSelectedChannel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ResolvedSelectedChannel resolvedSelectedChannel) {
+            StoreChannelsSelected.this.dispatcher.schedule(new AnonymousClass1(resolvedSelectedChannel));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
+    public abstract class ResolvedSelectedChannel {
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final /* data */ class Channel extends ResolvedSelectedChannel {
+        public final /* data */ class Channel extends ResolvedSelectedChannel {
             private final SelectedChannelAnalyticsLocation analyticsLocation;
             private final ChannelAnalyticsViewType analyticsViewType;
             private final com.discord.api.channel.Channel channel;
@@ -98,21 +255,6 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return channel.copy(channel2, l, selectedChannelAnalyticsLocation);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final com.discord.api.channel.Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getPeekParent() {
-                return this.peekParent;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
-                return this.analyticsLocation;
-            }
-
             public final Channel copy(com.discord.api.channel.Channel channel, Long peekParent, SelectedChannelAnalyticsLocation analyticsLocation) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 return new Channel(channel, peekParent, analyticsLocation);
@@ -129,6 +271,11 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return C12238m.areEqual(this.channel, channel.channel) && C12238m.areEqual(this.peekParent, channel.peekParent) && C12238m.areEqual(this.analyticsLocation, channel.analyticsLocation);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
+                return this.analyticsLocation;
+            }
+
             public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
                 return this.analyticsLocation;
             }
@@ -137,8 +284,18 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return this.analyticsViewType;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final com.discord.api.channel.Channel getChannel() {
                 return this.channel;
+            }
+
+            public final com.discord.api.channel.Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Long getPeekParent() {
+                return this.peekParent;
             }
 
             public final Long getPeekParent() {
@@ -167,7 +324,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final /* data */ class ThreadDraft extends ResolvedSelectedChannel {
+        public final /* data */ class ThreadDraft extends ResolvedSelectedChannel {
             private final com.discord.api.channel.Channel parentChannel;
             private final Long starterMessageId;
             private final String threadStartLocation;
@@ -194,21 +351,6 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return threadDraft.copy(channel, l, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final com.discord.api.channel.Channel getParentChannel() {
-                return this.parentChannel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getStarterMessageId() {
-                return this.starterMessageId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getThreadStartLocation() {
-                return this.threadStartLocation;
-            }
-
             public final ThreadDraft copy(com.discord.api.channel.Channel parentChannel, Long starterMessageId, String threadStartLocation) {
                 C12238m.checkNotNullParameter(parentChannel, "parentChannel");
                 return new ThreadDraft(parentChannel, starterMessageId, threadStartLocation);
@@ -225,12 +367,27 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return C12238m.areEqual(this.parentChannel, threadDraft.parentChannel) && C12238m.areEqual(this.starterMessageId, threadDraft.starterMessageId) && C12238m.areEqual(this.threadStartLocation, threadDraft.threadStartLocation);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final com.discord.api.channel.Channel getParentChannel() {
                 return this.parentChannel;
             }
 
+            public final com.discord.api.channel.Channel getParentChannel() {
+                return this.parentChannel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final Long getStarterMessageId() {
                 return this.starterMessageId;
+            }
+
+            public final Long getStarterMessageId() {
+                return this.starterMessageId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getThreadStartLocation() {
+                return this.threadStartLocation;
             }
 
             public final String getThreadStartLocation() {
@@ -261,7 +418,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final class Unavailable extends ResolvedSelectedChannel {
+        public final class Unavailable extends ResolvedSelectedChannel {
             public static final Unavailable INSTANCE = new Unavailable();
 
             private Unavailable() {
@@ -270,7 +427,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final class Uninitialized extends ResolvedSelectedChannel {
+        public final class Uninitialized extends ResolvedSelectedChannel {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -279,7 +436,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final class Unselected extends ResolvedSelectedChannel {
+        public final class Unselected extends ResolvedSelectedChannel {
             public static final Unselected INSTANCE = new Unselected();
 
             private Unselected() {
@@ -333,10 +490,10 @@ public final class StoreChannelsSelected extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static abstract class UserChannelSelection {
+    public abstract class UserChannelSelection {
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final /* data */ class SelectedChannel extends UserChannelSelection {
+        public final /* data */ class SelectedChannel extends UserChannelSelection {
             private final SelectedChannelAnalyticsLocation analyticsLocation;
             private final long channelId;
             private final Long peekParent;
@@ -358,21 +515,6 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return selectedChannel.copy(j, l, selectedChannelAnalyticsLocation);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getPeekParent() {
-                return this.peekParent;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
-                return this.analyticsLocation;
-            }
-
             public final SelectedChannel copy(long channelId, Long peekParent, SelectedChannelAnalyticsLocation analyticsLocation) {
                 return new SelectedChannel(channelId, peekParent, analyticsLocation);
             }
@@ -388,12 +530,27 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return this.channelId == selectedChannel.channelId && C12238m.areEqual(this.peekParent, selectedChannel.peekParent) && C12238m.areEqual(this.analyticsLocation, selectedChannel.analyticsLocation);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
                 return this.analyticsLocation;
             }
 
+            public final SelectedChannelAnalyticsLocation getAnalyticsLocation() {
+                return this.analyticsLocation;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Long getPeekParent() {
+                return this.peekParent;
             }
 
             public final Long getPeekParent() {
@@ -428,7 +585,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final /* data */ class ThreadDraft extends UserChannelSelection {
+        public final /* data */ class ThreadDraft extends UserChannelSelection {
             private final String locationThreadStart;
             private final long parentChannelId;
             private final Long starterMessageId;
@@ -453,21 +610,6 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return threadDraft.copy(j, l, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getParentChannelId() {
-                return this.parentChannelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getStarterMessageId() {
-                return this.starterMessageId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getLocationThreadStart() {
-                return this.locationThreadStart;
-            }
-
             public final ThreadDraft copy(long parentChannelId, Long starterMessageId, String locationThreadStart) {
                 return new ThreadDraft(parentChannelId, starterMessageId, locationThreadStart);
             }
@@ -483,12 +625,27 @@ public final class StoreChannelsSelected extends StoreV2 {
                 return this.parentChannelId == threadDraft.parentChannelId && C12238m.areEqual(this.starterMessageId, threadDraft.starterMessageId) && C12238m.areEqual(this.locationThreadStart, threadDraft.locationThreadStart);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getLocationThreadStart() {
                 return this.locationThreadStart;
             }
 
+            public final String getLocationThreadStart() {
+                return this.locationThreadStart;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getParentChannelId() {
                 return this.parentChannelId;
+            }
+
+            public final long getParentChannelId() {
+                return this.parentChannelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Long getStarterMessageId() {
+                return this.starterMessageId;
             }
 
             public final Long getStarterMessageId() {
@@ -514,7 +671,7 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final class Unselected extends UserChannelSelection {
+        public final class Unselected extends UserChannelSelection {
             public static final Unselected INSTANCE = new Unselected();
 
             private Unselected() {
@@ -562,163 +719,6 @@ public final class StoreChannelsSelected extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeId$1 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58321 extends AbstractC12240o implements Function0<Long> {
-        public C58321() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Long invoke() {
-            return Long.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final long invoke2() {
-            return StoreChannelsSelected.this.getId();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observePreviousId$1 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58341 extends AbstractC12240o implements Function0<Long> {
-        public C58341() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Long invoke() {
-            return Long.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final long invoke2() {
-            return StoreChannelsSelected.this.previouslySelectedChannel.getId();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeResolvedSelectedChannel$1 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58351 extends AbstractC12240o implements Function0<ResolvedSelectedChannel> {
-        public C58351() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final ResolvedSelectedChannel invoke() {
-            return StoreChannelsSelected.this.selectedChannel;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeSelectedChannel$1 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58361 extends AbstractC12240o implements Function0<Channel> {
-        public C58361() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Channel invoke() {
-            return StoreChannelsSelected.this.getSelectedChannel();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$1 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58371 extends AbstractC12240o implements Function0<ResolvedSelectedChannel> {
-        public final /* synthetic */ Map $allChannels;
-        public final /* synthetic */ UserChannelSelection $channelSelection;
-        public final /* synthetic */ boolean $isChannelStoreInitializedForAuthedUser;
-        public final /* synthetic */ Map $permissionsForChannelsInGuild;
-        public final /* synthetic */ long $selectedGuildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58371(UserChannelSelection userChannelSelection, Map map, long j, Map map2, boolean z2) {
-            super(0);
-            this.$channelSelection = userChannelSelection;
-            this.$allChannels = map;
-            this.$selectedGuildId = j;
-            this.$permissionsForChannelsInGuild = map2;
-            this.$isChannelStoreInitializedForAuthedUser = z2;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final ResolvedSelectedChannel invoke() {
-            UserChannelSelection userChannelSelection = this.$channelSelection;
-            return StoreChannelsSelected.this.resolveSelectedChannel(this.$channelSelection, userChannelSelection != null ? StoreChannelsSelected.this.storeChannels.getChannel(userChannelSelection.getId()) : null, this.$allChannels, this.$selectedGuildId, this.$permissionsForChannelsInGuild, this.$isChannelStoreInitializedForAuthedUser);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$2 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58382 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C58382() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            StoreChannelsSelected.this.validateSelectedChannelSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$3 */
-    /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-    public static final class C58393 extends AbstractC12240o implements Function1<ResolvedSelectedChannel, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$validateSelectedChannel$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ ResolvedSelectedChannel $selected;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(ResolvedSelectedChannel resolvedSelectedChannel) {
-                super(0);
-                this.$selected = resolvedSelectedChannel;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreChannelsSelected storeChannelsSelected = StoreChannelsSelected.this;
-                ResolvedSelectedChannel resolvedSelectedChannel = this.$selected;
-                C12238m.checkNotNullExpressionValue(resolvedSelectedChannel, "selected");
-                storeChannelsSelected.onSelectedChannelResolved(resolvedSelectedChannel);
-            }
-        }
-
-        public C58393() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ResolvedSelectedChannel resolvedSelectedChannel) {
-            invoke2(resolvedSelectedChannel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ResolvedSelectedChannel resolvedSelectedChannel) {
-            StoreChannelsSelected.this.dispatcher.schedule(new AnonymousClass1(resolvedSelectedChannel));
-        }
-    }
-
     public StoreChannelsSelected(StoreStream storeStream, StoreChannels storeChannels, StorePermissions storePermissions, StoreGuildSelected storeGuildSelected, Dispatcher dispatcher, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(storeChannels, "storeChannels");
@@ -742,99 +742,6 @@ public final class StoreChannelsSelected extends StoreV2 {
         this.frecency = persister.get();
     }
 
-    private final Channel getFirstAvailableChannel(Map<Long, Channel> channels, long guildId, Map<Long, Long> permissions) {
-        Collection<Channel> collectionValues = channels.values();
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : collectionValues) {
-            Channel channel = (Channel) obj;
-            if (channel.getGuildId() == guildId && ChannelUtils.m7698v(channel) && PermissionUtils.hasAccess(channel, permissions)) {
-                arrayList.add(obj);
-            }
-        }
-        return (Channel) C12163u.firstOrNull(C12163u.sortedWith(arrayList, ChannelUtils.m7684h(Channel.INSTANCE)));
-    }
-
-    private final boolean isValidResolution(Channel channel, long guildId, Map<Long, Long> permissions) {
-        return channel.getGuildId() == guildId && ChannelUtils.m7672G(channel) && PermissionUtils.hasAccess(channel, permissions);
-    }
-
-    @StoreThread
-    private final void loadFromCache() {
-        Map<Long, UserChannelSelection> map = this.userChannelSelections;
-        Map<Long, Long> map2 = this.selectedChannelIdsCache.get();
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map2.size()));
-        Iterator<T> it = map2.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            linkedHashMap.put(entry.getKey(), new UserChannelSelection.SelectedChannel(((Number) entry.getValue()).longValue(), null, null, 6, null));
-        }
-        map.putAll(linkedHashMap);
-    }
-
-    @StoreThread
-    private final void onSelectedChannelResolved(ResolvedSelectedChannel resolvedSelectedChannel) {
-        if (this.selectedChannel.getId() != resolvedSelectedChannel.getId()) {
-            this.previouslySelectedChannel = this.selectedChannel;
-        }
-        this.selectedChannel = resolvedSelectedChannel;
-        boolean z2 = resolvedSelectedChannel instanceof ResolvedSelectedChannel.Channel;
-        if (z2) {
-            ResolvedSelectedChannel.Channel channel = (ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
-            this.userChannelSelections.put(Long.valueOf(channel.getChannel().getGuildId()), new UserChannelSelection.SelectedChannel(channel.getChannel().getId(), channel.getPeekParent(), null, 4, null));
-            FrecencyTracker.track$default(this.frecency, Long.valueOf(channel.getChannel().getId()), 0L, 2, null);
-        }
-        if (z2) {
-            ResolvedSelectedChannel.Channel channel2 = (ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
-            if (ChannelUtils.m7675J(channel2.getChannel())) {
-                this.stream.getAnalytics().trackTextInVoiceOpened(resolvedSelectedChannel.getId(), channel2.getAnalyticsLocation());
-            }
-            this.stream.getAnalytics().trackChannelOpened(resolvedSelectedChannel.getId(), channel2.getAnalyticsViewType(), channel2.getAnalyticsLocation());
-        }
-        updateInitializationState();
-        markChanged();
-    }
-
-    private final ResolvedSelectedChannel resolveSelectedChannel(UserChannelSelection userChannelSelection, Channel resolvedChannel, Map<Long, Channel> channels, long guildId, Map<Long, Long> permissions, boolean storeChannelsInitializedForAuthedUser) {
-        ResolvedSelectedChannel resolvedSelectedChannelResolveWithChannel;
-        if (!storeChannelsInitializedForAuthedUser) {
-            return ResolvedSelectedChannel.Uninitialized.INSTANCE;
-        }
-        if (resolvedChannel != null && isValidResolution(resolvedChannel, guildId, permissions)) {
-            return (userChannelSelection == null || (resolvedSelectedChannelResolveWithChannel = userChannelSelection.resolveWithChannel(resolvedChannel)) == null) ? ResolvedSelectedChannel.Unselected.INSTANCE : resolvedSelectedChannelResolveWithChannel;
-        }
-        if (guildId == 0) {
-            return ResolvedSelectedChannel.Unselected.INSTANCE;
-        }
-        Channel firstAvailableChannel = getFirstAvailableChannel(channels, guildId, permissions);
-        return firstAvailableChannel == null ? ResolvedSelectedChannel.Unavailable.INSTANCE : new ResolvedSelectedChannel.Channel(firstAvailableChannel, null, null);
-    }
-
-    @StoreThread
-    private final void updateInitializationState() {
-        boolean z2 = this.stream.getAuthentication().getAuthState() != null;
-        boolean z3 = this.initializedForAuthedUser;
-        boolean z4 = z2 && this.storeChannels.getInitializedForAuthedUser() && ((this.userChannelSelections.isEmpty() ^ true) || this.handledReadyPayload || this.isStoreInitTimedOut) && (C12238m.areEqual(this.selectedChannel, ResolvedSelectedChannel.Uninitialized.INSTANCE) ^ true);
-        if (z3 || !z4) {
-            return;
-        }
-        this.initializedForAuthedUser = true;
-        markChanged(InitializedUpdateSource);
-    }
-
-    @StoreThread
-    private final void validateSelectedChannel() {
-        Subscription subscription = this.validateSelectedChannelSubscription;
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-        Map<Long, Channel> channelsByIdInternal$app_productionGoogleRelease = this.storeChannels.getChannelsByIdInternal$app_productionGoogleRelease();
-        boolean initializedForAuthedUser = this.storeChannels.getInitializedForAuthedUser();
-        long selectedGuildIdInternal$app_productionGoogleRelease = this.storeGuildSelected.getSelectedGuildIdInternal$app_productionGoogleRelease();
-        Observable observableM11112r = ObservableExtensionsKt.computationLatest(ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeGuildSelected, this.storeChannels, this.storePermissions}, false, null, null, new C58371(this.userChannelSelections.get(Long.valueOf(selectedGuildIdInternal$app_productionGoogleRelease)), channelsByIdInternal$app_productionGoogleRelease, selectedGuildIdInternal$app_productionGoogleRelease, this.storePermissions.getPermissionsByChannelInternal$app_productionGoogleRelease(selectedGuildIdInternal$app_productionGoogleRelease), initializedForAuthedUser), 14, null)).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck\n        …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) StoreChannelsSelected.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C58382()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58393());
-    }
-
     @StoreThread
     public final void dismissCreateThread() {
         ResolvedSelectedChannel resolvedSelectedChannel = this.selectedChannel;
@@ -847,6 +754,18 @@ public final class StoreChannelsSelected extends StoreV2 {
             this.userChannelSelections.put(Long.valueOf(parentChannel.getGuildId()), new UserChannelSelection.SelectedChannel(parentChannel.getId(), null, null, 6, null));
             validateSelectedChannel();
         }
+    }
+
+    private final Channel getFirstAvailableChannel(Map<Long, Channel> channels, long guildId, Map<Long, Long> permissions) {
+        Collection<Channel> collectionValues = channels.values();
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : collectionValues) {
+            Channel channel = (Channel) obj;
+            if (channel.getGuildId() == guildId && ChannelUtils.m7698v(channel) && PermissionUtils.hasAccess(channel, permissions)) {
+                arrayList.add(obj);
+            }
+        }
+        return (Channel) C12163u.firstOrNull(C12163u.sortedWith(arrayList, ChannelUtils.m7684h(Channel.INSTANCE)));
     }
 
     public final ChannelFrecencyTracker getFrecency() {
@@ -950,6 +869,23 @@ public final class StoreChannelsSelected extends StoreV2 {
         validateSelectedChannel();
     }
 
+    private final boolean isValidResolution(Channel channel, long guildId, Map<Long, Long> permissions) {
+        return channel.getGuildId() == guildId && ChannelUtils.m7672G(channel) && PermissionUtils.hasAccess(channel, permissions);
+    }
+
+    @StoreThread
+    private final void loadFromCache() {
+        Map<Long, UserChannelSelection> map = this.userChannelSelections;
+        Map<Long, Long> map2 = this.selectedChannelIdsCache.get();
+        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map2.size()));
+        Iterator<T> it = map2.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            linkedHashMap.put(entry.getKey(), new UserChannelSelection.SelectedChannel(((Number) entry.getValue()).longValue(), null, null, 6, null));
+        }
+        map.putAll(linkedHashMap);
+    }
+
     public final Observable<Long> observeId() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58321(), 14, null);
     }
@@ -959,7 +895,7 @@ public final class StoreChannelsSelected extends StoreV2 {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreChannelsSelected$observeInitializedForAuthedUser$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreChannelsSelected.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Boolean> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Boolean> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -998,9 +934,47 @@ public final class StoreChannelsSelected extends StoreV2 {
     }
 
     @StoreThread
+    private final void onSelectedChannelResolved(ResolvedSelectedChannel resolvedSelectedChannel) {
+        if (this.selectedChannel.getId() != resolvedSelectedChannel.getId()) {
+            this.previouslySelectedChannel = this.selectedChannel;
+        }
+        this.selectedChannel = resolvedSelectedChannel;
+        boolean z2 = resolvedSelectedChannel instanceof ResolvedSelectedChannel.Channel;
+        if (z2) {
+            ResolvedSelectedChannel.Channel channel = (ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
+            this.userChannelSelections.put(Long.valueOf(channel.getChannel().getGuildId()), new UserChannelSelection.SelectedChannel(channel.getChannel().getId(), channel.getPeekParent(), null, 4, null));
+            FrecencyTracker.track$default(this.frecency, Long.valueOf(channel.getChannel().getId()), 0L, 2, null);
+        }
+        if (z2) {
+            ResolvedSelectedChannel.Channel channel2 = (ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
+            if (ChannelUtils.m7675J(channel2.getChannel())) {
+                this.stream.getAnalytics().trackTextInVoiceOpened(resolvedSelectedChannel.getId(), channel2.getAnalyticsLocation());
+            }
+            this.stream.getAnalytics().trackChannelOpened(resolvedSelectedChannel.getId(), channel2.getAnalyticsViewType(), channel2.getAnalyticsLocation());
+        }
+        updateInitializationState();
+        markChanged();
+    }
+
+    @StoreThread
     public final void openCreateThread(long guildId, long channelId, Long parentMessageId, String threadStartLocation) {
         this.userChannelSelections.put(Long.valueOf(guildId), new UserChannelSelection.ThreadDraft(channelId, parentMessageId, threadStartLocation));
         validateSelectedChannel();
+    }
+
+    private final ResolvedSelectedChannel resolveSelectedChannel(UserChannelSelection userChannelSelection, Channel resolvedChannel, Map<Long, Channel> channels, long guildId, Map<Long, Long> permissions, boolean storeChannelsInitializedForAuthedUser) {
+        ResolvedSelectedChannel resolvedSelectedChannelResolveWithChannel;
+        if (!storeChannelsInitializedForAuthedUser) {
+            return ResolvedSelectedChannel.Uninitialized.INSTANCE;
+        }
+        if (resolvedChannel != null && isValidResolution(resolvedChannel, guildId, permissions)) {
+            return (userChannelSelection == null || (resolvedSelectedChannelResolveWithChannel = userChannelSelection.resolveWithChannel(resolvedChannel)) == null) ? ResolvedSelectedChannel.Unselected.INSTANCE : resolvedSelectedChannelResolveWithChannel;
+        }
+        if (guildId == 0) {
+            return ResolvedSelectedChannel.Unselected.INSTANCE;
+        }
+        Channel firstAvailableChannel = getFirstAvailableChannel(channels, guildId, permissions);
+        return firstAvailableChannel == null ? ResolvedSelectedChannel.Unavailable.INSTANCE : new ResolvedSelectedChannel.Channel(firstAvailableChannel, null, null);
     }
 
     @Override // com.discord.stores.StoreV2
@@ -1028,5 +1002,31 @@ public final class StoreChannelsSelected extends StoreV2 {
             this.userChannelSelections.put(Long.valueOf(guildId), new UserChannelSelection.SelectedChannel(channelId, peekParent, analyticsLocation));
             validateSelectedChannel();
         }
+    }
+
+    @StoreThread
+    private final void updateInitializationState() {
+        boolean z2 = this.stream.getAuthentication().getAuthState() != null;
+        boolean z3 = this.initializedForAuthedUser;
+        boolean z4 = z2 && this.storeChannels.getInitializedForAuthedUser() && ((this.userChannelSelections.isEmpty() ^ true) || this.handledReadyPayload || this.isStoreInitTimedOut) && (C12238m.areEqual(this.selectedChannel, ResolvedSelectedChannel.Uninitialized.INSTANCE) ^ true);
+        if (z3 || !z4) {
+            return;
+        }
+        this.initializedForAuthedUser = true;
+        markChanged(InitializedUpdateSource);
+    }
+
+    @StoreThread
+    private final void validateSelectedChannel() {
+        Subscription subscription = this.validateSelectedChannelSubscription;
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+        Map<Long, Channel> channelsByIdInternal$app_productionGoogleRelease = this.storeChannels.getChannelsByIdInternal$app_productionGoogleRelease();
+        boolean initializedForAuthedUser = this.storeChannels.getInitializedForAuthedUser();
+        long selectedGuildIdInternal$app_productionGoogleRelease = this.storeGuildSelected.getSelectedGuildIdInternal$app_productionGoogleRelease();
+        Observable observableM11112r = ObservableExtensionsKt.computationLatest(ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeGuildSelected, this.storeChannels, this.storePermissions}, false, null, null, new C58371(this.userChannelSelections.get(Long.valueOf(selectedGuildIdInternal$app_productionGoogleRelease)), channelsByIdInternal$app_productionGoogleRelease, selectedGuildIdInternal$app_productionGoogleRelease, this.storePermissions.getPermissionsByChannelInternal$app_productionGoogleRelease(selectedGuildIdInternal$app_productionGoogleRelease), initializedForAuthedUser), 14, null)).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck\n        …  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) StoreChannelsSelected.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C58382()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58393());
     }
 }

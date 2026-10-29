@@ -47,7 +47,7 @@ public final /* data */ class WidgetHomeModel {
     private final int unreadCount;
 
     /* JADX INFO: compiled from: WidgetHomeModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -214,56 +214,6 @@ public final /* data */ class WidgetHomeModel {
         this.channelId = maybeChannel != null ? maybeChannel.getId() : 0L;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final StoreChannelsSelected.ResolvedSelectedChannel getSelectedChannel() {
-        return this.selectedChannel;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getThreadExperimentEnabled() {
-        return this.threadExperimentEnabled;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Channel getSelectedVoiceChannel() {
-        return this.selectedVoiceChannel;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Channel getParentChannel() {
-        return this.parentChannel;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Presence getDmPresence() {
-        return this.dmPresence;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getUnreadCount() {
-        return this.unreadCount;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsFriend() {
-        return this.isFriend;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getIsCallConnected() {
-        return this.isCallConnected;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final NsfwAllowance getNsfwAllowed() {
-        return this.nsfwAllowed;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getThreadCount() {
-        return this.threadCount;
-    }
-
     public final WidgetHomeModel copy(StoreChannelsSelected.ResolvedSelectedChannel selectedChannel, Channel selectedVoiceChannel, Channel parentChannel, Presence dmPresence, int unreadCount, boolean isFriend, boolean isCallConnected, NsfwAllowance nsfwAllowed, int threadCount, boolean threadExperimentEnabled) {
         C12238m.checkNotNullParameter(selectedChannel, "selectedChannel");
         return new WidgetHomeModel(selectedChannel, selectedVoiceChannel, parentChannel, dmPresence, unreadCount, isFriend, isCallConnected, nsfwAllowed, threadCount, threadExperimentEnabled);
@@ -288,32 +238,82 @@ public final /* data */ class WidgetHomeModel {
         return this.channelId;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Presence getDmPresence() {
         return this.dmPresence;
+    }
+
+    public final Presence getDmPresence() {
+        return this.dmPresence;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getIsCallConnected() {
+        return this.isCallConnected;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsFriend() {
+        return this.isFriend;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final NsfwAllowance getNsfwAllowed() {
+        return this.nsfwAllowed;
     }
 
     public final NsfwAllowance getNsfwAllowed() {
         return this.nsfwAllowed;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Channel getParentChannel() {
         return this.parentChannel;
+    }
+
+    public final Channel getParentChannel() {
+        return this.parentChannel;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final StoreChannelsSelected.ResolvedSelectedChannel getSelectedChannel() {
+        return this.selectedChannel;
     }
 
     public final StoreChannelsSelected.ResolvedSelectedChannel getSelectedChannel() {
         return this.selectedChannel;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Channel getSelectedVoiceChannel() {
         return this.selectedVoiceChannel;
+    }
+
+    public final Channel getSelectedVoiceChannel() {
+        return this.selectedVoiceChannel;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final int getThreadCount() {
+        return this.threadCount;
     }
 
     public final int getThreadCount() {
         return this.threadCount;
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final boolean getThreadExperimentEnabled() {
         return this.threadExperimentEnabled;
+    }
+
+    public final boolean getThreadExperimentEnabled() {
+        return this.threadExperimentEnabled;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final int getUnreadCount() {
+        return this.unreadCount;
     }
 
     public final int getUnreadCount() {

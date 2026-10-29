@@ -13,17 +13,17 @@ public final /* data */ class TrackEmailPixelHit implements AnalyticsSchema, Tra
     private final CharSequence trackingPixelUuid = null;
     private final transient String analyticsSchemaTypeName = "email_pixel_hit";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackEmailPixelHit) && C12238m.areEqual(this.trackingPixelUuid, ((TrackEmailPixelHit) other).trackingPixelUuid);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

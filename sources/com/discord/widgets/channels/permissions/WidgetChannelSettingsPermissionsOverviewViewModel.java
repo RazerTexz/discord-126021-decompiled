@@ -17,7 +17,7 @@ public final class WidgetChannelSettingsPermissionsOverviewViewModel extends Abs
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsOverviewViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<Tab> availableTabs;
         private final Tab selectedTab;
 
@@ -29,6 +29,10 @@ public final class WidgetChannelSettingsPermissionsOverviewViewModel extends Abs
             this.availableTabs = list;
         }
 
+        public final List<Tab> component2() {
+            return this.availableTabs;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ViewState copy$default(ViewState viewState, Tab tab, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -38,15 +42,6 @@ public final class WidgetChannelSettingsPermissionsOverviewViewModel extends Abs
                 list = viewState.availableTabs;
             }
             return viewState.copy(tab, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Tab getSelectedTab() {
-            return this.selectedTab;
-        }
-
-        public final List<Tab> component2() {
-            return this.availableTabs;
         }
 
         public final ViewState copy(Tab selectedTab, List<? extends Tab> availableTabs) {
@@ -68,6 +63,11 @@ public final class WidgetChannelSettingsPermissionsOverviewViewModel extends Abs
 
         public final List<Tab> getAvailableTabs() {
             return this.availableTabs;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Tab getSelectedTab() {
+            return this.selectedTab;
         }
 
         public final Tab getSelectedTab() {

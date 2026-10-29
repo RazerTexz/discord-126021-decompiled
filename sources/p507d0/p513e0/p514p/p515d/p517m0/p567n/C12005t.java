@@ -45,9 +45,6 @@ import p507d0.p580t.C12147n;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12005t {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC11325c0 f24877a = new a();
-
     /* JADX INFO: renamed from: b */
     public static final c f24878b;
 
@@ -63,9 +60,107 @@ public class C12005t {
     /* JADX INFO: renamed from: f */
     public static final Set<InterfaceC11453n0> f24882f;
 
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC11325c0 f24877a = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$a */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class a implements InterfaceC11325c0 {
+    public final class a implements InterfaceC11325c0 {
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+        public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+            if (interfaceC11454o != null) {
+                return null;
+            }
+            m10032a(11);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
+        public InterfaceC11344g getAnnotations() {
+            InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
+            if (empty != null) {
+                return empty;
+            }
+            m10032a(1);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
+        public AbstractC11288h getBuiltIns() {
+            C11285e c11285e = C11285e.getInstance();
+            if (c11285e != null) {
+                return c11285e;
+            }
+            m10032a(14);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
+        public <T> T getCapability(C11322b0<T> c11322b0) {
+            if (c11322b0 != null) {
+                return null;
+            }
+            m10032a(0);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+        public InterfaceC11450m getContainingDeclaration() {
+            return null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
+        public List<InterfaceC11325c0> getExpectedByModules() {
+            List<InterfaceC11325c0> listEmptyList = C12147n.emptyList();
+            if (listEmptyList != null) {
+                return listEmptyList;
+            }
+            m10032a(9);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+        public C11716e getName() {
+            C11716e c11716eSpecial = C11716e.special("<ERROR MODULE>");
+            if (c11716eSpecial != null) {
+                return c11716eSpecial;
+            }
+            m10032a(5);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+        public InterfaceC11450m getOriginal() {
+            return this;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
+        public InterfaceC11402j0 getPackage(C11713b c11713b) {
+            if (c11713b != null) {
+                throw new IllegalStateException("Should not be called!");
+            }
+            m10032a(7);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
+        public Collection<C11713b> getSubPackagesOf(C11713b c11713b, Function1<? super C11716e, Boolean> function1) {
+            if (c11713b == null) {
+                m10032a(2);
+                throw null;
+            }
+            if (function1 == null) {
+                m10032a(3);
+                throw null;
+            }
+            List listEmptyList = C12147n.emptyList();
+            if (listEmptyList != null) {
+                return listEmptyList;
+            }
+            m10032a(4);
+            throw null;
+        }
+
         /* JADX WARN: Code duplicated, block: B:11:0x001a  */
         /* JADX WARN: Code duplicated, block: B:21:0x002e  */
         /* JADX INFO: renamed from: a */
@@ -200,101 +295,6 @@ public class C12005t {
             throw new IllegalStateException(str2);
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-        public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-            if (interfaceC11454o != null) {
-                return null;
-            }
-            m10032a(11);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
-        public InterfaceC11344g getAnnotations() {
-            InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
-            if (empty != null) {
-                return empty;
-            }
-            m10032a(1);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
-        public AbstractC11288h getBuiltIns() {
-            C11285e c11285e = C11285e.getInstance();
-            if (c11285e != null) {
-                return c11285e;
-            }
-            m10032a(14);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
-        public <T> T getCapability(C11322b0<T> c11322b0) {
-            if (c11322b0 != null) {
-                return null;
-            }
-            m10032a(0);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-        public InterfaceC11450m getContainingDeclaration() {
-            return null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
-        public List<InterfaceC11325c0> getExpectedByModules() {
-            List<InterfaceC11325c0> listEmptyList = C12147n.emptyList();
-            if (listEmptyList != null) {
-                return listEmptyList;
-            }
-            m10032a(9);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-        public C11716e getName() {
-            C11716e c11716eSpecial = C11716e.special("<ERROR MODULE>");
-            if (c11716eSpecial != null) {
-                return c11716eSpecial;
-            }
-            m10032a(5);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-        public InterfaceC11450m getOriginal() {
-            return this;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
-        public InterfaceC11402j0 getPackage(C11713b c11713b) {
-            if (c11713b != null) {
-                throw new IllegalStateException("Should not be called!");
-            }
-            m10032a(7);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
-        public Collection<C11713b> getSubPackagesOf(C11713b c11713b, Function1<? super C11716e, Boolean> function1) {
-            if (c11713b == null) {
-                m10032a(2);
-                throw null;
-            }
-            if (function1 == null) {
-                m10032a(3);
-                throw null;
-            }
-            List listEmptyList = C12147n.emptyList();
-            if (listEmptyList != null) {
-                return listEmptyList;
-            }
-            m10032a(4);
-            throw null;
-        }
-
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
         public boolean shouldSeeInternalsOf(InterfaceC11325c0 interfaceC11325c0) {
             if (interfaceC11325c0 != null) {
@@ -307,7 +307,7 @@ public class C12005t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$b */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class b implements InterfaceC12008u0 {
+    public final class b implements InterfaceC12008u0 {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ c f24883a;
@@ -318,35 +318,6 @@ public class C12005t {
         public b(c cVar, String str) {
             this.f24883a = cVar;
             this.f24884b = str;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m10033a(int i) {
-            String str = i != 3 ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-            Object[] objArr = new Object[i != 3 ? 2 : 3];
-            if (i != 3) {
-                objArr[0] = "kotlin/reflect/jvm/internal/impl/types/ErrorUtils$2";
-            } else {
-                objArr[0] = "kotlinTypeRefiner";
-            }
-            if (i == 1) {
-                objArr[1] = "getSupertypes";
-            } else if (i == 2) {
-                objArr[1] = "getBuiltIns";
-            } else if (i == 3) {
-                objArr[1] = "kotlin/reflect/jvm/internal/impl/types/ErrorUtils$2";
-            } else if (i != 4) {
-                objArr[1] = "getParameters";
-            } else {
-                objArr[1] = "refine";
-            }
-            if (i == 3) {
-                objArr[2] = "refine";
-            }
-            String str2 = String.format(str, objArr);
-            if (i == 3) {
-                throw new IllegalArgumentException(str2);
-            }
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
@@ -389,6 +360,35 @@ public class C12005t {
             return false;
         }
 
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m10033a(int i) {
+            String str = i != 3 ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+            Object[] objArr = new Object[i != 3 ? 2 : 3];
+            if (i != 3) {
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/types/ErrorUtils$2";
+            } else {
+                objArr[0] = "kotlinTypeRefiner";
+            }
+            if (i == 1) {
+                objArr[1] = "getSupertypes";
+            } else if (i == 2) {
+                objArr[1] = "getBuiltIns";
+            } else if (i == 3) {
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/types/ErrorUtils$2";
+            } else if (i != 4) {
+                objArr[1] = "getParameters";
+            } else {
+                objArr[1] = "refine";
+            }
+            if (i == 3) {
+                objArr[2] = "refine";
+            }
+            String str2 = String.format(str, objArr);
+            if (i == 3) {
+                throw new IllegalArgumentException(str2);
+            }
+        }
+
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
         public InterfaceC12008u0 refine(AbstractC11947g abstractC11947g) {
             if (abstractC11947g != null) {
@@ -405,7 +405,7 @@ public class C12005t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$c */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class c extends C11377i {
+    public class c extends C11377i {
         /* JADX WARN: Illegal instructions before constructor call */
         public c(C11716e c11716e) {
             if (c11716e == null) {
@@ -423,6 +423,28 @@ public class C12005t {
             InterfaceC11770i interfaceC11770iCreateErrorScope = C12005t.createErrorScope(getName().asString());
             c11373gCreate.setReturnType(new C12003s(C12005t.m10031b("<ERROR>", this), interfaceC11770iCreateErrorScope));
             initialize(interfaceC11770iCreateErrorScope, Collections.singleton(c11373gCreate), c11373gCreate);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11361a, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
+        public InterfaceC11770i getMemberScope(AbstractC12018z0 abstractC12018z0, AbstractC11947g abstractC11947g) {
+            if (abstractC12018z0 == null) {
+                m10034a(6);
+                throw null;
+            }
+            if (abstractC11947g == null) {
+                m10034a(7);
+                throw null;
+            }
+            StringBuilder sbM833U = C1643a.m833U("Error scope for class ");
+            sbM833U.append(getName());
+            sbM833U.append(" with arguments: ");
+            sbM833U.append(abstractC12018z0);
+            InterfaceC11770i interfaceC11770iCreateErrorScope = C12005t.createErrorScope(sbM833U.toString());
+            if (interfaceC11770iCreateErrorScope != null) {
+                return interfaceC11770iCreateErrorScope;
+            }
+            m10034a(8);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -484,28 +506,6 @@ public class C12005t {
             throw new IllegalStateException(str2);
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11361a, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
-        public InterfaceC11770i getMemberScope(AbstractC12018z0 abstractC12018z0, AbstractC11947g abstractC11947g) {
-            if (abstractC12018z0 == null) {
-                m10034a(6);
-                throw null;
-            }
-            if (abstractC11947g == null) {
-                m10034a(7);
-                throw null;
-            }
-            StringBuilder sbM833U = C1643a.m833U("Error scope for class ");
-            sbM833U.append(getName());
-            sbM833U.append(" with arguments: ");
-            sbM833U.append(abstractC12018z0);
-            InterfaceC11770i interfaceC11770iCreateErrorScope = C12005t.createErrorScope(sbM833U.toString());
-            if (interfaceC11770iCreateErrorScope != null) {
-                return interfaceC11770iCreateErrorScope;
-            }
-            m10034a(8);
-            throw null;
-        }
-
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11361a, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11471w0
         public InterfaceC11330e substitute(C11914c1 c11914c1) {
             if (c11914c1 != null) {
@@ -523,7 +523,7 @@ public class C12005t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$d */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class d implements InterfaceC11770i {
+    public class d implements InterfaceC11770i {
 
         /* JADX INFO: renamed from: b */
         public final String f24885b;
@@ -535,6 +535,85 @@ public class C12005t {
                 m10035a(0);
                 throw null;
             }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getClassifierNames() {
+            Set<C11716e> setEmptySet = Collections.emptySet();
+            if (setEmptySet != null) {
+                return setEmptySet;
+            }
+            m10035a(13);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            if (c11716e == null) {
+                m10035a(1);
+                throw null;
+            }
+            if (interfaceC11480b != null) {
+                return C12005t.createErrorClass(c11716e.asString());
+            }
+            m10035a(2);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+            if (c11765d == null) {
+                m10035a(16);
+                throw null;
+            }
+            if (function1 == null) {
+                m10035a(17);
+                throw null;
+            }
+            List listEmptyList = Collections.emptyList();
+            if (listEmptyList != null) {
+                return listEmptyList;
+            }
+            m10035a(18);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<? extends InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            if (c11716e == null) {
+                m10035a(5);
+                throw null;
+            }
+            if (interfaceC11480b == null) {
+                m10035a(6);
+                throw null;
+            }
+            Set<InterfaceC11453n0> set = C12005t.f24882f;
+            if (set != null) {
+                return set;
+            }
+            m10035a(7);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getFunctionNames() {
+            Set<C11716e> setEmptySet = Collections.emptySet();
+            if (setEmptySet != null) {
+                return setEmptySet;
+            }
+            m10035a(11);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getVariableNames() {
+            Set<C11716e> setEmptySet = Collections.emptySet();
+            if (setEmptySet != null) {
+                return setEmptySet;
+            }
+            m10035a(12);
+            throw null;
         }
 
         /* JADX WARN: Code duplicated, block: B:13:0x0019  */
@@ -691,85 +770,6 @@ public class C12005t {
             throw new IllegalStateException(str2);
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getClassifierNames() {
-            Set<C11716e> setEmptySet = Collections.emptySet();
-            if (setEmptySet != null) {
-                return setEmptySet;
-            }
-            m10035a(13);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            if (c11716e == null) {
-                m10035a(1);
-                throw null;
-            }
-            if (interfaceC11480b != null) {
-                return C12005t.createErrorClass(c11716e.asString());
-            }
-            m10035a(2);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-            if (c11765d == null) {
-                m10035a(16);
-                throw null;
-            }
-            if (function1 == null) {
-                m10035a(17);
-                throw null;
-            }
-            List listEmptyList = Collections.emptyList();
-            if (listEmptyList != null) {
-                return listEmptyList;
-            }
-            m10035a(18);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<? extends InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            if (c11716e == null) {
-                m10035a(5);
-                throw null;
-            }
-            if (interfaceC11480b == null) {
-                m10035a(6);
-                throw null;
-            }
-            Set<InterfaceC11453n0> set = C12005t.f24882f;
-            if (set != null) {
-                return set;
-            }
-            m10035a(7);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getFunctionNames() {
-            Set<C11716e> setEmptySet = Collections.emptySet();
-            if (setEmptySet != null) {
-                return setEmptySet;
-            }
-            m10035a(11);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getVariableNames() {
-            Set<C11716e> setEmptySet = Collections.emptySet();
-            if (setEmptySet != null) {
-                return setEmptySet;
-            }
-            m10035a(12);
-            throw null;
-        }
-
         public String toString() {
             return C1643a.m820H(C1643a.m833U("ErrorScope{"), this.f24885b, '}');
         }
@@ -797,7 +797,7 @@ public class C12005t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$e */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class e implements InterfaceC11770i {
+    public class e implements InterfaceC11770i {
 
         /* JADX INFO: renamed from: b */
         public final String f24886b;
@@ -809,6 +809,73 @@ public class C12005t {
                 m10036a(0);
                 throw null;
             }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getClassifierNames() {
+            throw new IllegalStateException();
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            if (c11716e == null) {
+                m10036a(1);
+                throw null;
+            }
+            if (interfaceC11480b == null) {
+                m10036a(2);
+                throw null;
+            }
+            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+            if (c11765d == null) {
+                m10036a(9);
+                throw null;
+            }
+            if (function1 != null) {
+                throw new IllegalStateException(this.f24886b);
+            }
+            m10036a(10);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Collection<? extends InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            if (c11716e == null) {
+                m10036a(7);
+                throw null;
+            }
+            if (interfaceC11480b == null) {
+                m10036a(8);
+                throw null;
+            }
+            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Collection<? extends InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            if (c11716e == null) {
+                m10036a(5);
+                throw null;
+            }
+            if (interfaceC11480b == null) {
+                m10036a(6);
+                throw null;
+            }
+            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getFunctionNames() {
+            throw new IllegalStateException();
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Set<C11716e> getVariableNames() {
+            throw new IllegalStateException();
         }
 
         /* JADX INFO: renamed from: a */
@@ -882,73 +949,6 @@ public class C12005t {
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getClassifierNames() {
-            throw new IllegalStateException();
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            if (c11716e == null) {
-                m10036a(1);
-                throw null;
-            }
-            if (interfaceC11480b == null) {
-                m10036a(2);
-                throw null;
-            }
-            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-            if (c11765d == null) {
-                m10036a(9);
-                throw null;
-            }
-            if (function1 != null) {
-                throw new IllegalStateException(this.f24886b);
-            }
-            m10036a(10);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Collection<? extends InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            if (c11716e == null) {
-                m10036a(7);
-                throw null;
-            }
-            if (interfaceC11480b == null) {
-                m10036a(8);
-                throw null;
-            }
-            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Collection<? extends InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            if (c11716e == null) {
-                m10036a(5);
-                throw null;
-            }
-            if (interfaceC11480b == null) {
-                m10036a(6);
-                throw null;
-            }
-            throw new IllegalStateException(this.f24886b + ", required name: " + c11716e);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getFunctionNames() {
-            throw new IllegalStateException();
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Set<C11716e> getVariableNames() {
-            throw new IllegalStateException();
-        }
-
         public String toString() {
             return C1643a.m820H(C1643a.m833U("ThrowingScope{"), this.f24886b, '}');
         }
@@ -956,7 +956,42 @@ public class C12005t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.t$f */
     /* JADX INFO: compiled from: ErrorUtils.java */
-    public static class f implements InterfaceC12008u0 {
+    public class f implements InterfaceC12008u0 {
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public AbstractC11288h getBuiltIns() {
+            AbstractC11288h builtIns = C11836a.getBuiltIns(null);
+            if (builtIns != null) {
+                return builtIns;
+            }
+            m10037a(4);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public InterfaceC11352h getDeclarationDescriptor() {
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public List<InterfaceC11477z0> getParameters() {
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public Collection<AbstractC11913c0> getSupertypes() {
+            throw null;
+        }
+
+        public InterfaceC11477z0 getTypeParameterDescriptor() {
+            m10037a(1);
+            throw null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public boolean isDenotable() {
+            throw null;
+        }
+
         /* JADX INFO: renamed from: a */
         public static /* synthetic */ void m10037a(int i) {
             String str = (i == 1 || i == 2 || i == 3 || i == 4 || i == 6) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -1011,41 +1046,6 @@ public class C12005t {
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public AbstractC11288h getBuiltIns() {
-            AbstractC11288h builtIns = C11836a.getBuiltIns(null);
-            if (builtIns != null) {
-                return builtIns;
-            }
-            m10037a(4);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public InterfaceC11352h getDeclarationDescriptor() {
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public List<InterfaceC11477z0> getParameters() {
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public Collection<AbstractC11913c0> getSupertypes() {
-            throw null;
-        }
-
-        public InterfaceC11477z0 getTypeParameterDescriptor() {
-            m10037a(1);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public boolean isDenotable() {
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
         public InterfaceC12008u0 refine(AbstractC11947g abstractC11947g) {
             if (abstractC11947g != null) {
                 return this;
@@ -1065,6 +1065,93 @@ public class C12005t {
         c11366c0Create.setType(abstractC11934j0CreateErrorType, Collections.emptyList(), null, null);
         f24881e = c11366c0Create;
         f24882f = Collections.singleton(c11366c0Create);
+    }
+
+    public static InterfaceC11330e createErrorClass(String str) {
+        if (str == null) {
+            m10030a(1);
+            throw null;
+        }
+        return new c(C11716e.special("<ERROR CLASS: " + str + ">"));
+    }
+
+    public static InterfaceC11770i createErrorScope(String str) {
+        if (str != null) {
+            return createErrorScope(str, false);
+        }
+        m10030a(2);
+        throw null;
+    }
+
+    public static AbstractC11934j0 createErrorType(String str) {
+        if (str != null) {
+            return createErrorTypeWithArguments(str, Collections.emptyList());
+        }
+        m10030a(7);
+        throw null;
+    }
+
+    public static InterfaceC12008u0 createErrorTypeConstructor(String str) {
+        if (str != null) {
+            return m10031b(C1643a.m886y("[ERROR : ", str, "]"), f24878b);
+        }
+        m10030a(15);
+        throw null;
+    }
+
+    public static InterfaceC12008u0 createErrorTypeConstructorWithCustomDebugName(String str) {
+        if (str != null) {
+            return m10031b(str, f24878b);
+        }
+        m10030a(16);
+        throw null;
+    }
+
+    public static AbstractC11934j0 createErrorTypeWithArguments(String str, List<InterfaceC12012w0> list) {
+        if (str == null) {
+            m10030a(11);
+            throw null;
+        }
+        if (list != null) {
+            return new C12003s(createErrorTypeConstructor(str), createErrorScope(str), list, false);
+        }
+        m10030a(12);
+        throw null;
+    }
+
+    public static AbstractC11934j0 createErrorTypeWithCustomConstructor(String str, InterfaceC12008u0 interfaceC12008u0) {
+        if (str == null) {
+            m10030a(9);
+            throw null;
+        }
+        if (interfaceC12008u0 != null) {
+            return new C12003s(interfaceC12008u0, createErrorScope(str));
+        }
+        m10030a(10);
+        throw null;
+    }
+
+    public static AbstractC11934j0 createErrorTypeWithCustomDebugName(String str) {
+        if (str != null) {
+            return createErrorTypeWithCustomConstructor(str, createErrorTypeConstructorWithCustomDebugName(str));
+        }
+        m10030a(8);
+        throw null;
+    }
+
+    public static InterfaceC11325c0 getErrorModule() {
+        return f24877a;
+    }
+
+    public static boolean isError(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            return false;
+        }
+        return (interfaceC11450m instanceof c) || (interfaceC11450m.getContainingDeclaration() instanceof c) || interfaceC11450m == f24877a;
+    }
+
+    public static boolean isUninferredParameter(AbstractC11913c0 abstractC11913c0) {
+        return abstractC11913c0 != null && (abstractC11913c0.getConstructor() instanceof f);
     }
 
     /* JADX INFO: renamed from: a */
@@ -1189,93 +1276,6 @@ public class C12005t {
         }
         m10030a(18);
         throw null;
-    }
-
-    public static InterfaceC11330e createErrorClass(String str) {
-        if (str == null) {
-            m10030a(1);
-            throw null;
-        }
-        return new c(C11716e.special("<ERROR CLASS: " + str + ">"));
-    }
-
-    public static InterfaceC11770i createErrorScope(String str) {
-        if (str != null) {
-            return createErrorScope(str, false);
-        }
-        m10030a(2);
-        throw null;
-    }
-
-    public static AbstractC11934j0 createErrorType(String str) {
-        if (str != null) {
-            return createErrorTypeWithArguments(str, Collections.emptyList());
-        }
-        m10030a(7);
-        throw null;
-    }
-
-    public static InterfaceC12008u0 createErrorTypeConstructor(String str) {
-        if (str != null) {
-            return m10031b(C1643a.m886y("[ERROR : ", str, "]"), f24878b);
-        }
-        m10030a(15);
-        throw null;
-    }
-
-    public static InterfaceC12008u0 createErrorTypeConstructorWithCustomDebugName(String str) {
-        if (str != null) {
-            return m10031b(str, f24878b);
-        }
-        m10030a(16);
-        throw null;
-    }
-
-    public static AbstractC11934j0 createErrorTypeWithArguments(String str, List<InterfaceC12012w0> list) {
-        if (str == null) {
-            m10030a(11);
-            throw null;
-        }
-        if (list != null) {
-            return new C12003s(createErrorTypeConstructor(str), createErrorScope(str), list, false);
-        }
-        m10030a(12);
-        throw null;
-    }
-
-    public static AbstractC11934j0 createErrorTypeWithCustomConstructor(String str, InterfaceC12008u0 interfaceC12008u0) {
-        if (str == null) {
-            m10030a(9);
-            throw null;
-        }
-        if (interfaceC12008u0 != null) {
-            return new C12003s(interfaceC12008u0, createErrorScope(str));
-        }
-        m10030a(10);
-        throw null;
-    }
-
-    public static AbstractC11934j0 createErrorTypeWithCustomDebugName(String str) {
-        if (str != null) {
-            return createErrorTypeWithCustomConstructor(str, createErrorTypeConstructorWithCustomDebugName(str));
-        }
-        m10030a(8);
-        throw null;
-    }
-
-    public static InterfaceC11325c0 getErrorModule() {
-        return f24877a;
-    }
-
-    public static boolean isError(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            return false;
-        }
-        return (interfaceC11450m instanceof c) || (interfaceC11450m.getContainingDeclaration() instanceof c) || interfaceC11450m == f24877a;
-    }
-
-    public static boolean isUninferredParameter(AbstractC11913c0 abstractC11913c0) {
-        return abstractC11913c0 != null && (abstractC11913c0.getConstructor() instanceof f);
     }
 
     public static InterfaceC11770i createErrorScope(String str, boolean z2) {

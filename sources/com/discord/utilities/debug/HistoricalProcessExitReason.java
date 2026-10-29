@@ -25,7 +25,7 @@ public final class HistoricalProcessExitReason {
     private static final Lazy lastReason = C12083g.lazy(HistoricalProcessExitReason$lastReason$2.INSTANCE);
 
     /* JADX INFO: compiled from: HistoricalProcessExitReason.kt */
-    public static final /* data */ class Reason {
+    public final /* data */ class Reason {
         private final String description;
         private final String reason;
 
@@ -45,16 +45,6 @@ public final class HistoricalProcessExitReason {
             return reason.copy(str, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getReason() {
-            return this.reason;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
         public final Reason copy(String reason, String description) {
             C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
             return new Reason(reason, description);
@@ -71,8 +61,18 @@ public final class HistoricalProcessExitReason {
             return C12238m.areEqual(this.reason, reason.reason) && C12238m.areEqual(this.description, reason.description);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getDescription() {
             return this.description;
+        }
+
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getReason() {
+            return this.reason;
         }
 
         public final String getReason() {

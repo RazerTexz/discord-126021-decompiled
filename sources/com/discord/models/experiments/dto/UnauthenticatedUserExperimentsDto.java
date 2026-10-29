@@ -17,6 +17,10 @@ public final /* data */ class UnauthenticatedUserExperimentsDto {
         this.assignments = list;
     }
 
+    public final List<UserExperimentDto> component2() {
+        return this.assignments;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ UnauthenticatedUserExperimentsDto copy$default(UnauthenticatedUserExperimentsDto unauthenticatedUserExperimentsDto, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,15 +30,6 @@ public final /* data */ class UnauthenticatedUserExperimentsDto {
             list = unauthenticatedUserExperimentsDto.assignments;
         }
         return unauthenticatedUserExperimentsDto.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getFingerprint() {
-        return this.fingerprint;
-    }
-
-    public final List<UserExperimentDto> component2() {
-        return this.assignments;
     }
 
     public final UnauthenticatedUserExperimentsDto copy(String fingerprint, List<UserExperimentDto> assignments) {
@@ -56,6 +51,11 @@ public final /* data */ class UnauthenticatedUserExperimentsDto {
 
     public final List<UserExperimentDto> getAssignments() {
         return this.assignments;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getFingerprint() {
+        return this.fingerprint;
     }
 
     public final String getFingerprint() {

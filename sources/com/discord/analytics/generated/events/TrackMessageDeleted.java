@@ -15,38 +15,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMessageDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMessageDeleted implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackGuildReceiver {
-    private TrackBase trackBase;
-    private TrackChannel trackChannel;
-    private TrackGuild trackGuild;
-    private final Long messageId = null;
-    private final CharSequence reason = null;
     private final Long authorId = null;
-    private final Long numUrls = null;
+    private final Long length = null;
+    private final Long messageId = null;
     private final Long numAttachments = null;
     private final Long numEmbeds = null;
     private final Long numMentions = null;
-    private final Long length = null;
-    private final Long wordCount = null;
+    private final Long numUrls = null;
+    private final CharSequence reason = null;
+    private TrackBase trackBase;
+    private TrackChannel trackChannel;
+    private TrackGuild trackGuild;
     private final List<CharSequence> urls = null;
+    private final Long wordCount = null;
     private final transient String analyticsSchemaTypeName = "message_deleted";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -57,6 +39,18 @@ public final /* data */ class TrackMessageDeleted implements AnalyticsSchema, Tr
         }
         TrackMessageDeleted trackMessageDeleted = (TrackMessageDeleted) other;
         return C12238m.areEqual(this.messageId, trackMessageDeleted.messageId) && C12238m.areEqual(this.reason, trackMessageDeleted.reason) && C12238m.areEqual(this.authorId, trackMessageDeleted.authorId) && C12238m.areEqual(this.numUrls, trackMessageDeleted.numUrls) && C12238m.areEqual(this.numAttachments, trackMessageDeleted.numAttachments) && C12238m.areEqual(this.numEmbeds, trackMessageDeleted.numEmbeds) && C12238m.areEqual(this.numMentions, trackMessageDeleted.numMentions) && C12238m.areEqual(this.length, trackMessageDeleted.length) && C12238m.areEqual(this.wordCount, trackMessageDeleted.wordCount) && C12238m.areEqual(this.urls, trackMessageDeleted.urls);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -80,6 +74,12 @@ public final /* data */ class TrackMessageDeleted implements AnalyticsSchema, Tr
         int iHashCode9 = (iHashCode8 + (l8 != null ? l8.hashCode() : 0)) * 31;
         List<CharSequence> list = this.urls;
         return iHashCode9 + (list != null ? list.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

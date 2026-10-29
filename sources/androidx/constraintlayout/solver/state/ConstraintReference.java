@@ -45,7 +45,7 @@ public class ConstraintReference implements Reference {
     public State.Constraint mLast = null;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.ConstraintReference$1 */
-    public static /* synthetic */ class C01841 {
+    public /* synthetic */ class C01841 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint */
         public static final /* synthetic */ int[] f111x7d4bfe12;
@@ -147,6 +147,40 @@ public class ConstraintReference implements Reference {
         this.mState = state;
     }
 
+    @Override // androidx.constraintlayout.solver.state.Reference
+    public void apply() {
+        ConstraintWidget constraintWidget = this.mConstraintWidget;
+        if (constraintWidget == null) {
+            return;
+        }
+        this.mHorizontalDimension.apply(this.mState, constraintWidget, 0);
+        this.mVerticalDimension.apply(this.mState, this.mConstraintWidget, 1);
+        dereference();
+        applyConnection(this.mConstraintWidget, this.mLeftToLeft, State.Constraint.LEFT_TO_LEFT);
+        applyConnection(this.mConstraintWidget, this.mLeftToRight, State.Constraint.LEFT_TO_RIGHT);
+        applyConnection(this.mConstraintWidget, this.mRightToLeft, State.Constraint.RIGHT_TO_LEFT);
+        applyConnection(this.mConstraintWidget, this.mRightToRight, State.Constraint.RIGHT_TO_RIGHT);
+        applyConnection(this.mConstraintWidget, this.mStartToStart, State.Constraint.START_TO_START);
+        applyConnection(this.mConstraintWidget, this.mStartToEnd, State.Constraint.START_TO_END);
+        applyConnection(this.mConstraintWidget, this.mEndToStart, State.Constraint.END_TO_START);
+        applyConnection(this.mConstraintWidget, this.mEndToEnd, State.Constraint.END_TO_END);
+        applyConnection(this.mConstraintWidget, this.mTopToTop, State.Constraint.TOP_TO_TOP);
+        applyConnection(this.mConstraintWidget, this.mTopToBottom, State.Constraint.TOP_TO_BOTTOM);
+        applyConnection(this.mConstraintWidget, this.mBottomToTop, State.Constraint.BOTTOM_TO_TOP);
+        applyConnection(this.mConstraintWidget, this.mBottomToBottom, State.Constraint.BOTTOM_TO_BOTTOM);
+        applyConnection(this.mConstraintWidget, this.mBaselineToBaseline, State.Constraint.BASELINE_TO_BASELINE);
+        int i = this.mHorizontalChainStyle;
+        if (i != 0) {
+            this.mConstraintWidget.setHorizontalChainStyle(i);
+        }
+        int i2 = this.mVerticalChainStyle;
+        if (i2 != 0) {
+            this.mConstraintWidget.setVerticalChainStyle(i2);
+        }
+        this.mConstraintWidget.setHorizontalBiasPercent(this.mHorizontalBias);
+        this.mConstraintWidget.setVerticalBiasPercent(this.mVerticalBias);
+    }
+
     private void applyConnection(ConstraintWidget constraintWidget, Object obj, State.Constraint constraint) {
         ConstraintWidget target = getTarget(obj);
         if (target == null) {
@@ -200,70 +234,6 @@ public class ConstraintReference implements Reference {
                 constraintWidget.immediateConnect(type7, target, type7, 0, 0);
                 break;
         }
-    }
-
-    private void dereference() {
-        this.mLeftToLeft = get(this.mLeftToLeft);
-        this.mLeftToRight = get(this.mLeftToRight);
-        this.mRightToLeft = get(this.mRightToLeft);
-        this.mRightToRight = get(this.mRightToRight);
-        this.mStartToStart = get(this.mStartToStart);
-        this.mStartToEnd = get(this.mStartToEnd);
-        this.mEndToStart = get(this.mEndToStart);
-        this.mEndToEnd = get(this.mEndToEnd);
-        this.mTopToTop = get(this.mTopToTop);
-        this.mTopToBottom = get(this.mTopToBottom);
-        this.mBottomToTop = get(this.mBottomToTop);
-        this.mBottomToBottom = get(this.mBottomToBottom);
-        this.mBaselineToBaseline = get(this.mBaselineToBaseline);
-    }
-
-    private Object get(Object obj) {
-        if (obj == null) {
-            return null;
-        }
-        return !(obj instanceof ConstraintReference) ? this.mState.reference(obj) : obj;
-    }
-
-    private ConstraintWidget getTarget(Object obj) {
-        if (obj instanceof Reference) {
-            return ((Reference) obj).getConstraintWidget();
-        }
-        return null;
-    }
-
-    @Override // androidx.constraintlayout.solver.state.Reference
-    public void apply() {
-        ConstraintWidget constraintWidget = this.mConstraintWidget;
-        if (constraintWidget == null) {
-            return;
-        }
-        this.mHorizontalDimension.apply(this.mState, constraintWidget, 0);
-        this.mVerticalDimension.apply(this.mState, this.mConstraintWidget, 1);
-        dereference();
-        applyConnection(this.mConstraintWidget, this.mLeftToLeft, State.Constraint.LEFT_TO_LEFT);
-        applyConnection(this.mConstraintWidget, this.mLeftToRight, State.Constraint.LEFT_TO_RIGHT);
-        applyConnection(this.mConstraintWidget, this.mRightToLeft, State.Constraint.RIGHT_TO_LEFT);
-        applyConnection(this.mConstraintWidget, this.mRightToRight, State.Constraint.RIGHT_TO_RIGHT);
-        applyConnection(this.mConstraintWidget, this.mStartToStart, State.Constraint.START_TO_START);
-        applyConnection(this.mConstraintWidget, this.mStartToEnd, State.Constraint.START_TO_END);
-        applyConnection(this.mConstraintWidget, this.mEndToStart, State.Constraint.END_TO_START);
-        applyConnection(this.mConstraintWidget, this.mEndToEnd, State.Constraint.END_TO_END);
-        applyConnection(this.mConstraintWidget, this.mTopToTop, State.Constraint.TOP_TO_TOP);
-        applyConnection(this.mConstraintWidget, this.mTopToBottom, State.Constraint.TOP_TO_BOTTOM);
-        applyConnection(this.mConstraintWidget, this.mBottomToTop, State.Constraint.BOTTOM_TO_TOP);
-        applyConnection(this.mConstraintWidget, this.mBottomToBottom, State.Constraint.BOTTOM_TO_BOTTOM);
-        applyConnection(this.mConstraintWidget, this.mBaselineToBaseline, State.Constraint.BASELINE_TO_BASELINE);
-        int i = this.mHorizontalChainStyle;
-        if (i != 0) {
-            this.mConstraintWidget.setHorizontalChainStyle(i);
-        }
-        int i2 = this.mVerticalChainStyle;
-        if (i2 != 0) {
-            this.mConstraintWidget.setVerticalChainStyle(i2);
-        }
-        this.mConstraintWidget.setHorizontalBiasPercent(this.mHorizontalBias);
-        this.mConstraintWidget.setVerticalBiasPercent(this.mVerticalBias);
     }
 
     public ConstraintReference baseline() {
@@ -449,6 +419,22 @@ public class ConstraintReference implements Reference {
         return new ConstraintWidget(getWidth().getValue(), getHeight().getValue());
     }
 
+    private void dereference() {
+        this.mLeftToLeft = get(this.mLeftToLeft);
+        this.mLeftToRight = get(this.mLeftToRight);
+        this.mRightToLeft = get(this.mRightToLeft);
+        this.mRightToRight = get(this.mRightToRight);
+        this.mStartToStart = get(this.mStartToStart);
+        this.mStartToEnd = get(this.mStartToEnd);
+        this.mEndToStart = get(this.mEndToStart);
+        this.mEndToEnd = get(this.mEndToEnd);
+        this.mTopToTop = get(this.mTopToTop);
+        this.mTopToBottom = get(this.mTopToBottom);
+        this.mBottomToTop = get(this.mBottomToTop);
+        this.mBottomToBottom = get(this.mBottomToBottom);
+        this.mBaselineToBaseline = get(this.mBaselineToBaseline);
+    }
+
     public ConstraintReference end() {
         if (this.mEndToStart != null) {
             this.mLast = State.Constraint.END_TO_START;
@@ -468,6 +454,13 @@ public class ConstraintReference implements Reference {
         this.mLast = State.Constraint.END_TO_START;
         this.mEndToStart = obj;
         return this;
+    }
+
+    private Object get(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        return !(obj instanceof ConstraintReference) ? this.mState.reference(obj) : obj;
     }
 
     @Override // androidx.constraintlayout.solver.state.Reference
@@ -491,6 +484,13 @@ public class ConstraintReference implements Reference {
     @Override // androidx.constraintlayout.solver.state.Reference
     public Object getKey() {
         return this.key;
+    }
+
+    private ConstraintWidget getTarget(Object obj) {
+        if (obj instanceof Reference) {
+            return ((Reference) obj).getConstraintWidget();
+        }
+        return null;
     }
 
     public int getVerticalChainStyle(int i) {

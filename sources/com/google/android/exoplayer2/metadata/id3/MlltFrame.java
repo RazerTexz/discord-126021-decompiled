@@ -8,7 +8,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class MlltFrame extends Id3Frame {
-    public static final Parcelable.Creator<MlltFrame> CREATOR = new C10733a();
 
     /* JADX INFO: renamed from: k */
     public final int f19993k;
@@ -24,6 +23,7 @@ public final class MlltFrame extends Id3Frame {
 
     /* JADX INFO: renamed from: o */
     public final int[] f19997o;
+    public static final Parcelable.Creator<MlltFrame> CREATOR = new C10733a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.MlltFrame$a */
     public class C10733a implements Parcelable.Creator<MlltFrame> {

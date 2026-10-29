@@ -6,11 +6,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreatorMonetizationEnableRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreatorMonetizationEnableRequest {
+    private final Long actionedAt = null;
+    private final CharSequence actionedNote = null;
+    private final CharSequence actionedReason = null;
     private final Long creatorMonetizationEnableRequestId = null;
     private final CharSequence state = null;
-    private final CharSequence actionedReason = null;
-    private final CharSequence actionedNote = null;
-    private final Long actionedAt = null;
     private final Long termsAckedAt = null;
 
     public boolean equals(Object other) {

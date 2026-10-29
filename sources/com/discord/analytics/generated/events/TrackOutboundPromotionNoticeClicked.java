@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackOutboundPromotionNoticeClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackOutboundPromotionNoticeClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "outbound_promotion_notice_clicked";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "outbound_promotion_notice_clicked";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

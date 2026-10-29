@@ -15,7 +15,7 @@ public abstract class AbstractC2442i {
     /* JADX INFO: renamed from: b.i.a.b.j.i$a */
     /* JADX INFO: compiled from: TransportContext.java */
     @AutoValue.Builder
-    public static abstract class a {
+    public abstract class a {
         /* JADX INFO: renamed from: a */
         public abstract AbstractC2442i mo2351a();
 

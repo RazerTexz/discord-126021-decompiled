@@ -48,25 +48,9 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: MemberVerificationSuccessDialog.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void enqueue(long guildId) {
-            StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            String strM877t = C1643a.m877t("GUILD_JOIN_REQUEST_SUCCESS_", guildId);
-            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C9550x3988be99(guildId, notices, strM877t), 150, null));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: MemberVerificationSuccessDialog.kt */
-    public static final /* synthetic */ class C95531 extends C12236k implements Function1<MemberVerificationSuccessViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C95531 extends C12236k implements Function1<MemberVerificationSuccessViewModel.ViewState, Unit> {
         public C95531(MemberVerificationSuccessDialog memberVerificationSuccessDialog) {
             super(1, memberVerificationSuccessDialog, MemberVerificationSuccessDialog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/MemberVerificationSuccessViewModel$ViewState;)V", 0);
         }
@@ -81,6 +65,22 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
         public final void invoke2(MemberVerificationSuccessViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "p1");
             ((MemberVerificationSuccessDialog) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberVerificationSuccessDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void enqueue(long guildId) {
+            StoreNotices notices = StoreStream.INSTANCE.getNotices();
+            String strM877t = C1643a.m877t("GUILD_JOIN_REQUEST_SUCCESS_", guildId);
+            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C9550x3988be99(guildId, notices, strM877t), 150, null));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

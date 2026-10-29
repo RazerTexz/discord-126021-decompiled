@@ -19,7 +19,7 @@ public final class MessageQueue$processNextRequest$listener$1 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$processNextRequest$listener$1$1 */
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68111 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C68111 extends AbstractC12240o implements Function1<Long, Unit> {
         public C68111() {
             super(1);
         }
@@ -46,7 +46,7 @@ public final class MessageQueue$processNextRequest$listener$1 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$processNextRequest$listener$1$2 */
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68122 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C68122 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C68122() {
             super(1);
         }
@@ -66,11 +66,11 @@ public final class MessageQueue$processNextRequest$listener$1 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$processNextRequest$listener$1$3 */
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class RunnableC68133 implements Runnable {
+    public final class RunnableC68133 implements Runnable {
 
         /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$processNextRequest$listener$1$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: MessageQueue.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }

@@ -24,18 +24,27 @@ import p007b.p225i.p226a.p288f.p313h.p320g.HandlerC3484d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class FragmentC3286d1 extends Fragment implements InterfaceC3299j {
 
-    /* JADX INFO: renamed from: j */
-    public static final WeakHashMap<Activity, WeakReference<FragmentC3286d1>> f9363j = new WeakHashMap<>();
-
-    /* JADX INFO: renamed from: k */
-    public final Map<String, LifecycleCallback> f9364k = Collections.synchronizedMap(new ArrayMap());
-
     /* JADX INFO: renamed from: l */
     public int f9365l = 0;
 
     /* JADX INFO: renamed from: m */
     @Nullable
     public Bundle f9366m;
+
+    /* JADX INFO: renamed from: j */
+    public static final WeakHashMap<Activity, WeakReference<FragmentC3286d1>> f9363j = new WeakHashMap<>();
+
+    /* JADX INFO: renamed from: k */
+    public final Map<String, LifecycleCallback> f9364k = Collections.synchronizedMap(new ArrayMap());
+
+    @Override // android.app.Fragment
+    public final void dump(String str, @Nullable FileDescriptor fileDescriptor, PrintWriter printWriter, @Nullable String[] strArr) {
+        super.dump(str, fileDescriptor, printWriter, strArr);
+        Iterator<LifecycleCallback> it = this.f9364k.values().iterator();
+        while (it.hasNext()) {
+            it.next().m9039a();
+        }
+    }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3299j
     /* JADX INFO: renamed from: a */
@@ -54,15 +63,6 @@ public final class FragmentC3286d1 extends Fragment implements InterfaceC3299j {
     /* JADX INFO: renamed from: d */
     public final <T extends LifecycleCallback> T mo4070d(String str, Class<T> cls) {
         return cls.cast(this.f9364k.get(str));
-    }
-
-    @Override // android.app.Fragment
-    public final void dump(String str, @Nullable FileDescriptor fileDescriptor, PrintWriter printWriter, @Nullable String[] strArr) {
-        super.dump(str, fileDescriptor, printWriter, strArr);
-        Iterator<LifecycleCallback> it = this.f9364k.values().iterator();
-        while (it.hasNext()) {
-            it.next().m9039a();
-        }
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3299j

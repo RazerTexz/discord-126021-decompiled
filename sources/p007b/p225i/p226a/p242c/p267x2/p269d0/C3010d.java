@@ -32,12 +32,6 @@ import p007b.p225i.p355b.p356a.C4483c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3010d implements InterfaceC3031h {
 
-    /* JADX INFO: renamed from: a */
-    public final byte[] f8100a = new byte[42];
-
-    /* JADX INFO: renamed from: b */
-    public final C2757x f8101b = new C2757x(new byte[32768], 0);
-
     /* JADX INFO: renamed from: c */
     public final boolean f8102c;
 
@@ -74,6 +68,12 @@ public final class C3010d implements InterfaceC3031h {
 
     /* JADX INFO: renamed from: n */
     public long f8113n;
+
+    /* JADX INFO: renamed from: a */
+    public final byte[] f8100a = new byte[42];
+
+    /* JADX INFO: renamed from: b */
+    public final C2757x f8101b = new C2757x(new byte[32768], 0);
 
     static {
         C3007a c3007a = new InterfaceC3106l() { // from class: b.i.a.c.x2.d0.a

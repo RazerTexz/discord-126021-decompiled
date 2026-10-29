@@ -28,31 +28,6 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
         this.key = "39 -- " + j2 + " -- " + str;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getInviteCode() {
-        return this.inviteCode;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelInvite getInvite() {
-        return this.invite;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
     public final StageInviteEntry copy(long userId, long messageId, String inviteCode, ModelInvite invite, long guildId) {
         C12238m.checkNotNullParameter(inviteCode, "inviteCode");
         C12238m.checkNotNullParameter(invite, "invite");
@@ -70,12 +45,27 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
         return this.userId == stageInviteEntry.userId && this.messageId == stageInviteEntry.messageId && C12238m.areEqual(this.inviteCode, stageInviteEntry.inviteCode) && C12238m.areEqual(this.invite, stageInviteEntry.invite) && this.guildId == stageInviteEntry.guildId;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
     }
 
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final ModelInvite getInvite() {
         return this.invite;
+    }
+
+    public final ModelInvite getInvite() {
+        return this.invite;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getInviteCode() {
+        return this.inviteCode;
     }
 
     public final String getInviteCode() {
@@ -87,6 +77,11 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
     public final long getMessageId() {
         return this.messageId;
     }
@@ -94,6 +89,11 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

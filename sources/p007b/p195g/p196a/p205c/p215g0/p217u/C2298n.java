@@ -20,12 +20,6 @@ public class C2298n extends AbstractC2274b<EnumSet<? extends Enum<?>>> {
         super((Class<?>) EnumSet.class, abstractC2360j, true, (AbstractC2215g) null, (AbstractC2364n<Object>) null);
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        return ((EnumSet) obj).isEmpty();
-    }
-
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b, p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
@@ -52,10 +46,10 @@ public class C2298n extends AbstractC2274b<EnumSet<? extends Enum<?>>> {
         return ((EnumSet) obj).size() == 1;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
-    /* JADX INFO: renamed from: t */
-    public AbstractC2274b<EnumSet<? extends Enum<?>>> mo2023t(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n abstractC2364n, Boolean bool) {
-        return new C2298n(this, interfaceC2206d, abstractC2215g, abstractC2364n, bool);
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        return ((EnumSet) obj).isEmpty();
     }
 
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
@@ -70,6 +64,12 @@ public class C2298n extends AbstractC2274b<EnumSet<? extends Enum<?>>> {
             }
             abstractC2364nM2250n.mo1807f(r1, abstractC2108d, abstractC2374x);
         }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
+    /* JADX INFO: renamed from: t */
+    public AbstractC2274b<EnumSet<? extends Enum<?>>> mo2023t(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n abstractC2364n, Boolean bool) {
+        return new C2298n(this, interfaceC2206d, abstractC2215g, abstractC2364n, bool);
     }
 
     public C2298n(C2298n c2298n, InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, Boolean bool) {

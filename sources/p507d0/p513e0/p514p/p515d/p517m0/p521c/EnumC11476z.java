@@ -17,7 +17,7 @@ public enum EnumC11476z {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.z$a */
     /* JADX INFO: compiled from: Modality.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

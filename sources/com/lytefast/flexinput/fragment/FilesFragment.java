@@ -37,9 +37,23 @@ public class FilesFragment extends Fragment {
     private SelectionCoordinator<Attachment<Object>, Attachment<File>> selectionCoordinator;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FilesFragment$b */
+    /* JADX INFO: compiled from: FilesFragment.kt */
+    public final /* synthetic */ class C11180b extends C12236k implements Function0<Unit> {
+        public C11180b(FilesFragment filesFragment) {
+            super(0, filesFragment, FilesFragment.class, "loadDownloadFolder", "loadDownloadFolder()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            ((FilesFragment) this.receiver).loadDownloadFolder();
+            return Unit.f27425a;
+        }
+    }
+
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FilesFragment$a */
     /* JADX INFO: compiled from: FilesFragment.kt */
-    public static final class ViewOnClickListenerC11179a implements View.OnClickListener {
+    public final class ViewOnClickListenerC11179a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ View f22051j;
@@ -52,7 +66,7 @@ public class FilesFragment extends Fragment {
 
         /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FilesFragment$a$a */
         /* JADX INFO: compiled from: FilesFragment.kt */
-        public static final class a extends AbstractC12240o implements Function0<Unit> {
+        public final class a extends AbstractC12240o implements Function0<Unit> {
             public a() {
                 super(0);
             }
@@ -91,18 +105,9 @@ public class FilesFragment extends Fragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FilesFragment$b */
-    /* JADX INFO: compiled from: FilesFragment.kt */
-    public static final /* synthetic */ class C11180b extends C12236k implements Function0<Unit> {
-        public C11180b(FilesFragment filesFragment) {
-            super(0, filesFragment, FilesFragment.class, "loadDownloadFolder", "loadDownloadFolder()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public Unit invoke() {
-            ((FilesFragment) this.receiver).loadDownloadFolder();
-            return Unit.f27425a;
-        }
+    /* JADX INFO: renamed from: getRecyclerView$flexinput_release, reason: from getter */
+    public final RecyclerView getRecyclerView() {
+        return this.recyclerView;
     }
 
     private final boolean hasPermissions(String... requiredPermissionList) {
@@ -136,11 +141,6 @@ public class FilesFragment extends Fragment {
         SwipeRefreshLayout swipeRefreshLayout2 = this.swipeRefreshLayout;
         C12238m.checkNotNull(swipeRefreshLayout2);
         swipeRefreshLayout2.setRefreshing(false);
-    }
-
-    /* JADX INFO: renamed from: getRecyclerView$flexinput_release, reason: from getter */
-    public final RecyclerView getRecyclerView() {
-        return this.recyclerView;
     }
 
     public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {

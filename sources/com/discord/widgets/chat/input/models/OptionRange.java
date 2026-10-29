@@ -27,16 +27,6 @@ public final /* data */ class OptionRange {
         return optionRange.copy(intRange, intRange2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final IntRange getParam() {
-        return this.param;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final IntRange getValue() {
-        return this.value;
-    }
-
     public final OptionRange copy(IntRange param, IntRange value) {
         C12238m.checkNotNullParameter(param, "param");
         C12238m.checkNotNullParameter(value, "value");
@@ -54,8 +44,18 @@ public final /* data */ class OptionRange {
         return C12238m.areEqual(this.param, optionRange.param) && C12238m.areEqual(this.value, optionRange.value);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final IntRange getParam() {
         return this.param;
+    }
+
+    public final IntRange getParam() {
+        return this.param;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final IntRange getValue() {
+        return this.value;
     }
 
     public final IntRange getValue() {

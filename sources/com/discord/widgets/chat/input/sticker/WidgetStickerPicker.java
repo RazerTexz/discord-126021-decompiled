@@ -70,6 +70,7 @@ import p658rx.subjects.PublishSubject;
 /* JADX INFO: compiled from: WidgetStickerPicker.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetStickerPicker extends AppFragment implements InterfaceC1430c {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStickerPicker.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStickerPickerBinding;", 0)};
     public static final String ARG_MODE = "MODE";
     private static final int STICKER_PICKER_VIEW_FLIPPER_EMPTY_STATE = 1;
     private static final int STICKER_PICKER_VIEW_FLIPPER_EMPTY_STATE_PHASE_1 = 2;
@@ -102,11 +103,10 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
     /* JADX INFO: renamed from: viewModelForSheet$delegate, reason: from kotlin metadata */
     private final Lazy viewModelForSheet;
     private boolean wasActive;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStickerPicker.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStickerPickerBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$configureUI$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79101 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C79101 extends AbstractC12240o implements Function1<Integer, Unit> {
         public final /* synthetic */ StickerPickerViewModel.ViewState $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -128,7 +128,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$initializeSearchBar$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79111 extends AbstractC12240o implements Function0<Unit> {
+    public final class C79111 extends AbstractC12240o implements Function0<Unit> {
         public C79111() {
             super(0);
         }
@@ -151,7 +151,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$onGuildClicked$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79121 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C79121 extends AbstractC12240o implements Function1<Unit, Unit> {
         public final /* synthetic */ Pair $categoryRange;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -174,7 +174,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$onPackClicked$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79131 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C79131 extends AbstractC12240o implements Function1<Unit, Unit> {
         public final /* synthetic */ Pair $categoryRange;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -197,7 +197,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79141 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C79141 extends AbstractC12240o implements Function1<String, Unit> {
         public C79141() {
             super(1);
         }
@@ -217,7 +217,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79161 extends AbstractC12240o implements Function1<StickerPickerViewModel.ViewState, Unit> {
+    public final class C79161 extends AbstractC12240o implements Function1<StickerPickerViewModel.ViewState, Unit> {
         public C79161() {
             super(1);
         }
@@ -237,7 +237,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79172 extends AbstractC12240o implements Function1<StickerPickerViewModel.Event, Unit> {
+    public final class C79172 extends AbstractC12240o implements Function1<StickerPickerViewModel.Event, Unit> {
         public C79172() {
             super(1);
         }
@@ -257,7 +257,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpCategoryRecycler$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79181 extends C12236k implements Function1<StickerCategoryItem.GuildItem, Unit> {
+    public final /* synthetic */ class C79181 extends C12236k implements Function1<StickerCategoryItem.GuildItem, Unit> {
         public C79181(WidgetStickerPicker widgetStickerPicker) {
             super(1, widgetStickerPicker, WidgetStickerPicker.class, "onGuildClicked", "onGuildClicked(Lcom/discord/widgets/chat/input/sticker/StickerCategoryItem$GuildItem;)V", 0);
         }
@@ -277,7 +277,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpCategoryRecycler$2 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79192 extends C12236k implements Function1<StickerCategoryItem.PackItem, Unit> {
+    public final /* synthetic */ class C79192 extends C12236k implements Function1<StickerCategoryItem.PackItem, Unit> {
         public C79192(WidgetStickerPicker widgetStickerPicker) {
             super(1, widgetStickerPicker, WidgetStickerPicker.class, "onPackClicked", "onPackClicked(Lcom/discord/widgets/chat/input/sticker/StickerCategoryItem$PackItem;)V", 0);
         }
@@ -297,7 +297,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpCategoryRecycler$3 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79203 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C79203 extends C12236k implements Function0<Unit> {
         public C79203(WidgetStickerPicker widgetStickerPicker) {
             super(0, widgetStickerPicker, WidgetStickerPicker.class, "onRecentClicked", "onRecentClicked()V", 0);
         }
@@ -316,7 +316,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpCategoryRecycler$4 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79214 extends C12236k implements Function1<Integer, Unit> {
+    public final /* synthetic */ class C79214 extends C12236k implements Function1<Integer, Unit> {
         public C79214(WidgetStickerPicker widgetStickerPicker) {
             super(1, widgetStickerPicker, WidgetStickerPicker.class, "onSelectedCategoryAdapterPositionUpdated", "onSelectedCategoryAdapterPositionUpdated(I)V", 0);
         }
@@ -334,7 +334,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpStickerRecycler$1 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79231 extends C12236k implements Function1<StickerItem, Unit> {
+    public final /* synthetic */ class C79231 extends C12236k implements Function1<StickerItem, Unit> {
         public C79231(WidgetStickerPicker widgetStickerPicker) {
             super(1, widgetStickerPicker, WidgetStickerPicker.class, "onStickerItemSelected", "onStickerItemSelected(Lcom/discord/widgets/chat/input/sticker/StickerItem;)V", 0);
         }
@@ -354,7 +354,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpStickerRecycler$2 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final /* synthetic */ class C79242 extends C12236k implements Function1<StoreHeaderItem, Unit> {
+    public final /* synthetic */ class C79242 extends C12236k implements Function1<StoreHeaderItem, Unit> {
         public C79242(WidgetStickerPicker widgetStickerPicker) {
             super(1, widgetStickerPicker, WidgetStickerPicker.class, "onStickerHeaderItemsClicked", "onStickerHeaderItemsClicked(Lcom/discord/widgets/chat/input/sticker/StoreHeaderItem;)V", 0);
         }
@@ -374,7 +374,7 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.WidgetStickerPicker$setUpStickerRecycler$4 */
     /* JADX INFO: compiled from: WidgetStickerPicker.kt */
-    public static final class C79264 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C79264 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C79264() {
             super(1);
         }
@@ -407,6 +407,10 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
             C12238m.throwUninitializedPropertyAccessException("stickerAdapter");
         }
         return widgetStickerAdapter;
+    }
+
+    public final void clearSearchInput() {
+        getViewModel().setSearchText("");
     }
 
     private final void configureUI(StickerPickerViewModel.ViewState viewState) {
@@ -522,6 +526,10 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
         return (WidgetStickerPickerBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    public final boolean getCanHandleIsShown() {
+        return this.canHandleIsShown;
+    }
+
     private final Long getInitialStickerPackId() {
         return (Long) this.initialStickerPackId.getValue();
     }
@@ -605,11 +613,33 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
         }
     }
 
+    @Override // p007b.p076b.p077a.InterfaceC1430c
+    public void isShown(boolean isActive) {
+        if (isActive && !this.wasActive) {
+            getBinding().f18200m.setExpanded(true);
+            scrollToTop();
+        }
+        try {
+            getViewModel().setSelectedCategoryId(-1L);
+            clearSearchInput();
+        } catch (Exception unused) {
+        }
+        this.wasActive = isActive;
+    }
+
     private final void launchBottomSheet() {
         WidgetStickerPickerSheet.Companion companion = WidgetStickerPickerSheet.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         companion.show(parentFragmentManager, this.stickerPickerListener, (28 & 4) != 0 ? null : null, (28 & 8) != 0 ? null : null, (28 & 16) != 0 ? null : null);
+    }
+
+    @Override // androidx.fragment.app.Fragment
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.gc();
+        this.stickerPickerMode = getMode();
+        this.canHandleIsShown = true;
     }
 
     private final void onGuildClicked(StickerCategoryItem.GuildItem guildItem) {
@@ -678,140 +708,6 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
             return;
         }
         stickerPickerListener.onStickerPicked(sticker);
-    }
-
-    private final void setUpCategoryRecycler() {
-        RecyclerView recyclerView = getBinding().f18203p;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.stickerPickerCategoryRecycler");
-        recyclerView.setItemAnimator(null);
-        StickerCategoryAdapter stickerCategoryAdapter = new StickerCategoryAdapter(new C79181(this), new C79192(this), new C79203(this), new C79214(this), this, null, 32, null);
-        this.categoryAdapter = stickerCategoryAdapter;
-        if (stickerCategoryAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
-        }
-        stickerCategoryAdapter.setHasStableIds(true);
-        RecyclerView recyclerView2 = getBinding().f18203p;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.stickerPickerCategoryRecycler");
-        StickerCategoryAdapter stickerCategoryAdapter2 = this.categoryAdapter;
-        if (stickerCategoryAdapter2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
-        }
-        recyclerView2.setAdapter(stickerCategoryAdapter2);
-        RecyclerView recyclerView3 = getBinding().f18203p;
-        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.stickerPickerCategoryRecycler");
-        StickerCategoryAdapter stickerCategoryAdapter3 = this.categoryAdapter;
-        if (stickerCategoryAdapter3 == null) {
-            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
-        }
-        this.categoryLayoutManager = new SelfHealingLinearLayoutManager(recyclerView3, stickerCategoryAdapter3, 0, false, 8, null);
-        RecyclerView recyclerView4 = getBinding().f18203p;
-        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.stickerPickerCategoryRecycler");
-        LinearLayoutManager linearLayoutManager = this.categoryLayoutManager;
-        if (linearLayoutManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("categoryLayoutManager");
-        }
-        recyclerView4.setLayoutManager(linearLayoutManager);
-        getBinding().f18203p.addOnScrollListener(new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setUpCategoryRecycler.5
-            /* JADX WARN: Type inference incomplete: some casts might be missing */
-            @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
-            public void onScrolled(RecyclerView recyclerView5, int dx, int dy) {
-                C12238m.checkNotNullParameter(recyclerView5, "recyclerView");
-                super.onScrolled(recyclerView5, dx, dy);
-                WidgetStickerPicker.this.stickerCategoryScrollSubject.f27650k.onNext((T) Unit.f27425a);
-            }
-        });
-    }
-
-    private final void setUpStickerRecycler() {
-        RecyclerView recyclerView = getBinding().f18198k;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.chatInputStickerPickerRecycler");
-        recyclerView.setItemAnimator(null);
-        RecyclerView recyclerView2 = getBinding().f18198k;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.chatInputStickerPickerRecycler");
-        WidgetStickerAdapter widgetStickerAdapter = new WidgetStickerAdapter(recyclerView2, new C79231(this), new C79242(this), this.recyclerScrollingWithinThresholdSubject, this, false, 32, null);
-        this.stickerAdapter = widgetStickerAdapter;
-        if (widgetStickerAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("stickerAdapter");
-        }
-        StickyHeaderItemDecoration stickyHeaderItemDecoration = new StickyHeaderItemDecoration(widgetStickerAdapter);
-        getBinding().f18198k.addItemDecoration(stickyHeaderItemDecoration);
-        RecyclerView recyclerView3 = getBinding().f18198k;
-        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.chatInputStickerPickerRecycler");
-        stickyHeaderItemDecoration.blockClicks(recyclerView3);
-        getBinding().f18198k.setHasFixedSize(true);
-        getBinding().f18198k.setRecyclerListener(new RecyclerView.RecyclerListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setUpStickerRecycler.3
-            @Override // androidx.recyclerview.widget.RecyclerView.RecyclerListener
-            public final void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
-                C12238m.checkNotNullParameter(viewHolder, "viewHolder");
-                if (viewHolder instanceof StickerViewHolder) {
-                    ((StickerViewHolder) viewHolder).cancelLoading();
-                }
-            }
-        });
-        getBinding().f18198k.addOnScrollListener(new SpeedOnScrollListener(0L, new C79264(), 0, null, 13, null));
-    }
-
-    private final void setWindowInsetsListeners() {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f18204q, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setWindowInsetsListeners.1
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullExpressionValue(view, "view");
-                C12238m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
-                view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), WidgetStickerPicker.this.getAdditionalBottomPaddingPx() + windowInsetsCompat.getSystemWindowInsetBottom());
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-    }
-
-    public static /* synthetic */ void setupForInlineSearchAndScroll$default(WidgetStickerPicker widgetStickerPicker, String str, long j, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = "";
-        }
-        widgetStickerPicker.setupForInlineSearchAndScroll(str, j);
-    }
-
-    private final void showCategoryBottomBar(boolean showBottomBar) {
-        ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-1, -1);
-        marginLayoutParams.bottomMargin = showBottomBar ? DimenUtils.dpToPixels(48) : 0;
-        AppViewFlipper appViewFlipper = getBinding().f18199l;
-        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.chatInputStickerPickerViewFlipper");
-        appViewFlipper.setLayoutParams(new CoordinatorLayout.LayoutParams(marginLayoutParams));
-        ConstraintLayout constraintLayout = getBinding().f18201n;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.stickerPickerBottomBar");
-        constraintLayout.setVisibility(showBottomBar ? 0 : 8);
-        View view = getBinding().f18202o;
-        C12238m.checkNotNullExpressionValue(view, "binding.stickerPickerBottomBarDivider");
-        view.setVisibility(showBottomBar ? 0 : 8);
-    }
-
-    public final void clearSearchInput() {
-        getViewModel().setSearchText("");
-    }
-
-    public final boolean getCanHandleIsShown() {
-        return this.canHandleIsShown;
-    }
-
-    @Override // p007b.p076b.p077a.InterfaceC1430c
-    public void isShown(boolean isActive) {
-        if (isActive && !this.wasActive) {
-            getBinding().f18200m.setExpanded(true);
-            scrollToTop();
-        }
-        try {
-            getViewModel().setSelectedCategoryId(-1L);
-            clearSearchInput();
-        } catch (Exception unused) {
-        }
-        this.wasActive = isActive;
-    }
-
-    @Override // androidx.fragment.app.Fragment
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        System.gc();
-        this.stickerPickerMode = getMode();
-        this.canHandleIsShown = true;
     }
 
     @Override // com.discord.app.AppFragment
@@ -907,6 +803,96 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
         this.showSearchBar = showSearchBar;
     }
 
+    private final void setUpCategoryRecycler() {
+        RecyclerView recyclerView = getBinding().f18203p;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.stickerPickerCategoryRecycler");
+        recyclerView.setItemAnimator(null);
+        StickerCategoryAdapter stickerCategoryAdapter = new StickerCategoryAdapter(new C79181(this), new C79192(this), new C79203(this), new C79214(this), this, null, 32, null);
+        this.categoryAdapter = stickerCategoryAdapter;
+        if (stickerCategoryAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
+        }
+        stickerCategoryAdapter.setHasStableIds(true);
+        RecyclerView recyclerView2 = getBinding().f18203p;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.stickerPickerCategoryRecycler");
+        StickerCategoryAdapter stickerCategoryAdapter2 = this.categoryAdapter;
+        if (stickerCategoryAdapter2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
+        }
+        recyclerView2.setAdapter(stickerCategoryAdapter2);
+        RecyclerView recyclerView3 = getBinding().f18203p;
+        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.stickerPickerCategoryRecycler");
+        StickerCategoryAdapter stickerCategoryAdapter3 = this.categoryAdapter;
+        if (stickerCategoryAdapter3 == null) {
+            C12238m.throwUninitializedPropertyAccessException("categoryAdapter");
+        }
+        this.categoryLayoutManager = new SelfHealingLinearLayoutManager(recyclerView3, stickerCategoryAdapter3, 0, false, 8, null);
+        RecyclerView recyclerView4 = getBinding().f18203p;
+        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.stickerPickerCategoryRecycler");
+        LinearLayoutManager linearLayoutManager = this.categoryLayoutManager;
+        if (linearLayoutManager == null) {
+            C12238m.throwUninitializedPropertyAccessException("categoryLayoutManager");
+        }
+        recyclerView4.setLayoutManager(linearLayoutManager);
+        getBinding().f18203p.addOnScrollListener(new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setUpCategoryRecycler.5
+            /* JADX WARN: Type inference incomplete: some casts might be missing */
+            @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
+            public void onScrolled(RecyclerView recyclerView5, int dx, int dy) {
+                C12238m.checkNotNullParameter(recyclerView5, "recyclerView");
+                super.onScrolled(recyclerView5, dx, dy);
+                WidgetStickerPicker.this.stickerCategoryScrollSubject.f27650k.onNext((T) Unit.f27425a);
+            }
+        });
+    }
+
+    private final void setUpStickerRecycler() {
+        RecyclerView recyclerView = getBinding().f18198k;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.chatInputStickerPickerRecycler");
+        recyclerView.setItemAnimator(null);
+        RecyclerView recyclerView2 = getBinding().f18198k;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.chatInputStickerPickerRecycler");
+        WidgetStickerAdapter widgetStickerAdapter = new WidgetStickerAdapter(recyclerView2, new C79231(this), new C79242(this), this.recyclerScrollingWithinThresholdSubject, this, false, 32, null);
+        this.stickerAdapter = widgetStickerAdapter;
+        if (widgetStickerAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("stickerAdapter");
+        }
+        StickyHeaderItemDecoration stickyHeaderItemDecoration = new StickyHeaderItemDecoration(widgetStickerAdapter);
+        getBinding().f18198k.addItemDecoration(stickyHeaderItemDecoration);
+        RecyclerView recyclerView3 = getBinding().f18198k;
+        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.chatInputStickerPickerRecycler");
+        stickyHeaderItemDecoration.blockClicks(recyclerView3);
+        getBinding().f18198k.setHasFixedSize(true);
+        getBinding().f18198k.setRecyclerListener(new RecyclerView.RecyclerListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setUpStickerRecycler.3
+            @Override // androidx.recyclerview.widget.RecyclerView.RecyclerListener
+            public final void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
+                C12238m.checkNotNullParameter(viewHolder, "viewHolder");
+                if (viewHolder instanceof StickerViewHolder) {
+                    ((StickerViewHolder) viewHolder).cancelLoading();
+                }
+            }
+        });
+        getBinding().f18198k.addOnScrollListener(new SpeedOnScrollListener(0L, new C79264(), 0, null, 13, null));
+    }
+
+    private final void setWindowInsetsListeners() {
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f18204q, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.chat.input.sticker.WidgetStickerPicker.setWindowInsetsListeners.1
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullExpressionValue(view, "view");
+                C12238m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+                view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), WidgetStickerPicker.this.getAdditionalBottomPaddingPx() + windowInsetsCompat.getSystemWindowInsetBottom());
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
+    }
+
+    public static /* synthetic */ void setupForInlineSearchAndScroll$default(WidgetStickerPicker widgetStickerPicker, String str, long j, int i, Object obj) {
+        if ((i & 1) != 0) {
+            str = "";
+        }
+        widgetStickerPicker.setupForInlineSearchAndScroll(str, j);
+    }
+
     public final void setupForInlineSearchAndScroll(final String searchText, final long packId) {
         C12238m.checkNotNullParameter(searchText, "searchText");
         RecyclerView recyclerView = getBinding().f18198k;
@@ -931,5 +917,19 @@ public final class WidgetStickerPicker extends AppFragment implements InterfaceC
         } else {
             scrollToPack(Long.valueOf(packId));
         }
+    }
+
+    private final void showCategoryBottomBar(boolean showBottomBar) {
+        ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-1, -1);
+        marginLayoutParams.bottomMargin = showBottomBar ? DimenUtils.dpToPixels(48) : 0;
+        AppViewFlipper appViewFlipper = getBinding().f18199l;
+        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.chatInputStickerPickerViewFlipper");
+        appViewFlipper.setLayoutParams(new CoordinatorLayout.LayoutParams(marginLayoutParams));
+        ConstraintLayout constraintLayout = getBinding().f18201n;
+        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.stickerPickerBottomBar");
+        constraintLayout.setVisibility(showBottomBar ? 0 : 8);
+        View view = getBinding().f18202o;
+        C12238m.checkNotNullExpressionValue(view, "binding.stickerPickerBottomBarDivider");
+        view.setVisibility(showBottomBar ? 0 : 8);
     }
 }

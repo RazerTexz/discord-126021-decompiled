@@ -31,7 +31,7 @@ public final class C11557e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.m.e$a */
     /* JADX INFO: compiled from: JavaTypeResolver.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
         public final /* synthetic */ InterfaceC11477z0 $this_getErasedUpperBound;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -50,6 +50,16 @@ public final class C11557e {
             C12238m.checkNotNullExpressionValue(abstractC11934j0CreateErrorType, "createErrorType(\"Can't compute erased upper bound of type parameter `$this`\")");
             return abstractC11934j0CreateErrorType;
         }
+    }
+
+    public static /* synthetic */ AbstractC11913c0 getErasedUpperBound$default(InterfaceC11477z0 interfaceC11477z0, InterfaceC11477z0 interfaceC11477z1, Function0 function0, int i, Object obj) {
+        if ((i & 1) != 0) {
+            interfaceC11477z1 = null;
+        }
+        if ((i & 2) != 0) {
+            function0 = new a(interfaceC11477z0);
+        }
+        return getErasedUpperBound(interfaceC11477z0, interfaceC11477z1, function0);
     }
 
     public static final AbstractC11913c0 getErasedUpperBound(InterfaceC11477z0 interfaceC11477z0, InterfaceC11477z0 interfaceC11477z1, Function0<? extends AbstractC11913c0> function0) {
@@ -87,25 +97,10 @@ public final class C11557e {
         }
     }
 
-    public static /* synthetic */ AbstractC11913c0 getErasedUpperBound$default(InterfaceC11477z0 interfaceC11477z0, InterfaceC11477z0 interfaceC11477z1, Function0 function0, int i, Object obj) {
-        if ((i & 1) != 0) {
-            interfaceC11477z1 = null;
-        }
-        if ((i & 2) != 0) {
-            function0 = new a(interfaceC11477z0);
-        }
-        return getErasedUpperBound(interfaceC11477z0, interfaceC11477z1, function0);
-    }
-
     public static final InterfaceC12012w0 makeStarProjection(InterfaceC11477z0 interfaceC11477z0, C11553a c11553a) {
         C12238m.checkNotNullParameter(interfaceC11477z0, "typeParameter");
         C12238m.checkNotNullParameter(c11553a, "attr");
         return c11553a.getHowThisTypeIsUsed() == EnumC11508k.SUPERTYPE ? new C12016y0(C11994p0.starProjectionType(interfaceC11477z0)) : new C11991o0(interfaceC11477z0);
-    }
-
-    public static final C11553a toAttributes(EnumC11508k enumC11508k, boolean z2, InterfaceC11477z0 interfaceC11477z0) {
-        C12238m.checkNotNullParameter(enumC11508k, "<this>");
-        return new C11553a(enumC11508k, null, z2, interfaceC11477z0, 2, null);
     }
 
     public static /* synthetic */ C11553a toAttributes$default(EnumC11508k enumC11508k, boolean z2, InterfaceC11477z0 interfaceC11477z0, int i, Object obj) {
@@ -116,5 +111,10 @@ public final class C11557e {
             interfaceC11477z0 = null;
         }
         return toAttributes(enumC11508k, z2, interfaceC11477z0);
+    }
+
+    public static final C11553a toAttributes(EnumC11508k enumC11508k, boolean z2, InterfaceC11477z0 interfaceC11477z0) {
+        C12238m.checkNotNullParameter(enumC11508k, "<this>");
+        return new C11553a(enumC11508k, null, z2, interfaceC11477z0, 2, null);
     }
 }

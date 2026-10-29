@@ -25,7 +25,7 @@ public final /* data */ class ModelSku {
     private final int type;
 
     /* JADX INFO: compiled from: ModelSku.kt */
-    public static final /* data */ class ExternalSkuStrategy {
+    public final /* data */ class ExternalSkuStrategy {
         private final int type;
 
         public ExternalSkuStrategy(int i) {
@@ -39,11 +39,6 @@ public final /* data */ class ModelSku {
             return externalSkuStrategy.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getType() {
-            return this.type;
-        }
-
         public final ExternalSkuStrategy copy(int type) {
             return new ExternalSkuStrategy(type);
         }
@@ -53,6 +48,11 @@ public final /* data */ class ModelSku {
                 return (other instanceof ExternalSkuStrategy) && this.type == ((ExternalSkuStrategy) other).type;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getType() {
+            return this.type;
         }
 
         public final int getType() {
@@ -86,7 +86,7 @@ public final /* data */ class ModelSku {
         private final Integer intRepresentation;
 
         /* JADX INFO: compiled from: ModelSku.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -127,7 +127,7 @@ public final /* data */ class ModelSku {
     }
 
     /* JADX INFO: compiled from: ModelSku.kt */
-    public static final /* data */ class ModelPremiumSkuPrice {
+    public final /* data */ class ModelPremiumSkuPrice {
         private final int amount;
         private final int percentage;
 
@@ -146,16 +146,6 @@ public final /* data */ class ModelSku {
             return modelPremiumSkuPrice.copy(i, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getAmount() {
-            return this.amount;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getPercentage() {
-            return this.percentage;
-        }
-
         public final ModelPremiumSkuPrice copy(int amount, int percentage) {
             return new ModelPremiumSkuPrice(amount, percentage);
         }
@@ -171,8 +161,18 @@ public final /* data */ class ModelSku {
             return this.amount == modelPremiumSkuPrice.amount && this.percentage == modelPremiumSkuPrice.percentage;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getAmount() {
             return this.amount;
+        }
+
+        public final int getAmount() {
+            return this.amount;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getPercentage() {
+            return this.percentage;
         }
 
         public final int getPercentage() {
@@ -192,7 +192,7 @@ public final /* data */ class ModelSku {
     }
 
     /* JADX INFO: compiled from: ModelSku.kt */
-    public static final class Parser implements Model.Parser<ModelSku> {
+    public final class Parser implements Model.Parser<ModelSku> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -301,13 +301,13 @@ public final /* data */ class ModelSku {
     }
 
     /* JADX INFO: compiled from: ModelSku.kt */
-    public static final /* data */ class Price {
+    public final /* data */ class Price {
         private final int amount;
         private final String currency;
         private final Map<PremiumTier, ModelPremiumSkuPrice> premium;
 
         /* JADX INFO: compiled from: ModelSku.kt */
-        public static final class Parser implements Model.Parser<Price> {
+        public final class Parser implements Model.Parser<Price> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -356,6 +356,10 @@ public final /* data */ class ModelSku {
             this.premium = map;
         }
 
+        public final Map<PremiumTier, ModelPremiumSkuPrice> component3() {
+            return this.premium;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Price copy$default(Price price, int i, String str, Map map, int i2, Object obj) {
             if ((i2 & 1) != 0) {
@@ -368,20 +372,6 @@ public final /* data */ class ModelSku {
                 map = price.premium;
             }
             return price.copy(i, str, map);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getAmount() {
-            return this.amount;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCurrency() {
-            return this.currency;
-        }
-
-        public final Map<PremiumTier, ModelPremiumSkuPrice> component3() {
-            return this.premium;
         }
 
         public final Price copy(int amount, String currency, Map<PremiumTier, ModelPremiumSkuPrice> premium) {
@@ -400,8 +390,18 @@ public final /* data */ class ModelSku {
             return this.amount == price.amount && C12238m.areEqual(this.currency, price.currency) && C12238m.areEqual(this.premium, price.premium);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getAmount() {
             return this.amount;
+        }
+
+        public final int getAmount() {
+            return this.amount;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getCurrency() {
+            return this.currency;
         }
 
         public final String getCurrency() {
@@ -454,46 +454,6 @@ public final /* data */ class ModelSku {
         this.externalSkuStrategies = map;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getPremium() {
-        return this.premium;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Price getPrice() {
-        return this.price;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getFlags() {
-        return this.flags;
-    }
-
     public final Map<Integer, ExternalSkuStrategy> component9() {
         return this.externalSkuStrategies;
     }
@@ -514,8 +474,18 @@ public final /* data */ class ModelSku {
         return this.applicationId == modelSku.applicationId && C12238m.areEqual(this.name, modelSku.name) && this.id == modelSku.id && C12238m.areEqual(this.application, modelSku.application) && this.premium == modelSku.premium && this.type == modelSku.type && C12238m.areEqual(this.price, modelSku.price) && this.flags == modelSku.flags && C12238m.areEqual(this.externalSkuStrategies, modelSku.externalSkuStrategies);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getApplicationId() {
+        return this.applicationId;
     }
 
     public final long getApplicationId() {
@@ -526,20 +496,45 @@ public final /* data */ class ModelSku {
         return this.externalSkuStrategies;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final int getFlags() {
         return this.flags;
+    }
+
+    public final int getFlags() {
+        return this.flags;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {
         return this.id;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getName() {
         return this.name;
     }
 
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getPremium() {
         return this.premium;
+    }
+
+    public final boolean getPremium() {
+        return this.premium;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Price getPrice() {
+        return this.price;
     }
 
     public final Price getPrice() {
@@ -552,6 +547,11 @@ public final /* data */ class ModelSku {
             return SkuCategory.NITRO_CLASSIC;
         }
         return j == ModelSkuKt.PREMIUM_TIER_2_SKU_ID ? SkuCategory.NITRO : SkuCategory.GAME;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

@@ -24,45 +24,9 @@ public final class GatewayDiscovery {
     private final Function1<String, Unit> log;
     private final Scheduler scheduler;
 
-    /* JADX INFO: compiled from: GatewayDiscovery.kt */
-    public static final class Cache {
-        private static final String GATEWAY_URL_CACHE_KEY = "GATEWAY_URL_CACHE_KEY";
-        public static final Cache INSTANCE = new Cache();
-        private static SharedPreferences sharedPreferences;
-
-        private Cache() {
-        }
-
-        public final String getGatewayUrl() {
-            SharedPreferences sharedPreferences2 = sharedPreferences;
-            if (sharedPreferences2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
-            }
-            return sharedPreferences2.getString(GATEWAY_URL_CACHE_KEY, null);
-        }
-
-        public final void init(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            C12238m.checkNotNullExpressionValue(defaultSharedPreferences, "PreferenceManager.getDef…haredPreferences(context)");
-            sharedPreferences = defaultSharedPreferences;
-        }
-
-        public final void setGatewayUrl(String gatewayUrl) {
-            SharedPreferences sharedPreferences2 = sharedPreferences;
-            if (sharedPreferences2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
-            }
-            SharedPreferences.Editor editorEdit = sharedPreferences2.edit();
-            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-            editorEdit.putString(GATEWAY_URL_CACHE_KEY, gatewayUrl);
-            editorEdit.apply();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.gateway.GatewayDiscovery$discoverGatewayUrl$1 */
     /* JADX INFO: compiled from: GatewayDiscovery.kt */
-    public static final class C54821 extends AbstractC12240o implements Function1<Throwable, Unit> {
+    public final class C54821 extends AbstractC12240o implements Function1<Throwable, Unit> {
         public final /* synthetic */ Function1 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -88,7 +52,7 @@ public final class GatewayDiscovery {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewayDiscovery$discoverGatewayUrl$2 */
     /* JADX INFO: compiled from: GatewayDiscovery.kt */
-    public static final class C54832 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C54832 extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ C54821 $handleFailure$1;
         public final /* synthetic */ Function1 $onSuccess;
 
@@ -120,7 +84,7 @@ public final class GatewayDiscovery {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewayDiscovery$discoverGatewayUrl$3 */
     /* JADX INFO: compiled from: GatewayDiscovery.kt */
-    public static final /* synthetic */ class C54843 extends C12236k implements Function1<String, Unit> {
+    public final /* synthetic */ class C54843 extends C12236k implements Function1<String, Unit> {
         public final /* synthetic */ C54832 $handleSuccess$2;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -143,7 +107,7 @@ public final class GatewayDiscovery {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewayDiscovery$discoverGatewayUrl$4 */
     /* JADX INFO: compiled from: GatewayDiscovery.kt */
-    public static final /* synthetic */ class C54854 extends C12236k implements Function1<Throwable, Unit> {
+    public final /* synthetic */ class C54854 extends C12236k implements Function1<Throwable, Unit> {
         public final /* synthetic */ C54821 $handleFailure$1;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,6 +126,42 @@ public final class GatewayDiscovery {
         public final void invoke2(Throwable th) {
             C12238m.checkNotNullParameter(th, "p1");
             this.$handleFailure$1.invoke2(th);
+        }
+    }
+
+    /* JADX INFO: compiled from: GatewayDiscovery.kt */
+    public final class Cache {
+        private static final String GATEWAY_URL_CACHE_KEY = "GATEWAY_URL_CACHE_KEY";
+        private static SharedPreferences sharedPreferences;
+        public static final Cache INSTANCE = new Cache();
+
+        private Cache() {
+        }
+
+        public final String getGatewayUrl() {
+            SharedPreferences sharedPreferences2 = sharedPreferences;
+            if (sharedPreferences2 == null) {
+                C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
+            }
+            return sharedPreferences2.getString(GATEWAY_URL_CACHE_KEY, null);
+        }
+
+        public final void init(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            C12238m.checkNotNullExpressionValue(defaultSharedPreferences, "PreferenceManager.getDef…haredPreferences(context)");
+            sharedPreferences = defaultSharedPreferences;
+        }
+
+        public final void setGatewayUrl(String gatewayUrl) {
+            SharedPreferences sharedPreferences2 = sharedPreferences;
+            if (sharedPreferences2 == null) {
+                C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
+            }
+            SharedPreferences.Editor editorEdit = sharedPreferences2.edit();
+            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+            editorEdit.putString(GATEWAY_URL_CACHE_KEY, gatewayUrl);
+            editorEdit.apply();
         }
     }
 

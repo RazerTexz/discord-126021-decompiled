@@ -4,6 +4,10 @@ package p507d0.p513e0.p514p.p515d.p517m0.p550i;
 /* JADX INFO: compiled from: Utf8.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11742v {
+    public static boolean isValidUtf8(byte[] bArr) {
+        return isValidUtf8(bArr, 0, bArr.length);
+    }
+
     /* JADX INFO: renamed from: a */
     public static int m9866a(int i, int i2) {
         if (i > -12 || i2 > -65) {
@@ -37,10 +41,6 @@ public final class C11742v {
             return m9867b(b2, bArr[i], bArr[i + 1]);
         }
         throw new AssertionError();
-    }
-
-    public static boolean isValidUtf8(byte[] bArr) {
-        return isValidUtf8(bArr, 0, bArr.length);
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:10:0x0015, code lost:

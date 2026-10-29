@@ -40,19 +40,6 @@ public final class ExpressionPickerItemDecoration extends RecyclerView.ItemDecor
         return 0;
     }
 
-    private final Integer getNextHeaderPositionForItem(int itemPosition) {
-        Object next;
-        Iterator<T> it = this.headerIndices.iterator();
-        while (it.hasNext()) {
-            next = it.next();
-            if (itemPosition <= ((Number) next).intValue()) {
-                return (Integer) next;
-            }
-        }
-        next = null;
-        return (Integer) next;
-    }
-
     @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         C12238m.checkNotNullParameter(outRect, "outRect");
@@ -73,5 +60,18 @@ public final class ExpressionPickerItemDecoration extends RecyclerView.ItemDecor
         int i = (childAdapterPosition - headerPositionForItem) - 1;
         int i2 = this.numOfColumns;
         outRect.bottom = i >= ((iIntValue / i2) - (iIntValue % i2 == 0 ? 1 : 0)) * i2 ? this.bottomPaddingForLastRow : 0;
+    }
+
+    private final Integer getNextHeaderPositionForItem(int itemPosition) {
+        Object next;
+        Iterator<T> it = this.headerIndices.iterator();
+        while (it.hasNext()) {
+            next = it.next();
+            if (itemPosition <= ((Number) next).intValue()) {
+                return (Integer) next;
+            }
+        }
+        next = null;
+        return (Integer) next;
     }
 }

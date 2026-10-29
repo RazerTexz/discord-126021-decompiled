@@ -122,6 +122,26 @@ public /* synthetic */ class C1563b {
     /* JADX INFO: renamed from: z */
     public static /* synthetic */ int[] f2692z;
 
+    public static int[] com$airbnb$lottie$model$DocumentData$Justification$s$values() {
+        return (int[]) m750a().clone();
+    }
+
+    public static int[] com$airbnb$lottie$model$content$ShapeStroke$LineCapType$s$values() {
+        return (int[]) m751b().clone();
+    }
+
+    public static int[] com$airbnb$lottie$model$layer$Layer$MatteType$s$values() {
+        return (int[]) m754d().clone();
+    }
+
+    public static int[] com$fasterxml$jackson$databind$cfg$CoercionInputShape$s$values() {
+        return (int[]) m755e().clone();
+    }
+
+    public static int[] com$fasterxml$jackson$databind$type$LogicalType$s$values() {
+        return (int[]) m756f().clone();
+    }
+
     /* JADX INFO: renamed from: a */
     public static synchronized /* synthetic */ int[] m750a() {
         if (f2667a == null) {
@@ -146,29 +166,9 @@ public /* synthetic */ class C1563b {
         return f2671e;
     }
 
-    public static int[] com$airbnb$lottie$model$DocumentData$Justification$s$values() {
-        return (int[]) m750a().clone();
-    }
-
-    public static int[] com$airbnb$lottie$model$content$ShapeStroke$LineCapType$s$values() {
-        return (int[]) m751b().clone();
-    }
-
     /* JADX INFO: renamed from: com$airbnb$lottie$model$content$ShapeStroke$LineJoinType$s$values */
     public static int[] m753x4b958c1e() {
         return (int[]) m752c().clone();
-    }
-
-    public static int[] com$airbnb$lottie$model$layer$Layer$MatteType$s$values() {
-        return (int[]) m754d().clone();
-    }
-
-    public static int[] com$fasterxml$jackson$databind$cfg$CoercionInputShape$s$values() {
-        return (int[]) m755e().clone();
-    }
-
-    public static int[] com$fasterxml$jackson$databind$type$LogicalType$s$values() {
-        return (int[]) m756f().clone();
     }
 
     /* JADX INFO: renamed from: d */

@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationKey.SCL.lombok */
 public abstract class ConfigurationKey<T> {
+    private static Map<String, ConfigurationKey<?>> copy;
+    private final String description;
+    private final boolean hidden;
+    private final String keyName;
+    private final ConfigurationDataType type;
     private static final Pattern VALID_NAMES = Pattern.compile("[-_a-zA-Z][-.\\w]*(?<![-.])");
     private static final TreeMap<String, ConfigurationKey<?>> registeredKeys = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-    private static Map<String, ConfigurationKey<?>> copy;
-    private final String keyName;
-    private final String description;
-    private final ConfigurationDataType type;
-    private final boolean hidden;
 
     public ConfigurationKey(String keyName, String description) {
         this(keyName, description, false);

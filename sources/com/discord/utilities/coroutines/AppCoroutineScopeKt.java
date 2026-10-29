@@ -17,6 +17,16 @@ import p659s.p660a.p661a.C13031n;
 /* JADX INFO: compiled from: AppCoroutineScope.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AppCoroutineScopeKt {
+    public static /* synthetic */ Job appLaunch$default(CoroutineScope coroutineScope, Class cls, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            coroutineContext = C12179f.f25237j;
+        }
+        if ((i & 4) != 0) {
+            coroutineStart = CoroutineStart.DEFAULT;
+        }
+        return appLaunch(coroutineScope, (Class<?>) cls, coroutineContext, coroutineStart, (Function2<? super CoroutineScope, ? super Continuation<? super Unit>, ? extends Object>) function2);
+    }
+
     public static final Job appLaunch(CoroutineScope coroutineScope, Class<?> cls, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2<? super CoroutineScope, ? super Continuation<? super Unit>, ? extends Object> function2) {
         C12238m.checkNotNullParameter(coroutineScope, "$this$appLaunch");
         C12238m.checkNotNullParameter(cls, "errorClass");
@@ -26,16 +36,6 @@ public final class AppCoroutineScopeKt {
         String simpleName = cls.getSimpleName();
         C12238m.checkNotNullExpressionValue(simpleName, "errorClass.simpleName");
         return appLaunch(coroutineScope, simpleName, coroutineContext, coroutineStart, function2);
-    }
-
-    public static /* synthetic */ Job appLaunch$default(CoroutineScope coroutineScope, Class cls, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            coroutineContext = C12179f.f25237j;
-        }
-        if ((i & 4) != 0) {
-            coroutineStart = CoroutineStart.DEFAULT;
-        }
-        return appLaunch(coroutineScope, (Class<?>) cls, coroutineContext, coroutineStart, (Function2<? super CoroutineScope, ? super Continuation<? super Unit>, ? extends Object>) function2);
     }
 
     public static final Job appLaunch(CoroutineScope coroutineScope, String str, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2<? super CoroutineScope, ? super Continuation<? super Unit>, ? extends Object> function2) {

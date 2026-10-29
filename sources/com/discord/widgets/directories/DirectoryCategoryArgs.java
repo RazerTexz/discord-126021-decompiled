@@ -12,7 +12,7 @@ public final /* data */ class DirectoryCategoryArgs implements Parcelable {
     public static final Parcelable.Creator<DirectoryCategoryArgs> CREATOR = new Creator();
     private final DirectoryEntryCategory directoryCategory;
 
-    public static class Creator implements Parcelable.Creator<DirectoryCategoryArgs> {
+    public final class Creator implements Parcelable.Creator<DirectoryCategoryArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final DirectoryCategoryArgs createFromParcel(Parcel parcel) {
@@ -39,11 +39,6 @@ public final /* data */ class DirectoryCategoryArgs implements Parcelable {
         return directoryCategoryArgs.copy(directoryEntryCategory);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final DirectoryEntryCategory getDirectoryCategory() {
-        return this.directoryCategory;
-    }
-
     public final DirectoryCategoryArgs copy(DirectoryEntryCategory directoryCategory) {
         C12238m.checkNotNullParameter(directoryCategory, "directoryCategory");
         return new DirectoryCategoryArgs(directoryCategory);
@@ -59,6 +54,11 @@ public final /* data */ class DirectoryCategoryArgs implements Parcelable {
             return (other instanceof DirectoryCategoryArgs) && C12238m.areEqual(this.directoryCategory, ((DirectoryCategoryArgs) other).directoryCategory);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final DirectoryEntryCategory getDirectoryCategory() {
+        return this.directoryCategory;
     }
 
     public final DirectoryEntryCategory getDirectoryCategory() {

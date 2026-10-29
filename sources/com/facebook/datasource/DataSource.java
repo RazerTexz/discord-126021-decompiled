@@ -6,6 +6,12 @@ import p007b.p109f.p129e.InterfaceC1726f;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface DataSource<T> {
+    boolean close();
+
+    float getProgress();
+
+    T getResult();
+
     /* JADX INFO: renamed from: a */
     Map<String, Object> mo1017a();
 
@@ -15,8 +21,6 @@ public interface DataSource<T> {
     /* JADX INFO: renamed from: c */
     boolean mo1019c();
 
-    boolean close();
-
     /* JADX INFO: renamed from: d */
     Throwable mo1020d();
 
@@ -25,8 +29,4 @@ public interface DataSource<T> {
 
     /* JADX INFO: renamed from: f */
     void mo1022f(InterfaceC1726f<T> interfaceC1726f, Executor executor);
-
-    float getProgress();
-
-    T getResult();
 }

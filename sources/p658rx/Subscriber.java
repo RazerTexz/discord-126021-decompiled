@@ -17,6 +17,10 @@ public abstract class Subscriber<T> implements InterfaceC12581g<T>, Subscription
         this(null, false);
     }
 
+    public final void add(Subscription subscription) {
+        this.subscriptions.m11128a(subscription);
+    }
+
     private void addToRequested(long j) {
         long j2 = this.requested;
         if (j2 == Long.MIN_VALUE) {
@@ -29,10 +33,6 @@ public abstract class Subscriber<T> implements InterfaceC12581g<T>, Subscription
         } else {
             this.requested = j3;
         }
-    }
-
-    public final void add(Subscription subscription) {
-        this.subscriptions.m11128a(subscription);
     }
 
     @Override // p658rx.Subscription

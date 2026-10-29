@@ -54,51 +54,6 @@ public class C1605d extends AbstractC1603b {
         this.f2867z = new Rect();
     }
 
-    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b, p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
-    /* JADX INFO: renamed from: d */
-    public void mo712d(RectF rectF, Matrix matrix, boolean z2) {
-        super.mo712d(rectF, matrix, z2);
-        Bitmap bitmapM787q = m787q();
-        if (bitmapM787q != null) {
-            rectF.set(0.0f, 0.0f, C1499g.m659c() * bitmapM787q.getWidth(), C1499g.m659c() * bitmapM787q.getHeight());
-            this.f2848m.mapRect(rectF);
-        }
-    }
-
-    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b, p007b.p085c.p086a.p095y.InterfaceC1568g
-    /* JADX INFO: renamed from: g */
-    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
-        this.f2857v.m745c(t, c1503c);
-        if (t == InterfaceC1516o.f2421C) {
-            if (c1503c == null) {
-                this.f2864A = null;
-            } else {
-                this.f2864A = new C1559p(c1503c, null);
-            }
-        }
-    }
-
-    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b
-    /* JADX INFO: renamed from: j */
-    public void mo780j(@NonNull Canvas canvas, Matrix matrix, int i) {
-        Bitmap bitmapM787q = m787q();
-        if (bitmapM787q == null || bitmapM787q.isRecycled()) {
-            return;
-        }
-        float fM659c = C1499g.m659c();
-        this.f2865x.setAlpha(i);
-        AbstractC1544a<ColorFilter, ColorFilter> abstractC1544a = this.f2864A;
-        if (abstractC1544a != null) {
-            this.f2865x.setColorFilter(abstractC1544a.mo727e());
-        }
-        canvas.save();
-        canvas.concat(matrix);
-        this.f2866y.set(0, 0, bitmapM787q.getWidth(), bitmapM787q.getHeight());
-        this.f2867z.set(0, 0, (int) (bitmapM787q.getWidth() * fM659c), (int) (bitmapM787q.getHeight() * fM659c));
-        canvas.drawBitmap(bitmapM787q, this.f2866y, this.f2867z, this.f2865x);
-        canvas.restore();
-    }
-
     @Nullable
     /* JADX INFO: renamed from: q */
     public final Bitmap m787q() {
@@ -164,5 +119,50 @@ public class C1605d extends AbstractC1603b {
             C1495c.m641c("Unable to open asset.", e2);
             return null;
         }
+    }
+
+    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b, p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
+    /* JADX INFO: renamed from: d */
+    public void mo712d(RectF rectF, Matrix matrix, boolean z2) {
+        super.mo712d(rectF, matrix, z2);
+        Bitmap bitmapM787q = m787q();
+        if (bitmapM787q != null) {
+            rectF.set(0.0f, 0.0f, C1499g.m659c() * bitmapM787q.getWidth(), C1499g.m659c() * bitmapM787q.getHeight());
+            this.f2848m.mapRect(rectF);
+        }
+    }
+
+    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b, p007b.p085c.p086a.p095y.InterfaceC1568g
+    /* JADX INFO: renamed from: g */
+    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
+        this.f2857v.m745c(t, c1503c);
+        if (t == InterfaceC1516o.f2421C) {
+            if (c1503c == null) {
+                this.f2864A = null;
+            } else {
+                this.f2864A = new C1559p(c1503c, null);
+            }
+        }
+    }
+
+    @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b
+    /* JADX INFO: renamed from: j */
+    public void mo780j(@NonNull Canvas canvas, Matrix matrix, int i) {
+        Bitmap bitmapM787q = m787q();
+        if (bitmapM787q == null || bitmapM787q.isRecycled()) {
+            return;
+        }
+        float fM659c = C1499g.m659c();
+        this.f2865x.setAlpha(i);
+        AbstractC1544a<ColorFilter, ColorFilter> abstractC1544a = this.f2864A;
+        if (abstractC1544a != null) {
+            this.f2865x.setColorFilter(abstractC1544a.mo727e());
+        }
+        canvas.save();
+        canvas.concat(matrix);
+        this.f2866y.set(0, 0, bitmapM787q.getWidth(), bitmapM787q.getHeight());
+        this.f2867z.set(0, 0, (int) (bitmapM787q.getWidth() * fM659c), (int) (bitmapM787q.getHeight() * fM659c));
+        canvas.drawBitmap(bitmapM787q, this.f2866y, this.f2867z, this.f2865x);
+        canvas.restore();
     }
 }

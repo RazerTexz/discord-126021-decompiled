@@ -58,39 +58,21 @@ import p658rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetAuthMfa.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAuthMfa extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetAuthMfa.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthMfaBinding;", 0)};
     private static final int BACKUP_CODE_DIGITS = 8;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_TICKET = "INTENT_TICKET";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private boolean ignoreAutopaste;
     private String ticket;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetAuthMfa.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthMfaBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void start(Context context, String ticket) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(ticket, "ticket");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetAuthMfa.INTENT_TICKET, ticket);
-            C0870j.m156d(context, WidgetAuthMfa.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$evaluateCode$1 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final class C71961 extends AbstractC12240o implements Function1<ModelLoginResult, Unit> {
+    public final class C71961 extends AbstractC12240o implements Function1<ModelLoginResult, Unit> {
         public static final C71961 INSTANCE = new C71961();
 
         public C71961() {
@@ -111,7 +93,7 @@ public final class WidgetAuthMfa extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$onResume$1 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final class C71981 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C71981 extends AbstractC12240o implements Function1<Long, Unit> {
         public C71981() {
             super(1);
         }
@@ -130,7 +112,7 @@ public final class WidgetAuthMfa extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final /* synthetic */ class C72002 extends C12236k implements Function1<String, Unit> {
+    public final /* synthetic */ class C72002 extends C12236k implements Function1<String, Unit> {
         public C72002(WidgetAuthMfa widgetAuthMfa) {
             super(1, widgetAuthMfa, WidgetAuthMfa.class, "evaluateCode", "evaluateCode(Ljava/lang/String;)V", 0);
         }
@@ -150,7 +132,7 @@ public final class WidgetAuthMfa extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$tryPasteCodeFromClipboard$1 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final class C72041 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C72041 extends AbstractC12240o implements Function1<String, Unit> {
         public static final C72041 INSTANCE = new C72041();
 
         public C72041() {
@@ -171,7 +153,7 @@ public final class WidgetAuthMfa extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$tryPasteCodeFromClipboard$2 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final /* synthetic */ class C72052 extends C12236k implements Function1<String, Unit> {
+    public final /* synthetic */ class C72052 extends C12236k implements Function1<String, Unit> {
         public C72052(WidgetAuthMfa widgetAuthMfa) {
             super(1, widgetAuthMfa, WidgetAuthMfa.class, "evaluateCode", "evaluateCode(Ljava/lang/String;)V", 0);
         }
@@ -191,7 +173,7 @@ public final class WidgetAuthMfa extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthMfa$tryPasteCodeFromClipboard$3 */
     /* JADX INFO: compiled from: WidgetAuthMfa.kt */
-    public static final class C72063 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C72063 extends AbstractC12240o implements Function1<Long, Unit> {
         public C72063() {
             super(1);
         }
@@ -206,6 +188,24 @@ public final class WidgetAuthMfa extends AppFragment {
         public final void invoke2(Long l) {
             WidgetAuthMfa widgetAuthMfa = WidgetAuthMfa.this;
             widgetAuthMfa.evaluateCode(widgetAuthMfa.getBinding().f15693b.getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAuthMfa.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void start(Context context, String ticket) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(ticket, "ticket");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetAuthMfa.INTENT_TICKET, ticket);
+            C0870j.m156d(context, WidgetAuthMfa.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -245,6 +245,70 @@ public final class WidgetAuthMfa extends AppFragment {
 
     private final WidgetAuthMfaBinding getBinding() {
         return (WidgetAuthMfaBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // androidx.fragment.app.Fragment
+    public boolean onContextItemSelected(MenuItem item) {
+        C12238m.checkNotNullParameter(item, "item");
+        if (item.getItemId() != C5419R.id.menu_code_verification_paste) {
+            return super.onContextItemSelected(item);
+        }
+        tryPasteCodeFromClipboard();
+        return true;
+    }
+
+    @Override // androidx.fragment.app.Fragment, android.view.View.OnCreateContextMenuListener
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        C12238m.checkNotNullParameter(menu, "menu");
+        C12238m.checkNotNullParameter(v, "v");
+        super.onCreateContextMenu(menu, v, menuInfo);
+        new MenuInflater(requireContext()).inflate(C5419R.menu.menu_code_verification, menu);
+    }
+
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        if (this.ignoreAutopaste) {
+            this.ignoreAutopaste = false;
+            return;
+        }
+        Observable<Long> observableM11068d0 = Observable.m11068d0(250L, TimeUnit.MILLISECONDS);
+        C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n          .ti…L, TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetAuthMfa.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71981());
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        AppActivity appActivity;
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppFragment.setActionBarOptionsMenu$default(this, C5419R.menu.menu_auth_mfa, new Action2<MenuItem, Context>() { // from class: com.discord.widgets.auth.WidgetAuthMfa.onViewBound.1
+            @Override // p658rx.functions.Action2
+            public final void call(MenuItem menuItem, Context context) {
+                C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
+                switch (menuItem.getItemId()) {
+                    case C5419R.id.menu_auth_mfa_backup_codes /* 2131364363 */:
+                        WidgetAuthMfa.this.showBackupCodesDialog();
+                        break;
+                    case C5419R.id.menu_auth_mfa_info /* 2131364364 */:
+                        WidgetAuthMfa.this.showInfoDialog();
+                        break;
+                }
+            }
+        }, null, 4, null);
+        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_TICKET);
+        if (stringExtra == null) {
+            stringExtra = "";
+        }
+        this.ticket = stringExtra;
+        if (stringExtra == null) {
+            C12238m.throwUninitializedPropertyAccessException("ticket");
+        }
+        if ((stringExtra.length() == 0) && (appActivity = getAppActivity()) != null) {
+            appActivity.finish();
+        }
+        getBinding().f15693b.setOnCodeEntered(new C72002(this));
+        registerForContextMenu(getBinding().f15693b);
     }
 
     @MainThread
@@ -351,69 +415,5 @@ public final class WidgetAuthMfa extends AppFragment {
                 }
             }
         }
-    }
-
-    @Override // androidx.fragment.app.Fragment
-    public boolean onContextItemSelected(MenuItem item) {
-        C12238m.checkNotNullParameter(item, "item");
-        if (item.getItemId() != C5419R.id.menu_code_verification_paste) {
-            return super.onContextItemSelected(item);
-        }
-        tryPasteCodeFromClipboard();
-        return true;
-    }
-
-    @Override // androidx.fragment.app.Fragment, android.view.View.OnCreateContextMenuListener
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        C12238m.checkNotNullParameter(menu, "menu");
-        C12238m.checkNotNullParameter(v, "v");
-        super.onCreateContextMenu(menu, v, menuInfo);
-        new MenuInflater(requireContext()).inflate(C5419R.menu.menu_code_verification, menu);
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        if (this.ignoreAutopaste) {
-            this.ignoreAutopaste = false;
-            return;
-        }
-        Observable<Long> observableM11068d0 = Observable.m11068d0(250L, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n          .ti…L, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetAuthMfa.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71981());
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        AppActivity appActivity;
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppFragment.setActionBarOptionsMenu$default(this, C5419R.menu.menu_auth_mfa, new Action2<MenuItem, Context>() { // from class: com.discord.widgets.auth.WidgetAuthMfa.onViewBound.1
-            @Override // p658rx.functions.Action2
-            public final void call(MenuItem menuItem, Context context) {
-                C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
-                switch (menuItem.getItemId()) {
-                    case C5419R.id.menu_auth_mfa_backup_codes /* 2131364363 */:
-                        WidgetAuthMfa.this.showBackupCodesDialog();
-                        break;
-                    case C5419R.id.menu_auth_mfa_info /* 2131364364 */:
-                        WidgetAuthMfa.this.showInfoDialog();
-                        break;
-                }
-            }
-        }, null, 4, null);
-        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_TICKET);
-        if (stringExtra == null) {
-            stringExtra = "";
-        }
-        this.ticket = stringExtra;
-        if (stringExtra == null) {
-            C12238m.throwUninitializedPropertyAccessException("ticket");
-        }
-        if ((stringExtra.length() == 0) && (appActivity = getAppActivity()) != null) {
-            appActivity.finish();
-        }
-        getBinding().f15693b.setOnCodeEntered(new C72002(this));
-        registerForContextMenu(getBinding().f15693b);
     }
 }

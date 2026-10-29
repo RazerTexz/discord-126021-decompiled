@@ -25,7 +25,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ChannelPickerViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final class ChannelItemViewHolder extends ChannelPickerViewHolder {
+    public final class ChannelItemViewHolder extends ChannelPickerViewHolder {
         private final ViewGuildRoleSubscriptionChannelItemBinding binding;
         private ChannelPickerAdapterItem.ChannelItem item;
 
@@ -66,7 +66,7 @@ public abstract class ChannelPickerViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
     @SuppressLint({"SetTextI18n"})
-    public static final class CreateChannelViewHolder extends ChannelPickerViewHolder {
+    public final class CreateChannelViewHolder extends ChannelPickerViewHolder {
         /* JADX WARN: Illegal instructions before constructor call */
         /* JADX WARN: Multi-variable type inference failed */
         public CreateChannelViewHolder(ViewGuildRoleSubscriptionChannelItemBinding viewGuildRoleSubscriptionChannelItemBinding, final Function0<Unit> function0) {

@@ -45,8 +45,20 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
     private final boolean useNewThreadsPermissions;
 
     /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Observable<WidgetChannelSettingsEditPermissionsModel> get(long guildId, long channelId, long targetId, int type) {
+            if (type == 0) {
+                return getForUser$default(this, guildId, channelId, targetId, null, null, null, null, 120, null);
+            }
+            if (type == 1) {
+                return getForRole(guildId, channelId, targetId);
+            }
+            C12721k c12721k = new C12721k(null);
+            C12238m.checkNotNullExpressionValue(c12721k, "Observable\n              .just(null)");
+            return c12721k;
         }
 
         private final Observable<WidgetChannelSettingsEditPermissionsModel> getForRole(long guildId, long channelId, final long targetRoleId) {
@@ -55,7 +67,7 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
 
                 /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$1 */
                 /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
-                public static final class C75431 extends AbstractC12240o implements Function1<PermissionOverwrite, Boolean> {
+                public final class C75431 extends AbstractC12240o implements Function1<PermissionOverwrite, Boolean> {
                     public C75431() {
                         super(1);
                     }
@@ -73,7 +85,7 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
 
                 /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$2 */
                 /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
-                public static final class C75442 extends AbstractC12240o implements Function1<PermissionOverwrite, Boolean> {
+                public final class C75442 extends AbstractC12240o implements Function1<PermissionOverwrite, Boolean> {
                     public C75442() {
                         super(1);
                     }
@@ -134,30 +146,18 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             return observableM11112r;
         }
 
+        public static /* synthetic */ Observable getForUser$default(Companion companion, long j, long j2, long j3, StoreChannels storeChannels, StoreUser storeUser, StoreGuilds storeGuilds, StorePermissions storePermissions, int i, Object obj) {
+            return companion.getForUser(j, j2, j3, (i & 8) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 16) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 32) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 64) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions);
+        }
+
         private final Observable<WidgetChannelSettingsEditPermissionsModel> getForUser(long guildId, long channelId, long targetUserId, StoreChannels storeChannels, StoreUser storeUser, StoreGuilds storeGuilds, StorePermissions storePermissions) {
             Observable<WidgetChannelSettingsEditPermissionsModel> observableM11112r = ObservableExtensionsKt.computationLatest(ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{storeChannels, storeUser, storeGuilds, storePermissions}, false, null, null, new WidgetChannelSettingsEditPermissionsModel$Companion$getForUser$1(storeChannels, channelId, storeUser, targetUserId, storeGuilds, guildId, storePermissions), 14, null)).m11112r();
             C12238m.checkNotNullExpressionValue(observableM11112r, "ObservationDeckProvider.…  .distinctUntilChanged()");
             return observableM11112r;
         }
 
-        public static /* synthetic */ Observable getForUser$default(Companion companion, long j, long j2, long j3, StoreChannels storeChannels, StoreUser storeUser, StoreGuilds storeGuilds, StorePermissions storePermissions, int i, Object obj) {
-            return companion.getForUser(j, j2, j3, (i & 8) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 16) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 32) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 64) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions);
-        }
-
         private final boolean isAbleToManagePerms(Guild guild, MeUser meUser, long myPermissionsForChannel) {
             return ((guild.getOwnerId() > meUser.getId() ? 1 : (guild.getOwnerId() == meUser.getId() ? 0 : -1)) == 0) || PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, Long.valueOf(myPermissionsForChannel), meUser.getMfaEnabled(), guild.getMfaLevel()) || PermissionUtils.canAndIsElevated(8L, Long.valueOf(myPermissionsForChannel), meUser.getMfaEnabled(), guild.getMfaLevel());
-        }
-
-        public final Observable<WidgetChannelSettingsEditPermissionsModel> get(long guildId, long channelId, long targetId, int type) {
-            if (type == 0) {
-                return getForUser$default(this, guildId, channelId, targetId, null, null, null, null, 120, null);
-            }
-            if (type == 1) {
-                return getForRole(guildId, channelId, targetId);
-            }
-            C12721k c12721k = new C12721k(null);
-            C12238m.checkNotNullExpressionValue(c12721k, "Observable\n              .just(null)");
-            return c12721k;
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -166,7 +166,7 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
-    public static final /* data */ class ModelForRole extends WidgetChannelSettingsEditPermissionsModel {
+    public final /* data */ class ModelForRole extends WidgetChannelSettingsEditPermissionsModel {
         private final Channel channel;
         private final GuildRole guildRole;
         private final boolean isEveryoneRole;
@@ -205,38 +205,8 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             return getChannel();
         }
 
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getMyPermissionsForChannel() {
-            return this.myPermissionsForChannel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildRole getGuildRole() {
-            return this.guildRole;
-        }
-
         public final long component4() {
             return getTargetId();
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final long getMyPermissionsWithRoleNeutral() {
-            return this.myPermissionsWithRoleNeutral;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getMyPermissionsWithRoleDenied() {
-            return this.myPermissionsWithRoleDenied;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getMeHasRole() {
-            return this.meHasRole;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getIsEveryoneRole() {
-            return this.isEveryoneRole;
         }
 
         public final boolean component9() {
@@ -265,20 +235,50 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final GuildRole getGuildRole() {
             return this.guildRole;
+        }
+
+        public final GuildRole getGuildRole() {
+            return this.guildRole;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getIsEveryoneRole() {
+            return this.isEveryoneRole;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getMeHasRole() {
+            return this.meHasRole;
         }
 
         public final boolean getMeHasRole() {
             return this.meHasRole;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getMyPermissionsForChannel() {
             return this.myPermissionsForChannel;
         }
 
+        public final long getMyPermissionsForChannel() {
+            return this.myPermissionsForChannel;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final long getMyPermissionsWithRoleDenied() {
             return this.myPermissionsWithRoleDenied;
+        }
+
+        public final long getMyPermissionsWithRoleDenied() {
+            return this.myPermissionsWithRoleDenied;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getMyPermissionsWithRoleNeutral() {
+            return this.myPermissionsWithRoleNeutral;
         }
 
         public final long getMyPermissionsWithRoleNeutral() {
@@ -358,7 +358,7 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
-    public static final /* data */ class ModelForUser extends WidgetChannelSettingsEditPermissionsModel {
+    public final /* data */ class ModelForUser extends WidgetChannelSettingsEditPermissionsModel {
         private final Channel channel;
         private final GuildMember guildMember;
         private final boolean isMe;
@@ -377,6 +377,14 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             this.user = user;
             this.guildMember = guildMember;
             this.useNewThreadsPermissions = z3;
+        }
+
+        public final Channel component1() {
+            return getChannel();
+        }
+
+        public final boolean component6() {
+            return getUseNewThreadsPermissions();
         }
 
         public static /* synthetic */ ModelForUser copy$default(ModelForUser modelForUser, Channel channel, long j, boolean z2, User user, GuildMember guildMember, boolean z3, int i, Object obj) {
@@ -405,34 +413,6 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             return modelForUser.copy(channel, j2, z4, user2, guildMember2, z3);
         }
 
-        public final Channel component1() {
-            return getChannel();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getMyPermissionsForChannel() {
-            return this.myPermissionsForChannel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsMe() {
-            return this.isMe;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
-        public final boolean component6() {
-            return getUseNewThreadsPermissions();
-        }
-
         public final ModelForUser copy(Channel channel, long myPermissionsForChannel, boolean isMe, User user, GuildMember guildMember, boolean useNewThreadsPermissions) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(user, "user");
@@ -455,8 +435,23 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final GuildMember getGuildMember() {
             return this.guildMember;
+        }
+
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getMyPermissionsForChannel() {
+            return this.myPermissionsForChannel;
         }
 
         public final long getMyPermissionsForChannel() {
@@ -466,6 +461,11 @@ public abstract class WidgetChannelSettingsEditPermissionsModel {
         @Override // com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissionsModel
         public boolean getUseNewThreadsPermissions() {
             return this.useNewThreadsPermissions;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

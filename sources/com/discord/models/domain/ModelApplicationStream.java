@@ -24,7 +24,7 @@ public abstract class ModelApplicationStream implements Serializable {
     private final long ownerId;
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final /* data */ class CallStream extends ModelApplicationStream {
+    public final /* data */ class CallStream extends ModelApplicationStream {
         private final long channelId;
         private final long ownerId;
         private final String type;
@@ -36,6 +36,14 @@ public abstract class ModelApplicationStream implements Serializable {
             this.type = StreamType.CALL.getSerializedRepresentation();
         }
 
+        public final long component1() {
+            return getChannelId();
+        }
+
+        public final long component2() {
+            return getOwnerId();
+        }
+
         public static /* synthetic */ CallStream copy$default(CallStream callStream, long j, long j2, int i, Object obj) {
             if ((i & 1) != 0) {
                 j = callStream.getChannelId();
@@ -44,14 +52,6 @@ public abstract class ModelApplicationStream implements Serializable {
                 j2 = callStream.getOwnerId();
             }
             return callStream.copy(j, j2);
-        }
-
-        public final long component1() {
-            return getChannelId();
-        }
-
-        public final long component2() {
-            return getOwnerId();
         }
 
         public final CallStream copy(long channelId, long ownerId) {
@@ -107,7 +107,7 @@ public abstract class ModelApplicationStream implements Serializable {
     }
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -143,7 +143,7 @@ public abstract class ModelApplicationStream implements Serializable {
     }
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final /* data */ class GuildStream extends ModelApplicationStream {
+    public final /* data */ class GuildStream extends ModelApplicationStream {
         private final long channelId;
         private final long guildId;
         private final long ownerId;
@@ -155,6 +155,14 @@ public abstract class ModelApplicationStream implements Serializable {
             this.channelId = j2;
             this.ownerId = j3;
             this.type = StreamType.GUILD.getSerializedRepresentation();
+        }
+
+        public final long component2() {
+            return getChannelId();
+        }
+
+        public final long component3() {
+            return getOwnerId();
         }
 
         public static /* synthetic */ GuildStream copy$default(GuildStream guildStream, long j, long j2, long j3, int i, Object obj) {
@@ -170,19 +178,6 @@ public abstract class ModelApplicationStream implements Serializable {
                 j3 = guildStream.getOwnerId();
             }
             return guildStream.copy(j4, j5, j3);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public final long component2() {
-            return getChannelId();
-        }
-
-        public final long component3() {
-            return getOwnerId();
         }
 
         public final GuildStream copy(long guildId, long channelId, long ownerId) {
@@ -208,6 +203,11 @@ public abstract class ModelApplicationStream implements Serializable {
         @Override // com.discord.models.domain.ModelApplicationStream
         public long getChannelId() {
             return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {

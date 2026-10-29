@@ -40,11 +40,11 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleToString.SCL.lombok */
 public class HandleToString extends EclipseAnnotationHandler<ToString> {
-    private static final Set<String> BUILT_IN_TYPES = Collections.unmodifiableSet(new HashSet(Arrays.asList("byte", "short", "int", Constants.LONG, "char", "boolean", "double", "float")));
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
     private static /* synthetic */ int[] f27475xb87c1847;
+    private static final Set<String> BUILT_IN_TYPES = Collections.unmodifiableSet(new HashSet(Arrays.asList("byte", "short", "int", Constants.LONG, "char", "boolean", "double", "float")));
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType() {
         int[] iArr = $SWITCH_TABLE$lombok$core$configuration$CallSuperType;

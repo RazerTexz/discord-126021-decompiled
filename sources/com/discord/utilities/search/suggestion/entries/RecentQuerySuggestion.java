@@ -18,16 +18,16 @@ public final /* data */ class RecentQuerySuggestion implements SearchSuggestion 
         this.category = SearchSuggestion.Category.RECENT_QUERY;
     }
 
+    public final List<QueryNode> component1() {
+        return this.query;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ RecentQuerySuggestion copy$default(RecentQuerySuggestion recentQuerySuggestion, List list, int i, Object obj) {
         if ((i & 1) != 0) {
             list = recentQuerySuggestion.query;
         }
         return recentQuerySuggestion.copy(list);
-    }
-
-    public final List<QueryNode> component1() {
-        return this.query;
     }
 
     public final RecentQuerySuggestion copy(List<? extends QueryNode> query) {

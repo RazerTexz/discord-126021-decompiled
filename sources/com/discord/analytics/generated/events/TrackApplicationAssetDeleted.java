@@ -10,22 +10,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationAssetDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationAssetDeleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long id = null;
     private final Long applicationId = null;
-    private final Long botId = null;
     private final CharSequence applicationName = null;
+    private final Long botId = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
-    private final Long type = null;
+    private final Long id = null;
     private final CharSequence name = null;
+    private TrackBase trackBase;
+    private final Long type = null;
     private final transient String analyticsSchemaTypeName = "application_asset_deleted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackApplicationAssetDeleted implements AnalyticsS
         }
         TrackApplicationAssetDeleted trackApplicationAssetDeleted = (TrackApplicationAssetDeleted) other;
         return C12238m.areEqual(this.id, trackApplicationAssetDeleted.id) && C12238m.areEqual(this.applicationId, trackApplicationAssetDeleted.applicationId) && C12238m.areEqual(this.botId, trackApplicationAssetDeleted.botId) && C12238m.areEqual(this.applicationName, trackApplicationAssetDeleted.applicationName) && C12238m.areEqual(this.hasBot, trackApplicationAssetDeleted.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationAssetDeleted.hasRedirectUri) && C12238m.areEqual(this.type, trackApplicationAssetDeleted.type) && C12238m.areEqual(this.name, trackApplicationAssetDeleted.name);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

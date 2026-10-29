@@ -14,6 +14,8 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class FragmentManagerViewModel extends ViewModel {
+    private static final String TAG = "FragmentManager";
+    private final boolean mStateAutomaticallySaved;
     private static final ViewModelProvider.Factory FACTORY = new ViewModelProvider.Factory() { // from class: androidx.fragment.app.FragmentManagerViewModel.1
         @Override // androidx.lifecycle.ViewModelProvider.Factory
         @NonNull
@@ -21,8 +23,6 @@ public final class FragmentManagerViewModel extends ViewModel {
             return new FragmentManagerViewModel(true);
         }
     };
-    private static final String TAG = "FragmentManager";
-    private final boolean mStateAutomaticallySaved;
     private final HashMap<String, Fragment> mRetainedFragments = new HashMap<>();
     private final HashMap<String, FragmentManagerViewModel> mChildNonConfigs = new HashMap<>();
     private final HashMap<String, ViewModelStore> mViewModelStores = new HashMap<>();
@@ -32,11 +32,6 @@ public final class FragmentManagerViewModel extends ViewModel {
 
     public FragmentManagerViewModel(boolean z2) {
         this.mStateAutomaticallySaved = z2;
-    }
-
-    @NonNull
-    public static FragmentManagerViewModel getInstance(ViewModelStore viewModelStore) {
-        return (FragmentManagerViewModel) new ViewModelProvider(viewModelStore, FACTORY).get(FragmentManagerViewModel.class);
     }
 
     public void addRetainedFragment(@NonNull Fragment fragment) {
@@ -96,6 +91,11 @@ public final class FragmentManagerViewModel extends ViewModel {
         FragmentManagerViewModel fragmentManagerViewModel2 = new FragmentManagerViewModel(this.mStateAutomaticallySaved);
         this.mChildNonConfigs.put(fragment.mWho, fragmentManagerViewModel2);
         return fragmentManagerViewModel2;
+    }
+
+    @NonNull
+    public static FragmentManagerViewModel getInstance(ViewModelStore viewModelStore) {
+        return (FragmentManagerViewModel) new ViewModelProvider(viewModelStore, FACTORY).get(FragmentManagerViewModel.class);
     }
 
     @NonNull

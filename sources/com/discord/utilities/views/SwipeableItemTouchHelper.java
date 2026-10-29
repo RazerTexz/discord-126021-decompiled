@@ -18,7 +18,7 @@ public abstract class SwipeableItemTouchHelper extends ItemTouchHelper.SimpleCal
     private final SwipeRevealConfiguration startConfiguration;
 
     /* JADX INFO: compiled from: SwipeableItemTouchHelper.kt */
-    public static final class SwipeRevealConfiguration {
+    public final class SwipeRevealConfiguration {
         private final int backgroundColor;
         private final Drawable icon;
         private final int padding;

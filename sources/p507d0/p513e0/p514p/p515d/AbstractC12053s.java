@@ -57,7 +57,7 @@ public abstract class AbstractC12053s<V> extends AbstractC11256f<V> implements K
 
     /* JADX INFO: renamed from: d0.e0.p.d.s$a */
     /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static abstract class a<PropertyType, ReturnType> extends AbstractC11256f<ReturnType> implements KFunction<ReturnType> {
+    public abstract class a<PropertyType, ReturnType> extends AbstractC11256f<ReturnType> implements KFunction<ReturnType> {
         @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f
         public AbstractC11262i getContainer() {
             return getProperty().getContainer();
@@ -106,141 +106,14 @@ public abstract class AbstractC12053s<V> extends AbstractC11256f<V> implements K
 
     /* JADX INFO: renamed from: d0.e0.p.d.s$b */
     /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.s$c */
-    /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static abstract class c<V> extends a<V, V> implements KProperty.Getter<V> {
-
-        /* JADX INFO: renamed from: n */
-        public static final /* synthetic */ KProperty[] f25055n = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(c.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertyGetterDescriptor;")), C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(c.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
-
-        /* JADX INFO: renamed from: o */
-        public final C11251c0.a f25056o = C11251c0.lazySoft(new b());
-
-        /* JADX INFO: renamed from: p */
-        public final C11251c0.b f25057p = C11251c0.lazy(new a());
-
-        /* JADX INFO: renamed from: d0.e0.p.d.s$c$a */
-        /* JADX INFO: compiled from: KPropertyImpl.kt */
-        public static final class a extends AbstractC12240o implements Function0<InterfaceC11272d<?>> {
-            public a() {
-                super(0);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // kotlin.jvm.functions.Function0
-            public final InterfaceC11272d<?> invoke() {
-                return C12057w.access$computeCallerForAccessor(c.this, true);
-            }
-        }
-
-        /* JADX INFO: renamed from: d0.e0.p.d.s$c$b */
-        /* JADX INFO: compiled from: KPropertyImpl.kt */
-        public static final class b extends AbstractC12240o implements Function0<InterfaceC11455o0> {
-            public b() {
-                super(0);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // kotlin.jvm.functions.Function0
-            public final InterfaceC11455o0 invoke() {
-                InterfaceC11455o0 getter = c.this.getProperty().getDescriptor().getGetter();
-                return getter != null ? getter : C11786d.createDefaultGetter(c.this.getProperty().getDescriptor(), InterfaceC11344g.f22735f.getEMPTY());
-            }
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f
-        public InterfaceC11272d<?> getCaller() {
-            return (InterfaceC11272d) this.f25057p.getValue(this, f25055n[1]);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.AbstractC12053s.a, p507d0.p513e0.p514p.p515d.AbstractC11256f
-        public InterfaceC11455o0 getDescriptor() {
-            return (InterfaceC11455o0) this.f25056o.getValue(this, f25055n[0]);
-        }
-
-        @Override // kotlin.reflect.KCallable
-        public String getName() {
-            StringBuilder sbM833U = C1643a.m833U("<get-");
-            sbM833U.append(getProperty().getName());
-            sbM833U.append('>');
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.s$d */
-    /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static abstract class d<V> extends a<V, Unit> implements KMutableProperty$Setter<V> {
-
-        /* JADX INFO: renamed from: n */
-        public static final /* synthetic */ KProperty[] f25058n = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(d.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertySetterDescriptor;")), C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(d.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
-
-        /* JADX INFO: renamed from: o */
-        public final C11251c0.a f25059o = C11251c0.lazySoft(new b());
-
-        /* JADX INFO: renamed from: p */
-        public final C11251c0.b f25060p = C11251c0.lazy(new a());
-
-        /* JADX INFO: renamed from: d0.e0.p.d.s$d$a */
-        /* JADX INFO: compiled from: KPropertyImpl.kt */
-        public static final class a extends AbstractC12240o implements Function0<InterfaceC11272d<?>> {
-            public a() {
-                super(0);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // kotlin.jvm.functions.Function0
-            public final InterfaceC11272d<?> invoke() {
-                return C12057w.access$computeCallerForAccessor(d.this, false);
-            }
-        }
-
-        /* JADX INFO: renamed from: d0.e0.p.d.s$d$b */
-        /* JADX INFO: compiled from: KPropertyImpl.kt */
-        public static final class b extends AbstractC12240o implements Function0<InterfaceC11457p0> {
-            public b() {
-                super(0);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // kotlin.jvm.functions.Function0
-            public final InterfaceC11457p0 invoke() {
-                InterfaceC11457p0 setter = d.this.getProperty().getDescriptor().getSetter();
-                if (setter != null) {
-                    return setter;
-                }
-                InterfaceC11453n0 descriptor = d.this.getProperty().getDescriptor();
-                InterfaceC11344g.a aVar = InterfaceC11344g.f22735f;
-                return C11786d.createDefaultSetter(descriptor, aVar.getEMPTY(), aVar.getEMPTY());
-            }
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f
-        public InterfaceC11272d<?> getCaller() {
-            return (InterfaceC11272d) this.f25060p.getValue(this, f25058n[1]);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.AbstractC12053s.a, p507d0.p513e0.p514p.p515d.AbstractC11256f
-        public InterfaceC11457p0 getDescriptor() {
-            return (InterfaceC11457p0) this.f25059o.getValue(this, f25058n[0]);
-        }
-
-        @Override // kotlin.reflect.KCallable
-        public String getName() {
-            StringBuilder sbM833U = C1643a.m833U("<set-");
-            sbM833U.append(getProperty().getName());
-            sbM833U.append('>');
-            return sbM833U.toString();
         }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.s$e */
     /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static final class e extends AbstractC12240o implements Function0<InterfaceC11453n0> {
+    public final class e extends AbstractC12240o implements Function0<InterfaceC11453n0> {
         public e() {
             super(0);
         }
@@ -254,7 +127,7 @@ public abstract class AbstractC12053s<V> extends AbstractC11256f<V> implements K
 
     /* JADX INFO: renamed from: d0.e0.p.d.s$f */
     /* JADX INFO: compiled from: KPropertyImpl.kt */
-    public static final class f extends AbstractC12240o implements Function0<Field> {
+    public final class f extends AbstractC12240o implements Function0<Field> {
         public f() {
             super(0);
         }
@@ -311,14 +184,6 @@ public abstract class AbstractC12053s<V> extends AbstractC11256f<V> implements K
         C11251c0.a<InterfaceC11453n0> aVarLazySoft = C11251c0.lazySoft(interfaceC11453n0, new e());
         C12238m.checkNotNullExpressionValue(aVarLazySoft, "ReflectProperties.lazySo…or(name, signature)\n    }");
         this.f25050p = aVarLazySoft;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final Field m10056c() {
-        if (getDescriptor().isDelegated()) {
-            return getJavaField();
-        }
-        return null;
     }
 
     public boolean equals(Object obj) {
@@ -384,8 +249,143 @@ public abstract class AbstractC12053s<V> extends AbstractC11256f<V> implements K
         return false;
     }
 
+    /* JADX INFO: renamed from: c */
+    public final Field m10056c() {
+        if (getDescriptor().isDelegated()) {
+            return getJavaField();
+        }
+        return null;
+    }
+
     public String toString() {
         return C11255e0.f22349b.renderProperty(getDescriptor());
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.s$c */
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public abstract class c<V> extends a<V, V> implements KProperty.Getter<V> {
+
+        /* JADX INFO: renamed from: n */
+        public static final /* synthetic */ KProperty[] f25055n = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(c.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertyGetterDescriptor;")), C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(c.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
+
+        /* JADX INFO: renamed from: o */
+        public final C11251c0.a f25056o = C11251c0.lazySoft(new b());
+
+        /* JADX INFO: renamed from: p */
+        public final C11251c0.b f25057p = C11251c0.lazy(new a());
+
+        /* JADX INFO: renamed from: d0.e0.p.d.s$c$a */
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class a extends AbstractC12240o implements Function0<InterfaceC11272d<?>> {
+            public a() {
+                super(0);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final InterfaceC11272d<?> invoke() {
+                return C12057w.access$computeCallerForAccessor(c.this, true);
+            }
+        }
+
+        /* JADX INFO: renamed from: d0.e0.p.d.s$c$b */
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class b extends AbstractC12240o implements Function0<InterfaceC11455o0> {
+            public b() {
+                super(0);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final InterfaceC11455o0 invoke() {
+                InterfaceC11455o0 getter = c.this.getProperty().getDescriptor().getGetter();
+                return getter != null ? getter : C11786d.createDefaultGetter(c.this.getProperty().getDescriptor(), InterfaceC11344g.f22735f.getEMPTY());
+            }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f
+        public InterfaceC11272d<?> getCaller() {
+            return (InterfaceC11272d) this.f25057p.getValue(this, f25055n[1]);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.AbstractC12053s.a, p507d0.p513e0.p514p.p515d.AbstractC11256f
+        public InterfaceC11455o0 getDescriptor() {
+            return (InterfaceC11455o0) this.f25056o.getValue(this, f25055n[0]);
+        }
+
+        @Override // kotlin.reflect.KCallable
+        public String getName() {
+            StringBuilder sbM833U = C1643a.m833U("<get-");
+            sbM833U.append(getProperty().getName());
+            sbM833U.append('>');
+            return sbM833U.toString();
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.s$d */
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public abstract class d<V> extends a<V, Unit> implements KMutableProperty$Setter<V> {
+
+        /* JADX INFO: renamed from: n */
+        public static final /* synthetic */ KProperty[] f25058n = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(d.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertySetterDescriptor;")), C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(d.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
+
+        /* JADX INFO: renamed from: o */
+        public final C11251c0.a f25059o = C11251c0.lazySoft(new b());
+
+        /* JADX INFO: renamed from: p */
+        public final C11251c0.b f25060p = C11251c0.lazy(new a());
+
+        /* JADX INFO: renamed from: d0.e0.p.d.s$d$a */
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class a extends AbstractC12240o implements Function0<InterfaceC11272d<?>> {
+            public a() {
+                super(0);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final InterfaceC11272d<?> invoke() {
+                return C12057w.access$computeCallerForAccessor(d.this, false);
+            }
+        }
+
+        /* JADX INFO: renamed from: d0.e0.p.d.s$d$b */
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class b extends AbstractC12240o implements Function0<InterfaceC11457p0> {
+            public b() {
+                super(0);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final InterfaceC11457p0 invoke() {
+                InterfaceC11457p0 setter = d.this.getProperty().getDescriptor().getSetter();
+                if (setter != null) {
+                    return setter;
+                }
+                InterfaceC11453n0 descriptor = d.this.getProperty().getDescriptor();
+                InterfaceC11344g.a aVar = InterfaceC11344g.f22735f;
+                return C11786d.createDefaultSetter(descriptor, aVar.getEMPTY(), aVar.getEMPTY());
+            }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f
+        public InterfaceC11272d<?> getCaller() {
+            return (InterfaceC11272d) this.f25060p.getValue(this, f25058n[1]);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.AbstractC12053s.a, p507d0.p513e0.p514p.p515d.AbstractC11256f
+        public InterfaceC11457p0 getDescriptor() {
+            return (InterfaceC11457p0) this.f25059o.getValue(this, f25058n[0]);
+        }
+
+        @Override // kotlin.reflect.KCallable
+        public String getName() {
+            StringBuilder sbM833U = C1643a.m833U("<set-");
+            sbM833U.append(getProperty().getName());
+            sbM833U.append('>');
+            return sbM833U.toString();
+        }
     }
 
     @Override // p507d0.p513e0.p514p.p515d.AbstractC11256f

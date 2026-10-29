@@ -52,8 +52,12 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetHubAddServer.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHubAddServer extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetHubAddServer.class, "binding", "getBinding()Lcom/discord/databinding/WidgetHubAddServerBinding;", 0)};
     private static final int CHOOSE_GUILD = 0;
     private static final int GUILDS_ADDED = 1;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final SimpleRecyclerAdapter<Guild, DiscordHubAddServerViewHolder> adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -63,29 +67,10 @@ public final class WidgetHubAddServer extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetHubAddServer.class, "binding", "getBinding()Lcom/discord/databinding/WidgetHubAddServerBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void startScreenForResult(AppFragment fragment) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            C0870j.f524g.m160f(fragment.requireContext(), HubUtilsKt.getAddServerActivityResultHandler(fragment), WidgetHubAddServer.class, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$onServerClickListener$1 */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public static final class C89951 extends AbstractC12240o implements Function1<HubAddServerState, Unit> {
+    public final class C89951 extends AbstractC12240o implements Function1<HubAddServerState, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ long $guildId;
@@ -130,7 +115,7 @@ public final class WidgetHubAddServer extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public static final class C89971 extends AbstractC12240o implements Function1<HubAddServerState, Unit> {
+    public final class C89971 extends AbstractC12240o implements Function1<HubAddServerState, Unit> {
         public C89971() {
             super(1);
         }
@@ -145,6 +130,21 @@ public final class WidgetHubAddServer extends AppFragment {
         public final void invoke2(HubAddServerState hubAddServerState) {
             C12238m.checkNotNullParameter(hubAddServerState, "viewState");
             WidgetHubAddServer.this.configureUI(hubAddServerState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHubAddServer.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void startScreenForResult(AppFragment fragment) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            C0870j.f524g.m160f(fragment.requireContext(), HubUtilsKt.getAddServerActivityResultHandler(fragment), WidgetHubAddServer.class, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -207,24 +207,6 @@ public final class WidgetHubAddServer extends AppFragment {
         });
     }
 
-    private final void onServerClickListener(long guildId, boolean isNewGuild) {
-        Context context = getContext();
-        if (context != null) {
-            C12238m.checkNotNullExpressionValue(context, "context ?: return");
-            Long channelId = getViewModel().getChannelId();
-            if (channelId != null) {
-                getViewModel().withViewState(new C89951(guildId, context, channelId.longValue(), isNewGuild));
-            }
-        }
-    }
-
-    public static /* synthetic */ void onServerClickListener$default(WidgetHubAddServer widgetHubAddServer, long j, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        widgetHubAddServer.onServerClickListener(j, z2);
-    }
-
     public final SimpleRecyclerAdapter<Guild, DiscordHubAddServerViewHolder> getAdapter() {
         return this.adapter;
     }
@@ -240,6 +222,24 @@ public final class WidgetHubAddServer extends AppFragment {
 
     public final WidgetHubAddServerViewModel getViewModel() {
         return (WidgetHubAddServerViewModel) this.viewModel.getValue();
+    }
+
+    public static /* synthetic */ void onServerClickListener$default(WidgetHubAddServer widgetHubAddServer, long j, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        widgetHubAddServer.onServerClickListener(j, z2);
+    }
+
+    private final void onServerClickListener(long guildId, boolean isNewGuild) {
+        Context context = getContext();
+        if (context != null) {
+            C12238m.checkNotNullExpressionValue(context, "context ?: return");
+            Long channelId = getViewModel().getChannelId();
+            if (channelId != null) {
+                getViewModel().withViewState(new C89951(guildId, context, channelId.longValue(), isNewGuild));
+            }
+        }
     }
 
     @Override // com.discord.app.AppFragment

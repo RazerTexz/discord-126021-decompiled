@@ -19,7 +19,7 @@ public final class C2475c extends AbstractC2478f.a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.t.h.c$b */
     /* JADX INFO: compiled from: AutoValue_SchedulerConfig_ConfigValue.java */
-    public static final class b extends AbstractC2478f.a.AbstractC13221a {
+    public final class b extends AbstractC2478f.a.AbstractC13221a {
 
         /* JADX INFO: renamed from: a */
         public Long f5358a;
@@ -67,24 +67,6 @@ public final class C2475c extends AbstractC2478f.a {
         this.f5357c = set;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
-    /* JADX INFO: renamed from: b */
-    public long mo2376b() {
-        return this.f5355a;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
-    /* JADX INFO: renamed from: c */
-    public Set<AbstractC2478f.b> mo2377c() {
-        return this.f5357c;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
-    /* JADX INFO: renamed from: d */
-    public long mo2378d() {
-        return this.f5356b;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -101,6 +83,24 @@ public final class C2475c extends AbstractC2478f.a {
         int i = (((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003;
         long j2 = this.f5356b;
         return this.f5357c.hashCode() ^ ((i ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003);
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
+    /* JADX INFO: renamed from: b */
+    public long mo2376b() {
+        return this.f5355a;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
+    /* JADX INFO: renamed from: c */
+    public Set<AbstractC2478f.b> mo2377c() {
+        return this.f5357c;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f.a
+    /* JADX INFO: renamed from: d */
+    public long mo2378d() {
+        return this.f5356b;
     }
 
     public String toString() {

@@ -13,10 +13,10 @@ public final class StoreMessageUploads extends StoreV2 {
     private final HashMap<String, MessageUploadState> uploads = new HashMap<>();
 
     /* JADX INFO: compiled from: StoreMessageUploads.kt */
-    public static abstract class MessageUploadState {
+    public abstract class MessageUploadState {
 
         /* JADX INFO: compiled from: StoreMessageUploads.kt */
-        public static final class None extends MessageUploadState {
+        public final class None extends MessageUploadState {
             public static final None INSTANCE = new None();
 
             private None() {
@@ -25,7 +25,7 @@ public final class StoreMessageUploads extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMessageUploads.kt */
-        public static final /* data */ class Preprocessing extends MessageUploadState {
+        public final /* data */ class Preprocessing extends MessageUploadState {
             private final String displayName;
             private final String mimeType;
             private final int numFiles;
@@ -50,21 +50,6 @@ public final class StoreMessageUploads extends StoreV2 {
                 return preprocessing.copy(i, str, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getNumFiles() {
-                return this.numFiles;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getDisplayName() {
-                return this.displayName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getMimeType() {
-                return this.mimeType;
-            }
-
             public final Preprocessing copy(int numFiles, String displayName, String mimeType) {
                 return new Preprocessing(numFiles, displayName, mimeType);
             }
@@ -80,12 +65,27 @@ public final class StoreMessageUploads extends StoreV2 {
                 return this.numFiles == preprocessing.numFiles && C12238m.areEqual(this.displayName, preprocessing.displayName) && C12238m.areEqual(this.mimeType, preprocessing.mimeType);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getDisplayName() {
                 return this.displayName;
             }
 
+            public final String getDisplayName() {
+                return this.displayName;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getMimeType() {
                 return this.mimeType;
+            }
+
+            public final String getMimeType() {
+                return this.mimeType;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getNumFiles() {
+                return this.numFiles;
             }
 
             public final int getNumFiles() {
@@ -111,7 +111,7 @@ public final class StoreMessageUploads extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMessageUploads.kt */
-        public static final /* data */ class Uploading extends MessageUploadState {
+        public final /* data */ class Uploading extends MessageUploadState {
             private final List<SendUtils.FileUpload> uploads;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -121,16 +121,16 @@ public final class StoreMessageUploads extends StoreV2 {
                 this.uploads = list;
             }
 
+            public final List<SendUtils.FileUpload> component1() {
+                return this.uploads;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Uploading copy$default(Uploading uploading, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = uploading.uploads;
                 }
                 return uploading.copy(list);
-            }
-
-            public final List<SendUtils.FileUpload> component1() {
-                return this.uploads;
             }
 
             public final Uploading copy(List<SendUtils.FileUpload> uploads) {
@@ -171,12 +171,6 @@ public final class StoreMessageUploads extends StoreV2 {
     }
 
     @StoreThread
-    private final void updateState(String nonce, MessageUploadState uploadState) {
-        this.uploads.put(nonce, uploadState);
-        markChanged();
-    }
-
-    @StoreThread
     public final void bindUpload(String nonce, List<SendUtils.FileUpload> uploads) {
         C12238m.checkNotNullParameter(nonce, "nonce");
         C12238m.checkNotNullParameter(uploads, "uploads");
@@ -193,5 +187,11 @@ public final class StoreMessageUploads extends StoreV2 {
     public final void onPreprocessing(String nonce, int numFiles, String displayName, String mimeType) {
         C12238m.checkNotNullParameter(nonce, "nonce");
         updateState(nonce, new MessageUploadState.Preprocessing(numFiles, displayName, mimeType));
+    }
+
+    @StoreThread
+    private final void updateState(String nonce, MessageUploadState uploadState) {
+        this.uploads.put(nonce, uploadState);
+        markChanged();
     }
 }

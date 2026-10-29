@@ -30,10 +30,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: GifAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GifAdapter extends RecyclerView.Adapter<GifViewHolder> {
+    private static final int DEFAULT_COLUMN_COUNT = 2;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int DEFAULT_COLUMN_COUNT = 2;
     private static final int MIN_COLUMN_WIDTH_DP = 164;
     private final int columnWidthPx;
     private final DiffCreator<List<GifAdapterItem>, GifViewHolder> diffCreator;
@@ -41,8 +41,28 @@ public final class GifAdapter extends RecyclerView.Adapter<GifViewHolder> {
     private final Function1<GifAdapterItem.GifItem, Unit> onSelectGif;
     private final Function1<String, Unit> onSelectSuggestedTerm;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifAdapter$setItems$1 */
     /* JADX INFO: compiled from: GifAdapter.kt */
-    public static final class Companion {
+    public final class C78651 extends AbstractC12240o implements Function1<List<? extends GifAdapterItem>, Unit> {
+        public C78651() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends GifAdapterItem> list) {
+            invoke2(list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends GifAdapterItem> list) {
+            C12238m.checkNotNullParameter(list, "items");
+            GifAdapter.this.items = list;
+        }
+    }
+
+    /* JADX INFO: compiled from: GifAdapter.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -82,26 +102,6 @@ public final class GifAdapter extends RecyclerView.Adapter<GifViewHolder> {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifAdapter$setItems$1 */
-    /* JADX INFO: compiled from: GifAdapter.kt */
-    public static final class C78651 extends AbstractC12240o implements Function1<List<? extends GifAdapterItem>, Unit> {
-        public C78651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends GifAdapterItem> list) {
-            invoke2(list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends GifAdapterItem> list) {
-            C12238m.checkNotNullParameter(list, "items");
-            GifAdapter.this.items = list;
-        }
-    }
-
     public /* synthetic */ GifAdapter(AppComponent appComponent, Function1 function1, int i, Function1 function2, DiffCreator diffCreator, int i2, DefaultConstructorMarker defaultConstructorMarker) {
         this(appComponent, (i2 & 2) != 0 ? null : function1, i, (i2 & 8) != 0 ? null : function2, (i2 & 16) != 0 ? new DiffCreator(appComponent) : diffCreator);
     }
@@ -111,14 +111,14 @@ public final class GifAdapter extends RecyclerView.Adapter<GifViewHolder> {
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
+    public int getItemViewType(int position) {
+        return this.items.get(position).getType().ordinal();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public int getItemViewType(int position) {
-        return this.items.get(position).getType().ordinal();
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItems(List<? extends GifAdapterItem> newItems) {

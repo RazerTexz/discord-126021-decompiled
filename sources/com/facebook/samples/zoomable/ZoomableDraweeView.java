@@ -33,9 +33,6 @@ import p007b.p109f.p187l.p189b.InterfaceC2047e;
 /* JADX INFO: loaded from: classes3.dex */
 public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy> implements ScrollingView {
 
-    /* JADX INFO: renamed from: j */
-    public static final Class<?> f19628j = ZoomableDraweeView.class;
-
     /* JADX INFO: renamed from: k */
     public boolean f19629k;
 
@@ -65,6 +62,9 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy> imple
 
     /* JADX INFO: renamed from: t */
     public final C2046d f19638t;
+
+    /* JADX INFO: renamed from: j */
+    public static final Class<?> f19628j = ZoomableDraweeView.class;
 
     /* JADX INFO: renamed from: com.facebook.samples.zoomable.ZoomableDraweeView$a */
     public class C10671a extends C1755c<Object> {
@@ -125,39 +125,6 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy> imple
         this.f19634p = new GestureDetector(getContext(), c2046d);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final void m8725a(@Nullable DraweeController draweeController, @Nullable DraweeController draweeController2) {
-        DraweeController controller = getController();
-        if (controller instanceof AbstractDraweeController) {
-            ((AbstractDraweeController) controller).m8647A(this.f19636r);
-        }
-        if (draweeController instanceof AbstractDraweeController) {
-            ((AbstractDraweeController) draweeController).m8656f(this.f19636r);
-        }
-        this.f19632n = draweeController2;
-        super.setController(draweeController);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void m8726b() {
-        RectF rectF = this.f19630l;
-        C1772g c1772g = getHierarchy().f19511f;
-        Matrix matrix = C1772g.f3359j;
-        c1772g.m1103n(matrix);
-        rectF.set(c1772g.getBounds());
-        matrix.mapRect(rectF);
-        this.f19631m.set(0.0f, 0.0f, getWidth(), getHeight());
-        InterfaceC2047e interfaceC2047e = this.f19633o;
-        RectF rectF2 = this.f19630l;
-        C2045c c2045c = (C2045c) interfaceC2047e;
-        if (!rectF2.equals(c2045c.f4303e)) {
-            c2045c.f4303e.set(rectF2);
-            c2045c.m1563i();
-        }
-        ((C2045c) this.f19633o).f4302d.set(this.f19631m);
-        C1691a.m982j(getLogTag(), "updateZoomableControllerBounds: view %x, view bounds: %s, image bounds: %s", Integer.valueOf(hashCode()), this.f19631m, this.f19630l);
-    }
-
     @Override // android.view.View, androidx.core.view.ScrollingView
     public int computeHorizontalScrollExtent() {
         return (int) ((C2045c) this.f19633o).f4302d.width();
@@ -196,6 +163,39 @@ public class ZoomableDraweeView extends DraweeView<GenericDraweeHierarchy> imple
 
     public InterfaceC2047e getZoomableController() {
         return this.f19633o;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m8725a(@Nullable DraweeController draweeController, @Nullable DraweeController draweeController2) {
+        DraweeController controller = getController();
+        if (controller instanceof AbstractDraweeController) {
+            ((AbstractDraweeController) controller).m8647A(this.f19636r);
+        }
+        if (draweeController instanceof AbstractDraweeController) {
+            ((AbstractDraweeController) draweeController).m8656f(this.f19636r);
+        }
+        this.f19632n = draweeController2;
+        super.setController(draweeController);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void m8726b() {
+        RectF rectF = this.f19630l;
+        C1772g c1772g = getHierarchy().f19511f;
+        Matrix matrix = C1772g.f3359j;
+        c1772g.m1103n(matrix);
+        rectF.set(c1772g.getBounds());
+        matrix.mapRect(rectF);
+        this.f19631m.set(0.0f, 0.0f, getWidth(), getHeight());
+        InterfaceC2047e interfaceC2047e = this.f19633o;
+        RectF rectF2 = this.f19630l;
+        C2045c c2045c = (C2045c) interfaceC2047e;
+        if (!rectF2.equals(c2045c.f4303e)) {
+            c2045c.f4303e.set(rectF2);
+            c2045c.m1563i();
+        }
+        ((C2045c) this.f19633o).f4302d.set(this.f19631m);
+        C1691a.m982j(getLogTag(), "updateZoomableControllerBounds: view %x, view bounds: %s, image bounds: %s", Integer.valueOf(hashCode()), this.f19631m, this.f19630l);
     }
 
     @Override // android.widget.ImageView, android.view.View

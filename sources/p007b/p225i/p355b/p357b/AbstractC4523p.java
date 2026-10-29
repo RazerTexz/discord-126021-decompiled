@@ -24,7 +24,7 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
 
     /* JADX INFO: renamed from: b.i.b.b.p$a */
     /* JADX INFO: compiled from: ImmutableList.java */
-    public static final class a<E> extends AbstractC4519n.a<E> {
+    public final class a<E> extends AbstractC4519n.a<E> {
         public a() {
             super(4);
         }
@@ -58,7 +58,7 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
 
     /* JADX INFO: renamed from: b.i.b.b.p$b */
     /* JADX INFO: compiled from: ImmutableList.java */
-    public static class b<E> extends AbstractC4493a<E> {
+    public class b<E> extends AbstractC4493a<E> {
 
         /* JADX INFO: renamed from: l */
         public final AbstractC4523p<E> f12046l;
@@ -71,7 +71,7 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
 
     /* JADX INFO: renamed from: b.i.b.b.p$c */
     /* JADX INFO: compiled from: ImmutableList.java */
-    public static class c implements Serializable {
+    public class c implements Serializable {
         private static final long serialVersionUID = 0;
         public final Object[] elements;
 
@@ -99,6 +99,22 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
             this.f12048m = i2;
         }
 
+        @Override // java.util.List
+        public E get(int i) {
+            C3404f.m4359x(i, this.f12048m);
+            return AbstractC4523p.this.get(i + this.f12047l);
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4523p, p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+        public Iterator iterator() {
+            return listIterator();
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4523p, java.util.List
+        public /* bridge */ /* synthetic */ ListIterator listIterator() {
+            return listIterator();
+        }
+
         @Override // p007b.p225i.p355b.p357b.AbstractC4519n
         /* JADX INFO: renamed from: e */
         public Object[] mo6243e() {
@@ -111,12 +127,6 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
             return AbstractC4523p.this.mo6245h() + this.f12047l + this.f12048m;
         }
 
-        @Override // java.util.List
-        public E get(int i) {
-            C3404f.m4359x(i, this.f12048m);
-            return AbstractC4523p.this.get(i + this.f12047l);
-        }
-
         @Override // p007b.p225i.p355b.p357b.AbstractC4519n
         /* JADX INFO: renamed from: h */
         public int mo6245h() {
@@ -127,16 +137,6 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
         /* JADX INFO: renamed from: i */
         public boolean mo6246i() {
             return true;
-        }
-
-        @Override // p007b.p225i.p355b.p357b.AbstractC4523p, p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-        public Iterator iterator() {
-            return listIterator();
-        }
-
-        @Override // p007b.p225i.p355b.p357b.AbstractC4523p, java.util.List
-        public /* bridge */ /* synthetic */ ListIterator listIterator() {
-            return listIterator();
         }
 
         @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
@@ -159,53 +159,6 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
         }
     }
 
-    /* JADX INFO: renamed from: k */
-    public static <E> AbstractC4523p<E> m6261k(Object[] objArr) {
-        return m6262l(objArr, objArr.length);
-    }
-
-    /* JADX INFO: renamed from: l */
-    public static <E> AbstractC4523p<E> m6262l(Object[] objArr, int i) {
-        return i == 0 ? (AbstractC4523p<E>) C4508h0.f12012l : new C4508h0(objArr, i);
-    }
-
-    /* JADX INFO: renamed from: m */
-    public static <E> AbstractC4523p<E> m6263m(Object... objArr) {
-        int length = objArr.length;
-        for (int i = 0; i < length; i++) {
-            C3404f.m4363y(objArr[i], i);
-        }
-        return m6262l(objArr, objArr.length);
-    }
-
-    /* JADX INFO: renamed from: n */
-    public static <E> AbstractC4523p<E> m6264n(Collection<? extends E> collection) {
-        if (!(collection instanceof AbstractC4519n)) {
-            return m6263m(collection.toArray());
-        }
-        AbstractC4523p<E> abstractC4523pMo6253c = ((AbstractC4519n) collection).mo6253c();
-        return abstractC4523pMo6253c.mo6246i() ? m6261k(abstractC4523pMo6253c.toArray()) : abstractC4523pMo6253c;
-    }
-
-    /* JADX INFO: renamed from: o */
-    public static <E> AbstractC4523p<E> m6265o(E[] eArr) {
-        return eArr.length == 0 ? (AbstractC4523p<E>) C4508h0.f12012l : m6263m((Object[]) eArr.clone());
-    }
-
-    private void readObject(ObjectInputStream objectInputStream) throws InvalidObjectException {
-        throw new InvalidObjectException("Use SerializedForm");
-    }
-
-    /* JADX INFO: renamed from: u */
-    public static <E> AbstractC4523p<E> m6266u(E e) {
-        return m6263m(e);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public static <E> AbstractC4523p<E> m6267v(E e, E e2, E e3, E e4, E e5) {
-        return m6263m(e, e2, e3, e4, e5);
-    }
-
     @Override // java.util.List
     @Deprecated
     public final void add(int i, E e) {
@@ -219,25 +172,9 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
         throw new UnsupportedOperationException();
     }
 
-    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
-    /* JADX INFO: renamed from: c */
-    public final AbstractC4523p<E> mo6253c() {
-        return this;
-    }
-
     @Override // p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.util.Set
     public boolean contains(@NullableDecl Object obj) {
         return indexOf(obj) >= 0;
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
-    /* JADX INFO: renamed from: d */
-    public int mo6242d(Object[] objArr, int i) {
-        int size = size();
-        for (int i2 = 0; i2 < size; i2++) {
-            objArr[i + i2] = get(i2);
-        }
-        return i + size;
     }
 
     @Override // java.util.Collection, java.util.List
@@ -329,6 +266,69 @@ public abstract class AbstractC4523p<E> extends AbstractC4519n<E> implements Lis
     public AbstractC4493a<E> listIterator(int i) {
         C3404f.m4195C(i, size());
         return isEmpty() ? (AbstractC4493a<E>) f12045k : new b(this, i);
+    }
+
+    /* JADX INFO: renamed from: k */
+    public static <E> AbstractC4523p<E> m6261k(Object[] objArr) {
+        return m6262l(objArr, objArr.length);
+    }
+
+    /* JADX INFO: renamed from: l */
+    public static <E> AbstractC4523p<E> m6262l(Object[] objArr, int i) {
+        return i == 0 ? (AbstractC4523p<E>) C4508h0.f12012l : new C4508h0(objArr, i);
+    }
+
+    /* JADX INFO: renamed from: m */
+    public static <E> AbstractC4523p<E> m6263m(Object... objArr) {
+        int length = objArr.length;
+        for (int i = 0; i < length; i++) {
+            C3404f.m4363y(objArr[i], i);
+        }
+        return m6262l(objArr, objArr.length);
+    }
+
+    /* JADX INFO: renamed from: n */
+    public static <E> AbstractC4523p<E> m6264n(Collection<? extends E> collection) {
+        if (!(collection instanceof AbstractC4519n)) {
+            return m6263m(collection.toArray());
+        }
+        AbstractC4523p<E> abstractC4523pMo6253c = ((AbstractC4519n) collection).mo6253c();
+        return abstractC4523pMo6253c.mo6246i() ? m6261k(abstractC4523pMo6253c.toArray()) : abstractC4523pMo6253c;
+    }
+
+    /* JADX INFO: renamed from: o */
+    public static <E> AbstractC4523p<E> m6265o(E[] eArr) {
+        return eArr.length == 0 ? (AbstractC4523p<E>) C4508h0.f12012l : m6263m((Object[]) eArr.clone());
+    }
+
+    /* JADX INFO: renamed from: u */
+    public static <E> AbstractC4523p<E> m6266u(E e) {
+        return m6263m(e);
+    }
+
+    /* JADX INFO: renamed from: v */
+    public static <E> AbstractC4523p<E> m6267v(E e, E e2, E e3, E e4, E e5) {
+        return m6263m(e, e2, e3, e4, e5);
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
+    /* JADX INFO: renamed from: d */
+    public int mo6242d(Object[] objArr, int i) {
+        int size = size();
+        for (int i2 = 0; i2 < size; i2++) {
+            objArr[i + i2] = get(i2);
+        }
+        return i + size;
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
+    /* JADX INFO: renamed from: c */
+    public final AbstractC4523p<E> mo6253c() {
+        return this;
+    }
+
+    private void readObject(ObjectInputStream objectInputStream) throws InvalidObjectException {
+        throw new InvalidObjectException("Use SerializedForm");
     }
 
     @Override // java.util.List

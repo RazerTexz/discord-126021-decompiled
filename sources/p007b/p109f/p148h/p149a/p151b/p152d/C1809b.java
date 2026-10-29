@@ -25,15 +25,32 @@ public class C1809b implements InterfaceC1806b {
     /* JADX INFO: renamed from: b */
     public final boolean f3510b;
 
-    /* JADX INFO: renamed from: c */
-    public final SparseArray<CloseableReference<AbstractC1917c>> f3511c = new SparseArray<>();
-
     /* JADX INFO: renamed from: d */
     public CloseableReference<AbstractC1917c> f3512d;
+
+    /* JADX INFO: renamed from: c */
+    public final SparseArray<CloseableReference<AbstractC1917c>> f3511c = new SparseArray<>();
 
     public C1809b(C1847c c1847c, boolean z2) {
         this.f3509a = c1847c;
         this.f3510b = z2;
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
+    public synchronized void clear() {
+        CloseableReference<AbstractC1917c> closeableReference = this.f3512d;
+        Class<CloseableReference> cls = CloseableReference.f19438j;
+        if (closeableReference != null) {
+            closeableReference.close();
+        }
+        this.f3512d = null;
+        for (int i = 0; i < this.f3511c.size(); i++) {
+            CloseableReference<AbstractC1917c> closeableReferenceValueAt = this.f3511c.valueAt(i);
+            if (closeableReferenceValueAt != null) {
+                closeableReferenceValueAt.close();
+            }
+        }
+        this.f3511c.clear();
     }
 
     @VisibleForTesting
@@ -133,23 +150,6 @@ public class C1809b implements InterfaceC1806b {
     }
 
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
-    public synchronized void clear() {
-        CloseableReference<AbstractC1917c> closeableReference = this.f3512d;
-        Class<CloseableReference> cls = CloseableReference.f19438j;
-        if (closeableReference != null) {
-            closeableReference.close();
-        }
-        this.f3512d = null;
-        for (int i = 0; i < this.f3511c.size(); i++) {
-            CloseableReference<AbstractC1917c> closeableReferenceValueAt = this.f3511c.valueAt(i);
-            if (closeableReferenceValueAt != null) {
-                closeableReferenceValueAt.close();
-            }
-        }
-        this.f3511c.clear();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
     /* JADX INFO: renamed from: d */
     public synchronized CloseableReference<Bitmap> mo1154d(int i) {
         C1847c c1847c;
@@ -172,7 +172,6 @@ public class C1809b implements InterfaceC1806b {
                         closeableReference2.close();
                         int i3 = C1691a.f3102a;
                     }
-                    throw th;
                 }
                 return;
             }

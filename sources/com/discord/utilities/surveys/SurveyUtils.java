@@ -13,12 +13,12 @@ import p658rx.Observable;
 /* JADX INFO: compiled from: SurveyUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SurveyUtils {
-    public static final SurveyUtils INSTANCE = new SurveyUtils();
     private static final long MIN_APP_INSTALL_TIME = 604800000;
     private static Application applicationContext;
+    public static final SurveyUtils INSTANCE = new SurveyUtils();
 
     /* JADX INFO: compiled from: SurveyUtils.kt */
-    public static class Survey {
+    public class Survey {
         private final String noticeKey;
         private final String surveyBody;
         private final String surveyId;
@@ -26,7 +26,7 @@ public final class SurveyUtils {
         private final String surveyURL;
 
         /* JADX INFO: compiled from: SurveyUtils.kt */
-        public static final class None extends Survey {
+        public final class None extends Survey {
             public static final None INSTANCE = new None();
 
             private None() {
@@ -71,23 +71,6 @@ public final class SurveyUtils {
     private SurveyUtils() {
     }
 
-    private final boolean isInstallOldEnough() {
-        try {
-            Application application = applicationContext;
-            if (application == null) {
-                C12238m.throwUninitializedPropertyAccessException("applicationContext");
-            }
-            PackageManager packageManager = application.getPackageManager();
-            Application application2 = applicationContext;
-            if (application2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("applicationContext");
-            }
-            return ClockFactory.get().currentTimeMillis() - packageManager.getPackageInfo(application2.getPackageName(), 0).firstInstallTime >= MIN_APP_INSTALL_TIME;
-        } catch (PackageManager.NameNotFoundException unused) {
-            return false;
-        }
-    }
-
     public final Observable<Survey> getSurveyToShow() {
         if (isInstallOldEnough()) {
             Observable observableM11083G = StoreStream.INSTANCE.getUserSurvey().observeUserSurvey().m11083G(new InterfaceC12589b<UserSurvey, Survey>() { // from class: com.discord.utilities.surveys.SurveyUtils.getSurveyToShow.1
@@ -110,5 +93,22 @@ public final class SurveyUtils {
     public final void init(Application applicationContext2) {
         C12238m.checkNotNullParameter(applicationContext2, "applicationContext");
         applicationContext = applicationContext2;
+    }
+
+    private final boolean isInstallOldEnough() {
+        try {
+            Application application = applicationContext;
+            if (application == null) {
+                C12238m.throwUninitializedPropertyAccessException("applicationContext");
+            }
+            PackageManager packageManager = application.getPackageManager();
+            Application application2 = applicationContext;
+            if (application2 == null) {
+                C12238m.throwUninitializedPropertyAccessException("applicationContext");
+            }
+            return ClockFactory.get().currentTimeMillis() - packageManager.getPackageInfo(application2.getPackageName(), 0).firstInstallTime >= MIN_APP_INSTALL_TIME;
+        } catch (PackageManager.NameNotFoundException unused) {
+            return false;
+        }
     }
 }

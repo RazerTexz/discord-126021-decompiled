@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p313h.p325l.C3675h;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzae extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzae> CREATOR = new C3675h();
 
     /* JADX INFO: renamed from: j */
     public final long f20621j;
@@ -32,6 +31,7 @@ public final class zzae extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: p */
     public final Bundle f20627p;
+    public static final Parcelable.Creator<zzae> CREATOR = new C3675h();
 
     public zzae(long j, long j2, boolean z2, String str, String str2, String str3, Bundle bundle) {
         this.f20621j = j;

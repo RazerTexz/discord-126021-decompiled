@@ -5,7 +5,7 @@ public final class CryptoOptions {
     private final SFrame sframe;
     private final Srtp srtp;
 
-    public static class Builder {
+    public class Builder {
         private boolean enableAes128Sha1_32CryptoCipher;
         private boolean enableEncryptedRtpHeaderExtensions;
         private boolean enableGcmCryptoSuites;

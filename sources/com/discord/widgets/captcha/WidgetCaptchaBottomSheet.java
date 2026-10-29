@@ -49,7 +49,11 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetCaptchaBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBottomSheetBinding;", 0)};
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String NOTICE_NAME = "captcha notice";
     private static final String RESULT_EXTRA_CAPTCHA_RQTOKEN = "INTENT_EXTRA_CAPTCHA_RQTOKEN";
     private static final String RESULT_EXTRA_CAPTCHA_TOKEN = "INTENT_EXTRA_CAPTCHA_TOKEN";
@@ -64,66 +68,11 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: requestCode$delegate, reason: from kotlin metadata */
     private final Lazy requestCode;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetCaptchaBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBottomSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final List<InterfaceC11230c<? extends AppFragment>> resolvableFragments = C12147n.listOf((Object[]) new InterfaceC11230c[]{C12216a0.getOrCreateKotlinClass(WidgetTabsHost.class), C12216a0.getOrCreateKotlinClass(WidgetIncomingShare.class)});
-
-    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ void enqueue$default(Companion companion, String str, Function2 function2, Function0 function0, CaptchaErrorBody captchaErrorBody, int i, Object obj) {
-            if ((i & 4) != 0) {
-                function0 = null;
-            }
-            companion.enqueue(str, function2, function0, captchaErrorBody);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, CaptchaErrorBody captchaErrorBody, Function0 function0, int i, Object obj) {
-            if ((i & 8) != 0) {
-                function0 = null;
-            }
-            companion.show(fragmentManager, str, captchaErrorBody, function0);
-        }
-
-        public final void enqueue(String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived, Function0<Unit> onCaptchaAttemptFailed, CaptchaErrorBody error) {
-            C12238m.checkNotNullParameter(requestKey, "requestKey");
-            C12238m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
-            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(WidgetCaptchaBottomSheet.NOTICE_NAME, null, 0L, 0, false, WidgetCaptchaBottomSheet.resolvableFragments, 0L, false, 0L, new WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1(requestKey, error, onCaptchaAttemptFailed, onCaptchaPayloadReceived), 150, null));
-        }
-
-        public final void registerForResult(AppFragment fragment, String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            C12238m.checkNotNullParameter(requestKey, "requestKey");
-            C12238m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
-            FragmentKt.setFragmentResultListener(fragment, requestKey, new WidgetCaptchaBottomSheet$Companion$registerForResult$1(requestKey, onCaptchaPayloadReceived, fragment));
-        }
-
-        public final void show(FragmentManager fragmentManager, String requestKey, CaptchaErrorBody error, Function0<Unit> onCaptchaAttemptFailed) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(requestKey, "requestKey");
-            WidgetCaptchaBottomSheet widgetCaptchaBottomSheet = new WidgetCaptchaBottomSheet();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("INTENT_EXTRA_CAPTCHA_ERROR_BODY", error);
-            bundle.putString(WidgetCaptchaBottomSheet.ARG_REQUEST_KEY, requestKey);
-            widgetCaptchaBottomSheet.setArguments(bundle);
-            widgetCaptchaBottomSheet.onCaptchaAttemptFailed = onCaptchaAttemptFailed;
-            widgetCaptchaBottomSheet.show(fragmentManager, WidgetCaptchaBottomSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptchaBottomSheet$openCaptcha$1 */
     /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
-    public static final class C73031 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C73031 extends AbstractC12240o implements Function1<String, Unit> {
         public C73031() {
             super(1);
         }
@@ -147,7 +96,7 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptchaBottomSheet$openCaptcha$2 */
     /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
-    public static final class C73042 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C73042 extends AbstractC12240o implements Function1<Error, Unit> {
         public C73042() {
             super(1);
         }
@@ -169,6 +118,57 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
             if (failure != null) {
                 C0876m.m169g(WidgetCaptchaBottomSheet.this.getAppActivity(), failure.getErrorStringId(), 0, null, 12);
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void enqueue$default(Companion companion, String str, Function2 function2, Function0 function0, CaptchaErrorBody captchaErrorBody, int i, Object obj) {
+            if ((i & 4) != 0) {
+                function0 = null;
+            }
+            companion.enqueue(str, function2, function0, captchaErrorBody);
+        }
+
+        public final void enqueue(String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived, Function0<Unit> onCaptchaAttemptFailed, CaptchaErrorBody error) {
+            C12238m.checkNotNullParameter(requestKey, "requestKey");
+            C12238m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(WidgetCaptchaBottomSheet.NOTICE_NAME, null, 0L, 0, false, WidgetCaptchaBottomSheet.resolvableFragments, 0L, false, 0L, new WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1(requestKey, error, onCaptchaAttemptFailed, onCaptchaPayloadReceived), 150, null));
+        }
+
+        public final void registerForResult(AppFragment fragment, String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            C12238m.checkNotNullParameter(requestKey, "requestKey");
+            C12238m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
+            FragmentKt.setFragmentResultListener(fragment, requestKey, new WidgetCaptchaBottomSheet$Companion$registerForResult$1(requestKey, onCaptchaPayloadReceived, fragment));
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, CaptchaErrorBody captchaErrorBody, Function0 function0, int i, Object obj) {
+            if ((i & 8) != 0) {
+                function0 = null;
+            }
+            companion.show(fragmentManager, str, captchaErrorBody, function0);
+        }
+
+        public final void show(FragmentManager fragmentManager, String requestKey, CaptchaErrorBody error, Function0<Unit> onCaptchaAttemptFailed) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(requestKey, "requestKey");
+            WidgetCaptchaBottomSheet widgetCaptchaBottomSheet = new WidgetCaptchaBottomSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("INTENT_EXTRA_CAPTCHA_ERROR_BODY", error);
+            bundle.putString(WidgetCaptchaBottomSheet.ARG_REQUEST_KEY, requestKey);
+            widgetCaptchaBottomSheet.setArguments(bundle);
+            widgetCaptchaBottomSheet.onCaptchaAttemptFailed = onCaptchaAttemptFailed;
+            widgetCaptchaBottomSheet.show(fragmentManager, WidgetCaptchaBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -221,8 +221,31 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
         return (CaptchaErrorBody) this.captchaErrorBody.getValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_captcha_bottom_sheet;
+    }
+
     private final String getRequestCode() {
         return (String) this.requestCode.getValue();
+    }
+
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener
+    public void onDismiss(DialogInterface dialog) {
+        Function0<Unit> function0;
+        C12238m.checkNotNullParameter(dialog, "dialog");
+        super.onDismiss(dialog);
+        if (this.captchaPassed || (function0 = this.onCaptchaAttemptFailed) == null) {
+            return;
+        }
+        function0.invoke();
+    }
+
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        configureUI();
     }
 
     private final void openCaptcha() {
@@ -243,28 +266,5 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
             reCaptcha = new CaptchaHelper.CaptchaRequest.HCaptcha(captchaSitekey, fragmentActivityRequireActivity2, captchaRqdata);
         }
         ObservableExtensionsKt.appSubscribe(captchaHelper.tryShowCaptcha(reCaptcha), (Class<?>) WidgetCaptchaBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C73042()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73031());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_captcha_bottom_sheet;
-    }
-
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener
-    public void onDismiss(DialogInterface dialog) {
-        Function0<Unit> function0;
-        C12238m.checkNotNullParameter(dialog, "dialog");
-        super.onDismiss(dialog);
-        if (this.captchaPassed || (function0 = this.onCaptchaAttemptFailed) == null) {
-            return;
-        }
-        function0.invoke();
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        configureUI();
     }
 }

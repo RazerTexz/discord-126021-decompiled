@@ -45,7 +45,7 @@ public final class WidgetUrlActions extends AppBottomSheet {
     private final Lazy url;
 
     /* JADX INFO: compiled from: WidgetUrlActions.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -79,21 +79,17 @@ public final class WidgetUrlActions extends AppBottomSheet {
         return (WidgetUrlActionsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_url_actions;
+    }
+
     private final String getUrl() {
         return (String) this.url.getValue();
     }
 
     public static final void launch(FragmentManager fragmentManager, String str) {
         INSTANCE.launch(fragmentManager, str);
-    }
-
-    public static final void requestNotice(String str) {
-        INSTANCE.requestNotice(str);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_url_actions;
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -147,5 +143,9 @@ public final class WidgetUrlActions extends AppBottomSheet {
                 WidgetUrlActions.this.dismiss();
             }
         });
+    }
+
+    public static final void requestNotice(String str) {
+        INSTANCE.requestNotice(str);
     }
 }

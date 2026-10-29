@@ -15,23 +15,10 @@ import p668x.p669a.p672b.p676c.InterfaceC13185a;
 @SuppressLint({"BanParcelableUsage"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ResultReceiver implements Parcelable {
-    public static final Parcelable.Creator<ResultReceiver> CREATOR = new C0030a();
 
     /* JADX INFO: renamed from: j */
     public InterfaceC13185a f74j;
-
-    /* JADX INFO: renamed from: android.support.v4.os.ResultReceiver$a */
-    public class C0030a implements Parcelable.Creator<ResultReceiver> {
-        @Override // android.os.Parcelable.Creator
-        public ResultReceiver createFromParcel(Parcel parcel) {
-            return new ResultReceiver(parcel);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public ResultReceiver[] newArray(int i) {
-            return new ResultReceiver[i];
-        }
-    }
+    public static final Parcelable.Creator<ResultReceiver> CREATOR = new C0030a();
 
     /* JADX INFO: renamed from: android.support.v4.os.ResultReceiver$b */
     public class BinderC0031b extends InterfaceC13185a.a {
@@ -43,6 +30,19 @@ public class ResultReceiver implements Parcelable {
         public void mo74r0(int i, Bundle bundle) {
             Objects.requireNonNull(ResultReceiver.this);
             ResultReceiver.this.mo4a(i, bundle);
+        }
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.os.ResultReceiver$a */
+    public class C0030a implements Parcelable.Creator<ResultReceiver> {
+        @Override // android.os.Parcelable.Creator
+        public ResultReceiver createFromParcel(Parcel parcel) {
+            return new ResultReceiver(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ResultReceiver[] newArray(int i) {
+            return new ResultReceiver[i];
         }
     }
 
@@ -59,8 +59,9 @@ public class ResultReceiver implements Parcelable {
         this.f74j = c13362a;
     }
 
-    /* JADX INFO: renamed from: a */
-    public void mo4a(int i, Bundle bundle) {
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
     }
 
     /* JADX INFO: renamed from: b */
@@ -74,9 +75,8 @@ public class ResultReceiver implements Parcelable {
         }
     }
 
-    @Override // android.os.Parcelable
-    public int describeContents() {
-        return 0;
+    /* JADX INFO: renamed from: a */
+    public void mo4a(int i, Bundle bundle) {
     }
 
     @Override // android.os.Parcelable

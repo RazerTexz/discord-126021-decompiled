@@ -17,6 +17,29 @@ public class C3681h5 {
         C3680h4.m4933a();
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof C3681h5)) {
+            return false;
+        }
+        C3681h5 c3681h5 = (C3681h5) obj;
+        InterfaceC3612c6 interfaceC3612c6 = this.f9990a;
+        InterfaceC3612c6 interfaceC3612c7 = c3681h5.f9990a;
+        if (interfaceC3612c6 == null && interfaceC3612c7 == null) {
+            return m4936c().equals(c3681h5.m4936c());
+        }
+        if (interfaceC3612c6 == null || interfaceC3612c7 == null) {
+            return interfaceC3612c6 != null ? interfaceC3612c6.equals(c3681h5.m4935b(interfaceC3612c6.mo4633k())) : m4935b(interfaceC3612c7.mo4633k()).equals(interfaceC3612c7);
+        }
+        return interfaceC3612c6.equals(interfaceC3612c7);
+    }
+
+    public int hashCode() {
+        return 1;
+    }
+
     /* JADX INFO: renamed from: a */
     public final int m4934a() {
         if (this.f9991b != null) {
@@ -62,28 +85,5 @@ public class C3681h5 {
             }
             return this.f9991b;
         }
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof C3681h5)) {
-            return false;
-        }
-        C3681h5 c3681h5 = (C3681h5) obj;
-        InterfaceC3612c6 interfaceC3612c6 = this.f9990a;
-        InterfaceC3612c6 interfaceC3612c7 = c3681h5.f9990a;
-        if (interfaceC3612c6 == null && interfaceC3612c7 == null) {
-            return m4936c().equals(c3681h5.m4936c());
-        }
-        if (interfaceC3612c6 == null || interfaceC3612c7 == null) {
-            return interfaceC3612c6 != null ? interfaceC3612c6.equals(c3681h5.m4935b(interfaceC3612c6.mo4633k())) : m4935b(interfaceC3612c7.mo4633k()).equals(interfaceC3612c7);
-        }
-        return interfaceC3612c6.equals(interfaceC3612c7);
-    }
-
-    public int hashCode() {
-        return 1;
     }
 }

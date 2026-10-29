@@ -33,6 +33,17 @@ public final /* data */ class ConnectedAccount {
         this.type = "";
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ConnectedAccount)) {
+            return false;
+        }
+        ConnectedAccount connectedAccount = (ConnectedAccount) other;
+        return C12238m.areEqual(this.id, connectedAccount.id) && C12238m.areEqual(this.name, connectedAccount.name) && this.visibility == connectedAccount.visibility && this.friendSync == connectedAccount.friendSync && this.showActivity == connectedAccount.showActivity && this.revoked == connectedAccount.revoked && this.verified == connectedAccount.verified && C12238m.areEqual(this.integrations, connectedAccount.integrations) && C12238m.areEqual(this.type, connectedAccount.type);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getFriendSync() {
         return this.friendSync;
@@ -43,11 +54,6 @@ public final /* data */ class ConnectedAccount {
         return this.id;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final List<ConnectedAccountIntegration> m7751c() {
-        return this.integrations;
-    }
-
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getName() {
         return this.name;
@@ -56,17 +62,6 @@ public final /* data */ class ConnectedAccount {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final boolean getRevoked() {
         return this.revoked;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ConnectedAccount)) {
-            return false;
-        }
-        ConnectedAccount connectedAccount = (ConnectedAccount) other;
-        return C12238m.areEqual(this.id, connectedAccount.id) && C12238m.areEqual(this.name, connectedAccount.name) && this.visibility == connectedAccount.visibility && this.friendSync == connectedAccount.friendSync && this.showActivity == connectedAccount.showActivity && this.revoked == connectedAccount.revoked && this.verified == connectedAccount.verified && C12238m.areEqual(this.integrations, connectedAccount.integrations) && C12238m.areEqual(this.type, connectedAccount.type);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -82,6 +77,11 @@ public final /* data */ class ConnectedAccount {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final boolean getVerified() {
         return this.verified;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final int getVisibility() {
+        return this.visibility;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -129,9 +129,9 @@ public final /* data */ class ConnectedAccount {
         return iHashCode3 + (str3 != null ? str3.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final int getVisibility() {
-        return this.visibility;
+    /* JADX INFO: renamed from: c */
+    public final List<ConnectedAccountIntegration> m7751c() {
+        return this.integrations;
     }
 
     public String toString() {

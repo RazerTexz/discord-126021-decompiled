@@ -9,27 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoLayoutToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
-    private final CharSequence gameName = null;
     private final Long gameId = null;
-    private final CharSequence videoLayout = null;
+    private final CharSequence gameName = null;
     private final CharSequence gamePlatform = null;
-    private final Long streamerUserId = null;
-    private final CharSequence videoStreamState = null;
+    private final Long guildId = null;
     private final CharSequence mediaSessionId = null;
+    private final Long streamerUserId = null;
+    private TrackBase trackBase;
+    private final Boolean videoEnabled = null;
+    private final CharSequence videoLayout = null;
+    private final Long videoStreamCount = null;
+    private final CharSequence videoStreamState = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "video_layout_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema
         }
         TrackVideoLayoutToggled trackVideoLayoutToggled = (TrackVideoLayoutToggled) other;
         return C12238m.areEqual(this.guildId, trackVideoLayoutToggled.guildId) && C12238m.areEqual(this.channelId, trackVideoLayoutToggled.channelId) && C12238m.areEqual(this.channelType, trackVideoLayoutToggled.channelType) && C12238m.areEqual(this.voiceStateCount, trackVideoLayoutToggled.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackVideoLayoutToggled.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackVideoLayoutToggled.videoEnabled) && C12238m.areEqual(this.gameName, trackVideoLayoutToggled.gameName) && C12238m.areEqual(this.gameId, trackVideoLayoutToggled.gameId) && C12238m.areEqual(this.videoLayout, trackVideoLayoutToggled.videoLayout) && C12238m.areEqual(this.gamePlatform, trackVideoLayoutToggled.gamePlatform) && C12238m.areEqual(this.streamerUserId, trackVideoLayoutToggled.streamerUserId) && C12238m.areEqual(this.videoStreamState, trackVideoLayoutToggled.videoStreamState) && C12238m.areEqual(this.mediaSessionId, trackVideoLayoutToggled.mediaSessionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

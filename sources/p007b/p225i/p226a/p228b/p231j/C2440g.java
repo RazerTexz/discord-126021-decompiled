@@ -10,7 +10,7 @@ public final class C2440g implements InterfaceC5318a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.g$a */
     /* JADX INFO: compiled from: ExecutionModule_ExecutorFactory.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C2440g f5278a = new C2440g();

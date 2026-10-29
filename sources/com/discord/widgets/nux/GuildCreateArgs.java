@@ -18,7 +18,7 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
     private final String location;
     private final CreateGuildTrigger trigger;
 
-    public static class Creator implements Parcelable.Creator<GuildCreateArgs> {
+    public final class Creator implements Parcelable.Creator<GuildCreateArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final GuildCreateArgs createFromParcel(Parcel parcel) {
@@ -66,31 +66,6 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
         return guildCreateArgs.copy(z2, str2, createGuildTrigger2, guildTemplateArgs2, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getIsNux() {
-        return this.isNux;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getLocation() {
-        return this.location;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final CreateGuildTrigger getTrigger() {
-        return this.trigger;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final GuildTemplateArgs getGuildTemplate() {
-        return this.guildTemplate;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCloseWithResult() {
-        return this.closeWithResult;
-    }
-
     public final GuildCreateArgs copy(boolean isNux, String location, CreateGuildTrigger trigger, GuildTemplateArgs guildTemplate, boolean closeWithResult) {
         C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         C12238m.checkNotNullParameter(trigger, "trigger");
@@ -114,16 +89,41 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
         return this.isNux == guildCreateArgs.isNux && C12238m.areEqual(this.location, guildCreateArgs.location) && C12238m.areEqual(this.trigger, guildCreateArgs.trigger) && C12238m.areEqual(this.guildTemplate, guildCreateArgs.guildTemplate) && this.closeWithResult == guildCreateArgs.closeWithResult;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCloseWithResult() {
         return this.closeWithResult;
+    }
+
+    public final boolean getCloseWithResult() {
+        return this.closeWithResult;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final GuildTemplateArgs getGuildTemplate() {
+        return this.guildTemplate;
     }
 
     public final GuildTemplateArgs getGuildTemplate() {
         return this.guildTemplate;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getIsNux() {
+        return this.isNux;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getLocation() {
         return this.location;
+    }
+
+    public final String getLocation() {
+        return this.location;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final CreateGuildTrigger getTrigger() {
+        return this.trigger;
     }
 
     public final CreateGuildTrigger getTrigger() {

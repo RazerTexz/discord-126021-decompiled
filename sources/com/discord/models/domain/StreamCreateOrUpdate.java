@@ -18,7 +18,7 @@ public final /* data */ class StreamCreateOrUpdate {
     private final List<Long> viewerIds;
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final class Parser implements Model.Parser<StreamCreateOrUpdate> {
+    public final class Parser implements Model.Parser<StreamCreateOrUpdate> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -107,6 +107,10 @@ public final /* data */ class StreamCreateOrUpdate {
         this.viewerIds = list;
     }
 
+    public final List<Long> component4() {
+        return this.viewerIds;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ StreamCreateOrUpdate copy$default(StreamCreateOrUpdate streamCreateOrUpdate, String str, String str2, boolean z2, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -122,25 +126,6 @@ public final /* data */ class StreamCreateOrUpdate {
             list = streamCreateOrUpdate.viewerIds;
         }
         return streamCreateOrUpdate.copy(str, str2, z2, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getStreamKey() {
-        return this.streamKey;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getRtcServerId() {
-        return this.rtcServerId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getPaused() {
-        return this.paused;
-    }
-
-    public final List<Long> component4() {
-        return this.viewerIds;
     }
 
     public final StreamCreateOrUpdate copy(String streamKey, String rtcServerId, boolean paused, List<Long> viewerIds) {
@@ -160,12 +145,27 @@ public final /* data */ class StreamCreateOrUpdate {
         return C12238m.areEqual(this.streamKey, streamCreateOrUpdate.streamKey) && C12238m.areEqual(this.rtcServerId, streamCreateOrUpdate.rtcServerId) && this.paused == streamCreateOrUpdate.paused && C12238m.areEqual(this.viewerIds, streamCreateOrUpdate.viewerIds);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getPaused() {
         return this.paused;
     }
 
+    public final boolean getPaused() {
+        return this.paused;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getRtcServerId() {
         return this.rtcServerId;
+    }
+
+    public final String getRtcServerId() {
+        return this.rtcServerId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getStreamKey() {
+        return this.streamKey;
     }
 
     public final String getStreamKey() {

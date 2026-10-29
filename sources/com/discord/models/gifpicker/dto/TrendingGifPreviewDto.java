@@ -20,11 +20,6 @@ public final /* data */ class TrendingGifPreviewDto {
         return trendingGifPreviewDto.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getSrc() {
-        return this.src;
-    }
-
     public final TrendingGifPreviewDto copy(String src) {
         C12238m.checkNotNullParameter(src, "src");
         return new TrendingGifPreviewDto(src);
@@ -35,6 +30,11 @@ public final /* data */ class TrendingGifPreviewDto {
             return (other instanceof TrendingGifPreviewDto) && C12238m.areEqual(this.src, ((TrendingGifPreviewDto) other).src);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getSrc() {
+        return this.src;
     }
 
     public final String getSrc() {

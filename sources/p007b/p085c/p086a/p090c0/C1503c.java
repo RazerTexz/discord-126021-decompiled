@@ -8,12 +8,12 @@ import androidx.annotation.RestrictTo;
 /* JADX INFO: loaded from: classes.dex */
 public class C1503c<T> {
 
-    /* JADX INFO: renamed from: a */
-    public final C1502b<T> f2332a = new C1502b<>();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public T f2333b;
+
+    /* JADX INFO: renamed from: a */
+    public final C1502b<T> f2332a = new C1502b<>();
 
     public C1503c(@Nullable T t) {
         this.f2333b = null;

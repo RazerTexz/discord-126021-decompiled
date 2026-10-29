@@ -5,6 +5,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlin.Unit;
 import p507d0.p591y.C12201b;
@@ -97,7 +98,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
     }
 
     @Override // com.google.gson.TypeAdapter
-    public void write(JsonWriter jsonWriter, ReportNodeBottomButton reportNodeBottomButton) throws IOException {
+    public void write(JsonWriter jsonWriter, ReportNodeBottomButton reportNodeBottomButton) throws IllegalAccessException, IOException, InvocationTargetException {
         ReportNodeBottomButton reportNodeBottomButton2 = reportNodeBottomButton;
         C12238m.checkNotNullParameter(jsonWriter, "out");
         if (reportNodeBottomButton2 == null) {

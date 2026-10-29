@@ -6,6 +6,7 @@ import com.adjust.sdk.Constants;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.jvm.functions.Function0;
 import p507d0.p591y.C12201b;
 import p507d0.p592z.p594d.AbstractC12240o;
@@ -22,7 +23,7 @@ public final class WidgetPaymentSourceEditDialog$usStates$2 extends AbstractC122
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetPaymentSourceEditDialog.StateEntry[] invoke() throws IOException {
+    public final WidgetPaymentSourceEditDialog.StateEntry[] invoke() throws IllegalAccessException, IOException, InvocationTargetException {
         AssetManager assets;
         Context context = this.this$0.getContext();
         InputStreamReader inputStreamReader = new InputStreamReader((context == null || (assets = context.getAssets()) == null) ? null : assets.open("data/states.json"), Constants.ENCODING);

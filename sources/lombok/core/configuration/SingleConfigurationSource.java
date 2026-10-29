@@ -8,8 +8,8 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/SingleConfigurationSource.SCL.lombok */
 public final class SingleConfigurationSource implements ConfigurationSource {
-    private final Map<ConfigurationKey<?>, ConfigurationSource.Result> values = new HashMap();
     private final List<ConfigurationFile> imports;
+    private final Map<ConfigurationKey<?>, ConfigurationSource.Result> values = new HashMap();
 
     public static ConfigurationSource parse(ConfigurationFile context, ConfigurationParser parser) {
         final Map<ConfigurationKey<?>, ConfigurationSource.Result> values = new HashMap<>();

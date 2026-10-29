@@ -15,12 +15,12 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackPaymentFlowOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackPaymentFlowOpened implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSubscriptionMetadataReceiver, TrackPaymentMetadataReceiver, TrackSourceMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "payment_flow_opened";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
+    private final transient String analyticsSchemaTypeName = "payment_flow_opened";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

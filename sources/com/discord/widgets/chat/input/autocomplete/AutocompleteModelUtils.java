@@ -73,6 +73,13 @@ public final class AutocompleteModelUtils {
     private AutocompleteModelUtils() {
     }
 
+    public static /* synthetic */ MentionToken asMentionToken$default(AutocompleteModelUtils autocompleteModelUtils, String str, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            z2 = false;
+        }
+        return autocompleteModelUtils.asMentionToken(str, i, z2);
+    }
+
     private final MentionToken asMentionToken(String str, int i, boolean z2) {
         if (str != null) {
             Character chValueOf = ((C12103t.isBlank(str) ^ true) && MentionUtilsKt.getDEFAULT_LEADING_IDENTIFIERS().contains(Character.valueOf(str.charAt(0)))) ? Character.valueOf(str.charAt(0)) : null;
@@ -81,38 +88,6 @@ public final class AutocompleteModelUtils {
             }
         }
         return null;
-    }
-
-    public static /* synthetic */ MentionToken asMentionToken$default(AutocompleteModelUtils autocompleteModelUtils, String str, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            z2 = false;
-        }
-        return autocompleteModelUtils.asMentionToken(str, i, z2);
-    }
-
-    public static /* synthetic */ ApplicationCommandData getApplicationSendData$default(AutocompleteModelUtils autocompleteModelUtils, AutocompleteInputSelectionModel autocompleteInputSelectionModel, ApplicationCommandOption applicationCommandOption, List list, List list2, Map map, int i, Object obj) {
-        if ((i & 2) != 0) {
-            applicationCommandOption = null;
-        }
-        return autocompleteModelUtils.getApplicationSendData(autocompleteInputSelectionModel, applicationCommandOption, list, list2, map);
-    }
-
-    private final boolean isSubRangeOf(IntRange intRange, IntRange intRange2) {
-        return !intRange.equals(intRange2) && intRange2.contains(intRange.getFirst()) && intRange2.contains(intRange.getLast());
-    }
-
-    private final boolean lowerCaseContains(String str, String str2) {
-        Locale locale = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
-        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
-        String lowerCase = str.toLowerCase(locale);
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        Locale locale2 = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
-        Objects.requireNonNull(str2, "null cannot be cast to non-null type java.lang.String");
-        String lowerCase2 = str2.toLowerCase(locale2);
-        C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
-        return C12106w.contains$default((CharSequence) lowerCase, (CharSequence) lowerCase2, false, 2, (Object) null);
     }
 
     public final Map<LeadingIdentifier, List<Autocompletable>> filterAutocompletablesForInputContext(InputSelectionModel model) {
@@ -352,6 +327,13 @@ public final class AutocompleteModelUtils {
         return arrayList2;
     }
 
+    public static /* synthetic */ ApplicationCommandData getApplicationSendData$default(AutocompleteModelUtils autocompleteModelUtils, AutocompleteInputSelectionModel autocompleteInputSelectionModel, ApplicationCommandOption applicationCommandOption, List list, List list2, Map map, int i, Object obj) {
+        if ((i & 2) != 0) {
+            applicationCommandOption = null;
+        }
+        return autocompleteModelUtils.getApplicationSendData(autocompleteInputSelectionModel, applicationCommandOption, list, list2, map);
+    }
+
     public final ApplicationCommandData getApplicationSendData(AutocompleteInputSelectionModel inputSelectionModel, ApplicationCommandOption focusedOption, List<Application> applications, List<? extends ApplicationCommand> queryCommands, Map<ApplicationCommandOption, ? extends Attachment<?>> attachments) {
         boolean z2;
         ApplicationCommandValue applicationCommandValue;
@@ -582,6 +564,24 @@ public final class AutocompleteModelUtils {
             lowerCase = null;
         }
         return C12238m.areEqual(lowerCase, "true") || C12238m.areEqual(lowerCase, "false");
+    }
+
+    private final boolean isSubRangeOf(IntRange intRange, IntRange intRange2) {
+        return !intRange.equals(intRange2) && intRange2.contains(intRange.getFirst()) && intRange2.contains(intRange.getLast());
+    }
+
+    private final boolean lowerCaseContains(String str, String str2) {
+        Locale locale = Locale.getDefault();
+        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
+        String lowerCase = str.toLowerCase(locale);
+        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        Locale locale2 = Locale.getDefault();
+        C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
+        Objects.requireNonNull(str2, "null cannot be cast to non-null type java.lang.String");
+        String lowerCase2 = str2.toLowerCase(locale2);
+        C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
+        return C12106w.contains$default((CharSequence) lowerCase, (CharSequence) lowerCase2, false, 2, (Object) null);
     }
 
     public final ChatInputMentionsMap mapInputToMentions(String input, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> autocompletables, Map<IntRange, ? extends Autocompletable> currentInputMentionMap, boolean isCommand) {

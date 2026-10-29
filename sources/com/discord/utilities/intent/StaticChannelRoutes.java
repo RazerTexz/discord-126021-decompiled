@@ -19,25 +19,15 @@ import p507d0.p592z.p594d.C12238m;
 public enum StaticChannelRoutes {
     ROLE_SUBSCRIPTIONS("role-subscriptions");
 
-    private final String route;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final String route;
     private static final Lazy routeToName$delegate = C12083g.lazy(StaticChannelRoutes$Companion$routeToName$2.INSTANCE);
 
     /* JADX INFO: compiled from: StaticChannelRoutes.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final StaticChannelRoutes fromRoute(String route) {
-            return getRouteToName().get(route);
-        }
-
-        private final Map<String, StaticChannelRoutes> getRouteToName() {
-            Lazy lazy = StaticChannelRoutes.routeToName$delegate;
-            Companion companion = StaticChannelRoutes.INSTANCE;
-            return (Map) lazy.getValue();
         }
 
         public final WithGuild extractStaticRoute(Uri uri) {
@@ -58,13 +48,23 @@ public enum StaticChannelRoutes {
             return null;
         }
 
+        private final StaticChannelRoutes fromRoute(String route) {
+            return getRouteToName().get(route);
+        }
+
+        private final Map<String, StaticChannelRoutes> getRouteToName() {
+            Lazy lazy = StaticChannelRoutes.routeToName$delegate;
+            Companion companion = StaticChannelRoutes.INSTANCE;
+            return (Map) lazy.getValue();
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: StaticChannelRoutes.kt */
-    public static final /* data */ class WithGuild {
+    public final /* data */ class WithGuild {
         private final long guildId;
         private final StaticChannelRoutes route;
 
@@ -84,16 +84,6 @@ public enum StaticChannelRoutes {
             return withGuild.copy(staticChannelRoutes, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StaticChannelRoutes getRoute() {
-            return this.route;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final WithGuild copy(StaticChannelRoutes route, long guildId) {
             C12238m.checkNotNullParameter(route, "route");
             return new WithGuild(route, guildId);
@@ -110,8 +100,18 @@ public enum StaticChannelRoutes {
             return C12238m.areEqual(this.route, withGuild.route) && this.guildId == withGuild.guildId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StaticChannelRoutes getRoute() {
+            return this.route;
         }
 
         public final StaticChannelRoutes getRoute() {

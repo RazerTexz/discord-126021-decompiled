@@ -25,7 +25,7 @@ public final class UserProfileStageActionsView extends LinearLayout {
     private final UserProfileStageActionsViewBinding binding;
 
     /* JADX INFO: compiled from: UserProfileStageActionsView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canMuteMembers;
         private final Channel channel;
         private final boolean isInvitingToSpeak;
@@ -46,52 +46,6 @@ public final class UserProfileStageActionsView extends LinearLayout {
             this.isInvitingToSpeak = z6;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsMe() {
-            return this.isMe;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3-twRsX-0, reason: not valid java name and from getter */
-        public final StageRoles getUserStageRole() {
-            return this.userStageRole;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StageRequestToSpeakState getUserRequestToSpeakState() {
-            return this.userRequestToSpeakState;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getUserInSameVoiceChannel() {
-            return this.userInSameVoiceChannel;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanMuteMembers() {
-            return this.canMuteMembers;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsUpdatingSuppressed() {
-            return this.isUpdatingSuppressed;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getIsInvitingToSpeak() {
-            return this.isInvitingToSpeak;
-        }
-
-        /* JADX INFO: renamed from: copy-am1GJgw, reason: not valid java name */
-        public final ViewState m11430copyam1GJgw(boolean isMe, Channel channel, StageRoles userStageRole, StageRequestToSpeakState userRequestToSpeakState, boolean userInSameVoiceChannel, boolean canMuteMembers, boolean isUpdatingSuppressed, boolean isInvitingToSpeak) {
-            C12238m.checkNotNullParameter(userRequestToSpeakState, "userRequestToSpeakState");
-            return new ViewState(isMe, channel, userStageRole, userRequestToSpeakState, userInSameVoiceChannel, canMuteMembers, isUpdatingSuppressed, isInvitingToSpeak);
-        }
-
         public boolean equals(Object other) {
             if (this == other) {
                 return true;
@@ -103,24 +57,59 @@ public final class UserProfileStageActionsView extends LinearLayout {
             return this.isMe == viewState.isMe && C12238m.areEqual(this.channel, viewState.channel) && C12238m.areEqual(this.userStageRole, viewState.userStageRole) && C12238m.areEqual(this.userRequestToSpeakState, viewState.userRequestToSpeakState) && this.userInSameVoiceChannel == viewState.userInSameVoiceChannel && this.canMuteMembers == viewState.canMuteMembers && this.isUpdatingSuppressed == viewState.isUpdatingSuppressed && this.isInvitingToSpeak == viewState.isInvitingToSpeak;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getCanMuteMembers() {
             return this.canMuteMembers;
+        }
+
+        public final boolean getCanMuteMembers() {
+            return this.canMuteMembers;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getIsInvitingToSpeak() {
+            return this.isInvitingToSpeak;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsUpdatingSuppressed() {
+            return this.isUpdatingSuppressed;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getUserInSameVoiceChannel() {
             return this.userInSameVoiceChannel;
+        }
+
+        public final boolean getUserInSameVoiceChannel() {
+            return this.userInSameVoiceChannel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final StageRequestToSpeakState getUserRequestToSpeakState() {
+            return this.userRequestToSpeakState;
         }
 
         public final StageRequestToSpeakState getUserRequestToSpeakState() {
             return this.userRequestToSpeakState;
         }
 
-        /* JADX INFO: renamed from: getUserStageRole-twRsX-0, reason: not valid java name */
-        public final StageRoles m11431getUserStageRoletwRsX0() {
+        /* JADX INFO: renamed from: component3-twRsX-0, reason: not valid java name and from getter */
+        public final StageRoles getUserStageRole() {
             return this.userStageRole;
         }
 
@@ -189,6 +178,17 @@ public final class UserProfileStageActionsView extends LinearLayout {
 
         public final boolean isUpdatingSuppressed() {
             return this.isUpdatingSuppressed;
+        }
+
+        /* JADX INFO: renamed from: copy-am1GJgw, reason: not valid java name */
+        public final ViewState m11430copyam1GJgw(boolean isMe, Channel channel, StageRoles userStageRole, StageRequestToSpeakState userRequestToSpeakState, boolean userInSameVoiceChannel, boolean canMuteMembers, boolean isUpdatingSuppressed, boolean isInvitingToSpeak) {
+            C12238m.checkNotNullParameter(userRequestToSpeakState, "userRequestToSpeakState");
+            return new ViewState(isMe, channel, userStageRole, userRequestToSpeakState, userInSameVoiceChannel, canMuteMembers, isUpdatingSuppressed, isInvitingToSpeak);
+        }
+
+        /* JADX INFO: renamed from: getUserStageRole-twRsX-0, reason: not valid java name */
+        public final StageRoles m11431getUserStageRoletwRsX0() {
+            return this.userStageRole;
         }
 
         public String toString() {

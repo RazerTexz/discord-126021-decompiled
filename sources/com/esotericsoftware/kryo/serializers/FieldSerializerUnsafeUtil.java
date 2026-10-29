@@ -8,7 +8,7 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 public interface FieldSerializerUnsafeUtil {
 
-    public static class Factory {
+    public class Factory {
         public static Constructor<FieldSerializerUnsafeUtil> fieldSerializerUnsafeUtilConstructor;
 
         static {

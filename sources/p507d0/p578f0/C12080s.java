@@ -19,7 +19,7 @@ public final class C12080s<T> implements Sequence<T>, InterfaceC12066e<T> {
 
     /* JADX INFO: renamed from: d0.f0.s$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a implements Iterator<T>, InterfaceC12228a {
+    public final class a implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public int f25124j;

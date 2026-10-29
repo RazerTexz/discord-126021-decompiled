@@ -21,7 +21,6 @@ public final class C1379r<T, R> implements InterfaceC12589b<Channel, Observable<
 
     @Override // p637j0.p641k.InterfaceC12589b
     public Observable<? extends OverlayMenuView.C7085a> call(Channel channel) {
-        Object c1385u;
         Channel channel2 = channel;
         if (channel2 == null) {
             return new C12721k(null);
@@ -32,11 +31,10 @@ public final class C1379r<T, R> implements InterfaceC12589b<Channel, Observable<
         Observable<CallModel> observable = CallModel.INSTANCE.get(channel2.getId());
         Observable<RtcConnection.Quality> quality = companion.getRtcConnection().getQuality();
         C1370q c1370q = C1370q.f2065j;
+        Object c1385u = c1370q;
         if (c1370q != null) {
-            c1385u = c1370q;
             c1385u = new C1385u(c1370q);
         }
-        c1385u = c1370q;
         return Observable.m11073h(observableObservePermissionsForChannel, observableObserveGuild, observable, quality, (Func4) c1385u);
     }
 }

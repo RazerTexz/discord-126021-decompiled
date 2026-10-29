@@ -19,7 +19,7 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$b */
     /* JADX INFO: compiled from: GeneratedMessageLite.java */
-    public static abstract class b<MessageType extends AbstractC11727g, BuilderType extends b> extends AbstractC11721a.a<BuilderType> {
+    public abstract class b<MessageType extends AbstractC11727g, BuilderType extends b> extends AbstractC11721a.a<BuilderType> {
 
         /* JADX INFO: renamed from: j */
         public AbstractC11723c f24125j = AbstractC11723c.f24100j;
@@ -42,29 +42,9 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
         }
     }
 
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$c */
-    /* JADX INFO: compiled from: GeneratedMessageLite.java */
-    public static abstract class c<MessageType extends d<MessageType>, BuilderType extends c<MessageType, BuilderType>> extends b<MessageType, BuilderType> implements InterfaceC11735o {
-
-        /* JADX INFO: renamed from: k */
-        public C11726f<e> f24126k = C11726f.emptySet();
-
-        /* JADX INFO: renamed from: l */
-        public boolean f24127l;
-
-        /* JADX INFO: renamed from: b */
-        public final void m9846b(MessageType messagetype) {
-            if (!this.f24127l) {
-                this.f24126k = this.f24126k.m11468clone();
-                this.f24127l = true;
-            }
-            this.f24126k.mergeFrom(((d) messagetype).extensions);
-        }
-    }
-
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$e */
     /* JADX INFO: compiled from: GeneratedMessageLite.java */
-    public static final class e implements C11726f.a<e> {
+    public final class e implements C11726f.a<e> {
 
         /* JADX INFO: renamed from: j */
         public final C11728h.b<?> f24132j;
@@ -131,7 +111,7 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$f */
     /* JADX INFO: compiled from: GeneratedMessageLite.java */
-    public static class f<ContainingType extends InterfaceC11734n, Type> {
+    public class f<ContainingType extends InterfaceC11734n, Type> {
 
         /* JADX INFO: renamed from: a */
         public final ContainingType f24137a;
@@ -174,6 +154,18 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
             }
         }
 
+        public ContainingType getContainingTypeDefaultInstance() {
+            return this.f24137a;
+        }
+
+        public InterfaceC11734n getMessageDefaultInstance() {
+            return this.f24139c;
+        }
+
+        public int getNumber() {
+            return this.f24140d.getNumber();
+        }
+
         /* JADX INFO: renamed from: a */
         public Object m9854a(Object obj) {
             if (this.f24140d.getLiteJavaType() != C11743w.c.ENUM) {
@@ -199,18 +191,6 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
         public Object m9855b(Object obj) {
             return this.f24140d.getLiteJavaType() == C11743w.c.ENUM ? Integer.valueOf(((C11728h.a) obj).getNumber()) : obj;
         }
-
-        public ContainingType getContainingTypeDefaultInstance() {
-            return this.f24137a;
-        }
-
-        public InterfaceC11734n getMessageDefaultInstance() {
-            return this.f24139c;
-        }
-
-        public int getNumber() {
-            return this.f24140d.getNumber();
-        }
     }
 
     public AbstractC11727g() {
@@ -224,9 +204,29 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
         return new f<>(containingtype, type, interfaceC11734n, new e(bVar, i, bVar2, false, false), cls);
     }
 
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$c */
+    /* JADX INFO: compiled from: GeneratedMessageLite.java */
+    public abstract class c<MessageType extends d<MessageType>, BuilderType extends c<MessageType, BuilderType>> extends b<MessageType, BuilderType> implements InterfaceC11735o {
+
+        /* JADX INFO: renamed from: l */
+        public boolean f24127l;
+
+        /* JADX INFO: renamed from: k */
+        public C11726f<e> f24126k = C11726f.emptySet();
+
+        /* JADX INFO: renamed from: b */
+        public final void m9846b(MessageType messagetype) {
+            if (!this.f24127l) {
+                this.f24126k = this.f24126k.m11468clone();
+                this.f24127l = true;
+            }
+            this.f24126k.mergeFrom(((d) messagetype).extensions);
+        }
+    }
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$d */
     /* JADX INFO: compiled from: GeneratedMessageLite.java */
-    public static abstract class d<MessageType extends d<MessageType>> extends AbstractC11727g implements InterfaceC11735o {
+    public abstract class d<MessageType extends d<MessageType>> extends AbstractC11727g implements InterfaceC11735o {
         private final C11726f<e> extensions;
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.i.g$d$a */
@@ -274,6 +274,39 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
 
         public d() {
             this.extensions = C11726f.newFieldSet();
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r1v5, types: [Type, java.util.ArrayList] */
+        public final <Type> Type getExtension(f<MessageType, Type> fVar) {
+            m9853g(fVar);
+            Type type = (Type) this.extensions.getField(fVar.f24140d);
+            if (type == null) {
+                return fVar.f24138b;
+            }
+            if (!fVar.f24140d.isRepeated()) {
+                return (Type) fVar.m9854a(type);
+            }
+            if (fVar.f24140d.getLiteJavaType() != C11743w.c.ENUM) {
+                return type;
+            }
+            ?? r1 = (Type) new ArrayList();
+            Iterator it = ((List) type).iterator();
+            while (it.hasNext()) {
+                r1.add(fVar.m9854a(it.next()));
+            }
+            return r1;
+        }
+
+        public final <Type> int getExtensionCount(f<MessageType, List<Type>> fVar) {
+            m9853g(fVar);
+            return this.extensions.getRepeatedFieldCount(fVar.f24140d);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public final <Type> boolean hasExtension(f<MessageType, Type> fVar) {
+            m9853g(fVar);
+            return this.extensions.hasField(fVar.f24140d);
         }
 
         /* JADX INFO: renamed from: b */
@@ -383,39 +416,6 @@ public abstract class AbstractC11727g extends AbstractC11721a implements Seriali
             if (fVar.getContainingTypeDefaultInstance() != getDefaultInstanceForType()) {
                 throw new IllegalArgumentException("This extension is for a different message type.  Please make sure that you are not suppressing any generics type warnings.");
             }
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r1v5, types: [Type, java.util.ArrayList] */
-        public final <Type> Type getExtension(f<MessageType, Type> fVar) {
-            m9853g(fVar);
-            Type type = (Type) this.extensions.getField(fVar.f24140d);
-            if (type == null) {
-                return fVar.f24138b;
-            }
-            if (!fVar.f24140d.isRepeated()) {
-                return (Type) fVar.m9854a(type);
-            }
-            if (fVar.f24140d.getLiteJavaType() != C11743w.c.ENUM) {
-                return type;
-            }
-            ?? r1 = (Type) new ArrayList();
-            Iterator it = ((List) type).iterator();
-            while (it.hasNext()) {
-                r1.add(fVar.m9854a(it.next()));
-            }
-            return r1;
-        }
-
-        public final <Type> int getExtensionCount(f<MessageType, List<Type>> fVar) {
-            m9853g(fVar);
-            return this.extensions.getRepeatedFieldCount(fVar.f24140d);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public final <Type> boolean hasExtension(f<MessageType, Type> fVar) {
-            m9853g(fVar);
-            return this.extensions.hasField(fVar.f24140d);
         }
 
         public d(c<MessageType, ?> cVar) {

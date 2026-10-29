@@ -47,6 +47,12 @@ public final class ViewGuildInviteBottomSheetBinding implements ViewBinding {
         this.f15457f = checkedSetting;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15452a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewGuildInviteBottomSheetBinding m8395a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -73,11 +79,5 @@ public final class ViewGuildInviteBottomSheetBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15452a;
     }
 }

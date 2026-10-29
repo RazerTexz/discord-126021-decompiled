@@ -19,6 +19,17 @@ public final class ApplicationCommandFrecencyTracker extends FrecencyTracker<Str
         super(i2, i);
     }
 
+    @Override // com.discord.utilities.frecency.FrecencyTracker
+    public int computeScore(List<Long> list, long j) {
+        C12238m.checkNotNullParameter(list, "$this$computeScore");
+        Iterator<T> it = list.iterator();
+        int daysWeight = 0;
+        while (it.hasNext()) {
+            daysWeight += getDaysWeight(getDaysDiff(((Number) it.next()).longValue(), j));
+        }
+        return daysWeight;
+    }
+
     private final int getDaysDiff(long earlierTime, long laterTime) {
         return (int) ((laterTime - earlierTime) / 86400000);
     }
@@ -37,17 +48,6 @@ public final class ApplicationCommandFrecencyTracker extends FrecencyTracker<Str
             return 30;
         }
         return daysDiff <= 80 ? 10 : 0;
-    }
-
-    @Override // com.discord.utilities.frecency.FrecencyTracker
-    public int computeScore(List<Long> list, long j) {
-        C12238m.checkNotNullParameter(list, "$this$computeScore");
-        Iterator<T> it = list.iterator();
-        int daysWeight = 0;
-        while (it.hasNext()) {
-            daysWeight += getDaysWeight(getDaysDiff(((Number) it.next()).longValue(), j));
-        }
-        return daysWeight;
     }
 
     public /* synthetic */ ApplicationCommandFrecencyTracker(int i, int i2, int i3, DefaultConstructorMarker defaultConstructorMarker) {

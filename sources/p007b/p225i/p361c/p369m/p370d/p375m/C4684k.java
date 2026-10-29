@@ -23,7 +23,7 @@ public final class C4684k extends AbstractC4695v.d.AbstractC13233d.a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.k$b */
     /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Application.java */
-    public static final class b extends AbstractC4695v.d.AbstractC13233d.a.AbstractC13234a {
+    public final class b extends AbstractC4695v.d.AbstractC13233d.a.AbstractC13234a {
 
         /* JADX INFO: renamed from: a */
         public AbstractC4695v.d.AbstractC13233d.a.b f12596a;
@@ -68,6 +68,32 @@ public final class C4684k extends AbstractC4695v.d.AbstractC13233d.a {
         this.f12595d = i;
     }
 
+    public boolean equals(Object obj) {
+        C4696w<AbstractC4695v.b> c4696w;
+        Boolean bool;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a)) {
+            return false;
+        }
+        AbstractC4695v.d.AbstractC13233d.a aVar = (AbstractC4695v.d.AbstractC13233d.a) obj;
+        return this.f12592a.equals(aVar.mo6570c()) && ((c4696w = this.f12593b) != null ? c4696w.equals(aVar.mo6569b()) : aVar.mo6569b() == null) && ((bool = this.f12594c) != null ? bool.equals(aVar.mo6568a()) : aVar.mo6568a() == null) && this.f12595d == aVar.mo6571d();
+    }
+
+    public int hashCode() {
+        int iHashCode = (this.f12592a.hashCode() ^ 1000003) * 1000003;
+        C4696w<AbstractC4695v.b> c4696w = this.f12593b;
+        int iHashCode2 = (iHashCode ^ (c4696w == null ? 0 : c4696w.hashCode())) * 1000003;
+        Boolean bool = this.f12594c;
+        return ((iHashCode2 ^ (bool != null ? bool.hashCode() : 0)) * 1000003) ^ this.f12595d;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public AbstractC4695v.d.AbstractC13233d.a.AbstractC13234a m6572e() {
+        return new b(this, null);
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a
     @Nullable
     /* JADX INFO: renamed from: a */
@@ -93,32 +119,6 @@ public final class C4684k extends AbstractC4695v.d.AbstractC13233d.a {
     /* JADX INFO: renamed from: d */
     public int mo6571d() {
         return this.f12595d;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public AbstractC4695v.d.AbstractC13233d.a.AbstractC13234a m6572e() {
-        return new b(this, null);
-    }
-
-    public boolean equals(Object obj) {
-        C4696w<AbstractC4695v.b> c4696w;
-        Boolean bool;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a)) {
-            return false;
-        }
-        AbstractC4695v.d.AbstractC13233d.a aVar = (AbstractC4695v.d.AbstractC13233d.a) obj;
-        return this.f12592a.equals(aVar.mo6570c()) && ((c4696w = this.f12593b) != null ? c4696w.equals(aVar.mo6569b()) : aVar.mo6569b() == null) && ((bool = this.f12594c) != null ? bool.equals(aVar.mo6568a()) : aVar.mo6568a() == null) && this.f12595d == aVar.mo6571d();
-    }
-
-    public int hashCode() {
-        int iHashCode = (this.f12592a.hashCode() ^ 1000003) * 1000003;
-        C4696w<AbstractC4695v.b> c4696w = this.f12593b;
-        int iHashCode2 = (iHashCode ^ (c4696w == null ? 0 : c4696w.hashCode())) * 1000003;
-        Boolean bool = this.f12594c;
-        return ((iHashCode2 ^ (bool != null ? bool.hashCode() : 0)) * 1000003) ^ this.f12595d;
     }
 
     public String toString() {

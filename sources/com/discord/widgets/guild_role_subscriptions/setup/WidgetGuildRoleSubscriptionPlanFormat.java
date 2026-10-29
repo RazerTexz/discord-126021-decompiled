@@ -45,8 +45,28 @@ public final class WidgetGuildRoleSubscriptionPlanFormat extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanFormat$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanFormat.kt */
-    public static final class Companion {
+    public final class C84611 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
+        public C84611() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "it");
+            WidgetGuildRoleSubscriptionPlanFormat.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanFormat.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -65,26 +85,6 @@ public final class WidgetGuildRoleSubscriptionPlanFormat extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanFormat$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanFormat.kt */
-    public static final class C84611 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
-        public C84611() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "it");
-            WidgetGuildRoleSubscriptionPlanFormat.this.configureUI(viewState);
         }
     }
 

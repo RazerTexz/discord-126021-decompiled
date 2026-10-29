@@ -19,15 +19,15 @@ public abstract class AbstractC11216c {
 
     /* JADX INFO: renamed from: d0.c0.c$a */
     /* JADX INFO: compiled from: Random.kt */
-    public static final class a extends AbstractC11216c implements Serializable {
+    public final class a extends AbstractC11216c implements Serializable {
 
         /* JADX INFO: renamed from: d0.c0.c$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: Random.kt */
-        public static final class C13299a implements Serializable {
+        public final class C13299a implements Serializable {
+            private static final long serialVersionUID = 0;
 
             /* JADX INFO: renamed from: j */
             public static final C13299a f22273j = new C13299a();
-            private static final long serialVersionUID = 0;
 
             private final Object readResolve() {
                 return AbstractC11216c.f22272k;
@@ -35,10 +35,6 @@ public abstract class AbstractC11216c {
         }
 
         public a() {
-        }
-
-        private final Object writeReplace() {
-            return C13299a.f22273j;
         }
 
         @Override // p507d0.p510c0.AbstractC11216c
@@ -60,6 +56,10 @@ public abstract class AbstractC11216c {
         @Override // p507d0.p510c0.AbstractC11216c
         public long nextLong() {
             return AbstractC11216c.f22271j.nextLong();
+        }
+
+        private final Object writeReplace() {
+            return C13299a.f22273j;
         }
 
         public a(DefaultConstructorMarker defaultConstructorMarker) {

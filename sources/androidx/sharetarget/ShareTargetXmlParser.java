@@ -26,13 +26,13 @@ public class ShareTargetXmlParser {
     private static final String ATTR_PORT = "port";
     private static final String ATTR_SCHEME = "scheme";
     private static final String ATTR_TARGET_CLASS = "targetClass";
-    private static final Object GET_INSTANCE_LOCK = new Object();
     private static final String META_DATA_APP_SHORTCUTS = "android.app.shortcuts";
     public static final String TAG = "ShareTargetXmlParser";
     private static final String TAG_CATEGORY = "category";
     private static final String TAG_DATA = "data";
     private static final String TAG_SHARE_TARGET = "share-target";
     private static volatile ArrayList<ShareTargetCompat> sShareTargets;
+    private static final Object GET_INSTANCE_LOCK = new Object();
 
     private ShareTargetXmlParser() {
     }

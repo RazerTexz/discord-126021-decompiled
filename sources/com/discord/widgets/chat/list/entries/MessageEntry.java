@@ -35,7 +35,7 @@ public final /* data */ class MessageEntry extends ChatListEntry {
     private final int type;
 
     /* JADX INFO: compiled from: MessageEntry.kt */
-    public static final /* data */ class CtaData {
+    public final /* data */ class CtaData {
         private final Channel channel;
         private final BaseSticker sticker;
 
@@ -56,16 +56,6 @@ public final /* data */ class MessageEntry extends ChatListEntry {
             return ctaData.copy(baseSticker, channel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final BaseSticker getSticker() {
-            return this.sticker;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
         public final CtaData copy(BaseSticker sticker, Channel channel) {
             C12238m.checkNotNullParameter(sticker, "sticker");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -83,8 +73,18 @@ public final /* data */ class MessageEntry extends ChatListEntry {
             return C12238m.areEqual(this.sticker, ctaData.sticker) && C12238m.areEqual(this.channel, ctaData.channel);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final BaseSticker getSticker() {
+            return this.sticker;
         }
 
         public final BaseSticker getSticker() {
@@ -109,7 +109,7 @@ public final /* data */ class MessageEntry extends ChatListEntry {
     }
 
     /* JADX INFO: compiled from: MessageEntry.kt */
-    public static final /* data */ class ReplyData {
+    public final /* data */ class ReplyData {
         private final boolean isRepliedUserBlocked;
         private final MessageEntry messageEntry;
         private final StoreMessageReplies.MessageState messageState;
@@ -134,21 +134,6 @@ public final /* data */ class MessageEntry extends ChatListEntry {
             return replyData.copy(messageState, messageEntry, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreMessageReplies.MessageState getMessageState() {
-            return this.messageState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final MessageEntry getMessageEntry() {
-            return this.messageEntry;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsRepliedUserBlocked() {
-            return this.isRepliedUserBlocked;
-        }
-
         public final ReplyData copy(StoreMessageReplies.MessageState messageState, MessageEntry messageEntry, boolean isRepliedUserBlocked) {
             C12238m.checkNotNullParameter(messageState, "messageState");
             return new ReplyData(messageState, messageEntry, isRepliedUserBlocked);
@@ -165,8 +150,23 @@ public final /* data */ class MessageEntry extends ChatListEntry {
             return C12238m.areEqual(this.messageState, replyData.messageState) && C12238m.areEqual(this.messageEntry, replyData.messageEntry) && this.isRepliedUserBlocked == replyData.isRepliedUserBlocked;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsRepliedUserBlocked() {
+            return this.isRepliedUserBlocked;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final MessageEntry getMessageEntry() {
             return this.messageEntry;
+        }
+
+        public final MessageEntry getMessageEntry() {
+            return this.messageEntry;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreMessageReplies.MessageState getMessageState() {
+            return this.messageState;
         }
 
         public final StoreMessageReplies.MessageState getMessageState() {
@@ -213,82 +213,12 @@ public final /* data */ class MessageEntry extends ChatListEntry {
         this(message, state, guildMember, (i & 8) != 0 ? null : guildMember2, map, map2, (i & 64) != 0 ? false : z2, z3, (i & 256) != 0 ? true : z4, (i & 512) != 0 ? null : replyData, (i & 1024) != 0 ? null : guildMember3, (i & 2048) != 0 ? false : z5, (i & 4096) != 0 ? false : z6, (i & 8192) != 0 ? false : z7, (i & 16384) != 0 ? null : ctaData, l);
     }
 
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    private final boolean getIsMinimal() {
-        return this.isMinimal;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    private final boolean getIsExpandedBlocked() {
-        return this.isExpandedBlocked;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final ReplyData getReplyData() {
-        return this.replyData;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final GuildMember getInteractionAuthor() {
-        return this.interactionAuthor;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final boolean getIsThreadStarterMessage() {
-        return this.isThreadStarterMessage;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final boolean getIsGuildForumPostFirstMessage() {
-        return this.isGuildForumPostFirstMessage;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final boolean getIsGuildForumPostAuthor() {
-        return this.isGuildForumPostAuthor;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final CtaData getCtaData() {
-        return this.ctaData;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final Long getPermissionsForChannel() {
-        return this.permissionsForChannel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final StoreMessageState.State getMessageState() {
-        return this.messageState;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final GuildMember getAuthor() {
-        return this.author;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final GuildMember getFirstMentionedUser() {
-        return this.firstMentionedUser;
-    }
-
     public final Map<Long, GuildRole> component5() {
         return this.roles;
     }
 
     public final Map<Long, String> component6() {
         return this.nickOrUsernames;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getAnimateEmojis() {
-        return this.animateEmojis;
     }
 
     public final MessageEntry copy(Message message, StoreMessageState.State messageState, GuildMember author, GuildMember firstMentionedUser, Map<Long, GuildRole> roles, Map<Long, String> nickOrUsernames, boolean isMinimal, boolean isExpandedBlocked, boolean animateEmojis, ReplyData replyData, GuildMember interactionAuthor, boolean isThreadStarterMessage, boolean isGuildForumPostFirstMessage, boolean isGuildForumPostAuthor, CtaData ctaData, Long permissionsForChannel) {
@@ -308,24 +238,74 @@ public final /* data */ class MessageEntry extends ChatListEntry {
         return C12238m.areEqual(this.message, messageEntry.message) && C12238m.areEqual(this.messageState, messageEntry.messageState) && C12238m.areEqual(this.author, messageEntry.author) && C12238m.areEqual(this.firstMentionedUser, messageEntry.firstMentionedUser) && C12238m.areEqual(this.roles, messageEntry.roles) && C12238m.areEqual(this.nickOrUsernames, messageEntry.nickOrUsernames) && this.isMinimal == messageEntry.isMinimal && this.isExpandedBlocked == messageEntry.isExpandedBlocked && this.animateEmojis == messageEntry.animateEmojis && C12238m.areEqual(this.replyData, messageEntry.replyData) && C12238m.areEqual(this.interactionAuthor, messageEntry.interactionAuthor) && this.isThreadStarterMessage == messageEntry.isThreadStarterMessage && this.isGuildForumPostFirstMessage == messageEntry.isGuildForumPostFirstMessage && this.isGuildForumPostAuthor == messageEntry.isGuildForumPostAuthor && C12238m.areEqual(this.ctaData, messageEntry.ctaData) && C12238m.areEqual(this.permissionsForChannel, messageEntry.permissionsForChannel);
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final boolean getAnimateEmojis() {
         return this.animateEmojis;
+    }
+
+    public final boolean getAnimateEmojis() {
+        return this.animateEmojis;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final GuildMember getAuthor() {
+        return this.author;
     }
 
     public final GuildMember getAuthor() {
         return this.author;
     }
 
+    /* JADX INFO: renamed from: component15, reason: from getter */
     public final CtaData getCtaData() {
         return this.ctaData;
+    }
+
+    public final CtaData getCtaData() {
+        return this.ctaData;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final GuildMember getFirstMentionedUser() {
+        return this.firstMentionedUser;
     }
 
     public final GuildMember getFirstMentionedUser() {
         return this.firstMentionedUser;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final GuildMember getInteractionAuthor() {
         return this.interactionAuthor;
+    }
+
+    public final GuildMember getInteractionAuthor() {
+        return this.interactionAuthor;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    private final boolean getIsExpandedBlocked() {
+        return this.isExpandedBlocked;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
+    public final boolean getIsGuildForumPostAuthor() {
+        return this.isGuildForumPostAuthor;
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
+    public final boolean getIsGuildForumPostFirstMessage() {
+        return this.isGuildForumPostFirstMessage;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    private final boolean getIsMinimal() {
+        return this.isMinimal;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final boolean getIsThreadStarterMessage() {
+        return this.isThreadStarterMessage;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -333,8 +313,18 @@ public final /* data */ class MessageEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Message getMessage() {
         return this.message;
+    }
+
+    public final Message getMessage() {
+        return this.message;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final StoreMessageState.State getMessageState() {
+        return this.messageState;
     }
 
     public final StoreMessageState.State getMessageState() {
@@ -345,8 +335,18 @@ public final /* data */ class MessageEntry extends ChatListEntry {
         return this.nickOrUsernames;
     }
 
+    /* JADX INFO: renamed from: component16, reason: from getter */
     public final Long getPermissionsForChannel() {
         return this.permissionsForChannel;
+    }
+
+    public final Long getPermissionsForChannel() {
+        return this.permissionsForChannel;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final ReplyData getReplyData() {
+        return this.replyData;
     }
 
     public final ReplyData getReplyData() {

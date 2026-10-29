@@ -13,15 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1174a {
 
-    /* JADX INFO: renamed from: a */
-    public static Function1<? super Context, Locale> f1570a = a.f1572j;
-
     /* JADX INFO: renamed from: b */
     public static final C1174a f1571b = null;
 
+    /* JADX INFO: renamed from: a */
+    public static Function1<? super Context, Locale> f1570a = a.f1572j;
+
     /* JADX INFO: renamed from: b.a.o.a$a */
     /* JADX INFO: compiled from: LocaleProvider.kt */
-    public static final class a extends AbstractC12240o implements Function1<Context, Locale> {
+    public final class a extends AbstractC12240o implements Function1<Context, Locale> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1572j = new a();

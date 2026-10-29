@@ -52,14 +52,14 @@ public final class RxCoroutineUtilsKt {
     /* JADX INFO: renamed from: com.discord.utilities.rx.RxCoroutineUtilsKt$toFlow$2 */
     /* JADX INFO: compiled from: RxCoroutineUtils.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.rx.RxCoroutineUtilsKt$toFlow$2", m10085f = "RxCoroutineUtils.kt", m10086l = {47}, m10087m = "invokeSuspend")
-    public static final class C68982<T> extends AbstractC12194k implements Function2<ProducerScope<? super T>, Continuation<? super Unit>, Object> {
+    public final class C68982<T> extends AbstractC12194k implements Function2<ProducerScope<? super T>, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Observable $this_toFlow;
         private /* synthetic */ Object L$0;
         public int label;
 
         /* JADX INFO: renamed from: com.discord.utilities.rx.RxCoroutineUtilsKt$toFlow$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: RxCoroutineUtils.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Subscription $subscription;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -100,7 +100,7 @@ public final class RxCoroutineUtilsKt {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -222,7 +222,7 @@ public final class RxCoroutineUtilsKt {
         return awaitSingle(observableM11119z, continuation);
     }
 
-    public static final <T> Object awaitSingle(Observable<T> observable, Continuation<? super T> continuation) {
+    public static final <T> Object awaitSingle(Observable<T> observable, Continuation<? super T> continuation) throws Throwable {
         final C13126l c13126l = new C13126l(C12182b.intercepted(continuation), 1);
         c13126l.m11318A();
         c13126l.mo10902f(new RxCoroutineUtilsKt$awaitSingle$2$1(observable.m11092R().m11097W(new Action1<T>() { // from class: com.discord.utilities.rx.RxCoroutineUtilsKt$awaitSingle$2$subscription$1

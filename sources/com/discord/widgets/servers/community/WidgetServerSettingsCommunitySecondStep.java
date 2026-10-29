@@ -51,28 +51,13 @@ public final class WidgetServerSettingsCommunitySecondStep extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetServerSettingsCommunitySecondStep.class, new Intent());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunitySecondStep$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-    public static final class C93771 extends AbstractC12240o implements Function2<Long, String, Unit> {
+    public final class C93771 extends AbstractC12240o implements Function2<Long, String, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunitySecondStep$onViewBound$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
             public final /* synthetic */ Channel $channel;
             public final /* synthetic */ long $channelId;
 
@@ -108,11 +93,11 @@ public final class WidgetServerSettingsCommunitySecondStep extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunitySecondStep$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-    public static final class C93782 extends AbstractC12240o implements Function2<Long, String, Unit> {
+    public final class C93782 extends AbstractC12240o implements Function2<Long, String, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunitySecondStep$onViewBound$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
             public final /* synthetic */ Channel $channel;
             public final /* synthetic */ long $channelId;
 
@@ -148,7 +133,7 @@ public final class WidgetServerSettingsCommunitySecondStep extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunitySecondStep$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
-    public static final /* synthetic */ class C93811 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
+    public final /* synthetic */ class C93811 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
         public C93811(WidgetServerSettingsCommunitySecondStep widgetServerSettingsCommunitySecondStep) {
             super(1, widgetServerSettingsCommunitySecondStep, WidgetServerSettingsCommunitySecondStep.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded;)V", 0);
         }
@@ -163,6 +148,21 @@ public final class WidgetServerSettingsCommunitySecondStep extends AppFragment {
         public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
             C12238m.checkNotNullParameter(loaded, "p1");
             ((WidgetServerSettingsCommunitySecondStep) this.receiver).configureUI(loaded);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunitySecondStep.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetServerSettingsCommunitySecondStep.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

@@ -51,45 +51,6 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
         this.available = null;
     }
 
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public StickerFormatType getFormatType() {
-        return this.formatType;
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: b */
-    public String mo8228b() {
-        int iOrdinal = this.formatType.ordinal();
-        if (iOrdinal == 0) {
-            return "";
-        }
-        if (iOrdinal == 1 || iOrdinal == 2) {
-            return ".png";
-        }
-        if (iOrdinal == 3) {
-            return ".json";
-        }
-        throw new NoWhenBranchMatchedException();
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: c */
-    public StickerPartial mo8229c() {
-        return new StickerPartial(this.id, this.formatType, this.name);
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final Boolean getAvailable() {
-        return this.available;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -101,14 +62,31 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
         return this.id == sticker.id && C12238m.areEqual(this.packId, sticker.packId) && C12238m.areEqual(this.guildId, sticker.guildId) && C12238m.areEqual(this.name, sticker.name) && C12238m.areEqual(this.description, sticker.description) && C12238m.areEqual(this.formatType, sticker.formatType) && C12238m.areEqual(this.tags, sticker.tags) && C12238m.areEqual(this.type, sticker.type) && C12238m.areEqual(this.available, sticker.available);
     }
 
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final Boolean getAvailable() {
+        return this.available;
+    }
+
     /* JADX INFO: renamed from: f, reason: from getter */
     public final String getDescription() {
         return this.description;
     }
 
+    @Override // com.discord.api.sticker.BaseSticker
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public StickerFormatType getFormatType() {
+        return this.formatType;
+    }
+
     /* JADX INFO: renamed from: g, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public long getId() {
+        return this.id;
     }
 
     public final long getId() {
@@ -118,6 +96,21 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final Long getPackId() {
+        return this.packId;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final String getTags() {
+        return this.tags;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final StickerType getType() {
+        return this.type;
     }
 
     public int hashCode() {
@@ -141,25 +134,32 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
         return iHashCode7 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final Long getPackId() {
-        return this.packId;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final String getTags() {
-        return this.tags;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final StickerType getType() {
-        return this.type;
-    }
-
     /* JADX INFO: renamed from: l */
     public final boolean m8241l() {
         StickerFormatType stickerFormatType = this.formatType;
         return stickerFormatType == StickerFormatType.APNG || stickerFormatType == StickerFormatType.LOTTIE;
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    /* JADX INFO: renamed from: b */
+    public String mo8228b() {
+        int iOrdinal = this.formatType.ordinal();
+        if (iOrdinal == 0) {
+            return "";
+        }
+        if (iOrdinal == 1 || iOrdinal == 2) {
+            return ".png";
+        }
+        if (iOrdinal == 3) {
+            return ".json";
+        }
+        throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    /* JADX INFO: renamed from: c */
+    public StickerPartial mo8229c() {
+        return new StickerPartial(this.id, this.formatType, this.name);
     }
 
     public String toString() {

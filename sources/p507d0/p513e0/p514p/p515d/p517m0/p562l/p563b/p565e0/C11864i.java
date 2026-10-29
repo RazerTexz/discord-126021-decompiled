@@ -72,6 +72,19 @@ public class C11864i extends AbstractC11863h {
         this.f24598h = interfaceC11331e0.getFqName();
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        recordLookup(c11716e, interfaceC11480b);
+        return super.getContributedClassifier(c11716e, interfaceC11480b);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public /* bridge */ /* synthetic */ Collection getContributedDescriptors(C11765d c11765d, Function1 function1) {
+        return getContributedDescriptors(c11765d, (Function1<? super C11716e, Boolean>) function1);
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h
     /* JADX INFO: renamed from: a */
     public void mo9955a(Collection<InterfaceC11450m> collection, Function1<? super C11716e, Boolean> function1) {
@@ -96,19 +109,6 @@ public class C11864i extends AbstractC11863h {
     /* JADX INFO: renamed from: g */
     public Set<C11716e> mo9960g() {
         return C12148n0.emptySet();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        recordLookup(c11716e, interfaceC11480b);
-        return super.getContributedClassifier(c11716e, interfaceC11480b);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public /* bridge */ /* synthetic */ Collection getContributedDescriptors(C11765d c11765d, Function1 function1) {
-        return getContributedDescriptors(c11765d, (Function1<? super C11716e, Boolean>) function1);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h

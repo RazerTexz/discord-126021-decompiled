@@ -26,16 +26,6 @@ public final /* data */ class CommandOptionAutocompleteQuery {
         return commandOptionAutocompleteQuery.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getQueryString() {
-        return this.queryString;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getCommandOptionName() {
-        return this.commandOptionName;
-    }
-
     public final CommandOptionAutocompleteQuery copy(String queryString, String commandOptionName) {
         C12238m.checkNotNullParameter(queryString, "queryString");
         C12238m.checkNotNullParameter(commandOptionName, "commandOptionName");
@@ -53,8 +43,18 @@ public final /* data */ class CommandOptionAutocompleteQuery {
         return C12238m.areEqual(this.queryString, commandOptionAutocompleteQuery.queryString) && C12238m.areEqual(this.commandOptionName, commandOptionAutocompleteQuery.commandOptionName);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getCommandOptionName() {
         return this.commandOptionName;
+    }
+
+    public final String getCommandOptionName() {
+        return this.commandOptionName;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getQueryString() {
+        return this.queryString;
     }
 
     public final String getQueryString() {

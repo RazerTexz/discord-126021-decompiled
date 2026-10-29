@@ -14,10 +14,6 @@ public final class GuildScheduledEventPickerDateTime {
     private GuildScheduledEventPickerDateTime() {
     }
 
-    private final Pair<GuildScheduledEventPickerDate, GuildScheduledEventPickerTime> toGuildScheduledEventPickerDateTime(Calendar calendar) {
-        return new Pair<>(new GuildScheduledEventPickerDate(calendar.get(1), calendar.get(2), calendar.get(5)), new GuildScheduledEventPickerTime(calendar.get(11), calendar.get(12), calendar.get(13)));
-    }
-
     public final Pair<GuildScheduledEventPickerDate, GuildScheduledEventPickerTime> fromUtcDateTime(UtcDateTime utcDateTime) {
         C12238m.checkNotNullParameter(utcDateTime, "utcDateTime");
         Calendar calendar = Calendar.getInstance();
@@ -41,6 +37,10 @@ public final class GuildScheduledEventPickerDateTime {
         calendar.add(11, 1);
         C12238m.checkNotNullExpressionValue(calendar, "Calendar.getInstance().a…r.HOUR_OF_DAY, 1)\n      }");
         return toGuildScheduledEventPickerDateTime(calendar);
+    }
+
+    private final Pair<GuildScheduledEventPickerDate, GuildScheduledEventPickerTime> toGuildScheduledEventPickerDateTime(Calendar calendar) {
+        return new Pair<>(new GuildScheduledEventPickerDate(calendar.get(1), calendar.get(2), calendar.get(5)), new GuildScheduledEventPickerTime(calendar.get(11), calendar.get(12), calendar.get(13)));
     }
 
     public final long toMillis(GuildScheduledEventPickerDate date, GuildScheduledEventPickerTime time) {

@@ -28,18 +28,18 @@ import p507d0.p513e0.p514p.p515d.p517m0.p573o.C12027i;
 /* JADX INFO: loaded from: classes3.dex */
 public class C11515f extends C11374g0 implements InterfaceC11511b {
 
-    /* JADX INFO: renamed from: M */
-    public static final InterfaceC11318a.a<InterfaceC11326c1> f23262M = new a();
-
     /* JADX INFO: renamed from: N */
     public b f23263N;
 
     /* JADX INFO: renamed from: O */
     public final boolean f23264O;
 
+    /* JADX INFO: renamed from: M */
+    public static final InterfaceC11318a.a<InterfaceC11326c1> f23262M = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.h0.f$a */
     /* JADX INFO: compiled from: JavaMethodDescriptor.java */
-    public static class a implements InterfaceC11318a.a<InterfaceC11326c1> {
+    public final class a implements InterfaceC11318a.a<InterfaceC11326c1> {
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.h0.f$b */
@@ -91,6 +91,64 @@ public class C11515f extends C11374g0 implements InterfaceC11511b {
         }
         this.f23263N = null;
         this.f23264O = z2;
+    }
+
+    public static C11515f createJavaMethod(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0, boolean z2) {
+        if (interfaceC11450m == null) {
+            m9458a(5);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9458a(6);
+            throw null;
+        }
+        if (c11716e == null) {
+            m9458a(7);
+            throw null;
+        }
+        if (interfaceC11467u0 != null) {
+            return new C11515f(interfaceC11450m, null, interfaceC11344g, c11716e, InterfaceC11321b.a.DECLARATION, interfaceC11467u0, z2);
+        }
+        m9458a(8);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
+    public /* bridge */ /* synthetic */ InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List list, AbstractC11913c0 abstractC11913c1, Pair pair) {
+        return enhance(abstractC11913c0, (List<C11521l>) list, abstractC11913c1, (Pair<InterfaceC11318a.a<?>, ?>) pair);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    public boolean hasStableParameterNames() {
+        return this.f23263N.isStable;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return this.f23263N.isSynthesized;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0
+    public C11374g0 initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List<? extends InterfaceC11477z0> list, List<InterfaceC11326c1> list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, Map<? extends InterfaceC11318a.a<?>, ?> map) {
+        if (list == null) {
+            m9458a(9);
+            throw null;
+        }
+        if (list2 == null) {
+            m9458a(10);
+            throw null;
+        }
+        if (abstractC11466u == null) {
+            m9458a(11);
+            throw null;
+        }
+        C11374g0 c11374g0Initialize = super.initialize(interfaceC11459q0, interfaceC11459q1, list, list2, abstractC11913c0, enumC11476z, abstractC11466u, map);
+        setOperator(C12027i.f24917a.check(c11374g0Initialize).isSuccess());
+        if (c11374g0Initialize != null) {
+            return c11374g0Initialize;
+        }
+        m9458a(12);
+        throw null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -190,26 +248,6 @@ public class C11515f extends C11374g0 implements InterfaceC11511b {
         throw new IllegalStateException(str2);
     }
 
-    public static C11515f createJavaMethod(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0, boolean z2) {
-        if (interfaceC11450m == null) {
-            m9458a(5);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9458a(6);
-            throw null;
-        }
-        if (c11716e == null) {
-            m9458a(7);
-            throw null;
-        }
-        if (interfaceC11467u0 != null) {
-            return new C11515f(interfaceC11450m, null, interfaceC11344g, c11716e, InterfaceC11321b.a.DECLARATION, interfaceC11467u0, z2);
-        }
-        m9458a(8);
-        throw null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
     /* JADX INFO: renamed from: b */
     public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
@@ -232,44 +270,6 @@ public class C11515f extends C11374g0 implements InterfaceC11511b {
         C11515f c11515f = new C11515f(interfaceC11450m, interfaceC11465t0, interfaceC11344g, c11716e, aVar, interfaceC11467u0, this.f23264O);
         c11515f.setParameterNamesStatus(hasStableParameterNames(), hasSynthesizedParameterNames());
         return c11515f;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
-    public /* bridge */ /* synthetic */ InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List list, AbstractC11913c0 abstractC11913c1, Pair pair) {
-        return enhance(abstractC11913c0, (List<C11521l>) list, abstractC11913c1, (Pair<InterfaceC11318a.a<?>, ?>) pair);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    public boolean hasStableParameterNames() {
-        return this.f23263N.isStable;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return this.f23263N.isSynthesized;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0
-    public C11374g0 initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List<? extends InterfaceC11477z0> list, List<InterfaceC11326c1> list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, Map<? extends InterfaceC11318a.a<?>, ?> map) {
-        if (list == null) {
-            m9458a(9);
-            throw null;
-        }
-        if (list2 == null) {
-            m9458a(10);
-            throw null;
-        }
-        if (abstractC11466u == null) {
-            m9458a(11);
-            throw null;
-        }
-        C11374g0 c11374g0Initialize = super.initialize(interfaceC11459q0, interfaceC11459q1, list, list2, abstractC11913c0, enumC11476z, abstractC11466u, map);
-        setOperator(C12027i.f24917a.check(c11374g0Initialize).isSuccess());
-        if (c11374g0Initialize != null) {
-            return c11374g0Initialize;
-        }
-        m9458a(12);
-        throw null;
     }
 
     public void setParameterNamesStatus(boolean z2, boolean z3) {

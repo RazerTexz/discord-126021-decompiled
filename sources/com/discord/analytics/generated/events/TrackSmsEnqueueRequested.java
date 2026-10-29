@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSmsEnqueueRequested.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSmsEnqueueRequested implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence phoneNumber = null;
-    private final CharSequence phoneCountry = null;
     private final CharSequence carrierName = null;
     private final CharSequence carrierType = null;
+    private final CharSequence phoneCountry = null;
+    private final CharSequence phoneNumber = null;
     private final CharSequence source = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "sms_enqueue_requested";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackSmsEnqueueRequested implements AnalyticsSchem
         }
         TrackSmsEnqueueRequested trackSmsEnqueueRequested = (TrackSmsEnqueueRequested) other;
         return C12238m.areEqual(this.phoneNumber, trackSmsEnqueueRequested.phoneNumber) && C12238m.areEqual(this.phoneCountry, trackSmsEnqueueRequested.phoneCountry) && C12238m.areEqual(this.carrierName, trackSmsEnqueueRequested.carrierName) && C12238m.areEqual(this.carrierType, trackSmsEnqueueRequested.carrierType) && C12238m.areEqual(this.source, trackSmsEnqueueRequested.source);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

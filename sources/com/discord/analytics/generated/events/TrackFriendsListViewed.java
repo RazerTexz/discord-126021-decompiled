@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFriendsListViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence tabOpened = null;
-    private final Long numFriends = null;
-    private final Long numOutgoingRequests = null;
-    private final Long numIncomingRequests = null;
-    private final Long numSuggestions = null;
-    private final Boolean wasDismissed = null;
     private final Boolean contactSyncIsEnabled = null;
     private final Boolean isDiscoverableEmail = null;
     private final Boolean isDiscoverablePhone = null;
+    private final Long numFriends = null;
+    private final Long numIncomingRequests = null;
+    private final Long numOutgoingRequests = null;
+    private final Long numSuggestions = null;
+    private final CharSequence tabOpened = null;
+    private TrackBase trackBase;
+    private final Boolean wasDismissed = null;
     private final transient String analyticsSchemaTypeName = "friends_list_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema,
         }
         TrackFriendsListViewed trackFriendsListViewed = (TrackFriendsListViewed) other;
         return C12238m.areEqual(this.tabOpened, trackFriendsListViewed.tabOpened) && C12238m.areEqual(this.numFriends, trackFriendsListViewed.numFriends) && C12238m.areEqual(this.numOutgoingRequests, trackFriendsListViewed.numOutgoingRequests) && C12238m.areEqual(this.numIncomingRequests, trackFriendsListViewed.numIncomingRequests) && C12238m.areEqual(this.numSuggestions, trackFriendsListViewed.numSuggestions) && C12238m.areEqual(this.wasDismissed, trackFriendsListViewed.wasDismissed) && C12238m.areEqual(this.contactSyncIsEnabled, trackFriendsListViewed.contactSyncIsEnabled) && C12238m.areEqual(this.isDiscoverableEmail, trackFriendsListViewed.isDiscoverableEmail) && C12238m.areEqual(this.isDiscoverablePhone, trackFriendsListViewed.isDiscoverablePhone);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

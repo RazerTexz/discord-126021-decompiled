@@ -22,7 +22,7 @@ public final class C11498a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.a$a */
     /* JADX INFO: compiled from: DescriptorResolverUtils.java */
-    public static class a extends AbstractC11791i {
+    public final class a extends AbstractC11791i {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ InterfaceC11880p f23219a;
@@ -55,6 +55,29 @@ public final class C11498a {
             this.f23221c = z2;
         }
 
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.AbstractC11792j
+        public void addFakeOverride(InterfaceC11321b interfaceC11321b) {
+            if (interfaceC11321b == null) {
+                m9452a(0);
+                throw null;
+            }
+            C11793k.resolveUnknownVisibilityForMember(interfaceC11321b, new C13310a());
+            this.f23220b.add(interfaceC11321b);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.AbstractC11791i
+        public void conflict(InterfaceC11321b interfaceC11321b, InterfaceC11321b interfaceC11321b2) {
+            if (interfaceC11321b == null) {
+                m9452a(1);
+                throw null;
+            }
+            if (interfaceC11321b2 != null) {
+                return;
+            }
+            m9452a(2);
+            throw null;
+        }
+
         /* JADX INFO: renamed from: a */
         public static /* synthetic */ void m9452a(int i) {
             Object[] objArr = new Object[3];
@@ -81,29 +104,6 @@ public final class C11498a {
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.AbstractC11792j
-        public void addFakeOverride(InterfaceC11321b interfaceC11321b) {
-            if (interfaceC11321b == null) {
-                m9452a(0);
-                throw null;
-            }
-            C11793k.resolveUnknownVisibilityForMember(interfaceC11321b, new C13310a());
-            this.f23220b.add(interfaceC11321b);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.AbstractC11791i
-        public void conflict(InterfaceC11321b interfaceC11321b, InterfaceC11321b interfaceC11321b2) {
-            if (interfaceC11321b == null) {
-                m9452a(1);
-                throw null;
-            }
-            if (interfaceC11321b2 != null) {
-                return;
-            }
-            m9452a(2);
-            throw null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.AbstractC11792j
         public void setOverriddenDescriptors(InterfaceC11321b interfaceC11321b, Collection<? extends InterfaceC11321b> collection) {
             if (interfaceC11321b == null) {
                 m9452a(3);
@@ -117,6 +117,27 @@ public final class C11498a {
                 super.setOverriddenDescriptors(interfaceC11321b, collection);
             }
         }
+    }
+
+    public static InterfaceC11326c1 getAnnotationParameterByName(C11716e c11716e, InterfaceC11330e interfaceC11330e) {
+        if (c11716e == null) {
+            m9450a(19);
+            throw null;
+        }
+        if (interfaceC11330e == null) {
+            m9450a(20);
+            throw null;
+        }
+        Collection<InterfaceC11327d> constructors = interfaceC11330e.getConstructors();
+        if (constructors.size() != 1) {
+            return null;
+        }
+        for (InterfaceC11326c1 interfaceC11326c1 : constructors.iterator().next().getValueParameters()) {
+            if (interfaceC11326c1.getName().equals(c11716e)) {
+                return interfaceC11326c1;
+            }
+        }
+        return null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -229,27 +250,6 @@ public final class C11498a {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         c11793k.generateOverridesInFunctionGroup(c11716e, collection, collection2, interfaceC11330e, new a(interfaceC11880p, linkedHashSet, z2));
         return linkedHashSet;
-    }
-
-    public static InterfaceC11326c1 getAnnotationParameterByName(C11716e c11716e, InterfaceC11330e interfaceC11330e) {
-        if (c11716e == null) {
-            m9450a(19);
-            throw null;
-        }
-        if (interfaceC11330e == null) {
-            m9450a(20);
-            throw null;
-        }
-        Collection<InterfaceC11327d> constructors = interfaceC11330e.getConstructors();
-        if (constructors.size() != 1) {
-            return null;
-        }
-        for (InterfaceC11326c1 interfaceC11326c1 : constructors.iterator().next().getValueParameters()) {
-            if (interfaceC11326c1.getName().equals(c11716e)) {
-                return interfaceC11326c1;
-            }
-        }
-        return null;
     }
 
     public static <D extends InterfaceC11321b> Collection<D> resolveOverridesForNonStaticMembers(C11716e c11716e, Collection<D> collection, Collection<D> collection2, InterfaceC11330e interfaceC11330e, InterfaceC11880p interfaceC11880p, C11793k c11793k) {

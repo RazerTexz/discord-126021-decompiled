@@ -7,7 +7,7 @@ public abstract class AbstractC11764c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.c$a */
     /* JADX INFO: compiled from: MemberScope.kt */
-    public static final class a extends AbstractC11764c {
+    public final class a extends AbstractC11764c {
 
         /* JADX INFO: renamed from: a */
         public static final a f24336a = new a();
@@ -28,7 +28,7 @@ public abstract class AbstractC11764c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.c$b */
     /* JADX INFO: compiled from: MemberScope.kt */
-    public static final class b extends AbstractC11764c {
+    public final class b extends AbstractC11764c {
 
         /* JADX INFO: renamed from: a */
         public static final b f24338a = new b();

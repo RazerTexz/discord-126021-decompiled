@@ -27,7 +27,7 @@ public final class WidgetHubEmailViewModel extends AbstractC0859d0<HubEmailState
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailViewModel$submitEmail$1 */
     /* JADX INFO: compiled from: WidgetHubEmailViewModel.kt */
-    public static final class C90421 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
+    public final class C90421 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
         public static final C90421 INSTANCE = new C90421();
 
         public C90421() {
@@ -42,7 +42,7 @@ public final class WidgetHubEmailViewModel extends AbstractC0859d0<HubEmailState
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailViewModel$submitEmail$2 */
     /* JADX INFO: compiled from: WidgetHubEmailViewModel.kt */
-    public static final class C90432 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
+    public final class C90432 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
         public C90432() {
             super(1);
         }

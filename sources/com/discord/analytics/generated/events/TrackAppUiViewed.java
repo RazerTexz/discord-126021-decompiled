@@ -9,31 +9,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppUiViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppUiViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence loadId = null;
-    private final CharSequence screenName = null;
+    private final Long cssCompressedByteSize = null;
+    private final Long cssTransferByteSize = null;
+    private final Long cssUncompressedByteSize = null;
     private final Long durationMsSinceAppOpened = null;
     private final Long durationMsSinceRequiredJsBundleLoaded = null;
     private final Long durationMsSinceRequiredJsBundleParsed = null;
     private final Boolean hasCachedData = null;
-    private final CharSequence manifest = null;
-    private final Long totalCompressedByteSize = null;
-    private final Long totalUncompressedByteSize = null;
-    private final Long totalTransferByteSize = null;
     private final Long jsCompressedByteSize = null;
-    private final Long jsUncompressedByteSize = null;
     private final Long jsTransferByteSize = null;
-    private final Long cssCompressedByteSize = null;
-    private final Long cssUncompressedByteSize = null;
-    private final Long cssTransferByteSize = null;
+    private final Long jsUncompressedByteSize = null;
+    private final CharSequence loadId = null;
+    private final CharSequence manifest = null;
+    private final CharSequence screenName = null;
     private final CharSequence theme = null;
+    private final Long totalCompressedByteSize = null;
+    private final Long totalTransferByteSize = null;
+    private final Long totalUncompressedByteSize = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_ui_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackAppUiViewed implements AnalyticsSchema, Track
         }
         TrackAppUiViewed trackAppUiViewed = (TrackAppUiViewed) other;
         return C12238m.areEqual(this.loadId, trackAppUiViewed.loadId) && C12238m.areEqual(this.screenName, trackAppUiViewed.screenName) && C12238m.areEqual(this.durationMsSinceAppOpened, trackAppUiViewed.durationMsSinceAppOpened) && C12238m.areEqual(this.durationMsSinceRequiredJsBundleLoaded, trackAppUiViewed.durationMsSinceRequiredJsBundleLoaded) && C12238m.areEqual(this.durationMsSinceRequiredJsBundleParsed, trackAppUiViewed.durationMsSinceRequiredJsBundleParsed) && C12238m.areEqual(this.hasCachedData, trackAppUiViewed.hasCachedData) && C12238m.areEqual(this.manifest, trackAppUiViewed.manifest) && C12238m.areEqual(this.totalCompressedByteSize, trackAppUiViewed.totalCompressedByteSize) && C12238m.areEqual(this.totalUncompressedByteSize, trackAppUiViewed.totalUncompressedByteSize) && C12238m.areEqual(this.totalTransferByteSize, trackAppUiViewed.totalTransferByteSize) && C12238m.areEqual(this.jsCompressedByteSize, trackAppUiViewed.jsCompressedByteSize) && C12238m.areEqual(this.jsUncompressedByteSize, trackAppUiViewed.jsUncompressedByteSize) && C12238m.areEqual(this.jsTransferByteSize, trackAppUiViewed.jsTransferByteSize) && C12238m.areEqual(this.cssCompressedByteSize, trackAppUiViewed.cssCompressedByteSize) && C12238m.areEqual(this.cssUncompressedByteSize, trackAppUiViewed.cssUncompressedByteSize) && C12238m.areEqual(this.cssTransferByteSize, trackAppUiViewed.cssTransferByteSize) && C12238m.areEqual(this.theme, trackAppUiViewed.theme);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

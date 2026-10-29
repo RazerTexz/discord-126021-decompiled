@@ -240,6 +240,443 @@ public final class C12429r extends AbstractC12428q {
         }
     }
 
+    /* JADX INFO: renamed from: u */
+    public final void m10615u(int i, C12427p c12427p) {
+        C12427p c12427p2 = this.f26281Q;
+        c12427p2.f26260m = new C12421j(i, c12427p, c12427p2.f26260m);
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final void m10616v() {
+        int i = this.f26278N;
+        if (i != 4) {
+            if (i == 1) {
+                this.f26281Q.f26256i = (short) this.f26283S;
+                this.f26281Q = null;
+                return;
+            }
+            return;
+        }
+        C12427p c12427p = new C12427p();
+        c12427p.f26258k = new C12424m(c12427p);
+        C12414c c12414c = this.f26301l;
+        c12427p.m10592f(c12414c.f26153a, c12414c.f26154b);
+        this.f26280P.f26259l = c12427p;
+        this.f26280P = c12427p;
+        this.f26281Q = null;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final void m10617w(int i, int i2) {
+        while (i < i2) {
+            C12433v c12433v = this.f26293d;
+            int i3 = this.f26287W[i];
+            C12414c c12414c = this.f26311v;
+            int i4 = ((-268435456) & i3) >> 28;
+            if (i4 == 0) {
+                int i5 = i3 & 1048575;
+                int i6 = i3 & 251658240;
+                if (i6 == 16777216) {
+                    c12414c.m10535g(i5);
+                } else if (i6 == 33554432) {
+                    c12414c.m10535g(7);
+                    c12414c.m10538j(c12433v.m10628c(c12433v.f26358l[i5].f26344e).f26340a);
+                } else {
+                    if (i6 != 50331648) {
+                        throw new AssertionError();
+                    }
+                    c12414c.m10535g(8);
+                    c12414c.m10538j((int) c12433v.f26358l[i5].f26345f);
+                }
+            } else {
+                StringBuilder sb = new StringBuilder();
+                while (true) {
+                    int i7 = i4 - 1;
+                    if (i4 > 0) {
+                        sb.append('[');
+                        i4 = i7;
+                    } else {
+                        if ((i3 & 251658240) == 33554432) {
+                            sb.append('L');
+                            sb.append(c12433v.f26358l[i3 & 1048575].f26344e);
+                            sb.append(';');
+                        } else {
+                            int i8 = i3 & 1048575;
+                            if (i8 == 1) {
+                                sb.append('I');
+                            } else if (i8 == 2) {
+                                sb.append('F');
+                            } else if (i8 == 3) {
+                                sb.append('D');
+                            } else if (i8 != 4) {
+                                switch (i8) {
+                                    case 9:
+                                        sb.append('Z');
+                                        break;
+                                    case 10:
+                                        sb.append('B');
+                                        break;
+                                    case 11:
+                                        sb.append('C');
+                                        break;
+                                    case 12:
+                                        sb.append('S');
+                                        break;
+                                    default:
+                                        throw new AssertionError();
+                                }
+                            } else {
+                                sb.append('J');
+                            }
+                        }
+                        c12414c.m10535g(7);
+                        c12414c.m10538j(c12433v.m10628c(sb.toString()).f26340a);
+                    }
+                }
+            }
+            i++;
+        }
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final void m10618x(Object obj) {
+        if (obj instanceof Integer) {
+            this.f26311v.m10535g(((Integer) obj).intValue());
+            return;
+        }
+        if (obj instanceof String) {
+            C12414c c12414c = this.f26311v;
+            c12414c.m10535g(7);
+            c12414c.m10538j(this.f26293d.m10628c((String) obj).f26340a);
+        } else {
+            C12414c c12414c2 = this.f26311v;
+            c12414c2.m10535g(8);
+            c12414c2.m10538j(((C12427p) obj).f26252e);
+        }
+    }
+
+    /* JADX INFO: renamed from: y */
+    public void m10619y(C12414c c12414c) {
+        int i;
+        boolean z2 = this.f26293d.f26349c < 49;
+        c12414c.m10538j((~(z2 ? 4096 : 0)) & this.f26294e);
+        c12414c.m10538j(this.f26295f);
+        c12414c.m10538j(this.f26297h);
+        int i2 = this.f26291a0;
+        if (i2 != 0) {
+            c12414c.m10536h(this.f26293d.f26348b.f26155a, i2, this.f26292b0);
+            return;
+        }
+        int iM10525c = this.f26301l.f26154b > 0 ? 1 : 0;
+        if (this.f26314y > 0) {
+            iM10525c++;
+        }
+        int i3 = this.f26294e;
+        if ((i3 & 4096) != 0 && z2) {
+            iM10525c++;
+        }
+        if (this.f26265A != 0) {
+            iM10525c++;
+        }
+        if ((i3 & 131072) != 0) {
+            iM10525c++;
+        }
+        if (this.f26266B != null) {
+            iM10525c++;
+        }
+        if (this.f26267C != null) {
+            iM10525c++;
+        }
+        if (this.f26269E != null) {
+            iM10525c++;
+        }
+        if (this.f26271G != null) {
+            iM10525c++;
+        }
+        if (this.f26272H != null) {
+            iM10525c++;
+        }
+        if (this.f26273I != null) {
+            iM10525c++;
+        }
+        if (this.f26274J != null) {
+            iM10525c++;
+        }
+        if (this.f26276L != null) {
+            iM10525c++;
+        }
+        C12413b c12413b = this.f26277M;
+        if (c12413b != null) {
+            iM10525c += c12413b.m10525c();
+        }
+        c12414c.m10538j(iM10525c);
+        int i4 = this.f26301l.f26154b;
+        if (i4 > 0) {
+            int i5 = i4 + 10;
+            int i6 = 0;
+            for (C12426o c12426o = this.f26302m; c12426o != null; c12426o = c12426o.f26247f) {
+                i6++;
+            }
+            int iM10518a = (i6 * 8) + 2 + i5;
+            C12414c c12414c2 = this.f26311v;
+            if (c12414c2 != null) {
+                iM10518a += c12414c2.f26154b + 8;
+                i = 1;
+            } else {
+                i = 0;
+            }
+            C12414c c12414c3 = this.f26305p;
+            if (c12414c3 != null) {
+                iM10518a += c12414c3.f26154b + 8;
+                i++;
+            }
+            C12414c c12414c4 = this.f26307r;
+            if (c12414c4 != null) {
+                iM10518a += c12414c4.f26154b + 8;
+                i++;
+            }
+            C12414c c12414c5 = this.f26309t;
+            if (c12414c5 != null) {
+                iM10518a += c12414c5.f26154b + 8;
+                i++;
+            }
+            C12412a c12412a = this.f26312w;
+            if (c12412a != null) {
+                iM10518a += c12412a.m10518a("RuntimeVisibleTypeAnnotations");
+                i++;
+            }
+            C12412a c12412a2 = this.f26313x;
+            if (c12412a2 != null) {
+                iM10518a += c12412a2.m10518a("RuntimeInvisibleTypeAnnotations");
+                i++;
+            }
+            C1643a.m878t0(this.f26293d, "Code", c12414c, iM10518a);
+            c12414c.m10538j(this.f26299j);
+            c12414c.m10538j(this.f26300k);
+            c12414c.m10537i(this.f26301l.f26154b);
+            C12414c c12414c6 = this.f26301l;
+            c12414c.m10536h(c12414c6.f26153a, 0, c12414c6.f26154b);
+            C12426o c12426o2 = this.f26302m;
+            int i7 = 0;
+            for (C12426o c12426o3 = c12426o2; c12426o3 != null; c12426o3 = c12426o3.f26247f) {
+                i7++;
+            }
+            c12414c.m10538j(i7);
+            while (c12426o2 != null) {
+                c12414c.m10538j(c12426o2.f26242a.f26252e);
+                c12414c.m10538j(c12426o2.f26243b.f26252e);
+                c12414c.m10538j(c12426o2.f26244c.f26252e);
+                c12414c.m10538j(c12426o2.f26245d);
+                c12426o2 = c12426o2.f26247f;
+            }
+            c12414c.m10538j(i);
+            if (this.f26311v != null) {
+                C12433v c12433v = this.f26293d;
+                c12414c.m10538j(c12433v.m10637l(c12433v.f26349c >= 50 ? "StackMapTable" : "StackMap"));
+                c12414c.m10537i(this.f26311v.f26154b + 2);
+                c12414c.m10538j(this.f26310u);
+                C12414c c12414c7 = this.f26311v;
+                c12414c.m10536h(c12414c7.f26153a, 0, c12414c7.f26154b);
+            }
+            if (this.f26305p != null) {
+                c12414c.m10538j(this.f26293d.m10637l("LineNumberTable"));
+                c12414c.m10537i(this.f26305p.f26154b + 2);
+                c12414c.m10538j(this.f26304o);
+                C12414c c12414c8 = this.f26305p;
+                c12414c.m10536h(c12414c8.f26153a, 0, c12414c8.f26154b);
+            }
+            if (this.f26307r != null) {
+                c12414c.m10538j(this.f26293d.m10637l("LocalVariableTable"));
+                c12414c.m10537i(this.f26307r.f26154b + 2);
+                c12414c.m10538j(this.f26306q);
+                C12414c c12414c9 = this.f26307r;
+                c12414c.m10536h(c12414c9.f26153a, 0, c12414c9.f26154b);
+            }
+            if (this.f26309t != null) {
+                c12414c.m10538j(this.f26293d.m10637l("LocalVariableTypeTable"));
+                c12414c.m10537i(this.f26309t.f26154b + 2);
+                c12414c.m10538j(this.f26308s);
+                C12414c c12414c10 = this.f26309t;
+                c12414c.m10536h(c12414c10.f26153a, 0, c12414c10.f26154b);
+            }
+            C12412a c12412a3 = this.f26312w;
+            if (c12412a3 != null) {
+                c12412a3.m10519c(this.f26293d.m10637l("RuntimeVisibleTypeAnnotations"), c12414c);
+            }
+            C12412a c12412a4 = this.f26313x;
+            if (c12412a4 != null) {
+                c12412a4.m10519c(this.f26293d.m10637l("RuntimeInvisibleTypeAnnotations"), c12414c);
+            }
+        }
+        if (this.f26314y > 0) {
+            c12414c.m10538j(this.f26293d.m10637l("Exceptions"));
+            c12414c.m10537i((this.f26314y * 2) + 2);
+            c12414c.m10538j(this.f26314y);
+            for (int i8 : this.f26315z) {
+                c12414c.m10538j(i8);
+            }
+        }
+        if ((4096 & this.f26294e) != 0 && z2) {
+            C1643a.m878t0(this.f26293d, "Synthetic", c12414c, 0);
+        }
+        if (this.f26265A != 0) {
+            C1643a.m878t0(this.f26293d, "Signature", c12414c, 2);
+            c12414c.m10538j(this.f26265A);
+        }
+        if ((this.f26294e & 131072) != 0) {
+            C1643a.m878t0(this.f26293d, "Deprecated", c12414c, 0);
+        }
+        C12412a c12412a5 = this.f26266B;
+        if (c12412a5 != null) {
+            c12412a5.m10519c(this.f26293d.m10637l("RuntimeVisibleAnnotations"), c12414c);
+        }
+        C12412a c12412a6 = this.f26267C;
+        if (c12412a6 != null) {
+            c12412a6.m10519c(this.f26293d.m10637l("RuntimeInvisibleAnnotations"), c12414c);
+        }
+        if (this.f26269E != null) {
+            int iM10637l = this.f26293d.m10637l("RuntimeVisibleParameterAnnotations");
+            C12412a[] c12412aArr = this.f26269E;
+            int length = this.f26268D;
+            if (length == 0) {
+                length = c12412aArr.length;
+            }
+            C12412a.m10517d(iM10637l, c12412aArr, length, c12414c);
+        }
+        if (this.f26271G != null) {
+            int iM10637l2 = this.f26293d.m10637l("RuntimeInvisibleParameterAnnotations");
+            C12412a[] c12412aArr2 = this.f26271G;
+            int length2 = this.f26270F;
+            if (length2 == 0) {
+                length2 = c12412aArr2.length;
+            }
+            C12412a.m10517d(iM10637l2, c12412aArr2, length2, c12414c);
+        }
+        C12412a c12412a7 = this.f26272H;
+        if (c12412a7 != null) {
+            c12412a7.m10519c(this.f26293d.m10637l("RuntimeVisibleTypeAnnotations"), c12414c);
+        }
+        C12412a c12412a8 = this.f26273I;
+        if (c12412a8 != null) {
+            c12412a8.m10519c(this.f26293d.m10637l("RuntimeInvisibleTypeAnnotations"), c12414c);
+        }
+        if (this.f26274J != null) {
+            c12414c.m10538j(this.f26293d.m10637l("AnnotationDefault"));
+            c12414c.m10537i(this.f26274J.f26154b);
+            C12414c c12414c11 = this.f26274J;
+            c12414c.m10536h(c12414c11.f26153a, 0, c12414c11.f26154b);
+        }
+        if (this.f26276L != null) {
+            c12414c.m10538j(this.f26293d.m10637l("MethodParameters"));
+            c12414c.m10537i(this.f26276L.f26154b + 1);
+            c12414c.m10535g(this.f26275K);
+            C12414c c12414c12 = this.f26276L;
+            c12414c.m10536h(c12414c12.f26153a, 0, c12414c12.f26154b);
+        }
+        C12413b c12413b2 = this.f26277M;
+        if (c12413b2 != null) {
+            c12413b2.m10526d(this.f26293d, c12414c);
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:29:0x007a  */
+    /* JADX INFO: renamed from: z */
+    public void m10620z() {
+        char c;
+        int[] iArr = this.f26286V;
+        if (iArr != null) {
+            if (this.f26311v == null) {
+                this.f26311v = new C12414c();
+            }
+            int[] iArr2 = this.f26287W;
+            int i = iArr2[1];
+            int i2 = iArr2[2];
+            if (this.f26293d.f26349c < 50) {
+                C12414c c12414c = this.f26311v;
+                c12414c.m10538j(iArr2[0]);
+                c12414c.m10538j(i);
+                int i3 = i + 3;
+                m10617w(3, i3);
+                this.f26311v.m10538j(i2);
+                m10617w(i3, i2 + i3);
+            } else {
+                int i4 = this.f26310u == 0 ? iArr2[0] : (iArr2[0] - iArr[0]) - 1;
+                int i5 = iArr[1];
+                int i6 = i - i5;
+                if (i2 == 0) {
+                    switch (i6) {
+                        case -3:
+                        case -2:
+                        case -1:
+                            c = 248;
+                            break;
+                        case 0:
+                            c = i4 < 64 ? (char) 0 : (char) 251;
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                            c = 252;
+                            break;
+                        default:
+                            c = 255;
+                            break;
+                    }
+                } else if (i6 == 0 && i2 == 1) {
+                    c = i4 < 63 ? MentionUtilsKt.MENTIONS_CHAR : (char) 247;
+                } else {
+                    c = 255;
+                }
+                if (c != 255) {
+                    int i7 = 3;
+                    for (int i8 = 0; i8 < i5 && i8 < i; i8++) {
+                        if (this.f26287W[i7] != this.f26286V[i7]) {
+                            c = 255;
+                        } else {
+                            i7++;
+                        }
+                    }
+                }
+                if (c == 0) {
+                    this.f26311v.m10535g(i4);
+                } else if (c == '@') {
+                    this.f26311v.m10535g(i4 + 64);
+                    m10617w(i + 3, i + 4);
+                } else if (c == 247) {
+                    C12414c c12414c2 = this.f26311v;
+                    c12414c2.m10535g(247);
+                    c12414c2.m10538j(i4);
+                    m10617w(i + 3, i + 4);
+                } else if (c == 248) {
+                    C12414c c12414c3 = this.f26311v;
+                    c12414c3.m10535g(i6 + 251);
+                    c12414c3.m10538j(i4);
+                } else if (c == 251) {
+                    C12414c c12414c4 = this.f26311v;
+                    c12414c4.m10535g(251);
+                    c12414c4.m10538j(i4);
+                } else if (c != 252) {
+                    C12414c c12414c5 = this.f26311v;
+                    c12414c5.m10535g(255);
+                    c12414c5.m10538j(i4);
+                    c12414c5.m10538j(i);
+                    int i9 = i + 3;
+                    m10617w(3, i9);
+                    this.f26311v.m10538j(i2);
+                    m10617w(i9, i2 + i9);
+                } else {
+                    C12414c c12414c6 = this.f26311v;
+                    c12414c6.m10535g(i6 + 251);
+                    c12414c6.m10538j(i4);
+                    m10617w(i5 + 3, i + 3);
+                }
+            }
+            this.f26310u++;
+        }
+        this.f26286V = this.f26287W;
+        this.f26287W = null;
+    }
+
     @Override // p617h0.p618a.p619a.AbstractC12428q
     /* JADX INFO: renamed from: a */
     public C12412a mo10593a(String str, boolean z2) {
@@ -1085,442 +1522,5 @@ public final class C12429r extends AbstractC12428q {
             return;
         }
         mo10601i(new C12427p());
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final void m10615u(int i, C12427p c12427p) {
-        C12427p c12427p2 = this.f26281Q;
-        c12427p2.f26260m = new C12421j(i, c12427p, c12427p2.f26260m);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final void m10616v() {
-        int i = this.f26278N;
-        if (i != 4) {
-            if (i == 1) {
-                this.f26281Q.f26256i = (short) this.f26283S;
-                this.f26281Q = null;
-                return;
-            }
-            return;
-        }
-        C12427p c12427p = new C12427p();
-        c12427p.f26258k = new C12424m(c12427p);
-        C12414c c12414c = this.f26301l;
-        c12427p.m10592f(c12414c.f26153a, c12414c.f26154b);
-        this.f26280P.f26259l = c12427p;
-        this.f26280P = c12427p;
-        this.f26281Q = null;
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final void m10617w(int i, int i2) {
-        while (i < i2) {
-            C12433v c12433v = this.f26293d;
-            int i3 = this.f26287W[i];
-            C12414c c12414c = this.f26311v;
-            int i4 = ((-268435456) & i3) >> 28;
-            if (i4 == 0) {
-                int i5 = i3 & 1048575;
-                int i6 = i3 & 251658240;
-                if (i6 == 16777216) {
-                    c12414c.m10535g(i5);
-                } else if (i6 == 33554432) {
-                    c12414c.m10535g(7);
-                    c12414c.m10538j(c12433v.m10628c(c12433v.f26358l[i5].f26344e).f26340a);
-                } else {
-                    if (i6 != 50331648) {
-                        throw new AssertionError();
-                    }
-                    c12414c.m10535g(8);
-                    c12414c.m10538j((int) c12433v.f26358l[i5].f26345f);
-                }
-            } else {
-                StringBuilder sb = new StringBuilder();
-                while (true) {
-                    int i7 = i4 - 1;
-                    if (i4 > 0) {
-                        sb.append('[');
-                        i4 = i7;
-                    } else {
-                        if ((i3 & 251658240) == 33554432) {
-                            sb.append('L');
-                            sb.append(c12433v.f26358l[i3 & 1048575].f26344e);
-                            sb.append(';');
-                        } else {
-                            int i8 = i3 & 1048575;
-                            if (i8 == 1) {
-                                sb.append('I');
-                            } else if (i8 == 2) {
-                                sb.append('F');
-                            } else if (i8 == 3) {
-                                sb.append('D');
-                            } else if (i8 != 4) {
-                                switch (i8) {
-                                    case 9:
-                                        sb.append('Z');
-                                        break;
-                                    case 10:
-                                        sb.append('B');
-                                        break;
-                                    case 11:
-                                        sb.append('C');
-                                        break;
-                                    case 12:
-                                        sb.append('S');
-                                        break;
-                                    default:
-                                        throw new AssertionError();
-                                }
-                            } else {
-                                sb.append('J');
-                            }
-                        }
-                        c12414c.m10535g(7);
-                        c12414c.m10538j(c12433v.m10628c(sb.toString()).f26340a);
-                    }
-                }
-            }
-            i++;
-        }
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final void m10618x(Object obj) {
-        if (obj instanceof Integer) {
-            this.f26311v.m10535g(((Integer) obj).intValue());
-            return;
-        }
-        if (obj instanceof String) {
-            C12414c c12414c = this.f26311v;
-            c12414c.m10535g(7);
-            c12414c.m10538j(this.f26293d.m10628c((String) obj).f26340a);
-        } else {
-            C12414c c12414c2 = this.f26311v;
-            c12414c2.m10535g(8);
-            c12414c2.m10538j(((C12427p) obj).f26252e);
-        }
-    }
-
-    /* JADX INFO: renamed from: y */
-    public void m10619y(C12414c c12414c) {
-        int i;
-        boolean z2 = this.f26293d.f26349c < 49;
-        c12414c.m10538j((~(z2 ? 4096 : 0)) & this.f26294e);
-        c12414c.m10538j(this.f26295f);
-        c12414c.m10538j(this.f26297h);
-        int i2 = this.f26291a0;
-        if (i2 != 0) {
-            c12414c.m10536h(this.f26293d.f26348b.f26155a, i2, this.f26292b0);
-            return;
-        }
-        int iM10525c = this.f26301l.f26154b > 0 ? 1 : 0;
-        if (this.f26314y > 0) {
-            iM10525c++;
-        }
-        int i3 = this.f26294e;
-        if ((i3 & 4096) != 0 && z2) {
-            iM10525c++;
-        }
-        if (this.f26265A != 0) {
-            iM10525c++;
-        }
-        if ((i3 & 131072) != 0) {
-            iM10525c++;
-        }
-        if (this.f26266B != null) {
-            iM10525c++;
-        }
-        if (this.f26267C != null) {
-            iM10525c++;
-        }
-        if (this.f26269E != null) {
-            iM10525c++;
-        }
-        if (this.f26271G != null) {
-            iM10525c++;
-        }
-        if (this.f26272H != null) {
-            iM10525c++;
-        }
-        if (this.f26273I != null) {
-            iM10525c++;
-        }
-        if (this.f26274J != null) {
-            iM10525c++;
-        }
-        if (this.f26276L != null) {
-            iM10525c++;
-        }
-        C12413b c12413b = this.f26277M;
-        if (c12413b != null) {
-            iM10525c += c12413b.m10525c();
-        }
-        c12414c.m10538j(iM10525c);
-        int i4 = this.f26301l.f26154b;
-        if (i4 > 0) {
-            int i5 = i4 + 10;
-            int i6 = 0;
-            for (C12426o c12426o = this.f26302m; c12426o != null; c12426o = c12426o.f26247f) {
-                i6++;
-            }
-            int iM10518a = (i6 * 8) + 2 + i5;
-            C12414c c12414c2 = this.f26311v;
-            if (c12414c2 != null) {
-                iM10518a += c12414c2.f26154b + 8;
-                i = 1;
-            } else {
-                i = 0;
-            }
-            C12414c c12414c3 = this.f26305p;
-            if (c12414c3 != null) {
-                iM10518a += c12414c3.f26154b + 8;
-                i++;
-            }
-            C12414c c12414c4 = this.f26307r;
-            if (c12414c4 != null) {
-                iM10518a += c12414c4.f26154b + 8;
-                i++;
-            }
-            C12414c c12414c5 = this.f26309t;
-            if (c12414c5 != null) {
-                iM10518a += c12414c5.f26154b + 8;
-                i++;
-            }
-            C12412a c12412a = this.f26312w;
-            if (c12412a != null) {
-                iM10518a += c12412a.m10518a("RuntimeVisibleTypeAnnotations");
-                i++;
-            }
-            C12412a c12412a2 = this.f26313x;
-            if (c12412a2 != null) {
-                iM10518a += c12412a2.m10518a("RuntimeInvisibleTypeAnnotations");
-                i++;
-            }
-            C1643a.m878t0(this.f26293d, "Code", c12414c, iM10518a);
-            c12414c.m10538j(this.f26299j);
-            c12414c.m10538j(this.f26300k);
-            c12414c.m10537i(this.f26301l.f26154b);
-            C12414c c12414c6 = this.f26301l;
-            c12414c.m10536h(c12414c6.f26153a, 0, c12414c6.f26154b);
-            C12426o c12426o2 = this.f26302m;
-            int i7 = 0;
-            for (C12426o c12426o3 = c12426o2; c12426o3 != null; c12426o3 = c12426o3.f26247f) {
-                i7++;
-            }
-            c12414c.m10538j(i7);
-            while (c12426o2 != null) {
-                c12414c.m10538j(c12426o2.f26242a.f26252e);
-                c12414c.m10538j(c12426o2.f26243b.f26252e);
-                c12414c.m10538j(c12426o2.f26244c.f26252e);
-                c12414c.m10538j(c12426o2.f26245d);
-                c12426o2 = c12426o2.f26247f;
-            }
-            c12414c.m10538j(i);
-            if (this.f26311v != null) {
-                C12433v c12433v = this.f26293d;
-                c12414c.m10538j(c12433v.m10637l(c12433v.f26349c >= 50 ? "StackMapTable" : "StackMap"));
-                c12414c.m10537i(this.f26311v.f26154b + 2);
-                c12414c.m10538j(this.f26310u);
-                C12414c c12414c7 = this.f26311v;
-                c12414c.m10536h(c12414c7.f26153a, 0, c12414c7.f26154b);
-            }
-            if (this.f26305p != null) {
-                c12414c.m10538j(this.f26293d.m10637l("LineNumberTable"));
-                c12414c.m10537i(this.f26305p.f26154b + 2);
-                c12414c.m10538j(this.f26304o);
-                C12414c c12414c8 = this.f26305p;
-                c12414c.m10536h(c12414c8.f26153a, 0, c12414c8.f26154b);
-            }
-            if (this.f26307r != null) {
-                c12414c.m10538j(this.f26293d.m10637l("LocalVariableTable"));
-                c12414c.m10537i(this.f26307r.f26154b + 2);
-                c12414c.m10538j(this.f26306q);
-                C12414c c12414c9 = this.f26307r;
-                c12414c.m10536h(c12414c9.f26153a, 0, c12414c9.f26154b);
-            }
-            if (this.f26309t != null) {
-                c12414c.m10538j(this.f26293d.m10637l("LocalVariableTypeTable"));
-                c12414c.m10537i(this.f26309t.f26154b + 2);
-                c12414c.m10538j(this.f26308s);
-                C12414c c12414c10 = this.f26309t;
-                c12414c.m10536h(c12414c10.f26153a, 0, c12414c10.f26154b);
-            }
-            C12412a c12412a3 = this.f26312w;
-            if (c12412a3 != null) {
-                c12412a3.m10519c(this.f26293d.m10637l("RuntimeVisibleTypeAnnotations"), c12414c);
-            }
-            C12412a c12412a4 = this.f26313x;
-            if (c12412a4 != null) {
-                c12412a4.m10519c(this.f26293d.m10637l("RuntimeInvisibleTypeAnnotations"), c12414c);
-            }
-        }
-        if (this.f26314y > 0) {
-            c12414c.m10538j(this.f26293d.m10637l("Exceptions"));
-            c12414c.m10537i((this.f26314y * 2) + 2);
-            c12414c.m10538j(this.f26314y);
-            for (int i8 : this.f26315z) {
-                c12414c.m10538j(i8);
-            }
-        }
-        if ((4096 & this.f26294e) != 0 && z2) {
-            C1643a.m878t0(this.f26293d, "Synthetic", c12414c, 0);
-        }
-        if (this.f26265A != 0) {
-            C1643a.m878t0(this.f26293d, "Signature", c12414c, 2);
-            c12414c.m10538j(this.f26265A);
-        }
-        if ((this.f26294e & 131072) != 0) {
-            C1643a.m878t0(this.f26293d, "Deprecated", c12414c, 0);
-        }
-        C12412a c12412a5 = this.f26266B;
-        if (c12412a5 != null) {
-            c12412a5.m10519c(this.f26293d.m10637l("RuntimeVisibleAnnotations"), c12414c);
-        }
-        C12412a c12412a6 = this.f26267C;
-        if (c12412a6 != null) {
-            c12412a6.m10519c(this.f26293d.m10637l("RuntimeInvisibleAnnotations"), c12414c);
-        }
-        if (this.f26269E != null) {
-            int iM10637l = this.f26293d.m10637l("RuntimeVisibleParameterAnnotations");
-            C12412a[] c12412aArr = this.f26269E;
-            int length = this.f26268D;
-            if (length == 0) {
-                length = c12412aArr.length;
-            }
-            C12412a.m10517d(iM10637l, c12412aArr, length, c12414c);
-        }
-        if (this.f26271G != null) {
-            int iM10637l2 = this.f26293d.m10637l("RuntimeInvisibleParameterAnnotations");
-            C12412a[] c12412aArr2 = this.f26271G;
-            int length2 = this.f26270F;
-            if (length2 == 0) {
-                length2 = c12412aArr2.length;
-            }
-            C12412a.m10517d(iM10637l2, c12412aArr2, length2, c12414c);
-        }
-        C12412a c12412a7 = this.f26272H;
-        if (c12412a7 != null) {
-            c12412a7.m10519c(this.f26293d.m10637l("RuntimeVisibleTypeAnnotations"), c12414c);
-        }
-        C12412a c12412a8 = this.f26273I;
-        if (c12412a8 != null) {
-            c12412a8.m10519c(this.f26293d.m10637l("RuntimeInvisibleTypeAnnotations"), c12414c);
-        }
-        if (this.f26274J != null) {
-            c12414c.m10538j(this.f26293d.m10637l("AnnotationDefault"));
-            c12414c.m10537i(this.f26274J.f26154b);
-            C12414c c12414c11 = this.f26274J;
-            c12414c.m10536h(c12414c11.f26153a, 0, c12414c11.f26154b);
-        }
-        if (this.f26276L != null) {
-            c12414c.m10538j(this.f26293d.m10637l("MethodParameters"));
-            c12414c.m10537i(this.f26276L.f26154b + 1);
-            c12414c.m10535g(this.f26275K);
-            C12414c c12414c12 = this.f26276L;
-            c12414c.m10536h(c12414c12.f26153a, 0, c12414c12.f26154b);
-        }
-        C12413b c12413b2 = this.f26277M;
-        if (c12413b2 != null) {
-            c12413b2.m10526d(this.f26293d, c12414c);
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:29:0x007a  */
-    /* JADX INFO: renamed from: z */
-    public void m10620z() {
-        char c;
-        int[] iArr = this.f26286V;
-        if (iArr != null) {
-            if (this.f26311v == null) {
-                this.f26311v = new C12414c();
-            }
-            int[] iArr2 = this.f26287W;
-            int i = iArr2[1];
-            int i2 = iArr2[2];
-            if (this.f26293d.f26349c < 50) {
-                C12414c c12414c = this.f26311v;
-                c12414c.m10538j(iArr2[0]);
-                c12414c.m10538j(i);
-                int i3 = i + 3;
-                m10617w(3, i3);
-                this.f26311v.m10538j(i2);
-                m10617w(i3, i2 + i3);
-            } else {
-                int i4 = this.f26310u == 0 ? iArr2[0] : (iArr2[0] - iArr[0]) - 1;
-                int i5 = iArr[1];
-                int i6 = i - i5;
-                if (i2 == 0) {
-                    switch (i6) {
-                        case -3:
-                        case -2:
-                        case -1:
-                            c = 248;
-                            break;
-                        case 0:
-                            c = i4 < 64 ? (char) 0 : (char) 251;
-                            break;
-                        case 1:
-                        case 2:
-                        case 3:
-                            c = 252;
-                            break;
-                        default:
-                            c = 255;
-                            break;
-                    }
-                } else if (i6 == 0 && i2 == 1) {
-                    c = i4 < 63 ? MentionUtilsKt.MENTIONS_CHAR : (char) 247;
-                } else {
-                    c = 255;
-                }
-                if (c != 255) {
-                    int i7 = 3;
-                    for (int i8 = 0; i8 < i5 && i8 < i; i8++) {
-                        if (this.f26287W[i7] != this.f26286V[i7]) {
-                            c = 255;
-                        } else {
-                            i7++;
-                        }
-                    }
-                }
-                if (c == 0) {
-                    this.f26311v.m10535g(i4);
-                } else if (c == '@') {
-                    this.f26311v.m10535g(i4 + 64);
-                    m10617w(i + 3, i + 4);
-                } else if (c == 247) {
-                    C12414c c12414c2 = this.f26311v;
-                    c12414c2.m10535g(247);
-                    c12414c2.m10538j(i4);
-                    m10617w(i + 3, i + 4);
-                } else if (c == 248) {
-                    C12414c c12414c3 = this.f26311v;
-                    c12414c3.m10535g(i6 + 251);
-                    c12414c3.m10538j(i4);
-                } else if (c == 251) {
-                    C12414c c12414c4 = this.f26311v;
-                    c12414c4.m10535g(251);
-                    c12414c4.m10538j(i4);
-                } else if (c != 252) {
-                    C12414c c12414c5 = this.f26311v;
-                    c12414c5.m10535g(255);
-                    c12414c5.m10538j(i4);
-                    c12414c5.m10538j(i);
-                    int i9 = i + 3;
-                    m10617w(3, i9);
-                    this.f26311v.m10538j(i2);
-                    m10617w(i9, i2 + i9);
-                } else {
-                    C12414c c12414c6 = this.f26311v;
-                    c12414c6.m10535g(i6 + 251);
-                    c12414c6.m10538j(i4);
-                    m10617w(i5 + 3, i + 3);
-                }
-            }
-            this.f26310u++;
-        }
-        this.f26286V = this.f26287W;
-        this.f26287W = null;
     }
 }

@@ -27,24 +27,9 @@ public final class WidgetNuxPostRegistrationJoin extends WidgetGuildJoin {
     private static final String NUX_FLOW_TYPE = "Mobile NUX Post Reg";
     private static final String NUX_STEP = "Ask to join";
 
-    /* JADX INFO: compiled from: WidgetNuxPostRegistrationJoin.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetNuxPostRegistrationJoin.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxPostRegistrationJoin$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetNuxPostRegistrationJoin.kt */
-    public static final class C91142 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C91142 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C91142() {
             super(1);
         }
@@ -59,6 +44,21 @@ public final class WidgetNuxPostRegistrationJoin extends WidgetGuildJoin {
         public final void invoke2(Editable editable) {
             C12238m.checkNotNullParameter(editable, "editable");
             WidgetNuxPostRegistrationJoin.this.getBinding().f16852b.setText(C12103t.isBlank(editable) ? C5419R.string.nux_post_reg_join_server_skip : C5419R.string.join);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetNuxPostRegistrationJoin.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetNuxPostRegistrationJoin.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

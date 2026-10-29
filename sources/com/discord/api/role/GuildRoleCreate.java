@@ -12,6 +12,17 @@ public final /* data */ class GuildRoleCreate {
     private final GuildRole role;
     private final long roleId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRoleCreate)) {
+            return false;
+        }
+        GuildRoleCreate guildRoleCreate = (GuildRoleCreate) other;
+        return this.guildId == guildRoleCreate.guildId && this.roleId == guildRoleCreate.roleId && C12238m.areEqual(this.role, guildRoleCreate.role) && C12238m.areEqual(this.guildHashes, guildRoleCreate.guildHashes);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final GuildHashes getGuildHashes() {
         return this.guildHashes;
@@ -25,17 +36,6 @@ public final /* data */ class GuildRoleCreate {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final GuildRole getRole() {
         return this.role;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRoleCreate)) {
-            return false;
-        }
-        GuildRoleCreate guildRoleCreate = (GuildRoleCreate) other;
-        return this.guildId == guildRoleCreate.guildId && this.roleId == guildRoleCreate.roleId && C12238m.areEqual(this.role, guildRoleCreate.role) && C12238m.areEqual(this.guildHashes, guildRoleCreate.guildHashes);
     }
 
     public int hashCode() {

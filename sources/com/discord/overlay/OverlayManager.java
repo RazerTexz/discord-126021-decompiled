@@ -74,6 +74,16 @@ public class OverlayManager implements Closeable {
         this.bubbleOnTouchListener = new ViewOnTouchListenerC1166a(this);
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        C12160r.removeAll((List) this.overlaysOnDisplay, (Function1) new C1167b(this));
+        C1173a c1173a = this.trashWrap;
+        if (c1173a != null) {
+            this.windowManager.removeView(c1173a);
+        }
+        this.trashWrap = null;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m8430a(OverlayBubbleWrap bubble) {
         C12238m.checkNotNullParameter(bubble, "bubble");
@@ -106,16 +116,6 @@ public class OverlayManager implements Closeable {
         if (interfaceC1171f != null) {
             interfaceC1171f.mo227a(bubble);
         }
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        C12160r.removeAll((List) this.overlaysOnDisplay, (Function1) new C1167b(this));
-        C1173a c1173a = this.trashWrap;
-        if (c1173a != null) {
-            this.windowManager.removeView(c1173a);
-        }
-        this.trashWrap = null;
     }
 
     /* JADX INFO: renamed from: d */

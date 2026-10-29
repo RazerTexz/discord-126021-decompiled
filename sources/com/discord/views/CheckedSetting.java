@@ -60,51 +60,65 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public InterfaceC7067b binding;
 
+    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$d */
     /* JADX INFO: compiled from: CheckedSetting.kt */
-    public enum ViewType {
-        CHECK,
-        RADIO,
-        SWITCH;
+    public final class C7069d extends AccessibilityDelegateCompat {
 
+        /* JADX INFO: renamed from: b */
+        public final /* synthetic */ ViewType f19028b;
 
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private static final ViewType[] VALUES = values();
+        public C7069d(ViewType viewType) {
+            this.f19028b = viewType;
+        }
 
-        /* JADX INFO: renamed from: com.discord.views.CheckedSetting$ViewType$a, reason: from kotlin metadata */
-        /* JADX INFO: compiled from: CheckedSetting.kt */
-        public static final class Companion {
-            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+            C12238m.checkNotNullParameter(view, "host");
+            C12238m.checkNotNullParameter(accessibilityEvent, "event");
+            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
+            accessibilityEvent.setChecked(CheckedSetting.this.isChecked());
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            int i;
+            C12238m.checkNotNullParameter(view, "host");
+            C12238m.checkNotNullParameter(accessibilityNodeInfoCompat, "info");
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            accessibilityNodeInfoCompat.setCheckable(true);
+            accessibilityNodeInfoCompat.setChecked(CheckedSetting.this.isChecked());
+            Resources resources = view.getResources();
+            int iOrdinal = this.f19028b.ordinal();
+            if (iOrdinal == 0) {
+                i = C5419R.string.a11y_role_checkbox;
+            } else if (iOrdinal == 1) {
+                i = C5419R.string.a11y_role_radio_button;
+            } else {
+                if (iOrdinal != 2) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                i = C5419R.string.a11y_role_switch;
             }
+            accessibilityNodeInfoCompat.setRoleDescription(resources.getString(i));
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$a */
-    /* JADX INFO: compiled from: java-style lambda group */
-    /* JADX INFO: loaded from: classes.dex */
-    public static final class ViewOnClickListenerC7066a implements View.OnClickListener {
+    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$e */
+    /* JADX INFO: compiled from: CheckedSetting.kt */
+    public final class C7070e implements CompoundButton.OnCheckedChangeListener {
 
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f19013j;
+        /* JADX INFO: renamed from: a */
+        public final /* synthetic */ Action1 f19029a;
 
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ Object f19014k;
-
-        public ViewOnClickListenerC7066a(int i, Object obj) {
-            this.f19013j = i;
-            this.f19014k = obj;
+        public C7070e(Action1 action1) {
+            this.f19029a = action1;
         }
 
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            int i = this.f19013j;
-            if (i == 0) {
-                CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().setChecked(true);
-            } else {
-                if (i != 1) {
-                    throw null;
-                }
-                CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().setChecked(true ^ CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().isChecked());
+        @Override // android.widget.CompoundButton.OnCheckedChangeListener
+        public final void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
+            Action1 action1 = this.f19029a;
+            if (action1 != null) {
+                action1.call(Boolean.valueOf(z2));
             }
         }
     }
@@ -115,7 +129,7 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
 
         /* JADX INFO: renamed from: com.discord.views.CheckedSetting$b$a */
         /* JADX INFO: compiled from: CheckedSetting.kt */
-        public static final class a extends c {
+        public final class a extends c {
 
             /* JADX INFO: renamed from: e */
             public final ConstraintLayout f19015e;
@@ -152,7 +166,7 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
 
         /* JADX INFO: renamed from: com.discord.views.CheckedSetting$b$b */
         /* JADX INFO: compiled from: CheckedSetting.kt */
-        public static final class b extends c {
+        public final class b extends c {
 
             /* JADX INFO: renamed from: e */
             public final ConstraintLayout f19017e;
@@ -189,7 +203,7 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
 
         /* JADX INFO: renamed from: com.discord.views.CheckedSetting$b$c */
         /* JADX INFO: compiled from: CheckedSetting.kt */
-        public static abstract class c implements InterfaceC7067b {
+        public abstract class c implements InterfaceC7067b {
 
             /* JADX INFO: renamed from: a */
             public final TextView f19019a;
@@ -270,7 +284,7 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
 
         /* JADX INFO: renamed from: com.discord.views.CheckedSetting$b$d */
         /* JADX INFO: compiled from: CheckedSetting.kt */
-        public static final class d extends c {
+        public final class d extends c {
 
             /* JADX INFO: renamed from: e */
             public final ConstraintLayout f19023e;
@@ -324,9 +338,39 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
         TextView mo8536f();
     }
 
+    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$a */
+    /* JADX INFO: compiled from: java-style lambda group */
+    /* JADX INFO: loaded from: classes.dex */
+    public final class ViewOnClickListenerC7066a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f19013j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ Object f19014k;
+
+        public ViewOnClickListenerC7066a(int i, Object obj) {
+            this.f19013j = i;
+            this.f19014k = obj;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.f19013j;
+            if (i == 0) {
+                CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().setChecked(true);
+            } else {
+                if (i != 1) {
+                    throw null;
+                }
+                CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().setChecked(true ^ CheckedSetting.m8522a((CheckedSetting) this.f19014k).mo8533c().isChecked());
+            }
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.views.CheckedSetting$c */
     /* JADX INFO: compiled from: CheckedSetting.kt */
-    public static final class ViewOnClickListenerC7068c implements View.OnClickListener {
+    public final class ViewOnClickListenerC7068c implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ CharSequence f19026k;
@@ -343,72 +387,9 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$d */
-    /* JADX INFO: compiled from: CheckedSetting.kt */
-    public static final class C7069d extends AccessibilityDelegateCompat {
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ ViewType f19028b;
-
-        public C7069d(ViewType viewType) {
-            this.f19028b = viewType;
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-            C12238m.checkNotNullParameter(view, "host");
-            C12238m.checkNotNullParameter(accessibilityEvent, "event");
-            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-            accessibilityEvent.setChecked(CheckedSetting.this.isChecked());
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            int i;
-            C12238m.checkNotNullParameter(view, "host");
-            C12238m.checkNotNullParameter(accessibilityNodeInfoCompat, "info");
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            accessibilityNodeInfoCompat.setCheckable(true);
-            accessibilityNodeInfoCompat.setChecked(CheckedSetting.this.isChecked());
-            Resources resources = view.getResources();
-            int iOrdinal = this.f19028b.ordinal();
-            if (iOrdinal == 0) {
-                i = C5419R.string.a11y_role_checkbox;
-            } else if (iOrdinal == 1) {
-                i = C5419R.string.a11y_role_radio_button;
-            } else {
-                if (iOrdinal != 2) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                i = C5419R.string.a11y_role_switch;
-            }
-            accessibilityNodeInfoCompat.setRoleDescription(resources.getString(i));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.views.CheckedSetting$e */
-    /* JADX INFO: compiled from: CheckedSetting.kt */
-    public static final class C7070e implements CompoundButton.OnCheckedChangeListener {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ Action1 f19029a;
-
-        public C7070e(Action1 action1) {
-            this.f19029a = action1;
-        }
-
-        @Override // android.widget.CompoundButton.OnCheckedChangeListener
-        public final void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
-            Action1 action1 = this.f19029a;
-            if (action1 != null) {
-                action1.call(Boolean.valueOf(z2));
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.views.CheckedSetting$f */
     /* JADX INFO: compiled from: CheckedSetting.kt */
-    public static final class ViewOnClickListenerC7071f implements View.OnClickListener {
+    public final class ViewOnClickListenerC7071f implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Action0 f19030j;
@@ -420,6 +401,25 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             this.f19030j.call();
+        }
+    }
+
+    /* JADX INFO: compiled from: CheckedSetting.kt */
+    public enum ViewType {
+        CHECK,
+        RADIO,
+        SWITCH;
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private static final ViewType[] VALUES = values();
+
+        /* JADX INFO: renamed from: com.discord.views.CheckedSetting$ViewType$a, reason: from kotlin metadata */
+        /* JADX INFO: compiled from: CheckedSetting.kt */
+        public final class Companion {
+            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            }
         }
     }
 
@@ -557,6 +557,27 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
         }
     }
 
+    @Override // android.view.ViewGroup, android.view.View
+    public void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
+        C12238m.checkNotNullParameter(container, "container");
+        dispatchThawSelfOnly(container);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
+        C12238m.checkNotNullParameter(container, "container");
+        dispatchFreezeSelfOnly(container);
+    }
+
+    @Override // android.widget.Checkable
+    public boolean isChecked() {
+        InterfaceC7067b interfaceC7067b = this.binding;
+        if (interfaceC7067b == null) {
+            C12238m.throwUninitializedPropertyAccessException("binding");
+        }
+        return interfaceC7067b.mo8533c().isChecked();
+    }
+
     /* JADX INFO: renamed from: a */
     public static final /* synthetic */ InterfaceC7067b m8522a(CheckedSetting checkedSetting) {
         InterfaceC7067b interfaceC7067b = checkedSetting.binding;
@@ -595,18 +616,6 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
         }
         interfaceC7067b.mo8532b().setOnClickListener(new ViewOnClickListenerC7068c(disabledToastText));
         setAlpha(0.3f);
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
-        C12238m.checkNotNullParameter(container, "container");
-        dispatchThawSelfOnly(container);
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
-        C12238m.checkNotNullParameter(container, "container");
-        dispatchFreezeSelfOnly(container);
     }
 
     /* JADX INFO: renamed from: e */
@@ -730,15 +739,6 @@ public final class CheckedSetting extends RelativeLayout implements Checkable {
             }
             interfaceC7067b3.mo8536f().setMovementMethod(LinkMovementMethod.getInstance());
         }
-    }
-
-    @Override // android.widget.Checkable
-    public boolean isChecked() {
-        InterfaceC7067b interfaceC7067b = this.binding;
-        if (interfaceC7067b == null) {
-            C12238m.throwUninitializedPropertyAccessException("binding");
-        }
-        return interfaceC7067b.mo8533c().isChecked();
     }
 
     @Override // android.view.View

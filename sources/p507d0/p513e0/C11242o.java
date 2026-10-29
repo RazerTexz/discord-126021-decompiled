@@ -12,21 +12,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11242o implements WildcardType, Type {
 
+    /* JADX INFO: renamed from: k */
+    public static final a f22315k = new a(null);
+
     /* JADX INFO: renamed from: l */
     public final Type f22316l;
 
     /* JADX INFO: renamed from: m */
     public final Type f22317m;
 
-    /* JADX INFO: renamed from: k */
-    public static final a f22315k = new a(null);
-
     /* JADX INFO: renamed from: j */
     public static final C11242o f22314j = new C11242o(null, null);
 
     /* JADX INFO: renamed from: d0.e0.o$a */
     /* JADX INFO: compiled from: TypesJVM.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

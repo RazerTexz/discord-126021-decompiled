@@ -23,7 +23,7 @@ public final class StoreCallsIncoming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCallsIncoming$observeIncoming$1 */
     /* JADX INFO: compiled from: StoreCallsIncoming.kt */
-    public static final class C58061 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C58061 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public C58061() {
             super(0);
         }
@@ -36,7 +36,7 @@ public final class StoreCallsIncoming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCallsIncoming$removeIncomingCall$1 */
     /* JADX INFO: compiled from: StoreCallsIncoming.kt */
-    public static final class C58071 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58071 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

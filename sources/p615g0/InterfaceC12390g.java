@@ -43,6 +43,18 @@ public interface InterfaceC12390g extends InterfaceC12407x, ReadableByteChannel 
     /* JADX INFO: renamed from: p0 */
     void mo10463p0(long j) throws IOException;
 
+    /* JADX INFO: renamed from: s0 */
+    long mo10467s0() throws IOException;
+
+    /* JADX INFO: renamed from: u0 */
+    InputStream mo10470u0();
+
+    /* JADX INFO: renamed from: v0 */
+    int mo10471v0(C12398o c12398o) throws IOException;
+
+    /* JADX INFO: renamed from: w */
+    boolean mo10472w() throws IOException;
+
     byte readByte() throws IOException;
 
     void readFully(byte[] bArr) throws IOException;
@@ -53,17 +65,5 @@ public interface InterfaceC12390g extends InterfaceC12407x, ReadableByteChannel 
 
     short readShort() throws IOException;
 
-    /* JADX INFO: renamed from: s0 */
-    long mo10467s0() throws IOException;
-
     void skip(long j) throws IOException;
-
-    /* JADX INFO: renamed from: u0 */
-    InputStream mo10470u0();
-
-    /* JADX INFO: renamed from: v0 */
-    int mo10471v0(C12398o c12398o) throws IOException;
-
-    /* JADX INFO: renamed from: w */
-    boolean mo10472w() throws IOException;
 }

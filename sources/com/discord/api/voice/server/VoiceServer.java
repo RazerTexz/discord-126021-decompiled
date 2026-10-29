@@ -11,6 +11,17 @@ public final /* data */ class VoiceServer {
     private final Long guildId;
     private final String token;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof VoiceServer)) {
+            return false;
+        }
+        VoiceServer voiceServer = (VoiceServer) other;
+        return C12238m.areEqual(this.guildId, voiceServer.guildId) && C12238m.areEqual(this.channelId, voiceServer.channelId) && C12238m.areEqual(this.endpoint, voiceServer.endpoint) && C12238m.areEqual(this.token, voiceServer.token);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
@@ -29,17 +40,6 @@ public final /* data */ class VoiceServer {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getToken() {
         return this.token;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof VoiceServer)) {
-            return false;
-        }
-        VoiceServer voiceServer = (VoiceServer) other;
-        return C12238m.areEqual(this.guildId, voiceServer.guildId) && C12238m.areEqual(this.channelId, voiceServer.channelId) && C12238m.areEqual(this.endpoint, voiceServer.endpoint) && C12238m.areEqual(this.token, voiceServer.token);
     }
 
     public int hashCode() {

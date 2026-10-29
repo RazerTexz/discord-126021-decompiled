@@ -34,6 +34,10 @@ public final /* data */ class BotUiComponentEntry extends ChatListEntry {
         this.key = sb.toString();
     }
 
+    public final List<MessageComponent> component4() {
+        return this.messageComponents;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ BotUiComponentEntry copy$default(BotUiComponentEntry botUiComponentEntry, Message message, long j, Long l, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -53,25 +57,6 @@ public final /* data */ class BotUiComponentEntry extends ChatListEntry {
         return botUiComponentEntry.copy(message, j2, l2, list);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    public final List<MessageComponent> component4() {
-        return this.messageComponents;
-    }
-
     public final BotUiComponentEntry copy(Message message, long applicationId, Long guildId, List<? extends MessageComponent> messageComponents) {
         C12238m.checkNotNullParameter(message, "message");
         C12238m.checkNotNullParameter(messageComponents, "messageComponents");
@@ -89,8 +74,18 @@ public final /* data */ class BotUiComponentEntry extends ChatListEntry {
         return C12238m.areEqual(this.message, botUiComponentEntry.message) && this.applicationId == botUiComponentEntry.applicationId && C12238m.areEqual(this.guildId, botUiComponentEntry.guildId) && C12238m.areEqual(this.messageComponents, botUiComponentEntry.messageComponents);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
+    }
+
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Long getGuildId() {
+        return this.guildId;
     }
 
     public final Long getGuildId() {
@@ -100,6 +95,11 @@ public final /* data */ class BotUiComponentEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Message getMessage() {
+        return this.message;
     }
 
     public final Message getMessage() {

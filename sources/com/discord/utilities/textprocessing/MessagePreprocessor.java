@@ -41,7 +41,7 @@ public final class MessagePreprocessor implements InterfaceC1307a {
     private final Collection<Integer> visibleSpoilerNodeIndices;
 
     /* JADX INFO: compiled from: MessagePreprocessor.kt */
-    public static final /* data */ class ConstrainState {
+    public final /* data */ class ConstrainState {
         private int limit;
 
         public ConstrainState(int i) {
@@ -55,11 +55,6 @@ public final class MessagePreprocessor implements InterfaceC1307a {
             return constrainState.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getLimit() {
-            return this.limit;
-        }
-
         public final ConstrainState copy(int limit) {
             return new ConstrainState(limit);
         }
@@ -69,6 +64,11 @@ public final class MessagePreprocessor implements InterfaceC1307a {
                 return (other instanceof ConstrainState) && this.limit == ((ConstrainState) other).limit;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getLimit() {
+            return this.limit;
         }
 
         public final int getLimit() {
@@ -103,6 +103,24 @@ public final class MessagePreprocessor implements InterfaceC1307a {
         }
     }
 
+    public final long getMyUserId() {
+        return this.myUserId;
+    }
+
+    public final List<SpoilerNode<?>> getSpoilers() {
+        return this.spoilers;
+    }
+
+    public final boolean isLinkifyConflicting() {
+        if (!this.hasLinkConflictingNode) {
+            List<SpoilerNode<?>> list = this.spoilers;
+            if (list == null || list.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private final <R extends BasicRenderContext> void mergeConsecutiveQuoteNodes(Collection<Node<R>> nodes) {
         ArrayList arrayList = new ArrayList();
         Iterator<Node<R>> it = nodes.iterator();
@@ -131,80 +149,6 @@ public final class MessagePreprocessor implements InterfaceC1307a {
                 }
             }
         }
-    }
-
-    private final <R extends BasicRenderContext> void processQuoteChildren(Collection<? extends Node<R>> ast) {
-        Objects.requireNonNull(ast, "null cannot be cast to non-null type kotlin.collections.MutableCollection<com.discord.simpleast.core.node.Node<R>>");
-        mergeConsecutiveQuoteNodes(C12224e0.asMutableCollection(ast));
-        InterfaceC1307a interfaceC1307a = new InterfaceC1307a() { // from class: com.discord.utilities.textprocessing.MessagePreprocessor.processQuoteChildren.1
-            @Override // p007b.p008a.p050t.p052b.p055c.InterfaceC1307a
-            public final void processNode(Node<Object> node) {
-                Collection<Node<Object>> children = node.getChildren();
-                if (children != null) {
-                    MessagePreprocessor.this.mergeConsecutiveQuoteNodes(C12224e0.asMutableCollection(children));
-                }
-            }
-        };
-        Iterator<? extends Node<R>> it = ast.iterator();
-        while (it.hasNext()) {
-            C1460d.m538k2(it.next(), interfaceC1307a);
-        }
-    }
-
-    private final void processSpoilerChildren() {
-        List<SpoilerNode<?>> list = this.spoilers;
-        if (!(!(list == null || list.isEmpty()))) {
-            list = null;
-        }
-        if (list != null) {
-            ArrayList arrayList = new ArrayList();
-            for (Object obj : list) {
-                if (!((SpoilerNode) obj).getIsRevealed()) {
-                    arrayList.add(obj);
-                }
-            }
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                C1460d.m530i2(((SpoilerNode) it.next()).getChildren(), new InterfaceC1307a() { // from class: com.discord.utilities.textprocessing.MessagePreprocessor$processSpoilerChildren$3$1
-                    /* JADX WARN: Multi-variable type inference failed */
-                    @Override // p007b.p008a.p050t.p052b.p055c.InterfaceC1307a
-                    public final void processNode(Node<Object> node) {
-                        if (node instanceof Spoilerable) {
-                            ((Spoilerable) node).setRevealed(false);
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    private final void stripSimpleEmbedLink(Collection<Node<MessageRenderContext>> nodes) {
-        List<MessageEmbed> list;
-        if (nodes.size() == 1 && (list = this.embeds) != null && list.size() == 1) {
-            Node node = (Node) C12163u.elementAt(nodes, 0);
-            MessageEmbed messageEmbed = this.embeds.get(0);
-            if ((node instanceof UrlNode) && EmbedResourceUtils.INSTANCE.isSimpleEmbed(messageEmbed)) {
-                nodes.clear();
-            }
-        }
-    }
-
-    public final long getMyUserId() {
-        return this.myUserId;
-    }
-
-    public final List<SpoilerNode<?>> getSpoilers() {
-        return this.spoilers;
-    }
-
-    public final boolean isLinkifyConflicting() {
-        if (!this.hasLinkConflictingNode) {
-            List<SpoilerNode<?>> list = this.spoilers;
-            if (list == null || list.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public final <R extends BasicRenderContext> void process(Collection<? extends Node<R>> ast) {
@@ -277,6 +221,62 @@ public final class MessagePreprocessor implements InterfaceC1307a {
             arrayList.add(node);
             Collection<Integer> collection = this.visibleSpoilerNodeIndices;
             ((SpoilerNode) node).updateState(size, collection != null ? collection.contains(Integer.valueOf(size)) : false);
+        }
+    }
+
+    private final <R extends BasicRenderContext> void processQuoteChildren(Collection<? extends Node<R>> ast) {
+        Objects.requireNonNull(ast, "null cannot be cast to non-null type kotlin.collections.MutableCollection<com.discord.simpleast.core.node.Node<R>>");
+        mergeConsecutiveQuoteNodes(C12224e0.asMutableCollection(ast));
+        InterfaceC1307a interfaceC1307a = new InterfaceC1307a() { // from class: com.discord.utilities.textprocessing.MessagePreprocessor.processQuoteChildren.1
+            @Override // p007b.p008a.p050t.p052b.p055c.InterfaceC1307a
+            public final void processNode(Node<Object> node) {
+                Collection<Node<Object>> children = node.getChildren();
+                if (children != null) {
+                    MessagePreprocessor.this.mergeConsecutiveQuoteNodes(C12224e0.asMutableCollection(children));
+                }
+            }
+        };
+        Iterator<? extends Node<R>> it = ast.iterator();
+        while (it.hasNext()) {
+            C1460d.m538k2(it.next(), interfaceC1307a);
+        }
+    }
+
+    private final void processSpoilerChildren() {
+        List<SpoilerNode<?>> list = this.spoilers;
+        if (!(!(list == null || list.isEmpty()))) {
+            list = null;
+        }
+        if (list != null) {
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : list) {
+                if (!((SpoilerNode) obj).getIsRevealed()) {
+                    arrayList.add(obj);
+                }
+            }
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                C1460d.m530i2(((SpoilerNode) it.next()).getChildren(), new InterfaceC1307a() { // from class: com.discord.utilities.textprocessing.MessagePreprocessor$processSpoilerChildren$3$1
+                    /* JADX WARN: Multi-variable type inference failed */
+                    @Override // p007b.p008a.p050t.p052b.p055c.InterfaceC1307a
+                    public final void processNode(Node<Object> node) {
+                        if (node instanceof Spoilerable) {
+                            ((Spoilerable) node).setRevealed(false);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    private final void stripSimpleEmbedLink(Collection<Node<MessageRenderContext>> nodes) {
+        List<MessageEmbed> list;
+        if (nodes.size() == 1 && (list = this.embeds) != null && list.size() == 1) {
+            Node node = (Node) C12163u.elementAt(nodes, 0);
+            MessageEmbed messageEmbed = this.embeds.get(0);
+            if ((node instanceof UrlNode) && EmbedResourceUtils.INSTANCE.isSimpleEmbed(messageEmbed)) {
+                nodes.clear();
+            }
         }
     }
 

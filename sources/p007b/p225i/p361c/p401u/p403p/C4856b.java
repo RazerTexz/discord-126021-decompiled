@@ -20,7 +20,7 @@ public final class C4856b extends AbstractC4860f {
 
     /* JADX INFO: renamed from: b.i.c.u.p.b$b */
     /* JADX INFO: compiled from: AutoValue_TokenResult.java */
-    public static final class b extends AbstractC4860f.a {
+    public final class b extends AbstractC4860f.a {
 
         /* JADX INFO: renamed from: a */
         public String f12986a;
@@ -55,27 +55,6 @@ public final class C4856b extends AbstractC4860f {
         this.f12985c = bVar;
     }
 
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public AbstractC4860f.b mo6797b() {
-        return this.f12985c;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public String mo6798c() {
-        return this.f12983a;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
-    @NonNull
-    /* JADX INFO: renamed from: d */
-    public long mo6799d() {
-        return this.f12984b;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -107,6 +86,27 @@ public final class C4856b extends AbstractC4860f {
         int i = (((iHashCode ^ 1000003) * 1000003) ^ ((int) (j ^ (j >>> 32)))) * 1000003;
         AbstractC4860f.b bVar = this.f12985c;
         return i ^ (bVar != null ? bVar.hashCode() : 0);
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public AbstractC4860f.b mo6797b() {
+        return this.f12985c;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public String mo6798c() {
+        return this.f12983a;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4860f
+    @NonNull
+    /* JADX INFO: renamed from: d */
+    public long mo6799d() {
+        return this.f12984b;
     }
 
     public String toString() {

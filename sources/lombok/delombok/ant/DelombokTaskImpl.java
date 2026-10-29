@@ -13,14 +13,14 @@ import org.apache.tools.ant.types.resources.FileResource;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/ant/DelombokTaskImpl.SCL.lombok */
 public class DelombokTaskImpl {
-    private File fromDir;
-    private File toDir;
     private Path classpath;
-    private Path sourcepath;
-    private Path modulepath;
-    private boolean verbose;
     private String encoding;
+    private File fromDir;
+    private Path modulepath;
     private Path path;
+    private Path sourcepath;
+    private File toDir;
+    private boolean verbose;
     private List<String> formatOptions = new ArrayList();
 
     /* JADX INFO: Thrown type has an unknown type hierarchy: org.apache.tools.ant.BuildException */

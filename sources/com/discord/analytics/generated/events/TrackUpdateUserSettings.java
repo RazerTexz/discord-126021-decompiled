@@ -10,46 +10,40 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUpdateUserSettings.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUpdateUserSettings implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long afkTimeout = null;
+    private final Boolean allowAccessibilityDetection = null;
+    private final Boolean animateEmoji = null;
+    private final Long animateStickers = null;
+    private final Boolean contactSyncEnabled = null;
     private final Boolean convertEmoticons = null;
+    private final Boolean defaultGuildsRestricted = null;
+    private final Boolean detectPlatformAccounts = null;
     private final Boolean developerMode = null;
+    private final Boolean disableGamesTab = null;
     private final Boolean enableTtsCommand = null;
+    private final Long explicitContentFilter = null;
     private final Long friendSourceFlags = null;
+    private final Boolean gifAutoPlay = null;
     private final List<Long> guildPositions = null;
+    private final Boolean hasCustomStatus = null;
     private final Boolean inlineAttachmentMedia = null;
     private final Boolean inlineEmbedMedia = null;
-    private final Boolean gifAutoPlay = null;
     private final CharSequence locale = null;
     private final Boolean messageDisplayCompact = null;
+    private final Boolean nativePhoneIntegrationEnabled = null;
+    private final Long numServerFolders = null;
+    private final Boolean passwordless = null;
     private final Boolean renderEmbeds = null;
     private final Boolean renderReactions = null;
-    private final Boolean animateEmoji = null;
     private final List<Long> restrictedGuilds = null;
     private final Boolean showCurrentGame = null;
-    private final CharSequence theme = null;
-    private final Boolean detectPlatformAccounts = null;
     private final CharSequence status = null;
-    private final Boolean defaultGuildsRestricted = null;
-    private final Long explicitContentFilter = null;
-    private final Long afkTimeout = null;
-    private final Long timezoneOffset = null;
-    private final Boolean disableGamesTab = null;
-    private final Long numServerFolders = null;
     private final Boolean streamNotificationsEnabled = null;
-    private final Boolean hasCustomStatus = null;
-    private final Boolean allowAccessibilityDetection = null;
-    private final Boolean contactSyncEnabled = null;
-    private final Boolean nativePhoneIntegrationEnabled = null;
-    private final Long animateStickers = null;
+    private final CharSequence theme = null;
+    private final Long timezoneOffset = null;
+    private TrackBase trackBase;
     private final Boolean viewNsfwGuilds = null;
-    private final Boolean passwordless = null;
     private final transient String analyticsSchemaTypeName = "update_user_settings";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -60,6 +54,12 @@ public final /* data */ class TrackUpdateUserSettings implements AnalyticsSchema
         }
         TrackUpdateUserSettings trackUpdateUserSettings = (TrackUpdateUserSettings) other;
         return C12238m.areEqual(this.convertEmoticons, trackUpdateUserSettings.convertEmoticons) && C12238m.areEqual(this.developerMode, trackUpdateUserSettings.developerMode) && C12238m.areEqual(this.enableTtsCommand, trackUpdateUserSettings.enableTtsCommand) && C12238m.areEqual(this.friendSourceFlags, trackUpdateUserSettings.friendSourceFlags) && C12238m.areEqual(this.guildPositions, trackUpdateUserSettings.guildPositions) && C12238m.areEqual(this.inlineAttachmentMedia, trackUpdateUserSettings.inlineAttachmentMedia) && C12238m.areEqual(this.inlineEmbedMedia, trackUpdateUserSettings.inlineEmbedMedia) && C12238m.areEqual(this.gifAutoPlay, trackUpdateUserSettings.gifAutoPlay) && C12238m.areEqual(this.locale, trackUpdateUserSettings.locale) && C12238m.areEqual(this.messageDisplayCompact, trackUpdateUserSettings.messageDisplayCompact) && C12238m.areEqual(this.renderEmbeds, trackUpdateUserSettings.renderEmbeds) && C12238m.areEqual(this.renderReactions, trackUpdateUserSettings.renderReactions) && C12238m.areEqual(this.animateEmoji, trackUpdateUserSettings.animateEmoji) && C12238m.areEqual(this.restrictedGuilds, trackUpdateUserSettings.restrictedGuilds) && C12238m.areEqual(this.showCurrentGame, trackUpdateUserSettings.showCurrentGame) && C12238m.areEqual(this.theme, trackUpdateUserSettings.theme) && C12238m.areEqual(this.detectPlatformAccounts, trackUpdateUserSettings.detectPlatformAccounts) && C12238m.areEqual(this.status, trackUpdateUserSettings.status) && C12238m.areEqual(this.defaultGuildsRestricted, trackUpdateUserSettings.defaultGuildsRestricted) && C12238m.areEqual(this.explicitContentFilter, trackUpdateUserSettings.explicitContentFilter) && C12238m.areEqual(this.afkTimeout, trackUpdateUserSettings.afkTimeout) && C12238m.areEqual(this.timezoneOffset, trackUpdateUserSettings.timezoneOffset) && C12238m.areEqual(this.disableGamesTab, trackUpdateUserSettings.disableGamesTab) && C12238m.areEqual(this.numServerFolders, trackUpdateUserSettings.numServerFolders) && C12238m.areEqual(this.streamNotificationsEnabled, trackUpdateUserSettings.streamNotificationsEnabled) && C12238m.areEqual(this.hasCustomStatus, trackUpdateUserSettings.hasCustomStatus) && C12238m.areEqual(this.allowAccessibilityDetection, trackUpdateUserSettings.allowAccessibilityDetection) && C12238m.areEqual(this.contactSyncEnabled, trackUpdateUserSettings.contactSyncEnabled) && C12238m.areEqual(this.nativePhoneIntegrationEnabled, trackUpdateUserSettings.nativePhoneIntegrationEnabled) && C12238m.areEqual(this.animateStickers, trackUpdateUserSettings.animateStickers) && C12238m.areEqual(this.viewNsfwGuilds, trackUpdateUserSettings.viewNsfwGuilds) && C12238m.areEqual(this.passwordless, trackUpdateUserSettings.passwordless);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

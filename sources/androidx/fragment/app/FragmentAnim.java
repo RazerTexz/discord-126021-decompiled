@@ -161,7 +161,7 @@ public class FragmentAnim {
         return z2 ? C0344R.animator.fragment_close_enter : C0344R.animator.fragment_close_exit;
     }
 
-    public static class AnimationOrAnimator {
+    public class AnimationOrAnimator {
         public final Animation animation;
         public final Animator animator;
 
@@ -182,7 +182,7 @@ public class FragmentAnim {
         }
     }
 
-    public static class EndViewTransitionAnimation extends AnimationSet implements Runnable {
+    public class EndViewTransitionAnimation extends AnimationSet implements Runnable {
         private boolean mAnimating;
         private final View mChild;
         private boolean mEnded;

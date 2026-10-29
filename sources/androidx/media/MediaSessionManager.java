@@ -12,8 +12,8 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class MediaSessionManager {
-    private static volatile MediaSessionManager sSessionManager;
     public MediaSessionManagerImpl mImpl;
+    private static volatile MediaSessionManager sSessionManager;
     public static final String TAG = "MediaSessionManager";
     public static final boolean DEBUG = Log.isLoggable(TAG, 3);
     private static final Object sLock = new Object();
@@ -40,6 +40,10 @@ public final class MediaSessionManager {
         }
     }
 
+    public Context getContext() {
+        return this.mImpl.getContext();
+    }
+
     @NonNull
     public static MediaSessionManager getSessionManager(@NonNull Context context) {
         MediaSessionManager mediaSessionManager;
@@ -55,10 +59,6 @@ public final class MediaSessionManager {
         return mediaSessionManager;
     }
 
-    public Context getContext() {
-        return this.mImpl.getContext();
-    }
-
     public boolean isTrustedForMediaControl(@NonNull RemoteUserInfo remoteUserInfo) {
         if (remoteUserInfo != null) {
             return this.mImpl.isTrustedForMediaControl(remoteUserInfo.mImpl);
@@ -66,7 +66,7 @@ public final class MediaSessionManager {
         throw new IllegalArgumentException("userInfo should not be null");
     }
 
-    public static final class RemoteUserInfo {
+    public final class RemoteUserInfo {
         public static final String LEGACY_CONTROLLER = "android.media.session.MediaController";
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})

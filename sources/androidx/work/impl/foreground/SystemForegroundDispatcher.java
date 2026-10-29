@@ -39,7 +39,6 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     private static final String KEY_NOTIFICATION = "KEY_NOTIFICATION";
     private static final String KEY_NOTIFICATION_ID = "KEY_NOTIFICATION_ID";
     private static final String KEY_WORKSPEC_ID = "KEY_WORKSPEC_ID";
-    public static final String TAG = Logger.tagWithPrefix("SystemFgDispatcher");
 
     @Nullable
     private Callback mCallback;
@@ -53,6 +52,7 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     public final Set<WorkSpec> mTrackedWorkSpecs;
     private WorkManagerImpl mWorkManagerImpl;
     public final Map<String, WorkSpec> mWorkSpecById;
+    public static final String TAG = Logger.tagWithPrefix("SystemFgDispatcher");
 
     public interface Callback {
         void cancelNotification(int i);
@@ -110,6 +110,10 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
         intent.putExtra(KEY_NOTIFICATION, foregroundInfo.getNotification());
         intent.putExtra(KEY_WORKSPEC_ID, str);
         return intent;
+    }
+
+    public WorkManagerImpl getWorkManager() {
+        return this.mWorkManagerImpl;
     }
 
     @MainThread
@@ -173,10 +177,6 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
                 }
             }
         });
-    }
-
-    public WorkManagerImpl getWorkManager() {
-        return this.mWorkManagerImpl;
     }
 
     @MainThread

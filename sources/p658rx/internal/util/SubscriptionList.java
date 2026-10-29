@@ -20,6 +20,11 @@ public final class SubscriptionList implements Subscription {
     public SubscriptionList() {
     }
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.f27645k;
+    }
+
     /* JADX INFO: renamed from: a */
     public void m11128a(Subscription subscription) {
         if (subscription.isUnsubscribed()) {
@@ -39,11 +44,6 @@ public final class SubscriptionList implements Subscription {
             }
         }
         subscription.unsubscribe();
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.f27645k;
     }
 
     @Override // p658rx.Subscription

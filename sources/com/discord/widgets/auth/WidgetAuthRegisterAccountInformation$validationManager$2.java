@@ -24,7 +24,7 @@ public final class WidgetAuthRegisterAccountInformation$validationManager$2 exte
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$validationManager$2$2 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72272 extends AbstractC12240o implements Function2<MaterialCheckBox, CharSequence, Boolean> {
+    public final class C72272 extends AbstractC12240o implements Function2<MaterialCheckBox, CharSequence, Boolean> {
         public static final C72272 INSTANCE = new C72272();
 
         public C72272() {

@@ -23,7 +23,7 @@ public final class C1424l extends AbstractC12240o implements Function0<Unit> {
 
     /* JADX INFO: renamed from: b.b.a.a.l$a */
     /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final class a<T> implements Action1<Long> {
+    public final class a<T> implements Action1<Long> {
         public a() {
         }
 

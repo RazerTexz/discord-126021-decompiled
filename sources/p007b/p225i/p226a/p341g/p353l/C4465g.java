@@ -9,6 +9,9 @@ import com.google.android.material.shape.ShapeAppearancePathProvider;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4465g {
 
+    /* JADX INFO: renamed from: e */
+    public ShapeAppearanceModel f11913e;
+
     /* JADX INFO: renamed from: a */
     public final Path f11909a = new Path();
 
@@ -20,7 +23,4 @@ public class C4465g {
 
     /* JADX INFO: renamed from: d */
     public final ShapeAppearancePathProvider f11912d = ShapeAppearancePathProvider.getInstance();
-
-    /* JADX INFO: renamed from: e */
-    public ShapeAppearanceModel f11913e;
 }

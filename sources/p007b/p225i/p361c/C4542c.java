@@ -58,15 +58,6 @@ import p007b.p225i.p361c.p405v.C4862a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4542c {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f12115a = new Object();
-
-    /* JADX INFO: renamed from: b */
-    public static final Executor f12116b = new d(null);
-
-    /* JADX INFO: renamed from: c */
-    public static final Map<String, C4542c> f12117c = new ArrayMap();
-
     /* JADX INFO: renamed from: d */
     public final Context f12118d;
 
@@ -82,8 +73,17 @@ public class C4542c {
     /* JADX INFO: renamed from: j */
     public final C4586r<C4862a> f12124j;
 
+    /* JADX INFO: renamed from: a */
+    public static final Object f12115a = new Object();
+
+    /* JADX INFO: renamed from: b */
+    public static final Executor f12116b = new d(null);
+
     /* JADX INFO: renamed from: h */
     public final AtomicBoolean f12122h = new AtomicBoolean(false);
+
+    /* JADX INFO: renamed from: c */
+    public static final Map<String, C4542c> f12117c = new ArrayMap();
 
     /* JADX INFO: renamed from: i */
     public final AtomicBoolean f12123i = new AtomicBoolean();
@@ -101,7 +101,7 @@ public class C4542c {
     /* JADX INFO: renamed from: b.i.c.c$c */
     /* JADX INFO: compiled from: FirebaseApp.java */
     @TargetApi(14)
-    public static class c implements ComponentCallbacks2C3281c.a {
+    public class c implements ComponentCallbacks2C3281c.a {
 
         /* JADX INFO: renamed from: a */
         public static AtomicReference<c> f12126a = new AtomicReference<>();
@@ -126,7 +126,7 @@ public class C4542c {
 
     /* JADX INFO: renamed from: b.i.c.c$d */
     /* JADX INFO: compiled from: FirebaseApp.java */
-    public static class d implements Executor {
+    public class d implements Executor {
 
         /* JADX INFO: renamed from: j */
         public static final Handler f12127j = new Handler(Looper.getMainLooper());
@@ -143,13 +143,13 @@ public class C4542c {
     /* JADX INFO: renamed from: b.i.c.c$e */
     /* JADX INFO: compiled from: FirebaseApp.java */
     @TargetApi(24)
-    public static class e extends BroadcastReceiver {
-
-        /* JADX INFO: renamed from: a */
-        public static AtomicReference<e> f12128a = new AtomicReference<>();
+    public class e extends BroadcastReceiver {
 
         /* JADX INFO: renamed from: b */
         public final Context f12129b;
+
+        /* JADX INFO: renamed from: a */
+        public static AtomicReference<e> f12128a = new AtomicReference<>();
 
         public e(Context context) {
             this.f12129b = context;
@@ -299,6 +299,20 @@ public class C4542c {
                 return new C4862a(context2, c4542c.m6331c(), (InterfaceC4798c) c4542c.f12121g.mo6346a(InterfaceC4798c.class));
             }
         });
+    }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof C4542c)) {
+            return false;
+        }
+        String str = this.f12119e;
+        C4542c c4542c = (C4542c) obj;
+        c4542c.m6330a();
+        return str.equals(c4542c.f12119e);
+    }
+
+    public int hashCode() {
+        return this.f12119e.hashCode();
     }
 
     @NonNull
@@ -467,16 +481,6 @@ public class C4542c {
         }
     }
 
-    public boolean equals(Object obj) {
-        if (!(obj instanceof C4542c)) {
-            return false;
-        }
-        String str = this.f12119e;
-        C4542c c4542c = (C4542c) obj;
-        c4542c.m6330a();
-        return str.equals(c4542c.f12119e);
-    }
-
     /* JADX INFO: renamed from: g */
     public boolean m6333g() {
         boolean z2;
@@ -493,10 +497,6 @@ public class C4542c {
     public boolean m6334h() {
         m6330a();
         return "[DEFAULT]".equals(this.f12119e);
-    }
-
-    public int hashCode() {
-        return this.f12119e.hashCode();
     }
 
     public String toString() {

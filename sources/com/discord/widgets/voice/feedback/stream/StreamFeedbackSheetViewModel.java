@@ -36,7 +36,6 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final List<FeedbackIssue> ISSUES_UI_OPTIONS = C12147n.listOf((Object[]) new FeedbackIssue[]{FeedbackIssue.STREAM_REPORT_ENDED_BLACK, FeedbackIssue.STREAM_REPORT_ENDED_BLURRY, FeedbackIssue.STREAM_REPORT_ENDED_LAGGING, FeedbackIssue.STREAM_REPORT_ENDED_OUT_OF_SYNC, FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_MISSING, FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_POOR, FeedbackIssue.STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY});
     private final PublishSubject<FeedbackSheetViewModel.Event> eventSubject;
     private final List<FeedbackIssue> issuesUiOptions;
     private StoreState mostRecentStoreState;
@@ -46,10 +45,11 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
     private final ModelApplicationStream stream;
     private boolean submitOnDismiss;
     private boolean submitted;
+    private static final List<FeedbackIssue> ISSUES_UI_OPTIONS = C12147n.listOf((Object[]) new FeedbackIssue[]{FeedbackIssue.STREAM_REPORT_ENDED_BLACK, FeedbackIssue.STREAM_REPORT_ENDED_BLURRY, FeedbackIssue.STREAM_REPORT_ENDED_LAGGING, FeedbackIssue.STREAM_REPORT_ENDED_OUT_OF_SYNC, FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_MISSING, FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_POOR, FeedbackIssue.STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY});
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.stream.StreamFeedbackSheetViewModel$1 */
     /* JADX INFO: compiled from: StreamFeedbackSheetViewModel.kt */
-    public static final class C104561 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C104561 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C104561() {
             super(1);
         }
@@ -68,8 +68,12 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
     }
 
     /* JADX INFO: compiled from: StreamFeedbackSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final List<FeedbackIssue> getISSUES_UI_OPTIONS() {
+            return StreamFeedbackSheetViewModel.ISSUES_UI_OPTIONS;
         }
 
         private final Observable<StoreState> observeStoreState(StoreExperiments storeExperiments) {
@@ -83,17 +87,13 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
             return observableM11083G;
         }
 
-        public final List<FeedbackIssue> getISSUES_UI_OPTIONS() {
-            return StreamFeedbackSheetViewModel.ISSUES_UI_OPTIONS;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: StreamFeedbackSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean shouldShowCxLinkForIssueDetails;
 
         public StoreState(boolean z2) {
@@ -107,11 +107,6 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
             return storeState.copy(z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShouldShowCxLinkForIssueDetails() {
-            return this.shouldShowCxLinkForIssueDetails;
-        }
-
         public final StoreState copy(boolean shouldShowCxLinkForIssueDetails) {
             return new StoreState(shouldShowCxLinkForIssueDetails);
         }
@@ -121,6 +116,11 @@ public final class StreamFeedbackSheetViewModel extends AbstractC0859d0<Feedback
                 return (other instanceof StoreState) && this.shouldShowCxLinkForIssueDetails == ((StoreState) other).shouldShowCxLinkForIssueDetails;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getShouldShowCxLinkForIssueDetails() {
+            return this.shouldShowCxLinkForIssueDetails;
         }
 
         public final boolean getShouldShowCxLinkForIssueDetails() {

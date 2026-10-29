@@ -12,7 +12,7 @@ public interface InterfaceC12004s0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.s0$a */
     /* JADX INFO: compiled from: TypeAliasExpansionReportStrategy.kt */
-    public static final class a implements InterfaceC12004s0 {
+    public final class a implements InterfaceC12004s0 {
 
         /* JADX INFO: renamed from: a */
         public static final a f24876a = new a();

@@ -52,7 +52,7 @@ public final class C11836a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.x.a$a */
     /* JADX INFO: compiled from: DescriptorUtils.kt */
-    public static final class a implements C12034b.c<InterfaceC11326c1> {
+    public final class a implements C12034b.c<InterfaceC11326c1> {
 
         /* JADX INFO: renamed from: a */
         public static final a f24455a = new a();
@@ -71,7 +71,7 @@ public final class C11836a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.x.a$b */
     /* JADX INFO: compiled from: DescriptorUtils.kt */
-    public /* synthetic */ class b extends C12235j implements Function1<InterfaceC11326c1, Boolean> {
+    public final /* synthetic */ class b extends C12235j implements Function1<InterfaceC11326c1, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24456j = new b();
@@ -109,7 +109,7 @@ public final class C11836a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.x.a$c */
     /* JADX INFO: compiled from: DescriptorUtils.kt */
-    public static final class c implements C12034b.c<InterfaceC11321b> {
+    public final class c implements C12034b.c<InterfaceC11321b> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ boolean f24457a;
@@ -130,7 +130,7 @@ public final class C11836a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.x.a$d */
     /* JADX INFO: compiled from: DescriptorUtils.kt */
-    public static final class d extends C12034b.b<InterfaceC11321b, InterfaceC11321b> {
+    public final class d extends C12034b.b<InterfaceC11321b, InterfaceC11321b> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Ref$ObjectRef<InterfaceC11321b> f24458a;
@@ -167,7 +167,7 @@ public final class C11836a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.x.a$e */
     /* JADX INFO: compiled from: DescriptorUtils.kt */
-    public static final class e extends AbstractC12240o implements Function1<InterfaceC11450m, InterfaceC11450m> {
+    public final class e extends AbstractC12240o implements Function1<InterfaceC11450m, InterfaceC11450m> {
 
         /* JADX INFO: renamed from: j */
         public static final e f24460j = new e();
@@ -199,17 +199,17 @@ public final class C11836a {
         return (AbstractC11815g) C12163u.firstOrNull(interfaceC11340c.getAllValueArguments().values());
     }
 
-    public static final InterfaceC11321b firstOverridden(InterfaceC11321b interfaceC11321b, boolean z2, Function1<? super InterfaceC11321b, Boolean> function1) {
-        C12238m.checkNotNullParameter(interfaceC11321b, "<this>");
-        C12238m.checkNotNullParameter(function1, "predicate");
-        return (InterfaceC11321b) C12034b.dfs(C12145m.listOf(interfaceC11321b), new c(z2), new d(new Ref$ObjectRef(), function1));
-    }
-
     public static /* synthetic */ InterfaceC11321b firstOverridden$default(InterfaceC11321b interfaceC11321b, boolean z2, Function1 function1, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
         }
         return firstOverridden(interfaceC11321b, z2, function1);
+    }
+
+    public static final InterfaceC11321b firstOverridden(InterfaceC11321b interfaceC11321b, boolean z2, Function1<? super InterfaceC11321b, Boolean> function1) {
+        C12238m.checkNotNullParameter(interfaceC11321b, "<this>");
+        C12238m.checkNotNullParameter(function1, "predicate");
+        return (InterfaceC11321b) C12034b.dfs(C12145m.listOf(interfaceC11321b), new c(z2), new d(new Ref$ObjectRef(), function1));
     }
 
     public static final C11713b fqNameOrNull(InterfaceC11450m interfaceC11450m) {

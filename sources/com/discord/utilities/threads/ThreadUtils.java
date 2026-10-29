@@ -55,92 +55,18 @@ public final class ThreadUtils {
     private static final LinkedHashMap<Integer, Integer> THREAD_AUTO_ARCHIVE_DURATION_NAMES = C12136h0.linkedMapOf(C12116o.m10073to(60, Integer.valueOf(C5419R.string.auto_archive_duration_1_hour)), C12116o.m10073to(1440, Integer.valueOf(C5419R.string.auto_archive_duration_24_hours)), C12116o.m10073to(Integer.valueOf(ThreadArchiveDurations.THREE_DAYS_IN_MINUTES), Integer.valueOf(C5419R.string.auto_archive_duration_3_days)), C12116o.m10073to(Integer.valueOf(ThreadArchiveDurations.SEVEN_DAYS_IN_MINUTES), Integer.valueOf(C5419R.string.auto_archive_duration_1_week)));
 
     /* JADX INFO: compiled from: ThreadUtils.kt */
-    public static final class ThreadArchiveDurations {
-        public static final ThreadArchiveDurations INSTANCE = new ThreadArchiveDurations();
+    public final class ThreadArchiveDurations {
         public static final int ONE_DAY_IN_MINUTES = 1440;
         public static final int ONE_HOUR_IN_MINUTES = 60;
         public static final int SEVEN_DAYS_IN_MINUTES = 10080;
         public static final int THREE_DAYS_IN_MINUTES = 4320;
+        public static final ThreadArchiveDurations INSTANCE = new ThreadArchiveDurations();
 
         private ThreadArchiveDurations() {
         }
     }
 
     private ThreadUtils() {
-    }
-
-    public static /* synthetic */ boolean canCreatePrivateThread$default(ThreadUtils threadUtils, Long l, Channel channel, Guild guild, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z2 = true;
-        }
-        return threadUtils.canCreatePrivateThread(l, channel, guild, z2);
-    }
-
-    public static /* synthetic */ long getThreadAckMessageTimestamp$default(ThreadUtils threadUtils, Channel channel, Long l, Long l2, Clock clock, int i, Object obj) {
-        if ((i & 4) != 0) {
-            clock = ClockFactory.get();
-        }
-        return threadUtils.getThreadAckMessageTimestamp(channel, l, l2, clock);
-    }
-
-    private final Comparator<StoreThreadsActiveJoined.ActiveJoinedThread> getThreadTimestampComparator() {
-        return new Comparator<StoreThreadsActiveJoined.ActiveJoinedThread>() { // from class: com.discord.utilities.threads.ThreadUtils.getThreadTimestampComparator.1
-            @Override // java.util.Comparator
-            public final int compare(StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread2) {
-                return (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() > activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 1 : (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() == activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 0 : -1));
-            }
-        };
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private final Map<Long, Collection<Channel>> prependSelectedThread(Map<Long, ? extends Collection<Channel>> sortedThreadsMap, Channel selectedThread) {
-        boolean z2;
-        Collection collectionEmptyList = (Collection) sortedThreadsMap.get(Long.valueOf(selectedThread.getParentId()));
-        if (collectionEmptyList == null) {
-            collectionEmptyList = C12147n.emptyList();
-        }
-        if (!(collectionEmptyList instanceof Collection) || !collectionEmptyList.isEmpty()) {
-            Iterator it = collectionEmptyList.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    z2 = false;
-                    break;
-                }
-                if (((Channel) it.next()).getId() == selectedThread.getId()) {
-                    z2 = true;
-                    break;
-                }
-            }
-        } else {
-            z2 = false;
-            break;
-        }
-        if (z2) {
-            return sortedThreadsMap;
-        }
-        Map<Long, Collection<Channel>> mutableMap = C12136h0.toMutableMap(sortedThreadsMap);
-        Long lValueOf = Long.valueOf(selectedThread.getParentId());
-        List listMutableListOf = C12147n.mutableListOf(selectedThread);
-        listMutableListOf.addAll(collectionEmptyList);
-        mutableMap.put(lValueOf, listMutableListOf);
-        return mutableMap;
-    }
-
-    private final Map<Long, Collection<Channel>> sortThreadsByJoinedDate(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> threadsMap) {
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(threadsMap.size()));
-        Iterator<T> it = threadsMap.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            Object key = entry.getKey();
-            SortedSet sortedSet = C12162t.toSortedSet(((Map) entry.getValue()).values(), INSTANCE.getThreadTimestampComparator());
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(sortedSet, 10));
-            Iterator it2 = sortedSet.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(((StoreThreadsActiveJoined.ActiveJoinedThread) it2.next()).getChannel());
-            }
-            linkedHashMap.put(key, arrayList);
-        }
-        return linkedHashMap;
     }
 
     public final String autoArchiveDurationName(Context context, int minutes) {
@@ -156,6 +82,13 @@ public final class ThreadUtils {
         String quantityString = context.getResources().getQuantityString(C5419R.plurals.duration_hours_hours, minutes / 60);
         C12238m.checkNotNullExpressionValue(quantityString, "context.resources.getQua…ours_hours, minutes / 60)");
         return quantityString;
+    }
+
+    public static /* synthetic */ boolean canCreatePrivateThread$default(ThreadUtils threadUtils, Long l, Channel channel, Guild guild, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z2 = true;
+        }
+        return threadUtils.canCreatePrivateThread(l, channel, guild, z2);
     }
 
     public final boolean canCreatePrivateThread(Long parentChannelPermissions, Channel parentChannel, Guild guild, boolean checkGuildFeature) {
@@ -252,6 +185,13 @@ public final class ThreadUtils {
         return THREAD_AUTO_ARCHIVE_DURATION_NAMES;
     }
 
+    public static /* synthetic */ long getThreadAckMessageTimestamp$default(ThreadUtils threadUtils, Channel channel, Long l, Long l2, Clock clock, int i, Object obj) {
+        if ((i & 4) != 0) {
+            clock = ClockFactory.get();
+        }
+        return threadUtils.getThreadAckMessageTimestamp(channel, l, l2, clock);
+    }
+
     public final long getThreadAckMessageTimestamp(Channel channel, Long l, Long l2, Clock clock) {
         String archiveTimestamp;
         C12238m.checkNotNullParameter(channel, "$this$getThreadAckMessageTimestamp");
@@ -264,6 +204,15 @@ public final class ThreadUtils {
             jMax = TimeUtils.parseSnowflake(Long.valueOf(channel.getId()));
         }
         return Math.max(jLongValue, jMax);
+    }
+
+    private final Comparator<StoreThreadsActiveJoined.ActiveJoinedThread> getThreadTimestampComparator() {
+        return new Comparator<StoreThreadsActiveJoined.ActiveJoinedThread>() { // from class: com.discord.utilities.threads.ThreadUtils.getThreadTimestampComparator.1
+            @Override // java.util.Comparator
+            public final int compare(StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread2) {
+                return (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() > activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 1 : (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() == activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 0 : -1));
+            }
+        };
     }
 
     public final void handleThreadCreateError(Context context, Error error, long channelId) {
@@ -293,6 +242,57 @@ public final class ThreadUtils {
 
     public final boolean isThreadsEnabled(long guildId) {
         return ViewThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled() && CreateThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(guildId);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private final Map<Long, Collection<Channel>> prependSelectedThread(Map<Long, ? extends Collection<Channel>> sortedThreadsMap, Channel selectedThread) {
+        boolean z2;
+        Collection collectionEmptyList = (Collection) sortedThreadsMap.get(Long.valueOf(selectedThread.getParentId()));
+        if (collectionEmptyList == null) {
+            collectionEmptyList = C12147n.emptyList();
+        }
+        if (!(collectionEmptyList instanceof Collection) || !collectionEmptyList.isEmpty()) {
+            Iterator it = collectionEmptyList.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    z2 = false;
+                    break;
+                }
+                if (((Channel) it.next()).getId() == selectedThread.getId()) {
+                    z2 = true;
+                    break;
+                }
+            }
+        } else {
+            z2 = false;
+            break;
+        }
+        if (z2) {
+            return sortedThreadsMap;
+        }
+        Map<Long, Collection<Channel>> mutableMap = C12136h0.toMutableMap(sortedThreadsMap);
+        Long lValueOf = Long.valueOf(selectedThread.getParentId());
+        List listMutableListOf = C12147n.mutableListOf(selectedThread);
+        listMutableListOf.addAll(collectionEmptyList);
+        mutableMap.put(lValueOf, listMutableListOf);
+        return mutableMap;
+    }
+
+    private final Map<Long, Collection<Channel>> sortThreadsByJoinedDate(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> threadsMap) {
+        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(threadsMap.size()));
+        Iterator<T> it = threadsMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            SortedSet sortedSet = C12162t.toSortedSet(((Map) entry.getValue()).values(), INSTANCE.getThreadTimestampComparator());
+            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(sortedSet, 10));
+            Iterator it2 = sortedSet.iterator();
+            while (it2.hasNext()) {
+                arrayList.add(((StoreThreadsActiveJoined.ActiveJoinedThread) it2.next()).getChannel());
+            }
+            linkedHashMap.put(key, arrayList);
+        }
+        return linkedHashMap;
     }
 
     public final Map<Long, Collection<Channel>> sortThreadsForChannelList(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> threadsMap, Channel selectedChannel) {

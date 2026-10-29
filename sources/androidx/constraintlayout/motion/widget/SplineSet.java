@@ -21,14 +21,14 @@ public abstract class SplineSet {
     public int[] mTimePoints = new int[10];
     public float[] mValues = new float[10];
 
-    public static class AlphaSet extends SplineSet {
+    public class AlphaSet extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setAlpha(get(f));
         }
     }
 
-    public static class CustomSet extends SplineSet {
+    public class CustomSet extends SplineSet {
         public String mAttributeName;
         public SparseArray<ConstraintAttribute> mConstraintAttributeList;
         public float[] mTempValues;
@@ -78,14 +78,14 @@ public abstract class SplineSet {
         }
     }
 
-    public static class ElevationSet extends SplineSet {
+    public class ElevationSet extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setElevation(get(f));
         }
     }
 
-    public static class PathRotate extends SplineSet {
+    public class PathRotate extends SplineSet {
         public void setPathRotate(View view, float f, double d, double d2) {
             view.setRotation(get(f) + ((float) Math.toDegrees(Math.atan2(d2, d))));
         }
@@ -95,86 +95,56 @@ public abstract class SplineSet {
         }
     }
 
-    public static class PivotXset extends SplineSet {
+    public class PivotXset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setPivotX(get(f));
         }
     }
 
-    public static class PivotYset extends SplineSet {
+    public class PivotYset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setPivotY(get(f));
         }
     }
 
-    public static class ProgressSet extends SplineSet {
-        public boolean mNoMethod = false;
-
-        @Override // androidx.constraintlayout.motion.widget.SplineSet
-        public void setProperty(View view, float f) {
-            if (view instanceof MotionLayout) {
-                ((MotionLayout) view).setProgress(get(f));
-                return;
-            }
-            if (this.mNoMethod) {
-                return;
-            }
-            Method method = null;
-            try {
-                method = view.getClass().getMethod("setProgress", Float.TYPE);
-            } catch (NoSuchMethodException unused) {
-                this.mNoMethod = true;
-            }
-            if (method != null) {
-                try {
-                    method.invoke(view, Float.valueOf(get(f)));
-                } catch (IllegalAccessException e) {
-                    Log.e(SplineSet.TAG, "unable to setProgress", e);
-                } catch (InvocationTargetException e2) {
-                    Log.e(SplineSet.TAG, "unable to setProgress", e2);
-                }
-            }
-        }
-    }
-
-    public static class RotationSet extends SplineSet {
+    public class RotationSet extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setRotation(get(f));
         }
     }
 
-    public static class RotationXset extends SplineSet {
+    public class RotationXset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setRotationX(get(f));
         }
     }
 
-    public static class RotationYset extends SplineSet {
+    public class RotationYset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setRotationY(get(f));
         }
     }
 
-    public static class ScaleXset extends SplineSet {
+    public class ScaleXset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setScaleX(get(f));
         }
     }
 
-    public static class ScaleYset extends SplineSet {
+    public class ScaleYset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setScaleY(get(f));
         }
     }
 
-    public static class Sort {
+    public class Sort {
         private Sort() {
         }
 
@@ -226,25 +196,37 @@ public abstract class SplineSet {
         }
     }
 
-    public static class TranslationXset extends SplineSet {
+    public class TranslationXset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setTranslationX(get(f));
         }
     }
 
-    public static class TranslationYset extends SplineSet {
+    public class TranslationYset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setTranslationY(get(f));
         }
     }
 
-    public static class TranslationZset extends SplineSet {
+    public class TranslationZset extends SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setProperty(View view, float f) {
             view.setTranslationZ(get(f));
         }
+    }
+
+    public float get(float f) {
+        return (float) this.mCurveFit.getPos(f, 0);
+    }
+
+    public CurveFit getCurveFit() {
+        return this.mCurveFit;
+    }
+
+    public float getSlope(float f) {
+        return (float) this.mCurveFit.getSlope(f, 0);
     }
 
     public static SplineSet makeCustomSpline(String str, SparseArray<ConstraintAttribute> sparseArray) {
@@ -289,18 +271,6 @@ public abstract class SplineSet {
             default:
                 return null;
         }
-    }
-
-    public float get(float f) {
-        return (float) this.mCurveFit.getPos(f, 0);
-    }
-
-    public CurveFit getCurveFit() {
-        return this.mCurveFit;
-    }
-
-    public float getSlope(float f) {
-        return (float) this.mCurveFit.getSlope(f, 0);
     }
 
     public void setPoint(int i, float f) {
@@ -369,5 +339,35 @@ public abstract class SplineSet {
             string = sbM836X.toString();
         }
         return string;
+    }
+
+    public class ProgressSet extends SplineSet {
+        public boolean mNoMethod = false;
+
+        @Override // androidx.constraintlayout.motion.widget.SplineSet
+        public void setProperty(View view, float f) {
+            if (view instanceof MotionLayout) {
+                ((MotionLayout) view).setProgress(get(f));
+                return;
+            }
+            if (this.mNoMethod) {
+                return;
+            }
+            Method method = null;
+            try {
+                method = view.getClass().getMethod("setProgress", Float.TYPE);
+            } catch (NoSuchMethodException unused) {
+                this.mNoMethod = true;
+            }
+            if (method != null) {
+                try {
+                    method.invoke(view, Float.valueOf(get(f)));
+                } catch (IllegalAccessException e) {
+                    Log.e(SplineSet.TAG, "unable to setProgress", e);
+                } catch (InvocationTargetException e2) {
+                    Log.e(SplineSet.TAG, "unable to setProgress", e2);
+                }
+            }
+        }
     }
 }

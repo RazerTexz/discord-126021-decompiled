@@ -10,17 +10,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Media.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class Media extends Attachment<String> {
-    public static final Parcelable.Creator<Media> CREATOR = new C11190a();
 
     /* JADX INFO: renamed from: j */
     public boolean f22082j;
 
     /* JADX INFO: renamed from: k */
     public Long f22083k;
+    public static final Parcelable.Creator<Media> CREATOR = new C11190a();
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.model.Media$a */
     /* JADX INFO: compiled from: Media.kt */
-    public static final class C11190a implements Parcelable.Creator<Media> {
+    public final class C11190a implements Parcelable.Creator<Media> {
         @Override // android.os.Parcelable.Creator
         public Media createFromParcel(Parcel parcel) {
             C12238m.checkNotNullParameter(parcel, "parcel");

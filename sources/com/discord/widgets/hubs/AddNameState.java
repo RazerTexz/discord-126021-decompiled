@@ -26,6 +26,10 @@ public final /* data */ class AddNameState {
         this.changeNicknameAsync = restCallState;
     }
 
+    public final RestCallState<Void> component3() {
+        return this.changeNicknameAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AddNameState copy$default(AddNameState addNameState, String str, Guild guild, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -38,20 +42,6 @@ public final /* data */ class AddNameState {
             restCallState = addNameState.changeNicknameAsync;
         }
         return addNameState.copy(str, guild, restCallState);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getNickname() {
-        return this.nickname;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    public final RestCallState<Void> component3() {
-        return this.changeNicknameAsync;
     }
 
     public final AddNameState copy(String nickname, Guild guild, RestCallState<Void> changeNicknameAsync) {
@@ -75,8 +65,18 @@ public final /* data */ class AddNameState {
         return this.changeNicknameAsync;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getNickname() {
+        return this.nickname;
     }
 
     public final String getNickname() {

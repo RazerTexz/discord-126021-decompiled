@@ -70,7 +70,7 @@ public final class StoreMessageAck extends StoreV2 {
     private Subscription threadSyncSubscription;
 
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final /* data */ class Ack {
+    public final /* data */ class Ack {
         private final boolean isLockedAck;
         private final long messageId;
         private final boolean viewed;
@@ -94,21 +94,6 @@ public final class StoreMessageAck extends StoreV2 {
             return ack.copy(j, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getViewed() {
-            return this.viewed;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsLockedAck() {
-            return this.isLockedAck;
-        }
-
         public final Ack copy(long messageId, boolean viewed, boolean isLockedAck) {
             return new Ack(messageId, viewed, isLockedAck);
         }
@@ -124,8 +109,23 @@ public final class StoreMessageAck extends StoreV2 {
             return this.messageId == ack.messageId && this.viewed == ack.viewed && this.isLockedAck == ack.isLockedAck;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsLockedAck() {
+            return this.isLockedAck;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getMessageId() {
             return this.messageId;
+        }
+
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getViewed() {
+            return this.viewed;
         }
 
         public final boolean getViewed() {
@@ -171,190 +171,9 @@ public final class StoreMessageAck extends StoreV2 {
         }
     }
 
-    /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class Companion {
-
-        /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static abstract class ThreadAckState {
-
-            /* JADX INFO: compiled from: StoreMessageAck.kt */
-            public static final class NotThread extends ThreadAckState {
-                public static final NotThread INSTANCE = new NotThread();
-
-                private NotThread() {
-                    super(null);
-                }
-            }
-
-            /* JADX INFO: compiled from: StoreMessageAck.kt */
-            public static final /* data */ class Thread extends ThreadAckState {
-                private final boolean canAckThread;
-
-                public Thread(boolean z2) {
-                    super(null);
-                    this.canAckThread = z2;
-                }
-
-                public static /* synthetic */ Thread copy$default(Thread thread, boolean z2, int i, Object obj) {
-                    if ((i & 1) != 0) {
-                        z2 = thread.canAckThread;
-                    }
-                    return thread.copy(z2);
-                }
-
-                /* JADX INFO: renamed from: component1, reason: from getter */
-                public final boolean getCanAckThread() {
-                    return this.canAckThread;
-                }
-
-                public final Thread copy(boolean canAckThread) {
-                    return new Thread(canAckThread);
-                }
-
-                public boolean equals(Object other) {
-                    if (this != other) {
-                        return (other instanceof Thread) && this.canAckThread == ((Thread) other).canAckThread;
-                    }
-                    return true;
-                }
-
-                public final boolean getCanAckThread() {
-                    return this.canAckThread;
-                }
-
-                public int hashCode() {
-                    boolean z2 = this.canAckThread;
-                    if (z2) {
-                        return 1;
-                    }
-                    return z2 ? 1 : 0;
-                }
-
-                public String toString() {
-                    return C1643a.m827O(C1643a.m833U("Thread(canAckThread="), this.canAckThread, ")");
-                }
-            }
-
-            private ThreadAckState() {
-            }
-
-            public /* synthetic */ ThreadAckState(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-
-        private Companion() {
-        }
-
-        public final boolean isNonThreadChannel(ThreadAckState threadAckState) {
-            return threadAckState instanceof ThreadAckState.NotThread;
-        }
-
-        public final boolean isThreadAndAbleToAck(ThreadAckState threadAckState) {
-            return (threadAckState instanceof ThreadAckState.Thread) && ((ThreadAckState.Thread) threadAckState).getCanAckThread();
-        }
-
-        public final boolean isThreadAndUnableToAck(ThreadAckState threadAckState) {
-            return (threadAckState instanceof ThreadAckState.Thread) && !((ThreadAckState.Thread) threadAckState).getCanAckThread();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final /* data */ class PendingAck {
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private static final PendingAck EMPTY = new PendingAck(0, new Ack(0L, false, false));
-        private final Ack ack;
-        private final long channelId;
-
-        /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static final class Companion {
-            private Companion() {
-            }
-
-            public final PendingAck getEMPTY() {
-                return PendingAck.EMPTY;
-            }
-
-            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-
-        public PendingAck(long j, Ack ack) {
-            C12238m.checkNotNullParameter(ack, "ack");
-            this.channelId = j;
-            this.ack = ack;
-        }
-
-        public static /* synthetic */ PendingAck copy$default(PendingAck pendingAck, long j, Ack ack, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = pendingAck.channelId;
-            }
-            if ((i & 2) != 0) {
-                ack = pendingAck.ack;
-            }
-            return pendingAck.copy(j, ack);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Ack getAck() {
-            return this.ack;
-        }
-
-        public final PendingAck copy(long channelId, Ack ack) {
-            C12238m.checkNotNullParameter(ack, "ack");
-            return new PendingAck(channelId, ack);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof PendingAck)) {
-                return false;
-            }
-            PendingAck pendingAck = (PendingAck) other;
-            return this.channelId == pendingAck.channelId && C12238m.areEqual(this.ack, pendingAck.ack);
-        }
-
-        public final Ack getAck() {
-            return this.ack;
-        }
-
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.channelId) * 31;
-            Ack ack = this.ack;
-            return iM3a + (ack != null ? ack.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("PendingAck(channelId=");
-            sbM833U.append(this.channelId);
-            sbM833U.append(", ack=");
-            sbM833U.append(this.ack);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$ack$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C61971 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61971 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ boolean $clearLock;
         public final /* synthetic */ boolean $isLockedAck;
@@ -391,7 +210,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$getPendingAck$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C61981 extends AbstractC12240o implements Function2<Ack, Long, Boolean> {
+    public final class C61981 extends AbstractC12240o implements Function2<Ack, Long, Boolean> {
         public final /* synthetic */ boolean $clearLock;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -417,7 +236,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$handleConnectionOpen$3 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62003 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C62003 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C62003() {
             super(1);
         }
@@ -437,11 +256,11 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$handleConnectionOpen$4 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62014 extends AbstractC12240o implements Function1<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Unit> {
+    public final class C62014 extends AbstractC12240o implements Function1<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$handleConnectionOpen$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Set $newThreadIds;
             public final /* synthetic */ Set $oldThreadIds;
 
@@ -483,13 +302,13 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$markUnread$3 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62053 extends AbstractC12240o implements Function1<Pair<? extends List<? extends Message>, ? extends Companion.ThreadAckState>, Unit> {
+    public final class C62053 extends AbstractC12240o implements Function1<Pair<? extends List<? extends Message>, ? extends Companion.ThreadAckState>, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $messageId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$markUnread$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $channelMessages;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -581,7 +400,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$observeAll$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62081 extends AbstractC12240o implements Function0<Map<Long, ? extends Ack>> {
+    public final class C62081 extends AbstractC12240o implements Function0<Map<Long, ? extends Ack>> {
         public C62081() {
             super(0);
         }
@@ -594,7 +413,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$observeForChannel$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62091 extends AbstractC12240o implements Function0<Ack> {
+    public final class C62091 extends AbstractC12240o implements Function0<Ack> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -612,7 +431,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$observeThreadAckState$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62101 extends AbstractC12240o implements Function0<Companion.ThreadAckState> {
+    public final class C62101 extends AbstractC12240o implements Function0<Companion.ThreadAckState> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -631,12 +450,12 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$postPendingAck$1 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final class C62111 extends AbstractC12240o implements Function1<PendingAck, Unit> {
+    public final class C62111 extends AbstractC12240o implements Function1<PendingAck, Unit> {
         public final /* synthetic */ int $mentionCount;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$postPendingAck$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Ack $ack;
             public final /* synthetic */ long $channelId;
 
@@ -661,7 +480,7 @@ public final class StoreMessageAck extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$postPendingAck$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessageAck.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Void, Unit> {
             public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
             public AnonymousClass3() {
@@ -710,7 +529,7 @@ public final class StoreMessageAck extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessageAck$postPendingAck$3 */
     /* JADX INFO: compiled from: StoreMessageAck.kt */
-    public static final /* synthetic */ class C62133 extends C12236k implements Function1<PendingAck, Unit> {
+    public final /* synthetic */ class C62133 extends C12236k implements Function1<PendingAck, Unit> {
         public final /* synthetic */ C62111 $postChannelMessagesAck$1;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -729,6 +548,187 @@ public final class StoreMessageAck extends StoreV2 {
         public final void invoke2(PendingAck pendingAck) {
             C12238m.checkNotNullParameter(pendingAck, "p1");
             this.$postChannelMessagesAck$1.invoke2(pendingAck);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessageAck.kt */
+    public final class Companion {
+
+        /* JADX INFO: compiled from: StoreMessageAck.kt */
+        public abstract class ThreadAckState {
+
+            /* JADX INFO: compiled from: StoreMessageAck.kt */
+            public final class NotThread extends ThreadAckState {
+                public static final NotThread INSTANCE = new NotThread();
+
+                private NotThread() {
+                    super(null);
+                }
+            }
+
+            /* JADX INFO: compiled from: StoreMessageAck.kt */
+            public final /* data */ class Thread extends ThreadAckState {
+                private final boolean canAckThread;
+
+                public Thread(boolean z2) {
+                    super(null);
+                    this.canAckThread = z2;
+                }
+
+                public static /* synthetic */ Thread copy$default(Thread thread, boolean z2, int i, Object obj) {
+                    if ((i & 1) != 0) {
+                        z2 = thread.canAckThread;
+                    }
+                    return thread.copy(z2);
+                }
+
+                public final Thread copy(boolean canAckThread) {
+                    return new Thread(canAckThread);
+                }
+
+                public boolean equals(Object other) {
+                    if (this != other) {
+                        return (other instanceof Thread) && this.canAckThread == ((Thread) other).canAckThread;
+                    }
+                    return true;
+                }
+
+                /* JADX INFO: renamed from: component1, reason: from getter */
+                public final boolean getCanAckThread() {
+                    return this.canAckThread;
+                }
+
+                public final boolean getCanAckThread() {
+                    return this.canAckThread;
+                }
+
+                public int hashCode() {
+                    boolean z2 = this.canAckThread;
+                    if (z2) {
+                        return 1;
+                    }
+                    return z2 ? 1 : 0;
+                }
+
+                public String toString() {
+                    return C1643a.m827O(C1643a.m833U("Thread(canAckThread="), this.canAckThread, ")");
+                }
+            }
+
+            private ThreadAckState() {
+            }
+
+            public /* synthetic */ ThreadAckState(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        private Companion() {
+        }
+
+        public final boolean isNonThreadChannel(ThreadAckState threadAckState) {
+            return threadAckState instanceof ThreadAckState.NotThread;
+        }
+
+        public final boolean isThreadAndAbleToAck(ThreadAckState threadAckState) {
+            return (threadAckState instanceof ThreadAckState.Thread) && ((ThreadAckState.Thread) threadAckState).getCanAckThread();
+        }
+
+        public final boolean isThreadAndUnableToAck(ThreadAckState threadAckState) {
+            return (threadAckState instanceof ThreadAckState.Thread) && !((ThreadAckState.Thread) threadAckState).getCanAckThread();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessageAck.kt */
+    public final /* data */ class PendingAck {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Ack ack;
+        private final long channelId;
+        private static final PendingAck EMPTY = new PendingAck(0, new Ack(0L, false, false));
+
+        /* JADX INFO: compiled from: StoreMessageAck.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final PendingAck getEMPTY() {
+                return PendingAck.EMPTY;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public PendingAck(long j, Ack ack) {
+            C12238m.checkNotNullParameter(ack, "ack");
+            this.channelId = j;
+            this.ack = ack;
+        }
+
+        public static /* synthetic */ PendingAck copy$default(PendingAck pendingAck, long j, Ack ack, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = pendingAck.channelId;
+            }
+            if ((i & 2) != 0) {
+                ack = pendingAck.ack;
+            }
+            return pendingAck.copy(j, ack);
+        }
+
+        public final PendingAck copy(long channelId, Ack ack) {
+            C12238m.checkNotNullParameter(ack, "ack");
+            return new PendingAck(channelId, ack);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof PendingAck)) {
+                return false;
+            }
+            PendingAck pendingAck = (PendingAck) other;
+            return this.channelId == pendingAck.channelId && C12238m.areEqual(this.ack, pendingAck.ack);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Ack getAck() {
+            return this.ack;
+        }
+
+        public final Ack getAck() {
+            return this.ack;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        public int hashCode() {
+            int iM3a = C0002b.m3a(this.channelId) * 31;
+            Ack ack = this.ack;
+            return iM3a + (ack != null ? ack.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("PendingAck(channelId=");
+            sbM833U.append(this.channelId);
+            sbM833U.append(", ack=");
+            sbM833U.append(this.ack);
+            sbM833U.append(")");
+            return sbM833U.toString();
         }
     }
 
@@ -752,6 +752,23 @@ public final class StoreMessageAck extends StoreV2 {
             z3 = false;
         }
         storeMessageAck.ack(j, z2, z3);
+    }
+
+    public final void ack(long channelId, boolean isLockedAck, boolean clearLock) {
+        this.dispatcher.schedule(new C61971(channelId, isLockedAck, clearLock));
+    }
+
+    public final Map<Long, Ack> getAll() {
+        return this.acksSnapshot;
+    }
+
+    @StoreThread
+    public final Map<Long, Ack> getAllInternal() {
+        return this.acks;
+    }
+
+    public final Ack getForChannel(long channelId) {
+        return getAll().get(Long.valueOf(channelId));
     }
 
     private final Observable<PendingAck> getPendingAck(Observable<Long> observable, final boolean z2, boolean z3) {
@@ -796,6 +813,13 @@ public final class StoreMessageAck extends StoreV2 {
         return observableM11099Y;
     }
 
+    public static /* synthetic */ Companion.ThreadAckState getThreadAckStateInternal$default(StoreMessageAck storeMessageAck, long j, Map map, Map map2, StoreChannels storeChannels, int i, Object obj) {
+        if ((i & 8) != 0) {
+            storeChannels = storeMessageAck.stream.getChannels();
+        }
+        return storeMessageAck.getThreadAckStateInternal(j, map, map2, storeChannels);
+    }
+
     @StoreThread
     private final Companion.ThreadAckState getThreadAckStateInternal(long channelId, Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> activeAndJoinedThreads, Map<Long, Channel> activeForumThreads, StoreChannels storeChannels) {
         Channel channel = storeChannels.getChannel(channelId);
@@ -806,154 +830,6 @@ public final class StoreMessageAck extends StoreV2 {
             return (activeAndJoinedThreads.containsKey(Long.valueOf(channelId)) || activeForumThreads.containsKey(Long.valueOf(channelId))) ? new Companion.ThreadAckState.Thread(true) : new Companion.ThreadAckState.Thread(false);
         }
         return Companion.ThreadAckState.NotThread.INSTANCE;
-    }
-
-    public static /* synthetic */ Companion.ThreadAckState getThreadAckStateInternal$default(StoreMessageAck storeMessageAck, long j, Map map, Map map2, StoreChannels storeChannels, int i, Object obj) {
-        if ((i & 8) != 0) {
-            storeChannels = storeMessageAck.stream.getChannels();
-        }
-        return storeMessageAck.getThreadAckStateInternal(j, map, map2, storeChannels);
-    }
-
-    private final void internalAck(Channel channel, boolean isLockedAck, boolean clearLock) {
-        C12721k c12721k = new C12721k(Long.valueOf(channel.getId()));
-        C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(channel.id)");
-        postPendingAck$default(this, ObservableExtensionsKt.takeSingleUntilTimeout$default(getPendingAck(c12721k, isLockedAck, clearLock), 0L, false, 1, null), 0, 1, null);
-    }
-
-    private final Observable<Pair<Set<Long>, Set<Long>>> observeActiveThreadIdsWithPrevious() {
-        Observable observableM11076j = Observable.m11076j(this.stream.getThreadsActiveJoined().observeAllActiveJoinedThreadsById(), this.stream.getThreadsActive().observeAllActiveForumThreadsById(), new Func2<Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread>, Map<Long, ? extends Channel>, Set<? extends Long>>() { // from class: com.discord.stores.StoreMessageAck.observeActiveThreadIdsWithPrevious.1
-            @Override // p658rx.functions.Func2
-            public /* bridge */ /* synthetic */ Set<? extends Long> call(Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread> map, Map<Long, ? extends Channel> map2) {
-                return call2((Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>) map, (Map<Long, Channel>) map2);
-            }
-
-            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-            public final Set<Long> call2(Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> map, Map<Long, Channel> map2) {
-                return C12150o0.plus((Set) map.keySet(), (Iterable) map2.keySet());
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…veForumThreads.keys\n    }");
-        Observable<Pair<Set<Long>, Set<Long>>> observableM11091Q = ObservableExtensionsKt.leadingEdgeThrottle(observableM11076j, 1L, TimeUnit.SECONDS).m11112r().m11091Q(new Pair(C12148n0.emptySet(), C12148n0.emptySet()), new Func2<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Set<? extends Long>, Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>>() { // from class: com.discord.stores.StoreMessageAck.observeActiveThreadIdsWithPrevious.2
-            @Override // p658rx.functions.Func2
-            public /* bridge */ /* synthetic */ Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>> call(Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>> pair, Set<? extends Long> set) {
-                return call2((Pair<? extends Set<Long>, ? extends Set<Long>>) pair, (Set<Long>) set);
-            }
-
-            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-            public final Pair<Set<Long>, Set<Long>> call2(Pair<? extends Set<Long>, ? extends Set<Long>> pair, Set<Long> set) {
-                return new Pair<>(pair.getSecond(), set);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11091Q, "Observable.combineLatest…ond, threadIds)\n        }");
-        return observableM11091Q;
-    }
-
-    private final Observable<Companion.ThreadAckState> observeThreadAckState(long channelId) {
-        Observable<Companion.ThreadAckState> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.stream.getThreadsActiveJoined(), this.stream.getThreadsActive()}, false, null, null, new C62101(channelId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    private final void postPendingAck(Observable<PendingAck> observable, int i) {
-        C62111 c62111 = new C62111(i);
-        Observable<PendingAck> observableM11118y = observable.m11118y(new InterfaceC12589b<PendingAck, Boolean>() { // from class: com.discord.stores.StoreMessageAck.postPendingAck.2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(PendingAck pendingAck) {
-                return Boolean.valueOf(!C12238m.areEqual(pendingAck, PendingAck.INSTANCE.getEMPTY()));
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11118y, "filter { it != PendingAck.EMPTY }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(observableM11118y), (Class<?>) observable.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62133(c62111));
-    }
-
-    public static /* synthetic */ void postPendingAck$default(StoreMessageAck storeMessageAck, Observable observable, int i, int i2, Object obj) {
-        if ((i2 & 1) != 0) {
-            i = 0;
-        }
-        storeMessageAck.postPendingAck(observable, i);
-    }
-
-    @StoreThread
-    private final void pruneAcks() {
-        if (!this.stream.getGuilds().getUnavailableGuildsInternal$app_productionGoogleRelease().isEmpty()) {
-            return;
-        }
-        Map<Long, Channel> channelsByIdInternal$app_productionGoogleRelease = this.stream.getChannels().getChannelsByIdInternal$app_productionGoogleRelease();
-        Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> activeJoinedThreadsInternal$app_productionGoogleRelease = this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease();
-        Map<Long, Channel> allForumThreadsByIdInternal$app_productionGoogleRelease = this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease();
-        Iterator<Long> it = this.acks.keySet().iterator();
-        while (it.hasNext()) {
-            long jLongValue = it.next().longValue();
-            if (!channelsByIdInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue)) && !activeJoinedThreadsInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue)) && !allForumThreadsByIdInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue))) {
-                it.remove();
-                markChanged();
-            }
-        }
-    }
-
-    @StoreThread
-    private final void updateAcks(long channelId, Ack ackNewer) {
-        if (INSTANCE.isThreadAndUnableToAck(getThreadAckStateInternal$default(this, channelId, this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease(), this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease(), null, 8, null))) {
-            return;
-        }
-        Ack ack = this.acks.get(Long.valueOf(channelId));
-        if (ack == null || MessageUtils.compareMessages(Long.valueOf(ack.getMessageId()), Long.valueOf(ackNewer.getMessageId())) != 0 || (ackNewer.isLockedAck() && !ack.isLockedAck())) {
-            this.acks.put(Long.valueOf(channelId), ackNewer);
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    private final void updateThreadAcks(Set<Long> oldThreadIds, Set<Long> newThreadIds) {
-        Channel channel;
-        UtcDateTime joinTimestamp;
-        if (this.stream.getGuilds().getUnavailableGuildsInternal$app_productionGoogleRelease().isEmpty()) {
-            Iterator it = C12150o0.minus((Set) oldThreadIds, (Iterable) newThreadIds).iterator();
-            while (it.hasNext()) {
-                long jLongValue = ((Number) it.next()).longValue();
-                if (this.acks.containsKey(Long.valueOf(jLongValue)) && this.acks.remove(Long.valueOf(jLongValue)) != null) {
-                    markChanged();
-                }
-            }
-        }
-        Map<Long, Long> guildsJoinedAtInternal$app_productionGoogleRelease = this.stream.getGuilds().getGuildsJoinedAtInternal$app_productionGoogleRelease();
-        Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> activeJoinedThreadsInternal$app_productionGoogleRelease = this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease();
-        Map<Long, Channel> allForumThreadsByIdInternal$app_productionGoogleRelease = this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease();
-        Iterator it2 = C12150o0.minus((Set) newThreadIds, (Iterable) oldThreadIds).iterator();
-        while (it2.hasNext()) {
-            long jLongValue2 = ((Number) it2.next()).longValue();
-            if (!this.acks.containsKey(Long.valueOf(jLongValue2))) {
-                if (INSTANCE.isThreadAndAbleToAck(getThreadAckStateInternal$default(this, jLongValue2, activeJoinedThreadsInternal$app_productionGoogleRelease, allForumThreadsByIdInternal$app_productionGoogleRelease, null, 8, null))) {
-                    StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread = activeJoinedThreadsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue2));
-                    if (activeJoinedThread == null || (channel = activeJoinedThread.getChannel()) == null) {
-                        channel = allForumThreadsByIdInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue2));
-                    }
-                    Channel channel2 = channel;
-                    if (channel2 != null) {
-                        this.acks.put(Long.valueOf(jLongValue2), new Ack((ThreadUtils.getThreadAckMessageTimestamp$default(ThreadUtils.INSTANCE, channel2, (Long) C1643a.m843c(channel2, guildsJoinedAtInternal$app_productionGoogleRelease), (activeJoinedThread == null || (joinTimestamp = activeJoinedThread.getJoinTimestamp()) == null) ? null : Long.valueOf(joinTimestamp.getDateTimeMillis()), null, 4, null) - SnowflakeUtils.DISCORD_EPOCH) << 22, false, false));
-                        markChanged();
-                    }
-                }
-            }
-        }
-    }
-
-    public final void ack(long channelId, boolean isLockedAck, boolean clearLock) {
-        this.dispatcher.schedule(new C61971(channelId, isLockedAck, clearLock));
-    }
-
-    public final Map<Long, Ack> getAll() {
-        return this.acksSnapshot;
-    }
-
-    @StoreThread
-    public final Map<Long, Ack> getAllInternal() {
-        return this.acks;
-    }
-
-    public final Ack getForChannel(long channelId) {
-        return getAll().get(Long.valueOf(channelId));
     }
 
     @StoreThread
@@ -1129,6 +1005,12 @@ public final class StoreMessageAck extends StoreV2 {
         postPendingAck$default(this, getPendingAck(observableM11110p, false, false), 0, 1, null);
     }
 
+    private final void internalAck(Channel channel, boolean isLockedAck, boolean clearLock) {
+        C12721k c12721k = new C12721k(Long.valueOf(channel.getId()));
+        C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(channel.id)");
+        postPendingAck$default(this, ObservableExtensionsKt.takeSingleUntilTimeout$default(getPendingAck(c12721k, isLockedAck, clearLock), 0L, false, 1, null), 0, 1, null);
+    }
+
     public final void markUnread(long channelId, long messageId) {
         Observable observableM11076j = Observable.m11076j(this.stream.getMessages().observeMessagesForChannel(channelId).m11118y(new InterfaceC12589b<List<? extends Message>, Boolean>() { // from class: com.discord.stores.StoreMessageAck.markUnread.1
             @Override // p637j0.p641k.InterfaceC12589b
@@ -1156,6 +1038,34 @@ public final class StoreMessageAck extends StoreV2 {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout(observableM11076j, 10L, false), (Class<?>) StoreMessageAck.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62053(messageId, channelId));
     }
 
+    private final Observable<Pair<Set<Long>, Set<Long>>> observeActiveThreadIdsWithPrevious() {
+        Observable observableM11076j = Observable.m11076j(this.stream.getThreadsActiveJoined().observeAllActiveJoinedThreadsById(), this.stream.getThreadsActive().observeAllActiveForumThreadsById(), new Func2<Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread>, Map<Long, ? extends Channel>, Set<? extends Long>>() { // from class: com.discord.stores.StoreMessageAck.observeActiveThreadIdsWithPrevious.1
+            @Override // p658rx.functions.Func2
+            public /* bridge */ /* synthetic */ Set<? extends Long> call(Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread> map, Map<Long, ? extends Channel> map2) {
+                return call2((Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>) map, (Map<Long, Channel>) map2);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Set<Long> call2(Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> map, Map<Long, Channel> map2) {
+                return C12150o0.plus((Set) map.keySet(), (Iterable) map2.keySet());
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…veForumThreads.keys\n    }");
+        Observable<Pair<Set<Long>, Set<Long>>> observableM11091Q = ObservableExtensionsKt.leadingEdgeThrottle(observableM11076j, 1L, TimeUnit.SECONDS).m11112r().m11091Q(new Pair(C12148n0.emptySet(), C12148n0.emptySet()), new Func2<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Set<? extends Long>, Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>>() { // from class: com.discord.stores.StoreMessageAck.observeActiveThreadIdsWithPrevious.2
+            @Override // p658rx.functions.Func2
+            public /* bridge */ /* synthetic */ Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>> call(Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>> pair, Set<? extends Long> set) {
+                return call2((Pair<? extends Set<Long>, ? extends Set<Long>>) pair, (Set<Long>) set);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Pair<Set<Long>, Set<Long>> call2(Pair<? extends Set<Long>, ? extends Set<Long>> pair, Set<Long> set) {
+                return new Pair<>(pair.getSecond(), set);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11091Q, "Observable.combineLatest…ond, threadIds)\n        }");
+        return observableM11091Q;
+    }
+
     public final Observable<Map<Long, Ack>> observeAll() {
         Observable<Map<Long, Ack>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C62081(), 14, null).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
@@ -1168,11 +1078,101 @@ public final class StoreMessageAck extends StoreV2 {
         return observableM11112r;
     }
 
+    private final Observable<Companion.ThreadAckState> observeThreadAckState(long channelId) {
+        Observable<Companion.ThreadAckState> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.stream.getThreadsActiveJoined(), this.stream.getThreadsActive()}, false, null, null, new C62101(channelId), 14, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public static /* synthetic */ void postPendingAck$default(StoreMessageAck storeMessageAck, Observable observable, int i, int i2, Object obj) {
+        if ((i2 & 1) != 0) {
+            i = 0;
+        }
+        storeMessageAck.postPendingAck(observable, i);
+    }
+
+    private final void postPendingAck(Observable<PendingAck> observable, int i) {
+        C62111 c62111 = new C62111(i);
+        Observable<PendingAck> observableM11118y = observable.m11118y(new InterfaceC12589b<PendingAck, Boolean>() { // from class: com.discord.stores.StoreMessageAck.postPendingAck.2
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Boolean call(PendingAck pendingAck) {
+                return Boolean.valueOf(!C12238m.areEqual(pendingAck, PendingAck.INSTANCE.getEMPTY()));
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11118y, "filter { it != PendingAck.EMPTY }");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(observableM11118y), (Class<?>) observable.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62133(c62111));
+    }
+
+    @StoreThread
+    private final void pruneAcks() {
+        if (!this.stream.getGuilds().getUnavailableGuildsInternal$app_productionGoogleRelease().isEmpty()) {
+            return;
+        }
+        Map<Long, Channel> channelsByIdInternal$app_productionGoogleRelease = this.stream.getChannels().getChannelsByIdInternal$app_productionGoogleRelease();
+        Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> activeJoinedThreadsInternal$app_productionGoogleRelease = this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease();
+        Map<Long, Channel> allForumThreadsByIdInternal$app_productionGoogleRelease = this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease();
+        Iterator<Long> it = this.acks.keySet().iterator();
+        while (it.hasNext()) {
+            long jLongValue = it.next().longValue();
+            if (!channelsByIdInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue)) && !activeJoinedThreadsInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue)) && !allForumThreadsByIdInternal$app_productionGoogleRelease.containsKey(Long.valueOf(jLongValue))) {
+                it.remove();
+                markChanged();
+            }
+        }
+    }
+
     @Override // com.discord.stores.StoreV2
     public void snapshotData() {
         super.snapshotData();
         HashMap mapSnapshot$default = CollectionExtensionsKt.snapshot$default(this.acks, 0, 0.0f, 3, null);
         this.acksSnapshot = mapSnapshot$default;
         Persister.set$default(this.acksPersister, mapSnapshot$default, false, 2, null);
+    }
+
+    @StoreThread
+    private final void updateAcks(long channelId, Ack ackNewer) {
+        if (INSTANCE.isThreadAndUnableToAck(getThreadAckStateInternal$default(this, channelId, this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease(), this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease(), null, 8, null))) {
+            return;
+        }
+        Ack ack = this.acks.get(Long.valueOf(channelId));
+        if (ack == null || MessageUtils.compareMessages(Long.valueOf(ack.getMessageId()), Long.valueOf(ackNewer.getMessageId())) != 0 || (ackNewer.isLockedAck() && !ack.isLockedAck())) {
+            this.acks.put(Long.valueOf(channelId), ackNewer);
+            markChanged();
+        }
+    }
+
+    @StoreThread
+    private final void updateThreadAcks(Set<Long> oldThreadIds, Set<Long> newThreadIds) {
+        Channel channel;
+        UtcDateTime joinTimestamp;
+        if (this.stream.getGuilds().getUnavailableGuildsInternal$app_productionGoogleRelease().isEmpty()) {
+            Iterator it = C12150o0.minus((Set) oldThreadIds, (Iterable) newThreadIds).iterator();
+            while (it.hasNext()) {
+                long jLongValue = ((Number) it.next()).longValue();
+                if (this.acks.containsKey(Long.valueOf(jLongValue)) && this.acks.remove(Long.valueOf(jLongValue)) != null) {
+                    markChanged();
+                }
+            }
+        }
+        Map<Long, Long> guildsJoinedAtInternal$app_productionGoogleRelease = this.stream.getGuilds().getGuildsJoinedAtInternal$app_productionGoogleRelease();
+        Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread> activeJoinedThreadsInternal$app_productionGoogleRelease = this.stream.getThreadsActiveJoined().getActiveJoinedThreadsInternal$app_productionGoogleRelease();
+        Map<Long, Channel> allForumThreadsByIdInternal$app_productionGoogleRelease = this.stream.getThreadsActive().getAllForumThreadsByIdInternal$app_productionGoogleRelease();
+        Iterator it2 = C12150o0.minus((Set) newThreadIds, (Iterable) oldThreadIds).iterator();
+        while (it2.hasNext()) {
+            long jLongValue2 = ((Number) it2.next()).longValue();
+            if (!this.acks.containsKey(Long.valueOf(jLongValue2))) {
+                if (INSTANCE.isThreadAndAbleToAck(getThreadAckStateInternal$default(this, jLongValue2, activeJoinedThreadsInternal$app_productionGoogleRelease, allForumThreadsByIdInternal$app_productionGoogleRelease, null, 8, null))) {
+                    StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread = activeJoinedThreadsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue2));
+                    if (activeJoinedThread == null || (channel = activeJoinedThread.getChannel()) == null) {
+                        channel = allForumThreadsByIdInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue2));
+                    }
+                    Channel channel2 = channel;
+                    if (channel2 != null) {
+                        this.acks.put(Long.valueOf(jLongValue2), new Ack((ThreadUtils.getThreadAckMessageTimestamp$default(ThreadUtils.INSTANCE, channel2, (Long) C1643a.m843c(channel2, guildsJoinedAtInternal$app_productionGoogleRelease), (activeJoinedThread == null || (joinTimestamp = activeJoinedThread.getJoinTimestamp()) == null) ? null : Long.valueOf(joinTimestamp.getDateTimeMillis()), null, 4, null) - SnowflakeUtils.DISCORD_EPOCH) << 22, false, false));
+                        markChanged();
+                    }
+                }
+            }
+        }
     }
 }

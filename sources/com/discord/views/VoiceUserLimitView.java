@@ -86,25 +86,6 @@ public final class VoiceUserLimitView extends LinearLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
-    private final Drawable getVideoCamDrawable() {
-        return (Drawable) this.videoCamDrawable.getValue();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m8569a(int current, int max, boolean isVideo) {
-        TextView textView = this.binding.f1005b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.voiceUserLimitCurrent");
-        textView.setText(current < 100 ? C1643a.m828P(new Object[]{Integer.valueOf(current)}, 1, "%02d", "java.lang.String.format(format, *args)") : String.valueOf(current));
-        TextView textView2 = this.binding.f1006c;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.voiceUserLimitMax");
-        textView2.setText(max < 100 ? C1643a.m828P(new Object[]{Integer.valueOf(max)}, 1, "%02d", "java.lang.String.format(format, *args)") : String.valueOf(max));
-        if (isVideo) {
-            this.binding.f1005b.setCompoundDrawablesWithIntrinsicBounds(getVideoCamDrawable(), (Drawable) null, (Drawable) null, (Drawable) null);
-        } else {
-            this.binding.f1005b.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
-        }
-    }
-
     @Override // android.view.ViewGroup, android.view.View
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -134,5 +115,24 @@ public final class VoiceUserLimitView extends LinearLayout {
         this.path.close();
         canvas.drawPath(this.path, this.paint);
         this.path.reset();
+    }
+
+    private final Drawable getVideoCamDrawable() {
+        return (Drawable) this.videoCamDrawable.getValue();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m8569a(int current, int max, boolean isVideo) {
+        TextView textView = this.binding.f1005b;
+        C12238m.checkNotNullExpressionValue(textView, "binding.voiceUserLimitCurrent");
+        textView.setText(current < 100 ? C1643a.m828P(new Object[]{Integer.valueOf(current)}, 1, "%02d", "java.lang.String.format(format, *args)") : String.valueOf(current));
+        TextView textView2 = this.binding.f1006c;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.voiceUserLimitMax");
+        textView2.setText(max < 100 ? C1643a.m828P(new Object[]{Integer.valueOf(max)}, 1, "%02d", "java.lang.String.format(format, *args)") : String.valueOf(max));
+        if (isVideo) {
+            this.binding.f1005b.setCompoundDrawablesWithIntrinsicBounds(getVideoCamDrawable(), (Drawable) null, (Drawable) null, (Drawable) null);
+        } else {
+            this.binding.f1005b.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+        }
     }
 }

@@ -73,8 +73,27 @@ public final class WidgetServerSettings extends AppFragment {
     private long guildId;
     private final LoggingConfig loggingConfig;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettings.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C91891 extends C12236k implements Function1<Model, Unit> {
+        public C91891(WidgetServerSettings widgetServerSettings) {
+            super(1, widgetServerSettings, WidgetServerSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettings$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettings) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettings.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -89,7 +108,7 @@ public final class WidgetServerSettings extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettings.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -99,7 +118,7 @@ public final class WidgetServerSettings extends AppFragment {
         private final ManageGuildContext manageGuildContext;
 
         /* JADX INFO: compiled from: WidgetServerSettings.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -162,26 +181,6 @@ public final class WidgetServerSettings extends AppFragment {
             return model.copy(guild, manageGuildContext, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ManageGuildContext getManageGuildContext() {
-            return this.manageGuildContext;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanManageGuildRoleSubscriptions() {
-            return this.canManageGuildRoleSubscriptions;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getHasGuildRoleSubscriptions() {
-            return this.hasGuildRoleSubscriptions;
-        }
-
         public final Model copy(Guild guild, ManageGuildContext manageGuildContext, boolean canManageGuildRoleSubscriptions, boolean hasGuildRoleSubscriptions) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(manageGuildContext, "manageGuildContext");
@@ -199,16 +198,36 @@ public final class WidgetServerSettings extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.manageGuildContext, model.manageGuildContext) && this.canManageGuildRoleSubscriptions == model.canManageGuildRoleSubscriptions && this.hasGuildRoleSubscriptions == model.hasGuildRoleSubscriptions;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getCanManageGuildRoleSubscriptions() {
             return this.canManageGuildRoleSubscriptions;
+        }
+
+        public final boolean getCanManageGuildRoleSubscriptions() {
+            return this.canManageGuildRoleSubscriptions;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getHasGuildRoleSubscriptions() {
             return this.hasGuildRoleSubscriptions;
+        }
+
+        public final boolean getHasGuildRoleSubscriptions() {
+            return this.hasGuildRoleSubscriptions;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ManageGuildContext getManageGuildContext() {
+            return this.manageGuildContext;
         }
 
         public final ManageGuildContext getManageGuildContext() {
@@ -248,25 +267,6 @@ public final class WidgetServerSettings extends AppFragment {
             sbM833U.append(this.canManageGuildRoleSubscriptions);
             sbM833U.append(", hasGuildRoleSubscriptions=");
             return C1643a.m827O(sbM833U, this.hasGuildRoleSubscriptions, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettings$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettings.kt */
-    public static final /* synthetic */ class C91891 extends C12236k implements Function1<Model, Unit> {
-        public C91891(WidgetServerSettings widgetServerSettings) {
-            super(1, widgetServerSettings, WidgetServerSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettings$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettings) this.receiver).configureUI(model);
         }
     }
 

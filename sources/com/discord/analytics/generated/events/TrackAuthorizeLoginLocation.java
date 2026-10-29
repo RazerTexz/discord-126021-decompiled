@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAuthorizeLoginLocation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAuthorizeLoginLocation implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence authorizedIp = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "authorize_login_location";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAuthorizeLoginLocation) && C12238m.areEqual(this.authorizedIp, ((TrackAuthorizeLoginLocation) other).authorizedIp);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

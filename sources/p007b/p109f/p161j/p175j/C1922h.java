@@ -5,9 +5,6 @@ package p007b.p109f.p161j.p175j;
 /* JADX INFO: loaded from: classes.dex */
 public class C1922h implements InterfaceC1923i {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC1923i f3908a = new C1922h(Integer.MAX_VALUE, true, true);
-
     /* JADX INFO: renamed from: b */
     public int f3909b;
 
@@ -16,6 +13,9 @@ public class C1922h implements InterfaceC1923i {
 
     /* JADX INFO: renamed from: d */
     public boolean f3911d;
+
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC1923i f3908a = new C1922h(Integer.MAX_VALUE, true, true);
 
     public C1922h(int i, boolean z2, boolean z3) {
         this.f3909b = i;

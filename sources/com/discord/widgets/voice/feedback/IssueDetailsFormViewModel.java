@@ -16,10 +16,10 @@ public final class IssueDetailsFormViewModel extends AbstractC0859d0<Unit> {
     private boolean submitted;
 
     /* JADX INFO: compiled from: IssueDetailsFormViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: IssueDetailsFormViewModel.kt */
-        public static final class Close extends Event {
+        public final class Close extends Event {
             public static final Close INSTANCE = new Close();
 
             private Close() {

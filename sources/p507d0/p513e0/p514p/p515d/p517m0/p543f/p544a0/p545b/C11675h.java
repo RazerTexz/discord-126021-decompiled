@@ -45,57 +45,6 @@ public final class C11675h {
         f23721b = c11725eNewInstance;
     }
 
-    public static /* synthetic */ AbstractC11672e.a getJvmFieldSignature$default(C11675h c11675h, C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z2 = true;
-        }
-        return c11675h.getJvmFieldSignature(c11689n, interfaceC11704c, c11708g, z2);
-    }
-
-    public static final boolean isMovedFromInterfaceCompanion(C11689n c11689n) {
-        C12238m.checkNotNullParameter(c11689n, "proto");
-        C11703b.b is_moved_from_interface_companion = C11671d.f23704a.getIS_MOVED_FROM_INTERFACE_COMPANION();
-        Object extension = c11689n.getExtension(C11667a.f23655e);
-        C12238m.checkNotNullExpressionValue(extension, "proto.getExtension(JvmProtoBuf.flags)");
-        Boolean bool = is_moved_from_interface_companion.get(((Number) extension).intValue());
-        C12238m.checkNotNullExpressionValue(bool, "JvmFlags.IS_MOVED_FROM_INTERFACE_COMPANION.get(proto.getExtension(JvmProtoBuf.flags))");
-        return bool.booleanValue();
-    }
-
-    public static final Pair<C11674g, C11678c> readClassDataFrom(String[] strArr, String[] strArr2) {
-        C12238m.checkNotNullParameter(strArr, "data");
-        C12238m.checkNotNullParameter(strArr2, "strings");
-        byte[] bArrDecodeBytes = C11668a.decodeBytes(strArr);
-        C12238m.checkNotNullExpressionValue(bArrDecodeBytes, "decodeBytes(data)");
-        return readClassDataFrom(bArrDecodeBytes, strArr2);
-    }
-
-    public static final Pair<C11674g, C11684i> readFunctionDataFrom(String[] strArr, String[] strArr2) throws IOException {
-        C12238m.checkNotNullParameter(strArr, "data");
-        C12238m.checkNotNullParameter(strArr2, "strings");
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(C11668a.decodeBytes(strArr));
-        C11667a.e delimitedFrom = C11667a.e.parseDelimitedFrom(byteArrayInputStream, f23721b);
-        C12238m.checkNotNullExpressionValue(delimitedFrom, "parseDelimitedFrom(this, EXTENSION_REGISTRY)");
-        return new Pair<>(new C11674g(delimitedFrom, strArr2), C11684i.parseFrom(byteArrayInputStream, f23721b));
-    }
-
-    public static final Pair<C11674g, C11687l> readPackageDataFrom(String[] strArr, String[] strArr2) {
-        C12238m.checkNotNullParameter(strArr, "data");
-        C12238m.checkNotNullParameter(strArr2, "strings");
-        byte[] bArrDecodeBytes = C11668a.decodeBytes(strArr);
-        C12238m.checkNotNullExpressionValue(bArrDecodeBytes, "decodeBytes(data)");
-        return readPackageDataFrom(bArrDecodeBytes, strArr2);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final String m9586a(C11692q c11692q, InterfaceC11704c interfaceC11704c) {
-        if (!c11692q.hasClassName()) {
-            return null;
-        }
-        C11669b c11669b = C11669b.f23700a;
-        return C11669b.mapClass(interfaceC11704c.getQualifiedClassName(c11692q.getClassName()));
-    }
-
     public final C11725e getEXTENSION_REGISTRY() {
         return f23721b;
     }
@@ -126,6 +75,13 @@ public final class C11675h {
             strJoinToString$default = interfaceC11704c.getString(cVar.getDesc());
         }
         return new AbstractC11672e.b(string, strJoinToString$default);
+    }
+
+    public static /* synthetic */ AbstractC11672e.a getJvmFieldSignature$default(C11675h c11675h, C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z2 = true;
+        }
+        return c11675h.getJvmFieldSignature(c11689n, interfaceC11704c, c11708g, z2);
     }
 
     public final AbstractC11672e.a getJvmFieldSignature(C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2) {
@@ -192,6 +148,50 @@ public final class C11675h {
             strStringPlus = interfaceC11704c.getString(cVar.getDesc());
         }
         return new AbstractC11672e.b(interfaceC11704c.getString(name), strStringPlus);
+    }
+
+    public static final boolean isMovedFromInterfaceCompanion(C11689n c11689n) {
+        C12238m.checkNotNullParameter(c11689n, "proto");
+        C11703b.b is_moved_from_interface_companion = C11671d.f23704a.getIS_MOVED_FROM_INTERFACE_COMPANION();
+        Object extension = c11689n.getExtension(C11667a.f23655e);
+        C12238m.checkNotNullExpressionValue(extension, "proto.getExtension(JvmProtoBuf.flags)");
+        Boolean bool = is_moved_from_interface_companion.get(((Number) extension).intValue());
+        C12238m.checkNotNullExpressionValue(bool, "JvmFlags.IS_MOVED_FROM_INTERFACE_COMPANION.get(proto.getExtension(JvmProtoBuf.flags))");
+        return bool.booleanValue();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final String m9586a(C11692q c11692q, InterfaceC11704c interfaceC11704c) {
+        if (!c11692q.hasClassName()) {
+            return null;
+        }
+        C11669b c11669b = C11669b.f23700a;
+        return C11669b.mapClass(interfaceC11704c.getQualifiedClassName(c11692q.getClassName()));
+    }
+
+    public static final Pair<C11674g, C11678c> readClassDataFrom(String[] strArr, String[] strArr2) {
+        C12238m.checkNotNullParameter(strArr, "data");
+        C12238m.checkNotNullParameter(strArr2, "strings");
+        byte[] bArrDecodeBytes = C11668a.decodeBytes(strArr);
+        C12238m.checkNotNullExpressionValue(bArrDecodeBytes, "decodeBytes(data)");
+        return readClassDataFrom(bArrDecodeBytes, strArr2);
+    }
+
+    public static final Pair<C11674g, C11684i> readFunctionDataFrom(String[] strArr, String[] strArr2) throws IOException {
+        C12238m.checkNotNullParameter(strArr, "data");
+        C12238m.checkNotNullParameter(strArr2, "strings");
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(C11668a.decodeBytes(strArr));
+        C11667a.e delimitedFrom = C11667a.e.parseDelimitedFrom(byteArrayInputStream, f23721b);
+        C12238m.checkNotNullExpressionValue(delimitedFrom, "parseDelimitedFrom(this, EXTENSION_REGISTRY)");
+        return new Pair<>(new C11674g(delimitedFrom, strArr2), C11684i.parseFrom(byteArrayInputStream, f23721b));
+    }
+
+    public static final Pair<C11674g, C11687l> readPackageDataFrom(String[] strArr, String[] strArr2) {
+        C12238m.checkNotNullParameter(strArr, "data");
+        C12238m.checkNotNullParameter(strArr2, "strings");
+        byte[] bArrDecodeBytes = C11668a.decodeBytes(strArr);
+        C12238m.checkNotNullExpressionValue(bArrDecodeBytes, "decodeBytes(data)");
+        return readPackageDataFrom(bArrDecodeBytes, strArr2);
     }
 
     public static final Pair<C11674g, C11678c> readClassDataFrom(byte[] bArr, String[] strArr) throws IOException {

@@ -29,7 +29,7 @@ public final class C11523a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.a$a */
     /* JADX INFO: compiled from: context.kt */
-    public static final class a extends AbstractC12240o implements Function0<C11631y> {
+    public final class a extends AbstractC12240o implements Function0<C11631y> {
         public final /* synthetic */ InterfaceC11336g $containingDeclaration;
         public final /* synthetic */ C11529g $this_childForClassOrPackage;
 
@@ -49,7 +49,7 @@ public final class C11523a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.a$b */
     /* JADX INFO: compiled from: context.kt */
-    public static final class b extends AbstractC12240o implements Function0<C11631y> {
+    public final class b extends AbstractC12240o implements Function0<C11631y> {
         public final /* synthetic */ InterfaceC11344g $additionalAnnotations;
         public final /* synthetic */ C11529g $this_copyWithNewDefaultTypeQualifiers;
 
@@ -67,26 +67,10 @@ public final class C11523a {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public static final C11529g m9460a(C11529g c11529g, InterfaceC11450m interfaceC11450m, InterfaceC11593z interfaceC11593z, int i, Lazy<C11631y> lazy) {
-        C11524b components = c11529g.getComponents();
-        InterfaceC11533k c11530h = interfaceC11593z == null ? null : new C11530h(c11529g, interfaceC11450m, interfaceC11593z, i);
-        if (c11530h == null) {
-            c11530h = c11529g.getTypeParameterResolver();
-        }
-        return new C11529g(components, c11530h, lazy);
-    }
-
     public static final C11529g child(C11529g c11529g, InterfaceC11533k interfaceC11533k) {
         C12238m.checkNotNullParameter(c11529g, "<this>");
         C12238m.checkNotNullParameter(interfaceC11533k, "typeParameterResolver");
         return new C11529g(c11529g.getComponents(), interfaceC11533k, c11529g.getDelegateForDefaultTypeQualifiers$descriptors_jvm());
-    }
-
-    public static final C11529g childForClassOrPackage(C11529g c11529g, InterfaceC11336g interfaceC11336g, InterfaceC11593z interfaceC11593z, int i) {
-        C12238m.checkNotNullParameter(c11529g, "<this>");
-        C12238m.checkNotNullParameter(interfaceC11336g, "containingDeclaration");
-        return m9460a(c11529g, interfaceC11336g, interfaceC11593z, i, C12083g.lazy(EnumC12110i.NONE, new a(c11529g, interfaceC11336g)));
     }
 
     public static /* synthetic */ C11529g childForClassOrPackage$default(C11529g c11529g, InterfaceC11336g interfaceC11336g, InterfaceC11593z interfaceC11593z, int i, int i2, Object obj) {
@@ -99,11 +83,10 @@ public final class C11523a {
         return childForClassOrPackage(c11529g, interfaceC11336g, interfaceC11593z, i);
     }
 
-    public static final C11529g childForMethod(C11529g c11529g, InterfaceC11450m interfaceC11450m, InterfaceC11593z interfaceC11593z, int i) {
+    public static final C11529g childForClassOrPackage(C11529g c11529g, InterfaceC11336g interfaceC11336g, InterfaceC11593z interfaceC11593z, int i) {
         C12238m.checkNotNullParameter(c11529g, "<this>");
-        C12238m.checkNotNullParameter(interfaceC11450m, "containingDeclaration");
-        C12238m.checkNotNullParameter(interfaceC11593z, "typeParameterOwner");
-        return m9460a(c11529g, interfaceC11450m, interfaceC11593z, i, c11529g.getDelegateForDefaultTypeQualifiers$descriptors_jvm());
+        C12238m.checkNotNullParameter(interfaceC11336g, "containingDeclaration");
+        return m9460a(c11529g, interfaceC11336g, interfaceC11593z, i, C12083g.lazy(EnumC12110i.NONE, new a(c11529g, interfaceC11336g)));
     }
 
     public static /* synthetic */ C11529g childForMethod$default(C11529g c11529g, InterfaceC11450m interfaceC11450m, InterfaceC11593z interfaceC11593z, int i, int i2, Object obj) {
@@ -111,6 +94,13 @@ public final class C11523a {
             i = 0;
         }
         return childForMethod(c11529g, interfaceC11450m, interfaceC11593z, i);
+    }
+
+    public static final C11529g childForMethod(C11529g c11529g, InterfaceC11450m interfaceC11450m, InterfaceC11593z interfaceC11593z, int i) {
+        C12238m.checkNotNullParameter(c11529g, "<this>");
+        C12238m.checkNotNullParameter(interfaceC11450m, "containingDeclaration");
+        C12238m.checkNotNullParameter(interfaceC11593z, "typeParameterOwner");
+        return m9460a(c11529g, interfaceC11450m, interfaceC11593z, i, c11529g.getDelegateForDefaultTypeQualifiers$descriptors_jvm());
     }
 
     public static final C11631y computeNewDefaultTypeQualifiers(C11529g c11529g, InterfaceC11344g interfaceC11344g) {
@@ -185,6 +175,16 @@ public final class C11523a {
         C12238m.checkNotNullParameter(c11529g, "<this>");
         C12238m.checkNotNullParameter(interfaceC11344g, "additionalAnnotations");
         return interfaceC11344g.isEmpty() ? c11529g : new C11529g(c11529g.getComponents(), c11529g.getTypeParameterResolver(), C12083g.lazy(EnumC12110i.NONE, new b(c11529g, interfaceC11344g)));
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final C11529g m9460a(C11529g c11529g, InterfaceC11450m interfaceC11450m, InterfaceC11593z interfaceC11593z, int i, Lazy<C11631y> lazy) {
+        C11524b components = c11529g.getComponents();
+        InterfaceC11533k c11530h = interfaceC11593z == null ? null : new C11530h(c11529g, interfaceC11450m, interfaceC11593z, i);
+        if (c11530h == null) {
+            c11530h = c11529g.getTypeParameterResolver();
+        }
+        return new C11529g(components, c11530h, lazy);
     }
 
     public static final C11529g replaceComponents(C11529g c11529g, C11524b c11524b) {

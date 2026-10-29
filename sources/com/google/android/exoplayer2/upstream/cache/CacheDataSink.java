@@ -51,7 +51,7 @@ public final class CacheDataSink implements InterfaceC2708j {
     /* JADX INFO: renamed from: j */
     public C2697p f20272j;
 
-    public static final class CacheDataSinkException extends Cache.CacheException {
+    public final class CacheDataSinkException extends Cache.CacheException {
         public CacheDataSinkException(IOException iOException) {
             super(iOException);
         }
@@ -69,18 +69,12 @@ public final class CacheDataSink implements InterfaceC2708j {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2708j
-    /* JADX INFO: renamed from: a */
-    public void mo2852a(C2712n c2712n) throws CacheDataSinkException {
-        Objects.requireNonNull(c2712n.f6549h);
-        if (c2712n.f6548g == -1 && c2712n.m2856c(2)) {
-            this.f20266d = null;
+    public void close() throws CacheDataSinkException {
+        if (this.f20266d == null) {
             return;
         }
-        this.f20266d = c2712n;
-        this.f20267e = c2712n.m2856c(4) ? this.f20264b : RecyclerView.FOREVER_NS;
-        this.f20271i = 0L;
         try {
-            m8944c(c2712n);
+            m8943b();
         } catch (IOException e) {
             throw new CacheDataSinkException(e);
         }
@@ -147,12 +141,18 @@ public final class CacheDataSink implements InterfaceC2708j {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2708j
-    public void close() throws CacheDataSinkException {
-        if (this.f20266d == null) {
+    /* JADX INFO: renamed from: a */
+    public void mo2852a(C2712n c2712n) throws CacheDataSinkException {
+        Objects.requireNonNull(c2712n.f6549h);
+        if (c2712n.f6548g == -1 && c2712n.m2856c(2)) {
+            this.f20266d = null;
             return;
         }
+        this.f20266d = c2712n;
+        this.f20267e = c2712n.m2856c(4) ? this.f20264b : RecyclerView.FOREVER_NS;
+        this.f20271i = 0L;
         try {
-            m8943b();
+            m8944c(c2712n);
         } catch (IOException e) {
             throw new CacheDataSinkException(e);
         }

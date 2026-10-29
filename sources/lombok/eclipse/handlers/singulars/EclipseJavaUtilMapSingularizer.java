@@ -212,7 +212,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         String setterName = HandlerUtil.buildAccessorName(setterPrefix, name);
         md.selector = setterName.toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().m10925up()));
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().m10925up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);
@@ -281,7 +281,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         String setterName = HandlerUtil.buildAccessorName(setterPrefix, name);
         md.selector = setterName.toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().m10925up()));
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().m10925up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);

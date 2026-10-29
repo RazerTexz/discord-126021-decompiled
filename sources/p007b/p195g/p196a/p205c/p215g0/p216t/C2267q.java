@@ -17,10 +17,9 @@ public class C2267q extends AbstractC2305q0<Object> {
         super(Object.class);
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        return true;
+    /* JADX INFO: renamed from: p */
+    public void m2042p(AbstractC2374x abstractC2374x, Object obj) throws JsonMappingException {
+        abstractC2374x.m1943g(this._handledType, String.format("No serializer found for class %s and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS)", obj.getClass().getName()));
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -42,9 +41,10 @@ public class C2267q extends AbstractC2305q0<Object> {
         abstractC2215g.mo1960f(abstractC2108d, abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(obj, EnumC2112h.START_OBJECT)));
     }
 
-    /* JADX INFO: renamed from: p */
-    public void m2042p(AbstractC2374x abstractC2374x, Object obj) throws JsonMappingException {
-        abstractC2374x.m1943g(this._handledType, String.format("No serializer found for class %s and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS)", obj.getClass().getName()));
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        return true;
     }
 
     public C2267q(Class<?> cls) {

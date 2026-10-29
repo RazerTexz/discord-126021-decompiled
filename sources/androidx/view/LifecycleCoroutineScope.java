@@ -20,7 +20,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
     /* JADX INFO: renamed from: androidx.lifecycle.LifecycleCoroutineScope$launchWhenCreated$1 */
     /* JADX INFO: compiled from: Lifecycle.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.LifecycleCoroutineScope$launchWhenCreated$1", m10085f = "Lifecycle.kt", m10086l = {74}, m10087m = "invokeSuspend")
-    public static final class C04381 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04381 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Function2 $block;
         public int label;
 
@@ -42,7 +42,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -66,7 +66,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
     /* JADX INFO: renamed from: androidx.lifecycle.LifecycleCoroutineScope$launchWhenResumed$1 */
     /* JADX INFO: compiled from: Lifecycle.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.LifecycleCoroutineScope$launchWhenResumed$1", m10085f = "Lifecycle.kt", m10086l = {99}, m10087m = "invokeSuspend")
-    public static final class C04391 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04391 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Function2 $block;
         public int label;
 
@@ -88,7 +88,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -112,7 +112,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
     /* JADX INFO: renamed from: androidx.lifecycle.LifecycleCoroutineScope$launchWhenStarted$1 */
     /* JADX INFO: compiled from: Lifecycle.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.LifecycleCoroutineScope$launchWhenStarted$1", m10085f = "Lifecycle.kt", m10086l = {87}, m10087m = "invokeSuspend")
-    public static final class C04401 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04401 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Function2 $block;
         public int label;
 
@@ -134,7 +134,7 @@ public abstract class LifecycleCoroutineScope implements CoroutineScope {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

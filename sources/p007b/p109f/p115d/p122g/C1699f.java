@@ -41,32 +41,11 @@ public class C1699f extends InputStream {
         this.f3113o = false;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final boolean m991a() throws IOException {
-        if (this.f3112n < this.f3111m) {
-            return true;
-        }
-        int i = this.f3108j.read(this.f3109k);
-        if (i <= 0) {
-            return false;
-        }
-        this.f3111m = i;
-        this.f3112n = 0;
-        return true;
-    }
-
     @Override // java.io.InputStream
     public int available() throws IOException {
         C1460d.m419B(this.f3112n <= this.f3111m);
         m992b();
         return this.f3108j.available() + (this.f3111m - this.f3112n);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final void m992b() throws IOException {
-        if (this.f3113o) {
-            throw new IOException("stream already closed");
-        }
     }
 
     @Override // java.io.InputStream, java.io.Closeable, java.lang.AutoCloseable
@@ -85,6 +64,27 @@ public class C1699f extends InputStream {
             close();
         }
         super.finalize();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m991a() throws IOException {
+        if (this.f3112n < this.f3111m) {
+            return true;
+        }
+        int i = this.f3108j.read(this.f3109k);
+        if (i <= 0) {
+            return false;
+        }
+        this.f3111m = i;
+        this.f3112n = 0;
+        return true;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m992b() throws IOException {
+        if (this.f3113o) {
+            throw new IOException("stream already closed");
+        }
     }
 
     @Override // java.io.InputStream

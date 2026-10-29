@@ -25,6 +25,13 @@ public final class DirectoryUtilsKt {
         return (approximateMemberCount != null ? approximateMemberCount.intValue() : 0) >= 5;
     }
 
+    public static /* synthetic */ List rank$default(List list, Integer num, int i, Object obj) {
+        if ((i & 1) != 0) {
+            num = null;
+        }
+        return rank(list, num);
+    }
+
     public static final List<DirectoryEntryData> rank(List<DirectoryEntryData> list, final Integer num) {
         C12238m.checkNotNullParameter(list, "$this$rank");
         return C12163u.sortedWith(list, new Comparator() { // from class: com.discord.utilities.directories.DirectoryUtilsKt$rank$$inlined$sortedBy$1
@@ -45,13 +52,6 @@ public final class DirectoryUtilsKt {
                 return C12169a.compareValues(numValueOf, Integer.valueOf(iIntValue4 >= iIntValue3 ? (iIntValue4 - iIntValue3) / (200 - iIntValue4) : (iIntValue3 - iIntValue4) / (iIntValue3 - 5)));
             }
         });
-    }
-
-    public static /* synthetic */ List rank$default(List list, Integer num, int i, Object obj) {
-        if ((i & 1) != 0) {
-            num = null;
-        }
-        return rank(list, num);
     }
 
     public static final List<DirectoryEntryData> sortByAdded(List<DirectoryEntryData> list) {

@@ -51,24 +51,9 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetServerSettingsCommunityFirstStep.class, new Intent());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
-    public static final /* synthetic */ class C93571 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
+    public final /* synthetic */ class C93571 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
         public C93571(WidgetServerSettingsCommunityFirstStep widgetServerSettingsCommunityFirstStep) {
             super(1, widgetServerSettingsCommunityFirstStep, WidgetServerSettingsCommunityFirstStep.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded;)V", 0);
         }
@@ -83,6 +68,21 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
         public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
             C12238m.checkNotNullParameter(loaded, "p1");
             ((WidgetServerSettingsCommunityFirstStep) this.receiver).configureUI(loaded);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetServerSettingsCommunityFirstStep.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -107,7 +107,7 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -134,7 +134,7 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
                 public AnonymousClass1() {
                     super(1);
                 }

@@ -14,54 +14,17 @@ import androidx.annotation.RequiresApi;
 
 /* JADX INFO: loaded from: classes.dex */
 public class WrappedDrawableApi14 extends Drawable implements Drawable.Callback, WrappedDrawable, TintAwareDrawable {
-    public static final PorterDuff.Mode DEFAULT_TINT_MODE = PorterDuff.Mode.SRC_IN;
     private boolean mColorFilterSet;
     private int mCurrentColor;
     private PorterDuff.Mode mCurrentMode;
     public Drawable mDrawable;
     private boolean mMutated;
     public WrappedDrawableState mState;
+    public static final PorterDuff.Mode DEFAULT_TINT_MODE = PorterDuff.Mode.SRC_IN;
 
     public WrappedDrawableApi14(@NonNull WrappedDrawableState wrappedDrawableState, @Nullable Resources resources) {
         this.mState = wrappedDrawableState;
         updateLocalState(resources);
-    }
-
-    @NonNull
-    private WrappedDrawableState mutateConstantState() {
-        return new WrappedDrawableState(this.mState);
-    }
-
-    private void updateLocalState(@Nullable Resources resources) {
-        Drawable.ConstantState constantState;
-        WrappedDrawableState wrappedDrawableState = this.mState;
-        if (wrappedDrawableState == null || (constantState = wrappedDrawableState.mDrawableState) == null) {
-            return;
-        }
-        setWrappedDrawable(constantState.newDrawable(resources));
-    }
-
-    private boolean updateTint(int[] iArr) {
-        if (!isCompatTintEnabled()) {
-            return false;
-        }
-        WrappedDrawableState wrappedDrawableState = this.mState;
-        ColorStateList colorStateList = wrappedDrawableState.mTint;
-        PorterDuff.Mode mode = wrappedDrawableState.mTintMode;
-        if (colorStateList == null || mode == null) {
-            this.mColorFilterSet = false;
-            clearColorFilter();
-        } else {
-            int colorForState = colorStateList.getColorForState(iArr, colorStateList.getDefaultColor());
-            if (!this.mColorFilterSet || colorForState != this.mCurrentColor || mode != this.mCurrentMode) {
-                setColorFilter(colorForState, mode);
-                this.mCurrentColor = colorForState;
-                this.mCurrentMode = mode;
-                this.mColorFilterSet = true;
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -191,6 +154,11 @@ public class WrappedDrawableApi14 extends Drawable implements Drawable.Callback,
         return this;
     }
 
+    @NonNull
+    private WrappedDrawableState mutateConstantState() {
+        return new WrappedDrawableState(this.mState);
+    }
+
     @Override // android.graphics.drawable.Drawable
     public void onBoundsChange(Rect rect) {
         Drawable drawable = this.mDrawable;
@@ -297,6 +265,38 @@ public class WrappedDrawableApi14 extends Drawable implements Drawable.Callback,
     @Override // android.graphics.drawable.Drawable.Callback
     public void unscheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable) {
         unscheduleSelf(runnable);
+    }
+
+    private void updateLocalState(@Nullable Resources resources) {
+        Drawable.ConstantState constantState;
+        WrappedDrawableState wrappedDrawableState = this.mState;
+        if (wrappedDrawableState == null || (constantState = wrappedDrawableState.mDrawableState) == null) {
+            return;
+        }
+        setWrappedDrawable(constantState.newDrawable(resources));
+    }
+
+    private boolean updateTint(int[] iArr) {
+        if (!isCompatTintEnabled()) {
+            return false;
+        }
+        WrappedDrawableState wrappedDrawableState = this.mState;
+        ColorStateList colorStateList = wrappedDrawableState.mTint;
+        PorterDuff.Mode mode = wrappedDrawableState.mTintMode;
+        if (colorStateList == null || mode == null) {
+            this.mColorFilterSet = false;
+            clearColorFilter();
+        } else {
+            int colorForState = colorStateList.getColorForState(iArr, colorStateList.getDefaultColor());
+            if (!this.mColorFilterSet || colorForState != this.mCurrentColor || mode != this.mCurrentMode) {
+                setColorFilter(colorForState, mode);
+                this.mCurrentColor = colorForState;
+                this.mCurrentMode = mode;
+                this.mColorFilterSet = true;
+                return true;
+            }
+        }
+        return false;
     }
 
     public WrappedDrawableApi14(@Nullable Drawable drawable) {

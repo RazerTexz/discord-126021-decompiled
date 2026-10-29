@@ -9,7 +9,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long averagePing = null;
     private final Long channelId = null;
     private final Long duration = null;
@@ -21,13 +20,8 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
     private final CharSequence sessionId = null;
     private final Long speaker = null;
     private final Long tier = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "voice_quality";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
         }
         TrackVoiceQuality trackVoiceQuality = (TrackVoiceQuality) other;
         return C12238m.areEqual(this.averagePing, trackVoiceQuality.averagePing) && C12238m.areEqual(this.channelId, trackVoiceQuality.channelId) && C12238m.areEqual(this.duration, trackVoiceQuality.duration) && C12238m.areEqual(this.guildId, trackVoiceQuality.guildId) && C12238m.areEqual(this.maximumPing, trackVoiceQuality.maximumPing) && C12238m.areEqual(this.minimumPing, trackVoiceQuality.minimumPing) && C12238m.areEqual(this.previousTier, trackVoiceQuality.previousTier) && C12238m.areEqual(this.quality, trackVoiceQuality.quality) && C12238m.areEqual(this.sessionId, trackVoiceQuality.sessionId) && C12238m.areEqual(this.speaker, trackVoiceQuality.speaker) && C12238m.areEqual(this.tier, trackVoiceQuality.tier);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

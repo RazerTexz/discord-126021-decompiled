@@ -18,6 +18,12 @@ public abstract class AbstractC2198s {
         f4747j = InterfaceC2094p.b.f4436j;
     }
 
+    /* JADX INFO: renamed from: j */
+    public AbstractC2188i m1922j() {
+        C2189j c2189jMo1856n = mo1856n();
+        return c2189jMo1856n == null ? mo1854l() : c2189jMo1856n;
+    }
+
     /* JADX INFO: renamed from: f */
     public boolean mo1849f() {
         AbstractC2175b abstractC2175bMo1853k = mo1853k();
@@ -38,12 +44,6 @@ public abstract class AbstractC2198s {
     /* JADX INFO: renamed from: i */
     public Class<?>[] mo1852i() {
         return null;
-    }
-
-    /* JADX INFO: renamed from: j */
-    public AbstractC2188i m1922j() {
-        C2189j c2189jMo1856n = mo1856n();
-        return c2189jMo1856n == null ? mo1854l() : c2189jMo1856n;
     }
 
     /* JADX INFO: renamed from: k */

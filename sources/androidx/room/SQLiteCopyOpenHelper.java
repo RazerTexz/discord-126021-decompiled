@@ -46,6 +46,12 @@ public class SQLiteCopyOpenHelper implements SupportSQLiteOpenHelper {
         this.mDelegate = supportSQLiteOpenHelper;
     }
 
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper, java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() {
+        this.mDelegate.close();
+        this.mVerified = false;
+    }
+
     private void copyDatabaseFile(File file) throws IOException {
         ReadableByteChannel channel;
         if (this.mCopyFromAssetPath != null) {
@@ -74,6 +80,39 @@ public class SQLiteCopyOpenHelper implements SupportSQLiteOpenHelper {
         sbM833U2.append(file.getAbsolutePath());
         sbM833U2.append(").");
         throw new IOException(sbM833U2.toString());
+    }
+
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
+    public String getDatabaseName() {
+        return this.mDelegate.getDatabaseName();
+    }
+
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
+    public synchronized SupportSQLiteDatabase getReadableDatabase() {
+        if (!this.mVerified) {
+            verifyDatabaseFile();
+            this.mVerified = true;
+        }
+        return this.mDelegate.getReadableDatabase();
+    }
+
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
+    public synchronized SupportSQLiteDatabase getWritableDatabase() {
+        if (!this.mVerified) {
+            verifyDatabaseFile();
+            this.mVerified = true;
+        }
+        return this.mDelegate.getWritableDatabase();
+    }
+
+    public void setDatabaseConfiguration(@Nullable DatabaseConfiguration databaseConfiguration) {
+        this.mDatabaseConfiguration = databaseConfiguration;
+    }
+
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
+    @RequiresApi(api = 16)
+    public void setWriteAheadLoggingEnabled(boolean z2) {
+        this.mDelegate.setWriteAheadLoggingEnabled(z2);
     }
 
     private void verifyDatabaseFile() {
@@ -129,44 +168,5 @@ public class SQLiteCopyOpenHelper implements SupportSQLiteOpenHelper {
         }
         copyLock.unlock();
         throw th;
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper, java.io.Closeable, java.lang.AutoCloseable
-    public synchronized void close() {
-        this.mDelegate.close();
-        this.mVerified = false;
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
-    public String getDatabaseName() {
-        return this.mDelegate.getDatabaseName();
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
-    public synchronized SupportSQLiteDatabase getReadableDatabase() {
-        if (!this.mVerified) {
-            verifyDatabaseFile();
-            this.mVerified = true;
-        }
-        return this.mDelegate.getReadableDatabase();
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
-    public synchronized SupportSQLiteDatabase getWritableDatabase() {
-        if (!this.mVerified) {
-            verifyDatabaseFile();
-            this.mVerified = true;
-        }
-        return this.mDelegate.getWritableDatabase();
-    }
-
-    public void setDatabaseConfiguration(@Nullable DatabaseConfiguration databaseConfiguration) {
-        this.mDatabaseConfiguration = databaseConfiguration;
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
-    @RequiresApi(api = 16)
-    public void setWriteAheadLoggingEnabled(boolean z2) {
-        this.mDelegate.setWriteAheadLoggingEnabled(z2);
     }
 }

@@ -104,34 +104,6 @@ public final class AutocompleteItemViewHolder extends RecyclerView.ViewHolder {
         this.defaultItemTextColor = textView.getCurrentTextColor();
     }
 
-    private final void bindChannel(ChannelAutocompletable channelAutocompletable) {
-        int i;
-        Channel channel = channelAutocompletable.getChannel();
-        TextView textView = this.binding.f16091e;
-        C12238m.checkNotNullExpressionValue(textView, "binding.chatInputItemName");
-        textView.setText(channel.getName());
-        if (ChannelUtils.m7675J(channel)) {
-            i = C5419R.drawable.ic_channel_voice;
-        } else if (ChannelUtils.m7673H(channel)) {
-            i = C5419R.drawable.ic_thread;
-        } else {
-            i = ChannelUtils.m7698v(channel) ? C5419R.drawable.ic_channel_text : C5419R.drawable.ic_guild_folder;
-        }
-        SimpleDraweeView simpleDraweeView = this.binding.f16088b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.chatInputItemAvatar");
-        int color = ColorCompat.getColor(simpleDraweeView, C5419R.color.primary_500);
-        SimpleDraweeView simpleDraweeView2 = this.binding.f16088b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
-        simpleDraweeView2.setVisibility(0);
-        int iDpToPixels = DimenUtils.dpToPixels(6);
-        this.binding.f16088b.setPadding(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
-        MGImages mGImages = MGImages.INSTANCE;
-        SimpleDraweeView simpleDraweeView3 = this.binding.f16088b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView3, "binding.chatInputItemAvatar");
-        MGImages.setImage$default(mGImages, simpleDraweeView3, i, (MGImages.ChangeDetector) null, 4, (Object) null);
-        this.binding.f16088b.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-    }
-
     public final void bind(final Autocompletable autocompletable) {
         C12238m.checkNotNullParameter(autocompletable, "autocompletable");
         clearBinding();
@@ -159,6 +131,34 @@ public final class AutocompleteItemViewHolder extends RecyclerView.ViewHolder {
                 AutocompleteItemViewHolder.this.onItemSelected.invoke(autocompletable);
             }
         });
+    }
+
+    private final void bindChannel(ChannelAutocompletable channelAutocompletable) {
+        int i;
+        Channel channel = channelAutocompletable.getChannel();
+        TextView textView = this.binding.f16091e;
+        C12238m.checkNotNullExpressionValue(textView, "binding.chatInputItemName");
+        textView.setText(channel.getName());
+        if (ChannelUtils.m7675J(channel)) {
+            i = C5419R.drawable.ic_channel_voice;
+        } else if (ChannelUtils.m7673H(channel)) {
+            i = C5419R.drawable.ic_thread;
+        } else {
+            i = ChannelUtils.m7698v(channel) ? C5419R.drawable.ic_channel_text : C5419R.drawable.ic_guild_folder;
+        }
+        SimpleDraweeView simpleDraweeView = this.binding.f16088b;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.chatInputItemAvatar");
+        int color = ColorCompat.getColor(simpleDraweeView, C5419R.color.primary_500);
+        SimpleDraweeView simpleDraweeView2 = this.binding.f16088b;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
+        simpleDraweeView2.setVisibility(0);
+        int iDpToPixels = DimenUtils.dpToPixels(6);
+        this.binding.f16088b.setPadding(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
+        MGImages mGImages = MGImages.INSTANCE;
+        SimpleDraweeView simpleDraweeView3 = this.binding.f16088b;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView3, "binding.chatInputItemAvatar");
+        MGImages.setImage$default(mGImages, simpleDraweeView3, i, (MGImages.ChangeDetector) null, 4, (Object) null);
+        this.binding.f16088b.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 
     public final void bindCommand(ApplicationCommandAutocompletable commandAutocompletable) {

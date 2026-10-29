@@ -12,9 +12,6 @@ public abstract class AbstractC11938k1 extends AbstractC11913c0 {
         super(null);
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract AbstractC11913c0 mo10011a();
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
     public InterfaceC11344g getAnnotations() {
         return mo10011a().getAnnotations();
@@ -43,6 +40,9 @@ public abstract class AbstractC11938k1 extends AbstractC11913c0 {
     public boolean isMarkedNullable() {
         return mo10011a().isMarkedNullable();
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract AbstractC11913c0 mo10011a();
 
     public String toString() {
         return isComputed() ? mo10011a().toString() : "<Not computed yet>";

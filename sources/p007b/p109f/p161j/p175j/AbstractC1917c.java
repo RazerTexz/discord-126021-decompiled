@@ -20,40 +20,8 @@ public abstract class AbstractC1917c implements Closeable, ImageInfo {
     /* JADX INFO: renamed from: k */
     public Map<String, Object> f3885k = new HashMap();
 
-    @Override // p007b.p109f.p161j.p175j.InterfaceC1921g
-    /* JADX INFO: renamed from: a */
-    public Map<String, Object> mo1333a() {
-        return this.f3885k;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public InterfaceC1923i mo1334b() {
-        return C1922h.f3908a;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public abstract int mo1330c();
-
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public abstract void close();
-
-    /* JADX INFO: renamed from: d */
-    public boolean mo1331d() {
-        return false;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m1335e(Map<String, Object> map) {
-        if (map == null) {
-            return;
-        }
-        for (String str : f3884j) {
-            Object obj = map.get(str);
-            if (obj != null) {
-                this.f3885k.put(str, obj);
-            }
-        }
-    }
 
     public void finalize() throws Throwable {
         if (isClosed()) {
@@ -68,4 +36,36 @@ public abstract class AbstractC1917c implements Closeable, ImageInfo {
     }
 
     public abstract boolean isClosed();
+
+    /* JADX INFO: renamed from: e */
+    public void m1335e(Map<String, Object> map) {
+        if (map == null) {
+            return;
+        }
+        for (String str : f3884j) {
+            Object obj = map.get(str);
+            if (obj != null) {
+                this.f3885k.put(str, obj);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public abstract int mo1330c();
+
+    /* JADX INFO: renamed from: d */
+    public boolean mo1331d() {
+        return false;
+    }
+
+    @Override // p007b.p109f.p161j.p175j.InterfaceC1921g
+    /* JADX INFO: renamed from: a */
+    public Map<String, Object> mo1333a() {
+        return this.f3885k;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public InterfaceC1923i mo1334b() {
+        return C1922h.f3908a;
+    }
 }

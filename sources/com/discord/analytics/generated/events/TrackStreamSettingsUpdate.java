@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStreamSettingsUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long userPremiumTier = null;
     private final Long guildPremiumTier = null;
-    private final Long streamQualityUserPremiumTier = null;
+    private final Long streamQualityFrameRate = null;
     private final Long streamQualityGuildPremiumTier = null;
     private final Long streamQualityPreset = null;
     private final Long streamQualityResolution = null;
-    private final Long streamQualityFrameRate = null;
+    private final Long streamQualityUserPremiumTier = null;
+    private TrackBase trackBase;
+    private final Long userPremiumTier = null;
     private final transient String analyticsSchemaTypeName = "stream_settings_update";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSche
         }
         TrackStreamSettingsUpdate trackStreamSettingsUpdate = (TrackStreamSettingsUpdate) other;
         return C12238m.areEqual(this.userPremiumTier, trackStreamSettingsUpdate.userPremiumTier) && C12238m.areEqual(this.guildPremiumTier, trackStreamSettingsUpdate.guildPremiumTier) && C12238m.areEqual(this.streamQualityUserPremiumTier, trackStreamSettingsUpdate.streamQualityUserPremiumTier) && C12238m.areEqual(this.streamQualityGuildPremiumTier, trackStreamSettingsUpdate.streamQualityGuildPremiumTier) && C12238m.areEqual(this.streamQualityPreset, trackStreamSettingsUpdate.streamQualityPreset) && C12238m.areEqual(this.streamQualityResolution, trackStreamSettingsUpdate.streamQualityResolution) && C12238m.areEqual(this.streamQualityFrameRate, trackStreamSettingsUpdate.streamQualityFrameRate);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

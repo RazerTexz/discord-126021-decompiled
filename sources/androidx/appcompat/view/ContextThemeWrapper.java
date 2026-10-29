@@ -21,30 +21,6 @@ public class ContextThemeWrapper extends ContextWrapper {
         super(null);
     }
 
-    private Resources getResourcesInternal() {
-        if (this.mResources == null) {
-            Configuration configuration = this.mOverrideConfiguration;
-            if (configuration == null) {
-                this.mResources = super.getResources();
-            } else {
-                this.mResources = createConfigurationContext(configuration).getResources();
-            }
-        }
-        return this.mResources;
-    }
-
-    private void initializeTheme() {
-        boolean z2 = this.mTheme == null;
-        if (z2) {
-            this.mTheme = getResources().newTheme();
-            Resources.Theme theme = getBaseContext().getTheme();
-            if (theme != null) {
-                this.mTheme.setTo(theme);
-            }
-        }
-        onApplyThemeResource(this.mTheme, this.mThemeResource, z2);
-    }
-
     public void applyOverrideConfiguration(Configuration configuration) {
         if (this.mResources != null) {
             throw new IllegalStateException("getResources() or getAssets() has already been called");
@@ -68,6 +44,18 @@ public class ContextThemeWrapper extends ContextWrapper {
     @Override // android.content.ContextWrapper, android.content.Context
     public Resources getResources() {
         return getResourcesInternal();
+    }
+
+    private Resources getResourcesInternal() {
+        if (this.mResources == null) {
+            Configuration configuration = this.mOverrideConfiguration;
+            if (configuration == null) {
+                this.mResources = super.getResources();
+            } else {
+                this.mResources = createConfigurationContext(configuration).getResources();
+            }
+        }
+        return this.mResources;
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
@@ -96,6 +84,18 @@ public class ContextThemeWrapper extends ContextWrapper {
 
     public int getThemeResId() {
         return this.mThemeResource;
+    }
+
+    private void initializeTheme() {
+        boolean z2 = this.mTheme == null;
+        if (z2) {
+            this.mTheme = getResources().newTheme();
+            Resources.Theme theme = getBaseContext().getTheme();
+            if (theme != null) {
+                this.mTheme.setTo(theme);
+            }
+        }
+        onApplyThemeResource(this.mTheme, this.mThemeResource, z2);
     }
 
     public void onApplyThemeResource(Resources.Theme theme, int i, boolean z2) {

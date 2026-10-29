@@ -46,6 +46,150 @@ public class C13057d<E> extends AbstractC13054a<E> {
         this.size = 0;
     }
 
+    /* JADX INFO: renamed from: w */
+    public final void m11231w(int i, E e) {
+        int i2 = this.f27753p;
+        if (i >= i2) {
+            Object[] objArr = this.f27751n;
+            int i3 = this.f27752o;
+            objArr[i3 % objArr.length] = null;
+            objArr[(i + i3) % objArr.length] = e;
+            this.f27752o = (i3 + 1) % objArr.length;
+            return;
+        }
+        Object[] objArr2 = this.f27751n;
+        if (i >= objArr2.length) {
+            int iMin = Math.min(objArr2.length * 2, i2);
+            Object[] objArr3 = new Object[iMin];
+            for (int i4 = 0; i4 < i; i4++) {
+                Object[] objArr4 = this.f27751n;
+                objArr3[i4] = objArr4[(this.f27752o + i4) % objArr4.length];
+            }
+            C12139j.fill((C13037t[]) objArr3, C13055b.f27739a, i, iMin);
+            this.f27751n = objArr3;
+            this.f27752o = 0;
+        }
+        Object[] objArr5 = this.f27751n;
+        objArr5[(this.f27752o + i) % objArr5.length] = e;
+    }
+
+    @Override // p659s.p660a.p663c2.AbstractC13054a
+    /* JADX INFO: renamed from: r */
+    public boolean mo11202r(AbstractC13067n<? super E> abstractC13067n) {
+        ReentrantLock reentrantLock = this.f27750m;
+        reentrantLock.lock();
+        try {
+            return super.mo11202r(abstractC13067n);
+        } finally {
+            reentrantLock.unlock();
+        }
+    }
+
+    @Override // p659s.p660a.p663c2.AbstractC13054a
+    /* JADX INFO: renamed from: s */
+    public final boolean mo11203s() {
+        return false;
+    }
+
+    @Override // p659s.p660a.p663c2.AbstractC13054a
+    /* JADX INFO: renamed from: t */
+    public final boolean mo11204t() {
+        return this.size == 0;
+    }
+
+    @Override // p659s.p660a.p663c2.AbstractC13054a
+    /* JADX INFO: renamed from: u */
+    public void mo11205u(boolean z2) {
+        Function1<E, Unit> function1 = this.f27747l;
+        ReentrantLock reentrantLock = this.f27750m;
+        reentrantLock.lock();
+        try {
+            int i = this.size;
+            UndeliveredElementException undeliveredElementExceptionM4327p = null;
+            for (int i2 = 0; i2 < i; i2++) {
+                Object obj = this.f27751n[this.f27752o];
+                if (function1 != null && obj != C13055b.f27739a) {
+                    undeliveredElementExceptionM4327p = C3404f.m4327p(function1, obj, undeliveredElementExceptionM4327p);
+                }
+                Object[] objArr = this.f27751n;
+                int i3 = this.f27752o;
+                objArr[i3] = C13055b.f27739a;
+                this.f27752o = (i3 + 1) % objArr.length;
+            }
+            this.size = 0;
+            reentrantLock.unlock();
+            super.mo11205u(z2);
+            if (undeliveredElementExceptionM4327p != null) {
+                throw undeliveredElementExceptionM4327p;
+            }
+        } catch (Throwable th) {
+            reentrantLock.unlock();
+            throw th;
+        }
+    }
+
+    @Override // p659s.p660a.p663c2.AbstractC13054a
+    /* JADX INFO: renamed from: v */
+    public Object mo11206v() {
+        ReentrantLock reentrantLock = this.f27750m;
+        reentrantLock.lock();
+        try {
+            int i = this.size;
+            if (i == 0) {
+                Object objM11216e = m11216e();
+                if (objM11216e == null) {
+                    objM11216e = C13055b.f27742d;
+                }
+                reentrantLock.unlock();
+                return objM11216e;
+            }
+            Object[] objArr = this.f27751n;
+            int i2 = this.f27752o;
+            Object obj = objArr[i2];
+            AbstractC13071r abstractC13071r = null;
+            objArr[i2] = null;
+            this.size = i - 1;
+            Object objMo11228r = C13055b.f27742d;
+            boolean z2 = false;
+            if (i == this.f27753p) {
+                AbstractC13071r abstractC13071r2 = null;
+                while (true) {
+                    AbstractC13071r abstractC13071rM11226q = m11226q();
+                    if (abstractC13071rM11226q == null) {
+                        abstractC13071r = abstractC13071r2;
+                        break;
+                    }
+                    C12238m.checkNotNull(abstractC13071rM11226q);
+                    if (abstractC13071rM11226q.mo11230t(null) != null) {
+                        C12238m.checkNotNull(abstractC13071rM11226q);
+                        objMo11228r = abstractC13071rM11226q.mo11228r();
+                        abstractC13071r = abstractC13071rM11226q;
+                        z2 = true;
+                        break;
+                    }
+                    C12238m.checkNotNull(abstractC13071rM11226q);
+                    abstractC13071rM11226q.mo11241u();
+                    abstractC13071r2 = abstractC13071rM11226q;
+                }
+            }
+            if (objMo11228r != C13055b.f27742d && !(objMo11228r instanceof C13062i)) {
+                this.size = i;
+                Object[] objArr2 = this.f27751n;
+                objArr2[(this.f27752o + i) % objArr2.length] = objMo11228r;
+            }
+            this.f27752o = (this.f27752o + 1) % this.f27751n.length;
+            reentrantLock.unlock();
+            if (z2) {
+                C12238m.checkNotNull(abstractC13071r);
+                abstractC13071r.mo11227q();
+            }
+            return obj;
+        } catch (Throwable th) {
+            reentrantLock.unlock();
+            throw th;
+        }
+    }
+
     @Override // p659s.p660a.p663c2.AbstractC13056c
     /* JADX INFO: renamed from: c */
     public Object mo11214c(AbstractC13071r abstractC13071r) {
@@ -182,149 +326,5 @@ public class C13057d<E> extends AbstractC13054a<E> {
             reentrantLock.unlock();
             throw th;
         }
-    }
-
-    @Override // p659s.p660a.p663c2.AbstractC13054a
-    /* JADX INFO: renamed from: r */
-    public boolean mo11202r(AbstractC13067n<? super E> abstractC13067n) {
-        ReentrantLock reentrantLock = this.f27750m;
-        reentrantLock.lock();
-        try {
-            return super.mo11202r(abstractC13067n);
-        } finally {
-            reentrantLock.unlock();
-        }
-    }
-
-    @Override // p659s.p660a.p663c2.AbstractC13054a
-    /* JADX INFO: renamed from: s */
-    public final boolean mo11203s() {
-        return false;
-    }
-
-    @Override // p659s.p660a.p663c2.AbstractC13054a
-    /* JADX INFO: renamed from: t */
-    public final boolean mo11204t() {
-        return this.size == 0;
-    }
-
-    @Override // p659s.p660a.p663c2.AbstractC13054a
-    /* JADX INFO: renamed from: u */
-    public void mo11205u(boolean z2) {
-        Function1<E, Unit> function1 = this.f27747l;
-        ReentrantLock reentrantLock = this.f27750m;
-        reentrantLock.lock();
-        try {
-            int i = this.size;
-            UndeliveredElementException undeliveredElementExceptionM4327p = null;
-            for (int i2 = 0; i2 < i; i2++) {
-                Object obj = this.f27751n[this.f27752o];
-                if (function1 != null && obj != C13055b.f27739a) {
-                    undeliveredElementExceptionM4327p = C3404f.m4327p(function1, obj, undeliveredElementExceptionM4327p);
-                }
-                Object[] objArr = this.f27751n;
-                int i3 = this.f27752o;
-                objArr[i3] = C13055b.f27739a;
-                this.f27752o = (i3 + 1) % objArr.length;
-            }
-            this.size = 0;
-            reentrantLock.unlock();
-            super.mo11205u(z2);
-            if (undeliveredElementExceptionM4327p != null) {
-                throw undeliveredElementExceptionM4327p;
-            }
-        } catch (Throwable th) {
-            reentrantLock.unlock();
-            throw th;
-        }
-    }
-
-    @Override // p659s.p660a.p663c2.AbstractC13054a
-    /* JADX INFO: renamed from: v */
-    public Object mo11206v() {
-        ReentrantLock reentrantLock = this.f27750m;
-        reentrantLock.lock();
-        try {
-            int i = this.size;
-            if (i == 0) {
-                Object objM11216e = m11216e();
-                if (objM11216e == null) {
-                    objM11216e = C13055b.f27742d;
-                }
-                reentrantLock.unlock();
-                return objM11216e;
-            }
-            Object[] objArr = this.f27751n;
-            int i2 = this.f27752o;
-            Object obj = objArr[i2];
-            AbstractC13071r abstractC13071r = null;
-            objArr[i2] = null;
-            this.size = i - 1;
-            Object objMo11228r = C13055b.f27742d;
-            boolean z2 = false;
-            if (i == this.f27753p) {
-                AbstractC13071r abstractC13071r2 = null;
-                while (true) {
-                    AbstractC13071r abstractC13071rM11226q = m11226q();
-                    if (abstractC13071rM11226q == null) {
-                        abstractC13071r = abstractC13071r2;
-                        break;
-                    }
-                    C12238m.checkNotNull(abstractC13071rM11226q);
-                    if (abstractC13071rM11226q.mo11230t(null) != null) {
-                        C12238m.checkNotNull(abstractC13071rM11226q);
-                        objMo11228r = abstractC13071rM11226q.mo11228r();
-                        abstractC13071r = abstractC13071rM11226q;
-                        z2 = true;
-                        break;
-                    }
-                    C12238m.checkNotNull(abstractC13071rM11226q);
-                    abstractC13071rM11226q.mo11241u();
-                    abstractC13071r2 = abstractC13071rM11226q;
-                }
-            }
-            if (objMo11228r != C13055b.f27742d && !(objMo11228r instanceof C13062i)) {
-                this.size = i;
-                Object[] objArr2 = this.f27751n;
-                objArr2[(this.f27752o + i) % objArr2.length] = objMo11228r;
-            }
-            this.f27752o = (this.f27752o + 1) % this.f27751n.length;
-            reentrantLock.unlock();
-            if (z2) {
-                C12238m.checkNotNull(abstractC13071r);
-                abstractC13071r.mo11227q();
-            }
-            return obj;
-        } catch (Throwable th) {
-            reentrantLock.unlock();
-            throw th;
-        }
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final void m11231w(int i, E e) {
-        int i2 = this.f27753p;
-        if (i >= i2) {
-            Object[] objArr = this.f27751n;
-            int i3 = this.f27752o;
-            objArr[i3 % objArr.length] = null;
-            objArr[(i + i3) % objArr.length] = e;
-            this.f27752o = (i3 + 1) % objArr.length;
-            return;
-        }
-        Object[] objArr2 = this.f27751n;
-        if (i >= objArr2.length) {
-            int iMin = Math.min(objArr2.length * 2, i2);
-            Object[] objArr3 = new Object[iMin];
-            for (int i4 = 0; i4 < i; i4++) {
-                Object[] objArr4 = this.f27751n;
-                objArr3[i4] = objArr4[(this.f27752o + i4) % objArr4.length];
-            }
-            C12139j.fill((C13037t[]) objArr3, C13055b.f27739a, i, iMin);
-            this.f27751n = objArr3;
-            this.f27752o = 0;
-        }
-        Object[] objArr5 = this.f27751n;
-        objArr5[(this.f27752o + i) % objArr5.length] = e;
     }
 }

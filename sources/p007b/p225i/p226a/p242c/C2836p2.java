@@ -22,7 +22,7 @@ public final class C2836p2 implements InterfaceC2963w0 {
 
     /* JADX INFO: renamed from: b.i.a.c.p2$a */
     /* JADX INFO: compiled from: TracksInfo.java */
-    public static final class a implements InterfaceC2963w0 {
+    public final class a implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         public final C2556n0 f7435j;

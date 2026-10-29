@@ -20,7 +20,7 @@ public final /* data */ class GuildScheduledEventUser {
     private final User user;
 
     /* JADX INFO: compiled from: GuildScheduledEventUser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -60,21 +60,6 @@ public final /* data */ class GuildScheduledEventUser {
         return guildScheduledEventUser.copy(user, guildMember, j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getGuildScheduledEventId() {
-        return this.guildScheduledEventId;
-    }
-
     public final GuildScheduledEventUser copy(User user, GuildMember guildMember, long guildScheduledEventId) {
         C12238m.checkNotNullParameter(user, "user");
         C12238m.checkNotNullParameter(guildMember, "guildMember");
@@ -92,12 +77,27 @@ public final /* data */ class GuildScheduledEventUser {
         return C12238m.areEqual(this.user, guildScheduledEventUser.user) && C12238m.areEqual(this.guildMember, guildScheduledEventUser.guildMember) && this.guildScheduledEventId == guildScheduledEventUser.guildScheduledEventId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final GuildMember getGuildMember() {
         return this.guildMember;
     }
 
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getGuildScheduledEventId() {
         return this.guildScheduledEventId;
+    }
+
+    public final long getGuildScheduledEventId() {
+        return this.guildScheduledEventId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

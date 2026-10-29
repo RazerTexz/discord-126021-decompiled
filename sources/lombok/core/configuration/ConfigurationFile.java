@@ -30,15 +30,15 @@ public abstract class ConfigurationFile {
         }
     };
 
-    abstract long getLastModifiedOrMissing();
+    abstract CharSequence contents() throws IOException;
 
     abstract boolean exists();
 
-    abstract CharSequence contents() throws IOException;
-
-    public abstract ConfigurationFile resolve(String str);
+    abstract long getLastModifiedOrMissing();
 
     abstract ConfigurationFile parent();
+
+    public abstract ConfigurationFile resolve(String str);
 
     static void setEnvironment(String key, String value) {
         ENV.put(key, value);
@@ -104,7 +104,7 @@ public abstract class ConfigurationFile {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationFile$RegularConfigurationFile.SCL.lombok */
-    private static class RegularConfigurationFile extends ConfigurationFile {
+    class RegularConfigurationFile extends ConfigurationFile {
         private final File file;
 
         /* synthetic */ RegularConfigurationFile(File file, RegularConfigurationFile regularConfigurationFile) {
@@ -211,15 +211,15 @@ public abstract class ConfigurationFile {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationFile$ArchivedConfigurationFile.SCL.lombok */
-    private static class ArchivedConfigurationFile extends ConfigurationFile {
+    class ArchivedConfigurationFile extends ConfigurationFile {
+        private final File archive;
+        private String contents;
+        private final URI file;
+        private long lastModified;
+        private final Object lock;
         private static final URI ROOT1 = URI.create("http://x.y/a/");
         private static final URI ROOT2 = URI.create("ftp://y.x/b/");
         private static final ConcurrentMap<String, Object> locks = new ConcurrentHashMap();
-        private final File archive;
-        private final URI file;
-        private final Object lock;
-        private long lastModified;
-        private String contents;
 
         public static ConfigurationFile create(File archive, URI file) {
             if (isRelative(file)) {
@@ -356,7 +356,7 @@ public abstract class ConfigurationFile {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationFile$CharSequenceConfigurationFile.SCL.lombok */
-    private static class CharSequenceConfigurationFile extends ConfigurationFile {
+    class CharSequenceConfigurationFile extends ConfigurationFile {
         private final CharSequence contents;
         private final long lastModified;
 

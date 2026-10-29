@@ -40,10 +40,10 @@ public final class WidgetStageRaisedHandsBottomSheetAdapter extends MGRecyclerAd
     private Function1<? super StoreVoiceParticipants.VoiceUser, Unit> onViewProfile;
 
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetAdapter.kt */
-    public static abstract class ListItem implements MGRecyclerDataPayload {
+    public abstract class ListItem implements MGRecyclerDataPayload {
 
         /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetAdapter.kt */
-        public static final /* data */ class Participant extends ListItem {
+        public final /* data */ class Participant extends ListItem {
             private final String key;
             private final GuildMember member;
             private final StoreVoiceParticipants.VoiceUser participant;
@@ -78,26 +78,6 @@ public final class WidgetStageRaisedHandsBottomSheetAdapter extends MGRecyclerAd
                 return participant.copy(voiceUser, utcDateTime, guildMember, guildRole);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreVoiceParticipants.VoiceUser getParticipant() {
-                return this.participant;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final UtcDateTime getRequestToSpeakTimestamp() {
-                return this.requestToSpeakTimestamp;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GuildMember getMember() {
-                return this.member;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final GuildRole getRole() {
-                return this.role;
-            }
-
             public final Participant copy(StoreVoiceParticipants.VoiceUser participant, UtcDateTime requestToSpeakTimestamp, GuildMember member, GuildRole role) {
                 C12238m.checkNotNullParameter(participant, "participant");
                 return new Participant(participant, requestToSpeakTimestamp, member, role);
@@ -119,16 +99,36 @@ public final class WidgetStageRaisedHandsBottomSheetAdapter extends MGRecyclerAd
                 return this.key;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final GuildMember getMember() {
                 return this.member;
+            }
+
+            public final GuildMember getMember() {
+                return this.member;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final StoreVoiceParticipants.VoiceUser getParticipant() {
+                return this.participant;
             }
 
             public final StoreVoiceParticipants.VoiceUser getParticipant() {
                 return this.participant;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final UtcDateTime getRequestToSpeakTimestamp() {
                 return this.requestToSpeakTimestamp;
+            }
+
+            public final UtcDateTime getRequestToSpeakTimestamp() {
+                return this.requestToSpeakTimestamp;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final GuildRole getRole() {
+                return this.role;
             }
 
             public final GuildRole getRole() {
@@ -174,7 +174,7 @@ public final class WidgetStageRaisedHandsBottomSheetAdapter extends MGRecyclerAd
     }
 
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetAdapter.kt */
-    public static final class ViewHolderParticipant extends MGRecyclerViewHolder<WidgetStageRaisedHandsBottomSheetAdapter, ListItem> {
+    public final class ViewHolderParticipant extends MGRecyclerViewHolder<WidgetStageRaisedHandsBottomSheetAdapter, ListItem> {
         private final StageRaisedHandsItemUserBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -58,7 +58,7 @@ public interface InterfaceC11943c extends InterfaceC11917d1, InterfaceC11987p {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.c$a */
     /* JADX INFO: compiled from: ClassicTypeSystemContext.kt */
-    public static final class a {
+    public final class a {
         public static boolean areEqualTypeConstructors(InterfaceC11943c interfaceC11943c, InterfaceC11983l interfaceC11983l, InterfaceC11983l interfaceC11983l2) {
             C12238m.checkNotNullParameter(interfaceC11943c, "this");
             C12238m.checkNotNullParameter(interfaceC11983l, "c1");

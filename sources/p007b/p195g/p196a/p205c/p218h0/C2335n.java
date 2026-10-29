@@ -46,36 +46,8 @@ public class C2335n implements Serializable {
     /* JADX INFO: renamed from: D */
     public static final C2332k f4923D;
 
-    /* JADX INFO: renamed from: j */
-    public static final AbstractC2360j[] f4924j = new AbstractC2360j[0];
-
-    /* JADX INFO: renamed from: k */
-    public static final C2335n f4925k = new C2335n();
-
-    /* JADX INFO: renamed from: l */
-    public static final C2334m f4926l = C2334m.f4908l;
-
-    /* JADX INFO: renamed from: m */
-    public static final Class<?> f4927m = String.class;
-
-    /* JADX INFO: renamed from: n */
-    public static final Class<?> f4928n = Object.class;
-
-    /* JADX INFO: renamed from: o */
-    public static final Class<?> f4929o = Comparable.class;
-
-    /* JADX INFO: renamed from: p */
-    public static final Class<?> f4930p = Class.class;
-
-    /* JADX INFO: renamed from: q */
-    public static final Class<?> f4931q = Enum.class;
-
-    /* JADX INFO: renamed from: r */
-    public static final Class<?> f4932r = AbstractC2362l.class;
-
     /* JADX INFO: renamed from: s */
     public static final Class<?> f4933s;
-    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: t */
     public static final Class<?> f4934t;
@@ -97,10 +69,38 @@ public class C2335n implements Serializable {
 
     /* JADX INFO: renamed from: z */
     public static final C2332k f4940z;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final AbstractC2360j[] f4924j = new AbstractC2360j[0];
+
+    /* JADX INFO: renamed from: k */
+    public static final C2335n f4925k = new C2335n();
     public final InterfaceC2348j<Object, AbstractC2360j> _typeCache = new C2346h(16, 200);
     public final C2337p _parser = new C2337p(this);
+
+    /* JADX INFO: renamed from: l */
+    public static final C2334m f4926l = C2334m.f4908l;
     public final AbstractC2336o[] _modifiers = null;
+
+    /* JADX INFO: renamed from: m */
+    public static final Class<?> f4927m = String.class;
     public final ClassLoader _classLoader = null;
+
+    /* JADX INFO: renamed from: n */
+    public static final Class<?> f4928n = Object.class;
+
+    /* JADX INFO: renamed from: o */
+    public static final Class<?> f4929o = Comparable.class;
+
+    /* JADX INFO: renamed from: p */
+    public static final Class<?> f4930p = Class.class;
+
+    /* JADX INFO: renamed from: q */
+    public static final Class<?> f4931q = Enum.class;
+
+    /* JADX INFO: renamed from: r */
+    public static final Class<?> f4932r = AbstractC2362l.class;
 
     static {
         Class<?> cls = Boolean.TYPE;

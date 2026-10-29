@@ -44,6 +44,12 @@ public final class C1049s4 implements ViewBinding {
         this.f1218e = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f1214a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C1049s4 m206a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -69,11 +75,5 @@ public final class C1049s4 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f1214a;
     }
 }

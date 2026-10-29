@@ -65,13 +65,13 @@ public abstract class AbstractC4383a<V extends View> extends C4385c<V> {
         this.touchSlop = -1;
     }
 
+    public abstract boolean canDragView(V v);
+
     private void ensureVelocityTracker() {
         if (this.velocityTracker == null) {
             this.velocityTracker = VelocityTracker.obtain();
         }
     }
-
-    public abstract boolean canDragView(V v);
 
     public final boolean fling(CoordinatorLayout coordinatorLayout, @NonNull V v, int i, int i2, float f) {
         Runnable runnable = this.flingRunnable;

@@ -42,8 +42,82 @@ public final class FrameGridLayout extends FrameLayout {
     private Function2<? super View, ? super Data, Unit> onBindView;
     private final SizeCalculator sizeCalculator;
 
+    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$bindViews$1 */
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final /* data */ class Children {
+    public final class C70041 extends AbstractC12240o implements Function2<Data, View, Unit> {
+        public C70041() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Data data, View view) {
+            invoke2(data, view);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Data data, View view) {
+            C12238m.checkNotNullParameter(data, "$this$bindView");
+            boolean z2 = view instanceof DataView;
+            Object obj = view;
+            if (!z2) {
+                obj = null;
+            }
+            DataView dataView = (DataView) obj;
+            if (dataView != 0) {
+                dataView.onBind(data);
+                Function2 function2 = FrameGridLayout.this.onBindView;
+                if (function2 != null) {
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onLayout$1 */
+    /* JADX INFO: compiled from: FrameGridLayout.kt */
+    public final class C70051 extends AbstractC12240o implements Function2<View, PositionSpec, Unit> {
+        public C70051() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(View view, PositionSpec positionSpec) {
+            invoke2(view, positionSpec);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view, PositionSpec positionSpec) {
+            C12238m.checkNotNullParameter(view, "view");
+            C12238m.checkNotNullParameter(positionSpec, "childBounds");
+            FrameGridLayout.this.layout(view, positionSpec);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onMeasure$1 */
+    /* JADX INFO: compiled from: FrameGridLayout.kt */
+    public final class C70061 extends AbstractC12240o implements Function2<View, PositionSpec, Unit> {
+        public C70061() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(View view, PositionSpec positionSpec) {
+            invoke2(view, positionSpec);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view, PositionSpec positionSpec) {
+            C12238m.checkNotNullParameter(view, "view");
+            C12238m.checkNotNullParameter(positionSpec, "childBounds");
+            FrameGridLayout.this.measure(view, positionSpec);
+        }
+    }
+
+    /* JADX INFO: compiled from: FrameGridLayout.kt */
+    public final /* data */ class Children {
         private final Map<String, View> boundChildren;
         private final List<View> unboundChildren;
 
@@ -55,6 +129,14 @@ public final class FrameGridLayout extends FrameLayout {
             this.unboundChildren = list;
         }
 
+        public final Map<String, View> component1() {
+            return this.boundChildren;
+        }
+
+        public final List<View> component2() {
+            return this.unboundChildren;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Children copy$default(Children children, Map map, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -64,14 +146,6 @@ public final class FrameGridLayout extends FrameLayout {
                 list = children.unboundChildren;
             }
             return children.copy(map, list);
-        }
-
-        public final Map<String, View> component1() {
-            return this.boundChildren;
-        }
-
-        public final List<View> component2() {
-            return this.unboundChildren;
         }
 
         public final Children copy(Map<String, ? extends View> boundChildren, List<? extends View> unboundChildren) {
@@ -115,7 +189,7 @@ public final class FrameGridLayout extends FrameLayout {
     }
 
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -136,7 +210,7 @@ public final class FrameGridLayout extends FrameLayout {
     public interface DataView {
 
         /* JADX INFO: compiled from: FrameGridLayout.kt */
-        public static final class DefaultImpls {
+        public final class DefaultImpls {
             public static void onRemove(DataView dataView) {
             }
         }
@@ -149,7 +223,7 @@ public final class FrameGridLayout extends FrameLayout {
     }
 
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final /* data */ class PositionSpec {
+    public final /* data */ class PositionSpec {
         private final int bottom;
         private final int height;
         private final int left;
@@ -182,26 +256,6 @@ public final class FrameGridLayout extends FrameLayout {
             return positionSpec.copy(i, i2, i3, i4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getLeft() {
-            return this.left;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getTop() {
-            return this.top;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getRight() {
-            return this.right;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getBottom() {
-            return this.bottom;
-        }
-
         public final PositionSpec copy(int left, int top, int right, int bottom) {
             return new PositionSpec(left, top, right, bottom);
         }
@@ -217,6 +271,11 @@ public final class FrameGridLayout extends FrameLayout {
             return this.left == positionSpec.left && this.top == positionSpec.top && this.right == positionSpec.right && this.bottom == positionSpec.bottom;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getBottom() {
+            return this.bottom;
+        }
+
         public final int getBottom() {
             return this.bottom;
         }
@@ -225,12 +284,27 @@ public final class FrameGridLayout extends FrameLayout {
             return this.height;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getLeft() {
             return this.left;
         }
 
+        public final int getLeft() {
+            return this.left;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getRight() {
             return this.right;
+        }
+
+        public final int getRight() {
+            return this.right;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getTop() {
+            return this.top;
         }
 
         public final int getTop() {
@@ -258,7 +332,7 @@ public final class FrameGridLayout extends FrameLayout {
     }
 
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final class SizeCalculator {
+    public final class SizeCalculator {
         private final int maxLinearViews;
 
         public SizeCalculator(int i) {
@@ -273,16 +347,6 @@ public final class FrameGridLayout extends FrameLayout {
                 return 0;
             }
             return itemIndex % 2;
-        }
-
-        private final int getRowCount(int itemCount, boolean isVertical) {
-            if (!isVertical) {
-                return itemCount <= this.maxLinearViews ? 1 : 2;
-            }
-            if (itemCount <= this.maxLinearViews) {
-                return itemCount;
-            }
-            return itemCount % 2 == 1 ? (itemCount / 2) + 1 : itemCount / 2;
         }
 
         public final PositionSpec getItemSize(int layoutWidth, int layoutHeight, int itemCount, int itemIndex) {
@@ -305,79 +369,15 @@ public final class FrameGridLayout extends FrameLayout {
         public final int getMaxLinearViews() {
             return this.maxLinearViews;
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$bindViews$1 */
-    /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final class C70041 extends AbstractC12240o implements Function2<Data, View, Unit> {
-        public C70041() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Data data, View view) {
-            invoke2(data, view);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Data data, View view) {
-            C12238m.checkNotNullParameter(data, "$this$bindView");
-            boolean z2 = view instanceof DataView;
-            Object obj = view;
-            if (!z2) {
-                obj = null;
+        private final int getRowCount(int itemCount, boolean isVertical) {
+            if (!isVertical) {
+                return itemCount <= this.maxLinearViews ? 1 : 2;
             }
-            DataView dataView = (DataView) obj;
-            if (dataView != 0) {
-                dataView.onBind(data);
-                Function2 function2 = FrameGridLayout.this.onBindView;
-                if (function2 != null) {
-                }
+            if (itemCount <= this.maxLinearViews) {
+                return itemCount;
             }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onLayout$1 */
-    /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final class C70051 extends AbstractC12240o implements Function2<View, PositionSpec, Unit> {
-        public C70051() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(View view, PositionSpec positionSpec) {
-            invoke2(view, positionSpec);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view, PositionSpec positionSpec) {
-            C12238m.checkNotNullParameter(view, "view");
-            C12238m.checkNotNullParameter(positionSpec, "childBounds");
-            FrameGridLayout.this.layout(view, positionSpec);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onMeasure$1 */
-    /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public static final class C70061 extends AbstractC12240o implements Function2<View, PositionSpec, Unit> {
-        public C70061() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(View view, PositionSpec positionSpec) {
-            invoke2(view, positionSpec);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view, PositionSpec positionSpec) {
-            C12238m.checkNotNullParameter(view, "view");
-            C12238m.checkNotNullParameter(positionSpec, "childBounds");
-            FrameGridLayout.this.measure(view, positionSpec);
+            return itemCount % 2 == 1 ? (itemCount / 2) + 1 : itemCount / 2;
         }
     }
 
@@ -466,6 +466,18 @@ public final class FrameGridLayout extends FrameLayout {
         view.measure(View.MeasureSpec.makeMeasureSpec(positionSpec.getWidth(), BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(positionSpec.getHeight(), BasicMeasure.EXACTLY));
     }
 
+    @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View
+    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        sizeChildViews(new C70051());
+    }
+
+    @Override // android.widget.FrameLayout, android.view.View
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        sizeChildViews(new C70061());
+    }
+
     private final void removeStaleViews() {
         List<? extends Data> list = this.dataset;
         ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
@@ -485,6 +497,20 @@ public final class FrameGridLayout extends FrameLayout {
                 removeViewAt(iNextInt);
             }
         }
+    }
+
+    @MainThread
+    public final void setData(List<? extends Data> data) {
+        C12238m.checkNotNullParameter(data, "data");
+        this.dataset = data;
+        removeStaleViews();
+        addNecessaryViews();
+        bindViews();
+    }
+
+    @MainThread
+    public final void setOnBindView(Function2<? super View, ? super Data, Unit> onBindView) {
+        this.onBindView = onBindView;
     }
 
     private final void sizeChildViews(Function2<? super View, ? super PositionSpec, Unit> onSizeChildView) {
@@ -509,32 +535,6 @@ public final class FrameGridLayout extends FrameLayout {
                 onSizeChildView.invoke(childAt, this.sizeCalculator.getItemSize(getWidth(), getHeight(), getChildCount(), i));
             }
         }
-    }
-
-    @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View
-    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        sizeChildViews(new C70051());
-    }
-
-    @Override // android.widget.FrameLayout, android.view.View
-    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        sizeChildViews(new C70061());
-    }
-
-    @MainThread
-    public final void setData(List<? extends Data> data) {
-        C12238m.checkNotNullParameter(data, "data");
-        this.dataset = data;
-        removeStaleViews();
-        addNecessaryViews();
-        bindViews();
-    }
-
-    @MainThread
-    public final void setOnBindView(Function2<? super View, ? super Data, Unit> onBindView) {
-        this.onBindView = onBindView;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

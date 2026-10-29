@@ -11,6 +11,17 @@ public final /* data */ class ProfileApplication {
     private final String id;
     private final ApplicationInstallParams installParams;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ProfileApplication)) {
+            return false;
+        }
+        ProfileApplication profileApplication = (ProfileApplication) other;
+        return C12238m.areEqual(this.id, profileApplication.id) && C12238m.areEqual(this.customInstallUrl, profileApplication.customInstallUrl) && C12238m.areEqual(this.installParams, profileApplication.installParams);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getCustomInstallUrl() {
         return this.customInstallUrl;
@@ -24,17 +35,6 @@ public final /* data */ class ProfileApplication {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final ApplicationInstallParams getInstallParams() {
         return this.installParams;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ProfileApplication)) {
-            return false;
-        }
-        ProfileApplication profileApplication = (ProfileApplication) other;
-        return C12238m.areEqual(this.id, profileApplication.id) && C12238m.areEqual(this.customInstallUrl, profileApplication.customInstallUrl) && C12238m.areEqual(this.installParams, profileApplication.installParams);
     }
 
     public int hashCode() {

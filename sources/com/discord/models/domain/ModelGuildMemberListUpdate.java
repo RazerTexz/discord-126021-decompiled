@@ -23,13 +23,13 @@ public final /* data */ class ModelGuildMemberListUpdate {
     private final List<Operation> operations;
 
     /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-    public static final /* data */ class Group {
+    public final /* data */ class Group {
         private final int count;
         private final String id;
         private final Type type;
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final class Parser implements Model.Parser<Group> {
+        public final class Parser implements Model.Parser<Group> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -110,16 +110,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
             return group.copy(str, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getCount() {
-            return this.count;
-        }
-
         public final Group copy(String id2, int count) {
             C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
             return new Group(id2, count);
@@ -136,8 +126,18 @@ public final /* data */ class ModelGuildMemberListUpdate {
             return C12238m.areEqual(this.id, group.id) && this.count == group.count;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getCount() {
             return this.count;
+        }
+
+        public final int getCount() {
+            return this.count;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getId() {
+            return this.id;
         }
 
         public final String getId() {
@@ -162,12 +162,12 @@ public final /* data */ class ModelGuildMemberListUpdate {
     }
 
     /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-    public static abstract class Operation {
+    public abstract class Operation {
         private final Item item;
         private final List<Item> items;
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final /* data */ class Delete extends Operation {
+        public final /* data */ class Delete extends Operation {
             private final int index;
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -183,11 +183,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 return delete.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getIndex() {
-                return this.index;
-            }
-
             public final Delete copy(int index) {
                 return new Delete(index);
             }
@@ -197,6 +192,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     return (other instanceof Delete) && this.index == ((Delete) other).index;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getIndex() {
+                return this.index;
             }
 
             public final int getIndex() {
@@ -213,7 +213,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final /* data */ class Insert extends Operation {
+        public final /* data */ class Insert extends Operation {
             private final int index;
             private final Item item;
 
@@ -226,6 +226,10 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 this.item = item;
             }
 
+            public final Item component2() {
+                return getItem();
+            }
+
             public static /* synthetic */ Insert copy$default(Insert insert, int i, Item item, int i2, Object obj) {
                 if ((i2 & 1) != 0) {
                     i = insert.index;
@@ -234,15 +238,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     item = insert.getItem();
                 }
                 return insert.copy(i, item);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getIndex() {
-                return this.index;
-            }
-
-            public final Item component2() {
-                return getItem();
             }
 
             public final Insert copy(int index, Item item) {
@@ -259,6 +254,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 }
                 Insert insert = (Insert) other;
                 return this.index == insert.index && C12238m.areEqual(getItem(), insert.getItem());
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getIndex() {
+                return this.index;
             }
 
             public final int getIndex() {
@@ -287,7 +287,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final /* data */ class Invalidate extends Operation {
+        public final /* data */ class Invalidate extends Operation {
             private final IntRange range;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -305,11 +305,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 return invalidate.copy(intRange);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final IntRange getRange() {
-                return this.range;
-            }
-
             public final Invalidate copy(IntRange range) {
                 C12238m.checkNotNullParameter(range, "range");
                 return new Invalidate(range);
@@ -320,6 +315,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     return (other instanceof Invalidate) && C12238m.areEqual(this.range, ((Invalidate) other).range);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final IntRange getRange() {
+                return this.range;
             }
 
             public final IntRange getRange() {
@@ -343,10 +343,10 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static abstract class Item {
+        public abstract class Item {
 
             /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-            public static final /* data */ class GroupItem extends Item {
+            public final /* data */ class GroupItem extends Item {
                 private final Group group;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -363,11 +363,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     return groupItem.copy(group);
                 }
 
-                /* JADX INFO: renamed from: component1, reason: from getter */
-                public final Group getGroup() {
-                    return this.group;
-                }
-
                 public final GroupItem copy(Group group) {
                     C12238m.checkNotNullParameter(group, "group");
                     return new GroupItem(group);
@@ -378,6 +373,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                         return (other instanceof GroupItem) && C12238m.areEqual(this.group, ((GroupItem) other).group);
                     }
                     return true;
+                }
+
+                /* JADX INFO: renamed from: component1, reason: from getter */
+                public final Group getGroup() {
+                    return this.group;
                 }
 
                 public final Group getGroup() {
@@ -401,7 +401,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
             }
 
             /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-            public static final /* data */ class MemberItem extends Item {
+            public final /* data */ class MemberItem extends Item {
                 private final GuildMember member;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -418,11 +418,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     return memberItem.copy(guildMember);
                 }
 
-                /* JADX INFO: renamed from: component1, reason: from getter */
-                public final GuildMember getMember() {
-                    return this.member;
-                }
-
                 public final MemberItem copy(GuildMember member) {
                     C12238m.checkNotNullParameter(member, "member");
                     return new MemberItem(member);
@@ -433,6 +428,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                         return (other instanceof MemberItem) && C12238m.areEqual(this.member, ((MemberItem) other).member);
                     }
                     return true;
+                }
+
+                /* JADX INFO: renamed from: component1, reason: from getter */
+                public final GuildMember getMember() {
+                    return this.member;
                 }
 
                 public final GuildMember getMember() {
@@ -456,7 +456,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
             }
 
             /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-            public static final class Parser implements Model.Parser<Item> {
+            public final class Parser implements Model.Parser<Item> {
                 public static final Parser INSTANCE = new Parser();
 
                 private Parser() {
@@ -513,7 +513,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final class Parser implements Model.Parser<Operation> {
+        public final class Parser implements Model.Parser<Operation> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -649,7 +649,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final /* data */ class Sync extends Operation {
+        public final /* data */ class Sync extends Operation {
             private final List<Item> items;
             private final IntRange range;
 
@@ -663,6 +663,10 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 this.items = list;
             }
 
+            public final List<Item> component2() {
+                return getItems();
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Sync copy$default(Sync sync, IntRange intRange, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -672,15 +676,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     list = sync.getItems();
                 }
                 return sync.copy(intRange, list);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final IntRange getRange() {
-                return this.range;
-            }
-
-            public final List<Item> component2() {
-                return getItems();
             }
 
             public final Sync copy(IntRange range, List<? extends Item> items) {
@@ -705,6 +700,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 return this.items;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final IntRange getRange() {
+                return this.range;
+            }
+
             public final IntRange getRange() {
                 return this.range;
             }
@@ -727,7 +727,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
         }
 
         /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-        public static final /* data */ class Update extends Operation {
+        public final /* data */ class Update extends Operation {
             private final int index;
             private final Item item;
 
@@ -740,6 +740,10 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 this.item = item;
             }
 
+            public final Item component2() {
+                return getItem();
+            }
+
             public static /* synthetic */ Update copy$default(Update update, int i, Item item, int i2, Object obj) {
                 if ((i2 & 1) != 0) {
                     i = update.index;
@@ -748,15 +752,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
                     item = update.getItem();
                 }
                 return update.copy(i, item);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getIndex() {
-                return this.index;
-            }
-
-            public final Item component2() {
-                return getItem();
             }
 
             public final Update copy(int index, Item item) {
@@ -773,6 +768,11 @@ public final /* data */ class ModelGuildMemberListUpdate {
                 }
                 Update update = (Update) other;
                 return this.index == update.index && C12238m.areEqual(getItem(), update.getItem());
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getIndex() {
+                return this.index;
             }
 
             public final int getIndex() {
@@ -820,7 +820,7 @@ public final /* data */ class ModelGuildMemberListUpdate {
     }
 
     /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
-    public static final class Parser implements Model.Parser<ModelGuildMemberListUpdate> {
+    public final class Parser implements Model.Parser<ModelGuildMemberListUpdate> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -905,6 +905,14 @@ public final /* data */ class ModelGuildMemberListUpdate {
         this.groups = list2;
     }
 
+    public final List<Operation> component3() {
+        return this.operations;
+    }
+
+    public final List<Group> component4() {
+        return this.groups;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelGuildMemberListUpdate copy$default(ModelGuildMemberListUpdate modelGuildMemberListUpdate, long j, String str, List list, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -923,24 +931,6 @@ public final /* data */ class ModelGuildMemberListUpdate {
             list2 = modelGuildMemberListUpdate.groups;
         }
         return modelGuildMemberListUpdate.copy(j2, str2, list3, list2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    public final List<Operation> component3() {
-        return this.operations;
-    }
-
-    public final List<Group> component4() {
-        return this.groups;
     }
 
     public final ModelGuildMemberListUpdate copy(long guildId, String id2, List<? extends Operation> operations, List<Group> groups) {
@@ -965,8 +955,18 @@ public final /* data */ class ModelGuildMemberListUpdate {
         return this.groups;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getId() {
+        return this.id;
     }
 
     public final String getId() {

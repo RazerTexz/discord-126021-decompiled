@@ -57,7 +57,6 @@ import p007b.p225i.p226a.p341g.p342a.C4387e;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class AppBarLayout extends LinearLayout implements CoordinatorLayout.AttachedBehavior {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_AppBarLayout;
     private static final int INVALID_SCROLL_RANGE = -1;
     public static final int PENDING_ACTION_ANIMATE_ENABLED = 4;
     public static final int PENDING_ACTION_COLLAPSED = 2;
@@ -91,8 +90,9 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
     private Drawable statusBarForeground;
     private int[] tmpStatesArray;
     private int totalScrollRange;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_AppBarLayout;
 
-    public static class BaseBehavior<T extends AppBarLayout> extends AbstractC4383a<T> {
+    public class BaseBehavior<T extends AppBarLayout> extends AbstractC4383a<T> {
         private static final int INVALID_POSITION = -1;
         private static final int MAX_OFFSET_ANIMATION_DURATION = 600;
 
@@ -106,7 +106,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         private float offsetToChildIndexOnLayoutPerc;
         private BaseDragCallback onDragCallback;
 
-        public static abstract class BaseDragCallback<T extends AppBarLayout> {
+        public abstract class BaseDragCallback<T extends AppBarLayout> {
             public abstract boolean canDrag(@NonNull T t);
         }
 
@@ -188,6 +188,53 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
                 this.f20874a.setExpanded(this.f20875b);
                 return true;
+            }
+        }
+
+        public class SavedState extends AbsSavedState {
+            public boolean firstVisibleChildAtMinimumHeight;
+            public int firstVisibleChildIndex;
+            public float firstVisibleChildPercentageShown;
+            public static final Parcelable.Creator<SavedState> CREATOR = new C10818a();
+
+            /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$SavedState$a */
+            public final class C10818a implements Parcelable.ClassLoaderCreator<SavedState> {
+                @Override // android.os.Parcelable.ClassLoaderCreator
+                @NonNull
+                public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                    return new SavedState(parcel, classLoader);
+                }
+
+                @Override // android.os.Parcelable.Creator
+                @NonNull
+                public Object[] newArray(int i) {
+                    return new SavedState[i];
+                }
+
+                @Override // android.os.Parcelable.Creator
+                @Nullable
+                public Object createFromParcel(@NonNull Parcel parcel) {
+                    return new SavedState(parcel, null);
+                }
+            }
+
+            public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
+                super(parcel, classLoader);
+                this.firstVisibleChildIndex = parcel.readInt();
+                this.firstVisibleChildPercentageShown = parcel.readFloat();
+                this.firstVisibleChildAtMinimumHeight = parcel.readByte() != 0;
+            }
+
+            @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+            public void writeToParcel(@NonNull Parcel parcel, int i) {
+                super.writeToParcel(parcel, i);
+                parcel.writeInt(this.firstVisibleChildIndex);
+                parcel.writeFloat(this.firstVisibleChildPercentageShown);
+                parcel.writeByte(this.firstVisibleChildAtMinimumHeight ? (byte) 1 : (byte) 0);
+            }
+
+            public SavedState(Parcelable parcelable) {
+                super(parcelable);
             }
         }
 
@@ -297,6 +344,11 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return -1;
         }
 
+        @Override // p007b.p225i.p226a.p341g.p342a.AbstractC4383a
+        public int getTopBottomOffsetForScrollingSibling() {
+            return getTopAndBottomOffset() + this.offsetDelta;
+        }
+
         private int interpolateOffset(@NonNull T t, int i) {
             int iAbs = Math.abs(i);
             int childCount = t.getChildCount();
@@ -327,6 +379,16 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
                 }
             }
             return i;
+        }
+
+        @VisibleForTesting
+        public boolean isOffsetAnimatorRunning() {
+            ValueAnimator valueAnimator = this.offsetAnimator;
+            return valueAnimator != null && valueAnimator.isRunning();
+        }
+
+        public void setDragCallback(@Nullable BaseDragCallback baseDragCallback) {
+            this.onDragCallback = baseDragCallback;
         }
 
         private boolean shouldJumpElevationState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t) {
@@ -405,21 +467,6 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
                     t.jumpDrawablesToCurrentState();
                 }
             }
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p342a.AbstractC4383a
-        public int getTopBottomOffsetForScrollingSibling() {
-            return getTopAndBottomOffset() + this.offsetDelta;
-        }
-
-        @VisibleForTesting
-        public boolean isOffsetAnimatorRunning() {
-            ValueAnimator valueAnimator = this.offsetAnimator;
-            return valueAnimator != null && valueAnimator.isRunning();
-        }
-
-        public void setDragCallback(@Nullable BaseDragCallback baseDragCallback) {
-            this.onDragCallback = baseDragCallback;
         }
 
         @Override // p007b.p225i.p226a.p341g.p342a.AbstractC4383a
@@ -620,62 +667,15 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             super(context, attributeSet);
             this.offsetToChildIndexOnLayout = -1;
         }
-
-        public static class SavedState extends AbsSavedState {
-            public static final Parcelable.Creator<SavedState> CREATOR = new C10818a();
-            public boolean firstVisibleChildAtMinimumHeight;
-            public int firstVisibleChildIndex;
-            public float firstVisibleChildPercentageShown;
-
-            /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$SavedState$a */
-            public static class C10818a implements Parcelable.ClassLoaderCreator<SavedState> {
-                @Override // android.os.Parcelable.ClassLoaderCreator
-                @NonNull
-                public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                    return new SavedState(parcel, classLoader);
-                }
-
-                @Override // android.os.Parcelable.Creator
-                @NonNull
-                public Object[] newArray(int i) {
-                    return new SavedState[i];
-                }
-
-                @Override // android.os.Parcelable.Creator
-                @Nullable
-                public Object createFromParcel(@NonNull Parcel parcel) {
-                    return new SavedState(parcel, null);
-                }
-            }
-
-            public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
-                super(parcel, classLoader);
-                this.firstVisibleChildIndex = parcel.readInt();
-                this.firstVisibleChildPercentageShown = parcel.readFloat();
-                this.firstVisibleChildAtMinimumHeight = parcel.readByte() != 0;
-            }
-
-            @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-            public void writeToParcel(@NonNull Parcel parcel, int i) {
-                super.writeToParcel(parcel, i);
-                parcel.writeInt(this.firstVisibleChildIndex);
-                parcel.writeFloat(this.firstVisibleChildPercentageShown);
-                parcel.writeByte(this.firstVisibleChildAtMinimumHeight ? (byte) 1 : (byte) 0);
-            }
-
-            public SavedState(Parcelable parcelable) {
-                super(parcelable);
-            }
-        }
     }
 
     public interface BaseOnOffsetChangedListener<T extends AppBarLayout> {
         void onOffsetChanged(T t, int i);
     }
 
-    public static class Behavior extends BaseBehavior<AppBarLayout> {
+    public class Behavior extends BaseBehavior<AppBarLayout> {
 
-        public static abstract class DragCallback extends BaseBehavior.BaseDragCallback<AppBarLayout> {
+        public abstract class DragCallback extends BaseBehavior.BaseDragCallback<AppBarLayout> {
         }
 
         public Behavior() {
@@ -771,13 +771,46 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         }
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$a */
+    public class C10822a implements OnApplyWindowInsetsListener {
+        public C10822a() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            return AppBarLayout.this.onWindowInsetChanged(windowInsetsCompat);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$b */
+    public class C10823b implements ValueAnimator.AnimatorUpdateListener {
+
+        /* JADX INFO: renamed from: a */
+        public final /* synthetic */ MaterialShapeDrawable f20877a;
+
+        public C10823b(AppBarLayout appBarLayout, MaterialShapeDrawable materialShapeDrawable) {
+            this.f20877a = materialShapeDrawable;
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            this.f20877a.setElevation(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+    }
+
     public interface OnOffsetChangedListener extends BaseOnOffsetChangedListener<AppBarLayout> {
         @Override // com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
         void onOffsetChanged(AppBarLayout appBarLayout, int i);
     }
 
-    public static class ScrollingViewBehavior extends AbstractC4384b {
+    public class ScrollingViewBehavior extends AbstractC4384b {
         public ScrollingViewBehavior() {
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p342a.AbstractC4384b
+        @Nullable
+        public /* bridge */ /* synthetic */ View findFirstDependency(@NonNull List list) {
+            return findFirstDependency((List<View>) list);
         }
 
         private static int getAppBarLayoutOffset(@NonNull AppBarLayout appBarLayout) {
@@ -786,28 +819,6 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
                 return ((BaseBehavior) behavior).getTopBottomOffsetForScrollingSibling();
             }
             return 0;
-        }
-
-        private void offsetChildAsNeeded(@NonNull View view, @NonNull View view2) {
-            CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) view2.getLayoutParams()).getBehavior();
-            if (behavior instanceof BaseBehavior) {
-                ViewCompat.offsetTopAndBottom(view, (getVerticalLayoutGap() + (((BaseBehavior) behavior).offsetDelta + (view2.getBottom() - view.getTop()))) - getOverlapPixelsForOffset(view2));
-            }
-        }
-
-        private void updateLiftedStateIfNeeded(View view, View view2) {
-            if (view2 instanceof AppBarLayout) {
-                AppBarLayout appBarLayout = (AppBarLayout) view2;
-                if (appBarLayout.isLiftOnScroll()) {
-                    appBarLayout.setLiftedState(appBarLayout.shouldLift(view));
-                }
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p342a.AbstractC4384b
-        @Nullable
-        public /* bridge */ /* synthetic */ View findFirstDependency(@NonNull List list) {
-            return findFirstDependency((List<View>) list);
         }
 
         @Override // p007b.p225i.p226a.p341g.p342a.C4385c
@@ -853,6 +864,13 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
         public boolean layoutDependsOn(CoordinatorLayout coordinatorLayout, View view, View view2) {
             return view2 instanceof AppBarLayout;
+        }
+
+        private void offsetChildAsNeeded(@NonNull View view, @NonNull View view2) {
+            CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) view2.getLayoutParams()).getBehavior();
+            if (behavior instanceof BaseBehavior) {
+                ViewCompat.offsetTopAndBottom(view, (getVerticalLayoutGap() + (((BaseBehavior) behavior).offsetDelta + (view2.getBottom() - view.getTop()))) - getOverlapPixelsForOffset(view2));
+            }
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
@@ -915,6 +933,15 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             super.setVerticalOffsetEnabled(z2);
         }
 
+        private void updateLiftedStateIfNeeded(View view, View view2) {
+            if (view2 instanceof AppBarLayout) {
+                AppBarLayout appBarLayout = (AppBarLayout) view2;
+                if (appBarLayout.isLiftOnScroll()) {
+                    appBarLayout.setLiftedState(appBarLayout.shouldLift(view));
+                }
+            }
+        }
+
         public ScrollingViewBehavior(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
             TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C10817R.styleable.ScrollingViewBehavior_Layout);
@@ -936,121 +963,8 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$a */
-    public class C10822a implements OnApplyWindowInsetsListener {
-        public C10822a() {
-        }
-
-        @Override // androidx.core.view.OnApplyWindowInsetsListener
-        public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-            return AppBarLayout.this.onWindowInsetChanged(windowInsetsCompat);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$b */
-    public class C10823b implements ValueAnimator.AnimatorUpdateListener {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ MaterialShapeDrawable f20877a;
-
-        public C10823b(AppBarLayout appBarLayout, MaterialShapeDrawable materialShapeDrawable) {
-            this.f20877a = materialShapeDrawable;
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            this.f20877a.setElevation(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        }
-    }
-
     public AppBarLayout(@NonNull Context context) {
         this(context, null);
-    }
-
-    private void clearLiftOnScrollTargetView() {
-        WeakReference<View> weakReference = this.liftOnScrollTargetView;
-        if (weakReference != null) {
-            weakReference.clear();
-        }
-        this.liftOnScrollTargetView = null;
-    }
-
-    @Nullable
-    private View findLiftOnScrollTargetView(@Nullable View view) {
-        int i;
-        if (this.liftOnScrollTargetView == null && (i = this.liftOnScrollTargetViewId) != -1) {
-            View viewFindViewById = view != null ? view.findViewById(i) : null;
-            if (viewFindViewById == null && (getParent() instanceof ViewGroup)) {
-                viewFindViewById = ((ViewGroup) getParent()).findViewById(this.liftOnScrollTargetViewId);
-            }
-            if (viewFindViewById != null) {
-                this.liftOnScrollTargetView = new WeakReference<>(viewFindViewById);
-            }
-        }
-        WeakReference<View> weakReference = this.liftOnScrollTargetView;
-        if (weakReference != null) {
-            return weakReference.get();
-        }
-        return null;
-    }
-
-    private boolean hasCollapsibleChild() {
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            if (((LayoutParams) getChildAt(i).getLayoutParams()).isCollapsible()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void invalidateScrollRanges() {
-        this.totalScrollRange = -1;
-        this.downPreScrollRange = -1;
-        this.downScrollRange = -1;
-    }
-
-    private boolean setLiftableState(boolean z2) {
-        if (this.liftable == z2) {
-            return false;
-        }
-        this.liftable = z2;
-        refreshDrawableState();
-        return true;
-    }
-
-    private boolean shouldDrawStatusBarForeground() {
-        return this.statusBarForeground != null && getTopInset() > 0;
-    }
-
-    private boolean shouldOffsetFirstChild() {
-        if (getChildCount() <= 0) {
-            return false;
-        }
-        View childAt = getChildAt(0);
-        return (childAt.getVisibility() == 8 || ViewCompat.getFitsSystemWindows(childAt)) ? false : true;
-    }
-
-    private void startLiftOnScrollElevationOverlayAnimation(@NonNull MaterialShapeDrawable materialShapeDrawable, boolean z2) {
-        float dimension = getResources().getDimension(C10817R.dimen.design_appbar_elevation);
-        float f = z2 ? 0.0f : dimension;
-        if (!z2) {
-            dimension = 0.0f;
-        }
-        ValueAnimator valueAnimator = this.elevationOverlayAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, dimension);
-        this.elevationOverlayAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.setDuration(getResources().getInteger(C10817R.integer.app_bar_elevation_anim_duration));
-        this.elevationOverlayAnimator.setInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
-        this.elevationOverlayAnimator.addUpdateListener(new C10823b(this, materialShapeDrawable));
-        this.elevationOverlayAnimator.start();
-    }
-
-    private void updateWillNotDraw() {
-        setWillNotDraw(!shouldDrawStatusBarForeground());
     }
 
     public void addOnOffsetChangedListener(@Nullable BaseOnOffsetChangedListener baseOnOffsetChangedListener) {
@@ -1066,6 +980,14 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
     @Override // android.widget.LinearLayout, android.view.ViewGroup
     public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
         return layoutParams instanceof LayoutParams;
+    }
+
+    private void clearLiftOnScrollTargetView() {
+        WeakReference<View> weakReference = this.liftOnScrollTargetView;
+        if (weakReference != null) {
+            weakReference.clear();
+        }
+        this.liftOnScrollTargetView = null;
     }
 
     @Override // android.view.View
@@ -1087,6 +1009,25 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         if (drawable != null && drawable.isStateful() && drawable.setState(drawableState)) {
             invalidateDrawable(drawable);
         }
+    }
+
+    @Nullable
+    private View findLiftOnScrollTargetView(@Nullable View view) {
+        int i;
+        if (this.liftOnScrollTargetView == null && (i = this.liftOnScrollTargetViewId) != -1) {
+            View viewFindViewById = view != null ? view.findViewById(i) : null;
+            if (viewFindViewById == null && (getParent() instanceof ViewGroup)) {
+                viewFindViewById = ((ViewGroup) getParent()).findViewById(this.liftOnScrollTargetViewId);
+            }
+            if (viewFindViewById != null) {
+                this.liftOnScrollTargetView = new WeakReference<>(viewFindViewById);
+            }
+        }
+        WeakReference<View> weakReference = this.liftOnScrollTargetView;
+        if (weakReference != null) {
+            return weakReference.get();
+        }
+        return null;
     }
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.AttachedBehavior
@@ -1244,8 +1185,24 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         return this.haveChildWithInterpolator;
     }
 
+    private boolean hasCollapsibleChild() {
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            if (((LayoutParams) getChildAt(i).getLayoutParams()).isCollapsible()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasScrollableChildren() {
         return getTotalScrollRange() != 0;
+    }
+
+    private void invalidateScrollRanges() {
+        this.totalScrollRange = -1;
+        this.downPreScrollRange = -1;
+        this.downScrollRange = -1;
     }
 
     public boolean isLiftOnScroll() {
@@ -1403,6 +1360,15 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         return setLiftableState(z2);
     }
 
+    private boolean setLiftableState(boolean z2) {
+        if (this.liftable == z2) {
+            return false;
+        }
+        this.liftable = z2;
+        refreshDrawableState();
+        return true;
+    }
+
     public boolean setLifted(boolean z2) {
         return setLiftedState(z2);
     }
@@ -1472,12 +1438,46 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         }
     }
 
+    private boolean shouldDrawStatusBarForeground() {
+        return this.statusBarForeground != null && getTopInset() > 0;
+    }
+
     public boolean shouldLift(@Nullable View view) {
         View viewFindLiftOnScrollTargetView = findLiftOnScrollTargetView(view);
         if (viewFindLiftOnScrollTargetView != null) {
             view = viewFindLiftOnScrollTargetView;
         }
         return view != null && (view.canScrollVertically(-1) || view.getScrollY() > 0);
+    }
+
+    private boolean shouldOffsetFirstChild() {
+        if (getChildCount() <= 0) {
+            return false;
+        }
+        View childAt = getChildAt(0);
+        return (childAt.getVisibility() == 8 || ViewCompat.getFitsSystemWindows(childAt)) ? false : true;
+    }
+
+    private void startLiftOnScrollElevationOverlayAnimation(@NonNull MaterialShapeDrawable materialShapeDrawable, boolean z2) {
+        float dimension = getResources().getDimension(C10817R.dimen.design_appbar_elevation);
+        float f = z2 ? 0.0f : dimension;
+        if (!z2) {
+            dimension = 0.0f;
+        }
+        ValueAnimator valueAnimator = this.elevationOverlayAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, dimension);
+        this.elevationOverlayAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.setDuration(getResources().getInteger(C10817R.integer.app_bar_elevation_anim_duration));
+        this.elevationOverlayAnimator.setInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
+        this.elevationOverlayAnimator.addUpdateListener(new C10823b(this, materialShapeDrawable));
+        this.elevationOverlayAnimator.start();
+    }
+
+    private void updateWillNotDraw() {
+        setWillNotDraw(!shouldDrawStatusBarForeground());
     }
 
     @Override // android.view.View
@@ -1550,11 +1550,6 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         }
     }
 
-    private void setExpanded(boolean z2, boolean z3, boolean z4) {
-        this.pendingAction = (z2 ? 1 : 2) | (z3 ? 4 : 0) | (z4 ? 8 : 0);
-        requestLayout();
-    }
-
     @Override // android.widget.LinearLayout, android.view.ViewGroup
     public LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(-1, -2);
@@ -1562,6 +1557,11 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
 
     public void removeOnOffsetChangedListener(OnOffsetChangedListener onOffsetChangedListener) {
         removeOnOffsetChangedListener((BaseOnOffsetChangedListener) onOffsetChangedListener);
+    }
+
+    private void setExpanded(boolean z2, boolean z3, boolean z4) {
+        this.pendingAction = (z2 ? 1 : 2) | (z3 ? 4 : 0) | (z4 ? 8 : 0);
+        requestLayout();
     }
 
     public void addOnOffsetChangedListener(OnOffsetChangedListener onOffsetChangedListener) {
@@ -1584,7 +1584,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         return new LayoutParams(layoutParams);
     }
 
-    public static class LayoutParams extends LinearLayout.LayoutParams {
+    public class LayoutParams extends LinearLayout.LayoutParams {
         public static final int COLLAPSIBLE_FLAGS = 10;
         public static final int FLAG_QUICK_RETURN = 5;
         public static final int FLAG_SNAP = 17;

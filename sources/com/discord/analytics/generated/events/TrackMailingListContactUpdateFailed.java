@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMailingListContactUpdateFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMailingListContactUpdateFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long erroredUserId = null;
-    private final CharSequence provider = null;
     private final CharSequence listName = null;
+    private final CharSequence provider = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "mailing_list_contact_update_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackMailingListContactUpdateFailed implements Ana
         }
         TrackMailingListContactUpdateFailed trackMailingListContactUpdateFailed = (TrackMailingListContactUpdateFailed) other;
         return C12238m.areEqual(this.erroredUserId, trackMailingListContactUpdateFailed.erroredUserId) && C12238m.areEqual(this.provider, trackMailingListContactUpdateFailed.provider) && C12238m.areEqual(this.listName, trackMailingListContactUpdateFailed.listName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

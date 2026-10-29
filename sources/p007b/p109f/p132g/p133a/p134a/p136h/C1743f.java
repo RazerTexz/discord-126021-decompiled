@@ -25,9 +25,6 @@ public class C1743f implements InterfaceC1744g {
     /* JADX INFO: renamed from: b */
     public final InterfaceC1714b f3205b;
 
-    /* JADX INFO: renamed from: c */
-    public final C1745h f3206c = new C1745h();
-
     /* JADX INFO: renamed from: d */
     public final Supplier<Boolean> f3207d;
 
@@ -51,6 +48,9 @@ public class C1743f implements InterfaceC1744g {
 
     /* JADX INFO: renamed from: k */
     public boolean f3214k;
+
+    /* JADX INFO: renamed from: c */
+    public final C1745h f3206c = new C1745h();
 
     public C1743f(InterfaceC1714b interfaceC1714b, C1732c c1732c, Supplier<Boolean> supplier) {
         this.f3205b = interfaceC1714b;

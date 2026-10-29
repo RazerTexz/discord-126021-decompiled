@@ -13,6 +13,14 @@ import androidx.annotation.Nullable;
 @SuppressLint({"BanParcelableUsage"})
 public final class IntentSenderRequest implements Parcelable {
 
+    @Nullable
+    private final Intent mFillInIntent;
+    private final int mFlagsMask;
+    private final int mFlagsValues;
+
+    @NonNull
+    private final IntentSender mIntentSender;
+
     @NonNull
     public static final Parcelable.Creator<IntentSenderRequest> CREATOR = new Parcelable.Creator<IntentSenderRequest>() { // from class: androidx.activity.result.IntentSenderRequest.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -27,14 +35,6 @@ public final class IntentSenderRequest implements Parcelable {
             return new IntentSenderRequest[i];
         }
     };
-
-    @Nullable
-    private final Intent mFillInIntent;
-    private final int mFlagsMask;
-    private final int mFlagsValues;
-
-    @NonNull
-    private final IntentSender mIntentSender;
 
     public IntentSenderRequest(@NonNull IntentSender intentSender, @Nullable Intent intent, int i, int i2) {
         this.mIntentSender = intentSender;
@@ -74,7 +74,7 @@ public final class IntentSenderRequest implements Parcelable {
         parcel.writeInt(this.mFlagsValues);
     }
 
-    public static final class Builder {
+    public final class Builder {
         private Intent mFillInIntent;
         private int mFlagsMask;
         private int mFlagsValues;

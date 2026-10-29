@@ -54,8 +54,177 @@ public final class WidgetSearchSuggestions extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private SearchStringProvider searchStringProvider;
 
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$1 */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final /* data */ class Model {
+    public final class C91361 extends AbstractC12240o implements Function1<FilterType, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91361(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FilterType filterType) {
+            invoke2(filterType);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FilterType filterType) {
+            C12238m.checkNotNullParameter(filterType, "filterType");
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onFilterClicked(filterType, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this), this.$model.getQuery());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$2 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91372 extends AbstractC12240o implements Function1<UserSuggestion, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91372(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(UserSuggestion userSuggestion) {
+            invoke2(userSuggestion);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(UserSuggestion userSuggestion) {
+            C12238m.checkNotNullParameter(userSuggestion, "userSuggestion");
+            int iOrdinal = userSuggestion.getTargetType().ordinal();
+            if (iOrdinal != 0) {
+                if (iOrdinal != 1) {
+                    return;
+                }
+                StoreStream.INSTANCE.getSearch().getStoreSearchInput().onMentionsUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getMentionsFilterString(), this.$model.getQuery());
+            } else {
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                companion.getSearch().getStoreSearchInput().onFromUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getFromFilterString(), this.$model.getQuery());
+                companion.getSearch().getStoreSearchInput().onMentionsUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getMentionsFilterString(), this.$model.getQuery());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$3 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91383 extends AbstractC12240o implements Function1<ChannelSuggestion, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91383(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ChannelSuggestion channelSuggestion) {
+            invoke2(channelSuggestion);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ChannelSuggestion channelSuggestion) {
+            C12238m.checkNotNullParameter(channelSuggestion, "channelSuggestion");
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onInChannelClicked(channelSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getInFilterString(), this.$model.getQuery());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$4 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91394 extends AbstractC12240o implements Function1<HasAnswerOption, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91394(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(HasAnswerOption hasAnswerOption) {
+            invoke2(hasAnswerOption);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(HasAnswerOption hasAnswerOption) {
+            C12238m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onHasClicked(hasAnswerOption, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getHasFilterString(), hasAnswerOption.getLocalizedInputText(WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this)), this.$model.getQuery());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$5 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91405 extends AbstractC12240o implements Function1<List<? extends QueryNode>, Unit> {
+        public static final C91405 INSTANCE = new C91405();
+
+        public C91405() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends QueryNode> list) {
+            invoke2(list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends QueryNode> list) {
+            C12238m.checkNotNullParameter(list, "queryNodes");
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onQueryClicked(list);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$6 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91416 extends AbstractC12240o implements Function0<Unit> {
+        public static final C91416 INSTANCE = new C91416();
+
+        public C91416() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreStream.INSTANCE.getSearch().clearHistory();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final class C91421 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C91421() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "model");
+            WidgetSearchSuggestions.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -64,7 +233,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
         private final List<MGRecyclerDataPayload> suggestionItems;
 
         /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -138,6 +307,14 @@ public final class WidgetSearchSuggestions extends AppFragment {
             }
         }
 
+        public final List<QueryNode> component1() {
+            return this.query;
+        }
+
+        public final List<SearchSuggestion> component2() {
+            return this.suggestionEntries;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, List list, List list2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -147,14 +324,6 @@ public final class WidgetSearchSuggestions extends AppFragment {
                 list2 = model.suggestionEntries;
             }
             return model.copy(list, list2);
-        }
-
-        public final List<QueryNode> component1() {
-            return this.query;
-        }
-
-        public final List<SearchSuggestion> component2() {
-            return this.suggestionEntries;
         }
 
         public final Model copy(List<QueryNode> query, List<? extends SearchSuggestion> suggestionEntries) {
@@ -210,175 +379,6 @@ public final class WidgetSearchSuggestions extends AppFragment {
             $EnumSwitchMapping$0 = iArr;
             iArr[UserSuggestion.TargetType.FROM.ordinal()] = 1;
             iArr[UserSuggestion.TargetType.MENTIONS.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91361 extends AbstractC12240o implements Function1<FilterType, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91361(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FilterType filterType) {
-            invoke2(filterType);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FilterType filterType) {
-            C12238m.checkNotNullParameter(filterType, "filterType");
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onFilterClicked(filterType, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this), this.$model.getQuery());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91372 extends AbstractC12240o implements Function1<UserSuggestion, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91372(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(UserSuggestion userSuggestion) {
-            invoke2(userSuggestion);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(UserSuggestion userSuggestion) {
-            C12238m.checkNotNullParameter(userSuggestion, "userSuggestion");
-            int iOrdinal = userSuggestion.getTargetType().ordinal();
-            if (iOrdinal != 0) {
-                if (iOrdinal != 1) {
-                    return;
-                }
-                StoreStream.INSTANCE.getSearch().getStoreSearchInput().onMentionsUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getMentionsFilterString(), this.$model.getQuery());
-            } else {
-                StoreStream.Companion companion = StoreStream.INSTANCE;
-                companion.getSearch().getStoreSearchInput().onFromUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getFromFilterString(), this.$model.getQuery());
-                companion.getSearch().getStoreSearchInput().onMentionsUserClicked(userSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getMentionsFilterString(), this.$model.getQuery());
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$3 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91383 extends AbstractC12240o implements Function1<ChannelSuggestion, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91383(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ChannelSuggestion channelSuggestion) {
-            invoke2(channelSuggestion);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ChannelSuggestion channelSuggestion) {
-            C12238m.checkNotNullParameter(channelSuggestion, "channelSuggestion");
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onInChannelClicked(channelSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getInFilterString(), this.$model.getQuery());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$4 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91394 extends AbstractC12240o implements Function1<HasAnswerOption, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91394(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(HasAnswerOption hasAnswerOption) {
-            invoke2(hasAnswerOption);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(HasAnswerOption hasAnswerOption) {
-            C12238m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onHasClicked(hasAnswerOption, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getHasFilterString(), hasAnswerOption.getLocalizedInputText(WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this)), this.$model.getQuery());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$5 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91405 extends AbstractC12240o implements Function1<List<? extends QueryNode>, Unit> {
-        public static final C91405 INSTANCE = new C91405();
-
-        public C91405() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends QueryNode> list) {
-            invoke2(list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends QueryNode> list) {
-            C12238m.checkNotNullParameter(list, "queryNodes");
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onQueryClicked(list);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$6 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91416 extends AbstractC12240o implements Function0<Unit> {
-        public static final C91416 INSTANCE = new C91416();
-
-        public C91416() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreStream.INSTANCE.getSearch().clearHistory();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public static final class C91421 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C91421() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "model");
-            WidgetSearchSuggestions.this.configureUI(model);
         }
     }
 

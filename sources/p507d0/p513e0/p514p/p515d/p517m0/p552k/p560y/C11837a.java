@@ -23,6 +23,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: inlineClassManglingRules.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11837a {
+    public static final boolean isInlineClassThatRequiresMangling(InterfaceC11450m interfaceC11450m) {
+        C12238m.checkNotNullParameter(interfaceC11450m, "<this>");
+        return C11789g.isInlineClass(interfaceC11450m) && !C12238m.areEqual(C11836a.getFqNameSafe((InterfaceC11330e) interfaceC11450m), C11291k.f22495h);
+    }
+
     /* JADX INFO: renamed from: a */
     public static final boolean m9943a(AbstractC11913c0 abstractC11913c0) {
         InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
@@ -36,11 +41,6 @@ public final class C11837a {
     /* JADX INFO: renamed from: b */
     public static final boolean m9944b(AbstractC11913c0 abstractC11913c0) {
         return isInlineClassThatRequiresMangling(abstractC11913c0) || m9943a(abstractC11913c0);
-    }
-
-    public static final boolean isInlineClassThatRequiresMangling(InterfaceC11450m interfaceC11450m) {
-        C12238m.checkNotNullParameter(interfaceC11450m, "<this>");
-        return C11789g.isInlineClass(interfaceC11450m) && !C12238m.areEqual(C11836a.getFqNameSafe((InterfaceC11330e) interfaceC11450m), C11291k.f22495h);
     }
 
     public static final boolean shouldHideConstructorDueToInlineClassTypeValueParameters(InterfaceC11321b interfaceC11321b) {

@@ -64,19 +64,6 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
         return i == 0 || i == 2;
     }
 
-    @Nullable
-    public static <T extends ExpandableBehavior> T from(@NonNull View view, @NonNull Class<T> cls) {
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
-            throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
-        }
-        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior();
-        if (behavior instanceof ExpandableBehavior) {
-            return cls.cast(behavior);
-        }
-        throw new IllegalArgumentException("The view is not associated with ExpandableBehavior");
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     @Nullable
     public ExpandableWidget findExpandableWidget(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view) {
@@ -89,6 +76,19 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
             }
         }
         return null;
+    }
+
+    @Nullable
+    public static <T extends ExpandableBehavior> T from(@NonNull View view, @NonNull Class<T> cls) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
+            throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
+        }
+        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior();
+        if (behavior instanceof ExpandableBehavior) {
+            return cls.cast(behavior);
+        }
+        throw new IllegalArgumentException("The view is not associated with ExpandableBehavior");
     }
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior

@@ -43,7 +43,7 @@ public final class ForumPostCreateManager {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostCreateManager$createForumPostWithMessage$2 */
     /* JADX INFO: compiled from: ForumPostCreateManager.kt */
-    public static final class C83232 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C83232 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $forumChannelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -67,7 +67,7 @@ public final class ForumPostCreateManager {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostCreateManager$createForumPostWithMessage$3 */
     /* JADX INFO: compiled from: ForumPostCreateManager.kt */
-    public static final class C83243 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C83243 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ long $forumChannelId;
 
@@ -93,7 +93,7 @@ public final class ForumPostCreateManager {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostCreateManager$createForumPostWithMessage$4 */
     /* JADX INFO: compiled from: ForumPostCreateManager.kt */
-    public static final class C83254 extends AbstractC12240o implements Function0<Unit> {
+    public final class C83254 extends AbstractC12240o implements Function0<Unit> {
         public static final C83254 INSTANCE = new C83254();
 
         public C83254() {
@@ -117,54 +117,6 @@ public final class ForumPostCreateManager {
 
     public static final /* synthetic */ BehaviorSubject access$isCreateInProgressBehaviorSubject$p(ForumPostCreateManager forumPostCreateManager) {
         return isCreateInProgressBehaviorSubject;
-    }
-
-    private final Observable<Channel> sendCreateForumPostWithMessageRequest(Context context, final long channelId, final String name, String content, List<? extends Attachment<?>> attachments, final int autoArchiveDuration, final List<Long> appliedTags, final List<Long> stickerIds) {
-        RestAPIParams.Message message = new RestAPIParams.Message(content, String.valueOf(NonceGenerator.Companion.computeNonce$default(NonceGenerator.INSTANCE, null, 1, null)), null, null, stickerIds, null, null, null, null);
-        SendUtils sendUtils = SendUtils.INSTANCE;
-        ContentResolver contentResolver = context.getContentResolver();
-        C12238m.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
-        Observable<R> observableM11083G = sendUtils.getSendPayload(contentResolver, message, attachments).m11118y(new InterfaceC12589b<Object, Boolean>() { // from class: com.discord.widgets.forums.ForumPostCreateManager$sendCreateForumPostWithMessageRequest$$inlined$filterIs$1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(Object obj) {
-                return Boolean.valueOf(obj instanceof SendUtils.SendPayload.ReadyToSend);
-            }
-        }).m11083G(new InterfaceC12589b<Object, T>() { // from class: com.discord.widgets.forums.ForumPostCreateManager$sendCreateForumPostWithMessageRequest$$inlined$filterIs$2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final T call(Object obj) {
-                Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.utilities.rest.SendUtils.SendPayload.ReadyToSend");
-                return (T) ((SendUtils.SendPayload.ReadyToSend) obj);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
-        Observable<Channel> observableM11082A = observableM11083G.m11100Z(1).m11082A(new InterfaceC12589b<SendUtils.SendPayload.ReadyToSend, Observable<? extends Channel>>() { // from class: com.discord.widgets.forums.ForumPostCreateManager.sendCreateForumPostWithMessageRequest.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Channel> call(SendUtils.SendPayload.ReadyToSend readyToSend) {
-                List<SendUtils.FileUpload> uploads = readyToSend.getUploads();
-                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(uploads, 10));
-                Iterator<T> it = uploads.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(((SendUtils.FileUpload) it.next()).getPart());
-                }
-                RestAPI api = RestAPI.INSTANCE.getApi();
-                long j = channelId;
-                String str = name;
-                String content2 = readyToSend.getMessage().getContent();
-                if (content2 == null) {
-                    content2 = "";
-                }
-                String str2 = content2;
-                List<Long> list = appliedTags;
-                List<Long> list2 = stickerIds;
-                Integer numValueOf = Integer.valueOf(autoArchiveDuration);
-                Object[] array = arrayList.toArray(new MultipartBody.Part[0]);
-                Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-                return api.createThreadWithMessage(j, str, str2, list, list2, 11, numValueOf, (MultipartBody.Part[]) array);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11082A, "SendUtils\n        .getSe…(),\n          )\n        }");
-        return observableM11082A;
     }
 
     public final void createForumPostWithMessage(Context context, MessageManager messageManager, long forumChannelId, int autoArchiveDuration, String content, StoreThreadDraft.ThreadDraftState threadDraftState, MessageManager.AttachmentsRequest attachmentsRequest, Function2<? super Integer, ? super Integer, Unit> onMessageTooLong, Function2<? super Integer, ? super Boolean, Unit> onFilesTooLarge) {
@@ -219,5 +171,53 @@ public final class ForumPostCreateManager {
         });
         C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…s && isCreateInProgress }");
         return observableM11076j;
+    }
+
+    private final Observable<Channel> sendCreateForumPostWithMessageRequest(Context context, final long channelId, final String name, String content, List<? extends Attachment<?>> attachments, final int autoArchiveDuration, final List<Long> appliedTags, final List<Long> stickerIds) {
+        RestAPIParams.Message message = new RestAPIParams.Message(content, String.valueOf(NonceGenerator.Companion.computeNonce$default(NonceGenerator.INSTANCE, null, 1, null)), null, null, stickerIds, null, null, null, null);
+        SendUtils sendUtils = SendUtils.INSTANCE;
+        ContentResolver contentResolver = context.getContentResolver();
+        C12238m.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
+        Observable<R> observableM11083G = sendUtils.getSendPayload(contentResolver, message, attachments).m11118y(new InterfaceC12589b<Object, Boolean>() { // from class: com.discord.widgets.forums.ForumPostCreateManager$sendCreateForumPostWithMessageRequest$$inlined$filterIs$1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Boolean call(Object obj) {
+                return Boolean.valueOf(obj instanceof SendUtils.SendPayload.ReadyToSend);
+            }
+        }).m11083G(new InterfaceC12589b<Object, T>() { // from class: com.discord.widgets.forums.ForumPostCreateManager$sendCreateForumPostWithMessageRequest$$inlined$filterIs$2
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final T call(Object obj) {
+                Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.utilities.rest.SendUtils.SendPayload.ReadyToSend");
+                return (T) ((SendUtils.SendPayload.ReadyToSend) obj);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
+        Observable<Channel> observableM11082A = observableM11083G.m11100Z(1).m11082A(new InterfaceC12589b<SendUtils.SendPayload.ReadyToSend, Observable<? extends Channel>>() { // from class: com.discord.widgets.forums.ForumPostCreateManager.sendCreateForumPostWithMessageRequest.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Channel> call(SendUtils.SendPayload.ReadyToSend readyToSend) {
+                List<SendUtils.FileUpload> uploads = readyToSend.getUploads();
+                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(uploads, 10));
+                Iterator<T> it = uploads.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(((SendUtils.FileUpload) it.next()).getPart());
+                }
+                RestAPI api = RestAPI.INSTANCE.getApi();
+                long j = channelId;
+                String str = name;
+                String content2 = readyToSend.getMessage().getContent();
+                if (content2 == null) {
+                    content2 = "";
+                }
+                String str2 = content2;
+                List<Long> list = appliedTags;
+                List<Long> list2 = stickerIds;
+                Integer numValueOf = Integer.valueOf(autoArchiveDuration);
+                Object[] array = arrayList.toArray(new MultipartBody.Part[0]);
+                Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
+                return api.createThreadWithMessage(j, str, str2, list, list2, 11, numValueOf, (MultipartBody.Part[]) array);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11082A, "SendUtils\n        .getSe…(),\n          )\n        }");
+        return observableM11082A;
     }
 }

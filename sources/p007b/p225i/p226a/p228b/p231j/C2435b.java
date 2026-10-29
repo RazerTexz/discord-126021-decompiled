@@ -23,7 +23,7 @@ public final class C2435b extends AbstractC2442i {
 
     /* JADX INFO: renamed from: b.i.a.b.j.b$b */
     /* JADX INFO: compiled from: AutoValue_TransportContext.java */
-    public static final class b extends AbstractC2442i.a {
+    public final class b extends AbstractC2442i.a {
 
         /* JADX INFO: renamed from: a */
         public String f5261a;
@@ -70,26 +70,6 @@ public final class C2435b extends AbstractC2442i {
         this.f5260c = enumC2409d;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
-    /* JADX INFO: renamed from: b */
-    public String mo2348b() {
-        return this.f5258a;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public byte[] mo2349c() {
-        return this.f5259b;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    /* JADX INFO: renamed from: d */
-    public EnumC2409d mo2350d() {
-        return this.f5260c;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -108,5 +88,25 @@ public final class C2435b extends AbstractC2442i {
 
     public int hashCode() {
         return ((((this.f5258a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f5259b)) * 1000003) ^ this.f5260c.hashCode();
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
+    /* JADX INFO: renamed from: b */
+    public String mo2348b() {
+        return this.f5258a;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public byte[] mo2349c() {
+        return this.f5259b;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2442i
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    /* JADX INFO: renamed from: d */
+    public EnumC2409d mo2350d() {
+        return this.f5260c;
     }
 }

@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackMultiAccountSwitchAttempt.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackMultiAccountSwitchAttempt implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "multi_account_switch_attempt";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "multi_account_switch_attempt";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

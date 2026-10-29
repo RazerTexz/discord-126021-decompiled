@@ -9,10 +9,10 @@ import p007b.p225i.p226a.p288f.p313h.p324k.C3575t;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzu extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzu> CREATOR = new C3575t();
 
     /* JADX INFO: renamed from: j */
     public final boolean f20611j;
+    public static final Parcelable.Creator<zzu> CREATOR = new C3575t();
 
     public zzu(boolean z2) {
         this.f20611j = z2;

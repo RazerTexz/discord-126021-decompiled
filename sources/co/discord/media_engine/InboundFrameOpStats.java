@@ -56,41 +56,6 @@ public final /* data */ class InboundFrameOpStats {
         return inboundFrameOpStats.copy(l, l8, l9, l10, l11, l12, l7);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getSilent() {
-        return this.silent;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getNormal() {
-        return this.normal;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getMerged() {
-        return this.merged;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getExpanded() {
-        return this.expanded;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Long getAccelerated() {
-        return this.accelerated;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Long getPreemptiveExpanded() {
-        return this.preemptiveExpanded;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Long getCng() {
-        return this.cng;
-    }
-
     public final InboundFrameOpStats copy(Long silent, Long normal, Long merged, Long expanded, Long accelerated, Long preemptiveExpanded, Long cng) {
         return new InboundFrameOpStats(silent, normal, merged, expanded, accelerated, preemptiveExpanded, cng);
     }
@@ -106,28 +71,63 @@ public final /* data */ class InboundFrameOpStats {
         return C12238m.areEqual(this.silent, inboundFrameOpStats.silent) && C12238m.areEqual(this.normal, inboundFrameOpStats.normal) && C12238m.areEqual(this.merged, inboundFrameOpStats.merged) && C12238m.areEqual(this.expanded, inboundFrameOpStats.expanded) && C12238m.areEqual(this.accelerated, inboundFrameOpStats.accelerated) && C12238m.areEqual(this.preemptiveExpanded, inboundFrameOpStats.preemptiveExpanded) && C12238m.areEqual(this.cng, inboundFrameOpStats.cng);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final Long getAccelerated() {
         return this.accelerated;
+    }
+
+    public final Long getAccelerated() {
+        return this.accelerated;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Long getCng() {
+        return this.cng;
     }
 
     public final Long getCng() {
         return this.cng;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getExpanded() {
         return this.expanded;
+    }
+
+    public final Long getExpanded() {
+        return this.expanded;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Long getMerged() {
+        return this.merged;
     }
 
     public final Long getMerged() {
         return this.merged;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getNormal() {
         return this.normal;
     }
 
+    public final Long getNormal() {
+        return this.normal;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final Long getPreemptiveExpanded() {
         return this.preemptiveExpanded;
+    }
+
+    public final Long getPreemptiveExpanded() {
+        return this.preemptiveExpanded;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Long getSilent() {
+        return this.silent;
     }
 
     public final Long getSilent() {

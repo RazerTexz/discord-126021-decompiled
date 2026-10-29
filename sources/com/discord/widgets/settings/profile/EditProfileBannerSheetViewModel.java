@@ -34,7 +34,7 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.EditProfileBannerSheetViewModel$1 */
     /* JADX INFO: compiled from: EditProfileBannerSheetViewModel.kt */
-    public static final class C99521 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C99521 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C99521() {
             super(1);
         }
@@ -54,12 +54,8 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: EditProfileBannerSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Observable<StoreState> observeStoreState(StoreUser storeUser, StoreUserProfile storeUserProfile) {
-            return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{StoreUser.INSTANCE.getMeUpdate(), storeUserProfile}, false, null, null, new EditProfileBannerSheetViewModel$Companion$observeStoreState$1(storeUser, storeUserProfile), 14, null);
         }
 
         public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreUser storeUser, StoreUserProfile storeUserProfile, int i, Object obj) {
@@ -72,13 +68,17 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             return companion.observeStoreState(storeUser, storeUserProfile);
         }
 
+        private final Observable<StoreState> observeStoreState(StoreUser storeUser, StoreUserProfile storeUserProfile) {
+            return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{StoreUser.INSTANCE.getMeUpdate(), storeUserProfile}, false, null, null, new EditProfileBannerSheetViewModel$Companion$observeStoreState$1(storeUser, storeUserProfile), 14, null);
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: EditProfileBannerSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final User user;
         private final UserProfile userProfile;
 
@@ -99,16 +99,6 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             return storeState.copy(user, userProfile);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final UserProfile getUserProfile() {
-            return this.userProfile;
-        }
-
         public final StoreState copy(User user, UserProfile userProfile) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(userProfile, "userProfile");
@@ -126,8 +116,18 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             return C12238m.areEqual(this.user, storeState.user) && C12238m.areEqual(this.userProfile, storeState.userProfile);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final User getUser() {
             return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final UserProfile getUserProfile() {
+            return this.userProfile;
         }
 
         public final UserProfile getUserProfile() {
@@ -152,7 +152,7 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: EditProfileBannerSheetViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final String bannerColorHex;
         private final boolean showPremiumUpsell;
 
@@ -172,16 +172,6 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             return viewState.copy(str, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getBannerColorHex() {
-            return this.bannerColorHex;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowPremiumUpsell() {
-            return this.showPremiumUpsell;
-        }
-
         public final ViewState copy(String bannerColorHex, boolean showPremiumUpsell) {
             C12238m.checkNotNullParameter(bannerColorHex, "bannerColorHex");
             return new ViewState(bannerColorHex, showPremiumUpsell);
@@ -198,8 +188,18 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             return C12238m.areEqual(this.bannerColorHex, viewState.bannerColorHex) && this.showPremiumUpsell == viewState.showPremiumUpsell;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getBannerColorHex() {
             return this.bannerColorHex;
+        }
+
+        public final String getBannerColorHex() {
+            return this.bannerColorHex;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShowPremiumUpsell() {
+            return this.showPremiumUpsell;
         }
 
         public final boolean getShowPremiumUpsell() {
@@ -234,6 +234,10 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
         this(str, str2, (i & 4) != 0 ? Companion.observeStoreState$default(INSTANCE, null, null, 3, null) : observable);
     }
 
+    public final boolean getUpsellViewedTracked() {
+        return this.upsellViewedTracked;
+    }
+
     @MainThread
     private final void handleStoreState(StoreState storeState) {
         ViewState viewState = getViewState();
@@ -246,10 +250,6 @@ public final class EditProfileBannerSheetViewModel extends AbstractC0859d0<ViewS
             bannerColorHex = this.defaultBannerColorHex;
         }
         updateViewState(new ViewState(bannerColorHex, !UserUtils.INSTANCE.isPremiumTier2(user)));
-    }
-
-    public final boolean getUpsellViewedTracked() {
-        return this.upsellViewedTracked;
     }
 
     public final void setUpsellViewedTracked(boolean z2) {

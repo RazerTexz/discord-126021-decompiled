@@ -7,9 +7,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildTemplate {
     private final CharSequence guildTemplateCode = null;
-    private final CharSequence guildTemplateName = null;
     private final CharSequence guildTemplateDescription = null;
     private final Long guildTemplateGuildId = null;
+    private final CharSequence guildTemplateName = null;
 
     public boolean equals(Object other) {
         if (this == other) {

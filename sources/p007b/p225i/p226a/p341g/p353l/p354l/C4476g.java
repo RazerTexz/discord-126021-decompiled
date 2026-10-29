@@ -11,6 +11,9 @@ import com.google.android.material.shape.ShapeAppearancePathProvider;
 @RequiresApi(21)
 public class C4476g {
 
+    /* JADX INFO: renamed from: e */
+    public ShapeAppearanceModel f11935e;
+
     /* JADX INFO: renamed from: a */
     public final Path f11931a = new Path();
 
@@ -22,7 +25,4 @@ public class C4476g {
 
     /* JADX INFO: renamed from: d */
     public final ShapeAppearancePathProvider f11934d = ShapeAppearancePathProvider.getInstance();
-
-    /* JADX INFO: renamed from: e */
-    public ShapeAppearanceModel f11935e;
 }

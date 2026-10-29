@@ -98,6 +98,14 @@ public final class C12359h implements Closeable {
         this.f25877t = z2 ? null : new C12388e.a();
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        C12354c c12354c = this.f25875r;
+        if (c12354c != null) {
+            c12354c.f25819l.close();
+        }
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m10361a() throws IOException {
         String strM10429D;
@@ -235,14 +243,6 @@ public final class C12359h implements Closeable {
         } catch (Throwable th) {
             this.f25879v.timeout().mo10484g(jMo10485h, TimeUnit.NANOSECONDS);
             throw th;
-        }
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        C12354c c12354c = this.f25875r;
-        if (c12354c != null) {
-            c12354c.f25819l.close();
         }
     }
 }

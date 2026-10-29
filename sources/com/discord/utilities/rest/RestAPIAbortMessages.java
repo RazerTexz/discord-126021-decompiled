@@ -16,11 +16,31 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: RestAPIAbortMessages.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class RestAPIAbortMessages {
-    public static final RestAPIAbortMessages INSTANCE = new RestAPIAbortMessages();
     private static final Map<Integer, Integer> MESSAGES;
+    public static final RestAPIAbortMessages INSTANCE = new RestAPIAbortMessages();
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPIAbortMessages$handleAbortCodeOrDefault$1 */
+    /* JADX INFO: compiled from: RestAPIAbortMessages.kt */
+    public final class C68601 extends AbstractC12240o implements Function0<Boolean> {
+        public static final C68601 INSTANCE = new C68601();
+
+        public C68601() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return true;
+        }
+    }
 
     /* JADX INFO: compiled from: RestAPIAbortMessages.kt */
-    public static final class ResponseResolver {
+    public final class ResponseResolver {
         public static final ResponseResolver INSTANCE = new ResponseResolver();
 
         private ResponseResolver() {
@@ -40,26 +60,6 @@ public final class RestAPIAbortMessages {
                 return C1107b.m216h(context, iIntValue, new Object[]{username}, null, 4);
             }
             return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPIAbortMessages$handleAbortCodeOrDefault$1 */
-    /* JADX INFO: compiled from: RestAPIAbortMessages.kt */
-    public static final class C68601 extends AbstractC12240o implements Function0<Boolean> {
-        public static final C68601 INSTANCE = new C68601();
-
-        public C68601() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return true;
         }
     }
 

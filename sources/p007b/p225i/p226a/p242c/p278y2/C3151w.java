@@ -38,6 +38,16 @@ public class C3151w implements InterfaceC3148t {
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
+    public void flush() {
+        this.f9120a.flush();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
+    public MediaFormat getOutputFormat() {
+        return this.f9120a.getOutputFormat();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
     /* JADX INFO: renamed from: a */
     public boolean mo3834a() {
         return false;
@@ -91,19 +101,9 @@ public class C3151w implements InterfaceC3148t {
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
-    public void flush() {
-        this.f9120a.flush();
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
     /* JADX INFO: renamed from: g */
     public void mo3840g(int i) {
         this.f9120a.setVideoScalingMode(i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
-    public MediaFormat getOutputFormat() {
-        return this.f9120a.getOutputFormat();
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t

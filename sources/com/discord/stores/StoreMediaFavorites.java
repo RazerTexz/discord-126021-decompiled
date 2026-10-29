@@ -31,16 +31,83 @@ public final class StoreMediaFavorites extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final Persister<Set<Favorite>> persister;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$addFavorite$1 */
     /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-    public static abstract class Favorite {
+    public final class C61811 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Favorite $favorite;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C61811(Favorite favorite) {
+            super(0);
+            this.$favorite = favorite;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreMediaFavorites.this.favorites.add(this.$favorite)) {
+                StoreMediaFavorites.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$observeFavorites$1 */
+    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
+    public final class C61821 extends AbstractC12240o implements Function0<Set<? extends Favorite>> {
+        public final /* synthetic */ Set $types;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C61821(Set set) {
+            super(0);
+            this.$types = set;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Set<? extends Favorite> invoke() {
+            return StoreMediaFavorites.this.getFavorites(this.$types);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$removeFavorite$1 */
+    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
+    public final class C61831 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Favorite $favorite;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C61831(Favorite favorite) {
+            super(0);
+            this.$favorite = favorite;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreMediaFavorites.this.favorites.remove(this.$favorite)) {
+                StoreMediaFavorites.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
+    public abstract class Favorite {
+        private static final Set<InterfaceC11230c<? extends Favorite>> EmojiTypes = C12148n0.setOf((Object[]) new InterfaceC11230c[]{C12216a0.getOrCreateKotlinClass(FavCustomEmoji.class), C12216a0.getOrCreateKotlinClass(FavUnicodeEmoji.class)});
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
         private static final Lazy AllTypes$delegate = C12083g.lazy(StoreMediaFavorites$Favorite$Companion$AllTypes$2.INSTANCE);
-        private static final Set<InterfaceC11230c<? extends Favorite>> EmojiTypes = C12148n0.setOf((Object[]) new InterfaceC11230c[]{C12216a0.getOrCreateKotlinClass(FavCustomEmoji.class), C12216a0.getOrCreateKotlinClass(FavUnicodeEmoji.class)});
 
         /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -60,7 +127,7 @@ public final class StoreMediaFavorites extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-        public static final /* data */ class FavCustomEmoji extends Favorite implements FavoriteEmoji {
+        public final /* data */ class FavCustomEmoji extends Favorite implements FavoriteEmoji {
             private final String emojiUniqueId;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -70,15 +137,15 @@ public final class StoreMediaFavorites extends StoreV2 {
                 this.emojiUniqueId = str;
             }
 
+            public final String component1() {
+                return getEmojiUniqueId();
+            }
+
             public static /* synthetic */ FavCustomEmoji copy$default(FavCustomEmoji favCustomEmoji, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = favCustomEmoji.getEmojiUniqueId();
                 }
                 return favCustomEmoji.copy(str);
-            }
-
-            public final String component1() {
-                return getEmojiUniqueId();
             }
 
             public final FavCustomEmoji copy(String emojiUniqueId) {
@@ -121,7 +188,7 @@ public final class StoreMediaFavorites extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-        public static final /* data */ class FavUnicodeEmoji extends Favorite implements FavoriteEmoji {
+        public final /* data */ class FavUnicodeEmoji extends Favorite implements FavoriteEmoji {
             private final String emojiUniqueId;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -131,15 +198,15 @@ public final class StoreMediaFavorites extends StoreV2 {
                 this.emojiUniqueId = str;
             }
 
+            public final String component1() {
+                return getEmojiUniqueId();
+            }
+
             public static /* synthetic */ FavUnicodeEmoji copy$default(FavUnicodeEmoji favUnicodeEmoji, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = favUnicodeEmoji.getEmojiUniqueId();
                 }
                 return favUnicodeEmoji.copy(str);
-            }
-
-            public final String component1() {
-                return getEmojiUniqueId();
             }
 
             public final FavUnicodeEmoji copy(String emojiUniqueId) {
@@ -196,75 +263,13 @@ public final class StoreMediaFavorites extends StoreV2 {
         String getEmojiUniqueId();
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$addFavorite$1 */
-    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-    public static final class C61811 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Favorite $favorite;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C61811(Favorite favorite) {
-            super(0);
-            this.$favorite = favorite;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (StoreMediaFavorites.this.favorites.add(this.$favorite)) {
-                StoreMediaFavorites.this.markChanged();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$observeFavorites$1 */
-    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-    public static final class C61821 extends AbstractC12240o implements Function0<Set<? extends Favorite>> {
-        public final /* synthetic */ Set $types;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C61821(Set set) {
-            super(0);
-            this.$types = set;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Set<? extends Favorite> invoke() {
-            return StoreMediaFavorites.this.getFavorites(this.$types);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMediaFavorites$removeFavorite$1 */
-    /* JADX INFO: compiled from: StoreMediaFavorites.kt */
-    public static final class C61831 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Favorite $favorite;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C61831(Favorite favorite) {
-            super(0);
-            this.$favorite = favorite;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (StoreMediaFavorites.this.favorites.remove(this.$favorite)) {
-                StoreMediaFavorites.this.markChanged();
-            }
-        }
-    }
-
     public /* synthetic */ StoreMediaFavorites(ObservationDeck observationDeck, Dispatcher dispatcher, Persister persister, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(observationDeck, dispatcher, (i & 4) != 0 ? new Persister(FAVORITES_CACHE_KEY, C12148n0.emptySet()) : persister);
+    }
+
+    public final void addFavorite(Favorite favorite) {
+        C12238m.checkNotNullParameter(favorite, "favorite");
+        this.dispatcher.schedule(new C61811(favorite));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -273,19 +278,6 @@ public final class StoreMediaFavorites extends StoreV2 {
             set = Favorite.INSTANCE.getAllTypes();
         }
         return storeMediaFavorites.getFavorites(set);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Observable observeFavorites$default(StoreMediaFavorites storeMediaFavorites, Set set, int i, Object obj) {
-        if ((i & 1) != 0) {
-            set = Favorite.INSTANCE.getAllTypes();
-        }
-        return storeMediaFavorites.observeFavorites(set);
-    }
-
-    public final void addFavorite(Favorite favorite) {
-        C12238m.checkNotNullParameter(favorite, "favorite");
-        this.dispatcher.schedule(new C61811(favorite));
     }
 
     public final Set<Favorite> getFavorites(Set<? extends InterfaceC11230c<? extends Favorite>> types) {
@@ -298,6 +290,14 @@ public final class StoreMediaFavorites extends StoreV2 {
             }
         }
         return linkedHashSet;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ Observable observeFavorites$default(StoreMediaFavorites storeMediaFavorites, Set set, int i, Object obj) {
+        if ((i & 1) != 0) {
+            set = Favorite.INSTANCE.getAllTypes();
+        }
+        return storeMediaFavorites.observeFavorites(set);
     }
 
     public final Observable<Set<Favorite>> observeFavorites(Set<? extends InterfaceC11230c<? extends Favorite>> types) {

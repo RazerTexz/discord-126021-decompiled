@@ -24,16 +24,6 @@ public final /* data */ class ModelUserSettingsBootstrap {
         return modelUserSettingsBootstrap.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTheme() {
-        return this.theme;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getLocale() {
-        return this.locale;
-    }
-
     public final ModelUserSettingsBootstrap copy(String theme, String locale) {
         return new ModelUserSettingsBootstrap(theme, locale);
     }
@@ -49,8 +39,18 @@ public final /* data */ class ModelUserSettingsBootstrap {
         return C12238m.areEqual(this.theme, modelUserSettingsBootstrap.theme) && C12238m.areEqual(this.locale, modelUserSettingsBootstrap.locale);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getLocale() {
         return this.locale;
+    }
+
+    public final String getLocale() {
+        return this.locale;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTheme() {
+        return this.theme;
     }
 
     public final String getTheme() {

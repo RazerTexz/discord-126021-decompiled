@@ -75,7 +75,7 @@ public final class C12225f implements InterfaceC11230c<Object>, InterfaceC12223e
 
     /* JADX INFO: renamed from: d0.z.d.f$a */
     /* JADX INFO: compiled from: ClassReference.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

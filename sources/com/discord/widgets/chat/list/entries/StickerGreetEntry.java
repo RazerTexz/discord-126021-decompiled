@@ -44,26 +44,6 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
         return stickerGreetEntry.copy(sticker, j2, str2, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Sticker getSticker() {
-        return this.sticker;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getChannelType() {
-        return this.channelType;
-    }
-
     public final StickerGreetEntry copy(Sticker sticker, long channelId, String channelName, int channelType) {
         C12238m.checkNotNullParameter(sticker, "sticker");
         C12238m.checkNotNullParameter(channelName, "channelName");
@@ -81,12 +61,27 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
         return C12238m.areEqual(this.sticker, stickerGreetEntry.sticker) && this.channelId == stickerGreetEntry.channelId && C12238m.areEqual(this.channelName, stickerGreetEntry.channelName) && this.channelType == stickerGreetEntry.channelType;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
     }
 
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getChannelName() {
         return this.channelName;
+    }
+
+    public final String getChannelName() {
+        return this.channelName;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getChannelType() {
+        return this.channelType;
     }
 
     public final int getChannelType() {
@@ -96,6 +91,11 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Sticker getSticker() {
+        return this.sticker;
     }
 
     public final Sticker getSticker() {

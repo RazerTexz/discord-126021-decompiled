@@ -56,23 +56,20 @@ public class CameraFragment extends Fragment {
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public View cameraContainer;
 
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public CameraView cameraView;
-
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public ViewStub permissionsViewStub;
-
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public ImageView cameraFacingBtn;
 
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
     public ImageView cameraFlashBtn;
 
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public ImageView takePhotoBtn;
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public CameraView cameraView;
 
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public ImageView launchCameraBtn;
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public ViewStub permissionsViewStub;
 
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
     public File photoFile;
@@ -80,10 +77,137 @@ public class CameraFragment extends Fragment {
     /* JADX INFO: renamed from: s, reason: from kotlin metadata */
     public boolean photoFilePending;
 
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public ImageView takePhotoBtn;
+
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$d */
+    /* JADX INFO: compiled from: CameraFragment.kt */
+    public final class C11178d extends AbstractC5102a {
+
+        /* JADX INFO: renamed from: b */
+        public final /* synthetic */ View f22049b;
+
+        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$d$a */
+        /* JADX INFO: compiled from: CameraFragment.kt */
+        public final class a implements InterfaceC5112k {
+            public a() {
+            }
+
+            @Override // p007b.p452o.p453a.InterfaceC5112k
+            /* JADX INFO: renamed from: a */
+            public final void mo7165a(File file) {
+                if (file != null) {
+                    Companion companion = CameraFragment.INSTANCE;
+                    Context context = C11178d.this.f22049b.getContext();
+                    C12238m.checkNotNullExpressionValue(context, "view.context");
+                    context.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(file)));
+                    InterfaceC1429b<Object> interfaceC1429bM9287k = CameraFragment.this.m9287k();
+                    if (interfaceC1429bM9287k != null) {
+                        interfaceC1429bM9287k.mo397f(C1449a.m410a(file));
+                    }
+                }
+            }
+        }
+
+        public C11178d(View view) {
+            this.f22049b = view;
+        }
+
+        @Override // p007b.p452o.p453a.AbstractC5102a
+        /* JADX INFO: renamed from: a */
+        public void mo7155a() {
+            CameraFragment cameraFragment = CameraFragment.this;
+            if (cameraFragment.photoFilePending) {
+                InterfaceC1429b<Object> interfaceC1429bM9287k = cameraFragment.m9287k();
+                FileManager fileManager = interfaceC1429bM9287k != null ? interfaceC1429bM9287k.getFileManager() : null;
+                File fileMo409b = fileManager != null ? fileManager.mo409b() : null;
+                if (fileMo409b == null) {
+                    CameraFragment.m9282j(cameraFragment, 0, 0, 3, null);
+                    return;
+                }
+                Context contextRequireContext = cameraFragment.requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                Uri uriMo408a = fileManager.mo408a(contextRequireContext, fileMo409b);
+                Intent intentAddFlags = new Intent("android.media.action.IMAGE_CAPTURE").putExtra("output", uriMo408a).addFlags(2);
+                Context contextRequireContext2 = cameraFragment.requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext2, "requireContext()");
+                C12238m.checkNotNullExpressionValue(intentAddFlags, "intent");
+                List<ResolveInfo> listQueryIntentActivities = contextRequireContext2.getPackageManager().queryIntentActivities(intentAddFlags, 65536);
+                C12238m.checkNotNullExpressionValue(listQueryIntentActivities, "packageManager.queryInte…nager.MATCH_DEFAULT_ONLY)");
+                Iterator<ResolveInfo> it = listQueryIntentActivities.iterator();
+                while (it.hasNext()) {
+                    contextRequireContext2.grantUriPermission(it.next().activityInfo.packageName, uriMo408a, 3);
+                }
+                C12238m.checkNotNullExpressionValue(intentAddFlags, "Intent(MediaStore.ACTION…nt, photoUri)\n          }");
+                cameraFragment.photoFile = fileMo409b;
+                try {
+                    cameraFragment.startActivityForResult(intentAddFlags, 4567);
+                } catch (ActivityNotFoundException unused) {
+                    CameraFragment.m9282j(cameraFragment, 0, 0, 3, null);
+                }
+            }
+        }
+
+        @Override // p007b.p452o.p453a.AbstractC5102a
+        /* JADX INFO: renamed from: b */
+        public void mo7156b(CameraException cameraException) {
+            C12238m.checkNotNullParameter(cameraException, "exception");
+            CameraFragment cameraFragment = CameraFragment.this;
+            String string = cameraFragment.getString(C11170R.h.camera_unknown_error);
+            C12238m.checkNotNullExpressionValue(string, "getString(R.string.camera_unknown_error)");
+            CameraFragment.m9283l(cameraFragment, string, cameraException, true, null, 8, null);
+        }
+
+        @Override // p007b.p452o.p453a.AbstractC5102a
+        /* JADX INFO: renamed from: c */
+        public void mo7157c(AbstractC5104c abstractC5104c) {
+            C12238m.checkNotNullParameter(abstractC5104c, "cameraOptions");
+            CameraFragment cameraFragment = CameraFragment.this;
+            Companion companion = CameraFragment.INSTANCE;
+            cameraFragment.m9285h();
+            CameraFragment.this.m9284g();
+            ImageView imageView = CameraFragment.this.cameraFacingBtn;
+            if (imageView == null) {
+                C12238m.throwUninitializedPropertyAccessException("cameraFacingBtn");
+            }
+            imageView.setVisibility(abstractC5104c.m7161a().size() > 1 ? 0 : 8);
+            ImageView imageView2 = CameraFragment.this.cameraFlashBtn;
+            if (imageView2 == null) {
+                C12238m.throwUninitializedPropertyAccessException("cameraFlashBtn");
+            }
+            imageView2.setVisibility(abstractC5104c.m7162b().size() > 1 ? 0 : 8);
+        }
+
+        @Override // p007b.p452o.p453a.AbstractC5102a
+        /* JADX INFO: renamed from: d */
+        public void mo7158d(C5113l c5113l) {
+            FileManager fileManager;
+            File fileMo409b;
+            C12238m.checkNotNullParameter(c5113l, "result");
+            CameraFragment cameraFragment = CameraFragment.this;
+            Companion companion = CameraFragment.INSTANCE;
+            InterfaceC1429b<Object> interfaceC1429bM9287k = cameraFragment.m9287k();
+            if (interfaceC1429bM9287k == null || (fileManager = interfaceC1429bM9287k.getFileManager()) == null || (fileMo409b = fileManager.mo409b()) == null) {
+                return;
+            }
+            a aVar = new a();
+            byte[] bArr = c5113l.f13714a;
+            C5103b c5103b = C5106e.f13705a;
+            C5206g.m7402a(new RunnableC5105d(bArr, fileMo409b, new Handler(), aVar));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: CameraFragment.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$a */
     /* JADX INFO: compiled from: java-style lambda group */
     /* JADX INFO: loaded from: classes.dex */
-    public static final class ViewOnClickListenerC11175a implements View.OnClickListener {
+    public final class ViewOnClickListenerC11175a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f22045j;
@@ -207,16 +331,9 @@ public class CameraFragment extends Fragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: CameraFragment.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$c */
     /* JADX INFO: compiled from: CameraFragment.kt */
-    public static final class ViewOnClickListenerC11177c implements View.OnClickListener {
+    public final class ViewOnClickListenerC11177c implements View.OnClickListener {
         public ViewOnClickListenerC11177c() {
         }
 
@@ -228,123 +345,6 @@ public class CameraFragment extends Fragment {
             if (interfaceC1429bM9287k != null) {
                 interfaceC1429bM9287k.requestMediaPermissions(C13003q.f27626k);
             }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$d */
-    /* JADX INFO: compiled from: CameraFragment.kt */
-    public static final class C11178d extends AbstractC5102a {
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ View f22049b;
-
-        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.CameraFragment$d$a */
-        /* JADX INFO: compiled from: CameraFragment.kt */
-        public static final class a implements InterfaceC5112k {
-            public a() {
-            }
-
-            @Override // p007b.p452o.p453a.InterfaceC5112k
-            /* JADX INFO: renamed from: a */
-            public final void mo7165a(File file) {
-                if (file != null) {
-                    Companion companion = CameraFragment.INSTANCE;
-                    Context context = C11178d.this.f22049b.getContext();
-                    C12238m.checkNotNullExpressionValue(context, "view.context");
-                    context.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(file)));
-                    InterfaceC1429b<Object> interfaceC1429bM9287k = CameraFragment.this.m9287k();
-                    if (interfaceC1429bM9287k != null) {
-                        interfaceC1429bM9287k.mo397f(C1449a.m410a(file));
-                    }
-                }
-            }
-        }
-
-        public C11178d(View view) {
-            this.f22049b = view;
-        }
-
-        @Override // p007b.p452o.p453a.AbstractC5102a
-        /* JADX INFO: renamed from: a */
-        public void mo7155a() {
-            CameraFragment cameraFragment = CameraFragment.this;
-            if (cameraFragment.photoFilePending) {
-                InterfaceC1429b<Object> interfaceC1429bM9287k = cameraFragment.m9287k();
-                FileManager fileManager = interfaceC1429bM9287k != null ? interfaceC1429bM9287k.getFileManager() : null;
-                File fileMo409b = fileManager != null ? fileManager.mo409b() : null;
-                if (fileMo409b == null) {
-                    CameraFragment.m9282j(cameraFragment, 0, 0, 3, null);
-                    return;
-                }
-                Context contextRequireContext = cameraFragment.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                Uri uriMo408a = fileManager.mo408a(contextRequireContext, fileMo409b);
-                Intent intentAddFlags = new Intent("android.media.action.IMAGE_CAPTURE").putExtra("output", uriMo408a).addFlags(2);
-                Context contextRequireContext2 = cameraFragment.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext2, "requireContext()");
-                C12238m.checkNotNullExpressionValue(intentAddFlags, "intent");
-                List<ResolveInfo> listQueryIntentActivities = contextRequireContext2.getPackageManager().queryIntentActivities(intentAddFlags, 65536);
-                C12238m.checkNotNullExpressionValue(listQueryIntentActivities, "packageManager.queryInte…nager.MATCH_DEFAULT_ONLY)");
-                Iterator<ResolveInfo> it = listQueryIntentActivities.iterator();
-                while (it.hasNext()) {
-                    contextRequireContext2.grantUriPermission(it.next().activityInfo.packageName, uriMo408a, 3);
-                }
-                C12238m.checkNotNullExpressionValue(intentAddFlags, "Intent(MediaStore.ACTION…nt, photoUri)\n          }");
-                cameraFragment.photoFile = fileMo409b;
-                try {
-                    cameraFragment.startActivityForResult(intentAddFlags, 4567);
-                } catch (ActivityNotFoundException unused) {
-                    CameraFragment.m9282j(cameraFragment, 0, 0, 3, null);
-                }
-            }
-        }
-
-        @Override // p007b.p452o.p453a.AbstractC5102a
-        /* JADX INFO: renamed from: b */
-        public void mo7156b(CameraException cameraException) {
-            C12238m.checkNotNullParameter(cameraException, "exception");
-            CameraFragment cameraFragment = CameraFragment.this;
-            String string = cameraFragment.getString(C11170R.h.camera_unknown_error);
-            C12238m.checkNotNullExpressionValue(string, "getString(R.string.camera_unknown_error)");
-            CameraFragment.m9283l(cameraFragment, string, cameraException, true, null, 8, null);
-        }
-
-        @Override // p007b.p452o.p453a.AbstractC5102a
-        /* JADX INFO: renamed from: c */
-        public void mo7157c(AbstractC5104c abstractC5104c) {
-            C12238m.checkNotNullParameter(abstractC5104c, "cameraOptions");
-            CameraFragment cameraFragment = CameraFragment.this;
-            Companion companion = CameraFragment.INSTANCE;
-            cameraFragment.m9285h();
-            CameraFragment.this.m9284g();
-            ImageView imageView = CameraFragment.this.cameraFacingBtn;
-            if (imageView == null) {
-                C12238m.throwUninitializedPropertyAccessException("cameraFacingBtn");
-            }
-            imageView.setVisibility(abstractC5104c.m7161a().size() > 1 ? 0 : 8);
-            ImageView imageView2 = CameraFragment.this.cameraFlashBtn;
-            if (imageView2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("cameraFlashBtn");
-            }
-            imageView2.setVisibility(abstractC5104c.m7162b().size() > 1 ? 0 : 8);
-        }
-
-        @Override // p007b.p452o.p453a.AbstractC5102a
-        /* JADX INFO: renamed from: d */
-        public void mo7158d(C5113l c5113l) {
-            FileManager fileManager;
-            File fileMo409b;
-            C12238m.checkNotNullParameter(c5113l, "result");
-            CameraFragment cameraFragment = CameraFragment.this;
-            Companion companion = CameraFragment.INSTANCE;
-            InterfaceC1429b<Object> interfaceC1429bM9287k = cameraFragment.m9287k();
-            if (interfaceC1429bM9287k == null || (fileManager = interfaceC1429bM9287k.getFileManager()) == null || (fileMo409b = fileManager.mo409b()) == null) {
-                return;
-            }
-            a aVar = new a();
-            byte[] bArr = c5113l.f13714a;
-            C5103b c5103b = C5106e.f13705a;
-            C5206g.m7402a(new RunnableC5105d(bArr, fileMo409b, new Handler(), aVar));
         }
     }
 

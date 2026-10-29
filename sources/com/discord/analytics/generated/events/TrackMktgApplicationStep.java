@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMktgApplicationStep.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMktgApplicationStep implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private TrackBase trackBase;
-    private TrackMarketingSite trackMarketingSite;
     private final CharSequence applicationType = null;
     private final CharSequence pageName = null;
     private final CharSequence step = null;
+    private TrackBase trackBase;
+    private TrackMarketingSite trackMarketingSite;
     private final transient String analyticsSchemaTypeName = "mktg_application_step";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackMktgApplicationStep implements AnalyticsSchem
         }
         TrackMktgApplicationStep trackMktgApplicationStep = (TrackMktgApplicationStep) other;
         return C12238m.areEqual(this.applicationType, trackMktgApplicationStep.applicationType) && C12238m.areEqual(this.pageName, trackMktgApplicationStep.pageName) && C12238m.areEqual(this.step, trackMktgApplicationStep.step);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

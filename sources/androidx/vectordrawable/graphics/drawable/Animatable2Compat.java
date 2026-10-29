@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi;
 /* JADX INFO: loaded from: classes.dex */
 public interface Animatable2Compat extends Animatable {
 
-    public static abstract class AnimationCallback {
+    public abstract class AnimationCallback {
         public Animatable2.AnimationCallback mPlatformCallback;
 
         @RequiresApi(23)

@@ -6,14 +6,14 @@ import java.util.Map;
 /* JADX INFO: compiled from: ProducerListener.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC1964a1 {
+    /* JADX INFO: renamed from: e */
+    void mo1062e(String str, String str2, boolean z2);
+
     /* JADX INFO: renamed from: b */
     void mo1348b(String str, String str2);
 
     /* JADX INFO: renamed from: d */
     void mo1349d(String str, String str2, Map<String, String> map);
-
-    /* JADX INFO: renamed from: e */
-    void mo1062e(String str, String str2, boolean z2);
 
     /* JADX INFO: renamed from: f */
     boolean mo1350f(String str);

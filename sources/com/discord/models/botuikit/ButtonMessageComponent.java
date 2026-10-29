@@ -36,36 +36,6 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return getStateInteraction();
     }
 
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCustomId() {
-        return this.customId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getLabel() {
-        return this.label;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final ButtonStyle getStyle() {
-        return this.style;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final ComponentEmoji getEmoji() {
-        return this.emoji;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getEmojiAnimationsEnabled() {
-        return this.emojiAnimationsEnabled;
-    }
-
     public final ButtonMessageComponent copy(ComponentType type, int index, ActionInteractionComponentState stateInteraction, String customId, String label, ButtonStyle style, ComponentEmoji emoji, String url, boolean emojiAnimationsEnabled) {
         C12238m.checkNotNullParameter(type, "type");
         C12238m.checkNotNullParameter(stateInteraction, "stateInteraction");
@@ -84,12 +54,27 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return C12238m.areEqual(getType(), buttonMessageComponent.getType()) && getIndex() == buttonMessageComponent.getIndex() && C12238m.areEqual(getStateInteraction(), buttonMessageComponent.getStateInteraction()) && C12238m.areEqual(this.customId, buttonMessageComponent.customId) && C12238m.areEqual(this.label, buttonMessageComponent.label) && C12238m.areEqual(this.style, buttonMessageComponent.style) && C12238m.areEqual(this.emoji, buttonMessageComponent.emoji) && C12238m.areEqual(this.url, buttonMessageComponent.url) && this.emojiAnimationsEnabled == buttonMessageComponent.emojiAnimationsEnabled;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCustomId() {
         return this.customId;
     }
 
+    public final String getCustomId() {
+        return this.customId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final ComponentEmoji getEmoji() {
         return this.emoji;
+    }
+
+    public final ComponentEmoji getEmoji() {
+        return this.emoji;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getEmojiAnimationsEnabled() {
+        return this.emojiAnimationsEnabled;
     }
 
     public final boolean getEmojiAnimationsEnabled() {
@@ -101,6 +86,11 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return this.index;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getLabel() {
+        return this.label;
+    }
+
     public final String getLabel() {
         return this.label;
     }
@@ -110,6 +100,11 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return this.stateInteraction;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final ButtonStyle getStyle() {
+        return this.style;
+    }
+
     public final ButtonStyle getStyle() {
         return this.style;
     }
@@ -117,6 +112,11 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     @Override // com.discord.models.botuikit.MessageComponent
     public ComponentType getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final String getUrl() {
+        return this.url;
     }
 
     public final String getUrl() {

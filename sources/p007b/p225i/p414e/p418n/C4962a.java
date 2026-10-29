@@ -18,11 +18,6 @@ public final class C4962a implements Cloneable {
         this.f13227j = new int[1];
     }
 
-    /* JADX INFO: renamed from: b */
-    public boolean m6935b(int i) {
-        return ((1 << (i & 31)) & this.f13227j[i / 32]) != 0;
-    }
-
     public Object clone() throws CloneNotSupportedException {
         return new C4962a((int[]) this.f13227j.clone(), this.f13228k);
     }
@@ -33,6 +28,15 @@ public final class C4962a implements Cloneable {
         }
         C4962a c4962a = (C4962a) obj;
         return this.f13228k == c4962a.f13228k && Arrays.equals(this.f13227j, c4962a.f13227j);
+    }
+
+    public int hashCode() {
+        return Arrays.hashCode(this.f13227j) + (this.f13228k * 31);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public boolean m6935b(int i) {
+        return ((1 << (i & 31)) & this.f13227j[i / 32]) != 0;
     }
 
     /* JADX INFO: renamed from: f */
@@ -101,10 +105,6 @@ public final class C4962a implements Cloneable {
             i6++;
         }
         return true;
-    }
-
-    public int hashCode() {
-        return Arrays.hashCode(this.f13227j) + (this.f13228k * 31);
     }
 
     /* JADX INFO: renamed from: i */

@@ -22,6 +22,10 @@ public final /* data */ class ModelOAuth2Token {
         this.application = application;
     }
 
+    public final List<OAuthScope> component2() {
+        return this.scopes;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelOAuth2Token copy$default(ModelOAuth2Token modelOAuth2Token, long j, List list, Application application, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -34,20 +38,6 @@ public final /* data */ class ModelOAuth2Token {
             application = modelOAuth2Token.application;
         }
         return modelOAuth2Token.copy(j, list, application);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    public final List<OAuthScope> component2() {
-        return this.scopes;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
     }
 
     public final ModelOAuth2Token copy(long id2, List<? extends OAuthScope> scopes, Application application) {
@@ -67,8 +57,18 @@ public final /* data */ class ModelOAuth2Token {
         return this.id == modelOAuth2Token.id && C12238m.areEqual(this.scopes, modelOAuth2Token.scopes) && C12238m.areEqual(this.application, modelOAuth2Token.application);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {

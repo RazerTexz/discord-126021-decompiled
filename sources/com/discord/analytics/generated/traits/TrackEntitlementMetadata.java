@@ -6,10 +6,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackEntitlementMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackEntitlementMetadata {
-    private final Long entitlementId = null;
     private final Long entitlementCreatorId = null;
-    private final Long entitlementSubscriptionPlanId = null;
+    private final Long entitlementId = null;
     private final Long entitlementPaymentId = null;
+    private final Long entitlementSubscriptionPlanId = null;
     private final Long giftCodeBatchId = null;
     private final Long giftStyle = null;
 

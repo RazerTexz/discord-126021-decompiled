@@ -21,24 +21,24 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11681f extends AbstractC11727g implements InterfaceC11735o {
-
-    /* JADX INFO: renamed from: j */
-    public static final C11681f f23797j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11681f> f23798k = new a();
     private int bitField0_;
     private C11683h conclusionOfConditionalEffect_;
     private List<C11683h> effectConstructorArgument_;
     private c effectType_;
+
+    /* JADX INFO: renamed from: j */
+    public static final C11681f f23797j;
     private d kind_;
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
     private final AbstractC11723c unknownFields;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11681f> f23798k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.f$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11681f> {
+    public final class a extends AbstractC11722b<C11681f> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11681f parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11681f(c11724d, c11725e, null);
@@ -47,7 +47,7 @@ public final class C11681f extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.f$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.b<C11681f, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.b<C11681f, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: k */
         public int f23799k;
@@ -266,16 +266,12 @@ public final class C11681f extends AbstractC11727g implements InterfaceC11735o {
         this.unknownFields = bVar.getUnknownFields();
     }
 
-    public static C11681f getDefaultInstance() {
-        return f23797j;
-    }
-
-    public static b newBuilder(C11681f c11681f) {
-        return newBuilder().mergeFrom(c11681f);
-    }
-
     public C11683h getConclusionOfConditionalEffect() {
         return this.conclusionOfConditionalEffect_;
+    }
+
+    public static C11681f getDefaultInstance() {
+        return f23797j;
     }
 
     public C11683h getEffectConstructorArgument(int i) {
@@ -315,14 +311,6 @@ public final class C11681f extends AbstractC11727g implements InterfaceC11735o {
         return size;
     }
 
-    /* JADX INFO: renamed from: h */
-    public final void m9658h() {
-        this.effectType_ = c.RETURNS_CONSTANT;
-        this.effectConstructorArgument_ = Collections.emptyList();
-        this.conclusionOfConditionalEffect_ = C11683h.getDefaultInstance();
-        this.kind_ = d.AT_MOST_ONCE;
-    }
-
     public boolean hasConclusionOfConditionalEffect() {
         return (this.bitField0_ & 2) == 2;
     }
@@ -356,6 +344,18 @@ public final class C11681f extends AbstractC11727g implements InterfaceC11735o {
         }
         this.memoizedIsInitialized = (byte) 0;
         return false;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m9658h() {
+        this.effectType_ = c.RETURNS_CONSTANT;
+        this.effectConstructorArgument_ = Collections.emptyList();
+        this.conclusionOfConditionalEffect_ = C11683h.getDefaultInstance();
+        this.kind_ = d.AT_MOST_ONCE;
+    }
+
+    public static b newBuilder(C11681f c11681f) {
+        return newBuilder().mergeFrom(c11681f);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

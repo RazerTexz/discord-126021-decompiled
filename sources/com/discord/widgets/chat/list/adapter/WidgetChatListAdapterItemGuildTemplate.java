@@ -43,11 +43,71 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
     private GuildTemplateEntry item;
     private Subscription subscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-    public static abstract class Model {
+    public final /* synthetic */ class C80841 extends C12236k implements Function1<Model, Unit> {
+        public C80841(WidgetChatListAdapterItemGuildTemplate widgetChatListAdapterItemGuildTemplate) {
+            super(1, widgetChatListAdapterItemGuildTemplate, WidgetChatListAdapterItemGuildTemplate.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGuildTemplate$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetChatListAdapterItemGuildTemplate) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
+    public final class C80852 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C80852() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetChatListAdapterItemGuildTemplate.this.configureInvalidUI();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$3 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
+    public final class C80863 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80863() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemGuildTemplate.this.subscription = subscription;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
+    public abstract class Model {
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-        public static final class Invalid extends Model {
+        public final class Invalid extends Model {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -56,7 +116,7 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-        public static final class Loading extends Model {
+        public final class Loading extends Model {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -65,7 +125,7 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-        public static final /* data */ class Resolved extends Model {
+        public final /* data */ class Resolved extends Model {
             private final ModelGuildTemplate guildTemplate;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -82,11 +142,6 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
                 return resolved.copy(modelGuildTemplate);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildTemplate getGuildTemplate() {
-                return this.guildTemplate;
-            }
-
             public final Resolved copy(ModelGuildTemplate guildTemplate) {
                 C12238m.checkNotNullParameter(guildTemplate, "guildTemplate");
                 return new Resolved(guildTemplate);
@@ -97,6 +152,11 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
                     return (other instanceof Resolved) && C12238m.areEqual(this.guildTemplate, ((Resolved) other).guildTemplate);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelGuildTemplate getGuildTemplate() {
+                return this.guildTemplate;
             }
 
             public final ModelGuildTemplate getGuildTemplate() {
@@ -128,7 +188,7 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-    public static final class ModelProvider {
+    public final class ModelProvider {
         public static final ModelProvider INSTANCE = new ModelProvider();
 
         private ModelProvider() {
@@ -152,66 +212,6 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
             });
             C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n        .get…tes\n          }\n        }");
             return observableM11099Y;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-    public static final /* synthetic */ class C80841 extends C12236k implements Function1<Model, Unit> {
-        public C80841(WidgetChatListAdapterItemGuildTemplate widgetChatListAdapterItemGuildTemplate) {
-            super(1, widgetChatListAdapterItemGuildTemplate, WidgetChatListAdapterItemGuildTemplate.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGuildTemplate$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetChatListAdapterItemGuildTemplate) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-    public static final class C80852 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C80852() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetChatListAdapterItemGuildTemplate.this.configureInvalidUI();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildTemplate$onConfigure$3 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildTemplate.kt */
-    public static final class C80863 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80863() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemGuildTemplate.this.subscription = subscription;
         }
     }
 
@@ -301,13 +301,13 @@ public final class WidgetChatListAdapterItemGuildTemplate extends WidgetChatList
         }
     }
 
-    private final void openGuildTemplate(Context context, ModelGuildTemplate guildTemplate) {
-        WidgetGuildClone.INSTANCE.show(context, guildTemplate.getCode(), "Guild Template Embed");
-    }
-
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
     public Subscription getSubscription() {
         return this.subscription;
+    }
+
+    private final void openGuildTemplate(Context context, ModelGuildTemplate guildTemplate) {
+        WidgetGuildClone.INSTANCE.show(context, guildTemplate.getCode(), "Guild Template Embed");
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

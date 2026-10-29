@@ -25,6 +25,10 @@ public final /* data */ class ApplicationCommandData {
         this.validInputs = z2;
     }
 
+    public final List<ApplicationCommandValue> component3() {
+        return this.values;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ApplicationCommandData copy$default(ApplicationCommandData applicationCommandData, Application application, ApplicationCommand applicationCommand, List list, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -40,25 +44,6 @@ public final /* data */ class ApplicationCommandData {
             z2 = applicationCommandData.validInputs;
         }
         return applicationCommandData.copy(application, applicationCommand, list, z2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ApplicationCommand getApplicationCommand() {
-        return this.applicationCommand;
-    }
-
-    public final List<ApplicationCommandValue> component3() {
-        return this.values;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getValidInputs() {
-        return this.validInputs;
     }
 
     public final ApplicationCommandData copy(Application application, ApplicationCommand applicationCommand, List<ApplicationCommandValue> values, boolean validInputs) {
@@ -79,12 +64,27 @@ public final /* data */ class ApplicationCommandData {
         return C12238m.areEqual(this.application, applicationCommandData.application) && C12238m.areEqual(this.applicationCommand, applicationCommandData.applicationCommand) && C12238m.areEqual(this.values, applicationCommandData.values) && this.validInputs == applicationCommandData.validInputs;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Application getApplication() {
         return this.application;
     }
 
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final ApplicationCommand getApplicationCommand() {
         return this.applicationCommand;
+    }
+
+    public final ApplicationCommand getApplicationCommand() {
+        return this.applicationCommand;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getValidInputs() {
+        return this.validInputs;
     }
 
     public final boolean getValidInputs() {

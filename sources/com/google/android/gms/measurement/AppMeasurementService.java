@@ -22,6 +22,14 @@ public final class AppMeasurementService extends Service implements InterfaceC41
     /* JADX INFO: renamed from: j */
     public C4151p8<AppMeasurementService> f20658j;
 
+    /* JADX INFO: renamed from: c */
+    public final C4151p8<AppMeasurementService> m9110c() {
+        if (this.f20658j == null) {
+            this.f20658j = new C4151p8<>(this);
+        }
+        return this.f20658j;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4195t8
     /* JADX INFO: renamed from: a */
     public final void mo5868a(JobParameters jobParameters, boolean z2) {
@@ -32,14 +40,6 @@ public final class AppMeasurementService extends Service implements InterfaceC41
     /* JADX INFO: renamed from: b */
     public final void mo5869b(Intent intent) {
         WakefulBroadcastReceiver.completeWakefulIntent(intent);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C4151p8<AppMeasurementService> m9110c() {
-        if (this.f20658j == null) {
-            this.f20658j = new C4151p8<>(this);
-        }
-        return this.f20658j;
     }
 
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4195t8

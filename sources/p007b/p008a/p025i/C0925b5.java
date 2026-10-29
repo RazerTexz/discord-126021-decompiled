@@ -49,6 +49,12 @@ public final class C0925b5 implements ViewBinding {
         this.f718f = flexboxLayout;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f713a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C0925b5 m197a(@NonNull View view) {
@@ -74,11 +80,5 @@ public final class C0925b5 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f713a;
     }
 }

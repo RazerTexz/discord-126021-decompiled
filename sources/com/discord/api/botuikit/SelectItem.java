@@ -14,6 +14,17 @@ public final /* data */ class SelectItem implements Serializable {
     private final String label;
     private final String value;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof SelectItem)) {
+            return false;
+        }
+        SelectItem selectItem = (SelectItem) other;
+        return C12238m.areEqual(this.label, selectItem.label) && C12238m.areEqual(this.value, selectItem.value) && C12238m.areEqual(this.emoji, selectItem.emoji) && C12238m.areEqual(this.description, selectItem.description) && this.default == selectItem.default;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getDefault() {
         return this.default;
@@ -37,17 +48,6 @@ public final /* data */ class SelectItem implements Serializable {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getValue() {
         return this.value;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof SelectItem)) {
-            return false;
-        }
-        SelectItem selectItem = (SelectItem) other;
-        return C12238m.areEqual(this.label, selectItem.label) && C12238m.areEqual(this.value, selectItem.value) && C12238m.areEqual(this.emoji, selectItem.emoji) && C12238m.areEqual(this.description, selectItem.description) && this.default == selectItem.default;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

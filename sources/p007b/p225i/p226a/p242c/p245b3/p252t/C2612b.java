@@ -8,9 +8,6 @@ import p007b.p225i.p355b.p357b.AbstractC4527r;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2612b {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f6026a = Pattern.compile("\\s+");
-
     /* JADX INFO: renamed from: b */
     public static final AbstractC4527r<String> f6027b;
 
@@ -31,6 +28,9 @@ public final class C2612b {
 
     /* JADX INFO: renamed from: h */
     public final int f6033h;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f6026a = Pattern.compile("\\s+");
 
     static {
         int i = AbstractC4527r.f12057k;

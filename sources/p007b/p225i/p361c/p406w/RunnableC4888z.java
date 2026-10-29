@@ -23,9 +23,6 @@ import p007b.p225i.p361c.p398s.C4826q;
 /* JADX INFO: loaded from: classes3.dex */
 public class RunnableC4888z implements Runnable {
 
-    /* JADX INFO: renamed from: j */
-    public static final Object f13069j = new Object();
-
     /* JADX INFO: renamed from: k */
     @GuardedBy("TOPIC_SYNC_TASK_LOCK")
     public static Boolean f13070k;
@@ -48,6 +45,9 @@ public class RunnableC4888z implements Runnable {
 
     /* JADX INFO: renamed from: q */
     public final long f13076q;
+
+    /* JADX INFO: renamed from: j */
+    public static final Object f13069j = new Object();
 
     /* JADX INFO: renamed from: b.i.c.w.z$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */

@@ -30,6 +30,16 @@ public class JsonMappingException extends JsonProcessingException {
         }
     }
 
+    @Override // java.lang.Throwable
+    public String getLocalizedMessage() {
+        return m8742d();
+    }
+
+    @Override // com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
+    public String getMessage() {
+        return m8742d();
+    }
+
     /* JADX INFO: renamed from: f */
     public static JsonMappingException m8741f(Throwable th, C10677a c10677a) {
         JsonMappingException jsonMappingException;
@@ -54,13 +64,6 @@ public class JsonMappingException extends JsonProcessingException {
         }
         jsonMappingException.m8743e(c10677a);
         return jsonMappingException;
-    }
-
-    @Override // com.fasterxml.jackson.core.JsonProcessingException
-    @InterfaceC2089m
-    /* JADX INFO: renamed from: c */
-    public Object mo8737c() {
-        return this.f19662k;
     }
 
     /* JADX INFO: renamed from: d */
@@ -95,14 +98,11 @@ public class JsonMappingException extends JsonProcessingException {
         }
     }
 
-    @Override // java.lang.Throwable
-    public String getLocalizedMessage() {
-        return m8742d();
-    }
-
-    @Override // com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
-    public String getMessage() {
-        return m8742d();
+    @Override // com.fasterxml.jackson.core.JsonProcessingException
+    @InterfaceC2089m
+    /* JADX INFO: renamed from: c */
+    public Object mo8737c() {
+        return this.f19662k;
     }
 
     @Override // com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
@@ -111,7 +111,7 @@ public class JsonMappingException extends JsonProcessingException {
     }
 
     /* JADX INFO: renamed from: com.fasterxml.jackson.databind.JsonMappingException$a */
-    public static class C10677a implements Serializable {
+    public class C10677a implements Serializable {
         private static final long serialVersionUID = 2;
         public String _desc;
         public String _fieldName;

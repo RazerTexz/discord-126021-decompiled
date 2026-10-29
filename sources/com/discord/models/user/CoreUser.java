@@ -30,7 +30,7 @@ public final /* data */ class CoreUser implements User {
     private final String username;
 
     /* JADX INFO: compiled from: CoreUser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -242,6 +242,18 @@ public final /* data */ class CoreUser implements User {
     }
 
     @Override // com.discord.models.user.User
+    /* JADX INFO: renamed from: isBot, reason: from getter */
+    public boolean getIsBot() {
+        return this.isBot;
+    }
+
+    @Override // com.discord.models.user.User
+    /* JADX INFO: renamed from: isSystemUser, reason: from getter */
+    public boolean getIsSystemUser() {
+        return this.isSystemUser;
+    }
+
+    @Override // com.discord.models.user.User
     public PremiumTier getPremiumTier() {
         return this.premiumTier;
     }
@@ -278,18 +290,6 @@ public final /* data */ class CoreUser implements User {
         int iHashCode4 = (publicFlags + (bio != null ? bio.hashCode() : 0)) * 31;
         String bannerColor = getBannerColor();
         return iHashCode4 + (bannerColor != null ? bannerColor.hashCode() : 0);
-    }
-
-    @Override // com.discord.models.user.User
-    /* JADX INFO: renamed from: isBot, reason: from getter */
-    public boolean getIsBot() {
-        return this.isBot;
-    }
-
-    @Override // com.discord.models.user.User
-    /* JADX INFO: renamed from: isSystemUser, reason: from getter */
-    public boolean getIsSystemUser() {
-        return this.isSystemUser;
     }
 
     public String toString() {

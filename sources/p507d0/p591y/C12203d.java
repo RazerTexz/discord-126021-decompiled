@@ -37,7 +37,7 @@ public final class C12203d implements Sequence<File> {
 
     /* JADX INFO: renamed from: d0.y.d$a */
     /* JADX INFO: compiled from: FileTreeWalk.kt */
-    public static abstract class a extends c {
+    public abstract class a extends c {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public a(File file) {
             super(file);
@@ -51,6 +51,29 @@ public final class C12203d implements Sequence<File> {
 
         /* JADX INFO: renamed from: l */
         public final ArrayDeque<c> f25259l;
+
+        /* JADX INFO: renamed from: d0.y.d$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: FileTreeWalk.kt */
+        public final class C13344b extends c {
+
+            /* JADX INFO: renamed from: b */
+            public boolean f25266b;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C13344b(b bVar, File file) {
+                super(file);
+                C12238m.checkNotNullParameter(file, "rootFile");
+            }
+
+            @Override // p507d0.p591y.C12203d.c
+            public File step() {
+                if (this.f25266b) {
+                    return null;
+                }
+                this.f25266b = true;
+                return getRoot();
+            }
+        }
 
         /* JADX INFO: renamed from: d0.y.d$b$a */
         /* JADX INFO: compiled from: FileTreeWalk.kt */
@@ -114,29 +137,6 @@ public final class C12203d implements Sequence<File> {
                 if (function3 != null) {
                 }
                 return null;
-            }
-        }
-
-        /* JADX INFO: renamed from: d0.y.d$b$b, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: FileTreeWalk.kt */
-        public final class C13344b extends c {
-
-            /* JADX INFO: renamed from: b */
-            public boolean f25266b;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C13344b(b bVar, File file) {
-                super(file);
-                C12238m.checkNotNullParameter(file, "rootFile");
-            }
-
-            @Override // p507d0.p591y.C12203d.c
-            public File step() {
-                if (this.f25266b) {
-                    return null;
-                }
-                this.f25266b = true;
-                return getRoot();
             }
         }
 
@@ -226,6 +226,18 @@ public final class C12203d implements Sequence<File> {
             }
         }
 
+        /* JADX INFO: renamed from: c */
+        public final a m10091c(File file) {
+            int iOrdinal = C12203d.this.f25254b.ordinal();
+            if (iOrdinal == 0) {
+                return new c(this, file);
+            }
+            if (iOrdinal == 1) {
+                return new a(this, file);
+            }
+            throw new NoWhenBranchMatchedException();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         /* JADX WARN: Type inference failed for: r1v0 */
         /* JADX WARN: Type inference failed for: r1v2, types: [java.io.File, java.lang.Object] */
@@ -255,23 +267,11 @@ public final class C12203d implements Sequence<File> {
                 this.f25173j = 1;
             }
         }
-
-        /* JADX INFO: renamed from: c */
-        public final a m10091c(File file) {
-            int iOrdinal = C12203d.this.f25254b.ordinal();
-            if (iOrdinal == 0) {
-                return new c(this, file);
-            }
-            if (iOrdinal == 1) {
-                return new a(this, file);
-            }
-            throw new NoWhenBranchMatchedException();
-        }
     }
 
     /* JADX INFO: renamed from: d0.y.d$c */
     /* JADX INFO: compiled from: FileTreeWalk.kt */
-    public static abstract class c {
+    public abstract class c {
 
         /* JADX INFO: renamed from: a */
         public final File f25271a;

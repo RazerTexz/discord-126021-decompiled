@@ -38,7 +38,7 @@ public final class WidgetChatListAdapterItemReactions extends WidgetChatListItem
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemReactions$displayReactions$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemReactions.kt */
-    public static final class C81132 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C81132 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $messageId;
         public final /* synthetic */ MessageReaction $reaction;
 

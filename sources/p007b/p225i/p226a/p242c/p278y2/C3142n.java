@@ -18,13 +18,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2743j;
 @RequiresApi(23)
 public class C3142n {
 
-    /* JADX INFO: renamed from: a */
-    @GuardedBy("MESSAGE_PARAMS_INSTANCE_POOL")
-    public static final ArrayDeque<a> f9069a = new ArrayDeque<>();
-
-    /* JADX INFO: renamed from: b */
-    public static final Object f9070b = new Object();
-
     /* JADX INFO: renamed from: c */
     public final MediaCodec f9071c;
 
@@ -43,28 +36,12 @@ public class C3142n {
     /* JADX INFO: renamed from: h */
     public boolean f9076h;
 
-    /* JADX INFO: renamed from: b.i.a.c.y2.n$a */
-    /* JADX INFO: compiled from: AsynchronousMediaCodecBufferEnqueuer.java */
-    public static class a {
+    /* JADX INFO: renamed from: a */
+    @GuardedBy("MESSAGE_PARAMS_INSTANCE_POOL")
+    public static final ArrayDeque<a> f9069a = new ArrayDeque<>();
 
-        /* JADX INFO: renamed from: a */
-        public int f9077a;
-
-        /* JADX INFO: renamed from: b */
-        public int f9078b;
-
-        /* JADX INFO: renamed from: c */
-        public int f9079c;
-
-        /* JADX INFO: renamed from: d */
-        public final MediaCodec.CryptoInfo f9080d = new MediaCodec.CryptoInfo();
-
-        /* JADX INFO: renamed from: e */
-        public long f9081e;
-
-        /* JADX INFO: renamed from: f */
-        public int f9082f;
-    }
+    /* JADX INFO: renamed from: b */
+    public static final Object f9070b = new Object();
 
     public C3142n(MediaCodec mediaCodec, HandlerThread handlerThread) {
         C2743j c2743j = new C2743j();
@@ -147,5 +124,28 @@ public class C3142n {
         if (andSet != null) {
             throw andSet;
         }
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.y2.n$a */
+    /* JADX INFO: compiled from: AsynchronousMediaCodecBufferEnqueuer.java */
+    public class a {
+
+        /* JADX INFO: renamed from: a */
+        public int f9077a;
+
+        /* JADX INFO: renamed from: b */
+        public int f9078b;
+
+        /* JADX INFO: renamed from: c */
+        public int f9079c;
+
+        /* JADX INFO: renamed from: e */
+        public long f9081e;
+
+        /* JADX INFO: renamed from: f */
+        public int f9082f;
+
+        /* JADX INFO: renamed from: d */
+        public final MediaCodec.CryptoInfo f9080d = new MediaCodec.CryptoInfo();
     }
 }

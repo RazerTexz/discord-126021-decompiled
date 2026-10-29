@@ -5,9 +5,6 @@ package p507d0.p513e0.p514p.p515d.p577n0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12046c<V> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12046c<Object> f25026a = new C12046c<>();
-
     /* JADX INFO: renamed from: b */
     public final long f25027b;
 
@@ -22,6 +19,9 @@ public final class C12046c<V> {
 
     /* JADX INFO: renamed from: f */
     public final int f25031f;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12046c<Object> f25026a = new C12046c<>();
 
     public C12046c() {
         this.f25031f = 0;

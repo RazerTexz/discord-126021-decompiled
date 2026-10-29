@@ -21,14 +21,6 @@ public final class DispatchQueue {
     private final Queue<Runnable> queue = new ArrayDeque();
 
     @MainThread
-    private final void enqueue(Runnable runnable) {
-        if (!this.queue.offer(runnable)) {
-            throw new IllegalStateException("cannot enqueue any more runnables".toString());
-        }
-        drainQueue();
-    }
-
-    @MainThread
     public final boolean canRun() {
         return this.finished || !this.paused;
     }
@@ -70,6 +62,14 @@ public final class DispatchQueue {
             this.isDraining = false;
             throw th;
         }
+    }
+
+    @MainThread
+    private final void enqueue(Runnable runnable) {
+        if (!this.queue.offer(runnable)) {
+            throw new IllegalStateException("cannot enqueue any more runnables".toString());
+        }
+        drainQueue();
     }
 
     @MainThread

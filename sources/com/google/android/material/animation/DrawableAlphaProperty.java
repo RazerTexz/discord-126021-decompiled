@@ -8,8 +8,8 @@ import java.util.WeakHashMap;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class DrawableAlphaProperty extends Property<Drawable, Integer> {
-    public static final Property<Drawable, Integer> DRAWABLE_ALPHA_COMPAT = new DrawableAlphaProperty();
     private final WeakHashMap<Drawable, Integer> alphaCache;
+    public static final Property<Drawable, Integer> DRAWABLE_ALPHA_COMPAT = new DrawableAlphaProperty();
 
     private DrawableAlphaProperty() {
         super(Integer.class, "drawableAlphaCompat");

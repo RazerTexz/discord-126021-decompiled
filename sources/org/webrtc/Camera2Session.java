@@ -45,7 +45,6 @@ public class Camera2Session implements CameraSession {
     private final int framerate;
     private final int height;
     private boolean isCameraFrontFacing;
-    private SessionState state = SessionState.RUNNING;
 
     @Nullable
     private Surface surface;
@@ -53,9 +52,10 @@ public class Camera2Session implements CameraSession {
     private final int width;
     private static final Histogram camera2StartTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera2.StartTimeMs", 1, 10000, 50);
     private static final Histogram camera2StopTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera2.StopTimeMs", 1, 10000, 50);
+    private SessionState state = SessionState.RUNNING;
     private static final Histogram camera2ResolutionHistogram = Histogram.createEnumeration("WebRTC.Android.Camera2.Resolution", CameraEnumerationAndroid.COMMON_RESOLUTIONS.size());
 
-    public static class CameraCaptureCallback extends CameraCaptureSession.CaptureCallback {
+    public class CameraCaptureCallback extends CameraCaptureSession.CaptureCallback {
         private CameraCaptureCallback() {
         }
 
@@ -319,6 +319,22 @@ public class Camera2Session implements CameraSession {
         }
     }
 
+    @Override // org.webrtc.CameraSession
+    public void stop() {
+        StringBuilder sbM833U = C1643a.m833U("Stop camera2 session on camera ");
+        sbM833U.append(this.cameraId);
+        Logging.m11027d(TAG, sbM833U.toString());
+        checkIsOnCameraThread();
+        SessionState sessionState = this.state;
+        SessionState sessionState2 = SessionState.STOPPED;
+        if (sessionState != sessionState2) {
+            long jNanoTime = System.nanoTime();
+            this.state = sessionState2;
+            stopInternal();
+            camera2StopTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - jNanoTime));
+        }
+    }
+
     private void stopInternal() {
         Logging.m11027d(TAG, "Stop internal");
         checkIsOnCameraThread();
@@ -339,21 +355,5 @@ public class Camera2Session implements CameraSession {
             this.cameraDevice = null;
         }
         Logging.m11027d(TAG, "Stop done");
-    }
-
-    @Override // org.webrtc.CameraSession
-    public void stop() {
-        StringBuilder sbM833U = C1643a.m833U("Stop camera2 session on camera ");
-        sbM833U.append(this.cameraId);
-        Logging.m11027d(TAG, sbM833U.toString());
-        checkIsOnCameraThread();
-        SessionState sessionState = this.state;
-        SessionState sessionState2 = SessionState.STOPPED;
-        if (sessionState != sessionState2) {
-            long jNanoTime = System.nanoTime();
-            this.state = sessionState2;
-            stopInternal();
-            camera2StopTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - jNanoTime));
-        }
     }
 }

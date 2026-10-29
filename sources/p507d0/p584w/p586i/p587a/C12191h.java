@@ -20,7 +20,7 @@ public final class C12191h {
 
     /* JADX INFO: renamed from: d0.w.i.a.h$a */
     /* JADX INFO: compiled from: DebugMetadata.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final Method f25248a;

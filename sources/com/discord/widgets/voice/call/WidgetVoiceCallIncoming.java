@@ -68,8 +68,27 @@ public class WidgetVoiceCallIncoming extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallIncoming$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
-    public static final /* data */ class Model {
+    public final /* synthetic */ class C104211 extends C12236k implements Function1<Model, Unit> {
+        public C104211(WidgetVoiceCallIncoming widgetVoiceCallIncoming) {
+            super(1, widgetVoiceCallIncoming, WidgetVoiceCallIncoming.class, "configureUI", "configureUI(Lcom/discord/widgets/voice/call/WidgetVoiceCallIncoming$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetVoiceCallIncoming) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -78,7 +97,7 @@ public class WidgetVoiceCallIncoming extends AppFragment {
         private final List<StoreVoiceParticipants.VoiceUser> privateCallUserListItems;
 
         /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -100,7 +119,7 @@ public class WidgetVoiceCallIncoming extends AppFragment {
 
                             /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallIncoming$Model$Companion$get$1$1$1, reason: invalid class name */
                             /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
-                            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Boolean> {
+                            public final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Boolean> {
                                 public final /* synthetic */ CallModel $callModel;
 
                                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -165,6 +184,10 @@ public class WidgetVoiceCallIncoming extends AppFragment {
             this.numIncomingCalls = i;
         }
 
+        public final List<StoreVoiceParticipants.VoiceUser> component2() {
+            return this.privateCallUserListItems;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, CallModel callModel, List list, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
@@ -177,20 +200,6 @@ public class WidgetVoiceCallIncoming extends AppFragment {
                 i = model.numIncomingCalls;
             }
             return model.copy(callModel, list, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CallModel getCallModel() {
-            return this.callModel;
-        }
-
-        public final List<StoreVoiceParticipants.VoiceUser> component2() {
-            return this.privateCallUserListItems;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getNumIncomingCalls() {
-            return this.numIncomingCalls;
         }
 
         public final Model copy(CallModel callModel, List<StoreVoiceParticipants.VoiceUser> privateCallUserListItems, int numIncomingCalls) {
@@ -210,12 +219,22 @@ public class WidgetVoiceCallIncoming extends AppFragment {
             return C12238m.areEqual(this.callModel, model.callModel) && C12238m.areEqual(this.privateCallUserListItems, model.privateCallUserListItems) && this.numIncomingCalls == model.numIncomingCalls;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CallModel getCallModel() {
+            return this.callModel;
+        }
+
         public final CallModel getCallModel() {
             return this.callModel;
         }
 
         public final long getChannelId() {
             return this.callModel.getChannel().getId();
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getNumIncomingCalls() {
+            return this.numIncomingCalls;
         }
 
         public final int getNumIncomingCalls() {
@@ -243,88 +262,9 @@ public class WidgetVoiceCallIncoming extends AppFragment {
         }
     }
 
-    /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
-    public static final class SystemCallIncoming extends WidgetVoiceCallIncoming {
-        private AtomicLong cachedChannelId = new AtomicLong(0);
-
-        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
-        public void configureUI(Model model) {
-            if ((model != null ? Long.valueOf(model.getChannelId()) : null) != null) {
-                this.cachedChannelId.set(model.getChannelId());
-            }
-            super.configureUI(model);
-        }
-
-        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
-        public void onConnect(Model model, boolean useVideo) {
-            C12238m.checkNotNullParameter(model, "model");
-            NotificationClient.clear$default(NotificationClient.INSTANCE, model.getChannelId(), requireContext(), false, 4, null);
-            DiscordConnectService.INSTANCE.m8375b(requireContext(), model.getChannelId());
-            WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, requireContext(), model.getChannelId(), false, null, null, 28, null);
-            AppActivity appActivity = getAppActivity();
-            if (appActivity != null) {
-                appActivity.finish();
-            }
-        }
-
-        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
-        public void onDecline(long channelId) {
-            super.onDecline(channelId);
-            AppActivity appActivity = getAppActivity();
-            if (appActivity != null) {
-                appActivity.finish();
-            }
-        }
-
-        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
-        public void onEmptyCallModel() {
-            long j = this.cachedChannelId.get();
-            if (j == 0) {
-                return;
-            }
-            AppActivity appActivity = getAppActivity();
-            if (appActivity != null) {
-                appActivity.finish();
-            }
-            NotificationClient.clear$default(NotificationClient.INSTANCE, j, requireContext(), false, 4, null);
-        }
-
-        @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-        public void onViewCreated(View view, Bundle savedInstanceState) {
-            C12238m.checkNotNullParameter(view, "view");
-            super.onViewCreated(view, savedInstanceState);
-            Observable<Long> observableM11068d0 = Observable.m11068d0(15L, TimeUnit.SECONDS);
-            C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable.timer(15, TimeUnit.SECONDS)");
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) SystemCallIncoming.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new WidgetVoiceCallIncoming$SystemCallIncoming$onViewCreated$1(this));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallIncoming$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
-    public static final /* synthetic */ class C104211 extends C12236k implements Function1<Model, Unit> {
-        public C104211(WidgetVoiceCallIncoming widgetVoiceCallIncoming) {
-            super(1, widgetVoiceCallIncoming, WidgetVoiceCallIncoming.class, "configureUI", "configureUI(Lcom/discord/widgets/voice/call/WidgetVoiceCallIncoming$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetVoiceCallIncoming) this.receiver).configureUI(model);
-        }
-    }
-
     public WidgetVoiceCallIncoming() {
         super(C5419R.layout.widget_voice_call_incoming);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetVoiceCallIncoming$binding$2.INSTANCE, null, 2, null);
-    }
-
-    private final WidgetVoiceCallIncomingBinding getBinding() {
-        return (WidgetVoiceCallIncomingBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     public void configureUI(final Model model) {
@@ -379,6 +319,10 @@ public class WidgetVoiceCallIncoming extends AppFragment {
                 WidgetVoiceCallIncoming.this.onDecline(model.getChannelId());
             }
         });
+    }
+
+    private final WidgetVoiceCallIncomingBinding getBinding() {
+        return (WidgetVoiceCallIncomingBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     public void onConnect(Model model, boolean useVideo) {
@@ -449,5 +393,61 @@ public class WidgetVoiceCallIncoming extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(), this, null, 2, null), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C104211(this));
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceCallIncoming.kt */
+    public final class SystemCallIncoming extends WidgetVoiceCallIncoming {
+        private AtomicLong cachedChannelId = new AtomicLong(0);
+
+        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
+        public void configureUI(Model model) {
+            if ((model != null ? Long.valueOf(model.getChannelId()) : null) != null) {
+                this.cachedChannelId.set(model.getChannelId());
+            }
+            super.configureUI(model);
+        }
+
+        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
+        public void onConnect(Model model, boolean useVideo) {
+            C12238m.checkNotNullParameter(model, "model");
+            NotificationClient.clear$default(NotificationClient.INSTANCE, model.getChannelId(), requireContext(), false, 4, null);
+            DiscordConnectService.INSTANCE.m8375b(requireContext(), model.getChannelId());
+            WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, requireContext(), model.getChannelId(), false, null, null, 28, null);
+            AppActivity appActivity = getAppActivity();
+            if (appActivity != null) {
+                appActivity.finish();
+            }
+        }
+
+        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
+        public void onDecline(long channelId) {
+            super.onDecline(channelId);
+            AppActivity appActivity = getAppActivity();
+            if (appActivity != null) {
+                appActivity.finish();
+            }
+        }
+
+        @Override // com.discord.widgets.voice.call.WidgetVoiceCallIncoming
+        public void onEmptyCallModel() {
+            long j = this.cachedChannelId.get();
+            if (j == 0) {
+                return;
+            }
+            AppActivity appActivity = getAppActivity();
+            if (appActivity != null) {
+                appActivity.finish();
+            }
+            NotificationClient.clear$default(NotificationClient.INSTANCE, j, requireContext(), false, 4, null);
+        }
+
+        @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            C12238m.checkNotNullParameter(view, "view");
+            super.onViewCreated(view, savedInstanceState);
+            Observable<Long> observableM11068d0 = Observable.m11068d0(15L, TimeUnit.SECONDS);
+            C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable.timer(15, TimeUnit.SECONDS)");
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) SystemCallIncoming.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new WidgetVoiceCallIncoming$SystemCallIncoming$onViewCreated$1(this));
+        }
     }
 }

@@ -15,12 +15,18 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackImpressionUserRegisterIdentity.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackImpressionUserRegisterIdentity implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "impression_user_register_identity";
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "impression_user_register_identity";
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
 
     @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -32,11 +38,5 @@ public final class TrackImpressionUserRegisterIdentity implements AnalyticsSchem
     /* JADX INFO: renamed from: c */
     public void mo7508c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
     }
 }

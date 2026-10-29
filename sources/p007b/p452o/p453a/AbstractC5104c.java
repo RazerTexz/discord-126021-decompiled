@@ -27,6 +27,27 @@ import p007b.p452o.p453a.p473x.C5236b;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC5104c {
 
+    /* JADX INFO: renamed from: k */
+    public boolean f13692k;
+
+    /* JADX INFO: renamed from: l */
+    public boolean f13693l;
+
+    /* JADX INFO: renamed from: m */
+    public float f13694m;
+
+    /* JADX INFO: renamed from: n */
+    public float f13695n;
+
+    /* JADX INFO: renamed from: o */
+    public boolean f13696o;
+
+    /* JADX INFO: renamed from: p */
+    public float f13697p;
+
+    /* JADX INFO: renamed from: q */
+    public float f13698q;
+
     /* JADX INFO: renamed from: a */
     public Set<EnumC5126m> f13682a = new HashSet(5);
 
@@ -56,27 +77,6 @@ public abstract class AbstractC5104c {
 
     /* JADX INFO: renamed from: j */
     public Set<Integer> f13691j = new HashSet(2);
-
-    /* JADX INFO: renamed from: k */
-    public boolean f13692k;
-
-    /* JADX INFO: renamed from: l */
-    public boolean f13693l;
-
-    /* JADX INFO: renamed from: m */
-    public float f13694m;
-
-    /* JADX INFO: renamed from: n */
-    public float f13695n;
-
-    /* JADX INFO: renamed from: o */
-    public boolean f13696o;
-
-    /* JADX INFO: renamed from: p */
-    public float f13697p;
-
-    /* JADX INFO: renamed from: q */
-    public float f13698q;
 
     @NonNull
     /* JADX INFO: renamed from: a */

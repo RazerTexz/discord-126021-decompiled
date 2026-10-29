@@ -129,6 +129,15 @@ public abstract class AbstractC12253a extends FrameLayout implements Camera.Prev
         }
     }
 
+    public boolean getFlash() {
+        C12257e c12257e = this.f25299j;
+        return c12257e != null && C3404f.m4196C0(c12257e.f25333a) && this.f25299j.f25333a.getParameters().getFlashMode().equals("torch");
+    }
+
+    public int getRotationCount() {
+        return this.f25300k.getDisplayOrientation() / 90;
+    }
+
     /* JADX INFO: renamed from: a */
     public void m10094a() {
         if (this.f25299j != null) {
@@ -144,15 +153,6 @@ public abstract class AbstractC12253a extends FrameLayout implements Camera.Prev
             handlerThreadC12255c.quit();
             this.f25303n = null;
         }
-    }
-
-    public boolean getFlash() {
-        C12257e c12257e = this.f25299j;
-        return c12257e != null && C3404f.m4196C0(c12257e.f25333a) && this.f25299j.f25333a.getParameters().getFlashMode().equals("torch");
-    }
-
-    public int getRotationCount() {
-        return this.f25300k.getDisplayOrientation() / 90;
     }
 
     public void setAspectTolerance(float f) {

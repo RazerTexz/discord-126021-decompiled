@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class AspectRatio implements Parcelable {
-    public static final Parcelable.Creator<AspectRatio> CREATOR = new C11202a();
 
     /* JADX INFO: renamed from: j */
     @Nullable
@@ -17,9 +16,10 @@ public class AspectRatio implements Parcelable {
 
     /* JADX INFO: renamed from: l */
     public final float f22202l;
+    public static final Parcelable.Creator<AspectRatio> CREATOR = new C11202a();
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.model.AspectRatio$a */
-    public static class C11202a implements Parcelable.Creator<AspectRatio> {
+    public final class C11202a implements Parcelable.Creator<AspectRatio> {
         @Override // android.os.Parcelable.Creator
         public AspectRatio createFromParcel(Parcel parcel) {
             return new AspectRatio(parcel);

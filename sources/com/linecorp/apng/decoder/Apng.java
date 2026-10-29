@@ -19,6 +19,9 @@ public final class Apng {
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: i, reason: from kotlin metadata */
+    public final long allFrameByteCount;
+
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
     public final Bitmap bitmap;
 
@@ -26,29 +29,26 @@ public final class Apng {
     @IntRange(from = 0, m76to = 2147483647L)
     public final int duration;
 
-    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
-    public final int id;
-
-    /* JADX INFO: renamed from: d, reason: from kotlin metadata */
-    public final int width;
-
-    /* JADX INFO: renamed from: e, reason: from kotlin metadata */
-    public final int height;
-
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public final int frameCount;
 
     /* JADX INFO: renamed from: g, reason: from kotlin metadata */
     public final int[] frameDurations;
 
+    /* JADX INFO: renamed from: e, reason: from kotlin metadata */
+    public final int height;
+
+    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+    public final int id;
+
     /* JADX INFO: renamed from: h, reason: from kotlin metadata */
     public final int loopCount;
 
-    /* JADX INFO: renamed from: i, reason: from kotlin metadata */
-    public final long allFrameByteCount;
+    /* JADX INFO: renamed from: d, reason: from kotlin metadata */
+    public final int width;
 
     /* JADX INFO: compiled from: Apng.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 
@@ -114,65 +114,6 @@ public final class Apng {
         }
 
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
-    /* JADX INFO: compiled from: Apng.kt */
-    public static final class DecodeResult {
-        private long allFrameByteCount;
-        private int frameCount;
-        private int[] frameDurations = new int[0];
-        private int height;
-        private int loopCount;
-        private int width;
-
-        public final long getAllFrameByteCount() {
-            return this.allFrameByteCount;
-        }
-
-        public final int getFrameCount() {
-            return this.frameCount;
-        }
-
-        public final int[] getFrameDurations() {
-            return this.frameDurations;
-        }
-
-        public final int getHeight() {
-            return this.height;
-        }
-
-        public final int getLoopCount() {
-            return this.loopCount;
-        }
-
-        public final int getWidth() {
-            return this.width;
-        }
-
-        public final void setAllFrameByteCount(long j) {
-            this.allFrameByteCount = j;
-        }
-
-        public final void setFrameCount(int i) {
-            this.frameCount = i;
-        }
-
-        public final void setFrameDurations(int[] iArr) {
-            C12238m.checkNotNullParameter(iArr, "<set-?>");
-            this.frameDurations = iArr;
-        }
-
-        public final void setHeight(int i) {
-            this.height = i;
-        }
-
-        public final void setLoopCount(int i) {
-            this.loopCount = i;
-        }
-
-        public final void setWidth(int i) {
-            this.width = i;
         }
     }
 
@@ -256,5 +197,64 @@ public final class Apng {
 
     public final void recycle() {
         ApngDecoderJni.recycle(this.id);
+    }
+
+    /* JADX INFO: compiled from: Apng.kt */
+    public final class DecodeResult {
+        private long allFrameByteCount;
+        private int frameCount;
+        private int height;
+        private int loopCount;
+        private int width;
+        private int[] frameDurations = new int[0];
+
+        public final long getAllFrameByteCount() {
+            return this.allFrameByteCount;
+        }
+
+        public final int getFrameCount() {
+            return this.frameCount;
+        }
+
+        public final int[] getFrameDurations() {
+            return this.frameDurations;
+        }
+
+        public final int getHeight() {
+            return this.height;
+        }
+
+        public final int getLoopCount() {
+            return this.loopCount;
+        }
+
+        public final int getWidth() {
+            return this.width;
+        }
+
+        public final void setAllFrameByteCount(long j) {
+            this.allFrameByteCount = j;
+        }
+
+        public final void setFrameCount(int i) {
+            this.frameCount = i;
+        }
+
+        public final void setFrameDurations(int[] iArr) {
+            C12238m.checkNotNullParameter(iArr, "<set-?>");
+            this.frameDurations = iArr;
+        }
+
+        public final void setHeight(int i) {
+            this.height = i;
+        }
+
+        public final void setLoopCount(int i) {
+            this.loopCount = i;
+        }
+
+        public final void setWidth(int i) {
+            this.width = i;
+        }
     }
 }

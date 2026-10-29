@@ -12,6 +12,12 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2517z extends SQLiteOpenHelper {
 
+    /* JADX INFO: renamed from: k */
+    public final int f5457k;
+
+    /* JADX INFO: renamed from: l */
+    public boolean f5458l;
+
     /* JADX INFO: renamed from: j */
     public static final List<a> f5456j = Arrays.asList(new a() { // from class: b.i.a.b.j.t.i.v
         @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2517z.a
@@ -50,12 +56,6 @@ public final class C2517z extends SQLiteOpenHelper {
             sQLiteDatabase.execSQL("CREATE TABLE event_payloads (sequence_num INTEGER NOT NULL, event_id INTEGER NOT NULL, bytes BLOB NOT NULL,FOREIGN KEY (event_id) REFERENCES events(_id) ON DELETE CASCADE,PRIMARY KEY (sequence_num, event_id))");
         }
     });
-
-    /* JADX INFO: renamed from: k */
-    public final int f5457k;
-
-    /* JADX INFO: renamed from: l */
-    public boolean f5458l;
 
     /* JADX INFO: renamed from: b.i.a.b.j.t.i.z$a */
     /* JADX INFO: compiled from: SchemaManager.java */

@@ -13,7 +13,6 @@ import p007b.p225i.p226a.p288f.p337l.p338b.C4337b;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zab extends AbstractSafeParcelable implements InterfaceC3273h {
-    public static final Parcelable.Creator<zab> CREATOR = new C4337b();
 
     /* JADX INFO: renamed from: j */
     public final int f20834j;
@@ -24,6 +23,7 @@ public final class zab extends AbstractSafeParcelable implements InterfaceC3273h
     /* JADX INFO: renamed from: l */
     @Nullable
     public Intent f20836l;
+    public static final Parcelable.Creator<zab> CREATOR = new C4337b();
 
     public zab() {
         this.f20834j = 2;

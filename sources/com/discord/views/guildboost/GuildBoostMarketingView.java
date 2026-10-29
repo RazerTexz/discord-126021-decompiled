@@ -31,7 +31,7 @@ public final class GuildBoostMarketingView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.guildboost.GuildBoostMarketingView$a */
     /* JADX INFO: compiled from: GuildBoostMarketingView.kt */
-    public static final class ViewOnClickListenerC7114a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7114a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Function0 f19271j;

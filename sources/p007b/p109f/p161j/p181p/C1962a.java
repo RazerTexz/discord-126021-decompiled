@@ -12,7 +12,7 @@ public class C1962a implements InterfaceC2018w0<C1919e> {
 
     /* JADX INFO: renamed from: b.f.j.p.a$b */
     /* JADX INFO: compiled from: AddImageTransformMetaDataProducer.java */
-    public static class b extends AbstractC2003p<C1919e, C1919e> {
+    public class b extends AbstractC2003p<C1919e, C1919e> {
         public b(InterfaceC1995l interfaceC1995l, a aVar) {
             super(interfaceC1995l);
         }

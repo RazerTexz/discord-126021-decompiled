@@ -41,16 +41,16 @@ public class C3529m0 extends AbstractC3509e {
         return sbM833U.toString();
     }
 
+    /* JADX INFO: renamed from: O */
+    public final void m4465O(C3523j0 c3523j0, String str) {
+        m4439x(str.length() != 0 ? "Discarding hit. ".concat(str) : new String("Discarding hit. "), c3523j0.toString());
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
     /* JADX INFO: renamed from: L */
     public final void mo4414L() {
         synchronized (C3529m0.class) {
             f9761l = this;
         }
-    }
-
-    /* JADX INFO: renamed from: O */
-    public final void m4465O(C3523j0 c3523j0, String str) {
-        m4439x(str.length() != 0 ? "Discarding hit. ".concat(str) : new String("Discarding hit. "), c3523j0.toString());
     }
 }

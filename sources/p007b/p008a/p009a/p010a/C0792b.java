@@ -50,25 +50,32 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0792b extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f175j = {C1643a.m846d0(C0792b.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostCancelDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public final Lazy viewModel;
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f175j = {C1643a.m846d0(C0792b.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostCancelDialogBinding;", 0)};
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public final Lazy slotId;
 
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public final Lazy viewModel;
+
+    /* JADX INFO: renamed from: b.a.a.a.b$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.a.b$a */
     /* JADX INFO: compiled from: java-style lambda group */
     /* JADX INFO: loaded from: classes2.dex */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f180j;
@@ -125,16 +132,9 @@ public final class C0792b extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.a.b$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.a.b$c */
     /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1051t> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1051t> {
 
         /* JADX INFO: renamed from: j */
         public static final c f182j = new c();
@@ -186,7 +186,7 @@ public final class C0792b extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a.b$d */
     /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
-    public static final class d extends AbstractC12240o implements Function1<C0796f.c, Unit> {
+    public final class d extends AbstractC12240o implements Function1<C0796f.c, Unit> {
         public d() {
             super(1);
         }
@@ -254,7 +254,7 @@ public final class C0792b extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a.b$e */
     /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
-    public static final class e extends AbstractC12240o implements Function0<Long> {
+    public final class e extends AbstractC12240o implements Function0<Long> {
         public e() {
             super(0);
         }
@@ -270,7 +270,7 @@ public final class C0792b extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a.b$f */
     /* JADX INFO: compiled from: GuildBoostCancelDialog.kt */
-    public static final class f extends AbstractC12240o implements Function0<C0796f> {
+    public final class f extends AbstractC12240o implements Function0<C0796f> {
         public f() {
             super(0);
         }

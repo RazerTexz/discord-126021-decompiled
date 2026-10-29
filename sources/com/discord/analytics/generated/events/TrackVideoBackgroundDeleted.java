@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoBackgroundDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoBackgroundDeleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean isAnimated = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "video_background_deleted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackVideoBackgroundDeleted) && C12238m.areEqual(this.isAnimated, ((TrackVideoBackgroundDeleted) other).isAnimated);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

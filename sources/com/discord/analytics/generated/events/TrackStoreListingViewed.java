@@ -17,44 +17,38 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreListingViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreListingViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver {
+    private final Long carouselImageCount = null;
+    private final Long carouselVideoCount = null;
+    private final Boolean hasCloudSaves = null;
+    private final Boolean hasControllerSupport = null;
+    private final Boolean hasCoop = null;
+    private final Boolean hasCrossPlatform = null;
+    private final Boolean hasDescription = null;
+    private final Boolean hasGameInvites = null;
+    private final Boolean hasLocalCoop = null;
+    private final Boolean hasLocalMultiplayer = null;
+    private final Boolean hasNews = null;
+    private final Boolean hasOnlineCoop = null;
+    private final Boolean hasOnlineMultiplayer = null;
+    private final Boolean hasPvpFeatures = null;
+    private final Boolean hasRichPresence = null;
+    private final Boolean hasSecureNetworking = null;
+    private final Boolean hasSinglePlayer = null;
+    private final Boolean hasSpectatorMode = null;
+    private final Boolean hasStaffReview = null;
+    private final CharSequence listFilterDistributionType = null;
+    private final Long listIndex = null;
+    private final Boolean listSearched = null;
+    private final CharSequence listSort = null;
+    private final CharSequence loadId = null;
+    private final Long promotionId = null;
+    private final CharSequence source = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence loadId = null;
-    private final Boolean hasDescription = null;
-    private final Boolean hasStaffReview = null;
-    private final Long carouselImageCount = null;
-    private final Long carouselVideoCount = null;
-    private final Boolean hasNews = null;
-    private final Boolean hasSinglePlayer = null;
-    private final Boolean hasOnlineMultiplayer = null;
-    private final Boolean hasLocalMultiplayer = null;
-    private final Boolean hasPvpFeatures = null;
-    private final Boolean hasCoop = null;
-    private final Boolean hasLocalCoop = null;
-    private final Boolean hasOnlineCoop = null;
-    private final Boolean hasCrossPlatform = null;
-    private final Boolean hasRichPresence = null;
-    private final Boolean hasGameInvites = null;
-    private final Boolean hasSpectatorMode = null;
-    private final Boolean hasControllerSupport = null;
-    private final Boolean hasCloudSaves = null;
-    private final Boolean hasSecureNetworking = null;
-    private final Long promotionId = null;
-    private final Long listIndex = null;
-    private final Boolean listSearched = null;
-    private final CharSequence listSort = null;
-    private final CharSequence listFilterDistributionType = null;
-    private final CharSequence source = null;
     private final transient String analyticsSchemaTypeName = "store_listing_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -65,6 +59,12 @@ public final /* data */ class TrackStoreListingViewed implements AnalyticsSchema
         }
         TrackStoreListingViewed trackStoreListingViewed = (TrackStoreListingViewed) other;
         return C12238m.areEqual(this.loadId, trackStoreListingViewed.loadId) && C12238m.areEqual(this.hasDescription, trackStoreListingViewed.hasDescription) && C12238m.areEqual(this.hasStaffReview, trackStoreListingViewed.hasStaffReview) && C12238m.areEqual(this.carouselImageCount, trackStoreListingViewed.carouselImageCount) && C12238m.areEqual(this.carouselVideoCount, trackStoreListingViewed.carouselVideoCount) && C12238m.areEqual(this.hasNews, trackStoreListingViewed.hasNews) && C12238m.areEqual(this.hasSinglePlayer, trackStoreListingViewed.hasSinglePlayer) && C12238m.areEqual(this.hasOnlineMultiplayer, trackStoreListingViewed.hasOnlineMultiplayer) && C12238m.areEqual(this.hasLocalMultiplayer, trackStoreListingViewed.hasLocalMultiplayer) && C12238m.areEqual(this.hasPvpFeatures, trackStoreListingViewed.hasPvpFeatures) && C12238m.areEqual(this.hasCoop, trackStoreListingViewed.hasCoop) && C12238m.areEqual(this.hasLocalCoop, trackStoreListingViewed.hasLocalCoop) && C12238m.areEqual(this.hasOnlineCoop, trackStoreListingViewed.hasOnlineCoop) && C12238m.areEqual(this.hasCrossPlatform, trackStoreListingViewed.hasCrossPlatform) && C12238m.areEqual(this.hasRichPresence, trackStoreListingViewed.hasRichPresence) && C12238m.areEqual(this.hasGameInvites, trackStoreListingViewed.hasGameInvites) && C12238m.areEqual(this.hasSpectatorMode, trackStoreListingViewed.hasSpectatorMode) && C12238m.areEqual(this.hasControllerSupport, trackStoreListingViewed.hasControllerSupport) && C12238m.areEqual(this.hasCloudSaves, trackStoreListingViewed.hasCloudSaves) && C12238m.areEqual(this.hasSecureNetworking, trackStoreListingViewed.hasSecureNetworking) && C12238m.areEqual(this.promotionId, trackStoreListingViewed.promotionId) && C12238m.areEqual(this.listIndex, trackStoreListingViewed.listIndex) && C12238m.areEqual(this.listSearched, trackStoreListingViewed.listSearched) && C12238m.areEqual(this.listSort, trackStoreListingViewed.listSort) && C12238m.areEqual(this.listFilterDistributionType, trackStoreListingViewed.listFilterDistributionType) && C12238m.areEqual(this.source, trackStoreListingViewed.source);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

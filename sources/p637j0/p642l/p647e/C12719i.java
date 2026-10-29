@@ -44,6 +44,11 @@ public class C12719i implements Subscription {
         this.f27284k = z2 ? new C12738h<>(i) : new C12744n<>(i);
     }
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.f27284k == null;
+    }
+
     /* JADX INFO: renamed from: a */
     public void m10817a(Object obj) throws MissingBackpressureException {
         boolean z2;
@@ -99,11 +104,6 @@ public class C12719i implements Subscription {
             }
             return objPoll;
         }
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.f27284k == null;
     }
 
     @Override // p658rx.Subscription

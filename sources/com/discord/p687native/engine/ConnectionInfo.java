@@ -36,26 +36,6 @@ public final /* data */ class ConnectionInfo {
         return connectionInfo.copy(z2, str, str2, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getIsConnected() {
-        return this.isConnected;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getProtocol() {
-        return this.protocol;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getLocalAddress() {
-        return this.localAddress;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getLocalPort() {
-        return this.localPort;
-    }
-
     public final ConnectionInfo copy(boolean isConnected, String protocol, String localAddress, int localPort) {
         C12238m.checkNotNullParameter(protocol, "protocol");
         C12238m.checkNotNullParameter(localAddress, "localAddress");
@@ -73,12 +53,32 @@ public final /* data */ class ConnectionInfo {
         return this.isConnected == connectionInfo.isConnected && C12238m.areEqual(this.protocol, connectionInfo.protocol) && C12238m.areEqual(this.localAddress, connectionInfo.localAddress) && this.localPort == connectionInfo.localPort;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getIsConnected() {
+        return this.isConnected;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getLocalAddress() {
         return this.localAddress;
     }
 
+    public final String getLocalAddress() {
+        return this.localAddress;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getLocalPort() {
         return this.localPort;
+    }
+
+    public final int getLocalPort() {
+        return this.localPort;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getProtocol() {
+        return this.protocol;
     }
 
     public final String getProtocol() {

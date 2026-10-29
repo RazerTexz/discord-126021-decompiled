@@ -37,8 +37,22 @@ public abstract class ChatTypingModel {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: ChatTypingModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Observable<ChatTypingModel> get() {
+            Observable<ChatTypingModel> observableM11112r = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().m11099Y(new InterfaceC12589b<StoreChannelsSelected.ResolvedSelectedChannel, Observable<? extends ChatTypingModel>>() { // from class: com.discord.widgets.chat.overlay.ChatTypingModel$Companion$get$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends ChatTypingModel> call(StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel) {
+                    if (resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel) {
+                        return ChatTypingModel.INSTANCE.getTypingObservableForChannel(((StoreChannelsSelected.ResolvedSelectedChannel.Channel) resolvedSelectedChannel).getChannel());
+                    }
+                    return resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft ? ChatTypingModel.INSTANCE.getTypingObservableForDraft(((StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) resolvedSelectedChannel).getParentChannel()) : new C12721k(ChatTypingModel.Hide.INSTANCE);
+                }
+            }).m11112r();
+            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream.getChannelsS…  .distinctUntilChanged()");
+            return observableM11112r;
         }
 
         private final Observable<ChatTypingModel> getTypingObservableForChannel(Channel resolvedChannel) {
@@ -135,27 +149,13 @@ public abstract class ChatTypingModel {
             return observableM11112r;
         }
 
-        public final Observable<ChatTypingModel> get() {
-            Observable<ChatTypingModel> observableM11112r = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().m11099Y(new InterfaceC12589b<StoreChannelsSelected.ResolvedSelectedChannel, Observable<? extends ChatTypingModel>>() { // from class: com.discord.widgets.chat.overlay.ChatTypingModel$Companion$get$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends ChatTypingModel> call(StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel) {
-                    if (resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel) {
-                        return ChatTypingModel.INSTANCE.getTypingObservableForChannel(((StoreChannelsSelected.ResolvedSelectedChannel.Channel) resolvedSelectedChannel).getChannel());
-                    }
-                    return resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft ? ChatTypingModel.INSTANCE.getTypingObservableForDraft(((StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) resolvedSelectedChannel).getParentChannel()) : new C12721k(ChatTypingModel.Hide.INSTANCE);
-                }
-            }).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream.getChannelsS…  .distinctUntilChanged()");
-            return observableM11112r;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: ChatTypingModel.kt */
-    public static final class Hide extends ChatTypingModel {
+    public final class Hide extends ChatTypingModel {
         public static final Hide INSTANCE = new Hide();
 
         private Hide() {
@@ -164,7 +164,7 @@ public abstract class ChatTypingModel {
     }
 
     /* JADX INFO: compiled from: ChatTypingModel.kt */
-    public static final /* data */ class Typing extends ChatTypingModel {
+    public final /* data */ class Typing extends ChatTypingModel {
         private final int channelRateLimit;
         private final int cooldownSecs;
         private final List<CharSequence> typingUsers;
@@ -179,6 +179,10 @@ public abstract class ChatTypingModel {
             this.cooldownSecs = i2;
         }
 
+        public final List<CharSequence> component1() {
+            return this.typingUsers;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Typing copy$default(Typing typing, List list, int i, int i2, int i3, Object obj) {
             if ((i3 & 1) != 0) {
@@ -191,20 +195,6 @@ public abstract class ChatTypingModel {
                 i2 = typing.cooldownSecs;
             }
             return typing.copy(list, i, i2);
-        }
-
-        public final List<CharSequence> component1() {
-            return this.typingUsers;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getChannelRateLimit() {
-            return this.channelRateLimit;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getCooldownSecs() {
-            return this.cooldownSecs;
         }
 
         public final Typing copy(List<? extends CharSequence> typingUsers, int channelRateLimit, int cooldownSecs) {
@@ -223,8 +213,18 @@ public abstract class ChatTypingModel {
             return C12238m.areEqual(this.typingUsers, typing.typingUsers) && this.channelRateLimit == typing.channelRateLimit && this.cooldownSecs == typing.cooldownSecs;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getChannelRateLimit() {
             return this.channelRateLimit;
+        }
+
+        public final int getChannelRateLimit() {
+            return this.channelRateLimit;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getCooldownSecs() {
+            return this.cooldownSecs;
         }
 
         public final int getCooldownSecs() {

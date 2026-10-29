@@ -13,7 +13,7 @@ public abstract class AbstractC4860f {
     /* JADX INFO: renamed from: b.i.c.u.p.f$a */
     /* JADX INFO: compiled from: TokenResult.java */
     @AutoValue.Builder
-    public static abstract class a {
+    public abstract class a {
         @NonNull
         /* JADX INFO: renamed from: a */
         public abstract AbstractC4860f mo6800a();

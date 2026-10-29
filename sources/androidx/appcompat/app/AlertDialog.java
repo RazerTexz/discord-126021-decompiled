@@ -30,7 +30,7 @@ public class AlertDialog extends AppCompatDialog implements DialogInterface {
     public static final int LAYOUT_HINT_SIDE = 1;
     public final AlertController mAlert;
 
-    public static class Builder {
+    public class Builder {
 
         /* JADX INFO: renamed from: P */
         private final AlertController.AlertParams f81P;
@@ -342,15 +342,6 @@ public class AlertDialog extends AppCompatDialog implements DialogInterface {
         this(context, 0);
     }
 
-    public static int resolveDialogTheme(@NonNull Context context, @StyleRes int i) {
-        if (((i >>> 24) & 255) >= 1) {
-            return i;
-        }
-        TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(C0051R.attr.alertDialogTheme, typedValue, true);
-        return typedValue.resourceId;
-    }
-
     public Button getButton(int i) {
         return this.mAlert.getButton(i);
     }
@@ -379,6 +370,15 @@ public class AlertDialog extends AppCompatDialog implements DialogInterface {
             return true;
         }
         return super.onKeyUp(i, keyEvent);
+    }
+
+    public static int resolveDialogTheme(@NonNull Context context, @StyleRes int i) {
+        if (((i >>> 24) & 255) >= 1) {
+            return i;
+        }
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(C0051R.attr.alertDialogTheme, typedValue, true);
+        return typedValue.resourceId;
     }
 
     public void setButton(int i, CharSequence charSequence, Message message) {

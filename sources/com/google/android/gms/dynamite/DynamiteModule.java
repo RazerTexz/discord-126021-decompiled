@@ -39,6 +39,18 @@ import p007b.p225i.p226a.p288f.p313h.p320g.C3483c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class DynamiteModule {
 
+    /* JADX INFO: renamed from: a */
+    @RecentlyNonNull
+    public static final InterfaceC10803a f20571a = new C3428d();
+
+    /* JADX INFO: renamed from: b */
+    @RecentlyNonNull
+    public static final InterfaceC10803a f20572b = new C3429e();
+
+    /* JADX INFO: renamed from: c */
+    @RecentlyNonNull
+    public static final InterfaceC10803a f20573c = new C3430f();
+
     /* JADX INFO: renamed from: d */
     @Nullable
     public static Boolean f20574d = null;
@@ -49,6 +61,9 @@ public final class DynamiteModule {
 
     /* JADX INFO: renamed from: f */
     public static int f20576f = -1;
+
+    /* JADX INFO: renamed from: i */
+    public static final InterfaceC3433i f20579i = new C3427c();
 
     /* JADX INFO: renamed from: j */
     @Nullable
@@ -67,38 +82,12 @@ public final class DynamiteModule {
     /* JADX INFO: renamed from: h */
     public static final ThreadLocal<Long> f20578h = new C3426b();
 
-    /* JADX INFO: renamed from: i */
-    public static final InterfaceC3433i f20579i = new C3427c();
-
-    /* JADX INFO: renamed from: a */
-    @RecentlyNonNull
-    public static final InterfaceC10803a f20571a = new C3428d();
-
-    /* JADX INFO: renamed from: b */
-    @RecentlyNonNull
-    public static final InterfaceC10803a f20572b = new C3429e();
-
-    /* JADX INFO: renamed from: c */
-    @RecentlyNonNull
-    public static final InterfaceC10803a f20573c = new C3430f();
-
     /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
     @DynamiteApi
-    public static class DynamiteLoaderClassLoader {
+    public class DynamiteLoaderClassLoader {
 
         @RecentlyNullable
         public static ClassLoader sClassLoader;
-    }
-
-    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
-    public static class LoadingException extends Exception {
-        public /* synthetic */ LoadingException(String str) {
-            super(str);
-        }
-
-        public /* synthetic */ LoadingException(String str, Throwable th) {
-            super(str, th);
-        }
     }
 
     /* JADX INFO: renamed from: com.google.android.gms.dynamite.DynamiteModule$a */
@@ -106,6 +95,17 @@ public final class DynamiteModule {
     public interface InterfaceC10803a {
         /* JADX INFO: renamed from: a */
         C3434j mo4384a(Context context, String str, InterfaceC3433i interfaceC3433i) throws LoadingException;
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public class LoadingException extends Exception {
+        public /* synthetic */ LoadingException(String str) {
+            super(str);
+        }
+
+        public /* synthetic */ LoadingException(String str, Throwable th) {
+            super(str, th);
+        }
     }
 
     public DynamiteModule(Context context) {

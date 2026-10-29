@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class FingerprintResponse {
     private final String fingerprint;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getFingerprint() {
-        return this.fingerprint;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof FingerprintResponse) && C12238m.areEqual(this.fingerprint, ((FingerprintResponse) other).fingerprint);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getFingerprint() {
+        return this.fingerprint;
     }
 
     public int hashCode() {

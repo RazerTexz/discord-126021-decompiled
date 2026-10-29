@@ -43,9 +43,53 @@ public abstract class AbstractC2938v implements AudioProcessor {
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    public final void flush() {
+        this.f7842g = AudioProcessor.f19694a;
+        this.f7843h = false;
+        this.f7837b = this.f7839d;
+        this.f7838c = this.f7840e;
+        mo3473g();
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    @CallSuper
+    public ByteBuffer getOutput() {
+        ByteBuffer byteBuffer = this.f7842g;
+        this.f7842g = AudioProcessor.f19694a;
+        return byteBuffer;
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final ByteBuffer m3511j(int i) {
+        if (this.f7841f.capacity() < i) {
+            this.f7841f = ByteBuffer.allocateDirect(i).order(ByteOrder.nativeOrder());
+        } else {
+            this.f7841f.clear();
+        }
+        ByteBuffer byteBuffer = this.f7841f;
+        this.f7842g = byteBuffer;
+        return byteBuffer;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public abstract AudioProcessor.C10685a mo3471f(AudioProcessor.C10685a c10685a) throws AudioProcessor.UnhandledAudioFormatException;
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
     /* JADX INFO: renamed from: a */
     public boolean mo3472a() {
         return this.f7840e != AudioProcessor.C10685a.f19695a;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public void mo3473g() {
+    }
+
+    /* JADX INFO: renamed from: h */
+    public void mo3474h() {
+    }
+
+    /* JADX INFO: renamed from: i */
+    public void mo3475i() {
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
@@ -68,50 +112,6 @@ public abstract class AbstractC2938v implements AudioProcessor {
     public final void mo3487e() {
         this.f7843h = true;
         mo3474h();
-    }
-
-    /* JADX INFO: renamed from: f */
-    public abstract AudioProcessor.C10685a mo3471f(AudioProcessor.C10685a c10685a) throws AudioProcessor.UnhandledAudioFormatException;
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    public final void flush() {
-        this.f7842g = AudioProcessor.f19694a;
-        this.f7843h = false;
-        this.f7837b = this.f7839d;
-        this.f7838c = this.f7840e;
-        mo3473g();
-    }
-
-    /* JADX INFO: renamed from: g */
-    public void mo3473g() {
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    @CallSuper
-    public ByteBuffer getOutput() {
-        ByteBuffer byteBuffer = this.f7842g;
-        this.f7842g = AudioProcessor.f19694a;
-        return byteBuffer;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public void mo3474h() {
-    }
-
-    /* JADX INFO: renamed from: i */
-    public void mo3475i() {
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final ByteBuffer m3511j(int i) {
-        if (this.f7841f.capacity() < i) {
-            this.f7841f = ByteBuffer.allocateDirect(i).order(ByteOrder.nativeOrder());
-        } else {
-            this.f7841f.clear();
-        }
-        ByteBuffer byteBuffer = this.f7841f;
-        this.f7842g = byteBuffer;
-        return byteBuffer;
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor

@@ -69,7 +69,7 @@ public class ExitFromMethodEarlyScript extends MethodLevelPatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ExitFromMethodEarlyScript$ExitEarly.SCL.lombok */
-    private class ExitEarly extends MethodVisitor {
+    class ExitEarly extends MethodVisitor {
         private final MethodLogistics logistics;
         private final String ownClassSpec;
 

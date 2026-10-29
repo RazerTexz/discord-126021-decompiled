@@ -9,15 +9,15 @@ public final class TextDirectionHeuristicsCompat {
     public static final TextDirectionHeuristicCompat FIRSTSTRONG_LTR;
     public static final TextDirectionHeuristicCompat FIRSTSTRONG_RTL;
     public static final TextDirectionHeuristicCompat LOCALE;
-    public static final TextDirectionHeuristicCompat LTR = new TextDirectionHeuristicInternal(null, false);
-    public static final TextDirectionHeuristicCompat RTL = new TextDirectionHeuristicInternal(null, true);
     private static final int STATE_FALSE = 1;
     private static final int STATE_TRUE = 0;
     private static final int STATE_UNKNOWN = 2;
+    public static final TextDirectionHeuristicCompat LTR = new TextDirectionHeuristicInternal(null, false);
+    public static final TextDirectionHeuristicCompat RTL = new TextDirectionHeuristicInternal(null, true);
 
-    public static class AnyStrong implements TextDirectionAlgorithm {
-        public static final AnyStrong INSTANCE_RTL = new AnyStrong(true);
+    public class AnyStrong implements TextDirectionAlgorithm {
         private final boolean mLookForRtl;
+        public static final AnyStrong INSTANCE_RTL = new AnyStrong(true);
 
         private AnyStrong(boolean z2) {
             this.mLookForRtl = z2;
@@ -49,7 +49,7 @@ public final class TextDirectionHeuristicsCompat {
         }
     }
 
-    public static class FirstStrong implements TextDirectionAlgorithm {
+    public class FirstStrong implements TextDirectionAlgorithm {
         public static final FirstStrong INSTANCE = new FirstStrong();
 
         private FirstStrong() {
@@ -71,12 +71,14 @@ public final class TextDirectionHeuristicsCompat {
         int checkRtl(CharSequence charSequence, int i, int i2);
     }
 
-    public static abstract class TextDirectionHeuristicImpl implements TextDirectionHeuristicCompat {
+    public abstract class TextDirectionHeuristicImpl implements TextDirectionHeuristicCompat {
         private final TextDirectionAlgorithm mAlgorithm;
 
         public TextDirectionHeuristicImpl(TextDirectionAlgorithm textDirectionAlgorithm) {
             this.mAlgorithm = textDirectionAlgorithm;
         }
+
+        public abstract boolean defaultIsRtl();
 
         private boolean doCheck(CharSequence charSequence, int i, int i2) {
             int iCheckRtl = this.mAlgorithm.checkRtl(charSequence, i, i2);
@@ -88,8 +90,6 @@ public final class TextDirectionHeuristicsCompat {
             }
             return false;
         }
-
-        public abstract boolean defaultIsRtl();
 
         @Override // androidx.core.text.TextDirectionHeuristicCompat
         public boolean isRtl(char[] cArr, int i, int i2) {
@@ -105,7 +105,7 @@ public final class TextDirectionHeuristicsCompat {
         }
     }
 
-    public static class TextDirectionHeuristicInternal extends TextDirectionHeuristicImpl {
+    public class TextDirectionHeuristicInternal extends TextDirectionHeuristicImpl {
         private final boolean mDefaultIsRtl;
 
         public TextDirectionHeuristicInternal(TextDirectionAlgorithm textDirectionAlgorithm, boolean z2) {
@@ -119,7 +119,7 @@ public final class TextDirectionHeuristicsCompat {
         }
     }
 
-    public static class TextDirectionHeuristicLocale extends TextDirectionHeuristicImpl {
+    public class TextDirectionHeuristicLocale extends TextDirectionHeuristicImpl {
         public static final TextDirectionHeuristicLocale INSTANCE = new TextDirectionHeuristicLocale();
 
         public TextDirectionHeuristicLocale() {

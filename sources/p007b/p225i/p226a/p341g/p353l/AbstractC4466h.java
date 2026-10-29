@@ -19,16 +19,20 @@ import java.util.List;
 /* JADX INFO: compiled from: MaterialVisibility.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC4466h<P extends VisibilityAnimatorProvider> extends Visibility {
-    private final List<VisibilityAnimatorProvider> additionalAnimatorProviders = new ArrayList();
     private final P primaryAnimatorProvider;
 
     @Nullable
     private VisibilityAnimatorProvider secondaryAnimatorProvider;
+    private final List<VisibilityAnimatorProvider> additionalAnimatorProviders = new ArrayList();
 
     public AbstractC4466h(P p, @Nullable VisibilityAnimatorProvider visibilityAnimatorProvider) {
         this.primaryAnimatorProvider = p;
         this.secondaryAnimatorProvider = visibilityAnimatorProvider;
         setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+    }
+
+    public void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
+        this.additionalAnimatorProviders.add(visibilityAnimatorProvider);
     }
 
     private static void addAnimatorIfNeeded(List<Animator> list, @Nullable VisibilityAnimatorProvider visibilityAnimatorProvider, ViewGroup viewGroup, View view, boolean z2) {
@@ -39,6 +43,10 @@ public abstract class AbstractC4466h<P extends VisibilityAnimatorProvider> exten
         if (animatorCreateAppear != null) {
             list.add(animatorCreateAppear);
         }
+    }
+
+    public void clearAdditionalAnimatorProvider() {
+        this.additionalAnimatorProviders.clear();
     }
 
     private Animator createAnimator(ViewGroup viewGroup, View view, boolean z2) {
@@ -52,14 +60,6 @@ public abstract class AbstractC4466h<P extends VisibilityAnimatorProvider> exten
         }
         AnimatorSetCompat.playTogether(animatorSet, arrayList);
         return animatorSet;
-    }
-
-    public void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
-        this.additionalAnimatorProviders.add(visibilityAnimatorProvider);
-    }
-
-    public void clearAdditionalAnimatorProvider() {
-        this.additionalAnimatorProviders.clear();
     }
 
     @NonNull

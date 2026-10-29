@@ -47,6 +47,19 @@ public final class DiscordParser {
     private DiscordParser() {
     }
 
+    public static /* synthetic */ Parser createParser$default(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z4 = true;
+        }
+        if ((i & 8) != 0) {
+            z5 = false;
+        }
+        if ((i & 16) != 0) {
+            z6 = false;
+        }
+        return createParser(z2, z3, z4, z5, z6);
+    }
+
     public static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> createParser(boolean allowMaskedLinks, boolean supportEntityMentions, boolean renderBlockQuotes, boolean renderHeaders, boolean renderLists) {
         Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> parser = new Parser<>(false, 1, null);
         Rules rules = Rules.INSTANCE;
@@ -85,19 +98,6 @@ public final class DiscordParser {
         parser.addRules(C1303e.m371a(false, false));
         parser.addRule(rules.createTextReplacementRule());
         return parser;
-    }
-
-    public static /* synthetic */ Parser createParser$default(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z4 = true;
-        }
-        if ((i & 8) != 0) {
-            z5 = false;
-        }
-        if ((i & 16) != 0) {
-            z6 = false;
-        }
-        return createParser(z2, z3, z4, z5, z6);
     }
 
     public static final DraweeSpanStringBuilder parseChannelMessage(Context context, String messageText, MessageRenderContext messageRenderContext, MessagePreprocessor preprocessor, ParserOptions parserOptions, boolean isEdited) {

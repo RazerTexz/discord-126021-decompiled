@@ -18,12 +18,6 @@ import p007b.p225i.p355b.p357b.AbstractC4523p;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2932p {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2932p f7785a = new C2932p(new int[]{2}, 8);
-
-    /* JADX INFO: renamed from: b */
-    public static final C2932p f7786b = new C2932p(new int[]{2, 5, 6}, 8);
-
     /* JADX INFO: renamed from: c */
     public static final int[] f7787c = {5, 6, 18, 17, 14, 7, 8};
 
@@ -33,10 +27,16 @@ public final class C2932p {
     /* JADX INFO: renamed from: e */
     public final int f7789e;
 
+    /* JADX INFO: renamed from: a */
+    public static final C2932p f7785a = new C2932p(new int[]{2}, 8);
+
+    /* JADX INFO: renamed from: b */
+    public static final C2932p f7786b = new C2932p(new int[]{2, 5, 6}, 8);
+
     /* JADX INFO: renamed from: b.i.a.c.t2.p$a */
     /* JADX INFO: compiled from: AudioCapabilities.java */
     @RequiresApi(29)
-    public static final class a {
+    public final class a {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static int[] m3496a() {
@@ -87,11 +87,6 @@ public final class C2932p {
         this.f7789e = i;
     }
 
-    /* JADX INFO: renamed from: a */
-    public boolean m3495a(int i) {
-        return Arrays.binarySearch(this.f7788d, i) >= 0;
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -105,6 +100,11 @@ public final class C2932p {
 
     public int hashCode() {
         return (Arrays.hashCode(this.f7788d) * 31) + this.f7789e;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m3495a(int i) {
+        return Arrays.binarySearch(this.f7788d, i) >= 0;
     }
 
     public String toString() {

@@ -44,7 +44,7 @@ public final class C1387w extends OverlayBubbleWrap implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.w$a */
     /* JADX INFO: compiled from: OverlayVoiceBubble.kt */
-    public static final class a<T, R> implements InterfaceC12589b<Long, Observable<? extends StoreVoiceParticipants.VoiceUser>> {
+    public final class a<T, R> implements InterfaceC12589b<Long, Observable<? extends StoreVoiceParticipants.VoiceUser>> {
 
         /* JADX INFO: renamed from: j */
         public static final a f2076j = new a();
@@ -63,7 +63,7 @@ public final class C1387w extends OverlayBubbleWrap implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.w$b */
     /* JADX INFO: compiled from: OverlayVoiceBubble.kt */
-    public static final class b extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+    public final class b extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
         public b() {
             super(1);
         }
@@ -99,6 +99,27 @@ public final class C1387w extends OverlayBubbleWrap implements AppComponent {
         this.f2075z = publishSubjectM11133k0;
     }
 
+    public final SimpleDraweeView getImageView$app_productionGoogleRelease() {
+        SimpleDraweeView simpleDraweeView = this.f2074y.f662b;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.overlayBubbleIv");
+        return simpleDraweeView;
+    }
+
+    @Override // com.discord.app.AppComponent
+    public Subject<Void, Void> getUnsubscribeSignal() {
+        return this.f2075z;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final void m391g() {
+        getImageView$app_productionGoogleRelease().animate().setDuration(100L).alpha(1.0f).start();
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m392h() {
+        getImageView$app_productionGoogleRelease().animate().setDuration(200L).alpha(0.5f).start();
+    }
+
     @Override // com.discord.overlay.views.OverlayBubbleWrap
     /* JADX INFO: renamed from: a */
     public void mo389a(boolean z2) {
@@ -112,27 +133,6 @@ public final class C1387w extends OverlayBubbleWrap implements AppComponent {
         C12238m.checkNotNullParameter(view, "targetView");
         super.mo390b(view);
         m391g();
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final void m391g() {
-        getImageView$app_productionGoogleRelease().animate().setDuration(100L).alpha(1.0f).start();
-    }
-
-    public final SimpleDraweeView getImageView$app_productionGoogleRelease() {
-        SimpleDraweeView simpleDraweeView = this.f2074y.f662b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.overlayBubbleIv");
-        return simpleDraweeView;
-    }
-
-    @Override // com.discord.app.AppComponent
-    public Subject<Void, Void> getUnsubscribeSignal() {
-        return this.f2075z;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m392h() {
-        getImageView$app_productionGoogleRelease().animate().setDuration(200L).alpha(0.5f).start();
     }
 
     @Override // android.view.ViewGroup, android.view.View

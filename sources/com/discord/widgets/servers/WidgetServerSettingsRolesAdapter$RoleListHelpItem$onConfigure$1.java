@@ -18,7 +18,7 @@ public final class WidgetServerSettingsRolesAdapter$RoleListHelpItem$onConfigure
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsRolesAdapter$RoleListHelpItem$onConfigure$1$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
-    public static final class C93081 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C93081 extends AbstractC12240o implements Function1<View, Unit> {
         public C93081() {
             super(1);
         }

@@ -20,19 +20,20 @@ public final /* data */ class ApplicationCommandOption {
     private final boolean required;
     private final ApplicationCommandType type;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ApplicationCommandOption)) {
+            return false;
+        }
+        ApplicationCommandOption applicationCommandOption = (ApplicationCommandOption) other;
+        return C12238m.areEqual(this.type, applicationCommandOption.type) && C12238m.areEqual(this.name, applicationCommandOption.name) && C12238m.areEqual(this.description, applicationCommandOption.description) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && C12238m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && C12238m.areEqual(this.choices, applicationCommandOption.choices) && C12238m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && C12238m.areEqual(this.minValue, applicationCommandOption.minValue) && C12238m.areEqual(this.maxValue, applicationCommandOption.maxValue);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getAutocomplete() {
         return this.autocomplete;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Integer> m7727b() {
-        return this.channelTypes;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<CommandChoice> m7728c() {
-        return this.choices;
     }
 
     /* JADX INFO: renamed from: d, reason: from getter */
@@ -43,17 +44,6 @@ public final /* data */ class ApplicationCommandOption {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getDescription() {
         return this.description;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ApplicationCommandOption)) {
-            return false;
-        }
-        ApplicationCommandOption applicationCommandOption = (ApplicationCommandOption) other;
-        return C12238m.areEqual(this.type, applicationCommandOption.type) && C12238m.areEqual(this.name, applicationCommandOption.name) && C12238m.areEqual(this.description, applicationCommandOption.description) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && C12238m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && C12238m.areEqual(this.choices, applicationCommandOption.choices) && C12238m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && C12238m.areEqual(this.minValue, applicationCommandOption.minValue) && C12238m.areEqual(this.maxValue, applicationCommandOption.maxValue);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -69,6 +59,16 @@ public final /* data */ class ApplicationCommandOption {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final boolean getRequired() {
+        return this.required;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final ApplicationCommandType getType() {
+        return this.type;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -115,19 +115,19 @@ public final /* data */ class ApplicationCommandOption {
         return iHashCode7 + (number2 != null ? number2.hashCode() : 0);
     }
 
+    /* JADX INFO: renamed from: b */
+    public final List<Integer> m7727b() {
+        return this.channelTypes;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<CommandChoice> m7728c() {
+        return this.choices;
+    }
+
     /* JADX INFO: renamed from: i */
     public final List<ApplicationCommandOption> m7734i() {
         return this.options;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final boolean getRequired() {
-        return this.required;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final ApplicationCommandType getType() {
-        return this.type;
     }
 
     public String toString() {

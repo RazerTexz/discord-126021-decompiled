@@ -16,7 +16,7 @@ public final class C11285e extends AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.e$a */
     /* JADX INFO: compiled from: DefaultBuiltIns.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

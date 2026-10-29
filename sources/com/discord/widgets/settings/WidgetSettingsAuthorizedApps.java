@@ -56,7 +56,7 @@ public final class WidgetSettingsAuthorizedApps extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-    public static final class AuthorizedAppViewHolder extends SimpleRecyclerAdapter.ViewHolder<ModelOAuth2Token> {
+    public final class AuthorizedAppViewHolder extends SimpleRecyclerAdapter.ViewHolder<ModelOAuth2Token> {
         private final WidgetSettingsAuthorizedAppsListItemBinding binding;
         private final Function1<ModelOAuth2Token, Unit> onDeauthorizeClick;
         private final SimpleRecyclerAdapter<OAuthScope, OAuthPermissionViews.C7080a> permissionsAdapter;
@@ -115,29 +115,14 @@ public final class WidgetSettingsAuthorizedApps extends AppFragment {
         }
     }
 
-    /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsAuthorizedApps.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAuthorizedApps$deauthorizeApp$1 */
     /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-    public static final class C96391 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C96391 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $oauthId;
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAuthorizedApps$deauthorizeApp$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -175,7 +160,7 @@ public final class WidgetSettingsAuthorizedApps extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAuthorizedApps$loadAuthorizedApps$1 */
     /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-    public static final class C96401 extends AbstractC12240o implements Function1<List<? extends ModelOAuth2Token>, Unit> {
+    public final class C96401 extends AbstractC12240o implements Function1<List<? extends ModelOAuth2Token>, Unit> {
         public C96401() {
             super(1);
         }
@@ -193,18 +178,25 @@ public final class WidgetSettingsAuthorizedApps extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsAuthorizedApps.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsAuthorizedApps() {
         super(C5419R.layout.widget_settings_authorized_apps);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsAuthorizedApps$binding$2.INSTANCE, null, 2, null);
         this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetSettingsAuthorizedApps$adapter$1(this), 1, null);
-    }
-
-    private final WidgetSettingsAuthorizedAppsBinding getBinding() {
-        return (WidgetSettingsAuthorizedAppsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final void loadAuthorizedApps() {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getOAuthTokens(), false, 1, null), this, null, 2, null), (Class<?>) WidgetSettingsAuthorizedApps.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96401());
     }
 
     @MainThread
@@ -213,6 +205,14 @@ public final class WidgetSettingsAuthorizedApps extends AppFragment {
         FragmentManager parentFragmentManager = getParentFragmentManager();
         C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         positiveButton.show(parentFragmentManager);
+    }
+
+    private final WidgetSettingsAuthorizedAppsBinding getBinding() {
+        return (WidgetSettingsAuthorizedAppsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    private final void loadAuthorizedApps() {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getOAuthTokens(), false, 1, null), this, null, 2, null), (Class<?>) WidgetSettingsAuthorizedApps.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96401());
     }
 
     @Override // com.discord.app.AppFragment

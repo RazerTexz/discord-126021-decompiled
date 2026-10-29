@@ -52,7 +52,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80261 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+    public final class C80261 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
         public static final C80261 INSTANCE = new C80261();
 
         public C80261() {
@@ -75,7 +75,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80272 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C80272 extends AbstractC12240o implements Function1<String, Unit> {
         public C80272() {
             super(1);
         }
@@ -95,7 +95,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$3 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80283 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+    public final class C80283 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
         public static final C80283 INSTANCE = new C80283();
 
         public C80283() {
@@ -116,7 +116,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$4 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80294 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C80294 extends AbstractC12240o implements Function1<Long, Unit> {
         public C80294() {
             super(1);
         }
@@ -135,7 +135,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$5 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80305 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C80305 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -157,7 +157,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$onConfigure$3 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public static final class C80333 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C80333 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ int $channelNameLength;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -180,7 +180,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$onConfigure$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

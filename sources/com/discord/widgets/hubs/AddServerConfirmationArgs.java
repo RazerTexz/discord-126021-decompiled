@@ -13,7 +13,7 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
     private final long guildId;
     private final String hubName;
 
-    public static class Creator implements Parcelable.Creator<AddServerConfirmationArgs> {
+    public final class Creator implements Parcelable.Creator<AddServerConfirmationArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final AddServerConfirmationArgs createFromParcel(Parcel parcel) {
@@ -44,16 +44,6 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
         return addServerConfirmationArgs.copy(j, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getHubName() {
-        return this.hubName;
-    }
-
     public final AddServerConfirmationArgs copy(long guildId, String hubName) {
         C12238m.checkNotNullParameter(hubName, "hubName");
         return new AddServerConfirmationArgs(guildId, hubName);
@@ -75,8 +65,18 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
         return this.guildId == addServerConfirmationArgs.guildId && C12238m.areEqual(this.hubName, addServerConfirmationArgs.hubName);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getHubName() {
+        return this.hubName;
     }
 
     public final String getHubName() {

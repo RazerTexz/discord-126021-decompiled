@@ -18,7 +18,7 @@ public final class C9433x9aac34d0 extends AbstractC12240o implements Function1<S
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$loggingConfig$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function0<AnalyticsSchema> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function0<AnalyticsSchema> {
         public final /* synthetic */ ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState $state;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -38,7 +38,7 @@ public final class C9433x9aac34d0 extends AbstractC12240o implements Function1<S
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$loggingConfig$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function0<AnalyticsSchema> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function0<AnalyticsSchema> {
         public final /* synthetic */ ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState $state;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

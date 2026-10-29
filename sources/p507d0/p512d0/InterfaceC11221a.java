@@ -10,7 +10,7 @@ public interface InterfaceC11221a<T extends Comparable<? super T>> {
 
     /* JADX INFO: renamed from: d0.d0.a$a */
     /* JADX INFO: compiled from: Range.kt */
-    public static final class a {
+    public final class a {
         public static <T extends Comparable<? super T>> boolean contains(InterfaceC11221a<T> interfaceC11221a, T t) {
             C12238m.checkNotNullParameter(t, "value");
             return t.compareTo(interfaceC11221a.getStart()) >= 0 && t.compareTo(interfaceC11221a.getEndInclusive()) <= 0;

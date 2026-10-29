@@ -39,75 +39,6 @@ public final class RemoteInput {
     private final CharSequence mLabel;
     private final String mResultKey;
 
-    public static final class Builder {
-        private CharSequence[] mChoices;
-        private CharSequence mLabel;
-        private final String mResultKey;
-        private final Set<String> mAllowedDataTypes = new HashSet();
-        private final Bundle mExtras = new Bundle();
-        private boolean mAllowFreeFormTextInput = true;
-        private int mEditChoicesBeforeSending = 0;
-
-        public Builder(@NonNull String str) {
-            if (str == null) {
-                throw new IllegalArgumentException("Result key can't be null");
-            }
-            this.mResultKey = str;
-        }
-
-        @NonNull
-        public Builder addExtras(@NonNull Bundle bundle) {
-            if (bundle != null) {
-                this.mExtras.putAll(bundle);
-            }
-            return this;
-        }
-
-        @NonNull
-        public RemoteInput build() {
-            return new RemoteInput(this.mResultKey, this.mLabel, this.mChoices, this.mAllowFreeFormTextInput, this.mEditChoicesBeforeSending, this.mExtras, this.mAllowedDataTypes);
-        }
-
-        @NonNull
-        public Bundle getExtras() {
-            return this.mExtras;
-        }
-
-        @NonNull
-        public Builder setAllowDataType(@NonNull String str, boolean z2) {
-            if (z2) {
-                this.mAllowedDataTypes.add(str);
-            } else {
-                this.mAllowedDataTypes.remove(str);
-            }
-            return this;
-        }
-
-        @NonNull
-        public Builder setAllowFreeFormInput(boolean z2) {
-            this.mAllowFreeFormTextInput = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setChoices(@Nullable CharSequence[] charSequenceArr) {
-            this.mChoices = charSequenceArr;
-            return this;
-        }
-
-        @NonNull
-        public Builder setEditChoicesBeforeSending(int i) {
-            this.mEditChoicesBeforeSending = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setLabel(@Nullable CharSequence charSequence) {
-            this.mLabel = charSequence;
-            return this;
-        }
-    }
-
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public @interface EditChoicesBeforeSending {
@@ -204,6 +135,18 @@ public final class RemoteInput {
         return builderAddExtras.build();
     }
 
+    public boolean getAllowFreeFormInput() {
+        return this.mAllowFreeFormTextInput;
+    }
+
+    public Set<String> getAllowedDataTypes() {
+        return this.mAllowedDataTypes;
+    }
+
+    public CharSequence[] getChoices() {
+        return this.mChoices;
+    }
+
     @RequiresApi(16)
     private static Intent getClipDataIntentFromIntent(Intent intent) {
         ClipData clipData = intent.getClipData();
@@ -241,8 +184,24 @@ public final class RemoteInput {
         return map;
     }
 
+    public int getEditChoicesBeforeSending() {
+        return this.mEditChoicesBeforeSending;
+    }
+
     private static String getExtraResultsKeyForData(String str) {
         return C1643a.m883w(EXTRA_DATA_TYPE_RESULTS_DATA, str);
+    }
+
+    public Bundle getExtras() {
+        return this.mExtras;
+    }
+
+    public CharSequence getLabel() {
+        return this.mLabel;
+    }
+
+    public String getResultKey() {
+        return this.mResultKey;
     }
 
     public static Bundle getResultsFromIntent(Intent intent) {
@@ -260,6 +219,10 @@ public final class RemoteInput {
         return clipDataIntentFromIntent.getExtras().getInt(EXTRA_RESULTS_SOURCE, 0);
     }
 
+    public boolean isDataOnly() {
+        return (getAllowFreeFormInput() || (getChoices() != null && getChoices().length != 0) || getAllowedDataTypes() == null || getAllowedDataTypes().isEmpty()) ? false : true;
+    }
+
     public static void setResultsSource(@NonNull Intent intent, int i) {
         if (Build.VERSION.SDK_INT >= 28) {
             android.app.RemoteInput.setResultsSource(intent, i);
@@ -273,36 +236,73 @@ public final class RemoteInput {
         intent.setClipData(ClipData.newIntent(RESULTS_CLIP_LABEL, clipDataIntentFromIntent));
     }
 
-    public boolean getAllowFreeFormInput() {
-        return this.mAllowFreeFormTextInput;
-    }
+    public final class Builder {
+        private CharSequence[] mChoices;
+        private CharSequence mLabel;
+        private final String mResultKey;
+        private final Set<String> mAllowedDataTypes = new HashSet();
+        private final Bundle mExtras = new Bundle();
+        private boolean mAllowFreeFormTextInput = true;
+        private int mEditChoicesBeforeSending = 0;
 
-    public Set<String> getAllowedDataTypes() {
-        return this.mAllowedDataTypes;
-    }
+        public Builder(@NonNull String str) {
+            if (str == null) {
+                throw new IllegalArgumentException("Result key can't be null");
+            }
+            this.mResultKey = str;
+        }
 
-    public CharSequence[] getChoices() {
-        return this.mChoices;
-    }
+        @NonNull
+        public Builder addExtras(@NonNull Bundle bundle) {
+            if (bundle != null) {
+                this.mExtras.putAll(bundle);
+            }
+            return this;
+        }
 
-    public int getEditChoicesBeforeSending() {
-        return this.mEditChoicesBeforeSending;
-    }
+        @NonNull
+        public RemoteInput build() {
+            return new RemoteInput(this.mResultKey, this.mLabel, this.mChoices, this.mAllowFreeFormTextInput, this.mEditChoicesBeforeSending, this.mExtras, this.mAllowedDataTypes);
+        }
 
-    public Bundle getExtras() {
-        return this.mExtras;
-    }
+        @NonNull
+        public Bundle getExtras() {
+            return this.mExtras;
+        }
 
-    public CharSequence getLabel() {
-        return this.mLabel;
-    }
+        @NonNull
+        public Builder setAllowDataType(@NonNull String str, boolean z2) {
+            if (z2) {
+                this.mAllowedDataTypes.add(str);
+            } else {
+                this.mAllowedDataTypes.remove(str);
+            }
+            return this;
+        }
 
-    public String getResultKey() {
-        return this.mResultKey;
-    }
+        @NonNull
+        public Builder setAllowFreeFormInput(boolean z2) {
+            this.mAllowFreeFormTextInput = z2;
+            return this;
+        }
 
-    public boolean isDataOnly() {
-        return (getAllowFreeFormInput() || (getChoices() != null && getChoices().length != 0) || getAllowedDataTypes() == null || getAllowedDataTypes().isEmpty()) ? false : true;
+        @NonNull
+        public Builder setChoices(@Nullable CharSequence[] charSequenceArr) {
+            this.mChoices = charSequenceArr;
+            return this;
+        }
+
+        @NonNull
+        public Builder setEditChoicesBeforeSending(int i) {
+            this.mEditChoicesBeforeSending = i;
+            return this;
+        }
+
+        @NonNull
+        public Builder setLabel(@Nullable CharSequence charSequence) {
+            this.mLabel = charSequence;
+            return this;
+        }
     }
 
     @RequiresApi(20)

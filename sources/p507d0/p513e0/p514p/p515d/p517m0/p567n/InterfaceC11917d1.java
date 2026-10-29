@@ -17,7 +17,7 @@ public interface InterfaceC11917d1 extends InterfaceC11985n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.d1$a */
     /* JADX INFO: compiled from: TypeSystemCommonBackendContext.kt */
-    public static final class a {
+    public final class a {
         public static InterfaceC11979h makeNullable(InterfaceC11917d1 interfaceC11917d1, InterfaceC11979h interfaceC11979h) {
             C12238m.checkNotNullParameter(interfaceC11917d1, "this");
             C12238m.checkNotNullParameter(interfaceC11979h, "receiver");

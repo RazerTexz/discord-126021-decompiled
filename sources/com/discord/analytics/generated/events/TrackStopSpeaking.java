@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStopSpeaking.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStopSpeaking implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long duration = null;
-    private final CharSequence gamePlatform = null;
-    private final CharSequence gameName = null;
     private final Long gameId = null;
+    private final CharSequence gameName = null;
+    private final CharSequence gamePlatform = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stop_speaking";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackStopSpeaking implements AnalyticsSchema, Trac
         }
         TrackStopSpeaking trackStopSpeaking = (TrackStopSpeaking) other;
         return C12238m.areEqual(this.duration, trackStopSpeaking.duration) && C12238m.areEqual(this.gamePlatform, trackStopSpeaking.gamePlatform) && C12238m.areEqual(this.gameName, trackStopSpeaking.gameName) && C12238m.areEqual(this.gameId, trackStopSpeaking.gameId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

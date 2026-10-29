@@ -44,7 +44,7 @@ public final class StoreUserSurvey extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSurvey$fetchUserSurvey$1 */
     /* JADX INFO: compiled from: StoreUserSurvey.kt */
-    public static final class C66071 extends AbstractC12240o implements Function1<UserSurveyFetchResponse, TrackNetworkMetadataReceiver> {
+    public final class C66071 extends AbstractC12240o implements Function1<UserSurveyFetchResponse, TrackNetworkMetadataReceiver> {
         public static final C66071 INSTANCE = new C66071();
 
         public C66071() {
@@ -60,11 +60,11 @@ public final class StoreUserSurvey extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSurvey$fetchUserSurvey$2 */
     /* JADX INFO: compiled from: StoreUserSurvey.kt */
-    public static final class C66082 extends AbstractC12240o implements Function1<UserSurveyFetchResponse, Unit> {
+    public final class C66082 extends AbstractC12240o implements Function1<UserSurveyFetchResponse, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserSurvey$fetchUserSurvey$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserSurvey.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ UserSurveyFetchResponse $res;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -104,7 +104,7 @@ public final class StoreUserSurvey extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSurvey$observeUserSurvey$1 */
     /* JADX INFO: compiled from: StoreUserSurvey.kt */
-    public static final class C66091 extends AbstractC12240o implements Function0<UserSurvey> {
+    public final class C66091 extends AbstractC12240o implements Function0<UserSurvey> {
         public C66091() {
             super(0);
         }
@@ -128,6 +128,13 @@ public final class StoreUserSurvey extends StoreV2 {
 
     private final UserSurvey getUserSurvey() {
         return this.userSurvey;
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen() {
+        if (this.clock.currentTimeMillis() - this.sharedPreferences.getLong("CACHE_KEY_USER_SURVEY_LAST_FETCHED", 0L) > this.refetchIntervalMs) {
+            fetchUserSurvey();
+        }
     }
 
     @StoreThread
@@ -202,19 +209,12 @@ public final class StoreUserSurvey extends StoreV2 {
         return false;
     }
 
-    private final void setLastFetched() {
-        this.sharedPreferences.edit().putLong("CACHE_KEY_USER_SURVEY_LAST_FETCHED", this.clock.currentTimeMillis()).apply();
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen() {
-        if (this.clock.currentTimeMillis() - this.sharedPreferences.getLong("CACHE_KEY_USER_SURVEY_LAST_FETCHED", 0L) > this.refetchIntervalMs) {
-            fetchUserSurvey();
-        }
-    }
-
     public final Observable<UserSurvey> observeUserSurvey() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C66091(), 14, null);
+    }
+
+    private final void setLastFetched() {
+        this.sharedPreferences.edit().putLong("CACHE_KEY_USER_SURVEY_LAST_FETCHED", this.clock.currentTimeMillis()).apply();
     }
 
     public StoreUserSurvey(Dispatcher dispatcher, StoreUser storeUser, StoreGuilds storeGuilds, StorePermissions storePermissions, ObservationDeck observationDeck, RestAPI restAPI, Clock clock, SharedPreferences sharedPreferences) {

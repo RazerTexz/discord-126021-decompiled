@@ -21,22 +21,6 @@ public class C4891c implements InterfaceC4896h {
         this.f13083b = c4892d;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static String m6845a(Set<AbstractC4893e> set) {
-        StringBuilder sb = new StringBuilder();
-        Iterator<AbstractC4893e> it = set.iterator();
-        while (it.hasNext()) {
-            AbstractC4893e next = it.next();
-            sb.append(next.mo6843a());
-            sb.append(MentionUtilsKt.SLASH_CHAR);
-            sb.append(next.mo6844b());
-            if (it.hasNext()) {
-                sb.append(' ');
-            }
-        }
-        return sb.toString();
-    }
-
     @Override // p007b.p225i.p361c.p407x.InterfaceC4896h
     public String getUserAgent() {
         Set setUnmodifiableSet;
@@ -56,6 +40,22 @@ public class C4891c implements InterfaceC4896h {
             setUnmodifiableSet2 = Collections.unmodifiableSet(c4892d2.f13085b);
         }
         sb.append(m6845a(setUnmodifiableSet2));
+        return sb.toString();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static String m6845a(Set<AbstractC4893e> set) {
+        StringBuilder sb = new StringBuilder();
+        Iterator<AbstractC4893e> it = set.iterator();
+        while (it.hasNext()) {
+            AbstractC4893e next = it.next();
+            sb.append(next.mo6843a());
+            sb.append(MentionUtilsKt.SLASH_CHAR);
+            sb.append(next.mo6844b());
+            if (it.hasNext()) {
+                sb.append(' ');
+            }
+        }
         return sb.toString();
     }
 }

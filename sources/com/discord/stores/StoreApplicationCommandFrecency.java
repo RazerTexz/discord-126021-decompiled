@@ -39,7 +39,7 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommandFrecency$observeTopCommandIds$1 */
     /* JADX INFO: compiled from: StoreApplicationCommandFrecency.kt */
-    public static final class C56991 extends AbstractC12240o implements Function0<List<? extends String>> {
+    public final class C56991 extends AbstractC12240o implements Function0<List<? extends String>> {
         public final /* synthetic */ Long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -56,7 +56,7 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommandFrecency$onCommandUsed$1 */
     /* JADX INFO: compiled from: StoreApplicationCommandFrecency.kt */
-    public static final class C57001 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57001 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $commandId;
         public final /* synthetic */ Long $guildId;
 

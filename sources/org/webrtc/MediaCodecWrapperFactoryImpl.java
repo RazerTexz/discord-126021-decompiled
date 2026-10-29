@@ -12,7 +12,7 @@ import java.nio.ByteBuffer;
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
 
-    public static class MediaCodecWrapperImpl implements MediaCodecWrapper {
+    public class MediaCodecWrapperImpl implements MediaCodecWrapper {
         private final MediaCodec mediaCodec;
 
         public MediaCodecWrapperImpl(MediaCodec mediaCodec) {

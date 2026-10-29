@@ -40,7 +40,7 @@ public final class GuildRoleSubscriptionConfirmationDialog extends AppDialog {
     private Function0<Unit> confirmCallback;
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

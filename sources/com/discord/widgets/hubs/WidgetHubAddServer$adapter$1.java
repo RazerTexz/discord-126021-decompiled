@@ -17,7 +17,7 @@ public final class WidgetHubAddServer$adapter$1 extends AbstractC12240o implemen
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$adapter$1$1 */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public static final /* synthetic */ class C89911 extends C12215a implements Function1<Long, Unit> {
+    public final /* synthetic */ class C89911 extends C12215a implements Function1<Long, Unit> {
         public C89911(WidgetHubAddServer widgetHubAddServer) {
             super(1, widgetHubAddServer, WidgetHubAddServer.class, "onServerClickListener", "onServerClickListener(JZ)V", 0);
         }

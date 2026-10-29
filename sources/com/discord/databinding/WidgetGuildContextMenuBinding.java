@@ -48,6 +48,12 @@ public final class WidgetGuildContextMenuBinding implements ViewBinding {
         this.f16767g = textView5;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16761a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetGuildContextMenuBinding m8416a(@NonNull View view) {
@@ -78,11 +84,5 @@ public final class WidgetGuildContextMenuBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16761a;
     }
 }

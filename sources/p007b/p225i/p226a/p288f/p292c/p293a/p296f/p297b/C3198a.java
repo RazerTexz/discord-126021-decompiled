@@ -29,18 +29,18 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p296f.C3218c;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3198a {
 
-    /* JADX INFO: renamed from: a */
-    public static final Lock f9225a = new ReentrantLock();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public static C3198a f9226b;
 
-    /* JADX INFO: renamed from: c */
-    public final Lock f9227c = new ReentrantLock();
-
     /* JADX INFO: renamed from: d */
     public final SharedPreferences f9228d;
+
+    /* JADX INFO: renamed from: a */
+    public static final Lock f9225a = new ReentrantLock();
+
+    /* JADX INFO: renamed from: c */
+    public final Lock f9227c = new ReentrantLock();
 
     public C3198a(Context context) {
         this.f9228d = context.getSharedPreferences("com.google.android.gms.signin", 0);

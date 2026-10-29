@@ -52,8 +52,27 @@ public final class SystemLogUtils {
     private static final DebugPrintableCollection debugPrintables = new DebugPrintableCollection();
     private static final SystemLogCapture systemLogCapture = new SystemLogCapture();
 
+    /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogUtils$hashString$1 */
     /* JADX INFO: compiled from: SystemLogUtils.kt */
-    public static final /* data */ class Tombstone {
+    public final class C69381 extends AbstractC12240o implements Function1<Byte, CharSequence> {
+        public static final C69381 INSTANCE = new C69381();
+
+        public C69381() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(Byte b2) {
+            return invoke(b2.byteValue());
+        }
+
+        public final CharSequence invoke(byte b2) {
+            return C1643a.m828P(new Object[]{Byte.valueOf(b2)}, 1, "%02X", "java.lang.String.format(this, *args)");
+        }
+    }
+
+    /* JADX INFO: compiled from: SystemLogUtils.kt */
+    public final /* data */ class Tombstone {
         private final String cause;
         private final String groupBy;
         private final String groupHash;
@@ -101,36 +120,6 @@ public final class SystemLogUtils {
             return tombstone.copy(str, str7, str8, str9, str10, str6);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getText() {
-            return this.text;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCause() {
-            return this.cause;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getGroupBy() {
-            return this.groupBy;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getOrigin() {
-            return this.origin;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getGroupHash() {
-            return this.groupHash;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getTextHash() {
-            return this.textHash;
-        }
-
         public final Tombstone copy(String text, String cause, String groupBy, String origin, String groupHash, String textHash) {
             C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             C12238m.checkNotNullParameter(groupBy, "groupBy");
@@ -151,24 +140,54 @@ public final class SystemLogUtils {
             return C12238m.areEqual(this.text, tombstone.text) && C12238m.areEqual(this.cause, tombstone.cause) && C12238m.areEqual(this.groupBy, tombstone.groupBy) && C12238m.areEqual(this.origin, tombstone.origin) && C12238m.areEqual(this.groupHash, tombstone.groupHash) && C12238m.areEqual(this.textHash, tombstone.textHash);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getCause() {
             return this.cause;
+        }
+
+        public final String getCause() {
+            return this.cause;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getGroupBy() {
+            return this.groupBy;
         }
 
         public final String getGroupBy() {
             return this.groupBy;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final String getGroupHash() {
             return this.groupHash;
+        }
+
+        public final String getGroupHash() {
+            return this.groupHash;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getOrigin() {
+            return this.origin;
         }
 
         public final String getOrigin() {
             return this.origin;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getText() {
             return this.text;
+        }
+
+        public final String getText() {
+            return this.text;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final String getTextHash() {
+            return this.textHash;
         }
 
         public final String getTextHash() {
@@ -206,25 +225,6 @@ public final class SystemLogUtils {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogUtils$hashString$1 */
-    /* JADX INFO: compiled from: SystemLogUtils.kt */
-    public static final class C69381 extends AbstractC12240o implements Function1<Byte, CharSequence> {
-        public static final C69381 INSTANCE = new C69381();
-
-        public C69381() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ CharSequence invoke(Byte b2) {
-            return invoke(b2.byteValue());
-        }
-
-        public final CharSequence invoke(byte b2) {
-            return C1643a.m828P(new Object[]{Byte.valueOf(b2)}, 1, "%02X", "java.lang.String.format(this, *args)");
-        }
-    }
-
     static {
         StringBuilder sbM833U = C1643a.m833U("(?:^(?:[^\\s]+\\s+){4}F\\s+DEBUG\\s+:\\s(.+))|(^.+(\\[");
         sbM833U.append(Regex.INSTANCE.escape("libdiscord_version"));
@@ -235,29 +235,6 @@ public final class SystemLogUtils {
     private SystemLogUtils() {
     }
 
-    private final String hashString(String input) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance(Constants.SHA1);
-        Charset charset = C12086c.f25136a;
-        Objects.requireNonNull(input, "null cannot be cast to non-null type java.lang.String");
-        byte[] bytes = input.getBytes(charset);
-        C12238m.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");
-        byte[] bArrDigest = messageDigest.digest(bytes);
-        C12238m.checkNotNullExpressionValue(bArrDigest, "bytes");
-        return C12141k.joinToString$default(bArrDigest, "", (CharSequence) null, (CharSequence) null, 0, (CharSequence) null, C69381.INSTANCE, 30, (Object) null);
-    }
-
-    private final void waitFor(Process process) throws InterruptedException {
-        long nanos = TimeUnit.SECONDS.toNanos(15L) + System.nanoTime();
-        do {
-            try {
-                process.exitValue();
-                return;
-            } catch (IllegalThreadStateException unused) {
-                Thread.sleep(100L);
-            }
-        } while (System.nanoTime() < nanos);
-    }
-
     public final String fetch() {
         StringBuilder sb = new StringBuilder();
         debugPrintables.debugPrint(sb);
@@ -265,20 +242,6 @@ public final class SystemLogUtils {
         String string = sb.toString();
         C12238m.checkNotNullExpressionValue(string, "sb.toString()");
         return string;
-    }
-
-    public final Observable<Tombstone> fetchLastTombstone() {
-        Observable observableM11082A = fetch(regexExtractTombstone).m11082A(new InterfaceC12589b<LinkedList<String>, Observable<? extends Tombstone>>() { // from class: com.discord.utilities.systemlog.SystemLogUtils.fetchLastTombstone.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Tombstone> call(LinkedList<String> linkedList) {
-                SystemLogUtils systemLogUtils = SystemLogUtils.INSTANCE;
-                C12238m.checkNotNullExpressionValue(linkedList, "crashes");
-                Tombstone tombstoneFetchLastTombstone$app_productionGoogleRelease = systemLogUtils.fetchLastTombstone$app_productionGoogleRelease(linkedList);
-                return tombstoneFetchLastTombstone$app_productionGoogleRelease == null ? EnumC12606c.f26751k : new C12721k(tombstoneFetchLastTombstone$app_productionGoogleRelease);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11082A, "fetch(regexExtractTombst…ble.just(tombstone)\n    }");
-        return observableM11082A;
     }
 
     public final Tombstone fetchLastTombstone$app_productionGoogleRelease(Collection<String> crashes) {
@@ -348,12 +311,37 @@ public final class SystemLogUtils {
         return new Tombstone(string, str2, strJoinToString$default, str, hashString(strJoinToString$default), hashString(string));
     }
 
+    public final Observable<Tombstone> fetchLastTombstone() {
+        Observable observableM11082A = fetch(regexExtractTombstone).m11082A(new InterfaceC12589b<LinkedList<String>, Observable<? extends Tombstone>>() { // from class: com.discord.utilities.systemlog.SystemLogUtils.fetchLastTombstone.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Tombstone> call(LinkedList<String> linkedList) {
+                SystemLogUtils systemLogUtils = SystemLogUtils.INSTANCE;
+                C12238m.checkNotNullExpressionValue(linkedList, "crashes");
+                Tombstone tombstoneFetchLastTombstone$app_productionGoogleRelease = systemLogUtils.fetchLastTombstone$app_productionGoogleRelease(linkedList);
+                return tombstoneFetchLastTombstone$app_productionGoogleRelease == null ? EnumC12606c.f26751k : new C12721k(tombstoneFetchLastTombstone$app_productionGoogleRelease);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11082A, "fetch(regexExtractTombst…ble.just(tombstone)\n    }");
+        return observableM11082A;
+    }
+
     public final DebugPrintableCollection getDebugPrintables$app_productionGoogleRelease() {
         return debugPrintables;
     }
 
     public final Regex getRegexExtractTombstone$app_productionGoogleRelease() {
         return regexExtractTombstone;
+    }
+
+    private final String hashString(String input) throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance(Constants.SHA1);
+        Charset charset = C12086c.f25136a;
+        Objects.requireNonNull(input, "null cannot be cast to non-null type java.lang.String");
+        byte[] bytes = input.getBytes(charset);
+        C12238m.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");
+        byte[] bArrDigest = messageDigest.digest(bytes);
+        C12238m.checkNotNullExpressionValue(bArrDigest, "bytes");
+        return C12141k.joinToString$default(bArrDigest, "", (CharSequence) null, (CharSequence) null, 0, (CharSequence) null, C69381.INSTANCE, 30, (Object) null);
     }
 
     public final Thread initSystemLogCapture() {
@@ -411,6 +399,18 @@ public final class SystemLogUtils {
         if (i > maxLogSize) {
             output.pop().length();
         }
+    }
+
+    private final void waitFor(Process process) throws InterruptedException {
+        long nanos = TimeUnit.SECONDS.toNanos(15L) + System.nanoTime();
+        do {
+            try {
+                process.exitValue();
+                return;
+            } catch (IllegalThreadStateException unused) {
+                Thread.sleep(100L);
+            }
+        } while (System.nanoTime() < nanos);
     }
 
     private final Observable<LinkedList<String>> fetch(final Regex filter) {

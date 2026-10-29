@@ -8,16 +8,24 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class Easing {
     private static final String ACCELERATE = "cubic(0.4, 0.05, 0.8, 0.7)";
-    private static final String DECELERATE = "cubic(0.0, 0.0, 0.2, 0.95)";
-    private static final String LINEAR = "cubic(1, 1, 0, 0)";
-    private static final String STANDARD = "cubic(0.4, 0.0, 0.2, 1)";
-    public String str = RegistrationSteps.IDENTITY;
-    public static Easing sDefault = new Easing();
-    private static final String STANDARD_NAME = "standard";
     private static final String ACCELERATE_NAME = "accelerate";
+    private static final String DECELERATE = "cubic(0.0, 0.0, 0.2, 0.95)";
     private static final String DECELERATE_NAME = "decelerate";
+    private static final String LINEAR = "cubic(1, 1, 0, 0)";
     private static final String LINEAR_NAME = "linear";
+    private static final String STANDARD = "cubic(0.4, 0.0, 0.2, 1)";
+    private static final String STANDARD_NAME = "standard";
+    public static Easing sDefault = new Easing();
     public static String[] NAMED_EASING = {STANDARD_NAME, ACCELERATE_NAME, DECELERATE_NAME, LINEAR_NAME};
+    public String str = RegistrationSteps.IDENTITY;
+
+    public double get(double d) {
+        return d;
+    }
+
+    public double getDiff(double d) {
+        return 1.0d;
+    }
 
     public static Easing getInterpolator(String str) {
         if (str == null) {
@@ -44,19 +52,11 @@ public class Easing {
         }
     }
 
-    public double get(double d) {
-        return d;
-    }
-
-    public double getDiff(double d) {
-        return 1.0d;
-    }
-
     public String toString() {
         return this.str;
     }
 
-    public static class CubicEasing extends Easing {
+    public class CubicEasing extends Easing {
         private static double d_error = 1.0E-4d;
         private static double error = 0.01d;
 
@@ -85,38 +85,6 @@ public class Easing {
             this.f93x2 = Double.parseDouble(str.substring(i2, iIndexOf4).trim());
             int i3 = iIndexOf4 + 1;
             this.f95y2 = Double.parseDouble(str.substring(i3, str.indexOf(41, i3)).trim());
-        }
-
-        private double getDiffX(double d) {
-            double d2 = 1.0d - d;
-            double d3 = this.f92x1;
-            double d4 = d2 * 3.0d * d2 * d3;
-            double d5 = this.f93x2;
-            return ((1.0d - d5) * 3.0d * d * d) + ((d5 - d3) * d2 * 6.0d * d) + d4;
-        }
-
-        private double getDiffY(double d) {
-            double d2 = 1.0d - d;
-            double d3 = this.f94y1;
-            double d4 = d2 * 3.0d * d2 * d3;
-            double d5 = this.f95y2;
-            return ((1.0d - d5) * 3.0d * d * d) + ((d5 - d3) * d2 * 6.0d * d) + d4;
-        }
-
-        private double getX(double d) {
-            double d2 = 1.0d - d;
-            double d3 = 3.0d * d2;
-            double d4 = d2 * d3 * d;
-            double d5 = d3 * d * d;
-            return (this.f93x2 * d5) + (this.f92x1 * d4) + (d * d * d);
-        }
-
-        private double getY(double d) {
-            double d2 = 1.0d - d;
-            double d3 = 3.0d * d2;
-            double d4 = d2 * d3 * d;
-            double d5 = d3 * d * d;
-            return (this.f95y2 * d5) + (this.f94y1 * d4) + (d * d * d);
         }
 
         @Override // androidx.constraintlayout.motion.utils.Easing
@@ -152,6 +120,38 @@ public class Easing {
             double d4 = d3 - d2;
             double d5 = d3 + d2;
             return (getY(d5) - getY(d4)) / (getX(d5) - getX(d4));
+        }
+
+        private double getDiffX(double d) {
+            double d2 = 1.0d - d;
+            double d3 = this.f92x1;
+            double d4 = d2 * 3.0d * d2 * d3;
+            double d5 = this.f93x2;
+            return ((1.0d - d5) * 3.0d * d * d) + ((d5 - d3) * d2 * 6.0d * d) + d4;
+        }
+
+        private double getDiffY(double d) {
+            double d2 = 1.0d - d;
+            double d3 = this.f94y1;
+            double d4 = d2 * 3.0d * d2 * d3;
+            double d5 = this.f95y2;
+            return ((1.0d - d5) * 3.0d * d * d) + ((d5 - d3) * d2 * 6.0d * d) + d4;
+        }
+
+        private double getX(double d) {
+            double d2 = 1.0d - d;
+            double d3 = 3.0d * d2;
+            double d4 = d2 * d3 * d;
+            double d5 = d3 * d * d;
+            return (this.f93x2 * d5) + (this.f92x1 * d4) + (d * d * d);
+        }
+
+        private double getY(double d) {
+            double d2 = 1.0d - d;
+            double d3 = 3.0d * d2;
+            double d4 = d2 * d3 * d;
+            double d5 = d3 * d * d;
+            return (this.f95y2 * d5) + (this.f94y1 * d4) + (d * d * d);
         }
 
         public void setup(double d, double d2, double d3, double d4) {

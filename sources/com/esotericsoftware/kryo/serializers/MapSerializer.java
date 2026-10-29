@@ -18,8 +18,8 @@ public class MapSerializer extends Serializer<Map> {
     private Class valueClass;
     private Class valueGenericType;
     private Serializer valueSerializer;
-    private boolean keysCanBeNull = true;
     private boolean valuesCanBeNull = true;
+    private boolean keysCanBeNull = true;
 
     @Target({ElementType.FIELD})
     @Retention(RetentionPolicy.RUNTIME)

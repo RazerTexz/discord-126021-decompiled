@@ -9,19 +9,38 @@ import java.util.HashMap;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5235a implements Comparable<C5235a> {
 
-    /* JADX INFO: renamed from: j */
-    @VisibleForTesting
-    public static final HashMap<String, C5235a> f14248j = new HashMap<>(16);
-
     /* JADX INFO: renamed from: k */
     public final int f14249k;
 
     /* JADX INFO: renamed from: l */
     public final int f14250l;
 
+    /* JADX INFO: renamed from: j */
+    @VisibleForTesting
+    public static final HashMap<String, C5235a> f14248j = new HashMap<>(16);
+
     public C5235a(int i, int i2) {
         this.f14249k = i;
         this.f14250l = i2;
+    }
+
+    @Override // java.lang.Comparable
+    public int compareTo(@NonNull C5235a c5235a) {
+        return Float.compare(m7450i(), c5235a.m7450i());
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        return (obj instanceof C5235a) && m7450i() == ((C5235a) obj).m7450i();
+    }
+
+    public int hashCode() {
+        return Float.floatToIntBits(m7450i());
     }
 
     @NonNull
@@ -65,25 +84,6 @@ public class C5235a implements Comparable<C5235a> {
             return m7447f(Integer.parseInt(strArrSplit[0]), Integer.parseInt(strArrSplit[1]));
         }
         throw new NumberFormatException("Illegal AspectRatio string. Must be x:y");
-    }
-
-    @Override // java.lang.Comparable
-    public int compareTo(@NonNull C5235a c5235a) {
-        return Float.compare(m7450i(), c5235a.m7450i());
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        return (obj instanceof C5235a) && m7450i() == ((C5235a) obj).m7450i();
-    }
-
-    public int hashCode() {
-        return Float.floatToIntBits(m7450i());
     }
 
     /* JADX INFO: renamed from: i */

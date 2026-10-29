@@ -23,9 +23,9 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FrameworkSQLiteDatabase implements SupportSQLiteDatabase {
+    private final SQLiteDatabase mDelegate;
     private static final String[] CONFLICT_VALUES = {"", " OR ROLLBACK ", " OR ABORT ", " OR FAIL ", " OR IGNORE ", " OR REPLACE "};
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
-    private final SQLiteDatabase mDelegate;
 
     public FrameworkSQLiteDatabase(SQLiteDatabase sQLiteDatabase) {
         this.mDelegate = sQLiteDatabase;

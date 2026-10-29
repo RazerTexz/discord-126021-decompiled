@@ -24,7 +24,7 @@ public final class PrivateChannelAdapter extends MGRecyclerAdapterSimple<InviteS
     private Function1<? super InviteSuggestionItem, Unit> onClick;
 
     /* JADX INFO: compiled from: PrivateChannelAdapter.kt */
-    public static final class Item extends MGRecyclerViewHolder<PrivateChannelAdapter, InviteSuggestionItem> {
+    public final class Item extends MGRecyclerViewHolder<PrivateChannelAdapter, InviteSuggestionItem> {
         private final WidgetGuildInviteShareItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

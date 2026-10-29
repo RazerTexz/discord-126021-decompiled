@@ -37,7 +37,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
     private final StoreThreadsJoined storeThreadsJoined;
 
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final /* data */ class ActiveJoinedThread {
+    public final /* data */ class ActiveJoinedThread {
         private final Channel channel;
         private final UtcDateTime joinTimestamp;
         private final boolean muted;
@@ -63,21 +63,6 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
             return activeJoinedThread.copy(channel, utcDateTime, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final UtcDateTime getJoinTimestamp() {
-            return this.joinTimestamp;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getMuted() {
-            return this.muted;
-        }
-
         public final ActiveJoinedThread copy(Channel channel, UtcDateTime joinTimestamp, boolean muted) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(joinTimestamp, "joinTimestamp");
@@ -95,12 +80,27 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
             return C12238m.areEqual(this.channel, activeJoinedThread.channel) && C12238m.areEqual(this.joinTimestamp, activeJoinedThread.joinTimestamp) && this.muted == activeJoinedThread.muted;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final UtcDateTime getJoinTimestamp() {
             return this.joinTimestamp;
+        }
+
+        public final UtcDateTime getJoinTimestamp() {
+            return this.joinTimestamp;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getMuted() {
+            return this.muted;
         }
 
         public final boolean getMuted() {
@@ -137,7 +137,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsChannelsForGuild$1 */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final class C65421 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65421 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -166,7 +166,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsForChannel$1 */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final class C65431 extends AbstractC12240o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
+    public final class C65431 extends AbstractC12240o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
 
@@ -187,7 +187,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsForGuild$1 */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final class C65441 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>>> {
+    public final class C65441 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -205,7 +205,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeAllActiveJoinedThreadsById$1 */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final class C65451 extends AbstractC12240o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
+    public final class C65451 extends AbstractC12240o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
         public C65451() {
             super(0);
         }
@@ -218,7 +218,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeAllActiveJoinedThreadsChannelsById$1 */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public static final class C65461 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65461 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public C65461() {
             super(0);
         }
@@ -236,60 +236,6 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     public /* synthetic */ StoreThreadsActiveJoined(StoreThreadsActive storeThreadsActive, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeThreadsActive, storeThreadsJoined, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
-    }
-
-    @StoreThread
-    private final void saveThreads(Long guildId) {
-        Channel channel;
-        Map<Long, Map<Long, Channel>> allActiveThreadsInternal$app_productionGoogleRelease = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease();
-        for (StoreThreadsJoined.JoinedThread joinedThread : this.storeThreadsJoined.getAllJoinedThreadsInternal$app_productionGoogleRelease().values()) {
-            if (guildId == null || joinedThread.getGuildId() == guildId.longValue()) {
-                Map<Long, Channel> map = allActiveThreadsInternal$app_productionGoogleRelease.get(Long.valueOf(joinedThread.getGuildId()));
-                if (map != null && (channel = map.get(Long.valueOf(joinedThread.getThreadId()))) != null) {
-                    this.activeJoinedThreads.put(Long.valueOf(channel.getId()), new ActiveJoinedThread(channel, joinedThread.getJoinTimestamp(), joinedThread.getMuted()));
-                    markChanged();
-                }
-            }
-        }
-    }
-
-    public static /* synthetic */ void saveThreads$default(StoreThreadsActiveJoined storeThreadsActiveJoined, Long l, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        storeThreadsActiveJoined.saveThreads(l);
-    }
-
-    @StoreThread
-    private final void updateThread(long guildId, long channelId) {
-        Map<Long, Channel> map = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
-        Channel channel = map != null ? map.get(Long.valueOf(channelId)) : null;
-        StoreThreadsJoined.JoinedThread joinedThread = this.storeThreadsJoined.getAllJoinedThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(channelId));
-        if (channel != null && joinedThread != null) {
-            this.activeJoinedThreads.put(Long.valueOf(channelId), new ActiveJoinedThread(channel, joinedThread.getJoinTimestamp(), joinedThread.getMuted()));
-            markChanged();
-        } else if (this.activeJoinedThreads.containsKey(Long.valueOf(channelId))) {
-            this.activeJoinedThreads.remove(Long.valueOf(channelId));
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    /* JADX INFO: renamed from: getActiveJoinedThreadsForChannelInternal$app_productionGoogleRelease */
-    public final List<Channel> m8509xc825218e(long channelId) {
-        Collection<ActiveJoinedThread> collectionValues = this.activeJoinedThreads.values();
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : collectionValues) {
-            if (((ActiveJoinedThread) obj).getChannel().getParentId() == channelId) {
-                arrayList.add(obj);
-            }
-        }
-        ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(arrayList, 10));
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            arrayList2.add(((ActiveJoinedThread) it.next()).getChannel());
-        }
-        return arrayList2;
     }
 
     @StoreThread
@@ -354,6 +300,24 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         updateThread(payload.getGuildId(), payload.getId());
     }
 
+    @StoreThread
+    /* JADX INFO: renamed from: getActiveJoinedThreadsForChannelInternal$app_productionGoogleRelease */
+    public final List<Channel> m8509xc825218e(long channelId) {
+        Collection<ActiveJoinedThread> collectionValues = this.activeJoinedThreads.values();
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : collectionValues) {
+            if (((ActiveJoinedThread) obj).getChannel().getParentId() == channelId) {
+                arrayList.add(obj);
+            }
+        }
+        ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(arrayList, 10));
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            arrayList2.add(((ActiveJoinedThread) it.next()).getChannel());
+        }
+        return arrayList2;
+    }
+
     public final Observable<Map<Long, Channel>> observeActiveJoinedThreadsChannelsForGuild(long guildId) {
         Observable<Map<Long, Channel>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65421(guildId), 14, null).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck\n        …  .distinctUntilChanged()");
@@ -378,6 +342,28 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     public final Observable<Map<Long, Channel>> observeAllActiveJoinedThreadsChannelsById() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65461(), 14, null);
+    }
+
+    public static /* synthetic */ void saveThreads$default(StoreThreadsActiveJoined storeThreadsActiveJoined, Long l, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        storeThreadsActiveJoined.saveThreads(l);
+    }
+
+    @StoreThread
+    private final void saveThreads(Long guildId) {
+        Channel channel;
+        Map<Long, Map<Long, Channel>> allActiveThreadsInternal$app_productionGoogleRelease = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease();
+        for (StoreThreadsJoined.JoinedThread joinedThread : this.storeThreadsJoined.getAllJoinedThreadsInternal$app_productionGoogleRelease().values()) {
+            if (guildId == null || joinedThread.getGuildId() == guildId.longValue()) {
+                Map<Long, Channel> map = allActiveThreadsInternal$app_productionGoogleRelease.get(Long.valueOf(joinedThread.getGuildId()));
+                if (map != null && (channel = map.get(Long.valueOf(joinedThread.getThreadId()))) != null) {
+                    this.activeJoinedThreads.put(Long.valueOf(channel.getId()), new ActiveJoinedThread(channel, joinedThread.getJoinTimestamp(), joinedThread.getMuted()));
+                    markChanged();
+                }
+            }
+        }
     }
 
     @Override // com.discord.stores.StoreV2
@@ -422,6 +408,20 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
             linkedHashMap2.put(key, linkedHashMap4);
         }
         this.activeJoinedThreadsHierarchicalSnapshot = linkedHashMap2;
+    }
+
+    @StoreThread
+    private final void updateThread(long guildId, long channelId) {
+        Map<Long, Channel> map = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
+        Channel channel = map != null ? map.get(Long.valueOf(channelId)) : null;
+        StoreThreadsJoined.JoinedThread joinedThread = this.storeThreadsJoined.getAllJoinedThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(channelId));
+        if (channel != null && joinedThread != null) {
+            this.activeJoinedThreads.put(Long.valueOf(channelId), new ActiveJoinedThread(channel, joinedThread.getJoinTimestamp(), joinedThread.getMuted()));
+            markChanged();
+        } else if (this.activeJoinedThreads.containsKey(Long.valueOf(channelId))) {
+            this.activeJoinedThreads.remove(Long.valueOf(channelId));
+            markChanged();
+        }
     }
 
     public StoreThreadsActiveJoined(StoreThreadsActive storeThreadsActive, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck) {

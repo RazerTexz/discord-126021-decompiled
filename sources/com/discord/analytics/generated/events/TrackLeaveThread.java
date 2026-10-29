@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLeaveThread.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLeaveThread implements AnalyticsSchema, TrackBaseReceiver, TrackThreadReceiver {
+    private final Long channelId = null;
+    private final Long channelType = null;
+    private final Long guildId = null;
+    private final Boolean isSelfLeave = null;
+    private final Long parentId = null;
+    private final Long targetUserId = null;
     private TrackBase trackBase;
     private TrackThread trackThread;
-    private final Long channelId = null;
-    private final Long parentId = null;
-    private final Long guildId = null;
-    private final Long channelType = null;
-    private final Long targetUserId = null;
-    private final Boolean isSelfLeave = null;
     private final transient String analyticsSchemaTypeName = "leave_thread";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackLeaveThread implements AnalyticsSchema, Track
         }
         TrackLeaveThread trackLeaveThread = (TrackLeaveThread) other;
         return C12238m.areEqual(this.channelId, trackLeaveThread.channelId) && C12238m.areEqual(this.parentId, trackLeaveThread.parentId) && C12238m.areEqual(this.guildId, trackLeaveThread.guildId) && C12238m.areEqual(this.channelType, trackLeaveThread.channelType) && C12238m.areEqual(this.targetUserId, trackLeaveThread.targetUserId) && C12238m.areEqual(this.isSelfLeave, trackLeaveThread.isSelfLeave);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

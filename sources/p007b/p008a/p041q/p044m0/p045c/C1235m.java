@@ -17,7 +17,7 @@ public final class C1235m implements Discord.AecConfigCallback {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.m$a */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class a extends AbstractC12240o implements Function0<Unit> {
+    public final class a extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $enabled;
         public final /* synthetic */ boolean $previouslyEnabled;
         public final /* synthetic */ boolean $previouslyMobileMode;

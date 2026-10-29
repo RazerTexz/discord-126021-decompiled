@@ -10,25 +10,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final Long botId = null;
-    private final CharSequence name = null;
+    private final CharSequence coverImageHash = null;
+    private final CharSequence currentStoreState = null;
+    private final CharSequence description = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
-    private final CharSequence description = null;
     private final CharSequence iconHash = null;
-    private final CharSequence coverImageHash = null;
     private final Long linkedGuildId = null;
+    private final CharSequence name = null;
     private final CharSequence previousStoreState = null;
-    private final CharSequence currentStoreState = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackApplicationUpdated implements AnalyticsSchema
         }
         TrackApplicationUpdated trackApplicationUpdated = (TrackApplicationUpdated) other;
         return C12238m.areEqual(this.applicationId, trackApplicationUpdated.applicationId) && C12238m.areEqual(this.botId, trackApplicationUpdated.botId) && C12238m.areEqual(this.name, trackApplicationUpdated.name) && C12238m.areEqual(this.hasBot, trackApplicationUpdated.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationUpdated.hasRedirectUri) && C12238m.areEqual(this.description, trackApplicationUpdated.description) && C12238m.areEqual(this.iconHash, trackApplicationUpdated.iconHash) && C12238m.areEqual(this.coverImageHash, trackApplicationUpdated.coverImageHash) && C12238m.areEqual(this.linkedGuildId, trackApplicationUpdated.linkedGuildId) && C12238m.areEqual(this.previousStoreState, trackApplicationUpdated.previousStoreState) && C12238m.areEqual(this.currentStoreState, trackApplicationUpdated.currentStoreState);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

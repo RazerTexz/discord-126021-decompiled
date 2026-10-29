@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSoundshareFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSoundshareFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
     private final Long soundshareFailureCode = null;
     private final CharSequence soundshareFailureReason = null;
     private final Boolean soundshareFailureWillRetry = null;
     private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
-    private final Long shareGameId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "soundshare_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackSoundshareFailed implements AnalyticsSchema, 
         }
         TrackSoundshareFailed trackSoundshareFailed = (TrackSoundshareFailed) other;
         return C12238m.areEqual(this.soundshareFailureCode, trackSoundshareFailed.soundshareFailureCode) && C12238m.areEqual(this.soundshareFailureReason, trackSoundshareFailed.soundshareFailureReason) && C12238m.areEqual(this.soundshareFailureWillRetry, trackSoundshareFailed.soundshareFailureWillRetry) && C12238m.areEqual(this.soundshareSession, trackSoundshareFailed.soundshareSession) && C12238m.areEqual(this.shareGameName, trackSoundshareFailed.shareGameName) && C12238m.areEqual(this.shareGameId, trackSoundshareFailed.shareGameId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

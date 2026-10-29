@@ -14,20 +14,25 @@ public interface InterfaceC5101b extends IInterface {
 
     /* JADX INFO: renamed from: b.n.a.a.b$a */
     /* JADX INFO: compiled from: ISAService.java */
-    public static abstract class a extends Binder implements InterfaceC5101b {
+    public abstract class a extends Binder implements InterfaceC5101b {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int f13676a = 0;
 
         /* JADX INFO: renamed from: b.n.a.a.b$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: ISAService.java */
-        public static class C13241a implements InterfaceC5101b {
+        public class C13241a implements InterfaceC5101b {
 
             /* JADX INFO: renamed from: a */
             public IBinder f13677a;
 
             public C13241a(IBinder iBinder) {
                 this.f13677a = iBinder;
+            }
+
+            @Override // android.os.IInterface
+            public IBinder asBinder() {
+                return this.f13677a;
             }
 
             @Override // p007b.p449n.p450a.p451a.InterfaceC5101b
@@ -50,11 +55,6 @@ public interface InterfaceC5101b extends IInterface {
                     parcelObtain2.recycle();
                     parcelObtain.recycle();
                 }
-            }
-
-            @Override // android.os.IInterface
-            public IBinder asBinder() {
-                return this.f13677a;
             }
 
             @Override // p007b.p449n.p450a.p451a.InterfaceC5101b

@@ -28,11 +28,67 @@ public final class StoreGooglePlaySkuDetails extends StoreV2 {
     private State skuState;
     private State skuStateSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$handleError$1 */
     /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-    public static abstract class State {
+    public final class C60141 extends AbstractC12240o implements Function0<Unit> {
+        public C60141() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGooglePlaySkuDetails.this.handleFetchError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$observeState$1 */
+    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
+    public final class C60151 extends AbstractC12240o implements Function0<State> {
+        public C60151() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreGooglePlaySkuDetails.this.getSkuStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$updateSkuDetails$1 */
+    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
+    public final class C60161 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ List $skuDetails;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60161(List list) {
+            super(0);
+            this.$skuDetails = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGooglePlaySkuDetails.this.handleFetchSuccess(this.$skuDetails);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
+    public abstract class State {
 
         /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-        public static final class Failure extends State {
+        public final class Failure extends State {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -41,7 +97,7 @@ public final class StoreGooglePlaySkuDetails extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-        public static final /* data */ class Loaded extends State {
+        public final /* data */ class Loaded extends State {
             private final Map<String, SkuDetails> skuDetails;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -52,16 +108,16 @@ public final class StoreGooglePlaySkuDetails extends StoreV2 {
                 this.skuDetails = map;
             }
 
+            public final Map<String, SkuDetails> component1() {
+                return this.skuDetails;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, int i, Object obj) {
                 if ((i & 1) != 0) {
                     map = loaded.skuDetails;
                 }
                 return loaded.copy(map);
-            }
-
-            public final Map<String, SkuDetails> component1() {
-                return this.skuDetails;
             }
 
             public final Loaded copy(Map<String, ? extends SkuDetails> skuDetails) {
@@ -94,7 +150,7 @@ public final class StoreGooglePlaySkuDetails extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-        public static final class Uninitialized extends State {
+        public final class Uninitialized extends State {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -107,62 +163,6 @@ public final class StoreGooglePlaySkuDetails extends StoreV2 {
 
         public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$handleError$1 */
-    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-    public static final class C60141 extends AbstractC12240o implements Function0<Unit> {
-        public C60141() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGooglePlaySkuDetails.this.handleFetchError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$observeState$1 */
-    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-    public static final class C60151 extends AbstractC12240o implements Function0<State> {
-        public C60151() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final State invoke() {
-            return StoreGooglePlaySkuDetails.this.getSkuStateSnapshot();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlaySkuDetails$updateSkuDetails$1 */
-    /* JADX INFO: compiled from: StoreGooglePlaySkuDetails.kt */
-    public static final class C60161 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $skuDetails;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60161(List list) {
-            super(0);
-            this.$skuDetails = list;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGooglePlaySkuDetails.this.handleFetchSuccess(this.$skuDetails);
         }
     }
 

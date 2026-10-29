@@ -31,7 +31,7 @@ public final class C12397n implements InterfaceC12407x {
 
     @Override // p615g0.InterfaceC12407x
     /* JADX INFO: renamed from: i0 */
-    public long mo10176i0(C12388e c12388e, long j) {
+    public long mo10176i0(C12388e c12388e, long j) throws IOException {
         C12238m.checkParameterIsNotNull(c12388e, "sink");
         if (j == 0) {
             return 0L;

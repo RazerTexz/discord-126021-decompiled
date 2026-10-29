@@ -37,13 +37,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatViewInflater {
     private static final String LOG_TAG = "AppCompatViewInflater";
-    private final Object[] mConstructorArgs = new Object[2];
     private static final Class<?>[] sConstructorSignature = {Context.class, AttributeSet.class};
+    private final Object[] mConstructorArgs = new Object[2];
     private static final int[] sOnClickAttrs = {R.attr.onClick};
     private static final String[] sClassPrefixList = {"android.widget.", "android.view.", "android.webkit."};
     private static final SimpleArrayMap<String, Constructor<? extends View>> sConstructorMap = new SimpleArrayMap<>();
 
-    public static class DeclaredOnClickListener implements View.OnClickListener {
+    public class DeclaredOnClickListener implements View.OnClickListener {
         private final View mHostView;
         private final String mMethodName;
         private Context mResolvedContext;
@@ -52,6 +52,20 @@ public class AppCompatViewInflater {
         public DeclaredOnClickListener(@NonNull View view, @NonNull String str) {
             this.mHostView = view;
             this.mMethodName = str;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(@NonNull View view) {
+            if (this.mResolvedMethod == null) {
+                resolveMethod(this.mHostView.getContext());
+            }
+            try {
+                this.mResolvedMethod.invoke(this.mResolvedContext, view);
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
+            } catch (InvocationTargetException e2) {
+                throw new IllegalStateException("Could not execute method for android:onClick", e2);
+            }
         }
 
         private void resolveMethod(@Nullable Context context) {
@@ -84,20 +98,6 @@ public class AppCompatViewInflater {
             sbM833U2.append(string);
             throw new IllegalStateException(sbM833U2.toString());
         }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(@NonNull View view) {
-            if (this.mResolvedMethod == null) {
-                resolveMethod(this.mHostView.getContext());
-            }
-            try {
-                this.mResolvedMethod.invoke(this.mResolvedContext, view);
-            } catch (IllegalAccessException e) {
-                throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
-            } catch (InvocationTargetException e2) {
-                throw new IllegalStateException("Could not execute method for android:onClick", e2);
-            }
-        }
     }
 
     private void checkOnClickListener(View view, AttributeSet attributeSet) {
@@ -110,79 +110,6 @@ public class AppCompatViewInflater {
             }
             typedArrayObtainStyledAttributes.recycle();
         }
-    }
-
-    private View createViewByPrefix(Context context, String str, String str2) throws InflateException, ClassNotFoundException {
-        String str3;
-        SimpleArrayMap<String, Constructor<? extends View>> simpleArrayMap = sConstructorMap;
-        Constructor<? extends View> constructor = simpleArrayMap.get(str);
-        if (constructor == null) {
-            if (str2 != null) {
-                try {
-                    str3 = str2 + str;
-                } catch (Exception unused) {
-                    return null;
-                }
-            } else {
-                str3 = str;
-            }
-            constructor = Class.forName(str3, false, context.getClassLoader()).asSubclass(View.class).getConstructor(sConstructorSignature);
-            simpleArrayMap.put(str, constructor);
-        }
-        constructor.setAccessible(true);
-        return constructor.newInstance(this.mConstructorArgs);
-    }
-
-    private View createViewFromTag(Context context, String str, AttributeSet attributeSet) {
-        if (str.equals("view")) {
-            str = attributeSet.getAttributeValue(null, "class");
-        }
-        try {
-            Object[] objArr = this.mConstructorArgs;
-            objArr[0] = context;
-            objArr[1] = attributeSet;
-            if (-1 != str.indexOf(46)) {
-                return createViewByPrefix(context, str, null);
-            }
-            int i = 0;
-            while (true) {
-                String[] strArr = sClassPrefixList;
-                if (i >= strArr.length) {
-                    return null;
-                }
-                View viewCreateViewByPrefix = createViewByPrefix(context, str, strArr[i]);
-                if (viewCreateViewByPrefix != null) {
-                    return viewCreateViewByPrefix;
-                }
-                i++;
-            }
-        } catch (Exception unused) {
-            return null;
-        } finally {
-            Object[] objArr2 = this.mConstructorArgs;
-            objArr2[0] = null;
-            objArr2[1] = null;
-        }
-    }
-
-    private static Context themifyContext(Context context, AttributeSet attributeSet, boolean z2, boolean z3) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0051R.styleable.View, 0, 0);
-        int resourceId = z2 ? typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_android_theme, 0) : 0;
-        if (z3 && resourceId == 0 && (resourceId = typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_theme, 0)) != 0) {
-            Log.i(LOG_TAG, "app:theme is now deprecated. Please move to using android:theme instead.");
-        }
-        typedArrayObtainStyledAttributes.recycle();
-        if (resourceId != 0) {
-            return ((context instanceof ContextThemeWrapper) && ((ContextThemeWrapper) context).getThemeResId() == resourceId) ? context : new ContextThemeWrapper(context, resourceId);
-        }
-        return context;
-    }
-
-    private void verifyNotNull(View view, String str) {
-        if (view != null) {
-            return;
-        }
-        throw new IllegalStateException(getClass().getName() + " asked to inflate view for <" + str + ">, but returned null");
     }
 
     @NonNull
@@ -338,5 +265,78 @@ public class AppCompatViewInflater {
             checkOnClickListener(viewCreateRatingBar, attributeSet);
         }
         return viewCreateRatingBar;
+    }
+
+    private View createViewByPrefix(Context context, String str, String str2) throws InflateException, ClassNotFoundException {
+        String str3;
+        SimpleArrayMap<String, Constructor<? extends View>> simpleArrayMap = sConstructorMap;
+        Constructor<? extends View> constructor = simpleArrayMap.get(str);
+        if (constructor == null) {
+            if (str2 != null) {
+                try {
+                    str3 = str2 + str;
+                } catch (Exception unused) {
+                    return null;
+                }
+            } else {
+                str3 = str;
+            }
+            constructor = Class.forName(str3, false, context.getClassLoader()).asSubclass(View.class).getConstructor(sConstructorSignature);
+            simpleArrayMap.put(str, constructor);
+        }
+        constructor.setAccessible(true);
+        return constructor.newInstance(this.mConstructorArgs);
+    }
+
+    private View createViewFromTag(Context context, String str, AttributeSet attributeSet) {
+        if (str.equals("view")) {
+            str = attributeSet.getAttributeValue(null, "class");
+        }
+        try {
+            Object[] objArr = this.mConstructorArgs;
+            objArr[0] = context;
+            objArr[1] = attributeSet;
+            if (-1 != str.indexOf(46)) {
+                return createViewByPrefix(context, str, null);
+            }
+            int i = 0;
+            while (true) {
+                String[] strArr = sClassPrefixList;
+                if (i >= strArr.length) {
+                    return null;
+                }
+                View viewCreateViewByPrefix = createViewByPrefix(context, str, strArr[i]);
+                if (viewCreateViewByPrefix != null) {
+                    return viewCreateViewByPrefix;
+                }
+                i++;
+            }
+        } catch (Exception unused) {
+            return null;
+        } finally {
+            Object[] objArr2 = this.mConstructorArgs;
+            objArr2[0] = null;
+            objArr2[1] = null;
+        }
+    }
+
+    private static Context themifyContext(Context context, AttributeSet attributeSet, boolean z2, boolean z3) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0051R.styleable.View, 0, 0);
+        int resourceId = z2 ? typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_android_theme, 0) : 0;
+        if (z3 && resourceId == 0 && (resourceId = typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_theme, 0)) != 0) {
+            Log.i(LOG_TAG, "app:theme is now deprecated. Please move to using android:theme instead.");
+        }
+        typedArrayObtainStyledAttributes.recycle();
+        if (resourceId != 0) {
+            return ((context instanceof ContextThemeWrapper) && ((ContextThemeWrapper) context).getThemeResId() == resourceId) ? context : new ContextThemeWrapper(context, resourceId);
+        }
+        return context;
+    }
+
+    private void verifyNotNull(View view, String str) {
+        if (view != null) {
+            return;
+        }
+        throw new IllegalStateException(getClass().getName() + " asked to inflate view for <" + str + ">, but returned null");
     }
 }

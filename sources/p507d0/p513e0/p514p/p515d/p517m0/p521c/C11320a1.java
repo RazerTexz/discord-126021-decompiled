@@ -26,7 +26,7 @@ public final class C11320a1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.a1$a */
     /* JADX INFO: compiled from: typeParameterUtils.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11450m, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11450m, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22673j = new a();
@@ -49,7 +49,7 @@ public final class C11320a1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.a1$b */
     /* JADX INFO: compiled from: typeParameterUtils.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11450m, Boolean> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11450m, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final b f22674j = new b();
@@ -72,7 +72,7 @@ public final class C11320a1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.a1$c */
     /* JADX INFO: compiled from: typeParameterUtils.kt */
-    public static final class c extends AbstractC12240o implements Function1<InterfaceC11450m, Sequence<? extends InterfaceC11477z0>> {
+    public final class c extends AbstractC12240o implements Function1<InterfaceC11450m, Sequence<? extends InterfaceC11477z0>> {
 
         /* JADX INFO: renamed from: j */
         public static final c f22675j = new c();
@@ -88,23 +88,6 @@ public final class C11320a1 {
             C12238m.checkNotNullExpressionValue(typeParameters, "it as CallableDescriptor).typeParameters");
             return C12163u.asSequence(typeParameters);
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static final C11449l0 m9383a(AbstractC11913c0 abstractC11913c0, InterfaceC11359i interfaceC11359i, int i) {
-        if (interfaceC11359i == null || C12005t.isError(interfaceC11359i)) {
-            return null;
-        }
-        int size = interfaceC11359i.getDeclaredTypeParameters().size() + i;
-        if (interfaceC11359i.isInner()) {
-            List<InterfaceC12012w0> listSubList = abstractC11913c0.getArguments().subList(i, size);
-            InterfaceC11450m containingDeclaration = interfaceC11359i.getContainingDeclaration();
-            return new C11449l0(interfaceC11359i, listSubList, m9383a(abstractC11913c0, containingDeclaration instanceof InterfaceC11359i ? (InterfaceC11359i) containingDeclaration : null, size));
-        }
-        if (size != abstractC11913c0.getArguments().size()) {
-            C11787e.isLocal(interfaceC11359i);
-        }
-        return new C11449l0(interfaceC11359i, abstractC11913c0.getArguments().subList(i, abstractC11913c0.getArguments().size()), null);
     }
 
     public static final C11449l0 buildPossiblyInnerType(AbstractC11913c0 abstractC11913c0) {
@@ -152,5 +135,22 @@ public final class C11320a1 {
             arrayList.add(new C11324c(interfaceC11477z0, interfaceC11359i, declaredTypeParameters.size()));
         }
         return C12163u.plus((Collection) declaredTypeParameters, (Iterable) arrayList);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final C11449l0 m9383a(AbstractC11913c0 abstractC11913c0, InterfaceC11359i interfaceC11359i, int i) {
+        if (interfaceC11359i == null || C12005t.isError(interfaceC11359i)) {
+            return null;
+        }
+        int size = interfaceC11359i.getDeclaredTypeParameters().size() + i;
+        if (interfaceC11359i.isInner()) {
+            List<InterfaceC12012w0> listSubList = abstractC11913c0.getArguments().subList(i, size);
+            InterfaceC11450m containingDeclaration = interfaceC11359i.getContainingDeclaration();
+            return new C11449l0(interfaceC11359i, listSubList, m9383a(abstractC11913c0, containingDeclaration instanceof InterfaceC11359i ? (InterfaceC11359i) containingDeclaration : null, size));
+        }
+        if (size != abstractC11913c0.getArguments().size()) {
+            C11787e.isLocal(interfaceC11359i);
+        }
+        return new C11449l0(interfaceC11359i, abstractC11913c0.getArguments().subList(i, abstractC11913c0.getArguments().size()), null);
     }
 }

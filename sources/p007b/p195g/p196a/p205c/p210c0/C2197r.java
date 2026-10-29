@@ -15,9 +15,6 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2394l;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2197r extends AbstractC2199t implements Serializable {
 
-    /* JADX INFO: renamed from: j */
-    public static final Class<?> f4741j = AbstractC2362l.class;
-
     /* JADX INFO: renamed from: k */
     public static final C2196q f4742k;
 
@@ -33,6 +30,9 @@ public class C2197r extends AbstractC2199t implements Serializable {
     /* JADX INFO: renamed from: o */
     public static final C2196q f4746o;
     private static final long serialVersionUID = 2;
+
+    /* JADX INFO: renamed from: j */
+    public static final Class<?> f4741j = AbstractC2362l.class;
 
     static {
         C2332k c2332kM2138L = C2332k.m2138L(String.class);

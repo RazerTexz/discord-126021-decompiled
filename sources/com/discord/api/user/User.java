@@ -82,31 +82,6 @@ public final /* data */ class User implements Serializable {
         this.bannerColor = null;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final NullSerializable<String> m8288a() {
-        return this.avatar;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final NullSerializable<String> m8289b() {
-        return this.banner;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final NullSerializable<String> m8290c() {
-        return this.bannerColor;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final NullSerializable<String> m8291d() {
-        return this.bio;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final Boolean getBot() {
-        return this.bot;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -116,6 +91,11 @@ public final /* data */ class User implements Serializable {
         }
         User user = (User) other;
         return this.id == user.id && C12238m.areEqual(this.username, user.username) && C12238m.areEqual(this.avatar, user.avatar) && C12238m.areEqual(this.banner, user.banner) && C12238m.areEqual(this.discriminator, user.discriminator) && C12238m.areEqual(this.publicFlags, user.publicFlags) && C12238m.areEqual(this.flags, user.flags) && C12238m.areEqual(this.bot, user.bot) && C12238m.areEqual(this.system, user.system) && C12238m.areEqual(this.token, user.token) && C12238m.areEqual(this.email, user.email) && C12238m.areEqual(this.verified, user.verified) && C12238m.areEqual(this.locale, user.locale) && C12238m.areEqual(this.nsfwAllowed, user.nsfwAllowed) && C12238m.areEqual(this.mfaEnabled, user.mfaEnabled) && C12238m.areEqual(this.phone, user.phone) && C12238m.areEqual(this.analyticsToken, user.analyticsToken) && C12238m.areEqual(this.premiumType, user.premiumType) && C12238m.areEqual(this.approximateGuildCount, user.approximateGuildCount) && C12238m.areEqual(this.member, user.member) && C12238m.areEqual(this.bio, user.bio) && C12238m.areEqual(this.bannerColor, user.bannerColor);
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final Boolean getBot() {
+        return this.bot;
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -128,17 +108,62 @@ public final /* data */ class User implements Serializable {
         return this.email;
     }
 
+    /* JADX INFO: renamed from: h, reason: from getter */
+    public final Integer getFlags() {
+        return this.flags;
+    }
+
     public final long getId() {
         return this.id;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final GuildMember getMember() {
+        return this.member;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final Boolean getMfaEnabled() {
+        return this.mfaEnabled;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final NsfwAllowance getNsfwAllowed() {
+        return this.nsfwAllowed;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final Phone getPhone() {
+        return this.phone;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final PremiumTier getPremiumType() {
+        return this.premiumType;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final Integer getPublicFlags() {
+        return this.publicFlags;
+    }
+
+    /* JADX INFO: renamed from: o, reason: from getter */
+    public final Boolean getSystem() {
+        return this.system;
+    }
+
+    /* JADX INFO: renamed from: p, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getUsername() {
         return this.username;
     }
 
-    /* JADX INFO: renamed from: h, reason: from getter */
-    public final Integer getFlags() {
-        return this.flags;
+    /* JADX INFO: renamed from: q, reason: from getter */
+    public final Boolean getVerified() {
+        return this.verified;
     }
 
     public int hashCode() {
@@ -188,49 +213,24 @@ public final /* data */ class User implements Serializable {
         return iHashCode20 + (nullSerializable4 != null ? nullSerializable4.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final GuildMember getMember() {
-        return this.member;
+    /* JADX INFO: renamed from: a */
+    public final NullSerializable<String> m8288a() {
+        return this.avatar;
     }
 
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final Boolean getMfaEnabled() {
-        return this.mfaEnabled;
+    /* JADX INFO: renamed from: b */
+    public final NullSerializable<String> m8289b() {
+        return this.banner;
     }
 
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final NsfwAllowance getNsfwAllowed() {
-        return this.nsfwAllowed;
+    /* JADX INFO: renamed from: c */
+    public final NullSerializable<String> m8290c() {
+        return this.bannerColor;
     }
 
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final Phone getPhone() {
-        return this.phone;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final PremiumTier getPremiumType() {
-        return this.premiumType;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final Integer getPublicFlags() {
-        return this.publicFlags;
-    }
-
-    /* JADX INFO: renamed from: o, reason: from getter */
-    public final Boolean getSystem() {
-        return this.system;
-    }
-
-    /* JADX INFO: renamed from: p, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
-    /* JADX INFO: renamed from: q, reason: from getter */
-    public final Boolean getVerified() {
-        return this.verified;
+    /* JADX INFO: renamed from: d */
+    public final NullSerializable<String> m8291d() {
+        return this.bio;
     }
 
     public String toString() {

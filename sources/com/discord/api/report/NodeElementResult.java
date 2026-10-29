@@ -17,16 +17,6 @@ public final /* data */ class NodeElementResult {
         this.data = list;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<ReportNodeElementData> m8166a() {
-        return this.data;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getKey() {
-        return this.key;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -38,11 +28,21 @@ public final /* data */ class NodeElementResult {
         return C12238m.areEqual(this.key, nodeElementResult.key) && C12238m.areEqual(this.data, nodeElementResult.data);
     }
 
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getKey() {
+        return this.key;
+    }
+
     public int hashCode() {
         String str = this.key;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         List<ReportNodeElementData> list = this.data;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<ReportNodeElementData> m8166a() {
+        return this.data;
     }
 
     public String toString() {

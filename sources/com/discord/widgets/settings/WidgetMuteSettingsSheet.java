@@ -42,23 +42,83 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetMuteSettingsSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetMuteSettingsSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMuteSettingsSheetBinding;", 0)};
     private static final float ACTIVE_OPACITY = 1.0f;
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
     private static final float INACTIVE_OPACITY = 0.2f;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetMuteSettingsSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMuteSettingsSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$2 */
+    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
+    public final /* synthetic */ class C96002 extends C12236k implements Function1<MuteSettingsSheetViewModel.ViewState, Unit> {
+        public C96002(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
+            super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "updateViews", "updateViews(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MuteSettingsSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MuteSettingsSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetMuteSettingsSheet) this.receiver).updateViews(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$3 */
+    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
+    public final /* synthetic */ class C96013 extends C12236k implements Function1<MuteSettingsSheetViewModel.Event, Unit> {
+        public C96013(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
+            super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MuteSettingsSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MuteSettingsSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetMuteSettingsSheet) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$configureNotificationSettings$1 */
+    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
+    public final class C96021 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public C96021() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.boldColor = Integer.valueOf(ColorCompat.getColor(WidgetMuteSettingsSheet.this.requireContext(), C5419R.color.status_red_500));
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -119,72 +179,30 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$2 */
-    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public static final /* synthetic */ class C96002 extends C12236k implements Function1<MuteSettingsSheetViewModel.ViewState, Unit> {
-        public C96002(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
-            super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "updateViews", "updateViews(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MuteSettingsSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MuteSettingsSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetMuteSettingsSheet) this.receiver).updateViews(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$3 */
-    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public static final /* synthetic */ class C96013 extends C12236k implements Function1<MuteSettingsSheetViewModel.Event, Unit> {
-        public C96013(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
-            super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MuteSettingsSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MuteSettingsSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetMuteSettingsSheet) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$configureNotificationSettings$1 */
-    /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public static final class C96021 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public C96021() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.boldColor = Integer.valueOf(ColorCompat.getColor(WidgetMuteSettingsSheet.this.requireContext(), C5419R.color.status_red_500));
-        }
-    }
-
     public WidgetMuteSettingsSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetMuteSettingsSheet$binding$2.INSTANCE, null, 2, null);
         WidgetMuteSettingsSheet$viewModel$2 widgetMuteSettingsSheet$viewModel$2 = new WidgetMuteSettingsSheet$viewModel$2(this);
         C0865g0 c0865g0 = new C0865g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(MuteSettingsSheetViewModel.class), new WidgetMuteSettingsSheet$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetMuteSettingsSheet$viewModel$2));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        getBinding().f17288o.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetMuteSettingsSheet.bindSubscriptions.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MuteSettingsSheetViewModel viewModel = WidgetMuteSettingsSheet.this.getViewModel();
+                C12238m.checkNotNullExpressionValue(view, "it");
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "it.context");
+                viewModel.unmute(context);
+            }
+        });
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetMuteSettingsSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96002(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetMuteSettingsSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96013(this));
     }
 
     private final void configureNotificationSettings(MuteSettingsSheetViewModel.ViewState.Loaded viewState) {
@@ -290,6 +308,11 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         return (WidgetMuteSettingsSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_mute_settings_sheet;
+    }
+
     private final MuteSettingsSheetViewModel getViewModel() {
         return (MuteSettingsSheetViewModel) this.viewModel.getValue();
     }
@@ -303,73 +326,6 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
             C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
             WidgetChannelNotificationSettings.Companion.launch$default(companion, contextRequireContext, ((MuteSettingsSheetViewModel.Event.NavigateToChannelSettings) event).getChannelId(), false, 4, null);
         }
-    }
-
-    private final String parseMuteEndtime(String muteEndTime) {
-        TimeUtils timeUtils = TimeUtils.INSTANCE;
-        Context contextRequireContext = requireContext();
-        C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-        return TimeUtils.renderUtcDateTime$default(timeUtils, muteEndTime, contextRequireContext, null, 3, 3, 4, null);
-    }
-
-    public static final void showForChannel(long j, FragmentManager fragmentManager) {
-        INSTANCE.showForChannel(j, fragmentManager);
-    }
-
-    private final void updateViews(MuteSettingsSheetViewModel.ViewState viewState) {
-        Integer numValueOf;
-        if (!(viewState instanceof MuteSettingsSheetViewModel.ViewState.Loaded)) {
-            if (viewState instanceof MuteSettingsSheetViewModel.ViewState.Failure) {
-                C0876m.m171i(this, C5419R.string.default_failure_to_perform_action_message, 0, 4);
-                dismiss();
-                return;
-            }
-            return;
-        }
-        MuteSettingsSheetViewModel.ViewState.Loaded loaded = (MuteSettingsSheetViewModel.ViewState.Loaded) viewState;
-        int iOrdinal = loaded.getSettingsType().ordinal();
-        if (iOrdinal == 0) {
-            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_server);
-        } else if (iOrdinal == 1 || iOrdinal == 2) {
-            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_this_conversation);
-        } else if (iOrdinal == 3) {
-            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_thread);
-        } else if (iOrdinal != 4) {
-            numValueOf = iOrdinal != 5 ? null : Integer.valueOf(C5419R.string.mute_settings_mute_category);
-        } else {
-            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_channel);
-        }
-        TextView textView = getBinding().f17287n;
-        C12238m.checkNotNullExpressionValue(textView, "binding.title");
-        textView.setText(numValueOf != null ? C1107b.m213e(this, numValueOf.intValue(), new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null) : null);
-        TextView textView2 = getBinding().f17286m;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.subtitle");
-        textView2.setText(loaded.getSubtitle());
-        configureUnmuteButton(loaded);
-        configureNotificationSettings(loaded);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        getBinding().f17288o.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetMuteSettingsSheet.bindSubscriptions.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                MuteSettingsSheetViewModel viewModel = WidgetMuteSettingsSheet.this.getViewModel();
-                C12238m.checkNotNullExpressionValue(view, "it");
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "it.context");
-                viewModel.unmute(context);
-            }
-        });
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetMuteSettingsSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96002(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetMuteSettingsSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96013(this));
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_mute_settings_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -426,5 +382,49 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
                 viewModel.selectMuteDurationMs(0L, context);
             }
         });
+    }
+
+    private final String parseMuteEndtime(String muteEndTime) {
+        TimeUtils timeUtils = TimeUtils.INSTANCE;
+        Context contextRequireContext = requireContext();
+        C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+        return TimeUtils.renderUtcDateTime$default(timeUtils, muteEndTime, contextRequireContext, null, 3, 3, 4, null);
+    }
+
+    public static final void showForChannel(long j, FragmentManager fragmentManager) {
+        INSTANCE.showForChannel(j, fragmentManager);
+    }
+
+    private final void updateViews(MuteSettingsSheetViewModel.ViewState viewState) {
+        Integer numValueOf;
+        if (!(viewState instanceof MuteSettingsSheetViewModel.ViewState.Loaded)) {
+            if (viewState instanceof MuteSettingsSheetViewModel.ViewState.Failure) {
+                C0876m.m171i(this, C5419R.string.default_failure_to_perform_action_message, 0, 4);
+                dismiss();
+                return;
+            }
+            return;
+        }
+        MuteSettingsSheetViewModel.ViewState.Loaded loaded = (MuteSettingsSheetViewModel.ViewState.Loaded) viewState;
+        int iOrdinal = loaded.getSettingsType().ordinal();
+        if (iOrdinal == 0) {
+            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_server);
+        } else if (iOrdinal == 1 || iOrdinal == 2) {
+            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_this_conversation);
+        } else if (iOrdinal == 3) {
+            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_thread);
+        } else if (iOrdinal != 4) {
+            numValueOf = iOrdinal != 5 ? null : Integer.valueOf(C5419R.string.mute_settings_mute_category);
+        } else {
+            numValueOf = Integer.valueOf(C5419R.string.mute_settings_mute_channel);
+        }
+        TextView textView = getBinding().f17287n;
+        C12238m.checkNotNullExpressionValue(textView, "binding.title");
+        textView.setText(numValueOf != null ? C1107b.m213e(this, numValueOf.intValue(), new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null) : null);
+        TextView textView2 = getBinding().f17286m;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.subtitle");
+        textView2.setText(loaded.getSubtitle());
+        configureUnmuteButton(loaded);
+        configureNotificationSettings(loaded);
     }
 }

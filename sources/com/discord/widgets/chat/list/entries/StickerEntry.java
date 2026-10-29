@@ -32,16 +32,6 @@ public final /* data */ class StickerEntry extends ChatListEntry {
         return stickerEntry.copy(message, baseSticker);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final BaseSticker getSticker() {
-        return this.sticker;
-    }
-
     public final StickerEntry copy(Message message, BaseSticker sticker) {
         C12238m.checkNotNullParameter(message, "message");
         C12238m.checkNotNullParameter(sticker, "sticker");
@@ -64,8 +54,18 @@ public final /* data */ class StickerEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Message getMessage() {
         return this.message;
+    }
+
+    public final Message getMessage() {
+        return this.message;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final BaseSticker getSticker() {
+        return this.sticker;
     }
 
     public final BaseSticker getSticker() {

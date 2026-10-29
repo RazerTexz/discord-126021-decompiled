@@ -28,16 +28,6 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
         return channelListItemStageAudienceCount.copy(channel, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getAudienceSize() {
-        return this.audienceSize;
-    }
-
     public final ChannelListItemStageAudienceCount copy(Channel channel, int audienceSize) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemStageAudienceCount(channel, audienceSize);
@@ -54,8 +44,18 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
         return C12238m.areEqual(this.channel, channelListItemStageAudienceCount.channel) && this.audienceSize == channelListItemStageAudienceCount.audienceSize;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getAudienceSize() {
         return this.audienceSize;
+    }
+
+    public final int getAudienceSize() {
+        return this.audienceSize;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Channel getChannel() {
+        return this.channel;
     }
 
     public final Channel getChannel() {

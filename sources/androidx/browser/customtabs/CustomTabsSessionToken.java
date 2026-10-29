@@ -26,7 +26,7 @@ public class CustomTabsSessionToken {
     @Nullable
     private final PendingIntent mSessionId;
 
-    public static class MockCallback extends InterfaceC13176a.a {
+    public class MockCallback extends InterfaceC13176a.a {
         @Override // p668x.p669a.p670a.InterfaceC13176a.a, android.os.IInterface
         public IBinder asBinder() {
             return this;
@@ -128,28 +128,6 @@ public class CustomTabsSessionToken {
         return new CustomTabsSessionToken(new MockCallback(), null);
     }
 
-    private IBinder getCallbackBinderAssertNotNull() {
-        InterfaceC13176a interfaceC13176a = this.mCallbackBinder;
-        if (interfaceC13176a != null) {
-            return interfaceC13176a.asBinder();
-        }
-        throw new IllegalStateException("CustomTabSessionToken must have valid binder or pending session");
-    }
-
-    @Nullable
-    public static CustomTabsSessionToken getSessionTokenFromIntent(@NonNull Intent intent) {
-        Bundle extras = intent.getExtras();
-        if (extras == null) {
-            return null;
-        }
-        IBinder binder = BundleCompat.getBinder(extras, CustomTabsIntent.EXTRA_SESSION);
-        PendingIntent pendingIntent = (PendingIntent) intent.getParcelableExtra(CustomTabsIntent.EXTRA_SESSION_ID);
-        if (binder == null && pendingIntent == null) {
-            return null;
-        }
-        return new CustomTabsSessionToken(binder != null ? InterfaceC13176a.a.asInterface(binder) : null, pendingIntent);
-    }
-
     public boolean equals(Object obj) {
         if (!(obj instanceof CustomTabsSessionToken)) {
             return false;
@@ -177,9 +155,31 @@ public class CustomTabsSessionToken {
         return interfaceC13176a.asBinder();
     }
 
+    private IBinder getCallbackBinderAssertNotNull() {
+        InterfaceC13176a interfaceC13176a = this.mCallbackBinder;
+        if (interfaceC13176a != null) {
+            return interfaceC13176a.asBinder();
+        }
+        throw new IllegalStateException("CustomTabSessionToken must have valid binder or pending session");
+    }
+
     @Nullable
     public PendingIntent getId() {
         return this.mSessionId;
+    }
+
+    @Nullable
+    public static CustomTabsSessionToken getSessionTokenFromIntent(@NonNull Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras == null) {
+            return null;
+        }
+        IBinder binder = BundleCompat.getBinder(extras, CustomTabsIntent.EXTRA_SESSION);
+        PendingIntent pendingIntent = (PendingIntent) intent.getParcelableExtra(CustomTabsIntent.EXTRA_SESSION_ID);
+        if (binder == null && pendingIntent == null) {
+            return null;
+        }
+        return new CustomTabsSessionToken(binder != null ? InterfaceC13176a.a.asInterface(binder) : null, pendingIntent);
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})

@@ -18,7 +18,7 @@ public final class RoundedCoordinatorLayout extends CoordinatorLayout {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.rounded.RoundedCoordinatorLayout$draw$1 */
     /* JADX INFO: compiled from: RoundedCoordinatorLayout.kt */
-    public static final class C70091 extends AbstractC12240o implements Function1<Canvas, Unit> {
+    public final class C70091 extends AbstractC12240o implements Function1<Canvas, Unit> {
         public C70091() {
             super(1);
         }
@@ -43,17 +43,17 @@ public final class RoundedCoordinatorLayout extends CoordinatorLayout {
         this.roundedViewCoordinator = new RoundedCornerViewCoordinator();
     }
 
+    @Override // android.view.View
+    public void draw(Canvas canvas) {
+        C12238m.checkNotNullParameter(canvas, "canvas");
+        this.roundedViewCoordinator.draw(canvas, new C70091());
+    }
+
     private final void initialize(AttributeSet attrs) {
         RoundedCornerViewCoordinator roundedCornerViewCoordinator = this.roundedViewCoordinator;
         int[] iArr = C7063R.b.RoundedCoordinatorLayout;
         C12238m.checkNotNullExpressionValue(iArr, "R.styleable.RoundedCoordinatorLayout");
         roundedCornerViewCoordinator.initialize(this, attrs, iArr, C7063R.b.RoundedCoordinatorLayout_topLeftRadius, C7063R.b.RoundedCoordinatorLayout_topRightRadius, C7063R.b.RoundedCoordinatorLayout_bottomLeftRadius, C7063R.b.RoundedCoordinatorLayout_bottomRightRadius);
-    }
-
-    @Override // android.view.View
-    public void draw(Canvas canvas) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        this.roundedViewCoordinator.draw(canvas, new C70091());
     }
 
     @Override // android.view.View

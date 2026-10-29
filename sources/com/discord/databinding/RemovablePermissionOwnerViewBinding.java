@@ -32,6 +32,12 @@ public final class RemovablePermissionOwnerViewBinding implements ViewBinding {
         this.f15227c = imageView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15225a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static RemovablePermissionOwnerViewBinding m8389a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -49,11 +55,5 @@ public final class RemovablePermissionOwnerViewBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15225a;
     }
 }

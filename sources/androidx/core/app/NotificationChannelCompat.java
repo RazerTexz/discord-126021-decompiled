@@ -37,7 +37,7 @@ public class NotificationChannelCompat {
     public boolean mVibrationEnabled;
     public long[] mVibrationPattern;
 
-    public static class Builder {
+    public class Builder {
         private final NotificationChannelCompat mChannel;
 
         public Builder(@NonNull String str, int i) {

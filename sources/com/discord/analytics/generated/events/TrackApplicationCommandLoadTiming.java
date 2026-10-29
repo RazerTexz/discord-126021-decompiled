@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationCommandLoadTiming.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationCommandLoadTiming implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence area = null;
     private final Long durationMs = null;
     private final CharSequence method = null;
-    private final CharSequence area = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_command_load_timing";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackApplicationCommandLoadTiming implements Analy
         }
         TrackApplicationCommandLoadTiming trackApplicationCommandLoadTiming = (TrackApplicationCommandLoadTiming) other;
         return C12238m.areEqual(this.durationMs, trackApplicationCommandLoadTiming.durationMs) && C12238m.areEqual(this.method, trackApplicationCommandLoadTiming.method) && C12238m.areEqual(this.area, trackApplicationCommandLoadTiming.area);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

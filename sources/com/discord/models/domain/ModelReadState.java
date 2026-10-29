@@ -17,7 +17,7 @@ public final /* data */ class ModelReadState {
     private final int version;
 
     /* JADX INFO: compiled from: ModelReadState.kt */
-    public static final class Parser implements Model.Parser<ModelReadState> {
+    public final class Parser implements Model.Parser<ModelReadState> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -121,26 +121,6 @@ public final /* data */ class ModelReadState {
         return modelReadState.copy(j3, j4, i4, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getLastMessageId() {
-        return this.lastMessageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getMentionCount() {
-        return this.mentionCount;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getVersion() {
-        return this.version;
-    }
-
     public final ModelReadState copy(long channelId, long lastMessageId, int mentionCount, int version) {
         return new ModelReadState(channelId, lastMessageId, mentionCount, version);
     }
@@ -156,16 +136,36 @@ public final /* data */ class ModelReadState {
         return this.channelId == modelReadState.channelId && this.lastMessageId == modelReadState.lastMessageId && this.mentionCount == modelReadState.mentionCount && this.version == modelReadState.version;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getLastMessageId() {
+        return this.lastMessageId;
     }
 
     public final long getLastMessageId() {
         return this.lastMessageId;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getMentionCount() {
         return this.mentionCount;
+    }
+
+    public final int getMentionCount() {
+        return this.mentionCount;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getVersion() {
+        return this.version;
     }
 
     public final int getVersion() {

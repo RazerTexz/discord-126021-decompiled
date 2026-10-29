@@ -20,12 +20,6 @@ public class C2282f extends AbstractC2305q0<byte[]> {
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        return ((byte[]) obj).length == 0;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
         byte[] bArr = (byte[]) obj;
@@ -39,5 +33,11 @@ public class C2282f extends AbstractC2305q0<byte[]> {
         C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(bArr, EnumC2112h.VALUE_EMBEDDED_OBJECT));
         abstractC2108d.mo1660n(abstractC2374x._config._base._defaultBase64, bArr, 0, bArr.length);
         abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        return ((byte[]) obj).length == 0;
     }
 }

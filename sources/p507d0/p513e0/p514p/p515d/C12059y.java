@@ -50,7 +50,7 @@ public final class C12059y implements InterfaceC11235h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.y$a */
     /* JADX INFO: compiled from: KTypeParameterImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends C12058x>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends C12058x>> {
         public a() {
             super(0);
         }
@@ -112,18 +112,6 @@ public final class C12059y implements InterfaceC11235h {
         this.f25069l = interfaceC12060z;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final C11260h<?> m10058a(InterfaceC11330e interfaceC11330e) {
-        Class<?> javaClass = C11265j0.toJavaClass(interfaceC11330e);
-        C11260h<?> c11260h = (C11260h) (javaClass != null ? C12209a.getKotlinClass(javaClass) : null);
-        if (c11260h != null) {
-            return c11260h;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Type parameter container is not resolved: ");
-        sbM833U.append(interfaceC11330e.getContainingDeclaration());
-        throw new C11247a0(sbM833U.toString());
-    }
-
     public boolean equals(Object obj) {
         if (obj instanceof C12059y) {
             C12059y c12059y = (C12059y) obj;
@@ -167,6 +155,18 @@ public final class C12059y implements InterfaceC11235h {
 
     public int hashCode() {
         return getName().hashCode() + (this.f25069l.hashCode() * 31);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final C11260h<?> m10058a(InterfaceC11330e interfaceC11330e) {
+        Class<?> javaClass = C11265j0.toJavaClass(interfaceC11330e);
+        C11260h<?> c11260h = (C11260h) (javaClass != null ? C12209a.getKotlinClass(javaClass) : null);
+        if (c11260h != null) {
+            return c11260h;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Type parameter container is not resolved: ");
+        sbM833U.append(interfaceC11330e.getContainingDeclaration());
+        throw new C11247a0(sbM833U.toString());
     }
 
     public String toString() {

@@ -49,7 +49,7 @@ public class C2008r0 implements InterfaceC2018w0<C1919e> {
 
     /* JADX INFO: renamed from: b.f.j.p.r0$a */
     /* JADX INFO: compiled from: PartialDiskCacheProducer.java */
-    public static class a extends AbstractC2003p<C1919e, C1919e> {
+    public class a extends AbstractC2003p<C1919e, C1919e> {
 
         /* JADX INFO: renamed from: c */
         public final C1859f f4196c;
@@ -77,72 +77,6 @@ public class C2008r0 implements InterfaceC2018w0<C1919e> {
             this.f4199f = interfaceC1694a;
             this.f4200g = c1919e;
             this.f4201h = z2;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v8, types: [b.f.j.c.f] */
-        /* JADX WARN: Type inference failed for: r3v0, types: [b.f.j.p.p, b.f.j.p.r0$a] */
-        /* JADX WARN: Type inference failed for: r4v1, types: [b.f.j.j.e, java.lang.Object] */
-        /* JADX WARN: Type inference failed for: r4v2, types: [b.f.j.j.e] */
-        /* JADX WARN: Type inference failed for: r4v5, types: [b.f.j.c.f, java.lang.Object] */
-        /* JADX WARN: Type inference fix 'apply assigned field type' failed
-        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
-        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-         */
-        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: i */
-        public void mo1320i(Object obj, int i) {
-            ?? r4 = (C1919e) obj;
-            if (AbstractC1965b.m1420f(i)) {
-                return;
-            }
-            C1919e c1919e = this.f4200g;
-            if (c1919e != null && r4 != 0) {
-                try {
-                    if (r4.f3900s != null) {
-                        try {
-                            m1515p(m1514o(c1919e, r4));
-                        } catch (IOException e) {
-                            C1691a.m978f("PartialDiskCacheProducer", "Error while merging image data", e);
-                            this.f4179b.mo1425c(e);
-                        }
-                        r4.close();
-                        this.f4200g.close();
-                        r4 = this.f4196c;
-                        CacheKey cacheKey = this.f4197d;
-                        Objects.requireNonNull(r4);
-                        Objects.requireNonNull(cacheKey);
-                        r4.f3666f.m1210c(cacheKey);
-                        try {
-                            C13202g.m11366a(new CallableC1860g(r4, null, cacheKey), r4.f3665e);
-                            return;
-                        } catch (Exception e2) {
-                            C1691a.m986n(C1859f.class, e2, "Failed to schedule disk-cache remove for %s", cacheKey.mo930b());
-                            C13202g.m11367c(e2);
-                            return;
-                        }
-                    }
-                } catch (Throwable th) {
-                    r4.close();
-                    this.f4200g.close();
-                    throw th;
-                }
-            }
-            if (this.f4201h && AbstractC1965b.m1422m(i, 8) && AbstractC1965b.m1419e(i) && r4 != 0) {
-                r4.m1347x();
-                if (r4.f3893l != C1832c.f3597a) {
-                    this.f4196c.m1220f(this.f4197d, r4);
-                    this.f4179b.mo1424b(r4, i);
-                    return;
-                }
-            }
-            this.f4179b.mo1424b(r4, i);
         }
 
         /* JADX INFO: renamed from: n */
@@ -215,6 +149,72 @@ public class C2008r0 implements InterfaceC2018w0<C1919e> {
                 th = th3;
             }
         }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v8, types: [b.f.j.c.f] */
+        /* JADX WARN: Type inference failed for: r3v0, types: [b.f.j.p.p, b.f.j.p.r0$a] */
+        /* JADX WARN: Type inference failed for: r4v1, types: [b.f.j.j.e, java.lang.Object] */
+        /* JADX WARN: Type inference failed for: r4v2, types: [b.f.j.j.e] */
+        /* JADX WARN: Type inference failed for: r4v5, types: [b.f.j.c.f, java.lang.Object] */
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: i */
+        public void mo1320i(Object obj, int i) {
+            ?? r4 = (C1919e) obj;
+            if (AbstractC1965b.m1420f(i)) {
+                return;
+            }
+            C1919e c1919e = this.f4200g;
+            if (c1919e != null && r4 != 0) {
+                try {
+                    if (r4.f3900s != null) {
+                        try {
+                            m1515p(m1514o(c1919e, r4));
+                        } catch (IOException e) {
+                            C1691a.m978f("PartialDiskCacheProducer", "Error while merging image data", e);
+                            this.f4179b.mo1425c(e);
+                        }
+                        r4.close();
+                        this.f4200g.close();
+                        r4 = this.f4196c;
+                        CacheKey cacheKey = this.f4197d;
+                        Objects.requireNonNull(r4);
+                        Objects.requireNonNull(cacheKey);
+                        r4.f3666f.m1210c(cacheKey);
+                        try {
+                            C13202g.m11366a(new CallableC1860g(r4, null, cacheKey), r4.f3665e);
+                            return;
+                        } catch (Exception e2) {
+                            C1691a.m986n(C1859f.class, e2, "Failed to schedule disk-cache remove for %s", cacheKey.mo930b());
+                            C13202g.m11367c(e2);
+                            return;
+                        }
+                    }
+                } catch (Throwable th) {
+                    r4.close();
+                    this.f4200g.close();
+                    throw th;
+                }
+            }
+            if (this.f4201h && AbstractC1965b.m1422m(i, 8) && AbstractC1965b.m1419e(i) && r4 != 0) {
+                r4.m1347x();
+                if (r4.f3893l != C1832c.f3597a) {
+                    this.f4196c.m1220f(this.f4197d, r4);
+                    this.f4179b.mo1424b(r4, i);
+                    return;
+                }
+            }
+            this.f4179b.mo1424b(r4, i);
+        }
     }
 
     public C2008r0(C1859f c1859f, InterfaceC1862i interfaceC1862i, InterfaceC1700g interfaceC1700g, InterfaceC1694a interfaceC1694a, InterfaceC2018w0<C1919e> interfaceC2018w0) {
@@ -232,6 +232,11 @@ public class C2008r0 implements InterfaceC2018w0<C1919e> {
             return z2 ? C1683f.m968of("cached_value_found", String.valueOf(z2), "encodedImageSize", String.valueOf(i)) : C1683f.m967of("cached_value_found", String.valueOf(z2));
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final void m1512d(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0, CacheKey cacheKey, C1919e c1919e) {
+        this.f4195e.mo1417b(new a(interfaceC1995l, this.f4191a, cacheKey, this.f4193c, this.f4194d, c1919e, interfaceC2020x0.mo1447e().m8720b(32), null), interfaceC2020x0);
     }
 
     @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
@@ -254,10 +259,5 @@ public class C2008r0 implements InterfaceC2018w0<C1919e> {
             this.f4191a.m1219e(c1656f, atomicBoolean).m11368b(new C2004p0(this, interfaceC2020x0.mo1457o(), interfaceC2020x0, interfaceC1995l, c1656f));
             interfaceC2020x0.mo1448f(new C2006q0(this, atomicBoolean));
         }
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final void m1512d(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0, CacheKey cacheKey, C1919e c1919e) {
-        this.f4195e.mo1417b(new a(interfaceC1995l, this.f4191a, cacheKey, this.f4193c, this.f4194d, c1919e, interfaceC2020x0.mo1447e().m8720b(32), null), interfaceC2020x0);
     }
 }

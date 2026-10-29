@@ -115,6 +115,23 @@ public final class EventMessage implements Metadata.Entry {
         return null;
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    @Nullable
+    /* JADX INFO: renamed from: y */
+    public C2811j1 mo8880y() {
+        String str = this.f19941l;
+        str.hashCode();
+        switch (str) {
+            case "urn:scte:scte35:2014:bin":
+                return f19940k;
+            case "https://aomedia.org/emsg/ID3":
+            case "https://developer.apple.com/streaming/emsg-id3":
+                return f19939j;
+            default:
+                return null;
+        }
+    }
+
     public String toString() {
         String str = this.f19941l;
         long j = this.f19944o;
@@ -139,23 +156,6 @@ public final class EventMessage implements Metadata.Entry {
         parcel.writeLong(this.f19943n);
         parcel.writeLong(this.f19944o);
         parcel.writeByteArray(this.f19945p);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    @Nullable
-    /* JADX INFO: renamed from: y */
-    public C2811j1 mo8880y() {
-        String str = this.f19941l;
-        str.hashCode();
-        switch (str) {
-            case "urn:scte:scte35:2014:bin":
-                return f19940k;
-            case "https://aomedia.org/emsg/ID3":
-            case "https://developer.apple.com/streaming/emsg-id3":
-                return f19939j;
-            default:
-                return null;
-        }
     }
 
     public EventMessage(Parcel parcel) {

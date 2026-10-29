@@ -44,7 +44,7 @@ public final class C12049o implements InterfaceC11233f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.o$a */
     /* JADX INFO: compiled from: KParameterImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends Annotation>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends Annotation>> {
         public a() {
             super(0);
         }
@@ -57,7 +57,7 @@ public final class C12049o implements InterfaceC11233f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.o$b */
     /* JADX INFO: compiled from: KParameterImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<Type> {
+    public final class b extends AbstractC12240o implements Function0<Type> {
         public b() {
             super(0);
         }
@@ -87,11 +87,6 @@ public final class C12049o implements InterfaceC11233f {
         this.f25038n = aVar;
         this.f25035k = C11251c0.lazySoft(function0);
         C11251c0.lazySoft(new a());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final InterfaceC11407k0 m10055a() {
-        return (InterfaceC11407k0) this.f25035k.getValue(this, f25034j[0]);
     }
 
     public boolean equals(Object obj) {
@@ -163,6 +158,11 @@ public final class C12049o implements InterfaceC11233f {
     public boolean isVararg() {
         InterfaceC11407k0 interfaceC11407k0M10055a = m10055a();
         return (interfaceC11407k0M10055a instanceof InterfaceC11326c1) && ((InterfaceC11326c1) interfaceC11407k0M10055a).getVarargElementType() != null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final InterfaceC11407k0 m10055a() {
+        return (InterfaceC11407k0) this.f25035k.getValue(this, f25034j[0]);
     }
 
     public String toString() {

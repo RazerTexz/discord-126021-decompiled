@@ -105,7 +105,7 @@ public class EclipseSingularsRecipes {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseSingularsRecipes$SingularData.SCL.lombok */
-    public static final class SingularData {
+    public final class SingularData {
         private final EclipseNode annotation;
         private final char[] singularName;
         private final char[] pluralName;
@@ -186,22 +186,22 @@ public class EclipseSingularsRecipes {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseSingularsRecipes$EclipseSingularizer.SCL.lombok */
-    public static abstract class EclipseSingularizer {
+    public abstract class EclipseSingularizer {
+        private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
         protected static final long[] NULL_POSS = new long[1];
         private static final char[] SIZE_TEXT = {'s', 'i', 'z', 'e'};
-        private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
-        public abstract LombokImmutableList<String> getSupportedTypes();
+        public abstract void appendBuildCode(SingularData singularData, EclipseNode eclipseNode, List<Statement> list, char[] cArr, String str);
 
         public abstract List<EclipseNode> generateFields(SingularData singularData, EclipseNode eclipseNode);
 
         public abstract void generateMethods(CheckerFrameworkVersion checkerFrameworkVersion, SingularData singularData, boolean z2, EclipseNode eclipseNode, boolean z3, TypeReferenceMaker typeReferenceMaker, StatementMaker statementMaker, AccessLevel accessLevel);
 
-        public abstract void appendBuildCode(SingularData singularData, EclipseNode eclipseNode, List<Statement> list, char[] cArr, String str);
-
         protected abstract char[][] getEmptyMakerReceiver(String str);
 
         protected abstract char[] getEmptyMakerSelector(String str);
+
+        public abstract LombokImmutableList<String> getSupportedTypes();
 
         static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
             int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

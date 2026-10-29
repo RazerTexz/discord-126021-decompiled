@@ -21,10 +21,6 @@ public final class C12115n<T> implements Lazy<T>, Serializable {
         this.lock = obj == null ? this : obj;
     }
 
-    private final Object writeReplace() {
-        return new C11220d(getValue());
-    }
-
     @Override // kotlin.Lazy
     public T getValue() {
         T tInvoke;
@@ -53,6 +49,10 @@ public final class C12115n<T> implements Lazy<T>, Serializable {
 
     public String toString() {
         return isInitialized() ? String.valueOf(getValue()) : "Lazy value not initialized yet.";
+    }
+
+    private final Object writeReplace() {
+        return new C11220d(getValue());
     }
 
     public /* synthetic */ C12115n(Function0 function0, Object obj, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -389,14 +389,6 @@ public class C1732c extends AbstractDraweeController<CloseableReference<Abstract
     }
 
     @Override // com.facebook.drawee.controller.AbstractDraweeController
-    public String toString() {
-        C1686i c1686iM526h2 = C1460d.m526h2(this);
-        c1686iM526h2.m971c("super", super.toString());
-        c1686iM526h2.m971c("dataSourceSupplier", this.f3171B);
-        return c1686iM526h2.toString();
-    }
-
-    @Override // com.facebook.drawee.controller.AbstractDraweeController
     /* JADX INFO: renamed from: v */
     public void mo1053v(String str, CloseableReference<AbstractC1917c> closeableReference) {
         synchronized (this) {
@@ -424,5 +416,13 @@ public class C1732c extends AbstractDraweeController<CloseableReference<Abstract
         if (closeableReference2 != null) {
             closeableReference2.close();
         }
+    }
+
+    @Override // com.facebook.drawee.controller.AbstractDraweeController
+    public String toString() {
+        C1686i c1686iM526h2 = C1460d.m526h2(this);
+        c1686iM526h2.m971c("super", super.toString());
+        c1686iM526h2.m971c("dataSourceSupplier", this.f3171B);
+        return c1686iM526h2.toString();
     }
 }

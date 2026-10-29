@@ -33,6 +33,12 @@ public final class C1038r0 implements ViewBinding {
         this.f1175c = group;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f1173a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C1038r0 m204a(@NonNull View view) {
@@ -62,11 +68,5 @@ public final class C1038r0 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f1173a;
     }
 }

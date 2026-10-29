@@ -42,7 +42,7 @@ public final class StoreNavigation {
     private final StoreStream stream;
 
     /* JADX INFO: compiled from: StoreNavigation.kt */
-    public static final class ActivityNavigationLifecycleCallbacks extends ActivityLifecycleCallbacks {
+    public final class ActivityNavigationLifecycleCallbacks extends ActivityLifecycleCallbacks {
         private final Function2<AppActivity, ModelGlobalNavigation, Boolean> ageGateNavHandler;
         private final Function2<AppActivity, ModelGlobalNavigation, Boolean> authNavHandler;
         private final Function2<AppActivity, ModelGlobalNavigation, Boolean> callNavHandler;
@@ -58,7 +58,7 @@ public final class StoreNavigation {
         private final Function2<AppActivity, ModelGlobalNavigation, Boolean> verificationNavHandler;
 
         /* JADX INFO: compiled from: StoreNavigation.kt */
-        public static final /* data */ class ModelGlobalNavigation {
+        public final /* data */ class ModelGlobalNavigation {
             private final AuthState authState;
             private final boolean clientOutdated;
             private final String guildTemplateCode;
@@ -95,76 +95,6 @@ public final class StoreNavigation {
                 this.userHasPhone = z6;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreNux.NuxState getNuxState() {
-                return this.nuxState;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final StoreNotices.Notice getNotice() {
-                return this.notice;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final AgeGate getShouldShowAgeGate() {
-                return this.shouldShowAgeGate;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final Uri getOAuthUri() {
-                return this.oAuthUri;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final NavigationTab getNavigationTab() {
-                return this.navigationTab;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final boolean getUserHasPhone() {
-                return this.userHasPhone;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getInitialized() {
-                return this.initialized;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final AuthState getAuthState() {
-                return this.authState;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsInitializedForAuthedUser() {
-                return this.isInitializedForAuthedUser;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIncomingCall() {
-                return this.incomingCall;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final RequiredAction getUserRequiredAction() {
-                return this.userRequiredAction;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getClientOutdated() {
-                return this.clientOutdated;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final StoreInviteSettings.InviteCode getInviteCode() {
-                return this.inviteCode;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final String getGuildTemplateCode() {
-                return this.guildTemplateCode;
-            }
-
             public final ModelGlobalNavigation copy(StoreNux.NuxState nuxState, boolean initialized, AuthState authState, boolean isInitializedForAuthedUser, boolean incomingCall, RequiredAction userRequiredAction, boolean clientOutdated, StoreInviteSettings.InviteCode inviteCode, String guildTemplateCode, StoreNotices.Notice notice, AgeGate shouldShowAgeGate, Uri oAuthUri, NavigationTab navigationTab, boolean userHasPhone) {
                 C12238m.checkNotNullParameter(nuxState, "nuxState");
                 C12238m.checkNotNullParameter(userRequiredAction, "userRequiredAction");
@@ -184,52 +114,122 @@ public final class StoreNavigation {
                 return C12238m.areEqual(this.nuxState, modelGlobalNavigation.nuxState) && this.initialized == modelGlobalNavigation.initialized && C12238m.areEqual(this.authState, modelGlobalNavigation.authState) && this.isInitializedForAuthedUser == modelGlobalNavigation.isInitializedForAuthedUser && this.incomingCall == modelGlobalNavigation.incomingCall && C12238m.areEqual(this.userRequiredAction, modelGlobalNavigation.userRequiredAction) && this.clientOutdated == modelGlobalNavigation.clientOutdated && C12238m.areEqual(this.inviteCode, modelGlobalNavigation.inviteCode) && C12238m.areEqual(this.guildTemplateCode, modelGlobalNavigation.guildTemplateCode) && C12238m.areEqual(this.notice, modelGlobalNavigation.notice) && C12238m.areEqual(this.shouldShowAgeGate, modelGlobalNavigation.shouldShowAgeGate) && C12238m.areEqual(this.oAuthUri, modelGlobalNavigation.oAuthUri) && C12238m.areEqual(this.navigationTab, modelGlobalNavigation.navigationTab) && this.userHasPhone == modelGlobalNavigation.userHasPhone;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final AuthState getAuthState() {
                 return this.authState;
+            }
+
+            public final AuthState getAuthState() {
+                return this.authState;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getClientOutdated() {
+                return this.clientOutdated;
             }
 
             public final boolean getClientOutdated() {
                 return this.clientOutdated;
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final String getGuildTemplateCode() {
                 return this.guildTemplateCode;
+            }
+
+            public final String getGuildTemplateCode() {
+                return this.guildTemplateCode;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIncomingCall() {
+                return this.incomingCall;
             }
 
             public final boolean getIncomingCall() {
                 return this.incomingCall;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getInitialized() {
                 return this.initialized;
+            }
+
+            public final boolean getInitialized() {
+                return this.initialized;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final StoreInviteSettings.InviteCode getInviteCode() {
+                return this.inviteCode;
             }
 
             public final StoreInviteSettings.InviteCode getInviteCode() {
                 return this.inviteCode;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsInitializedForAuthedUser() {
+                return this.isInitializedForAuthedUser;
+            }
+
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final NavigationTab getNavigationTab() {
                 return this.navigationTab;
+            }
+
+            public final NavigationTab getNavigationTab() {
+                return this.navigationTab;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final StoreNotices.Notice getNotice() {
+                return this.notice;
             }
 
             public final StoreNotices.Notice getNotice() {
                 return this.notice;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final StoreNux.NuxState getNuxState() {
                 return this.nuxState;
+            }
+
+            public final StoreNux.NuxState getNuxState() {
+                return this.nuxState;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final Uri getOAuthUri() {
+                return this.oAuthUri;
             }
 
             public final Uri getOAuthUri() {
                 return this.oAuthUri;
             }
 
+            /* JADX INFO: renamed from: component11, reason: from getter */
             public final AgeGate getShouldShowAgeGate() {
                 return this.shouldShowAgeGate;
             }
 
+            public final AgeGate getShouldShowAgeGate() {
+                return this.shouldShowAgeGate;
+            }
+
+            /* JADX INFO: renamed from: component14, reason: from getter */
             public final boolean getUserHasPhone() {
                 return this.userHasPhone;
+            }
+
+            public final boolean getUserHasPhone() {
+                return this.userHasPhone;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final RequiredAction getUserRequiredAction() {
+                return this.userRequiredAction;
             }
 
             public final RequiredAction getUserRequiredAction() {
@@ -354,6 +354,26 @@ public final class StoreNavigation {
             this.noticeHandler = C6281x4890bed1.INSTANCE;
         }
 
+        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getAgeGateNavHandler() {
+            return this.ageGateNavHandler;
+        }
+
+        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getAuthNavHandler() {
+            return this.authNavHandler;
+        }
+
+        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getCallNavHandler() {
+            return this.callNavHandler;
+        }
+
+        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getClientInitializedNavHandler() {
+            return this.clientInitializedNavHandler;
+        }
+
+        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getClientOutdatedNavHandler() {
+            return this.clientOutdatedNavHandler;
+        }
+
         private final Observable<ModelGlobalNavigation> getGlobalNavigationData() {
             Observable<StoreNux.NuxState> nuxState = this.stream.getNux().getNuxState();
             Observable<Boolean> observableIsInitializedObservable = StoreStream.INSTANCE.isInitializedObservable();
@@ -382,32 +402,6 @@ public final class StoreNavigation {
             return observableM11112r;
         }
 
-        private final void handleGlobalNavigationData(AppActivity appActivity, ModelGlobalNavigation modelGlobalNavigation) {
-            Iterator it = C12147n.listOf((Object[]) new Function2[]{this.clientInitializedNavHandler, this.clientOutdatedNavHandler, this.authNavHandler, this.tosNavHandler, this.ageGateNavHandler, this.verificationNavHandler, this.callNavHandler, this.inviteCodeNavHandler, this.guildTemplateCodeNavHandler, this.nuxStateNavHandler, this.oAuthStateHandler, this.noticeHandler}).iterator();
-            while (it.hasNext() && !((Boolean) ((Function2) it.next()).invoke(appActivity, modelGlobalNavigation)).booleanValue()) {
-            }
-        }
-
-        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getAgeGateNavHandler() {
-            return this.ageGateNavHandler;
-        }
-
-        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getAuthNavHandler() {
-            return this.authNavHandler;
-        }
-
-        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getCallNavHandler() {
-            return this.callNavHandler;
-        }
-
-        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getClientInitializedNavHandler() {
-            return this.clientInitializedNavHandler;
-        }
-
-        public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getClientOutdatedNavHandler() {
-            return this.clientOutdatedNavHandler;
-        }
-
         public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getGuildTemplateCodeNavHandler() {
             return this.guildTemplateCodeNavHandler;
         }
@@ -434,6 +428,12 @@ public final class StoreNavigation {
 
         public final Function2<AppActivity, ModelGlobalNavigation, Boolean> getVerificationNavHandler() {
             return this.verificationNavHandler;
+        }
+
+        private final void handleGlobalNavigationData(AppActivity appActivity, ModelGlobalNavigation modelGlobalNavigation) {
+            Iterator it = C12147n.listOf((Object[]) new Function2[]{this.clientInitializedNavHandler, this.clientOutdatedNavHandler, this.authNavHandler, this.tosNavHandler, this.ageGateNavHandler, this.verificationNavHandler, this.callNavHandler, this.inviteCodeNavHandler, this.guildTemplateCodeNavHandler, this.nuxStateNavHandler, this.oAuthStateHandler, this.noticeHandler}).iterator();
+            while (it.hasNext() && !((Boolean) ((Function2) it.next()).invoke(appActivity, modelGlobalNavigation)).booleanValue()) {
+            }
         }
 
         /* JADX WARN: Code duplicated, block: B:9:0x0031  */
@@ -496,13 +496,6 @@ public final class StoreNavigation {
         this.rightPanelStateSubject = BehaviorSubject.m11130l0(c5578a);
     }
 
-    public static /* synthetic */ void setNavigationPanelAction$default(StoreNavigation storeNavigation, PanelAction panelAction, PanelLayout panelLayout, int i, Object obj) {
-        if ((i & 2) != 0) {
-            panelLayout = null;
-        }
-        storeNavigation.setNavigationPanelAction(panelAction, panelLayout);
-    }
-
     public final Observable<PanelAction> getNavigationPanelAction() {
         Observable<PanelAction> observableM11112r = ObservableExtensionsKt.computationLatest(this.navigationPanelActionSubject).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "navigationPanelActionSub…  .distinctUntilChanged()");
@@ -544,6 +537,13 @@ public final class StoreNavigation {
     public final void setLeftPanelState(PanelState panelState) {
         C12238m.checkNotNullParameter(panelState, "panelState");
         this.leftPanelStateSubject.onNext(panelState);
+    }
+
+    public static /* synthetic */ void setNavigationPanelAction$default(StoreNavigation storeNavigation, PanelAction panelAction, PanelLayout panelLayout, int i, Object obj) {
+        if ((i & 2) != 0) {
+            panelLayout = null;
+        }
+        storeNavigation.setNavigationPanelAction(panelAction, panelLayout);
     }
 
     public final void setNavigationPanelAction(PanelAction panelAction) {

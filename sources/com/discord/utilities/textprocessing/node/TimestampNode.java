@@ -26,7 +26,7 @@ public final class TimestampNode<T extends RenderContext> extends Node<T> {
     public interface RenderContext extends BasicRenderContext {
 
         /* JADX INFO: compiled from: TimestampNode.kt */
-        public static final class DefaultImpls {
+        public final class DefaultImpls {
             public static void onTimestampClicked(RenderContext renderContext, CharSequence charSequence) {
                 C12238m.checkNotNullParameter(charSequence, "full");
             }

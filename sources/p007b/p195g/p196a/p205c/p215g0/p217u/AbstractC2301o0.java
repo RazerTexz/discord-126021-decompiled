@@ -22,7 +22,7 @@ public abstract class AbstractC2301o0 {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.o0$a */
     /* JADX INFO: compiled from: StdKeySerializers.java */
-    public static class a extends AbstractC2305q0<Object> {
+    public class a extends AbstractC2305q0<Object> {
         public final int _typeId;
 
         public a(int i, Class<?> cls) {
@@ -83,7 +83,7 @@ public abstract class AbstractC2301o0 {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.o0$b */
     /* JADX INFO: compiled from: StdKeySerializers.java */
-    public static class b extends AbstractC2305q0<Object> {
+    public class b extends AbstractC2305q0<Object> {
 
         /* JADX INFO: renamed from: k */
         public transient AbstractC2262l f4859k;
@@ -122,7 +122,7 @@ public abstract class AbstractC2301o0 {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.o0$c */
     /* JADX INFO: compiled from: StdKeySerializers.java */
-    public static class c extends AbstractC2305q0<Object> {
+    public class c extends AbstractC2305q0<Object> {
         public final C2344f _values;
 
         public c(Class<?> cls, C2344f c2344f) {
@@ -148,7 +148,7 @@ public abstract class AbstractC2301o0 {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.o0$d */
     /* JADX INFO: compiled from: StdKeySerializers.java */
-    public static class d extends AbstractC2305q0<Object> {
+    public class d extends AbstractC2305q0<Object> {
         public d() {
             super(String.class, false);
         }

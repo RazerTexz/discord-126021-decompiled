@@ -34,24 +34,6 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
         this.analyticsSchemaTypeName = "impression_enable_creator_monetization_create_request_landing";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -63,6 +45,18 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
         return C12238m.areEqual(this.isEligible, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isEligible) && C12238m.areEqual(this.isApplicationPending, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isApplicationPending) && C12238m.areEqual(this.monetizationRequirementsJson, trackImpressionEnableCreatorMonetizationCreateRequestLanding.monetizationRequirementsJson);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Boolean bool = this.isEligible;
         int iHashCode = (bool != null ? bool.hashCode() : 0) * 31;
@@ -70,6 +64,12 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
         int iHashCode2 = (iHashCode + (bool2 != null ? bool2.hashCode() : 0)) * 31;
         CharSequence charSequence = this.monetizationRequirementsJson;
         return iHashCode2 + (charSequence != null ? charSequence.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

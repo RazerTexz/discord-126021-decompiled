@@ -24,6 +24,10 @@ public final /* data */ class AutocompleteInputModel {
         this.applicationCommands = autocompleteApplicationCommands;
     }
 
+    public final Map<LeadingIdentifier, Set<Autocompletable>> component2() {
+        return this.autocompletables;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AutocompleteInputModel copy$default(AutocompleteInputModel autocompleteInputModel, CharSequence charSequence, Map map, AutocompleteApplicationCommands autocompleteApplicationCommands, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -36,20 +40,6 @@ public final /* data */ class AutocompleteInputModel {
             autocompleteApplicationCommands = autocompleteInputModel.applicationCommands;
         }
         return autocompleteInputModel.copy(charSequence, map, autocompleteApplicationCommands);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CharSequence getInput() {
-        return this.input;
-    }
-
-    public final Map<LeadingIdentifier, Set<Autocompletable>> component2() {
-        return this.autocompletables;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final AutocompleteApplicationCommands getApplicationCommands() {
-        return this.applicationCommands;
     }
 
     public final AutocompleteInputModel copy(CharSequence input, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> autocompletables, AutocompleteApplicationCommands applicationCommands) {
@@ -70,12 +60,22 @@ public final /* data */ class AutocompleteInputModel {
         return C12238m.areEqual(this.input, autocompleteInputModel.input) && C12238m.areEqual(this.autocompletables, autocompleteInputModel.autocompletables) && C12238m.areEqual(this.applicationCommands, autocompleteInputModel.applicationCommands);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final AutocompleteApplicationCommands getApplicationCommands() {
+        return this.applicationCommands;
+    }
+
     public final AutocompleteApplicationCommands getApplicationCommands() {
         return this.applicationCommands;
     }
 
     public final Map<LeadingIdentifier, Set<Autocompletable>> getAutocompletables() {
         return this.autocompletables;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CharSequence getInput() {
+        return this.input;
     }
 
     public final CharSequence getInput() {

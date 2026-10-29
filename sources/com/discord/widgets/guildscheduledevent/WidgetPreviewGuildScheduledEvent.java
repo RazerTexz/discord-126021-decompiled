@@ -66,12 +66,12 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetPreviewGuildScheduledEvent.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPreviewGuildScheduledEventBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final String EXTRA_EVENT_CREATED = "INTENT_EXTRA_EVENT_CREATED";
     private static final String EXTRA_EVENT_MODEL = "INTENT_EXTRA_EVENT_MODEL";
     private static final String EXTRA_EXISTING_EVENT_DATA = "INTENT_EXTRA_EXISTING_EVENT_DATA";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int RESULT_QUIT = 2;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -83,8 +83,28 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$onResume$1 */
     /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C89341 extends C12236k implements Function1<PreviewGuildScheduledEventViewModel.ViewState, Unit> {
+        public C89341(WidgetPreviewGuildScheduledEvent widgetPreviewGuildScheduledEvent) {
+            super(1, widgetPreviewGuildScheduledEvent, WidgetPreviewGuildScheduledEvent.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/PreviewGuildScheduledEventViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(PreviewGuildScheduledEventViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(PreviewGuildScheduledEventViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetPreviewGuildScheduledEvent) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
         public enum Action {
@@ -93,7 +113,7 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-        public static final /* data */ class ExistingEventData implements Serializable {
+        public final /* data */ class ExistingEventData implements Serializable {
             private final Action action;
             private final long guildScheduledEventId;
 
@@ -113,16 +133,6 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
                 return existingEventData.copy(j, action);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildScheduledEventId() {
-                return this.guildScheduledEventId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Action getAction() {
-                return this.action;
-            }
-
             public final ExistingEventData copy(long guildScheduledEventId, Action action) {
                 C12238m.checkNotNullParameter(action, "action");
                 return new ExistingEventData(guildScheduledEventId, action);
@@ -139,8 +149,18 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
                 return this.guildScheduledEventId == existingEventData.guildScheduledEventId && C12238m.areEqual(this.action, existingEventData.action);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final Action getAction() {
                 return this.action;
+            }
+
+            public final Action getAction() {
+                return this.action;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildScheduledEventId() {
+                return this.guildScheduledEventId;
             }
 
             public final long getGuildScheduledEventId() {
@@ -164,14 +184,6 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
         }
 
         private Companion() {
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ActivityResultLauncher registerForResult$default(Companion companion, Fragment fragment, Function3 function3, Function0 function0, int i, Object obj) {
-            if ((i & 4) != 0) {
-                function0 = null;
-            }
-            return companion.registerForResult(fragment, function3, function0);
         }
 
         public final ActivityResultLauncher<Intent> createJoinOnStartActivityRegistration(final Fragment fragment, final Function0<Unit> onEventStarted) {
@@ -219,6 +231,14 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
             }
         }
 
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ActivityResultLauncher registerForResult$default(Companion companion, Fragment fragment, Function3 function3, Function0 function0, int i, Object obj) {
+            if ((i & 4) != 0) {
+                function0 = null;
+            }
+            return companion.registerForResult(fragment, function3, function0);
+        }
+
         public final ActivityResultLauncher<Intent> registerForResult(Fragment fragment, final Function3<? super Long, ? super Long, ? super Boolean, Unit> onEventCreated, final Function0<Unit> onQuit) {
             C12238m.checkNotNullParameter(fragment, "fragment");
             C12238m.checkNotNullParameter(onEventCreated, "onEventCreated");
@@ -259,26 +279,6 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
             $EnumSwitchMapping$0 = iArr;
             iArr[Companion.Action.START_EVENT.ordinal()] = 1;
             iArr[Companion.Action.EDIT_EVENT.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$onResume$1 */
-    /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-    public static final /* synthetic */ class C89341 extends C12236k implements Function1<PreviewGuildScheduledEventViewModel.ViewState, Unit> {
-        public C89341(WidgetPreviewGuildScheduledEvent widgetPreviewGuildScheduledEvent) {
-            super(1, widgetPreviewGuildScheduledEvent, WidgetPreviewGuildScheduledEvent.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/PreviewGuildScheduledEventViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(PreviewGuildScheduledEventViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(PreviewGuildScheduledEventViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetPreviewGuildScheduledEvent) this.receiver).configureUi(viewState);
         }
     }
 
@@ -440,7 +440,7 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$onViewBound$3$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Long, Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Long, Unit> {
                 public AnonymousClass2() {
                     super(1);
                 }
@@ -484,13 +484,13 @@ public final class WidgetPreviewGuildScheduledEvent extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$configureTextForCreation$2 */
     /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-    public static final class C89332 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C89332 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ String $channelName;
         public final /* synthetic */ PreviewGuildScheduledEventViewModel.ViewState.Initialized $viewState;
 
         /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$configureTextForCreation$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetPreviewGuildScheduledEvent.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

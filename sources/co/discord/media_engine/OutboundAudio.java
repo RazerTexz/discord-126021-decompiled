@@ -24,16 +24,6 @@ public final /* data */ class OutboundAudio {
         return outboundAudio.copy(j, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getPacketsSent() {
-        return this.packetsSent;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getPacketsLost() {
-        return this.packetsLost;
-    }
-
     public final OutboundAudio copy(long packetsSent, int packetsLost) {
         return new OutboundAudio(packetsSent, packetsLost);
     }
@@ -49,8 +39,18 @@ public final /* data */ class OutboundAudio {
         return this.packetsSent == outboundAudio.packetsSent && this.packetsLost == outboundAudio.packetsLost;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getPacketsLost() {
         return this.packetsLost;
+    }
+
+    public final int getPacketsLost() {
+        return this.packetsLost;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getPacketsSent() {
+        return this.packetsSent;
     }
 
     public final long getPacketsSent() {

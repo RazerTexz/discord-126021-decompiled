@@ -85,7 +85,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettings.kt */
-    public static final /* synthetic */ class C96161 extends C12236k implements Function1<SettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C96161 extends C12236k implements Function1<SettingsViewModel.ViewState, Unit> {
         public C96161(WidgetSettings widgetSettings) {
             super(1, widgetSettings, WidgetSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/SettingsViewModel$ViewState;)V", 0);
         }
@@ -105,7 +105,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$showLogoutDialog$1 */
     /* JADX INFO: compiled from: WidgetSettings.kt */
-    public static final class C96171 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C96171 extends AbstractC12240o implements Function1<View, Unit> {
         public static final C96171 INSTANCE = new C96171();
 
         public C96171() {
@@ -251,12 +251,6 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         return (UserProfileHeaderViewModel) this.viewModelUserProfileHeader.getValue();
     }
 
-    private final void showLogoutDialog(Context context) {
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(context).setTitle(C5419R.string.logout).setMessage(C5419R.string.user_settings_confirm_logout).setDialogAttrTheme(C5419R.attr.notice_theme_positive_red).setPositiveButton(C5419R.string.logout, C96171.INSTANCE), C5419R.string.cancel, (Function1) null, 2, (Object) null).show(parentFragmentManager);
-    }
-
     @Override // com.discord.widgets.tabs.OnTabSelectedListener
     public void onTabSelected() {
         configureToolbar();
@@ -296,7 +290,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$3$1 */
             /* JADX INFO: compiled from: WidgetSettings.kt */
-            public static final class C96111 extends AbstractC12240o implements Function0<Unit> {
+            public final class C96111 extends AbstractC12240o implements Function0<Unit> {
                 public C96111() {
                     super(0);
                 }
@@ -490,7 +484,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$6$1 */
             /* JADX INFO: compiled from: WidgetSettings.kt */
-            public static final class C96121 extends AbstractC12240o implements Function1<Boolean, Unit> {
+            public final class C96121 extends AbstractC12240o implements Function1<Boolean, Unit> {
                 public C96121() {
                     super(1);
                 }
@@ -529,7 +523,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$6$2 */
             /* JADX INFO: compiled from: WidgetSettings.kt */
-            public static final class C96132 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class C96132 extends AbstractC12240o implements Function1<Void, Unit> {
                 public final /* synthetic */ C96121 $updateUploadDebugLogsUI$1;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -553,7 +547,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$6$3 */
             /* JADX INFO: compiled from: WidgetSettings.kt */
-            public static final class C96143 extends AbstractC12240o implements Function1<Error, Unit> {
+            public final class C96143 extends AbstractC12240o implements Function1<Error, Unit> {
                 public final /* synthetic */ C96121 $updateUploadDebugLogsUI$1;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -577,7 +571,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$6$4 */
             /* JADX INFO: compiled from: WidgetSettings.kt */
-            public static final class C96154 extends AbstractC12240o implements Function0<Unit> {
+            public final class C96154 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ C96121 $updateUploadDebugLogsUI$1;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -656,5 +650,11 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         C12238m.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSettingsProfileHeaderView");
         companion.bind(userProfileHeaderView, this, getViewModelUserProfileHeader().observeViewState());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96161(this));
+    }
+
+    private final void showLogoutDialog(Context context) {
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(context).setTitle(C5419R.string.logout).setMessage(C5419R.string.user_settings_confirm_logout).setDialogAttrTheme(C5419R.attr.notice_theme_positive_red).setPositiveButton(C5419R.string.logout, C96171.INSTANCE), C5419R.string.cancel, (Function1) null, 2, (Object) null).show(parentFragmentManager);
     }
 }

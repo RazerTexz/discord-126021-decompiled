@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChangeLogCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence changeLogId = null;
-    private final Float secondsOpen = null;
-    private final Float maxScrolledPercentage = null;
     private final CharSequence ctaType = null;
+    private final Float maxScrolledPercentage = null;
+    private final Float secondsOpen = null;
     private final CharSequence target = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "change_log_cta_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
         }
         TrackChangeLogCtaClicked trackChangeLogCtaClicked = (TrackChangeLogCtaClicked) other;
         return C12238m.areEqual(this.changeLogId, trackChangeLogCtaClicked.changeLogId) && C12238m.areEqual(this.secondsOpen, trackChangeLogCtaClicked.secondsOpen) && C12238m.areEqual(this.maxScrolledPercentage, trackChangeLogCtaClicked.maxScrolledPercentage) && C12238m.areEqual(this.ctaType, trackChangeLogCtaClicked.ctaType) && C12238m.areEqual(this.target, trackChangeLogCtaClicked.target);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

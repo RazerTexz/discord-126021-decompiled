@@ -15,8 +15,8 @@ import androidx.core.widget.TextViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatCheckedTextView extends CheckedTextView {
-    private static final int[] TINT_ATTRS = {R.attr.checkMark};
     private final AppCompatTextHelper mTextHelper;
+    private static final int[] TINT_ATTRS = {R.attr.checkMark};
 
     public AppCompatCheckedTextView(@NonNull Context context) {
         this(context, null);

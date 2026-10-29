@@ -97,62 +97,9 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void enqueue(long guildScheduledEventId) {
-            StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            String strM877t = C1643a.m877t("EVENTDETAILS-", guildScheduledEventId);
-            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C8857x72336d71(guildScheduledEventId, notices, strM877t), 150, null));
-        }
-
-        public final void handleInvalidEvent(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0876m.m169g(context, C5419R.string.inaccessible_channel_link_title, 0, null, 12);
-        }
-
-        public final void show(FragmentManager fragmentManager, GuildScheduledEventDetailsArgs args) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(args, "args");
-            WidgetGuildScheduledEventDetailsBottomSheet widgetGuildScheduledEventDetailsBottomSheet = new WidgetGuildScheduledEventDetailsBottomSheet();
-            widgetGuildScheduledEventDetailsBottomSheet.setArguments(C1460d.m514e2(args));
-            widgetGuildScheduledEventDetailsBottomSheet.show(fragmentManager, WidgetGuildScheduledEventDetailsBottomSheet.class.getName());
-        }
-
-        public final void showForDirectory(FragmentManager fragmentManager, long guildScheduledEventId, long hubGuildId, long directoryChannelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            show(fragmentManager, new GuildScheduledEventDetailsArgs(guildScheduledEventId, Long.valueOf(hubGuildId), Long.valueOf(directoryChannelId), GuildScheduledEventDetailsSource.Directory));
-        }
-
-        public final void showForGuild(FragmentManager fragmentManager, long guildScheduledEventId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            show(fragmentManager, new GuildScheduledEventDetailsArgs(guildScheduledEventId, null, null, null, 14, null));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            EventDetailsRsvpUsersFetchState.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[EventDetailsRsvpUsersFetchState.LOADING.ordinal()] = 1;
-            iArr[EventDetailsRsvpUsersFetchState.EMPTY.ordinal()] = 2;
-            iArr[EventDetailsRsvpUsersFetchState.ERROR.ordinal()] = 3;
-            iArr[EventDetailsRsvpUsersFetchState.SUCCESS.ordinal()] = 4;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$configureSegmentControl$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-    public static final class C88591 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C88591 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C88591() {
             super(1);
         }
@@ -170,12 +117,12 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$configureUi$4 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-    public static final class C88604 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C88604 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ UserGuildMember $creator;
 
         /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$configureUi$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -224,7 +171,7 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-    public static final /* synthetic */ class C88721 extends C12236k implements Function1<GuildScheduledEventDetailsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C88721 extends C12236k implements Function1<GuildScheduledEventDetailsViewModel.ViewState, Unit> {
         public C88721(WidgetGuildScheduledEventDetailsBottomSheet widgetGuildScheduledEventDetailsBottomSheet) {
             super(1, widgetGuildScheduledEventDetailsBottomSheet, WidgetGuildScheduledEventDetailsBottomSheet.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventDetailsViewModel$ViewState;)V", 0);
         }
@@ -244,7 +191,7 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-    public static final class C88731 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C88731 extends AbstractC12240o implements Function1<Long, Unit> {
         public C88731() {
             super(1);
         }
@@ -260,6 +207,59 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
             FragmentManager parentFragmentManager = WidgetGuildScheduledEventDetailsBottomSheet.this.getParentFragmentManager();
             C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             WidgetUserSheet.Companion.show$default(companion, j, null, parentFragmentManager, null, null, null, null, 122, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void enqueue(long guildScheduledEventId) {
+            StoreNotices notices = StoreStream.INSTANCE.getNotices();
+            String strM877t = C1643a.m877t("EVENTDETAILS-", guildScheduledEventId);
+            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C8857x72336d71(guildScheduledEventId, notices, strM877t), 150, null));
+        }
+
+        public final void handleInvalidEvent(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0876m.m169g(context, C5419R.string.inaccessible_channel_link_title, 0, null, 12);
+        }
+
+        public final void show(FragmentManager fragmentManager, GuildScheduledEventDetailsArgs args) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(args, "args");
+            WidgetGuildScheduledEventDetailsBottomSheet widgetGuildScheduledEventDetailsBottomSheet = new WidgetGuildScheduledEventDetailsBottomSheet();
+            widgetGuildScheduledEventDetailsBottomSheet.setArguments(C1460d.m514e2(args));
+            widgetGuildScheduledEventDetailsBottomSheet.show(fragmentManager, WidgetGuildScheduledEventDetailsBottomSheet.class.getName());
+        }
+
+        public final void showForDirectory(FragmentManager fragmentManager, long guildScheduledEventId, long hubGuildId, long directoryChannelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            show(fragmentManager, new GuildScheduledEventDetailsArgs(guildScheduledEventId, Long.valueOf(hubGuildId), Long.valueOf(directoryChannelId), GuildScheduledEventDetailsSource.Directory));
+        }
+
+        public final void showForGuild(FragmentManager fragmentManager, long guildScheduledEventId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            show(fragmentManager, new GuildScheduledEventDetailsArgs(guildScheduledEventId, null, null, null, 14, null));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            EventDetailsRsvpUsersFetchState.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[EventDetailsRsvpUsersFetchState.LOADING.ordinal()] = 1;
+            iArr[EventDetailsRsvpUsersFetchState.EMPTY.ordinal()] = 2;
+            iArr[EventDetailsRsvpUsersFetchState.ERROR.ordinal()] = 3;
+            iArr[EventDetailsRsvpUsersFetchState.SUCCESS.ordinal()] = 4;
         }
     }
 
@@ -450,13 +450,17 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
         return (GuildScheduledEventDetailsArgs) this.args.getValue();
     }
 
+    public final WidgetGuildScheduledEventDetailsBottomSheetBinding getBinding() {
+        return (WidgetGuildScheduledEventDetailsBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     private final ButtonConfiguration getButtonConfiguration(final GuildScheduledEventDetailsViewModel.ViewState.Initialized initialized) {
         if (getArgs().getSource() == GuildScheduledEventDetailsSource.Directory) {
             return new DirectoryButtonConfiguration(initialized.getGuildScheduledEvent(), initialized.isInGuild(), initialized.isRsvped(), true, new View.OnClickListener() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet.getButtonConfiguration.1
 
                 /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$getButtonConfiguration$1$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }
@@ -538,7 +542,7 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
 
             /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$getButtonConfiguration$10$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -579,18 +583,6 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
         });
     }
 
-    private final GuildScheduledEventExternalLocationParser getLocationParser() {
-        return (GuildScheduledEventExternalLocationParser) this.locationParser.getValue();
-    }
-
-    private final GuildScheduledEventDetailsViewModel getViewModel() {
-        return (GuildScheduledEventDetailsViewModel) this.viewModel.getValue();
-    }
-
-    public final WidgetGuildScheduledEventDetailsBottomSheetBinding getBinding() {
-        return (WidgetGuildScheduledEventDetailsBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_guild_scheduled_event_details_bottom_sheet;
@@ -598,6 +590,14 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet extends AppBottom
 
     public final GuildScheduledEventDescriptionParser getDescriptionParser() {
         return (GuildScheduledEventDescriptionParser) this.descriptionParser.getValue();
+    }
+
+    private final GuildScheduledEventExternalLocationParser getLocationParser() {
+        return (GuildScheduledEventExternalLocationParser) this.locationParser.getValue();
+    }
+
+    private final GuildScheduledEventDetailsViewModel getViewModel() {
+        return (GuildScheduledEventDetailsViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

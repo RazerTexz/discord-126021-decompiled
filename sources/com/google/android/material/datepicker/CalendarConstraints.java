@@ -11,7 +11,6 @@ import p007b.p225i.p226a.p341g.p345d.C4401l;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class CalendarConstraints implements Parcelable {
-    public static final Parcelable.Creator<CalendarConstraints> CREATOR = new C10878a();
 
     @NonNull
     private final Month end;
@@ -26,13 +25,71 @@ public final class CalendarConstraints implements Parcelable {
     @NonNull
     private final DateValidator validator;
     private final int yearSpan;
+    public static final Parcelable.Creator<CalendarConstraints> CREATOR = new C10878a();
 
-    public interface DateValidator extends Parcelable {
-        boolean isValid(long j);
+    public final class Builder {
+        private static final String DEEP_COPY_VALIDATOR_KEY = "DEEP_COPY_VALIDATOR_KEY";
+        private long end;
+        private Long openAt;
+        private long start;
+        private DateValidator validator;
+        public static final long DEFAULT_START = C4401l.m6068a(Month.m9131g(1900, 0).f20989o);
+        public static final long DEFAULT_END = C4401l.m6068a(Month.m9131g(2100, 11).f20989o);
+
+        public Builder() {
+            this.start = DEFAULT_START;
+            this.end = DEFAULT_END;
+            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
+        }
+
+        @NonNull
+        public CalendarConstraints build() {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(DEEP_COPY_VALIDATOR_KEY, this.validator);
+            Month monthM9132h = Month.m9132h(this.start);
+            Month monthM9132h2 = Month.m9132h(this.end);
+            DateValidator dateValidator = (DateValidator) bundle.getParcelable(DEEP_COPY_VALIDATOR_KEY);
+            Long l = this.openAt;
+            return new CalendarConstraints(monthM9132h, monthM9132h2, dateValidator, l == null ? null : Month.m9132h(l.longValue()), null);
+        }
+
+        @NonNull
+        public Builder setEnd(long j) {
+            this.end = j;
+            return this;
+        }
+
+        @NonNull
+        public Builder setOpenAt(long j) {
+            this.openAt = Long.valueOf(j);
+            return this;
+        }
+
+        @NonNull
+        public Builder setStart(long j) {
+            this.start = j;
+            return this;
+        }
+
+        @NonNull
+        public Builder setValidator(@NonNull DateValidator dateValidator) {
+            this.validator = dateValidator;
+            return this;
+        }
+
+        public Builder(@NonNull CalendarConstraints calendarConstraints) {
+            this.start = DEFAULT_START;
+            this.end = DEFAULT_END;
+            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
+            this.start = calendarConstraints.start.f20989o;
+            this.end = calendarConstraints.end.f20989o;
+            this.openAt = Long.valueOf(calendarConstraints.openAt.f20989o);
+            this.validator = calendarConstraints.validator;
+        }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.CalendarConstraints$a */
-    public static class C10878a implements Parcelable.Creator<CalendarConstraints> {
+    public final class C10878a implements Parcelable.Creator<CalendarConstraints> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public CalendarConstraints createFromParcel(@NonNull Parcel parcel) {
@@ -44,6 +101,10 @@ public final class CalendarConstraints implements Parcelable {
         public CalendarConstraints[] newArray(int i) {
             return new CalendarConstraints[i];
         }
+    }
+
+    public interface DateValidator extends Parcelable {
+        boolean isValid(long j);
     }
 
     public /* synthetic */ CalendarConstraints(Month month, Month month2, DateValidator dateValidator, Month month3, C10878a c10878a) {
@@ -139,66 +200,5 @@ public final class CalendarConstraints implements Parcelable {
         }
         this.monthSpan = month.m9139o(month2) + 1;
         this.yearSpan = (month2.f20986l - month.f20986l) + 1;
-    }
-
-    public static final class Builder {
-        private static final String DEEP_COPY_VALIDATOR_KEY = "DEEP_COPY_VALIDATOR_KEY";
-        private long end;
-        private Long openAt;
-        private long start;
-        private DateValidator validator;
-        public static final long DEFAULT_START = C4401l.m6068a(Month.m9131g(1900, 0).f20989o);
-        public static final long DEFAULT_END = C4401l.m6068a(Month.m9131g(2100, 11).f20989o);
-
-        public Builder() {
-            this.start = DEFAULT_START;
-            this.end = DEFAULT_END;
-            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
-        }
-
-        @NonNull
-        public CalendarConstraints build() {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(DEEP_COPY_VALIDATOR_KEY, this.validator);
-            Month monthM9132h = Month.m9132h(this.start);
-            Month monthM9132h2 = Month.m9132h(this.end);
-            DateValidator dateValidator = (DateValidator) bundle.getParcelable(DEEP_COPY_VALIDATOR_KEY);
-            Long l = this.openAt;
-            return new CalendarConstraints(monthM9132h, monthM9132h2, dateValidator, l == null ? null : Month.m9132h(l.longValue()), null);
-        }
-
-        @NonNull
-        public Builder setEnd(long j) {
-            this.end = j;
-            return this;
-        }
-
-        @NonNull
-        public Builder setOpenAt(long j) {
-            this.openAt = Long.valueOf(j);
-            return this;
-        }
-
-        @NonNull
-        public Builder setStart(long j) {
-            this.start = j;
-            return this;
-        }
-
-        @NonNull
-        public Builder setValidator(@NonNull DateValidator dateValidator) {
-            this.validator = dateValidator;
-            return this;
-        }
-
-        public Builder(@NonNull CalendarConstraints calendarConstraints) {
-            this.start = DEFAULT_START;
-            this.end = DEFAULT_END;
-            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
-            this.start = calendarConstraints.start.f20989o;
-            this.end = calendarConstraints.end.f20989o;
-            this.openAt = Long.valueOf(calendarConstraints.openAt.f20989o);
-            this.validator = calendarConstraints.validator;
-        }
     }
 }

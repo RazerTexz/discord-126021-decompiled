@@ -6,9 +6,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPriceMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPriceMetadata {
+    private final CharSequence currency = null;
     private final Long price = null;
     private final Long regularPrice = null;
-    private final CharSequence currency = null;
 
     public boolean equals(Object other) {
         if (this == other) {

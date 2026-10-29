@@ -18,12 +18,6 @@ public final /* data */ class ApiGuildScheduledEventUserGuildMember {
     private final String premiumSince;
     private final List<Long> roles;
 
-    /* JADX INFO: renamed from: a */
-    public final GuildMember m7970a(User user, long guildId) {
-        C12238m.checkNotNullParameter(user, "user");
-        return new GuildMember(guildId, user, this.roles, this.nick, this.premiumSince, this.joinedAt, this.pending, null, Long.valueOf(user.getId()), this.avatar, null, null, null, 4096);
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -56,6 +50,12 @@ public final /* data */ class ApiGuildScheduledEventUserGuildMember {
         int i = (iHashCode4 + r2) * 31;
         String str3 = this.avatar;
         return i + (str3 != null ? str3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final GuildMember m7970a(User user, long guildId) {
+        C12238m.checkNotNullParameter(user, "user");
+        return new GuildMember(guildId, user, this.roles, this.nick, this.premiumSince, this.joinedAt, this.pending, null, Long.valueOf(user.getId()), this.avatar, null, null, null, 4096);
     }
 
     public String toString() {

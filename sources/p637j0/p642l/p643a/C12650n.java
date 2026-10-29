@@ -33,9 +33,55 @@ public final class C12650n<T, R> implements Observable.InterfaceC13005a<R> {
     /* JADX INFO: renamed from: l */
     public final int f26918l;
 
+    /* JADX INFO: renamed from: j0.l.a.n$b */
+    /* JADX INFO: compiled from: OnSubscribeFlattenIterable.java */
+    public final class b<T, R> implements Observable.InterfaceC13005a<R> {
+
+        /* JADX INFO: renamed from: j */
+        public final T f26929j;
+
+        /* JADX INFO: renamed from: k */
+        public final InterfaceC12589b<? super T, ? extends Iterable<? extends R>> f26930k;
+
+        public b(T t, InterfaceC12589b<? super T, ? extends Iterable<? extends R>> interfaceC12589b) {
+            this.f26929j = t;
+            this.f26930k = interfaceC12589b;
+        }
+
+        @Override // p658rx.functions.Action1
+        public void call(Object obj) {
+            Subscriber subscriber = (Subscriber) obj;
+            try {
+                Iterator<? extends R> it = this.f26930k.call(this.f26929j).iterator();
+                if (it.hasNext()) {
+                    subscriber.setProducer(new C12662q.a(subscriber, it));
+                } else {
+                    subscriber.onCompleted();
+                }
+            } catch (Throwable th) {
+                C3404f.m4329p1(th, subscriber, this.f26929j);
+            }
+        }
+    }
+
+    public C12650n(Observable<? extends T> observable, InterfaceC12589b<? super T, ? extends Iterable<? extends R>> interfaceC12589b, int i) {
+        this.f26916j = observable;
+        this.f26917k = interfaceC12589b;
+        this.f26918l = i;
+    }
+
+    @Override // p658rx.functions.Action1
+    public void call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        a aVar = new a(subscriber, this.f26917k, this.f26918l);
+        subscriber.add(aVar);
+        subscriber.setProducer(new C12646m(this, aVar));
+        this.f26916j.m11107i0(aVar);
+    }
+
     /* JADX INFO: renamed from: j0.l.a.n$a */
     /* JADX INFO: compiled from: OnSubscribeFlattenIterable.java */
-    public static final class a<T, R> extends Subscriber<T> {
+    public final class a<T, R> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super R> f26919j;
@@ -293,51 +339,5 @@ public final class C12650n<T, R> implements Observable.InterfaceC13005a<R> {
                 onError(new MissingBackpressureException());
             }
         }
-    }
-
-    /* JADX INFO: renamed from: j0.l.a.n$b */
-    /* JADX INFO: compiled from: OnSubscribeFlattenIterable.java */
-    public static final class b<T, R> implements Observable.InterfaceC13005a<R> {
-
-        /* JADX INFO: renamed from: j */
-        public final T f26929j;
-
-        /* JADX INFO: renamed from: k */
-        public final InterfaceC12589b<? super T, ? extends Iterable<? extends R>> f26930k;
-
-        public b(T t, InterfaceC12589b<? super T, ? extends Iterable<? extends R>> interfaceC12589b) {
-            this.f26929j = t;
-            this.f26930k = interfaceC12589b;
-        }
-
-        @Override // p658rx.functions.Action1
-        public void call(Object obj) {
-            Subscriber subscriber = (Subscriber) obj;
-            try {
-                Iterator<? extends R> it = this.f26930k.call(this.f26929j).iterator();
-                if (it.hasNext()) {
-                    subscriber.setProducer(new C12662q.a(subscriber, it));
-                } else {
-                    subscriber.onCompleted();
-                }
-            } catch (Throwable th) {
-                C3404f.m4329p1(th, subscriber, this.f26929j);
-            }
-        }
-    }
-
-    public C12650n(Observable<? extends T> observable, InterfaceC12589b<? super T, ? extends Iterable<? extends R>> interfaceC12589b, int i) {
-        this.f26916j = observable;
-        this.f26917k = interfaceC12589b;
-        this.f26918l = i;
-    }
-
-    @Override // p658rx.functions.Action1
-    public void call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        a aVar = new a(subscriber, this.f26917k, this.f26918l);
-        subscriber.add(aVar);
-        subscriber.setProducer(new C12646m(this, aVar));
-        this.f26916j.m11107i0(aVar);
     }
 }

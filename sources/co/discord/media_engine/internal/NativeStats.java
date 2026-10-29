@@ -36,26 +36,6 @@ public final /* data */ class NativeStats {
         return nativeStats.copy(transport, outbound, screenshare, inboundArr);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Transport getTransport() {
-        return this.transport;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Outbound getOutbound() {
-        return this.outbound;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Screenshare getScreenshare() {
-        return this.screenshare;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Inbound[] getInbound() {
-        return this.inbound;
-    }
-
     public final NativeStats copy(Transport transport, Outbound outbound, Screenshare screenshare, Inbound[] inbound) {
         return new NativeStats(transport, outbound, screenshare, inbound);
     }
@@ -71,16 +51,36 @@ public final /* data */ class NativeStats {
         return C12238m.areEqual(this.transport, nativeStats.transport) && C12238m.areEqual(this.outbound, nativeStats.outbound) && C12238m.areEqual(this.screenshare, nativeStats.screenshare) && C12238m.areEqual(this.inbound, nativeStats.inbound);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Inbound[] getInbound() {
         return this.inbound;
+    }
+
+    public final Inbound[] getInbound() {
+        return this.inbound;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Outbound getOutbound() {
+        return this.outbound;
     }
 
     public final Outbound getOutbound() {
         return this.outbound;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Screenshare getScreenshare() {
         return this.screenshare;
+    }
+
+    public final Screenshare getScreenshare() {
+        return this.screenshare;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Transport getTransport() {
+        return this.transport;
     }
 
     public final Transport getTransport() {

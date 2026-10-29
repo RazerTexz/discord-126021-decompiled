@@ -22,7 +22,7 @@ public interface InterfaceC5100a extends IInterface {
 
     /* JADX INFO: renamed from: b.n.a.a.a$a */
     /* JADX INFO: compiled from: ISACallback.java */
-    public static abstract class a extends Binder implements InterfaceC5100a {
+    public abstract class a extends Binder implements InterfaceC5100a {
         public a() {
             attachInterface(this, "com.msc.sa.aidl.ISACallback");
         }

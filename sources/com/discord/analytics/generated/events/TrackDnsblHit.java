@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDnsblHit.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDnsblHit implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence provider = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "dnsbl_hit";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackDnsblHit) && C12238m.areEqual(this.provider, ((TrackDnsblHit) other).provider);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

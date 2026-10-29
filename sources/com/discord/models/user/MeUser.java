@@ -41,7 +41,7 @@ public final /* data */ class MeUser implements User {
     private final String username;
 
     /* JADX INFO: compiled from: MeUser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -246,37 +246,12 @@ public final /* data */ class MeUser implements User {
         return getId();
     }
 
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getMfaEnabled() {
-        return this.mfaEnabled;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final boolean getIsVerified() {
-        return this.isVerified;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public final int component13() {
         return getFlags();
     }
 
     public final int component14() {
         return getPublicFlags();
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final NsfwAllowance getNsfwAllowance() {
-        return this.nsfwAllowance;
     }
 
     public final String component17() {
@@ -313,11 +288,6 @@ public final /* data */ class MeUser implements User {
 
     public final PremiumTier component8() {
         return getPremiumTier();
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final String getEmail() {
-        return this.email;
     }
 
     public final MeUser copy(long id2, String username, String avatar, String banner, boolean isBot, boolean isSystemUser, int discriminator, PremiumTier premiumTier, String email, boolean mfaEnabled, boolean isVerified, String token, int flags, int publicFlags, String phoneNumber, NsfwAllowance nsfwAllowance, String bio, String bannerColor) {
@@ -363,6 +333,11 @@ public final /* data */ class MeUser implements User {
         return this.discriminator;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final String getEmail() {
+        return this.email;
+    }
+
     public final String getEmail() {
         return this.email;
     }
@@ -381,12 +356,44 @@ public final /* data */ class MeUser implements User {
         return this.id;
     }
 
+    @Override // com.discord.models.user.User
+    /* JADX INFO: renamed from: isBot, reason: from getter */
+    public boolean getIsBot() {
+        return this.isBot;
+    }
+
+    @Override // com.discord.models.user.User
+    /* JADX INFO: renamed from: isSystemUser, reason: from getter */
+    public boolean getIsSystemUser() {
+        return this.isSystemUser;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final boolean getIsVerified() {
+        return this.isVerified;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final boolean getMfaEnabled() {
         return this.mfaEnabled;
     }
 
+    public final boolean getMfaEnabled() {
+        return this.mfaEnabled;
+    }
+
+    /* JADX INFO: renamed from: component16, reason: from getter */
     public final NsfwAllowance getNsfwAllowance() {
         return this.nsfwAllowance;
+    }
+
+    public final NsfwAllowance getNsfwAllowance() {
+        return this.nsfwAllowance;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     public final String getPhoneNumber() {
@@ -401,6 +408,11 @@ public final /* data */ class MeUser implements User {
     @Override // com.discord.models.user.User
     public int getPublicFlags() {
         return this.publicFlags;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {
@@ -462,18 +474,6 @@ public final /* data */ class MeUser implements User {
         int iHashCode8 = (iHashCode7 + (bio != null ? bio.hashCode() : 0)) * 31;
         String bannerColor = getBannerColor();
         return iHashCode8 + (bannerColor != null ? bannerColor.hashCode() : 0);
-    }
-
-    @Override // com.discord.models.user.User
-    /* JADX INFO: renamed from: isBot, reason: from getter */
-    public boolean getIsBot() {
-        return this.isBot;
-    }
-
-    @Override // com.discord.models.user.User
-    /* JADX INFO: renamed from: isSystemUser, reason: from getter */
-    public boolean getIsSystemUser() {
-        return this.isSystemUser;
     }
 
     public final boolean isVerified() {

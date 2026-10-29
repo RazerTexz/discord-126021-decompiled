@@ -46,7 +46,7 @@ public final class C11489c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.c$a */
     /* JADX INFO: compiled from: AnnotationTypeQualifierResolver.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC11340c f23189a;
@@ -85,7 +85,7 @@ public final class C11489c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.c$b */
     /* JADX INFO: compiled from: AnnotationTypeQualifierResolver.kt */
-    public /* synthetic */ class b extends C12235j implements Function1<InterfaceC11330e, InterfaceC11340c> {
+    public final /* synthetic */ class b extends C12235j implements Function1<InterfaceC11330e, InterfaceC11340c> {
         public b(C11489c c11489c) {
             super(1, c11489c);
         }

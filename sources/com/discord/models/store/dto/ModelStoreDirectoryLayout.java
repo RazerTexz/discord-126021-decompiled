@@ -17,6 +17,10 @@ public final /* data */ class ModelStoreDirectoryLayout {
         this.allSkus = list;
     }
 
+    public final List<Long> component2() {
+        return this.allSkus;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelStoreDirectoryLayout copy$default(ModelStoreDirectoryLayout modelStoreDirectoryLayout, long j, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,15 +30,6 @@ public final /* data */ class ModelStoreDirectoryLayout {
             list = modelStoreDirectoryLayout.allSkus;
         }
         return modelStoreDirectoryLayout.copy(j, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    public final List<Long> component2() {
-        return this.allSkus;
     }
 
     public final ModelStoreDirectoryLayout copy(long id2, List<Long> allSkus) {
@@ -55,6 +50,11 @@ public final /* data */ class ModelStoreDirectoryLayout {
 
     public final List<Long> getAllSkus() {
         return this.allSkus;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {

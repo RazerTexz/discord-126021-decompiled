@@ -22,7 +22,7 @@ public class C2640f extends AbstractC2641g {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.f$a */
     /* JADX INFO: compiled from: AdaptiveTrackSelection.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final long f6184a;
@@ -49,14 +49,6 @@ public class C2640f extends AbstractC2641g {
         public int hashCode() {
             return (((int) this.f6184a) * 31) + ((int) this.f6185b);
         }
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.c3.f$b */
-    /* JADX INFO: compiled from: AdaptiveTrackSelection.java */
-    public static class b implements InterfaceC2644j.b {
-
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC2740g f6186a = InterfaceC2740g.f6720a;
     }
 
     public C2640f(C2556n0 c2556n0, int[] iArr, int i, InterfaceC2704f interfaceC2704f, long j, long j2, long j3, int i2, int i3, float f, float f2, List<a> list, InterfaceC2740g interfaceC2740g) {
@@ -104,5 +96,13 @@ public class C2640f extends AbstractC2641g {
     @Override // p007b.p225i.p226a.p242c.p255c3.AbstractC2641g, p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
     /* JADX INFO: renamed from: i */
     public void mo2726i(float f) {
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.c3.f$b */
+    /* JADX INFO: compiled from: AdaptiveTrackSelection.java */
+    public class b implements InterfaceC2644j.b {
+
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC2740g f6186a = InterfaceC2740g.f6720a;
     }
 }

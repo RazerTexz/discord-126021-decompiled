@@ -59,41 +59,6 @@ public final class C2420c extends AbstractC2418a {
         this.f5163l = str11;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: a */
-    public String mo2299a() {
-        return this.f5163l;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public String mo2300b() {
-        return this.f5161j;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public String mo2301c() {
-        return this.f5155d;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: d */
-    public String mo2302d() {
-        return this.f5159h;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: e */
-    public String mo2303e() {
-        return this.f5154c;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -146,27 +111,6 @@ public final class C2420c extends AbstractC2418a {
         return false;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: f */
-    public String mo2304f() {
-        return this.f5160i;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: g */
-    public String mo2305g() {
-        return this.f5158g;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
-    @Nullable
-    /* JADX INFO: renamed from: h */
-    public String mo2306h() {
-        return this.f5162k;
-    }
-
     public int hashCode() {
         Integer num = this.f5152a;
         int iHashCode = ((num == null ? 0 : num.hashCode()) ^ 1000003) * 1000003;
@@ -192,6 +136,62 @@ public final class C2420c extends AbstractC2418a {
         int iHashCode11 = (iHashCode10 ^ (str10 == null ? 0 : str10.hashCode())) * 1000003;
         String str11 = this.f5163l;
         return iHashCode11 ^ (str11 != null ? str11.hashCode() : 0);
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: a */
+    public String mo2299a() {
+        return this.f5163l;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public String mo2300b() {
+        return this.f5161j;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public String mo2301c() {
+        return this.f5155d;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: d */
+    public String mo2302d() {
+        return this.f5159h;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: e */
+    public String mo2303e() {
+        return this.f5154c;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: f */
+    public String mo2304f() {
+        return this.f5160i;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: g */
+    public String mo2305g() {
+        return this.f5158g;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a
+    @Nullable
+    /* JADX INFO: renamed from: h */
+    public String mo2306h() {
+        return this.f5162k;
     }
 
     @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2418a

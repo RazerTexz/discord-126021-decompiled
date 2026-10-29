@@ -50,42 +50,13 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final boolean hasUserSeenVoiceChannelOnboarding(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", false);
-        }
-
-        public final void markSeenUserVoiceChannelOnboarding(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", true).apply();
-        }
-
-        public final void show(FragmentManager fragmentManager, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetGuildCallOnboardingSheet widgetGuildCallOnboardingSheet = new WidgetGuildCallOnboardingSheet();
-            Bundle bundle = new Bundle();
-            bundle.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            widgetGuildCallOnboardingSheet.setArguments(bundle);
-            widgetGuildCallOnboardingSheet.show(fragmentManager, WidgetGuildCallOnboardingSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$configureUI$1 */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public static final class C105481 extends AbstractC12240o implements Function0<Unit> {
+    public final class C105481 extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$configureUI$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -124,7 +95,7 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public static final class C105491 extends AbstractC12240o implements Function1<WidgetGuildCallOnboardingSheetViewModel.ViewState, Unit> {
+    public final class C105491 extends AbstractC12240o implements Function1<WidgetGuildCallOnboardingSheetViewModel.ViewState, Unit> {
         public C105491() {
             super(1);
         }
@@ -144,7 +115,7 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$onResume$2 */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public static final class C105502 extends AbstractC12240o implements Function1<WidgetGuildCallOnboardingSheetViewModel.Event, Unit> {
+    public final class C105502 extends AbstractC12240o implements Function1<WidgetGuildCallOnboardingSheetViewModel.Event, Unit> {
         public C105502() {
             super(1);
         }
@@ -159,6 +130,35 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
         public final void invoke2(WidgetGuildCallOnboardingSheetViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetGuildCallOnboardingSheet.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean hasUserSeenVoiceChannelOnboarding(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", false);
+        }
+
+        public final void markSeenUserVoiceChannelOnboarding(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", true).apply();
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetGuildCallOnboardingSheet widgetGuildCallOnboardingSheet = new WidgetGuildCallOnboardingSheet();
+            Bundle bundle = new Bundle();
+            bundle.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            widgetGuildCallOnboardingSheet.setArguments(bundle);
+            widgetGuildCallOnboardingSheet.show(fragmentManager, WidgetGuildCallOnboardingSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -218,6 +218,11 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
         return (WidgetGuildCallOnboardingBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_call_onboarding;
+    }
+
     private final WidgetGuildCallOnboardingSheetViewModel getViewModel() {
         return (WidgetGuildCallOnboardingSheetViewModel) this.viewModel.getValue();
     }
@@ -246,11 +251,6 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
             }
             dismiss();
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_call_onboarding;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

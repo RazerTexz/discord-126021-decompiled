@@ -56,49 +56,6 @@ public class C1530f implements InterfaceC1537m, AbstractC1544a.b, InterfaceC1535
         abstractC1544aMo773a2.f2596a.add(this);
     }
 
-    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
-    /* JADX INFO: renamed from: a */
-    public void mo709a() {
-        this.f2500h = false;
-        this.f2495c.invalidateSelf();
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    /* JADX INFO: renamed from: b */
-    public void mo710b(List<InterfaceC1527c> list, List<InterfaceC1527c> list2) {
-        for (int i = 0; i < list.size(); i++) {
-            InterfaceC1527c interfaceC1527c = list.get(i);
-            if (interfaceC1527c instanceof C1543s) {
-                C1543s c1543s = (C1543s) interfaceC1527c;
-                if (c1543s.f2592c == 1) {
-                    this.f2499g.f2481a.add(c1543s);
-                    c1543s.f2591b.add(this);
-                }
-            }
-        }
-    }
-
-    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
-    /* JADX INFO: renamed from: c */
-    public void mo711c(C1567f c1567f, int i, List<C1567f> list, C1567f c1567f2) {
-        C1498f.m656f(c1567f, i, list, c1567f2, this);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
-    /* JADX INFO: renamed from: g */
-    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
-        if (t == InterfaceC1516o.f2429g) {
-            AbstractC1544a<?, PointF> abstractC1544a = this.f2496d;
-            C1503c<PointF> c1503c2 = abstractC1544a.f2600e;
-            abstractC1544a.f2600e = c1503c;
-        } else if (t == InterfaceC1516o.f2432j) {
-            AbstractC1544a<?, PointF> abstractC1544a2 = this.f2497e;
-            C1503c<PointF> c1503c3 = abstractC1544a2.f2600e;
-            abstractC1544a2.f2600e = c1503c;
-        }
-    }
-
     @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
     public String getName() {
         return this.f2494b;
@@ -151,5 +108,48 @@ public class C1530f implements InterfaceC1537m, AbstractC1544a.b, InterfaceC1535
         this.f2499g.m715a(this.f2493a);
         this.f2500h = true;
         return this.f2493a;
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
+    /* JADX INFO: renamed from: a */
+    public void mo709a() {
+        this.f2500h = false;
+        this.f2495c.invalidateSelf();
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    /* JADX INFO: renamed from: b */
+    public void mo710b(List<InterfaceC1527c> list, List<InterfaceC1527c> list2) {
+        for (int i = 0; i < list.size(); i++) {
+            InterfaceC1527c interfaceC1527c = list.get(i);
+            if (interfaceC1527c instanceof C1543s) {
+                C1543s c1543s = (C1543s) interfaceC1527c;
+                if (c1543s.f2592c == 1) {
+                    this.f2499g.f2481a.add(c1543s);
+                    c1543s.f2591b.add(this);
+                }
+            }
+        }
+    }
+
+    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
+    /* JADX INFO: renamed from: c */
+    public void mo711c(C1567f c1567f, int i, List<C1567f> list, C1567f c1567f2) {
+        C1498f.m656f(c1567f, i, list, c1567f2, this);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
+    /* JADX INFO: renamed from: g */
+    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
+        if (t == InterfaceC1516o.f2429g) {
+            AbstractC1544a<?, PointF> abstractC1544a = this.f2496d;
+            C1503c<PointF> c1503c2 = abstractC1544a.f2600e;
+            abstractC1544a.f2600e = c1503c;
+        } else if (t == InterfaceC1516o.f2432j) {
+            AbstractC1544a<?, PointF> abstractC1544a2 = this.f2497e;
+            C1503c<PointF> c1503c3 = abstractC1544a2.f2600e;
+            abstractC1544a2.f2600e = c1503c;
+        }
     }
 }

@@ -17,14 +17,6 @@ public final class C2697p extends BufferedOutputStream {
         super(outputStream);
     }
 
-    /* JADX INFO: renamed from: a */
-    public void m2822a(OutputStream outputStream) {
-        C1460d.m426D(this.f6503j);
-        ((BufferedOutputStream) this).out = outputStream;
-        ((BufferedOutputStream) this).count = 0;
-        this.f6503j = false;
-    }
-
     @Override // java.io.FilterOutputStream, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
     public void close() throws Throwable {
         this.f6503j = true;
@@ -42,6 +34,14 @@ public final class C2697p extends BufferedOutputStream {
         }
         int i = C2738e0.f6708a;
         throw th;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void m2822a(OutputStream outputStream) {
+        C1460d.m426D(this.f6503j);
+        ((BufferedOutputStream) this).out = outputStream;
+        ((BufferedOutputStream) this).count = 0;
+        this.f6503j = false;
     }
 
     public C2697p(OutputStream outputStream, int i) {

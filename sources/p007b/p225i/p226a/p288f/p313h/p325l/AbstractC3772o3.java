@@ -13,12 +13,6 @@ public abstract class AbstractC3772o3<E> extends AbstractList<E> implements Inte
     /* JADX INFO: renamed from: j */
     public boolean f10123j = true;
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
-    /* JADX INFO: renamed from: a */
-    public boolean mo4568a() {
-        return this.f10123j;
-    }
-
     @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
     public boolean add(E e) {
         m5153c();
@@ -29,13 +23,6 @@ public abstract class AbstractC3772o3<E> extends AbstractList<E> implements Inte
     public boolean addAll(Collection<? extends E> collection) {
         m5153c();
         return super.addAll(collection);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m5153c() {
-        if (!this.f10123j) {
-            throw new UnsupportedOperationException();
-        }
     }
 
     @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
@@ -68,12 +55,6 @@ public abstract class AbstractC3772o3<E> extends AbstractList<E> implements Inte
         return true;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
-    /* JADX INFO: renamed from: g0 */
-    public final void mo4570g0() {
-        this.f10123j = false;
-    }
-
     @Override // java.util.AbstractList, java.util.Collection, java.util.List
     public int hashCode() {
         int size = size();
@@ -82,6 +63,25 @@ public abstract class AbstractC3772o3<E> extends AbstractList<E> implements Inte
             iHashCode = (iHashCode * 31) + get(i).hashCode();
         }
         return iHashCode;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m5153c() {
+        if (!this.f10123j) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
+    /* JADX INFO: renamed from: a */
+    public boolean mo4568a() {
+        return this.f10123j;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
+    /* JADX INFO: renamed from: g0 */
+    public final void mo4570g0() {
+        this.f10123j = false;
     }
 
     @Override // java.util.AbstractList, java.util.List

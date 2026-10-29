@@ -19,14 +19,6 @@ public class C1915a extends AbstractC1917c {
         this.f3882l = c1838e;
     }
 
-    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
-    /* JADX INFO: renamed from: c */
-    public synchronized int mo1330c() {
-        C1838e c1838e;
-        c1838e = this.f3882l;
-        return c1838e == null ? 0 : c1838e.f3609a.mo1184j();
-    }
-
     @Override // p007b.p109f.p161j.p175j.AbstractC1917c, java.io.Closeable, java.lang.AutoCloseable
     public void close() {
         synchronized (this) {
@@ -48,12 +40,6 @@ public class C1915a extends AbstractC1917c {
         }
     }
 
-    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
-    /* JADX INFO: renamed from: d */
-    public boolean mo1331d() {
-        return this.f3883m;
-    }
-
     @Override // com.facebook.imagepipeline.image.ImageInfo
     public synchronized int getHeight() {
         C1838e c1838e;
@@ -71,5 +57,19 @@ public class C1915a extends AbstractC1917c {
     @Override // p007b.p109f.p161j.p175j.AbstractC1917c
     public synchronized boolean isClosed() {
         return this.f3882l == null;
+    }
+
+    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
+    /* JADX INFO: renamed from: c */
+    public synchronized int mo1330c() {
+        C1838e c1838e;
+        c1838e = this.f3882l;
+        return c1838e == null ? 0 : c1838e.f3609a.mo1184j();
+    }
+
+    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
+    /* JADX INFO: renamed from: d */
+    public boolean mo1331d() {
+        return this.f3883m;
     }
 }

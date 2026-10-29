@@ -17,7 +17,7 @@ public abstract class AbstractC3045d {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.d$a */
     /* JADX INFO: compiled from: Atom.java */
-    public static final class a extends AbstractC3045d {
+    public final class a extends AbstractC3045d {
 
         /* JADX INFO: renamed from: b */
         public final long f8350b;
@@ -74,7 +74,7 @@ public abstract class AbstractC3045d {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.d$b */
     /* JADX INFO: compiled from: Atom.java */
-    public static final class b extends AbstractC3045d {
+    public final class b extends AbstractC3045d {
 
         /* JADX INFO: renamed from: b */
         public final C2757x f8353b;

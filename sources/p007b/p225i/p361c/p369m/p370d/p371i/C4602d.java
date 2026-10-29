@@ -36,13 +36,6 @@ public class C4602d implements InterfaceC4600b, InterfaceC4605a {
         return jSONObject.toString();
     }
 
-    @Override // p007b.p225i.p361c.p369m.p370d.p372j.InterfaceC4605a
-    /* JADX INFO: renamed from: a */
-    public void mo6389a(@Nullable C4632i0 c4632i0) {
-        this.f12250a = c4632i0;
-        C4592b.f12227a.m6371b("Registered Firebase Analytics event receiver for breadcrumbs");
-    }
-
     @Override // p007b.p225i.p361c.p369m.p370d.p371i.InterfaceC4600b
     /* JADX INFO: renamed from: b */
     public void mo6387b(@NonNull String str, @NonNull Bundle bundle) {
@@ -59,5 +52,12 @@ public class C4602d implements InterfaceC4600b, InterfaceC4605a {
                 C4592b.f12227a.m6376g("Unable to serialize Firebase Analytics event to breadcrumb.");
             }
         }
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p372j.InterfaceC4605a
+    /* JADX INFO: renamed from: a */
+    public void mo6389a(@Nullable C4632i0 c4632i0) {
+        this.f12250a = c4632i0;
+        C4592b.f12227a.m6371b("Registered Firebase Analytics event receiver for breadcrumbs");
     }
 }

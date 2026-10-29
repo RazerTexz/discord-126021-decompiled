@@ -13,10 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: DeviceUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DeviceUtils {
-    public static final DeviceUtils INSTANCE = new DeviceUtils();
     private static final int SMALL_SCREEN_WIDTH_DP = 360;
+    public static final DeviceUtils INSTANCE = new DeviceUtils();
 
     private DeviceUtils() {
+    }
+
+    public final boolean canDrawOverlays(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        return Build.VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
     }
 
     public static /* synthetic */ boolean isDevice$default(DeviceUtils deviceUtils, String str, Integer num, String str2, int i, Object obj) {
@@ -30,11 +35,6 @@ public final class DeviceUtils {
             str2 = null;
         }
         return deviceUtils.isDevice(str, num, str2);
-    }
-
-    public final boolean canDrawOverlays(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        return Build.VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
     }
 
     public final boolean isDevice(String manufacturer, Integer versionCode, String model) {

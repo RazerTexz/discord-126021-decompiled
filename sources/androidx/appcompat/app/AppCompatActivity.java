@@ -36,11 +36,6 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
     public AppCompatActivity() {
     }
 
-    private boolean performMenuItemShortcut(KeyEvent keyEvent) {
-        Window window;
-        return (Build.VERSION.SDK_INT >= 26 || keyEvent.isCtrlPressed() || KeyEvent.metaStateHasNoModifiers(keyEvent.getMetaState()) || keyEvent.getRepeatCount() != 0 || KeyEvent.isModifierKey(keyEvent.getKeyCode()) || (window = getWindow()) == null || window.getDecorView() == null || !window.getDecorView().dispatchKeyShortcutEvent(keyEvent)) ? false : true;
-    }
-
     @Override // androidx.activity.ComponentActivity, android.app.Activity
     public void addContentView(View view, ViewGroup.LayoutParams layoutParams) {
         getDelegate().addContentView(view, layoutParams);
@@ -275,6 +270,11 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
                 super.openOptionsMenu();
             }
         }
+    }
+
+    private boolean performMenuItemShortcut(KeyEvent keyEvent) {
+        Window window;
+        return (Build.VERSION.SDK_INT >= 26 || keyEvent.isCtrlPressed() || KeyEvent.metaStateHasNoModifiers(keyEvent.getMetaState()) || keyEvent.getRepeatCount() != 0 || KeyEvent.isModifierKey(keyEvent.getKeyCode()) || (window = getWindow()) == null || window.getDecorView() == null || !window.getDecorView().dispatchKeyShortcutEvent(keyEvent)) ? false : true;
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity

@@ -20,9 +20,22 @@ public final class C12070i<T> implements Sequence<T> {
     /* JADX INFO: renamed from: b */
     public final Function1<T, T> f25096b;
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public C12070i(Function0<? extends T> function0, Function1<? super T, ? extends T> function1) {
+        C12238m.checkNotNullParameter(function0, "getInitialValue");
+        C12238m.checkNotNullParameter(function1, "getNextValue");
+        this.f25095a = function0;
+        this.f25096b = function1;
+    }
+
+    @Override // kotlin.sequences.Sequence
+    public Iterator<T> iterator() {
+        return new a();
+    }
+
     /* JADX INFO: renamed from: d0.f0.i$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a implements Iterator<T>, InterfaceC12228a {
+    public final class a implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public T f25097j;
@@ -31,6 +44,14 @@ public final class C12070i<T> implements Sequence<T> {
         public int f25098k = -2;
 
         public a() {
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            if (this.f25098k < 0) {
+                m10063a();
+            }
+            return this.f25098k == 1;
         }
 
         /* JADX INFO: renamed from: a */
@@ -46,14 +67,6 @@ public final class C12070i<T> implements Sequence<T> {
             }
             this.f25097j = t;
             this.f25098k = t == null ? 0 : 1;
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            if (this.f25098k < 0) {
-                m10063a();
-            }
-            return this.f25098k == 1;
         }
 
         @Override // java.util.Iterator
@@ -74,18 +87,5 @@ public final class C12070i<T> implements Sequence<T> {
         public void remove() {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public C12070i(Function0<? extends T> function0, Function1<? super T, ? extends T> function1) {
-        C12238m.checkNotNullParameter(function0, "getInitialValue");
-        C12238m.checkNotNullParameter(function1, "getNextValue");
-        this.f25095a = function0;
-        this.f25096b = function1;
-    }
-
-    @Override // kotlin.sequences.Sequence
-    public Iterator<T> iterator() {
-        return new a();
     }
 }

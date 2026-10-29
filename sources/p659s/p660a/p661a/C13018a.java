@@ -30,7 +30,7 @@ public final class C13018a {
     /* JADX INFO: renamed from: s.a.a.a$a */
     /* JADX INFO: compiled from: kotlin-style lambda group */
     /* JADX INFO: loaded from: classes2.dex */
-    public static final class a extends AbstractC12240o implements Function2<C13041x, CoroutineContext.Element, C13041x> {
+    public final class a extends AbstractC12240o implements Function2<C13041x, CoroutineContext.Element, C13041x> {
 
         /* JADX INFO: renamed from: j */
         public static final a f27663j = new a(0);
@@ -80,7 +80,7 @@ public final class C13018a {
 
     /* JADX INFO: renamed from: s.a.a.a$b */
     /* JADX INFO: compiled from: ThreadContext.kt */
-    public static final class b extends AbstractC12240o implements Function2<Object, CoroutineContext.Element, Object> {
+    public final class b extends AbstractC12240o implements Function2<Object, CoroutineContext.Element, Object> {
 
         /* JADX INFO: renamed from: j */
         public static final b f27666j = new b();
@@ -106,7 +106,7 @@ public final class C13018a {
 
     /* JADX INFO: renamed from: s.a.a.a$c */
     /* JADX INFO: compiled from: ThreadContext.kt */
-    public static final class c extends AbstractC12240o implements Function2<InterfaceC13158v1<?>, CoroutineContext.Element, InterfaceC13158v1<?>> {
+    public final class c extends AbstractC12240o implements Function2<InterfaceC13158v1<?>, CoroutineContext.Element, InterfaceC13158v1<?>> {
 
         /* JADX INFO: renamed from: j */
         public static final c f27667j = new c();
@@ -146,11 +146,12 @@ public final class C13018a {
 
     /* JADX INFO: renamed from: b */
     public static final Object m11141b(CoroutineContext coroutineContext, Object obj) {
+        Integer num = 0;
         if (obj == null) {
-            obj = coroutineContext.fold(0, f27659b);
+            obj = coroutineContext.fold(num, f27659b);
             C12238m.checkNotNull(obj);
         }
-        if (obj == 0) {
+        if (obj == num) {
             return f27658a;
         }
         if (obj instanceof Integer) {

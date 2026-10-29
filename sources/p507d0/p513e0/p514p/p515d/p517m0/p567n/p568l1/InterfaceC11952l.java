@@ -12,7 +12,7 @@ public interface InterfaceC11952l extends InterfaceC11946f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.l$a */
     /* JADX INFO: compiled from: NewKotlinTypeChecker.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ a f24821a = new a();

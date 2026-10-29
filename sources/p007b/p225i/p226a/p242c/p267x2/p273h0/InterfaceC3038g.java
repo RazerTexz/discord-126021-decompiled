@@ -9,7 +9,7 @@ public interface InterfaceC3038g extends InterfaceC3119t {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.h0.g$a */
     /* JADX INFO: compiled from: Seeker.java */
-    public static class a extends InterfaceC3119t.b implements InterfaceC3038g {
+    public class a extends InterfaceC3119t.b implements InterfaceC3038g {
         public a() {
             super(-9223372036854775807L, 0L);
         }

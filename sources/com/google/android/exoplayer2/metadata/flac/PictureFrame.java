@@ -13,7 +13,6 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class PictureFrame implements Metadata.Entry {
-    public static final Parcelable.Creator<PictureFrame> CREATOR = new C10722a();
 
     /* JADX INFO: renamed from: j */
     public final int f19947j;
@@ -38,6 +37,7 @@ public final class PictureFrame implements Metadata.Entry {
 
     /* JADX INFO: renamed from: q */
     public final byte[] f19954q;
+    public static final Parcelable.Creator<PictureFrame> CREATOR = new C10722a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.flac.PictureFrame$a */
     public class C10722a implements Parcelable.Creator<PictureFrame> {
@@ -95,6 +95,12 @@ public final class PictureFrame implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         String str = this.f19948k;
         String str2 = this.f19949l;
@@ -111,12 +117,6 @@ public final class PictureFrame implements Metadata.Entry {
         parcel.writeInt(this.f19952o);
         parcel.writeInt(this.f19953p);
         parcel.writeByteArray(this.f19954q);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 
     public PictureFrame(Parcel parcel) {

@@ -78,9 +78,89 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     private final WeakReference<Context> context;
     private final RestAPI restAPI;
 
+    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
+    public final /* data */ class BlockUserElement {
+        private final boolean isBlocked;
+        private final User user;
+
+        public BlockUserElement(boolean z2, User user) {
+            C12238m.checkNotNullParameter(user, "user");
+            this.isBlocked = z2;
+            this.user = user;
+        }
+
+        public static /* synthetic */ BlockUserElement copy$default(BlockUserElement blockUserElement, boolean z2, User user, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = blockUserElement.isBlocked;
+            }
+            if ((i & 2) != 0) {
+                user = blockUserElement.user;
+            }
+            return blockUserElement.copy(z2, user);
+        }
+
+        public final BlockUserElement copy(boolean isBlocked, User user) {
+            C12238m.checkNotNullParameter(user, "user");
+            return new BlockUserElement(isBlocked, user);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof BlockUserElement)) {
+                return false;
+            }
+            BlockUserElement blockUserElement = (BlockUserElement) other;
+            return this.isBlocked == blockUserElement.isBlocked && C12238m.areEqual(this.user, blockUserElement.user);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsBlocked() {
+            return this.isBlocked;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final User getUser() {
+            return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v4 */
+        /* JADX WARN: Type inference failed for: r0v5 */
+        public int hashCode() {
+            boolean z2 = this.isBlocked;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = r0 * 31;
+            User user = this.user;
+            return i + (user != null ? user.hashCode() : 0);
+        }
+
+        public final boolean isBlocked() {
+            return this.isBlocked;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("BlockUserElement(isBlocked=");
+            sbM833U.append(this.isBlocked);
+            sbM833U.append(", user=");
+            sbM833U.append(this.user);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$2 */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class C90752 extends AbstractC12240o implements Function1<Pair<? extends StoreState, ? extends MenuAPIResponse>, Unit> {
+    public final class C90752 extends AbstractC12240o implements Function1<Pair<? extends StoreState, ? extends MenuAPIResponse>, Unit> {
         public C90752() {
             super(1);
         }
@@ -119,7 +199,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$3 */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class C90763 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C90763 extends AbstractC12240o implements Function1<Error, Unit> {
         public C90763() {
             super(1);
         }
@@ -138,88 +218,76 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleBlockUser$1 */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class BlockUserElement {
-        private final boolean isBlocked;
-        private final User user;
+    public final class C90771 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C90771 INSTANCE = new C90771();
 
-        public BlockUserElement(boolean z2, User user) {
-            C12238m.checkNotNullParameter(user, "user");
-            this.isBlocked = z2;
-            this.user = user;
+        public C90771() {
+            super(1);
         }
 
-        public static /* synthetic */ BlockUserElement copy$default(BlockUserElement blockUserElement, boolean z2, User user, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = blockUserElement.isBlocked;
-            }
-            if ((i & 2) != 0) {
-                user = blockUserElement.user;
-            }
-            return blockUserElement.copy(z2, user);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsBlocked() {
-            return this.isBlocked;
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$1 */
+    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
+    public final class C90781 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public final /* synthetic */ ViewState.Menu $currentViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C90781(ViewState.Menu menu) {
+            super(1);
+            this.$currentViewState = menu;
         }
 
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final User getUser() {
-            return this.user;
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
         }
 
-        public final BlockUserElement copy(boolean isBlocked, User user) {
-            C12238m.checkNotNullParameter(user, "user");
-            return new BlockUserElement(isBlocked, user);
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            C12238m.checkNotNullParameter(unit, "it");
+            MobileReportsViewModel.this.handleNext(new ReportNodeChild("", this.$currentViewState.getMenu().getSuccess_node_id()), null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$2 */
+    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
+    public final class C90792 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ ViewState.Menu $currentViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C90792(ViewState.Menu menu) {
+            super(1);
+            this.$currentViewState = menu;
         }
 
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof BlockUserElement)) {
-                return false;
-            }
-            BlockUserElement blockUserElement = (BlockUserElement) other;
-            return this.isBlocked == blockUserElement.isBlocked && C12238m.areEqual(this.user, blockUserElement.user);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
         }
 
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v4 */
-        /* JADX WARN: Type inference failed for: r0v5 */
-        public int hashCode() {
-            boolean z2 = this.isBlocked;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            User user = this.user;
-            return i + (user != null ? user.hashCode() : 0);
-        }
-
-        public final boolean isBlocked() {
-            return this.isBlocked;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("BlockUserElement(isBlocked=");
-            sbM833U.append(this.isBlocked);
-            sbM833U.append(", user=");
-            sbM833U.append(this.user);
-            sbM833U.append(")");
-            return sbM833U.toString();
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            MobileReportsViewModel.this.updateViewState(ViewState.Menu.copy$default(this.$currentViewState, null, null, null, null, null, null, SubmitState.Error.INSTANCE, null, null, 447, null));
         }
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class ChannelPreview {
+    public final /* data */ class ChannelPreview {
         private final Guild guild;
         private final StageInstance stageInstance;
 
@@ -240,16 +308,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return channelPreview.copy(guild, stageInstance);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StageInstance getStageInstance() {
-            return this.stageInstance;
-        }
-
         public final ChannelPreview copy(Guild guild, StageInstance stageInstance) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(stageInstance, "stageInstance");
@@ -267,8 +325,18 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.guild, channelPreview.guild) && C12238m.areEqual(this.stageInstance, channelPreview.stageInstance);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StageInstance getStageInstance() {
+            return this.stageInstance;
         }
 
         public final StageInstance getStageInstance() {
@@ -293,7 +361,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class CheckboxElement {
+    public final /* data */ class CheckboxElement {
         private final List<ReportNodeElementData> data;
         private final String name;
         private final HashSet<ReportNodeElementData> selections;
@@ -305,6 +373,14 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             this.name = str;
             this.data = list;
             this.selections = hashSet;
+        }
+
+        public final List<ReportNodeElementData> component2() {
+            return this.data;
+        }
+
+        public final HashSet<ReportNodeElementData> component3() {
+            return this.selections;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -319,19 +395,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 hashSet = checkboxElement.selections;
             }
             return checkboxElement.copy(str, list, hashSet);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        public final List<ReportNodeElementData> component2() {
-            return this.data;
-        }
-
-        public final HashSet<ReportNodeElementData> component3() {
-            return this.selections;
         }
 
         public final CheckboxElement copy(String name, List<ReportNodeElementData> data, HashSet<ReportNodeElementData> selections) {
@@ -354,6 +417,11 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
 
         public final List<ReportNodeElementData> getData() {
             return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
@@ -386,7 +454,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -454,7 +522,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class DirectoryServerPreview {
+    public final /* data */ class DirectoryServerPreview {
         private final DirectoryEntryGuild directoryEntry;
         private final Guild hub;
 
@@ -475,16 +543,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return directoryServerPreview.copy(guild, directoryEntryGuild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getHub() {
-            return this.hub;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final DirectoryEntryGuild getDirectoryEntry() {
-            return this.directoryEntry;
-        }
-
         public final DirectoryServerPreview copy(Guild hub, DirectoryEntryGuild directoryEntry) {
             C12238m.checkNotNullParameter(hub, "hub");
             C12238m.checkNotNullParameter(directoryEntry, "directoryEntry");
@@ -502,8 +560,18 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.hub, directoryServerPreview.hub) && C12238m.areEqual(this.directoryEntry, directoryServerPreview.directoryEntry);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final DirectoryEntryGuild getDirectoryEntry() {
             return this.directoryEntry;
+        }
+
+        public final DirectoryEntryGuild getDirectoryEntry() {
+            return this.directoryEntry;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getHub() {
+            return this.hub;
         }
 
         public final Guild getHub() {
@@ -528,7 +596,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class GuildScheduledEventPreview {
+    public final /* data */ class GuildScheduledEventPreview {
         private final GuildScheduledEvent event;
         private final Guild guild;
 
@@ -549,16 +617,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return guildScheduledEventPreview.copy(guild, guildScheduledEvent);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GuildScheduledEvent getEvent() {
-            return this.event;
-        }
-
         public final GuildScheduledEventPreview copy(Guild guild, GuildScheduledEvent event) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(event, "event");
@@ -576,8 +634,18 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.guild, guildScheduledEventPreview.guild) && C12238m.areEqual(this.event, guildScheduledEventPreview.event);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final GuildScheduledEvent getEvent() {
             return this.event;
+        }
+
+        public final GuildScheduledEvent getEvent() {
+            return this.event;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -602,7 +670,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class MessagePreview {
+    public final /* data */ class MessagePreview {
         private final User author;
         private final String authorName;
         private final int authorNameColor;
@@ -642,31 +710,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return messagePreview.copy(draweeSpanStringBuilder, str2, i3, user2, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final DraweeSpanStringBuilder getText() {
-            return this.text;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getAuthorName() {
-            return this.authorName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getAuthorNameColor() {
-            return this.authorNameColor;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final User getAuthor() {
-            return this.author;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getHasEmbeds() {
-            return this.hasEmbeds;
-        }
-
         public final MessagePreview copy(DraweeSpanStringBuilder text, String authorName, int authorNameColor, User author, boolean hasEmbeds) {
             C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             C12238m.checkNotNullParameter(authorName, "authorName");
@@ -685,20 +728,45 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.text, messagePreview.text) && C12238m.areEqual(this.authorName, messagePreview.authorName) && this.authorNameColor == messagePreview.authorNameColor && C12238m.areEqual(this.author, messagePreview.author) && this.hasEmbeds == messagePreview.hasEmbeds;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final User getAuthor() {
             return this.author;
+        }
+
+        public final User getAuthor() {
+            return this.author;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getAuthorName() {
+            return this.authorName;
         }
 
         public final String getAuthorName() {
             return this.authorName;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getAuthorNameColor() {
             return this.authorNameColor;
         }
 
+        public final int getAuthorNameColor() {
+            return this.authorNameColor;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getHasEmbeds() {
             return this.hasEmbeds;
+        }
+
+        public final boolean getHasEmbeds() {
+            return this.hasEmbeds;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final DraweeSpanStringBuilder getText() {
+            return this.text;
         }
 
         public final DraweeSpanStringBuilder getText() {
@@ -744,11 +812,11 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static abstract class NodeNavigationType {
+    public abstract class NodeNavigationType {
         private final ReportNode node;
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final /* data */ class Back extends NodeNavigationType {
+        public final /* data */ class Back extends NodeNavigationType {
             private final ReportNode prevNode;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -756,11 +824,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 super(reportNode, null);
                 C12238m.checkNotNullParameter(reportNode, "prevNode");
                 this.prevNode = reportNode;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            private final ReportNode getPrevNode() {
-                return this.prevNode;
             }
 
             public static /* synthetic */ Back copy$default(Back back, ReportNode reportNode, int i, Object obj) {
@@ -782,6 +845,11 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 return true;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            private final ReportNode getPrevNode() {
+                return this.prevNode;
+            }
+
             public int hashCode() {
                 ReportNode reportNode = this.prevNode;
                 if (reportNode != null) {
@@ -799,7 +867,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final /* data */ class Initial extends NodeNavigationType {
+        public final /* data */ class Initial extends NodeNavigationType {
             private final ReportNode initialNode;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -807,11 +875,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 super(reportNode, null);
                 C12238m.checkNotNullParameter(reportNode, "initialNode");
                 this.initialNode = reportNode;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            private final ReportNode getInitialNode() {
-                return this.initialNode;
             }
 
             public static /* synthetic */ Initial copy$default(Initial initial, ReportNode reportNode, int i, Object obj) {
@@ -833,6 +896,11 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 return true;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            private final ReportNode getInitialNode() {
+                return this.initialNode;
+            }
+
             public int hashCode() {
                 ReportNode reportNode = this.initialNode;
                 if (reportNode != null) {
@@ -850,7 +918,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final /* data */ class Next extends NodeNavigationType {
+        public final /* data */ class Next extends NodeNavigationType {
             private final ReportNode nextNode;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -858,11 +926,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 super(reportNode, null);
                 C12238m.checkNotNullParameter(reportNode, "nextNode");
                 this.nextNode = reportNode;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            private final ReportNode getNextNode() {
-                return this.nextNode;
             }
 
             public static /* synthetic */ Next copy$default(Next next, ReportNode reportNode, int i, Object obj) {
@@ -882,6 +945,11 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof Next) && C12238m.areEqual(this.nextNode, ((Next) other).nextNode);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            private final ReportNode getNextNode() {
+                return this.nextNode;
             }
 
             public int hashCode() {
@@ -914,7 +982,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class NodeState {
+    public final /* data */ class NodeState {
         private final BlockUserElement blockUserElement;
         private final ReportNodeBottomButton bottomButton;
         private final List<NodeResult> breadcrumbsElement;
@@ -942,58 +1010,8 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             this.bottomButton = reportNodeBottomButton;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ReportNode getNode() {
-            return this.node;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final SubmitState getSubmitState() {
-            return this.submitState;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final ReportNodeBottomButton getBottomButton() {
-            return this.bottomButton;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CheckboxElement getCheckboxElement() {
-            return this.checkboxElement;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final MessagePreview getMessagePreviewElement() {
-            return this.messagePreviewElement;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ChannelPreview getChannelPreviewElement() {
-            return this.channelPreviewElement;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final DirectoryServerPreview getDirectoryServerPreviewElement() {
-            return this.directoryServerPreviewElement;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final GuildScheduledEventPreview getEventPreviewElement() {
-            return this.eventPreviewElement;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final BlockUserElement getBlockUserElement() {
-            return this.blockUserElement;
-        }
-
         public final List<NodeResult> component8() {
             return this.breadcrumbsElement;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getSuccessElement() {
-            return this.successElement;
         }
 
         public final NodeState copy(ReportNode node, CheckboxElement checkboxElement, MessagePreview messagePreviewElement, ChannelPreview channelPreviewElement, DirectoryServerPreview directoryServerPreviewElement, GuildScheduledEventPreview eventPreviewElement, BlockUserElement blockUserElement, List<NodeResult> breadcrumbsElement, boolean successElement, SubmitState submitState, ReportNodeBottomButton bottomButton) {
@@ -1012,8 +1030,18 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.node, nodeState.node) && C12238m.areEqual(this.checkboxElement, nodeState.checkboxElement) && C12238m.areEqual(this.messagePreviewElement, nodeState.messagePreviewElement) && C12238m.areEqual(this.channelPreviewElement, nodeState.channelPreviewElement) && C12238m.areEqual(this.directoryServerPreviewElement, nodeState.directoryServerPreviewElement) && C12238m.areEqual(this.eventPreviewElement, nodeState.eventPreviewElement) && C12238m.areEqual(this.blockUserElement, nodeState.blockUserElement) && C12238m.areEqual(this.breadcrumbsElement, nodeState.breadcrumbsElement) && this.successElement == nodeState.successElement && C12238m.areEqual(this.submitState, nodeState.submitState) && C12238m.areEqual(this.bottomButton, nodeState.bottomButton);
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final BlockUserElement getBlockUserElement() {
             return this.blockUserElement;
+        }
+
+        public final BlockUserElement getBlockUserElement() {
+            return this.blockUserElement;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final ReportNodeBottomButton getBottomButton() {
+            return this.bottomButton;
         }
 
         public final ReportNodeBottomButton getBottomButton() {
@@ -1024,32 +1052,72 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return this.breadcrumbsElement;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ChannelPreview getChannelPreviewElement() {
             return this.channelPreviewElement;
+        }
+
+        public final ChannelPreview getChannelPreviewElement() {
+            return this.channelPreviewElement;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CheckboxElement getCheckboxElement() {
+            return this.checkboxElement;
         }
 
         public final CheckboxElement getCheckboxElement() {
             return this.checkboxElement;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final DirectoryServerPreview getDirectoryServerPreviewElement() {
             return this.directoryServerPreviewElement;
+        }
+
+        public final DirectoryServerPreview getDirectoryServerPreviewElement() {
+            return this.directoryServerPreviewElement;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final GuildScheduledEventPreview getEventPreviewElement() {
+            return this.eventPreviewElement;
         }
 
         public final GuildScheduledEventPreview getEventPreviewElement() {
             return this.eventPreviewElement;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final MessagePreview getMessagePreviewElement() {
             return this.messagePreviewElement;
+        }
+
+        public final MessagePreview getMessagePreviewElement() {
+            return this.messagePreviewElement;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ReportNode getNode() {
+            return this.node;
         }
 
         public final ReportNode getNode() {
             return this.node;
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final SubmitState getSubmitState() {
             return this.submitState;
+        }
+
+        public final SubmitState getSubmitState() {
+            return this.submitState;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getSuccessElement() {
+            return this.successElement;
         }
 
         public final boolean getSuccessElement() {
@@ -1119,7 +1187,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, Integer> blockedUsers;
         private final Channel channel;
         private final DirectoryEntryGuild directoryEntry;
@@ -1137,6 +1205,10 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             this.stageInstance = stageInstance;
             this.blockedUsers = map;
             this.event = guildScheduledEvent;
+        }
+
+        public final Map<Long, Integer> component6() {
+            return this.blockedUsers;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1170,40 +1242,6 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(message, channel2, guild2, directoryEntryGuild2, stageInstance2, map2, guildScheduledEvent);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Message getMessage() {
-            return this.message;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final DirectoryEntryGuild getDirectoryEntry() {
-            return this.directoryEntry;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final StageInstance getStageInstance() {
-            return this.stageInstance;
-        }
-
-        public final Map<Long, Integer> component6() {
-            return this.blockedUsers;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final GuildScheduledEvent getEvent() {
-            return this.event;
-        }
-
         public final StoreState copy(Message message, Channel channel, Guild guild, DirectoryEntryGuild directoryEntry, StageInstance stageInstance, Map<Long, Integer> blockedUsers, GuildScheduledEvent event) {
             C12238m.checkNotNullParameter(blockedUsers, "blockedUsers");
             return new StoreState(message, channel, guild, directoryEntry, stageInstance, blockedUsers, event);
@@ -1224,24 +1262,54 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             return this.blockedUsers;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final DirectoryEntryGuild getDirectoryEntry() {
+            return this.directoryEntry;
         }
 
         public final DirectoryEntryGuild getDirectoryEntry() {
             return this.directoryEntry;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final GuildScheduledEvent getEvent() {
             return this.event;
+        }
+
+        public final GuildScheduledEvent getEvent() {
+            return this.event;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Message getMessage() {
             return this.message;
+        }
+
+        public final Message getMessage() {
+            return this.message;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final StageInstance getStageInstance() {
+            return this.stageInstance;
         }
 
         public final StageInstance getStageInstance() {
@@ -1286,10 +1354,10 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static abstract class SubmitState {
+    public abstract class SubmitState {
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final class Error extends SubmitState {
+        public final class Error extends SubmitState {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -1298,7 +1366,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final class Loading extends SubmitState {
+        public final class Loading extends SubmitState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -1307,7 +1375,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final class None extends SubmitState {
+        public final class None extends SubmitState {
             public static final None INSTANCE = new None();
 
             private None() {
@@ -1324,10 +1392,10 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -1336,7 +1404,7 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-        public static final /* data */ class Menu extends ViewState {
+        public final /* data */ class Menu extends ViewState {
             private final BlockUserElement blockUserElement;
             private final ChannelPreview channelPreview;
             private final DirectoryServerPreview directoryServerPreview;
@@ -1351,53 +1419,13 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 this(menuAPIResponse, messagePreview, channelPreview, directoryServerPreview, guildScheduledEventPreview, nodeNavigationType, (i & 64) != 0 ? SubmitState.None.INSTANCE : submitState, list, blockUserElement);
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Menu copy$default(Menu menu, MenuAPIResponse menuAPIResponse, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview guildScheduledEventPreview, NodeNavigationType nodeNavigationType, SubmitState submitState, List list, BlockUserElement blockUserElement, int i, Object obj) {
-                return menu.copy((i & 1) != 0 ? menu.menu : menuAPIResponse, (i & 2) != 0 ? menu.messagePreview : messagePreview, (i & 4) != 0 ? menu.channelPreview : channelPreview, (i & 8) != 0 ? menu.directoryServerPreview : directoryServerPreview, (i & 16) != 0 ? menu.eventPreview : guildScheduledEventPreview, (i & 32) != 0 ? menu.nodeNavigationType : nodeNavigationType, (i & 64) != 0 ? menu.submitState : submitState, (i & 128) != 0 ? menu.history : list, (i & 256) != 0 ? menu.blockUserElement : blockUserElement);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MenuAPIResponse getMenu() {
-                return this.menu;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final MessagePreview getMessagePreview() {
-                return this.messagePreview;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final ChannelPreview getChannelPreview() {
-                return this.channelPreview;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final DirectoryServerPreview getDirectoryServerPreview() {
-                return this.directoryServerPreview;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final GuildScheduledEventPreview getEventPreview() {
-                return this.eventPreview;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final NodeNavigationType getNodeNavigationType() {
-                return this.nodeNavigationType;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final SubmitState getSubmitState() {
-                return this.submitState;
-            }
-
             public final List<NodeResult> component8() {
                 return this.history;
             }
 
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final BlockUserElement getBlockUserElement() {
-                return this.blockUserElement;
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Menu copy$default(Menu menu, MenuAPIResponse menuAPIResponse, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview guildScheduledEventPreview, NodeNavigationType nodeNavigationType, SubmitState submitState, List list, BlockUserElement blockUserElement, int i, Object obj) {
+                return menu.copy((i & 1) != 0 ? menu.menu : menuAPIResponse, (i & 2) != 0 ? menu.messagePreview : messagePreview, (i & 4) != 0 ? menu.channelPreview : channelPreview, (i & 8) != 0 ? menu.directoryServerPreview : directoryServerPreview, (i & 16) != 0 ? menu.eventPreview : guildScheduledEventPreview, (i & 32) != 0 ? menu.nodeNavigationType : nodeNavigationType, (i & 64) != 0 ? menu.submitState : submitState, (i & 128) != 0 ? menu.history : list, (i & 256) != 0 ? menu.blockUserElement : blockUserElement);
             }
 
             public final Menu copy(MenuAPIResponse menu, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview eventPreview, NodeNavigationType nodeNavigationType, SubmitState submitState, List<NodeResult> history, BlockUserElement blockUserElement) {
@@ -1556,16 +1584,36 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 return new NodeState(node, checkboxElement, messagePreview, channelPreview, directoryServerPreview, guildScheduledEventPreview, blockUserElement, list, obj != null, this.submitState, node.getButton());
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final BlockUserElement getBlockUserElement() {
                 return this.blockUserElement;
+            }
+
+            public final BlockUserElement getBlockUserElement() {
+                return this.blockUserElement;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final ChannelPreview getChannelPreview() {
+                return this.channelPreview;
             }
 
             public final ChannelPreview getChannelPreview() {
                 return this.channelPreview;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final DirectoryServerPreview getDirectoryServerPreview() {
                 return this.directoryServerPreview;
+            }
+
+            public final DirectoryServerPreview getDirectoryServerPreview() {
+                return this.directoryServerPreview;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final GuildScheduledEventPreview getEventPreview() {
+                return this.eventPreview;
             }
 
             public final GuildScheduledEventPreview getEventPreview() {
@@ -1576,16 +1624,36 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
                 return this.history;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final MenuAPIResponse getMenu() {
                 return this.menu;
+            }
+
+            public final MenuAPIResponse getMenu() {
+                return this.menu;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final MessagePreview getMessagePreview() {
+                return this.messagePreview;
             }
 
             public final MessagePreview getMessagePreview() {
                 return this.messagePreview;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final NodeNavigationType getNodeNavigationType() {
                 return this.nodeNavigationType;
+            }
+
+            public final NodeNavigationType getNodeNavigationType() {
+                return this.nodeNavigationType;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final SubmitState getSubmitState() {
+                return this.submitState;
             }
 
             public final SubmitState getSubmitState() {
@@ -1667,150 +1735,12 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleBlockUser$1 */
-    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class C90771 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C90771 INSTANCE = new C90771();
-
-        public C90771() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$1 */
-    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class C90781 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public final /* synthetic */ ViewState.Menu $currentViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C90781(ViewState.Menu menu) {
-            super(1);
-            this.$currentViewState = menu;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            C12238m.checkNotNullParameter(unit, "it");
-            MobileReportsViewModel.this.handleNext(new ReportNodeChild("", this.$currentViewState.getMenu().getSuccess_node_id()), null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$2 */
-    /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public static final class C90792 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ ViewState.Menu $currentViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C90792(ViewState.Menu menu) {
-            super(1);
-            this.$currentViewState = menu;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            MobileReportsViewModel.this.updateViewState(ViewState.Menu.copy$default(this.$currentViewState, null, null, null, null, null, null, SubmitState.Error.INSTANCE, null, null, 447, null));
-        }
-    }
-
     public /* synthetic */ MobileReportsViewModel(WeakReference weakReference, MobileReportArgs mobileReportArgs, RestAPI restAPI, Clock clock, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(weakReference, mobileReportArgs, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ClockFactory.get() : clock, (i & 16) != 0 ? INSTANCE.getStoreState(mobileReportArgs) : observable);
     }
 
     public static final /* synthetic */ ViewState access$getViewState$p(MobileReportsViewModel mobileReportsViewModel) {
         return mobileReportsViewModel.getViewState();
-    }
-
-    private final ChannelPreview parseChannelPreview(StoreState storeState) {
-        StageInstance stageInstance;
-        Guild guild = storeState.getGuild();
-        if (guild == null || (stageInstance = storeState.getStageInstance()) == null) {
-            return null;
-        }
-        return new ChannelPreview(guild, stageInstance);
-    }
-
-    private final DirectoryServerPreview parseDirectoryServerPreview(StoreState storeState) {
-        DirectoryEntryGuild directoryEntry;
-        Guild guild = storeState.getGuild();
-        if (guild == null || (directoryEntry = storeState.getDirectoryEntry()) == null) {
-            return null;
-        }
-        return new DirectoryServerPreview(guild, directoryEntry);
-    }
-
-    private final GuildScheduledEventPreview parseEventPreview(StoreState storeState) {
-        Guild guild;
-        GuildScheduledEvent event = storeState.getEvent();
-        if (event == null || (guild = storeState.getGuild()) == null) {
-            return null;
-        }
-        return new GuildScheduledEventPreview(guild, event);
-    }
-
-    private final MessagePreview parseMessagePreview(StoreState storeState) {
-        Message message;
-        Context context = this.context.get();
-        if (context != null) {
-            C12238m.checkNotNullExpressionValue(context, "context.get() ?: return null");
-            Channel channel = storeState.getChannel();
-            if (channel != null && (message = storeState.getMessage()) != null) {
-                StoreStream.Companion companion = StoreStream.INSTANCE;
-                Map<Long, User> users = companion.getUsers().getUsers();
-                com.discord.api.user.User author = message.getAuthor();
-                User user = users.get(author != null ? Long.valueOf(author.getId()) : null);
-                if (user == null || (getViewState() instanceof ViewState.Invalid)) {
-                    return null;
-                }
-                long id2 = companion.getUsers().getMeSnapshot().getId();
-                Map map = (Map) C1643a.m843c(channel, companion.getGuilds().getMembers());
-                if (map == null) {
-                    map = new HashMap();
-                }
-                Map map2 = map;
-                Map map3 = (Map) C1643a.m843c(channel, companion.getGuilds().getRoles());
-                Map<Long, String> channelNames = companion.getChannels().getChannelNames();
-                Map<Long, String> nickOrUsernames = MessageUtils.getNickOrUsernames(message, channel, map2, channel.m7650q());
-                String content = message.getContent();
-                DraweeSpanStringBuilder channelMessage = DiscordParser.parseChannelMessage(context, content != null ? new Regex("\n").replace(content, " ") : null, new MessageRenderContext(context, id2, false, nickOrUsernames, channelNames, map3, 0, null, null, 0, 0, null, null, null, 16320, null), new MessagePreprocessor(id2, null, null, false, 50, 6, null), DiscordParser.ParserOptions.REPLY, false);
-                com.discord.api.user.User author2 = message.getAuthor();
-                String username = nickOrUsernames.get(author2 != null ? Long.valueOf(author2.getId()) : null);
-                if (username == null) {
-                    com.discord.api.user.User author3 = message.getAuthor();
-                    username = author3 != null ? author3.getUsername() : null;
-                }
-                if (username == null) {
-                    username = "";
-                }
-                String str = username;
-                GuildMember.Companion companion2 = GuildMember.INSTANCE;
-                com.discord.api.user.User author4 = message.getAuthor();
-                return new MessagePreview(channelMessage, str, companion2.getColor((GuildMember) map2.get(author4 != null ? Long.valueOf(author4.getId()) : null), ColorCompat.getThemedColor(context, C5419R.attr.colorHeaderPrimary)), user, message.hasEmbeds() || message.hasAttachments());
-            }
-        }
-        return null;
     }
 
     public final boolean handleBack() {
@@ -1962,6 +1892,76 @@ public final class MobileReportsViewModel extends AbstractC0859d0<ViewState> {
             reportSubmissionBody = new ReportSubmissionBody(jCurrentTimeMillis4, null, null, lValueOf8, null, lValueOf9, language4 != null ? language4 : "en", menu5.getVariant(), name4, menu5.getVersion(), listComponent4, mapComponent5, 22);
         }
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.submitReport(this.args.getReportType().getPathValue(), reportSubmissionBody), false, 1, null), this, null, 2, null), (Class<?>) MobileReportsViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C90792(menu)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90781(menu));
+    }
+
+    private final ChannelPreview parseChannelPreview(StoreState storeState) {
+        StageInstance stageInstance;
+        Guild guild = storeState.getGuild();
+        if (guild == null || (stageInstance = storeState.getStageInstance()) == null) {
+            return null;
+        }
+        return new ChannelPreview(guild, stageInstance);
+    }
+
+    private final DirectoryServerPreview parseDirectoryServerPreview(StoreState storeState) {
+        DirectoryEntryGuild directoryEntry;
+        Guild guild = storeState.getGuild();
+        if (guild == null || (directoryEntry = storeState.getDirectoryEntry()) == null) {
+            return null;
+        }
+        return new DirectoryServerPreview(guild, directoryEntry);
+    }
+
+    private final GuildScheduledEventPreview parseEventPreview(StoreState storeState) {
+        Guild guild;
+        GuildScheduledEvent event = storeState.getEvent();
+        if (event == null || (guild = storeState.getGuild()) == null) {
+            return null;
+        }
+        return new GuildScheduledEventPreview(guild, event);
+    }
+
+    private final MessagePreview parseMessagePreview(StoreState storeState) {
+        Message message;
+        Context context = this.context.get();
+        if (context != null) {
+            C12238m.checkNotNullExpressionValue(context, "context.get() ?: return null");
+            Channel channel = storeState.getChannel();
+            if (channel != null && (message = storeState.getMessage()) != null) {
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                Map<Long, User> users = companion.getUsers().getUsers();
+                com.discord.api.user.User author = message.getAuthor();
+                User user = users.get(author != null ? Long.valueOf(author.getId()) : null);
+                if (user == null || (getViewState() instanceof ViewState.Invalid)) {
+                    return null;
+                }
+                long id2 = companion.getUsers().getMeSnapshot().getId();
+                Map map = (Map) C1643a.m843c(channel, companion.getGuilds().getMembers());
+                if (map == null) {
+                    map = new HashMap();
+                }
+                Map map2 = map;
+                Map map3 = (Map) C1643a.m843c(channel, companion.getGuilds().getRoles());
+                Map<Long, String> channelNames = companion.getChannels().getChannelNames();
+                Map<Long, String> nickOrUsernames = MessageUtils.getNickOrUsernames(message, channel, map2, channel.m7650q());
+                String content = message.getContent();
+                DraweeSpanStringBuilder channelMessage = DiscordParser.parseChannelMessage(context, content != null ? new Regex("\n").replace(content, " ") : null, new MessageRenderContext(context, id2, false, nickOrUsernames, channelNames, map3, 0, null, null, 0, 0, null, null, null, 16320, null), new MessagePreprocessor(id2, null, null, false, 50, 6, null), DiscordParser.ParserOptions.REPLY, false);
+                com.discord.api.user.User author2 = message.getAuthor();
+                String username = nickOrUsernames.get(author2 != null ? Long.valueOf(author2.getId()) : null);
+                if (username == null) {
+                    com.discord.api.user.User author3 = message.getAuthor();
+                    username = author3 != null ? author3.getUsername() : null;
+                }
+                if (username == null) {
+                    username = "";
+                }
+                String str = username;
+                GuildMember.Companion companion2 = GuildMember.INSTANCE;
+                com.discord.api.user.User author4 = message.getAuthor();
+                return new MessagePreview(channelMessage, str, companion2.getColor((GuildMember) map2.get(author4 != null ? Long.valueOf(author4.getId()) : null), ColorCompat.getThemedColor(context, C5419R.attr.colorHeaderPrimary)), user, message.hasEmbeds() || message.hasAttachments());
+            }
+        }
+        return null;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

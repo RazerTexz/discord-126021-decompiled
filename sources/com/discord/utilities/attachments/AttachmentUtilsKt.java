@@ -34,22 +34,9 @@ public final class AttachmentUtilsKt {
     private static final Lazy REGEX_FILE_NAME_PATTERN$delegate = C12083g.lazy(AttachmentUtilsKt$REGEX_FILE_NAME_PATTERN$2.INSTANCE);
     private static final IntRange UTF_8_RANGE_EXCLUSIVE = new IntRange(32, 126);
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0 = new int[Bitmap.CompressFormat.values().length];
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-
-        static {
-            int[] iArr = new int[Bitmap.CompressFormat.values().length];
-            $EnumSwitchMapping$1 = iArr;
-            iArr[Bitmap.CompressFormat.PNG.ordinal()] = 1;
-            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 2;
-            iArr[Bitmap.CompressFormat.JPEG.ordinal()] = 3;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.attachments.AttachmentUtilsKt$appendLinks$1 */
     /* JADX INFO: compiled from: AttachmentUtils.kt */
-    public static final class C66881 extends AbstractC12240o implements Function1<Attachment<?>, CharSequence> {
+    public final class C66881 extends AbstractC12240o implements Function1<Attachment<?>, CharSequence> {
         public static final C66881 INSTANCE = new C66881();
 
         public C66881() {
@@ -70,7 +57,7 @@ public final class AttachmentUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.attachments.AttachmentUtilsKt$getMimeType$1 */
     /* JADX INFO: compiled from: AttachmentUtils.kt */
-    public static final class C66891 extends AbstractC12240o implements Function1<String, String> {
+    public final class C66891 extends AbstractC12240o implements Function1<String, String> {
         public static final C66891 INSTANCE = new C66891();
 
         public C66891() {
@@ -85,6 +72,19 @@ public final class AttachmentUtilsKt {
                 return null;
             }
             return MimeTypeMap.getSingleton().getMimeTypeFromExtension(matcher.group(2));
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0 = new int[Bitmap.CompressFormat.values().length];
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            int[] iArr = new int[Bitmap.CompressFormat.values().length];
+            $EnumSwitchMapping$1 = iArr;
+            iArr[Bitmap.CompressFormat.PNG.ordinal()] = 1;
+            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 2;
+            iArr[Bitmap.CompressFormat.JPEG.ordinal()] = 3;
         }
     }
 
@@ -120,6 +120,13 @@ public final class AttachmentUtilsKt {
         return "png";
     }
 
+    public static /* synthetic */ String getMimeType$default(ContentResolver contentResolver, Uri uri, String str, int i, Object obj) {
+        if ((i & 4) != 0) {
+            str = null;
+        }
+        return getMimeType(contentResolver, uri, str);
+    }
+
     public static final String getMimeType(ContentResolver contentResolver, Uri uri, String str) {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         String strInvoke = null;
@@ -134,13 +141,6 @@ public final class AttachmentUtilsKt {
         } catch (Exception unused) {
         }
         return strInvoke != null ? strInvoke : "application/octet-stream";
-    }
-
-    public static /* synthetic */ String getMimeType$default(ContentResolver contentResolver, Uri uri, String str, int i, Object obj) {
-        if ((i & 4) != 0) {
-            str = null;
-        }
-        return getMimeType(contentResolver, uri, str);
     }
 
     private static final Pattern getREGEX_FILE_NAME_PATTERN() {
@@ -164,16 +164,16 @@ public final class AttachmentUtilsKt {
         return C12238m.areEqual(getMimeType(attachment, contentResolver), "image/gif");
     }
 
-    public static final boolean isImage(ContentResolver contentResolver, Uri uri, String str) {
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        return C12103t.startsWith$default(getMimeType(contentResolver, uri, str), "image", false, 2, null);
-    }
-
     public static /* synthetic */ boolean isImage$default(ContentResolver contentResolver, Uri uri, String str, int i, Object obj) {
         if ((i & 4) != 0) {
             str = null;
         }
         return isImage(contentResolver, uri, str);
+    }
+
+    public static final boolean isImage(ContentResolver contentResolver, Uri uri, String str) {
+        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        return C12103t.startsWith$default(getMimeType(contentResolver, uri, str), "image", false, 2, null);
     }
 
     public static final boolean isImageAttachment(LocalAttachment localAttachment, ContentResolver contentResolver) {
@@ -184,16 +184,16 @@ public final class AttachmentUtilsKt {
         return isImage(contentResolver, uri, localAttachment.getDisplayName());
     }
 
-    public static final boolean isVideo(ContentResolver contentResolver, Uri uri, String str) {
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        return C12103t.startsWith$default(getMimeType(contentResolver, uri, str), MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null);
-    }
-
     public static /* synthetic */ boolean isVideo$default(ContentResolver contentResolver, Uri uri, String str, int i, Object obj) {
         if ((i & 4) != 0) {
             str = null;
         }
         return isVideo(contentResolver, uri, str);
+    }
+
+    public static final boolean isVideo(ContentResolver contentResolver, Uri uri, String str) {
+        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        return C12103t.startsWith$default(getMimeType(contentResolver, uri, str), MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null);
     }
 
     public static final boolean isVideoAttachment(LocalAttachment localAttachment, ContentResolver contentResolver) {

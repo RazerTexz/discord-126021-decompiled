@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUpdateConnectedAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUpdateConnectedAccount implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence accountId = null;
     private final CharSequence accountName = null;
     private final Boolean connected = null;
-    private final CharSequence platformType = null;
-    private final Long visibility = null;
     private final Boolean friendSync = null;
-    private final Boolean partner = null;
     private final CharSequence linkMethod = null;
+    private final Boolean partner = null;
+    private final CharSequence platformType = null;
+    private TrackBase trackBase;
+    private final Long visibility = null;
     private final transient String analyticsSchemaTypeName = "update_connected_account";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackUpdateConnectedAccount implements AnalyticsSc
         }
         TrackUpdateConnectedAccount trackUpdateConnectedAccount = (TrackUpdateConnectedAccount) other;
         return C12238m.areEqual(this.accountId, trackUpdateConnectedAccount.accountId) && C12238m.areEqual(this.accountName, trackUpdateConnectedAccount.accountName) && C12238m.areEqual(this.connected, trackUpdateConnectedAccount.connected) && C12238m.areEqual(this.platformType, trackUpdateConnectedAccount.platformType) && C12238m.areEqual(this.visibility, trackUpdateConnectedAccount.visibility) && C12238m.areEqual(this.friendSync, trackUpdateConnectedAccount.friendSync) && C12238m.areEqual(this.partner, trackUpdateConnectedAccount.partner) && C12238m.areEqual(this.linkMethod, trackUpdateConnectedAccount.linkMethod);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

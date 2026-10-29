@@ -17,16 +17,6 @@ public class C4181s5 implements InterfaceC4192t5 {
         this.f11202a = c4202u4;
     }
 
-    /* JADX INFO: renamed from: a */
-    public void mo5847a() {
-        this.f11202a.mo5725f().mo5847a();
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void mo5848b() {
-        this.f11202a.mo5725f().mo5848b();
-    }
-
     /* JADX INFO: renamed from: c */
     public C4076j m5864c() {
         return this.f11202a.m5954y();
@@ -40,6 +30,11 @@ public class C4181s5 implements InterfaceC4192t5 {
     /* JADX INFO: renamed from: e */
     public C4196t9 m5866e() {
         return this.f11202a.m5949t();
+    }
+
+    /* JADX INFO: renamed from: l */
+    public C4009d4 m5867l() {
+        return this.f11202a.m5946o();
     }
 
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
@@ -72,8 +67,13 @@ public class C4181s5 implements InterfaceC4192t5 {
         return this.f11202a.f11259g;
     }
 
-    /* JADX INFO: renamed from: l */
-    public C4009d4 m5867l() {
-        return this.f11202a.m5946o();
+    /* JADX INFO: renamed from: a */
+    public void mo5847a() {
+        this.f11202a.mo5725f().mo5847a();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void mo5848b() {
+        this.f11202a.mo5725f().mo5848b();
     }
 }

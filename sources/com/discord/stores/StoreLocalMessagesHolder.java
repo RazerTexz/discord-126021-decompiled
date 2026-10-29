@@ -47,63 +47,6 @@ public final class StoreLocalMessagesHolder {
         this.gson = c4901e.m6851a();
     }
 
-    public static /* synthetic */ void init$default(StoreLocalMessagesHolder storeLocalMessagesHolder, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        storeLocalMessagesHolder.init(z2);
-    }
-
-    @StoreThread
-    private final void messageCacheTryPersist() {
-        if (this.cacheEnabled) {
-            HashMap map = new HashMap();
-            for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
-                Long key = entry.getKey();
-                Collection<Message> collectionValues = entry.getValue().values();
-                C12238m.checkNotNullExpressionValue(collectionValues, "entry.value.values");
-                map.put(key, C12163u.toList(collectionValues));
-            }
-            if (!C12238m.areEqual(this.cacheSnapshot, map)) {
-                this.cacheSnapshot = map;
-                String strM9209m = this.gson.m9209m(map);
-                SharedPreferences sharedPreferences = this.sharedPreferences;
-                if (sharedPreferences == null) {
-                    C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
-                }
-                sharedPreferences.edit().putString("STORE_LOCAL_MESSAGES_CACHE_V11", strM9209m).apply();
-            }
-        }
-    }
-
-    private final void publishIfUpdated(boolean force) {
-        Collection<Message> collectionEmptyList;
-        if (!this.updatedChannels.isEmpty() || force) {
-            HashMap map = new HashMap(this.messagesSnapshot);
-            Iterator<Long> it = this.updatedChannels.iterator();
-            while (it.hasNext()) {
-                long jLongValue = it.next().longValue();
-                Long lValueOf = Long.valueOf(jLongValue);
-                TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
-                if (treeMap == null || (collectionEmptyList = treeMap.values()) == null) {
-                    collectionEmptyList = C12147n.emptyList();
-                }
-                map.put(lValueOf, new ArrayList(collectionEmptyList));
-            }
-            this.updatedChannels.clear();
-            this.messagesSnapshot = map;
-            this.messagesPublisher.onNext(map);
-            messageCacheTryPersist();
-        }
-    }
-
-    public static /* synthetic */ void publishIfUpdated$default(StoreLocalMessagesHolder storeLocalMessagesHolder, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        storeLocalMessagesHolder.publishIfUpdated(z2);
-    }
-
     @StoreThread
     public final void addMessage(Message message) {
         C12238m.checkNotNullParameter(message, "message");
@@ -177,6 +120,13 @@ public final class StoreLocalMessagesHolder {
         return this.messagesPublisher;
     }
 
+    public static /* synthetic */ void init$default(StoreLocalMessagesHolder storeLocalMessagesHolder, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        storeLocalMessagesHolder.init(z2);
+    }
+
     @StoreThread
     public final void init(boolean cacheEnabled) {
         if (cacheEnabled) {
@@ -208,6 +158,56 @@ public final class StoreLocalMessagesHolder {
         }
         this.cacheEnabled = cacheEnabled;
         publishIfUpdated(true);
+    }
+
+    @StoreThread
+    private final void messageCacheTryPersist() {
+        if (this.cacheEnabled) {
+            HashMap map = new HashMap();
+            for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
+                Long key = entry.getKey();
+                Collection<Message> collectionValues = entry.getValue().values();
+                C12238m.checkNotNullExpressionValue(collectionValues, "entry.value.values");
+                map.put(key, C12163u.toList(collectionValues));
+            }
+            if (!C12238m.areEqual(this.cacheSnapshot, map)) {
+                this.cacheSnapshot = map;
+                String strM9209m = this.gson.m9209m(map);
+                SharedPreferences sharedPreferences = this.sharedPreferences;
+                if (sharedPreferences == null) {
+                    C12238m.throwUninitializedPropertyAccessException("sharedPreferences");
+                }
+                sharedPreferences.edit().putString("STORE_LOCAL_MESSAGES_CACHE_V11", strM9209m).apply();
+            }
+        }
+    }
+
+    public static /* synthetic */ void publishIfUpdated$default(StoreLocalMessagesHolder storeLocalMessagesHolder, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        storeLocalMessagesHolder.publishIfUpdated(z2);
+    }
+
+    private final void publishIfUpdated(boolean force) {
+        Collection<Message> collectionEmptyList;
+        if (!this.updatedChannels.isEmpty() || force) {
+            HashMap map = new HashMap(this.messagesSnapshot);
+            Iterator<Long> it = this.updatedChannels.iterator();
+            while (it.hasNext()) {
+                long jLongValue = it.next().longValue();
+                Long lValueOf = Long.valueOf(jLongValue);
+                TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
+                if (treeMap == null || (collectionEmptyList = treeMap.values()) == null) {
+                    collectionEmptyList = C12147n.emptyList();
+                }
+                map.put(lValueOf, new ArrayList(collectionEmptyList));
+            }
+            this.updatedChannels.clear();
+            this.messagesSnapshot = map;
+            this.messagesPublisher.onNext(map);
+            messageCacheTryPersist();
+        }
     }
 
     @StoreThread

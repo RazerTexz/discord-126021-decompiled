@@ -49,7 +49,7 @@ public abstract class AbstractC11879o extends AbstractC11878n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.o$a */
     /* JADX INFO: compiled from: DeserializedPackageFragmentImpl.kt */
-    public static final class a extends AbstractC12240o implements Function1<C11712a, InterfaceC11467u0> {
+    public final class a extends AbstractC12240o implements Function1<C11712a, InterfaceC11467u0> {
         public a() {
             super(1);
         }
@@ -69,7 +69,7 @@ public abstract class AbstractC11879o extends AbstractC11878n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.o$b */
     /* JADX INFO: compiled from: DeserializedPackageFragmentImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<Collection<? extends C11716e>> {
+    public final class b extends AbstractC12240o implements Function0<Collection<? extends C11716e>> {
         public b() {
             super(0);
         }

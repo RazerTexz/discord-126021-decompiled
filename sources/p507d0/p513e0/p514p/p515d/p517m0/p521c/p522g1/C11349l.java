@@ -30,12 +30,6 @@ public final class C11349l implements InterfaceC11344g {
         this.f22747l = function1;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final boolean m9386c(InterfaceC11340c interfaceC11340c) {
-        C11713b fqName = interfaceC11340c.getFqName();
-        return fqName != null && this.f22747l.invoke(fqName).booleanValue();
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11344g
     public InterfaceC11340c findAnnotation(C11713b c11713b) {
         C12238m.checkNotNullParameter(c11713b, "fqName");
@@ -90,6 +84,12 @@ public final class C11349l implements InterfaceC11344g {
             }
         }
         return arrayList.iterator();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final boolean m9386c(InterfaceC11340c interfaceC11340c) {
+        C11713b fqName = interfaceC11340c.getFqName();
+        return fqName != null && this.f22747l.invoke(fqName).booleanValue();
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */

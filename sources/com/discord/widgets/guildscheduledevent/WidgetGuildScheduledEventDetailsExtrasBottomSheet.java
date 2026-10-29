@@ -61,8 +61,28 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C88831 extends C12236k implements Function1<GuildScheduledEventDetailsViewModel.ViewState, Unit> {
+        public C88831(WidgetGuildScheduledEventDetailsExtrasBottomSheet widgetGuildScheduledEventDetailsExtrasBottomSheet) {
+            super(1, widgetGuildScheduledEventDetailsExtrasBottomSheet, WidgetGuildScheduledEventDetailsExtrasBottomSheet.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventDetailsViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventDetailsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventDetailsViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildScheduledEventDetailsExtrasBottomSheet) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -81,16 +101,16 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$configureUi$5 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-    public static final class ViewOnClickListenerC88805 implements View.OnClickListener {
+    public final class ViewOnClickListenerC88805 implements View.OnClickListener {
         public final /* synthetic */ GuildScheduledEventDetailsViewModel.ViewState $viewState;
 
         /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$configureUi$5$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$configureUi$5$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-            public static final class C132861 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132861 extends AbstractC12240o implements Function0<Unit> {
                 public C132861() {
                     super(0);
                 }
@@ -140,26 +160,6 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
             Context contextRequireContext = WidgetGuildScheduledEventDetailsExtrasBottomSheet.this.requireContext();
             C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
             WidgetNoticeDialog.Companion.show$default(companion, childFragmentManager, string, C1107b.m216h(contextRequireContext, C5419R.string.delete_stage_event_confirmation_description, new Object[]{((GuildScheduledEventDetailsViewModel.ViewState.Initialized) this.$viewState).getGuildScheduledEvent().getName()}, null, 4), WidgetGuildScheduledEventDetailsExtrasBottomSheet.this.requireContext().getString(C5419R.string.delete_event), WidgetGuildScheduledEventDetailsExtrasBottomSheet.this.requireContext().getString(C5419R.string.back), C12134g0.mapOf(C12116o.m10073to(Integer.valueOf(C5419R.id.notice_ok), new AnonymousClass1())), null, null, null, null, null, null, 0, null, 16320, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-    public static final /* synthetic */ class C88831 extends C12236k implements Function1<GuildScheduledEventDetailsViewModel.ViewState, Unit> {
-        public C88831(WidgetGuildScheduledEventDetailsExtrasBottomSheet widgetGuildScheduledEventDetailsExtrasBottomSheet) {
-            super(1, widgetGuildScheduledEventDetailsExtrasBottomSheet, WidgetGuildScheduledEventDetailsExtrasBottomSheet.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventDetailsViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventDetailsViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventDetailsViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildScheduledEventDetailsExtrasBottomSheet) this.receiver).configureUi(viewState);
         }
     }
 
@@ -233,7 +233,7 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
 
             /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsExtrasBottomSheet$configureUi$4$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsExtrasBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -291,10 +291,6 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
         dismiss();
     }
 
-    private final GuildScheduledEventDetailsViewModel getViewModel() {
-        return (GuildScheduledEventDetailsViewModel) this.viewModel.getValue();
-    }
-
     public final GuildScheduledEventDetailsArgs getArgs() {
         return (GuildScheduledEventDetailsArgs) this.args.getValue();
     }
@@ -306,6 +302,10 @@ public final class WidgetGuildScheduledEventDetailsExtrasBottomSheet extends App
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_guild_scheduled_event_details_extras_bottom_sheet;
+    }
+
+    private final GuildScheduledEventDetailsViewModel getViewModel() {
+        return (GuildScheduledEventDetailsViewModel) this.viewModel.getValue();
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener

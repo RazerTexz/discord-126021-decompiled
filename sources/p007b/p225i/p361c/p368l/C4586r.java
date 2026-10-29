@@ -7,14 +7,14 @@ import p007b.p225i.p361c.p400t.InterfaceC4836a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4586r<T> implements InterfaceC4836a<T> {
 
+    /* JADX INFO: renamed from: c */
+    public volatile InterfaceC4836a<T> f12211c;
+
     /* JADX INFO: renamed from: a */
     public static final Object f12209a = new Object();
 
     /* JADX INFO: renamed from: b */
     public volatile Object f12210b = f12209a;
-
-    /* JADX INFO: renamed from: c */
-    public volatile InterfaceC4836a<T> f12211c;
 
     public C4586r(InterfaceC4836a<T> interfaceC4836a) {
         this.f12211c = interfaceC4836a;

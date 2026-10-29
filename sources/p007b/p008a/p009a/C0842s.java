@@ -35,28 +35,28 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0842s extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f428j = {C1643a.m846d0(C0842s.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableTwoFactorPasswordDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f428j = {C1643a.m846d0(C0842s.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableTwoFactorPasswordDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public Function1<? super String, Unit> onValidPasswordEntered;
 
     /* JADX INFO: renamed from: b.a.a.s$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.s$b */
     /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C0973h5> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C0973h5> {
 
         /* JADX INFO: renamed from: j */
         public static final b f432j = new b();
@@ -104,7 +104,7 @@ public final class C0842s extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.s$c */
     /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-    public static final class c extends AbstractC12240o implements Function1<String, Unit> {
+    public final class c extends AbstractC12240o implements Function1<String, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final c f433j = new c();
@@ -122,14 +122,14 @@ public final class C0842s extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.s$d */
     /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-    public static final class d implements View.OnClickListener {
+    public final class d implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ View f435k;
 
         /* JADX INFO: renamed from: b.a.a.s$d$a */
         /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-        public static final class a extends AbstractC12240o implements Function1<EnableMfaResponse, Unit> {
+        public final class a extends AbstractC12240o implements Function1<EnableMfaResponse, Unit> {
 
             /* JADX INFO: renamed from: j */
             public static final a f436j = new a();
@@ -147,7 +147,7 @@ public final class C0842s extends AppDialog {
 
         /* JADX INFO: renamed from: b.a.a.s$d$b */
         /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-        public static final class b extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class b extends AbstractC12240o implements Function1<Error, Unit> {
             public b() {
                 super(1);
             }
@@ -192,7 +192,7 @@ public final class C0842s extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.s$e */
     /* JADX INFO: compiled from: WidgetEnableTwoFactorPasswordDialog.kt */
-    public static final class e implements View.OnClickListener {
+    public final class e implements View.OnClickListener {
         public e() {
         }
 

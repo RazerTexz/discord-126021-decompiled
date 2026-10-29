@@ -10,11 +10,11 @@ import androidx.annotation.NonNull;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5285a {
 
-    /* JADX INFO: renamed from: a */
-    public Intent f14387a = new Intent();
-
     /* JADX INFO: renamed from: b */
     public Bundle f14388b;
+
+    /* JADX INFO: renamed from: a */
+    public Intent f14387a = new Intent();
 
     public C5285a(@NonNull Uri uri, @NonNull Uri uri2) {
         Bundle bundle = new Bundle();

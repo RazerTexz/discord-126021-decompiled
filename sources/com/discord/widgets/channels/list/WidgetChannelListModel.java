@@ -110,10 +110,10 @@ public final /* data */ class WidgetChannelListModel {
     private final boolean showPremiumGuildHint;
 
     /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final /* data */ class TextLikeChannelData {
+        public final /* data */ class TextLikeChannelData {
             private final boolean hide;
             private final boolean locked;
             private final int mentionCount;
@@ -150,31 +150,6 @@ public final /* data */ class WidgetChannelListModel {
                 return textLikeChannelData.copy(z2, i3, z6, z7, z5);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getSelected() {
-                return this.selected;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getMentionCount() {
-                return this.mentionCount;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getUnread() {
-                return this.unread;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getLocked() {
-                return this.locked;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getHide() {
-                return this.hide;
-            }
-
             public final TextLikeChannelData copy(boolean selected, int mentionCount, boolean unread, boolean locked, boolean hide) {
                 return new TextLikeChannelData(selected, mentionCount, unread, locked, hide);
             }
@@ -190,20 +165,45 @@ public final /* data */ class WidgetChannelListModel {
                 return this.selected == textLikeChannelData.selected && this.mentionCount == textLikeChannelData.mentionCount && this.unread == textLikeChannelData.unread && this.locked == textLikeChannelData.locked && this.hide == textLikeChannelData.hide;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final boolean getHide() {
                 return this.hide;
+            }
+
+            public final boolean getHide() {
+                return this.hide;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getLocked() {
+                return this.locked;
             }
 
             public final boolean getLocked() {
                 return this.locked;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final int getMentionCount() {
                 return this.mentionCount;
             }
 
+            public final int getMentionCount() {
+                return this.mentionCount;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final boolean getSelected() {
                 return this.selected;
+            }
+
+            public final boolean getSelected() {
+                return this.selected;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getUnread() {
+                return this.unread;
             }
 
             public final boolean getUnread() {
@@ -264,7 +264,7 @@ public final /* data */ class WidgetChannelListModel {
         }
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final /* data */ class VocalChannelData {
+        public final /* data */ class VocalChannelData {
             private final boolean isGuildRoleSubscriptionChannel;
             private final boolean isGuildRoleSubscriptionLockedChannel;
             private final boolean locked;
@@ -289,56 +289,6 @@ public final /* data */ class WidgetChannelListModel {
                 this.isGuildRoleSubscriptionChannel = z8;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getVoiceChannelSelected() {
-                return this.voiceChannelSelected;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getIsGuildRoleSubscriptionChannel() {
-                return this.isGuildRoleSubscriptionChannel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getTextChannelSelected() {
-                return this.textChannelSelected;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getMentionCount() {
-                return this.mentionCount;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getUnread() {
-                return this.unread;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getLocked() {
-                return this.locked;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getNsfw() {
-                return this.nsfw;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Long getPermission() {
-                return this.permission;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final int getNumUsersConnected() {
-                return this.numUsersConnected;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsGuildRoleSubscriptionLockedChannel() {
-                return this.isGuildRoleSubscriptionLockedChannel;
-            }
-
             public final VocalChannelData copy(boolean voiceChannelSelected, boolean textChannelSelected, int mentionCount, boolean unread, boolean locked, boolean nsfw, Long permission, int numUsersConnected, boolean isGuildRoleSubscriptionLockedChannel, boolean isGuildRoleSubscriptionChannel) {
                 return new VocalChannelData(voiceChannelSelected, textChannelSelected, mentionCount, unread, locked, nsfw, permission, numUsersConnected, isGuildRoleSubscriptionLockedChannel, isGuildRoleSubscriptionChannel);
             }
@@ -354,32 +304,82 @@ public final /* data */ class WidgetChannelListModel {
                 return this.voiceChannelSelected == vocalChannelData.voiceChannelSelected && this.textChannelSelected == vocalChannelData.textChannelSelected && this.mentionCount == vocalChannelData.mentionCount && this.unread == vocalChannelData.unread && this.locked == vocalChannelData.locked && this.nsfw == vocalChannelData.nsfw && C12238m.areEqual(this.permission, vocalChannelData.permission) && this.numUsersConnected == vocalChannelData.numUsersConnected && this.isGuildRoleSubscriptionLockedChannel == vocalChannelData.isGuildRoleSubscriptionLockedChannel && this.isGuildRoleSubscriptionChannel == vocalChannelData.isGuildRoleSubscriptionChannel;
             }
 
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getIsGuildRoleSubscriptionChannel() {
+                return this.isGuildRoleSubscriptionChannel;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getIsGuildRoleSubscriptionLockedChannel() {
+                return this.isGuildRoleSubscriptionLockedChannel;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final boolean getLocked() {
                 return this.locked;
+            }
+
+            public final boolean getLocked() {
+                return this.locked;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final int getMentionCount() {
+                return this.mentionCount;
             }
 
             public final int getMentionCount() {
                 return this.mentionCount;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final boolean getNsfw() {
                 return this.nsfw;
+            }
+
+            public final boolean getNsfw() {
+                return this.nsfw;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final int getNumUsersConnected() {
+                return this.numUsersConnected;
             }
 
             public final int getNumUsersConnected() {
                 return this.numUsersConnected;
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
             public final Long getPermission() {
                 return this.permission;
+            }
+
+            public final Long getPermission() {
+                return this.permission;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getTextChannelSelected() {
+                return this.textChannelSelected;
             }
 
             public final boolean getTextChannelSelected() {
                 return this.textChannelSelected;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final boolean getUnread() {
                 return this.unread;
+            }
+
+            public final boolean getUnread() {
+                return this.unread;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getVoiceChannelSelected() {
+                return this.voiceChannelSelected;
             }
 
             public final boolean getVoiceChannelSelected() {
@@ -490,6 +490,22 @@ public final /* data */ class WidgetChannelListModel {
         }
 
         private Companion() {
+        }
+
+        public final Observable<WidgetChannelListModel> get() {
+            Observable<WidgetChannelListModel> observableM11112r = StoreStream.INSTANCE.getGuildSelected().observeSelectedGuildId().m11099Y(new InterfaceC12589b<Long, Observable<? extends WidgetChannelListModel>>() { // from class: com.discord.widgets.channels.list.WidgetChannelListModel$Companion$get$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetChannelListModel> call(Long l) {
+                    if (l != null && l.longValue() == 0) {
+                        return WidgetChannelListModel.INSTANCE.getPrivateChannelList();
+                    }
+                    WidgetChannelListModel.Companion companion = WidgetChannelListModel.INSTANCE;
+                    C12238m.checkNotNullExpressionValue(l, "guildId");
+                    return companion.getSelectedGuildChannelList(l.longValue());
+                }
+            }).m11112r();
+            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n          .g…  .distinctUntilChanged()");
+            return observableM11112r;
         }
 
         /* JADX WARN: Code duplicated, block: B:85:0x0190  */
@@ -971,32 +987,16 @@ public final /* data */ class WidgetChannelListModel {
             return arrayList5;
         }
 
-        public final Observable<WidgetChannelListModel> get() {
-            Observable<WidgetChannelListModel> observableM11112r = StoreStream.INSTANCE.getGuildSelected().observeSelectedGuildId().m11099Y(new InterfaceC12589b<Long, Observable<? extends WidgetChannelListModel>>() { // from class: com.discord.widgets.channels.list.WidgetChannelListModel$Companion$get$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetChannelListModel> call(Long l) {
-                    if (l != null && l.longValue() == 0) {
-                        return WidgetChannelListModel.INSTANCE.getPrivateChannelList();
-                    }
-                    WidgetChannelListModel.Companion companion = WidgetChannelListModel.INSTANCE;
-                    C12238m.checkNotNullExpressionValue(l, "guildId");
-                    return companion.getSelectedGuildChannelList(l.longValue());
-                }
-            }).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n          .g…  .distinctUntilChanged()");
-            return observableM11112r;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-    public static abstract class ThreadSpineType {
+    public abstract class ThreadSpineType {
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final class End extends ThreadSpineType {
+        public final class End extends ThreadSpineType {
             public static final End INSTANCE = new End();
 
             private End() {
@@ -1005,7 +1005,7 @@ public final /* data */ class WidgetChannelListModel {
         }
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final class Middle extends ThreadSpineType {
+        public final class Middle extends ThreadSpineType {
             public static final Middle INSTANCE = new Middle();
 
             private Middle() {
@@ -1014,7 +1014,7 @@ public final /* data */ class WidgetChannelListModel {
         }
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final class Single extends ThreadSpineType {
+        public final class Single extends ThreadSpineType {
             public static final Single INSTANCE = new Single();
 
             private Single() {
@@ -1023,7 +1023,7 @@ public final /* data */ class WidgetChannelListModel {
         }
 
         /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-        public static final class Start extends ThreadSpineType {
+        public final class Start extends ThreadSpineType {
             public static final Start INSTANCE = new Start();
 
             private Start() {
@@ -1040,7 +1040,7 @@ public final /* data */ class WidgetChannelListModel {
     }
 
     /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-    public static final class VoiceStates {
+    public final class VoiceStates {
         public static final VoiceStates INSTANCE = new VoiceStates();
 
         private VoiceStates() {
@@ -1139,6 +1139,14 @@ public final /* data */ class WidgetChannelListModel {
         this.guildScheduledEvents = list2;
     }
 
+    public final List<ChannelListItem> component2() {
+        return this.items;
+    }
+
+    public final List<GuildScheduledEvent> component6() {
+        return this.guildScheduledEvents;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetChannelListModel copy$default(WidgetChannelListModel widgetChannelListModel, Guild guild, List list, boolean z2, boolean z3, boolean z4, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -1166,34 +1174,6 @@ public final /* data */ class WidgetChannelListModel {
         return widgetChannelListModel.copy(guild, list3, z5, z6, z7, list2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Guild getSelectedGuild() {
-        return this.selectedGuild;
-    }
-
-    public final List<ChannelListItem> component2() {
-        return this.items;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsGuildSelected() {
-        return this.isGuildSelected;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getShowPremiumGuildHint() {
-        return this.showPremiumGuildHint;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getShowEmptyState() {
-        return this.showEmptyState;
-    }
-
-    public final List<GuildScheduledEvent> component6() {
-        return this.guildScheduledEvents;
-    }
-
     public final WidgetChannelListModel copy(Guild selectedGuild, List<? extends ChannelListItem> items, boolean isGuildSelected, boolean showPremiumGuildHint, boolean showEmptyState, List<GuildScheduledEvent> guildScheduledEvents) {
         C12238m.checkNotNullParameter(items, "items");
         C12238m.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
@@ -1215,16 +1195,36 @@ public final /* data */ class WidgetChannelListModel {
         return this.guildScheduledEvents;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsGuildSelected() {
+        return this.isGuildSelected;
+    }
+
     public final List<ChannelListItem> getItems() {
         return this.items;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Guild getSelectedGuild() {
+        return this.selectedGuild;
     }
 
     public final Guild getSelectedGuild() {
         return this.selectedGuild;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getShowEmptyState() {
         return this.showEmptyState;
+    }
+
+    public final boolean getShowEmptyState() {
+        return this.showEmptyState;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getShowPremiumGuildHint() {
+        return this.showPremiumGuildHint;
     }
 
     public final boolean getShowPremiumGuildHint() {

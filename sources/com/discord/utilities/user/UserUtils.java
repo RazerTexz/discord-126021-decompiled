@@ -41,54 +41,15 @@ public final class UserUtils {
     private UserUtils() {
     }
 
+    public final int compareUserNames(User user1, User user2) {
+        return compareUserNames(user1, user2, null, null);
+    }
+
     public static /* synthetic */ long getAgeMs$default(UserUtils userUtils, User user, Clock clock, int i, Object obj) {
         if ((i & 1) != 0) {
             clock = ClockFactory.get();
         }
         return userUtils.getAgeMs(user, clock);
-    }
-
-    public static /* synthetic */ CharSequence getUserNameWithDiscriminator$default(UserUtils userUtils, User user, Integer num, Float f, int i, Object obj) {
-        if ((i & 1) != 0) {
-            num = null;
-        }
-        if ((i & 2) != 0) {
-            f = null;
-        }
-        return userUtils.getUserNameWithDiscriminator(user, num, f);
-    }
-
-    private final boolean hasFlag(int flags, int targetFlag) {
-        return (flags & targetFlag) == targetFlag;
-    }
-
-    private final boolean hasFlag(User user, int i) {
-        return hasFlag(user.getPublicFlags() | user.getFlags(), i);
-    }
-
-    public static /* synthetic */ boolean isAccountOldEnough$default(UserUtils userUtils, User user, Clock clock, int i, Object obj) {
-        if ((i & 1) != 0) {
-            clock = ClockFactory.get();
-        }
-        return userUtils.isAccountOldEnough(user, clock);
-    }
-
-    public static /* synthetic */ boolean isNewUser$default(UserUtils userUtils, User user, Clock clock, int i, Object obj) {
-        if ((i & 1) != 0) {
-            clock = ClockFactory.get();
-        }
-        return userUtils.isNewUser(user, clock);
-    }
-
-    public static /* synthetic */ boolean since$default(UserUtils userUtils, User user, Clock clock, UtcDateTime utcDateTime, int i, Object obj) {
-        if ((i & 1) != 0) {
-            clock = ClockFactory.get();
-        }
-        return userUtils.since(user, clock, utcDateTime);
-    }
-
-    public final int compareUserNames(User user1, User user2) {
-        return compareUserNames(user1, user2, null, null);
     }
 
     public final long getAgeMs(User user, Clock clock) {
@@ -149,6 +110,16 @@ public final class UserUtils {
         return string;
     }
 
+    public static /* synthetic */ CharSequence getUserNameWithDiscriminator$default(UserUtils userUtils, User user, Integer num, Float f, int i, Object obj) {
+        if ((i & 1) != 0) {
+            num = null;
+        }
+        if ((i & 2) != 0) {
+            f = null;
+        }
+        return userUtils.getUserNameWithDiscriminator(user, num, f);
+    }
+
     public final CharSequence getUserNameWithDiscriminator(User user, @ColorInt Integer num, Float f) {
         C12238m.checkNotNullParameter(user, "$this$getUserNameWithDiscriminator");
         String str = user.getUsername() + getDiscriminatorWithPadding(user);
@@ -163,6 +134,21 @@ public final class UserUtils {
             spannableString.setSpan(new RelativeSizeSpan(f.floatValue()), user.getUsername().length(), spannableString.length(), 17);
         }
         return spannableString;
+    }
+
+    private final boolean hasFlag(int flags, int targetFlag) {
+        return (flags & targetFlag) == targetFlag;
+    }
+
+    private final boolean hasFlag(User user, int i) {
+        return hasFlag(user.getPublicFlags() | user.getFlags(), i);
+    }
+
+    public static /* synthetic */ boolean isAccountOldEnough$default(UserUtils userUtils, User user, Clock clock, int i, Object obj) {
+        if ((i & 1) != 0) {
+            clock = ClockFactory.get();
+        }
+        return userUtils.isAccountOldEnough(user, clock);
     }
 
     public final boolean isAccountOldEnough(User user, Clock clock) {
@@ -221,6 +207,13 @@ public final class UserUtils {
         return hasFlag(user, 16);
     }
 
+    public static /* synthetic */ boolean isNewUser$default(UserUtils userUtils, User user, Clock clock, int i, Object obj) {
+        if ((i & 1) != 0) {
+            clock = ClockFactory.get();
+        }
+        return userUtils.isNewUser(user, clock);
+    }
+
     public final boolean isNewUser(User user, Clock clock) {
         C12238m.checkNotNullParameter(user, "$this$isNewUser");
         C12238m.checkNotNullParameter(clock, "clock");
@@ -271,6 +264,13 @@ public final class UserUtils {
 
     public final String padDiscriminator(int discriminator) {
         return C1643a.m828P(new Object[]{Integer.valueOf(discriminator)}, 1, "#%04d", "java.lang.String.format(format, *args)");
+    }
+
+    public static /* synthetic */ boolean since$default(UserUtils userUtils, User user, Clock clock, UtcDateTime utcDateTime, int i, Object obj) {
+        if ((i & 1) != 0) {
+            clock = ClockFactory.get();
+        }
+        return userUtils.since(user, clock, utcDateTime);
     }
 
     public final boolean since(User user, Clock clock, UtcDateTime utcDateTime) {

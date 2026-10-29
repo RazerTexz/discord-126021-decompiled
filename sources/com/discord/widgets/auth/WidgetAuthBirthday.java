@@ -59,8 +59,34 @@ public final class WidgetAuthBirthday extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthBirthday$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetAuthBirthday.kt */
-    public static final class Companion {
+    public final class C71671 extends AbstractC12240o implements Function1<View, Unit> {
+        public C71671() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            C0834k.Companion companion = C0834k.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetAuthBirthday.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            String string = WidgetAuthBirthday.this.getString(C5419R.string.age_gate_date_of_birth);
+            C12238m.checkNotNullExpressionValue(string, "getString(R.string.age_gate_date_of_birth)");
+            Long birthday = WidgetAuthBirthday.this.getBirthday();
+            companion.m139a(parentFragmentManager, string, birthday != null ? birthday.longValue() : BirthdayHelper.INSTANCE.defaultInputAge(), BirthdayHelper.INSTANCE.getMaxDateOfBirth()).onDatePicked = new C7168xc97b7541(this);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAuthBirthday.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,32 +116,6 @@ public final class WidgetAuthBirthday extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthBirthday$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetAuthBirthday.kt */
-    public static final class C71671 extends AbstractC12240o implements Function1<View, Unit> {
-        public C71671() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            C0834k.Companion companion = C0834k.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetAuthBirthday.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            String string = WidgetAuthBirthday.this.getString(C5419R.string.age_gate_date_of_birth);
-            C12238m.checkNotNullExpressionValue(string, "getString(R.string.age_gate_date_of_birth)");
-            Long birthday = WidgetAuthBirthday.this.getBirthday();
-            companion.m139a(parentFragmentManager, string, birthday != null ? birthday.longValue() : BirthdayHelper.INSTANCE.defaultInputAge(), BirthdayHelper.INSTANCE.getMaxDateOfBirth()).onDatePicked = new C7168xc97b7541(this);
         }
     }
 
@@ -150,13 +150,6 @@ public final class WidgetAuthBirthday extends AppFragment {
         return (ValidationManager) this.validationManager.getValue();
     }
 
-    private final void setBirthday(long date) {
-        String str = this.formatter.format(Long.valueOf(date));
-        TextInputLayout textInputLayout = getBinding().f15672c;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterBirthday");
-        ViewExtensions.setText(textInputLayout, new SpannableStringBuilder(str));
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -188,6 +181,13 @@ public final class WidgetAuthBirthday extends AppFragment {
                 WidgetAuthBirthday.this.submit();
             }
         });
+    }
+
+    private final void setBirthday(long date) {
+        String str = this.formatter.format(Long.valueOf(date));
+        TextInputLayout textInputLayout = getBinding().f15672c;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterBirthday");
+        ViewExtensions.setText(textInputLayout, new SpannableStringBuilder(str));
     }
 
     public final void submit() {

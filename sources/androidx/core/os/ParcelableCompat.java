@@ -7,7 +7,7 @@ import android.os.Parcelable;
 @Deprecated
 public final class ParcelableCompat {
 
-    public static class ParcelableCompatCreatorHoneycombMR2<T> implements Parcelable.ClassLoaderCreator<T> {
+    public class ParcelableCompatCreatorHoneycombMR2<T> implements Parcelable.ClassLoaderCreator<T> {
         private final ParcelableCompatCreatorCallbacks<T> mCallbacks;
 
         public ParcelableCompatCreatorHoneycombMR2(ParcelableCompatCreatorCallbacks<T> parcelableCompatCreatorCallbacks) {

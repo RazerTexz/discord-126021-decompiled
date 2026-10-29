@@ -19,6 +19,9 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2742i {
 
+    /* JADX INFO: renamed from: d */
+    public static final Map<String, Integer> f6726d;
+
     /* JADX INFO: renamed from: a */
     public static final Pattern f6723a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
 
@@ -27,9 +30,6 @@ public final class C2742i {
 
     /* JADX INFO: renamed from: c */
     public static final Pattern f6725c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
-
-    /* JADX INFO: renamed from: d */
-    public static final Map<String, Integer> f6726d;
 
     static {
         HashMap map = new HashMap();

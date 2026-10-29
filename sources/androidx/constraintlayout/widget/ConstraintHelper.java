@@ -99,6 +99,37 @@ public abstract class ConstraintHelper extends View {
         }
     }
 
+    public void addView(View view) {
+        if (view == this) {
+            return;
+        }
+        if (view.getId() == -1) {
+            Log.e("ConstraintHelper", "Views added to a ConstraintHelper need to have an id");
+        } else {
+            if (view.getParent() == null) {
+                Log.e("ConstraintHelper", "Views added to a ConstraintHelper need to have a parent");
+                return;
+            }
+            this.mReferenceIds = null;
+            addRscID(view.getId());
+            requestLayout();
+        }
+    }
+
+    public void applyLayoutFeatures(ConstraintLayout constraintLayout) {
+        int visibility = getVisibility();
+        float elevation = getElevation();
+        for (int i = 0; i < this.mCount; i++) {
+            View viewById = constraintLayout.getViewById(this.mIds[i]);
+            if (viewById != null) {
+                viewById.setVisibility(visibility);
+                if (elevation > 0.0f) {
+                    viewById.setTranslationZ(viewById.getTranslationZ() + elevation);
+                }
+            }
+        }
+    }
+
     private int[] convertReferenceString(View view, String str) {
         String[] strArrSplit = str.split(",");
         view.getContext();
@@ -133,37 +164,6 @@ public abstract class ConstraintHelper extends View {
             }
         }
         return iFindId == 0 ? this.myContext.getResources().getIdentifier(str, ModelAuditLogEntry.CHANGE_KEY_ID, this.myContext.getPackageName()) : iFindId;
-    }
-
-    public void addView(View view) {
-        if (view == this) {
-            return;
-        }
-        if (view.getId() == -1) {
-            Log.e("ConstraintHelper", "Views added to a ConstraintHelper need to have an id");
-        } else {
-            if (view.getParent() == null) {
-                Log.e("ConstraintHelper", "Views added to a ConstraintHelper need to have a parent");
-                return;
-            }
-            this.mReferenceIds = null;
-            addRscID(view.getId());
-            requestLayout();
-        }
-    }
-
-    public void applyLayoutFeatures(ConstraintLayout constraintLayout) {
-        int visibility = getVisibility();
-        float elevation = getElevation();
-        for (int i = 0; i < this.mCount; i++) {
-            View viewById = constraintLayout.getViewById(this.mIds[i]);
-            if (viewById != null) {
-                viewById.setVisibility(visibility);
-                if (elevation > 0.0f) {
-                    viewById.setTranslationZ(viewById.getTranslationZ() + elevation);
-                }
-            }
-        }
     }
 
     public int[] getReferencedIds() {

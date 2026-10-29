@@ -17,7 +17,7 @@ public final class WidgetHubDomains$adapter$1 extends AbstractC12240o implements
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomains$adapter$1$1 */
     /* JADX INFO: compiled from: WidgetHubDomains.kt */
-    public static final /* synthetic */ class C90261 extends C12236k implements Function1<DomainGuildInfo, Unit> {
+    public final /* synthetic */ class C90261 extends C12236k implements Function1<DomainGuildInfo, Unit> {
         public C90261(WidgetHubDomains widgetHubDomains) {
             super(1, widgetHubDomains, WidgetHubDomains.class, "onServerClickListener", "onServerClickListener(Lcom/discord/widgets/hubs/DomainGuildInfo;)V", 0);
         }

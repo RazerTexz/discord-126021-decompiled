@@ -13,19 +13,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreDirectoryHeroScrolled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreDirectoryHeroScrolled implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver {
+    private final Long cardIndex = null;
+    private final CharSequence cardType = null;
+    private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence loadId = null;
-    private final Long cardIndex = null;
-    private final CharSequence cardType = null;
     private final transient String analyticsSchemaTypeName = "store_directory_hero_scrolled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackStoreDirectoryHeroScrolled implements Analyti
         }
         TrackStoreDirectoryHeroScrolled trackStoreDirectoryHeroScrolled = (TrackStoreDirectoryHeroScrolled) other;
         return C12238m.areEqual(this.loadId, trackStoreDirectoryHeroScrolled.loadId) && C12238m.areEqual(this.cardIndex, trackStoreDirectoryHeroScrolled.cardIndex) && C12238m.areEqual(this.cardType, trackStoreDirectoryHeroScrolled.cardType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

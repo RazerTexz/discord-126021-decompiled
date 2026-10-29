@@ -19,7 +19,7 @@ public final class C11994p0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.p0$a */
     /* JADX INFO: compiled from: StarProjectionImpl.kt */
-    public static final class a extends AbstractC12010v0 {
+    public final class a extends AbstractC12010v0 {
 
         /* JADX INFO: renamed from: c */
         public final /* synthetic */ List<InterfaceC12008u0> f24855c;

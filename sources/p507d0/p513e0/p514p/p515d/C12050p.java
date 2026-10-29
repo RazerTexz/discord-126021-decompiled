@@ -26,7 +26,7 @@ public class C12050p<V> extends AbstractC12053s<V> implements KProperty0<V> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.p$a */
     /* JADX INFO: compiled from: KProperty0Impl.kt */
-    public static final class a<R> extends AbstractC12053s.c<R> implements KProperty0.Getter<R> {
+    public final class a<R> extends AbstractC12053s.c<R> implements KProperty0.Getter<R> {
 
         /* JADX INFO: renamed from: q */
         public final C12050p<R> f25041q;
@@ -50,7 +50,7 @@ public class C12050p<V> extends AbstractC12053s<V> implements KProperty0<V> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.p$b */
     /* JADX INFO: compiled from: KProperty0Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<? extends V>> {
+    public final class b extends AbstractC12240o implements Function0<a<? extends V>> {
         public b() {
             super(0);
         }
@@ -63,7 +63,7 @@ public class C12050p<V> extends AbstractC12053s<V> implements KProperty0<V> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.p$c */
     /* JADX INFO: compiled from: KProperty0Impl.kt */
-    public static final class c extends AbstractC12240o implements Function0<Object> {
+    public final class c extends AbstractC12240o implements Function0<Object> {
         public c() {
             super(0);
         }
@@ -76,7 +76,7 @@ public class C12050p<V> extends AbstractC12053s<V> implements KProperty0<V> {
             Objects.requireNonNull(c12050p);
             try {
                 if (boundReceiver == AbstractC12053s.f25048n && c12050p.getDescriptor().getExtensionReceiverParameter() == null) {
-                    throw new RuntimeException('\'' + c12050p + "' is not an extension property and thus getExtensionDelegate() is not going to work, use getDelegate() instead");
+                    throw new RuntimeException("" + '\'' + c12050p + "' is not an extension property and thus getExtensionDelegate() is not going to work, use getDelegate() instead");
                 }
                 if (fieldM10056c != null) {
                     return fieldM10056c.get(boundReceiver);

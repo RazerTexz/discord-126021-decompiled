@@ -48,7 +48,7 @@ public final class StoreForumPostReadStates extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$observeThreadIdsWithPersistedReadStates$1 */
     /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
-    public static final class C59381 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C59381 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public C59381() {
             super(0);
         }
@@ -61,7 +61,7 @@ public final class StoreForumPostReadStates extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$observeThreadUnreadCounts$1 */
     /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
-    public static final class C59391 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
+    public final class C59391 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
         public C59391() {
             super(0);
         }
@@ -74,7 +74,7 @@ public final class StoreForumPostReadStates extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$requestForumUnreads$1 */
     /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
-    public static final class C59401 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59401 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
 

@@ -36,13 +36,13 @@ import org.eclipse.jdt.internal.compiler.ast.Wildcard;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/EclipseAST.SCL.lombok */
 public class EclipseAST extends AST<EclipseAST, EclipseNode, ASTNode> {
-    private static volatile boolean skipEclipseWorkspaceBasedFileResolver = false;
-    private static final URI NOT_CALCULATED_MARKER = URI.create("https://projectlombok.org/not/calculated");
-    private URI memoizedAbsoluteFileLocation;
-    private final List<ParseProblem> queuedProblems;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
     private final CompilationUnitDeclaration compilationUnitDeclaration;
     private boolean completeParse;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+    private URI memoizedAbsoluteFileLocation;
+    private final List<ParseProblem> queuedProblems;
+    private static volatile boolean skipEclipseWorkspaceBasedFileResolver = false;
+    private static final URI NOT_CALCULATED_MARKER = URI.create("https://projectlombok.org/not/calculated");
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;
@@ -142,7 +142,7 @@ public class EclipseAST extends AST<EclipseAST, EclipseNode, ASTNode> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/EclipseAST$EclipseWorkspaceBasedFileResolver.SCL.lombok */
-    private static class EclipseWorkspaceBasedFileResolver {
+    class EclipseWorkspaceBasedFileResolver {
         private EclipseWorkspaceBasedFileResolver() {
         }
 
@@ -551,7 +551,7 @@ public class EclipseAST extends AST<EclipseAST, EclipseNode, ASTNode> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/EclipseAST$EcjReflectionCheck.SCL.lombok */
-    private static class EcjReflectionCheck {
+    class EcjReflectionCheck {
         private static final String COMPILATIONRESULT_TYPE = "org.eclipse.jdt.internal.compiler.CompilationResult";
         public static final Method addProblemToCompilationResult;
         public static final Throwable problemAddProblemToCompilationResult;

@@ -34,18 +34,49 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
-    private static final String ARG_VOICE_BOTTOM_SHEET_PARAMS = "ARG_VOICE_BOTTOM_SHEET_PARAMS";
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetScreenShareNfxSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetScreenShareNfxSheetBinding;", 0)};
+    private static final String ARG_VOICE_BOTTOM_SHEET_PARAMS = "ARG_VOICE_BOTTOM_SHEET_PARAMS";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.WidgetScreenShareNfxSheet$onActivityResult$1 */
     /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
-    public static final class Companion {
+    public final class C104441 extends AbstractC12240o implements Function1<Intent, Unit> {
+        public C104441() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
+            invoke2(intent);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Intent intent) {
+            C12238m.checkNotNullParameter(intent, "it");
+            VoiceEngineServiceController.INSTANCE.getINSTANCE().startStream(intent);
+            if (!WidgetScreenShareNfxSheet.this.requireAppActivity().m8348h(C12216a0.getOrCreateKotlinClass(WidgetCallFullscreen.class))) {
+                WidgetCallFullscreen.Companion companion = WidgetCallFullscreen.INSTANCE;
+                Context contextRequireContext = WidgetScreenShareNfxSheet.this.requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                WidgetCallFullscreen.Companion.launch$default(companion, contextRequireContext, WidgetScreenShareNfxSheet.this.requireArguments().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"), false, null, null, 28, null);
+            }
+            WidgetScreenShareNfxSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
+    public final class Companion {
         private Companion() {
+        }
+
+        public final boolean canShow() {
+            return !SharedPreferencesProvider.INSTANCE.get().getBoolean("CACHE_KEY_SCREEN_SHARE_NFX_SHEET_SHOWN", false);
         }
 
         public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, long j, long j2, VoiceBottomSheetParams voiceBottomSheetParams, int i, Object obj) {
@@ -53,10 +84,6 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
                 voiceBottomSheetParams = null;
             }
             companion.show(fragmentManager, j, j2, voiceBottomSheetParams);
-        }
-
-        public final boolean canShow() {
-            return !SharedPreferencesProvider.INSTANCE.get().getBoolean("CACHE_KEY_SCREEN_SHARE_NFX_SHEET_SHOWN", false);
         }
 
         public final void show(FragmentManager fragmentManager, long channelId, long guildId, VoiceBottomSheetParams voiceBottomSheetParams) {
@@ -79,7 +106,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
-    public static final /* data */ class VoiceBottomSheetParams implements Serializable {
+    public final /* data */ class VoiceBottomSheetParams implements Serializable {
         private final WidgetVoiceBottomSheet.FeatureContext featureContext;
         private final boolean forwardToFullscreenIfVideoActivated;
 
@@ -99,16 +126,6 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
             return voiceBottomSheetParams.copy(z2, featureContext);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getForwardToFullscreenIfVideoActivated() {
-            return this.forwardToFullscreenIfVideoActivated;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final WidgetVoiceBottomSheet.FeatureContext getFeatureContext() {
-            return this.featureContext;
-        }
-
         public final VoiceBottomSheetParams copy(boolean forwardToFullscreenIfVideoActivated, WidgetVoiceBottomSheet.FeatureContext featureContext) {
             C12238m.checkNotNullParameter(featureContext, "featureContext");
             return new VoiceBottomSheetParams(forwardToFullscreenIfVideoActivated, featureContext);
@@ -125,8 +142,18 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
             return this.forwardToFullscreenIfVideoActivated == voiceBottomSheetParams.forwardToFullscreenIfVideoActivated && C12238m.areEqual(this.featureContext, voiceBottomSheetParams.featureContext);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final WidgetVoiceBottomSheet.FeatureContext getFeatureContext() {
             return this.featureContext;
+        }
+
+        public final WidgetVoiceBottomSheet.FeatureContext getFeatureContext() {
+            return this.featureContext;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getForwardToFullscreenIfVideoActivated() {
+            return this.forwardToFullscreenIfVideoActivated;
         }
 
         public final boolean getForwardToFullscreenIfVideoActivated() {
@@ -158,33 +185,6 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.WidgetScreenShareNfxSheet$onActivityResult$1 */
-    /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
-    public static final class C104441 extends AbstractC12240o implements Function1<Intent, Unit> {
-        public C104441() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
-            invoke2(intent);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Intent intent) {
-            C12238m.checkNotNullParameter(intent, "it");
-            VoiceEngineServiceController.INSTANCE.getINSTANCE().startStream(intent);
-            if (!WidgetScreenShareNfxSheet.this.requireAppActivity().m8348h(C12216a0.getOrCreateKotlinClass(WidgetCallFullscreen.class))) {
-                WidgetCallFullscreen.Companion companion = WidgetCallFullscreen.INSTANCE;
-                Context contextRequireContext = WidgetScreenShareNfxSheet.this.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                WidgetCallFullscreen.Companion.launch$default(companion, contextRequireContext, WidgetScreenShareNfxSheet.this.requireArguments().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"), false, null, null, 28, null);
-            }
-            WidgetScreenShareNfxSheet.this.dismiss();
-        }
-    }
-
     public WidgetScreenShareNfxSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetScreenShareNfxSheet$binding$2.INSTANCE, null, 2, null);
@@ -196,6 +196,11 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
 
     private final long getChannelId() {
         return requireArguments().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID");
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_screen_share_nfx_sheet;
     }
 
     private final long getGuildId() {
@@ -221,11 +226,6 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
             C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion2.show(parentFragmentManager, getChannelId(), voiceBottomSheetParams.getForwardToFullscreenIfVideoActivated(), voiceBottomSheetParams.getFeatureContext());
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_screen_share_nfx_sheet;
     }
 
     @Override // androidx.fragment.app.Fragment

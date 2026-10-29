@@ -120,13 +120,6 @@ public final class FloatingButtonMenuInitializer {
         return animatorArr;
     }
 
-    private final void setFabMenuOnClickListener(TableRow row, View.OnClickListener listener) {
-        int childCount = row.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            row.getChildAt(i).setOnClickListener(listener);
-        }
-    }
-
     public final FloatingButtonMenuInitializer initialize(final ViewGroup menuContainer, final View mainFab, View.OnClickListener defaultRowOnClickListener) {
         C12238m.checkNotNullParameter(menuContainer, "menuContainer");
         C12238m.checkNotNullParameter(mainFab, "mainFab");
@@ -148,5 +141,12 @@ public final class FloatingButtonMenuInitializer {
             }
         });
         return this;
+    }
+
+    private final void setFabMenuOnClickListener(TableRow row, View.OnClickListener listener) {
+        int childCount = row.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            row.getChildAt(i).setOnClickListener(listener);
+        }
     }
 }

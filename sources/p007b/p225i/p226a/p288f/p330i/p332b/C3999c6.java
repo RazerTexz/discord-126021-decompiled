@@ -926,12 +926,6 @@ public final class C3999c6 extends AbstractC3974a5 {
         mo5725f().m5852v(new RunnableC4149p6(this, bundle2));
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
-    /* JADX INFO: renamed from: v */
-    public final boolean mo5499v() {
-        return false;
-    }
-
     /* JADX INFO: renamed from: w */
     public final void m5556w(long j, boolean z2) {
         mo5848b();
@@ -1069,5 +1063,11 @@ public final class C3999c6 extends AbstractC3974a5 {
                 m5541D(Boolean.valueOf(z2), false);
             }
         }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
+    /* JADX INFO: renamed from: v */
+    public final boolean mo5499v() {
+        return false;
     }
 }

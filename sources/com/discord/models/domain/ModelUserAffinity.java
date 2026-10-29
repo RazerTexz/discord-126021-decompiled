@@ -23,16 +23,6 @@ public final /* data */ class ModelUserAffinity {
         return modelUserAffinity.copy(j, f);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final float getAffinity() {
-        return this.affinity;
-    }
-
     public final ModelUserAffinity copy(long userId, float affinity) {
         return new ModelUserAffinity(userId, affinity);
     }
@@ -48,8 +38,18 @@ public final /* data */ class ModelUserAffinity {
         return this.userId == modelUserAffinity.userId && Float.compare(this.affinity, modelUserAffinity.affinity) == 0;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final float getAffinity() {
         return this.affinity;
+    }
+
+    public final float getAffinity() {
+        return this.affinity;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

@@ -42,6 +42,24 @@ public abstract class AbstractC11383l extends AbstractC11381k implements Interfa
         this.f22897m = interfaceC11467u0;
     }
 
+    public InterfaceC11450m getContainingDeclaration() {
+        InterfaceC11450m interfaceC11450m = this.f22896l;
+        if (interfaceC11450m != null) {
+            return interfaceC11450m;
+        }
+        m9416a(5);
+        throw null;
+    }
+
+    public InterfaceC11467u0 getSource() {
+        InterfaceC11467u0 interfaceC11467u0 = this.f22897m;
+        if (interfaceC11467u0 != null) {
+            return interfaceC11467u0;
+        }
+        m9416a(6);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9416a(int i) {
         String str = (i == 4 || i == 5 || i == 6) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -82,24 +100,6 @@ public abstract class AbstractC11383l extends AbstractC11381k implements Interfa
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    public InterfaceC11450m getContainingDeclaration() {
-        InterfaceC11450m interfaceC11450m = this.f22896l;
-        if (interfaceC11450m != null) {
-            return interfaceC11450m;
-        }
-        m9416a(5);
-        throw null;
-    }
-
-    public InterfaceC11467u0 getSource() {
-        InterfaceC11467u0 interfaceC11467u0 = this.f22897m;
-        if (interfaceC11467u0 != null) {
-            return interfaceC11467u0;
-        }
-        m9416a(6);
-        throw null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m

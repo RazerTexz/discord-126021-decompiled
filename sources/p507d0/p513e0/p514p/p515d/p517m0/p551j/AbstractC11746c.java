@@ -36,7 +36,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$a */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24228j = new a();
@@ -61,7 +61,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$b */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24229j = new b();
@@ -87,7 +87,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$c */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class c extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class c extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final c f24230j = new c();
@@ -111,7 +111,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$d */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class d extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class d extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final d f24231j = new d();
@@ -137,7 +137,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$e */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class e extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class e extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final e f24232j = new e();
@@ -163,7 +163,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$f */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class f extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class f extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final f f24233j = new f();
@@ -187,7 +187,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$g */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class g extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class g extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final g f24234j = new g();
@@ -211,7 +211,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$h */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class h extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class h extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final h f24235j = new h();
@@ -236,7 +236,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$i */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class i extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class i extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final i f24236j = new i();
@@ -268,7 +268,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$j */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class j extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+    public final class j extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final j f24237j = new j();
@@ -293,7 +293,7 @@ public abstract class AbstractC11746c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$k */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class k {
+    public final class k {
         public k(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -346,7 +346,7 @@ public abstract class AbstractC11746c {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.j.c$l$a */
         /* JADX INFO: compiled from: DescriptorRenderer.kt */
-        public static final class a implements l {
+        public final class a implements l {
 
             /* JADX INFO: renamed from: a */
             public static final a f24238a = new a();
@@ -403,6 +403,8 @@ public abstract class AbstractC11746c {
         kVar.withOptions(h.f24235j);
     }
 
+    public abstract String render(InterfaceC11450m interfaceC11450m);
+
     public static /* synthetic */ String renderAnnotation$default(AbstractC11746c abstractC11746c, InterfaceC11340c interfaceC11340c, EnumC11342e enumC11342e, int i2, Object obj) {
         if (obj != null) {
             throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: renderAnnotation");
@@ -412,8 +414,6 @@ public abstract class AbstractC11746c {
         }
         return abstractC11746c.renderAnnotation(interfaceC11340c, enumC11342e);
     }
-
-    public abstract String render(InterfaceC11450m interfaceC11450m);
 
     public abstract String renderAnnotation(InterfaceC11340c interfaceC11340c, EnumC11342e enumC11342e);
 

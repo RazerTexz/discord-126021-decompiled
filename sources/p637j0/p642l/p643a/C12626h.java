@@ -32,7 +32,7 @@ public final class C12626h<T, R> implements Observable.InterfaceC13005a<R> {
 
     /* JADX INFO: renamed from: j0.l.a.h$a */
     /* JADX INFO: compiled from: OnSubscribeConcatMap.java */
-    public static final class a<T, R> implements Producer {
+    public final class a<T, R> implements Producer {
 
         /* JADX INFO: renamed from: j */
         public final R f26814j;
@@ -65,7 +65,7 @@ public final class C12626h<T, R> implements Observable.InterfaceC13005a<R> {
 
     /* JADX INFO: renamed from: j0.l.a.h$b */
     /* JADX INFO: compiled from: OnSubscribeConcatMap.java */
-    public static final class b<T, R> extends Subscriber<R> {
+    public final class b<T, R> extends Subscriber<R> {
 
         /* JADX INFO: renamed from: j */
         public final c<T, R> f26817j;
@@ -123,9 +123,27 @@ public final class C12626h<T, R> implements Observable.InterfaceC13005a<R> {
         }
     }
 
+    public C12626h(Observable<? extends T> observable, InterfaceC12589b<? super T, ? extends Observable<? extends R>> interfaceC12589b, int i, int i2) {
+        this.f26812j = observable;
+        this.f26813k = interfaceC12589b;
+    }
+
+    @Override // p658rx.functions.Action1
+    public void call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        c cVar = new c(new SerializedSubscriber(subscriber), this.f26813k, 2, 0);
+        subscriber.add(cVar);
+        subscriber.add(cVar.f26826q);
+        subscriber.setProducer(new C12622g(this, cVar));
+        if (subscriber.isUnsubscribed()) {
+            return;
+        }
+        this.f26812j.m11107i0(cVar);
+    }
+
     /* JADX INFO: renamed from: j0.l.a.h$c */
     /* JADX INFO: compiled from: OnSubscribeConcatMap.java */
-    public static final class c<T, R> extends Subscriber<T> {
+    public final class c<T, R> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super R> f26819j;
@@ -288,23 +306,5 @@ public final class C12626h<T, R> implements Observable.InterfaceC13005a<R> {
                 onError(new MissingBackpressureException());
             }
         }
-    }
-
-    public C12626h(Observable<? extends T> observable, InterfaceC12589b<? super T, ? extends Observable<? extends R>> interfaceC12589b, int i, int i2) {
-        this.f26812j = observable;
-        this.f26813k = interfaceC12589b;
-    }
-
-    @Override // p658rx.functions.Action1
-    public void call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        c cVar = new c(new SerializedSubscriber(subscriber), this.f26813k, 2, 0);
-        subscriber.add(cVar);
-        subscriber.add(cVar.f26826q);
-        subscriber.setProducer(new C12622g(this, cVar));
-        if (subscriber.isUnsubscribed()) {
-            return;
-        }
-        this.f26812j.m11107i0(cVar);
     }
 }

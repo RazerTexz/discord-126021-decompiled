@@ -31,17 +31,17 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
     public interface OnSliderTouchListener extends BaseOnSliderTouchListener<RangeSlider> {
     }
 
-    public static class RangeSliderState extends AbsSavedState {
-        public static final Parcelable.Creator<RangeSliderState> CREATOR = new C10982a();
+    public class RangeSliderState extends AbsSavedState {
 
         /* JADX INFO: renamed from: j */
         public float f21121j;
 
         /* JADX INFO: renamed from: k */
         public int f21122k;
+        public static final Parcelable.Creator<RangeSliderState> CREATOR = new C10982a();
 
         /* JADX INFO: renamed from: com.google.android.material.slider.RangeSlider$RangeSliderState$a */
-        public static class C10982a implements Parcelable.Creator<RangeSliderState> {
+        public final class C10982a implements Parcelable.Creator<RangeSliderState> {
             @Override // android.os.Parcelable.Creator
             public RangeSliderState createFromParcel(Parcel parcel) {
                 return new RangeSliderState(parcel, null);
@@ -75,14 +75,6 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
         this(context, null);
     }
 
-    private static List<Float> convertToFloat(TypedArray typedArray) {
-        ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < typedArray.length(); i++) {
-            arrayList.add(Float.valueOf(typedArray.getFloat(i, -1.0f)));
-        }
-        return arrayList;
-    }
-
     @Override // com.google.android.material.slider.BaseSlider
     public /* bridge */ /* synthetic */ void clearOnChangeListeners() {
         super.clearOnChangeListeners();
@@ -91,6 +83,14 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
     @Override // com.google.android.material.slider.BaseSlider
     public /* bridge */ /* synthetic */ void clearOnSliderTouchListeners() {
         super.clearOnSliderTouchListeners();
+    }
+
+    private static List<Float> convertToFloat(TypedArray typedArray) {
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < typedArray.length(); i++) {
+            arrayList.add(Float.valueOf(typedArray.getFloat(i, -1.0f)));
+        }
+        return arrayList;
     }
 
     @Override // com.google.android.material.slider.BaseSlider, android.view.View

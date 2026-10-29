@@ -34,7 +34,7 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.GuildCommunicationDisabledBottomSheetViewModel$2 */
     /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-    public static final /* synthetic */ class C85562 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C85562 extends C12236k implements Function1<StoreState, Unit> {
         public C85562(GuildCommunicationDisabledBottomSheetViewModel guildCommunicationDisabledBottomSheetViewModel) {
             super(1, guildCommunicationDisabledBottomSheetViewModel, GuildCommunicationDisabledBottomSheetViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildcommunicationdisabled/start/GuildCommunicationDisabledBottomSheetViewModel$StoreState;)V", 0);
         }
@@ -53,7 +53,7 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
     }
 
     /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,7 +67,7 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
     }
 
     /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final GuildMember guildMember;
 
@@ -86,16 +86,6 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
             return storeState.copy(guild, guildMember);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
         public final StoreState copy(Guild guild, GuildMember guildMember) {
             return new StoreState(guild, guildMember);
         }
@@ -111,8 +101,18 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.guildMember, storeState.guildMember);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
         }
 
         public final GuildMember getGuildMember() {
@@ -137,10 +137,10 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
     }
 
     /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -149,7 +149,7 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
         }
 
         /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final String guildName;
             private final long timeoutTimeLeftMs;
 
@@ -171,16 +171,6 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
                 return valid.copy(j, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getTimeoutTimeLeftMs() {
-                return this.timeoutTimeLeftMs;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
             public final Valid copy(long timeoutTimeLeftMs, String guildName) {
                 C12238m.checkNotNullParameter(guildName, "guildName");
                 return new Valid(timeoutTimeLeftMs, guildName);
@@ -197,8 +187,18 @@ public final class GuildCommunicationDisabledBottomSheetViewModel extends Abstra
                 return this.timeoutTimeLeftMs == valid.timeoutTimeLeftMs && C12238m.areEqual(this.guildName, valid.guildName);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getGuildName() {
                 return this.guildName;
+            }
+
+            public final String getGuildName() {
+                return this.guildName;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getTimeoutTimeLeftMs() {
+                return this.timeoutTimeLeftMs;
             }
 
             public final long getTimeoutTimeLeftMs() {

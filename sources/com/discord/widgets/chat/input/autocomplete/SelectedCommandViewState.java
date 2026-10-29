@@ -16,7 +16,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class SelectedCommandViewState {
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final class Hidden extends SelectedCommandViewState {
+    public final class Hidden extends SelectedCommandViewState {
         public static final Hidden INSTANCE = new Hidden();
 
         private Hidden() {
@@ -28,7 +28,7 @@ public abstract class SelectedCommandViewState {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class SelectedCommand extends SelectedCommandViewState {
+    public final /* data */ class SelectedCommand extends SelectedCommandViewState {
         private final Application selectedApplication;
         private final ApplicationCommand selectedCommand;
         private final ApplicationCommandOption selectedCommandOption;
@@ -37,6 +37,14 @@ public abstract class SelectedCommandViewState {
 
         public /* synthetic */ SelectedCommand(ApplicationCommand applicationCommand, ApplicationCommandOption applicationCommandOption, Set set, Map map, Application application, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(applicationCommand, applicationCommandOption, (i & 4) != 0 ? C12148n0.emptySet() : set, (i & 8) != 0 ? C12136h0.emptyMap() : map, application);
+        }
+
+        public final Set<ApplicationCommandOption> component3() {
+            return this.selectedCommandOptionErrors;
+        }
+
+        public final Map<ApplicationCommandOption, Boolean> component4() {
+            return this.validSelectedCommandOptions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -62,29 +70,6 @@ public abstract class SelectedCommandViewState {
             return selectedCommand.copy(applicationCommand, applicationCommandOption2, set2, map2, application);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ApplicationCommand getSelectedCommand() {
-            return this.selectedCommand;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ApplicationCommandOption getSelectedCommandOption() {
-            return this.selectedCommandOption;
-        }
-
-        public final Set<ApplicationCommandOption> component3() {
-            return this.selectedCommandOptionErrors;
-        }
-
-        public final Map<ApplicationCommandOption, Boolean> component4() {
-            return this.validSelectedCommandOptions;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Application getSelectedApplication() {
-            return this.selectedApplication;
-        }
-
         public final SelectedCommand copy(ApplicationCommand selectedCommand, ApplicationCommandOption selectedCommandOption, Set<ApplicationCommandOption> selectedCommandOptionErrors, Map<ApplicationCommandOption, Boolean> validSelectedCommandOptions, Application selectedApplication) {
             C12238m.checkNotNullParameter(selectedCommand, "selectedCommand");
             C12238m.checkNotNullParameter(selectedCommandOptionErrors, "selectedCommandOptionErrors");
@@ -104,12 +89,27 @@ public abstract class SelectedCommandViewState {
             return C12238m.areEqual(this.selectedCommand, selectedCommand.selectedCommand) && C12238m.areEqual(this.selectedCommandOption, selectedCommand.selectedCommandOption) && C12238m.areEqual(this.selectedCommandOptionErrors, selectedCommand.selectedCommandOptionErrors) && C12238m.areEqual(this.validSelectedCommandOptions, selectedCommand.validSelectedCommandOptions) && C12238m.areEqual(this.selectedApplication, selectedCommand.selectedApplication);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Application getSelectedApplication() {
             return this.selectedApplication;
         }
 
+        public final Application getSelectedApplication() {
+            return this.selectedApplication;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final ApplicationCommand getSelectedCommand() {
             return this.selectedCommand;
+        }
+
+        public final ApplicationCommand getSelectedCommand() {
+            return this.selectedCommand;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ApplicationCommandOption getSelectedCommandOption() {
+            return this.selectedCommandOption;
         }
 
         public final ApplicationCommandOption getSelectedCommandOption() {

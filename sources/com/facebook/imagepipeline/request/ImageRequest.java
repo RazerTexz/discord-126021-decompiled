@@ -25,9 +25,6 @@ import p007b.p109f.p161j.p182q.InterfaceC2026b;
 /* JADX INFO: loaded from: classes3.dex */
 public class ImageRequest {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC1681d<ImageRequest, Uri> f19583a = new C10665a();
-
     /* JADX INFO: renamed from: b */
     public final EnumC10666b f19584b;
 
@@ -88,8 +85,11 @@ public class ImageRequest {
     /* JADX INFO: renamed from: u */
     public final int f19603u;
 
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC1681d<ImageRequest, Uri> f19583a = new C10665a();
+
     /* JADX INFO: renamed from: com.facebook.imagepipeline.request.ImageRequest$a */
-    public static class C10665a implements InterfaceC1681d<ImageRequest, Uri> {
+    public final class C10665a implements InterfaceC1681d<ImageRequest, Uri> {
     }
 
     /* JADX INFO: renamed from: com.facebook.imagepipeline.request.ImageRequest$b */
@@ -178,19 +178,6 @@ public class ImageRequest {
         this.f19603u = imageRequestBuilder.f19627p;
     }
 
-    /* JADX INFO: renamed from: a */
-    public synchronized File m8719a() {
-        if (this.f19587e == null) {
-            this.f19587e = new File(this.f19585c.getPath());
-        }
-        return this.f19587e;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public boolean m8720b(int i) {
-        return (i & this.f19597o) == 0;
-    }
-
     public boolean equals(Object obj) {
         if (!(obj instanceof ImageRequest)) {
             return false;
@@ -211,6 +198,19 @@ public class ImageRequest {
     public int hashCode() {
         InterfaceC2026b interfaceC2026b = this.f19601s;
         return Arrays.hashCode(new Object[]{this.f19584b, this.f19585c, Boolean.valueOf(this.f19589g), this.f19594l, this.f19595m, this.f19596n, Integer.valueOf(this.f19597o), Boolean.valueOf(this.f19598p), Boolean.valueOf(this.f19599q), this.f19591i, this.f19600r, this.f19592j, this.f19593k, interfaceC2026b != null ? interfaceC2026b.getPostprocessorCacheKey() : null, null, Integer.valueOf(this.f19603u), Boolean.valueOf(this.f19590h)});
+    }
+
+    /* JADX INFO: renamed from: a */
+    public synchronized File m8719a() {
+        if (this.f19587e == null) {
+            this.f19587e = new File(this.f19585c.getPath());
+        }
+        return this.f19587e;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public boolean m8720b(int i) {
+        return (i & this.f19597o) == 0;
     }
 
     public String toString() {

@@ -13,17 +13,17 @@ public final /* data */ class TrackTextShared implements AnalyticsSchema, TrackB
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "text_shared";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackTextShared) && C12238m.areEqual(this.type, ((TrackTextShared) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

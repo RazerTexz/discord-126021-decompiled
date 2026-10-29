@@ -33,8 +33,30 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
     private final ViewUserStatusPresenceCustomBinding binding;
     private static final GrayscalePostprocessor CUSTOM_EMOJI_PLACEHOLDER_POSTPROCESSOR = new GrayscalePostprocessor();
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserStatusPresenceCustomView$configurePlaceholderEmoji$1 */
     /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
-    public static final /* data */ class Emoji {
+    public final class C103121 extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
+        public static final C103121 INSTANCE = new C103121();
+
+        public C103121() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ImageRequestBuilder imageRequestBuilder) {
+            invoke2(imageRequestBuilder);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ImageRequestBuilder imageRequestBuilder) {
+            C12238m.checkNotNullParameter(imageRequestBuilder, "it");
+            imageRequestBuilder.f19623l = UserStatusPresenceCustomView.CUSTOM_EMOJI_PLACEHOLDER_POSTPROCESSOR;
+        }
+    }
+
+    /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
+    public final /* data */ class Emoji {
         private final String id;
         private final boolean isAnimated;
         private final String name;
@@ -58,21 +80,6 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
             return emoji.copy(str, str2, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsAnimated() {
-            return this.isAnimated;
-        }
-
         public final Emoji copy(String id2, String name, boolean isAnimated) {
             return new Emoji(id2, name, isAnimated);
         }
@@ -88,8 +95,23 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
             return C12238m.areEqual(this.id, emoji.id) && C12238m.areEqual(this.name, emoji.name) && this.isAnimated == emoji.isAnimated;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getId() {
             return this.id;
+        }
+
+        public final String getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsAnimated() {
+            return this.isAnimated;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
@@ -129,10 +151,10 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
-        public static final /* data */ class WithPlaceholder extends ViewState {
+        public final /* data */ class WithPlaceholder extends ViewState {
             private final ModelEmojiUnicode placeholderEmoji;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -149,11 +171,6 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
                 return withPlaceholder.copy(modelEmojiUnicode);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelEmojiUnicode getPlaceholderEmoji() {
-                return this.placeholderEmoji;
-            }
-
             public final WithPlaceholder copy(ModelEmojiUnicode placeholderEmoji) {
                 C12238m.checkNotNullParameter(placeholderEmoji, "placeholderEmoji");
                 return new WithPlaceholder(placeholderEmoji);
@@ -164,6 +181,11 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
                     return (other instanceof WithPlaceholder) && C12238m.areEqual(this.placeholderEmoji, ((WithPlaceholder) other).placeholderEmoji);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelEmojiUnicode getPlaceholderEmoji() {
+                return this.placeholderEmoji;
             }
 
             public final ModelEmojiUnicode getPlaceholderEmoji() {
@@ -187,7 +209,7 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
         }
 
         /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
-        public static final /* data */ class WithStatus extends ViewState {
+        public final /* data */ class WithStatus extends ViewState {
             private final Emoji emoji;
             private final String statusText;
 
@@ -207,16 +229,6 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
                 return withStatus.copy(emoji, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Emoji getEmoji() {
-                return this.emoji;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getStatusText() {
-                return this.statusText;
-            }
-
             public final WithStatus copy(Emoji emoji, String statusText) {
                 return new WithStatus(emoji, statusText);
             }
@@ -232,8 +244,18 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
                 return C12238m.areEqual(this.emoji, withStatus.emoji) && C12238m.areEqual(this.statusText, withStatus.statusText);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Emoji getEmoji() {
                 return this.emoji;
+            }
+
+            public final Emoji getEmoji() {
+                return this.emoji;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getStatusText() {
+                return this.statusText;
             }
 
             public final String getStatusText() {
@@ -260,28 +282,6 @@ public final class UserStatusPresenceCustomView extends LinearLayout {
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserStatusPresenceCustomView$configurePlaceholderEmoji$1 */
-    /* JADX INFO: compiled from: UserStatusPresenceCustomView.kt */
-    public static final class C103121 extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
-        public static final C103121 INSTANCE = new C103121();
-
-        public C103121() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ImageRequestBuilder imageRequestBuilder) {
-            invoke2(imageRequestBuilder);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ImageRequestBuilder imageRequestBuilder) {
-            C12238m.checkNotNullParameter(imageRequestBuilder, "it");
-            imageRequestBuilder.f19623l = UserStatusPresenceCustomView.CUSTOM_EMOJI_PLACEHOLDER_POSTPROCESSOR;
         }
     }
 

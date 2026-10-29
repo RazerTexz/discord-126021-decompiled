@@ -77,8 +77,72 @@ public final class WidgetChatOverlay extends AppFragment {
     private final Lazy flexInputViewModel;
     private TypingIndicatorViewHolder typingIndicatorViewHolder;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final /* data */ class OldMessageModel {
+    public final class C81973 extends AbstractC12240o implements Function1<OldMessageModel, Unit> {
+        public C81973() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(OldMessageModel oldMessageModel) {
+            invoke2(oldMessageModel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(OldMessageModel oldMessageModel) {
+            if (oldMessageModel.isViewingOldMessages()) {
+                WidgetChatOverlay.this.getBinding().f16363b.show();
+            } else {
+                WidgetChatOverlay.this.getBinding().f16363b.hide();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$4 */
+    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
+    public final class C81984 extends AbstractC12240o implements Function1<ChatTypingModel, Unit> {
+        public C81984() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ChatTypingModel chatTypingModel) {
+            invoke2(chatTypingModel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ChatTypingModel chatTypingModel) {
+            TypingIndicatorViewHolder typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p = WidgetChatOverlay.access$getTypingIndicatorViewHolder$p(WidgetChatOverlay.this);
+            C12238m.checkNotNullExpressionValue(chatTypingModel, "it");
+            typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p.configureUI(chatTypingModel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$6 */
+    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
+    public final /* synthetic */ class C82006 extends C12236k implements Function1<StickerAutocompleteState, Unit> {
+        public C82006(WidgetChatOverlay widgetChatOverlay) {
+            super(1, widgetChatOverlay, WidgetChatOverlay.class, "configureStickerSuggestions", "configureStickerSuggestions(Lcom/discord/widgets/chat/overlay/WidgetChatOverlay$StickerAutocompleteState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StickerAutocompleteState stickerAutocompleteState) {
+            invoke2(stickerAutocompleteState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StickerAutocompleteState stickerAutocompleteState) {
+            C12238m.checkNotNullParameter(stickerAutocompleteState, "p1");
+            ((WidgetChatOverlay) this.receiver).configureStickerSuggestions(stickerAutocompleteState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
+    public final /* data */ class OldMessageModel {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -86,7 +150,7 @@ public final class WidgetChatOverlay extends AppFragment {
         private final boolean isViewingOldMessages;
 
         /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -152,16 +216,6 @@ public final class WidgetChatOverlay extends AppFragment {
             return oldMessageModel.copy(j, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsViewingOldMessages() {
-            return this.isViewingOldMessages;
-        }
-
         public final OldMessageModel copy(long channelId, boolean isViewingOldMessages) {
             return new OldMessageModel(channelId, isViewingOldMessages);
         }
@@ -177,8 +231,18 @@ public final class WidgetChatOverlay extends AppFragment {
             return this.channelId == oldMessageModel.channelId && this.isViewingOldMessages == oldMessageModel.isViewingOldMessages;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsViewingOldMessages() {
+            return this.isViewingOldMessages;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -209,7 +273,7 @@ public final class WidgetChatOverlay extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final /* data */ class StickerAutocompleteState {
+    public final /* data */ class StickerAutocompleteState {
         private final boolean autocompleteVisible;
         private final FlexInputState flexInputState;
         private final boolean isForumPostDraftCreation;
@@ -234,21 +298,6 @@ public final class WidgetChatOverlay extends AppFragment {
             return stickerAutocompleteState.copy(z2, flexInputState, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getAutocompleteVisible() {
-            return this.autocompleteVisible;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final FlexInputState getFlexInputState() {
-            return this.flexInputState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsForumPostDraftCreation() {
-            return this.isForumPostDraftCreation;
-        }
-
         public final StickerAutocompleteState copy(boolean autocompleteVisible, FlexInputState flexInputState, boolean isForumPostDraftCreation) {
             C12238m.checkNotNullParameter(flexInputState, "flexInputState");
             return new StickerAutocompleteState(autocompleteVisible, flexInputState, isForumPostDraftCreation);
@@ -265,12 +314,27 @@ public final class WidgetChatOverlay extends AppFragment {
             return this.autocompleteVisible == stickerAutocompleteState.autocompleteVisible && C12238m.areEqual(this.flexInputState, stickerAutocompleteState.flexInputState) && this.isForumPostDraftCreation == stickerAutocompleteState.isForumPostDraftCreation;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getAutocompleteVisible() {
             return this.autocompleteVisible;
         }
 
+        public final boolean getAutocompleteVisible() {
+            return this.autocompleteVisible;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final FlexInputState getFlexInputState() {
             return this.flexInputState;
+        }
+
+        public final FlexInputState getFlexInputState() {
+            return this.flexInputState;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsForumPostDraftCreation() {
+            return this.isForumPostDraftCreation;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -309,7 +373,7 @@ public final class WidgetChatOverlay extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final class TypingIndicatorViewHolder {
+    public final class TypingIndicatorViewHolder {
         private final WidgetChatOverlayBinding binding;
 
         public TypingIndicatorViewHolder(WidgetChatOverlayBinding widgetChatOverlayBinding) {
@@ -354,6 +418,17 @@ public final class WidgetChatOverlay extends AppFragment {
             imageView.setVisibility(model.getChannelRateLimit() > 0 ? 0 : 8);
         }
 
+        public final void configureUI(ChatTypingModel model) {
+            C12238m.checkNotNullParameter(model, "model");
+            if (model instanceof ChatTypingModel.Hide) {
+                RelativeLayout relativeLayout = this.binding.f16364c;
+                C12238m.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
+                relativeLayout.setVisibility(8);
+            } else if (model instanceof ChatTypingModel.Typing) {
+                configureTyping((ChatTypingModel.Typing) model);
+            }
+        }
+
         private final CharSequence getSlowmodeText(int cooldownSecs, int channelRateLimit, boolean hasTypingText) {
             if (cooldownSecs > 0) {
                 return TimeUtils.toFriendlyStringSimple$default(TimeUtils.INSTANCE, 1000 * ((long) cooldownSecs), null, null, 6, null);
@@ -380,81 +455,6 @@ public final class WidgetChatOverlay extends AppFragment {
                 return size != 3 ? C1107b.m211c(resources, C5419R.string.several_users_typing, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null) : C1107b.m211c(resources, C5419R.string.three_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1), typingUsers.get(2)}, (4 & 4) != 0 ? C1107b.d.f1493j : null);
             }
             return C1107b.m211c(resources, C5419R.string.two_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1)}, (4 & 4) != 0 ? C1107b.d.f1493j : null);
-        }
-
-        public final void configureUI(ChatTypingModel model) {
-            C12238m.checkNotNullParameter(model, "model");
-            if (model instanceof ChatTypingModel.Hide) {
-                RelativeLayout relativeLayout = this.binding.f16364c;
-                C12238m.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
-                relativeLayout.setVisibility(8);
-            } else if (model instanceof ChatTypingModel.Typing) {
-                configureTyping((ChatTypingModel.Typing) model);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$3 */
-    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final class C81973 extends AbstractC12240o implements Function1<OldMessageModel, Unit> {
-        public C81973() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(OldMessageModel oldMessageModel) {
-            invoke2(oldMessageModel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(OldMessageModel oldMessageModel) {
-            if (oldMessageModel.isViewingOldMessages()) {
-                WidgetChatOverlay.this.getBinding().f16363b.show();
-            } else {
-                WidgetChatOverlay.this.getBinding().f16363b.hide();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$4 */
-    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final class C81984 extends AbstractC12240o implements Function1<ChatTypingModel, Unit> {
-        public C81984() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ChatTypingModel chatTypingModel) {
-            invoke2(chatTypingModel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ChatTypingModel chatTypingModel) {
-            TypingIndicatorViewHolder typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p = WidgetChatOverlay.access$getTypingIndicatorViewHolder$p(WidgetChatOverlay.this);
-            C12238m.checkNotNullExpressionValue(chatTypingModel, "it");
-            typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p.configureUI(chatTypingModel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$6 */
-    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public static final /* synthetic */ class C82006 extends C12236k implements Function1<StickerAutocompleteState, Unit> {
-        public C82006(WidgetChatOverlay widgetChatOverlay) {
-            super(1, widgetChatOverlay, WidgetChatOverlay.class, "configureStickerSuggestions", "configureStickerSuggestions(Lcom/discord/widgets/chat/overlay/WidgetChatOverlay$StickerAutocompleteState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StickerAutocompleteState stickerAutocompleteState) {
-            invoke2(stickerAutocompleteState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StickerAutocompleteState stickerAutocompleteState) {
-            C12238m.checkNotNullParameter(stickerAutocompleteState, "p1");
-            ((WidgetChatOverlay) this.receiver).configureStickerSuggestions(stickerAutocompleteState);
         }
     }
 

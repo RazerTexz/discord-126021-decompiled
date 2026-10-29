@@ -12,7 +12,7 @@ public interface InterfaceC11503f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.f$a */
     /* JADX INFO: compiled from: JavaPropertyInitializerEvaluator.kt */
-    public static final class a implements InterfaceC11503f {
+    public final class a implements InterfaceC11503f {
 
         /* JADX INFO: renamed from: a */
         public static final a f23243a = new a();

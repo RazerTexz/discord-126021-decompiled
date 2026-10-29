@@ -27,12 +27,6 @@ public final class C3535p0 extends AbstractC3509e {
         this.f9780o = new C3539r0(this, "monitoring", C3510e0.f9686A.f9716a.longValue(), null);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
-        this.f9777l = this.f9684j.f9722b.getSharedPreferences("com.google.android.gms.analytics.prefs", 0);
-    }
-
     /* JADX INFO: renamed from: O */
     public final long m4485O() {
         C3180f.m3967b();
@@ -53,5 +47,11 @@ public final class C3535p0 extends AbstractC3509e {
         editorEdit.putLong("last_dispatch", jCurrentTimeMillis);
         editorEdit.apply();
         this.f9779n = jCurrentTimeMillis;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
+        this.f9777l = this.f9684j.f9722b.getSharedPreferences("com.google.android.gms.analytics.prefs", 0);
     }
 }

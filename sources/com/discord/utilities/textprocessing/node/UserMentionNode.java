@@ -31,27 +31,9 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
     private final Type type;
     private final long userId;
 
-    /* JADX INFO: compiled from: UserMentionNode.kt */
-    public interface RenderContext {
-        Context getContext();
-
-        long getMyId();
-
-        Function1<Long, Unit> getUserMentionOnClick();
-
-        Map<Long, String> getUserNames();
-    }
-
-    /* JADX INFO: compiled from: UserMentionNode.kt */
-    public enum Type {
-        USER,
-        HERE,
-        EVERYONE
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.node.UserMentionNode$renderUserMention$1 */
     /* JADX INFO: compiled from: UserMentionNode.kt */
-    public static final class C69761 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C69761 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Function1 $onClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -73,8 +55,38 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
         }
     }
 
+    /* JADX INFO: compiled from: UserMentionNode.kt */
+    public interface RenderContext {
+        Context getContext();
+
+        long getMyId();
+
+        Function1<Long, Unit> getUserMentionOnClick();
+
+        Map<Long, String> getUserNames();
+    }
+
+    /* JADX INFO: compiled from: UserMentionNode.kt */
+    public enum Type {
+        USER,
+        HERE,
+        EVERYONE
+    }
+
     public /* synthetic */ UserMentionNode(Type type, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(type, (i & 2) != 0 ? -1L : j);
+    }
+
+    public boolean equals(Object other) {
+        return (other instanceof UserMentionNode) && ((UserMentionNode) other).userId == this.userId;
+    }
+
+    public final Type getType() {
+        return this.type;
+    }
+
+    public final long getUserId() {
+        return this.userId;
     }
 
     private final void renderUserMention(SpannableStringBuilder builder, T renderContext) {
@@ -103,18 +115,6 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
         while (it.hasNext()) {
             builder.setSpan((CharacterStyle) it.next(), length, builder.length(), 33);
         }
-    }
-
-    public boolean equals(Object other) {
-        return (other instanceof UserMentionNode) && ((UserMentionNode) other).userId == this.userId;
-    }
-
-    public final Type getType() {
-        return this.type;
-    }
-
-    public final long getUserId() {
-        return this.userId;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

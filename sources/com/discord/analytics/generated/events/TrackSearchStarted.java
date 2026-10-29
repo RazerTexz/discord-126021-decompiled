@@ -28,24 +28,6 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -55,6 +37,18 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
         }
         TrackSearchStarted trackSearchStarted = (TrackSearchStarted) other;
         return C12238m.areEqual(this.searchType, trackSearchStarted.searchType) && C12238m.areEqual(this.loadId, trackSearchStarted.loadId) && C12238m.areEqual(this.prevSearchId, trackSearchStarted.prevSearchId) && this.modifiers == trackSearchStarted.modifiers && C12238m.areEqual(this.numModifiers, trackSearchStarted.numModifiers) && C12238m.areEqual(this.previewEnabled, trackSearchStarted.previewEnabled) && C12238m.areEqual(this.categoryId, trackSearchStarted.categoryId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -72,6 +66,12 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
         int iHashCode5 = (iHashCode4 + (bool != null ? bool.hashCode() : 0)) * 31;
         Long l2 = this.categoryId;
         return iHashCode5 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

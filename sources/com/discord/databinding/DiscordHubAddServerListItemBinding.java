@@ -38,6 +38,12 @@ public final class DiscordHubAddServerListItemBinding implements ViewBinding {
         this.f15049d = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15046a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static DiscordHubAddServerListItemBinding m8382a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -59,11 +65,5 @@ public final class DiscordHubAddServerListItemBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15046a;
     }
 }

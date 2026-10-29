@@ -12,7 +12,6 @@ import p007b.p225i.p226a.p288f.p313h.p324k.C3573r;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzo extends AbstractSafeParcelable implements InterfaceC3273h {
-    public static final Parcelable.Creator<zzo> CREATOR = new C3573r();
 
     /* JADX INFO: renamed from: j */
     public Status f20599j;
@@ -23,6 +22,7 @@ public final class zzo extends AbstractSafeParcelable implements InterfaceC3273h
     /* JADX INFO: renamed from: l */
     @Deprecated
     public String[] f20601l;
+    public static final Parcelable.Creator<zzo> CREATOR = new C3573r();
 
     public zzo() {
     }

@@ -7,11 +7,11 @@ import androidx.annotation.Nullable;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2804h2 {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2804h2 f7117a = new C2804h2(false);
-
     /* JADX INFO: renamed from: b */
     public final boolean f7118b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C2804h2 f7117a = new C2804h2(false);
 
     public C2804h2(boolean z2) {
         this.f7118b = z2;

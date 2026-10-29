@@ -38,108 +38,17 @@ public final class StorePaymentSources extends StoreV2 {
     private PaymentSourcesState paymentSourcesStateSnapshot;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: StorePaymentSources.kt */
-    public static abstract class PaymentSourcesState {
-
-        /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final class Failure extends PaymentSourcesState {
-            public static final Failure INSTANCE = new Failure();
-
-            private Failure() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final /* data */ class Loaded extends PaymentSourcesState {
-            private final List<ModelPaymentSource> paymentSources;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            /* JADX WARN: Multi-variable type inference failed */
-            public Loaded(List<? extends ModelPaymentSource> list) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "paymentSources");
-                this.paymentSources = list;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    list = loaded.paymentSources;
-                }
-                return loaded.copy(list);
-            }
-
-            public final List<ModelPaymentSource> component1() {
-                return this.paymentSources;
-            }
-
-            public final Loaded copy(List<? extends ModelPaymentSource> paymentSources) {
-                C12238m.checkNotNullParameter(paymentSources, "paymentSources");
-                return new Loaded(paymentSources);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.paymentSources, ((Loaded) other).paymentSources);
-                }
-                return true;
-            }
-
-            public final List<ModelPaymentSource> getPaymentSources() {
-                return this.paymentSources;
-            }
-
-            public int hashCode() {
-                List<ModelPaymentSource> list = this.paymentSources;
-                if (list != null) {
-                    return list.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m824L(C1643a.m833U("Loaded(paymentSources="), this.paymentSources, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final class Loading extends PaymentSourcesState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final class Unfetched extends PaymentSourcesState {
-            public static final Unfetched INSTANCE = new Unfetched();
-
-            private Unfetched() {
-                super(null);
-            }
-        }
-
-        private PaymentSourcesState() {
-        }
-
-        public /* synthetic */ PaymentSourcesState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$fetchPaymentSources$1 */
     /* JADX INFO: compiled from: StorePaymentSources.kt */
-    public static final class C63231 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63231 extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$fetchPaymentSources$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<List<? extends ModelPaymentSource>, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<List<? extends ModelPaymentSource>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$fetchPaymentSources$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StorePaymentSources.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $paymentSources;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -181,11 +90,11 @@ public final class StorePaymentSources extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$fetchPaymentSources$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StorePaymentSources.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$fetchPaymentSources$1$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: StorePaymentSources.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -255,7 +164,7 @@ public final class StorePaymentSources extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePaymentSources$observePaymentSourcesState$1 */
     /* JADX INFO: compiled from: StorePaymentSources.kt */
-    public static final class C63241 extends AbstractC12240o implements Function0<PaymentSourcesState> {
+    public final class C63241 extends AbstractC12240o implements Function0<PaymentSourcesState> {
         public C63241() {
             super(0);
         }
@@ -264,6 +173,97 @@ public final class StorePaymentSources extends StoreV2 {
         @Override // kotlin.jvm.functions.Function0
         public final PaymentSourcesState invoke() {
             return StorePaymentSources.this.getPaymentSourcesStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: compiled from: StorePaymentSources.kt */
+    public abstract class PaymentSourcesState {
+
+        /* JADX INFO: compiled from: StorePaymentSources.kt */
+        public final class Failure extends PaymentSourcesState {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StorePaymentSources.kt */
+        public final /* data */ class Loaded extends PaymentSourcesState {
+            private final List<ModelPaymentSource> paymentSources;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public Loaded(List<? extends ModelPaymentSource> list) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "paymentSources");
+                this.paymentSources = list;
+            }
+
+            public final List<ModelPaymentSource> component1() {
+                return this.paymentSources;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.paymentSources;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<? extends ModelPaymentSource> paymentSources) {
+                C12238m.checkNotNullParameter(paymentSources, "paymentSources");
+                return new Loaded(paymentSources);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.paymentSources, ((Loaded) other).paymentSources);
+                }
+                return true;
+            }
+
+            public final List<ModelPaymentSource> getPaymentSources() {
+                return this.paymentSources;
+            }
+
+            public int hashCode() {
+                List<ModelPaymentSource> list = this.paymentSources;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m824L(C1643a.m833U("Loaded(paymentSources="), this.paymentSources, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StorePaymentSources.kt */
+        public final class Loading extends PaymentSourcesState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StorePaymentSources.kt */
+        public final class Unfetched extends PaymentSourcesState {
+            public static final Unfetched INSTANCE = new Unfetched();
+
+            private Unfetched() {
+                super(null);
+            }
+        }
+
+        private PaymentSourcesState() {
+        }
+
+        public /* synthetic */ PaymentSourcesState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -292,6 +292,15 @@ public final class StorePaymentSources extends StoreV2 {
         return arrayList;
     }
 
+    public final void fetchPaymentSources() {
+        this.dispatcher.schedule(new C63231());
+    }
+
+    /* JADX INFO: renamed from: getPaymentSourcesState, reason: from getter */
+    public final PaymentSourcesState getPaymentSourcesStateSnapshot() {
+        return this.paymentSourcesStateSnapshot;
+    }
+
     @StoreThread
     private final void handlePaymentSourcesFetchFailure() {
         this.paymentSourcesState = PaymentSourcesState.Failure.INSTANCE;
@@ -308,15 +317,6 @@ public final class StorePaymentSources extends StoreV2 {
     private final void handlePaymentSourcesFetchSuccess(List<? extends ModelPaymentSource> paymentSources) {
         this.paymentSourcesState = new PaymentSourcesState.Loaded(paymentSources);
         markChanged();
-    }
-
-    public final void fetchPaymentSources() {
-        this.dispatcher.schedule(new C63231());
-    }
-
-    /* JADX INFO: renamed from: getPaymentSourcesState, reason: from getter */
-    public final PaymentSourcesState getPaymentSourcesStateSnapshot() {
-        return this.paymentSourcesStateSnapshot;
     }
 
     @StoreThread

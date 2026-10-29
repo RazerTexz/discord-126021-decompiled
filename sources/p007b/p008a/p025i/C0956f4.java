@@ -25,6 +25,12 @@ public final class C0956f4 implements ViewBinding {
         this.f846b = simpleDraweeView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f845a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C0956f4 m199a(@NonNull View view) {
@@ -33,11 +39,5 @@ public final class C0956f4 implements ViewBinding {
             return new C0956f4((CutoutView) view, simpleDraweeView);
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(C5419R.id.avatar)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f845a;
     }
 }

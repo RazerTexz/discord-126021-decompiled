@@ -21,12 +21,12 @@ import java.lang.reflect.Field;
 @SuppressLint({"RestrictedAPI"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class DrawableUtils {
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-    private static final int[] EMPTY_STATE_SET = new int[0];
-    public static final Rect INSETS_NONE = new Rect();
     private static final String TAG = "DrawableUtils";
     private static final String VECTOR_DRAWABLE_CLAZZ_NAME = "android.graphics.drawable.VectorDrawable";
     private static Class<?> sInsetsClazz;
+    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    private static final int[] EMPTY_STATE_SET = new int[0];
+    public static final Rect INSETS_NONE = new Rect();
 
     static {
         try {

@@ -65,34 +65,9 @@ public final class WidgetAgeVerify extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void start$default(Companion companion, Context context, boolean z2, int i, Object obj) {
-            if ((i & 2) != 0) {
-                z2 = false;
-            }
-            companion.start(context, z2);
-        }
-
-        public final void start(Context context, boolean isNSFWChannel) {
-            C12238m.checkNotNullParameter(context, "context");
-            AnalyticsTracker.openModal$default("Age Gate", "", null, 4, null);
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(WidgetAgeVerify.INTENT_EXTRA_NSFW_CHANNEL, isNSFWChannel);
-            C0870j.m156d(context, WidgetAgeVerify.class, new Intent().putExtras(bundle));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$configureBirthdayInput$1 */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public static final class C71531 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C71531 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Long $timeOfBirth;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -121,7 +96,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public static final class C71561 extends AbstractC12240o implements Function1<WidgetAgeVerifyViewModel.ViewState, Unit> {
+    public final class C71561 extends AbstractC12240o implements Function1<WidgetAgeVerifyViewModel.ViewState, Unit> {
         public C71561() {
             super(1);
         }
@@ -141,7 +116,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public static final class C71572 extends AbstractC12240o implements Function1<WidgetAgeVerifyViewModel.Event, Unit> {
+    public final class C71572 extends AbstractC12240o implements Function1<WidgetAgeVerifyViewModel.Event, Unit> {
         public C71572() {
             super(1);
         }
@@ -156,6 +131,31 @@ public final class WidgetAgeVerify extends AppFragment {
         public final void invoke2(WidgetAgeVerifyViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "it");
             WidgetAgeVerify.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAgeVerify.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void start$default(Companion companion, Context context, boolean z2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            companion.start(context, z2);
+        }
+
+        public final void start(Context context, boolean isNSFWChannel) {
+            C12238m.checkNotNullParameter(context, "context");
+            AnalyticsTracker.openModal$default("Age Gate", "", null, 4, null);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(WidgetAgeVerify.INTENT_EXTRA_NSFW_CHANNEL, isNSFWChannel);
+            C0870j.m156d(context, WidgetAgeVerify.class, new Intent().putExtras(bundle));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -282,6 +282,11 @@ public final class WidgetAgeVerify extends AppFragment {
         return (WidgetAgeVerifyBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final WidgetAgeVerifyViewModel getViewModel() {
         return (WidgetAgeVerifyViewModel) this.viewModel.getValue();
     }
@@ -292,11 +297,6 @@ public final class WidgetAgeVerify extends AppFragment {
             C0876m.m168f(this, context != null ? context.getString(C5419R.string.age_gate_age_verified) : null, 1);
             requireActivity().finish();
         }
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment

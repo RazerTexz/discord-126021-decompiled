@@ -42,7 +42,7 @@ public abstract class AbstractC11844a implements InterfaceC11360i0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.a$a */
     /* JADX INFO: compiled from: AbstractDeserializedPackageFragmentProvider.kt */
-    public static final class a extends AbstractC12240o implements Function1<C11713b, InterfaceC11331e0> {
+    public final class a extends AbstractC12240o implements Function1<C11713b, InterfaceC11331e0> {
         public a() {
             super(1);
         }

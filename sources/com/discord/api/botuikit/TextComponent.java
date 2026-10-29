@@ -16,6 +16,17 @@ public final /* data */ class TextComponent extends ActionComponent {
     private final ComponentType type;
     private final String value;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof TextComponent)) {
+            return false;
+        }
+        TextComponent textComponent = (TextComponent) other;
+        return C12238m.areEqual(this.type, textComponent.type) && C12238m.areEqual(this.style, textComponent.style) && C12238m.areEqual(this.customId, textComponent.customId) && C12238m.areEqual(this.label, textComponent.label) && C12238m.areEqual(this.value, textComponent.value) && C12238m.areEqual(this.placeholder, textComponent.placeholder) && this.minLength == textComponent.minLength && this.maxLength == textComponent.maxLength && C12238m.areEqual(this.required, textComponent.required);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getCustomId() {
         return this.customId;
@@ -39,17 +50,6 @@ public final /* data */ class TextComponent extends ActionComponent {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getPlaceholder() {
         return this.placeholder;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof TextComponent)) {
-            return false;
-        }
-        TextComponent textComponent = (TextComponent) other;
-        return C12238m.areEqual(this.type, textComponent.type) && C12238m.areEqual(this.style, textComponent.style) && C12238m.areEqual(this.customId, textComponent.customId) && C12238m.areEqual(this.label, textComponent.label) && C12238m.areEqual(this.value, textComponent.value) && C12238m.areEqual(this.placeholder, textComponent.placeholder) && this.minLength == textComponent.minLength && this.maxLength == textComponent.maxLength && C12238m.areEqual(this.required, textComponent.required);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

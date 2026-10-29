@@ -323,50 +323,6 @@ public class ListPopupWindow implements ShowableListMenu {
         return iMeasureHeightOfChildrenCompat + measuredHeight;
     }
 
-    private int getMaxAvailableHeight(View view, int i, boolean z2) {
-        if (Build.VERSION.SDK_INT > 23) {
-            return this.mPopup.getMaxAvailableHeight(view, i, z2);
-        }
-        Method method = sGetMaxAvailableHeightMethod;
-        if (method != null) {
-            try {
-                return ((Integer) method.invoke(this.mPopup, view, Integer.valueOf(i), Boolean.valueOf(z2))).intValue();
-            } catch (Exception unused) {
-                Log.i(TAG, "Could not call getMaxAvailableHeightMethod(View, int, boolean) on PopupWindow. Using the public version.");
-            }
-        }
-        return this.mPopup.getMaxAvailableHeight(view, i);
-    }
-
-    private static boolean isConfirmKey(int i) {
-        return i == 66 || i == 23;
-    }
-
-    private void removePromptView() {
-        View view = this.mPromptView;
-        if (view != null) {
-            ViewParent parent = view.getParent();
-            if (parent instanceof ViewGroup) {
-                ((ViewGroup) parent).removeView(this.mPromptView);
-            }
-        }
-    }
-
-    private void setPopupClipToScreenEnabled(boolean z2) {
-        if (Build.VERSION.SDK_INT > 28) {
-            this.mPopup.setIsClippedToScreen(z2);
-            return;
-        }
-        Method method = sSetClipToWindowEnabledMethod;
-        if (method != null) {
-            try {
-                method.invoke(this.mPopup, Boolean.valueOf(z2));
-            } catch (Exception unused) {
-                Log.i(TAG, "Could not call setClipToScreenEnabled() on PopupWindow. Oh well.");
-            }
-        }
-    }
-
     public void clearListSelection() {
         DropDownListView dropDownListView = this.mDropDownList;
         if (dropDownListView != null) {
@@ -439,6 +395,21 @@ public class ListPopupWindow implements ShowableListMenu {
         return this.mDropDownList;
     }
 
+    private int getMaxAvailableHeight(View view, int i, boolean z2) {
+        if (Build.VERSION.SDK_INT > 23) {
+            return this.mPopup.getMaxAvailableHeight(view, i, z2);
+        }
+        Method method = sGetMaxAvailableHeightMethod;
+        if (method != null) {
+            try {
+                return ((Integer) method.invoke(this.mPopup, view, Integer.valueOf(i), Boolean.valueOf(z2))).intValue();
+            } catch (Exception unused) {
+                Log.i(TAG, "Could not call getMaxAvailableHeightMethod(View, int, boolean) on PopupWindow. Using the public version.");
+            }
+        }
+        return this.mPopup.getMaxAvailableHeight(view, i);
+    }
+
     public int getPromptPosition() {
         return this.mPromptPosition;
     }
@@ -486,6 +457,10 @@ public class ListPopupWindow implements ShowableListMenu {
 
     public int getWidth() {
         return this.mDropDownWidth;
+    }
+
+    private static boolean isConfirmKey(int i) {
+        return i == 66 || i == 23;
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -598,6 +573,16 @@ public class ListPopupWindow implements ShowableListMenu {
         this.mHandler.post(this.mShowDropDownRunnable);
     }
 
+    private void removePromptView() {
+        View view = this.mPromptView;
+        if (view != null) {
+            ViewParent parent = view.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(this.mPromptView);
+            }
+        }
+    }
+
     public void setAdapter(@Nullable ListAdapter listAdapter) {
         DataSetObserver dataSetObserver = this.mObserver;
         if (dataSetObserver == null) {
@@ -703,6 +688,21 @@ public class ListPopupWindow implements ShowableListMenu {
     public void setOverlapAnchor(boolean z2) {
         this.mOverlapAnchorSet = true;
         this.mOverlapAnchor = z2;
+    }
+
+    private void setPopupClipToScreenEnabled(boolean z2) {
+        if (Build.VERSION.SDK_INT > 28) {
+            this.mPopup.setIsClippedToScreen(z2);
+            return;
+        }
+        Method method = sSetClipToWindowEnabledMethod;
+        if (method != null) {
+            try {
+                method.invoke(this.mPopup, Boolean.valueOf(z2));
+            } catch (Exception unused) {
+                Log.i(TAG, "Could not call setClipToScreenEnabled() on PopupWindow. Oh well.");
+            }
+        }
     }
 
     public void setPromptPosition(int i) {

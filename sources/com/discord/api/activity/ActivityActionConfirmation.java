@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class ActivityActionConfirmation {
     private final String secret;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getSecret() {
-        return this.secret;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof ActivityActionConfirmation) && C12238m.areEqual(this.secret, ((ActivityActionConfirmation) other).secret);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getSecret() {
+        return this.secret;
     }
 
     public int hashCode() {

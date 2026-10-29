@@ -17,7 +17,7 @@ public final class PeriodicWorkRequest extends WorkRequest {
     @SuppressLint({"MinMaxConstant"})
     public static final long MIN_PERIODIC_INTERVAL_MILLIS = 900000;
 
-    public static final class Builder extends WorkRequest.Builder<Builder, PeriodicWorkRequest> {
+    public final class Builder extends WorkRequest.Builder<Builder, PeriodicWorkRequest> {
         public Builder(@NonNull Class<? extends ListenableWorker> cls, long j, @NonNull TimeUnit timeUnit) {
             super(cls);
             this.mWorkSpec.setPeriodic(timeUnit.toMillis(j));

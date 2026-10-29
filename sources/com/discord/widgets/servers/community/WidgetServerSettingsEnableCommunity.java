@@ -38,13 +38,13 @@ public final class WidgetServerSettingsEnableCommunity extends AppFragment {
         return (WidgetServerSettingsEnableCommunityBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetServerSettingsEnableCommunityViewModel getViewModel() {
-        return (WidgetServerSettingsEnableCommunityViewModel) this.viewModel.getValue();
-    }
-
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
+    }
+
+    private final WidgetServerSettingsEnableCommunityViewModel getViewModel() {
+        return (WidgetServerSettingsEnableCommunityViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment

@@ -12,9 +12,6 @@ import p007b.p109f.p115d.p123h.InterfaceC1709f;
 /* JADX INFO: loaded from: classes.dex */
 public class SharedReference<T> {
 
-    /* JADX INFO: renamed from: a */
-    public static final Map<Object, Integer> f19446a = new IdentityHashMap();
-
     /* JADX INFO: renamed from: b */
     public T f19447b;
 
@@ -24,7 +21,10 @@ public class SharedReference<T> {
     /* JADX INFO: renamed from: d */
     public final InterfaceC1709f<T> f19449d;
 
-    public static class NullReferenceException extends RuntimeException {
+    /* JADX INFO: renamed from: a */
+    public static final Map<Object, Integer> f19446a = new IdentityHashMap();
+
+    public class NullReferenceException extends RuntimeException {
         public NullReferenceException() {
             super("Null shared reference");
         }

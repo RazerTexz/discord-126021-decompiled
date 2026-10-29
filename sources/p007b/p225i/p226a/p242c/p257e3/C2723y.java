@@ -33,6 +33,11 @@ public final class C2723y implements InterfaceC2710l {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    public void close() throws IOException {
+        this.f6641a.close();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
     /* JADX INFO: renamed from: a */
     public long mo2586a(C2712n c2712n) throws IOException {
         this.f6643c = c2712n.f6542a;
@@ -43,11 +48,6 @@ public final class C2723y implements InterfaceC2710l {
         this.f6643c = uriMo2589n;
         this.f6644d = mo2588j();
         return jMo2586a;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() throws IOException {
-        this.f6641a.close();
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l

@@ -58,15 +58,6 @@ public class Explode extends Visibility {
         iArr[1] = Math.round(fCalculateMaxDistance * (fCenterY / fCalculateDistance));
     }
 
-    private void captureValues(TransitionValues transitionValues) {
-        View view = transitionValues.view;
-        view.getLocationOnScreen(this.mTempLoc);
-        int[] iArr = this.mTempLoc;
-        int i = iArr[0];
-        int i2 = iArr[1];
-        transitionValues.values.put(PROPNAME_SCREEN_BOUNDS, new Rect(i, i2, view.getWidth() + i, view.getHeight() + i2));
-    }
-
     @Override // androidx.transition.Visibility, androidx.transition.Transition
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
         super.captureEndValues(transitionValues);
@@ -77,6 +68,15 @@ public class Explode extends Visibility {
     public void captureStartValues(@NonNull TransitionValues transitionValues) {
         super.captureStartValues(transitionValues);
         captureValues(transitionValues);
+    }
+
+    private void captureValues(TransitionValues transitionValues) {
+        View view = transitionValues.view;
+        view.getLocationOnScreen(this.mTempLoc);
+        int[] iArr = this.mTempLoc;
+        int i = iArr[0];
+        int i2 = iArr[1];
+        transitionValues.values.put(PROPNAME_SCREEN_BOUNDS, new Rect(i, i2, view.getWidth() + i, view.getHeight() + i2));
     }
 
     @Override // androidx.transition.Visibility

@@ -31,7 +31,7 @@ public final class C4572d<T> {
 
     /* JADX INFO: renamed from: b.i.c.l.d$b */
     /* JADX INFO: compiled from: Component.java */
-    public static class b<T> {
+    public class b<T> {
 
         /* JADX INFO: renamed from: a */
         public final Set<Class<? super T>> f12181a;

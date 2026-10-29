@@ -70,8 +70,229 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class Companion {
+    public final class C74631 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C74631() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetChannelsListItemThreadActions.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$1 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74641 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Model $this_configureUI;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C74641(Model model) {
+            super(1);
+            this.$this_configureUI = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            StoreStream.INSTANCE.getMessageAck().ack(this.$this_configureUI.getChannel().getId(), false, true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$2 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74652 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Model $this_configureUI;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C74652(Model model) {
+            super(1);
+            this.$this_configureUI = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            if (this.$this_configureUI.isMuted()) {
+                StoreUserGuildSettings userGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
+                Context contextRequireContext = WidgetChannelsListItemThreadActions.this.requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                StoreUserGuildSettings.setChannelMuted$default(userGuildSettings, contextRequireContext, this.$this_configureUI.getChannel().getId(), false, null, 8, null);
+                return;
+            }
+            WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
+            long id2 = this.$this_configureUI.getChannel().getId();
+            FragmentManager parentFragmentManager = WidgetChannelsListItemThreadActions.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForChannel(id2, parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$4 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74674 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Model $this_configureUI;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C74674(Model model) {
+            super(1);
+            this.$this_configureUI = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetThreadSettings.Companion companion = WidgetThreadSettings.INSTANCE;
+            long id2 = this.$this_configureUI.getChannel().getId();
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "it.context");
+            companion.launch(id2, context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$5 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74685 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Model $this_configureUI;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C74685(Model model) {
+            super(1);
+            this.$this_configureUI = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetThreadArchiveActions.Companion companion = WidgetThreadArchiveActions.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetChannelsListItemThreadActions.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.show(parentFragmentManager, this.$this_configureUI.getChannel().getId(), this.$this_configureUI.getChannel().getGuildId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$8 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74718 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Model $this_configureUI;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C74718(Model model) {
+            super(1);
+            this.$this_configureUI = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "it.context");
+            C0876m.m165c(context, String.valueOf(this.$this_configureUI.getChannel().getId()), 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$leaveThread$1 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74721 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C74721() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            WidgetChannelsListItemThreadActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$unarchiveThread$1 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74731 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C74731() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            Error.Response response = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response, "error.response");
+            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(response.getCode());
+            C0876m.m169g(WidgetChannelsListItemThreadActions.this.getContext(), abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : C5419R.string.network_error_bad_request, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$unarchiveThread$2 */
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class C74742 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C74742() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "it");
+            WidgetChannelsListItemThreadActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,7 +311,7 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -108,7 +329,7 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
         private final Channel parentChannel;
 
         /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -178,61 +399,6 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
             this.isDeveloper = StoreStream.INSTANCE.getUserSettings().getIsDeveloperMode();
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getCanUnarchiveThread() {
-            return this.canUnarchiveThread;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Channel getParentChannel() {
-            return this.parentChannel;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getNotificationSetting() {
-            return this.notificationSetting;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final StoreThreadsJoined.JoinedThread getJoinedThread() {
-            return this.joinedThread;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsActiveThread() {
-            return this.isActiveThread;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getCanManageThread() {
-            return this.canManageThread;
-        }
-
         public final Model copy(MeUser meUser, Channel channel, Guild guild, Channel parentChannel, int notificationSetting, StoreThreadsJoined.JoinedThread joinedThread, boolean isActiveThread, boolean isModerator, boolean canManageThread, boolean canUnarchiveThread, boolean isMuted) {
             C12238m.checkNotNullParameter(meUser, "meUser");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -250,32 +416,92 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
             return C12238m.areEqual(this.meUser, model.meUser) && C12238m.areEqual(this.channel, model.channel) && C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.parentChannel, model.parentChannel) && this.notificationSetting == model.notificationSetting && C12238m.areEqual(this.joinedThread, model.joinedThread) && this.isActiveThread == model.isActiveThread && this.isModerator == model.isModerator && this.canManageThread == model.canManageThread && this.canUnarchiveThread == model.canUnarchiveThread && this.isMuted == model.isMuted;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final boolean getCanManageThread() {
             return this.canManageThread;
+        }
+
+        public final boolean getCanManageThread() {
+            return this.canManageThread;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getCanUnarchiveThread() {
+            return this.canUnarchiveThread;
         }
 
         public final boolean getCanUnarchiveThread() {
             return this.canUnarchiveThread;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsActiveThread() {
+            return this.isActiveThread;
+        }
+
+        /* JADX INFO: renamed from: isDeveloper, reason: from getter */
+        public final boolean getIsDeveloper() {
+            return this.isDeveloper;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final StoreThreadsJoined.JoinedThread getJoinedThread() {
             return this.joinedThread;
+        }
+
+        public final StoreThreadsJoined.JoinedThread getJoinedThread() {
+            return this.joinedThread;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MeUser getMeUser() {
+            return this.meUser;
         }
 
         public final MeUser getMeUser() {
             return this.meUser;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final int getNotificationSetting() {
             return this.notificationSetting;
+        }
+
+        public final int getNotificationSetting() {
+            return this.notificationSetting;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Channel getParentChannel() {
+            return this.parentChannel;
         }
 
         public final Channel getParentChannel() {
@@ -346,11 +572,6 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
             return this.isActiveThread;
         }
 
-        /* JADX INFO: renamed from: isDeveloper, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
         public final boolean isModerator() {
             return this.isModerator;
         }
@@ -385,230 +606,16 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74631 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C74631() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetChannelsListItemThreadActions.this.configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74641 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Model $this_configureUI;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74641(Model model) {
-            super(1);
-            this.$this_configureUI = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            StoreStream.INSTANCE.getMessageAck().ack(this.$this_configureUI.getChannel().getId(), false, true);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74652 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Model $this_configureUI;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74652(Model model) {
-            super(1);
-            this.$this_configureUI = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            if (this.$this_configureUI.isMuted()) {
-                StoreUserGuildSettings userGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
-                Context contextRequireContext = WidgetChannelsListItemThreadActions.this.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                StoreUserGuildSettings.setChannelMuted$default(userGuildSettings, contextRequireContext, this.$this_configureUI.getChannel().getId(), false, null, 8, null);
-                return;
-            }
-            WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
-            long id2 = this.$this_configureUI.getChannel().getId();
-            FragmentManager parentFragmentManager = WidgetChannelsListItemThreadActions.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            companion.showForChannel(id2, parentFragmentManager);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$4 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74674 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Model $this_configureUI;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74674(Model model) {
-            super(1);
-            this.$this_configureUI = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetThreadSettings.Companion companion = WidgetThreadSettings.INSTANCE;
-            long id2 = this.$this_configureUI.getChannel().getId();
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "it.context");
-            companion.launch(id2, context);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$5 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74685 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Model $this_configureUI;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74685(Model model) {
-            super(1);
-            this.$this_configureUI = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetThreadArchiveActions.Companion companion = WidgetThreadArchiveActions.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetChannelsListItemThreadActions.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            companion.show(parentFragmentManager, this.$this_configureUI.getChannel().getId(), this.$this_configureUI.getChannel().getGuildId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$configureUI$8 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74718 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Model $this_configureUI;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74718(Model model) {
-            super(1);
-            this.$this_configureUI = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "it.context");
-            C0876m.m165c(context, String.valueOf(this.$this_configureUI.getChannel().getId()), 0, 4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$leaveThread$1 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74721 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C74721() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            WidgetChannelsListItemThreadActions.this.dismiss();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$unarchiveThread$1 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74731 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C74731() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            Error.Response response = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response, "error.response");
-            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(response.getCode());
-            C0876m.m169g(WidgetChannelsListItemThreadActions.this.getContext(), abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : C5419R.string.network_error_bad_request, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$unarchiveThread$2 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemThreadActions.kt */
-    public static final class C74742 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C74742() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "it");
-            WidgetChannelsListItemThreadActions.this.dismiss();
-        }
-    }
-
     public WidgetChannelsListItemThreadActions() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelsListItemThreadActions$binding$2.INSTANCE, null, 2, null);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L)), this, null, 2, null), (Class<?>) WidgetChannelsListItemThreadActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74631());
     }
 
     private final void configureUI(final Model model) {
@@ -725,6 +732,11 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
         return (WidgetChannelsListItemThreadActionsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_channels_list_item_thread_actions;
+    }
+
     private final int getMuteIconResId(boolean isMuted, Context context) {
         return DrawableCompat.getThemedDrawableRes$default(context, isMuted ? C5419R.attr.ic_channel_muted : C5419R.attr.ic_channel_mute, 0, 2, (Object) null);
     }
@@ -737,6 +749,12 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().leaveThread(channel.getId(), "Context Menu"), false, 1, null), this, null, 2, null), (117 & 1) != 0 ? null : getContext(), "REST: leaveThread", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C74721(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onPause() {
+        super.onPause();
+        dismiss();
+    }
+
     public static final void show(FragmentManager fragmentManager, long j) {
         INSTANCE.show(fragmentManager, j);
     }
@@ -746,23 +764,5 @@ public final class WidgetChannelsListItemThreadActions extends AppBottomSheet {
         long id2 = channel.getId();
         Boolean bool = Boolean.FALSE;
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.editThread(id2, new RestAPIParams.ThreadSettings(bool, unlockThread ? bool : null, null, 4, null)), false, 1, null), this, null, 2, null), (117 & 1) != 0 ? null : getContext(), "REST: unarchiveThread", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C74742(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : new C74731()), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L)), this, null, 2, null), (Class<?>) WidgetChannelsListItemThreadActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74631());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_channels_list_item_thread_actions;
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onPause() {
-        super.onPause();
-        dismiss();
     }
 }

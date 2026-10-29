@@ -32,7 +32,7 @@ public abstract class AbstractC11702a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.a$a */
     /* JADX INFO: compiled from: BinaryVersion.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -51,20 +51,6 @@ public abstract class AbstractC11702a {
         Integer orNull3 = C12141k.getOrNull(iArr, 2);
         this.f24015d = orNull3 != null ? orNull3.intValue() : -1;
         this.f24016e = iArr.length > 3 ? C12163u.toList(C12139j.asList(iArr).subList(3, iArr.length)) : C12147n.emptyList();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final boolean m9813a(AbstractC11702a abstractC11702a) {
-        C12238m.checkNotNullParameter(abstractC11702a, "ourVersion");
-        int i = this.f24013b;
-        if (i == 0) {
-            if (abstractC11702a.f24013b == 0 && this.f24014c == abstractC11702a.f24014c) {
-                return true;
-            }
-        } else if (i == abstractC11702a.f24013b && this.f24014c <= abstractC11702a.f24014c) {
-            return true;
-        }
-        return false;
     }
 
     public boolean equals(Object obj) {
@@ -110,6 +96,20 @@ public abstract class AbstractC11702a {
             return true;
         }
         return i5 <= i2 && this.f24015d <= i3;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m9813a(AbstractC11702a abstractC11702a) {
+        C12238m.checkNotNullParameter(abstractC11702a, "ourVersion");
+        int i = this.f24013b;
+        if (i == 0) {
+            if (abstractC11702a.f24013b == 0 && this.f24014c == abstractC11702a.f24014c) {
+                return true;
+            }
+        } else if (i == abstractC11702a.f24013b && this.f24014c <= abstractC11702a.f24014c) {
+            return true;
+        }
+        return false;
     }
 
     public final int[] toArray() {

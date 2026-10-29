@@ -45,10 +45,16 @@ public final class C2955c {
     @Nullable
     public final b f7911j;
 
+    public C2955c() {
+        MediaCodec.CryptoInfo cryptoInfo = new MediaCodec.CryptoInfo();
+        this.f7910i = cryptoInfo;
+        this.f7911j = C2738e0.f6708a >= 24 ? new b(cryptoInfo, null) : null;
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.v2.c$b */
     /* JADX INFO: compiled from: CryptoInfo.java */
     @RequiresApi(24)
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final MediaCodec.CryptoInfo f7912a;
@@ -59,11 +65,5 @@ public final class C2955c {
         public b(MediaCodec.CryptoInfo cryptoInfo, a aVar) {
             this.f7912a = cryptoInfo;
         }
-    }
-
-    public C2955c() {
-        MediaCodec.CryptoInfo cryptoInfo = new MediaCodec.CryptoInfo();
-        this.f7910i = cryptoInfo;
-        this.f7911j = C2738e0.f6708a >= 24 ? new b(cryptoInfo, null) : null;
     }
 }

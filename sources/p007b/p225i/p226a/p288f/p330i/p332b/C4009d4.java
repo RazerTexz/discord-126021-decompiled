@@ -10,9 +10,6 @@ import com.discord.stores.StoreGuildScheduledEvents;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4009d4 extends AbstractC4170r5 {
 
-    /* JADX INFO: renamed from: c */
-    public static final Pair<String, Long> f10629c = new Pair<>("", 0L);
-
     /* JADX INFO: renamed from: A */
     public final C4081j4 f10630A;
 
@@ -94,6 +91,9 @@ public final class C4009d4 extends AbstractC4170r5 {
     /* JADX INFO: renamed from: z */
     public C4057h4 f10656z;
 
+    /* JADX INFO: renamed from: c */
+    public static final Pair<String, Long> f10629c = new Pair<>("", 0L);
+
     public C4009d4(C4202u4 c4202u4) {
         super(c4202u4);
         this.f10636f = new C4057h4(this, "last_upload", 0L);
@@ -117,28 +117,6 @@ public final class C4009d4 extends AbstractC4170r5 {
         this.f10631B = new C4081j4(this, "deferred_attribution_cache");
         this.f10632C = new C4057h4(this, "deferred_attribution_cache_timestamp", 0L);
         this.f10633D = new C4069i4(this, "default_event_parameters");
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    @WorkerThread
-    /* JADX INFO: renamed from: m */
-    public final void mo5573m() {
-        SharedPreferences sharedPreferences = this.f11202a.f11254b.getSharedPreferences("com.google.android.gms.measurement.prefs", 0);
-        this.f10634d = sharedPreferences;
-        boolean z2 = sharedPreferences.getBoolean("has_been_opened", false);
-        this.f10653w = z2;
-        if (!z2) {
-            SharedPreferences.Editor editorEdit = this.f10634d.edit();
-            editorEdit.putBoolean("has_been_opened", true);
-            editorEdit.apply();
-        }
-        this.f10635e = new C4092k4(this, "health_monitor", Math.max(0L, C4142p.f11065c.m5693a(null).longValue()), null);
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    /* JADX INFO: renamed from: r */
-    public final boolean mo5574r() {
-        return true;
     }
 
     @WorkerThread
@@ -198,5 +176,27 @@ public final class C4009d4 extends AbstractC4170r5 {
     public final C4004d m5581y() {
         mo5848b();
         return C4004d.m5563b(m5579w().getString("consent_settings", "G1"));
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    @WorkerThread
+    /* JADX INFO: renamed from: m */
+    public final void mo5573m() {
+        SharedPreferences sharedPreferences = this.f11202a.f11254b.getSharedPreferences("com.google.android.gms.measurement.prefs", 0);
+        this.f10634d = sharedPreferences;
+        boolean z2 = sharedPreferences.getBoolean("has_been_opened", false);
+        this.f10653w = z2;
+        if (!z2) {
+            SharedPreferences.Editor editorEdit = this.f10634d.edit();
+            editorEdit.putBoolean("has_been_opened", true);
+            editorEdit.apply();
+        }
+        this.f10635e = new C4092k4(this, "health_monitor", Math.max(0L, C4142p.f11065c.m5693a(null).longValue()), null);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    /* JADX INFO: renamed from: r */
+    public final boolean mo5574r() {
+        return true;
     }
 }

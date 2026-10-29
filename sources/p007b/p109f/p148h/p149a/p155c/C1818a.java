@@ -18,12 +18,6 @@ import p007b.p109f.p148h.p149a.p157e.C1825a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1818a extends Drawable implements Animatable, InterfaceC1729a {
 
-    /* JADX INFO: renamed from: j */
-    public static final Class<?> f3532j = C1818a.class;
-
-    /* JADX INFO: renamed from: k */
-    public static final C1819b f3533k = new C1819b();
-
     /* JADX INFO: renamed from: l */
     public InterfaceC1801a f3534l;
 
@@ -69,6 +63,12 @@ public class C1818a extends Drawable implements Animatable, InterfaceC1729a {
     /* JADX INFO: renamed from: z */
     public final Runnable f3548z;
 
+    /* JADX INFO: renamed from: j */
+    public static final Class<?> f3532j = C1818a.class;
+
+    /* JADX INFO: renamed from: k */
+    public static final C1819b f3533k = new C1819b();
+
     /* JADX INFO: renamed from: b.f.h.a.c.a$a */
     /* JADX INFO: compiled from: AnimatedDrawable2.java */
     public class a implements Runnable {
@@ -85,15 +85,6 @@ public class C1818a extends Drawable implements Animatable, InterfaceC1729a {
 
     public C1818a() {
         this(null);
-    }
-
-    @Override // p007b.p109f.p130f.p131a.InterfaceC1729a
-    /* JADX INFO: renamed from: a */
-    public void mo1034a() {
-        InterfaceC1801a interfaceC1801a = this.f3534l;
-        if (interfaceC1801a != null) {
-            interfaceC1801a.clear();
-        }
     }
 
     /* JADX WARN: Code duplicated, block: B:40:0x00ae  */
@@ -174,6 +165,15 @@ public class C1818a extends Drawable implements Animatable, InterfaceC1729a {
     @Override // android.graphics.drawable.Animatable
     public boolean isRunning() {
         return this.f3536n;
+    }
+
+    @Override // p007b.p109f.p130f.p131a.InterfaceC1729a
+    /* JADX INFO: renamed from: a */
+    public void mo1034a() {
+        InterfaceC1801a interfaceC1801a = this.f3534l;
+        if (interfaceC1801a != null) {
+            interfaceC1801a.clear();
+        }
     }
 
     @Override // android.graphics.drawable.Drawable

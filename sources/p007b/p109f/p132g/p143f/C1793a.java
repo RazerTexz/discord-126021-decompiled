@@ -25,15 +25,6 @@ public class C1793a {
     /* JADX INFO: renamed from: c */
     public Resources f3453c;
 
-    /* JADX INFO: renamed from: d */
-    public int f3454d = 300;
-
-    /* JADX INFO: renamed from: e */
-    public float f3455e = 0.0f;
-
-    /* JADX INFO: renamed from: f */
-    public Drawable f3456f = null;
-
     /* JADX INFO: renamed from: g */
     public ScalingUtils$ScaleType f3457g;
 
@@ -69,6 +60,15 @@ public class C1793a {
 
     /* JADX INFO: renamed from: r */
     public C1795c f3468r;
+
+    /* JADX INFO: renamed from: d */
+    public int f3454d = 300;
+
+    /* JADX INFO: renamed from: e */
+    public float f3455e = 0.0f;
+
+    /* JADX INFO: renamed from: f */
+    public Drawable f3456f = null;
 
     static {
         ScalingUtils$ScaleType scalingUtils$ScaleType = ScalingUtils$ScaleType.f19495a;

@@ -14,15 +14,48 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class FtsTableInfo {
-    private static final String[] FTS_OPTIONS = {"tokenize=", "compress=", "content=", "languageid=", "matchinfo=", "notindexed=", "order=", "prefix=", "uncompress="};
     public final Set<String> columns;
     public final String name;
     public final Set<String> options;
+    private static final String[] FTS_OPTIONS = {"tokenize=", "compress=", "content=", "languageid=", "matchinfo=", "notindexed=", "order=", "prefix=", "uncompress="};
 
     public FtsTableInfo(String str, Set<String> set, Set<String> set2) {
         this.name = str;
         this.columns = set;
         this.options = set2;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        FtsTableInfo ftsTableInfo = (FtsTableInfo) obj;
+        String str = this.name;
+        if (str == null ? ftsTableInfo.name != null : !str.equals(ftsTableInfo.name)) {
+            return false;
+        }
+        Set<String> set = this.columns;
+        if (set == null ? ftsTableInfo.columns != null : !set.equals(ftsTableInfo.columns)) {
+            return false;
+        }
+        Set<String> set2 = this.options;
+        Set<String> set3 = ftsTableInfo.options;
+        if (set2 != null) {
+            return set2.equals(set3);
+        }
+        return set3 == null;
+    }
+
+    public int hashCode() {
+        String str = this.name;
+        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+        Set<String> set = this.columns;
+        int iHashCode2 = (iHashCode + (set != null ? set.hashCode() : 0)) * 31;
+        Set<String> set2 = this.options;
+        return iHashCode2 + (set2 != null ? set2.hashCode() : 0);
     }
 
     /* JADX WARN: Code duplicated, block: B:33:0x0087  */
@@ -107,39 +140,6 @@ public class FtsTableInfo {
         } finally {
             cursorQuery.close();
         }
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        FtsTableInfo ftsTableInfo = (FtsTableInfo) obj;
-        String str = this.name;
-        if (str == null ? ftsTableInfo.name != null : !str.equals(ftsTableInfo.name)) {
-            return false;
-        }
-        Set<String> set = this.columns;
-        if (set == null ? ftsTableInfo.columns != null : !set.equals(ftsTableInfo.columns)) {
-            return false;
-        }
-        Set<String> set2 = this.options;
-        Set<String> set3 = ftsTableInfo.options;
-        if (set2 != null) {
-            return set2.equals(set3);
-        }
-        return set3 == null;
-    }
-
-    public int hashCode() {
-        String str = this.name;
-        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        Set<String> set = this.columns;
-        int iHashCode2 = (iHashCode + (set != null ? set.hashCode() : 0)) * 31;
-        Set<String> set2 = this.options;
-        return iHashCode2 + (set2 != null ? set2.hashCode() : 0);
     }
 
     public String toString() {

@@ -28,27 +28,6 @@ public final class C3878w5<K, V> extends LinkedHashMap<K, V> {
         this.zza = true;
     }
 
-    /* JADX INFO: renamed from: b */
-    public static int m5347b(Object obj) {
-        if (!(obj instanceof byte[])) {
-            if (obj instanceof InterfaceC3903y4) {
-                throw new UnsupportedOperationException();
-            }
-            return obj.hashCode();
-        }
-        byte[] bArr = (byte[]) obj;
-        Charset charset = C3877w4.f10379a;
-        int length = bArr.length;
-        int i = length;
-        for (int i2 = 0; i2 < 0 + length; i2++) {
-            i = (i * 31) + bArr[i2];
-        }
-        if (i == 0) {
-            return 1;
-        }
-        return i;
-    }
-
     @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
     public final void clear() {
         m5350h();
@@ -93,6 +72,36 @@ public final class C3878w5<K, V> extends LinkedHashMap<K, V> {
         return false;
     }
 
+    @Override // java.util.AbstractMap, java.util.Map
+    public final int hashCode() {
+        int iM5347b = 0;
+        for (Map.Entry<K, V> entry : entrySet()) {
+            iM5347b += m5347b(entry.getValue()) ^ m5347b(entry.getKey());
+        }
+        return iM5347b;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static int m5347b(Object obj) {
+        if (!(obj instanceof byte[])) {
+            if (obj instanceof InterfaceC3903y4) {
+                throw new UnsupportedOperationException();
+            }
+            return obj.hashCode();
+        }
+        byte[] bArr = (byte[]) obj;
+        Charset charset = C3877w4.f10379a;
+        int length = bArr.length;
+        int i = length;
+        for (int i2 = 0; i2 < 0 + length; i2++) {
+            i = (i * 31) + bArr[i2];
+        }
+        if (i == 0) {
+            return 1;
+        }
+        return i;
+    }
+
     /* JADX INFO: renamed from: f */
     public final void m5348f() {
         this.zza = false;
@@ -108,15 +117,6 @@ public final class C3878w5<K, V> extends LinkedHashMap<K, V> {
         if (!this.zza) {
             throw new UnsupportedOperationException();
         }
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public final int hashCode() {
-        int iM5347b = 0;
-        for (Map.Entry<K, V> entry : entrySet()) {
-            iM5347b += m5347b(entry.getValue()) ^ m5347b(entry.getKey());
-        }
-        return iM5347b;
     }
 
     @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map

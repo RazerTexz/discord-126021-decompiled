@@ -36,7 +36,6 @@ public class MenuBuilder implements SupportMenu {
     private static final String EXPANDED_ACTION_VIEW_ID = "android:menu:expandedactionview";
     private static final String PRESENTER_KEY = "android:menu:presenters";
     private static final String TAG = "MenuBuilder";
-    private static final int[] sCategoryToOrder = {1, 4, 5, 3, 2, 0};
     private Callback mCallback;
     private final Context mContext;
     private ContextMenu.ContextMenuInfo mCurrentMenuInfo;
@@ -48,6 +47,7 @@ public class MenuBuilder implements SupportMenu {
     private boolean mQwertyMode;
     private final Resources mResources;
     private boolean mShortcutsVisible;
+    private static final int[] sCategoryToOrder = {1, 4, 5, 3, 2, 0};
     private int mDefaultShowAsAction = 0;
     private boolean mPreventDispatchingItemsChanged = false;
     private boolean mItemsChangedWhileDispatchPrevented = false;
@@ -80,137 +80,6 @@ public class MenuBuilder implements SupportMenu {
         this.mContext = context;
         this.mResources = context.getResources();
         setShortcutsVisibleInner(true);
-    }
-
-    private MenuItemImpl createNewMenuItem(int i, int i2, int i3, int i4, CharSequence charSequence, int i5) {
-        return new MenuItemImpl(this, i, i2, i3, i4, charSequence, i5);
-    }
-
-    private void dispatchPresenterUpdate(boolean z2) {
-        if (this.mPresenters.isEmpty()) {
-            return;
-        }
-        stopDispatchingItemsChanged();
-        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
-            MenuPresenter menuPresenter = weakReference.get();
-            if (menuPresenter == null) {
-                this.mPresenters.remove(weakReference);
-            } else {
-                menuPresenter.updateMenuView(z2);
-            }
-        }
-        startDispatchingItemsChanged();
-    }
-
-    private void dispatchRestoreInstanceState(Bundle bundle) {
-        Parcelable parcelable;
-        SparseArray sparseParcelableArray = bundle.getSparseParcelableArray(PRESENTER_KEY);
-        if (sparseParcelableArray == null || this.mPresenters.isEmpty()) {
-            return;
-        }
-        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
-            MenuPresenter menuPresenter = weakReference.get();
-            if (menuPresenter == null) {
-                this.mPresenters.remove(weakReference);
-            } else {
-                int id2 = menuPresenter.getId();
-                if (id2 > 0 && (parcelable = (Parcelable) sparseParcelableArray.get(id2)) != null) {
-                    menuPresenter.onRestoreInstanceState(parcelable);
-                }
-            }
-        }
-    }
-
-    private void dispatchSaveInstanceState(Bundle bundle) {
-        Parcelable parcelableOnSaveInstanceState;
-        if (this.mPresenters.isEmpty()) {
-            return;
-        }
-        SparseArray<? extends Parcelable> sparseArray = new SparseArray<>();
-        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
-            MenuPresenter menuPresenter = weakReference.get();
-            if (menuPresenter == null) {
-                this.mPresenters.remove(weakReference);
-            } else {
-                int id2 = menuPresenter.getId();
-                if (id2 > 0 && (parcelableOnSaveInstanceState = menuPresenter.onSaveInstanceState()) != null) {
-                    sparseArray.put(id2, parcelableOnSaveInstanceState);
-                }
-            }
-        }
-        bundle.putSparseParcelableArray(PRESENTER_KEY, sparseArray);
-    }
-
-    private boolean dispatchSubMenuSelected(SubMenuBuilder subMenuBuilder, MenuPresenter menuPresenter) {
-        if (this.mPresenters.isEmpty()) {
-            return false;
-        }
-        boolean zOnSubMenuSelected = menuPresenter != null ? menuPresenter.onSubMenuSelected(subMenuBuilder) : false;
-        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
-            MenuPresenter menuPresenter2 = weakReference.get();
-            if (menuPresenter2 == null) {
-                this.mPresenters.remove(weakReference);
-            } else if (!zOnSubMenuSelected) {
-                zOnSubMenuSelected = menuPresenter2.onSubMenuSelected(subMenuBuilder);
-            }
-        }
-        return zOnSubMenuSelected;
-    }
-
-    private static int findInsertIndex(ArrayList<MenuItemImpl> arrayList, int i) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (arrayList.get(size).getOrdering() <= i) {
-                return size + 1;
-            }
-        }
-        return 0;
-    }
-
-    private static int getOrdering(int i) {
-        int i2 = ((-65536) & i) >> 16;
-        if (i2 >= 0) {
-            int[] iArr = sCategoryToOrder;
-            if (i2 < iArr.length) {
-                return (i & 65535) | (iArr[i2] << 16);
-            }
-        }
-        throw new IllegalArgumentException("order does not contain a valid category.");
-    }
-
-    private void removeItemAtInt(int i, boolean z2) {
-        if (i < 0 || i >= this.mItems.size()) {
-            return;
-        }
-        this.mItems.remove(i);
-        if (z2) {
-            onItemsChanged(true);
-        }
-    }
-
-    private void setHeaderInternal(int i, CharSequence charSequence, int i2, Drawable drawable, View view) {
-        Resources resources = getResources();
-        if (view != null) {
-            this.mHeaderView = view;
-            this.mHeaderTitle = null;
-            this.mHeaderIcon = null;
-        } else {
-            if (i > 0) {
-                this.mHeaderTitle = resources.getText(i);
-            } else if (charSequence != null) {
-                this.mHeaderTitle = charSequence;
-            }
-            if (i2 > 0) {
-                this.mHeaderIcon = ContextCompat.getDrawable(getContext(), i2);
-            } else if (drawable != null) {
-                this.mHeaderIcon = drawable;
-            }
-            this.mHeaderView = null;
-        }
-        onItemsChanged(false);
-    }
-
-    private void setShortcutsVisibleInner(boolean z2) {
-        this.mShortcutsVisible = z2 && this.mResources.getConfiguration().keyboard != 1 && ViewConfigurationCompat.shouldShowMenuShortcutsWhenKeyboardPresent(ViewConfiguration.get(this.mContext), this.mContext);
     }
 
     @Override // android.view.Menu
@@ -337,9 +206,84 @@ public class MenuBuilder implements SupportMenu {
         return zCollapseItemActionView;
     }
 
+    private MenuItemImpl createNewMenuItem(int i, int i2, int i3, int i4, CharSequence charSequence, int i5) {
+        return new MenuItemImpl(this, i, i2, i3, i4, charSequence, i5);
+    }
+
     public boolean dispatchMenuItemSelected(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
         Callback callback = this.mCallback;
         return callback != null && callback.onMenuItemSelected(menuBuilder, menuItem);
+    }
+
+    private void dispatchPresenterUpdate(boolean z2) {
+        if (this.mPresenters.isEmpty()) {
+            return;
+        }
+        stopDispatchingItemsChanged();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
+            if (menuPresenter == null) {
+                this.mPresenters.remove(weakReference);
+            } else {
+                menuPresenter.updateMenuView(z2);
+            }
+        }
+        startDispatchingItemsChanged();
+    }
+
+    private void dispatchRestoreInstanceState(Bundle bundle) {
+        Parcelable parcelable;
+        SparseArray sparseParcelableArray = bundle.getSparseParcelableArray(PRESENTER_KEY);
+        if (sparseParcelableArray == null || this.mPresenters.isEmpty()) {
+            return;
+        }
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
+            if (menuPresenter == null) {
+                this.mPresenters.remove(weakReference);
+            } else {
+                int id2 = menuPresenter.getId();
+                if (id2 > 0 && (parcelable = (Parcelable) sparseParcelableArray.get(id2)) != null) {
+                    menuPresenter.onRestoreInstanceState(parcelable);
+                }
+            }
+        }
+    }
+
+    private void dispatchSaveInstanceState(Bundle bundle) {
+        Parcelable parcelableOnSaveInstanceState;
+        if (this.mPresenters.isEmpty()) {
+            return;
+        }
+        SparseArray<? extends Parcelable> sparseArray = new SparseArray<>();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
+            if (menuPresenter == null) {
+                this.mPresenters.remove(weakReference);
+            } else {
+                int id2 = menuPresenter.getId();
+                if (id2 > 0 && (parcelableOnSaveInstanceState = menuPresenter.onSaveInstanceState()) != null) {
+                    sparseArray.put(id2, parcelableOnSaveInstanceState);
+                }
+            }
+        }
+        bundle.putSparseParcelableArray(PRESENTER_KEY, sparseArray);
+    }
+
+    private boolean dispatchSubMenuSelected(SubMenuBuilder subMenuBuilder, MenuPresenter menuPresenter) {
+        if (this.mPresenters.isEmpty()) {
+            return false;
+        }
+        boolean zOnSubMenuSelected = menuPresenter != null ? menuPresenter.onSubMenuSelected(subMenuBuilder) : false;
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter2 = weakReference.get();
+            if (menuPresenter2 == null) {
+                this.mPresenters.remove(weakReference);
+            } else if (!zOnSubMenuSelected) {
+                zOnSubMenuSelected = menuPresenter2.onSubMenuSelected(subMenuBuilder);
+            }
+        }
+        return zOnSubMenuSelected;
     }
 
     public boolean expandItemActionView(MenuItemImpl menuItemImpl) {
@@ -368,6 +312,15 @@ public class MenuBuilder implements SupportMenu {
 
     public int findGroupIndex(int i) {
         return findGroupIndex(i, 0);
+    }
+
+    private static int findInsertIndex(ArrayList<MenuItemImpl> arrayList, int i) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (arrayList.get(size).getOrdering() <= i) {
+                return size + 1;
+            }
+        }
+        return 0;
     }
 
     @Override // android.view.Menu
@@ -520,6 +473,17 @@ public class MenuBuilder implements SupportMenu {
         return this.mOptionalIconsVisible;
     }
 
+    private static int getOrdering(int i) {
+        int i2 = ((-65536) & i) >> 16;
+        if (i2 >= 0) {
+            int[] iArr = sCategoryToOrder;
+            if (i2 < iArr.length) {
+                return (i & 65535) | (iArr[i2] << 16);
+            }
+        }
+        throw new IllegalArgumentException("order does not contain a valid category.");
+    }
+
     public Resources getResources() {
         return this.mResources;
     }
@@ -647,6 +611,16 @@ public class MenuBuilder implements SupportMenu {
 
     public void removeItemAt(int i) {
         removeItemAtInt(i, true);
+    }
+
+    private void removeItemAtInt(int i, boolean z2) {
+        if (i < 0 || i >= this.mItems.size()) {
+            return;
+        }
+        this.mItems.remove(i);
+        if (z2) {
+            onItemsChanged(true);
+        }
     }
 
     public void removeMenuPresenter(MenuPresenter menuPresenter) {
@@ -788,6 +762,28 @@ public class MenuBuilder implements SupportMenu {
         return this;
     }
 
+    private void setHeaderInternal(int i, CharSequence charSequence, int i2, Drawable drawable, View view) {
+        Resources resources = getResources();
+        if (view != null) {
+            this.mHeaderView = view;
+            this.mHeaderTitle = null;
+            this.mHeaderIcon = null;
+        } else {
+            if (i > 0) {
+                this.mHeaderTitle = resources.getText(i);
+            } else if (charSequence != null) {
+                this.mHeaderTitle = charSequence;
+            }
+            if (i2 > 0) {
+                this.mHeaderIcon = ContextCompat.getDrawable(getContext(), i2);
+            } else if (drawable != null) {
+                this.mHeaderIcon = drawable;
+            }
+            this.mHeaderView = null;
+        }
+        onItemsChanged(false);
+    }
+
     public MenuBuilder setHeaderTitleInt(CharSequence charSequence) {
         setHeaderInternal(0, charSequence, 0, null, null);
         return this;
@@ -818,6 +814,10 @@ public class MenuBuilder implements SupportMenu {
         }
         setShortcutsVisibleInner(z2);
         onItemsChanged(false);
+    }
+
+    private void setShortcutsVisibleInner(boolean z2) {
+        this.mShortcutsVisible = z2 && this.mResources.getConfiguration().keyboard != 1 && ViewConfigurationCompat.shouldShowMenuShortcutsWhenKeyboardPresent(ViewConfiguration.get(this.mContext), this.mContext);
     }
 
     @Override // android.view.Menu

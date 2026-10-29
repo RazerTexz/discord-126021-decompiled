@@ -44,7 +44,7 @@ public final class WidgetStageChannelModeratorPermissions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetStageChannelModeratorPermissions$configureUI$2 */
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissions.kt */
-    public static final /* synthetic */ class C75622 extends C12236k implements Function1<PermissionOwner, Unit> {
+    public final /* synthetic */ class C75622 extends C12236k implements Function1<PermissionOwner, Unit> {
         public C75622(WidgetStageChannelModeratorPermissions widgetStageChannelModeratorPermissions) {
             super(1, widgetStageChannelModeratorPermissions, WidgetStageChannelModeratorPermissions.class, "confirmRemoveModerator", "confirmRemoveModerator(Lcom/discord/widgets/channels/permissions/PermissionOwner;)V", 0);
         }
@@ -64,7 +64,7 @@ public final class WidgetStageChannelModeratorPermissions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetStageChannelModeratorPermissions$configureUI$3 */
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissions.kt */
-    public static final /* synthetic */ class C75633 extends C12236k implements Function1<PermissionOwner, Unit> {
+    public final /* synthetic */ class C75633 extends C12236k implements Function1<PermissionOwner, Unit> {
         public C75633(WidgetStageChannelModeratorPermissions widgetStageChannelModeratorPermissions) {
             super(1, widgetStageChannelModeratorPermissions, WidgetStageChannelModeratorPermissions.class, "confirmRemoveModerator", "confirmRemoveModerator(Lcom/discord/widgets/channels/permissions/PermissionOwner;)V", 0);
         }
@@ -84,7 +84,7 @@ public final class WidgetStageChannelModeratorPermissions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetStageChannelModeratorPermissions$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissions.kt */
-    public static final /* synthetic */ class C75641 extends C12236k implements Function1<WidgetStageChannelModeratorPermissionsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C75641 extends C12236k implements Function1<WidgetStageChannelModeratorPermissionsViewModel.ViewState, Unit> {
         public C75641(WidgetStageChannelModeratorPermissions widgetStageChannelModeratorPermissions) {
             super(1, widgetStageChannelModeratorPermissions, WidgetStageChannelModeratorPermissions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/permissions/WidgetStageChannelModeratorPermissionsViewModel$ViewState;)V", 0);
         }

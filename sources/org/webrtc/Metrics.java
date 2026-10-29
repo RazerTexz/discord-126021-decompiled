@@ -8,25 +8,6 @@ public class Metrics {
     private static final String TAG = "Metrics";
     public final Map<String, HistogramInfo> map = new HashMap();
 
-    public static class HistogramInfo {
-        public final int bucketCount;
-        public final int max;
-        public final int min;
-        public final Map<Integer, Integer> samples = new HashMap();
-
-        @CalledByNative("HistogramInfo")
-        public HistogramInfo(int i, int i2, int i3) {
-            this.min = i;
-            this.max = i2;
-            this.bucketCount = i3;
-        }
-
-        @CalledByNative("HistogramInfo")
-        public void addSample(int i, int i2) {
-            this.samples.put(Integer.valueOf(i), Integer.valueOf(i2));
-        }
-    }
-
     @CalledByNative
     public Metrics() {
     }
@@ -47,4 +28,23 @@ public class Metrics {
     private static native void nativeEnable();
 
     private static native Metrics nativeGetAndReset();
+
+    public class HistogramInfo {
+        public final int bucketCount;
+        public final int max;
+        public final int min;
+        public final Map<Integer, Integer> samples = new HashMap();
+
+        @CalledByNative("HistogramInfo")
+        public HistogramInfo(int i, int i2, int i3) {
+            this.min = i;
+            this.max = i2;
+            this.bucketCount = i3;
+        }
+
+        @CalledByNative("HistogramInfo")
+        public void addSample(int i, int i2) {
+            this.samples.put(Integer.valueOf(i), Integer.valueOf(i2));
+        }
+    }
 }

@@ -6,31 +6,31 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/bytecode/ClassFileMetaData.SCL.lombok */
 public class ClassFileMetaData {
-    private static final byte UTF8 = 1;
-    private static final byte INTEGER = 3;
-    private static final byte FLOAT = 4;
-    private static final byte LONG = 5;
-    private static final byte DOUBLE = 6;
     private static final byte CLASS = 7;
-    private static final byte STRING = 8;
+    private static final byte DOUBLE = 6;
+    private static final byte DYNAMIC = 17;
     private static final byte FIELD = 9;
-    private static final byte METHOD = 10;
+    private static final byte FLOAT = 4;
+    private static final byte INTEGER = 3;
     private static final byte INTERFACE_METHOD = 11;
-    private static final byte NAME_TYPE = 12;
+    private static final byte INVOKE_DYNAMIC = 18;
+    private static final byte LONG = 5;
+    private static final byte METHOD = 10;
     private static final byte METHOD_HANDLE = 15;
     private static final byte METHOD_TYPE = 16;
-    private static final byte DYNAMIC = 17;
-    private static final byte INVOKE_DYNAMIC = 18;
     private static final byte MODULE = 19;
-    private static final byte PACKAGE = 20;
+    private static final byte NAME_TYPE = 12;
     private static final int NOT_FOUND = -1;
+    private static final byte PACKAGE = 20;
     private static final int START_OF_CONSTANT_POOL = 8;
+    private static final byte STRING = 8;
+    private static final byte UTF8 = 1;
     private final byte[] byteCode;
+    private final int endOfPool;
     private final int maxPoolSize = readValue(8);
     private final int[] offsets = new int[this.maxPoolSize];
     private final byte[] types = new byte[this.maxPoolSize];
     private final String[] utf8s = new String[this.maxPoolSize];
-    private final int endOfPool;
 
     public ClassFileMetaData(byte[] byteCode) {
         this.byteCode = byteCode;

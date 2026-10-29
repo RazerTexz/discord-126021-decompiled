@@ -12,7 +12,7 @@ public class BarrierReference extends HelperReference {
     private int mMargin;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.helpers.BarrierReference$1 */
-    public static /* synthetic */ class C01861 {
+    public /* synthetic */ class C01861 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$state$State$Direction */
         public static final /* synthetic */ int[] f112xf452c4aa;

@@ -85,8 +85,28 @@ public final class WidgetUserMutualFriends extends AppFragment {
     /* JADX INFO: renamed from: userId$delegate, reason: from kotlin metadata */
     private final Lazy userId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMutualFriends$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C102171 extends C12236k implements Function1<Model, Unit> {
+        public C102171(WidgetUserMutualFriends widgetUserMutualFriends) {
+            super(1, widgetUserMutualFriends, WidgetUserMutualFriends.class, "configureUI", "configureUI(Lcom/discord/widgets/user/WidgetUserMutualFriends$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetUserMutualFriends) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -104,7 +124,7 @@ public final class WidgetUserMutualFriends extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -113,7 +133,7 @@ public final class WidgetUserMutualFriends extends AppFragment {
         private final User user;
 
         /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -172,12 +192,12 @@ public final class WidgetUserMutualFriends extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-        public static abstract class Item implements MGRecyclerDataPayload {
+        public abstract class Item implements MGRecyclerDataPayload {
             public static final int TYPE_EMPTY = 0;
             public static final int TYPE_FRIEND = 1;
 
             /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-            public static final class Empty extends Item {
+            public final class Empty extends Item {
                 public static final Empty INSTANCE;
                 private static final String key;
                 private static final int type = 0;
@@ -206,7 +226,7 @@ public final class WidgetUserMutualFriends extends AppFragment {
             }
 
             /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-            public static final /* data */ class MutualFriend extends Item {
+            public final /* data */ class MutualFriend extends Item {
                 private final Boolean isApplicationStreaming;
                 private final String key;
                 private final List<Guild> mutualGuilds;
@@ -216,6 +236,10 @@ public final class WidgetUserMutualFriends extends AppFragment {
 
                 public /* synthetic */ MutualFriend(User user, Presence presence, List list, Boolean bool, int i, DefaultConstructorMarker defaultConstructorMarker) {
                     this(user, presence, list, (i & 8) != 0 ? null : bool);
+                }
+
+                public final List<Guild> component3() {
+                    return this.mutualGuilds;
                 }
 
                 /* JADX WARN: Multi-variable type inference failed */
@@ -235,25 +259,6 @@ public final class WidgetUserMutualFriends extends AppFragment {
                     return mutualFriend.copy(user, presence, list, bool);
                 }
 
-                /* JADX INFO: renamed from: component1, reason: from getter */
-                public final User getUser() {
-                    return this.user;
-                }
-
-                /* JADX INFO: renamed from: component2, reason: from getter */
-                public final Presence getPresence() {
-                    return this.presence;
-                }
-
-                public final List<Guild> component3() {
-                    return this.mutualGuilds;
-                }
-
-                /* JADX INFO: renamed from: component4, reason: from getter */
-                public final Boolean getIsApplicationStreaming() {
-                    return this.isApplicationStreaming;
-                }
-
                 public final MutualFriend copy(User user, Presence presence, List<Guild> mutualGuilds, Boolean isApplicationStreaming) {
                     C12238m.checkNotNullParameter(user, "user");
                     C12238m.checkNotNullParameter(mutualGuilds, "mutualGuilds");
@@ -271,6 +276,11 @@ public final class WidgetUserMutualFriends extends AppFragment {
                     return C12238m.areEqual(this.user, mutualFriend.user) && C12238m.areEqual(this.presence, mutualFriend.presence) && C12238m.areEqual(this.mutualGuilds, mutualFriend.mutualGuilds) && C12238m.areEqual(this.isApplicationStreaming, mutualFriend.isApplicationStreaming);
                 }
 
+                /* JADX INFO: renamed from: component4, reason: from getter */
+                public final Boolean getIsApplicationStreaming() {
+                    return this.isApplicationStreaming;
+                }
+
                 @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
                 public String getKey() {
                     return this.key;
@@ -280,6 +290,11 @@ public final class WidgetUserMutualFriends extends AppFragment {
                     return this.mutualGuilds;
                 }
 
+                /* JADX INFO: renamed from: component2, reason: from getter */
+                public final Presence getPresence() {
+                    return this.presence;
+                }
+
                 public final Presence getPresence() {
                     return this.presence;
                 }
@@ -287,6 +302,11 @@ public final class WidgetUserMutualFriends extends AppFragment {
                 @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
                 public int getType() {
                     return this.type;
+                }
+
+                /* JADX INFO: renamed from: component1, reason: from getter */
+                public final User getUser() {
+                    return this.user;
                 }
 
                 public final User getUser() {
@@ -329,10 +349,7 @@ public final class WidgetUserMutualFriends extends AppFragment {
                     this.mutualGuilds = list;
                     this.isApplicationStreaming = bool;
                     this.type = 1;
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(getType());
-                    sb.append(user.getId());
-                    this.key = sb.toString();
+                    this.key = "" + getType() + user.getId();
                 }
             }
 
@@ -352,6 +369,10 @@ public final class WidgetUserMutualFriends extends AppFragment {
             this.numMutualFriends = i;
         }
 
+        public final List<Item> component2() {
+            return this.items;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, User user, List list, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
@@ -364,20 +385,6 @@ public final class WidgetUserMutualFriends extends AppFragment {
                 i = model.numMutualFriends;
             }
             return model.copy(user, list, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        public final List<Item> component2() {
-            return this.items;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getNumMutualFriends() {
-            return this.numMutualFriends;
         }
 
         public final Model copy(User user, List<? extends Item> items, int numMutualFriends) {
@@ -400,8 +407,18 @@ public final class WidgetUserMutualFriends extends AppFragment {
             return this.items;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getNumMutualFriends() {
             return this.numMutualFriends;
+        }
+
+        public final int getNumMutualFriends() {
+            return this.numMutualFriends;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -426,11 +443,11 @@ public final class WidgetUserMutualFriends extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-    public static final class MutualFriendsAdapter extends MGRecyclerAdapterSimple<Model.Item> {
+    public final class MutualFriendsAdapter extends MGRecyclerAdapterSimple<Model.Item> {
         private final AppFragment fragment;
 
         /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-        public static final class ViewHolder extends MGRecyclerViewHolder<MutualFriendsAdapter, Model.Item> {
+        public final class ViewHolder extends MGRecyclerViewHolder<MutualFriendsAdapter, Model.Item> {
             private final WidgetUserProfileAdapterItemFriendBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -584,26 +601,6 @@ public final class WidgetUserMutualFriends extends AppFragment {
                 return new ViewHolder(this);
             }
             throw invalidViewTypeException(viewType);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMutualFriends$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetUserMutualFriends.kt */
-    public static final /* synthetic */ class C102171 extends C12236k implements Function1<Model, Unit> {
-        public C102171(WidgetUserMutualFriends widgetUserMutualFriends) {
-            super(1, widgetUserMutualFriends, WidgetUserMutualFriends.class, "configureUI", "configureUI(Lcom/discord/widgets/user/WidgetUserMutualFriends$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetUserMutualFriends) this.receiver).configureUI(model);
         }
     }
 

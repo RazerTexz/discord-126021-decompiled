@@ -5,35 +5,14 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SparseArrayCompat<E> implements Cloneable {
-    private static final Object DELETED = new Object();
     private boolean mGarbage;
     private int[] mKeys;
     private int mSize;
     private Object[] mValues;
+    private static final Object DELETED = new Object();
 
     public SparseArrayCompat() {
         this(10);
-    }
-
-    /* JADX INFO: renamed from: gc */
-    private void m81gc() {
-        int i = this.mSize;
-        int[] iArr = this.mKeys;
-        Object[] objArr = this.mValues;
-        int i2 = 0;
-        for (int i3 = 0; i3 < i; i3++) {
-            Object obj = objArr[i3];
-            if (obj != DELETED) {
-                if (i3 != i2) {
-                    iArr[i2] = iArr[i3];
-                    objArr[i2] = obj;
-                    objArr[i3] = null;
-                }
-                i2++;
-            }
-        }
-        this.mGarbage = false;
-        this.mSize = i2;
     }
 
     public void append(int i, E e) {
@@ -118,6 +97,27 @@ public class SparseArrayCompat<E> implements Cloneable {
             m81gc();
         }
         return this.mKeys[i];
+    }
+
+    /* JADX INFO: renamed from: gc */
+    private void m81gc() {
+        int i = this.mSize;
+        int[] iArr = this.mKeys;
+        Object[] objArr = this.mValues;
+        int i2 = 0;
+        for (int i3 = 0; i3 < i; i3++) {
+            Object obj = objArr[i3];
+            if (obj != DELETED) {
+                if (i3 != i2) {
+                    iArr[i2] = iArr[i3];
+                    objArr[i2] = obj;
+                    objArr[i3] = null;
+                }
+                i2++;
+            }
+        }
+        this.mGarbage = false;
+        this.mSize = i2;
     }
 
     public void put(int i, E e) {
@@ -280,6 +280,17 @@ public class SparseArrayCompat<E> implements Cloneable {
         }
     }
 
+    public E get(int i, E e) {
+        int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
+        if (iBinarySearch >= 0) {
+            Object[] objArr = this.mValues;
+            if (objArr[iBinarySearch] != DELETED) {
+                return (E) objArr[iBinarySearch];
+            }
+        }
+        return e;
+    }
+
     /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
     public SparseArrayCompat<E> m11378clone() {
         try {
@@ -290,17 +301,6 @@ public class SparseArrayCompat<E> implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
         }
-    }
-
-    public E get(int i, E e) {
-        int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
-        if (iBinarySearch >= 0) {
-            Object[] objArr = this.mValues;
-            if (objArr[iBinarySearch] != DELETED) {
-                return (E) objArr[iBinarySearch];
-            }
-        }
-        return e;
     }
 
     public boolean replace(int i, E e, E e2) {

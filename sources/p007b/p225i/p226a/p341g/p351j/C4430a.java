@@ -155,6 +155,28 @@ public class C4430a extends AbstractC4442m {
         this.f11774g = new d();
     }
 
+    /* JADX INFO: renamed from: d */
+    public final void m6148d(boolean z2) {
+        boolean z3 = this.f11819a.isEndIconVisible() == z2;
+        if (z2 && !this.f11775h.isRunning()) {
+            this.f11776i.cancel();
+            this.f11775h.start();
+            if (z3) {
+                this.f11775h.end();
+                return;
+            }
+            return;
+        }
+        if (z2) {
+            return;
+        }
+        this.f11775h.cancel();
+        this.f11776i.start();
+        if (z3) {
+            this.f11776i.end();
+        }
+    }
+
     @Override // p007b.p225i.p226a.p341g.p351j.AbstractC4442m
     /* JADX INFO: renamed from: a */
     public void mo6146a() {
@@ -192,27 +214,5 @@ public class C4430a extends AbstractC4442m {
             return;
         }
         m6148d(z2);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final void m6148d(boolean z2) {
-        boolean z3 = this.f11819a.isEndIconVisible() == z2;
-        if (z2 && !this.f11775h.isRunning()) {
-            this.f11776i.cancel();
-            this.f11775h.start();
-            if (z3) {
-                this.f11775h.end();
-                return;
-            }
-            return;
-        }
-        if (z2) {
-            return;
-        }
-        this.f11775h.cancel();
-        this.f11776i.start();
-        if (z3) {
-            this.f11776i.end();
-        }
     }
 }

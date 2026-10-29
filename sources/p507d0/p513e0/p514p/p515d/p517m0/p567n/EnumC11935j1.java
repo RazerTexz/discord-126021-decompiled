@@ -20,14 +20,6 @@ public enum EnumC11935j1 {
         this.superpositionFactor = i;
     }
 
-    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-    public static EnumC11935j1[] valuesCustom() {
-        EnumC11935j1[] enumC11935j1ArrValuesCustom = values();
-        EnumC11935j1[] enumC11935j1Arr = new EnumC11935j1[enumC11935j1ArrValuesCustom.length];
-        System.arraycopy(enumC11935j1ArrValuesCustom, 0, enumC11935j1Arr, 0, enumC11935j1ArrValuesCustom.length);
-        return enumC11935j1Arr;
-    }
-
     public final boolean getAllowsOutPosition() {
         return this.allowsOutPosition;
     }
@@ -39,5 +31,13 @@ public enum EnumC11935j1 {
     @Override // java.lang.Enum
     public String toString() {
         return this.label;
+    }
+
+    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+    public static EnumC11935j1[] valuesCustom() {
+        EnumC11935j1[] enumC11935j1ArrValuesCustom = values();
+        EnumC11935j1[] enumC11935j1Arr = new EnumC11935j1[enumC11935j1ArrValuesCustom.length];
+        System.arraycopy(enumC11935j1ArrValuesCustom, 0, enumC11935j1Arr, 0, enumC11935j1ArrValuesCustom.length);
+        return enumC11935j1Arr;
     }
 }

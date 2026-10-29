@@ -65,53 +65,8 @@ public final /* data */ class PostData {
         this.isMe = user != null && user.getId() == j;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final Integer getMessageCount() {
-        return this.messageCount;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final PostTagData getTag() {
-        return this.tag;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final MessageReaction getMostCommonReaction() {
-        return this.mostCommonReaction;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final boolean getIsDefaultReaction() {
-        return this.isDefaultReaction;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final ForumPostReadState getReadState() {
-        return this.readState;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final Integer getUnreadCount() {
-        return this.unreadCount;
-    }
-
     public final List<UserGuildMember> component16() {
         return this.typingUsers;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final User getOwner() {
-        return this.owner;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getMyUserId() {
-        return this.myUserId;
     }
 
     public final Map<Long, GuildMember> component4() {
@@ -124,21 +79,6 @@ public final /* data */ class PostData {
 
     public final Map<Long, String> component6() {
         return this.channelNames;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Message getFirstMessage() {
-        return this.firstMessage;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsFirstMessageBlocked() {
-        return this.isFirstMessageBlocked;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Long getMostRecentMessageTimestamp() {
-        return this.mostRecentMessageTimestamp;
     }
 
     public final PostData copy(Channel channel, User owner, long myUserId, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, String> channelNames, Message firstMessage, boolean isFirstMessageBlocked, Long mostRecentMessageTimestamp, Integer messageCount, PostTagData tag, MessageReaction mostCommonReaction, boolean isDefaultReaction, ForumPostReadState readState, Integer unreadCount, List<UserGuildMember> typingUsers) {
@@ -162,12 +102,22 @@ public final /* data */ class PostData {
         return C12238m.areEqual(this.channel, postData.channel) && C12238m.areEqual(this.owner, postData.owner) && this.myUserId == postData.myUserId && C12238m.areEqual(this.guildMembers, postData.guildMembers) && C12238m.areEqual(this.guildRoles, postData.guildRoles) && C12238m.areEqual(this.channelNames, postData.channelNames) && C12238m.areEqual(this.firstMessage, postData.firstMessage) && this.isFirstMessageBlocked == postData.isFirstMessageBlocked && C12238m.areEqual(this.mostRecentMessageTimestamp, postData.mostRecentMessageTimestamp) && C12238m.areEqual(this.messageCount, postData.messageCount) && C12238m.areEqual(this.tag, postData.tag) && C12238m.areEqual(this.mostCommonReaction, postData.mostCommonReaction) && this.isDefaultReaction == postData.isDefaultReaction && C12238m.areEqual(this.readState, postData.readState) && C12238m.areEqual(this.unreadCount, postData.unreadCount) && C12238m.areEqual(this.typingUsers, postData.typingUsers);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
     public final Channel getChannel() {
         return this.channel;
     }
 
     public final Map<Long, String> getChannelNames() {
         return this.channelNames;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Message getFirstMessage() {
+        return this.firstMessage;
     }
 
     public final Message getFirstMessage() {
@@ -182,28 +132,88 @@ public final /* data */ class PostData {
         return this.guildRoles;
     }
 
+    /* JADX INFO: renamed from: isActivePost, reason: from getter */
+    public final boolean getIsActivePost() {
+        return this.isActivePost;
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
+    public final boolean getIsDefaultReaction() {
+        return this.isDefaultReaction;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsFirstMessageBlocked() {
+        return this.isFirstMessageBlocked;
+    }
+
+    /* JADX INFO: renamed from: isMe, reason: from getter */
+    public final boolean getIsMe() {
+        return this.isMe;
+    }
+
+    /* JADX INFO: renamed from: isPinned, reason: from getter */
+    public final boolean getIsPinned() {
+        return this.isPinned;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final Integer getMessageCount() {
         return this.messageCount;
+    }
+
+    public final Integer getMessageCount() {
+        return this.messageCount;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final MessageReaction getMostCommonReaction() {
+        return this.mostCommonReaction;
     }
 
     public final MessageReaction getMostCommonReaction() {
         return this.mostCommonReaction;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final Long getMostRecentMessageTimestamp() {
         return this.mostRecentMessageTimestamp;
+    }
+
+    public final Long getMostRecentMessageTimestamp() {
+        return this.mostRecentMessageTimestamp;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getMyUserId() {
+        return this.myUserId;
     }
 
     public final long getMyUserId() {
         return this.myUserId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final User getOwner() {
         return this.owner;
     }
 
+    public final User getOwner() {
+        return this.owner;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final ForumPostReadState getReadState() {
         return this.readState;
+    }
+
+    public final ForumPostReadState getReadState() {
+        return this.readState;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final PostTagData getTag() {
+        return this.tag;
     }
 
     public final PostTagData getTag() {
@@ -212,6 +222,11 @@ public final /* data */ class PostData {
 
     public final List<UserGuildMember> getTypingUsers() {
         return this.typingUsers;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final Integer getUnreadCount() {
+        return this.unreadCount;
     }
 
     public final Integer getUnreadCount() {
@@ -263,27 +278,12 @@ public final /* data */ class PostData {
         return iHashCode11 + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: isActivePost, reason: from getter */
-    public final boolean getIsActivePost() {
-        return this.isActivePost;
-    }
-
     public final boolean isDefaultReaction() {
         return this.isDefaultReaction;
     }
 
     public final boolean isFirstMessageBlocked() {
         return this.isFirstMessageBlocked;
-    }
-
-    /* JADX INFO: renamed from: isMe, reason: from getter */
-    public final boolean getIsMe() {
-        return this.isMe;
-    }
-
-    /* JADX INFO: renamed from: isPinned, reason: from getter */
-    public final boolean getIsPinned() {
-        return this.isPinned;
     }
 
     public String toString() {

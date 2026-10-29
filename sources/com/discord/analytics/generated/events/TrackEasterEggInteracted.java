@@ -13,17 +13,17 @@ public final /* data */ class TrackEasterEggInteracted implements AnalyticsSchem
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "easter_egg_interacted";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackEasterEggInteracted) && C12238m.areEqual(this.type, ((TrackEasterEggInteracted) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

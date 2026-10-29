@@ -18,16 +18,16 @@ import p007b.p106e.p107a.C1644a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
+    private boolean[] annexed;
+    private boolean[] deprecated;
+    private int[] tags;
+    private int writeFieldCount;
     private static final Comparator<FieldSerializer.CachedField> TAGGED_VALUE_COMPARATOR = new Comparator<FieldSerializer.CachedField>() { // from class: com.esotericsoftware.kryo.serializers.TaggedFieldSerializer.1
         @Override // java.util.Comparator
         public int compare(FieldSerializer.CachedField cachedField, FieldSerializer.CachedField cachedField2) {
             return ((Tag) cachedField.getField().getAnnotation(Tag.class)).value() - ((Tag) cachedField2.getField().getAnnotation(Tag.class)).value();
         }
     };
-    private boolean[] annexed;
-    private boolean[] deprecated;
-    private int[] tags;
-    private int writeFieldCount;
 
     @Target({ElementType.FIELD})
     @Retention(RetentionPolicy.RUNTIME)

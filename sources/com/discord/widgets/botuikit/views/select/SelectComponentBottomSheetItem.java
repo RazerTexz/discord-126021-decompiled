@@ -26,16 +26,6 @@ public final /* data */ class SelectComponentBottomSheetItem {
         return selectComponentBottomSheetItem.copy(selectItem, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final SelectItem getSelectItem() {
-        return this.selectItem;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
     public final SelectComponentBottomSheetItem copy(SelectItem selectItem, boolean selected) {
         C12238m.checkNotNullParameter(selectItem, "selectItem");
         return new SelectComponentBottomSheetItem(selectItem, selected);
@@ -52,8 +42,18 @@ public final /* data */ class SelectComponentBottomSheetItem {
         return C12238m.areEqual(this.selectItem, selectComponentBottomSheetItem.selectItem) && this.selected == selectComponentBottomSheetItem.selected;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final SelectItem getSelectItem() {
         return this.selectItem;
+    }
+
+    public final SelectItem getSelectItem() {
+        return this.selectItem;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getSelected() {
+        return this.selected;
     }
 
     public final boolean getSelected() {

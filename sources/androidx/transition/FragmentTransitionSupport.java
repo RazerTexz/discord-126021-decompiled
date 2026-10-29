@@ -14,10 +14,6 @@ import java.util.List;
 @SuppressLint({"RestrictedApi"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class FragmentTransitionSupport extends FragmentTransitionImpl {
-    private static boolean hasSimpleTarget(Transition transition) {
-        return (FragmentTransitionImpl.isNullOrEmpty(transition.getTargetIds()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetNames()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetTypes())) ? false : true;
-    }
-
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void addTarget(Object obj, View view) {
         if (obj != null) {
@@ -67,6 +63,10 @@ public class FragmentTransitionSupport extends FragmentTransitionImpl {
             return ((Transition) obj).mo11382clone();
         }
         return null;
+    }
+
+    private static boolean hasSimpleTarget(Transition transition) {
+        return (FragmentTransitionImpl.isNullOrEmpty(transition.getTargetIds()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetNames()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetTypes())) ? false : true;
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl

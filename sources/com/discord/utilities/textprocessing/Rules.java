@@ -118,69 +118,9 @@ public final class Rules {
         Self newBlockQuoteState(boolean isInQuote);
     }
 
-    /* JADX INFO: compiled from: Rules.kt */
-    public interface EmojiDataProvider {
-        Map<String, ModelEmojiUnicode> getUnicodeEmojiSurrogateMap();
-
-        Map<String, ModelEmojiUnicode> getUnicodeEmojisNamesMap();
-
-        Pattern getUnicodeEmojisPattern();
-    }
-
-    /* JADX INFO: compiled from: Rules.kt */
-    public static final class HeaderLineClassedRule<RC, T, S> extends C1308a.a<RC, Object, S> {
-        private final Function0<List<Object>> headerPaddingSpanProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        /* JADX WARN: Multi-variable type inference failed */
-        public HeaderLineClassedRule(Function0<? extends List<? extends Object>> function0, Function1<? super Integer, ? extends CharacterStyle> function1, Function1<? super String, ? extends T> function2) {
-            super(function1, function2);
-            C12238m.checkNotNullParameter(function0, "headerPaddingSpanProvider");
-            C12238m.checkNotNullParameter(function1, "styleSpanProvider");
-            C12238m.checkNotNullParameter(function2, "classSpanProvider");
-            this.headerPaddingSpanProvider = function0;
-        }
-
-        @Override // p007b.p008a.p050t.p056c.C1308a.a, p007b.p008a.p050t.p056c.C1308a.b, p007b.p008a.p050t.p056c.C1308a.c, com.discord.simpleast.core.parser.Rule
-        public ParseSpec<RC, S> parse(Matcher matcher, Parser<RC, ? super Node<RC>, S> parser, S state) {
-            C12238m.checkNotNullParameter(matcher, "matcher");
-            C12238m.checkNotNullParameter(parser, "parser");
-            Node<RC> node = super.parse(matcher, parser, state).root;
-            StyleNode styleNode = new StyleNode(this.headerPaddingSpanProvider.invoke());
-            styleNode.addChild(node);
-            C12238m.checkNotNullParameter(styleNode, "node");
-            return new ParseSpec<>(styleNode, state);
-        }
-    }
-
-    /* JADX INFO: compiled from: Rules.kt */
-    public static final class MarkdownListItemRule<RC, S> extends Rule.BlockRule<RC, Node<RC>, S> {
-        private final Function0<List<Object>> spansProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        /* JADX WARN: Multi-variable type inference failed */
-        public MarkdownListItemRule(Function0<? extends List<? extends Object>> function0) {
-            super(C1308a.f1992a);
-            C12238m.checkNotNullParameter(function0, "spansProvider");
-            C1308a c1308a = C1308a.f1996e;
-            this.spansProvider = function0;
-        }
-
-        @Override // com.discord.simpleast.core.parser.Rule
-        public ParseSpec<RC, S> parse(Matcher matcher, Parser<RC, ? super Node<RC>, S> parser, S state) {
-            C12238m.checkNotNullParameter(matcher, "matcher");
-            C12238m.checkNotNullParameter(parser, "parser");
-            StyleNode styleNode = new StyleNode(this.spansProvider.invoke());
-            int iStart = matcher.start(1);
-            int iEnd = matcher.end(1);
-            C12238m.checkNotNullParameter(styleNode, "node");
-            return new ParseSpec<>(styleNode, state, iStart, iEnd);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.Rules$createBoldColoredRule$1 */
     /* JADX INFO: compiled from: Rules.kt */
-    public static final class C69531 extends AbstractC12240o implements Function0<List<? extends CharacterStyle>> {
+    public final class C69531 extends AbstractC12240o implements Function0<List<? extends CharacterStyle>> {
         public final /* synthetic */ int $color;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -198,7 +138,7 @@ public final class Rules {
     /* JADX INFO: Add missing generic type declarations: [RC, S] */
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.Rules$createCodeBlockRule$1 */
     /* JADX INFO: compiled from: Rules.kt */
-    public static final class C69551<RC, S> extends AbstractC12240o implements Function3<CodeNode<RC>, Boolean, S, Node<RC>> {
+    public final class C69551<RC, S> extends AbstractC12240o implements Function3<CodeNode<RC>, Boolean, S, Node<RC>> {
         public static final C69551 INSTANCE = new C69551();
 
         public C69551() {
@@ -230,7 +170,7 @@ public final class Rules {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.Rules$createStrikethroughColoredRule$1 */
     /* JADX INFO: compiled from: Rules.kt */
-    public static final class C69671 extends AbstractC12240o implements Function0<List<? extends CharacterStyle>> {
+    public final class C69671 extends AbstractC12240o implements Function0<List<? extends CharacterStyle>> {
         public final /* synthetic */ int $color;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -242,6 +182,66 @@ public final class Rules {
         @Override // kotlin.jvm.functions.Function0
         public final List<? extends CharacterStyle> invoke() {
             return C12147n.listOf((Object[]) new CharacterStyle[]{new ForegroundColorSpan(this.$color), new StrikethroughSpan()});
+        }
+    }
+
+    /* JADX INFO: compiled from: Rules.kt */
+    public interface EmojiDataProvider {
+        Map<String, ModelEmojiUnicode> getUnicodeEmojiSurrogateMap();
+
+        Map<String, ModelEmojiUnicode> getUnicodeEmojisNamesMap();
+
+        Pattern getUnicodeEmojisPattern();
+    }
+
+    /* JADX INFO: compiled from: Rules.kt */
+    public final class HeaderLineClassedRule<RC, T, S> extends C1308a.a<RC, Object, S> {
+        private final Function0<List<Object>> headerPaddingSpanProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public HeaderLineClassedRule(Function0<? extends List<? extends Object>> function0, Function1<? super Integer, ? extends CharacterStyle> function1, Function1<? super String, ? extends T> function2) {
+            super(function1, function2);
+            C12238m.checkNotNullParameter(function0, "headerPaddingSpanProvider");
+            C12238m.checkNotNullParameter(function1, "styleSpanProvider");
+            C12238m.checkNotNullParameter(function2, "classSpanProvider");
+            this.headerPaddingSpanProvider = function0;
+        }
+
+        @Override // p007b.p008a.p050t.p056c.C1308a.a, p007b.p008a.p050t.p056c.C1308a.b, p007b.p008a.p050t.p056c.C1308a.c, com.discord.simpleast.core.parser.Rule
+        public ParseSpec<RC, S> parse(Matcher matcher, Parser<RC, ? super Node<RC>, S> parser, S state) {
+            C12238m.checkNotNullParameter(matcher, "matcher");
+            C12238m.checkNotNullParameter(parser, "parser");
+            Node<RC> node = super.parse(matcher, parser, state).root;
+            StyleNode styleNode = new StyleNode(this.headerPaddingSpanProvider.invoke());
+            styleNode.addChild(node);
+            C12238m.checkNotNullParameter(styleNode, "node");
+            return new ParseSpec<>(styleNode, state);
+        }
+    }
+
+    /* JADX INFO: compiled from: Rules.kt */
+    public final class MarkdownListItemRule<RC, S> extends Rule.BlockRule<RC, Node<RC>, S> {
+        private final Function0<List<Object>> spansProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public MarkdownListItemRule(Function0<? extends List<? extends Object>> function0) {
+            super(C1308a.f1992a);
+            C12238m.checkNotNullParameter(function0, "spansProvider");
+            C1308a c1308a = C1308a.f1996e;
+            this.spansProvider = function0;
+        }
+
+        @Override // com.discord.simpleast.core.parser.Rule
+        public ParseSpec<RC, S> parse(Matcher matcher, Parser<RC, ? super Node<RC>, S> parser, S state) {
+            C12238m.checkNotNullParameter(matcher, "matcher");
+            C12238m.checkNotNullParameter(parser, "parser");
+            StyleNode styleNode = new StyleNode(this.spansProvider.invoke());
+            int iStart = matcher.start(1);
+            int iEnd = matcher.end(1);
+            C12238m.checkNotNullParameter(styleNode, "node");
+            return new ParseSpec<>(styleNode, state, iStart, iEnd);
         }
     }
 
@@ -263,54 +263,6 @@ public final class Rules {
 
     public static final /* synthetic */ Set access$getPATHOLOGICAL_MASKED_LINK_ATTACK_SUSPICIOUS_CHARS$p(Rules rules) {
         return PATHOLOGICAL_MASKED_LINK_ATTACK_SUSPICIOUS_CHARS;
-    }
-
-    private final Pattern getPATTERN_UNICODE_EMOJI() {
-        return (Pattern) PATTERN_UNICODE_EMOJI.getValue();
-    }
-
-    private final String replaceEmojiSurrogates(String originalText) {
-        StringBuffer stringBuffer = new StringBuffer();
-        EmojiDataProvider emojiDataProvider2 = emojiDataProvider;
-        if (emojiDataProvider2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("emojiDataProvider");
-        }
-        Matcher matcher = emojiDataProvider2.getUnicodeEmojisPattern().matcher(originalText);
-        while (matcher.find()) {
-            String strGroup = matcher.group();
-            EmojiDataProvider emojiDataProvider3 = emojiDataProvider;
-            if (emojiDataProvider3 == null) {
-                C12238m.throwUninitializedPropertyAccessException("emojiDataProvider");
-            }
-            ModelEmojiUnicode modelEmojiUnicode = emojiDataProvider3.getUnicodeEmojiSurrogateMap().get(strGroup);
-            if (modelEmojiUnicode != null) {
-                StringBuilder sbM833U = C1643a.m833U(":");
-                sbM833U.append(modelEmojiUnicode.getFirstName());
-                sbM833U.append(":");
-                matcher.appendReplacement(stringBuffer, sbM833U.toString());
-            }
-        }
-        matcher.appendTail(stringBuffer);
-        String string = stringBuffer.toString();
-        C12238m.checkNotNullExpressionValue(string, "stringBuffer.toString()");
-        return string;
-    }
-
-    public static final void setEmojiDataProvider(EmojiDataProvider emojiDataProvider2) {
-        C12238m.checkNotNullParameter(emojiDataProvider2, "emojiDataProvider");
-        emojiDataProvider = emojiDataProvider2;
-    }
-
-    private final long toLongOrDefault(String str, long j) {
-        Long longOrNull;
-        return (str == null || (longOrNull = C12102s.toLongOrNull(str)) == null) ? j : longOrNull.longValue();
-    }
-
-    public static /* synthetic */ long toLongOrDefault$default(Rules rules, String str, long j, int i, Object obj) {
-        if ((i & 1) != 0) {
-            j = -1;
-        }
-        return rules.toLongOrDefault(str, j);
     }
 
     public final <T extends BasicRenderContext, S extends BlockQuoteState<S>> Rule.BlockRule<T, BlockQuoteNode<T>, S> createBlockQuoteRule() {
@@ -924,5 +876,53 @@ public final class Rules {
                 return new ParseSpec<>(userMentionNode2, state);
             }
         };
+    }
+
+    private final Pattern getPATTERN_UNICODE_EMOJI() {
+        return (Pattern) PATTERN_UNICODE_EMOJI.getValue();
+    }
+
+    private final String replaceEmojiSurrogates(String originalText) {
+        StringBuffer stringBuffer = new StringBuffer();
+        EmojiDataProvider emojiDataProvider2 = emojiDataProvider;
+        if (emojiDataProvider2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("emojiDataProvider");
+        }
+        Matcher matcher = emojiDataProvider2.getUnicodeEmojisPattern().matcher(originalText);
+        while (matcher.find()) {
+            String strGroup = matcher.group();
+            EmojiDataProvider emojiDataProvider3 = emojiDataProvider;
+            if (emojiDataProvider3 == null) {
+                C12238m.throwUninitializedPropertyAccessException("emojiDataProvider");
+            }
+            ModelEmojiUnicode modelEmojiUnicode = emojiDataProvider3.getUnicodeEmojiSurrogateMap().get(strGroup);
+            if (modelEmojiUnicode != null) {
+                StringBuilder sbM833U = C1643a.m833U(":");
+                sbM833U.append(modelEmojiUnicode.getFirstName());
+                sbM833U.append(":");
+                matcher.appendReplacement(stringBuffer, sbM833U.toString());
+            }
+        }
+        matcher.appendTail(stringBuffer);
+        String string = stringBuffer.toString();
+        C12238m.checkNotNullExpressionValue(string, "stringBuffer.toString()");
+        return string;
+    }
+
+    public static final void setEmojiDataProvider(EmojiDataProvider emojiDataProvider2) {
+        C12238m.checkNotNullParameter(emojiDataProvider2, "emojiDataProvider");
+        emojiDataProvider = emojiDataProvider2;
+    }
+
+    public static /* synthetic */ long toLongOrDefault$default(Rules rules, String str, long j, int i, Object obj) {
+        if ((i & 1) != 0) {
+            j = -1;
+        }
+        return rules.toLongOrDefault(str, j);
+    }
+
+    private final long toLongOrDefault(String str, long j) {
+        Long longOrNull;
+        return (str == null || (longOrNull = C12102s.toLongOrNull(str)) == null) ? j : longOrNull.longValue();
     }
 }

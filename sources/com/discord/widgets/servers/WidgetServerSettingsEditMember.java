@@ -79,8 +79,129 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
     private WidgetServerSettingsEditMemberRolesAdapter rolesAdapter;
     private final StatefulViews state;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final class Companion {
+    public final class C92241 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ String $nickname;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92241(String str) {
+            super(1);
+            this.$nickname = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetServerSettingsEditMember.this.onNicknameChangeSuccessful(this.$nickname);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
+    public final class C92252 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ String $nickname;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92252(String str) {
+            super(1);
+            this.$nickname = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetServerSettingsEditMember.this.onNicknameChangeSuccessful(this.$nickname);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
+    public final /* synthetic */ class C92311 extends C12236k implements Function1<Model, Unit> {
+        public C92311(WidgetServerSettingsEditMember widgetServerSettingsEditMember) {
+            super(1, widgetServerSettingsEditMember, WidgetServerSettingsEditMember.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditMember$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsEditMember) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
+    public final class C92321 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ Model $data;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+                invoke2(r1);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Void r1) {
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92321(Model model) {
+            super(1);
+            this.$data = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            WidgetServerSettingsEditMember.this.getBinding().f17631e.clearFocus();
+            ArrayList arrayList = new ArrayList();
+            if (this.$data.getUserRoles().contains(Long.valueOf(j))) {
+                Iterator<Long> it = this.$data.getUserRoles().iterator();
+                while (it.hasNext()) {
+                    long jLongValue = it.next().longValue();
+                    if (jLongValue != j) {
+                        arrayList.add(Long.valueOf(jLongValue));
+                    }
+                }
+            } else {
+                arrayList.addAll(this.$data.getUserRoles());
+                arrayList.add(Long.valueOf(j));
+            }
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().changeGuildMember(this.$data.getGuild().getId(), this.$data.getUser().getId(), RestAPIParams.GuildMember.INSTANCE.createWithRoles(arrayList)), false, 1, null), WidgetServerSettingsEditMember.this, null, 2, null), (Class<?>) WidgetServerSettingsEditMember.this.getClass(), (58 & 2) != 0 ? null : WidgetServerSettingsEditMember.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), AnonymousClass1.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -98,7 +219,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -116,7 +237,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         private final Set<Long> userRoles;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -190,62 +311,12 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             this.canDisableCommunication = z7;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getMyId() {
-            return this.myId;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getCanChangeNickname() {
-            return this.canChangeNickname;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getCanTransferOwnership() {
-            return this.canTransferOwnership;
-        }
-
-        /* JADX INFO: renamed from: component12, reason: from getter */
-        public final boolean getCanDisableCommunication() {
-            return this.canDisableCommunication;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildMember getUserComputed() {
-            return this.userComputed;
-        }
-
         public final Set<Long> component4() {
             return this.userRoles;
         }
 
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
         public final List<WidgetServerSettingsEditMemberRolesAdapter.RoleItem> component6() {
             return this.roleItems;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getCanManage() {
-            return this.canManage;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getCanKick() {
-            return this.canKick;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getCanBan() {
-            return this.canBan;
         }
 
         public final Model copy(long myId, Guild guild, GuildMember userComputed, Set<Long> userRoles, User user, List<WidgetServerSettingsEditMemberRolesAdapter.RoleItem> roleItems, boolean canManage, boolean canKick, boolean canBan, boolean canChangeNickname, boolean canTransferOwnership, boolean canDisableCommunication) {
@@ -268,32 +339,72 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             return this.myId == model.myId && C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.userComputed, model.userComputed) && C12238m.areEqual(this.userRoles, model.userRoles) && C12238m.areEqual(this.user, model.user) && C12238m.areEqual(this.roleItems, model.roleItems) && this.canManage == model.canManage && this.canKick == model.canKick && this.canBan == model.canBan && this.canChangeNickname == model.canChangeNickname && this.canTransferOwnership == model.canTransferOwnership && this.canDisableCommunication == model.canDisableCommunication;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final boolean getCanBan() {
             return this.canBan;
+        }
+
+        public final boolean getCanBan() {
+            return this.canBan;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getCanChangeNickname() {
+            return this.canChangeNickname;
         }
 
         public final boolean getCanChangeNickname() {
             return this.canChangeNickname;
         }
 
+        /* JADX INFO: renamed from: component12, reason: from getter */
         public final boolean getCanDisableCommunication() {
             return this.canDisableCommunication;
+        }
+
+        public final boolean getCanDisableCommunication() {
+            return this.canDisableCommunication;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getCanKick() {
+            return this.canKick;
         }
 
         public final boolean getCanKick() {
             return this.canKick;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final boolean getCanManage() {
             return this.canManage;
+        }
+
+        public final boolean getCanManage() {
+            return this.canManage;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getCanTransferOwnership() {
+            return this.canTransferOwnership;
         }
 
         public final boolean getCanTransferOwnership() {
             return this.canTransferOwnership;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getMyId() {
+            return this.myId;
         }
 
         public final long getMyId() {
@@ -304,8 +415,18 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             return this.roleItems;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final User getUser() {
             return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final GuildMember getUserComputed() {
+            return this.userComputed;
         }
 
         public final GuildMember getUserComputed() {
@@ -412,127 +533,6 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             sbM833U.append(this.canTransferOwnership);
             sbM833U.append(", canDisableCommunication=");
             return C1643a.m827O(sbM833U, this.canDisableCommunication, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final class C92241 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ String $nickname;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92241(String str) {
-            super(1);
-            this.$nickname = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetServerSettingsEditMember.this.onNicknameChangeSuccessful(this.$nickname);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final class C92252 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ String $nickname;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92252(String str) {
-            super(1);
-            this.$nickname = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetServerSettingsEditMember.this.onNicknameChangeSuccessful(this.$nickname);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final /* synthetic */ class C92311 extends C12236k implements Function1<Model, Unit> {
-        public C92311(WidgetServerSettingsEditMember widgetServerSettingsEditMember) {
-            super(1, widgetServerSettingsEditMember, WidgetServerSettingsEditMember.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditMember$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsEditMember) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public static final class C92321 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ Model $data;
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
-            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-                invoke2(r1);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Void r1) {
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92321(Model model) {
-            super(1);
-            this.$data = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetServerSettingsEditMember.this.getBinding().f17631e.clearFocus();
-            ArrayList arrayList = new ArrayList();
-            if (this.$data.getUserRoles().contains(Long.valueOf(j))) {
-                Iterator<Long> it = this.$data.getUserRoles().iterator();
-                while (it.hasNext()) {
-                    long jLongValue = it.next().longValue();
-                    if (jLongValue != j) {
-                        arrayList.add(Long.valueOf(jLongValue));
-                    }
-                }
-            } else {
-                arrayList.addAll(this.$data.getUserRoles());
-                arrayList.add(Long.valueOf(j));
-            }
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().changeGuildMember(this.$data.getGuild().getId(), this.$data.getUser().getId(), RestAPIParams.GuildMember.INSTANCE.createWithRoles(arrayList)), false, 1, null), WidgetServerSettingsEditMember.this, null, 2, null), (Class<?>) WidgetServerSettingsEditMember.this.getClass(), (58 & 2) != 0 ? null : WidgetServerSettingsEditMember.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), AnonymousClass1.INSTANCE);
         }
     }
 
@@ -717,6 +717,40 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         C0876m.m172j(this, nickname.length() > 0 ? C1107b.m213e(this, C5419R.string.nickname_changed, new Object[]{nickname}, (4 & 4) != 0 ? C1107b.a.f1490j : null) : C1107b.m213e(this, C5419R.string.nickname_cleared, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null), 0, 4);
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setRetainInstance(true);
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
+        RecyclerView recyclerView = getBinding().f17633g;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.editMemberRolesRecycler");
+        this.rolesAdapter = (WidgetServerSettingsEditMemberRolesAdapter) companion.configure(new WidgetServerSettingsEditMemberRolesAdapter(recyclerView));
+        RecyclerView recyclerView2 = getBinding().f17633g;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.editMemberRolesRecycler");
+        recyclerView2.setNestedScrollingEnabled(false);
+        getBinding().f17633g.setHasFixedSize(false);
+        this.state.setupUnsavedChangesConfirmation(this);
+        StatefulViews statefulViews = this.state;
+        TextInputLayout textInputLayout = getBinding().f17631e;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
+        statefulViews.addOptionalFields(textInputLayout);
+        StatefulViews statefulViews2 = this.state;
+        FloatingActionButton floatingActionButton = getBinding().f17634h;
+        TextInputLayout textInputLayout2 = getBinding().f17631e;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
+        statefulViews2.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout2);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        long longExtra = getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L);
+        long longExtra2 = getMostRecentIntent().getLongExtra(INTENT_EXTRA_USER_ID, -1L);
+        StoreStream.INSTANCE.getGuildSubscriptions().subscribeUser(longExtra, longExtra2);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(longExtra, longExtra2), this, null, 2, null), (Class<?>) WidgetServerSettingsEditMember.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92311(this));
+    }
+
     private final void setupNickname(Model data) {
         String nick = data.getUserComputed().getNick();
         if (nick == null) {
@@ -758,39 +792,5 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             return;
         }
         widgetServerSettingsEditMemberRolesAdapter.configure(data.getRoleItems(), new C92321(data));
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setRetainInstance(true);
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f17633g;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.editMemberRolesRecycler");
-        this.rolesAdapter = (WidgetServerSettingsEditMemberRolesAdapter) companion.configure(new WidgetServerSettingsEditMemberRolesAdapter(recyclerView));
-        RecyclerView recyclerView2 = getBinding().f17633g;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.editMemberRolesRecycler");
-        recyclerView2.setNestedScrollingEnabled(false);
-        getBinding().f17633g.setHasFixedSize(false);
-        this.state.setupUnsavedChangesConfirmation(this);
-        StatefulViews statefulViews = this.state;
-        TextInputLayout textInputLayout = getBinding().f17631e;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
-        statefulViews.addOptionalFields(textInputLayout);
-        StatefulViews statefulViews2 = this.state;
-        FloatingActionButton floatingActionButton = getBinding().f17634h;
-        TextInputLayout textInputLayout2 = getBinding().f17631e;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
-        statefulViews2.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout2);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        long longExtra = getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L);
-        long longExtra2 = getMostRecentIntent().getLongExtra(INTENT_EXTRA_USER_ID, -1L);
-        StoreStream.INSTANCE.getGuildSubscriptions().subscribeUser(longExtra, longExtra2);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(longExtra, longExtra2), this, null, 2, null), (Class<?>) WidgetServerSettingsEditMember.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92311(this));
     }
 }

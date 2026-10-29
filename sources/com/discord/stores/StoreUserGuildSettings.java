@@ -65,11 +65,226 @@ public final class StoreUserGuildSettings extends StoreV2 {
     private final StoreChannels storeChannels;
     private final StoreThreadsJoined storeThreadsJoined;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$1 */
     /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static abstract class Event {
+    public final class C65691 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C65691() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Subscription subscription2 = StoreUserGuildSettings.this.recomputeSettingsSubscription;
+            if (subscription2 != null) {
+                subscription2.unsubscribe();
+            }
+            StoreUserGuildSettings.this.recomputeSettingsSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$2 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65702 extends AbstractC12240o implements Function1<Long, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreUserGuildSettings.this.recomputeMuteConfigs();
+            }
+        }
+
+        public C65702() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            StoreUserGuildSettings.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$observeGuildSettings$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65711 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelNotificationSettings>> {
+        public C65711() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends ModelNotificationSettings> invoke() {
+            return StoreUserGuildSettings.this.getGuildSettings();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$observeHideMutedChannels$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65731 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+        public C65731() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Set<? extends Long> invoke() {
+            return StoreUserGuildSettings.this.getGuildsToHideMutedChannelsIn();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$setChannelMuted$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65761 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ ModelMuteConfig $muteConfig;
+        public final /* synthetic */ boolean $muted;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65761(long j, Context context, boolean z2, ModelMuteConfig modelMuteConfig) {
+            super(0);
+            this.$channelId = j;
+            this.$context = context;
+            this.$muted = z2;
+            this.$muteConfig = modelMuteConfig;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Channel channelFindChannelByIdInternal$app_productionGoogleRelease = StoreUserGuildSettings.this.storeChannels.findChannelByIdInternal$app_productionGoogleRelease(this.$channelId);
+            if (channelFindChannelByIdInternal$app_productionGoogleRelease != null) {
+                SettingsUpdateType settingsUpdateType = StoreUserGuildSettings.this.getSettingsUpdateType(channelFindChannelByIdInternal$app_productionGoogleRelease);
+                if (!ChannelUtils.m7673H(channelFindChannelByIdInternal$app_productionGoogleRelease)) {
+                    StoreUserGuildSettings.this.updateUserGuildSettings(this.$context, channelFindChannelByIdInternal$app_productionGoogleRelease.getGuildId(), new RestAPIParams.UserGuildSettings(channelFindChannelByIdInternal$app_productionGoogleRelease.getId(), new RestAPIParams.UserGuildSettings.ChannelOverride(Boolean.valueOf(this.$muted), this.$muteConfig, null, null, 12, null)), settingsUpdateType);
+                } else {
+                    StoreThreadsJoined.JoinedThread joinedThread = StoreUserGuildSettings.this.storeThreadsJoined.getJoinedThread(channelFindChannelByIdInternal$app_productionGoogleRelease.getId());
+                    StoreUserGuildSettings.this.updateThreadMemberSettings(this.$context, channelFindChannelByIdInternal$app_productionGoogleRelease.getId(), channelFindChannelByIdInternal$app_productionGoogleRelease.getParentId(), new RestAPIParams.ThreadMemberSettings(null, Boolean.valueOf(this.$muted), this.$muteConfig, 1, null), joinedThread != null ? joinedThread.getFlags() : 0);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$setHideMutedChannels$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65771 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ boolean $hideChannels;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65771(boolean z2, long j) {
+            super(0);
+            this.$hideChannels = z2;
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (this.$hideChannels) {
+                StoreUserGuildSettings.this.guildsToHideMutedChannelsIn.add(Long.valueOf(this.$guildId));
+            } else {
+                StoreUserGuildSettings.this.guildsToHideMutedChannelsIn.remove(Long.valueOf(this.$guildId));
+            }
+            StoreUserGuildSettings.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$updateThreadMemberSettings$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65781 extends AbstractC12240o implements Function1<ThreadMember, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ int $oldFlags;
+        public final /* synthetic */ long $parentChannelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65781(long j, long j2, int i) {
+            super(1);
+            this.$channelId = j;
+            this.$parentChannelId = j2;
+            this.$oldFlags = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ThreadMember threadMember) {
+            invoke2(threadMember);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ThreadMember threadMember) {
+            C12238m.checkNotNullParameter(threadMember, "threadMember");
+            StoreUserGuildSettings.this.analytics.onThreadNotificationSettingsUpdated(this.$channelId, this.$parentChannelId, threadMember.getFlags(), this.$oldFlags);
+            StoreUserGuildSettings.this.eventSubject.f27650k.onNext((T) new Event.SettingsUpdated(SettingsUpdateType.THREAD));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$updateUserGuildSettings$1 */
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public final class C65791 extends AbstractC12240o implements Function1<ModelNotificationSettings, Unit> {
+        public final /* synthetic */ Long $channelId;
+        public final /* synthetic */ SettingsUpdateType $settingsUpdateType;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65791(Long l, SettingsUpdateType settingsUpdateType) {
+            super(1);
+            this.$channelId = l;
+            this.$settingsUpdateType = settingsUpdateType;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelNotificationSettings modelNotificationSettings) {
+            invoke2(modelNotificationSettings);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelNotificationSettings modelNotificationSettings) {
+            C12238m.checkNotNullParameter(modelNotificationSettings, "notifSettings");
+            StoreUserGuildSettings.this.analytics.onNotificationSettingsUpdated(modelNotificationSettings, this.$channelId);
+            StoreUserGuildSettings.this.eventSubject.f27650k.onNext((T) new Event.SettingsUpdated(this.$settingsUpdateType));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-        public static final /* data */ class SettingsUpdated extends Event {
+        public final /* data */ class SettingsUpdated extends Event {
             private final SettingsUpdateType type;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -86,11 +301,6 @@ public final class StoreUserGuildSettings extends StoreV2 {
                 return settingsUpdated.copy(settingsUpdateType);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final SettingsUpdateType getType() {
-                return this.type;
-            }
-
             public final SettingsUpdated copy(SettingsUpdateType type) {
                 C12238m.checkNotNullParameter(type, "type");
                 return new SettingsUpdated(type);
@@ -101,6 +311,11 @@ public final class StoreUserGuildSettings extends StoreV2 {
                     return (other instanceof SettingsUpdated) && C12238m.areEqual(this.type, ((SettingsUpdated) other).type);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final SettingsUpdateType getType() {
+                return this.type;
             }
 
             public final SettingsUpdateType getType() {
@@ -139,223 +354,21 @@ public final class StoreUserGuildSettings extends StoreV2 {
         CATEGORY
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65691 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C65691() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            Subscription subscription2 = StoreUserGuildSettings.this.recomputeSettingsSubscription;
-            if (subscription2 != null) {
-                subscription2.unsubscribe();
-            }
-            StoreUserGuildSettings.this.recomputeSettingsSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$2 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65702 extends AbstractC12240o implements Function1<Long, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$handleGuildSettings$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreUserGuildSettings.this.recomputeMuteConfigs();
-            }
-        }
-
-        public C65702() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            StoreUserGuildSettings.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$observeGuildSettings$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65711 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelNotificationSettings>> {
-        public C65711() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends ModelNotificationSettings> invoke() {
-            return StoreUserGuildSettings.this.getGuildSettings();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$observeHideMutedChannels$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65731 extends AbstractC12240o implements Function0<Set<? extends Long>> {
-        public C65731() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Set<? extends Long> invoke() {
-            return StoreUserGuildSettings.this.getGuildsToHideMutedChannelsIn();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$setChannelMuted$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65761 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ ModelMuteConfig $muteConfig;
-        public final /* synthetic */ boolean $muted;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65761(long j, Context context, boolean z2, ModelMuteConfig modelMuteConfig) {
-            super(0);
-            this.$channelId = j;
-            this.$context = context;
-            this.$muted = z2;
-            this.$muteConfig = modelMuteConfig;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Channel channelFindChannelByIdInternal$app_productionGoogleRelease = StoreUserGuildSettings.this.storeChannels.findChannelByIdInternal$app_productionGoogleRelease(this.$channelId);
-            if (channelFindChannelByIdInternal$app_productionGoogleRelease != null) {
-                SettingsUpdateType settingsUpdateType = StoreUserGuildSettings.this.getSettingsUpdateType(channelFindChannelByIdInternal$app_productionGoogleRelease);
-                if (!ChannelUtils.m7673H(channelFindChannelByIdInternal$app_productionGoogleRelease)) {
-                    StoreUserGuildSettings.this.updateUserGuildSettings(this.$context, channelFindChannelByIdInternal$app_productionGoogleRelease.getGuildId(), new RestAPIParams.UserGuildSettings(channelFindChannelByIdInternal$app_productionGoogleRelease.getId(), new RestAPIParams.UserGuildSettings.ChannelOverride(Boolean.valueOf(this.$muted), this.$muteConfig, null, null, 12, null)), settingsUpdateType);
-                } else {
-                    StoreThreadsJoined.JoinedThread joinedThread = StoreUserGuildSettings.this.storeThreadsJoined.getJoinedThread(channelFindChannelByIdInternal$app_productionGoogleRelease.getId());
-                    StoreUserGuildSettings.this.updateThreadMemberSettings(this.$context, channelFindChannelByIdInternal$app_productionGoogleRelease.getId(), channelFindChannelByIdInternal$app_productionGoogleRelease.getParentId(), new RestAPIParams.ThreadMemberSettings(null, Boolean.valueOf(this.$muted), this.$muteConfig, 1, null), joinedThread != null ? joinedThread.getFlags() : 0);
-                }
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$setHideMutedChannels$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65771 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ boolean $hideChannels;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65771(boolean z2, long j) {
-            super(0);
-            this.$hideChannels = z2;
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (this.$hideChannels) {
-                StoreUserGuildSettings.this.guildsToHideMutedChannelsIn.add(Long.valueOf(this.$guildId));
-            } else {
-                StoreUserGuildSettings.this.guildsToHideMutedChannelsIn.remove(Long.valueOf(this.$guildId));
-            }
-            StoreUserGuildSettings.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$updateThreadMemberSettings$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65781 extends AbstractC12240o implements Function1<ThreadMember, Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ int $oldFlags;
-        public final /* synthetic */ long $parentChannelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65781(long j, long j2, int i) {
-            super(1);
-            this.$channelId = j;
-            this.$parentChannelId = j2;
-            this.$oldFlags = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ThreadMember threadMember) {
-            invoke2(threadMember);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ThreadMember threadMember) {
-            C12238m.checkNotNullParameter(threadMember, "threadMember");
-            StoreUserGuildSettings.this.analytics.onThreadNotificationSettingsUpdated(this.$channelId, this.$parentChannelId, threadMember.getFlags(), this.$oldFlags);
-            StoreUserGuildSettings.this.eventSubject.f27650k.onNext((T) new Event.SettingsUpdated(SettingsUpdateType.THREAD));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserGuildSettings$updateUserGuildSettings$1 */
-    /* JADX INFO: compiled from: StoreUserGuildSettings.kt */
-    public static final class C65791 extends AbstractC12240o implements Function1<ModelNotificationSettings, Unit> {
-        public final /* synthetic */ Long $channelId;
-        public final /* synthetic */ SettingsUpdateType $settingsUpdateType;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65791(Long l, SettingsUpdateType settingsUpdateType) {
-            super(1);
-            this.$channelId = l;
-            this.$settingsUpdateType = settingsUpdateType;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelNotificationSettings modelNotificationSettings) {
-            invoke2(modelNotificationSettings);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelNotificationSettings modelNotificationSettings) {
-            C12238m.checkNotNullParameter(modelNotificationSettings, "notifSettings");
-            StoreUserGuildSettings.this.analytics.onNotificationSettingsUpdated(modelNotificationSettings, this.$channelId);
-            StoreUserGuildSettings.this.eventSubject.f27650k.onNext((T) new Event.SettingsUpdated(this.$settingsUpdateType));
-        }
-    }
-
     public /* synthetic */ StoreUserGuildSettings(Dispatcher dispatcher, Clock clock, StoreAnalytics storeAnalytics, StoreChannels storeChannels, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, clock, storeAnalytics, storeChannels, storeThreadsJoined, (i & 32) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 64) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
+    }
+
+    public final Map<Long, ModelNotificationSettings> getGuildSettings() {
+        return this.guildSettingsSnapshot;
+    }
+
+    @StoreThread
+    public final Map<Long, ModelNotificationSettings> getGuildSettingsInternal$app_productionGoogleRelease() {
+        return this.guildSettings;
+    }
+
+    public final Set<Long> getGuildsToHideMutedChannelsIn() {
+        return this.guildsToHideMutedChannelsInSnapshot;
     }
 
     private final SettingsUpdateType getSettingsUpdateType(Channel channel) {
@@ -363,6 +376,28 @@ public final class StoreUserGuildSettings extends StoreV2 {
             return SettingsUpdateType.THREAD;
         }
         return ChannelUtils.m7671F(channel) ? SettingsUpdateType.CHANNEL : SettingsUpdateType.CATEGORY;
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen$app_productionGoogleRelease(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        ModelPayload.VersionedUserGuildSettings userGuildSettings = payload.getUserGuildSettings();
+        C12238m.checkNotNullExpressionValue(userGuildSettings, "payload.userGuildSettings");
+        if (!userGuildSettings.isPartial()) {
+            this.guildSettings.clear();
+        }
+        ModelPayload.VersionedUserGuildSettings userGuildSettings2 = payload.getUserGuildSettings();
+        C12238m.checkNotNullExpressionValue(userGuildSettings2, "payload.userGuildSettings");
+        List<ModelNotificationSettings> entries = userGuildSettings2.getEntries();
+        C12238m.checkNotNullExpressionValue(entries, "payload.userGuildSettings.entries");
+        handleGuildSettings(entries);
+        markChanged();
+    }
+
+    @StoreThread
+    public final void handleGuildSettingUpdated$app_productionGoogleRelease(List<? extends ModelNotificationSettings> guildSettingsList) {
+        C12238m.checkNotNullParameter(guildSettingsList, "guildSettingsList");
+        handleGuildSettings(guildSettingsList);
     }
 
     @StoreThread
@@ -391,70 +426,6 @@ public final class StoreUserGuildSettings extends StoreV2 {
             C12238m.checkNotNullExpressionValue(observableM11070e0, "Observable.timer(\n      …patcher.scheduler\n      )");
             ObservableExtensionsKt.appSubscribe(observableM11070e0, (Class<?>) StoreUserGuildSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C65691()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C65702());
         }
-    }
-
-    @StoreThread
-    private final void recomputeMuteConfigs() {
-        handleGuildSettingUpdated$app_productionGoogleRelease(new ArrayList(this.guildSettings.values()));
-    }
-
-    public static /* synthetic */ void setChannelMuted$default(StoreUserGuildSettings storeUserGuildSettings, Context context, long j, boolean z2, ModelMuteConfig modelMuteConfig, int i, Object obj) {
-        if ((i & 8) != 0) {
-            modelMuteConfig = null;
-        }
-        storeUserGuildSettings.setChannelMuted(context, j, z2, modelMuteConfig);
-    }
-
-    public static /* synthetic */ void setGuildMuted$default(StoreUserGuildSettings storeUserGuildSettings, Context context, long j, boolean z2, ModelMuteConfig modelMuteConfig, int i, Object obj) {
-        if ((i & 8) != 0) {
-            modelMuteConfig = null;
-        }
-        storeUserGuildSettings.setGuildMuted(context, j, z2, modelMuteConfig);
-    }
-
-    private final void updateThreadMemberSettings(Context context, long channelId, long parentChannelId, RestAPIParams.ThreadMemberSettings threadMemberSettings, int oldFlags) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.updateThreadMemberSettings(channelId, threadMemberSettings), false, 1, null)), (Class<?>) StoreUserGuildSettings.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C65781(channelId, parentChannelId, oldFlags));
-    }
-
-    private final void updateUserGuildSettings(Context context, long guildId, RestAPIParams.UserGuildSettings userGuildSettings, SettingsUpdateType settingsUpdateType) {
-        Set<Long> setKeySet;
-        Map<Long, RestAPIParams.UserGuildSettings.ChannelOverride> channelOverrides = userGuildSettings.getChannelOverrides();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.updateUserGuildSettings(guildId, userGuildSettings), false, 1, null)), (Class<?>) StoreUserGuildSettings.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C65791((channelOverrides == null || (setKeySet = channelOverrides.keySet()) == null) ? null : (Long) C12163u.firstOrNull(setKeySet), settingsUpdateType));
-    }
-
-    public final Map<Long, ModelNotificationSettings> getGuildSettings() {
-        return this.guildSettingsSnapshot;
-    }
-
-    @StoreThread
-    public final Map<Long, ModelNotificationSettings> getGuildSettingsInternal$app_productionGoogleRelease() {
-        return this.guildSettings;
-    }
-
-    public final Set<Long> getGuildsToHideMutedChannelsIn() {
-        return this.guildsToHideMutedChannelsInSnapshot;
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen$app_productionGoogleRelease(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        ModelPayload.VersionedUserGuildSettings userGuildSettings = payload.getUserGuildSettings();
-        C12238m.checkNotNullExpressionValue(userGuildSettings, "payload.userGuildSettings");
-        if (!userGuildSettings.isPartial()) {
-            this.guildSettings.clear();
-        }
-        ModelPayload.VersionedUserGuildSettings userGuildSettings2 = payload.getUserGuildSettings();
-        C12238m.checkNotNullExpressionValue(userGuildSettings2, "payload.userGuildSettings");
-        List<ModelNotificationSettings> entries = userGuildSettings2.getEntries();
-        C12238m.checkNotNullExpressionValue(entries, "payload.userGuildSettings.entries");
-        handleGuildSettings(entries);
-        markChanged();
-    }
-
-    @StoreThread
-    public final void handleGuildSettingUpdated$app_productionGoogleRelease(List<? extends ModelNotificationSettings> guildSettingsList) {
-        C12238m.checkNotNullParameter(guildSettingsList, "guildSettingsList");
-        handleGuildSettings(guildSettingsList);
     }
 
     @Override // com.discord.stores.Store
@@ -515,6 +486,11 @@ public final class StoreUserGuildSettings extends StoreV2 {
         return observableM11112r;
     }
 
+    @StoreThread
+    private final void recomputeMuteConfigs() {
+        handleGuildSettingUpdated$app_productionGoogleRelease(new ArrayList(this.guildSettings.values()));
+    }
+
     public final void setChannelFrequency(Context context, Channel channel, int frequency) {
         int i;
         C12238m.checkNotNullParameter(context, "context");
@@ -531,6 +507,13 @@ public final class StoreUserGuildSettings extends StoreV2 {
         }
         StoreThreadsJoined.JoinedThread joinedThread = this.storeThreadsJoined.getJoinedThread(channel.getId());
         updateThreadMemberSettings(context, channel.getId(), channel.getParentId(), new RestAPIParams.ThreadMemberSettings(Integer.valueOf(i), null, null, 6, null), joinedThread != null ? joinedThread.getFlags() : 0);
+    }
+
+    public static /* synthetic */ void setChannelMuted$default(StoreUserGuildSettings storeUserGuildSettings, Context context, long j, boolean z2, ModelMuteConfig modelMuteConfig, int i, Object obj) {
+        if ((i & 8) != 0) {
+            modelMuteConfig = null;
+        }
+        storeUserGuildSettings.setChannelMuted(context, j, z2, modelMuteConfig);
     }
 
     public final void setChannelMuted(Context context, long channelId, boolean muted, ModelMuteConfig muteConfig) {
@@ -561,6 +544,13 @@ public final class StoreUserGuildSettings extends StoreV2 {
         updateUserGuildSettings(context, guild.getId(), new RestAPIParams.UserGuildSettings(null, null, null, null, null, Integer.valueOf(frequency), null, null, 223, null), SettingsUpdateType.GUILD);
     }
 
+    public static /* synthetic */ void setGuildMuted$default(StoreUserGuildSettings storeUserGuildSettings, Context context, long j, boolean z2, ModelMuteConfig modelMuteConfig, int i, Object obj) {
+        if ((i & 8) != 0) {
+            modelMuteConfig = null;
+        }
+        storeUserGuildSettings.setGuildMuted(context, j, z2, modelMuteConfig);
+    }
+
     public final void setGuildMuted(Context context, long guildId, boolean muted, ModelMuteConfig muteConfig) {
         C12238m.checkNotNullParameter(context, "context");
         updateUserGuildSettings(context, guildId, new RestAPIParams.UserGuildSettings(null, null, Boolean.valueOf(muted), muteConfig, null, null, null, null, 243, null), SettingsUpdateType.GUILD);
@@ -589,6 +579,16 @@ public final class StoreUserGuildSettings extends StoreV2 {
         Persister.set$default(this.guildSettingsCache, this.guildSettings, false, 2, null);
         this.guildsToHideMutedChannelsInSnapshot = new HashSet(this.guildsToHideMutedChannelsIn);
         this.guildsToHideMutedChannelsInCache.set(this.guildsToHideMutedChannelsIn, true);
+    }
+
+    private final void updateThreadMemberSettings(Context context, long channelId, long parentChannelId, RestAPIParams.ThreadMemberSettings threadMemberSettings, int oldFlags) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.updateThreadMemberSettings(channelId, threadMemberSettings), false, 1, null)), (Class<?>) StoreUserGuildSettings.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C65781(channelId, parentChannelId, oldFlags));
+    }
+
+    private final void updateUserGuildSettings(Context context, long guildId, RestAPIParams.UserGuildSettings userGuildSettings, SettingsUpdateType settingsUpdateType) {
+        Set<Long> setKeySet;
+        Map<Long, RestAPIParams.UserGuildSettings.ChannelOverride> channelOverrides = userGuildSettings.getChannelOverrides();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.updateUserGuildSettings(guildId, userGuildSettings), false, 1, null)), (Class<?>) StoreUserGuildSettings.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C65791((channelOverrides == null || (setKeySet = channelOverrides.keySet()) == null) ? null : (Long) C12163u.firstOrNull(setKeySet), settingsUpdateType));
     }
 
     public final Observable<ModelNotificationSettings> observeGuildSettings(final long guildId) {

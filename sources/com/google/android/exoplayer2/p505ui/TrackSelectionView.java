@@ -55,6 +55,13 @@ public class TrackSelectionView extends LinearLayout {
     /* JADX INFO: renamed from: t */
     public boolean f20210t;
 
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.TrackSelectionView$c */
+    public final class C10763c {
+
+        /* JADX INFO: renamed from: a */
+        public final int f20212a;
+    }
+
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.TrackSelectionView$b */
     public class ViewOnClickListenerC10762b implements View.OnClickListener {
         public ViewOnClickListenerC10762b(C10761a c10761a) {
@@ -80,13 +87,6 @@ public class TrackSelectionView extends LinearLayout {
             }
             trackSelectionView.m8932a();
         }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.TrackSelectionView$c */
-    public static final class C10763c {
-
-        /* JADX INFO: renamed from: a */
-        public final int f20212a;
     }
 
     public TrackSelectionView(Context context, @Nullable AttributeSet attributeSet) {
@@ -124,6 +124,18 @@ public class TrackSelectionView extends LinearLayout {
         addView(checkedTextView2);
     }
 
+    public boolean getIsDisabled() {
+        return this.f20210t;
+    }
+
+    public List<C2642h.f> getOverrides() {
+        ArrayList arrayList = new ArrayList(this.f20205o.size());
+        for (int i = 0; i < this.f20205o.size(); i++) {
+            arrayList.add(this.f20205o.valueAt(i));
+        }
+        return arrayList;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m8932a() {
         this.f20202l.setChecked(this.f20210t);
@@ -143,18 +155,6 @@ public class TrackSelectionView extends LinearLayout {
             }
             removeViewAt(childCount);
         }
-    }
-
-    public boolean getIsDisabled() {
-        return this.f20210t;
-    }
-
-    public List<C2642h.f> getOverrides() {
-        ArrayList arrayList = new ArrayList(this.f20205o.size());
-        for (int i = 0; i < this.f20205o.size(); i++) {
-            arrayList.add(this.f20205o.valueAt(i));
-        }
-        return arrayList;
     }
 
     public void setAllowAdaptiveSelections(boolean z2) {

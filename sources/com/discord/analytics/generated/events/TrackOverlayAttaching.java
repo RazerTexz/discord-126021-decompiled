@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayAttaching.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayAttaching implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence directxVersion = null;
     private final CharSequence gameName = null;
     private final CharSequence gpuInfo = null;
+    private final CharSequence module = null;
     private final CharSequence osName = null;
     private final CharSequence overlaySession = null;
-    private final CharSequence module = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "overlay_attaching";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackOverlayAttaching implements AnalyticsSchema, 
         }
         TrackOverlayAttaching trackOverlayAttaching = (TrackOverlayAttaching) other;
         return C12238m.areEqual(this.directxVersion, trackOverlayAttaching.directxVersion) && C12238m.areEqual(this.gameName, trackOverlayAttaching.gameName) && C12238m.areEqual(this.gpuInfo, trackOverlayAttaching.gpuInfo) && C12238m.areEqual(this.osName, trackOverlayAttaching.osName) && C12238m.areEqual(this.overlaySession, trackOverlayAttaching.overlaySession) && C12238m.areEqual(this.module, trackOverlayAttaching.module);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -17,10 +17,6 @@ import p007b.p195g.p196a.p205c.p221z.C2390h;
 /* JADX INFO: compiled from: DeserializationConfig.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2229f extends AbstractC2395m<EnumC2321h, C2229f> implements Serializable {
-
-    /* JADX INFO: renamed from: l */
-    public static final int f4781l = AbstractC2394l.m2264c(EnumC2321h.class);
-    private static final long serialVersionUID = 2;
     public final C2386d _coercionConfigs;
     public final C2390h _ctorDetector;
     public final int _deserFeatures;
@@ -30,6 +26,10 @@ public final class C2229f extends AbstractC2395m<EnumC2321h, C2229f> implements 
     public final int _parserFeatures;
     public final int _parserFeaturesToChange;
     public final C2347i<?> _problemHandlers;
+    private static final long serialVersionUID = 2;
+
+    /* JADX INFO: renamed from: l */
+    public static final int f4781l = AbstractC2394l.m2264c(EnumC2321h.class);
 
     public C2229f(C2383a c2383a, AbstractC2212d abstractC2212d, C2180d0 c2180d0, C2354p c2354p, C2389g c2389g, C2386d c2386d) {
         super(c2383a, abstractC2212d, c2180d0, c2354p, c2389g);

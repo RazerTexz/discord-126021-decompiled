@@ -96,56 +96,6 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
         return iFindFirstMatchIndex;
     }
 
-    private int findFirstMatchIndex(Locale locale) {
-        int i = 0;
-        while (true) {
-            Locale[] localeArr = this.mList;
-            if (i >= localeArr.length) {
-                return Integer.MAX_VALUE;
-            }
-            if (matchScore(locale, localeArr[i]) > 0) {
-                return i;
-            }
-            i++;
-        }
-    }
-
-    private static String getLikelyScript(Locale locale) {
-        String script = locale.getScript();
-        return !script.isEmpty() ? script : "";
-    }
-
-    private static boolean isPseudoLocale(Locale locale) {
-        return LOCALE_EN_XA.equals(locale) || LOCALE_AR_XB.equals(locale);
-    }
-
-    @IntRange(from = 0, m76to = 1)
-    private static int matchScore(Locale locale, Locale locale2) {
-        if (locale.equals(locale2)) {
-            return 1;
-        }
-        if (!locale.getLanguage().equals(locale2.getLanguage()) || isPseudoLocale(locale) || isPseudoLocale(locale2)) {
-            return 0;
-        }
-        String likelyScript = getLikelyScript(locale);
-        if (!likelyScript.isEmpty()) {
-            return likelyScript.equals(getLikelyScript(locale2)) ? 1 : 0;
-        }
-        String country = locale.getCountry();
-        return (country.isEmpty() || country.equals(locale2.getCountry())) ? 1 : 0;
-    }
-
-    @VisibleForTesting
-    public static void toLanguageTag(StringBuilder sb, Locale locale) {
-        sb.append(locale.getLanguage());
-        String country = locale.getCountry();
-        if (country == null || country.isEmpty()) {
-            return;
-        }
-        sb.append('-');
-        sb.append(locale.getCountry());
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -170,6 +120,20 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
         }
     }
 
+    private int findFirstMatchIndex(Locale locale) {
+        int i = 0;
+        while (true) {
+            Locale[] localeArr = this.mList;
+            if (i >= localeArr.length) {
+                return Integer.MAX_VALUE;
+            }
+            if (matchScore(locale, localeArr[i]) > 0) {
+                return i;
+            }
+            i++;
+        }
+    }
+
     @Override // androidx.core.os.LocaleListInterface
     public Locale get(int i) {
         if (i >= 0) {
@@ -184,6 +148,11 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
     @Override // androidx.core.os.LocaleListInterface
     public Locale getFirstMatch(@NonNull String[] strArr) {
         return computeFirstMatch(Arrays.asList(strArr), false);
+    }
+
+    private static String getLikelyScript(Locale locale) {
+        String script = locale.getScript();
+        return !script.isEmpty() ? script : "";
     }
 
     @Override // androidx.core.os.LocaleListInterface
@@ -225,9 +194,40 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
         return this.mList.length == 0;
     }
 
+    private static boolean isPseudoLocale(Locale locale) {
+        return LOCALE_EN_XA.equals(locale) || LOCALE_AR_XB.equals(locale);
+    }
+
+    @IntRange(from = 0, m76to = 1)
+    private static int matchScore(Locale locale, Locale locale2) {
+        if (locale.equals(locale2)) {
+            return 1;
+        }
+        if (!locale.getLanguage().equals(locale2.getLanguage()) || isPseudoLocale(locale) || isPseudoLocale(locale2)) {
+            return 0;
+        }
+        String likelyScript = getLikelyScript(locale);
+        if (!likelyScript.isEmpty()) {
+            return likelyScript.equals(getLikelyScript(locale2)) ? 1 : 0;
+        }
+        String country = locale.getCountry();
+        return (country.isEmpty() || country.equals(locale2.getCountry())) ? 1 : 0;
+    }
+
     @Override // androidx.core.os.LocaleListInterface
     public int size() {
         return this.mList.length;
+    }
+
+    @VisibleForTesting
+    public static void toLanguageTag(StringBuilder sb, Locale locale) {
+        sb.append(locale.getLanguage());
+        String country = locale.getCountry();
+        if (country == null || country.isEmpty()) {
+            return;
+        }
+        sb.append('-');
+        sb.append(locale.getCountry());
     }
 
     @Override // androidx.core.os.LocaleListInterface

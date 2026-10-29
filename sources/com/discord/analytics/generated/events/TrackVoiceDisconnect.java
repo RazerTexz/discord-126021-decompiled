@@ -12,110 +12,104 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceDisconnect.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceDisconnect implements AnalyticsSchema, TrackBaseReceiver, TrackNetworkInformationDurationsReceiver {
-    private TrackBase trackBase;
-    private TrackNetworkInformationDurations trackNetworkInformationDurations;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence hostname = null;
-    private final CharSequence cloudflareBestRegion = null;
-    private final Long port = null;
-    private final CharSequence protocol = null;
-    private final Boolean reconnect = null;
-    private final CharSequence reason = null;
-    private final Long duration = null;
-    private final CharSequence rtcConnectionId = null;
+    private final Long audioDecodedCng = null;
+    private final Long audioDecodedMutedOutput = null;
+    private final Long audioDecodedNormal = null;
+    private final Long audioDecodedPlc = null;
+    private final Long audioDecodedPlccng = null;
+    private final CharSequence audioInputMode = null;
+    private final Float audioInputSensitivity = null;
+    private final Long audioJitterBufferMax = null;
+    private final Long audioJitterBufferMean = null;
+    private final Long audioJitterBufferP75 = null;
+    private final Long audioJitterBufferP95 = null;
+    private final Long audioJitterBufferP99 = null;
+    private final Long audioJitterDelayMax = null;
+    private final Long audioJitterDelayMean = null;
+    private final Long audioJitterDelayP75 = null;
+    private final Long audioJitterDelayP95 = null;
+    private final Long audioJitterDelayP99 = null;
+    private final Long audioJitterTargetMax = null;
+    private final Long audioJitterTargetMean = null;
+    private final Long audioJitterTargetP75 = null;
+    private final Long audioJitterTargetP95 = null;
+    private final Long audioJitterTargetP99 = null;
+    private final Boolean automaticAudioInputSensitivityEnabled = null;
+    private final Boolean automaticGainControlEnabled = null;
+    private final Long bytesReceived = null;
+    private final Long bytesSent = null;
+    private final Long channelBitrate = null;
+    private final Long channelCount = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long channelBitrate = null;
-    private final Long guildId = null;
-    private final CharSequence context = null;
+    private final CharSequence cloudflareBestRegion = null;
     private final Long connectCount = null;
+    private final CharSequence context = null;
+    private final Long decryptionFailures = null;
+    private final Long duration = null;
+    private final Long durationConnected = null;
+    private final Long durationListening = null;
+    private final Long durationParticipation = null;
+    private final Long durationSpeaking = null;
+    private final Boolean echoCancellationEnabled = null;
+    private final CharSequence encryptionMode = null;
+    private final Long frameOpAccelerated = null;
+    private final Long frameOpCng = null;
+    private final Long frameOpExpanded = null;
+    private final Long frameOpMerged = null;
+    private final Long frameOpNormal = null;
+    private final Long frameOpPreemptiveexpanded = null;
+    private final Long frameOpSilent = null;
+    private final Long guildId = null;
+    private final CharSequence hostname = null;
+    private final Boolean inputDetected = null;
+    private final Long maxListenerCount = null;
+    private final Long maxSpeakerCount = null;
+    private final Long maxVoiceStateCount = null;
+    private final CharSequence mediaSessionId = null;
+    private final Long mos1 = null;
+    private final Long mos2 = null;
+    private final Long mos3 = null;
+    private final Long mos4 = null;
+    private final Float mosMean = null;
+    private final Boolean noInputDetectedNotice = null;
+    private final Boolean noiseCancellationEnabled = null;
+    private final Boolean noiseSuppressionEnabled = null;
+    private final Long packetsLost = null;
+    private final Long packetsReceived = null;
+    private final Long packetsReceivedLost = null;
     private final Long packetsSent = null;
     private final Long packetsSentLost = null;
     private final Long pingAverage = null;
     private final Long pingBadCount = null;
     private final Long pingTimeout = null;
-    private final Long packetsReceived = null;
-    private final Long packetsReceivedLost = null;
-    private final Long packetsLost = null;
-    private final Boolean inputDetected = null;
-    private final Boolean noInputDetectedNotice = null;
-    private final Long audioJitterBufferMean = null;
-    private final Long audioJitterBufferP75 = null;
-    private final Long audioJitterBufferP95 = null;
-    private final Long audioJitterBufferP99 = null;
-    private final Long audioJitterBufferMax = null;
-    private final Long audioJitterDelayMean = null;
-    private final Long audioJitterDelayP75 = null;
-    private final Long audioJitterDelayP95 = null;
-    private final Long audioJitterDelayP99 = null;
-    private final Long audioJitterDelayMax = null;
-    private final Long audioJitterTargetMean = null;
-    private final Long audioJitterTargetP75 = null;
-    private final Long audioJitterTargetP95 = null;
-    private final Long audioJitterTargetP99 = null;
-    private final Long audioJitterTargetMax = null;
-    private final Long relativeReceptionDelayMean = null;
-    private final Long relativeReceptionDelayP75 = null;
-    private final Long relativeReceptionDelayP95 = null;
-    private final Long relativeReceptionDelayP99 = null;
-    private final Long relativeReceptionDelayMax = null;
+    private final Long port = null;
+    private final CharSequence protocol = null;
+    private final CharSequence reason = null;
+    private final Boolean reconnect = null;
+    private final Long relativePlayoutDelayMax = null;
     private final Long relativePlayoutDelayMean = null;
     private final Long relativePlayoutDelayP75 = null;
     private final Long relativePlayoutDelayP95 = null;
     private final Long relativePlayoutDelayP99 = null;
-    private final Long relativePlayoutDelayMax = null;
-    private final Float mosMean = null;
-    private final Long mos1 = null;
-    private final Long mos2 = null;
-    private final Long mos3 = null;
-    private final Long mos4 = null;
-    private final CharSequence audioInputMode = null;
-    private final Long audioDecodedNormal = null;
-    private final Long audioDecodedPlc = null;
-    private final Long audioDecodedPlccng = null;
-    private final Long audioDecodedCng = null;
-    private final Long audioDecodedMutedOutput = null;
-    private final Long frameOpSilent = null;
-    private final Long frameOpNormal = null;
-    private final Long frameOpMerged = null;
-    private final Long frameOpExpanded = null;
-    private final Long frameOpAccelerated = null;
-    private final Long frameOpPreemptiveexpanded = null;
-    private final Long frameOpCng = null;
-    private final Boolean automaticAudioInputSensitivityEnabled = null;
-    private final Float audioInputSensitivity = null;
-    private final Boolean echoCancellationEnabled = null;
-    private final Boolean noiseSuppressionEnabled = null;
-    private final Boolean noiseCancellationEnabled = null;
-    private final Boolean automaticGainControlEnabled = null;
-    private final Float voiceOutputVolume = null;
-    private final Long maxVoiceStateCount = null;
-    private final Long totalVoiceStateCount = null;
-    private final Long durationListening = null;
-    private final Long durationSpeaking = null;
-    private final Long durationParticipation = null;
-    private final Long durationConnected = null;
-    private final Long decryptionFailures = null;
-    private final CharSequence encryptionMode = null;
-    private final Long channelCount = null;
-    private final Long maxSpeakerCount = null;
-    private final Long totalSpeakerCount = null;
-    private final Long maxListenerCount = null;
-    private final Long totalListenerCount = null;
-    private final CharSequence voiceBackendVersion = null;
+    private final Long relativeReceptionDelayMax = null;
+    private final Long relativeReceptionDelayMean = null;
+    private final Long relativeReceptionDelayP75 = null;
+    private final Long relativeReceptionDelayP95 = null;
+    private final Long relativeReceptionDelayP99 = null;
+    private final CharSequence rtcConnectionId = null;
     private final CharSequence rtcWorkerBackendVersion = null;
-    private final Long viewModeGridDurationMs = null;
+    private final Long totalListenerCount = null;
+    private final Long totalSpeakerCount = null;
+    private final Long totalVoiceStateCount = null;
+    private TrackBase trackBase;
+    private TrackNetworkInformationDurations trackNetworkInformationDurations;
     private final Long viewModeFocusDurationMs = null;
+    private final Long viewModeGridDurationMs = null;
     private final Long viewModeToggleCount = null;
-    private final Long bytesSent = null;
-    private final Long bytesReceived = null;
+    private final CharSequence voiceBackendVersion = null;
+    private final Float voiceOutputVolume = null;
     private final transient String analyticsSchemaTypeName = "voice_disconnect";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -126,6 +120,12 @@ public final /* data */ class TrackVoiceDisconnect implements AnalyticsSchema, T
         }
         TrackVoiceDisconnect trackVoiceDisconnect = (TrackVoiceDisconnect) other;
         return C12238m.areEqual(this.mediaSessionId, trackVoiceDisconnect.mediaSessionId) && C12238m.areEqual(this.hostname, trackVoiceDisconnect.hostname) && C12238m.areEqual(this.cloudflareBestRegion, trackVoiceDisconnect.cloudflareBestRegion) && C12238m.areEqual(this.port, trackVoiceDisconnect.port) && C12238m.areEqual(this.protocol, trackVoiceDisconnect.protocol) && C12238m.areEqual(this.reconnect, trackVoiceDisconnect.reconnect) && C12238m.areEqual(this.reason, trackVoiceDisconnect.reason) && C12238m.areEqual(this.duration, trackVoiceDisconnect.duration) && C12238m.areEqual(this.rtcConnectionId, trackVoiceDisconnect.rtcConnectionId) && C12238m.areEqual(this.channelId, trackVoiceDisconnect.channelId) && C12238m.areEqual(this.channelType, trackVoiceDisconnect.channelType) && C12238m.areEqual(this.channelBitrate, trackVoiceDisconnect.channelBitrate) && C12238m.areEqual(this.guildId, trackVoiceDisconnect.guildId) && C12238m.areEqual(this.context, trackVoiceDisconnect.context) && C12238m.areEqual(this.connectCount, trackVoiceDisconnect.connectCount) && C12238m.areEqual(this.packetsSent, trackVoiceDisconnect.packetsSent) && C12238m.areEqual(this.packetsSentLost, trackVoiceDisconnect.packetsSentLost) && C12238m.areEqual(this.pingAverage, trackVoiceDisconnect.pingAverage) && C12238m.areEqual(this.pingBadCount, trackVoiceDisconnect.pingBadCount) && C12238m.areEqual(this.pingTimeout, trackVoiceDisconnect.pingTimeout) && C12238m.areEqual(this.packetsReceived, trackVoiceDisconnect.packetsReceived) && C12238m.areEqual(this.packetsReceivedLost, trackVoiceDisconnect.packetsReceivedLost) && C12238m.areEqual(this.packetsLost, trackVoiceDisconnect.packetsLost) && C12238m.areEqual(this.inputDetected, trackVoiceDisconnect.inputDetected) && C12238m.areEqual(this.noInputDetectedNotice, trackVoiceDisconnect.noInputDetectedNotice) && C12238m.areEqual(this.audioJitterBufferMean, trackVoiceDisconnect.audioJitterBufferMean) && C12238m.areEqual(this.audioJitterBufferP75, trackVoiceDisconnect.audioJitterBufferP75) && C12238m.areEqual(this.audioJitterBufferP95, trackVoiceDisconnect.audioJitterBufferP95) && C12238m.areEqual(this.audioJitterBufferP99, trackVoiceDisconnect.audioJitterBufferP99) && C12238m.areEqual(this.audioJitterBufferMax, trackVoiceDisconnect.audioJitterBufferMax) && C12238m.areEqual(this.audioJitterDelayMean, trackVoiceDisconnect.audioJitterDelayMean) && C12238m.areEqual(this.audioJitterDelayP75, trackVoiceDisconnect.audioJitterDelayP75) && C12238m.areEqual(this.audioJitterDelayP95, trackVoiceDisconnect.audioJitterDelayP95) && C12238m.areEqual(this.audioJitterDelayP99, trackVoiceDisconnect.audioJitterDelayP99) && C12238m.areEqual(this.audioJitterDelayMax, trackVoiceDisconnect.audioJitterDelayMax) && C12238m.areEqual(this.audioJitterTargetMean, trackVoiceDisconnect.audioJitterTargetMean) && C12238m.areEqual(this.audioJitterTargetP75, trackVoiceDisconnect.audioJitterTargetP75) && C12238m.areEqual(this.audioJitterTargetP95, trackVoiceDisconnect.audioJitterTargetP95) && C12238m.areEqual(this.audioJitterTargetP99, trackVoiceDisconnect.audioJitterTargetP99) && C12238m.areEqual(this.audioJitterTargetMax, trackVoiceDisconnect.audioJitterTargetMax) && C12238m.areEqual(this.relativeReceptionDelayMean, trackVoiceDisconnect.relativeReceptionDelayMean) && C12238m.areEqual(this.relativeReceptionDelayP75, trackVoiceDisconnect.relativeReceptionDelayP75) && C12238m.areEqual(this.relativeReceptionDelayP95, trackVoiceDisconnect.relativeReceptionDelayP95) && C12238m.areEqual(this.relativeReceptionDelayP99, trackVoiceDisconnect.relativeReceptionDelayP99) && C12238m.areEqual(this.relativeReceptionDelayMax, trackVoiceDisconnect.relativeReceptionDelayMax) && C12238m.areEqual(this.relativePlayoutDelayMean, trackVoiceDisconnect.relativePlayoutDelayMean) && C12238m.areEqual(this.relativePlayoutDelayP75, trackVoiceDisconnect.relativePlayoutDelayP75) && C12238m.areEqual(this.relativePlayoutDelayP95, trackVoiceDisconnect.relativePlayoutDelayP95) && C12238m.areEqual(this.relativePlayoutDelayP99, trackVoiceDisconnect.relativePlayoutDelayP99) && C12238m.areEqual(this.relativePlayoutDelayMax, trackVoiceDisconnect.relativePlayoutDelayMax) && C12238m.areEqual(this.mosMean, trackVoiceDisconnect.mosMean) && C12238m.areEqual(this.mos1, trackVoiceDisconnect.mos1) && C12238m.areEqual(this.mos2, trackVoiceDisconnect.mos2) && C12238m.areEqual(this.mos3, trackVoiceDisconnect.mos3) && C12238m.areEqual(this.mos4, trackVoiceDisconnect.mos4) && C12238m.areEqual(this.audioInputMode, trackVoiceDisconnect.audioInputMode) && C12238m.areEqual(this.audioDecodedNormal, trackVoiceDisconnect.audioDecodedNormal) && C12238m.areEqual(this.audioDecodedPlc, trackVoiceDisconnect.audioDecodedPlc) && C12238m.areEqual(this.audioDecodedPlccng, trackVoiceDisconnect.audioDecodedPlccng) && C12238m.areEqual(this.audioDecodedCng, trackVoiceDisconnect.audioDecodedCng) && C12238m.areEqual(this.audioDecodedMutedOutput, trackVoiceDisconnect.audioDecodedMutedOutput) && C12238m.areEqual(this.frameOpSilent, trackVoiceDisconnect.frameOpSilent) && C12238m.areEqual(this.frameOpNormal, trackVoiceDisconnect.frameOpNormal) && C12238m.areEqual(this.frameOpMerged, trackVoiceDisconnect.frameOpMerged) && C12238m.areEqual(this.frameOpExpanded, trackVoiceDisconnect.frameOpExpanded) && C12238m.areEqual(this.frameOpAccelerated, trackVoiceDisconnect.frameOpAccelerated) && C12238m.areEqual(this.frameOpPreemptiveexpanded, trackVoiceDisconnect.frameOpPreemptiveexpanded) && C12238m.areEqual(this.frameOpCng, trackVoiceDisconnect.frameOpCng) && C12238m.areEqual(this.automaticAudioInputSensitivityEnabled, trackVoiceDisconnect.automaticAudioInputSensitivityEnabled) && C12238m.areEqual(this.audioInputSensitivity, trackVoiceDisconnect.audioInputSensitivity) && C12238m.areEqual(this.echoCancellationEnabled, trackVoiceDisconnect.echoCancellationEnabled) && C12238m.areEqual(this.noiseSuppressionEnabled, trackVoiceDisconnect.noiseSuppressionEnabled) && C12238m.areEqual(this.noiseCancellationEnabled, trackVoiceDisconnect.noiseCancellationEnabled) && C12238m.areEqual(this.automaticGainControlEnabled, trackVoiceDisconnect.automaticGainControlEnabled) && C12238m.areEqual(this.voiceOutputVolume, trackVoiceDisconnect.voiceOutputVolume) && C12238m.areEqual(this.maxVoiceStateCount, trackVoiceDisconnect.maxVoiceStateCount) && C12238m.areEqual(this.totalVoiceStateCount, trackVoiceDisconnect.totalVoiceStateCount) && C12238m.areEqual(this.durationListening, trackVoiceDisconnect.durationListening) && C12238m.areEqual(this.durationSpeaking, trackVoiceDisconnect.durationSpeaking) && C12238m.areEqual(this.durationParticipation, trackVoiceDisconnect.durationParticipation) && C12238m.areEqual(this.durationConnected, trackVoiceDisconnect.durationConnected) && C12238m.areEqual(this.decryptionFailures, trackVoiceDisconnect.decryptionFailures) && C12238m.areEqual(this.encryptionMode, trackVoiceDisconnect.encryptionMode) && C12238m.areEqual(this.channelCount, trackVoiceDisconnect.channelCount) && C12238m.areEqual(this.maxSpeakerCount, trackVoiceDisconnect.maxSpeakerCount) && C12238m.areEqual(this.totalSpeakerCount, trackVoiceDisconnect.totalSpeakerCount) && C12238m.areEqual(this.maxListenerCount, trackVoiceDisconnect.maxListenerCount) && C12238m.areEqual(this.totalListenerCount, trackVoiceDisconnect.totalListenerCount) && C12238m.areEqual(this.voiceBackendVersion, trackVoiceDisconnect.voiceBackendVersion) && C12238m.areEqual(this.rtcWorkerBackendVersion, trackVoiceDisconnect.rtcWorkerBackendVersion) && C12238m.areEqual(this.viewModeGridDurationMs, trackVoiceDisconnect.viewModeGridDurationMs) && C12238m.areEqual(this.viewModeFocusDurationMs, trackVoiceDisconnect.viewModeFocusDurationMs) && C12238m.areEqual(this.viewModeToggleCount, trackVoiceDisconnect.viewModeToggleCount) && C12238m.areEqual(this.bytesSent, trackVoiceDisconnect.bytesSent) && C12238m.areEqual(this.bytesReceived, trackVoiceDisconnect.bytesReceived);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDmSafety.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
+    private final Long messageId = null;
+    private final CharSequence response = null;
+    private final CharSequence safetyPrompt = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
-    private final CharSequence safetyPrompt = null;
-    private final CharSequence response = null;
-    private final Long messageId = null;
     private final transient String analyticsSchemaTypeName = "dm_safety";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBas
         }
         TrackDmSafety trackDmSafety = (TrackDmSafety) other;
         return C12238m.areEqual(this.safetyPrompt, trackDmSafety.safetyPrompt) && C12238m.areEqual(this.response, trackDmSafety.response) && C12238m.areEqual(this.messageId, trackDmSafety.messageId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

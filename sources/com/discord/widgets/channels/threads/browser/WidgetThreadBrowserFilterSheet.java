@@ -49,28 +49,9 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long guildId, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet = new WidgetThreadBrowserFilterSheet();
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            widgetThreadBrowserFilterSheet.setArguments(bundleM832T);
-            widgetThreadBrowserFilterSheet.show(fragmentManager, WidgetThreadBrowserFilterSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserFilterSheet$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
-    public static final class C76651 extends AbstractC12240o implements Function1<WidgetThreadBrowserArchivedViewModel.ViewState, Unit> {
+    public final class C76651 extends AbstractC12240o implements Function1<WidgetThreadBrowserArchivedViewModel.ViewState, Unit> {
         public C76651() {
             super(1);
         }
@@ -88,12 +69,38 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long guildId, long channelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet = new WidgetThreadBrowserFilterSheet();
+            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            widgetThreadBrowserFilterSheet.setArguments(bundleM832T);
+            widgetThreadBrowserFilterSheet.show(fragmentManager, WidgetThreadBrowserFilterSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetThreadBrowserFilterSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadBrowserFilterSheet$binding$2.INSTANCE, null, 2, null);
         this.guildId = C12083g.lazy(new WidgetThreadBrowserFilterSheet$guildId$2(this));
         this.channelId = C12083g.lazy(new WidgetThreadBrowserFilterSheet$channelId$2(this));
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetThreadBrowserArchivedViewModel.class), new C7663x6248c6ac(this), new C0863f0(new WidgetThreadBrowserFilterSheet$viewModel$2(this)));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowserFilterSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76651());
     }
 
     private final void configureUI(WidgetThreadBrowserArchivedViewModel.ViewState viewState) {
@@ -134,24 +141,17 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_thread_browser_filter_sheet;
+    }
+
     private final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
     private final WidgetThreadBrowserArchivedViewModel getViewModel() {
         return (WidgetThreadBrowserArchivedViewModel) this.viewModel.getValue();
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowserFilterSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76651());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_thread_browser_filter_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

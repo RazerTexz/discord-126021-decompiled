@@ -14,20 +14,8 @@ import p007b.p452o.p453a.p473x.C5236b;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC5190c<T> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14058a = new C5103b(AbstractC5190c.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public final int f14059b;
-
-    /* JADX INFO: renamed from: c */
-    public int f14060c = -1;
-
-    /* JADX INFO: renamed from: d */
-    public C5236b f14061d = null;
-
-    /* JADX INFO: renamed from: e */
-    public int f14062e = -1;
 
     /* JADX INFO: renamed from: f */
     public final Class<T> f14063f;
@@ -37,6 +25,18 @@ public abstract class AbstractC5190c<T> {
 
     /* JADX INFO: renamed from: h */
     public C5170a f14065h;
+
+    /* JADX INFO: renamed from: c */
+    public int f14060c = -1;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14058a = new C5103b(AbstractC5190c.class.getSimpleName());
+
+    /* JADX INFO: renamed from: d */
+    public C5236b f14061d = null;
+
+    /* JADX INFO: renamed from: e */
+    public int f14062e = -1;
 
     public AbstractC5190c(int i, @NonNull Class<T> cls) {
         this.f14059b = i;

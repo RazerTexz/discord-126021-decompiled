@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 public final class ProcessCompat {
 
     @RequiresApi(16)
-    public static class Api16Impl {
+    public class Api16Impl {
         private static Method sMethodUserIdIsAppMethod;
         private static boolean sResolved;
         private static final Object sResolvedLock = new Object();
@@ -44,7 +44,7 @@ public final class ProcessCompat {
     }
 
     @RequiresApi(17)
-    public static class Api17Impl {
+    public class Api17Impl {
         private static Method sMethodUserHandleIsAppMethod;
         private static boolean sResolved;
         private static final Object sResolvedLock = new Object();
@@ -73,7 +73,7 @@ public final class ProcessCompat {
     }
 
     @RequiresApi(24)
-    public static class Api24Impl {
+    public class Api24Impl {
         private Api24Impl() {
         }
 

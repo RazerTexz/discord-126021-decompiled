@@ -47,14 +47,6 @@ public final class RectKt {
         return rect.contains(point.x, point.y);
     }
 
-    public static final Region minus(Rect rect, Rect rect2) {
-        C12238m.checkNotNullParameter(rect, "<this>");
-        C12238m.checkNotNullParameter(rect2, "r");
-        Region region = new Region(rect);
-        region.op(rect2, Region.Op.DIFFERENCE);
-        return region;
-    }
-
     /* JADX INFO: renamed from: or */
     public static final Rect m85or(Rect rect, Rect rect2) {
         C12238m.checkNotNullParameter(rect, "<this>");
@@ -62,6 +54,14 @@ public final class RectKt {
         Rect rect3 = new Rect(rect);
         rect3.union(rect2);
         return rect3;
+    }
+
+    public static final Region minus(Rect rect, Rect rect2) {
+        C12238m.checkNotNullParameter(rect, "<this>");
+        C12238m.checkNotNullParameter(rect2, "r");
+        Region region = new Region(rect);
+        region.op(rect2, Region.Op.DIFFERENCE);
+        return region;
     }
 
     public static final Rect plus(Rect rect, Rect rect2) {
@@ -156,6 +156,15 @@ public final class RectKt {
         return rectF3;
     }
 
+    /* JADX INFO: renamed from: or */
+    public static final RectF m86or(RectF rectF, RectF rectF2) {
+        C12238m.checkNotNullParameter(rectF, "<this>");
+        C12238m.checkNotNullParameter(rectF2, "r");
+        RectF rectF3 = new RectF(rectF);
+        rectF3.union(rectF2);
+        return rectF3;
+    }
+
     public static final Region minus(RectF rectF, RectF rectF2) {
         C12238m.checkNotNullParameter(rectF, "<this>");
         C12238m.checkNotNullParameter(rectF2, "r");
@@ -166,15 +175,6 @@ public final class RectKt {
         rectF2.roundOut(rect2);
         region.op(rect2, Region.Op.DIFFERENCE);
         return region;
-    }
-
-    /* JADX INFO: renamed from: or */
-    public static final RectF m86or(RectF rectF, RectF rectF2) {
-        C12238m.checkNotNullParameter(rectF, "<this>");
-        C12238m.checkNotNullParameter(rectF2, "r");
-        RectF rectF3 = new RectF(rectF);
-        rectF3.union(rectF2);
-        return rectF3;
     }
 
     public static final RectF plus(RectF rectF, RectF rectF2) {

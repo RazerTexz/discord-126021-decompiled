@@ -13,7 +13,7 @@ public final class C12758a {
 
     /* JADX INFO: renamed from: j0.n.a$a */
     /* JADX INFO: compiled from: Observers.java */
-    public static class a implements InterfaceC12581g<Object> {
+    public final class a implements InterfaceC12581g<Object> {
         @Override // p637j0.InterfaceC12581g
         public final void onCompleted() {
         }

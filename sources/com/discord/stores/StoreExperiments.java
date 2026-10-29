@@ -51,6 +51,9 @@ public final class StoreExperiments extends StoreV2 {
     private static final String EXPERIMENT_OVERRIDES_CACHE_KEY = "EXPERIMENT_OVERRIDES_CACHE_KEY";
     private static final String EXPERIMENT_TRACKED_EXPOSURE_TIMESTAMPS_CACHE_KEY = "EXPERIMENT_TRIGGER_TIMESTAMPS_CACHE_KEY";
     private static final String GUILD_EXPERIMENTS_CACHE_KEY = "GUILD_EXPERIMENTS_CACHE_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String UNINITIALIZED = "UNINITIALIZED";
     private static final String USER_EXPERIMENTS_CACHE_KEY = "USER_EXPERIMENTS_CACHE_KEY";
     private String authToken;
@@ -74,33 +77,14 @@ public final class StoreExperiments extends StoreV2 {
     private final HashMap<Long, UserExperimentDto> userExperiments;
     private final Persister<Map<Long, UserExperimentDto>> userExperimentsCache;
     private Map<Long, UserExperimentDto> userExperimentsSnapshot;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final StoreExperiments$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreExperiments$Companion$InitializedUpdateSource$1
     };
     private static final StoreExperiments$Companion$ExperimentOverridesUpdateSource$1 ExperimentOverridesUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreExperiments$Companion$ExperimentOverridesUpdateSource$1
     };
 
-    /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final boolean isExperimentalAlpha(StoreGuilds storeGuilds, StoreUser storeUser) {
-            C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-            C12238m.checkNotNullParameter(storeUser, "storeUser");
-            return UserUtils.INSTANCE.isStaff(storeUser.getMeSnapshot()) || storeGuilds.getGuilds().get(Long.valueOf(StoreExperiments.DISCORD_TESTERS_GUILD_ID)) != null;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$clearOverride$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59151 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59151 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $experimentName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -123,7 +107,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getExperimentalAlpha$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59161 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C59161 extends AbstractC12240o implements Function0<Boolean> {
         public C59161() {
             super(0);
         }
@@ -141,7 +125,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getGuildExperiment$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59171 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59171 extends AbstractC12240o implements Function0<Unit> {
         public static final C59171 INSTANCE = new C59171();
 
         public C59171() {
@@ -161,7 +145,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getUserExperiment$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59181 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59181 extends AbstractC12240o implements Function0<Unit> {
         public static final C59181 INSTANCE = new C59181();
 
         public C59181() {
@@ -181,7 +165,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$isInitialized$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59191 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C59191 extends AbstractC12240o implements Function0<Boolean> {
         public C59191() {
             super(0);
         }
@@ -199,7 +183,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeGuildExperiment$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59211 extends AbstractC12240o implements Function0<Experiment> {
+    public final class C59211 extends AbstractC12240o implements Function0<Experiment> {
         public final /* synthetic */ String $experimentName;
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ boolean $trackExposure;
@@ -221,7 +205,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeOverrides$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59221 extends AbstractC12240o implements Function0<Map<String, ? extends Integer>> {
+    public final class C59221 extends AbstractC12240o implements Function0<Map<String, ? extends Integer>> {
         public C59221() {
             super(0);
         }
@@ -234,7 +218,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeUserExperiment$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59231 extends AbstractC12240o implements Function0<Experiment> {
+    public final class C59231 extends AbstractC12240o implements Function0<Experiment> {
         public final /* synthetic */ String $name;
         public final /* synthetic */ boolean $trackExposure;
 
@@ -254,7 +238,7 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$setOverride$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59241 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59241 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $bucket;
         public final /* synthetic */ String $experimentName;
 
@@ -283,11 +267,11 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$1 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59251 extends AbstractC12240o implements Function1<UnauthenticatedUserExperimentsDto, Unit> {
+    public final class C59251 extends AbstractC12240o implements Function1<UnauthenticatedUserExperimentsDto, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreExperiments.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ UnauthenticatedUserExperimentsDto $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -334,11 +318,11 @@ public final class StoreExperiments extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$2 */
     /* JADX INFO: compiled from: StoreExperiments.kt */
-    public static final class C59262 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59262 extends AbstractC12240o implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreExperiments.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -369,6 +353,22 @@ public final class StoreExperiments extends StoreV2 {
         public final void invoke2(Error error) {
             C12238m.checkNotNullParameter(error, "it");
             StoreExperiments.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean isExperimentalAlpha(StoreGuilds storeGuilds, StoreUser storeUser) {
+            C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+            C12238m.checkNotNullParameter(storeUser, "storeUser");
+            return UserUtils.INSTANCE.isStaff(storeUser.getMeSnapshot()) || storeGuilds.getGuilds().get(Long.valueOf(StoreExperiments.DISCORD_TESTERS_GUILD_ID)) != null;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -444,124 +444,14 @@ public final class StoreExperiments extends StoreV2 {
         }
     }
 
-    private final void didTrackExposureToExperiment(String exposureKey) {
-        this.experimentTrackedExposureTimestamps.put(exposureKey, Long.valueOf(this.clock.currentTimeMillis()));
-        cacheExperimentTrackedExposureTimestamps();
-    }
-
-    @StoreThread
-    private final void handleClearOverride(String experimentName) {
-        this.experimentOverrides.remove(experimentName);
-        markChanged(ExperimentOverridesUpdateSource);
-    }
-
-    @StoreThread
-    private final void handleLoadedGuildExperiments(Collection<GuildExperimentDto> experiments, boolean doCache) {
-        this.guildExperiments.clear();
-        this.memoizedGuildExperiments.clear();
-        HashMap<Long, GuildExperimentDto> map = this.guildExperiments;
-        for (Object obj : experiments) {
-            map.put(Long.valueOf(((GuildExperimentDto) obj).getExperimentIdHash()), (GuildExperimentDto) obj);
-        }
-        if (doCache) {
-            cacheGuildExperiments();
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    private final void handleLoadedUserExperiments(Map<Long, UserExperimentDto> experiments, boolean doCache) {
-        this.userExperiments.clear();
-        this.userExperiments.putAll(experiments);
-        if (doCache) {
-            cacheUserExperiments();
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    private final void handleSetOverride(String experimentName, int bucket) {
-        this.experimentOverrides.put(experimentName, Integer.valueOf(bucket));
-        markChanged(ExperimentOverridesUpdateSource);
-    }
-
-    private final Map<String, Long> loadCachedExperimentTrackedExposureTimestamps() {
-        String string = getPrefs().getString(EXPERIMENT_TRACKED_EXPOSURE_TIMESTAMPS_CACHE_KEY, null);
-        if (string == null) {
-            return C12136h0.emptyMap();
-        }
-        Object objM9203g = new Gson().m9203g(string, new TypeToken<Map<String, ? extends Long>>() { // from class: com.discord.stores.StoreExperiments$loadCachedExperimentTrackedExposureTimestamps$typeToken$1
-        }.getType());
-        C12238m.checkNotNullExpressionValue(objM9203g, "Gson().fromJson(json, typeToken)");
-        return (Map) objM9203g;
-    }
-
-    private final synchronized void memoizeGuildExperiment(String experimentName, long guildId, Experiment experiment) {
-        this.memoizedGuildExperiments.put(experimentName + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + guildId, experiment);
-    }
-
-    @StoreThread
-    private final void reset() {
-        if (this.authToken == null) {
-            this.userExperiments.clear();
-            this.guildExperiments.clear();
-            this.userExperimentsCache.set(new HashMap(), true);
-            this.guildExperimentsCache.set(new ArrayList(), true);
-            this.initialized = false;
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    private final void setInitialized() {
-        this.initialized = true;
-        markChanged(InitializedUpdateSource);
-    }
-
-    private final synchronized void trackExposureToGuildExperiment(String name, long guildId, int bucket, int revision) {
-        String str = name + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + guildId;
-        if (wasExperimentExposureTrackedRecently(str, this.clock.currentTimeMillis())) {
-            return;
-        }
-        AnalyticsTracker.guildExperimentTriggered(name, revision, bucket, guildId);
-        didTrackExposureToExperiment(str);
-    }
-
-    private final synchronized void trackExposureToUserExperiment(String name, int bucket, int population, int revision) {
-        if (wasExperimentExposureTrackedRecently(name, this.clock.currentTimeMillis())) {
-            return;
-        }
-        AnalyticsTracker.userExperimentTriggered(name, revision, population, bucket);
-        didTrackExposureToExperiment(name);
-    }
-
-    @StoreThread
-    private final void tryInitializeExperiments() {
-        if (this.initialized || C12238m.areEqual(this.authToken, UNINITIALIZED) || C12238m.areEqual(this.fingerprint, UNINITIALIZED)) {
-            return;
-        }
-        this.initialized = true;
-        if (this.authToken != null) {
-            setInitialized();
-            return;
-        }
-        Observable observableM11104c0 = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getExperiments(), false, 1, null).m11104c0(2000L, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11104c0, "RestAPI\n          .api\n …0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(observableM11104c0, (Class<?>) StoreExperiments.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C59262()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C59251());
-    }
-
-    private final boolean wasExperimentExposureTrackedRecently(String exposureKey, long nowMs) {
-        Long l = this.experimentTrackedExposureTimestamps.get(exposureKey);
-        if (l == null) {
-            l = Long.MIN_VALUE;
-        }
-        C12238m.checkNotNullExpressionValue(l, "experimentTrackedExposur…y] ?: Timestamp.MIN_VALUE");
-        return nowMs - 604800000 < l.longValue();
-    }
-
     public final void clearOverride(String experimentName) {
         C12238m.checkNotNullParameter(experimentName, "experimentName");
         this.dispatcher.schedule(new C59151(experimentName));
+    }
+
+    private final void didTrackExposureToExperiment(String exposureKey) {
+        this.experimentTrackedExposureTimestamps.put(exposureKey, Long.valueOf(this.clock.currentTimeMillis()));
+        cacheExperimentTrackedExposureTimestamps();
     }
 
     public final Observable<Boolean> getExperimentalAlpha() {
@@ -576,7 +466,7 @@ public final class StoreExperiments extends StoreV2 {
         if (num != null) {
             return new Experiment(guildExperimentDto != null ? guildExperimentDto.getRevision() : 0, num.intValue(), 0, true, C59171.INSTANCE);
         }
-        Experiment memoizedGuildExperiment$app_productionGoogleRelease = getMemoizedGuildExperiment$app_productionGoogleRelease(guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + experimentName, guildId);
+        Experiment memoizedGuildExperiment$app_productionGoogleRelease = getMemoizedGuildExperiment$app_productionGoogleRelease("" + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + experimentName, guildId);
         if (memoizedGuildExperiment$app_productionGoogleRelease != null) {
             return memoizedGuildExperiment$app_productionGoogleRelease;
         }
@@ -627,6 +517,12 @@ public final class StoreExperiments extends StoreV2 {
     }
 
     @StoreThread
+    private final void handleClearOverride(String experimentName) {
+        this.experimentOverrides.remove(experimentName);
+        markChanged(ExperimentOverridesUpdateSource);
+    }
+
+    @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
         C12238m.checkNotNullParameter(payload, "payload");
         Map<Long, UserExperimentDto> experiments = payload.getExperiments();
@@ -645,6 +541,36 @@ public final class StoreExperiments extends StoreV2 {
         tryInitializeExperiments();
     }
 
+    @StoreThread
+    private final void handleLoadedGuildExperiments(Collection<GuildExperimentDto> experiments, boolean doCache) {
+        this.guildExperiments.clear();
+        this.memoizedGuildExperiments.clear();
+        HashMap<Long, GuildExperimentDto> map = this.guildExperiments;
+        for (Object obj : experiments) {
+            map.put(Long.valueOf(((GuildExperimentDto) obj).getExperimentIdHash()), (GuildExperimentDto) obj);
+        }
+        if (doCache) {
+            cacheGuildExperiments();
+        }
+        markChanged();
+    }
+
+    @StoreThread
+    private final void handleLoadedUserExperiments(Map<Long, UserExperimentDto> experiments, boolean doCache) {
+        this.userExperiments.clear();
+        this.userExperiments.putAll(experiments);
+        if (doCache) {
+            cacheUserExperiments();
+        }
+        markChanged();
+    }
+
+    @StoreThread
+    private final void handleSetOverride(String experimentName, int bucket) {
+        this.experimentOverrides.put(experimentName, Integer.valueOf(bucket));
+        markChanged(ExperimentOverridesUpdateSource);
+    }
+
     @Override // com.discord.stores.Store
     @StoreThread
     public void init(Context context) {
@@ -659,6 +585,21 @@ public final class StoreExperiments extends StoreV2 {
 
     public final Observable<Boolean> isInitialized() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{InitializedUpdateSource}, false, null, null, new C59191(), 14, null);
+    }
+
+    private final Map<String, Long> loadCachedExperimentTrackedExposureTimestamps() {
+        String string = getPrefs().getString(EXPERIMENT_TRACKED_EXPOSURE_TIMESTAMPS_CACHE_KEY, null);
+        if (string == null) {
+            return C12136h0.emptyMap();
+        }
+        Object objM9203g = new Gson().m9203g(string, new TypeToken<Map<String, ? extends Long>>() { // from class: com.discord.stores.StoreExperiments$loadCachedExperimentTrackedExposureTimestamps$typeToken$1
+        }.getType());
+        C12238m.checkNotNullExpressionValue(objM9203g, "Gson().fromJson(json, typeToken)");
+        return (Map) objM9203g;
+    }
+
+    private final synchronized void memoizeGuildExperiment(String experimentName, long guildId, Experiment experiment) {
+        this.memoizedGuildExperiments.put(experimentName + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + guildId, experiment);
     }
 
     public final Observable<Experiment> observeGuildExperiment(String experimentName, long guildId, boolean trackExposure) {
@@ -677,6 +618,24 @@ public final class StoreExperiments extends StoreV2 {
         return observableM11112r;
     }
 
+    @StoreThread
+    private final void reset() {
+        if (this.authToken == null) {
+            this.userExperiments.clear();
+            this.guildExperiments.clear();
+            this.userExperimentsCache.set(new HashMap(), true);
+            this.guildExperimentsCache.set(new ArrayList(), true);
+            this.initialized = false;
+            markChanged();
+        }
+    }
+
+    @StoreThread
+    private final void setInitialized() {
+        this.initialized = true;
+        markChanged(InitializedUpdateSource);
+    }
+
     public final void setOverride(String experimentName, int bucket) {
         C12238m.checkNotNullParameter(experimentName, "experimentName");
         this.dispatcher.schedule(new C59241(bucket, experimentName));
@@ -692,6 +651,47 @@ public final class StoreExperiments extends StoreV2 {
             this.experimentOverridesSnapshot = new HashMap(this.experimentOverrides);
             this.experimentOverridesCache.set(this.experimentOverrides, true);
         }
+    }
+
+    private final synchronized void trackExposureToGuildExperiment(String name, long guildId, int bucket, int revision) {
+        String str = name + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + guildId;
+        if (wasExperimentExposureTrackedRecently(str, this.clock.currentTimeMillis())) {
+            return;
+        }
+        AnalyticsTracker.guildExperimentTriggered(name, revision, bucket, guildId);
+        didTrackExposureToExperiment(str);
+    }
+
+    private final synchronized void trackExposureToUserExperiment(String name, int bucket, int population, int revision) {
+        if (wasExperimentExposureTrackedRecently(name, this.clock.currentTimeMillis())) {
+            return;
+        }
+        AnalyticsTracker.userExperimentTriggered(name, revision, population, bucket);
+        didTrackExposureToExperiment(name);
+    }
+
+    @StoreThread
+    private final void tryInitializeExperiments() {
+        if (this.initialized || C12238m.areEqual(this.authToken, UNINITIALIZED) || C12238m.areEqual(this.fingerprint, UNINITIALIZED)) {
+            return;
+        }
+        this.initialized = true;
+        if (this.authToken != null) {
+            setInitialized();
+            return;
+        }
+        Observable observableM11104c0 = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getExperiments(), false, 1, null).m11104c0(2000L, TimeUnit.MILLISECONDS);
+        C12238m.checkNotNullExpressionValue(observableM11104c0, "RestAPI\n          .api\n …0, TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe(observableM11104c0, (Class<?>) StoreExperiments.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C59262()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C59251());
+    }
+
+    private final boolean wasExperimentExposureTrackedRecently(String exposureKey, long nowMs) {
+        Long l = this.experimentTrackedExposureTimestamps.get(exposureKey);
+        if (l == null) {
+            l = Long.MIN_VALUE;
+        }
+        C12238m.checkNotNullExpressionValue(l, "experimentTrackedExposur…y] ?: Timestamp.MIN_VALUE");
+        return nowMs - 604800000 < l.longValue();
     }
 
     public StoreExperiments(Clock clock, Dispatcher dispatcher, StoreUser storeUser, StoreGuilds storeGuilds, StoreAuthentication storeAuthentication, StoreGuildMemberCounts storeGuildMemberCounts, ObservationDeck observationDeck) {

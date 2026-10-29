@@ -23,6 +23,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.lytefast.flexinput.C11170R;
 import com.lytefast.flexinput.model.Media;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -63,7 +64,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
 
     /* JADX INFO: renamed from: b.b.a.d.i$a */
     /* JADX INFO: compiled from: ThumbnailViewHolder.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -76,7 +77,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
     /* JADX INFO: renamed from: b.b.a.d.i$b */
     /* JADX INFO: compiled from: ThumbnailViewHolder.kt */
     @RequiresApi(29)
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public Job f2165a;
@@ -117,7 +118,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
 
     /* JADX INFO: renamed from: b.b.a.d.i$c */
     /* JADX INFO: compiled from: ThumbnailViewHolder.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final ContentResolver f2169a;
@@ -130,7 +131,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
 
     /* JADX INFO: renamed from: b.b.a.d.i$d */
     /* JADX INFO: compiled from: ThumbnailViewHolder.kt */
-    public static final class d extends AbstractC12240o implements Function1<Bitmap, Unit> {
+    public final class d extends AbstractC12240o implements Function1<Bitmap, Unit> {
         public d() {
             super(1);
         }
@@ -166,9 +167,6 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
         this.f2164o = new c(contentResolver2);
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract SimpleDraweeView mo401a();
-
     /* JADX INFO: renamed from: b */
     public final void m404b() {
         b bVar;
@@ -179,7 +177,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: renamed from: c */
-    public final void m405c(Media media, Integer num, Integer num2) throws IOException {
+    public final void m405c(Media media, Integer num, Integer num2) throws IllegalAccessException, IOException, InvocationTargetException {
         if (f2161l == null) {
             View view = this.itemView;
             C12238m.checkNotNullExpressionValue(view, "itemView");
@@ -245,4 +243,7 @@ public abstract class AbstractC1439i extends RecyclerView.ViewHolder {
         }
         mo401a().setImageURI(uri, mo401a().getContext());
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract SimpleDraweeView mo401a();
 }

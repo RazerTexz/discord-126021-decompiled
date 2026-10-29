@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAccountLinkSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAccountLinkSuccessful implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence platformType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "account_link_successful";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAccountLinkSuccessful) && C12238m.areEqual(this.platformType, ((TrackAccountLinkSuccessful) other).platformType);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

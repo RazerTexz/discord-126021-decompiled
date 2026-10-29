@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class RegisterResponse {
     private final String token;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof RegisterResponse) && C12238m.areEqual(this.token, ((RegisterResponse) other).token);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public int hashCode() {

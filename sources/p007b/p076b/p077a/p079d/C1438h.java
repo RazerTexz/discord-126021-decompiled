@@ -23,6 +23,7 @@ import com.lytefast.flexinput.C11170R;
 import com.lytefast.flexinput.model.Media;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -86,13 +87,19 @@ public final class C1438h extends RecyclerView.Adapter<a> {
 
         /* JADX INFO: renamed from: b.b.a.d.h$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: MediaCursorAdapter.kt */
-        public static final class C13219a extends AbstractC12240o implements Function1<AnimatorSet, Unit> {
+        public final class C13219a extends AbstractC12240o implements Function1<AnimatorSet, Unit> {
             public final /* synthetic */ boolean $isAnimationRequested;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public C13219a(boolean z2) {
                 super(1);
                 this.$isAnimationRequested = z2;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(AnimatorSet animatorSet) {
+                m403a(animatorSet);
+                return Unit.f27425a;
             }
 
             /* JADX INFO: renamed from: a */
@@ -103,12 +110,6 @@ public final class C1438h extends RecyclerView.Adapter<a> {
                     return;
                 }
                 animatorSet.end();
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(AnimatorSet animatorSet) {
-                m403a(animatorSet);
-                return Unit.f27425a;
             }
         }
 
@@ -135,14 +136,6 @@ public final class C1438h extends RecyclerView.Adapter<a> {
             AnimatorSet animatorSet2 = (AnimatorSet) animatorLoadAnimator2;
             this.f2155r = animatorSet2;
             animatorSet2.setTarget(c1446c.f2195b);
-        }
-
-        @Override // p007b.p076b.p077a.p079d.AbstractC1439i
-        /* JADX INFO: renamed from: a */
-        public SimpleDraweeView mo401a() {
-            SimpleDraweeView simpleDraweeView = this.f2156s.f2196c;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.contentIv");
-            return simpleDraweeView;
         }
 
         /* JADX INFO: renamed from: d */
@@ -173,6 +166,14 @@ public final class C1438h extends RecyclerView.Adapter<a> {
             }
         }
 
+        @Override // p007b.p076b.p077a.p079d.AbstractC1439i
+        /* JADX INFO: renamed from: a */
+        public SimpleDraweeView mo401a() {
+            SimpleDraweeView simpleDraweeView = this.f2156s.f2196c;
+            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.contentIv");
+            return simpleDraweeView;
+        }
+
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             C12238m.checkNotNullParameter(view, "v");
@@ -189,7 +190,7 @@ public final class C1438h extends RecyclerView.Adapter<a> {
 
     /* JADX INFO: renamed from: b.b.a.d.h$b */
     /* JADX INFO: compiled from: MediaCursorAdapter.kt */
-    public static final class b extends AsyncQueryHandler {
+    public final class b extends AsyncQueryHandler {
         public b(ContentResolver contentResolver) {
             super(contentResolver);
         }
@@ -222,6 +223,25 @@ public final class C1438h extends RecyclerView.Adapter<a> {
         selectionCoordinator.adapter = this;
         this.f2144a = selectionCoordinator;
         setHasStableIds(true);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public long getItemId(int i) {
+        Media mediaM399a = m399a(i);
+        if (mediaM399a != null) {
+            return mediaM399a.getId();
+        }
+        return -1L;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        Cursor cursor = this.f2145b;
+        if (cursor != null) {
+            return cursor.getCount();
+        }
+        return 0;
     }
 
     /* JADX INFO: renamed from: a */
@@ -263,25 +283,6 @@ public final class C1438h extends RecyclerView.Adapter<a> {
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        Cursor cursor = this.f2145b;
-        if (cursor != null) {
-            return cursor.getCount();
-        }
-        return 0;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public long getItemId(int i) {
-        Media mediaM399a = m399a(i);
-        if (mediaM399a != null) {
-            return mediaM399a.getId();
-        }
-        return -1L;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         C12238m.checkNotNullParameter(recyclerView, "recyclerView");
         super.onAttachedToRecyclerView(recyclerView);
@@ -293,7 +294,7 @@ public final class C1438h extends RecyclerView.Adapter<a> {
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, IOException, InvocationTargetException {
         Long l;
         a aVar = (a) viewHolder;
         C12238m.checkNotNullParameter(aVar, "holder");

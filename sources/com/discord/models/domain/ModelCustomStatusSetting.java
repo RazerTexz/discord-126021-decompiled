@@ -12,17 +12,17 @@ import p658rx.functions.Action1;
 /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelCustomStatusSetting {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Long emojiId;
     private final String emojiName;
     private final String expiresAt;
     private final String text;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final ModelCustomStatusSetting CLEAR = new ModelCustomStatusSetting(null, null, null, null);
 
     /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -36,7 +36,7 @@ public final /* data */ class ModelCustomStatusSetting {
     }
 
     /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
-    public static final class Parser implements Model.Parser<ModelCustomStatusSetting> {
+    public final class Parser implements Model.Parser<ModelCustomStatusSetting> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -120,26 +120,6 @@ public final /* data */ class ModelCustomStatusSetting {
         return modelCustomStatusSetting.copy(str, l, str2, str3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getEmojiId() {
-        return this.emojiId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getEmojiName() {
-        return this.emojiName;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getExpiresAt() {
-        return this.expiresAt;
-    }
-
     public final ModelCustomStatusSetting copy(String text, Long emojiId, String emojiName, String expiresAt) {
         return new ModelCustomStatusSetting(text, emojiId, emojiName, expiresAt);
     }
@@ -155,16 +135,36 @@ public final /* data */ class ModelCustomStatusSetting {
         return C12238m.areEqual(this.text, modelCustomStatusSetting.text) && C12238m.areEqual(this.emojiId, modelCustomStatusSetting.emojiId) && C12238m.areEqual(this.emojiName, modelCustomStatusSetting.emojiName) && C12238m.areEqual(this.expiresAt, modelCustomStatusSetting.expiresAt);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getEmojiId() {
         return this.emojiId;
+    }
+
+    public final Long getEmojiId() {
+        return this.emojiId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getEmojiName() {
+        return this.emojiName;
     }
 
     public final String getEmojiName() {
         return this.emojiName;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getExpiresAt() {
         return this.expiresAt;
+    }
+
+    public final String getExpiresAt() {
+        return this.expiresAt;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public final String getText() {

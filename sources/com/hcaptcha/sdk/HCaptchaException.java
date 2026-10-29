@@ -12,11 +12,6 @@ public class HCaptchaException extends Exception {
         this.hCaptchaError = hCaptchaError;
     }
 
-    /* JADX INFO: renamed from: a */
-    public HCaptchaError m9265a() {
-        return this.hCaptchaError;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -44,6 +39,11 @@ public class HCaptchaException extends Exception {
         int iHashCode = super.hashCode();
         HCaptchaError hCaptchaError = this.hCaptchaError;
         return (iHashCode * 59) + (hCaptchaError == null ? 43 : hCaptchaError.hashCode());
+    }
+
+    /* JADX INFO: renamed from: a */
+    public HCaptchaError m9265a() {
+        return this.hCaptchaError;
     }
 
     @Override // java.lang.Throwable

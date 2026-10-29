@@ -13,14 +13,14 @@ public class C2216a extends AbstractC2228m {
     }
 
     @Override // p007b.p195g.p196a.p205c.p212e0.AbstractC2215g
-    /* JADX INFO: renamed from: c */
-    public InterfaceC2070c0.a mo1957c() {
-        return InterfaceC2070c0.a.WRAPPER_ARRAY;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p212e0.AbstractC2215g
     /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
     public C2216a mo1955a(InterfaceC2206d interfaceC2206d) {
         return this.f4780b == interfaceC2206d ? this : new C2216a(this.f4779a, interfaceC2206d);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.AbstractC2215g
+    /* JADX INFO: renamed from: c */
+    public InterfaceC2070c0.a mo1957c() {
+        return InterfaceC2070c0.a.WRAPPER_ARRAY;
     }
 }

@@ -17,12 +17,12 @@ public class TwilightManager {
     private static final int SUNRISE = 6;
     private static final int SUNSET = 22;
     private static final String TAG = "TwilightManager";
-    private static TwilightManager sInstance;
     private final Context mContext;
     private final LocationManager mLocationManager;
+    private static TwilightManager sInstance;
     private final TwilightState mTwilightState = new TwilightState();
 
-    public static class TwilightState {
+    public class TwilightState {
         public boolean isNight;
         public long nextUpdate;
         public long todaySunrise;
@@ -68,6 +68,21 @@ public class TwilightManager {
         }
     }
 
+    public boolean isNight() {
+        TwilightState twilightState = this.mTwilightState;
+        if (isStateValid()) {
+            return twilightState.isNight;
+        }
+        Location lastKnownLocation = getLastKnownLocation();
+        if (lastKnownLocation != null) {
+            updateState(lastKnownLocation);
+            return twilightState.isNight;
+        }
+        Log.i(TAG, "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
+        int i = Calendar.getInstance().get(11);
+        return i < 6 || i >= 22;
+    }
+
     private boolean isStateValid() {
         return this.mTwilightState.nextUpdate > System.currentTimeMillis();
     }
@@ -108,20 +123,5 @@ public class TwilightManager {
         twilightState.todaySunset = j5;
         twilightState.tomorrowSunrise = j6;
         twilightState.nextUpdate = j;
-    }
-
-    public boolean isNight() {
-        TwilightState twilightState = this.mTwilightState;
-        if (isStateValid()) {
-            return twilightState.isNight;
-        }
-        Location lastKnownLocation = getLastKnownLocation();
-        if (lastKnownLocation != null) {
-            updateState(lastKnownLocation);
-            return twilightState.isNight;
-        }
-        Log.i(TAG, "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
-        int i = Calendar.getInstance().get(11);
-        return i < 6 || i >= 22;
     }
 }

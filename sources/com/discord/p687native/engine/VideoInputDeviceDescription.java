@@ -33,21 +33,6 @@ public final /* data */ class VideoInputDeviceDescription {
         return videoInputDeviceDescription.copy(str, str2, videoInputDeviceFacing);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getGuid() {
-        return this.guid;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final VideoInputDeviceFacing getFacing() {
-        return this.facing;
-    }
-
     public final VideoInputDeviceDescription copy(String name, String guid, VideoInputDeviceFacing facing) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(guid, "guid");
@@ -66,12 +51,27 @@ public final /* data */ class VideoInputDeviceDescription {
         return C12238m.areEqual(this.name, videoInputDeviceDescription.name) && C12238m.areEqual(this.guid, videoInputDeviceDescription.guid) && C12238m.areEqual(this.facing, videoInputDeviceDescription.facing);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final VideoInputDeviceFacing getFacing() {
         return this.facing;
     }
 
+    public final VideoInputDeviceFacing getFacing() {
+        return this.facing;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getGuid() {
         return this.guid;
+    }
+
+    public final String getGuid() {
+        return this.guid;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

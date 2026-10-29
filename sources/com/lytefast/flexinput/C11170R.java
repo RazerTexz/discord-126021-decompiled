@@ -5,7 +5,7 @@ package com.lytefast.flexinput;
 public final class C11170R {
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$a */
-    public static final class a {
+    public final class a {
         public static final int design_appbar_state_list_animator = 2130837504;
         public static final int design_fab_hide_motion_spec = 2130837505;
         public static final int design_fab_show_motion_spec = 2130837506;
@@ -44,7 +44,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$b */
-    public static final class b {
+    public final class b {
         public static final int actionBarDivider = 2130968576;
         public static final int actionBarItemBackground = 2130968577;
         public static final int actionBarPopupTheme = 2130968578;
@@ -1781,7 +1781,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$c */
-    public static final class c {
+    public final class c {
         public static final int abc_background_cache_hint_selector_material_dark = 2131099648;
         public static final int abc_background_cache_hint_selector_material_light = 2131099649;
         public static final int abc_btn_colored_borderless_text_material = 2131099650;
@@ -2627,7 +2627,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$d */
-    public static final class d {
+    public final class d {
         public static final int abc_action_bar_content_inset_material = 2131165184;
         public static final int abc_action_bar_content_inset_with_nav = 2131165185;
         public static final int abc_action_bar_default_height_material = 2131165186;
@@ -3161,7 +3161,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$e */
-    public static final class e {
+    public final class e {
         public static final int abc_ab_share_pack_mtrl_alpha = 2131230859;
         public static final int abc_action_bar_item_background_material = 2131230860;
         public static final int abc_btn_borderless_material = 2131230861;
@@ -4741,7 +4741,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$f */
-    public static final class f {
+    public final class f {
         public static final int BOTTOM_END = 2131361793;
         public static final int BOTTOM_START = 2131361794;
         public static final int NO_DEBUG = 2131361798;
@@ -5266,7 +5266,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$g */
-    public static final class g {
+    public final class g {
         public static final int abc_action_bar_title_item = 2131558400;
         public static final int abc_action_bar_up_container = 2131558401;
         public static final int abc_action_menu_item_layout = 2131558402;
@@ -5414,7 +5414,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$h */
-    public static final class h {
+    public final class h {
         public static final int _continue = 2131886085;
         public static final int _default = 2131886086;
         public static final int _new = 2131886090;
@@ -16319,7 +16319,7 @@ public final class C11170R {
     }
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.R$i */
-    public static final class i {
+    public final class i {
         public static final int AlertDialog_AppCompat = 2131951617;
         public static final int AlertDialog_AppCompat_Light = 2131951618;
         public static final int AndroidThemeColorAccentYellow = 2131951624;

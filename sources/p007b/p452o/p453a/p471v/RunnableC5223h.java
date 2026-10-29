@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Surface;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import p007b.p452o.p453a.C5113l;
 import p007b.p452o.p453a.p467r.C5202c;
@@ -64,7 +65,7 @@ public class RunnableC5223h implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public void run() throws IOException {
+    public void run() throws IllegalAccessException, IOException, InvocationTargetException {
         C5222g c5222g = this.f14204o;
         SurfaceTexture surfaceTexture = this.f14199j;
         int i = this.f14200k;

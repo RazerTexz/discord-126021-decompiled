@@ -39,6 +39,11 @@ public final class C12395l implements InterfaceC12407x {
         this.f26099n = new CRC32();
     }
 
+    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        this.f26098m.close();
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m10486a(String str, int i, int i2) throws IOException {
         if (i2 == i) {
@@ -78,11 +83,6 @@ public final class C12395l implements InterfaceC12407x {
             }
             j = 0;
         }
-    }
-
-    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        this.f26098m.close();
     }
 
     @Override // p615g0.InterfaceC12407x

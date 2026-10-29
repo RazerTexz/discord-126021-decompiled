@@ -37,7 +37,6 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkerWrapper implements Runnable {
-    public static final String TAG = Logger.tagWithPrefix("WorkerWrapper");
     public Context mAppContext;
     private Configuration mConfiguration;
     private DependencyDao mDependencyDao;
@@ -54,6 +53,7 @@ public class WorkerWrapper implements Runnable {
     private WorkTagDao mWorkTagDao;
     private TaskExecutor mWorkTaskExecutor;
     public ListenableWorker mWorker;
+    public static final String TAG = Logger.tagWithPrefix("WorkerWrapper");
 
     @NonNull
     public ListenableWorker.Result mResult = ListenableWorker.Result.failure();
@@ -63,69 +63,6 @@ public class WorkerWrapper implements Runnable {
 
     @Nullable
     public InterfaceFutureC4539a<ListenableWorker.Result> mInnerFuture = null;
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class Builder {
-
-        @NonNull
-        public Context mAppContext;
-
-        @NonNull
-        public Configuration mConfiguration;
-
-        @NonNull
-        public ForegroundProcessor mForegroundProcessor;
-
-        @NonNull
-        public WorkerParameters.RuntimeExtras mRuntimeExtras = new WorkerParameters.RuntimeExtras();
-        public List<Scheduler> mSchedulers;
-
-        @NonNull
-        public WorkDatabase mWorkDatabase;
-
-        @NonNull
-        public String mWorkSpecId;
-
-        @NonNull
-        public TaskExecutor mWorkTaskExecutor;
-
-        @Nullable
-        public ListenableWorker mWorker;
-
-        public Builder(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull ForegroundProcessor foregroundProcessor, @NonNull WorkDatabase workDatabase, @NonNull String str) {
-            this.mAppContext = context.getApplicationContext();
-            this.mWorkTaskExecutor = taskExecutor;
-            this.mForegroundProcessor = foregroundProcessor;
-            this.mConfiguration = configuration;
-            this.mWorkDatabase = workDatabase;
-            this.mWorkSpecId = str;
-        }
-
-        public WorkerWrapper build() {
-            return new WorkerWrapper(this);
-        }
-
-        @NonNull
-        public Builder withRuntimeExtras(@Nullable WorkerParameters.RuntimeExtras runtimeExtras) {
-            if (runtimeExtras != null) {
-                this.mRuntimeExtras = runtimeExtras;
-            }
-            return this;
-        }
-
-        @NonNull
-        public Builder withSchedulers(@NonNull List<Scheduler> list) {
-            this.mSchedulers = list;
-            return this;
-        }
-
-        @NonNull
-        @VisibleForTesting
-        public Builder withWorker(@NonNull ListenableWorker listenableWorker) {
-            this.mWorker = listenableWorker;
-            return this;
-        }
-    }
 
     public WorkerWrapper(@NonNull Builder builder) {
         this.mAppContext = builder.mAppContext;
@@ -160,6 +97,11 @@ public class WorkerWrapper implements Runnable {
         return sb.toString();
     }
 
+    @NonNull
+    public InterfaceFutureC4539a<Boolean> getFuture() {
+        return this.mFuture;
+    }
+
     private void handleResult(ListenableWorker.Result result) {
         if (result instanceof ListenableWorker.Result.Success) {
             Logger.get().info(TAG, String.format("Worker result SUCCESS for %s", this.mWorkDescription), new Throwable[0]);
@@ -184,6 +126,26 @@ public class WorkerWrapper implements Runnable {
         }
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public void interrupt() {
+        boolean zIsDone;
+        this.mInterrupted = true;
+        tryCheckForInterruptionAndResolve();
+        InterfaceFutureC4539a<ListenableWorker.Result> interfaceFutureC4539a = this.mInnerFuture;
+        if (interfaceFutureC4539a != null) {
+            zIsDone = interfaceFutureC4539a.isDone();
+            this.mInnerFuture.cancel(true);
+        } else {
+            zIsDone = false;
+        }
+        ListenableWorker listenableWorker = this.mWorker;
+        if (listenableWorker == null || zIsDone) {
+            Logger.get().debug(TAG, String.format("WorkSpec %s is already done. Not interrupting.", this.mWorkSpec), new Throwable[0]);
+        } else {
+            listenableWorker.stop();
+        }
+    }
+
     private void iterativelyFailWorkAndDependents(String str) {
         LinkedList linkedList = new LinkedList();
         linkedList.add(str);
@@ -193,6 +155,36 @@ public class WorkerWrapper implements Runnable {
                 this.mWorkSpecDao.setState(WorkInfo.State.FAILED, str2);
             }
             linkedList.addAll(this.mDependencyDao.getDependentWorkIds(str2));
+        }
+    }
+
+    public void onWorkFinished() {
+        if (!tryCheckForInterruptionAndResolve()) {
+            this.mWorkDatabase.beginTransaction();
+            try {
+                WorkInfo.State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
+                this.mWorkDatabase.workProgressDao().delete(this.mWorkSpecId);
+                if (state == null) {
+                    resolve(false);
+                } else if (state == WorkInfo.State.RUNNING) {
+                    handleResult(this.mResult);
+                } else if (!state.isFinished()) {
+                    rescheduleAndResolve();
+                }
+                this.mWorkDatabase.setTransactionSuccessful();
+                this.mWorkDatabase.endTransaction();
+            } catch (Throwable th) {
+                this.mWorkDatabase.endTransaction();
+                throw th;
+            }
+        }
+        List<Scheduler> list = this.mSchedulers;
+        if (list != null) {
+            Iterator<Scheduler> it = list.iterator();
+            while (it.hasNext()) {
+                it.next().cancel(this.mWorkSpecId);
+            }
+            Schedulers.schedule(this.mConfiguration, this.mWorkDatabase, this.mSchedulers);
         }
     }
 
@@ -255,6 +247,15 @@ public class WorkerWrapper implements Runnable {
             Logger.get().debug(TAG, String.format("Status for %s is %s; not doing any work", this.mWorkSpecId, state), new Throwable[0]);
             resolve(false);
         }
+    }
+
+    @Override // java.lang.Runnable
+    @WorkerThread
+    public void run() {
+        List<String> tagsForWorkSpecId = this.mWorkTagDao.getTagsForWorkSpecId(this.mWorkSpecId);
+        this.mTags = tagsForWorkSpecId;
+        this.mWorkDescription = createWorkDescription(tagsForWorkSpecId);
+        runWorker();
     }
 
     private void runWorker() {
@@ -380,6 +381,19 @@ public class WorkerWrapper implements Runnable {
         }
     }
 
+    @VisibleForTesting
+    public void setFailedAndResolve() {
+        this.mWorkDatabase.beginTransaction();
+        try {
+            iterativelyFailWorkAndDependents(this.mWorkSpecId);
+            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker.Result.Failure) this.mResult).getOutputData());
+            this.mWorkDatabase.setTransactionSuccessful();
+        } finally {
+            this.mWorkDatabase.endTransaction();
+            resolve(false);
+        }
+    }
+
     private void setSucceededAndResolve() {
         this.mWorkDatabase.beginTransaction();
         try {
@@ -431,80 +445,66 @@ public class WorkerWrapper implements Runnable {
         }
     }
 
-    @NonNull
-    public InterfaceFutureC4539a<Boolean> getFuture() {
-        return this.mFuture;
-    }
-
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public void interrupt() {
-        boolean zIsDone;
-        this.mInterrupted = true;
-        tryCheckForInterruptionAndResolve();
-        InterfaceFutureC4539a<ListenableWorker.Result> interfaceFutureC4539a = this.mInnerFuture;
-        if (interfaceFutureC4539a != null) {
-            zIsDone = interfaceFutureC4539a.isDone();
-            this.mInnerFuture.cancel(true);
-        } else {
-            zIsDone = false;
-        }
-        ListenableWorker listenableWorker = this.mWorker;
-        if (listenableWorker == null || zIsDone) {
-            Logger.get().debug(TAG, String.format("WorkSpec %s is already done. Not interrupting.", this.mWorkSpec), new Throwable[0]);
-        } else {
-            listenableWorker.stop();
-        }
-    }
+    public class Builder {
 
-    public void onWorkFinished() {
-        if (!tryCheckForInterruptionAndResolve()) {
-            this.mWorkDatabase.beginTransaction();
-            try {
-                WorkInfo.State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
-                this.mWorkDatabase.workProgressDao().delete(this.mWorkSpecId);
-                if (state == null) {
-                    resolve(false);
-                } else if (state == WorkInfo.State.RUNNING) {
-                    handleResult(this.mResult);
-                } else if (!state.isFinished()) {
-                    rescheduleAndResolve();
-                }
-                this.mWorkDatabase.setTransactionSuccessful();
-                this.mWorkDatabase.endTransaction();
-            } catch (Throwable th) {
-                this.mWorkDatabase.endTransaction();
-                throw th;
+        @NonNull
+        public Context mAppContext;
+
+        @NonNull
+        public Configuration mConfiguration;
+
+        @NonNull
+        public ForegroundProcessor mForegroundProcessor;
+        public List<Scheduler> mSchedulers;
+
+        @NonNull
+        public WorkDatabase mWorkDatabase;
+
+        @NonNull
+        public String mWorkSpecId;
+
+        @NonNull
+        public TaskExecutor mWorkTaskExecutor;
+
+        @Nullable
+        public ListenableWorker mWorker;
+
+        @NonNull
+        public WorkerParameters.RuntimeExtras mRuntimeExtras = new WorkerParameters.RuntimeExtras();
+
+        public Builder(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull ForegroundProcessor foregroundProcessor, @NonNull WorkDatabase workDatabase, @NonNull String str) {
+            this.mAppContext = context.getApplicationContext();
+            this.mWorkTaskExecutor = taskExecutor;
+            this.mForegroundProcessor = foregroundProcessor;
+            this.mConfiguration = configuration;
+            this.mWorkDatabase = workDatabase;
+            this.mWorkSpecId = str;
+        }
+
+        public WorkerWrapper build() {
+            return new WorkerWrapper(this);
+        }
+
+        @NonNull
+        public Builder withRuntimeExtras(@Nullable WorkerParameters.RuntimeExtras runtimeExtras) {
+            if (runtimeExtras != null) {
+                this.mRuntimeExtras = runtimeExtras;
             }
+            return this;
         }
-        List<Scheduler> list = this.mSchedulers;
-        if (list != null) {
-            Iterator<Scheduler> it = list.iterator();
-            while (it.hasNext()) {
-                it.next().cancel(this.mWorkSpecId);
-            }
-            Schedulers.schedule(this.mConfiguration, this.mWorkDatabase, this.mSchedulers);
+
+        @NonNull
+        public Builder withSchedulers(@NonNull List<Scheduler> list) {
+            this.mSchedulers = list;
+            return this;
         }
-    }
 
-    @Override // java.lang.Runnable
-    @WorkerThread
-    public void run() {
-        List<String> tagsForWorkSpecId = this.mWorkTagDao.getTagsForWorkSpecId(this.mWorkSpecId);
-        this.mTags = tagsForWorkSpecId;
-        this.mWorkDescription = createWorkDescription(tagsForWorkSpecId);
-        runWorker();
-    }
-
-    @VisibleForTesting
-    public void setFailedAndResolve() {
-        this.mWorkDatabase.beginTransaction();
-        try {
-            iterativelyFailWorkAndDependents(this.mWorkSpecId);
-            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker.Result.Failure) this.mResult).getOutputData());
-            this.mWorkDatabase.setTransactionSuccessful();
-        } finally {
-            this.mWorkDatabase.endTransaction();
-            resolve(false);
+        @NonNull
+        @VisibleForTesting
+        public Builder withWorker(@NonNull ListenableWorker listenableWorker) {
+            this.mWorker = listenableWorker;
+            return this;
         }
     }
 }

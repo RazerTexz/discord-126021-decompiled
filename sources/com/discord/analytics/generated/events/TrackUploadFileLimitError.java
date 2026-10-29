@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUploadFileLimitError.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUploadFileLimitError implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long existingCount = null;
     private final Long newCount = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "upload_file_limit_error";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackUploadFileLimitError implements AnalyticsSche
         }
         TrackUploadFileLimitError trackUploadFileLimitError = (TrackUploadFileLimitError) other;
         return C12238m.areEqual(this.existingCount, trackUploadFileLimitError.existingCount) && C12238m.areEqual(this.newCount, trackUploadFileLimitError.newCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

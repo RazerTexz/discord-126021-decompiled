@@ -39,7 +39,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$2 */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final class C98412 extends AbstractC12240o implements Function1<List<? extends ConnectionState>, Unit> {
+    public final class C98412 extends AbstractC12240o implements Function1<List<? extends ConnectionState>, Unit> {
         public C98412() {
             super(1);
         }
@@ -58,8 +58,57 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$1 */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final class Companion {
+    public final class C98421 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ String $integrationId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C98421(String str) {
+            super(1);
+            this.$integrationId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetSettingsUserConnectionsViewModel.this.joinStatusMap.put(this.$integrationId, JoinStatus.JoinFailed.INSTANCE);
+            WidgetSettingsUserConnectionsViewModel.this.joinStateSubject.onNext(WidgetSettingsUserConnectionsViewModel.this.joinStatusMap);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$2 */
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
+    public final class C98432 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ String $integrationId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C98432(String str) {
+            super(1);
+            this.$integrationId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r3) {
+            WidgetSettingsUserConnectionsViewModel.this.joinStatusMap.put(this.$integrationId, JoinStatus.Joined.INSTANCE);
+            WidgetSettingsUserConnectionsViewModel.this.joinStateSubject.onNext(WidgetSettingsUserConnectionsViewModel.this.joinStatusMap);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -94,7 +143,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
     }
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final /* data */ class ConnectionState {
+    public final /* data */ class ConnectionState {
         private final ConnectedAccount connection;
         private final Map<String, JoinStatus> integrationGuildJoinStatus;
 
@@ -106,6 +155,10 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
             this.integrationGuildJoinStatus = map;
         }
 
+        public final Map<String, JoinStatus> component2() {
+            return this.integrationGuildJoinStatus;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ConnectionState copy$default(ConnectionState connectionState, ConnectedAccount connectedAccount, Map map, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -115,15 +168,6 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
                 map = connectionState.integrationGuildJoinStatus;
             }
             return connectionState.copy(connectedAccount, map);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ConnectedAccount getConnection() {
-            return this.connection;
-        }
-
-        public final Map<String, JoinStatus> component2() {
-            return this.integrationGuildJoinStatus;
         }
 
         public final ConnectionState copy(ConnectedAccount connection, Map<String, ? extends JoinStatus> integrationGuildJoinStatus) {
@@ -141,6 +185,11 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
             }
             ConnectionState connectionState = (ConnectionState) other;
             return C12238m.areEqual(this.connection, connectionState.connection) && C12238m.areEqual(this.integrationGuildJoinStatus, connectionState.integrationGuildJoinStatus);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ConnectedAccount getConnection() {
+            return this.connection;
         }
 
         public final ConnectedAccount getConnection() {
@@ -167,10 +216,10 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
     }
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static abstract class JoinStatus {
+    public abstract class JoinStatus {
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final class JoinFailed extends JoinStatus {
+        public final class JoinFailed extends JoinStatus {
             public static final JoinFailed INSTANCE = new JoinFailed();
 
             private JoinFailed() {
@@ -179,7 +228,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
         }
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final class Joined extends JoinStatus {
+        public final class Joined extends JoinStatus {
             public static final Joined INSTANCE = new Joined();
 
             private Joined() {
@@ -188,7 +237,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
         }
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final class Joining extends JoinStatus {
+        public final class Joining extends JoinStatus {
             public static final Joining INSTANCE = new Joining();
 
             private Joining() {
@@ -205,7 +254,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
     }
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final List<ConnectedAccount> connectedAccounts;
         private final Map<Long, Guild> guilds;
 
@@ -214,6 +263,14 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
             C12238m.checkNotNullParameter(map, "guilds");
             this.connectedAccounts = list;
             this.guilds = map;
+        }
+
+        public final List<ConnectedAccount> component1() {
+            return this.connectedAccounts;
+        }
+
+        public final Map<Long, Guild> component2() {
+            return this.guilds;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -225,14 +282,6 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
                 map = storeState.guilds;
             }
             return storeState.copy(list, map);
-        }
-
-        public final List<ConnectedAccount> component1() {
-            return this.connectedAccounts;
-        }
-
-        public final Map<Long, Guild> component2() {
-            return this.guilds;
         }
 
         public final StoreState copy(List<ConnectedAccount> connectedAccounts, Map<Long, Guild> guilds) {
@@ -276,10 +325,10 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
     }
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final class Empty extends ViewState {
+        public final class Empty extends ViewState {
             public static final Empty INSTANCE = new Empty();
 
             private Empty() {
@@ -288,7 +337,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
         }
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<ConnectionState> data;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -298,16 +347,16 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
                 this.data = list;
             }
 
+            public final List<ConnectionState> component1() {
+                return this.data;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.data;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<ConnectionState> component1() {
-                return this.data;
             }
 
             public final Loaded copy(List<ConnectionState> data) {
@@ -340,7 +389,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
         }
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -353,55 +402,6 @@ public final class WidgetSettingsUserConnectionsViewModel extends AbstractC0859d
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$1 */
-    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final class C98421 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ String $integrationId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C98421(String str) {
-            super(1);
-            this.$integrationId = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetSettingsUserConnectionsViewModel.this.joinStatusMap.put(this.$integrationId, JoinStatus.JoinFailed.INSTANCE);
-            WidgetSettingsUserConnectionsViewModel.this.joinStateSubject.onNext(WidgetSettingsUserConnectionsViewModel.this.joinStatusMap);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$2 */
-    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public static final class C98432 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ String $integrationId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C98432(String str) {
-            super(1);
-            this.$integrationId = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            WidgetSettingsUserConnectionsViewModel.this.joinStatusMap.put(this.$integrationId, JoinStatus.Joined.INSTANCE);
-            WidgetSettingsUserConnectionsViewModel.this.joinStateSubject.onNext(WidgetSettingsUserConnectionsViewModel.this.joinStatusMap);
         }
     }
 

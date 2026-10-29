@@ -32,7 +32,7 @@ public class TransitionSet extends Transition {
     public boolean mStarted;
     private ArrayList<Transition> mTransitions;
 
-    public static class TransitionSetListener extends TransitionListenerAdapter {
+    public class TransitionSetListener extends TransitionListenerAdapter {
         public TransitionSet mTransitionSet;
 
         public TransitionSetListener(TransitionSet transitionSet) {
@@ -69,20 +69,6 @@ public class TransitionSet extends Transition {
         this.mChangeFlags = 0;
     }
 
-    private void addTransitionInternal(@NonNull Transition transition) {
-        this.mTransitions.add(transition);
-        transition.mParent = this;
-    }
-
-    private void setupStartEndListeners() {
-        TransitionSetListener transitionSetListener = new TransitionSetListener(this);
-        Iterator<Transition> it = this.mTransitions.iterator();
-        while (it.hasNext()) {
-            it.next().addListener(transitionSetListener);
-        }
-        this.mCurrentListeners = this.mTransitions.size();
-    }
-
     @NonNull
     public TransitionSet addTransition(@NonNull Transition transition) {
         addTransitionInternal(transition);
@@ -103,6 +89,11 @@ public class TransitionSet extends Transition {
             transition.setEpicenterCallback(getEpicenterCallback());
         }
         return this;
+    }
+
+    private void addTransitionInternal(@NonNull Transition transition) {
+        this.mTransitions.add(transition);
+        transition.mParent = this;
     }
 
     @Override // androidx.transition.Transition
@@ -313,6 +304,15 @@ public class TransitionSet extends Transition {
         for (int i = 0; i < size; i++) {
             this.mTransitions.get(i).setPropagation(transitionPropagation);
         }
+    }
+
+    private void setupStartEndListeners() {
+        TransitionSetListener transitionSetListener = new TransitionSetListener(this);
+        Iterator<Transition> it = this.mTransitions.iterator();
+        while (it.hasNext()) {
+            it.next().addListener(transitionSetListener);
+        }
+        this.mCurrentListeners = this.mTransitions.size();
     }
 
     @Override // androidx.transition.Transition

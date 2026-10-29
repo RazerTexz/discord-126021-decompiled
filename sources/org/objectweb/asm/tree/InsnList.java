@@ -316,7 +316,7 @@ public class InsnList implements Iterable<AbstractInsnNode> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/InsnList$InsnListIterator.SCL.lombok */
-    private final class InsnListIterator implements ListIterator {
+    final class InsnListIterator implements ListIterator {
         AbstractInsnNode nextInsn;
         AbstractInsnNode previousInsn;
         AbstractInsnNode remove;

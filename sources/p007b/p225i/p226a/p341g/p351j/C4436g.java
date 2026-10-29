@@ -32,16 +32,6 @@ public class C4436g extends MaterialShapeDrawable {
         this(null);
     }
 
-    /* JADX INFO: renamed from: a */
-    public void m6149a(float f, float f2, float f3, float f4) {
-        RectF rectF = this.f11789k;
-        if (f == rectF.left && f2 == rectF.top && f3 == rectF.right && f4 == rectF.bottom) {
-            return;
-        }
-        rectF.set(f, f2, f3, f4);
-        invalidateSelf();
-    }
-
     @Override // com.google.android.material.shape.MaterialShapeDrawable, android.graphics.drawable.Drawable
     public void draw(@NonNull Canvas canvas) {
         Drawable.Callback callback = getCallback();
@@ -59,6 +49,16 @@ public class C4436g extends MaterialShapeDrawable {
             return;
         }
         canvas.restoreToCount(this.f11790l);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void m6149a(float f, float f2, float f3, float f4) {
+        RectF rectF = this.f11789k;
+        if (f == rectF.left && f2 == rectF.top && f3 == rectF.right && f4 == rectF.bottom) {
+            return;
+        }
+        rectF.set(f, f2, f3, f4);
+        invalidateSelf();
     }
 
     public C4436g(@Nullable ShapeAppearanceModel shapeAppearanceModel) {

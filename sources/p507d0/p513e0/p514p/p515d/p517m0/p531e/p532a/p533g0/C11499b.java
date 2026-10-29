@@ -48,7 +48,7 @@ public class C11499b implements InterfaceC11340c, InterfaceC11518i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.b$a */
     /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
 
         /* JADX INFO: renamed from: $c */
         public final /* synthetic */ C11529g f23229$c;

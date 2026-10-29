@@ -26,7 +26,7 @@ public class BasicMeasure {
     private final ArrayList<ConstraintWidget> mVariableDimensionsWidgets = new ArrayList<>();
     private Measure mMeasure = new Measure();
 
-    public static class Measure {
+    public class Measure {
         public static int SELF_DIMENSIONS = 0;
         public static int TRY_GIVEN_DIMENSIONS = 1;
         public static int USE_GIVEN_DIMENSIONS = 2;
@@ -239,16 +239,16 @@ public class BasicMeasure {
                             iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getMargin() + constraintWidget2.getRight());
                         }
                         z5 = true;
+                    } else {
+                        z5 = zMeasure;
                     }
                     if (height3 != height2) {
-                        z5 = zMeasure;
                         constraintWidget2.setHeight(height3);
                         if (z10 && constraintWidget2.getBottom() > iMax2) {
                             iMax2 = Math.max(iMax2, constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getMargin() + constraintWidget2.getBottom());
                         }
                         z5 = true;
                     }
-                    z5 = zMeasure;
                     zNeedSolverPass = z5 | ((VirtualLayout) constraintWidget2).needSolverPass();
                 }
                 i14++;

@@ -13,21 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGameNewsChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, TrackBaseReceiver, TrackAfGameReceiver, TrackAfCardReceiver {
+    private final Long changeCount = null;
+    private final CharSequence newsChangeType = null;
+    private final Long newsFromIndex = null;
+    private final Long newsToIndex = null;
+    private final CharSequence newsUrl = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackBase trackBase;
-    private final Long changeCount = null;
-    private final CharSequence newsUrl = null;
-    private final Long newsToIndex = null;
-    private final Long newsFromIndex = null;
-    private final CharSequence newsChangeType = null;
     private final transient String analyticsSchemaTypeName = "game_news_changed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
         }
         TrackGameNewsChanged trackGameNewsChanged = (TrackGameNewsChanged) other;
         return C12238m.areEqual(this.changeCount, trackGameNewsChanged.changeCount) && C12238m.areEqual(this.newsUrl, trackGameNewsChanged.newsUrl) && C12238m.areEqual(this.newsToIndex, trackGameNewsChanged.newsToIndex) && C12238m.areEqual(this.newsFromIndex, trackGameNewsChanged.newsFromIndex) && C12238m.areEqual(this.newsChangeType, trackGameNewsChanged.newsChangeType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

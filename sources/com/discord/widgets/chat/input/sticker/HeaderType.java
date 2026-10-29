@@ -11,7 +11,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class HeaderType {
 
     /* JADX INFO: compiled from: StickerAdapterItems.kt */
-    public static final /* data */ class GuildItem extends HeaderType {
+    public final /* data */ class GuildItem extends HeaderType {
         private final Guild guild;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -28,11 +28,6 @@ public abstract class HeaderType {
             return guildItem.copy(guild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
         public final GuildItem copy(Guild guild) {
             C12238m.checkNotNullParameter(guild, "guild");
             return new GuildItem(guild);
@@ -43,6 +38,11 @@ public abstract class HeaderType {
                 return (other instanceof GuildItem) && C12238m.areEqual(this.guild, ((GuildItem) other).guild);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -71,7 +71,7 @@ public abstract class HeaderType {
     }
 
     /* JADX INFO: compiled from: StickerAdapterItems.kt */
-    public static final /* data */ class PackItem extends HeaderType {
+    public final /* data */ class PackItem extends HeaderType {
         private final ModelStickerPack pack;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -86,11 +86,6 @@ public abstract class HeaderType {
                 modelStickerPack = packItem.pack;
             }
             return packItem.copy(modelStickerPack);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelStickerPack getPack() {
-            return this.pack;
         }
 
         public final PackItem copy(ModelStickerPack pack) {
@@ -110,6 +105,11 @@ public abstract class HeaderType {
             StringBuilder sbM833U = C1643a.m833U("owned-header:");
             sbM833U.append(this.pack.getId());
             return sbM833U.toString();
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelStickerPack getPack() {
+            return this.pack;
         }
 
         public final ModelStickerPack getPack() {
@@ -133,7 +133,7 @@ public abstract class HeaderType {
     }
 
     /* JADX INFO: compiled from: StickerAdapterItems.kt */
-    public static final class Recent extends HeaderType {
+    public final class Recent extends HeaderType {
         public static final Recent INSTANCE = new Recent();
 
         private Recent() {

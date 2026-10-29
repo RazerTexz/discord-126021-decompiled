@@ -51,13 +51,7 @@ public final class C12569w {
 
     /* JADX INFO: renamed from: i0.w$a */
     /* JADX INFO: compiled from: RequestFactory.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public static final Pattern f26644a = Pattern.compile("\\{([a-zA-Z][a-zA-Z0-9_-]*)\\}");
-
-        /* JADX INFO: renamed from: b */
-        public static final Pattern f26645b = Pattern.compile("[a-zA-Z][a-zA-Z0-9_-]*");
+    public final class a {
 
         /* JADX INFO: renamed from: c */
         public final C12571y f26646c;
@@ -127,6 +121,12 @@ public final class C12569w {
 
         /* JADX INFO: renamed from: y */
         public boolean f26668y;
+
+        /* JADX INFO: renamed from: a */
+        public static final Pattern f26644a = Pattern.compile("\\{([a-zA-Z][a-zA-Z0-9_-]*)\\}");
+
+        /* JADX INFO: renamed from: b */
+        public static final Pattern f26645b = Pattern.compile("[a-zA-Z][a-zA-Z0-9_-]*");
 
         public a(C12571y c12571y, Method method) {
             this.f26646c = c12571y;

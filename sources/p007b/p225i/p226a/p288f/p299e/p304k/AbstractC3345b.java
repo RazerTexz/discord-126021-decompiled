@@ -42,6 +42,10 @@ public abstract class AbstractC3345b<T extends IInterface> {
     /* JADX INFO: renamed from: a */
     public static final Feature[] f9476a = new Feature[0];
 
+    /* JADX INFO: renamed from: b */
+    @Nullable
+    public volatile String f9477b = null;
+
     /* JADX INFO: renamed from: c */
     public C3386v0 f9478c;
 
@@ -56,6 +60,12 @@ public abstract class AbstractC3345b<T extends IInterface> {
 
     /* JADX INFO: renamed from: g */
     public final Handler f9482g;
+
+    /* JADX INFO: renamed from: h */
+    public final Object f9483h = new Object();
+
+    /* JADX INFO: renamed from: i */
+    public final Object f9484i = new Object();
 
     /* JADX INFO: renamed from: j */
     @Nullable
@@ -73,6 +83,9 @@ public abstract class AbstractC3345b<T extends IInterface> {
     @Nullable
     public ServiceConnectionC3364k0 f9489n;
 
+    /* JADX INFO: renamed from: o */
+    public int f9490o = 1;
+
     /* JADX INFO: renamed from: p */
     @Nullable
     public final a f9491p;
@@ -88,22 +101,6 @@ public abstract class AbstractC3345b<T extends IInterface> {
     @Nullable
     public final String f9494s;
 
-    /* JADX INFO: renamed from: b */
-    @Nullable
-    public volatile String f9477b = null;
-
-    /* JADX INFO: renamed from: h */
-    public final Object f9483h = new Object();
-
-    /* JADX INFO: renamed from: i */
-    public final Object f9484i = new Object();
-
-    /* JADX INFO: renamed from: m */
-    public final ArrayList<AbstractC3360i0<?>> f9488m = new ArrayList<>();
-
-    /* JADX INFO: renamed from: o */
-    public int f9490o = 1;
-
     /* JADX INFO: renamed from: t */
     @Nullable
     public ConnectionResult f9495t = null;
@@ -114,6 +111,9 @@ public abstract class AbstractC3345b<T extends IInterface> {
     /* JADX INFO: renamed from: v */
     @Nullable
     public volatile zzi f9497v = null;
+
+    /* JADX INFO: renamed from: m */
+    public final ArrayList<AbstractC3360i0<?>> f9488m = new ArrayList<>();
 
     /* JADX INFO: renamed from: w */
     @RecentlyNonNull
@@ -396,25 +396,6 @@ public abstract class AbstractC3345b<T extends IInterface> {
         m4127F(2, null);
     }
 
-    /* JADX INFO: renamed from: h */
-    public void mo4036h() {
-        this.f9498w.incrementAndGet();
-        synchronized (this.f9488m) {
-            int size = this.f9488m.size();
-            for (int i = 0; i < size; i++) {
-                AbstractC3360i0<?> abstractC3360i0 = this.f9488m.get(i);
-                synchronized (abstractC3360i0) {
-                    abstractC3360i0.f9524a = null;
-                }
-            }
-            this.f9488m.clear();
-        }
-        synchronized (this.f9484i) {
-            this.f9485j = null;
-        }
-        m4127F(1, null);
-    }
-
     /* JADX INFO: renamed from: i */
     public void m4133i(@RecentlyNonNull e eVar) {
         C3327x c3327x = (C3327x) eVar;
@@ -428,16 +409,6 @@ public abstract class AbstractC3345b<T extends IInterface> {
             z2 = this.f9490o == 4;
         }
         return z2;
-    }
-
-    /* JADX INFO: renamed from: k */
-    public boolean mo4039k() {
-        return true;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public int mo3982l() {
-        return C3256c.f9306a;
     }
 
     @RecentlyNullable
@@ -456,11 +427,6 @@ public abstract class AbstractC3345b<T extends IInterface> {
         return this.f9477b;
     }
 
-    /* JADX INFO: renamed from: o */
-    public boolean mo4042o() {
-        return false;
-    }
-
     /* JADX INFO: renamed from: q */
     public void m4137q() throws PackageManager.NameNotFoundException {
         int iMo4018b = this.f9481f.mo4018b(this.f9479d, mo3982l());
@@ -474,34 +440,6 @@ public abstract class AbstractC3345b<T extends IInterface> {
         this.f9486k = dVar;
         Handler handler = this.f9482g;
         handler.sendMessage(handler.obtainMessage(3, this.f9498w.get(), iMo4018b, null));
-    }
-
-    @RecentlyNullable
-    /* JADX INFO: renamed from: r */
-    public abstract T mo3983r(@RecentlyNonNull IBinder iBinder);
-
-    @RecentlyNullable
-    /* JADX INFO: renamed from: s */
-    public Account mo4138s() {
-        return null;
-    }
-
-    @RecentlyNonNull
-    /* JADX INFO: renamed from: t */
-    public Feature[] mo4139t() {
-        return f9476a;
-    }
-
-    @RecentlyNonNull
-    /* JADX INFO: renamed from: u */
-    public Bundle mo4140u() {
-        return new Bundle();
-    }
-
-    @RecentlyNonNull
-    /* JADX INFO: renamed from: v */
-    public Set<Scope> mo4141v() {
-        return Collections.emptySet();
     }
 
     @RecentlyNonNull
@@ -525,6 +463,21 @@ public abstract class AbstractC3345b<T extends IInterface> {
         return t;
     }
 
+    @CallSuper
+    /* JADX INFO: renamed from: z */
+    public void m4143z(@RecentlyNonNull T t) {
+        System.currentTimeMillis();
+    }
+
+    /* JADX INFO: renamed from: l */
+    public int mo3982l() {
+        return C3256c.f9306a;
+    }
+
+    @RecentlyNullable
+    /* JADX INFO: renamed from: r */
+    public abstract T mo3983r(@RecentlyNonNull IBinder iBinder);
+
     @NonNull
     /* JADX INFO: renamed from: x */
     public abstract String mo3984x();
@@ -533,9 +486,56 @@ public abstract class AbstractC3345b<T extends IInterface> {
     /* JADX INFO: renamed from: y */
     public abstract String mo3985y();
 
-    @CallSuper
-    /* JADX INFO: renamed from: z */
-    public void m4143z(@RecentlyNonNull T t) {
-        System.currentTimeMillis();
+    /* JADX INFO: renamed from: h */
+    public void mo4036h() {
+        this.f9498w.incrementAndGet();
+        synchronized (this.f9488m) {
+            int size = this.f9488m.size();
+            for (int i = 0; i < size; i++) {
+                AbstractC3360i0<?> abstractC3360i0 = this.f9488m.get(i);
+                synchronized (abstractC3360i0) {
+                    abstractC3360i0.f9524a = null;
+                }
+            }
+            this.f9488m.clear();
+        }
+        synchronized (this.f9484i) {
+            this.f9485j = null;
+        }
+        m4127F(1, null);
+    }
+
+    /* JADX INFO: renamed from: k */
+    public boolean mo4039k() {
+        return true;
+    }
+
+    /* JADX INFO: renamed from: o */
+    public boolean mo4042o() {
+        return false;
+    }
+
+    @RecentlyNullable
+    /* JADX INFO: renamed from: s */
+    public Account mo4138s() {
+        return null;
+    }
+
+    @RecentlyNonNull
+    /* JADX INFO: renamed from: t */
+    public Feature[] mo4139t() {
+        return f9476a;
+    }
+
+    @RecentlyNonNull
+    /* JADX INFO: renamed from: u */
+    public Bundle mo4140u() {
+        return new Bundle();
+    }
+
+    @RecentlyNonNull
+    /* JADX INFO: renamed from: v */
+    public Set<Scope> mo4141v() {
+        return Collections.emptySet();
     }
 }

@@ -18,6 +18,17 @@ public final /* data */ class ClaimedOutboundPromotion {
     private final OutboundPromotion promotion;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ClaimedOutboundPromotion)) {
+            return false;
+        }
+        ClaimedOutboundPromotion claimedOutboundPromotion = (ClaimedOutboundPromotion) other;
+        return C12238m.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && C12238m.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && C12238m.areEqual(this.promotion, claimedOutboundPromotion.promotion);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getCode() {
         return this.code;
@@ -26,6 +37,17 @@ public final /* data */ class ClaimedOutboundPromotion {
     /* JADX INFO: renamed from: b, reason: from getter */
     public final OutboundPromotion getPromotion() {
         return this.promotion;
+    }
+
+    public int hashCode() {
+        String str = this.code;
+        int iHashCode = str != null ? str.hashCode() : 0;
+        long j = this.userId;
+        int i = ((iHashCode * 31) + ((int) (j ^ (j >>> 32)))) * 31;
+        UtcDateTime utcDateTime = this.claimedAt;
+        int iHashCode2 = (i + (utcDateTime != null ? utcDateTime.hashCode() : 0)) * 31;
+        OutboundPromotion outboundPromotion = this.promotion;
+        return iHashCode2 + (outboundPromotion != null ? outboundPromotion.hashCode() : 0);
     }
 
     /* JADX INFO: renamed from: c */
@@ -49,28 +71,6 @@ public final /* data */ class ClaimedOutboundPromotion {
             outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
         }
         return outboundRedemptionPageLink != null ? outboundRedemptionPageLink : "";
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ClaimedOutboundPromotion)) {
-            return false;
-        }
-        ClaimedOutboundPromotion claimedOutboundPromotion = (ClaimedOutboundPromotion) other;
-        return C12238m.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && C12238m.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && C12238m.areEqual(this.promotion, claimedOutboundPromotion.promotion);
-    }
-
-    public int hashCode() {
-        String str = this.code;
-        int iHashCode = str != null ? str.hashCode() : 0;
-        long j = this.userId;
-        int i = ((iHashCode * 31) + ((int) (j ^ (j >>> 32)))) * 31;
-        UtcDateTime utcDateTime = this.claimedAt;
-        int iHashCode2 = (i + (utcDateTime != null ? utcDateTime.hashCode() : 0)) * 31;
-        OutboundPromotion outboundPromotion = this.promotion;
-        return iHashCode2 + (outboundPromotion != null ? outboundPromotion.hashCode() : 0);
     }
 
     public String toString() {

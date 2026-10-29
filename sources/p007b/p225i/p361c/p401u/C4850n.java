@@ -13,17 +13,17 @@ import p007b.p225i.p361c.p401u.p404q.C4861a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4850n {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f12948a = TimeUnit.HOURS.toSeconds(1);
-
-    /* JADX INFO: renamed from: b */
-    public static final Pattern f12949b = Pattern.compile("\\AA[\\w-]{38}\\z");
-
     /* JADX INFO: renamed from: c */
     public static C4850n f12950c;
 
     /* JADX INFO: renamed from: d */
     public final C4861a f12951d;
+
+    /* JADX INFO: renamed from: a */
+    public static final long f12948a = TimeUnit.HOURS.toSeconds(1);
+
+    /* JADX INFO: renamed from: b */
+    public static final Pattern f12949b = Pattern.compile("\\AA[\\w-]{38}\\z");
 
     public C4850n(C4861a c4861a) {
         this.f12951d = c4861a;

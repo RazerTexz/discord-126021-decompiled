@@ -48,7 +48,7 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
         boolean needsDividerBefore();
     }
 
-    public static class ActionMenuPresenterCallback implements MenuPresenter.Callback {
+    public class ActionMenuPresenterCallback implements MenuPresenter.Callback {
         @Override // androidx.appcompat.view.menu.MenuPresenter.Callback
         public void onCloseMenu(@NonNull MenuBuilder menuBuilder, boolean z2) {
         }
@@ -59,7 +59,7 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
         }
     }
 
-    public static class LayoutParams extends LinearLayoutCompat.LayoutParams {
+    public class LayoutParams extends LinearLayoutCompat.LayoutParams {
 
         @ViewDebug.ExportedProperty
         public int cellsUsed;
@@ -128,6 +128,114 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
         this(context, null);
     }
 
+    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup
+    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return layoutParams instanceof LayoutParams;
+    }
+
+    public void dismissPopupMenus() {
+        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
+        if (actionMenuPresenter != null) {
+            actionMenuPresenter.dismissPopupMenus();
+        }
+    }
+
+    @Override // android.view.View
+    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        return false;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public LayoutParams generateOverflowButtonLayoutParams() {
+        LayoutParams layoutParamsGenerateDefaultLayoutParams = generateDefaultLayoutParams();
+        layoutParamsGenerateDefaultLayoutParams.isOverflowButton = true;
+        return layoutParamsGenerateDefaultLayoutParams;
+    }
+
+    public Menu getMenu() {
+        if (this.mMenu == null) {
+            Context context = getContext();
+            MenuBuilder menuBuilder = new MenuBuilder(context);
+            this.mMenu = menuBuilder;
+            menuBuilder.setCallback(new MenuBuilderCallback());
+            ActionMenuPresenter actionMenuPresenter = new ActionMenuPresenter(context);
+            this.mPresenter = actionMenuPresenter;
+            actionMenuPresenter.setReserveOverflow(true);
+            ActionMenuPresenter actionMenuPresenter2 = this.mPresenter;
+            MenuPresenter.Callback actionMenuPresenterCallback = this.mActionMenuPresenterCallback;
+            if (actionMenuPresenterCallback == null) {
+                actionMenuPresenterCallback = new ActionMenuPresenterCallback();
+            }
+            actionMenuPresenter2.setCallback(actionMenuPresenterCallback);
+            this.mMenu.addMenuPresenter(this.mPresenter, this.mPopupContext);
+            this.mPresenter.setMenuView(this);
+        }
+        return this.mMenu;
+    }
+
+    @Nullable
+    public Drawable getOverflowIcon() {
+        getMenu();
+        return this.mPresenter.getOverflowIcon();
+    }
+
+    public int getPopupTheme() {
+        return this.mPopupTheme;
+    }
+
+    @Override // androidx.appcompat.view.menu.MenuView
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int getWindowAnimations() {
+        return 0;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public boolean hasSupportDividerBeforeChildAt(int i) {
+        boolean zNeedsDividerAfter = false;
+        if (i == 0) {
+            return false;
+        }
+        KeyEvent.Callback childAt = getChildAt(i - 1);
+        KeyEvent.Callback childAt2 = getChildAt(i);
+        if (i < getChildCount() && (childAt instanceof ActionMenuChildView)) {
+            zNeedsDividerAfter = false | ((ActionMenuChildView) childAt).needsDividerAfter();
+        }
+        return (i <= 0 || !(childAt2 instanceof ActionMenuChildView)) ? zNeedsDividerAfter : zNeedsDividerAfter | ((ActionMenuChildView) childAt2).needsDividerBefore();
+    }
+
+    public boolean hideOverflowMenu() {
+        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
+        return actionMenuPresenter != null && actionMenuPresenter.hideOverflowMenu();
+    }
+
+    @Override // androidx.appcompat.view.menu.MenuView
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void initialize(MenuBuilder menuBuilder) {
+        this.mMenu = menuBuilder;
+    }
+
+    @Override // androidx.appcompat.view.menu.MenuBuilder.ItemInvoker
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public boolean invokeItem(MenuItemImpl menuItemImpl) {
+        return this.mMenu.performItemAction(menuItemImpl, 0);
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public boolean isOverflowMenuShowPending() {
+        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
+        return actionMenuPresenter != null && actionMenuPresenter.isOverflowMenuShowPending();
+    }
+
+    public boolean isOverflowMenuShowing() {
+        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
+        return actionMenuPresenter != null && actionMenuPresenter.isOverflowMenuShowing();
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public boolean isOverflowReserved() {
+        return this.mReserveOverflow;
+    }
+
     public static int measureChildForCells(View view, int i, int i2, int i3, int i4) {
         LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
         int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3) - i4, View.MeasureSpec.getMode(i3));
@@ -151,6 +259,138 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
         layoutParams.cellsUsed = i5;
         view.measure(View.MeasureSpec.makeMeasureSpec(i * i5, BasicMeasure.EXACTLY), iMakeMeasureSpec);
         return i5;
+    }
+
+    @Override // android.view.View
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
+        if (actionMenuPresenter != null) {
+            actionMenuPresenter.updateMenuView(false);
+            if (this.mPresenter.isOverflowMenuShowing()) {
+                this.mPresenter.hideOverflowMenu();
+                this.mPresenter.showOverflowMenu();
+            }
+        }
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        dismissPopupMenus();
+    }
+
+    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup, android.view.View
+    public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+        int width;
+        int paddingLeft;
+        if (!this.mFormatItems) {
+            super.onLayout(z2, i, i2, i3, i4);
+            return;
+        }
+        int childCount = getChildCount();
+        int i5 = (i4 - i2) / 2;
+        int dividerWidth = getDividerWidth();
+        int i6 = i3 - i;
+        int paddingRight = (i6 - getPaddingRight()) - getPaddingLeft();
+        boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
+        int i7 = 0;
+        int i8 = 0;
+        for (int i9 = 0; i9 < childCount; i9++) {
+            View childAt = getChildAt(i9);
+            if (childAt.getVisibility() != 8) {
+                LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
+                if (layoutParams.isOverflowButton) {
+                    int measuredWidth = childAt.getMeasuredWidth();
+                    if (hasSupportDividerBeforeChildAt(i9)) {
+                        measuredWidth += dividerWidth;
+                    }
+                    int measuredHeight = childAt.getMeasuredHeight();
+                    if (zIsLayoutRtl) {
+                        paddingLeft = getPaddingLeft() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
+                        width = paddingLeft + measuredWidth;
+                    } else {
+                        width = (getWidth() - getPaddingRight()) - ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                        paddingLeft = width - measuredWidth;
+                    }
+                    int i10 = i5 - (measuredHeight / 2);
+                    childAt.layout(paddingLeft, i10, width, measuredHeight + i10);
+                    paddingRight -= measuredWidth;
+                    i7 = 1;
+                } else {
+                    paddingRight -= (childAt.getMeasuredWidth() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                    hasSupportDividerBeforeChildAt(i9);
+                    i8++;
+                }
+            }
+        }
+        if (childCount == 1 && i7 == 0) {
+            View childAt2 = getChildAt(0);
+            int measuredWidth2 = childAt2.getMeasuredWidth();
+            int measuredHeight2 = childAt2.getMeasuredHeight();
+            int i11 = (i6 / 2) - (measuredWidth2 / 2);
+            int i12 = i5 - (measuredHeight2 / 2);
+            childAt2.layout(i11, i12, measuredWidth2 + i11, measuredHeight2 + i12);
+            return;
+        }
+        int i13 = i8 - (i7 ^ 1);
+        int iMax = Math.max(0, i13 > 0 ? paddingRight / i13 : 0);
+        if (zIsLayoutRtl) {
+            int width2 = getWidth() - getPaddingRight();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                View childAt3 = getChildAt(i14);
+                LayoutParams layoutParams2 = (LayoutParams) childAt3.getLayoutParams();
+                if (childAt3.getVisibility() != 8 && !layoutParams2.isOverflowButton) {
+                    int i15 = width2 - ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin;
+                    int measuredWidth3 = childAt3.getMeasuredWidth();
+                    int measuredHeight3 = childAt3.getMeasuredHeight();
+                    int i16 = i5 - (measuredHeight3 / 2);
+                    childAt3.layout(i15 - measuredWidth3, i16, i15, measuredHeight3 + i16);
+                    width2 = i15 - ((measuredWidth3 + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin) + iMax);
+                }
+            }
+            return;
+        }
+        int paddingLeft2 = getPaddingLeft();
+        for (int i17 = 0; i17 < childCount; i17++) {
+            View childAt4 = getChildAt(i17);
+            LayoutParams layoutParams3 = (LayoutParams) childAt4.getLayoutParams();
+            if (childAt4.getVisibility() != 8 && !layoutParams3.isOverflowButton) {
+                int i18 = paddingLeft2 + ((ViewGroup.MarginLayoutParams) layoutParams3).leftMargin;
+                int measuredWidth4 = childAt4.getMeasuredWidth();
+                int measuredHeight4 = childAt4.getMeasuredHeight();
+                int i19 = i5 - (measuredHeight4 / 2);
+                childAt4.layout(i18, i19, i18 + measuredWidth4, measuredHeight4 + i19);
+                paddingLeft2 = measuredWidth4 + ((ViewGroup.MarginLayoutParams) layoutParams3).rightMargin + iMax + i18;
+            }
+        }
+    }
+
+    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.View
+    public void onMeasure(int i, int i2) {
+        MenuBuilder menuBuilder;
+        boolean z2 = this.mFormatItems;
+        boolean z3 = View.MeasureSpec.getMode(i) == 1073741824;
+        this.mFormatItems = z3;
+        if (z2 != z3) {
+            this.mFormatItemsWidth = 0;
+        }
+        int size = View.MeasureSpec.getSize(i);
+        if (this.mFormatItems && (menuBuilder = this.mMenu) != null && size != this.mFormatItemsWidth) {
+            this.mFormatItemsWidth = size;
+            menuBuilder.onItemsChanged(true);
+        }
+        int childCount = getChildCount();
+        if (this.mFormatItems && childCount > 0) {
+            onMeasureExactFormat(i, i2);
+            return;
+        }
+        for (int i3 = 0; i3 < childCount; i3++) {
+            LayoutParams layoutParams = (LayoutParams) getChildAt(i3).getLayoutParams();
+            ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = 0;
+            ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = 0;
+        }
+        super.onMeasure(i, i2);
     }
 
     /* JADX WARN: Type inference failed for: r14v11 */
@@ -347,246 +587,6 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
             }
         }
         setMeasuredDimension(i4, mode != 1073741824 ? i3 : i15);
-    }
-
-    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup
-    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return layoutParams instanceof LayoutParams;
-    }
-
-    public void dismissPopupMenus() {
-        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
-        if (actionMenuPresenter != null) {
-            actionMenuPresenter.dismissPopupMenus();
-        }
-    }
-
-    @Override // android.view.View
-    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        return false;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public LayoutParams generateOverflowButtonLayoutParams() {
-        LayoutParams layoutParamsGenerateDefaultLayoutParams = generateDefaultLayoutParams();
-        layoutParamsGenerateDefaultLayoutParams.isOverflowButton = true;
-        return layoutParamsGenerateDefaultLayoutParams;
-    }
-
-    public Menu getMenu() {
-        if (this.mMenu == null) {
-            Context context = getContext();
-            MenuBuilder menuBuilder = new MenuBuilder(context);
-            this.mMenu = menuBuilder;
-            menuBuilder.setCallback(new MenuBuilderCallback());
-            ActionMenuPresenter actionMenuPresenter = new ActionMenuPresenter(context);
-            this.mPresenter = actionMenuPresenter;
-            actionMenuPresenter.setReserveOverflow(true);
-            ActionMenuPresenter actionMenuPresenter2 = this.mPresenter;
-            MenuPresenter.Callback actionMenuPresenterCallback = this.mActionMenuPresenterCallback;
-            if (actionMenuPresenterCallback == null) {
-                actionMenuPresenterCallback = new ActionMenuPresenterCallback();
-            }
-            actionMenuPresenter2.setCallback(actionMenuPresenterCallback);
-            this.mMenu.addMenuPresenter(this.mPresenter, this.mPopupContext);
-            this.mPresenter.setMenuView(this);
-        }
-        return this.mMenu;
-    }
-
-    @Nullable
-    public Drawable getOverflowIcon() {
-        getMenu();
-        return this.mPresenter.getOverflowIcon();
-    }
-
-    public int getPopupTheme() {
-        return this.mPopupTheme;
-    }
-
-    @Override // androidx.appcompat.view.menu.MenuView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int getWindowAnimations() {
-        return 0;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public boolean hasSupportDividerBeforeChildAt(int i) {
-        boolean zNeedsDividerAfter = false;
-        if (i == 0) {
-            return false;
-        }
-        KeyEvent.Callback childAt = getChildAt(i - 1);
-        KeyEvent.Callback childAt2 = getChildAt(i);
-        if (i < getChildCount() && (childAt instanceof ActionMenuChildView)) {
-            zNeedsDividerAfter = false | ((ActionMenuChildView) childAt).needsDividerAfter();
-        }
-        return (i <= 0 || !(childAt2 instanceof ActionMenuChildView)) ? zNeedsDividerAfter : zNeedsDividerAfter | ((ActionMenuChildView) childAt2).needsDividerBefore();
-    }
-
-    public boolean hideOverflowMenu() {
-        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
-        return actionMenuPresenter != null && actionMenuPresenter.hideOverflowMenu();
-    }
-
-    @Override // androidx.appcompat.view.menu.MenuView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void initialize(MenuBuilder menuBuilder) {
-        this.mMenu = menuBuilder;
-    }
-
-    @Override // androidx.appcompat.view.menu.MenuBuilder.ItemInvoker
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public boolean invokeItem(MenuItemImpl menuItemImpl) {
-        return this.mMenu.performItemAction(menuItemImpl, 0);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public boolean isOverflowMenuShowPending() {
-        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
-        return actionMenuPresenter != null && actionMenuPresenter.isOverflowMenuShowPending();
-    }
-
-    public boolean isOverflowMenuShowing() {
-        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
-        return actionMenuPresenter != null && actionMenuPresenter.isOverflowMenuShowing();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public boolean isOverflowReserved() {
-        return this.mReserveOverflow;
-    }
-
-    @Override // android.view.View
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        ActionMenuPresenter actionMenuPresenter = this.mPresenter;
-        if (actionMenuPresenter != null) {
-            actionMenuPresenter.updateMenuView(false);
-            if (this.mPresenter.isOverflowMenuShowing()) {
-                this.mPresenter.hideOverflowMenu();
-                this.mPresenter.showOverflowMenu();
-            }
-        }
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        dismissPopupMenus();
-    }
-
-    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup, android.view.View
-    public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
-        int width;
-        int paddingLeft;
-        if (!this.mFormatItems) {
-            super.onLayout(z2, i, i2, i3, i4);
-            return;
-        }
-        int childCount = getChildCount();
-        int i5 = (i4 - i2) / 2;
-        int dividerWidth = getDividerWidth();
-        int i6 = i3 - i;
-        int paddingRight = (i6 - getPaddingRight()) - getPaddingLeft();
-        boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
-        int i7 = 0;
-        int i8 = 0;
-        for (int i9 = 0; i9 < childCount; i9++) {
-            View childAt = getChildAt(i9);
-            if (childAt.getVisibility() != 8) {
-                LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
-                if (layoutParams.isOverflowButton) {
-                    int measuredWidth = childAt.getMeasuredWidth();
-                    if (hasSupportDividerBeforeChildAt(i9)) {
-                        measuredWidth += dividerWidth;
-                    }
-                    int measuredHeight = childAt.getMeasuredHeight();
-                    if (zIsLayoutRtl) {
-                        paddingLeft = getPaddingLeft() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
-                        width = paddingLeft + measuredWidth;
-                    } else {
-                        width = (getWidth() - getPaddingRight()) - ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
-                        paddingLeft = width - measuredWidth;
-                    }
-                    int i10 = i5 - (measuredHeight / 2);
-                    childAt.layout(paddingLeft, i10, width, measuredHeight + i10);
-                    paddingRight -= measuredWidth;
-                    i7 = 1;
-                } else {
-                    paddingRight -= (childAt.getMeasuredWidth() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
-                    hasSupportDividerBeforeChildAt(i9);
-                    i8++;
-                }
-            }
-        }
-        if (childCount == 1 && i7 == 0) {
-            View childAt2 = getChildAt(0);
-            int measuredWidth2 = childAt2.getMeasuredWidth();
-            int measuredHeight2 = childAt2.getMeasuredHeight();
-            int i11 = (i6 / 2) - (measuredWidth2 / 2);
-            int i12 = i5 - (measuredHeight2 / 2);
-            childAt2.layout(i11, i12, measuredWidth2 + i11, measuredHeight2 + i12);
-            return;
-        }
-        int i13 = i8 - (i7 ^ 1);
-        int iMax = Math.max(0, i13 > 0 ? paddingRight / i13 : 0);
-        if (zIsLayoutRtl) {
-            int width2 = getWidth() - getPaddingRight();
-            for (int i14 = 0; i14 < childCount; i14++) {
-                View childAt3 = getChildAt(i14);
-                LayoutParams layoutParams2 = (LayoutParams) childAt3.getLayoutParams();
-                if (childAt3.getVisibility() != 8 && !layoutParams2.isOverflowButton) {
-                    int i15 = width2 - ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin;
-                    int measuredWidth3 = childAt3.getMeasuredWidth();
-                    int measuredHeight3 = childAt3.getMeasuredHeight();
-                    int i16 = i5 - (measuredHeight3 / 2);
-                    childAt3.layout(i15 - measuredWidth3, i16, i15, measuredHeight3 + i16);
-                    width2 = i15 - ((measuredWidth3 + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin) + iMax);
-                }
-            }
-            return;
-        }
-        int paddingLeft2 = getPaddingLeft();
-        for (int i17 = 0; i17 < childCount; i17++) {
-            View childAt4 = getChildAt(i17);
-            LayoutParams layoutParams3 = (LayoutParams) childAt4.getLayoutParams();
-            if (childAt4.getVisibility() != 8 && !layoutParams3.isOverflowButton) {
-                int i18 = paddingLeft2 + ((ViewGroup.MarginLayoutParams) layoutParams3).leftMargin;
-                int measuredWidth4 = childAt4.getMeasuredWidth();
-                int measuredHeight4 = childAt4.getMeasuredHeight();
-                int i19 = i5 - (measuredHeight4 / 2);
-                childAt4.layout(i18, i19, i18 + measuredWidth4, measuredHeight4 + i19);
-                paddingLeft2 = measuredWidth4 + ((ViewGroup.MarginLayoutParams) layoutParams3).rightMargin + iMax + i18;
-            }
-        }
-    }
-
-    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.View
-    public void onMeasure(int i, int i2) {
-        MenuBuilder menuBuilder;
-        boolean z2 = this.mFormatItems;
-        boolean z3 = View.MeasureSpec.getMode(i) == 1073741824;
-        this.mFormatItems = z3;
-        if (z2 != z3) {
-            this.mFormatItemsWidth = 0;
-        }
-        int size = View.MeasureSpec.getSize(i);
-        if (this.mFormatItems && (menuBuilder = this.mMenu) != null && size != this.mFormatItemsWidth) {
-            this.mFormatItemsWidth = size;
-            menuBuilder.onItemsChanged(true);
-        }
-        int childCount = getChildCount();
-        if (this.mFormatItems && childCount > 0) {
-            onMeasureExactFormat(i, i2);
-            return;
-        }
-        for (int i3 = 0; i3 < childCount; i3++) {
-            LayoutParams layoutParams = (LayoutParams) getChildAt(i3).getLayoutParams();
-            ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = 0;
-            ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = 0;
-        }
-        super.onMeasure(i, i2);
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})

@@ -12,17 +12,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackKeyboardShortcutUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
     private final CharSequence shortcutName = null;
     private final List<CharSequence> sourceClassList = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "keyboard_shortcut_used";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSche
         }
         TrackKeyboardShortcutUsed trackKeyboardShortcutUsed = (TrackKeyboardShortcutUsed) other;
         return C12238m.areEqual(this.shortcutName, trackKeyboardShortcutUsed.shortcutName) && C12238m.areEqual(this.sourceClassList, trackKeyboardShortcutUsed.sourceClassList);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

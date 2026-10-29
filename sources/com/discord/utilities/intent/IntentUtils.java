@@ -45,15 +45,64 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: IntentUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class IntentUtils {
-    public static final IntentUtils INSTANCE = new IntentUtils();
     private static final Map<Regex, Function3<Uri, MatchResult, Context, RouteHandlers.AnalyticsMetadata>> pathRouterMap;
+    public static final IntentUtils INSTANCE = new IntentUtils();
+
+    /* JADX INFO: renamed from: com.discord.utilities.intent.IntentUtils$consumeExternalRoutingIntent$1 */
+    /* JADX INFO: compiled from: IntentUtils.kt */
+    public final class C67831 extends AbstractC12240o implements Function2<Uri, Boolean, Unit> {
+        public final /* synthetic */ Intent $intent;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67831(Intent intent) {
+            super(2);
+            this.$intent = intent;
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Uri uri, Boolean bool) {
+            invoke(uri, bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(Uri uri, boolean z2) {
+            C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+            Map<String, Object> mapBuildTrackingData = NotificationClient.INSTANCE.buildTrackingData(this.$intent);
+            Iterator<T> it = mapBuildTrackingData.keySet().iterator();
+            while (it.hasNext()) {
+                this.$intent.removeExtra((String) it.next());
+            }
+            AnalyticsTracker.appNotificationClicked(mapBuildTrackingData);
+            AppStartAnalyticsTracker.INSTANCE.getInstance().appOpen(uri, z2, !mapBuildTrackingData.isEmpty());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.intent.IntentUtils$consumeRoutingIntent$1 */
+    /* JADX INFO: compiled from: IntentUtils.kt */
+    public final class C67841 extends AbstractC12240o implements Function2<Uri, Boolean, Unit> {
+        public static final C67841 INSTANCE = new C67841();
+
+        public C67841() {
+            super(2);
+        }
+
+        public final void invoke(Uri uri, boolean z2) {
+            C12238m.checkNotNullParameter(uri, "<anonymous parameter 0>");
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Uri uri, Boolean bool) {
+            invoke(uri, bool.booleanValue());
+            return Unit.f27425a;
+        }
+    }
 
     /* JADX INFO: compiled from: IntentUtils.kt */
-    public static final class RouteBuilders {
+    public final class RouteBuilders {
         public static final RouteBuilders INSTANCE = new RouteBuilders();
 
         /* JADX INFO: compiled from: IntentUtils.kt */
-        public static final class SDK {
+        public final class SDK {
             public static final SDK INSTANCE = new SDK();
 
             private SDK() {
@@ -66,7 +115,7 @@ public final class IntentUtils {
         }
 
         /* JADX INFO: compiled from: IntentUtils.kt */
-        public static final class Uris {
+        public final class Uris {
             public static final Uris INSTANCE = new Uris();
 
             private Uris() {
@@ -94,6 +143,20 @@ public final class IntentUtils {
         private RouteBuilders() {
         }
 
+        public final Intent connectVoice(long voiceChannelId) {
+            return new Intent("com.discord.intent.action.CONNECT", Uri.parse("discord://app/connect/" + voiceChannelId));
+        }
+
+        public static /* synthetic */ Intent selectChannel$default(long j, long j2, Long l, int i, Object obj) {
+            if ((i & 2) != 0) {
+                j2 = 0;
+            }
+            if ((i & 4) != 0) {
+                l = null;
+            }
+            return selectChannel(j, j2, l);
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         /* JADX WARN: Type inference failed for: r6v0, types: [java.lang.StringBuilder] */
         /* JADX WARN: Type inference failed for: r7v0, types: [java.lang.Long] */
@@ -107,14 +170,8 @@ public final class IntentUtils {
             return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/channels/" + objValueOf + MentionUtilsKt.SLASH_CHAR + channelId + MentionUtilsKt.SLASH_CHAR + messageId));
         }
 
-        public static /* synthetic */ Intent selectChannel$default(long j, long j2, Long l, int i, Object obj) {
-            if ((i & 2) != 0) {
-                j2 = 0;
-            }
-            if ((i & 4) != 0) {
-                l = null;
-            }
-            return selectChannel(j, j2, l);
+        public final Intent selectDirectMessage(long userId) {
+            return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/channels/@me/user/" + userId));
         }
 
         public static final Intent selectExternalEvent(long guildId, Long eventId) {
@@ -123,18 +180,6 @@ public final class IntentUtils {
 
         public static final Intent selectGuild(long guildId) {
             return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/channels/" + ((guildId == 0 || guildId == -1) ? "@me" : Long.valueOf(guildId))));
-        }
-
-        public static final Intent selectUserProfile(long userId) {
-            return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/users/" + userId));
-        }
-
-        public final Intent connectVoice(long voiceChannelId) {
-            return new Intent("com.discord.intent.action.CONNECT", Uri.parse("discord://app/connect/" + voiceChannelId));
-        }
-
-        public final Intent selectDirectMessage(long userId) {
-            return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/channels/@me/user/" + userId));
         }
 
         /* JADX WARN: Code duplicated, block: B:9:0x0037  */
@@ -180,54 +225,9 @@ public final class IntentUtils {
             C12238m.checkNotNullExpressionValue(data, "Intent().setData(uriMerged)");
             return data;
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.utilities.intent.IntentUtils$consumeExternalRoutingIntent$1 */
-    /* JADX INFO: compiled from: IntentUtils.kt */
-    public static final class C67831 extends AbstractC12240o implements Function2<Uri, Boolean, Unit> {
-        public final /* synthetic */ Intent $intent;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67831(Intent intent) {
-            super(2);
-            this.$intent = intent;
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Uri uri, Boolean bool) {
-            invoke(uri, bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(Uri uri, boolean z2) {
-            C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-            Map<String, Object> mapBuildTrackingData = NotificationClient.INSTANCE.buildTrackingData(this.$intent);
-            Iterator<T> it = mapBuildTrackingData.keySet().iterator();
-            while (it.hasNext()) {
-                this.$intent.removeExtra((String) it.next());
-            }
-            AnalyticsTracker.appNotificationClicked(mapBuildTrackingData);
-            AppStartAnalyticsTracker.INSTANCE.getInstance().appOpen(uri, z2, !mapBuildTrackingData.isEmpty());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.intent.IntentUtils$consumeRoutingIntent$1 */
-    /* JADX INFO: compiled from: IntentUtils.kt */
-    public static final class C67841 extends AbstractC12240o implements Function2<Uri, Boolean, Unit> {
-        public static final C67841 INSTANCE = new C67841();
-
-        public C67841() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Uri uri, Boolean bool) {
-            invoke(uri, bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(Uri uri, boolean z2) {
-            C12238m.checkNotNullParameter(uri, "<anonymous parameter 0>");
+        public static final Intent selectUserProfile(long userId) {
+            return new Intent("android.intent.action.VIEW", Uri.parse("discord://app/users/" + userId));
         }
     }
 
@@ -241,96 +241,19 @@ public final class IntentUtils {
     private IntentUtils() {
     }
 
+    public final boolean consumeExternalRoutingIntent(Intent intent, Context context) {
+        C12238m.checkNotNullParameter(intent, "intent");
+        C12238m.checkNotNullParameter(context, "context");
+        StoreStream.INSTANCE.getDynamicLinkCache().storeLinkIfExists(intent, context);
+        return consumeRoutingIntent(intent, context, new C67831(intent));
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ boolean consumeRoutingIntent$default(IntentUtils intentUtils, Intent intent, Context context, Function2 function2, int i, Object obj) {
         if ((i & 4) != 0) {
             function2 = C67841.INSTANCE;
         }
         return intentUtils.consumeRoutingIntent(intent, context, function2);
-    }
-
-    private final Uri externalize(Uri uri) {
-        Uri.Builder builderScheme = uri.buildUpon().scheme(Constants.SCHEME);
-        C0877a c0877a = C0877a.f538G;
-        return builderScheme.authority(C0877a.f539a).build();
-    }
-
-    private final void notifyFirebaseUserActionStatus(Intent intent, boolean isHandledSuccessfully) {
-        String stringExtra = intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN");
-        if (stringExtra != null) {
-            C12238m.checkNotNullExpressionValue(stringExtra, "intent.getStringExtra(In…A_VOICE_ACTION) ?: return");
-            String str = isHandledSuccessfully ? "http://schema.org/CompletedActionStatus" : "http://schema.org/FailedActionStatus";
-            C4562a c4562a = new C4562a();
-            c4562a.f12169f = stringExtra;
-            c4562a.f12167e = str;
-            C1460d.m595z(stringExtra, "setActionToken is required before calling build().");
-            C1460d.m595z(new String(c4562a.f12167e), "setActionStatus is required before calling build().");
-            c4562a.m6344a("actionToken", c4562a.f12169f);
-            AbstractC4561b c4564b = null;
-            if ((c4562a.f12165c == null ? null : new String(c4562a.f12165c)) == null) {
-                c4562a.f12165c = "AssistAction";
-                c4562a.m6344a(ModelAuditLogEntry.CHANGE_KEY_NAME, "AssistAction");
-            }
-            if ((c4562a.f12166d == null ? null : new String(c4562a.f12166d)) == null) {
-                String strValueOf = String.valueOf(c4562a.f12169f);
-                String strConcat = strValueOf.length() != 0 ? "https://developers.google.com/actions?invocation=".concat(strValueOf) : new String("https://developers.google.com/actions?invocation=");
-                Objects.requireNonNull(strConcat, "null reference");
-                c4562a.f12166d = strConcat;
-                c4562a.m6344a("url", strConcat);
-            }
-            C1460d.m595z(c4562a.f12165c, "setObject is required before calling build().");
-            C1460d.m595z(c4562a.f12166d, "setObject is required before calling build().");
-            zza zzaVar = new zza(c4562a.f12164b, c4562a.f12165c, c4562a.f12166d, null, new zzc(true), c4562a.f12167e, c4562a.f12163a);
-            synchronized (AbstractC4561b.class) {
-                WeakReference<AbstractC4561b> weakReference = AbstractC4561b.f12168a;
-                if (weakReference != null) {
-                    c4564b = weakReference.get();
-                }
-                if (c4564b == null) {
-                    C4542c c4542cM6327b = C4542c.m6327b();
-                    c4542cM6327b.m6330a();
-                    c4564b = new C4564b(c4542cM6327b.f12118d);
-                    AbstractC4561b.f12168a = new WeakReference<>(c4564b);
-                }
-            }
-            c4564b.mo6345a(zzaVar);
-        }
-    }
-
-    public static final void performChooserSendIntent(Context context, String str) {
-        performChooserSendIntent$default(context, str, null, 4, null);
-    }
-
-    public static final void performChooserSendIntent(Context context, String text, CharSequence chooserText) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-        C12238m.checkNotNullParameter(chooserText, "chooserText");
-        context.startActivity(Intent.createChooser(INSTANCE.sendText(new Intent("android.intent.action.SEND"), text), chooserText));
-    }
-
-    public static /* synthetic */ void performChooserSendIntent$default(Context context, String str, CharSequence charSequence, int i, Object obj) {
-        if ((i & 4) != 0) {
-            charSequence = context.getString(C5419R.string.share);
-            C12238m.checkNotNullExpressionValue(charSequence, "context.getString(R.string.share)");
-        }
-        performChooserSendIntent(context, str, charSequence);
-    }
-
-    private final Intent sendText(Intent intent, String str) {
-        intent.setAction("android.intent.action.SEND");
-        intent.setType(RestAPIBuilder.CONTENT_TYPE_TEXT);
-        if (str == null) {
-            str = "";
-        }
-        intent.putExtra("android.intent.extra.TEXT", str);
-        return intent;
-    }
-
-    public final boolean consumeExternalRoutingIntent(Intent intent, Context context) {
-        C12238m.checkNotNullParameter(intent, "intent");
-        C12238m.checkNotNullParameter(context, "context");
-        StoreStream.INSTANCE.getDynamicLinkCache().storeLinkIfExists(intent, context);
-        return consumeRoutingIntent(intent, context, new C67831(intent));
     }
 
     public final boolean consumeRoutingIntent(Intent intent, Context context, Function2<? super Uri, ? super Boolean, Unit> callback) {
@@ -385,6 +308,12 @@ public final class IntentUtils {
         return false;
     }
 
+    private final Uri externalize(Uri uri) {
+        Uri.Builder builderScheme = uri.buildUpon().scheme(Constants.SCHEME);
+        C0877a c0877a = C0877a.f538G;
+        return builderScheme.authority(C0877a.f539a).build();
+    }
+
     public final Long getDirectShareId(Intent intent) {
         C12238m.checkNotNullParameter(intent, "$this$getDirectShareId");
         String stringExtra = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
@@ -427,6 +356,77 @@ public final class IntentUtils {
             return C0877a.f538G.m173a(uri.getHost());
         }
         return false;
+    }
+
+    private final void notifyFirebaseUserActionStatus(Intent intent, boolean isHandledSuccessfully) {
+        String stringExtra = intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN");
+        if (stringExtra != null) {
+            C12238m.checkNotNullExpressionValue(stringExtra, "intent.getStringExtra(In…A_VOICE_ACTION) ?: return");
+            String str = isHandledSuccessfully ? "http://schema.org/CompletedActionStatus" : "http://schema.org/FailedActionStatus";
+            C4562a c4562a = new C4562a();
+            c4562a.f12169f = stringExtra;
+            c4562a.f12167e = str;
+            C1460d.m595z(stringExtra, "setActionToken is required before calling build().");
+            C1460d.m595z(new String(c4562a.f12167e), "setActionStatus is required before calling build().");
+            c4562a.m6344a("actionToken", c4562a.f12169f);
+            AbstractC4561b c4564b = null;
+            if ((c4562a.f12165c == null ? null : new String(c4562a.f12165c)) == null) {
+                c4562a.f12165c = "AssistAction";
+                c4562a.m6344a(ModelAuditLogEntry.CHANGE_KEY_NAME, "AssistAction");
+            }
+            if ((c4562a.f12166d == null ? null : new String(c4562a.f12166d)) == null) {
+                String strValueOf = String.valueOf(c4562a.f12169f);
+                String strConcat = strValueOf.length() != 0 ? "https://developers.google.com/actions?invocation=".concat(strValueOf) : new String("https://developers.google.com/actions?invocation=");
+                Objects.requireNonNull(strConcat, "null reference");
+                c4562a.f12166d = strConcat;
+                c4562a.m6344a("url", strConcat);
+            }
+            C1460d.m595z(c4562a.f12165c, "setObject is required before calling build().");
+            C1460d.m595z(c4562a.f12166d, "setObject is required before calling build().");
+            zza zzaVar = new zza(c4562a.f12164b, c4562a.f12165c, c4562a.f12166d, null, new zzc(true), c4562a.f12167e, c4562a.f12163a);
+            synchronized (AbstractC4561b.class) {
+                WeakReference<AbstractC4561b> weakReference = AbstractC4561b.f12168a;
+                if (weakReference != null) {
+                    c4564b = weakReference.get();
+                }
+                if (c4564b == null) {
+                    C4542c c4542cM6327b = C4542c.m6327b();
+                    c4542cM6327b.m6330a();
+                    c4564b = new C4564b(c4542cM6327b.f12118d);
+                    AbstractC4561b.f12168a = new WeakReference<>(c4564b);
+                }
+            }
+            c4564b.mo6345a(zzaVar);
+        }
+    }
+
+    public static /* synthetic */ void performChooserSendIntent$default(Context context, String str, CharSequence charSequence, int i, Object obj) {
+        if ((i & 4) != 0) {
+            charSequence = context.getString(C5419R.string.share);
+            C12238m.checkNotNullExpressionValue(charSequence, "context.getString(R.string.share)");
+        }
+        performChooserSendIntent(context, str, charSequence);
+    }
+
+    public static final void performChooserSendIntent(Context context, String str) {
+        performChooserSendIntent$default(context, str, null, 4, null);
+    }
+
+    public static final void performChooserSendIntent(Context context, String text, CharSequence chooserText) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        C12238m.checkNotNullParameter(chooserText, "chooserText");
+        context.startActivity(Intent.createChooser(INSTANCE.sendText(new Intent("android.intent.action.SEND"), text), chooserText));
+    }
+
+    private final Intent sendText(Intent intent, String str) {
+        intent.setAction("android.intent.action.SEND");
+        intent.setType(RestAPIBuilder.CONTENT_TYPE_TEXT);
+        if (str == null) {
+            str = "";
+        }
+        intent.putExtra("android.intent.extra.TEXT", str);
+        return intent;
     }
 
     public final Intent toExternalizedSend(Intent intent) {

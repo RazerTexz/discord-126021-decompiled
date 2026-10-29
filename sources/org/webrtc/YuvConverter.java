@@ -14,14 +14,14 @@ public class YuvConverter {
     private final ThreadUtils.ThreadChecker threadChecker;
     private final VideoFrameDrawer videoFrameDrawer;
 
-    public static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
+    public class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
         private float[] coeffs;
         private int coeffsLoc;
         private float stepSize;
-        private int xUnitLoc;
-        private static final float[] yCoeffs = {0.256788f, 0.504129f, 0.0979059f, 0.0627451f};
         private static final float[] uCoeffs = {-0.148223f, -0.290993f, 0.439216f, 0.501961f};
         private static final float[] vCoeffs = {0.439216f, -0.367788f, -0.0714274f, 0.501961f};
+        private int xUnitLoc;
+        private static final float[] yCoeffs = {0.256788f, 0.504129f, 0.0979059f, 0.0627451f};
 
         private ShaderCallbacks() {
         }

@@ -22,6 +22,10 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
         this.token = str;
     }
 
+    public final List<T> component1() {
+        return this.tags;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetChatInputMentionsTags copy$default(WidgetChatInputMentionsTags widgetChatInputMentionsTags, List list, char c, String str, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -34,20 +38,6 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
             str = widgetChatInputMentionsTags.token;
         }
         return widgetChatInputMentionsTags.copy(list, c, str);
-    }
-
-    public final List<T> component1() {
-        return this.tags;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final char getTokenIdentifier() {
-        return this.tokenIdentifier;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getToken() {
-        return this.token;
     }
 
     public final WidgetChatInputMentionsTags<T> copy(List<? extends T> tags, char tokenIdentifier, String token) {
@@ -71,8 +61,18 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
         return this.tags;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getToken() {
         return this.token;
+    }
+
+    public final String getToken() {
+        return this.token;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final char getTokenIdentifier() {
+        return this.tokenIdentifier;
     }
 
     public final char getTokenIdentifier() {

@@ -449,7 +449,7 @@ public final class C12433v {
 
     /* JADX INFO: renamed from: h0.a.a.v$a */
     /* JADX INFO: compiled from: SymbolTable.java */
-    public static class a extends AbstractC12432u {
+    public class a extends AbstractC12432u {
 
         /* JADX INFO: renamed from: h */
         public final int f26359h;

@@ -10,6 +10,7 @@ public class DragStartHelper {
     private int mLastTouchX;
     private int mLastTouchY;
     private final OnDragStartListener mListener;
+    private final View mView;
     private final View.OnLongClickListener mLongClickListener = new View.OnLongClickListener() { // from class: androidx.core.view.DragStartHelper.1
         @Override // android.view.View.OnLongClickListener
         public boolean onLongClick(View view) {
@@ -22,7 +23,6 @@ public class DragStartHelper {
             return DragStartHelper.this.onTouch(view, motionEvent);
         }
     };
-    private final View mView;
 
     public interface OnDragStartListener {
         boolean onDragStart(View view, DragStartHelper dragStartHelper);

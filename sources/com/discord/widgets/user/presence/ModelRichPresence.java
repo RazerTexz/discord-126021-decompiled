@@ -23,7 +23,7 @@ public final /* data */ class ModelRichPresence {
     private final Application primaryApplication;
 
     /* JADX INFO: compiled from: ModelRichPresence.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -80,20 +80,6 @@ public final /* data */ class ModelRichPresence {
         return modelRichPresence.copy(presence, application);
     }
 
-    public static final Observable<ModelRichPresence> get(long j, StoreUserPresence storeUserPresence) {
-        return INSTANCE.get(j, storeUserPresence);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Presence getPresence() {
-        return this.presence;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Application getPrimaryApplication() {
-        return this.primaryApplication;
-    }
-
     public final ModelRichPresence copy(Presence presence, Application primaryApplication) {
         C12238m.checkNotNullParameter(presence, "presence");
         return new ModelRichPresence(presence, primaryApplication);
@@ -110,12 +96,26 @@ public final /* data */ class ModelRichPresence {
         return C12238m.areEqual(this.presence, modelRichPresence.presence) && C12238m.areEqual(this.primaryApplication, modelRichPresence.primaryApplication);
     }
 
+    public static final Observable<ModelRichPresence> get(long j, StoreUserPresence storeUserPresence) {
+        return INSTANCE.get(j, storeUserPresence);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Presence getPresence() {
+        return this.presence;
+    }
+
     public final Presence getPresence() {
         return this.presence;
     }
 
     public final Activity getPrimaryActivity() {
         return PresenceUtils.INSTANCE.getPrimaryActivity(this.presence);
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Application getPrimaryApplication() {
+        return this.primaryApplication;
     }
 
     public final Application getPrimaryApplication() {

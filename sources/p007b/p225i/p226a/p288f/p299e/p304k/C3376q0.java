@@ -11,9 +11,6 @@ import p007b.p085c.p086a.p087a0.C1460d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3376q0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final Uri f9546a = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public final String f9547b;
@@ -27,6 +24,9 @@ public final class C3376q0 {
 
     /* JADX INFO: renamed from: e */
     public final boolean f9550e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Uri f9546a = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
 
     public C3376q0(String str, String str2, int i, boolean z2) {
         C1460d.m583w(str);

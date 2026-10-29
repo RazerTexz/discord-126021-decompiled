@@ -11,6 +11,10 @@ import java.util.concurrent.TimeUnit;
 /* JADX INFO: loaded from: classes3.dex */
 public class ThreadUtils {
 
+    public interface BlockingOperation {
+        void run() throws InterruptedException;
+    }
+
     /* JADX INFO: renamed from: org.webrtc.ThreadUtils$1CaughtException, reason: invalid class name */
     public class C1CaughtException {
 
@@ -21,29 +25,6 @@ public class ThreadUtils {
     /* JADX INFO: renamed from: org.webrtc.ThreadUtils$1Result, reason: invalid class name */
     public class C1Result {
         public V value;
-    }
-
-    public interface BlockingOperation {
-        void run() throws InterruptedException;
-    }
-
-    public static class ThreadChecker {
-
-        @Nullable
-        private Thread thread = Thread.currentThread();
-
-        public void checkIsOnValidThread() {
-            if (this.thread == null) {
-                this.thread = Thread.currentThread();
-            }
-            if (Thread.currentThread() != this.thread) {
-                throw new IllegalStateException("Wrong thread");
-            }
-        }
-
-        public void detachThread() {
-            this.thread = null;
-        }
     }
 
     public static void awaitUninterruptibly(final CountDownLatch countDownLatch) {
@@ -132,6 +113,25 @@ public class ThreadUtils {
             Thread.currentThread().interrupt();
         }
         return !thread.isAlive();
+    }
+
+    public class ThreadChecker {
+
+        @Nullable
+        private Thread thread = Thread.currentThread();
+
+        public void checkIsOnValidThread() {
+            if (this.thread == null) {
+                this.thread = Thread.currentThread();
+            }
+            if (Thread.currentThread() != this.thread) {
+                throw new IllegalStateException("Wrong thread");
+            }
+        }
+
+        public void detachThread() {
+            this.thread = null;
+        }
     }
 
     public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j) {

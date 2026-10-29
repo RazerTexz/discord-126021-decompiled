@@ -86,12 +86,6 @@ public class NativeJpegTranscoder implements InterfaceC2032b {
         nativeTranscodeJpegWithExifOrientation(inputStream, outputStream, i, i2, i3);
     }
 
-    @InterfaceC1680c
-    private static native void nativeTranscodeJpeg(InputStream inputStream, OutputStream outputStream, int i, int i2, int i3) throws IOException;
-
-    @InterfaceC1680c
-    private static native void nativeTranscodeJpegWithExifOrientation(InputStream inputStream, OutputStream outputStream, int i, int i2, int i3) throws IOException;
-
     @Override // p007b.p109f.p161j.p184s.InterfaceC2032b
     /* JADX INFO: renamed from: a */
     public String mo1528a() {
@@ -148,4 +142,10 @@ public class NativeJpegTranscoder implements InterfaceC2032b {
     public boolean mo1531d(C1832c c1832c) {
         return c1832c == C1831b.f3585a;
     }
+
+    @InterfaceC1680c
+    private static native void nativeTranscodeJpeg(InputStream inputStream, OutputStream outputStream, int i, int i2, int i3) throws IOException;
+
+    @InterfaceC1680c
+    private static native void nativeTranscodeJpegWithExifOrientation(InputStream inputStream, OutputStream outputStream, int i, int i2, int i3) throws IOException;
 }

@@ -28,11 +28,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0834k extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f396j = {C1643a.m846d0(C0834k.class, "binding", "getBinding()Lcom/discord/databinding/DialogDatePickerBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public final FragmentViewBindingDelegate binding;
+
+    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
+    public boolean datePicked;
+
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f396j = {C1643a.m846d0(C0834k.class, "binding", "getBinding()Lcom/discord/databinding/DialogDatePickerBinding;", 0)};
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Function1<? super Long, Unit> onDatePicked;
@@ -40,15 +46,9 @@ public final class C0834k extends AppDialog {
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public long selectedDate;
 
-    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public boolean datePicked;
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public final FragmentViewBindingDelegate binding;
-
     /* JADX INFO: renamed from: b.a.a.k$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: DatePickerDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -69,7 +69,7 @@ public final class C0834k extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.k$b */
     /* JADX INFO: compiled from: DatePickerDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C0988k> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C0988k> {
 
         /* JADX INFO: renamed from: j */
         public static final b f402j = new b();
@@ -101,7 +101,7 @@ public final class C0834k extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.k$c */
     /* JADX INFO: compiled from: DatePickerDialog.kt */
-    public static final class c implements DatePicker.OnDateChangedListener {
+    public final class c implements DatePicker.OnDateChangedListener {
         public c() {
         }
 
@@ -123,7 +123,7 @@ public final class C0834k extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.k$d */
     /* JADX INFO: compiled from: DatePickerDialog.kt */
-    public static final class d implements View.OnClickListener {
+    public final class d implements View.OnClickListener {
         public d() {
         }
 

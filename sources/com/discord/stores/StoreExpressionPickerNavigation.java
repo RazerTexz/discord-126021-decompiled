@@ -19,7 +19,7 @@ public final class StoreExpressionPickerNavigation extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpressionPickerNavigation$observeSelectedTab$1 */
     /* JADX INFO: compiled from: StoreExpressionPickerNavigation.kt */
-    public static final class C59271 extends AbstractC12240o implements Function0<ExpressionTrayTab> {
+    public final class C59271 extends AbstractC12240o implements Function0<ExpressionTrayTab> {
         public C59271() {
             super(0);
         }
@@ -33,7 +33,7 @@ public final class StoreExpressionPickerNavigation extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpressionPickerNavigation$onSelectTab$1 */
     /* JADX INFO: compiled from: StoreExpressionPickerNavigation.kt */
-    public static final class C59281 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59281 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ExpressionTrayTab $expressionTrayTab;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

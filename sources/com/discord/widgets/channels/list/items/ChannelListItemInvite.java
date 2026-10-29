@@ -26,16 +26,6 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
         return channelListItemInvite.copy(j, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsHub() {
-        return this.isHub;
-    }
-
     public final ChannelListItemInvite copy(long guildId, boolean isHub) {
         return new ChannelListItemInvite(guildId, isHub);
     }
@@ -51,8 +41,18 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
         return this.guildId == channelListItemInvite.guildId && this.isHub == channelListItemInvite.isHub;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsHub() {
+        return this.isHub;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

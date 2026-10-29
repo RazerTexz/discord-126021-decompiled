@@ -19,7 +19,6 @@ public final class MessageTypes {
     public static final int GUILD_DISCOVERY_REQUALIFIED = 15;
     public static final int GUILD_INVITE_REMINDER = 22;
     public static final int GUILD_STREAM = 13;
-    public static final MessageTypes INSTANCE = new MessageTypes();
     public static final int LOCAL = -1;
     public static final int LOCAL_APPLICATION_COMMAND = -5;
     public static final int LOCAL_APPLICATION_COMMAND_SEND_FAILED = -4;
@@ -39,4 +38,5 @@ public final class MessageTypes {
     public static final int USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1 = 9;
     public static final int USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2 = 10;
     public static final int USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3 = 11;
+    public static final MessageTypes INSTANCE = new MessageTypes();
 }

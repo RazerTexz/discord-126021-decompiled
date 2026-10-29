@@ -19,18 +19,6 @@ public final class C3861v1 extends AbstractC3836t2 {
         this.f10359b = interfaceC3914z2;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3836t2
-    /* JADX INFO: renamed from: a */
-    public final Context mo5277a() {
-        return this.f10358a;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3836t2
-    /* JADX INFO: renamed from: b */
-    public final InterfaceC3914z2<AbstractC3888x2<C3678h2>> mo5278b() {
-        return this.f10359b;
-    }
-
     public final boolean equals(Object obj) {
         InterfaceC3914z2<AbstractC3888x2<C3678h2>> interfaceC3914z2;
         if (obj == this) {
@@ -49,6 +37,18 @@ public final class C3861v1 extends AbstractC3836t2 {
         int iHashCode = (this.f10358a.hashCode() ^ 1000003) * 1000003;
         InterfaceC3914z2<AbstractC3888x2<C3678h2>> interfaceC3914z2 = this.f10359b;
         return iHashCode ^ (interfaceC3914z2 == null ? 0 : interfaceC3914z2.hashCode());
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3836t2
+    /* JADX INFO: renamed from: a */
+    public final Context mo5277a() {
+        return this.f10358a;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3836t2
+    /* JADX INFO: renamed from: b */
+    public final InterfaceC3914z2<AbstractC3888x2<C3678h2>> mo5278b() {
+        return this.f10359b;
     }
 
     public final String toString() {

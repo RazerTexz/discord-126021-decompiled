@@ -49,7 +49,7 @@ public final class C3167b extends AbstractC3161g {
 
     /* JADX INFO: renamed from: b.i.a.c.z2.k.b$b */
     /* JADX INFO: compiled from: Id3Decoder.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f9156a;
@@ -626,13 +626,6 @@ public final class C3167b extends AbstractC3161g {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p279z2.AbstractC3161g
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public Metadata mo3899b(C3158d c3158d, ByteBuffer byteBuffer) {
-        return m3922d(byteBuffer.array(), byteBuffer.limit());
-    }
-
     /* JADX WARN: Code duplicated, block: B:45:0x00b0  */
     /* JADX WARN: Code duplicated, block: B:50:0x00c1 A[RETURN] */
     /* JADX WARN: Code duplicated, block: B:51:0x00c2  */
@@ -752,6 +745,13 @@ public final class C3167b extends AbstractC3161g {
             }
         }
         return new Metadata(arrayList);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p279z2.AbstractC3161g
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public Metadata mo3899b(C3158d c3158d, ByteBuffer byteBuffer) {
+        return m3922d(byteBuffer.array(), byteBuffer.limit());
     }
 
     public C3167b(@Nullable a aVar) {

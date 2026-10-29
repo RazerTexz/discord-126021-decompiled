@@ -95,6 +95,16 @@ public final class C3100u implements InterfaceC3094o {
         return c2756w.m3067g((c2756w.m3067g(2) + 1) * 8);
     }
 
+    /* JADX INFO: renamed from: g */
+    public final int m3787g(C2756w c2756w) throws ParserException {
+        int iM3062b = c2756w.m3062b();
+        C2928l.b bVarM3489b = C2928l.m3489b(c2756w, true);
+        this.f8890u = bVarM3489b.f7768c;
+        this.f8887r = bVarM3489b.f7766a;
+        this.f8889t = bVarM3489b.f7767b;
+        return iM3062b - c2756w.m3062b();
+    }
+
     @Override // p007b.p225i.p226a.p242c.p267x2.p276k0.InterfaceC3094o
     /* JADX INFO: renamed from: b */
     public void mo3758b(C2757x c2757x) throws ParserException {
@@ -295,15 +305,5 @@ public final class C3100u implements InterfaceC3094o {
         if (j != -9223372036854775807L) {
             this.f8880k = j;
         }
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final int m3787g(C2756w c2756w) throws ParserException {
-        int iM3062b = c2756w.m3062b();
-        C2928l.b bVarM3489b = C2928l.m3489b(c2756w, true);
-        this.f8890u = bVarM3489b.f7768c;
-        this.f8887r = bVarM3489b.f7766a;
-        this.f8889t = bVarM3489b.f7767b;
-        return iM3062b - c2756w.m3062b();
     }
 }

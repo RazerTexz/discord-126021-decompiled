@@ -22,7 +22,7 @@ public abstract class VolumeProviderCompat {
     private VolumeProvider mVolumeProviderFwk;
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 
@@ -32,7 +32,7 @@ public abstract class VolumeProviderCompat {
         }
     }
 
-    public static abstract class Callback {
+    public abstract class Callback {
         public abstract void onVolumeChanged(VolumeProviderCompat volumeProviderCompat);
     }
 

@@ -9,30 +9,24 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceConnectionSuccess.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceConnectionSuccess implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence hostname = null;
+    private final CharSequence audioLayer = null;
+    private final CharSequence audioSubsystem = null;
+    private final Long channelId = null;
     private final CharSequence cloudflareBestRegion = null;
+    private final Long connectCount = null;
+    private final Long connectTime = null;
+    private final CharSequence context = null;
+    private final Long guildId = null;
+    private final CharSequence hostname = null;
+    private final CharSequence mediaSessionId = null;
     private final Long port = null;
     private final CharSequence protocol = null;
-    private final CharSequence sessionId = null;
-    private final CharSequence mediaSessionId = null;
-    private final Long connectTime = null;
     private final CharSequence rtcConnectionId = null;
-    private final Long channelId = null;
-    private final Long guildId = null;
-    private final CharSequence context = null;
-    private final Long connectCount = null;
-    private final CharSequence audioSubsystem = null;
-    private final CharSequence audioLayer = null;
-    private final CharSequence voiceBackendVersion = null;
     private final CharSequence rtcWorkerBackendVersion = null;
+    private final CharSequence sessionId = null;
+    private TrackBase trackBase;
+    private final CharSequence voiceBackendVersion = null;
     private final transient String analyticsSchemaTypeName = "voice_connection_success";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -43,6 +37,12 @@ public final /* data */ class TrackVoiceConnectionSuccess implements AnalyticsSc
         }
         TrackVoiceConnectionSuccess trackVoiceConnectionSuccess = (TrackVoiceConnectionSuccess) other;
         return C12238m.areEqual(this.hostname, trackVoiceConnectionSuccess.hostname) && C12238m.areEqual(this.cloudflareBestRegion, trackVoiceConnectionSuccess.cloudflareBestRegion) && C12238m.areEqual(this.port, trackVoiceConnectionSuccess.port) && C12238m.areEqual(this.protocol, trackVoiceConnectionSuccess.protocol) && C12238m.areEqual(this.sessionId, trackVoiceConnectionSuccess.sessionId) && C12238m.areEqual(this.mediaSessionId, trackVoiceConnectionSuccess.mediaSessionId) && C12238m.areEqual(this.connectTime, trackVoiceConnectionSuccess.connectTime) && C12238m.areEqual(this.rtcConnectionId, trackVoiceConnectionSuccess.rtcConnectionId) && C12238m.areEqual(this.channelId, trackVoiceConnectionSuccess.channelId) && C12238m.areEqual(this.guildId, trackVoiceConnectionSuccess.guildId) && C12238m.areEqual(this.context, trackVoiceConnectionSuccess.context) && C12238m.areEqual(this.connectCount, trackVoiceConnectionSuccess.connectCount) && C12238m.areEqual(this.audioSubsystem, trackVoiceConnectionSuccess.audioSubsystem) && C12238m.areEqual(this.audioLayer, trackVoiceConnectionSuccess.audioLayer) && C12238m.areEqual(this.voiceBackendVersion, trackVoiceConnectionSuccess.voiceBackendVersion) && C12238m.areEqual(this.rtcWorkerBackendVersion, trackVoiceConnectionSuccess.rtcWorkerBackendVersion);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

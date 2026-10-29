@@ -79,77 +79,9 @@ public final class WidgetChoosePlan extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, ActivityResultLauncher<Intent> launcher, ViewType viewType, String oldSkuName, Traits.Location locationTrait, Traits.Subscription subscriptionTrait) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(viewType, "viewType");
-            C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-            if (BlockRussianPurchasesUtils.INSTANCE.getINSTANCE().showDialog()) {
-                return;
-            }
-            Intent intent = new Intent();
-            intent.putExtra(WidgetChoosePlan.RESULT_EXTRA_OLD_SKU_NAME, oldSkuName);
-            intent.putExtra(WidgetChoosePlan.RESULT_EXTRA_LOCATION_TRAIT, locationTrait);
-            intent.putExtra(WidgetChoosePlan.RESULT_VIEW_TYPE, viewType);
-            AnalyticsTracker.paymentFlowStarted$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionTrait, null, null, 12, null);
-            if (launcher != null) {
-                C0870j.f524g.m160f(context, launcher, WidgetChoosePlan.class, intent);
-            } else {
-                C0870j.m156d(context, WidgetChoosePlan.class, intent);
-            }
-        }
-
-        public final ActivityResultLauncher<Intent> registerForResult(AppFragment fragment, final Function0<Unit> callback) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            C12238m.checkNotNullParameter(callback, "callback");
-            ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() { // from class: com.discord.widgets.settings.premium.WidgetChoosePlan$Companion$registerForResult$1
-                @Override // androidx.activity.result.ActivityResultCallback
-                public final void onActivityResult(ActivityResult activityResult) {
-                    C12238m.checkNotNullExpressionValue(activityResult, "activityResult");
-                    if (activityResult.getResultCode() == -1) {
-                        callback.invoke();
-                    }
-                }
-            });
-            C12238m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…k()\n          }\n        }");
-            return activityResultLauncherRegisterForActivityResult;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-    public enum ViewType {
-        BUY_PREMIUM_TIER_2,
-        BUY_PREMIUM_TIER_1,
-        BUY_PREMIUM_GUILD,
-        SWITCH_PLANS
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            GooglePlaySku.Type.values();
-            int[] iArr = new int[5];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[GooglePlaySku.Type.PREMIUM_TIER_1.ordinal()] = 1;
-            iArr[GooglePlaySku.Type.PREMIUM_TIER_2.ordinal()] = 2;
-            iArr[GooglePlaySku.Type.PREMIUM_TIER_1_AND_PREMIUM_GUILD.ordinal()] = 3;
-            iArr[GooglePlaySku.Type.PREMIUM_TIER_2_AND_PREMIUM_GUILD.ordinal()] = 4;
-            iArr[GooglePlaySku.Type.PREMIUM_GUILD.ordinal()] = 5;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-    public static final /* synthetic */ class C98911 extends C12236k implements Function1<ChoosePlanViewModel.Event, Unit> {
+    public final /* synthetic */ class C98911 extends C12236k implements Function1<ChoosePlanViewModel.Event, Unit> {
         public C98911(WidgetChoosePlan widgetChoosePlan) {
             super(1, widgetChoosePlan, WidgetChoosePlan.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/ChoosePlanViewModel$Event;)V", 0);
         }
@@ -169,7 +101,7 @@ public final class WidgetChoosePlan extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-    public static final /* synthetic */ class C98922 extends C12215a implements Function1<ChoosePlanViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C98922 extends C12215a implements Function1<ChoosePlanViewModel.ViewState, Unit> {
         public C98922(WidgetChoosePlan widgetChoosePlan) {
             super(1, widgetChoosePlan, WidgetChoosePlan.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/premium/ChoosePlanViewModel$ViewState;)Lkotlin/Unit;", 8);
         }
@@ -189,12 +121,12 @@ public final class WidgetChoosePlan extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2 */
     /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-    public static final class C98932 extends AbstractC12240o implements Function3<GooglePlaySku, String, SkuDetails, Unit> {
+    public final class C98932 extends AbstractC12240o implements Function3<GooglePlaySku, String, SkuDetails, Unit> {
         public final /* synthetic */ Traits.Location $locationTrait;
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ String $oldSkuName;
             public final /* synthetic */ GooglePlaySku $sku;
 
@@ -219,7 +151,7 @@ public final class WidgetChoosePlan extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ String $oldSkuName;
             public final /* synthetic */ GooglePlaySku $sku;
 
@@ -246,7 +178,7 @@ public final class WidgetChoosePlan extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2$3, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ String $oldSkuName;
             public final /* synthetic */ GooglePlaySku $sku;
 
@@ -271,7 +203,7 @@ public final class WidgetChoosePlan extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2$4, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ String $oldSkuName;
             public final /* synthetic */ GooglePlaySku $sku;
 
@@ -298,7 +230,7 @@ public final class WidgetChoosePlan extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetChoosePlan$setUpRecycler$2$5, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChoosePlan.kt */
-        public static final class AnonymousClass5 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass5 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass5() {
                 super(0);
             }
@@ -384,6 +316,74 @@ public final class WidgetChoosePlan extends AppFragment {
             bundle.putBoolean("ARG_IS_TIER_1", z2);
             c0810b.setArguments(bundle);
             c0810b.show(parentFragmentManager2, C0810b.class.getSimpleName());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChoosePlan.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, ActivityResultLauncher<Intent> launcher, ViewType viewType, String oldSkuName, Traits.Location locationTrait, Traits.Subscription subscriptionTrait) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(viewType, "viewType");
+            C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+            if (BlockRussianPurchasesUtils.INSTANCE.getINSTANCE().showDialog()) {
+                return;
+            }
+            Intent intent = new Intent();
+            intent.putExtra(WidgetChoosePlan.RESULT_EXTRA_OLD_SKU_NAME, oldSkuName);
+            intent.putExtra(WidgetChoosePlan.RESULT_EXTRA_LOCATION_TRAIT, locationTrait);
+            intent.putExtra(WidgetChoosePlan.RESULT_VIEW_TYPE, viewType);
+            AnalyticsTracker.paymentFlowStarted$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionTrait, null, null, 12, null);
+            if (launcher != null) {
+                C0870j.f524g.m160f(context, launcher, WidgetChoosePlan.class, intent);
+            } else {
+                C0870j.m156d(context, WidgetChoosePlan.class, intent);
+            }
+        }
+
+        public final ActivityResultLauncher<Intent> registerForResult(AppFragment fragment, final Function0<Unit> callback) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            C12238m.checkNotNullParameter(callback, "callback");
+            ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() { // from class: com.discord.widgets.settings.premium.WidgetChoosePlan$Companion$registerForResult$1
+                @Override // androidx.activity.result.ActivityResultCallback
+                public final void onActivityResult(ActivityResult activityResult) {
+                    C12238m.checkNotNullExpressionValue(activityResult, "activityResult");
+                    if (activityResult.getResultCode() == -1) {
+                        callback.invoke();
+                    }
+                }
+            });
+            C12238m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…k()\n          }\n        }");
+            return activityResultLauncherRegisterForActivityResult;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChoosePlan.kt */
+    public enum ViewType {
+        BUY_PREMIUM_TIER_2,
+        BUY_PREMIUM_TIER_1,
+        BUY_PREMIUM_GUILD,
+        SWITCH_PLANS
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            GooglePlaySku.Type.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[GooglePlaySku.Type.PREMIUM_TIER_1.ordinal()] = 1;
+            iArr[GooglePlaySku.Type.PREMIUM_TIER_2.ordinal()] = 2;
+            iArr[GooglePlaySku.Type.PREMIUM_TIER_1_AND_PREMIUM_GUILD.ordinal()] = 3;
+            iArr[GooglePlaySku.Type.PREMIUM_TIER_2_AND_PREMIUM_GUILD.ordinal()] = 4;
+            iArr[GooglePlaySku.Type.PREMIUM_GUILD.ordinal()] = 5;
         }
     }
 
@@ -484,6 +484,23 @@ public final class WidgetChoosePlan extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setUpRecycler();
+        LinkifiedTextView linkifiedTextView = getBinding().f16385c;
+        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.choosePlanEmptyDescription");
+        C1107b.m221m(linkifiedTextView, C5419R.string.premium_no_plans_body, new Object[]{C0862f.f507a.m149a(360055386693L, null)}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChoosePlan.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98911(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChoosePlan.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98922(this));
+    }
+
     private final void setUpRecycler() {
         RecyclerView recyclerView = getBinding().f16386d;
         C12238m.checkNotNullExpressionValue(recyclerView, "binding.choosePlanRecycler");
@@ -514,22 +531,5 @@ public final class WidgetChoosePlan extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("adapter");
         }
         recyclerView4.setAdapter(widgetChoosePlanAdapter2);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setUpRecycler();
-        LinkifiedTextView linkifiedTextView = getBinding().f16385c;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.choosePlanEmptyDescription");
-        C1107b.m221m(linkifiedTextView, C5419R.string.premium_no_plans_body, new Object[]{C0862f.f507a.m149a(360055386693L, null)}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChoosePlan.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98911(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChoosePlan.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98922(this));
     }
 }

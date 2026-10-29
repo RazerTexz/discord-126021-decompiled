@@ -30,7 +30,7 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.billing.SettingsBillingViewModel$2 */
     /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-    public static final class C98052 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C98052 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C98052() {
             super(1);
         }
@@ -49,7 +49,7 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StorePaymentSources.PaymentSourcesState paymentSourceState;
         private final StoreSubscriptions.SubscriptionsState subscriptionsState;
 
@@ -70,16 +70,6 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(paymentSourcesState, subscriptionsState);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StorePaymentSources.PaymentSourcesState getPaymentSourceState() {
-            return this.paymentSourceState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
-            return this.subscriptionsState;
-        }
-
         public final StoreState copy(StorePaymentSources.PaymentSourcesState paymentSourceState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
             C12238m.checkNotNullParameter(paymentSourceState, "paymentSourceState");
             C12238m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
@@ -97,8 +87,18 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.paymentSourceState, storeState.paymentSourceState) && C12238m.areEqual(this.subscriptionsState, storeState.subscriptionsState);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final StorePaymentSources.PaymentSourcesState getPaymentSourceState() {
             return this.paymentSourceState;
+        }
+
+        public final StorePaymentSources.PaymentSourcesState getPaymentSourceState() {
+            return this.paymentSourceState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
         }
 
         public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
@@ -123,10 +123,10 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-        public static final class Failure extends ViewState {
+        public final class Failure extends ViewState {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -135,7 +135,7 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<PaymentSourceAdapter.Item> paymentSourceItems;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -146,16 +146,16 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
                 this.paymentSourceItems = list;
             }
 
+            public final List<PaymentSourceAdapter.Item> component1() {
+                return this.paymentSourceItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.paymentSourceItems;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<PaymentSourceAdapter.Item> component1() {
-                return this.paymentSourceItems;
             }
 
             public final Loaded copy(List<? extends PaymentSourceAdapter.Item> paymentSourceItems) {
@@ -188,7 +188,7 @@ public final class SettingsBillingViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {

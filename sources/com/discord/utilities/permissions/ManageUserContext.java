@@ -29,7 +29,7 @@ public final /* data */ class ManageUserContext {
     private final boolean canTransferOwnership;
 
     /* JADX INFO: compiled from: PermissionsContexts.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -72,57 +72,8 @@ public final /* data */ class ManageUserContext {
         this.canTransferOwnership = z10;
     }
 
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    private final boolean getCanTransferOwnership() {
-        return this.canTransferOwnership;
-    }
-
-    public static final ManageUserContext from(Guild guild, MeUser meUser, User user, Collection<Long> collection, Collection<Long> collection2, Long l, Map<Long, GuildRole> map) {
-        return INSTANCE.from(guild, meUser, user, collection, collection2, l, map);
-    }
-
     public final boolean canManage() {
         return this.canManageRoles || this.canKick || this.canBan || this.canMute || this.canDeafen || this.canMove || this.canChangeNickname || this.canTransferOwnership;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getCanManageRoles() {
-        return this.canManageRoles;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanKick() {
-        return this.canKick;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanBan() {
-        return this.canBan;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getCanMute() {
-        return this.canMute;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanDeafen() {
-        return this.canDeafen;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getCanMove() {
-        return this.canMove;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getCanChangeNickname() {
-        return this.canChangeNickname;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getCanDisableCommunication() {
-        return this.canDisableCommunication;
     }
 
     public final ManageUserContext copy(boolean canManageRoles, boolean canKick, boolean canBan, boolean canMute, boolean canDeafen, boolean canMove, boolean canChangeNickname, boolean canDisableCommunication, boolean canTransferOwnership) {
@@ -140,36 +91,85 @@ public final /* data */ class ManageUserContext {
         return this.canManageRoles == manageUserContext.canManageRoles && this.canKick == manageUserContext.canKick && this.canBan == manageUserContext.canBan && this.canMute == manageUserContext.canMute && this.canDeafen == manageUserContext.canDeafen && this.canMove == manageUserContext.canMove && this.canChangeNickname == manageUserContext.canChangeNickname && this.canDisableCommunication == manageUserContext.canDisableCommunication && this.canTransferOwnership == manageUserContext.canTransferOwnership;
     }
 
+    public static final ManageUserContext from(Guild guild, MeUser meUser, User user, Collection<Long> collection, Collection<Long> collection2, Long l, Map<Long, GuildRole> map) {
+        return INSTANCE.from(guild, meUser, user, collection, collection2, l, map);
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getCanBan() {
         return this.canBan;
+    }
+
+    public final boolean getCanBan() {
+        return this.canBan;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getCanChangeNickname() {
+        return this.canChangeNickname;
     }
 
     public final boolean getCanChangeNickname() {
         return this.canChangeNickname;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanDeafen() {
         return this.canDeafen;
+    }
+
+    public final boolean getCanDeafen() {
+        return this.canDeafen;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getCanDisableCommunication() {
+        return this.canDisableCommunication;
     }
 
     public final boolean getCanDisableCommunication() {
         return this.canDisableCommunication;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getCanKick() {
         return this.canKick;
+    }
+
+    public final boolean getCanKick() {
+        return this.canKick;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getCanManageRoles() {
+        return this.canManageRoles;
     }
 
     public final boolean getCanManageRoles() {
         return this.canManageRoles;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getCanMove() {
         return this.canMove;
     }
 
+    public final boolean getCanMove() {
+        return this.canMove;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getCanMute() {
         return this.canMute;
+    }
+
+    public final boolean getCanMute() {
+        return this.canMute;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    private final boolean getCanTransferOwnership() {
+        return this.canTransferOwnership;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

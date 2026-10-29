@@ -91,6 +91,10 @@ public class C12259g extends View implements InterfaceC12258f {
         this.f25346u = integer2;
     }
 
+    public Rect getFramingRect() {
+        return this.f25336k;
+    }
+
     /* JADX INFO: renamed from: a */
     public synchronized void m10100a() {
         int width;
@@ -118,10 +122,6 @@ public class C12259g extends View implements InterfaceC12258f {
         int i2 = (point.y - height) / 2;
         int i3 = this.f25349x;
         this.f25336k = new Rect(i + i3, i2 + i3, (i + width) - i3, (i2 + height) - i3);
-    }
-
-    public Rect getFramingRect() {
-        return this.f25336k;
     }
 
     @Override // android.view.View

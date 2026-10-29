@@ -25,7 +25,7 @@ public abstract class EmojiCategoryViewHolder extends RecyclerView.ViewHolder {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: EmojiCategoryViewHolder.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -87,7 +87,7 @@ public abstract class EmojiCategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: EmojiCategoryViewHolder.kt */
-    public static final class Guild extends EmojiCategoryViewHolder {
+    public final class Guild extends EmojiCategoryViewHolder {
         private final EmojiCategoryItemGuildBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -119,7 +119,7 @@ public abstract class EmojiCategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: EmojiCategoryViewHolder.kt */
-    public static final class Standard extends EmojiCategoryViewHolder {
+    public final class Standard extends EmojiCategoryViewHolder {
         private final EmojiCategoryItemStandardBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */

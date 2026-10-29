@@ -36,7 +36,7 @@ public class PostCompilerApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/bytecode/PostCompilerApp$CmdArgs.SCL.lombok */
-    public static class CmdArgs {
+    public class CmdArgs {
 
         @Mandatory
         @Description("paths to class files to be converted. If a directory is named, all files (recursively) in that directory will be converted.")

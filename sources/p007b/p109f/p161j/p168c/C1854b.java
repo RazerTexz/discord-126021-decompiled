@@ -58,18 +58,6 @@ public class C1854b implements CacheKey {
     }
 
     @Override // com.facebook.cache.common.CacheKey
-    /* JADX INFO: renamed from: a */
-    public boolean mo929a() {
-        return false;
-    }
-
-    @Override // com.facebook.cache.common.CacheKey
-    /* JADX INFO: renamed from: b */
-    public String mo930b() {
-        return this.f3648a;
-    }
-
-    @Override // com.facebook.cache.common.CacheKey
     public boolean equals(Object obj) {
         if (!(obj instanceof C1854b)) {
             return false;
@@ -81,6 +69,18 @@ public class C1854b implements CacheKey {
     @Override // com.facebook.cache.common.CacheKey
     public int hashCode() {
         return this.f3654g;
+    }
+
+    @Override // com.facebook.cache.common.CacheKey
+    /* JADX INFO: renamed from: a */
+    public boolean mo929a() {
+        return false;
+    }
+
+    @Override // com.facebook.cache.common.CacheKey
+    /* JADX INFO: renamed from: b */
+    public String mo930b() {
+        return this.f3648a;
     }
 
     public String toString() {

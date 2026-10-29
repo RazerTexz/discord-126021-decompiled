@@ -39,7 +39,7 @@ public final class C11763b implements InterfaceC11770i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.b$a */
     /* JADX INFO: compiled from: ChainedMemberScope.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

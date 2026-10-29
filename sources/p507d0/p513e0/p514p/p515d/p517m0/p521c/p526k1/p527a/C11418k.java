@@ -41,7 +41,7 @@ public final class C11418k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.a.k$a */
     /* JADX INFO: compiled from: RuntimeModuleData.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

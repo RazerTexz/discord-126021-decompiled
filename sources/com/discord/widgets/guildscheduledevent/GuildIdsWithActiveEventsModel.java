@@ -26,12 +26,12 @@ public final class GuildIdsWithActiveEventsModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildIdsWithActiveEventsModel$observe$1 */
     /* JADX INFO: compiled from: GuildIdsWithActiveEventsModel.kt */
-    public static final class C88091 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C88091 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public final /* synthetic */ StoreGuildScheduledEvents $storeGuildScheduledEvents;
 
         /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildIdsWithActiveEventsModel$observe$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: GuildIdsWithActiveEventsModel.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends List<? extends GuildScheduledEvent>>, Boolean> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends List<? extends GuildScheduledEvent>>, Boolean> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -61,7 +61,7 @@ public final class GuildIdsWithActiveEventsModel {
 
         /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildIdsWithActiveEventsModel$observe$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: GuildIdsWithActiveEventsModel.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends List<? extends GuildScheduledEvent>>, Long> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends List<? extends GuildScheduledEvent>>, Long> {
             public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
             public AnonymousClass2() {

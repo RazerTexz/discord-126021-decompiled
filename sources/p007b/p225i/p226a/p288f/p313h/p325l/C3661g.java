@@ -109,7 +109,7 @@ public class C3661g {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.g$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
-    public class b implements Application.ActivityLifecycleCallbacks {
+    public final class b implements Application.ActivityLifecycleCallbacks {
         public b() {
         }
 
@@ -163,7 +163,7 @@ public class C3661g {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.g$c */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
-    public static class c extends AbstractBinderC3591b {
+    public final class c extends AbstractBinderC3591b {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC4258z5 f9961a;

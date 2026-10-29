@@ -67,16 +67,16 @@ public final class GuildUtilsKt {
         return (channel == null || !ChannelUtils.m7669D(channel)) ? getMaxVoiceBitrateKbps(guild.getPremiumTier(), guild.getFeatures().contains(GuildFeature.VIP_REGIONS)) : Bitrate.DEFAULT.getKbps();
     }
 
-    public static final boolean isFullyGatedGuildRoleSubscriptionGuild(com.discord.models.guild.Guild guild, GuildRole guildRole) {
-        C12238m.checkNotNullParameter(guild, "$this$isFullyGatedGuildRoleSubscriptionGuild");
-        return guild.hasFeature(GuildFeature.ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE) && !PermissionUtils.INSTANCE.canRole(Permission.VIEW_CHANNEL, guildRole, null);
-    }
-
     public static /* synthetic */ boolean isFullyGatedGuildRoleSubscriptionGuild$default(com.discord.models.guild.Guild guild, GuildRole guildRole, int i, Object obj) {
         if ((i & 1) != 0) {
             guildRole = getGuildRole(Long.valueOf(guild.getId()));
         }
         return isFullyGatedGuildRoleSubscriptionGuild(guild, guildRole);
+    }
+
+    public static final boolean isFullyGatedGuildRoleSubscriptionGuild(com.discord.models.guild.Guild guild, GuildRole guildRole) {
+        C12238m.checkNotNullParameter(guild, "$this$isFullyGatedGuildRoleSubscriptionGuild");
+        return guild.hasFeature(GuildFeature.ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE) && !PermissionUtils.INSTANCE.canRole(Permission.VIEW_CHANNEL, guildRole, null);
     }
 
     public static final int getMaxVoiceBitrateKbps(int i, boolean z2) {

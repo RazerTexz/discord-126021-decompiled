@@ -14,11 +14,6 @@ public final /* data */ class ImageAsset {
     private final Integer size;
     private final Integer width;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +23,11 @@ public final /* data */ class ImageAsset {
         }
         ImageAsset imageAsset = (ImageAsset) other;
         return this.id == imageAsset.id && C12238m.areEqual(this.size, imageAsset.size) && C12238m.areEqual(this.mimeType, imageAsset.mimeType) && C12238m.areEqual(this.filename, imageAsset.filename) && C12238m.areEqual(this.width, imageAsset.width) && C12238m.areEqual(this.height, imageAsset.height);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public int hashCode() {

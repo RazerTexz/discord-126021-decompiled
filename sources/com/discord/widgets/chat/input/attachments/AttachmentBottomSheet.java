@@ -67,8 +67,27 @@ public final class AttachmentBottomSheet extends AppBottomSheet {
     private Function0<Unit> onFileRemoved;
     private Function1<? super Boolean, Unit> onMarkSpoiler;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.attachments.AttachmentBottomSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: AttachmentBottomSheet.kt */
-    public static final class Companion {
+    public final class C77591 extends AbstractC12240o implements Function4<Integer, Integer, Integer, Integer, Unit> {
+        public C77591() {
+            super(4);
+        }
+
+        @Override // kotlin.jvm.functions.Function4
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2, Integer num3, Integer num4) {
+            invoke(num.intValue(), num2.intValue(), num3.intValue(), num4.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i, int i2, int i3, int i4) {
+            AttachmentBottomSheet.this.setAttachmentViewSize(Integer.valueOf(i));
+            AttachmentBottomSheet.this.updateSpoilerViewSize();
+        }
+    }
+
+    /* JADX INFO: compiled from: AttachmentBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -97,25 +116,6 @@ public final class AttachmentBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.attachments.AttachmentBottomSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: AttachmentBottomSheet.kt */
-    public static final class C77591 extends AbstractC12240o implements Function4<Integer, Integer, Integer, Integer, Unit> {
-        public C77591() {
-            super(4);
-        }
-
-        @Override // kotlin.jvm.functions.Function4
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2, Integer num3, Integer num4) {
-            invoke(num.intValue(), num2.intValue(), num3.intValue(), num4.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i, int i2, int i3, int i4) {
-            AttachmentBottomSheet.this.setAttachmentViewSize(Integer.valueOf(i));
-            AttachmentBottomSheet.this.updateSpoilerViewSize();
         }
     }
 
@@ -168,10 +168,6 @@ public final class AttachmentBottomSheet extends AppBottomSheet {
         };
     }
 
-    private final WidgetAttachmentBottomSheetBinding getBinding() {
-        return (WidgetAttachmentBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
     public final Attachment<Object> getAttachment() {
         return this.attachment;
     }
@@ -182,6 +178,10 @@ public final class AttachmentBottomSheet extends AppBottomSheet {
 
     public final Integer getAttachmentViewSize() {
         return this.attachmentViewSize;
+    }
+
+    private final WidgetAttachmentBottomSheetBinding getBinding() {
+        return (WidgetAttachmentBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     @Override // com.discord.app.AppBottomSheet

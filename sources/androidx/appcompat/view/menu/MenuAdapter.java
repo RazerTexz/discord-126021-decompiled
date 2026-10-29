@@ -11,11 +11,11 @@ import java.util.ArrayList;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class MenuAdapter extends BaseAdapter {
     public MenuBuilder mAdapterMenu;
-    private int mExpandedIndex = -1;
     private boolean mForceShowIcon;
     private final LayoutInflater mInflater;
     private final int mItemLayoutRes;
     private final boolean mOverflowOnly;
+    private int mExpandedIndex = -1;
 
     public MenuAdapter(MenuBuilder menuBuilder, LayoutInflater layoutInflater, boolean z2, int i) {
         this.mOverflowOnly = z2;

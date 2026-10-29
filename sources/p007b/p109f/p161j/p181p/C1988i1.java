@@ -53,6 +53,20 @@ public class C1988i1<T> implements InterfaceC2018w0<T> {
             super(interfaceC1995l);
         }
 
+        /* JADX INFO: renamed from: n */
+        public final void m1479n() {
+            Pair<InterfaceC1995l<T>, InterfaceC2020x0> pairPoll;
+            synchronized (C1988i1.this) {
+                pairPoll = C1988i1.this.f4084c.poll();
+                if (pairPoll == null) {
+                    C1988i1.this.f4083b--;
+                }
+            }
+            if (pairPoll != null) {
+                C1988i1.this.f4085d.execute(new a(pairPoll));
+            }
+        }
+
         @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
         /* JADX INFO: renamed from: g */
         public void mo1318g() {
@@ -98,20 +112,6 @@ public class C1988i1<T> implements InterfaceC2018w0<T> {
                 return
             */
             throw new UnsupportedOperationException("Method not decompiled: p007b.p109f.p161j.p181p.C1988i1.b.mo1320i(java.lang.Object, int):void");
-        }
-
-        /* JADX INFO: renamed from: n */
-        public final void m1479n() {
-            Pair<InterfaceC1995l<T>, InterfaceC2020x0> pairPoll;
-            synchronized (C1988i1.this) {
-                pairPoll = C1988i1.this.f4084c.poll();
-                if (pairPoll == null) {
-                    C1988i1.this.f4083b--;
-                }
-            }
-            if (pairPoll != null) {
-                C1988i1.this.f4085d.execute(new a(pairPoll));
-            }
         }
     }
 

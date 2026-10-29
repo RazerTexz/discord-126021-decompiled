@@ -22,11 +22,6 @@ import p507d0.C11227e;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class FirebaseCommonRegistrar implements InterfaceC4575g {
-    /* JADX INFO: renamed from: a */
-    public static String m9175a(String str) {
-        return str.replace(' ', '_').replace(MentionUtilsKt.SLASH_CHAR, '_');
-    }
-
     @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
     public List<C4572d<?>> getComponents() {
         String string;
@@ -119,5 +114,10 @@ public class FirebaseCommonRegistrar implements InterfaceC4575g {
             arrayList.add(C3404f.m4228N("kotlin", string));
         }
         return arrayList;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static String m9175a(String str) {
+        return str.replace(' ', '_').replace(MentionUtilsKt.SLASH_CHAR, '_');
     }
 }

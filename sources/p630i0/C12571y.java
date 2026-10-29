@@ -18,9 +18,6 @@ import p600f0.InterfaceC12269e;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12571y {
 
-    /* JADX INFO: renamed from: a */
-    public final Map<Method, AbstractC12572z<?>> f26673a = new ConcurrentHashMap();
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC12269e.a f26674b;
 
@@ -38,6 +35,9 @@ public final class C12571y {
 
     /* JADX INFO: renamed from: g */
     public final boolean f26679g;
+
+    /* JADX INFO: renamed from: a */
+    public final Map<Method, AbstractC12572z<?>> f26673a = new ConcurrentHashMap();
 
     public C12571y(InterfaceC12269e.a aVar, C12379w c12379w, List<InterfaceC12554h.a> list, List<InterfaceC12512e.a> list2, Executor executor, boolean z2) {
         this.f26674b = aVar;

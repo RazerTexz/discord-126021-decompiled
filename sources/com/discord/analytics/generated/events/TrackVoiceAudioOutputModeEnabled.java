@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceAudioOutputModeEnabled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceAudioOutputModeEnabled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long guildId = null;
-    private final CharSequence rtcConnectionId = null;
-    private final CharSequence mediaSessionId = null;
     private final CharSequence fromAudioOutputMode = null;
+    private final Long guildId = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence rtcConnectionId = null;
     private final CharSequence toAudioOutputMode = null;
+    private TrackBase trackBase;
     private final Long videoStreamCount = null;
     private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "voice_audio_output_mode_enabled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackVoiceAudioOutputModeEnabled implements Analyt
         }
         TrackVoiceAudioOutputModeEnabled trackVoiceAudioOutputModeEnabled = (TrackVoiceAudioOutputModeEnabled) other;
         return C12238m.areEqual(this.channelId, trackVoiceAudioOutputModeEnabled.channelId) && C12238m.areEqual(this.channelType, trackVoiceAudioOutputModeEnabled.channelType) && C12238m.areEqual(this.guildId, trackVoiceAudioOutputModeEnabled.guildId) && C12238m.areEqual(this.rtcConnectionId, trackVoiceAudioOutputModeEnabled.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVoiceAudioOutputModeEnabled.mediaSessionId) && C12238m.areEqual(this.fromAudioOutputMode, trackVoiceAudioOutputModeEnabled.fromAudioOutputMode) && C12238m.areEqual(this.toAudioOutputMode, trackVoiceAudioOutputModeEnabled.toAudioOutputMode) && C12238m.areEqual(this.videoStreamCount, trackVoiceAudioOutputModeEnabled.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVoiceAudioOutputModeEnabled.voiceStateCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayAttached.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long attachStatus = null;
     private final CharSequence overlaySession = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "overlay_attached";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, T
         }
         TrackOverlayAttached trackOverlayAttached = (TrackOverlayAttached) other;
         return C12238m.areEqual(this.attachStatus, trackOverlayAttached.attachStatus) && C12238m.areEqual(this.overlaySession, trackOverlayAttached.overlaySession);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

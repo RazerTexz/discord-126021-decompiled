@@ -102,46 +102,18 @@ public final class C2589m extends AbstractC2951v0 implements Handler.Callback {
         this.f5811I = -9223372036854775807L;
     }
 
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: B */
-    public void mo2621B() {
-        this.f5805C = null;
-        this.f5811I = -9223372036854775807L;
-        m2624J();
-        m2628N();
-        InterfaceC2584h interfaceC2584h = this.f5806D;
-        Objects.requireNonNull(interfaceC2584h);
-        interfaceC2584h.release();
-        this.f5806D = null;
-        this.f5804B = 0;
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    public String getName() {
+        return "TextRenderer";
     }
 
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: D */
-    public void mo2622D(long j, boolean z2) {
-        m2624J();
-        this.f5816y = false;
-        this.f5817z = false;
-        this.f5811I = -9223372036854775807L;
-        if (this.f5804B != 0) {
-            m2629O();
-            return;
+    @Override // android.os.Handler.Callback
+    public boolean handleMessage(Message message) {
+        if (message.what != 0) {
+            throw new IllegalStateException();
         }
-        m2628N();
-        InterfaceC2584h interfaceC2584h = this.f5806D;
-        Objects.requireNonNull(interfaceC2584h);
-        interfaceC2584h.flush();
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: H */
-    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) {
-        this.f5805C = c2811j1Arr[0];
-        if (this.f5806D != null) {
-            this.f5804B = 1;
-        } else {
-            m2627M();
-        }
+        this.f5813v.mo2620e((List) message.obj);
+        return true;
     }
 
     /* JADX INFO: renamed from: J */
@@ -355,6 +327,48 @@ public final class C2589m extends AbstractC2951v0 implements Handler.Callback {
         m2627M();
     }
 
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: B */
+    public void mo2621B() {
+        this.f5805C = null;
+        this.f5811I = -9223372036854775807L;
+        m2624J();
+        m2628N();
+        InterfaceC2584h interfaceC2584h = this.f5806D;
+        Objects.requireNonNull(interfaceC2584h);
+        interfaceC2584h.release();
+        this.f5806D = null;
+        this.f5804B = 0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: D */
+    public void mo2622D(long j, boolean z2) {
+        m2624J();
+        this.f5816y = false;
+        this.f5817z = false;
+        this.f5811I = -9223372036854775807L;
+        if (this.f5804B != 0) {
+            m2629O();
+            return;
+        }
+        m2628N();
+        InterfaceC2584h interfaceC2584h = this.f5806D;
+        Objects.requireNonNull(interfaceC2584h);
+        interfaceC2584h.flush();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: H */
+    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) {
+        this.f5805C = c2811j1Arr[0];
+        if (this.f5806D != null) {
+            this.f5804B = 1;
+        } else {
+            m2627M();
+        }
+    }
+
     @Override // p007b.p225i.p226a.p242c.InterfaceC2763g2
     /* JADX INFO: renamed from: a */
     public int mo2630a(C2811j1 c2811j1) {
@@ -375,20 +389,6 @@ public final class C2589m extends AbstractC2951v0 implements Handler.Callback {
     @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
     /* JADX INFO: renamed from: d */
     public boolean mo2632d() {
-        return true;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    public String getName() {
-        return "TextRenderer";
-    }
-
-    @Override // android.os.Handler.Callback
-    public boolean handleMessage(Message message) {
-        if (message.what != 0) {
-            throw new IllegalStateException();
-        }
-        this.f5813v.mo2620e((List) message.obj);
         return true;
     }
 

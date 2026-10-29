@@ -29,12 +29,12 @@ public final class Application implements Serializable {
         return this.icon;
     }
 
+    public final long getId() {
+        return this.id;
+    }
+
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public final long getId() {
-        return this.id;
     }
 }

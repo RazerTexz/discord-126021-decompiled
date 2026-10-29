@@ -11,16 +11,6 @@ public final /* data */ class ForumUnreads {
     private final boolean permissionDenied;
     private final List<ForumUnread> threads;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final boolean getPermissionDenied() {
-        return this.permissionDenied;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<ForumUnread> m7825b() {
-        return this.threads;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,11 @@ public final /* data */ class ForumUnreads {
         }
         ForumUnreads forumUnreads = (ForumUnreads) other;
         return this.channelId == forumUnreads.channelId && this.permissionDenied == forumUnreads.permissionDenied && C12238m.areEqual(this.threads, forumUnreads.threads);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final boolean getPermissionDenied() {
+        return this.permissionDenied;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -48,6 +43,11 @@ public final /* data */ class ForumUnreads {
         int i2 = (i + r0) * 31;
         List<ForumUnread> list = this.threads;
         return i2 + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<ForumUnread> m7825b() {
+        return this.threads;
     }
 
     public String toString() {

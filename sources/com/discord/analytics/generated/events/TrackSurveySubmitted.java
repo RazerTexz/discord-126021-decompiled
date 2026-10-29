@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSurveySubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSurveySubmitted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence surveyType = null;
-    private final CharSequence question1 = null;
     private final CharSequence answer1 = null;
-    private final Boolean isOther1 = null;
-    private final CharSequence question2 = null;
     private final CharSequence answer2 = null;
+    private final Boolean isOther1 = null;
     private final Boolean isOther2 = null;
+    private final CharSequence question1 = null;
+    private final CharSequence question2 = null;
+    private final CharSequence surveyType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "survey_submitted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackSurveySubmitted implements AnalyticsSchema, T
         }
         TrackSurveySubmitted trackSurveySubmitted = (TrackSurveySubmitted) other;
         return C12238m.areEqual(this.surveyType, trackSurveySubmitted.surveyType) && C12238m.areEqual(this.question1, trackSurveySubmitted.question1) && C12238m.areEqual(this.answer1, trackSurveySubmitted.answer1) && C12238m.areEqual(this.isOther1, trackSurveySubmitted.isOther1) && C12238m.areEqual(this.question2, trackSurveySubmitted.question2) && C12238m.areEqual(this.answer2, trackSurveySubmitted.answer2) && C12238m.areEqual(this.isOther2, trackSurveySubmitted.isOther2);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

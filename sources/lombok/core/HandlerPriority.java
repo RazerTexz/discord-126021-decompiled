@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandlerPriority {
-    int value();
-
     int subValue() default 0;
+
+    int value();
 }

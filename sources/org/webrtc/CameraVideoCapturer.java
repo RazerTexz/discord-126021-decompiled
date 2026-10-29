@@ -19,7 +19,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
         void onFirstFrameAvailable();
     }
 
-    public static class CameraStatistics {
+    public class CameraStatistics {
         private static final int CAMERA_FREEZE_REPORT_TIMOUT_MS = 4000;
         private static final int CAMERA_OBSERVER_PERIOD_MS = 2000;
         private static final String TAG = "CameraStatistics";
@@ -70,15 +70,15 @@ public interface CameraVideoCapturer extends VideoCapturer {
             return i;
         }
 
+        public void addFrame() {
+            checkThread();
+            this.frameCount++;
+        }
+
         private void checkThread() {
             if (Thread.currentThread() != this.surfaceTextureHelper.getHandler().getLooper().getThread()) {
                 throw new IllegalStateException("Wrong thread");
             }
-        }
-
-        public void addFrame() {
-            checkThread();
-            this.frameCount++;
         }
 
         public void release() {

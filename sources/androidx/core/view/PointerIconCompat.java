@@ -42,16 +42,16 @@ public final class PointerIconCompat {
         return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.create(bitmap, f, f2)) : new PointerIconCompat(null);
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public Object getPointerIcon() {
+        return this.mPointerIcon;
+    }
+
     public static PointerIconCompat getSystemIcon(Context context, int i) {
         return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.getSystemIcon(context, i)) : new PointerIconCompat(null);
     }
 
     public static PointerIconCompat load(Resources resources, int i) {
         return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.load(resources, i)) : new PointerIconCompat(null);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public Object getPointerIcon() {
-        return this.mPointerIcon;
     }
 }

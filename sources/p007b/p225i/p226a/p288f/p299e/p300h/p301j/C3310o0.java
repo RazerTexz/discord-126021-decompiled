@@ -40,18 +40,18 @@ public final class C3310o0<A extends AbstractC3284d<? extends InterfaceC3273h, C
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
-    /* JADX INFO: renamed from: d */
-    public final void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
-        A a = this.f9437b;
-        c3328x0.f9464a.put(a, Boolean.valueOf(z2));
-        a.mo4051c(new C3332z0(c3328x0, a));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
     /* JADX INFO: renamed from: e */
     public final void mo4074e(@NonNull Exception exc) {
         String simpleName = exc.getClass().getSimpleName();
         String localizedMessage = exc.getLocalizedMessage();
         this.f9437b.mo4067a(new Status(10, C1643a.m859k(C1643a.m841b(localizedMessage, simpleName.length() + 2), simpleName, ": ", localizedMessage)));
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
+    /* JADX INFO: renamed from: d */
+    public final void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
+        A a = this.f9437b;
+        c3328x0.f9464a.put(a, Boolean.valueOf(z2));
+        a.mo4051c(new C3332z0(c3328x0, a));
     }
 }

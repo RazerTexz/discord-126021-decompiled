@@ -14,7 +14,7 @@ public interface InterfaceC2787x {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.x$a */
     /* JADX INFO: compiled from: VideoRendererEventListener.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         @Nullable

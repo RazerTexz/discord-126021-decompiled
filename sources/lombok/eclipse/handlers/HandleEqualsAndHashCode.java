@@ -59,17 +59,17 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleEqualsAndHashCode.SCL.lombok */
 public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndHashCode> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
     private static final String HASH_CODE_CACHE_NAME = "$hashCodeCache";
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27469xb87c1847;
     private final char[] HASH_CODE_CACHE_NAME_ARR = HASH_CODE_CACHE_NAME.toCharArray();
     private final char[] PRIME = "PRIME".toCharArray();
     private final char[] RESULT = "result".toCharArray();
     public static final Set<String> BUILT_IN_TYPES = Collections.unmodifiableSet(new HashSet(Arrays.asList("byte", "short", "int", Constants.LONG, "char", "boolean", "double", "float")));
     private static final char[][] JAVAX_ANNOTATION_NULLABLE = Eclipse.fromQualifiedName("javax.annotation.Nullable");
     private static final char[][] ORG_ECLIPSE_JDT_ANNOTATION_NULLABLE = Eclipse.fromQualifiedName("org.eclipse.jdt.annotation.Nullable");
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27469xb87c1847;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType() {
         int[] iArr = $SWITCH_TABLE$lombok$core$configuration$CallSuperType;

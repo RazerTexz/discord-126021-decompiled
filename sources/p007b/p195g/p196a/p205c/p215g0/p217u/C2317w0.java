@@ -16,10 +16,10 @@ import p007b.p195g.p196a.p205c.p219i0.C2357s;
 /* JADX INFO: compiled from: UUIDSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2317w0 extends AbstractC2303p0<UUID> implements InterfaceC2240i {
+    public final Boolean _asBinary;
 
     /* JADX INFO: renamed from: k */
     public static final char[] f4870k = "0123456789abcdef".toCharArray();
-    public final Boolean _asBinary;
 
     public C2317w0() {
         super(UUID.class);
@@ -45,34 +45,6 @@ public class C2317w0 extends AbstractC2303p0<UUID> implements InterfaceC2240i {
         int i4 = i3 + 1;
         cArr[i4] = cArr2[(i >> 4) & 15];
         cArr[i4 + 1] = cArr2[i & 15];
-    }
-
-    /* JADX WARN: Code duplicated, block: B:10:0x001a  */
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        Boolean bool;
-        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
-        if (dVarM2074l == null) {
-            bool = null;
-        } else {
-            InterfaceC2081i.c cVarM1601e = dVarM2074l.m1601e();
-            if (cVarM1601e == InterfaceC2081i.c.BINARY) {
-                bool = Boolean.TRUE;
-            } else if (cVarM1601e == InterfaceC2081i.c.STRING) {
-                bool = Boolean.FALSE;
-            } else {
-                bool = null;
-            }
-        }
-        return !Objects.equals(bool, this._asBinary) ? new C2317w0(bool) : this;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        UUID uuid = (UUID) obj;
-        return uuid.getLeastSignificantBits() == 0 && uuid.getMostSignificantBits() == 0;
     }
 
     /* JADX WARN: Code duplicated, block: B:10:0x0019  */
@@ -124,6 +96,34 @@ public class C2317w0 extends AbstractC2303p0<UUID> implements InterfaceC2240i {
         m2089q(i3 >> 16, cArr, 28);
         m2089q(i3, cArr, 32);
         abstractC2108d.mo1659m0(cArr, 0, 36);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:10:0x001a  */
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        Boolean bool;
+        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
+        if (dVarM2074l == null) {
+            bool = null;
+        } else {
+            InterfaceC2081i.c cVarM1601e = dVarM2074l.m1601e();
+            if (cVarM1601e == InterfaceC2081i.c.BINARY) {
+                bool = Boolean.TRUE;
+            } else if (cVarM1601e == InterfaceC2081i.c.STRING) {
+                bool = Boolean.FALSE;
+            } else {
+                bool = null;
+            }
+        }
+        return !Objects.equals(bool, this._asBinary) ? new C2317w0(bool) : this;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        UUID uuid = (UUID) obj;
+        return uuid.getLeastSignificantBits() == 0 && uuid.getMostSignificantBits() == 0;
     }
 
     public C2317w0(Boolean bool) {

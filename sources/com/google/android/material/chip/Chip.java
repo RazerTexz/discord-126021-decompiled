@@ -272,192 +272,6 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         return iArr;
     }
 
-    private void ensureChipDrawableHasCallback() {
-        if (getBackgroundDrawable() == this.insetBackgroundDrawable && this.chipDrawable.getCallback() == null) {
-            this.chipDrawable.setCallback(this.insetBackgroundDrawable);
-        }
-    }
-
-    @NonNull
-    private RectF getCloseIconTouchBounds() {
-        this.rectF.setEmpty();
-        if (hasCloseIcon() && this.onCloseIconClickListener != null) {
-            this.chipDrawable.getCloseIconTouchBounds(this.rectF);
-        }
-        return this.rectF;
-    }
-
-    @NonNull
-    private Rect getCloseIconTouchBoundsInt() {
-        RectF closeIconTouchBounds = getCloseIconTouchBounds();
-        this.rect.set((int) closeIconTouchBounds.left, (int) closeIconTouchBounds.top, (int) closeIconTouchBounds.right, (int) closeIconTouchBounds.bottom);
-        return this.rect;
-    }
-
-    @Nullable
-    private TextAppearance getTextAppearance() {
-        ChipDrawable chipDrawable = this.chipDrawable;
-        if (chipDrawable != null) {
-            return chipDrawable.getTextAppearance();
-        }
-        return null;
-    }
-
-    @SuppressLint({"PrivateApi"})
-    private boolean handleAccessibilityExit(@NonNull MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 10) {
-            try {
-                Field declaredField = ExploreByTouchHelper.class.getDeclaredField("mHoveredVirtualViewId");
-                declaredField.setAccessible(true);
-                if (((Integer) declaredField.get(this.touchHelper)).intValue() != Integer.MIN_VALUE) {
-                    Method declaredMethod = ExploreByTouchHelper.class.getDeclaredMethod("updateHoveredVirtualView", Integer.TYPE);
-                    declaredMethod.setAccessible(true);
-                    declaredMethod.invoke(this.touchHelper, Integer.MIN_VALUE);
-                    return true;
-                }
-            } catch (IllegalAccessException e) {
-                Log.e(TAG, "Unable to send Accessibility Exit event", e);
-            } catch (NoSuchFieldException e2) {
-                Log.e(TAG, "Unable to send Accessibility Exit event", e2);
-            } catch (NoSuchMethodException e3) {
-                Log.e(TAG, "Unable to send Accessibility Exit event", e3);
-            } catch (InvocationTargetException e4) {
-                Log.e(TAG, "Unable to send Accessibility Exit event", e4);
-            }
-        }
-        return false;
-    }
-
-    private boolean hasCloseIcon() {
-        ChipDrawable chipDrawable = this.chipDrawable;
-        return (chipDrawable == null || chipDrawable.getCloseIcon() == null) ? false : true;
-    }
-
-    private void initMinTouchTarget(Context context, @Nullable AttributeSet attributeSet, int i) {
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.Chip, i, DEF_STYLE_RES, new int[0]);
-        this.ensureMinTouchTargetSize = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Chip_ensureMinTouchTargetSize, false);
-        this.minTouchTargetSize = (int) Math.ceil(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Chip_chipMinTouchTargetSize, (float) Math.ceil(ViewUtils.dpToPx(getContext(), 48))));
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private void initOutlineProvider() {
-        setOutlineProvider(new C10873b());
-    }
-
-    private void insetChipBackgroundDrawable(int i, int i2, int i3, int i4) {
-        this.insetBackgroundDrawable = new InsetDrawable((Drawable) this.chipDrawable, i, i2, i3, i4);
-    }
-
-    private void removeBackgroundInset() {
-        if (this.insetBackgroundDrawable != null) {
-            this.insetBackgroundDrawable = null;
-            setMinWidth(0);
-            setMinHeight((int) getChipMinHeight());
-            updateBackgroundDrawable();
-        }
-    }
-
-    private void setCloseIconHovered(boolean z2) {
-        if (this.closeIconHovered != z2) {
-            this.closeIconHovered = z2;
-            refreshDrawableState();
-        }
-    }
-
-    private void setCloseIconPressed(boolean z2) {
-        if (this.closeIconPressed != z2) {
-            this.closeIconPressed = z2;
-            refreshDrawableState();
-        }
-    }
-
-    private void unapplyChipDrawable(@Nullable ChipDrawable chipDrawable) {
-        if (chipDrawable != null) {
-            chipDrawable.setDelegate(null);
-        }
-    }
-
-    private void updateAccessibilityDelegate() {
-        if (hasCloseIcon() && isCloseIconVisible() && this.onCloseIconClickListener != null) {
-            ViewCompat.setAccessibilityDelegate(this, this.touchHelper);
-        } else {
-            ViewCompat.setAccessibilityDelegate(this, null);
-        }
-    }
-
-    private void updateBackgroundDrawable() {
-        if (RippleUtils.USE_FRAMEWORK_RIPPLE) {
-            updateFrameworkRippleBackground();
-            return;
-        }
-        this.chipDrawable.setUseCompatRipple(true);
-        ViewCompat.setBackground(this, getBackgroundDrawable());
-        updatePaddingInternal();
-        ensureChipDrawableHasCallback();
-    }
-
-    private void updateFrameworkRippleBackground() {
-        this.ripple = new RippleDrawable(RippleUtils.sanitizeRippleDrawableColor(this.chipDrawable.getRippleColor()), getBackgroundDrawable(), null);
-        this.chipDrawable.setUseCompatRipple(false);
-        ViewCompat.setBackground(this, this.ripple);
-        updatePaddingInternal();
-    }
-
-    private void updatePaddingInternal() {
-        ChipDrawable chipDrawable;
-        if (TextUtils.isEmpty(getText()) || (chipDrawable = this.chipDrawable) == null) {
-            return;
-        }
-        int iCalculateCloseIconWidth = (int) (this.chipDrawable.calculateCloseIconWidth() + this.chipDrawable.getTextEndPadding() + chipDrawable.getChipEndPadding());
-        int iCalculateChipIconWidth = (int) (this.chipDrawable.calculateChipIconWidth() + this.chipDrawable.getTextStartPadding() + this.chipDrawable.getChipStartPadding());
-        if (this.insetBackgroundDrawable != null) {
-            Rect rect = new Rect();
-            this.insetBackgroundDrawable.getPadding(rect);
-            iCalculateChipIconWidth += rect.left;
-            iCalculateCloseIconWidth += rect.right;
-        }
-        ViewCompat.setPaddingRelative(this, iCalculateChipIconWidth, getPaddingTop(), iCalculateCloseIconWidth, getPaddingBottom());
-    }
-
-    private void updateTextPaintDrawState() {
-        TextPaint paint = getPaint();
-        ChipDrawable chipDrawable = this.chipDrawable;
-        if (chipDrawable != null) {
-            paint.drawableState = chipDrawable.getState();
-        }
-        TextAppearance textAppearance = getTextAppearance();
-        if (textAppearance != null) {
-            textAppearance.updateDrawState(getContext(), paint, this.fontCallback);
-        }
-    }
-
-    private void validateAttributes(@Nullable AttributeSet attributeSet) {
-        if (attributeSet == null) {
-            return;
-        }
-        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "background") != null) {
-            Log.w(TAG, "Do not set the background; Chip manages its own background drawable.");
-        }
-        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableLeft") != null) {
-            throw new UnsupportedOperationException("Please set left drawable using R.attr#chipIcon.");
-        }
-        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableStart") != null) {
-            throw new UnsupportedOperationException("Please set start drawable using R.attr#chipIcon.");
-        }
-        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableEnd") != null) {
-            throw new UnsupportedOperationException("Please set end drawable using R.attr#closeIcon.");
-        }
-        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableRight") != null) {
-            throw new UnsupportedOperationException("Please set end drawable using R.attr#closeIcon.");
-        }
-        if (!attributeSet.getAttributeBooleanValue(NAMESPACE_ANDROID, "singleLine", true) || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "lines", 1) != 1 || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "minLines", 1) != 1 || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "maxLines", 1) != 1) {
-            throw new UnsupportedOperationException("Chip does not support multi-line text");
-        }
-        if (attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "gravity", 8388627) != 8388627) {
-            Log.w(TAG, "Chip text must be vertically center and start aligned");
-        }
-    }
-
     @Override // android.view.View
     public boolean dispatchHoverEvent(@NonNull MotionEvent motionEvent) {
         return handleAccessibilityExit(motionEvent) || this.touchHelper.dispatchHoverEvent(motionEvent) || super.dispatchHoverEvent(motionEvent);
@@ -519,6 +333,12 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         insetChipBackgroundDrawable(i2, i3, i2, i3);
         updateBackgroundDrawable();
         return true;
+    }
+
+    private void ensureChipDrawableHasCallback() {
+        if (getBackgroundDrawable() == this.insetBackgroundDrawable && this.chipDrawable.getCallback() == null) {
+            this.chipDrawable.setCallback(this.insetBackgroundDrawable);
+        }
     }
 
     @Nullable
@@ -689,6 +509,22 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         return null;
     }
 
+    @NonNull
+    private RectF getCloseIconTouchBounds() {
+        this.rectF.setEmpty();
+        if (hasCloseIcon() && this.onCloseIconClickListener != null) {
+            this.chipDrawable.getCloseIconTouchBounds(this.rectF);
+        }
+        return this.rectF;
+    }
+
+    @NonNull
+    private Rect getCloseIconTouchBoundsInt() {
+        RectF closeIconTouchBounds = getCloseIconTouchBounds();
+        this.rect.set((int) closeIconTouchBounds.left, (int) closeIconTouchBounds.top, (int) closeIconTouchBounds.right, (int) closeIconTouchBounds.bottom);
+        return this.rect;
+    }
+
     @Override // android.widget.TextView
     @Nullable
     public TextUtils.TruncateAt getEllipsize() {
@@ -757,6 +593,15 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         return null;
     }
 
+    @Nullable
+    private TextAppearance getTextAppearance() {
+        ChipDrawable chipDrawable = this.chipDrawable;
+        if (chipDrawable != null) {
+            return chipDrawable.getTextAppearance();
+        }
+        return null;
+    }
+
     public float getTextEndPadding() {
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable != null) {
@@ -771,6 +616,51 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
             return chipDrawable.getTextStartPadding();
         }
         return 0.0f;
+    }
+
+    @SuppressLint({"PrivateApi"})
+    private boolean handleAccessibilityExit(@NonNull MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 10) {
+            try {
+                Field declaredField = ExploreByTouchHelper.class.getDeclaredField("mHoveredVirtualViewId");
+                declaredField.setAccessible(true);
+                if (((Integer) declaredField.get(this.touchHelper)).intValue() != Integer.MIN_VALUE) {
+                    Method declaredMethod = ExploreByTouchHelper.class.getDeclaredMethod("updateHoveredVirtualView", Integer.TYPE);
+                    declaredMethod.setAccessible(true);
+                    declaredMethod.invoke(this.touchHelper, Integer.MIN_VALUE);
+                    return true;
+                }
+            } catch (IllegalAccessException e) {
+                Log.e(TAG, "Unable to send Accessibility Exit event", e);
+            } catch (NoSuchFieldException e2) {
+                Log.e(TAG, "Unable to send Accessibility Exit event", e2);
+            } catch (NoSuchMethodException e3) {
+                Log.e(TAG, "Unable to send Accessibility Exit event", e3);
+            } catch (InvocationTargetException e4) {
+                Log.e(TAG, "Unable to send Accessibility Exit event", e4);
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCloseIcon() {
+        ChipDrawable chipDrawable = this.chipDrawable;
+        return (chipDrawable == null || chipDrawable.getCloseIcon() == null) ? false : true;
+    }
+
+    private void initMinTouchTarget(Context context, @Nullable AttributeSet attributeSet, int i) {
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.Chip, i, DEF_STYLE_RES, new int[0]);
+        this.ensureMinTouchTargetSize = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Chip_ensureMinTouchTargetSize, false);
+        this.minTouchTargetSize = (int) Math.ceil(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Chip_chipMinTouchTargetSize, (float) Math.ceil(ViewUtils.dpToPx(getContext(), 48))));
+        typedArrayObtainStyledAttributes.recycle();
+    }
+
+    private void initOutlineProvider() {
+        setOutlineProvider(new C10873b());
+    }
+
+    private void insetChipBackgroundDrawable(int i, int i2, int i3, int i4) {
+        this.insetBackgroundDrawable = new InsetDrawable((Drawable) this.chipDrawable, i, i2, i3, i4);
     }
 
     public boolean isCheckable() {
@@ -933,6 +823,15 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         }
         this.touchHelper.sendEventForVirtualView(1, 1);
         return z2;
+    }
+
+    private void removeBackgroundInset() {
+        if (this.insetBackgroundDrawable != null) {
+            this.insetBackgroundDrawable = null;
+            setMinWidth(0);
+            setMinHeight((int) getChipMinHeight());
+            updateBackgroundDrawable();
+        }
     }
 
     @Override // android.view.View
@@ -1266,6 +1165,20 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable != null) {
             chipDrawable.setCloseIconEndPaddingResource(i);
+        }
+    }
+
+    private void setCloseIconHovered(boolean z2) {
+        if (this.closeIconHovered != z2) {
+            this.closeIconHovered = z2;
+            refreshDrawableState();
+        }
+    }
+
+    private void setCloseIconPressed(boolean z2) {
+        if (this.closeIconPressed != z2) {
+            this.closeIconPressed = z2;
+            refreshDrawableState();
         }
     }
 
@@ -1605,6 +1518,93 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
 
     public boolean shouldEnsureMinTouchTargetSize() {
         return this.ensureMinTouchTargetSize;
+    }
+
+    private void unapplyChipDrawable(@Nullable ChipDrawable chipDrawable) {
+        if (chipDrawable != null) {
+            chipDrawable.setDelegate(null);
+        }
+    }
+
+    private void updateAccessibilityDelegate() {
+        if (hasCloseIcon() && isCloseIconVisible() && this.onCloseIconClickListener != null) {
+            ViewCompat.setAccessibilityDelegate(this, this.touchHelper);
+        } else {
+            ViewCompat.setAccessibilityDelegate(this, null);
+        }
+    }
+
+    private void updateBackgroundDrawable() {
+        if (RippleUtils.USE_FRAMEWORK_RIPPLE) {
+            updateFrameworkRippleBackground();
+            return;
+        }
+        this.chipDrawable.setUseCompatRipple(true);
+        ViewCompat.setBackground(this, getBackgroundDrawable());
+        updatePaddingInternal();
+        ensureChipDrawableHasCallback();
+    }
+
+    private void updateFrameworkRippleBackground() {
+        this.ripple = new RippleDrawable(RippleUtils.sanitizeRippleDrawableColor(this.chipDrawable.getRippleColor()), getBackgroundDrawable(), null);
+        this.chipDrawable.setUseCompatRipple(false);
+        ViewCompat.setBackground(this, this.ripple);
+        updatePaddingInternal();
+    }
+
+    private void updatePaddingInternal() {
+        ChipDrawable chipDrawable;
+        if (TextUtils.isEmpty(getText()) || (chipDrawable = this.chipDrawable) == null) {
+            return;
+        }
+        int iCalculateCloseIconWidth = (int) (this.chipDrawable.calculateCloseIconWidth() + this.chipDrawable.getTextEndPadding() + chipDrawable.getChipEndPadding());
+        int iCalculateChipIconWidth = (int) (this.chipDrawable.calculateChipIconWidth() + this.chipDrawable.getTextStartPadding() + this.chipDrawable.getChipStartPadding());
+        if (this.insetBackgroundDrawable != null) {
+            Rect rect = new Rect();
+            this.insetBackgroundDrawable.getPadding(rect);
+            iCalculateChipIconWidth += rect.left;
+            iCalculateCloseIconWidth += rect.right;
+        }
+        ViewCompat.setPaddingRelative(this, iCalculateChipIconWidth, getPaddingTop(), iCalculateCloseIconWidth, getPaddingBottom());
+    }
+
+    private void updateTextPaintDrawState() {
+        TextPaint paint = getPaint();
+        ChipDrawable chipDrawable = this.chipDrawable;
+        if (chipDrawable != null) {
+            paint.drawableState = chipDrawable.getState();
+        }
+        TextAppearance textAppearance = getTextAppearance();
+        if (textAppearance != null) {
+            textAppearance.updateDrawState(getContext(), paint, this.fontCallback);
+        }
+    }
+
+    private void validateAttributes(@Nullable AttributeSet attributeSet) {
+        if (attributeSet == null) {
+            return;
+        }
+        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "background") != null) {
+            Log.w(TAG, "Do not set the background; Chip manages its own background drawable.");
+        }
+        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableLeft") != null) {
+            throw new UnsupportedOperationException("Please set left drawable using R.attr#chipIcon.");
+        }
+        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableStart") != null) {
+            throw new UnsupportedOperationException("Please set start drawable using R.attr#chipIcon.");
+        }
+        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableEnd") != null) {
+            throw new UnsupportedOperationException("Please set end drawable using R.attr#closeIcon.");
+        }
+        if (attributeSet.getAttributeValue(NAMESPACE_ANDROID, "drawableRight") != null) {
+            throw new UnsupportedOperationException("Please set end drawable using R.attr#closeIcon.");
+        }
+        if (!attributeSet.getAttributeBooleanValue(NAMESPACE_ANDROID, "singleLine", true) || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "lines", 1) != 1 || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "minLines", 1) != 1 || attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "maxLines", 1) != 1) {
+            throw new UnsupportedOperationException("Chip does not support multi-line text");
+        }
+        if (attributeSet.getAttributeIntValue(NAMESPACE_ANDROID, "gravity", 8388627) != 8388627) {
+            Log.w(TAG, "Chip text must be vertically center and start aligned");
+        }
     }
 
     public Chip(Context context, AttributeSet attributeSet) {

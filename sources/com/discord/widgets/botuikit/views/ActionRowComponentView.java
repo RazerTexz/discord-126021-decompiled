@@ -34,7 +34,7 @@ public final class ActionRowComponentView extends LinearLayout implements Compon
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: ActionRowComponentView.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

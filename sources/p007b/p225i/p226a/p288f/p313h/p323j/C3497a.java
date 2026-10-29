@@ -16,12 +16,6 @@ public final class C3497a extends AbstractC3509e {
         this.f9661l = new C3538r(c3515g, c3520i);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
-        this.f9661l.m4443J();
-    }
-
     /* JADX INFO: renamed from: O */
     public final void m4415O() {
         C3180f.m3967b();
@@ -30,5 +24,11 @@ public final class C3497a extends AbstractC3509e {
         C3180f.m3967b();
         Objects.requireNonNull((C3401c) c3538r.f9684j.f9724d);
         c3538r.f9791u = System.currentTimeMillis();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
+        this.f9661l.m4443J();
     }
 }

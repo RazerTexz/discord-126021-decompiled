@@ -35,21 +35,6 @@ public final /* data */ class HomeConfig implements Serializable {
         return homeConfig.copy(l, l2, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getGuildWelcomeSheetId() {
-        return this.guildWelcomeSheetId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getGuildScheduledEventId() {
-        return this.guildScheduledEventId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getAgeGated() {
-        return this.ageGated;
-    }
-
     public final HomeConfig copy(Long guildWelcomeSheetId, Long guildScheduledEventId, boolean ageGated) {
         return new HomeConfig(guildWelcomeSheetId, guildScheduledEventId, ageGated);
     }
@@ -65,12 +50,27 @@ public final /* data */ class HomeConfig implements Serializable {
         return C12238m.areEqual(this.guildWelcomeSheetId, homeConfig.guildWelcomeSheetId) && C12238m.areEqual(this.guildScheduledEventId, homeConfig.guildScheduledEventId) && this.ageGated == homeConfig.ageGated;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getAgeGated() {
         return this.ageGated;
     }
 
+    public final boolean getAgeGated() {
+        return this.ageGated;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getGuildScheduledEventId() {
         return this.guildScheduledEventId;
+    }
+
+    public final Long getGuildScheduledEventId() {
+        return this.guildScheduledEventId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Long getGuildWelcomeSheetId() {
+        return this.guildWelcomeSheetId;
     }
 
     public final Long getGuildWelcomeSheetId() {

@@ -31,7 +31,7 @@ public final class MobileWebHandoff$redirectWithHandoffToken$token$1 extends Abs
     /* JADX INFO: renamed from: com.discord.utilities.handoff.MobileWebHandoff$redirectWithHandoffToken$token$1$1 */
     /* JADX INFO: compiled from: MobileWebHandoff.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.handoff.MobileWebHandoff$redirectWithHandoffToken$token$1$1", m10085f = "MobileWebHandoff.kt", m10086l = {48}, m10087m = "invokeSuspend")
-    public static final class C67711 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super HandoffToken>, Object> {
+    public final class C67711 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super HandoffToken>, Object> {
         public int label;
 
         public C67711(Continuation continuation) {
@@ -51,7 +51,7 @@ public final class MobileWebHandoff$redirectWithHandoffToken$token$1 extends Abs
 
         /* JADX WARN: Multi-variable type inference failed */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             try {

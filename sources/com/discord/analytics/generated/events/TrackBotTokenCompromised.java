@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackBotTokenCompromised.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long botId = null;
     private final CharSequence tokenUrl = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "bot_token_compromised";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchem
         }
         TrackBotTokenCompromised trackBotTokenCompromised = (TrackBotTokenCompromised) other;
         return C12238m.areEqual(this.botId, trackBotTokenCompromised.botId) && C12238m.areEqual(this.tokenUrl, trackBotTokenCompromised.tokenUrl);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

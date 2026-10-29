@@ -60,11 +60,15 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetChannelSelector.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSelector extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelSelector.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSelectorBinding;", 0)};
     private static final String ARG_FILTER_FUNCTION = "INTENT_EXTRA_FILTER_FUNCTION";
     private static final String ARG_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final String ARG_INCLUDE_NO_CHANNEL = "INTENT_EXTRA_INCLUDE_NO_CHANNEL";
     private static final String ARG_NO_CHANNEL_STRING_ID = "INTENT_EXTRA_NO_CHANNEL_STRING_ID";
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String RESULT_EXTRA_CHANNEL_ID = "INTENT_EXTRA_CHANNEL_ID";
     private static final String RESULT_EXTRA_CHANNEL_NAME = "INTENT_EXTRA_CHANNEL_NAME";
     private Adapter adapter;
@@ -74,18 +78,14 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
     /* JADX INFO: renamed from: requestCode$delegate, reason: from kotlin metadata */
     private final Lazy requestCode;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelSelector.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSelectorBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<Model.Item> {
+    public final class Adapter extends MGRecyclerAdapterSimple<Model.Item> {
         private final WidgetChannelSelector dialog;
         private final int noChannelStringId;
 
         /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-        public static final class ItemChannel extends MGRecyclerViewHolder<Adapter, Model.Item> {
+        public final class ItemChannel extends MGRecyclerViewHolder<Adapter, Model.Item> {
             private final WidgetChannelSelectorItemBinding binding;
             private final int noChannelStringId;
 
@@ -168,7 +168,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class BaseFilterFunction implements FilterFunction {
+    public final class BaseFilterFunction implements FilterFunction {
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
             C12238m.checkNotNullParameter(channel, "channel");
@@ -176,16 +176,29 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSelector$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class Companion {
-        private Companion() {
+    public final class C73361 extends AbstractC12240o implements Function1<List<? extends Model.Item>, Unit> {
+        public C73361() {
+            super(1);
         }
 
-        public static /* synthetic */ void registerForResult$default(Companion companion, Fragment fragment, String str, boolean z2, Function2 function2, int i, Object obj) {
-            if ((i & 4) != 0) {
-                z2 = false;
-            }
-            companion.registerForResult(fragment, str, z2, function2);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends Model.Item> list) {
+            invoke2((List<Model.Item>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<Model.Item> list) {
+            C12238m.checkNotNullParameter(list, "it");
+            WidgetChannelSelector.access$getAdapter$p(WidgetChannelSelector.this).setData(list);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSelector.kt */
+    public final class Companion {
+        private Companion() {
         }
 
         public final void launch(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId, FilterFunction filterFunction) {
@@ -228,6 +241,13 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             launch(fragment, guildId, requestKey, includeNoChannel, noChannelStringId, new TypeFilterFunction(2));
         }
 
+        public static /* synthetic */ void registerForResult$default(Companion companion, Fragment fragment, String str, boolean z2, Function2 function2, int i, Object obj) {
+            if ((i & 4) != 0) {
+                z2 = false;
+            }
+            companion.registerForResult(fragment, str, z2, function2);
+        }
+
         public final void registerForResult(Fragment fragment, String requestKey, boolean allowNullChannel, Function2<? super Long, ? super String, Unit> onChannelSelected) {
             C12238m.checkNotNullParameter(fragment, "fragment");
             C12238m.checkNotNullParameter(requestKey, "requestKey");
@@ -244,7 +264,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     public interface FilterFunction extends Serializable {
 
         /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-        public static final class DefaultImpls {
+        public final class DefaultImpls {
             public static boolean includeChannel(FilterFunction filterFunction, Channel channel) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 return true;
@@ -255,7 +275,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class InactiveStageChannelFilterFunction implements FilterFunction {
+    public final class InactiveStageChannelFilterFunction implements FilterFunction {
         public static final InactiveStageChannelFilterFunction INSTANCE = new InactiveStageChannelFilterFunction();
 
         private InactiveStageChannelFilterFunction() {
@@ -269,13 +289,13 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -319,7 +339,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-        public static final /* data */ class Item implements MGRecyclerDataPayload {
+        public final /* data */ class Item implements MGRecyclerDataPayload {
             private final Channel channel;
             private final String key;
             private final int type;
@@ -329,6 +349,14 @@ public final class WidgetChannelSelector extends AppBottomSheet {
                 this.channel = channel;
                 this.type = i;
                 this.key = str;
+            }
+
+            public final int component2() {
+                return getType();
+            }
+
+            public final String component3() {
+                return getKey();
             }
 
             public static /* synthetic */ Item copy$default(Item item, Channel channel, int i, String str, int i2, Object obj) {
@@ -342,19 +370,6 @@ public final class WidgetChannelSelector extends AppBottomSheet {
                     str = item.getKey();
                 }
                 return item.copy(channel, i, str);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            public final int component2() {
-                return getType();
-            }
-
-            public final String component3() {
-                return getKey();
             }
 
             public final Item copy(Channel channel, int type, String key) {
@@ -371,6 +386,11 @@ public final class WidgetChannelSelector extends AppBottomSheet {
                 }
                 Item item = (Item) other;
                 return C12238m.areEqual(this.channel, item.channel) && getType() == item.getType() && C12238m.areEqual(getKey(), item.getKey());
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
@@ -417,7 +437,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final /* data */ class SetFilterFunction implements FilterFunction {
+    public final /* data */ class SetFilterFunction implements FilterFunction {
         private final Set<Long> channelIds;
 
         public SetFilterFunction(Set<Long> set) {
@@ -469,16 +489,11 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final /* data */ class TypeFilterFunction implements FilterFunction {
+    public final /* data */ class TypeFilterFunction implements FilterFunction {
         private final int type;
 
         public TypeFilterFunction(int i) {
             this.type = i;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final int getType() {
-            return this.type;
         }
 
         public static /* synthetic */ TypeFilterFunction copy$default(TypeFilterFunction typeFilterFunction, int i, int i2, Object obj) {
@@ -499,6 +514,11 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             return true;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final int getType() {
+            return this.type;
+        }
+
         public int hashCode() {
             return this.type;
         }
@@ -515,7 +535,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class VocalChannelFilterFunction implements FilterFunction {
+    public final class VocalChannelFilterFunction implements FilterFunction {
         public static final VocalChannelFilterFunction INSTANCE = new VocalChannelFilterFunction();
 
         private VocalChannelFilterFunction() {
@@ -525,26 +545,6 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         public boolean includeChannel(Channel channel) {
             C12238m.checkNotNullParameter(channel, "channel");
             return ChannelUtils.m7699w(channel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSelector$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public static final class C73361 extends AbstractC12240o implements Function1<List<? extends Model.Item>, Unit> {
-        public C73361() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends Model.Item> list) {
-            invoke2((List<Model.Item>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<Model.Item> list) {
-            C12238m.checkNotNullParameter(list, "it");
-            WidgetChannelSelector.access$getAdapter$p(WidgetChannelSelector.this).setData(list);
         }
     }
 
@@ -560,23 +560,6 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             C12238m.throwUninitializedPropertyAccessException("adapter");
         }
         return adapter;
-    }
-
-    private final WidgetChannelSelectorBinding getBinding() {
-        return (WidgetChannelSelectorBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final String getRequestCode() {
-        return (String) this.requestCode.getValue();
-    }
-
-    private final void onChannelSelected(Channel channel) {
-        String requestCode = getRequestCode();
-        Bundle bundle = new Bundle();
-        bundle.putLong(RESULT_EXTRA_CHANNEL_ID, channel != null ? channel.getId() : -1L);
-        bundle.putString(RESULT_EXTRA_CHANNEL_NAME, channel != null ? ChannelUtils.m7679c(channel) : null);
-        FragmentKt.setFragmentResult(this, requestCode, bundle);
-        dismiss();
     }
 
     @Override // com.discord.app.AppBottomSheet
@@ -602,9 +585,26 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8519ui(observable, this, adapter), (Class<?>) WidgetChannelSelector.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73361());
     }
 
+    private final WidgetChannelSelectorBinding getBinding() {
+        return (WidgetChannelSelectorBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_channel_selector;
+    }
+
+    private final String getRequestCode() {
+        return (String) this.requestCode.getValue();
+    }
+
+    private final void onChannelSelected(Channel channel) {
+        String requestCode = getRequestCode();
+        Bundle bundle = new Bundle();
+        bundle.putLong(RESULT_EXTRA_CHANNEL_ID, channel != null ? channel.getId() : -1L);
+        bundle.putString(RESULT_EXTRA_CHANNEL_NAME, channel != null ? ChannelUtils.m7679c(channel) : null);
+        FragmentKt.setFragmentResult(this, requestCode, bundle);
+        dismiss();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

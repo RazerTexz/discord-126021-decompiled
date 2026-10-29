@@ -14,7 +14,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class AutocompleteViewState {
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class Autocomplete extends AutocompleteViewState {
+    public final /* data */ class Autocomplete extends AutocompleteViewState {
         private final List<Autocompletable> autocompletables;
         private final boolean isAutocomplete;
         private final boolean isError;
@@ -24,6 +24,14 @@ public abstract class AutocompleteViewState {
 
         public /* synthetic */ Autocomplete(boolean z2, boolean z3, boolean z4, List list, List list2, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? false : z3, (i & 4) != 0 ? false : z4, list, list2, str);
+        }
+
+        public final List<Autocompletable> component4() {
+            return this.autocompletables;
+        }
+
+        public final List<AutocompleteStickerItem> component5() {
+            return this.stickers;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -53,34 +61,6 @@ public abstract class AutocompleteViewState {
             return autocomplete.copy(z2, z5, z6, list3, list4, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsLoading() {
-            return this.isLoading;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsError() {
-            return this.isError;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsAutocomplete() {
-            return this.isAutocomplete;
-        }
-
-        public final List<Autocompletable> component4() {
-            return this.autocompletables;
-        }
-
-        public final List<AutocompleteStickerItem> component5() {
-            return this.stickers;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getToken() {
-            return this.token;
-        }
-
         public final Autocomplete copy(boolean isLoading, boolean isError, boolean isAutocomplete, List<? extends Autocompletable> autocompletables, List<AutocompleteStickerItem> stickers, String token) {
             C12238m.checkNotNullParameter(autocompletables, "autocompletables");
             C12238m.checkNotNullParameter(stickers, "stickers");
@@ -103,8 +83,28 @@ public abstract class AutocompleteViewState {
             return this.autocompletables;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsAutocomplete() {
+            return this.isAutocomplete;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsError() {
+            return this.isError;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsLoading() {
+            return this.isLoading;
+        }
+
         public final List<AutocompleteStickerItem> getStickers() {
             return this.stickers;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final String getToken() {
+            return this.token;
         }
 
         public final String getToken() {
@@ -190,7 +190,7 @@ public abstract class AutocompleteViewState {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class CommandBrowser extends AutocompleteViewState {
+    public final /* data */ class CommandBrowser extends AutocompleteViewState {
         private final List<Application> applications;
         private final WidgetChatInputDiscoveryCommandsModel discoverCommands;
         private final List<ApplicationCommand> frequentCommands;
@@ -207,6 +207,14 @@ public abstract class AutocompleteViewState {
             this.discoverCommands = widgetChatInputDiscoveryCommandsModel;
         }
 
+        public final List<ApplicationCommand> component1() {
+            return this.frequentCommands;
+        }
+
+        public final List<Application> component2() {
+            return this.applications;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ CommandBrowser copy$default(CommandBrowser commandBrowser, List list, List list2, WidgetChatInputDiscoveryCommandsModel widgetChatInputDiscoveryCommandsModel, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -219,19 +227,6 @@ public abstract class AutocompleteViewState {
                 widgetChatInputDiscoveryCommandsModel = commandBrowser.discoverCommands;
             }
             return commandBrowser.copy(list, list2, widgetChatInputDiscoveryCommandsModel);
-        }
-
-        public final List<ApplicationCommand> component1() {
-            return this.frequentCommands;
-        }
-
-        public final List<Application> component2() {
-            return this.applications;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final WidgetChatInputDiscoveryCommandsModel getDiscoverCommands() {
-            return this.discoverCommands;
         }
 
         public final CommandBrowser copy(List<? extends ApplicationCommand> frequentCommands, List<Application> applications, WidgetChatInputDiscoveryCommandsModel discoverCommands) {
@@ -254,6 +249,11 @@ public abstract class AutocompleteViewState {
 
         public final List<Application> getApplications() {
             return this.applications;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final WidgetChatInputDiscoveryCommandsModel getDiscoverCommands() {
+            return this.discoverCommands;
         }
 
         public final WidgetChatInputDiscoveryCommandsModel getDiscoverCommands() {
@@ -286,7 +286,7 @@ public abstract class AutocompleteViewState {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final class Hidden extends AutocompleteViewState {
+    public final class Hidden extends AutocompleteViewState {
         public static final Hidden INSTANCE = new Hidden();
 
         private Hidden() {
@@ -295,7 +295,7 @@ public abstract class AutocompleteViewState {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class LoadingItems extends AutocompleteViewState {
+    public final /* data */ class LoadingItems extends AutocompleteViewState {
         private final int numberLoadingItems;
 
         public LoadingItems(int i) {
@@ -310,11 +310,6 @@ public abstract class AutocompleteViewState {
             return loadingItems.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getNumberLoadingItems() {
-            return this.numberLoadingItems;
-        }
-
         public final LoadingItems copy(int numberLoadingItems) {
             return new LoadingItems(numberLoadingItems);
         }
@@ -324,6 +319,11 @@ public abstract class AutocompleteViewState {
                 return (other instanceof LoadingItems) && this.numberLoadingItems == ((LoadingItems) other).numberLoadingItems;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getNumberLoadingItems() {
+            return this.numberLoadingItems;
         }
 
         public final int getNumberLoadingItems() {

@@ -14,12 +14,6 @@ import p007b.p452o.p453a.C5103b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5206g {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14127a = new C5103b(C5206g.class.getSimpleName());
-
-    /* JADX INFO: renamed from: b */
-    public static final ConcurrentHashMap<String, WeakReference<C5206g>> f14128b = new ConcurrentHashMap<>(4);
-
     /* JADX INFO: renamed from: c */
     public static C5206g f14129c;
 
@@ -34,6 +28,12 @@ public class C5206g {
 
     /* JADX INFO: renamed from: g */
     public Executor f14133g;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14127a = new C5103b(C5206g.class.getSimpleName());
+
+    /* JADX INFO: renamed from: b */
+    public static final ConcurrentHashMap<String, WeakReference<C5206g>> f14128b = new ConcurrentHashMap<>(4);
 
     /* JADX INFO: renamed from: b.o.a.r.g$a */
     /* JADX INFO: compiled from: WorkerHandler.java */

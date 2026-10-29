@@ -66,42 +66,6 @@ public class LinearLayoutCompat extends ViewGroup {
         this(context, null);
     }
 
-    private void forceUniformHeight(int i, int i2) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), BasicMeasure.EXACTLY);
-        for (int i3 = 0; i3 < i; i3++) {
-            View virtualChildAt = getVirtualChildAt(i3);
-            if (virtualChildAt.getVisibility() != 8) {
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                if (((ViewGroup.MarginLayoutParams) layoutParams).height == -1) {
-                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).width;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).width = virtualChildAt.getMeasuredWidth();
-                    measureChildWithMargins(virtualChildAt, i2, 0, iMakeMeasureSpec, 0);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).width = i4;
-                }
-            }
-        }
-    }
-
-    private void forceUniformWidth(int i, int i2) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
-        for (int i3 = 0; i3 < i; i3++) {
-            View virtualChildAt = getVirtualChildAt(i3);
-            if (virtualChildAt.getVisibility() != 8) {
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                if (((ViewGroup.MarginLayoutParams) layoutParams).width == -1) {
-                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).height;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = virtualChildAt.getMeasuredHeight();
-                    measureChildWithMargins(virtualChildAt, iMakeMeasureSpec, 0, i2, 0);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = i4;
-                }
-            }
-        }
-    }
-
-    private void setChildFrame(View view, int i, int i2, int i3, int i4) {
-        view.layout(i, i2, i3 + i, i4 + i2);
-    }
-
     @Override // android.view.ViewGroup
     public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
         return layoutParams instanceof LayoutParams;
@@ -164,6 +128,38 @@ public class LinearLayoutCompat extends ViewGroup {
     public void drawVerticalDivider(Canvas canvas, int i) {
         this.mDivider.setBounds(i, getPaddingTop() + this.mDividerPadding, this.mDividerWidth + i, (getHeight() - getPaddingBottom()) - this.mDividerPadding);
         this.mDivider.draw(canvas);
+    }
+
+    private void forceUniformHeight(int i, int i2) {
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), BasicMeasure.EXACTLY);
+        for (int i3 = 0; i3 < i; i3++) {
+            View virtualChildAt = getVirtualChildAt(i3);
+            if (virtualChildAt.getVisibility() != 8) {
+                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
+                if (((ViewGroup.MarginLayoutParams) layoutParams).height == -1) {
+                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).width;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).width = virtualChildAt.getMeasuredWidth();
+                    measureChildWithMargins(virtualChildAt, i2, 0, iMakeMeasureSpec, 0);
+                    ((ViewGroup.MarginLayoutParams) layoutParams).width = i4;
+                }
+            }
+        }
+    }
+
+    private void forceUniformWidth(int i, int i2) {
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
+        for (int i3 = 0; i3 < i; i3++) {
+            View virtualChildAt = getVirtualChildAt(i3);
+            if (virtualChildAt.getVisibility() != 8) {
+                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
+                if (((ViewGroup.MarginLayoutParams) layoutParams).width == -1) {
+                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).height;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).height = virtualChildAt.getMeasuredHeight();
+                    measureChildWithMargins(virtualChildAt, iMakeMeasureSpec, 0, i2, 0);
+                    ((ViewGroup.MarginLayoutParams) layoutParams).height = i4;
+                }
+            }
+        }
     }
 
     @Override // android.view.View
@@ -1234,6 +1230,10 @@ public class LinearLayoutCompat extends ViewGroup {
         throw new IllegalArgumentException(sbM833U.toString());
     }
 
+    private void setChildFrame(View view, int i, int i2, int i3, int i4) {
+        view.layout(i, i2, i3 + i, i4 + i2);
+    }
+
     public void setDividerDrawable(Drawable drawable) {
         if (drawable == this.mDivider) {
             return;
@@ -1368,7 +1368,7 @@ public class LinearLayoutCompat extends ViewGroup {
         return new LayoutParams(layoutParams);
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
         public int gravity;
         public float weight;
 

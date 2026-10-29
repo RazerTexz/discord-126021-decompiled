@@ -6,12 +6,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Matrix.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class MatrixKt {
-    public static final Matrix rotationMatrix(float f, float f2, float f3) {
-        Matrix matrix = new Matrix();
-        matrix.setRotate(f, f2, f3);
-        return matrix;
-    }
-
     public static /* synthetic */ Matrix rotationMatrix$default(float f, float f2, float f3, int i, Object obj) {
         if ((i & 2) != 0) {
             f2 = 0.0f;
@@ -22,9 +16,9 @@ public final class MatrixKt {
         return rotationMatrix(f, f2, f3);
     }
 
-    public static final Matrix scaleMatrix(float f, float f2) {
+    public static final Matrix rotationMatrix(float f, float f2, float f3) {
         Matrix matrix = new Matrix();
-        matrix.setScale(f, f2);
+        matrix.setRotate(f, f2, f3);
         return matrix;
     }
 
@@ -38,18 +32,18 @@ public final class MatrixKt {
         return scaleMatrix(f, f2);
     }
 
+    public static final Matrix scaleMatrix(float f, float f2) {
+        Matrix matrix = new Matrix();
+        matrix.setScale(f, f2);
+        return matrix;
+    }
+
     public static final Matrix times(Matrix matrix, Matrix matrix2) {
         C12238m.checkNotNullParameter(matrix, "<this>");
         C12238m.checkNotNullParameter(matrix2, "m");
         Matrix matrix3 = new Matrix(matrix);
         matrix3.preConcat(matrix2);
         return matrix3;
-    }
-
-    public static final Matrix translationMatrix(float f, float f2) {
-        Matrix matrix = new Matrix();
-        matrix.setTranslate(f, f2);
-        return matrix;
     }
 
     public static /* synthetic */ Matrix translationMatrix$default(float f, float f2, int i, Object obj) {
@@ -60,6 +54,12 @@ public final class MatrixKt {
             f2 = 0.0f;
         }
         return translationMatrix(f, f2);
+    }
+
+    public static final Matrix translationMatrix(float f, float f2) {
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(f, f2);
+        return matrix;
     }
 
     public static final float[] values(Matrix matrix) {

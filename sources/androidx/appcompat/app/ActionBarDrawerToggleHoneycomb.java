@@ -15,7 +15,7 @@ public class ActionBarDrawerToggleHoneycomb {
     private static final String TAG = "ActionBarDrawerToggleHC";
     private static final int[] THEME_ATTRS = {R.attr.homeAsUpIndicator};
 
-    public static class SetIndicatorInfo {
+    public class SetIndicatorInfo {
         public Method setHomeActionContentDescription;
         public Method setHomeAsUpIndicator;
         public ImageView upIndicatorView;

@@ -27,7 +27,7 @@ public final class InviteSuggestionsAdapter extends MGRecyclerAdapterSimple<Invi
     private Function1<? super InviteSuggestionItemV2, Unit> onClick;
 
     /* JADX INFO: compiled from: InviteSuggestionsAdapter.kt */
-    public static final class EmptySearchResultsViewHolder extends MGRecyclerViewHolder<InviteSuggestionsAdapter, InviteSuggestionItemV2> {
+    public final class EmptySearchResultsViewHolder extends MGRecyclerViewHolder<InviteSuggestionsAdapter, InviteSuggestionItemV2> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public EmptySearchResultsViewHolder(InviteSuggestionsAdapter inviteSuggestionsAdapter) {
             super(C5419R.layout.guild_invite_empty_search_results_item, inviteSuggestionsAdapter);
@@ -36,7 +36,7 @@ public final class InviteSuggestionsAdapter extends MGRecyclerAdapterSimple<Invi
     }
 
     /* JADX INFO: compiled from: InviteSuggestionsAdapter.kt */
-    public static final class InviteSuggestionViewHolder extends MGRecyclerViewHolder<InviteSuggestionsAdapter, InviteSuggestionItemV2> {
+    public final class InviteSuggestionViewHolder extends MGRecyclerViewHolder<InviteSuggestionsAdapter, InviteSuggestionItemV2> {
         private final WidgetGuildInviteShareItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

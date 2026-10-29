@@ -59,21 +59,9 @@ public final class SearchSuggestionEngine {
     private static final SerializedSubject<CharSequence, CharSequence> membersRequestSubject;
     private static Long targetGuildId;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            FilterType.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[FilterType.FROM.ordinal()] = 1;
-            iArr[FilterType.MENTIONS.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$2 */
     /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
-    public static final /* synthetic */ class C69112 extends C12236k implements Function1<CharSequence, Boolean> {
+    public final /* synthetic */ class C69112 extends C12236k implements Function1<CharSequence, Boolean> {
         public static final C69112 INSTANCE = new C69112();
 
         public C69112() {
@@ -93,7 +81,7 @@ public final class SearchSuggestionEngine {
 
     /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$3 */
     /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
-    public static final class C69123 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C69123 extends AbstractC12240o implements Function1<String, Unit> {
         public static final C69123 INSTANCE = new C69123();
 
         public C69123() {
@@ -113,6 +101,18 @@ public final class SearchSuggestionEngine {
             if (targetGuildId != null) {
                 StoreGatewayConnection.requestGuildMembers$default(gatewaySocket, targetGuildId.longValue(), str, null, null, 12, null);
             }
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FilterType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FilterType.FROM.ordinal()] = 1;
+            iArr[FilterType.MENTIONS.ordinal()] = 2;
         }
     }
 
@@ -258,6 +258,10 @@ public final class SearchSuggestionEngine {
         return arrayList;
     }
 
+    public final Long getTargetGuildId() {
+        return targetGuildId;
+    }
+
     private final Collection<UserSuggestion> getUserSuggestions(CharSequence rawContent, FilterType currentFilter, Map<Long, UserGuildMember> users) {
         UserSuggestion.TargetType targetType;
         int iOrdinal = currentFilter.ordinal();
@@ -287,6 +291,10 @@ public final class SearchSuggestionEngine {
         return C12163u.take(treeSet, MAX_ENTRY_TYPE_COUNT);
     }
 
+    public final void setTargetGuildId(Long l) {
+        targetGuildId = l;
+    }
+
     private final void setupMemberRequestSubscription() {
         Observable<R> observableM11083G = membersRequestSubject.m11090P(750L, TimeUnit.MILLISECONDS).m11083G(new InterfaceC12589b<CharSequence, String>() { // from class: com.discord.utilities.search.suggestion.SearchSuggestionEngine.setupMemberRequestSubscription.1
             @Override // p637j0.p641k.InterfaceC12589b
@@ -307,13 +315,5 @@ public final class SearchSuggestionEngine {
         Observable observableM11112r = observableM11083G.m11118y((InterfaceC12589b) obj).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "membersRequestSubject\n  …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) SearchSuggestionEngine.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C69123.INSTANCE);
-    }
-
-    public final Long getTargetGuildId() {
-        return targetGuildId;
-    }
-
-    public final void setTargetGuildId(Long l) {
-        targetGuildId = l;
     }
 }

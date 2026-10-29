@@ -20,12 +20,12 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public class WorkConstraintsTracker implements ConstraintController.OnConstraintUpdatedCallback {
-    private static final String TAG = Logger.tagWithPrefix("WorkConstraintsTracker");
 
     @Nullable
     private final WorkConstraintsCallback mCallback;
     private final ConstraintController<?>[] mConstraintControllers;
     private final Object mLock;
+    private static final String TAG = Logger.tagWithPrefix("WorkConstraintsTracker");
 
     public WorkConstraintsTracker(@NonNull Context context, @NonNull TaskExecutor taskExecutor, @Nullable WorkConstraintsCallback workConstraintsCallback) {
         Context applicationContext = context.getApplicationContext();

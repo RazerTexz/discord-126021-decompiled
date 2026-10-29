@@ -16,6 +16,17 @@ public final /* data */ class ThreadMemberUpdate {
     private final boolean muted;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ThreadMemberUpdate)) {
+            return false;
+        }
+        ThreadMemberUpdate threadMemberUpdate = (ThreadMemberUpdate) other;
+        return this.id == threadMemberUpdate.id && this.guildId == threadMemberUpdate.guildId && this.userId == threadMemberUpdate.userId && this.flags == threadMemberUpdate.flags && C12238m.areEqual(this.joinTimestamp, threadMemberUpdate.joinTimestamp) && this.muted == threadMemberUpdate.muted && C12238m.areEqual(this.muteConfig, threadMemberUpdate.muteConfig);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final int getFlags() {
         return this.flags;
@@ -39,17 +50,6 @@ public final /* data */ class ThreadMemberUpdate {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final MuteConfig getMuteConfig() {
         return this.muteConfig;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ThreadMemberUpdate)) {
-            return false;
-        }
-        ThreadMemberUpdate threadMemberUpdate = (ThreadMemberUpdate) other;
-        return this.id == threadMemberUpdate.id && this.guildId == threadMemberUpdate.guildId && this.userId == threadMemberUpdate.userId && this.flags == threadMemberUpdate.flags && C12238m.areEqual(this.joinTimestamp, threadMemberUpdate.joinTimestamp) && this.muted == threadMemberUpdate.muted && C12238m.areEqual(this.muteConfig, threadMemberUpdate.muteConfig);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

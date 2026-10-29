@@ -28,7 +28,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$compute$1 */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public static final class C100011 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Boolean> {
+    public final class C100011 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Boolean> {
         public final /* synthetic */ Map $permissionsByChannel;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -65,7 +65,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$compute$2 */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public static final class C100022 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Long> {
+    public final class C100022 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Long> {
         public static final C100022 INSTANCE = new C100022();
 
         public C100022() {
@@ -86,7 +86,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$observe$1 */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public static final class C100031 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C100031 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public final /* synthetic */ StorePermissions $storePermissions;
         public final /* synthetic */ StoreStageInstances $storeStageInstances;
 
@@ -106,6 +106,12 @@ public final class GuildIdsWithVisibleStageInstanceModel {
     private GuildIdsWithVisibleStageInstanceModel() {
     }
 
+    public final Set<Long> compute(Map<Long, ? extends Map<Long, StageInstance>> instancesByGuild, Map<Long, Long> permissionsByChannel) {
+        C12238m.checkNotNullParameter(instancesByGuild, "instancesByGuild");
+        C12238m.checkNotNullParameter(permissionsByChannel, "permissionsByChannel");
+        return C12078q.toSet(C12078q.map(C12078q.filter(C12138i0.asSequence(instancesByGuild), new C100011(permissionsByChannel)), C100022.INSTANCE));
+    }
+
     public static /* synthetic */ Observable observe$default(GuildIdsWithVisibleStageInstanceModel guildIdsWithVisibleStageInstanceModel, StoreStageInstances storeStageInstances, StorePermissions storePermissions, ObservationDeck observationDeck, int i, Object obj) {
         if ((i & 1) != 0) {
             storeStageInstances = StoreStream.INSTANCE.getStageInstances();
@@ -117,12 +123,6 @@ public final class GuildIdsWithVisibleStageInstanceModel {
             observationDeck = ObservationDeckProvider.get();
         }
         return guildIdsWithVisibleStageInstanceModel.observe(storeStageInstances, storePermissions, observationDeck);
-    }
-
-    public final Set<Long> compute(Map<Long, ? extends Map<Long, StageInstance>> instancesByGuild, Map<Long, Long> permissionsByChannel) {
-        C12238m.checkNotNullParameter(instancesByGuild, "instancesByGuild");
-        C12238m.checkNotNullParameter(permissionsByChannel, "permissionsByChannel");
-        return C12078q.toSet(C12078q.map(C12078q.filter(C12138i0.asSequence(instancesByGuild), new C100011(permissionsByChannel)), C100022.INSTANCE));
     }
 
     public final Observable<Set<Long>> observe(StoreStageInstances storeStageInstances, StorePermissions storePermissions, ObservationDeck observationDeck) {

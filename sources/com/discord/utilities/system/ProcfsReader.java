@@ -21,7 +21,7 @@ public final class ProcfsReader {
     private static final Stat default = new Stat(0, 0, 0, 0);
 
     /* JADX INFO: compiled from: ProcfsReader.kt */
-    public static final /* data */ class Stat {
+    public final /* data */ class Stat {
         private final long rssPages;
         private final long systemTime;
         private final long totalTime;
@@ -32,26 +32,6 @@ public final class ProcfsReader {
             this.systemTime = j2;
             this.totalTime = j3;
             this.rssPages = j4;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserTime() {
-            return this.userTime;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getSystemTime() {
-            return this.systemTime;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getTotalTime() {
-            return this.totalTime;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getRssPages() {
-            return this.rssPages;
         }
 
         public final Stat copy(long userTime, long systemTime, long totalTime, long rssPages) {
@@ -69,16 +49,36 @@ public final class ProcfsReader {
             return this.userTime == stat.userTime && this.systemTime == stat.systemTime && this.totalTime == stat.totalTime && this.rssPages == stat.rssPages;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final long getRssPages() {
             return this.rssPages;
+        }
+
+        public final long getRssPages() {
+            return this.rssPages;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getSystemTime() {
+            return this.systemTime;
         }
 
         public final long getSystemTime() {
             return this.systemTime;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getTotalTime() {
             return this.totalTime;
+        }
+
+        public final long getTotalTime() {
+            return this.totalTime;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserTime() {
+            return this.userTime;
         }
 
         public final long getUserTime() {
@@ -129,16 +129,16 @@ public final class ProcfsReader {
         }
     }
 
+    public final Stat readStatFile() {
+        return readStatFile(new File(C1643a.m814B(C1643a.m833U("/proc/"), getPid(), "/stat")));
+    }
+
     private final long toLong(String s2) {
         Long longOrNull = C12102s.toLongOrNull(s2);
         if (longOrNull != null) {
             return longOrNull.longValue();
         }
         return 0L;
-    }
-
-    public final Stat readStatFile() {
-        return readStatFile(new File(C1643a.m814B(C1643a.m833U("/proc/"), getPid(), "/stat")));
     }
 
     public final Stat readStatFile(File file) {

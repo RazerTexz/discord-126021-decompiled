@@ -12,22 +12,22 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class WebRtcAudioEffects {
-    private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
-    private static final UUID AOSP_NOISE_SUPPRESSOR = UUID.fromString("c06c8400-8e06-11e0-9cb6-0002a5d5c51b");
     private static final boolean DEBUG = false;
     private static final String TAG = "WebRtcAudioEffects";
 
     @Nullable
-    private static AudioEffect.Descriptor[] cachedEffects;
+    private AcousticEchoCanceler aec;
 
     @Nullable
-    private AcousticEchoCanceler aec;
+    private static AudioEffect.Descriptor[] cachedEffects;
 
     /* JADX INFO: renamed from: ns */
     @Nullable
     private NoiseSuppressor f27622ns;
     private boolean shouldEnableAec;
     private boolean shouldEnableNs;
+    private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
+    private static final UUID AOSP_NOISE_SUPPRESSOR = UUID.fromString("c06c8400-8e06-11e0-9cb6-0002a5d5c51b");
 
     private WebRtcAudioEffects() {
         StringBuilder sbM833U = C1643a.m833U("ctor");
@@ -59,6 +59,52 @@ public class WebRtcAudioEffects {
 
     private boolean effectTypeIsVoIP(UUID uuid) {
         return (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) || (AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported());
+    }
+
+    public void enable(int i) {
+        Logging.m11027d(TAG, "enable(audioSession=" + i + ")");
+        assertTrue(this.aec == null);
+        assertTrue(this.f27622ns == null);
+        if (isAcousticEchoCancelerSupported()) {
+            AcousticEchoCanceler acousticEchoCancelerCreate = AcousticEchoCanceler.create(i);
+            this.aec = acousticEchoCancelerCreate;
+            if (acousticEchoCancelerCreate != null) {
+                boolean enabled = acousticEchoCancelerCreate.getEnabled();
+                boolean z2 = this.shouldEnableAec && canUseAcousticEchoCanceler();
+                if (this.aec.setEnabled(z2) != 0) {
+                    Logging.m11028e(TAG, "Failed to set the AcousticEchoCanceler state");
+                }
+                StringBuilder sbM833U = C1643a.m833U("AcousticEchoCanceler: was ");
+                sbM833U.append(enabled ? "enabled" : "disabled");
+                sbM833U.append(", enable: ");
+                sbM833U.append(z2);
+                sbM833U.append(", is now: ");
+                sbM833U.append(this.aec.getEnabled() ? "enabled" : "disabled");
+                Logging.m11027d(TAG, sbM833U.toString());
+            } else {
+                Logging.m11028e(TAG, "Failed to create the AcousticEchoCanceler instance");
+            }
+        }
+        if (isNoiseSuppressorSupported()) {
+            NoiseSuppressor noiseSuppressorCreate = NoiseSuppressor.create(i);
+            this.f27622ns = noiseSuppressorCreate;
+            if (noiseSuppressorCreate == null) {
+                Logging.m11028e(TAG, "Failed to create the NoiseSuppressor instance");
+                return;
+            }
+            boolean enabled2 = noiseSuppressorCreate.getEnabled();
+            boolean z3 = this.shouldEnableNs && canUseNoiseSuppressor();
+            if (this.f27622ns.setEnabled(z3) != 0) {
+                Logging.m11028e(TAG, "Failed to set the NoiseSuppressor state");
+            }
+            StringBuilder sbM833U2 = C1643a.m833U("NoiseSuppressor: was ");
+            sbM833U2.append(enabled2 ? "enabled" : "disabled");
+            sbM833U2.append(", enable: ");
+            sbM833U2.append(z3);
+            sbM833U2.append(", is now: ");
+            sbM833U2.append(this.f27622ns.getEnabled() ? "enabled" : "disabled");
+            Logging.m11027d(TAG, sbM833U2.toString());
+        }
     }
 
     @Nullable
@@ -137,52 +183,6 @@ public class WebRtcAudioEffects {
 
     public static boolean isNoiseSuppressorSupported() {
         return isNoiseSuppressorEffectAvailable();
-    }
-
-    public void enable(int i) {
-        Logging.m11027d(TAG, "enable(audioSession=" + i + ")");
-        assertTrue(this.aec == null);
-        assertTrue(this.f27622ns == null);
-        if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler acousticEchoCancelerCreate = AcousticEchoCanceler.create(i);
-            this.aec = acousticEchoCancelerCreate;
-            if (acousticEchoCancelerCreate != null) {
-                boolean enabled = acousticEchoCancelerCreate.getEnabled();
-                boolean z2 = this.shouldEnableAec && canUseAcousticEchoCanceler();
-                if (this.aec.setEnabled(z2) != 0) {
-                    Logging.m11028e(TAG, "Failed to set the AcousticEchoCanceler state");
-                }
-                StringBuilder sbM833U = C1643a.m833U("AcousticEchoCanceler: was ");
-                sbM833U.append(enabled ? "enabled" : "disabled");
-                sbM833U.append(", enable: ");
-                sbM833U.append(z2);
-                sbM833U.append(", is now: ");
-                sbM833U.append(this.aec.getEnabled() ? "enabled" : "disabled");
-                Logging.m11027d(TAG, sbM833U.toString());
-            } else {
-                Logging.m11028e(TAG, "Failed to create the AcousticEchoCanceler instance");
-            }
-        }
-        if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor noiseSuppressorCreate = NoiseSuppressor.create(i);
-            this.f27622ns = noiseSuppressorCreate;
-            if (noiseSuppressorCreate == null) {
-                Logging.m11028e(TAG, "Failed to create the NoiseSuppressor instance");
-                return;
-            }
-            boolean enabled2 = noiseSuppressorCreate.getEnabled();
-            boolean z3 = this.shouldEnableNs && canUseNoiseSuppressor();
-            if (this.f27622ns.setEnabled(z3) != 0) {
-                Logging.m11028e(TAG, "Failed to set the NoiseSuppressor state");
-            }
-            StringBuilder sbM833U2 = C1643a.m833U("NoiseSuppressor: was ");
-            sbM833U2.append(enabled2 ? "enabled" : "disabled");
-            sbM833U2.append(", enable: ");
-            sbM833U2.append(z3);
-            sbM833U2.append(", is now: ");
-            sbM833U2.append(this.f27622ns.getEnabled() ? "enabled" : "disabled");
-            Logging.m11027d(TAG, sbM833U2.toString());
-        }
     }
 
     public void release() {

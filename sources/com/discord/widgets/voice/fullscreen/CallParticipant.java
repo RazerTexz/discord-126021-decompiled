@@ -17,7 +17,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class CallParticipant {
 
     /* JADX INFO: compiled from: CallParticipant.kt */
-    public static final /* data */ class EmbeddedActivityParticipant extends CallParticipant {
+    public final /* data */ class EmbeddedActivityParticipant extends CallParticipant {
         private final Application application;
         private final ApplicationAsset backgroundAsset;
         private final EmbeddedActivity embeddedActivity;
@@ -37,6 +37,10 @@ public abstract class CallParticipant {
             this.id = String.valueOf(application.getId());
         }
 
+        public final List<UserGuildMember> component2() {
+            return this.participantsInActivity;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ EmbeddedActivityParticipant copy$default(EmbeddedActivityParticipant embeddedActivityParticipant, EmbeddedActivity embeddedActivity, List list, Application application, ApplicationAsset applicationAsset, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -52,25 +56,6 @@ public abstract class CallParticipant {
                 applicationAsset = embeddedActivityParticipant.backgroundAsset;
             }
             return embeddedActivityParticipant.copy(embeddedActivity, list, application, applicationAsset);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final EmbeddedActivity getEmbeddedActivity() {
-            return this.embeddedActivity;
-        }
-
-        public final List<UserGuildMember> component2() {
-            return this.participantsInActivity;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Application getApplication() {
-            return this.application;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ApplicationAsset getBackgroundAsset() {
-            return this.backgroundAsset;
         }
 
         public final EmbeddedActivityParticipant copy(EmbeddedActivity embeddedActivity, List<UserGuildMember> participantsInActivity, Application application, ApplicationAsset backgroundAsset) {
@@ -91,12 +76,27 @@ public abstract class CallParticipant {
             return C12238m.areEqual(this.embeddedActivity, embeddedActivityParticipant.embeddedActivity) && C12238m.areEqual(this.participantsInActivity, embeddedActivityParticipant.participantsInActivity) && C12238m.areEqual(this.application, embeddedActivityParticipant.application) && C12238m.areEqual(this.backgroundAsset, embeddedActivityParticipant.backgroundAsset);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Application getApplication() {
             return this.application;
         }
 
+        public final Application getApplication() {
+            return this.application;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ApplicationAsset getBackgroundAsset() {
             return this.backgroundAsset;
+        }
+
+        public final ApplicationAsset getBackgroundAsset() {
+            return this.backgroundAsset;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final EmbeddedActivity getEmbeddedActivity() {
+            return this.embeddedActivity;
         }
 
         public final EmbeddedActivity getEmbeddedActivity() {
@@ -143,7 +143,7 @@ public abstract class CallParticipant {
     }
 
     /* JADX INFO: compiled from: CallParticipant.kt */
-    public static final /* data */ class UserOrStreamParticipant extends CallParticipant {
+    public final /* data */ class UserOrStreamParticipant extends CallParticipant {
         private final String id;
         private final VideoCallParticipantView.ParticipantData participantData;
 
@@ -162,11 +162,6 @@ public abstract class CallParticipant {
             return userOrStreamParticipant.copy(participantData);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final VideoCallParticipantView.ParticipantData getParticipantData() {
-            return this.participantData;
-        }
-
         public final UserOrStreamParticipant copy(VideoCallParticipantView.ParticipantData participantData) {
             C12238m.checkNotNullParameter(participantData, "participantData");
             return new UserOrStreamParticipant(participantData);
@@ -182,6 +177,11 @@ public abstract class CallParticipant {
         @Override // com.discord.widgets.voice.fullscreen.CallParticipant
         public String getId() {
             return this.id;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final VideoCallParticipantView.ParticipantData getParticipantData() {
+            return this.participantData;
         }
 
         public final VideoCallParticipantView.ParticipantData getParticipantData() {

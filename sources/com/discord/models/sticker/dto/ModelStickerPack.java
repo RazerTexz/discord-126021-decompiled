@@ -39,43 +39,8 @@ public final /* data */ class ModelStickerPack {
         return modelStickerPackStoreListing != null && modelStickerPackStoreListing.getSku().isAvailable();
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
     public final List<Sticker> component2() {
         return this.stickers;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelStickerPackStoreListing getStoreListing() {
-        return this.storeListing;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getSkuId() {
-        return this.skuId;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Long getCoverStickerId() {
-        return this.coverStickerId;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final Long getBannerAssetId() {
-        return this.bannerAssetId;
     }
 
     public final ModelStickerPack copy(long id2, List<Sticker> stickers, String name, ModelStickerPackStoreListing storeListing, long skuId, Long coverStickerId, String description, Long bannerAssetId) {
@@ -93,6 +58,11 @@ public final /* data */ class ModelStickerPack {
         }
         ModelStickerPack modelStickerPack = (ModelStickerPack) other;
         return this.id == modelStickerPack.id && C12238m.areEqual(this.stickers, modelStickerPack.stickers) && C12238m.areEqual(this.name, modelStickerPack.name) && C12238m.areEqual(this.storeListing, modelStickerPack.storeListing) && this.skuId == modelStickerPack.skuId && C12238m.areEqual(this.coverStickerId, modelStickerPack.coverStickerId) && C12238m.areEqual(this.description, modelStickerPack.description) && C12238m.areEqual(this.bannerAssetId, modelStickerPack.bannerAssetId);
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final Long getBannerAssetId() {
+        return this.bannerAssetId;
     }
 
     public final Long getBannerAssetId() {
@@ -117,20 +87,45 @@ public final /* data */ class ModelStickerPack {
         return sticker != null ? sticker : this.stickers.get(0);
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final Long getCoverStickerId() {
         return this.coverStickerId;
+    }
+
+    public final Long getCoverStickerId() {
+        return this.coverStickerId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final String getDescription() {
+        return this.description;
     }
 
     public final String getDescription() {
         return this.description;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
     }
 
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getSkuId() {
+        return this.skuId;
     }
 
     public final long getSkuId() {
@@ -139,6 +134,11 @@ public final /* data */ class ModelStickerPack {
 
     public final List<Sticker> getStickers() {
         return this.stickers;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final ModelStickerPackStoreListing getStoreListing() {
+        return this.storeListing;
     }
 
     public final ModelStickerPackStoreListing getStoreListing() {

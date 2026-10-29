@@ -58,7 +58,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     private State storeStateSnapshot;
 
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final /* data */ class AnalyticsTrait {
+    public final /* data */ class AnalyticsTrait {
         private final Traits.Location locationTrait;
         private final Traits.Payment paymentTrait;
         private final long skuId;
@@ -74,31 +74,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             this.locationTrait = location;
             this.storeSkuTrait = storeSku;
             this.paymentTrait = payment;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getSkuId() {
-            return this.skuId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Traits.Location getLocationTrait() {
-            return this.locationTrait;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Traits.StoreSku getStoreSkuTrait() {
-            return this.storeSkuTrait;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Traits.Payment getPaymentTrait() {
-            return this.paymentTrait;
         }
 
         public final AnalyticsTrait copy(long skuId, long timestamp, Traits.Location locationTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
@@ -119,20 +94,45 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             return this.skuId == analyticsTrait.skuId && this.timestamp == analyticsTrait.timestamp && C12238m.areEqual(this.locationTrait, analyticsTrait.locationTrait) && C12238m.areEqual(this.storeSkuTrait, analyticsTrait.storeSkuTrait) && C12238m.areEqual(this.paymentTrait, analyticsTrait.paymentTrait);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Traits.Location getLocationTrait() {
             return this.locationTrait;
+        }
+
+        public final Traits.Location getLocationTrait() {
+            return this.locationTrait;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Traits.Payment getPaymentTrait() {
+            return this.paymentTrait;
         }
 
         public final Traits.Payment getPaymentTrait() {
             return this.paymentTrait;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getSkuId() {
             return this.skuId;
         }
 
+        public final long getSkuId() {
+            return this.skuId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Traits.StoreSku getStoreSkuTrait() {
             return this.storeSkuTrait;
+        }
+
+        public final Traits.StoreSku getStoreSkuTrait() {
+            return this.storeSkuTrait;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getTimestamp() {
+            return this.timestamp;
         }
 
         public final long getTimestamp() {
@@ -165,11 +165,296 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$1 */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static abstract class Event {
+    public final /* synthetic */ class C60021 extends C12236k implements Function1<Throwable, Boolean> {
+        public C60021(StoreGooglePlayPurchases storeGooglePlayPurchases) {
+            super(1, storeGooglePlayPurchases, StoreGooglePlayPurchases.class, "shouldRetryDowngrade", "shouldRetryDowngrade(Ljava/lang/Throwable;)Z", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
+            return Boolean.valueOf(invoke2(th));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(Throwable th) {
+            C12238m.checkNotNullParameter(th, "p1");
+            return ((StoreGooglePlayPurchases) this.receiver).shouldRetryDowngrade(th);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60032 extends AbstractC12240o implements Function1<Object, Unit> {
+        public final /* synthetic */ String $newSkuName;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                C60032 c60032 = C60032.this;
+                StoreGooglePlayPurchases.this.handleDowngradeSuccess(c60032.$newSkuName);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60032(String str) {
+            super(1);
+            this.$newSkuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke2(obj);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Object obj) {
+            StoreGooglePlayPurchases.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60043 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ String $newSkuName;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                C60043 c60043 = C60043.this;
+                StoreGooglePlayPurchases.this.handleDowngradeFailure(c60043.$newSkuName);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60043(String str) {
+            super(1);
+            this.$newSkuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            StoreGooglePlayPurchases.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$downgradePurchase$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60051 extends AbstractC12240o implements Function0<Unit> {
+        public C60051() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            State state = StoreGooglePlayPurchases.this.storeState;
+            if (state instanceof State.Loaded) {
+                State.Loaded loaded = (State.Loaded) state;
+                if (loaded.getPendingDowngrade() != null) {
+                    StoreGooglePlayPurchases.this.queryState = QueryState.InProgress.INSTANCE;
+                    StoreGooglePlayPurchases.this.markChanged();
+                    StoreGooglePlayPurchases.this.doDowngrade(loaded.getPendingDowngrade());
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeQueryState$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60071 extends AbstractC12240o implements Function0<QueryState> {
+        public C60071() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final QueryState invoke() {
+            return StoreGooglePlayPurchases.this.getQueryStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeState$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60081 extends AbstractC12240o implements Function0<State> {
+        public C60081() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreGooglePlayPurchases.this.getStoreStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationFailure$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60091 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ VerificationResult $verificationResult;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60091(VerificationResult verificationResult) {
+            super(0);
+            this.$verificationResult = verificationResult;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ArrayList<String> arrayListM7498b = this.$verificationResult.getPurchase().m7498b();
+            C12238m.checkNotNullExpressionValue(arrayListM7498b, "verificationResult.purchase.skus");
+            for (String str : arrayListM7498b) {
+                PublishSubject publishSubject = StoreGooglePlayPurchases.this.eventSubject;
+                C12238m.checkNotNullExpressionValue(str, "sku");
+                publishSubject.f27650k.onNext((T) new Event.PurchaseQueryFailure(str));
+            }
+            StoreGooglePlayPurchases.this.queryState = QueryState.NotInProgress.INSTANCE;
+            StoreGooglePlayPurchases.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationStart$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60101 extends AbstractC12240o implements Function0<Unit> {
+        public C60101() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGooglePlayPurchases.this.queryState = QueryState.InProgress.INSTANCE;
+            StoreGooglePlayPurchases.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60121 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ List $purchases;
+        public final /* synthetic */ String $skuType;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<QueryState, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(QueryState queryState) {
+                invoke2(queryState);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(QueryState queryState) {
+                if (queryState instanceof QueryState.NotInProgress) {
+                    BillingUtils.INSTANCE.verifyPurchases(C60121.this.$purchases);
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60121(List list, String str) {
+            super(0);
+            this.$purchases = list;
+            this.$skuType = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGooglePlayPurchases.this.handlePurchases(this.$purchases, this.$skuType);
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreGooglePlayPurchases.this.observeQueryState(), 0L, false, 3, null), (Class<?>) StoreGooglePlayPurchases.this.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$updatePendingDowngrade$1 */
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public final class C60131 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ PendingDowngrade $newPendingDowngrade;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60131(PendingDowngrade pendingDowngrade) {
+            super(0);
+            this.$newPendingDowngrade = pendingDowngrade;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGooglePlayPurchases storeGooglePlayPurchases = StoreGooglePlayPurchases.this;
+            storeGooglePlayPurchases.storeState = new State.Loaded(storeGooglePlayPurchases.getSubscriptionPurchases(), StoreGooglePlayPurchases.this.getIapPurchases(), this.$newPendingDowngrade);
+            StoreGooglePlayPurchases.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final /* data */ class PurchaseQueryFailure extends Event {
+        public final /* data */ class PurchaseQueryFailure extends Event {
             private final String newSkuName;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -186,11 +471,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 return purchaseQueryFailure.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getNewSkuName() {
-                return this.newSkuName;
-            }
-
             public final PurchaseQueryFailure copy(String newSkuName) {
                 C12238m.checkNotNullParameter(newSkuName, "newSkuName");
                 return new PurchaseQueryFailure(newSkuName);
@@ -201,6 +481,11 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                     return (other instanceof PurchaseQueryFailure) && C12238m.areEqual(this.newSkuName, ((PurchaseQueryFailure) other).newSkuName);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getNewSkuName() {
+                return this.newSkuName;
             }
 
             public final String getNewSkuName() {
@@ -221,7 +506,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final /* data */ class PurchaseQuerySuccess extends Event {
+        public final /* data */ class PurchaseQuerySuccess extends Event {
             private final String giftCode;
             private final String newSkuName;
             private final Long skuId;
@@ -247,26 +532,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 return purchaseQuerySuccess.copy(str, l, l2, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getNewSkuName() {
-                return this.newSkuName;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getSkuId() {
-                return this.skuId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Long getSubscriptionPlanId() {
-                return this.subscriptionPlanId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getGiftCode() {
-                return this.giftCode;
-            }
-
             public final PurchaseQuerySuccess copy(String newSkuName, Long skuId, Long subscriptionPlanId, String giftCode) {
                 C12238m.checkNotNullParameter(newSkuName, "newSkuName");
                 return new PurchaseQuerySuccess(newSkuName, skuId, subscriptionPlanId, giftCode);
@@ -283,16 +548,36 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 return C12238m.areEqual(this.newSkuName, purchaseQuerySuccess.newSkuName) && C12238m.areEqual(this.skuId, purchaseQuerySuccess.skuId) && C12238m.areEqual(this.subscriptionPlanId, purchaseQuerySuccess.subscriptionPlanId) && C12238m.areEqual(this.giftCode, purchaseQuerySuccess.giftCode);
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final String getGiftCode() {
                 return this.giftCode;
+            }
+
+            public final String getGiftCode() {
+                return this.giftCode;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getNewSkuName() {
+                return this.newSkuName;
             }
 
             public final String getNewSkuName() {
                 return this.newSkuName;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final Long getSkuId() {
                 return this.skuId;
+            }
+
+            public final Long getSkuId() {
+                return this.skuId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Long getSubscriptionPlanId() {
+                return this.subscriptionPlanId;
             }
 
             public final Long getSubscriptionPlanId() {
@@ -341,10 +626,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static abstract class QueryState {
+    public abstract class QueryState {
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class InProgress extends QueryState {
+        public final class InProgress extends QueryState {
             public static final InProgress INSTANCE = new InProgress();
 
             private InProgress() {
@@ -353,7 +638,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class NotInProgress extends QueryState {
+        public final class NotInProgress extends QueryState {
             public static final NotInProgress INSTANCE = new NotInProgress();
 
             private NotInProgress() {
@@ -370,10 +655,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static abstract class State {
+    public abstract class State {
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class Uninitialized extends State {
+        public final class Uninitialized extends State {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -385,13 +670,21 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final /* data */ class Loaded extends State {
+        public final /* data */ class Loaded extends State {
             private final List<Purchase> iapPurchases;
             private final PendingDowngrade pendingDowngrade;
             private final List<Purchase> subscriptionPurchases;
 
             public /* synthetic */ Loaded(List list, List list2, PendingDowngrade pendingDowngrade, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this((i & 1) != 0 ? C12147n.emptyList() : list, (i & 2) != 0 ? C12147n.emptyList() : list2, pendingDowngrade);
+            }
+
+            public final List<Purchase> component1() {
+                return this.subscriptionPurchases;
+            }
+
+            public final List<Purchase> component2() {
+                return this.iapPurchases;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -406,19 +699,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                     pendingDowngrade = loaded.pendingDowngrade;
                 }
                 return loaded.copy(list, list2, pendingDowngrade);
-            }
-
-            public final List<Purchase> component1() {
-                return this.subscriptionPurchases;
-            }
-
-            public final List<Purchase> component2() {
-                return this.iapPurchases;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final PendingDowngrade getPendingDowngrade() {
-                return this.pendingDowngrade;
             }
 
             public final Loaded copy(List<? extends Purchase> subscriptionPurchases, List<? extends Purchase> iapPurchases, PendingDowngrade pendingDowngrade) {
@@ -440,6 +720,11 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
             public final List<Purchase> getIapPurchases() {
                 return this.iapPurchases;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final PendingDowngrade getPendingDowngrade() {
+                return this.pendingDowngrade;
             }
 
             public final PendingDowngrade getPendingDowngrade() {
@@ -492,7 +777,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final /* data */ class VerificationResult {
+    public final /* data */ class VerificationResult {
         private final RestAPIParams.VerifyPurchaseResponse apiResponse;
         private final Purchase purchase;
 
@@ -512,16 +797,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             return verificationResult.copy(purchase, verifyPurchaseResponse);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Purchase getPurchase() {
-            return this.purchase;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final RestAPIParams.VerifyPurchaseResponse getApiResponse() {
-            return this.apiResponse;
-        }
-
         public final VerificationResult copy(Purchase purchase, RestAPIParams.VerifyPurchaseResponse apiResponse) {
             C12238m.checkNotNullParameter(purchase, "purchase");
             return new VerificationResult(purchase, apiResponse);
@@ -538,8 +813,18 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             return C12238m.areEqual(this.purchase, verificationResult.purchase) && C12238m.areEqual(this.apiResponse, verificationResult.apiResponse);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final RestAPIParams.VerifyPurchaseResponse getApiResponse() {
             return this.apiResponse;
+        }
+
+        public final RestAPIParams.VerifyPurchaseResponse getApiResponse() {
+            return this.apiResponse;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Purchase getPurchase() {
+            return this.purchase;
         }
 
         public final Purchase getPurchase() {
@@ -560,291 +845,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             sbM833U.append(this.apiResponse);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final /* synthetic */ class C60021 extends C12236k implements Function1<Throwable, Boolean> {
-        public C60021(StoreGooglePlayPurchases storeGooglePlayPurchases) {
-            super(1, storeGooglePlayPurchases, StoreGooglePlayPurchases.class, "shouldRetryDowngrade", "shouldRetryDowngrade(Ljava/lang/Throwable;)Z", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
-            return Boolean.valueOf(invoke2(th));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(Throwable th) {
-            C12238m.checkNotNullParameter(th, "p1");
-            return ((StoreGooglePlayPurchases) this.receiver).shouldRetryDowngrade(th);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60032 extends AbstractC12240o implements Function1<Object, Unit> {
-        public final /* synthetic */ String $newSkuName;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                C60032 c60032 = C60032.this;
-                StoreGooglePlayPurchases.this.handleDowngradeSuccess(c60032.$newSkuName);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60032(String str) {
-            super(1);
-            this.$newSkuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
-            invoke2(obj);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Object obj) {
-            StoreGooglePlayPurchases.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60043 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ String $newSkuName;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                C60043 c60043 = C60043.this;
-                StoreGooglePlayPurchases.this.handleDowngradeFailure(c60043.$newSkuName);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60043(String str) {
-            super(1);
-            this.$newSkuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            StoreGooglePlayPurchases.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$downgradePurchase$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60051 extends AbstractC12240o implements Function0<Unit> {
-        public C60051() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            State state = StoreGooglePlayPurchases.this.storeState;
-            if (state instanceof State.Loaded) {
-                State.Loaded loaded = (State.Loaded) state;
-                if (loaded.getPendingDowngrade() != null) {
-                    StoreGooglePlayPurchases.this.queryState = QueryState.InProgress.INSTANCE;
-                    StoreGooglePlayPurchases.this.markChanged();
-                    StoreGooglePlayPurchases.this.doDowngrade(loaded.getPendingDowngrade());
-                }
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeQueryState$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60071 extends AbstractC12240o implements Function0<QueryState> {
-        public C60071() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final QueryState invoke() {
-            return StoreGooglePlayPurchases.this.getQueryStateSnapshot();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeState$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60081 extends AbstractC12240o implements Function0<State> {
-        public C60081() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final State invoke() {
-            return StoreGooglePlayPurchases.this.getStoreStateSnapshot();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationFailure$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60091 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ VerificationResult $verificationResult;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60091(VerificationResult verificationResult) {
-            super(0);
-            this.$verificationResult = verificationResult;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ArrayList<String> arrayListM7498b = this.$verificationResult.getPurchase().m7498b();
-            C12238m.checkNotNullExpressionValue(arrayListM7498b, "verificationResult.purchase.skus");
-            for (String str : arrayListM7498b) {
-                PublishSubject publishSubject = StoreGooglePlayPurchases.this.eventSubject;
-                C12238m.checkNotNullExpressionValue(str, "sku");
-                publishSubject.f27650k.onNext((T) new Event.PurchaseQueryFailure(str));
-            }
-            StoreGooglePlayPurchases.this.queryState = QueryState.NotInProgress.INSTANCE;
-            StoreGooglePlayPurchases.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationStart$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60101 extends AbstractC12240o implements Function0<Unit> {
-        public C60101() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGooglePlayPurchases.this.queryState = QueryState.InProgress.INSTANCE;
-            StoreGooglePlayPurchases.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60121 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $purchases;
-        public final /* synthetic */ String $skuType;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<QueryState, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(QueryState queryState) {
-                invoke2(queryState);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(QueryState queryState) {
-                if (queryState instanceof QueryState.NotInProgress) {
-                    BillingUtils.INSTANCE.verifyPurchases(C60121.this.$purchases);
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60121(List list, String str) {
-            super(0);
-            this.$purchases = list;
-            this.$skuType = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGooglePlayPurchases.this.handlePurchases(this.$purchases, this.$skuType);
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreGooglePlayPurchases.this.observeQueryState(), 0L, false, 3, null), (Class<?>) StoreGooglePlayPurchases.this.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$updatePendingDowngrade$1 */
-    /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public static final class C60131 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ PendingDowngrade $newPendingDowngrade;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60131(PendingDowngrade pendingDowngrade) {
-            super(0);
-            this.$newPendingDowngrade = pendingDowngrade;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGooglePlayPurchases storeGooglePlayPurchases = StoreGooglePlayPurchases.this;
-            storeGooglePlayPurchases.storeState = new State.Loaded(storeGooglePlayPurchases.getSubscriptionPurchases(), StoreGooglePlayPurchases.this.getIapPurchases(), this.$newPendingDowngrade);
-            StoreGooglePlayPurchases.this.markChanged();
         }
     }
 
@@ -892,6 +892,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         ObservableExtensionsKt.appSubscribe(RetryWithDelay.restRetry$default(retryWithDelay, observableM11098X, 0L, null, null, new C60021(this), 1, null), (Class<?>) StoreGooglePlayPurchases.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C60043(newSkuName)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60032(newSkuName));
     }
 
+    public final void downgradePurchase() {
+        this.dispatcher.schedule(new C60051());
+    }
+
     private final Map<String, AnalyticsTrait> getCachedAnalyticsTraitsMap() {
         String string = getPrefs().getString(CACHE_KEY_PAYMENT_FLOW_ANALYTICS, null);
         if (string != null) {
@@ -936,6 +940,16 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             return loaded.getPendingDowngrade();
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: getQueryState, reason: from getter */
+    public final QueryState getQueryStateSnapshot() {
+        return this.queryStateSnapshot;
+    }
+
+    /* JADX INFO: renamed from: getState, reason: from getter */
+    public final State getStoreStateSnapshot() {
+        return this.storeStateSnapshot;
     }
 
     private final List<Purchase> getSubscriptionPurchases() {
@@ -1000,31 +1014,6 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         markChanged();
     }
 
-    private final boolean shouldRetryDowngrade(Throwable throwable) {
-        if (throwable instanceof TimeoutException) {
-            return false;
-        }
-        if (!(throwable instanceof HttpException)) {
-            return throwable instanceof IOException;
-        }
-        int iM11055a = ((HttpException) throwable).m11055a();
-        return 500 <= iM11055a && 599 >= iM11055a;
-    }
-
-    public final void downgradePurchase() {
-        this.dispatcher.schedule(new C60051());
-    }
-
-    /* JADX INFO: renamed from: getQueryState, reason: from getter */
-    public final QueryState getQueryStateSnapshot() {
-        return this.queryStateSnapshot;
-    }
-
-    /* JADX INFO: renamed from: getState, reason: from getter */
-    public final State getStoreStateSnapshot() {
-        return this.storeStateSnapshot;
-    }
-
     public final boolean hasSeenGiftingWarning() {
         return getPrefs().getBoolean(VIEWED_GIFTING_WARNING_DIALOG, false);
     }
@@ -1073,6 +1062,17 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     public final void processPurchases(List<? extends Purchase> purchases, String skuType) {
         C12238m.checkNotNullParameter(skuType, "skuType");
         this.dispatcher.schedule(new C60121(purchases, skuType));
+    }
+
+    private final boolean shouldRetryDowngrade(Throwable throwable) {
+        if (throwable instanceof TimeoutException) {
+            return false;
+        }
+        if (!(throwable instanceof HttpException)) {
+            return throwable instanceof IOException;
+        }
+        int iM11055a = ((HttpException) throwable).m11055a();
+        return 500 <= iM11055a && 599 >= iM11055a;
     }
 
     @Override // com.discord.stores.StoreV2

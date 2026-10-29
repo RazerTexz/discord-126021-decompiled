@@ -34,16 +34,9 @@ public final class ServerSettingsGuildRoleSubscriptionTierAdapter extends Recycl
     private ItemClickListener itemClickListener;
     private List<? extends ServerSettingsGuildRoleSubscriptionTierAdapterItem> items;
 
-    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public interface ItemClickListener {
-        void onAddTierItemClick();
-
-        void onTierItemClick(long tierListingId);
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionTierAdapter$setItems$1 */
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public static final class C94411 extends AbstractC12240o implements Function1<List<? extends ServerSettingsGuildRoleSubscriptionTierAdapterItem>, Unit> {
+    public final class C94411 extends AbstractC12240o implements Function1<List<? extends ServerSettingsGuildRoleSubscriptionTierAdapterItem>, Unit> {
         public C94411() {
             super(1);
         }
@@ -61,14 +54,15 @@ public final class ServerSettingsGuildRoleSubscriptionTierAdapter extends Recycl
         }
     }
 
-    public /* synthetic */ ServerSettingsGuildRoleSubscriptionTierAdapter(AppComponent appComponent, DiffCreator diffCreator, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(appComponent, (i & 2) != 0 ? new DiffCreator(appComponent) : diffCreator);
+    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
+    public interface ItemClickListener {
+        void onAddTierItemClick();
+
+        void onTierItemClick(long tierListingId);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
+    public /* synthetic */ ServerSettingsGuildRoleSubscriptionTierAdapter(AppComponent appComponent, DiffCreator diffCreator, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(appComponent, (i & 2) != 0 ? new DiffCreator(appComponent) : diffCreator);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -81,6 +75,12 @@ public final class ServerSettingsGuildRoleSubscriptionTierAdapter extends Recycl
             return 1;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItemClickListener(ItemClickListener itemClickListener) {

@@ -15,14 +15,14 @@ import p600f0.p601e0.p608j.C12310d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12336c {
 
-    /* JADX INFO: renamed from: a */
-    public static final CopyOnWriteArraySet<Logger> f25788a = new CopyOnWriteArraySet<>();
-
     /* JADX INFO: renamed from: b */
     public static final Map<String, String> f25789b;
 
     /* JADX INFO: renamed from: c */
     public static final C12336c f25790c = null;
+
+    /* JADX INFO: renamed from: a */
+    public static final CopyOnWriteArraySet<Logger> f25788a = new CopyOnWriteArraySet<>();
 
     static {
         LinkedHashMap linkedHashMap = new LinkedHashMap();

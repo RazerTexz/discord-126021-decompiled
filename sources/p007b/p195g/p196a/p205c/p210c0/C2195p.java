@@ -35,16 +35,6 @@ public final class C2195p implements InterfaceC2339a {
         return new C2195p(map3);
     }
 
-    @Override // p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a
-    /* JADX INFO: renamed from: a */
-    public <A extends Annotation> A mo1915a(Class<A> cls) {
-        HashMap<Class<?>, Annotation> map = this.f4731j;
-        if (map == null) {
-            return null;
-        }
-        return (A) map.get(cls);
-    }
-
     /* JADX INFO: renamed from: b */
     public boolean m1917b(Class<? extends Annotation>[] clsArr) {
         if (this.f4731j != null) {
@@ -55,6 +45,16 @@ public final class C2195p implements InterfaceC2339a {
             }
         }
         return false;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a
+    /* JADX INFO: renamed from: a */
+    public <A extends Annotation> A mo1915a(Class<A> cls) {
+        HashMap<Class<?>, Annotation> map = this.f4731j;
+        if (map == null) {
+            return null;
+        }
+        return (A) map.get(cls);
     }
 
     @Override // p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a

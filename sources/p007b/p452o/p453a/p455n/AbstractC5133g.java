@@ -286,6 +286,141 @@ public abstract class AbstractC5133g extends AbstractC5135i {
         C3404f.m4264Z(null);
     }
 
+    @NonNull
+    /* JADX INFO: renamed from: Q0 */
+    public final C5236b m7271Q0(@NonNull EnumC5122i enumC5122i) {
+        InterfaceC5237c interfaceC5237c;
+        Set setUnmodifiableSet;
+        boolean zM7357b = this.f13877L.m7357b(EnumC5171b.SENSOR, EnumC5171b.VIEW);
+        if (enumC5122i == EnumC5122i.PICTURE) {
+            interfaceC5237c = this.f13879N;
+            setUnmodifiableSet = Collections.unmodifiableSet(this.f13896p.f13686e);
+        } else {
+            interfaceC5237c = this.f13880O;
+            setUnmodifiableSet = Collections.unmodifiableSet(this.f13896p.f13687f);
+        }
+        InterfaceC5237c interfaceC5237cM4238Q0 = C3404f.m4238Q0(interfaceC5237c, new C5239e());
+        ArrayList arrayList = new ArrayList(setUnmodifiableSet);
+        C5236b c5236b = ((C5246l) interfaceC5237cM4238Q0).mo7452a(arrayList).get(0);
+        if (!arrayList.contains(c5236b)) {
+            throw new RuntimeException("SizeSelectors must not return Sizes other than those in the input list.");
+        }
+        AbstractC5135i.f13918j.m7159a(1, "computeCaptureSize:", "result:", c5236b, "flip:", Boolean.valueOf(zM7357b), "mode:", enumC5122i);
+        return zM7357b ? c5236b.m7451f() : c5236b;
+    }
+
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$ArrayArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
+    @NonNull
+    /* JADX INFO: renamed from: R0 */
+    public final C5236b m7272R0() {
+        EnumC5171b enumC5171b = EnumC5171b.VIEW;
+        List<C5236b> listMo7198T0 = mo7198T0();
+        boolean zM7357b = this.f13877L.m7357b(EnumC5171b.SENSOR, enumC5171b);
+        ArrayList arrayList = new ArrayList(listMo7198T0.size());
+        for (C5236b c5236bM7451f : listMo7198T0) {
+            if (zM7357b) {
+                c5236bM7451f = c5236bM7451f.m7451f();
+            }
+            arrayList.add(c5236bM7451f);
+        }
+        C5236b c5236bM7274U0 = m7274U0(enumC5171b);
+        if (c5236bM7274U0 == null) {
+            throw new IllegalStateException("targetMinSize should not be null here.");
+        }
+        C5236b c5236b = this.f13898r;
+        C5235a c5235aM7447f = C5235a.m7447f(c5236b.f14251j, c5236b.f14252k);
+        if (zM7357b) {
+            c5235aM7447f = C5235a.m7447f(c5235aM7447f.f14250l, c5235aM7447f.f14249k);
+        }
+        C5103b c5103b = AbstractC5135i.f13918j;
+        c5103b.m7159a(1, "computePreviewStreamSize:", "targetRatio:", c5235aM7447f, "targetMinSize:", c5236bM7274U0);
+        InterfaceC5237c interfaceC5237cM4291g = C3404f.m4291g(C3404f.m4200D1(new C5238d(c5235aM7447f.m7450i(), 0.0f)), new C5239e());
+        InterfaceC5237c interfaceC5237cM4291g2 = C3404f.m4291g(C3404f.m4226M0(c5236bM7274U0.f14252k), C3404f.m4229N0(c5236bM7274U0.f14251j), new C5240f());
+        InterfaceC5237c interfaceC5237cM4238Q0 = C3404f.m4238Q0(C3404f.m4291g(interfaceC5237cM4291g, interfaceC5237cM4291g2), interfaceC5237cM4291g2, interfaceC5237cM4291g, new C5239e());
+        InterfaceC5237c interfaceC5237c = this.f13878M;
+        if (interfaceC5237c != null) {
+            interfaceC5237cM4238Q0 = C3404f.m4238Q0(interfaceC5237c, interfaceC5237cM4238Q0);
+        }
+        C5236b c5236bM7451f2 = ((C5246l) interfaceC5237cM4238Q0).mo7452a(arrayList).get(0);
+        if (!arrayList.contains(c5236bM7451f2)) {
+            throw new RuntimeException("SizeSelectors must not return Sizes other than those in the input list.");
+        }
+        if (zM7357b) {
+            c5236bM7451f2 = c5236bM7451f2.m7451f();
+        }
+        c5103b.m7159a(1, "computePreviewStreamSize:", "result:", c5236bM7451f2, "flip:", Boolean.valueOf(zM7357b));
+        return c5236bM7451f2;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: S0 */
+    public AbstractC5190c m7273S0() {
+        if (this.f13876K == null) {
+            this.f13876K = mo7200V0(this.f13893b0);
+        }
+        return this.f13876K;
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: U0 */
+    public final C5236b m7274U0(@NonNull EnumC5171b enumC5171b) {
+        AbstractC5225a abstractC5225a = this.f13895o;
+        if (abstractC5225a == null) {
+            return null;
+        }
+        return this.f13877L.m7357b(EnumC5171b.VIEW, enumC5171b) ? abstractC5225a.m7432l().m7451f() : abstractC5225a.m7432l();
+    }
+
+    /* JADX INFO: renamed from: W0 */
+    public final boolean m7275W0() {
+        return this.f13897q != null;
+    }
+
+    /* JADX INFO: renamed from: a1 */
+    public final boolean m7278a1() {
+        long j = this.f13888W;
+        return j > 0 && j != RecyclerView.FOREVER_NS;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: T0 */
+    public abstract List<C5236b> mo7198T0();
+
+    @NonNull
+    /* JADX INFO: renamed from: V0 */
+    public abstract AbstractC5190c mo7200V0(int i);
+
+    /* JADX INFO: renamed from: X0 */
+    public abstract void mo7201X0();
+
+    /* JADX INFO: renamed from: Y0 */
+    public abstract void mo7202Y0(@NonNull C5113l.a aVar, boolean z2);
+
+    /* JADX INFO: renamed from: Z0 */
+    public abstract void mo7203Z0(@NonNull C5113l.a aVar, @NonNull C5235a c5235a, boolean z2);
+
+    /* JADX INFO: renamed from: a */
+    public void mo7227a(@Nullable C5113l.a aVar, @Nullable Exception exc) {
+        this.f13897q = null;
+        if (aVar == null) {
+            AbstractC5135i.f13918j.m7159a(3, "onPictureResult", "result is null: something went wrong.", exc);
+            ((CameraView.C11195b) this.f13921m).m9311a(new CameraException(exc, 4));
+        } else {
+            CameraView.C11195b c11195b = (CameraView.C11195b) this.f13921m;
+            c11195b.f22141b.m7159a(1, "dispatchOnPictureTaken", aVar);
+            CameraView.this.f22133u.post(new RunnableC5110i(c11195b, aVar));
+        }
+    }
+
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: A */
     public final float mo7250A() {
@@ -450,119 +585,6 @@ public abstract class AbstractC5133g extends AbstractC5135i {
         c5179f.m7363b("take picture snapshot", true, new RunnableC5181h(c5179f, EnumC5178e.BIND, new d(aVar, z2)));
     }
 
-    @NonNull
-    /* JADX INFO: renamed from: Q0 */
-    public final C5236b m7271Q0(@NonNull EnumC5122i enumC5122i) {
-        InterfaceC5237c interfaceC5237c;
-        Set setUnmodifiableSet;
-        boolean zM7357b = this.f13877L.m7357b(EnumC5171b.SENSOR, EnumC5171b.VIEW);
-        if (enumC5122i == EnumC5122i.PICTURE) {
-            interfaceC5237c = this.f13879N;
-            setUnmodifiableSet = Collections.unmodifiableSet(this.f13896p.f13686e);
-        } else {
-            interfaceC5237c = this.f13880O;
-            setUnmodifiableSet = Collections.unmodifiableSet(this.f13896p.f13687f);
-        }
-        InterfaceC5237c interfaceC5237cM4238Q0 = C3404f.m4238Q0(interfaceC5237c, new C5239e());
-        ArrayList arrayList = new ArrayList(setUnmodifiableSet);
-        C5236b c5236b = ((C5246l) interfaceC5237cM4238Q0).mo7452a(arrayList).get(0);
-        if (!arrayList.contains(c5236b)) {
-            throw new RuntimeException("SizeSelectors must not return Sizes other than those in the input list.");
-        }
-        AbstractC5135i.f13918j.m7159a(1, "computeCaptureSize:", "result:", c5236b, "flip:", Boolean.valueOf(zM7357b), "mode:", enumC5122i);
-        return zM7357b ? c5236b.m7451f() : c5236b;
-    }
-
-    /* JADX WARN: Type inference fix 'apply assigned field type' failed
-    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$ArrayArg
-    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-     */
-    @NonNull
-    /* JADX INFO: renamed from: R0 */
-    public final C5236b m7272R0() {
-        EnumC5171b enumC5171b = EnumC5171b.VIEW;
-        List<C5236b> listMo7198T0 = mo7198T0();
-        boolean zM7357b = this.f13877L.m7357b(EnumC5171b.SENSOR, enumC5171b);
-        ArrayList arrayList = new ArrayList(listMo7198T0.size());
-        for (C5236b c5236bM7451f : listMo7198T0) {
-            if (zM7357b) {
-                c5236bM7451f = c5236bM7451f.m7451f();
-            }
-            arrayList.add(c5236bM7451f);
-        }
-        C5236b c5236bM7274U0 = m7274U0(enumC5171b);
-        if (c5236bM7274U0 == null) {
-            throw new IllegalStateException("targetMinSize should not be null here.");
-        }
-        C5236b c5236b = this.f13898r;
-        C5235a c5235aM7447f = C5235a.m7447f(c5236b.f14251j, c5236b.f14252k);
-        if (zM7357b) {
-            c5235aM7447f = C5235a.m7447f(c5235aM7447f.f14250l, c5235aM7447f.f14249k);
-        }
-        C5103b c5103b = AbstractC5135i.f13918j;
-        c5103b.m7159a(1, "computePreviewStreamSize:", "targetRatio:", c5235aM7447f, "targetMinSize:", c5236bM7274U0);
-        InterfaceC5237c interfaceC5237cM4291g = C3404f.m4291g(C3404f.m4200D1(new C5238d(c5235aM7447f.m7450i(), 0.0f)), new C5239e());
-        InterfaceC5237c interfaceC5237cM4291g2 = C3404f.m4291g(C3404f.m4226M0(c5236bM7274U0.f14252k), C3404f.m4229N0(c5236bM7274U0.f14251j), new C5240f());
-        InterfaceC5237c interfaceC5237cM4238Q0 = C3404f.m4238Q0(C3404f.m4291g(interfaceC5237cM4291g, interfaceC5237cM4291g2), interfaceC5237cM4291g2, interfaceC5237cM4291g, new C5239e());
-        InterfaceC5237c interfaceC5237c = this.f13878M;
-        if (interfaceC5237c != null) {
-            interfaceC5237cM4238Q0 = C3404f.m4238Q0(interfaceC5237c, interfaceC5237cM4238Q0);
-        }
-        C5236b c5236bM7451f2 = ((C5246l) interfaceC5237cM4238Q0).mo7452a(arrayList).get(0);
-        if (!arrayList.contains(c5236bM7451f2)) {
-            throw new RuntimeException("SizeSelectors must not return Sizes other than those in the input list.");
-        }
-        if (zM7357b) {
-            c5236bM7451f2 = c5236bM7451f2.m7451f();
-        }
-        c5103b.m7159a(1, "computePreviewStreamSize:", "result:", c5236bM7451f2, "flip:", Boolean.valueOf(zM7357b));
-        return c5236bM7451f2;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: S0 */
-    public AbstractC5190c m7273S0() {
-        if (this.f13876K == null) {
-            this.f13876K = mo7200V0(this.f13893b0);
-        }
-        return this.f13876K;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: T0 */
-    public abstract List<C5236b> mo7198T0();
-
-    @Nullable
-    /* JADX INFO: renamed from: U0 */
-    public final C5236b m7274U0(@NonNull EnumC5171b enumC5171b) {
-        AbstractC5225a abstractC5225a = this.f13895o;
-        if (abstractC5225a == null) {
-            return null;
-        }
-        return this.f13877L.m7357b(EnumC5171b.VIEW, enumC5171b) ? abstractC5225a.m7432l().m7451f() : abstractC5225a.m7432l();
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: V0 */
-    public abstract AbstractC5190c mo7200V0(int i);
-
-    /* JADX INFO: renamed from: W0 */
-    public final boolean m7275W0() {
-        return this.f13897q != null;
-    }
-
-    /* JADX INFO: renamed from: X0 */
-    public abstract void mo7201X0();
-
-    /* JADX INFO: renamed from: Y0 */
-    public abstract void mo7202Y0(@NonNull C5113l.a aVar, boolean z2);
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: Z */
     public final void mo7276Z(@NonNull EnumC5114a enumC5114a) {
@@ -571,32 +593,10 @@ public abstract class AbstractC5133g extends AbstractC5135i {
         }
     }
 
-    /* JADX INFO: renamed from: Z0 */
-    public abstract void mo7203Z0(@NonNull C5113l.a aVar, @NonNull C5235a c5235a, boolean z2);
-
-    /* JADX INFO: renamed from: a */
-    public void mo7227a(@Nullable C5113l.a aVar, @Nullable Exception exc) {
-        this.f13897q = null;
-        if (aVar == null) {
-            AbstractC5135i.f13918j.m7159a(3, "onPictureResult", "result is null: something went wrong.", exc);
-            ((CameraView.C11195b) this.f13921m).m9311a(new CameraException(exc, 4));
-        } else {
-            CameraView.C11195b c11195b = (CameraView.C11195b) this.f13921m;
-            c11195b.f22141b.m7159a(1, "dispatchOnPictureTaken", aVar);
-            CameraView.this.f22133u.post(new RunnableC5110i(c11195b, aVar));
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: a0 */
     public final void mo7277a0(int i) {
         this.f13887V = i;
-    }
-
-    /* JADX INFO: renamed from: a1 */
-    public final boolean m7278a1() {
-        long j = this.f13888W;
-        return j > 0 && j != RecyclerView.FOREVER_NS;
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i

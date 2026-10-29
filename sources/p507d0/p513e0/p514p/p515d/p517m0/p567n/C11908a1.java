@@ -19,6 +19,19 @@ public final class C11908a1 {
         throw new IllegalStateException(C12238m.stringPlus("This is should be simple type: ", abstractC11913c0).toString());
     }
 
+    public static /* synthetic */ AbstractC11913c0 replace$default(AbstractC11913c0 abstractC11913c0, List list, InterfaceC11344g interfaceC11344g, List list2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            list = abstractC11913c0.getArguments();
+        }
+        if ((i & 2) != 0) {
+            interfaceC11344g = abstractC11913c0.getAnnotations();
+        }
+        if ((i & 4) != 0) {
+            list2 = list;
+        }
+        return replace(abstractC11913c0, list, interfaceC11344g, list2);
+    }
+
     public static final AbstractC11913c0 replace(AbstractC11913c0 abstractC11913c0, List<? extends InterfaceC12012w0> list, InterfaceC11344g interfaceC11344g) {
         C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
         C12238m.checkNotNullParameter(list, "newArguments");
@@ -44,19 +57,6 @@ public final class C11908a1 {
             return replace((AbstractC11934j0) abstractC11932i1Unwrap, list, interfaceC11344g);
         }
         throw new NoWhenBranchMatchedException();
-    }
-
-    public static /* synthetic */ AbstractC11913c0 replace$default(AbstractC11913c0 abstractC11913c0, List list, InterfaceC11344g interfaceC11344g, List list2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            list = abstractC11913c0.getArguments();
-        }
-        if ((i & 2) != 0) {
-            interfaceC11344g = abstractC11913c0.getAnnotations();
-        }
-        if ((i & 4) != 0) {
-            list2 = list;
-        }
-        return replace(abstractC11913c0, list, interfaceC11344g, list2);
     }
 
     public static /* synthetic */ AbstractC11934j0 replace$default(AbstractC11934j0 abstractC11934j0, List list, InterfaceC11344g interfaceC11344g, int i, Object obj) {

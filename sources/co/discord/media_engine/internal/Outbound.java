@@ -33,21 +33,6 @@ public final /* data */ class Outbound {
         return outbound.copy(str, outboundAudio, outboundVideoArr);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final OutboundAudio getAudio() {
-        return this.audio;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final OutboundVideo[] getVideos() {
-        return this.videos;
-    }
-
     public final Outbound copy(String id2, OutboundAudio audio, OutboundVideo[] videos) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         return new Outbound(id2, audio, videos);
@@ -64,12 +49,27 @@ public final /* data */ class Outbound {
         return C12238m.areEqual(this.id, outbound.id) && C12238m.areEqual(this.audio, outbound.audio) && C12238m.areEqual(this.videos, outbound.videos);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final OutboundAudio getAudio() {
         return this.audio;
     }
 
+    public final OutboundAudio getAudio() {
+        return this.audio;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getId() {
         return this.id;
+    }
+
+    public final String getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final OutboundVideo[] getVideos() {
+        return this.videos;
     }
 
     public final OutboundVideo[] getVideos() {

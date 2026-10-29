@@ -13,24 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkActionBugReportSubmit.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkActionBugReportSubmit implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
+    private final CharSequence asanaInboxId = null;
+    private final Long priority = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackNetworkMetadata trackNetworkMetadata;
-    private final Long priority = null;
-    private final CharSequence asanaInboxId = null;
     private final transient String analyticsSchemaTypeName = "network_action_bug_report_submit";
-
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -43,11 +31,23 @@ public final /* data */ class TrackNetworkActionBugReportSubmit implements Analy
         return C12238m.areEqual(this.priority, trackNetworkActionBugReportSubmit.priority) && C12238m.areEqual(this.asanaInboxId, trackNetworkActionBugReportSubmit.asanaInboxId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         Long l = this.priority;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
         CharSequence charSequence = this.asanaInboxId;
         return iHashCode + (charSequence != null ? charSequence.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

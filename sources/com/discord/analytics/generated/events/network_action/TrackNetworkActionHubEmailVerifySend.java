@@ -24,10 +24,11 @@ public final /* data */ class TrackNetworkActionHubEmailVerifySend implements An
         this.analyticsSchemaTypeName = "network_action_hub_email_verify_send";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackNetworkActionHubEmailVerifySend) && C12238m.areEqual(this.hasMatchingGuild, ((TrackNetworkActionHubEmailVerifySend) other).hasMatchingGuild);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -36,19 +37,18 @@ public final /* data */ class TrackNetworkActionHubEmailVerifySend implements An
         return this.analyticsSchemaTypeName;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackNetworkActionHubEmailVerifySend) && C12238m.areEqual(this.hasMatchingGuild, ((TrackNetworkActionHubEmailVerifySend) other).hasMatchingGuild);
-        }
-        return true;
-    }
-
     public int hashCode() {
         Boolean bool = this.hasMatchingGuild;
         if (bool != null) {
             return bool.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

@@ -18,6 +18,14 @@ public final class StageChannelAPI {
     private StageChannelAPI() {
     }
 
+    public final Observable<Void> ackInvitationToSpeak(long channelId, boolean accept) {
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(channelId);
+        if (channel != null) {
+            return INSTANCE.ackInvitationToSpeak(channel, accept);
+        }
+        return null;
+    }
+
     public static /* synthetic */ Observable setUserSuppressedInChannel$default(StageChannelAPI stageChannelAPI, Channel channel, long j, boolean z2, long j2, int i, Object obj) {
         if ((i & 8) != 0) {
             j2 = StoreStream.INSTANCE.getUsers().getMeSnapshot().getId();
@@ -25,11 +33,22 @@ public final class StageChannelAPI {
         return stageChannelAPI.setUserSuppressedInChannel(channel, j, z2, j2);
     }
 
+    public final Observable<Void> setUserSuppressedInChannel(Channel channel, long userId, boolean isSuppressed, long meId) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        return userId == meId ? RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, isSuppressed) : RestAPI.INSTANCE.getApi().setUserSuppressed(channel, userId, isSuppressed);
+    }
+
     public static /* synthetic */ Observable startStageInstance$default(StageChannelAPI stageChannelAPI, long j, String str, StageInstancePrivacyLevel stageInstancePrivacyLevel, boolean z2, String str2, int i, Object obj) {
         if ((i & 16) != 0) {
             str2 = null;
         }
         return stageChannelAPI.startStageInstance(j, str, stageInstancePrivacyLevel, z2, str2);
+    }
+
+    public final Observable<StageInstance> startStageInstance(long channelId, String topic, StageInstancePrivacyLevel privacyLevel, boolean sendStartNotification, String guildScheduledEventId) {
+        C12238m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+        C12238m.checkNotNullParameter(privacyLevel, "privacyLevel");
+        return RestAPI.INSTANCE.getApi().startStageInstance(new RestAPIParams.StartStageInstanceBody(channelId, topic, privacyLevel, sendStartNotification, guildScheduledEventId));
     }
 
     public static /* synthetic */ Observable updateStageInstance$default(StageChannelAPI stageChannelAPI, long j, String str, StageInstancePrivacyLevel stageInstancePrivacyLevel, int i, Object obj) {
@@ -40,25 +59,6 @@ public final class StageChannelAPI {
             stageInstancePrivacyLevel = null;
         }
         return stageChannelAPI.updateStageInstance(j, str, stageInstancePrivacyLevel);
-    }
-
-    public final Observable<Void> ackInvitationToSpeak(long channelId, boolean accept) {
-        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(channelId);
-        if (channel != null) {
-            return INSTANCE.ackInvitationToSpeak(channel, accept);
-        }
-        return null;
-    }
-
-    public final Observable<Void> setUserSuppressedInChannel(Channel channel, long userId, boolean isSuppressed, long meId) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        return userId == meId ? RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, isSuppressed) : RestAPI.INSTANCE.getApi().setUserSuppressed(channel, userId, isSuppressed);
-    }
-
-    public final Observable<StageInstance> startStageInstance(long channelId, String topic, StageInstancePrivacyLevel privacyLevel, boolean sendStartNotification, String guildScheduledEventId) {
-        C12238m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
-        C12238m.checkNotNullParameter(privacyLevel, "privacyLevel");
-        return RestAPI.INSTANCE.getApi().startStageInstance(new RestAPIParams.StartStageInstanceBody(channelId, topic, privacyLevel, sendStartNotification, guildScheduledEventId));
     }
 
     public final Observable<StageInstance> updateStageInstance(long channelId, String topic, StageInstancePrivacyLevel privacyLevel) {

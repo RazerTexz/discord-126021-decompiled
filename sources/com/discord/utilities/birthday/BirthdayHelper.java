@@ -8,9 +8,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class BirthdayHelper {
     public static final String DATE_OF_BIRTH_KEY = "date_of_birth";
-    public static final BirthdayHelper INSTANCE = new BirthdayHelper();
     public static final int USER_DEFAULT_AGE = 10;
     public static final int USER_MIN_AGE_NSFW = 18;
+    public static final BirthdayHelper INSTANCE = new BirthdayHelper();
 
     private BirthdayHelper() {
     }

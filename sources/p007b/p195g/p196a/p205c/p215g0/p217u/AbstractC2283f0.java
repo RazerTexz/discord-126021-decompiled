@@ -48,6 +48,76 @@ public abstract class AbstractC2283f0<T> extends AbstractC2305q0<T> implements I
         this.f4852k = AbstractC2262l.b.f4828b;
     }
 
+    /* JADX INFO: renamed from: p */
+    public final AbstractC2364n<Object> m2059p(AbstractC2374x abstractC2374x, Class<?> cls) throws JsonMappingException {
+        AbstractC2364n<Object> abstractC2364nMo2034c = this.f4852k.mo2034c(cls);
+        if (abstractC2364nMo2034c != null) {
+            return abstractC2364nMo2034c;
+        }
+        AbstractC2364n<Object> abstractC2364nM2252q = this._referredType.mo2102r() ? abstractC2374x.m2252q(abstractC2374x.m2247k(this._referredType, cls), this._property) : abstractC2374x.m2253r(cls, this._property);
+        AbstractC2352n abstractC2352n = this._unwrapper;
+        if (abstractC2352n != null) {
+            abstractC2364nM2252q = abstractC2364nM2252q.mo1984h(abstractC2352n);
+        }
+        AbstractC2364n<Object> abstractC2364n = abstractC2364nM2252q;
+        this.f4852k = this.f4852k.mo2033b(cls, abstractC2364n);
+        return abstractC2364n;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        Object objMo2047r = mo2047r(t);
+        if (objMo2047r == null) {
+            if (this._unwrapper == null) {
+                abstractC2374x.m2248l(abstractC2108d);
+                return;
+            }
+            return;
+        }
+        AbstractC2364n<Object> abstractC2364nM2059p = this._valueSerializer;
+        if (abstractC2364nM2059p == null) {
+            abstractC2364nM2059p = m2059p(abstractC2374x, objMo2047r.getClass());
+        }
+        AbstractC2215g abstractC2215g = this._valueTypeSerializer;
+        if (abstractC2215g != null) {
+            abstractC2364nM2059p.mo1808g(objMo2047r, abstractC2108d, abstractC2374x, abstractC2215g);
+        } else {
+            abstractC2364nM2059p.mo1807f(objMo2047r, abstractC2108d, abstractC2374x);
+        }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        Object objMo2047r = mo2047r(t);
+        if (objMo2047r == null) {
+            if (this._unwrapper == null) {
+                abstractC2374x.m2248l(abstractC2108d);
+            }
+        } else {
+            AbstractC2364n<Object> abstractC2364nM2059p = this._valueSerializer;
+            if (abstractC2364nM2059p == null) {
+                abstractC2364nM2059p = m2059p(abstractC2374x, objMo2047r.getClass());
+            }
+            abstractC2364nM2059p.mo1808g(objMo2047r, abstractC2108d, abstractC2374x, abstractC2215g);
+        }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: h */
+    public AbstractC2364n<T> mo1984h(AbstractC2352n abstractC2352n) {
+        AbstractC2364n<?> abstractC2364nMo1984h = this._valueSerializer;
+        if (abstractC2364nMo1984h != null && (abstractC2364nMo1984h = abstractC2364nMo1984h.mo1984h(abstractC2352n)) == this._valueSerializer) {
+            return this;
+        }
+        AbstractC2352n abstractC2352n2 = this._unwrapper;
+        if (abstractC2352n2 != null) {
+            abstractC2352n = new AbstractC2352n.a(abstractC2352n, abstractC2352n2);
+        }
+        return (this._valueSerializer == abstractC2364nMo1984h && abstractC2352n2 == abstractC2352n) ? this : mo2050u(this._property, this._valueTypeSerializer, abstractC2364nMo1984h, abstractC2352n);
+    }
+
     /* JADX WARN: Code duplicated, block: B:12:0x0022  */
     /* JADX WARN: Code duplicated, block: B:19:0x0033  */
     /* JADX WARN: Code duplicated, block: B:22:0x003b  */
@@ -162,82 +232,6 @@ public abstract class AbstractC2283f0<T> extends AbstractC2305q0<T> implements I
         return obj == InterfaceC2094p.a.NON_EMPTY ? abstractC2364nM2059p.mo2021d(abstractC2374x, objMo2046q) : obj.equals(objMo2046q);
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: e */
-    public boolean mo2058e() {
-        return this._unwrapper != null;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        Object objMo2047r = mo2047r(t);
-        if (objMo2047r == null) {
-            if (this._unwrapper == null) {
-                abstractC2374x.m2248l(abstractC2108d);
-                return;
-            }
-            return;
-        }
-        AbstractC2364n<Object> abstractC2364nM2059p = this._valueSerializer;
-        if (abstractC2364nM2059p == null) {
-            abstractC2364nM2059p = m2059p(abstractC2374x, objMo2047r.getClass());
-        }
-        AbstractC2215g abstractC2215g = this._valueTypeSerializer;
-        if (abstractC2215g != null) {
-            abstractC2364nM2059p.mo1808g(objMo2047r, abstractC2108d, abstractC2374x, abstractC2215g);
-        } else {
-            abstractC2364nM2059p.mo1807f(objMo2047r, abstractC2108d, abstractC2374x);
-        }
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        Object objMo2047r = mo2047r(t);
-        if (objMo2047r == null) {
-            if (this._unwrapper == null) {
-                abstractC2374x.m2248l(abstractC2108d);
-            }
-        } else {
-            AbstractC2364n<Object> abstractC2364nM2059p = this._valueSerializer;
-            if (abstractC2364nM2059p == null) {
-                abstractC2364nM2059p = m2059p(abstractC2374x, objMo2047r.getClass());
-            }
-            abstractC2364nM2059p.mo1808g(objMo2047r, abstractC2108d, abstractC2374x, abstractC2215g);
-        }
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: h */
-    public AbstractC2364n<T> mo1984h(AbstractC2352n abstractC2352n) {
-        AbstractC2364n<?> abstractC2364nMo1984h = this._valueSerializer;
-        if (abstractC2364nMo1984h != null && (abstractC2364nMo1984h = abstractC2364nMo1984h.mo1984h(abstractC2352n)) == this._valueSerializer) {
-            return this;
-        }
-        AbstractC2352n abstractC2352n2 = this._unwrapper;
-        if (abstractC2352n2 != null) {
-            abstractC2352n = new AbstractC2352n.a(abstractC2352n, abstractC2352n2);
-        }
-        return (this._valueSerializer == abstractC2364nMo1984h && abstractC2352n2 == abstractC2352n) ? this : mo2050u(this._property, this._valueTypeSerializer, abstractC2364nMo1984h, abstractC2352n);
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final AbstractC2364n<Object> m2059p(AbstractC2374x abstractC2374x, Class<?> cls) throws JsonMappingException {
-        AbstractC2364n<Object> abstractC2364nMo2034c = this.f4852k.mo2034c(cls);
-        if (abstractC2364nMo2034c != null) {
-            return abstractC2364nMo2034c;
-        }
-        AbstractC2364n<Object> abstractC2364nM2252q = this._referredType.mo2102r() ? abstractC2374x.m2252q(abstractC2374x.m2247k(this._referredType, cls), this._property) : abstractC2374x.m2253r(cls, this._property);
-        AbstractC2352n abstractC2352n = this._unwrapper;
-        if (abstractC2352n != null) {
-            abstractC2364nM2252q = abstractC2364nM2252q.mo1984h(abstractC2352n);
-        }
-        AbstractC2364n<Object> abstractC2364n = abstractC2364nM2252q;
-        this.f4852k = this.f4852k.mo2033b(cls, abstractC2364n);
-        return abstractC2364n;
-    }
-
     /* JADX INFO: renamed from: q */
     public abstract Object mo2046q(T t);
 
@@ -252,6 +246,12 @@ public abstract class AbstractC2283f0<T> extends AbstractC2305q0<T> implements I
 
     /* JADX INFO: renamed from: u */
     public abstract AbstractC2283f0<T> mo2050u(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, AbstractC2352n abstractC2352n);
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: e */
+    public boolean mo2058e() {
+        return this._unwrapper != null;
+    }
 
     public AbstractC2283f0(AbstractC2283f0<?> abstractC2283f0, InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, AbstractC2352n abstractC2352n, Object obj, boolean z2) {
         super(abstractC2283f0);

@@ -22,7 +22,7 @@ public final class C2189j extends AbstractC2193n implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.j$a */
     /* JADX INFO: compiled from: AnnotatedMethod.java */
-    public static final class a implements Serializable {
+    public final class a implements Serializable {
         private static final long serialVersionUID = 1;
         public Class<?>[] args;
         public Class<?> clazz;
@@ -44,6 +44,39 @@ public final class C2189j extends AbstractC2193n implements Serializable {
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return C2342d.m2183o(obj, C2189j.class) && ((C2189j) obj).f4718l == this.f4718l;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this.f4718l.getName().hashCode();
+    }
+
+    /* JADX INFO: renamed from: o */
+    public int m1905o() {
+        if (this._paramClasses == null) {
+            this._paramClasses = this.f4718l.getParameterTypes();
+        }
+        return this._paramClasses.length;
+    }
+
+    /* JADX INFO: renamed from: p */
+    public Class<?> m1906p(int i) {
+        if (this._paramClasses == null) {
+            this._paramClasses = this.f4718l.getParameterTypes();
+        }
+        Class<?>[] clsArr = this._paramClasses;
+        if (i >= clsArr.length) {
+            return null;
+        }
+        return clsArr[i];
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
     /* JADX INFO: renamed from: c */
     public String mo1819c() {
         return this.f4718l.getName();
@@ -61,40 +94,10 @@ public final class C2189j extends AbstractC2193n implements Serializable {
         return this.f4716j.mo1831a(this.f4718l.getGenericReturnType());
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        return C2342d.m2183o(obj, C2189j.class) && ((C2189j) obj).f4718l == this.f4718l;
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
     /* JADX INFO: renamed from: g */
     public Class<?> mo1887g() {
         return this.f4718l.getDeclaringClass();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
-    /* JADX INFO: renamed from: h */
-    public String mo1903h() {
-        String strMo1903h = super.mo1903h();
-        int iM1905o = m1905o();
-        if (iM1905o == 0) {
-            return C1643a.m883w(strMo1903h, "()");
-        }
-        if (iM1905o != 1) {
-            return String.format("%s(%d params)", super.mo1903h(), Integer.valueOf(m1905o()));
-        }
-        StringBuilder sbM836X = C1643a.m836X(strMo1903h, "(");
-        sbM836X.append(m1906p(0).getName());
-        sbM836X.append(")");
-        return sbM836X.toString();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this.f4718l.getName().hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
@@ -133,24 +136,21 @@ public final class C2189j extends AbstractC2193n implements Serializable {
         return this.f4716j.mo1831a(genericParameterTypes[i]);
     }
 
-    /* JADX INFO: renamed from: o */
-    public int m1905o() {
-        if (this._paramClasses == null) {
-            this._paramClasses = this.f4718l.getParameterTypes();
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
+    /* JADX INFO: renamed from: h */
+    public String mo1903h() {
+        String strMo1903h = super.mo1903h();
+        int iM1905o = m1905o();
+        if (iM1905o == 0) {
+            return C1643a.m883w(strMo1903h, "()");
         }
-        return this._paramClasses.length;
-    }
-
-    /* JADX INFO: renamed from: p */
-    public Class<?> m1906p(int i) {
-        if (this._paramClasses == null) {
-            this._paramClasses = this.f4718l.getParameterTypes();
+        if (iM1905o != 1) {
+            return String.format("%s(%d params)", super.mo1903h(), Integer.valueOf(m1905o()));
         }
-        Class<?>[] clsArr = this._paramClasses;
-        if (i >= clsArr.length) {
-            return null;
-        }
-        return clsArr[i];
+        StringBuilder sbM836X = C1643a.m836X(strMo1903h, "(");
+        sbM836X.append(m1906p(0).getName());
+        sbM836X.append(")");
+        return sbM836X.toString();
     }
 
     public Object readResolve() {

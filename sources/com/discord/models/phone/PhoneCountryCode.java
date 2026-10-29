@@ -11,14 +11,14 @@ public final /* data */ class PhoneCountryCode {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final PhoneCountryCode DEFAULT_COUNTRY_CODE = new PhoneCountryCode("United States", "US", "+1");
-    private static final PhoneCountryCode MISSING_COUNTRY_CODE = new PhoneCountryCode("", "", "");
     private final String alpha2;
     private final String name;
     private final String phoneCountryCode;
+    private static final PhoneCountryCode DEFAULT_COUNTRY_CODE = new PhoneCountryCode("United States", "US", "+1");
+    private static final PhoneCountryCode MISSING_COUNTRY_CODE = new PhoneCountryCode("", "", "");
 
     /* JADX INFO: compiled from: PhoneCountryCode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -55,21 +55,6 @@ public final /* data */ class PhoneCountryCode {
         return phoneCountryCode.copy(str, str2, str3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getAlpha2() {
-        return this.alpha2;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getPhoneCountryCode() {
-        return this.phoneCountryCode;
-    }
-
     public final PhoneCountryCode copy(String name, String alpha2, String phoneCountryCode) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(alpha2, "alpha2");
@@ -88,12 +73,27 @@ public final /* data */ class PhoneCountryCode {
         return C12238m.areEqual(this.name, phoneCountryCode.name) && C12238m.areEqual(this.alpha2, phoneCountryCode.alpha2) && C12238m.areEqual(this.phoneCountryCode, phoneCountryCode.phoneCountryCode);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getAlpha2() {
         return this.alpha2;
     }
 
+    public final String getAlpha2() {
+        return this.alpha2;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getPhoneCountryCode() {
+        return this.phoneCountryCode;
     }
 
     public final String getPhoneCountryCode() {

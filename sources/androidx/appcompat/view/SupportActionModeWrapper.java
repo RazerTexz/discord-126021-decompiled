@@ -19,62 +19,6 @@ public class SupportActionModeWrapper extends android.view.ActionMode {
     public final Context mContext;
     public final ActionMode mWrappedObject;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class CallbackWrapper implements ActionMode.Callback {
-        public final Context mContext;
-        public final android.view.ActionMode.Callback mWrappedCallback;
-        public final ArrayList<SupportActionModeWrapper> mActionModes = new ArrayList<>();
-        public final SimpleArrayMap<Menu, Menu> mMenus = new SimpleArrayMap<>();
-
-        public CallbackWrapper(Context context, android.view.ActionMode.Callback callback) {
-            this.mContext = context;
-            this.mWrappedCallback = callback;
-        }
-
-        private Menu getMenuWrapper(Menu menu) {
-            Menu menu2 = this.mMenus.get(menu);
-            if (menu2 != null) {
-                return menu2;
-            }
-            MenuWrapperICS menuWrapperICS = new MenuWrapperICS(this.mContext, (SupportMenu) menu);
-            this.mMenus.put(menu, menuWrapperICS);
-            return menuWrapperICS;
-        }
-
-        public android.view.ActionMode getActionModeWrapper(ActionMode actionMode) {
-            int size = this.mActionModes.size();
-            for (int i = 0; i < size; i++) {
-                SupportActionModeWrapper supportActionModeWrapper = this.mActionModes.get(i);
-                if (supportActionModeWrapper != null && supportActionModeWrapper.mWrappedObject == actionMode) {
-                    return supportActionModeWrapper;
-                }
-            }
-            SupportActionModeWrapper supportActionModeWrapper2 = new SupportActionModeWrapper(this.mContext, actionMode);
-            this.mActionModes.add(supportActionModeWrapper2);
-            return supportActionModeWrapper2;
-        }
-
-        @Override // androidx.appcompat.view.ActionMode.Callback
-        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            return this.mWrappedCallback.onActionItemClicked(getActionModeWrapper(actionMode), new MenuItemWrapperICS(this.mContext, (SupportMenuItem) menuItem));
-        }
-
-        @Override // androidx.appcompat.view.ActionMode.Callback
-        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            return this.mWrappedCallback.onCreateActionMode(getActionModeWrapper(actionMode), getMenuWrapper(menu));
-        }
-
-        @Override // androidx.appcompat.view.ActionMode.Callback
-        public void onDestroyActionMode(ActionMode actionMode) {
-            this.mWrappedCallback.onDestroyActionMode(getActionModeWrapper(actionMode));
-        }
-
-        @Override // androidx.appcompat.view.ActionMode.Callback
-        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-            return this.mWrappedCallback.onPrepareActionMode(getActionModeWrapper(actionMode), getMenuWrapper(menu));
-        }
-    }
-
     public SupportActionModeWrapper(Context context, ActionMode actionMode) {
         this.mContext = context;
         this.mWrappedObject = actionMode;
@@ -163,5 +107,61 @@ public class SupportActionModeWrapper extends android.view.ActionMode {
     @Override // android.view.ActionMode
     public void setTitle(int i) {
         this.mWrappedObject.setTitle(i);
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public class CallbackWrapper implements ActionMode.Callback {
+        public final Context mContext;
+        public final android.view.ActionMode.Callback mWrappedCallback;
+        public final ArrayList<SupportActionModeWrapper> mActionModes = new ArrayList<>();
+        public final SimpleArrayMap<Menu, Menu> mMenus = new SimpleArrayMap<>();
+
+        public CallbackWrapper(Context context, android.view.ActionMode.Callback callback) {
+            this.mContext = context;
+            this.mWrappedCallback = callback;
+        }
+
+        public android.view.ActionMode getActionModeWrapper(ActionMode actionMode) {
+            int size = this.mActionModes.size();
+            for (int i = 0; i < size; i++) {
+                SupportActionModeWrapper supportActionModeWrapper = this.mActionModes.get(i);
+                if (supportActionModeWrapper != null && supportActionModeWrapper.mWrappedObject == actionMode) {
+                    return supportActionModeWrapper;
+                }
+            }
+            SupportActionModeWrapper supportActionModeWrapper2 = new SupportActionModeWrapper(this.mContext, actionMode);
+            this.mActionModes.add(supportActionModeWrapper2);
+            return supportActionModeWrapper2;
+        }
+
+        private Menu getMenuWrapper(Menu menu) {
+            Menu menu2 = this.mMenus.get(menu);
+            if (menu2 != null) {
+                return menu2;
+            }
+            MenuWrapperICS menuWrapperICS = new MenuWrapperICS(this.mContext, (SupportMenu) menu);
+            this.mMenus.put(menu, menuWrapperICS);
+            return menuWrapperICS;
+        }
+
+        @Override // androidx.appcompat.view.ActionMode.Callback
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            return this.mWrappedCallback.onActionItemClicked(getActionModeWrapper(actionMode), new MenuItemWrapperICS(this.mContext, (SupportMenuItem) menuItem));
+        }
+
+        @Override // androidx.appcompat.view.ActionMode.Callback
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            return this.mWrappedCallback.onCreateActionMode(getActionModeWrapper(actionMode), getMenuWrapper(menu));
+        }
+
+        @Override // androidx.appcompat.view.ActionMode.Callback
+        public void onDestroyActionMode(ActionMode actionMode) {
+            this.mWrappedCallback.onDestroyActionMode(getActionModeWrapper(actionMode));
+        }
+
+        @Override // androidx.appcompat.view.ActionMode.Callback
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return this.mWrappedCallback.onPrepareActionMode(getActionModeWrapper(actionMode), getMenuWrapper(menu));
+        }
     }
 }

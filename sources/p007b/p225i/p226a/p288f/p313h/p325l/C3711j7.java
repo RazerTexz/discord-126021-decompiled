@@ -43,7 +43,7 @@ public final class C3711j7 {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.j7$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static final class a extends c {
+    public final class a extends c {
         public a(Unsafe unsafe) {
             super(unsafe);
         }
@@ -110,7 +110,7 @@ public final class C3711j7 {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.j7$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static final class b extends c {
+    public final class b extends c {
         public b(Unsafe unsafe) {
             super(unsafe);
         }
@@ -177,13 +177,33 @@ public final class C3711j7 {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.j7$c */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static abstract class c {
+    public abstract class c {
 
         /* JADX INFO: renamed from: a */
         public Unsafe f10041a;
 
         public c(Unsafe unsafe) {
             this.f10041a = unsafe;
+        }
+
+        /* JADX INFO: renamed from: e */
+        public final void m5005e(Object obj, long j, int i) {
+            this.f10041a.putInt(obj, j, i);
+        }
+
+        /* JADX INFO: renamed from: f */
+        public final void m5006f(Object obj, long j, long j2) {
+            this.f10041a.putLong(obj, j, j2);
+        }
+
+        /* JADX INFO: renamed from: k */
+        public final int m5007k(Object obj, long j) {
+            return this.f10041a.getInt(obj, j);
+        }
+
+        /* JADX INFO: renamed from: l */
+        public final long m5008l(Object obj, long j) {
+            return this.f10041a.getLong(obj, j);
         }
 
         /* JADX INFO: renamed from: a */
@@ -198,16 +218,6 @@ public final class C3711j7 {
         /* JADX INFO: renamed from: d */
         public abstract void mo5000d(Object obj, long j, float f);
 
-        /* JADX INFO: renamed from: e */
-        public final void m5005e(Object obj, long j, int i) {
-            this.f10041a.putInt(obj, j, i);
-        }
-
-        /* JADX INFO: renamed from: f */
-        public final void m5006f(Object obj, long j, long j2) {
-            this.f10041a.putLong(obj, j, j2);
-        }
-
         /* JADX INFO: renamed from: g */
         public abstract void mo5001g(Object obj, long j, boolean z2);
 
@@ -219,21 +229,11 @@ public final class C3711j7 {
 
         /* JADX INFO: renamed from: j */
         public abstract double mo5004j(Object obj, long j);
-
-        /* JADX INFO: renamed from: k */
-        public final int m5007k(Object obj, long j) {
-            return this.f10041a.getInt(obj, j);
-        }
-
-        /* JADX INFO: renamed from: l */
-        public final long m5008l(Object obj, long j) {
-            return this.f10041a.getLong(obj, j);
-        }
     }
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.j7$d */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static final class d extends c {
+    public final class d extends c {
         public d(Unsafe unsafe) {
             super(unsafe);
         }

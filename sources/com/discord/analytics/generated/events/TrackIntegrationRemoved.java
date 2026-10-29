@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackIntegrationRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long id = null;
-    private final Long guildId = null;
     private final Long applicationId = null;
+    private final Long guildId = null;
+    private final Long id = null;
     private final List<CharSequence> scopes = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "integration_removed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema
         }
         TrackIntegrationRemoved trackIntegrationRemoved = (TrackIntegrationRemoved) other;
         return C12238m.areEqual(this.id, trackIntegrationRemoved.id) && C12238m.areEqual(this.guildId, trackIntegrationRemoved.guildId) && C12238m.areEqual(this.applicationId, trackIntegrationRemoved.applicationId) && C12238m.areEqual(this.scopes, trackIntegrationRemoved.scopes);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

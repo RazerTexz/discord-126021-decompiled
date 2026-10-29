@@ -25,7 +25,7 @@ import java.util.Map;
 public final class ActivityResultContracts {
 
     @TargetApi(19)
-    public static class CreateDocument extends ActivityResultContract<String, Uri> {
+    public class CreateDocument extends ActivityResultContract<String, Uri> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Uri> getSynchronousResult(@NonNull Context context, @NonNull String str) {
@@ -50,7 +50,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static class GetContent extends ActivityResultContract<String, Uri> {
+    public class GetContent extends ActivityResultContract<String, Uri> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Uri> getSynchronousResult(@NonNull Context context, @NonNull String str) {
@@ -76,7 +76,7 @@ public final class ActivityResultContracts {
     }
 
     @TargetApi(18)
-    public static class GetMultipleContents extends ActivityResultContract<String, List<Uri>> {
+    public class GetMultipleContents extends ActivityResultContract<String, List<Uri>> {
         @NonNull
         public static List<Uri> getClipDataUris(@NonNull Intent intent) {
             LinkedHashSet linkedHashSet = new LinkedHashSet();
@@ -119,7 +119,7 @@ public final class ActivityResultContracts {
     }
 
     @TargetApi(19)
-    public static class OpenDocument extends ActivityResultContract<String[], Uri> {
+    public class OpenDocument extends ActivityResultContract<String[], Uri> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Uri> getSynchronousResult(@NonNull Context context, @NonNull String[] strArr) {
@@ -145,7 +145,7 @@ public final class ActivityResultContracts {
     }
 
     @TargetApi(21)
-    public static class OpenDocumentTree extends ActivityResultContract<Uri, Uri> {
+    public class OpenDocumentTree extends ActivityResultContract<Uri, Uri> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Uri> getSynchronousResult(@NonNull Context context, @Nullable Uri uri) {
@@ -175,7 +175,7 @@ public final class ActivityResultContracts {
     }
 
     @TargetApi(19)
-    public static class OpenMultipleDocuments extends ActivityResultContract<String[], List<Uri>> {
+    public class OpenMultipleDocuments extends ActivityResultContract<String[], List<Uri>> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<List<Uri>> getSynchronousResult(@NonNull Context context, @NonNull String[] strArr) {
@@ -196,7 +196,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static final class PickContact extends ActivityResultContract<Void, Uri> {
+    public final class PickContact extends ActivityResultContract<Void, Uri> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @NonNull
         public Intent createIntent(@NonNull Context context, @Nullable Void r2) {
@@ -214,7 +214,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static final class RequestMultiplePermissions extends ActivityResultContract<String[], Map<String, Boolean>> {
+    public final class RequestMultiplePermissions extends ActivityResultContract<String[], Map<String, Boolean>> {
         public static final String ACTION_REQUEST_PERMISSIONS = "androidx.activity.result.contract.action.REQUEST_PERMISSIONS";
         public static final String EXTRA_PERMISSIONS = "androidx.activity.result.contract.extra.PERMISSIONS";
         public static final String EXTRA_PERMISSION_GRANT_RESULTS = "androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS";
@@ -274,7 +274,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static final class RequestPermission extends ActivityResultContract<String, Boolean> {
+    public final class RequestPermission extends ActivityResultContract<String, Boolean> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @NonNull
         public Intent createIntent(@NonNull Context context, @NonNull String str) {
@@ -308,7 +308,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static final class StartActivityForResult extends ActivityResultContract<Intent, ActivityResult> {
+    public final class StartActivityForResult extends ActivityResultContract<Intent, ActivityResult> {
         public static final String EXTRA_ACTIVITY_OPTIONS_BUNDLE = "androidx.activity.result.contract.extra.ACTIVITY_OPTIONS_BUNDLE";
 
         @Override // androidx.activity.result.contract.ActivityResultContract
@@ -325,7 +325,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static final class StartIntentSenderForResult extends ActivityResultContract<IntentSenderRequest, ActivityResult> {
+    public final class StartIntentSenderForResult extends ActivityResultContract<IntentSenderRequest, ActivityResult> {
         public static final String ACTION_INTENT_SENDER_REQUEST = "androidx.activity.result.contract.action.INTENT_SENDER_REQUEST";
         public static final String EXTRA_INTENT_SENDER_REQUEST = "androidx.activity.result.contract.extra.INTENT_SENDER_REQUEST";
         public static final String EXTRA_SEND_INTENT_EXCEPTION = "androidx.activity.result.contract.extra.SEND_INTENT_EXCEPTION";
@@ -344,7 +344,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static class TakePicture extends ActivityResultContract<Uri, Boolean> {
+    public class TakePicture extends ActivityResultContract<Uri, Boolean> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Boolean> getSynchronousResult(@NonNull Context context, @NonNull Uri uri) {
@@ -366,7 +366,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static class TakePicturePreview extends ActivityResultContract<Void, Bitmap> {
+    public class TakePicturePreview extends ActivityResultContract<Void, Bitmap> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Bitmap> getSynchronousResult(@NonNull Context context, @Nullable Void r2) {
@@ -391,7 +391,7 @@ public final class ActivityResultContracts {
         }
     }
 
-    public static class TakeVideo extends ActivityResultContract<Uri, Bitmap> {
+    public class TakeVideo extends ActivityResultContract<Uri, Bitmap> {
         @Override // androidx.activity.result.contract.ActivityResultContract
         @Nullable
         public final ActivityResultContract.SynchronousResult<Bitmap> getSynchronousResult(@NonNull Context context, @NonNull Uri uri) {

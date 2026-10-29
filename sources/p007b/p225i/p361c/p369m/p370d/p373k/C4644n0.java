@@ -20,9 +20,6 @@ import p007b.p225i.p361c.p369m.p370d.p387t.InterfaceC4755d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4644n0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final String f12353a = String.format(Locale.US, "Crashlytics Android SDK/%s", "17.3.0");
-
     /* JADX INFO: renamed from: b */
     public static final Map<String, Integer> f12354b;
 
@@ -37,6 +34,9 @@ public class C4644n0 {
 
     /* JADX INFO: renamed from: f */
     public final InterfaceC4755d f12358f;
+
+    /* JADX INFO: renamed from: a */
+    public static final String f12353a = String.format(Locale.US, "Crashlytics Android SDK/%s", "17.3.0");
 
     static {
         HashMap map = new HashMap();

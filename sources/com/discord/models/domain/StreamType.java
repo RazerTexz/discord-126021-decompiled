@@ -11,14 +11,14 @@ public enum StreamType {
     GUILD("guild"),
     CALL(NotificationCompat.CATEGORY_CALL);
 
-    private final String serializedRepresentation;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final String serializedRepresentation;
     private static final StreamType[] VALUES = values();
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

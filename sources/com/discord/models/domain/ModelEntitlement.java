@@ -32,56 +32,6 @@ public final /* data */ class ModelEntitlement {
         this.promotionId = l2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final Long getPromotionId() {
-        return this.promotionId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getSkuId() {
-        return this.skuId;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final ModelSku getSku() {
-        return this.sku;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final SubscriptionPlan getSubscriptionPlan() {
-        return this.subscriptionPlan;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final Long getParentId() {
-        return this.parentId;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Boolean getConsumed() {
-        return this.consumed;
-    }
-
     public final ModelEntitlement copy(long id2, long applicationId, int type, long userId, long skuId, ModelSku sku, SubscriptionPlan subscriptionPlan, Long parentId, Boolean consumed, Long promotionId) {
         C12238m.checkNotNullParameter(sku, "sku");
         return new ModelEntitlement(id2, applicationId, type, userId, skuId, sku, subscriptionPlan, parentId, consumed, promotionId);
@@ -98,40 +48,90 @@ public final /* data */ class ModelEntitlement {
         return this.id == modelEntitlement.id && this.applicationId == modelEntitlement.applicationId && this.type == modelEntitlement.type && this.userId == modelEntitlement.userId && this.skuId == modelEntitlement.skuId && C12238m.areEqual(this.sku, modelEntitlement.sku) && C12238m.areEqual(this.subscriptionPlan, modelEntitlement.subscriptionPlan) && C12238m.areEqual(this.parentId, modelEntitlement.parentId) && C12238m.areEqual(this.consumed, modelEntitlement.consumed) && C12238m.areEqual(this.promotionId, modelEntitlement.promotionId);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
+    }
+
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final Boolean getConsumed() {
+        return this.consumed;
     }
 
     public final Boolean getConsumed() {
         return this.consumed;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final Long getParentId() {
+        return this.parentId;
     }
 
     public final Long getParentId() {
         return this.parentId;
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final Long getPromotionId() {
         return this.promotionId;
+    }
+
+    public final Long getPromotionId() {
+        return this.promotionId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final ModelSku getSku() {
+        return this.sku;
     }
 
     public final ModelSku getSku() {
         return this.sku;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getSkuId() {
         return this.skuId;
+    }
+
+    public final long getSkuId() {
+        return this.skuId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final SubscriptionPlan getSubscriptionPlan() {
+        return this.subscriptionPlan;
     }
 
     public final SubscriptionPlan getSubscriptionPlan() {
         return this.subscriptionPlan;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getType() {
         return this.type;
+    }
+
+    public final int getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

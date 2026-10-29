@@ -14,7 +14,7 @@ public final class C1342e implements RendererCommon.RendererEvents {
 
     /* JADX INFO: renamed from: b.a.y.j0.e$a */
     /* JADX INFO: compiled from: RxRendererEvents.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f2031a;

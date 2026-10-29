@@ -21,7 +21,7 @@ public enum EnumC12268d0 {
 
     /* JADX INFO: renamed from: f0.d0$a */
     /* JADX INFO: compiled from: TlsVersion.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

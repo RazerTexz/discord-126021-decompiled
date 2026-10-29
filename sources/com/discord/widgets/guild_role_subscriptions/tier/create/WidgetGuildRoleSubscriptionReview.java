@@ -36,6 +36,7 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionReview.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildRoleSubscriptionReview.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionTierReviewBinding;", 0)};
     public static final String ARG_IS_SUBSCRIPTION_GROUP_PLAN_REVIEW_MODE = "ARG_IS_SUBSCRIPTION_GROUP_PLAN_REVIEW_MODE";
     private GuildRoleSubscriptionTierAdapter adapter;
 
@@ -53,11 +54,10 @@ public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildRoleSubscriptionReview.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionTierReviewBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionReview$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionReview.kt */
-    public static final class C84961 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C84961 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C84961() {
             super(1);
         }
@@ -77,7 +77,7 @@ public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionReview$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionReview.kt */
-    public static final class C84972 extends AbstractC12240o implements Function1<GuildRoleSubscriptionReviewViewModel.ViewState, Unit> {
+    public final class C84972 extends AbstractC12240o implements Function1<GuildRoleSubscriptionReviewViewModel.ViewState, Unit> {
         public C84972() {
             super(1);
         }
@@ -97,7 +97,7 @@ public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionReview$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionReview.kt */
-    public static final class C84983 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.ViewState, Unit> {
+    public final class C84983 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.ViewState, Unit> {
         public C84983() {
             super(1);
         }
@@ -162,6 +162,23 @@ public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
         return false;
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setupRecyclerView();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84961());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getReviewViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84972());
+        if (isPlanReviewMode()) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getPlanSetupViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84983());
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     private final void setupRecyclerView() {
         this.adapter = new GuildRoleSubscriptionTierAdapter(this, null, 2, 0 == true ? 1 : 0);
@@ -199,22 +216,5 @@ public final class WidgetGuildRoleSubscriptionReview extends AppFragment {
             return;
         }
         getReviewViewModel().updateTier(viewState.getGuildRoleSubscriptionTier(), viewState.isFullServerGating());
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setupRecyclerView();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84961());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getReviewViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84972());
-        if (isPlanReviewMode()) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getPlanSetupViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildRoleSubscriptionReview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84983());
-        }
     }
 }

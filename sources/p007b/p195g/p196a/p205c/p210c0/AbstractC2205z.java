@@ -7,14 +7,14 @@ import p007b.p195g.p196a.p205c.AbstractC2165b;
 /* JADX INFO: compiled from: NopAnnotationIntrospector.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2205z extends AbstractC2165b implements Serializable {
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: j */
     public static final AbstractC2205z f4764j = new a();
-    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: b.g.a.c.c0.z$a */
     /* JADX INFO: compiled from: NopAnnotationIntrospector.java */
-    public static class a extends AbstractC2205z {
+    public final class a extends AbstractC2205z {
         private static final long serialVersionUID = 1;
     }
 }

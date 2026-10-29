@@ -125,37 +125,9 @@ public final class WidgetChatInput extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
-
-        static {
-            ApplicationStatus.values();
-            int[] iArr = new int[5];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[ApplicationStatus.REJECTED.ordinal()] = 1;
-            iArr[ApplicationStatus.PENDING.ordinal()] = 2;
-            GuildVerificationLevel.values();
-            int[] iArr2 = new int[5];
-            $EnumSwitchMapping$1 = iArr2;
-            GuildVerificationLevel guildVerificationLevel = GuildVerificationLevel.LOW;
-            iArr2[guildVerificationLevel.ordinal()] = 1;
-            iArr2[GuildVerificationLevel.MEDIUM.ordinal()] = 2;
-            iArr2[GuildVerificationLevel.HIGH.ordinal()] = 3;
-            GuildVerificationLevel guildVerificationLevel2 = GuildVerificationLevel.HIGHEST;
-            iArr2[guildVerificationLevel2.ordinal()] = 4;
-            GuildVerificationLevel.values();
-            int[] iArr3 = new int[5];
-            $EnumSwitchMapping$2 = iArr3;
-            iArr3[guildVerificationLevel.ordinal()] = 1;
-            iArr3[guildVerificationLevel2.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureContextBarReplying$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77141 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C77141 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ ChatInputViewModel.ViewState.Loaded.PendingReplyState.Replying $model;
 
@@ -181,13 +153,13 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77181 extends AbstractC12240o implements Function4<ApplicationCommandData, Map<ApplicationCommandOption, ? extends Attachment<?>>, Boolean, Function1<? super Boolean, ? extends Unit>, Unit> {
+    public final class C77181 extends AbstractC12240o implements Function4<ApplicationCommandData, Map<ApplicationCommandOption, ? extends Attachment<?>>, Boolean, Function1<? super Boolean, ? extends Unit>, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ MessageManager $messageManager;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatInput.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -238,7 +210,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$2 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77192 extends AbstractC12240o implements Function3<List<? extends Attachment<?>>, ApplicationCommandData, Function1<? super Boolean, ? extends Unit>, Unit> {
+    public final class C77192 extends AbstractC12240o implements Function3<List<? extends Attachment<?>>, ApplicationCommandData, Function1<? super Boolean, ? extends Unit>, Unit> {
         public final /* synthetic */ WidgetChatInputEditText $chatInput;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ MessageManager $messageManager;
@@ -295,7 +267,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$3 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77203 extends AbstractC12240o implements Function2<List<? extends Attachment<?>>, Function1<? super Boolean, ? extends Unit>, Unit> {
+    public final class C77203 extends AbstractC12240o implements Function2<List<? extends Attachment<?>>, Function1<? super Boolean, ? extends Unit>, Unit> {
         public final /* synthetic */ C77181 $sendCommand$1;
         public final /* synthetic */ C77192 $sendMessage$2;
 
@@ -338,7 +310,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$4 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77214 extends AbstractC12240o implements Function1<Integer, Boolean> {
+    public final class C77214 extends AbstractC12240o implements Function1<Integer, Boolean> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -360,7 +332,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$5 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77225 extends AbstractC12240o implements Function1<ApplicationCommandOption, Unit> {
+    public final class C77225 extends AbstractC12240o implements Function1<ApplicationCommandOption, Unit> {
         public final /* synthetic */ C77181 $sendCommand$1;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -388,12 +360,12 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$6 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77236 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77236 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ C77203 $trySend$3;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$6$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatInput.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -431,7 +403,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureUI$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77251 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77251 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ChatInputViewModel.ViewState $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -459,7 +431,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$handleEvent$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77261 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77261 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ChatInputViewModel.Event $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -486,7 +458,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77271 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77271 extends AbstractC12240o implements Function0<Unit> {
         public C77271() {
             super(0);
         }
@@ -532,7 +504,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final /* synthetic */ class C77281 extends C12236k implements Function1<ChatInputViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C77281 extends C12236k implements Function1<ChatInputViewModel.ViewState, Unit> {
         public C77281(WidgetChatInput widgetChatInput) {
             super(1, widgetChatInput, WidgetChatInput.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/input/ChatInputViewModel$ViewState;)V", 0);
         }
@@ -552,7 +524,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final /* synthetic */ class C77292 extends C12236k implements Function1<ChatInputViewModel.Event, Unit> {
+    public final /* synthetic */ class C77292 extends C12236k implements Function1<ChatInputViewModel.Event, Unit> {
         public C77292(WidgetChatInput widgetChatInput) {
             super(1, widgetChatInput, WidgetChatInput.class, "handleEvent", "handleEvent(Lcom/discord/widgets/chat/input/ChatInputViewModel$Event;)V", 0);
         }
@@ -572,7 +544,7 @@ public final class WidgetChatInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetChatInput.kt */
-    public static final class C77303 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C77303 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C77303() {
             super(1);
         }
@@ -588,6 +560,34 @@ public final class WidgetChatInput extends AppFragment {
         }
     }
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+
+        static {
+            ApplicationStatus.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ApplicationStatus.REJECTED.ordinal()] = 1;
+            iArr[ApplicationStatus.PENDING.ordinal()] = 2;
+            GuildVerificationLevel.values();
+            int[] iArr2 = new int[5];
+            $EnumSwitchMapping$1 = iArr2;
+            GuildVerificationLevel guildVerificationLevel = GuildVerificationLevel.LOW;
+            iArr2[guildVerificationLevel.ordinal()] = 1;
+            iArr2[GuildVerificationLevel.MEDIUM.ordinal()] = 2;
+            iArr2[GuildVerificationLevel.HIGH.ordinal()] = 3;
+            GuildVerificationLevel guildVerificationLevel2 = GuildVerificationLevel.HIGHEST;
+            iArr2[guildVerificationLevel2.ordinal()] = 4;
+            GuildVerificationLevel.values();
+            int[] iArr3 = new int[5];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[guildVerificationLevel.ordinal()] = 1;
+            iArr3[guildVerificationLevel2.ordinal()] = 2;
+        }
+    }
+
     public WidgetChatInput() {
         super(C5419R.layout.widget_chat_input);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetChatInput$binding$2.INSTANCE, new WidgetChatInput$binding$3(this));
@@ -597,6 +597,16 @@ public final class WidgetChatInput extends AppFragment {
         this.flexInputFragment = C12083g.lazy(new WidgetChatInput$flexInputFragment$2(this));
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(ChatInputViewModel.class), new C7701xc3f142cd(this), new C0863f0(WidgetChatInput$viewModel$2.INSTANCE));
         this.flexInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(AppFlexInputViewModel.class), new C7703xc3f142cf(this), new C0863f0(new WidgetChatInput$flexInputViewModel$2(this)));
+    }
+
+    public static /* synthetic */ void clearInput$default(WidgetChatInput widgetChatInput, Boolean bool, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            bool = null;
+        }
+        if ((i & 2) != 0) {
+            z2 = true;
+        }
+        widgetChatInput.clearInput(bool, z2);
     }
 
     private final void clearInput(Boolean focused, boolean clearText) {
@@ -609,16 +619,6 @@ public final class WidgetChatInput extends AppFragment {
             widgetChatInputEditText.clearLastTypingEmission();
             getViewModel().deleteEditingMessage();
         }
-    }
-
-    public static /* synthetic */ void clearInput$default(WidgetChatInput widgetChatInput, Boolean bool, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            bool = null;
-        }
-        if ((i & 2) != 0) {
-            z2 = true;
-        }
-        widgetChatInput.clearInput(bool, z2);
     }
 
     private final void configureChatGuard(final ChatInputViewModel.ViewState.Loaded viewState) {
@@ -758,7 +758,7 @@ public final class WidgetChatInput extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureChatGuard$6$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetChatInput.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {
@@ -802,7 +802,7 @@ public final class WidgetChatInput extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureChatGuard$7$1, reason: invalid class name */
                     /* JADX INFO: compiled from: WidgetChatInput.kt */
-                    public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                    public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                         public AnonymousClass1() {
@@ -972,7 +972,7 @@ public final class WidgetChatInput extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInput$configureSendListeners$7$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetChatInput.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function1<Boolean, Unit> {
                     public final /* synthetic */ Function1 $onSendResult;
 
                     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1195,6 +1195,48 @@ public final class WidgetChatInput extends AppFragment {
         viewOnLayoutChangeListenerC1175bM232a.m231c(linearLayout);
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        WidgetChatInputAttachments widgetChatInputAttachments = new WidgetChatInputAttachments(getFlexInputFragment());
+        this.chatAttachments = widgetChatInputAttachments;
+        if (widgetChatInputAttachments == null) {
+            C12238m.throwUninitializedPropertyAccessException("chatAttachments");
+        }
+        widgetChatInputAttachments.configureFlexInputFragment(this);
+        getFlexInputFragment().m9290i(new C77271());
+        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a = ViewOnLayoutChangeListenerC1175b.b.m232a();
+        LinearLayout linearLayout = getBinding().f16110q;
+        C12238m.checkNotNullExpressionValue(linearLayout, "binding.chatInputWrap");
+        viewOnLayoutChangeListenerC1175bM232a.m230b(linearLayout);
+        setWindowInsetsListeners$default(this, false, 1, null);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        populateDirectShareData();
+        WidgetChatInputTruncatedHint widgetChatInputTruncatedHint = this.chatInputTruncatedHint;
+        if (widgetChatInputTruncatedHint != null) {
+            widgetChatInputTruncatedHint.addBindedTextWatcher(this);
+        }
+        Observable<ChatInputViewModel.ViewState> observableM11112r = getViewModel().observeChatInputViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77281(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77292(this));
+        WidgetChatInputAttachments widgetChatInputAttachments = this.chatAttachments;
+        if (widgetChatInputAttachments == null) {
+            C12238m.throwUninitializedPropertyAccessException("chatAttachments");
+        }
+        widgetChatInputAttachments.setViewModel(getFlexInputViewModel());
+        InputAutocomplete inputAutocomplete = this.autocomplete;
+        if (inputAutocomplete != null) {
+            inputAutocomplete.onViewBoundOrOnResume();
+        }
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.inlineVoiceVisibilityObserver.observeIsVisible(), this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77303());
+    }
+
     private final void populateDirectShareData() {
         ContentResolver contentResolver;
         List<Uri> uris;
@@ -1222,6 +1264,13 @@ public final class WidgetChatInput extends AppFragment {
                 widgetChatInputAttachments.addExternalAttachment(Attachment.INSTANCE.m9296b(uri, contentResolver));
             }
         }
+    }
+
+    public static /* synthetic */ void setWindowInsetsListeners$default(WidgetChatInput widgetChatInput, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        widgetChatInput.setWindowInsetsListeners(z2);
     }
 
     private final void setWindowInsetsListeners(final boolean shouldApplyWindowInsets) {
@@ -1287,59 +1336,10 @@ public final class WidgetChatInput extends AppFragment {
         getBinding().f16097d.requestApplyInsets();
     }
 
-    public static /* synthetic */ void setWindowInsetsListeners$default(WidgetChatInput widgetChatInput, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        widgetChatInput.setWindowInsetsListeners(z2);
-    }
-
     private final void showFollowSheet(long channelId, long guildId) {
         WidgetChannelFollowSheet.Companion companion = WidgetChannelFollowSheet.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         companion.show(parentFragmentManager, channelId, guildId);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        WidgetChatInputAttachments widgetChatInputAttachments = new WidgetChatInputAttachments(getFlexInputFragment());
-        this.chatAttachments = widgetChatInputAttachments;
-        if (widgetChatInputAttachments == null) {
-            C12238m.throwUninitializedPropertyAccessException("chatAttachments");
-        }
-        widgetChatInputAttachments.configureFlexInputFragment(this);
-        getFlexInputFragment().m9290i(new C77271());
-        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a = ViewOnLayoutChangeListenerC1175b.b.m232a();
-        LinearLayout linearLayout = getBinding().f16110q;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.chatInputWrap");
-        viewOnLayoutChangeListenerC1175bM232a.m230b(linearLayout);
-        setWindowInsetsListeners$default(this, false, 1, null);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        populateDirectShareData();
-        WidgetChatInputTruncatedHint widgetChatInputTruncatedHint = this.chatInputTruncatedHint;
-        if (widgetChatInputTruncatedHint != null) {
-            widgetChatInputTruncatedHint.addBindedTextWatcher(this);
-        }
-        Observable<ChatInputViewModel.ViewState> observableM11112r = getViewModel().observeChatInputViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77281(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77292(this));
-        WidgetChatInputAttachments widgetChatInputAttachments = this.chatAttachments;
-        if (widgetChatInputAttachments == null) {
-            C12238m.throwUninitializedPropertyAccessException("chatAttachments");
-        }
-        widgetChatInputAttachments.setViewModel(getFlexInputViewModel());
-        InputAutocomplete inputAutocomplete = this.autocomplete;
-        if (inputAutocomplete != null) {
-            inputAutocomplete.onViewBoundOrOnResume();
-        }
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.inlineVoiceVisibilityObserver.observeIsVisible(), this, null, 2, null), (Class<?>) WidgetChatInput.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77303());
     }
 }

@@ -50,318 +50,9 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
     private PriceTierState priceTierStateSnapshot;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static abstract class GuildRoleSubscriptionFreeTrialsState {
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Failed extends GuildRoleSubscriptionFreeTrialsState {
-            private final String errorMessage;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Failed() {
-                this(null, 1, 0 == true ? 1 : 0);
-            }
-
-            public Failed(String str) {
-                super(null);
-                this.errorMessage = str;
-            }
-
-            public final String getErrorMessage() {
-                return this.errorMessage;
-            }
-
-            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? null : str);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final /* data */ class Loaded extends GuildRoleSubscriptionFreeTrialsState {
-            private final Map<Long, GuildRoleSubscriptionTierFreeTrial> freeTrials;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Loaded() {
-                this(null, 1, 0 == true ? 1 : 0);
-            }
-
-            public /* synthetic */ Loaded(Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? null : map);
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    map = loaded.freeTrials;
-                }
-                return loaded.copy(map);
-            }
-
-            public final Map<Long, GuildRoleSubscriptionTierFreeTrial> component1() {
-                return this.freeTrials;
-            }
-
-            public final Loaded copy(Map<Long, GuildRoleSubscriptionTierFreeTrial> freeTrials) {
-                return new Loaded(freeTrials);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.freeTrials, ((Loaded) other).freeTrials);
-                }
-                return true;
-            }
-
-            public final Map<Long, GuildRoleSubscriptionTierFreeTrial> getFreeTrials() {
-                return this.freeTrials;
-            }
-
-            public int hashCode() {
-                Map<Long, GuildRoleSubscriptionTierFreeTrial> map = this.freeTrials;
-                if (map != null) {
-                    return map.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m825M(C1643a.m833U("Loaded(freeTrials="), this.freeTrials, ")");
-            }
-
-            public Loaded(Map<Long, GuildRoleSubscriptionTierFreeTrial> map) {
-                super(null);
-                this.freeTrials = map;
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Loading extends GuildRoleSubscriptionFreeTrialsState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Uninitialized extends GuildRoleSubscriptionFreeTrialsState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        private GuildRoleSubscriptionFreeTrialsState() {
-        }
-
-        public /* synthetic */ GuildRoleSubscriptionFreeTrialsState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static abstract class GuildRoleSubscriptionGroupState {
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Failed extends GuildRoleSubscriptionGroupState {
-            private final String errorMessage;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Failed() {
-                this(null, 1, 0 == true ? 1 : 0);
-            }
-
-            public Failed(String str) {
-                super(null);
-                this.errorMessage = str;
-            }
-
-            public final String getErrorMessage() {
-                return this.errorMessage;
-            }
-
-            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? null : str);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final /* data */ class Loaded extends GuildRoleSubscriptionGroupState {
-            private final GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing;
-
-            public Loaded(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
-                super(null);
-                this.guildRoleSubscriptionGroupListing = guildRoleSubscriptionGroupListing;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    guildRoleSubscriptionGroupListing = loaded.guildRoleSubscriptionGroupListing;
-                }
-                return loaded.copy(guildRoleSubscriptionGroupListing);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
-                return this.guildRoleSubscriptionGroupListing;
-            }
-
-            public final Loaded copy(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
-                return new Loaded(guildRoleSubscriptionGroupListing);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.guildRoleSubscriptionGroupListing, ((Loaded) other).guildRoleSubscriptionGroupListing);
-                }
-                return true;
-            }
-
-            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
-                return this.guildRoleSubscriptionGroupListing;
-            }
-
-            public int hashCode() {
-                GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing = this.guildRoleSubscriptionGroupListing;
-                if (guildRoleSubscriptionGroupListing != null) {
-                    return guildRoleSubscriptionGroupListing.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(guildRoleSubscriptionGroupListing=");
-                sbM833U.append(this.guildRoleSubscriptionGroupListing);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Loading extends GuildRoleSubscriptionGroupState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        private GuildRoleSubscriptionGroupState() {
-        }
-
-        public /* synthetic */ GuildRoleSubscriptionGroupState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static abstract class PriceTierState {
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Failed extends PriceTierState {
-            private final String errorMessage;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Failed() {
-                this(null, 1, 0 == true ? 1 : 0);
-            }
-
-            public Failed(String str) {
-                super(null);
-                this.errorMessage = str;
-            }
-
-            public final String getErrorMessage() {
-                return this.errorMessage;
-            }
-
-            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? null : str);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final /* data */ class Loaded extends PriceTierState {
-            private final List<Integer> priceTiers;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(List<Integer> list) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "priceTiers");
-                this.priceTiers = list;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    list = loaded.priceTiers;
-                }
-                return loaded.copy(list);
-            }
-
-            public final List<Integer> component1() {
-                return this.priceTiers;
-            }
-
-            public final Loaded copy(List<Integer> priceTiers) {
-                C12238m.checkNotNullParameter(priceTiers, "priceTiers");
-                return new Loaded(priceTiers);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.priceTiers, ((Loaded) other).priceTiers);
-                }
-                return true;
-            }
-
-            public final List<Integer> getPriceTiers() {
-                return this.priceTiers;
-            }
-
-            public int hashCode() {
-                List<Integer> list = this.priceTiers;
-                if (list != null) {
-                    return list.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m824L(C1643a.m833U("Loaded(priceTiers="), this.priceTiers, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Loading extends PriceTierState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class Uninitialized extends PriceTierState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        private PriceTierState() {
-        }
-
-        public /* synthetic */ PriceTierState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroup$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60441 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60441 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -385,12 +76,12 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroup$2 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60452 extends AbstractC12240o implements Function1<Pair<? extends GuildRoleSubscriptionGroupListing, ? extends List<? extends GuildRoleSubscriptionTierFreeTrial>>, Unit> {
+    public final class C60452 extends AbstractC12240o implements Function1<Pair<? extends GuildRoleSubscriptionGroupListing, ? extends List<? extends GuildRoleSubscriptionTierFreeTrial>>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroup$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ GuildRoleSubscriptionGroupListing $guildRoleSubscriptionGroupListing;
             public final /* synthetic */ List $guildRoleSubscriptionTrials;
 
@@ -436,12 +127,12 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroup$3 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60463 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C60463 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroup$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Error $error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -488,7 +179,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroupsForGuild$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60491 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60491 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -512,12 +203,12 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroupsForGuild$2 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60502 extends AbstractC12240o implements Function1<Pair<? extends List<? extends GuildRoleSubscriptionGroupListing>, ? extends List<? extends GuildRoleSubscriptionTierFreeTrial>>, Unit> {
+    public final class C60502 extends AbstractC12240o implements Function1<Pair<? extends List<? extends GuildRoleSubscriptionGroupListing>, ? extends List<? extends GuildRoleSubscriptionTierFreeTrial>>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroupsForGuild$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $guildRoleSubscriptionFreeTrials;
             public final /* synthetic */ List $guildRoleSubscriptionGroupListings;
 
@@ -567,12 +258,12 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroupsForGuild$3 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60513 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C60513 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchGuildRoleSubscriptionGroupsForGuild$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Error $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -619,7 +310,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchPriceTiersIfNonExisting$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60541 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60541 extends AbstractC12240o implements Function0<Unit> {
         public C60541() {
             super(0);
         }
@@ -639,11 +330,11 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchPriceTiersIfNonExisting$2 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60552 extends AbstractC12240o implements Function1<List<? extends Integer>, Unit> {
+    public final class C60552 extends AbstractC12240o implements Function1<List<? extends Integer>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchPriceTiersIfNonExisting$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -684,11 +375,11 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchPriceTiersIfNonExisting$3 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60563 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C60563 extends AbstractC12240o implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$fetchPriceTiersIfNonExisting$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Error $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -732,7 +423,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionFreeTrialListFetch$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60571 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60571 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ List $guildRoleSubscriptionFreeTrialList;
 
@@ -768,7 +459,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionGroupFetch$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60581 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60581 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ GuildRoleSubscriptionGroupListing $guildRoleSubscriptionGroupListing;
 
@@ -815,7 +506,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionGroupUpdate$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60591 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60591 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ GuildRoleSubscriptionGroupListing $guildRoleSubscriptionGroupListing;
 
@@ -841,7 +532,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionTierListingDelete$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60601 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60601 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ long $guildRoleSubscriptionTierListingId;
 
@@ -870,7 +561,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionTierListingUpdate$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60611 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60611 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ GuildRoleSubscriptionTierListing $guildRoleSubscriptionTierListing;
 
@@ -901,7 +592,7 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleSubscriptions$handleGuildRoleSubscriptionTierTrialUpdate$1 */
     /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
-    public static final class C60621 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60621 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ long $guildRoleSubscriptionGroupListingId;
         public final /* synthetic */ GuildRoleSubscriptionTierFreeTrial $guildRoleSubscriptionTierFreeTrial;
@@ -932,16 +623,317 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+    public abstract class GuildRoleSubscriptionFreeTrialsState {
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Failed extends GuildRoleSubscriptionFreeTrialsState {
+            private final String errorMessage;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Failed() {
+                this(null, 1, 0 == true ? 1 : 0);
+            }
+
+            public Failed(String str) {
+                super(null);
+                this.errorMessage = str;
+            }
+
+            public final String getErrorMessage() {
+                return this.errorMessage;
+            }
+
+            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : str);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final /* data */ class Loaded extends GuildRoleSubscriptionFreeTrialsState {
+            private final Map<Long, GuildRoleSubscriptionTierFreeTrial> freeTrials;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Loaded() {
+                this(null, 1, 0 == true ? 1 : 0);
+            }
+
+            public /* synthetic */ Loaded(Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : map);
+            }
+
+            public final Map<Long, GuildRoleSubscriptionTierFreeTrial> component1() {
+                return this.freeTrials;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    map = loaded.freeTrials;
+                }
+                return loaded.copy(map);
+            }
+
+            public final Loaded copy(Map<Long, GuildRoleSubscriptionTierFreeTrial> freeTrials) {
+                return new Loaded(freeTrials);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.freeTrials, ((Loaded) other).freeTrials);
+                }
+                return true;
+            }
+
+            public final Map<Long, GuildRoleSubscriptionTierFreeTrial> getFreeTrials() {
+                return this.freeTrials;
+            }
+
+            public int hashCode() {
+                Map<Long, GuildRoleSubscriptionTierFreeTrial> map = this.freeTrials;
+                if (map != null) {
+                    return map.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m825M(C1643a.m833U("Loaded(freeTrials="), this.freeTrials, ")");
+            }
+
+            public Loaded(Map<Long, GuildRoleSubscriptionTierFreeTrial> map) {
+                super(null);
+                this.freeTrials = map;
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Loading extends GuildRoleSubscriptionFreeTrialsState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Uninitialized extends GuildRoleSubscriptionFreeTrialsState {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private GuildRoleSubscriptionFreeTrialsState() {
+        }
+
+        public /* synthetic */ GuildRoleSubscriptionFreeTrialsState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+    public abstract class GuildRoleSubscriptionGroupState {
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Failed extends GuildRoleSubscriptionGroupState {
+            private final String errorMessage;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Failed() {
+                this(null, 1, 0 == true ? 1 : 0);
+            }
+
+            public Failed(String str) {
+                super(null);
+                this.errorMessage = str;
+            }
+
+            public final String getErrorMessage() {
+                return this.errorMessage;
+            }
+
+            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : str);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final /* data */ class Loaded extends GuildRoleSubscriptionGroupState {
+            private final GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing;
+
+            public Loaded(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
+                super(null);
+                this.guildRoleSubscriptionGroupListing = guildRoleSubscriptionGroupListing;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    guildRoleSubscriptionGroupListing = loaded.guildRoleSubscriptionGroupListing;
+                }
+                return loaded.copy(guildRoleSubscriptionGroupListing);
+            }
+
+            public final Loaded copy(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
+                return new Loaded(guildRoleSubscriptionGroupListing);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.guildRoleSubscriptionGroupListing, ((Loaded) other).guildRoleSubscriptionGroupListing);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
+                return this.guildRoleSubscriptionGroupListing;
+            }
+
+            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
+                return this.guildRoleSubscriptionGroupListing;
+            }
+
+            public int hashCode() {
+                GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing = this.guildRoleSubscriptionGroupListing;
+                if (guildRoleSubscriptionGroupListing != null) {
+                    return guildRoleSubscriptionGroupListing.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(guildRoleSubscriptionGroupListing=");
+                sbM833U.append(this.guildRoleSubscriptionGroupListing);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Loading extends GuildRoleSubscriptionGroupState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private GuildRoleSubscriptionGroupState() {
+        }
+
+        public /* synthetic */ GuildRoleSubscriptionGroupState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+    public abstract class PriceTierState {
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Failed extends PriceTierState {
+            private final String errorMessage;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Failed() {
+                this(null, 1, 0 == true ? 1 : 0);
+            }
+
+            public Failed(String str) {
+                super(null);
+                this.errorMessage = str;
+            }
+
+            public final String getErrorMessage() {
+                return this.errorMessage;
+            }
+
+            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : str);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final /* data */ class Loaded extends PriceTierState {
+            private final List<Integer> priceTiers;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(List<Integer> list) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "priceTiers");
+                this.priceTiers = list;
+            }
+
+            public final List<Integer> component1() {
+                return this.priceTiers;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.priceTiers;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<Integer> priceTiers) {
+                C12238m.checkNotNullParameter(priceTiers, "priceTiers");
+                return new Loaded(priceTiers);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.priceTiers, ((Loaded) other).priceTiers);
+                }
+                return true;
+            }
+
+            public final List<Integer> getPriceTiers() {
+                return this.priceTiers;
+            }
+
+            public int hashCode() {
+                List<Integer> list = this.priceTiers;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m824L(C1643a.m833U("Loaded(priceTiers="), this.priceTiers, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Loading extends PriceTierState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildRoleSubscriptions.kt */
+        public final class Uninitialized extends PriceTierState {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private PriceTierState() {
+        }
+
+        public /* synthetic */ PriceTierState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreGuildRoleSubscriptions(Dispatcher dispatcher, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
-    }
-
-    private final void handleGuildRoleSubscriptionFreeTrialListFetch(long guildId, List<GuildRoleSubscriptionTierFreeTrial> guildRoleSubscriptionFreeTrialList) {
-        this.dispatcher.schedule(new C60571(guildRoleSubscriptionFreeTrialList, guildId));
-    }
-
-    private final void handleGuildRoleSubscriptionGroupFetch(long guildId, GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
-        this.dispatcher.schedule(new C60581(guildRoleSubscriptionGroupListing, guildId));
     }
 
     public final void fetchGuildRoleSubscriptionGroup(long guildId, long guildRoleSubscriptionGroupId) {
@@ -1061,6 +1053,14 @@ public final class StoreGuildRoleSubscriptions extends StoreV2 {
     /* JADX INFO: renamed from: getPriceTiersState, reason: from getter */
     public final PriceTierState getPriceTierStateSnapshot() {
         return this.priceTierStateSnapshot;
+    }
+
+    private final void handleGuildRoleSubscriptionFreeTrialListFetch(long guildId, List<GuildRoleSubscriptionTierFreeTrial> guildRoleSubscriptionFreeTrialList) {
+        this.dispatcher.schedule(new C60571(guildRoleSubscriptionFreeTrialList, guildId));
+    }
+
+    private final void handleGuildRoleSubscriptionGroupFetch(long guildId, GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
+        this.dispatcher.schedule(new C60581(guildRoleSubscriptionGroupListing, guildId));
     }
 
     public final void handleGuildRoleSubscriptionGroupUpdate(long guildId, GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {

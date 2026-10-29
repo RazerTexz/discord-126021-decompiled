@@ -23,17 +23,17 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST.SCL.lombok */
 public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> {
-    private L top;
+    private static final HistogramTracker configTracker;
+    private static final ConcurrentMap<Class<?>, FieldAccess[]> fieldsOfASTClasses;
     private final String fileName;
-    private final String packageDeclaration;
     private final ImportList imports;
     private TypeResolver importsAsResolver;
+    private final String packageDeclaration;
+    private final Collection<Class<? extends N>> statementTypes;
+    private L top;
     Map<N, N> identityDetector = new IdentityHashMap();
     private Map<N, L> nodeMap = new IdentityHashMap();
     private boolean changed = false;
-    private final Collection<Class<? extends N>> statementTypes;
-    private static final HistogramTracker configTracker;
-    private static final ConcurrentMap<Class<?>, FieldAccess[]> fieldsOfASTClasses;
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST$Kind.SCL.lombok */
     public enum Kind {
@@ -58,9 +58,9 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         }
     }
 
-    public abstract URI getAbsoluteFileLocation();
-
     protected abstract L buildTree(N n, Kind kind);
+
+    public abstract URI getAbsoluteFileLocation();
 
     static {
         configTracker = System.getProperty("lombok.timeConfig") == null ? null : new HistogramTracker("lombok.config");
@@ -160,7 +160,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST$FieldAccess.SCL.lombok */
-    protected static class FieldAccess {
+    public class FieldAccess {
         public final Field field;
         public final int dim;
 

@@ -29,20 +29,20 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacAST.SCL.lombok */
 public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
-    private final CleanupRegistry cleanup;
-    private final JavacElements elements;
-    private final JavacTreeMaker treeMaker;
-    private final Symtab symtab;
-    private final JavacTypes javacTypes;
-    private final Log log;
-    private final ErrorLog errorLogger;
-    private final Context context;
-    private URI memoizedAbsoluteFileLocation;
-    private static Field JCTRY_RESOURCES_FIELD;
+    private static /* synthetic */ int[] $SWITCH_TABLE$javax$tools$Diagnostic$Kind;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
     private static Field JCANNOTATEDTYPE_ANNOTATIONS;
     private static Field JCANNOTATEDTYPE_UNDERLYINGTYPE;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
-    private static /* synthetic */ int[] $SWITCH_TABLE$javax$tools$Diagnostic$Kind;
+    private static Field JCTRY_RESOURCES_FIELD;
+    private final CleanupRegistry cleanup;
+    private final Context context;
+    private final JavacElements elements;
+    private final ErrorLog errorLogger;
+    private final JavacTypes javacTypes;
+    private final Log log;
+    private URI memoizedAbsoluteFileLocation;
+    private final Symtab symtab;
+    private final JavacTreeMaker treeMaker;
     private static final URI NOT_CALCULATED_MARKER = URI.create("https://projectlombok.org/not/calculated");
     private static boolean JCTRY_RESOURCES_FIELD_INITIALIZED = false;
     private static boolean JCANNOTATEDTYPE_FIELDS_INITIALIZED = false;
@@ -51,6 +51,36 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
     @Override // lombok.core.AST
     protected /* bridge */ /* synthetic */ void setElementInASTCollection(Field field, Object obj, List list, Collection collection, int i, JCTree jCTree) throws IllegalAccessException {
         setElementInASTCollection2(field, obj, (List<Collection<?>>) list, (Collection<?>) collection, i, jCTree);
+    }
+
+    static /* synthetic */ int[] $SWITCH_TABLE$javax$tools$Diagnostic$Kind() {
+        int[] iArr = $SWITCH_TABLE$javax$tools$Diagnostic$Kind;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[Diagnostic.Kind.values().length];
+        try {
+            iArr2[Diagnostic.Kind.ERROR.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[Diagnostic.Kind.MANDATORY_WARNING.ordinal()] = 3;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[Diagnostic.Kind.NOTE.ordinal()] = 4;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            iArr2[Diagnostic.Kind.OTHER.ordinal()] = 5;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            iArr2[Diagnostic.Kind.WARNING.ordinal()] = 2;
+        } catch (NoSuchFieldError unused5) {
+        }
+        $SWITCH_TABLE$javax$tools$Diagnostic$Kind = iArr2;
+        return iArr2;
     }
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
@@ -100,36 +130,6 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
         } catch (NoSuchFieldError unused10) {
         }
         $SWITCH_TABLE$lombok$core$AST$Kind = iArr2;
-        return iArr2;
-    }
-
-    static /* synthetic */ int[] $SWITCH_TABLE$javax$tools$Diagnostic$Kind() {
-        int[] iArr = $SWITCH_TABLE$javax$tools$Diagnostic$Kind;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[Diagnostic.Kind.values().length];
-        try {
-            iArr2[Diagnostic.Kind.ERROR.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[Diagnostic.Kind.MANDATORY_WARNING.ordinal()] = 3;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[Diagnostic.Kind.NOTE.ordinal()] = 4;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            iArr2[Diagnostic.Kind.OTHER.ordinal()] = 5;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            iArr2[Diagnostic.Kind.WARNING.ordinal()] = 2;
-        } catch (NoSuchFieldError unused5) {
-        }
-        $SWITCH_TABLE$javax$tools$Diagnostic$Kind = iArr2;
         return iArr2;
     }
 
@@ -602,7 +602,7 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacAST$ErrorLog.SCL.lombok */
-    static abstract class ErrorLog {
+    abstract class ErrorLog {
         final Log log;
         private final Messager messager;
         private final Field errorCount;
@@ -610,11 +610,11 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
 
         abstract void error1(JCDiagnostic.DiagnosticPosition diagnosticPosition, String str);
 
-        abstract void warning1(JCDiagnostic.DiagnosticPosition diagnosticPosition, String str);
-
         abstract void mandatoryWarning1(JCDiagnostic.DiagnosticPosition diagnosticPosition, String str);
 
         abstract void note(JCDiagnostic.DiagnosticPosition diagnosticPosition, String str);
+
+        abstract void warning1(JCDiagnostic.DiagnosticPosition diagnosticPosition, String str);
 
         private ErrorLog(Log log, Messager messager, Field errorCount, Field warningCount) {
             this.log = log;
@@ -681,7 +681,7 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacAST$JdkBefore9.SCL.lombok */
-    static class JdkBefore9 extends ErrorLog {
+    class JdkBefore9 extends ErrorLog {
         /* synthetic */ JdkBefore9(Log log, Messager messager, Field field, JdkBefore9 jdkBefore9) {
             this(log, messager, field);
         }
@@ -718,7 +718,7 @@ public class JavacAST extends AST<JavacAST, JavacNode, JCTree> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacAST$Jdk9Plus.SCL.lombok */
-    static class Jdk9Plus extends ErrorLog {
+    class Jdk9Plus extends ErrorLog {
         private static final String PROC_MESSAGER = "proc.messager";
         private Object multiple;
         private Method errorMethod;

@@ -22,19 +22,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetMainSurveyDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetMainSurveyDialog.class, "binding", "getBinding()Lcom/discord/databinding/ViewDialogConfirmationBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String EXTRA_SURVEY_BODY = "extra_survey_body";
     private static final String EXTRA_SURVEY_ID = "extra_survey_id";
     private static final String EXTRA_SURVEY_TITLE = "extra_survey_title";
     private static final String EXTRA_SURVEY_URL = "extra_survey_url";
 
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

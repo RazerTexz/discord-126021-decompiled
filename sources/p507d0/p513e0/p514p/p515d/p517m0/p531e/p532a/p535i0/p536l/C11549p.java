@@ -21,7 +21,7 @@ public final class C11549p implements C12034b.c<InterfaceC11330e> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.p$a */
     /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11913c0, InterfaceC11330e> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11913c0, InterfaceC11330e> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23414j = new a();

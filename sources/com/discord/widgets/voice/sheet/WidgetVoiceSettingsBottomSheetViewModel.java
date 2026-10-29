@@ -36,7 +36,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-    public static final class C106151 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C106151 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C106151() {
             super(1);
         }
@@ -55,7 +55,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -81,10 +81,10 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -93,39 +93,12 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-        public static final /* data */ class Valid extends StoreState {
+        public final /* data */ class Valid extends StoreState {
             private final CallModel callModel;
             private final StageRoles myStageRoles;
 
             public /* synthetic */ Valid(CallModel callModel, StageRoles stageRoles, DefaultConstructorMarker defaultConstructorMarker) {
                 this(callModel, stageRoles);
-            }
-
-            /* JADX INFO: renamed from: copy-FZvHQiQ$default, reason: not valid java name */
-            public static /* synthetic */ Valid m11450copyFZvHQiQ$default(Valid valid, CallModel callModel, StageRoles stageRoles, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    callModel = valid.callModel;
-                }
-                if ((i & 2) != 0) {
-                    stageRoles = valid.myStageRoles;
-                }
-                return valid.m11452copyFZvHQiQ(callModel, stageRoles);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final CallModel getCallModel() {
-                return this.callModel;
-            }
-
-            /* JADX INFO: renamed from: component2-twRsX-0, reason: not valid java name and from getter */
-            public final StageRoles getMyStageRoles() {
-                return this.myStageRoles;
-            }
-
-            /* JADX INFO: renamed from: copy-FZvHQiQ, reason: not valid java name */
-            public final Valid m11452copyFZvHQiQ(CallModel callModel, StageRoles myStageRoles) {
-                C12238m.checkNotNullParameter(callModel, "callModel");
-                return new Valid(callModel, myStageRoles);
             }
 
             public boolean equals(Object other) {
@@ -139,12 +112,17 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
                 return C12238m.areEqual(this.callModel, valid.callModel) && C12238m.areEqual(this.myStageRoles, valid.myStageRoles);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final CallModel getCallModel() {
                 return this.callModel;
             }
 
-            /* JADX INFO: renamed from: getMyStageRoles-twRsX-0, reason: not valid java name */
-            public final StageRoles m11453getMyStageRolestwRsX0() {
+            public final CallModel getCallModel() {
+                return this.callModel;
+            }
+
+            /* JADX INFO: renamed from: component2-twRsX-0, reason: not valid java name and from getter */
+            public final StageRoles getMyStageRoles() {
                 return this.myStageRoles;
             }
 
@@ -153,6 +131,28 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
                 int iHashCode = (callModel != null ? callModel.hashCode() : 0) * 31;
                 StageRoles stageRoles = this.myStageRoles;
                 return iHashCode + (stageRoles != null ? stageRoles.hashCode() : 0);
+            }
+
+            /* JADX INFO: renamed from: copy-FZvHQiQ$default, reason: not valid java name */
+            public static /* synthetic */ Valid m11450copyFZvHQiQ$default(Valid valid, CallModel callModel, StageRoles stageRoles, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    callModel = valid.callModel;
+                }
+                if ((i & 2) != 0) {
+                    stageRoles = valid.myStageRoles;
+                }
+                return valid.m11452copyFZvHQiQ(callModel, stageRoles);
+            }
+
+            /* JADX INFO: renamed from: copy-FZvHQiQ, reason: not valid java name */
+            public final Valid m11452copyFZvHQiQ(CallModel callModel, StageRoles myStageRoles) {
+                C12238m.checkNotNullParameter(callModel, "callModel");
+                return new Valid(callModel, myStageRoles);
+            }
+
+            /* JADX INFO: renamed from: getMyStageRoles-twRsX-0, reason: not valid java name */
+            public final StageRoles m11453getMyStageRolestwRsX0() {
+                return this.myStageRoles;
             }
 
             public String toString() {
@@ -180,7 +180,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-    public static final /* data */ class ViewState implements WidgetVoiceSettingsBottomSheet.ViewState {
+    public final /* data */ class ViewState implements WidgetVoiceSettingsBottomSheet.ViewState {
         private final Channel channel;
         private final Guild guild;
         private final boolean noiseCancellationEnabled;
@@ -357,6 +357,14 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
         this(j, stageChannels, (i & 4) != 0 ? INSTANCE.observeStoreState(j, stageChannels) : observable, (i & 8) != 0 ? StoreStream.INSTANCE.getMediaSettings() : storeMediaSettings);
     }
 
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Observable<StoreState> getStoreObservable() {
+        return this.storeObservable;
+    }
+
     private final void handleStoreState(StoreState storeState) {
         if (storeState instanceof StoreState.Valid) {
             StoreState.Valid valid = (StoreState.Valid) storeState;
@@ -368,14 +376,6 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends AbstractC0859
             StageRoles stageRolesM11453getMyStageRolestwRsX0 = valid.m11453getMyStageRolestwRsX0();
             updateViewState(new ViewState(valid.getCallModel().getChannel(), !valid.getCallModel().getVoiceSettings().getVoiceParticipantsHidden(), z2, z3, z4, zM7669D && (stageRolesM11453getMyStageRolestwRsX0 != null && StageRoles.m11409isModeratorimpl(stageRolesM11453getMyStageRolestwRsX0.m11412unboximpl())), zM7669D2, valid.getCallModel().getGuild()));
         }
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Observable<StoreState> getStoreObservable() {
-        return this.storeObservable;
     }
 
     public final void onToggleNoiseCancellation() {

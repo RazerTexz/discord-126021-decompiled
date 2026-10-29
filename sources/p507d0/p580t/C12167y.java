@@ -12,14 +12,10 @@ import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
 /* JADX INFO: compiled from: Sets.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12167y implements Set, Serializable, InterfaceC12228a {
+    private static final long serialVersionUID = 3406603774387020532L;
 
     /* JADX INFO: renamed from: j */
     public static final C12167y f25223j = new C12167y();
-    private static final long serialVersionUID = 3406603774387020532L;
-
-    private final Object readResolve() {
-        return f25223j;
-    }
 
     @Override // java.util.Set, java.util.Collection
     public /* synthetic */ boolean add(Object obj) {
@@ -77,6 +73,10 @@ public final class C12167y implements Set, Serializable, InterfaceC12228a {
     @Override // java.util.Set, java.util.Collection, java.lang.Iterable
     public Iterator iterator() {
         return C12164v.f25220j;
+    }
+
+    private final Object readResolve() {
+        return f25223j;
     }
 
     @Override // java.util.Set, java.util.Collection

@@ -48,36 +48,6 @@ public final /* data */ class ModelChannelFollowerStatsDto {
         return modelChannelFollowerStatsDto.copy(num, num7, num8, num9, num10, num6);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Integer getGuildsFollowing() {
-        return this.guildsFollowing;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Integer getChannelsFollowing() {
-        return this.channelsFollowing;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Integer getGuildMembers() {
-        return this.guildMembers;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Integer getUsersSeenEver() {
-        return this.usersSeenEver;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Integer getSubscribersGainedSinceLastPost() {
-        return this.subscribersGainedSinceLastPost;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Integer getSubscribersLostSinceLastPost() {
-        return this.subscribersLostSinceLastPost;
-    }
-
     public final ModelChannelFollowerStatsDto copy(Integer guildsFollowing, Integer channelsFollowing, Integer guildMembers, Integer usersSeenEver, Integer subscribersGainedSinceLastPost, Integer subscribersLostSinceLastPost) {
         return new ModelChannelFollowerStatsDto(guildsFollowing, channelsFollowing, guildMembers, usersSeenEver, subscribersGainedSinceLastPost, subscribersLostSinceLastPost);
     }
@@ -93,24 +63,54 @@ public final /* data */ class ModelChannelFollowerStatsDto {
         return C12238m.areEqual(this.guildsFollowing, modelChannelFollowerStatsDto.guildsFollowing) && C12238m.areEqual(this.channelsFollowing, modelChannelFollowerStatsDto.channelsFollowing) && C12238m.areEqual(this.guildMembers, modelChannelFollowerStatsDto.guildMembers) && C12238m.areEqual(this.usersSeenEver, modelChannelFollowerStatsDto.usersSeenEver) && C12238m.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStatsDto.subscribersGainedSinceLastPost) && C12238m.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStatsDto.subscribersLostSinceLastPost);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Integer getChannelsFollowing() {
         return this.channelsFollowing;
+    }
+
+    public final Integer getChannelsFollowing() {
+        return this.channelsFollowing;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Integer getGuildMembers() {
+        return this.guildMembers;
     }
 
     public final Integer getGuildMembers() {
         return this.guildMembers;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Integer getGuildsFollowing() {
         return this.guildsFollowing;
+    }
+
+    public final Integer getGuildsFollowing() {
+        return this.guildsFollowing;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final Integer getSubscribersGainedSinceLastPost() {
+        return this.subscribersGainedSinceLastPost;
     }
 
     public final Integer getSubscribersGainedSinceLastPost() {
         return this.subscribersGainedSinceLastPost;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final Integer getSubscribersLostSinceLastPost() {
         return this.subscribersLostSinceLastPost;
+    }
+
+    public final Integer getSubscribersLostSinceLastPost() {
+        return this.subscribersLostSinceLastPost;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Integer getUsersSeenEver() {
+        return this.usersSeenEver;
     }
 
     public final Integer getUsersSeenEver() {

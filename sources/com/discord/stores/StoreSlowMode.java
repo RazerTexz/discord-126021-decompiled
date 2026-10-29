@@ -33,7 +33,7 @@ public final class StoreSlowMode extends Store {
     private final BehaviorSubject<HashMap<Long, Long>> threadCreateNextSendTimesSubject;
 
     /* JADX INFO: compiled from: StoreSlowMode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -43,10 +43,10 @@ public final class StoreSlowMode extends Store {
     }
 
     /* JADX INFO: compiled from: StoreSlowMode.kt */
-    public static abstract class Type {
+    public abstract class Type {
 
         /* JADX INFO: compiled from: StoreSlowMode.kt */
-        public static final class MessageSend extends Type {
+        public final class MessageSend extends Type {
             public static final MessageSend INSTANCE = new MessageSend();
 
             private MessageSend() {
@@ -55,7 +55,7 @@ public final class StoreSlowMode extends Store {
         }
 
         /* JADX INFO: compiled from: StoreSlowMode.kt */
-        public static final class ThreadCreate extends Type {
+        public final class ThreadCreate extends Type {
             public static final ThreadCreate INSTANCE = new ThreadCreate();
 
             private ThreadCreate() {
@@ -156,21 +156,6 @@ public final class StoreSlowMode extends Store {
         return observableM11074h0;
     }
 
-    @StoreThread
-    private final void onCooldownInternal(long channelId, long cooldownMs, Type type) {
-        if (C12238m.areEqual(type, Type.MessageSend.INSTANCE)) {
-            this.messageSendNextSendTimes.put(Long.valueOf(channelId), Long.valueOf(this.clock.currentTimeMillis() + cooldownMs));
-            this.messageSendNextSendTimesSubject.onNext(new HashMap<>(this.messageSendNextSendTimes));
-        } else {
-            this.threadCreateNextSendTimes.put(Long.valueOf(channelId), Long.valueOf(this.clock.currentTimeMillis() + cooldownMs));
-            this.threadCreateNextSendTimesSubject.onNext(new HashMap<>(this.threadCreateNextSendTimes));
-        }
-    }
-
-    private final synchronized Observable<Integer> removeChannelCooldownObservable(long channelId, Type type) {
-        return C12238m.areEqual(type, Type.MessageSend.INSTANCE) ? this.channelMessageSendCooldownObservables.remove(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.remove(Long.valueOf(channelId));
-    }
-
     public final Observable<Integer> observeCooldownSecs(Long channelId, Type type) {
         C12238m.checkNotNullParameter(type, "type");
         if (channelId != null) {
@@ -185,6 +170,17 @@ public final class StoreSlowMode extends Store {
     public final void onCooldown(long channelId, long cooldownMs, Type type) {
         C12238m.checkNotNullParameter(type, "type");
         onCooldownInternal(channelId, cooldownMs + 1000, type);
+    }
+
+    @StoreThread
+    private final void onCooldownInternal(long channelId, long cooldownMs, Type type) {
+        if (C12238m.areEqual(type, Type.MessageSend.INSTANCE)) {
+            this.messageSendNextSendTimes.put(Long.valueOf(channelId), Long.valueOf(this.clock.currentTimeMillis() + cooldownMs));
+            this.messageSendNextSendTimesSubject.onNext(new HashMap<>(this.messageSendNextSendTimes));
+        } else {
+            this.threadCreateNextSendTimes.put(Long.valueOf(channelId), Long.valueOf(this.clock.currentTimeMillis() + cooldownMs));
+            this.threadCreateNextSendTimesSubject.onNext(new HashMap<>(this.threadCreateNextSendTimes));
+        }
     }
 
     @StoreThread
@@ -203,5 +199,9 @@ public final class StoreSlowMode extends Store {
         if (rateLimitPerUser > 0) {
             onCooldownInternal(parentChannelId, ((long) rateLimitPerUser) * 1000, Type.ThreadCreate.INSTANCE);
         }
+    }
+
+    private final synchronized Observable<Integer> removeChannelCooldownObservable(long channelId, Type type) {
+        return C12238m.areEqual(type, Type.MessageSend.INSTANCE) ? this.channelMessageSendCooldownObservables.remove(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.remove(Long.valueOf(channelId));
     }
 }

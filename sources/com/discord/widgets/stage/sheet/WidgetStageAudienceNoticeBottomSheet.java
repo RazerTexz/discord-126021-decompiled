@@ -42,8 +42,27 @@ public final class WidgetStageAudienceNoticeBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: channelId$delegate, reason: from kotlin metadata */
     private final Lazy channelId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceNoticeBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
-    public static final class Companion {
+    public final class C100251 extends AbstractC12240o implements Function1<StageInstance, Unit> {
+        public C100251() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
+            invoke2(stageInstance);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StageInstance stageInstance) {
+            WidgetStageAudienceNoticeBottomSheet.this.configureUI(stageInstance);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -63,25 +82,6 @@ public final class WidgetStageAudienceNoticeBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceNoticeBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
-    public static final class C100251 extends AbstractC12240o implements Function1<StageInstance, Unit> {
-        public C100251() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
-            invoke2(stageInstance);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StageInstance stageInstance) {
-            WidgetStageAudienceNoticeBottomSheet.this.configureUI(stageInstance);
         }
     }
 

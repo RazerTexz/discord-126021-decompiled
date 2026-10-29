@@ -26,7 +26,7 @@ public final class SharedPreferenceExtensionsKt {
     /* JADX INFO: Add missing generic type declarations: [V] */
     /* JADX INFO: renamed from: com.discord.utilities.cache.SharedPreferenceExtensionsKt$putStringEntrySetAsMap$1 */
     /* JADX INFO: compiled from: SharedPreferenceExtensions.kt */
-    public static final class C67121<V> extends AbstractC12240o implements Function1<V, String> {
+    public final class C67121<V> extends AbstractC12240o implements Function1<V, String> {
         public static final C67121 INSTANCE = new C67121();
 
         public C67121() {
@@ -45,6 +45,13 @@ public final class SharedPreferenceExtensionsKt {
         return sharedPreferences.getString(str, null);
     }
 
+    public static /* synthetic */ Map getStringEntrySetAsMap$default(SharedPreferences sharedPreferences, String str, String str2, Function2 function2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str2 = ",";
+        }
+        return getStringEntrySetAsMap(sharedPreferences, str, str2, function2);
+    }
+
     public static final <K, V> Map<K, V> getStringEntrySetAsMap(SharedPreferences sharedPreferences, String str, String str2, Function2<? super String, ? super String, ? extends Pair<? extends K, ? extends V>> function2) {
         C12238m.checkNotNullParameter(sharedPreferences, "$this$getStringEntrySetAsMap");
         C12238m.checkNotNullParameter(str, "cacheKey");
@@ -61,19 +68,19 @@ public final class SharedPreferenceExtensionsKt {
         return C12136h0.toMap(arrayList, map);
     }
 
-    public static /* synthetic */ Map getStringEntrySetAsMap$default(SharedPreferences sharedPreferences, String str, String str2, Function2 function2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str2 = ",";
-        }
-        return getStringEntrySetAsMap(sharedPreferences, str, str2, function2);
-    }
-
     public static final String getStringNonNull(SharedPreferences sharedPreferences, String str, String str2) {
         C12238m.checkNotNullParameter(sharedPreferences, "$this$getStringNonNull");
         C12238m.checkNotNullParameter(str, "key");
         C12238m.checkNotNullParameter(str2, "defValue");
         String string = sharedPreferences.getString(str, str2);
         return string != null ? string : str2;
+    }
+
+    public static /* synthetic */ Set getStringSetNonNull$default(SharedPreferences sharedPreferences, String str, Set set, int i, Object obj) {
+        if ((i & 2) != 0) {
+            set = C12148n0.emptySet();
+        }
+        return getStringSetNonNull(sharedPreferences, str, set);
     }
 
     public static final Set<String> getStringSetNonNull(SharedPreferences sharedPreferences, String str, Set<String> set) {
@@ -84,11 +91,14 @@ public final class SharedPreferenceExtensionsKt {
         return stringSet != null ? stringSet : C12148n0.emptySet();
     }
 
-    public static /* synthetic */ Set getStringSetNonNull$default(SharedPreferences sharedPreferences, String str, Set set, int i, Object obj) {
-        if ((i & 2) != 0) {
-            set = C12148n0.emptySet();
+    public static /* synthetic */ void putStringEntrySetAsMap$default(SharedPreferences.Editor editor, String str, Map map, String str2, Function1 function1, int i, Object obj) {
+        if ((i & 4) != 0) {
+            str2 = ",";
         }
-        return getStringSetNonNull(sharedPreferences, str, set);
+        if ((i & 8) != 0) {
+            function1 = C67121.INSTANCE;
+        }
+        putStringEntrySetAsMap(editor, str, map, str2, function1);
     }
 
     public static final <K, V> void putStringEntrySetAsMap(SharedPreferences.Editor editor, String str, Map<K, ? extends V> map, String str2, Function1<? super V, String> function1) {
@@ -102,15 +112,5 @@ public final class SharedPreferenceExtensionsKt {
             arrayList.add(entry.getKey() + str2 + function1.invoke(entry.getValue()));
         }
         editor.putStringSet(str, C12163u.toSet(arrayList));
-    }
-
-    public static /* synthetic */ void putStringEntrySetAsMap$default(SharedPreferences.Editor editor, String str, Map map, String str2, Function1 function1, int i, Object obj) {
-        if ((i & 4) != 0) {
-            str2 = ",";
-        }
-        if ((i & 8) != 0) {
-            function1 = C67121.INSTANCE;
-        }
-        putStringEntrySetAsMap(editor, str, map, str2, function1);
     }
 }

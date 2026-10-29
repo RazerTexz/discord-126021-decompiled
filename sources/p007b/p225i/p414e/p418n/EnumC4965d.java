@@ -38,14 +38,14 @@ public enum EnumC4965d {
     GB18030(29, "GB2312", "EUC_CN", "GBK"),
     EUC_KR(30, "EUC-KR");
 
+    private final String[] otherEncodingNames;
+    private final int[] values;
 
     /* JADX INFO: renamed from: K */
     public static final Map<Integer, EnumC4965d> f13246K = new HashMap();
 
     /* JADX INFO: renamed from: L */
     public static final Map<String, EnumC4965d> f13247L = new HashMap();
-    private final String[] otherEncodingNames;
-    private final int[] values;
 
     static {
         EnumC4965d[] enumC4965dArrValues = values();

@@ -37,41 +37,9 @@ public final class C2342d {
     /* JADX INFO: renamed from: c */
     public static final Iterator<?> f4946c = Collections.emptyIterator();
 
-    /* JADX INFO: renamed from: b.g.a.c.i0.d$a */
-    /* JADX INFO: compiled from: ClassUtil.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final Constructor<?> f4947a;
-
-        /* JADX INFO: renamed from: b */
-        public transient Annotation[] f4948b;
-
-        /* JADX INFO: renamed from: c */
-        public transient Annotation[][] f4949c;
-
-        /* JADX INFO: renamed from: d */
-        public int f4950d = -1;
-
-        public a(Constructor<?> constructor) {
-            this.f4947a = constructor;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public int m2195a() {
-            int i = this.f4950d;
-            if (i >= 0) {
-                return i;
-            }
-            int length = this.f4947a.getParameterTypes().length;
-            this.f4950d = length;
-            return length;
-        }
-    }
-
     /* JADX INFO: renamed from: b.g.a.c.i0.d$b */
     /* JADX INFO: compiled from: ClassUtil.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public static final b f4951a = new b();
@@ -462,6 +430,38 @@ public final class C2342d {
     public static void m2194z(Class<?> cls, Object obj, String str) {
         if (obj.getClass() != cls) {
             throw new IllegalStateException(String.format("Sub-class %s (of class %s) must override method '%s'", obj.getClass().getName(), cls.getName(), str));
+        }
+    }
+
+    /* JADX INFO: renamed from: b.g.a.c.i0.d$a */
+    /* JADX INFO: compiled from: ClassUtil.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: a */
+        public final Constructor<?> f4947a;
+
+        /* JADX INFO: renamed from: b */
+        public transient Annotation[] f4948b;
+
+        /* JADX INFO: renamed from: c */
+        public transient Annotation[][] f4949c;
+
+        /* JADX INFO: renamed from: d */
+        public int f4950d = -1;
+
+        public a(Constructor<?> constructor) {
+            this.f4947a = constructor;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public int m2195a() {
+            int i = this.f4950d;
+            if (i >= 0) {
+                return i;
+            }
+            int length = this.f4947a.getParameterTypes().length;
+            this.f4950d = length;
+            return length;
         }
     }
 }

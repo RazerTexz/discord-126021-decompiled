@@ -18,35 +18,6 @@ public class MediaStream {
         this.nativeStream = j;
     }
 
-    private void checkMediaStreamExists() {
-        if (this.nativeStream == 0) {
-            throw new IllegalStateException("MediaStream has been disposed.");
-        }
-    }
-
-    private static native boolean nativeAddAudioTrackToNativeStream(long j, long j2);
-
-    private static native boolean nativeAddVideoTrackToNativeStream(long j, long j2);
-
-    private static native String nativeGetId(long j);
-
-    private static native boolean nativeRemoveAudioTrack(long j, long j2);
-
-    private static native boolean nativeRemoveVideoTrack(long j, long j2);
-
-    private static void removeMediaStreamTrack(List<? extends MediaStreamTrack> list, long j) {
-        Iterator<? extends MediaStreamTrack> it = list.iterator();
-        while (it.hasNext()) {
-            MediaStreamTrack next = it.next();
-            if (next.getNativeMediaStreamTrack() == j) {
-                next.dispose();
-                it.remove();
-                return;
-            }
-        }
-        Logging.m11028e(TAG, "Couldn't not find track");
-    }
-
     @CalledByNative
     public void addNativeAudioTrack(long j) {
         this.audioTracks.add(new AudioTrack(j));
@@ -73,6 +44,12 @@ public class MediaStream {
         }
         this.audioTracks.add(audioTrack);
         return true;
+    }
+
+    private void checkMediaStreamExists() {
+        if (this.nativeStream == 0) {
+            throw new IllegalStateException("MediaStream has been disposed.");
+        }
     }
 
     @CalledByNative
@@ -105,9 +82,32 @@ public class MediaStream {
         return this.nativeStream;
     }
 
+    private static native boolean nativeAddAudioTrackToNativeStream(long j, long j2);
+
+    private static native boolean nativeAddVideoTrackToNativeStream(long j, long j2);
+
+    private static native String nativeGetId(long j);
+
+    private static native boolean nativeRemoveAudioTrack(long j, long j2);
+
+    private static native boolean nativeRemoveVideoTrack(long j, long j2);
+
     @CalledByNative
     public void removeAudioTrack(long j) {
         removeMediaStreamTrack(this.audioTracks, j);
+    }
+
+    private static void removeMediaStreamTrack(List<? extends MediaStreamTrack> list, long j) {
+        Iterator<? extends MediaStreamTrack> it = list.iterator();
+        while (it.hasNext()) {
+            MediaStreamTrack next = it.next();
+            if (next.getNativeMediaStreamTrack() == j) {
+                next.dispose();
+                it.remove();
+                return;
+            }
+        }
+        Logging.m11028e(TAG, "Couldn't not find track");
     }
 
     public boolean removeTrack(AudioTrack audioTrack) {

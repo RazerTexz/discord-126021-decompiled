@@ -12,7 +12,7 @@ public abstract class Logger {
     private static final String TAG_PREFIX = "WM-";
     private static Logger sLogger;
 
-    public static class LogcatLogger extends Logger {
+    public class LogcatLogger extends Logger {
         private int mLoggingLevel;
 
         public LogcatLogger(int i) {
@@ -79,12 +79,18 @@ public abstract class Logger {
     public Logger(int i) {
     }
 
+    public abstract void debug(String str, String str2, Throwable... thArr);
+
+    public abstract void error(String str, String str2, Throwable... thArr);
+
     public static synchronized Logger get() {
         if (sLogger == null) {
             sLogger = new LogcatLogger(3);
         }
         return sLogger;
     }
+
+    public abstract void info(String str, String str2, Throwable... thArr);
 
     public static synchronized void setLogger(Logger logger) {
         sLogger = logger;
@@ -102,12 +108,6 @@ public abstract class Logger {
         }
         return sb.toString();
     }
-
-    public abstract void debug(String str, String str2, Throwable... thArr);
-
-    public abstract void error(String str, String str2, Throwable... thArr);
-
-    public abstract void info(String str, String str2, Throwable... thArr);
 
     public abstract void verbose(String str, String str2, Throwable... thArr);
 

@@ -22,7 +22,7 @@ public final class WindowInsetsControllerCompat {
     public static final int BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE = 2;
     private final Impl mImpl;
 
-    public static class Impl {
+    public class Impl {
         public void addOnControllableInsetsChangedListener(OnControllableInsetsChangedListener onControllableInsetsChangedListener) {
         }
 
@@ -61,7 +61,7 @@ public final class WindowInsetsControllerCompat {
     }
 
     @RequiresApi(20)
-    public static class Impl20 extends Impl {
+    public class Impl20 extends Impl {
 
         @Nullable
         private final View mView;
@@ -72,52 +72,6 @@ public final class WindowInsetsControllerCompat {
         public Impl20(@NonNull Window window, @Nullable View view) {
             this.mWindow = window;
             this.mView = view;
-        }
-
-        private void hideForType(int i) {
-            if (i == 1) {
-                setSystemUiFlag(4);
-            } else if (i == 2) {
-                setSystemUiFlag(2);
-            } else {
-                if (i != 8) {
-                    return;
-                }
-                ((InputMethodManager) this.mWindow.getContext().getSystemService("input_method")).hideSoftInputFromWindow(this.mWindow.getDecorView().getWindowToken(), 0);
-            }
-        }
-
-        private void showForType(int i) {
-            if (i == 1) {
-                unsetSystemUiFlag(4);
-                unsetWindowFlag(1024);
-                return;
-            }
-            if (i == 2) {
-                unsetSystemUiFlag(2);
-                return;
-            }
-            if (i != 8) {
-                return;
-            }
-            final View currentFocus = this.mView;
-            if (currentFocus == null || !(currentFocus.isInEditMode() || currentFocus.onCheckIsTextEditor())) {
-                currentFocus = this.mWindow.getCurrentFocus();
-            } else {
-                currentFocus.requestFocus();
-            }
-            if (currentFocus == null) {
-                currentFocus = this.mWindow.findViewById(R.id.content);
-            }
-            if (currentFocus == null || !currentFocus.hasWindowFocus()) {
-                return;
-            }
-            currentFocus.post(new Runnable() { // from class: androidx.core.view.WindowInsetsControllerCompat.Impl20.1
-                @Override // java.lang.Runnable
-                public void run() {
-                    ((InputMethodManager) currentFocus.getContext().getSystemService("input_method")).showSoftInput(currentFocus, 0);
-                }
-            });
         }
 
         @Override // androidx.core.view.WindowInsetsControllerCompat.Impl
@@ -139,6 +93,19 @@ public final class WindowInsetsControllerCompat {
                 if ((i & i2) != 0) {
                     hideForType(i2);
                 }
+            }
+        }
+
+        private void hideForType(int i) {
+            if (i == 1) {
+                setSystemUiFlag(4);
+            } else if (i == 2) {
+                setSystemUiFlag(2);
+            } else {
+                if (i != 8) {
+                    return;
+                }
+                ((InputMethodManager) this.mWindow.getContext().getSystemService("input_method")).hideSoftInputFromWindow(this.mWindow.getDecorView().getWindowToken(), 0);
             }
         }
 
@@ -182,6 +149,39 @@ public final class WindowInsetsControllerCompat {
             }
         }
 
+        private void showForType(int i) {
+            if (i == 1) {
+                unsetSystemUiFlag(4);
+                unsetWindowFlag(1024);
+                return;
+            }
+            if (i == 2) {
+                unsetSystemUiFlag(2);
+                return;
+            }
+            if (i != 8) {
+                return;
+            }
+            final View currentFocus = this.mView;
+            if (currentFocus == null || !(currentFocus.isInEditMode() || currentFocus.onCheckIsTextEditor())) {
+                currentFocus = this.mWindow.getCurrentFocus();
+            } else {
+                currentFocus.requestFocus();
+            }
+            if (currentFocus == null) {
+                currentFocus = this.mWindow.findViewById(R.id.content);
+            }
+            if (currentFocus == null || !currentFocus.hasWindowFocus()) {
+                return;
+            }
+            currentFocus.post(new Runnable() { // from class: androidx.core.view.WindowInsetsControllerCompat.Impl20.1
+                @Override // java.lang.Runnable
+                public void run() {
+                    ((InputMethodManager) currentFocus.getContext().getSystemService("input_method")).showSoftInput(currentFocus, 0);
+                }
+            });
+        }
+
         public void unsetSystemUiFlag(int i) {
             View decorView = this.mWindow.getDecorView();
             decorView.setSystemUiVisibility((~i) & decorView.getSystemUiVisibility());
@@ -193,7 +193,7 @@ public final class WindowInsetsControllerCompat {
     }
 
     @RequiresApi(23)
-    public static class Impl23 extends Impl20 {
+    public class Impl23 extends Impl20 {
         public Impl23(@NonNull Window window, @Nullable View view) {
             super(window, view);
         }
@@ -216,7 +216,7 @@ public final class WindowInsetsControllerCompat {
     }
 
     @RequiresApi(26)
-    public static class Impl26 extends Impl23 {
+    public class Impl26 extends Impl23 {
         public Impl26(@NonNull Window window, @Nullable View view) {
             super(window, view);
         }
@@ -239,7 +239,7 @@ public final class WindowInsetsControllerCompat {
     }
 
     @RequiresApi(30)
-    public static class Impl30 extends Impl {
+    public class Impl30 extends Impl {
         public final WindowInsetsControllerCompat mCompatController;
         public final WindowInsetsController mInsetsController;
         private final SimpleArrayMap<OnControllableInsetsChangedListener, WindowInsetsController.OnControllableInsetsChangedListener> mListeners;
@@ -366,12 +366,6 @@ public final class WindowInsetsControllerCompat {
         }
     }
 
-    @NonNull
-    @RequiresApi(30)
-    public static WindowInsetsControllerCompat toWindowInsetsControllerCompat(@NonNull WindowInsetsController windowInsetsController) {
-        return new WindowInsetsControllerCompat(windowInsetsController);
-    }
-
     public void addOnControllableInsetsChangedListener(@NonNull OnControllableInsetsChangedListener onControllableInsetsChangedListener) {
         this.mImpl.addOnControllableInsetsChangedListener(onControllableInsetsChangedListener);
     }
@@ -414,6 +408,12 @@ public final class WindowInsetsControllerCompat {
 
     public void show(int i) {
         this.mImpl.show(i);
+    }
+
+    @NonNull
+    @RequiresApi(30)
+    public static WindowInsetsControllerCompat toWindowInsetsControllerCompat(@NonNull WindowInsetsController windowInsetsController) {
+        return new WindowInsetsControllerCompat(windowInsetsController);
     }
 
     public WindowInsetsControllerCompat(@NonNull Window window, @NonNull View view) {

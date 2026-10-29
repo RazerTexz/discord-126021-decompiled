@@ -13,9 +13,9 @@ import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class CircularProgressIndicator extends BaseProgressIndicator<CircularProgressIndicatorSpec> {
-    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CircularProgressIndicator;
     public static final int INDICATOR_DIRECTION_CLOCKWISE = 0;
     public static final int INDICATOR_DIRECTION_COUNTERCLOCKWISE = 1;
+    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CircularProgressIndicator;
 
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -24,11 +24,6 @@ public final class CircularProgressIndicator extends BaseProgressIndicator<Circu
 
     public CircularProgressIndicator(@NonNull Context context) {
         this(context, null);
-    }
-
-    private void initializeDrawables() {
-        setIndeterminateDrawable(IndeterminateDrawable.createCircularDrawable(getContext(), (CircularProgressIndicatorSpec) this.spec));
-        setProgressDrawable(DeterminateDrawable.createCircularDrawable(getContext(), (CircularProgressIndicatorSpec) this.spec));
     }
 
     public int getIndicatorDirection() {
@@ -43,6 +38,11 @@ public final class CircularProgressIndicator extends BaseProgressIndicator<Circu
     @Px
     public int getIndicatorSize() {
         return ((CircularProgressIndicatorSpec) this.spec).indicatorSize;
+    }
+
+    private void initializeDrawables() {
+        setIndeterminateDrawable(IndeterminateDrawable.createCircularDrawable(getContext(), (CircularProgressIndicatorSpec) this.spec));
+        setProgressDrawable(DeterminateDrawable.createCircularDrawable(getContext(), (CircularProgressIndicatorSpec) this.spec));
     }
 
     public void setIndicatorDirection(int i) {

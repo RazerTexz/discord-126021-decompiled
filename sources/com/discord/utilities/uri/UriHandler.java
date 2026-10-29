@@ -54,13 +54,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class UriHandler {
     private static final String APP_PACKAGE = "com.discord";
-    public static final UriHandler INSTANCE = new UriHandler();
     private static final String URL_PLAY_STORE_ALT = "https://play.google.com/store/apps/details";
     private static final String URL_PLAY_STORE_DIRECT = "market://details";
+    public static final UriHandler INSTANCE = new UriHandler();
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$directToPlayStore$1 */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public static final class C69791 extends AbstractC12240o implements Function1<String, String> {
+    public final class C69791 extends AbstractC12240o implements Function1<String, String> {
         public final /* synthetic */ String $packageName;
         public final /* synthetic */ String $source;
 
@@ -85,7 +85,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$directToPlayStore$2 */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public static final class C69802 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69802 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ C69791 $createFullUriString$1;
 
@@ -110,7 +110,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrlExternally$1 */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public static final class C69821 extends AbstractC12240o implements Function1<ResolveInfo, String> {
+    public final class C69821 extends AbstractC12240o implements Function1<ResolveInfo, String> {
         public static final C69821 INSTANCE = new C69821();
 
         public C69821() {
@@ -125,7 +125,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrlExternally$2 */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public static final class C69832 extends AbstractC12240o implements Function1<String, Boolean> {
+    public final class C69832 extends AbstractC12240o implements Function1<String, Boolean> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -149,6 +149,16 @@ public final class UriHandler {
     private UriHandler() {
     }
 
+    public static /* synthetic */ void directToPlayStore$default(Context context, String str, String str2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str = "com.discord";
+        }
+        if ((i & 4) != 0) {
+            str2 = "discord";
+        }
+        directToPlayStore(context, str, str2);
+    }
+
     public static final void directToPlayStore(Context context) {
         directToPlayStore$default(context, null, null, 6, null);
     }
@@ -165,16 +175,6 @@ public final class UriHandler {
         handle$default(INSTANCE, context, c69791.invoke(URL_PLAY_STORE_DIRECT), false, false, new C69802(context, c69791), 12, null);
     }
 
-    public static /* synthetic */ void directToPlayStore$default(Context context, String str, String str2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str = "com.discord";
-        }
-        if ((i & 4) != 0) {
-            str2 = "discord";
-        }
-        directToPlayStore(context, str, str2);
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ void handle$default(UriHandler uriHandler, Context context, String str, boolean z2, boolean z3, Function0 function0, int i, Object obj) {
         boolean z4 = (i & 4) != 0 ? false : z2;
@@ -183,6 +183,31 @@ public final class UriHandler {
             function0 = null;
         }
         uriHandler.handle(context, str, z4, z5, function0);
+    }
+
+    public final void handle(Context context, String url, boolean forceExternal, boolean preventCustomTab, Function0<Unit> onFailure) {
+        Uri uri;
+        C12238m.checkNotNullParameter(context, "context");
+        if (url != null) {
+            try {
+                uri = Uri.parse(url);
+            } catch (Exception unused) {
+                uri = null;
+            }
+            Uri uri2 = uri;
+            if (uri2 != null) {
+                if (forceExternal || !handleUriSpecialCase(context, uri2)) {
+                    openUrl(context, uri2, url, forceExternal, preventCustomTab, onFailure);
+                }
+            }
+        }
+    }
+
+    public static /* synthetic */ void handleOrUntrusted$default(Context context, String str, String str2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            str2 = null;
+        }
+        handleOrUntrusted(context, str, str2);
     }
 
     public static final void handleOrUntrusted(Context context, String url, String mask) {
@@ -196,13 +221,6 @@ public final class UriHandler {
         Objects.requireNonNull(C0830a.f369k);
         String str = "WIDGET_SPOOPY_LINKS_DIALOG";
         companion.getNotices().requestToShow(new StoreNotices.Notice(str, null, 0L, 0, false, C12147n.listOf((Object[]) new InterfaceC11230c[]{C12216a0.getOrCreateKotlinClass(WidgetHome.class), C12216a0.getOrCreateKotlinClass(WidgetUserMentions.class), C12216a0.getOrCreateKotlinClass(WidgetSearch.class), C12216a0.getOrCreateKotlinClass(WidgetChannelPinnedMessages.class), C12216a0.getOrCreateKotlinClass(WidgetMedia.class)}), 0L, false, 0L, new UriHandler$handleOrUntrusted$notice$1(url), Opcodes.I2F, null));
-    }
-
-    public static /* synthetic */ void handleOrUntrusted$default(Context context, String str, String str2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            str2 = null;
-        }
-        handleOrUntrusted(context, str, str2);
     }
 
     private final boolean handleUriSpecialCase(Context context, Uri uri) {
@@ -295,27 +313,9 @@ public final class UriHandler {
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }
 
-    public final void handle(Context context, String url, boolean forceExternal, boolean preventCustomTab, Function0<Unit> onFailure) {
-        Uri uri;
-        C12238m.checkNotNullParameter(context, "context");
-        if (url != null) {
-            try {
-                uri = Uri.parse(url);
-            } catch (Exception unused) {
-                uri = null;
-            }
-            Uri uri2 = uri;
-            if (uri2 != null) {
-                if (forceExternal || !handleUriSpecialCase(context, uri2)) {
-                    openUrl(context, uri2, url, forceExternal, preventCustomTab, onFailure);
-                }
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrl$1 */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public static final class C69811 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69811 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ boolean $forceExternal;
         public final /* synthetic */ Function0 $onFailure;

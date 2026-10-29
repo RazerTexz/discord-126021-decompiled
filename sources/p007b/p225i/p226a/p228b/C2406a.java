@@ -21,6 +21,21 @@ public final class C2406a<T> extends AbstractC2408c<T> {
         this.f5117b = enumC2409d;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC2408c)) {
+            return false;
+        }
+        AbstractC2408c abstractC2408c = (AbstractC2408c) obj;
+        return abstractC2408c.mo2286a() == null && this.f5116a.equals(abstractC2408c.mo2287b()) && this.f5117b.equals(abstractC2408c.mo2288c());
+    }
+
+    public int hashCode() {
+        return this.f5117b.hashCode() ^ (((-721379959) ^ this.f5116a.hashCode()) * 1000003);
+    }
+
     @Override // p007b.p225i.p226a.p228b.AbstractC2408c
     @Nullable
     /* JADX INFO: renamed from: a */
@@ -38,21 +53,6 @@ public final class C2406a<T> extends AbstractC2408c<T> {
     /* JADX INFO: renamed from: c */
     public EnumC2409d mo2288c() {
         return this.f5117b;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC2408c)) {
-            return false;
-        }
-        AbstractC2408c abstractC2408c = (AbstractC2408c) obj;
-        return abstractC2408c.mo2286a() == null && this.f5116a.equals(abstractC2408c.mo2287b()) && this.f5117b.equals(abstractC2408c.mo2288c());
-    }
-
-    public int hashCode() {
-        return this.f5117b.hashCode() ^ (((-721379959) ^ this.f5116a.hashCode()) * 1000003);
     }
 
     public String toString() {

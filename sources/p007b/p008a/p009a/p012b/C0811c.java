@@ -42,52 +42,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0811c extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f264j = {C1643a.m846d0(C0811c.class, "binding", "getBinding()Lcom/discord/databinding/MultiValuePropPremiumUpsellDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f264j = {C1643a.m846d0(C0811c.class, "binding", "getBinding()Lcom/discord/databinding/MultiValuePropPremiumUpsellDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public e pagerAdapter;
 
-    /* JADX INFO: renamed from: b.a.a.b.c$a */
-    /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f268j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ Object f269k;
-
-        public a(int i, Object obj) {
-            this.f268j = i;
-            this.f269k = obj;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            int i = this.f268j;
-            if (i == 0) {
-                ((C0811c) this.f269k).dismiss();
-            } else if (i == 1) {
-                C0811c.m110g((C0811c) this.f269k);
-            } else {
-                if (i != 2) {
-                    throw null;
-                }
-                C0811c.m110g((C0811c) this.f269k);
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.b.c$b, reason: from kotlin metadata */
     /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -139,9 +108,40 @@ public final class C0811c extends AppDialog {
         }
     }
 
+    /* JADX INFO: renamed from: b.a.a.b.c$a */
+    /* JADX INFO: compiled from: java-style lambda group */
+    public final class a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f268j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ Object f269k;
+
+        public a(int i, Object obj) {
+            this.f268j = i;
+            this.f269k = obj;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.f268j;
+            if (i == 0) {
+                ((C0811c) this.f269k).dismiss();
+            } else if (i == 1) {
+                C0811c.m110g((C0811c) this.f269k);
+            } else {
+                if (i != 2) {
+                    throw null;
+                }
+                C0811c.m110g((C0811c) this.f269k);
+            }
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.b.c$c */
     /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f270a;
@@ -191,10 +191,7 @@ public final class C0811c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.b.c$d */
     /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-    public static final class d extends AppFragment {
-
-        /* JADX INFO: renamed from: j */
-        public static final /* synthetic */ KProperty[] f273j = {C1643a.m846d0(d.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPremiumUpsellBinding;", 0)};
+    public final class d extends AppFragment {
 
         /* JADX INFO: renamed from: k, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -202,16 +199,19 @@ public final class C0811c extends AppDialog {
         /* JADX INFO: renamed from: l, reason: from kotlin metadata */
         public final FragmentViewBindingDelegate binding;
 
+        /* JADX INFO: renamed from: j */
+        public static final /* synthetic */ KProperty[] f273j = {C1643a.m846d0(d.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPremiumUpsellBinding;", 0)};
+
         /* JADX INFO: renamed from: b.a.a.b.c$d$a, reason: from kotlin metadata */
         /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-        public static final class Companion {
+        public final class Companion {
             public Companion(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
 
         /* JADX INFO: renamed from: b.a.a.b.c$d$b */
         /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-        public static final /* synthetic */ class b extends C12236k implements Function1<View, C1064u5> {
+        public final /* synthetic */ class b extends C12236k implements Function1<View, C1064u5> {
 
             /* JADX INFO: renamed from: j */
             public static final b f276j = new b();
@@ -271,7 +271,7 @@ public final class C0811c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.b.c$e */
     /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-    public static final class e extends FragmentStateAdapter {
+    public final class e extends FragmentStateAdapter {
 
         /* JADX INFO: renamed from: a */
         public final List<c> f277a;
@@ -312,7 +312,7 @@ public final class C0811c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.b.c$f */
     /* JADX INFO: compiled from: MultiValuePropPremiumUpsellDialog.kt */
-    public static final /* synthetic */ class f extends C12236k implements Function1<View, C1073w0> {
+    public final /* synthetic */ class f extends C12236k implements Function1<View, C1073w0> {
 
         /* JADX INFO: renamed from: j */
         public static final f f278j = new f();

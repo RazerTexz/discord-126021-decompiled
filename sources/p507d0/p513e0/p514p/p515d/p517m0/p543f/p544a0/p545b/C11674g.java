@@ -45,7 +45,7 @@ public final class C11674g implements InterfaceC11704c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.b.g$a */
     /* JADX INFO: compiled from: JvmNameResolver.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

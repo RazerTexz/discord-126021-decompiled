@@ -62,6 +62,10 @@ import p658rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSettingsEditPermissions extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelSettingsEditPermissions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSettingsEditPermissionsBinding;", 0)};
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_CHANNEL_ID = "INTENT_EXTRA_CHANNEL_ID";
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final String INTENT_EXTRA_TARGET_ID = "INTENT_EXTRA_TARGET_ID";
@@ -87,15 +91,112 @@ public final class WidgetChannelSettingsEditPermissions extends AppFragment {
 
     /* JADX INFO: renamed from: type$delegate, reason: from kotlin metadata */
     private final Lazy type;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelSettingsEditPermissions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSettingsEditPermissionsBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final Set<Long> STAGE_HIDDEN_PERMISSIONS = C12148n0.setOf((Object[]) new Long[]{512L, 256L, Long.valueOf(Permission.SPEAK), Long.valueOf(Permission.USE_VAD)});
     private static final Set<Long> STAGE_DISABLED_PERMISSIONS = C12146m0.setOf(Long.valueOf(Permission.REQUEST_TO_SPEAK));
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$deletePermissionOverwrites$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
-    public static final class Companion {
+    public final class C75381 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C75381() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) throws Exception {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r4) throws Exception {
+            StatefulViews statefulViews = WidgetChannelSettingsEditPermissions.this.state;
+            if (statefulViews != null) {
+                StatefulViews.clear$default(statefulViews, false, 1, null);
+            }
+            AppActivity appActivity = WidgetChannelSettingsEditPermissions.this.getAppActivity();
+            if (appActivity != null) {
+                appActivity.onBackPressed();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
+    public final /* synthetic */ class C75391 extends C12236k implements Function1<WidgetChannelSettingsEditPermissionsModel, Unit> {
+        public C75391(WidgetChannelSettingsEditPermissions widgetChannelSettingsEditPermissions) {
+            super(1, widgetChannelSettingsEditPermissions, WidgetChannelSettingsEditPermissions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/permissions/WidgetChannelSettingsEditPermissionsModel;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelSettingsEditPermissionsModel widgetChannelSettingsEditPermissionsModel) {
+            invoke2(widgetChannelSettingsEditPermissionsModel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelSettingsEditPermissionsModel widgetChannelSettingsEditPermissionsModel) {
+            ((WidgetChannelSettingsEditPermissions) this.receiver).configureUI(widgetChannelSettingsEditPermissionsModel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$updatePermissionOverwrites$1 */
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
+    public final class C75411 extends AbstractC12240o implements Function0<RestAPIParams.ChannelPermissionOverwrites> {
+        public final /* synthetic */ long $targetId;
+        public final /* synthetic */ int $type;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C75411(int i, long j) {
+            super(0);
+            this.$type = i;
+            this.$targetId = j;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final RestAPIParams.ChannelPermissionOverwrites invoke() {
+            Iterator it = WidgetChannelSettingsEditPermissions.this.getPermissionCheckboxes().iterator();
+            long permission = 0;
+            long permission2 = 0;
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                TernaryCheckBox ternaryCheckBox = (TernaryCheckBox) it.next();
+                if (ternaryCheckBox.m8559b()) {
+                    permission |= WidgetChannelSettingsEditPermissions.INSTANCE.getPermission(ternaryCheckBox.getId());
+                } else {
+                    if (ternaryCheckBox.switchStatus == -1) {
+                        permission2 |= WidgetChannelSettingsEditPermissions.INSTANCE.getPermission(ternaryCheckBox.getId());
+                    }
+                }
+            }
+            return this.$type == 1 ? RestAPIParams.ChannelPermissionOverwrites.INSTANCE.createForRole(this.$targetId, Long.valueOf(permission), Long.valueOf(permission2)) : RestAPIParams.ChannelPermissionOverwrites.INSTANCE.createForMember(this.$targetId, Long.valueOf(permission), Long.valueOf(permission2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$updatePermissionOverwrites$2 */
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
+    public final class C75422 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C75422 INSTANCE = new C75422();
+
+        public C75422() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -106,6 +207,16 @@ public final class WidgetChannelSettingsEditPermissions extends AppFragment {
             intent.putExtra("INTENT_EXTRA_TARGET_ID", targetId);
             intent.putExtra(WidgetChannelSettingsEditPermissions.INTENT_EXTRA_TYPE, type);
             C0870j.m156d(context, WidgetChannelSettingsEditPermissions.class, intent);
+        }
+
+        public final void createForRole(Context context, long guildId, long channelId, long targetId) {
+            C12238m.checkNotNullParameter(context, "context");
+            create(context, guildId, channelId, targetId, 1);
+        }
+
+        public final void createForUser(Context context, long guildId, long channelId, long targetId) {
+            C12238m.checkNotNullParameter(context, "context");
+            create(context, guildId, channelId, targetId, 0);
         }
 
         @SuppressLint({"NonConstantResourceId"})
@@ -190,119 +301,8 @@ public final class WidgetChannelSettingsEditPermissions extends AppFragment {
             }
         }
 
-        public final void createForRole(Context context, long guildId, long channelId, long targetId) {
-            C12238m.checkNotNullParameter(context, "context");
-            create(context, guildId, channelId, targetId, 1);
-        }
-
-        public final void createForUser(Context context, long guildId, long channelId, long targetId) {
-            C12238m.checkNotNullParameter(context, "context");
-            create(context, guildId, channelId, targetId, 0);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$deletePermissionOverwrites$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
-    public static final class C75381 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C75381() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) throws Exception {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r4) throws Exception {
-            StatefulViews statefulViews = WidgetChannelSettingsEditPermissions.this.state;
-            if (statefulViews != null) {
-                StatefulViews.clear$default(statefulViews, false, 1, null);
-            }
-            AppActivity appActivity = WidgetChannelSettingsEditPermissions.this.getAppActivity();
-            if (appActivity != null) {
-                appActivity.onBackPressed();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
-    public static final /* synthetic */ class C75391 extends C12236k implements Function1<WidgetChannelSettingsEditPermissionsModel, Unit> {
-        public C75391(WidgetChannelSettingsEditPermissions widgetChannelSettingsEditPermissions) {
-            super(1, widgetChannelSettingsEditPermissions, WidgetChannelSettingsEditPermissions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/permissions/WidgetChannelSettingsEditPermissionsModel;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelSettingsEditPermissionsModel widgetChannelSettingsEditPermissionsModel) {
-            invoke2(widgetChannelSettingsEditPermissionsModel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelSettingsEditPermissionsModel widgetChannelSettingsEditPermissionsModel) {
-            ((WidgetChannelSettingsEditPermissions) this.receiver).configureUI(widgetChannelSettingsEditPermissionsModel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$updatePermissionOverwrites$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
-    public static final class C75411 extends AbstractC12240o implements Function0<RestAPIParams.ChannelPermissionOverwrites> {
-        public final /* synthetic */ long $targetId;
-        public final /* synthetic */ int $type;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C75411(int i, long j) {
-            super(0);
-            this.$type = i;
-            this.$targetId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final RestAPIParams.ChannelPermissionOverwrites invoke() {
-            Iterator it = WidgetChannelSettingsEditPermissions.this.getPermissionCheckboxes().iterator();
-            long permission = 0;
-            long permission2 = 0;
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                TernaryCheckBox ternaryCheckBox = (TernaryCheckBox) it.next();
-                if (ternaryCheckBox.m8559b()) {
-                    permission |= WidgetChannelSettingsEditPermissions.INSTANCE.getPermission(ternaryCheckBox.getId());
-                } else {
-                    if (ternaryCheckBox.switchStatus == -1) {
-                        permission2 |= WidgetChannelSettingsEditPermissions.INSTANCE.getPermission(ternaryCheckBox.getId());
-                    }
-                }
-            }
-            return this.$type == 1 ? RestAPIParams.ChannelPermissionOverwrites.INSTANCE.createForRole(this.$targetId, Long.valueOf(permission), Long.valueOf(permission2)) : RestAPIParams.ChannelPermissionOverwrites.INSTANCE.createForMember(this.$targetId, Long.valueOf(permission), Long.valueOf(permission2));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissions$updatePermissionOverwrites$2 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissions.kt */
-    public static final class C75422 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C75422 INSTANCE = new C75422();
-
-        public C75422() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
         }
     }
 
@@ -491,6 +491,24 @@ public final class WidgetChannelSettingsEditPermissions extends AppFragment {
         return ((Number) this.type.getValue()).intValue();
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        StatefulViews statefulViews = new StatefulViews(getPermissionCheckboxes());
+        this.state = statefulViews;
+        if (statefulViews != null) {
+            statefulViews.setupUnsavedChangesConfirmation(this);
+        }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(WidgetChannelSettingsEditPermissionsModel.INSTANCE.get(getGuildId(), getChannelId(), getTargetId(), getType()), this, null, 2, null), (Class<?>) WidgetChannelSettingsEditPermissions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C75391(this));
+    }
+
     private final void setupPermissionCheckedState(TernaryCheckBox checkBox, PermissionOverwrite permissionOverwrite) {
         long deny;
         long allow = 0;
@@ -647,23 +665,5 @@ public final class WidgetChannelSettingsEditPermissions extends AppFragment {
 
     private final void updatePermissionOverwrites(long channelId, long targetId, int type) {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updatePermissionOverwrites(channelId, targetId, new C75411(type, targetId).invoke()), false, 1, null), this, null, 2, null), (Class<?>) WidgetChannelSettingsEditPermissions.class, (58 & 2) != 0 ? null : requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C75422.INSTANCE);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        StatefulViews statefulViews = new StatefulViews(getPermissionCheckboxes());
-        this.state = statefulViews;
-        if (statefulViews != null) {
-            statefulViews.setupUnsavedChangesConfirmation(this);
-        }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(WidgetChannelSettingsEditPermissionsModel.INSTANCE.get(getGuildId(), getChannelId(), getTargetId(), getType()), this, null, 2, null), (Class<?>) WidgetChannelSettingsEditPermissions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C75391(this));
     }
 }

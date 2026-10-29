@@ -9,14 +9,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2204y {
 
-    /* JADX INFO: renamed from: a */
-    public static final Class<?>[] f4761a = new Class[0];
-
     /* JADX INFO: renamed from: b */
     public final String f4762b;
 
     /* JADX INFO: renamed from: c */
     public final Class<?>[] f4763c;
+
+    /* JADX INFO: renamed from: a */
+    public static final Class<?>[] f4761a = new Class[0];
 
     public C2204y(Method method) {
         String name = method.getName();

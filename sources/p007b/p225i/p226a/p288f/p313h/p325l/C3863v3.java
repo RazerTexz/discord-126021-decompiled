@@ -8,18 +8,23 @@ import java.util.NoSuchElementException;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3863v3 implements Iterator {
 
-    /* JADX INFO: renamed from: j */
-    public int f10360j = 0;
-
     /* JADX INFO: renamed from: k */
     public final int f10361k;
 
     /* JADX INFO: renamed from: l */
     public final /* synthetic */ AbstractC3837t3 f10362l;
 
+    /* JADX INFO: renamed from: j */
+    public int f10360j = 0;
+
     public C3863v3(AbstractC3837t3 abstractC3837t3) {
         this.f10362l = abstractC3837t3;
         this.f10361k = abstractC3837t3.mo5282d();
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.f10360j < this.f10361k;
     }
 
     /* JADX INFO: renamed from: a */
@@ -30,11 +35,6 @@ public final class C3863v3 implements Iterator {
         }
         this.f10360j = i + 1;
         return this.f10362l.mo5287k(i);
-    }
-
-    @Override // java.util.Iterator
-    public final boolean hasNext() {
-        return this.f10360j < this.f10361k;
     }
 
     @Override // java.util.Iterator

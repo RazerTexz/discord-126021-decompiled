@@ -49,6 +49,12 @@ public final class WidgetChoosePlanAdapterPlanItemBinding implements ViewBinding
         this.f16382g = textView3;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16376a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChoosePlanAdapterPlanItemBinding m8412a(@NonNull View view) {
@@ -75,11 +81,5 @@ public final class WidgetChoosePlanAdapterPlanItemBinding implements ViewBinding
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16376a;
     }
 }

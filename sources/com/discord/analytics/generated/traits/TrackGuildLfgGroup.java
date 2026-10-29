@@ -6,14 +6,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildLfgGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildLfgGroup {
-    private final Long lfgGroupChannelId = null;
-    private final Long lfgGroupOwnerId = null;
     private final Long lfgDirectoryChannelId = null;
     private final Long lfgDirectoryGuildId = null;
     private final CharSequence lfgDirectoryGuildName = null;
-    private final Long lfgGroupMaxSize = null;
+    private final Long lfgGroupChannelId = null;
     private final Long lfgGroupCurrentSize = null;
     private final CharSequence lfgGroupDescription = null;
+    private final Long lfgGroupMaxSize = null;
+    private final Long lfgGroupOwnerId = null;
 
     public boolean equals(Object other) {
         if (this == other) {

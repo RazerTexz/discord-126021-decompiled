@@ -26,7 +26,7 @@ public final class ChatInputViewModel$sendMessage$messageSendResultHandler$1 ext
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendMessage$messageSendResultHandler$1$1 */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76971 extends AbstractC12240o implements Function0<Unit> {
+    public final class C76971 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Guild $guild;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -55,7 +55,7 @@ public final class ChatInputViewModel$sendMessage$messageSendResultHandler$1 ext
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendMessage$messageSendResultHandler$1$2 */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76982 extends AbstractC12240o implements Function0<Unit> {
+    public final class C76982 extends AbstractC12240o implements Function0<Unit> {
         public C76982() {
             super(0);
         }

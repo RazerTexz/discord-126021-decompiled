@@ -8,11 +8,11 @@ import p007b.p225i.p226a.p341g.p345d.C4401l;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class DateValidatorPointBackward implements CalendarConstraints.DateValidator {
-    public static final Parcelable.Creator<DateValidatorPointBackward> CREATOR = new C10883a();
     private final long point;
+    public static final Parcelable.Creator<DateValidatorPointBackward> CREATOR = new C10883a();
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.DateValidatorPointBackward$a */
-    public static class C10883a implements Parcelable.Creator<DateValidatorPointBackward> {
+    public final class C10883a implements Parcelable.Creator<DateValidatorPointBackward> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public DateValidatorPointBackward createFromParcel(@NonNull Parcel parcel) {
@@ -35,11 +35,6 @@ public class DateValidatorPointBackward implements CalendarConstraints.DateValid
         return new DateValidatorPointBackward(j);
     }
 
-    @NonNull
-    public static DateValidatorPointBackward now() {
-        return before(C4401l.m6075h().getTimeInMillis());
-    }
-
     @Override // android.os.Parcelable
     public int describeContents() {
         return 0;
@@ -59,6 +54,11 @@ public class DateValidatorPointBackward implements CalendarConstraints.DateValid
     @Override // com.google.android.material.datepicker.CalendarConstraints.DateValidator
     public boolean isValid(long j) {
         return j <= this.point;
+    }
+
+    @NonNull
+    public static DateValidatorPointBackward now() {
+        return before(C4401l.m6075h().getTimeInMillis());
     }
 
     @Override // android.os.Parcelable

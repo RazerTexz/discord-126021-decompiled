@@ -15,13 +15,13 @@ public final class Persister$Companion$logger$1 extends AbstractC12240o implemen
         super(3);
     }
 
+    public final void invoke(int i, String str, Exception exc) {
+        C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+    }
+
     @Override // kotlin.jvm.functions.Function3
     public /* bridge */ /* synthetic */ Unit invoke(Integer num, String str, Exception exc) {
         invoke(num.intValue(), str, exc);
         return Unit.f27425a;
-    }
-
-    public final void invoke(int i, String str, Exception exc) {
-        C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
     }
 }

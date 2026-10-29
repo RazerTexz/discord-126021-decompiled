@@ -12,34 +12,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageDiscoveryStageJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageDiscoveryStageJoined implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+    private final Long index = null;
+    private final Long lastVisibleIndexAtLoad = null;
+    private final CharSequence loadId = null;
+    private final Float recommendationScore = null;
+    private final List<Long> recommendationSource = null;
+    private final Long stageInstanceId = null;
+    private final CharSequence stageInstanceRecommendations = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
-    private final CharSequence loadId = null;
-    private final CharSequence stageInstanceRecommendations = null;
-    private final Long lastVisibleIndexAtLoad = null;
-    private final Long index = null;
-    private final Long stageInstanceId = null;
-    private final List<Long> recommendationSource = null;
-    private final Float recommendationScore = null;
     private final transient String analyticsSchemaTypeName = "stage_discovery_stage_joined";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +32,18 @@ public final /* data */ class TrackStageDiscoveryStageJoined implements Analytic
         }
         TrackStageDiscoveryStageJoined trackStageDiscoveryStageJoined = (TrackStageDiscoveryStageJoined) other;
         return C12238m.areEqual(this.loadId, trackStageDiscoveryStageJoined.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryStageJoined.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryStageJoined.lastVisibleIndexAtLoad) && C12238m.areEqual(this.index, trackStageDiscoveryStageJoined.index) && C12238m.areEqual(this.stageInstanceId, trackStageDiscoveryStageJoined.stageInstanceId) && C12238m.areEqual(this.recommendationSource, trackStageDiscoveryStageJoined.recommendationSource) && C12238m.areEqual(this.recommendationScore, trackStageDiscoveryStageJoined.recommendationScore);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -67,6 +61,12 @@ public final /* data */ class TrackStageDiscoveryStageJoined implements Analytic
         int iHashCode6 = (iHashCode5 + (list != null ? list.hashCode() : 0)) * 31;
         Float f = this.recommendationScore;
         return iHashCode6 + (f != null ? f.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

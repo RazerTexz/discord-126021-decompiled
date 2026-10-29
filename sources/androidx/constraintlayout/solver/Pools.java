@@ -12,7 +12,7 @@ public final class Pools {
         void releaseAll(T[] tArr, int i);
     }
 
-    public static class SimplePool<T> implements Pool<T> {
+    public class SimplePool<T> implements Pool<T> {
         private final Object[] mPool;
         private int mPoolSize;
 
@@ -21,15 +21,6 @@ public final class Pools {
                 throw new IllegalArgumentException("The max pool size must be > 0");
             }
             this.mPool = new Object[i];
-        }
-
-        private boolean isInPool(T t) {
-            for (int i = 0; i < this.mPoolSize; i++) {
-                if (this.mPool[i] == t) {
-                    return true;
-                }
-            }
-            return false;
         }
 
         @Override // androidx.constraintlayout.solver.Pools.Pool
@@ -44,6 +35,15 @@ public final class Pools {
             objArr[i2] = null;
             this.mPoolSize = i - 1;
             return t;
+        }
+
+        private boolean isInPool(T t) {
+            for (int i = 0; i < this.mPoolSize; i++) {
+                if (this.mPool[i] == t) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override // androidx.constraintlayout.solver.Pools.Pool

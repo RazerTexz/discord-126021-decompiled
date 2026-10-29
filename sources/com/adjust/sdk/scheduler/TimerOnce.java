@@ -9,10 +9,10 @@ import java.util.concurrent.TimeUnit;
 /* JADX INFO: loaded from: classes.dex */
 public class TimerOnce {
     private Runnable command;
-    private ILogger logger = AdjustFactory.getLogger();
     private String name;
     private FutureScheduler scheduler;
     private ScheduledFuture waitingTask;
+    private ILogger logger = AdjustFactory.getLogger();
 
     public TimerOnce(Runnable runnable, String str) {
         this.name = str;

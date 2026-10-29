@@ -33,6 +33,11 @@ public class Camera1Enumerator implements CameraEnumerator {
         return arrayList;
     }
 
+    @Override // org.webrtc.CameraEnumerator
+    public CameraVideoCapturer createCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
+        return new Camera1Capturer(str, cameraEventsHandler, this.captureToTexture);
+    }
+
     private static List<CameraEnumerationAndroid.CaptureFormat> enumerateFormats(int i) {
         int i2;
         Logging.m11027d(TAG, "Get supported formats for camera index " + i + ".");
@@ -112,11 +117,6 @@ public class Camera1Enumerator implements CameraEnumerator {
             return null;
         }
         return "Camera " + i + ", Facing " + (cameraInfo.facing == 1 ? "front" : "back") + ", Orientation " + cameraInfo.orientation;
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    public CameraVideoCapturer createCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
-        return new Camera1Capturer(str, cameraEventsHandler, this.captureToTexture);
     }
 
     @Override // org.webrtc.CameraEnumerator

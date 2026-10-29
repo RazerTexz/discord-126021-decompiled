@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserPremiumGuildSubscriptionSlotCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCreated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long slotId = null;
     private final Long subscriptionId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_premium_guild_subscription_slot_created";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCreated imple
         }
         TrackUserPremiumGuildSubscriptionSlotCreated trackUserPremiumGuildSubscriptionSlotCreated = (TrackUserPremiumGuildSubscriptionSlotCreated) other;
         return C12238m.areEqual(this.slotId, trackUserPremiumGuildSubscriptionSlotCreated.slotId) && C12238m.areEqual(this.subscriptionId, trackUserPremiumGuildSubscriptionSlotCreated.subscriptionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

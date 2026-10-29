@@ -15,14 +15,10 @@ import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
 /* JADX INFO: compiled from: Collections.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12165w implements List, Serializable, RandomAccess, InterfaceC12228a {
+    private static final long serialVersionUID = -7390468764508069838L;
 
     /* JADX INFO: renamed from: j */
     public static final C12165w f25221j = new C12165w();
-    private static final long serialVersionUID = -7390468764508069838L;
-
-    private final Object readResolve() {
-        return f25221j;
-    }
 
     @Override // java.util.List
     public /* synthetic */ void add(int i, Object obj) {
@@ -121,6 +117,10 @@ public final class C12165w implements List, Serializable, RandomAccess, Interfac
     @Override // java.util.List
     public ListIterator listIterator() {
         return C12164v.f25220j;
+    }
+
+    private final Object readResolve() {
+        return f25221j;
     }
 
     @Override // java.util.List

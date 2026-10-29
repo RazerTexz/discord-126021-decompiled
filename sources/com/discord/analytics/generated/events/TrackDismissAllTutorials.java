@@ -13,17 +13,17 @@ public final /* data */ class TrackDismissAllTutorials implements AnalyticsSchem
     private final CharSequence tutorial = null;
     private final transient String analyticsSchemaTypeName = "dismiss_all_tutorials";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackDismissAllTutorials) && C12238m.areEqual(this.tutorial, ((TrackDismissAllTutorials) other).tutorial);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

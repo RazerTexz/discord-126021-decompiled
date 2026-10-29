@@ -171,6 +171,19 @@ public class Camera1Session implements CameraSession {
         return (cameraInfo.orientation + iM10659b) % 360;
     }
 
+    private void listenForBytebufferFrames() {
+        this.camera.setPreviewCallbackWithBuffer(new C129462());
+    }
+
+    private void listenForTextureFrames() {
+        this.surfaceTextureHelper.startListening(new VideoSink() { // from class: h0.c.c
+            @Override // org.webrtc.VideoSink
+            public final void onFrame(VideoFrame videoFrame) {
+                this.f26412j.m11014a(videoFrame);
+            }
+        });
+    }
+
     /* JADX INFO: renamed from: lambda$listenForTextureFrames$0, reason: merged with bridge method [inline-methods] */
     private /* synthetic */ void m11014a(VideoFrame videoFrame) {
         checkIsOnCameraThread();
@@ -185,19 +198,6 @@ public class Camera1Session implements CameraSession {
         VideoFrame videoFrame2 = new VideoFrame(C12473l0.m10658a((TextureBufferImpl) videoFrame.getBuffer(), this.info.facing == 1, 0), getFrameOrientation(), videoFrame.getTimestampNs());
         this.events.onFrameCaptured(this, videoFrame2);
         videoFrame2.release();
-    }
-
-    private void listenForBytebufferFrames() {
-        this.camera.setPreviewCallbackWithBuffer(new C129462());
-    }
-
-    private void listenForTextureFrames() {
-        this.surfaceTextureHelper.startListening(new VideoSink() { // from class: h0.c.c
-            @Override // org.webrtc.VideoSink
-            public final void onFrame(VideoFrame videoFrame) {
-                this.f26412j.m11014a(videoFrame);
-            }
-        });
     }
 
     private void startCapturing() {
@@ -227,6 +227,19 @@ public class Camera1Session implements CameraSession {
         } catch (RuntimeException e) {
             stopInternal();
             this.events.onCameraError(this, e.getMessage());
+        }
+    }
+
+    @Override // org.webrtc.CameraSession
+    public void stop() {
+        StringBuilder sbM833U = C1643a.m833U("Stop camera1 session on camera ");
+        sbM833U.append(this.cameraId);
+        Logging.m11027d(TAG, sbM833U.toString());
+        checkIsOnCameraThread();
+        if (this.state != SessionState.STOPPED) {
+            long jNanoTime = System.nanoTime();
+            stopInternal();
+            camera1StopTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - jNanoTime));
         }
     }
 
@@ -263,18 +276,5 @@ public class Camera1Session implements CameraSession {
             parameters.setFocusMode("continuous-video");
         }
         camera.setParameters(parameters);
-    }
-
-    @Override // org.webrtc.CameraSession
-    public void stop() {
-        StringBuilder sbM833U = C1643a.m833U("Stop camera1 session on camera ");
-        sbM833U.append(this.cameraId);
-        Logging.m11027d(TAG, sbM833U.toString());
-        checkIsOnCameraThread();
-        if (this.state != SessionState.STOPPED) {
-            long jNanoTime = System.nanoTime();
-            stopInternal();
-            camera1StopTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - jNanoTime));
-        }
     }
 }

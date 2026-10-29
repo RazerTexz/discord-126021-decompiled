@@ -21,11 +21,6 @@ public final /* data */ class ModelGuildBoostSlot {
         this.canceled = z2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    private final String getCooldownEndsAt() {
-        return this.cooldownEndsAt;
-    }
-
     public static /* synthetic */ ModelGuildBoostSlot copy$default(ModelGuildBoostSlot modelGuildBoostSlot, String str, long j, long j2, ModelAppliedGuildBoost modelAppliedGuildBoost, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             str = modelGuildBoostSlot.cooldownEndsAt;
@@ -48,26 +43,6 @@ public final /* data */ class ModelGuildBoostSlot {
         return modelGuildBoostSlot.copy(str, j3, j4, modelAppliedGuildBoost2, z2);
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getSubscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelAppliedGuildBoost getPremiumGuildSubscription() {
-        return this.premiumGuildSubscription;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanceled() {
-        return this.canceled;
-    }
-
     public final ModelGuildBoostSlot copy(String cooldownEndsAt, long id2, long subscriptionId, ModelAppliedGuildBoost premiumGuildSubscription, boolean canceled) {
         return new ModelGuildBoostSlot(cooldownEndsAt, id2, subscriptionId, premiumGuildSubscription, canceled);
     }
@@ -83,20 +58,45 @@ public final /* data */ class ModelGuildBoostSlot {
         return C12238m.areEqual(this.cooldownEndsAt, modelGuildBoostSlot.cooldownEndsAt) && this.id == modelGuildBoostSlot.id && this.subscriptionId == modelGuildBoostSlot.subscriptionId && C12238m.areEqual(this.premiumGuildSubscription, modelGuildBoostSlot.premiumGuildSubscription) && this.canceled == modelGuildBoostSlot.canceled;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanceled() {
         return this.canceled;
+    }
+
+    public final boolean getCanceled() {
+        return this.canceled;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    private final String getCooldownEndsAt() {
+        return this.cooldownEndsAt;
     }
 
     public final long getCooldownExpiresAtTimestamp() {
         return TimeUtils.parseUTCDate(this.cooldownEndsAt);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getId() {
         return this.id;
     }
 
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final ModelAppliedGuildBoost getPremiumGuildSubscription() {
         return this.premiumGuildSubscription;
+    }
+
+    public final ModelAppliedGuildBoost getPremiumGuildSubscription() {
+        return this.premiumGuildSubscription;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getSubscriptionId() {
+        return this.subscriptionId;
     }
 
     public final long getSubscriptionId() {

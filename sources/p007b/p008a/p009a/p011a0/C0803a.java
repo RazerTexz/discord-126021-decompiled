@@ -42,28 +42,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0803a extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f224j = {C1643a.m846d0(C0803a.class, "binding", "getBinding()Lcom/discord/databinding/GiftPurchasedDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public Function0<Unit> onDismiss;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f224j = {C1643a.m846d0(C0803a.class, "binding", "getBinding()Lcom/discord/databinding/GiftPurchasedDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public Function0<Unit> onDismiss;
+
     /* JADX INFO: renamed from: b.a.a.a0.a$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.a0.a$b */
     /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C1037r> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C1037r> {
 
         /* JADX INFO: renamed from: j */
         public static final b f228j = new b();
@@ -111,7 +111,7 @@ public final class C0803a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.a$c */
     /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
-    public static final class c implements View.OnClickListener {
+    public final class c implements View.OnClickListener {
         public c() {
         }
 
@@ -127,7 +127,7 @@ public final class C0803a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.a$d */
     /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
-    public static final class d extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class d extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public d() {
             super(1);
         }
@@ -143,7 +143,7 @@ public final class C0803a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.a$e */
     /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
-    public static final class e implements View.OnClickListener {
+    public final class e implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ String f231k;

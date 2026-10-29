@@ -31,15 +31,15 @@ public final class AccessibilityMonitor {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(AccessibilityMonitor$Companion$INSTANCE$2.INSTANCE);
     private AccessibilityManager accessibilityManager;
     private AccessibilityState accessibilityState;
     private final SerializedSubject<AccessibilityState, AccessibilityState> accessibilityStateSubject;
     private final ContentObserver animationScaleObserver;
     private ContentResolver contentResolver;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(AccessibilityMonitor$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: compiled from: AccessibilityMonitor.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -76,6 +76,11 @@ public final class AccessibilityMonitor {
         AccessibilityState accessibilityState = new AccessibilityState(null, 1, 0 == true ? 1 : 0);
         this.accessibilityState = accessibilityState;
         this.accessibilityStateSubject = new SerializedSubject<>(BehaviorSubject.m11130l0(accessibilityState));
+    }
+
+    public final void bindContext(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        handleInitialState(context);
     }
 
     private final synchronized void handleInitialState(Context context) {
@@ -178,19 +183,14 @@ public final class AccessibilityMonitor {
         updateAccessibilityState(accessibilityState.copy(enumSetCopyOf));
     }
 
-    private final void updateAccessibilityState(AccessibilityState newState) {
-        this.accessibilityState = newState;
-        this.accessibilityStateSubject.f27653k.onNext(newState);
-    }
-
-    public final void bindContext(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        handleInitialState(context);
-    }
-
     public final Observable<AccessibilityState> observeAccessibilityState() {
         Observable<AccessibilityState> observableM11112r = this.accessibilityStateSubject.m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "accessibilityStateSubject.distinctUntilChanged()");
         return observableM11112r;
+    }
+
+    private final void updateAccessibilityState(AccessibilityState newState) {
+        this.accessibilityState = newState;
+        this.accessibilityStateSubject.f27653k.onNext(newState);
     }
 }

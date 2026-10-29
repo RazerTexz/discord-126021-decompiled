@@ -19,18 +19,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetStartCallSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStartCallSheet extends AppBottomSheet {
-    private static final String ARG_VOICE_CHANNEL_ID = "ARG_VOICE_CHANNEL_ID";
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
-    private PrivateCallLauncher privateCallLauncher;
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStartCallSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStartCallSheetBinding;", 0)};
+    private static final String ARG_VOICE_CHANNEL_ID = "ARG_VOICE_CHANNEL_ID";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+    private PrivateCallLauncher privateCallLauncher;
+
     /* JADX INFO: compiled from: WidgetStartCallSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -63,10 +63,6 @@ public final class WidgetStartCallSheet extends AppBottomSheet {
 
     private final WidgetStartCallSheetBinding getBinding() {
         return (WidgetStartCallSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public static final void show(long j, FragmentManager fragmentManager) {
-        INSTANCE.show(j, fragmentManager);
     }
 
     @Override // com.discord.app.AppBottomSheet
@@ -103,5 +99,9 @@ public final class WidgetStartCallSheet extends AppBottomSheet {
                 WidgetStartCallSheet.this.dismiss();
             }
         });
+    }
+
+    public static final void show(long j, FragmentManager fragmentManager) {
+        INSTANCE.show(j, fragmentManager);
     }
 }

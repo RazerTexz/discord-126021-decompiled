@@ -12,7 +12,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TextInformationFrame extends Id3Frame {
-    public static final Parcelable.Creator<TextInformationFrame> CREATOR = new C10735a();
 
     /* JADX INFO: renamed from: k */
     @Nullable
@@ -20,6 +19,7 @@ public final class TextInformationFrame extends Id3Frame {
 
     /* JADX INFO: renamed from: l */
     public final String f20001l;
+    public static final Parcelable.Creator<TextInformationFrame> CREATOR = new C10735a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.TextInformationFrame$a */
     public class C10735a implements Parcelable.Creator<TextInformationFrame> {
@@ -40,6 +40,25 @@ public final class TextInformationFrame extends Id3Frame {
         this.f20001l = str3;
     }
 
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || TextInformationFrame.class != obj.getClass()) {
+            return false;
+        }
+        TextInformationFrame textInformationFrame = (TextInformationFrame) obj;
+        return C2738e0.m2993a(this.f19989j, textInformationFrame.f19989j) && C2738e0.m2993a(this.f20000k, textInformationFrame.f20000k) && C2738e0.m2993a(this.f20001l, textInformationFrame.f20001l);
+    }
+
+    public int hashCode() {
+        int iM863m = C1643a.m863m(this.f19989j, 527, 31);
+        String str = this.f20000k;
+        int iHashCode = (iM863m + (str != null ? str.hashCode() : 0)) * 31;
+        String str2 = this.f20001l;
+        return iHashCode + (str2 != null ? str2.hashCode() : 0);
+    }
+
     /* JADX INFO: renamed from: a */
     public static List<Integer> m8882a(String str) {
         ArrayList arrayList = new ArrayList();
@@ -58,25 +77,6 @@ public final class TextInformationFrame extends Id3Frame {
         } catch (NumberFormatException unused) {
             return new ArrayList();
         }
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || TextInformationFrame.class != obj.getClass()) {
-            return false;
-        }
-        TextInformationFrame textInformationFrame = (TextInformationFrame) obj;
-        return C2738e0.m2993a(this.f19989j, textInformationFrame.f19989j) && C2738e0.m2993a(this.f20000k, textInformationFrame.f20000k) && C2738e0.m2993a(this.f20001l, textInformationFrame.f20001l);
-    }
-
-    public int hashCode() {
-        int iM863m = C1643a.m863m(this.f19989j, 527, 31);
-        String str = this.f20000k;
-        int iHashCode = (iM863m + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f20001l;
-        return iHashCode + (str2 != null ? str2.hashCode() : 0);
     }
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */

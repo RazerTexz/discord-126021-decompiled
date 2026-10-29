@@ -31,6 +31,10 @@ public final /* data */ class VideoEncoder {
         this.paramsValues = (String[]) array2;
     }
 
+    public final Map<String, String> component4() {
+        return this.params;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ VideoEncoder copy$default(VideoEncoder videoEncoder, String str, int i, int i2, Map map, int i3, Object obj) {
         if ((i3 & 1) != 0) {
@@ -46,25 +50,6 @@ public final /* data */ class VideoEncoder {
             map = videoEncoder.params;
         }
         return videoEncoder.copy(str, i, i2, map);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getRtxType() {
-        return this.rtxType;
-    }
-
-    public final Map<String, String> component4() {
-        return this.params;
     }
 
     public final VideoEncoder copy(String name, int type, int rtxType, Map<String, String> params) {
@@ -84,6 +69,11 @@ public final /* data */ class VideoEncoder {
         return C12238m.areEqual(this.name, videoEncoder.name) && this.type == videoEncoder.type && this.rtxType == videoEncoder.rtxType && C12238m.areEqual(this.params, videoEncoder.params);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
     public final String getName() {
         return this.name;
     }
@@ -100,8 +90,18 @@ public final /* data */ class VideoEncoder {
         return this.paramsValues;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getRtxType() {
         return this.rtxType;
+    }
+
+    public final int getRtxType() {
+        return this.rtxType;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

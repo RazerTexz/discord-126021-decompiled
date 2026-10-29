@@ -44,114 +44,9 @@ public final class StoreInstantInvites extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static abstract class InviteState {
-
-        /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class Invalid extends InviteState {
-            public static final Invalid INSTANCE = new Invalid();
-
-            private Invalid() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class LoadFailed extends InviteState {
-            public static final LoadFailed INSTANCE = new LoadFailed();
-
-            private LoadFailed() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class Loading extends InviteState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final /* data */ class Resolved extends InviteState {
-            private final ModelInvite invite;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Resolved(ModelInvite modelInvite) {
-                super(null);
-                C12238m.checkNotNullParameter(modelInvite, "invite");
-                this.invite = modelInvite;
-            }
-
-            public static /* synthetic */ Resolved copy$default(Resolved resolved, ModelInvite modelInvite, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    modelInvite = resolved.invite;
-                }
-                return resolved.copy(modelInvite);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelInvite getInvite() {
-                return this.invite;
-            }
-
-            public final Resolved copy(ModelInvite invite) {
-                C12238m.checkNotNullParameter(invite, "invite");
-                return new Resolved(invite);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Resolved) && C12238m.areEqual(this.invite, ((Resolved) other).invite);
-                }
-                return true;
-            }
-
-            public final ModelInvite getInvite() {
-                return this.invite;
-            }
-
-            public int hashCode() {
-                ModelInvite modelInvite = this.invite;
-                if (modelInvite != null) {
-                    return modelInvite.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Resolved(invite=");
-                sbM833U.append(this.invite);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        private InviteState() {
-        }
-
-        public /* synthetic */ InviteState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            Error.Type.values();
-            int[] iArr = new int[18];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[Error.Type.DISCORD_REQUEST_ERROR.ordinal()] = 1;
-            iArr[Error.Type.NETWORK.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$clearInvites$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61261 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61261 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -178,11 +73,11 @@ public final class StoreInstantInvites extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchGuildInvites$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61271 extends AbstractC12240o implements Function1<List<? extends ModelInvite>, Unit> {
+    public final class C61271 extends AbstractC12240o implements Function1<List<? extends ModelInvite>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchGuildInvites$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $invites;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -222,7 +117,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61281 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61281 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $eventId;
         public final /* synthetic */ String $inviteCode;
         public final /* synthetic */ String $inviteKey;
@@ -232,7 +127,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelInvite, TrackNetworkMetadataReceiver> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelInvite, TrackNetworkMetadataReceiver> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -250,11 +145,11 @@ public final class StoreInstantInvites extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreInstantInvites.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ModelInvite $it;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -308,11 +203,11 @@ public final class StoreInstantInvites extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreInstantInvites.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreInstantInvites.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -335,7 +230,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3$2, reason: invalid class name */
             /* JADX INFO: compiled from: StoreInstantInvites.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -428,7 +323,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$observeInvite$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61291 extends AbstractC12240o implements Function0<Map<String, ? extends InviteState>> {
+    public final class C61291 extends AbstractC12240o implements Function0<Map<String, ? extends InviteState>> {
         public C61291() {
             super(0);
         }
@@ -441,7 +336,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$observeKnownInvites$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61311 extends AbstractC12240o implements Function0<Map<String, ? extends InviteState>> {
+    public final class C61311 extends AbstractC12240o implements Function0<Map<String, ? extends InviteState>> {
         public C61311() {
             super(0);
         }
@@ -454,7 +349,7 @@ public final class StoreInstantInvites extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$onInviteRemoved$1 */
     /* JADX INFO: compiled from: StoreInstantInvites.kt */
-    public static final class C61321 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61321 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ModelInvite $invite;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -482,42 +377,113 @@ public final class StoreInstantInvites extends StoreV2 {
         }
     }
 
-    public /* synthetic */ StoreInstantInvites(Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
-    }
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public abstract class InviteState {
 
-    private final Map<Long, Map<String, ModelInvite>> getInvites() {
-        return this.invitesSnapshot;
-    }
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class Invalid extends InviteState {
+            public static final Invalid INSTANCE = new Invalid();
 
-    private final Map<String, InviteState> getKnownInvites() {
-        return this.knownInvitesSnapshot;
-    }
-
-    @StoreThread
-    private final void onLoadedInvites(List<? extends ModelInvite> updatedInvites) {
-        this.invites.clear();
-        for (ModelInvite modelInvite : updatedInvites) {
-            Guild guild = modelInvite.guild;
-            Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
-            if (lValueOf != null) {
-                Map<String, ModelInvite> linkedHashMap = this.invites.get(lValueOf);
-                if (linkedHashMap == null) {
-                    linkedHashMap = new LinkedHashMap<>();
-                }
-                String str = modelInvite.code;
-                C12238m.checkNotNullExpressionValue(str, "invite.code");
-                linkedHashMap.put(str, modelInvite);
-                this.invites.put(lValueOf, linkedHashMap);
+            private Invalid() {
+                super(null);
             }
         }
-        markChanged();
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class LoadFailed extends InviteState {
+            public static final LoadFailed INSTANCE = new LoadFailed();
+
+            private LoadFailed() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class Loading extends InviteState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final /* data */ class Resolved extends InviteState {
+            private final ModelInvite invite;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Resolved(ModelInvite modelInvite) {
+                super(null);
+                C12238m.checkNotNullParameter(modelInvite, "invite");
+                this.invite = modelInvite;
+            }
+
+            public static /* synthetic */ Resolved copy$default(Resolved resolved, ModelInvite modelInvite, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelInvite = resolved.invite;
+                }
+                return resolved.copy(modelInvite);
+            }
+
+            public final Resolved copy(ModelInvite invite) {
+                C12238m.checkNotNullParameter(invite, "invite");
+                return new Resolved(invite);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Resolved) && C12238m.areEqual(this.invite, ((Resolved) other).invite);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelInvite getInvite() {
+                return this.invite;
+            }
+
+            public final ModelInvite getInvite() {
+                return this.invite;
+            }
+
+            public int hashCode() {
+                ModelInvite modelInvite = this.invite;
+                if (modelInvite != null) {
+                    return modelInvite.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Resolved(invite=");
+                sbM833U.append(this.invite);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        private InviteState() {
+        }
+
+        public /* synthetic */ InviteState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
     }
 
-    @StoreThread
-    private final void setChatInvites(String inviteKey, InviteState inviteState) {
-        this.knownInvites.put(inviteKey, inviteState);
-        markChanged();
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            Error.Type.values();
+            int[] iArr = new int[18];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[Error.Type.DISCORD_REQUEST_ERROR.ordinal()] = 1;
+            iArr[Error.Type.NETWORK.ordinal()] = 2;
+        }
+    }
+
+    public /* synthetic */ StoreInstantInvites(Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public final void clearInvites(long guildId) {
@@ -531,6 +497,14 @@ public final class StoreInstantInvites extends StoreV2 {
     public final void fetchInviteIfNotLoaded(String inviteCode, Long eventId, String location, Boolean inviteResolved, Function0<Unit> onError) {
         C12238m.checkNotNullParameter(inviteCode, "inviteCode");
         this.dispatcher.schedule(new C61281(ModelInvite.getInviteStoreKey(inviteCode, eventId), inviteCode, eventId, inviteResolved, location, onError));
+    }
+
+    private final Map<Long, Map<String, ModelInvite>> getInvites() {
+        return this.invitesSnapshot;
+    }
+
+    private final Map<String, InviteState> getKnownInvites() {
+        return this.knownInvitesSnapshot;
     }
 
     public final Observable<InviteState> observeInvite(final String inviteKey) {
@@ -559,6 +533,32 @@ public final class StoreInstantInvites extends StoreV2 {
     public final void onInviteRemoved(ModelInvite invite) {
         C12238m.checkNotNullParameter(invite, "invite");
         this.dispatcher.schedule(new C61321(invite));
+    }
+
+    @StoreThread
+    private final void onLoadedInvites(List<? extends ModelInvite> updatedInvites) {
+        this.invites.clear();
+        for (ModelInvite modelInvite : updatedInvites) {
+            Guild guild = modelInvite.guild;
+            Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
+            if (lValueOf != null) {
+                Map<String, ModelInvite> linkedHashMap = this.invites.get(lValueOf);
+                if (linkedHashMap == null) {
+                    linkedHashMap = new LinkedHashMap<>();
+                }
+                String str = modelInvite.code;
+                C12238m.checkNotNullExpressionValue(str, "invite.code");
+                linkedHashMap.put(str, modelInvite);
+                this.invites.put(lValueOf, linkedHashMap);
+            }
+        }
+        markChanged();
+    }
+
+    @StoreThread
+    private final void setChatInvites(String inviteKey, InviteState inviteState) {
+        this.knownInvites.put(inviteKey, inviteState);
+        markChanged();
     }
 
     @Override // com.discord.stores.StoreV2

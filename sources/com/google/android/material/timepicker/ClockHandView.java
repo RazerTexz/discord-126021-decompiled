@@ -82,14 +82,6 @@ public class ClockHandView extends View {
     /* JADX INFO: renamed from: z */
     public double f21214z;
 
-    public interface OnActionUpListener {
-        void onActionUp(@FloatRange(from = 0.0d, m75to = 360.0d) float f, boolean z2);
-    }
-
-    public interface OnRotateListener {
-        void onRotate(@FloatRange(from = 0.0d, m75to = 360.0d) float f, boolean z2);
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.timepicker.ClockHandView$a */
     public class C11021a implements ValueAnimator.AnimatorUpdateListener {
         public C11021a() {
@@ -113,6 +105,14 @@ public class ClockHandView extends View {
         public void onAnimationCancel(Animator animator) {
             animator.end();
         }
+    }
+
+    public interface OnActionUpListener {
+        void onActionUp(@FloatRange(from = 0.0d, m75to = 360.0d) float f, boolean z2);
+    }
+
+    public interface OnRotateListener {
+        void onRotate(@FloatRange(from = 0.0d, m75to = 360.0d) float f, boolean z2);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

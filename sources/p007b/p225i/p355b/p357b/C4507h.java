@@ -15,7 +15,7 @@ public final class C4507h {
     /* JADX INFO: Add missing generic type declarations: [E] */
     /* JADX INFO: renamed from: b.i.b.b.h$a */
     /* JADX INFO: compiled from: Sets.java */
-    public static class a<E> extends AbstractC4524p0<E> {
+    public final class a<E> extends AbstractC4524p0<E> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Set f12010j;

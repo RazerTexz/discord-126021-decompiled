@@ -12,25 +12,15 @@ import java.util.Arrays;
 /* JADX INFO: loaded from: classes.dex */
 public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFactory {
     private static final Class<?>[] ANDROID_VIEWMODEL_SIGNATURE = {Application.class, SavedStateHandle.class};
-    private static final Class<?>[] VIEWMODEL_SIGNATURE = {SavedStateHandle.class};
     private final Application mApplication;
     private final Bundle mDefaultArgs;
     private final ViewModelProvider.Factory mFactory;
     private final Lifecycle mLifecycle;
     private final SavedStateRegistry mSavedStateRegistry;
+    private static final Class<?>[] VIEWMODEL_SIGNATURE = {SavedStateHandle.class};
 
     public SavedStateViewModelFactory(@Nullable Application application, @NonNull SavedStateRegistryOwner savedStateRegistryOwner) {
         this(application, savedStateRegistryOwner, null);
-    }
-
-    private static <T> Constructor<T> findMatchingConstructor(Class<T> cls, Class<?>[] clsArr) {
-        for (Object obj : cls.getConstructors()) {
-            Constructor<T> constructor = (Constructor<T>) obj;
-            if (Arrays.equals(clsArr, constructor.getParameterTypes())) {
-                return constructor;
-            }
-        }
-        return null;
     }
 
     /* JADX WARN: Code duplicated, block: B:16:0x0046 A[Catch: InvocationTargetException -> 0x005a, InstantiationException -> 0x0076, IllegalAccessException -> 0x0093, TryCatch #2 {IllegalAccessException -> 0x0093, InstantiationException -> 0x0076, InvocationTargetException -> 0x005a, blocks: (B:13:0x0030, B:15:0x0034, B:17:0x0054, B:16:0x0046), top: B:28:0x0030 }] */
@@ -64,6 +54,16 @@ public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFac
         }
         t.setTagIfAbsent("androidx.lifecycle.savedstate.vm.tag", savedStateHandleControllerCreate);
         return t;
+    }
+
+    private static <T> Constructor<T> findMatchingConstructor(Class<T> cls, Class<?>[] clsArr) {
+        for (Object obj : cls.getConstructors()) {
+            Constructor<T> constructor = (Constructor<T>) obj;
+            if (Arrays.equals(clsArr, constructor.getParameterTypes())) {
+                return constructor;
+            }
+        }
+        return null;
     }
 
     @Override // androidx.lifecycle.ViewModelProvider.OnRequeryFactory

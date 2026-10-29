@@ -30,16 +30,11 @@ public final /* data */ class TrackImpressionHubEmailSignup implements Analytics
         this.analyticsSchemaTypeName = "impression_hub_email_signup";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackImpressionHubEmailSignup) && C12238m.areEqual(this.hasInvite, ((TrackImpressionHubEmailSignup) other).hasInvite);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +43,10 @@ public final /* data */ class TrackImpressionHubEmailSignup implements Analytics
         return this.analyticsSchemaTypeName;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackImpressionHubEmailSignup) && C12238m.areEqual(this.hasInvite, ((TrackImpressionHubEmailSignup) other).hasInvite);
-        }
-        return true;
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -61,6 +55,12 @@ public final /* data */ class TrackImpressionHubEmailSignup implements Analytics
             return bool.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

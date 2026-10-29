@@ -21,7 +21,7 @@ public final class SegmentedControlContainer extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.segmentedcontrol.SegmentedControlContainer$a */
     /* JADX INFO: compiled from: SegmentedControlContainer.kt */
-    public static final class ViewOnClickListenerC7120a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7120a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f19288j;

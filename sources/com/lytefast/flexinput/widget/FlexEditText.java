@@ -31,7 +31,7 @@ public class FlexEditText extends AppCompatEditText {
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.widget.FlexEditText$a */
     /* JADX INFO: compiled from: FlexEditText.kt */
-    public static final class C11193a implements InputConnectionCompat.OnCommitContentListener {
+    public final class C11193a implements InputConnectionCompat.OnCommitContentListener {
         public C11193a(EditorInfo editorInfo) {
         }
 

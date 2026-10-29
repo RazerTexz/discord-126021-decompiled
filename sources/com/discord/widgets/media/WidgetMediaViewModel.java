@@ -23,13 +23,13 @@ public final class WidgetMediaViewModel extends AbstractC0859d0<Unit> {
         return this.currentPlayerPositionMs;
     }
 
-    public final boolean getShowCoverFrame() {
-        return this.showCoverFrame;
-    }
-
     /* JADX INFO: renamed from: isPlaying, reason: from getter */
     public final boolean getIsPlaying() {
         return this.isPlaying;
+    }
+
+    public final boolean getShowCoverFrame() {
+        return this.showCoverFrame;
     }
 
     public final void setCurrentPlayerPositionMs(long j) {

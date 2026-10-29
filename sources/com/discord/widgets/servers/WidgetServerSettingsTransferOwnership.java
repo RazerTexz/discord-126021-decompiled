@@ -41,19 +41,38 @@ import p658rx.functions.Func3;
 /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsTransferOwnership extends AppDialog {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsTransferOwnership.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildTransferOwnershipBinding;", 0)};
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
     private static final String ARG_USER_ID = "ARG_USER_ID";
 
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsTransferOwnership.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildTransferOwnershipBinding;", 0)};
-
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
     private static final String TAG = WidgetServerSettingsTransferOwnership.class.getSimpleName();
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsTransferOwnership$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C93151 extends C12236k implements Function1<Model, Unit> {
+        public C93151(WidgetServerSettingsTransferOwnership widgetServerSettingsTransferOwnership) {
+            super(1, widgetServerSettingsTransferOwnership, WidgetServerSettingsTransferOwnership.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsTransferOwnership$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsTransferOwnership) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -72,7 +91,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -82,7 +101,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         private final User user;
 
         /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -131,26 +150,6 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
             return model.copy(user, guild, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsMfaEnabled() {
-            return this.isMfaEnabled;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsGuildOwner() {
-            return this.isGuildOwner;
-        }
-
         public final Model copy(User user, Guild guild, boolean isMfaEnabled, boolean isGuildOwner) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(guild, "guild");
@@ -168,8 +167,28 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
             return C12238m.areEqual(this.user, model.user) && C12238m.areEqual(this.guild, model.guild) && this.isMfaEnabled == model.isMfaEnabled && this.isGuildOwner == model.isGuildOwner;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsGuildOwner() {
+            return this.isGuildOwner;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsMfaEnabled() {
+            return this.isMfaEnabled;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -220,25 +239,6 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsTransferOwnership$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-    public static final /* synthetic */ class C93151 extends C12236k implements Function1<Model, Unit> {
-        public C93151(WidgetServerSettingsTransferOwnership widgetServerSettingsTransferOwnership) {
-            super(1, widgetServerSettingsTransferOwnership, WidgetServerSettingsTransferOwnership.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsTransferOwnership$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsTransferOwnership) this.receiver).configureUI(model);
-        }
-    }
-
     public WidgetServerSettingsTransferOwnership() {
         super(C5419R.layout.widget_guild_transfer_ownership);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsTransferOwnership$binding$2.INSTANCE, null, 2, null);
@@ -279,7 +279,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsTransferOwnership$configureUI$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }

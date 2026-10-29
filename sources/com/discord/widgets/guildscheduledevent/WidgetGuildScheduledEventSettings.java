@@ -67,11 +67,11 @@ import p658rx.functions.Func2;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildScheduledEventSettings extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildScheduledEventSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventSettingsBinding;", 0)};
+    private static final String EXTRA_ENTITY_TYPE = "EXTRA_ENTITY_TYPE";
+    private static final String EXTRA_EXTERNAL_LOCATION = "EXTRA_EXTERNAL_LOCATION";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_ENTITY_TYPE = "EXTRA_ENTITY_TYPE";
-    private static final String EXTRA_EXTERNAL_LOCATION = "EXTRA_EXTERNAL_LOCATION";
     private static final int RESULT_QUIT = 2;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -91,8 +91,48 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C89111 extends C12236k implements Function1<GuildScheduledEventSettingsViewModel.ViewState, Unit> {
+        public C89111(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
+            super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventSettingsViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventSettingsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventSettingsViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildScheduledEventSettings) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$3 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
+    public final /* synthetic */ class C89133 extends C12236k implements Function1<Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState>, Unit> {
+        public C89133(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
+            super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureVisibilitySettings", "configureVisibilitySettings(Lkotlin/Pair;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState> pair) {
+            invoke2((Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState>) pair);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState> pair) {
+            C12238m.checkNotNullParameter(pair, "p1");
+            ((WidgetGuildScheduledEventSettings) this.receiver).configureVisibilitySettings(pair);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -143,63 +183,9 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         }
     }
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            GuildScheduledEventSettingsViewModel.DateError.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[GuildScheduledEventSettingsViewModel.DateError.INVALID_VIEW_STATE.ordinal()] = 1;
-            iArr[GuildScheduledEventSettingsViewModel.DateError.START_DATE_IN_PAST.ordinal()] = 2;
-            iArr[GuildScheduledEventSettingsViewModel.DateError.END_DATE_IN_PAST.ordinal()] = 3;
-            iArr[GuildScheduledEventSettingsViewModel.DateError.END_DATE_BEFORE_START_DATE.ordinal()] = 4;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final /* synthetic */ class C89111 extends C12236k implements Function1<GuildScheduledEventSettingsViewModel.ViewState, Unit> {
-        public C89111(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
-            super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventSettingsViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventSettingsViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventSettingsViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildScheduledEventSettings) this.receiver).configureUi(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$3 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final /* synthetic */ class C89133 extends C12236k implements Function1<Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState>, Unit> {
-        public C89133(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
-            super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureVisibilitySettings", "configureVisibilitySettings(Lkotlin/Pair;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState> pair) {
-            invoke2((Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState>) pair);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState> pair) {
-            C12238m.checkNotNullParameter(pair, "p1");
-            ((WidgetGuildScheduledEventSettings) this.receiver).configureVisibilitySettings(pair);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final class ViewOnClickListenerC89205 implements View.OnClickListener {
+    public final class ViewOnClickListenerC89205 implements View.OnClickListener {
         public ViewOnClickListenerC89205() {
         }
 
@@ -225,7 +211,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onViewBound$6 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final class ViewOnClickListenerC89226 implements View.OnClickListener {
+    public final class ViewOnClickListenerC89226 implements View.OnClickListener {
         public ViewOnClickListenerC89226() {
         }
 
@@ -255,7 +241,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onViewBound$7 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final class ViewOnClickListenerC89247 implements View.OnClickListener {
+    public final class ViewOnClickListenerC89247 implements View.OnClickListener {
         public ViewOnClickListenerC89247() {
         }
 
@@ -286,7 +272,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onViewBound$8 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public static final class ViewOnClickListenerC89268 implements View.OnClickListener {
+    public final class ViewOnClickListenerC89268 implements View.OnClickListener {
         public ViewOnClickListenerC89268() {
         }
 
@@ -318,6 +304,20 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
             C12238m.checkNotNullExpressionValue(datePicker, "datePicker");
             datePicker.setMinDate(Math.max(eventModel.getStartDate().toMillis(), ClockFactory.get().currentTimeMillis()));
             datePickerDialog.show();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            GuildScheduledEventSettingsViewModel.DateError.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[GuildScheduledEventSettingsViewModel.DateError.INVALID_VIEW_STATE.ordinal()] = 1;
+            iArr[GuildScheduledEventSettingsViewModel.DateError.START_DATE_IN_PAST.ordinal()] = 2;
+            iArr[GuildScheduledEventSettingsViewModel.DateError.END_DATE_IN_PAST.ordinal()] = 3;
+            iArr[GuildScheduledEventSettingsViewModel.DateError.END_DATE_BEFORE_START_DATE.ordinal()] = 4;
         }
     }
 
@@ -475,32 +475,6 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         return (GuildScheduledEventSettingsViewModel) this.viewModel.getValue();
     }
 
-    private final void showDateErrorToast(GuildScheduledEventSettingsViewModel.DateError error) {
-        int iOrdinal = error.ordinal();
-        if (iOrdinal == 1) {
-            C0876m.m169g(requireContext(), C5419R.string.guild_event_past_start_date, 0, null, 12);
-        } else if (iOrdinal == 2) {
-            C0876m.m169g(requireContext(), C5419R.string.guild_event_past_end_date_1, 0, null, 12);
-        } else {
-            if (iOrdinal != 3) {
-                return;
-            }
-            C0876m.m169g(requireContext(), C5419R.string.guild_event_end_date_before_start_date, 0, null, 12);
-        }
-    }
-
-    private final void toggleVisibilityOptions(boolean show) {
-        TextView textView = getBinding().f17046t;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…tSettingsVisibilityHeader");
-        textView.setVisibility(show ? 0 : 8);
-        LinearLayout linearLayout = getBinding().f17043q;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
-        linearLayout.setVisibility(show ? 0 : 8);
-        TextView textView2 = getBinding().f17045s;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEv…ingsVisibilityDescription");
-        textView2.setVisibility(show ? 0 : 8);
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
@@ -628,5 +602,31 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
                 viewModel.toggleBroadcastToDirectoryChannel(materialCheckBox.isChecked());
             }
         });
+    }
+
+    private final void showDateErrorToast(GuildScheduledEventSettingsViewModel.DateError error) {
+        int iOrdinal = error.ordinal();
+        if (iOrdinal == 1) {
+            C0876m.m169g(requireContext(), C5419R.string.guild_event_past_start_date, 0, null, 12);
+        } else if (iOrdinal == 2) {
+            C0876m.m169g(requireContext(), C5419R.string.guild_event_past_end_date_1, 0, null, 12);
+        } else {
+            if (iOrdinal != 3) {
+                return;
+            }
+            C0876m.m169g(requireContext(), C5419R.string.guild_event_end_date_before_start_date, 0, null, 12);
+        }
+    }
+
+    private final void toggleVisibilityOptions(boolean show) {
+        TextView textView = getBinding().f17046t;
+        C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…tSettingsVisibilityHeader");
+        textView.setVisibility(show ? 0 : 8);
+        LinearLayout linearLayout = getBinding().f17043q;
+        C12238m.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
+        linearLayout.setVisibility(show ? 0 : 8);
+        TextView textView2 = getBinding().f17045s;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEv…ingsVisibilityDescription");
+        textView2.setVisibility(show ? 0 : 8);
     }
 }

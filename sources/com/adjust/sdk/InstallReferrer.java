@@ -24,8 +24,8 @@ public class InstallReferrer implements InvocationHandler {
     private Object referrerClient;
     private int retries;
     private TimerOnce retryTimer;
-    private int retryWaitTime = PathInterpolatorCompat.MAX_NUM_POINTS;
     private final AtomicBoolean shouldTryToRead;
+    private int retryWaitTime = PathInterpolatorCompat.MAX_NUM_POINTS;
 
     public InstallReferrer(Context context, InstallReferrerReadListener installReferrerReadListener) {
         ILogger logger = AdjustFactory.getLogger();
@@ -143,6 +143,48 @@ public class InstallReferrer implements InvocationHandler {
         }
     }
 
+    @Override // java.lang.reflect.InvocationHandler
+    public Object invoke(Object obj, Method method, Object[] objArr) throws Throwable {
+        if (method == null) {
+            this.logger.error("InstallReferrer invoke method null", new Object[0]);
+            return null;
+        }
+        String name = method.getName();
+        if (name == null) {
+            this.logger.error("InstallReferrer invoke method name null", new Object[0]);
+            return null;
+        }
+        this.logger.debug("InstallReferrer invoke method name: %s", name);
+        if (objArr == null) {
+            this.logger.warn("InstallReferrer invoke args null", new Object[0]);
+            objArr = new Object[0];
+        }
+        for (Object obj2 : objArr) {
+            this.logger.debug("InstallReferrer invoke arg: %s", obj2);
+        }
+        if (name.equals("onInstallReferrerSetupFinished")) {
+            if (objArr.length != 1) {
+                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished args lenght not 1: %d", Integer.valueOf(objArr.length));
+                return null;
+            }
+            Object obj3 = objArr[0];
+            if (!(obj3 instanceof Integer)) {
+                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished arg not int", new Object[0]);
+                return null;
+            }
+            Integer num = (Integer) obj3;
+            if (num == null) {
+                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished responseCode arg is null", new Object[0]);
+                return null;
+            }
+            onInstallReferrerSetupFinishedInt(num.intValue());
+        } else if (name.equals("onInstallReferrerServiceDisconnected")) {
+            this.logger.debug("Connection to install referrer service was lost. Retrying ...", new Object[0]);
+            retry();
+        }
+        return null;
+    }
+
     private void onInstallReferrerSetupFinishedInt(int i) {
         boolean z2 = true;
         if (i == -1) {
@@ -199,48 +241,6 @@ public class InstallReferrer implements InvocationHandler {
         this.retries = i;
         this.logger.debug("Retry number %d to connect to install referrer API", Integer.valueOf(i));
         this.retryTimer.startIn(this.retryWaitTime);
-    }
-
-    @Override // java.lang.reflect.InvocationHandler
-    public Object invoke(Object obj, Method method, Object[] objArr) throws Throwable {
-        if (method == null) {
-            this.logger.error("InstallReferrer invoke method null", new Object[0]);
-            return null;
-        }
-        String name = method.getName();
-        if (name == null) {
-            this.logger.error("InstallReferrer invoke method name null", new Object[0]);
-            return null;
-        }
-        this.logger.debug("InstallReferrer invoke method name: %s", name);
-        if (objArr == null) {
-            this.logger.warn("InstallReferrer invoke args null", new Object[0]);
-            objArr = new Object[0];
-        }
-        for (Object obj2 : objArr) {
-            this.logger.debug("InstallReferrer invoke arg: %s", obj2);
-        }
-        if (name.equals("onInstallReferrerSetupFinished")) {
-            if (objArr.length != 1) {
-                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished args lenght not 1: %d", Integer.valueOf(objArr.length));
-                return null;
-            }
-            Object obj3 = objArr[0];
-            if (!(obj3 instanceof Integer)) {
-                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished arg not int", new Object[0]);
-                return null;
-            }
-            Integer num = (Integer) obj3;
-            if (num == null) {
-                this.logger.error("InstallReferrer invoke onInstallReferrerSetupFinished responseCode arg is null", new Object[0]);
-                return null;
-            }
-            onInstallReferrerSetupFinishedInt(num.intValue());
-        } else if (name.equals("onInstallReferrerServiceDisconnected")) {
-            this.logger.debug("Connection to install referrer service was lost. Retrying ...", new Object[0]);
-            retry();
-        }
-        return null;
     }
 
     public void startConnection() {

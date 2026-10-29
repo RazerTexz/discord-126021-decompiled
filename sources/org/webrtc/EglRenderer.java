@@ -97,7 +97,7 @@ public class EglRenderer implements VideoSink {
         void onFrame(Bitmap bitmap);
     }
 
-    public static class FrameListenerAndParams {
+    public class FrameListenerAndParams {
         public final boolean applyFpsReduction;
         public final RendererCommon.GlDrawer drawer;
         public final FrameListener listener;
@@ -111,7 +111,7 @@ public class EglRenderer implements VideoSink {
         }
     }
 
-    public static class HandlerWithExceptionCallback extends Handler {
+    public class HandlerWithExceptionCallback extends Handler {
         private final Runnable exceptionCallback;
 
         public HandlerWithExceptionCallback(Looper looper, Runnable runnable) {
@@ -135,6 +135,10 @@ public class EglRenderer implements VideoSink {
         this(str, new VideoFrameDrawer());
     }
 
+    public void addFrameListener(FrameListener frameListener, float f) {
+        addFrameListener(frameListener, f, null, false);
+    }
+
     private String averageTimeAsString(long j, int i) {
         if (i <= 0) {
             return "NA";
@@ -142,16 +146,12 @@ public class EglRenderer implements VideoSink {
         return TimeUnit.NANOSECONDS.toMicros(j / ((long) i)) + " us";
     }
 
-    /* JADX INFO: renamed from: clearSurfaceOnRenderThread, reason: merged with bridge method [inline-methods] */
-    private void m11019b(float f, float f2, float f3, float f4) {
-        EglBase eglBase = this.eglBase;
-        if (eglBase == null || !eglBase.hasSurface()) {
-            return;
-        }
-        logD("clearSurface");
-        GLES20.glClearColor(f, f2, f3, f4);
-        GLES20.glClear(16384);
-        this.eglBase.swapBuffers();
+    public void clearImage() {
+        clearImage(0.0f, 0.0f, 0.0f, 0.0f);
+    }
+
+    public void createEglSurface(Surface surface) {
+        createEglSurfaceInternal(surface);
     }
 
     private void createEglSurfaceInternal(Object obj) {
@@ -159,15 +159,38 @@ public class EglRenderer implements VideoSink {
         postToRenderThread(this.eglSurfaceCreationRunnable);
     }
 
-    /* JADX INFO: renamed from: lambda$init$0, reason: merged with bridge method [inline-methods] */
-    private void m11020d(EglBase.Context context, int[] iArr) {
-        if (context != null) {
-            logD("EglBase.create shared context");
-            this.eglBase = C12477n0.m10663b(context, iArr);
-        } else {
-            logD("EglBase10.create context");
-            Object obj = EglBase.lock;
-            this.eglBase = new EglBase10Impl(null, iArr);
+    public void disableFpsReduction() {
+        setFpsReduction(Float.POSITIVE_INFINITY);
+    }
+
+    public void init(@Nullable final EglBase.Context context, final int[] iArr, RendererCommon.GlDrawer glDrawer, boolean z2) {
+        synchronized (this.handlerLock) {
+            if (this.renderThreadHandler != null) {
+                throw new IllegalStateException(this.name + "Already initialized");
+            }
+            logD("Initializing EglRenderer");
+            this.drawer = glDrawer;
+            this.usePresentationTimeStamp = z2;
+            HandlerThread handlerThread = new HandlerThread(this.name + TAG);
+            handlerThread.start();
+            HandlerWithExceptionCallback handlerWithExceptionCallback = new HandlerWithExceptionCallback(handlerThread.getLooper(), new Runnable() { // from class: org.webrtc.EglRenderer.2
+                @Override // java.lang.Runnable
+                public void run() {
+                    synchronized (EglRenderer.this.handlerLock) {
+                        EglRenderer.this.renderThreadHandler = null;
+                    }
+                }
+            });
+            this.renderThreadHandler = handlerWithExceptionCallback;
+            ThreadUtils.invokeAtFrontUninterruptibly(handlerWithExceptionCallback, new Runnable() { // from class: h0.c.j
+                @Override // java.lang.Runnable
+                public final void run() {
+                    this.f26439j.m11020d(context, iArr);
+                }
+            });
+            this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
+            resetStatistics(System.nanoTime());
+            this.renderThreadHandler.postDelayed(this.logStatisticsRunnable, TimeUnit.SECONDS.toMillis(4L));
         }
     }
 
@@ -193,6 +216,87 @@ public class EglRenderer implements VideoSink {
 
     private void logW(String str) {
         Logging.m11031w(TAG, this.name + str);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ void m11018a(RendererCommon.GlDrawer glDrawer, FrameListener frameListener, float f, boolean z2) {
+        if (glDrawer == null) {
+            glDrawer = this.drawer;
+        }
+        this.frameListeners.add(new FrameListenerAndParams(frameListener, f, glDrawer, z2));
+    }
+
+    /* JADX INFO: renamed from: clearSurfaceOnRenderThread, reason: merged with bridge method [inline-methods] */
+    private void m11019b(float f, float f2, float f3, float f4) {
+        EglBase eglBase = this.eglBase;
+        if (eglBase == null || !eglBase.hasSurface()) {
+            return;
+        }
+        logD("clearSurface");
+        GLES20.glClearColor(f, f2, f3, f4);
+        GLES20.glClear(16384);
+        this.eglBase.swapBuffers();
+    }
+
+    /* JADX INFO: renamed from: lambda$init$0, reason: merged with bridge method [inline-methods] */
+    private void m11020d(EglBase.Context context, int[] iArr) {
+        if (context != null) {
+            logD("EglBase.create shared context");
+            this.eglBase = C12477n0.m10663b(context, iArr);
+        } else {
+            logD("EglBase10.create context");
+            Object obj = EglBase.lock;
+            this.eglBase = new EglBase10Impl(null, iArr);
+        }
+    }
+
+    /* JADX INFO: renamed from: e */
+    public /* synthetic */ void m11021e(CountDownLatch countDownLatch) {
+        synchronized (EglBase.lock) {
+            GLES20.glUseProgram(0);
+        }
+        RendererCommon.GlDrawer glDrawer = this.drawer;
+        if (glDrawer != null) {
+            glDrawer.release();
+            this.drawer = null;
+        }
+        this.frameDrawer.release();
+        this.bitmapTextureFramebuffer.release();
+        if (this.eglBase != null) {
+            logD("eglBase detach and release.");
+            this.eglBase.detachCurrent();
+            this.eglBase.release();
+            this.eglBase = null;
+        }
+        this.frameListeners.clear();
+        countDownLatch.countDown();
+    }
+
+    /* JADX INFO: renamed from: f */
+    public /* synthetic */ void m11022f(Looper looper) {
+        logD("Quitting render thread.");
+        looper.quit();
+    }
+
+    /* JADX INFO: renamed from: g */
+    public /* synthetic */ void m11023g(Runnable runnable) {
+        EglBase eglBase = this.eglBase;
+        if (eglBase != null) {
+            eglBase.detachCurrent();
+            this.eglBase.releaseSurface();
+        }
+        runnable.run();
+    }
+
+    /* JADX INFO: renamed from: h */
+    public /* synthetic */ void m11024h(CountDownLatch countDownLatch, FrameListener frameListener) {
+        countDownLatch.countDown();
+        Iterator<FrameListenerAndParams> it = this.frameListeners.iterator();
+        while (it.hasNext()) {
+            if (it.next().listener == frameListener) {
+                it.remove();
+            }
+        }
     }
 
     private void notifyCallbacks(VideoFrame videoFrame, boolean z2) {
@@ -233,12 +337,139 @@ public class EglRenderer implements VideoSink {
         }
     }
 
+    @Override // org.webrtc.VideoSink
+    public void onFrame(VideoFrame videoFrame) {
+        boolean z2;
+        synchronized (this.statisticsLock) {
+            this.framesReceived++;
+        }
+        synchronized (this.handlerLock) {
+            if (this.renderThreadHandler == null) {
+                logD("Dropping frame - Not initialized or already released.");
+                return;
+            }
+            synchronized (this.frameLock) {
+                VideoFrame videoFrame2 = this.pendingFrame;
+                z2 = videoFrame2 != null;
+                if (z2) {
+                    videoFrame2.release();
+                }
+                this.pendingFrame = videoFrame;
+                videoFrame.retain();
+                this.renderThreadHandler.post(new Runnable() { // from class: h0.c.i
+                    @Override // java.lang.Runnable
+                    public final void run() throws Throwable {
+                        this.f26437j.renderFrameOnRenderThread();
+                    }
+                });
+            }
+            if (z2) {
+                synchronized (this.statisticsLock) {
+                    this.framesDropped++;
+                }
+            }
+        }
+    }
+
+    public void pauseVideo() {
+        setFpsReduction(0.0f);
+    }
+
     private void postToRenderThread(Runnable runnable) {
         synchronized (this.handlerLock) {
             Handler handler = this.renderThreadHandler;
             if (handler != null) {
                 handler.post(runnable);
             }
+        }
+    }
+
+    public void printStackTrace() {
+        synchronized (this.handlerLock) {
+            Handler handler = this.renderThreadHandler;
+            Thread thread = handler == null ? null : handler.getLooper().getThread();
+            if (thread != null) {
+                StackTraceElement[] stackTrace = thread.getStackTrace();
+                if (stackTrace.length > 0) {
+                    logW("EglRenderer stack trace:");
+                    for (StackTraceElement stackTraceElement : stackTrace) {
+                        logW(stackTraceElement.toString());
+                    }
+                }
+            }
+        }
+    }
+
+    public void release() {
+        logD("Releasing.");
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        synchronized (this.handlerLock) {
+            Handler handler = this.renderThreadHandler;
+            if (handler == null) {
+                logD("Already released");
+                return;
+            }
+            handler.removeCallbacks(this.logStatisticsRunnable);
+            this.renderThreadHandler.postAtFrontOfQueue(new Runnable() { // from class: h0.c.h
+                @Override // java.lang.Runnable
+                public final void run() {
+                    this.f26433j.m11021e(countDownLatch);
+                }
+            });
+            final Looper looper = this.renderThreadHandler.getLooper();
+            this.renderThreadHandler.post(new Runnable() { // from class: h0.c.k
+                @Override // java.lang.Runnable
+                public final void run() {
+                    this.f26443j.m11022f(looper);
+                }
+            });
+            this.renderThreadHandler = null;
+            ThreadUtils.awaitUninterruptibly(countDownLatch);
+            synchronized (this.frameLock) {
+                VideoFrame videoFrame = this.pendingFrame;
+                if (videoFrame != null) {
+                    videoFrame.release();
+                    this.pendingFrame = null;
+                }
+            }
+            logD("Releasing done.");
+        }
+    }
+
+    public void releaseEglSurface(final Runnable runnable) {
+        this.eglSurfaceCreationRunnable.setSurface(null);
+        synchronized (this.handlerLock) {
+            Handler handler = this.renderThreadHandler;
+            if (handler == null) {
+                runnable.run();
+            } else {
+                handler.removeCallbacks(this.eglSurfaceCreationRunnable);
+                this.renderThreadHandler.postAtFrontOfQueue(new Runnable() { // from class: h0.c.e
+                    @Override // java.lang.Runnable
+                    public final void run() {
+                        this.f26416j.m11023g(runnable);
+                    }
+                });
+            }
+        }
+    }
+
+    public void removeFrameListener(final FrameListener frameListener) {
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        synchronized (this.handlerLock) {
+            if (this.renderThreadHandler == null) {
+                return;
+            }
+            if (Thread.currentThread() == this.renderThreadHandler.getLooper().getThread()) {
+                throw new RuntimeException("removeFrameListener must not be called on the render thread.");
+            }
+            postToRenderThread(new Runnable() { // from class: h0.c.g
+                @Override // java.lang.Runnable
+                public final void run() {
+                    this.f26427j.m11024h(countDownLatch, frameListener);
+                }
+            });
+            ThreadUtils.awaitUninterruptibly(countDownLatch);
         }
     }
 
@@ -374,237 +605,6 @@ public class EglRenderer implements VideoSink {
             this.framesRendered = 0;
             this.renderTimeNs = 0L;
             this.renderSwapBufferTimeNs = 0L;
-        }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m11018a(RendererCommon.GlDrawer glDrawer, FrameListener frameListener, float f, boolean z2) {
-        if (glDrawer == null) {
-            glDrawer = this.drawer;
-        }
-        this.frameListeners.add(new FrameListenerAndParams(frameListener, f, glDrawer, z2));
-    }
-
-    public void addFrameListener(FrameListener frameListener, float f) {
-        addFrameListener(frameListener, f, null, false);
-    }
-
-    public void clearImage() {
-        clearImage(0.0f, 0.0f, 0.0f, 0.0f);
-    }
-
-    public void createEglSurface(Surface surface) {
-        createEglSurfaceInternal(surface);
-    }
-
-    public void disableFpsReduction() {
-        setFpsReduction(Float.POSITIVE_INFINITY);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public /* synthetic */ void m11021e(CountDownLatch countDownLatch) {
-        synchronized (EglBase.lock) {
-            GLES20.glUseProgram(0);
-        }
-        RendererCommon.GlDrawer glDrawer = this.drawer;
-        if (glDrawer != null) {
-            glDrawer.release();
-            this.drawer = null;
-        }
-        this.frameDrawer.release();
-        this.bitmapTextureFramebuffer.release();
-        if (this.eglBase != null) {
-            logD("eglBase detach and release.");
-            this.eglBase.detachCurrent();
-            this.eglBase.release();
-            this.eglBase = null;
-        }
-        this.frameListeners.clear();
-        countDownLatch.countDown();
-    }
-
-    /* JADX INFO: renamed from: f */
-    public /* synthetic */ void m11022f(Looper looper) {
-        logD("Quitting render thread.");
-        looper.quit();
-    }
-
-    /* JADX INFO: renamed from: g */
-    public /* synthetic */ void m11023g(Runnable runnable) {
-        EglBase eglBase = this.eglBase;
-        if (eglBase != null) {
-            eglBase.detachCurrent();
-            this.eglBase.releaseSurface();
-        }
-        runnable.run();
-    }
-
-    /* JADX INFO: renamed from: h */
-    public /* synthetic */ void m11024h(CountDownLatch countDownLatch, FrameListener frameListener) {
-        countDownLatch.countDown();
-        Iterator<FrameListenerAndParams> it = this.frameListeners.iterator();
-        while (it.hasNext()) {
-            if (it.next().listener == frameListener) {
-                it.remove();
-            }
-        }
-    }
-
-    public void init(@Nullable final EglBase.Context context, final int[] iArr, RendererCommon.GlDrawer glDrawer, boolean z2) {
-        synchronized (this.handlerLock) {
-            if (this.renderThreadHandler != null) {
-                throw new IllegalStateException(this.name + "Already initialized");
-            }
-            logD("Initializing EglRenderer");
-            this.drawer = glDrawer;
-            this.usePresentationTimeStamp = z2;
-            HandlerThread handlerThread = new HandlerThread(this.name + TAG);
-            handlerThread.start();
-            HandlerWithExceptionCallback handlerWithExceptionCallback = new HandlerWithExceptionCallback(handlerThread.getLooper(), new Runnable() { // from class: org.webrtc.EglRenderer.2
-                @Override // java.lang.Runnable
-                public void run() {
-                    synchronized (EglRenderer.this.handlerLock) {
-                        EglRenderer.this.renderThreadHandler = null;
-                    }
-                }
-            });
-            this.renderThreadHandler = handlerWithExceptionCallback;
-            ThreadUtils.invokeAtFrontUninterruptibly(handlerWithExceptionCallback, new Runnable() { // from class: h0.c.j
-                @Override // java.lang.Runnable
-                public final void run() {
-                    this.f26439j.m11020d(context, iArr);
-                }
-            });
-            this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
-            resetStatistics(System.nanoTime());
-            this.renderThreadHandler.postDelayed(this.logStatisticsRunnable, TimeUnit.SECONDS.toMillis(4L));
-        }
-    }
-
-    @Override // org.webrtc.VideoSink
-    public void onFrame(VideoFrame videoFrame) {
-        boolean z2;
-        synchronized (this.statisticsLock) {
-            this.framesReceived++;
-        }
-        synchronized (this.handlerLock) {
-            if (this.renderThreadHandler == null) {
-                logD("Dropping frame - Not initialized or already released.");
-                return;
-            }
-            synchronized (this.frameLock) {
-                VideoFrame videoFrame2 = this.pendingFrame;
-                z2 = videoFrame2 != null;
-                if (z2) {
-                    videoFrame2.release();
-                }
-                this.pendingFrame = videoFrame;
-                videoFrame.retain();
-                this.renderThreadHandler.post(new Runnable() { // from class: h0.c.i
-                    @Override // java.lang.Runnable
-                    public final void run() throws Throwable {
-                        this.f26437j.renderFrameOnRenderThread();
-                    }
-                });
-            }
-            if (z2) {
-                synchronized (this.statisticsLock) {
-                    this.framesDropped++;
-                }
-            }
-        }
-    }
-
-    public void pauseVideo() {
-        setFpsReduction(0.0f);
-    }
-
-    public void printStackTrace() {
-        synchronized (this.handlerLock) {
-            Handler handler = this.renderThreadHandler;
-            Thread thread = handler == null ? null : handler.getLooper().getThread();
-            if (thread != null) {
-                StackTraceElement[] stackTrace = thread.getStackTrace();
-                if (stackTrace.length > 0) {
-                    logW("EglRenderer stack trace:");
-                    for (StackTraceElement stackTraceElement : stackTrace) {
-                        logW(stackTraceElement.toString());
-                    }
-                }
-            }
-        }
-    }
-
-    public void release() {
-        logD("Releasing.");
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        synchronized (this.handlerLock) {
-            Handler handler = this.renderThreadHandler;
-            if (handler == null) {
-                logD("Already released");
-                return;
-            }
-            handler.removeCallbacks(this.logStatisticsRunnable);
-            this.renderThreadHandler.postAtFrontOfQueue(new Runnable() { // from class: h0.c.h
-                @Override // java.lang.Runnable
-                public final void run() {
-                    this.f26433j.m11021e(countDownLatch);
-                }
-            });
-            final Looper looper = this.renderThreadHandler.getLooper();
-            this.renderThreadHandler.post(new Runnable() { // from class: h0.c.k
-                @Override // java.lang.Runnable
-                public final void run() {
-                    this.f26443j.m11022f(looper);
-                }
-            });
-            this.renderThreadHandler = null;
-            ThreadUtils.awaitUninterruptibly(countDownLatch);
-            synchronized (this.frameLock) {
-                VideoFrame videoFrame = this.pendingFrame;
-                if (videoFrame != null) {
-                    videoFrame.release();
-                    this.pendingFrame = null;
-                }
-            }
-            logD("Releasing done.");
-        }
-    }
-
-    public void releaseEglSurface(final Runnable runnable) {
-        this.eglSurfaceCreationRunnable.setSurface(null);
-        synchronized (this.handlerLock) {
-            Handler handler = this.renderThreadHandler;
-            if (handler == null) {
-                runnable.run();
-            } else {
-                handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                this.renderThreadHandler.postAtFrontOfQueue(new Runnable() { // from class: h0.c.e
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        this.f26416j.m11023g(runnable);
-                    }
-                });
-            }
-        }
-    }
-
-    public void removeFrameListener(final FrameListener frameListener) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        synchronized (this.handlerLock) {
-            if (this.renderThreadHandler == null) {
-                return;
-            }
-            if (Thread.currentThread() == this.renderThreadHandler.getLooper().getThread()) {
-                throw new RuntimeException("removeFrameListener must not be called on the render thread.");
-            }
-            postToRenderThread(new Runnable() { // from class: h0.c.g
-                @Override // java.lang.Runnable
-                public final void run() {
-                    this.f26427j.m11024h(countDownLatch, frameListener);
-                }
-            });
-            ThreadUtils.awaitUninterruptibly(countDownLatch);
         }
     }
 

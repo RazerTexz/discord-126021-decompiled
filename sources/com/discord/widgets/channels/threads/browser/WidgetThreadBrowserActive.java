@@ -61,27 +61,9 @@ public final class WidgetThreadBrowserActive extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetThreadBrowserActive.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetThreadBrowserActive create(long guildId, long channelId) {
-            WidgetThreadBrowserActive widgetThreadBrowserActive = new WidgetThreadBrowserActive();
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            widgetThreadBrowserActive.setArguments(bundleM832T);
-            return widgetThreadBrowserActive;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserActive$onResume$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserActive.kt */
-    public static final class C76441 extends AbstractC12240o implements Function1<WidgetThreadBrowserActiveViewModel.ViewState, Unit> {
+    public final class C76441 extends AbstractC12240o implements Function1<WidgetThreadBrowserActiveViewModel.ViewState, Unit> {
         public C76441() {
             super(1);
         }
@@ -101,7 +83,7 @@ public final class WidgetThreadBrowserActive extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserActive$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserActive.kt */
-    public static final /* synthetic */ class C76451 extends C12236k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class C76451 extends C12236k implements Function1<Channel, Unit> {
         public C76451(WidgetThreadBrowserViewModel widgetThreadBrowserViewModel) {
             super(1, widgetThreadBrowserViewModel, WidgetThreadBrowserViewModel.class, "openThread", "openThread(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -121,7 +103,7 @@ public final class WidgetThreadBrowserActive extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserActive$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetThreadBrowserActive.kt */
-    public static final class C76462 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C76462 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C76462() {
             super(1);
         }
@@ -139,6 +121,24 @@ public final class WidgetThreadBrowserActive extends AppFragment {
             FragmentManager parentFragmentManager = WidgetThreadBrowserActive.this.getParentFragmentManager();
             C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.show(parentFragmentManager, channel.getId());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadBrowserActive.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetThreadBrowserActive create(long guildId, long channelId) {
+            WidgetThreadBrowserActive widgetThreadBrowserActive = new WidgetThreadBrowserActive();
+            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            widgetThreadBrowserActive.setArguments(bundleM832T);
+            return widgetThreadBrowserActive;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -173,23 +173,6 @@ public final class WidgetThreadBrowserActive extends AppFragment {
         return (WidgetThreadBrowserActiveViewModel) this.viewModel.getValue();
     }
 
-    private final void updateView(WidgetThreadBrowserActiveViewModel.ViewState viewState) {
-        WidgetThreadBrowserAdapter widgetThreadBrowserAdapter = this.adapter;
-        if (widgetThreadBrowserAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        widgetThreadBrowserAdapter.setData(viewState.getListItems());
-        TextView textView = getBinding().f18265b.f1205d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.emptyView.threadBrowserEmptyHeading");
-        textView.setText(requireContext().getString(C5419R.string.thread_browser_empty_state_active_header));
-        ConstraintLayout constraintLayout = getBinding().f18265b.f1203b;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.threadBrowserEmpty");
-        constraintLayout.setVisibility(viewState.getListItems().isEmpty() ? 0 : 8);
-        MaterialButton materialButton = getBinding().f18265b.f1204c;
-        C12238m.checkNotNullExpressionValue(materialButton, "binding.emptyView.threadBrowserEmptyCreateButton");
-        materialButton.setVisibility(viewState.getCanCreateThread() ? 0 : 8);
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
@@ -211,5 +194,22 @@ public final class WidgetThreadBrowserActive extends AppFragment {
                 WidgetThreadBrowserActive.this.requireAppActivity().finish();
             }
         });
+    }
+
+    private final void updateView(WidgetThreadBrowserActiveViewModel.ViewState viewState) {
+        WidgetThreadBrowserAdapter widgetThreadBrowserAdapter = this.adapter;
+        if (widgetThreadBrowserAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        widgetThreadBrowserAdapter.setData(viewState.getListItems());
+        TextView textView = getBinding().f18265b.f1205d;
+        C12238m.checkNotNullExpressionValue(textView, "binding.emptyView.threadBrowserEmptyHeading");
+        textView.setText(requireContext().getString(C5419R.string.thread_browser_empty_state_active_header));
+        ConstraintLayout constraintLayout = getBinding().f18265b.f1203b;
+        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.threadBrowserEmpty");
+        constraintLayout.setVisibility(viewState.getListItems().isEmpty() ? 0 : 8);
+        MaterialButton materialButton = getBinding().f18265b.f1204c;
+        C12238m.checkNotNullExpressionValue(materialButton, "binding.emptyView.threadBrowserEmptyCreateButton");
+        materialButton.setVisibility(viewState.getCanCreateThread() ? 0 : 8);
     }
 }

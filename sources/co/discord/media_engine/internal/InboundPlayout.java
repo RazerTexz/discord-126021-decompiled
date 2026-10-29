@@ -41,56 +41,6 @@ public final /* data */ class InboundPlayout {
         this.relativePlayoutDelay = playoutMetric10;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final PlayoutMetric getAudioJitterBuffer() {
-        return this.audioJitterBuffer;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final PlayoutMetric getRelativePlayoutDelay() {
-        return this.relativePlayoutDelay;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final PlayoutMetric getAudioJitterDelay() {
-        return this.audioJitterDelay;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final PlayoutMetric getAudioJitterTarget() {
-        return this.audioJitterTarget;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final PlayoutMetric getAudioPlayoutUnderruns() {
-        return this.audioPlayoutUnderruns;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final PlayoutMetric getAudioCaptureOverruns() {
-        return this.audioCaptureOverruns;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final PlayoutMetric getVideoJitterBuffer() {
-        return this.videoJitterBuffer;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final PlayoutMetric getVideoJitterDelay() {
-        return this.videoJitterDelay;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final PlayoutMetric getVideoJitterTarget() {
-        return this.videoJitterTarget;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final PlayoutMetric getRelativeReceptionDelay() {
-        return this.relativeReceptionDelay;
-    }
-
     public final InboundPlayout copy(PlayoutMetric audioJitterBuffer, PlayoutMetric audioJitterDelay, PlayoutMetric audioJitterTarget, PlayoutMetric audioPlayoutUnderruns, PlayoutMetric audioCaptureOverruns, PlayoutMetric videoJitterBuffer, PlayoutMetric videoJitterDelay, PlayoutMetric videoJitterTarget, PlayoutMetric relativeReceptionDelay, PlayoutMetric relativePlayoutDelay) {
         C12238m.checkNotNullParameter(audioJitterBuffer, "audioJitterBuffer");
         C12238m.checkNotNullParameter(audioJitterDelay, "audioJitterDelay");
@@ -116,40 +66,90 @@ public final /* data */ class InboundPlayout {
         return C12238m.areEqual(this.audioJitterBuffer, inboundPlayout.audioJitterBuffer) && C12238m.areEqual(this.audioJitterDelay, inboundPlayout.audioJitterDelay) && C12238m.areEqual(this.audioJitterTarget, inboundPlayout.audioJitterTarget) && C12238m.areEqual(this.audioPlayoutUnderruns, inboundPlayout.audioPlayoutUnderruns) && C12238m.areEqual(this.audioCaptureOverruns, inboundPlayout.audioCaptureOverruns) && C12238m.areEqual(this.videoJitterBuffer, inboundPlayout.videoJitterBuffer) && C12238m.areEqual(this.videoJitterDelay, inboundPlayout.videoJitterDelay) && C12238m.areEqual(this.videoJitterTarget, inboundPlayout.videoJitterTarget) && C12238m.areEqual(this.relativeReceptionDelay, inboundPlayout.relativeReceptionDelay) && C12238m.areEqual(this.relativePlayoutDelay, inboundPlayout.relativePlayoutDelay);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final PlayoutMetric getAudioCaptureOverruns() {
         return this.audioCaptureOverruns;
+    }
+
+    public final PlayoutMetric getAudioCaptureOverruns() {
+        return this.audioCaptureOverruns;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final PlayoutMetric getAudioJitterBuffer() {
+        return this.audioJitterBuffer;
     }
 
     public final PlayoutMetric getAudioJitterBuffer() {
         return this.audioJitterBuffer;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final PlayoutMetric getAudioJitterDelay() {
         return this.audioJitterDelay;
+    }
+
+    public final PlayoutMetric getAudioJitterDelay() {
+        return this.audioJitterDelay;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final PlayoutMetric getAudioJitterTarget() {
+        return this.audioJitterTarget;
     }
 
     public final PlayoutMetric getAudioJitterTarget() {
         return this.audioJitterTarget;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final PlayoutMetric getAudioPlayoutUnderruns() {
         return this.audioPlayoutUnderruns;
+    }
+
+    public final PlayoutMetric getAudioPlayoutUnderruns() {
+        return this.audioPlayoutUnderruns;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final PlayoutMetric getRelativePlayoutDelay() {
+        return this.relativePlayoutDelay;
     }
 
     public final PlayoutMetric getRelativePlayoutDelay() {
         return this.relativePlayoutDelay;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final PlayoutMetric getRelativeReceptionDelay() {
         return this.relativeReceptionDelay;
+    }
+
+    public final PlayoutMetric getRelativeReceptionDelay() {
+        return this.relativeReceptionDelay;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final PlayoutMetric getVideoJitterBuffer() {
+        return this.videoJitterBuffer;
     }
 
     public final PlayoutMetric getVideoJitterBuffer() {
         return this.videoJitterBuffer;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final PlayoutMetric getVideoJitterDelay() {
         return this.videoJitterDelay;
+    }
+
+    public final PlayoutMetric getVideoJitterDelay() {
+        return this.videoJitterDelay;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final PlayoutMetric getVideoJitterTarget() {
+        return this.videoJitterTarget;
     }
 
     public final PlayoutMetric getVideoJitterTarget() {

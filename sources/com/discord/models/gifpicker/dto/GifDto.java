@@ -36,26 +36,6 @@ public final /* data */ class GifDto {
         return gifDto.copy(str, str2, i, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getSrc() {
-        return this.src;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getWidth() {
-        return this.width;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getHeight() {
-        return this.height;
-    }
-
     public final GifDto copy(String src, String url, int width, int height) {
         C12238m.checkNotNullParameter(src, "src");
         C12238m.checkNotNullParameter(url, "url");
@@ -73,16 +53,36 @@ public final /* data */ class GifDto {
         return C12238m.areEqual(this.src, gifDto.src) && C12238m.areEqual(this.url, gifDto.url) && this.width == gifDto.width && this.height == gifDto.height;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getHeight() {
         return this.height;
+    }
+
+    public final int getHeight() {
+        return this.height;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getSrc() {
+        return this.src;
     }
 
     public final String getSrc() {
         return this.src;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getUrl() {
         return this.url;
+    }
+
+    public final String getUrl() {
+        return this.url;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getWidth() {
+        return this.width;
     }
 
     public final int getWidth() {

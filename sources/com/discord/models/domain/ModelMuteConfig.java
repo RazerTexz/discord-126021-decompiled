@@ -20,7 +20,7 @@ public final /* data */ class ModelMuteConfig {
 
     /* JADX INFO: renamed from: com.discord.models.domain.ModelMuteConfig$Parser, reason: from kotlin metadata */
     /* JADX INFO: compiled from: ModelMuteConfig.kt */
-    public static final class Companion implements Model.Parser<ModelMuteConfig> {
+    public final class Companion implements Model.Parser<ModelMuteConfig> {
         private Companion() {
         }
 
@@ -63,20 +63,6 @@ public final /* data */ class ModelMuteConfig {
         return modelMuteConfig.copy(l, str);
     }
 
-    public static ModelMuteConfig parse(Model.JsonReader jsonReader) {
-        return INSTANCE.parse(jsonReader);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getEndTimeMs() {
-        return this.endTimeMs;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getEndTime() {
-        return this.endTime;
-    }
-
     public final ModelMuteConfig copy(Long endTimeMs, String endTime) {
         return new ModelMuteConfig(endTimeMs, endTime);
     }
@@ -92,8 +78,18 @@ public final /* data */ class ModelMuteConfig {
         return C12238m.areEqual(this.endTimeMs, modelMuteConfig.endTimeMs) && C12238m.areEqual(this.endTime, modelMuteConfig.endTime);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getEndTime() {
         return this.endTime;
+    }
+
+    public final String getEndTime() {
+        return this.endTime;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Long getEndTimeMs() {
+        return this.endTimeMs;
     }
 
     public final Long getEndTimeMs() {
@@ -105,6 +101,10 @@ public final /* data */ class ModelMuteConfig {
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
         String str = this.endTime;
         return iHashCode + (str != null ? str.hashCode() : 0);
+    }
+
+    public static ModelMuteConfig parse(Model.JsonReader jsonReader) {
+        return INSTANCE.parse(jsonReader);
     }
 
     public String toString() {

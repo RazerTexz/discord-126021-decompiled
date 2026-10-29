@@ -73,12 +73,97 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$configureUI$3 */
     /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public static final class PrivateChannelAdapter extends MGRecyclerAdapterSimple<InviteSuggestionItem> {
+    public final class C86723 extends AbstractC12240o implements Function1<InviteSuggestionItem, Unit> {
+        public final /* synthetic */ ModelInvite $invite;
+        public final /* synthetic */ WidgetGuildInviteShareViewModel.ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C86723(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded, ModelInvite modelInvite) {
+            super(1);
+            this.$viewState = loaded;
+            this.$invite = modelInvite;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(InviteSuggestionItem inviteSuggestionItem) {
+            invoke2(inviteSuggestionItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(InviteSuggestionItem inviteSuggestionItem) {
+            C12238m.checkNotNullParameter(inviteSuggestionItem, "item");
+            WidgetGuildInviteShareCompact.this.sendInvite(inviteSuggestionItem, this.$viewState, this.$invite);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$initBottomSheet$1 */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
+    public final class C86741 extends AbstractC12240o implements Function0<Unit> {
+        public C86741() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetGuildInviteShareCompact.access$getBottomSheetBehavior$p(WidgetGuildInviteShareCompact.this).setState(5);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
+    public final class C86772 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C86772() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "editable");
+            WidgetGuildInviteShareCompact.this.getViewModel().updateSearchQuery(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
+    public final /* synthetic */ class C86831 extends C12236k implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
+        public C86831(WidgetGuildInviteShareCompact widgetGuildInviteShareCompact) {
+            super(1, widgetGuildInviteShareCompact, WidgetGuildInviteShareCompact.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/invite/WidgetGuildInviteShareViewModel$ViewState$Loaded;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
+            invoke2(loaded);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
+            C12238m.checkNotNullParameter(loaded, "p1");
+            ((WidgetGuildInviteShareCompact) this.receiver).configureUI(loaded);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
+    public final class PrivateChannelAdapter extends MGRecyclerAdapterSimple<InviteSuggestionItem> {
         private Function1<? super InviteSuggestionItem, Unit> onClick;
 
         /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-        public static final class Item extends MGRecyclerViewHolder<PrivateChannelAdapter, InviteSuggestionItem> {
+        public final class Item extends MGRecyclerViewHolder<PrivateChannelAdapter, InviteSuggestionItem> {
             private final WidgetGuildInviteShareItemBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -159,91 +244,6 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         public Item onCreateViewHolder(ViewGroup parent, int viewType) {
             C12238m.checkNotNullParameter(parent, "parent");
             return new Item(this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$configureUI$3 */
-    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public static final class C86723 extends AbstractC12240o implements Function1<InviteSuggestionItem, Unit> {
-        public final /* synthetic */ ModelInvite $invite;
-        public final /* synthetic */ WidgetGuildInviteShareViewModel.ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C86723(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded, ModelInvite modelInvite) {
-            super(1);
-            this.$viewState = loaded;
-            this.$invite = modelInvite;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(InviteSuggestionItem inviteSuggestionItem) {
-            invoke2(inviteSuggestionItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(InviteSuggestionItem inviteSuggestionItem) {
-            C12238m.checkNotNullParameter(inviteSuggestionItem, "item");
-            WidgetGuildInviteShareCompact.this.sendInvite(inviteSuggestionItem, this.$viewState, this.$invite);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$initBottomSheet$1 */
-    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public static final class C86741 extends AbstractC12240o implements Function0<Unit> {
-        public C86741() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetGuildInviteShareCompact.access$getBottomSheetBehavior$p(WidgetGuildInviteShareCompact.this).setState(5);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public static final class C86772 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C86772() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "editable");
-            WidgetGuildInviteShareCompact.this.getViewModel().updateSearchQuery(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public static final /* synthetic */ class C86831 extends C12236k implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
-        public C86831(WidgetGuildInviteShareCompact widgetGuildInviteShareCompact) {
-            super(1, widgetGuildInviteShareCompact, WidgetGuildInviteShareCompact.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/invite/WidgetGuildInviteShareViewModel$ViewState$Loaded;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
-            invoke2(loaded);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
-            C12238m.checkNotNullParameter(loaded, "p1");
-            ((WidgetGuildInviteShareCompact) this.receiver).configureUI(loaded);
         }
     }
 
@@ -382,14 +382,6 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         });
     }
 
-    private final void sendInvite(InviteSuggestionItem item, WidgetGuildInviteShareViewModel.ViewState.Loaded viewState, ModelInvite invite) {
-        if (item instanceof InviteSuggestionItem.ChannelItem) {
-            getViewModel().sendInviteToChannel(((InviteSuggestionItem.ChannelItem) item).getChannel().getId(), viewState, invite);
-        } else if (item instanceof InviteSuggestionItem.UserItem) {
-            getViewModel().sendInviteToUser(((InviteSuggestionItem.UserItem) item).getUser().getId(), viewState, invite);
-        }
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -472,5 +464,13 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("adapter");
         }
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle(observableM11083G, this, privateChannelAdapter), (Class<?>) WidgetGuildInviteShareCompact.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86831(this));
+    }
+
+    private final void sendInvite(InviteSuggestionItem item, WidgetGuildInviteShareViewModel.ViewState.Loaded viewState, ModelInvite invite) {
+        if (item instanceof InviteSuggestionItem.ChannelItem) {
+            getViewModel().sendInviteToChannel(((InviteSuggestionItem.ChannelItem) item).getChannel().getId(), viewState, invite);
+        } else if (item instanceof InviteSuggestionItem.UserItem) {
+            getViewModel().sendInviteToUser(((InviteSuggestionItem.UserItem) item).getUser().getId(), viewState, invite);
+        }
     }
 }

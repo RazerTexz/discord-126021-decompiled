@@ -33,6 +33,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0793c extends AppDialog {
 
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
@@ -42,15 +45,12 @@ public final class C0793c extends AppDialog {
     /* JADX INFO: renamed from: j */
     public static final /* synthetic */ KProperty[] f183j = {C1643a.m846d0(C0793c.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostActivatedDialogBinding;", 0)};
 
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
     /* JADX INFO: renamed from: k */
     public static final IntRange f184k = new IntRange(540, 825);
 
     /* JADX INFO: renamed from: b.a.a.a.c$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: GuildBoostActivatedDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -78,7 +78,7 @@ public final class C0793c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a.c$b */
     /* JADX INFO: compiled from: GuildBoostActivatedDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C1044s> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C1044s> {
 
         /* JADX INFO: renamed from: j */
         public static final b f188j = new b();
@@ -114,7 +114,7 @@ public final class C0793c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a.c$c */
     /* JADX INFO: compiled from: GuildBoostActivatedDialog.kt */
-    public static final class c implements View.OnClickListener {
+    public final class c implements View.OnClickListener {
         public c() {
         }
 

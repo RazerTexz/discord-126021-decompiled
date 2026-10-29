@@ -34,7 +34,7 @@ public class C12163u extends C12162t {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.u$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a<T> implements Sequence<T> {
+    public final class a<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Iterable f25219a;
@@ -52,7 +52,7 @@ public class C12163u extends C12162t {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.u$b */
     /* JADX INFO: compiled from: _Collections.kt */
-    public static final class b<T> extends AbstractC12240o implements Function1<Integer, T> {
+    public final class b<T> extends AbstractC12240o implements Function1<Integer, T> {
         public final /* synthetic */ int $index;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -74,7 +74,7 @@ public class C12163u extends C12162t {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.u$c */
     /* JADX INFO: compiled from: _Collections.kt */
-    public static final class c<T> extends AbstractC12240o implements Function0<Iterator<? extends T>> {
+    public final class c<T> extends AbstractC12240o implements Function0<Iterator<? extends T>> {
         public final /* synthetic */ Iterable $this_withIndex;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -360,17 +360,6 @@ public class C12163u extends C12162t {
         return a2;
     }
 
-    public static final <T> String joinToString(Iterable<? extends T> iterable, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
-        C12238m.checkNotNullParameter(iterable, "$this$joinToString");
-        C12238m.checkNotNullParameter(charSequence, "separator");
-        C12238m.checkNotNullParameter(charSequence2, "prefix");
-        C12238m.checkNotNullParameter(charSequence3, "postfix");
-        C12238m.checkNotNullParameter(charSequence4, "truncated");
-        String string = ((StringBuilder) joinTo(iterable, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
-        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
-        return string;
-    }
-
     public static /* synthetic */ String joinToString$default(Iterable iterable, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
@@ -386,6 +375,17 @@ public class C12163u extends C12162t {
             function1 = null;
         }
         return joinToString(iterable, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+    }
+
+    public static final <T> String joinToString(Iterable<? extends T> iterable, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
+        C12238m.checkNotNullParameter(iterable, "$this$joinToString");
+        C12238m.checkNotNullParameter(charSequence, "separator");
+        C12238m.checkNotNullParameter(charSequence2, "prefix");
+        C12238m.checkNotNullParameter(charSequence3, "postfix");
+        C12238m.checkNotNullParameter(charSequence4, "truncated");
+        String string = ((StringBuilder) joinTo(iterable, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
+        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
+        return string;
     }
 
     public static final <T> T last(Iterable<? extends T> iterable) {
@@ -424,17 +424,6 @@ public class C12163u extends C12162t {
         return next;
     }
 
-    public static final <T, R> List<R> map(Iterable<? extends T> iterable, Function1<? super T, ? extends R> function1) {
-        C12238m.checkNotNullParameter(iterable, "$this$map");
-        C12238m.checkNotNullParameter(function1, "transform");
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(iterable, 10));
-        Iterator<? extends T> it = iterable.iterator();
-        while (it.hasNext()) {
-            arrayList.add(function1.invoke(it.next()));
-        }
-        return arrayList;
-    }
-
     /* JADX INFO: renamed from: maxOrNull, reason: collision with other method in class */
     public static final Float m11488maxOrNull(Iterable<Float> iterable) {
         C12238m.checkNotNullParameter(iterable, "$this$maxOrNull");
@@ -447,6 +436,17 @@ public class C12163u extends C12162t {
             fFloatValue = Math.max(fFloatValue, it.next().floatValue());
         }
         return Float.valueOf(fFloatValue);
+    }
+
+    public static final <T, R> List<R> map(Iterable<? extends T> iterable, Function1<? super T, ? extends R> function1) {
+        C12238m.checkNotNullParameter(iterable, "$this$map");
+        C12238m.checkNotNullParameter(function1, "transform");
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(iterable, 10));
+        Iterator<? extends T> it = iterable.iterator();
+        while (it.hasNext()) {
+            arrayList.add(function1.invoke(it.next()));
+        }
+        return arrayList;
     }
 
     public static final <T extends Comparable<? super T>> T minOrNull(Iterable<? extends T> iterable) {

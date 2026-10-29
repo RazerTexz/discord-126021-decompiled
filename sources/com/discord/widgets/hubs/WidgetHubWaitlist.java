@@ -52,7 +52,7 @@ public final class WidgetHubWaitlist extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlist$configureUI$1 */
     /* JADX INFO: compiled from: WidgetHubWaitlist.kt */
-    public static final class C90441 extends AbstractC12240o implements Function1<Success<? extends WaitlistSignup>, Unit> {
+    public final class C90441 extends AbstractC12240o implements Function1<Success<? extends WaitlistSignup>, Unit> {
         public C90441() {
             super(1);
         }
@@ -76,7 +76,7 @@ public final class WidgetHubWaitlist extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlist$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubWaitlist.kt */
-    public static final class C90451 extends AbstractC12240o implements Function1<HubWaitlistState, Unit> {
+    public final class C90451 extends AbstractC12240o implements Function1<HubWaitlistState, Unit> {
         public C90451() {
             super(1);
         }
@@ -113,8 +113,20 @@ public final class WidgetHubWaitlist extends AppFragment {
         }
     }
 
+    public final HubWaitlistArgs getArgs() {
+        return (HubWaitlistArgs) this.args.getValue();
+    }
+
+    public final WidgetHubWaitlistBinding getBinding() {
+        return (WidgetHubWaitlistBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
+    }
+
+    public final WidgetHubWaitlistViewModel getViewModel() {
+        return (WidgetHubWaitlistViewModel) this.viewModel.getValue();
     }
 
     private final void maybeSubmitSchoolName() {
@@ -125,18 +137,6 @@ public final class WidgetHubWaitlist extends AppFragment {
             viewModel.joinWaitlist(String.valueOf(textInputEditText.getText()));
         }
         hideKeyboard(getView());
-    }
-
-    public final HubWaitlistArgs getArgs() {
-        return (HubWaitlistArgs) this.args.getValue();
-    }
-
-    public final WidgetHubWaitlistBinding getBinding() {
-        return (WidgetHubWaitlistBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public final WidgetHubWaitlistViewModel getViewModel() {
-        return (WidgetHubWaitlistViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment

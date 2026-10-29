@@ -85,9 +85,6 @@ public final class GatewaySocket {
     private static final boolean COMPRESS_DATA = true;
     private static final int CONNECTED = 5;
     private static final int CONNECTING = 2;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final long DEDUPE_USER_OBJECTS = 16;
     private static final int DISCONNECTED = 0;
     private static final int DISCOVERING = 1;
@@ -99,6 +96,9 @@ public final class GatewaySocket {
     private static final int HEARTBEAT_MAX_RESUME_THRESHOLD = 180000;
     private static final long HELLO_TIMEOUT = 20000;
     private static final int IDENTIFYING = 3;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int LARGE_GUILD_THRESHOLD = 100;
     private static final long LAZY_USER_NOTES = 1;
     private static final long MULTIPLE_GUILD_EXPERIMENT_POPULATIONS = 64;
@@ -107,8 +107,6 @@ public final class GatewaySocket {
     private static final long VERSIONED_READ_STATES = 4;
     private static final long VERSIONED_USER_GUILD_SETTINGS = 8;
     private static final Clock clock;
-    private static final Gson gsonIncludeNulls;
-    private static final Gson gsonOmitNulls;
     private boolean connected;
     private boolean connectionReady;
     private long connectionStartTime;
@@ -118,6 +116,8 @@ public final class GatewaySocket {
     private final GatewayDiscovery gatewayDiscovery;
     private final GatewaySocketLogger gatewaySocketLogger;
     private final Function1<String, String> gatewayUrlTransform;
+    private static final Gson gsonIncludeNulls;
+    private static final Gson gsonOmitNulls;
     private boolean hasConnectedOnce;
     private boolean heartbeatAck;
     private long heartbeatAckTimeMostRecent;
@@ -143,7 +143,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$1 */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54861 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C54861 extends AbstractC12240o implements Function1<String, Unit> {
         public C54861() {
             super(1);
         }
@@ -161,13 +161,807 @@ public final class GatewaySocket {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$callConnect$1 */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class Companion {
-        private Companion() {
+    public final class C54901 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C54901(long j) {
+            super(0);
+            this.$channelId = j;
         }
 
-        private final long getDelay(long startTime, Long currentTime) {
-            return (currentTime != null ? currentTime.longValue() : ClockFactory.get().currentTimeMillis()) - startTime;
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending call connect sync on channel id: ");
+            sbM833U.append(this.$channelId);
+            sbM833U.append('.');
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.CALL_CONNECT, new OutgoingPayload.CallConnect(this.$channelId)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54911 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $clean;
+
+        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: GatewaySocket.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<WebSocket, Unit> {
+            public final /* synthetic */ int $code;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(int i) {
+                super(1);
+                this.$code = i;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
+                invoke2(webSocket);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(WebSocket webSocket) {
+                if (webSocket != null) {
+                    WebSocket.disconnect$default(webSocket, this.$code, null, 2, null);
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C54911(boolean z2) {
+            super(0);
+            this.$clean = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (GatewaySocket.this.connectionState == 0) {
+                return;
+            }
+            int i = this.$clean ? 1000 : 4000;
+            GatewaySocket.this.cleanup(new AnonymousClass1(i));
+            GatewaySocket.this.connectionState = 0;
+            GatewaySocket.this.reset(this.$clean, i, "Disconnect requested by client");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54921 extends AbstractC12240o implements Function0<Unit> {
+        public C54921() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (GatewaySocket.this.connectionState == 0) {
+                GatewaySocket.this.connectionState = 1;
+                GatewaySocket.this.discover();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$2 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54932 extends AbstractC12240o implements Function1<WebSocket, Unit> {
+        public static final C54932 INSTANCE = new C54932();
+
+        public C54932() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
+            invoke2(webSocket);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WebSocket webSocket) {
+            if (webSocket != null) {
+                webSocket.disconnect(4000, "Connect called with an existing web socket.");
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$3 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54943 extends AbstractC12240o implements Function0<Unit> {
+        public C54943() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            GatewaySocket gatewaySocket = GatewaySocket.this;
+            StringBuilder sbM833U = C1643a.m833U("Connection timed out after ");
+            sbM833U.append(Companion.getDelay$default(GatewaySocket.INSTANCE, GatewaySocket.this.connectionStartTime, null, 2, null));
+            sbM833U.append("ms, did not receive hello in time.");
+            gatewaySocket.handleClose(false, 0, sbM833U.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$4 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final /* synthetic */ class C54954 extends C12236k implements Function3<String, Exception, Map<String, ? extends String>, Unit> {
+        public C54954(GatewaySocket gatewaySocket) {
+            super(3, gatewaySocket, GatewaySocket.class, "logError", "logError(Ljava/lang/String;Ljava/lang/Exception;Ljava/util/Map;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(String str, Exception exc, Map<String, ? extends String> map) {
+            invoke2(str, exc, (Map<String, String>) map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str, Exception exc, Map<String, String> map) {
+            C12238m.checkNotNullParameter(str, "p1");
+            C12238m.checkNotNullParameter(exc, "p2");
+            ((GatewaySocket) this.receiver).logError(str, exc, map);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54961 extends AbstractC12240o implements Function1<Listener, Unit> {
+        public C54961() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            C12238m.checkNotNullParameter(listener, "it");
+            listener.onConnecting(GatewaySocket.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$2 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54972 extends AbstractC12240o implements Function1<String, Unit> {
+        public C54972() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            String str2;
+            C12238m.checkNotNullParameter(str, "gatewayUrl");
+            GatewaySocket gatewaySocket = GatewaySocket.this;
+            Function1 function1 = gatewaySocket.gatewayUrlTransform;
+            if (function1 != null && (str2 = (String) function1.invoke(str)) != null) {
+                str = str2;
+            }
+            gatewaySocket.connect(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$3 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54983 extends AbstractC12240o implements Function1<Throwable, Unit> {
+        public C54983() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
+            invoke2(th);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Throwable th) {
+            C12238m.checkNotNullParameter(th, "it");
+            GatewaySocket.this.discoveryFailed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C54991 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $reason;
+        public final /* synthetic */ boolean $shouldResetBackoff;
+        public final /* synthetic */ long $timeout;
+
+        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: GatewaySocket.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(String str) {
+                invoke2(str);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(String str) {
+                C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
+                Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Connection backoff reset " + str + '.', false, 2, null);
+                GatewaySocket.this.gatewayBackoff.succeed();
+                GatewaySocket.this.nextReconnectIsImmediate = true;
+                if (GatewaySocket.this.connectionState == 1) {
+                    GatewaySocket.this.discover();
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: GatewaySocket.kt */
+        public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass2() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                if (GatewaySocket.this.heartbeatAck) {
+                    return;
+                }
+                GatewaySocket.this.handleHeartbeatTimeout();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C54991(String str, long j, boolean z2) {
+            super(0);
+            this.$reason = str;
+            this.$timeout = j;
+            this.$shouldResetBackoff = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            String strM820H = this.$reason != null ? C1643a.m820H(C1643a.m833U("with reason '"), this.$reason, '\'') : "";
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+            if (GatewaySocket.this.webSocket == null) {
+                if (this.$shouldResetBackoff) {
+                    anonymousClass1.invoke2(strM820H);
+                    return;
+                } else {
+                    Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, C1643a.m886y("Expedited heartbeat requested ", strM820H, ", but disconnected and no reset backoff."), false, 2, null);
+                    return;
+                }
+            }
+            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Performing an expedited heartbeat " + strM820H + '.', false, 2, null);
+            GatewaySocket gatewaySocket = GatewaySocket.this;
+            gatewaySocket.heartbeat(gatewaySocket.seq);
+            GatewaySocket.this.heartbeatAck = false;
+            GatewaySocket.this.heartbeatExpeditedTimeout.schedule(new AnonymousClass2(), this.$timeout);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleClose$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55001 extends AbstractC12240o implements Function1<WebSocket, Unit> {
+        public static final C55001 INSTANCE = new C55001();
+
+        public C55001() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
+            invoke2(webSocket);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WebSocket webSocket) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatAck$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55011 extends AbstractC12240o implements Function0<Unit> {
+        public C55011() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Expedited heartbeat succeeded.", false, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatTimeout$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55021 extends AbstractC12240o implements Function1<WebSocket, Unit> {
+        public static final C55021 INSTANCE = new C55021();
+
+        public C55021() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
+            invoke2(webSocket);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WebSocket webSocket) {
+            if (webSocket != null) {
+                WebSocket.disconnect$default(webSocket, 4000, null, 2, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHello$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55031 extends AbstractC12240o implements Function1<Listener, Unit> {
+        public C55031() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            C12238m.checkNotNullParameter(listener, "it");
+            listener.onHello(GatewaySocket.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleReconnect$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55041 extends AbstractC12240o implements Function1<WebSocket, Unit> {
+        public final /* synthetic */ String $reason;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55041(String str) {
+            super(1);
+            this.$reason = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
+            invoke2(webSocket);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WebSocket webSocket) {
+            if (webSocket != null) {
+                webSocket.disconnect(4000, this.$reason);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketClose$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55051 extends AbstractC12240o implements Function1<Listener, Unit> {
+        public C55051() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            C12238m.checkNotNullParameter(listener, "it");
+            listener.onDisconnected(GatewaySocket.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketOpened$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55061 extends AbstractC12240o implements Function1<Listener, Unit> {
+        public C55061() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            C12238m.checkNotNullParameter(listener, "it");
+            listener.onConnected(GatewaySocket.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55071 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ List $activities;
+        public final /* synthetic */ Boolean $afk;
+        public final /* synthetic */ Long $since;
+        public final /* synthetic */ ClientStatus $status;
+
+        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: GatewaySocket.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Activity, CharSequence> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final CharSequence invoke(Activity activity) {
+                C12238m.checkNotNullParameter(activity, "it");
+                return activity.getName();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55071(ClientStatus clientStatus, List list, Long l, Boolean bool) {
+            super(0);
+            this.$status = clientStatus;
+            this.$activities = list;
+            this.$since = l;
+            this.$afk = bool;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            String strName;
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending self presence update: ");
+            sbM833U.append(this.$status);
+            sbM833U.append(' ');
+            List list = this.$activities;
+            String lowerCase = null;
+            sbM833U.append(list != null ? C12163u.joinToString$default(list, null, null, null, 0, null, AnonymousClass1.INSTANCE, 31, null) : null);
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket gatewaySocket = GatewaySocket.this;
+            Opcode opcode = Opcode.PRESENCE_UPDATE;
+            ClientStatus clientStatus = this.$status;
+            if (clientStatus != null && (strName = clientStatus.name()) != null) {
+                Locale locale = Locale.ROOT;
+                C12238m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+                lowerCase = strName.toLowerCase(locale);
+                C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+            }
+            Long l = this.$since;
+            List listEmptyList = this.$activities;
+            if (listEmptyList == null) {
+                listEmptyList = C12147n.emptyList();
+            }
+            GatewaySocket.send$default(gatewaySocket, new Outgoing(opcode, new OutgoingPayload.PresenceUpdate(lowerCase, l, listEmptyList, this.$afk)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$requestGuildMembers$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55081 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ List $guildIds;
+        public final /* synthetic */ Integer $limit;
+        public final /* synthetic */ String $query;
+        public final /* synthetic */ List $userIds;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55081(List list, String str, List list2, Integer num) {
+            super(0);
+            this.$guildIds = list;
+            this.$query = str;
+            this.$userIds = list2;
+            this.$limit = num;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            OutgoingPayload.GuildMembersRequest guildMembersRequest = new OutgoingPayload.GuildMembersRequest(this.$guildIds, this.$query, this.$userIds, this.$limit, false, 16, null);
+            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Sending guild member request: " + guildMembersRequest, false, 2, null);
+            GatewaySocket gatewaySocket = GatewaySocket.this;
+            Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_MEMBERS, guildMembersRequest);
+            Gson gson = GatewaySocket.gsonOmitNulls;
+            C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+            GatewaySocket.send$default(gatewaySocket, outgoing, false, gson, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$resetOnError$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55091 extends AbstractC12240o implements Function0<Unit> {
+        public C55091() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            GatewaySocket.this.nextReconnectIsImmediate = false;
+            GatewaySocket.handleReconnect$default(GatewaySocket.this, "encountered an error", false, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$simulateReconnectForTesting$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55121 extends AbstractC12240o implements Function0<Unit> {
+        public C55121() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            GatewaySocket.handleReconnect$default(GatewaySocket.this, null, false, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$startHeartbeater$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55131 extends AbstractC12240o implements Function0<Unit> {
+        public C55131() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (GatewaySocket.this.heartbeatAck) {
+                GatewaySocket.this.heartbeatAck = false;
+                GatewaySocket gatewaySocket = GatewaySocket.this;
+                gatewaySocket.heartbeat(gatewaySocket.seq);
+            } else {
+                if (GatewaySocket.this.heartbeatExpeditedTimeout.getPending()) {
+                    return;
+                }
+                GatewaySocket.this.handleHeartbeatTimeout();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamDelete$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55141 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55141(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending STREAM_DELETE: ");
+            sbM833U.append(this.$streamKey);
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_DELETE, new OutgoingPayload.DeleteStream(this.$streamKey)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamPing$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55151 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55151(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending OPCODE_STREAM_PING: ");
+            sbM833U.append(this.$streamKey);
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.OPCODE_STREAM_PING, new OutgoingPayload.StreamPing(this.$streamKey)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamWatch$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55161 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55161(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending STREAM_WATCH: ");
+            sbM833U.append(this.$streamKey);
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_WATCH, new OutgoingPayload.WatchStream(this.$streamKey)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceServerPing$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55171 extends AbstractC12240o implements Function0<Unit> {
+        public C55171() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Sending ping to voice server.", false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_SERVER_PING, (Object) null), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceStateUpdate$1 */
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class C55181 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Long $channelId;
+        public final /* synthetic */ Long $guildId;
+        public final /* synthetic */ String $preferredRegion;
+        public final /* synthetic */ boolean $selfDeaf;
+        public final /* synthetic */ boolean $selfMute;
+        public final /* synthetic */ boolean $selfVideo;
+        public final /* synthetic */ boolean $shouldIncludePreferredRegion;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C55181(Long l, Long l2, boolean z2, boolean z3, String str, boolean z4, boolean z5) {
+            super(0);
+            this.$guildId = l;
+            this.$channelId = l2;
+            this.$selfMute = z2;
+            this.$selfDeaf = z3;
+            this.$preferredRegion = str;
+            this.$shouldIncludePreferredRegion = z4;
+            this.$selfVideo = z5;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Companion companion = GatewaySocket.INSTANCE;
+            Logger logger = GatewaySocket.this.logger;
+            StringBuilder sbM833U = C1643a.m833U("Sending voice state update for guild [");
+            sbM833U.append(this.$guildId);
+            sbM833U.append("] and channel [");
+            sbM833U.append(this.$channelId);
+            sbM833U.append("]. ");
+            sbM833U.append("Muted: ");
+            sbM833U.append(this.$selfMute);
+            sbM833U.append(", deafened: ");
+            sbM833U.append(this.$selfDeaf);
+            sbM833U.append(", preferredRegion: ");
+            sbM833U.append(this.$preferredRegion);
+            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_STATE_UPDATE, this.$shouldIncludePreferredRegion ? new OutgoingPayload.VoiceStateUpdate(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo, this.$preferredRegion) : new OutgoingPayload.VoiceStateUpdateNoPreferredRegion(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo)), false, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: GatewaySocket.kt */
+    public final class Companion {
+        private Companion() {
         }
 
         public static /* synthetic */ long getDelay$default(Companion companion, long j, Long l, int i, Object obj) {
@@ -177,11 +971,8 @@ public final class GatewaySocket {
             return companion.getDelay(j, l);
         }
 
-        private final void log(Logger logger, String str, boolean z2) {
-            Logger.v$default(logger, C1643a.m883w("[GatewaySocket] ", str), null, 2, null);
-            if (z2) {
-                logger.recordBreadcrumb("Gateway [" + str + ']', "log");
-            }
+        private final long getDelay(long startTime, Long currentTime) {
+            return (currentTime != null ? currentTime.longValue() : ClockFactory.get().currentTimeMillis()) - startTime;
         }
 
         public static /* synthetic */ void log$default(Companion companion, Logger logger, String str, boolean z2, int i, Object obj) {
@@ -191,13 +982,20 @@ public final class GatewaySocket {
             companion.log(logger, str, z2);
         }
 
+        private final void log(Logger logger, String str, boolean z2) {
+            Logger.v$default(logger, C1643a.m883w("[GatewaySocket] ", str), null, 2, null);
+            if (z2) {
+                logger.recordBreadcrumb("Gateway [" + str + ']', "log");
+            }
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static abstract class DefaultListener implements Listener {
+    public abstract class DefaultListener implements Listener {
         @Override // com.discord.gateway.GatewaySocket.Listener
         public void onConnected(GatewaySocket gatewaySocket) {
             C12238m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
@@ -220,7 +1018,7 @@ public final class GatewaySocket {
     }
 
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class IdentifyData {
+    public final class IdentifyData {
         private final OutgoingPayload.IdentifyClientState clientState;
         private final String token;
 
@@ -251,7 +1049,7 @@ public final class GatewaySocket {
     }
 
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class SizeRecordingInputStreamReader extends Reader {
+    public final class SizeRecordingInputStreamReader extends Reader {
         private int size;
         private final InputStreamReader source;
 
@@ -294,7 +1092,7 @@ public final class GatewaySocket {
     }
 
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class Timer implements Backoff.Scheduler {
+    public final class Timer implements Backoff.Scheduler {
         private final Scheduler scheduler;
         private Subscription subscription;
 
@@ -391,804 +1189,6 @@ public final class GatewaySocket {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$callConnect$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54901 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C54901(long j) {
-            super(0);
-            this.$channelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending call connect sync on channel id: ");
-            sbM833U.append(this.$channelId);
-            sbM833U.append('.');
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.CALL_CONNECT, new OutgoingPayload.CallConnect(this.$channelId)), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54911 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $clean;
-
-        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: GatewaySocket.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<WebSocket, Unit> {
-            public final /* synthetic */ int $code;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(int i) {
-                super(1);
-                this.$code = i;
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
-                invoke2(webSocket);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(WebSocket webSocket) {
-                if (webSocket != null) {
-                    WebSocket.disconnect$default(webSocket, this.$code, null, 2, null);
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C54911(boolean z2) {
-            super(0);
-            this.$clean = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (GatewaySocket.this.connectionState == 0) {
-                return;
-            }
-            int i = this.$clean ? 1000 : 4000;
-            GatewaySocket.this.cleanup(new AnonymousClass1(i));
-            GatewaySocket.this.connectionState = 0;
-            GatewaySocket.this.reset(this.$clean, i, "Disconnect requested by client");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54921 extends AbstractC12240o implements Function0<Unit> {
-        public C54921() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (GatewaySocket.this.connectionState == 0) {
-                GatewaySocket.this.connectionState = 1;
-                GatewaySocket.this.discover();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$2 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54932 extends AbstractC12240o implements Function1<WebSocket, Unit> {
-        public static final C54932 INSTANCE = new C54932();
-
-        public C54932() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
-            invoke2(webSocket);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WebSocket webSocket) {
-            if (webSocket != null) {
-                webSocket.disconnect(4000, "Connect called with an existing web socket.");
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$3 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54943 extends AbstractC12240o implements Function0<Unit> {
-        public C54943() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            GatewaySocket gatewaySocket = GatewaySocket.this;
-            StringBuilder sbM833U = C1643a.m833U("Connection timed out after ");
-            sbM833U.append(Companion.getDelay$default(GatewaySocket.INSTANCE, GatewaySocket.this.connectionStartTime, null, 2, null));
-            sbM833U.append("ms, did not receive hello in time.");
-            gatewaySocket.handleClose(false, 0, sbM833U.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$4 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final /* synthetic */ class C54954 extends C12236k implements Function3<String, Exception, Map<String, ? extends String>, Unit> {
-        public C54954(GatewaySocket gatewaySocket) {
-            super(3, gatewaySocket, GatewaySocket.class, "logError", "logError(Ljava/lang/String;Ljava/lang/Exception;Ljava/util/Map;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(String str, Exception exc, Map<String, ? extends String> map) {
-            invoke2(str, exc, (Map<String, String>) map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str, Exception exc, Map<String, String> map) {
-            C12238m.checkNotNullParameter(str, "p1");
-            C12238m.checkNotNullParameter(exc, "p2");
-            ((GatewaySocket) this.receiver).logError(str, exc, map);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54961 extends AbstractC12240o implements Function1<Listener, Unit> {
-        public C54961() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
-            invoke2(listener);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Listener listener) {
-            C12238m.checkNotNullParameter(listener, "it");
-            listener.onConnecting(GatewaySocket.this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$2 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54972 extends AbstractC12240o implements Function1<String, Unit> {
-        public C54972() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            String str2;
-            C12238m.checkNotNullParameter(str, "gatewayUrl");
-            GatewaySocket gatewaySocket = GatewaySocket.this;
-            Function1 function1 = gatewaySocket.gatewayUrlTransform;
-            if (function1 != null && (str2 = (String) function1.invoke(str)) != null) {
-                str = str2;
-            }
-            gatewaySocket.connect(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$3 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54983 extends AbstractC12240o implements Function1<Throwable, Unit> {
-        public C54983() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
-            invoke2(th);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Throwable th) {
-            C12238m.checkNotNullParameter(th, "it");
-            GatewaySocket.this.discoveryFailed();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C54991 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $reason;
-        public final /* synthetic */ boolean $shouldResetBackoff;
-        public final /* synthetic */ long $timeout;
-
-        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: GatewaySocket.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(String str) {
-                invoke2(str);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(String str) {
-                C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
-                Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Connection backoff reset " + str + '.', false, 2, null);
-                GatewaySocket.this.gatewayBackoff.succeed();
-                GatewaySocket.this.nextReconnectIsImmediate = true;
-                if (GatewaySocket.this.connectionState == 1) {
-                    GatewaySocket.this.discover();
-                }
-            }
-        }
-
-        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$2, reason: invalid class name */
-        /* JADX INFO: compiled from: GatewaySocket.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass2() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                if (GatewaySocket.this.heartbeatAck) {
-                    return;
-                }
-                GatewaySocket.this.handleHeartbeatTimeout();
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C54991(String str, long j, boolean z2) {
-            super(0);
-            this.$reason = str;
-            this.$timeout = j;
-            this.$shouldResetBackoff = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            String strM820H = this.$reason != null ? C1643a.m820H(C1643a.m833U("with reason '"), this.$reason, '\'') : "";
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1();
-            if (GatewaySocket.this.webSocket == null) {
-                if (this.$shouldResetBackoff) {
-                    anonymousClass1.invoke2(strM820H);
-                    return;
-                } else {
-                    Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, C1643a.m886y("Expedited heartbeat requested ", strM820H, ", but disconnected and no reset backoff."), false, 2, null);
-                    return;
-                }
-            }
-            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Performing an expedited heartbeat " + strM820H + '.', false, 2, null);
-            GatewaySocket gatewaySocket = GatewaySocket.this;
-            gatewaySocket.heartbeat(gatewaySocket.seq);
-            GatewaySocket.this.heartbeatAck = false;
-            GatewaySocket.this.heartbeatExpeditedTimeout.schedule(new AnonymousClass2(), this.$timeout);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleClose$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55001 extends AbstractC12240o implements Function1<WebSocket, Unit> {
-        public static final C55001 INSTANCE = new C55001();
-
-        public C55001() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
-            invoke2(webSocket);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WebSocket webSocket) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatAck$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55011 extends AbstractC12240o implements Function0<Unit> {
-        public C55011() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Expedited heartbeat succeeded.", false, 2, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatTimeout$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55021 extends AbstractC12240o implements Function1<WebSocket, Unit> {
-        public static final C55021 INSTANCE = new C55021();
-
-        public C55021() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
-            invoke2(webSocket);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WebSocket webSocket) {
-            if (webSocket != null) {
-                WebSocket.disconnect$default(webSocket, 4000, null, 2, null);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHello$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55031 extends AbstractC12240o implements Function1<Listener, Unit> {
-        public C55031() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
-            invoke2(listener);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Listener listener) {
-            C12238m.checkNotNullParameter(listener, "it");
-            listener.onHello(GatewaySocket.this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleReconnect$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55041 extends AbstractC12240o implements Function1<WebSocket, Unit> {
-        public final /* synthetic */ String $reason;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55041(String str) {
-            super(1);
-            this.$reason = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WebSocket webSocket) {
-            invoke2(webSocket);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WebSocket webSocket) {
-            if (webSocket != null) {
-                webSocket.disconnect(4000, this.$reason);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketClose$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55051 extends AbstractC12240o implements Function1<Listener, Unit> {
-        public C55051() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
-            invoke2(listener);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Listener listener) {
-            C12238m.checkNotNullParameter(listener, "it");
-            listener.onDisconnected(GatewaySocket.this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketOpened$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55061 extends AbstractC12240o implements Function1<Listener, Unit> {
-        public C55061() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
-            invoke2(listener);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Listener listener) {
-            C12238m.checkNotNullParameter(listener, "it");
-            listener.onConnected(GatewaySocket.this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55071 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $activities;
-        public final /* synthetic */ Boolean $afk;
-        public final /* synthetic */ Long $since;
-        public final /* synthetic */ ClientStatus $status;
-
-        /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: GatewaySocket.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Activity, CharSequence> {
-            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final CharSequence invoke(Activity activity) {
-                C12238m.checkNotNullParameter(activity, "it");
-                return activity.getName();
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55071(ClientStatus clientStatus, List list, Long l, Boolean bool) {
-            super(0);
-            this.$status = clientStatus;
-            this.$activities = list;
-            this.$since = l;
-            this.$afk = bool;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            String strName;
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending self presence update: ");
-            sbM833U.append(this.$status);
-            sbM833U.append(' ');
-            List list = this.$activities;
-            String lowerCase = null;
-            sbM833U.append(list != null ? C12163u.joinToString$default(list, null, null, null, 0, null, AnonymousClass1.INSTANCE, 31, null) : null);
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket gatewaySocket = GatewaySocket.this;
-            Opcode opcode = Opcode.PRESENCE_UPDATE;
-            ClientStatus clientStatus = this.$status;
-            if (clientStatus != null && (strName = clientStatus.name()) != null) {
-                Locale locale = Locale.ROOT;
-                C12238m.checkNotNullExpressionValue(locale, "Locale.ROOT");
-                lowerCase = strName.toLowerCase(locale);
-                C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-            }
-            Long l = this.$since;
-            List listEmptyList = this.$activities;
-            if (listEmptyList == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            GatewaySocket.send$default(gatewaySocket, new Outgoing(opcode, new OutgoingPayload.PresenceUpdate(lowerCase, l, listEmptyList, this.$afk)), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$requestGuildMembers$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55081 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $guildIds;
-        public final /* synthetic */ Integer $limit;
-        public final /* synthetic */ String $query;
-        public final /* synthetic */ List $userIds;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55081(List list, String str, List list2, Integer num) {
-            super(0);
-            this.$guildIds = list;
-            this.$query = str;
-            this.$userIds = list2;
-            this.$limit = num;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            OutgoingPayload.GuildMembersRequest guildMembersRequest = new OutgoingPayload.GuildMembersRequest(this.$guildIds, this.$query, this.$userIds, this.$limit, false, 16, null);
-            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Sending guild member request: " + guildMembersRequest, false, 2, null);
-            GatewaySocket gatewaySocket = GatewaySocket.this;
-            Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_MEMBERS, guildMembersRequest);
-            Gson gson = GatewaySocket.gsonOmitNulls;
-            C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
-            GatewaySocket.send$default(gatewaySocket, outgoing, false, gson, 2, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$resetOnError$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55091 extends AbstractC12240o implements Function0<Unit> {
-        public C55091() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            GatewaySocket.this.nextReconnectIsImmediate = false;
-            GatewaySocket.handleReconnect$default(GatewaySocket.this, "encountered an error", false, 2, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$simulateReconnectForTesting$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55121 extends AbstractC12240o implements Function0<Unit> {
-        public C55121() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            GatewaySocket.handleReconnect$default(GatewaySocket.this, null, false, 1, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$startHeartbeater$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55131 extends AbstractC12240o implements Function0<Unit> {
-        public C55131() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (GatewaySocket.this.heartbeatAck) {
-                GatewaySocket.this.heartbeatAck = false;
-                GatewaySocket gatewaySocket = GatewaySocket.this;
-                gatewaySocket.heartbeat(gatewaySocket.seq);
-            } else {
-                if (GatewaySocket.this.heartbeatExpeditedTimeout.getPending()) {
-                    return;
-                }
-                GatewaySocket.this.handleHeartbeatTimeout();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamDelete$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55141 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $streamKey;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55141(String str) {
-            super(0);
-            this.$streamKey = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending STREAM_DELETE: ");
-            sbM833U.append(this.$streamKey);
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_DELETE, new OutgoingPayload.DeleteStream(this.$streamKey)), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamPing$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55151 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $streamKey;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55151(String str) {
-            super(0);
-            this.$streamKey = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending OPCODE_STREAM_PING: ");
-            sbM833U.append(this.$streamKey);
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.OPCODE_STREAM_PING, new OutgoingPayload.StreamPing(this.$streamKey)), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamWatch$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55161 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $streamKey;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55161(String str) {
-            super(0);
-            this.$streamKey = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending STREAM_WATCH: ");
-            sbM833U.append(this.$streamKey);
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_WATCH, new OutgoingPayload.WatchStream(this.$streamKey)), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceServerPing$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55171 extends AbstractC12240o implements Function0<Unit> {
-        public C55171() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.this.logger, "Sending ping to voice server.", false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_SERVER_PING, (Object) null), false, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceStateUpdate$1 */
-    /* JADX INFO: compiled from: GatewaySocket.kt */
-    public static final class C55181 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Long $channelId;
-        public final /* synthetic */ Long $guildId;
-        public final /* synthetic */ String $preferredRegion;
-        public final /* synthetic */ boolean $selfDeaf;
-        public final /* synthetic */ boolean $selfMute;
-        public final /* synthetic */ boolean $selfVideo;
-        public final /* synthetic */ boolean $shouldIncludePreferredRegion;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C55181(Long l, Long l2, boolean z2, boolean z3, String str, boolean z4, boolean z5) {
-            super(0);
-            this.$guildId = l;
-            this.$channelId = l2;
-            this.$selfMute = z2;
-            this.$selfDeaf = z3;
-            this.$preferredRegion = str;
-            this.$shouldIncludePreferredRegion = z4;
-            this.$selfVideo = z5;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Companion companion = GatewaySocket.INSTANCE;
-            Logger logger = GatewaySocket.this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Sending voice state update for guild [");
-            sbM833U.append(this.$guildId);
-            sbM833U.append("] and channel [");
-            sbM833U.append(this.$channelId);
-            sbM833U.append("]. ");
-            sbM833U.append("Muted: ");
-            sbM833U.append(this.$selfMute);
-            sbM833U.append(", deafened: ");
-            sbM833U.append(this.$selfDeaf);
-            sbM833U.append(", preferredRegion: ");
-            sbM833U.append(this.$preferredRegion);
-            Companion.log$default(companion, logger, sbM833U.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_STATE_UPDATE, this.$shouldIncludePreferredRegion ? new OutgoingPayload.VoiceStateUpdate(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo, this.$preferredRegion) : new OutgoingPayload.VoiceStateUpdateNoPreferredRegion(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo)), false, null, 6, null);
-        }
-    }
-
     static {
         C4901e c4901e = new C4901e();
         c4901e.f13101g = true;
@@ -1261,6 +1261,10 @@ public final class GatewaySocket {
         });
     }
 
+    public final void callConnect(long channelId) {
+        schedule(new C54901(channelId));
+    }
+
     private final void cleanup(Function1<? super WebSocket, Unit> callback) {
         stopHeartbeater();
         clearHelloTimeout();
@@ -1284,6 +1288,14 @@ public final class GatewaySocket {
             z2 = true;
         }
         gatewaySocket.close(z2);
+    }
+
+    public final void close(boolean clean) {
+        schedule(new C54911(clean));
+    }
+
+    public final void connect() {
+        schedule(new C54921());
     }
 
     private final void discover() {
@@ -1363,6 +1375,10 @@ public final class GatewaySocket {
         gatewaySocket.expeditedHeartbeat(j, str, z2);
     }
 
+    public final void expeditedHeartbeat(long timeout, String reason, boolean shouldResetBackoff) {
+        schedule(new C54991(reason, timeout, shouldResetBackoff));
+    }
+
     private final void flattenTraces(Object trace, ArrayList<Pair<String, Integer>> result) {
         if (trace == null) {
             return;
@@ -1415,6 +1431,10 @@ public final class GatewaySocket {
         return (trace == null || (strJoinToString$default = C12163u.joinToString$default(trace, " -> ", null, null, 0, null, null, 62, null)) == null) ? "???" : strJoinToString$default;
     }
 
+    public final ListenerCollection<Listener> getListeners() {
+        return this.listeners;
+    }
+
     private final void handleClose(boolean wasClean, int code, String reason) {
         cleanup(C55001.INSTANCE);
         handleConnected$default(this, null, Boolean.FALSE, 1, null);
@@ -1443,6 +1463,16 @@ public final class GatewaySocket {
         }
     }
 
+    public static /* synthetic */ void handleConnected$default(GatewaySocket gatewaySocket, Boolean bool, Boolean bool2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            bool = null;
+        }
+        if ((i & 2) != 0) {
+            bool2 = null;
+        }
+        gatewaySocket.handleConnected(bool, bool2);
+    }
+
     private final void handleConnected(Boolean connected, Boolean connectionReady) {
         if (connected != null) {
             boolean zBooleanValue = connected.booleanValue();
@@ -1455,16 +1485,6 @@ public final class GatewaySocket {
             this.connectionReady = zBooleanValue2;
             this.eventHandler.handleConnectionReady(zBooleanValue2);
         }
-    }
-
-    public static /* synthetic */ void handleConnected$default(GatewaySocket gatewaySocket, Boolean bool, Boolean bool2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            bool = null;
-        }
-        if ((i & 2) != 0) {
-            bool2 = null;
-        }
-        gatewaySocket.handleConnected(bool, bool2);
     }
 
     private final void handleDeviceConnectivityChange(boolean isConnected) {
@@ -1572,12 +1592,6 @@ public final class GatewaySocket {
         doIdentify();
     }
 
-    private final void handleReconnect(String reason, boolean resetSession) {
-        cleanup(new C55041(reason));
-        reset(!resetSession, resetSession ? 1000 : 4000, reason);
-        handleClose(!resetSession, 0, reason);
-    }
-
     public static /* synthetic */ void handleReconnect$default(GatewaySocket gatewaySocket, String str, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             str = "Reconnect to gateway requested.";
@@ -1586,6 +1600,12 @@ public final class GatewaySocket {
             z2 = true;
         }
         gatewaySocket.handleReconnect(str, z2);
+    }
+
+    private final void handleReconnect(String reason, boolean resetSession) {
+        cleanup(new C55041(reason));
+        reset(!resetSession, resetSession ? 1000 : 4000, reason);
+        handleClose(!resetSession, 0, reason);
     }
 
     /* JADX WARN: Code duplicated, block: B:10:0x0013  */
@@ -1664,6 +1684,10 @@ public final class GatewaySocket {
         send$default(this, new Outgoing(Opcode.HEARTBEAT, Integer.valueOf(seq)), false, null, 4, null);
     }
 
+    public final boolean isSessionEstablished() {
+        return this.connectionState == 5;
+    }
+
     private final void logError(String message, Exception exception, Map<String, String> metadata) {
         Logger logger = this.logger;
         if (metadata == null) {
@@ -1686,6 +1710,26 @@ public final class GatewaySocket {
         gatewaySocket.presenceUpdate(clientStatus, l, list, bool);
     }
 
+    public final void presenceUpdate(ClientStatus status, Long since, List<Activity> activities, Boolean afk) {
+        schedule(new C55071(status, activities, since, afk));
+    }
+
+    public final void requestApplicationCommands(OutgoingPayload.ApplicationCommandRequest request) {
+        C12238m.checkNotNullParameter(request, "request");
+        Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_APPLICATION_COMMANDS, request);
+        Gson gson = gsonOmitNulls;
+        C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+        send$default(this, outgoing, false, gson, 2, null);
+    }
+
+    public final void requestForumUnreads(OutgoingPayload.ForumUnreadsRequest request) {
+        C12238m.checkNotNullParameter(request, "request");
+        Outgoing outgoing = new Outgoing(Opcode.REQUEST_FORUM_UNREADS, request);
+        Gson gson = gsonOmitNulls;
+        C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+        send$default(this, outgoing, false, gson, 2, null);
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ void requestGuildMembers$default(GatewaySocket gatewaySocket, List list, String str, List list2, Integer num, int i, Object obj) {
         if ((i & 2) != 0) {
@@ -1700,6 +1744,23 @@ public final class GatewaySocket {
         gatewaySocket.requestGuildMembers(list, str, list2, num);
     }
 
+    public final void requestGuildMembers(List<Long> list) {
+        requestGuildMembers$default(this, list, null, null, null, 14, null);
+    }
+
+    public final void requestGuildMembers(List<Long> list, String str) {
+        requestGuildMembers$default(this, list, str, null, null, 12, null);
+    }
+
+    public final void requestGuildMembers(List<Long> list, String str, List<Long> list2) {
+        requestGuildMembers$default(this, list, str, list2, null, 8, null);
+    }
+
+    public final void requestGuildMembers(List<Long> guildIds, String query, List<Long> userIds, Integer limit) {
+        C12238m.checkNotNullParameter(guildIds, "guildIds");
+        schedule(new C55081(guildIds, query, userIds, limit));
+    }
+
     private final void reset(boolean wasClean, int code, String reason) {
         if (code != 4000) {
             this.sessionId = null;
@@ -1709,6 +1770,10 @@ public final class GatewaySocket {
         Companion.log$default(INSTANCE, this.logger, "Reset " + str + ", with code " + code + ", at sequence " + this.seq + ". Reason: '" + reason + "'.", false, 2, null);
         handleConnected(Boolean.valueOf(code == 4000 && this.connected), Boolean.FALSE);
         this.eventHandler.handleDisconnect(code == CLOSE_CODE_UNAUTHORIZED);
+    }
+
+    public final void resetOnError() {
+        schedule(new C55091());
     }
 
     private final void schedule(Function0<Unit> callback) {
@@ -1727,6 +1792,17 @@ public final class GatewaySocket {
             public final void call(Throwable th) {
             }
         });
+    }
+
+    public static /* synthetic */ void send$default(GatewaySocket gatewaySocket, Outgoing outgoing, boolean z2, Gson gson, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = true;
+        }
+        if ((i & 4) != 0) {
+            gson = gsonIncludeNulls;
+            C12238m.checkNotNullExpressionValue(gson, "gsonIncludeNulls");
+        }
+        gatewaySocket.send(outgoing, z2, gson);
     }
 
     private final void send(Outgoing data, boolean checkSessionEstablished, Gson gson) {
@@ -1756,15 +1832,8 @@ public final class GatewaySocket {
         Companion.log$default(companion2, logger2, sbM833U2.toString(), false, 2, null);
     }
 
-    public static /* synthetic */ void send$default(GatewaySocket gatewaySocket, Outgoing outgoing, boolean z2, Gson gson, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = true;
-        }
-        if ((i & 4) != 0) {
-            gson = gsonIncludeNulls;
-            C12238m.checkNotNullExpressionValue(gson, "gsonIncludeNulls");
-        }
-        gatewaySocket.send(outgoing, z2, gson);
+    public final void simulateReconnectForTesting() {
+        schedule(new C55121());
     }
 
     private final void startHeartbeater() {
@@ -1776,6 +1845,27 @@ public final class GatewaySocket {
     private final void stopHeartbeater() {
         this.heartbeater.cancel();
         this.heartbeatExpeditedTimeout.cancel();
+    }
+
+    public final void streamCreate(String streamType, long channelId, Long guildId, String preferredRegion) {
+        C12238m.checkNotNullParameter(streamType, "streamType");
+        Companion.log$default(INSTANCE, this.logger, "Sending STREAM_CREATE: " + channelId + ' ' + guildId, false, 2, null);
+        send$default(this, new Outgoing(Opcode.STREAM_CREATE, new OutgoingPayload.CreateStream(streamType, channelId, guildId, preferredRegion)), false, null, 6, null);
+    }
+
+    public final void streamDelete(String streamKey) {
+        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        schedule(new C55141(streamKey));
+    }
+
+    public final void streamPing(String streamKey) {
+        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        schedule(new C55151(streamKey));
+    }
+
+    public final void streamWatch(String streamKey) {
+        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        schedule(new C55161(streamKey));
     }
 
     /* JADX WARN: Code duplicated, block: B:18:0x0076  */
@@ -1823,96 +1913,6 @@ public final class GatewaySocket {
         Function1<Map<String, ? extends Object>, Unit> function1 = this.trackReadyPayload;
         Companion companion = INSTANCE;
         function1.invoke(C12136h0.mapOf(C12116o.m10073to("duration_ms_since_connection_start", Long.valueOf(Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null))), C12116o.m10073to("duration_ms_since_identify_start", Long.valueOf(Companion.getDelay$default(companion, this.identifyStartTime, null, 2, null))), C12116o.m10073to("identify_total_server_duration_ms", Integer.valueOf(iIntValue)), C12116o.m10073to("identify_api_duration_ms", Integer.valueOf(i3)), C12116o.m10073to("identify_guilds_duration_ms", Integer.valueOf(i4)), C12116o.m10073to("compressed_byte_size", Integer.valueOf(compressedByteSize)), C12116o.m10073to("uncompressed_byte_size", Integer.valueOf(uncompressedByteSize)), C12116o.m10073to("compression_algorithm", "zlib"), C12116o.m10073to("packing_algorithm", GATEWAY_ENCODING), C12116o.m10073to("unpack_duration_ms", Long.valueOf(unpackDurationMs)), C12116o.m10073to("is_reconnect", Boolean.valueOf(this.hasConnectedOnce)), C12116o.m10073to("is_fast_connect", Boolean.FALSE), C12116o.m10073to("num_guilds", Integer.valueOf(size)), C12116o.m10073to("num_guild_channels", Integer.valueOf(i)), C12116o.m10073to("num_guild_category_channels", Integer.valueOf(i2))));
-    }
-
-    public final void callConnect(long channelId) {
-        schedule(new C54901(channelId));
-    }
-
-    public final void close(boolean clean) {
-        schedule(new C54911(clean));
-    }
-
-    public final void connect() {
-        schedule(new C54921());
-    }
-
-    public final void expeditedHeartbeat(long timeout, String reason, boolean shouldResetBackoff) {
-        schedule(new C54991(reason, timeout, shouldResetBackoff));
-    }
-
-    public final ListenerCollection<Listener> getListeners() {
-        return this.listeners;
-    }
-
-    public final boolean isSessionEstablished() {
-        return this.connectionState == 5;
-    }
-
-    public final void presenceUpdate(ClientStatus status, Long since, List<Activity> activities, Boolean afk) {
-        schedule(new C55071(status, activities, since, afk));
-    }
-
-    public final void requestApplicationCommands(OutgoingPayload.ApplicationCommandRequest request) {
-        C12238m.checkNotNullParameter(request, "request");
-        Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_APPLICATION_COMMANDS, request);
-        Gson gson = gsonOmitNulls;
-        C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
-        send$default(this, outgoing, false, gson, 2, null);
-    }
-
-    public final void requestForumUnreads(OutgoingPayload.ForumUnreadsRequest request) {
-        C12238m.checkNotNullParameter(request, "request");
-        Outgoing outgoing = new Outgoing(Opcode.REQUEST_FORUM_UNREADS, request);
-        Gson gson = gsonOmitNulls;
-        C12238m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
-        send$default(this, outgoing, false, gson, 2, null);
-    }
-
-    public final void requestGuildMembers(List<Long> list) {
-        requestGuildMembers$default(this, list, null, null, null, 14, null);
-    }
-
-    public final void requestGuildMembers(List<Long> list, String str) {
-        requestGuildMembers$default(this, list, str, null, null, 12, null);
-    }
-
-    public final void requestGuildMembers(List<Long> list, String str, List<Long> list2) {
-        requestGuildMembers$default(this, list, str, list2, null, 8, null);
-    }
-
-    public final void requestGuildMembers(List<Long> guildIds, String query, List<Long> userIds, Integer limit) {
-        C12238m.checkNotNullParameter(guildIds, "guildIds");
-        schedule(new C55081(guildIds, query, userIds, limit));
-    }
-
-    public final void resetOnError() {
-        schedule(new C55091());
-    }
-
-    public final void simulateReconnectForTesting() {
-        schedule(new C55121());
-    }
-
-    public final void streamCreate(String streamType, long channelId, Long guildId, String preferredRegion) {
-        C12238m.checkNotNullParameter(streamType, "streamType");
-        Companion.log$default(INSTANCE, this.logger, "Sending STREAM_CREATE: " + channelId + ' ' + guildId, false, 2, null);
-        send$default(this, new Outgoing(Opcode.STREAM_CREATE, new OutgoingPayload.CreateStream(streamType, channelId, guildId, preferredRegion)), false, null, 6, null);
-    }
-
-    public final void streamDelete(String streamKey) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
-        schedule(new C55141(streamKey));
-    }
-
-    public final void streamPing(String streamKey) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
-        schedule(new C55151(streamKey));
-    }
-
-    public final void streamWatch(String streamKey) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
-        schedule(new C55161(streamKey));
     }
 
     public final void updateGuildSubscriptions(long guildId, OutgoingPayload.GuildSubscriptions guildSubscriptions) {

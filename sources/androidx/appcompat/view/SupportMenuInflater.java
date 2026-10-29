@@ -48,7 +48,7 @@ public class SupportMenuInflater extends MenuInflater {
     public Context mContext;
     private Object mRealOwner;
 
-    public static class InflatedOnMenuItemClickListener implements MenuItem.OnMenuItemClickListener {
+    public class InflatedOnMenuItemClickListener implements MenuItem.OnMenuItemClickListener {
         private static final Class<?>[] PARAM_TYPES = {MenuItem.class};
         private Method mMethod;
         private Object mRealOwner;
@@ -81,6 +81,119 @@ public class SupportMenuInflater extends MenuInflater {
         }
     }
 
+    static {
+        Class<?>[] clsArr = {Context.class};
+        ACTION_VIEW_CONSTRUCTOR_SIGNATURE = clsArr;
+        ACTION_PROVIDER_CONSTRUCTOR_SIGNATURE = clsArr;
+    }
+
+    public SupportMenuInflater(Context context) {
+        super(context);
+        this.mContext = context;
+        Object[] objArr = {context};
+        this.mActionViewConstructorArguments = objArr;
+        this.mActionProviderConstructorArguments = objArr;
+    }
+
+    private Object findRealOwner(Object obj) {
+        return (!(obj instanceof Activity) && (obj instanceof ContextWrapper)) ? findRealOwner(((ContextWrapper) obj).getBaseContext()) : obj;
+    }
+
+    public Object getRealOwner() {
+        if (this.mRealOwner == null) {
+            this.mRealOwner = findRealOwner(this.mContext);
+        }
+        return this.mRealOwner;
+    }
+
+    @Override // android.view.MenuInflater
+    public void inflate(@LayoutRes int i, Menu menu) {
+        if (!(menu instanceof SupportMenu)) {
+            super.inflate(i, menu);
+            return;
+        }
+        XmlResourceParser layout = null;
+        try {
+            try {
+                try {
+                    layout = this.mContext.getResources().getLayout(i);
+                    parseMenu(layout, Xml.asAttributeSet(layout), menu);
+                    if (layout != null) {
+                        layout.close();
+                    }
+                } catch (XmlPullParserException e) {
+                    throw new InflateException("Error inflating menu XML", e);
+                }
+            } catch (IOException e2) {
+                throw new InflateException("Error inflating menu XML", e2);
+            }
+        } catch (Throwable th) {
+            if (layout != null) {
+                layout.close();
+            }
+            throw th;
+        }
+    }
+
+    private void parseMenu(XmlPullParser xmlPullParser, AttributeSet attributeSet, Menu menu) throws XmlPullParserException, IOException {
+        MenuState menuState = new MenuState(menu);
+        int eventType = xmlPullParser.getEventType();
+        do {
+            if (eventType == 2) {
+                String name = xmlPullParser.getName();
+                if (!name.equals(XML_MENU)) {
+                    throw new RuntimeException(C1643a.m883w("Expecting menu, got ", name));
+                }
+                eventType = xmlPullParser.next();
+                break;
+            }
+            eventType = xmlPullParser.next();
+        } while (eventType != 1);
+        boolean z2 = false;
+        boolean z3 = false;
+        String str = null;
+        while (!z2) {
+            if (eventType == 1) {
+                throw new RuntimeException("Unexpected end of document");
+            }
+            if (eventType != 2) {
+                if (eventType == 3) {
+                    String name2 = xmlPullParser.getName();
+                    if (z3 && name2.equals(str)) {
+                        str = null;
+                        z3 = false;
+                    } else if (name2.equals(XML_GROUP)) {
+                        menuState.resetGroup();
+                    } else if (name2.equals(XML_ITEM)) {
+                        if (!menuState.hasAddedItem()) {
+                            ActionProvider actionProvider = menuState.itemActionProvider;
+                            if (actionProvider == null || !actionProvider.hasSubMenu()) {
+                                menuState.addItem();
+                            } else {
+                                menuState.addSubMenuItem();
+                            }
+                        }
+                    } else if (name2.equals(XML_MENU)) {
+                        z2 = true;
+                    }
+                }
+            } else if (!z3) {
+                String name3 = xmlPullParser.getName();
+                if (name3.equals(XML_GROUP)) {
+                    menuState.readGroup(attributeSet);
+                } else if (name3.equals(XML_ITEM)) {
+                    menuState.readItem(attributeSet);
+                } else if (name3.equals(XML_MENU)) {
+                    parseMenu(xmlPullParser, attributeSet, menuState.addSubMenuItem());
+                } else {
+                    z3 = true;
+                    str = name3;
+                }
+            }
+            eventType = xmlPullParser.next();
+        }
+    }
+
     public class MenuState {
         private static final int defaultGroupId = 0;
         private static final int defaultItemCategory = 0;
@@ -109,8 +222,6 @@ public class SupportMenuInflater extends MenuInflater {
         private CharSequence itemContentDescription;
         private boolean itemEnabled;
         private int itemIconResId;
-        private ColorStateList itemIconTintList = null;
-        private PorterDuff.Mode itemIconTintMode = null;
         private int itemId;
         private String itemListenerMethodName;
         private int itemNumericModifiers;
@@ -121,79 +232,12 @@ public class SupportMenuInflater extends MenuInflater {
         private CharSequence itemTooltipText;
         private boolean itemVisible;
         private Menu menu;
+        private ColorStateList itemIconTintList = null;
+        private PorterDuff.Mode itemIconTintMode = null;
 
         public MenuState(Menu menu) {
             this.menu = menu;
             resetGroup();
-        }
-
-        private char getShortcut(String str) {
-            if (str == null) {
-                return (char) 0;
-            }
-            return str.charAt(0);
-        }
-
-        private <T> T newInstance(String str, Class<?>[] clsArr, Object[] objArr) {
-            try {
-                Constructor<?> constructor = Class.forName(str, false, SupportMenuInflater.this.mContext.getClassLoader()).getConstructor(clsArr);
-                constructor.setAccessible(true);
-                return (T) constructor.newInstance(objArr);
-            } catch (Exception e) {
-                Log.w(SupportMenuInflater.LOG_TAG, "Cannot instantiate class: " + str, e);
-                return null;
-            }
-        }
-
-        private void setItem(MenuItem menuItem) {
-            boolean z2 = false;
-            menuItem.setChecked(this.itemChecked).setVisible(this.itemVisible).setEnabled(this.itemEnabled).setCheckable(this.itemCheckable >= 1).setTitleCondensed(this.itemTitleCondensed).setIcon(this.itemIconResId);
-            int i = this.itemShowAsAction;
-            if (i >= 0) {
-                menuItem.setShowAsAction(i);
-            }
-            if (this.itemListenerMethodName != null) {
-                if (SupportMenuInflater.this.mContext.isRestricted()) {
-                    throw new IllegalStateException("The android:onClick attribute cannot be used within a restricted context");
-                }
-                menuItem.setOnMenuItemClickListener(new InflatedOnMenuItemClickListener(SupportMenuInflater.this.getRealOwner(), this.itemListenerMethodName));
-            }
-            if (this.itemCheckable >= 2) {
-                if (menuItem instanceof MenuItemImpl) {
-                    ((MenuItemImpl) menuItem).setExclusiveCheckable(true);
-                } else if (menuItem instanceof MenuItemWrapperICS) {
-                    ((MenuItemWrapperICS) menuItem).setExclusiveCheckable(true);
-                }
-            }
-            String str = this.itemActionViewClassName;
-            if (str != null) {
-                menuItem.setActionView((View) newInstance(str, SupportMenuInflater.ACTION_VIEW_CONSTRUCTOR_SIGNATURE, SupportMenuInflater.this.mActionViewConstructorArguments));
-                z2 = true;
-            }
-            int i2 = this.itemActionViewLayout;
-            if (i2 > 0) {
-                if (z2) {
-                    Log.w(SupportMenuInflater.LOG_TAG, "Ignoring attribute 'itemActionViewLayout'. Action view already specified.");
-                } else {
-                    menuItem.setActionView(i2);
-                }
-            }
-            ActionProvider actionProvider = this.itemActionProvider;
-            if (actionProvider != null) {
-                MenuItemCompat.setActionProvider(menuItem, actionProvider);
-            }
-            MenuItemCompat.setContentDescription(menuItem, this.itemContentDescription);
-            MenuItemCompat.setTooltipText(menuItem, this.itemTooltipText);
-            MenuItemCompat.setAlphabeticShortcut(menuItem, this.itemAlphabeticShortcut, this.itemAlphabeticModifiers);
-            MenuItemCompat.setNumericShortcut(menuItem, this.itemNumericShortcut, this.itemNumericModifiers);
-            PorterDuff.Mode mode = this.itemIconTintMode;
-            if (mode != null) {
-                MenuItemCompat.setIconTintMode(menuItem, mode);
-            }
-            ColorStateList colorStateList = this.itemIconTintList;
-            if (colorStateList != null) {
-                MenuItemCompat.setIconTintList(menuItem, colorStateList);
-            }
         }
 
         public void addItem() {
@@ -208,8 +252,26 @@ public class SupportMenuInflater extends MenuInflater {
             return subMenuAddSubMenu;
         }
 
+        private char getShortcut(String str) {
+            if (str == null) {
+                return (char) 0;
+            }
+            return str.charAt(0);
+        }
+
         public boolean hasAddedItem() {
             return this.itemAdded;
+        }
+
+        private <T> T newInstance(String str, Class<?>[] clsArr, Object[] objArr) {
+            try {
+                Constructor<?> constructor = Class.forName(str, false, SupportMenuInflater.this.mContext.getClassLoader()).getConstructor(clsArr);
+                constructor.setAccessible(true);
+                return (T) constructor.newInstance(objArr);
+            } catch (Exception e) {
+                Log.w(SupportMenuInflater.LOG_TAG, "Cannot instantiate class: " + str, e);
+                return null;
+            }
         }
 
         public void readGroup(AttributeSet attributeSet) {
@@ -284,118 +346,56 @@ public class SupportMenuInflater extends MenuInflater {
             this.groupVisible = true;
             this.groupEnabled = true;
         }
-    }
 
-    static {
-        Class<?>[] clsArr = {Context.class};
-        ACTION_VIEW_CONSTRUCTOR_SIGNATURE = clsArr;
-        ACTION_PROVIDER_CONSTRUCTOR_SIGNATURE = clsArr;
-    }
-
-    public SupportMenuInflater(Context context) {
-        super(context);
-        this.mContext = context;
-        Object[] objArr = {context};
-        this.mActionViewConstructorArguments = objArr;
-        this.mActionProviderConstructorArguments = objArr;
-    }
-
-    private Object findRealOwner(Object obj) {
-        return (!(obj instanceof Activity) && (obj instanceof ContextWrapper)) ? findRealOwner(((ContextWrapper) obj).getBaseContext()) : obj;
-    }
-
-    private void parseMenu(XmlPullParser xmlPullParser, AttributeSet attributeSet, Menu menu) throws XmlPullParserException, IOException {
-        MenuState menuState = new MenuState(menu);
-        int eventType = xmlPullParser.getEventType();
-        do {
-            if (eventType == 2) {
-                String name = xmlPullParser.getName();
-                if (!name.equals(XML_MENU)) {
-                    throw new RuntimeException(C1643a.m883w("Expecting menu, got ", name));
-                }
-                eventType = xmlPullParser.next();
-                break;
+        private void setItem(MenuItem menuItem) {
+            boolean z2 = false;
+            menuItem.setChecked(this.itemChecked).setVisible(this.itemVisible).setEnabled(this.itemEnabled).setCheckable(this.itemCheckable >= 1).setTitleCondensed(this.itemTitleCondensed).setIcon(this.itemIconResId);
+            int i = this.itemShowAsAction;
+            if (i >= 0) {
+                menuItem.setShowAsAction(i);
             }
-            eventType = xmlPullParser.next();
-        } while (eventType != 1);
-        boolean z2 = false;
-        boolean z3 = false;
-        String str = null;
-        while (!z2) {
-            if (eventType == 1) {
-                throw new RuntimeException("Unexpected end of document");
-            }
-            if (eventType != 2) {
-                if (eventType == 3) {
-                    String name2 = xmlPullParser.getName();
-                    if (z3 && name2.equals(str)) {
-                        str = null;
-                        z3 = false;
-                    } else if (name2.equals(XML_GROUP)) {
-                        menuState.resetGroup();
-                    } else if (name2.equals(XML_ITEM)) {
-                        if (!menuState.hasAddedItem()) {
-                            ActionProvider actionProvider = menuState.itemActionProvider;
-                            if (actionProvider == null || !actionProvider.hasSubMenu()) {
-                                menuState.addItem();
-                            } else {
-                                menuState.addSubMenuItem();
-                            }
-                        }
-                    } else if (name2.equals(XML_MENU)) {
-                        z2 = true;
-                    }
+            if (this.itemListenerMethodName != null) {
+                if (SupportMenuInflater.this.mContext.isRestricted()) {
+                    throw new IllegalStateException("The android:onClick attribute cannot be used within a restricted context");
                 }
-            } else if (!z3) {
-                String name3 = xmlPullParser.getName();
-                if (name3.equals(XML_GROUP)) {
-                    menuState.readGroup(attributeSet);
-                } else if (name3.equals(XML_ITEM)) {
-                    menuState.readItem(attributeSet);
-                } else if (name3.equals(XML_MENU)) {
-                    parseMenu(xmlPullParser, attributeSet, menuState.addSubMenuItem());
+                menuItem.setOnMenuItemClickListener(new InflatedOnMenuItemClickListener(SupportMenuInflater.this.getRealOwner(), this.itemListenerMethodName));
+            }
+            if (this.itemCheckable >= 2) {
+                if (menuItem instanceof MenuItemImpl) {
+                    ((MenuItemImpl) menuItem).setExclusiveCheckable(true);
+                } else if (menuItem instanceof MenuItemWrapperICS) {
+                    ((MenuItemWrapperICS) menuItem).setExclusiveCheckable(true);
+                }
+            }
+            String str = this.itemActionViewClassName;
+            if (str != null) {
+                menuItem.setActionView((View) newInstance(str, SupportMenuInflater.ACTION_VIEW_CONSTRUCTOR_SIGNATURE, SupportMenuInflater.this.mActionViewConstructorArguments));
+                z2 = true;
+            }
+            int i2 = this.itemActionViewLayout;
+            if (i2 > 0) {
+                if (z2) {
+                    Log.w(SupportMenuInflater.LOG_TAG, "Ignoring attribute 'itemActionViewLayout'. Action view already specified.");
                 } else {
-                    z3 = true;
-                    str = name3;
+                    menuItem.setActionView(i2);
                 }
             }
-            eventType = xmlPullParser.next();
-        }
-    }
-
-    public Object getRealOwner() {
-        if (this.mRealOwner == null) {
-            this.mRealOwner = findRealOwner(this.mContext);
-        }
-        return this.mRealOwner;
-    }
-
-    @Override // android.view.MenuInflater
-    public void inflate(@LayoutRes int i, Menu menu) {
-        if (!(menu instanceof SupportMenu)) {
-            super.inflate(i, menu);
-            return;
-        }
-        XmlResourceParser layout = null;
-        try {
-            try {
-                try {
-                    layout = this.mContext.getResources().getLayout(i);
-                    parseMenu(layout, Xml.asAttributeSet(layout), menu);
-                    if (layout != null) {
-                        layout.close();
-                    }
-                } catch (XmlPullParserException e) {
-                    throw new InflateException("Error inflating menu XML", e);
-                }
-            } catch (IOException e2) {
-                throw new InflateException("Error inflating menu XML", e2);
+            ActionProvider actionProvider = this.itemActionProvider;
+            if (actionProvider != null) {
+                MenuItemCompat.setActionProvider(menuItem, actionProvider);
             }
-        } catch (Throwable th) {
-            if (layout != null) {
-                layout.close();
+            MenuItemCompat.setContentDescription(menuItem, this.itemContentDescription);
+            MenuItemCompat.setTooltipText(menuItem, this.itemTooltipText);
+            MenuItemCompat.setAlphabeticShortcut(menuItem, this.itemAlphabeticShortcut, this.itemAlphabeticModifiers);
+            MenuItemCompat.setNumericShortcut(menuItem, this.itemNumericShortcut, this.itemNumericModifiers);
+            PorterDuff.Mode mode = this.itemIconTintMode;
+            if (mode != null) {
+                MenuItemCompat.setIconTintMode(menuItem, mode);
             }
-            throw th;
+            ColorStateList colorStateList = this.itemIconTintList;
+            if (colorStateList != null) {
+                MenuItemCompat.setIconTintList(menuItem, colorStateList);
+            }
         }
     }
 }

@@ -15,19 +15,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: MutableCollections.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C12160r extends C12153q {
-    /* JADX INFO: renamed from: a */
-    public static final <T> boolean m10082a(Iterable<? extends T> iterable, Function1<? super T, Boolean> function1, boolean z2) {
-        Iterator<? extends T> it = iterable.iterator();
-        boolean z3 = false;
-        while (it.hasNext()) {
-            if (function1.invoke(it.next()).booleanValue() == z2) {
-                it.remove();
-                z3 = true;
-            }
-        }
-        return z3;
-    }
-
     public static final <T> boolean addAll(Collection<? super T> collection, Iterable<? extends T> iterable) {
         C12238m.checkNotNullParameter(collection, "$this$addAll");
         C12238m.checkNotNullParameter(iterable, "elements");
@@ -42,6 +29,19 @@ public class C12160r extends C12153q {
             }
         }
         return z2;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final <T> boolean m10082a(Iterable<? extends T> iterable, Function1<? super T, Boolean> function1, boolean z2) {
+        Iterator<? extends T> it = iterable.iterator();
+        boolean z3 = false;
+        while (it.hasNext()) {
+            if (function1.invoke(it.next()).booleanValue() == z2) {
+                it.remove();
+                z3 = true;
+            }
+        }
+        return z3;
     }
 
     public static final <T> boolean removeAll(Collection<? super T> collection, Iterable<? extends T> iterable) {

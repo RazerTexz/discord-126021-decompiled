@@ -45,8 +45,6 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     public static final int SHADOW_COMPAT_MODE_NEVER = 1;
     private static final float SHADOW_OFFSET_MULTIPLIER = 0.25f;
     private static final float SHADOW_RADIUS_MULTIPLIER = 0.75f;
-    private static final String TAG = MaterialShapeDrawable.class.getSimpleName();
-    private static final Paint clearPaint = new Paint(1);
     private final BitSet containsIncompatibleShadowOp;
     private final ShapePath.AbstractC10974d[] cornerShadowOperation;
     private C10967c drawableState;
@@ -77,10 +75,8 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     @Nullable
     private PorterDuffColorFilter tintFilter;
     private final Region transparentRegion;
-
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface CompatibilityShadowMode {
-    }
+    private static final String TAG = MaterialShapeDrawable.class.getSimpleName();
+    private static final Paint clearPaint = new Paint(1);
 
     /* JADX INFO: renamed from: com.google.android.material.shape.MaterialShapeDrawable$a */
     public class C10965a implements ShapeAppearancePathProvider.PathListener {
@@ -117,6 +113,10 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         }
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface CompatibilityShadowMode {
+    }
+
     public /* synthetic */ MaterialShapeDrawable(C10967c c10967c, C10965a c10965a) {
         this(c10967c);
     }
@@ -143,6 +143,13 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         path.computeBounds(this.pathBounds, true);
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public final void calculatePathForSize(@NonNull RectF rectF, @NonNull Path path) {
+        ShapeAppearancePathProvider shapeAppearancePathProvider = this.pathProvider;
+        C10967c c10967c = this.drawableState;
+        shapeAppearancePathProvider.calculatePath(c10967c.f21070a, c10967c.f21080k, rectF, this.pathShadowListener, path);
+    }
+
     private void calculateStrokePath() {
         ShapeAppearanceModel shapeAppearanceModelWithTransformedCornerSizes = getShapeAppearanceModel().withTransformedCornerSizes(new C10966b(this, -getStrokeInsetLength()));
         this.strokeShapeAppearance = shapeAppearanceModelWithTransformedCornerSizes;
@@ -163,9 +170,42 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         return (colorStateList == null || mode == null) ? calculatePaintColorTintFilter(paint, z2) : calculateTintColorTintFilter(colorStateList, mode, z2);
     }
 
+    @ColorInt
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public int compositeElevationOverlayIfNeeded(@ColorInt int i) {
+        float parentAbsoluteElevation = getParentAbsoluteElevation() + getZ();
+        ElevationOverlayProvider elevationOverlayProvider = this.drawableState.f21071b;
+        return elevationOverlayProvider != null ? elevationOverlayProvider.compositeOverlayIfNeeded(i, parentAbsoluteElevation) : i;
+    }
+
     @NonNull
     public static MaterialShapeDrawable createWithElevationOverlay(Context context) {
         return createWithElevationOverlay(context, 0.0f);
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public void draw(@NonNull Canvas canvas) {
+        this.fillPaint.setColorFilter(this.tintFilter);
+        int alpha = this.fillPaint.getAlpha();
+        this.fillPaint.setAlpha(modulateAlpha(alpha, this.drawableState.f21082m));
+        this.strokePaint.setColorFilter(this.strokeTintFilter);
+        this.strokePaint.setStrokeWidth(this.drawableState.f21081l);
+        int alpha2 = this.strokePaint.getAlpha();
+        this.strokePaint.setAlpha(modulateAlpha(alpha2, this.drawableState.f21082m));
+        if (this.pathDirty) {
+            calculateStrokePath();
+            calculatePath(getBoundsAsRectF(), this.path);
+            this.pathDirty = false;
+        }
+        maybeDrawCompatShadow(canvas);
+        if (hasFill()) {
+            drawFillShape(canvas);
+        }
+        if (hasStroke()) {
+            drawStrokeShape(canvas);
+        }
+        this.fillPaint.setAlpha(alpha);
+        this.strokePaint.setAlpha(alpha2);
     }
 
     private void drawCompatShadow(@NonNull Canvas canvas) {
@@ -196,163 +236,13 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         drawShape(canvas, this.fillPaint, this.path, this.drawableState.f21070a, getBoundsAsRectF());
     }
 
-    private void drawStrokeShape(@NonNull Canvas canvas) {
-        drawShape(canvas, this.strokePaint, this.pathInsetByStroke, this.strokeShapeAppearance, getBoundsInsetByStroke());
-    }
-
-    @NonNull
-    private RectF getBoundsInsetByStroke() {
-        this.insetRectF.set(getBoundsAsRectF());
-        float strokeInsetLength = getStrokeInsetLength();
-        this.insetRectF.inset(strokeInsetLength, strokeInsetLength);
-        return this.insetRectF;
-    }
-
-    private float getStrokeInsetLength() {
-        if (hasStroke()) {
-            return this.strokePaint.getStrokeWidth() / 2.0f;
-        }
-        return 0.0f;
-    }
-
-    private boolean hasCompatShadow() {
-        C10967c c10967c = this.drawableState;
-        int i = c10967c.f21086q;
-        return i != 1 && c10967c.f21087r > 0 && (i == 2 || requiresCompatShadow());
-    }
-
-    private boolean hasFill() {
-        Paint.Style style = this.drawableState.f21091v;
-        return style == Paint.Style.FILL_AND_STROKE || style == Paint.Style.FILL;
-    }
-
-    private boolean hasStroke() {
-        Paint.Style style = this.drawableState.f21091v;
-        return (style == Paint.Style.FILL_AND_STROKE || style == Paint.Style.STROKE) && this.strokePaint.getStrokeWidth() > 0.0f;
-    }
-
-    private void invalidateSelfIgnoreShape() {
-        super.invalidateSelf();
-    }
-
-    private void maybeDrawCompatShadow(@NonNull Canvas canvas) {
-        if (hasCompatShadow()) {
-            canvas.save();
-            prepareCanvasForShadow(canvas);
-            if (!this.shadowBitmapDrawingEnable) {
-                drawCompatShadow(canvas);
-                canvas.restore();
-                return;
-            }
-            int iWidth = (int) (this.pathBounds.width() - getBounds().width());
-            int iHeight = (int) (this.pathBounds.height() - getBounds().height());
-            if (iWidth < 0 || iHeight < 0) {
-                throw new IllegalStateException("Invalid shadow bounds. Check that the treatments result in a valid path.");
-            }
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap((this.drawableState.f21087r * 2) + ((int) this.pathBounds.width()) + iWidth, (this.drawableState.f21087r * 2) + ((int) this.pathBounds.height()) + iHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas2 = new Canvas(bitmapCreateBitmap);
-            float f = (getBounds().left - this.drawableState.f21087r) - iWidth;
-            float f2 = (getBounds().top - this.drawableState.f21087r) - iHeight;
-            canvas2.translate(-f, -f2);
-            drawCompatShadow(canvas2);
-            canvas.drawBitmap(bitmapCreateBitmap, f, f2, (Paint) null);
-            bitmapCreateBitmap.recycle();
-            canvas.restore();
-        }
-    }
-
-    private static int modulateAlpha(int i, int i2) {
-        return ((i2 + (i2 >>> 7)) * i) >>> 8;
-    }
-
-    private void prepareCanvasForShadow(@NonNull Canvas canvas) {
-        canvas.translate(getShadowOffsetX(), getShadowOffsetY());
-    }
-
-    private boolean updateColorsForState(int[] iArr) {
-        boolean z2;
-        int color;
-        int colorForState;
-        int color2;
-        int colorForState2;
-        if (this.drawableState.f21073d == null || color2 == (colorForState2 = this.drawableState.f21073d.getColorForState(iArr, (color2 = this.fillPaint.getColor())))) {
-            z2 = false;
-        } else {
-            this.fillPaint.setColor(colorForState2);
-            z2 = true;
-        }
-        if (this.drawableState.f21074e == null || color == (colorForState = this.drawableState.f21074e.getColorForState(iArr, (color = this.strokePaint.getColor())))) {
-            return z2;
-        }
-        this.strokePaint.setColor(colorForState);
-        return true;
-    }
-
-    private boolean updateTintFilter() {
-        PorterDuffColorFilter porterDuffColorFilter = this.tintFilter;
-        PorterDuffColorFilter porterDuffColorFilter2 = this.strokeTintFilter;
-        C10967c c10967c = this.drawableState;
-        this.tintFilter = calculateTintFilter(c10967c.f21076g, c10967c.f21077h, this.fillPaint, true);
-        C10967c c10967c2 = this.drawableState;
-        this.strokeTintFilter = calculateTintFilter(c10967c2.f21075f, c10967c2.f21077h, this.strokePaint, false);
-        C10967c c10967c3 = this.drawableState;
-        if (c10967c3.f21090u) {
-            this.shadowRenderer.setShadowColor(c10967c3.f21076g.getColorForState(getState(), 0));
-        }
-        return (ObjectsCompat.equals(porterDuffColorFilter, this.tintFilter) && ObjectsCompat.equals(porterDuffColorFilter2, this.strokeTintFilter)) ? false : true;
-    }
-
-    private void updateZ() {
-        float z2 = getZ();
-        this.drawableState.f21087r = (int) Math.ceil(0.75f * z2);
-        this.drawableState.f21088s = (int) Math.ceil(z2 * 0.25f);
-        updateTintFilter();
-        invalidateSelfIgnoreShape();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public final void calculatePathForSize(@NonNull RectF rectF, @NonNull Path path) {
-        ShapeAppearancePathProvider shapeAppearancePathProvider = this.pathProvider;
-        C10967c c10967c = this.drawableState;
-        shapeAppearancePathProvider.calculatePath(c10967c.f21070a, c10967c.f21080k, rectF, this.pathShadowListener, path);
-    }
-
-    @ColorInt
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public int compositeElevationOverlayIfNeeded(@ColorInt int i) {
-        float parentAbsoluteElevation = getParentAbsoluteElevation() + getZ();
-        ElevationOverlayProvider elevationOverlayProvider = this.drawableState.f21071b;
-        return elevationOverlayProvider != null ? elevationOverlayProvider.compositeOverlayIfNeeded(i, parentAbsoluteElevation) : i;
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public void draw(@NonNull Canvas canvas) {
-        this.fillPaint.setColorFilter(this.tintFilter);
-        int alpha = this.fillPaint.getAlpha();
-        this.fillPaint.setAlpha(modulateAlpha(alpha, this.drawableState.f21082m));
-        this.strokePaint.setColorFilter(this.strokeTintFilter);
-        this.strokePaint.setStrokeWidth(this.drawableState.f21081l);
-        int alpha2 = this.strokePaint.getAlpha();
-        this.strokePaint.setAlpha(modulateAlpha(alpha2, this.drawableState.f21082m));
-        if (this.pathDirty) {
-            calculateStrokePath();
-            calculatePath(getBoundsAsRectF(), this.path);
-            this.pathDirty = false;
-        }
-        maybeDrawCompatShadow(canvas);
-        if (hasFill()) {
-            drawFillShape(canvas);
-        }
-        if (hasStroke()) {
-            drawStrokeShape(canvas);
-        }
-        this.fillPaint.setAlpha(alpha);
-        this.strokePaint.setAlpha(alpha2);
-    }
-
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void drawShape(@NonNull Canvas canvas, @NonNull Paint paint, @NonNull Path path, @NonNull RectF rectF) {
         drawShape(canvas, paint, path, this.drawableState.f21070a, rectF);
+    }
+
+    private void drawStrokeShape(@NonNull Canvas canvas) {
+        drawShape(canvas, this.strokePaint, this.pathInsetByStroke, this.strokeShapeAppearance, getBoundsInsetByStroke());
     }
 
     public float getBottomLeftCornerResolvedSize() {
@@ -367,6 +257,14 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     public RectF getBoundsAsRectF() {
         this.rectF.set(getBounds());
         return this.rectF;
+    }
+
+    @NonNull
+    private RectF getBoundsInsetByStroke() {
+        this.insetRectF.set(getBoundsAsRectF());
+        float strokeInsetLength = getStrokeInsetLength();
+        this.insetRectF.inset(strokeInsetLength, strokeInsetLength);
+        return this.insetRectF;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -492,6 +390,13 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         return this.drawableState.f21074e;
     }
 
+    private float getStrokeInsetLength() {
+        if (hasStroke()) {
+            return this.strokePaint.getStrokeWidth() / 2.0f;
+        }
+        return 0.0f;
+    }
+
     @Nullable
     public ColorStateList getStrokeTintList() {
         return this.drawableState.f21075f;
@@ -531,6 +436,22 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         return getTranslationZ() + getElevation();
     }
 
+    private boolean hasCompatShadow() {
+        C10967c c10967c = this.drawableState;
+        int i = c10967c.f21086q;
+        return i != 1 && c10967c.f21087r > 0 && (i == 2 || requiresCompatShadow());
+    }
+
+    private boolean hasFill() {
+        Paint.Style style = this.drawableState.f21091v;
+        return style == Paint.Style.FILL_AND_STROKE || style == Paint.Style.FILL;
+    }
+
+    private boolean hasStroke() {
+        Paint.Style style = this.drawableState.f21091v;
+        return (style == Paint.Style.FILL_AND_STROKE || style == Paint.Style.STROKE) && this.strokePaint.getStrokeWidth() > 0.0f;
+    }
+
     public void initializeElevationOverlay(Context context) {
         this.drawableState.f21071b = new ElevationOverlayProvider(context);
         updateZ();
@@ -539,6 +460,10 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     @Override // android.graphics.drawable.Drawable
     public void invalidateSelf() {
         this.pathDirty = true;
+        super.invalidateSelf();
+    }
+
+    private void invalidateSelfIgnoreShape() {
         super.invalidateSelf();
     }
 
@@ -575,6 +500,36 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         return super.isStateful() || ((colorStateList = this.drawableState.f21076g) != null && colorStateList.isStateful()) || (((colorStateList2 = this.drawableState.f21075f) != null && colorStateList2.isStateful()) || (((colorStateList3 = this.drawableState.f21074e) != null && colorStateList3.isStateful()) || ((colorStateList4 = this.drawableState.f21073d) != null && colorStateList4.isStateful())));
     }
 
+    private void maybeDrawCompatShadow(@NonNull Canvas canvas) {
+        if (hasCompatShadow()) {
+            canvas.save();
+            prepareCanvasForShadow(canvas);
+            if (!this.shadowBitmapDrawingEnable) {
+                drawCompatShadow(canvas);
+                canvas.restore();
+                return;
+            }
+            int iWidth = (int) (this.pathBounds.width() - getBounds().width());
+            int iHeight = (int) (this.pathBounds.height() - getBounds().height());
+            if (iWidth < 0 || iHeight < 0) {
+                throw new IllegalStateException("Invalid shadow bounds. Check that the treatments result in a valid path.");
+            }
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap((this.drawableState.f21087r * 2) + ((int) this.pathBounds.width()) + iWidth, (this.drawableState.f21087r * 2) + ((int) this.pathBounds.height()) + iHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(bitmapCreateBitmap);
+            float f = (getBounds().left - this.drawableState.f21087r) - iWidth;
+            float f2 = (getBounds().top - this.drawableState.f21087r) - iHeight;
+            canvas2.translate(-f, -f2);
+            drawCompatShadow(canvas2);
+            canvas.drawBitmap(bitmapCreateBitmap, f, f2, (Paint) null);
+            bitmapCreateBitmap.recycle();
+            canvas.restore();
+        }
+    }
+
+    private static int modulateAlpha(int i, int i2) {
+        return ((i2 + (i2 >>> 7)) * i) >>> 8;
+    }
+
     @Override // android.graphics.drawable.Drawable
     @NonNull
     public Drawable mutate() {
@@ -595,6 +550,10 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
             invalidateSelf();
         }
         return z2;
+    }
+
+    private void prepareCanvasForShadow(@NonNull Canvas canvas) {
+        canvas.translate(getShadowOffsetX(), getShadowOffsetY());
     }
 
     public boolean requiresCompatShadow() {
@@ -808,6 +767,47 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
         setTranslationZ(f - getElevation());
     }
 
+    private boolean updateColorsForState(int[] iArr) {
+        boolean z2;
+        int color;
+        int colorForState;
+        int color2;
+        int colorForState2;
+        if (this.drawableState.f21073d == null || color2 == (colorForState2 = this.drawableState.f21073d.getColorForState(iArr, (color2 = this.fillPaint.getColor())))) {
+            z2 = false;
+        } else {
+            this.fillPaint.setColor(colorForState2);
+            z2 = true;
+        }
+        if (this.drawableState.f21074e == null || color == (colorForState = this.drawableState.f21074e.getColorForState(iArr, (color = this.strokePaint.getColor())))) {
+            return z2;
+        }
+        this.strokePaint.setColor(colorForState);
+        return true;
+    }
+
+    private boolean updateTintFilter() {
+        PorterDuffColorFilter porterDuffColorFilter = this.tintFilter;
+        PorterDuffColorFilter porterDuffColorFilter2 = this.strokeTintFilter;
+        C10967c c10967c = this.drawableState;
+        this.tintFilter = calculateTintFilter(c10967c.f21076g, c10967c.f21077h, this.fillPaint, true);
+        C10967c c10967c2 = this.drawableState;
+        this.strokeTintFilter = calculateTintFilter(c10967c2.f21075f, c10967c2.f21077h, this.strokePaint, false);
+        C10967c c10967c3 = this.drawableState;
+        if (c10967c3.f21090u) {
+            this.shadowRenderer.setShadowColor(c10967c3.f21076g.getColorForState(getState(), 0));
+        }
+        return (ObjectsCompat.equals(porterDuffColorFilter, this.tintFilter) && ObjectsCompat.equals(porterDuffColorFilter2, this.strokeTintFilter)) ? false : true;
+    }
+
+    private void updateZ() {
+        float z2 = getZ();
+        this.drawableState.f21087r = (int) Math.ceil(0.75f * z2);
+        this.drawableState.f21088s = (int) Math.ceil(z2 * 0.25f);
+        updateTintFilter();
+        invalidateSelfIgnoreShape();
+    }
+
     public MaterialShapeDrawable() {
         this(new ShapeAppearanceModel());
     }
@@ -888,7 +888,7 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     }
 
     /* JADX INFO: renamed from: com.google.android.material.shape.MaterialShapeDrawable$c */
-    public static final class C10967c extends Drawable.ConstantState {
+    public final class C10967c extends Drawable.ConstantState {
 
         /* JADX INFO: renamed from: a */
         @NonNull

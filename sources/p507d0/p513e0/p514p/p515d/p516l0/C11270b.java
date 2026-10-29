@@ -39,7 +39,7 @@ public final class C11270b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.b$a */
     /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
-    public static final class a extends AbstractC12240o implements Function1<Object, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<Object, Boolean> {
         public final /* synthetic */ Class $annotationClass;
         public final /* synthetic */ List $methods;
         public final /* synthetic */ Map $values;
@@ -121,13 +121,18 @@ public final class C11270b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.b$b */
     /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
-    public static final class b extends AbstractC12240o implements Function0<Integer> {
+    public final class b extends AbstractC12240o implements Function0<Integer> {
         public final /* synthetic */ Map $values;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(Map map) {
             super(0);
             this.$values = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Integer invoke() {
+            return Integer.valueOf(invoke2());
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
@@ -160,16 +165,11 @@ public final class C11270b {
             }
             return iHashCode2;
         }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Integer invoke() {
-            return Integer.valueOf(invoke2());
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.b$c */
     /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
-    public static final class c implements InvocationHandler {
+    public final class c implements InvocationHandler {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Class f22417a;
@@ -233,19 +233,24 @@ public final class C11270b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.b$d */
     /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
-    public static final class d extends AbstractC12240o implements Function0<String> {
+    public final class d extends AbstractC12240o implements Function0<String> {
         public final /* synthetic */ Class $annotationClass;
         public final /* synthetic */ Map $values;
 
         /* JADX INFO: renamed from: d0.e0.p.d.l0.b$d$a */
         /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
-        public static final class a extends AbstractC12240o implements Function1<Map.Entry<? extends String, ? extends Object>, CharSequence> {
+        public final class a extends AbstractC12240o implements Function1<Map.Entry<? extends String, ? extends Object>, CharSequence> {
 
             /* JADX INFO: renamed from: j */
             public static final a f22422j = new a();
 
             public a() {
                 super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ CharSequence invoke(Map.Entry<? extends String, ? extends Object> entry) {
+                return invoke2((Map.Entry<String, ? extends Object>) entry);
             }
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
@@ -274,11 +279,6 @@ public final class C11270b {
                     string = value instanceof Object[] ? Arrays.toString((Object[]) value) : value.toString();
                 }
                 return key + '=' + string;
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ CharSequence invoke(Map.Entry<? extends String, ? extends Object> entry) {
-                return invoke2((Map.Entry<String, ? extends Object>) entry);
             }
         }
 
@@ -353,17 +353,6 @@ public final class C11270b {
         return null;
     }
 
-    public static final <T> T createAnnotationInstance(Class<T> cls, Map<String, ? extends Object> map, List<Method> list) {
-        C12238m.checkNotNullParameter(cls, "annotationClass");
-        C12238m.checkNotNullParameter(map, "values");
-        C12238m.checkNotNullParameter(list, "methods");
-        a aVar = new a(cls, list, map);
-        Lazy lazy = C12083g.lazy(new b(map));
-        T t = (T) Proxy.newProxyInstance(cls.getClassLoader(), new Class[]{cls}, new c(cls, C12083g.lazy(new d(cls, map)), null, lazy, null, aVar, map));
-        Objects.requireNonNull(t, "null cannot be cast to non-null type T");
-        return t;
-    }
-
     public static /* synthetic */ Object createAnnotationInstance$default(Class cls, Map map, List list, int i, Object obj) {
         if ((i & 4) != 0) {
             Set setKeySet = map.keySet();
@@ -375,5 +364,16 @@ public final class C11270b {
             list = arrayList;
         }
         return createAnnotationInstance(cls, map, list);
+    }
+
+    public static final <T> T createAnnotationInstance(Class<T> cls, Map<String, ? extends Object> map, List<Method> list) {
+        C12238m.checkNotNullParameter(cls, "annotationClass");
+        C12238m.checkNotNullParameter(map, "values");
+        C12238m.checkNotNullParameter(list, "methods");
+        a aVar = new a(cls, list, map);
+        Lazy lazy = C12083g.lazy(new b(map));
+        T t = (T) Proxy.newProxyInstance(cls.getClassLoader(), new Class[]{cls}, new c(cls, C12083g.lazy(new d(cls, map)), null, lazy, null, aVar, map));
+        Objects.requireNonNull(t, "null cannot be cast to non-null type T");
+        return t;
     }
 }

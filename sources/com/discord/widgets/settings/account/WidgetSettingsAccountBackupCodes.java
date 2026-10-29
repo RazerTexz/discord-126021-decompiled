@@ -68,10 +68,10 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
     private String verificationKey;
 
     /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<MGRecyclerDataPayload> {
+    public final class Adapter extends MGRecyclerAdapterSimple<MGRecyclerDataPayload> {
 
         /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-        public static final class BackupCodeHeaderViewHolder extends MGRecyclerViewHolder<Adapter, MGRecyclerDataPayload> {
+        public final class BackupCodeHeaderViewHolder extends MGRecyclerViewHolder<Adapter, MGRecyclerDataPayload> {
             private final WidgetSettingsItemBackupCodeHeaderBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -97,7 +97,7 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-        public static final class BackupCodeViewHolder extends MGRecyclerViewHolder<Adapter, MGRecyclerDataPayload> {
+        public final class BackupCodeViewHolder extends MGRecyclerViewHolder<Adapter, MGRecyclerDataPayload> {
             private final WidgetSettingsItemBackupCodeBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -166,7 +166,7 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final /* data */ class BackupCodeItem implements MGRecyclerDataPayload {
+    public final /* data */ class BackupCodeItem implements MGRecyclerDataPayload {
         private final BackupCode backupCode;
         private final String key;
         private final int type;
@@ -185,11 +185,6 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
             return backupCodeItem.copy(backupCode);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final BackupCode getBackupCode() {
-            return this.backupCode;
-        }
-
         public final BackupCodeItem copy(BackupCode backupCode) {
             C12238m.checkNotNullParameter(backupCode, "backupCode");
             return new BackupCodeItem(backupCode);
@@ -200,6 +195,11 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
                 return (other instanceof BackupCodeItem) && C12238m.areEqual(this.backupCode, ((BackupCodeItem) other).backupCode);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final BackupCode getBackupCode() {
+            return this.backupCode;
         }
 
         public final BackupCode getBackupCode() {
@@ -233,7 +233,7 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final /* data */ class BackupCodeItemHeader implements MGRecyclerDataPayload {
+    public final /* data */ class BackupCodeItemHeader implements MGRecyclerDataPayload {
         private final CharSequence headerText;
         private final String key;
         private final int type;
@@ -251,11 +251,6 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
             return backupCodeItemHeader.copy(charSequence);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getHeaderText() {
-            return this.headerText;
-        }
-
         public final BackupCodeItemHeader copy(CharSequence headerText) {
             C12238m.checkNotNullParameter(headerText, "headerText");
             return new BackupCodeItemHeader(headerText);
@@ -266,6 +261,11 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
                 return (other instanceof BackupCodeItemHeader) && C12238m.areEqual(this.headerText, ((BackupCodeItemHeader) other).headerText);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getHeaderText() {
+            return this.headerText;
         }
 
         public final CharSequence getHeaderText() {
@@ -295,24 +295,9 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
         }
     }
 
-    /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetSettingsAccountBackupCodes.class, new Intent());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountBackupCodes$getBackupCodes$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final class C97341 extends AbstractC12240o implements Function1<GetBackupCodesResponse, Unit> {
+    public final class C97341 extends AbstractC12240o implements Function1<GetBackupCodesResponse, Unit> {
         public C97341() {
             super(1);
         }
@@ -363,7 +348,7 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountBackupCodes$sendVerificationKey$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
-    public static final class C97361 extends AbstractC12240o implements Function1<GetBackupCodesSendVerificationKeyResponse, Unit> {
+    public final class C97361 extends AbstractC12240o implements Function1<GetBackupCodesSendVerificationKeyResponse, Unit> {
         public C97361() {
             super(1);
         }
@@ -379,6 +364,21 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
             WidgetSettingsAccountBackupCodes.this.nonce = getBackupCodesSendVerificationKeyResponse.getNonce();
             WidgetSettingsAccountBackupCodes.this.regenerateNonce = getBackupCodesSendVerificationKeyResponse.getRegenerateNonce();
             WidgetSettingsAccountBackupCodes.this.showVerificationKeyModal();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountBackupCodes.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetSettingsAccountBackupCodes.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -399,10 +399,6 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
         adapter.setData(data);
     }
 
-    private final void getBackupCodes(boolean regenerate) {
-        ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().getBackupCodesVerification(new GetBackupCodesVerificationRequestBody(this.verificationKey, regenerate ? this.regenerateNonce : this.nonce, regenerate)), this, null, 2, null), getBinding().f17781b, 100L), false, 1, null).m11108k(C0879o.f566a.m184g(getContext(), new C97341(), null));
-    }
-
     public static /* synthetic */ void getBackupCodes$default(WidgetSettingsAccountBackupCodes widgetSettingsAccountBackupCodes, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
@@ -410,34 +406,12 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
         widgetSettingsAccountBackupCodes.getBackupCodes(z2);
     }
 
+    private final void getBackupCodes(boolean regenerate) {
+        ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().getBackupCodesVerification(new GetBackupCodesVerificationRequestBody(this.verificationKey, regenerate ? this.regenerateNonce : this.nonce, regenerate)), this, null, 2, null), getBinding().f17781b, 100L), false, 1, null).m11108k(C0879o.f566a.m184g(getContext(), new C97341(), null));
+    }
+
     private final WidgetSettingsAccountBackupCodesBinding getBinding() {
         return (WidgetSettingsAccountBackupCodesBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final void sendVerificationKey() {
-        ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().getBackupCodesSendVerificationKey(new GetBackupCodesSendVerificationKeyRequestBody(this.password)), this, null, 2, null), false, 1, null).m11108k(C0879o.f566a.m184g(getContext(), new C97361(), new Action1<Error>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountBackupCodes.sendVerificationKey.2
-            @Override // p658rx.functions.Action1
-            public final void call(Error error) {
-                WidgetSettingsAccountBackupCodes.this.showPasswordModal();
-            }
-        }));
-    }
-
-    private final void showPasswordModal() {
-        AppActivity appActivity = getAppActivity();
-        if (appActivity != null) {
-            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
-            CharSequence charSequenceM216h = C1107b.m216h(requireContext(), C5419R.string.user_settings_enter_password_view_codes, new Object[0], null, 4);
-            CharSequence charSequenceM216h2 = C1107b.m216h(requireContext(), C5419R.string.form_label_password, new Object[0], null, 4);
-            companion.showInputModal(appActivity, C1107b.m216h(requireContext(), C5419R.string.two_fa_backup_codes_label, new Object[0], null, 4), charSequenceM216h, charSequenceM216h2, new C9738x1d9e6125(this), (640 & 32) != 0 ? null : new C9739x1d9e6126(this), (640 & 64) != 0 ? null : Boolean.FALSE, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : null, (640 & 256) != 0 ? null : C1107b.m216h(requireContext(), C5419R.string.two_fa_backup_codes_next_action, new Object[0], null, 4), (640 & 512) != 0 ? false : false);
-        }
-    }
-
-    private final void showVerificationKeyModal() {
-        AppActivity appActivity = getAppActivity();
-        if (appActivity != null) {
-            WidgetNoticeDialog.INSTANCE.showInputModal(appActivity, C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_label, new Object[0], null, 4), C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_body, new Object[0], null, 4), C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_input_label, new Object[0], null, 4), new C9740x16392ec2(this), (640 & 32) != 0 ? null : new C9741x16392ec3(this), (640 & 64) != 0 ? null : Boolean.FALSE, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : StoreNotices.InputDialog.Type.TEXT_NO_SUGGESTIONS, (640 & 256) != 0 ? null : null, (640 & 512) != 0 ? false : true);
-        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -467,5 +441,31 @@ public final class WidgetSettingsAccountBackupCodes extends AppFragment {
         });
         getBinding().f17781b.setDimmed(true, true);
         showPasswordModal();
+    }
+
+    private final void sendVerificationKey() {
+        ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().getBackupCodesSendVerificationKey(new GetBackupCodesSendVerificationKeyRequestBody(this.password)), this, null, 2, null), false, 1, null).m11108k(C0879o.f566a.m184g(getContext(), new C97361(), new Action1<Error>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountBackupCodes.sendVerificationKey.2
+            @Override // p658rx.functions.Action1
+            public final void call(Error error) {
+                WidgetSettingsAccountBackupCodes.this.showPasswordModal();
+            }
+        }));
+    }
+
+    private final void showPasswordModal() {
+        AppActivity appActivity = getAppActivity();
+        if (appActivity != null) {
+            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+            CharSequence charSequenceM216h = C1107b.m216h(requireContext(), C5419R.string.user_settings_enter_password_view_codes, new Object[0], null, 4);
+            CharSequence charSequenceM216h2 = C1107b.m216h(requireContext(), C5419R.string.form_label_password, new Object[0], null, 4);
+            companion.showInputModal(appActivity, C1107b.m216h(requireContext(), C5419R.string.two_fa_backup_codes_label, new Object[0], null, 4), charSequenceM216h, charSequenceM216h2, new C9738x1d9e6125(this), (640 & 32) != 0 ? null : new C9739x1d9e6126(this), (640 & 64) != 0 ? null : Boolean.FALSE, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : null, (640 & 256) != 0 ? null : C1107b.m216h(requireContext(), C5419R.string.two_fa_backup_codes_next_action, new Object[0], null, 4), (640 & 512) != 0 ? false : false);
+        }
+    }
+
+    private final void showVerificationKeyModal() {
+        AppActivity appActivity = getAppActivity();
+        if (appActivity != null) {
+            WidgetNoticeDialog.INSTANCE.showInputModal(appActivity, C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_label, new Object[0], null, 4), C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_body, new Object[0], null, 4), C1107b.m216h(requireContext(), C5419R.string.two_fa_confirm_view_backup_codes_input_label, new Object[0], null, 4), new C9740x16392ec2(this), (640 & 32) != 0 ? null : new C9741x16392ec3(this), (640 & 64) != 0 ? null : Boolean.FALSE, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : StoreNotices.InputDialog.Type.TEXT_NO_SUGGESTIONS, (640 & 256) != 0 ? null : null, (640 & 512) != 0 ? false : true);
+        }
     }
 }

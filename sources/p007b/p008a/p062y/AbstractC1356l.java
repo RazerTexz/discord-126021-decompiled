@@ -26,7 +26,7 @@ public abstract class AbstractC1356l extends OverlayDialog implements AppCompone
 
     /* JADX INFO: renamed from: b.a.y.l$a */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class a implements Animator.AnimatorListener {
+    public final class a implements Animator.AnimatorListener {
         public a() {
         }
 
@@ -54,7 +54,7 @@ public abstract class AbstractC1356l extends OverlayDialog implements AppCompone
 
     /* JADX INFO: renamed from: b.a.y.l$b */
     /* JADX INFO: compiled from: OverlayAppDialog.kt */
-    public static final class b implements View.OnAttachStateChangeListener {
+    public final class b implements View.OnAttachStateChangeListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Animator f2045j;
@@ -84,6 +84,17 @@ public abstract class AbstractC1356l extends OverlayDialog implements AppCompone
         this.f2043y = C1359m.f2048j;
     }
 
+    public abstract Animator getClosingAnimator();
+
+    public final Function1<OverlayDialog, Unit> getOnDialogClosed() {
+        return this.f2043y;
+    }
+
+    @Override // com.discord.app.AppComponent
+    public Subject<Void, Void> getUnsubscribeSignal() {
+        return this.f2042x;
+    }
+
     /* JADX INFO: renamed from: g */
     public final void m387g() {
         getUnsubscribeSignal().onNext(null);
@@ -96,17 +107,6 @@ public abstract class AbstractC1356l extends OverlayDialog implements AppCompone
         closingAnimator.addListener(new a());
         closingAnimator.start();
         addOnAttachStateChangeListener(new b(closingAnimator));
-    }
-
-    public abstract Animator getClosingAnimator();
-
-    public final Function1<OverlayDialog, Unit> getOnDialogClosed() {
-        return this.f2043y;
-    }
-
-    @Override // com.discord.app.AppComponent
-    public Subject<Void, Void> getUnsubscribeSignal() {
-        return this.f2042x;
     }
 
     @Override // android.view.ViewGroup, android.view.View

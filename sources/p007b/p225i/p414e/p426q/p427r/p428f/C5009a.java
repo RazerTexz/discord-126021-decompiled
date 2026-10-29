@@ -23,6 +23,18 @@ public final class C5009a {
         this.f13423c = c5006c;
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof C5009a)) {
+            return false;
+        }
+        C5009a c5009a = (C5009a) obj;
+        return m7018a(this.f13421a, c5009a.f13421a) && m7018a(this.f13422b, c5009a.f13422b) && m7018a(this.f13423c, c5009a.f13423c);
+    }
+
+    public int hashCode() {
+        return (m7019b(this.f13421a) ^ m7019b(this.f13422b)) ^ m7019b(this.f13423c);
+    }
+
     /* JADX INFO: renamed from: a */
     public static boolean m7018a(Object obj, Object obj2) {
         if (obj == null) {
@@ -37,18 +49,6 @@ public final class C5009a {
             return 0;
         }
         return obj.hashCode();
-    }
-
-    public boolean equals(Object obj) {
-        if (!(obj instanceof C5009a)) {
-            return false;
-        }
-        C5009a c5009a = (C5009a) obj;
-        return m7018a(this.f13421a, c5009a.f13421a) && m7018a(this.f13422b, c5009a.f13422b) && m7018a(this.f13423c, c5009a.f13423c);
-    }
-
-    public int hashCode() {
-        return (m7019b(this.f13421a) ^ m7019b(this.f13422b)) ^ m7019b(this.f13423c);
     }
 
     public String toString() {

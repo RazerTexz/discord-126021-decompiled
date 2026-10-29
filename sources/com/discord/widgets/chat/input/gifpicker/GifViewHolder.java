@@ -34,7 +34,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GifViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: GifViewHolder.kt */
-    public static final class Gif extends GifViewHolder {
+    public final class Gif extends GifViewHolder {
         private final GifItemViewBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -55,13 +55,6 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
             gif.configure(gifItem, i, function1);
         }
 
-        private final void setGifImage(ModelGif gif) {
-            String gifImageUrl = gif.getGifImageUrl();
-            SimpleDraweeView simpleDraweeView = this.binding.f15104b;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifItemImage");
-            MGImages.setImage$default(simpleDraweeView, C12145m.listOf(gifImageUrl), 0, 0, false, null, null, null, 252, null);
-        }
-
         public final void configure(final GifAdapterItem.GifItem gifItem, int columnWidthPx, final Function1<? super GifAdapterItem.GifItem, Unit> onSelectGif) {
             C12238m.checkNotNullParameter(gifItem, "gifItem");
             ModelGif gif = gifItem.getGif();
@@ -79,6 +72,13 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
                 }
             });
         }
+
+        private final void setGifImage(ModelGif gif) {
+            String gifImageUrl = gif.getGifImageUrl();
+            SimpleDraweeView simpleDraweeView = this.binding.f15104b;
+            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifItemImage");
+            MGImages.setImage$default(simpleDraweeView, C12145m.listOf(gifImageUrl), 0, 0, false, null, null, null, 252, null);
+        }
     }
 
     private GifViewHolder(View view) {
@@ -90,7 +90,7 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GifViewHolder.kt */
-    public static final class SuggestedTerms extends GifViewHolder {
+    public final class SuggestedTerms extends GifViewHolder {
         private final GifSuggestedTermViewBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -100,6 +100,19 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
             C12238m.checkNotNullExpressionValue(linearLayout, "binding.root");
             super(linearLayout, null);
             this.binding = gifSuggestedTermViewBinding;
+        }
+
+        public final void configure(GifAdapterItem.SuggestedTermsItem.SuggestedTermsEmptyResults termsItem, Function1<? super String, Unit> onTermSelected) {
+            C12238m.checkNotNullParameter(termsItem, "termsItem");
+            TextView textView = this.binding.f15107c;
+            C12238m.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
+            View view = this.itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            DrawableCompat.setCompoundDrawablesCompat$default(textView, 0, DrawableCompat.getThemedDrawableRes$default(view, C5419R.attr.theme_expression_tray_search_icon_empty, 0, 2, (Object) null), 0, 0, 13, (Object) null);
+            configureSearchTerms(termsItem, onTermSelected, -1);
+            View view2 = this.itemView;
+            C12238m.checkNotNullExpressionValue(view2, "itemView");
+            view2.setPadding(view2.getPaddingLeft(), 0, view2.getPaddingRight(), 0);
         }
 
         private final void configureSearchTerms(GifAdapterItem.SuggestedTermsItem termsItem, final Function1<? super String, Unit> onTermSelected, int layoutHeight) {
@@ -164,19 +177,6 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
             View view = this.itemView;
             C12238m.checkNotNullExpressionValue(view, "itemView");
             view.setLayoutParams(layoutParams);
-        }
-
-        public final void configure(GifAdapterItem.SuggestedTermsItem.SuggestedTermsEmptyResults termsItem, Function1<? super String, Unit> onTermSelected) {
-            C12238m.checkNotNullParameter(termsItem, "termsItem");
-            TextView textView = this.binding.f15107c;
-            C12238m.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
-            View view = this.itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            DrawableCompat.setCompoundDrawablesCompat$default(textView, 0, DrawableCompat.getThemedDrawableRes$default(view, C5419R.attr.theme_expression_tray_search_icon_empty, 0, 2, (Object) null), 0, 0, 13, (Object) null);
-            configureSearchTerms(termsItem, onTermSelected, -1);
-            View view2 = this.itemView;
-            C12238m.checkNotNullExpressionValue(view2, "itemView");
-            view2.setPadding(view2.getPaddingLeft(), 0, view2.getPaddingRight(), 0);
         }
 
         public final void configure(GifAdapterItem.SuggestedTermsItem.SuggestedTermsNonEmptyResults termsItem, Function1<? super String, Unit> onTermSelected) {

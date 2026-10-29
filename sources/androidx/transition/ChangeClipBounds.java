@@ -22,6 +22,16 @@ public class ChangeClipBounds extends Transition {
     public ChangeClipBounds() {
     }
 
+    @Override // androidx.transition.Transition
+    public void captureEndValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
+    @Override // androidx.transition.Transition
+    public void captureStartValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
     private void captureValues(TransitionValues transitionValues) {
         View view = transitionValues.view;
         if (view.getVisibility() == 8) {
@@ -32,16 +42,6 @@ public class ChangeClipBounds extends Transition {
         if (clipBounds == null) {
             transitionValues.values.put(PROPNAME_BOUNDS, new Rect(0, 0, view.getWidth(), view.getHeight()));
         }
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureEndValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureStartValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
     }
 
     @Override // androidx.transition.Transition

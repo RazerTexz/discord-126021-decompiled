@@ -237,12 +237,6 @@ public class LocalExifThumbnailProducer implements InterfaceC1994k1<C1919e> {
         this.f19579c = contentResolver;
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC1994k1
-    /* JADX INFO: renamed from: a */
-    public boolean mo1474a(C1884e c1884e) {
-        return C1460d.m472S0(512, 512, c1884e);
-    }
-
     @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
     /* JADX INFO: renamed from: b */
     public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
@@ -252,5 +246,11 @@ public class LocalExifThumbnailProducer implements InterfaceC1994k1<C1919e> {
         C10663a c10663a = new C10663a(interfaceC1995l, interfaceC2024z0Mo1457o, interfaceC2020x0, "LocalExifThumbnailProducer", imageRequestMo1447e);
         interfaceC2020x0.mo1448f(new C10664b(this, c10663a));
         this.f19577a.execute(c10663a);
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC1994k1
+    /* JADX INFO: renamed from: a */
+    public boolean mo1474a(C1884e c1884e) {
+        return C1460d.m472S0(512, 512, c1884e);
     }
 }

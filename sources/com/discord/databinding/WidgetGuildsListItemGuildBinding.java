@@ -60,6 +60,12 @@ public final class WidgetGuildsListItemGuildBinding implements ViewBinding {
         this.f17114i = imageView4;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f17106a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetGuildsListItemGuildBinding m8419a(@NonNull View view) {
@@ -97,11 +103,5 @@ public final class WidgetGuildsListItemGuildBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f17106a;
     }
 }

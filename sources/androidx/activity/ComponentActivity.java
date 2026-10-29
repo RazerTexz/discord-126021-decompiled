@@ -67,7 +67,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     public final SavedStateRegistryController mSavedStateRegistryController;
     private ViewModelStore mViewModelStore;
 
-    public static final class NonConfigurationInstances {
+    public final class NonConfigurationInstances {
         public Object custom;
         public ViewModelStore viewModelStore;
     }
@@ -187,12 +187,6 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
         }
     }
 
-    private void initViewTreeOwners() {
-        ViewTreeLifecycleOwner.set(getWindow().getDecorView(), this);
-        ViewTreeViewModelStoreOwner.set(getWindow().getDecorView(), this);
-        ViewTreeSavedStateRegistryOwner.set(getWindow().getDecorView(), this);
-    }
-
     @Override // android.app.Activity
     public void addContentView(@SuppressLint({"UnknownNullness", "MissingNullability"}) View view, @SuppressLint({"UnknownNullness", "MissingNullability"}) ViewGroup.LayoutParams layoutParams) {
         initViewTreeOwners();
@@ -270,6 +264,12 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
         }
         ensureViewModelStore();
         return this.mViewModelStore;
+    }
+
+    private void initViewTreeOwners() {
+        ViewTreeLifecycleOwner.set(getWindow().getDecorView(), this);
+        ViewTreeViewModelStoreOwner.set(getWindow().getDecorView(), this);
+        ViewTreeSavedStateRegistryOwner.set(getWindow().getDecorView(), this);
     }
 
     @Override // android.app.Activity

@@ -24,9 +24,6 @@ import p007b.p225i.p226a.p287e.InterfaceC3170a;
 /* JADX INFO: loaded from: classes3.dex */
 public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements InterfaceC3170a, RecyclerView.SmoothScroller.ScrollVectorProvider {
 
-    /* JADX INFO: renamed from: j */
-    public static final Rect f20318j = new Rect();
-
     /* JADX INFO: renamed from: E */
     public final Context f20323E;
 
@@ -66,6 +63,9 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     /* JADX INFO: renamed from: y */
     public SavedState f20341y;
 
+    /* JADX INFO: renamed from: j */
+    public static final Rect f20318j = new Rect();
+
     /* JADX INFO: renamed from: n */
     public int f20330n = -1;
 
@@ -99,17 +99,235 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     /* JADX INFO: renamed from: H */
     public C3172c.b f20326H = new C3172c.b();
 
-    public static class SavedState implements Parcelable {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10781a();
+    public class LayoutParams extends RecyclerView.LayoutParams implements FlexItem {
+
+        /* JADX INFO: renamed from: j */
+        public float f20343j;
+
+        /* JADX INFO: renamed from: k */
+        public float f20344k;
+
+        /* JADX INFO: renamed from: l */
+        public int f20345l;
+
+        /* JADX INFO: renamed from: m */
+        public float f20346m;
+
+        /* JADX INFO: renamed from: n */
+        public int f20347n;
+
+        /* JADX INFO: renamed from: o */
+        public int f20348o;
+
+        /* JADX INFO: renamed from: p */
+        public int f20349p;
+
+        /* JADX INFO: renamed from: q */
+        public int f20350q;
+
+        /* JADX INFO: renamed from: r */
+        public boolean f20351r;
+        public static final Parcelable.Creator<LayoutParams> CREATOR = new C10780a();
+
+        /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$LayoutParams$a */
+        public final class C10780a implements Parcelable.Creator<LayoutParams> {
+            @Override // android.os.Parcelable.Creator
+            public LayoutParams createFromParcel(Parcel parcel) {
+                return new LayoutParams(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public LayoutParams[] newArray(int i) {
+                return new LayoutParams[i];
+            }
+        }
+
+        public LayoutParams(Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.f20343j = 0.0f;
+            this.f20344k = 1.0f;
+            this.f20345l = -1;
+            this.f20346m = -1.0f;
+            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
+            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getHeight() {
+            return ((ViewGroup.MarginLayoutParams) this).height;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getOrder() {
+            return 1;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getWidth() {
+            return ((ViewGroup.MarginLayoutParams) this).width;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: D */
+        public int mo8955D() {
+            return this.f20347n;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: H */
+        public void mo8956H(int i) {
+            this.f20347n = i;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: I */
+        public int mo8957I() {
+            return ((ViewGroup.MarginLayoutParams) this).bottomMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: J */
+        public int mo8958J() {
+            return ((ViewGroup.MarginLayoutParams) this).leftMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: N */
+        public int mo8959N() {
+            return ((ViewGroup.MarginLayoutParams) this).topMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: O */
+        public void mo8960O(int i) {
+            this.f20348o = i;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: S */
+        public float mo8961S() {
+            return this.f20343j;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: W */
+        public float mo8962W() {
+            return this.f20346m;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: d0 */
+        public int mo8963d0() {
+            return ((ViewGroup.MarginLayoutParams) this).rightMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: f0 */
+        public int mo8964f0() {
+            return this.f20348o;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: j0 */
+        public boolean mo8965j0() {
+            return this.f20351r;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: m0 */
+        public int mo8966m0() {
+            return this.f20350q;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: t0 */
+        public int mo8967t0() {
+            return this.f20349p;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: u */
+        public int mo8968u() {
+            return this.f20345l;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        /* JADX INFO: renamed from: x */
+        public float mo8969x() {
+            return this.f20344k;
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeFloat(this.f20343j);
+            parcel.writeFloat(this.f20344k);
+            parcel.writeInt(this.f20345l);
+            parcel.writeFloat(this.f20346m);
+            parcel.writeInt(this.f20347n);
+            parcel.writeInt(this.f20348o);
+            parcel.writeInt(this.f20349p);
+            parcel.writeInt(this.f20350q);
+            parcel.writeByte(this.f20351r ? (byte) 1 : (byte) 0);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).bottomMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).leftMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).rightMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).topMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).height);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).width);
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+            this.f20343j = 0.0f;
+            this.f20344k = 1.0f;
+            this.f20345l = -1;
+            this.f20346m = -1.0f;
+            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
+            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
+        }
+
+        public LayoutParams(Parcel parcel) {
+            super(-2, -2);
+            this.f20343j = 0.0f;
+            this.f20344k = 1.0f;
+            this.f20345l = -1;
+            this.f20346m = -1.0f;
+            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
+            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
+            this.f20343j = parcel.readFloat();
+            this.f20344k = parcel.readFloat();
+            this.f20345l = parcel.readInt();
+            this.f20346m = parcel.readFloat();
+            this.f20347n = parcel.readInt();
+            this.f20348o = parcel.readInt();
+            this.f20349p = parcel.readInt();
+            this.f20350q = parcel.readInt();
+            this.f20351r = parcel.readByte() != 0;
+            ((ViewGroup.MarginLayoutParams) this).bottomMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).leftMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).rightMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).topMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).height = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).width = parcel.readInt();
+        }
+    }
+
+    public class SavedState implements Parcelable {
 
         /* JADX INFO: renamed from: j */
         public int f20352j;
 
         /* JADX INFO: renamed from: k */
         public int f20353k;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10781a();
 
         /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$SavedState$a */
-        public static class C10781a implements Parcelable.Creator<SavedState> {
+        public final class C10781a implements Parcelable.Creator<SavedState> {
             @Override // android.os.Parcelable.Creator
             public SavedState createFromParcel(Parcel parcel) {
                 return new SavedState(parcel, (C10782a) null);
@@ -153,148 +371,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$b */
-    public class C10783b {
-
-        /* JADX INFO: renamed from: a */
-        public int f20354a;
-
-        /* JADX INFO: renamed from: b */
-        public int f20355b;
-
-        /* JADX INFO: renamed from: c */
-        public int f20356c;
-
-        /* JADX INFO: renamed from: d */
-        public int f20357d = 0;
-
-        /* JADX INFO: renamed from: e */
-        public boolean f20358e;
-
-        /* JADX INFO: renamed from: f */
-        public boolean f20359f;
-
-        /* JADX INFO: renamed from: g */
-        public boolean f20360g;
-
-        public C10783b(C10782a c10782a) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static void m8998a(C10783b c10783b) {
-            if (!FlexboxLayoutManager.this.mo3932i()) {
-                FlexboxLayoutManager flexboxLayoutManager = FlexboxLayoutManager.this;
-                if (flexboxLayoutManager.f20331o) {
-                    c10783b.f20356c = c10783b.f20358e ? flexboxLayoutManager.f20339w.getEndAfterPadding() : flexboxLayoutManager.getWidth() - FlexboxLayoutManager.this.f20339w.getStartAfterPadding();
-                    return;
-                }
-            }
-            c10783b.f20356c = c10783b.f20358e ? FlexboxLayoutManager.this.f20339w.getEndAfterPadding() : FlexboxLayoutManager.this.f20339w.getStartAfterPadding();
-        }
-
-        /* JADX INFO: renamed from: b */
-        public static void m8999b(C10783b c10783b) {
-            c10783b.f20354a = -1;
-            c10783b.f20355b = -1;
-            c10783b.f20356c = Integer.MIN_VALUE;
-            c10783b.f20359f = false;
-            c10783b.f20360g = false;
-            if (FlexboxLayoutManager.this.mo3932i()) {
-                FlexboxLayoutManager flexboxLayoutManager = FlexboxLayoutManager.this;
-                int i = flexboxLayoutManager.f20328l;
-                if (i == 0) {
-                    c10783b.f20358e = flexboxLayoutManager.f20327k == 1;
-                    return;
-                } else {
-                    c10783b.f20358e = i == 2;
-                    return;
-                }
-            }
-            FlexboxLayoutManager flexboxLayoutManager2 = FlexboxLayoutManager.this;
-            int i2 = flexboxLayoutManager2.f20328l;
-            if (i2 == 0) {
-                c10783b.f20358e = flexboxLayoutManager2.f20327k == 3;
-            } else {
-                c10783b.f20358e = i2 == 2;
-            }
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("AnchorInfo{mPosition=");
-            sbM833U.append(this.f20354a);
-            sbM833U.append(", mFlexLinePosition=");
-            sbM833U.append(this.f20355b);
-            sbM833U.append(", mCoordinate=");
-            sbM833U.append(this.f20356c);
-            sbM833U.append(", mPerpendicularCoordinate=");
-            sbM833U.append(this.f20357d);
-            sbM833U.append(", mLayoutFromEnd=");
-            sbM833U.append(this.f20358e);
-            sbM833U.append(", mValid=");
-            sbM833U.append(this.f20359f);
-            sbM833U.append(", mAssignedFromSavedState=");
-            sbM833U.append(this.f20360g);
-            sbM833U.append('}');
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$c */
-    public static class C10784c {
-
-        /* JADX INFO: renamed from: a */
-        public int f20362a;
-
-        /* JADX INFO: renamed from: b */
-        public boolean f20363b;
-
-        /* JADX INFO: renamed from: c */
-        public int f20364c;
-
-        /* JADX INFO: renamed from: d */
-        public int f20365d;
-
-        /* JADX INFO: renamed from: e */
-        public int f20366e;
-
-        /* JADX INFO: renamed from: f */
-        public int f20367f;
-
-        /* JADX INFO: renamed from: g */
-        public int f20368g;
-
-        /* JADX INFO: renamed from: h */
-        public int f20369h = 1;
-
-        /* JADX INFO: renamed from: i */
-        public int f20370i = 1;
-
-        /* JADX INFO: renamed from: j */
-        public boolean f20371j;
-
-        public C10784c(C10782a c10782a) {
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("LayoutState{mAvailable=");
-            sbM833U.append(this.f20362a);
-            sbM833U.append(", mFlexLinePosition=");
-            sbM833U.append(this.f20364c);
-            sbM833U.append(", mPosition=");
-            sbM833U.append(this.f20365d);
-            sbM833U.append(", mOffset=");
-            sbM833U.append(this.f20366e);
-            sbM833U.append(", mScrollingOffset=");
-            sbM833U.append(this.f20367f);
-            sbM833U.append(", mLastScrollDelta=");
-            sbM833U.append(this.f20368g);
-            sbM833U.append(", mItemDirection=");
-            sbM833U.append(this.f20369h);
-            sbM833U.append(", mLayoutDirection=");
-            return C1643a.m813A(sbM833U, this.f20370i, '}');
-        }
-    }
-
     public FlexboxLayoutManager(Context context, AttributeSet attributeSet, int i, int i2) {
         RecyclerView.LayoutManager.Properties properties = RecyclerView.LayoutManager.getProperties(context, attributeSet, i, i2);
         int i3 = properties.orientation;
@@ -330,84 +406,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
         setAutoMeasureEnabled(true);
         this.f20323E = context;
-    }
-
-    public static boolean isMeasurementUpToDate(int i, int i2, int i3) {
-        int mode = View.MeasureSpec.getMode(i2);
-        int size = View.MeasureSpec.getSize(i2);
-        if (i3 > 0 && i != i3) {
-            return false;
-        }
-        if (mode == Integer.MIN_VALUE) {
-            return size >= i;
-        }
-        if (mode != 0) {
-            return mode == 1073741824 && size == i;
-        }
-        return true;
-    }
-
-    private boolean shouldMeasureChild(View view, int i, int i2, RecyclerView.LayoutParams layoutParams) {
-        return (!view.isLayoutRequested() && isMeasurementCacheEnabled() && isMeasurementUpToDate(view.getWidth(), i, ((ViewGroup.MarginLayoutParams) layoutParams).width) && isMeasurementUpToDate(view.getHeight(), i2, ((ViewGroup.MarginLayoutParams) layoutParams).height)) ? false : true;
-    }
-
-    /* JADX INFO: renamed from: A */
-    public final void m8981A(C10783b c10783b, boolean z2, boolean z3) {
-        if (z3) {
-            m8994w();
-        } else {
-            this.f20337u.f20363b = false;
-        }
-        if (mo3932i() || !this.f20331o) {
-            this.f20337u.f20362a = c10783b.f20356c - this.f20339w.getStartAfterPadding();
-        } else {
-            this.f20337u.f20362a = (this.f20324F.getWidth() - c10783b.f20356c) - this.f20339w.getStartAfterPadding();
-        }
-        C10784c c10784c = this.f20337u;
-        c10784c.f20365d = c10783b.f20354a;
-        c10784c.f20369h = 1;
-        c10784c.f20370i = -1;
-        c10784c.f20366e = c10783b.f20356c;
-        c10784c.f20367f = Integer.MIN_VALUE;
-        int i = c10783b.f20355b;
-        c10784c.f20364c = i;
-        if (!z2 || i <= 0) {
-            return;
-        }
-        int size = this.f20333q.size();
-        int i2 = c10783b.f20355b;
-        if (size > i2) {
-            C3171b c3171b = this.f20333q.get(i2);
-            C10784c c10784c2 = this.f20337u;
-            c10784c2.f20364c--;
-            c10784c2.f20365d -= c3171b.f9170h;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: a */
-    public void mo3924a(View view, int i, int i2, C3171b c3171b) {
-        calculateItemDecorationsForChild(view, f20318j);
-        if (mo3932i()) {
-            int rightDecorationWidth = getRightDecorationWidth(view) + getLeftDecorationWidth(view);
-            c3171b.f9167e += rightDecorationWidth;
-            c3171b.f9168f += rightDecorationWidth;
-            return;
-        }
-        int bottomDecorationHeight = getBottomDecorationHeight(view) + getTopDecorationHeight(view);
-        c3171b.f9167e += bottomDecorationHeight;
-        c3171b.f9168f += bottomDecorationHeight;
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: b */
-    public void mo3925b(C3171b c3171b) {
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: c */
-    public View mo3926c(int i) {
-        return mo3929f(i);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -530,25 +528,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return computeScrollRange(state);
     }
 
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: d */
-    public int mo3927d(int i, int i2, int i3) {
-        return RecyclerView.LayoutManager.getChildMeasureSpec(getWidth(), getWidthMode(), i2, i3, canScrollHorizontally());
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: e */
-    public void mo3928e(int i, View view) {
-        this.f20322D.put(i, view);
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: f */
-    public View mo3929f(int i) {
-        View view = this.f20322D.get(i);
-        return view != null ? view : this.f20335s.getViewForPosition(i);
-    }
-
     public int findLastVisibleItemPosition() {
         View viewM8989r = m8989r(getChildCount() - 1, -1, false);
         if (viewM8989r == null) {
@@ -603,21 +582,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
         this.f20339w.offsetChildren(-startAfterPadding);
         return iM8991t - startAfterPadding;
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: g */
-    public int mo3930g(View view, int i, int i2) {
-        int topDecorationHeight;
-        int bottomDecorationHeight;
-        if (mo3932i()) {
-            topDecorationHeight = getLeftDecorationWidth(view);
-            bottomDecorationHeight = getRightDecorationWidth(view);
-        } else {
-            topDecorationHeight = getTopDecorationHeight(view);
-            bottomDecorationHeight = getBottomDecorationHeight(view);
-        }
-        return bottomDecorationHeight + topDecorationHeight;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -688,32 +652,52 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return i;
     }
 
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: h */
-    public int mo3931h(int i, int i2, int i3) {
-        return RecyclerView.LayoutManager.getChildMeasureSpec(getHeight(), getHeightMode(), i2, i3, canScrollVertically());
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: i */
-    public boolean mo3932i() {
-        int i = this.f20327k;
-        return i == 0 || i == 1;
-    }
-
-    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
-    /* JADX INFO: renamed from: j */
-    public int mo3933j(View view) {
-        int leftDecorationWidth;
-        int rightDecorationWidth;
-        if (mo3932i()) {
-            leftDecorationWidth = getTopDecorationHeight(view);
-            rightDecorationWidth = getBottomDecorationHeight(view);
-        } else {
-            leftDecorationWidth = getLeftDecorationWidth(view);
-            rightDecorationWidth = getRightDecorationWidth(view);
+    public static boolean isMeasurementUpToDate(int i, int i2, int i3) {
+        int mode = View.MeasureSpec.getMode(i2);
+        int size = View.MeasureSpec.getSize(i2);
+        if (i3 > 0 && i != i3) {
+            return false;
         }
-        return rightDecorationWidth + leftDecorationWidth;
+        if (mode == Integer.MIN_VALUE) {
+            return size >= i;
+        }
+        if (mode != 0) {
+            return mode == 1073741824 && size == i;
+        }
+        return true;
+    }
+
+    /* JADX INFO: renamed from: A */
+    public final void m8981A(C10783b c10783b, boolean z2, boolean z3) {
+        if (z3) {
+            m8994w();
+        } else {
+            this.f20337u.f20363b = false;
+        }
+        if (mo3932i() || !this.f20331o) {
+            this.f20337u.f20362a = c10783b.f20356c - this.f20339w.getStartAfterPadding();
+        } else {
+            this.f20337u.f20362a = (this.f20324F.getWidth() - c10783b.f20356c) - this.f20339w.getStartAfterPadding();
+        }
+        C10784c c10784c = this.f20337u;
+        c10784c.f20365d = c10783b.f20354a;
+        c10784c.f20369h = 1;
+        c10784c.f20370i = -1;
+        c10784c.f20366e = c10783b.f20356c;
+        c10784c.f20367f = Integer.MIN_VALUE;
+        int i = c10783b.f20355b;
+        c10784c.f20364c = i;
+        if (!z2 || i <= 0) {
+            return;
+        }
+        int size = this.f20333q.size();
+        int i2 = c10783b.f20355b;
+        if (size > i2) {
+            C3171b c3171b = this.f20333q.get(i2);
+            C10784c c10784c2 = this.f20337u;
+            c10784c2.f20364c--;
+            c10784c2.f20365d -= c3171b.f9170h;
+        }
     }
 
     /* JADX INFO: renamed from: k */
@@ -988,6 +972,479 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
             }
         }
         return view;
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final View m8987p(int i) {
+        View viewM8990s = m8990s(getChildCount() - 1, -1, i);
+        if (viewM8990s == null) {
+            return null;
+        }
+        return m8988q(viewM8990s, this.f20333q.get(this.f20334r.f9183c[getPosition(viewM8990s)]));
+    }
+
+    /* JADX WARN: Code duplicated, block: B:17:0x0047  */
+    /* JADX INFO: renamed from: q */
+    public final View m8988q(View view, C3171b c3171b) {
+        boolean zMo3932i = mo3932i();
+        int childCount = (getChildCount() - c3171b.f9170h) - 1;
+        for (int childCount2 = getChildCount() - 2; childCount2 > childCount; childCount2--) {
+            View childAt = getChildAt(childCount2);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                if (!this.f20331o || zMo3932i) {
+                    if (this.f20339w.getDecoratedEnd(view) < this.f20339w.getDecoratedEnd(childAt)) {
+                        view = childAt;
+                    }
+                } else if (this.f20339w.getDecoratedStart(view) > this.f20339w.getDecoratedStart(childAt)) {
+                    view = childAt;
+                }
+            }
+        }
+        return view;
+    }
+
+    /* JADX INFO: renamed from: r */
+    public final View m8989r(int i, int i2, boolean z2) {
+        int i3 = i;
+        int i4 = i2 > i3 ? 1 : -1;
+        while (i3 != i2) {
+            View childAt = getChildAt(i3);
+            int paddingLeft = getPaddingLeft();
+            int paddingTop = getPaddingTop();
+            int width = getWidth() - getPaddingRight();
+            int height = getHeight() - getPaddingBottom();
+            int decoratedLeft = getDecoratedLeft(childAt) - ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).leftMargin;
+            int decoratedTop = getDecoratedTop(childAt) - ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).topMargin;
+            int decoratedRight = getDecoratedRight(childAt) + ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).rightMargin;
+            int decoratedBottom = getDecoratedBottom(childAt) + ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).bottomMargin;
+            boolean z3 = false;
+            boolean z4 = paddingLeft <= decoratedLeft && width >= decoratedRight;
+            boolean z5 = decoratedLeft >= width || decoratedRight >= paddingLeft;
+            boolean z6 = paddingTop <= decoratedTop && height >= decoratedBottom;
+            boolean z7 = decoratedTop >= height || decoratedBottom >= paddingTop;
+            if (!z2 ? !(!z5 || !z7) : !(!z4 || !z6)) {
+                z3 = true;
+            }
+            if (z3) {
+                return childAt;
+            }
+            i3 += i4;
+        }
+        return null;
+    }
+
+    /* JADX INFO: renamed from: s */
+    public final View m8990s(int i, int i2, int i3) {
+        m8983l();
+        View view = null;
+        if (this.f20337u == null) {
+            this.f20337u = new C10784c(null);
+        }
+        int startAfterPadding = this.f20339w.getStartAfterPadding();
+        int endAfterPadding = this.f20339w.getEndAfterPadding();
+        int i4 = i2 > i ? 1 : -1;
+        View view2 = null;
+        while (i != i2) {
+            View childAt = getChildAt(i);
+            int position = getPosition(childAt);
+            if (position >= 0 && position < i3) {
+                if (((RecyclerView.LayoutParams) childAt.getLayoutParams()).isItemRemoved()) {
+                    if (view2 == null) {
+                        view2 = childAt;
+                    }
+                } else {
+                    if (this.f20339w.getDecoratedStart(childAt) >= startAfterPadding && this.f20339w.getDecoratedEnd(childAt) <= endAfterPadding) {
+                        return childAt;
+                    }
+                    if (view == null) {
+                        view = childAt;
+                    }
+                }
+            }
+            i += i4;
+        }
+        return view != null ? view : view2;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:75:0x01ee  */
+    /* JADX INFO: renamed from: t */
+    public final int m8991t(int i, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        int i2;
+        if (getChildCount() == 0 || i == 0) {
+            return 0;
+        }
+        m8983l();
+        this.f20337u.f20371j = true;
+        boolean z2 = !mo3932i() && this.f20331o;
+        int i3 = (!z2 ? i > 0 : i < 0) ? -1 : 1;
+        int iAbs = Math.abs(i);
+        this.f20337u.f20370i = i3;
+        boolean zMo3932i = mo3932i();
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getWidth(), getWidthMode());
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getHeight(), getHeightMode());
+        boolean z3 = !zMo3932i && this.f20331o;
+        if (i3 == 1) {
+            View childAt = getChildAt(getChildCount() - 1);
+            this.f20337u.f20366e = this.f20339w.getDecoratedEnd(childAt);
+            int position = getPosition(childAt);
+            View viewM8988q = m8988q(childAt, this.f20333q.get(this.f20334r.f9183c[position]));
+            C10784c c10784c = this.f20337u;
+            c10784c.f20369h = 1;
+            int i4 = position + 1;
+            c10784c.f20365d = i4;
+            int[] iArr = this.f20334r.f9183c;
+            if (iArr.length <= i4) {
+                c10784c.f20364c = -1;
+            } else {
+                c10784c.f20364c = iArr[i4];
+            }
+            if (z3) {
+                c10784c.f20366e = this.f20339w.getDecoratedStart(viewM8988q);
+                this.f20337u.f20367f = this.f20339w.getStartAfterPadding() + (-this.f20339w.getDecoratedStart(viewM8988q));
+                C10784c c10784c2 = this.f20337u;
+                int i5 = c10784c2.f20367f;
+                if (i5 < 0) {
+                    i5 = 0;
+                }
+                c10784c2.f20367f = i5;
+            } else {
+                c10784c.f20366e = this.f20339w.getDecoratedEnd(viewM8988q);
+                this.f20337u.f20367f = this.f20339w.getDecoratedEnd(viewM8988q) - this.f20339w.getEndAfterPadding();
+            }
+            int i6 = this.f20337u.f20364c;
+            if ((i6 == -1 || i6 > this.f20333q.size() - 1) && this.f20337u.f20365d <= getFlexItemCount()) {
+                int i7 = iAbs - this.f20337u.f20367f;
+                this.f20326H.m3964a();
+                if (i7 > 0) {
+                    if (zMo3932i) {
+                        this.f20334r.m3939b(this.f20326H, iMakeMeasureSpec, iMakeMeasureSpec2, i7, this.f20337u.f20365d, -1, this.f20333q);
+                    } else {
+                        this.f20334r.m3939b(this.f20326H, iMakeMeasureSpec2, iMakeMeasureSpec, i7, this.f20337u.f20365d, -1, this.f20333q);
+                    }
+                    this.f20334r.m3945h(iMakeMeasureSpec, iMakeMeasureSpec2, this.f20337u.f20365d);
+                    this.f20334r.m3936A(this.f20337u.f20365d);
+                }
+            }
+        } else {
+            View childAt2 = getChildAt(0);
+            this.f20337u.f20366e = this.f20339w.getDecoratedStart(childAt2);
+            int position2 = getPosition(childAt2);
+            View viewM8986o = m8986o(childAt2, this.f20333q.get(this.f20334r.f9183c[position2]));
+            C10784c c10784c3 = this.f20337u;
+            c10784c3.f20369h = 1;
+            int i8 = this.f20334r.f9183c[position2];
+            if (i8 == -1) {
+                i8 = 0;
+            }
+            if (i8 > 0) {
+                this.f20337u.f20365d = position2 - this.f20333q.get(i8 - 1).f9170h;
+            } else {
+                c10784c3.f20365d = -1;
+            }
+            C10784c c10784c4 = this.f20337u;
+            c10784c4.f20364c = i8 > 0 ? i8 - 1 : 0;
+            if (z3) {
+                c10784c4.f20366e = this.f20339w.getDecoratedEnd(viewM8986o);
+                this.f20337u.f20367f = this.f20339w.getDecoratedEnd(viewM8986o) - this.f20339w.getEndAfterPadding();
+                C10784c c10784c5 = this.f20337u;
+                int i9 = c10784c5.f20367f;
+                if (i9 < 0) {
+                    i9 = 0;
+                }
+                c10784c5.f20367f = i9;
+            } else {
+                c10784c4.f20366e = this.f20339w.getDecoratedStart(viewM8986o);
+                this.f20337u.f20367f = this.f20339w.getStartAfterPadding() + (-this.f20339w.getDecoratedStart(viewM8986o));
+            }
+        }
+        C10784c c10784c6 = this.f20337u;
+        int i10 = c10784c6.f20367f;
+        c10784c6.f20362a = iAbs - i10;
+        int iM8984m = m8984m(recycler, state, c10784c6) + i10;
+        if (iM8984m < 0) {
+            return 0;
+        }
+        if (z2) {
+            if (iAbs > iM8984m) {
+                i2 = (-i3) * iM8984m;
+            } else {
+                i2 = i;
+            }
+        } else if (iAbs > iM8984m) {
+            i2 = i3 * iM8984m;
+        } else {
+            i2 = i;
+        }
+        this.f20339w.offsetChildren(-i2);
+        this.f20337u.f20368g = i2;
+        return i2;
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final int m8992u(int i) {
+        int i2;
+        if (getChildCount() == 0 || i == 0) {
+            return 0;
+        }
+        m8983l();
+        boolean zMo3932i = mo3932i();
+        View view = this.f20324F;
+        int width = zMo3932i ? view.getWidth() : view.getHeight();
+        int width2 = zMo3932i ? getWidth() : getHeight();
+        if (getLayoutDirection() == 1) {
+            int iAbs = Math.abs(i);
+            if (i < 0) {
+                return -Math.min((width2 + this.f20338v.f20357d) - width, iAbs);
+            }
+            i2 = this.f20338v.f20357d;
+            if (i2 + i <= 0) {
+                return i;
+            }
+        } else {
+            if (i > 0) {
+                return Math.min((width2 - this.f20338v.f20357d) - width, i);
+            }
+            i2 = this.f20338v.f20357d;
+            if (i2 + i >= 0) {
+                return i;
+            }
+        }
+        return -i2;
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final void m8993v(RecyclerView.Recycler recycler, C10784c c10784c) {
+        int childCount;
+        if (c10784c.f20371j) {
+            int i = -1;
+            if (c10784c.f20370i != -1) {
+                if (c10784c.f20367f >= 0 && (childCount = getChildCount()) != 0) {
+                    int i2 = this.f20334r.f9183c[getPosition(getChildAt(0))];
+                    if (i2 == -1) {
+                        return;
+                    }
+                    C3171b c3171b = this.f20333q.get(i2);
+                    for (int i3 = 0; i3 < childCount; i3++) {
+                        View childAt = getChildAt(i3);
+                        int i4 = c10784c.f20367f;
+                        if (!(mo3932i() || !this.f20331o ? this.f20339w.getDecoratedEnd(childAt) <= i4 : this.f20339w.getEnd() - this.f20339w.getDecoratedStart(childAt) <= i4)) {
+                            break;
+                        }
+                        if (c3171b.f9178p == getPosition(childAt)) {
+                            if (i2 >= this.f20333q.size() - 1) {
+                                i = i3;
+                                break;
+                            } else {
+                                i2 += c10784c.f20370i;
+                                c3171b = this.f20333q.get(i2);
+                                i = i3;
+                            }
+                        }
+                    }
+                    while (i >= 0) {
+                        removeAndRecycleViewAt(i, recycler);
+                        i--;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (c10784c.f20367f < 0) {
+                return;
+            }
+            this.f20339w.getEnd();
+            int childCount2 = getChildCount();
+            if (childCount2 == 0) {
+                return;
+            }
+            int i5 = childCount2 - 1;
+            int i6 = this.f20334r.f9183c[getPosition(getChildAt(i5))];
+            if (i6 == -1) {
+                return;
+            }
+            C3171b c3171b2 = this.f20333q.get(i6);
+            for (int i7 = i5; i7 >= 0; i7--) {
+                View childAt2 = getChildAt(i7);
+                int i8 = c10784c.f20367f;
+                if (!(mo3932i() || !this.f20331o ? this.f20339w.getDecoratedStart(childAt2) >= this.f20339w.getEnd() - i8 : this.f20339w.getDecoratedEnd(childAt2) <= i8)) {
+                    break;
+                }
+                if (c3171b2.f9177o == getPosition(childAt2)) {
+                    if (i6 <= 0) {
+                        childCount2 = i7;
+                        break;
+                    } else {
+                        i6 += c10784c.f20370i;
+                        c3171b2 = this.f20333q.get(i6);
+                        childCount2 = i7;
+                    }
+                }
+            }
+            while (i5 >= childCount2) {
+                removeAndRecycleViewAt(i5, recycler);
+                i5--;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final void m8994w() {
+        int heightMode = mo3932i() ? getHeightMode() : getWidthMode();
+        this.f20337u.f20363b = heightMode == 0 || heightMode == Integer.MIN_VALUE;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public void m8995x(int i) {
+        if (this.f20327k != i) {
+            removeAllViews();
+            this.f20327k = i;
+            this.f20339w = null;
+            this.f20340x = null;
+            m8982k();
+            requestLayout();
+        }
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final void m8996y(int i) {
+        if (i >= findLastVisibleItemPosition()) {
+            return;
+        }
+        int childCount = getChildCount();
+        this.f20334r.m3947j(childCount);
+        this.f20334r.m3948k(childCount);
+        this.f20334r.m3946i(childCount);
+        if (i >= this.f20334r.f9183c.length) {
+            return;
+        }
+        this.f20325G = i;
+        View childAt = getChildAt(0);
+        if (childAt == null) {
+            return;
+        }
+        this.f20342z = getPosition(childAt);
+        if (mo3932i() || !this.f20331o) {
+            this.f20319A = this.f20339w.getDecoratedStart(childAt) - this.f20339w.getStartAfterPadding();
+        } else {
+            this.f20319A = this.f20339w.getEndPadding() + this.f20339w.getDecoratedEnd(childAt);
+        }
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final void m8997z(C10783b c10783b, boolean z2, boolean z3) {
+        int i;
+        if (z3) {
+            m8994w();
+        } else {
+            this.f20337u.f20363b = false;
+        }
+        if (mo3932i() || !this.f20331o) {
+            this.f20337u.f20362a = this.f20339w.getEndAfterPadding() - c10783b.f20356c;
+        } else {
+            this.f20337u.f20362a = c10783b.f20356c - getPaddingRight();
+        }
+        C10784c c10784c = this.f20337u;
+        c10784c.f20365d = c10783b.f20354a;
+        c10784c.f20369h = 1;
+        c10784c.f20370i = 1;
+        c10784c.f20366e = c10783b.f20356c;
+        c10784c.f20367f = Integer.MIN_VALUE;
+        c10784c.f20364c = c10783b.f20355b;
+        if (!z2 || this.f20333q.size() <= 1 || (i = c10783b.f20355b) < 0 || i >= this.f20333q.size() - 1) {
+            return;
+        }
+        C3171b c3171b = this.f20333q.get(c10783b.f20355b);
+        C10784c c10784c2 = this.f20337u;
+        c10784c2.f20364c++;
+        c10784c2.f20365d += c3171b.f9170h;
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: a */
+    public void mo3924a(View view, int i, int i2, C3171b c3171b) {
+        calculateItemDecorationsForChild(view, f20318j);
+        if (mo3932i()) {
+            int rightDecorationWidth = getRightDecorationWidth(view) + getLeftDecorationWidth(view);
+            c3171b.f9167e += rightDecorationWidth;
+            c3171b.f9168f += rightDecorationWidth;
+            return;
+        }
+        int bottomDecorationHeight = getBottomDecorationHeight(view) + getTopDecorationHeight(view);
+        c3171b.f9167e += bottomDecorationHeight;
+        c3171b.f9168f += bottomDecorationHeight;
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: b */
+    public void mo3925b(C3171b c3171b) {
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: c */
+    public View mo3926c(int i) {
+        return mo3929f(i);
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: d */
+    public int mo3927d(int i, int i2, int i3) {
+        return RecyclerView.LayoutManager.getChildMeasureSpec(getWidth(), getWidthMode(), i2, i3, canScrollHorizontally());
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: e */
+    public void mo3928e(int i, View view) {
+        this.f20322D.put(i, view);
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: f */
+    public View mo3929f(int i) {
+        View view = this.f20322D.get(i);
+        return view != null ? view : this.f20335s.getViewForPosition(i);
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: g */
+    public int mo3930g(View view, int i, int i2) {
+        int topDecorationHeight;
+        int bottomDecorationHeight;
+        if (mo3932i()) {
+            topDecorationHeight = getLeftDecorationWidth(view);
+            bottomDecorationHeight = getRightDecorationWidth(view);
+        } else {
+            topDecorationHeight = getTopDecorationHeight(view);
+            bottomDecorationHeight = getBottomDecorationHeight(view);
+        }
+        return bottomDecorationHeight + topDecorationHeight;
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: h */
+    public int mo3931h(int i, int i2, int i3) {
+        return RecyclerView.LayoutManager.getChildMeasureSpec(getHeight(), getHeightMode(), i2, i3, canScrollVertically());
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: i */
+    public boolean mo3932i() {
+        int i = this.f20327k;
+        return i == 0 || i == 1;
+    }
+
+    @Override // p007b.p225i.p226a.p287e.InterfaceC3170a
+    /* JADX INFO: renamed from: j */
+    public int mo3933j(View view) {
+        int leftDecorationWidth;
+        int rightDecorationWidth;
+        if (mo3932i()) {
+            leftDecorationWidth = getTopDecorationHeight(view);
+            rightDecorationWidth = getBottomDecorationHeight(view);
+        } else {
+            leftDecorationWidth = getLeftDecorationWidth(view);
+            rightDecorationWidth = getRightDecorationWidth(view);
+        }
+        return rightDecorationWidth + leftDecorationWidth;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -1374,98 +1831,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return savedState2;
     }
 
-    /* JADX INFO: renamed from: p */
-    public final View m8987p(int i) {
-        View viewM8990s = m8990s(getChildCount() - 1, -1, i);
-        if (viewM8990s == null) {
-            return null;
-        }
-        return m8988q(viewM8990s, this.f20333q.get(this.f20334r.f9183c[getPosition(viewM8990s)]));
-    }
-
-    /* JADX WARN: Code duplicated, block: B:17:0x0047  */
-    /* JADX INFO: renamed from: q */
-    public final View m8988q(View view, C3171b c3171b) {
-        boolean zMo3932i = mo3932i();
-        int childCount = (getChildCount() - c3171b.f9170h) - 1;
-        for (int childCount2 = getChildCount() - 2; childCount2 > childCount; childCount2--) {
-            View childAt = getChildAt(childCount2);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                if (!this.f20331o || zMo3932i) {
-                    if (this.f20339w.getDecoratedEnd(view) < this.f20339w.getDecoratedEnd(childAt)) {
-                        view = childAt;
-                    }
-                } else if (this.f20339w.getDecoratedStart(view) > this.f20339w.getDecoratedStart(childAt)) {
-                    view = childAt;
-                }
-            }
-        }
-        return view;
-    }
-
-    /* JADX INFO: renamed from: r */
-    public final View m8989r(int i, int i2, boolean z2) {
-        int i3 = i;
-        int i4 = i2 > i3 ? 1 : -1;
-        while (i3 != i2) {
-            View childAt = getChildAt(i3);
-            int paddingLeft = getPaddingLeft();
-            int paddingTop = getPaddingTop();
-            int width = getWidth() - getPaddingRight();
-            int height = getHeight() - getPaddingBottom();
-            int decoratedLeft = getDecoratedLeft(childAt) - ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).leftMargin;
-            int decoratedTop = getDecoratedTop(childAt) - ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).topMargin;
-            int decoratedRight = getDecoratedRight(childAt) + ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).rightMargin;
-            int decoratedBottom = getDecoratedBottom(childAt) + ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) childAt.getLayoutParams())).bottomMargin;
-            boolean z3 = false;
-            boolean z4 = paddingLeft <= decoratedLeft && width >= decoratedRight;
-            boolean z5 = decoratedLeft >= width || decoratedRight >= paddingLeft;
-            boolean z6 = paddingTop <= decoratedTop && height >= decoratedBottom;
-            boolean z7 = decoratedTop >= height || decoratedBottom >= paddingTop;
-            if (!z2 ? !(!z5 || !z7) : !(!z4 || !z6)) {
-                z3 = true;
-            }
-            if (z3) {
-                return childAt;
-            }
-            i3 += i4;
-        }
-        return null;
-    }
-
-    /* JADX INFO: renamed from: s */
-    public final View m8990s(int i, int i2, int i3) {
-        m8983l();
-        View view = null;
-        if (this.f20337u == null) {
-            this.f20337u = new C10784c(null);
-        }
-        int startAfterPadding = this.f20339w.getStartAfterPadding();
-        int endAfterPadding = this.f20339w.getEndAfterPadding();
-        int i4 = i2 > i ? 1 : -1;
-        View view2 = null;
-        while (i != i2) {
-            View childAt = getChildAt(i);
-            int position = getPosition(childAt);
-            if (position >= 0 && position < i3) {
-                if (((RecyclerView.LayoutParams) childAt.getLayoutParams()).isItemRemoved()) {
-                    if (view2 == null) {
-                        view2 = childAt;
-                    }
-                } else {
-                    if (this.f20339w.getDecoratedStart(childAt) >= startAfterPadding && this.f20339w.getDecoratedEnd(childAt) <= endAfterPadding) {
-                        return childAt;
-                    }
-                    if (view == null) {
-                        view = childAt;
-                    }
-                }
-            }
-            i += i4;
-        }
-        return view != null ? view : view2;
-    }
-
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
     public int scrollHorizontallyBy(int i, RecyclerView.Recycler recycler, RecyclerView.State state) {
         if (!mo3932i() || (this.f20328l == 0 && mo3932i())) {
@@ -1508,6 +1873,10 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         this.f20333q = list;
     }
 
+    private boolean shouldMeasureChild(View view, int i, int i2, RecyclerView.LayoutParams layoutParams) {
+        return (!view.isLayoutRequested() && isMeasurementCacheEnabled() && isMeasurementUpToDate(view.getWidth(), i, ((ViewGroup.MarginLayoutParams) layoutParams).width) && isMeasurementUpToDate(view.getHeight(), i2, ((ViewGroup.MarginLayoutParams) layoutParams).height)) ? false : true;
+    }
+
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
     public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
         LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext());
@@ -1515,520 +1884,151 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         startSmoothScroll(linearSmoothScroller);
     }
 
-    /* JADX WARN: Code duplicated, block: B:75:0x01ee  */
-    /* JADX INFO: renamed from: t */
-    public final int m8991t(int i, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        int i2;
-        if (getChildCount() == 0 || i == 0) {
-            return 0;
-        }
-        m8983l();
-        this.f20337u.f20371j = true;
-        boolean z2 = !mo3932i() && this.f20331o;
-        int i3 = (!z2 ? i > 0 : i < 0) ? -1 : 1;
-        int iAbs = Math.abs(i);
-        this.f20337u.f20370i = i3;
-        boolean zMo3932i = mo3932i();
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getWidth(), getWidthMode());
-        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getHeight(), getHeightMode());
-        boolean z3 = !zMo3932i && this.f20331o;
-        if (i3 == 1) {
-            View childAt = getChildAt(getChildCount() - 1);
-            this.f20337u.f20366e = this.f20339w.getDecoratedEnd(childAt);
-            int position = getPosition(childAt);
-            View viewM8988q = m8988q(childAt, this.f20333q.get(this.f20334r.f9183c[position]));
-            C10784c c10784c = this.f20337u;
-            c10784c.f20369h = 1;
-            int i4 = position + 1;
-            c10784c.f20365d = i4;
-            int[] iArr = this.f20334r.f9183c;
-            if (iArr.length <= i4) {
-                c10784c.f20364c = -1;
-            } else {
-                c10784c.f20364c = iArr[i4];
-            }
-            if (z3) {
-                c10784c.f20366e = this.f20339w.getDecoratedStart(viewM8988q);
-                this.f20337u.f20367f = this.f20339w.getStartAfterPadding() + (-this.f20339w.getDecoratedStart(viewM8988q));
-                C10784c c10784c2 = this.f20337u;
-                int i5 = c10784c2.f20367f;
-                if (i5 < 0) {
-                    i5 = 0;
-                }
-                c10784c2.f20367f = i5;
-            } else {
-                c10784c.f20366e = this.f20339w.getDecoratedEnd(viewM8988q);
-                this.f20337u.f20367f = this.f20339w.getDecoratedEnd(viewM8988q) - this.f20339w.getEndAfterPadding();
-            }
-            int i6 = this.f20337u.f20364c;
-            if ((i6 == -1 || i6 > this.f20333q.size() - 1) && this.f20337u.f20365d <= getFlexItemCount()) {
-                int i7 = iAbs - this.f20337u.f20367f;
-                this.f20326H.m3964a();
-                if (i7 > 0) {
-                    if (zMo3932i) {
-                        this.f20334r.m3939b(this.f20326H, iMakeMeasureSpec, iMakeMeasureSpec2, i7, this.f20337u.f20365d, -1, this.f20333q);
-                    } else {
-                        this.f20334r.m3939b(this.f20326H, iMakeMeasureSpec2, iMakeMeasureSpec, i7, this.f20337u.f20365d, -1, this.f20333q);
-                    }
-                    this.f20334r.m3945h(iMakeMeasureSpec, iMakeMeasureSpec2, this.f20337u.f20365d);
-                    this.f20334r.m3936A(this.f20337u.f20365d);
-                }
-            }
-        } else {
-            View childAt2 = getChildAt(0);
-            this.f20337u.f20366e = this.f20339w.getDecoratedStart(childAt2);
-            int position2 = getPosition(childAt2);
-            View viewM8986o = m8986o(childAt2, this.f20333q.get(this.f20334r.f9183c[position2]));
-            C10784c c10784c3 = this.f20337u;
-            c10784c3.f20369h = 1;
-            int i8 = this.f20334r.f9183c[position2];
-            if (i8 == -1) {
-                i8 = 0;
-            }
-            if (i8 > 0) {
-                this.f20337u.f20365d = position2 - this.f20333q.get(i8 - 1).f9170h;
-            } else {
-                c10784c3.f20365d = -1;
-            }
-            C10784c c10784c4 = this.f20337u;
-            c10784c4.f20364c = i8 > 0 ? i8 - 1 : 0;
-            if (z3) {
-                c10784c4.f20366e = this.f20339w.getDecoratedEnd(viewM8986o);
-                this.f20337u.f20367f = this.f20339w.getDecoratedEnd(viewM8986o) - this.f20339w.getEndAfterPadding();
-                C10784c c10784c5 = this.f20337u;
-                int i9 = c10784c5.f20367f;
-                if (i9 < 0) {
-                    i9 = 0;
-                }
-                c10784c5.f20367f = i9;
-            } else {
-                c10784c4.f20366e = this.f20339w.getDecoratedStart(viewM8986o);
-                this.f20337u.f20367f = this.f20339w.getStartAfterPadding() + (-this.f20339w.getDecoratedStart(viewM8986o));
-            }
-        }
-        C10784c c10784c6 = this.f20337u;
-        int i10 = c10784c6.f20367f;
-        c10784c6.f20362a = iAbs - i10;
-        int iM8984m = m8984m(recycler, state, c10784c6) + i10;
-        if (iM8984m < 0) {
-            return 0;
-        }
-        if (z2) {
-            if (iAbs > iM8984m) {
-                i2 = (-i3) * iM8984m;
-            } else {
-                i2 = i;
-            }
-        } else if (iAbs > iM8984m) {
-            i2 = i3 * iM8984m;
-        } else {
-            i2 = i;
-        }
-        this.f20339w.offsetChildren(-i2);
-        this.f20337u.f20368g = i2;
-        return i2;
-    }
+    /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$b */
+    public class C10783b {
 
-    /* JADX INFO: renamed from: u */
-    public final int m8992u(int i) {
-        int i2;
-        if (getChildCount() == 0 || i == 0) {
-            return 0;
-        }
-        m8983l();
-        boolean zMo3932i = mo3932i();
-        View view = this.f20324F;
-        int width = zMo3932i ? view.getWidth() : view.getHeight();
-        int width2 = zMo3932i ? getWidth() : getHeight();
-        if (getLayoutDirection() == 1) {
-            int iAbs = Math.abs(i);
-            if (i < 0) {
-                return -Math.min((width2 + this.f20338v.f20357d) - width, iAbs);
-            }
-            i2 = this.f20338v.f20357d;
-            if (i2 + i <= 0) {
-                return i;
-            }
-        } else {
-            if (i > 0) {
-                return Math.min((width2 - this.f20338v.f20357d) - width, i);
-            }
-            i2 = this.f20338v.f20357d;
-            if (i2 + i >= 0) {
-                return i;
-            }
-        }
-        return -i2;
-    }
+        /* JADX INFO: renamed from: a */
+        public int f20354a;
 
-    /* JADX INFO: renamed from: v */
-    public final void m8993v(RecyclerView.Recycler recycler, C10784c c10784c) {
-        int childCount;
-        if (c10784c.f20371j) {
-            int i = -1;
-            if (c10784c.f20370i != -1) {
-                if (c10784c.f20367f >= 0 && (childCount = getChildCount()) != 0) {
-                    int i2 = this.f20334r.f9183c[getPosition(getChildAt(0))];
-                    if (i2 == -1) {
-                        return;
-                    }
-                    C3171b c3171b = this.f20333q.get(i2);
-                    for (int i3 = 0; i3 < childCount; i3++) {
-                        View childAt = getChildAt(i3);
-                        int i4 = c10784c.f20367f;
-                        if (!(mo3932i() || !this.f20331o ? this.f20339w.getDecoratedEnd(childAt) <= i4 : this.f20339w.getEnd() - this.f20339w.getDecoratedStart(childAt) <= i4)) {
-                            break;
-                        }
-                        if (c3171b.f9178p == getPosition(childAt)) {
-                            if (i2 >= this.f20333q.size() - 1) {
-                                i = i3;
-                                break;
-                            } else {
-                                i2 += c10784c.f20370i;
-                                c3171b = this.f20333q.get(i2);
-                                i = i3;
-                            }
-                        }
-                    }
-                    while (i >= 0) {
-                        removeAndRecycleViewAt(i, recycler);
-                        i--;
-                    }
+        /* JADX INFO: renamed from: b */
+        public int f20355b;
+
+        /* JADX INFO: renamed from: c */
+        public int f20356c;
+
+        /* JADX INFO: renamed from: e */
+        public boolean f20358e;
+
+        /* JADX INFO: renamed from: f */
+        public boolean f20359f;
+
+        /* JADX INFO: renamed from: g */
+        public boolean f20360g;
+
+        /* JADX INFO: renamed from: d */
+        public int f20357d = 0;
+
+        public C10783b(C10782a c10782a) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static void m8998a(C10783b c10783b) {
+            if (!FlexboxLayoutManager.this.mo3932i()) {
+                FlexboxLayoutManager flexboxLayoutManager = FlexboxLayoutManager.this;
+                if (flexboxLayoutManager.f20331o) {
+                    c10783b.f20356c = c10783b.f20358e ? flexboxLayoutManager.f20339w.getEndAfterPadding() : flexboxLayoutManager.getWidth() - FlexboxLayoutManager.this.f20339w.getStartAfterPadding();
                     return;
                 }
-                return;
             }
-            if (c10784c.f20367f < 0) {
-                return;
-            }
-            this.f20339w.getEnd();
-            int childCount2 = getChildCount();
-            if (childCount2 == 0) {
-                return;
-            }
-            int i5 = childCount2 - 1;
-            int i6 = this.f20334r.f9183c[getPosition(getChildAt(i5))];
-            if (i6 == -1) {
-                return;
-            }
-            C3171b c3171b2 = this.f20333q.get(i6);
-            for (int i7 = i5; i7 >= 0; i7--) {
-                View childAt2 = getChildAt(i7);
-                int i8 = c10784c.f20367f;
-                if (!(mo3932i() || !this.f20331o ? this.f20339w.getDecoratedStart(childAt2) >= this.f20339w.getEnd() - i8 : this.f20339w.getDecoratedEnd(childAt2) <= i8)) {
-                    break;
-                }
-                if (c3171b2.f9177o == getPosition(childAt2)) {
-                    if (i6 <= 0) {
-                        childCount2 = i7;
-                        break;
-                    } else {
-                        i6 += c10784c.f20370i;
-                        c3171b2 = this.f20333q.get(i6);
-                        childCount2 = i7;
-                    }
+            c10783b.f20356c = c10783b.f20358e ? FlexboxLayoutManager.this.f20339w.getEndAfterPadding() : FlexboxLayoutManager.this.f20339w.getStartAfterPadding();
+        }
+
+        /* JADX INFO: renamed from: b */
+        public static void m8999b(C10783b c10783b) {
+            c10783b.f20354a = -1;
+            c10783b.f20355b = -1;
+            c10783b.f20356c = Integer.MIN_VALUE;
+            c10783b.f20359f = false;
+            c10783b.f20360g = false;
+            if (FlexboxLayoutManager.this.mo3932i()) {
+                FlexboxLayoutManager flexboxLayoutManager = FlexboxLayoutManager.this;
+                int i = flexboxLayoutManager.f20328l;
+                if (i == 0) {
+                    c10783b.f20358e = flexboxLayoutManager.f20327k == 1;
+                    return;
+                } else {
+                    c10783b.f20358e = i == 2;
+                    return;
                 }
             }
-            while (i5 >= childCount2) {
-                removeAndRecycleViewAt(i5, recycler);
-                i5--;
+            FlexboxLayoutManager flexboxLayoutManager2 = FlexboxLayoutManager.this;
+            int i2 = flexboxLayoutManager2.f20328l;
+            if (i2 == 0) {
+                c10783b.f20358e = flexboxLayoutManager2.f20327k == 3;
+            } else {
+                c10783b.f20358e = i2 == 2;
             }
         }
-    }
 
-    /* JADX INFO: renamed from: w */
-    public final void m8994w() {
-        int heightMode = mo3932i() ? getHeightMode() : getWidthMode();
-        this.f20337u.f20363b = heightMode == 0 || heightMode == Integer.MIN_VALUE;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public void m8995x(int i) {
-        if (this.f20327k != i) {
-            removeAllViews();
-            this.f20327k = i;
-            this.f20339w = null;
-            this.f20340x = null;
-            m8982k();
-            requestLayout();
-        }
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final void m8996y(int i) {
-        if (i >= findLastVisibleItemPosition()) {
-            return;
-        }
-        int childCount = getChildCount();
-        this.f20334r.m3947j(childCount);
-        this.f20334r.m3948k(childCount);
-        this.f20334r.m3946i(childCount);
-        if (i >= this.f20334r.f9183c.length) {
-            return;
-        }
-        this.f20325G = i;
-        View childAt = getChildAt(0);
-        if (childAt == null) {
-            return;
-        }
-        this.f20342z = getPosition(childAt);
-        if (mo3932i() || !this.f20331o) {
-            this.f20319A = this.f20339w.getDecoratedStart(childAt) - this.f20339w.getStartAfterPadding();
-        } else {
-            this.f20319A = this.f20339w.getEndPadding() + this.f20339w.getDecoratedEnd(childAt);
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("AnchorInfo{mPosition=");
+            sbM833U.append(this.f20354a);
+            sbM833U.append(", mFlexLinePosition=");
+            sbM833U.append(this.f20355b);
+            sbM833U.append(", mCoordinate=");
+            sbM833U.append(this.f20356c);
+            sbM833U.append(", mPerpendicularCoordinate=");
+            sbM833U.append(this.f20357d);
+            sbM833U.append(", mLayoutFromEnd=");
+            sbM833U.append(this.f20358e);
+            sbM833U.append(", mValid=");
+            sbM833U.append(this.f20359f);
+            sbM833U.append(", mAssignedFromSavedState=");
+            sbM833U.append(this.f20360g);
+            sbM833U.append('}');
+            return sbM833U.toString();
         }
     }
 
-    /* JADX INFO: renamed from: z */
-    public final void m8997z(C10783b c10783b, boolean z2, boolean z3) {
-        int i;
-        if (z3) {
-            m8994w();
-        } else {
-            this.f20337u.f20363b = false;
+    /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$c */
+    public class C10784c {
+
+        /* JADX INFO: renamed from: a */
+        public int f20362a;
+
+        /* JADX INFO: renamed from: b */
+        public boolean f20363b;
+
+        /* JADX INFO: renamed from: c */
+        public int f20364c;
+
+        /* JADX INFO: renamed from: d */
+        public int f20365d;
+
+        /* JADX INFO: renamed from: e */
+        public int f20366e;
+
+        /* JADX INFO: renamed from: f */
+        public int f20367f;
+
+        /* JADX INFO: renamed from: g */
+        public int f20368g;
+
+        /* JADX INFO: renamed from: j */
+        public boolean f20371j;
+
+        /* JADX INFO: renamed from: h */
+        public int f20369h = 1;
+
+        /* JADX INFO: renamed from: i */
+        public int f20370i = 1;
+
+        public C10784c(C10782a c10782a) {
         }
-        if (mo3932i() || !this.f20331o) {
-            this.f20337u.f20362a = this.f20339w.getEndAfterPadding() - c10783b.f20356c;
-        } else {
-            this.f20337u.f20362a = c10783b.f20356c - getPaddingRight();
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("LayoutState{mAvailable=");
+            sbM833U.append(this.f20362a);
+            sbM833U.append(", mFlexLinePosition=");
+            sbM833U.append(this.f20364c);
+            sbM833U.append(", mPosition=");
+            sbM833U.append(this.f20365d);
+            sbM833U.append(", mOffset=");
+            sbM833U.append(this.f20366e);
+            sbM833U.append(", mScrollingOffset=");
+            sbM833U.append(this.f20367f);
+            sbM833U.append(", mLastScrollDelta=");
+            sbM833U.append(this.f20368g);
+            sbM833U.append(", mItemDirection=");
+            sbM833U.append(this.f20369h);
+            sbM833U.append(", mLayoutDirection=");
+            return C1643a.m813A(sbM833U, this.f20370i, '}');
         }
-        C10784c c10784c = this.f20337u;
-        c10784c.f20365d = c10783b.f20354a;
-        c10784c.f20369h = 1;
-        c10784c.f20370i = 1;
-        c10784c.f20366e = c10783b.f20356c;
-        c10784c.f20367f = Integer.MIN_VALUE;
-        c10784c.f20364c = c10783b.f20355b;
-        if (!z2 || this.f20333q.size() <= 1 || (i = c10783b.f20355b) < 0 || i >= this.f20333q.size() - 1) {
-            return;
-        }
-        C3171b c3171b = this.f20333q.get(c10783b.f20355b);
-        C10784c c10784c2 = this.f20337u;
-        c10784c2.f20364c++;
-        c10784c2.f20365d += c3171b.f9170h;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.LayoutManager
     public void onItemsUpdated(@NonNull RecyclerView recyclerView, int i, int i2) {
         super.onItemsUpdated(recyclerView, i, i2);
         m8996y(i);
-    }
-
-    public static class LayoutParams extends RecyclerView.LayoutParams implements FlexItem {
-        public static final Parcelable.Creator<LayoutParams> CREATOR = new C10780a();
-
-        /* JADX INFO: renamed from: j */
-        public float f20343j;
-
-        /* JADX INFO: renamed from: k */
-        public float f20344k;
-
-        /* JADX INFO: renamed from: l */
-        public int f20345l;
-
-        /* JADX INFO: renamed from: m */
-        public float f20346m;
-
-        /* JADX INFO: renamed from: n */
-        public int f20347n;
-
-        /* JADX INFO: renamed from: o */
-        public int f20348o;
-
-        /* JADX INFO: renamed from: p */
-        public int f20349p;
-
-        /* JADX INFO: renamed from: q */
-        public int f20350q;
-
-        /* JADX INFO: renamed from: r */
-        public boolean f20351r;
-
-        /* JADX INFO: renamed from: com.google.android.flexbox.FlexboxLayoutManager$LayoutParams$a */
-        public static class C10780a implements Parcelable.Creator<LayoutParams> {
-            @Override // android.os.Parcelable.Creator
-            public LayoutParams createFromParcel(Parcel parcel) {
-                return new LayoutParams(parcel);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public LayoutParams[] newArray(int i) {
-                return new LayoutParams[i];
-            }
-        }
-
-        public LayoutParams(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-            this.f20343j = 0.0f;
-            this.f20344k = 1.0f;
-            this.f20345l = -1;
-            this.f20346m = -1.0f;
-            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
-            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: D */
-        public int mo8955D() {
-            return this.f20347n;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: H */
-        public void mo8956H(int i) {
-            this.f20347n = i;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: I */
-        public int mo8957I() {
-            return ((ViewGroup.MarginLayoutParams) this).bottomMargin;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: J */
-        public int mo8958J() {
-            return ((ViewGroup.MarginLayoutParams) this).leftMargin;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: N */
-        public int mo8959N() {
-            return ((ViewGroup.MarginLayoutParams) this).topMargin;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: O */
-        public void mo8960O(int i) {
-            this.f20348o = i;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: S */
-        public float mo8961S() {
-            return this.f20343j;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: W */
-        public float mo8962W() {
-            return this.f20346m;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: d0 */
-        public int mo8963d0() {
-            return ((ViewGroup.MarginLayoutParams) this).rightMargin;
-        }
-
-        @Override // android.os.Parcelable
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: f0 */
-        public int mo8964f0() {
-            return this.f20348o;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        public int getHeight() {
-            return ((ViewGroup.MarginLayoutParams) this).height;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        public int getOrder() {
-            return 1;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        public int getWidth() {
-            return ((ViewGroup.MarginLayoutParams) this).width;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: j0 */
-        public boolean mo8965j0() {
-            return this.f20351r;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: m0 */
-        public int mo8966m0() {
-            return this.f20350q;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: t0 */
-        public int mo8967t0() {
-            return this.f20349p;
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: u */
-        public int mo8968u() {
-            return this.f20345l;
-        }
-
-        @Override // android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeFloat(this.f20343j);
-            parcel.writeFloat(this.f20344k);
-            parcel.writeInt(this.f20345l);
-            parcel.writeFloat(this.f20346m);
-            parcel.writeInt(this.f20347n);
-            parcel.writeInt(this.f20348o);
-            parcel.writeInt(this.f20349p);
-            parcel.writeInt(this.f20350q);
-            parcel.writeByte(this.f20351r ? (byte) 1 : (byte) 0);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).bottomMargin);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).leftMargin);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).rightMargin);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).topMargin);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).height);
-            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).width);
-        }
-
-        @Override // com.google.android.flexbox.FlexItem
-        /* JADX INFO: renamed from: x */
-        public float mo8969x() {
-            return this.f20344k;
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-            this.f20343j = 0.0f;
-            this.f20344k = 1.0f;
-            this.f20345l = -1;
-            this.f20346m = -1.0f;
-            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
-            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
-        }
-
-        public LayoutParams(Parcel parcel) {
-            super(-2, -2);
-            this.f20343j = 0.0f;
-            this.f20344k = 1.0f;
-            this.f20345l = -1;
-            this.f20346m = -1.0f;
-            this.f20349p = ViewCompat.MEASURED_SIZE_MASK;
-            this.f20350q = ViewCompat.MEASURED_SIZE_MASK;
-            this.f20343j = parcel.readFloat();
-            this.f20344k = parcel.readFloat();
-            this.f20345l = parcel.readInt();
-            this.f20346m = parcel.readFloat();
-            this.f20347n = parcel.readInt();
-            this.f20348o = parcel.readInt();
-            this.f20349p = parcel.readInt();
-            this.f20350q = parcel.readInt();
-            this.f20351r = parcel.readByte() != 0;
-            ((ViewGroup.MarginLayoutParams) this).bottomMargin = parcel.readInt();
-            ((ViewGroup.MarginLayoutParams) this).leftMargin = parcel.readInt();
-            ((ViewGroup.MarginLayoutParams) this).rightMargin = parcel.readInt();
-            ((ViewGroup.MarginLayoutParams) this).topMargin = parcel.readInt();
-            ((ViewGroup.MarginLayoutParams) this).height = parcel.readInt();
-            ((ViewGroup.MarginLayoutParams) this).width = parcel.readInt();
-        }
     }
 }

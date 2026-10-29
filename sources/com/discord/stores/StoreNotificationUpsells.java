@@ -17,7 +17,7 @@ public final class StoreNotificationUpsells extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotificationUpsells$dismissPushNotificationsUpsell$1 */
     /* JADX INFO: compiled from: StoreNotificationUpsells.kt */
-    public static final class C62911 extends AbstractC12240o implements Function0<Unit> {
+    public final class C62911 extends AbstractC12240o implements Function0<Unit> {
         public C62911() {
             super(0);
         }
@@ -36,7 +36,7 @@ public final class StoreNotificationUpsells extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotificationUpsells$observePushNotificationUpsellDismissed$1 */
     /* JADX INFO: compiled from: StoreNotificationUpsells.kt */
-    public static final class C62921 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C62921 extends AbstractC12240o implements Function0<Boolean> {
         public C62921() {
             super(0);
         }

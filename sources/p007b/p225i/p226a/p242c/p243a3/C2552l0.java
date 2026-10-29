@@ -18,9 +18,6 @@ import p007b.p225i.p355b.p357b.C4508h0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2552l0 extends AbstractC2832o2 {
 
-    /* JADX INFO: renamed from: k */
-    public static final Object f5639k = new Object();
-
     /* JADX INFO: renamed from: l */
     public final long f5640l;
 
@@ -37,6 +34,9 @@ public final class C2552l0 extends AbstractC2832o2 {
     /* JADX INFO: renamed from: p */
     @Nullable
     public final C2831o1.g f5644p;
+
+    /* JADX INFO: renamed from: k */
+    public static final Object f5639k = new Object();
 
     static {
         C2831o1.d.a aVar = new C2831o1.d.a();
@@ -65,12 +65,6 @@ public final class C2552l0 extends AbstractC2832o2 {
     }
 
     @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-    /* JADX INFO: renamed from: b */
-    public int mo2554b(Object obj) {
-        return f5639k.equals(obj) ? 0 : -1;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
     /* JADX INFO: renamed from: g */
     public AbstractC2832o2.b mo2513g(int i, AbstractC2832o2.b bVar, boolean z2) {
         C1460d.m571t(i, 0, 1);
@@ -79,6 +73,20 @@ public final class C2552l0 extends AbstractC2832o2 {
         Objects.requireNonNull(bVar);
         bVar.m3337f(null, obj, 0, j, 0L, C2562c.f5680j, false);
         return bVar;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+    /* JADX INFO: renamed from: o */
+    public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
+        C1460d.m571t(i, 0, 1);
+        cVar.m3342e(AbstractC2832o2.c.f7345j, this.f5643o, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f5642n, false, this.f5644p, 0L, this.f5641m, 0, 0, 0L);
+        return cVar;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+    /* JADX INFO: renamed from: b */
+    public int mo2554b(Object obj) {
+        return f5639k.equals(obj) ? 0 : -1;
     }
 
     @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
@@ -92,14 +100,6 @@ public final class C2552l0 extends AbstractC2832o2 {
     public Object mo2556m(int i) {
         C1460d.m571t(i, 0, 1);
         return f5639k;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-    /* JADX INFO: renamed from: o */
-    public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
-        C1460d.m571t(i, 0, 1);
-        cVar.m3342e(AbstractC2832o2.c.f7345j, this.f5643o, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f5642n, false, this.f5644p, 0L, this.f5641m, 0, 0, 0L);
-        return cVar;
     }
 
     @Override // p007b.p225i.p226a.p242c.AbstractC2832o2

@@ -20,7 +20,7 @@ public enum GuildScheduledEventStatus {
     private final int apiValue;
 
     /* JADX INFO: compiled from: GuildScheduledEventStatus.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

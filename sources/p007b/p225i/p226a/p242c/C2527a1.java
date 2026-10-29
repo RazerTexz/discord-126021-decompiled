@@ -25,11 +25,11 @@ public final class C2527a1 implements InterfaceC2752s {
     @Nullable
     public InterfaceC2752s f5470m;
 
-    /* JADX INFO: renamed from: n */
-    public boolean f5471n = true;
-
     /* JADX INFO: renamed from: o */
     public boolean f5472o;
+
+    /* JADX INFO: renamed from: n */
+    public boolean f5471n = true;
 
     /* JADX INFO: renamed from: b.i.a.c.a1$a */
     /* JADX INFO: compiled from: DefaultMediaClock.java */

@@ -11,31 +11,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionPoker.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionPoker implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
+    private final CharSequence betAction = null;
+    private final Long betAmount = null;
+    private final CharSequence cosmeticId = null;
+    private final Boolean cosmeticLocked = null;
+    private final CharSequence cosmeticType = null;
+    private final Long currentWallet = null;
     private final Long numBots = null;
     private final Long numPlayers = null;
     private final Long numSpectators = null;
     private final CharSequence phase = null;
-    private final Long turnDurationS = null;
-    private final CharSequence betAction = null;
-    private final Long betAmount = null;
-    private final Long winnings = null;
-    private final Long startingWallet = null;
-    private final Long currentWallet = null;
     private final Long potSize = null;
+    private final Long startingWallet = null;
     private final Long tableRank = null;
-    private final CharSequence cosmeticType = null;
-    private final CharSequence cosmeticId = null;
-    private final Boolean cosmeticLocked = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
+    private final Long turnDurationS = null;
+    private final Long winnings = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_poker";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -46,6 +40,12 @@ public final /* data */ class TrackActivityInternalActionPoker implements Analyt
         }
         TrackActivityInternalActionPoker trackActivityInternalActionPoker = (TrackActivityInternalActionPoker) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionPoker.actionName) && C12238m.areEqual(this.numBots, trackActivityInternalActionPoker.numBots) && C12238m.areEqual(this.numPlayers, trackActivityInternalActionPoker.numPlayers) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionPoker.numSpectators) && C12238m.areEqual(this.phase, trackActivityInternalActionPoker.phase) && C12238m.areEqual(this.turnDurationS, trackActivityInternalActionPoker.turnDurationS) && C12238m.areEqual(this.betAction, trackActivityInternalActionPoker.betAction) && C12238m.areEqual(this.betAmount, trackActivityInternalActionPoker.betAmount) && C12238m.areEqual(this.winnings, trackActivityInternalActionPoker.winnings) && C12238m.areEqual(this.startingWallet, trackActivityInternalActionPoker.startingWallet) && C12238m.areEqual(this.currentWallet, trackActivityInternalActionPoker.currentWallet) && C12238m.areEqual(this.potSize, trackActivityInternalActionPoker.potSize) && C12238m.areEqual(this.tableRank, trackActivityInternalActionPoker.tableRank) && C12238m.areEqual(this.cosmeticType, trackActivityInternalActionPoker.cosmeticType) && C12238m.areEqual(this.cosmeticId, trackActivityInternalActionPoker.cosmeticId) && C12238m.areEqual(this.cosmeticLocked, trackActivityInternalActionPoker.cosmeticLocked);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

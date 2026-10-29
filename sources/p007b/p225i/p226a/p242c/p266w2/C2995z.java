@@ -19,6 +19,11 @@ public final class C2995z implements DrmSession {
     }
 
     @Override // com.google.android.exoplayer2.drm.DrmSession
+    public int getState() {
+        return 1;
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
     /* JADX INFO: renamed from: a */
     public void mo3606a(@Nullable InterfaceC2988s.a aVar) {
     }
@@ -58,10 +63,5 @@ public final class C2995z implements DrmSession {
     /* JADX INFO: renamed from: g */
     public InterfaceC2954b mo3612g() {
         return null;
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    public int getState() {
-        return 1;
     }
 }

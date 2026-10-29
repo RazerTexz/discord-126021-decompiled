@@ -61,8 +61,234 @@ public final class MessageQueue {
     private final ArrayDeque<MessageRequest> queue;
     private Subscription retrySubscription;
 
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$2 */
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Companion {
+    public final class C67962 extends AbstractC12240o implements Function1<Message, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67962(DrainListener drainListener) {
+            super(1);
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
+            invoke2(message);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Message message) {
+            C12238m.checkNotNullParameter(message, "message");
+            MessageQueue.this.handleSuccess(message, this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$3 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C67973 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67973(DrainListener drainListener) {
+            super(1);
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            MessageQueue.handleError$default(MessageQueue.this, error, this.$drainListener, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$4 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C67984 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+        public final /* synthetic */ MessageRequest.Edit $editRequest;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67984(MessageRequest.Edit edit, DrainListener drainListener) {
+            super(1);
+            this.$editRequest = edit;
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            MessageQueue.this.inFlightRequest = new InflightRequest(this.$editRequest, subscription, this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$3 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68013 extends AbstractC12240o implements Function1<Message, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68013(DrainListener drainListener) {
+            super(1);
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
+            invoke2(message);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Message message) {
+            MessageQueue messageQueue = MessageQueue.this;
+            C12238m.checkNotNullExpressionValue(message, "resultMessage");
+            messageQueue.handleSuccess(message, this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$4 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68024 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+        public final /* synthetic */ com.discord.models.message.Message $message;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68024(DrainListener drainListener, com.discord.models.message.Message message) {
+            super(1);
+            this.$drainListener = drainListener;
+            this.$message = message;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            MessageQueue.this.handleError(error, this.$drainListener, this.$message);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$5 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68035 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+        public final /* synthetic */ MessageRequest.Send $request;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68035(MessageRequest.Send send, DrainListener drainListener) {
+            super(1);
+            this.$request = send;
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            MessageQueue.this.inFlightRequest = new InflightRequest(this.$request, subscription, this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$3 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68063 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+        public final /* synthetic */ MessageRequest.SendApplicationCommand $sendApplicationCommandRequest;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68063(MessageRequest.SendApplicationCommand sendApplicationCommand, DrainListener drainListener) {
+            super(1);
+            this.$sendApplicationCommandRequest = sendApplicationCommand;
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r3) {
+            MessageQueue.this.handleSuccess(this.$sendApplicationCommandRequest.getMessage(), this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$4 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68074 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68074(DrainListener drainListener) {
+            super(1);
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            MessageQueue.handleError$default(MessageQueue.this, error, this.$drainListener, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$5 */
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class C68085 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ DrainListener $drainListener;
+        public final /* synthetic */ MessageRequest.SendApplicationCommand $sendApplicationCommandRequest;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68085(MessageRequest.SendApplicationCommand sendApplicationCommand, DrainListener drainListener) {
+            super(1);
+            this.$sendApplicationCommandRequest = sendApplicationCommand;
+            this.$drainListener = drainListener;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            MessageQueue.this.inFlightRequest = new InflightRequest(this.$sendApplicationCommandRequest, subscription, this.$drainListener);
+        }
+    }
+
+    /* JADX INFO: compiled from: MessageQueue.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -72,7 +298,7 @@ public final class MessageQueue {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class DrainListener {
+    public final class DrainListener {
         private AtomicBoolean isCompleted;
         private final Function1<MessageResult, Unit> onCompleted;
 
@@ -92,7 +318,7 @@ public final class MessageQueue {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class InflightRequest {
+    public final class InflightRequest {
         private final MessageRequest baseRequest;
         private final DrainListener drainListener;
         private final Subscription networkSubscription;
@@ -119,232 +345,6 @@ public final class MessageQueue {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$2 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C67962 extends AbstractC12240o implements Function1<Message, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67962(DrainListener drainListener) {
-            super(1);
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
-            invoke2(message);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Message message) {
-            C12238m.checkNotNullParameter(message, "message");
-            MessageQueue.this.handleSuccess(message, this.$drainListener);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$3 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C67973 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67973(DrainListener drainListener) {
-            super(1);
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            MessageQueue.handleError$default(MessageQueue.this, error, this.$drainListener, null, 4, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doEdit$4 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C67984 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-        public final /* synthetic */ MessageRequest.Edit $editRequest;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67984(MessageRequest.Edit edit, DrainListener drainListener) {
-            super(1);
-            this.$editRequest = edit;
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            MessageQueue.this.inFlightRequest = new InflightRequest(this.$editRequest, subscription, this.$drainListener);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$3 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68013 extends AbstractC12240o implements Function1<Message, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68013(DrainListener drainListener) {
-            super(1);
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
-            invoke2(message);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Message message) {
-            MessageQueue messageQueue = MessageQueue.this;
-            C12238m.checkNotNullExpressionValue(message, "resultMessage");
-            messageQueue.handleSuccess(message, this.$drainListener);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$4 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68024 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-        public final /* synthetic */ com.discord.models.message.Message $message;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68024(DrainListener drainListener, com.discord.models.message.Message message) {
-            super(1);
-            this.$drainListener = drainListener;
-            this.$message = message;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            MessageQueue.this.handleError(error, this.$drainListener, this.$message);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSend$5 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68035 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-        public final /* synthetic */ MessageRequest.Send $request;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68035(MessageRequest.Send send, DrainListener drainListener) {
-            super(1);
-            this.$request = send;
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            MessageQueue.this.inFlightRequest = new InflightRequest(this.$request, subscription, this.$drainListener);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$3 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68063 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-        public final /* synthetic */ MessageRequest.SendApplicationCommand $sendApplicationCommandRequest;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68063(MessageRequest.SendApplicationCommand sendApplicationCommand, DrainListener drainListener) {
-            super(1);
-            this.$sendApplicationCommandRequest = sendApplicationCommand;
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            MessageQueue.this.handleSuccess(this.$sendApplicationCommandRequest.getMessage(), this.$drainListener);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$4 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68074 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68074(DrainListener drainListener) {
-            super(1);
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            MessageQueue.handleError$default(MessageQueue.this, error, this.$drainListener, null, 4, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.messagesend.MessageQueue$doSendApplicationCommand$5 */
-    /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class C68085 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public final /* synthetic */ DrainListener $drainListener;
-        public final /* synthetic */ MessageRequest.SendApplicationCommand $sendApplicationCommandRequest;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68085(MessageRequest.SendApplicationCommand sendApplicationCommand, DrainListener drainListener) {
-            super(1);
-            this.$sendApplicationCommandRequest = sendApplicationCommand;
-            this.$drainListener = drainListener;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            MessageQueue.this.inFlightRequest = new InflightRequest(this.$sendApplicationCommandRequest, subscription, this.$drainListener);
-        }
-    }
-
     public MessageQueue(ContentResolver contentResolver, ExecutorService executorService, Clock clock) {
         C12238m.checkNotNullParameter(contentResolver, "contentResolver");
         C12238m.checkNotNullParameter(executorService, "executorService");
@@ -354,6 +354,35 @@ public final class MessageQueue {
         this.clock = clock;
         this.queue = new ArrayDeque<>();
         this.networkBackoff = new Backoff(5000L, DEFAULT_MESSAGE_TIMEOUT_MS, 0, false, null, 28, null);
+    }
+
+    public final void cancel(final String requestId) {
+        C12238m.checkNotNullParameter(requestId, "requestId");
+        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.cancel.1
+            @Override // java.lang.Runnable
+            public final void run() {
+                Object next;
+                InflightRequest inflightRequest = MessageQueue.this.inFlightRequest;
+                if (inflightRequest != null && C12238m.areEqual(inflightRequest.getBaseRequest().getRequestId(), requestId)) {
+                    inflightRequest.getNetworkSubscription().unsubscribe();
+                    inflightRequest.getDrainListener().complete(MessageResult.UserCancelled.INSTANCE);
+                    return;
+                }
+                Iterator it = MessageQueue.this.queue.iterator();
+                do {
+                    if (!it.hasNext()) {
+                        next = null;
+                        break;
+                    }
+                    next = it.next();
+                } while (!C12238m.areEqual(((MessageRequest) next).getRequestId(), requestId));
+                MessageRequest messageRequest = (MessageRequest) next;
+                if (messageRequest != null) {
+                    MessageQueue.this.queue.remove(messageRequest);
+                    messageRequest.getOnCompleted().invoke(MessageResult.UserCancelled.INSTANCE, Boolean.valueOf(MessageQueue.this.queue.isEmpty()));
+                }
+            }
+        });
     }
 
     private final void doEdit(MessageRequest.Edit editRequest, DrainListener drainListener) {
@@ -592,6 +621,36 @@ public final class MessageQueue {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn(observableM11082A, false), (Class<?>) MessageQueue.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C68085(sendApplicationCommandRequest, drainListener)), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C68074(drainListener)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C68063(sendApplicationCommandRequest, drainListener));
     }
 
+    public final void enqueue(final MessageRequest request) {
+        C12238m.checkNotNullParameter(request, "request");
+        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.enqueue.1
+            @Override // java.lang.Runnable
+            public final void run() {
+                MessageQueue.this.queue.add(request);
+                MessageQueue.this.processNextRequest();
+            }
+        });
+    }
+
+    public final void handleConnected() {
+        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.handleConnected.1
+            @Override // java.lang.Runnable
+            public final void run() {
+                if (MessageQueue.this.networkBackoff.getIsPending()) {
+                    MessageQueue.this.networkBackoff.cancel();
+                    MessageQueue.this.processNextRequest();
+                }
+            }
+        });
+    }
+
+    public static /* synthetic */ void handleError$default(MessageQueue messageQueue, Error error, DrainListener drainListener, com.discord.models.message.Message message, int i, Object obj) {
+        if ((i & 4) != 0) {
+            message = null;
+        }
+        messageQueue.handleError(error, drainListener, message);
+    }
+
     /* JADX WARN: Code duplicated, block: B:23:0x008e  */
     /* JADX WARN: Code duplicated, block: B:25:0x009e  */
     /* JADX WARN: Code duplicated, block: B:27:0x00a5  */
@@ -646,13 +705,6 @@ public final class MessageQueue {
         onDrainListener.complete(unknownFailure);
     }
 
-    public static /* synthetic */ void handleError$default(MessageQueue messageQueue, Error error, DrainListener drainListener, com.discord.models.message.Message message, int i, Object obj) {
-        if ((i & 4) != 0) {
-            message = null;
-        }
-        messageQueue.handleError(error, drainListener, message);
-    }
-
     private final void handleSuccess(Message message, DrainListener drainListener) {
         drainListener.complete(new MessageResult.Success(message));
     }
@@ -682,57 +734,5 @@ public final class MessageQueue {
         } else if (messageRequestRemove instanceof MessageRequest.SendApplicationCommand) {
             doSendApplicationCommand((MessageRequest.SendApplicationCommand) messageRequestRemove, drainListener);
         }
-    }
-
-    public final void cancel(final String requestId) {
-        C12238m.checkNotNullParameter(requestId, "requestId");
-        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.cancel.1
-            @Override // java.lang.Runnable
-            public final void run() {
-                Object next;
-                InflightRequest inflightRequest = MessageQueue.this.inFlightRequest;
-                if (inflightRequest != null && C12238m.areEqual(inflightRequest.getBaseRequest().getRequestId(), requestId)) {
-                    inflightRequest.getNetworkSubscription().unsubscribe();
-                    inflightRequest.getDrainListener().complete(MessageResult.UserCancelled.INSTANCE);
-                    return;
-                }
-                Iterator it = MessageQueue.this.queue.iterator();
-                do {
-                    if (!it.hasNext()) {
-                        next = null;
-                        break;
-                    }
-                    next = it.next();
-                } while (!C12238m.areEqual(((MessageRequest) next).getRequestId(), requestId));
-                MessageRequest messageRequest = (MessageRequest) next;
-                if (messageRequest != null) {
-                    MessageQueue.this.queue.remove(messageRequest);
-                    messageRequest.getOnCompleted().invoke(MessageResult.UserCancelled.INSTANCE, Boolean.valueOf(MessageQueue.this.queue.isEmpty()));
-                }
-            }
-        });
-    }
-
-    public final void enqueue(final MessageRequest request) {
-        C12238m.checkNotNullParameter(request, "request");
-        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.enqueue.1
-            @Override // java.lang.Runnable
-            public final void run() {
-                MessageQueue.this.queue.add(request);
-                MessageQueue.this.processNextRequest();
-            }
-        });
-    }
-
-    public final void handleConnected() {
-        this.executorService.submit(new Runnable() { // from class: com.discord.utilities.messagesend.MessageQueue.handleConnected.1
-            @Override // java.lang.Runnable
-            public final void run() {
-                if (MessageQueue.this.networkBackoff.getIsPending()) {
-                    MessageQueue.this.networkBackoff.cancel();
-                    MessageQueue.this.processNextRequest();
-                }
-            }
-        });
     }
 }

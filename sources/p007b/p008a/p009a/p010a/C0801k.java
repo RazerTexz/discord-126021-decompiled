@@ -41,14 +41,14 @@ public final class C0801k extends AbstractC0859d0<c> {
 
     /* JADX INFO: renamed from: b.a.a.a.k$a */
     /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.a.k$b */
     /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final StoreSubscriptions.SubscriptionsState f217a;
@@ -83,11 +83,23 @@ public final class C0801k extends AbstractC0859d0<c> {
 
     /* JADX INFO: renamed from: b.a.a.a.k$c */
     /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-    public static abstract class c {
+    public abstract class c {
+
+        /* JADX INFO: renamed from: b.a.a.a.k$c$c, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
+        public final class C13205c extends c {
+
+            /* JADX INFO: renamed from: a */
+            public static final C13205c f222a = new C13205c();
+
+            public C13205c() {
+                super(null);
+            }
+        }
 
         /* JADX INFO: renamed from: b.a.a.a.k$c$a */
         /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-        public static final class a extends c {
+        public final class a extends c {
 
             /* JADX INFO: renamed from: a */
             public final Integer f218a;
@@ -129,7 +141,7 @@ public final class C0801k extends AbstractC0859d0<c> {
 
         /* JADX INFO: renamed from: b.a.a.a.k$c$b */
         /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-        public static final class b extends c {
+        public final class b extends c {
 
             /* JADX INFO: renamed from: a */
             public final ModelSubscription f219a;
@@ -147,20 +159,6 @@ public final class C0801k extends AbstractC0859d0<c> {
                 this.f219a = modelSubscription;
                 this.f220b = z2;
                 this.f221c = z3;
-            }
-
-            /* JADX INFO: renamed from: a */
-            public static b m102a(b bVar, ModelSubscription modelSubscription, boolean z2, boolean z3, int i) {
-                ModelSubscription modelSubscription2 = (i & 1) != 0 ? bVar.f219a : null;
-                if ((i & 2) != 0) {
-                    z2 = bVar.f220b;
-                }
-                if ((i & 4) != 0) {
-                    z3 = bVar.f221c;
-                }
-                Objects.requireNonNull(bVar);
-                C12238m.checkNotNullParameter(modelSubscription2, Traits.Payment.Type.SUBSCRIPTION);
-                return new b(modelSubscription2, z2, z3);
             }
 
             public boolean equals(Object obj) {
@@ -196,6 +194,20 @@ public final class C0801k extends AbstractC0859d0<c> {
                 return i + (z3 ? 1 : z3);
             }
 
+            /* JADX INFO: renamed from: a */
+            public static b m102a(b bVar, ModelSubscription modelSubscription, boolean z2, boolean z3, int i) {
+                ModelSubscription modelSubscription2 = (i & 1) != 0 ? bVar.f219a : null;
+                if ((i & 2) != 0) {
+                    z2 = bVar.f220b;
+                }
+                if ((i & 4) != 0) {
+                    z3 = bVar.f221c;
+                }
+                Objects.requireNonNull(bVar);
+                C12238m.checkNotNullParameter(modelSubscription2, Traits.Payment.Type.SUBSCRIPTION);
+                return new b(modelSubscription2, z2, z3);
+            }
+
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("Loaded(subscription=");
                 sbM833U.append(this.f219a);
@@ -206,21 +218,9 @@ public final class C0801k extends AbstractC0859d0<c> {
             }
         }
 
-        /* JADX INFO: renamed from: b.a.a.a.k$c$c, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-        public static final class C13205c extends c {
-
-            /* JADX INFO: renamed from: a */
-            public static final C13205c f222a = new C13205c();
-
-            public C13205c() {
-                super(null);
-            }
-        }
-
         /* JADX INFO: renamed from: b.a.a.a.k$c$d */
         /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
-        public static final class d extends c {
+        public final class d extends c {
 
             /* JADX INFO: renamed from: a */
             public static final d f223a = new d();

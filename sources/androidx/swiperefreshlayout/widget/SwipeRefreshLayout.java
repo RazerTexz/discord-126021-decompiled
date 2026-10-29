@@ -111,6 +111,39 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         void onRefresh();
     }
 
+    public class SavedState extends View.BaseSavedState {
+        public final boolean mRefreshing;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.SavedState.1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+
+        public SavedState(Parcelable parcelable, boolean z2) {
+            super(parcelable);
+            this.mRefreshing = z2;
+        }
+
+        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeByte(this.mRefreshing ? (byte) 1 : (byte) 0);
+        }
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            this.mRefreshing = parcel.readByte() != 0;
+        }
+    }
+
     public SwipeRefreshLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -143,6 +176,15 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mCircleView.startAnimation(this.mAnimateToStartPosition);
     }
 
+    public boolean canChildScrollUp() {
+        OnChildScrollUpCallback onChildScrollUpCallback = this.mChildScrollUpCallback;
+        if (onChildScrollUpCallback != null) {
+            return onChildScrollUpCallback.canChildScrollUp(this, this.mTarget);
+        }
+        View view = this.mTarget;
+        return view instanceof ListView ? ListViewCompat.canScrollList((ListView) view, -1) : view.canScrollVertically(-1);
+    }
+
     private void createProgressView() {
         this.mCircleView = new CircleImageView(getContext());
         CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(getContext());
@@ -151,6 +193,28 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mCircleView.setImageDrawable(this.mProgress);
         this.mCircleView.setVisibility(8);
         addView(this.mCircleView);
+    }
+
+    @Override // android.view.View, androidx.core.view.NestedScrollingChild
+    public boolean dispatchNestedFling(float f, float f2, boolean z2) {
+        return this.mNestedScrollingChildHelper.dispatchNestedFling(f, f2, z2);
+    }
+
+    @Override // android.view.View, androidx.core.view.NestedScrollingChild
+    public boolean dispatchNestedPreFling(float f, float f2) {
+        return this.mNestedScrollingChildHelper.dispatchNestedPreFling(f, f2);
+    }
+
+    @Override // androidx.core.view.NestedScrollingChild2
+    public boolean dispatchNestedPreScroll(int i, int i2, int[] iArr, int[] iArr2, int i3) {
+        return i3 == 0 && dispatchNestedPreScroll(i, i2, iArr, iArr2);
+    }
+
+    @Override // androidx.core.view.NestedScrollingChild3
+    public void dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr, int i5, @NonNull int[] iArr2) {
+        if (i5 == 0) {
+            this.mNestedScrollingChildHelper.dispatchNestedScroll(i, i2, i3, i4, iArr, i5, iArr2);
+        }
     }
 
     private void ensureTarget() {
@@ -193,8 +257,51 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mProgress.setArrowEnabled(false);
     }
 
+    @Override // android.view.ViewGroup
+    public int getChildDrawingOrder(int i, int i2) {
+        int i3 = this.mCircleViewIndex;
+        if (i3 < 0) {
+            return i2;
+        }
+        if (i2 == i - 1) {
+            return i3;
+        }
+        return i2 >= i3 ? i2 + 1 : i2;
+    }
+
+    @Override // android.view.ViewGroup, androidx.core.view.NestedScrollingParent
+    public int getNestedScrollAxes() {
+        return this.mNestedScrollingParentHelper.getNestedScrollAxes();
+    }
+
+    public int getProgressCircleDiameter() {
+        return this.mCircleDiameter;
+    }
+
+    public int getProgressViewEndOffset() {
+        return this.mSpinnerOffsetEnd;
+    }
+
+    public int getProgressViewStartOffset() {
+        return this.mOriginalOffsetTop;
+    }
+
+    @Override // androidx.core.view.NestedScrollingChild2
+    public boolean hasNestedScrollingParent(int i) {
+        return i == 0 && hasNestedScrollingParent();
+    }
+
     private boolean isAnimationRunning(Animation animation) {
         return (animation == null || !animation.hasStarted() || animation.hasEnded()) ? false : true;
+    }
+
+    @Override // android.view.View, androidx.core.view.NestedScrollingChild
+    public boolean isNestedScrollingEnabled() {
+        return this.mNestedScrollingChildHelper.isNestedScrollingEnabled();
+    }
+
+    public boolean isRefreshing() {
+        return this.mRefreshing;
     }
 
     private void moveSpinner(float f) {
@@ -231,167 +338,6 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mProgress.setArrowScale(Math.min(1.0f, fMax));
         this.mProgress.setProgressRotation(((fPow * DECELERATE_INTERPOLATION_FACTOR) + ((fMax * 0.4f) - 0.25f)) * 0.5f);
         setTargetOffsetTopAndBottom(i2 - this.mCurrentTargetOffsetTop);
-    }
-
-    private void onSecondaryPointerUp(MotionEvent motionEvent) {
-        int actionIndex = motionEvent.getActionIndex();
-        if (motionEvent.getPointerId(actionIndex) == this.mActivePointerId) {
-            this.mActivePointerId = motionEvent.getPointerId(actionIndex == 0 ? 1 : 0);
-        }
-    }
-
-    private void setColorViewAlpha(int i) {
-        this.mCircleView.getBackground().setAlpha(i);
-        this.mProgress.setAlpha(i);
-    }
-
-    private Animation startAlphaAnimation(final int i, final int i2) {
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.4
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                CircularProgressDrawable circularProgressDrawable = SwipeRefreshLayout.this.mProgress;
-                int i3 = i;
-                circularProgressDrawable.setAlpha((int) (((i2 - i3) * f) + i3));
-            }
-        };
-        animation.setDuration(300L);
-        this.mCircleView.setAnimationListener(null);
-        this.mCircleView.clearAnimation();
-        this.mCircleView.startAnimation(animation);
-        return animation;
-    }
-
-    private void startDragging(float f) {
-        float f2 = this.mInitialDownY;
-        float f3 = f - f2;
-        int i = this.mTouchSlop;
-        if (f3 <= i || this.mIsBeingDragged) {
-            return;
-        }
-        this.mInitialMotionY = f2 + i;
-        this.mIsBeingDragged = true;
-        this.mProgress.setAlpha(76);
-    }
-
-    private void startProgressAlphaMaxAnimation() {
-        this.mAlphaMaxAnimation = startAlphaAnimation(this.mProgress.getAlpha(), 255);
-    }
-
-    private void startProgressAlphaStartAnimation() {
-        this.mAlphaStartAnimation = startAlphaAnimation(this.mProgress.getAlpha(), 76);
-    }
-
-    private void startScaleDownReturnToStartAnimation(int i, Animation.AnimationListener animationListener) {
-        this.mFrom = i;
-        this.mStartingScale = this.mCircleView.getScaleX();
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.8
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
-                float f2 = swipeRefreshLayout.mStartingScale;
-                swipeRefreshLayout.setAnimationProgress(((-f2) * f) + f2);
-                SwipeRefreshLayout.this.moveToStart(f);
-            }
-        };
-        this.mScaleDownToStartAnimation = animation;
-        animation.setDuration(150L);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
-        }
-        this.mCircleView.clearAnimation();
-        this.mCircleView.startAnimation(this.mScaleDownToStartAnimation);
-    }
-
-    private void startScaleUpAnimation(Animation.AnimationListener animationListener) {
-        this.mCircleView.setVisibility(0);
-        this.mProgress.setAlpha(255);
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.2
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout.this.setAnimationProgress(f);
-            }
-        };
-        this.mScaleAnimation = animation;
-        animation.setDuration(this.mMediumAnimationDuration);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
-        }
-        this.mCircleView.clearAnimation();
-        this.mCircleView.startAnimation(this.mScaleAnimation);
-    }
-
-    public boolean canChildScrollUp() {
-        OnChildScrollUpCallback onChildScrollUpCallback = this.mChildScrollUpCallback;
-        if (onChildScrollUpCallback != null) {
-            return onChildScrollUpCallback.canChildScrollUp(this, this.mTarget);
-        }
-        View view = this.mTarget;
-        return view instanceof ListView ? ListViewCompat.canScrollList((ListView) view, -1) : view.canScrollVertically(-1);
-    }
-
-    @Override // android.view.View, androidx.core.view.NestedScrollingChild
-    public boolean dispatchNestedFling(float f, float f2, boolean z2) {
-        return this.mNestedScrollingChildHelper.dispatchNestedFling(f, f2, z2);
-    }
-
-    @Override // android.view.View, androidx.core.view.NestedScrollingChild
-    public boolean dispatchNestedPreFling(float f, float f2) {
-        return this.mNestedScrollingChildHelper.dispatchNestedPreFling(f, f2);
-    }
-
-    @Override // androidx.core.view.NestedScrollingChild2
-    public boolean dispatchNestedPreScroll(int i, int i2, int[] iArr, int[] iArr2, int i3) {
-        return i3 == 0 && dispatchNestedPreScroll(i, i2, iArr, iArr2);
-    }
-
-    @Override // androidx.core.view.NestedScrollingChild3
-    public void dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr, int i5, @NonNull int[] iArr2) {
-        if (i5 == 0) {
-            this.mNestedScrollingChildHelper.dispatchNestedScroll(i, i2, i3, i4, iArr, i5, iArr2);
-        }
-    }
-
-    @Override // android.view.ViewGroup
-    public int getChildDrawingOrder(int i, int i2) {
-        int i3 = this.mCircleViewIndex;
-        if (i3 < 0) {
-            return i2;
-        }
-        if (i2 == i - 1) {
-            return i3;
-        }
-        return i2 >= i3 ? i2 + 1 : i2;
-    }
-
-    @Override // android.view.ViewGroup, androidx.core.view.NestedScrollingParent
-    public int getNestedScrollAxes() {
-        return this.mNestedScrollingParentHelper.getNestedScrollAxes();
-    }
-
-    public int getProgressCircleDiameter() {
-        return this.mCircleDiameter;
-    }
-
-    public int getProgressViewEndOffset() {
-        return this.mSpinnerOffsetEnd;
-    }
-
-    public int getProgressViewStartOffset() {
-        return this.mOriginalOffsetTop;
-    }
-
-    @Override // androidx.core.view.NestedScrollingChild2
-    public boolean hasNestedScrollingParent(int i) {
-        return i == 0 && hasNestedScrollingParent();
-    }
-
-    @Override // android.view.View, androidx.core.view.NestedScrollingChild
-    public boolean isNestedScrollingEnabled() {
-        return this.mNestedScrollingChildHelper.isNestedScrollingEnabled();
-    }
-
-    public boolean isRefreshing() {
-        return this.mRefreshing;
     }
 
     public void moveToStart(float f) {
@@ -549,6 +495,13 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         return new SavedState(super.onSaveInstanceState(), this.mRefreshing);
     }
 
+    private void onSecondaryPointerUp(MotionEvent motionEvent) {
+        int actionIndex = motionEvent.getActionIndex();
+        if (motionEvent.getPointerId(actionIndex) == this.mActivePointerId) {
+            this.mActivePointerId = motionEvent.getPointerId(actionIndex == 0 ? 1 : 0);
+        }
+    }
+
     @Override // androidx.core.view.NestedScrollingParent2
     public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
         if (i2 == 0) {
@@ -677,6 +630,11 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         setColorSchemeColors(iArr2);
     }
 
+    private void setColorViewAlpha(int i) {
+        this.mCircleView.getBackground().setAlpha(i);
+        this.mProgress.setAlpha(i);
+    }
+
     public void setDistanceToTriggerSync(int i) {
         this.mTotalDragDistance = i;
     }
@@ -771,9 +729,45 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mCurrentTargetOffsetTop = this.mCircleView.getTop();
     }
 
+    private Animation startAlphaAnimation(final int i, final int i2) {
+        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.4
+            @Override // android.view.animation.Animation
+            public void applyTransformation(float f, Transformation transformation) {
+                CircularProgressDrawable circularProgressDrawable = SwipeRefreshLayout.this.mProgress;
+                int i3 = i;
+                circularProgressDrawable.setAlpha((int) (((i2 - i3) * f) + i3));
+            }
+        };
+        animation.setDuration(300L);
+        this.mCircleView.setAnimationListener(null);
+        this.mCircleView.clearAnimation();
+        this.mCircleView.startAnimation(animation);
+        return animation;
+    }
+
+    private void startDragging(float f) {
+        float f2 = this.mInitialDownY;
+        float f3 = f - f2;
+        int i = this.mTouchSlop;
+        if (f3 <= i || this.mIsBeingDragged) {
+            return;
+        }
+        this.mInitialMotionY = f2 + i;
+        this.mIsBeingDragged = true;
+        this.mProgress.setAlpha(76);
+    }
+
     @Override // androidx.core.view.NestedScrollingChild2
     public boolean startNestedScroll(int i, int i2) {
         return i2 == 0 && startNestedScroll(i);
+    }
+
+    private void startProgressAlphaMaxAnimation() {
+        this.mAlphaMaxAnimation = startAlphaAnimation(this.mProgress.getAlpha(), 255);
+    }
+
+    private void startProgressAlphaStartAnimation() {
+        this.mAlphaStartAnimation = startAlphaAnimation(this.mProgress.getAlpha(), 76);
     }
 
     public void startScaleDownAnimation(Animation.AnimationListener animationListener) {
@@ -790,43 +784,49 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mCircleView.startAnimation(this.mScaleDownAnimation);
     }
 
+    private void startScaleDownReturnToStartAnimation(int i, Animation.AnimationListener animationListener) {
+        this.mFrom = i;
+        this.mStartingScale = this.mCircleView.getScaleX();
+        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.8
+            @Override // android.view.animation.Animation
+            public void applyTransformation(float f, Transformation transformation) {
+                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
+                float f2 = swipeRefreshLayout.mStartingScale;
+                swipeRefreshLayout.setAnimationProgress(((-f2) * f) + f2);
+                SwipeRefreshLayout.this.moveToStart(f);
+            }
+        };
+        this.mScaleDownToStartAnimation = animation;
+        animation.setDuration(150L);
+        if (animationListener != null) {
+            this.mCircleView.setAnimationListener(animationListener);
+        }
+        this.mCircleView.clearAnimation();
+        this.mCircleView.startAnimation(this.mScaleDownToStartAnimation);
+    }
+
+    private void startScaleUpAnimation(Animation.AnimationListener animationListener) {
+        this.mCircleView.setVisibility(0);
+        this.mProgress.setAlpha(255);
+        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.2
+            @Override // android.view.animation.Animation
+            public void applyTransformation(float f, Transformation transformation) {
+                SwipeRefreshLayout.this.setAnimationProgress(f);
+            }
+        };
+        this.mScaleAnimation = animation;
+        animation.setDuration(this.mMediumAnimationDuration);
+        if (animationListener != null) {
+            this.mCircleView.setAnimationListener(animationListener);
+        }
+        this.mCircleView.clearAnimation();
+        this.mCircleView.startAnimation(this.mScaleAnimation);
+    }
+
     @Override // androidx.core.view.NestedScrollingChild2
     public void stopNestedScroll(int i) {
         if (i == 0) {
             stopNestedScroll();
-        }
-    }
-
-    public static class SavedState extends View.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public final boolean mRefreshing;
-
-        public SavedState(Parcelable parcelable, boolean z2) {
-            super(parcelable);
-            this.mRefreshing = z2;
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeByte(this.mRefreshing ? (byte) 1 : (byte) 0);
-        }
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mRefreshing = parcel.readByte() != 0;
         }
     }
 
@@ -992,6 +992,11 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         onNestedScroll(view, i, i2, i3, i4, i5, this.mNestedScrollingV2ConsumedCompat);
     }
 
+    @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
+    public void onNestedScroll(View view, int i, int i2, int i3, int i4) {
+        onNestedScroll(view, i, i2, i3, i4, 0, this.mNestedScrollingV2ConsumedCompat);
+    }
+
     private void setRefreshing(boolean z2, boolean z3) {
         if (this.mRefreshing != z2) {
             this.mNotify = z3;
@@ -1003,10 +1008,5 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 startScaleDownAnimation(this.mRefreshListener);
             }
         }
-    }
-
-    @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
-    public void onNestedScroll(View view, int i, int i2, int i3, int i4) {
-        onNestedScroll(view, i, i2, i3, i4, 0, this.mNestedScrollingV2ConsumedCompat);
     }
 }

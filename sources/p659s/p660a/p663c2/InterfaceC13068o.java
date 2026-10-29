@@ -7,10 +7,10 @@ import kotlin.coroutines.Continuation;
 /* JADX INFO: compiled from: Channel.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC13068o<E> {
+    InterfaceC13060g<E> iterator();
+
     /* JADX INFO: renamed from: b */
     void mo11199b(CancellationException cancellationException);
-
-    InterfaceC13060g<E> iterator();
 
     /* JADX INFO: renamed from: m */
     Object mo11200m(Continuation<? super C13075v<? extends E>> continuation);

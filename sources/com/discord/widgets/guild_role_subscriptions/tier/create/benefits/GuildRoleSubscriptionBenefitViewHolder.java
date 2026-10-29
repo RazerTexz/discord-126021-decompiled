@@ -23,7 +23,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GuildRoleSubscriptionBenefitViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitViewHolder.kt */
-    public static final class AddItemViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
+    public final class AddItemViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
         private final ViewGuildRoleSubscriptionAddBenefitItemBinding binding;
         private final GuildRoleSubscriptionBenefitAdapter.Listener listener;
 
@@ -69,7 +69,7 @@ public abstract class GuildRoleSubscriptionBenefitViewHolder extends RecyclerVie
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitViewHolder.kt */
-    public static final class FreeTrialViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
+    public final class FreeTrialViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
         private final ViewGuildRoleSubscriptionFreeTrialItemBinding binding;
         private final GuildRoleSubscriptionBenefitAdapter.Listener listener;
 
@@ -169,7 +169,7 @@ public abstract class GuildRoleSubscriptionBenefitViewHolder extends RecyclerVie
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitViewHolder.kt */
-    public static final class HeaderViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
+    public final class HeaderViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
         private final ViewGuildRoleSubscriptionSectionHeaderItemBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -189,7 +189,7 @@ public abstract class GuildRoleSubscriptionBenefitViewHolder extends RecyclerVie
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitViewHolder.kt */
-    public static final class ItemViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
+    public final class ItemViewHolder extends GuildRoleSubscriptionBenefitViewHolder {
         private final GuildRoleSubscriptionBenefitAdapter.Listener listener;
         private final GuildRoleSubscriptionBenefitItemView view;
 

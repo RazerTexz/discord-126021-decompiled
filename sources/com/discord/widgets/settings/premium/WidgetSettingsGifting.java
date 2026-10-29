@@ -107,36 +107,9 @@ public final class WidgetSettingsGifting extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void launch$default(Companion companion, Context context, Traits.Location location, int i, Object obj) {
-            if ((i & 2) != 0) {
-                location = null;
-            }
-            companion.launch(context, location);
-        }
-
-        public final void launch(Context context, Traits.Location location) {
-            C12238m.checkNotNullParameter(context, "context");
-            if (BlockRussianPurchasesUtils.INSTANCE.getINSTANCE().showDialog()) {
-                return;
-            }
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_LOCATION", location);
-            C0870j.m156d(context, WidgetSettingsGifting.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$configureUI$1 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99021 extends AbstractC12240o implements Function2<Long, Long, Unit> {
+    public final class C99021 extends AbstractC12240o implements Function2<Long, Long, Unit> {
         public C99021() {
             super(2);
         }
@@ -154,7 +127,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$configureUI$2 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99032 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C99032 extends AbstractC12240o implements Function1<String, Unit> {
         public C99032() {
             super(1);
         }
@@ -180,7 +153,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$configureUI$3 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99043 extends AbstractC12240o implements Function1<ModelGift, Unit> {
+    public final class C99043 extends AbstractC12240o implements Function1<ModelGift, Unit> {
         public static final C99043 INSTANCE = new C99043();
 
         public C99043() {
@@ -202,7 +175,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$configureUI$4 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99054 extends AbstractC12240o implements Function2<Long, Long, Unit> {
+    public final class C99054 extends AbstractC12240o implements Function2<Long, Long, Unit> {
         public static final C99054 INSTANCE = new C99054();
 
         public C99054() {
@@ -222,7 +195,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$handleEvent$1 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99061 extends AbstractC12240o implements Function1<ClaimStatus.Claimed, Unit> {
+    public final class C99061 extends AbstractC12240o implements Function1<ClaimStatus.Claimed, Unit> {
         public C99061() {
             super(1);
         }
@@ -242,7 +215,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$handleGiftPurchaseEvent$1 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99071 extends AbstractC12240o implements Function0<Unit> {
+    public final class C99071 extends AbstractC12240o implements Function0<Unit> {
         public C99071() {
             super(0);
         }
@@ -261,7 +234,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99092 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C99092 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C99092() {
             super(1);
         }
@@ -283,7 +256,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final /* synthetic */ class C99103 extends C12236k implements Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> {
+    public final /* synthetic */ class C99103 extends C12236k implements Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> {
         public C99103(SettingsGiftingViewModel settingsGiftingViewModel) {
             super(1, settingsGiftingViewModel, SettingsGiftingViewModel.class, "handlePromoMoreDetailsClicked", "handlePromoMoreDetailsClicked(Lcom/discord/widgets/settings/premium/SettingsGiftingViewModel$OutboundPromoItem;)V", 0);
         }
@@ -303,7 +276,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final /* synthetic */ class C99114 extends C12236k implements Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> {
+    public final /* synthetic */ class C99114 extends C12236k implements Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> {
         public C99114(SettingsGiftingViewModel settingsGiftingViewModel) {
             super(1, settingsGiftingViewModel, SettingsGiftingViewModel.class, "handlePromoButtonClicked", "handlePromoButtonClicked(Lcom/discord/widgets/settings/premium/SettingsGiftingViewModel$OutboundPromoItem;)V", 0);
         }
@@ -323,12 +296,12 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$7 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99127 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99127 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C99127 INSTANCE = new C99127();
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$7$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -370,12 +343,12 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$8 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99138 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99138 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C99138 INSTANCE = new C99138();
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$8$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -417,7 +390,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final /* synthetic */ class C99151 extends C12236k implements Function1<SettingsGiftingViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C99151 extends C12236k implements Function1<SettingsGiftingViewModel.ViewState, Unit> {
         public C99151(WidgetSettingsGifting widgetSettingsGifting) {
             super(1, widgetSettingsGifting, WidgetSettingsGifting.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/premium/SettingsGiftingViewModel$ViewState;)V", 0);
         }
@@ -437,7 +410,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final /* synthetic */ class C99162 extends C12236k implements Function1<SettingsGiftingViewModel.GiftPurchaseEvent, Unit> {
+    public final /* synthetic */ class C99162 extends C12236k implements Function1<SettingsGiftingViewModel.GiftPurchaseEvent, Unit> {
         public C99162(WidgetSettingsGifting widgetSettingsGifting) {
             super(1, widgetSettingsGifting, WidgetSettingsGifting.class, "handleGiftPurchaseEvent", "handleGiftPurchaseEvent(Lcom/discord/widgets/settings/premium/SettingsGiftingViewModel$GiftPurchaseEvent;)V", 0);
         }
@@ -457,7 +430,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final /* synthetic */ class C99173 extends C12236k implements Function1<SettingsGiftingViewModel.Event, Unit> {
+    public final /* synthetic */ class C99173 extends C12236k implements Function1<SettingsGiftingViewModel.Event, Unit> {
         public C99173(WidgetSettingsGifting widgetSettingsGifting) {
             super(1, widgetSettingsGifting, WidgetSettingsGifting.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/SettingsGiftingViewModel$Event;)V", 0);
         }
@@ -477,7 +450,7 @@ public final class WidgetSettingsGifting extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBoundOrOnResume$4 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99184 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C99184 extends AbstractC12240o implements Function1<String, Unit> {
         public static final C99184 INSTANCE = new C99184();
 
         public C99184() {
@@ -494,6 +467,33 @@ public final class WidgetSettingsGifting extends AppFragment {
         public final void invoke2(String str) {
             C12238m.checkNotNullParameter(str, "giftCode");
             C0805c.INSTANCE.m107a(str, "Settings - Gifting", 0L);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, Traits.Location location, int i, Object obj) {
+            if ((i & 2) != 0) {
+                location = null;
+            }
+            companion.launch(context, location);
+        }
+
+        public final void launch(Context context, Traits.Location location) {
+            C12238m.checkNotNullParameter(context, "context");
+            if (BlockRussianPurchasesUtils.INSTANCE.getINSTANCE().showDialog()) {
+                return;
+            }
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_LOCATION", location);
+            C0870j.m156d(context, WidgetSettingsGifting.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

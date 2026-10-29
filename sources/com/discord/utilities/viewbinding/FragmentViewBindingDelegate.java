@@ -24,7 +24,7 @@ public final class FragmentViewBindingDelegate<T extends ViewBinding> {
 
     /* JADX INFO: renamed from: com.discord.utilities.viewbinding.FragmentViewBindingDelegate$addOnDestroyObserver$1 */
     /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
-    public static final class C70141 implements DefaultLifecycleObserver {
+    public final class C70141 implements DefaultLifecycleObserver {
         public C70141() {
         }
 

@@ -18,6 +18,10 @@ public final /* data */ class ThreadMemberListItems implements WidgetChannelMemb
         this.listItems = list;
     }
 
+    public final String component1() {
+        return getListId();
+    }
+
     private final List<ChannelMembersListAdapter.Item> component2() {
         return this.listItems;
     }
@@ -31,10 +35,6 @@ public final /* data */ class ThreadMemberListItems implements WidgetChannelMemb
             list = threadMemberListItems.listItems;
         }
         return threadMemberListItems.copy(str, list);
-    }
-
-    public final String component1() {
-        return getListId();
     }
 
     public final ThreadMemberListItems copy(String listId, List<ChannelMembersListAdapter.Item> listItems) {

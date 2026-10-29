@@ -18,13 +18,13 @@ public final class BulletSpan implements LeadingMarginSpan {
     public static final int STANDARD_BULLET_RADIUS_PX = 4;
     public static final int STANDARD_GAP_WIDTH_PX = 2;
     public static final float STANDARD_STROKE_WIDTH_PX = 4.0f;
-    private static Path sBulletPath;
     private final int mBulletRadius;
     private final int mColor;
     private final int mGapWidth;
     private final float mStrokeWidth;
     private final Paint.Style mStyle;
     private final boolean mWantColor;
+    private static Path sBulletPath;
 
     public /* synthetic */ BulletSpan(int i, int i2, float f, Paint.Style style, int i3, DefaultConstructorMarker defaultConstructorMarker) {
         this((i3 & 1) != 0 ? 2 : i, (i3 & 2) != 0 ? 4 : i2, (i3 & 4) != 0 ? 4.0f : f, (i3 & 8) != 0 ? Paint.Style.FILL : style);

@@ -63,8 +63,50 @@ public final class WidgetGuildBoostConfirmation extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostConfirmation$configureUI$1 */
     /* JADX INFO: compiled from: WidgetGuildBoostConfirmation.kt */
-    public static final class Companion {
+    public final class C95171 extends AbstractC12240o implements Function0<Unit> {
+        public C95171() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FragmentActivity fragmentActivityM95e = WidgetGuildBoostConfirmation.this.m95e();
+            if (fragmentActivityM95e != null) {
+                fragmentActivityM95e.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostConfirmation$onResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildBoostConfirmation.kt */
+    public final /* synthetic */ class C95181 extends C12236k implements Function1<GuildBoostInProgressViewModel.ViewState, Unit> {
+        public C95181(WidgetGuildBoostConfirmation widgetGuildBoostConfirmation) {
+            super(1, widgetGuildBoostConfirmation, WidgetGuildBoostConfirmation.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostInProgressViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostInProgressViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildBoostInProgressViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildBoostConfirmation) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildBoostConfirmation.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -91,48 +133,6 @@ public final class WidgetGuildBoostConfirmation extends AppFragment {
             iArr[GuildBoostInProgressViewModel.GuildBoostState.CALL_IN_PROGRESS.ordinal()] = 2;
             iArr[GuildBoostInProgressViewModel.GuildBoostState.ERROR.ordinal()] = 3;
             iArr[GuildBoostInProgressViewModel.GuildBoostState.COMPLETED.ordinal()] = 4;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostConfirmation$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoostConfirmation.kt */
-    public static final class C95171 extends AbstractC12240o implements Function0<Unit> {
-        public C95171() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            FragmentActivity fragmentActivityM95e = WidgetGuildBoostConfirmation.this.m95e();
-            if (fragmentActivityM95e != null) {
-                fragmentActivityM95e.finish();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostConfirmation$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoostConfirmation.kt */
-    public static final /* synthetic */ class C95181 extends C12236k implements Function1<GuildBoostInProgressViewModel.ViewState, Unit> {
-        public C95181(WidgetGuildBoostConfirmation widgetGuildBoostConfirmation) {
-            super(1, widgetGuildBoostConfirmation, WidgetGuildBoostConfirmation.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostInProgressViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostInProgressViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildBoostInProgressViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildBoostConfirmation) this.receiver).configureUI(viewState);
         }
     }
 

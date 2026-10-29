@@ -10,6 +10,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: SpecialTypes.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11968m0 {
+    public static final C11906a getAbbreviatedType(AbstractC11913c0 abstractC11913c0) {
+        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
+        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
+        if (abstractC11932i1Unwrap instanceof C11906a) {
+            return (C11906a) abstractC11932i1Unwrap;
+        }
+        return null;
+    }
+
+    public static final AbstractC11934j0 getAbbreviation(AbstractC11913c0 abstractC11913c0) {
+        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
+        C11906a abbreviatedType = getAbbreviatedType(abstractC11913c0);
+        if (abbreviatedType == null) {
+            return null;
+        }
+        return abbreviatedType.getAbbreviation();
+    }
+
+    public static final boolean isDefinitelyNotNullType(AbstractC11913c0 abstractC11913c0) {
+        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
+        return abstractC11913c0.unwrap() instanceof C11936k;
+    }
+
     /* JADX INFO: renamed from: a */
     public static final AbstractC11934j0 m10019a(AbstractC11913c0 abstractC11913c0) {
         C11907a0 alternative;
@@ -45,27 +68,11 @@ public final class C11968m0 {
         return alternative.createType();
     }
 
-    public static final C11906a getAbbreviatedType(AbstractC11913c0 abstractC11913c0) {
-        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
-        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
-        if (abstractC11932i1Unwrap instanceof C11906a) {
-            return (C11906a) abstractC11932i1Unwrap;
+    public static /* synthetic */ AbstractC11932i1 makeDefinitelyNotNullOrNotNull$default(AbstractC11932i1 abstractC11932i1, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
         }
-        return null;
-    }
-
-    public static final AbstractC11934j0 getAbbreviation(AbstractC11913c0 abstractC11913c0) {
-        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
-        C11906a abbreviatedType = getAbbreviatedType(abstractC11913c0);
-        if (abbreviatedType == null) {
-            return null;
-        }
-        return abbreviatedType.getAbbreviation();
-    }
-
-    public static final boolean isDefinitelyNotNullType(AbstractC11913c0 abstractC11913c0) {
-        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
-        return abstractC11913c0.unwrap() instanceof C11936k;
+        return makeDefinitelyNotNullOrNotNull(abstractC11932i1, z2);
     }
 
     public static final AbstractC11932i1 makeDefinitelyNotNullOrNotNull(AbstractC11932i1 abstractC11932i1, boolean z2) {
@@ -78,11 +85,11 @@ public final class C11968m0 {
         return abstractC11934j0M10019a == null ? abstractC11932i1.makeNullableAsSpecified(false) : abstractC11934j0M10019a;
     }
 
-    public static /* synthetic */ AbstractC11932i1 makeDefinitelyNotNullOrNotNull$default(AbstractC11932i1 abstractC11932i1, boolean z2, int i, Object obj) {
+    public static /* synthetic */ AbstractC11934j0 makeSimpleTypeDefinitelyNotNullOrNotNull$default(AbstractC11934j0 abstractC11934j0, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
         }
-        return makeDefinitelyNotNullOrNotNull(abstractC11932i1, z2);
+        return makeSimpleTypeDefinitelyNotNullOrNotNull(abstractC11934j0, z2);
     }
 
     public static final AbstractC11934j0 makeSimpleTypeDefinitelyNotNullOrNotNull(AbstractC11934j0 abstractC11934j0, boolean z2) {
@@ -93,13 +100,6 @@ public final class C11968m0 {
         }
         AbstractC11934j0 abstractC11934j0M10019a = m10019a(abstractC11934j0);
         return abstractC11934j0M10019a == null ? abstractC11934j0.makeNullableAsSpecified(false) : abstractC11934j0M10019a;
-    }
-
-    public static /* synthetic */ AbstractC11934j0 makeSimpleTypeDefinitelyNotNullOrNotNull$default(AbstractC11934j0 abstractC11934j0, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        return makeSimpleTypeDefinitelyNotNullOrNotNull(abstractC11934j0, z2);
     }
 
     public static final AbstractC11934j0 withAbbreviation(AbstractC11934j0 abstractC11934j0, AbstractC11934j0 abstractC11934j1) {

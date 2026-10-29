@@ -25,7 +25,7 @@ public final class SmsListener {
     private static BroadcastReceiver broadcastReceiver;
 
     /* JADX INFO: compiled from: SmsListener.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

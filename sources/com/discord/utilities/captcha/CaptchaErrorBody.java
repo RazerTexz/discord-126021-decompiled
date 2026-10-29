@@ -25,7 +25,7 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
     private final String captchaSitekey;
 
     /* JADX INFO: compiled from: CaptchaErrorBody.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -70,6 +70,10 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
         this.captchaRqtoken = str3;
     }
 
+    public final List<String> component1() {
+        return this.captchaKey;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ CaptchaErrorBody copy$default(CaptchaErrorBody captchaErrorBody, List list, String str, CaptchaService captchaService, String str2, String str3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -93,30 +97,6 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
         return captchaErrorBody.copy(list, str4, captchaService2, str5, str3);
     }
 
-    public final List<String> component1() {
-        return this.captchaKey;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getCaptchaSitekey() {
-        return this.captchaSitekey;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final CaptchaService getCaptchaService() {
-        return this.captchaService;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCaptchaRqdata() {
-        return this.captchaRqdata;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getCaptchaRqtoken() {
-        return this.captchaRqtoken;
-    }
-
     public final CaptchaErrorBody copy(List<String> captchaKey, String captchaSitekey, CaptchaService captchaService, String captchaRqdata, String captchaRqtoken) {
         return new CaptchaErrorBody(captchaKey, captchaSitekey, captchaService, captchaRqdata, captchaRqtoken);
     }
@@ -136,16 +116,36 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
         return this.captchaKey;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCaptchaRqdata() {
         return this.captchaRqdata;
+    }
+
+    public final String getCaptchaRqdata() {
+        return this.captchaRqdata;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getCaptchaRqtoken() {
+        return this.captchaRqtoken;
     }
 
     public final String getCaptchaRqtoken() {
         return this.captchaRqtoken;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final CaptchaService getCaptchaService() {
         return this.captchaService;
+    }
+
+    public final CaptchaService getCaptchaService() {
+        return this.captchaService;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getCaptchaSitekey() {
+        return this.captchaSitekey;
     }
 
     public final String getCaptchaSitekey() {

@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppCrashed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppCrashed implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
+    private final CharSequence extra = null;
+    private final CharSequence path = null;
     private TrackBase trackBase;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final CharSequence path = null;
-    private final CharSequence extra = null;
     private final transient String analyticsSchemaTypeName = "app_crashed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackAppCrashed implements AnalyticsSchema, TrackB
         }
         TrackAppCrashed trackAppCrashed = (TrackAppCrashed) other;
         return C12238m.areEqual(this.path, trackAppCrashed.path) && C12238m.areEqual(this.extra, trackAppCrashed.extra);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

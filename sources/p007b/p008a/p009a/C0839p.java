@@ -21,11 +21,11 @@ public final class C0839p extends AbstractC0859d0<a> {
 
     /* JADX INFO: renamed from: b.a.a.p$a */
     /* JADX INFO: compiled from: WidgetAccessibilityDetectionDialogViewModel.kt */
-    public static abstract class a {
+    public abstract class a {
 
         /* JADX INFO: renamed from: b.a.a.p$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: WidgetAccessibilityDetectionDialogViewModel.kt */
-        public static final class C13209a extends a {
+        public final class C13209a extends a {
 
             /* JADX INFO: renamed from: a */
             public static final C13209a f421a = new C13209a();

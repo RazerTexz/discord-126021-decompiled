@@ -65,10 +65,10 @@ public final class MessageManager {
     private final StoreUser storeUser;
 
     /* JADX INFO: compiled from: MessageManager.kt */
-    public static abstract class AttachmentValidationResult {
+    public abstract class AttachmentValidationResult {
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final class EmptyAttachments extends AttachmentValidationResult {
+        public final class EmptyAttachments extends AttachmentValidationResult {
             public static final EmptyAttachments INSTANCE = new EmptyAttachments();
 
             private EmptyAttachments() {
@@ -77,7 +77,7 @@ public final class MessageManager {
         }
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final /* data */ class FilesTooLarge extends AttachmentValidationResult {
+        public final /* data */ class FilesTooLarge extends AttachmentValidationResult {
             private final AttachmentsRequest attachmentsRequest;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -94,11 +94,6 @@ public final class MessageManager {
                 return filesTooLarge.copy(attachmentsRequest);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final AttachmentsRequest getAttachmentsRequest() {
-                return this.attachmentsRequest;
-            }
-
             public final FilesTooLarge copy(AttachmentsRequest attachmentsRequest) {
                 C12238m.checkNotNullParameter(attachmentsRequest, "attachmentsRequest");
                 return new FilesTooLarge(attachmentsRequest);
@@ -109,6 +104,11 @@ public final class MessageManager {
                     return (other instanceof FilesTooLarge) && C12238m.areEqual(this.attachmentsRequest, ((FilesTooLarge) other).attachmentsRequest);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final AttachmentsRequest getAttachmentsRequest() {
+                return this.attachmentsRequest;
             }
 
             public final AttachmentsRequest getAttachmentsRequest() {
@@ -132,7 +132,7 @@ public final class MessageManager {
         }
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final class Success extends AttachmentValidationResult {
+        public final class Success extends AttachmentValidationResult {
             public static final Success INSTANCE = new Success();
 
             private Success() {
@@ -149,7 +149,7 @@ public final class MessageManager {
     }
 
     /* JADX INFO: compiled from: MessageManager.kt */
-    public static final class AttachmentsRequest {
+    public final class AttachmentsRequest {
         private final List<Attachment<?>> attachments;
         private final float currentFileSizeMB;
         private final int maxFileSizeMB;
@@ -178,11 +178,77 @@ public final class MessageManager {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendCommand$1 */
     /* JADX INFO: compiled from: MessageManager.kt */
-    public static abstract class ContentValidationResult {
+    public final class C76701 extends AbstractC12240o implements Function0<Unit> {
+        public static final C76701 INSTANCE = new C76701();
+
+        public C76701() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendCommand$2 */
+    /* JADX INFO: compiled from: MessageManager.kt */
+    public final class C76712 extends AbstractC12240o implements Function1<Error, Unit> {
+        public static final C76712 INSTANCE = new C76712();
+
+        public C76712() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendMessage$2 */
+    /* JADX INFO: compiled from: MessageManager.kt */
+    public final class C76732 extends AbstractC12240o implements Function1<MessageSendResult, Unit> {
+        public final /* synthetic */ Function1 $messageSendResultHandler;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C76732(Function1 function1) {
+            super(1);
+            this.$messageSendResultHandler = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MessageSendResult messageSendResult) {
+            invoke2(messageSendResult);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MessageSendResult messageSendResult) {
+            Function1 function1 = this.$messageSendResultHandler;
+            C12238m.checkNotNullExpressionValue(messageSendResult, "messageSendResult");
+            function1.invoke(messageSendResult);
+        }
+    }
+
+    /* JADX INFO: compiled from: MessageManager.kt */
+    public abstract class ContentValidationResult {
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final class EmptyContent extends ContentValidationResult {
+        public final class EmptyContent extends ContentValidationResult {
             public static final EmptyContent INSTANCE = new EmptyContent();
 
             private EmptyContent() {
@@ -191,7 +257,7 @@ public final class MessageManager {
         }
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final /* data */ class MessageTooLong extends ContentValidationResult {
+        public final /* data */ class MessageTooLong extends ContentValidationResult {
             private final int maxMessageLength;
 
             public MessageTooLong(int i) {
@@ -206,11 +272,6 @@ public final class MessageManager {
                 return messageTooLong.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getMaxMessageLength() {
-                return this.maxMessageLength;
-            }
-
             public final MessageTooLong copy(int maxMessageLength) {
                 return new MessageTooLong(maxMessageLength);
             }
@@ -220,6 +281,11 @@ public final class MessageManager {
                     return (other instanceof MessageTooLong) && this.maxMessageLength == ((MessageTooLong) other).maxMessageLength;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getMaxMessageLength() {
+                return this.maxMessageLength;
             }
 
             public final int getMaxMessageLength() {
@@ -236,7 +302,7 @@ public final class MessageManager {
         }
 
         /* JADX INFO: compiled from: MessageManager.kt */
-        public static final class Success extends ContentValidationResult {
+        public final class Success extends ContentValidationResult {
             public static final Success INSTANCE = new Success();
 
             private Success() {
@@ -253,7 +319,7 @@ public final class MessageManager {
     }
 
     /* JADX INFO: compiled from: MessageManager.kt */
-    public static final /* data */ class MessageSendResult {
+    public final /* data */ class MessageSendResult {
         private final Guild guild;
         private final MessageResult messageResult;
 
@@ -273,16 +339,6 @@ public final class MessageManager {
             return messageSendResult.copy(messageResult, guild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MessageResult getMessageResult() {
-            return this.messageResult;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
         public final MessageSendResult copy(MessageResult messageResult, Guild guild) {
             C12238m.checkNotNullParameter(messageResult, "messageResult");
             return new MessageSendResult(messageResult, guild);
@@ -299,8 +355,18 @@ public final class MessageManager {
             return C12238m.areEqual(this.messageResult, messageSendResult.messageResult) && C12238m.areEqual(this.guild, messageSendResult.guild);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MessageResult getMessageResult() {
+            return this.messageResult;
         }
 
         public final MessageResult getMessageResult() {
@@ -324,72 +390,6 @@ public final class MessageManager {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendCommand$1 */
-    /* JADX INFO: compiled from: MessageManager.kt */
-    public static final class C76701 extends AbstractC12240o implements Function0<Unit> {
-        public static final C76701 INSTANCE = new C76701();
-
-        public C76701() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendCommand$2 */
-    /* JADX INFO: compiled from: MessageManager.kt */
-    public static final class C76712 extends AbstractC12240o implements Function1<Error, Unit> {
-        public static final C76712 INSTANCE = new C76712();
-
-        public C76712() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.MessageManager$sendMessage$2 */
-    /* JADX INFO: compiled from: MessageManager.kt */
-    public static final class C76732 extends AbstractC12240o implements Function1<MessageSendResult, Unit> {
-        public final /* synthetic */ Function1 $messageSendResultHandler;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C76732(Function1 function1) {
-            super(1);
-            this.$messageSendResultHandler = function1;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MessageSendResult messageSendResult) {
-            invoke2(messageSendResult);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MessageSendResult messageSendResult) {
-            Function1 function1 = this.$messageSendResultHandler;
-            C12238m.checkNotNullExpressionValue(messageSendResult, "messageSendResult");
-            function1.invoke(messageSendResult);
-        }
-    }
-
     public MessageManager(Context context, StoreMessages storeMessages, StoreApplicationInteractions storeApplicationInteractions, StoreUser storeUser, StoreChannelsSelected storeChannelsSelected, StoreSlowMode storeSlowMode, StoreGuilds storeGuilds, StorePendingReplies storePendingReplies, StoreMessageReplies storeMessageReplies) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(storeMessages, "storeMessages");
@@ -410,6 +410,23 @@ public final class MessageManager {
         this.storePendingReplies = storePendingReplies;
         this.storeMessageReplies = storeMessageReplies;
         this.defaultMessageResultHandler = new MessageManager$defaultMessageResultHandler$1(this);
+    }
+
+    public final boolean editMessage(long messageId, long channelId, String content, Function2<? super Integer, ? super Integer, Unit> onMessageTooLong, Integer previousMessageLength) {
+        C12238m.checkNotNullParameter(content, "content");
+        ContentValidationResult contentValidationResultValidateMessageContent = validateMessageContent(content, C12147n.emptyList(), this.storeUser.getMeSnapshot(), true, previousMessageLength);
+        if (contentValidationResultValidateMessageContent instanceof ContentValidationResult.MessageTooLong) {
+            if (onMessageTooLong != null) {
+                onMessageTooLong.invoke(Integer.valueOf(content.length()), Integer.valueOf(((ContentValidationResult.MessageTooLong) contentValidationResultValidateMessageContent).getMaxMessageLength()));
+            }
+            return false;
+        }
+        if (C12238m.areEqual(contentValidationResultValidateMessageContent, ContentValidationResult.EmptyContent.INSTANCE)) {
+            return false;
+        }
+        C12238m.areEqual(contentValidationResultValidateMessageContent, ContentValidationResult.Success.INSTANCE);
+        this.storeMessages.editMessage(messageId, channelId, content, getAllowedMentionsForMessageEdit(channelId, messageId));
+        return true;
     }
 
     private final MessageAllowedMentions getAllowedMentionsForMessageEdit(long channelId, long messageId) {
@@ -450,55 +467,6 @@ public final class MessageManager {
             attachmentsRequest = null;
         }
         return messageManager.isValidForumPostFirstMessage(str, attachmentsRequest, function2, function3);
-    }
-
-    private final AttachmentValidationResult validateAttachments(AttachmentsRequest attachmentsRequest) {
-        if (attachmentsRequest == null) {
-            return AttachmentValidationResult.EmptyAttachments.INSTANCE;
-        }
-        List<Attachment<?>> attachments = attachmentsRequest.getAttachments();
-        if (attachments == null || attachments.isEmpty()) {
-            return AttachmentValidationResult.EmptyAttachments.INSTANCE;
-        }
-        return attachmentsRequest.getCurrentFileSizeMB() >= ((float) attachmentsRequest.getMaxFileSizeMB()) ? new AttachmentValidationResult.FilesTooLarge(attachmentsRequest) : AttachmentValidationResult.Success.INSTANCE;
-    }
-
-    private final ContentValidationResult validateMessageContent(String content, List<? extends BaseSticker> stickers, MeUser meUser, boolean isEditing, Integer previousMessageLength) {
-        boolean z2 = true;
-        int i = (UserUtils.INSTANCE.isPremiumTier2(meUser) || (isEditing && previousMessageLength != null && previousMessageLength.intValue() > 2000)) ? SendUtils.MAX_MESSAGE_CHARACTER_COUNT_PREMIUM : 2000;
-        if (content.length() == 0) {
-            if (stickers != null && !stickers.isEmpty()) {
-                z2 = false;
-            }
-            if (z2) {
-                return ContentValidationResult.EmptyContent.INSTANCE;
-            }
-        }
-        return content.length() > i ? new ContentValidationResult.MessageTooLong(i) : ContentValidationResult.Success.INSTANCE;
-    }
-
-    public static /* synthetic */ ContentValidationResult validateMessageContent$default(MessageManager messageManager, String str, List list, MeUser meUser, boolean z2, Integer num, int i, Object obj) {
-        if ((i & 16) != 0) {
-            num = null;
-        }
-        return messageManager.validateMessageContent(str, list, meUser, z2, num);
-    }
-
-    public final boolean editMessage(long messageId, long channelId, String content, Function2<? super Integer, ? super Integer, Unit> onMessageTooLong, Integer previousMessageLength) {
-        C12238m.checkNotNullParameter(content, "content");
-        ContentValidationResult contentValidationResultValidateMessageContent = validateMessageContent(content, C12147n.emptyList(), this.storeUser.getMeSnapshot(), true, previousMessageLength);
-        if (contentValidationResultValidateMessageContent instanceof ContentValidationResult.MessageTooLong) {
-            if (onMessageTooLong != null) {
-                onMessageTooLong.invoke(Integer.valueOf(content.length()), Integer.valueOf(((ContentValidationResult.MessageTooLong) contentValidationResultValidateMessageContent).getMaxMessageLength()));
-            }
-            return false;
-        }
-        if (C12238m.areEqual(contentValidationResultValidateMessageContent, ContentValidationResult.EmptyContent.INSTANCE)) {
-            return false;
-        }
-        C12238m.areEqual(contentValidationResultValidateMessageContent, ContentValidationResult.Success.INSTANCE);
-        this.storeMessages.editMessage(messageId, channelId, content, getAllowedMentionsForMessageEdit(channelId, messageId));
-        return true;
     }
 
     public final boolean isValidForumPostFirstMessage(String content, AttachmentsRequest attachmentsRequest, Function2<? super Integer, ? super Integer, Unit> onMessageTooLong, Function2<? super Integer, ? super Boolean, Unit> onFilesTooLarge) {
@@ -605,6 +573,38 @@ public final class MessageManager {
         C12238m.checkNotNullExpressionValue(observableM11100Z, "Observable.combineLatest…d)\n    }\n        .take(1)");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(observableM11100Z, false, 1, null)), (Class<?>) MessageManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76732(messageSendResultHandler));
         return true;
+    }
+
+    private final AttachmentValidationResult validateAttachments(AttachmentsRequest attachmentsRequest) {
+        if (attachmentsRequest == null) {
+            return AttachmentValidationResult.EmptyAttachments.INSTANCE;
+        }
+        List<Attachment<?>> attachments = attachmentsRequest.getAttachments();
+        if (attachments == null || attachments.isEmpty()) {
+            return AttachmentValidationResult.EmptyAttachments.INSTANCE;
+        }
+        return attachmentsRequest.getCurrentFileSizeMB() >= ((float) attachmentsRequest.getMaxFileSizeMB()) ? new AttachmentValidationResult.FilesTooLarge(attachmentsRequest) : AttachmentValidationResult.Success.INSTANCE;
+    }
+
+    public static /* synthetic */ ContentValidationResult validateMessageContent$default(MessageManager messageManager, String str, List list, MeUser meUser, boolean z2, Integer num, int i, Object obj) {
+        if ((i & 16) != 0) {
+            num = null;
+        }
+        return messageManager.validateMessageContent(str, list, meUser, z2, num);
+    }
+
+    private final ContentValidationResult validateMessageContent(String content, List<? extends BaseSticker> stickers, MeUser meUser, boolean isEditing, Integer previousMessageLength) {
+        boolean z2 = true;
+        int i = (UserUtils.INSTANCE.isPremiumTier2(meUser) || (isEditing && previousMessageLength != null && previousMessageLength.intValue() > 2000)) ? SendUtils.MAX_MESSAGE_CHARACTER_COUNT_PREMIUM : 2000;
+        if (content.length() == 0) {
+            if (stickers != null && !stickers.isEmpty()) {
+                z2 = false;
+            }
+            if (z2) {
+                return ContentValidationResult.EmptyContent.INSTANCE;
+            }
+        }
+        return content.length() > i ? new ContentValidationResult.MessageTooLong(i) : ContentValidationResult.Success.INSTANCE;
     }
 
     public /* synthetic */ MessageManager(Context context, StoreMessages storeMessages, StoreApplicationInteractions storeApplicationInteractions, StoreUser storeUser, StoreChannelsSelected storeChannelsSelected, StoreSlowMode storeSlowMode, StoreGuilds storeGuilds, StorePendingReplies storePendingReplies, StoreMessageReplies storeMessageReplies, int i, DefaultConstructorMarker defaultConstructorMarker) {

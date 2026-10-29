@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInviteSuggestionOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInviteSuggestionOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long numSuggestions = null;
-    private final Long numFriends = null;
-    private final Long numDms = null;
-    private final Long numGroupDms = null;
     private final Long guildId = null;
+    private final Long numDms = null;
+    private final Long numFriends = null;
+    private final Long numGroupDms = null;
+    private final Long numSuggestions = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "invite_suggestion_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackInviteSuggestionOpened implements AnalyticsSc
         }
         TrackInviteSuggestionOpened trackInviteSuggestionOpened = (TrackInviteSuggestionOpened) other;
         return C12238m.areEqual(this.numSuggestions, trackInviteSuggestionOpened.numSuggestions) && C12238m.areEqual(this.numFriends, trackInviteSuggestionOpened.numFriends) && C12238m.areEqual(this.numDms, trackInviteSuggestionOpened.numDms) && C12238m.areEqual(this.numGroupDms, trackInviteSuggestionOpened.numGroupDms) && C12238m.areEqual(this.guildId, trackInviteSuggestionOpened.guildId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -17,12 +17,6 @@ public final /* data */ class TrackDataInfraTest implements AnalyticsSchema, Tra
     private final CharSequence requiredStr;
     private TrackBase trackBase;
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,6 +26,12 @@ public final /* data */ class TrackDataInfraTest implements AnalyticsSchema, Tra
         }
         TrackDataInfraTest trackDataInfraTest = (TrackDataInfraTest) other;
         return C12238m.areEqual(this.pushToken, trackDataInfraTest.pushToken) && C12238m.areEqual(this.pushTokenArr, trackDataInfraTest.pushTokenArr) && C12238m.areEqual(this.requiredStr, trackDataInfraTest.requiredStr) && C12238m.areEqual(this.optionalStr, trackDataInfraTest.optionalStr);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

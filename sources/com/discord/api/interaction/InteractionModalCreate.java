@@ -18,31 +18,6 @@ public final /* data */ class InteractionModalCreate implements Serializable {
     private final String nonce;
     private final String title;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Component> m8010b() {
-        return this.components;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final String getCustomId() {
-        return this.customId;
-    }
-
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final String getTitle() {
-        return this.title;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -54,8 +29,28 @@ public final /* data */ class InteractionModalCreate implements Serializable {
         return this.id == interactionModalCreate.id && C12238m.areEqual(this.customId, interactionModalCreate.customId) && C12238m.areEqual(this.application, interactionModalCreate.application) && C12238m.areEqual(this.title, interactionModalCreate.title) && C12238m.areEqual(this.components, interactionModalCreate.components) && C12238m.areEqual(this.nonce, interactionModalCreate.nonce);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final String getCustomId() {
+        return this.customId;
+    }
+
     public final long getId() {
         return this.id;
+    }
+
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final String getTitle() {
+        return this.title;
     }
 
     public int hashCode() {
@@ -71,6 +66,11 @@ public final /* data */ class InteractionModalCreate implements Serializable {
         int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
         String str3 = this.nonce;
         return iHashCode4 + (str3 != null ? str3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<Component> m8010b() {
+        return this.components;
     }
 
     public String toString() {

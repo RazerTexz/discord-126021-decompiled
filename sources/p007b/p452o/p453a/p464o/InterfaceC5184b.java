@@ -20,13 +20,13 @@ public interface InterfaceC5184b {
     /* JADX INFO: renamed from: f */
     void mo7372f();
 
-    @NonNull
-    /* JADX INFO: renamed from: h */
-    String mo7375h();
-
     /* JADX INFO: renamed from: j */
     void mo7373j(int i);
 
     /* JADX INFO: renamed from: k */
     void mo7374k(int i, int i2);
+
+    @NonNull
+    /* JADX INFO: renamed from: h */
+    String mo7375h();
 }

@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class UserSurveyFetchResponse {
     private final UserSurvey survey;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final UserSurvey getSurvey() {
-        return this.survey;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof UserSurveyFetchResponse) && C12238m.areEqual(this.survey, ((UserSurveyFetchResponse) other).survey);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final UserSurvey getSurvey() {
+        return this.survey;
     }
 
     public int hashCode() {

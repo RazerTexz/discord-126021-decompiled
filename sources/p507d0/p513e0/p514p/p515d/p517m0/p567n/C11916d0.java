@@ -27,7 +27,7 @@ public final class C11916d0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.d0$a */
     /* JADX INFO: compiled from: KotlinTypeFactory.kt */
-    public static final class a extends AbstractC12240o implements Function1 {
+    public final class a extends AbstractC12240o implements Function1 {
 
         /* JADX INFO: renamed from: j */
         public static final a f24749j = new a();
@@ -45,7 +45,7 @@ public final class C11916d0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.d0$b */
     /* JADX INFO: compiled from: KotlinTypeFactory.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11934j0 f24750a;
@@ -69,7 +69,7 @@ public final class C11916d0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.d0$c */
     /* JADX INFO: compiled from: KotlinTypeFactory.kt */
-    public static final class c extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
+    public final class c extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
         public final /* synthetic */ InterfaceC11344g $annotations;
         public final /* synthetic */ List<InterfaceC12012w0> $arguments;
         public final /* synthetic */ InterfaceC12008u0 $constructor;
@@ -105,7 +105,7 @@ public final class C11916d0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.d0$d */
     /* JADX INFO: compiled from: KotlinTypeFactory.kt */
-    public static final class d extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
+    public final class d extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
         public final /* synthetic */ InterfaceC11344g $annotations;
         public final /* synthetic */ List<InterfaceC12012w0> $arguments;
         public final /* synthetic */ InterfaceC12008u0 $constructor;
@@ -193,6 +193,13 @@ public final class C11916d0 {
         return simpleType$default(interfaceC11344g, typeConstructor, list, false, null, 16, null);
     }
 
+    public static /* synthetic */ AbstractC11934j0 simpleType$default(InterfaceC11344g interfaceC11344g, InterfaceC12008u0 interfaceC12008u0, List list, boolean z2, AbstractC11947g abstractC11947g, int i, Object obj) {
+        if ((i & 16) != 0) {
+            abstractC11947g = null;
+        }
+        return simpleType(interfaceC11344g, interfaceC12008u0, list, z2, abstractC11947g);
+    }
+
     public static final AbstractC11934j0 simpleType(InterfaceC11344g interfaceC11344g, InterfaceC12008u0 interfaceC12008u0, List<? extends InterfaceC12012w0> list, boolean z2, AbstractC11947g abstractC11947g) {
         InterfaceC11770i interfaceC11770iCreateScopeForKotlinType;
         C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
@@ -224,13 +231,6 @@ public final class C11916d0 {
             interfaceC11770iCreateScopeForKotlinType = ((C11907a0) interfaceC12008u0).createScopeForKotlinType();
         }
         return simpleTypeWithNonTrivialMemberScope(interfaceC11344g, interfaceC12008u0, list, z2, interfaceC11770iCreateScopeForKotlinType, c11916d0.new c(interfaceC12008u0, list, interfaceC11344g, z2));
-    }
-
-    public static /* synthetic */ AbstractC11934j0 simpleType$default(InterfaceC11344g interfaceC11344g, InterfaceC12008u0 interfaceC12008u0, List list, boolean z2, AbstractC11947g abstractC11947g, int i, Object obj) {
-        if ((i & 16) != 0) {
-            abstractC11947g = null;
-        }
-        return simpleType(interfaceC11344g, interfaceC12008u0, list, z2, abstractC11947g);
     }
 
     public static final AbstractC11934j0 simpleTypeWithNonTrivialMemberScope(InterfaceC11344g interfaceC11344g, InterfaceC12008u0 interfaceC12008u0, List<? extends InterfaceC12012w0> list, boolean z2, InterfaceC11770i interfaceC11770i) {

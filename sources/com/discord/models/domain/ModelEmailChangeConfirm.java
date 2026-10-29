@@ -20,11 +20,6 @@ public final /* data */ class ModelEmailChangeConfirm {
         return modelEmailChangeConfirm.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public final ModelEmailChangeConfirm copy(String token) {
         C12238m.checkNotNullParameter(token, "token");
         return new ModelEmailChangeConfirm(token);
@@ -35,6 +30,11 @@ public final /* data */ class ModelEmailChangeConfirm {
             return (other instanceof ModelEmailChangeConfirm) && C12238m.areEqual(this.token, ((ModelEmailChangeConfirm) other).token);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {

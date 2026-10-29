@@ -41,7 +41,7 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
-    public static final class C80081 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C80081 extends AbstractC12240o implements Function1<TextView, Unit> {
         public static final C80081 INSTANCE = new C80081();
 
         public C80081() {

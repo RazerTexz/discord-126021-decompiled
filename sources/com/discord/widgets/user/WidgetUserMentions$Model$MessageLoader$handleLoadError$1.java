@@ -13,7 +13,7 @@ public final class WidgetUserMentions$Model$MessageLoader$handleLoadError$1 exte
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$Model$MessageLoader$handleLoadError$1$1 */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public static final class C102081 extends AbstractC12240o implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
+    public final class C102081 extends AbstractC12240o implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
         public static final C102081 INSTANCE = new C102081();
 
         public C102081() {

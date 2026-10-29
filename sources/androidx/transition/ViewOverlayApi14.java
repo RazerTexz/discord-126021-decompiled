@@ -23,6 +23,11 @@ public class ViewOverlayApi14 implements ViewOverlayImpl {
         this.mOverlayViewGroup = new OverlayViewGroup(context, viewGroup, view, this);
     }
 
+    @Override // androidx.transition.ViewOverlayImpl
+    public void add(@NonNull Drawable drawable) {
+        this.mOverlayViewGroup.add(drawable);
+    }
+
     public static ViewOverlayApi14 createFrom(View view) {
         ViewGroup contentView = getContentView(view);
         if (contentView == null) {
@@ -51,16 +56,11 @@ public class ViewOverlayApi14 implements ViewOverlayImpl {
     }
 
     @Override // androidx.transition.ViewOverlayImpl
-    public void add(@NonNull Drawable drawable) {
-        this.mOverlayViewGroup.add(drawable);
-    }
-
-    @Override // androidx.transition.ViewOverlayImpl
     public void remove(@NonNull Drawable drawable) {
         this.mOverlayViewGroup.remove(drawable);
     }
 
-    public static class OverlayViewGroup extends ViewGroup {
+    public class OverlayViewGroup extends ViewGroup {
         public static Method sInvalidateChildInParentFastMethod;
         private boolean mDisposed;
         public ArrayList<Drawable> mDrawables;
@@ -87,31 +87,6 @@ public class ViewOverlayApi14 implements ViewOverlayImpl {
             this.mViewOverlay = viewOverlayApi14;
         }
 
-        private void assertNotDisposed() {
-            if (this.mDisposed) {
-                throw new IllegalStateException("This overlay was disposed already. Please use a new one via ViewGroupUtils.getOverlay()");
-            }
-        }
-
-        private void disposeIfEmpty() {
-            if (getChildCount() == 0) {
-                ArrayList<Drawable> arrayList = this.mDrawables;
-                if (arrayList == null || arrayList.size() == 0) {
-                    this.mDisposed = true;
-                    this.mHostView.removeView(this);
-                }
-            }
-        }
-
-        private void getOffset(int[] iArr) {
-            int[] iArr2 = new int[2];
-            int[] iArr3 = new int[2];
-            this.mHostView.getLocationOnScreen(iArr2);
-            this.mRequestingView.getLocationOnScreen(iArr3);
-            iArr[0] = iArr3[0] - iArr2[0];
-            iArr[1] = iArr3[1] - iArr2[1];
-        }
-
         public void add(Drawable drawable) {
             assertNotDisposed();
             if (this.mDrawables == null) {
@@ -123,6 +98,12 @@ public class ViewOverlayApi14 implements ViewOverlayImpl {
             this.mDrawables.add(drawable);
             invalidate(drawable.getBounds());
             drawable.setCallback(this);
+        }
+
+        private void assertNotDisposed() {
+            if (this.mDisposed) {
+                throw new IllegalStateException("This overlay was disposed already. Please use a new one via ViewGroupUtils.getOverlay()");
+            }
         }
 
         @Override // android.view.ViewGroup, android.view.View
@@ -144,6 +125,25 @@ public class ViewOverlayApi14 implements ViewOverlayImpl {
         @Override // android.view.ViewGroup, android.view.View
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
             return false;
+        }
+
+        private void disposeIfEmpty() {
+            if (getChildCount() == 0) {
+                ArrayList<Drawable> arrayList = this.mDrawables;
+                if (arrayList == null || arrayList.size() == 0) {
+                    this.mDisposed = true;
+                    this.mHostView.removeView(this);
+                }
+            }
+        }
+
+        private void getOffset(int[] iArr) {
+            int[] iArr2 = new int[2];
+            int[] iArr3 = new int[2];
+            this.mHostView.getLocationOnScreen(iArr2);
+            this.mRequestingView.getLocationOnScreen(iArr3);
+            iArr[0] = iArr3[0] - iArr2[0];
+            iArr[1] = iArr3[1] - iArr2[1];
         }
 
         @Override // android.view.ViewGroup, android.view.ViewParent

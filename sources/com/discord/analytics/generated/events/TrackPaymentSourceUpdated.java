@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentSourceUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentSourceUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentSourceId = null;
     private final Long cardExpirationDate = null;
     private final Boolean isDefault = null;
+    private final Long paymentSourceId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "payment_source_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackPaymentSourceUpdated implements AnalyticsSche
         }
         TrackPaymentSourceUpdated trackPaymentSourceUpdated = (TrackPaymentSourceUpdated) other;
         return C12238m.areEqual(this.paymentSourceId, trackPaymentSourceUpdated.paymentSourceId) && C12238m.areEqual(this.cardExpirationDate, trackPaymentSourceUpdated.cardExpirationDate) && C12238m.areEqual(this.isDefault, trackPaymentSourceUpdated.isDefault);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

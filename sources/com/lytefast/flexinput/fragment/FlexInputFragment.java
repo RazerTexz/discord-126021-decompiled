@@ -83,41 +83,41 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes3.dex */
 public class FlexInputFragment extends Fragment implements InterfaceC1429b<Object> {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f22054j = {C1643a.m846d0(FlexInputFragment.class, "binding", "getBinding()Lcom/lytefast/flexinput/databinding/FlexInputWidgetBinding;", 0)};
-
-    /* JADX INFO: renamed from: k */
-    public static final String f22055k = FlexInputFragment.class.getName();
-
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public FlexEditText inputEt;
-
-    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public InterfaceC1447a keyboardManager;
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public FlexInputListener inputListener;
-
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public FileManager fileManager;
-
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter;
-
-    /* JADX INFO: renamed from: r */
-    public C1434d.a[] f22062r;
-
-    /* JADX INFO: renamed from: s, reason: from kotlin metadata */
-    public FlexInputViewModel viewModel;
-
-    /* JADX INFO: renamed from: t, reason: from kotlin metadata */
-    public Subscription stateSubscription;
 
     /* JADX INFO: renamed from: u, reason: from kotlin metadata */
     public Subscription eventSubscription;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f22054j = {C1643a.m846d0(FlexInputFragment.class, "binding", "getBinding()Lcom/lytefast/flexinput/databinding/FlexInputWidgetBinding;", 0)};
+
+    /* JADX INFO: renamed from: r */
+    public C1434d.a[] f22062r;
+
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public FileManager fileManager;
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public FlexEditText inputEt;
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public FlexInputListener inputListener;
+
+    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
+    public InterfaceC1447a keyboardManager;
+
     /* JADX INFO: renamed from: v, reason: from kotlin metadata */
     public Subscription showExpressionKeyboardSubscription;
+
+    /* JADX INFO: renamed from: t, reason: from kotlin metadata */
+    public Subscription stateSubscription;
+
+    /* JADX INFO: renamed from: s, reason: from kotlin metadata */
+    public FlexInputViewModel viewModel;
+
+    /* JADX INFO: renamed from: k */
+    public static final String f22055k = FlexInputFragment.class.getName();
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding = FragmentViewBindingDelegateKt.viewBinding$default(this, C11183c.f22072j, null, 2, null);
@@ -128,77 +128,9 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
     /* JADX INFO: renamed from: x, reason: from kotlin metadata */
     public List<Function0<Unit>> onContentPagesInitializedUpdates = new ArrayList();
 
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$a */
-    /* JADX INFO: compiled from: java-style lambda group */
-    /* JADX INFO: loaded from: classes.dex */
-    public static final class ViewOnClickListenerC11181a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f22069j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ Object f22070k;
-
-        public ViewOnClickListenerC11181a(int i, Object obj) {
-            this.f22069j = i;
-            this.f22070k = obj;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            int i = this.f22069j;
-            if (i == 0) {
-                FlexInputViewModel flexInputViewModel = ((FlexInputFragment) this.f22070k).viewModel;
-                if (flexInputViewModel != null) {
-                    flexInputViewModel.onInputTextClicked();
-                    return;
-                }
-                return;
-            }
-            if (i != 1) {
-                throw null;
-            }
-            AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter = ((FlexInputFragment) this.f22070k).attachmentPreviewAdapter;
-            if (attachmentPreviewAdapter == null) {
-                C12238m.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
-            }
-            attachmentPreviewAdapter.selectionAggregator.clear();
-            attachmentPreviewAdapter.notifyDataSetChanged();
-            FlexInputViewModel flexInputViewModel2 = ((FlexInputFragment) this.f22070k).viewModel;
-            if (flexInputViewModel2 != null) {
-                flexInputViewModel2.onAttachmentsUpdated(C12147n.emptyList());
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$b */
-    /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final class RunnableC11182b implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ DialogFragment f22071j;
-
-        public RunnableC11182b(DialogFragment dialogFragment) {
-            this.f22071j = dialogFragment;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            DialogFragment dialogFragment = this.f22071j;
-            if (dialogFragment == null || !dialogFragment.isAdded() || this.f22071j.isRemoving() || this.f22071j.isDetached()) {
-                return;
-            }
-            try {
-                this.f22071j.dismiss();
-            } catch (IllegalStateException e) {
-                Log.w(FlexInputFragment.f22055k, "could not dismiss add content dialog", e);
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$c */
     /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final /* synthetic */ class C11183c extends C12236k implements Function1<View, C1444a> {
+    public final /* synthetic */ class C11183c extends C12236k implements Function1<View, C1444a> {
 
         /* JADX INFO: renamed from: j */
         public static final C11183c f22072j = new C11183c();
@@ -287,7 +219,7 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$d */
     /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final /* synthetic */ class C11184d extends C12236k implements Function1<FlexInputState, Unit> {
+    public final /* synthetic */ class C11184d extends C12236k implements Function1<FlexInputState, Unit> {
         public C11184d(FlexInputFragment flexInputFragment) {
             super(1, flexInputFragment, FlexInputFragment.class, "configureUI", "configureUI(Lcom/lytefast/flexinput/viewmodel/FlexInputState;)V", 0);
         }
@@ -409,7 +341,7 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$e */
     /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final /* synthetic */ class C11185e extends C12236k implements Function1<AbstractC1451a, Unit> {
+    public final /* synthetic */ class C11185e extends C12236k implements Function1<AbstractC1451a, Unit> {
         public C11185e(FlexInputFragment flexInputFragment) {
             super(1, flexInputFragment, FlexInputFragment.class, "handleEvent", "handleEvent(Lcom/lytefast/flexinput/viewmodel/FlexInputEvent;)V", 0);
         }
@@ -448,7 +380,7 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$f */
     /* JADX INFO: compiled from: FlexInputFragment.kt */
-    public static final class C11186f extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C11186f extends AbstractC12240o implements Function1<Editable, Unit> {
         public C11186f() {
             super(1);
         }
@@ -463,6 +395,92 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
             }
             return Unit.f27425a;
         }
+    }
+
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$b */
+    /* JADX INFO: compiled from: FlexInputFragment.kt */
+    public final class RunnableC11182b implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ DialogFragment f22071j;
+
+        public RunnableC11182b(DialogFragment dialogFragment) {
+            this.f22071j = dialogFragment;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            DialogFragment dialogFragment = this.f22071j;
+            if (dialogFragment == null || !dialogFragment.isAdded() || this.f22071j.isRemoving() || this.f22071j.isDetached()) {
+                return;
+            }
+            try {
+                this.f22071j.dismiss();
+            } catch (IllegalStateException e) {
+                Log.w(FlexInputFragment.f22055k, "could not dismiss add content dialog", e);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FlexInputFragment$a */
+    /* JADX INFO: compiled from: java-style lambda group */
+    /* JADX INFO: loaded from: classes.dex */
+    public final class ViewOnClickListenerC11181a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f22069j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ Object f22070k;
+
+        public ViewOnClickListenerC11181a(int i, Object obj) {
+            this.f22069j = i;
+            this.f22070k = obj;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.f22069j;
+            if (i == 0) {
+                FlexInputViewModel flexInputViewModel = ((FlexInputFragment) this.f22070k).viewModel;
+                if (flexInputViewModel != null) {
+                    flexInputViewModel.onInputTextClicked();
+                    return;
+                }
+                return;
+            }
+            if (i != 1) {
+                throw null;
+            }
+            AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter = ((FlexInputFragment) this.f22070k).attachmentPreviewAdapter;
+            if (attachmentPreviewAdapter == null) {
+                C12238m.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
+            }
+            attachmentPreviewAdapter.selectionAggregator.clear();
+            attachmentPreviewAdapter.notifyDataSetChanged();
+            FlexInputViewModel flexInputViewModel2 = ((FlexInputFragment) this.f22070k).viewModel;
+            if (flexInputViewModel2 != null) {
+                flexInputViewModel2.onAttachmentsUpdated(C12147n.emptyList());
+            }
+        }
+    }
+
+    @Override // p007b.p076b.p077a.InterfaceC1429b
+    public FileManager getFileManager() {
+        FileManager fileManager = this.fileManager;
+        if (fileManager == null) {
+            C12238m.throwUninitializedPropertyAccessException("fileManager");
+        }
+        return fileManager;
+    }
+
+    @Override // p007b.p076b.p077a.InterfaceC1429b
+    public boolean hasMediaPermissions() {
+        FlexInputViewModel flexInputViewModel = this.viewModel;
+        if (flexInputViewModel != null) {
+            return flexInputViewModel.hasMediaPermissions();
+        }
+        return false;
     }
 
     /* JADX INFO: renamed from: g */
@@ -506,64 +524,18 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
 
     /* JADX INFO: renamed from: h */
     public static final void m9289h(FlexInputFragment flexInputFragment, boolean z2) {
-        Object obj;
         Fragment fragmentFindFragmentById = flexInputFragment.getChildFragmentManager().findFragmentById(C11170R.f.expression_tray_container);
         if (fragmentFindFragmentById != null && fragmentFindFragmentById.isAdded() && fragmentFindFragmentById.isResumed()) {
-            if (!(fragmentFindFragmentById instanceof InterfaceC1430c)) {
-                obj = fragmentFindFragmentById;
+            boolean z3 = fragmentFindFragmentById instanceof InterfaceC1430c;
+            Object obj = fragmentFindFragmentById;
+            if (!z3) {
                 obj = null;
             }
-            obj = fragmentFindFragmentById;
             InterfaceC1430c interfaceC1430c = (InterfaceC1430c) obj;
             if (interfaceC1430c != null) {
                 interfaceC1430c.isShown(z2);
             }
         }
-    }
-
-    @Override // p007b.p076b.p077a.InterfaceC1429b
-    /* JADX INFO: renamed from: b */
-    public SelectionAggregator<Attachment<Object>> mo396b() {
-        AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter = this.attachmentPreviewAdapter;
-        if (attachmentPreviewAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
-        }
-        return attachmentPreviewAdapter.selectionAggregator;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // p007b.p076b.p077a.InterfaceC1429b
-    /* JADX INFO: renamed from: f */
-    public void mo397f(Attachment<? extends Object> attachment) {
-        C12238m.checkNotNullParameter(attachment, "attachment");
-        DialogFragment dialogFragment = (DialogFragment) getChildFragmentManager().findFragmentByTag("Add Content");
-        SelectionCoordinator<T, ?> selectionCoordinator = new SelectionCoordinator<>(null, null, 3);
-        mo396b().registerSelectionCoordinator(selectionCoordinator);
-        selectionCoordinator.m9300c(attachment, 0);
-        selectionCoordinator.itemSelectionListener.unregister();
-        FlexInputViewModel flexInputViewModel = this.viewModel;
-        if (flexInputViewModel != null) {
-            flexInputViewModel.onAttachmentsUpdated(mo396b().getAttachments());
-        }
-        m9291j().f2175d.post(new RunnableC11182b(dialogFragment));
-    }
-
-    @Override // p007b.p076b.p077a.InterfaceC1429b
-    public FileManager getFileManager() {
-        FileManager fileManager = this.fileManager;
-        if (fileManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("fileManager");
-        }
-        return fileManager;
-    }
-
-    @Override // p007b.p076b.p077a.InterfaceC1429b
-    public boolean hasMediaPermissions() {
-        FlexInputViewModel flexInputViewModel = this.viewModel;
-        if (flexInputViewModel != null) {
-            return flexInputViewModel.hasMediaPermissions();
-        }
-        return false;
     }
 
     /* JADX INFO: renamed from: i */
@@ -617,6 +589,33 @@ public class FlexInputFragment extends Fragment implements InterfaceC1429b<Objec
             return false;
         }
         return view.getVisibility() == 0;
+    }
+
+    @Override // p007b.p076b.p077a.InterfaceC1429b
+    /* JADX INFO: renamed from: b */
+    public SelectionAggregator<Attachment<Object>> mo396b() {
+        AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter = this.attachmentPreviewAdapter;
+        if (attachmentPreviewAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
+        }
+        return attachmentPreviewAdapter.selectionAggregator;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // p007b.p076b.p077a.InterfaceC1429b
+    /* JADX INFO: renamed from: f */
+    public void mo397f(Attachment<? extends Object> attachment) {
+        C12238m.checkNotNullParameter(attachment, "attachment");
+        DialogFragment dialogFragment = (DialogFragment) getChildFragmentManager().findFragmentByTag("Add Content");
+        SelectionCoordinator<T, ?> selectionCoordinator = new SelectionCoordinator<>(null, null, 3);
+        mo396b().registerSelectionCoordinator(selectionCoordinator);
+        selectionCoordinator.m9300c(attachment, 0);
+        selectionCoordinator.itemSelectionListener.unregister();
+        FlexInputViewModel flexInputViewModel = this.viewModel;
+        if (flexInputViewModel != null) {
+            flexInputViewModel.onAttachmentsUpdated(mo396b().getAttachments());
+        }
+        m9291j().f2175d.post(new RunnableC11182b(dialogFragment));
     }
 
     @Override // androidx.fragment.app.Fragment

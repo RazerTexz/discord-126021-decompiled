@@ -32,7 +32,7 @@ public final class WidgetAuthAgeGated extends AppFragment {
     private final LoggingConfig loggingConfig;
 
     /* JADX INFO: compiled from: WidgetAuthAgeGated.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

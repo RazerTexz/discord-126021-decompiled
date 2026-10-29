@@ -34,10 +34,10 @@ public final class SamsungConnectActivity extends AppCompatActivity {
     public final ServiceConnectionC5650a serviceConnection = new ServiceConnectionC5650a();
 
     /* JADX INFO: compiled from: SamsungConnectActivity.kt */
-    public static abstract class Result {
+    public abstract class Result {
 
         /* JADX INFO: compiled from: SamsungConnectActivity.kt */
-        public static final /* data */ class Failure extends Result {
+        public final /* data */ class Failure extends Result {
 
             /* JADX INFO: renamed from: a, reason: from kotlin metadata */
             public final boolean isRetryAllowed;
@@ -92,7 +92,7 @@ public final class SamsungConnectActivity extends AppCompatActivity {
         }
 
         /* JADX INFO: compiled from: SamsungConnectActivity.kt */
-        public static final /* data */ class Success extends Result {
+        public final /* data */ class Success extends Result {
 
             /* JADX INFO: renamed from: a, reason: from kotlin metadata */
             public final String authCode;
@@ -144,7 +144,7 @@ public final class SamsungConnectActivity extends AppCompatActivity {
 
     /* JADX INFO: renamed from: com.discord.samsung.SamsungConnectActivity$a */
     /* JADX INFO: compiled from: SamsungConnectActivity.kt */
-    public static final class ServiceConnectionC5650a implements ServiceConnection {
+    public final class ServiceConnectionC5650a implements ServiceConnection {
         public ServiceConnectionC5650a() {
         }
 

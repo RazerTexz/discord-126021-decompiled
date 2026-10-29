@@ -13,36 +13,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelAutocompleteSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelAutocompleteSelected implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
-    private TrackBase trackBase;
-    private TrackChannel trackChannel;
-    private TrackGuild trackGuild;
     private final CharSequence autocompleteType = null;
-    private final Boolean hasSticker = null;
     private final Boolean hasEmoji = null;
-    private final Long numStickerResults = null;
+    private final Boolean hasSticker = null;
     private final Long numEmojiResults = null;
+    private final Long numStickerResults = null;
     private final CharSequence selection = null;
     private final CharSequence selectionType = null;
     private final Long stickerId = null;
+    private TrackBase trackBase;
+    private TrackChannel trackChannel;
+    private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_autocomplete_selected";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -53,6 +35,18 @@ public final /* data */ class TrackChannelAutocompleteSelected implements Analyt
         }
         TrackChannelAutocompleteSelected trackChannelAutocompleteSelected = (TrackChannelAutocompleteSelected) other;
         return C12238m.areEqual(this.autocompleteType, trackChannelAutocompleteSelected.autocompleteType) && C12238m.areEqual(this.hasSticker, trackChannelAutocompleteSelected.hasSticker) && C12238m.areEqual(this.hasEmoji, trackChannelAutocompleteSelected.hasEmoji) && C12238m.areEqual(this.numStickerResults, trackChannelAutocompleteSelected.numStickerResults) && C12238m.areEqual(this.numEmojiResults, trackChannelAutocompleteSelected.numEmojiResults) && C12238m.areEqual(this.selection, trackChannelAutocompleteSelected.selection) && C12238m.areEqual(this.selectionType, trackChannelAutocompleteSelected.selectionType) && C12238m.areEqual(this.stickerId, trackChannelAutocompleteSelected.stickerId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -72,6 +66,12 @@ public final /* data */ class TrackChannelAutocompleteSelected implements Analyt
         int iHashCode7 = (iHashCode6 + (charSequence3 != null ? charSequence3.hashCode() : 0)) * 31;
         Long l3 = this.stickerId;
         return iHashCode7 + (l3 != null ? l3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

@@ -29,6 +29,14 @@ public final /* data */ class AutocompleteApplicationCommands {
         this.discoveryCommands = widgetChatInputDiscoveryCommandsModel;
     }
 
+    public final List<Application> component1() {
+        return this.applications;
+    }
+
+    public final List<ApplicationCommand> component2() {
+        return this.queryCommands;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AutocompleteApplicationCommands copy$default(AutocompleteApplicationCommands autocompleteApplicationCommands, List list, List list2, WidgetChatInputDiscoveryCommandsModel widgetChatInputDiscoveryCommandsModel, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -41,19 +49,6 @@ public final /* data */ class AutocompleteApplicationCommands {
             widgetChatInputDiscoveryCommandsModel = autocompleteApplicationCommands.discoveryCommands;
         }
         return autocompleteApplicationCommands.copy(list, list2, widgetChatInputDiscoveryCommandsModel);
-    }
-
-    public final List<Application> component1() {
-        return this.applications;
-    }
-
-    public final List<ApplicationCommand> component2() {
-        return this.queryCommands;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final WidgetChatInputDiscoveryCommandsModel getDiscoveryCommands() {
-        return this.discoveryCommands;
     }
 
     public final AutocompleteApplicationCommands copy(List<Application> applications, List<? extends ApplicationCommand> queryCommands, WidgetChatInputDiscoveryCommandsModel discoveryCommands) {
@@ -75,6 +70,11 @@ public final /* data */ class AutocompleteApplicationCommands {
 
     public final List<Application> getApplications() {
         return this.applications;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final WidgetChatInputDiscoveryCommandsModel getDiscoveryCommands() {
+        return this.discoveryCommands;
     }
 
     public final WidgetChatInputDiscoveryCommandsModel getDiscoveryCommands() {

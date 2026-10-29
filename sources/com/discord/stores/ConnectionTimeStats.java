@@ -31,7 +31,7 @@ public final class ConnectionTimeStats {
     private final Stat voiceConnection;
 
     /* JADX INFO: compiled from: ConnectionTimeStats.kt */
-    public static final class Stat {
+    public final class Stat {
         private final Clock clock;
         private Long endTime;
         private final ConnectionTimeStats owner;
@@ -47,20 +47,6 @@ public final class ConnectionTimeStats {
             this.type = statType;
         }
 
-        public static /* synthetic */ void end$default(Stat stat, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = false;
-            }
-            stat.end(z2);
-        }
-
-        public static /* synthetic */ void start$default(Stat stat, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = false;
-            }
-            stat.start(z2);
-        }
-
         public final void clear() {
             this.startTime = null;
             this.endTime = null;
@@ -73,6 +59,13 @@ public final class ConnectionTimeStats {
                 return null;
             }
             return Long.valueOf(l2.longValue() - l.longValue());
+        }
+
+        public static /* synthetic */ void end$default(Stat stat, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = false;
+            }
+            stat.end(z2);
         }
 
         public final void end(boolean ignoreSubsequentCalls) {
@@ -119,6 +112,13 @@ public final class ConnectionTimeStats {
             sbM833U4.append(')');
             AppLog.m8358i(sbM833U4.toString());
             this.owner.sendAnalyticsEvent(this.type);
+        }
+
+        public static /* synthetic */ void start$default(Stat stat, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = false;
+            }
+            stat.start(z2);
         }
 
         public final void start(boolean ignoreSubsequentCalls) {
@@ -183,32 +183,6 @@ public final class ConnectionTimeStats {
         this.connectionStreamFirstFrame = new Stat(clock, this, StatType.ConnectionStreamFirstFrame);
     }
 
-    private final void clear(boolean onlyCallStats) {
-        if (!onlyCallStats) {
-            this.gatewayConnection.clear();
-            this.gatewayHello.clear();
-        }
-        this.voiceConnection.clear();
-        this.streamRequested.clear();
-        this.streamConnection.clear();
-        this.streamFirstFrame.clear();
-        this.videoFirstFrame.clear();
-        this.mediaEngineConnection.clear();
-        this.connectionVideoFirstFrame.clear();
-        this.connectionStreamFirstFrame.clear();
-    }
-
-    public static /* synthetic */ void clear$default(ConnectionTimeStats connectionTimeStats, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        connectionTimeStats.clear(z2);
-    }
-
-    private final void sendAnalyticsEvent(StatType statType) {
-        AnalyticsTracker.INSTANCE.videoEventTimes(statType.toString(), this.gatewayConnection.elapsed(), this.gatewayHello.elapsed(), this.voiceConnection.elapsed(), this.streamRequested.elapsed(), this.streamConnection.elapsed(), this.streamFirstFrame.elapsed(), this.videoFirstFrame.elapsed(), this.mediaEngineConnection.elapsed(), this.connectionVideoFirstFrame.elapsed(), this.connectionStreamFirstFrame.elapsed());
-    }
-
     public final void addListener(GatewaySocket socket) {
         C12238m.checkNotNullParameter(socket, "socket");
         socket.getListeners().add(new GatewaySocket.DefaultListener() { // from class: com.discord.stores.ConnectionTimeStats.addListener.1
@@ -240,6 +214,28 @@ public final class ConnectionTimeStats {
         });
     }
 
+    public static /* synthetic */ void clear$default(ConnectionTimeStats connectionTimeStats, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        connectionTimeStats.clear(z2);
+    }
+
+    private final void clear(boolean onlyCallStats) {
+        if (!onlyCallStats) {
+            this.gatewayConnection.clear();
+            this.gatewayHello.clear();
+        }
+        this.voiceConnection.clear();
+        this.streamRequested.clear();
+        this.streamConnection.clear();
+        this.streamFirstFrame.clear();
+        this.videoFirstFrame.clear();
+        this.mediaEngineConnection.clear();
+        this.connectionVideoFirstFrame.clear();
+        this.connectionStreamFirstFrame.clear();
+    }
+
     public final void handleApplicationStreamUpdate(long userId, Integer streamId) {
         this.streamFirstFrame.start(true);
     }
@@ -268,6 +264,10 @@ public final class ConnectionTimeStats {
         if (l != null && userId == l.longValue() && voiceState.getChannelId() == null) {
             clear(true);
         }
+    }
+
+    private final void sendAnalyticsEvent(StatType statType) {
+        AnalyticsTracker.INSTANCE.videoEventTimes(statType.toString(), this.gatewayConnection.elapsed(), this.gatewayHello.elapsed(), this.voiceConnection.elapsed(), this.streamRequested.elapsed(), this.streamConnection.elapsed(), this.streamFirstFrame.elapsed(), this.videoFirstFrame.elapsed(), this.mediaEngineConnection.elapsed(), this.connectionVideoFirstFrame.elapsed(), this.connectionStreamFirstFrame.elapsed());
     }
 
     public final void addListener(StoreRtcConnection rtcConnection) {

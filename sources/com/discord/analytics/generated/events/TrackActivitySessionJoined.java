@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivitySessionJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivitySessionJoined implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence activitySessionId = null;
+    private final Long applicationId = null;
     private final Long channelId = null;
     private final Long guildId = null;
     private final CharSequence mediaSessionId = null;
-    private final CharSequence activitySessionId = null;
-    private final Long applicationId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_session_joined";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackActivitySessionJoined implements AnalyticsSch
         }
         TrackActivitySessionJoined trackActivitySessionJoined = (TrackActivitySessionJoined) other;
         return C12238m.areEqual(this.channelId, trackActivitySessionJoined.channelId) && C12238m.areEqual(this.guildId, trackActivitySessionJoined.guildId) && C12238m.areEqual(this.mediaSessionId, trackActivitySessionJoined.mediaSessionId) && C12238m.areEqual(this.activitySessionId, trackActivitySessionJoined.activitySessionId) && C12238m.areEqual(this.applicationId, trackActivitySessionJoined.applicationId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

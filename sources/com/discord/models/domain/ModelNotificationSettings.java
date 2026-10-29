@@ -14,7 +14,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelNotificationSettings implements Model {
-    public static int FORUM_THREAD_CREATED_MASK = 8192 | 16384;
     public static int FORUM_THREAD_CREATED_OFF = 8192;
     public static int FORUM_THREAD_CREATED_ON = 16384;
     public static int FREQUENCY_ALL = 0;
@@ -36,6 +35,7 @@ public class ModelNotificationSettings implements Model {
     private boolean suppressEveryone;
     private boolean suppressRoles;
     private int version;
+    public static int FORUM_THREAD_CREATED_MASK = 8192 | 16384;
 
     public ModelNotificationSettings() {
         this.suppressEveryone = false;
@@ -253,7 +253,7 @@ public class ModelNotificationSettings implements Model {
         return sbM833U.toString();
     }
 
-    public static class ChannelOverride implements Model {
+    public class ChannelOverride implements Model {
         private long channelId;
         private transient boolean derivedMute;
         private int flags;

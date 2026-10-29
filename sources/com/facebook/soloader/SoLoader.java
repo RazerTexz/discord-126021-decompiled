@@ -81,7 +81,7 @@ public class SoLoader {
 
     @InterfaceC2051d
     @TargetApi(14)
-    public static class Api14Utils {
+    public class Api14Utils {
         private Api14Utils() {
         }
 
@@ -103,7 +103,7 @@ public class SoLoader {
     }
 
     /* JADX INFO: renamed from: com.facebook.soloader.SoLoader$a */
-    public static class C10674a implements InterfaceC2058k {
+    public final class C10674a implements InterfaceC2058k {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ boolean f19653a;
@@ -254,7 +254,7 @@ public class SoLoader {
     }
 
     /* JADX INFO: renamed from: com.facebook.soloader.SoLoader$b */
-    public static final class C10675b extends UnsatisfiedLinkError {
+    public final class C10675b extends UnsatisfiedLinkError {
         /* JADX WARN: Illegal instructions before constructor call */
         public C10675b(Throwable th, String str) {
             StringBuilder sbM833U = C1643a.m833U("APK was built for a different platform. Supported ABIs: ");
@@ -266,13 +266,28 @@ public class SoLoader {
         }
     }
 
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0118 */
+    public static void init(Context context, int i) throws IOException {
+        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+        boolean z2 = false;
+        if ((i & 32) == 0 && context != null) {
+            try {
+                if ((context.getApplicationInfo().flags & Opcodes.LOR) != 0) {
+                    z2 = true;
+                }
+            } finally {
+                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
+            }
+        }
+        f19652l = z2;
+        m8729b(null);
+        m8730c(context, i);
+        C2061a.m1587a(new C2057j());
+    }
+
     /* JADX INFO: renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
     public static void m8728a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws UnsatisfiedLinkError {
         boolean z2;
+        int iMo1568a;
         ReentrantReadWriteLock reentrantReadWriteLock = f19643c;
         reentrantReadWriteLock.readLock().lock();
         try {
@@ -291,44 +306,78 @@ public class SoLoader {
             if (f19641a) {
                 Api18TraceUtils.m8727a("SoLoader.loadLibrary[", str, "]");
             }
-            reentrantReadWriteLock.readLock().lock();
-            int iMo1568a = 0;
-            int i3 = 0;
-            while (iMo1568a == 0) {
-                try {
-                    AbstractC2059l[] abstractC2059lArr = f19644d;
-                    if (i3 >= abstractC2059lArr.length) {
-                        break;
-                    }
-                    iMo1568a = abstractC2059lArr[i3].mo1568a(str, i, threadPolicy);
-                    if (iMo1568a != 3 || f19646f == null) {
-                        i3++;
-                    } else {
-                        Log.d("SoLoader", "Trying backup SoSource for " + str);
-                        for (AbstractC2060m abstractC2060m : f19646f) {
-                            synchronized (abstractC2060m) {
-                                try {
-                                    synchronized (abstractC2060m.m1583h(str)) {
-                                        try {
-                                            abstractC2060m.f4345d = str;
-                                            abstractC2060m.mo1569b(2);
-                                        } catch (Throwable th) {
-                                            throw th;
+            try {
+                reentrantReadWriteLock.readLock().lock();
+                iMo1568a = 0;
+                int i3 = 0;
+                while (iMo1568a == 0) {
+                    try {
+                        AbstractC2059l[] abstractC2059lArr = f19644d;
+                        if (i3 >= abstractC2059lArr.length) {
+                            break;
+                        }
+                        iMo1568a = abstractC2059lArr[i3].mo1568a(str, i, threadPolicy);
+                        if (iMo1568a != 3 || f19646f == null) {
+                            i3++;
+                        } else {
+                            Log.d("SoLoader", "Trying backup SoSource for " + str);
+                            for (AbstractC2060m abstractC2060m : f19646f) {
+                                synchronized (abstractC2060m) {
+                                    try {
+                                        synchronized (abstractC2060m.m1583h(str)) {
+                                            try {
+                                                abstractC2060m.f4345d = str;
+                                                abstractC2060m.mo1569b(2);
+                                            } catch (Throwable th) {
+                                                throw th;
+                                            }
                                         }
+                                    } catch (Throwable th2) {
+                                        throw th2;
                                     }
-                                } catch (Throwable th2) {
-                                    throw th2;
+                                }
+                                int iMo1568a2 = abstractC2060m.mo1568a(str, i, threadPolicy);
+                                if (iMo1568a2 == 1) {
+                                    iMo1568a = iMo1568a2;
+                                    break;
                                 }
                             }
-                            int iMo1568a2 = abstractC2060m.mo1568a(str, i, threadPolicy);
-                            if (iMo1568a2 == 1) {
-                                iMo1568a = iMo1568a2;
-                                break;
-                            }
                         }
+                        th = th;
+                        iMo1568a = i2;
+                        if (f19641a) {
+                            Trace.endSection();
+                        }
+                        if (z2) {
+                            StrictMode.setThreadPolicy(threadPolicy);
+                        }
+                        if (iMo1568a == 0 || iMo1568a == 3) {
+                            StringBuilder sbM836X = C1643a.m836X("couldn't find DSO to load: ", str);
+                            String message = th.getMessage();
+                            if (message == null) {
+                                message = th.toString();
+                            }
+                            sbM836X.append(" caused by: ");
+                            sbM836X.append(message);
+                            th.printStackTrace();
+                            sbM836X.append(" result: ");
+                            sbM836X.append(iMo1568a);
+                            String string = sbM836X.toString();
+                            Log.e("SoLoader", string);
+                            UnsatisfiedLinkError unsatisfiedLinkError = new UnsatisfiedLinkError(string);
+                            unsatisfiedLinkError.initCause(th);
+                            throw unsatisfiedLinkError;
+                        }
+                        return;
+                    } catch (Throwable th3) {
+                        i2 = iMo1568a;
+                        f19643c.readLock().unlock();
+                        throw th3;
                     }
-                    th = th;
-                    iMo1568a = i2;
+                }
+                try {
+                    ReentrantReadWriteLock reentrantReadWriteLock2 = f19643c;
+                    reentrantReadWriteLock2.readLock().unlock();
                     if (f19641a) {
                         Trace.endSection();
                     }
@@ -336,68 +385,39 @@ public class SoLoader {
                         StrictMode.setThreadPolicy(threadPolicy);
                     }
                     if (iMo1568a == 0 || iMo1568a == 3) {
-                        StringBuilder sbM836X = C1643a.m836X("couldn't find DSO to load: ", str);
-                        String message = th.getMessage();
-                        if (message == null) {
-                            message = th.toString();
+                        StringBuilder sbM836X2 = C1643a.m836X("couldn't find DSO to load: ", str);
+                        reentrantReadWriteLock2.readLock().lock();
+                        while (i2 < f19644d.length) {
+                            sbM836X2.append("\n\tSoSource ");
+                            sbM836X2.append(i2);
+                            sbM836X2.append(": ");
+                            sbM836X2.append(f19644d[i2].toString());
+                            i2++;
                         }
-                        sbM836X.append(" caused by: ");
-                        sbM836X.append(message);
-                        th.printStackTrace();
-                        sbM836X.append(" result: ");
-                        sbM836X.append(iMo1568a);
-                        String string = sbM836X.toString();
-                        Log.e("SoLoader", string);
-                        UnsatisfiedLinkError unsatisfiedLinkError = new UnsatisfiedLinkError(string);
-                        unsatisfiedLinkError.initCause(th);
-                        throw unsatisfiedLinkError;
+                        C2049b c2049b = f19647g;
+                        if (c2049b != null) {
+                            File fileM1567d = C2049b.m1567d(c2049b.m1571e());
+                            sbM836X2.append("\n\tNative lib dir: ");
+                            sbM836X2.append(fileM1567d.getAbsolutePath());
+                            sbM836X2.append("\n");
+                        }
+                        f19643c.readLock().unlock();
+                        sbM836X2.append(" result: ");
+                        sbM836X2.append(iMo1568a);
+                        String string2 = sbM836X2.toString();
+                        Log.e("SoLoader", string2);
+                        throw new UnsatisfiedLinkError(string2);
                     }
-                    return;
-                } catch (Throwable th3) {
-                    i2 = iMo1568a;
-                    f19643c.readLock().unlock();
-                    throw th3;
+                } catch (Throwable th4) {
+                    th = th4;
                 }
+            } catch (Throwable th5) {
+                th = th5;
+                iMo1568a = i2;
             }
-            try {
-                ReentrantReadWriteLock reentrantReadWriteLock2 = f19643c;
-                reentrantReadWriteLock2.readLock().unlock();
-                if (f19641a) {
-                    Trace.endSection();
-                }
-                if (z2) {
-                    StrictMode.setThreadPolicy(threadPolicy);
-                }
-                if (iMo1568a == 0 || iMo1568a == 3) {
-                    StringBuilder sbM836X2 = C1643a.m836X("couldn't find DSO to load: ", str);
-                    reentrantReadWriteLock2.readLock().lock();
-                    while (i2 < f19644d.length) {
-                        sbM836X2.append("\n\tSoSource ");
-                        sbM836X2.append(i2);
-                        sbM836X2.append(": ");
-                        sbM836X2.append(f19644d[i2].toString());
-                        i2++;
-                    }
-                    C2049b c2049b = f19647g;
-                    if (c2049b != null) {
-                        File fileM1567d = C2049b.m1567d(c2049b.m1571e());
-                        sbM836X2.append("\n\tNative lib dir: ");
-                        sbM836X2.append(fileM1567d.getAbsolutePath());
-                        sbM836X2.append("\n");
-                    }
-                    f19643c.readLock().unlock();
-                    sbM836X2.append(" result: ");
-                    sbM836X2.append(iMo1568a);
-                    String string2 = sbM836X2.toString();
-                    Log.e("SoLoader", string2);
-                    throw new UnsatisfiedLinkError(string2);
-                }
-            } catch (Throwable th4) {
-                th = th4;
-            }
-        } catch (Throwable th5) {
+        } catch (Throwable th6) {
             f19643c.readLock().unlock();
-            throw th5;
+            throw th6;
         }
     }
 
@@ -666,30 +686,11 @@ public class SoLoader {
                             throw new C10675b(e2, message.substring(message.lastIndexOf("unexpected e_machine:")));
                         }
                     }
-                    throw th;
                 }
             } catch (Throwable th2) {
                 f19643c.readLock().unlock();
                 throw th2;
             }
         }
-    }
-
-    public static void init(Context context, int i) throws IOException {
-        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
-        boolean z2 = false;
-        if ((i & 32) == 0 && context != null) {
-            try {
-                if ((context.getApplicationInfo().flags & Opcodes.LOR) != 0) {
-                    z2 = true;
-                }
-            } finally {
-                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
-            }
-        }
-        f19652l = z2;
-        m8729b(null);
-        m8730c(context, i);
-        C2061a.m1587a(new C2057j());
     }
 }

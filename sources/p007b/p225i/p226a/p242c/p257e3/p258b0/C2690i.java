@@ -16,18 +16,18 @@ public final class C2690i {
     /* JADX INFO: renamed from: b */
     public final String f6472b;
 
+    /* JADX INFO: renamed from: e */
+    public C2695n f6475e;
+
     /* JADX INFO: renamed from: c */
     public final TreeSet<C2700s> f6473c = new TreeSet<>();
 
     /* JADX INFO: renamed from: d */
     public final ArrayList<a> f6474d = new ArrayList<>();
 
-    /* JADX INFO: renamed from: e */
-    public C2695n f6475e;
-
     /* JADX INFO: renamed from: b.i.a.c.e3.b0.i$a */
     /* JADX INFO: compiled from: CachedContent.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final long f6476a;
@@ -45,6 +45,21 @@ public final class C2690i {
         this.f6471a = i;
         this.f6472b = str;
         this.f6475e = c2695n;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || C2690i.class != obj.getClass()) {
+            return false;
+        }
+        C2690i c2690i = (C2690i) obj;
+        return this.f6471a == c2690i.f6471a && this.f6472b.equals(c2690i.f6472b) && this.f6473c.equals(c2690i.f6473c) && this.f6475e.equals(c2690i.f6475e);
+    }
+
+    public int hashCode() {
+        return this.f6475e.hashCode() + C1643a.m863m(this.f6472b, this.f6471a * 31, 31);
     }
 
     /* JADX WARN: Code duplicated, block: B:9:0x0021  */
@@ -72,20 +87,5 @@ public final class C2690i {
             }
         }
         return false;
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || C2690i.class != obj.getClass()) {
-            return false;
-        }
-        C2690i c2690i = (C2690i) obj;
-        return this.f6471a == c2690i.f6471a && this.f6472b.equals(c2690i.f6472b) && this.f6473c.equals(c2690i.f6473c) && this.f6475e.equals(c2690i.f6475e);
-    }
-
-    public int hashCode() {
-        return this.f6475e.hashCode() + C1643a.m863m(this.f6472b, this.f6471a * 31, 31);
     }
 }

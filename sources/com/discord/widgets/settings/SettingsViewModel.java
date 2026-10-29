@@ -45,7 +45,7 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.SettingsViewModel$1 */
     /* JADX INFO: compiled from: SettingsViewModel.kt */
-    public static final class C95981 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C95981 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C95981() {
             super(1);
         }
@@ -65,7 +65,7 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -83,7 +83,7 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean isEligibleForMobileWebSubscriptions;
         private final boolean isStaffOrAlpha;
         private final MeUser meUser;
@@ -102,6 +102,10 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
             this.pushNotificationUpsellDismissed = z3;
             this.isEligibleForMobileWebSubscriptions = z4;
             this.subscriptions = list;
+        }
+
+        public final List<ModelSubscription> component7() {
+            return this.subscriptions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -135,40 +139,6 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(meUser, z5, presence2, i3, z6, z7, list);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsStaffOrAlpha() {
-            return this.isStaffOrAlpha;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getPromoCount() {
-            return this.promoCount;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getPushNotificationUpsellDismissed() {
-            return this.pushNotificationUpsellDismissed;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsEligibleForMobileWebSubscriptions() {
-            return this.isEligibleForMobileWebSubscriptions;
-        }
-
-        public final List<ModelSubscription> component7() {
-            return this.subscriptions;
-        }
-
         public final StoreState copy(MeUser meUser, boolean isStaffOrAlpha, Presence presence, int promoCount, boolean pushNotificationUpsellDismissed, boolean isEligibleForMobileWebSubscriptions, List<ModelSubscription> subscriptions) {
             C12238m.checkNotNullParameter(meUser, "meUser");
             C12238m.checkNotNullParameter(presence, "presence");
@@ -186,16 +156,46 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.meUser, storeState.meUser) && this.isStaffOrAlpha == storeState.isStaffOrAlpha && C12238m.areEqual(this.presence, storeState.presence) && this.promoCount == storeState.promoCount && this.pushNotificationUpsellDismissed == storeState.pushNotificationUpsellDismissed && this.isEligibleForMobileWebSubscriptions == storeState.isEligibleForMobileWebSubscriptions && C12238m.areEqual(this.subscriptions, storeState.subscriptions);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsEligibleForMobileWebSubscriptions() {
+            return this.isEligibleForMobileWebSubscriptions;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsStaffOrAlpha() {
+            return this.isStaffOrAlpha;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMeUser() {
             return this.meUser;
+        }
+
+        public final MeUser getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
         }
 
         public final Presence getPresence() {
             return this.presence;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getPromoCount() {
             return this.promoCount;
+        }
+
+        public final int getPromoCount() {
+            return this.promoCount;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getPushNotificationUpsellDismissed() {
+            return this.pushNotificationUpsellDismissed;
         }
 
         public final boolean getPushNotificationUpsellDismissed() {
@@ -267,10 +267,10 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: SettingsViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean isStaffOrAlpha;
             private final MeUser meUser;
             private final Presence presence;
@@ -317,36 +317,6 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
                 return loaded.copy(meUser, z5, presence2, i3, z6, z4);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsStaffOrAlpha() {
-                return this.isStaffOrAlpha;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Presence getPresence() {
-                return this.presence;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final int getPromoCount() {
-                return this.promoCount;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getPushNotificationUpsellDismissed() {
-                return this.pushNotificationUpsellDismissed;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getShowRoleSubscriptionsButton() {
-                return this.showRoleSubscriptionsButton;
-            }
-
             public final Loaded copy(MeUser meUser, boolean isStaffOrAlpha, Presence presence, int promoCount, boolean pushNotificationUpsellDismissed, boolean showRoleSubscriptionsButton) {
                 C12238m.checkNotNullParameter(meUser, "meUser");
                 C12238m.checkNotNullParameter(presence, "presence");
@@ -364,20 +334,50 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.meUser, loaded.meUser) && this.isStaffOrAlpha == loaded.isStaffOrAlpha && C12238m.areEqual(this.presence, loaded.presence) && this.promoCount == loaded.promoCount && this.pushNotificationUpsellDismissed == loaded.pushNotificationUpsellDismissed && this.showRoleSubscriptionsButton == loaded.showRoleSubscriptionsButton;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsStaffOrAlpha() {
+                return this.isStaffOrAlpha;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final MeUser getMeUser() {
                 return this.meUser;
+            }
+
+            public final MeUser getMeUser() {
+                return this.meUser;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Presence getPresence() {
+                return this.presence;
             }
 
             public final Presence getPresence() {
                 return this.presence;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final int getPromoCount() {
                 return this.promoCount;
             }
 
+            public final int getPromoCount() {
+                return this.promoCount;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final boolean getPushNotificationUpsellDismissed() {
                 return this.pushNotificationUpsellDismissed;
+            }
+
+            public final boolean getPushNotificationUpsellDismissed() {
+                return this.pushNotificationUpsellDismissed;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getShowRoleSubscriptionsButton() {
+                return this.showRoleSubscriptionsButton;
             }
 
             public final boolean getShowRoleSubscriptionsButton() {
@@ -439,7 +439,7 @@ public final class SettingsViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {

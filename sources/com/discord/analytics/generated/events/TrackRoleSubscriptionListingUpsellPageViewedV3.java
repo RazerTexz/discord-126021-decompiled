@@ -29,29 +29,6 @@ public final /* data */ class TrackRoleSubscriptionListingUpsellPageViewedV3 imp
         this.analyticsSchemaTypeName = "role_subscription_listing_upsell_page_viewed_v3";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7511e(TrackBase trackBase) {
-        this.trackBase = trackBase;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -63,6 +40,18 @@ public final /* data */ class TrackRoleSubscriptionListingUpsellPageViewedV3 imp
         return C12238m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingUpsellPageViewedV3.roleSubscriptionGroupListingId) && C12238m.areEqual(this.roleSubscriptionListingIds, trackRoleSubscriptionListingUpsellPageViewedV3.roleSubscriptionListingIds) && C12238m.areEqual(this.isPremiumMember, trackRoleSubscriptionListingUpsellPageViewedV3.isPremiumMember);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.roleSubscriptionGroupListingId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -70,6 +59,17 @@ public final /* data */ class TrackRoleSubscriptionListingUpsellPageViewedV3 imp
         int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
         Boolean bool = this.isPremiumMember;
         return iHashCode2 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7511e(TrackBase trackBase) {
+        this.trackBase = trackBase;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

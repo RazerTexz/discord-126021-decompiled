@@ -31,16 +31,16 @@ public @interface InterfaceC2081i {
 
     /* JADX INFO: renamed from: b.g.a.a.i$b */
     /* JADX INFO: compiled from: JsonFormat.java */
-    public static class b {
-
-        /* JADX INFO: renamed from: a */
-        public static final b f4406a = new b(0, 0);
+    public class b {
 
         /* JADX INFO: renamed from: b */
         public final int f4407b;
 
         /* JADX INFO: renamed from: c */
         public final int f4408c;
+
+        /* JADX INFO: renamed from: a */
+        public static final b f4406a = new b(0, 0);
 
         public b(int i, int i2) {
             this.f4407b = i;
@@ -90,11 +90,7 @@ public @interface InterfaceC2081i {
 
     /* JADX INFO: renamed from: b.g.a.a.i$d */
     /* JADX INFO: compiled from: JsonFormat.java */
-    public static class d implements Serializable {
-
-        /* JADX INFO: renamed from: j */
-        public static final d f4421j = new d("", c.ANY, "", "", b.f4406a, null);
-        private static final long serialVersionUID = 1;
+    public class d implements Serializable {
         private final b _features;
         private final Boolean _lenient;
         private final Locale _locale;
@@ -104,9 +100,43 @@ public @interface InterfaceC2081i {
 
         /* JADX INFO: renamed from: k */
         public transient TimeZone f4422k;
+        private static final long serialVersionUID = 1;
+
+        /* JADX INFO: renamed from: j */
+        public static final d f4421j = new d("", c.ANY, "", "", b.f4406a, null);
 
         public d() {
             this("", c.ANY, "", "", b.f4406a, null);
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || obj.getClass() != d.class) {
+                return false;
+            }
+            d dVar = (d) obj;
+            return this._shape == dVar._shape && this._features.equals(dVar._features) && m1597a(this._lenient, dVar._lenient) && m1597a(this._timezoneStr, dVar._timezoneStr) && m1597a(this._pattern, dVar._pattern) && m1597a(this.f4422k, dVar.f4422k) && m1597a(this._locale, dVar._locale);
+        }
+
+        public int hashCode() {
+            String str = this._timezoneStr;
+            int iHashCode = str == null ? 1 : str.hashCode();
+            String str2 = this._pattern;
+            if (str2 != null) {
+                iHashCode ^= str2.hashCode();
+            }
+            int iHashCode2 = this._shape.hashCode() + iHashCode;
+            Boolean bool = this._lenient;
+            if (bool != null) {
+                iHashCode2 ^= bool.hashCode();
+            }
+            Locale locale = this._locale;
+            if (locale != null) {
+                iHashCode2 += locale.hashCode();
+            }
+            return this._features.hashCode() ^ iHashCode2;
         }
 
         /* JADX INFO: renamed from: a */
@@ -149,17 +179,6 @@ public @interface InterfaceC2081i {
             return this._shape;
         }
 
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (obj == null || obj.getClass() != d.class) {
-                return false;
-            }
-            d dVar = (d) obj;
-            return this._shape == dVar._shape && this._features.equals(dVar._features) && m1597a(this._lenient, dVar._lenient) && m1597a(this._timezoneStr, dVar._timezoneStr) && m1597a(this._pattern, dVar._pattern) && m1597a(this.f4422k, dVar.f4422k) && m1597a(this._locale, dVar._locale);
-        }
-
         /* JADX INFO: renamed from: f */
         public TimeZone m1602f() {
             TimeZone timeZone = this.f4422k;
@@ -184,25 +203,6 @@ public @interface InterfaceC2081i {
         public boolean m1604h() {
             String str = this._pattern;
             return str != null && str.length() > 0;
-        }
-
-        public int hashCode() {
-            String str = this._timezoneStr;
-            int iHashCode = str == null ? 1 : str.hashCode();
-            String str2 = this._pattern;
-            if (str2 != null) {
-                iHashCode ^= str2.hashCode();
-            }
-            int iHashCode2 = this._shape.hashCode() + iHashCode;
-            Boolean bool = this._lenient;
-            if (bool != null) {
-                iHashCode2 ^= bool.hashCode();
-            }
-            Locale locale = this._locale;
-            if (locale != null) {
-                iHashCode2 += locale.hashCode();
-            }
-            return this._features.hashCode() ^ iHashCode2;
         }
 
         /* JADX INFO: renamed from: i */

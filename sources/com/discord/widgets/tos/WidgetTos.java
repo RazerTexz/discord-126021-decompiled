@@ -48,26 +48,9 @@ public final class WidgetTos extends AppFragment {
     /* JADX INFO: renamed from: isAcknowledgement$delegate, reason: from kotlin metadata */
     private final Lazy isAcknowledgement;
 
-    /* JADX INFO: compiled from: WidgetTos.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Context context, boolean isAck) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("intent_args_key", isAck);
-            C0870j.m156d(context, WidgetTos.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTos$isAcknowledgement$2 */
     /* JADX INFO: compiled from: WidgetTos.kt */
-    public static final class C101702 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C101702 extends AbstractC12240o implements Function0<Boolean> {
         public C101702() {
             super(0);
         }
@@ -80,6 +63,23 @@ public final class WidgetTos extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2() {
             return WidgetTos.this.getMostRecentIntent().getBooleanExtra("intent_args_key", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetTos.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Context context, boolean isAck) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("intent_args_key", isAck);
+            C0870j.m156d(context, WidgetTos.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -130,7 +130,7 @@ public final class WidgetTos extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTos$configureCommonTosModalUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetTos.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {

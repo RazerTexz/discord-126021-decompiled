@@ -113,6 +113,12 @@ public final class ViewReportsMenuNodeBinding implements ViewBinding {
         this.f15545q = imageView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15529a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewReportsMenuNodeBinding m8401a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -255,11 +261,5 @@ public final class ViewReportsMenuNodeBinding implements ViewBinding {
             i = C5419R.id.mobile_reports_channel_preview;
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15529a;
     }
 }

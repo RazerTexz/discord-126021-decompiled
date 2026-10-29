@@ -24,23 +24,19 @@ public class C2302p extends AbstractC2303p0<InetAddress> implements InterfaceC22
         this._asNumeric = false;
     }
 
-    /* JADX WARN: Code duplicated, block: B:9:0x0018  */
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        boolean z2;
-        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
-        if (dVarM2074l != null) {
-            InterfaceC2081i.c cVarM1601e = dVarM2074l.m1601e();
-            if (cVarM1601e.m1596f() || cVarM1601e == InterfaceC2081i.c.ARRAY) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
+    /* JADX INFO: renamed from: p */
+    public void m2070p(InetAddress inetAddress, AbstractC2108d abstractC2108d) throws IOException {
+        String strTrim;
+        if (this._asNumeric) {
+            strTrim = inetAddress.getHostAddress();
         } else {
-            z2 = false;
+            strTrim = inetAddress.toString().trim();
+            int iIndexOf = strTrim.indexOf(47);
+            if (iIndexOf >= 0) {
+                strTrim = iIndexOf == 0 ? strTrim.substring(1) : strTrim.substring(0, iIndexOf);
+            }
         }
-        return z2 != this._asNumeric ? new C2302p(z2) : this;
+        abstractC2108d.mo1658j0(strTrim);
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -60,19 +56,23 @@ public class C2302p extends AbstractC2303p0<InetAddress> implements InterfaceC22
         abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
     }
 
-    /* JADX INFO: renamed from: p */
-    public void m2070p(InetAddress inetAddress, AbstractC2108d abstractC2108d) throws IOException {
-        String strTrim;
-        if (this._asNumeric) {
-            strTrim = inetAddress.getHostAddress();
-        } else {
-            strTrim = inetAddress.toString().trim();
-            int iIndexOf = strTrim.indexOf(47);
-            if (iIndexOf >= 0) {
-                strTrim = iIndexOf == 0 ? strTrim.substring(1) : strTrim.substring(0, iIndexOf);
+    /* JADX WARN: Code duplicated, block: B:9:0x0018  */
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        boolean z2;
+        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
+        if (dVarM2074l != null) {
+            InterfaceC2081i.c cVarM1601e = dVarM2074l.m1601e();
+            if (cVarM1601e.m1596f() || cVarM1601e == InterfaceC2081i.c.ARRAY) {
+                z2 = true;
+            } else {
+                z2 = false;
             }
+        } else {
+            z2 = false;
         }
-        abstractC2108d.mo1658j0(strTrim);
+        return z2 != this._asNumeric ? new C2302p(z2) : this;
     }
 
     public C2302p(boolean z2) {

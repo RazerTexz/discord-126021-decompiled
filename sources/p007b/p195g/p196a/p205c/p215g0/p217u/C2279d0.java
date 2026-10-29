@@ -38,6 +38,32 @@ public class C2279d0 extends AbstractC2272a<Object[]> implements InterfaceC2240i
         this._elementSerializer = abstractC2364n;
     }
 
+    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        Object[] objArr = (Object[]) obj;
+        int length = objArr.length;
+        if (length == 1 && ((this._unwrapSingle == null && abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)) || this._unwrapSingle == Boolean.TRUE)) {
+            mo2038t(objArr, abstractC2108d, abstractC2374x);
+            return;
+        }
+        abstractC2108d.mo1649b0(objArr, length);
+        mo2038t(objArr, abstractC2108d, abstractC2374x);
+        abstractC2108d.mo1663t();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
+    /* JADX INFO: renamed from: p */
+    public AbstractC2239h<?> mo1995p(AbstractC2215g abstractC2215g) {
+        return new C2279d0(this._elementType, this._staticTyping, abstractC2215g, this._elementSerializer);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
+    /* JADX INFO: renamed from: q */
+    public boolean mo1996q(Object obj) {
+        return ((Object[]) obj).length == 1;
+    }
+
     /* JADX WARN: Code duplicated, block: B:12:0x0021  */
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
@@ -75,32 +101,6 @@ public class C2279d0 extends AbstractC2272a<Object[]> implements InterfaceC2240i
     /* JADX INFO: renamed from: d */
     public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
         return ((Object[]) obj).length == 0;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        Object[] objArr = (Object[]) obj;
-        int length = objArr.length;
-        if (length == 1 && ((this._unwrapSingle == null && abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)) || this._unwrapSingle == Boolean.TRUE)) {
-            mo2038t(objArr, abstractC2108d, abstractC2374x);
-            return;
-        }
-        abstractC2108d.mo1649b0(objArr, length);
-        mo2038t(objArr, abstractC2108d, abstractC2374x);
-        abstractC2108d.mo1663t();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
-    /* JADX INFO: renamed from: p */
-    public AbstractC2239h<?> mo1995p(AbstractC2215g abstractC2215g) {
-        return new C2279d0(this._elementType, this._staticTyping, abstractC2215g, this._elementSerializer);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
-    /* JADX INFO: renamed from: q */
-    public boolean mo1996q(Object obj) {
-        return ((Object[]) obj).length == 1;
     }
 
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a

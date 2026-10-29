@@ -7,18 +7,30 @@ import android.os.Bundle;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4004d {
 
-    /* JADX INFO: renamed from: a */
-    public static final C4004d f10622a = new C4004d(null, null);
-
     /* JADX INFO: renamed from: b */
     public final Boolean f10623b;
 
     /* JADX INFO: renamed from: c */
     public final Boolean f10624c;
 
+    /* JADX INFO: renamed from: a */
+    public static final C4004d f10622a = new C4004d(null, null);
+
     public C4004d(Boolean bool, Boolean bool2) {
         this.f10623b = bool;
         this.f10624c = bool2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof C4004d)) {
+            return false;
+        }
+        C4004d c4004d = (C4004d) obj;
+        return m5562a(this.f10623b) == m5562a(c4004d.f10623b) && m5562a(this.f10624c) == m5562a(c4004d.f10624c);
+    }
+
+    public final int hashCode() {
+        return m5562a(this.f10624c) + ((m5562a(this.f10623b) + 527) * 31);
     }
 
     /* JADX INFO: renamed from: a */
@@ -123,14 +135,6 @@ public final class C4004d {
         return sb.toString();
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof C4004d)) {
-            return false;
-        }
-        C4004d c4004d = (C4004d) obj;
-        return m5562a(this.f10623b) == m5562a(c4004d.f10623b) && m5562a(this.f10624c) == m5562a(c4004d.f10624c);
-    }
-
     /* JADX INFO: renamed from: f */
     public final boolean m5569f(C4004d c4004d) {
         Boolean bool = this.f10623b;
@@ -144,10 +148,6 @@ public final class C4004d {
     /* JADX INFO: renamed from: h */
     public final C4004d m5570h(C4004d c4004d) {
         return new C4004d(m5564c(this.f10623b, c4004d.f10623b), m5564c(this.f10624c, c4004d.f10624c));
-    }
-
-    public final int hashCode() {
-        return m5562a(this.f10624c) + ((m5562a(this.f10623b) + 527) * 31);
     }
 
     /* JADX INFO: renamed from: j */

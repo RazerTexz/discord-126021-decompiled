@@ -35,7 +35,7 @@ public abstract class GuildListItem {
     private final long itemId;
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final class CreateItem extends GuildListItem {
+    public final class CreateItem extends GuildListItem {
         public static final CreateItem INSTANCE = new CreateItem();
 
         private CreateItem() {
@@ -44,7 +44,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final class DividerItem extends GuildListItem {
+    public final class DividerItem extends GuildListItem {
         public static final DividerItem INSTANCE = new DividerItem();
 
         private DividerItem() {
@@ -53,7 +53,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class FolderItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
+    public final /* data */ class FolderItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
         private final Integer color;
         private final long folderId;
         private final List<Guild> guilds;
@@ -71,52 +71,12 @@ public abstract class GuildListItem {
             this(j, num, str, z2, list, z3, z4, z5, i, z6, (i2 & 1024) != 0 ? false : z7);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getFolderId() {
-            return this.folderId;
-        }
-
         public final boolean component10() {
             return getIsUnread();
         }
 
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getIsTargetedForFolderAddition() {
-            return this.isTargetedForFolderAddition;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getColor() {
-            return this.color;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsOpen() {
-            return this.isOpen;
-        }
-
         public final List<Guild> component5() {
             return this.guilds;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsAnyGuildSelected() {
-            return this.isAnyGuildSelected;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsAnyGuildConnectedToVoice() {
-            return this.isAnyGuildConnectedToVoice;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getIsAnyGuildConnectedToStageChannel() {
-            return this.isAnyGuildConnectedToStageChannel;
         }
 
         public final int component9() {
@@ -139,8 +99,18 @@ public abstract class GuildListItem {
             return this.folderId == folderItem.folderId && C12238m.areEqual(this.color, folderItem.color) && C12238m.areEqual(this.name, folderItem.name) && this.isOpen == folderItem.isOpen && C12238m.areEqual(this.guilds, folderItem.guilds) && this.isAnyGuildSelected == folderItem.isAnyGuildSelected && this.isAnyGuildConnectedToVoice == folderItem.isAnyGuildConnectedToVoice && this.isAnyGuildConnectedToStageChannel == folderItem.isAnyGuildConnectedToStageChannel && getMentionCount() == folderItem.getMentionCount() && getIsUnread() == folderItem.getIsUnread() && this.isTargetedForFolderAddition == folderItem.isTargetedForFolderAddition;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Integer getColor() {
             return this.color;
+        }
+
+        public final Integer getColor() {
+            return this.color;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getFolderId() {
+            return this.folderId;
         }
 
         public final long getFolderId() {
@@ -151,9 +121,50 @@ public abstract class GuildListItem {
             return this.guilds;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getIsAnyGuildConnectedToStageChannel() {
+            return this.isAnyGuildConnectedToStageChannel;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsAnyGuildConnectedToVoice() {
+            return this.isAnyGuildConnectedToVoice;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsAnyGuildSelected() {
+            return this.isAnyGuildSelected;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsOpen() {
+            return this.isOpen;
+        }
+
+        /* JADX INFO: renamed from: isPendingGuildsFolder, reason: from getter */
+        public final boolean getIsPendingGuildsFolder() {
+            return this.isPendingGuildsFolder;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getIsTargetedForFolderAddition() {
+            return this.isTargetedForFolderAddition;
+        }
+
+        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+        /* JADX INFO: renamed from: isUnread, reason: from getter */
+        public boolean getIsUnread() {
+            return this.isUnread;
+        }
+
         @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
         public int getMentionCount() {
             return this.mentionCount;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
@@ -239,19 +250,8 @@ public abstract class GuildListItem {
             return this.isOpen;
         }
 
-        /* JADX INFO: renamed from: isPendingGuildsFolder, reason: from getter */
-        public final boolean getIsPendingGuildsFolder() {
-            return this.isPendingGuildsFolder;
-        }
-
         public final boolean isTargetedForFolderAddition() {
             return this.isTargetedForFolderAddition;
-        }
-
-        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-        /* JADX INFO: renamed from: isUnread, reason: from getter */
-        public boolean getIsUnread() {
-            return this.isUnread;
         }
 
         public String toString() {
@@ -299,7 +299,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class FriendsItem extends GuildListItem {
+    public final /* data */ class FriendsItem extends GuildListItem {
         private final boolean isSelected;
 
         public FriendsItem(boolean z2) {
@@ -314,11 +314,6 @@ public abstract class GuildListItem {
             return friendsItem.copy(z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public final FriendsItem copy(boolean isSelected) {
             return new FriendsItem(isSelected);
         }
@@ -328,6 +323,11 @@ public abstract class GuildListItem {
                 return (other instanceof FriendsItem) && this.isSelected == ((FriendsItem) other).isSelected;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
         }
 
         public int hashCode() {
@@ -348,7 +348,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class GuildItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
+    public final /* data */ class GuildItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
         private final ApplicationStatus applicationStatus;
         private final Long folderId;
         private final Guild guild;
@@ -369,77 +369,12 @@ public abstract class GuildListItem {
             this(guild, i, z2, z3, z4, l, (i2 & 64) != 0 ? false : z5, (i2 & 128) != 0 ? false : z6, (i2 & 256) != 0 ? false : z7, (i2 & 512) != 0 ? null : bool, (i2 & 1024) != 0 ? null : applicationStatus, (i2 & 2048) != 0 ? false : z8, (i2 & 4096) != 0 ? false : z9, (i2 & 8192) != 0 ? false : z10, (i2 & 16384) != 0 ? false : z11);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final Boolean getIsLastGuildInFolder() {
-            return this.isLastGuildInFolder;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final ApplicationStatus getApplicationStatus() {
-            return this.applicationStatus;
-        }
-
-        /* JADX INFO: renamed from: component12, reason: from getter */
-        public final boolean getIsPendingGuild() {
-            return this.isPendingGuild;
-        }
-
-        /* JADX INFO: renamed from: component13, reason: from getter */
-        public final boolean getHasActiveStageChannel() {
-            return this.hasActiveStageChannel;
-        }
-
-        /* JADX INFO: renamed from: component14, reason: from getter */
-        public final boolean getIsConnectedToStageChannel() {
-            return this.isConnectedToStageChannel;
-        }
-
-        /* JADX INFO: renamed from: component15, reason: from getter */
-        public final boolean getHasActiveScheduledEvent() {
-            return this.hasActiveScheduledEvent;
-        }
-
         public final int component2() {
             return getMentionCount();
         }
 
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsLurkingGuild() {
-            return this.isLurkingGuild;
-        }
-
         public final boolean component4() {
             return getIsUnread();
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getFolderId() {
-            return this.folderId;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsConnectedToVoice() {
-            return this.isConnectedToVoice;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getHasOngoingApplicationStream() {
-            return this.hasOngoingApplicationStream;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsTargetedForFolderCreation() {
-            return this.isTargetedForFolderCreation;
         }
 
         public final GuildItem copy(Guild guild, int mentionCount, boolean isLurkingGuild, boolean isUnread, boolean isSelected, Long folderId, boolean isConnectedToVoice, boolean hasOngoingApplicationStream, boolean isTargetedForFolderCreation, Boolean isLastGuildInFolder, ApplicationStatus applicationStatus, boolean isPendingGuild, boolean hasActiveStageChannel, boolean isConnectedToStageChannel, boolean hasActiveScheduledEvent) {
@@ -458,28 +393,99 @@ public abstract class GuildListItem {
             return C12238m.areEqual(this.guild, guildItem.guild) && getMentionCount() == guildItem.getMentionCount() && this.isLurkingGuild == guildItem.isLurkingGuild && getIsUnread() == guildItem.getIsUnread() && this.isSelected == guildItem.isSelected && C12238m.areEqual(this.folderId, guildItem.folderId) && this.isConnectedToVoice == guildItem.isConnectedToVoice && this.hasOngoingApplicationStream == guildItem.hasOngoingApplicationStream && this.isTargetedForFolderCreation == guildItem.isTargetedForFolderCreation && C12238m.areEqual(this.isLastGuildInFolder, guildItem.isLastGuildInFolder) && C12238m.areEqual(this.applicationStatus, guildItem.applicationStatus) && this.isPendingGuild == guildItem.isPendingGuild && this.hasActiveStageChannel == guildItem.hasActiveStageChannel && this.isConnectedToStageChannel == guildItem.isConnectedToStageChannel && this.hasActiveScheduledEvent == guildItem.hasActiveScheduledEvent;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
         public final ApplicationStatus getApplicationStatus() {
             return this.applicationStatus;
+        }
+
+        public final ApplicationStatus getApplicationStatus() {
+            return this.applicationStatus;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Long getFolderId() {
+            return this.folderId;
         }
 
         public final Long getFolderId() {
             return this.folderId;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component15, reason: from getter */
+        public final boolean getHasActiveScheduledEvent() {
+            return this.hasActiveScheduledEvent;
         }
 
         public final boolean getHasActiveScheduledEvent() {
             return this.hasActiveScheduledEvent;
         }
 
+        /* JADX INFO: renamed from: component13, reason: from getter */
         public final boolean getHasActiveStageChannel() {
             return this.hasActiveStageChannel;
         }
 
+        public final boolean getHasActiveStageChannel() {
+            return this.hasActiveStageChannel;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final boolean getHasOngoingApplicationStream() {
             return this.hasOngoingApplicationStream;
+        }
+
+        public final boolean getHasOngoingApplicationStream() {
+            return this.hasOngoingApplicationStream;
+        }
+
+        /* JADX INFO: renamed from: component14, reason: from getter */
+        public final boolean getIsConnectedToStageChannel() {
+            return this.isConnectedToStageChannel;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsConnectedToVoice() {
+            return this.isConnectedToVoice;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final Boolean getIsLastGuildInFolder() {
+            return this.isLastGuildInFolder;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsLurkingGuild() {
+            return this.isLurkingGuild;
+        }
+
+        /* JADX INFO: renamed from: component12, reason: from getter */
+        public final boolean getIsPendingGuild() {
+            return this.isPendingGuild;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getIsTargetedForFolderCreation() {
+            return this.isTargetedForFolderCreation;
+        }
+
+        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+        /* JADX INFO: renamed from: isUnread, reason: from getter */
+        public boolean getIsUnread() {
+            return this.isUnread;
         }
 
         @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
@@ -618,12 +624,6 @@ public abstract class GuildListItem {
             return this.isTargetedForFolderCreation;
         }
 
-        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-        /* JADX INFO: renamed from: isUnread, reason: from getter */
-        public boolean getIsUnread() {
-            return this.isUnread;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("GuildItem(guild=");
             sbM833U.append(this.guild);
@@ -680,7 +680,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final class HelpItem extends GuildListItem {
+    public final class HelpItem extends GuildListItem {
         public static final HelpItem INSTANCE = new HelpItem();
 
         private HelpItem() {
@@ -689,7 +689,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class HubItem extends GuildListItem {
+    public final /* data */ class HubItem extends GuildListItem {
         private final boolean showSparkle;
 
         public HubItem(boolean z2) {
@@ -704,11 +704,6 @@ public abstract class GuildListItem {
             return hubItem.copy(z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShowSparkle() {
-            return this.showSparkle;
-        }
-
         public final HubItem copy(boolean showSparkle) {
             return new HubItem(showSparkle);
         }
@@ -718,6 +713,11 @@ public abstract class GuildListItem {
                 return (other instanceof HubItem) && this.showSparkle == ((HubItem) other).showSparkle;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getShowSparkle() {
+            return this.showSparkle;
         }
 
         public final boolean getShowSparkle() {
@@ -738,7 +738,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class PrivateChannelItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
+    public final /* data */ class PrivateChannelItem extends GuildListItem implements WidgetChannelListUnreads.UnreadItem {
         private final Channel channel;
         private final boolean isUnread;
         private final int mentionCount;
@@ -751,6 +751,10 @@ public abstract class GuildListItem {
             this.mentionCount = i;
         }
 
+        public final int component2() {
+            return getMentionCount();
+        }
+
         public static /* synthetic */ PrivateChannelItem copy$default(PrivateChannelItem privateChannelItem, Channel channel, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 channel = privateChannelItem.channel;
@@ -759,15 +763,6 @@ public abstract class GuildListItem {
                 i = privateChannelItem.getMentionCount();
             }
             return privateChannelItem.copy(channel, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        public final int component2() {
-            return getMentionCount();
         }
 
         public final PrivateChannelItem copy(Channel channel, int mentionCount) {
@@ -786,8 +781,19 @@ public abstract class GuildListItem {
             return C12238m.areEqual(this.channel, privateChannelItem.channel) && getMentionCount() == privateChannelItem.getMentionCount();
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+        /* JADX INFO: renamed from: isUnread, reason: from getter */
+        public boolean getIsUnread() {
+            return this.isUnread;
         }
 
         @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
@@ -798,12 +804,6 @@ public abstract class GuildListItem {
         public int hashCode() {
             Channel channel = this.channel;
             return getMentionCount() + ((channel != null ? channel.hashCode() : 0) * 31);
-        }
-
-        @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-        /* JADX INFO: renamed from: isUnread, reason: from getter */
-        public boolean getIsUnread() {
-            return this.isUnread;
         }
 
         public String toString() {
@@ -817,7 +817,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final class SpaceItem extends GuildListItem {
+    public final class SpaceItem extends GuildListItem {
         public static final SpaceItem INSTANCE = new SpaceItem();
 
         private SpaceItem() {
@@ -826,7 +826,7 @@ public abstract class GuildListItem {
     }
 
     /* JADX INFO: compiled from: GuildListItem.kt */
-    public static final /* data */ class UnavailableItem extends GuildListItem {
+    public final /* data */ class UnavailableItem extends GuildListItem {
         private final int unavailableGuildCount;
 
         public UnavailableItem(int i) {
@@ -841,11 +841,6 @@ public abstract class GuildListItem {
             return unavailableItem.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getUnavailableGuildCount() {
-            return this.unavailableGuildCount;
-        }
-
         public final UnavailableItem copy(int unavailableGuildCount) {
             return new UnavailableItem(unavailableGuildCount);
         }
@@ -855,6 +850,11 @@ public abstract class GuildListItem {
                 return (other instanceof UnavailableItem) && this.unavailableGuildCount == ((UnavailableItem) other).unavailableGuildCount;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getUnavailableGuildCount() {
+            return this.unavailableGuildCount;
         }
 
         public final int getUnavailableGuildCount() {

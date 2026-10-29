@@ -25,16 +25,11 @@ public final /* data */ class TrackPremiumGuildUpsellOpened implements Analytics
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "premium_guild_upsell_opened";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackPremiumGuildUpsellOpened) && C12238m.areEqual(this.type, ((TrackPremiumGuildUpsellOpened) other).type);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,11 +38,10 @@ public final /* data */ class TrackPremiumGuildUpsellOpened implements Analytics
         return this.analyticsSchemaTypeName;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackPremiumGuildUpsellOpened) && C12238m.areEqual(this.type, ((TrackPremiumGuildUpsellOpened) other).type);
-        }
-        return true;
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -56,6 +50,12 @@ public final /* data */ class TrackPremiumGuildUpsellOpened implements Analytics
             return charSequence.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

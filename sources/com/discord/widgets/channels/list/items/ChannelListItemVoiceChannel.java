@@ -45,54 +45,11 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         this.isGuildRoleSubscriptionChannel = z9;
         this.guildScheduledEvent = guildScheduledEvent;
         this.type = 1;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(getChannel().getId());
-        this.key = sb.toString();
+        this.key = "" + getType() + getChannel().getId();
     }
 
     public final Channel component1() {
         return getChannel();
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getIsAnyoneUsingVideo() {
-        return this.isAnyoneUsingVideo;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelUsers() {
-        return this.guildMaxVideoChannelUsers;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
-        return this.isGuildRoleSubscriptionLockedChannel;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionChannel() {
-        return this.isGuildRoleSubscriptionChannel;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final GuildScheduledEvent getGuildScheduledEvent() {
-        return this.guildScheduledEvent;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getTextSelected() {
-        return this.textSelected;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getVoiceSelected() {
-        return this.voiceSelected;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getPermission() {
-        return this.permission;
     }
 
     public final int component5() {
@@ -105,16 +62,6 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
 
     public final int component7() {
         return getNumUsersConnected();
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsLocked() {
-        return this.isLocked;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsNsfw() {
-        return this.isNsfw;
     }
 
     public final ChannelListItemVoiceChannel copy(Channel channel, boolean textSelected, boolean voiceSelected, Long permission, int mentionCount, boolean isUnread, int numUsersConnected, boolean isLocked, boolean isNsfw, boolean isAnyoneUsingVideo, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, boolean isGuildRoleSubscriptionLockedChannel, boolean isGuildRoleSubscriptionChannel, GuildScheduledEvent guildScheduledEvent) {
@@ -139,12 +86,53 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.channel;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelUsers() {
         return this.guildMaxVideoChannelUsers;
     }
 
+    public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelUsers() {
+        return this.guildMaxVideoChannelUsers;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final GuildScheduledEvent getGuildScheduledEvent() {
         return this.guildScheduledEvent;
+    }
+
+    public final GuildScheduledEvent getGuildScheduledEvent() {
+        return this.guildScheduledEvent;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getIsAnyoneUsingVideo() {
+        return this.isAnyoneUsingVideo;
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionChannel() {
+        return this.isGuildRoleSubscriptionChannel;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
+        return this.isGuildRoleSubscriptionLockedChannel;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsLocked() {
+        return this.isLocked;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsNsfw() {
+        return this.isNsfw;
+    }
+
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    /* JADX INFO: renamed from: isUnread, reason: from getter */
+    public boolean getIsUnread() {
+        return this.isUnread;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -162,8 +150,18 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.numUsersConnected;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getPermission() {
         return this.permission;
+    }
+
+    public final Long getPermission() {
+        return this.permission;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getTextSelected() {
+        return this.textSelected;
     }
 
     public final boolean getTextSelected() {
@@ -173,6 +171,11 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getVoiceSelected() {
+        return this.voiceSelected;
     }
 
     public final boolean getVoiceSelected() {
@@ -276,12 +279,6 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
 
     public final boolean isNsfw() {
         return this.isNsfw;
-    }
-
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-    /* JADX INFO: renamed from: isUnread, reason: from getter */
-    public boolean getIsUnread() {
-        return this.isUnread;
     }
 
     public String toString() {

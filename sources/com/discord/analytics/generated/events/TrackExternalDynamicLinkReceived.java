@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExternalDynamicLinkReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExternalDynamicLinkReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long fingerprint = null;
     private final CharSequence attemptId = null;
+    private final CharSequence deeplinkSource = null;
+    private final Long fingerprint = null;
+    private final CharSequence guildTemplateCode = null;
     private final Boolean hasAuthToken = null;
     private final CharSequence inviteCode = null;
-    private final CharSequence guildTemplateCode = null;
     private final Boolean isBackgrounded = null;
     private final CharSequence linkType = null;
-    private final CharSequence deeplinkSource = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "external_dynamic_link_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackExternalDynamicLinkReceived implements Analyt
         }
         TrackExternalDynamicLinkReceived trackExternalDynamicLinkReceived = (TrackExternalDynamicLinkReceived) other;
         return C12238m.areEqual(this.fingerprint, trackExternalDynamicLinkReceived.fingerprint) && C12238m.areEqual(this.attemptId, trackExternalDynamicLinkReceived.attemptId) && C12238m.areEqual(this.hasAuthToken, trackExternalDynamicLinkReceived.hasAuthToken) && C12238m.areEqual(this.inviteCode, trackExternalDynamicLinkReceived.inviteCode) && C12238m.areEqual(this.guildTemplateCode, trackExternalDynamicLinkReceived.guildTemplateCode) && C12238m.areEqual(this.isBackgrounded, trackExternalDynamicLinkReceived.isBackgrounded) && C12238m.areEqual(this.linkType, trackExternalDynamicLinkReceived.linkType) && C12238m.areEqual(this.deeplinkSource, trackExternalDynamicLinkReceived.deeplinkSource);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -25,9 +25,6 @@ import p007b.p225i.p355b.p357b.C4512j0;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2650p implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2650p f6276j = new C2650p(new a());
-
     /* JADX INFO: renamed from: A */
     public final AbstractC4523p<String> f6277A;
 
@@ -100,9 +97,54 @@ public class C2650p implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: z */
     public final int f6300z;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2650p f6276j = new C2650p(new a());
+
+    public C2650p(a aVar) {
+        this.f6285k = aVar.f6301a;
+        this.f6286l = aVar.f6302b;
+        this.f6287m = aVar.f6303c;
+        this.f6288n = aVar.f6304d;
+        this.f6289o = aVar.f6305e;
+        this.f6290p = aVar.f6306f;
+        this.f6291q = aVar.f6307g;
+        this.f6292r = aVar.f6308h;
+        this.f6293s = aVar.f6309i;
+        this.f6294t = aVar.f6310j;
+        this.f6295u = aVar.f6311k;
+        this.f6296v = aVar.f6312l;
+        this.f6297w = aVar.f6313m;
+        this.f6298x = aVar.f6314n;
+        this.f6299y = aVar.f6315o;
+        this.f6300z = aVar.f6316p;
+        this.f6277A = aVar.f6317q;
+        this.f6278B = aVar.f6318r;
+        this.f6279C = aVar.f6319s;
+        this.f6280D = aVar.f6320t;
+        this.f6281E = aVar.f6321u;
+        this.f6282F = aVar.f6322v;
+        this.f6283G = aVar.f6323w;
+        this.f6284H = aVar.f6324x;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        C2650p c2650p = (C2650p) obj;
+        return this.f6285k == c2650p.f6285k && this.f6286l == c2650p.f6286l && this.f6287m == c2650p.f6287m && this.f6288n == c2650p.f6288n && this.f6289o == c2650p.f6289o && this.f6290p == c2650p.f6290p && this.f6291q == c2650p.f6291q && this.f6292r == c2650p.f6292r && this.f6295u == c2650p.f6295u && this.f6293s == c2650p.f6293s && this.f6294t == c2650p.f6294t && this.f6296v.equals(c2650p.f6296v) && this.f6297w.equals(c2650p.f6297w) && this.f6298x == c2650p.f6298x && this.f6299y == c2650p.f6299y && this.f6300z == c2650p.f6300z && this.f6277A.equals(c2650p.f6277A) && this.f6278B.equals(c2650p.f6278B) && this.f6279C == c2650p.f6279C && this.f6280D == c2650p.f6280D && this.f6281E == c2650p.f6281E && this.f6282F == c2650p.f6282F && this.f6283G.equals(c2650p.f6283G) && this.f6284H.equals(c2650p.f6284H);
+    }
+
+    public int hashCode() {
+        return this.f6284H.hashCode() + ((this.f6283G.hashCode() + ((((((((((this.f6278B.hashCode() + ((this.f6277A.hashCode() + ((((((((this.f6297w.hashCode() + ((this.f6296v.hashCode() + ((((((((((((((((((((((this.f6285k + 31) * 31) + this.f6286l) * 31) + this.f6287m) * 31) + this.f6288n) * 31) + this.f6289o) * 31) + this.f6290p) * 31) + this.f6291q) * 31) + this.f6292r) * 31) + (this.f6295u ? 1 : 0)) * 31) + this.f6293s) * 31) + this.f6294t) * 31)) * 31)) * 31) + this.f6298x) * 31) + this.f6299y) * 31) + this.f6300z) * 31)) * 31)) * 31) + this.f6279C) * 31) + (this.f6280D ? 1 : 0)) * 31) + (this.f6281E ? 1 : 0)) * 31) + (this.f6282F ? 1 : 0)) * 31)) * 31);
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.c3.p$a */
     /* JADX INFO: compiled from: TrackSelectionParameters.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: e */
         public int f6305e;
@@ -306,47 +348,5 @@ public class C2650p implements InterfaceC2963w0 {
             }
             return mo2743b(point.x, point.y, z2);
         }
-    }
-
-    public C2650p(a aVar) {
-        this.f6285k = aVar.f6301a;
-        this.f6286l = aVar.f6302b;
-        this.f6287m = aVar.f6303c;
-        this.f6288n = aVar.f6304d;
-        this.f6289o = aVar.f6305e;
-        this.f6290p = aVar.f6306f;
-        this.f6291q = aVar.f6307g;
-        this.f6292r = aVar.f6308h;
-        this.f6293s = aVar.f6309i;
-        this.f6294t = aVar.f6310j;
-        this.f6295u = aVar.f6311k;
-        this.f6296v = aVar.f6312l;
-        this.f6297w = aVar.f6313m;
-        this.f6298x = aVar.f6314n;
-        this.f6299y = aVar.f6315o;
-        this.f6300z = aVar.f6316p;
-        this.f6277A = aVar.f6317q;
-        this.f6278B = aVar.f6318r;
-        this.f6279C = aVar.f6319s;
-        this.f6280D = aVar.f6320t;
-        this.f6281E = aVar.f6321u;
-        this.f6282F = aVar.f6322v;
-        this.f6283G = aVar.f6323w;
-        this.f6284H = aVar.f6324x;
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        C2650p c2650p = (C2650p) obj;
-        return this.f6285k == c2650p.f6285k && this.f6286l == c2650p.f6286l && this.f6287m == c2650p.f6287m && this.f6288n == c2650p.f6288n && this.f6289o == c2650p.f6289o && this.f6290p == c2650p.f6290p && this.f6291q == c2650p.f6291q && this.f6292r == c2650p.f6292r && this.f6295u == c2650p.f6295u && this.f6293s == c2650p.f6293s && this.f6294t == c2650p.f6294t && this.f6296v.equals(c2650p.f6296v) && this.f6297w.equals(c2650p.f6297w) && this.f6298x == c2650p.f6298x && this.f6299y == c2650p.f6299y && this.f6300z == c2650p.f6300z && this.f6277A.equals(c2650p.f6277A) && this.f6278B.equals(c2650p.f6278B) && this.f6279C == c2650p.f6279C && this.f6280D == c2650p.f6280D && this.f6281E == c2650p.f6281E && this.f6282F == c2650p.f6282F && this.f6283G.equals(c2650p.f6283G) && this.f6284H.equals(c2650p.f6284H);
-    }
-
-    public int hashCode() {
-        return this.f6284H.hashCode() + ((this.f6283G.hashCode() + ((((((((((this.f6278B.hashCode() + ((this.f6277A.hashCode() + ((((((((this.f6297w.hashCode() + ((this.f6296v.hashCode() + ((((((((((((((((((((((this.f6285k + 31) * 31) + this.f6286l) * 31) + this.f6287m) * 31) + this.f6288n) * 31) + this.f6289o) * 31) + this.f6290p) * 31) + this.f6291q) * 31) + this.f6292r) * 31) + (this.f6295u ? 1 : 0)) * 31) + this.f6293s) * 31) + this.f6294t) * 31)) * 31)) * 31) + this.f6298x) * 31) + this.f6299y) * 31) + this.f6300z) * 31)) * 31)) * 31) + this.f6279C) * 31) + (this.f6280D ? 1 : 0)) * 31) + (this.f6281E ? 1 : 0)) * 31) + (this.f6282F ? 1 : 0)) * 31)) * 31);
     }
 }

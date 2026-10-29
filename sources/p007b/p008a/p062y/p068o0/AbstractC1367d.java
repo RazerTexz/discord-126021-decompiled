@@ -20,7 +20,7 @@ public abstract class AbstractC1367d implements MGRecyclerDataPayload {
 
     /* JADX INFO: renamed from: b.a.y.o0.d$a */
     /* JADX INFO: compiled from: SpeakersItem.kt */
-    public static final class a extends AbstractC1367d {
+    public final class a extends AbstractC1367d {
 
         /* JADX INFO: renamed from: l */
         public final User f2057l;
@@ -82,7 +82,7 @@ public abstract class AbstractC1367d implements MGRecyclerDataPayload {
 
     /* JADX INFO: renamed from: b.a.y.o0.d$b */
     /* JADX INFO: compiled from: SpeakersItem.kt */
-    public static final class b extends AbstractC1367d {
+    public final class b extends AbstractC1367d {
 
         /* JADX INFO: renamed from: l */
         public final int f2061l;

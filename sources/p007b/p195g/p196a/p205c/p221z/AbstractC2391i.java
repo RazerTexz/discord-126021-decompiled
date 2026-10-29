@@ -11,18 +11,18 @@ public abstract class AbstractC2391i {
 
     /* JADX INFO: renamed from: b.g.a.c.z.i$a */
     /* JADX INFO: compiled from: ContextAttributes.java */
-    public static class a extends AbstractC2391i implements Serializable {
+    public class a extends AbstractC2391i implements Serializable {
+        public final Map<?, ?> _shared;
+
+        /* JADX INFO: renamed from: l */
+        public transient Map<Object, Object> f5089l;
+        private static final long serialVersionUID = 1;
 
         /* JADX INFO: renamed from: j */
         public static final a f5087j = new a(Collections.emptyMap());
 
         /* JADX INFO: renamed from: k */
         public static final Object f5088k = new Object();
-        private static final long serialVersionUID = 1;
-        public final Map<?, ?> _shared;
-
-        /* JADX INFO: renamed from: l */
-        public transient Map<Object, Object> f5089l;
 
         public a(Map<?, ?> map) {
             this._shared = map;

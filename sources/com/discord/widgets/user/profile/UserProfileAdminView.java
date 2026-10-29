@@ -24,7 +24,7 @@ public final class UserProfileAdminView extends LinearLayout {
     private final UserProfileAdminViewBinding binding;
 
     /* JADX INFO: compiled from: UserProfileAdminView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isAdminSectionEnabled;
         private final boolean isCommunicationDisabled;
         private final boolean isMe;
@@ -55,71 +55,6 @@ public final class UserProfileAdminView extends LinearLayout {
             this.isCommunicationDisabled = z14;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShowEditMemberButton() {
-            return this.showEditMemberButton;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getShowServerMoveAndDisconnectButtons() {
-            return this.showServerMoveAndDisconnectButtons;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getIsAdminSectionEnabled() {
-            return this.isAdminSectionEnabled;
-        }
-
-        /* JADX INFO: renamed from: component12, reason: from getter */
-        public final boolean getIsMe() {
-            return this.isMe;
-        }
-
-        /* JADX INFO: renamed from: component13, reason: from getter */
-        public final boolean getIsCommunicationDisabled() {
-            return this.isCommunicationDisabled;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowKickButton() {
-            return this.showKickButton;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowDisableCommunicationButton() {
-            return this.showDisableCommunicationButton;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsMultiUserDM() {
-            return this.isMultiUserDM;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getShowBanButton() {
-            return this.showBanButton;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getShowServerMuteButton() {
-            return this.showServerMuteButton;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsServerMuted() {
-            return this.isServerMuted;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getShowServerDeafenButton() {
-            return this.showServerDeafenButton;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsServerDeafened() {
-            return this.isServerDeafened;
-        }
-
         public final ViewState copy(boolean showEditMemberButton, boolean showKickButton, boolean showDisableCommunicationButton, boolean isMultiUserDM, boolean showBanButton, boolean showServerMuteButton, boolean isServerMuted, boolean showServerDeafenButton, boolean isServerDeafened, boolean showServerMoveAndDisconnectButtons, boolean isAdminSectionEnabled, boolean isMe, boolean isCommunicationDisabled) {
             return new ViewState(showEditMemberButton, showKickButton, showDisableCommunicationButton, isMultiUserDM, showBanButton, showServerMuteButton, isServerMuted, showServerDeafenButton, isServerDeafened, showServerMoveAndDisconnectButtons, isAdminSectionEnabled, isMe, isCommunicationDisabled);
         }
@@ -135,28 +70,93 @@ public final class UserProfileAdminView extends LinearLayout {
             return this.showEditMemberButton == viewState.showEditMemberButton && this.showKickButton == viewState.showKickButton && this.showDisableCommunicationButton == viewState.showDisableCommunicationButton && this.isMultiUserDM == viewState.isMultiUserDM && this.showBanButton == viewState.showBanButton && this.showServerMuteButton == viewState.showServerMuteButton && this.isServerMuted == viewState.isServerMuted && this.showServerDeafenButton == viewState.showServerDeafenButton && this.isServerDeafened == viewState.isServerDeafened && this.showServerMoveAndDisconnectButtons == viewState.showServerMoveAndDisconnectButtons && this.isAdminSectionEnabled == viewState.isAdminSectionEnabled && this.isMe == viewState.isMe && this.isCommunicationDisabled == viewState.isCommunicationDisabled;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getIsAdminSectionEnabled() {
+            return this.isAdminSectionEnabled;
+        }
+
+        /* JADX INFO: renamed from: component13, reason: from getter */
+        public final boolean getIsCommunicationDisabled() {
+            return this.isCommunicationDisabled;
+        }
+
+        /* JADX INFO: renamed from: component12, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsMultiUserDM() {
+            return this.isMultiUserDM;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getIsServerDeafened() {
+            return this.isServerDeafened;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsServerMuted() {
+            return this.isServerMuted;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getShowBanButton() {
             return this.showBanButton;
+        }
+
+        public final boolean getShowBanButton() {
+            return this.showBanButton;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getShowDisableCommunicationButton() {
+            return this.showDisableCommunicationButton;
         }
 
         public final boolean getShowDisableCommunicationButton() {
             return this.showDisableCommunicationButton;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getShowEditMemberButton() {
             return this.showEditMemberButton;
+        }
+
+        public final boolean getShowEditMemberButton() {
+            return this.showEditMemberButton;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShowKickButton() {
+            return this.showKickButton;
         }
 
         public final boolean getShowKickButton() {
             return this.showKickButton;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final boolean getShowServerDeafenButton() {
             return this.showServerDeafenButton;
         }
 
+        public final boolean getShowServerDeafenButton() {
+            return this.showServerDeafenButton;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final boolean getShowServerMoveAndDisconnectButtons() {
             return this.showServerMoveAndDisconnectButtons;
+        }
+
+        public final boolean getShowServerMoveAndDisconnectButtons() {
+            return this.showServerMoveAndDisconnectButtons;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getShowServerMuteButton() {
+            return this.showServerMuteButton;
         }
 
         public final boolean getShowServerMuteButton() {

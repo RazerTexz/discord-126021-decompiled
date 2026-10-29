@@ -35,6 +35,16 @@ public final class C12396m implements InterfaceC12407x {
         this.f26103m = inflater;
     }
 
+    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        if (this.f26101k) {
+            return;
+        }
+        this.f26103m.end();
+        this.f26101k = true;
+        this.f26102l.close();
+    }
+
     /* JADX INFO: renamed from: a */
     public final long m10488a(C12388e c12388e, long j) throws IOException {
         C12238m.checkParameterIsNotNull(c12388e, "sink");
@@ -82,16 +92,6 @@ public final class C12396m implements InterfaceC12407x {
         } catch (DataFormatException e) {
             throw new IOException(e);
         }
-    }
-
-    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        if (this.f26101k) {
-            return;
-        }
-        this.f26103m.end();
-        this.f26101k = true;
-        this.f26102l.close();
     }
 
     @Override // p615g0.InterfaceC12407x

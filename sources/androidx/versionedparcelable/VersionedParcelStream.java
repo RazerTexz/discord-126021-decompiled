@@ -36,7 +36,6 @@ public class VersionedParcelStream extends VersionedParcel {
     private static final int TYPE_STRING_ARRAY = 4;
     private static final int TYPE_SUB_BUNDLE = 1;
     private static final int TYPE_SUB_PERSISTABLE_BUNDLE = 2;
-    private static final Charset UTF_16 = Charset.forName("UTF-16");
     public int mCount;
     private DataInputStream mCurrentInput;
     private DataOutputStream mCurrentOutput;
@@ -46,8 +45,9 @@ public class VersionedParcelStream extends VersionedParcel {
     private boolean mIgnoreParcelables;
     private final DataInputStream mMasterInput;
     private final DataOutputStream mMasterOutput;
+    private static final Charset UTF_16 = Charset.forName("UTF-16");
 
-    public static class FieldBuffer {
+    public class FieldBuffer {
         public final DataOutputStream mDataStream;
         private final int mFieldId;
         public final ByteArrayOutputStream mOutput;
@@ -74,129 +74,6 @@ public class VersionedParcelStream extends VersionedParcel {
 
     public VersionedParcelStream(InputStream inputStream, OutputStream outputStream) {
         this(inputStream, outputStream, new ArrayMap(), new ArrayMap(), new ArrayMap());
-    }
-
-    private void readObject(int i, String str, Bundle bundle) {
-        switch (i) {
-            case 0:
-                bundle.putParcelable(str, null);
-                return;
-            case 1:
-                bundle.putBundle(str, readBundle());
-                return;
-            case 2:
-                bundle.putBundle(str, readBundle());
-                return;
-            case 3:
-                bundle.putString(str, readString());
-                return;
-            case 4:
-                bundle.putStringArray(str, (String[]) readArray(new String[0]));
-                return;
-            case 5:
-                bundle.putBoolean(str, readBoolean());
-                return;
-            case 6:
-                bundle.putBooleanArray(str, readBooleanArray());
-                return;
-            case 7:
-                bundle.putDouble(str, readDouble());
-                return;
-            case 8:
-                bundle.putDoubleArray(str, readDoubleArray());
-                return;
-            case 9:
-                bundle.putInt(str, readInt());
-                return;
-            case 10:
-                bundle.putIntArray(str, readIntArray());
-                return;
-            case 11:
-                bundle.putLong(str, readLong());
-                return;
-            case 12:
-                bundle.putLongArray(str, readLongArray());
-                return;
-            case 13:
-                bundle.putFloat(str, readFloat());
-                return;
-            case 14:
-                bundle.putFloatArray(str, readFloatArray());
-                return;
-            default:
-                throw new RuntimeException(C1643a.m871q("Unknown type ", i));
-        }
-    }
-
-    private void writeObject(Object obj) {
-        if (obj == null) {
-            writeInt(0);
-            return;
-        }
-        if (obj instanceof Bundle) {
-            writeInt(1);
-            writeBundle((Bundle) obj);
-            return;
-        }
-        if (obj instanceof String) {
-            writeInt(3);
-            writeString((String) obj);
-            return;
-        }
-        if (obj instanceof String[]) {
-            writeInt(4);
-            writeArray((String[]) obj);
-            return;
-        }
-        if (obj instanceof Boolean) {
-            writeInt(5);
-            writeBoolean(((Boolean) obj).booleanValue());
-            return;
-        }
-        if (obj instanceof boolean[]) {
-            writeInt(6);
-            writeBooleanArray((boolean[]) obj);
-            return;
-        }
-        if (obj instanceof Double) {
-            writeInt(7);
-            writeDouble(((Double) obj).doubleValue());
-            return;
-        }
-        if (obj instanceof double[]) {
-            writeInt(8);
-            writeDoubleArray((double[]) obj);
-            return;
-        }
-        if (obj instanceof Integer) {
-            writeInt(9);
-            writeInt(((Integer) obj).intValue());
-            return;
-        }
-        if (obj instanceof int[]) {
-            writeInt(10);
-            writeIntArray((int[]) obj);
-            return;
-        }
-        if (obj instanceof Long) {
-            writeInt(11);
-            writeLong(((Long) obj).longValue());
-            return;
-        }
-        if (obj instanceof long[]) {
-            writeInt(12);
-            writeLongArray((long[]) obj);
-        } else if (obj instanceof Float) {
-            writeInt(13);
-            writeFloat(((Float) obj).floatValue());
-        } else if (obj instanceof float[]) {
-            writeInt(14);
-            writeFloatArray((float[]) obj);
-        } else {
-            StringBuilder sbM833U = C1643a.m833U("Unsupported type ");
-            sbM833U.append(obj.getClass());
-            throw new IllegalArgumentException(sbM833U.toString());
-        }
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
@@ -333,6 +210,58 @@ public class VersionedParcelStream extends VersionedParcel {
         }
     }
 
+    private void readObject(int i, String str, Bundle bundle) {
+        switch (i) {
+            case 0:
+                bundle.putParcelable(str, null);
+                return;
+            case 1:
+                bundle.putBundle(str, readBundle());
+                return;
+            case 2:
+                bundle.putBundle(str, readBundle());
+                return;
+            case 3:
+                bundle.putString(str, readString());
+                return;
+            case 4:
+                bundle.putStringArray(str, (String[]) readArray(new String[0]));
+                return;
+            case 5:
+                bundle.putBoolean(str, readBoolean());
+                return;
+            case 6:
+                bundle.putBooleanArray(str, readBooleanArray());
+                return;
+            case 7:
+                bundle.putDouble(str, readDouble());
+                return;
+            case 8:
+                bundle.putDoubleArray(str, readDoubleArray());
+                return;
+            case 9:
+                bundle.putInt(str, readInt());
+                return;
+            case 10:
+                bundle.putIntArray(str, readIntArray());
+                return;
+            case 11:
+                bundle.putLong(str, readLong());
+                return;
+            case 12:
+                bundle.putLongArray(str, readLongArray());
+                return;
+            case 13:
+                bundle.putFloat(str, readFloat());
+                return;
+            case 14:
+                bundle.putFloatArray(str, readFloatArray());
+                return;
+            default:
+                throw new RuntimeException(C1643a.m871q("Unknown type ", i));
+        }
+    }
+
     @Override // androidx.versionedparcelable.VersionedParcel
     public <T extends Parcelable> T readParcelable() {
         return null;
@@ -455,6 +384,77 @@ public class VersionedParcelStream extends VersionedParcel {
             this.mCurrentOutput.writeLong(j);
         } catch (IOException e) {
             throw new VersionedParcel.ParcelException(e);
+        }
+    }
+
+    private void writeObject(Object obj) {
+        if (obj == null) {
+            writeInt(0);
+            return;
+        }
+        if (obj instanceof Bundle) {
+            writeInt(1);
+            writeBundle((Bundle) obj);
+            return;
+        }
+        if (obj instanceof String) {
+            writeInt(3);
+            writeString((String) obj);
+            return;
+        }
+        if (obj instanceof String[]) {
+            writeInt(4);
+            writeArray((String[]) obj);
+            return;
+        }
+        if (obj instanceof Boolean) {
+            writeInt(5);
+            writeBoolean(((Boolean) obj).booleanValue());
+            return;
+        }
+        if (obj instanceof boolean[]) {
+            writeInt(6);
+            writeBooleanArray((boolean[]) obj);
+            return;
+        }
+        if (obj instanceof Double) {
+            writeInt(7);
+            writeDouble(((Double) obj).doubleValue());
+            return;
+        }
+        if (obj instanceof double[]) {
+            writeInt(8);
+            writeDoubleArray((double[]) obj);
+            return;
+        }
+        if (obj instanceof Integer) {
+            writeInt(9);
+            writeInt(((Integer) obj).intValue());
+            return;
+        }
+        if (obj instanceof int[]) {
+            writeInt(10);
+            writeIntArray((int[]) obj);
+            return;
+        }
+        if (obj instanceof Long) {
+            writeInt(11);
+            writeLong(((Long) obj).longValue());
+            return;
+        }
+        if (obj instanceof long[]) {
+            writeInt(12);
+            writeLongArray((long[]) obj);
+        } else if (obj instanceof Float) {
+            writeInt(13);
+            writeFloat(((Float) obj).floatValue());
+        } else if (obj instanceof float[]) {
+            writeInt(14);
+            writeFloatArray((float[]) obj);
+        } else {
+            StringBuilder sbM833U = C1643a.m833U("Unsupported type ");
+            sbM833U.append(obj.getClass());
+            throw new IllegalArgumentException(sbM833U.toString());
         }
     }
 

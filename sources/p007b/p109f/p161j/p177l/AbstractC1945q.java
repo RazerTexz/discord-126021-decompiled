@@ -14,12 +14,6 @@ public abstract class AbstractC1945q<T> {
     /* JADX INFO: renamed from: b */
     public final C1935g<T> f3951b = new C1935g<>();
 
-    /* JADX INFO: renamed from: a */
-    public abstract T mo1373a(int i);
-
-    /* JADX INFO: renamed from: b */
-    public abstract int mo1374b(T t);
-
     /* JADX INFO: renamed from: c */
     public T m1392c() {
         T t;
@@ -44,4 +38,10 @@ public abstract class AbstractC1945q<T> {
         }
         return t;
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract T mo1373a(int i);
+
+    /* JADX INFO: renamed from: b */
+    public abstract int mo1374b(T t);
 }

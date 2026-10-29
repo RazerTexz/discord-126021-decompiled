@@ -34,12 +34,12 @@ public class C1566e {
         this.f2711e = str2;
     }
 
+    public int hashCode() {
+        return m765a(this.f2708b, this.f2711e, this.f2710d);
+    }
+
     /* JADX INFO: renamed from: a */
     public static int m765a(char c, String str, String str2) {
         return str2.hashCode() + C1643a.m863m(str, (c + 0) * 31, 31);
-    }
-
-    public int hashCode() {
-        return m765a(this.f2708b, this.f2711e, this.f2710d);
     }
 }

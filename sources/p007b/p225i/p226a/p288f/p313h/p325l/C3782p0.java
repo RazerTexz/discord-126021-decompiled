@@ -7,17 +7,17 @@ import java.util.List;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3782p0 extends AbstractC3851u4<C3782p0, a> implements InterfaceC3626d6 {
-    private static final C3782p0 zzh;
-    private static volatile InterfaceC3710j6<C3782p0> zzi;
     private int zzc;
     private int zzd;
     private boolean zzf;
+    private static final C3782p0 zzh;
+    private static volatile InterfaceC3710j6<C3782p0> zzi;
     private String zze = "";
     private InterfaceC3597b5<String> zzg = C3749m6.f10094k;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.p0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3782p0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3782p0, a> implements InterfaceC3626d6 {
         public a(C3795q0 c3795q0) {
             super(C3782p0.zzh);
         }
@@ -95,6 +95,37 @@ public final class C3782p0 extends AbstractC3851u4<C3782p0, a> implements Interf
         return this.zzg.size();
     }
 
+    /* JADX INFO: renamed from: u */
+    public final boolean m5165u() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final b m5166v() {
+        b bVarM5171f = b.m5171f(this.zzd);
+        return bVarM5171f == null ? b.UNKNOWN_MATCH_TYPE : bVarM5171f;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final boolean m5167w() {
+        return (this.zzc & 2) != 0;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final String m5168x() {
+        return this.zze;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final boolean m5169y() {
+        return (this.zzc & 4) != 0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final boolean m5170z() {
+        return this.zzf;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -127,36 +158,5 @@ public final class C3782p0 extends AbstractC3851u4<C3782p0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final boolean m5165u() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final b m5166v() {
-        b bVarM5171f = b.m5171f(this.zzd);
-        return bVarM5171f == null ? b.UNKNOWN_MATCH_TYPE : bVarM5171f;
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final boolean m5167w() {
-        return (this.zzc & 2) != 0;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final String m5168x() {
-        return this.zze;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final boolean m5169y() {
-        return (this.zzc & 4) != 0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final boolean m5170z() {
-        return this.zzf;
     }
 }

@@ -89,7 +89,6 @@ public class TextInputLayout extends LinearLayout {
     public static final int BOX_BACKGROUND_FILLED = 1;
     public static final int BOX_BACKGROUND_NONE = 0;
     public static final int BOX_BACKGROUND_OUTLINE = 2;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_TextInputLayout;
     public static final int END_ICON_CLEAR_TEXT = 2;
     public static final int END_ICON_CUSTOM = -1;
     public static final int END_ICON_DROPDOWN_MENU = 3;
@@ -242,8 +241,9 @@ public class TextInputLayout extends LinearLayout {
     private final Rect tmpRect;
     private final RectF tmpRectF;
     private Typeface typeface;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_TextInputLayout;
 
-    public static class AccessibilityDelegate extends AccessibilityDelegateCompat {
+    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
         private final TextInputLayout layout;
 
         public AccessibilityDelegate(@NonNull TextInputLayout textInputLayout) {
@@ -307,6 +307,44 @@ public class TextInputLayout extends LinearLayout {
     public @interface BoxBackgroundMode {
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$a */
+    public class C11015a implements TextWatcher {
+        public C11015a() {
+        }
+
+        @Override // android.text.TextWatcher
+        public void afterTextChanged(@NonNull Editable editable) {
+            TextInputLayout textInputLayout = TextInputLayout.this;
+            textInputLayout.updateLabelState(!textInputLayout.restoringSavedState);
+            TextInputLayout textInputLayout2 = TextInputLayout.this;
+            if (textInputLayout2.counterEnabled) {
+                textInputLayout2.updateCounter(editable.length());
+            }
+            if (TextInputLayout.this.placeholderEnabled) {
+                TextInputLayout.this.updatePlaceholderText(editable.length());
+            }
+        }
+
+        @Override // android.text.TextWatcher
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override // android.text.TextWatcher
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$d */
+    public class C11018d implements ValueAnimator.AnimatorUpdateListener {
+        public C11018d() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            TextInputLayout.this.collapsingTextHelper.setExpansionFraction(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+    }
+
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public @interface EndIconMode {
@@ -320,8 +358,30 @@ public class TextInputLayout extends LinearLayout {
         void onEndIconChanged(@NonNull TextInputLayout textInputLayout, int i);
     }
 
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C11014a();
+    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$b */
+    public class RunnableC11016b implements Runnable {
+        public RunnableC11016b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TextInputLayout.this.endIconView.performClick();
+            TextInputLayout.this.endIconView.jumpDrawablesToCurrentState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$c */
+    public class RunnableC11017c implements Runnable {
+        public RunnableC11017c() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TextInputLayout.this.editText.requestLayout();
+        }
+    }
+
+    public class SavedState extends AbsSavedState {
 
         /* JADX INFO: renamed from: j */
         @Nullable
@@ -341,9 +401,10 @@ public class TextInputLayout extends LinearLayout {
         /* JADX INFO: renamed from: n */
         @Nullable
         public CharSequence f21176n;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C11014a();
 
         /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$SavedState$a */
-        public static class C11014a implements Parcelable.ClassLoaderCreator<SavedState> {
+        public final class C11014a implements Parcelable.ClassLoaderCreator<SavedState> {
             @Override // android.os.Parcelable.ClassLoaderCreator
             @NonNull
             public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
@@ -403,69 +464,19 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$a */
-    public class C11015a implements TextWatcher {
-        public C11015a() {
-        }
-
-        @Override // android.text.TextWatcher
-        public void afterTextChanged(@NonNull Editable editable) {
-            TextInputLayout textInputLayout = TextInputLayout.this;
-            textInputLayout.updateLabelState(!textInputLayout.restoringSavedState);
-            TextInputLayout textInputLayout2 = TextInputLayout.this;
-            if (textInputLayout2.counterEnabled) {
-                textInputLayout2.updateCounter(editable.length());
-            }
-            if (TextInputLayout.this.placeholderEnabled) {
-                TextInputLayout.this.updatePlaceholderText(editable.length());
-            }
-        }
-
-        @Override // android.text.TextWatcher
-        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        }
-
-        @Override // android.text.TextWatcher
-        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$b */
-    public class RunnableC11016b implements Runnable {
-        public RunnableC11016b() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            TextInputLayout.this.endIconView.performClick();
-            TextInputLayout.this.endIconView.jumpDrawablesToCurrentState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$c */
-    public class RunnableC11017c implements Runnable {
-        public RunnableC11017c() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            TextInputLayout.this.editText.requestLayout();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.textfield.TextInputLayout$d */
-    public class C11018d implements ValueAnimator.AnimatorUpdateListener {
-        public C11018d() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            TextInputLayout.this.collapsingTextHelper.setExpansionFraction(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        }
-    }
-
     public TextInputLayout(@NonNull Context context) {
         this(context, null);
+    }
+
+    public void addOnEditTextAttachedListener(@NonNull OnEditTextAttachedListener onEditTextAttachedListener) {
+        this.editTextAttachedListeners.add(onEditTextAttachedListener);
+        if (this.editText != null) {
+            onEditTextAttachedListener.onEditTextAttached(this);
+        }
+    }
+
+    public void addOnEndIconChangedListener(@NonNull OnEndIconChangedListener onEndIconChangedListener) {
+        this.endIconChangedListeners.add(onEndIconChangedListener);
     }
 
     private void addPlaceholderTextView() {
@@ -474,6 +485,20 @@ public class TextInputLayout extends LinearLayout {
             this.inputFrame.addView(textView);
             this.placeholderTextView.setVisibility(0);
         }
+    }
+
+    @Override // android.view.ViewGroup
+    public void addView(@NonNull View view, int i, @NonNull ViewGroup.LayoutParams layoutParams) {
+        if (!(view instanceof EditText)) {
+            super.addView(view, i, layoutParams);
+            return;
+        }
+        FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(layoutParams);
+        layoutParams2.gravity = (layoutParams2.gravity & (-113)) | 16;
+        this.inputFrame.addView(view, layoutParams2);
+        this.inputFrame.setLayoutParams(layoutParams);
+        updateInputLayoutMargins();
+        setEditText((EditText) view);
     }
 
     private void adjustFilledEditTextPaddingForLargeFont() {
@@ -487,6 +512,22 @@ public class TextInputLayout extends LinearLayout {
             EditText editText2 = this.editText;
             ViewCompat.setPaddingRelative(editText2, ViewCompat.getPaddingStart(editText2), getResources().getDimensionPixelSize(C10817R.dimen.material_filled_edittext_font_1_3_padding_top), ViewCompat.getPaddingEnd(this.editText), getResources().getDimensionPixelSize(C10817R.dimen.material_filled_edittext_font_1_3_padding_bottom));
         }
+    }
+
+    @VisibleForTesting
+    public void animateToExpansionFraction(float f) {
+        if (this.collapsingTextHelper.getExpansionFraction() == f) {
+            return;
+        }
+        if (this.animator == null) {
+            ValueAnimator valueAnimator = new ValueAnimator();
+            this.animator = valueAnimator;
+            valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+            this.animator.setDuration(167L);
+            this.animator.addUpdateListener(new C11018d());
+        }
+        this.animator.setFloatValues(this.collapsingTextHelper.getExpansionFraction(), f);
+        this.animator.start();
     }
 
     private void applyBoxAttributes() {
@@ -655,6 +696,14 @@ public class TextInputLayout extends LinearLayout {
         return this.boxStrokeWidthPx > -1 && this.boxStrokeColor != 0;
     }
 
+    public void clearOnEditTextAttachedListeners() {
+        this.editTextAttachedListeners.clear();
+    }
+
+    public void clearOnEndIconChangedListeners() {
+        this.endIconChangedListeners.clear();
+    }
+
     private void closeCutout() {
         if (cutoutEnabled()) {
             ((C4436g) this.boxBackground).m6149a(0.0f, 0.0f, 0.0f, 0.0f);
@@ -684,6 +733,11 @@ public class TextInputLayout extends LinearLayout {
         return this.hintEnabled && !TextUtils.isEmpty(this.hint) && (this.boxBackground instanceof C4436g);
     }
 
+    @VisibleForTesting
+    public boolean cutoutIsOpen() {
+        return cutoutEnabled() && (((C4436g) this.boxBackground).f11789k.isEmpty() ^ true);
+    }
+
     private void dispatchOnEditTextAttached() {
         Iterator<OnEditTextAttachedListener> it = this.editTextAttachedListeners.iterator();
         while (it.hasNext()) {
@@ -696,545 +750,6 @@ public class TextInputLayout extends LinearLayout {
         while (it.hasNext()) {
             it.next().onEndIconChanged(this, i);
         }
-    }
-
-    private void drawBoxUnderline(Canvas canvas) {
-        MaterialShapeDrawable materialShapeDrawable = this.boxUnderline;
-        if (materialShapeDrawable != null) {
-            Rect bounds = materialShapeDrawable.getBounds();
-            bounds.top = bounds.bottom - this.boxStrokeWidthPx;
-            this.boxUnderline.draw(canvas);
-        }
-    }
-
-    private void drawHint(@NonNull Canvas canvas) {
-        if (this.hintEnabled) {
-            this.collapsingTextHelper.draw(canvas);
-        }
-    }
-
-    private void expandHint(boolean z2) {
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            this.animator.cancel();
-        }
-        if (z2 && this.hintAnimationEnabled) {
-            animateToExpansionFraction(0.0f);
-        } else {
-            this.collapsingTextHelper.setExpansionFraction(0.0f);
-        }
-        if (cutoutEnabled() && (!((C4436g) this.boxBackground).f11789k.isEmpty())) {
-            closeCutout();
-        }
-        this.hintExpanded = true;
-        hidePlaceholderText();
-        updatePrefixTextVisibility();
-        updateSuffixTextVisibility();
-    }
-
-    private AbstractC4442m getEndIconDelegate() {
-        AbstractC4442m abstractC4442m = this.endIconDelegates.get(this.endIconMode);
-        return abstractC4442m != null ? abstractC4442m : this.endIconDelegates.get(0);
-    }
-
-    @Nullable
-    private CheckableImageButton getEndIconToUpdateDummyDrawable() {
-        if (this.errorIconView.getVisibility() == 0) {
-            return this.errorIconView;
-        }
-        if (hasEndIcon() && isEndIconVisible()) {
-            return this.endIconView;
-        }
-        return null;
-    }
-
-    private int getLabelLeftBoundAlightWithPrefix(int i, boolean z2) {
-        int compoundPaddingLeft = this.editText.getCompoundPaddingLeft() + i;
-        return (this.prefixText == null || z2) ? compoundPaddingLeft : (compoundPaddingLeft - this.prefixTextView.getMeasuredWidth()) + this.prefixTextView.getPaddingLeft();
-    }
-
-    private int getLabelRightBoundAlignedWithSuffix(int i, boolean z2) {
-        int compoundPaddingRight = i - this.editText.getCompoundPaddingRight();
-        return (this.prefixText == null || !z2) ? compoundPaddingRight : compoundPaddingRight + (this.prefixTextView.getMeasuredWidth() - this.prefixTextView.getPaddingRight());
-    }
-
-    private boolean hasEndIcon() {
-        return this.endIconMode != 0;
-    }
-
-    private void hidePlaceholderText() {
-        TextView textView = this.placeholderTextView;
-        if (textView == null || !this.placeholderEnabled) {
-            return;
-        }
-        textView.setText((CharSequence) null);
-        this.placeholderTextView.setVisibility(4);
-    }
-
-    private boolean isErrorIconVisible() {
-        return this.errorIconView.getVisibility() == 0;
-    }
-
-    private boolean isSingleLineFilledTextField() {
-        return this.boxBackgroundMode == 1 && this.editText.getMinLines() <= 1;
-    }
-
-    private int[] mergeIconState(CheckableImageButton checkableImageButton) {
-        int[] drawableState = getDrawableState();
-        int[] drawableState2 = checkableImageButton.getDrawableState();
-        int length = drawableState.length;
-        int[] iArrCopyOf = Arrays.copyOf(drawableState, drawableState.length + drawableState2.length);
-        System.arraycopy(drawableState2, 0, iArrCopyOf, length, drawableState2.length);
-        return iArrCopyOf;
-    }
-
-    private void onApplyBoxBackgroundMode() {
-        assignBoxBackgroundByMode();
-        setEditTextBoxBackground();
-        updateTextInputBoxState();
-        updateBoxCollapsedPaddingTop();
-        adjustFilledEditTextPaddingForLargeFont();
-        if (this.boxBackgroundMode != 0) {
-            updateInputLayoutMargins();
-        }
-    }
-
-    private void openCutout() {
-        if (cutoutEnabled()) {
-            RectF rectF = this.tmpRectF;
-            this.collapsingTextHelper.getCollapsedTextActualBounds(rectF, this.editText.getWidth(), this.editText.getGravity());
-            applyCutoutPadding(rectF);
-            rectF.offset(-getPaddingLeft(), -getPaddingTop());
-            C4436g c4436g = (C4436g) this.boxBackground;
-            Objects.requireNonNull(c4436g);
-            c4436g.m6149a(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        }
-    }
-
-    private static void recursiveSetEnabled(@NonNull ViewGroup viewGroup, boolean z2) {
-        int childCount = viewGroup.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = viewGroup.getChildAt(i);
-            childAt.setEnabled(z2);
-            if (childAt instanceof ViewGroup) {
-                recursiveSetEnabled((ViewGroup) childAt, z2);
-            }
-        }
-    }
-
-    private void refreshIconDrawableState(CheckableImageButton checkableImageButton, ColorStateList colorStateList) {
-        Drawable drawable = checkableImageButton.getDrawable();
-        if (checkableImageButton.getDrawable() == null || colorStateList == null || !colorStateList.isStateful()) {
-            return;
-        }
-        int colorForState = colorStateList.getColorForState(mergeIconState(checkableImageButton), colorStateList.getDefaultColor());
-        Drawable drawableMutate = DrawableCompat.wrap(drawable).mutate();
-        DrawableCompat.setTintList(drawableMutate, ColorStateList.valueOf(colorForState));
-        checkableImageButton.setImageDrawable(drawableMutate);
-    }
-
-    private void removePlaceholderTextView() {
-        TextView textView = this.placeholderTextView;
-        if (textView != null) {
-            textView.setVisibility(8);
-        }
-    }
-
-    private void setEditText(EditText editText) {
-        if (this.editText != null) {
-            throw new IllegalArgumentException("We already have an EditText, can only have one");
-        }
-        if (this.endIconMode != 3 && !(editText instanceof TextInputEditText)) {
-            Log.i(LOG_TAG, "EditText added is not a TextInputEditText. Please switch to using that class instead.");
-        }
-        this.editText = editText;
-        onApplyBoxBackgroundMode();
-        setTextInputAccessibilityDelegate(new AccessibilityDelegate(this));
-        this.collapsingTextHelper.setTypefaces(this.editText.getTypeface());
-        this.collapsingTextHelper.setExpandedTextSize(this.editText.getTextSize());
-        int gravity = this.editText.getGravity();
-        this.collapsingTextHelper.setCollapsedTextGravity((gravity & (-113)) | 48);
-        this.collapsingTextHelper.setExpandedTextGravity(gravity);
-        this.editText.addTextChangedListener(new C11015a());
-        if (this.defaultHintTextColor == null) {
-            this.defaultHintTextColor = this.editText.getHintTextColors();
-        }
-        if (this.hintEnabled) {
-            if (TextUtils.isEmpty(this.hint)) {
-                CharSequence hint = this.editText.getHint();
-                this.originalHint = hint;
-                setHint(hint);
-                this.editText.setHint((CharSequence) null);
-            }
-            this.isProvidingHint = true;
-        }
-        if (this.counterView != null) {
-            updateCounter(this.editText.getText().length());
-        }
-        updateEditTextBackground();
-        this.indicatorViewController.m6158b();
-        this.startLayout.bringToFront();
-        this.endLayout.bringToFront();
-        this.endIconFrame.bringToFront();
-        this.errorIconView.bringToFront();
-        dispatchOnEditTextAttached();
-        updatePrefixTextViewPadding();
-        updateSuffixTextViewPadding();
-        if (!isEnabled()) {
-            editText.setEnabled(false);
-        }
-        updateLabelState(false, true);
-    }
-
-    private void setEditTextBoxBackground() {
-        if (shouldUseEditTextBackgroundForBoxBackground()) {
-            ViewCompat.setBackground(this.editText, this.boxBackground);
-        }
-    }
-
-    private void setErrorIconVisible(boolean z2) {
-        this.errorIconView.setVisibility(z2 ? 0 : 8);
-        this.endIconFrame.setVisibility(z2 ? 8 : 0);
-        updateSuffixTextViewPadding();
-        if (hasEndIcon()) {
-            return;
-        }
-        updateDummyDrawables();
-    }
-
-    private void setHintInternal(CharSequence charSequence) {
-        if (TextUtils.equals(charSequence, this.hint)) {
-            return;
-        }
-        this.hint = charSequence;
-        this.collapsingTextHelper.setText(charSequence);
-        if (this.hintExpanded) {
-            return;
-        }
-        openCutout();
-    }
-
-    private static void setIconClickable(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
-        boolean zHasOnClickListeners = ViewCompat.hasOnClickListeners(checkableImageButton);
-        boolean z2 = onLongClickListener != null;
-        boolean z3 = zHasOnClickListeners || z2;
-        checkableImageButton.setFocusable(z3);
-        checkableImageButton.setClickable(zHasOnClickListeners);
-        checkableImageButton.setPressable(zHasOnClickListeners);
-        checkableImageButton.setLongClickable(z2);
-        ViewCompat.setImportantForAccessibility(checkableImageButton, z3 ? 1 : 2);
-    }
-
-    private static void setIconOnClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnClickListener onClickListener, @Nullable View.OnLongClickListener onLongClickListener) {
-        checkableImageButton.setOnClickListener(onClickListener);
-        setIconClickable(checkableImageButton, onLongClickListener);
-    }
-
-    private static void setIconOnLongClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
-        checkableImageButton.setOnLongClickListener(onLongClickListener);
-        setIconClickable(checkableImageButton, onLongClickListener);
-    }
-
-    private void setPlaceholderTextEnabled(boolean z2) {
-        if (this.placeholderEnabled == z2) {
-            return;
-        }
-        if (z2) {
-            AppCompatTextView appCompatTextView = new AppCompatTextView(getContext());
-            this.placeholderTextView = appCompatTextView;
-            appCompatTextView.setId(C10817R.id.textinput_placeholder);
-            ViewCompat.setAccessibilityLiveRegion(this.placeholderTextView, 1);
-            setPlaceholderTextAppearance(this.placeholderTextAppearance);
-            setPlaceholderTextColor(this.placeholderTextColor);
-            addPlaceholderTextView();
-        } else {
-            removePlaceholderTextView();
-            this.placeholderTextView = null;
-        }
-        this.placeholderEnabled = z2;
-    }
-
-    private boolean shouldUpdateEndDummyDrawable() {
-        return (this.errorIconView.getVisibility() == 0 || ((hasEndIcon() && isEndIconVisible()) || this.suffixText != null)) && this.endLayout.getMeasuredWidth() > 0;
-    }
-
-    private boolean shouldUpdateStartDummyDrawable() {
-        return !(getStartIconDrawable() == null && this.prefixText == null) && this.startLayout.getMeasuredWidth() > 0;
-    }
-
-    private boolean shouldUseEditTextBackgroundForBoxBackground() {
-        EditText editText = this.editText;
-        return (editText == null || this.boxBackground == null || editText.getBackground() != null || this.boxBackgroundMode == 0) ? false : true;
-    }
-
-    private void showPlaceholderText() {
-        TextView textView = this.placeholderTextView;
-        if (textView == null || !this.placeholderEnabled) {
-            return;
-        }
-        textView.setText(this.placeholderText);
-        this.placeholderTextView.setVisibility(0);
-        this.placeholderTextView.bringToFront();
-    }
-
-    private void tintEndIconOnError(boolean z2) {
-        if (!z2 || getEndIconDrawable() == null) {
-            applyEndIconTint();
-            return;
-        }
-        Drawable drawableMutate = DrawableCompat.wrap(getEndIconDrawable()).mutate();
-        DrawableCompat.setTint(drawableMutate, this.indicatorViewController.m6163g());
-        this.endIconView.setImageDrawable(drawableMutate);
-    }
-
-    private void updateBoxCollapsedPaddingTop() {
-        if (this.boxBackgroundMode == 1) {
-            if (MaterialResources.isFontScaleAtLeast2_0(getContext())) {
-                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(C10817R.dimen.material_font_2_0_box_collapsed_padding_top);
-            } else if (MaterialResources.isFontScaleAtLeast1_3(getContext())) {
-                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(C10817R.dimen.material_font_1_3_box_collapsed_padding_top);
-            }
-        }
-    }
-
-    private void updateBoxUnderlineBounds(@NonNull Rect rect) {
-        MaterialShapeDrawable materialShapeDrawable = this.boxUnderline;
-        if (materialShapeDrawable != null) {
-            int i = rect.bottom;
-            materialShapeDrawable.setBounds(rect.left, i - this.boxStrokeWidthFocusedPx, rect.right, i);
-        }
-    }
-
-    private void updateCounter() {
-        if (this.counterView != null) {
-            EditText editText = this.editText;
-            updateCounter(editText == null ? 0 : editText.getText().length());
-        }
-    }
-
-    private static void updateCounterContentDescription(@NonNull Context context, @NonNull TextView textView, int i, int i2, boolean z2) {
-        textView.setContentDescription(context.getString(z2 ? C10817R.string.character_counter_overflowed_content_description : C10817R.string.character_counter_content_description, Integer.valueOf(i), Integer.valueOf(i2)));
-    }
-
-    private void updateCounterTextAppearanceAndColor() {
-        ColorStateList colorStateList;
-        ColorStateList colorStateList2;
-        TextView textView = this.counterView;
-        if (textView != null) {
-            setTextAppearanceCompatWithErrorFallback(textView, this.counterOverflowed ? this.counterOverflowTextAppearance : this.counterTextAppearance);
-            if (!this.counterOverflowed && (colorStateList2 = this.counterTextColor) != null) {
-                this.counterView.setTextColor(colorStateList2);
-            }
-            if (!this.counterOverflowed || (colorStateList = this.counterOverflowTextColor) == null) {
-                return;
-            }
-            this.counterView.setTextColor(colorStateList);
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:19:0x0062  */
-    private boolean updateDummyDrawables() {
-        boolean z2;
-        if (this.editText == null) {
-            return false;
-        }
-        boolean z3 = true;
-        if (shouldUpdateStartDummyDrawable()) {
-            int measuredWidth = this.startLayout.getMeasuredWidth() - this.editText.getPaddingLeft();
-            if (this.startDummyDrawable == null || this.startDummyDrawableWidth != measuredWidth) {
-                ColorDrawable colorDrawable = new ColorDrawable();
-                this.startDummyDrawable = colorDrawable;
-                this.startDummyDrawableWidth = measuredWidth;
-                colorDrawable.setBounds(0, 0, measuredWidth, 1);
-            }
-            Drawable[] compoundDrawablesRelative = TextViewCompat.getCompoundDrawablesRelative(this.editText);
-            Drawable drawable = compoundDrawablesRelative[0];
-            Drawable drawable2 = this.startDummyDrawable;
-            if (drawable != drawable2) {
-                TextViewCompat.setCompoundDrawablesRelative(this.editText, drawable2, compoundDrawablesRelative[1], compoundDrawablesRelative[2], compoundDrawablesRelative[3]);
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-        } else if (this.startDummyDrawable != null) {
-            Drawable[] compoundDrawablesRelative2 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
-            TextViewCompat.setCompoundDrawablesRelative(this.editText, null, compoundDrawablesRelative2[1], compoundDrawablesRelative2[2], compoundDrawablesRelative2[3]);
-            this.startDummyDrawable = null;
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (shouldUpdateEndDummyDrawable()) {
-            int measuredWidth2 = this.suffixTextView.getMeasuredWidth() - this.editText.getPaddingRight();
-            CheckableImageButton endIconToUpdateDummyDrawable = getEndIconToUpdateDummyDrawable();
-            if (endIconToUpdateDummyDrawable != null) {
-                measuredWidth2 = MarginLayoutParamsCompat.getMarginStart((ViewGroup.MarginLayoutParams) endIconToUpdateDummyDrawable.getLayoutParams()) + endIconToUpdateDummyDrawable.getMeasuredWidth() + measuredWidth2;
-            }
-            Drawable[] compoundDrawablesRelative3 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
-            Drawable drawable3 = this.endDummyDrawable;
-            if (drawable3 == null || this.endDummyDrawableWidth == measuredWidth2) {
-                if (drawable3 == null) {
-                    ColorDrawable colorDrawable2 = new ColorDrawable();
-                    this.endDummyDrawable = colorDrawable2;
-                    this.endDummyDrawableWidth = measuredWidth2;
-                    colorDrawable2.setBounds(0, 0, measuredWidth2, 1);
-                }
-                Drawable drawable4 = compoundDrawablesRelative3[2];
-                Drawable drawable5 = this.endDummyDrawable;
-                if (drawable4 != drawable5) {
-                    this.originalEditTextEndDrawable = compoundDrawablesRelative3[2];
-                    TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative3[0], compoundDrawablesRelative3[1], drawable5, compoundDrawablesRelative3[3]);
-                } else {
-                    z3 = z2;
-                }
-            } else {
-                this.endDummyDrawableWidth = measuredWidth2;
-                drawable3.setBounds(0, 0, measuredWidth2, 1);
-                TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative3[0], compoundDrawablesRelative3[1], this.endDummyDrawable, compoundDrawablesRelative3[3]);
-            }
-        } else {
-            if (this.endDummyDrawable == null) {
-                return z2;
-            }
-            Drawable[] compoundDrawablesRelative4 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
-            if (compoundDrawablesRelative4[2] == this.endDummyDrawable) {
-                TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative4[0], compoundDrawablesRelative4[1], this.originalEditTextEndDrawable, compoundDrawablesRelative4[3]);
-            } else {
-                z3 = z2;
-            }
-            this.endDummyDrawable = null;
-        }
-        return z3;
-    }
-
-    private boolean updateEditTextHeightBasedOnIcon() {
-        int iMax;
-        if (this.editText == null || this.editText.getMeasuredHeight() >= (iMax = Math.max(this.endLayout.getMeasuredHeight(), this.startLayout.getMeasuredHeight()))) {
-            return false;
-        }
-        this.editText.setMinimumHeight(iMax);
-        return true;
-    }
-
-    private void updateInputLayoutMargins() {
-        if (this.boxBackgroundMode != 1) {
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.inputFrame.getLayoutParams();
-            int iCalculateLabelMarginTop = calculateLabelMarginTop();
-            if (iCalculateLabelMarginTop != layoutParams.topMargin) {
-                layoutParams.topMargin = iCalculateLabelMarginTop;
-                this.inputFrame.requestLayout();
-            }
-        }
-    }
-
-    private void updatePlaceholderMeasurementsBasedOnEditText() {
-        EditText editText;
-        if (this.placeholderTextView == null || (editText = this.editText) == null) {
-            return;
-        }
-        this.placeholderTextView.setGravity(editText.getGravity());
-        this.placeholderTextView.setPadding(this.editText.getCompoundPaddingLeft(), this.editText.getCompoundPaddingTop(), this.editText.getCompoundPaddingRight(), this.editText.getCompoundPaddingBottom());
-    }
-
-    private void updatePlaceholderText() {
-        EditText editText = this.editText;
-        updatePlaceholderText(editText == null ? 0 : editText.getText().length());
-    }
-
-    private void updatePrefixTextViewPadding() {
-        if (this.editText == null) {
-            return;
-        }
-        ViewCompat.setPaddingRelative(this.prefixTextView, isStartIconVisible() ? 0 : ViewCompat.getPaddingStart(this.editText), this.editText.getCompoundPaddingTop(), getContext().getResources().getDimensionPixelSize(C10817R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getCompoundPaddingBottom());
-    }
-
-    private void updatePrefixTextVisibility() {
-        this.prefixTextView.setVisibility((this.prefixText == null || isHintExpanded()) ? 8 : 0);
-        updateDummyDrawables();
-    }
-
-    private void updateStrokeErrorColor(boolean z2, boolean z3) {
-        int defaultColor = this.strokeErrorColor.getDefaultColor();
-        int colorForState = this.strokeErrorColor.getColorForState(new int[]{R.attr.state_hovered, R.attr.state_enabled}, defaultColor);
-        int colorForState2 = this.strokeErrorColor.getColorForState(new int[]{R.attr.state_activated, R.attr.state_enabled}, defaultColor);
-        if (z2) {
-            this.boxStrokeColor = colorForState2;
-        } else if (z3) {
-            this.boxStrokeColor = colorForState;
-        } else {
-            this.boxStrokeColor = defaultColor;
-        }
-    }
-
-    private void updateSuffixTextViewPadding() {
-        if (this.editText == null) {
-            return;
-        }
-        ViewCompat.setPaddingRelative(this.suffixTextView, getContext().getResources().getDimensionPixelSize(C10817R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getPaddingTop(), (isEndIconVisible() || isErrorIconVisible()) ? 0 : ViewCompat.getPaddingEnd(this.editText), this.editText.getPaddingBottom());
-    }
-
-    private void updateSuffixTextVisibility() {
-        int visibility = this.suffixTextView.getVisibility();
-        boolean z2 = (this.suffixText == null || isHintExpanded()) ? false : true;
-        this.suffixTextView.setVisibility(z2 ? 0 : 8);
-        if (visibility != this.suffixTextView.getVisibility()) {
-            getEndIconDelegate().mo6147c(z2);
-        }
-        updateDummyDrawables();
-    }
-
-    public void addOnEditTextAttachedListener(@NonNull OnEditTextAttachedListener onEditTextAttachedListener) {
-        this.editTextAttachedListeners.add(onEditTextAttachedListener);
-        if (this.editText != null) {
-            onEditTextAttachedListener.onEditTextAttached(this);
-        }
-    }
-
-    public void addOnEndIconChangedListener(@NonNull OnEndIconChangedListener onEndIconChangedListener) {
-        this.endIconChangedListeners.add(onEndIconChangedListener);
-    }
-
-    @Override // android.view.ViewGroup
-    public void addView(@NonNull View view, int i, @NonNull ViewGroup.LayoutParams layoutParams) {
-        if (!(view instanceof EditText)) {
-            super.addView(view, i, layoutParams);
-            return;
-        }
-        FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(layoutParams);
-        layoutParams2.gravity = (layoutParams2.gravity & (-113)) | 16;
-        this.inputFrame.addView(view, layoutParams2);
-        this.inputFrame.setLayoutParams(layoutParams);
-        updateInputLayoutMargins();
-        setEditText((EditText) view);
-    }
-
-    @VisibleForTesting
-    public void animateToExpansionFraction(float f) {
-        if (this.collapsingTextHelper.getExpansionFraction() == f) {
-            return;
-        }
-        if (this.animator == null) {
-            ValueAnimator valueAnimator = new ValueAnimator();
-            this.animator = valueAnimator;
-            valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-            this.animator.setDuration(167L);
-            this.animator.addUpdateListener(new C11018d());
-        }
-        this.animator.setFloatValues(this.collapsingTextHelper.getExpansionFraction(), f);
-        this.animator.start();
-    }
-
-    public void clearOnEditTextAttachedListeners() {
-        this.editTextAttachedListeners.clear();
-    }
-
-    public void clearOnEndIconChangedListeners() {
-        this.endIconChangedListeners.clear();
-    }
-
-    @VisibleForTesting
-    public boolean cutoutIsOpen() {
-        return cutoutEnabled() && (((C4436g) this.boxBackground).f11789k.isEmpty() ^ true);
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -1286,6 +801,21 @@ public class TextInputLayout extends LinearLayout {
         drawBoxUnderline(canvas);
     }
 
+    private void drawBoxUnderline(Canvas canvas) {
+        MaterialShapeDrawable materialShapeDrawable = this.boxUnderline;
+        if (materialShapeDrawable != null) {
+            Rect bounds = materialShapeDrawable.getBounds();
+            bounds.top = bounds.bottom - this.boxStrokeWidthPx;
+            this.boxUnderline.draw(canvas);
+        }
+    }
+
+    private void drawHint(@NonNull Canvas canvas) {
+        if (this.hintEnabled) {
+            this.collapsingTextHelper.draw(canvas);
+        }
+    }
+
     @Override // android.view.ViewGroup, android.view.View
     public void drawableStateChanged() {
         if (this.inDrawableStateChanged) {
@@ -1305,6 +835,25 @@ public class TextInputLayout extends LinearLayout {
             invalidate();
         }
         this.inDrawableStateChanged = false;
+    }
+
+    private void expandHint(boolean z2) {
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            this.animator.cancel();
+        }
+        if (z2 && this.hintAnimationEnabled) {
+            animateToExpansionFraction(0.0f);
+        } else {
+            this.collapsingTextHelper.setExpansionFraction(0.0f);
+        }
+        if (cutoutEnabled() && (!((C4436g) this.boxBackground).f11789k.isEmpty())) {
+            closeCutout();
+        }
+        this.hintExpanded = true;
+        hidePlaceholderText();
+        updatePrefixTextVisibility();
+        updateSuffixTextVisibility();
     }
 
     @Override // android.widget.LinearLayout, android.view.View
@@ -1404,6 +953,11 @@ public class TextInputLayout extends LinearLayout {
         return this.endIconView.getContentDescription();
     }
 
+    private AbstractC4442m getEndIconDelegate() {
+        AbstractC4442m abstractC4442m = this.endIconDelegates.get(this.endIconMode);
+        return abstractC4442m != null ? abstractC4442m : this.endIconDelegates.get(0);
+    }
+
     @Nullable
     public Drawable getEndIconDrawable() {
         return this.endIconView.getDrawable();
@@ -1411,6 +965,17 @@ public class TextInputLayout extends LinearLayout {
 
     public int getEndIconMode() {
         return this.endIconMode;
+    }
+
+    @Nullable
+    private CheckableImageButton getEndIconToUpdateDummyDrawable() {
+        if (this.errorIconView.getVisibility() == 0) {
+            return this.errorIconView;
+        }
+        if (hasEndIcon() && isEndIconVisible()) {
+            return this.endIconView;
+        }
+        return null;
     }
 
     @NonNull
@@ -1488,6 +1053,16 @@ public class TextInputLayout extends LinearLayout {
         return this.focusedTextColor;
     }
 
+    private int getLabelLeftBoundAlightWithPrefix(int i, boolean z2) {
+        int compoundPaddingLeft = this.editText.getCompoundPaddingLeft() + i;
+        return (this.prefixText == null || z2) ? compoundPaddingLeft : (compoundPaddingLeft - this.prefixTextView.getMeasuredWidth()) + this.prefixTextView.getPaddingLeft();
+    }
+
+    private int getLabelRightBoundAlignedWithSuffix(int i, boolean z2) {
+        int compoundPaddingRight = i - this.editText.getCompoundPaddingRight();
+        return (this.prefixText == null || !z2) ? compoundPaddingRight : compoundPaddingRight + (this.prefixTextView.getMeasuredWidth() - this.prefixTextView.getPaddingRight());
+    }
+
     @Nullable
     @Deprecated
     public CharSequence getPasswordVisibilityToggleContentDescription() {
@@ -1563,6 +1138,19 @@ public class TextInputLayout extends LinearLayout {
         return this.typeface;
     }
 
+    private boolean hasEndIcon() {
+        return this.endIconMode != 0;
+    }
+
+    private void hidePlaceholderText() {
+        TextView textView = this.placeholderTextView;
+        if (textView == null || !this.placeholderEnabled) {
+            return;
+        }
+        textView.setText((CharSequence) null);
+        this.placeholderTextView.setVisibility(4);
+    }
+
     public boolean isCounterEnabled() {
         return this.counterEnabled;
     }
@@ -1577,6 +1165,10 @@ public class TextInputLayout extends LinearLayout {
 
     public boolean isErrorEnabled() {
         return this.indicatorViewController.f11832k;
+    }
+
+    private boolean isErrorIconVisible() {
+        return this.errorIconView.getVisibility() == 0;
     }
 
     public boolean isExpandedHintEnabled() {
@@ -1616,12 +1208,36 @@ public class TextInputLayout extends LinearLayout {
         return this.isProvidingHint;
     }
 
+    private boolean isSingleLineFilledTextField() {
+        return this.boxBackgroundMode == 1 && this.editText.getMinLines() <= 1;
+    }
+
     public boolean isStartIconCheckable() {
         return this.startIconView.isCheckable();
     }
 
     public boolean isStartIconVisible() {
         return this.startIconView.getVisibility() == 0;
+    }
+
+    private int[] mergeIconState(CheckableImageButton checkableImageButton) {
+        int[] drawableState = getDrawableState();
+        int[] drawableState2 = checkableImageButton.getDrawableState();
+        int length = drawableState.length;
+        int[] iArrCopyOf = Arrays.copyOf(drawableState, drawableState.length + drawableState2.length);
+        System.arraycopy(drawableState2, 0, iArrCopyOf, length, drawableState2.length);
+        return iArrCopyOf;
+    }
+
+    private void onApplyBoxBackgroundMode() {
+        assignBoxBackgroundByMode();
+        setEditTextBoxBackground();
+        updateTextInputBoxState();
+        updateBoxCollapsedPaddingTop();
+        adjustFilledEditTextPaddingForLargeFont();
+        if (this.boxBackgroundMode != 0) {
+            updateInputLayoutMargins();
+        }
     }
 
     @Override // android.widget.LinearLayout, android.view.ViewGroup, android.view.View
@@ -1693,12 +1309,35 @@ public class TextInputLayout extends LinearLayout {
         return savedState;
     }
 
+    private void openCutout() {
+        if (cutoutEnabled()) {
+            RectF rectF = this.tmpRectF;
+            this.collapsingTextHelper.getCollapsedTextActualBounds(rectF, this.editText.getWidth(), this.editText.getGravity());
+            applyCutoutPadding(rectF);
+            rectF.offset(-getPaddingLeft(), -getPaddingTop());
+            C4436g c4436g = (C4436g) this.boxBackground;
+            Objects.requireNonNull(c4436g);
+            c4436g.m6149a(rectF.left, rectF.top, rectF.right, rectF.bottom);
+        }
+    }
+
     @Deprecated
     public void passwordVisibilityToggleRequested(boolean z2) {
         if (this.endIconMode == 1) {
             this.endIconView.performClick();
             if (z2) {
                 this.endIconView.jumpDrawablesToCurrentState();
+            }
+        }
+    }
+
+    private static void recursiveSetEnabled(@NonNull ViewGroup viewGroup, boolean z2) {
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = viewGroup.getChildAt(i);
+            childAt.setEnabled(z2);
+            if (childAt instanceof ViewGroup) {
+                recursiveSetEnabled((ViewGroup) childAt, z2);
             }
         }
     }
@@ -1711,6 +1350,17 @@ public class TextInputLayout extends LinearLayout {
         refreshIconDrawableState(this.errorIconView, this.errorIconTintList);
     }
 
+    private void refreshIconDrawableState(CheckableImageButton checkableImageButton, ColorStateList colorStateList) {
+        Drawable drawable = checkableImageButton.getDrawable();
+        if (checkableImageButton.getDrawable() == null || colorStateList == null || !colorStateList.isStateful()) {
+            return;
+        }
+        int colorForState = colorStateList.getColorForState(mergeIconState(checkableImageButton), colorStateList.getDefaultColor());
+        Drawable drawableMutate = DrawableCompat.wrap(drawable).mutate();
+        DrawableCompat.setTintList(drawableMutate, ColorStateList.valueOf(colorForState));
+        checkableImageButton.setImageDrawable(drawableMutate);
+    }
+
     public void refreshStartIconDrawableState() {
         refreshIconDrawableState(this.startIconView, this.startIconTintList);
     }
@@ -1721,6 +1371,13 @@ public class TextInputLayout extends LinearLayout {
 
     public void removeOnEndIconChangedListener(@NonNull OnEndIconChangedListener onEndIconChangedListener) {
         this.endIconChangedListeners.remove(onEndIconChangedListener);
+    }
+
+    private void removePlaceholderTextView() {
+        TextView textView = this.placeholderTextView;
+        if (textView != null) {
+            textView.setVisibility(8);
+        }
     }
 
     public void setBoxBackgroundColor(@ColorInt int i) {
@@ -1883,6 +1540,58 @@ public class TextInputLayout extends LinearLayout {
         this.focusedTextColor = colorStateList;
         if (this.editText != null) {
             updateLabelState(false);
+        }
+    }
+
+    private void setEditText(EditText editText) {
+        if (this.editText != null) {
+            throw new IllegalArgumentException("We already have an EditText, can only have one");
+        }
+        if (this.endIconMode != 3 && !(editText instanceof TextInputEditText)) {
+            Log.i(LOG_TAG, "EditText added is not a TextInputEditText. Please switch to using that class instead.");
+        }
+        this.editText = editText;
+        onApplyBoxBackgroundMode();
+        setTextInputAccessibilityDelegate(new AccessibilityDelegate(this));
+        this.collapsingTextHelper.setTypefaces(this.editText.getTypeface());
+        this.collapsingTextHelper.setExpandedTextSize(this.editText.getTextSize());
+        int gravity = this.editText.getGravity();
+        this.collapsingTextHelper.setCollapsedTextGravity((gravity & (-113)) | 48);
+        this.collapsingTextHelper.setExpandedTextGravity(gravity);
+        this.editText.addTextChangedListener(new C11015a());
+        if (this.defaultHintTextColor == null) {
+            this.defaultHintTextColor = this.editText.getHintTextColors();
+        }
+        if (this.hintEnabled) {
+            if (TextUtils.isEmpty(this.hint)) {
+                CharSequence hint = this.editText.getHint();
+                this.originalHint = hint;
+                setHint(hint);
+                this.editText.setHint((CharSequence) null);
+            }
+            this.isProvidingHint = true;
+        }
+        if (this.counterView != null) {
+            updateCounter(this.editText.getText().length());
+        }
+        updateEditTextBackground();
+        this.indicatorViewController.m6158b();
+        this.startLayout.bringToFront();
+        this.endLayout.bringToFront();
+        this.endIconFrame.bringToFront();
+        this.errorIconView.bringToFront();
+        dispatchOnEditTextAttached();
+        updatePrefixTextViewPadding();
+        updateSuffixTextViewPadding();
+        if (!isEnabled()) {
+            editText.setEnabled(false);
+        }
+        updateLabelState(false, true);
+    }
+
+    private void setEditTextBoxBackground() {
+        if (shouldUseEditTextBackgroundForBoxBackground()) {
+            ViewCompat.setBackground(this.editText, this.boxBackground);
         }
     }
 
@@ -2073,6 +1782,16 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
+    private void setErrorIconVisible(boolean z2) {
+        this.errorIconView.setVisibility(z2 ? 0 : 8);
+        this.endIconFrame.setVisibility(z2 ? 8 : 0);
+        updateSuffixTextViewPadding();
+        if (hasEndIcon()) {
+            return;
+        }
+        updateDummyDrawables();
+    }
+
     public void setErrorTextAppearance(@StyleRes int i) {
         C4443n c4443n = this.indicatorViewController;
         c4443n.f11835n = i;
@@ -2221,6 +1940,18 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
+    private void setHintInternal(CharSequence charSequence) {
+        if (TextUtils.equals(charSequence, this.hint)) {
+            return;
+        }
+        this.hint = charSequence;
+        this.collapsingTextHelper.setText(charSequence);
+        if (this.hintExpanded) {
+            return;
+        }
+        openCutout();
+    }
+
     public void setHintTextAppearance(@StyleRes int i) {
         this.collapsingTextHelper.setCollapsedTextAppearance(i);
         this.focusedTextColor = this.collapsingTextHelper.getCollapsedTextColor();
@@ -2240,6 +1971,27 @@ public class TextInputLayout extends LinearLayout {
                 updateLabelState(false);
             }
         }
+    }
+
+    private static void setIconClickable(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
+        boolean zHasOnClickListeners = ViewCompat.hasOnClickListeners(checkableImageButton);
+        boolean z2 = onLongClickListener != null;
+        boolean z3 = zHasOnClickListeners || z2;
+        checkableImageButton.setFocusable(z3);
+        checkableImageButton.setClickable(zHasOnClickListeners);
+        checkableImageButton.setPressable(zHasOnClickListeners);
+        checkableImageButton.setLongClickable(z2);
+        ViewCompat.setImportantForAccessibility(checkableImageButton, z3 ? 1 : 2);
+    }
+
+    private static void setIconOnClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnClickListener onClickListener, @Nullable View.OnLongClickListener onLongClickListener) {
+        checkableImageButton.setOnClickListener(onClickListener);
+        setIconClickable(checkableImageButton, onLongClickListener);
+    }
+
+    private static void setIconOnLongClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
+        checkableImageButton.setOnLongClickListener(onLongClickListener);
+        setIconClickable(checkableImageButton, onLongClickListener);
     }
 
     @Deprecated
@@ -2307,6 +2059,25 @@ public class TextInputLayout extends LinearLayout {
             }
             textView.setTextColor(colorStateList);
         }
+    }
+
+    private void setPlaceholderTextEnabled(boolean z2) {
+        if (this.placeholderEnabled == z2) {
+            return;
+        }
+        if (z2) {
+            AppCompatTextView appCompatTextView = new AppCompatTextView(getContext());
+            this.placeholderTextView = appCompatTextView;
+            appCompatTextView.setId(C10817R.id.textinput_placeholder);
+            ViewCompat.setAccessibilityLiveRegion(this.placeholderTextView, 1);
+            setPlaceholderTextAppearance(this.placeholderTextAppearance);
+            setPlaceholderTextColor(this.placeholderTextColor);
+            addPlaceholderTextView();
+        } else {
+            removePlaceholderTextView();
+            this.placeholderTextView = null;
+        }
+        this.placeholderEnabled = z2;
     }
 
     public void setPrefixText(@Nullable CharSequence charSequence) {
@@ -2427,6 +2198,159 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
+    private boolean shouldUpdateEndDummyDrawable() {
+        return (this.errorIconView.getVisibility() == 0 || ((hasEndIcon() && isEndIconVisible()) || this.suffixText != null)) && this.endLayout.getMeasuredWidth() > 0;
+    }
+
+    private boolean shouldUpdateStartDummyDrawable() {
+        return !(getStartIconDrawable() == null && this.prefixText == null) && this.startLayout.getMeasuredWidth() > 0;
+    }
+
+    private boolean shouldUseEditTextBackgroundForBoxBackground() {
+        EditText editText = this.editText;
+        return (editText == null || this.boxBackground == null || editText.getBackground() != null || this.boxBackgroundMode == 0) ? false : true;
+    }
+
+    private void showPlaceholderText() {
+        TextView textView = this.placeholderTextView;
+        if (textView == null || !this.placeholderEnabled) {
+            return;
+        }
+        textView.setText(this.placeholderText);
+        this.placeholderTextView.setVisibility(0);
+        this.placeholderTextView.bringToFront();
+    }
+
+    private void tintEndIconOnError(boolean z2) {
+        if (!z2 || getEndIconDrawable() == null) {
+            applyEndIconTint();
+            return;
+        }
+        Drawable drawableMutate = DrawableCompat.wrap(getEndIconDrawable()).mutate();
+        DrawableCompat.setTint(drawableMutate, this.indicatorViewController.m6163g());
+        this.endIconView.setImageDrawable(drawableMutate);
+    }
+
+    private void updateBoxCollapsedPaddingTop() {
+        if (this.boxBackgroundMode == 1) {
+            if (MaterialResources.isFontScaleAtLeast2_0(getContext())) {
+                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(C10817R.dimen.material_font_2_0_box_collapsed_padding_top);
+            } else if (MaterialResources.isFontScaleAtLeast1_3(getContext())) {
+                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(C10817R.dimen.material_font_1_3_box_collapsed_padding_top);
+            }
+        }
+    }
+
+    private void updateBoxUnderlineBounds(@NonNull Rect rect) {
+        MaterialShapeDrawable materialShapeDrawable = this.boxUnderline;
+        if (materialShapeDrawable != null) {
+            int i = rect.bottom;
+            materialShapeDrawable.setBounds(rect.left, i - this.boxStrokeWidthFocusedPx, rect.right, i);
+        }
+    }
+
+    private void updateCounter() {
+        if (this.counterView != null) {
+            EditText editText = this.editText;
+            updateCounter(editText == null ? 0 : editText.getText().length());
+        }
+    }
+
+    private static void updateCounterContentDescription(@NonNull Context context, @NonNull TextView textView, int i, int i2, boolean z2) {
+        textView.setContentDescription(context.getString(z2 ? C10817R.string.character_counter_overflowed_content_description : C10817R.string.character_counter_content_description, Integer.valueOf(i), Integer.valueOf(i2)));
+    }
+
+    private void updateCounterTextAppearanceAndColor() {
+        ColorStateList colorStateList;
+        ColorStateList colorStateList2;
+        TextView textView = this.counterView;
+        if (textView != null) {
+            setTextAppearanceCompatWithErrorFallback(textView, this.counterOverflowed ? this.counterOverflowTextAppearance : this.counterTextAppearance);
+            if (!this.counterOverflowed && (colorStateList2 = this.counterTextColor) != null) {
+                this.counterView.setTextColor(colorStateList2);
+            }
+            if (!this.counterOverflowed || (colorStateList = this.counterOverflowTextColor) == null) {
+                return;
+            }
+            this.counterView.setTextColor(colorStateList);
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:19:0x0062  */
+    private boolean updateDummyDrawables() {
+        boolean z2;
+        if (this.editText == null) {
+            return false;
+        }
+        boolean z3 = true;
+        if (shouldUpdateStartDummyDrawable()) {
+            int measuredWidth = this.startLayout.getMeasuredWidth() - this.editText.getPaddingLeft();
+            if (this.startDummyDrawable == null || this.startDummyDrawableWidth != measuredWidth) {
+                ColorDrawable colorDrawable = new ColorDrawable();
+                this.startDummyDrawable = colorDrawable;
+                this.startDummyDrawableWidth = measuredWidth;
+                colorDrawable.setBounds(0, 0, measuredWidth, 1);
+            }
+            Drawable[] compoundDrawablesRelative = TextViewCompat.getCompoundDrawablesRelative(this.editText);
+            Drawable drawable = compoundDrawablesRelative[0];
+            Drawable drawable2 = this.startDummyDrawable;
+            if (drawable != drawable2) {
+                TextViewCompat.setCompoundDrawablesRelative(this.editText, drawable2, compoundDrawablesRelative[1], compoundDrawablesRelative[2], compoundDrawablesRelative[3]);
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+        } else if (this.startDummyDrawable != null) {
+            Drawable[] compoundDrawablesRelative2 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
+            TextViewCompat.setCompoundDrawablesRelative(this.editText, null, compoundDrawablesRelative2[1], compoundDrawablesRelative2[2], compoundDrawablesRelative2[3]);
+            this.startDummyDrawable = null;
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (shouldUpdateEndDummyDrawable()) {
+            int measuredWidth2 = this.suffixTextView.getMeasuredWidth() - this.editText.getPaddingRight();
+            CheckableImageButton endIconToUpdateDummyDrawable = getEndIconToUpdateDummyDrawable();
+            if (endIconToUpdateDummyDrawable != null) {
+                measuredWidth2 = MarginLayoutParamsCompat.getMarginStart((ViewGroup.MarginLayoutParams) endIconToUpdateDummyDrawable.getLayoutParams()) + endIconToUpdateDummyDrawable.getMeasuredWidth() + measuredWidth2;
+            }
+            Drawable[] compoundDrawablesRelative3 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
+            Drawable drawable3 = this.endDummyDrawable;
+            if (drawable3 == null || this.endDummyDrawableWidth == measuredWidth2) {
+                if (drawable3 == null) {
+                    ColorDrawable colorDrawable2 = new ColorDrawable();
+                    this.endDummyDrawable = colorDrawable2;
+                    this.endDummyDrawableWidth = measuredWidth2;
+                    colorDrawable2.setBounds(0, 0, measuredWidth2, 1);
+                }
+                Drawable drawable4 = compoundDrawablesRelative3[2];
+                Drawable drawable5 = this.endDummyDrawable;
+                if (drawable4 != drawable5) {
+                    this.originalEditTextEndDrawable = compoundDrawablesRelative3[2];
+                    TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative3[0], compoundDrawablesRelative3[1], drawable5, compoundDrawablesRelative3[3]);
+                } else {
+                    z3 = z2;
+                }
+            } else {
+                this.endDummyDrawableWidth = measuredWidth2;
+                drawable3.setBounds(0, 0, measuredWidth2, 1);
+                TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative3[0], compoundDrawablesRelative3[1], this.endDummyDrawable, compoundDrawablesRelative3[3]);
+            }
+        } else {
+            if (this.endDummyDrawable == null) {
+                return z2;
+            }
+            Drawable[] compoundDrawablesRelative4 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
+            if (compoundDrawablesRelative4[2] == this.endDummyDrawable) {
+                TextViewCompat.setCompoundDrawablesRelative(this.editText, compoundDrawablesRelative4[0], compoundDrawablesRelative4[1], this.originalEditTextEndDrawable, compoundDrawablesRelative4[3]);
+            } else {
+                z3 = z2;
+            }
+            this.endDummyDrawable = null;
+        }
+        return z3;
+    }
+
     public void updateEditTextBackground() {
         Drawable background;
         TextView textView;
@@ -2447,8 +2371,84 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
+    private boolean updateEditTextHeightBasedOnIcon() {
+        int iMax;
+        if (this.editText == null || this.editText.getMeasuredHeight() >= (iMax = Math.max(this.endLayout.getMeasuredHeight(), this.startLayout.getMeasuredHeight()))) {
+            return false;
+        }
+        this.editText.setMinimumHeight(iMax);
+        return true;
+    }
+
+    private void updateInputLayoutMargins() {
+        if (this.boxBackgroundMode != 1) {
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.inputFrame.getLayoutParams();
+            int iCalculateLabelMarginTop = calculateLabelMarginTop();
+            if (iCalculateLabelMarginTop != layoutParams.topMargin) {
+                layoutParams.topMargin = iCalculateLabelMarginTop;
+                this.inputFrame.requestLayout();
+            }
+        }
+    }
+
     public void updateLabelState(boolean z2) {
         updateLabelState(z2, false);
+    }
+
+    private void updatePlaceholderMeasurementsBasedOnEditText() {
+        EditText editText;
+        if (this.placeholderTextView == null || (editText = this.editText) == null) {
+            return;
+        }
+        this.placeholderTextView.setGravity(editText.getGravity());
+        this.placeholderTextView.setPadding(this.editText.getCompoundPaddingLeft(), this.editText.getCompoundPaddingTop(), this.editText.getCompoundPaddingRight(), this.editText.getCompoundPaddingBottom());
+    }
+
+    private void updatePlaceholderText() {
+        EditText editText = this.editText;
+        updatePlaceholderText(editText == null ? 0 : editText.getText().length());
+    }
+
+    private void updatePrefixTextViewPadding() {
+        if (this.editText == null) {
+            return;
+        }
+        ViewCompat.setPaddingRelative(this.prefixTextView, isStartIconVisible() ? 0 : ViewCompat.getPaddingStart(this.editText), this.editText.getCompoundPaddingTop(), getContext().getResources().getDimensionPixelSize(C10817R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getCompoundPaddingBottom());
+    }
+
+    private void updatePrefixTextVisibility() {
+        this.prefixTextView.setVisibility((this.prefixText == null || isHintExpanded()) ? 8 : 0);
+        updateDummyDrawables();
+    }
+
+    private void updateStrokeErrorColor(boolean z2, boolean z3) {
+        int defaultColor = this.strokeErrorColor.getDefaultColor();
+        int colorForState = this.strokeErrorColor.getColorForState(new int[]{R.attr.state_hovered, R.attr.state_enabled}, defaultColor);
+        int colorForState2 = this.strokeErrorColor.getColorForState(new int[]{R.attr.state_activated, R.attr.state_enabled}, defaultColor);
+        if (z2) {
+            this.boxStrokeColor = colorForState2;
+        } else if (z3) {
+            this.boxStrokeColor = colorForState;
+        } else {
+            this.boxStrokeColor = defaultColor;
+        }
+    }
+
+    private void updateSuffixTextViewPadding() {
+        if (this.editText == null) {
+            return;
+        }
+        ViewCompat.setPaddingRelative(this.suffixTextView, getContext().getResources().getDimensionPixelSize(C10817R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getPaddingTop(), (isEndIconVisible() || isErrorIconVisible()) ? 0 : ViewCompat.getPaddingEnd(this.editText), this.editText.getPaddingBottom());
+    }
+
+    private void updateSuffixTextVisibility() {
+        int visibility = this.suffixTextView.getVisibility();
+        boolean z2 = (this.suffixText == null || isHintExpanded()) ? false : true;
+        this.suffixTextView.setVisibility(z2 ? 0 : 8);
+        if (visibility != this.suffixTextView.getVisibility()) {
+            getEndIconDelegate().mo6147c(z2);
+        }
+        updateDummyDrawables();
     }
 
     public void updateTextInputBoxState() {
@@ -2520,6 +2520,36 @@ public class TextInputLayout extends LinearLayout {
         this(context, attributeSet, C10817R.attr.textInputStyle);
     }
 
+    public void setEndIconContentDescription(@Nullable CharSequence charSequence) {
+        if (getEndIconContentDescription() != charSequence) {
+            this.endIconView.setContentDescription(charSequence);
+        }
+    }
+
+    public void setEndIconDrawable(@Nullable Drawable drawable) {
+        this.endIconView.setImageDrawable(drawable);
+        refreshEndIconDrawableState();
+    }
+
+    public void setStartIconContentDescription(@Nullable CharSequence charSequence) {
+        if (getStartIconContentDescription() != charSequence) {
+            this.startIconView.setContentDescription(charSequence);
+        }
+    }
+
+    public void setStartIconDrawable(@Nullable Drawable drawable) {
+        this.startIconView.setImageDrawable(drawable);
+        if (drawable != null) {
+            setStartIconVisible(true);
+            refreshStartIconDrawableState();
+        } else {
+            setStartIconVisible(false);
+            setStartIconOnClickListener(null);
+            setStartIconOnLongClickListener(null);
+            setStartIconContentDescription((CharSequence) null);
+        }
+    }
+
     private void updateLabelState(boolean z2, boolean z3) {
         ColorStateList colorStateList;
         TextView textView;
@@ -2565,36 +2595,6 @@ public class TextInputLayout extends LinearLayout {
             hidePlaceholderText();
         } else {
             showPlaceholderText();
-        }
-    }
-
-    public void setEndIconContentDescription(@Nullable CharSequence charSequence) {
-        if (getEndIconContentDescription() != charSequence) {
-            this.endIconView.setContentDescription(charSequence);
-        }
-    }
-
-    public void setEndIconDrawable(@Nullable Drawable drawable) {
-        this.endIconView.setImageDrawable(drawable);
-        refreshEndIconDrawableState();
-    }
-
-    public void setStartIconContentDescription(@Nullable CharSequence charSequence) {
-        if (getStartIconContentDescription() != charSequence) {
-            this.startIconView.setContentDescription(charSequence);
-        }
-    }
-
-    public void setStartIconDrawable(@Nullable Drawable drawable) {
-        this.startIconView.setImageDrawable(drawable);
-        if (drawable != null) {
-            setStartIconVisible(true);
-            refreshStartIconDrawableState();
-        } else {
-            setStartIconVisible(false);
-            setStartIconOnClickListener(null);
-            setStartIconOnLongClickListener(null);
-            setStartIconContentDescription((CharSequence) null);
         }
     }
 

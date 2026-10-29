@@ -19,6 +19,10 @@ public final /* data */ class MessageContent {
         this.mentionedUsers = list;
     }
 
+    public final List<User> component2() {
+        return this.mentionedUsers;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ MessageContent copy$default(MessageContent messageContent, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -28,15 +32,6 @@ public final /* data */ class MessageContent {
             list = messageContent.mentionedUsers;
         }
         return messageContent.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTextContent() {
-        return this.textContent;
-    }
-
-    public final List<User> component2() {
-        return this.mentionedUsers;
     }
 
     public final MessageContent copy(String textContent, List<? extends User> mentionedUsers) {
@@ -58,6 +53,11 @@ public final /* data */ class MessageContent {
 
     public final List<User> getMentionedUsers() {
         return this.mentionedUsers;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTextContent() {
+        return this.textContent;
     }
 
     public final String getTextContent() {

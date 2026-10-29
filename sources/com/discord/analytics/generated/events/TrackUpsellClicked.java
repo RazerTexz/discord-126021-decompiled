@@ -13,19 +13,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUpsellClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
+    private final CharSequence action = null;
+    private final CharSequence subtype = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private final CharSequence type = null;
-    private final CharSequence subtype = null;
-    private final CharSequence action = null;
     private final transient String analyticsSchemaTypeName = "upsell_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, Tra
         }
         TrackUpsellClicked trackUpsellClicked = (TrackUpsellClicked) other;
         return C12238m.areEqual(this.type, trackUpsellClicked.type) && C12238m.areEqual(this.subtype, trackUpsellClicked.subtype) && C12238m.areEqual(this.action, trackUpsellClicked.action);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

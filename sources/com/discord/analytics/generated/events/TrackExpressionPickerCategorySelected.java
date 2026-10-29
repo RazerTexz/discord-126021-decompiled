@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExpressionPickerCategorySelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExpressionPickerCategorySelected implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence tab = null;
     private final Long guildId = null;
     private final Long stickerPackId = null;
+    private final CharSequence tab = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "expression_picker_category_selected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackExpressionPickerCategorySelected implements A
         }
         TrackExpressionPickerCategorySelected trackExpressionPickerCategorySelected = (TrackExpressionPickerCategorySelected) other;
         return C12238m.areEqual(this.tab, trackExpressionPickerCategorySelected.tab) && C12238m.areEqual(this.guildId, trackExpressionPickerCategorySelected.guildId) && C12238m.areEqual(this.stickerPackId, trackExpressionPickerCategorySelected.stickerPackId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

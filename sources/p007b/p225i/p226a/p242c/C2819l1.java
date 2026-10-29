@@ -19,11 +19,6 @@ public final class C2819l1 extends AbstractC2656d2 {
         this.f7239l = false;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static String m3303a(int i) {
-        return Integer.toString(i, 36);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof C2819l1)) {
             return false;
@@ -34,6 +29,11 @@ public final class C2819l1 extends AbstractC2656d2 {
 
     public int hashCode() {
         return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f7238k), Boolean.valueOf(this.f7239l)});
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static String m3303a(int i) {
+        return Integer.toString(i, 36);
     }
 
     public C2819l1(boolean z2) {

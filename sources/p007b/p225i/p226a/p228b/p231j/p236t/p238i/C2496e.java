@@ -9,7 +9,7 @@ public final class C2496e implements InterfaceC5318a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.t.i.e$a */
     /* JADX INFO: compiled from: EventStoreModule_DbNameFactory.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C2496e f5421a = new C2496e();

@@ -42,7 +42,7 @@ public class WebRtcAudioManager {
     private int sampleRate;
     private final VolumeLogger volumeLogger;
 
-    public static class VolumeLogger {
+    public class VolumeLogger {
         private static final String THREAD_NAME = "WebRtcVolumeLevelLoggerThread";
         private static final int TIMER_PERIOD_IN_SECONDS = 30;
         private final AudioManager audioManager;
@@ -86,18 +86,18 @@ public class WebRtcAudioManager {
             this.audioManager = audioManager;
         }
 
+        public void start() {
+            Timer timer = new Timer(THREAD_NAME);
+            this.timer = timer;
+            timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
+        }
+
         private void stop() {
             Timer timer = this.timer;
             if (timer != null) {
                 timer.cancel();
                 this.timer = null;
             }
-        }
-
-        public void start() {
-            Timer timer = new Timer(THREAD_NAME);
-            this.timer = timer;
-            timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
         }
     }
 
@@ -221,6 +221,10 @@ public class WebRtcAudioManager {
         return zDeviceIsBlacklistedForOpenSLESUsage;
     }
 
+    public boolean isLowLatencyInputSupported() {
+        return isLowLatencyOutputSupported();
+    }
+
     private boolean isLowLatencyOutputSupported() {
         return ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.low_latency");
     }
@@ -263,9 +267,5 @@ public class WebRtcAudioManager {
         this.aAudio = isAAudioSupported();
         this.outputBufferSize = this.lowLatencyOutput ? getLowLatencyOutputFramesPerBuffer() : getMinOutputFrameSize(this.sampleRate, this.outputChannels);
         this.inputBufferSize = this.lowLatencyInput ? getLowLatencyInputFramesPerBuffer() : getMinInputFrameSize(this.sampleRate, this.inputChannels);
-    }
-
-    public boolean isLowLatencyInputSupported() {
-        return isLowLatencyOutputSupported();
     }
 }

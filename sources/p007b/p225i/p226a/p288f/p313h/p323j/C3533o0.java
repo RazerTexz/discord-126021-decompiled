@@ -32,14 +32,14 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3401c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3533o0 extends AbstractC3509e {
 
-    /* JADX INFO: renamed from: l */
-    public static final byte[] f9773l = "\n".getBytes();
-
     /* JADX INFO: renamed from: m */
     public final String f9774m;
 
     /* JADX INFO: renamed from: n */
     public final C3553y0 f9775n;
+
+    /* JADX INFO: renamed from: l */
+    public static final byte[] f9773l = "\n".getBytes();
 
     /* JADX WARN: Code duplicated, block: B:7:0x0018  */
     public C3533o0(C3515g c3515g) {
@@ -76,12 +76,6 @@ public final class C3533o0 extends AbstractC3509e {
         sb.append(URLEncoder.encode(str, Constants.ENCODING));
         sb.append('=');
         sb.append(URLEncoder.encode(str2, Constants.ENCODING));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
-        m4431b("Network initialized. User agent", this.f9774m);
     }
 
     /* JADX WARN: Code duplicated, block: B:42:0x009f  */
@@ -964,5 +958,11 @@ public final class C3533o0 extends AbstractC3509e {
         }
         m4427C("No network connectivity");
         return false;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
+        m4431b("Network initialized. User agent", this.f9774m);
     }
 }

@@ -10,7 +10,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class LiveData<T> {
-    public static final Object NOT_SET = new Object();
     public static final int START_VERSION = -1;
     public int mActiveCount;
     private boolean mChangingActiveState;
@@ -22,6 +21,7 @@ public abstract class LiveData<T> {
     public volatile Object mPendingData;
     private final Runnable mPostValueRunnable;
     private int mVersion;
+    public static final Object NOT_SET = new Object();
 
     public class AlwaysActiveObserver extends LiveData<T>.ObserverWrapper {
         public AlwaysActiveObserver(Observer<? super T> observer) {
@@ -75,36 +75,6 @@ public abstract class LiveData<T> {
         }
     }
 
-    public abstract class ObserverWrapper {
-        public boolean mActive;
-        public int mLastVersion = -1;
-        public final Observer<? super T> mObserver;
-
-        public ObserverWrapper(Observer<? super T> observer) {
-            this.mObserver = observer;
-        }
-
-        public void activeStateChanged(boolean z2) {
-            if (z2 == this.mActive) {
-                return;
-            }
-            this.mActive = z2;
-            LiveData.this.changeActiveCounter(z2 ? 1 : -1);
-            if (this.mActive) {
-                LiveData.this.dispatchingValue(this);
-            }
-        }
-
-        public void detachObserver() {
-        }
-
-        public boolean isAttachedTo(LifecycleOwner lifecycleOwner) {
-            return false;
-        }
-
-        public abstract boolean shouldBeActive();
-    }
-
     public LiveData(T t) {
         this.mDataLock = new Object();
         this.mObservers = new SafeIterableMap<>();
@@ -129,22 +99,6 @@ public abstract class LiveData<T> {
     public static void assertMainThread(String str) {
         if (!ArchTaskExecutor.getInstance().isMainThread()) {
             throw new IllegalStateException(C1643a.m886y("Cannot invoke ", str, " on a background thread"));
-        }
-    }
-
-    private void considerNotify(LiveData<T>.ObserverWrapper observerWrapper) {
-        if (observerWrapper.mActive) {
-            if (!observerWrapper.shouldBeActive()) {
-                observerWrapper.activeStateChanged(false);
-                return;
-            }
-            int i = observerWrapper.mLastVersion;
-            int i2 = this.mVersion;
-            if (i >= i2) {
-                return;
-            }
-            observerWrapper.mLastVersion = i2;
-            observerWrapper.mObserver.onChanged((Object) this.mData);
         }
     }
 
@@ -175,6 +129,22 @@ public abstract class LiveData<T> {
                 this.mChangingActiveState = false;
                 throw th;
             }
+        }
+    }
+
+    private void considerNotify(LiveData<T>.ObserverWrapper observerWrapper) {
+        if (observerWrapper.mActive) {
+            if (!observerWrapper.shouldBeActive()) {
+                observerWrapper.activeStateChanged(false);
+                return;
+            }
+            int i = observerWrapper.mLastVersion;
+            int i2 = this.mVersion;
+            if (i >= i2) {
+                return;
+            }
+            observerWrapper.mLastVersion = i2;
+            observerWrapper.mObserver.onChanged((Object) this.mData);
         }
     }
 
@@ -298,6 +268,36 @@ public abstract class LiveData<T> {
         this.mVersion++;
         this.mData = t;
         dispatchingValue(null);
+    }
+
+    public abstract class ObserverWrapper {
+        public boolean mActive;
+        public final Observer<? super T> mObserver;
+        public int mLastVersion = -1;
+
+        public ObserverWrapper(Observer<? super T> observer) {
+            this.mObserver = observer;
+        }
+
+        public void activeStateChanged(boolean z2) {
+            if (z2 == this.mActive) {
+                return;
+            }
+            this.mActive = z2;
+            LiveData.this.changeActiveCounter(z2 ? 1 : -1);
+            if (this.mActive) {
+                LiveData.this.dispatchingValue(this);
+            }
+        }
+
+        public void detachObserver() {
+        }
+
+        public boolean isAttachedTo(LifecycleOwner lifecycleOwner) {
+            return false;
+        }
+
+        public abstract boolean shouldBeActive();
     }
 
     public LiveData() {

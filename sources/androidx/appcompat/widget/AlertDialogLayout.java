@@ -35,6 +35,71 @@ public class AlertDialogLayout extends LinearLayoutCompat {
         }
     }
 
+    /* JADX WARN: Code duplicated, block: B:32:0x00a8  */
+    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup, android.view.View
+    public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+        int i5;
+        int i6;
+        int i7;
+        int paddingLeft = getPaddingLeft();
+        int i8 = i3 - i;
+        int paddingRight = i8 - getPaddingRight();
+        int paddingRight2 = (i8 - paddingLeft) - getPaddingRight();
+        int measuredHeight = getMeasuredHeight();
+        int childCount = getChildCount();
+        int gravity = getGravity();
+        int i9 = gravity & 112;
+        int i10 = gravity & GravityCompat.RELATIVE_HORIZONTAL_GRAVITY_MASK;
+        int paddingTop = i9 != 16 ? i9 != 80 ? getPaddingTop() : ((getPaddingTop() + i4) - i2) - measuredHeight : (((i4 - i2) - measuredHeight) / 2) + getPaddingTop();
+        Drawable dividerDrawable = getDividerDrawable();
+        int intrinsicHeight = dividerDrawable == null ? 0 : dividerDrawable.getIntrinsicHeight();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            View childAt = getChildAt(i11);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                int measuredWidth = childAt.getMeasuredWidth();
+                int measuredHeight2 = childAt.getMeasuredHeight();
+                LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) childAt.getLayoutParams();
+                int i12 = layoutParams.gravity;
+                if (i12 < 0) {
+                    i12 = i10;
+                }
+                int absoluteGravity = GravityCompat.getAbsoluteGravity(i12, ViewCompat.getLayoutDirection(this)) & 7;
+                if (absoluteGravity != 1) {
+                    if (absoluteGravity != 5) {
+                        i7 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
+                    } else {
+                        i5 = paddingRight - measuredWidth;
+                        i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                    }
+                    if (hasDividerBeforeChildAt(i11)) {
+                        paddingTop += intrinsicHeight;
+                    }
+                    int i13 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                    setChildFrame(childAt, i7, i13, measuredWidth, measuredHeight2);
+                    paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i13;
+                } else {
+                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
+                    i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                }
+                i7 = i5 - i6;
+                if (hasDividerBeforeChildAt(i11)) {
+                    paddingTop += intrinsicHeight;
+                }
+                int i14 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                setChildFrame(childAt, i7, i14, measuredWidth, measuredHeight2);
+                paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i14;
+            }
+        }
+    }
+
+    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.View
+    public void onMeasure(int i, int i2) {
+        if (tryOnMeasure(i, i2)) {
+            return;
+        }
+        super.onMeasure(i, i2);
+    }
+
     private static int resolveMinimumHeight(View view) {
         int minimumHeight = ViewCompat.getMinimumHeight(view);
         if (minimumHeight > 0) {
@@ -137,71 +202,6 @@ public class AlertDialogLayout extends LinearLayoutCompat {
         }
         forceUniformWidth(childCount, i2);
         return true;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:32:0x00a8  */
-    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.ViewGroup, android.view.View
-    public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
-        int i5;
-        int i6;
-        int i7;
-        int paddingLeft = getPaddingLeft();
-        int i8 = i3 - i;
-        int paddingRight = i8 - getPaddingRight();
-        int paddingRight2 = (i8 - paddingLeft) - getPaddingRight();
-        int measuredHeight = getMeasuredHeight();
-        int childCount = getChildCount();
-        int gravity = getGravity();
-        int i9 = gravity & 112;
-        int i10 = gravity & GravityCompat.RELATIVE_HORIZONTAL_GRAVITY_MASK;
-        int paddingTop = i9 != 16 ? i9 != 80 ? getPaddingTop() : ((getPaddingTop() + i4) - i2) - measuredHeight : (((i4 - i2) - measuredHeight) / 2) + getPaddingTop();
-        Drawable dividerDrawable = getDividerDrawable();
-        int intrinsicHeight = dividerDrawable == null ? 0 : dividerDrawable.getIntrinsicHeight();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                int measuredWidth = childAt.getMeasuredWidth();
-                int measuredHeight2 = childAt.getMeasuredHeight();
-                LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) childAt.getLayoutParams();
-                int i12 = layoutParams.gravity;
-                if (i12 < 0) {
-                    i12 = i10;
-                }
-                int absoluteGravity = GravityCompat.getAbsoluteGravity(i12, ViewCompat.getLayoutDirection(this)) & 7;
-                if (absoluteGravity != 1) {
-                    if (absoluteGravity != 5) {
-                        i7 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
-                    } else {
-                        i5 = paddingRight - measuredWidth;
-                        i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
-                    }
-                    if (hasDividerBeforeChildAt(i11)) {
-                        paddingTop += intrinsicHeight;
-                    }
-                    int i13 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
-                    setChildFrame(childAt, i7, i13, measuredWidth, measuredHeight2);
-                    paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i13;
-                } else {
-                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
-                    i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
-                }
-                i7 = i5 - i6;
-                if (hasDividerBeforeChildAt(i11)) {
-                    paddingTop += intrinsicHeight;
-                }
-                int i14 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
-                setChildFrame(childAt, i7, i14, measuredWidth, measuredHeight2);
-                paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i14;
-            }
-        }
-    }
-
-    @Override // androidx.appcompat.widget.LinearLayoutCompat, android.view.View
-    public void onMeasure(int i, int i2) {
-        if (tryOnMeasure(i, i2)) {
-            return;
-        }
-        super.onMeasure(i, i2);
     }
 
     public AlertDialogLayout(@Nullable Context context, @Nullable AttributeSet attributeSet) {

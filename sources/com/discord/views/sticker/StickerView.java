@@ -84,6 +84,10 @@ public final class StickerView extends FrameLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
+    public final Subscription getSubscription() {
+        return this.subscription;
+    }
+
     /* JADX INFO: renamed from: a */
     public static final Job m8612a(StickerView stickerView, File file, boolean z2) {
         Objects.requireNonNull(stickerView);
@@ -219,10 +223,6 @@ public final class StickerView extends FrameLayout {
         Observable observableM11076j2 = Observable.m11076j(ObservableExtensionsKt.restSubscribeOn$default(stickerUtils2.fetchSticker(context2, sticker), false, 1, null), StoreUserSettings.observeStickerAnimationSettings$default(StoreStream.INSTANCE.getUserSettings(), false, 1, null), C1375e.f2067j);
         C12238m.checkNotNullExpressionValue(observableM11076j2, "Observable.combineLatest…lobalAnimationSettings) }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(observableM11076j2), (Class<?>) StickerView.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C1376f(this)), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C1378h(this, stickerAnimationSettings, sticker));
-    }
-
-    public final Subscription getSubscription() {
-        return this.subscription;
     }
 
     @Override // android.view.ViewGroup, android.view.View

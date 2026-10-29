@@ -46,30 +46,6 @@ public final class C11858c extends C11373g implements InterfaceC11857b {
         this(interfaceC11330e, interfaceC11448l, interfaceC11344g, z2, aVar, c11679d, interfaceC11704c, c11708g, c11710i, interfaceC11861f, (i & 1024) != 0 ? null : interfaceC11467u0);
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11373g, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    /* JADX INFO: renamed from: b */
-    public /* bridge */ /* synthetic */ AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
-        return m9953f(interfaceC11450m, interfaceC11472x, aVar, interfaceC11344g, interfaceC11467u0);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11373g
-    /* JADX INFO: renamed from: e */
-    public /* bridge */ /* synthetic */ C11373g mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
-        return m9953f(interfaceC11450m, interfaceC11472x, aVar, interfaceC11344g, interfaceC11467u0);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public C11858c m9953f(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
-        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
-        C12238m.checkNotNullParameter(aVar, "kind");
-        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
-        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
-        C11858c c11858c = new C11858c((InterfaceC11330e) interfaceC11450m, (InterfaceC11448l) interfaceC11472x, interfaceC11344g, this.f22874N, aVar, getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource(), interfaceC11467u0);
-        c11858c.setHasStableParameterNames(hasStableParameterNames());
-        c11858c.setCoroutinesExperimentalCompatibilityMode$deserialization(getCoroutinesExperimentalCompatibilityMode());
-        return c11858c;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.InterfaceC11862g
     public InterfaceC11861f getContainerSource() {
         return this.f24527S;
@@ -117,6 +93,30 @@ public final class C11858c extends C11373g implements InterfaceC11857b {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
     public boolean isTailrec() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public C11858c m9953f(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
+        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
+        C12238m.checkNotNullParameter(aVar, "kind");
+        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
+        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
+        C11858c c11858c = new C11858c((InterfaceC11330e) interfaceC11450m, (InterfaceC11448l) interfaceC11472x, interfaceC11344g, this.f22874N, aVar, getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource(), interfaceC11467u0);
+        c11858c.setHasStableParameterNames(hasStableParameterNames());
+        c11858c.setCoroutinesExperimentalCompatibilityMode$deserialization(getCoroutinesExperimentalCompatibilityMode());
+        return c11858c;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11373g, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    /* JADX INFO: renamed from: b */
+    public /* bridge */ /* synthetic */ AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
+        return m9953f(interfaceC11450m, interfaceC11472x, aVar, interfaceC11344g, interfaceC11467u0);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11373g
+    /* JADX INFO: renamed from: e */
+    public /* bridge */ /* synthetic */ C11373g mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
+        return m9953f(interfaceC11450m, interfaceC11472x, aVar, interfaceC11344g, interfaceC11467u0);
     }
 
     public void setCoroutinesExperimentalCompatibilityMode$deserialization(InterfaceC11862g.a aVar) {

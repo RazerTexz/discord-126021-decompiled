@@ -24,7 +24,7 @@ public class C2357s extends AbstractC2108d {
 
     /* JADX INFO: renamed from: b.g.a.c.i0.s$a */
     /* JADX INFO: compiled from: TokenBuffer.java */
-    public static final class a extends AbstractC2120b {
+    public final class a extends AbstractC2120b {
 
         /* JADX INFO: renamed from: n */
         public int f4980n;
@@ -41,12 +41,6 @@ public class C2357s extends AbstractC2108d {
             this.f4981o = new C2358t();
         }
 
-        @Override // p007b.p195g.p196a.p198b.AbstractC2110f
-        /* JADX INFO: renamed from: a */
-        public C2109e mo1671a() {
-            return C2109e.f4478j;
-        }
-
         @Override // java.io.Closeable, java.lang.AutoCloseable
         public void close() throws IOException {
             if (this.f4982p) {
@@ -54,10 +48,34 @@ public class C2357s extends AbstractC2108d {
             }
             this.f4982p = true;
         }
+
+        @Override // p007b.p195g.p196a.p198b.AbstractC2110f
+        /* JADX INFO: renamed from: a */
+        public C2109e mo1671a() {
+            return C2109e.f4478j;
+        }
     }
 
     static {
         AbstractC2108d.a.m1667f();
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+    }
+
+    @Override // java.io.Flushable
+    public void flush() throws IOException {
+    }
+
+    /* JADX INFO: renamed from: o0 */
+    public final void m2213o0(EnumC2112h enumC2112h, Object obj) {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: r0 */
+    public void m2214r0() {
+        throw new UnsupportedOperationException("Called operation not supported for TokenBuffer");
     }
 
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
@@ -203,10 +221,6 @@ public class C2357s extends AbstractC2108d {
         throw null;
     }
 
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-    }
-
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: d */
     public boolean mo1652d(AbstractC2108d.a aVar) {
@@ -229,10 +243,6 @@ public class C2357s extends AbstractC2108d {
     /* JADX INFO: renamed from: f0 */
     public void mo1656f0(Object obj, int i) throws IOException {
         throw null;
-    }
-
-    @Override // java.io.Flushable
-    public void flush() throws IOException {
     }
 
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
@@ -273,16 +283,6 @@ public class C2357s extends AbstractC2108d {
         throw null;
     }
 
-    /* JADX INFO: renamed from: o0 */
-    public final void m2213o0(EnumC2112h enumC2112h, Object obj) {
-        throw null;
-    }
-
-    /* JADX INFO: renamed from: r0 */
-    public void m2214r0() {
-        throw new UnsupportedOperationException("Called operation not supported for TokenBuffer");
-    }
-
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: s */
     public void mo1662s(boolean z2) throws IOException {
@@ -301,30 +301,10 @@ public class C2357s extends AbstractC2108d {
         throw null;
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("[TokenBuffer: ");
-        new a(null, false, false, null);
-        sbM833U.append(']');
-        return sbM833U.toString();
-    }
-
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: u */
     public final void mo1664u() throws IOException {
         EnumC2112h enumC2112h = EnumC2112h.END_OBJECT;
-        throw null;
-    }
-
-    public void writeObject(Object obj) throws IOException {
-        if (obj == null) {
-            mo1631A();
-            throw null;
-        }
-        if (obj.getClass() == byte[].class || (obj instanceof C2353o)) {
-            m2213o0(EnumC2112h.VALUE_EMBEDDED_OBJECT, obj);
-            throw null;
-        }
-        m2213o0(EnumC2112h.VALUE_EMBEDDED_OBJECT, obj);
         throw null;
     }
 
@@ -338,6 +318,26 @@ public class C2357s extends AbstractC2108d {
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: y */
     public final void mo1666y(String str) throws IOException {
+        throw null;
+    }
+
+    public String toString() {
+        StringBuilder sbM833U = C1643a.m833U("[TokenBuffer: ");
+        new a(null, false, false, null);
+        sbM833U.append(']');
+        return sbM833U.toString();
+    }
+
+    public void writeObject(Object obj) throws IOException {
+        if (obj == null) {
+            mo1631A();
+            throw null;
+        }
+        if (obj.getClass() == byte[].class || (obj instanceof C2353o)) {
+            m2213o0(EnumC2112h.VALUE_EMBEDDED_OBJECT, obj);
+            throw null;
+        }
+        m2213o0(EnumC2112h.VALUE_EMBEDDED_OBJECT, obj);
         throw null;
     }
 }

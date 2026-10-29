@@ -12,7 +12,7 @@ public class SerialExecutor implements Executor {
     private final ArrayDeque<Task> mTasks = new ArrayDeque<>();
     private final Object mLock = new Object();
 
-    public static class Task implements Runnable {
+    public class Task implements Runnable {
         public final Runnable mRunnable;
         public final SerialExecutor mSerialExecutor;
 

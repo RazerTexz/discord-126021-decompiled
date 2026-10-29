@@ -30,12 +30,6 @@ public final class C4162q8 extends AbstractC4074i9 {
         super(c4097k9);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        return false;
-    }
-
     @NonNull
     @WorkerThread
     /* JADX INFO: renamed from: s */
@@ -84,5 +78,11 @@ public final class C4162q8 extends AbstractC4074i9 {
             this.f11160d = "";
         }
         return new Pair<>(this.f11160d, Boolean.valueOf(this.f11161e));
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        return false;
     }
 }

@@ -31,7 +31,7 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
     private final Function2<User, Boolean, Unit> onUserChecked;
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetAdapter.kt */
-    public static final /* data */ class FriendItem implements MGRecyclerDataPayload {
+    public final /* data */ class FriendItem implements MGRecyclerDataPayload {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -42,7 +42,7 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
         private final User user;
 
         /* JADX INFO: compiled from: GroupInviteFriendsSheetAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -78,16 +78,6 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
             return friendItem.copy(user, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public final FriendItem copy(User user, boolean isSelected) {
             C12238m.checkNotNullParameter(user, "user");
             return new FriendItem(user, isSelected);
@@ -104,6 +94,11 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
             return C12238m.areEqual(this.user, friendItem.user) && this.isSelected == friendItem.isSelected;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -112,6 +107,11 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -147,7 +147,7 @@ public final class GroupInviteFriendsSheetAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetAdapter.kt */
-    public static final class GroupInviteFriendsListItem extends MGRecyclerViewHolder<GroupInviteFriendsSheetAdapter, FriendItem> {
+    public final class GroupInviteFriendsListItem extends MGRecyclerViewHolder<GroupInviteFriendsSheetAdapter, FriendItem> {
         private final GroupInviteFriendsSheetItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

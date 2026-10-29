@@ -19,17 +19,17 @@ public final /* data */ class TrackPremiumEducationViewed implements AnalyticsSc
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "premium_education_viewed";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackPremiumEducationViewed) && C12238m.areEqual(this.type, ((TrackPremiumEducationViewed) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

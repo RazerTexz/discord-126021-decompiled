@@ -72,7 +72,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$ackGuildEvents$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60631 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C60631 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ GuildScheduledEvent $mostRecentEvent;
 
@@ -97,12 +97,12 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUserCounts$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60641 extends AbstractC12240o implements Function1<List<? extends GuildScheduledEvent>, Unit> {
+    public final class C60641 extends AbstractC12240o implements Function1<List<? extends GuildScheduledEvent>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUserCounts$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $events;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -146,13 +146,13 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUsers$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60651 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60651 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $eventId;
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUsers$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -172,16 +172,16 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUsers$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<List<? extends ApiGuildScheduledEventUser>, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<List<? extends ApiGuildScheduledEventUser>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUsers$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $apiGuildScheduledEventUsers;
 
                 /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchGuildScheduledEventUsers$1$2$1$1, reason: invalid class name and collision with other inner class name */
                 /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-                public static final class C132571 extends AbstractC12240o implements Function1<ApiGuildScheduledEventUser, GuildScheduledEventUser> {
+                public final class C132571 extends AbstractC12240o implements Function1<ApiGuildScheduledEventUser, GuildScheduledEventUser> {
                     public C132571() {
                         super(1);
                     }
@@ -277,12 +277,12 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchMeGuildScheduledEvents$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60661 extends AbstractC12240o implements Function1<List<? extends GuildScheduledEventMeUser>, Unit> {
+    public final class C60661 extends AbstractC12240o implements Function1<List<? extends GuildScheduledEventMeUser>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$fetchMeGuildScheduledEvents$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $eventUsers;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -332,7 +332,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$handleFetchRsvpUsersFailure$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60671 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60671 extends AbstractC12240o implements Function0<Unit> {
         public C60671() {
             super(0);
         }
@@ -353,7 +353,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$observeGuildScheduledEvent$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60681 extends AbstractC12240o implements Function0<GuildScheduledEvent> {
+    public final class C60681 extends AbstractC12240o implements Function0<GuildScheduledEvent> {
         public final /* synthetic */ Long $eventId;
         public final /* synthetic */ Long $guildId;
 
@@ -377,7 +377,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$observeGuildScheduledEvents$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60691 extends AbstractC12240o implements Function0<List<? extends GuildScheduledEvent>> {
+    public final class C60691 extends AbstractC12240o implements Function0<List<? extends GuildScheduledEvent>> {
         public final /* synthetic */ boolean $filterInaccessible;
         public final /* synthetic */ long $guildId;
 
@@ -396,14 +396,14 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$toggleMeRsvpForEvent$1 */
     /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-    public static final class C60701 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60701 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $eventId;
         public final /* synthetic */ GuildScheduledEvent $guildScheduledEvent;
         public final /* synthetic */ GuildScheduledEvent $storeEvent;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$toggleMeRsvpForEvent$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -426,7 +426,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$toggleMeRsvpForEvent$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -445,7 +445,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$toggleMeRsvpForEvent$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
             public AnonymousClass3() {
                 super(1);
             }
@@ -468,7 +468,7 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildScheduledEvents$toggleMeRsvpForEvent$1$4, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildScheduledEvents.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<Unit, Unit> {
             public AnonymousClass4() {
                 super(1);
             }
@@ -543,6 +543,74 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         this.guildScheduledEventUsersFetches = new HashMap<>();
     }
 
+    public final void ackGuildEvents(long guildId) {
+        Object next;
+        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        Iterator<T> it = list.iterator();
+        if (it.hasNext()) {
+            next = it.next();
+            if (it.hasNext()) {
+                long id2 = ((GuildScheduledEvent) next).getId();
+                do {
+                    Object next2 = it.next();
+                    long id3 = ((GuildScheduledEvent) next2).getId();
+                    if (id2 < id3) {
+                        next = next2;
+                        id2 = id3;
+                    }
+                } while (it.hasNext());
+            }
+        } else {
+            next = null;
+        }
+        GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) next;
+        if (guildScheduledEvent != null) {
+            Long l = this.lastAckedGuildScheduledEventIds.get(Long.valueOf(guildId));
+            if (l == null || l.longValue() < guildScheduledEvent.getId()) {
+                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postGuildFeatureAck(guildId, 1, guildScheduledEvent.getId(), new RestAPIParams.GuildFeatureAck(Boolean.FALSE, 0)), false, 1, null), (117 & 1) != 0 ? null : null, "REST: guildFeatureAck", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C60631(guildScheduledEvent, guildId), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
+            }
+        }
+    }
+
+    public final void addGuildScheduledEventFromInvite(GuildScheduledEvent guildScheduledEvent) {
+        int i;
+        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        long guildId = guildScheduledEvent.getGuildId();
+        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
+        if (list == null) {
+            i = -1;
+            break;
+        }
+        Iterator<GuildScheduledEvent> it = list.iterator();
+        i = 0;
+        while (true) {
+            if (!it.hasNext()) {
+                i = -1;
+                break;
+            } else {
+                if (it.next().getId() == guildScheduledEvent.getId()) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+        }
+        if (i == -1 && !this.guildScheduledEvents.containsKey(Long.valueOf(guildId))) {
+            this.guildScheduledEvents.put(Long.valueOf(guildId), C12147n.mutableListOf(guildScheduledEvent));
+        } else if (i == -1) {
+            ((List) C12136h0.getValue(this.guildScheduledEvents, Long.valueOf(guildId))).add(guildScheduledEvent);
+        } else {
+            ((List) C12136h0.getValue(this.guildScheduledEvents, Long.valueOf(guildId))).set(i, guildScheduledEvent);
+        }
+        if (guildScheduledEvent.getUserRsvp() != null) {
+            addMeRsvpForEvent(guildId, guildScheduledEvent.getId());
+        }
+        markChanged();
+    }
+
     @StoreThread
     private final void addMeRsvpForEvent(long guildId, long guildScheduledEventId) {
         if (!this.meGuildScheduledEventIds.containsKey(Long.valueOf(guildId))) {
@@ -553,6 +621,17 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         if (set != null) {
             set.add(Long.valueOf(guildScheduledEventId));
         }
+    }
+
+    @StoreThread
+    public final void addMeRsvpsForEvent(List<Pair<Long, Long>> events) {
+        C12238m.checkNotNullParameter(events, "events");
+        Iterator<T> it = events.iterator();
+        while (it.hasNext()) {
+            Pair pair = (Pair) it.next();
+            addMeRsvpForEvent(((Number) pair.getFirst()).longValue(), ((Number) pair.getSecond()).longValue());
+        }
+        markChanged();
     }
 
     @StoreThread
@@ -572,9 +651,27 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         this.guildScheduledEventUsers.put(Long.valueOf(guildScheduledEventId), map);
     }
 
-    private final GuildScheduledEvent findEventFromStore(GuildScheduledEvent event) {
-        GuildScheduledEvent guildScheduledEventFindEventFromStore = findEventFromStore(event.getId(), Long.valueOf(event.getGuildId()));
-        return guildScheduledEventFindEventFromStore != null ? guildScheduledEventFindEventFromStore : event;
+    public final void fetchGuildScheduledEventUserCounts(long guildId) {
+        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        Long l = this.guildScheduledEventsFetchTimestamps.get(Long.valueOf(guildId));
+        if (l == null || this.clock.currentTimeMillis() - l.longValue() >= FETCH_GUILD_EVENTS_THRESHOLD) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildScheduledEvents(guildId, true), false, 1, null), (Class<?>) StoreGuildScheduledEvents.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60641(guildId));
+        }
+    }
+
+    public final void fetchGuildScheduledEventUsers(long guildId, long eventId) {
+        this.dispatcher.schedule(new C60651(guildId, eventId));
+    }
+
+    public final void fetchMeGuildScheduledEvents(long guildId) {
+        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
+        if ((list == null || list.isEmpty()) || this.meGuildScheduledEventsFetches.contains(Long.valueOf(guildId))) {
+            return;
+        }
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getMeGuildScheduledEvents(guildId), false, 1, null), (Class<?>) StoreGuildScheduledEvents.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60661(guildId));
     }
 
     public static /* synthetic */ GuildScheduledEvent findEventFromStore$default(StoreGuildScheduledEvents storeGuildScheduledEvents, long j, Long l, int i, Object obj) {
@@ -584,6 +681,35 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         return storeGuildScheduledEvents.findEventFromStore(j, l);
     }
 
+    private final GuildScheduledEvent findEventFromStore(GuildScheduledEvent event) {
+        GuildScheduledEvent guildScheduledEventFindEventFromStore = findEventFromStore(event.getId(), Long.valueOf(event.getGuildId()));
+        return guildScheduledEventFindEventFromStore != null ? guildScheduledEventFindEventFromStore : event;
+    }
+
+    public final GuildScheduledEvent getActiveEventForChannel(Long guildId, Long channelId) {
+        Object obj = null;
+        if (guildId == null || channelId == null) {
+            return null;
+        }
+        for (Object obj2 : getGuildScheduledEvents$default(this, guildId.longValue(), false, 2, null)) {
+            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) obj2;
+            if (C12238m.areEqual(guildScheduledEvent.getChannelId(), channelId) && guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) {
+                obj = obj2;
+                break;
+            }
+        }
+        return (GuildScheduledEvent) obj;
+    }
+
+    public final Map<Long, List<GuildScheduledEvent>> getAllGuildScheduledEvents() {
+        return this.guildScheduledEventsSnapshot;
+    }
+
+    public final Map<Long, GuildScheduledEventUser> getGuildScheduledEventUsers(long eventId) {
+        HashMap<Long, GuildScheduledEventUser> map = this.guildScheduledEventUsers.get(Long.valueOf(eventId));
+        return map != null ? map : C12136h0.emptyMap();
+    }
+
     public static /* synthetic */ List getGuildScheduledEvents$default(StoreGuildScheduledEvents storeGuildScheduledEvents, long j, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = true;
@@ -591,8 +717,166 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         return storeGuildScheduledEvents.getGuildScheduledEvents(j, z2);
     }
 
+    /* JADX WARN: Code duplicated, block: B:9:0x002e  */
+    public final List<GuildScheduledEvent> getGuildScheduledEvents(long guildId, boolean filterInaccessible) {
+        Map<Long, Long> permissionsByChannel = this.permissionsStore.getPermissionsByChannel();
+        List<GuildScheduledEvent> list = this.guildScheduledEventsSnapshot.get(Long.valueOf(guildId));
+        if (list == null) {
+            return C12147n.emptyList();
+        }
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : list) {
+            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) obj;
+            boolean zCan = false;
+            if (!filterInaccessible) {
+                zCan = true;
+            } else if (guildScheduledEvent.getStatus() != GuildScheduledEventStatus.COMPLETED) {
+                if (guildScheduledEvent.getChannelId() == null) {
+                    zCan = true;
+                } else {
+                    Long l = permissionsByChannel.get(guildScheduledEvent.getChannelId());
+                    if (l != null) {
+                        zCan = PermissionUtils.can(Permission.VIEW_CHANNEL, Long.valueOf(l.longValue()));
+                    }
+                }
+            }
+            if (zCan) {
+                arrayList.add(obj);
+            }
+        }
+        return arrayList;
+    }
+
+    public final boolean getIsFetchingGuildScheduledEventUsers() {
+        return this.isFetchingGuildScheduledEventUsers;
+    }
+
+    public final boolean getIsGuildScheduledEventUsersError() {
+        return this.isGuildScheduledEventUsersError;
+    }
+
+    public final Set<Long> getMeGuildScheduledEventIds(long guildId) {
+        Set<Long> set = this.meGuildScheduledEventIdsSnapshot.get(Long.valueOf(guildId));
+        return set != null ? set : C12148n0.emptySet();
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        this.guildScheduledEventsFetchTimestamps.clear();
+        this.meGuildScheduledEventsFetches.clear();
+        this.guildScheduledEventUsersFetches.clear();
+        this.guildScheduledEvents.clear();
+        this.meGuildScheduledEventIds.clear();
+        List<Guild> guilds = payload.getGuilds();
+        C12238m.checkNotNullExpressionValue(guilds, "payload.guilds");
+        Iterator<T> it = guilds.iterator();
+        while (it.hasNext()) {
+            List<GuildScheduledEvent> listM7868o = ((Guild) it.next()).m7868o();
+            if (listM7868o != null) {
+                Iterator<T> it2 = listM7868o.iterator();
+                while (it2.hasNext()) {
+                    processGuildScheduledEventCreateOrUpdate((GuildScheduledEvent) it2.next());
+                }
+            }
+        }
+        markChanged();
+    }
+
     private final void handleFetchRsvpUsersFailure() {
         this.dispatcher.schedule(new C60671());
+    }
+
+    @StoreThread
+    public final void handleGuildCreate(Guild guild) {
+        C12238m.checkNotNullParameter(guild, "guild");
+        List<GuildScheduledEvent> listM7868o = guild.m7868o();
+        if (listM7868o != null) {
+            Iterator<T> it = listM7868o.iterator();
+            while (it.hasNext()) {
+                processGuildScheduledEventCreateOrUpdate((GuildScheduledEvent) it.next());
+            }
+        }
+    }
+
+    @StoreThread
+    public final void handleGuildRemove(long guildId) {
+        this.guildScheduledEvents.remove(Long.valueOf(guildId));
+        this.guildScheduledEventsFetchTimestamps.remove(Long.valueOf(guildId));
+        this.meGuildScheduledEventIds.remove(Long.valueOf(guildId));
+        this.meGuildScheduledEventsFetches.remove(Long.valueOf(guildId));
+        this.guildScheduledEventUsersFetches.remove(Long.valueOf(guildId));
+        markChanged();
+    }
+
+    @StoreThread
+    public final void handleGuildScheduledEventCreate(GuildScheduledEvent guildScheduledEvent) {
+        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        processGuildScheduledEventCreateOrUpdate(guildScheduledEvent);
+    }
+
+    @StoreThread
+    public final void handleGuildScheduledEventDelete(GuildScheduledEvent guildScheduledEvent) {
+        List<GuildScheduledEvent> list;
+        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        List<GuildScheduledEvent> list2 = this.guildScheduledEvents.get(Long.valueOf(guildScheduledEvent.getGuildId()));
+        if (list2 != null) {
+            Iterator<GuildScheduledEvent> it = list2.iterator();
+            int i = 0;
+            while (true) {
+                if (!it.hasNext()) {
+                    i = -1;
+                    break;
+                } else {
+                    if (it.next().getId() == guildScheduledEvent.getId()) {
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+            }
+            if (i != -1 && (list = this.guildScheduledEvents.get(Long.valueOf(guildScheduledEvent.getGuildId()))) != null) {
+                list.remove(i);
+            }
+            removeMeRsvpForEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getId());
+            markChanged();
+        }
+    }
+
+    @StoreThread
+    public final void handleGuildScheduledEventUpdate(GuildScheduledEvent guildScheduledEvent) {
+        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        processGuildScheduledEventCreateOrUpdate(guildScheduledEvent);
+    }
+
+    @StoreThread
+    public final void handleGuildScheduledEventUserAdd(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
+        C12238m.checkNotNullParameter(guildScheduledEventUserUpdate, "guildScheduledEventUserUpdate");
+        GuildScheduledEvent guildScheduledEventFindEventFromStore$default = findEventFromStore$default(this, guildScheduledEventUserUpdate.getGuildScheduledEventId(), null, 2, null);
+        if (guildScheduledEventFindEventFromStore$default != null) {
+            processRsvpCreate(guildScheduledEventFindEventFromStore$default, guildScheduledEventUserUpdate.getUserId());
+        }
+    }
+
+    @StoreThread
+    public final void handleGuildScheduledEventUserRemove(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
+        C12238m.checkNotNullParameter(guildScheduledEventUserUpdate, "guildScheduledEventUserUpdate");
+        GuildScheduledEvent guildScheduledEventFindEventFromStore$default = findEventFromStore$default(this, guildScheduledEventUserUpdate.getGuildScheduledEventId(), null, 2, null);
+        if (guildScheduledEventFindEventFromStore$default != null) {
+            processRsvpDelete(guildScheduledEventFindEventFromStore$default, guildScheduledEventUserUpdate.getUserId());
+        }
+    }
+
+    public final boolean isMeRsvpedToEvent(long guildId, long guildScheduledEventId) {
+        Set<Long> setEmptySet = this.meGuildScheduledEventIdsSnapshot.get(Long.valueOf(guildId));
+        if (setEmptySet == null) {
+            setEmptySet = C12148n0.emptySet();
+        }
+        return setEmptySet.contains(Long.valueOf(guildScheduledEventId));
+    }
+
+    public final Observable<GuildScheduledEvent> observeGuildScheduledEvent(Long eventId, Long guildId) {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C60681(eventId, guildId), 14, null);
     }
 
     public static /* synthetic */ Observable observeGuildScheduledEvents$default(StoreGuildScheduledEvents storeGuildScheduledEvents, long j, boolean z2, int i, Object obj) {
@@ -600,6 +884,10 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
             z2 = true;
         }
         return storeGuildScheduledEvents.observeGuildScheduledEvents(j, z2);
+    }
+
+    public final Observable<List<GuildScheduledEvent>> observeGuildScheduledEvents(long guildId, boolean filterInaccessible) {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C60691(guildId, filterInaccessible), 14, null);
     }
 
     private final void processGuildScheduledEventCreateOrUpdate(GuildScheduledEvent guildScheduledEvent) {
@@ -738,294 +1026,6 @@ public final class StoreGuildScheduledEvents extends StoreV2 {
         if (map != null) {
             map.remove(Long.valueOf(userId));
         }
-    }
-
-    public final void ackGuildEvents(long guildId) {
-        Object next;
-        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
-        if (list == null || list.isEmpty()) {
-            return;
-        }
-        Iterator<T> it = list.iterator();
-        if (it.hasNext()) {
-            next = it.next();
-            if (it.hasNext()) {
-                long id2 = ((GuildScheduledEvent) next).getId();
-                do {
-                    Object next2 = it.next();
-                    long id3 = ((GuildScheduledEvent) next2).getId();
-                    if (id2 < id3) {
-                        next = next2;
-                        id2 = id3;
-                    }
-                } while (it.hasNext());
-            }
-        } else {
-            next = null;
-        }
-        GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) next;
-        if (guildScheduledEvent != null) {
-            Long l = this.lastAckedGuildScheduledEventIds.get(Long.valueOf(guildId));
-            if (l == null || l.longValue() < guildScheduledEvent.getId()) {
-                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postGuildFeatureAck(guildId, 1, guildScheduledEvent.getId(), new RestAPIParams.GuildFeatureAck(Boolean.FALSE, 0)), false, 1, null), (117 & 1) != 0 ? null : null, "REST: guildFeatureAck", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C60631(guildScheduledEvent, guildId), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
-            }
-        }
-    }
-
-    public final void addGuildScheduledEventFromInvite(GuildScheduledEvent guildScheduledEvent) {
-        int i;
-        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
-        long guildId = guildScheduledEvent.getGuildId();
-        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
-        if (list == null) {
-            i = -1;
-            break;
-        }
-        Iterator<GuildScheduledEvent> it = list.iterator();
-        i = 0;
-        while (true) {
-            if (!it.hasNext()) {
-                i = -1;
-                break;
-            } else {
-                if (it.next().getId() == guildScheduledEvent.getId()) {
-                    break;
-                } else {
-                    i++;
-                }
-            }
-        }
-        if (i == -1 && !this.guildScheduledEvents.containsKey(Long.valueOf(guildId))) {
-            this.guildScheduledEvents.put(Long.valueOf(guildId), C12147n.mutableListOf(guildScheduledEvent));
-        } else if (i == -1) {
-            ((List) C12136h0.getValue(this.guildScheduledEvents, Long.valueOf(guildId))).add(guildScheduledEvent);
-        } else {
-            ((List) C12136h0.getValue(this.guildScheduledEvents, Long.valueOf(guildId))).set(i, guildScheduledEvent);
-        }
-        if (guildScheduledEvent.getUserRsvp() != null) {
-            addMeRsvpForEvent(guildId, guildScheduledEvent.getId());
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    public final void addMeRsvpsForEvent(List<Pair<Long, Long>> events) {
-        C12238m.checkNotNullParameter(events, "events");
-        Iterator<T> it = events.iterator();
-        while (it.hasNext()) {
-            Pair pair = (Pair) it.next();
-            addMeRsvpForEvent(((Number) pair.getFirst()).longValue(), ((Number) pair.getSecond()).longValue());
-        }
-        markChanged();
-    }
-
-    public final void fetchGuildScheduledEventUserCounts(long guildId) {
-        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
-        if (list == null || list.isEmpty()) {
-            return;
-        }
-        Long l = this.guildScheduledEventsFetchTimestamps.get(Long.valueOf(guildId));
-        if (l == null || this.clock.currentTimeMillis() - l.longValue() >= FETCH_GUILD_EVENTS_THRESHOLD) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildScheduledEvents(guildId, true), false, 1, null), (Class<?>) StoreGuildScheduledEvents.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60641(guildId));
-        }
-    }
-
-    public final void fetchGuildScheduledEventUsers(long guildId, long eventId) {
-        this.dispatcher.schedule(new C60651(guildId, eventId));
-    }
-
-    public final void fetchMeGuildScheduledEvents(long guildId) {
-        List<GuildScheduledEvent> list = this.guildScheduledEvents.get(Long.valueOf(guildId));
-        if ((list == null || list.isEmpty()) || this.meGuildScheduledEventsFetches.contains(Long.valueOf(guildId))) {
-            return;
-        }
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getMeGuildScheduledEvents(guildId), false, 1, null), (Class<?>) StoreGuildScheduledEvents.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60661(guildId));
-    }
-
-    public final GuildScheduledEvent getActiveEventForChannel(Long guildId, Long channelId) {
-        Object obj = null;
-        if (guildId == null || channelId == null) {
-            return null;
-        }
-        for (Object obj2 : getGuildScheduledEvents$default(this, guildId.longValue(), false, 2, null)) {
-            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) obj2;
-            if (C12238m.areEqual(guildScheduledEvent.getChannelId(), channelId) && guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) {
-                obj = obj2;
-                break;
-            }
-        }
-        return (GuildScheduledEvent) obj;
-    }
-
-    public final Map<Long, List<GuildScheduledEvent>> getAllGuildScheduledEvents() {
-        return this.guildScheduledEventsSnapshot;
-    }
-
-    public final Map<Long, GuildScheduledEventUser> getGuildScheduledEventUsers(long eventId) {
-        HashMap<Long, GuildScheduledEventUser> map = this.guildScheduledEventUsers.get(Long.valueOf(eventId));
-        return map != null ? map : C12136h0.emptyMap();
-    }
-
-    /* JADX WARN: Code duplicated, block: B:9:0x002e  */
-    public final List<GuildScheduledEvent> getGuildScheduledEvents(long guildId, boolean filterInaccessible) {
-        Map<Long, Long> permissionsByChannel = this.permissionsStore.getPermissionsByChannel();
-        List<GuildScheduledEvent> list = this.guildScheduledEventsSnapshot.get(Long.valueOf(guildId));
-        if (list == null) {
-            return C12147n.emptyList();
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : list) {
-            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) obj;
-            boolean zCan = false;
-            if (!filterInaccessible) {
-                zCan = true;
-            } else if (guildScheduledEvent.getStatus() != GuildScheduledEventStatus.COMPLETED) {
-                if (guildScheduledEvent.getChannelId() == null) {
-                    zCan = true;
-                } else {
-                    Long l = permissionsByChannel.get(guildScheduledEvent.getChannelId());
-                    if (l != null) {
-                        zCan = PermissionUtils.can(Permission.VIEW_CHANNEL, Long.valueOf(l.longValue()));
-                    }
-                }
-            }
-            if (zCan) {
-                arrayList.add(obj);
-            }
-        }
-        return arrayList;
-    }
-
-    public final boolean getIsFetchingGuildScheduledEventUsers() {
-        return this.isFetchingGuildScheduledEventUsers;
-    }
-
-    public final boolean getIsGuildScheduledEventUsersError() {
-        return this.isGuildScheduledEventUsersError;
-    }
-
-    public final Set<Long> getMeGuildScheduledEventIds(long guildId) {
-        Set<Long> set = this.meGuildScheduledEventIdsSnapshot.get(Long.valueOf(guildId));
-        return set != null ? set : C12148n0.emptySet();
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        this.guildScheduledEventsFetchTimestamps.clear();
-        this.meGuildScheduledEventsFetches.clear();
-        this.guildScheduledEventUsersFetches.clear();
-        this.guildScheduledEvents.clear();
-        this.meGuildScheduledEventIds.clear();
-        List<Guild> guilds = payload.getGuilds();
-        C12238m.checkNotNullExpressionValue(guilds, "payload.guilds");
-        Iterator<T> it = guilds.iterator();
-        while (it.hasNext()) {
-            List<GuildScheduledEvent> listM7868o = ((Guild) it.next()).m7868o();
-            if (listM7868o != null) {
-                Iterator<T> it2 = listM7868o.iterator();
-                while (it2.hasNext()) {
-                    processGuildScheduledEventCreateOrUpdate((GuildScheduledEvent) it2.next());
-                }
-            }
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    public final void handleGuildCreate(Guild guild) {
-        C12238m.checkNotNullParameter(guild, "guild");
-        List<GuildScheduledEvent> listM7868o = guild.m7868o();
-        if (listM7868o != null) {
-            Iterator<T> it = listM7868o.iterator();
-            while (it.hasNext()) {
-                processGuildScheduledEventCreateOrUpdate((GuildScheduledEvent) it.next());
-            }
-        }
-    }
-
-    @StoreThread
-    public final void handleGuildRemove(long guildId) {
-        this.guildScheduledEvents.remove(Long.valueOf(guildId));
-        this.guildScheduledEventsFetchTimestamps.remove(Long.valueOf(guildId));
-        this.meGuildScheduledEventIds.remove(Long.valueOf(guildId));
-        this.meGuildScheduledEventsFetches.remove(Long.valueOf(guildId));
-        this.guildScheduledEventUsersFetches.remove(Long.valueOf(guildId));
-        markChanged();
-    }
-
-    @StoreThread
-    public final void handleGuildScheduledEventCreate(GuildScheduledEvent guildScheduledEvent) {
-        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
-        processGuildScheduledEventCreateOrUpdate(guildScheduledEvent);
-    }
-
-    @StoreThread
-    public final void handleGuildScheduledEventDelete(GuildScheduledEvent guildScheduledEvent) {
-        List<GuildScheduledEvent> list;
-        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
-        List<GuildScheduledEvent> list2 = this.guildScheduledEvents.get(Long.valueOf(guildScheduledEvent.getGuildId()));
-        if (list2 != null) {
-            Iterator<GuildScheduledEvent> it = list2.iterator();
-            int i = 0;
-            while (true) {
-                if (!it.hasNext()) {
-                    i = -1;
-                    break;
-                } else {
-                    if (it.next().getId() == guildScheduledEvent.getId()) {
-                        break;
-                    } else {
-                        i++;
-                    }
-                }
-            }
-            if (i != -1 && (list = this.guildScheduledEvents.get(Long.valueOf(guildScheduledEvent.getGuildId()))) != null) {
-                list.remove(i);
-            }
-            removeMeRsvpForEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getId());
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    public final void handleGuildScheduledEventUpdate(GuildScheduledEvent guildScheduledEvent) {
-        C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
-        processGuildScheduledEventCreateOrUpdate(guildScheduledEvent);
-    }
-
-    @StoreThread
-    public final void handleGuildScheduledEventUserAdd(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
-        C12238m.checkNotNullParameter(guildScheduledEventUserUpdate, "guildScheduledEventUserUpdate");
-        GuildScheduledEvent guildScheduledEventFindEventFromStore$default = findEventFromStore$default(this, guildScheduledEventUserUpdate.getGuildScheduledEventId(), null, 2, null);
-        if (guildScheduledEventFindEventFromStore$default != null) {
-            processRsvpCreate(guildScheduledEventFindEventFromStore$default, guildScheduledEventUserUpdate.getUserId());
-        }
-    }
-
-    @StoreThread
-    public final void handleGuildScheduledEventUserRemove(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
-        C12238m.checkNotNullParameter(guildScheduledEventUserUpdate, "guildScheduledEventUserUpdate");
-        GuildScheduledEvent guildScheduledEventFindEventFromStore$default = findEventFromStore$default(this, guildScheduledEventUserUpdate.getGuildScheduledEventId(), null, 2, null);
-        if (guildScheduledEventFindEventFromStore$default != null) {
-            processRsvpDelete(guildScheduledEventFindEventFromStore$default, guildScheduledEventUserUpdate.getUserId());
-        }
-    }
-
-    public final boolean isMeRsvpedToEvent(long guildId, long guildScheduledEventId) {
-        Set<Long> setEmptySet = this.meGuildScheduledEventIdsSnapshot.get(Long.valueOf(guildId));
-        if (setEmptySet == null) {
-            setEmptySet = C12148n0.emptySet();
-        }
-        return setEmptySet.contains(Long.valueOf(guildScheduledEventId));
-    }
-
-    public final Observable<GuildScheduledEvent> observeGuildScheduledEvent(Long eventId, Long guildId) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C60681(eventId, guildId), 14, null);
-    }
-
-    public final Observable<List<GuildScheduledEvent>> observeGuildScheduledEvents(long guildId, boolean filterInaccessible) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C60691(guildId, filterInaccessible), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2

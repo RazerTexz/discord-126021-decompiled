@@ -31,6 +31,35 @@ public class PathInterpolatorCompat implements Interpolator {
         this(context.getResources(), context.getTheme(), attributeSet, xmlPullParser);
     }
 
+    @Override // android.animation.TimeInterpolator
+    public float getInterpolation(float f) {
+        if (f <= 0.0f) {
+            return 0.0f;
+        }
+        if (f >= 1.0f) {
+            return 1.0f;
+        }
+        int i = 0;
+        int length = this.f160mX.length - 1;
+        while (length - i > 1) {
+            int i2 = (i + length) / 2;
+            if (f < this.f160mX[i2]) {
+                length = i2;
+            } else {
+                i = i2;
+            }
+        }
+        float[] fArr = this.f160mX;
+        float f2 = fArr[length] - fArr[i];
+        if (f2 == 0.0f) {
+            return this.f161mY[i];
+        }
+        float f3 = (f - fArr[i]) / f2;
+        float[] fArr2 = this.f161mY;
+        float f4 = fArr2[i];
+        return C1643a.m839a(fArr2[length], f4, f3, f4);
+    }
+
     private void initCubic(float f, float f2, float f3, float f4) {
         Path path = new Path();
         path.moveTo(0.0f, 0.0f);
@@ -123,35 +152,6 @@ public class PathInterpolatorCompat implements Interpolator {
         } else {
             initQuad(namedFloat, namedFloat2);
         }
-    }
-
-    @Override // android.animation.TimeInterpolator
-    public float getInterpolation(float f) {
-        if (f <= 0.0f) {
-            return 0.0f;
-        }
-        if (f >= 1.0f) {
-            return 1.0f;
-        }
-        int i = 0;
-        int length = this.f160mX.length - 1;
-        while (length - i > 1) {
-            int i2 = (i + length) / 2;
-            if (f < this.f160mX[i2]) {
-                length = i2;
-            } else {
-                i = i2;
-            }
-        }
-        float[] fArr = this.f160mX;
-        float f2 = fArr[length] - fArr[i];
-        if (f2 == 0.0f) {
-            return this.f161mY[i];
-        }
-        float f3 = (f - fArr[i]) / f2;
-        float[] fArr2 = this.f161mY;
-        float f4 = fArr2[i];
-        return C1643a.m839a(fArr2[length], f4, f3, f4);
     }
 
     public PathInterpolatorCompat(Resources resources, Resources.Theme theme, AttributeSet attributeSet, XmlPullParser xmlPullParser) {

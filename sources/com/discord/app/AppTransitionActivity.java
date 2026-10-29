@@ -18,6 +18,30 @@ public abstract class AppTransitionActivity extends AppCompatActivity {
     /* JADX INFO: renamed from: k */
     public C5457a f14964k = Transition.TYPE_SLIDE_POP_VERTICAL.getAnimations();
 
+    /* JADX INFO: renamed from: com.discord.app.AppTransitionActivity$a */
+    /* JADX INFO: compiled from: AppTransitionActivity.kt */
+    public final class C5457a {
+
+        /* JADX INFO: renamed from: a */
+        public final int f14965a;
+
+        /* JADX INFO: renamed from: b */
+        public final int f14966b;
+
+        /* JADX INFO: renamed from: c */
+        public final int f14967c;
+
+        /* JADX INFO: renamed from: d */
+        public final int f14968d;
+
+        public C5457a(@AnimRes int i, @AnimRes int i2, @AnimRes int i3, @AnimRes int i4) {
+            this.f14965a = i;
+            this.f14966b = i2;
+            this.f14967c = i3;
+            this.f14968d = i4;
+        }
+    }
+
     /* JADX INFO: compiled from: AppTransitionActivity.kt */
     public enum Transition {
         TYPE_FADE(new C5457a(C5419R.anim.activity_fade_open_in, C5419R.anim.activity_fade_open_out, C5419R.anim.activity_fade_close_in, C5419R.anim.activity_fade_close_out)),
@@ -48,30 +72,6 @@ public abstract class AppTransitionActivity extends AppCompatActivity {
             }
             C5457a c5457a = this.animations;
             return ActivityOptionsCompat.makeCustomAnimation(context, c5457a.f14965a, c5457a.f14966b);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.app.AppTransitionActivity$a */
-    /* JADX INFO: compiled from: AppTransitionActivity.kt */
-    public static final class C5457a {
-
-        /* JADX INFO: renamed from: a */
-        public final int f14965a;
-
-        /* JADX INFO: renamed from: b */
-        public final int f14966b;
-
-        /* JADX INFO: renamed from: c */
-        public final int f14967c;
-
-        /* JADX INFO: renamed from: d */
-        public final int f14968d;
-
-        public C5457a(@AnimRes int i, @AnimRes int i2, @AnimRes int i3, @AnimRes int i4) {
-            this.f14965a = i;
-            this.f14966b = i2;
-            this.f14967c = i3;
-            this.f14968d = i4;
         }
     }
 

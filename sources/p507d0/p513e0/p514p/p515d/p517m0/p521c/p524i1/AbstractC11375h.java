@@ -44,6 +44,30 @@ public abstract class AbstractC11375h extends AbstractC11361a {
         this.f22877q = z2;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11452n, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public InterfaceC11450m getContainingDeclaration() {
+        InterfaceC11450m interfaceC11450m = this.f22875o;
+        if (interfaceC11450m != null) {
+            return interfaceC11450m;
+        }
+        m9410a(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11456p
+    public InterfaceC11467u0 getSource() {
+        InterfaceC11467u0 interfaceC11467u0 = this.f22876p;
+        if (interfaceC11467u0 != null) {
+            return interfaceC11467u0;
+        }
+        m9410a(5);
+        throw null;
+    }
+
+    public boolean isExternal() {
+        return this.f22877q;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9410a(int i) {
         String str = (i == 4 || i == 5) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -74,29 +98,5 @@ public abstract class AbstractC11375h extends AbstractC11361a {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11452n, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public InterfaceC11450m getContainingDeclaration() {
-        InterfaceC11450m interfaceC11450m = this.f22875o;
-        if (interfaceC11450m != null) {
-            return interfaceC11450m;
-        }
-        m9410a(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11456p
-    public InterfaceC11467u0 getSource() {
-        InterfaceC11467u0 interfaceC11467u0 = this.f22876p;
-        if (interfaceC11467u0 != null) {
-            return interfaceC11467u0;
-        }
-        m9410a(5);
-        throw null;
-    }
-
-    public boolean isExternal() {
-        return this.f22877q;
     }
 }

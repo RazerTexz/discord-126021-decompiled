@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceProcessing.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceProcessing implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
+    private final Boolean automaticGainControl = null;
+    private final Boolean echoCancellation = null;
+    private final Boolean noiseCancellation = null;
     private final Boolean noiseCancellerCpuOveruse = null;
     private final Long noiseCancellerError = null;
-    private final Boolean noiseCancellation = null;
-    private final Boolean echoCancellation = null;
     private final Boolean noiseSuppression = null;
-    private final Boolean automaticGainControl = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "voice_processing";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackVoiceProcessing implements AnalyticsSchema, T
         }
         TrackVoiceProcessing trackVoiceProcessing = (TrackVoiceProcessing) other;
         return C12238m.areEqual(this.noiseCancellerCpuOveruse, trackVoiceProcessing.noiseCancellerCpuOveruse) && C12238m.areEqual(this.noiseCancellerError, trackVoiceProcessing.noiseCancellerError) && C12238m.areEqual(this.noiseCancellation, trackVoiceProcessing.noiseCancellation) && C12238m.areEqual(this.echoCancellation, trackVoiceProcessing.echoCancellation) && C12238m.areEqual(this.noiseSuppression, trackVoiceProcessing.noiseSuppression) && C12238m.areEqual(this.automaticGainControl, trackVoiceProcessing.automaticGainControl);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

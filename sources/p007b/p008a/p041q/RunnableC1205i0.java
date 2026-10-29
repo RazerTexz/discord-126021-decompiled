@@ -44,7 +44,7 @@ public final class RunnableC1205i0 implements PowerManager.OnThermalStatusChange
 
     /* JADX INFO: renamed from: b.a.q.i0$a */
     /* JADX INFO: compiled from: ThermalDetector.kt */
-    public static final class a extends AbstractC12240o implements Function0<Handler> {
+    public final class a extends AbstractC12240o implements Function0<Handler> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1634j = new a();
@@ -57,6 +57,16 @@ public final class RunnableC1205i0 implements PowerManager.OnThermalStatusChange
         public Handler invoke() {
             return new Handler(Looper.getMainLooper());
         }
+    }
+
+    @Override // com.discord.utilities.debug.DebugPrintable
+    @AnyThread
+    public void debugPrint(DebugPrintBuilder debugPrintBuilder) {
+        C12238m.checkNotNullParameter(debugPrintBuilder, "dp");
+        debugPrintBuilder.appendKeyValue("registered", Boolean.valueOf(f1630k));
+        debugPrintBuilder.appendKeyValue("inThermalTrouble", Boolean.valueOf(f1631l));
+        debugPrintBuilder.appendKeyValue("updateScheduled", Boolean.valueOf(f1632m));
+        debugPrintBuilder.appendKeyValue("currentThermalStatus", m278a());
     }
 
     /* JADX INFO: renamed from: a */
@@ -121,16 +131,6 @@ public final class RunnableC1205i0 implements PowerManager.OnThermalStatusChange
         }
         ((Handler) f1629j.getValue()).postDelayed(this, 1000L);
         f1632m = true;
-    }
-
-    @Override // com.discord.utilities.debug.DebugPrintable
-    @AnyThread
-    public void debugPrint(DebugPrintBuilder debugPrintBuilder) {
-        C12238m.checkNotNullParameter(debugPrintBuilder, "dp");
-        debugPrintBuilder.appendKeyValue("registered", Boolean.valueOf(f1630k));
-        debugPrintBuilder.appendKeyValue("inThermalTrouble", Boolean.valueOf(f1631l));
-        debugPrintBuilder.appendKeyValue("updateScheduled", Boolean.valueOf(f1632m));
-        debugPrintBuilder.appendKeyValue("currentThermalStatus", m278a());
     }
 
     @Override // android.os.PowerManager.OnThermalStatusChangedListener

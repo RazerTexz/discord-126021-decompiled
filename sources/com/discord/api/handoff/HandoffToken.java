@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class HandoffToken {
     private final String handoffToken;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getHandoffToken() {
-        return this.handoffToken;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof HandoffToken) && C12238m.areEqual(this.handoffToken, ((HandoffToken) other).handoffToken);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getHandoffToken() {
+        return this.handoffToken;
     }
 
     public int hashCode() {

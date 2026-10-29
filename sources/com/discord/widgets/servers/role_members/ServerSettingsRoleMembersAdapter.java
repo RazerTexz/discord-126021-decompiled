@@ -27,7 +27,7 @@ public final class ServerSettingsRoleMembersAdapter extends RecyclerView.Adapter
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersAdapter$setItems$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class C95681 extends AbstractC12240o implements Function1<List<? extends ServerSettingsRoleMemberAdapterItem>, Unit> {
+    public final class C95681 extends AbstractC12240o implements Function1<List<? extends ServerSettingsRoleMemberAdapterItem>, Unit> {
         public C95681() {
             super(1);
         }

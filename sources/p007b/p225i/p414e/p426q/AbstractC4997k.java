@@ -98,39 +98,6 @@ public abstract class AbstractC4997k implements InterfaceC4954i {
         m6997e(c4962a, i + 1, iArr);
     }
 
-    @Override // p007b.p225i.p414e.InterfaceC4954i
-    /* JADX INFO: renamed from: a */
-    public Result mo6919a(C4948c c4948c, Map<EnumC4949d, ?> map) throws NotFoundException, FormatException {
-        EnumC4955j enumC4955j = EnumC4955j.ORIENTATION;
-        try {
-            return m6999c(c4948c, map);
-        } catch (NotFoundException e) {
-            if (!(map != null && map.containsKey(EnumC4949d.TRY_HARDER)) || !c4948c.f13171a.f13170a.mo6917c()) {
-                throw e;
-            }
-            AbstractC4951f abstractC4951fMo6918d = c4948c.f13171a.f13170a.mo6918d();
-            Objects.requireNonNull((C4969h) c4948c.f13171a);
-            Result resultM6999c = m6999c(new C4948c(new C4969h(abstractC4951fMo6918d)), map);
-            Map<EnumC4955j, Object> map2 = resultM6999c.f21672e;
-            int iIntValue = 270;
-            if (map2 != null && map2.containsKey(enumC4955j)) {
-                iIntValue = (((Integer) map2.get(enumC4955j)).intValue() + 270) % 360;
-            }
-            resultM6999c.m9262b(enumC4955j, Integer.valueOf(iIntValue));
-            C4956k[] c4956kArr = resultM6999c.f21670c;
-            if (c4956kArr != null) {
-                int i = abstractC4951fMo6918d.f13187b;
-                for (int i2 = 0; i2 < c4956kArr.length; i2++) {
-                    c4956kArr[i2] = new C4956k((i - c4956kArr[i2].f13208b) - 1.0f, c4956kArr[i2].f13207a);
-                }
-            }
-            return resultM6999c;
-        }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public abstract Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException, ChecksumException, FormatException;
-
     /* JADX WARN: Code duplicated, block: B:37:0x0075  */
     /* JADX INFO: renamed from: c */
     public final Result m6999c(C4948c c4948c, Map<EnumC4949d, ?> map) throws NotFoundException {
@@ -224,6 +191,39 @@ public abstract class AbstractC4997k implements InterfaceC4954i {
         }
         throw NotFoundException.f21665l;
     }
+
+    @Override // p007b.p225i.p414e.InterfaceC4954i
+    /* JADX INFO: renamed from: a */
+    public Result mo6919a(C4948c c4948c, Map<EnumC4949d, ?> map) throws NotFoundException, FormatException {
+        EnumC4955j enumC4955j = EnumC4955j.ORIENTATION;
+        try {
+            return m6999c(c4948c, map);
+        } catch (NotFoundException e) {
+            if (!(map != null && map.containsKey(EnumC4949d.TRY_HARDER)) || !c4948c.f13171a.f13170a.mo6917c()) {
+                throw e;
+            }
+            AbstractC4951f abstractC4951fMo6918d = c4948c.f13171a.f13170a.mo6918d();
+            Objects.requireNonNull((C4969h) c4948c.f13171a);
+            Result resultM6999c = m6999c(new C4948c(new C4969h(abstractC4951fMo6918d)), map);
+            Map<EnumC4955j, Object> map2 = resultM6999c.f21672e;
+            int iIntValue = 270;
+            if (map2 != null && map2.containsKey(enumC4955j)) {
+                iIntValue = (((Integer) map2.get(enumC4955j)).intValue() + 270) % 360;
+            }
+            resultM6999c.m9262b(enumC4955j, Integer.valueOf(iIntValue));
+            C4956k[] c4956kArr = resultM6999c.f21670c;
+            if (c4956kArr != null) {
+                int i = abstractC4951fMo6918d.f13187b;
+                for (int i2 = 0; i2 < c4956kArr.length; i2++) {
+                    c4956kArr[i2] = new C4956k((i - c4956kArr[i2].f13208b) - 1.0f, c4956kArr[i2].f13207a);
+                }
+            }
+            return resultM6999c;
+        }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public abstract Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException, ChecksumException, FormatException;
 
     @Override // p007b.p225i.p414e.InterfaceC4954i
     public void reset() {

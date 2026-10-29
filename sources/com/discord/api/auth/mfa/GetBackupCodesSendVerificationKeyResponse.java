@@ -9,16 +9,6 @@ public final /* data */ class GetBackupCodesSendVerificationKeyResponse {
     private final String nonce;
     private final String regenerateNonce;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getRegenerateNonce() {
-        return this.regenerateNonce;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +18,16 @@ public final /* data */ class GetBackupCodesSendVerificationKeyResponse {
         }
         GetBackupCodesSendVerificationKeyResponse getBackupCodesSendVerificationKeyResponse = (GetBackupCodesSendVerificationKeyResponse) other;
         return C12238m.areEqual(this.nonce, getBackupCodesSendVerificationKeyResponse.nonce) && C12238m.areEqual(this.regenerateNonce, getBackupCodesSendVerificationKeyResponse.regenerateNonce);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getRegenerateNonce() {
+        return this.regenerateNonce;
     }
 
     public int hashCode() {

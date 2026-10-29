@@ -49,7 +49,7 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$1 */
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final class C71621 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C71621 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C71621() {
             super(1);
         }
@@ -67,8 +67,48 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$1 */
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final class Companion {
+    public final class C71641 extends AbstractC12240o implements Function1<User, Unit> {
+        public C71641() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(User user) {
+            invoke2(user);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(User user) {
+            C12238m.checkNotNullParameter(user, "it");
+            WidgetAgeVerifyViewModel.this.handleUserUpdateSuccess();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$2 */
+    /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
+    public final class C71652 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C71652() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetAgeVerifyViewModel.this.handleUserUpdateFailure(error);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -109,10 +149,10 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-        public static final class Verified extends Event {
+        public final class Verified extends Event {
             public static final Verified INSTANCE = new Verified();
 
             private Verified() {
@@ -129,7 +169,7 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean authed;
         private final NsfwAllowance nsfwAllowed;
         private final Channel safeChannel;
@@ -154,21 +194,6 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(channel, nsfwAllowance, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getSafeChannel() {
-            return this.safeChannel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final NsfwAllowance getNsfwAllowed() {
-            return this.nsfwAllowed;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getAuthed() {
-            return this.authed;
-        }
-
         public final StoreState copy(Channel safeChannel, NsfwAllowance nsfwAllowed, boolean authed) {
             C12238m.checkNotNullParameter(nsfwAllowed, "nsfwAllowed");
             return new StoreState(safeChannel, nsfwAllowed, authed);
@@ -185,12 +210,27 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.safeChannel, storeState.safeChannel) && C12238m.areEqual(this.nsfwAllowed, storeState.nsfwAllowed) && this.authed == storeState.authed;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getAuthed() {
             return this.authed;
         }
 
+        public final boolean getAuthed() {
+            return this.authed;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final NsfwAllowance getNsfwAllowed() {
             return this.nsfwAllowed;
+        }
+
+        public final NsfwAllowance getNsfwAllowed() {
+            return this.nsfwAllowed;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getSafeChannel() {
+            return this.safeChannel;
         }
 
         public final Channel getSafeChannel() {
@@ -226,7 +266,7 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private Long dateOfBirth;
         private final int displayedChild;
         private final Integer errorStringId;
@@ -275,41 +315,6 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
             return viewState.copy(z2, num2, i3, l2, str2, channel2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsSubmitting() {
-            return this.isSubmitting;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getErrorStringId() {
-            return this.errorStringId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getDisplayedChild() {
-            return this.displayedChild;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getDateOfBirth() {
-            return this.dateOfBirth;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getUnderageMessage() {
-            return this.underageMessage;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Channel getSafeChannel() {
-            return this.safeChannel;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getShouldClose() {
-            return this.shouldClose;
-        }
-
         public final ViewState copy(boolean isSubmitting, Integer errorStringId, int displayedChild, Long dateOfBirth, String underageMessage, Channel safeChannel, boolean shouldClose) {
             return new ViewState(isSubmitting, errorStringId, displayedChild, dateOfBirth, underageMessage, safeChannel, shouldClose);
         }
@@ -325,24 +330,59 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
             return this.isSubmitting == viewState.isSubmitting && C12238m.areEqual(this.errorStringId, viewState.errorStringId) && this.displayedChild == viewState.displayedChild && C12238m.areEqual(this.dateOfBirth, viewState.dateOfBirth) && C12238m.areEqual(this.underageMessage, viewState.underageMessage) && C12238m.areEqual(this.safeChannel, viewState.safeChannel) && this.shouldClose == viewState.shouldClose;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Long getDateOfBirth() {
             return this.dateOfBirth;
+        }
+
+        public final Long getDateOfBirth() {
+            return this.dateOfBirth;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getDisplayedChild() {
+            return this.displayedChild;
         }
 
         public final int getDisplayedChild() {
             return this.displayedChild;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Integer getErrorStringId() {
             return this.errorStringId;
+        }
+
+        public final Integer getErrorStringId() {
+            return this.errorStringId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsSubmitting() {
+            return this.isSubmitting;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Channel getSafeChannel() {
+            return this.safeChannel;
         }
 
         public final Channel getSafeChannel() {
             return this.safeChannel;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final boolean getShouldClose() {
             return this.shouldClose;
+        }
+
+        public final boolean getShouldClose() {
+            return this.shouldClose;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getUnderageMessage() {
+            return this.underageMessage;
         }
 
         public final String getUnderageMessage() {
@@ -407,53 +447,13 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final class Views {
-        public static final Views INSTANCE = new Views();
+    public final class Views {
         public static final int VIEW_AGE_CONFIRM = 1;
         public static final int VIEW_AGE_GATED = 2;
         public static final int VIEW_AGE_VERIFY = 0;
+        public static final Views INSTANCE = new Views();
 
         private Views() {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$1 */
-    /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final class C71641 extends AbstractC12240o implements Function1<User, Unit> {
-        public C71641() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(User user) {
-            invoke2(user);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(User user) {
-            C12238m.checkNotNullParameter(user, "it");
-            WidgetAgeVerifyViewModel.this.handleUserUpdateSuccess();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$2 */
-    /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public static final class C71652 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C71652() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetAgeVerifyViewModel.this.handleUserUpdateFailure(error);
         }
     }
 
@@ -463,6 +463,18 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
 
     public /* synthetic */ WidgetAgeVerifyViewModel(RestAPI restAPI, StoreAuthentication storeAuthentication, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this((i & 1) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 2) != 0 ? StoreStream.INSTANCE.getAuthentication() : storeAuthentication, (i & 4) != 0 ? INSTANCE.observeStores() : observable);
+    }
+
+    @MainThread
+    public final boolean backToSafety() {
+        ViewState viewState = getViewState();
+        Channel safeChannel = viewState != null ? viewState.getSafeChannel() : null;
+        if (safeChannel == null) {
+            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), 0L, 0L, null, null, 12, null);
+            return true;
+        }
+        ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), safeChannel, null, null, 6, null);
+        return false;
     }
 
     private final void handleStoreState(StoreState storeState) {
@@ -507,18 +519,6 @@ public final class WidgetAgeVerifyViewModel extends AbstractC0859d0<ViewState> {
             PublishSubject<Event> publishSubject = this.eventsSubject;
             publishSubject.f27650k.onNext(Event.Verified.INSTANCE);
         }
-    }
-
-    @MainThread
-    public final boolean backToSafety() {
-        ViewState viewState = getViewState();
-        Channel safeChannel = viewState != null ? viewState.getSafeChannel() : null;
-        if (safeChannel == null) {
-            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), 0L, 0L, null, null, 12, null);
-            return true;
-        }
-        ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), safeChannel, null, null, 6, null);
-        return false;
     }
 
     public final Observable<Event> observeEvents() {

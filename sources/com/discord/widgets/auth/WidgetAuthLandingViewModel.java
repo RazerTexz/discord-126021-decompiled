@@ -43,7 +43,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLandingViewModel$1 */
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static final class C71791 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C71791 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C71791() {
             super(1);
         }
@@ -63,7 +63,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLandingViewModel$2 */
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static final class C71802 extends AbstractC12240o implements Function1<GoogleSmartLockManager.SmartLockCredentials, Unit> {
+    public final class C71802 extends AbstractC12240o implements Function1<GoogleSmartLockManager.SmartLockCredentials, Unit> {
         public C71802() {
             super(1);
         }
@@ -83,7 +83,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -115,10 +115,10 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-        public static final /* data */ class SmartLockLogin extends Event {
+        public final /* data */ class SmartLockLogin extends Event {
             private final GoogleSmartLockManager.SmartLockCredentials smartLockCredentials;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -135,11 +135,6 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                 return smartLockLogin.copy(smartLockCredentials);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GoogleSmartLockManager.SmartLockCredentials getSmartLockCredentials() {
-                return this.smartLockCredentials;
-            }
-
             public final SmartLockLogin copy(GoogleSmartLockManager.SmartLockCredentials smartLockCredentials) {
                 C12238m.checkNotNullParameter(smartLockCredentials, "smartLockCredentials");
                 return new SmartLockLogin(smartLockCredentials);
@@ -150,6 +145,11 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                     return (other instanceof SmartLockLogin) && C12238m.areEqual(this.smartLockCredentials, ((SmartLockLogin) other).smartLockCredentials);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final GoogleSmartLockManager.SmartLockCredentials getSmartLockCredentials() {
+                return this.smartLockCredentials;
             }
 
             public final GoogleSmartLockManager.SmartLockCredentials getSmartLockCredentials() {
@@ -181,7 +181,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final String ageGateError;
         private final StoreGuildTemplates.GuildTemplateState guildTemplateState;
         private final ModelInvite invite;
@@ -211,26 +211,6 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
             return storeState.copy(inviteCode, modelInvite, guildTemplateState, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreInviteSettings.InviteCode getInviteCode() {
-            return this.inviteCode;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelInvite getInvite() {
-            return this.invite;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreGuildTemplates.GuildTemplateState getGuildTemplateState() {
-            return this.guildTemplateState;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getAgeGateError() {
-            return this.ageGateError;
-        }
-
         public final StoreState copy(StoreInviteSettings.InviteCode inviteCode, ModelInvite invite, StoreGuildTemplates.GuildTemplateState guildTemplateState, String ageGateError) {
             C12238m.checkNotNullParameter(guildTemplateState, "guildTemplateState");
             return new StoreState(inviteCode, invite, guildTemplateState, ageGateError);
@@ -247,16 +227,36 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
             return C12238m.areEqual(this.inviteCode, storeState.inviteCode) && C12238m.areEqual(this.invite, storeState.invite) && C12238m.areEqual(this.guildTemplateState, storeState.guildTemplateState) && C12238m.areEqual(this.ageGateError, storeState.ageGateError);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getAgeGateError() {
             return this.ageGateError;
+        }
+
+        public final String getAgeGateError() {
+            return this.ageGateError;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreGuildTemplates.GuildTemplateState getGuildTemplateState() {
+            return this.guildTemplateState;
         }
 
         public final StoreGuildTemplates.GuildTemplateState getGuildTemplateState() {
             return this.guildTemplateState;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ModelInvite getInvite() {
             return this.invite;
+        }
+
+        public final ModelInvite getInvite() {
+            return this.invite;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreInviteSettings.InviteCode getInviteCode() {
+            return this.inviteCode;
         }
 
         public final StoreInviteSettings.InviteCode getInviteCode() {
@@ -287,11 +287,11 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final String ageGateError;
 
         /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-        public static final /* data */ class Empty extends ViewState {
+        public final /* data */ class Empty extends ViewState {
             private final String ageGateError;
 
             public Empty(String str) {
@@ -299,15 +299,15 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                 this.ageGateError = str;
             }
 
+            public final String component1() {
+                return getAgeGateError();
+            }
+
             public static /* synthetic */ Empty copy$default(Empty empty, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = empty.getAgeGateError();
                 }
                 return empty.copy(str);
-            }
-
-            public final String component1() {
-                return getAgeGateError();
             }
 
             public final Empty copy(String ageGateError) {
@@ -343,7 +343,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-        public static final /* data */ class GuildTemplate extends ViewState {
+        public final /* data */ class GuildTemplate extends ViewState {
             private final String ageGateError;
             private final ModelGuildTemplate guildTemplate;
 
@@ -355,6 +355,10 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                 this.ageGateError = str;
             }
 
+            public final String component2() {
+                return getAgeGateError();
+            }
+
             public static /* synthetic */ GuildTemplate copy$default(GuildTemplate guildTemplate, ModelGuildTemplate modelGuildTemplate, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     modelGuildTemplate = guildTemplate.guildTemplate;
@@ -363,15 +367,6 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                     str = guildTemplate.getAgeGateError();
                 }
                 return guildTemplate.copy(modelGuildTemplate, str);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildTemplate getGuildTemplate() {
-                return this.guildTemplate;
-            }
-
-            public final String component2() {
-                return getAgeGateError();
             }
 
             public final GuildTemplate copy(ModelGuildTemplate guildTemplate, String ageGateError) {
@@ -393,6 +388,11 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
             @Override // com.discord.widgets.auth.WidgetAuthLandingViewModel.ViewState
             public String getAgeGateError() {
                 return this.ageGateError;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelGuildTemplate getGuildTemplate() {
+                return this.guildTemplate;
             }
 
             public final ModelGuildTemplate getGuildTemplate() {
@@ -417,7 +417,7 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: WidgetAuthLandingViewModel.kt */
-        public static final /* data */ class Invite extends ViewState {
+        public final /* data */ class Invite extends ViewState {
             private final String ageGateError;
             private final ModelInvite invite;
 
@@ -429,6 +429,10 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                 this.ageGateError = str;
             }
 
+            public final String component2() {
+                return getAgeGateError();
+            }
+
             public static /* synthetic */ Invite copy$default(Invite invite, ModelInvite modelInvite, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     modelInvite = invite.invite;
@@ -437,15 +441,6 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
                     str = invite.getAgeGateError();
                 }
                 return invite.copy(modelInvite, str);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelInvite getInvite() {
-                return this.invite;
-            }
-
-            public final String component2() {
-                return getAgeGateError();
             }
 
             public final Invite copy(ModelInvite invite, String ageGateError) {
@@ -467,6 +462,11 @@ public final class WidgetAuthLandingViewModel extends AbstractC0859d0<ViewState>
             @Override // com.discord.widgets.auth.WidgetAuthLandingViewModel.ViewState
             public String getAgeGateError() {
                 return this.ageGateError;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelInvite getInvite() {
+                return this.invite;
             }
 
             public final ModelInvite getInvite() {

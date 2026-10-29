@@ -25,7 +25,7 @@ public interface InterfaceC11281a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.a$a */
     /* JADX INFO: compiled from: BuiltInsLoader.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ a f22452a = new a();
@@ -35,7 +35,7 @@ public interface InterfaceC11281a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.b.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: BuiltInsLoader.kt */
-        public static final class C13304a extends AbstractC12240o implements Function0<InterfaceC11281a> {
+        public final class C13304a extends AbstractC12240o implements Function0<InterfaceC11281a> {
 
             /* JADX INFO: renamed from: j */
             public static final C13304a f22454j = new C13304a();

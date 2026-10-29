@@ -36,7 +36,7 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$2 */
     /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static final class C94942 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C94942 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C94942() {
             super(1);
         }
@@ -54,6 +54,66 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$1 */
+    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
+    public final class C94951 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C94951() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            GuildBoostInProgressViewModel.this.guildBoostSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$2 */
+    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
+    public final class C94962 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C94962() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            GuildBoostInProgressViewModel.this.handleGuildBoostingError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$3 */
+    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
+    public final class C94973 extends AbstractC12240o implements Function1<List<? extends ModelAppliedGuildBoost>, Unit> {
+        public C94973() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelAppliedGuildBoost> list) {
+            invoke2((List<ModelAppliedGuildBoost>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelAppliedGuildBoost> list) {
+            C12238m.checkNotNullParameter(list, "it");
+            GuildBoostInProgressViewModel.this.handleGuildBoostingCompleted();
+        }
+    }
+
     /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
     public enum GuildBoostState {
         NOT_IN_PROGRESS,
@@ -63,7 +123,7 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
     }
 
     /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final StoreGuildBoost.State guildBoostState;
 
@@ -83,16 +143,6 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
             return storeState.copy(guild, state);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreGuildBoost.State getGuildBoostState() {
-            return this.guildBoostState;
-        }
-
         public final StoreState copy(Guild guild, StoreGuildBoost.State guildBoostState) {
             C12238m.checkNotNullParameter(guildBoostState, "guildBoostState");
             return new StoreState(guild, guildBoostState);
@@ -109,8 +159,18 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.guildBoostState, storeState.guildBoostState);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreGuildBoost.State getGuildBoostState() {
+            return this.guildBoostState;
         }
 
         public final StoreGuildBoost.State getGuildBoostState() {
@@ -135,11 +195,11 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
     }
 
     /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final GuildBoostState guildBoostState;
 
         /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean canShowConfirmationDialog;
             private final Guild guild;
             private final GuildBoostState guildBoostState;
@@ -147,6 +207,10 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
 
             public /* synthetic */ Loaded(GuildBoostState guildBoostState, Guild guild, int i, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
                 this(guildBoostState, guild, i, (i2 & 8) != 0 ? false : z2);
+            }
+
+            public final GuildBoostState component1() {
+                return getGuildBoostState();
             }
 
             public static /* synthetic */ Loaded copy$default(Loaded loaded, GuildBoostState guildBoostState, Guild guild, int i, boolean z2, int i2, Object obj) {
@@ -165,25 +229,6 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
                 return loaded.copy(guildBoostState, guild, i, z2);
             }
 
-            public final GuildBoostState component1() {
-                return getGuildBoostState();
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getSubscriptionCount() {
-                return this.subscriptionCount;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getCanShowConfirmationDialog() {
-                return this.canShowConfirmationDialog;
-            }
-
             public final Loaded copy(GuildBoostState guildBoostState, Guild guild, int subscriptionCount, boolean canShowConfirmationDialog) {
                 C12238m.checkNotNullParameter(guildBoostState, "guildBoostState");
                 return new Loaded(guildBoostState, guild, subscriptionCount, canShowConfirmationDialog);
@@ -200,8 +245,18 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
                 return C12238m.areEqual(getGuildBoostState(), loaded.getGuildBoostState()) && C12238m.areEqual(this.guild, loaded.guild) && this.subscriptionCount == loaded.subscriptionCount && this.canShowConfirmationDialog == loaded.canShowConfirmationDialog;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final boolean getCanShowConfirmationDialog() {
                 return this.canShowConfirmationDialog;
+            }
+
+            public final boolean getCanShowConfirmationDialog() {
+                return this.canShowConfirmationDialog;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
@@ -211,6 +266,11 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
             @Override // com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel.ViewState
             public GuildBoostState getGuildBoostState() {
                 return this.guildBoostState;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final int getSubscriptionCount() {
+                return this.subscriptionCount;
             }
 
             public final int getSubscriptionCount() {
@@ -258,7 +318,7 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
         }
 
         /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-        public static final /* data */ class Uninitialized extends ViewState {
+        public final /* data */ class Uninitialized extends ViewState {
             private final GuildBoostState guildBoostState;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -268,15 +328,15 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
                 this.guildBoostState = guildBoostState;
             }
 
+            public final GuildBoostState component1() {
+                return getGuildBoostState();
+            }
+
             public static /* synthetic */ Uninitialized copy$default(Uninitialized uninitialized, GuildBoostState guildBoostState, int i, Object obj) {
                 if ((i & 1) != 0) {
                     guildBoostState = uninitialized.getGuildBoostState();
                 }
                 return uninitialized.copy(guildBoostState);
-            }
-
-            public final GuildBoostState component1() {
-                return getGuildBoostState();
             }
 
             public final Uninitialized copy(GuildBoostState guildBoostState) {
@@ -325,66 +385,6 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$1 */
-    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static final class C94951 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C94951() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            GuildBoostInProgressViewModel.this.guildBoostSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$2 */
-    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static final class C94962 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C94962() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            GuildBoostInProgressViewModel.this.handleGuildBoostingError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostInProgressViewModel$subscribeToGuildBoost$3 */
-    /* JADX INFO: compiled from: GuildBoostInProgressViewModel.kt */
-    public static final class C94973 extends AbstractC12240o implements Function1<List<? extends ModelAppliedGuildBoost>, Unit> {
-        public C94973() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelAppliedGuildBoost> list) {
-            invoke2((List<ModelAppliedGuildBoost>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<ModelAppliedGuildBoost> list) {
-            C12238m.checkNotNullParameter(list, "it");
-            GuildBoostInProgressViewModel.this.handleGuildBoostingCompleted();
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ GuildBoostInProgressViewModel(long j, StoreGuildBoost storeGuildBoost, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         storeGuildBoost = (i & 2) != 0 ? StoreStream.INSTANCE.getGuildBoosts() : storeGuildBoost;
@@ -400,6 +400,10 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
             C12238m.checkNotNullExpressionValue(observable, "Observable.combineLatest…guild, guildBoostState) }");
         }
         this(j, storeGuildBoost, observable);
+    }
+
+    public final StoreGuildBoost getStoreGuildBoost() {
+        return this.storeGuildBoost;
     }
 
     @MainThread
@@ -470,10 +474,6 @@ public final class GuildBoostInProgressViewModel extends AbstractC0859d0<ViewSta
             size = 0;
         }
         updateViewState(new ViewState.Loaded(requireViewState().getGuildBoostState(), storeState.getGuild(), size, false, 8, null));
-    }
-
-    public final StoreGuildBoost getStoreGuildBoost() {
-        return this.storeGuildBoost;
     }
 
     @Override // p007b.p008a.p018d.AbstractC0859d0, androidx.view.ViewModel

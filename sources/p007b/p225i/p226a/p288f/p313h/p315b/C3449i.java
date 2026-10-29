@@ -35,12 +35,6 @@ public final class C3449i extends AbstractC3349d<InterfaceC3445e> {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: t */
-    public final Feature[] mo4139t() {
-        return C3442b.f9628d;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
     /* JADX INFO: renamed from: x */
     public final String mo3984x() {
         return "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService";
@@ -50,5 +44,11 @@ public final class C3449i extends AbstractC3349d<InterfaceC3445e> {
     /* JADX INFO: renamed from: y */
     public final String mo3985y() {
         return "com.google.android.gms.auth.api.phone.service.SmsRetrieverApiService.START";
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: t */
+    public final Feature[] mo4139t() {
+        return C3442b.f9628d;
     }
 }

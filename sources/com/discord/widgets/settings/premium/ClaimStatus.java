@@ -15,7 +15,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ClaimStatus implements Parcelable {
 
     /* JADX INFO: compiled from: ClaimStatus.kt */
-    public static final /* data */ class Claimed extends ClaimStatus {
+    public final /* data */ class Claimed extends ClaimStatus {
         public static final Parcelable.Creator<Claimed> CREATOR = new Creator();
         private final String body;
         private final String code;
@@ -23,7 +23,7 @@ public abstract class ClaimStatus implements Parcelable {
         private final long promoId;
         private final UtcDateTime redeemBy;
 
-        public static class Creator implements Parcelable.Creator<Claimed> {
+        public final class Creator implements Parcelable.Creator<Claimed> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Claimed createFromParcel(Parcel parcel) {
@@ -75,31 +75,6 @@ public abstract class ClaimStatus implements Parcelable {
             return claimed.copy(j2, str4, str5, str6, utcDateTime);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getPromoId() {
-            return this.promoId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCode() {
-            return this.code;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getBody() {
-            return this.body;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getLink() {
-            return this.link;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final UtcDateTime getRedeemBy() {
-            return this.redeemBy;
-        }
-
         public final Claimed copy(long promoId, String code, String body, String link, UtcDateTime redeemBy) {
             C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
             C12238m.checkNotNullParameter(body, "body");
@@ -124,20 +99,45 @@ public abstract class ClaimStatus implements Parcelable {
             return this.promoId == claimed.promoId && C12238m.areEqual(this.code, claimed.code) && C12238m.areEqual(this.body, claimed.body) && C12238m.areEqual(this.link, claimed.link) && C12238m.areEqual(this.redeemBy, claimed.redeemBy);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getBody() {
             return this.body;
+        }
+
+        public final String getBody() {
+            return this.body;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getCode() {
+            return this.code;
         }
 
         public final String getCode() {
             return this.code;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getLink() {
             return this.link;
         }
 
+        public final String getLink() {
+            return this.link;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getPromoId() {
             return this.promoId;
+        }
+
+        public final long getPromoId() {
+            return this.promoId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final UtcDateTime getRedeemBy() {
+            return this.redeemBy;
         }
 
         public final UtcDateTime getRedeemBy() {
@@ -183,12 +183,12 @@ public abstract class ClaimStatus implements Parcelable {
     }
 
     /* JADX INFO: compiled from: ClaimStatus.kt */
-    public static final /* data */ class Unclaimed extends ClaimStatus {
+    public final /* data */ class Unclaimed extends ClaimStatus {
         public static final Parcelable.Creator<Unclaimed> CREATOR = new Creator();
         private final UtcDateTime claimBy;
         private final long promoId;
 
-        public static class Creator implements Parcelable.Creator<Unclaimed> {
+        public final class Creator implements Parcelable.Creator<Unclaimed> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Unclaimed createFromParcel(Parcel parcel) {
@@ -221,16 +221,6 @@ public abstract class ClaimStatus implements Parcelable {
             return unclaimed.copy(j, utcDateTime);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getPromoId() {
-            return this.promoId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final UtcDateTime getClaimBy() {
-            return this.claimBy;
-        }
-
         public final Unclaimed copy(long promoId, UtcDateTime claimBy) {
             C12238m.checkNotNullParameter(claimBy, "claimBy");
             return new Unclaimed(promoId, claimBy);
@@ -252,8 +242,18 @@ public abstract class ClaimStatus implements Parcelable {
             return this.promoId == unclaimed.promoId && C12238m.areEqual(this.claimBy, unclaimed.claimBy);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final UtcDateTime getClaimBy() {
             return this.claimBy;
+        }
+
+        public final UtcDateTime getClaimBy() {
+            return this.claimBy;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getPromoId() {
+            return this.promoId;
         }
 
         public final long getPromoId() {

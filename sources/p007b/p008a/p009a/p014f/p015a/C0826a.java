@@ -41,21 +41,28 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0826a extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f352j = {C1643a.m846d0(C0826a.class, "binding", "getBinding()Lcom/discord/databinding/AudioOutputSelectionDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f352j = {C1643a.m846d0(C0826a.class, "binding", "getBinding()Lcom/discord/databinding/AudioOutputSelectionDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final Lazy viewModel;
 
+    /* JADX INFO: renamed from: b.a.a.f.a.a$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: AudioOutputSelectionDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.f.a.a$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f356j;
@@ -92,16 +99,9 @@ public final class C0826a extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.f.a.a$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: AudioOutputSelectionDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.f.a.a$c */
     /* JADX INFO: compiled from: AudioOutputSelectionDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C0919b> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C0919b> {
 
         /* JADX INFO: renamed from: j */
         public static final c f358j = new c();
@@ -145,7 +145,7 @@ public final class C0826a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.f.a.a$d */
     /* JADX INFO: compiled from: AudioOutputSelectionDialog.kt */
-    public static final class d extends AbstractC12240o implements Function1<C0829d.a, Unit> {
+    public final class d extends AbstractC12240o implements Function1<C0829d.a, Unit> {
         public d() {
             super(1);
         }
@@ -205,7 +205,7 @@ public final class C0826a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.f.a.a$e */
     /* JADX INFO: compiled from: AudioOutputSelectionDialog.kt */
-    public static final class e extends AbstractC12240o implements Function0<C0829d> {
+    public final class e extends AbstractC12240o implements Function0<C0829d> {
 
         /* JADX INFO: renamed from: j */
         public static final e f359j = new e();

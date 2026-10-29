@@ -40,6 +40,26 @@ public final class ExecutorC13099e extends ExecutorCoroutineDispatcher implement
         this.f27825o = i2;
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        throw new IllegalStateException("Close cannot be invoked on LimitingBlockingDispatcher".toString());
+    }
+
+    @Override // kotlinx.coroutines.CoroutineDispatcher
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        m11267I(runnable, false);
+    }
+
+    @Override // kotlinx.coroutines.CoroutineDispatcher
+    public void dispatchYield(CoroutineContext coroutineContext, Runnable runnable) {
+        m11267I(runnable, true);
+    }
+
+    @Override // java.util.concurrent.Executor
+    public void execute(Runnable runnable) {
+        m11267I(runnable, false);
+    }
+
     /* JADX INFO: renamed from: I */
     public final void m11267I(Runnable runnable, boolean z2) {
         do {
@@ -62,26 +82,6 @@ public final class ExecutorC13099e extends ExecutorCoroutineDispatcher implement
                 runnable = this.f27821k.poll();
             }
         } while (runnable != null);
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        throw new IllegalStateException("Close cannot be invoked on LimitingBlockingDispatcher".toString());
-    }
-
-    @Override // kotlinx.coroutines.CoroutineDispatcher
-    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        m11267I(runnable, false);
-    }
-
-    @Override // kotlinx.coroutines.CoroutineDispatcher
-    public void dispatchYield(CoroutineContext coroutineContext, Runnable runnable) {
-        m11267I(runnable, true);
-    }
-
-    @Override // java.util.concurrent.Executor
-    public void execute(Runnable runnable) {
-        m11267I(runnable, false);
     }
 
     @Override // p659s.p660a.p666e2.InterfaceC13103i

@@ -5,6 +5,7 @@ import org.objectweb.asm.Type;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/analysis/BasicValue.SCL.lombok */
 public class BasicValue implements Value {
+    private final Type type;
     public static final BasicValue UNINITIALIZED_VALUE = new BasicValue(null);
     public static final BasicValue INT_VALUE = new BasicValue(Type.INT_TYPE);
     public static final BasicValue FLOAT_VALUE = new BasicValue(Type.FLOAT_TYPE);
@@ -12,7 +13,6 @@ public class BasicValue implements Value {
     public static final BasicValue DOUBLE_VALUE = new BasicValue(Type.DOUBLE_TYPE);
     public static final BasicValue REFERENCE_VALUE = new BasicValue(Type.getObjectType("java/lang/Object"));
     public static final BasicValue RETURNADDRESS_VALUE = new BasicValue(Type.VOID_TYPE);
-    private final Type type;
 
     public BasicValue(Type type) {
         this.type = type;

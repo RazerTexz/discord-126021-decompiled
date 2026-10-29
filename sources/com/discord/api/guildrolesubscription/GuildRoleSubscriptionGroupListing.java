@@ -29,18 +29,15 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
         this.fullServerGate = z2;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static GuildRoleSubscriptionGroupListing m7941a(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, long j, long j2, long j3, ImageAsset imageAsset, String str, List list, List list2, boolean z2, int i) {
-        long j4 = (i & 1) != 0 ? guildRoleSubscriptionGroupListing.id : j;
-        long j5 = (i & 2) != 0 ? guildRoleSubscriptionGroupListing.guildId : j2;
-        long j6 = (i & 4) != 0 ? guildRoleSubscriptionGroupListing.applicationId : j3;
-        ImageAsset imageAsset2 = (i & 8) != 0 ? guildRoleSubscriptionGroupListing.imageAsset : null;
-        String str2 = (i & 16) != 0 ? guildRoleSubscriptionGroupListing.description : null;
-        List<Long> list3 = (i & 32) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListingsIds : null;
-        List list4 = (i & 64) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListings : list2;
-        boolean z3 = (i & 128) != 0 ? guildRoleSubscriptionGroupListing.fullServerGate : z2;
-        Objects.requireNonNull(guildRoleSubscriptionGroupListing);
-        return new GuildRoleSubscriptionGroupListing(j4, j5, j6, imageAsset2, str2, list3, list4, z3);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRoleSubscriptionGroupListing)) {
+            return false;
+        }
+        GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing = (GuildRoleSubscriptionGroupListing) other;
+        return this.id == guildRoleSubscriptionGroupListing.id && this.guildId == guildRoleSubscriptionGroupListing.guildId && this.applicationId == guildRoleSubscriptionGroupListing.applicationId && C12238m.areEqual(this.imageAsset, guildRoleSubscriptionGroupListing.imageAsset) && C12238m.areEqual(this.description, guildRoleSubscriptionGroupListing.description) && C12238m.areEqual(this.subscriptionListingsIds, guildRoleSubscriptionGroupListing.subscriptionListingsIds) && C12238m.areEqual(this.subscriptionListings, guildRoleSubscriptionGroupListing.subscriptionListings) && this.fullServerGate == guildRoleSubscriptionGroupListing.fullServerGate;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -63,17 +60,6 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
         return this.guildId;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRoleSubscriptionGroupListing)) {
-            return false;
-        }
-        GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing = (GuildRoleSubscriptionGroupListing) other;
-        return this.id == guildRoleSubscriptionGroupListing.id && this.guildId == guildRoleSubscriptionGroupListing.guildId && this.applicationId == guildRoleSubscriptionGroupListing.applicationId && C12238m.areEqual(this.imageAsset, guildRoleSubscriptionGroupListing.imageAsset) && C12238m.areEqual(this.description, guildRoleSubscriptionGroupListing.description) && C12238m.areEqual(this.subscriptionListingsIds, guildRoleSubscriptionGroupListing.subscriptionListingsIds) && C12238m.areEqual(this.subscriptionListings, guildRoleSubscriptionGroupListing.subscriptionListings) && this.fullServerGate == guildRoleSubscriptionGroupListing.fullServerGate;
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final long getId() {
         return this.id;
@@ -82,11 +68,6 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
     /* JADX INFO: renamed from: g, reason: from getter */
     public final ImageAsset getImageAsset() {
         return this.imageAsset;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final List<GuildRoleSubscriptionTierListing> m7948h() {
-        return this.subscriptionListings;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -114,6 +95,25 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
             r0 = 1;
         }
         return iHashCode4 + r0;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static GuildRoleSubscriptionGroupListing m7941a(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, long j, long j2, long j3, ImageAsset imageAsset, String str, List list, List list2, boolean z2, int i) {
+        long j4 = (i & 1) != 0 ? guildRoleSubscriptionGroupListing.id : j;
+        long j5 = (i & 2) != 0 ? guildRoleSubscriptionGroupListing.guildId : j2;
+        long j6 = (i & 4) != 0 ? guildRoleSubscriptionGroupListing.applicationId : j3;
+        ImageAsset imageAsset2 = (i & 8) != 0 ? guildRoleSubscriptionGroupListing.imageAsset : null;
+        String str2 = (i & 16) != 0 ? guildRoleSubscriptionGroupListing.description : null;
+        List<Long> list3 = (i & 32) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListingsIds : null;
+        List list4 = (i & 64) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListings : list2;
+        boolean z3 = (i & 128) != 0 ? guildRoleSubscriptionGroupListing.fullServerGate : z2;
+        Objects.requireNonNull(guildRoleSubscriptionGroupListing);
+        return new GuildRoleSubscriptionGroupListing(j4, j5, j6, imageAsset2, str2, list3, list4, z3);
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final List<GuildRoleSubscriptionTierListing> m7948h() {
+        return this.subscriptionListings;
     }
 
     /* JADX INFO: renamed from: i */

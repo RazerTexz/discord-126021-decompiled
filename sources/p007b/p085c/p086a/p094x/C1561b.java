@@ -19,9 +19,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1561b {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f2647a = new Object();
-
     /* JADX INFO: renamed from: b */
     public final Context f2648b;
 
@@ -34,6 +31,9 @@ public class C1561b {
 
     /* JADX INFO: renamed from: e */
     public final Map<String, C1512k> f2651e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Object f2647a = new Object();
 
     public C1561b(Drawable.Callback callback, String str, InterfaceC1492b interfaceC1492b, Map<String, C1512k> map) {
         this.f2649c = str;

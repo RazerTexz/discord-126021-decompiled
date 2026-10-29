@@ -9,13 +9,13 @@ import androidx.annotation.RequiresApi;
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
 public class CardViewApi21Impl implements CardViewImpl {
-    private RoundRectDrawable getCardBackground(CardViewDelegate cardViewDelegate) {
-        return (RoundRectDrawable) cardViewDelegate.getCardBackground();
-    }
-
     @Override // androidx.cardview.widget.CardViewImpl
     public ColorStateList getBackgroundColor(CardViewDelegate cardViewDelegate) {
         return getCardBackground(cardViewDelegate).getColor();
+    }
+
+    private RoundRectDrawable getCardBackground(CardViewDelegate cardViewDelegate) {
+        return (RoundRectDrawable) cardViewDelegate.getCardBackground();
     }
 
     @Override // androidx.cardview.widget.CardViewImpl

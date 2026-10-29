@@ -23,7 +23,7 @@ public final class C0904b {
 
     /* JADX INFO: renamed from: b.a.g.b$a */
     /* JADX INFO: compiled from: ColorHistogram.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

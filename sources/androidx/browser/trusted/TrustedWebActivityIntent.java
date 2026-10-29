@@ -22,16 +22,16 @@ public final class TrustedWebActivityIntent {
         this.mSharedFileUris = list;
     }
 
+    @NonNull
+    public Intent getIntent() {
+        return this.mIntent;
+    }
+
     private void grantUriPermissionToProvider(Context context) {
         Iterator<Uri> it = this.mSharedFileUris.iterator();
         while (it.hasNext()) {
             context.grantUriPermission(this.mIntent.getPackage(), it.next(), 1);
         }
-    }
-
-    @NonNull
-    public Intent getIntent() {
-        return this.mIntent;
     }
 
     public void launchTrustedWebActivity(@NonNull Context context) {

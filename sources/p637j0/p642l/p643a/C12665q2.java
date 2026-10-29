@@ -24,17 +24,17 @@ public final class C12665q2<R> implements Observable.InterfaceC13006b<R, Observa
 
     /* JADX INFO: renamed from: j0.l.a.q2$a */
     /* JADX INFO: compiled from: OperatorZip.java */
-    public static final class a<R> extends AtomicLong {
-
-        /* JADX INFO: renamed from: j */
-        public static final int f27006j = (int) (((double) C12719i.f27283j) * 0.7d);
-        private static final long serialVersionUID = 5995274816189928317L;
+    public final class a<R> extends AtomicLong {
         public final InterfaceC12581g<? super R> child;
         private final CompositeSubscription childSubscription;
         public int emitted;
         private AtomicLong requested;
+        private static final long serialVersionUID = 5995274816189928317L;
         private volatile Object[] subscribers;
         private final FuncN<? extends R> zipFunction;
+
+        /* JADX INFO: renamed from: j */
+        public static final int f27006j = (int) (((double) C12719i.f27283j) * 0.7d);
 
         /* JADX INFO: renamed from: j0.l.a.q2$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: OperatorZip.java */
@@ -159,7 +159,7 @@ public final class C12665q2<R> implements Observable.InterfaceC13006b<R, Observa
 
     /* JADX INFO: renamed from: j0.l.a.q2$b */
     /* JADX INFO: compiled from: OperatorZip.java */
-    public static final class b<R> extends AtomicLong implements Producer {
+    public final class b<R> extends AtomicLong implements Producer {
         private static final long serialVersionUID = -1216676403723546796L;
         public final a<R> zipper;
 

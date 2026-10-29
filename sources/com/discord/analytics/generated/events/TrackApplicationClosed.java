@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationClosed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long applicationId = null;
     private final Long activityDurationS = null;
-    private final Long totalDurationS = null;
-    private final Long totalDiscordSkuDurationS = null;
+    private final Long applicationId = null;
     private final CharSequence distributor = null;
+    private final Long totalDiscordSkuDurationS = null;
+    private final Long totalDurationS = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_closed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
         }
         TrackApplicationClosed trackApplicationClosed = (TrackApplicationClosed) other;
         return C12238m.areEqual(this.applicationId, trackApplicationClosed.applicationId) && C12238m.areEqual(this.activityDurationS, trackApplicationClosed.activityDurationS) && C12238m.areEqual(this.totalDurationS, trackApplicationClosed.totalDurationS) && C12238m.areEqual(this.totalDiscordSkuDurationS, trackApplicationClosed.totalDiscordSkuDurationS) && C12238m.areEqual(this.distributor, trackApplicationClosed.distributor);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -15,10 +15,6 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
 public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
-    private static boolean hasSimpleTarget(Transition transition) {
-        return (FragmentTransitionImpl.isNullOrEmpty(transition.getTargetIds()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetNames()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetTypes())) ? false : true;
-    }
-
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void addTarget(Object obj, View view) {
         if (obj != null) {
@@ -68,6 +64,10 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
             return ((Transition) obj).clone();
         }
         return null;
+    }
+
+    private static boolean hasSimpleTarget(Transition transition) {
+        return (FragmentTransitionImpl.isNullOrEmpty(transition.getTargetIds()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetNames()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetTypes())) ? false : true;
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl

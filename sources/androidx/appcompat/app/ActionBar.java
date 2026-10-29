@@ -57,7 +57,7 @@ public abstract class ActionBar {
     }
 
     @Deprecated
-    public static abstract class Tab {
+    public abstract class Tab {
         public static final int INVALID_POSITION = -1;
 
         public abstract CharSequence getContentDescription();
@@ -342,7 +342,7 @@ public abstract class ActionBar {
         return null;
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
         public int gravity;
 
         public LayoutParams(@NonNull Context context, AttributeSet attributeSet) {

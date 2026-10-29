@@ -47,18 +47,18 @@ public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView.Ada
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         return this.data.get(position).getType();
     }
 
     public final Function0<Unit> getOnClickEmoji() {
         return this.onClickEmoji;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     public final void setData(List<? extends Emoji> emojis, int maxEmojisToShow) {

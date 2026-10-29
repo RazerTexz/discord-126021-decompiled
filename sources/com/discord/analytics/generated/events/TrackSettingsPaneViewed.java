@@ -19,35 +19,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSettingsPaneViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackOverlayClientMetadataReceiver, TrackSourceMetadataReceiver {
+    private final CharSequence destinationPane = null;
+    private final CharSequence originPane = null;
+    private final Boolean previewEnabled = null;
+    private final CharSequence settingsType = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private TrackSourceMetadata trackSourceMetadata;
-    private final CharSequence settingsType = null;
-    private final CharSequence originPane = null;
-    private final CharSequence destinationPane = null;
-    private final Boolean previewEnabled = null;
     private final transient String analyticsSchemaTypeName = "settings_pane_viewed";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -60,6 +42,18 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
         return C12238m.areEqual(this.settingsType, trackSettingsPaneViewed.settingsType) && C12238m.areEqual(this.originPane, trackSettingsPaneViewed.originPane) && C12238m.areEqual(this.destinationPane, trackSettingsPaneViewed.destinationPane) && C12238m.areEqual(this.previewEnabled, trackSettingsPaneViewed.previewEnabled);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.settingsType;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
@@ -69,6 +63,12 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
         int iHashCode3 = (iHashCode2 + (charSequence3 != null ? charSequence3.hashCode() : 0)) * 31;
         Boolean bool = this.previewEnabled;
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

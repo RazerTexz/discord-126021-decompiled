@@ -35,6 +35,12 @@ public class CustomTabsClient {
         this.mApplicationContext = context;
     }
 
+    @Nullable
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public CustomTabsSession attachSession(@NonNull CustomTabsSession.PendingSession pendingSession) {
+        return newSessionInternal(pendingSession.getCallback(), pendingSession.getId());
+    }
+
     public static boolean bindCustomTabsService(@NonNull Context context, @Nullable String str, @NonNull CustomTabsServiceConnection customTabsServiceConnection) {
         customTabsServiceConnection.setApplicationContext(context.getApplicationContext());
         Intent intent = new Intent(CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION);
@@ -160,6 +166,15 @@ public class CustomTabsClient {
     }
 
     @Nullable
+    public Bundle extraCommand(@NonNull String str, @Nullable Bundle bundle) {
+        try {
+            return this.mService.extraCommand(str, bundle);
+        } catch (RemoteException unused) {
+            return null;
+        }
+    }
+
+    @Nullable
     public static String getPackageName(@NonNull Context context, @Nullable List<String> list) {
         return getPackageName(context, list, false);
     }
@@ -168,6 +183,11 @@ public class CustomTabsClient {
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public static CustomTabsSession.PendingSession newPendingSession(@NonNull Context context, @Nullable CustomTabsCallback customTabsCallback, int i) {
         return new CustomTabsSession.PendingSession(customTabsCallback, createSessionId(context, i));
+    }
+
+    @Nullable
+    public CustomTabsSession newSession(@Nullable CustomTabsCallback customTabsCallback) {
+        return newSessionInternal(customTabsCallback, null);
     }
 
     @Nullable
@@ -189,26 +209,6 @@ public class CustomTabsClient {
         } catch (RemoteException unused) {
             return null;
         }
-    }
-
-    @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public CustomTabsSession attachSession(@NonNull CustomTabsSession.PendingSession pendingSession) {
-        return newSessionInternal(pendingSession.getCallback(), pendingSession.getId());
-    }
-
-    @Nullable
-    public Bundle extraCommand(@NonNull String str, @Nullable Bundle bundle) {
-        try {
-            return this.mService.extraCommand(str, bundle);
-        } catch (RemoteException unused) {
-            return null;
-        }
-    }
-
-    @Nullable
-    public CustomTabsSession newSession(@Nullable CustomTabsCallback customTabsCallback) {
-        return newSessionInternal(customTabsCallback, null);
     }
 
     public boolean warmup(long j) {

@@ -7,6 +7,8 @@ import p007b.p225i.p226a.p242c.p243a3.C2556n0;
 /* JADX INFO: compiled from: TrackSelection.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC2647m {
+    int length();
+
     /* JADX INFO: renamed from: a */
     C2556n0 mo2727a();
 
@@ -18,6 +20,4 @@ public interface InterfaceC2647m {
 
     /* JADX INFO: renamed from: l */
     int mo2734l(int i);
-
-    int length();
 }

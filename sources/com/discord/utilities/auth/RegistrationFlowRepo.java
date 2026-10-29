@@ -18,7 +18,6 @@ public final class RegistrationFlowRepo {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(RegistrationFlowRepo$Companion$INSTANCE$2.INSTANCE);
     private Long birthday;
     private String email;
     private Map<String, ? extends List<String>> errors;
@@ -26,11 +25,12 @@ public final class RegistrationFlowRepo {
     private boolean isRegistering;
     private String phone;
     private String phoneToken;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(RegistrationFlowRepo$Companion$INSTANCE$2.INSTANCE);
     private String username = "";
     private String password = "";
 
     /* JADX INFO: compiled from: RegistrationFlowRepo.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -43,14 +43,6 @@ public final class RegistrationFlowRepo {
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void trackTransition$default(RegistrationFlowRepo registrationFlowRepo, String str, String str2, List list, int i, Object obj) {
-        if ((i & 4) != 0) {
-            list = null;
-        }
-        registrationFlowRepo.trackTransition(str, str2, list);
     }
 
     public final void clear() {
@@ -79,6 +71,11 @@ public final class RegistrationFlowRepo {
         return this.invite;
     }
 
+    /* JADX INFO: renamed from: isRegistering, reason: from getter */
+    public final boolean getIsRegistering() {
+        return this.isRegistering;
+    }
+
     public final String getPassword() {
         return this.password;
     }
@@ -93,11 +90,6 @@ public final class RegistrationFlowRepo {
 
     public final String getUsername() {
         return this.username;
-    }
-
-    /* JADX INFO: renamed from: isRegistering, reason: from getter */
-    public final boolean getIsRegistering() {
-        return this.isRegistering;
     }
 
     public final void setBirthday(Long l) {
@@ -136,6 +128,14 @@ public final class RegistrationFlowRepo {
     public final void setUsername(String str) {
         C12238m.checkNotNullParameter(str, "<set-?>");
         this.username = str;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void trackTransition$default(RegistrationFlowRepo registrationFlowRepo, String str, String str2, List list, int i, Object obj) {
+        if ((i & 4) != 0) {
+            list = null;
+        }
+        registrationFlowRepo.trackTransition(str, str2, list);
     }
 
     public final void trackTransition(String step, String actionType, List<String> details) {

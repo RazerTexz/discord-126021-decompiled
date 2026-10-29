@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 public final class InputContentInfoCompat {
     private final InputContentInfoCompatImpl mImpl;
 
-    public static final class InputContentInfoCompatBaseImpl implements InputContentInfoCompatImpl {
+    public final class InputContentInfoCompatBaseImpl implements InputContentInfoCompatImpl {
 
         @NonNull
         private final Uri mContentUri;
@@ -88,14 +88,6 @@ public final class InputContentInfoCompat {
         }
     }
 
-    @Nullable
-    public static InputContentInfoCompat wrap(@Nullable Object obj) {
-        if (obj != null && Build.VERSION.SDK_INT >= 25) {
-            return new InputContentInfoCompat(new InputContentInfoCompatApi25Impl(obj));
-        }
-        return null;
-    }
-
     @NonNull
     public Uri getContentUri() {
         return this.mImpl.getContentUri();
@@ -124,8 +116,16 @@ public final class InputContentInfoCompat {
         return this.mImpl.getInputContentInfo();
     }
 
+    @Nullable
+    public static InputContentInfoCompat wrap(@Nullable Object obj) {
+        if (obj != null && Build.VERSION.SDK_INT >= 25) {
+            return new InputContentInfoCompat(new InputContentInfoCompatApi25Impl(obj));
+        }
+        return null;
+    }
+
     @RequiresApi(25)
-    public static final class InputContentInfoCompatApi25Impl implements InputContentInfoCompatImpl {
+    public final class InputContentInfoCompatApi25Impl implements InputContentInfoCompatImpl {
 
         @NonNull
         public final InputContentInfo mObject;

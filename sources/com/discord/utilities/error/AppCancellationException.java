@@ -18,6 +18,14 @@ public final /* data */ class AppCancellationException extends CancellationExcep
         this.error = error;
     }
 
+    public final String component1() {
+        return getMessage();
+    }
+
+    public final Throwable component2() {
+        return getCause();
+    }
+
     public static /* synthetic */ AppCancellationException copy$default(AppCancellationException appCancellationException, String str, Throwable th, Error error, int i, Object obj) {
         if ((i & 1) != 0) {
             str = appCancellationException.getMessage();
@@ -29,19 +37,6 @@ public final /* data */ class AppCancellationException extends CancellationExcep
             error = appCancellationException.error;
         }
         return appCancellationException.copy(str, th, error);
-    }
-
-    public final String component1() {
-        return getMessage();
-    }
-
-    public final Throwable component2() {
-        return getCause();
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Error getError() {
-        return this.error;
     }
 
     public final AppCancellationException copy(String message, Throwable cause, Error error) {
@@ -63,6 +58,11 @@ public final /* data */ class AppCancellationException extends CancellationExcep
     @Override // java.lang.Throwable
     public Throwable getCause() {
         return this.cause;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Error getError() {
+        return this.error;
     }
 
     public final Error getError() {

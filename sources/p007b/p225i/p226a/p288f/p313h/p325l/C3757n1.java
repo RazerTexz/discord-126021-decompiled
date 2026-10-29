@@ -10,7 +10,7 @@ public final class C3757n1 extends AbstractC3851u4<C3757n1, a> implements Interf
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.n1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3757n1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3757n1, a> implements InterfaceC3626d6 {
         public a(C3809r1 c3809r1) {
             super(C3757n1.zzd);
         }

@@ -21,7 +21,7 @@ public final class ComponentInflater {
     private final Context context;
 
     /* JADX INFO: compiled from: ComponentInflater.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

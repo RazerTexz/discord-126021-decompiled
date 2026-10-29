@@ -25,14 +25,14 @@ public class CodeNode<RC> extends C1298a<RC> {
 
     /* JADX INFO: renamed from: com.discord.simpleast.code.CodeNode$a */
     /* JADX INFO: compiled from: CodeNode.kt */
-    public static abstract class AbstractC5653a {
+    public abstract class AbstractC5653a {
 
         /* JADX INFO: renamed from: a */
         public final String f18949a;
 
         /* JADX INFO: renamed from: com.discord.simpleast.code.CodeNode$a$a */
         /* JADX INFO: compiled from: CodeNode.kt */
-        public static final class a<RC> extends AbstractC5653a {
+        public final class a<RC> extends AbstractC5653a {
 
             /* JADX INFO: renamed from: b */
             public final List<Node<RC>> f18950b;
@@ -49,7 +49,7 @@ public class CodeNode<RC> extends C1298a<RC> {
 
         /* JADX INFO: renamed from: com.discord.simpleast.code.CodeNode$a$b */
         /* JADX INFO: compiled from: CodeNode.kt */
-        public static final class b extends AbstractC5653a {
+        public final class b extends AbstractC5653a {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public b(String str) {
                 super(str, null);
@@ -64,7 +64,7 @@ public class CodeNode<RC> extends C1298a<RC> {
 
     /* JADX INFO: renamed from: com.discord.simpleast.code.CodeNode$b */
     /* JADX INFO: compiled from: CodeNode.kt */
-    public static final class C5654b<RC> extends Node.C5655a<RC> {
+    public final class C5654b<RC> extends Node.C5655a<RC> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public C5654b(String str, String str2, C1280f<RC> c1280f) {
             super(new StyleNode.C5657b(str, c1280f.f1909d), new StyleNode.C5657b(str2, c1280f.f1911f));

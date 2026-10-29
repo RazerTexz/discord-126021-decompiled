@@ -20,24 +20,6 @@ public final class ColorPickerUtils {
     private ColorPickerUtils() {
     }
 
-    @ColorInt
-    private static final int[] getColorsToDisplayForPicker(Resources resources, @ColorInt int i) {
-        int[] intArray = resources.getIntArray(C5419R.array.color_picker_palette);
-        C12238m.checkNotNullExpressionValue(intArray, "getIntArray(com.discord.…ray.color_picker_palette)");
-        ArrayList arrayList = new ArrayList();
-        boolean z2 = false;
-        for (int i2 : intArray) {
-            arrayList.add(Integer.valueOf(i2));
-            if (i2 == i) {
-                z2 = true;
-            }
-        }
-        if (!z2) {
-            arrayList.add(Integer.valueOf(i));
-        }
-        return C12163u.toIntArray(arrayList);
-    }
-
     public final ColorPickerDialog buildColorPickerDialog(Context context, @StringRes int titleResId, @ColorInt int initialColor) {
         C12238m.checkNotNullParameter(context, "context");
         int[] iArr = ColorPickerDialog.f21707j;
@@ -69,5 +51,23 @@ public final class ColorPickerUtils {
         ColorPickerDialog colorPickerDialogM9275a = c11163k.m9275a();
         C12238m.checkNotNullExpressionValue(colorPickerDialogM9275a, "ColorPickerDialog.newBui…mal))\n          .create()");
         return colorPickerDialogM9275a;
+    }
+
+    @ColorInt
+    private static final int[] getColorsToDisplayForPicker(Resources resources, @ColorInt int i) {
+        int[] intArray = resources.getIntArray(C5419R.array.color_picker_palette);
+        C12238m.checkNotNullExpressionValue(intArray, "getIntArray(com.discord.…ray.color_picker_palette)");
+        ArrayList arrayList = new ArrayList();
+        boolean z2 = false;
+        for (int i2 : intArray) {
+            arrayList.add(Integer.valueOf(i2));
+            if (i2 == i) {
+                z2 = true;
+            }
+        }
+        if (!z2) {
+            arrayList.add(Integer.valueOf(i));
+        }
+        return C12163u.toIntArray(arrayList);
     }
 }

@@ -27,6 +27,44 @@ public class SeekBarPreference extends Preference {
     public boolean mTrackingTouch;
     public boolean mUpdatesContinuously;
 
+    public class SavedState extends Preference.BaseSavedState {
+        public int mMax;
+        public int mMin;
+        public int mSeekBarValue;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.SeekBarPreference.SavedState.1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            this.mSeekBarValue = parcel.readInt();
+            this.mMin = parcel.readInt();
+            this.mMax = parcel.readInt();
+        }
+
+        @Override // android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.mSeekBarValue);
+            parcel.writeInt(this.mMin);
+            parcel.writeInt(this.mMax);
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
     public SeekBarPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
         this.mSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() { // from class: androidx.preference.SeekBarPreference.1
@@ -84,25 +122,6 @@ public class SeekBarPreference extends Preference {
         this.mShowSeekBarValue = typedArrayObtainStyledAttributes.getBoolean(C0525R.styleable.SeekBarPreference_showSeekBarValue, false);
         this.mUpdatesContinuously = typedArrayObtainStyledAttributes.getBoolean(C0525R.styleable.SeekBarPreference_updatesContinuously, false);
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private void setValueInternal(int i, boolean z2) {
-        int i2 = this.mMin;
-        if (i < i2) {
-            i = i2;
-        }
-        int i3 = this.mMax;
-        if (i > i3) {
-            i = i3;
-        }
-        if (i != this.mSeekBarValue) {
-            this.mSeekBarValue = i;
-            updateLabelValue(i);
-            persistInt(i);
-            if (z2) {
-                notifyChanged();
-            }
-        }
     }
 
     public int getMax() {
@@ -250,6 +269,25 @@ public class SeekBarPreference extends Preference {
         setValueInternal(i, true);
     }
 
+    private void setValueInternal(int i, boolean z2) {
+        int i2 = this.mMin;
+        if (i < i2) {
+            i = i2;
+        }
+        int i3 = this.mMax;
+        if (i > i3) {
+            i = i3;
+        }
+        if (i != this.mSeekBarValue) {
+            this.mSeekBarValue = i;
+            updateLabelValue(i);
+            persistInt(i);
+            if (z2) {
+                notifyChanged();
+            }
+        }
+    }
+
     public void syncValueInternal(SeekBar seekBar) {
         int progress = seekBar.getProgress() + this.mMin;
         if (progress != this.mSeekBarValue) {
@@ -266,44 +304,6 @@ public class SeekBarPreference extends Preference {
         TextView textView = this.mSeekBarValueTextView;
         if (textView != null) {
             textView.setText(String.valueOf(i));
-        }
-    }
-
-    public static class SavedState extends Preference.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.SeekBarPreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public int mMax;
-        public int mMin;
-        public int mSeekBarValue;
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mSeekBarValue = parcel.readInt();
-            this.mMin = parcel.readInt();
-            this.mMax = parcel.readInt();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mSeekBarValue);
-            parcel.writeInt(this.mMin);
-            parcel.writeInt(this.mMax);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
         }
     }
 

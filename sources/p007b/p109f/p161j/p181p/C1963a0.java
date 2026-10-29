@@ -30,7 +30,7 @@ public class C1963a0 extends AbstractC1968c<a> {
 
     /* JADX INFO: renamed from: b.f.j.p.a0$a */
     /* JADX INFO: compiled from: HttpUrlConnectionNetworkFetcher.java */
-    public static class a extends C2019x {
+    public class a extends C2019x {
 
         /* JADX INFO: renamed from: d */
         public long f3990d;

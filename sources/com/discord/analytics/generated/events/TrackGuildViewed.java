@@ -15,36 +15,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackOverlayClientMetadataReceiver {
+    private final Long guildAffinityIndex = null;
+    private final Float guildAffinityScore = null;
+    private final Boolean isPending = null;
+    private final Long postableChannels = null;
+    private final Boolean premiumProgressBarEnabled = null;
+    private final Boolean previewEnabled = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final Float guildAffinityScore = null;
-    private final Long guildAffinityIndex = null;
-    private final Boolean isPending = null;
-    private final Boolean previewEnabled = null;
-    private final Long postableChannels = null;
-    private final Boolean premiumProgressBarEnabled = null;
     private final Boolean viewingStarred = null;
     private final transient String analyticsSchemaTypeName = "guild_viewed";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,6 +37,18 @@ public final /* data */ class TrackGuildViewed implements AnalyticsSchema, Track
         }
         TrackGuildViewed trackGuildViewed = (TrackGuildViewed) other;
         return C12238m.areEqual(this.guildAffinityScore, trackGuildViewed.guildAffinityScore) && C12238m.areEqual(this.guildAffinityIndex, trackGuildViewed.guildAffinityIndex) && C12238m.areEqual(this.isPending, trackGuildViewed.isPending) && C12238m.areEqual(this.previewEnabled, trackGuildViewed.previewEnabled) && C12238m.areEqual(this.postableChannels, trackGuildViewed.postableChannels) && C12238m.areEqual(this.premiumProgressBarEnabled, trackGuildViewed.premiumProgressBarEnabled) && C12238m.areEqual(this.viewingStarred, trackGuildViewed.viewingStarred);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -72,6 +66,12 @@ public final /* data */ class TrackGuildViewed implements AnalyticsSchema, Track
         int iHashCode6 = (iHashCode5 + (bool3 != null ? bool3.hashCode() : 0)) * 31;
         Boolean bool4 = this.viewingStarred;
         return iHashCode6 + (bool4 != null ? bool4.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

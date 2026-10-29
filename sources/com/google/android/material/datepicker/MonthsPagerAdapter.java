@@ -33,7 +33,7 @@ public class MonthsPagerAdapter extends RecyclerView.Adapter<ViewHolder> {
     /* JADX INFO: renamed from: e */
     public final int f20995e;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public final MaterialCalendarGridView monthGrid;
         public final TextView monthTitle;
 
@@ -70,6 +70,17 @@ public class MonthsPagerAdapter extends RecyclerView.Adapter<ViewHolder> {
         setHasStableIds(true);
     }
 
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public long getItemId(int i) {
+        return this.f20992b.getStart().m9138m(i).f20984j.getTimeInMillis();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.f20992b.getMonthSpan();
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public Month m9140a(int i) {
@@ -79,17 +90,6 @@ public class MonthsPagerAdapter extends RecyclerView.Adapter<ViewHolder> {
     /* JADX INFO: renamed from: b */
     public int m9141b(@NonNull Month month) {
         return this.f20992b.getStart().m9139o(month);
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.f20992b.getMonthSpan();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public long getItemId(int i) {
-        return this.f20992b.getStart().m9138m(i).f20984j.getTimeInMillis();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

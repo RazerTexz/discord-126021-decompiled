@@ -40,6 +40,20 @@ public final class GuildSubscriptionsManager {
         this.subscribedGuilds = new HashSet<>();
     }
 
+    public final synchronized void flush() {
+        for (Map.Entry<Long, GuildSubscriptions> entry : this.pendingEmissions.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            GuildSubscriptions value = entry.getValue();
+            this.subscribedGuilds.add(Long.valueOf(jLongValue));
+            this.onChange.invoke(Long.valueOf(jLongValue), value);
+        }
+        this.pendingEmissions.clear();
+    }
+
+    public final synchronized GuildSubscriptions get(long guildId) {
+        return new GuildSubscriptions(this.guildChannelSubscriptionsManager.get(guildId), Boolean.valueOf(this.typingGuilds.contains(Long.valueOf(guildId))), Boolean.valueOf(this.activityGuilds.contains(Long.valueOf(guildId))), this.guildMemberSubscriptionsManager.get(guildId), Boolean.valueOf(this.threadGuilds.contains(Long.valueOf(guildId))), this.guildThreadSubscriptionManager.get(guildId));
+    }
+
     private final synchronized void handleChannelSubscriptionsChange(long guildId, Map<Long, ? extends List<IntRange>> channelSubscriptions) {
         GuildSubscriptions guildSubscriptions;
         HashMap<Long, GuildSubscriptions> map = this.pendingEmissions;
@@ -76,24 +90,6 @@ public final class GuildSubscriptionsManager {
         map.put(lValueOf, guildSubscriptions);
     }
 
-    private final synchronized void requestFlushUnsubscriptions(Function0<Unit> flushUnsubscriptions) {
-        flushUnsubscriptions.invoke();
-    }
-
-    public final synchronized void flush() {
-        for (Map.Entry<Long, GuildSubscriptions> entry : this.pendingEmissions.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            GuildSubscriptions value = entry.getValue();
-            this.subscribedGuilds.add(Long.valueOf(jLongValue));
-            this.onChange.invoke(Long.valueOf(jLongValue), value);
-        }
-        this.pendingEmissions.clear();
-    }
-
-    public final synchronized GuildSubscriptions get(long guildId) {
-        return new GuildSubscriptions(this.guildChannelSubscriptionsManager.get(guildId), Boolean.valueOf(this.typingGuilds.contains(Long.valueOf(guildId))), Boolean.valueOf(this.activityGuilds.contains(Long.valueOf(guildId))), this.guildMemberSubscriptionsManager.get(guildId), Boolean.valueOf(this.threadGuilds.contains(Long.valueOf(guildId))), this.guildThreadSubscriptionManager.get(guildId));
-    }
-
     public final synchronized void queueExistingSubscriptions() {
         Iterator<T> it = this.subscribedGuilds.iterator();
         while (it.hasNext()) {
@@ -111,6 +107,10 @@ public final class GuildSubscriptionsManager {
         this.guildMemberSubscriptionsManager.remove(guildId);
         this.guildChannelSubscriptionsManager.remove(guildId);
         this.guildThreadSubscriptionManager.remove(guildId);
+    }
+
+    private final synchronized void requestFlushUnsubscriptions(Function0<Unit> flushUnsubscriptions) {
+        flushUnsubscriptions.invoke();
     }
 
     public final synchronized void reset() {

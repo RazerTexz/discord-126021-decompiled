@@ -12,7 +12,7 @@ public final class C12653n2<T> implements Observable.InterfaceC13006b<List<T>, T
 
     /* JADX INFO: renamed from: j0.l.a.n2$a */
     /* JADX INFO: compiled from: OperatorToObservableList.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12653n2<Object> f26954a = new C12653n2<>();

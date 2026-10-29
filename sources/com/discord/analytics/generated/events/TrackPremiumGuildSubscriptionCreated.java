@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumGuildSubscriptionCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumGuildSubscriptionCreated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long currentTier = null;
     private final Long guildId = null;
     private final Long premiumGuildSubscriptionId = null;
-    private final Long currentTier = null;
-    private final Long previousTier = null;
     private final Long premiumSubscriptionCount = null;
+    private final Long previousTier = null;
     private final Long slotId = null;
     private final Long tierReached = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "premium_guild_subscription_created";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackPremiumGuildSubscriptionCreated implements An
         }
         TrackPremiumGuildSubscriptionCreated trackPremiumGuildSubscriptionCreated = (TrackPremiumGuildSubscriptionCreated) other;
         return C12238m.areEqual(this.guildId, trackPremiumGuildSubscriptionCreated.guildId) && C12238m.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionCreated.premiumGuildSubscriptionId) && C12238m.areEqual(this.currentTier, trackPremiumGuildSubscriptionCreated.currentTier) && C12238m.areEqual(this.previousTier, trackPremiumGuildSubscriptionCreated.previousTier) && C12238m.areEqual(this.premiumSubscriptionCount, trackPremiumGuildSubscriptionCreated.premiumSubscriptionCount) && C12238m.areEqual(this.slotId, trackPremiumGuildSubscriptionCreated.slotId) && C12238m.areEqual(this.tierReached, trackPremiumGuildSubscriptionCreated.tierReached);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

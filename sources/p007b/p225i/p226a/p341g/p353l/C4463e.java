@@ -15,7 +15,7 @@ public class C4463e {
 
     /* JADX INFO: renamed from: b.i.a.g.l.e$a */
     /* JADX INFO: compiled from: FitModeEvaluators.java */
-    public static class a implements InterfaceC4462d {
+    public final class a implements InterfaceC4462d {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4462d
         /* JADX INFO: renamed from: a */
         public C4464f mo6183a(float f, float f2, float f3, float f4, float f5, float f6, float f7) {
@@ -40,7 +40,7 @@ public class C4463e {
 
     /* JADX INFO: renamed from: b.i.a.g.l.e$b */
     /* JADX INFO: compiled from: FitModeEvaluators.java */
-    public static class b implements InterfaceC4462d {
+    public final class b implements InterfaceC4462d {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4462d
         /* JADX INFO: renamed from: a */
         public C4464f mo6183a(float f, float f2, float f3, float f4, float f5, float f6, float f7) {

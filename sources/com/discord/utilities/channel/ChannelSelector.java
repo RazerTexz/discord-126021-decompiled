@@ -42,34 +42,9 @@ public final class ChannelSelector {
     private final ObservationDeck observationDeck;
     private final StoreStream stream;
 
-    /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final ChannelSelector getInstance() {
-            ChannelSelector channelSelector = ChannelSelector.INSTANCE;
-            if (channelSelector == null) {
-                C12238m.throwUninitializedPropertyAccessException("INSTANCE");
-            }
-            return channelSelector;
-        }
-
-        public final void init(StoreStream stream, Dispatcher dispatcher, ObservationDeck observationDeck) {
-            C12238m.checkNotNullParameter(stream, "stream");
-            C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-            C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-            ChannelSelector.INSTANCE = new ChannelSelector(stream, dispatcher, observationDeck);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$dismissCreateThread$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67181 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67181 extends AbstractC12240o implements Function0<Unit> {
         public C67181() {
             super(0);
         }
@@ -88,7 +63,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$findAndSet$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67191 extends AbstractC12240o implements Function0<Channel> {
+    public final class C67191 extends AbstractC12240o implements Function0<Channel> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
 
@@ -119,7 +94,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$findAndSet$3 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67213 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67213 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C67213() {
             super(1);
         }
@@ -138,7 +113,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$findAndSetDirectMessage$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67221 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67221 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,13 +137,13 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$findAndSetThread$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67231 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67231 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
 
         /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$findAndSetThread$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: ChannelSelector.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Channel $channel;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -212,7 +187,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$gotoChannel$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67241 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67241 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ SelectedChannelAnalyticsLocation $analyticsLocation;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
@@ -242,7 +217,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$openCreateThread$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67251 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67251 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ Long $parentMessageId;
@@ -273,7 +248,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$previewVoiceChannel$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67261 extends AbstractC12240o implements Function0<Channel> {
+    public final class C67261 extends AbstractC12240o implements Function0<Channel> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -295,7 +270,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$previewVoiceChannel$2 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67272 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67272 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ WeakReference $fragmentManagerRef;
 
@@ -325,7 +300,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$selectChannel$1 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67281 extends AbstractC12240o implements Function1 {
+    public final class C67281 extends AbstractC12240o implements Function1 {
         public final /* synthetic */ SelectedChannelAnalyticsLocation $analyticsLocation;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
@@ -353,7 +328,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$selectChannel$2 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67292 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67292 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ SelectedChannelAnalyticsLocation $analyticsLocation;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
@@ -409,7 +384,7 @@ public final class ChannelSelector {
 
     /* JADX INFO: renamed from: com.discord.utilities.channel.ChannelSelector$selectPreviousChannel$2 */
     /* JADX INFO: compiled from: ChannelSelector.kt */
-    public static final class C67312 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67312 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -434,6 +409,31 @@ public final class ChannelSelector {
         }
     }
 
+    /* JADX INFO: compiled from: ChannelSelector.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ChannelSelector getInstance() {
+            ChannelSelector channelSelector = ChannelSelector.INSTANCE;
+            if (channelSelector == null) {
+                C12238m.throwUninitializedPropertyAccessException("INSTANCE");
+            }
+            return channelSelector;
+        }
+
+        public final void init(StoreStream stream, Dispatcher dispatcher, ObservationDeck observationDeck) {
+            C12238m.checkNotNullParameter(stream, "stream");
+            C12238m.checkNotNullParameter(dispatcher, "dispatcher");
+            C12238m.checkNotNullParameter(observationDeck, "observationDeck");
+            ChannelSelector.INSTANCE = new ChannelSelector(stream, dispatcher, observationDeck);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public ChannelSelector(StoreStream storeStream, Dispatcher dispatcher, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -441,38 +441,6 @@ public final class ChannelSelector {
         this.stream = storeStream;
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
-    }
-
-    public static /* synthetic */ void findAndSetDirectMessage$default(ChannelSelector channelSelector, Context context, long j, int i, Object obj) {
-        if ((i & 2) != 0) {
-            j = 0;
-        }
-        channelSelector.findAndSetDirectMessage(context, j);
-    }
-
-    public static final ChannelSelector getInstance() {
-        return INSTANCE.getInstance();
-    }
-
-    private final void gotoChannel(long guildId, long channelId, Long peekParent, SelectedChannelAnalyticsLocation analyticsLocation) {
-        this.dispatcher.schedule(new C67241(guildId, channelId, peekParent, analyticsLocation));
-    }
-
-    public static /* synthetic */ void openCreateThread$default(ChannelSelector channelSelector, long j, long j2, Long l, String str, int i, Object obj) {
-        if ((i & 4) != 0) {
-            l = null;
-        }
-        channelSelector.openCreateThread(j, j2, l, str);
-    }
-
-    public static /* synthetic */ void selectChannel$default(ChannelSelector channelSelector, Channel channel, Long l, SelectedChannelAnalyticsLocation selectedChannelAnalyticsLocation, int i, Object obj) {
-        if ((i & 2) != 0) {
-            l = null;
-        }
-        if ((i & 4) != 0) {
-            selectedChannelAnalyticsLocation = null;
-        }
-        channelSelector.selectChannel(channel, l, selectedChannelAnalyticsLocation);
     }
 
     public final void dismissCreateThread() {
@@ -493,6 +461,13 @@ public final class ChannelSelector {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11118y, 0L, true, 1, null)), (Class<?>) ChannelSelector.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67213());
     }
 
+    public static /* synthetic */ void findAndSetDirectMessage$default(ChannelSelector channelSelector, Context context, long j, int i, Object obj) {
+        if ((i & 2) != 0) {
+            j = 0;
+        }
+        channelSelector.findAndSetDirectMessage(context, j);
+    }
+
     public final void findAndSetDirectMessage(Context context, long userId) {
         C12238m.checkNotNullParameter(context, "context");
         if (userId <= 0) {
@@ -509,12 +484,27 @@ public final class ChannelSelector {
         return this.dispatcher;
     }
 
+    public static final ChannelSelector getInstance() {
+        return INSTANCE.getInstance();
+    }
+
     public final ObservationDeck getObservationDeck() {
         return this.observationDeck;
     }
 
     public final StoreStream getStream() {
         return this.stream;
+    }
+
+    private final void gotoChannel(long guildId, long channelId, Long peekParent, SelectedChannelAnalyticsLocation analyticsLocation) {
+        this.dispatcher.schedule(new C67241(guildId, channelId, peekParent, analyticsLocation));
+    }
+
+    public static /* synthetic */ void openCreateThread$default(ChannelSelector channelSelector, long j, long j2, Long l, String str, int i, Object obj) {
+        if ((i & 4) != 0) {
+            l = null;
+        }
+        channelSelector.openCreateThread(j, j2, l, str);
     }
 
     public final void openCreateThread(long guildId, long channelId, Long parentMessageId, String startThreadLocation) {
@@ -527,6 +517,16 @@ public final class ChannelSelector {
         Observable observableM11083G = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.stream.getChannels(), this.stream.getPermissions()}, false, null, null, new C67261(channelId), 14, null).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
         C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11083G, 0L, false, 3, null)), (Class<?>) ChannelSelector.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67272(weakReference, channelId));
+    }
+
+    public static /* synthetic */ void selectChannel$default(ChannelSelector channelSelector, Channel channel, Long l, SelectedChannelAnalyticsLocation selectedChannelAnalyticsLocation, int i, Object obj) {
+        if ((i & 2) != 0) {
+            l = null;
+        }
+        if ((i & 4) != 0) {
+            selectedChannelAnalyticsLocation = null;
+        }
+        channelSelector.selectChannel(channel, l, selectedChannelAnalyticsLocation);
     }
 
     public final void selectChannel(Channel channel, Long peekParent, SelectedChannelAnalyticsLocation analyticsLocation) {

@@ -18,6 +18,16 @@ public final class MaterialElevationScale extends AbstractC4466h<ScaleProvider> 
         this.growing = z2;
     }
 
+    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
+        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
+        super.clearAdditionalAnimatorProvider();
+    }
+
     private static ScaleProvider createPrimaryAnimatorProvider(boolean z2) {
         ScaleProvider scaleProvider = new ScaleProvider(z2);
         scaleProvider.setOutgoingEndScale(DEFAULT_SCALE);
@@ -27,16 +37,6 @@ public final class MaterialElevationScale extends AbstractC4466h<ScaleProvider> 
 
     private static VisibilityAnimatorProvider createSecondaryAnimatorProvider() {
         return new FadeProvider();
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
-    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
-        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
-    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
-        super.clearAdditionalAnimatorProvider();
     }
 
     @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h

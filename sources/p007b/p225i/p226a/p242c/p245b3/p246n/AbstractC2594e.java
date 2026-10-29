@@ -20,9 +20,6 @@ import p007b.p225i.p226a.p242c.p265v2.AbstractC2958f;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2594e implements InterfaceC2584h {
 
-    /* JADX INFO: renamed from: a */
-    public final ArrayDeque<b> f5906a = new ArrayDeque<>();
-
     /* JADX INFO: renamed from: b */
     public final ArrayDeque<AbstractC2587k> f5907b;
 
@@ -39,9 +36,12 @@ public abstract class AbstractC2594e implements InterfaceC2584h {
     /* JADX INFO: renamed from: f */
     public long f5911f;
 
+    /* JADX INFO: renamed from: a */
+    public final ArrayDeque<b> f5906a = new ArrayDeque<>();
+
     /* JADX INFO: renamed from: b.i.a.c.b3.n.e$b */
     /* JADX INFO: compiled from: CeaDecoder.java */
-    public static final class b extends C2586j implements Comparable<b> {
+    public final class b extends C2586j implements Comparable<b> {
 
         /* JADX INFO: renamed from: s */
         public long f5912s;
@@ -75,7 +75,7 @@ public abstract class AbstractC2594e implements InterfaceC2584h {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.n.e$c */
     /* JADX INFO: compiled from: CeaDecoder.java */
-    public static final class c extends AbstractC2587k {
+    public final class c extends AbstractC2587k {
 
         /* JADX INFO: renamed from: n */
         public AbstractC2958f.a<c> f5913n;
@@ -105,10 +105,65 @@ public abstract class AbstractC2594e implements InterfaceC2584h {
         this.f5908c = new PriorityQueue<>();
     }
 
+    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
+    public void flush() {
+        this.f5911f = 0L;
+        this.f5910e = 0L;
+        while (!this.f5908c.isEmpty()) {
+            b bVarPoll = this.f5908c.poll();
+            int i = C2738e0.f6708a;
+            m2659i(bVarPoll);
+        }
+        b bVar = this.f5909d;
+        if (bVar != null) {
+            m2659i(bVar);
+            this.f5909d = null;
+        }
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final void m2659i(b bVar) {
+        bVar.mo3856p();
+        this.f5906a.add(bVar);
+    }
+
     @Override // p007b.p225i.p226a.p242c.p245b3.InterfaceC2584h
     /* JADX INFO: renamed from: a */
     public void mo2607a(long j) {
         this.f5910e = j;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
+    @Nullable
+    /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
+    public AbstractC2587k mo2608b() throws SubtitleDecoderException {
+        if (this.f5907b.isEmpty()) {
+            return null;
+        }
+        while (!this.f5908c.isEmpty()) {
+            b bVarPeek = this.f5908c.peek();
+            int i = C2738e0.f6708a;
+            if (bVarPeek.f19780n > this.f5910e) {
+                break;
+            }
+            b bVarPoll = this.f5908c.poll();
+            if (bVarPoll.m3555n()) {
+                AbstractC2587k abstractC2587kPollFirst = this.f5907b.pollFirst();
+                abstractC2587kPollFirst.m3551j(4);
+                m2659i(bVarPoll);
+                return abstractC2587kPollFirst;
+            }
+            mo2635f(bVarPoll);
+            if (mo2637h()) {
+                InterfaceC2583g interfaceC2583gMo2634e = mo2634e();
+                AbstractC2587k abstractC2587kPollFirst2 = this.f5907b.pollFirst();
+                abstractC2587kPollFirst2.m2619r(bVarPoll.f19780n, interfaceC2583gMo2634e, RecyclerView.FOREVER_NS);
+                m2659i(bVarPoll);
+                return abstractC2587kPollFirst2;
+            }
+            m2659i(bVarPoll);
+        }
+        return null;
     }
 
     @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
@@ -147,63 +202,8 @@ public abstract class AbstractC2594e implements InterfaceC2584h {
     /* JADX INFO: renamed from: f */
     public abstract void mo2635f(C2586j c2586j);
 
-    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
-    public void flush() {
-        this.f5911f = 0L;
-        this.f5910e = 0L;
-        while (!this.f5908c.isEmpty()) {
-            b bVarPoll = this.f5908c.poll();
-            int i = C2738e0.f6708a;
-            m2659i(bVarPoll);
-        }
-        b bVar = this.f5909d;
-        if (bVar != null) {
-            m2659i(bVar);
-            this.f5909d = null;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
-    @Nullable
-    /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
-    public AbstractC2587k mo2608b() throws SubtitleDecoderException {
-        if (this.f5907b.isEmpty()) {
-            return null;
-        }
-        while (!this.f5908c.isEmpty()) {
-            b bVarPeek = this.f5908c.peek();
-            int i = C2738e0.f6708a;
-            if (bVarPeek.f19780n > this.f5910e) {
-                break;
-            }
-            b bVarPoll = this.f5908c.poll();
-            if (bVarPoll.m3555n()) {
-                AbstractC2587k abstractC2587kPollFirst = this.f5907b.pollFirst();
-                abstractC2587kPollFirst.m3551j(4);
-                m2659i(bVarPoll);
-                return abstractC2587kPollFirst;
-            }
-            mo2635f(bVarPoll);
-            if (mo2637h()) {
-                InterfaceC2583g interfaceC2583gMo2634e = mo2634e();
-                AbstractC2587k abstractC2587kPollFirst2 = this.f5907b.pollFirst();
-                abstractC2587kPollFirst2.m2619r(bVarPoll.f19780n, interfaceC2583gMo2634e, RecyclerView.FOREVER_NS);
-                m2659i(bVarPoll);
-                return abstractC2587kPollFirst2;
-            }
-            m2659i(bVarPoll);
-        }
-        return null;
-    }
-
     /* JADX INFO: renamed from: h */
     public abstract boolean mo2637h();
-
-    /* JADX INFO: renamed from: i */
-    public final void m2659i(b bVar) {
-        bVar.mo3856p();
-        this.f5906a.add(bVar);
-    }
 
     @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
     public void release() {

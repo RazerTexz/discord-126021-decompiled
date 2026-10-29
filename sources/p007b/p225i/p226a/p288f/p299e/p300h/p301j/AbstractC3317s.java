@@ -28,9 +28,9 @@ public abstract class AbstractC3317s {
     /* JADX INFO: renamed from: c */
     public abstract void mo4073c(C3293g.a<?> aVar) throws DeadObjectException;
 
-    /* JADX INFO: renamed from: d */
-    public abstract void mo4113d(@NonNull C3328x0 c3328x0, boolean z2);
-
     /* JADX INFO: renamed from: e */
     public abstract void mo4074e(@NonNull Exception exc);
+
+    /* JADX INFO: renamed from: d */
+    public abstract void mo4113d(@NonNull C3328x0 c3328x0, boolean z2);
 }

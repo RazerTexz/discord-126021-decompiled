@@ -55,7 +55,7 @@ public abstract class AbstractC3067i {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.j0.i$b */
     /* JADX INFO: compiled from: StreamReader.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public C2811j1 f8553a;
@@ -66,7 +66,7 @@ public abstract class AbstractC3067i {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.j0.i$c */
     /* JADX INFO: compiled from: StreamReader.java */
-    public static final class c implements InterfaceC3065g {
+    public final class c implements InterfaceC3065g {
         public c(a aVar) {
         }
 
@@ -93,11 +93,6 @@ public abstract class AbstractC3067i {
         return (((long) this.f8548i) * j) / 1000000;
     }
 
-    /* JADX INFO: renamed from: b */
-    public void mo3747b(long j) {
-        this.f8546g = j;
-    }
-
     /* JADX INFO: renamed from: c */
     public abstract long mo3737c(C2757x c2757x);
 
@@ -116,5 +111,10 @@ public abstract class AbstractC3067i {
         }
         this.f8544e = -1L;
         this.f8546g = 0L;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void mo3747b(long j) {
+        this.f8546g = j;
     }
 }

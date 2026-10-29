@@ -17,6 +17,16 @@ public class C11339b implements InterfaceC11338a {
         }
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
+    public InterfaceC11344g getAnnotations() {
+        InterfaceC11344g interfaceC11344g = this.f22716j;
+        if (interfaceC11344g != null) {
+            return interfaceC11344g;
+        }
+        m9384a(1);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9384a(int i) {
         String str = i != 1 ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
@@ -38,15 +48,5 @@ public class C11339b implements InterfaceC11338a {
         if (i == 1) {
             throw new IllegalStateException(str2);
         }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
-    public InterfaceC11344g getAnnotations() {
-        InterfaceC11344g interfaceC11344g = this.f22716j;
-        if (interfaceC11344g != null) {
-            return interfaceC11344g;
-        }
-        m9384a(1);
-        throw null;
     }
 }

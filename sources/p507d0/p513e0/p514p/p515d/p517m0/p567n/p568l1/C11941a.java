@@ -50,11 +50,11 @@ public class C11941a extends AbstractC11921f implements InterfaceC11943c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.a$a */
     /* JADX INFO: compiled from: ClassicTypeCheckerContext.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: ClassicTypeCheckerContext.kt */
-        public static final class C13337a extends AbstractC11921f.b.a {
+        public final class C13337a extends AbstractC11921f.b.a {
 
             /* JADX INFO: renamed from: a */
             public final /* synthetic */ InterfaceC11943c f24804a;

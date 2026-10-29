@@ -17,7 +17,7 @@ public final class BottomNavViewObserver implements TabsHostBottomNavigationView
     private final BehaviorSubject<Integer> heightSubject = BehaviorSubject.m11130l0(0);
 
     /* JADX INFO: compiled from: BottomNavViewObserver.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

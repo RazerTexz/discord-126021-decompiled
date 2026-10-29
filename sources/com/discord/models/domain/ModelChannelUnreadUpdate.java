@@ -13,7 +13,7 @@ public final /* data */ class ModelChannelUnreadUpdate {
     private final List<ModelReadState> channelReadStates;
 
     /* JADX INFO: compiled from: ModelChannelUnreadUpdate.kt */
-    public static final class Parser implements Model.Parser<ModelChannelUnreadUpdate> {
+    public final class Parser implements Model.Parser<ModelChannelUnreadUpdate> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -56,16 +56,16 @@ public final /* data */ class ModelChannelUnreadUpdate {
         this.channelReadStates = list;
     }
 
+    public final List<ModelReadState> component1() {
+        return this.channelReadStates;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelChannelUnreadUpdate copy$default(ModelChannelUnreadUpdate modelChannelUnreadUpdate, List list, int i, Object obj) {
         if ((i & 1) != 0) {
             list = modelChannelUnreadUpdate.channelReadStates;
         }
         return modelChannelUnreadUpdate.copy(list);
-    }
-
-    public final List<ModelReadState> component1() {
-        return this.channelReadStates;
     }
 
     public final ModelChannelUnreadUpdate copy(List<ModelReadState> channelReadStates) {

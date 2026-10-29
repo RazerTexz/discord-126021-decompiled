@@ -37,6 +37,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class Transition implements Cloneable {
     public static final boolean DBG = false;
+    private static final int[] DEFAULT_MATCH_ORDER = {2, 1, 3, 4};
     private static final String LOG_TAG = "Transition";
     private static final int MATCH_FIRST = 1;
     public static final int MATCH_ID = 3;
@@ -53,7 +54,6 @@ public abstract class Transition implements Cloneable {
     private ArrayMap<String, String> mNameOverrides;
     public TransitionPropagation mPropagation;
     private ArrayList<TransitionValues> mStartValuesList;
-    private static final int[] DEFAULT_MATCH_ORDER = {2, 1, 3, 4};
     private static final PathMotion STRAIGHT_PATH_MOTION = new PathMotion() { // from class: androidx.transition.Transition.1
         @Override // androidx.transition.PathMotion
         public Path getPath(float f, float f2, float f3, float f4) {
@@ -63,9 +63,9 @@ public abstract class Transition implements Cloneable {
             return path;
         }
     };
-    private static ThreadLocal<ArrayMap<Animator, AnimationInfo>> sRunningAnimators = new ThreadLocal<>();
     private String mName = getClass().getName();
     private long mStartDelay = -1;
+    private static ThreadLocal<ArrayMap<Animator, AnimationInfo>> sRunningAnimators = new ThreadLocal<>();
     public long mDuration = -1;
     private TimeInterpolator mInterpolator = null;
     public ArrayList<Integer> mTargetIds = new ArrayList<>();
@@ -93,7 +93,7 @@ public abstract class Transition implements Cloneable {
     private ArrayList<Animator> mAnimators = new ArrayList<>();
     private PathMotion mPathMotion = STRAIGHT_PATH_MOTION;
 
-    public static class AnimationInfo {
+    public class AnimationInfo {
         public String mName;
         public Transition mTransition;
         public TransitionValues mValues;
@@ -109,7 +109,7 @@ public abstract class Transition implements Cloneable {
         }
     }
 
-    public static class ArrayListManager {
+    public class ArrayListManager {
         private ArrayListManager() {
         }
 
@@ -135,7 +135,7 @@ public abstract class Transition implements Cloneable {
         }
     }
 
-    public static abstract class EpicenterCallback {
+    public abstract class EpicenterCallback {
         public abstract Rect onGetEpicenter(@NonNull Transition transition);
     }
 
@@ -157,6 +157,21 @@ public abstract class Transition implements Cloneable {
     }
 
     public Transition() {
+    }
+
+    @NonNull
+    public Transition addListener(@NonNull TransitionListener transitionListener) {
+        if (this.mListeners == null) {
+            this.mListeners = new ArrayList<>();
+        }
+        this.mListeners.add(transitionListener);
+        return this;
+    }
+
+    @NonNull
+    public Transition addTarget(@NonNull View view) {
+        this.mTargets.add(view);
+        return this;
     }
 
     private void addUnmatched(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2) {
@@ -222,6 +237,49 @@ public abstract class Transition implements Cloneable {
         return false;
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void animate(Animator animator) {
+        if (animator == null) {
+            end();
+            return;
+        }
+        if (getDuration() >= 0) {
+            animator.setDuration(getDuration());
+        }
+        if (getStartDelay() >= 0) {
+            animator.setStartDelay(animator.getStartDelay() + getStartDelay());
+        }
+        if (getInterpolator() != null) {
+            animator.setInterpolator(getInterpolator());
+        }
+        animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.Transition.3
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationEnd(Animator animator2) {
+                Transition.this.end();
+                animator2.removeListener(this);
+            }
+        });
+        animator.start();
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void cancel() {
+        for (int size = this.mCurrentAnimators.size() - 1; size >= 0; size--) {
+            this.mCurrentAnimators.get(size).cancel();
+        }
+        ArrayList<TransitionListener> arrayList = this.mListeners;
+        if (arrayList == null || arrayList.size() <= 0) {
+            return;
+        }
+        ArrayList arrayList2 = (ArrayList) this.mListeners.clone();
+        int size2 = arrayList2.size();
+        for (int i = 0; i < size2; i++) {
+            ((TransitionListener) arrayList2.get(i)).onTransitionCancel(this);
+        }
+    }
+
+    public abstract void captureEndValues(@NonNull TransitionValues transitionValues);
+
     private void captureHierarchy(View view, boolean z2) {
         if (view == null) {
             return;
@@ -279,253 +337,6 @@ public abstract class Transition implements Cloneable {
             }
         }
     }
-
-    private ArrayList<Integer> excludeId(ArrayList<Integer> arrayList, int i, boolean z2) {
-        if (i > 0) {
-            return z2 ? ArrayListManager.add(arrayList, Integer.valueOf(i)) : ArrayListManager.remove(arrayList, Integer.valueOf(i));
-        }
-        return arrayList;
-    }
-
-    private static <T> ArrayList<T> excludeObject(ArrayList<T> arrayList, T t, boolean z2) {
-        if (t != null) {
-            return z2 ? ArrayListManager.add(arrayList, t) : ArrayListManager.remove(arrayList, t);
-        }
-        return arrayList;
-    }
-
-    private ArrayList<Class<?>> excludeType(ArrayList<Class<?>> arrayList, Class<?> cls, boolean z2) {
-        if (cls != null) {
-            return z2 ? ArrayListManager.add(arrayList, cls) : ArrayListManager.remove(arrayList, cls);
-        }
-        return arrayList;
-    }
-
-    private ArrayList<View> excludeView(ArrayList<View> arrayList, View view, boolean z2) {
-        if (view != null) {
-            return z2 ? ArrayListManager.add(arrayList, view) : ArrayListManager.remove(arrayList, view);
-        }
-        return arrayList;
-    }
-
-    private static ArrayMap<Animator, AnimationInfo> getRunningAnimators() {
-        ArrayMap<Animator, AnimationInfo> arrayMap = sRunningAnimators.get();
-        if (arrayMap != null) {
-            return arrayMap;
-        }
-        ArrayMap<Animator, AnimationInfo> arrayMap2 = new ArrayMap<>();
-        sRunningAnimators.set(arrayMap2);
-        return arrayMap2;
-    }
-
-    private static boolean isValidMatch(int i) {
-        return i >= 1 && i <= 4;
-    }
-
-    private static boolean isValueChanged(TransitionValues transitionValues, TransitionValues transitionValues2, String str) {
-        Object obj = transitionValues.values.get(str);
-        Object obj2 = transitionValues2.values.get(str);
-        if (obj == null && obj2 == null) {
-            return false;
-        }
-        if (obj == null || obj2 == null) {
-            return true;
-        }
-        return true ^ obj.equals(obj2);
-    }
-
-    private void matchIds(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, SparseArray<View> sparseArray, SparseArray<View> sparseArray2) {
-        View view;
-        int size = sparseArray.size();
-        for (int i = 0; i < size; i++) {
-            View viewValueAt = sparseArray.valueAt(i);
-            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = sparseArray2.get(sparseArray.keyAt(i))) != null && isValidTarget(view)) {
-                TransitionValues transitionValues = arrayMap.get(viewValueAt);
-                TransitionValues transitionValues2 = arrayMap2.get(view);
-                if (transitionValues != null && transitionValues2 != null) {
-                    this.mStartValuesList.add(transitionValues);
-                    this.mEndValuesList.add(transitionValues2);
-                    arrayMap.remove(viewValueAt);
-                    arrayMap2.remove(view);
-                }
-            }
-        }
-    }
-
-    private void matchInstances(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2) {
-        TransitionValues transitionValuesRemove;
-        for (int size = arrayMap.size() - 1; size >= 0; size--) {
-            View viewKeyAt = arrayMap.keyAt(size);
-            if (viewKeyAt != null && isValidTarget(viewKeyAt) && (transitionValuesRemove = arrayMap2.remove(viewKeyAt)) != null && isValidTarget(transitionValuesRemove.view)) {
-                this.mStartValuesList.add(arrayMap.removeAt(size));
-                this.mEndValuesList.add(transitionValuesRemove);
-            }
-        }
-    }
-
-    private void matchItemIds(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, LongSparseArray<View> longSparseArray, LongSparseArray<View> longSparseArray2) {
-        View view;
-        int size = longSparseArray.size();
-        for (int i = 0; i < size; i++) {
-            View viewValueAt = longSparseArray.valueAt(i);
-            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = longSparseArray2.get(longSparseArray.keyAt(i))) != null && isValidTarget(view)) {
-                TransitionValues transitionValues = arrayMap.get(viewValueAt);
-                TransitionValues transitionValues2 = arrayMap2.get(view);
-                if (transitionValues != null && transitionValues2 != null) {
-                    this.mStartValuesList.add(transitionValues);
-                    this.mEndValuesList.add(transitionValues2);
-                    arrayMap.remove(viewValueAt);
-                    arrayMap2.remove(view);
-                }
-            }
-        }
-    }
-
-    private void matchNames(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, ArrayMap<String, View> arrayMap3, ArrayMap<String, View> arrayMap4) {
-        View view;
-        int size = arrayMap3.size();
-        for (int i = 0; i < size; i++) {
-            View viewValueAt = arrayMap3.valueAt(i);
-            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = arrayMap4.get(arrayMap3.keyAt(i))) != null && isValidTarget(view)) {
-                TransitionValues transitionValues = arrayMap.get(viewValueAt);
-                TransitionValues transitionValues2 = arrayMap2.get(view);
-                if (transitionValues != null && transitionValues2 != null) {
-                    this.mStartValuesList.add(transitionValues);
-                    this.mEndValuesList.add(transitionValues2);
-                    arrayMap.remove(viewValueAt);
-                    arrayMap2.remove(view);
-                }
-            }
-        }
-    }
-
-    private void matchStartAndEnd(TransitionValuesMaps transitionValuesMaps, TransitionValuesMaps transitionValuesMaps2) {
-        ArrayMap<View, TransitionValues> arrayMap = new ArrayMap<>(transitionValuesMaps.mViewValues);
-        ArrayMap<View, TransitionValues> arrayMap2 = new ArrayMap<>(transitionValuesMaps2.mViewValues);
-        int i = 0;
-        while (true) {
-            int[] iArr = this.mMatchOrder;
-            if (i >= iArr.length) {
-                addUnmatched(arrayMap, arrayMap2);
-                return;
-            }
-            int i2 = iArr[i];
-            if (i2 == 1) {
-                matchInstances(arrayMap, arrayMap2);
-            } else if (i2 == 2) {
-                matchNames(arrayMap, arrayMap2, transitionValuesMaps.mNameValues, transitionValuesMaps2.mNameValues);
-            } else if (i2 == 3) {
-                matchIds(arrayMap, arrayMap2, transitionValuesMaps.mIdValues, transitionValuesMaps2.mIdValues);
-            } else if (i2 == 4) {
-                matchItemIds(arrayMap, arrayMap2, transitionValuesMaps.mItemIdValues, transitionValuesMaps2.mItemIdValues);
-            }
-            i++;
-        }
-    }
-
-    private static int[] parseMatchOrder(String str) {
-        StringTokenizer stringTokenizer = new StringTokenizer(str, ",");
-        int[] iArr = new int[stringTokenizer.countTokens()];
-        int i = 0;
-        while (stringTokenizer.hasMoreTokens()) {
-            String strTrim = stringTokenizer.nextToken().trim();
-            if ("id".equalsIgnoreCase(strTrim)) {
-                iArr[i] = 3;
-            } else if (MATCH_INSTANCE_STR.equalsIgnoreCase(strTrim)) {
-                iArr[i] = 1;
-            } else if ("name".equalsIgnoreCase(strTrim)) {
-                iArr[i] = 2;
-            } else if (MATCH_ITEM_ID_STR.equalsIgnoreCase(strTrim)) {
-                iArr[i] = 4;
-            } else {
-                if (!strTrim.isEmpty()) {
-                    throw new InflateException(C1643a.m886y("Unknown match type in matchOrder: '", strTrim, "'"));
-                }
-                int[] iArr2 = new int[iArr.length - 1];
-                System.arraycopy(iArr, 0, iArr2, 0, i);
-                i--;
-                iArr = iArr2;
-            }
-            i++;
-        }
-        return iArr;
-    }
-
-    private void runAnimator(Animator animator, final ArrayMap<Animator, AnimationInfo> arrayMap) {
-        if (animator != null) {
-            animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.Transition.2
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationEnd(Animator animator2) {
-                    arrayMap.remove(animator2);
-                    Transition.this.mCurrentAnimators.remove(animator2);
-                }
-
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationStart(Animator animator2) {
-                    Transition.this.mCurrentAnimators.add(animator2);
-                }
-            });
-            animate(animator);
-        }
-    }
-
-    @NonNull
-    public Transition addListener(@NonNull TransitionListener transitionListener) {
-        if (this.mListeners == null) {
-            this.mListeners = new ArrayList<>();
-        }
-        this.mListeners.add(transitionListener);
-        return this;
-    }
-
-    @NonNull
-    public Transition addTarget(@NonNull View view) {
-        this.mTargets.add(view);
-        return this;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void animate(Animator animator) {
-        if (animator == null) {
-            end();
-            return;
-        }
-        if (getDuration() >= 0) {
-            animator.setDuration(getDuration());
-        }
-        if (getStartDelay() >= 0) {
-            animator.setStartDelay(animator.getStartDelay() + getStartDelay());
-        }
-        if (getInterpolator() != null) {
-            animator.setInterpolator(getInterpolator());
-        }
-        animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.Transition.3
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator2) {
-                Transition.this.end();
-                animator2.removeListener(this);
-            }
-        });
-        animator.start();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void cancel() {
-        for (int size = this.mCurrentAnimators.size() - 1; size >= 0; size--) {
-            this.mCurrentAnimators.get(size).cancel();
-        }
-        ArrayList<TransitionListener> arrayList = this.mListeners;
-        if (arrayList == null || arrayList.size() <= 0) {
-            return;
-        }
-        ArrayList arrayList2 = (ArrayList) this.mListeners.clone();
-        int size2 = arrayList2.size();
-        for (int i = 0; i < size2; i++) {
-            ((TransitionListener) arrayList2.get(i)).onTransitionCancel(this);
-        }
-    }
-
-    public abstract void captureEndValues(@NonNull TransitionValues transitionValues);
 
     public void capturePropagationValues(TransitionValues transitionValues) {
         String[] propagationProperties;
@@ -764,10 +575,38 @@ public abstract class Transition implements Cloneable {
         return this;
     }
 
+    private ArrayList<Integer> excludeId(ArrayList<Integer> arrayList, int i, boolean z2) {
+        if (i > 0) {
+            return z2 ? ArrayListManager.add(arrayList, Integer.valueOf(i)) : ArrayListManager.remove(arrayList, Integer.valueOf(i));
+        }
+        return arrayList;
+    }
+
+    private static <T> ArrayList<T> excludeObject(ArrayList<T> arrayList, T t, boolean z2) {
+        if (t != null) {
+            return z2 ? ArrayListManager.add(arrayList, t) : ArrayListManager.remove(arrayList, t);
+        }
+        return arrayList;
+    }
+
     @NonNull
     public Transition excludeTarget(@NonNull View view, boolean z2) {
         this.mTargetExcludes = excludeView(this.mTargetExcludes, view, z2);
         return this;
+    }
+
+    private ArrayList<Class<?>> excludeType(ArrayList<Class<?>> arrayList, Class<?> cls, boolean z2) {
+        if (cls != null) {
+            return z2 ? ArrayListManager.add(arrayList, cls) : ArrayListManager.remove(arrayList, cls);
+        }
+        return arrayList;
+    }
+
+    private ArrayList<View> excludeView(ArrayList<View> arrayList, View view, boolean z2) {
+        if (view != null) {
+            return z2 ? ArrayListManager.add(arrayList, view) : ArrayListManager.remove(arrayList, view);
+        }
+        return arrayList;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -854,6 +693,16 @@ public abstract class Transition implements Cloneable {
         return this.mPropagation;
     }
 
+    private static ArrayMap<Animator, AnimationInfo> getRunningAnimators() {
+        ArrayMap<Animator, AnimationInfo> arrayMap = sRunningAnimators.get();
+        if (arrayMap != null) {
+            return arrayMap;
+        }
+        ArrayMap<Animator, AnimationInfo> arrayMap2 = new ArrayMap<>();
+        sRunningAnimators.set(arrayMap2);
+        return arrayMap2;
+    }
+
     public long getStartDelay() {
         return this.mStartDelay;
     }
@@ -913,6 +762,10 @@ public abstract class Transition implements Cloneable {
         return true;
     }
 
+    private static boolean isValidMatch(int i) {
+        return i >= 1 && i <= 4;
+    }
+
     public boolean isValidTarget(View view) {
         ArrayList<Class<?>> arrayList;
         ArrayList<String> arrayList2;
@@ -952,6 +805,135 @@ public abstract class Transition implements Cloneable {
             }
         }
         return false;
+    }
+
+    private static boolean isValueChanged(TransitionValues transitionValues, TransitionValues transitionValues2, String str) {
+        Object obj = transitionValues.values.get(str);
+        Object obj2 = transitionValues2.values.get(str);
+        if (obj == null && obj2 == null) {
+            return false;
+        }
+        if (obj == null || obj2 == null) {
+            return true;
+        }
+        return true ^ obj.equals(obj2);
+    }
+
+    private void matchIds(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, SparseArray<View> sparseArray, SparseArray<View> sparseArray2) {
+        View view;
+        int size = sparseArray.size();
+        for (int i = 0; i < size; i++) {
+            View viewValueAt = sparseArray.valueAt(i);
+            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = sparseArray2.get(sparseArray.keyAt(i))) != null && isValidTarget(view)) {
+                TransitionValues transitionValues = arrayMap.get(viewValueAt);
+                TransitionValues transitionValues2 = arrayMap2.get(view);
+                if (transitionValues != null && transitionValues2 != null) {
+                    this.mStartValuesList.add(transitionValues);
+                    this.mEndValuesList.add(transitionValues2);
+                    arrayMap.remove(viewValueAt);
+                    arrayMap2.remove(view);
+                }
+            }
+        }
+    }
+
+    private void matchInstances(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2) {
+        TransitionValues transitionValuesRemove;
+        for (int size = arrayMap.size() - 1; size >= 0; size--) {
+            View viewKeyAt = arrayMap.keyAt(size);
+            if (viewKeyAt != null && isValidTarget(viewKeyAt) && (transitionValuesRemove = arrayMap2.remove(viewKeyAt)) != null && isValidTarget(transitionValuesRemove.view)) {
+                this.mStartValuesList.add(arrayMap.removeAt(size));
+                this.mEndValuesList.add(transitionValuesRemove);
+            }
+        }
+    }
+
+    private void matchItemIds(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, LongSparseArray<View> longSparseArray, LongSparseArray<View> longSparseArray2) {
+        View view;
+        int size = longSparseArray.size();
+        for (int i = 0; i < size; i++) {
+            View viewValueAt = longSparseArray.valueAt(i);
+            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = longSparseArray2.get(longSparseArray.keyAt(i))) != null && isValidTarget(view)) {
+                TransitionValues transitionValues = arrayMap.get(viewValueAt);
+                TransitionValues transitionValues2 = arrayMap2.get(view);
+                if (transitionValues != null && transitionValues2 != null) {
+                    this.mStartValuesList.add(transitionValues);
+                    this.mEndValuesList.add(transitionValues2);
+                    arrayMap.remove(viewValueAt);
+                    arrayMap2.remove(view);
+                }
+            }
+        }
+    }
+
+    private void matchNames(ArrayMap<View, TransitionValues> arrayMap, ArrayMap<View, TransitionValues> arrayMap2, ArrayMap<String, View> arrayMap3, ArrayMap<String, View> arrayMap4) {
+        View view;
+        int size = arrayMap3.size();
+        for (int i = 0; i < size; i++) {
+            View viewValueAt = arrayMap3.valueAt(i);
+            if (viewValueAt != null && isValidTarget(viewValueAt) && (view = arrayMap4.get(arrayMap3.keyAt(i))) != null && isValidTarget(view)) {
+                TransitionValues transitionValues = arrayMap.get(viewValueAt);
+                TransitionValues transitionValues2 = arrayMap2.get(view);
+                if (transitionValues != null && transitionValues2 != null) {
+                    this.mStartValuesList.add(transitionValues);
+                    this.mEndValuesList.add(transitionValues2);
+                    arrayMap.remove(viewValueAt);
+                    arrayMap2.remove(view);
+                }
+            }
+        }
+    }
+
+    private void matchStartAndEnd(TransitionValuesMaps transitionValuesMaps, TransitionValuesMaps transitionValuesMaps2) {
+        ArrayMap<View, TransitionValues> arrayMap = new ArrayMap<>(transitionValuesMaps.mViewValues);
+        ArrayMap<View, TransitionValues> arrayMap2 = new ArrayMap<>(transitionValuesMaps2.mViewValues);
+        int i = 0;
+        while (true) {
+            int[] iArr = this.mMatchOrder;
+            if (i >= iArr.length) {
+                addUnmatched(arrayMap, arrayMap2);
+                return;
+            }
+            int i2 = iArr[i];
+            if (i2 == 1) {
+                matchInstances(arrayMap, arrayMap2);
+            } else if (i2 == 2) {
+                matchNames(arrayMap, arrayMap2, transitionValuesMaps.mNameValues, transitionValuesMaps2.mNameValues);
+            } else if (i2 == 3) {
+                matchIds(arrayMap, arrayMap2, transitionValuesMaps.mIdValues, transitionValuesMaps2.mIdValues);
+            } else if (i2 == 4) {
+                matchItemIds(arrayMap, arrayMap2, transitionValuesMaps.mItemIdValues, transitionValuesMaps2.mItemIdValues);
+            }
+            i++;
+        }
+    }
+
+    private static int[] parseMatchOrder(String str) {
+        StringTokenizer stringTokenizer = new StringTokenizer(str, ",");
+        int[] iArr = new int[stringTokenizer.countTokens()];
+        int i = 0;
+        while (stringTokenizer.hasMoreTokens()) {
+            String strTrim = stringTokenizer.nextToken().trim();
+            if ("id".equalsIgnoreCase(strTrim)) {
+                iArr[i] = 3;
+            } else if (MATCH_INSTANCE_STR.equalsIgnoreCase(strTrim)) {
+                iArr[i] = 1;
+            } else if ("name".equalsIgnoreCase(strTrim)) {
+                iArr[i] = 2;
+            } else if (MATCH_ITEM_ID_STR.equalsIgnoreCase(strTrim)) {
+                iArr[i] = 4;
+            } else {
+                if (!strTrim.isEmpty()) {
+                    throw new InflateException(C1643a.m886y("Unknown match type in matchOrder: '", strTrim, "'"));
+                }
+                int[] iArr2 = new int[iArr.length - 1];
+                System.arraycopy(iArr, 0, iArr2, 0, i);
+                i--;
+                iArr = iArr2;
+            }
+            i++;
+        }
+        return iArr;
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -1052,6 +1034,24 @@ public abstract class Transition implements Cloneable {
                 }
             }
             this.mPaused = false;
+        }
+    }
+
+    private void runAnimator(Animator animator, final ArrayMap<Animator, AnimationInfo> arrayMap) {
+        if (animator != null) {
+            animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.Transition.2
+                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+                public void onAnimationEnd(Animator animator2) {
+                    arrayMap.remove(animator2);
+                    Transition.this.mCurrentAnimators.remove(animator2);
+                }
+
+                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+                public void onAnimationStart(Animator animator2) {
+                    Transition.this.mCurrentAnimators.add(animator2);
+                }
+            });
+            animate(animator);
         }
     }
 
@@ -1156,6 +1156,18 @@ public abstract class Transition implements Cloneable {
         return this;
     }
 
+    @NonNull
+    public Transition excludeChildren(@IdRes int i, boolean z2) {
+        this.mTargetIdChildExcludes = excludeId(this.mTargetIdChildExcludes, i, z2);
+        return this;
+    }
+
+    @NonNull
+    public Transition excludeTarget(@IdRes int i, boolean z2) {
+        this.mTargetIdExcludes = excludeId(this.mTargetIdExcludes, i, z2);
+        return this;
+    }
+
     @Override // 
     /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
     public Transition mo11382clone() {
@@ -1170,18 +1182,6 @@ public abstract class Transition implements Cloneable {
         } catch (CloneNotSupportedException unused) {
             return null;
         }
-    }
-
-    @NonNull
-    public Transition excludeChildren(@IdRes int i, boolean z2) {
-        this.mTargetIdChildExcludes = excludeId(this.mTargetIdChildExcludes, i, z2);
-        return this;
-    }
-
-    @NonNull
-    public Transition excludeTarget(@IdRes int i, boolean z2) {
-        this.mTargetIdExcludes = excludeId(this.mTargetIdExcludes, i, z2);
-        return this;
     }
 
     @NonNull

@@ -27,16 +27,6 @@ public final /* data */ class EncryptionSettings {
         return encryptionSettings.copy(str, iArr);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getMode() {
-        return this.mode;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int[] getSecretKey() {
-        return this.secretKey;
-    }
-
     public final EncryptionSettings copy(String mode, int[] secretKey) {
         C12238m.checkNotNullParameter(mode, "mode");
         C12238m.checkNotNullParameter(secretKey, "secretKey");
@@ -54,8 +44,18 @@ public final /* data */ class EncryptionSettings {
         return C12238m.areEqual(this.mode, encryptionSettings.mode) && C12238m.areEqual(this.secretKey, encryptionSettings.secretKey);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getMode() {
         return this.mode;
+    }
+
+    public final String getMode() {
+        return this.mode;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int[] getSecretKey() {
+        return this.secretKey;
     }
 
     public final int[] getSecretKey() {

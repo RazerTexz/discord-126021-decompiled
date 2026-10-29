@@ -21,7 +21,7 @@ public final /* data */ class UserExperimentDto {
     private final int revision;
 
     /* JADX INFO: compiled from: UserExperimentDto.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -78,11 +78,11 @@ public final /* data */ class UserExperimentDto {
     }
 
     /* JADX INFO: compiled from: UserExperimentDto.kt */
-    public static final class TypeAdapterFactory implements InterfaceC4911o {
+    public final class TypeAdapterFactory implements InterfaceC4911o {
         public static final TypeAdapterFactory INSTANCE = new TypeAdapterFactory();
 
         /* JADX INFO: compiled from: UserExperimentDto.kt */
-        public static final class TypeAdapter extends com.google.gson.TypeAdapter<UserExperimentDto> {
+        public final class TypeAdapter extends com.google.gson.TypeAdapter<UserExperimentDto> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // com.google.gson.TypeAdapter
             public UserExperimentDto read(JsonReader in) {
@@ -133,26 +133,6 @@ public final /* data */ class UserExperimentDto {
         return userExperimentDto.copy(j2, i5, i6, i3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getNameHash() {
-        return this.nameHash;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getRevision() {
-        return this.revision;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getBucket() {
-        return this.bucket;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getPopulation() {
-        return this.population;
-    }
-
     public final UserExperimentDto copy(long nameHash, int revision, int bucket, int population) {
         return new UserExperimentDto(nameHash, revision, bucket, population);
     }
@@ -168,16 +148,36 @@ public final /* data */ class UserExperimentDto {
         return this.nameHash == userExperimentDto.nameHash && this.revision == userExperimentDto.revision && this.bucket == userExperimentDto.bucket && this.population == userExperimentDto.population;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getBucket() {
         return this.bucket;
+    }
+
+    public final int getBucket() {
+        return this.bucket;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getNameHash() {
+        return this.nameHash;
     }
 
     public final long getNameHash() {
         return this.nameHash;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getPopulation() {
         return this.population;
+    }
+
+    public final int getPopulation() {
+        return this.population;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getRevision() {
+        return this.revision;
     }
 
     public final int getRevision() {

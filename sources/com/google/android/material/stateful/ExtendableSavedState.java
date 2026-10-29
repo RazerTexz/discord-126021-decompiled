@@ -11,13 +11,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ExtendableSavedState extends AbsSavedState {
-    public static final Parcelable.Creator<ExtendableSavedState> CREATOR = new C11004a();
 
     @NonNull
     public final SimpleArrayMap<String, Bundle> extendableStates;
+    public static final Parcelable.Creator<ExtendableSavedState> CREATOR = new C11004a();
 
     /* JADX INFO: renamed from: com.google.android.material.stateful.ExtendableSavedState$a */
-    public static class C11004a implements Parcelable.ClassLoaderCreator<ExtendableSavedState> {
+    public final class C11004a implements Parcelable.ClassLoaderCreator<ExtendableSavedState> {
         @Override // android.os.Parcelable.ClassLoaderCreator
         @NonNull
         public ExtendableSavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {

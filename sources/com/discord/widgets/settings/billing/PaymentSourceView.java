@@ -34,6 +34,22 @@ public final class PaymentSourceView extends ConstraintLayout {
         this(context, (i2 & 2) != 0 ? null : attributeSet, (i2 & 4) != 0 ? 0 : i);
     }
 
+    public final void bind(ModelPaymentSource paymentSource, boolean isPremium) {
+        C12238m.checkNotNullParameter(paymentSource, "paymentSource");
+        this.binding.f15208b.setImageResource(PremiumUtilsKt.getPaymentSourceIcon(paymentSource));
+        TextView textView = this.binding.f15209c;
+        C12238m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewInvalid");
+        textView.setVisibility(paymentSource.getInvalid() ? 0 : 8);
+        ImageView imageView = this.binding.f15210d;
+        C12238m.checkNotNullExpressionValue(imageView, "binding.paymentSourceViewPremium");
+        imageView.setVisibility(isPremium ? 0 : 8);
+        if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourcePaypal) {
+            bindPaypal((ModelPaymentSource.ModelPaymentSourcePaypal) paymentSource);
+        } else if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourceCard) {
+            bindCard((ModelPaymentSource.ModelPaymentSourceCard) paymentSource);
+        }
+    }
+
     private final void bindCard(ModelPaymentSource.ModelPaymentSourceCard paymentSource) {
         TextView textView = this.binding.f15212f;
         C12238m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewTitle");
@@ -55,22 +71,6 @@ public final class PaymentSourceView extends ConstraintLayout {
         TextView textView = this.binding.f15211e;
         C12238m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewSubtext");
         textView.setText(paymentSource.getEmail());
-    }
-
-    public final void bind(ModelPaymentSource paymentSource, boolean isPremium) {
-        C12238m.checkNotNullParameter(paymentSource, "paymentSource");
-        this.binding.f15208b.setImageResource(PremiumUtilsKt.getPaymentSourceIcon(paymentSource));
-        TextView textView = this.binding.f15209c;
-        C12238m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewInvalid");
-        textView.setVisibility(paymentSource.getInvalid() ? 0 : 8);
-        ImageView imageView = this.binding.f15210d;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.paymentSourceViewPremium");
-        imageView.setVisibility(isPremium ? 0 : 8);
-        if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourcePaypal) {
-            bindPaypal((ModelPaymentSource.ModelPaymentSourcePaypal) paymentSource);
-        } else if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourceCard) {
-            bindCard((ModelPaymentSource.ModelPaymentSourceCard) paymentSource);
-        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

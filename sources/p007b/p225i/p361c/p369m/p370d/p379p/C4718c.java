@@ -17,15 +17,15 @@ public final class C4718c implements Flushable {
     /* JADX INFO: renamed from: k */
     public final int f12691k;
 
-    /* JADX INFO: renamed from: l */
-    public int f12692l = 0;
-
     /* JADX INFO: renamed from: m */
     public final OutputStream f12693m;
 
+    /* JADX INFO: renamed from: l */
+    public int f12692l = 0;
+
     /* JADX INFO: renamed from: b.i.c.m.d.p.c$a */
     /* JADX INFO: compiled from: CodedOutputStream.java */
-    public static class a extends IOException {
+    public class a extends IOException {
         private static final long serialVersionUID = -6947486886997889499L;
 
         public a() {
@@ -37,6 +37,13 @@ public final class C4718c implements Flushable {
         this.f12693m = outputStream;
         this.f12690j = bArr;
         this.f12691k = bArr.length;
+    }
+
+    @Override // java.io.Flushable
+    public void flush() throws IOException {
+        if (this.f12693m != null) {
+            m6647j();
+        }
     }
 
     /* JADX INFO: renamed from: a */
@@ -107,13 +114,6 @@ public final class C4718c implements Flushable {
     /* JADX INFO: renamed from: i */
     public static C4718c m6646i(OutputStream outputStream) {
         return new C4718c(outputStream, new byte[4096]);
-    }
-
-    @Override // java.io.Flushable
-    public void flush() throws IOException {
-        if (this.f12693m != null) {
-            m6647j();
-        }
     }
 
     /* JADX INFO: renamed from: j */

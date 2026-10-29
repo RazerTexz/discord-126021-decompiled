@@ -43,7 +43,7 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifCategoryViewModel$1 */
     /* JADX INFO: compiled from: GifCategoryViewModel.kt */
-    public static final class C78681 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78681 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78681() {
             super(1);
         }
@@ -62,7 +62,7 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifCategoryViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -98,12 +98,16 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifCategoryViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final List<ModelGif> gifs;
 
         public StoreState(List<ModelGif> list) {
             C12238m.checkNotNullParameter(list, "gifs");
             this.gifs = list;
+        }
+
+        public final List<ModelGif> component1() {
+            return this.gifs;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -112,10 +116,6 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
                 list = storeState.gifs;
             }
             return storeState.copy(list);
-        }
-
-        public final List<ModelGif> component1() {
-            return this.gifs;
         }
 
         public final StoreState copy(List<ModelGif> gifs) {
@@ -148,7 +148,7 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifCategoryViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
 
         /* JADX INFO: renamed from: gifCount$delegate, reason: from kotlin metadata */
         private final Lazy gifCount;
@@ -160,19 +160,16 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
             this.gifCount = C12083g.lazy(new GifCategoryViewModel$ViewState$gifCount$2(this));
         }
 
+        public final List<GifAdapterItem.GifItem> component1() {
+            return this.gifItems;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ViewState copy$default(ViewState viewState, List list, int i, Object obj) {
             if ((i & 1) != 0) {
                 list = viewState.gifItems;
             }
             return viewState.copy(list);
-        }
-
-        public static /* synthetic */ void getGifCount$annotations() {
-        }
-
-        public final List<GifAdapterItem.GifItem> component1() {
-            return this.gifItems;
         }
 
         public final ViewState copy(List<GifAdapterItem.GifItem> gifItems) {
@@ -185,6 +182,9 @@ public final class GifCategoryViewModel extends AbstractC0859d0<ViewState> {
                 return (other instanceof ViewState) && C12238m.areEqual(this.gifItems, ((ViewState) other).gifItems);
             }
             return true;
+        }
+
+        public static /* synthetic */ void getGifCount$annotations() {
         }
 
         public final int getGifCount() {

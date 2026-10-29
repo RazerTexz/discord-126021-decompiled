@@ -22,6 +22,11 @@ public final class C3020c implements InterfaceC3041i {
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
+    public long getPosition() {
+        return this.f8170a.getPosition() - this.f8171b;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
     /* JADX INFO: renamed from: b */
     public long mo3642b() {
         return this.f8170a.mo3642b() - this.f8171b;
@@ -49,11 +54,6 @@ public final class C3020c implements InterfaceC3041i {
     /* JADX INFO: renamed from: g */
     public void mo3646g(int i) throws IOException {
         this.f8170a.mo3646g(i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
-    public long getPosition() {
-        return this.f8170a.getPosition() - this.f8171b;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i

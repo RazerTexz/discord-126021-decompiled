@@ -11,34 +11,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayPerfInfo.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayPerfInfo implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
+    private final CharSequence apiName = null;
+    private final Long captureTimeAvgUs = null;
+    private final Long captureTimeMaxUs = null;
+    private final Long captureTimeMinUs = null;
+    private final Long drawTimeAvgUs = null;
+    private final Long drawTimeMaxUs = null;
+    private final Long drawTimeMinUs = null;
+    private final Long durationUs = null;
+    private final CharSequence frameBufferSource = null;
+    private final Long frameCount = null;
+    private final Long frameTimeAvgUs = null;
+    private final Long frameTimeMaxUs = null;
+    private final Long frameTimeMinUs = null;
+    private final Long framesCaptured = null;
+    private final Long framesReceived = null;
+    private final Boolean fullscreen = null;
+    private final Long height = null;
+    private final Long lockFailures = null;
     private TrackBase trackBase;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final Long width = null;
-    private final Long height = null;
-    private final CharSequence apiName = null;
-    private final Boolean fullscreen = null;
-    private final CharSequence frameBufferSource = null;
-    private final Long durationUs = null;
-    private final Long frameCount = null;
-    private final Long framesReceived = null;
-    private final Long framesCaptured = null;
-    private final Long lockFailures = null;
-    private final Long frameTimeMinUs = null;
-    private final Long frameTimeMaxUs = null;
-    private final Long frameTimeAvgUs = null;
-    private final Long drawTimeMinUs = null;
-    private final Long drawTimeMaxUs = null;
-    private final Long drawTimeAvgUs = null;
-    private final Long captureTimeMinUs = null;
-    private final Long captureTimeMaxUs = null;
-    private final Long captureTimeAvgUs = null;
     private final transient String analyticsSchemaTypeName = "overlay_perf_info";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -49,6 +43,12 @@ public final /* data */ class TrackOverlayPerfInfo implements AnalyticsSchema, T
         }
         TrackOverlayPerfInfo trackOverlayPerfInfo = (TrackOverlayPerfInfo) other;
         return C12238m.areEqual(this.width, trackOverlayPerfInfo.width) && C12238m.areEqual(this.height, trackOverlayPerfInfo.height) && C12238m.areEqual(this.apiName, trackOverlayPerfInfo.apiName) && C12238m.areEqual(this.fullscreen, trackOverlayPerfInfo.fullscreen) && C12238m.areEqual(this.frameBufferSource, trackOverlayPerfInfo.frameBufferSource) && C12238m.areEqual(this.durationUs, trackOverlayPerfInfo.durationUs) && C12238m.areEqual(this.frameCount, trackOverlayPerfInfo.frameCount) && C12238m.areEqual(this.framesReceived, trackOverlayPerfInfo.framesReceived) && C12238m.areEqual(this.framesCaptured, trackOverlayPerfInfo.framesCaptured) && C12238m.areEqual(this.lockFailures, trackOverlayPerfInfo.lockFailures) && C12238m.areEqual(this.frameTimeMinUs, trackOverlayPerfInfo.frameTimeMinUs) && C12238m.areEqual(this.frameTimeMaxUs, trackOverlayPerfInfo.frameTimeMaxUs) && C12238m.areEqual(this.frameTimeAvgUs, trackOverlayPerfInfo.frameTimeAvgUs) && C12238m.areEqual(this.drawTimeMinUs, trackOverlayPerfInfo.drawTimeMinUs) && C12238m.areEqual(this.drawTimeMaxUs, trackOverlayPerfInfo.drawTimeMaxUs) && C12238m.areEqual(this.drawTimeAvgUs, trackOverlayPerfInfo.drawTimeAvgUs) && C12238m.areEqual(this.captureTimeMinUs, trackOverlayPerfInfo.captureTimeMinUs) && C12238m.areEqual(this.captureTimeMaxUs, trackOverlayPerfInfo.captureTimeMaxUs) && C12238m.areEqual(this.captureTimeAvgUs, trackOverlayPerfInfo.captureTimeAvgUs);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

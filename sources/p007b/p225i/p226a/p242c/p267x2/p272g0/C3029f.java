@@ -9,11 +9,11 @@ import p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3029f {
 
-    /* JADX INFO: renamed from: a */
-    public final C2757x f8300a = new C2757x(8);
-
     /* JADX INFO: renamed from: b */
     public int f8301b;
+
+    /* JADX INFO: renamed from: a */
+    public final C2757x f8300a = new C2757x(8);
 
     /* JADX INFO: renamed from: a */
     public final long m3684a(InterfaceC3041i interfaceC3041i) throws IOException {

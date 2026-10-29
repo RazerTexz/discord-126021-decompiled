@@ -21,7 +21,7 @@ public final class WidgetHubWaitlistViewModel extends AbstractC0859d0<HubWaitlis
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlistViewModel$joinWaitlist$1 */
     /* JADX INFO: compiled from: WidgetHubWaitlistViewModel.kt */
-    public static final class C90471 extends AbstractC12240o implements Function1<RestCallState<? extends WaitlistSignup>, Unit> {
+    public final class C90471 extends AbstractC12240o implements Function1<RestCallState<? extends WaitlistSignup>, Unit> {
         public C90471() {
             super(1);
         }

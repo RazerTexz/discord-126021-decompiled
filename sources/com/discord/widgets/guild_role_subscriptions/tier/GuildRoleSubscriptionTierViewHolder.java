@@ -29,7 +29,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewHolder.kt */
-    public static final /* data */ class BenefitViewHolder extends GuildRoleSubscriptionTierViewHolder {
+    public final /* data */ class BenefitViewHolder extends GuildRoleSubscriptionTierViewHolder {
         private final GuildRoleSubscriptionBenefitItemView view;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -39,18 +39,6 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             this.view = guildRoleSubscriptionBenefitItemView;
             guildRoleSubscriptionBenefitItemView.setPadding(0, 0, 0, 0);
             guildRoleSubscriptionBenefitItemView.setBackground(null);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final GuildRoleSubscriptionBenefitItemView getView() {
-            return this.view;
-        }
-
-        public static /* synthetic */ BenefitViewHolder copy$default(BenefitViewHolder benefitViewHolder, GuildRoleSubscriptionBenefitItemView guildRoleSubscriptionBenefitItemView, int i, Object obj) {
-            if ((i & 1) != 0) {
-                guildRoleSubscriptionBenefitItemView = benefitViewHolder.view;
-            }
-            return benefitViewHolder.copy(guildRoleSubscriptionBenefitItemView);
         }
 
         @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
@@ -66,6 +54,13 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             }
         }
 
+        public static /* synthetic */ BenefitViewHolder copy$default(BenefitViewHolder benefitViewHolder, GuildRoleSubscriptionBenefitItemView guildRoleSubscriptionBenefitItemView, int i, Object obj) {
+            if ((i & 1) != 0) {
+                guildRoleSubscriptionBenefitItemView = benefitViewHolder.view;
+            }
+            return benefitViewHolder.copy(guildRoleSubscriptionBenefitItemView);
+        }
+
         public final BenefitViewHolder copy(GuildRoleSubscriptionBenefitItemView view) {
             C12238m.checkNotNullParameter(view, "view");
             return new BenefitViewHolder(view);
@@ -76,6 +71,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 return (other instanceof BenefitViewHolder) && C12238m.areEqual(this.view, ((BenefitViewHolder) other).view);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final GuildRoleSubscriptionBenefitItemView getView() {
+            return this.view;
         }
 
         public int hashCode() {
@@ -96,7 +96,7 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewHolder.kt */
-    public static final /* data */ class MemberPreviewViewHolder extends GuildRoleSubscriptionTierViewHolder {
+    public final /* data */ class MemberPreviewViewHolder extends GuildRoleSubscriptionTierViewHolder {
         private final GuildRoleSubscriptionMemberPreview memberPreview;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -108,9 +108,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             guildRoleSubscriptionMemberPreview.setBackgroundColor(ColorCompat.getThemedColor(guildRoleSubscriptionMemberPreview, C5419R.attr.colorBackgroundSecondary));
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final GuildRoleSubscriptionMemberPreview getMemberPreview() {
-            return this.memberPreview;
+        @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
+        public void bind(GuildRoleSubscriptionTierAdapterItem item) {
+            C12238m.checkNotNullParameter(item, "item");
+            GuildRoleSubscriptionTierAdapterItem.MemberPreview memberPreview = (GuildRoleSubscriptionTierAdapterItem.MemberPreview) item;
+            GuildRoleSubscriptionMemberPreview.setMemberDesign$default(this.memberPreview, memberPreview.getMemberColor(), memberPreview.getMemberIcon(), null, 4, null);
         }
 
         public static /* synthetic */ MemberPreviewViewHolder copy$default(MemberPreviewViewHolder memberPreviewViewHolder, GuildRoleSubscriptionMemberPreview guildRoleSubscriptionMemberPreview, int i, Object obj) {
@@ -118,13 +120,6 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 guildRoleSubscriptionMemberPreview = memberPreviewViewHolder.memberPreview;
             }
             return memberPreviewViewHolder.copy(guildRoleSubscriptionMemberPreview);
-        }
-
-        @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
-        public void bind(GuildRoleSubscriptionTierAdapterItem item) {
-            C12238m.checkNotNullParameter(item, "item");
-            GuildRoleSubscriptionTierAdapterItem.MemberPreview memberPreview = (GuildRoleSubscriptionTierAdapterItem.MemberPreview) item;
-            GuildRoleSubscriptionMemberPreview.setMemberDesign$default(this.memberPreview, memberPreview.getMemberColor(), memberPreview.getMemberIcon(), null, 4, null);
         }
 
         public final MemberPreviewViewHolder copy(GuildRoleSubscriptionMemberPreview memberPreview) {
@@ -137,6 +132,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 return (other instanceof MemberPreviewViewHolder) && C12238m.areEqual(this.memberPreview, ((MemberPreviewViewHolder) other).memberPreview);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final GuildRoleSubscriptionMemberPreview getMemberPreview() {
+            return this.memberPreview;
         }
 
         public int hashCode() {
@@ -157,7 +157,7 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewHolder.kt */
-    public static final /* data */ class PlanDetailsViewHolder extends GuildRoleSubscriptionTierViewHolder {
+    public final /* data */ class PlanDetailsViewHolder extends GuildRoleSubscriptionTierViewHolder {
         private final ViewGuildRoleSubscriptionPlanDetailsReviewBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -167,18 +167,6 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             C12238m.checkNotNullExpressionValue(linearLayout, "binding.root");
             super(linearLayout, null);
             this.binding = viewGuildRoleSubscriptionPlanDetailsReviewBinding;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final ViewGuildRoleSubscriptionPlanDetailsReviewBinding getBinding() {
-            return this.binding;
-        }
-
-        public static /* synthetic */ PlanDetailsViewHolder copy$default(PlanDetailsViewHolder planDetailsViewHolder, ViewGuildRoleSubscriptionPlanDetailsReviewBinding viewGuildRoleSubscriptionPlanDetailsReviewBinding, int i, Object obj) {
-            if ((i & 1) != 0) {
-                viewGuildRoleSubscriptionPlanDetailsReviewBinding = planDetailsViewHolder.binding;
-            }
-            return planDetailsViewHolder.copy(viewGuildRoleSubscriptionPlanDetailsReviewBinding);
         }
 
         @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
@@ -193,6 +181,13 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             MGImages.setImage$default(simpleDraweeView, planDetails.getCoverImage(), 0, 0, false, null, null, 124, null);
         }
 
+        public static /* synthetic */ PlanDetailsViewHolder copy$default(PlanDetailsViewHolder planDetailsViewHolder, ViewGuildRoleSubscriptionPlanDetailsReviewBinding viewGuildRoleSubscriptionPlanDetailsReviewBinding, int i, Object obj) {
+            if ((i & 1) != 0) {
+                viewGuildRoleSubscriptionPlanDetailsReviewBinding = planDetailsViewHolder.binding;
+            }
+            return planDetailsViewHolder.copy(viewGuildRoleSubscriptionPlanDetailsReviewBinding);
+        }
+
         public final PlanDetailsViewHolder copy(ViewGuildRoleSubscriptionPlanDetailsReviewBinding binding) {
             C12238m.checkNotNullParameter(binding, "binding");
             return new PlanDetailsViewHolder(binding);
@@ -203,6 +198,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 return (other instanceof PlanDetailsViewHolder) && C12238m.areEqual(this.binding, ((PlanDetailsViewHolder) other).binding);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final ViewGuildRoleSubscriptionPlanDetailsReviewBinding getBinding() {
+            return this.binding;
         }
 
         public int hashCode() {
@@ -223,7 +223,7 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewHolder.kt */
-    public static final /* data */ class SectionHeaderViewHolder extends GuildRoleSubscriptionTierViewHolder {
+    public final /* data */ class SectionHeaderViewHolder extends GuildRoleSubscriptionTierViewHolder {
         private final ViewGuildRoleSubscriptionSectionHeaderItemBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -236,18 +236,6 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             View view = this.itemView;
             view.setPadding(0, 0, 0, 0);
             view.setBackground(null);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final ViewGuildRoleSubscriptionSectionHeaderItemBinding getBinding() {
-            return this.binding;
-        }
-
-        public static /* synthetic */ SectionHeaderViewHolder copy$default(SectionHeaderViewHolder sectionHeaderViewHolder, ViewGuildRoleSubscriptionSectionHeaderItemBinding viewGuildRoleSubscriptionSectionHeaderItemBinding, int i, Object obj) {
-            if ((i & 1) != 0) {
-                viewGuildRoleSubscriptionSectionHeaderItemBinding = sectionHeaderViewHolder.binding;
-            }
-            return sectionHeaderViewHolder.copy(viewGuildRoleSubscriptionSectionHeaderItemBinding);
         }
 
         @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
@@ -267,6 +255,13 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             textView.setText(i18nPluralString);
         }
 
+        public static /* synthetic */ SectionHeaderViewHolder copy$default(SectionHeaderViewHolder sectionHeaderViewHolder, ViewGuildRoleSubscriptionSectionHeaderItemBinding viewGuildRoleSubscriptionSectionHeaderItemBinding, int i, Object obj) {
+            if ((i & 1) != 0) {
+                viewGuildRoleSubscriptionSectionHeaderItemBinding = sectionHeaderViewHolder.binding;
+            }
+            return sectionHeaderViewHolder.copy(viewGuildRoleSubscriptionSectionHeaderItemBinding);
+        }
+
         public final SectionHeaderViewHolder copy(ViewGuildRoleSubscriptionSectionHeaderItemBinding binding) {
             C12238m.checkNotNullParameter(binding, "binding");
             return new SectionHeaderViewHolder(binding);
@@ -277,6 +272,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 return (other instanceof SectionHeaderViewHolder) && C12238m.areEqual(this.binding, ((SectionHeaderViewHolder) other).binding);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final ViewGuildRoleSubscriptionSectionHeaderItemBinding getBinding() {
+            return this.binding;
         }
 
         public int hashCode() {
@@ -297,7 +297,7 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewHolder.kt */
-    public static final /* data */ class TierHeaderViewHolder extends GuildRoleSubscriptionTierViewHolder {
+    public final /* data */ class TierHeaderViewHolder extends GuildRoleSubscriptionTierViewHolder {
         private final ViewGuildRoleSubscriptionTierHeaderBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -307,18 +307,6 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             C12238m.checkNotNullExpressionValue(linearLayout, "binding.root");
             super(linearLayout, null);
             this.binding = viewGuildRoleSubscriptionTierHeaderBinding;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final ViewGuildRoleSubscriptionTierHeaderBinding getBinding() {
-            return this.binding;
-        }
-
-        public static /* synthetic */ TierHeaderViewHolder copy$default(TierHeaderViewHolder tierHeaderViewHolder, ViewGuildRoleSubscriptionTierHeaderBinding viewGuildRoleSubscriptionTierHeaderBinding, int i, Object obj) {
-            if ((i & 1) != 0) {
-                viewGuildRoleSubscriptionTierHeaderBinding = tierHeaderViewHolder.binding;
-            }
-            return tierHeaderViewHolder.copy(viewGuildRoleSubscriptionTierHeaderBinding);
         }
 
         @Override // com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierViewHolder
@@ -350,6 +338,13 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
             IconUtils.setIcon$default(simpleDraweeView, header.getImage(), C5419R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         }
 
+        public static /* synthetic */ TierHeaderViewHolder copy$default(TierHeaderViewHolder tierHeaderViewHolder, ViewGuildRoleSubscriptionTierHeaderBinding viewGuildRoleSubscriptionTierHeaderBinding, int i, Object obj) {
+            if ((i & 1) != 0) {
+                viewGuildRoleSubscriptionTierHeaderBinding = tierHeaderViewHolder.binding;
+            }
+            return tierHeaderViewHolder.copy(viewGuildRoleSubscriptionTierHeaderBinding);
+        }
+
         public final TierHeaderViewHolder copy(ViewGuildRoleSubscriptionTierHeaderBinding binding) {
             C12238m.checkNotNullParameter(binding, "binding");
             return new TierHeaderViewHolder(binding);
@@ -360,6 +355,11 @@ public abstract class GuildRoleSubscriptionTierViewHolder extends RecyclerView.V
                 return (other instanceof TierHeaderViewHolder) && C12238m.areEqual(this.binding, ((TierHeaderViewHolder) other).binding);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final ViewGuildRoleSubscriptionTierHeaderBinding getBinding() {
+            return this.binding;
         }
 
         public int hashCode() {

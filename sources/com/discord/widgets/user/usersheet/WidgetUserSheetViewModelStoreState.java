@@ -55,7 +55,7 @@ public final class WidgetUserSheetViewModelStoreState {
     public static final WidgetUserSheetViewModelStoreState INSTANCE = new WidgetUserSheetViewModelStoreState();
 
     /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-    public static final /* data */ class BootstrapData {
+    public final /* data */ class BootstrapData {
         private final Channel channel;
         private final MeUser me;
         private final Channel selectedVoiceChannel;
@@ -85,26 +85,6 @@ public final class WidgetUserSheetViewModelStoreState {
             return bootstrapData.copy(user, meUser, channel, channel2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Channel getSelectedVoiceChannel() {
-            return this.selectedVoiceChannel;
-        }
-
         public final BootstrapData copy(User user, MeUser me2, Channel channel, Channel selectedVoiceChannel) {
             C12238m.checkNotNullParameter(me2, "me");
             return new BootstrapData(user, me2, channel, selectedVoiceChannel);
@@ -121,16 +101,36 @@ public final class WidgetUserSheetViewModelStoreState {
             return C12238m.areEqual(this.user, bootstrapData.user) && C12238m.areEqual(this.me, bootstrapData.me) && C12238m.areEqual(this.channel, bootstrapData.channel) && C12238m.areEqual(this.selectedVoiceChannel, bootstrapData.selectedVoiceChannel);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final MeUser getMe() {
+            return this.me;
         }
 
         public final MeUser getMe() {
             return this.me;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Channel getSelectedVoiceChannel() {
             return this.selectedVoiceChannel;
+        }
+
+        public final Channel getSelectedVoiceChannel() {
+            return this.selectedVoiceChannel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -164,7 +164,7 @@ public final class WidgetUserSheetViewModelStoreState {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$2 */
     /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-    public static final /* synthetic */ class C104012 extends C12236k implements Function4<User, MeUser, Channel, Channel, BootstrapData> {
+    public final /* synthetic */ class C104012 extends C12236k implements Function4<User, MeUser, Channel, Channel, BootstrapData> {
         public static final C104012 INSTANCE = new C104012();
 
         public C104012() {
@@ -242,7 +242,7 @@ public final class WidgetUserSheetViewModelStoreState {
 
             /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$3$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function16<Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends VoiceState>, Map<Long, ? extends VoiceState>, StoreMediaSettings.VoiceConfiguration, ModelRichPresence, Guild, Long, StreamContext, UserProfile, Integer, StoreUserNotes.UserNoteState, StageRoles, StageRequestToSpeakState, StageRoles, Boolean, WidgetUserSheetViewModel.StoreState> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function16<Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends VoiceState>, Map<Long, ? extends VoiceState>, StoreMediaSettings.VoiceConfiguration, ModelRichPresence, Guild, Long, StreamContext, UserProfile, Integer, StoreUserNotes.UserNoteState, StageRoles, StageRequestToSpeakState, StageRoles, Boolean, WidgetUserSheetViewModel.StoreState> {
                 public final /* synthetic */ Channel $channel;
                 public final /* synthetic */ MeUser $me;
                 public final /* synthetic */ Channel $selectedVoiceChannel;

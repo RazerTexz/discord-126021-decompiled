@@ -13,14 +13,14 @@ import p007b.p225i.p226a.p288f.p298d.C3229d;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-cloud-messaging@@16.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class zza implements Parcelable {
-    public static final Parcelable.Creator<zza> CREATOR = new C3229d();
 
     /* JADX INFO: renamed from: j */
     public Messenger f20471j;
+    public static final Parcelable.Creator<zza> CREATOR = new C3229d();
 
     /* JADX INFO: renamed from: com.google.android.gms.cloudmessaging.zza$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-cloud-messaging@@16.0.0 */
-    public static final class C10798a extends ClassLoader {
+    public final class C10798a extends ClassLoader {
         @Override // java.lang.ClassLoader
         public final Class<?> loadClass(String str, boolean z2) throws ClassNotFoundException {
             if (!"com.google.android.gms.iid.MessengerCompat".equals(str)) {
@@ -36,13 +36,6 @@ public class zza implements Parcelable {
 
     public zza(IBinder iBinder) {
         this.f20471j = new Messenger(iBinder);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final IBinder m9017a() {
-        Messenger messenger = this.f20471j;
-        Objects.requireNonNull(messenger);
-        return messenger.getBinder();
     }
 
     @Override // android.os.Parcelable
@@ -63,6 +56,13 @@ public class zza implements Parcelable {
 
     public int hashCode() {
         return m9017a().hashCode();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final IBinder m9017a() {
+        Messenger messenger = this.f20471j;
+        Objects.requireNonNull(messenger);
+        return messenger.getBinder();
     }
 
     @Override // android.os.Parcelable

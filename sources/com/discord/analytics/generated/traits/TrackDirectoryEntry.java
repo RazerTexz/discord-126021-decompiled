@@ -6,14 +6,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDirectoryEntry.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDirectoryEntry {
+    private final Long authorId = null;
+    private final Long createdAt = null;
     private final Long directoryChannelId = null;
     private final Long directoryGuildId = null;
     private final Long entityId = null;
-    private final Long authorId = null;
     private final Long entityType = null;
-    private final Long createdAt = null;
-    private final Long primaryCategoryId = null;
     private final CharSequence entryDescription = null;
+    private final Long primaryCategoryId = null;
 
     public boolean equals(Object other) {
         if (this == other) {

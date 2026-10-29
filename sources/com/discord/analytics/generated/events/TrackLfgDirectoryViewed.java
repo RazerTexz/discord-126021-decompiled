@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLfgDirectoryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long guildId = null;
-    private final Long numGroupsTotal = null;
-    private final Long numGroupsOpen = null;
     private final Long numGroupsFull = null;
+    private final Long numGroupsOpen = null;
+    private final Long numGroupsTotal = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "lfg_directory_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema
         }
         TrackLfgDirectoryViewed trackLfgDirectoryViewed = (TrackLfgDirectoryViewed) other;
         return C12238m.areEqual(this.channelId, trackLfgDirectoryViewed.channelId) && C12238m.areEqual(this.guildId, trackLfgDirectoryViewed.guildId) && C12238m.areEqual(this.numGroupsTotal, trackLfgDirectoryViewed.numGroupsTotal) && C12238m.areEqual(this.numGroupsOpen, trackLfgDirectoryViewed.numGroupsOpen) && C12238m.areEqual(this.numGroupsFull, trackLfgDirectoryViewed.numGroupsFull);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

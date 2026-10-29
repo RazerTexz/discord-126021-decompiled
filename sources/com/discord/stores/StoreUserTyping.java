@@ -43,11 +43,11 @@ public final class StoreUserTyping extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$1 */
     /* JADX INFO: compiled from: StoreUserTyping.kt */
-    public static final class C66101 extends AbstractC12240o implements Function1<TypingUser, Unit> {
+    public final class C66101 extends AbstractC12240o implements Function1<TypingUser, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserTyping.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ TypingUser $prevTyping;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -89,13 +89,13 @@ public final class StoreUserTyping extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$2 */
     /* JADX INFO: compiled from: StoreUserTyping.kt */
-    public static final class C66112 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C66112 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $userId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserTyping.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Subscription $subscription;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -140,7 +140,7 @@ public final class StoreUserTyping extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsers$1 */
     /* JADX INFO: compiled from: StoreUserTyping.kt */
-    public static final class C66121 extends AbstractC12240o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
+    public final class C66121 extends AbstractC12240o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
         public C66121() {
             super(0);
         }
@@ -153,7 +153,7 @@ public final class StoreUserTyping extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsersForChannels$1 */
     /* JADX INFO: compiled from: StoreUserTyping.kt */
-    public static final class C66141 extends AbstractC12240o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
+    public final class C66141 extends AbstractC12240o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
         public C66141() {
             super(0);
         }
@@ -166,12 +166,12 @@ public final class StoreUserTyping extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1 */
     /* JADX INFO: compiled from: StoreUserTyping.kt */
-    public static final class C66161 extends AbstractC12240o implements Function1<ModelTypingResponse, Unit> {
+    public final class C66161 extends AbstractC12240o implements Function1<ModelTypingResponse, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserTyping.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ long $messageSendCooldownSecs;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -194,7 +194,7 @@ public final class StoreUserTyping extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserTyping.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ long $threadCreateCooldown;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -251,17 +251,6 @@ public final class StoreUserTyping extends StoreV2 {
     }
 
     @StoreThread
-    private final void handleTypingStop(TypingUser typing) {
-        Set<Long> set = this.typingUsers.get(Long.valueOf(typing.getChannelId()));
-        if (set != null) {
-            C12238m.checkNotNullExpressionValue(set, "typingUsers[typing.channelId] ?: return");
-            if (set.remove(Long.valueOf(typing.getUserId()))) {
-                markChanged();
-            }
-        }
-    }
-
-    @StoreThread
     public final void handleMessageCreate(Message message) {
         C12238m.checkNotNullParameter(message, "message");
         User author = message.getAuthor();
@@ -309,6 +298,17 @@ public final class StoreUserTyping extends StoreV2 {
         }
         if (hashSet.add(Long.valueOf(userId))) {
             markChanged();
+        }
+    }
+
+    @StoreThread
+    private final void handleTypingStop(TypingUser typing) {
+        Set<Long> set = this.typingUsers.get(Long.valueOf(typing.getChannelId()));
+        if (set != null) {
+            C12238m.checkNotNullExpressionValue(set, "typingUsers[typing.channelId] ?: return");
+            if (set.remove(Long.valueOf(typing.getUserId()))) {
+                markChanged();
+            }
         }
     }
 

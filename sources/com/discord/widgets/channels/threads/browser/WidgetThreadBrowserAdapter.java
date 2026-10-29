@@ -31,7 +31,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
     private final Function1<Channel, Unit> onThreadSettings;
 
     /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-    public static final class HeaderItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
+    public final class HeaderItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
         private final ThreadBrowserItemHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -60,10 +60,10 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-    public static abstract class Item implements MGRecyclerDataPayload {
+    public abstract class Item implements MGRecyclerDataPayload {
 
         /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-        public static final /* data */ class Header extends Item {
+        public final /* data */ class Header extends Item {
             private final int count;
             private final String key;
             private final int stringResId;
@@ -79,6 +79,10 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                 this.type = ItemType.HEADER.ordinal();
             }
 
+            public final String component1() {
+                return getKey();
+            }
+
             public static /* synthetic */ Header copy$default(Header header, String str, int i, int i2, int i3, Object obj) {
                 if ((i3 & 1) != 0) {
                     str = header.getKey();
@@ -90,20 +94,6 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                     i2 = header.count;
                 }
                 return header.copy(str, i, i2);
-            }
-
-            public final String component1() {
-                return getKey();
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getStringResId() {
-                return this.stringResId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getCount() {
-                return this.count;
             }
 
             public final Header copy(String key, int stringResId, int count) {
@@ -122,6 +112,11 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                 return C12238m.areEqual(getKey(), header.getKey()) && this.stringResId == header.stringResId && this.count == header.count;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final int getCount() {
+                return this.count;
+            }
+
             public final int getCount() {
                 return this.count;
             }
@@ -129,6 +124,11 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getStringResId() {
+                return this.stringResId;
             }
 
             public final int getStringResId() {
@@ -156,7 +156,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
         }
 
         /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-        public static final /* data */ class Loading extends Item {
+        public final /* data */ class Loading extends Item {
             private final String key;
             private final int type;
 
@@ -169,15 +169,15 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                 this((i & 1) != 0 ? "loading" : str);
             }
 
+            public final String component1() {
+                return getKey();
+            }
+
             public static /* synthetic */ Loading copy$default(Loading loading, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = loading.getKey();
                 }
                 return loading.copy(str);
-            }
-
-            public final String component1() {
-                return getKey();
             }
 
             public final Loading copy(String key) {
@@ -227,7 +227,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
         }
 
         /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-        public static final /* data */ class Thread extends Item {
+        public final /* data */ class Thread extends Item {
             private final String key;
             private final ThreadBrowserThreadView.ThreadData threadData;
             private final int type;
@@ -248,11 +248,6 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                 return thread.copy(threadData);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ThreadBrowserThreadView.ThreadData getThreadData() {
-                return this.threadData;
-            }
-
             public final Thread copy(ThreadBrowserThreadView.ThreadData threadData) {
                 C12238m.checkNotNullParameter(threadData, "threadData");
                 return new Thread(threadData);
@@ -268,6 +263,11 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ThreadBrowserThreadView.ThreadData getThreadData() {
+                return this.threadData;
             }
 
             public final ThreadBrowserThreadView.ThreadData getThreadData() {
@@ -296,7 +296,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
         }
 
         /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-        public static final /* data */ class Warning extends Item {
+        public final /* data */ class Warning extends Item {
             private final String key;
             private final int type;
 
@@ -309,15 +309,15 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
                 this((i & 1) != 0 ? "warning" : str);
             }
 
+            public final String component1() {
+                return getKey();
+            }
+
             public static /* synthetic */ Warning copy$default(Warning warning, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = warning.getKey();
                 }
                 return warning.copy(str);
-            }
-
-            public final String component1() {
-                return getKey();
             }
 
             public final Warning copy(String key) {
@@ -387,7 +387,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
         private static final ItemType[] cachedValues = values();
 
         /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -402,7 +402,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-    public static final class LoadingItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
+    public final class LoadingItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public LoadingItem(WidgetThreadBrowserAdapter widgetThreadBrowserAdapter) {
             super(C5419R.layout.thread_browser_item_loading, widgetThreadBrowserAdapter);
@@ -411,7 +411,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-    public static final class ThreadItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
+    public final class ThreadItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
         private final ThreadBrowserItemThreadBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -453,7 +453,7 @@ public final class WidgetThreadBrowserAdapter extends MGRecyclerAdapterSimple<It
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserAdapter.kt */
-    public static final class WarningItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
+    public final class WarningItem extends MGRecyclerViewHolder<WidgetThreadBrowserAdapter, Item> {
         private final ThreadBrowserItemWarningBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

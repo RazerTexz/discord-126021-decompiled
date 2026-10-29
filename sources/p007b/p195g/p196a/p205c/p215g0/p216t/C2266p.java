@@ -25,6 +25,18 @@ public final class C2266p extends AbstractC2364n<Object> implements InterfaceC22
         this.f4846k = abstractC2364n;
     }
 
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        this.f4846k.mo1808g(obj, abstractC2108d, abstractC2374x, this.f4845j);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        this.f4846k.mo1808g(obj, abstractC2108d, abstractC2374x, abstractC2215g);
+    }
+
     @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
     public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
@@ -39,17 +51,5 @@ public final class C2266p extends AbstractC2364n<Object> implements InterfaceC22
     /* JADX INFO: renamed from: c */
     public Class<Object> mo2041c() {
         return Object.class;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        this.f4846k.mo1808g(obj, abstractC2108d, abstractC2374x, this.f4845j);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        this.f4846k.mo1808g(obj, abstractC2108d, abstractC2374x, abstractC2215g);
     }
 }

@@ -27,9 +27,32 @@ public class C2460k implements InterfaceC2454e {
     /* JADX INFO: renamed from: c */
     public final Map<String, InterfaceC2462m> f5320c;
 
+    public C2460k(Context context, C2458i c2458i) {
+        a aVar = new a(context);
+        this.f5320c = new HashMap();
+        this.f5318a = aVar;
+        this.f5319b = c2458i;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p232q.InterfaceC2454e
+    @Nullable
+    public synchronized InterfaceC2462m get(String str) {
+        if (this.f5320c.containsKey(str)) {
+            return this.f5320c.get(str);
+        }
+        InterfaceC2453d interfaceC2453dM2371a = this.f5318a.m2371a(str);
+        if (interfaceC2453dM2371a == null) {
+            return null;
+        }
+        C2458i c2458i = this.f5319b;
+        InterfaceC2462m interfaceC2462mCreate = interfaceC2453dM2371a.create(new C2452c(c2458i.f5312a, c2458i.f5313b, c2458i.f5314c, str));
+        this.f5320c.put(str, interfaceC2462mCreate);
+        return interfaceC2462mCreate;
+    }
+
     /* JADX INFO: renamed from: b.i.a.b.j.q.k$a */
     /* JADX INFO: compiled from: MetadataBackendRegistry.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final Context f5321a;
@@ -124,28 +147,5 @@ public class C2460k implements InterfaceC2454e {
                 return null;
             }
         }
-    }
-
-    public C2460k(Context context, C2458i c2458i) {
-        a aVar = new a(context);
-        this.f5320c = new HashMap();
-        this.f5318a = aVar;
-        this.f5319b = c2458i;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.p232q.InterfaceC2454e
-    @Nullable
-    public synchronized InterfaceC2462m get(String str) {
-        if (this.f5320c.containsKey(str)) {
-            return this.f5320c.get(str);
-        }
-        InterfaceC2453d interfaceC2453dM2371a = this.f5318a.m2371a(str);
-        if (interfaceC2453dM2371a == null) {
-            return null;
-        }
-        C2458i c2458i = this.f5319b;
-        InterfaceC2462m interfaceC2462mCreate = interfaceC2453dM2371a.create(new C2452c(c2458i.f5312a, c2458i.f5313b, c2458i.f5314c, str));
-        this.f5320c.put(str, interfaceC2462mCreate);
-        return interfaceC2462mCreate;
     }
 }

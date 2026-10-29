@@ -10,20 +10,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAddressValidationFailed implements AnalyticsSchema, TrackBaseReceiver {
     private final CharSequence addressCountry = null;
-    private final transient String analyticsSchemaTypeName = "address_validation_failed";
     private TrackBase trackBase;
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
+    private final transient String analyticsSchemaTypeName = "address_validation_failed";
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAddressValidationFailed) && C12238m.areEqual(this.addressCountry, ((TrackAddressValidationFailed) other).addressCountry);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

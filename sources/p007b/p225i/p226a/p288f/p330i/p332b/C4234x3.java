@@ -42,12 +42,6 @@ public final class C4234x3 extends AbstractC4074i9 {
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: s */
     public final HttpURLConnection m5962s(URL url) throws IOException {
@@ -73,5 +67,11 @@ public final class C4234x3 extends AbstractC4074i9 {
         } catch (SecurityException unused) {
         }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        return false;
     }
 }

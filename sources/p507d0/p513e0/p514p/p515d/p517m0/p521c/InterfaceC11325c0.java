@@ -15,7 +15,7 @@ public interface InterfaceC11325c0 extends InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.c0$a */
     /* JADX INFO: compiled from: ModuleDescriptor.kt */
-    public static final class a {
+    public final class a {
         public static <R, D> R accept(InterfaceC11325c0 interfaceC11325c0, InterfaceC11454o<R, D> interfaceC11454o, D d) {
             C12238m.checkNotNullParameter(interfaceC11325c0, "this");
             C12238m.checkNotNullParameter(interfaceC11454o, "visitor");

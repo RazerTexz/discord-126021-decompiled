@@ -61,7 +61,7 @@ public class InclusionExclusionUtils {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/InclusionExclusionUtils$Included.SCL.lombok */
-    public static class Included<L, I extends Annotation> {
+    public class Included<L, I extends Annotation> {
         private final L node;
         private final I inc;
         private final boolean defaultInclude;

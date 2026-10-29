@@ -49,17 +49,6 @@ public class SingleThreadCachedScheduler implements ThreadScheduler {
         });
     }
 
-    private void tryExecuteRunnable(Runnable runnable) {
-        try {
-            if (this.isTeardown) {
-                return;
-            }
-            runnable.run();
-        } catch (Throwable th) {
-            AdjustFactory.getLogger().warn("Execution failed: %s", th.getMessage());
-        }
-    }
-
     @Override // com.adjust.sdk.scheduler.ThreadScheduler
     public void schedule(final Runnable runnable, final long j) {
         synchronized (this.queue) {
@@ -101,6 +90,17 @@ public class SingleThreadCachedScheduler implements ThreadScheduler {
             this.isTeardown = true;
             this.queue.clear();
             this.threadPoolExecutor.shutdown();
+        }
+    }
+
+    private void tryExecuteRunnable(Runnable runnable) {
+        try {
+            if (this.isTeardown) {
+                return;
+            }
+            runnable.run();
+        } catch (Throwable th) {
+            AdjustFactory.getLogger().warn("Execution failed: %s", th.getMessage());
         }
     }
 }

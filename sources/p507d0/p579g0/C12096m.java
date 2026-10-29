@@ -19,7 +19,7 @@ public class C12096m extends C12095l {
 
     /* JADX INFO: renamed from: d0.g0.m$a */
     /* JADX INFO: compiled from: Indent.kt */
-    public static final class a extends AbstractC12240o implements Function1<String, String> {
+    public final class a extends AbstractC12240o implements Function1<String, String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f25163j = new a();
@@ -37,7 +37,7 @@ public class C12096m extends C12095l {
 
     /* JADX INFO: renamed from: d0.g0.m$b */
     /* JADX INFO: compiled from: Indent.kt */
-    public static final class b extends AbstractC12240o implements Function1<String, String> {
+    public final class b extends AbstractC12240o implements Function1<String, String> {
         public final /* synthetic */ String $indent;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -189,16 +189,16 @@ public class C12096m extends C12095l {
         return replaceIndent(str, "");
     }
 
-    public static final String trimMargin(String str, String str2) {
-        C12238m.checkNotNullParameter(str, "$this$trimMargin");
-        C12238m.checkNotNullParameter(str2, "marginPrefix");
-        return replaceIndentByMargin(str, "", str2);
-    }
-
     public static /* synthetic */ String trimMargin$default(String str, String str2, int i, Object obj) {
         if ((i & 1) != 0) {
             str2 = "|";
         }
         return trimMargin(str, str2);
+    }
+
+    public static final String trimMargin(String str, String str2) {
+        C12238m.checkNotNullParameter(str, "$this$trimMargin");
+        C12238m.checkNotNullParameter(str2, "marginPrefix");
+        return replaceIndentByMargin(str, "", str2);
     }
 }

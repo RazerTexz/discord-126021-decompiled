@@ -12,7 +12,7 @@ public interface InterfaceC11571d0 extends InterfaceC11570d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.k0.d0$a */
     /* JADX INFO: compiled from: javaElements.kt */
-    public static final class a {
+    public final class a {
         public static InterfaceC11564a findAnnotation(InterfaceC11571d0 interfaceC11571d0, C11713b c11713b) {
             Object obj;
             Object next;

@@ -25,12 +25,12 @@ import lombok.javac.handlers.JavacHandlerUtil;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/HandlerLibrary.SCL.lombok */
 public class HandlerLibrary {
-    private final TypeLibrary typeLibrary = new TypeLibrary();
-    private final Map<String, List<AnnotationHandlerContainer<?>>> annotationHandlers = new HashMap();
-    private final Collection<VisitorContainer> visitorHandlers = new ArrayList();
     private final Messager messager;
     private SortedSet<Long> priorities;
     private SortedSet<Long> prioritiesRequiringResolutionReset;
+    private final TypeLibrary typeLibrary = new TypeLibrary();
+    private final Map<String, List<AnnotationHandlerContainer<?>>> annotationHandlers = new HashMap();
+    private final Collection<VisitorContainer> visitorHandlers = new ArrayList();
 
     public HandlerLibrary(Messager messager) {
         ConfigurationKeysLoader.LoaderLoader.loadAllConfigurationKeys();
@@ -38,7 +38,7 @@ public class HandlerLibrary {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/HandlerLibrary$VisitorContainer.SCL.lombok */
-    private static class VisitorContainer {
+    class VisitorContainer {
         private final JavacASTVisitor visitor;
         private final long priority;
         private final boolean resolutionResetNeeded;
@@ -60,7 +60,7 @@ public class HandlerLibrary {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/HandlerLibrary$AnnotationHandlerContainer.SCL.lombok */
-    private static class AnnotationHandlerContainer<T extends Annotation> {
+    class AnnotationHandlerContainer<T extends Annotation> {
         private final JavacAnnotationHandler<T> handler;
         private final Class<T> annotationClass;
         private final long priority;

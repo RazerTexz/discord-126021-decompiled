@@ -23,7 +23,7 @@ public final class C12663q0<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.q0$a */
     /* JADX INFO: compiled from: OperatorDebounceWithTime.java */
-    public static final class a<T> {
+    public final class a<T> {
 
         /* JADX INFO: renamed from: a */
         public int f26996a;

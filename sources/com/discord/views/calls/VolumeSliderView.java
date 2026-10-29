@@ -25,7 +25,7 @@ public final class VolumeSliderView extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.calls.VolumeSliderView$a */
     /* JADX INFO: compiled from: VolumeSliderView.kt */
-    public static final class C7111a extends C1337j {
+    public final class C7111a extends C1337j {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Function2 f19260a;

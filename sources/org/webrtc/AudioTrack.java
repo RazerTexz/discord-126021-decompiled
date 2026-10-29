@@ -6,11 +6,11 @@ public class AudioTrack extends MediaStreamTrack {
         super(j);
     }
 
-    private static native void nativeSetVolume(long j, double d);
-
     public long getNativeAudioTrack() {
         return getNativeMediaStreamTrack();
     }
+
+    private static native void nativeSetVolume(long j, double d);
 
     public void setVolume(double d) {
         nativeSetVolume(getNativeAudioTrack(), d);

@@ -23,6 +23,23 @@ public class C2184f0 extends AbstractC2188i implements Serializable {
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!C2342d.m2183o(obj, C2184f0.class)) {
+            return false;
+        }
+        C2184f0 c2184f0 = (C2184f0) obj;
+        return c2184f0._declaringClass == this._declaringClass && c2184f0._name.equals(this._name);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this._name.hashCode();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
     /* JADX INFO: renamed from: c */
     public String mo1819c() {
         return this._name;
@@ -40,27 +57,10 @@ public class C2184f0 extends AbstractC2188i implements Serializable {
         return this._type;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!C2342d.m2183o(obj, C2184f0.class)) {
-            return false;
-        }
-        C2184f0 c2184f0 = (C2184f0) obj;
-        return c2184f0._declaringClass == this._declaringClass && c2184f0._name.equals(this._name);
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
     /* JADX INFO: renamed from: g */
     public Class<?> mo1887g() {
         return this._declaringClass;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this._name.hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i

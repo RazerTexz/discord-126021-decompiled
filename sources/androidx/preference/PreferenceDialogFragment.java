@@ -48,10 +48,6 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
     public PreferenceDialogFragment() {
     }
 
-    private void requestInputMethod(Dialog dialog) {
-        dialog.getWindow().setSoftInputMode(5);
-    }
-
     @Deprecated
     public DialogPreference getPreference() {
         if (this.mPreference == null) {
@@ -185,5 +181,9 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
         if (bitmapDrawable != null) {
             bundle.putParcelable(SAVE_STATE_ICON, bitmapDrawable.getBitmap());
         }
+    }
+
+    private void requestInputMethod(Dialog dialog) {
+        dialog.getWindow().setSoftInputMode(5);
     }
 }

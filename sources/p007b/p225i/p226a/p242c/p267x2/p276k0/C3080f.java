@@ -18,14 +18,14 @@ import p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3080f implements InterfaceC3031h {
 
+    /* JADX INFO: renamed from: c */
+    public boolean f8606c;
+
     /* JADX INFO: renamed from: a */
     public final C3082g f8604a = new C3082g(null);
 
     /* JADX INFO: renamed from: b */
     public final C2757x f8605b = new C2757x(2786);
-
-    /* JADX INFO: renamed from: c */
-    public boolean f8606c;
 
     static {
         C3070a c3070a = new InterfaceC3106l() { // from class: b.i.a.c.x2.k0.a

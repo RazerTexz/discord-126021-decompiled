@@ -15,7 +15,7 @@ public abstract class AbstractC12030l implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.l$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12030l {
+    public final class a extends AbstractC12030l {
 
         /* JADX INFO: renamed from: b */
         public final int f24966b;
@@ -37,7 +37,7 @@ public abstract class AbstractC12030l implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.l$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12030l {
+    public final class b extends AbstractC12030l {
 
         /* JADX INFO: renamed from: b */
         public final int f24967b;
@@ -56,7 +56,7 @@ public abstract class AbstractC12030l implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.l$c */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class c extends AbstractC12030l {
+    public final class c extends AbstractC12030l {
 
         /* JADX INFO: renamed from: b */
         public static final c f24968b = new c();
@@ -74,7 +74,7 @@ public abstract class AbstractC12030l implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.l$d */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class d extends AbstractC12030l {
+    public final class d extends AbstractC12030l {
 
         /* JADX INFO: renamed from: b */
         public static final d f24969b = new d();

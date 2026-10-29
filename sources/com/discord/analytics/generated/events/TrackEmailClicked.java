@@ -11,23 +11,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackEmailClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackEmailClicked implements AnalyticsSchema, TrackBaseReceiver, TrackEmailReceiver {
+    private final CharSequence actionType = null;
+    private final Long channelId = null;
+    private final Long guildId = null;
+    private final CharSequence path = null;
+    private final CharSequence target = null;
+    private final Long targetChannelId = null;
+    private final Long targetGuildId = null;
     private TrackBase trackBase;
     private TrackEmail trackEmail;
     private final CharSequence trackingId = null;
-    private final Long guildId = null;
-    private final Long channelId = null;
-    private final CharSequence path = null;
-    private final CharSequence actionType = null;
-    private final CharSequence target = null;
-    private final Long targetGuildId = null;
-    private final Long targetChannelId = null;
     private final transient String analyticsSchemaTypeName = "email_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackEmailClicked implements AnalyticsSchema, Trac
         }
         TrackEmailClicked trackEmailClicked = (TrackEmailClicked) other;
         return C12238m.areEqual(this.trackingId, trackEmailClicked.trackingId) && C12238m.areEqual(this.guildId, trackEmailClicked.guildId) && C12238m.areEqual(this.channelId, trackEmailClicked.channelId) && C12238m.areEqual(this.path, trackEmailClicked.path) && C12238m.areEqual(this.actionType, trackEmailClicked.actionType) && C12238m.areEqual(this.target, trackEmailClicked.target) && C12238m.areEqual(this.targetGuildId, trackEmailClicked.targetGuildId) && C12238m.areEqual(this.targetChannelId, trackEmailClicked.targetChannelId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

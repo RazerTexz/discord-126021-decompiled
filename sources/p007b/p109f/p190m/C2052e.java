@@ -157,7 +157,7 @@ public final class C2052e extends AbstractC2060m {
 
     /* JADX INFO: renamed from: b.f.m.e$c */
     /* JADX INFO: compiled from: ExoSoSource.java */
-    public static final class c extends AbstractC2060m.b {
+    public final class c extends AbstractC2060m.b {
 
         /* JADX INFO: renamed from: l */
         public final File f4324l;

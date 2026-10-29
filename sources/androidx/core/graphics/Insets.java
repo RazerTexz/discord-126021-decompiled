@@ -8,13 +8,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class Insets {
-
-    @NonNull
-    public static final Insets NONE = new Insets(0, 0, 0, 0);
     public final int bottom;
     public final int left;
     public final int right;
     public final int top;
+
+    @NonNull
+    public static final Insets NONE = new Insets(0, 0, 0, 0);
 
     private Insets(int i, int i2, int i3, int i4) {
         this.left = i;
@@ -26,41 +26,6 @@ public final class Insets {
     @NonNull
     public static Insets add(@NonNull Insets insets, @NonNull Insets insets2) {
         return m82of(insets.left + insets2.left, insets.top + insets2.top, insets.right + insets2.right, insets.bottom + insets2.bottom);
-    }
-
-    @NonNull
-    public static Insets max(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(Math.max(insets.left, insets2.left), Math.max(insets.top, insets2.top), Math.max(insets.right, insets2.right), Math.max(insets.bottom, insets2.bottom));
-    }
-
-    @NonNull
-    public static Insets min(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(Math.min(insets.left, insets2.left), Math.min(insets.top, insets2.top), Math.min(insets.right, insets2.right), Math.min(insets.bottom, insets2.bottom));
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: of */
-    public static Insets m82of(int i, int i2, int i3, int i4) {
-        return (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) ? NONE : new Insets(i, i2, i3, i4);
-    }
-
-    @NonNull
-    public static Insets subtract(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(insets.left - insets2.left, insets.top - insets2.top, insets.right - insets2.right, insets.bottom - insets2.bottom);
-    }
-
-    @NonNull
-    @RequiresApi(api = 29)
-    public static Insets toCompatInsets(@NonNull android.graphics.Insets insets) {
-        return m82of(insets.left, insets.top, insets.right, insets.bottom);
-    }
-
-    @NonNull
-    @Deprecated
-    @RequiresApi(api = 29)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static Insets wrap(@NonNull android.graphics.Insets insets) {
-        return toCompatInsets(insets);
     }
 
     public boolean equals(Object obj) {
@@ -79,6 +44,33 @@ public final class Insets {
     }
 
     @NonNull
+    /* JADX INFO: renamed from: of */
+    public static Insets m82of(int i, int i2, int i3, int i4) {
+        return (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) ? NONE : new Insets(i, i2, i3, i4);
+    }
+
+    @NonNull
+    public static Insets max(@NonNull Insets insets, @NonNull Insets insets2) {
+        return m82of(Math.max(insets.left, insets2.left), Math.max(insets.top, insets2.top), Math.max(insets.right, insets2.right), Math.max(insets.bottom, insets2.bottom));
+    }
+
+    @NonNull
+    public static Insets min(@NonNull Insets insets, @NonNull Insets insets2) {
+        return m82of(Math.min(insets.left, insets2.left), Math.min(insets.top, insets2.top), Math.min(insets.right, insets2.right), Math.min(insets.bottom, insets2.bottom));
+    }
+
+    @NonNull
+    public static Insets subtract(@NonNull Insets insets, @NonNull Insets insets2) {
+        return m82of(insets.left - insets2.left, insets.top - insets2.top, insets.right - insets2.right, insets.bottom - insets2.bottom);
+    }
+
+    @NonNull
+    @RequiresApi(api = 29)
+    public static Insets toCompatInsets(@NonNull android.graphics.Insets insets) {
+        return m82of(insets.left, insets.top, insets.right, insets.bottom);
+    }
+
+    @NonNull
     @RequiresApi(api = 29)
     public android.graphics.Insets toPlatformInsets() {
         return android.graphics.Insets.of(this.left, this.top, this.right, this.bottom);
@@ -93,6 +85,14 @@ public final class Insets {
         sbM833U.append(this.right);
         sbM833U.append(", bottom=");
         return C1643a.m813A(sbM833U, this.bottom, '}');
+    }
+
+    @NonNull
+    @Deprecated
+    @RequiresApi(api = 29)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public static Insets wrap(@NonNull android.graphics.Insets insets) {
+        return toCompatInsets(insets);
     }
 
     @NonNull

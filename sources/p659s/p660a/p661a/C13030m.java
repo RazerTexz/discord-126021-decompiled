@@ -9,8 +9,15 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13030m<E> {
-    public volatile Object _next = null;
-    public volatile long _state = 0;
+
+    /* JADX INFO: renamed from: a */
+    public static final AtomicReferenceFieldUpdater f27690a = AtomicReferenceFieldUpdater.newUpdater(C13030m.class, Object.class, "_next");
+
+    /* JADX INFO: renamed from: b */
+    public static final AtomicLongFieldUpdater f27691b = AtomicLongFieldUpdater.newUpdater(C13030m.class, "_state");
+
+    /* JADX INFO: renamed from: d */
+    public static final a f27693d = new a(null);
 
     /* JADX INFO: renamed from: e */
     public final int f27694e;
@@ -24,28 +31,21 @@ public final class C13030m<E> {
     /* JADX INFO: renamed from: h */
     public final boolean f27697h;
 
-    /* JADX INFO: renamed from: d */
-    public static final a f27693d = new a(null);
-
     /* JADX INFO: renamed from: c */
     public static final C13037t f27692c = new C13037t("REMOVE_FROZEN");
-
-    /* JADX INFO: renamed from: a */
-    public static final AtomicReferenceFieldUpdater f27690a = AtomicReferenceFieldUpdater.newUpdater(C13030m.class, Object.class, "_next");
-
-    /* JADX INFO: renamed from: b */
-    public static final AtomicLongFieldUpdater f27691b = AtomicLongFieldUpdater.newUpdater(C13030m.class, "_state");
+    public volatile Object _next = null;
+    public volatile long _state = 0;
 
     /* JADX INFO: renamed from: s.a.a.m$a */
     /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: s.a.a.m$b */
     /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f27698a;

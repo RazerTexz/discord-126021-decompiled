@@ -24,7 +24,7 @@ public final class RetryWithDelay {
 
     /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$1 */
     /* JADX INFO: compiled from: RetryWithDelay.kt */
-    public static final class C55931 extends AbstractC12240o implements Function1<Throwable, Boolean> {
+    public final class C55931 extends AbstractC12240o implements Function1<Throwable, Boolean> {
         public static final C55931 INSTANCE = new C55931();
 
         public C55931() {
@@ -74,6 +74,43 @@ public final class RetryWithDelay {
         return retryWithDelay.restRetry(observable, j2, num3, num2);
     }
 
+    public final <T> Observable<T> restRetry(Observable<T> observable, final long j, final Integer num, final Integer num2) {
+        C12238m.checkNotNullParameter(observable, "$this$restRetry");
+        C55931 c55931 = C55931.INSTANCE;
+        Observable<T> observableM11089O = observable.m11089O(new InterfaceC12589b<Observable<? extends Throwable>, Observable<?>>() { // from class: com.discord.restapi.utils.RetryWithDelay.restRetry.2
+
+            /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$2$1, reason: invalid class name */
+            /* JADX INFO: compiled from: RetryWithDelay.kt */
+            public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<Throwable, Boolean> {
+                public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+                public AnonymousClass1() {
+                    super(1, null, "isNetworkError", "invoke(Ljava/lang/Throwable;)Z", 0);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
+                    return Boolean.valueOf(invoke2(th));
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final boolean invoke2(Throwable th) {
+                    C12238m.checkNotNullParameter(th, "p1");
+                    return C55931.INSTANCE.invoke2(th);
+                }
+            }
+
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<?> call(Observable<? extends Throwable> observable2) {
+                RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
+                C12238m.checkNotNullExpressionValue(observable2, "it");
+                return retryWithDelay.retryWithDelay(observable2, j, num, num2, AnonymousClass1.INSTANCE);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11089O, "retryWhen { it.retryWith…ries, ::isNetworkError) }");
+        return observableM11089O;
+    }
+
     private final Observable<Object> retryWithDelay(Observable<? extends Throwable> observable, long j, Integer num, Integer num2, final Function1<? super Throwable, Boolean> function1) {
         final int iIntValue = num2 != null ? num2.intValue() : Integer.MAX_VALUE;
         final int iIntValue2 = num != null ? num.intValue() : Integer.MAX_VALUE;
@@ -108,43 +145,6 @@ public final class RetryWithDelay {
         });
         C12238m.checkNotNullExpressionValue(observableM11082A, "flatMap {\n      if (curr…able.error<Any>(it)\n    }");
         return observableM11082A;
-    }
-
-    public final <T> Observable<T> restRetry(Observable<T> observable, final long j, final Integer num, final Integer num2) {
-        C12238m.checkNotNullParameter(observable, "$this$restRetry");
-        C55931 c55931 = C55931.INSTANCE;
-        Observable<T> observableM11089O = observable.m11089O(new InterfaceC12589b<Observable<? extends Throwable>, Observable<?>>() { // from class: com.discord.restapi.utils.RetryWithDelay.restRetry.2
-
-            /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$2$1, reason: invalid class name */
-            /* JADX INFO: compiled from: RetryWithDelay.kt */
-            public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<Throwable, Boolean> {
-                public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-                public AnonymousClass1() {
-                    super(1, null, "isNetworkError", "invoke(Ljava/lang/Throwable;)Z", 0);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
-                    return Boolean.valueOf(invoke2(th));
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final boolean invoke2(Throwable th) {
-                    C12238m.checkNotNullParameter(th, "p1");
-                    return C55931.INSTANCE.invoke2(th);
-                }
-            }
-
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<?> call(Observable<? extends Throwable> observable2) {
-                RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
-                C12238m.checkNotNullExpressionValue(observable2, "it");
-                return retryWithDelay.retryWithDelay(observable2, j, num, num2, AnonymousClass1.INSTANCE);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11089O, "retryWhen { it.retryWith…ries, ::isNetworkError) }");
-        return observableM11089O;
     }
 
     public static /* synthetic */ Observable restRetry$default(RetryWithDelay retryWithDelay, Observable observable, long j, Integer num, Integer num2, Function1 function1, int i, Object obj) {

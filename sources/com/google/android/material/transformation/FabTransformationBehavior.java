@@ -52,13 +52,6 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     private final RectF tmpRectF1;
     private final RectF tmpRectF2;
 
-    public static class FabTransformationSpec {
-        public Positioning positioning;
-
-        @Nullable
-        public MotionSpec timings;
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.transformation.FabTransformationBehavior$a */
     public class C11035a extends AnimatorListenerAdapter {
 
@@ -154,6 +147,13 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
             revealInfo.radius = Float.MAX_VALUE;
             this.f21249a.setRevealInfo(revealInfo);
         }
+    }
+
+    public class FabTransformationSpec {
+        public Positioning positioning;
+
+        @Nullable
+        public MotionSpec timings;
     }
 
     public FabTransformationBehavior() {
@@ -495,14 +495,6 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         return 0;
     }
 
-    @Nullable
-    private ViewGroup toViewGroupOrNull(View view) {
-        if (view instanceof ViewGroup) {
-            return (ViewGroup) view;
-        }
-        return null;
-    }
-
     @Override // com.google.android.material.transformation.ExpandableBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     @CallSuper
     public boolean layoutDependsOn(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull View view2) {
@@ -555,6 +547,14 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     }
 
     public abstract FabTransformationSpec onCreateMotionSpec(Context context, boolean z2);
+
+    @Nullable
+    private ViewGroup toViewGroupOrNull(View view) {
+        if (view instanceof ViewGroup) {
+            return (ViewGroup) view;
+        }
+        return null;
+    }
 
     public FabTransformationBehavior(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);

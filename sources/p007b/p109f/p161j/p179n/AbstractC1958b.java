@@ -70,81 +70,6 @@ public abstract class AbstractC1958b implements InterfaceC1960d {
         return options;
     }
 
-    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
-    /* JADX INFO: renamed from: a */
-    public CloseableReference<Bitmap> mo1414a(C1919e c1919e, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
-        BitmapFactory.Options optionsM1413e = m1413e(c1919e, config);
-        boolean z2 = optionsM1413e.inPreferredConfig != Bitmap.Config.ARGB_8888;
-        try {
-            InputStream inputStreamM1342e = c1919e.m1342e();
-            Objects.requireNonNull(inputStreamM1342e);
-            return m1416c(inputStreamM1342e, optionsM1413e, rect, colorSpace);
-        } catch (RuntimeException e) {
-            if (z2) {
-                return mo1414a(c1919e, Bitmap.Config.ARGB_8888, rect, colorSpace);
-            }
-            throw e;
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:14:0x0032  */
-    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
-    /* JADX INFO: renamed from: b */
-    public CloseableReference<Bitmap> mo1415b(C1919e c1919e, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
-        boolean z2;
-        C1832c c1832c = c1919e.f3893l;
-        if ((c1832c == C1831b.f3585a || c1832c == C1831b.f3596l) && c1919e.f3892k == null) {
-            Objects.requireNonNull(c1919e.f3891j);
-            PooledByteBuffer pooledByteBufferM8642u = c1919e.f3891j.m8642u();
-            if (pooledByteBufferM8642u.mo1395h(i - 2) == -1 && pooledByteBufferM8642u.mo1395h(i - 1) == -39) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-        } else {
-            z2 = true;
-        }
-        BitmapFactory.Options optionsM1413e = m1413e(c1919e, config);
-        InputStream inputStreamM1342e = c1919e.m1342e();
-        Objects.requireNonNull(inputStreamM1342e);
-        if (c1919e.m1344n() > i) {
-            inputStreamM1342e = new C1711a(inputStreamM1342e, i);
-        }
-        if (!z2) {
-            inputStreamM1342e = new C1712b(inputStreamM1342e, f3982a);
-        }
-        boolean z3 = optionsM1413e.inPreferredConfig != Bitmap.Config.ARGB_8888;
-        try {
-            try {
-                CloseableReference<Bitmap> closeableReferenceM1416c = m1416c(inputStreamM1342e, optionsM1413e, rect, colorSpace);
-                try {
-                    inputStreamM1342e.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return closeableReferenceM1416c;
-            } catch (Throwable th) {
-                try {
-                    inputStreamM1342e.close();
-                } catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-                throw th;
-            }
-        } catch (RuntimeException e3) {
-            if (!z3) {
-                throw e3;
-            }
-            CloseableReference<Bitmap> closeableReferenceMo1415b = mo1415b(c1919e, Bitmap.Config.ARGB_8888, rect, i, colorSpace);
-            try {
-                inputStreamM1342e.close();
-            } catch (IOException e4) {
-                e4.printStackTrace();
-            }
-            return closeableReferenceMo1415b;
-        }
-    }
-
     /* JADX WARN: Code duplicated, block: B:45:0x009e A[Catch: all -> 0x00c8, RuntimeException -> 0x00ca, IllegalArgumentException -> 0x00d3, TryCatch #8 {IllegalArgumentException -> 0x00d3, RuntimeException -> 0x00ca, blocks: (B:29:0x006b, B:34:0x0082, B:49:0x00a5, B:41:0x0096, B:45:0x009e, B:46:0x00a1), top: B:80:0x006b, outer: #5 }] */
     /* JADX WARN: Code duplicated, block: B:49:0x00a5 A[Catch: all -> 0x00c8, RuntimeException -> 0x00ca, IllegalArgumentException -> 0x00d3, TRY_LEAVE, TryCatch #8 {IllegalArgumentException -> 0x00d3, RuntimeException -> 0x00ca, blocks: (B:29:0x006b, B:34:0x0082, B:49:0x00a5, B:41:0x0096, B:45:0x009e, B:46:0x00a1), top: B:80:0x006b, outer: #5 }] */
     /* JADX INFO: renamed from: c */
@@ -268,4 +193,79 @@ public abstract class AbstractC1958b implements InterfaceC1960d {
 
     /* JADX INFO: renamed from: d */
     public abstract int mo1412d(int i, int i2, BitmapFactory.Options options);
+
+    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
+    /* JADX INFO: renamed from: a */
+    public CloseableReference<Bitmap> mo1414a(C1919e c1919e, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
+        BitmapFactory.Options optionsM1413e = m1413e(c1919e, config);
+        boolean z2 = optionsM1413e.inPreferredConfig != Bitmap.Config.ARGB_8888;
+        try {
+            InputStream inputStreamM1342e = c1919e.m1342e();
+            Objects.requireNonNull(inputStreamM1342e);
+            return m1416c(inputStreamM1342e, optionsM1413e, rect, colorSpace);
+        } catch (RuntimeException e) {
+            if (z2) {
+                return mo1414a(c1919e, Bitmap.Config.ARGB_8888, rect, colorSpace);
+            }
+            throw e;
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:14:0x0032  */
+    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
+    /* JADX INFO: renamed from: b */
+    public CloseableReference<Bitmap> mo1415b(C1919e c1919e, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
+        boolean z2;
+        C1832c c1832c = c1919e.f3893l;
+        if ((c1832c == C1831b.f3585a || c1832c == C1831b.f3596l) && c1919e.f3892k == null) {
+            Objects.requireNonNull(c1919e.f3891j);
+            PooledByteBuffer pooledByteBufferM8642u = c1919e.f3891j.m8642u();
+            if (pooledByteBufferM8642u.mo1395h(i - 2) == -1 && pooledByteBufferM8642u.mo1395h(i - 1) == -39) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+        } else {
+            z2 = true;
+        }
+        BitmapFactory.Options optionsM1413e = m1413e(c1919e, config);
+        InputStream inputStreamM1342e = c1919e.m1342e();
+        Objects.requireNonNull(inputStreamM1342e);
+        if (c1919e.m1344n() > i) {
+            inputStreamM1342e = new C1711a(inputStreamM1342e, i);
+        }
+        if (!z2) {
+            inputStreamM1342e = new C1712b(inputStreamM1342e, f3982a);
+        }
+        boolean z3 = optionsM1413e.inPreferredConfig != Bitmap.Config.ARGB_8888;
+        try {
+            try {
+                CloseableReference<Bitmap> closeableReferenceM1416c = m1416c(inputStreamM1342e, optionsM1413e, rect, colorSpace);
+                try {
+                    inputStreamM1342e.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return closeableReferenceM1416c;
+            } catch (Throwable th) {
+                try {
+                    inputStreamM1342e.close();
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+                throw th;
+            }
+        } catch (RuntimeException e3) {
+            if (!z3) {
+                throw e3;
+            }
+            CloseableReference<Bitmap> closeableReferenceMo1415b = mo1415b(c1919e, Bitmap.Config.ARGB_8888, rect, i, colorSpace);
+            try {
+                inputStreamM1342e.close();
+            } catch (IOException e4) {
+                e4.printStackTrace();
+            }
+            return closeableReferenceMo1415b;
+        }
+    }
 }

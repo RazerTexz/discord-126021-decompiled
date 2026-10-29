@@ -37,18 +37,6 @@ public class C2049b extends AbstractC2059l {
         return new File(context.getApplicationInfo().nativeLibraryDir);
     }
 
-    @Override // p007b.p109f.p190m.AbstractC2059l
-    /* JADX INFO: renamed from: a */
-    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
-        return this.f4318c.mo1568a(str, i, threadPolicy);
-    }
-
-    @Override // p007b.p109f.p190m.AbstractC2059l
-    /* JADX INFO: renamed from: b */
-    public void mo1569b(int i) throws IOException {
-        this.f4318c.mo1569b(i);
-    }
-
     /* JADX INFO: renamed from: c */
     public boolean m1570c() throws IOException {
         File file = this.f4318c.f4319a;
@@ -73,6 +61,18 @@ public class C2049b extends AbstractC2059l {
         } catch (PackageManager.NameNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override // p007b.p109f.p190m.AbstractC2059l
+    /* JADX INFO: renamed from: a */
+    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
+        return this.f4318c.mo1568a(str, i, threadPolicy);
+    }
+
+    @Override // p007b.p109f.p190m.AbstractC2059l
+    /* JADX INFO: renamed from: b */
+    public void mo1569b(int i) throws IOException {
+        this.f4318c.mo1569b(i);
     }
 
     @Override // p007b.p109f.p190m.AbstractC2059l

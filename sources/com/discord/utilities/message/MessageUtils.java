@@ -32,13 +32,13 @@ import p507d0.p592z.p594d.C12238m;
 public final class MessageUtils {
     private static final StickerPartial[] ROLE_SUBSCRIPTION_PURCHASE_STICKERS;
     private static final Comparator<Long> SORT_BY_IDS_COMPARATOR;
+    private static final int[] WELCOME_MESSAGES = {C5419R.string.system_message_guild_member_join_001, C5419R.string.system_message_guild_member_join_002, C5419R.string.system_message_guild_member_join_003, C5419R.string.system_message_guild_member_join_004, C5419R.string.system_message_guild_member_join_005, C5419R.string.system_message_guild_member_join_006, C5419R.string.system_message_guild_member_join_007, C5419R.string.system_message_guild_member_join_008, C5419R.string.system_message_guild_member_join_009, C5419R.string.system_message_guild_member_join_010, C5419R.string.system_message_guild_member_join_011, C5419R.string.system_message_guild_member_join_012, C5419R.string.system_message_guild_member_join_013};
     private static final StickerPartial[] WELCOME_STICKERS;
     public static final MessageUtils INSTANCE = new MessageUtils();
-    private static final int[] WELCOME_MESSAGES = {C5419R.string.system_message_guild_member_join_001, C5419R.string.system_message_guild_member_join_002, C5419R.string.system_message_guild_member_join_003, C5419R.string.system_message_guild_member_join_004, C5419R.string.system_message_guild_member_join_005, C5419R.string.system_message_guild_member_join_006, C5419R.string.system_message_guild_member_join_007, C5419R.string.system_message_guild_member_join_008, C5419R.string.system_message_guild_member_join_009, C5419R.string.system_message_guild_member_join_010, C5419R.string.system_message_guild_member_join_011, C5419R.string.system_message_guild_member_join_012, C5419R.string.system_message_guild_member_join_013};
 
     /* JADX INFO: renamed from: com.discord.utilities.message.MessageUtils$getSystemMessageRoleSubscriptionPurchase$1 */
     /* JADX INFO: compiled from: MessageUtils.kt */
-    public static final class C67941 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C67941 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C67941 INSTANCE = new C67941();
 
         public C67941() {
@@ -82,6 +82,13 @@ public final class MessageUtils {
         return jLongValue < jLongValue2 ? -1 : 1;
     }
 
+    public static /* synthetic */ Map getNickOrUsernames$default(Message message, Channel channel, Map map, List list, int i, Object obj) {
+        if ((i & 8) != 0) {
+            list = null;
+        }
+        return getNickOrUsernames(message, channel, map, list);
+    }
+
     public static final Map<Long, String> getNickOrUsernames(Message message, Channel channel, Map<Long, GuildMember> guildMembers, List<ChannelRecipientNick> nicks) {
         C12238m.checkNotNullParameter(message, "message");
         C12238m.checkNotNullParameter(guildMembers, "guildMembers");
@@ -105,18 +112,17 @@ public final class MessageUtils {
         return map;
     }
 
-    public static /* synthetic */ Map getNickOrUsernames$default(Message message, Channel channel, Map map, List list, int i, Object obj) {
-        if ((i & 8) != 0) {
-            list = null;
-        }
-        return getNickOrUsernames(message, channel, map, list);
+    public final StickerPartial getRoleSubscriptionPurchaseSticker(long meUserId, long messageId) {
+        long snowflake = TimeUtils.parseSnowflake(Long.valueOf(messageId)) + TimeUtils.parseSnowflake(Long.valueOf(meUserId));
+        StickerPartial[] stickerPartialArr = ROLE_SUBSCRIPTION_PURCHASE_STICKERS;
+        return stickerPartialArr[(int) (snowflake % ((long) stickerPartialArr.length))];
+    }
+
+    public static /* synthetic */ void getSORT_BY_IDS_COMPARATOR$annotations() {
     }
 
     public static final Comparator<Long> getSORT_BY_IDS_COMPARATOR() {
         return SORT_BY_IDS_COMPARATOR;
-    }
-
-    public static /* synthetic */ void getSORT_BY_IDS_COMPARATOR$annotations() {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -125,16 +131,6 @@ public final class MessageUtils {
             function1 = C67941.INSTANCE;
         }
         return messageUtils.getSystemMessageRoleSubscriptionPurchase(context, str, str2, roleSubscriptionData, function1);
-    }
-
-    public static final boolean isNewer(Long messageId1, Long messageId2) {
-        return compareMessages(messageId1, messageId2) < 0;
-    }
-
-    public final StickerPartial getRoleSubscriptionPurchaseSticker(long meUserId, long messageId) {
-        long snowflake = TimeUtils.parseSnowflake(Long.valueOf(messageId)) + TimeUtils.parseSnowflake(Long.valueOf(meUserId));
-        StickerPartial[] stickerPartialArr = ROLE_SUBSCRIPTION_PURCHASE_STICKERS;
-        return stickerPartialArr[(int) (snowflake % ((long) stickerPartialArr.length))];
     }
 
     public final CharSequence getSystemMessageRoleSubscriptionPurchase(Context context, String str, String str2, RoleSubscriptionData roleSubscriptionData, Function1<? super RenderContext, Unit> function1) {
@@ -161,5 +157,9 @@ public final class MessageUtils {
         long snowflake = TimeUtils.parseSnowflake(Long.valueOf(messageId)) + TimeUtils.parseSnowflake(Long.valueOf(meUserId));
         StickerPartial[] stickerPartialArr = WELCOME_STICKERS;
         return stickerPartialArr[(int) (snowflake % ((long) stickerPartialArr.length))];
+    }
+
+    public static final boolean isNewer(Long messageId1, Long messageId2) {
+        return compareMessages(messageId1, messageId2) < 0;
     }
 }

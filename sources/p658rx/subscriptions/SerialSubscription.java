@@ -10,6 +10,11 @@ public final class SerialSubscription implements Subscription {
     /* JADX INFO: renamed from: j */
     public final C12709a f27657j = new C12709a();
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.f27657j.isUnsubscribed();
+    }
+
     /* JADX INFO: renamed from: a */
     public void m11139a(Subscription subscription) {
         Subscription subscription2;
@@ -27,11 +32,6 @@ public final class SerialSubscription implements Subscription {
         if (subscription2 != null) {
             subscription2.unsubscribe();
         }
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.f27657j.isUnsubscribed();
     }
 
     @Override // p658rx.Subscription

@@ -32,8 +32,125 @@ public final class StoreChat extends StoreV2 {
     private InteractionState interactionState;
     private final ObservationDeck observationDeck;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeEditingMessage$1 */
     /* JADX INFO: compiled from: StoreChat.kt */
-    public static final /* data */ class EditingMessage {
+    public final class C58401 extends AbstractC12240o implements Function0<EditingMessage> {
+        public C58401() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final EditingMessage invoke() {
+            return StoreChat.this.getEditingMessage();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeExpandedBlockedMessageIds$1 */
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final class C58411 extends AbstractC12240o implements Function0<List<? extends Long>> {
+        public C58411() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final List<? extends Long> invoke() {
+            return StoreChat.this.getExpandedBlockedMessageGroups();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeInteractionState$1 */
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final class C58421 extends AbstractC12240o implements Function0<InteractionState> {
+        public C58421() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final InteractionState invoke() {
+            return StoreChat.this.getInteractionState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$setEditingMessage$1 */
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final class C58431 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ EditingMessage $editingMessage;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58431(EditingMessage editingMessage) {
+            super(0);
+            this.$editingMessage = editingMessage;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreChat.this.editingMessage = this.$editingMessage;
+            StoreChat.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$setInteractionState$1 */
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final class C58441 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ InteractionState $interactionState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58441(InteractionState interactionState) {
+            super(0);
+            this.$interactionState = interactionState;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreChat.this.interactionState = this.$interactionState;
+            StoreChat.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChat$toggleBlockedMessageGroup$1 */
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final class C58451 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $messageId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58451(long j) {
+            super(0);
+            this.$messageId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreChat.this.expandedBlockedMessageGroups.contains(Long.valueOf(this.$messageId))) {
+                StoreChat.this.expandedBlockedMessageGroups.remove(Long.valueOf(this.$messageId));
+            } else {
+                StoreChat.this.expandedBlockedMessageGroups.add(Long.valueOf(this.$messageId));
+            }
+            StoreChat.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChat.kt */
+    public final /* data */ class EditingMessage {
         private final CharSequence content;
         private final Message message;
 
@@ -54,16 +171,6 @@ public final class StoreChat extends StoreV2 {
             return editingMessage.copy(message, charSequence);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Message getMessage() {
-            return this.message;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getContent() {
-            return this.content;
-        }
-
         public final EditingMessage copy(Message message, CharSequence content) {
             C12238m.checkNotNullParameter(message, "message");
             C12238m.checkNotNullParameter(content, "content");
@@ -81,8 +188,18 @@ public final class StoreChat extends StoreV2 {
             return C12238m.areEqual(this.message, editingMessage.message) && C12238m.areEqual(this.content, editingMessage.content);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getContent() {
             return this.content;
+        }
+
+        public final CharSequence getContent() {
+            return this.content;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Message getMessage() {
+            return this.message;
         }
 
         public final Message getMessage() {
@@ -105,10 +222,10 @@ public final class StoreChat extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreChat.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: StoreChat.kt */
-        public static final /* data */ class AppendChatText extends Event {
+        public final /* data */ class AppendChatText extends Event {
             private final String text;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -125,11 +242,6 @@ public final class StoreChat extends StoreV2 {
                 return appendChatText.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getText() {
-                return this.text;
-            }
-
             public final AppendChatText copy(String text) {
                 C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
                 return new AppendChatText(text);
@@ -140,6 +252,11 @@ public final class StoreChat extends StoreV2 {
                     return (other instanceof AppendChatText) && C12238m.areEqual(this.text, ((AppendChatText) other).text);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getText() {
+                return this.text;
             }
 
             public final String getText() {
@@ -160,7 +277,7 @@ public final class StoreChat extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreChat.kt */
-        public static final /* data */ class ReplaceChatText extends Event {
+        public final /* data */ class ReplaceChatText extends Event {
             private final String text;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -177,11 +294,6 @@ public final class StoreChat extends StoreV2 {
                 return replaceChatText.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getText() {
-                return this.text;
-            }
-
             public final ReplaceChatText copy(String text) {
                 C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
                 return new ReplaceChatText(text);
@@ -192,6 +304,11 @@ public final class StoreChat extends StoreV2 {
                     return (other instanceof ReplaceChatText) && C12238m.areEqual(this.text, ((ReplaceChatText) other).text);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getText() {
+                return this.text;
             }
 
             public final String getText() {
@@ -216,123 +333,6 @@ public final class StoreChat extends StoreV2 {
 
         public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeEditingMessage$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58401 extends AbstractC12240o implements Function0<EditingMessage> {
-        public C58401() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final EditingMessage invoke() {
-            return StoreChat.this.getEditingMessage();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeExpandedBlockedMessageIds$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58411 extends AbstractC12240o implements Function0<List<? extends Long>> {
-        public C58411() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final List<? extends Long> invoke() {
-            return StoreChat.this.getExpandedBlockedMessageGroups();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$observeInteractionState$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58421 extends AbstractC12240o implements Function0<InteractionState> {
-        public C58421() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final InteractionState invoke() {
-            return StoreChat.this.getInteractionState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$setEditingMessage$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58431 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ EditingMessage $editingMessage;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58431(EditingMessage editingMessage) {
-            super(0);
-            this.$editingMessage = editingMessage;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreChat.this.editingMessage = this.$editingMessage;
-            StoreChat.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$setInteractionState$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58441 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ InteractionState $interactionState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58441(InteractionState interactionState) {
-            super(0);
-            this.$interactionState = interactionState;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreChat.this.interactionState = this.$interactionState;
-            StoreChat.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChat$toggleBlockedMessageGroup$1 */
-    /* JADX INFO: compiled from: StoreChat.kt */
-    public static final class C58451 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $messageId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58451(long j) {
-            super(0);
-            this.$messageId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (StoreChat.this.expandedBlockedMessageGroups.contains(Long.valueOf(this.$messageId))) {
-                StoreChat.this.expandedBlockedMessageGroups.remove(Long.valueOf(this.$messageId));
-            } else {
-                StoreChat.this.expandedBlockedMessageGroups.add(Long.valueOf(this.$messageId));
-            }
-            StoreChat.this.markChanged();
         }
     }
 
@@ -427,7 +427,7 @@ public final class StoreChat extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreChat.kt */
-    public static final /* data */ class InteractionState {
+    public final /* data */ class InteractionState {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -446,7 +446,7 @@ public final class StoreChat extends StoreV2 {
         private final int scrollState;
 
         /* JADX INFO: compiled from: StoreChat.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -480,11 +480,6 @@ public final class StoreChat extends StoreV2 {
             this.isAtBottom = z2 && isAtBottomIgnoringTouch();
         }
 
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        private final int getScrollState() {
-            return this.scrollState;
-        }
-
         public static /* synthetic */ InteractionState copy$default(InteractionState interactionState, long j, long j2, boolean z2, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 j = interactionState.channelId;
@@ -504,21 +499,6 @@ public final class StoreChat extends StoreV2 {
             return interactionState.copy(j3, j4, z3, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getLastMessageId() {
-            return this.lastMessageId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsTouchedSinceLastJump() {
-            return this.isTouchedSinceLastJump;
-        }
-
         public final InteractionState copy(long channelId, long lastMessageId, boolean isTouchedSinceLastJump, int scrollState) {
             return new InteractionState(channelId, lastMessageId, isTouchedSinceLastJump, scrollState);
         }
@@ -534,12 +514,42 @@ public final class StoreChat extends StoreV2 {
             return this.channelId == interactionState.channelId && this.lastMessageId == interactionState.lastMessageId && this.isTouchedSinceLastJump == interactionState.isTouchedSinceLastJump && this.scrollState == interactionState.scrollState;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
         }
 
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: isAtBottom, reason: from getter */
+        public final boolean getIsAtBottom() {
+            return this.isAtBottom;
+        }
+
+        /* JADX INFO: renamed from: isAtTop, reason: from getter */
+        public final boolean getIsAtTop() {
+            return this.isAtTop;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsTouchedSinceLastJump() {
+            return this.isTouchedSinceLastJump;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getLastMessageId() {
             return this.lastMessageId;
+        }
+
+        public final long getLastMessageId() {
+            return this.lastMessageId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        private final int getScrollState() {
+            return this.scrollState;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -557,18 +567,8 @@ public final class StoreChat extends StoreV2 {
             return ((iM3a + r0) * 31) + this.scrollState;
         }
 
-        /* JADX INFO: renamed from: isAtBottom, reason: from getter */
-        public final boolean getIsAtBottom() {
-            return this.isAtBottom;
-        }
-
         public final boolean isAtBottomIgnoringTouch() {
             return (this.scrollState & 1) != 0;
-        }
-
-        /* JADX INFO: renamed from: isAtTop, reason: from getter */
-        public final boolean getIsAtTop() {
-            return this.isAtTop;
         }
 
         public final boolean isAtTopIgnoringTouch() {

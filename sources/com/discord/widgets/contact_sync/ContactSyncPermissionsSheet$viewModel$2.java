@@ -16,7 +16,7 @@ public final class ContactSyncPermissionsSheet$viewModel$2 extends AbstractC1224
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncPermissionsSheet$viewModel$2$1 */
     /* JADX INFO: compiled from: ContactSyncPermissionsSheet.kt */
-    public static final class C82141 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C82141 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C82141 INSTANCE = new C82141();
 
         public C82141() {

@@ -38,8 +38,31 @@ public final class UserProfileConnectionsView extends LinearLayout {
     private final UserProfileConnectionsViewBinding binding;
     private final ConnectedAccountsAdapter connectedAccountsAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileConnectionsView$updateViewState$1 */
     /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
-    public static final /* data */ class ConnectedAccountItem implements MGRecyclerDataPayload {
+    public final class C102931 extends AbstractC12240o implements Function3<String, Integer, String, Unit> {
+        public final /* synthetic */ Function3 $onConnectedAccountClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C102931(Function3 function3) {
+            super(3);
+            this.$onConnectedAccountClick = function3;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num, String str2) {
+            invoke(str, num.intValue(), str2);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(String str, int i, String str2) {
+            C12238m.checkNotNullParameter(str, "username");
+            this.$onConnectedAccountClick.invoke(str, Integer.valueOf(i), str2);
+        }
+    }
+
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final /* data */ class ConnectedAccountItem implements MGRecyclerDataPayload {
         private final ConnectedAccount connectedAccount;
         private final String key;
         private final int type;
@@ -57,11 +80,6 @@ public final class UserProfileConnectionsView extends LinearLayout {
             return connectedAccountItem.copy(connectedAccount);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ConnectedAccount getConnectedAccount() {
-            return this.connectedAccount;
-        }
-
         public final ConnectedAccountItem copy(ConnectedAccount connectedAccount) {
             C12238m.checkNotNullParameter(connectedAccount, "connectedAccount");
             return new ConnectedAccountItem(connectedAccount);
@@ -72,6 +90,11 @@ public final class UserProfileConnectionsView extends LinearLayout {
                 return (other instanceof ConnectedAccountItem) && C12238m.areEqual(this.connectedAccount, ((ConnectedAccountItem) other).connectedAccount);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ConnectedAccount getConnectedAccount() {
+            return this.connectedAccount;
         }
 
         public final ConnectedAccount getConnectedAccount() {
@@ -105,7 +128,7 @@ public final class UserProfileConnectionsView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
-    public static final class ConnectedAccountsAdapter extends MGRecyclerAdapterSimple<ConnectedAccountItem> {
+    public final class ConnectedAccountsAdapter extends MGRecyclerAdapterSimple<ConnectedAccountItem> {
         private Function3<? super String, ? super Integer, ? super String, Unit> onConnectedAccountClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -132,7 +155,7 @@ public final class UserProfileConnectionsView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
-    public static final class ViewHolder extends MGRecyclerViewHolder<ConnectedAccountsAdapter, ConnectedAccountItem> {
+    public final class ViewHolder extends MGRecyclerViewHolder<ConnectedAccountsAdapter, ConnectedAccountItem> {
         private final TextView listItemTextView;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -178,7 +201,7 @@ public final class UserProfileConnectionsView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<ConnectedAccountItem> connectedAccountItems;
         private final boolean showConnectionsSection;
         private final boolean showMutualGuildsAndFriends;
@@ -188,6 +211,10 @@ public final class UserProfileConnectionsView extends LinearLayout {
             this.showConnectionsSection = z2;
             this.showMutualGuildsAndFriends = z3;
             this.connectedAccountItems = list;
+        }
+
+        public final List<ConnectedAccountItem> component3() {
+            return this.connectedAccountItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -202,20 +229,6 @@ public final class UserProfileConnectionsView extends LinearLayout {
                 list = viewState.connectedAccountItems;
             }
             return viewState.copy(z2, z3, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShowConnectionsSection() {
-            return this.showConnectionsSection;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowMutualGuildsAndFriends() {
-            return this.showMutualGuildsAndFriends;
-        }
-
-        public final List<ConnectedAccountItem> component3() {
-            return this.connectedAccountItems;
         }
 
         public final ViewState copy(boolean showConnectionsSection, boolean showMutualGuildsAndFriends, List<ConnectedAccountItem> connectedAccountItems) {
@@ -238,8 +251,18 @@ public final class UserProfileConnectionsView extends LinearLayout {
             return this.connectedAccountItems;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getShowConnectionsSection() {
             return this.showConnectionsSection;
+        }
+
+        public final boolean getShowConnectionsSection() {
+            return this.showConnectionsSection;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShowMutualGuildsAndFriends() {
+            return this.showMutualGuildsAndFriends;
         }
 
         public final boolean getShowMutualGuildsAndFriends() {
@@ -274,29 +297,6 @@ public final class UserProfileConnectionsView extends LinearLayout {
             sbM833U.append(this.showMutualGuildsAndFriends);
             sbM833U.append(", connectedAccountItems=");
             return C1643a.m824L(sbM833U, this.connectedAccountItems, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileConnectionsView$updateViewState$1 */
-    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
-    public static final class C102931 extends AbstractC12240o implements Function3<String, Integer, String, Unit> {
-        public final /* synthetic */ Function3 $onConnectedAccountClick;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C102931(Function3 function3) {
-            super(3);
-            this.$onConnectedAccountClick = function3;
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num, String str2) {
-            invoke(str, num.intValue(), str2);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(String str, int i, String str2) {
-            C12238m.checkNotNullParameter(str, "username");
-            this.$onConnectedAccountClick.invoke(str, Integer.valueOf(i), str2);
         }
     }
 

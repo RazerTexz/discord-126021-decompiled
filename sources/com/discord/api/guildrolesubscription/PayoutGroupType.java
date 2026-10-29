@@ -17,7 +17,7 @@ public enum PayoutGroupType {
     private final String apiValue;
 
     /* JADX INFO: compiled from: PayoutGroupType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

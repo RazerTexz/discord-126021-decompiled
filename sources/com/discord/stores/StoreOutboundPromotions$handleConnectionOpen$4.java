@@ -15,7 +15,7 @@ public final class StoreOutboundPromotions$handleConnectionOpen$4 extends Abstra
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$handleConnectionOpen$4$1 */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public static final class C63181 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63181 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $validActivePromos;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

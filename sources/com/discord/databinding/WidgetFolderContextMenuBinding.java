@@ -38,6 +38,12 @@ public final class WidgetFolderContextMenuBinding implements ViewBinding {
         this.f16632e = textView3;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16628a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetFolderContextMenuBinding m8414a(@NonNull View view) {
@@ -60,11 +66,5 @@ public final class WidgetFolderContextMenuBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16628a;
     }
 }

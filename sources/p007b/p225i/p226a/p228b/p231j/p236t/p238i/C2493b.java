@@ -27,6 +27,22 @@ public final class C2493b extends AbstractC2499h {
         this.f5419c = abstractC2439f;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC2499h)) {
+            return false;
+        }
+        AbstractC2499h abstractC2499h = (AbstractC2499h) obj;
+        return this.f5417a == abstractC2499h.mo2392b() && this.f5418b.equals(abstractC2499h.mo2393c()) && this.f5419c.equals(abstractC2499h.mo2391a());
+    }
+
+    public int hashCode() {
+        long j = this.f5417a;
+        return this.f5419c.hashCode() ^ ((((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f5418b.hashCode()) * 1000003);
+    }
+
     @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.AbstractC2499h
     /* JADX INFO: renamed from: a */
     public AbstractC2439f mo2391a() {
@@ -43,22 +59,6 @@ public final class C2493b extends AbstractC2499h {
     /* JADX INFO: renamed from: c */
     public AbstractC2442i mo2393c() {
         return this.f5418b;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC2499h)) {
-            return false;
-        }
-        AbstractC2499h abstractC2499h = (AbstractC2499h) obj;
-        return this.f5417a == abstractC2499h.mo2392b() && this.f5418b.equals(abstractC2499h.mo2393c()) && this.f5419c.equals(abstractC2499h.mo2391a());
-    }
-
-    public int hashCode() {
-        long j = this.f5417a;
-        return this.f5419c.hashCode() ^ ((((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f5418b.hashCode()) * 1000003);
     }
 
     public String toString() {

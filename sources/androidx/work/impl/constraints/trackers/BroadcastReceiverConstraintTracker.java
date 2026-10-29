@@ -12,8 +12,8 @@ import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public abstract class BroadcastReceiverConstraintTracker<T> extends ConstraintTracker<T> {
-    private static final String TAG = Logger.tagWithPrefix("BrdcstRcvrCnstrntTrckr");
     private final BroadcastReceiver mBroadcastReceiver;
+    private static final String TAG = Logger.tagWithPrefix("BrdcstRcvrCnstrntTrckr");
 
     public BroadcastReceiverConstraintTracker(@NonNull Context context, @NonNull TaskExecutor taskExecutor) {
         super(context, taskExecutor);

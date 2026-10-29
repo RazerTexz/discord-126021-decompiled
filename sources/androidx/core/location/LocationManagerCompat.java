@@ -41,7 +41,7 @@ public final class LocationManagerCompat {
     private static final SimpleArrayMap<Object, Object> sGnssStatusListeners = new SimpleArrayMap<>();
 
     @RequiresApi(28)
-    public static class Api28Impl {
+    public class Api28Impl {
         private Api28Impl() {
         }
 
@@ -62,7 +62,7 @@ public final class LocationManagerCompat {
     }
 
     @RequiresApi(30)
-    public static class Api30Impl {
+    public class Api30Impl {
         private Api30Impl() {
         }
 
@@ -78,101 +78,8 @@ public final class LocationManagerCompat {
         }
     }
 
-    public static final class CancellableLocationListener implements LocationListener {
-        private Consumer<Location> mConsumer;
-        private final Executor mExecutor;
-        private final LocationManager mLocationManager;
-        private final Handler mTimeoutHandler = new Handler(Looper.getMainLooper());
-
-        @Nullable
-        public Runnable mTimeoutRunnable;
-
-        @GuardedBy("this")
-        private boolean mTriggered;
-
-        public CancellableLocationListener(LocationManager locationManager, Executor executor, Consumer<Location> consumer) {
-            this.mLocationManager = locationManager;
-            this.mExecutor = executor;
-            this.mConsumer = consumer;
-        }
-
-        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
-        private void cleanup() {
-            this.mConsumer = null;
-            this.mLocationManager.removeUpdates(this);
-            Runnable runnable = this.mTimeoutRunnable;
-            if (runnable != null) {
-                this.mTimeoutHandler.removeCallbacks(runnable);
-                this.mTimeoutRunnable = null;
-            }
-        }
-
-        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
-        public void cancel() {
-            synchronized (this) {
-                if (this.mTriggered) {
-                    return;
-                }
-                this.mTriggered = true;
-                cleanup();
-            }
-        }
-
-        @Override // android.location.LocationListener
-        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
-        public void onLocationChanged(@Nullable final Location location) {
-            synchronized (this) {
-                if (this.mTriggered) {
-                    return;
-                }
-                this.mTriggered = true;
-                final Consumer<Location> consumer = this.mConsumer;
-                this.mExecutor.execute(new Runnable() { // from class: androidx.core.location.LocationManagerCompat.CancellableLocationListener.2
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        consumer.accept(location);
-                    }
-                });
-                cleanup();
-            }
-        }
-
-        @Override // android.location.LocationListener
-        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
-        public void onProviderDisabled(@NonNull String str) {
-            onLocationChanged((Location) null);
-        }
-
-        @Override // android.location.LocationListener
-        public void onProviderEnabled(@NonNull String str) {
-        }
-
-        @Override // android.location.LocationListener
-        public void onStatusChanged(String str, int i, Bundle bundle) {
-        }
-
-        public void startTimeout(long j) {
-            synchronized (this) {
-                if (this.mTriggered) {
-                    return;
-                }
-                Runnable runnable = new Runnable() { // from class: androidx.core.location.LocationManagerCompat.CancellableLocationListener.1
-                    @Override // java.lang.Runnable
-                    @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
-                    public void run() {
-                        CancellableLocationListener cancellableLocationListener = CancellableLocationListener.this;
-                        cancellableLocationListener.mTimeoutRunnable = null;
-                        cancellableLocationListener.onLocationChanged((Location) null);
-                    }
-                };
-                this.mTimeoutRunnable = runnable;
-                this.mTimeoutHandler.postDelayed(runnable, j);
-            }
-        }
-    }
-
     @RequiresApi(30)
-    public static class GnssStatusTransport extends GnssStatus.Callback {
+    public class GnssStatusTransport extends GnssStatus.Callback {
         public final GnssStatusCompat.Callback mCallback;
 
         public GnssStatusTransport(GnssStatusCompat.Callback callback) {
@@ -201,7 +108,7 @@ public final class LocationManagerCompat {
         }
     }
 
-    public static class GpsStatusTransport implements GpsStatus.Listener {
+    public class GpsStatusTransport implements GpsStatus.Listener {
         public final GnssStatusCompat.Callback mCallback;
 
         @Nullable
@@ -287,7 +194,7 @@ public final class LocationManagerCompat {
         }
     }
 
-    public static final class InlineHandlerExecutor implements Executor {
+    public final class InlineHandlerExecutor implements Executor {
         private final Handler mHandler;
 
         public InlineHandlerExecutor(@NonNull Handler handler) {
@@ -308,7 +215,7 @@ public final class LocationManagerCompat {
     }
 
     @RequiresApi(24)
-    public static class PreRGnssStatusTransport extends GnssStatus.Callback {
+    public class PreRGnssStatusTransport extends GnssStatus.Callback {
         public final GnssStatusCompat.Callback mCallback;
 
         @Nullable
@@ -490,6 +397,99 @@ public final class LocationManagerCompat {
             if (gpsStatusTransport != null) {
                 gpsStatusTransport.unregister();
                 locationManager.removeGpsStatusListener(gpsStatusTransport);
+            }
+        }
+    }
+
+    public final class CancellableLocationListener implements LocationListener {
+        private Consumer<Location> mConsumer;
+        private final Executor mExecutor;
+        private final LocationManager mLocationManager;
+
+        @Nullable
+        public Runnable mTimeoutRunnable;
+
+        @GuardedBy("this")
+        private boolean mTriggered;
+        private final Handler mTimeoutHandler = new Handler(Looper.getMainLooper());
+
+        public CancellableLocationListener(LocationManager locationManager, Executor executor, Consumer<Location> consumer) {
+            this.mLocationManager = locationManager;
+            this.mExecutor = executor;
+            this.mConsumer = consumer;
+        }
+
+        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
+        public void cancel() {
+            synchronized (this) {
+                if (this.mTriggered) {
+                    return;
+                }
+                this.mTriggered = true;
+                cleanup();
+            }
+        }
+
+        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
+        private void cleanup() {
+            this.mConsumer = null;
+            this.mLocationManager.removeUpdates(this);
+            Runnable runnable = this.mTimeoutRunnable;
+            if (runnable != null) {
+                this.mTimeoutHandler.removeCallbacks(runnable);
+                this.mTimeoutRunnable = null;
+            }
+        }
+
+        @Override // android.location.LocationListener
+        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
+        public void onLocationChanged(@Nullable final Location location) {
+            synchronized (this) {
+                if (this.mTriggered) {
+                    return;
+                }
+                this.mTriggered = true;
+                final Consumer<Location> consumer = this.mConsumer;
+                this.mExecutor.execute(new Runnable() { // from class: androidx.core.location.LocationManagerCompat.CancellableLocationListener.2
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        consumer.accept(location);
+                    }
+                });
+                cleanup();
+            }
+        }
+
+        @Override // android.location.LocationListener
+        @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
+        public void onProviderDisabled(@NonNull String str) {
+            onLocationChanged((Location) null);
+        }
+
+        @Override // android.location.LocationListener
+        public void onProviderEnabled(@NonNull String str) {
+        }
+
+        @Override // android.location.LocationListener
+        public void onStatusChanged(String str, int i, Bundle bundle) {
+        }
+
+        public void startTimeout(long j) {
+            synchronized (this) {
+                if (this.mTriggered) {
+                    return;
+                }
+                Runnable runnable = new Runnable() { // from class: androidx.core.location.LocationManagerCompat.CancellableLocationListener.1
+                    @Override // java.lang.Runnable
+                    @RequiresPermission(anyOf = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"})
+                    public void run() {
+                        CancellableLocationListener cancellableLocationListener = CancellableLocationListener.this;
+                        cancellableLocationListener.mTimeoutRunnable = null;
+                        cancellableLocationListener.onLocationChanged((Location) null);
+                    }
+                };
+                this.mTimeoutRunnable = runnable;
+                this.mTimeoutHandler.postDelayed(runnable, j);
             }
         }
     }

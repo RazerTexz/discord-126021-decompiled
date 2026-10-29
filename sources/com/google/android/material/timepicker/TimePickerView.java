@@ -47,20 +47,6 @@ public class TimePickerView extends ConstraintLayout {
     /* JADX INFO: renamed from: r */
     public InterfaceC11029b f21235r;
 
-    /* JADX INFO: renamed from: com.google.android.material.timepicker.TimePickerView$a */
-    public class ViewOnClickListenerC11028a implements View.OnClickListener {
-        public ViewOnClickListenerC11028a() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            InterfaceC11031d interfaceC11031d = TimePickerView.this.f21234q;
-            if (interfaceC11031d != null) {
-                interfaceC11031d.mo6172b(((Integer) view.getTag(C10817R.id.selection_type)).intValue());
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.timepicker.TimePickerView$b */
     public interface InterfaceC11029b {
     }
@@ -73,6 +59,20 @@ public class TimePickerView extends ConstraintLayout {
     public interface InterfaceC11031d {
         /* JADX INFO: renamed from: b */
         void mo6172b(int i);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.timepicker.TimePickerView$a */
+    public class ViewOnClickListenerC11028a implements View.OnClickListener {
+        public ViewOnClickListenerC11028a() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            InterfaceC11031d interfaceC11031d = TimePickerView.this.f21234q;
+            if (interfaceC11031d != null) {
+                interfaceC11031d.mo6172b(((Integer) view.getTag(C10817R.id.selection_type)).intValue());
+            }
+        }
     }
 
     public TimePickerView(Context context, @Nullable AttributeSet attributeSet) {

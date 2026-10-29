@@ -23,12 +23,12 @@ public final class SoundshareAudioSource {
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
     private static final String TAG = "SoundshareAudioSource";
-    private static volatile boolean microphoneMute;
     private AudioRecord audioRecord;
     private AudioRecordThread audioThread;
     private ByteBuffer byteBuffer;
-    private final long nativeInstance = nativeCreateInstance();
+    private static volatile boolean microphoneMute;
     private boolean released;
+    private final long nativeInstance = nativeCreateInstance();
 
     /* JADX INFO: compiled from: SoundshareAudioSource.kt */
     public final class AudioRecordThread extends Thread {
@@ -94,7 +94,7 @@ public final class SoundshareAudioSource {
     }
 
     /* JADX INFO: compiled from: SoundshareAudioSource.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -124,6 +124,10 @@ public final class SoundshareAudioSource {
         }
     }
 
+    public final long getNativeInstance() {
+        return this.nativeInstance;
+    }
+
     private final native synchronized void nativeCacheDirectBufferAddress(long nativeInstance, ByteBuffer byteBuffer);
 
     private final native synchronized long nativeCreateInstance();
@@ -133,22 +137,6 @@ public final class SoundshareAudioSource {
     private final native synchronized void nativeDestroyInstance(long nativeInstance);
 
     private final native void nativeSetSampleFormat(long nativeInstance, int sampleRate, int bitDepth, int channels);
-
-    private final void reportSoundshareAudioSourceError(String errorMessage) {
-        Log.e(TAG, "Run-time recording error: " + errorMessage);
-    }
-
-    private final void reportSoundshareAudioSourceInitError(String errorMessage) {
-        Log.e(TAG, "Init recording error: " + errorMessage);
-    }
-
-    private final void reportSoundshareAudioSourceStartError(String errorMessage) {
-        Log.e(TAG, "Start recording error: " + errorMessage);
-    }
-
-    public final long getNativeInstance() {
-        return this.nativeInstance;
-    }
 
     public final synchronized void release() {
         if (!this.released) {
@@ -160,6 +148,18 @@ public final class SoundshareAudioSource {
             nativeDestroyInstance(this.nativeInstance);
             this.released = true;
         }
+    }
+
+    private final void reportSoundshareAudioSourceError(String errorMessage) {
+        Log.e(TAG, "Run-time recording error: " + errorMessage);
+    }
+
+    private final void reportSoundshareAudioSourceInitError(String errorMessage) {
+        Log.e(TAG, "Init recording error: " + errorMessage);
+    }
+
+    private final void reportSoundshareAudioSourceStartError(String errorMessage) {
+        Log.e(TAG, "Start recording error: " + errorMessage);
     }
 
     public final void setSampleFormat(int sampleRate, int bitDepth, int channels) {

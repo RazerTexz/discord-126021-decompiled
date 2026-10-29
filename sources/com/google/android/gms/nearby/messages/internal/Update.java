@@ -81,6 +81,11 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
         return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20765k), this.f20766l, this.f20767m, this.f20768n, this.f20769o, this.f20770p});
     }
 
+    /* JADX INFO: renamed from: w0 */
+    public final boolean m9123w0(int i) {
+        return (i & this.f20765k) != 0;
+    }
+
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     /* JADX WARN: Code duplicated, block: B:45:0x0121  */
     /* JADX WARN: Code duplicated, block: B:46:0x0124  */
@@ -222,11 +227,6 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
         C1643a.m876s0(sbM831S, ", device=", str, ", bleRecord=", strValueOf7);
         sbM831S.append("}");
         return sbM831S.toString();
-    }
-
-    /* JADX INFO: renamed from: w0 */
-    public final boolean m9123w0(int i) {
-        return (i & this.f20765k) != 0;
     }
 
     @Override // android.os.Parcelable

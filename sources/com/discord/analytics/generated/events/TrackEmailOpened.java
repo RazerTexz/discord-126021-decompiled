@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackEmailOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackEmailOpened implements AnalyticsSchema, TrackBaseReceiver, TrackEmailReceiver {
-    private final transient String analyticsSchemaTypeName = "email_opened";
     private TrackBase trackBase;
     private TrackEmail trackEmail;
+    private final transient String analyticsSchemaTypeName = "email_opened";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

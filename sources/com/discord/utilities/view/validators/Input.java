@@ -17,7 +17,7 @@ public class Input<T extends View> {
     private final T view;
 
     /* JADX INFO: compiled from: Input.kt */
-    public static final class EditTextInput extends Input<TextInputLayout> {
+    public final class EditTextInput extends Input<TextInputLayout> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public EditTextInput(String str, TextInputLayout textInputLayout, InputValidator<? super TextInputLayout>... inputValidatorArr) {
             super(str, textInputLayout, (InputValidator[]) Arrays.copyOf(inputValidatorArr, inputValidatorArr.length));
@@ -38,7 +38,7 @@ public class Input<T extends View> {
     }
 
     /* JADX INFO: compiled from: Input.kt */
-    public static final class GenericInput<T extends View> extends Input<T> {
+    public final class GenericInput<T extends View> extends Input<T> {
         private final Function2<T, CharSequence, Boolean> onError;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,7 +62,7 @@ public class Input<T extends View> {
     }
 
     /* JADX INFO: compiled from: Input.kt */
-    public static final class TextInputLayoutInput extends Input<TextInputLayout> {
+    public final class TextInputLayoutInput extends Input<TextInputLayout> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public TextInputLayoutInput(String str, TextInputLayout textInputLayout, InputValidator<? super TextInputLayout>... inputValidatorArr) {
             super(str, textInputLayout, (InputValidator[]) Arrays.copyOf(inputValidatorArr, inputValidatorArr.length));
@@ -96,16 +96,6 @@ public class Input<T extends View> {
         this.validators = inputValidatorArr;
     }
 
-    public static /* synthetic */ boolean validate$default(Input input, boolean z2, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: validate");
-        }
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return input.validate(z2);
-    }
-
     public final String getName() {
         return this.name;
     }
@@ -116,6 +106,16 @@ public class Input<T extends View> {
 
     public boolean setErrorMessage(CharSequence errorMessage) {
         return false;
+    }
+
+    public static /* synthetic */ boolean validate$default(Input input, boolean z2, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: validate");
+        }
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return input.validate(z2);
     }
 
     public boolean validate(boolean showErrors) {

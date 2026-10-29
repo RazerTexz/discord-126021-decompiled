@@ -16,13 +16,10 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11696u extends AbstractC11727g.d<C11696u> implements InterfaceC11735o {
+    private int bitField0_;
 
     /* JADX INFO: renamed from: j */
     public static final C11696u f23961j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11696u> f23962k = new a();
-    private int bitField0_;
     private int flags_;
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
@@ -33,9 +30,12 @@ public final class C11696u extends AbstractC11727g.d<C11696u> implements Interfa
     private int varargElementTypeId_;
     private C11692q varargElementType_;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11696u> f23962k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.u$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11696u> {
+    public final class a extends AbstractC11722b<C11696u> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11696u parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11696u(c11724d, c11725e, null);
@@ -44,7 +44,7 @@ public final class C11696u extends AbstractC11727g.d<C11696u> implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.u$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.c<C11696u, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.c<C11696u, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: m */
         public int f23963m;
@@ -234,10 +234,6 @@ public final class C11696u extends AbstractC11727g.d<C11696u> implements Interfa
         return f23961j;
     }
 
-    public static b newBuilder(C11696u c11696u) {
-        return newBuilder().mergeFrom(c11696u);
-    }
-
     public int getFlags() {
         return this.flags_;
     }
@@ -352,6 +348,10 @@ public final class C11696u extends AbstractC11727g.d<C11696u> implements Interfa
         this.varargElementTypeId_ = 0;
     }
 
+    public static b newBuilder(C11696u c11696u) {
+        return newBuilder().mergeFrom(c11696u);
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
@@ -378,13 +378,13 @@ public final class C11696u extends AbstractC11727g.d<C11696u> implements Interfa
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
-    public static b newBuilder() {
-        return new b();
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11735o
     public C11696u getDefaultInstanceForType() {
         return f23961j;
+    }
+
+    public static b newBuilder() {
+        return new b();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

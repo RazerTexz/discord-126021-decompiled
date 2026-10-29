@@ -13,6 +13,9 @@ import p007b.p225i.p408d.InterfaceC4911o;
 /* JADX INFO: loaded from: classes3.dex */
 public final class ObjectTypeAdapter extends TypeAdapter<Object> {
 
+    /* JADX INFO: renamed from: b */
+    public final Gson f21526b;
+
     /* JADX INFO: renamed from: a */
     public static final InterfaceC4911o f21525a = new InterfaceC4911o() { // from class: com.google.gson.internal.bind.ObjectTypeAdapter.1
         @Override // p007b.p225i.p408d.InterfaceC4911o
@@ -23,9 +26,6 @@ public final class ObjectTypeAdapter extends TypeAdapter<Object> {
             return null;
         }
     };
-
-    /* JADX INFO: renamed from: b */
-    public final Gson f21526b;
 
     public ObjectTypeAdapter(Gson gson) {
         this.f21526b = gson;

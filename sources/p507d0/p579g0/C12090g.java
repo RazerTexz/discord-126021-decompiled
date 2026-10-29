@@ -34,7 +34,7 @@ public final class C12090g implements MatchResult {
 
     /* JADX INFO: renamed from: d0.g0.g$a */
     /* JADX INFO: compiled from: Regex.kt */
-    public static final class a extends AbstractC12125c<String> {
+    public final class a extends AbstractC12125c<String> {
         public a() {
         }
 
@@ -88,11 +88,11 @@ public final class C12090g implements MatchResult {
 
     /* JADX INFO: renamed from: d0.g0.g$b */
     /* JADX INFO: compiled from: Regex.kt */
-    public static final class b extends AbstractC12121a<C12088e> implements InterfaceC12089f {
+    public final class b extends AbstractC12121a<C12088e> implements InterfaceC12089f {
 
         /* JADX INFO: renamed from: d0.g0.g$b$a */
         /* JADX INFO: compiled from: Regex.kt */
-        public static final class a extends AbstractC12240o implements Function1<Integer, C12088e> {
+        public final class a extends AbstractC12240o implements Function1<Integer, C12088e> {
             public a() {
                 super(1);
             }

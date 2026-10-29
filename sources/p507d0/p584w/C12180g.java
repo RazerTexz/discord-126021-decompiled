@@ -26,7 +26,7 @@ public final class C12180g<T> implements Continuation<T>, CoroutineStackFrame {
 
     /* JADX INFO: renamed from: d0.w.g$a */
     /* JADX INFO: compiled from: SafeContinuationJvm.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

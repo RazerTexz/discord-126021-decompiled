@@ -40,21 +40,9 @@ public final class StoreSearchData {
     private final StoreUser storeUser;
     private Subscription subscription;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StoreSearch.SearchTarget.Type.values();
-            int[] iArr = new int[2];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StoreSearch.SearchTarget.Type.GUILD.ordinal()] = 1;
-            iArr[StoreSearch.SearchTarget.Type.CHANNEL.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchData$getChannelSearchData$1 */
     /* JADX INFO: compiled from: StoreSearchData.kt */
-    public static final class C63831 extends AbstractC12240o implements Function0<SearchData> {
+    public final class C63831 extends AbstractC12240o implements Function0<SearchData> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -78,7 +66,7 @@ public final class StoreSearchData {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchData$getGuildSearchData$2 */
     /* JADX INFO: compiled from: StoreSearchData.kt */
-    public static final /* synthetic */ class C63852 extends C12236k implements Function4<Map<Long, ? extends GuildMember>, Map<Long, ? extends User>, Map<Long, ? extends Channel>, Map<Long, ? extends Long>, SearchData> {
+    public final /* synthetic */ class C63852 extends C12236k implements Function4<Map<Long, ? extends GuildMember>, Map<Long, ? extends User>, Map<Long, ? extends Channel>, Map<Long, ? extends Long>, SearchData> {
         public C63852(SearchData.Builder builder) {
             super(4, builder, SearchData.Builder.class, "buildForGuild", "buildForGuild(Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)Lcom/discord/utilities/search/validation/SearchData;", 0);
         }
@@ -100,7 +88,7 @@ public final class StoreSearchData {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchData$init$1 */
     /* JADX INFO: compiled from: StoreSearchData.kt */
-    public static final /* synthetic */ class C63861 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C63861 extends C12236k implements Function1<Subscription, Unit> {
         public C63861(StoreSearchData storeSearchData) {
             super(1, storeSearchData, StoreSearchData.class, "handleSubscription", "handleSubscription(Lrx/Subscription;)V", 0);
         }
@@ -119,7 +107,7 @@ public final class StoreSearchData {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchData$init$2 */
     /* JADX INFO: compiled from: StoreSearchData.kt */
-    public static final /* synthetic */ class C63872 extends C12236k implements Function1<SearchData, Unit> {
+    public final /* synthetic */ class C63872 extends C12236k implements Function1<SearchData, Unit> {
         public C63872(StoreSearchData storeSearchData) {
             super(1, storeSearchData, StoreSearchData.class, "handleNewData", "handleNewData(Lcom/discord/utilities/search/validation/SearchData;)V", 0);
         }
@@ -137,6 +125,18 @@ public final class StoreSearchData {
         }
     }
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            StoreSearch.SearchTarget.Type.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StoreSearch.SearchTarget.Type.GUILD.ordinal()] = 1;
+            iArr[StoreSearch.SearchTarget.Type.CHANNEL.ordinal()] = 2;
+        }
+    }
+
     public StoreSearchData(ObservationDeck observationDeck, StoreChannels storeChannels, StoreUser storeUser, StoreGuilds storeGuilds) {
         C12238m.checkNotNullParameter(observationDeck, "observationDeck");
         C12238m.checkNotNullParameter(storeChannels, "storeChannels");
@@ -149,6 +149,15 @@ public final class StoreSearchData {
         BehaviorSubject behaviorSubjectM11130l0 = BehaviorSubject.m11130l0(new SearchData(null, null, null, null, null, 31, null));
         C12238m.checkNotNullExpressionValue(behaviorSubjectM11130l0, "BehaviorSubject.create(SearchData())");
         this.searchDataSubject = behaviorSubjectM11130l0;
+    }
+
+    public final void clear() {
+        handleSubscription(null);
+        handleNewData(new SearchData(null, null, null, null, null, 31, null));
+    }
+
+    public final Observable<SearchData> get() {
+        return this.searchDataSubject;
     }
 
     private final Observable<SearchData> getChannelSearchData(long channelId) {
@@ -199,15 +208,6 @@ public final class StoreSearchData {
             subscription2.unsubscribe();
         }
         this.subscription = subscription;
-    }
-
-    public final void clear() {
-        handleSubscription(null);
-        handleNewData(new SearchData(null, null, null, null, null, 31, null));
-    }
-
-    public final Observable<SearchData> get() {
-        return this.searchDataSubject;
     }
 
     public final void init(StoreSearch.SearchTarget searchTarget) {

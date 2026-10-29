@@ -20,7 +20,7 @@ public final class C4487g {
 
     /* JADX INFO: renamed from: b.i.b.a.g$a */
     /* JADX INFO: compiled from: MoreObjects.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         @NullableDecl

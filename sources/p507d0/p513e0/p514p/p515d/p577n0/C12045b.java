@@ -5,14 +5,14 @@ package p507d0.p513e0.p514p.p515d.p577n0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12045b<K, V> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12045b<Object, Object> f25023a = new C12045b<>(C12047d.empty(), 0);
-
     /* JADX INFO: renamed from: b */
     public final C12047d<C12044a<C12048e<K, V>>> f25024b;
 
     /* JADX INFO: renamed from: c */
     public final int f25025c;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12045b<Object, Object> f25023a = new C12045b<>(C12047d.empty(), 0);
 
     public C12045b(C12047d<C12044a<C12048e<K, V>>> c12047d, int i) {
         this.f25024b = c12047d;

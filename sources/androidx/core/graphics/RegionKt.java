@@ -16,7 +16,7 @@ public final class RegionKt {
 
     /* JADX INFO: renamed from: androidx.core.graphics.RegionKt$iterator$1 */
     /* JADX INFO: compiled from: Region.kt */
-    public static final class C02261 implements Iterator<Rect>, InterfaceC12228a {
+    public final class C02261 implements Iterator<Rect>, InterfaceC12228a {
         public final /* synthetic */ Region $this_iterator;
         private boolean hasMore;
         private final RegionIterator iterator;
@@ -86,6 +86,15 @@ public final class RegionKt {
         return new C02261(region);
     }
 
+    /* JADX INFO: renamed from: or */
+    public static final Region m87or(Region region, Rect rect) {
+        C12238m.checkNotNullParameter(region, "<this>");
+        C12238m.checkNotNullParameter(rect, "r");
+        Region region2 = new Region(region);
+        region2.union(rect);
+        return region2;
+    }
+
     public static final Region minus(Region region, Rect rect) {
         C12238m.checkNotNullParameter(region, "<this>");
         C12238m.checkNotNullParameter(rect, "r");
@@ -98,15 +107,6 @@ public final class RegionKt {
         C12238m.checkNotNullParameter(region, "<this>");
         Region region2 = new Region(region.getBounds());
         region2.op(region, Region.Op.DIFFERENCE);
-        return region2;
-    }
-
-    /* JADX INFO: renamed from: or */
-    public static final Region m87or(Region region, Rect rect) {
-        C12238m.checkNotNullParameter(region, "<this>");
-        C12238m.checkNotNullParameter(rect, "r");
-        Region region2 = new Region(region);
-        region2.union(rect);
         return region2;
     }
 
@@ -141,20 +141,20 @@ public final class RegionKt {
         return region3;
     }
 
-    public static final Region minus(Region region, Region region2) {
-        C12238m.checkNotNullParameter(region, "<this>");
-        C12238m.checkNotNullParameter(region2, "r");
-        Region region3 = new Region(region);
-        region3.op(region2, Region.Op.DIFFERENCE);
-        return region3;
-    }
-
     /* JADX INFO: renamed from: or */
     public static final Region m88or(Region region, Region region2) {
         C12238m.checkNotNullParameter(region, "<this>");
         C12238m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
         region3.op(region2, Region.Op.UNION);
+        return region3;
+    }
+
+    public static final Region minus(Region region, Region region2) {
+        C12238m.checkNotNullParameter(region, "<this>");
+        C12238m.checkNotNullParameter(region2, "r");
+        Region region3 = new Region(region);
+        region3.op(region2, Region.Op.DIFFERENCE);
         return region3;
     }
 

@@ -11,38 +11,32 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildMemberUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildMemberUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
-    private final CharSequence guildName = null;
-    private final Long targetUserId = null;
-    private final CharSequence updateType = null;
-    private final List<CharSequence> fieldsUpdated = null;
-    private final CharSequence oldNickname = null;
-    private final CharSequence newNickname = null;
-    private final Boolean mute = null;
-    private final Boolean deaf = null;
-    private final List<Long> oldRoles = null;
-    private final List<Long> newRoles = null;
-    private final CharSequence reason = null;
-    private final Long deleteMessageDays = null;
-    private final CharSequence avatarUpdateType = null;
-    private final Long userPremiumTier = null;
-    private final CharSequence nicknameUpdateType = null;
-    private final CharSequence bannerUpdateType = null;
-    private final CharSequence bioUpdateType = null;
-    private final Float duration = null;
-    private final Long communicationDisabledUntil = null;
-    private final Long bioCustomEmojiCount = null;
+    private final Long accessibleStageChannels = null;
     private final Long accessibleTextChannels = null;
     private final Long accessibleVoiceChannels = null;
-    private final Long accessibleStageChannels = null;
+    private final CharSequence avatarUpdateType = null;
+    private final CharSequence bannerUpdateType = null;
+    private final Long bioCustomEmojiCount = null;
+    private final CharSequence bioUpdateType = null;
+    private final Long communicationDisabledUntil = null;
+    private final Boolean deaf = null;
+    private final Long deleteMessageDays = null;
+    private final Float duration = null;
+    private final List<CharSequence> fieldsUpdated = null;
+    private final Long guildId = null;
+    private final CharSequence guildName = null;
+    private final Boolean mute = null;
+    private final CharSequence newNickname = null;
+    private final List<Long> newRoles = null;
+    private final CharSequence nicknameUpdateType = null;
+    private final CharSequence oldNickname = null;
+    private final List<Long> oldRoles = null;
+    private final CharSequence reason = null;
+    private final Long targetUserId = null;
+    private TrackBase trackBase;
+    private final CharSequence updateType = null;
+    private final Long userPremiumTier = null;
     private final transient String analyticsSchemaTypeName = "guild_member_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -53,6 +47,12 @@ public final /* data */ class TrackGuildMemberUpdated implements AnalyticsSchema
         }
         TrackGuildMemberUpdated trackGuildMemberUpdated = (TrackGuildMemberUpdated) other;
         return C12238m.areEqual(this.guildId, trackGuildMemberUpdated.guildId) && C12238m.areEqual(this.guildName, trackGuildMemberUpdated.guildName) && C12238m.areEqual(this.targetUserId, trackGuildMemberUpdated.targetUserId) && C12238m.areEqual(this.updateType, trackGuildMemberUpdated.updateType) && C12238m.areEqual(this.fieldsUpdated, trackGuildMemberUpdated.fieldsUpdated) && C12238m.areEqual(this.oldNickname, trackGuildMemberUpdated.oldNickname) && C12238m.areEqual(this.newNickname, trackGuildMemberUpdated.newNickname) && C12238m.areEqual(this.mute, trackGuildMemberUpdated.mute) && C12238m.areEqual(this.deaf, trackGuildMemberUpdated.deaf) && C12238m.areEqual(this.oldRoles, trackGuildMemberUpdated.oldRoles) && C12238m.areEqual(this.newRoles, trackGuildMemberUpdated.newRoles) && C12238m.areEqual(this.reason, trackGuildMemberUpdated.reason) && C12238m.areEqual(this.deleteMessageDays, trackGuildMemberUpdated.deleteMessageDays) && C12238m.areEqual(this.avatarUpdateType, trackGuildMemberUpdated.avatarUpdateType) && C12238m.areEqual(this.userPremiumTier, trackGuildMemberUpdated.userPremiumTier) && C12238m.areEqual(this.nicknameUpdateType, trackGuildMemberUpdated.nicknameUpdateType) && C12238m.areEqual(this.bannerUpdateType, trackGuildMemberUpdated.bannerUpdateType) && C12238m.areEqual(this.bioUpdateType, trackGuildMemberUpdated.bioUpdateType) && C12238m.areEqual(this.duration, trackGuildMemberUpdated.duration) && C12238m.areEqual(this.communicationDisabledUntil, trackGuildMemberUpdated.communicationDisabledUntil) && C12238m.areEqual(this.bioCustomEmojiCount, trackGuildMemberUpdated.bioCustomEmojiCount) && C12238m.areEqual(this.accessibleTextChannels, trackGuildMemberUpdated.accessibleTextChannels) && C12238m.areEqual(this.accessibleVoiceChannels, trackGuildMemberUpdated.accessibleVoiceChannels) && C12238m.areEqual(this.accessibleStageChannels, trackGuildMemberUpdated.accessibleStageChannels);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

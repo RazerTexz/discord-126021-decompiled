@@ -8,7 +8,6 @@ import p007b.p225i.p226a.p341g.p352k.C4449d;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class TimeModel implements Parcelable {
-    public static final Parcelable.Creator<TimeModel> CREATOR = new C11027a();
 
     /* JADX INFO: renamed from: j */
     public final C4449d f21220j;
@@ -30,9 +29,10 @@ public class TimeModel implements Parcelable {
 
     /* JADX INFO: renamed from: p */
     public int f21226p;
+    public static final Parcelable.Creator<TimeModel> CREATOR = new C11027a();
 
     /* JADX INFO: renamed from: com.google.android.material.timepicker.TimeModel$a */
-    public static class C11027a implements Parcelable.Creator<TimeModel> {
+    public final class C11027a implements Parcelable.Creator<TimeModel> {
         @Override // android.os.Parcelable.Creator
         public TimeModel createFromParcel(Parcel parcel) {
             return new TimeModel(parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt());
@@ -46,6 +46,26 @@ public class TimeModel implements Parcelable {
 
     public TimeModel() {
         this(0, 0, 10, 0);
+    }
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof TimeModel)) {
+            return false;
+        }
+        TimeModel timeModel = (TimeModel) obj;
+        return this.f21223m == timeModel.f21223m && this.f21224n == timeModel.f21224n && this.f21222l == timeModel.f21222l && this.f21225o == timeModel.f21225o;
+    }
+
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f21222l), Integer.valueOf(this.f21223m), Integer.valueOf(this.f21224n), Integer.valueOf(this.f21225o)});
     }
 
     /* JADX INFO: renamed from: a */
@@ -88,26 +108,6 @@ public class TimeModel implements Parcelable {
                 this.f21223m = i2 - 12;
             }
         }
-    }
-
-    @Override // android.os.Parcelable
-    public int describeContents() {
-        return 0;
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof TimeModel)) {
-            return false;
-        }
-        TimeModel timeModel = (TimeModel) obj;
-        return this.f21223m == timeModel.f21223m && this.f21224n == timeModel.f21224n && this.f21222l == timeModel.f21222l && this.f21225o == timeModel.f21225o;
-    }
-
-    public int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f21222l), Integer.valueOf(this.f21223m), Integer.valueOf(this.f21224n), Integer.valueOf(this.f21225o)});
     }
 
     @Override // android.os.Parcelable

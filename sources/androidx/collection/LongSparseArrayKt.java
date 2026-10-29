@@ -16,7 +16,7 @@ public final class LongSparseArrayKt {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: androidx.collection.LongSparseArrayKt$valueIterator$1 */
     /* JADX INFO: compiled from: LongSparseArray.kt */
-    public static final class C01661<T> implements Iterator<T>, InterfaceC12228a {
+    public final class C01661<T> implements Iterator<T>, InterfaceC12228a {
         public final /* synthetic */ LongSparseArray $this_valueIterator;
         private int index;
 

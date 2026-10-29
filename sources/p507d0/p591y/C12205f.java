@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import p507d0.p579g0.C12086c;
 import p507d0.p592z.p594d.C12238m;
@@ -12,7 +13,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: FileReadWrite.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C12205f {
-    public static final String readText(File file, Charset charset) throws IOException {
+    public static /* synthetic */ String readText$default(File file, Charset charset, int i, Object obj) {
+        if ((i & 1) != 0) {
+            charset = C12086c.f25136a;
+        }
+        return readText(file, charset);
+    }
+
+    public static final String readText(File file, Charset charset) throws IllegalAccessException, IOException, InvocationTargetException {
         C12238m.checkNotNullParameter(file, "$this$readText");
         C12238m.checkNotNullParameter(charset, "charset");
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), charset);
@@ -28,12 +36,5 @@ public class C12205f {
                 throw th2;
             }
         }
-    }
-
-    public static /* synthetic */ String readText$default(File file, Charset charset, int i, Object obj) {
-        if ((i & 1) != 0) {
-            charset = C12086c.f25136a;
-        }
-        return readText(file, charset);
     }
 }

@@ -48,24 +48,9 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
     private final BehaviorSubject<String> nameFilterSubject;
 
-    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager context) {
-            C12238m.checkNotNullParameter(context, "context");
-            new WidgetPhoneCountryCodeBottomSheet().show(context, WidgetPhoneCountryCodeBottomSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
-    public static final class C91171 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C91171 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C91171() {
             super(1);
         }
@@ -85,7 +70,7 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet$onResume$2 */
     /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
-    public static final class C91182 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C91182 extends AbstractC12240o implements Function1<String, Unit> {
         public C91182() {
             super(1);
         }
@@ -101,6 +86,21 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
             WidgetPhoneCountryCodeBottomSheet widgetPhoneCountryCodeBottomSheet = WidgetPhoneCountryCodeBottomSheet.this;
             C12238m.checkNotNullExpressionValue(str, "it");
             widgetPhoneCountryCodeBottomSheet.configureUI(str);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager context) {
+            C12238m.checkNotNullParameter(context, "context");
+            new WidgetPhoneCountryCodeBottomSheet().show(context, WidgetPhoneCountryCodeBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

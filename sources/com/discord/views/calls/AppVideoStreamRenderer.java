@@ -67,6 +67,10 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
         this.prevScalingTypeMismatchOrientation = scalingType;
     }
 
+    public final Function1<Point, Unit> getOnFrameRenderedListener() {
+        return this.onFrameRenderedListener;
+    }
+
     @MainThread
     /* JADX INFO: renamed from: b */
     public final void m8571b() {
@@ -137,10 +141,6 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
         setScalingType(scalingType2, scalingType3);
         this.prevScalingType = scalingType2;
         this.prevScalingTypeMismatchOrientation = scalingType3;
-    }
-
-    public final Function1<Point, Unit> getOnFrameRenderedListener() {
-        return this.onFrameRenderedListener;
     }
 
     @Override // android.view.View

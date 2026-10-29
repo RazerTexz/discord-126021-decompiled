@@ -47,7 +47,7 @@ public final class C2607c {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.r.c$a */
     /* JADX INFO: compiled from: SsaStyle.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f6005a;
@@ -91,7 +91,7 @@ public final class C2607c {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.r.c$b */
     /* JADX INFO: compiled from: SsaStyle.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public static final Pattern f6014a = Pattern.compile("\\{([^}]*)\\}");

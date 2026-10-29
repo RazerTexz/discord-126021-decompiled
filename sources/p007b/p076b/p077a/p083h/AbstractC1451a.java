@@ -13,7 +13,7 @@ public abstract class AbstractC1451a {
 
     /* JADX INFO: renamed from: b.b.a.h.a$a */
     /* JADX INFO: compiled from: FlexInputEvent.kt */
-    public static final class a extends AbstractC1451a {
+    public final class a extends AbstractC1451a {
 
         /* JADX INFO: renamed from: a */
         public static final a f2202a = new a();
@@ -25,7 +25,7 @@ public abstract class AbstractC1451a {
 
     /* JADX INFO: renamed from: b.b.a.h.a$b */
     /* JADX INFO: compiled from: FlexInputEvent.kt */
-    public static final class b extends AbstractC1451a {
+    public final class b extends AbstractC1451a {
 
         /* JADX INFO: renamed from: a */
         public static final b f2203a = new b();
@@ -37,7 +37,7 @@ public abstract class AbstractC1451a {
 
     /* JADX INFO: renamed from: b.b.a.h.a$c */
     /* JADX INFO: compiled from: FlexInputEvent.kt */
-    public static final class c extends AbstractC1451a {
+    public final class c extends AbstractC1451a {
 
         /* JADX INFO: renamed from: a */
         public static final c f2204a = new c();
@@ -49,7 +49,7 @@ public abstract class AbstractC1451a {
 
     /* JADX INFO: renamed from: b.b.a.h.a$d */
     /* JADX INFO: compiled from: FlexInputEvent.kt */
-    public static final class d extends AbstractC1451a {
+    public final class d extends AbstractC1451a {
 
         /* JADX INFO: renamed from: a */
         public final String f2205a;
@@ -83,7 +83,7 @@ public abstract class AbstractC1451a {
 
     /* JADX INFO: renamed from: b.b.a.h.a$e */
     /* JADX INFO: compiled from: FlexInputEvent.kt */
-    public static final class e extends AbstractC1451a {
+    public final class e extends AbstractC1451a {
 
         /* JADX INFO: renamed from: a */
         public final int f2206a;

@@ -35,10 +35,45 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
         this.name = str;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof StickerPartial)) {
+            return false;
+        }
+        StickerPartial stickerPartial = (StickerPartial) other;
+        return this.id == stickerPartial.id && C12238m.areEqual(this.formatType, stickerPartial.formatType) && C12238m.areEqual(this.name, stickerPartial.name);
+    }
+
     @Override // com.discord.api.sticker.BaseSticker
     /* JADX INFO: renamed from: a, reason: from getter */
     public StickerFormatType getFormatType() {
         return this.formatType;
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public long getId() {
+        return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    public int hashCode() {
+        long j = this.id;
+        int i = ((int) (j ^ (j >>> 32))) * 31;
+        StickerFormatType stickerFormatType = this.formatType;
+        int iHashCode = (i + (stickerFormatType != null ? stickerFormatType.hashCode() : 0)) * 31;
+        String str = this.name;
+        return iHashCode + (str != null ? str.hashCode() : 0);
     }
 
     @Override // com.discord.api.sticker.BaseSticker
@@ -61,41 +96,6 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
     /* JADX INFO: renamed from: c */
     public StickerPartial mo8229c() {
         return this;
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof StickerPartial)) {
-            return false;
-        }
-        StickerPartial stickerPartial = (StickerPartial) other;
-        return this.id == stickerPartial.id && C12238m.areEqual(this.formatType, stickerPartial.formatType) && C12238m.areEqual(this.name, stickerPartial.name);
-    }
-
-    public final long getId() {
-        return this.id;
-    }
-
-    public int hashCode() {
-        long j = this.id;
-        int i = ((int) (j ^ (j >>> 32))) * 31;
-        StickerFormatType stickerFormatType = this.formatType;
-        int iHashCode = (i + (stickerFormatType != null ? stickerFormatType.hashCode() : 0)) * 31;
-        String str = this.name;
-        return iHashCode + (str != null ? str.hashCode() : 0);
     }
 
     public String toString() {

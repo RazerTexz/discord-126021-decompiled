@@ -5,6 +5,9 @@ import android.view.MotionEvent;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface DraweeController {
+    /* JADX INFO: renamed from: e */
+    void mo1045e(DraweeHierarchy draweeHierarchy);
+
     /* JADX INFO: renamed from: a */
     void mo8652a();
 
@@ -16,9 +19,6 @@ public interface DraweeController {
 
     /* JADX INFO: renamed from: d */
     void mo8655d();
-
-    /* JADX INFO: renamed from: e */
-    void mo1045e(DraweeHierarchy draweeHierarchy);
 
     boolean onTouchEvent(MotionEvent motionEvent);
 }

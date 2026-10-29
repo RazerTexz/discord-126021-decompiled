@@ -76,7 +76,7 @@ final class SmallSet<T> extends AbstractSet<T> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/analysis/SmallSet$IteratorImpl.SCL.lombok */
-    static class IteratorImpl<T> implements Iterator<T> {
+    class IteratorImpl<T> implements Iterator<T> {
         private T firstElement;
         private T secondElement;
 

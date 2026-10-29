@@ -49,10 +49,14 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEditProfileBannerSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetEditProfileBannerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEditProfileBannerSheetBinding;", 0)};
     private static final String ARG_DEFAULT_BANNER_COLOR_HEX = "ARG_DEFAULT_BANNER_COLOR_HEX";
     private static final String ARG_HAS_BANNER_IMAGE = "ARG_HAS_BANNER_IMAGE";
     private static final String ARG_INITIAL_COLOR_PREVIEW_HEX = "ARG_INITIAL_COLOR_PREVIEW_HEX";
     private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -67,13 +71,47 @@ public final class WidgetEditProfileBannerSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetEditProfileBannerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEditProfileBannerSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditProfileBannerSheet$isGuildContext$2 */
+    /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
+    public final class C99632 extends AbstractC12240o implements Function0<Boolean> {
+        public C99632() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return WidgetEditProfileBannerSheet.this.getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_GUILD_ID") > 0;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditProfileBannerSheet$onResume$1 */
+    /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
+    public final class C99651 extends AbstractC12240o implements Function1<EditProfileBannerSheetViewModel.ViewState, Unit> {
+        public C99651() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(EditProfileBannerSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(EditProfileBannerSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetEditProfileBannerSheet.this.configureUi(viewState);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -100,44 +138,6 @@ public final class WidgetEditProfileBannerSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditProfileBannerSheet$isGuildContext$2 */
-    /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
-    public static final class C99632 extends AbstractC12240o implements Function0<Boolean> {
-        public C99632() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return WidgetEditProfileBannerSheet.this.getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_GUILD_ID") > 0;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditProfileBannerSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetEditProfileBannerSheet.kt */
-    public static final class C99651 extends AbstractC12240o implements Function1<EditProfileBannerSheetViewModel.ViewState, Unit> {
-        public C99651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(EditProfileBannerSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(EditProfileBannerSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetEditProfileBannerSheet.this.configureUi(viewState);
         }
     }
 
@@ -227,6 +227,23 @@ public final class WidgetEditProfileBannerSheet extends AppBottomSheet {
         return (WidgetEditProfileBannerSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_edit_profile_banner_sheet;
+    }
+
+    public final Function0<Unit> getOnChangeProfileBannerImage() {
+        return this.onChangeProfileBannerImage;
+    }
+
+    public final Function1<Integer, Unit> getOnColorSelected() {
+        return this.onColorSelected;
+    }
+
+    public final Function0<Unit> getOnRemoveProfileBannerImage() {
+        return this.onRemoveProfileBannerImage;
+    }
+
     private final EditProfileBannerSheetViewModel getViewModel() {
         return (EditProfileBannerSheetViewModel) this.viewModel.getValue();
     }
@@ -291,23 +308,6 @@ public final class WidgetEditProfileBannerSheet extends AppBottomSheet {
         Resources resources2 = getResources();
         C12238m.checkNotNullExpressionValue(resources2, "resources");
         companion.m117a(parentFragmentManager, premiumUpsellType, C5419R.drawable.img_profile_banner_value_prop, string, C1107b.m211c(resources2, C5419R.string.premium_profile_customization_upsell_body, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null).toString(), Traits.Location.Page.USER_SETTINGS, "User Profile", Traits.Location.Obj.EDIT_PROFILE_BANNER);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_edit_profile_banner_sheet;
-    }
-
-    public final Function0<Unit> getOnChangeProfileBannerImage() {
-        return this.onChangeProfileBannerImage;
-    }
-
-    public final Function1<Integer, Unit> getOnColorSelected() {
-        return this.onColorSelected;
-    }
-
-    public final Function0<Unit> getOnRemoveProfileBannerImage() {
-        return this.onRemoveProfileBannerImage;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

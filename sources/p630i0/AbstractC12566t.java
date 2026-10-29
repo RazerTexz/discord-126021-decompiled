@@ -18,7 +18,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$a */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class a<T> extends AbstractC12566t<T> {
+    public final class a<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26571a;
@@ -51,7 +51,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$b */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class b<T> extends AbstractC12566t<T> {
+    public final class b<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final String f26574a;
@@ -82,7 +82,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$c */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class c<T> extends AbstractC12566t<Map<String, T>> {
+    public final class c<T> extends AbstractC12566t<Map<String, T>> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26577a;
@@ -130,7 +130,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$d */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class d<T> extends AbstractC12566t<T> {
+    public final class d<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final String f26581a;
@@ -157,7 +157,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$e */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class e<T> extends AbstractC12566t<Map<String, T>> {
+    public final class e<T> extends AbstractC12566t<Map<String, T>> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26583a;
@@ -197,7 +197,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$f */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class f extends AbstractC12566t<Headers> {
+    public final class f extends AbstractC12566t<Headers> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26586a;
@@ -229,7 +229,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$g */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class g<T> extends AbstractC12566t<T> {
+    public final class g<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26588a;
@@ -266,7 +266,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$h */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class h<T> extends AbstractC12566t<Map<String, T>> {
+    public final class h<T> extends AbstractC12566t<Map<String, T>> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26592a;
@@ -310,7 +310,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$i */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class i<T> extends AbstractC12566t<T> {
+    public final class i<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26596a;
@@ -401,7 +401,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$j */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class j<T> extends AbstractC12566t<T> {
+    public final class j<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final String f26601a;
@@ -432,7 +432,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$k */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class k<T> extends AbstractC12566t<Map<String, T>> {
+    public final class k<T> extends AbstractC12566t<Map<String, T>> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26604a;
@@ -480,7 +480,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$l */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class l<T> extends AbstractC12566t<T> {
+    public final class l<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC12554h<T, String> f26608a;
@@ -505,7 +505,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$m */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class m extends AbstractC12566t<MultipartBody.Part> {
+    public final class m extends AbstractC12566t<MultipartBody.Part> {
 
         /* JADX INFO: renamed from: a */
         public static final m f26610a = new m();
@@ -522,7 +522,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$n */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class n extends AbstractC12566t<Object> {
+    public final class n extends AbstractC12566t<Object> {
 
         /* JADX INFO: renamed from: a */
         public final Method f26611a;
@@ -548,7 +548,7 @@ public abstract class AbstractC12566t<T> {
 
     /* JADX INFO: renamed from: i0.t$o */
     /* JADX INFO: compiled from: ParameterHandler.java */
-    public static final class o<T> extends AbstractC12566t<T> {
+    public final class o<T> extends AbstractC12566t<T> {
 
         /* JADX INFO: renamed from: a */
         public final Class<T> f26613a;

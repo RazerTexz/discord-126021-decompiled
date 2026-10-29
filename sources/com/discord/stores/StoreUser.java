@@ -55,6 +55,9 @@ import p658rx.functions.Action1;
 /* JADX INFO: compiled from: StoreUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUser extends StoreV2 {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Dispatcher dispatcher;
     private MeUser me;
     private final Persister<MeUser> meCache;
@@ -64,36 +67,15 @@ public final class StoreUser extends StoreV2 {
     private final UserRequestManager userRequestManager;
     private final SnowflakePartitionMap.CopiablePartitionMap<com.discord.models.user.User> users;
     private Map<Long, ? extends com.discord.models.user.User> usersSnapshot;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final ObservationDeck.UpdateSource MeUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreUser$Companion$MeUpdate$1
     };
     private static final ObservationDeck.UpdateSource UsersUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreUser$Companion$UsersUpdate$1
     };
     private static final MeUser EMPTY_ME_USER = new MeUser(0, "EMPTY_USERNAME", null, null, false, false, 0, PremiumTier.NONE, null, false, false, null, 0, 0, null, NsfwAllowance.UNKNOWN, null, null, 204800, null);
 
-    /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final ObservationDeck.UpdateSource getMeUpdate() {
-            return StoreUser.MeUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getUsersUpdate() {
-            return StoreUser.UsersUpdate;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$fetchUsers$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65491 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65491 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $users;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -117,7 +99,7 @@ public final class StoreUser extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeAllUsers$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65501 extends AbstractC12240o implements Function0<Map<Long, ? extends com.discord.models.user.User>> {
+    public final class C65501 extends AbstractC12240o implements Function0<Map<Long, ? extends com.discord.models.user.User>> {
         public C65501() {
             super(0);
         }
@@ -130,7 +112,7 @@ public final class StoreUser extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeMe$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65511 extends AbstractC12240o implements Function0<MeUser> {
+    public final class C65511 extends AbstractC12240o implements Function0<MeUser> {
         public C65511() {
             super(0);
         }
@@ -144,7 +126,7 @@ public final class StoreUser extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeMeId$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65531 extends AbstractC12240o implements Function0<Long> {
+    public final class C65531 extends AbstractC12240o implements Function0<Long> {
         public C65531() {
             super(0);
         }
@@ -162,7 +144,7 @@ public final class StoreUser extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeUsernames$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65551 extends AbstractC12240o implements Function1<com.discord.models.user.User, String> {
+    public final class C65551 extends AbstractC12240o implements Function1<com.discord.models.user.User, String> {
         public static final C65551 INSTANCE = new C65551();
 
         public C65551() {
@@ -173,6 +155,24 @@ public final class StoreUser extends StoreV2 {
         public final String invoke(com.discord.models.user.User user) {
             C12238m.checkNotNull(user);
             return user.getUsername();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ObservationDeck.UpdateSource getMeUpdate() {
+            return StoreUser.MeUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getUsersUpdate() {
+            return StoreUser.UsersUpdate;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -193,36 +193,20 @@ public final class StoreUser extends StoreV2 {
         this.userRequestManager.requestUsers(hashSet);
     }
 
-    public static /* synthetic */ Observable observeMe$default(StoreUser storeUser, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        return storeUser.observeMe(z2);
-    }
-
-    @StoreThread
-    private final void updateUser(User user) {
-        CoreUser coreUser = new CoreUser(user);
-        if (!C12238m.areEqual(coreUser, this.users.get(Long.valueOf(user.getId())))) {
-            this.users.put(Long.valueOf(user.getId()), coreUser);
-            markChanged(UsersUpdate);
-        }
-    }
-
     public final void fetchUsers(List<Long> users) {
         C12238m.checkNotNullParameter(users, "users");
         this.dispatcher.schedule(new C65491(users));
-    }
-
-    /* JADX INFO: renamed from: getMe, reason: from getter */
-    public final MeUser getMeSnapshot() {
-        return this.meSnapshot;
     }
 
     @StoreThread
     /* JADX INFO: renamed from: getMeInternal$app_productionGoogleRelease, reason: from getter */
     public final MeUser getMe() {
         return this.me;
+    }
+
+    /* JADX INFO: renamed from: getMe, reason: from getter */
+    public final MeUser getMeSnapshot() {
+        return this.meSnapshot;
     }
 
     public final Map<Long, com.discord.models.user.User> getUsers() {
@@ -464,6 +448,13 @@ public final class StoreUser extends StoreV2 {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65501(), 14, null);
     }
 
+    public static /* synthetic */ Observable observeMe$default(StoreUser storeUser, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        return storeUser.observeMe(z2);
+    }
+
     public final Observable<MeUser> observeMe() {
         return observeMe$default(this, false, 1, null);
     }
@@ -519,6 +510,15 @@ public final class StoreUser extends StoreV2 {
             MeUser meUser = this.me;
             this.meSnapshot = meUser;
             Persister.set$default(this.meCache, meUser, false, 2, null);
+        }
+    }
+
+    @StoreThread
+    private final void updateUser(User user) {
+        CoreUser coreUser = new CoreUser(user);
+        if (!C12238m.areEqual(coreUser, this.users.get(Long.valueOf(user.getId())))) {
+            this.users.put(Long.valueOf(user.getId()), coreUser);
+            markChanged(UsersUpdate);
         }
     }
 

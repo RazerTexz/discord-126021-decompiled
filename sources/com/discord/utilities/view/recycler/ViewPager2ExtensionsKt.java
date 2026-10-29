@@ -15,11 +15,15 @@ public final class ViewPager2ExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.recycler.ViewPager2ExtensionsKt$setUpWithViewPager2$1 */
     /* JADX INFO: compiled from: ViewPager2Extensions.kt */
-    public static final class C70081 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
+    public final class C70081 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
         public static final C70081 INSTANCE = new C70081();
 
         public C70081() {
             super(2);
+        }
+
+        public final void invoke(TabLayout.Tab tab, int i) {
+            C12238m.checkNotNullParameter(tab, "<anonymous parameter 0>");
         }
 
         @Override // kotlin.jvm.functions.Function2
@@ -27,10 +31,13 @@ public final class ViewPager2ExtensionsKt {
             invoke(tab, num.intValue());
             return Unit.f27425a;
         }
+    }
 
-        public final void invoke(TabLayout.Tab tab, int i) {
-            C12238m.checkNotNullParameter(tab, "<anonymous parameter 0>");
+    public static /* synthetic */ void setUpWithViewPager2$default(TabLayout tabLayout, ViewPager2 viewPager2, Function2 function2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            function2 = C70081.INSTANCE;
         }
+        setUpWithViewPager2(tabLayout, viewPager2, function2);
     }
 
     public static final void setUpWithViewPager2(TabLayout tabLayout, ViewPager2 viewPager2, final Function2<? super TabLayout.Tab, ? super Integer, Unit> function2) {
@@ -44,12 +51,5 @@ public final class ViewPager2ExtensionsKt {
                 C12238m.checkNotNullExpressionValue(function2.invoke(tab, Integer.valueOf(i)), "invoke(...)");
             }
         }).attach();
-    }
-
-    public static /* synthetic */ void setUpWithViewPager2$default(TabLayout tabLayout, ViewPager2 viewPager2, Function2 function2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            function2 = C70081.INSTANCE;
-        }
-        setUpWithViewPager2(tabLayout, viewPager2, function2);
     }
 }

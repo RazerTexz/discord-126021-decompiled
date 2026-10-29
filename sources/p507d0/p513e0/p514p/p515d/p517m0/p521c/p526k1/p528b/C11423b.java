@@ -70,7 +70,7 @@ public final class C11423b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.b$a */
     /* JADX INFO: compiled from: reflectClassUtil.kt */
-    public static final class a extends AbstractC12240o implements Function1<ParameterizedType, ParameterizedType> {
+    public final class a extends AbstractC12240o implements Function1<ParameterizedType, ParameterizedType> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23036j = new a();
@@ -92,7 +92,7 @@ public final class C11423b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.b$b */
     /* JADX INFO: compiled from: reflectClassUtil.kt */
-    public static final class b extends AbstractC12240o implements Function1<ParameterizedType, Sequence<? extends Type>> {
+    public final class b extends AbstractC12240o implements Function1<ParameterizedType, Sequence<? extends Type>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23037j = new b();

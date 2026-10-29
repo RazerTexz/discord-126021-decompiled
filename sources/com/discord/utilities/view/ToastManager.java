@@ -14,6 +14,15 @@ import p507d0.p592z.p594d.C12238m;
 public class ToastManager implements Closeable {
     private Toast toast;
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        Toast toast = this.toast;
+        if (toast != null) {
+            toast.cancel();
+        }
+        this.toast = null;
+    }
+
     public static /* synthetic */ void show$default(ToastManager toastManager, Context context, int i, int i2, int i3, Object obj) {
         if (obj != null) {
             throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: show");
@@ -22,15 +31,6 @@ public class ToastManager implements Closeable {
             i2 = 0;
         }
         toastManager.show(context, i, i2);
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        Toast toast = this.toast;
-        if (toast != null) {
-            toast.cancel();
-        }
-        this.toast = null;
     }
 
     @MainThread

@@ -24,7 +24,7 @@ public class Purchase {
 
     /* JADX INFO: renamed from: com.android.billingclient.api.Purchase$a */
     /* JADX INFO: compiled from: com.android.billingclient:billing@@4.0.0 */
-    public static class C5413a {
+    public class C5413a {
 
         /* JADX INFO: renamed from: a */
         @Nullable
@@ -43,6 +43,21 @@ public class Purchase {
         this.f14561a = str;
         this.f14562b = str2;
         this.f14563c = new JSONObject(str);
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Purchase)) {
+            return false;
+        }
+        Purchase purchase = (Purchase) obj;
+        return TextUtils.equals(this.f14561a, purchase.f14561a) && TextUtils.equals(this.f14562b, purchase.f14562b);
+    }
+
+    public int hashCode() {
+        return this.f14561a.hashCode();
     }
 
     @NonNull
@@ -72,21 +87,6 @@ public class Purchase {
     /* JADX INFO: renamed from: c */
     public boolean m7499c() {
         return this.f14563c.optBoolean("acknowledged", true);
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Purchase)) {
-            return false;
-        }
-        Purchase purchase = (Purchase) obj;
-        return TextUtils.equals(this.f14561a, purchase.f14561a) && TextUtils.equals(this.f14562b, purchase.f14562b);
-    }
-
-    public int hashCode() {
-        return this.f14561a.hashCode();
     }
 
     @NonNull

@@ -9,7 +9,7 @@ public interface InterfaceC1827b<INFO> {
 
     /* JADX INFO: renamed from: b.f.h.b.a.b$a */
     /* JADX INFO: compiled from: ControllerListener2.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public Map<String, Object> f3563a;

@@ -21,12 +21,30 @@ public final class CreateThreadsFeatureFlag {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(CreateThreadsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
     private final StoreExperiments storeExperiments;
     private final StoreGuilds storeGuilds;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(CreateThreadsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.CreateThreadsFeatureFlag$observeEnabled$1 */
+    /* JADX INFO: compiled from: CreateThreadsFeatureFlag.kt */
+    public final /* synthetic */ class C79321 extends C12236k implements Function3<Experiment, Experiment, Guild, Boolean> {
+        public C79321(Companion companion) {
+            super(3, companion, Companion.class, "computeIsEnabled", "computeIsEnabled(Lcom/discord/models/experiments/domain/Experiment;Lcom/discord/models/experiments/domain/Experiment;Lcom/discord/models/guild/Guild;)Z", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Boolean invoke(Experiment experiment, Experiment experiment2, Guild guild) {
+            return Boolean.valueOf(invoke2(experiment, experiment2, guild));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(Experiment experiment, Experiment experiment2, Guild guild) {
+            return ((Companion) this.receiver).computeIsEnabled(experiment, experiment2, guild);
+        }
+    }
 
     /* JADX INFO: compiled from: CreateThreadsFeatureFlag.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -48,24 +66,6 @@ public final class CreateThreadsFeatureFlag {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.CreateThreadsFeatureFlag$observeEnabled$1 */
-    /* JADX INFO: compiled from: CreateThreadsFeatureFlag.kt */
-    public static final /* synthetic */ class C79321 extends C12236k implements Function3<Experiment, Experiment, Guild, Boolean> {
-        public C79321(Companion companion) {
-            super(3, companion, Companion.class, "computeIsEnabled", "computeIsEnabled(Lcom/discord/models/experiments/domain/Experiment;Lcom/discord/models/experiments/domain/Experiment;Lcom/discord/models/guild/Guild;)Z", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Boolean invoke(Experiment experiment, Experiment experiment2, Guild guild) {
-            return Boolean.valueOf(invoke2(experiment, experiment2, guild));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(Experiment experiment, Experiment experiment2, Guild guild) {
-            return ((Companion) this.receiver).computeIsEnabled(experiment, experiment2, guild);
         }
     }
 

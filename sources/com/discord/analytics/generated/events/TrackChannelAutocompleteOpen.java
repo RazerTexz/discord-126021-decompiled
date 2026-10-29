@@ -13,33 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelAutocompleteOpen.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final CharSequence autocompleteType = null;
+    private final Boolean hasEmoji = null;
+    private final Boolean hasSticker = null;
+    private final Long numEmojiResults = null;
+    private final Long numStickerResults = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final CharSequence autocompleteType = null;
-    private final Boolean hasSticker = null;
-    private final Boolean hasEmoji = null;
-    private final Long numStickerResults = null;
-    private final Long numEmojiResults = null;
     private final transient String analyticsSchemaTypeName = "channel_autocomplete_open";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +32,18 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
         }
         TrackChannelAutocompleteOpen trackChannelAutocompleteOpen = (TrackChannelAutocompleteOpen) other;
         return C12238m.areEqual(this.autocompleteType, trackChannelAutocompleteOpen.autocompleteType) && C12238m.areEqual(this.hasSticker, trackChannelAutocompleteOpen.hasSticker) && C12238m.areEqual(this.hasEmoji, trackChannelAutocompleteOpen.hasEmoji) && C12238m.areEqual(this.numStickerResults, trackChannelAutocompleteOpen.numStickerResults) && C12238m.areEqual(this.numEmojiResults, trackChannelAutocompleteOpen.numEmojiResults);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -63,6 +57,12 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
         int iHashCode4 = (iHashCode3 + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.numEmojiResults;
         return iHashCode4 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

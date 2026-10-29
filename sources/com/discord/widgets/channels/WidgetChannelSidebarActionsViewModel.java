@@ -36,7 +36,7 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActionsViewModel$1 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public static final class C73471 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C73471 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C73471() {
             super(1);
         }
@@ -55,14 +55,8 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Observable<StoreState> observeStoreState(StoreNavigation storeNavigation, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreUserGuildSettings storeUserGuildSettings, StoreGuildsNsfw storeGuildNSFW, StoreUser storeUser) {
-            Observable observableM11099Y = storeNavigation.observeRightPanelState().m11099Y(new C7348x2d9fcf21(storeChannelsSelected, storeUserGuildSettings, storeUser, storeChannels, storeGuildNSFW));
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "storeNavigation\n        …          }\n            }");
-            return observableM11099Y;
         }
 
         public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreNavigation storeNavigation, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreUserGuildSettings storeUserGuildSettings, StoreGuildsNsfw storeGuildsNsfw, StoreUser storeUser, int i, Object obj) {
@@ -91,16 +85,22 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
             return companion.observeStoreState(storeNavigation, storeChannels2, storeChannelsSelected2, storeUserGuildSettings2, storeGuildsNsfw2, storeUser);
         }
 
+        private final Observable<StoreState> observeStoreState(StoreNavigation storeNavigation, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreUserGuildSettings storeUserGuildSettings, StoreGuildsNsfw storeGuildNSFW, StoreUser storeUser) {
+            Observable observableM11099Y = storeNavigation.observeRightPanelState().m11099Y(new C7348x2d9fcf21(storeChannelsSelected, storeUserGuildSettings, storeUser, storeChannels, storeGuildNSFW));
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "storeNavigation\n        …          }\n            }");
+            return observableM11099Y;
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public static final /* data */ class ChannelFound extends StoreState {
+        public final /* data */ class ChannelFound extends StoreState {
             private final Channel channel;
             private final boolean disablePins;
             private final ModelNotificationSettings guildNotificationSettings;
@@ -132,26 +132,6 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 return channelFound.copy(channel, channel2, modelNotificationSettings, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Channel getParentChannel() {
-                return this.parentChannel;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final ModelNotificationSettings getGuildNotificationSettings() {
-                return this.guildNotificationSettings;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
             public final ChannelFound copy(Channel channel, Channel parentChannel, ModelNotificationSettings guildNotificationSettings, boolean disablePins) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 return new ChannelFound(channel, parentChannel, guildNotificationSettings, disablePins);
@@ -168,16 +148,36 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 return C12238m.areEqual(this.channel, channelFound.channel) && C12238m.areEqual(this.parentChannel, channelFound.parentChannel) && C12238m.areEqual(this.guildNotificationSettings, channelFound.guildNotificationSettings) && this.disablePins == channelFound.disablePins;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getChannel() {
                 return this.channel;
+            }
+
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getDisablePins() {
+                return this.disablePins;
             }
 
             public final boolean getDisablePins() {
                 return this.disablePins;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final ModelNotificationSettings getGuildNotificationSettings() {
                 return this.guildNotificationSettings;
+            }
+
+            public final ModelNotificationSettings getGuildNotificationSettings() {
+                return this.guildNotificationSettings;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Channel getParentChannel() {
+                return this.parentChannel;
             }
 
             public final Channel getParentChannel() {
@@ -217,7 +217,7 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
         }
 
         /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public static final class ChannelNotFound extends StoreState {
+        public final class ChannelNotFound extends StoreState {
             public static final ChannelNotFound INSTANCE = new ChannelNotFound();
 
             private ChannelNotFound() {
@@ -234,10 +234,10 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public static final /* data */ class Guild extends ViewState {
+        public final /* data */ class Guild extends ViewState {
             private final long channelId;
             private final boolean disablePins;
             private final long guildId;
@@ -261,51 +261,6 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 this.shouldHideChannelSidebar = z8;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsMuted() {
-                return this.isMuted;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getHasUnreadPins() {
-                return this.hasUnreadPins;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsThread() {
-                return this.isThread;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getIsGuildForumPost() {
-                return this.isGuildForumPost;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsGuildForumChannel() {
-                return this.isGuildForumChannel;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getShouldHideChannelSidebar() {
-                return this.shouldHideChannelSidebar;
-            }
-
             public final Guild copy(long channelId, long guildId, boolean isMuted, boolean hasUnreadPins, boolean disablePins, boolean isThread, boolean isGuildForumPost, boolean isGuildForumChannel, boolean shouldHideChannelSidebar) {
                 return new Guild(channelId, guildId, isMuted, hasUnreadPins, disablePins, isThread, isGuildForumPost, isGuildForumChannel, shouldHideChannelSidebar);
             }
@@ -321,20 +276,65 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 return this.channelId == guild.channelId && this.guildId == guild.guildId && this.isMuted == guild.isMuted && this.hasUnreadPins == guild.hasUnreadPins && this.disablePins == guild.disablePins && this.isThread == guild.isThread && this.isGuildForumPost == guild.isGuildForumPost && this.isGuildForumChannel == guild.isGuildForumChannel && this.shouldHideChannelSidebar == guild.shouldHideChannelSidebar;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getDisablePins() {
+                return this.disablePins;
             }
 
             public final boolean getDisablePins() {
                 return this.disablePins;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
             }
 
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final boolean getHasUnreadPins() {
                 return this.hasUnreadPins;
+            }
+
+            public final boolean getHasUnreadPins() {
+                return this.hasUnreadPins;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsGuildForumChannel() {
+                return this.isGuildForumChannel;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getIsGuildForumPost() {
+                return this.isGuildForumPost;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsMuted() {
+                return this.isMuted;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsThread() {
+                return this.isThread;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getShouldHideChannelSidebar() {
+                return this.shouldHideChannelSidebar;
             }
 
             public final boolean getShouldHideChannelSidebar() {
@@ -451,7 +451,7 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
         }
 
         /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public static final /* data */ class Private extends ViewState {
+        public final /* data */ class Private extends ViewState {
             private final long channelId;
             private final boolean isMuted;
 
@@ -471,16 +471,6 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 return r0.copy(j, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsMuted() {
-                return this.isMuted;
-            }
-
             public final Private copy(long channelId, boolean isMuted) {
                 return new Private(channelId, isMuted);
             }
@@ -496,8 +486,18 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                 return this.channelId == r6.channelId && this.isMuted == r6.isMuted;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsMuted() {
+                return this.isMuted;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -528,7 +528,7 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
         }
 
         /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {

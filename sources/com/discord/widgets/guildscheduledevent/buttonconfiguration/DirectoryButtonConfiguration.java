@@ -63,26 +63,6 @@ public final /* data */ class DirectoryButtonConfiguration implements ButtonConf
         this.isAnyButtonVisible = true;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final GuildScheduledEvent getGuildScheduledEvent() {
-        return this.guildScheduledEvent;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsInGuild() {
-        return this.isInGuild;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsRsvped() {
-        return this.isRsvped;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsDetailView() {
-        return this.isDetailView;
-    }
-
     public final View.OnClickListener component5() {
         return getPrimaryButtonOnClickListener();
     }
@@ -120,8 +100,46 @@ public final /* data */ class DirectoryButtonConfiguration implements ButtonConf
         return this.extrasButtonOnClickListener;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final GuildScheduledEvent getGuildScheduledEvent() {
         return this.guildScheduledEvent;
+    }
+
+    public final GuildScheduledEvent getGuildScheduledEvent() {
+        return this.guildScheduledEvent;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isAnyButtonVisible, reason: from getter */
+    public boolean getIsAnyButtonVisible() {
+        return this.isAnyButtonVisible;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsDetailView() {
+        return this.isDetailView;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isExtrasVisible, reason: from getter */
+    public boolean getIsExtrasVisible() {
+        return this.isExtrasVisible;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsInGuild() {
+        return this.isInGuild;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsRsvped() {
+        return this.isRsvped;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isShareVisible, reason: from getter */
+    public boolean getIsShareVisible() {
+        return this.isShareVisible;
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
@@ -201,20 +219,8 @@ public final /* data */ class DirectoryButtonConfiguration implements ButtonConf
         return iHashCode4 + (extrasButtonOnClickListener != null ? extrasButtonOnClickListener.hashCode() : 0);
     }
 
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isAnyButtonVisible, reason: from getter */
-    public boolean getIsAnyButtonVisible() {
-        return this.isAnyButtonVisible;
-    }
-
     public final boolean isDetailView() {
         return this.isDetailView;
-    }
-
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isExtrasVisible, reason: from getter */
-    public boolean getIsExtrasVisible() {
-        return this.isExtrasVisible;
     }
 
     public final boolean isInGuild() {
@@ -223,12 +229,6 @@ public final /* data */ class DirectoryButtonConfiguration implements ButtonConf
 
     public final boolean isRsvped() {
         return this.isRsvped;
-    }
-
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isShareVisible, reason: from getter */
-    public boolean getIsShareVisible() {
-        return this.isShareVisible;
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration

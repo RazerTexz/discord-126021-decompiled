@@ -25,7 +25,7 @@ public abstract class AbstractC12556j<ResponseT, ReturnT> extends AbstractC12572
 
     /* JADX INFO: renamed from: i0.j$a */
     /* JADX INFO: compiled from: HttpServiceMethod.java */
-    public static final class a<ResponseT, ReturnT> extends AbstractC12556j<ResponseT, ReturnT> {
+    public final class a<ResponseT, ReturnT> extends AbstractC12556j<ResponseT, ReturnT> {
 
         /* JADX INFO: renamed from: d */
         public final InterfaceC12512e<ResponseT, ReturnT> f26544d;
@@ -44,7 +44,7 @@ public abstract class AbstractC12556j<ResponseT, ReturnT> extends AbstractC12572
 
     /* JADX INFO: renamed from: i0.j$b */
     /* JADX INFO: compiled from: HttpServiceMethod.java */
-    public static final class b<ResponseT> extends AbstractC12556j<ResponseT, Object> {
+    public final class b<ResponseT> extends AbstractC12556j<ResponseT, Object> {
 
         /* JADX INFO: renamed from: d */
         public final InterfaceC12512e<ResponseT, InterfaceC12504d<ResponseT>> f26545d;
@@ -56,7 +56,7 @@ public abstract class AbstractC12556j<ResponseT, ReturnT> extends AbstractC12572
 
         @Override // p630i0.AbstractC12556j
         /* JADX INFO: renamed from: c */
-        public Object mo10711c(InterfaceC12504d<ResponseT> interfaceC12504d, Object[] objArr) {
+        public Object mo10711c(InterfaceC12504d<ResponseT> interfaceC12504d, Object[] objArr) throws Throwable {
             InterfaceC12504d<ResponseT> interfaceC12504dMo10706b = this.f26545d.mo10706b(interfaceC12504d);
             Continuation continuation = (Continuation) objArr[objArr.length - 1];
             try {
@@ -76,7 +76,7 @@ public abstract class AbstractC12556j<ResponseT, ReturnT> extends AbstractC12572
 
     /* JADX INFO: renamed from: i0.j$c */
     /* JADX INFO: compiled from: HttpServiceMethod.java */
-    public static final class c<ResponseT> extends AbstractC12556j<ResponseT, Object> {
+    public final class c<ResponseT> extends AbstractC12556j<ResponseT, Object> {
 
         /* JADX INFO: renamed from: d */
         public final InterfaceC12512e<ResponseT, InterfaceC12504d<ResponseT>> f26546d;
@@ -88,7 +88,7 @@ public abstract class AbstractC12556j<ResponseT, ReturnT> extends AbstractC12572
 
         @Override // p630i0.AbstractC12556j
         /* JADX INFO: renamed from: c */
-        public Object mo10711c(InterfaceC12504d<ResponseT> interfaceC12504d, Object[] objArr) {
+        public Object mo10711c(InterfaceC12504d<ResponseT> interfaceC12504d, Object[] objArr) throws Throwable {
             InterfaceC12504d<ResponseT> interfaceC12504dMo10706b = this.f26546d.mo10706b(interfaceC12504d);
             Continuation continuation = (Continuation) objArr[objArr.length - 1];
             try {

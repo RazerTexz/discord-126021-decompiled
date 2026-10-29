@@ -11,16 +11,6 @@ public final /* data */ class EmbedFooter {
     private final String proxyIconUrl;
     private final String text;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getProxyIconUrl() {
-        return this.proxyIconUrl;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class EmbedFooter {
         }
         EmbedFooter embedFooter = (EmbedFooter) other;
         return C12238m.areEqual(this.text, embedFooter.text) && C12238m.areEqual(this.iconUrl, embedFooter.iconUrl) && C12238m.areEqual(this.proxyIconUrl, embedFooter.proxyIconUrl);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getProxyIconUrl() {
+        return this.proxyIconUrl;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public int hashCode() {

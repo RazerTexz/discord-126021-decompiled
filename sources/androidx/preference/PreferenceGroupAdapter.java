@@ -33,7 +33,7 @@ public class PreferenceGroupAdapter extends RecyclerView.Adapter<PreferenceViewH
     };
     private Handler mHandler = new Handler();
 
-    public static class PreferenceResourceDescriptor {
+    public class PreferenceResourceDescriptor {
         public String mClassName;
         public int mLayoutResId;
         public int mWidgetLayoutResId;
@@ -151,10 +151,6 @@ public class PreferenceGroupAdapter extends RecyclerView.Adapter<PreferenceViewH
         }
     }
 
-    private boolean isGroupExpandable(PreferenceGroup preferenceGroup) {
-        return preferenceGroup.getInitialExpandedChildrenCount() != Integer.MAX_VALUE;
-    }
-
     public Preference getItem(int i) {
         if (i < 0 || i >= getItemCount()) {
             return null;
@@ -196,6 +192,10 @@ public class PreferenceGroupAdapter extends RecyclerView.Adapter<PreferenceViewH
             }
         }
         return -1;
+    }
+
+    private boolean isGroupExpandable(PreferenceGroup preferenceGroup) {
+        return preferenceGroup.getInitialExpandedChildrenCount() != Integer.MAX_VALUE;
     }
 
     @Override // androidx.preference.Preference.OnPreferenceChangeInternalListener

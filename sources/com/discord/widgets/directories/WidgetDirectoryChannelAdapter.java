@@ -51,14 +51,14 @@ public final class WidgetDirectoryChannelAdapter extends RecyclerView.Adapter<Re
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.directoryChannelItems.size();
+    public int getItemViewType(int position) {
+        return this.directoryChannelItems.get(position).getViewType().ordinal();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public int getItemViewType(int position) {
-        return this.directoryChannelItems.get(position).getViewType().ordinal();
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.directoryChannelItems.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

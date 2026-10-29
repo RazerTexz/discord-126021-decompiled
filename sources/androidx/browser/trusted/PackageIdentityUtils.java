@@ -20,7 +20,7 @@ public class PackageIdentityUtils {
     private static final String TAG = "PackageIdentity";
 
     @RequiresApi(28)
-    public static class Api28Implementation implements SignaturesCompat {
+    public class Api28Implementation implements SignaturesCompat {
         @Override // androidx.browser.trusted.PackageIdentityUtils.SignaturesCompat
         @Nullable
         public List<byte[]> getFingerprintsForPackage(String str, PackageManager packageManager) throws PackageManager.NameNotFoundException {
@@ -47,7 +47,7 @@ public class PackageIdentityUtils {
         }
     }
 
-    public static class Pre28Implementation implements SignaturesCompat {
+    public class Pre28Implementation implements SignaturesCompat {
         @Override // androidx.browser.trusted.PackageIdentityUtils.SignaturesCompat
         @Nullable
         @SuppressLint({"PackageManagerGetSignatures"})

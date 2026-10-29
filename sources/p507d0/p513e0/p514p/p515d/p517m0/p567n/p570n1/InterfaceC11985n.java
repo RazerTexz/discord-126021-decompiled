@@ -12,7 +12,7 @@ public interface InterfaceC11985n extends InterfaceC11988q {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.n1.n$a */
     /* JADX INFO: compiled from: TypeSystemContext.kt */
-    public static final class a {
+    public final class a {
         public static List<InterfaceC11980i> fastCorrespondingSupertypes(InterfaceC11985n interfaceC11985n, InterfaceC11980i interfaceC11980i, InterfaceC11983l interfaceC11983l) {
             C12238m.checkNotNullParameter(interfaceC11985n, "this");
             C12238m.checkNotNullParameter(interfaceC11980i, "receiver");

@@ -31,7 +31,7 @@ public final class C11528f implements InterfaceC11360i0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.f$a */
     /* JADX INFO: compiled from: LazyJavaPackageFragmentProvider.kt */
-    public static final class a extends AbstractC12240o implements Function0<C11542i> {
+    public final class a extends AbstractC12240o implements Function0<C11542i> {
         public final /* synthetic */ InterfaceC11588u $jPackage;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -54,15 +54,6 @@ public final class C11528f implements InterfaceC11360i0 {
         this.f23309b = c11529g.getStorageManager().createCacheWithNotNullValues();
     }
 
-    /* JADX INFO: renamed from: a */
-    public final C11542i m9461a(C11713b c11713b) {
-        InterfaceC11588u interfaceC11588uFindPackage = this.f23308a.getComponents().getFinder().findPackage(c11713b);
-        if (interfaceC11588uFindPackage == null) {
-            return null;
-        }
-        return (C11542i) ((C11896f.d) this.f23309b).computeIfAbsent(c11713b, new a(interfaceC11588uFindPackage));
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11360i0
     public void collectPackageFragments(C11713b c11713b, Collection<InterfaceC11331e0> collection) {
         C12238m.checkNotNullParameter(c11713b, "fqName");
@@ -79,6 +70,15 @@ public final class C11528f implements InterfaceC11360i0 {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11334f0
     public /* bridge */ /* synthetic */ Collection getSubPackagesOf(C11713b c11713b, Function1 function1) {
         return getSubPackagesOf(c11713b, (Function1<? super C11716e, Boolean>) function1);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final C11542i m9461a(C11713b c11713b) {
+        InterfaceC11588u interfaceC11588uFindPackage = this.f23308a.getComponents().getFinder().findPackage(c11713b);
+        if (interfaceC11588uFindPackage == null) {
+            return null;
+        }
+        return (C11542i) ((C11896f.d) this.f23309b).computeIfAbsent(c11713b, new a(interfaceC11588uFindPackage));
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11334f0

@@ -35,7 +35,7 @@ public final class InviteSuggestionsManager {
     private final StoreUser storeUsers;
 
     /* JADX INFO: compiled from: InviteSuggestionsManager.kt */
-    public static final /* data */ class UserAffinityData {
+    public final /* data */ class UserAffinityData {
         private final Map<Long, Integer> relationships;
         private final List<Long> userIds;
         private final Map<Long, User> users;
@@ -50,6 +50,18 @@ public final class InviteSuggestionsManager {
             this.relationships = map2;
         }
 
+        public final List<Long> component1() {
+            return this.userIds;
+        }
+
+        public final Map<Long, User> component2() {
+            return this.users;
+        }
+
+        public final Map<Long, Integer> component3() {
+            return this.relationships;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ UserAffinityData copy$default(UserAffinityData userAffinityData, List list, Map map, Map map2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -62,18 +74,6 @@ public final class InviteSuggestionsManager {
                 map2 = userAffinityData.relationships;
             }
             return userAffinityData.copy(list, map, map2);
-        }
-
-        public final List<Long> component1() {
-            return this.userIds;
-        }
-
-        public final Map<Long, User> component2() {
-            return this.users;
-        }
-
-        public final Map<Long, Integer> component3() {
-            return this.relationships;
         }
 
         public final UserAffinityData copy(List<Long> userIds, Map<Long, ? extends User> users, Map<Long, Integer> relationships) {

@@ -19,16 +19,16 @@ public final class C13047b1 extends AbstractC13120j {
         this.f27717j = function1;
     }
 
-    @Override // p659s.p660a.AbstractC13123k
-    /* JADX INFO: renamed from: a */
-    public void mo11193a(Throwable th) {
-        this.f27717j.invoke(th);
-    }
-
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(Throwable th) {
         this.f27717j.invoke(th);
         return Unit.f27425a;
+    }
+
+    @Override // p659s.p660a.AbstractC13123k
+    /* JADX INFO: renamed from: a */
+    public void mo11193a(Throwable th) {
+        this.f27717j.invoke(th);
     }
 
     public String toString() {

@@ -13,12 +13,12 @@ public final class WidgetFriendsAddUserAdapter$onItemClick$1 extends AbstractC12
         super(1);
     }
 
+    public final void invoke(long j) {
+    }
+
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Long l) {
         invoke(l.longValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(long j) {
     }
 }

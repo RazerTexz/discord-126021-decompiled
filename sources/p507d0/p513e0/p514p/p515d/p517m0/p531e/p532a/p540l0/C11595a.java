@@ -16,11 +16,6 @@ public final class C11595a implements InterfaceC11340c {
     /* JADX INFO: renamed from: a */
     public static final C11595a f23441a = new C11595a();
 
-    /* JADX INFO: renamed from: a */
-    public final Void m9505a() {
-        throw new IllegalStateException("No methods should be called on this descriptor. Only its presence matters".toString());
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
     public Map<C11716e, AbstractC11815g<?>> getAllValueArguments() {
         m9505a();
@@ -42,6 +37,11 @@ public final class C11595a implements InterfaceC11340c {
     public AbstractC11913c0 getType() {
         m9505a();
         throw null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final Void m9505a() {
+        throw new IllegalStateException("No methods should be called on this descriptor. Only its presence matters".toString());
     }
 
     public String toString() {

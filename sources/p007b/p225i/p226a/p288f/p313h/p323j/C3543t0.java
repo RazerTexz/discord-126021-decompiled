@@ -18,11 +18,11 @@ public final class C3543t0<T extends Context & InterfaceC3551x0> {
     /* JADX INFO: renamed from: a */
     public static Boolean f9800a;
 
-    /* JADX INFO: renamed from: b */
-    public final Handler f9801b = new HandlerC3511e1();
-
     /* JADX INFO: renamed from: c */
     public final T f9802c;
+
+    /* JADX INFO: renamed from: b */
+    public final Handler f9801b = new HandlerC3511e1();
 
     public C3543t0(T t) {
         this.f9802c = t;

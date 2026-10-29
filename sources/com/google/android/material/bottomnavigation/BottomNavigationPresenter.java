@@ -25,8 +25,7 @@ public class BottomNavigationPresenter implements MenuPresenter {
     private BottomNavigationMenuView menuView;
     private boolean updateSuspended = false;
 
-    public static class SavedState implements Parcelable {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10848a();
+    public class SavedState implements Parcelable {
 
         /* JADX INFO: renamed from: j */
         public int f20920j;
@@ -34,9 +33,10 @@ public class BottomNavigationPresenter implements MenuPresenter {
         /* JADX INFO: renamed from: k */
         @Nullable
         public ParcelableSparseArray f20921k;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10848a();
 
         /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationPresenter$SavedState$a */
-        public static class C10848a implements Parcelable.Creator<SavedState> {
+        public final class C10848a implements Parcelable.Creator<SavedState> {
             @Override // android.os.Parcelable.Creator
             @NonNull
             public SavedState createFromParcel(@NonNull Parcel parcel) {

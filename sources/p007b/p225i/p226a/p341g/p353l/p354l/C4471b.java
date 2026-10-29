@@ -23,7 +23,7 @@ public class C4471b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.l.b$a */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class a implements InterfaceC4470a {
+    public final class a implements InterfaceC4470a {
         @Override // p007b.p225i.p226a.p341g.p353l.p354l.InterfaceC4470a
         /* JADX INFO: renamed from: a */
         public C4472c mo6195a(float f, float f2, float f3) {
@@ -33,7 +33,7 @@ public class C4471b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.l.b$b */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class b implements InterfaceC4470a {
+    public final class b implements InterfaceC4470a {
         @Override // p007b.p225i.p226a.p341g.p353l.p354l.InterfaceC4470a
         /* JADX INFO: renamed from: a */
         public C4472c mo6195a(float f, float f2, float f3) {
@@ -43,7 +43,7 @@ public class C4471b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.l.b$c */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class c implements InterfaceC4470a {
+    public final class c implements InterfaceC4470a {
         @Override // p007b.p225i.p226a.p341g.p353l.p354l.InterfaceC4470a
         /* JADX INFO: renamed from: a */
         public C4472c mo6195a(float f, float f2, float f3) {
@@ -53,7 +53,7 @@ public class C4471b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.l.b$d */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class d implements InterfaceC4470a {
+    public final class d implements InterfaceC4470a {
         @Override // p007b.p225i.p226a.p341g.p353l.p354l.InterfaceC4470a
         /* JADX INFO: renamed from: a */
         public C4472c mo6195a(float f, float f2, float f3) {

@@ -37,15 +37,15 @@ import p659s.p660a.p661a.C13037t;
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
-
-    /* JADX INFO: renamed from: j */
-    public static final AtomicReferenceFieldUpdater f27846j = AtomicReferenceFieldUpdater.newUpdater(C13116h1.class, Object.class, "_state");
     public volatile Object _parentHandle;
     public volatile Object _state;
 
+    /* JADX INFO: renamed from: j */
+    public static final AtomicReferenceFieldUpdater f27846j = AtomicReferenceFieldUpdater.newUpdater(C13116h1.class, Object.class, "_state");
+
     /* JADX INFO: renamed from: s.a.h1$a */
     /* JADX INFO: compiled from: JobSupport.kt */
-    public static final class a extends AbstractC13113g1<Job> {
+    public final class a extends AbstractC13113g1<Job> {
 
         /* JADX INFO: renamed from: n */
         public final C13116h1 f27847n;
@@ -97,128 +97,9 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         }
     }
 
-    /* JADX INFO: renamed from: s.a.h1$b */
-    /* JADX INFO: compiled from: JobSupport.kt */
-    public static final class b implements InterfaceC13169z0 {
-        public volatile Object _exceptionsHolder = null;
-        public volatile int _isCompleting;
-        public volatile Object _rootCause;
-
-        /* JADX INFO: renamed from: j */
-        public final C13131m1 f27851j;
-
-        public b(C13131m1 c13131m1, boolean z2, Throwable th) {
-            this.f27851j = c13131m1;
-            this._isCompleting = z2 ? 1 : 0;
-            this._rootCause = th;
-        }
-
-        @Override // p659s.p660a.InterfaceC13169z0
-        /* JADX INFO: renamed from: a */
-        public boolean mo11281a() {
-            return ((Throwable) this._rootCause) == null;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX INFO: renamed from: b */
-        public final void m11309b(Throwable th) {
-            Throwable th2 = (Throwable) this._rootCause;
-            if (th2 == null) {
-                this._rootCause = th;
-                return;
-            }
-            if (th == th2) {
-                return;
-            }
-            Object obj = this._exceptionsHolder;
-            if (obj == null) {
-                this._exceptionsHolder = th;
-                return;
-            }
-            if (!(obj instanceof Throwable)) {
-                if (!(obj instanceof ArrayList)) {
-                    throw new IllegalStateException(C1643a.m881v("State is ", obj).toString());
-                }
-                ((ArrayList) obj).add(th);
-            } else {
-                if (th == obj) {
-                    return;
-                }
-                ArrayList<Throwable> arrayListM11310c = m11310c();
-                arrayListM11310c.add(obj);
-                arrayListM11310c.add(th);
-                this._exceptionsHolder = arrayListM11310c;
-            }
-        }
-
-        /* JADX INFO: renamed from: c */
-        public final ArrayList<Throwable> m11310c() {
-            return new ArrayList<>(4);
-        }
-
-        /* JADX INFO: renamed from: d */
-        public final boolean m11311d() {
-            return ((Throwable) this._rootCause) != null;
-        }
-
-        /* JADX INFO: renamed from: e */
-        public final boolean m11312e() {
-            return this._exceptionsHolder == C13119i1.f27861e;
-        }
-
-        /* JADX INFO: renamed from: f */
-        public final List<Throwable> m11313f(Throwable th) {
-            ArrayList arrayListM11310c;
-            Object obj = this._exceptionsHolder;
-            if (obj == null) {
-                arrayListM11310c = m11310c();
-            } else if (obj instanceof Throwable) {
-                ArrayList arrayListM11310c2 = m11310c();
-                arrayListM11310c2.add(obj);
-                arrayListM11310c = arrayListM11310c2;
-            } else {
-                if (!(obj instanceof ArrayList)) {
-                    throw new IllegalStateException(C1643a.m881v("State is ", obj).toString());
-                }
-                arrayListM11310c = (ArrayList) obj;
-            }
-            Throwable th2 = (Throwable) this._rootCause;
-            if (th2 != null) {
-                arrayListM11310c.add(0, th2);
-            }
-            if (th != null && (!C12238m.areEqual(th, th2))) {
-                arrayListM11310c.add(th);
-            }
-            this._exceptionsHolder = C13119i1.f27861e;
-            return arrayListM11310c;
-        }
-
-        @Override // p659s.p660a.InterfaceC13169z0
-        public C13131m1 getList() {
-            return this.f27851j;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r1v2, types: [boolean, int] */
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Finishing[cancelling=");
-            sbM833U.append(m11311d());
-            sbM833U.append(", completing=");
-            sbM833U.append((boolean) this._isCompleting);
-            sbM833U.append(", rootCause=");
-            sbM833U.append((Throwable) this._rootCause);
-            sbM833U.append(", exceptions=");
-            sbM833U.append(this._exceptionsHolder);
-            sbM833U.append(", list=");
-            sbM833U.append(this.f27851j);
-            sbM833U.append(']');
-            return sbM833U.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: s.a.h1$c */
     /* JADX INFO: compiled from: LockFreeLinkedList.kt */
-    public static final class c extends C13028k.a {
+    public final class c extends C13028k.a {
 
         /* JADX INFO: renamed from: d */
         public final /* synthetic */ C13116h1 f27852d;
@@ -246,7 +127,7 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
     /* JADX INFO: renamed from: s.a.h1$d */
     /* JADX INFO: compiled from: JobSupport.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.JobSupport$children$1", m10085f = "JobSupport.kt", m10086l = {949, 951}, m10087m = "invokeSuspend")
-    public static final class d extends AbstractC12193j implements Function2<AbstractC12072k<? super InterfaceC13144r>, Continuation<? super Unit>, Object> {
+    public final class d extends AbstractC12193j implements Function2<AbstractC12072k<? super InterfaceC13144r>, Continuation<? super Unit>, Object> {
         public Object L$0;
         public Object L$1;
         public Object L$2;
@@ -391,55 +272,25 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         this._parentHandle = null;
     }
 
+    @Override // kotlin.coroutines.CoroutineContext
+    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> function2) {
+        return (R) CoroutineContext.Element.C12790a.fold(this, r, function2);
+    }
+
+    @Override // kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
+    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
+        return (E) CoroutineContext.Element.C12790a.get(this, key);
+    }
+
+    @Override // kotlin.coroutines.CoroutineContext.Element
+    public final CoroutineContext.Key<?> getKey() {
+        return Job.INSTANCE;
+    }
+
     /* JADX INFO: renamed from: b0 */
     public static /* synthetic */ CancellationException m11284b0(C13116h1 c13116h1, Throwable th, String str, int i, Object obj) {
         int i2 = i & 1;
         return c13116h1.m11301a0(th, null);
-    }
-
-    @Override // p659s.p660a.InterfaceC13143q1
-    /* JADX INFO: renamed from: A */
-    public CancellationException mo11285A() {
-        Throwable th;
-        Object objM11292M = m11292M();
-        if (objM11292M instanceof b) {
-            th = (Throwable) ((b) objM11292M)._rootCause;
-        } else if (objM11292M instanceof C13159w) {
-            th = ((C13159w) objM11292M).f27913b;
-        } else {
-            if (objM11292M instanceof InterfaceC13169z0) {
-                throw new IllegalStateException(C1643a.m881v("Cannot be cancelling child in this state: ", objM11292M).toString());
-            }
-            th = null;
-        }
-        CancellationException cancellationException = (CancellationException) (th instanceof CancellationException ? th : null);
-        if (cancellationException != null) {
-            return cancellationException;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Parent job is ");
-        sbM833U.append(m11300Z(objM11292M));
-        return new JobCancellationException(sbM833U.toString(), th, this);
-    }
-
-    /* JADX INFO: renamed from: B */
-    public String mo11182B() {
-        return "Job was cancelled";
-    }
-
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: D */
-    public final InterfaceC13138p mo10909D(InterfaceC13144r interfaceC13144r) {
-        InterfaceC13130m0 interfaceC13130m0M4356w0 = C3404f.m4356w0(this, true, false, new C13141q(this, interfaceC13144r), 2, null);
-        Objects.requireNonNull(interfaceC13130m0M4356w0, "null cannot be cast to non-null type kotlinx.coroutines.ChildHandle");
-        return (InterfaceC13138p) interfaceC13130m0M4356w0;
-    }
-
-    /* JADX INFO: renamed from: E */
-    public boolean mo11286E(Throwable th) {
-        if (th instanceof CancellationException) {
-            return true;
-        }
-        return m11306w(th) && mo11279J();
     }
 
     /* JADX INFO: renamed from: F */
@@ -569,16 +420,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         return th2;
     }
 
-    /* JADX INFO: renamed from: J */
-    public boolean mo11279J() {
-        return true;
-    }
-
-    /* JADX INFO: renamed from: K */
-    public boolean mo11280K() {
-        return false;
-    }
-
     /* JADX INFO: renamed from: L */
     public final C13131m1 m11291L(InterfaceC13169z0 interfaceC13169z0) {
         C13131m1 list = interfaceC13169z0.getList();
@@ -606,16 +447,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         }
     }
 
-    /* JADX INFO: renamed from: N */
-    public boolean mo11293N(Throwable th) {
-        return false;
-    }
-
-    /* JADX INFO: renamed from: O */
-    public void mo11183O(Throwable th) throws Throwable {
-        throw th;
-    }
-
     /* JADX INFO: renamed from: P */
     public final void m11294P(Job job) {
         if (job == null) {
@@ -629,11 +460,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
             interfaceC13138pMo10909D.dispose();
             this._parentHandle = C13137o1.f27880j;
         }
-    }
-
-    /* JADX INFO: renamed from: Q */
-    public boolean mo11171Q() {
-        return this instanceof C13108f;
     }
 
     /* JADX INFO: renamed from: R */
@@ -661,11 +487,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         }
         AbstractC13113g1<?> abstractC13113g1 = (AbstractC13113g1) (function1 instanceof AbstractC13113g1 ? function1 : null);
         return abstractC13113g1 != null ? abstractC13113g1 : new C13078d1(this, function1);
-    }
-
-    /* JADX INFO: renamed from: T */
-    public String mo11184T() {
-        return getClass().getSimpleName();
     }
 
     /* JADX INFO: renamed from: U */
@@ -711,14 +532,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         m11308z(th);
     }
 
-    /* JADX INFO: renamed from: W */
-    public void mo11185W(Object obj) {
-    }
-
-    /* JADX INFO: renamed from: X */
-    public void mo11186X() {
-    }
-
     /* JADX INFO: renamed from: Y */
     public final void m11299Y(AbstractC13113g1<?> abstractC13113g1) {
         C13131m1 c13131m1 = new C13131m1();
@@ -748,13 +561,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         return bVar._isCompleting != 0 ? "Completing" : "Active";
     }
 
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: a */
-    public boolean mo10910a() {
-        Object objM11292M = m11292M();
-        return (objM11292M instanceof InterfaceC13169z0) && ((InterfaceC13169z0) objM11292M).mo11281a();
-    }
-
     /* JADX INFO: renamed from: a0 */
     public final CancellationException m11301a0(Throwable th, String str) {
         CancellationException jobCancellationException = (CancellationException) (!(th instanceof CancellationException) ? null : th);
@@ -765,15 +571,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
             jobCancellationException = new JobCancellationException(str, th, this);
         }
         return jobCancellationException;
-    }
-
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: b */
-    public void mo10911b(CancellationException cancellationException) throws Throwable {
-        if (cancellationException == null) {
-            cancellationException = new JobCancellationException(mo11182B(), null, this);
-        }
-        m11307x(cancellationException);
     }
 
     /* JADX INFO: renamed from: c0 */
@@ -846,184 +643,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
         return true;
     }
 
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: e */
-    public final Sequence<Job> mo10912e() {
-        return C12073l.sequence(new d(null));
-    }
-
-    @Override // kotlin.coroutines.CoroutineContext
-    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> function2) {
-        return (R) CoroutineContext.Element.C12790a.fold(this, r, function2);
-    }
-
-    @Override // kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
-    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
-        return (E) CoroutineContext.Element.C12790a.get(this, key);
-    }
-
-    @Override // kotlin.coroutines.CoroutineContext.Element
-    public final CoroutineContext.Key<?> getKey() {
-        return Job.INSTANCE;
-    }
-
-    @Override // kotlin.coroutines.CoroutineContext
-    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
-        return CoroutineContext.Element.C12790a.minusKey(this, key);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:53:0x008a  */
-    /* JADX WARN: Code duplicated, block: B:55:0x008e A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:57:0x0091  */
-    /* JADX WARN: Code duplicated, block: B:83:0x0088 A[SYNTHETIC] */
-    /* JADX WARN: Code duplicated, block: B:84:0x009b A[SYNTHETIC] */
-    /* JADX WARN: Code duplicated, block: B:91:0x0002 A[SYNTHETIC] */
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: n */
-    public final InterfaceC13130m0 mo10913n(boolean z2, boolean z3, Function1<? super Throwable, Unit> function1) {
-        Throwable th;
-        AbstractC13113g1<?> abstractC13113g1M11296S = null;
-        while (true) {
-            Object objM11292M = m11292M();
-            if (objM11292M instanceof C13139p0) {
-                C13139p0 c13139p0 = (C13139p0) objM11292M;
-                if (c13139p0.f27881j) {
-                    if (abstractC13113g1M11296S == null) {
-                        abstractC13113g1M11296S = m11296S(function1, z2);
-                    }
-                    if (f27846j.compareAndSet(this, objM11292M, abstractC13113g1M11296S)) {
-                        return abstractC13113g1M11296S;
-                    }
-                } else {
-                    C13131m1 c13131m1 = new C13131m1();
-                    Object c13166y0 = c13131m1;
-                    if (!c13139p0.f27881j) {
-                        c13166y0 = new C13166y0(c13131m1);
-                    }
-                    f27846j.compareAndSet(this, c13139p0, c13166y0);
-                }
-            } else {
-                if (!(objM11292M instanceof InterfaceC13169z0)) {
-                    if (z3) {
-                        if (!(objM11292M instanceof C13159w)) {
-                            objM11292M = null;
-                        }
-                        C13159w c13159w = (C13159w) objM11292M;
-                        function1.invoke(c13159w != null ? c13159w.f27913b : null);
-                    }
-                    return C13137o1.f27880j;
-                }
-                C13131m1 list = ((InterfaceC13169z0) objM11292M).getList();
-                if (list == null) {
-                    Objects.requireNonNull(objM11292M, "null cannot be cast to non-null type kotlinx.coroutines.JobNode<*>");
-                    m11299Y((AbstractC13113g1) objM11292M);
-                } else {
-                    InterfaceC13130m0 interfaceC13130m0 = C13137o1.f27880j;
-                    if (z2 && (objM11292M instanceof b)) {
-                        synchronized (objM11292M) {
-                            th = (Throwable) ((b) objM11292M)._rootCause;
-                            if (th == null || ((function1 instanceof C13141q) && ((b) objM11292M)._isCompleting == 0)) {
-                                if (abstractC13113g1M11296S == null) {
-                                    abstractC13113g1M11296S = m11296S(function1, z2);
-                                }
-                                if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
-                                    if (th == null) {
-                                        return abstractC13113g1M11296S;
-                                    }
-                                    interfaceC13130m0 = abstractC13113g1M11296S;
-                                }
-                            }
-                        }
-                        if (th != null) {
-                            if (z3) {
-                                function1.invoke(th);
-                            }
-                            return interfaceC13130m0;
-                        }
-                        if (abstractC13113g1M11296S == null) {
-                            abstractC13113g1M11296S = m11296S(function1, z2);
-                        }
-                        if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
-                            return abstractC13113g1M11296S;
-                        }
-                    } else {
-                        th = null;
-                        if (th != null) {
-                            if (z3) {
-                                function1.invoke(th);
-                            }
-                            return interfaceC13130m0;
-                        }
-                        if (abstractC13113g1M11296S == null) {
-                            abstractC13113g1M11296S = m11296S(function1, z2);
-                        }
-                        if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
-                            return abstractC13113g1M11296S;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override // kotlin.coroutines.CoroutineContext
-    public CoroutineContext plus(CoroutineContext coroutineContext) {
-        return CoroutineContext.Element.C12790a.plus(this, coroutineContext);
-    }
-
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: q */
-    public final CancellationException mo10914q() {
-        Object objM11292M = m11292M();
-        if (objM11292M instanceof b) {
-            Throwable th = (Throwable) ((b) objM11292M)._rootCause;
-            if (th != null) {
-                return m11301a0(th, getClass().getSimpleName() + " is cancelling");
-            }
-            throw new IllegalStateException(("Job is still new or active: " + this).toString());
-        }
-        if (objM11292M instanceof InterfaceC13169z0) {
-            throw new IllegalStateException(("Job is still new or active: " + this).toString());
-        }
-        if (objM11292M instanceof C13159w) {
-            return m11284b0(this, ((C13159w) objM11292M).f27913b, null, 1, null);
-        }
-        return new JobCancellationException(getClass().getSimpleName() + " has completed normally", null, this);
-    }
-
-    @Override // p659s.p660a.InterfaceC13144r
-    /* JADX INFO: renamed from: s */
-    public final void mo11304s(InterfaceC13143q1 interfaceC13143q1) throws Throwable {
-        m11306w(interfaceC13143q1);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:18:0x0039  */
-    @Override // kotlinx.coroutines.Job
-    public final boolean start() {
-        byte b2;
-        do {
-            Object objM11292M = m11292M();
-            b2 = -1;
-            if (objM11292M instanceof C13139p0) {
-                if (((C13139p0) objM11292M).f27881j) {
-                    b2 = 0;
-                } else if (f27846j.compareAndSet(this, objM11292M, C13119i1.f27863g)) {
-                    mo11186X();
-                    b2 = 1;
-                }
-            } else if (!(objM11292M instanceof C13166y0)) {
-                b2 = 0;
-            } else if (f27846j.compareAndSet(this, objM11292M, ((C13166y0) objM11292M).f27921j)) {
-                mo11186X();
-                b2 = 1;
-            }
-            if (b2 == 0) {
-                return false;
-            }
-        } while (b2 != 1);
-        return true;
-    }
-
     /* JADX INFO: renamed from: t */
     public final boolean m11305t(Object obj, C13131m1 c13131m1, AbstractC13113g1<?> abstractC13113g1) {
         int iM11160p;
@@ -1035,24 +654,6 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
             }
         } while (iM11160p != 2);
         return false;
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(mo11184T() + '{' + m11300Z(m11292M()) + '}');
-        sb.append(MentionUtilsKt.MENTIONS_CHAR);
-        sb.append(C3404f.m4312l0(this));
-        return sb.toString();
-    }
-
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: u */
-    public final InterfaceC13130m0 mo10915u(Function1<? super Throwable, Unit> function1) {
-        return mo10913n(false, true, function1);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public void mo11173v(Object obj) {
     }
 
     /* JADX WARN: Code duplicated, block: B:60:0x00b6  */
@@ -1159,5 +760,404 @@ public class C13116h1 implements Job, InterfaceC13144r, InterfaceC13143q1 {
             return z2;
         }
         return interfaceC13138p.mo11333h(th) || z2;
+    }
+
+    @Override // kotlin.coroutines.CoroutineContext
+    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
+        return CoroutineContext.Element.C12790a.minusKey(this, key);
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: D */
+    public final InterfaceC13138p mo10909D(InterfaceC13144r interfaceC13144r) {
+        InterfaceC13130m0 interfaceC13130m0M4356w0 = C3404f.m4356w0(this, true, false, new C13141q(this, interfaceC13144r), 2, null);
+        Objects.requireNonNull(interfaceC13130m0M4356w0, "null cannot be cast to non-null type kotlinx.coroutines.ChildHandle");
+        return (InterfaceC13138p) interfaceC13130m0M4356w0;
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: a */
+    public boolean mo10910a() {
+        Object objM11292M = m11292M();
+        return (objM11292M instanceof InterfaceC13169z0) && ((InterfaceC13169z0) objM11292M).mo11281a();
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: b */
+    public void mo10911b(CancellationException cancellationException) throws Throwable {
+        if (cancellationException == null) {
+            cancellationException = new JobCancellationException(mo11182B(), null, this);
+        }
+        m11307x(cancellationException);
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: e */
+    public final Sequence<Job> mo10912e() {
+        return C12073l.sequence(new d(null));
+    }
+
+    /* JADX WARN: Code duplicated, block: B:53:0x008a  */
+    /* JADX WARN: Code duplicated, block: B:55:0x008e A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:57:0x0091  */
+    /* JADX WARN: Code duplicated, block: B:83:0x0088 A[SYNTHETIC] */
+    /* JADX WARN: Code duplicated, block: B:84:0x009b A[SYNTHETIC] */
+    /* JADX WARN: Code duplicated, block: B:91:0x0002 A[SYNTHETIC] */
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: n */
+    public final InterfaceC13130m0 mo10913n(boolean z2, boolean z3, Function1<? super Throwable, Unit> function1) {
+        Throwable th;
+        AbstractC13113g1<?> abstractC13113g1M11296S = null;
+        while (true) {
+            Object objM11292M = m11292M();
+            if (objM11292M instanceof C13139p0) {
+                C13139p0 c13139p0 = (C13139p0) objM11292M;
+                if (c13139p0.f27881j) {
+                    if (abstractC13113g1M11296S == null) {
+                        abstractC13113g1M11296S = m11296S(function1, z2);
+                    }
+                    if (f27846j.compareAndSet(this, objM11292M, abstractC13113g1M11296S)) {
+                        return abstractC13113g1M11296S;
+                    }
+                } else {
+                    C13131m1 c13131m1 = new C13131m1();
+                    Object c13166y0 = c13131m1;
+                    if (!c13139p0.f27881j) {
+                        c13166y0 = new C13166y0(c13131m1);
+                    }
+                    f27846j.compareAndSet(this, c13139p0, c13166y0);
+                }
+            } else {
+                if (!(objM11292M instanceof InterfaceC13169z0)) {
+                    if (z3) {
+                        if (!(objM11292M instanceof C13159w)) {
+                            objM11292M = null;
+                        }
+                        C13159w c13159w = (C13159w) objM11292M;
+                        function1.invoke(c13159w != null ? c13159w.f27913b : null);
+                    }
+                    return C13137o1.f27880j;
+                }
+                C13131m1 list = ((InterfaceC13169z0) objM11292M).getList();
+                if (list == null) {
+                    Objects.requireNonNull(objM11292M, "null cannot be cast to non-null type kotlinx.coroutines.JobNode<*>");
+                    m11299Y((AbstractC13113g1) objM11292M);
+                } else {
+                    InterfaceC13130m0 interfaceC13130m0 = C13137o1.f27880j;
+                    if (z2 && (objM11292M instanceof b)) {
+                        synchronized (objM11292M) {
+                            th = (Throwable) ((b) objM11292M)._rootCause;
+                            if (th == null || ((function1 instanceof C13141q) && ((b) objM11292M)._isCompleting == 0)) {
+                                if (abstractC13113g1M11296S == null) {
+                                    abstractC13113g1M11296S = m11296S(function1, z2);
+                                }
+                                if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
+                                    if (th == null) {
+                                        return abstractC13113g1M11296S;
+                                    }
+                                    interfaceC13130m0 = abstractC13113g1M11296S;
+                                }
+                            }
+                        }
+                        if (th != null) {
+                            if (z3) {
+                                function1.invoke(th);
+                            }
+                            return interfaceC13130m0;
+                        }
+                        if (abstractC13113g1M11296S == null) {
+                            abstractC13113g1M11296S = m11296S(function1, z2);
+                        }
+                        if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
+                            return abstractC13113g1M11296S;
+                        }
+                    } else {
+                        th = null;
+                        if (th != null) {
+                            if (z3) {
+                                function1.invoke(th);
+                            }
+                            return interfaceC13130m0;
+                        }
+                        if (abstractC13113g1M11296S == null) {
+                            abstractC13113g1M11296S = m11296S(function1, z2);
+                        }
+                        if (m11305t(objM11292M, list, abstractC13113g1M11296S)) {
+                            return abstractC13113g1M11296S;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: q */
+    public final CancellationException mo10914q() {
+        Object objM11292M = m11292M();
+        if (objM11292M instanceof b) {
+            Throwable th = (Throwable) ((b) objM11292M)._rootCause;
+            if (th != null) {
+                return m11301a0(th, getClass().getSimpleName() + " is cancelling");
+            }
+            throw new IllegalStateException(("Job is still new or active: " + this).toString());
+        }
+        if (objM11292M instanceof InterfaceC13169z0) {
+            throw new IllegalStateException(("Job is still new or active: " + this).toString());
+        }
+        if (objM11292M instanceof C13159w) {
+            return m11284b0(this, ((C13159w) objM11292M).f27913b, null, 1, null);
+        }
+        return new JobCancellationException(getClass().getSimpleName() + " has completed normally", null, this);
+    }
+
+    @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: u */
+    public final InterfaceC13130m0 mo10915u(Function1<? super Throwable, Unit> function1) {
+        return mo10913n(false, true, function1);
+    }
+
+    /* JADX INFO: renamed from: Q */
+    public boolean mo11171Q() {
+        return this instanceof C13108f;
+    }
+
+    /* JADX INFO: renamed from: v */
+    public void mo11173v(Object obj) {
+    }
+
+    /* JADX INFO: renamed from: B */
+    public String mo11182B() {
+        return "Job was cancelled";
+    }
+
+    /* JADX INFO: renamed from: O */
+    public void mo11183O(Throwable th) throws Throwable {
+        throw th;
+    }
+
+    /* JADX INFO: renamed from: T */
+    public String mo11184T() {
+        return getClass().getSimpleName();
+    }
+
+    /* JADX INFO: renamed from: W */
+    public void mo11185W(Object obj) {
+    }
+
+    /* JADX INFO: renamed from: X */
+    public void mo11186X() {
+    }
+
+    /* JADX INFO: renamed from: J */
+    public boolean mo11279J() {
+        return true;
+    }
+
+    /* JADX INFO: renamed from: K */
+    public boolean mo11280K() {
+        return false;
+    }
+
+    @Override // p659s.p660a.InterfaceC13143q1
+    /* JADX INFO: renamed from: A */
+    public CancellationException mo11285A() {
+        Throwable th;
+        Object objM11292M = m11292M();
+        if (objM11292M instanceof b) {
+            th = (Throwable) ((b) objM11292M)._rootCause;
+        } else if (objM11292M instanceof C13159w) {
+            th = ((C13159w) objM11292M).f27913b;
+        } else {
+            if (objM11292M instanceof InterfaceC13169z0) {
+                throw new IllegalStateException(C1643a.m881v("Cannot be cancelling child in this state: ", objM11292M).toString());
+            }
+            th = null;
+        }
+        CancellationException cancellationException = (CancellationException) (th instanceof CancellationException ? th : null);
+        if (cancellationException != null) {
+            return cancellationException;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Parent job is ");
+        sbM833U.append(m11300Z(objM11292M));
+        return new JobCancellationException(sbM833U.toString(), th, this);
+    }
+
+    /* JADX INFO: renamed from: E */
+    public boolean mo11286E(Throwable th) {
+        if (th instanceof CancellationException) {
+            return true;
+        }
+        return m11306w(th) && mo11279J();
+    }
+
+    /* JADX INFO: renamed from: N */
+    public boolean mo11293N(Throwable th) {
+        return false;
+    }
+
+    @Override // p659s.p660a.InterfaceC13144r
+    /* JADX INFO: renamed from: s */
+    public final void mo11304s(InterfaceC13143q1 interfaceC13143q1) throws Throwable {
+        m11306w(interfaceC13143q1);
+    }
+
+    @Override // kotlin.coroutines.CoroutineContext
+    public CoroutineContext plus(CoroutineContext coroutineContext) {
+        return CoroutineContext.Element.C12790a.plus(this, coroutineContext);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:18:0x0039  */
+    @Override // kotlinx.coroutines.Job
+    public final boolean start() {
+        byte b2;
+        do {
+            Object objM11292M = m11292M();
+            b2 = -1;
+            if (objM11292M instanceof C13139p0) {
+                if (((C13139p0) objM11292M).f27881j) {
+                    b2 = 0;
+                } else if (f27846j.compareAndSet(this, objM11292M, C13119i1.f27863g)) {
+                    mo11186X();
+                    b2 = 1;
+                }
+            } else if (!(objM11292M instanceof C13166y0)) {
+                b2 = 0;
+            } else if (f27846j.compareAndSet(this, objM11292M, ((C13166y0) objM11292M).f27921j)) {
+                mo11186X();
+                b2 = 1;
+            }
+            if (b2 == 0) {
+                return false;
+            }
+        } while (b2 != 1);
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(mo11184T() + '{' + m11300Z(m11292M()) + '}');
+        sb.append(MentionUtilsKt.MENTIONS_CHAR);
+        sb.append(C3404f.m4312l0(this));
+        return sb.toString();
+    }
+
+    /* JADX INFO: renamed from: s.a.h1$b */
+    /* JADX INFO: compiled from: JobSupport.kt */
+    public final class b implements InterfaceC13169z0 {
+        public volatile int _isCompleting;
+        public volatile Object _rootCause;
+
+        /* JADX INFO: renamed from: j */
+        public final C13131m1 f27851j;
+        public volatile Object _exceptionsHolder = null;
+
+        public b(C13131m1 c13131m1, boolean z2, Throwable th) {
+            this.f27851j = c13131m1;
+            this._isCompleting = z2 ? 1 : 0;
+            this._rootCause = th;
+        }
+
+        @Override // p659s.p660a.InterfaceC13169z0
+        public C13131m1 getList() {
+            return this.f27851j;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX INFO: renamed from: b */
+        public final void m11309b(Throwable th) {
+            Throwable th2 = (Throwable) this._rootCause;
+            if (th2 == null) {
+                this._rootCause = th;
+                return;
+            }
+            if (th == th2) {
+                return;
+            }
+            Object obj = this._exceptionsHolder;
+            if (obj == null) {
+                this._exceptionsHolder = th;
+                return;
+            }
+            if (!(obj instanceof Throwable)) {
+                if (!(obj instanceof ArrayList)) {
+                    throw new IllegalStateException(C1643a.m881v("State is ", obj).toString());
+                }
+                ((ArrayList) obj).add(th);
+            } else {
+                if (th == obj) {
+                    return;
+                }
+                ArrayList<Throwable> arrayListM11310c = m11310c();
+                arrayListM11310c.add(obj);
+                arrayListM11310c.add(th);
+                this._exceptionsHolder = arrayListM11310c;
+            }
+        }
+
+        /* JADX INFO: renamed from: c */
+        public final ArrayList<Throwable> m11310c() {
+            return new ArrayList<>(4);
+        }
+
+        /* JADX INFO: renamed from: d */
+        public final boolean m11311d() {
+            return ((Throwable) this._rootCause) != null;
+        }
+
+        /* JADX INFO: renamed from: e */
+        public final boolean m11312e() {
+            return this._exceptionsHolder == C13119i1.f27861e;
+        }
+
+        /* JADX INFO: renamed from: f */
+        public final List<Throwable> m11313f(Throwable th) {
+            ArrayList arrayListM11310c;
+            Object obj = this._exceptionsHolder;
+            if (obj == null) {
+                arrayListM11310c = m11310c();
+            } else if (obj instanceof Throwable) {
+                ArrayList arrayListM11310c2 = m11310c();
+                arrayListM11310c2.add(obj);
+                arrayListM11310c = arrayListM11310c2;
+            } else {
+                if (!(obj instanceof ArrayList)) {
+                    throw new IllegalStateException(C1643a.m881v("State is ", obj).toString());
+                }
+                arrayListM11310c = (ArrayList) obj;
+            }
+            Throwable th2 = (Throwable) this._rootCause;
+            if (th2 != null) {
+                arrayListM11310c.add(0, th2);
+            }
+            if (th != null && (!C12238m.areEqual(th, th2))) {
+                arrayListM11310c.add(th);
+            }
+            this._exceptionsHolder = C13119i1.f27861e;
+            return arrayListM11310c;
+        }
+
+        @Override // p659s.p660a.InterfaceC13169z0
+        /* JADX INFO: renamed from: a */
+        public boolean mo11281a() {
+            return ((Throwable) this._rootCause) == null;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r1v2, types: [boolean, int] */
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("Finishing[cancelling=");
+            sbM833U.append(m11311d());
+            sbM833U.append(", completing=");
+            sbM833U.append((boolean) this._isCompleting);
+            sbM833U.append(", rootCause=");
+            sbM833U.append((Throwable) this._rootCause);
+            sbM833U.append(", exceptions=");
+            sbM833U.append(this._exceptionsHolder);
+            sbM833U.append(", list=");
+            sbM833U.append(this.f27851j);
+            sbM833U.append(']');
+            return sbM833U.toString();
+        }
     }
 }

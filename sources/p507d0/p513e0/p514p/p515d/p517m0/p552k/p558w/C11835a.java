@@ -12,7 +12,7 @@ public final class C11835a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.w.a$a */
     /* JADX INFO: compiled from: deprecation.kt */
-    public static final class a implements InterfaceC11318a.a<Object> {
+    public final class a implements InterfaceC11318a.a<Object> {
     }
 
     public static final InterfaceC11318a.a<Object> getDEPRECATED_FUNCTION_KEY() {

@@ -45,10 +45,7 @@ public final class C11642c extends AbstractC11633a<InterfaceC11340c, AbstractC11
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.c$a */
     /* JADX INFO: compiled from: BinaryClassAnnotationAndConstantLoaderImpl.kt */
-    public static final class a implements InterfaceC11655p.a {
-
-        /* JADX INFO: renamed from: a */
-        public final HashMap<C11716e, AbstractC11815g<?>> f23588a = new HashMap<>();
+    public final class a implements InterfaceC11655p.a {
 
         /* JADX INFO: renamed from: b */
         public final /* synthetic */ InterfaceC11330e f23589b;
@@ -62,9 +59,12 @@ public final class C11642c extends AbstractC11633a<InterfaceC11340c, AbstractC11
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ InterfaceC11467u0 f23592e;
 
+        /* JADX INFO: renamed from: a */
+        public final HashMap<C11716e, AbstractC11815g<?>> f23588a = new HashMap<>();
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.c$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: BinaryClassAnnotationAndConstantLoaderImpl.kt */
-        public static final class C13315a implements InterfaceC11655p.a {
+        public final class C13315a implements InterfaceC11655p.a {
 
             /* JADX INFO: renamed from: a */
             public final /* synthetic */ InterfaceC11655p.a f23593a;
@@ -129,57 +129,6 @@ public final class C11642c extends AbstractC11633a<InterfaceC11340c, AbstractC11
             }
         }
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.c$a$b */
-        /* JADX INFO: compiled from: BinaryClassAnnotationAndConstantLoaderImpl.kt */
-        public static final class b implements InterfaceC11655p.b {
-
-            /* JADX INFO: renamed from: a */
-            public final ArrayList<AbstractC11815g<?>> f23598a = new ArrayList<>();
-
-            /* JADX INFO: renamed from: c */
-            public final /* synthetic */ C11716e f23600c;
-
-            /* JADX INFO: renamed from: d */
-            public final /* synthetic */ InterfaceC11330e f23601d;
-
-            public b(C11716e c11716e, InterfaceC11330e interfaceC11330e) {
-                this.f23600c = c11716e;
-                this.f23601d = interfaceC11330e;
-            }
-
-            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
-            public void visit(Object obj) {
-                this.f23598a.add(a.this.m9544a(this.f23600c, obj));
-            }
-
-            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
-            public void visitClassLiteral(C11814f c11814f) {
-                C12238m.checkNotNullParameter(c11814f, "value");
-                this.f23598a.add(new C11826r(c11814f));
-            }
-
-            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
-            public void visitEnd() {
-                InterfaceC11326c1 annotationParameterByName = C11498a.getAnnotationParameterByName(this.f23600c, this.f23601d);
-                if (annotationParameterByName != null) {
-                    HashMap map = a.this.f23588a;
-                    C11716e c11716e = this.f23600c;
-                    C11816h c11816h = C11816h.f24439a;
-                    List<? extends AbstractC11815g<?>> listCompact = C12033a.compact(this.f23598a);
-                    AbstractC11913c0 type = annotationParameterByName.getType();
-                    C12238m.checkNotNullExpressionValue(type, "parameter.type");
-                    map.put(c11716e, c11816h.createArrayValue(listCompact, type));
-                }
-            }
-
-            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
-            public void visitEnum(C11712a c11712a, C11716e c11716e) {
-                C12238m.checkNotNullParameter(c11712a, "enumClassId");
-                C12238m.checkNotNullParameter(c11716e, "enumEntryName");
-                this.f23598a.add(new C11818j(c11712a, c11716e));
-            }
-        }
-
         public a(InterfaceC11330e interfaceC11330e, C11642c c11642c, List<InterfaceC11340c> list, InterfaceC11467u0 interfaceC11467u0) {
             this.f23589b = interfaceC11330e;
             this.f23590c = c11642c;
@@ -237,6 +186,57 @@ public final class C11642c extends AbstractC11633a<InterfaceC11340c, AbstractC11
             C12238m.checkNotNullParameter(c11712a, "enumClassId");
             C12238m.checkNotNullParameter(c11716e2, "enumEntryName");
             this.f23588a.put(c11716e, new C11818j(c11712a, c11716e2));
+        }
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.c$a$b */
+        /* JADX INFO: compiled from: BinaryClassAnnotationAndConstantLoaderImpl.kt */
+        public final class b implements InterfaceC11655p.b {
+
+            /* JADX INFO: renamed from: c */
+            public final /* synthetic */ C11716e f23600c;
+
+            /* JADX INFO: renamed from: d */
+            public final /* synthetic */ InterfaceC11330e f23601d;
+
+            /* JADX INFO: renamed from: a */
+            public final ArrayList<AbstractC11815g<?>> f23598a = new ArrayList<>();
+
+            public b(C11716e c11716e, InterfaceC11330e interfaceC11330e) {
+                this.f23600c = c11716e;
+                this.f23601d = interfaceC11330e;
+            }
+
+            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
+            public void visit(Object obj) {
+                this.f23598a.add(a.this.m9544a(this.f23600c, obj));
+            }
+
+            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
+            public void visitClassLiteral(C11814f c11814f) {
+                C12238m.checkNotNullParameter(c11814f, "value");
+                this.f23598a.add(new C11826r(c11814f));
+            }
+
+            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
+            public void visitEnd() {
+                InterfaceC11326c1 annotationParameterByName = C11498a.getAnnotationParameterByName(this.f23600c, this.f23601d);
+                if (annotationParameterByName != null) {
+                    HashMap map = a.this.f23588a;
+                    C11716e c11716e = this.f23600c;
+                    C11816h c11816h = C11816h.f24439a;
+                    List<? extends AbstractC11815g<?>> listCompact = C12033a.compact(this.f23598a);
+                    AbstractC11913c0 type = annotationParameterByName.getType();
+                    C12238m.checkNotNullExpressionValue(type, "parameter.type");
+                    map.put(c11716e, c11816h.createArrayValue(listCompact, type));
+                }
+            }
+
+            @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11655p.b
+            public void visitEnum(C11712a c11712a, C11716e c11716e) {
+                C12238m.checkNotNullParameter(c11712a, "enumClassId");
+                C12238m.checkNotNullParameter(c11716e, "enumEntryName");
+                this.f23598a.add(new C11818j(c11712a, c11716e));
+            }
         }
     }
 

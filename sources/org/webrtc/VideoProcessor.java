@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 /* JADX INFO: loaded from: classes3.dex */
 public interface VideoProcessor extends CapturerObserver {
 
-    public static class FrameAdaptationParameters {
+    public class FrameAdaptationParameters {
         public final int cropHeight;
         public final int cropWidth;
         public final int cropX;

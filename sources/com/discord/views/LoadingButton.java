@@ -167,12 +167,6 @@ public final class LoadingButton extends FrameLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i2)));
     }
 
-    private final void setProgressBarColor(@ColorInt int color) {
-        ProgressBar progressBar = this.binding.f1076c;
-        C12238m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
-        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    }
-
     @Override // android.view.View
     public void setBackgroundColor(@ColorInt int colorInt) {
         MaterialButton materialButton = this.binding.f1075b;
@@ -228,6 +222,12 @@ public final class LoadingButton extends FrameLayout {
         ProgressBar progressBar2 = this.binding.f1076c;
         C12238m.checkNotNullExpressionValue(progressBar2, "binding.loadingButtonProgress");
         progressBar2.setVisibility(0);
+    }
+
+    private final void setProgressBarColor(@ColorInt int color) {
+        ProgressBar progressBar = this.binding.f1076c;
+        C12238m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
+        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
     }
 
     public final void setText(CharSequence text) {

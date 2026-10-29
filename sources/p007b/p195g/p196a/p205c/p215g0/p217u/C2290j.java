@@ -23,12 +23,6 @@ public class C2290j extends AbstractC2274b<Collection<?>> {
         super((Class<?>) Collection.class, abstractC2360j, z2, abstractC2215g, abstractC2364n);
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        return ((Collection) obj).isEmpty();
-    }
-
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b, p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
@@ -55,10 +49,10 @@ public class C2290j extends AbstractC2274b<Collection<?>> {
         return ((Collection) obj).size() == 1;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
-    /* JADX INFO: renamed from: t */
-    public AbstractC2274b<Collection<?>> mo2023t(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n abstractC2364n, Boolean bool) {
-        return new C2290j(this, interfaceC2206d, abstractC2215g, abstractC2364n, bool);
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        return ((Collection) obj).isEmpty();
     }
 
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
@@ -131,6 +125,12 @@ public class C2290j extends AbstractC2274b<Collection<?>> {
                 }
             } while (it2.hasNext());
         }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2274b
+    /* JADX INFO: renamed from: t */
+    public AbstractC2274b<Collection<?>> mo2023t(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n abstractC2364n, Boolean bool) {
+        return new C2290j(this, interfaceC2206d, abstractC2215g, abstractC2364n, bool);
     }
 
     public C2290j(C2290j c2290j, InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, Boolean bool) {

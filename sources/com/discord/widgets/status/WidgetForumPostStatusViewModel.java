@@ -66,7 +66,7 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$1 */
     /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100901 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C100901 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C100901() {
             super(1);
         }
@@ -85,8 +85,216 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$doPress$1 */
     /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class Companion {
+    public final class C100921 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ boolean $isArchivedThread;
+        public final /* synthetic */ Function0 $onFullMembership;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100921(boolean z2, Context context, Function0 function0) {
+            super(0);
+            this.$isArchivedThread = z2;
+            this.$context = context;
+            this.$onFullMembership = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (this.$isArchivedThread) {
+                C0876m.m169g(this.$context, C5419R.string.thread_archived, 0, null, 12);
+            } else {
+                this.$onFullMembership.invoke();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onFollowPress$1 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100931 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ boolean $isFollowedThread;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100931(Context context, long j, boolean z2) {
+            super(0);
+            this.$context = context;
+            this.$channelId = j;
+            this.$isFollowedThread = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetForumPostStatusViewModel.this.toggleFollowPost(this.$context, this.$channelId, this.$isFollowedThread);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onReactionLongPress$1 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100941 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ MessageReaction $reaction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100941(long j, long j2, Context context, MessageReaction messageReaction) {
+            super(0);
+            this.$channelId = j;
+            this.$messageId = j2;
+            this.$context = context;
+            this.$reaction = messageReaction;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetManageReactions.INSTANCE.create(this.$channelId, this.$messageId, this.$context, this.$reaction);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onReactionPress$1 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100951 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ boolean $hasAddReactionPermission;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ long $myUserId;
+        public final /* synthetic */ MessageReaction $reaction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100951(boolean z2, long j, long j2, long j3, MessageReaction messageReaction) {
+            super(0);
+            this.$hasAddReactionPermission = z2;
+            this.$myUserId = j;
+            this.$channelId = j2;
+            this.$messageId = j3;
+            this.$reaction = messageReaction;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (this.$hasAddReactionPermission) {
+                WidgetForumPostStatusViewModel.this.userReactionHandler.toggleReaction(this.$myUserId, this.$channelId, this.$messageId, this.$reaction);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$1 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100961 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100961(ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetForumPostStatusViewModel.this.followRequestInProgress = false;
+            WidgetForumPostStatusViewModel.this.updateViewState(ViewState.Valid.copy$default(this.$viewState, 0L, 0L, 0L, false, false, null, null, false, 0, false, false, AudioAttributesCompat.FLAG_ALL, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$2 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100972 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C100972 INSTANCE = new C100972();
+
+        public C100972() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$3 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100983 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100983(ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetForumPostStatusViewModel.this.followRequestInProgress = false;
+            WidgetForumPostStatusViewModel.this.updateViewState(ViewState.Valid.copy$default(this.$viewState, 0L, 0L, 0L, false, false, null, null, false, 0, false, false, AudioAttributesCompat.FLAG_ALL, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$4 */
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class C100994 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C100994 INSTANCE = new C100994();
+
+        public C100994() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -135,10 +343,10 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -147,7 +355,7 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
         }
 
         /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-        public static final /* data */ class Loaded extends StoreState {
+        public final /* data */ class Loaded extends StoreState {
             private final long channelId;
             private final long guildId;
             private final boolean hasAddReactionPermission;
@@ -173,56 +381,6 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
                 this.mostCommonReaction = messageReaction;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getMyUserId() {
-                return this.myUserId;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final MessageReaction getMostCommonReaction() {
-                return this.mostCommonReaction;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Long getMessageId() {
-                return this.messageId;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsFollowedThread() {
-                return this.isFollowedThread;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsArchivedThread() {
-                return this.isArchivedThread;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Integer getMessageCount() {
-                return this.messageCount;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getHasAddReactionPermission() {
-                return this.hasAddReactionPermission;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsDefaultReaction() {
-                return this.isDefaultReaction;
-            }
-
             public final Loaded copy(long myUserId, long channelId, long guildId, Long messageId, boolean isFollowedThread, boolean isArchivedThread, Integer messageCount, boolean hasAddReactionPermission, boolean isDefaultReaction, MessageReaction mostCommonReaction) {
                 return new Loaded(myUserId, channelId, guildId, messageId, isFollowedThread, isArchivedThread, messageCount, hasAddReactionPermission, isDefaultReaction, mostCommonReaction);
             }
@@ -238,28 +396,78 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
                 return this.myUserId == loaded.myUserId && this.channelId == loaded.channelId && this.guildId == loaded.guildId && C12238m.areEqual(this.messageId, loaded.messageId) && this.isFollowedThread == loaded.isFollowedThread && this.isArchivedThread == loaded.isArchivedThread && C12238m.areEqual(this.messageCount, loaded.messageCount) && this.hasAddReactionPermission == loaded.hasAddReactionPermission && this.isDefaultReaction == loaded.isDefaultReaction && C12238m.areEqual(this.mostCommonReaction, loaded.mostCommonReaction);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
                 return this.guildId;
             }
 
+            /* JADX INFO: renamed from: component8, reason: from getter */
             public final boolean getHasAddReactionPermission() {
                 return this.hasAddReactionPermission;
+            }
+
+            public final boolean getHasAddReactionPermission() {
+                return this.hasAddReactionPermission;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsArchivedThread() {
+                return this.isArchivedThread;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getIsDefaultReaction() {
+                return this.isDefaultReaction;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIsFollowedThread() {
+                return this.isFollowedThread;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final Integer getMessageCount() {
+                return this.messageCount;
             }
 
             public final Integer getMessageCount() {
                 return this.messageCount;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final Long getMessageId() {
                 return this.messageId;
             }
 
+            public final Long getMessageId() {
+                return this.messageId;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
             public final MessageReaction getMostCommonReaction() {
                 return this.mostCommonReaction;
+            }
+
+            public final MessageReaction getMostCommonReaction() {
+                return this.mostCommonReaction;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getMyUserId() {
+                return this.myUserId;
             }
 
             public final long getMyUserId() {
@@ -357,10 +565,10 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -369,7 +577,7 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
         }
 
         /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final long channelId;
             private final boolean followRequestInProgress;
             private final long guildId;
@@ -401,61 +609,6 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
                 return valid.copy((i2 & 1) != 0 ? valid.myUserId : j, (i2 & 2) != 0 ? valid.channelId : j2, (i2 & 4) != 0 ? valid.guildId : j3, (i2 & 8) != 0 ? valid.isFollowedThread : z2, (i2 & 16) != 0 ? valid.isArchivedThread : z3, (i2 & 32) != 0 ? valid.messageId : l, (i2 & 64) != 0 ? valid.reaction : messageReaction, (i2 & 128) != 0 ? valid.isDefaultReaction : z4, (i2 & 256) != 0 ? valid.messageCount : i, (i2 & 512) != 0 ? valid.hasAddReactionPermission : z5, (i2 & 1024) != 0 ? valid.followRequestInProgress : z6);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getMyUserId() {
-                return this.myUserId;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getHasAddReactionPermission() {
-                return this.hasAddReactionPermission;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getFollowRequestInProgress() {
-                return this.followRequestInProgress;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsFollowedThread() {
-                return this.isFollowedThread;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsArchivedThread() {
-                return this.isArchivedThread;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Long getMessageId() {
-                return this.messageId;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final MessageReaction getReaction() {
-                return this.reaction;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsDefaultReaction() {
-                return this.isDefaultReaction;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final int getMessageCount() {
-                return this.messageCount;
-            }
-
             public final Valid copy(long myUserId, long channelId, long guildId, boolean isFollowedThread, boolean isArchivedThread, Long messageId, MessageReaction reaction, boolean isDefaultReaction, int messageCount, boolean hasAddReactionPermission, boolean followRequestInProgress) {
                 return new Valid(myUserId, channelId, guildId, isFollowedThread, isArchivedThread, messageId, reaction, isDefaultReaction, messageCount, hasAddReactionPermission, followRequestInProgress);
             }
@@ -471,32 +624,87 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
                 return this.myUserId == valid.myUserId && this.channelId == valid.channelId && this.guildId == valid.guildId && this.isFollowedThread == valid.isFollowedThread && this.isArchivedThread == valid.isArchivedThread && C12238m.areEqual(this.messageId, valid.messageId) && C12238m.areEqual(this.reaction, valid.reaction) && this.isDefaultReaction == valid.isDefaultReaction && this.messageCount == valid.messageCount && this.hasAddReactionPermission == valid.hasAddReactionPermission && this.followRequestInProgress == valid.followRequestInProgress;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final boolean getFollowRequestInProgress() {
+                return this.followRequestInProgress;
             }
 
             public final boolean getFollowRequestInProgress() {
                 return this.followRequestInProgress;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getHasAddReactionPermission() {
+                return this.hasAddReactionPermission;
             }
 
             public final boolean getHasAddReactionPermission() {
                 return this.hasAddReactionPermission;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIsArchivedThread() {
+                return this.isArchivedThread;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsDefaultReaction() {
+                return this.isDefaultReaction;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsFollowedThread() {
+                return this.isFollowedThread;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final int getMessageCount() {
                 return this.messageCount;
+            }
+
+            public final int getMessageCount() {
+                return this.messageCount;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final Long getMessageId() {
+                return this.messageId;
             }
 
             public final Long getMessageId() {
                 return this.messageId;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getMyUserId() {
                 return this.myUserId;
+            }
+
+            public final long getMyUserId() {
+                return this.myUserId;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final MessageReaction getReaction() {
+                return this.reaction;
             }
 
             public final MessageReaction getReaction() {
@@ -604,214 +812,6 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$doPress$1 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100921 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ boolean $isArchivedThread;
-        public final /* synthetic */ Function0 $onFullMembership;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100921(boolean z2, Context context, Function0 function0) {
-            super(0);
-            this.$isArchivedThread = z2;
-            this.$context = context;
-            this.$onFullMembership = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (this.$isArchivedThread) {
-                C0876m.m169g(this.$context, C5419R.string.thread_archived, 0, null, 12);
-            } else {
-                this.$onFullMembership.invoke();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onFollowPress$1 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100931 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ boolean $isFollowedThread;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100931(Context context, long j, boolean z2) {
-            super(0);
-            this.$context = context;
-            this.$channelId = j;
-            this.$isFollowedThread = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetForumPostStatusViewModel.this.toggleFollowPost(this.$context, this.$channelId, this.$isFollowedThread);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onReactionLongPress$1 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100941 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ MessageReaction $reaction;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100941(long j, long j2, Context context, MessageReaction messageReaction) {
-            super(0);
-            this.$channelId = j;
-            this.$messageId = j2;
-            this.$context = context;
-            this.$reaction = messageReaction;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetManageReactions.INSTANCE.create(this.$channelId, this.$messageId, this.$context, this.$reaction);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$onReactionPress$1 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100951 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ boolean $hasAddReactionPermission;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ long $myUserId;
-        public final /* synthetic */ MessageReaction $reaction;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100951(boolean z2, long j, long j2, long j3, MessageReaction messageReaction) {
-            super(0);
-            this.$hasAddReactionPermission = z2;
-            this.$myUserId = j;
-            this.$channelId = j2;
-            this.$messageId = j3;
-            this.$reaction = messageReaction;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (this.$hasAddReactionPermission) {
-                WidgetForumPostStatusViewModel.this.userReactionHandler.toggleReaction(this.$myUserId, this.$channelId, this.$messageId, this.$reaction);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$1 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100961 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ViewState.Valid $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100961(ViewState.Valid valid) {
-            super(0);
-            this.$viewState = valid;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetForumPostStatusViewModel.this.followRequestInProgress = false;
-            WidgetForumPostStatusViewModel.this.updateViewState(ViewState.Valid.copy$default(this.$viewState, 0L, 0L, 0L, false, false, null, null, false, 0, false, false, AudioAttributesCompat.FLAG_ALL, null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$2 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100972 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C100972 INSTANCE = new C100972();
-
-        public C100972() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$3 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100983 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ViewState.Valid $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100983(ViewState.Valid valid) {
-            super(0);
-            this.$viewState = valid;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetForumPostStatusViewModel.this.followRequestInProgress = false;
-            WidgetForumPostStatusViewModel.this.updateViewState(ViewState.Valid.copy$default(this.$viewState, 0L, 0L, 0L, false, false, null, null, false, 0, false, false, AudioAttributesCompat.FLAG_ALL, null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatusViewModel$toggleFollowPost$4 */
-    /* JADX INFO: compiled from: WidgetForumPostStatusViewModel.kt */
-    public static final class C100994 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C100994 INSTANCE = new C100994();
-
-        public C100994() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetForumPostStatusViewModel(AppFragment appFragment, StoreUser storeUser, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreThreadsJoined storeThreadsJoined, StoreForumPostMessages storeForumPostMessages, StoreThreadMessages storeThreadMessages, StoreMessages storeMessages, StoreEmoji storeEmoji, StorePermissions storePermissions, WidgetChatListAdapterEventsHandler.UserReactionHandler userReactionHandler, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         StoreUser users = (i & 2) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
@@ -828,24 +828,6 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
 
     private final void doPress(Context context, FragmentManager fragmentManager, long guildId, boolean isArchivedThread, Function0<Unit> onFullMembership) {
         MemberVerificationUtils.INSTANCE.maybeShowVerificationGate(context, fragmentManager, guildId, Traits.Location.Section.EMOJI_PICKER_POPOUT, (48 & 16) != 0 ? null : null, (48 & 32) != 0 ? MemberVerificationUtils.C67681.INSTANCE : null, new C100921(isArchivedThread, context, onFullMembership));
-    }
-
-    private final void toggleFollowPost(Context context, long channelId, boolean isFollowedThread) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
-            viewState = null;
-        }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || this.followRequestInProgress) {
-            return;
-        }
-        this.followRequestInProgress = true;
-        updateViewState(ViewState.Valid.copy$default(valid, 0L, 0L, 0L, false, false, null, null, false, 0, false, true, AudioAttributesCompat.FLAG_ALL, null));
-        if (isFollowedThread) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().leaveThread(channelId, "Forum Split View Toolbar"), false, 1, null), this, null, 2, null), (Class<?>) WidgetForumPostStatusViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C100961(valid)), C100972.INSTANCE);
-        } else {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().joinThread(channelId, "Forum Split View Toolbar", new RestAPIParams.EmptyBody()), false, 1, null), this, null, 2, null), (Class<?>) WidgetForumPostStatusViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C100983(valid)), C100994.INSTANCE);
-        }
     }
 
     public final void handleStoreState(StoreState storeState) {
@@ -892,6 +874,24 @@ public final class WidgetForumPostStatusViewModel extends AbstractC0859d0<ViewSt
         C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
         C12238m.checkNotNullParameter(reaction, "reaction");
         doPress(context, fragmentManager, guildId, isArchivedThread, new C100951(hasAddReactionPermission, myUserId, channelId, messageId, reaction));
+    }
+
+    private final void toggleFollowPost(Context context, long channelId, boolean isFollowedThread) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
+            viewState = null;
+        }
+        ViewState.Valid valid = (ViewState.Valid) viewState;
+        if (valid == null || this.followRequestInProgress) {
+            return;
+        }
+        this.followRequestInProgress = true;
+        updateViewState(ViewState.Valid.copy$default(valid, 0L, 0L, 0L, false, false, null, null, false, 0, false, true, AudioAttributesCompat.FLAG_ALL, null));
+        if (isFollowedThread) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().leaveThread(channelId, "Forum Split View Toolbar"), false, 1, null), this, null, 2, null), (Class<?>) WidgetForumPostStatusViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C100961(valid)), C100972.INSTANCE);
+        } else {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().joinThread(channelId, "Forum Split View Toolbar", new RestAPIParams.EmptyBody()), false, 1, null), this, null, 2, null), (Class<?>) WidgetForumPostStatusViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C100983(valid)), C100994.INSTANCE);
+        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

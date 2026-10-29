@@ -19,24 +19,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentFlowCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackSubscriptionMetadataReceiver, TrackPaymentMetadataReceiver, TrackSourceMetadataReceiver {
+    private final Long durationMs = null;
+    private final Boolean eligibleForTrial = null;
+    private final Long guildId = null;
+    private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final CharSequence loadId = null;
-    private final Long durationMs = null;
     private final Long trialPeriodLengthDays = null;
-    private final Boolean eligibleForTrial = null;
-    private final Long guildId = null;
     private final transient String analyticsSchemaTypeName = "payment_flow_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,6 +41,12 @@ public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSche
         }
         TrackPaymentFlowCompleted trackPaymentFlowCompleted = (TrackPaymentFlowCompleted) other;
         return C12238m.areEqual(this.loadId, trackPaymentFlowCompleted.loadId) && C12238m.areEqual(this.durationMs, trackPaymentFlowCompleted.durationMs) && C12238m.areEqual(this.trialPeriodLengthDays, trackPaymentFlowCompleted.trialPeriodLengthDays) && C12238m.areEqual(this.eligibleForTrial, trackPaymentFlowCompleted.eligibleForTrial) && C12238m.areEqual(this.guildId, trackPaymentFlowCompleted.guildId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -60,7 +60,7 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     /* JADX INFO: renamed from: d0.t.q0.c$a */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -77,7 +77,7 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     /* JADX INFO: renamed from: d0.t.q0.c$b */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static final class b<K, V> extends d<K, V> implements Iterator<Map.Entry<K, V>>, InterfaceC12228a {
+    public final class b<K, V> extends d<K, V> implements Iterator<Map.Entry<K, V>>, InterfaceC12228a {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(C12156c<K, V> c12156c) {
             super(c12156c);
@@ -143,7 +143,7 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     /* JADX INFO: renamed from: d0.t.q0.c$c */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static final class c<K, V> implements Map.Entry<K, V>, InterfaceC12228a {
+    public final class c<K, V> implements Map.Entry<K, V>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final C12156c<K, V> f25211j;
@@ -199,17 +199,13 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(getKey());
-            sb.append('=');
-            sb.append(getValue());
-            return sb.toString();
+            return "" + getKey() + '=' + getValue();
         }
     }
 
     /* JADX INFO: renamed from: d0.t.q0.c$d */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static class d<K, V> {
+    public class d<K, V> {
 
         /* JADX INFO: renamed from: j */
         public int f25213j;
@@ -275,7 +271,7 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     /* JADX INFO: renamed from: d0.t.q0.c$e */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static final class e<K, V> extends d<K, V> implements Iterator<K>, InterfaceC12228a {
+    public final class e<K, V> extends d<K, V> implements Iterator<K>, InterfaceC12228a {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public e(C12156c<K, V> c12156c) {
             super(c12156c);
@@ -298,7 +294,7 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     /* JADX INFO: renamed from: d0.t.q0.c$f */
     /* JADX INFO: compiled from: MapBuilder.kt */
-    public static final class f<K, V> extends d<K, V> implements Iterator<V>, InterfaceC12228a {
+    public final class f<K, V> extends d<K, V> implements Iterator<V>, InterfaceC12228a {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public f(C12156c<K, V> c12156c) {
             super(c12156c);
@@ -323,17 +319,6 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
 
     public C12156c() {
         this(8);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final V[] m10075a() {
-        V[] vArr = this.f25206r;
-        if (vArr != null) {
-            return vArr;
-        }
-        V[] vArr2 = (V[]) C12155b.arrayOfUninitializedElements(this.f25205q.length);
-        this.f25206r = vArr2;
-        return vArr2;
     }
 
     public final int addKey$kotlin_stdlib(K k) {
@@ -376,61 +361,10 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
         }
     }
 
-    /* JADX INFO: renamed from: b */
-    public final void m10076b(int i) {
-        int i2 = this.f25210v;
-        int i3 = i + i2;
-        K[] kArr = this.f25205q;
-        if (i3 <= kArr.length) {
-            if ((i2 + i3) - size() > this.f25205q.length) {
-                m10080f(this.f25208t.length);
-                return;
-            }
-            return;
-        }
-        int length = (kArr.length * 3) / 2;
-        if (i3 <= length) {
-            i3 = length;
-        }
-        this.f25205q = (K[]) C12155b.copyOfUninitializedElements(kArr, i3);
-        V[] vArr = this.f25206r;
-        this.f25206r = vArr != null ? (V[]) C12155b.copyOfUninitializedElements(vArr, i3) : null;
-        int[] iArrCopyOf = Arrays.copyOf(this.f25207s, i3);
-        C12238m.checkNotNullExpressionValue(iArrCopyOf, "java.util.Arrays.copyOf(this, newSize)");
-        this.f25207s = iArrCopyOf;
-        int iAccess$computeHashSize = a.access$computeHashSize(f25198j, i3);
-        if (iAccess$computeHashSize > this.f25208t.length) {
-            m10080f(iAccess$computeHashSize);
-        }
-    }
-
     public final Map<K, V> build() {
         checkIsMutable$kotlin_stdlib();
         this.f25204p = true;
         return this;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final int m10077c(K k) {
-        int iM10079e = m10079e(k);
-        int i = this.f25209u;
-        while (true) {
-            int i2 = this.f25208t[iM10079e];
-            if (i2 == 0) {
-                return -1;
-            }
-            if (i2 > 0) {
-                int i3 = i2 - 1;
-                if (C12238m.areEqual(this.f25205q[i3], k)) {
-                    return i3;
-                }
-            }
-            i--;
-            if (i < 0) {
-                return -1;
-            }
-            iM10079e = iM10079e == 0 ? this.f25208t.length - 1 : iM10079e - 1;
-        }
     }
 
     public final void checkIsMutable$kotlin_stdlib() {
@@ -506,29 +440,6 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
         return m10078d(obj) >= 0;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final int m10078d(V v) {
-        int i = this.f25210v;
-        while (true) {
-            i--;
-            if (i < 0) {
-                return -1;
-            }
-            if (this.f25207s[i] >= 0) {
-                V[] vArr = this.f25206r;
-                C12238m.checkNotNull(vArr);
-                if (C12238m.areEqual(vArr[i], v)) {
-                    return i;
-                }
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final int m10079e(K k) {
-        return ((k != null ? k.hashCode() : 0) * (-1640531527)) >>> this.f25199k;
-    }
-
     public final b<K, V> entriesIterator$kotlin_stdlib() {
         return new b<>(this);
     }
@@ -550,6 +461,161 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
             }
         }
         return true;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // java.util.Map
+    public V get(Object obj) {
+        int iM10077c = m10077c(obj);
+        if (iM10077c < 0) {
+            return null;
+        }
+        V[] vArr = this.f25206r;
+        C12238m.checkNotNull(vArr);
+        return vArr[iM10077c];
+    }
+
+    public Set<Map.Entry<K, V>> getEntries() {
+        C12157d<K, V> c12157d = this.f25203o;
+        if (c12157d != null) {
+            return c12157d;
+        }
+        C12157d<K, V> c12157d2 = new C12157d<>(this);
+        this.f25203o = c12157d2;
+        return c12157d2;
+    }
+
+    public Set<K> getKeys() {
+        C12158e<K> c12158e = this.f25201m;
+        if (c12158e != null) {
+            return c12158e;
+        }
+        C12158e<K> c12158e2 = new C12158e<>(this);
+        this.f25201m = c12158e2;
+        return c12158e2;
+    }
+
+    public int getSize() {
+        return this.f25200l;
+    }
+
+    public Collection<V> getValues() {
+        C12159f<V> c12159f = this.f25202n;
+        if (c12159f != null) {
+            return c12159f;
+        }
+        C12159f<V> c12159f2 = new C12159f<>(this);
+        this.f25202n = c12159f2;
+        return c12159f2;
+    }
+
+    @Override // java.util.Map
+    public int hashCode() {
+        b<K, V> bVarEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
+        int iNextHashCode$kotlin_stdlib = 0;
+        while (bVarEntriesIterator$kotlin_stdlib.hasNext()) {
+            iNextHashCode$kotlin_stdlib += bVarEntriesIterator$kotlin_stdlib.nextHashCode$kotlin_stdlib();
+        }
+        return iNextHashCode$kotlin_stdlib;
+    }
+
+    @Override // java.util.Map
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    @Override // java.util.Map
+    public final /* bridge */ Set<K> keySet() {
+        return getKeys();
+    }
+
+    public final e<K, V> keysIterator$kotlin_stdlib() {
+        return new e<>(this);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final V[] m10075a() {
+        V[] vArr = this.f25206r;
+        if (vArr != null) {
+            return vArr;
+        }
+        V[] vArr2 = (V[]) C12155b.arrayOfUninitializedElements(this.f25205q.length);
+        this.f25206r = vArr2;
+        return vArr2;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m10076b(int i) {
+        int i2 = this.f25210v;
+        int i3 = i + i2;
+        K[] kArr = this.f25205q;
+        if (i3 <= kArr.length) {
+            if ((i2 + i3) - size() > this.f25205q.length) {
+                m10080f(this.f25208t.length);
+                return;
+            }
+            return;
+        }
+        int length = (kArr.length * 3) / 2;
+        if (i3 <= length) {
+            i3 = length;
+        }
+        this.f25205q = (K[]) C12155b.copyOfUninitializedElements(kArr, i3);
+        V[] vArr = this.f25206r;
+        this.f25206r = vArr != null ? (V[]) C12155b.copyOfUninitializedElements(vArr, i3) : null;
+        int[] iArrCopyOf = Arrays.copyOf(this.f25207s, i3);
+        C12238m.checkNotNullExpressionValue(iArrCopyOf, "java.util.Arrays.copyOf(this, newSize)");
+        this.f25207s = iArrCopyOf;
+        int iAccess$computeHashSize = a.access$computeHashSize(f25198j, i3);
+        if (iAccess$computeHashSize > this.f25208t.length) {
+            m10080f(iAccess$computeHashSize);
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final int m10077c(K k) {
+        int iM10079e = m10079e(k);
+        int i = this.f25209u;
+        while (true) {
+            int i2 = this.f25208t[iM10079e];
+            if (i2 == 0) {
+                return -1;
+            }
+            if (i2 > 0) {
+                int i3 = i2 - 1;
+                if (C12238m.areEqual(this.f25205q[i3], k)) {
+                    return i3;
+                }
+            }
+            i--;
+            if (i < 0) {
+                return -1;
+            }
+            iM10079e = iM10079e == 0 ? this.f25208t.length - 1 : iM10079e - 1;
+        }
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final int m10078d(V v) {
+        int i = this.f25210v;
+        while (true) {
+            i--;
+            if (i < 0) {
+                return -1;
+            }
+            if (this.f25207s[i] >= 0) {
+                V[] vArr = this.f25206r;
+                C12238m.checkNotNull(vArr);
+                if (C12238m.areEqual(vArr[i], v)) {
+                    return i;
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final int m10079e(K k) {
+        return ((k != null ? k.hashCode() : 0) * (-1640531527)) >>> this.f25199k;
     }
 
     /* JADX INFO: renamed from: f */
@@ -657,76 +723,6 @@ public final class C12156c<K, V> implements Map<K, V>, InterfaceC12231d {
         this.f25208t[i3] = -1;
         this.f25207s[i] = -1;
         this.f25200l = size() - 1;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // java.util.Map
-    public V get(Object obj) {
-        int iM10077c = m10077c(obj);
-        if (iM10077c < 0) {
-            return null;
-        }
-        V[] vArr = this.f25206r;
-        C12238m.checkNotNull(vArr);
-        return vArr[iM10077c];
-    }
-
-    public Set<Map.Entry<K, V>> getEntries() {
-        C12157d<K, V> c12157d = this.f25203o;
-        if (c12157d != null) {
-            return c12157d;
-        }
-        C12157d<K, V> c12157d2 = new C12157d<>(this);
-        this.f25203o = c12157d2;
-        return c12157d2;
-    }
-
-    public Set<K> getKeys() {
-        C12158e<K> c12158e = this.f25201m;
-        if (c12158e != null) {
-            return c12158e;
-        }
-        C12158e<K> c12158e2 = new C12158e<>(this);
-        this.f25201m = c12158e2;
-        return c12158e2;
-    }
-
-    public int getSize() {
-        return this.f25200l;
-    }
-
-    public Collection<V> getValues() {
-        C12159f<V> c12159f = this.f25202n;
-        if (c12159f != null) {
-            return c12159f;
-        }
-        C12159f<V> c12159f2 = new C12159f<>(this);
-        this.f25202n = c12159f2;
-        return c12159f2;
-    }
-
-    @Override // java.util.Map
-    public int hashCode() {
-        b<K, V> bVarEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
-        int iNextHashCode$kotlin_stdlib = 0;
-        while (bVarEntriesIterator$kotlin_stdlib.hasNext()) {
-            iNextHashCode$kotlin_stdlib += bVarEntriesIterator$kotlin_stdlib.nextHashCode$kotlin_stdlib();
-        }
-        return iNextHashCode$kotlin_stdlib;
-    }
-
-    @Override // java.util.Map
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
-    @Override // java.util.Map
-    public final /* bridge */ Set<K> keySet() {
-        return getKeys();
-    }
-
-    public final e<K, V> keysIterator$kotlin_stdlib() {
-        return new e<>(this);
     }
 
     @Override // java.util.Map

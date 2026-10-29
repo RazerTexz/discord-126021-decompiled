@@ -29,6 +29,51 @@ public class C2291j0 extends AbstractC2305q0<Object> implements InterfaceC2240i,
         this._delegateSerializer = abstractC2364n;
     }
 
+    /* JADX INFO: renamed from: p */
+    public AbstractC2364n<Object> m2065p(Object obj, AbstractC2374x abstractC2374x) throws JsonMappingException {
+        Class<?> cls = obj.getClass();
+        AbstractC2364n<Object> abstractC2364nM2036b = abstractC2374x._knownSerializers.m2036b(cls);
+        if (abstractC2364nM2036b != null) {
+            return abstractC2364nM2036b;
+        }
+        AbstractC2364n<Object> abstractC2364nM2009b = abstractC2374x._serializerCache.m2009b(cls);
+        if (abstractC2364nM2009b != null) {
+            return abstractC2364nM2009b;
+        }
+        AbstractC2364n<Object> abstractC2364nM2008a = abstractC2374x._serializerCache.m2008a(abstractC2374x._config._base._typeFactory.m2160b(null, cls, C2335n.f4926l));
+        if (abstractC2364nM2008a != null) {
+            return abstractC2364nM2008a;
+        }
+        AbstractC2364n<Object> abstractC2364nM2245i = abstractC2374x.m2245i(cls);
+        return abstractC2364nM2245i == null ? abstractC2374x.m2259x(cls) : abstractC2364nM2245i;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        Object objConvert = this._converter.convert(obj);
+        if (objConvert == null) {
+            abstractC2374x.m2248l(abstractC2108d);
+            return;
+        }
+        AbstractC2364n<Object> abstractC2364nM2065p = this._delegateSerializer;
+        if (abstractC2364nM2065p == null) {
+            abstractC2364nM2065p = m2065p(objConvert, abstractC2374x);
+        }
+        abstractC2364nM2065p.mo1807f(objConvert, abstractC2108d, abstractC2374x);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        Object objConvert = this._converter.convert(obj);
+        AbstractC2364n<Object> abstractC2364nM2065p = this._delegateSerializer;
+        if (abstractC2364nM2065p == null) {
+            abstractC2364nM2065p = m2065p(obj, abstractC2374x);
+        }
+        abstractC2364nM2065p.mo1808g(objConvert, abstractC2108d, abstractC2374x, abstractC2215g);
+    }
+
     @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
     public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
@@ -75,50 +120,5 @@ public class C2291j0 extends AbstractC2305q0<Object> implements InterfaceC2240i,
             return obj == null;
         }
         return abstractC2364n.mo2021d(abstractC2374x, objConvert);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        Object objConvert = this._converter.convert(obj);
-        if (objConvert == null) {
-            abstractC2374x.m2248l(abstractC2108d);
-            return;
-        }
-        AbstractC2364n<Object> abstractC2364nM2065p = this._delegateSerializer;
-        if (abstractC2364nM2065p == null) {
-            abstractC2364nM2065p = m2065p(objConvert, abstractC2374x);
-        }
-        abstractC2364nM2065p.mo1807f(objConvert, abstractC2108d, abstractC2374x);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        Object objConvert = this._converter.convert(obj);
-        AbstractC2364n<Object> abstractC2364nM2065p = this._delegateSerializer;
-        if (abstractC2364nM2065p == null) {
-            abstractC2364nM2065p = m2065p(obj, abstractC2374x);
-        }
-        abstractC2364nM2065p.mo1808g(objConvert, abstractC2108d, abstractC2374x, abstractC2215g);
-    }
-
-    /* JADX INFO: renamed from: p */
-    public AbstractC2364n<Object> m2065p(Object obj, AbstractC2374x abstractC2374x) throws JsonMappingException {
-        Class<?> cls = obj.getClass();
-        AbstractC2364n<Object> abstractC2364nM2036b = abstractC2374x._knownSerializers.m2036b(cls);
-        if (abstractC2364nM2036b != null) {
-            return abstractC2364nM2036b;
-        }
-        AbstractC2364n<Object> abstractC2364nM2009b = abstractC2374x._serializerCache.m2009b(cls);
-        if (abstractC2364nM2009b != null) {
-            return abstractC2364nM2009b;
-        }
-        AbstractC2364n<Object> abstractC2364nM2008a = abstractC2374x._serializerCache.m2008a(abstractC2374x._config._base._typeFactory.m2160b(null, cls, C2335n.f4926l));
-        if (abstractC2364nM2008a != null) {
-            return abstractC2364nM2008a;
-        }
-        AbstractC2364n<Object> abstractC2364nM2245i = abstractC2374x.m2245i(cls);
-        return abstractC2364nM2245i == null ? abstractC2374x.m2259x(cls) : abstractC2364nM2245i;
     }
 }

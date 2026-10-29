@@ -24,9 +24,35 @@ public final class TypingDot extends View {
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Function0<Unit> onScaleDownCompleteListener;
 
+    /* JADX INFO: renamed from: com.discord.views.typing.TypingDot$b */
+    /* JADX INFO: compiled from: TypingDot.kt */
+    public class AnimationAnimationListenerC7130b implements Animation.AnimationListener {
+
+        /* JADX INFO: renamed from: j */
+        public final Function0<Unit> f19341j;
+
+        public AnimationAnimationListenerC7130b(Function0<Unit> function0) {
+            C12238m.checkNotNullParameter(function0, "onComplete");
+            this.f19341j = function0;
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationEnd(Animation animation) {
+            this.f19341j.invoke();
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationStart(Animation animation) {
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.views.typing.TypingDot$a */
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public static final class C7129a extends AbstractC12240o implements Function0<Unit> {
+    public final class C7129a extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f19339j;
@@ -60,32 +86,6 @@ public final class TypingDot extends View {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.views.typing.TypingDot$b */
-    /* JADX INFO: compiled from: TypingDot.kt */
-    public static class AnimationAnimationListenerC7130b implements Animation.AnimationListener {
-
-        /* JADX INFO: renamed from: j */
-        public final Function0<Unit> f19341j;
-
-        public AnimationAnimationListenerC7130b(Function0<Unit> function0) {
-            C12238m.checkNotNullParameter(function0, "onComplete");
-            this.f19341j = function0;
-        }
-
-        @Override // android.view.animation.Animation.AnimationListener
-        public void onAnimationEnd(Animation animation) {
-            this.f19341j.invoke();
-        }
-
-        @Override // android.view.animation.Animation.AnimationListener
-        public void onAnimationRepeat(Animation animation) {
-        }
-
-        @Override // android.view.animation.Animation.AnimationListener
-        public void onAnimationStart(Animation animation) {
-        }
-    }
-
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TypingDot(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
@@ -98,16 +98,16 @@ public final class TypingDot extends View {
         this.scaleAndFadeDownAnimation = animationLoadAnimation2;
     }
 
+    public final Function0<Unit> getOnScaleDownCompleteListener() {
+        return this.onScaleDownCompleteListener;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m8617a(long delay) {
         this.scaleAndFadeUpAnimation.setStartOffset(delay);
         this.scaleAndFadeUpAnimation.setAnimationListener(new AnimationAnimationListenerC7130b(new C7129a(0, this)));
         this.scaleAndFadeDownAnimation.setAnimationListener(new AnimationAnimationListenerC7130b(new C7129a(1, this)));
         startAnimation(this.scaleAndFadeUpAnimation);
-    }
-
-    public final Function0<Unit> getOnScaleDownCompleteListener() {
-        return this.onScaleDownCompleteListener;
     }
 
     @Override // android.view.View

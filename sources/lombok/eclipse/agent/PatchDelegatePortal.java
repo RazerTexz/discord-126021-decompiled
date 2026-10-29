@@ -47,7 +47,7 @@ public class PatchDelegatePortal {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchDelegatePortal$Reflection.SCL.lombok */
-    private static final class Reflection {
+    final class Reflection {
         public static final Method handleDelegateForType;
         public static final Method getChildren;
         public static final Throwable problem;

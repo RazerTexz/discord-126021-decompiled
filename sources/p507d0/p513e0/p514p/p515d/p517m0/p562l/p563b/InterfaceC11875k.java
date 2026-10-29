@@ -9,7 +9,7 @@ public interface InterfaceC11875k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.k$a */
     /* JADX INFO: compiled from: DeserializationConfiguration.kt */
-    public static final class a implements InterfaceC11875k {
+    public final class a implements InterfaceC11875k {
 
         /* JADX INFO: renamed from: a */
         public static final a f24658a = new a();
@@ -52,7 +52,7 @@ public interface InterfaceC11875k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.k$b */
     /* JADX INFO: compiled from: DeserializationConfiguration.kt */
-    public static final class b {
+    public final class b {
         public static boolean getAllowUnstableDependencies(InterfaceC11875k interfaceC11875k) {
             C12238m.checkNotNullParameter(interfaceC11875k, "this");
             return false;

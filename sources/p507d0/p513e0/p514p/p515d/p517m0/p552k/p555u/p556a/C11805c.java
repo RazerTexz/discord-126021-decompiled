@@ -45,11 +45,6 @@ public final class C11805c implements InterfaceC11804b {
         return (InterfaceC11352h) m11470getDeclarationDescriptor();
     }
 
-    /* JADX INFO: renamed from: getDeclarationDescriptor, reason: collision with other method in class */
-    public Void m11470getDeclarationDescriptor() {
-        return null;
-    }
-
     public final C11950j getNewTypeConstructor() {
         return this.f24433b;
     }
@@ -74,6 +69,11 @@ public final class C11805c implements InterfaceC11804b {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
     public boolean isDenotable() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: getDeclarationDescriptor, reason: collision with other method in class */
+    public Void m11470getDeclarationDescriptor() {
+        return null;
     }
 
     public final void setNewTypeConstructor(C11950j c11950j) {

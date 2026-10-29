@@ -48,117 +48,9 @@ public final class StoreOutboundPromotions extends StoreV2 {
     private State state;
     private State stateSnapshot;
 
-    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public static abstract class State {
-
-        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-        public static final class Failed extends State {
-            public static final Failed INSTANCE = new Failed();
-
-            private Failed() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-        public static final /* data */ class Loaded extends State {
-            private final int unseenCount;
-            private final List<OutboundPromotion> validActivePromotions;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(List<OutboundPromotion> list, int i) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "validActivePromotions");
-                this.validActivePromotions = list;
-                this.unseenCount = i;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    list = loaded.validActivePromotions;
-                }
-                if ((i2 & 2) != 0) {
-                    i = loaded.unseenCount;
-                }
-                return loaded.copy(list, i);
-            }
-
-            public final List<OutboundPromotion> component1() {
-                return this.validActivePromotions;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getUnseenCount() {
-                return this.unseenCount;
-            }
-
-            public final Loaded copy(List<OutboundPromotion> validActivePromotions, int unseenCount) {
-                C12238m.checkNotNullParameter(validActivePromotions, "validActivePromotions");
-                return new Loaded(validActivePromotions, unseenCount);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Loaded)) {
-                    return false;
-                }
-                Loaded loaded = (Loaded) other;
-                return C12238m.areEqual(this.validActivePromotions, loaded.validActivePromotions) && this.unseenCount == loaded.unseenCount;
-            }
-
-            public final int getUnseenCount() {
-                return this.unseenCount;
-            }
-
-            public final List<OutboundPromotion> getValidActivePromotions() {
-                return this.validActivePromotions;
-            }
-
-            public int hashCode() {
-                List<OutboundPromotion> list = this.validActivePromotions;
-                return ((list != null ? list.hashCode() : 0) * 31) + this.unseenCount;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(validActivePromotions=");
-                sbM833U.append(this.validActivePromotions);
-                sbM833U.append(", unseenCount=");
-                return C1643a.m814B(sbM833U, this.unseenCount, ")");
-            }
-
-            @Override // com.discord.stores.StoreOutboundPromotions.State
-            public Loaded deepCopy() {
-                return copy$default(this, new ArrayList(this.validActivePromotions), 0, 2, null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-        public static final class Loading extends State {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        private State() {
-        }
-
-        public State deepCopy() {
-            return this;
-        }
-
-        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$markSeen$1 */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public static final class C63191 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63191 extends AbstractC12240o implements Function0<Unit> {
         public C63191() {
             super(0);
         }
@@ -211,7 +103,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeState$1 */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public static final class C63201 extends AbstractC12240o implements Function0<State> {
+    public final class C63201 extends AbstractC12240o implements Function0<State> {
         public C63201() {
             super(0);
         }
@@ -225,7 +117,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeUnseenCount$1 */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public static final class C63211 extends AbstractC12240o implements Function0<Integer> {
+    public final class C63211 extends AbstractC12240o implements Function0<Integer> {
         public C63211() {
             super(0);
         }
@@ -238,6 +130,114 @@ public final class StoreOutboundPromotions extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final int invoke2() {
             return StoreOutboundPromotions.this.getUnseenCount();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final class Failed extends State {
+            public static final Failed INSTANCE = new Failed();
+
+            private Failed() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final /* data */ class Loaded extends State {
+            private final int unseenCount;
+            private final List<OutboundPromotion> validActivePromotions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(List<OutboundPromotion> list, int i) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "validActivePromotions");
+                this.validActivePromotions = list;
+                this.unseenCount = i;
+            }
+
+            public final List<OutboundPromotion> component1() {
+                return this.validActivePromotions;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    list = loaded.validActivePromotions;
+                }
+                if ((i2 & 2) != 0) {
+                    i = loaded.unseenCount;
+                }
+                return loaded.copy(list, i);
+            }
+
+            public final Loaded copy(List<OutboundPromotion> validActivePromotions, int unseenCount) {
+                C12238m.checkNotNullParameter(validActivePromotions, "validActivePromotions");
+                return new Loaded(validActivePromotions, unseenCount);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Loaded)) {
+                    return false;
+                }
+                Loaded loaded = (Loaded) other;
+                return C12238m.areEqual(this.validActivePromotions, loaded.validActivePromotions) && this.unseenCount == loaded.unseenCount;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getUnseenCount() {
+                return this.unseenCount;
+            }
+
+            public final int getUnseenCount() {
+                return this.unseenCount;
+            }
+
+            public final List<OutboundPromotion> getValidActivePromotions() {
+                return this.validActivePromotions;
+            }
+
+            public int hashCode() {
+                List<OutboundPromotion> list = this.validActivePromotions;
+                return ((list != null ? list.hashCode() : 0) * 31) + this.unseenCount;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(validActivePromotions=");
+                sbM833U.append(this.validActivePromotions);
+                sbM833U.append(", unseenCount=");
+                return C1643a.m814B(sbM833U, this.unseenCount, ")");
+            }
+
+            @Override // com.discord.stores.StoreOutboundPromotions.State
+            public Loaded deepCopy() {
+                return copy$default(this, new ArrayList(this.validActivePromotions), 0, 2, null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final class Loading extends State {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private State() {
+        }
+
+        public State deepCopy() {
+            return this;
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

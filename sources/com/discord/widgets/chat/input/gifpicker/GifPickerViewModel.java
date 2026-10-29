@@ -27,7 +27,7 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifPickerViewModel$2 */
     /* JADX INFO: compiled from: GifPickerViewModel.kt */
-    public static final class C78702 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78702 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78702() {
             super(1);
         }
@@ -46,7 +46,7 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifPickerViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final List<ModelGifCategory> gifCategories;
         private final String trendingGifCategoryPreviewUrl;
 
@@ -55,6 +55,10 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
             C12238m.checkNotNullParameter(str, "trendingGifCategoryPreviewUrl");
             this.gifCategories = list;
             this.trendingGifCategoryPreviewUrl = str;
+        }
+
+        public final List<ModelGifCategory> component1() {
+            return this.gifCategories;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -66,15 +70,6 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
                 str = storeState.trendingGifCategoryPreviewUrl;
             }
             return storeState.copy(list, str);
-        }
-
-        public final List<ModelGifCategory> component1() {
-            return this.gifCategories;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getTrendingGifCategoryPreviewUrl() {
-            return this.trendingGifCategoryPreviewUrl;
         }
 
         public final StoreState copy(List<ModelGifCategory> gifCategories, String trendingGifCategoryPreviewUrl) {
@@ -98,6 +93,11 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
             return this.gifCategories;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getTrendingGifCategoryPreviewUrl() {
+            return this.trendingGifCategoryPreviewUrl;
+        }
+
         public final String getTrendingGifCategoryPreviewUrl() {
             return this.trendingGifCategoryPreviewUrl;
         }
@@ -118,7 +118,7 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifPickerViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<GifCategoryItem> gifCategoryItems;
         private final boolean isLoaded;
 
@@ -129,16 +129,16 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
             this.isLoaded = !list.isEmpty();
         }
 
+        public final List<GifCategoryItem> component1() {
+            return this.gifCategoryItems;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ViewState copy$default(ViewState viewState, List list, int i, Object obj) {
             if ((i & 1) != 0) {
                 list = viewState.gifCategoryItems;
             }
             return viewState.copy(list);
-        }
-
-        public final List<GifCategoryItem> component1() {
-            return this.gifCategoryItems;
         }
 
         public final ViewState copy(List<? extends GifCategoryItem> gifCategoryItems) {
@@ -157,17 +157,17 @@ public final class GifPickerViewModel extends AbstractC0859d0<ViewState> {
             return this.gifCategoryItems;
         }
 
+        /* JADX INFO: renamed from: isLoaded, reason: from getter */
+        public final boolean getIsLoaded() {
+            return this.isLoaded;
+        }
+
         public int hashCode() {
             List<GifCategoryItem> list = this.gifCategoryItems;
             if (list != null) {
                 return list.hashCode();
             }
             return 0;
-        }
-
-        /* JADX INFO: renamed from: isLoaded, reason: from getter */
-        public final boolean getIsLoaded() {
-            return this.isLoaded;
         }
 
         public String toString() {

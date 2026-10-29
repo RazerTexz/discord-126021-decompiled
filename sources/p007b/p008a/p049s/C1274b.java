@@ -12,6 +12,7 @@ import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.Unit;
@@ -50,14 +51,14 @@ public final class C1274b extends ContentObserver {
 
     /* JADX INFO: renamed from: b.a.s.b$a */
     /* JADX INFO: compiled from: ScreenshotContentObserver.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.s.b$b */
     /* JADX INFO: compiled from: ScreenshotContentObserver.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final String f1885a;
@@ -140,7 +141,7 @@ public final class C1274b extends ContentObserver {
 
     /* JADX WARN: Code duplicated, block: B:29:0x00bc  */
     /* JADX INFO: renamed from: a */
-    public final void m365a(Uri uri) throws IOException {
+    public final void m365a(Uri uri) throws IllegalAccessException, IOException, InvocationTargetException {
         String strSubstringBeforeLast$default;
         b bVar;
         ContentResolver contentResolver = this.f1882d;

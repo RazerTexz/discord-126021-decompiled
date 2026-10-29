@@ -14,7 +14,7 @@ public interface InterfaceC11473x0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.x0$a */
     /* JADX INFO: compiled from: SupertypeLoopChecker.kt */
-    public static final class a implements InterfaceC11473x0 {
+    public final class a implements InterfaceC11473x0 {
 
         /* JADX INFO: renamed from: a */
         public static final a f23103a = new a();

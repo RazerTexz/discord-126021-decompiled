@@ -16,14 +16,14 @@ import org.xmlpull.v1.XmlPullParserException;
 
 /* JADX INFO: loaded from: classes.dex */
 public class PreferenceInflater {
+    private static final Class<?>[] CONSTRUCTOR_SIGNATURE = {Context.class, AttributeSet.class};
     private static final String EXTRA_TAG_NAME = "extra";
     private static final String INTENT_TAG_NAME = "intent";
-    private final Object[] mConstructorArgs = new Object[2];
     private final Context mContext;
     private String[] mDefaultPackages;
     private PreferenceManager mPreferenceManager;
-    private static final Class<?>[] CONSTRUCTOR_SIGNATURE = {Context.class, AttributeSet.class};
     private static final HashMap<String, Constructor> CONSTRUCTOR_MAP = new HashMap<>();
+    private final Object[] mConstructorArgs = new Object[2];
 
     public PreferenceInflater(Context context, PreferenceManager preferenceManager) {
         this.mContext = context;
@@ -90,9 +90,30 @@ public class PreferenceInflater {
         }
     }
 
+    public Context getContext() {
+        return this.mContext;
+    }
+
+    public String[] getDefaultPackages() {
+        return this.mDefaultPackages;
+    }
+
+    public Preference inflate(int i, @Nullable PreferenceGroup preferenceGroup) {
+        XmlResourceParser xml = getContext().getResources().getXml(i);
+        try {
+            return inflate(xml, preferenceGroup);
+        } finally {
+            xml.close();
+        }
+    }
+
     private void init(PreferenceManager preferenceManager) {
         this.mPreferenceManager = preferenceManager;
         setDefaultPackages(new String[]{Preference.class.getPackage().getName() + ".", SwitchPreference.class.getPackage().getName() + "."});
+    }
+
+    public Preference onCreateItem(String str, AttributeSet attributeSet) throws ClassNotFoundException {
+        return createItem(str, this.mDefaultPackages, attributeSet);
     }
 
     @NonNull
@@ -139,6 +160,10 @@ public class PreferenceInflater {
         }
     }
 
+    public void setDefaultPackages(String[] strArr) {
+        this.mDefaultPackages = strArr;
+    }
+
     private static void skipCurrentTag(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException {
         int depth = xmlPullParser.getDepth();
         while (true) {
@@ -150,31 +175,6 @@ public class PreferenceInflater {
                 return;
             }
         }
-    }
-
-    public Context getContext() {
-        return this.mContext;
-    }
-
-    public String[] getDefaultPackages() {
-        return this.mDefaultPackages;
-    }
-
-    public Preference inflate(int i, @Nullable PreferenceGroup preferenceGroup) {
-        XmlResourceParser xml = getContext().getResources().getXml(i);
-        try {
-            return inflate(xml, preferenceGroup);
-        } finally {
-            xml.close();
-        }
-    }
-
-    public Preference onCreateItem(String str, AttributeSet attributeSet) throws ClassNotFoundException {
-        return createItem(str, this.mDefaultPackages, attributeSet);
-    }
-
-    public void setDefaultPackages(String[] strArr) {
-        this.mDefaultPackages = strArr;
     }
 
     public Preference inflate(XmlPullParser xmlPullParser, @Nullable PreferenceGroup preferenceGroup) {

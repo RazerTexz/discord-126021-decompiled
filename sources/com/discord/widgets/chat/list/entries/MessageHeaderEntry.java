@@ -39,21 +39,6 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
         return messageHeaderEntry.copy(message, str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
     public final MessageHeaderEntry copy(Message message, String text, String channelName) {
         C12238m.checkNotNullParameter(message, "message");
         return new MessageHeaderEntry(message, text, channelName);
@@ -70,6 +55,11 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
         return C12238m.areEqual(this.message, messageHeaderEntry.message) && C12238m.areEqual(this.text, messageHeaderEntry.text) && C12238m.areEqual(this.channelName, messageHeaderEntry.channelName);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getChannelName() {
+        return this.channelName;
+    }
+
     public final String getChannelName() {
         return this.channelName;
     }
@@ -79,8 +69,18 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Message getMessage() {
         return this.message;
+    }
+
+    public final Message getMessage() {
+        return this.message;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public final String getText() {

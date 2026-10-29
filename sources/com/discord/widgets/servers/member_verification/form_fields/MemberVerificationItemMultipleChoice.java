@@ -19,10 +19,11 @@ public final /* data */ class MemberVerificationItemMultipleChoice implements Me
         this.choices = list;
         this.response = num;
         this.type = 6;
-        StringBuilder sb = new StringBuilder();
-        sb.append(i);
-        sb.append(getType());
-        this.key = sb.toString();
+        this.key = "" + i + getType();
+    }
+
+    public final List<String> component2() {
+        return this.choices;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -37,20 +38,6 @@ public final /* data */ class MemberVerificationItemMultipleChoice implements Me
             num = memberVerificationItemMultipleChoice.response;
         }
         return memberVerificationItemMultipleChoice.copy(i, list, num);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getFieldIndex() {
-        return this.fieldIndex;
-    }
-
-    public final List<String> component2() {
-        return this.choices;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Integer getResponse() {
-        return this.response;
     }
 
     public final MemberVerificationItemMultipleChoice copy(int fieldIndex, List<String> choices, Integer response) {
@@ -73,6 +60,11 @@ public final /* data */ class MemberVerificationItemMultipleChoice implements Me
         return this.choices;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getFieldIndex() {
+        return this.fieldIndex;
+    }
+
     public final int getFieldIndex() {
         return this.fieldIndex;
     }
@@ -80,6 +72,11 @@ public final /* data */ class MemberVerificationItemMultipleChoice implements Me
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Integer getResponse() {
+        return this.response;
     }
 
     public final Integer getResponse() {

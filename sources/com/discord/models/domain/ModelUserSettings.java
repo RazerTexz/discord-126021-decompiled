@@ -43,7 +43,7 @@ public class ModelUserSettings implements Model {
     private ClientStatus status;
     private String theme;
 
-    public static class FriendSourceFlags implements Model {
+    public class FriendSourceFlags implements Model {
         private boolean all;
         private boolean mutualFriends;
         private boolean mutualGuilds;
@@ -106,34 +106,6 @@ public class ModelUserSettings implements Model {
             sbM833U.append(")");
             return sbM833U.toString();
         }
-    }
-
-    private static List<ModelGuildFolder> convertFromPositions(List<Long> list) {
-        ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            arrayList.add(new ModelGuildFolder(null, Collections.singletonList(list.get(i)), null, null));
-        }
-        return arrayList;
-    }
-
-    public static String getDefaultLocale() {
-        return getLocaleString(Locale.getDefault());
-    }
-
-    public static Locale getLocaleObject(String str) {
-        return str.contains("-") ? new Locale(str.split("-")[0], str.split("-")[1]) : new Locale(str);
-    }
-
-    private static String getLocaleString(Locale locale) {
-        String string;
-        if (TextUtils.isEmpty(locale.getCountry())) {
-            string = "";
-        } else {
-            StringBuilder sbM829Q = C1643a.m829Q('-');
-            sbM829Q.append(locale.getCountry().toUpperCase(Locale.getDefault()));
-            string = sbM829Q.toString();
-        }
-        return locale.getLanguage() + string;
     }
 
     @Override // com.discord.models.domain.Model
@@ -222,6 +194,14 @@ public class ModelUserSettings implements Model {
 
     public boolean canEqual(Object obj) {
         return obj instanceof ModelUserSettings;
+    }
+
+    private static List<ModelGuildFolder> convertFromPositions(List<Long> list) {
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < list.size(); i++) {
+            arrayList.add(new ModelGuildFolder(null, Collections.singletonList(list.get(i)), null, null));
+        }
+        return arrayList;
     }
 
     public boolean equals(Object obj) {
@@ -354,6 +334,10 @@ public class ModelUserSettings implements Model {
         return this.defaultGuildsRestricted;
     }
 
+    public static String getDefaultLocale() {
+        return getLocaleString(Locale.getDefault());
+    }
+
     public Boolean getDeveloperMode() {
         return this.developerMode;
     }
@@ -384,6 +368,22 @@ public class ModelUserSettings implements Model {
 
     public String getLocale() {
         return this.locale;
+    }
+
+    public static Locale getLocaleObject(String str) {
+        return str.contains("-") ? new Locale(str.split("-")[0], str.split("-")[1]) : new Locale(str);
+    }
+
+    private static String getLocaleString(Locale locale) {
+        String string;
+        if (TextUtils.isEmpty(locale.getCountry())) {
+            string = "";
+        } else {
+            StringBuilder sbM829Q = C1643a.m829Q('-');
+            sbM829Q.append(locale.getCountry().toUpperCase(Locale.getDefault()));
+            string = sbM829Q.toString();
+        }
+        return locale.getLanguage() + string;
     }
 
     public Boolean getRenderEmbeds() {

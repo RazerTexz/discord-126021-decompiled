@@ -135,46 +135,11 @@ public abstract class AbstractC5002p extends AbstractC4997k {
         return mo7001k(i, c4962a, m7006m(c4962a), map);
     }
 
-    /* JADX INFO: renamed from: g */
-    public boolean mo7007g(String str) throws FormatException {
-        int length = str.length();
-        if (length == 0) {
-            return false;
-        }
-        int i = length - 1;
-        int iDigit = Character.digit(str.charAt(i), 10);
-        CharSequence charSequenceSubSequence = str.subSequence(0, i);
-        int length2 = charSequenceSubSequence.length();
-        int i2 = 0;
-        for (int i3 = length2 - 1; i3 >= 0; i3 -= 2) {
-            int iCharAt = charSequenceSubSequence.charAt(i3) - '0';
-            if (iCharAt < 0 || iCharAt > 9) {
-                throw FormatException.m9260a();
-            }
-            i2 += iCharAt;
-        }
-        int i4 = i2 * 3;
-        while (true) {
-            length2 -= 2;
-            if (length2 < 0) {
-                return (1000 - i4) % 10 == iDigit;
-            }
-            int iCharAt2 = charSequenceSubSequence.charAt(length2) - '0';
-            if (iCharAt2 < 0 || iCharAt2 > 9) {
-                throw FormatException.m9260a();
-            }
-            i4 += iCharAt2;
-        }
-    }
-
-    /* JADX INFO: renamed from: i */
-    public int[] mo7008i(C4962a c4962a, int i) throws NotFoundException {
-        int[] iArr = f13389a;
-        return m7005l(c4962a, i, false, iArr, new int[iArr.length]);
-    }
-
     /* JADX INFO: renamed from: j */
     public abstract int mo6989j(C4962a c4962a, int[] iArr, StringBuilder sb) throws NotFoundException;
+
+    /* JADX INFO: renamed from: n */
+    public abstract EnumC4946a mo6990n();
 
     /* JADX INFO: renamed from: k */
     public Result mo7001k(int i, C4962a c4962a, int[] iArr, Map<EnumC4949d, ?> map) throws NotFoundException, ChecksumException, FormatException {
@@ -275,6 +240,41 @@ public abstract class AbstractC5002p extends AbstractC4997k {
         return result;
     }
 
-    /* JADX INFO: renamed from: n */
-    public abstract EnumC4946a mo6990n();
+    /* JADX INFO: renamed from: g */
+    public boolean mo7007g(String str) throws FormatException {
+        int length = str.length();
+        if (length == 0) {
+            return false;
+        }
+        int i = length - 1;
+        int iDigit = Character.digit(str.charAt(i), 10);
+        CharSequence charSequenceSubSequence = str.subSequence(0, i);
+        int length2 = charSequenceSubSequence.length();
+        int i2 = 0;
+        for (int i3 = length2 - 1; i3 >= 0; i3 -= 2) {
+            int iCharAt = charSequenceSubSequence.charAt(i3) - '0';
+            if (iCharAt < 0 || iCharAt > 9) {
+                throw FormatException.m9260a();
+            }
+            i2 += iCharAt;
+        }
+        int i4 = i2 * 3;
+        while (true) {
+            length2 -= 2;
+            if (length2 < 0) {
+                return (1000 - i4) % 10 == iDigit;
+            }
+            int iCharAt2 = charSequenceSubSequence.charAt(length2) - '0';
+            if (iCharAt2 < 0 || iCharAt2 > 9) {
+                throw FormatException.m9260a();
+            }
+            i4 += iCharAt2;
+        }
+    }
+
+    /* JADX INFO: renamed from: i */
+    public int[] mo7008i(C4962a c4962a, int i) throws NotFoundException {
+        int[] iArr = f13389a;
+        return m7005l(c4962a, i, false, iArr, new int[iArr.length]);
+    }
 }

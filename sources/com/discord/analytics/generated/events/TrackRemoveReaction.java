@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRemoveReaction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRemoveReaction implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long messageId = null;
+    private final Boolean emojiAnimated = null;
     private final Long emojiId = null;
     private final CharSequence emojiName = null;
-    private final Boolean emojiAnimated = null;
+    private final Long guildId = null;
+    private final Long messageId = null;
+    private TrackBase trackBase;
     private final Long uniqueReactionCount = null;
     private final transient String analyticsSchemaTypeName = "remove_reaction";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackRemoveReaction implements AnalyticsSchema, Tr
         }
         TrackRemoveReaction trackRemoveReaction = (TrackRemoveReaction) other;
         return C12238m.areEqual(this.guildId, trackRemoveReaction.guildId) && C12238m.areEqual(this.channelId, trackRemoveReaction.channelId) && C12238m.areEqual(this.channelType, trackRemoveReaction.channelType) && C12238m.areEqual(this.messageId, trackRemoveReaction.messageId) && C12238m.areEqual(this.emojiId, trackRemoveReaction.emojiId) && C12238m.areEqual(this.emojiName, trackRemoveReaction.emojiName) && C12238m.areEqual(this.emojiAnimated, trackRemoveReaction.emojiAnimated) && C12238m.areEqual(this.uniqueReactionCount, trackRemoveReaction.uniqueReactionCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

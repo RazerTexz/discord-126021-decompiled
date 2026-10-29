@@ -14,18 +14,18 @@ import p507d0.p592z.p594d.AbstractC12240o;
 @SuppressLint({"DiscouragedPrivateApi"})
 public final class C1212d {
 
+    /* JADX INFO: renamed from: c */
+    public static final C1212d f1655c = null;
+
     /* JADX INFO: renamed from: a */
     public static final Lazy f1653a = C12083g.lazy(a.f1656j);
 
     /* JADX INFO: renamed from: b */
     public static final Lazy f1654b = C12083g.lazy(b.f1657j);
 
-    /* JADX INFO: renamed from: c */
-    public static final C1212d f1655c = null;
-
     /* JADX INFO: renamed from: b.a.q.k0.d$a */
     /* JADX INFO: compiled from: BluetoothHeadsetPrivateApi.kt */
-    public static final class a extends AbstractC12240o implements Function0<String> {
+    public final class a extends AbstractC12240o implements Function0<String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1656j = new a();
@@ -50,7 +50,7 @@ public final class C1212d {
 
     /* JADX INFO: renamed from: b.a.q.k0.d$b */
     /* JADX INFO: compiled from: BluetoothHeadsetPrivateApi.kt */
-    public static final class b extends AbstractC12240o implements Function0<Method> {
+    public final class b extends AbstractC12240o implements Function0<Method> {
 
         /* JADX INFO: renamed from: j */
         public static final b f1657j = new b();

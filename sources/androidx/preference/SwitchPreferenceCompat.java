@@ -43,30 +43,6 @@ public class SwitchPreferenceCompat extends TwoStatePreference {
         typedArrayObtainStyledAttributes.recycle();
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    private void syncSwitchView(View view) {
-        boolean z2 = view instanceof SwitchCompat;
-        if (z2) {
-            ((SwitchCompat) view).setOnCheckedChangeListener(null);
-        }
-        if (view instanceof Checkable) {
-            ((Checkable) view).setChecked(this.mChecked);
-        }
-        if (z2) {
-            SwitchCompat switchCompat = (SwitchCompat) view;
-            switchCompat.setTextOn(this.mSwitchOn);
-            switchCompat.setTextOff(this.mSwitchOff);
-            switchCompat.setOnCheckedChangeListener(this.mListener);
-        }
-    }
-
-    private void syncViewIfAccessibilityEnabled(View view) {
-        if (((AccessibilityManager) getContext().getSystemService("accessibility")).isEnabled()) {
-            syncSwitchView(view.findViewById(C0525R.id.switchWidget));
-            syncSummaryView(view.findViewById(android.R.id.summary));
-        }
-    }
-
     public CharSequence getSwitchTextOff() {
         return this.mSwitchOff;
     }
@@ -97,6 +73,30 @@ public class SwitchPreferenceCompat extends TwoStatePreference {
     public void setSwitchTextOn(CharSequence charSequence) {
         this.mSwitchOn = charSequence;
         notifyChanged();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private void syncSwitchView(View view) {
+        boolean z2 = view instanceof SwitchCompat;
+        if (z2) {
+            ((SwitchCompat) view).setOnCheckedChangeListener(null);
+        }
+        if (view instanceof Checkable) {
+            ((Checkable) view).setChecked(this.mChecked);
+        }
+        if (z2) {
+            SwitchCompat switchCompat = (SwitchCompat) view;
+            switchCompat.setTextOn(this.mSwitchOn);
+            switchCompat.setTextOff(this.mSwitchOff);
+            switchCompat.setOnCheckedChangeListener(this.mListener);
+        }
+    }
+
+    private void syncViewIfAccessibilityEnabled(View view) {
+        if (((AccessibilityManager) getContext().getSystemService("accessibility")).isEnabled()) {
+            syncSwitchView(view.findViewById(C0525R.id.switchWidget));
+            syncSummaryView(view.findViewById(android.R.id.summary));
+        }
     }
 
     public void setSwitchTextOff(int i) {

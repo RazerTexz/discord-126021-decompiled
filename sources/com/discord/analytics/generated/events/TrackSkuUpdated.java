@@ -13,35 +13,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSkuUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSkuUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackPriceByCurrencyReceiver {
-    private TrackBase trackBase;
-    private TrackPriceByCurrency trackPriceByCurrency;
-    private final Long skuId = null;
-    private final CharSequence updateFrom = null;
-    private final CharSequence updateType = null;
-    private final CharSequence storeTitle = null;
-    private final Long dependentSkuId = null;
-    private final List<Long> bundledSkuIds = null;
     private final CharSequence accessType = null;
-    private final Long releaseDate = null;
-    private final Boolean isPremium = null;
-    private final Boolean isDistribution = null;
     private final Boolean available = null;
     private final List<CharSequence> availableLocales = null;
-    private final CharSequence metacriticId = null;
-    private final Boolean isExclusive = null;
-    private final List<CharSequence> genres = null;
-    private final List<CharSequence> features = null;
-    private final CharSequence contentRatingPegi = null;
+    private final List<Long> bundledSkuIds = null;
     private final CharSequence contentRatingEsrb = null;
-    private final Long regularPriceTier = null;
+    private final CharSequence contentRatingPegi = null;
+    private final Long dependentSkuId = null;
+    private final List<CharSequence> features = null;
+    private final List<CharSequence> genres = null;
+    private final Boolean isDistribution = null;
+    private final Boolean isExclusive = null;
+    private final Boolean isPremium = null;
+    private final CharSequence metacriticId = null;
     private final Long priceTier = null;
+    private final Long regularPriceTier = null;
+    private final Long releaseDate = null;
+    private final Long skuId = null;
+    private final CharSequence storeTitle = null;
+    private TrackBase trackBase;
+    private TrackPriceByCurrency trackPriceByCurrency;
+    private final CharSequence updateFrom = null;
+    private final CharSequence updateType = null;
     private final transient String analyticsSchemaTypeName = "sku_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -52,6 +46,12 @@ public final /* data */ class TrackSkuUpdated implements AnalyticsSchema, TrackB
         }
         TrackSkuUpdated trackSkuUpdated = (TrackSkuUpdated) other;
         return C12238m.areEqual(this.skuId, trackSkuUpdated.skuId) && C12238m.areEqual(this.updateFrom, trackSkuUpdated.updateFrom) && C12238m.areEqual(this.updateType, trackSkuUpdated.updateType) && C12238m.areEqual(this.storeTitle, trackSkuUpdated.storeTitle) && C12238m.areEqual(this.dependentSkuId, trackSkuUpdated.dependentSkuId) && C12238m.areEqual(this.bundledSkuIds, trackSkuUpdated.bundledSkuIds) && C12238m.areEqual(this.accessType, trackSkuUpdated.accessType) && C12238m.areEqual(this.releaseDate, trackSkuUpdated.releaseDate) && C12238m.areEqual(this.isPremium, trackSkuUpdated.isPremium) && C12238m.areEqual(this.isDistribution, trackSkuUpdated.isDistribution) && C12238m.areEqual(this.available, trackSkuUpdated.available) && C12238m.areEqual(this.availableLocales, trackSkuUpdated.availableLocales) && C12238m.areEqual(this.metacriticId, trackSkuUpdated.metacriticId) && C12238m.areEqual(this.isExclusive, trackSkuUpdated.isExclusive) && C12238m.areEqual(this.genres, trackSkuUpdated.genres) && C12238m.areEqual(this.features, trackSkuUpdated.features) && C12238m.areEqual(this.contentRatingPegi, trackSkuUpdated.contentRatingPegi) && C12238m.areEqual(this.contentRatingEsrb, trackSkuUpdated.contentRatingEsrb) && C12238m.areEqual(this.regularPriceTier, trackSkuUpdated.regularPriceTier) && C12238m.areEqual(this.priceTier, trackSkuUpdated.priceTier);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

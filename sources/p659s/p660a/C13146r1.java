@@ -16,16 +16,16 @@ public final class C13146r1 extends AbstractC13092e {
         this.f27896j = c13028k;
     }
 
-    @Override // p659s.p660a.AbstractC13123k
-    /* JADX INFO: renamed from: a */
-    public void mo11193a(Throwable th) {
-        this.f27896j.mo11151n();
-    }
-
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(Throwable th) {
         this.f27896j.mo11151n();
         return Unit.f27425a;
+    }
+
+    @Override // p659s.p660a.AbstractC13123k
+    /* JADX INFO: renamed from: a */
+    public void mo11193a(Throwable th) {
+        this.f27896j.mo11151n();
     }
 
     public String toString() {

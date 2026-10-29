@@ -23,6 +23,11 @@ public class C1580i implements InterfaceC1584m<PointF, PointF> {
     }
 
     @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
+    public boolean isStatic() {
+        return this.f2723a.isStatic() && this.f2724b.isStatic();
+    }
+
+    @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
     /* JADX INFO: renamed from: a */
     public AbstractC1544a<PointF, PointF> mo773a() {
         return new C1556m(this.f2723a.mo773a(), this.f2724b.mo773a());
@@ -32,10 +37,5 @@ public class C1580i implements InterfaceC1584m<PointF, PointF> {
     /* JADX INFO: renamed from: b */
     public List<C1501a<PointF>> mo774b() {
         throw new UnsupportedOperationException("Cannot call getKeyframes on AnimatableSplitDimensionPathValue.");
-    }
-
-    @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
-    public boolean isStatic() {
-        return this.f2723a.isStatic() && this.f2724b.isStatic();
     }
 }

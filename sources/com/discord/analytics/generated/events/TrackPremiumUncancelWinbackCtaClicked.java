@@ -10,20 +10,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumUncancelWinbackCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
     private final CharSequence action = null;
-    private final transient String analyticsSchemaTypeName = "premium_uncancel_winback_cta_clicked";
     private TrackBase trackBase;
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
+    private final transient String analyticsSchemaTypeName = "premium_uncancel_winback_cta_clicked";
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackPremiumUncancelWinbackCtaClicked) && C12238m.areEqual(this.action, ((TrackPremiumUncancelWinbackCtaClicked) other).action);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

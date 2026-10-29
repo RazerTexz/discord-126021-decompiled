@@ -29,21 +29,6 @@ public final /* data */ class GuildScheduledEventPickerTime implements Serializa
         return guildScheduledEventPickerTime.copy(i, i2, i3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getHourOfDay() {
-        return this.hourOfDay;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getMinute() {
-        return this.minute;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getSecond() {
-        return this.second;
-    }
-
     public final GuildScheduledEventPickerTime copy(int hourOfDay, int minute, int second) {
         return new GuildScheduledEventPickerTime(hourOfDay, minute, second);
     }
@@ -59,12 +44,27 @@ public final /* data */ class GuildScheduledEventPickerTime implements Serializa
         return this.hourOfDay == guildScheduledEventPickerTime.hourOfDay && this.minute == guildScheduledEventPickerTime.minute && this.second == guildScheduledEventPickerTime.second;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getHourOfDay() {
         return this.hourOfDay;
     }
 
+    public final int getHourOfDay() {
+        return this.hourOfDay;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getMinute() {
         return this.minute;
+    }
+
+    public final int getMinute() {
+        return this.minute;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getSecond() {
+        return this.second;
     }
 
     public final int getSecond() {

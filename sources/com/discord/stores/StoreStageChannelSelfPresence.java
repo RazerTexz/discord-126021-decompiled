@@ -37,7 +37,7 @@ public final class StoreStageChannelSelfPresence extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannelSelfPresence$init$1 */
     /* JADX INFO: compiled from: StoreStageChannelSelfPresence.kt */
-    public static final class C64081 extends AbstractC12240o implements Function0<Integer> {
+    public final class C64081 extends AbstractC12240o implements Function0<Integer> {
         public C64081() {
             super(0);
         }
@@ -56,11 +56,11 @@ public final class StoreStageChannelSelfPresence extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannelSelfPresence$init$3 */
     /* JADX INFO: compiled from: StoreStageChannelSelfPresence.kt */
-    public static final class C64103 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C64103 extends AbstractC12240o implements Function1<Boolean, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStageChannelSelfPresence$init$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStageChannelSelfPresence.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Boolean $showCurrentActivity;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -123,24 +123,6 @@ public final class StoreStageChannelSelfPresence extends StoreV2 {
         BehaviorSubject<Unit> behaviorSubjectM11129k0 = BehaviorSubject.m11129k0();
         C12238m.checkNotNullExpressionValue(behaviorSubjectM11129k0, "BehaviorSubject.create()");
         this.publishStateTrigger = behaviorSubjectM11129k0;
-    }
-
-    @StoreThread
-    private final void updateActivity() {
-        ActivityParty party;
-        ActivityParty party2;
-        Activity activityCreateStageChannelListeningActivity = ActivityUtilsKt.createStageChannelListeningActivity();
-        String id2 = (activityCreateStageChannelListeningActivity == null || (party2 = activityCreateStageChannelListeningActivity.getParty()) == null) ? null : party2.getId();
-        Activity activity = this.stageChannelActivity;
-        if (!(!C12238m.areEqual(id2, (activity == null || (party = activity.getParty()) == null) ? null : party.getId()))) {
-            String name = activityCreateStageChannelListeningActivity != null ? activityCreateStageChannelListeningActivity.getName() : null;
-            Activity activity2 = this.stageChannelActivity;
-            if (!(!C12238m.areEqual(name, activity2 != null ? activity2.getName() : null))) {
-                return;
-            }
-        }
-        this.stageChannelActivity = activityCreateStageChannelListeningActivity;
-        this.publishStateTrigger.onNext(Unit.f27425a);
     }
 
     public final Dispatcher getDispatcher() {
@@ -225,5 +207,23 @@ public final class StoreStageChannelSelfPresence extends StoreV2 {
 
     public final void setStageChannelActivity(Activity activity) {
         this.stageChannelActivity = activity;
+    }
+
+    @StoreThread
+    private final void updateActivity() {
+        ActivityParty party;
+        ActivityParty party2;
+        Activity activityCreateStageChannelListeningActivity = ActivityUtilsKt.createStageChannelListeningActivity();
+        String id2 = (activityCreateStageChannelListeningActivity == null || (party2 = activityCreateStageChannelListeningActivity.getParty()) == null) ? null : party2.getId();
+        Activity activity = this.stageChannelActivity;
+        if (!(!C12238m.areEqual(id2, (activity == null || (party = activity.getParty()) == null) ? null : party.getId()))) {
+            String name = activityCreateStageChannelListeningActivity != null ? activityCreateStageChannelListeningActivity.getName() : null;
+            Activity activity2 = this.stageChannelActivity;
+            if (!(!C12238m.areEqual(name, activity2 != null ? activity2.getName() : null))) {
+                return;
+            }
+        }
+        this.stageChannelActivity = activityCreateStageChannelListeningActivity;
+        this.publishStateTrigger.onNext(Unit.f27425a);
     }
 }

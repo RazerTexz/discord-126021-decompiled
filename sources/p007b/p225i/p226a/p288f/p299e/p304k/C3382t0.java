@@ -19,17 +19,17 @@ public final class C3382t0 extends AbstractC3351e {
     /* JADX INFO: renamed from: e */
     public final Handler f9566e;
 
-    /* JADX INFO: renamed from: c */
-    public final HashMap<C3376q0, ServiceConnectionC3378r0> f9564c = new HashMap<>();
-
-    /* JADX INFO: renamed from: f */
-    public final C3398a f9567f = C3398a.m4181b();
-
     /* JADX INFO: renamed from: g */
     public final long f9568g = 5000;
 
     /* JADX INFO: renamed from: h */
     public final long f9569h = 300000;
+
+    /* JADX INFO: renamed from: c */
+    public final HashMap<C3376q0, ServiceConnectionC3378r0> f9564c = new HashMap<>();
+
+    /* JADX INFO: renamed from: f */
+    public final C3398a f9567f = C3398a.m4181b();
 
     public C3382t0(Context context) {
         this.f9565d = context.getApplicationContext();

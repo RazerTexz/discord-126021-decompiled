@@ -4,32 +4,32 @@ package org.objectweb.asm;
 public class Label {
     static final int FLAG_DEBUG_ONLY = 1;
     static final int FLAG_JUMP_TARGET = 2;
-    static final int FLAG_RESOLVED = 4;
     static final int FLAG_REACHABLE = 8;
+    static final int FLAG_RESOLVED = 4;
     static final int FLAG_SUBROUTINE_CALLER = 16;
-    static final int FLAG_SUBROUTINE_START = 32;
     static final int FLAG_SUBROUTINE_END = 64;
-    static final int LINE_NUMBERS_CAPACITY_INCREMENT = 4;
+    static final int FLAG_SUBROUTINE_START = 32;
     static final int FORWARD_REFERENCES_CAPACITY_INCREMENT = 6;
+    static final int FORWARD_REFERENCE_HANDLE_MASK = 268435455;
     static final int FORWARD_REFERENCE_TYPE_MASK = -268435456;
     static final int FORWARD_REFERENCE_TYPE_SHORT = 268435456;
     static final int FORWARD_REFERENCE_TYPE_WIDE = 536870912;
-    static final int FORWARD_REFERENCE_HANDLE_MASK = 268435455;
-    static final Label EMPTY_LIST = new Label();
-    public Object info;
-    short flags;
-    private short lineNumber;
-    private int[] otherLineNumbers;
+    static final int LINE_NUMBERS_CAPACITY_INCREMENT = 4;
     int bytecodeOffset;
+    short flags;
     private int[] forwardReferences;
-    short inputStackSize;
-    short outputStackSize;
-    short outputStackMax;
-    short subroutineId;
     Frame frame;
+    public Object info;
+    short inputStackSize;
+    private short lineNumber;
     Label nextBasicBlock;
-    Edge outgoingEdges;
     Label nextListElement;
+    private int[] otherLineNumbers;
+    Edge outgoingEdges;
+    short outputStackMax;
+    short outputStackSize;
+    short subroutineId;
+    static final Label EMPTY_LIST = new Label();
 
     public int getOffset() {
         if ((this.flags & 4) == 0) {

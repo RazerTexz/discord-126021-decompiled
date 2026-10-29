@@ -8,9 +8,6 @@ import p658rx.Producer;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12693a implements Producer {
 
-    /* JADX INFO: renamed from: j */
-    public static final Producer f27159j = new a();
-
     /* JADX INFO: renamed from: k */
     public long f27160k;
 
@@ -29,9 +26,12 @@ public final class C12693a implements Producer {
     /* JADX INFO: renamed from: p */
     public Producer f27165p;
 
+    /* JADX INFO: renamed from: j */
+    public static final Producer f27159j = new a();
+
     /* JADX INFO: renamed from: j0.l.b.a$a */
     /* JADX INFO: compiled from: ProducerArbiter.java */
-    public static class a implements Producer {
+    public final class a implements Producer {
         @Override // p658rx.Producer
         /* JADX INFO: renamed from: j */
         public void mo10704j(long j) {

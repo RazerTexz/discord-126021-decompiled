@@ -18,7 +18,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$a */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class a implements InterfaceC12554h<ResponseBody, ResponseBody> {
+    public final class a implements InterfaceC12554h<ResponseBody, ResponseBody> {
 
         /* JADX INFO: renamed from: a */
         public static final a f26484a = new a();
@@ -36,7 +36,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$b */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class b implements InterfaceC12554h<RequestBody, RequestBody> {
+    public final class b implements InterfaceC12554h<RequestBody, RequestBody> {
 
         /* JADX INFO: renamed from: a */
         public static final b f26485a = new b();
@@ -49,7 +49,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$c */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class c implements InterfaceC12554h<ResponseBody, ResponseBody> {
+    public final class c implements InterfaceC12554h<ResponseBody, ResponseBody> {
 
         /* JADX INFO: renamed from: a */
         public static final c f26486a = new c();
@@ -62,7 +62,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$d */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class d implements InterfaceC12554h<Object, String> {
+    public final class d implements InterfaceC12554h<Object, String> {
 
         /* JADX INFO: renamed from: a */
         public static final d f26487a = new d();
@@ -75,7 +75,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$e */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class e implements InterfaceC12554h<ResponseBody, Unit> {
+    public final class e implements InterfaceC12554h<ResponseBody, Unit> {
 
         /* JADX INFO: renamed from: a */
         public static final e f26488a = new e();
@@ -89,7 +89,7 @@ public final class C12502c extends InterfaceC12554h.a {
 
     /* JADX INFO: renamed from: i0.c$f */
     /* JADX INFO: compiled from: BuiltInConverters.java */
-    public static final class f implements InterfaceC12554h<ResponseBody, Void> {
+    public final class f implements InterfaceC12554h<ResponseBody, Void> {
 
         /* JADX INFO: renamed from: a */
         public static final f f26489a = new f();

@@ -738,6 +738,353 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         new C5148h(Arrays.asList(new C5132f(c5130d), new C5165h())).mo7333e(c5130d);
     }
 
+    /* JADX INFO: renamed from: c1 */
+    public final void m7228c1(@NonNull Surface... surfaceArr) {
+        this.f13807i0.addTarget(this.f13812n0);
+        Surface surface = this.f13811m0;
+        if (surface != null) {
+            this.f13807i0.addTarget(surface);
+        }
+        for (Surface surface2 : surfaceArr) {
+            if (surface2 == null) {
+                throw new IllegalArgumentException("Should not add a null surface.");
+            }
+            this.f13807i0.addTarget(surface2);
+        }
+    }
+
+    /* JADX INFO: renamed from: d1 */
+    public final void m7229d1(@NonNull CaptureRequest.Builder builder, @Nullable CaptureRequest.Builder builder2) {
+        AbstractC5135i.f13918j.m7159a(1, "applyAllParameters:", "called for tag", builder.build().getTag());
+        builder.set(CaptureRequest.CONTROL_MODE, 1);
+        m7231f1(builder);
+        m7233h1(builder, EnumC5119f.OFF);
+        Location location = this.f13868C;
+        if (location != null) {
+            builder.set(CaptureRequest.JPEG_GPS_LOCATION, location);
+        }
+        m7238m1(builder, EnumC5126m.AUTO);
+        m7234i1(builder, EnumC5121h.OFF);
+        m7239n1(builder, 0.0f);
+        m7232g1(builder, 0.0f);
+        m7235j1(builder, 0.0f);
+        if (builder2 != null) {
+            CaptureRequest.Key key = CaptureRequest.CONTROL_AF_REGIONS;
+            builder.set(key, (MeteringRectangle[]) builder2.get(key));
+            CaptureRequest.Key key2 = CaptureRequest.CONTROL_AE_REGIONS;
+            builder.set(key2, (MeteringRectangle[]) builder2.get(key2));
+            CaptureRequest.Key key3 = CaptureRequest.CONTROL_AWB_REGIONS;
+            builder.set(key3, (MeteringRectangle[]) builder2.get(key3));
+            CaptureRequest.Key key4 = CaptureRequest.CONTROL_AF_MODE;
+            builder.set(key4, (Integer) builder2.get(key4));
+        }
+    }
+
+    /* JADX INFO: renamed from: e1 */
+    public void m7230e1(@NonNull InterfaceC5141a interfaceC5141a, @NonNull CaptureRequest.Builder builder) throws CameraAccessException {
+        if (this.f13922n.f14028f != EnumC5178e.PREVIEW || m7324O()) {
+            return;
+        }
+        this.f13806h0.capture(builder.build(), this.f13816r0, null);
+    }
+
+    /* JADX INFO: renamed from: f1 */
+    public void m7231f1(@NonNull CaptureRequest.Builder builder) {
+        int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES, new int[0]);
+        ArrayList arrayList = new ArrayList();
+        for (int i2 : iArr) {
+            arrayList.add(Integer.valueOf(i2));
+        }
+        if (this.f13882Q == EnumC5122i.VIDEO && arrayList.contains(3)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
+            return;
+        }
+        if (arrayList.contains(4)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 4);
+            return;
+        }
+        if (arrayList.contains(1)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 1);
+        } else if (arrayList.contains(0)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 0);
+            builder.set(CaptureRequest.LENS_FOCUS_DISTANCE, Float.valueOf(0.0f));
+        }
+    }
+
+    /* JADX INFO: renamed from: g1 */
+    public boolean m7232g1(@NonNull CaptureRequest.Builder builder, float f2) {
+        if (!this.f13896p.f13693l) {
+            this.f13870E = f2;
+            return false;
+        }
+        Rational rational = (Rational) m7245t1(CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP, new Rational(1, 1));
+        builder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, Integer.valueOf(Math.round(rational.floatValue() * this.f13870E)));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: h1 */
+    public boolean m7233h1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5119f enumC5119f) {
+        if (this.f13896p.m7163c(this.f13903w)) {
+            int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES, new int[0]);
+            ArrayList arrayList = new ArrayList();
+            for (int i2 : iArr) {
+                arrayList.add(Integer.valueOf(i2));
+            }
+            C5157b c5157b = this.f13809k0;
+            EnumC5119f enumC5119f2 = this.f13903w;
+            Objects.requireNonNull(c5157b);
+            ArrayList<Pair> arrayList2 = new ArrayList();
+            int iOrdinal = enumC5119f2.ordinal();
+            if (iOrdinal == 0) {
+                arrayList2.add(new Pair(1, 0));
+                arrayList2.add(new Pair(0, 0));
+            } else if (iOrdinal == 1) {
+                arrayList2.add(new Pair(3, 0));
+            } else if (iOrdinal == 2) {
+                arrayList2.add(new Pair(2, 0));
+                arrayList2.add(new Pair(4, 0));
+            } else if (iOrdinal == 3) {
+                arrayList2.add(new Pair(1, 2));
+                arrayList2.add(new Pair(0, 2));
+            }
+            for (Pair pair : arrayList2) {
+                if (arrayList.contains(pair.first)) {
+                    C5103b c5103b = AbstractC5135i.f13918j;
+                    c5103b.m7159a(1, "applyFlash: setting CONTROL_AE_MODE to", pair.first);
+                    c5103b.m7159a(1, "applyFlash: setting FLASH_MODE to", pair.second);
+                    builder.set(CaptureRequest.CONTROL_AE_MODE, (Integer) pair.first);
+                    builder.set(CaptureRequest.FLASH_MODE, (Integer) pair.second);
+                    return true;
+                }
+            }
+        }
+        this.f13903w = enumC5119f;
+        return false;
+    }
+
+    /* JADX INFO: renamed from: i1 */
+    public boolean m7234i1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5121h enumC5121h) {
+        if (!this.f13896p.m7163c(this.f13866A)) {
+            this.f13866A = enumC5121h;
+            return false;
+        }
+        C5157b c5157b = this.f13809k0;
+        EnumC5121h enumC5121h2 = this.f13866A;
+        Objects.requireNonNull(c5157b);
+        builder.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(C5157b.f13964d.get(enumC5121h2).intValue()));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: j1 */
+    public boolean m7235j1(@NonNull CaptureRequest.Builder builder, float f2) {
+        Range<Integer>[] rangeArr = (Range[]) m7245t1(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES, new Range[0]);
+        Arrays.sort(rangeArr, new C5131e(this, this.f13875J && this.f13874I != 0.0f));
+        float f3 = this.f13874I;
+        if (f3 == 0.0f) {
+            for (Range range : (ArrayList) m7243r1(rangeArr)) {
+                if (range.contains(30) || range.contains(24)) {
+                    builder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range);
+                    return true;
+                }
+            }
+        } else {
+            float fMin = Math.min(f3, this.f13896p.f13698q);
+            this.f13874I = fMin;
+            this.f13874I = Math.max(fMin, this.f13896p.f13697p);
+            for (Range range2 : (ArrayList) m7243r1(rangeArr)) {
+                if (range2.contains(Integer.valueOf(Math.round(this.f13874I)))) {
+                    builder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range2);
+                    return true;
+                }
+            }
+        }
+        this.f13874I = f2;
+        return false;
+    }
+
+    /* JADX INFO: renamed from: k1 */
+    public void m7236k1() {
+        m7237l1(true, 3);
+    }
+
+    /* JADX INFO: renamed from: l1 */
+    public final void m7237l1(boolean z2, int i2) {
+        if ((this.f13922n.f14028f != EnumC5178e.PREVIEW || m7324O()) && z2) {
+            return;
+        }
+        try {
+            this.f13806h0.setRepeatingRequest(this.f13807i0.build(), this.f13816r0, null);
+        } catch (CameraAccessException e2) {
+            throw new CameraException(e2, i2);
+        } catch (IllegalStateException e3) {
+            C5103b c5103b = AbstractC5135i.f13918j;
+            C5179f c5179f = this.f13922n;
+            c5103b.m7159a(3, "applyRepeatingRequestBuilder: session is invalid!", e3, "checkStarted:", Boolean.valueOf(z2), "currentThread:", Thread.currentThread().getName(), "state:", c5179f.f14028f, "targetState:", c5179f.f14029g);
+            throw new CameraException(3);
+        }
+    }
+
+    /* JADX INFO: renamed from: m1 */
+    public boolean m7238m1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5126m enumC5126m) {
+        if (!this.f13896p.m7163c(this.f13904x)) {
+            this.f13904x = enumC5126m;
+            return false;
+        }
+        C5157b c5157b = this.f13809k0;
+        EnumC5126m enumC5126m2 = this.f13904x;
+        Objects.requireNonNull(c5157b);
+        builder.set(CaptureRequest.CONTROL_AWB_MODE, Integer.valueOf(C5157b.f13963c.get(enumC5126m2).intValue()));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: n1 */
+    public boolean m7239n1(@NonNull CaptureRequest.Builder builder, float f2) {
+        if (!this.f13896p.f13692k) {
+            this.f13869D = f2;
+            return false;
+        }
+        float fFloatValue = ((Float) m7245t1(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM, Float.valueOf(1.0f))).floatValue();
+        float f3 = fFloatValue - 1.0f;
+        float f4 = (this.f13869D * f3) + 1.0f;
+        Rect rect = (Rect) m7245t1(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE, new Rect());
+        int iWidth = (int) (rect.width() / fFloatValue);
+        int iHeight = (int) (rect.height() / fFloatValue);
+        int iWidth2 = rect.width() - iWidth;
+        int iHeight2 = rect.height() - iHeight;
+        float f5 = f4 - 1.0f;
+        int i2 = (int) (((iWidth2 * f5) / f3) / 2.0f);
+        int i3 = (int) (((iHeight2 * f5) / f3) / 2.0f);
+        builder.set(CaptureRequest.SCALER_CROP_REGION, new Rect(i2, i3, rect.width() - i2, rect.height() - i3));
+        return true;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:12:0x0015  */
+    @NonNull
+    /* JADX INFO: renamed from: o1 */
+    public final CameraException m7240o1(@NonNull CameraAccessException cameraAccessException) {
+        int reason = cameraAccessException.getReason();
+        int i2 = 3;
+        if (reason == 1) {
+            i2 = 1;
+        } else if (reason != 2 && reason != 3) {
+            if (reason == 4 || reason == 5) {
+                i2 = 1;
+            } else {
+                i2 = 0;
+            }
+        }
+        return new CameraException(cameraAccessException, i2);
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: p1 */
+    public final C5164g m7241p1(@Nullable C5211b c5211b) {
+        C5164g c5164g = this.f13815q0;
+        if (c5164g != null) {
+            c5164g.mo7330a(this);
+        }
+        CaptureRequest.Builder builder = this.f13807i0;
+        int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES, new int[0]);
+        ArrayList arrayList = new ArrayList();
+        for (int i2 : iArr) {
+            arrayList.add(Integer.valueOf(i2));
+        }
+        if (arrayList.contains(1)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 1);
+        } else if (this.f13882Q == EnumC5122i.VIDEO && arrayList.contains(3)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
+        } else if (arrayList.contains(4)) {
+            builder.set(CaptureRequest.CONTROL_AF_MODE, 4);
+        }
+        C5164g c5164g2 = new C5164g(this, c5211b, c5211b == null);
+        this.f13815q0 = c5164g2;
+        return c5164g2;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: q1 */
+    public final CaptureRequest.Builder m7242q1(int i2) throws CameraAccessException {
+        CaptureRequest.Builder builder = this.f13807i0;
+        CaptureRequest.Builder builderCreateCaptureRequest = this.f13804f0.createCaptureRequest(i2);
+        this.f13807i0 = builderCreateCaptureRequest;
+        builderCreateCaptureRequest.setTag(Integer.valueOf(i2));
+        m7229d1(this.f13807i0, builder);
+        return this.f13807i0;
+    }
+
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
+    @NonNull
+    /* JADX INFO: renamed from: r1 */
+    public List<Range<Integer>> m7243r1(@NonNull Range<Integer>[] rangeArr) {
+        ArrayList arrayList = new ArrayList();
+        int iRound = Math.round(this.f13896p.f13697p);
+        int iRound2 = Math.round(this.f13896p.f13698q);
+        for (Range<Integer> range : rangeArr) {
+            if (range.contains(Integer.valueOf(iRound)) || range.contains(Integer.valueOf(iRound2))) {
+                C5103b c5103b = C5201b.f14103a;
+                String str = Build.MODEL;
+                boolean z2 = true;
+                String str2 = Build.MANUFACTURER;
+                c5103b.m7159a(1, "Build.MODEL:", str, "Build.BRAND:", Build.BRAND, "Build.MANUFACTURER:", str2);
+                List<Range<Integer>> list = C5201b.f14104b.get(str2 + " " + str);
+                if (list != null && list.contains(range)) {
+                    c5103b.m7159a(1, "Dropping range:", range);
+                    z2 = false;
+                }
+                if (z2) {
+                    arrayList.add(range);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: s1 */
+    public List<C5236b> m7244s1() {
+        try {
+            StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) this.f13802d0.getCameraCharacteristics(this.f13803e0).get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+            if (streamConfigurationMap == null) {
+                throw new RuntimeException("StreamConfigurationMap is null. Should not happen.");
+            }
+            Size[] outputSizes = streamConfigurationMap.getOutputSizes(this.f13901u);
+            ArrayList arrayList = new ArrayList(outputSizes.length);
+            for (Size size : outputSizes) {
+                C5236b c5236b = new C5236b(size.getWidth(), size.getHeight());
+                if (!arrayList.contains(c5236b)) {
+                    arrayList.add(c5236b);
+                }
+            }
+            return arrayList;
+        } catch (CameraAccessException e2) {
+            throw m7240o1(e2);
+        }
+    }
+
+    @NonNull
+    @VisibleForTesting
+    /* JADX INFO: renamed from: t1 */
+    public <T> T m7245t1(@NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
+        T t2 = (T) this.f13805g0.get(key);
+        return t2 == null ? t : t2;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: u1 */
+    public final <T> T m7246u1(@NonNull CameraCharacteristics cameraCharacteristics, @NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
+        T t2 = (T) cameraCharacteristics.get(key);
+        return t2 == null ? t : t2;
+    }
+
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: F0 */
     public void mo7190F0(@NonNull EnumC5126m enumC5126m) {
@@ -1080,17 +1427,6 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         c5221f.mo7417c();
     }
 
-    @Override // p007b.p452o.p453a.p455n.AbstractC5133g, p007b.p452o.p453a.p471v.AbstractC5219d.a
-    /* JADX INFO: renamed from: a */
-    public void mo7227a(@Nullable C5113l.a aVar, @Nullable Exception exc) {
-        boolean z2 = this.f13897q instanceof C5217b;
-        super.mo7227a(aVar, exc);
-        if ((z2 && this.f13872G) || (!z2 && this.f13873H)) {
-            C5179f c5179f = this.f13922n;
-            c5179f.m7363b("reset metering after picture", true, new RunnableC5181h(c5179f, EnumC5178e.PREVIEW, new s()));
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: c */
     public final boolean mo7205c(@NonNull EnumC5118e enumC5118e) {
@@ -1117,21 +1453,6 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         }
     }
 
-    /* JADX INFO: renamed from: c1 */
-    public final void m7228c1(@NonNull Surface... surfaceArr) {
-        this.f13807i0.addTarget(this.f13812n0);
-        Surface surface = this.f13811m0;
-        if (surface != null) {
-            this.f13807i0.addTarget(surface);
-        }
-        for (Surface surface2 : surfaceArr) {
-            if (surface2 == null) {
-                throw new IllegalArgumentException("Should not add a null surface.");
-            }
-            this.f13807i0.addTarget(surface2);
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: d0 */
     public void mo7207d0(float f2, @NonNull float[] fArr, @Nullable PointF[] pointFArr, boolean z2) {
@@ -1140,41 +1461,6 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         this.f13922n.m7366e("exposure correction", 20);
         C5179f c5179f = this.f13922n;
         c5179f.m7363b("exposure correction", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new f(f3, z2, f2, fArr, pointFArr)));
-    }
-
-    /* JADX INFO: renamed from: d1 */
-    public final void m7229d1(@NonNull CaptureRequest.Builder builder, @Nullable CaptureRequest.Builder builder2) {
-        AbstractC5135i.f13918j.m7159a(1, "applyAllParameters:", "called for tag", builder.build().getTag());
-        builder.set(CaptureRequest.CONTROL_MODE, 1);
-        m7231f1(builder);
-        m7233h1(builder, EnumC5119f.OFF);
-        Location location = this.f13868C;
-        if (location != null) {
-            builder.set(CaptureRequest.JPEG_GPS_LOCATION, location);
-        }
-        m7238m1(builder, EnumC5126m.AUTO);
-        m7234i1(builder, EnumC5121h.OFF);
-        m7239n1(builder, 0.0f);
-        m7232g1(builder, 0.0f);
-        m7235j1(builder, 0.0f);
-        if (builder2 != null) {
-            CaptureRequest.Key key = CaptureRequest.CONTROL_AF_REGIONS;
-            builder.set(key, (MeteringRectangle[]) builder2.get(key));
-            CaptureRequest.Key key2 = CaptureRequest.CONTROL_AE_REGIONS;
-            builder.set(key2, (MeteringRectangle[]) builder2.get(key2));
-            CaptureRequest.Key key3 = CaptureRequest.CONTROL_AWB_REGIONS;
-            builder.set(key3, (MeteringRectangle[]) builder2.get(key3));
-            CaptureRequest.Key key4 = CaptureRequest.CONTROL_AF_MODE;
-            builder.set(key4, (Integer) builder2.get(key4));
-        }
-    }
-
-    /* JADX INFO: renamed from: e1 */
-    public void m7230e1(@NonNull InterfaceC5141a interfaceC5141a, @NonNull CaptureRequest.Builder builder) throws CameraAccessException {
-        if (this.f13922n.f14028f != EnumC5178e.PREVIEW || m7324O()) {
-            return;
-        }
-        this.f13806h0.capture(builder.build(), this.f13816r0, null);
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
@@ -1186,29 +1472,6 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         c5179f.m7363b("flash (" + enumC5119f + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new a(enumC5119f2, enumC5119f)));
     }
 
-    /* JADX INFO: renamed from: f1 */
-    public void m7231f1(@NonNull CaptureRequest.Builder builder) {
-        int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES, new int[0]);
-        ArrayList arrayList = new ArrayList();
-        for (int i2 : iArr) {
-            arrayList.add(Integer.valueOf(i2));
-        }
-        if (this.f13882Q == EnumC5122i.VIDEO && arrayList.contains(3)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
-            return;
-        }
-        if (arrayList.contains(4)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 4);
-            return;
-        }
-        if (arrayList.contains(1)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 1);
-        } else if (arrayList.contains(0)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 0);
-            builder.set(CaptureRequest.LENS_FOCUS_DISTANCE, Float.valueOf(0.0f));
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: g0 */
     public void mo7212g0(int i2) {
@@ -1218,106 +1481,10 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         this.f13922n.m7363b(C1643a.m873r("frame processing format (", i2, ")"), true, new k(i2));
     }
 
-    /* JADX INFO: renamed from: g1 */
-    public boolean m7232g1(@NonNull CaptureRequest.Builder builder, float f2) {
-        if (!this.f13896p.f13693l) {
-            this.f13870E = f2;
-            return false;
-        }
-        Rational rational = (Rational) m7245t1(CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP, new Rational(1, 1));
-        builder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, Integer.valueOf(Math.round(rational.floatValue() * this.f13870E)));
-        return true;
-    }
-
-    /* JADX INFO: renamed from: h1 */
-    public boolean m7233h1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5119f enumC5119f) {
-        if (this.f13896p.m7163c(this.f13903w)) {
-            int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES, new int[0]);
-            ArrayList arrayList = new ArrayList();
-            for (int i2 : iArr) {
-                arrayList.add(Integer.valueOf(i2));
-            }
-            C5157b c5157b = this.f13809k0;
-            EnumC5119f enumC5119f2 = this.f13903w;
-            Objects.requireNonNull(c5157b);
-            ArrayList<Pair> arrayList2 = new ArrayList();
-            int iOrdinal = enumC5119f2.ordinal();
-            if (iOrdinal == 0) {
-                arrayList2.add(new Pair(1, 0));
-                arrayList2.add(new Pair(0, 0));
-            } else if (iOrdinal == 1) {
-                arrayList2.add(new Pair(3, 0));
-            } else if (iOrdinal == 2) {
-                arrayList2.add(new Pair(2, 0));
-                arrayList2.add(new Pair(4, 0));
-            } else if (iOrdinal == 3) {
-                arrayList2.add(new Pair(1, 2));
-                arrayList2.add(new Pair(0, 2));
-            }
-            for (Pair pair : arrayList2) {
-                if (arrayList.contains(pair.first)) {
-                    C5103b c5103b = AbstractC5135i.f13918j;
-                    c5103b.m7159a(1, "applyFlash: setting CONTROL_AE_MODE to", pair.first);
-                    c5103b.m7159a(1, "applyFlash: setting FLASH_MODE to", pair.second);
-                    builder.set(CaptureRequest.CONTROL_AE_MODE, (Integer) pair.first);
-                    builder.set(CaptureRequest.FLASH_MODE, (Integer) pair.second);
-                    return true;
-                }
-            }
-        }
-        this.f13903w = enumC5119f;
-        return false;
-    }
-
-    /* JADX INFO: renamed from: i1 */
-    public boolean m7234i1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5121h enumC5121h) {
-        if (!this.f13896p.m7163c(this.f13866A)) {
-            this.f13866A = enumC5121h;
-            return false;
-        }
-        C5157b c5157b = this.f13809k0;
-        EnumC5121h enumC5121h2 = this.f13866A;
-        Objects.requireNonNull(c5157b);
-        builder.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(C5157b.f13964d.get(enumC5121h2).intValue()));
-        return true;
-    }
-
-    /* JADX INFO: renamed from: j1 */
-    public boolean m7235j1(@NonNull CaptureRequest.Builder builder, float f2) {
-        Range<Integer>[] rangeArr = (Range[]) m7245t1(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES, new Range[0]);
-        Arrays.sort(rangeArr, new C5131e(this, this.f13875J && this.f13874I != 0.0f));
-        float f3 = this.f13874I;
-        if (f3 == 0.0f) {
-            for (Range range : (ArrayList) m7243r1(rangeArr)) {
-                if (range.contains(30) || range.contains(24)) {
-                    builder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range);
-                    return true;
-                }
-            }
-        } else {
-            float fMin = Math.min(f3, this.f13896p.f13698q);
-            this.f13874I = fMin;
-            this.f13874I = Math.max(fMin, this.f13896p.f13697p);
-            for (Range range2 : (ArrayList) m7243r1(rangeArr)) {
-                if (range2.contains(Integer.valueOf(Math.round(this.f13874I)))) {
-                    builder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range2);
-                    return true;
-                }
-            }
-        }
-        this.f13874I = f2;
-        return false;
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: k0 */
     public void mo7217k0(boolean z2) {
         this.f13922n.m7363b("has frame processors (" + z2 + ")", true, new j(z2));
-    }
-
-    /* JADX INFO: renamed from: k1 */
-    public void m7236k1() {
-        m7237l1(true, 3);
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
@@ -1329,23 +1496,6 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         c5179f.m7363b("hdr (" + enumC5121h + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new d(enumC5121h2)));
     }
 
-    /* JADX INFO: renamed from: l1 */
-    public final void m7237l1(boolean z2, int i2) {
-        if ((this.f13922n.f14028f != EnumC5178e.PREVIEW || m7324O()) && z2) {
-            return;
-        }
-        try {
-            this.f13806h0.setRepeatingRequest(this.f13807i0.build(), this.f13816r0, null);
-        } catch (CameraAccessException e2) {
-            throw new CameraException(e2, i2);
-        } catch (IllegalStateException e3) {
-            C5103b c5103b = AbstractC5135i.f13918j;
-            C5179f c5179f = this.f13922n;
-            c5103b.m7159a(3, "applyRepeatingRequestBuilder: session is invalid!", e3, "checkStarted:", Boolean.valueOf(z2), "currentThread:", Thread.currentThread().getName(), "state:", c5179f.f14028f, "targetState:", c5179f.f14029g);
-            throw new CameraException(3);
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: m0 */
     public void mo7221m0(@Nullable Location location) {
@@ -1355,56 +1505,41 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
         c5179f.m7363b(ModelAuditLogEntry.CHANGE_KEY_LOCATION, true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new b(location2)));
     }
 
-    /* JADX INFO: renamed from: m1 */
-    public boolean m7238m1(@NonNull CaptureRequest.Builder builder, @NonNull EnumC5126m enumC5126m) {
-        if (!this.f13896p.m7163c(this.f13904x)) {
-            this.f13904x = enumC5126m;
-            return false;
+    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
+    /* JADX INFO: renamed from: p0 */
+    public void mo7223p0(@NonNull EnumC5123j enumC5123j) {
+        if (enumC5123j != this.f13867B) {
+            this.f13867B = enumC5123j;
+            C5179f c5179f = this.f13922n;
+            c5179f.m7363b("picture format (" + enumC5123j + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new h()));
         }
-        C5157b c5157b = this.f13809k0;
-        EnumC5126m enumC5126m2 = this.f13904x;
-        Objects.requireNonNull(c5157b);
-        builder.set(CaptureRequest.CONTROL_AWB_MODE, Integer.valueOf(C5157b.f13963c.get(enumC5126m2).intValue()));
-        return true;
     }
 
-    /* JADX INFO: renamed from: n1 */
-    public boolean m7239n1(@NonNull CaptureRequest.Builder builder, float f2) {
-        if (!this.f13896p.f13692k) {
-            this.f13869D = f2;
-            return false;
-        }
-        float fFloatValue = ((Float) m7245t1(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM, Float.valueOf(1.0f))).floatValue();
-        float f3 = fFloatValue - 1.0f;
-        float f4 = (this.f13869D * f3) + 1.0f;
-        Rect rect = (Rect) m7245t1(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE, new Rect());
-        int iWidth = (int) (rect.width() / fFloatValue);
-        int iHeight = (int) (rect.height() / fFloatValue);
-        int iWidth2 = rect.width() - iWidth;
-        int iHeight2 = rect.height() - iHeight;
-        float f5 = f4 - 1.0f;
-        int i2 = (int) (((iWidth2 * f5) / f3) / 2.0f);
-        int i3 = (int) (((iHeight2 * f5) / f3) / 2.0f);
-        builder.set(CaptureRequest.SCALER_CROP_REGION, new Rect(i2, i3, rect.width() - i2, rect.height() - i3));
-        return true;
+    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
+    /* JADX INFO: renamed from: t0 */
+    public void mo7224t0(boolean z2) {
+        this.f13871F = z2;
+        C3404f.m4264Z(null);
     }
 
-    /* JADX WARN: Code duplicated, block: B:12:0x0015  */
-    @NonNull
-    /* JADX INFO: renamed from: o1 */
-    public final CameraException m7240o1(@NonNull CameraAccessException cameraAccessException) {
-        int reason = cameraAccessException.getReason();
-        int i2 = 3;
-        if (reason == 1) {
-            i2 = 1;
-        } else if (reason != 2 && reason != 3) {
-            if (reason == 4 || reason == 5) {
-                i2 = 1;
-            } else {
-                i2 = 0;
-            }
+    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
+    /* JADX INFO: renamed from: v0 */
+    public void mo7225v0(float f2) {
+        float f3 = this.f13874I;
+        this.f13874I = f2;
+        C5179f c5179f = this.f13922n;
+        c5179f.m7363b("preview fps (" + f2 + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new g(f3)));
+    }
+
+    @Override // p007b.p452o.p453a.p455n.AbstractC5133g, p007b.p452o.p453a.p471v.AbstractC5219d.a
+    /* JADX INFO: renamed from: a */
+    public void mo7227a(@Nullable C5113l.a aVar, @Nullable Exception exc) {
+        boolean z2 = this.f13897q instanceof C5217b;
+        super.mo7227a(aVar, exc);
+        if ((z2 && this.f13872G) || (!z2 && this.f13873H)) {
+            C5179f c5179f = this.f13922n;
+            c5179f.m7363b("reset metering after picture", true, new RunnableC5181h(c5179f, EnumC5178e.PREVIEW, new s()));
         }
-        return new CameraException(cameraAccessException, i2);
     }
 
     @Override // android.media.ImageReader.OnImageAvailableListener
@@ -1431,140 +1566,5 @@ public class C5130d extends AbstractC5133g implements ImageReader.OnImageAvailab
             AbstractC5135i.f13918j.m7159a(0, "onImageAvailable:", "Image acquired, dispatching.");
             ((CameraView.C11195b) this.f13921m).m9312b(c5189bM7385a);
         }
-    }
-
-    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
-    /* JADX INFO: renamed from: p0 */
-    public void mo7223p0(@NonNull EnumC5123j enumC5123j) {
-        if (enumC5123j != this.f13867B) {
-            this.f13867B = enumC5123j;
-            C5179f c5179f = this.f13922n;
-            c5179f.m7363b("picture format (" + enumC5123j + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new h()));
-        }
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: p1 */
-    public final C5164g m7241p1(@Nullable C5211b c5211b) {
-        C5164g c5164g = this.f13815q0;
-        if (c5164g != null) {
-            c5164g.mo7330a(this);
-        }
-        CaptureRequest.Builder builder = this.f13807i0;
-        int[] iArr = (int[]) m7245t1(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES, new int[0]);
-        ArrayList arrayList = new ArrayList();
-        for (int i2 : iArr) {
-            arrayList.add(Integer.valueOf(i2));
-        }
-        if (arrayList.contains(1)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 1);
-        } else if (this.f13882Q == EnumC5122i.VIDEO && arrayList.contains(3)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
-        } else if (arrayList.contains(4)) {
-            builder.set(CaptureRequest.CONTROL_AF_MODE, 4);
-        }
-        C5164g c5164g2 = new C5164g(this, c5211b, c5211b == null);
-        this.f13815q0 = c5164g2;
-        return c5164g2;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: q1 */
-    public final CaptureRequest.Builder m7242q1(int i2) throws CameraAccessException {
-        CaptureRequest.Builder builder = this.f13807i0;
-        CaptureRequest.Builder builderCreateCaptureRequest = this.f13804f0.createCaptureRequest(i2);
-        this.f13807i0 = builderCreateCaptureRequest;
-        builderCreateCaptureRequest.setTag(Integer.valueOf(i2));
-        m7229d1(this.f13807i0, builder);
-        return this.f13807i0;
-    }
-
-    /* JADX WARN: Type inference fix 'apply assigned field type' failed
-    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
-    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-     */
-    @NonNull
-    /* JADX INFO: renamed from: r1 */
-    public List<Range<Integer>> m7243r1(@NonNull Range<Integer>[] rangeArr) {
-        ArrayList arrayList = new ArrayList();
-        int iRound = Math.round(this.f13896p.f13697p);
-        int iRound2 = Math.round(this.f13896p.f13698q);
-        for (Range<Integer> range : rangeArr) {
-            if (range.contains(Integer.valueOf(iRound)) || range.contains(Integer.valueOf(iRound2))) {
-                C5103b c5103b = C5201b.f14103a;
-                String str = Build.MODEL;
-                boolean z2 = true;
-                String str2 = Build.MANUFACTURER;
-                c5103b.m7159a(1, "Build.MODEL:", str, "Build.BRAND:", Build.BRAND, "Build.MANUFACTURER:", str2);
-                List<Range<Integer>> list = C5201b.f14104b.get(str2 + " " + str);
-                if (list != null && list.contains(range)) {
-                    c5103b.m7159a(1, "Dropping range:", range);
-                    z2 = false;
-                }
-                if (z2) {
-                    arrayList.add(range);
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: s1 */
-    public List<C5236b> m7244s1() {
-        try {
-            StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) this.f13802d0.getCameraCharacteristics(this.f13803e0).get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-            if (streamConfigurationMap == null) {
-                throw new RuntimeException("StreamConfigurationMap is null. Should not happen.");
-            }
-            Size[] outputSizes = streamConfigurationMap.getOutputSizes(this.f13901u);
-            ArrayList arrayList = new ArrayList(outputSizes.length);
-            for (Size size : outputSizes) {
-                C5236b c5236b = new C5236b(size.getWidth(), size.getHeight());
-                if (!arrayList.contains(c5236b)) {
-                    arrayList.add(c5236b);
-                }
-            }
-            return arrayList;
-        } catch (CameraAccessException e2) {
-            throw m7240o1(e2);
-        }
-    }
-
-    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
-    /* JADX INFO: renamed from: t0 */
-    public void mo7224t0(boolean z2) {
-        this.f13871F = z2;
-        C3404f.m4264Z(null);
-    }
-
-    @NonNull
-    @VisibleForTesting
-    /* JADX INFO: renamed from: t1 */
-    public <T> T m7245t1(@NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
-        T t2 = (T) this.f13805g0.get(key);
-        return t2 == null ? t : t2;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: u1 */
-    public final <T> T m7246u1(@NonNull CameraCharacteristics cameraCharacteristics, @NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
-        T t2 = (T) cameraCharacteristics.get(key);
-        return t2 == null ? t : t2;
-    }
-
-    @Override // p007b.p452o.p453a.p455n.AbstractC5135i
-    /* JADX INFO: renamed from: v0 */
-    public void mo7225v0(float f2) {
-        float f3 = this.f13874I;
-        this.f13874I = f2;
-        C5179f c5179f = this.f13922n;
-        c5179f.m7363b("preview fps (" + f2 + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new g(f3)));
     }
 }

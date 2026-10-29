@@ -13,11 +13,11 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
 
     /* JADX INFO: renamed from: SearchNoResultsItem, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String key = "SEARCH_NO_RESULTS";
     private final int type;
+    private static final String key = "SEARCH_NO_RESULTS";
 
     /* JADX INFO: compiled from: InviteSuggestionItem.kt */
-    public static final /* data */ class ChannelItem extends InviteSuggestionItem {
+    public final /* data */ class ChannelItem extends InviteSuggestionItem {
         private final Channel channel;
         private final boolean hasSent;
         private final String key;
@@ -45,16 +45,6 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
             return channelItem.copy(channel, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getHasSent() {
-            return this.hasSent;
-        }
-
         public final ChannelItem copy(Channel channel, boolean hasSent) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new ChannelItem(channel, hasSent);
@@ -71,8 +61,18 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.channel, channelItem.channel) && this.hasSent == channelItem.hasSent;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getHasSent() {
+            return this.hasSent;
         }
 
         public final boolean getHasSent() {
@@ -120,7 +120,7 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteSuggestionItem$SearchNoResultsItem, reason: from kotlin metadata */
     /* JADX INFO: compiled from: InviteSuggestionItem.kt */
-    public static final class Companion extends InviteSuggestionItem {
+    public final class Companion extends InviteSuggestionItem {
         private Companion() {
             super(null);
         }
@@ -141,7 +141,7 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: InviteSuggestionItem.kt */
-    public static final /* data */ class UserItem extends InviteSuggestionItem {
+    public final /* data */ class UserItem extends InviteSuggestionItem {
         private final boolean hasSent;
         private final String key;
         private final int type;
@@ -168,16 +168,6 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
             return userItem.copy(user, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getHasSent() {
-            return this.hasSent;
-        }
-
         public final UserItem copy(User user, boolean hasSent) {
             C12238m.checkNotNullParameter(user, "user");
             return new UserItem(user, hasSent);
@@ -194,6 +184,11 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.user, userItem.user) && this.hasSent == userItem.hasSent;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getHasSent() {
+            return this.hasSent;
+        }
+
         public final boolean getHasSent() {
             return this.hasSent;
         }
@@ -206,6 +201,11 @@ public abstract class InviteSuggestionItem implements MGRecyclerDataPayload {
         @Override // com.discord.widgets.guilds.invite.InviteSuggestionItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

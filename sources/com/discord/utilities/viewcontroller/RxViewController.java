@@ -24,7 +24,7 @@ public abstract class RxViewController<V extends View, T> {
 
     /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$bind$1 */
     /* JADX INFO: compiled from: RxViewController.kt */
-    public static final class C70171 extends AbstractC12240o implements Function1<T, Unit> {
+    public final class C70171 extends AbstractC12240o implements Function1<T, Unit> {
         public C70171() {
             super(1);
         }
@@ -43,7 +43,7 @@ public abstract class RxViewController<V extends View, T> {
 
     /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$connectViewRx$2 */
     /* JADX INFO: compiled from: RxViewController.kt */
-    public static final class C70192 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C70192 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public final /* synthetic */ Ref$ObjectRef $subscriptionResult;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -68,7 +68,7 @@ public abstract class RxViewController<V extends View, T> {
 
     /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$connectViewRx$3 */
     /* JADX INFO: compiled from: RxViewController.kt */
-    public static final class C70203 extends AbstractC12240o implements Function1<T, Unit> {
+    public final class C70203 extends AbstractC12240o implements Function1<T, Unit> {
         public final /* synthetic */ Function1 $onNext;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -94,6 +94,17 @@ public abstract class RxViewController<V extends View, T> {
         this.view = v;
     }
 
+    @MainThread
+    public final void bind() {
+        Subscription subscription = this.subscription;
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+        this.subscription = connectViewRx(this.view, observeState(), new C70171());
+    }
+
+    public abstract void configureView(T viewState);
+
     private final <T> Subscription connectViewRx(final View view, Observable<T> observable, Function1<? super T, Unit> onNext) {
         Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
         ref$ObjectRef.element = null;
@@ -114,17 +125,6 @@ public abstract class RxViewController<V extends View, T> {
         }
         return (Subscription) t;
     }
-
-    @MainThread
-    public final void bind() {
-        Subscription subscription = this.subscription;
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-        this.subscription = connectViewRx(this.view, observeState(), new C70171());
-    }
-
-    public abstract void configureView(T viewState);
 
     public final V getView() {
         return this.view;

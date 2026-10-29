@@ -26,7 +26,7 @@ import java.util.List;
 public class ChooserTargetServiceCompat extends ChooserTargetService {
     public static final String TAG = "ChooserServiceCompat";
 
-    public static class ShortcutHolder implements Comparable<ShortcutHolder> {
+    public class ShortcutHolder implements Comparable<ShortcutHolder> {
         private final ShortcutInfoCompat mShortcut;
         private final ComponentName mTargetClass;
 

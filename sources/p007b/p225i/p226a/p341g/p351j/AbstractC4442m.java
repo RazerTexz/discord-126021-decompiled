@@ -28,12 +28,12 @@ public abstract class AbstractC4442m {
     /* JADX INFO: renamed from: a */
     public abstract void mo6146a();
 
+    /* JADX INFO: renamed from: c */
+    public void mo6147c(boolean z2) {
+    }
+
     /* JADX INFO: renamed from: b */
     public boolean mo6154b(int i) {
         return true;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void mo6147c(boolean z2) {
     }
 }

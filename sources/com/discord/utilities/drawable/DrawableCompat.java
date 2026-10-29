@@ -24,6 +24,13 @@ public final class DrawableCompat {
         }
     }
 
+    public static /* synthetic */ Drawable getDrawable$default(Context context, int i, int i2, boolean z2, int i3, Object obj) {
+        if ((i3 & 4) != 0) {
+            z2 = false;
+        }
+        return getDrawable(context, i, i2, z2);
+    }
+
     public static final Drawable getDrawable(Context context, @DrawableRes int i, @ColorInt int i2) {
         return getDrawable$default(context, i, i2, false, 4, null);
     }
@@ -37,11 +44,11 @@ public final class DrawableCompat {
         return drawable;
     }
 
-    public static /* synthetic */ Drawable getDrawable$default(Context context, int i, int i2, boolean z2, int i3, Object obj) {
-        if ((i3 & 4) != 0) {
-            z2 = false;
+    public static /* synthetic */ int getThemedDrawableRes$default(Context context, int i, int i2, int i3, Object obj) {
+        if ((i3 & 2) != 0) {
+            i2 = 0;
         }
-        return getDrawable(context, i, i2, z2);
+        return getThemedDrawableRes(context, i, i2);
     }
 
     public static final int getThemedDrawableRes(Context context, @AttrRes int i) {
@@ -62,19 +69,6 @@ public final class DrawableCompat {
         return getThemedDrawableRes$default(view, i, 0, 2, (Object) null);
     }
 
-    public static /* synthetic */ int getThemedDrawableRes$default(Context context, int i, int i2, int i3, Object obj) {
-        if ((i3 & 2) != 0) {
-            i2 = 0;
-        }
-        return getThemedDrawableRes(context, i, i2);
-    }
-
-    public static final void setCompoundDrawablesCompat(TextView textView, @DrawableRes int i, @DrawableRes int i2, @DrawableRes int i3, @DrawableRes int i4) {
-        C12238m.checkNotNullParameter(textView, "$this$setCompoundDrawablesCompat");
-        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(textView, i, i2, i3, i4);
-        applyCompoundDrawablesTint(textView);
-    }
-
     public static /* synthetic */ void setCompoundDrawablesCompat$default(TextView textView, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
             i = 0;
@@ -89,6 +83,12 @@ public final class DrawableCompat {
             i4 = 0;
         }
         setCompoundDrawablesCompat(textView, i, i2, i3, i4);
+    }
+
+    public static final void setCompoundDrawablesCompat(TextView textView, @DrawableRes int i, @DrawableRes int i2, @DrawableRes int i3, @DrawableRes int i4) {
+        C12238m.checkNotNullParameter(textView, "$this$setCompoundDrawablesCompat");
+        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(textView, i, i2, i3, i4);
+        applyCompoundDrawablesTint(textView);
     }
 
     public static /* synthetic */ int getThemedDrawableRes$default(View view, int i, int i2, int i3, Object obj) {

@@ -32,24 +32,6 @@ public final /* data */ class TrackImpressionGuildInvite implements AnalyticsSch
         this.analyticsSchemaTypeName = "impression_guild_invite";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -61,11 +43,29 @@ public final /* data */ class TrackImpressionGuildInvite implements AnalyticsSch
         return C12238m.areEqual(this.inviteGuildId, trackImpressionGuildInvite.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackImpressionGuildInvite.inviteChannelId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.inviteGuildId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
         Long l2 = this.inviteChannelId;
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

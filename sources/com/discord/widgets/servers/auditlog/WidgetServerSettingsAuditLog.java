@@ -69,10 +69,10 @@ import p658rx.functions.Func6;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsAuditLog extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsAuditLog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsAuditLogBinding;", 0)};
+    private static final int DIRECTION_DOWN = 1;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int DIRECTION_DOWN = 1;
     private static final String INTENT_EXTRA_GUILD_ID = "GUILD_ID";
     private static final String INTENT_EXTRA_GUILD_NAME = "GUILD_NAME";
     private static final int RESULTS_VIEW_INDEX_LOGS = 0;
@@ -87,8 +87,69 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
     private boolean loadingAuditLogs;
     private final LoggingConfig loggingConfig;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-    public static final class Companion {
+    public final class C93231<T> implements Action1<Menu> {
+        public C93231() {
+        }
+
+        @Override // p658rx.functions.Action1
+        public final void call(Menu menu) {
+            View actionView;
+            MenuItem menuItemFindItem = menu.findItem(C5419R.id.menu_filter);
+            if (menuItemFindItem == null || (actionView = menuItemFindItem.getActionView()) == null) {
+                return;
+            }
+            actionView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog.onViewBound.1.1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(final View view) {
+                    PopupMenu popupMenu = new PopupMenu(new ContextThemeWrapper(WidgetServerSettingsAuditLog.this.getContext(), 2131951663), view);
+                    popupMenu.getMenuInflater().inflate(C5419R.menu.menu_audit_log_sort, popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog.onViewBound.1.1.1
+                        /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+                        @Override // androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener
+                        public final boolean onMenuItemClick(MenuItem menuItem) {
+                            C12238m.checkNotNullExpressionValue(menuItem, "it");
+                            switch (menuItem.getItemId()) {
+                                case C5419R.id.menu_audit_log_sort_actions /* 2131364361 */:
+                                    WidgetServerSettingsAuditLogFilter.INSTANCE.show(C1643a.m885x(view, "view", "view.context"), WidgetServerSettingsAuditLog.this.guildId, 1);
+                                    return true;
+                                case C5419R.id.menu_audit_log_sort_users /* 2131364362 */:
+                                    WidgetServerSettingsAuditLogFilter.INSTANCE.show(C1643a.m885x(view, "view", "view.context"), WidgetServerSettingsAuditLog.this.guildId, 0);
+                                    return true;
+                                default:
+                                    return true;
+                            }
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
+    public final /* synthetic */ class C93271 extends C12236k implements Function1<Model, Unit> {
+        public C93271(WidgetServerSettingsAuditLog widgetServerSettingsAuditLog) {
+            super(1, widgetServerSettingsAuditLog, WidgetServerSettingsAuditLog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/auditlog/WidgetServerSettingsAuditLog$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetServerSettingsAuditLog) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -107,13 +168,13 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-    public static abstract class Model {
+    public abstract class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-        public static final class Companion {
+        public final class Companion {
 
             public final /* synthetic */ class WhenMappings {
                 public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -141,93 +202,6 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
             }
 
             private Companion() {
-            }
-
-            /* JADX WARN: Code duplicated, block: B:26:0x0072  */
-            /* JADX WARN: Code duplicated, block: B:42:0x00ac  */
-            private final String resolveChannelName(Map<Long, Channel> channels, ModelAuditLogEntry entry) {
-                Object oldValue;
-                Object oldValue2;
-                Object next;
-                ModelAuditLogEntry.Change change;
-                Object next2;
-                ModelAuditLogEntry.Change change2;
-                Channel channel = channels.get(Long.valueOf(entry.getTargetId()));
-                if (channel != null) {
-                    boolean zM7698v = ChannelUtils.m7698v(channel);
-                    if (zM7698v) {
-                        StringBuilder sbM829Q = C1643a.m829Q(MentionUtilsKt.CHANNELS_CHAR);
-                        sbM829Q.append(ChannelUtils.m7679c(channel));
-                        return sbM829Q.toString();
-                    }
-                    if (zM7698v) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    return ChannelUtils.m7679c(channel);
-                }
-                if (entry.getActionTypeId() == 12) {
-                    List<ModelAuditLogEntry.Change> changes = entry.getChanges();
-                    if (changes != null) {
-                        Iterator<T> it = changes.iterator();
-                        do {
-                            if (!it.hasNext()) {
-                                next2 = null;
-                                break;
-                            }
-                            next2 = it.next();
-                            change2 = (ModelAuditLogEntry.Change) next2;
-                            C12238m.checkNotNullExpressionValue(change2, "it");
-                        } while (!C12238m.areEqual(change2.getKey(), ModelAuditLogEntry.CHANGE_KEY_NAME));
-                        ModelAuditLogEntry.Change change3 = (ModelAuditLogEntry.Change) next2;
-                        if (change3 != null) {
-                            oldValue = change3.getOldValue();
-                        } else {
-                            oldValue = null;
-                        }
-                    } else {
-                        oldValue = null;
-                    }
-                    if (!(oldValue instanceof String)) {
-                        oldValue = null;
-                    }
-                    String str = (String) oldValue;
-                    List<ModelAuditLogEntry.Change> changes2 = entry.getChanges();
-                    if (changes2 != null) {
-                        Iterator<T> it2 = changes2.iterator();
-                        do {
-                            if (!it2.hasNext()) {
-                                next = null;
-                                break;
-                            }
-                            next = it2.next();
-                            change = (ModelAuditLogEntry.Change) next;
-                            C12238m.checkNotNullExpressionValue(change, "it");
-                        } while (!C12238m.areEqual(change.getKey(), "type"));
-                        ModelAuditLogEntry.Change change4 = (ModelAuditLogEntry.Change) next;
-                        if (change4 != null) {
-                            oldValue2 = change4.getOldValue();
-                        } else {
-                            oldValue2 = null;
-                        }
-                    } else {
-                        oldValue2 = null;
-                    }
-                    if (!(oldValue2 instanceof Long)) {
-                        oldValue2 = null;
-                    }
-                    Long l = (Long) oldValue2;
-                    if (str != null && l != null) {
-                        boolean zM7688l = ChannelUtils.m7688l((int) l.longValue());
-                        if (!zM7688l) {
-                            if (zM7688l) {
-                                throw new NoWhenBranchMatchedException();
-                            }
-                            return str;
-                        }
-                        return MentionUtilsKt.CHANNELS_CHAR + str;
-                    }
-                }
-                return null;
             }
 
             public final Observable<Model> get(final long guildId, final Context context) {
@@ -419,13 +393,100 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
                 return observableM11112r;
             }
 
+            /* JADX WARN: Code duplicated, block: B:26:0x0072  */
+            /* JADX WARN: Code duplicated, block: B:42:0x00ac  */
+            private final String resolveChannelName(Map<Long, Channel> channels, ModelAuditLogEntry entry) {
+                Object oldValue;
+                Object oldValue2;
+                Object next;
+                ModelAuditLogEntry.Change change;
+                Object next2;
+                ModelAuditLogEntry.Change change2;
+                Channel channel = channels.get(Long.valueOf(entry.getTargetId()));
+                if (channel != null) {
+                    boolean zM7698v = ChannelUtils.m7698v(channel);
+                    if (zM7698v) {
+                        StringBuilder sbM829Q = C1643a.m829Q(MentionUtilsKt.CHANNELS_CHAR);
+                        sbM829Q.append(ChannelUtils.m7679c(channel));
+                        return sbM829Q.toString();
+                    }
+                    if (zM7698v) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    return ChannelUtils.m7679c(channel);
+                }
+                if (entry.getActionTypeId() == 12) {
+                    List<ModelAuditLogEntry.Change> changes = entry.getChanges();
+                    if (changes != null) {
+                        Iterator<T> it = changes.iterator();
+                        do {
+                            if (!it.hasNext()) {
+                                next2 = null;
+                                break;
+                            }
+                            next2 = it.next();
+                            change2 = (ModelAuditLogEntry.Change) next2;
+                            C12238m.checkNotNullExpressionValue(change2, "it");
+                        } while (!C12238m.areEqual(change2.getKey(), ModelAuditLogEntry.CHANGE_KEY_NAME));
+                        ModelAuditLogEntry.Change change3 = (ModelAuditLogEntry.Change) next2;
+                        if (change3 != null) {
+                            oldValue = change3.getOldValue();
+                        } else {
+                            oldValue = null;
+                        }
+                    } else {
+                        oldValue = null;
+                    }
+                    if (!(oldValue instanceof String)) {
+                        oldValue = null;
+                    }
+                    String str = (String) oldValue;
+                    List<ModelAuditLogEntry.Change> changes2 = entry.getChanges();
+                    if (changes2 != null) {
+                        Iterator<T> it2 = changes2.iterator();
+                        do {
+                            if (!it2.hasNext()) {
+                                next = null;
+                                break;
+                            }
+                            next = it2.next();
+                            change = (ModelAuditLogEntry.Change) next;
+                            C12238m.checkNotNullExpressionValue(change, "it");
+                        } while (!C12238m.areEqual(change.getKey(), "type"));
+                        ModelAuditLogEntry.Change change4 = (ModelAuditLogEntry.Change) next;
+                        if (change4 != null) {
+                            oldValue2 = change4.getOldValue();
+                        } else {
+                            oldValue2 = null;
+                        }
+                    } else {
+                        oldValue2 = null;
+                    }
+                    if (!(oldValue2 instanceof Long)) {
+                        oldValue2 = null;
+                    }
+                    Long l = (Long) oldValue2;
+                    if (str != null && l != null) {
+                        boolean zM7688l = ChannelUtils.m7688l((int) l.longValue());
+                        if (!zM7688l) {
+                            if (zM7688l) {
+                                throw new NoWhenBranchMatchedException();
+                            }
+                            return str;
+                        }
+                        return MentionUtilsKt.CHANNELS_CHAR + str;
+                    }
+                }
+                return null;
+            }
+
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
                 this();
             }
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-        public static final class Loaded extends Model {
+        public final class Loaded extends Model {
             private final CharSequence actionFilterText;
             private final List<MGRecyclerDataPayload> auditLogEntryItems;
             private final CharSequence usernameFilterText;
@@ -456,7 +517,7 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-        public static final class Loading extends Model {
+        public final class Loading extends Model {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -469,67 +530,6 @@ public final class WidgetServerSettingsAuditLog extends AppFragment {
 
         public /* synthetic */ Model(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-    public static final class C93231<T> implements Action1<Menu> {
-        public C93231() {
-        }
-
-        @Override // p658rx.functions.Action1
-        public final void call(Menu menu) {
-            View actionView;
-            MenuItem menuItemFindItem = menu.findItem(C5419R.id.menu_filter);
-            if (menuItemFindItem == null || (actionView = menuItemFindItem.getActionView()) == null) {
-                return;
-            }
-            actionView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog.onViewBound.1.1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(final View view) {
-                    PopupMenu popupMenu = new PopupMenu(new ContextThemeWrapper(WidgetServerSettingsAuditLog.this.getContext(), 2131951663), view);
-                    popupMenu.getMenuInflater().inflate(C5419R.menu.menu_audit_log_sort, popupMenu.getMenu());
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog.onViewBound.1.1.1
-                        /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-                        @Override // androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener
-                        public final boolean onMenuItemClick(MenuItem menuItem) {
-                            C12238m.checkNotNullExpressionValue(menuItem, "it");
-                            switch (menuItem.getItemId()) {
-                                case C5419R.id.menu_audit_log_sort_actions /* 2131364361 */:
-                                    WidgetServerSettingsAuditLogFilter.INSTANCE.show(C1643a.m885x(view, "view", "view.context"), WidgetServerSettingsAuditLog.this.guildId, 1);
-                                    return true;
-                                case C5419R.id.menu_audit_log_sort_users /* 2131364362 */:
-                                    WidgetServerSettingsAuditLogFilter.INSTANCE.show(C1643a.m885x(view, "view", "view.context"), WidgetServerSettingsAuditLog.this.guildId, 0);
-                                    return true;
-                                default:
-                                    return true;
-                            }
-                        }
-                    });
-                    popupMenu.show();
-                }
-            });
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLog$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLog.kt */
-    public static final /* synthetic */ class C93271 extends C12236k implements Function1<Model, Unit> {
-        public C93271(WidgetServerSettingsAuditLog widgetServerSettingsAuditLog) {
-            super(1, widgetServerSettingsAuditLog, WidgetServerSettingsAuditLog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/auditlog/WidgetServerSettingsAuditLog$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetServerSettingsAuditLog) this.receiver).configureUI(model);
         }
     }
 

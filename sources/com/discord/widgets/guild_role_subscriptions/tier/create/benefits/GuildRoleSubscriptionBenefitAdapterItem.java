@@ -15,7 +15,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKeyProvider {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapterItem.kt */
-    public static final /* data */ class AddBenefitItem extends GuildRoleSubscriptionBenefitAdapterItem {
+    public final /* data */ class AddBenefitItem extends GuildRoleSubscriptionBenefitAdapterItem {
         private final long guildId;
         private final String key;
         private final String tierName;
@@ -44,21 +44,6 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return addBenefitItem.copy(guildRoleSubscriptionBenefitType, j, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRoleSubscriptionBenefitType getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getTierName() {
-            return this.tierName;
-        }
-
         public final AddBenefitItem copy(GuildRoleSubscriptionBenefitType type, long guildId, String tierName) {
             C12238m.checkNotNullParameter(type, "type");
             return new AddBenefitItem(type, guildId, tierName);
@@ -75,6 +60,11 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return C12238m.areEqual(this.type, addBenefitItem.type) && this.guildId == addBenefitItem.guildId && C12238m.areEqual(this.tierName, addBenefitItem.tierName);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
         public final long getGuildId() {
             return this.guildId;
         }
@@ -84,8 +74,18 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getTierName() {
             return this.tierName;
+        }
+
+        public final String getTierName() {
+            return this.tierName;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRoleSubscriptionBenefitType getType() {
+            return this.type;
         }
 
         public final GuildRoleSubscriptionBenefitType getType() {
@@ -110,7 +110,7 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapterItem.kt */
-    public static final /* data */ class BenefitItem extends GuildRoleSubscriptionBenefitAdapterItem {
+    public final /* data */ class BenefitItem extends GuildRoleSubscriptionBenefitAdapterItem {
         private final Benefit benefit;
         private final long guildId;
         private final String key;
@@ -147,26 +147,6 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return benefitItem.copy(guildRoleSubscriptionBenefitType, benefit2, j2, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRoleSubscriptionBenefitType getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Benefit getBenefit() {
-            return this.benefit;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getTierName() {
-            return this.tierName;
-        }
-
         public final BenefitItem copy(GuildRoleSubscriptionBenefitType type, Benefit benefit, long guildId, String tierName) {
             C12238m.checkNotNullParameter(type, "type");
             C12238m.checkNotNullParameter(benefit, "benefit");
@@ -184,8 +164,18 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return C12238m.areEqual(this.type, benefitItem.type) && C12238m.areEqual(this.benefit, benefitItem.benefit) && this.guildId == benefitItem.guildId && C12238m.areEqual(this.tierName, benefitItem.tierName);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Benefit getBenefit() {
             return this.benefit;
+        }
+
+        public final Benefit getBenefit() {
+            return this.benefit;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
@@ -197,8 +187,18 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getTierName() {
             return this.tierName;
+        }
+
+        public final String getTierName() {
+            return this.tierName;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRoleSubscriptionBenefitType getType() {
+            return this.type;
         }
 
         public final GuildRoleSubscriptionBenefitType getType() {
@@ -227,7 +227,7 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapterItem.kt */
-    public static final /* data */ class FreeTrialItem extends GuildRoleSubscriptionBenefitAdapterItem {
+    public final /* data */ class FreeTrialItem extends GuildRoleSubscriptionBenefitAdapterItem {
         private final Integer activeTrialUserLimit;
         private final boolean isFreeTrialEnabled;
         private final String key;
@@ -254,21 +254,6 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return freeTrialItem.copy(z2, subscriptionTrialInterval, num);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsFreeTrialEnabled() {
-            return this.isFreeTrialEnabled;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final SubscriptionTrialInterval getTrialInterval() {
-            return this.trialInterval;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getActiveTrialUserLimit() {
-            return this.activeTrialUserLimit;
-        }
-
         public final FreeTrialItem copy(boolean isFreeTrialEnabled, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
             return new FreeTrialItem(isFreeTrialEnabled, trialInterval, activeTrialUserLimit);
         }
@@ -284,13 +269,28 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return this.isFreeTrialEnabled == freeTrialItem.isFreeTrialEnabled && C12238m.areEqual(this.trialInterval, freeTrialItem.trialInterval) && C12238m.areEqual(this.activeTrialUserLimit, freeTrialItem.activeTrialUserLimit);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Integer getActiveTrialUserLimit() {
             return this.activeTrialUserLimit;
+        }
+
+        public final Integer getActiveTrialUserLimit() {
+            return this.activeTrialUserLimit;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsFreeTrialEnabled() {
+            return this.isFreeTrialEnabled;
         }
 
         @Override // com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final SubscriptionTrialInterval getTrialInterval() {
+            return this.trialInterval;
         }
 
         public final SubscriptionTrialInterval getTrialInterval() {
@@ -329,7 +329,7 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapterItem.kt */
-    public static final /* data */ class Header extends GuildRoleSubscriptionBenefitAdapterItem {
+    public final /* data */ class Header extends GuildRoleSubscriptionBenefitAdapterItem {
         private final String key;
         private final GuildRoleSubscriptionBenefitType type;
 
@@ -348,11 +348,6 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
             return header.copy(guildRoleSubscriptionBenefitType);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRoleSubscriptionBenefitType getType() {
-            return this.type;
-        }
-
         public final Header copy(GuildRoleSubscriptionBenefitType type) {
             C12238m.checkNotNullParameter(type, "type");
             return new Header(type);
@@ -368,6 +363,11 @@ public abstract class GuildRoleSubscriptionBenefitAdapterItem implements DiffKey
         @Override // com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRoleSubscriptionBenefitType getType() {
+            return this.type;
         }
 
         public final GuildRoleSubscriptionBenefitType getType() {

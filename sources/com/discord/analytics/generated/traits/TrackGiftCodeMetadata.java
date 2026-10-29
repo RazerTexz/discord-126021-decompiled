@@ -7,9 +7,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGiftCodeMetadata {
     private final CharSequence giftCode = null;
-    private final Long giftCodeSkuId = null;
-    private final Long giftCodeMaxUses = null;
     private final Long giftCodeMaxAge = null;
+    private final Long giftCodeMaxUses = null;
+    private final Long giftCodeSkuId = null;
     private final Long giftCodeSubscriptionPlanId = null;
 
     public boolean equals(Object other) {

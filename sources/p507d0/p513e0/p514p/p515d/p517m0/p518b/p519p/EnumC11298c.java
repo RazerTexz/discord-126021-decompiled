@@ -45,11 +45,11 @@ public final class EnumC11298c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.p.c$a */
     /* JADX INFO: compiled from: FunctionClassKind.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.b.p.c$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: FunctionClassKind.kt */
-        public static final class C13305a {
+        public final class C13305a {
 
             /* JADX INFO: renamed from: a */
             public final EnumC11298c f22607a;
@@ -182,18 +182,6 @@ public final class EnumC11298c {
         this.classNamePrefix = str2;
     }
 
-    public static EnumC11298c valueOf(String str) {
-        C12238m.checkNotNullParameter(str, "value");
-        return (EnumC11298c) Enum.valueOf(EnumC11298c.class, str);
-    }
-
-    public static EnumC11298c[] values() {
-        EnumC11298c[] enumC11298cArr = f22606o;
-        EnumC11298c[] enumC11298cArr2 = new EnumC11298c[enumC11298cArr.length];
-        System.arraycopy(enumC11298cArr, 0, enumC11298cArr2, 0, enumC11298cArr.length);
-        return enumC11298cArr2;
-    }
-
     public final String getClassNamePrefix() {
         return this.classNamePrefix;
     }
@@ -206,5 +194,17 @@ public final class EnumC11298c {
         C11716e c11716eIdentifier = C11716e.identifier(C12238m.stringPlus(this.classNamePrefix, Integer.valueOf(i)));
         C12238m.checkNotNullExpressionValue(c11716eIdentifier, "identifier(\"$classNamePrefix$arity\")");
         return c11716eIdentifier;
+    }
+
+    public static EnumC11298c valueOf(String str) {
+        C12238m.checkNotNullParameter(str, "value");
+        return (EnumC11298c) Enum.valueOf(EnumC11298c.class, str);
+    }
+
+    public static EnumC11298c[] values() {
+        EnumC11298c[] enumC11298cArr = f22606o;
+        EnumC11298c[] enumC11298cArr2 = new EnumC11298c[enumC11298cArr.length];
+        System.arraycopy(enumC11298cArr, 0, enumC11298cArr2, 0, enumC11298cArr.length);
+        return enumC11298cArr2;
     }
 }

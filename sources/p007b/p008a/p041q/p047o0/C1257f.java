@@ -15,13 +15,13 @@ public final class C1257f extends AbstractC12240o implements Function2<Long, Lon
         super(2);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final long m363a(long j, long j2) {
-        return j2 > j ? j : j - j2;
-    }
-
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Long invoke(Long l, Long l2) {
         return Long.valueOf(m363a(l.longValue(), l2.longValue()));
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final long m363a(long j, long j2) {
+        return j2 > j ? j : j - j2;
     }
 }

@@ -14,11 +14,6 @@ public final class ScrollerCompat {
     }
 
     @Deprecated
-    public static ScrollerCompat create(Context context) {
-        return create(context, null);
-    }
-
-    @Deprecated
     public void abortAnimation() {
         this.mScroller.abortAnimation();
     }
@@ -26,6 +21,11 @@ public final class ScrollerCompat {
     @Deprecated
     public boolean computeScrollOffset() {
         return this.mScroller.computeScrollOffset();
+    }
+
+    @Deprecated
+    public static ScrollerCompat create(Context context) {
+        return create(context, null);
     }
 
     @Deprecated

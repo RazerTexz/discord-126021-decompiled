@@ -20,7 +20,7 @@ public final class C11798p {
     /* JADX INFO: Add missing generic type declarations: [H] */
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.p$a */
     /* JADX INFO: compiled from: overridingUtils.kt */
-    public static final class a<H> extends AbstractC12240o implements Function1<H, Unit> {
+    public final class a<H> extends AbstractC12240o implements Function1<H, Unit> {
         public final /* synthetic */ C12042j<H> $conflictedHandles;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -26,13 +26,13 @@ public abstract class AbstractC11721a implements InterfaceC11734n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.a$a */
     /* JADX INFO: compiled from: AbstractMessageLite.java */
-    public static abstract class a<BuilderType extends a> implements InterfaceC11734n.a {
+    public abstract class a<BuilderType extends a> implements InterfaceC11734n.a {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n.a
         public abstract BuilderType mergeFrom(C11724d c11724d, C11725e c11725e) throws IOException;
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.i.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: AbstractMessageLite.java */
-        public static final class C13324a extends FilterInputStream {
+        public final class C13324a extends FilterInputStream {
 
             /* JADX INFO: renamed from: j */
             public int f24099j;

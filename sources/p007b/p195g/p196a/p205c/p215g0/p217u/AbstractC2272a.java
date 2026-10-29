@@ -28,16 +28,10 @@ public abstract class AbstractC2272a<T> extends AbstractC2239h<T> implements Int
         this._unwrapSingle = null;
     }
 
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        InterfaceC2081i.d dVarM2074l;
-        if (interfaceC2206d != null && (dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType)) != null) {
-            Boolean boolM1598b = dVarM2074l.m1598b(InterfaceC2081i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED);
-            if (!Objects.equals(boolM1598b, this._unwrapSingle)) {
-                return mo2037s(interfaceC2206d, boolM1598b);
-            }
-        }
-        return this;
+    /* JADX INFO: renamed from: r */
+    public final boolean m2044r(AbstractC2374x abstractC2374x) {
+        Boolean bool = this._unwrapSingle;
+        return bool == null ? abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : bool.booleanValue();
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -61,10 +55,16 @@ public abstract class AbstractC2272a<T> extends AbstractC2239h<T> implements Int
         abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
     }
 
-    /* JADX INFO: renamed from: r */
-    public final boolean m2044r(AbstractC2374x abstractC2374x) {
-        Boolean bool = this._unwrapSingle;
-        return bool == null ? abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : bool.booleanValue();
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        InterfaceC2081i.d dVarM2074l;
+        if (interfaceC2206d != null && (dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType)) != null) {
+            Boolean boolM1598b = dVarM2074l.m1598b(InterfaceC2081i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED);
+            if (!Objects.equals(boolM1598b, this._unwrapSingle)) {
+                return mo2037s(interfaceC2206d, boolM1598b);
+            }
+        }
+        return this;
     }
 
     /* JADX INFO: renamed from: s */

@@ -10,12 +10,6 @@ public abstract class AbstractC5020i extends AbstractC5019h {
         super(c4962a);
     }
 
-    /* JADX INFO: renamed from: d */
-    public abstract void mo7028d(StringBuilder sb, int i);
-
-    /* JADX INFO: renamed from: e */
-    public abstract int mo7029e(int i);
-
     /* JADX INFO: renamed from: f */
     public final void m7033f(StringBuilder sb, int i, int i2) {
         int iM7038d = C5030s.m7038d(this.f13440b.f13457a, i, i2);
@@ -30,4 +24,10 @@ public abstract class AbstractC5020i extends AbstractC5019h {
         }
         sb.append(iMo7029e);
     }
+
+    /* JADX INFO: renamed from: d */
+    public abstract void mo7028d(StringBuilder sb, int i);
+
+    /* JADX INFO: renamed from: e */
+    public abstract int mo7029e(int i);
 }

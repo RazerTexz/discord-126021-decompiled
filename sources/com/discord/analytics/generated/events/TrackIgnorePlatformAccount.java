@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackIgnorePlatformAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence platformType = null;
     private final CharSequence displayType = null;
+    private final CharSequence platformType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "ignore_platform_account";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSch
         }
         TrackIgnorePlatformAccount trackIgnorePlatformAccount = (TrackIgnorePlatformAccount) other;
         return C12238m.areEqual(this.platformType, trackIgnorePlatformAccount.platformType) && C12238m.areEqual(this.displayType, trackIgnorePlatformAccount.displayType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -18,14 +18,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: collections.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12033a {
-    /* JADX INFO: renamed from: a */
-    public static final int m10042a(int i) {
-        if (i < 3) {
-            return 3;
-        }
-        return (i / 3) + i + 1;
-    }
-
     public static final <T> void addIfNotNull(Collection<T> collection, T t) {
         C12238m.checkNotNullParameter(collection, "<this>");
         if (t != null) {
@@ -44,6 +36,14 @@ public final class C12033a {
         }
         arrayList.trimToSize();
         return arrayList;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final int m10042a(int i) {
+        if (i < 3) {
+            return 3;
+        }
+        return (i / 3) + i + 1;
     }
 
     public static final <K> Map<K, Integer> mapToIndex(Iterable<? extends K> iterable) {

@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSoundboardSoundUploaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSoundboardSoundUploaded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Float durationS = null;
     private final Long guildId = null;
-    private final Boolean success = null;
+    private final CharSequence mimeType = null;
     private final Long reasonCode = null;
     private final CharSequence reasonMessage = null;
-    private final CharSequence mimeType = null;
-    private final Float durationS = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "soundboard_sound_uploaded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackSoundboardSoundUploaded implements AnalyticsS
         }
         TrackSoundboardSoundUploaded trackSoundboardSoundUploaded = (TrackSoundboardSoundUploaded) other;
         return C12238m.areEqual(this.guildId, trackSoundboardSoundUploaded.guildId) && C12238m.areEqual(this.success, trackSoundboardSoundUploaded.success) && C12238m.areEqual(this.reasonCode, trackSoundboardSoundUploaded.reasonCode) && C12238m.areEqual(this.reasonMessage, trackSoundboardSoundUploaded.reasonMessage) && C12238m.areEqual(this.mimeType, trackSoundboardSoundUploaded.mimeType) && C12238m.areEqual(this.durationS, trackSoundboardSoundUploaded.durationS);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

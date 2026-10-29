@@ -42,7 +42,7 @@ public final class FileType {
     private final ThreadLocal<Matcher> threadLocalMatcher;
 
     /* JADX INFO: compiled from: FileType.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -140,20 +140,6 @@ public final class FileType {
         };
     }
 
-    private final boolean matches(String extension) {
-        Matcher matcher = this.threadLocalMatcher.get();
-        C12238m.checkNotNull(matcher);
-        return matcher.reset(extension).find();
-    }
-
-    public static FileType valueOf(String str) {
-        return (FileType) Enum.valueOf(FileType.class, str);
-    }
-
-    public static FileType[] values() {
-        return (FileType[]) $VALUES.clone();
-    }
-
     @DrawableRes
     public final int getFileDrawable() {
         switch (ordinal()) {
@@ -180,5 +166,19 @@ public final class FileType {
             default:
                 throw new NoWhenBranchMatchedException();
         }
+    }
+
+    private final boolean matches(String extension) {
+        Matcher matcher = this.threadLocalMatcher.get();
+        C12238m.checkNotNull(matcher);
+        return matcher.reset(extension).find();
+    }
+
+    public static FileType valueOf(String str) {
+        return (FileType) Enum.valueOf(FileType.class, str);
+    }
+
+    public static FileType[] values() {
+        return (FileType[]) $VALUES.clone();
     }
 }

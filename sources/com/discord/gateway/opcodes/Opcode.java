@@ -31,11 +31,11 @@ public enum Opcode {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final HashMap<Integer, Opcode> intLookup;
     private final int apiInt;
+    private static final HashMap<Integer, Opcode> intLookup;
 
     /* JADX INFO: compiled from: Opcode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

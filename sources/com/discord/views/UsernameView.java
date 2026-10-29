@@ -77,10 +77,6 @@ public final class UsernameView extends ConstraintLayout {
         usernameView.m8568b(charSequence, null, (i & 4) != 0 ? false : z2, null, null);
     }
 
-    private final void setIsVerified(boolean isVerified) {
-        this.binding.f875b.setCompoundDrawablesWithIntrinsicBounds(isVerified ? C5419R.drawable.ic_verified_10dp : 0, 0, 0, 0);
-    }
-
     /* JADX INFO: renamed from: a */
     public final void m8567a(boolean visible, @StringRes int tagText, boolean isVerified) {
         if (!visible) {
@@ -105,6 +101,10 @@ public final class UsernameView extends ConstraintLayout {
         DraweeSpanStringBuilder avatar = DraweeSpanStringBuilderExtensionsKt.setAvatar(draweeSpanStringBuilder, context, (32 & 2) != 0 ? null : avatarUrl, (32 & 4) != 0 ? false : animateAvatar, (32 & 8) != 0 ? null : avatarSizePx, (32 & 16) == 0 ? roundingOverlayColor : null, (32 & 32) != 0 ? ' ' : null);
         avatar.append(usernameText);
         this.binding.f876c.setDraweeSpanStringBuilder(avatar);
+    }
+
+    private final void setIsVerified(boolean isVerified) {
+        this.binding.f875b.setCompoundDrawablesWithIntrinsicBounds(isVerified ? C5419R.drawable.ic_verified_10dp : 0, 0, 0, 0);
     }
 
     public final void setUsernameColor(@ColorInt int color) {

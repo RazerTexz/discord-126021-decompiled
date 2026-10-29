@@ -15,16 +15,6 @@ public abstract class ViewModel {
     private final Map<String, Object> mBagOfTags = new HashMap();
     private volatile boolean mCleared = false;
 
-    private static void closeWithRuntimeException(Object obj) {
-        if (obj instanceof Closeable) {
-            try {
-                ((Closeable) obj).close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
     @MainThread
     public final void clear() {
         this.mCleared = true;
@@ -38,6 +28,16 @@ public abstract class ViewModel {
             }
         }
         onCleared();
+    }
+
+    private static void closeWithRuntimeException(Object obj) {
+        if (obj instanceof Closeable) {
+            try {
+                ((Closeable) obj).close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public <T> T getTag(String str) {

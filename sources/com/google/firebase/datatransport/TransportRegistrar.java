@@ -18,11 +18,6 @@ import p007b.p225i.p361c.p368l.InterfaceC4575g;
 /* JADX INFO: loaded from: classes3.dex */
 @Keep
 public class TransportRegistrar implements InterfaceC4575g {
-    public static /* synthetic */ InterfaceC2412g lambda$getComponents$0(InterfaceC4573e interfaceC4573e) {
-        C2447n.m2360b((Context) interfaceC4573e.mo6346a(Context.class));
-        return C2447n.m2359a().m2361c(C2414a.f5127e);
-    }
-
     @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
     public List<C4572d<?>> getComponents() {
         C4572d.b bVarM6348a = C4572d.m6348a(InterfaceC2412g.class);
@@ -35,5 +30,10 @@ public class TransportRegistrar implements InterfaceC4575g {
             }
         });
         return Collections.singletonList(bVarM6348a.m6352b());
+    }
+
+    public static /* synthetic */ InterfaceC2412g lambda$getComponents$0(InterfaceC4573e interfaceC4573e) {
+        C2447n.m2360b((Context) interfaceC4573e.mo6346a(Context.class));
+        return C2447n.m2359a().m2361c(C2414a.f5127e);
     }
 }

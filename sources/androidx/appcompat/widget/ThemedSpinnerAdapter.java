@@ -11,7 +11,7 @@ import androidx.appcompat.view.ContextThemeWrapper;
 /* JADX INFO: loaded from: classes.dex */
 public interface ThemedSpinnerAdapter extends SpinnerAdapter {
 
-    public static final class Helper {
+    public final class Helper {
         private final Context mContext;
         private LayoutInflater mDropDownInflater;
         private final LayoutInflater mInflater;

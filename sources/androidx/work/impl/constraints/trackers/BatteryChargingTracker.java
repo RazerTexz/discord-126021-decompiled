@@ -18,18 +18,6 @@ public class BatteryChargingTracker extends BroadcastReceiverConstraintTracker<B
         super(context, taskExecutor);
     }
 
-    private boolean isBatteryChangedIntentCharging(Intent intent) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            int intExtra = intent.getIntExtra("status", -1);
-            if (intExtra == 2 || intExtra == 5) {
-                return true;
-            }
-        } else if (intent.getIntExtra("plugged", 0) != 0) {
-            return true;
-        }
-        return false;
-    }
-
     @Override // androidx.work.impl.constraints.trackers.BroadcastReceiverConstraintTracker
     public IntentFilter getIntentFilter() {
         IntentFilter intentFilter = new IntentFilter();
@@ -41,6 +29,18 @@ public class BatteryChargingTracker extends BroadcastReceiverConstraintTracker<B
             intentFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED");
         }
         return intentFilter;
+    }
+
+    private boolean isBatteryChangedIntentCharging(Intent intent) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int intExtra = intent.getIntExtra("status", -1);
+            if (intExtra == 2 || intExtra == 5) {
+                return true;
+            }
+        } else if (intent.getIntExtra("plugged", 0) != 0) {
+            return true;
+        }
+        return false;
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */

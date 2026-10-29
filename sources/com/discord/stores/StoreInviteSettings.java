@@ -38,13 +38,13 @@ public final class StoreInviteSettings extends Store {
     private final BehaviorSubject<ModelInvite.Settings> inviteSettingsSubject = BehaviorSubject.m11130l0(this.inviteSettings);
 
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public static final /* data */ class InviteCode implements Parcelable {
+    public final /* data */ class InviteCode implements Parcelable {
         public static final Parcelable.Creator<InviteCode> CREATOR = new Creator();
         private final Long eventId;
         private final String inviteCode;
         private final String source;
 
-        public static class Creator implements Parcelable.Creator<InviteCode> {
+        public final class Creator implements Parcelable.Creator<InviteCode> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final InviteCode createFromParcel(Parcel parcel) {
@@ -80,21 +80,6 @@ public final class StoreInviteSettings extends Store {
             return inviteCode.copy(str, str2, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getInviteCode() {
-            return this.inviteCode;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSource() {
-            return this.source;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getEventId() {
-            return this.eventId;
-        }
-
         public final InviteCode copy(String inviteCode, String source, Long eventId) {
             C12238m.checkNotNullParameter(inviteCode, "inviteCode");
             C12238m.checkNotNullParameter(source, "source");
@@ -117,12 +102,27 @@ public final class StoreInviteSettings extends Store {
             return C12238m.areEqual(this.inviteCode, inviteCode.inviteCode) && C12238m.areEqual(this.source, inviteCode.source) && C12238m.areEqual(this.eventId, inviteCode.eventId);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getEventId() {
             return this.eventId;
         }
 
+        public final Long getEventId() {
+            return this.eventId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getInviteCode() {
             return this.inviteCode;
+        }
+
+        public final String getInviteCode() {
+            return this.inviteCode;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getSource() {
+            return this.source;
         }
 
         public final String getSource() {
@@ -162,29 +162,15 @@ public final class StoreInviteSettings extends Store {
         }
     }
 
+    public final void clearInviteCode() {
+        this.pendingInviteCodeSubject.onNext(null);
+    }
+
     public static /* synthetic */ Observable generateInvite$default(StoreInviteSettings storeInviteSettings, long j, ModelInvite.Settings settings, int i, Object obj) {
         if ((i & 2) != 0) {
             settings = storeInviteSettings.inviteSettings;
         }
         return storeInviteSettings.generateInvite(j, settings);
-    }
-
-    public static /* synthetic */ Experiment getInviteGuildExperiment$default(StoreInviteSettings storeInviteSettings, long j, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return storeInviteSettings.getInviteGuildExperiment(j, z2);
-    }
-
-    public static /* synthetic */ void setInviteCode$default(StoreInviteSettings storeInviteSettings, String str, String str2, Long l, int i, Object obj) {
-        if ((i & 4) != 0) {
-            l = null;
-        }
-        storeInviteSettings.setInviteCode(str, str2, l);
-    }
-
-    public final void clearInviteCode() {
-        this.pendingInviteCodeSubject.onNext(null);
     }
 
     public final Observable<ModelInvite> generateInvite(long j) {
@@ -308,6 +294,13 @@ public final class StoreInviteSettings extends Store {
         return observableM11112r;
     }
 
+    public static /* synthetic */ Experiment getInviteGuildExperiment$default(StoreInviteSettings storeInviteSettings, long j, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return storeInviteSettings.getInviteGuildExperiment(j, z2);
+    }
+
     public final Experiment getInviteGuildExperiment(long guildId, boolean trackExposure) {
         return StoreStream.INSTANCE.getExperiments().getGuildExperiment("2021-03_android_extend_invite_expiration", guildId, trackExposure);
     }
@@ -322,6 +315,13 @@ public final class StoreInviteSettings extends Store {
 
     public final void handleGuildSelected(long guildId) {
         setInviteSettings(getInviteSettings(guildId));
+    }
+
+    public static /* synthetic */ void setInviteCode$default(StoreInviteSettings storeInviteSettings, String str, String str2, Long l, int i, Object obj) {
+        if ((i & 4) != 0) {
+            l = null;
+        }
+        storeInviteSettings.setInviteCode(str, str2, l);
     }
 
     public final void setInviteCode(String inviteCode, String source, Long eventId) {

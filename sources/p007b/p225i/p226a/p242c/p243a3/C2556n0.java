@@ -54,17 +54,6 @@ public final class C2556n0 implements InterfaceC2963w0 {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public static void m2565a(String str, @Nullable String str2, @Nullable String str3, int i) {
-        StringBuilder sbM831S = C1643a.m831S(C1643a.m841b(str3, C1643a.m841b(str2, str.length() + 78)), "Different ", str, " combined in one TrackGroup: '", str2);
-        sbM831S.append("' (track 0) and '");
-        sbM831S.append(str3);
-        sbM831S.append("' (track ");
-        sbM831S.append(i);
-        sbM831S.append(")");
-        C2750q.m3039b("TrackGroup", "", new IllegalStateException(sbM831S.toString()));
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -81,5 +70,16 @@ public final class C2556n0 implements InterfaceC2963w0 {
             this.f5663m = 527 + Arrays.hashCode(this.f5662l);
         }
         return this.f5663m;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static void m2565a(String str, @Nullable String str2, @Nullable String str3, int i) {
+        StringBuilder sbM831S = C1643a.m831S(C1643a.m841b(str3, C1643a.m841b(str2, str.length() + 78)), "Different ", str, " combined in one TrackGroup: '", str2);
+        sbM831S.append("' (track 0) and '");
+        sbM831S.append(str3);
+        sbM831S.append("' (track ");
+        sbM831S.append(i);
+        sbM831S.append(")");
+        C2750q.m3039b("TrackGroup", "", new IllegalStateException(sbM831S.toString()));
     }
 }

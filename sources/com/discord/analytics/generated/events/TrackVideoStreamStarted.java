@@ -11,34 +11,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoStreamStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoStreamStarted implements AnalyticsSchema, TrackBaseReceiver, TrackNetworkInformationReceiver {
-    private TrackBase trackBase;
-    private TrackNetworkInformation trackNetworkInformation;
-    private final Long guildId = null;
     private final Long channelId = null;
-    private final CharSequence rtcConnectionId = null;
+    private final CharSequence context = null;
+    private final Long guildId = null;
+    private final CharSequence guildRegion = null;
     private final CharSequence mediaSessionId = null;
     private final CharSequence parentMediaSessionId = null;
-    private final Long senderUserId = null;
-    private final CharSequence context = null;
     private final CharSequence participantType = null;
-    private final CharSequence shareApplicationName = null;
-    private final Long shareApplicationId = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long senderUserId = null;
     private final CharSequence shareApplicationExecutable = null;
-    private final CharSequence streamRegion = null;
-    private final CharSequence guildRegion = null;
-    private final CharSequence videoLayout = null;
-    private final Long videoInputResolution = null;
-    private final Long videoInputFrameRate = null;
-    private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
+    private final Long shareApplicationId = null;
+    private final CharSequence shareApplicationName = null;
     private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
+    private final CharSequence soundshareSession = null;
+    private final CharSequence streamRegion = null;
+    private TrackBase trackBase;
+    private TrackNetworkInformation trackNetworkInformation;
+    private final Long videoInputFrameRate = null;
+    private final Long videoInputResolution = null;
+    private final CharSequence videoLayout = null;
     private final transient String analyticsSchemaTypeName = "video_stream_started";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -49,6 +43,12 @@ public final /* data */ class TrackVideoStreamStarted implements AnalyticsSchema
         }
         TrackVideoStreamStarted trackVideoStreamStarted = (TrackVideoStreamStarted) other;
         return C12238m.areEqual(this.guildId, trackVideoStreamStarted.guildId) && C12238m.areEqual(this.channelId, trackVideoStreamStarted.channelId) && C12238m.areEqual(this.rtcConnectionId, trackVideoStreamStarted.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVideoStreamStarted.mediaSessionId) && C12238m.areEqual(this.parentMediaSessionId, trackVideoStreamStarted.parentMediaSessionId) && C12238m.areEqual(this.senderUserId, trackVideoStreamStarted.senderUserId) && C12238m.areEqual(this.context, trackVideoStreamStarted.context) && C12238m.areEqual(this.participantType, trackVideoStreamStarted.participantType) && C12238m.areEqual(this.shareApplicationName, trackVideoStreamStarted.shareApplicationName) && C12238m.areEqual(this.shareApplicationId, trackVideoStreamStarted.shareApplicationId) && C12238m.areEqual(this.shareApplicationExecutable, trackVideoStreamStarted.shareApplicationExecutable) && C12238m.areEqual(this.streamRegion, trackVideoStreamStarted.streamRegion) && C12238m.areEqual(this.guildRegion, trackVideoStreamStarted.guildRegion) && C12238m.areEqual(this.videoLayout, trackVideoStreamStarted.videoLayout) && C12238m.areEqual(this.videoInputResolution, trackVideoStreamStarted.videoInputResolution) && C12238m.areEqual(this.videoInputFrameRate, trackVideoStreamStarted.videoInputFrameRate) && C12238m.areEqual(this.soundshareSession, trackVideoStreamStarted.soundshareSession) && C12238m.areEqual(this.shareGameName, trackVideoStreamStarted.shareGameName) && C12238m.areEqual(this.shareGameId, trackVideoStreamStarted.shareGameId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

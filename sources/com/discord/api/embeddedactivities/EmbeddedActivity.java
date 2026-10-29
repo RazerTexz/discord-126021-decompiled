@@ -21,6 +21,17 @@ public final /* data */ class EmbeddedActivity {
     private final ActivityTimestamps timestamps;
     private final ActivityType type;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbeddedActivity)) {
+            return false;
+        }
+        EmbeddedActivity embeddedActivity = (EmbeddedActivity) other;
+        return this.applicationId == embeddedActivity.applicationId && C12238m.areEqual(this.assets, embeddedActivity.assets) && C12238m.areEqual(this.createdAt, embeddedActivity.createdAt) && C12238m.areEqual(this.details, embeddedActivity.details) && C12238m.areEqual(this.name, embeddedActivity.name) && C12238m.areEqual(this.secrets, embeddedActivity.secrets) && C12238m.areEqual(this.state, embeddedActivity.state) && C12238m.areEqual(this.timestamps, embeddedActivity.timestamps) && C12238m.areEqual(this.type, embeddedActivity.type);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
@@ -46,17 +57,6 @@ public final /* data */ class EmbeddedActivity {
         return this.name;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbeddedActivity)) {
-            return false;
-        }
-        EmbeddedActivity embeddedActivity = (EmbeddedActivity) other;
-        return this.applicationId == embeddedActivity.applicationId && C12238m.areEqual(this.assets, embeddedActivity.assets) && C12238m.areEqual(this.createdAt, embeddedActivity.createdAt) && C12238m.areEqual(this.details, embeddedActivity.details) && C12238m.areEqual(this.name, embeddedActivity.name) && C12238m.areEqual(this.secrets, embeddedActivity.secrets) && C12238m.areEqual(this.state, embeddedActivity.state) && C12238m.areEqual(this.timestamps, embeddedActivity.timestamps) && C12238m.areEqual(this.type, embeddedActivity.type);
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final ActivitySecrets getSecrets() {
         return this.secrets;
@@ -70,6 +70,11 @@ public final /* data */ class EmbeddedActivity {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final ActivityTimestamps getTimestamps() {
         return this.timestamps;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final ActivityType getType() {
+        return this.type;
     }
 
     public int hashCode() {
@@ -91,11 +96,6 @@ public final /* data */ class EmbeddedActivity {
         int iHashCode7 = (iHashCode6 + (activityTimestamps != null ? activityTimestamps.hashCode() : 0)) * 31;
         ActivityType activityType = this.type;
         return iHashCode7 + (activityType != null ? activityType.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final ActivityType getType() {
-        return this.type;
     }
 
     public String toString() {

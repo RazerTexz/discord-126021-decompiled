@@ -35,7 +35,7 @@ public final class AsyncLayoutInflater {
     public Handler mHandler = new Handler(this.mHandlerCallback);
     public InflateThread mInflateThread = InflateThread.getInstance();
 
-    public static class BasicInflater extends LayoutInflater {
+    public class BasicInflater extends LayoutInflater {
         private static final String[] sClassPrefixList = {"android.widget.", "android.webkit.", "android.app."};
 
         public BasicInflater(Context context) {
@@ -62,7 +62,7 @@ public final class AsyncLayoutInflater {
         }
     }
 
-    public static class InflateRequest {
+    public class InflateRequest {
         public OnInflateFinishedListener callback;
         public AsyncLayoutInflater inflater;
         public ViewGroup parent;
@@ -70,7 +70,26 @@ public final class AsyncLayoutInflater {
         public View view;
     }
 
-    public static class InflateThread extends Thread {
+    public interface OnInflateFinishedListener {
+        void onInflateFinished(@NonNull View view, @LayoutRes int i, @Nullable ViewGroup viewGroup);
+    }
+
+    public AsyncLayoutInflater(@NonNull Context context) {
+        this.mInflater = new BasicInflater(context);
+    }
+
+    @UiThread
+    public void inflate(@LayoutRes int i, @Nullable ViewGroup viewGroup, @NonNull OnInflateFinishedListener onInflateFinishedListener) {
+        Objects.requireNonNull(onInflateFinishedListener, "callback argument may not be null!");
+        InflateRequest inflateRequestObtainRequest = this.mInflateThread.obtainRequest();
+        inflateRequestObtainRequest.inflater = this;
+        inflateRequestObtainRequest.resid = i;
+        inflateRequestObtainRequest.parent = viewGroup;
+        inflateRequestObtainRequest.callback = onInflateFinishedListener;
+        this.mInflateThread.enqueue(inflateRequestObtainRequest);
+    }
+
+    public class InflateThread extends Thread {
         private static final InflateThread sInstance;
         private ArrayBlockingQueue<InflateRequest> mQueue = new ArrayBlockingQueue<>(10);
         private Pools.SynchronizedPool<InflateRequest> mRequestPool = new Pools.SynchronizedPool<>(10);
@@ -84,16 +103,16 @@ public final class AsyncLayoutInflater {
         private InflateThread() {
         }
 
-        public static InflateThread getInstance() {
-            return sInstance;
-        }
-
         public void enqueue(InflateRequest inflateRequest) {
             try {
                 this.mQueue.put(inflateRequest);
             } catch (InterruptedException e) {
                 throw new RuntimeException("Failed to enqueue async inflate request", e);
             }
+        }
+
+        public static InflateThread getInstance() {
+            return sInstance;
         }
 
         public InflateRequest obtainRequest() {
@@ -130,24 +149,5 @@ public final class AsyncLayoutInflater {
                 Log.w(AsyncLayoutInflater.TAG, e2);
             }
         }
-    }
-
-    public interface OnInflateFinishedListener {
-        void onInflateFinished(@NonNull View view, @LayoutRes int i, @Nullable ViewGroup viewGroup);
-    }
-
-    public AsyncLayoutInflater(@NonNull Context context) {
-        this.mInflater = new BasicInflater(context);
-    }
-
-    @UiThread
-    public void inflate(@LayoutRes int i, @Nullable ViewGroup viewGroup, @NonNull OnInflateFinishedListener onInflateFinishedListener) {
-        Objects.requireNonNull(onInflateFinishedListener, "callback argument may not be null!");
-        InflateRequest inflateRequestObtainRequest = this.mInflateThread.obtainRequest();
-        inflateRequestObtainRequest.inflater = this;
-        inflateRequestObtainRequest.resid = i;
-        inflateRequestObtainRequest.parent = viewGroup;
-        inflateRequestObtainRequest.callback = onInflateFinishedListener;
-        this.mInflateThread.enqueue(inflateRequestObtainRequest);
     }
 }

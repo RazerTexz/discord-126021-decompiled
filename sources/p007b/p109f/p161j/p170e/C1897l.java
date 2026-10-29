@@ -30,27 +30,9 @@ public class C1897l {
     /* JADX INFO: renamed from: g */
     public final int f3784g;
 
-    /* JADX INFO: renamed from: b.f.j.e.l$b */
-    /* JADX INFO: compiled from: ImagePipelineExperiments.java */
-    public static class b {
-
-        /* JADX INFO: renamed from: a */
-        public final C1895j.a f3785a;
-
-        /* JADX INFO: renamed from: b */
-        public boolean f3786b;
-
-        /* JADX INFO: renamed from: c */
-        public Supplier<Boolean> f3787c = new C1688k(Boolean.FALSE);
-
-        public b(C1895j.a aVar) {
-            this.f3785a = aVar;
-        }
-    }
-
     /* JADX INFO: renamed from: b.f.j.e.l$c */
     /* JADX INFO: compiled from: ImagePipelineExperiments.java */
-    public static class c implements d {
+    public class c implements d {
     }
 
     /* JADX INFO: renamed from: b.f.j.e.l$d */
@@ -67,5 +49,23 @@ public class C1897l {
         this.f3782e = true;
         this.f3783f = true;
         this.f3784g = 20;
+    }
+
+    /* JADX INFO: renamed from: b.f.j.e.l$b */
+    /* JADX INFO: compiled from: ImagePipelineExperiments.java */
+    public class b {
+
+        /* JADX INFO: renamed from: a */
+        public final C1895j.a f3785a;
+
+        /* JADX INFO: renamed from: b */
+        public boolean f3786b;
+
+        /* JADX INFO: renamed from: c */
+        public Supplier<Boolean> f3787c = new C1688k(Boolean.FALSE);
+
+        public b(C1895j.a aVar) {
+            this.f3785a = aVar;
+        }
     }
 }

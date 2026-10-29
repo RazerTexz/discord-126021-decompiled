@@ -8,9 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractRunnableC1976e1<T> implements Runnable {
 
-    /* JADX INFO: renamed from: j */
-    public final AtomicInteger f4041j = new AtomicInteger(0);
-
     /* JADX INFO: renamed from: k */
     public final InterfaceC1995l<T> f4042k;
 
@@ -22,6 +19,9 @@ public abstract class AbstractRunnableC1976e1<T> implements Runnable {
 
     /* JADX INFO: renamed from: n */
     public final InterfaceC2020x0 f4045n;
+
+    /* JADX INFO: renamed from: j */
+    public final AtomicInteger f4041j = new AtomicInteger(0);
 
     public AbstractRunnableC1976e1(InterfaceC1995l<T> interfaceC1995l, InterfaceC2024z0 interfaceC2024z0, InterfaceC2020x0 interfaceC2020x0, String str) {
         this.f4042k = interfaceC1995l;

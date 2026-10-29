@@ -30,7 +30,7 @@ public final class ViewOnLayoutChangeListenerC1101b implements View.OnLayoutChan
 
     /* JADX INFO: renamed from: b.a.j.b$a */
     /* JADX INFO: compiled from: View.kt */
-    public static final class a implements View.OnLayoutChangeListener {
+    public final class a implements View.OnLayoutChangeListener {
         public a() {
         }
 

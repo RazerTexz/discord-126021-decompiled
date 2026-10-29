@@ -22,36 +22,6 @@ public final /* data */ class PlayoutMetric {
         this.max = d6;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final double getLast() {
-        return this.last;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final double getMean() {
-        return this.mean;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final double getP75() {
-        return this.p75;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final double getP95() {
-        return this.p95;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final double getP99() {
-        return this.p99;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final double getMax() {
-        return this.max;
-    }
-
     public final PlayoutMetric copy(double last, double mean, double p75, double p95, double p99, double max) {
         return new PlayoutMetric(last, mean, p75, p95, p99, max);
     }
@@ -67,24 +37,54 @@ public final /* data */ class PlayoutMetric {
         return Double.compare(this.last, playoutMetric.last) == 0 && Double.compare(this.mean, playoutMetric.mean) == 0 && Double.compare(this.p75, playoutMetric.p75) == 0 && Double.compare(this.p95, playoutMetric.p95) == 0 && Double.compare(this.p99, playoutMetric.p99) == 0 && Double.compare(this.max, playoutMetric.max) == 0;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final double getLast() {
         return this.last;
+    }
+
+    public final double getLast() {
+        return this.last;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final double getMax() {
+        return this.max;
     }
 
     public final double getMax() {
         return this.max;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final double getMean() {
         return this.mean;
+    }
+
+    public final double getMean() {
+        return this.mean;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final double getP75() {
+        return this.p75;
     }
 
     public final double getP75() {
         return this.p75;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final double getP95() {
         return this.p95;
+    }
+
+    public final double getP95() {
+        return this.p95;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final double getP99() {
+        return this.p99;
     }
 
     public final double getP99() {

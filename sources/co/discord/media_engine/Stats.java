@@ -24,6 +24,14 @@ public final /* data */ class Stats {
         this.inboundRtpVideo = map2;
     }
 
+    public final Map<String, InboundRtpAudio> component4() {
+        return this.inboundRtpAudio;
+    }
+
+    public final Map<String, InboundRtpVideo> component5() {
+        return this.inboundRtpVideo;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Stats copy$default(Stats stats, Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map map, Map map2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -45,29 +53,6 @@ public final /* data */ class Stats {
             map2 = stats.inboundRtpVideo;
         }
         return stats.copy(transport, outboundRtpAudio2, outboundRtpVideo2, map3, map2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Transport getTransport() {
-        return this.transport;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final OutboundRtpAudio getOutboundRtpAudio() {
-        return this.outboundRtpAudio;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final OutboundRtpVideo getOutboundRtpVideo() {
-        return this.outboundRtpVideo;
-    }
-
-    public final Map<String, InboundRtpAudio> component4() {
-        return this.inboundRtpAudio;
-    }
-
-    public final Map<String, InboundRtpVideo> component5() {
-        return this.inboundRtpVideo;
     }
 
     public final Stats copy(Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map<String, InboundRtpAudio> inboundRtpAudio, Map<String, InboundRtpVideo> inboundRtpVideo) {
@@ -95,12 +80,27 @@ public final /* data */ class Stats {
         return this.inboundRtpVideo;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final OutboundRtpAudio getOutboundRtpAudio() {
         return this.outboundRtpAudio;
     }
 
+    public final OutboundRtpAudio getOutboundRtpAudio() {
+        return this.outboundRtpAudio;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final OutboundRtpVideo getOutboundRtpVideo() {
         return this.outboundRtpVideo;
+    }
+
+    public final OutboundRtpVideo getOutboundRtpVideo() {
+        return this.outboundRtpVideo;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Transport getTransport() {
+        return this.transport;
     }
 
     public final Transport getTransport() {

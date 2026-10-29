@@ -9,14 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: CoroutineContextImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12179f implements CoroutineContext, Serializable {
+    private static final long serialVersionUID = 0;
 
     /* JADX INFO: renamed from: j */
     public static final C12179f f25237j = new C12179f();
-    private static final long serialVersionUID = 0;
-
-    private final Object readResolve() {
-        return f25237j;
-    }
 
     @Override // kotlin.coroutines.CoroutineContext
     public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> function2) {
@@ -44,6 +40,10 @@ public final class C12179f implements CoroutineContext, Serializable {
     public CoroutineContext plus(CoroutineContext coroutineContext) {
         C12238m.checkNotNullParameter(coroutineContext, "context");
         return coroutineContext;
+    }
+
+    private final Object readResolve() {
+        return f25237j;
     }
 
     public String toString() {

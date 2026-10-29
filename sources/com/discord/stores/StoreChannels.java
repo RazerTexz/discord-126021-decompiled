@@ -49,8 +49,6 @@ import p658rx.Observable;
 /* JADX INFO: compiled from: StoreChannels.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreChannels extends StoreV2 {
-    private static final StoreChannels$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreChannels$Companion$InitializedUpdateSource$1
-    };
     public static final long PRIVATE_CHANNELS_ID = 0;
     private final Map<Long, String> channelNames;
     private Map<Long, String> channelNamesSnapshot;
@@ -70,10 +68,12 @@ public final class StoreChannels extends StoreV2 {
     private final Map<Long, Channel> preloadedThreads;
     private final Map<Long, Channel> threadsById;
     private Map<Long, Channel> threadsByIdSnapshot;
+    private static final StoreChannels$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreChannels$Companion$InitializedUpdateSource$1
+    };
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$handleGuildRemove$2 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58162 extends AbstractC12240o implements Function1<Channel, Boolean> {
+    public final class C58162 extends AbstractC12240o implements Function1<Channel, Boolean> {
         public final /* synthetic */ Guild $guild;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -96,7 +96,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeAllChannels$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58171 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C58171 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public C58171() {
             super(0);
         }
@@ -109,7 +109,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeChannel$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58181 extends AbstractC12240o implements Function0<Channel> {
+    public final class C58181 extends AbstractC12240o implements Function0<Channel> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -127,7 +127,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeGuildAndPrivateChannels$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58251 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C58251 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public C58251() {
             super(0);
         }
@@ -140,7 +140,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeInitializedForAuthedUser$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58271 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C58271 extends AbstractC12240o implements Function0<Boolean> {
         public C58271() {
             super(0);
         }
@@ -158,7 +158,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeNames$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58281 extends AbstractC12240o implements Function0<Map<Long, ? extends String>> {
+    public final class C58281 extends AbstractC12240o implements Function0<Map<Long, ? extends String>> {
         public C58281() {
             super(0);
         }
@@ -171,7 +171,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeThreadsFromMessages$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58301 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C58301 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public final /* synthetic */ List $messages;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -207,7 +207,7 @@ public final class StoreChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$onGroupCreated$1 */
     /* JADX INFO: compiled from: StoreChannels.kt */
-    public static final class C58311 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58311 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Channel $channel;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -230,41 +230,6 @@ public final class StoreChannels extends StoreV2 {
 
     public /* synthetic */ StoreChannels(Dispatcher dispatcher, ObservationDeck observationDeck, Function1 function1, Function0 function0, Function0 function2, Persister persister, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, observationDeck, function1, function0, function2, (i & 32) != 0 ? new Persister("STORE_CHANNELS_V26", new ArrayList()) : persister);
-    }
-
-    public static /* synthetic */ Observable observeChannelsForGuild$default(StoreChannels storeChannels, long j, Integer num, int i, Object obj) {
-        if ((i & 2) != 0) {
-            num = null;
-        }
-        return storeChannels.observeChannelsForGuild(j, num);
-    }
-
-    public static /* synthetic */ Observable observeIds$default(StoreChannels storeChannels, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        return storeChannels.observeIds(z2);
-    }
-
-    public static /* synthetic */ void storeThread$app_productionGoogleRelease$default(StoreChannels storeChannels, Channel channel, long j, Channel channel2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            j = 0;
-        }
-        if ((i & 4) != 0) {
-            channel2 = null;
-        }
-        storeChannels.storeThread$app_productionGoogleRelease(channel, j, channel2);
-    }
-
-    @StoreThread
-    private final void updateInitializationState() {
-        boolean z2 = this.initializedForAuthedUser;
-        boolean z3 = this.isAuthenticated.invoke().booleanValue() && ((getChannelsByIdInternal$app_productionGoogleRelease().isEmpty() ^ true) || this.handledReadyPayload || this.isStoreInitTimedOut);
-        if (z2 || !z3) {
-            return;
-        }
-        this.initializedForAuthedUser = true;
-        markChanged(InitializedUpdateSource);
     }
 
     public final Channel findChannelById(long channelId) {
@@ -793,6 +758,13 @@ public final class StoreChannels extends StoreV2 {
         return observableM11112r;
     }
 
+    public static /* synthetic */ Observable observeChannelsForGuild$default(StoreChannels storeChannels, long j, Integer num, int i, Object obj) {
+        if ((i & 2) != 0) {
+            num = null;
+        }
+        return storeChannels.observeChannelsForGuild(j, num);
+    }
+
     public final Observable<Map<Long, Channel>> observeChannelsForGuild(long j) {
         return observeChannelsForGuild$default(this, j, null, 2, null);
     }
@@ -871,7 +843,7 @@ public final class StoreChannels extends StoreV2 {
 
                     /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDefaultChannel$1$1$1, reason: invalid class name and collision with other inner class name */
                     /* JADX INFO: compiled from: StoreChannels.kt */
-                    public static final class C132521 extends AbstractC12240o implements Function1<Channel, Boolean> {
+                    public final class C132521 extends AbstractC12240o implements Function1<Channel, Boolean> {
                         public C132521() {
                             super(1);
                         }
@@ -949,6 +921,13 @@ public final class StoreChannels extends StoreV2 {
 
     public final Observable<Map<Long, Channel>> observeGuildAndPrivateChannels() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58251(), 14, null);
+    }
+
+    public static /* synthetic */ Observable observeIds$default(StoreChannels storeChannels, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        return storeChannels.observeIds(z2);
     }
 
     public final Observable<Map<Long, List<Long>>> observeIds(boolean includeThreads) {
@@ -1083,6 +1062,16 @@ public final class StoreChannels extends StoreV2 {
         this.threadsByIdSnapshot = CollectionExtensionsKt.snapshot$default(this.threadsById, 0, 0.0f, 3, null);
     }
 
+    public static /* synthetic */ void storeThread$app_productionGoogleRelease$default(StoreChannels storeChannels, Channel channel, long j, Channel channel2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            j = 0;
+        }
+        if ((i & 4) != 0) {
+            channel2 = null;
+        }
+        storeChannels.storeThread$app_productionGoogleRelease(channel, j, channel2);
+    }
+
     /* JADX WARN: Code duplicated, block: B:14:0x003e  */
     /* JADX WARN: Code duplicated, block: B:15:0x0043  */
     @StoreThread
@@ -1116,6 +1105,17 @@ public final class StoreChannels extends StoreV2 {
         }
         this.threadsById.put(Long.valueOf(thread.getId()), Channel.m7629a(thread, null, 0, guildId, null, 0L, 0L, 0L, null, null, 0, null, 0, 0, null, 0L, 0L, null, nsfw2, 0L, null, 0, null, null, null, null, null, null, null, null, null, null, null, -131077));
         this.channelNames.put(Long.valueOf(thread.getId()), ChannelUtils.m7679c(thread));
+    }
+
+    @StoreThread
+    private final void updateInitializationState() {
+        boolean z2 = this.initializedForAuthedUser;
+        boolean z3 = this.isAuthenticated.invoke().booleanValue() && ((getChannelsByIdInternal$app_productionGoogleRelease().isEmpty() ^ true) || this.handledReadyPayload || this.isStoreInitTimedOut);
+        if (z2 || !z3) {
+            return;
+        }
+        this.initializedForAuthedUser = true;
+        markChanged(InitializedUpdateSource);
     }
 
     /* JADX WARN: Multi-variable type inference failed */

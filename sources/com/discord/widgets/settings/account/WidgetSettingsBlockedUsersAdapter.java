@@ -26,7 +26,7 @@ public final class WidgetSettingsBlockedUsersAdapter extends MGRecyclerAdapterSi
     private Function1<? super User, Unit> onClickUserProfile;
 
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersAdapter.kt */
-    public static final class BlockedUserViewHolder extends MGRecyclerViewHolder<WidgetSettingsBlockedUsersAdapter, WidgetSettingsBlockedUsersViewModel.Item> {
+    public final class BlockedUserViewHolder extends MGRecyclerViewHolder<WidgetSettingsBlockedUsersAdapter, WidgetSettingsBlockedUsersViewModel.Item> {
         private final WidgetSettingsItemBlockedUserBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

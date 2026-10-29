@@ -15,22 +15,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPromotionViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPromotionViewed implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackLocationMetadataReceiver, TrackPriceMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private TrackPriceMetadata trackPriceMetadata;
-    private TrackStoreSkuMetadata trackStoreSkuMetadata;
+    private final Long listIndex = null;
     private final CharSequence loadId = null;
     private final CharSequence promotionId = null;
     private final CharSequence promotionType = null;
     private final CharSequence promotionUrl = null;
-    private final Long listIndex = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
+    private TrackPriceMetadata trackPriceMetadata;
+    private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private final transient String analyticsSchemaTypeName = "promotion_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -41,6 +35,12 @@ public final /* data */ class TrackPromotionViewed implements AnalyticsSchema, T
         }
         TrackPromotionViewed trackPromotionViewed = (TrackPromotionViewed) other;
         return C12238m.areEqual(this.loadId, trackPromotionViewed.loadId) && C12238m.areEqual(this.promotionId, trackPromotionViewed.promotionId) && C12238m.areEqual(this.promotionType, trackPromotionViewed.promotionType) && C12238m.areEqual(this.promotionUrl, trackPromotionViewed.promotionUrl) && C12238m.areEqual(this.listIndex, trackPromotionViewed.listIndex);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

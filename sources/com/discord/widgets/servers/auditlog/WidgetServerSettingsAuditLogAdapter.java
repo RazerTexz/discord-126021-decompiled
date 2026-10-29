@@ -37,7 +37,7 @@ public final class WidgetServerSettingsAuditLogAdapter extends MGRecyclerAdapter
     private Function2<? super Long, ? super Long, Unit> onAuditLogAvatarClicked;
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
-    public static final class AuditLogEntryItem implements MGRecyclerDataPayload {
+    public final class AuditLogEntryItem implements MGRecyclerDataPayload {
         private final ModelAuditLogEntry auditLogEntry;
         private final CharSequence changeText;
         private final GuildMember guildMember;
@@ -83,6 +83,11 @@ public final class WidgetServerSettingsAuditLogAdapter extends MGRecyclerAdapter
             return this.headerText;
         }
 
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -100,15 +105,10 @@ public final class WidgetServerSettingsAuditLogAdapter extends MGRecyclerAdapter
         public final User getUser() {
             return this.user;
         }
-
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
-    public static final class AuditLogEntryViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogAdapter, MGRecyclerDataPayload> {
+    public final class AuditLogEntryViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogAdapter, MGRecyclerDataPayload> {
         private final WidgetServerSettingsAuditLogListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -255,23 +255,7 @@ public final class WidgetServerSettingsAuditLogAdapter extends MGRecyclerAdapter
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
-    public static final class AuditLogLoadingItem implements MGRecyclerDataPayload {
-        private final int type = 1;
-        private final String key = "loading";
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
-    public static final class AuditLogLoadingViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogAdapter, MGRecyclerDataPayload> {
+    public final class AuditLogLoadingViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogAdapter, MGRecyclerDataPayload> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public AuditLogLoadingViewHolder(WidgetServerSettingsAuditLogAdapter widgetServerSettingsAuditLogAdapter) {
             super(C5419R.layout.widget_server_settings_audit_log_loading_listitem, widgetServerSettingsAuditLogAdapter);
@@ -298,6 +282,22 @@ public final class WidgetServerSettingsAuditLogAdapter extends MGRecyclerAdapter
     public final void setOnAuditLogAvatarClicked(Function2<? super Long, ? super Long, Unit> function2) {
         C12238m.checkNotNullParameter(function2, "<set-?>");
         this.onAuditLogAvatarClicked = function2;
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
+    public final class AuditLogLoadingItem implements MGRecyclerDataPayload {
+        private final int type = 1;
+        private final String key = "loading";
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

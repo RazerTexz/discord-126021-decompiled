@@ -16,9 +16,6 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2394l;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2196q extends AbstractC2172c {
 
-    /* JADX INFO: renamed from: b */
-    public static final Class<?>[] f4732b = new Class[0];
-
     /* JADX INFO: renamed from: c */
     public final C2176b0 f4733c;
 
@@ -43,6 +40,9 @@ public class C2196q extends AbstractC2172c {
     /* JADX INFO: renamed from: j */
     public C2174a0 f4740j;
 
+    /* JADX INFO: renamed from: b */
+    public static final Class<?>[] f4732b = new Class[0];
+
     public C2196q(AbstractC2394l<?> abstractC2394l, AbstractC2360j abstractC2360j, C2177c c2177c, List<AbstractC2198s> list) {
         super(abstractC2360j);
         this.f4733c = null;
@@ -59,6 +59,18 @@ public class C2196q extends AbstractC2172c {
     /* JADX INFO: renamed from: e */
     public static C2196q m1918e(AbstractC2394l<?> abstractC2394l, AbstractC2360j abstractC2360j, C2177c c2177c) {
         return new C2196q(abstractC2394l, abstractC2360j, c2177c, Collections.emptyList());
+    }
+
+    /* JADX INFO: renamed from: d */
+    public List<AbstractC2198s> m1919d() {
+        if (this.f4739i == null) {
+            C2176b0 c2176b0 = this.f4733c;
+            if (!c2176b0.f4641i) {
+                c2176b0.m1829h();
+            }
+            this.f4739i = new ArrayList(c2176b0.f4642j.values());
+        }
+        return this.f4739i;
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2172c
@@ -106,18 +118,6 @@ public class C2196q extends AbstractC2172c {
             return bVar;
         }
         return bVar == null ? bVarMo1802z : bVar.m1618a(bVarMo1802z);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public List<AbstractC2198s> m1919d() {
-        if (this.f4739i == null) {
-            C2176b0 c2176b0 = this.f4733c;
-            if (!c2176b0.f4641i) {
-                c2176b0.m1829h();
-            }
-            this.f4739i = new ArrayList(c2176b0.f4642j.values());
-        }
-        return this.f4739i;
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

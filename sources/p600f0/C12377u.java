@@ -27,20 +27,6 @@ public final class C12377u extends RequestBody {
     /* JADX INFO: renamed from: c */
     public final List<String> f25965c;
 
-    /* JADX INFO: renamed from: f0.u$a */
-    /* JADX INFO: compiled from: FormBody.kt */
-    public static final class a {
-
-        /* JADX INFO: renamed from: c */
-        public final Charset f25968c = null;
-
-        /* JADX INFO: renamed from: a */
-        public final List<String> f25966a = new ArrayList();
-
-        /* JADX INFO: renamed from: b */
-        public final List<String> f25967b = new ArrayList();
-    }
-
     static {
         MediaType.Companion companion = MediaType.INSTANCE;
         f25963a = MediaType.Companion.m10967a(ShareTarget.ENCODING_TYPE_URL_ENCODED);
@@ -51,6 +37,16 @@ public final class C12377u extends RequestBody {
         C12238m.checkParameterIsNotNull(list2, "encodedValues");
         this.f25964b = C12272c.m10145z(list);
         this.f25965c = C12272c.m10145z(list2);
+    }
+
+    @Override // okhttp3.RequestBody
+    public long contentLength() {
+        return m10394a(null, true);
+    }
+
+    @Override // okhttp3.RequestBody
+    public MediaType contentType() {
+        return f25963a;
     }
 
     /* JADX INFO: renamed from: a */
@@ -82,18 +78,22 @@ public final class C12377u extends RequestBody {
     }
 
     @Override // okhttp3.RequestBody
-    public long contentLength() {
-        return m10394a(null, true);
-    }
-
-    @Override // okhttp3.RequestBody
-    public MediaType contentType() {
-        return f25963a;
-    }
-
-    @Override // okhttp3.RequestBody
     public void writeTo(BufferedSink bufferedSink) throws IOException {
         C12238m.checkParameterIsNotNull(bufferedSink, "sink");
         m10394a(bufferedSink, false);
+    }
+
+    /* JADX INFO: renamed from: f0.u$a */
+    /* JADX INFO: compiled from: FormBody.kt */
+    public final class a {
+
+        /* JADX INFO: renamed from: c */
+        public final Charset f25968c = null;
+
+        /* JADX INFO: renamed from: a */
+        public final List<String> f25966a = new ArrayList();
+
+        /* JADX INFO: renamed from: b */
+        public final List<String> f25967b = new ArrayList();
     }
 }

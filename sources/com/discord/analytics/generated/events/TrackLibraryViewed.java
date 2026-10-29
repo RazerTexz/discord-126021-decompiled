@@ -9,24 +9,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLibraryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLibraryViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence loadId = null;
-    private final Long numApplicationsTotal = null;
     private final Long numApplicationsBattlenet = null;
     private final Long numApplicationsDiscord = null;
+    private final Long numApplicationsEpic = null;
+    private final Long numApplicationsGog = null;
+    private final Long numApplicationsOrigin = null;
     private final Long numApplicationsSteam = null;
+    private final Long numApplicationsTotal = null;
     private final Long numApplicationsTwitch = null;
     private final Long numApplicationsUplay = null;
-    private final Long numApplicationsOrigin = null;
-    private final Long numApplicationsGog = null;
-    private final Long numApplicationsEpic = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "library_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackLibraryViewed implements AnalyticsSchema, Tra
         }
         TrackLibraryViewed trackLibraryViewed = (TrackLibraryViewed) other;
         return C12238m.areEqual(this.loadId, trackLibraryViewed.loadId) && C12238m.areEqual(this.numApplicationsTotal, trackLibraryViewed.numApplicationsTotal) && C12238m.areEqual(this.numApplicationsBattlenet, trackLibraryViewed.numApplicationsBattlenet) && C12238m.areEqual(this.numApplicationsDiscord, trackLibraryViewed.numApplicationsDiscord) && C12238m.areEqual(this.numApplicationsSteam, trackLibraryViewed.numApplicationsSteam) && C12238m.areEqual(this.numApplicationsTwitch, trackLibraryViewed.numApplicationsTwitch) && C12238m.areEqual(this.numApplicationsUplay, trackLibraryViewed.numApplicationsUplay) && C12238m.areEqual(this.numApplicationsOrigin, trackLibraryViewed.numApplicationsOrigin) && C12238m.areEqual(this.numApplicationsGog, trackLibraryViewed.numApplicationsGog) && C12238m.areEqual(this.numApplicationsEpic, trackLibraryViewed.numApplicationsEpic);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

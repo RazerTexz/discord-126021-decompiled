@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCaptchaServed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence captchaService = null;
-    private final CharSequence sitekey = null;
-    private final CharSequence userFlow = null;
-    private final Boolean forceBad = null;
     private final Boolean captchaRequired = null;
-    private final Long locationGuildId = null;
+    private final CharSequence captchaService = null;
+    private final Boolean forceBad = null;
     private final Long locationChannelId = null;
     private final Long locationChannelType = null;
+    private final Long locationGuildId = null;
     private final Long locationMessageId = null;
+    private final CharSequence sitekey = null;
+    private TrackBase trackBase;
+    private final CharSequence userFlow = null;
     private final transient String analyticsSchemaTypeName = "captcha_served";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, Tra
         }
         TrackCaptchaServed trackCaptchaServed = (TrackCaptchaServed) other;
         return C12238m.areEqual(this.captchaService, trackCaptchaServed.captchaService) && C12238m.areEqual(this.sitekey, trackCaptchaServed.sitekey) && C12238m.areEqual(this.userFlow, trackCaptchaServed.userFlow) && C12238m.areEqual(this.forceBad, trackCaptchaServed.forceBad) && C12238m.areEqual(this.captchaRequired, trackCaptchaServed.captchaRequired) && C12238m.areEqual(this.locationGuildId, trackCaptchaServed.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackCaptchaServed.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackCaptchaServed.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackCaptchaServed.locationMessageId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

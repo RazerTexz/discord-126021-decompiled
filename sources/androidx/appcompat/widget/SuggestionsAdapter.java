@@ -58,7 +58,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
     private int mText2UrlCol;
     private ColorStateList mUrlColor;
 
-    public static final class ChildViewCache {
+    public final class ChildViewCache {
         public final ImageView mIcon1;
         public final ImageView mIcon2;
         public final ImageView mIconRefine;
@@ -91,12 +91,106 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
         this.mOutsideDrawablesCache = weakHashMap;
     }
 
+    @Override // androidx.cursoradapter.widget.CursorAdapter
+    public void bindView(View view, Context context, Cursor cursor) {
+        ChildViewCache childViewCache = (ChildViewCache) view.getTag();
+        int i = this.mFlagsCol;
+        int i2 = i != -1 ? cursor.getInt(i) : 0;
+        if (childViewCache.mText1 != null) {
+            setViewText(childViewCache.mText1, getStringOrNull(cursor, this.mText1Col));
+        }
+        if (childViewCache.mText2 != null) {
+            String stringOrNull = getStringOrNull(cursor, this.mText2UrlCol);
+            CharSequence url = stringOrNull != null ? formatUrl(stringOrNull) : getStringOrNull(cursor, this.mText2Col);
+            if (TextUtils.isEmpty(url)) {
+                TextView textView = childViewCache.mText1;
+                if (textView != null) {
+                    textView.setSingleLine(false);
+                    childViewCache.mText1.setMaxLines(2);
+                }
+            } else {
+                TextView textView2 = childViewCache.mText1;
+                if (textView2 != null) {
+                    textView2.setSingleLine(true);
+                    childViewCache.mText1.setMaxLines(1);
+                }
+            }
+            setViewText(childViewCache.mText2, url);
+        }
+        ImageView imageView = childViewCache.mIcon1;
+        if (imageView != null) {
+            setViewDrawable(imageView, getIcon1(cursor), 4);
+        }
+        ImageView imageView2 = childViewCache.mIcon2;
+        if (imageView2 != null) {
+            setViewDrawable(imageView2, getIcon2(cursor), 8);
+        }
+        int i3 = this.mQueryRefinement;
+        if (i3 != 2 && (i3 != 1 || (i2 & 1) == 0)) {
+            childViewCache.mIconRefine.setVisibility(8);
+            return;
+        }
+        childViewCache.mIconRefine.setVisibility(0);
+        childViewCache.mIconRefine.setTag(childViewCache.mText1.getText());
+        childViewCache.mIconRefine.setOnClickListener(this);
+    }
+
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
+    public void changeCursor(Cursor cursor) {
+        if (this.mClosed) {
+            Log.w(LOG_TAG, "Tried to change cursor after adapter was closed.");
+            if (cursor != null) {
+                cursor.close();
+                return;
+            }
+            return;
+        }
+        try {
+            super.changeCursor(cursor);
+            if (cursor != null) {
+                this.mText1Col = cursor.getColumnIndex("suggest_text_1");
+                this.mText2Col = cursor.getColumnIndex("suggest_text_2");
+                this.mText2UrlCol = cursor.getColumnIndex("suggest_text_2_url");
+                this.mIconName1Col = cursor.getColumnIndex("suggest_icon_1");
+                this.mIconName2Col = cursor.getColumnIndex("suggest_icon_2");
+                this.mFlagsCol = cursor.getColumnIndex("suggest_flags");
+            }
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "error changing cursor and caching columns", e);
+        }
+    }
+
     private Drawable checkIconCache(String str) {
         Drawable.ConstantState constantState = this.mOutsideDrawablesCache.get(str);
         if (constantState == null) {
             return null;
         }
         return constantState.newDrawable();
+    }
+
+    public void close() {
+        changeCursor(null);
+        this.mClosed = true;
+    }
+
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
+    public CharSequence convertToString(Cursor cursor) {
+        String columnString;
+        String columnString2;
+        if (cursor == null) {
+            return null;
+        }
+        String columnString3 = getColumnString(cursor, "suggest_intent_query");
+        if (columnString3 != null) {
+            return columnString3;
+        }
+        if (this.mSearchable.shouldRewriteQueryFromData() && (columnString2 = getColumnString(cursor, "suggest_intent_data")) != null) {
+            return columnString2;
+        }
+        if (!this.mSearchable.shouldRewriteQueryFromText() || (columnString = getColumnString(cursor, "suggest_text_1")) == null) {
+            return null;
+        }
+        return columnString;
     }
 
     private CharSequence formatUrl(CharSequence charSequence) {
@@ -192,189 +286,6 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
         return null;
     }
 
-    private Drawable getDrawableFromResourceValue(String str) {
-        if (str == null || str.isEmpty() || "0".equals(str)) {
-            return null;
-        }
-        try {
-            int i = Integer.parseInt(str);
-            String str2 = "android.resource://" + this.mProviderContext.getPackageName() + AutocompleteViewModel.COMMAND_DISCOVER_TOKEN + i;
-            Drawable drawableCheckIconCache = checkIconCache(str2);
-            if (drawableCheckIconCache != null) {
-                return drawableCheckIconCache;
-            }
-            Drawable drawable = ContextCompat.getDrawable(this.mProviderContext, i);
-            storeInIconCache(str2, drawable);
-            return drawable;
-        } catch (Resources.NotFoundException unused) {
-            Log.w(LOG_TAG, "Icon resource not found: " + str);
-            return null;
-        } catch (NumberFormatException unused2) {
-            Drawable drawableCheckIconCache2 = checkIconCache(str);
-            if (drawableCheckIconCache2 != null) {
-                return drawableCheckIconCache2;
-            }
-            Drawable drawable2 = getDrawable(Uri.parse(str));
-            storeInIconCache(str, drawable2);
-            return drawable2;
-        }
-    }
-
-    private Drawable getIcon1(Cursor cursor) {
-        int i = this.mIconName1Col;
-        if (i == -1) {
-            return null;
-        }
-        Drawable drawableFromResourceValue = getDrawableFromResourceValue(cursor.getString(i));
-        return drawableFromResourceValue != null ? drawableFromResourceValue : getDefaultIcon1();
-    }
-
-    private Drawable getIcon2(Cursor cursor) {
-        int i = this.mIconName2Col;
-        if (i == -1) {
-            return null;
-        }
-        return getDrawableFromResourceValue(cursor.getString(i));
-    }
-
-    private static String getStringOrNull(Cursor cursor, int i) {
-        if (i == -1) {
-            return null;
-        }
-        try {
-            return cursor.getString(i);
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "unexpected error retrieving valid column from cursor, did the remote process die?", e);
-            return null;
-        }
-    }
-
-    private void setViewDrawable(ImageView imageView, Drawable drawable, int i) {
-        imageView.setImageDrawable(drawable);
-        if (drawable == null) {
-            imageView.setVisibility(i);
-            return;
-        }
-        imageView.setVisibility(0);
-        drawable.setVisible(false, false);
-        drawable.setVisible(true, false);
-    }
-
-    private void setViewText(TextView textView, CharSequence charSequence) {
-        textView.setText(charSequence);
-        if (TextUtils.isEmpty(charSequence)) {
-            textView.setVisibility(8);
-        } else {
-            textView.setVisibility(0);
-        }
-    }
-
-    private void storeInIconCache(String str, Drawable drawable) {
-        if (drawable != null) {
-            this.mOutsideDrawablesCache.put(str, drawable.getConstantState());
-        }
-    }
-
-    private void updateSpinnerState(Cursor cursor) {
-        Bundle extras = cursor != null ? cursor.getExtras() : null;
-        if (extras == null || extras.getBoolean("in_progress")) {
-        }
-    }
-
-    @Override // androidx.cursoradapter.widget.CursorAdapter
-    public void bindView(View view, Context context, Cursor cursor) {
-        ChildViewCache childViewCache = (ChildViewCache) view.getTag();
-        int i = this.mFlagsCol;
-        int i2 = i != -1 ? cursor.getInt(i) : 0;
-        if (childViewCache.mText1 != null) {
-            setViewText(childViewCache.mText1, getStringOrNull(cursor, this.mText1Col));
-        }
-        if (childViewCache.mText2 != null) {
-            String stringOrNull = getStringOrNull(cursor, this.mText2UrlCol);
-            CharSequence url = stringOrNull != null ? formatUrl(stringOrNull) : getStringOrNull(cursor, this.mText2Col);
-            if (TextUtils.isEmpty(url)) {
-                TextView textView = childViewCache.mText1;
-                if (textView != null) {
-                    textView.setSingleLine(false);
-                    childViewCache.mText1.setMaxLines(2);
-                }
-            } else {
-                TextView textView2 = childViewCache.mText1;
-                if (textView2 != null) {
-                    textView2.setSingleLine(true);
-                    childViewCache.mText1.setMaxLines(1);
-                }
-            }
-            setViewText(childViewCache.mText2, url);
-        }
-        ImageView imageView = childViewCache.mIcon1;
-        if (imageView != null) {
-            setViewDrawable(imageView, getIcon1(cursor), 4);
-        }
-        ImageView imageView2 = childViewCache.mIcon2;
-        if (imageView2 != null) {
-            setViewDrawable(imageView2, getIcon2(cursor), 8);
-        }
-        int i3 = this.mQueryRefinement;
-        if (i3 != 2 && (i3 != 1 || (i2 & 1) == 0)) {
-            childViewCache.mIconRefine.setVisibility(8);
-            return;
-        }
-        childViewCache.mIconRefine.setVisibility(0);
-        childViewCache.mIconRefine.setTag(childViewCache.mText1.getText());
-        childViewCache.mIconRefine.setOnClickListener(this);
-    }
-
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
-    public void changeCursor(Cursor cursor) {
-        if (this.mClosed) {
-            Log.w(LOG_TAG, "Tried to change cursor after adapter was closed.");
-            if (cursor != null) {
-                cursor.close();
-                return;
-            }
-            return;
-        }
-        try {
-            super.changeCursor(cursor);
-            if (cursor != null) {
-                this.mText1Col = cursor.getColumnIndex("suggest_text_1");
-                this.mText2Col = cursor.getColumnIndex("suggest_text_2");
-                this.mText2UrlCol = cursor.getColumnIndex("suggest_text_2_url");
-                this.mIconName1Col = cursor.getColumnIndex("suggest_icon_1");
-                this.mIconName2Col = cursor.getColumnIndex("suggest_icon_2");
-                this.mFlagsCol = cursor.getColumnIndex("suggest_flags");
-            }
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "error changing cursor and caching columns", e);
-        }
-    }
-
-    public void close() {
-        changeCursor(null);
-        this.mClosed = true;
-    }
-
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
-    public CharSequence convertToString(Cursor cursor) {
-        String columnString;
-        String columnString2;
-        if (cursor == null) {
-            return null;
-        }
-        String columnString3 = getColumnString(cursor, "suggest_intent_query");
-        if (columnString3 != null) {
-            return columnString3;
-        }
-        if (this.mSearchable.shouldRewriteQueryFromData() && (columnString2 = getColumnString(cursor, "suggest_intent_data")) != null) {
-            return columnString2;
-        }
-        if (!this.mSearchable.shouldRewriteQueryFromText() || (columnString = getColumnString(cursor, "suggest_text_1")) == null) {
-            return null;
-        }
-        return columnString;
-    }
-
     public Drawable getDrawableFromResourceUri(Uri uri) throws FileNotFoundException {
         int identifier;
         String authority = uri.getAuthority();
@@ -409,6 +320,34 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
         }
     }
 
+    private Drawable getDrawableFromResourceValue(String str) {
+        if (str == null || str.isEmpty() || "0".equals(str)) {
+            return null;
+        }
+        try {
+            int i = Integer.parseInt(str);
+            String str2 = "android.resource://" + this.mProviderContext.getPackageName() + AutocompleteViewModel.COMMAND_DISCOVER_TOKEN + i;
+            Drawable drawableCheckIconCache = checkIconCache(str2);
+            if (drawableCheckIconCache != null) {
+                return drawableCheckIconCache;
+            }
+            Drawable drawable = ContextCompat.getDrawable(this.mProviderContext, i);
+            storeInIconCache(str2, drawable);
+            return drawable;
+        } catch (Resources.NotFoundException unused) {
+            Log.w(LOG_TAG, "Icon resource not found: " + str);
+            return null;
+        } catch (NumberFormatException unused2) {
+            Drawable drawableCheckIconCache2 = checkIconCache(str);
+            if (drawableCheckIconCache2 != null) {
+                return drawableCheckIconCache2;
+            }
+            Drawable drawable2 = getDrawable(Uri.parse(str));
+            storeInIconCache(str, drawable2);
+            return drawable2;
+        }
+    }
+
     @Override // androidx.cursoradapter.widget.CursorAdapter, android.widget.BaseAdapter, android.widget.SpinnerAdapter
     public View getDropDownView(int i, View view, ViewGroup viewGroup) {
         try {
@@ -421,6 +360,23 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
             }
             return viewNewDropDownView;
         }
+    }
+
+    private Drawable getIcon1(Cursor cursor) {
+        int i = this.mIconName1Col;
+        if (i == -1) {
+            return null;
+        }
+        Drawable drawableFromResourceValue = getDrawableFromResourceValue(cursor.getString(i));
+        return drawableFromResourceValue != null ? drawableFromResourceValue : getDefaultIcon1();
+    }
+
+    private Drawable getIcon2(Cursor cursor) {
+        int i = this.mIconName2Col;
+        if (i == -1) {
+            return null;
+        }
+        return getDrawableFromResourceValue(cursor.getString(i));
     }
 
     public int getQueryRefinement() {
@@ -450,6 +406,18 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
             builderFragment.appendQueryParameter("limit", String.valueOf(i));
         }
         return this.mContext.getContentResolver().query(builderFragment.build(), null, suggestSelection, strArr2, null);
+    }
+
+    private static String getStringOrNull(Cursor cursor, int i) {
+        if (i == -1) {
+            return null;
+        }
+        try {
+            return cursor.getString(i);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "unexpected error retrieving valid column from cursor, did the remote process die?", e);
+            return null;
+        }
     }
 
     @Override // androidx.cursoradapter.widget.CursorAdapter, android.widget.Adapter
@@ -518,5 +486,37 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View.On
 
     public void setQueryRefinement(int i) {
         this.mQueryRefinement = i;
+    }
+
+    private void setViewDrawable(ImageView imageView, Drawable drawable, int i) {
+        imageView.setImageDrawable(drawable);
+        if (drawable == null) {
+            imageView.setVisibility(i);
+            return;
+        }
+        imageView.setVisibility(0);
+        drawable.setVisible(false, false);
+        drawable.setVisible(true, false);
+    }
+
+    private void setViewText(TextView textView, CharSequence charSequence) {
+        textView.setText(charSequence);
+        if (TextUtils.isEmpty(charSequence)) {
+            textView.setVisibility(8);
+        } else {
+            textView.setVisibility(0);
+        }
+    }
+
+    private void storeInIconCache(String str, Drawable drawable) {
+        if (drawable != null) {
+            this.mOutsideDrawablesCache.put(str, drawable.getConstantState());
+        }
+    }
+
+    private void updateSpinnerState(Cursor cursor) {
+        Bundle extras = cursor != null ? cursor.getExtras() : null;
+        if (extras == null || extras.getBoolean("in_progress")) {
+        }
     }
 }

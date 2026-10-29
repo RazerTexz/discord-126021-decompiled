@@ -27,7 +27,7 @@ public final class WidgetStickerPickerSheet extends WidgetExpressionPickerSheet 
     private StickerPickerListener stickerPickerListenerDelegate;
 
     /* JADX INFO: compiled from: WidgetStickerPickerSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNuoNativeAppDownload.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNuoNativeAppDownload implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence platform = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "nuo_native_app_download";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackNuoNativeAppDownload) && C12238m.areEqual(this.platform, ((TrackNuoNativeAppDownload) other).platform);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

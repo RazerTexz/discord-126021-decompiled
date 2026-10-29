@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackViewAcknowledgements.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackViewAcknowledgements implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+    private final CharSequence frompage = null;
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
-    private final CharSequence frompage = null;
     private final transient String analyticsSchemaTypeName = "view_acknowledgements";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackViewAcknowledgements) && C12238m.areEqual(this.frompage, ((TrackViewAcknowledgements) other).frompage);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

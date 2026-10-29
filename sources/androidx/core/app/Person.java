@@ -32,7 +32,7 @@ public class Person {
     @Nullable
     public String mUri;
 
-    public static class Builder {
+    public class Builder {
 
         @Nullable
         public IconCompat mIcon;
@@ -47,9 +47,6 @@ public class Person {
 
         @Nullable
         public String mUri;
-
-        public Builder() {
-        }
 
         @NonNull
         public Person build() {

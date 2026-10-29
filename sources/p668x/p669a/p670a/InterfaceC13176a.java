@@ -15,7 +15,7 @@ public interface InterfaceC13176a extends IInterface {
 
     /* JADX INFO: renamed from: x.a.a.a$a */
     /* JADX INFO: compiled from: ICustomTabsCallback.java */
-    public static abstract class a extends Binder implements InterfaceC13176a {
+    public abstract class a extends Binder implements InterfaceC13176a {
         private static final String DESCRIPTOR = "android.support.customtabs.ICustomTabsCallback";
         public static final int TRANSACTION_extraCallback = 3;
         public static final int TRANSACTION_extraCallbackWithResult = 7;
@@ -26,7 +26,7 @@ public interface InterfaceC13176a extends IInterface {
 
         /* JADX INFO: renamed from: x.a.a.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: ICustomTabsCallback.java */
-        public static class C13355a implements InterfaceC13176a {
+        public class C13355a implements InterfaceC13176a {
 
             /* JADX INFO: renamed from: a */
             public static InterfaceC13176a f27931a;
@@ -198,6 +198,10 @@ public interface InterfaceC13176a extends IInterface {
             attachInterface(this, DESCRIPTOR);
         }
 
+        public IBinder asBinder() {
+            return this;
+        }
+
         public static InterfaceC13176a asInterface(IBinder iBinder) {
             if (iBinder == null) {
                 return null;
@@ -208,21 +212,6 @@ public interface InterfaceC13176a extends IInterface {
 
         public static InterfaceC13176a getDefaultImpl() {
             return C13355a.f27931a;
-        }
-
-        public static boolean setDefaultImpl(InterfaceC13176a interfaceC13176a) {
-            if (C13355a.f27931a != null) {
-                throw new IllegalStateException("setDefaultImpl() called twice");
-            }
-            if (interfaceC13176a == null) {
-                return false;
-            }
-            C13355a.f27931a = interfaceC13176a;
-            return true;
-        }
-
-        public IBinder asBinder() {
-            return this;
         }
 
         @Override // android.os.Binder
@@ -271,6 +260,17 @@ public interface InterfaceC13176a extends IInterface {
                 default:
                     return super.onTransact(i, parcel, parcel2, i2);
             }
+        }
+
+        public static boolean setDefaultImpl(InterfaceC13176a interfaceC13176a) {
+            if (C13355a.f27931a != null) {
+                throw new IllegalStateException("setDefaultImpl() called twice");
+            }
+            if (interfaceC13176a == null) {
+                return false;
+            }
+            C13355a.f27931a = interfaceC13176a;
+            return true;
         }
     }
 

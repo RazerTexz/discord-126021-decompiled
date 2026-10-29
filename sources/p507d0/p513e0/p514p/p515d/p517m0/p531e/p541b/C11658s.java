@@ -23,7 +23,7 @@ public final class C11658s {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.s$a */
     /* JADX INFO: compiled from: MemberSignature.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

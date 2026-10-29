@@ -21,7 +21,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class TierViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public static final class AddTierItemViewHolder extends TierViewHolder {
+    public final class AddTierItemViewHolder extends TierViewHolder {
         /* JADX WARN: Illegal instructions before constructor call */
         public AddTierItemViewHolder(ViewServerSettingsGuildRoleSubscriptionAddTierItemBinding viewServerSettingsGuildRoleSubscriptionAddTierItemBinding, final ServerSettingsGuildRoleSubscriptionTierAdapter.ItemClickListener itemClickListener) {
             C12238m.checkNotNullParameter(viewServerSettingsGuildRoleSubscriptionAddTierItemBinding, "binding");
@@ -40,7 +40,7 @@ public abstract class TierViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public static final class TierItemViewHolder extends TierViewHolder {
+    public final class TierItemViewHolder extends TierViewHolder {
         private static final int MAX_TIER_IMAGE_SIZE = 64;
         private final ViewServerSettingsGuildRoleSubscriptionTierItemBinding binding;
         private final int tierImageSizePx;

@@ -63,15 +63,6 @@ import p007b.p225i.p226a.p288f.p337l.InterfaceC4349f;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3293g implements Handler.Callback {
 
-    /* JADX INFO: renamed from: j */
-    public static final Status f9376j = new Status(4, "Sign-out occurred while this API call was in progress.");
-
-    /* JADX INFO: renamed from: k */
-    public static final Status f9377k = new Status(4, "The user must be signed in to make this API call.");
-
-    /* JADX INFO: renamed from: l */
-    public static final Object f9378l = new Object();
-
     /* JADX INFO: renamed from: m */
     @Nullable
     public static C3293g f9379m;
@@ -92,8 +83,17 @@ public class C3293g implements Handler.Callback {
     /* JADX INFO: renamed from: y */
     public volatile boolean f9391y;
 
+    /* JADX INFO: renamed from: j */
+    public static final Status f9376j = new Status(4, "Sign-out occurred while this API call was in progress.");
+
+    /* JADX INFO: renamed from: k */
+    public static final Status f9377k = new Status(4, "The user must be signed in to make this API call.");
+
     /* JADX INFO: renamed from: n */
     public long f9380n = 10000;
+
+    /* JADX INFO: renamed from: l */
+    public static final Object f9378l = new Object();
 
     /* JADX INFO: renamed from: r */
     public final AtomicInteger f9384r = new AtomicInteger(1);
@@ -114,9 +114,161 @@ public class C3293g implements Handler.Callback {
     /* JADX INFO: renamed from: w */
     public final Set<C3278b<?>> f9389w = new ArraySet();
 
+    /* JADX INFO: renamed from: b.i.a.f.e.h.j.g$c */
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public final class c {
+
+        /* JADX INFO: renamed from: a */
+        public final C3278b<?> f9411a;
+
+        /* JADX INFO: renamed from: b */
+        public final Feature f9412b;
+
+        public c(C3278b c3278b, Feature feature, C3319t c3319t) {
+            this.f9411a = c3278b;
+            this.f9412b = feature;
+        }
+
+        public final boolean equals(@Nullable Object obj) {
+            if (obj != null && (obj instanceof c)) {
+                c cVar = (c) obj;
+                if (C1460d.m524h0(this.f9411a, cVar.f9411a) && C1460d.m524h0(this.f9412b, cVar.f9412b)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public final int hashCode() {
+            return Arrays.hashCode(new Object[]{this.f9411a, this.f9412b});
+        }
+
+        public final String toString() {
+            C3361j c3361j = new C3361j(this);
+            c3361j.m4162a("key", this.f9411a);
+            c3361j.m4162a("feature", this.f9412b);
+            return c3361j.toString();
+        }
+    }
+
+    public C3293g(Context context, Looper looper, GoogleApiAvailability googleApiAvailability) {
+        this.f9391y = true;
+        this.f9381o = context;
+        HandlerC3479c handlerC3479c = new HandlerC3479c(looper, this);
+        this.f9390x = handlerC3479c;
+        this.f9382p = googleApiAvailability;
+        this.f9383q = new C3377r(googleApiAvailability);
+        PackageManager packageManager = context.getPackageManager();
+        if (C1460d.f2221f == null) {
+            C1460d.f2221f = Boolean.valueOf(C3404f.m4190A0() && packageManager.hasSystemFeature("android.hardware.type.automotive"));
+        }
+        if (C1460d.f2221f.booleanValue()) {
+            this.f9391y = false;
+        }
+        handlerC3479c.sendMessage(handlerC3479c.obtainMessage(6));
+    }
+
+    /* JADX WARN: Code duplicated, block: B:98:0x023a  */
+    /* JADX WARN: Code duplicated, block: B:99:0x026e  */
+    /*  JADX ERROR: JadxRuntimeException in pass: IfRegionVisitor
+        jadx.core.utils.exceptions.JadxRuntimeException: Can't remove SSA var: r4v5 b.i.a.f.e.h.j.g$a<?>, still in use, count: 2, list:
+          (r4v5 b.i.a.f.e.h.j.g$a<?>) from 0x0232: IGET (r4v5 b.i.a.f.e.h.j.g$a<?>) A[WRAPPED] (LINE:102) b.i.a.f.e.h.j.g.a.h int
+          (r4v5 b.i.a.f.e.h.j.g$a<?>) from 0x0238: PHI (r4 I:??) = (r4v2 b.i.a.f.e.h.j.g$a<?>), (r4v5 b.i.a.f.e.h.j.g$a<?>) binds: [B:96:0x0237, B:143:0x0238] A[DONT_GENERATE, DONT_INLINE]
+        	at jadx.core.utils.InsnRemover.removeSsaVar(InsnRemover.java:164)
+        	at jadx.core.utils.InsnRemover.unbindResult(InsnRemover.java:129)
+        	at jadx.core.utils.InsnRemover.unbindInsn(InsnRemover.java:93)
+        	at jadx.core.dex.visitors.regions.TernaryMod.makeTernaryInsn(TernaryMod.java:132)
+        	at jadx.core.dex.visitors.regions.TernaryMod.processRegion(TernaryMod.java:67)
+        	at jadx.core.dex.visitors.regions.TernaryMod.enterRegion(TernaryMod.java:50)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:96)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:27)
+        	at jadx.core.dex.visitors.regions.TernaryMod.process(TernaryMod.java:36)
+        	at jadx.core.dex.visitors.regions.IfRegionVisitor.process(IfRegionVisitor.java:44)
+        	at jadx.core.dex.visitors.regions.IfRegionVisitor.visit(IfRegionVisitor.java:30)
+        */
+    @Override // android.os.Handler.Callback
+    @androidx.annotation.WorkerThread
+    public boolean handleMessage(android.os.Message r11) {
+        /*
+            Method dump skipped, instruction units count: 844
+            To view this dump add '--comments-level debug' option
+        */
+        throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p288f.p299e.p300h.p301j.C3293g.handleMessage(android.os.Message):boolean");
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static C3293g m4078a(Context context) {
+        C3293g c3293g;
+        synchronized (f9378l) {
+            if (f9379m == null) {
+                HandlerThread handlerThread = new HandlerThread("GoogleApiHandler", 9);
+                handlerThread.start();
+                Looper looper = handlerThread.getLooper();
+                Context applicationContext = context.getApplicationContext();
+                Object obj = GoogleApiAvailability.f20480c;
+                f9379m = new C3293g(applicationContext, looper, GoogleApiAvailability.f20481d);
+            }
+            c3293g = f9379m;
+        }
+        return c3293g;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m4079b(@NonNull C3277a1 c3277a1) {
+        synchronized (f9378l) {
+            if (this.f9387u != c3277a1) {
+                this.f9387u = c3277a1;
+                this.f9388v.clear();
+            }
+            this.f9388v.addAll(c3277a1.f9343o);
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final boolean m4080c(ConnectionResult connectionResult, int i) {
+        PendingIntent activity;
+        GoogleApiAvailability googleApiAvailability = this.f9382p;
+        Context context = this.f9381o;
+        Objects.requireNonNull(googleApiAvailability);
+        if (connectionResult.m9019w0()) {
+            activity = connectionResult.f20475m;
+        } else {
+            Intent intentMo4017a = googleApiAvailability.mo4017a(context, connectionResult.f20474l, null);
+            activity = intentMo4017a == null ? null : PendingIntent.getActivity(context, 0, intentMo4017a, 134217728);
+        }
+        if (activity == null) {
+            return false;
+        }
+        int i2 = connectionResult.f20474l;
+        int i3 = GoogleApiActivity.f20485j;
+        Intent intent = new Intent(context, (Class<?>) GoogleApiActivity.class);
+        intent.putExtra("pending_intent", activity);
+        intent.putExtra("failing_client_id", i);
+        intent.putExtra("notify_manager", true);
+        googleApiAvailability.m9028i(context, i2, PendingIntent.getActivity(context, 0, intent, 134217728));
+        return true;
+    }
+
+    /* JADX WARN: Type inference incomplete: some casts might be missing */
+    @WorkerThread
+    /* JADX INFO: renamed from: d */
+    public final a<?> m4081d(C3267b<?> c3267b) {
+        C3278b<O> c3278b = c3267b.f9329d;
+        a<?> aVar = this.f9386t.get(c3278b);
+        if (aVar == null) {
+            aVar = new a<>(c3267b);
+            this.f9386t.put((C3278b<?>) c3278b, aVar);
+        }
+        if (aVar.m4098s()) {
+            this.f9389w.add((C3278b<?>) c3278b);
+        }
+        aVar.m4097r();
+        return aVar;
+    }
+
     /* JADX INFO: renamed from: b.i.a.f.e.h.j.g$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public class a<O extends C3266a.d> implements AbstractC3268c.a, AbstractC3268c.b {
+    public final class a<O extends C3266a.d> implements AbstractC3268c.a, AbstractC3268c.b {
 
         /* JADX INFO: renamed from: b */
         @NotOnlyInitialized
@@ -223,16 +375,6 @@ public class C3293g implements Handler.Callback {
             }
         }
 
-        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3290f
-        /* JADX INFO: renamed from: c */
-        public final void mo4076c(int i) {
-            if (Looper.myLooper() == C3293g.this.f9390x.getLooper()) {
-                m4084d(i);
-            } else {
-                C3293g.this.f9390x.post(new RunnableC3323v(this, i));
-            }
-        }
-
         @WorkerThread
         /* JADX INFO: renamed from: d */
         public final void m4084d(int i) {
@@ -324,13 +466,6 @@ public class C3293g implements Handler.Callback {
             m4088h(status, null, false);
         }
 
-        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3303l
-        @WorkerThread
-        /* JADX INFO: renamed from: g */
-        public final void mo4087g(@NonNull ConnectionResult connectionResult) {
-            m4085e(connectionResult, null);
-        }
-
         @WorkerThread
         /* JADX INFO: renamed from: h */
         public final void m4088h(@Nullable Status status, @Nullable Exception exc, boolean z2) {
@@ -349,16 +484,6 @@ public class C3293g implements Handler.Callback {
                     }
                     it.remove();
                 }
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3290f
-        /* JADX INFO: renamed from: i */
-        public final void mo4077i(@Nullable Bundle bundle) {
-            if (Looper.myLooper() == C3293g.this.f9390x.getLooper()) {
-                m4099t();
-            } else {
-                C3293g.this.f9390x.post(new RunnableC3321u(this));
             }
         }
 
@@ -640,11 +765,38 @@ public class C3293g implements Handler.Callback {
             Handler handler = C3293g.this.f9390x;
             handler.sendMessageDelayed(handler.obtainMessage(12, this.f9395d), C3293g.this.f9380n);
         }
+
+        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3290f
+        /* JADX INFO: renamed from: c */
+        public final void mo4076c(int i) {
+            if (Looper.myLooper() == C3293g.this.f9390x.getLooper()) {
+                m4084d(i);
+            } else {
+                C3293g.this.f9390x.post(new RunnableC3323v(this, i));
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3290f
+        /* JADX INFO: renamed from: i */
+        public final void mo4077i(@Nullable Bundle bundle) {
+            if (Looper.myLooper() == C3293g.this.f9390x.getLooper()) {
+                m4099t();
+            } else {
+                C3293g.this.f9390x.post(new RunnableC3321u(this));
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3303l
+        @WorkerThread
+        /* JADX INFO: renamed from: g */
+        public final void mo4087g(@NonNull ConnectionResult connectionResult) {
+            m4085e(connectionResult, null);
+        }
     }
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.j.g$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public class b implements InterfaceC3296h0, AbstractC3345b.c {
+    public final class b implements InterfaceC3296h0, AbstractC3345b.c {
 
         /* JADX INFO: renamed from: a */
         public final C3266a.f f9405a;
@@ -668,12 +820,6 @@ public class C3293g implements Handler.Callback {
             this.f9406b = c3278b;
         }
 
-        @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b.c
-        /* JADX INFO: renamed from: a */
-        public final void mo4103a(@NonNull ConnectionResult connectionResult) {
-            C3293g.this.f9390x.post(new RunnableC3331z(this, connectionResult));
-        }
-
         @WorkerThread
         /* JADX INFO: renamed from: b */
         public final void m4104b(ConnectionResult connectionResult) {
@@ -687,157 +833,11 @@ public class C3293g implements Handler.Callback {
                 aVar.m4085e(connectionResult, null);
             }
         }
-    }
 
-    /* JADX INFO: renamed from: b.i.a.f.e.h.j.g$c */
-    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class c {
-
+        @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b.c
         /* JADX INFO: renamed from: a */
-        public final C3278b<?> f9411a;
-
-        /* JADX INFO: renamed from: b */
-        public final Feature f9412b;
-
-        public c(C3278b c3278b, Feature feature, C3319t c3319t) {
-            this.f9411a = c3278b;
-            this.f9412b = feature;
+        public final void mo4103a(@NonNull ConnectionResult connectionResult) {
+            C3293g.this.f9390x.post(new RunnableC3331z(this, connectionResult));
         }
-
-        public final boolean equals(@Nullable Object obj) {
-            if (obj != null && (obj instanceof c)) {
-                c cVar = (c) obj;
-                if (C1460d.m524h0(this.f9411a, cVar.f9411a) && C1460d.m524h0(this.f9412b, cVar.f9412b)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public final int hashCode() {
-            return Arrays.hashCode(new Object[]{this.f9411a, this.f9412b});
-        }
-
-        public final String toString() {
-            C3361j c3361j = new C3361j(this);
-            c3361j.m4162a("key", this.f9411a);
-            c3361j.m4162a("feature", this.f9412b);
-            return c3361j.toString();
-        }
-    }
-
-    public C3293g(Context context, Looper looper, GoogleApiAvailability googleApiAvailability) {
-        this.f9391y = true;
-        this.f9381o = context;
-        HandlerC3479c handlerC3479c = new HandlerC3479c(looper, this);
-        this.f9390x = handlerC3479c;
-        this.f9382p = googleApiAvailability;
-        this.f9383q = new C3377r(googleApiAvailability);
-        PackageManager packageManager = context.getPackageManager();
-        if (C1460d.f2221f == null) {
-            C1460d.f2221f = Boolean.valueOf(C3404f.m4190A0() && packageManager.hasSystemFeature("android.hardware.type.automotive"));
-        }
-        if (C1460d.f2221f.booleanValue()) {
-            this.f9391y = false;
-        }
-        handlerC3479c.sendMessage(handlerC3479c.obtainMessage(6));
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static C3293g m4078a(Context context) {
-        C3293g c3293g;
-        synchronized (f9378l) {
-            if (f9379m == null) {
-                HandlerThread handlerThread = new HandlerThread("GoogleApiHandler", 9);
-                handlerThread.start();
-                Looper looper = handlerThread.getLooper();
-                Context applicationContext = context.getApplicationContext();
-                Object obj = GoogleApiAvailability.f20480c;
-                f9379m = new C3293g(applicationContext, looper, GoogleApiAvailability.f20481d);
-            }
-            c3293g = f9379m;
-        }
-        return c3293g;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final void m4079b(@NonNull C3277a1 c3277a1) {
-        synchronized (f9378l) {
-            if (this.f9387u != c3277a1) {
-                this.f9387u = c3277a1;
-                this.f9388v.clear();
-            }
-            this.f9388v.addAll(c3277a1.f9343o);
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final boolean m4080c(ConnectionResult connectionResult, int i) {
-        PendingIntent activity;
-        GoogleApiAvailability googleApiAvailability = this.f9382p;
-        Context context = this.f9381o;
-        Objects.requireNonNull(googleApiAvailability);
-        if (connectionResult.m9019w0()) {
-            activity = connectionResult.f20475m;
-        } else {
-            Intent intentMo4017a = googleApiAvailability.mo4017a(context, connectionResult.f20474l, null);
-            activity = intentMo4017a == null ? null : PendingIntent.getActivity(context, 0, intentMo4017a, 134217728);
-        }
-        if (activity == null) {
-            return false;
-        }
-        int i2 = connectionResult.f20474l;
-        int i3 = GoogleApiActivity.f20485j;
-        Intent intent = new Intent(context, (Class<?>) GoogleApiActivity.class);
-        intent.putExtra("pending_intent", activity);
-        intent.putExtra("failing_client_id", i);
-        intent.putExtra("notify_manager", true);
-        googleApiAvailability.m9028i(context, i2, PendingIntent.getActivity(context, 0, intent, 134217728));
-        return true;
-    }
-
-    /* JADX WARN: Type inference incomplete: some casts might be missing */
-    @WorkerThread
-    /* JADX INFO: renamed from: d */
-    public final a<?> m4081d(C3267b<?> c3267b) {
-        C3278b<O> c3278b = c3267b.f9329d;
-        a<?> aVar = this.f9386t.get(c3278b);
-        if (aVar == null) {
-            aVar = new a<>(c3267b);
-            this.f9386t.put((C3278b<?>) c3278b, aVar);
-        }
-        if (aVar.m4098s()) {
-            this.f9389w.add((C3278b<?>) c3278b);
-        }
-        aVar.m4097r();
-        return aVar;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:98:0x023a  */
-    /* JADX WARN: Code duplicated, block: B:99:0x026e  */
-    /*  JADX ERROR: JadxRuntimeException in pass: IfRegionVisitor
-        jadx.core.utils.exceptions.JadxRuntimeException: Can't remove SSA var: r4v5 b.i.a.f.e.h.j.g$a<?>, still in use, count: 2, list:
-          (r4v5 b.i.a.f.e.h.j.g$a<?>) from 0x0232: IGET (r4v5 b.i.a.f.e.h.j.g$a<?>) A[WRAPPED] (LINE:102) b.i.a.f.e.h.j.g.a.h int
-          (r4v5 b.i.a.f.e.h.j.g$a<?>) from 0x0238: PHI (r4 I:??) = (r4v2 b.i.a.f.e.h.j.g$a<?>), (r4v5 b.i.a.f.e.h.j.g$a<?>) binds: [B:96:0x0237, B:143:0x0238] A[DONT_GENERATE, DONT_INLINE]
-        	at jadx.core.utils.InsnRemover.removeSsaVar(InsnRemover.java:164)
-        	at jadx.core.utils.InsnRemover.unbindResult(InsnRemover.java:129)
-        	at jadx.core.utils.InsnRemover.unbindInsn(InsnRemover.java:93)
-        	at jadx.core.dex.visitors.regions.TernaryMod.makeTernaryInsn(TernaryMod.java:132)
-        	at jadx.core.dex.visitors.regions.TernaryMod.processRegion(TernaryMod.java:67)
-        	at jadx.core.dex.visitors.regions.TernaryMod.enterRegion(TernaryMod.java:50)
-        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:96)
-        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:27)
-        	at jadx.core.dex.visitors.regions.TernaryMod.process(TernaryMod.java:36)
-        	at jadx.core.dex.visitors.regions.IfRegionVisitor.process(IfRegionVisitor.java:44)
-        	at jadx.core.dex.visitors.regions.IfRegionVisitor.visit(IfRegionVisitor.java:30)
-        */
-    @Override // android.os.Handler.Callback
-    @androidx.annotation.WorkerThread
-    public boolean handleMessage(android.os.Message r11) {
-        /*
-            Method dump skipped, instruction units count: 844
-            To view this dump add '--comments-level debug' option
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p288f.p299e.p300h.p301j.C3293g.handleMessage(android.os.Message):boolean");
     }
 }

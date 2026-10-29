@@ -39,6 +39,14 @@ public class IdGenerator {
         }
     }
 
+    public int nextAlarmManagerId() {
+        int iNextId;
+        synchronized (IdGenerator.class) {
+            iNextId = nextId(NEXT_ALARM_MANAGER_ID_KEY);
+        }
+        return iNextId;
+    }
+
     private int nextId(String str) {
         this.mWorkDatabase.beginTransaction();
         try {
@@ -56,18 +64,6 @@ public class IdGenerator {
         }
     }
 
-    private void update(String str, int i) {
-        this.mWorkDatabase.preferenceDao().insertPreference(new Preference(str, i));
-    }
-
-    public int nextAlarmManagerId() {
-        int iNextId;
-        synchronized (IdGenerator.class) {
-            iNextId = nextId(NEXT_ALARM_MANAGER_ID_KEY);
-        }
-        return iNextId;
-    }
-
     public int nextJobSchedulerIdWithRange(int i, int i2) {
         synchronized (IdGenerator.class) {
             int iNextId = nextId(NEXT_JOB_SCHEDULER_ID_KEY);
@@ -78,5 +74,9 @@ public class IdGenerator {
             }
         }
         return i;
+    }
+
+    private void update(String str, int i) {
+        this.mWorkDatabase.preferenceDao().insertPreference(new Preference(str, i));
     }
 }

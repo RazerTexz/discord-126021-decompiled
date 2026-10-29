@@ -180,6 +180,268 @@ public class TabLayout extends HorizontalScrollView {
         void onTabUnselected(T t);
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$a */
+    public class C11006a implements ValueAnimator.AnimatorUpdateListener {
+        public C11006a() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            TabLayout.this.scrollTo(((Integer) valueAnimator.getAnimatedValue()).intValue(), 0);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$b */
+    public class C11007b implements ViewPager.OnAdapterChangeListener {
+
+        /* JADX INFO: renamed from: a */
+        public boolean f21152a;
+
+        public C11007b() {
+        }
+
+        @Override // androidx.viewpager.widget.ViewPager.OnAdapterChangeListener
+        public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2) {
+            TabLayout tabLayout = TabLayout.this;
+            if (tabLayout.viewPager == viewPager) {
+                tabLayout.setPagerAdapter(pagerAdapter2, this.f21152a);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$c */
+    public class C11008c extends DataSetObserver {
+        public C11008c() {
+        }
+
+        @Override // android.database.DataSetObserver
+        public void onChanged() {
+            TabLayout.this.populateFromPagerAdapter();
+        }
+
+        @Override // android.database.DataSetObserver
+        public void onInvalidated() {
+            TabLayout.this.populateFromPagerAdapter();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d */
+    public class C11009d extends LinearLayout {
+
+        /* JADX INFO: renamed from: j */
+        public ValueAnimator f21155j;
+
+        /* JADX INFO: renamed from: k */
+        public int f21156k;
+
+        /* JADX INFO: renamed from: l */
+        public float f21157l;
+
+        /* JADX INFO: renamed from: m */
+        public int f21158m;
+
+        /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d$a */
+        public class a implements ValueAnimator.AnimatorUpdateListener {
+
+            /* JADX INFO: renamed from: a */
+            public final /* synthetic */ View f21160a;
+
+            /* JADX INFO: renamed from: b */
+            public final /* synthetic */ View f21161b;
+
+            public a(View view, View view2) {
+                this.f21160a = view;
+                this.f21161b = view2;
+            }
+
+            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+                C11009d.this.m9150c(this.f21160a, this.f21161b, valueAnimator.getAnimatedFraction());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d$b */
+        public class b extends AnimatorListenerAdapter {
+
+            /* JADX INFO: renamed from: a */
+            public final /* synthetic */ int f21163a;
+
+            public b(int i) {
+                this.f21163a = i;
+            }
+
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationEnd(Animator animator) {
+                C11009d.this.f21156k = this.f21163a;
+            }
+
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationStart(Animator animator) {
+                C11009d.this.f21156k = this.f21163a;
+            }
+        }
+
+        public C11009d(Context context) {
+            super(context);
+            this.f21156k = -1;
+            this.f21158m = -1;
+            setWillNotDraw(false);
+        }
+
+        @Override // android.view.View
+        public void draw(@NonNull Canvas canvas) {
+            int iHeight = TabLayout.this.tabSelectedIndicator.getBounds().height();
+            if (iHeight < 0) {
+                iHeight = TabLayout.this.tabSelectedIndicator.getIntrinsicHeight();
+            }
+            int i = TabLayout.this.tabIndicatorGravity;
+            int height = 0;
+            if (i == 0) {
+                height = getHeight() - iHeight;
+                iHeight = getHeight();
+            } else if (i == 1) {
+                height = (getHeight() - iHeight) / 2;
+                iHeight = (getHeight() + iHeight) / 2;
+            } else if (i != 2) {
+                iHeight = i != 3 ? 0 : getHeight();
+            }
+            if (TabLayout.this.tabSelectedIndicator.getBounds().width() > 0) {
+                Rect bounds = TabLayout.this.tabSelectedIndicator.getBounds();
+                TabLayout.this.tabSelectedIndicator.setBounds(bounds.left, height, bounds.right, iHeight);
+                TabLayout tabLayout = TabLayout.this;
+                Drawable drawableWrap = tabLayout.tabSelectedIndicator;
+                if (tabLayout.tabSelectedIndicatorColor != 0) {
+                    drawableWrap = DrawableCompat.wrap(drawableWrap);
+                    if (Build.VERSION.SDK_INT == 21) {
+                        drawableWrap.setColorFilter(TabLayout.this.tabSelectedIndicatorColor, PorterDuff.Mode.SRC_IN);
+                    } else {
+                        DrawableCompat.setTint(drawableWrap, TabLayout.this.tabSelectedIndicatorColor);
+                    }
+                }
+                drawableWrap.draw(canvas);
+            }
+            super.draw(canvas);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m9148a() {
+            View childAt = getChildAt(this.f21156k);
+            C4429b c4429b = TabLayout.this.tabIndicatorInterpolator;
+            TabLayout tabLayout = TabLayout.this;
+            Drawable drawable = tabLayout.tabSelectedIndicator;
+            Objects.requireNonNull(c4429b);
+            RectF rectFM6145a = C4429b.m6145a(tabLayout, childAt);
+            drawable.setBounds((int) rectFM6145a.left, drawable.getBounds().top, (int) rectFM6145a.right, drawable.getBounds().bottom);
+        }
+
+        /* JADX INFO: renamed from: b */
+        public void m9149b(int i) {
+            Rect bounds = TabLayout.this.tabSelectedIndicator.getBounds();
+            TabLayout.this.tabSelectedIndicator.setBounds(bounds.left, 0, bounds.right, i);
+            requestLayout();
+        }
+
+        /* JADX INFO: renamed from: c */
+        public final void m9150c(View view, View view2, float f) {
+            if (view != null && view.getWidth() > 0) {
+                C4429b c4429b = TabLayout.this.tabIndicatorInterpolator;
+                TabLayout tabLayout = TabLayout.this;
+                c4429b.mo6144b(tabLayout, view, view2, f, tabLayout.tabSelectedIndicator);
+            } else {
+                Drawable drawable = TabLayout.this.tabSelectedIndicator;
+                drawable.setBounds(-1, drawable.getBounds().top, -1, TabLayout.this.tabSelectedIndicator.getBounds().bottom);
+            }
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+
+        /* JADX INFO: renamed from: d */
+        public final void m9151d(boolean z2, int i, int i2) {
+            View childAt = getChildAt(this.f21156k);
+            View childAt2 = getChildAt(i);
+            if (childAt2 == null) {
+                m9148a();
+                return;
+            }
+            a aVar = new a(childAt, childAt2);
+            if (!z2) {
+                this.f21155j.removeAllUpdateListeners();
+                this.f21155j.addUpdateListener(aVar);
+                return;
+            }
+            ValueAnimator valueAnimator = new ValueAnimator();
+            this.f21155j = valueAnimator;
+            valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+            valueAnimator.setDuration(i2);
+            valueAnimator.setFloatValues(0.0f, 1.0f);
+            valueAnimator.addUpdateListener(aVar);
+            valueAnimator.addListener(new b(i));
+            valueAnimator.start();
+        }
+
+        @Override // android.widget.LinearLayout, android.view.ViewGroup, android.view.View
+        public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+            super.onLayout(z2, i, i2, i3, i4);
+            ValueAnimator valueAnimator = this.f21155j;
+            if (valueAnimator == null || !valueAnimator.isRunning()) {
+                m9148a();
+            } else {
+                m9151d(false, this.f21156k, -1);
+            }
+        }
+
+        @Override // android.widget.LinearLayout, android.view.View
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            if (View.MeasureSpec.getMode(i) != 1073741824) {
+                return;
+            }
+            TabLayout tabLayout = TabLayout.this;
+            boolean z2 = true;
+            if (tabLayout.tabGravity == 1 || tabLayout.mode == 2) {
+                int childCount = getChildCount();
+                int iMax = 0;
+                for (int i3 = 0; i3 < childCount; i3++) {
+                    View childAt = getChildAt(i3);
+                    if (childAt.getVisibility() == 0) {
+                        iMax = Math.max(iMax, childAt.getMeasuredWidth());
+                    }
+                }
+                if (iMax <= 0) {
+                    return;
+                }
+                if (iMax * childCount <= getMeasuredWidth() - (((int) ViewUtils.dpToPx(getContext(), 16)) * 2)) {
+                    boolean z3 = false;
+                    for (int i4 = 0; i4 < childCount; i4++) {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i4).getLayoutParams();
+                        if (layoutParams.width != iMax || layoutParams.weight != 0.0f) {
+                            layoutParams.width = iMax;
+                            layoutParams.weight = 0.0f;
+                            z3 = true;
+                        }
+                    }
+                    z2 = z3;
+                } else {
+                    TabLayout tabLayout2 = TabLayout.this;
+                    tabLayout2.tabGravity = 0;
+                    tabLayout2.updateTabViews(false);
+                }
+                if (z2) {
+                    super.onMeasure(i, i2);
+                }
+            }
+        }
+
+        @Override // android.widget.LinearLayout, android.view.View
+        public void onRtlPropertiesChanged(int i) {
+            super.onRtlPropertiesChanged(i);
+            if (Build.VERSION.SDK_INT >= 23 || this.f21158m == i) {
+                return;
+            }
+            requestLayout();
+            this.f21158m = i;
+        }
+    }
+
     public @interface LabelVisibility {
     }
 
@@ -206,7 +468,7 @@ public class TabLayout extends HorizontalScrollView {
     public @interface TabIndicatorGravity {
     }
 
-    public static class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeListener {
+    public class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeListener {
         private int previousScrollState;
         private int scrollState;
 
@@ -337,217 +599,6 @@ public class TabLayout extends HorizontalScrollView {
             }
         }
 
-        @Nullable
-        private BadgeDrawable getBadge() {
-            return this.badgeDrawable;
-        }
-
-        @Nullable
-        private FrameLayout getCustomParentForBadge(@NonNull View view) {
-            if ((view == this.iconView || view == this.textView) && BadgeUtils.USE_COMPAT_PARENT) {
-                return (FrameLayout) view.getParent();
-            }
-            return null;
-        }
-
-        @NonNull
-        private BadgeDrawable getOrCreateBadge() {
-            if (this.badgeDrawable == null) {
-                this.badgeDrawable = BadgeDrawable.create(getContext());
-            }
-            tryUpdateBadgeAnchor();
-            BadgeDrawable badgeDrawable = this.badgeDrawable;
-            if (badgeDrawable != null) {
-                return badgeDrawable;
-            }
-            throw new IllegalStateException("Unable to create badge");
-        }
-
-        private boolean hasBadgeDrawable() {
-            return this.badgeDrawable != null;
-        }
-
-        private void inflateAndAddDefaultIconView() {
-            ViewGroup viewGroup;
-            if (BadgeUtils.USE_COMPAT_PARENT) {
-                FrameLayout frameLayoutCreatePreApi18BadgeAnchorRoot = createPreApi18BadgeAnchorRoot();
-                addView(frameLayoutCreatePreApi18BadgeAnchorRoot, 0);
-                viewGroup = frameLayoutCreatePreApi18BadgeAnchorRoot;
-            } else {
-                viewGroup = this;
-            }
-            ImageView imageView = (ImageView) LayoutInflater.from(getContext()).inflate(C10817R.layout.design_layout_tab_icon, viewGroup, false);
-            this.iconView = imageView;
-            viewGroup.addView(imageView, 0);
-        }
-
-        private void inflateAndAddDefaultTextView() {
-            ViewGroup viewGroup;
-            if (BadgeUtils.USE_COMPAT_PARENT) {
-                FrameLayout frameLayoutCreatePreApi18BadgeAnchorRoot = createPreApi18BadgeAnchorRoot();
-                addView(frameLayoutCreatePreApi18BadgeAnchorRoot);
-                viewGroup = frameLayoutCreatePreApi18BadgeAnchorRoot;
-            } else {
-                viewGroup = this;
-            }
-            TextView textView = (TextView) LayoutInflater.from(getContext()).inflate(C10817R.layout.design_layout_tab_text, viewGroup, false);
-            this.textView = textView;
-            viewGroup.addView(textView);
-        }
-
-        private void removeBadge() {
-            if (this.badgeAnchorView != null) {
-                tryRemoveBadgeFromAnchor();
-            }
-            this.badgeDrawable = null;
-        }
-
-        private void tryAttachBadgeToAnchor(@Nullable View view) {
-            if (hasBadgeDrawable() && view != null) {
-                clipViewToPaddingForBadge(false);
-                BadgeUtils.attachBadgeDrawable(this.badgeDrawable, view, getCustomParentForBadge(view));
-                this.badgeAnchorView = view;
-            }
-        }
-
-        private void tryRemoveBadgeFromAnchor() {
-            if (hasBadgeDrawable()) {
-                clipViewToPaddingForBadge(true);
-                View view = this.badgeAnchorView;
-                if (view != null) {
-                    BadgeUtils.detachBadgeDrawable(this.badgeDrawable, view);
-                    this.badgeAnchorView = null;
-                }
-            }
-        }
-
-        private void tryUpdateBadgeAnchor() {
-            Tab tab;
-            Tab tab2;
-            if (hasBadgeDrawable()) {
-                if (this.customView != null) {
-                    tryRemoveBadgeFromAnchor();
-                    return;
-                }
-                if (this.iconView != null && (tab2 = this.tab) != null && tab2.getIcon() != null) {
-                    View view = this.badgeAnchorView;
-                    ImageView imageView = this.iconView;
-                    if (view == imageView) {
-                        tryUpdateBadgeDrawableBounds(imageView);
-                        return;
-                    } else {
-                        tryRemoveBadgeFromAnchor();
-                        tryAttachBadgeToAnchor(this.iconView);
-                        return;
-                    }
-                }
-                if (this.textView == null || (tab = this.tab) == null || tab.getTabLabelVisibility() != 1) {
-                    tryRemoveBadgeFromAnchor();
-                    return;
-                }
-                View view2 = this.badgeAnchorView;
-                TextView textView = this.textView;
-                if (view2 == textView) {
-                    tryUpdateBadgeDrawableBounds(textView);
-                } else {
-                    tryRemoveBadgeFromAnchor();
-                    tryAttachBadgeToAnchor(this.textView);
-                }
-            }
-        }
-
-        private void tryUpdateBadgeDrawableBounds(@NonNull View view) {
-            if (hasBadgeDrawable() && view == this.badgeAnchorView) {
-                BadgeUtils.setBadgeDrawableBounds(this.badgeDrawable, view, getCustomParentForBadge(view));
-            }
-        }
-
-        private void updateBackgroundDrawable(Context context) {
-            GradientDrawable gradientDrawable;
-            int i = TabLayout.this.tabBackgroundResId;
-            if (i != 0) {
-                Drawable drawable = AppCompatResources.getDrawable(context, i);
-                this.baseBackgroundDrawable = drawable;
-                if (drawable != null && drawable.isStateful()) {
-                    this.baseBackgroundDrawable.setState(getDrawableState());
-                }
-            } else {
-                this.baseBackgroundDrawable = null;
-            }
-            GradientDrawable gradientDrawable2 = new GradientDrawable();
-            gradientDrawable2.setColor(0);
-            Drawable rippleDrawable = gradientDrawable2;
-            if (TabLayout.this.tabRippleColorStateList != null) {
-                GradientDrawable gradientDrawable3 = new GradientDrawable();
-                gradientDrawable3.setCornerRadius(1.0E-5f);
-                gradientDrawable3.setColor(-1);
-                ColorStateList colorStateListConvertToRippleDrawableColor = RippleUtils.convertToRippleDrawableColor(TabLayout.this.tabRippleColorStateList);
-                boolean z2 = TabLayout.this.unboundedRipple;
-                if (z2) {
-                    gradientDrawable = gradientDrawable2;
-                    gradientDrawable = null;
-                }
-                rippleDrawable = new RippleDrawable(colorStateListConvertToRippleDrawableColor, gradientDrawable, z2 ? null : gradientDrawable3);
-            }
-            ViewCompat.setBackground(this, rippleDrawable);
-            TabLayout.this.invalidate();
-        }
-
-        private void updateTextAndIcon(@Nullable TextView textView, @Nullable ImageView imageView) {
-            Tab tab = this.tab;
-            Drawable drawableMutate = (tab == null || tab.getIcon() == null) ? null : DrawableCompat.wrap(this.tab.getIcon()).mutate();
-            Tab tab2 = this.tab;
-            CharSequence text = tab2 != null ? tab2.getText() : null;
-            if (imageView != null) {
-                if (drawableMutate != null) {
-                    imageView.setImageDrawable(drawableMutate);
-                    imageView.setVisibility(0);
-                    setVisibility(0);
-                } else {
-                    imageView.setVisibility(8);
-                    imageView.setImageDrawable(null);
-                }
-            }
-            boolean z2 = !TextUtils.isEmpty(text);
-            if (textView != null) {
-                if (z2) {
-                    textView.setText(text);
-                    if (this.tab.labelVisibilityMode == 1) {
-                        textView.setVisibility(0);
-                    } else {
-                        textView.setVisibility(8);
-                    }
-                    setVisibility(0);
-                } else {
-                    textView.setVisibility(8);
-                    textView.setText((CharSequence) null);
-                }
-            }
-            if (imageView != null) {
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
-                int iDpToPx = (z2 && imageView.getVisibility() == 0) ? (int) ViewUtils.dpToPx(getContext(), 8) : 0;
-                if (TabLayout.this.inlineLabel) {
-                    if (iDpToPx != MarginLayoutParamsCompat.getMarginEnd(marginLayoutParams)) {
-                        MarginLayoutParamsCompat.setMarginEnd(marginLayoutParams, iDpToPx);
-                        marginLayoutParams.bottomMargin = 0;
-                        imageView.setLayoutParams(marginLayoutParams);
-                        imageView.requestLayout();
-                    }
-                } else if (iDpToPx != marginLayoutParams.bottomMargin) {
-                    marginLayoutParams.bottomMargin = iDpToPx;
-                    MarginLayoutParamsCompat.setMarginEnd(marginLayoutParams, 0);
-                    imageView.setLayoutParams(marginLayoutParams);
-                    imageView.requestLayout();
-                }
-            }
-            Tab tab3 = this.tab;
-            CharSequence charSequence = tab3 != null ? tab3.contentDesc : null;
-            if (!z2) {
-                text = charSequence;
-            }
-            TooltipCompat.setTooltipText(this, text);
-        }
-
         @Override // android.view.ViewGroup, android.view.View
         public void drawableStateChanged() {
             super.drawableStateChanged();
@@ -561,6 +612,11 @@ public class TabLayout extends HorizontalScrollView {
                 invalidate();
                 TabLayout.this.invalidate();
             }
+        }
+
+        @Nullable
+        private BadgeDrawable getBadge() {
+            return this.badgeDrawable;
         }
 
         public int getContentHeight() {
@@ -596,8 +652,61 @@ public class TabLayout extends HorizontalScrollView {
         }
 
         @Nullable
+        private FrameLayout getCustomParentForBadge(@NonNull View view) {
+            if ((view == this.iconView || view == this.textView) && BadgeUtils.USE_COMPAT_PARENT) {
+                return (FrameLayout) view.getParent();
+            }
+            return null;
+        }
+
+        @NonNull
+        private BadgeDrawable getOrCreateBadge() {
+            if (this.badgeDrawable == null) {
+                this.badgeDrawable = BadgeDrawable.create(getContext());
+            }
+            tryUpdateBadgeAnchor();
+            BadgeDrawable badgeDrawable = this.badgeDrawable;
+            if (badgeDrawable != null) {
+                return badgeDrawable;
+            }
+            throw new IllegalStateException("Unable to create badge");
+        }
+
+        @Nullable
         public Tab getTab() {
             return this.tab;
+        }
+
+        private boolean hasBadgeDrawable() {
+            return this.badgeDrawable != null;
+        }
+
+        private void inflateAndAddDefaultIconView() {
+            ViewGroup viewGroup;
+            if (BadgeUtils.USE_COMPAT_PARENT) {
+                FrameLayout frameLayoutCreatePreApi18BadgeAnchorRoot = createPreApi18BadgeAnchorRoot();
+                addView(frameLayoutCreatePreApi18BadgeAnchorRoot, 0);
+                viewGroup = frameLayoutCreatePreApi18BadgeAnchorRoot;
+            } else {
+                viewGroup = this;
+            }
+            ImageView imageView = (ImageView) LayoutInflater.from(getContext()).inflate(C10817R.layout.design_layout_tab_icon, viewGroup, false);
+            this.iconView = imageView;
+            viewGroup.addView(imageView, 0);
+        }
+
+        private void inflateAndAddDefaultTextView() {
+            ViewGroup viewGroup;
+            if (BadgeUtils.USE_COMPAT_PARENT) {
+                FrameLayout frameLayoutCreatePreApi18BadgeAnchorRoot = createPreApi18BadgeAnchorRoot();
+                addView(frameLayoutCreatePreApi18BadgeAnchorRoot);
+                viewGroup = frameLayoutCreatePreApi18BadgeAnchorRoot;
+            } else {
+                viewGroup = this;
+            }
+            TextView textView = (TextView) LayoutInflater.from(getContext()).inflate(C10817R.layout.design_layout_tab_text, viewGroup, false);
+            this.textView = textView;
+            viewGroup.addView(textView);
         }
 
         @Override // android.view.View
@@ -668,6 +777,13 @@ public class TabLayout extends HorizontalScrollView {
             return true;
         }
 
+        private void removeBadge() {
+            if (this.badgeAnchorView != null) {
+                tryRemoveBadgeFromAnchor();
+            }
+            this.badgeDrawable = null;
+        }
+
         public void reset() {
             setTab(null);
             setSelected(false);
@@ -696,6 +812,66 @@ public class TabLayout extends HorizontalScrollView {
             if (tab != this.tab) {
                 this.tab = tab;
                 update();
+            }
+        }
+
+        private void tryAttachBadgeToAnchor(@Nullable View view) {
+            if (hasBadgeDrawable() && view != null) {
+                clipViewToPaddingForBadge(false);
+                BadgeUtils.attachBadgeDrawable(this.badgeDrawable, view, getCustomParentForBadge(view));
+                this.badgeAnchorView = view;
+            }
+        }
+
+        private void tryRemoveBadgeFromAnchor() {
+            if (hasBadgeDrawable()) {
+                clipViewToPaddingForBadge(true);
+                View view = this.badgeAnchorView;
+                if (view != null) {
+                    BadgeUtils.detachBadgeDrawable(this.badgeDrawable, view);
+                    this.badgeAnchorView = null;
+                }
+            }
+        }
+
+        private void tryUpdateBadgeAnchor() {
+            Tab tab;
+            Tab tab2;
+            if (hasBadgeDrawable()) {
+                if (this.customView != null) {
+                    tryRemoveBadgeFromAnchor();
+                    return;
+                }
+                if (this.iconView != null && (tab2 = this.tab) != null && tab2.getIcon() != null) {
+                    View view = this.badgeAnchorView;
+                    ImageView imageView = this.iconView;
+                    if (view == imageView) {
+                        tryUpdateBadgeDrawableBounds(imageView);
+                        return;
+                    } else {
+                        tryRemoveBadgeFromAnchor();
+                        tryAttachBadgeToAnchor(this.iconView);
+                        return;
+                    }
+                }
+                if (this.textView == null || (tab = this.tab) == null || tab.getTabLabelVisibility() != 1) {
+                    tryRemoveBadgeFromAnchor();
+                    return;
+                }
+                View view2 = this.badgeAnchorView;
+                TextView textView = this.textView;
+                if (view2 == textView) {
+                    tryUpdateBadgeDrawableBounds(textView);
+                } else {
+                    tryRemoveBadgeFromAnchor();
+                    tryAttachBadgeToAnchor(this.textView);
+                }
+            }
+        }
+
+        private void tryUpdateBadgeDrawableBounds(@NonNull View view) {
+            if (hasBadgeDrawable() && view == this.badgeAnchorView) {
+                BadgeUtils.setBadgeDrawableBounds(this.badgeDrawable, view, getCustomParentForBadge(view));
             }
         }
 
@@ -775,6 +951,36 @@ public class TabLayout extends HorizontalScrollView {
             setSelected(tab != null && tab.isSelected());
         }
 
+        private void updateBackgroundDrawable(Context context) {
+            int i = TabLayout.this.tabBackgroundResId;
+            if (i != 0) {
+                Drawable drawable = AppCompatResources.getDrawable(context, i);
+                this.baseBackgroundDrawable = drawable;
+                if (drawable != null && drawable.isStateful()) {
+                    this.baseBackgroundDrawable.setState(getDrawableState());
+                }
+            } else {
+                this.baseBackgroundDrawable = null;
+            }
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setColor(0);
+            Drawable rippleDrawable = gradientDrawable;
+            if (TabLayout.this.tabRippleColorStateList != null) {
+                GradientDrawable gradientDrawable2 = new GradientDrawable();
+                gradientDrawable2.setCornerRadius(1.0E-5f);
+                gradientDrawable2.setColor(-1);
+                ColorStateList colorStateListConvertToRippleDrawableColor = RippleUtils.convertToRippleDrawableColor(TabLayout.this.tabRippleColorStateList);
+                boolean z2 = TabLayout.this.unboundedRipple;
+                GradientDrawable gradientDrawable3 = gradientDrawable;
+                if (z2) {
+                    gradientDrawable3 = null;
+                }
+                rippleDrawable = new RippleDrawable(colorStateListConvertToRippleDrawableColor, gradientDrawable3, z2 ? null : gradientDrawable2);
+            }
+            ViewCompat.setBackground(this, rippleDrawable);
+            TabLayout.this.invalidate();
+        }
+
         public final void updateOrientation() {
             setOrientation(!TabLayout.this.inlineLabel ? 1 : 0);
             TextView textView = this.customTextView;
@@ -784,9 +990,64 @@ public class TabLayout extends HorizontalScrollView {
                 updateTextAndIcon(textView, this.customIconView);
             }
         }
+
+        private void updateTextAndIcon(@Nullable TextView textView, @Nullable ImageView imageView) {
+            Tab tab = this.tab;
+            Drawable drawableMutate = (tab == null || tab.getIcon() == null) ? null : DrawableCompat.wrap(this.tab.getIcon()).mutate();
+            Tab tab2 = this.tab;
+            CharSequence text = tab2 != null ? tab2.getText() : null;
+            if (imageView != null) {
+                if (drawableMutate != null) {
+                    imageView.setImageDrawable(drawableMutate);
+                    imageView.setVisibility(0);
+                    setVisibility(0);
+                } else {
+                    imageView.setVisibility(8);
+                    imageView.setImageDrawable(null);
+                }
+            }
+            boolean z2 = !TextUtils.isEmpty(text);
+            if (textView != null) {
+                if (z2) {
+                    textView.setText(text);
+                    if (this.tab.labelVisibilityMode == 1) {
+                        textView.setVisibility(0);
+                    } else {
+                        textView.setVisibility(8);
+                    }
+                    setVisibility(0);
+                } else {
+                    textView.setVisibility(8);
+                    textView.setText((CharSequence) null);
+                }
+            }
+            if (imageView != null) {
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
+                int iDpToPx = (z2 && imageView.getVisibility() == 0) ? (int) ViewUtils.dpToPx(getContext(), 8) : 0;
+                if (TabLayout.this.inlineLabel) {
+                    if (iDpToPx != MarginLayoutParamsCompat.getMarginEnd(marginLayoutParams)) {
+                        MarginLayoutParamsCompat.setMarginEnd(marginLayoutParams, iDpToPx);
+                        marginLayoutParams.bottomMargin = 0;
+                        imageView.setLayoutParams(marginLayoutParams);
+                        imageView.requestLayout();
+                    }
+                } else if (iDpToPx != marginLayoutParams.bottomMargin) {
+                    marginLayoutParams.bottomMargin = iDpToPx;
+                    MarginLayoutParamsCompat.setMarginEnd(marginLayoutParams, 0);
+                    imageView.setLayoutParams(marginLayoutParams);
+                    imageView.requestLayout();
+                }
+            }
+            Tab tab3 = this.tab;
+            CharSequence charSequence = tab3 != null ? tab3.contentDesc : null;
+            if (!z2) {
+                text = charSequence;
+            }
+            TooltipCompat.setTooltipText(this, text);
+        }
     }
 
-    public static class ViewPagerOnTabSelectedListener implements OnTabSelectedListener {
+    public class ViewPagerOnTabSelectedListener implements OnTabSelectedListener {
         private final ViewPager viewPager;
 
         public ViewPagerOnTabSelectedListener(ViewPager viewPager) {
@@ -807,270 +1068,16 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$a */
-    public class C11006a implements ValueAnimator.AnimatorUpdateListener {
-        public C11006a() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            TabLayout.this.scrollTo(((Integer) valueAnimator.getAnimatedValue()).intValue(), 0);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$b */
-    public class C11007b implements ViewPager.OnAdapterChangeListener {
-
-        /* JADX INFO: renamed from: a */
-        public boolean f21152a;
-
-        public C11007b() {
-        }
-
-        @Override // androidx.viewpager.widget.ViewPager.OnAdapterChangeListener
-        public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2) {
-            TabLayout tabLayout = TabLayout.this;
-            if (tabLayout.viewPager == viewPager) {
-                tabLayout.setPagerAdapter(pagerAdapter2, this.f21152a);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$c */
-    public class C11008c extends DataSetObserver {
-        public C11008c() {
-        }
-
-        @Override // android.database.DataSetObserver
-        public void onChanged() {
-            TabLayout.this.populateFromPagerAdapter();
-        }
-
-        @Override // android.database.DataSetObserver
-        public void onInvalidated() {
-            TabLayout.this.populateFromPagerAdapter();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d */
-    public class C11009d extends LinearLayout {
-
-        /* JADX INFO: renamed from: j */
-        public ValueAnimator f21155j;
-
-        /* JADX INFO: renamed from: k */
-        public int f21156k;
-
-        /* JADX INFO: renamed from: l */
-        public float f21157l;
-
-        /* JADX INFO: renamed from: m */
-        public int f21158m;
-
-        /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d$a */
-        public class a implements ValueAnimator.AnimatorUpdateListener {
-
-            /* JADX INFO: renamed from: a */
-            public final /* synthetic */ View f21160a;
-
-            /* JADX INFO: renamed from: b */
-            public final /* synthetic */ View f21161b;
-
-            public a(View view, View view2) {
-                this.f21160a = view;
-                this.f21161b = view2;
-            }
-
-            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-                C11009d.this.m9150c(this.f21160a, this.f21161b, valueAnimator.getAnimatedFraction());
-            }
-        }
-
-        /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayout$d$b */
-        public class b extends AnimatorListenerAdapter {
-
-            /* JADX INFO: renamed from: a */
-            public final /* synthetic */ int f21163a;
-
-            public b(int i) {
-                this.f21163a = i;
-            }
-
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator) {
-                C11009d.this.f21156k = this.f21163a;
-            }
-
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationStart(Animator animator) {
-                C11009d.this.f21156k = this.f21163a;
-            }
-        }
-
-        public C11009d(Context context) {
-            super(context);
-            this.f21156k = -1;
-            this.f21158m = -1;
-            setWillNotDraw(false);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m9148a() {
-            View childAt = getChildAt(this.f21156k);
-            C4429b c4429b = TabLayout.this.tabIndicatorInterpolator;
-            TabLayout tabLayout = TabLayout.this;
-            Drawable drawable = tabLayout.tabSelectedIndicator;
-            Objects.requireNonNull(c4429b);
-            RectF rectFM6145a = C4429b.m6145a(tabLayout, childAt);
-            drawable.setBounds((int) rectFM6145a.left, drawable.getBounds().top, (int) rectFM6145a.right, drawable.getBounds().bottom);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public void m9149b(int i) {
-            Rect bounds = TabLayout.this.tabSelectedIndicator.getBounds();
-            TabLayout.this.tabSelectedIndicator.setBounds(bounds.left, 0, bounds.right, i);
-            requestLayout();
-        }
-
-        /* JADX INFO: renamed from: c */
-        public final void m9150c(View view, View view2, float f) {
-            if (view != null && view.getWidth() > 0) {
-                C4429b c4429b = TabLayout.this.tabIndicatorInterpolator;
-                TabLayout tabLayout = TabLayout.this;
-                c4429b.mo6144b(tabLayout, view, view2, f, tabLayout.tabSelectedIndicator);
-            } else {
-                Drawable drawable = TabLayout.this.tabSelectedIndicator;
-                drawable.setBounds(-1, drawable.getBounds().top, -1, TabLayout.this.tabSelectedIndicator.getBounds().bottom);
-            }
-            ViewCompat.postInvalidateOnAnimation(this);
-        }
-
-        /* JADX INFO: renamed from: d */
-        public final void m9151d(boolean z2, int i, int i2) {
-            View childAt = getChildAt(this.f21156k);
-            View childAt2 = getChildAt(i);
-            if (childAt2 == null) {
-                m9148a();
-                return;
-            }
-            a aVar = new a(childAt, childAt2);
-            if (!z2) {
-                this.f21155j.removeAllUpdateListeners();
-                this.f21155j.addUpdateListener(aVar);
-                return;
-            }
-            ValueAnimator valueAnimator = new ValueAnimator();
-            this.f21155j = valueAnimator;
-            valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-            valueAnimator.setDuration(i2);
-            valueAnimator.setFloatValues(0.0f, 1.0f);
-            valueAnimator.addUpdateListener(aVar);
-            valueAnimator.addListener(new b(i));
-            valueAnimator.start();
-        }
-
-        @Override // android.view.View
-        public void draw(@NonNull Canvas canvas) {
-            int iHeight = TabLayout.this.tabSelectedIndicator.getBounds().height();
-            if (iHeight < 0) {
-                iHeight = TabLayout.this.tabSelectedIndicator.getIntrinsicHeight();
-            }
-            int i = TabLayout.this.tabIndicatorGravity;
-            int height = 0;
-            if (i == 0) {
-                height = getHeight() - iHeight;
-                iHeight = getHeight();
-            } else if (i == 1) {
-                height = (getHeight() - iHeight) / 2;
-                iHeight = (getHeight() + iHeight) / 2;
-            } else if (i != 2) {
-                iHeight = i != 3 ? 0 : getHeight();
-            }
-            if (TabLayout.this.tabSelectedIndicator.getBounds().width() > 0) {
-                Rect bounds = TabLayout.this.tabSelectedIndicator.getBounds();
-                TabLayout.this.tabSelectedIndicator.setBounds(bounds.left, height, bounds.right, iHeight);
-                TabLayout tabLayout = TabLayout.this;
-                Drawable drawableWrap = tabLayout.tabSelectedIndicator;
-                if (tabLayout.tabSelectedIndicatorColor != 0) {
-                    drawableWrap = DrawableCompat.wrap(drawableWrap);
-                    if (Build.VERSION.SDK_INT == 21) {
-                        drawableWrap.setColorFilter(TabLayout.this.tabSelectedIndicatorColor, PorterDuff.Mode.SRC_IN);
-                    } else {
-                        DrawableCompat.setTint(drawableWrap, TabLayout.this.tabSelectedIndicatorColor);
-                    }
-                }
-                drawableWrap.draw(canvas);
-            }
-            super.draw(canvas);
-        }
-
-        @Override // android.widget.LinearLayout, android.view.ViewGroup, android.view.View
-        public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
-            super.onLayout(z2, i, i2, i3, i4);
-            ValueAnimator valueAnimator = this.f21155j;
-            if (valueAnimator == null || !valueAnimator.isRunning()) {
-                m9148a();
-            } else {
-                m9151d(false, this.f21156k, -1);
-            }
-        }
-
-        @Override // android.widget.LinearLayout, android.view.View
-        public void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            if (View.MeasureSpec.getMode(i) != 1073741824) {
-                return;
-            }
-            TabLayout tabLayout = TabLayout.this;
-            boolean z2 = true;
-            if (tabLayout.tabGravity == 1 || tabLayout.mode == 2) {
-                int childCount = getChildCount();
-                int iMax = 0;
-                for (int i3 = 0; i3 < childCount; i3++) {
-                    View childAt = getChildAt(i3);
-                    if (childAt.getVisibility() == 0) {
-                        iMax = Math.max(iMax, childAt.getMeasuredWidth());
-                    }
-                }
-                if (iMax <= 0) {
-                    return;
-                }
-                if (iMax * childCount <= getMeasuredWidth() - (((int) ViewUtils.dpToPx(getContext(), 16)) * 2)) {
-                    boolean z3 = false;
-                    for (int i4 = 0; i4 < childCount; i4++) {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i4).getLayoutParams();
-                        if (layoutParams.width != iMax || layoutParams.weight != 0.0f) {
-                            layoutParams.width = iMax;
-                            layoutParams.weight = 0.0f;
-                            z3 = true;
-                        }
-                    }
-                    z2 = z3;
-                } else {
-                    TabLayout tabLayout2 = TabLayout.this;
-                    tabLayout2.tabGravity = 0;
-                    tabLayout2.updateTabViews(false);
-                }
-                if (z2) {
-                    super.onMeasure(i, i2);
-                }
-            }
-        }
-
-        @Override // android.widget.LinearLayout, android.view.View
-        public void onRtlPropertiesChanged(int i) {
-            super.onRtlPropertiesChanged(i);
-            if (Build.VERSION.SDK_INT >= 23 || this.f21158m == i) {
-                return;
-            }
-            requestLayout();
-            this.f21158m = i;
-        }
-    }
-
     public TabLayout(@NonNull Context context) {
         this(context, null);
+    }
+
+    public void addOnTabSelectedListener(@NonNull OnTabSelectedListener onTabSelectedListener) {
+        addOnTabSelectedListener((BaseOnTabSelectedListener) onTabSelectedListener);
+    }
+
+    public void addTab(@NonNull Tab tab) {
+        addTab(tab, this.tabs.isEmpty());
     }
 
     private void addTabFromItemView(@NonNull TabItem tabItem) {
@@ -1098,6 +1105,11 @@ public class TabLayout extends HorizontalScrollView {
         tabView.setSelected(false);
         tabView.setActivated(false);
         this.slidingTabIndicator.addView(tabView, tab.getPosition(), createLayoutParamsForTabs());
+    }
+
+    @Override // android.widget.HorizontalScrollView, android.view.ViewGroup
+    public void addView(View view) {
+        addViewInternal(view);
     }
 
     private void addViewInternal(View view) {
@@ -1191,6 +1203,10 @@ public class TabLayout extends HorizontalScrollView {
         return ViewCompat.getLayoutDirection(this) == 0 ? left + i4 : left - i4;
     }
 
+    public void clearOnTabSelectedListeners() {
+        this.selectedListeners.clear();
+    }
+
     private void configureTab(@NonNull Tab tab, int i) {
         tab.setPosition(i);
         this.tabs.add(i, tab);
@@ -1215,6 +1231,11 @@ public class TabLayout extends HorizontalScrollView {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -1);
         updateTabViewLayoutParams(layoutParams);
         return layoutParams;
+    }
+
+    public Tab createTabFromPool() {
+        Tab tabAcquire = tabPool.acquire();
+        return tabAcquire == null ? new Tab() : tabAcquire;
     }
 
     @NonNull
@@ -1277,88 +1298,6 @@ public class TabLayout extends HorizontalScrollView {
         return (!z2 || this.inlineLabel) ? 48 : 72;
     }
 
-    private int getTabMinWidth() {
-        int i = this.requestedTabMinWidth;
-        if (i != -1) {
-            return i;
-        }
-        int i2 = this.mode;
-        if (i2 == 0 || i2 == 2) {
-            return this.scrollableTabMinWidth;
-        }
-        return 0;
-    }
-
-    private int getTabScrollRange() {
-        return Math.max(0, ((this.slidingTabIndicator.getWidth() - getWidth()) - getPaddingLeft()) - getPaddingRight());
-    }
-
-    private void removeTabViewAt(int i) {
-        TabView tabView = (TabView) this.slidingTabIndicator.getChildAt(i);
-        this.slidingTabIndicator.removeViewAt(i);
-        if (tabView != null) {
-            tabView.reset();
-            this.tabViewPool.release(tabView);
-        }
-        requestLayout();
-    }
-
-    private void setSelectedTabView(int i) {
-        int childCount = this.slidingTabIndicator.getChildCount();
-        if (i < childCount) {
-            int i2 = 0;
-            while (i2 < childCount) {
-                View childAt = this.slidingTabIndicator.getChildAt(i2);
-                boolean z2 = true;
-                childAt.setSelected(i2 == i);
-                if (i2 != i) {
-                    z2 = false;
-                }
-                childAt.setActivated(z2);
-                i2++;
-            }
-        }
-    }
-
-    private void updateAllTabs() {
-        int size = this.tabs.size();
-        for (int i = 0; i < size; i++) {
-            this.tabs.get(i).updateView();
-        }
-    }
-
-    private void updateTabViewLayoutParams(@NonNull LinearLayout.LayoutParams layoutParams) {
-        if (this.mode == 1 && this.tabGravity == 0) {
-            layoutParams.width = 0;
-            layoutParams.weight = 1.0f;
-        } else {
-            layoutParams.width = -2;
-            layoutParams.weight = 0.0f;
-        }
-    }
-
-    public void addOnTabSelectedListener(@NonNull OnTabSelectedListener onTabSelectedListener) {
-        addOnTabSelectedListener((BaseOnTabSelectedListener) onTabSelectedListener);
-    }
-
-    public void addTab(@NonNull Tab tab) {
-        addTab(tab, this.tabs.isEmpty());
-    }
-
-    @Override // android.widget.HorizontalScrollView, android.view.ViewGroup
-    public void addView(View view) {
-        addViewInternal(view);
-    }
-
-    public void clearOnTabSelectedListeners() {
-        this.selectedListeners.clear();
-    }
-
-    public Tab createTabFromPool() {
-        Tab tabAcquire = tabPool.acquire();
-        return tabAcquire == null ? new Tab() : tabAcquire;
-    }
-
     public int getSelectedTabPosition() {
         Tab tab = this.selectedTab;
         if (tab != null) {
@@ -1400,6 +1339,18 @@ public class TabLayout extends HorizontalScrollView {
         return this.tabMaxWidth;
     }
 
+    private int getTabMinWidth() {
+        int i = this.requestedTabMinWidth;
+        if (i != -1) {
+            return i;
+        }
+        int i2 = this.mode;
+        if (i2 == 0 || i2 == 2) {
+            return this.scrollableTabMinWidth;
+        }
+        return 0;
+    }
+
     public int getTabMode() {
         return this.mode;
     }
@@ -1407,6 +1358,10 @@ public class TabLayout extends HorizontalScrollView {
     @Nullable
     public ColorStateList getTabRippleColor() {
         return this.tabRippleColorStateList;
+    }
+
+    private int getTabScrollRange() {
+        return Math.max(0, ((this.slidingTabIndicator.getWidth() - getWidth()) - getPaddingLeft()) - getPaddingRight());
     }
 
     @NonNull
@@ -1589,6 +1544,16 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
+    private void removeTabViewAt(int i) {
+        TabView tabView = (TabView) this.slidingTabIndicator.getChildAt(i);
+        this.slidingTabIndicator.removeViewAt(i);
+        if (tabView != null) {
+            tabView.reset();
+            this.tabViewPool.release(tabView);
+        }
+        requestLayout();
+    }
+
     public void selectTab(@Nullable Tab tab) {
         selectTab(tab, true);
     }
@@ -1670,6 +1635,23 @@ public class TabLayout extends HorizontalScrollView {
     @Deprecated
     public void setSelectedTabIndicatorHeight(int i) {
         this.slidingTabIndicator.m9149b(i);
+    }
+
+    private void setSelectedTabView(int i) {
+        int childCount = this.slidingTabIndicator.getChildCount();
+        if (i < childCount) {
+            int i2 = 0;
+            while (i2 < childCount) {
+                View childAt = this.slidingTabIndicator.getChildAt(i2);
+                boolean z2 = true;
+                childAt.setSelected(i2 == i);
+                if (i2 != i) {
+                    z2 = false;
+                }
+                childAt.setActivated(z2);
+                i2++;
+            }
+        }
     }
 
     public void setTabGravity(int i) {
@@ -1768,6 +1750,23 @@ public class TabLayout extends HorizontalScrollView {
         return getTabScrollRange() > 0;
     }
 
+    private void updateAllTabs() {
+        int size = this.tabs.size();
+        for (int i = 0; i < size; i++) {
+            this.tabs.get(i).updateView();
+        }
+    }
+
+    private void updateTabViewLayoutParams(@NonNull LinearLayout.LayoutParams layoutParams) {
+        if (this.mode == 1 && this.tabGravity == 0) {
+            layoutParams.width = 0;
+            layoutParams.weight = 1.0f;
+        } else {
+            layoutParams.width = -2;
+            layoutParams.weight = 0.0f;
+        }
+    }
+
     public void updateTabViews(boolean z2) {
         for (int i = 0; i < this.slidingTabIndicator.getChildCount(); i++) {
             View childAt = this.slidingTabIndicator.getChildAt(i);
@@ -1779,7 +1778,7 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
-    public static class Tab {
+    public class Tab {
         public static final int INVALID_POSITION = -1;
 
         @Nullable
@@ -2187,6 +2186,23 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
+    public void addTab(@NonNull Tab tab, boolean z2) {
+        addTab(tab, this.tabs.size(), z2);
+    }
+
+    @Override // android.widget.HorizontalScrollView, android.view.ViewGroup, android.view.ViewManager
+    public void addView(View view, ViewGroup.LayoutParams layoutParams) {
+        addViewInternal(view);
+    }
+
+    public void setSelectedTabIndicator(@DrawableRes int i) {
+        if (i != 0) {
+            setSelectedTabIndicator(AppCompatResources.getDrawable(getContext(), i));
+        } else {
+            setSelectedTabIndicator((Drawable) null);
+        }
+    }
+
     private void setupWithViewPager(@Nullable ViewPager viewPager, boolean z2, boolean z3) {
         ViewPager viewPager2 = this.viewPager;
         if (viewPager2 != null) {
@@ -2230,23 +2246,6 @@ public class TabLayout extends HorizontalScrollView {
             setPagerAdapter(null, false);
         }
         this.setupViewPagerImplicitly = z3;
-    }
-
-    public void addTab(@NonNull Tab tab, boolean z2) {
-        addTab(tab, this.tabs.size(), z2);
-    }
-
-    @Override // android.widget.HorizontalScrollView, android.view.ViewGroup, android.view.ViewManager
-    public void addView(View view, ViewGroup.LayoutParams layoutParams) {
-        addViewInternal(view);
-    }
-
-    public void setSelectedTabIndicator(@DrawableRes int i) {
-        if (i != 0) {
-            setSelectedTabIndicator(AppCompatResources.getDrawable(getContext(), i));
-        } else {
-            setSelectedTabIndicator((Drawable) null);
-        }
     }
 
     public void addTab(@NonNull Tab tab, int i, boolean z2) {

@@ -63,29 +63,6 @@ public class DiskCacheConfig {
         }
     }
 
-    /* JADX INFO: renamed from: com.facebook.cache.disk.DiskCacheConfig$b */
-    public static class C10634b {
-
-        /* JADX INFO: renamed from: b */
-        public Supplier<File> f19434b;
-
-        /* JADX INFO: renamed from: e */
-        public final Context f19437e;
-
-        /* JADX INFO: renamed from: a */
-        public String f19433a = "image_cache";
-
-        /* JADX INFO: renamed from: c */
-        public long f19435c = 41943040;
-
-        /* JADX INFO: renamed from: d */
-        public InterfaceC1664g f19436d = new C1659b();
-
-        public C10634b(Context context, C10633a c10633a) {
-            this.f19437e = context;
-        }
-    }
-
     public DiskCacheConfig(C10634b c10634b) {
         C1654d c1654d;
         C1655e c1655e;
@@ -130,5 +107,28 @@ public class DiskCacheConfig {
             c1669b = C1669b.f3077a;
         }
         this.f19430j = c1669b;
+    }
+
+    /* JADX INFO: renamed from: com.facebook.cache.disk.DiskCacheConfig$b */
+    public class C10634b {
+
+        /* JADX INFO: renamed from: b */
+        public Supplier<File> f19434b;
+
+        /* JADX INFO: renamed from: e */
+        public final Context f19437e;
+
+        /* JADX INFO: renamed from: a */
+        public String f19433a = "image_cache";
+
+        /* JADX INFO: renamed from: c */
+        public long f19435c = 41943040;
+
+        /* JADX INFO: renamed from: d */
+        public InterfaceC1664g f19436d = new C1659b();
+
+        public C10634b(Context context, C10633a c10633a) {
+            this.f19437e = context;
+        }
     }
 }

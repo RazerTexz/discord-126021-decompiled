@@ -44,14 +44,13 @@ import retrofit2.HttpException;
 
 /* JADX INFO: loaded from: classes2.dex */
 public class Error {
-    private static Action3<String, Throwable, Map<String, String>> onUnhandledError = null;
-    private static boolean unexpectedExceptionsCrashDebug = true;
 
     @Nullable
     private final String bodyText;
 
     @Nullable
     private final Map<String, String> metadata;
+    private static Action3<String, Throwable, Map<String, String>> onUnhandledError = null;
 
     @NonNull
     private final Response response;
@@ -61,6 +60,7 @@ public class Error {
 
     @NonNull
     private final Type type;
+    private static boolean unexpectedExceptionsCrashDebug = true;
 
     @NonNull
     private final AtomicBoolean showErrorToasts = new AtomicBoolean(true);
@@ -69,7 +69,7 @@ public class Error {
     private final AtomicBoolean shouldLog = new AtomicBoolean(true);
 
     /* JADX INFO: renamed from: com.discord.utilities.error.Error$1 */
-    public static /* synthetic */ class C67441 {
+    public /* synthetic */ class C67441 {
         public static final /* synthetic */ int[] $SwitchMap$com$discord$utilities$error$Error$Type;
 
         static {
@@ -135,7 +135,7 @@ public class Error {
         }
     }
 
-    public static class Response implements Model {
+    public class Response implements Model {
         private int code;
         private boolean global;
 
@@ -151,38 +151,6 @@ public class Error {
 
         public /* synthetic */ Response(String str, C67441 c67441) {
             this(str);
-        }
-
-        @SuppressLint({"ResourceType"})
-        private String getMessageToast(Context context, @StringRes int i) {
-            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(this.code);
-            if (abortCodeMessageResId != null) {
-                return context.getString(abortCodeMessageResId.intValue());
-            }
-            SkemaError skemaError = this.skemaError;
-            if (skemaError != null) {
-                if (!skemaError.errors.isEmpty()) {
-                    return ((SkemaErrorItem) this.skemaError.errors.get(0)).message;
-                }
-                for (SkemaError skemaError2 : this.skemaError.subErrors.values()) {
-                    if (!skemaError2.errors.isEmpty()) {
-                        return ((SkemaErrorItem) skemaError2.errors.get(0)).message;
-                    }
-                }
-            }
-            String str = this.message;
-            if (str != null) {
-                return str;
-            }
-            Iterator<List<String>> it = this.messages.values().iterator();
-            while (it.hasNext()) {
-                for (String str2 : it.next()) {
-                    if (str2 != null) {
-                        return str2;
-                    }
-                }
-            }
-            return context.getString(i);
         }
 
         @Override // com.discord.models.domain.Model
@@ -277,6 +245,38 @@ public class Error {
             return this.message;
         }
 
+        @SuppressLint({"ResourceType"})
+        private String getMessageToast(Context context, @StringRes int i) {
+            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(this.code);
+            if (abortCodeMessageResId != null) {
+                return context.getString(abortCodeMessageResId.intValue());
+            }
+            SkemaError skemaError = this.skemaError;
+            if (skemaError != null) {
+                if (!skemaError.errors.isEmpty()) {
+                    return ((SkemaErrorItem) this.skemaError.errors.get(0)).message;
+                }
+                for (SkemaError skemaError2 : this.skemaError.subErrors.values()) {
+                    if (!skemaError2.errors.isEmpty()) {
+                        return ((SkemaErrorItem) skemaError2.errors.get(0)).message;
+                    }
+                }
+            }
+            String str = this.message;
+            if (str != null) {
+                return str;
+            }
+            Iterator<List<String>> it = this.messages.values().iterator();
+            while (it.hasNext()) {
+                for (String str2 : it.next()) {
+                    if (str2 != null) {
+                        return str2;
+                    }
+                }
+            }
+            return context.getString(i);
+        }
+
         @NonNull
         public Map<String, List<String>> getMessages() {
             return this.messages;
@@ -335,7 +335,7 @@ public class Error {
         }
     }
 
-    public static class SkemaErrorItem implements Model {
+    public class SkemaErrorItem implements Model {
         private String code;
         private String message;
 
@@ -429,6 +429,10 @@ public class Error {
         this.response = response;
         this.metadata = map;
         this.bodyText = str;
+    }
+
+    public boolean canEqual(Object obj) {
+        return obj instanceof Error;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -549,108 +553,6 @@ public class Error {
         return new Error(th, type2, response == null ? new Response(str3, objArr2 == true ? 1 : 0) : response, map, str);
     }
 
-    private static Map<String, String> getMetaData(String str, int i, String str2, Headers headers) {
-        HashMap map = new HashMap();
-        map.put("responseCode", String.valueOf(i));
-        map.put("requestUrl", str);
-        map.put("content-type", str2);
-        map.put("CF-Ray", headers != null ? headers.m10954c("CF-Ray") : null);
-        return map;
-    }
-
-    @Nullable
-    private static String getRequestUrl(@Nullable okhttp3.Response response) {
-        if (response == null) {
-            return null;
-        }
-        return response.request.url.f25984l;
-    }
-
-    @NonNull
-    private List<String> getToastMessages(@NonNull Context context) {
-        switch (this.type) {
-            case FORBIDDEN_CLOUD_FLARE:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_cloudflare_unauthorized));
-            case FORBIDDEN_DISCORD:
-                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_forbidden));
-            case INTERMITTENT_CLOUD_FLARE:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_cloudflare_intermittent));
-            case DISCORD_REQUEST_ERROR:
-            case DISCORD_REQUEST_ERROR_UNKNOWN:
-                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_rest_request));
-            case DISCORD_REQUEST_RESOURCE_NOT_FOUND:
-            default:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_unknown));
-            case DISCORD_BAD_REQUEST:
-                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_bad_request));
-            case INTERNAL_SERVER_ERROR:
-                return Collections.singletonList(context.getString(C5419R.string.internal_server_error));
-            case REQUEST_TOO_LARGE:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_request_too_large));
-            case UNAUTHORIZED:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_unauthorized));
-            case RATE_LIMITED:
-                return Collections.singletonList(context.getString(C5419R.string.rate_limited));
-            case NETWORK:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_connection));
-            case SSL:
-                return Collections.singletonList(context.getString(C5419R.string.network_error_ssl));
-            case TIMEOUT:
-                return Collections.singletonList(context.getString(C5419R.string.timeout_error));
-        }
-    }
-
-    public static void handle(@NonNull Throwable th, @NonNull String str, @Nullable Action1<Error> action1, @Nullable Context context, @Nullable Boolean bool) throws Throwable {
-        Error errorCreate = create(th);
-        errorCreate.getType();
-        Type type = Type.OTHER;
-        if (action1 != null) {
-            try {
-                action1.call(errorCreate);
-            } catch (Exception e) {
-                StringBuilder sbM836X = C1643a.m836X(str, " / ");
-                sbM836X.append(errorCreate.toString());
-                onUnhandledError.call(str, new Exception(sbM836X.toString(), e), null);
-                return;
-            }
-        }
-        errorCreate.logError(str);
-        if (bool == null || !bool.booleanValue()) {
-            errorCreate.showToasts(context);
-        }
-    }
-
-    public static void init(@NonNull Action3<String, Throwable, Map<String, String>> action3) {
-        onUnhandledError = action3;
-    }
-
-    private void logError(String str) {
-        Action3<String, Throwable, Map<String, String>> action3;
-        if (this.shouldLog.get()) {
-            int iOrdinal = this.type.ordinal();
-            if (iOrdinal != 9) {
-                if (iOrdinal == 17 && (action3 = onUnhandledError) != null) {
-                    action3.call(str, this.throwable, this.metadata);
-                    return;
-                }
-                return;
-            }
-            Action3<String, Throwable, Map<String, String>> action4 = onUnhandledError;
-            if (action4 != null) {
-                action4.call(this.type.name(), this.throwable, this.metadata);
-            }
-        }
-    }
-
-    @VisibleForTesting
-    public static void setUnexpectedExceptionsCrashDebug(boolean z2) {
-        unexpectedExceptionsCrashDebug = z2;
-    }
-
-    public boolean canEqual(Object obj) {
-        return obj instanceof Error;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -711,6 +613,23 @@ public class Error {
         return toastMessages.get(0);
     }
 
+    private static Map<String, String> getMetaData(String str, int i, String str2, Headers headers) {
+        HashMap map = new HashMap();
+        map.put("responseCode", String.valueOf(i));
+        map.put("requestUrl", str);
+        map.put("content-type", str2);
+        map.put("CF-Ray", headers != null ? headers.m10954c("CF-Ray") : null);
+        return map;
+    }
+
+    @Nullable
+    private static String getRequestUrl(@Nullable okhttp3.Response response) {
+        if (response == null) {
+            return null;
+        }
+        return response.request.url.f25984l;
+    }
+
     @NonNull
     public Response getResponse() {
         return this.response;
@@ -722,8 +641,62 @@ public class Error {
     }
 
     @NonNull
+    private List<String> getToastMessages(@NonNull Context context) {
+        switch (this.type) {
+            case FORBIDDEN_CLOUD_FLARE:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_cloudflare_unauthorized));
+            case FORBIDDEN_DISCORD:
+                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_forbidden));
+            case INTERMITTENT_CLOUD_FLARE:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_cloudflare_intermittent));
+            case DISCORD_REQUEST_ERROR:
+            case DISCORD_REQUEST_ERROR_UNKNOWN:
+                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_rest_request));
+            case DISCORD_REQUEST_RESOURCE_NOT_FOUND:
+            default:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_unknown));
+            case DISCORD_BAD_REQUEST:
+                return Collections.singletonList(this.response.getMessageToast(context, C5419R.string.network_error_bad_request));
+            case INTERNAL_SERVER_ERROR:
+                return Collections.singletonList(context.getString(C5419R.string.internal_server_error));
+            case REQUEST_TOO_LARGE:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_request_too_large));
+            case UNAUTHORIZED:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_unauthorized));
+            case RATE_LIMITED:
+                return Collections.singletonList(context.getString(C5419R.string.rate_limited));
+            case NETWORK:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_connection));
+            case SSL:
+                return Collections.singletonList(context.getString(C5419R.string.network_error_ssl));
+            case TIMEOUT:
+                return Collections.singletonList(context.getString(C5419R.string.timeout_error));
+        }
+    }
+
+    @NonNull
     public Type getType() {
         return this.type;
+    }
+
+    public static void handle(@NonNull Throwable th, @NonNull String str, @Nullable Action1<Error> action1, @Nullable Context context, @Nullable Boolean bool) throws Throwable {
+        Error errorCreate = create(th);
+        errorCreate.getType();
+        Type type = Type.OTHER;
+        if (action1 != null) {
+            try {
+                action1.call(errorCreate);
+            } catch (Exception e) {
+                StringBuilder sbM836X = C1643a.m836X(str, " / ");
+                sbM836X.append(errorCreate.toString());
+                onUnhandledError.call(str, new Exception(sbM836X.toString(), e), null);
+                return;
+            }
+        }
+        errorCreate.logError(str);
+        if (bool == null || !bool.booleanValue()) {
+            errorCreate.showToasts(context);
+        }
     }
 
     public int hashCode() {
@@ -743,12 +716,39 @@ public class Error {
         return (iHashCode6 * 59) + (bodyText != null ? bodyText.hashCode() : 43);
     }
 
+    public static void init(@NonNull Action3<String, Throwable, Map<String, String>> action3) {
+        onUnhandledError = action3;
+    }
+
+    private void logError(String str) {
+        Action3<String, Throwable, Map<String, String>> action3;
+        if (this.shouldLog.get()) {
+            int iOrdinal = this.type.ordinal();
+            if (iOrdinal != 9) {
+                if (iOrdinal == 17 && (action3 = onUnhandledError) != null) {
+                    action3.call(str, this.throwable, this.metadata);
+                    return;
+                }
+                return;
+            }
+            Action3<String, Throwable, Map<String, String>> action4 = onUnhandledError;
+            if (action4 != null) {
+                action4.call(this.type.name(), this.throwable, this.metadata);
+            }
+        }
+    }
+
     public void setShouldLog(boolean z2) {
         this.shouldLog.set(z2);
     }
 
     public void setShowErrorToasts(boolean z2) {
         this.showErrorToasts.set(z2);
+    }
+
+    @VisibleForTesting
+    public static void setUnexpectedExceptionsCrashDebug(boolean z2) {
+        unexpectedExceptionsCrashDebug = z2;
     }
 
     @MainThread
@@ -781,7 +781,7 @@ public class Error {
         return sbM833U.toString();
     }
 
-    public static class SkemaError implements Model {
+    public class SkemaError implements Model {
 
         @NonNull
         private List<SkemaErrorItem> errors;

@@ -52,17 +52,17 @@ public final class WidgetChatListAdapterItemThreadDraftForm extends WidgetChatLi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemThreadDraftForm$configureAutoArchive$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemThreadDraftForm.kt */
-    public static final class C81391 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C81391 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ ThreadDraftFormEntry $data;
         public final /* synthetic */ StoreThreadDraft.ThreadDraftState $draftState;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemThreadDraftForm$configureAutoArchive$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemThreadDraftForm.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemThreadDraftForm$configureAutoArchive$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetChatListAdapterItemThreadDraftForm.kt */
-            public static final class C132811 extends AbstractC12240o implements Function1<View, Unit> {
+            public final class C132811 extends AbstractC12240o implements Function1<View, Unit> {
                 public C132811() {
                     super(1);
                 }

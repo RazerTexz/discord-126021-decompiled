@@ -18,7 +18,7 @@ public final class C11302b extends AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.b$a */
     /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

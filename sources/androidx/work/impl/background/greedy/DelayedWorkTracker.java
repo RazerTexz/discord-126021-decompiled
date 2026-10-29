@@ -11,9 +11,9 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class DelayedWorkTracker {
-    public static final String TAG = Logger.tagWithPrefix("DelayedWorkTracker");
     public final GreedyScheduler mGreedyScheduler;
     private final RunnableScheduler mRunnableScheduler;
+    public static final String TAG = Logger.tagWithPrefix("DelayedWorkTracker");
     private final Map<String, Runnable> mRunnables = new HashMap();
 
     public DelayedWorkTracker(@NonNull GreedyScheduler greedyScheduler, @NonNull RunnableScheduler runnableScheduler) {

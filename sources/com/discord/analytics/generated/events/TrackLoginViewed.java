@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLoginViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLoginViewed implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence loginSource = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
     private final Long inviteChannelId = null;
     private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
     private final Long inviteInviterId = null;
+    private final CharSequence loginSource = null;
+    private TrackBase trackBase;
+    private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private final transient String analyticsSchemaTypeName = "login_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackLoginViewed implements AnalyticsSchema, Track
         }
         TrackLoginViewed trackLoginViewed = (TrackLoginViewed) other;
         return C12238m.areEqual(this.loginSource, trackLoginViewed.loginSource) && C12238m.areEqual(this.inviteCode, trackLoginViewed.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackLoginViewed.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackLoginViewed.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackLoginViewed.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackLoginViewed.inviteInviterId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

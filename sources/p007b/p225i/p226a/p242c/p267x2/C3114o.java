@@ -57,7 +57,7 @@ public final class C3114o {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.o$a */
     /* JADX INFO: compiled from: FlacStreamMetadata.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final long[] f8982a;

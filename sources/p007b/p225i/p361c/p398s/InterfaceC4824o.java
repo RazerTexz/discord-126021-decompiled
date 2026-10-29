@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC4824o {
     @NonNull
-    /* JADX INFO: renamed from: a */
-    String mo6729a();
+    String getId();
 
     @NonNull
-    String getId();
+    /* JADX INFO: renamed from: a */
+    String mo6729a();
 }

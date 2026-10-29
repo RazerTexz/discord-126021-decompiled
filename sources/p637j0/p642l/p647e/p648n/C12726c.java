@@ -9,9 +9,6 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12726c<E> extends AbstractC12724a<E> {
 
-    /* JADX INFO: renamed from: l */
-    public static final Integer f27305l = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096);
-
     /* JADX INFO: renamed from: m */
     public final AtomicLong f27306m;
 
@@ -24,6 +21,9 @@ public final class C12726c<E> extends AbstractC12724a<E> {
     /* JADX INFO: renamed from: p */
     public final int f27309p;
 
+    /* JADX INFO: renamed from: l */
+    public static final Integer f27305l = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096);
+
     public C12726c(int i) {
         super(i);
         this.f27306m = new AtomicLong();
@@ -31,14 +31,14 @@ public final class C12726c<E> extends AbstractC12724a<E> {
         this.f27309p = Math.min(i / 4, f27305l.intValue());
     }
 
-    /* JADX INFO: renamed from: c */
-    public final long m10827c() {
-        return this.f27308o.get();
-    }
-
     @Override // java.util.AbstractCollection, java.util.Collection
     public boolean isEmpty() {
         return this.f27306m.get() == m10827c();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final long m10827c() {
+        return this.f27308o.get();
     }
 
     @Override // java.util.Queue

@@ -9,7 +9,7 @@ public class TileList<T> {
     public final int mTileSize;
     private final SparseArray<Tile<T>> mTiles = new SparseArray<>(10);
 
-    public static class Tile<T> {
+    public class Tile<T> {
         public int mItemCount;
         public final T[] mItems;
         public Tile<T> mNext;

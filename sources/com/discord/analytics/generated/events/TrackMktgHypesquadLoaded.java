@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackMktgHypesquadLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackMktgHypesquadLoaded implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private final transient String analyticsSchemaTypeName = "mktg_hypesquad_loaded";
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
+    private final transient String analyticsSchemaTypeName = "mktg_hypesquad_loaded";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

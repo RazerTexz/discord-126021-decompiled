@@ -18,13 +18,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public class VideoStreamRenderer extends SurfaceViewRenderer {
     private static final Muxer Muxer = new Muxer(null);
+    private String streamIdentifier;
 
     @Deprecated
     private static Map<String, Set<VideoStreamRenderer>> streams = new LinkedHashMap();
-    private String streamIdentifier;
 
     /* JADX INFO: compiled from: VideoStreamRenderer.kt */
-    public static final class Muxer {
+    public final class Muxer {
         private Muxer() {
         }
 

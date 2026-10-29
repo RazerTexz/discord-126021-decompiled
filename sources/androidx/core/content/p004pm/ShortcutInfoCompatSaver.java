@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class ShortcutInfoCompatSaver<T> {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public static class NoopImpl extends ShortcutInfoCompatSaver<Void> {
+    public class NoopImpl extends ShortcutInfoCompatSaver<Void> {
         @Override // androidx.core.content.p004pm.ShortcutInfoCompatSaver
         public /* bridge */ /* synthetic */ Void addShortcuts(List list) {
             return addShortcuts2((List<ShortcutInfoCompat>) list);

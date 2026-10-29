@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChangeLogClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChangeLogClosed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence changeLogId = null;
-    private final Float secondsOpen = null;
     private final Float maxScrolledPercentage = null;
+    private final Float secondsOpen = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "change_log_closed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackChangeLogClosed implements AnalyticsSchema, T
         }
         TrackChangeLogClosed trackChangeLogClosed = (TrackChangeLogClosed) other;
         return C12238m.areEqual(this.changeLogId, trackChangeLogClosed.changeLogId) && C12238m.areEqual(this.secondsOpen, trackChangeLogClosed.secondsOpen) && C12238m.areEqual(this.maxScrolledPercentage, trackChangeLogClosed.maxScrolledPercentage);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

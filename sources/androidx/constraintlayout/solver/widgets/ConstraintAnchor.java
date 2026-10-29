@@ -24,7 +24,7 @@ public class ConstraintAnchor {
     public int mGoneMargin = -1;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.ConstraintAnchor$1 */
-    public static /* synthetic */ class C01891 {
+    public /* synthetic */ class C01891 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
         public static final /* synthetic */ int[] f113x4c44d048;
@@ -87,25 +87,6 @@ public class ConstraintAnchor {
     public ConstraintAnchor(ConstraintWidget constraintWidget, Type type) {
         this.mOwner = constraintWidget;
         this.mType = type;
-    }
-
-    private boolean isConnectionToMe(ConstraintWidget constraintWidget, HashSet<ConstraintWidget> hashSet) {
-        if (hashSet.contains(constraintWidget)) {
-            return false;
-        }
-        hashSet.add(constraintWidget);
-        if (constraintWidget == getOwner()) {
-            return true;
-        }
-        ArrayList<ConstraintAnchor> anchors = constraintWidget.getAnchors();
-        int size = anchors.size();
-        for (int i = 0; i < size; i++) {
-            ConstraintAnchor constraintAnchor = anchors.get(i);
-            if (constraintAnchor.isSimilarDimensionConnection(this) && constraintAnchor.isConnected() && isConnectionToMe(constraintAnchor.getTarget().getOwner(), hashSet)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public boolean connect(ConstraintAnchor constraintAnchor, int i, int i2, boolean z2) {
@@ -251,6 +232,25 @@ public class ConstraintAnchor {
 
     public boolean isConnectionAllowed(ConstraintWidget constraintWidget, ConstraintAnchor constraintAnchor) {
         return isConnectionAllowed(constraintWidget);
+    }
+
+    private boolean isConnectionToMe(ConstraintWidget constraintWidget, HashSet<ConstraintWidget> hashSet) {
+        if (hashSet.contains(constraintWidget)) {
+            return false;
+        }
+        hashSet.add(constraintWidget);
+        if (constraintWidget == getOwner()) {
+            return true;
+        }
+        ArrayList<ConstraintAnchor> anchors = constraintWidget.getAnchors();
+        int size = anchors.size();
+        for (int i = 0; i < size; i++) {
+            ConstraintAnchor constraintAnchor = anchors.get(i);
+            if (constraintAnchor.isSimilarDimensionConnection(this) && constraintAnchor.isConnected() && isConnectionToMe(constraintAnchor.getTarget().getOwner(), hashSet)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isSideAnchor() {

@@ -40,6 +40,12 @@ public final class WidgetGuildInviteShareItemBinding implements ViewBinding {
         this.f16836e = materialButton2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16832a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetGuildInviteShareItemBinding m8417a(@NonNull View view) {
@@ -61,11 +67,5 @@ public final class WidgetGuildInviteShareItemBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16832a;
     }
 }

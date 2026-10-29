@@ -15,11 +15,11 @@ public class C4601c implements InterfaceC4600b, InterfaceC4599a {
     /* JADX INFO: renamed from: a */
     public final C4603e f12247a;
 
-    /* JADX INFO: renamed from: b */
-    public final Object f12248b = new Object();
-
     /* JADX INFO: renamed from: c */
     public CountDownLatch f12249c;
+
+    /* JADX INFO: renamed from: b */
+    public final Object f12248b = new Object();
 
     public C4601c(@NonNull C4603e c4603e, int i, TimeUnit timeUnit) {
         this.f12247a = c4603e;

@@ -14,7 +14,7 @@ public final /* data */ class StreamDelete {
     private final boolean unavailable;
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final class Parser implements Model.Parser<StreamDelete> {
+    public final class Parser implements Model.Parser<StreamDelete> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -120,21 +120,6 @@ public final /* data */ class StreamDelete {
         return streamDelete.copy(str, reason, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getStreamKey() {
-        return this.streamKey;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Reason getReason() {
-        return this.reason;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getUnavailable() {
-        return this.unavailable;
-    }
-
     public final StreamDelete copy(String streamKey, Reason reason, boolean unavailable) {
         C12238m.checkNotNullParameter(streamKey, "streamKey");
         C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
@@ -152,12 +137,27 @@ public final /* data */ class StreamDelete {
         return C12238m.areEqual(this.streamKey, streamDelete.streamKey) && C12238m.areEqual(this.reason, streamDelete.reason) && this.unavailable == streamDelete.unavailable;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Reason getReason() {
         return this.reason;
     }
 
+    public final Reason getReason() {
+        return this.reason;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getStreamKey() {
         return this.streamKey;
+    }
+
+    public final String getStreamKey() {
+        return this.streamKey;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getUnavailable() {
+        return this.unavailable;
     }
 
     public final boolean getUnavailable() {

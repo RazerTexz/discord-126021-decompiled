@@ -41,88 +41,9 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
     private final Map<String, StreamPreview> streamKeyToPreviewMap;
     private Map<String, ? extends StreamPreview> streamKeyToPreviewMapSnapshot;
 
-    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static abstract class StreamPreview {
-
-        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-        public static final class Fetching extends StreamPreview {
-            public static final Fetching INSTANCE = new Fetching();
-
-            private Fetching() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-        public static final /* data */ class Resolved extends StreamPreview {
-            private final String url;
-
-            public Resolved(String str) {
-                super(null);
-                this.url = str;
-            }
-
-            public static /* synthetic */ Resolved copy$default(Resolved resolved, String str, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    str = resolved.url;
-                }
-                return resolved.copy(str);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getUrl() {
-                return this.url;
-            }
-
-            public final Resolved copy(String url) {
-                return new Resolved(url);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Resolved) && C12238m.areEqual(this.url, ((Resolved) other).url);
-                }
-                return true;
-            }
-
-            public final String getUrl() {
-                return this.url;
-            }
-
-            public int hashCode() {
-                String str = this.url;
-                if (str != null) {
-                    return str.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m822J(C1643a.m833U("Resolved(url="), this.url, ")");
-            }
-        }
-
-        private StreamPreview() {
-        }
-
-        public /* synthetic */ StreamPreview(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$1 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57351 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57351 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -145,7 +66,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$2 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57362 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C57362 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -169,12 +90,12 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$3 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57373 extends AbstractC12240o implements Function1<ModelApplicationStreamPreview, Unit> {
+    public final class C57373 extends AbstractC12240o implements Function1<ModelApplicationStreamPreview, Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ ModelApplicationStreamPreview $res;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -217,12 +138,12 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$4 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57384 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C57384 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Error $error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -265,7 +186,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$5 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57395 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57395 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -288,7 +209,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$1 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57401 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C57401 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -312,7 +233,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$2 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57412 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57412 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -335,12 +256,12 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$3 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57423 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C57423 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -378,7 +299,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$observeStreamPreview$1 */
     /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
-    public static final class C57431 extends AbstractC12240o implements Function0<StreamPreview> {
+    public final class C57431 extends AbstractC12240o implements Function0<StreamPreview> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -391,6 +312,85 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
         @Override // kotlin.jvm.functions.Function0
         public final StreamPreview invoke() {
             return StoreApplicationStreamPreviews.this.getStreamKeyToPreviewMap().get(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public abstract class StreamPreview {
+
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final class Fetching extends StreamPreview {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final /* data */ class Resolved extends StreamPreview {
+            private final String url;
+
+            public Resolved(String str) {
+                super(null);
+                this.url = str;
+            }
+
+            public static /* synthetic */ Resolved copy$default(Resolved resolved, String str, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    str = resolved.url;
+                }
+                return resolved.copy(str);
+            }
+
+            public final Resolved copy(String url) {
+                return new Resolved(url);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Resolved) && C12238m.areEqual(this.url, ((Resolved) other).url);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getUrl() {
+                return this.url;
+            }
+
+            public final String getUrl() {
+                return this.url;
+            }
+
+            public int hashCode() {
+                String str = this.url;
+                if (str != null) {
+                    return str.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m822J(C1643a.m833U("Resolved(url="), this.url, ")");
+            }
+        }
+
+        private StreamPreview() {
+        }
+
+        public /* synthetic */ StreamPreview(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

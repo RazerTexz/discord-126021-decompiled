@@ -14,7 +14,7 @@ public interface InterfaceC11773l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.l$a */
     /* JADX INFO: compiled from: ResolutionScope.kt */
-    public static final class a {
+    public final class a {
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Collection getContributedDescriptors$default(InterfaceC11773l interfaceC11773l, C11765d c11765d, Function1 function1, int i, Object obj) {
             if (obj != null) {

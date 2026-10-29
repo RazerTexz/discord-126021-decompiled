@@ -19,7 +19,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class Benefit implements Parcelable {
 
     /* JADX INFO: compiled from: Benefit.kt */
-    public static final /* data */ class ChannelBenefit extends Benefit {
+    public final /* data */ class ChannelBenefit extends Benefit {
         public static final Parcelable.Creator<ChannelBenefit> CREATOR = new Creator();
         private final Integer channelIconResId;
         private final long channelId;
@@ -27,7 +27,7 @@ public abstract class Benefit implements Parcelable {
         private final Emoji emoji;
         private final String name;
 
-        public static class Creator implements Parcelable.Creator<ChannelBenefit> {
+        public final class Creator implements Parcelable.Creator<ChannelBenefit> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final ChannelBenefit createFromParcel(Parcel parcel) {
@@ -44,6 +44,18 @@ public abstract class Benefit implements Parcelable {
 
         public /* synthetic */ ChannelBenefit(String str, Emoji emoji, String str2, Integer num, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(str, emoji, (i & 4) != 0 ? null : str2, (i & 8) != 0 ? null : num, j);
+        }
+
+        public final String component1() {
+            return getName();
+        }
+
+        public final Emoji component2() {
+            return getEmoji();
+        }
+
+        public final String component3() {
+            return getDescription();
         }
 
         public static /* synthetic */ ChannelBenefit copy$default(ChannelBenefit channelBenefit, String str, Emoji emoji, String str2, Integer num, long j, int i, Object obj) {
@@ -68,28 +80,6 @@ public abstract class Benefit implements Parcelable {
             return channelBenefit.copy(str, emoji2, str3, num2, j);
         }
 
-        public final String component1() {
-            return getName();
-        }
-
-        public final Emoji component2() {
-            return getEmoji();
-        }
-
-        public final String component3() {
-            return getDescription();
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getChannelIconResId() {
-            return this.channelIconResId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
         public final ChannelBenefit copy(String name, Emoji emoji, String description, @DrawableRes Integer channelIconResId, long channelId) {
             C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             C12238m.checkNotNullParameter(emoji, "emoji");
@@ -112,8 +102,18 @@ public abstract class Benefit implements Parcelable {
             return false;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getChannelIconResId() {
             return this.channelIconResId;
+        }
+
+        public final Integer getChannelIconResId() {
+            return this.channelIconResId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
@@ -204,13 +204,13 @@ public abstract class Benefit implements Parcelable {
     }
 
     /* JADX INFO: compiled from: Benefit.kt */
-    public static final /* data */ class IntangibleBenefit extends Benefit {
+    public final /* data */ class IntangibleBenefit extends Benefit {
         public static final Parcelable.Creator<IntangibleBenefit> CREATOR = new Creator();
         private final String description;
         private final Emoji emoji;
         private final String name;
 
-        public static class Creator implements Parcelable.Creator<IntangibleBenefit> {
+        public final class Creator implements Parcelable.Creator<IntangibleBenefit> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final IntangibleBenefit createFromParcel(Parcel parcel) {
@@ -229,6 +229,18 @@ public abstract class Benefit implements Parcelable {
             this(str, emoji, (i & 4) != 0 ? null : str2);
         }
 
+        public final String component1() {
+            return getName();
+        }
+
+        public final Emoji component2() {
+            return getEmoji();
+        }
+
+        public final String component3() {
+            return getDescription();
+        }
+
         public static /* synthetic */ IntangibleBenefit copy$default(IntangibleBenefit intangibleBenefit, String str, Emoji emoji, String str2, int i, Object obj) {
             if ((i & 1) != 0) {
                 str = intangibleBenefit.getName();
@@ -240,18 +252,6 @@ public abstract class Benefit implements Parcelable {
                 str2 = intangibleBenefit.getDescription();
             }
             return intangibleBenefit.copy(str, emoji, str2);
-        }
-
-        public final String component1() {
-            return getName();
-        }
-
-        public final Emoji component2() {
-            return getEmoji();
-        }
-
-        public final String component3() {
-            return getDescription();
         }
 
         public final IntangibleBenefit copy(String name, Emoji emoji, String description) {

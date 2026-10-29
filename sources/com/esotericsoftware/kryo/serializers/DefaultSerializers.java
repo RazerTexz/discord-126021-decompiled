@@ -37,7 +37,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class DefaultSerializers {
 
-    public static class BigDecimalSerializer extends Serializer<BigDecimal> {
+    public class BigDecimalSerializer extends Serializer<BigDecimal> {
         private final BigIntegerSerializer bigIntegerSerializer = new BigIntegerSerializer();
 
         public BigDecimalSerializer() {
@@ -83,7 +83,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class BigIntegerSerializer extends Serializer<BigInteger> {
+    public class BigIntegerSerializer extends Serializer<BigInteger> {
         public BigIntegerSerializer() {
             setImmutable(true);
             setAcceptsNull(true);
@@ -142,7 +142,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class BooleanSerializer extends Serializer<Boolean> {
+    public class BooleanSerializer extends Serializer<Boolean> {
         public BooleanSerializer() {
             setImmutable(true);
         }
@@ -159,7 +159,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class ByteSerializer extends Serializer<Byte> {
+    public class ByteSerializer extends Serializer<Byte> {
         public ByteSerializer() {
             setImmutable(true);
         }
@@ -176,7 +176,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CalendarSerializer extends Serializer<Calendar> {
+    public class CalendarSerializer extends Serializer<Calendar> {
         private static final long DEFAULT_GREGORIAN_CUTOVER = -12219292800000L;
         public TimeZoneSerializer timeZoneSerializer = new TimeZoneSerializer();
 
@@ -214,7 +214,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CharSerializer extends Serializer<Character> {
+    public class CharSerializer extends Serializer<Character> {
         public CharSerializer() {
             setImmutable(true);
         }
@@ -231,7 +231,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CharsetSerializer extends Serializer<Charset> {
+    public class CharsetSerializer extends Serializer<Charset> {
         public CharsetSerializer() {
             setImmutable(true);
         }
@@ -247,7 +247,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class ClassSerializer extends Serializer<Class> {
+    public class ClassSerializer extends Serializer<Class> {
         public ClassSerializer() {
             setImmutable(true);
             setAcceptsNull(true);
@@ -269,7 +269,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsEmptyListSerializer extends Serializer {
+    public class CollectionsEmptyListSerializer extends Serializer {
         public CollectionsEmptyListSerializer() {
             setImmutable(true);
         }
@@ -284,7 +284,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsEmptyMapSerializer extends Serializer {
+    public class CollectionsEmptyMapSerializer extends Serializer {
         public CollectionsEmptyMapSerializer() {
             setImmutable(true);
         }
@@ -299,7 +299,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsEmptySetSerializer extends Serializer {
+    public class CollectionsEmptySetSerializer extends Serializer {
         public CollectionsEmptySetSerializer() {
             setImmutable(true);
         }
@@ -314,7 +314,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsSingletonListSerializer extends Serializer<List> {
+    public class CollectionsSingletonListSerializer extends Serializer<List> {
         public CollectionsSingletonListSerializer() {
             setImmutable(true);
         }
@@ -330,7 +330,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsSingletonMapSerializer extends Serializer<Map> {
+    public class CollectionsSingletonMapSerializer extends Serializer<Map> {
         public CollectionsSingletonMapSerializer() {
             setImmutable(true);
         }
@@ -348,7 +348,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CollectionsSingletonSetSerializer extends Serializer<Set> {
+    public class CollectionsSingletonSetSerializer extends Serializer<Set> {
         public CollectionsSingletonSetSerializer() {
             setImmutable(true);
         }
@@ -364,7 +364,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class CurrencySerializer extends Serializer<Currency> {
+    public class CurrencySerializer extends Serializer<Currency> {
         public CurrencySerializer() {
             setImmutable(true);
             setAcceptsNull(true);
@@ -385,7 +385,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class DateSerializer extends Serializer<Date> {
+    public class DateSerializer extends Serializer<Date> {
         private Date create(Kryo kryo, Class<? extends Date> cls, long j) throws KryoException {
             if (cls == Date.class || cls == null) {
                 return new Date(j);
@@ -432,7 +432,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class DoubleSerializer extends Serializer<Double> {
+    public class DoubleSerializer extends Serializer<Double> {
         public DoubleSerializer() {
             setImmutable(true);
         }
@@ -449,7 +449,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class EnumSerializer extends Serializer<Enum> {
+    public class EnumSerializer extends Serializer<Enum> {
         private Object[] enumConstants;
 
         public EnumSerializer(Class<? extends Enum> cls) {
@@ -494,7 +494,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class EnumSetSerializer extends Serializer<EnumSet> {
+    public class EnumSetSerializer extends Serializer<EnumSet> {
         @Override // com.esotericsoftware.kryo.Serializer
         public EnumSet copy(Kryo kryo, EnumSet enumSet) {
             return EnumSet.copyOf(enumSet);
@@ -532,7 +532,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class FloatSerializer extends Serializer<Float> {
+    public class FloatSerializer extends Serializer<Float> {
         public FloatSerializer() {
             setImmutable(true);
         }
@@ -549,7 +549,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class IntSerializer extends Serializer<Integer> {
+    public class IntSerializer extends Serializer<Integer> {
         public IntSerializer() {
             setImmutable(true);
         }
@@ -566,7 +566,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class KryoSerializableSerializer extends Serializer<KryoSerializable> {
+    public class KryoSerializableSerializer extends Serializer<KryoSerializable> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.esotericsoftware.kryo.Serializer
         public KryoSerializable read(Kryo kryo, Input input, Class<KryoSerializable> cls) {
@@ -582,20 +582,12 @@ public class DefaultSerializers {
         }
     }
 
-    public static class LocaleSerializer extends Serializer<Locale> {
+    public class LocaleSerializer extends Serializer<Locale> {
         public static final Locale SPANISH = new Locale("es", "", "");
         public static final Locale SPAIN = new Locale("es", "ES", "");
 
         public LocaleSerializer() {
             setImmutable(true);
-        }
-
-        public static boolean isSameLocale(Locale locale, String str, String str2, String str3) {
-            try {
-                return locale.getLanguage().equals(str) && locale.getCountry().equals(str2) && locale.getVariant().equals(str3);
-            } catch (NullPointerException unused) {
-                return false;
-            }
         }
 
         public Locale create(String str, String str2, String str3) {
@@ -667,6 +659,14 @@ public class DefaultSerializers {
             return isSameLocale(Locale.CANADA_FRENCH, str, str2, str3) ? Locale.CANADA_FRENCH : new Locale(str, str2, str3);
         }
 
+        public static boolean isSameLocale(Locale locale, String str, String str2, String str3) {
+            try {
+                return locale.getLanguage().equals(str) && locale.getCountry().equals(str2) && locale.getVariant().equals(str3);
+            } catch (NullPointerException unused) {
+                return false;
+            }
+        }
+
         @Override // com.esotericsoftware.kryo.Serializer
         public Locale read(Kryo kryo, Input input, Class<Locale> cls) {
             return create(input.readString(), input.readString(), input.readString());
@@ -680,7 +680,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class LongSerializer extends Serializer<Long> {
+    public class LongSerializer extends Serializer<Long> {
         public LongSerializer() {
             setImmutable(true);
         }
@@ -697,7 +697,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class ShortSerializer extends Serializer<Short> {
+    public class ShortSerializer extends Serializer<Short> {
         public ShortSerializer() {
             setImmutable(true);
         }
@@ -713,7 +713,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class StringBufferSerializer extends Serializer<StringBuffer> {
+    public class StringBufferSerializer extends Serializer<StringBuffer> {
         public StringBufferSerializer() {
             setAcceptsNull(true);
         }
@@ -738,7 +738,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class StringBuilderSerializer extends Serializer<StringBuilder> {
+    public class StringBuilderSerializer extends Serializer<StringBuilder> {
         public StringBuilderSerializer() {
             setAcceptsNull(true);
         }
@@ -759,7 +759,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class StringSerializer extends Serializer<String> {
+    public class StringSerializer extends Serializer<String> {
         public StringSerializer() {
             setImmutable(true);
             setAcceptsNull(true);
@@ -776,7 +776,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class TimeZoneSerializer extends Serializer<TimeZone> {
+    public class TimeZoneSerializer extends Serializer<TimeZone> {
         public TimeZoneSerializer() {
             setImmutable(true);
         }
@@ -792,7 +792,18 @@ public class DefaultSerializers {
         }
     }
 
-    public static class TreeMapSerializer extends MapSerializer {
+    public class TreeMapSerializer extends MapSerializer {
+        @Override // com.esotericsoftware.kryo.serializers.MapSerializer
+        public Map create(Kryo kryo, Input input, Class<Map> cls) {
+            return createTreeMap(cls, (Comparator) kryo.readClassAndObject(input));
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // com.esotericsoftware.kryo.serializers.MapSerializer
+        public Map createCopy(Kryo kryo, Map map) {
+            return createTreeMap(map.getClass(), ((TreeMap) map).comparator());
+        }
+
         private TreeMap createTreeMap(Class<? extends Map> cls, Comparator comparator) {
             if (cls == TreeMap.class || cls == null) {
                 return new TreeMap(comparator);
@@ -811,17 +822,6 @@ public class DefaultSerializers {
             }
         }
 
-        @Override // com.esotericsoftware.kryo.serializers.MapSerializer
-        public Map create(Kryo kryo, Input input, Class<Map> cls) {
-            return createTreeMap(cls, (Comparator) kryo.readClassAndObject(input));
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.esotericsoftware.kryo.serializers.MapSerializer
-        public Map createCopy(Kryo kryo, Map map) {
-            return createTreeMap(map.getClass(), ((TreeMap) map).comparator());
-        }
-
         @Override // com.esotericsoftware.kryo.serializers.MapSerializer, com.esotericsoftware.kryo.Serializer
         public void write(Kryo kryo, Output output, Map map) {
             kryo.writeClassAndObject(output, ((TreeMap) map).comparator());
@@ -829,7 +829,12 @@ public class DefaultSerializers {
         }
     }
 
-    public static class TreeSetSerializer extends CollectionSerializer {
+    public class TreeSetSerializer extends CollectionSerializer {
+        @Override // com.esotericsoftware.kryo.serializers.CollectionSerializer
+        public /* bridge */ /* synthetic */ Collection create(Kryo kryo, Input input, Class cls) {
+            return create(kryo, input, (Class<Collection>) cls);
+        }
+
         private TreeSet createTreeSet(Class<? extends Collection> cls, Comparator comparator) {
             if (cls == TreeSet.class || cls == null) {
                 return new TreeSet(comparator);
@@ -846,11 +851,6 @@ public class DefaultSerializers {
             } catch (Exception e) {
                 throw new KryoException(e);
             }
-        }
-
-        @Override // com.esotericsoftware.kryo.serializers.CollectionSerializer
-        public /* bridge */ /* synthetic */ Collection create(Kryo kryo, Input input, Class cls) {
-            return create(kryo, input, (Class<Collection>) cls);
         }
 
         @Override // com.esotericsoftware.kryo.serializers.CollectionSerializer
@@ -871,7 +871,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class URLSerializer extends Serializer<URL> {
+    public class URLSerializer extends Serializer<URL> {
         public URLSerializer() {
             setImmutable(true);
         }
@@ -891,7 +891,7 @@ public class DefaultSerializers {
         }
     }
 
-    public static class VoidSerializer extends Serializer {
+    public class VoidSerializer extends Serializer {
         public VoidSerializer() {
             setImmutable(true);
         }

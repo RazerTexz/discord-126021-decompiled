@@ -73,8 +73,171 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
     private final Subject<Void, Void> unsubscribeSignal;
     private ViewParams viewParams;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1 */
     /* JADX INFO: compiled from: InlineMediaView.kt */
-    public static final /* data */ class ViewParams {
+    @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1", m10085f = "InlineMediaView.kt", m10086l = {89, 416}, m10087m = "invokeSuspend")
+    public final class C79331 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public C79331(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            C12238m.checkNotNullParameter(continuation, "completion");
+            return InlineMediaView.this.new C79331(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((C79331) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i != 0) {
+                if (i == 1) {
+                    C12113l.throwOnFailure(obj);
+                } else {
+                    if (i != 2) {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                    C12113l.throwOnFailure(obj);
+                }
+                return Unit.f27425a;
+            }
+            C12113l.throwOnFailure(obj);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable observableM11112r = Observable.m11076j(companion.getNavigation().observeLeftPanelState(), companion.getNavigation().observeRightPanelState(), new Func2<PanelState, PanelState, Boolean>() { // from class: com.discord.widgets.chat.list.InlineMediaView.onViewAttachedToWindow.1.1
+                @Override // p658rx.functions.Func2
+                public final Boolean call(PanelState panelState, PanelState panelState2) {
+                    PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
+                    return Boolean.valueOf(C12238m.areEqual(panelState, c5580c) || C12238m.areEqual(panelState2, c5580c));
+                }
+            }).m11112r();
+            C12238m.checkNotNullExpressionValue(observableM11112r, "Observable.combineLatest…  .distinctUntilChanged()");
+            this.label = 1;
+            obj = RxCoroutineUtilsKt.toFlow(observableM11112r, this);
+            if (obj == coroutine_suspended) {
+                return coroutine_suspended;
+            }
+            InterfaceC13083e<Boolean> interfaceC13083e = new InterfaceC13083e<Boolean>() { // from class: com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1$invokeSuspend$$inlined$collect$1
+                @Override // p659s.p660a.p664d2.InterfaceC13083e
+                public Object emit(Boolean bool, Continuation continuation) {
+                    Boolean bool2 = bool;
+                    View view = InlineMediaView.this.binding.f15173h;
+                    C12238m.checkNotNullExpressionValue(view, "binding.opacityShim");
+                    C12238m.checkNotNullExpressionValue(bool2, "isAnyPanelOpen");
+                    view.setVisibility(bool2.booleanValue() ? 0 : 8);
+                    return Unit.f27425a;
+                }
+            };
+            this.label = 2;
+            if (((InterfaceC13082d) obj).mo11246a(interfaceC13083e, this) == coroutine_suspended) {
+                return coroutine_suspended;
+            }
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$1 */
+    /* JADX INFO: compiled from: InlineMediaView.kt */
+    public final class C79351 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C79351() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            InlineMediaView.this.compositeSubscription.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$2 */
+    /* JADX INFO: compiled from: InlineMediaView.kt */
+    public final class C79362 extends AbstractC12240o implements Function1<Float, Unit> {
+        public final /* synthetic */ AppMediaPlayer $player;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C79362(AppMediaPlayer appMediaPlayer) {
+            super(1);
+            this.$player = appMediaPlayer;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Float f) {
+            invoke(f.floatValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(float f) {
+            final boolean z2 = f > ((float) 0);
+            InlineMediaView.this.binding.f15172g.setImageDrawable(ContextCompat.getDrawable(InlineMediaView.this.getContext(), z2 ? C5419R.drawable.ic_volume_up_white_24dp : C5419R.drawable.ic_volume_off_24dp));
+            InlineMediaView.this.binding.f15172g.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.InlineMediaView.updateUI.2.1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(View view) {
+                    C79362.this.$player.m8441d(z2 ? 0.0f : 1.0f);
+                }
+            });
+            int i = z2 ? C5419R.string.video_playback_mute_accessibility_label : C5419R.string.video_playback_unmute_accessibility_label;
+            ImageView imageView = InlineMediaView.this.binding.f15172g;
+            C12238m.checkNotNullExpressionValue(imageView, "binding.inlineMediaVolumeToggle");
+            imageView.setContentDescription(C1107b.m212d(InlineMediaView.this, i, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$3 */
+    /* JADX INFO: compiled from: InlineMediaView.kt */
+    public final class C79373 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C79373() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            InlineMediaView.this.compositeSubscription.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$4 */
+    /* JADX INFO: compiled from: InlineMediaView.kt */
+    public final class C79384 extends AbstractC12240o implements Function1<AppMediaPlayer.Event, Unit> {
+        public C79384() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(AppMediaPlayer.Event event) throws CloneNotSupportedException {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(AppMediaPlayer.Event event) throws CloneNotSupportedException {
+            C12238m.checkNotNullParameter(event, "event");
+            InlineMediaView.this.handlePlayerEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: InlineMediaView.kt */
+    public final /* data */ class ViewParams {
         private final boolean autoPlayGifs;
         private final EmbedType embedType;
         private final RenderableEmbedMedia previewImage;
@@ -117,36 +280,6 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
             return viewParams.copy(renderableEmbedMedia, str2, embedType2, num3, num4, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final RenderableEmbedMedia getPreviewImage() {
-            return this.previewImage;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getProgressiveMediaUri() {
-            return this.progressiveMediaUri;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final EmbedType getEmbedType() {
-            return this.embedType;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getTargetWidth() {
-            return this.targetWidth;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Integer getTargetHeight() {
-            return this.targetHeight;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getAutoPlayGifs() {
-            return this.autoPlayGifs;
-        }
-
         public final ViewParams copy(RenderableEmbedMedia previewImage, String progressiveMediaUri, EmbedType embedType, Integer targetWidth, Integer targetHeight, boolean autoPlayGifs) {
             return new ViewParams(previewImage, progressiveMediaUri, embedType, targetWidth, targetHeight, autoPlayGifs);
         }
@@ -162,24 +295,54 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
             return C12238m.areEqual(this.previewImage, viewParams.previewImage) && C12238m.areEqual(this.progressiveMediaUri, viewParams.progressiveMediaUri) && C12238m.areEqual(this.embedType, viewParams.embedType) && C12238m.areEqual(this.targetWidth, viewParams.targetWidth) && C12238m.areEqual(this.targetHeight, viewParams.targetHeight) && this.autoPlayGifs == viewParams.autoPlayGifs;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getAutoPlayGifs() {
             return this.autoPlayGifs;
+        }
+
+        public final boolean getAutoPlayGifs() {
+            return this.autoPlayGifs;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final EmbedType getEmbedType() {
+            return this.embedType;
         }
 
         public final EmbedType getEmbedType() {
             return this.embedType;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final RenderableEmbedMedia getPreviewImage() {
             return this.previewImage;
+        }
+
+        public final RenderableEmbedMedia getPreviewImage() {
+            return this.previewImage;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getProgressiveMediaUri() {
+            return this.progressiveMediaUri;
         }
 
         public final String getProgressiveMediaUri() {
             return this.progressiveMediaUri;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Integer getTargetHeight() {
             return this.targetHeight;
+        }
+
+        public final Integer getTargetHeight() {
+            return this.targetHeight;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Integer getTargetWidth() {
+            return this.targetWidth;
         }
 
         public final Integer getTargetWidth() {
@@ -239,169 +402,6 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1 */
-    /* JADX INFO: compiled from: InlineMediaView.kt */
-    @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1", m10085f = "InlineMediaView.kt", m10086l = {89, 416}, m10087m = "invokeSuspend")
-    public static final class C79331 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
-        public int label;
-
-        public C79331(Continuation continuation) {
-            super(2, continuation);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            C12238m.checkNotNullParameter(continuation, "completion");
-            return InlineMediaView.this.new C79331(continuation);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
-            return ((C79331) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
-            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
-            int i = this.label;
-            if (i != 0) {
-                if (i == 1) {
-                    C12113l.throwOnFailure(obj);
-                } else {
-                    if (i != 2) {
-                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                    }
-                    C12113l.throwOnFailure(obj);
-                }
-                return Unit.f27425a;
-            }
-            C12113l.throwOnFailure(obj);
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable observableM11112r = Observable.m11076j(companion.getNavigation().observeLeftPanelState(), companion.getNavigation().observeRightPanelState(), new Func2<PanelState, PanelState, Boolean>() { // from class: com.discord.widgets.chat.list.InlineMediaView.onViewAttachedToWindow.1.1
-                @Override // p658rx.functions.Func2
-                public final Boolean call(PanelState panelState, PanelState panelState2) {
-                    PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
-                    return Boolean.valueOf(C12238m.areEqual(panelState, c5580c) || C12238m.areEqual(panelState2, c5580c));
-                }
-            }).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "Observable.combineLatest…  .distinctUntilChanged()");
-            this.label = 1;
-            obj = RxCoroutineUtilsKt.toFlow(observableM11112r, this);
-            if (obj == coroutine_suspended) {
-                return coroutine_suspended;
-            }
-            InterfaceC13083e<Boolean> interfaceC13083e = new InterfaceC13083e<Boolean>() { // from class: com.discord.widgets.chat.list.InlineMediaView$onViewAttachedToWindow$1$invokeSuspend$$inlined$collect$1
-                @Override // p659s.p660a.p664d2.InterfaceC13083e
-                public Object emit(Boolean bool, Continuation continuation) {
-                    Boolean bool2 = bool;
-                    View view = InlineMediaView.this.binding.f15173h;
-                    C12238m.checkNotNullExpressionValue(view, "binding.opacityShim");
-                    C12238m.checkNotNullExpressionValue(bool2, "isAnyPanelOpen");
-                    view.setVisibility(bool2.booleanValue() ? 0 : 8);
-                    return Unit.f27425a;
-                }
-            };
-            this.label = 2;
-            if (((InterfaceC13082d) obj).mo11246a(interfaceC13083e, this) == coroutine_suspended) {
-                return coroutine_suspended;
-            }
-            return Unit.f27425a;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$1 */
-    /* JADX INFO: compiled from: InlineMediaView.kt */
-    public static final class C79351 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C79351() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            InlineMediaView.this.compositeSubscription.m11136a(subscription);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$2 */
-    /* JADX INFO: compiled from: InlineMediaView.kt */
-    public static final class C79362 extends AbstractC12240o implements Function1<Float, Unit> {
-        public final /* synthetic */ AppMediaPlayer $player;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C79362(AppMediaPlayer appMediaPlayer) {
-            super(1);
-            this.$player = appMediaPlayer;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Float f) {
-            invoke(f.floatValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(float f) {
-            final boolean z2 = f > ((float) 0);
-            InlineMediaView.this.binding.f15172g.setImageDrawable(ContextCompat.getDrawable(InlineMediaView.this.getContext(), z2 ? C5419R.drawable.ic_volume_up_white_24dp : C5419R.drawable.ic_volume_off_24dp));
-            InlineMediaView.this.binding.f15172g.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.InlineMediaView.updateUI.2.1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    C79362.this.$player.m8441d(z2 ? 0.0f : 1.0f);
-                }
-            });
-            int i = z2 ? C5419R.string.video_playback_mute_accessibility_label : C5419R.string.video_playback_unmute_accessibility_label;
-            ImageView imageView = InlineMediaView.this.binding.f15172g;
-            C12238m.checkNotNullExpressionValue(imageView, "binding.inlineMediaVolumeToggle");
-            imageView.setContentDescription(C1107b.m212d(InlineMediaView.this, i, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$3 */
-    /* JADX INFO: compiled from: InlineMediaView.kt */
-    public static final class C79373 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C79373() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            InlineMediaView.this.compositeSubscription.m11136a(subscription);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.InlineMediaView$updateUI$4 */
-    /* JADX INFO: compiled from: InlineMediaView.kt */
-    public static final class C79384 extends AbstractC12240o implements Function1<AppMediaPlayer.Event, Unit> {
-        public C79384() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(AppMediaPlayer.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(AppMediaPlayer.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            InlineMediaView.this.handlePlayerEvent(event);
-        }
-    }
-
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public InlineMediaView(Context context) {
         super(context);
@@ -418,12 +418,12 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         this.unsubscribeSignal = publishSubjectM11133k0;
     }
 
-    private final void clearPlayerAndSubscriptions() {
+    private final void clearPlayerAndSubscriptions() throws CloneNotSupportedException {
         releasePlayer();
         getUnsubscribeSignal().onNext(null);
     }
 
-    private final void diffViewParamsAndUpdateEmbed(RenderableEmbedMedia previewImage, String progressiveMediaUri, EmbedType embedType, Integer targetWidth, Integer targetHeight, String featureTag, boolean autoPlayGifs) {
+    private final void diffViewParamsAndUpdateEmbed(RenderableEmbedMedia previewImage, String progressiveMediaUri, EmbedType embedType, Integer targetWidth, Integer targetHeight, String featureTag, boolean autoPlayGifs) throws CloneNotSupportedException {
         Integer targetWidth2;
         Integer targetHeight2;
         if (targetWidth != null) {
@@ -446,7 +446,12 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         updateUI(previewImage, progressiveMediaUri, embedType, targetWidth, targetHeight, featureTag);
     }
 
-    private final void handlePlayerEvent(AppMediaPlayer.Event event) {
+    @Override // com.discord.app.AppComponent
+    public Subject<Void, Void> getUnsubscribeSignal() {
+        return this.unsubscribeSignal;
+    }
+
+    private final void handlePlayerEvent(AppMediaPlayer.Event event) throws CloneNotSupportedException {
         boolean z2 = true;
         if (C12238m.areEqual(event, AppMediaPlayer.Event.C5583a.f18654a)) {
             SimpleDraweeView simpleDraweeView = this.binding.f15168c;
@@ -474,7 +479,45 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         imageView.setVisibility(z2 ? 0 : 8);
     }
 
-    private final void releasePlayer() {
+    public final void onPause() throws CloneNotSupportedException {
+        clearPlayerAndSubscriptions();
+    }
+
+    public final void onResume() throws CloneNotSupportedException {
+        resetCurrentEmbed();
+    }
+
+    @Override // android.view.View.OnAttachStateChangeListener
+    public void onViewAttachedToWindow(View view) throws CloneNotSupportedException {
+        CoroutineScope coroutineScope;
+        C12238m.checkNotNullParameter(view, "view");
+        resetCurrentEmbed();
+        PlayerView playerView = this.binding.f15171f;
+        C12238m.checkNotNullExpressionValue(playerView, "binding.inlineMediaPlayerView");
+        if (!(playerView.getVideoSurfaceView() instanceof SurfaceView) || (coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(this)) == null) {
+            return;
+        }
+        C3404f.m4211H0(coroutineScope, null, null, new C79331(null), 3, null);
+    }
+
+    @Override // android.view.View.OnAttachStateChangeListener
+    public void onViewDetachedFromWindow(View view) throws CloneNotSupportedException {
+        C12238m.checkNotNullParameter(view, "view");
+        clearPlayerAndSubscriptions();
+    }
+
+    @Override // android.view.View
+    public void onVisibilityChanged(View changedView, int visibility) throws CloneNotSupportedException {
+        C12238m.checkNotNullParameter(changedView, "changedView");
+        super.onVisibilityChanged(changedView, visibility);
+        if (visibility == 0) {
+            resetCurrentEmbed();
+        } else {
+            clearPlayerAndSubscriptions();
+        }
+    }
+
+    private final void releasePlayer() throws CloneNotSupportedException {
         AppMediaPlayer appMediaPlayer = this.appMediaPlayer;
         if (appMediaPlayer != null) {
             appMediaPlayer.m8440c();
@@ -482,7 +525,7 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         this.appMediaPlayer = null;
     }
 
-    private final void resetCurrentEmbed() {
+    private final void resetCurrentEmbed() throws CloneNotSupportedException {
         ViewParams viewParams = this.viewParams;
         if (viewParams != null) {
             updateUI(viewParams.getPreviewImage(), viewParams.getProgressiveMediaUri(), viewParams.getEmbedType(), viewParams.getTargetWidth(), viewParams.getTargetHeight(), this.featureTag);
@@ -533,7 +576,7 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         return viewParams3 != null ? viewParams3.getAutoPlayGifs() : this.storeUserSettings.getIsAutoPlayGifsEnabled();
     }
 
-    private final void updateUI(RenderableEmbedMedia previewImage, String progressiveMediaUri, EmbedType embedType, Integer targetWidth, Integer targetHeight, String featureTag) {
+    private final void updateUI(RenderableEmbedMedia previewImage, String progressiveMediaUri, EmbedType embedType, Integer targetWidth, Integer targetHeight, String featureTag) throws CloneNotSupportedException {
         resetViews();
         this.compositeSubscription.unsubscribe();
         if (targetWidth != null && targetHeight != null) {
@@ -585,7 +628,7 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         }
         this.binding.f15170e.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.InlineMediaView.updateUI.5
             @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
+            public final void onClick(View view) throws CloneNotSupportedException {
                 PlayerView playerView3 = InlineMediaView.this.binding.f15171f;
                 C12238m.checkNotNullExpressionValue(playerView3, "binding.inlineMediaPlayerView");
                 playerView3.setVisibility(0);
@@ -606,7 +649,7 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         });
     }
 
-    public static /* synthetic */ void updateUIWithAttachment$default(InlineMediaView inlineMediaView, MessageAttachment messageAttachment, Integer num, Integer num2, boolean z2, int i, Object obj) {
+    public static /* synthetic */ void updateUIWithAttachment$default(InlineMediaView inlineMediaView, MessageAttachment messageAttachment, Integer num, Integer num2, boolean z2, int i, Object obj) throws CloneNotSupportedException {
         if ((i & 2) != 0) {
             num = null;
         }
@@ -616,60 +659,7 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         inlineMediaView.updateUIWithAttachment(messageAttachment, num, num2, z2);
     }
 
-    public static /* synthetic */ void updateUIWithEmbed$default(InlineMediaView inlineMediaView, MessageEmbed messageEmbed, Integer num, Integer num2, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            num = null;
-        }
-        if ((i & 4) != 0) {
-            num2 = null;
-        }
-        inlineMediaView.updateUIWithEmbed(messageEmbed, num, num2, z2);
-    }
-
-    @Override // com.discord.app.AppComponent
-    public Subject<Void, Void> getUnsubscribeSignal() {
-        return this.unsubscribeSignal;
-    }
-
-    public final void onPause() {
-        clearPlayerAndSubscriptions();
-    }
-
-    public final void onResume() {
-        resetCurrentEmbed();
-    }
-
-    @Override // android.view.View.OnAttachStateChangeListener
-    public void onViewAttachedToWindow(View view) {
-        CoroutineScope coroutineScope;
-        C12238m.checkNotNullParameter(view, "view");
-        resetCurrentEmbed();
-        PlayerView playerView = this.binding.f15171f;
-        C12238m.checkNotNullExpressionValue(playerView, "binding.inlineMediaPlayerView");
-        if (!(playerView.getVideoSurfaceView() instanceof SurfaceView) || (coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(this)) == null) {
-            return;
-        }
-        C3404f.m4211H0(coroutineScope, null, null, new C79331(null), 3, null);
-    }
-
-    @Override // android.view.View.OnAttachStateChangeListener
-    public void onViewDetachedFromWindow(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        clearPlayerAndSubscriptions();
-    }
-
-    @Override // android.view.View
-    public void onVisibilityChanged(View changedView, int visibility) {
-        C12238m.checkNotNullParameter(changedView, "changedView");
-        super.onVisibilityChanged(changedView, visibility);
-        if (visibility == 0) {
-            resetCurrentEmbed();
-        } else {
-            clearPlayerAndSubscriptions();
-        }
-    }
-
-    public final void updateUIWithAttachment(MessageAttachment attachment, Integer targetWidth, Integer targetHeight, boolean autoPlayGifs) {
+    public final void updateUIWithAttachment(MessageAttachment attachment, Integer targetWidth, Integer targetHeight, boolean autoPlayGifs) throws CloneNotSupportedException {
         EmbedType embedType;
         C12238m.checkNotNullParameter(attachment, "attachment");
         MessageAttachmentType messageAttachmentTypeM8068e = attachment.m8068e();
@@ -692,7 +682,17 @@ public final class InlineMediaView extends CardView implements View.OnAttachStat
         }
     }
 
-    public final void updateUIWithEmbed(MessageEmbed embed, Integer targetWidth, Integer targetHeight, boolean autoPlayGifs) {
+    public static /* synthetic */ void updateUIWithEmbed$default(InlineMediaView inlineMediaView, MessageEmbed messageEmbed, Integer num, Integer num2, boolean z2, int i, Object obj) throws CloneNotSupportedException {
+        if ((i & 2) != 0) {
+            num = null;
+        }
+        if ((i & 4) != 0) {
+            num2 = null;
+        }
+        inlineMediaView.updateUIWithEmbed(messageEmbed, num, num2, z2);
+    }
+
+    public final void updateUIWithEmbed(MessageEmbed embed, Integer targetWidth, Integer targetHeight, boolean autoPlayGifs) throws CloneNotSupportedException {
         String url;
         C12238m.checkNotNullParameter(embed, "embed");
         EmbedResourceUtils embedResourceUtils = EmbedResourceUtils.INSTANCE;

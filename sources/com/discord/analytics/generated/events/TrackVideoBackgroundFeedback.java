@@ -10,30 +10,24 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoBackgroundFeedback.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoBackgroundFeedback implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence reason = null;
-    private final CharSequence rating = null;
-    private final CharSequence feedback = null;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence rtcConnectionId = null;
     private final Long duration = null;
+    private final CharSequence feedback = null;
+    private final Long guildId = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence rating = null;
+    private final CharSequence reason = null;
+    private final CharSequence rtcConnectionId = null;
+    private TrackBase trackBase;
     private final CharSequence videoDeviceName = null;
+    private final CharSequence videoEffectDetail = null;
+    private final CharSequence videoEffectType = null;
     private final Boolean videoEnabled = null;
     private final Boolean videoHardwareScalingEnabled = null;
     private final Long videoStreamCount = null;
     private final Long voiceStateCount = null;
-    private final CharSequence videoEffectType = null;
-    private final CharSequence videoEffectDetail = null;
     private final transient String analyticsSchemaTypeName = "video_background_feedback";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackVideoBackgroundFeedback implements AnalyticsS
         }
         TrackVideoBackgroundFeedback trackVideoBackgroundFeedback = (TrackVideoBackgroundFeedback) other;
         return C12238m.areEqual(this.reason, trackVideoBackgroundFeedback.reason) && C12238m.areEqual(this.rating, trackVideoBackgroundFeedback.rating) && C12238m.areEqual(this.feedback, trackVideoBackgroundFeedback.feedback) && C12238m.areEqual(this.guildId, trackVideoBackgroundFeedback.guildId) && C12238m.areEqual(this.channelId, trackVideoBackgroundFeedback.channelId) && C12238m.areEqual(this.channelType, trackVideoBackgroundFeedback.channelType) && C12238m.areEqual(this.mediaSessionId, trackVideoBackgroundFeedback.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackVideoBackgroundFeedback.rtcConnectionId) && C12238m.areEqual(this.duration, trackVideoBackgroundFeedback.duration) && C12238m.areEqual(this.videoDeviceName, trackVideoBackgroundFeedback.videoDeviceName) && C12238m.areEqual(this.videoEnabled, trackVideoBackgroundFeedback.videoEnabled) && C12238m.areEqual(this.videoHardwareScalingEnabled, trackVideoBackgroundFeedback.videoHardwareScalingEnabled) && C12238m.areEqual(this.videoStreamCount, trackVideoBackgroundFeedback.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVideoBackgroundFeedback.voiceStateCount) && C12238m.areEqual(this.videoEffectType, trackVideoBackgroundFeedback.videoEffectType) && C12238m.areEqual(this.videoEffectDetail, trackVideoBackgroundFeedback.videoEffectDetail);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

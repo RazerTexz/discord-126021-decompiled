@@ -30,7 +30,7 @@ public final class ChatInputViewModel$sendCommand$commandResendCompressedHandler
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendCommand$commandResendCompressedHandler$1$1 */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76941 extends AbstractC12240o implements Function1<List<? extends Attachment<?>>, Unit> {
+    public final class C76941 extends AbstractC12240o implements Function1<List<? extends Attachment<?>>, Unit> {
         public C76941() {
             super(1);
         }

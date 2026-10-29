@@ -19,7 +19,6 @@ import p007b.p225i.p226a.p341g.p348g.C4422h;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> extends AbstractC4419e {
-    private static final FloatPropertyCompat<DeterminateDrawable> INDICATOR_LENGTH_IN_LEVEL = new C10959a("indicatorLevel");
     private static final int MAX_DRAWABLE_LEVEL = 10000;
     private static final float SPRING_FORCE_STIFFNESS = 50.0f;
     private AbstractC4420f<S> drawingDelegate;
@@ -27,9 +26,10 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     private boolean skipAnimationOnLevelChange;
     private final SpringAnimation springAnimator;
     private final SpringForce springForce;
+    private static final FloatPropertyCompat<DeterminateDrawable> INDICATOR_LENGTH_IN_LEVEL = new C10959a("indicatorLevel");
 
     /* JADX INFO: renamed from: com.google.android.material.progressindicator.DeterminateDrawable$a */
-    public static class C10959a extends FloatPropertyCompat<DeterminateDrawable> {
+    public final class C10959a extends FloatPropertyCompat<DeterminateDrawable> {
         public C10959a(String str) {
             super(str);
         }
@@ -59,6 +59,11 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
         setGrowFraction(1.0f);
     }
 
+    @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4419e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
+    public /* bridge */ /* synthetic */ void clearAnimationCallbacks() {
+        super.clearAnimationCallbacks();
+    }
+
     @NonNull
     public static DeterminateDrawable<CircularProgressIndicatorSpec> createCircularDrawable(@NonNull Context context, @NonNull CircularProgressIndicatorSpec circularProgressIndicatorSpec) {
         return new DeterminateDrawable<>(context, circularProgressIndicatorSpec, new C4415a(circularProgressIndicatorSpec));
@@ -67,20 +72,6 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     @NonNull
     public static DeterminateDrawable<LinearProgressIndicatorSpec> createLinearDrawable(@NonNull Context context, @NonNull LinearProgressIndicatorSpec linearProgressIndicatorSpec) {
         return new DeterminateDrawable<>(context, linearProgressIndicatorSpec, new C4422h(linearProgressIndicatorSpec));
-    }
-
-    private float getIndicatorFraction() {
-        return this.indicatorFraction;
-    }
-
-    private void setIndicatorFraction(float f) {
-        this.indicatorFraction = f;
-        invalidateSelf();
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4419e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ void clearAnimationCallbacks() {
-        super.clearAnimationCallbacks();
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -106,6 +97,10 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     @NonNull
     public AbstractC4420f<S> getDrawingDelegate() {
         return this.drawingDelegate;
+    }
+
+    private float getIndicatorFraction() {
+        return this.indicatorFraction;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -179,6 +174,11 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     public void setDrawingDelegate(@NonNull AbstractC4420f<S> abstractC4420f) {
         this.drawingDelegate = abstractC4420f;
         abstractC4420f.f11735b = this;
+    }
+
+    private void setIndicatorFraction(float f) {
+        this.indicatorFraction = f;
+        invalidateSelf();
     }
 
     public void setLevelByFraction(float f) {

@@ -46,8 +46,6 @@ import p658rx.Observable;
 /* JADX INFO: compiled from: StoreUserPresence.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUserPresence extends StoreV2 {
-    private static final StoreUserPresence$Companion$LocalPresenceUpdateSource$1 LocalPresenceUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreUserPresence$Companion$LocalPresenceUpdateSource$1
-    };
     private final Clock clock;
     private Presence localPresence;
     private Presence localPresenceSnapshot;
@@ -57,9 +55,38 @@ public final class StoreUserPresence extends StoreV2 {
     private Map<Long, Presence> presencesSnapshot;
     private final StoreStream stream;
     private final HashMap<Long, Map<Long, TimestampedPresence>> userGuildPresences;
+    private static final StoreUserPresence$Companion$LocalPresenceUpdateSource$1 LocalPresenceUpdateSource = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreUserPresence$Companion$LocalPresenceUpdateSource$1
+    };
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeAllPresences$1 */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class C65831 extends AbstractC12240o implements Function0<Map<Long, ? extends Presence>> {
+        public C65831() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends Presence> invoke() {
+            return StoreUserPresence.this.m11396getPresences();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeLocalPresence$1 */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class C65851 extends AbstractC12240o implements Function0<Presence> {
+        public C65851() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Presence invoke() {
+            return StoreUserPresence.this.localPresenceSnapshot;
+        }
+    }
 
     /* JADX INFO: compiled from: StoreUserPresence.kt */
-    public static final /* data */ class TimestampedPresence {
+    public final /* data */ class TimestampedPresence {
         private final Presence presence;
         private final long timestamp;
 
@@ -79,16 +106,6 @@ public final class StoreUserPresence extends StoreV2 {
             return timestampedPresence.copy(presence, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
         public final TimestampedPresence copy(Presence presence, long timestamp) {
             C12238m.checkNotNullParameter(presence, "presence");
             return new TimestampedPresence(presence, timestamp);
@@ -105,8 +122,18 @@ public final class StoreUserPresence extends StoreV2 {
             return C12238m.areEqual(this.presence, timestampedPresence.presence) && this.timestamp == timestampedPresence.timestamp;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Presence getPresence() {
             return this.presence;
+        }
+
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getTimestamp() {
+            return this.timestamp;
         }
 
         public final long getTimestamp() {
@@ -123,33 +150,6 @@ public final class StoreUserPresence extends StoreV2 {
             sbM833U.append(this.presence);
             sbM833U.append(", timestamp=");
             return C1643a.m815C(sbM833U, this.timestamp, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeAllPresences$1 */
-    /* JADX INFO: compiled from: StoreUserPresence.kt */
-    public static final class C65831 extends AbstractC12240o implements Function0<Map<Long, ? extends Presence>> {
-        public C65831() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends Presence> invoke() {
-            return StoreUserPresence.this.m11396getPresences();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeLocalPresence$1 */
-    /* JADX INFO: compiled from: StoreUserPresence.kt */
-    public static final class C65851 extends AbstractC12240o implements Function0<Presence> {
-        public C65851() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Presence invoke() {
-            return StoreUserPresence.this.localPresenceSnapshot;
         }
     }
 
@@ -248,6 +248,23 @@ public final class StoreUserPresence extends StoreV2 {
         }
     }
 
+    public final Activity getApplicationActivity(long userId, long applicationId) {
+        List<Activity> activities;
+        Presence presence = this.presencesSnapshot.get(Long.valueOf(userId));
+        Object obj = null;
+        if (presence == null || (activities = presence.getActivities()) == null) {
+            return null;
+        }
+        for (Object obj2 : activities) {
+            Long applicationId2 = ((Activity) obj2).getApplicationId();
+            if (applicationId2 != null && applicationId2.longValue() == applicationId) {
+                obj = obj2;
+                break;
+            }
+        }
+        return (Activity) obj;
+    }
+
     @StoreThread
     private final Activity getCustomStatusActivityFromSetting(ModelCustomStatusSetting customStatusSetting) {
         ActivityEmoji activityEmoji = null;
@@ -277,139 +294,14 @@ public final class StoreUserPresence extends StoreV2 {
         return ActivityUtilsKt.createCustomStatusActivity(customStatusSetting.getText(), activityEmoji, this.clock.currentTimeMillis());
     }
 
-    private final List<Activity> removeActivityInList(ActivityType type, List<Activity> oldActivities) {
-        List<Activity> arrayList;
-        int i;
-        if (oldActivities == null || (arrayList = C12163u.toMutableList((Collection) oldActivities)) == null) {
-            arrayList = new ArrayList<>();
-        }
-        if (oldActivities == null) {
-            i = -1;
-            break;
-        }
-        Iterator<Activity> it = oldActivities.iterator();
-        i = 0;
-        while (true) {
-            if (!it.hasNext()) {
-                i = -1;
-                break;
-            }
-            if (it.next().getType() == type) {
-                break;
-            }
-            i++;
-        }
-        if (i != -1) {
-            arrayList.remove(i);
-        }
-        return arrayList;
-    }
-
-    private final List<Activity> replaceActivityInList(Activity newActivity, List<Activity> oldActivities) {
-        List<Activity> listRemoveActivityInList = removeActivityInList(newActivity.getType(), oldActivities);
-        listRemoveActivityInList.add(newActivity);
-        return listRemoveActivityInList;
-    }
-
-    public static /* synthetic */ void updateActivity$default(StoreUserPresence storeUserPresence, ActivityType activityType, Activity activity, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        storeUserPresence.updateActivity(activityType, activity, z2);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:24:0x0045  */
-    /* JADX WARN: Code duplicated, block: B:26:0x0053  */
-    /* JADX WARN: Code duplicated, block: B:28:0x0059  */
-    @StoreThread
-    private final void updateSelfPresence(ModelUserSettings userSettings, List<? extends ModelSession> sessions, boolean sendGateway) {
-        ClientStatus status;
-        Presence presence;
-        List<Activity> list;
-        List<Activity> activities;
-        Object next;
-        MeUser meUser = this.meUser;
-        if (meUser != null) {
-            long id2 = meUser.getId();
-            if (userSettings == null || (status = userSettings.getStatus()) == null) {
-                status = this.localPresence.getStatus();
-            }
-            ClientStatus clientStatus = status;
-            C12238m.checkNotNullExpressionValue(clientStatus, "userSettings?.status\n   …  ?: localPresence.status");
-            if (sessions != null) {
-                Iterator<T> it = sessions.iterator();
-                do {
-                    if (!it.hasNext()) {
-                        next = null;
-                        break;
-                    }
-                    next = it.next();
-                } while (!((ModelSession) next).isActive());
-                ModelSession modelSession = (ModelSession) next;
-                if (modelSession == null || (activities = modelSession.getActivities()) == null) {
-                    presence = this.presences.get(Long.valueOf(id2));
-                    if (presence != null) {
-                        List<Activity> activities2 = presence.getActivities();
-                        list = activities2;
-                    } else {
-                        list = null;
-                    }
-                } else {
-                    list = activities2;
-                }
-            } else {
-                presence = this.presences.get(Long.valueOf(id2));
-                if (presence != null) {
-                    List<Activity> activities3 = presence.getActivities();
-                    list = activities3;
-                } else {
-                    list = null;
-                }
-            }
-            ModelCustomStatusSetting customStatus = userSettings != null ? userSettings.getCustomStatus() : null;
-            if (customStatus != null) {
-                Activity customStatusActivityFromSetting = getCustomStatusActivityFromSetting(customStatus);
-                activities = customStatusActivityFromSetting != null ? replaceActivityInList(customStatusActivityFromSetting, this.localPresence.getActivities()) : removeActivityInList(ActivityType.CUSTOM_STATUS, this.localPresence.getActivities());
-            } else {
-                activities = this.localPresence.getActivities();
-            }
-            if (clientStatus != this.localPresence.getStatus() || (!C12238m.areEqual(activities, this.localPresence.getActivities()))) {
-                this.localPresence = new Presence(clientStatus, null, activities);
-                markChanged(LocalPresenceUpdateSource);
-            }
-            handlePresenceUpdate(RecyclerView.FOREVER_NS, id2, clientStatus, null, list);
-            if (sendGateway || PresenceUtils.INSTANCE.getCustomStatusActivity(this.localPresence) != null) {
-                return;
-            }
-            markUnchanged(LocalPresenceUpdateSource);
-        }
-    }
-
-    public final Activity getApplicationActivity(long userId, long applicationId) {
-        List<Activity> activities;
-        Presence presence = this.presencesSnapshot.get(Long.valueOf(userId));
-        Object obj = null;
-        if (presence == null || (activities = presence.getActivities()) == null) {
-            return null;
-        }
-        for (Object obj2 : activities) {
-            Long applicationId2 = ((Activity) obj2).getApplicationId();
-            if (applicationId2 != null && applicationId2.longValue() == applicationId) {
-                obj = obj2;
-                break;
-            }
-        }
-        return (Activity) obj;
+    /* JADX INFO: renamed from: getLocalPresence$app_productionGoogleRelease, reason: from getter */
+    public final Presence getLocalPresence() {
+        return this.localPresence;
     }
 
     /* JADX INFO: renamed from: getLocalPresence, reason: from getter */
     public final Presence getLocalPresenceSnapshot() {
         return this.localPresenceSnapshot;
-    }
-
-    /* JADX INFO: renamed from: getLocalPresence$app_productionGoogleRelease, reason: from getter */
-    public final Presence getLocalPresence() {
-        return this.localPresence;
     }
 
     public final ObservationDeck getObservationDeck() {
@@ -619,6 +511,40 @@ public final class StoreUserPresence extends StoreV2 {
         return observableM11112r;
     }
 
+    private final List<Activity> removeActivityInList(ActivityType type, List<Activity> oldActivities) {
+        List<Activity> arrayList;
+        int i;
+        if (oldActivities == null || (arrayList = C12163u.toMutableList((Collection) oldActivities)) == null) {
+            arrayList = new ArrayList<>();
+        }
+        if (oldActivities == null) {
+            i = -1;
+            break;
+        }
+        Iterator<Activity> it = oldActivities.iterator();
+        i = 0;
+        while (true) {
+            if (!it.hasNext()) {
+                i = -1;
+                break;
+            }
+            if (it.next().getType() == type) {
+                break;
+            }
+            i++;
+        }
+        if (i != -1) {
+            arrayList.remove(i);
+        }
+        return arrayList;
+    }
+
+    private final List<Activity> replaceActivityInList(Activity newActivity, List<Activity> oldActivities) {
+        List<Activity> listRemoveActivityInList = removeActivityInList(newActivity.getType(), oldActivities);
+        listRemoveActivityInList.add(newActivity);
+        return listRemoveActivityInList;
+    }
+
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
@@ -629,6 +555,13 @@ public final class StoreUserPresence extends StoreV2 {
         if (getUpdateSources().contains(LocalPresenceUpdateSource)) {
             StoreGatewayConnection.presenceUpdate$default(StoreStream.INSTANCE.getGatewaySocket(), this.localPresence.getStatus(), null, this.localPresence.getActivities(), null, 10, null);
         }
+    }
+
+    public static /* synthetic */ void updateActivity$default(StoreUserPresence storeUserPresence, ActivityType activityType, Activity activity, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        storeUserPresence.updateActivity(activityType, activity, z2);
     }
 
     @StoreThread
@@ -671,6 +604,73 @@ public final class StoreUserPresence extends StoreV2 {
                 this.presences.put(Long.valueOf(id2), this.localPresence);
                 markChanged();
             }
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:24:0x0045  */
+    /* JADX WARN: Code duplicated, block: B:26:0x0053  */
+    /* JADX WARN: Code duplicated, block: B:28:0x0059  */
+    @StoreThread
+    private final void updateSelfPresence(ModelUserSettings userSettings, List<? extends ModelSession> sessions, boolean sendGateway) {
+        ClientStatus status;
+        Presence presence;
+        List<Activity> list;
+        List<Activity> activities;
+        Object next;
+        MeUser meUser = this.meUser;
+        if (meUser != null) {
+            long id2 = meUser.getId();
+            if (userSettings == null || (status = userSettings.getStatus()) == null) {
+                status = this.localPresence.getStatus();
+            }
+            ClientStatus clientStatus = status;
+            C12238m.checkNotNullExpressionValue(clientStatus, "userSettings?.status\n   …  ?: localPresence.status");
+            if (sessions != null) {
+                Iterator<T> it = sessions.iterator();
+                do {
+                    if (!it.hasNext()) {
+                        next = null;
+                        break;
+                    }
+                    next = it.next();
+                } while (!((ModelSession) next).isActive());
+                ModelSession modelSession = (ModelSession) next;
+                if (modelSession == null || (activities = modelSession.getActivities()) == null) {
+                    presence = this.presences.get(Long.valueOf(id2));
+                    if (presence != null) {
+                        List<Activity> activities2 = presence.getActivities();
+                        list = activities2;
+                    } else {
+                        list = null;
+                    }
+                } else {
+                    list = activities2;
+                }
+            } else {
+                presence = this.presences.get(Long.valueOf(id2));
+                if (presence != null) {
+                    List<Activity> activities3 = presence.getActivities();
+                    list = activities3;
+                } else {
+                    list = null;
+                }
+            }
+            ModelCustomStatusSetting customStatus = userSettings != null ? userSettings.getCustomStatus() : null;
+            if (customStatus != null) {
+                Activity customStatusActivityFromSetting = getCustomStatusActivityFromSetting(customStatus);
+                activities = customStatusActivityFromSetting != null ? replaceActivityInList(customStatusActivityFromSetting, this.localPresence.getActivities()) : removeActivityInList(ActivityType.CUSTOM_STATUS, this.localPresence.getActivities());
+            } else {
+                activities = this.localPresence.getActivities();
+            }
+            if (clientStatus != this.localPresence.getStatus() || (!C12238m.areEqual(activities, this.localPresence.getActivities()))) {
+                this.localPresence = new Presence(clientStatus, null, activities);
+                markChanged(LocalPresenceUpdateSource);
+            }
+            handlePresenceUpdate(RecyclerView.FOREVER_NS, id2, clientStatus, null, list);
+            if (sendGateway || PresenceUtils.INSTANCE.getCustomStatusActivity(this.localPresence) != null) {
+                return;
+            }
+            markUnchanged(LocalPresenceUpdateSource);
         }
     }
 

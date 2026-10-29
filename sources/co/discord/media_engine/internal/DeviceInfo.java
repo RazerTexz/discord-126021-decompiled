@@ -12,16 +12,16 @@ public final class DeviceInfo {
         return CameraEnumeratorProvider.get();
     }
 
+    public boolean getDeviceBackFacing(int i) {
+        return enumerator().isBackFacing(getDeviceName(i));
+    }
+
     @NonNull
     private String getDeviceFacingString(int i) {
         if (getDeviceFrontFacing(i)) {
             return "front";
         }
         return getDeviceBackFacing(i) ? "back" : EnvironmentCompat.MEDIA_UNKNOWN;
-    }
-
-    public boolean getDeviceBackFacing(int i) {
-        return enumerator().isBackFacing(getDeviceName(i));
     }
 
     public boolean getDeviceFrontFacing(int i) {

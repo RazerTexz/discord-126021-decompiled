@@ -22,7 +22,7 @@ public abstract class AbstractC12443b<T> implements InterfaceC12436a<T> {
 
     /* JADX INFO: renamed from: h0.b.a.d.b$a */
     /* JADX INFO: compiled from: GCJInstantiatorBase.java */
-    public static class a extends ObjectInputStream {
+    public class a extends ObjectInputStream {
     }
 
     public AbstractC12443b(Class<T> cls) {

@@ -67,6 +67,24 @@ public final class C3018a implements InterfaceC3031h {
         this.f8157c = 6;
     }
 
+    /* JADX INFO: renamed from: c */
+    public final void m3666c(Metadata.Entry... entryArr) {
+        InterfaceC3058j interfaceC3058j = this.f8156b;
+        Objects.requireNonNull(interfaceC3058j);
+        InterfaceC3122w interfaceC3122wMo2492p = interfaceC3058j.mo2492p(1024, 4);
+        C2811j1.b bVar = new C2811j1.b();
+        bVar.f7172j = "image/jpeg";
+        bVar.f7171i = new Metadata(entryArr);
+        interfaceC3122wMo2492p.mo2526e(bVar.m3277a());
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final int m3667d(InterfaceC3041i interfaceC3041i) throws IOException {
+        this.f8155a.m3075A(2);
+        interfaceC3041i.mo3652o(this.f8155a.f6793a, 0, 2);
+        return this.f8155a.m3105y();
+    }
+
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
     /* JADX INFO: renamed from: b */
     public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
@@ -88,24 +106,6 @@ public final class C3018a implements InterfaceC3031h {
         this.f8155a.m3075A(6);
         interfaceC3041i.mo3652o(this.f8155a.f6793a, 0, 6);
         return this.f8155a.m3101u() == 1165519206 && this.f8155a.m3105y() == 0;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m3666c(Metadata.Entry... entryArr) {
-        InterfaceC3058j interfaceC3058j = this.f8156b;
-        Objects.requireNonNull(interfaceC3058j);
-        InterfaceC3122w interfaceC3122wMo2492p = interfaceC3058j.mo2492p(1024, 4);
-        C2811j1.b bVar = new C2811j1.b();
-        bVar.f7172j = "image/jpeg";
-        bVar.f7171i = new Metadata(entryArr);
-        interfaceC3122wMo2492p.mo2526e(bVar.m3277a());
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final int m3667d(InterfaceC3041i interfaceC3041i) throws IOException {
-        this.f8155a.m3075A(2);
-        interfaceC3041i.mo3652o(this.f8155a.f6793a, 0, 2);
-        return this.f8155a.m3105y();
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h

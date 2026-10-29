@@ -13,7 +13,7 @@ public interface InterfaceC11902l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.l$a */
     /* JADX INFO: compiled from: locks.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ a f24734a = new a();

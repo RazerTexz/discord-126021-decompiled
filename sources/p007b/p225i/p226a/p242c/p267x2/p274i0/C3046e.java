@@ -51,31 +51,9 @@ public final class C3046e {
         int mo3709c();
     }
 
-    /* JADX INFO: renamed from: b.i.a.c.x2.i0.e$b */
-    /* JADX INFO: compiled from: AtomParsers.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public final C3055n[] f8355a;
-
-        /* JADX INFO: renamed from: b */
-        @Nullable
-        public C2811j1 f8356b;
-
-        /* JADX INFO: renamed from: c */
-        public int f8357c;
-
-        /* JADX INFO: renamed from: d */
-        public int f8358d = 0;
-
-        public b(int i) {
-            this.f8355a = new C3055n[i];
-        }
-    }
-
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.e$c */
     /* JADX INFO: compiled from: AtomParsers.java */
-    public static final class c implements a {
+    public final class c implements a {
 
         /* JADX INFO: renamed from: a */
         public final int f8359a;
@@ -124,7 +102,7 @@ public final class C3046e {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.e$d */
     /* JADX INFO: compiled from: AtomParsers.java */
-    public static final class d implements a {
+    public final class d implements a {
 
         /* JADX INFO: renamed from: a */
         public final C2757x f8362a;
@@ -375,98 +353,89 @@ public final class C3046e {
         int i6;
         int i7;
         int i8;
-        int i9;
         b bVar;
         float f;
         List<byte[]> listM6266u;
-        int i10;
+        int i9;
         List<byte[]> list;
         String str3;
         int iM3105y;
         int iRound;
         int iM3103w;
+        int i10;
         int i11;
         int i12;
-        int i13;
         DrmInitData drmInitDataM8835a2;
         String str4;
+        int i13;
         int i14;
-        int i15;
         int iIntValue;
         String str5;
-        int i16;
+        int i15;
         String str6;
         List<byte[]> listM6266u2;
+        int i16;
         int i17;
-        int i18;
         int iM3086f;
         boolean z3;
         int iM3086f2;
+        int i18;
         int i19;
-        int i20;
         String str7;
+        int i20;
         int i21;
         int i22;
-        int i23;
         List<byte[]> listM519g;
-        int i24;
+        int i23;
         boolean z4;
-        int i25;
+        int i24;
         int iM3086f3;
         boolean z5;
         byte[] bArr2;
         String str8;
         int iIntValue2;
         AbstractC4523p abstractC4523pM6266u;
-        int i26;
+        int i25;
         int iM3100t;
-        int i27;
+        int i26;
         String str9;
         int iM3100t2;
-        int i28;
+        int i27;
         AbstractC4523p abstractC4523pM6266u2;
         String str10;
         c2757x.m3079E(12);
         int iM3086f4 = c2757x.m3086f();
         b bVar2 = new b(iM3086f4);
-        int i29 = 0;
-        while (i29 < iM3086f4) {
-            int i30 = c2757x.f6794b;
+        int i28 = 0;
+        while (i28 < iM3086f4) {
+            int i29 = c2757x.f6794b;
             int iM3086f5 = c2757x.m3086f();
             String str11 = "childAtomSize must be positive";
             C1460d.m559q(iM3086f5 > 0, "childAtomSize must be positive");
             int iM3086f6 = c2757x.m3086f();
             if (iM3086f6 == 1635148593 || iM3086f6 == 1635148595 || iM3086f6 == 1701733238 || iM3086f6 == 1831958048 || iM3086f6 == 1836070006 || iM3086f6 == 1752589105 || iM3086f6 == 1751479857 || iM3086f6 == 1932670515 || iM3086f6 == 1211250227 || iM3086f6 == 1987063864 || iM3086f6 == 1987063865 || iM3086f6 == 1635135537 || iM3086f6 == 1685479798 || iM3086f6 == 1685479729 || iM3086f6 == 1685481573 || iM3086f6 == 1685481521) {
                 iM3086f4 = iM3086f4;
-                i3 = i29;
-                c2757x.m3079E(i30 + 8 + 8);
+                i3 = i28;
+                c2757x.m3079E(i29 + 8 + 8);
                 c2757x.m3080F(16);
                 int iM3105y2 = c2757x.m3105y();
                 int iM3105y3 = c2757x.m3105y();
                 c2757x.m3080F(50);
-                int i31 = c2757x.f6794b;
+                int i30 = c2757x.f6794b;
                 if (iM3086f6 == 1701733238) {
+                    i4 = i29;
+                    i5 = iM3086f5;
                     Pair<Integer, C3055n> pairM3704c = m3704c(c2757x, i4, i5);
                     if (pairM3704c != null) {
                         iM3086f6 = ((Integer) pairM3704c.first).intValue();
-                        if (drmInitData == null) {
-                            i4 = i30;
-                            i5 = iM3086f5;
-                            drmInitDataM8835a = null;
-                        } else {
-                            i4 = i30;
-                            i5 = iM3086f5;
-                            drmInitDataM8835a = drmInitData.m8835a(((C3055n) pairM3704c.second).f8472b);
-                        }
+                        drmInitDataM8835a = drmInitData == null ? null : drmInitData.m8835a(((C3055n) pairM3704c.second).f8472b);
                         bVar2.f8355a[i3] = (C3055n) pairM3704c.second;
                     } else {
-                        i4 = i30;
-                        i5 = iM3086f5;
                         drmInitDataM8835a = drmInitData;
                     }
-                    c2757x.m3079E(i31);
+                    c2757x.m3079E(i30);
                 } else {
-                    i4 = i30;
+                    i4 = i29;
                     i5 = iM3086f5;
                     drmInitDataM8835a = drmInitData;
                 }
@@ -483,18 +452,18 @@ public final class C3046e {
                 String str12 = null;
                 List<byte[]> list2 = null;
                 int iM3124b = -1;
+                int i31 = -1;
                 int i32 = -1;
                 int i33 = -1;
-                int i34 = -1;
                 while (true) {
-                    if (i31 - i4 >= i5) {
+                    if (i30 - i4 >= i5) {
                         bArr = bArrCopyOfRange;
-                        i6 = i34;
+                        i6 = i33;
                         break;
                     }
-                    c2757x.m3079E(i31);
-                    int i35 = c2757x.f6794b;
-                    i6 = i34;
+                    c2757x.m3079E(i30);
+                    int i34 = c2757x.f6794b;
+                    i6 = i33;
                     int iM3086f7 = c2757x.m3086f();
                     bArr = bArrCopyOfRange;
                     if (iM3086f7 == 0 && c2757x.f6794b - i4 == i5) {
@@ -505,7 +474,7 @@ public final class C3046e {
                     String str13 = str11;
                     if (iM3086f8 == 1635148611) {
                         C1460d.m559q(str2 == null, null);
-                        c2757x.m3079E(i35 + 8);
+                        c2757x.m3079E(i34 + 8);
                         C2776m c2776mM3122b = C2776m.m3122b(c2757x);
                         list = c2776mM3122b.f6837a;
                         bVar2.f8357c = c2776mM3122b.f6838b;
@@ -516,7 +485,7 @@ public final class C3046e {
                         str3 = "video/avc";
                     } else if (iM3086f8 == 1752589123) {
                         C1460d.m559q(str2 == null, null);
-                        c2757x.m3079E(i35 + 8);
+                        c2757x.m3079E(i34 + 8);
                         C2780q c2780qM3131a = C2780q.m3131a(c2757x);
                         list = c2780qM3131a.f6863a;
                         bVar2.f8357c = c2780qM3131a.f6864b;
@@ -602,7 +571,7 @@ public final class C3046e {
                                         str2 = "video/3gpp";
                                     } else if (iM3086f8 == 1702061171) {
                                         C1460d.m559q(str2 == null, null);
-                                        Pair<String, byte[]> pairM3702a = m3702a(c2757x, i35);
+                                        Pair<String, byte[]> pairM3702a = m3702a(c2757x, i34);
                                         str2 = (String) pairM3702a.first;
                                         byte[] bArr3 = (byte[]) pairM3702a.second;
                                         listM6266u = bArr3 != null ? AbstractC4523p.m6266u(bArr3) : list2;
@@ -610,25 +579,25 @@ public final class C3046e {
                                         list2 = listM6266u;
                                         fM3103w = f;
                                     } else if (iM3086f8 == 1885434736) {
-                                        c2757x.m3079E(i35 + 8);
+                                        c2757x.m3079E(i34 + 8);
                                         fM3103w = c2757x.m3103w() / c2757x.m3103w();
                                         bArrCopyOfRange = bArr;
                                         z6 = true;
                                     } else {
                                         if (iM3086f8 == 1937126244) {
-                                            int i36 = i35 + 8;
+                                            int i35 = i34 + 8;
                                             while (true) {
-                                                if (i36 - i35 >= iM3086f7) {
+                                                if (i35 - i34 >= iM3086f7) {
                                                     bArrCopyOfRange = null;
                                                     break;
                                                 }
-                                                c2757x.m3079E(i36);
+                                                c2757x.m3079E(i35);
                                                 int iM3086f9 = c2757x.m3086f();
                                                 if (c2757x.m3086f() == 1886547818) {
-                                                    bArrCopyOfRange = Arrays.copyOfRange(c2757x.f6793a, i36, iM3086f9 + i36);
+                                                    bArrCopyOfRange = Arrays.copyOfRange(c2757x.f6793a, i35, iM3086f9 + i35);
                                                     break;
                                                 }
-                                                i36 += iM3086f9;
+                                                i35 += iM3086f9;
                                             }
                                             listM6266u = list2;
                                         } else if (iM3086f8 == 1936995172) {
@@ -637,16 +606,16 @@ public final class C3046e {
                                             if (iM3100t3 == 0) {
                                                 int iM3100t4 = c2757x.m3100t();
                                                 if (iM3100t4 == 0) {
-                                                    i10 = 0;
+                                                    i9 = 0;
                                                 } else if (iM3100t4 == 1) {
-                                                    i10 = 1;
+                                                    i9 = 1;
                                                 } else if (iM3100t4 == 2) {
-                                                    i10 = 2;
+                                                    i9 = 2;
                                                 } else if (iM3100t4 == 3) {
-                                                    i10 = 3;
+                                                    i9 = 3;
                                                 }
                                             }
-                                            i6 = i10;
+                                            i6 = i9;
                                             bArrCopyOfRange = bArr;
                                         } else if (iM3086f8 == 1668246642) {
                                             int iM3086f10 = c2757x.m3086f();
@@ -656,10 +625,10 @@ public final class C3046e {
                                                 c2757x.m3080F(2);
                                                 boolean z7 = iM3086f7 == 19 && (c2757x.m3100t() & 128) != 0;
                                                 int iM3123a = C2777n.m3123a(iM3105y4);
-                                                int i37 = z7 ? 1 : 2;
-                                                i33 = iM3123a;
+                                                int i36 = z7 ? 1 : 2;
+                                                i32 = iM3123a;
                                                 iM3124b = C2777n.m3124b(iM3105y5);
-                                                i32 = i37;
+                                                i31 = i36;
                                             } else {
                                                 String strValueOf = String.valueOf(AbstractC3045d.m3699a(iM3086f10));
                                                 Log.w("AtomParsers", strValueOf.length() != 0 ? "Unsupported color type: ".concat(strValueOf) : new String("Unsupported color type: "));
@@ -673,8 +642,8 @@ public final class C3046e {
                                 list2 = list;
                                 bArrCopyOfRange = bArr;
                             }
-                            i31 += iM3086f7;
-                            i34 = i6;
+                            i30 += iM3086f7;
+                            i33 = i6;
                             str11 = str13;
                             iM3086f6 = iM3086f6;
                             i4 = i4;
@@ -683,13 +652,13 @@ public final class C3046e {
                             iM3105y3 = iM3105y3;
                             iM3105y2 = iM3105y2;
                         }
-                        i10 = i6;
-                        i6 = i10;
+                        i9 = i6;
+                        i6 = i9;
                         bArrCopyOfRange = bArr;
                         list2 = listM6266u;
                         fM3103w = f;
-                        i31 += iM3086f7;
-                        i34 = i6;
+                        i30 += iM3086f7;
+                        i33 = i6;
                         str11 = str13;
                         iM3086f6 = iM3086f6;
                         i4 = i4;
@@ -701,8 +670,8 @@ public final class C3046e {
                     str2 = str3;
                     list2 = list;
                     bArrCopyOfRange = bArr;
-                    i31 += iM3086f7;
-                    i34 = i6;
+                    i30 += iM3086f7;
+                    i33 = i6;
                     str11 = str13;
                     iM3086f6 = iM3086f6;
                     i4 = i4;
@@ -720,35 +689,33 @@ public final class C3046e {
                     bVar3.f7173k = str2;
                     bVar3.f7170h = str12;
                     bVar3.f7178p = iM3105y2;
-                    bVar3.f7179q = i7;
+                    bVar3.f7179q = iM3105y3;
                     bVar3.f7182t = f3;
                     bVar3.f7181s = i2;
                     bVar3.f7183u = bArr;
                     bVar3.f7184v = i6;
                     bVar3.f7175m = list2;
                     bVar3.f7176n = drmInitData2;
-                    int i38 = i33;
-                    if (i38 == -1) {
-                        i9 = i32;
-                        i8 = iM3124b;
-                        if (i9 != -1 || i8 != -1 || byteBufferOrder != null) {
+                    int i37 = i32;
+                    if (i37 == -1) {
+                        i8 = i31;
+                        i7 = iM3124b;
+                        if (i8 != -1 || i7 != -1 || byteBufferOrder != null) {
                         }
                         C2811j1 c2811j1M3277a = bVar3.m3277a();
                         bVar = bVar2;
                         bVar.f8356b = c2811j1M3277a;
                     } else {
-                        i7 = iM3105y3;
-                        i8 = iM3124b;
-                        i9 = i32;
+                        i7 = iM3124b;
+                        i8 = i31;
                     }
-                    i7 = iM3105y3;
-                    bVar3.f7185w = new C2777n(i38, i9, i8, byteBufferOrder != null ? byteBufferOrder.array() : null);
+                    bVar3.f7185w = new C2777n(i37, i8, i7, byteBufferOrder != null ? byteBufferOrder.array() : null);
                     C2811j1 c2811j1M3277a2 = bVar3.m3277a();
                     bVar = bVar2;
                     bVar.f8356b = c2811j1M3277a2;
                 }
             } else if (iM3086f6 == 1836069985 || iM3086f6 == 1701733217 || iM3086f6 == 1633889587 || iM3086f6 == 1700998451 || iM3086f6 == 1633889588 || iM3086f6 == 1835823201 || iM3086f6 == 1685353315 || iM3086f6 == 1685353317 || iM3086f6 == 1685353320 || iM3086f6 == 1685353324 || iM3086f6 == 1685353336 || iM3086f6 == 1935764850 || iM3086f6 == 1935767394 || iM3086f6 == 1819304813 || iM3086f6 == 1936684916 || iM3086f6 == 1953984371 || iM3086f6 == 778924082 || iM3086f6 == 778924083 || iM3086f6 == 1835557169 || iM3086f6 == 1835560241 || iM3086f6 == 1634492771 || iM3086f6 == 1634492791 || iM3086f6 == 1970037111 || iM3086f6 == 1332770163 || iM3086f6 == 1716281667) {
-                c2757x.m3079E(i30 + 8 + 8);
+                c2757x.m3079E(i29 + 8 + 8);
                 if (z2) {
                     iM3105y = c2757x.m3105y();
                     c2757x.m3080F(6);
@@ -760,57 +727,57 @@ public final class C3046e {
                     int iM3105y6 = c2757x.m3105y();
                     c2757x.m3080F(6);
                     byte[] bArr4 = c2757x.f6793a;
-                    int i39 = c2757x.f6794b;
-                    int i40 = i39 + 1;
-                    c2757x.f6794b = i40;
-                    int i41 = (bArr4[i39] & 255) << 8;
-                    int i42 = i40 + 1;
+                    int i38 = c2757x.f6794b;
+                    int i39 = i38 + 1;
+                    c2757x.f6794b = i39;
+                    int i40 = (bArr4[i38] & 255) << 8;
+                    int i41 = i39 + 1;
+                    c2757x.f6794b = i41;
+                    iRound = (bArr4[i39] & 255) | i40;
+                    int i42 = i41 + 2;
                     c2757x.f6794b = i42;
-                    iRound = (bArr4[i40] & 255) | i41;
-                    int i43 = i42 + 2;
-                    c2757x.f6794b = i43;
-                    c2757x.m3079E(i43 - 4);
+                    c2757x.m3079E(i42 - 4);
                     int iM3086f11 = c2757x.m3086f();
                     if (iM3105y == 1) {
                         c2757x.m3080F(16);
                     }
                     iM3103w = iM3105y6;
-                    i11 = iM3086f11;
+                    i10 = iM3086f11;
                 } else {
                     if (iM3105y == 2) {
                         c2757x.m3080F(16);
                         iRound = (int) Math.round(Double.longBitsToDouble(c2757x.m3093m()));
                         iM3103w = c2757x.m3103w();
                         c2757x.m3080F(20);
-                        i11 = 0;
+                        i10 = 0;
                     } else {
                         iM3086f4 = iM3086f4;
-                        i3 = i29;
-                        i13 = i30;
-                        i12 = iM3086f5;
+                        i3 = i28;
+                        i12 = i29;
+                        i11 = iM3086f5;
                     }
                     bVar = bVar2;
-                    i4 = i13;
-                    i5 = i12;
+                    i4 = i12;
+                    i5 = i11;
                 }
-                int i44 = c2757x.f6794b;
+                int i43 = c2757x.f6794b;
                 if (iM3086f6 == 1701733217) {
-                    Pair<Integer, C3055n> pairM3704c2 = m3704c(c2757x, i30, iM3086f5);
+                    Pair<Integer, C3055n> pairM3704c2 = m3704c(c2757x, i29, iM3086f5);
                     if (pairM3704c2 != null) {
                         int iIntValue3 = ((Integer) pairM3704c2.first).intValue();
                         drmInitDataM8835a2 = drmInitData == 0 ? null : drmInitData.m8835a(((C3055n) pairM3704c2.second).f8472b);
-                        bVar2.f8355a[i29] = (C3055n) pairM3704c2.second;
+                        bVar2.f8355a[i28] = (C3055n) pairM3704c2.second;
                         iM3086f6 = iIntValue3;
                     } else {
                         drmInitDataM8835a2 = drmInitData;
                     }
-                    c2757x.m3079E(i44);
+                    c2757x.m3079E(i43);
                 } else {
                     drmInitDataM8835a2 = drmInitData;
                 }
                 String str14 = "audio/ac3";
                 String str15 = "audio/raw";
-                int i45 = iM3103w;
+                int i44 = iM3103w;
                 if (iM3086f6 == 1633889587) {
                     str15 = "audio/ac3";
                 } else if (iM3086f6 == 1700998451) {
@@ -832,9 +799,9 @@ public final class C3046e {
                         str4 = "audio/amr-wb";
                     } else {
                         if (iM3086f6 == 1819304813 || iM3086f6 == 1936684916) {
-                            i14 = 2;
+                            i13 = 2;
                         } else if (iM3086f6 == 1953984371) {
-                            i14 = 268435456;
+                            i13 = 268435456;
                         } else if (iM3086f6 == 778924082 || iM3086f6 == 778924083) {
                             str4 = "audio/mpeg";
                         } else if (iM3086f6 == 1835557169) {
@@ -854,20 +821,20 @@ public final class C3046e {
                         } else if (iM3086f6 == 1835823201) {
                             str4 = "audio/true-hd";
                         } else {
-                            i14 = -1;
+                            i13 = -1;
                             str15 = null;
                         }
-                        i15 = iRound;
-                        iIntValue = i45;
+                        i14 = iRound;
+                        iIntValue = i44;
                         str5 = null;
-                        i3 = i29;
+                        i3 = i28;
                         String str16 = str15;
-                        i16 = i14;
+                        i15 = i13;
                         str6 = str16;
                         listM6266u2 = null;
-                        i17 = i44;
-                        while (i17 - i30 < iM3086f5) {
-                            c2757x.m3079E(i17);
+                        i16 = i43;
+                        while (i16 - i29 < iM3086f5) {
+                            c2757x.m3079E(i16);
                             iM3086f = c2757x.m3086f();
                             if (iM3086f > 0) {
                                 z3 = true;
@@ -876,54 +843,54 @@ public final class C3046e {
                             }
                             C1460d.m559q(z3, str11);
                             iM3086f2 = c2757x.m3086f();
-                            int i46 = i30;
+                            int i45 = i29;
                             if (iM3086f2 == 1835557187) {
-                                int i47 = iM3086f - 13;
-                                byte[] bArr5 = new byte[i47];
-                                c2757x.m3079E(i17 + 13);
-                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr5, 0, i47);
-                                c2757x.f6794b += i47;
+                                int i46 = iM3086f - 13;
+                                byte[] bArr5 = new byte[i46];
+                                c2757x.m3079E(i16 + 13);
+                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr5, 0, i46);
+                                c2757x.f6794b += i46;
                                 listM6266u2 = AbstractC4523p.m6266u(bArr5);
                                 str11 = str11;
-                                i23 = iM3086f;
-                                i15 = i15;
+                                i22 = iM3086f;
+                                i14 = i14;
                                 str14 = str14;
-                                i22 = i11;
+                                i21 = i10;
                             } else {
-                                i19 = i15;
-                                i20 = iM3086f;
+                                i18 = i14;
+                                i19 = iM3086f;
                                 str7 = str11;
                                 if (iM3086f2 != 1702061171) {
                                     if (z2 || iM3086f2 != 2002876005) {
                                         if (iM3086f2 == 1684103987) {
-                                            c2757x.m3079E(i17 + 8);
+                                            c2757x.m3079E(i16 + 8);
                                             String string = Integer.toString(i);
-                                            int i48 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
+                                            int i47 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
                                             iM3100t2 = c2757x.m3100t();
-                                            i28 = C2929m.f7772d[(iM3100t2 & 56) >> 3];
+                                            i27 = C2929m.f7772d[(iM3100t2 & 56) >> 3];
                                             if ((iM3100t2 & 4) != 0) {
-                                                i28++;
+                                                i27++;
                                             }
                                             C2811j1.b bVar4 = new C2811j1.b();
                                             bVar4.f7163a = string;
                                             bVar4.f7173k = str14;
-                                            bVar4.f7186x = i28;
-                                            bVar4.f7187y = i48;
+                                            bVar4.f7186x = i27;
+                                            bVar4.f7187y = i47;
                                             bVar4.f7176n = drmInitDataM8835a2;
                                             bVar4.f7165c = str;
                                             bVar2.f8356b = bVar4.m3277a();
                                         } else if (iM3086f2 == 1684366131) {
-                                            c2757x.m3079E(i17 + 8);
+                                            c2757x.m3079E(i16 + 8);
                                             String string2 = Integer.toString(i);
                                             c2757x.m3080F(2);
-                                            int i49 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
+                                            int i48 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
                                             iM3100t = c2757x.m3100t();
-                                            i27 = C2929m.f7772d[(iM3100t & 14) >> 1];
+                                            i26 = C2929m.f7772d[(iM3100t & 14) >> 1];
                                             if ((iM3100t & 1) != 0) {
-                                                i27++;
+                                                i26++;
                                             }
                                             if (((c2757x.m3100t() & 30) >> 1) > 0 && (c2757x.m3100t() & 2) != 0) {
-                                                i27 += 2;
+                                                i26 += 2;
                                             }
                                             if (c2757x.m3081a() > 0 || (c2757x.m3100t() & 1) == 0) {
                                                 str9 = "audio/eac3";
@@ -933,81 +900,81 @@ public final class C3046e {
                                             C2811j1.b bVar5 = new C2811j1.b();
                                             bVar5.f7163a = string2;
                                             bVar5.f7173k = str9;
-                                            bVar5.f7186x = i27;
-                                            bVar5.f7187y = i49;
+                                            bVar5.f7186x = i26;
+                                            bVar5.f7187y = i48;
                                             bVar5.f7176n = drmInitDataM8835a2;
                                             bVar5.f7165c = str;
                                             bVar2.f8356b = bVar5.m3277a();
                                         } else {
                                             if (iM3086f2 == 1684103988) {
-                                                c2757x.m3079E(i17 + 8);
+                                                c2757x.m3079E(i16 + 8);
                                                 String string3 = Integer.toString(i);
                                                 c2757x.m3080F(1);
                                                 if (((c2757x.m3100t() & 32) >> 5) == 1) {
-                                                    i26 = 48000;
+                                                    i25 = 48000;
                                                 } else {
-                                                    i26 = 44100;
+                                                    i25 = 44100;
                                                 }
                                                 C2811j1.b bVar6 = new C2811j1.b();
                                                 bVar6.f7163a = string3;
                                                 bVar6.f7173k = "audio/ac4";
                                                 bVar6.f7186x = 2;
-                                                bVar6.f7187y = i26;
+                                                bVar6.f7187y = i25;
                                                 bVar6.f7176n = drmInitDataM8835a2;
                                                 bVar6.f7165c = str;
                                                 bVar2.f8356b = bVar6.m3277a();
                                             } else {
                                                 if (iM3086f2 == 1684892784) {
-                                                    if (i11 > 0) {
-                                                        throw C1643a.m884w0(60, "Invalid sample rate for Dolby TrueHD MLP stream: ", i11, null);
+                                                    if (i10 > 0) {
+                                                        throw C1643a.m884w0(60, "Invalid sample rate for Dolby TrueHD MLP stream: ", i10, null);
                                                     }
                                                     iIntValue = 2;
-                                                    i15 = i11;
+                                                    i14 = i10;
                                                     listM519g = listM6266u2;
                                                 } else if (iM3086f2 == 1684305011) {
                                                     C2811j1.b bVar7 = new C2811j1.b();
                                                     bVar7.m3278b(i);
                                                     bVar7.f7173k = str6;
                                                     bVar7.f7186x = iIntValue;
-                                                    iIntValue2 = i19;
+                                                    iIntValue2 = i18;
                                                     bVar7.f7187y = iIntValue2;
                                                     bVar7.f7176n = drmInitDataM8835a2;
                                                     bVar7.f7165c = str;
                                                     bVar2.f8356b = bVar7.m3277a();
                                                     str14 = str14;
-                                                    i15 = iIntValue2;
+                                                    i14 = iIntValue2;
                                                     listM519g = listM6266u2;
                                                 } else {
-                                                    iIntValue2 = i19;
+                                                    iIntValue2 = i18;
                                                     if (iM3086f2 == 1682927731) {
-                                                        int i50 = i20 - 8;
+                                                        int i49 = i19 - 8;
                                                         byte[] bArr6 = f8354a;
-                                                        byte[] bArrCopyOf = Arrays.copyOf(bArr6, bArr6.length + i50);
-                                                        c2757x.m3079E(i17 + 8);
-                                                        c2757x.m3085e(bArrCopyOf, bArr6.length, i50);
+                                                        byte[] bArrCopyOf = Arrays.copyOf(bArr6, bArr6.length + i49);
+                                                        c2757x.m3079E(i16 + 8);
+                                                        c2757x.m3085e(bArrCopyOf, bArr6.length, i49);
                                                         listM519g = C1460d.m519g(bArrCopyOf);
-                                                        i15 = iIntValue2;
+                                                        i14 = iIntValue2;
                                                     } else {
                                                         if (iM3086f2 == 1684425825) {
-                                                            int i51 = i20 - 12;
-                                                            byte[] bArr7 = new byte[i51 + 4];
+                                                            int i50 = i19 - 12;
+                                                            byte[] bArr7 = new byte[i50 + 4];
                                                             bArr7[0] = 102;
                                                             bArr7[1] = 76;
                                                             bArr7[2] = 97;
                                                             bArr7[3] = 67;
-                                                            c2757x.m3079E(i17 + 12);
+                                                            c2757x.m3079E(i16 + 12);
                                                             str14 = str14;
-                                                            System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr7, 4, i51);
-                                                            c2757x.f6794b += i51;
+                                                            System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr7, 4, i50);
+                                                            c2757x.f6794b += i50;
                                                             abstractC4523pM6266u = AbstractC4523p.m6266u(bArr7);
                                                         } else {
                                                             str14 = str14;
                                                             if (iM3086f2 == 1634492771) {
-                                                                int i52 = i20 - 12;
-                                                                byte[] bArr8 = new byte[i52];
-                                                                c2757x.m3079E(i17 + 12);
-                                                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr8, 0, i52);
-                                                                c2757x.f6794b += i52;
+                                                                int i51 = i19 - 12;
+                                                                byte[] bArr8 = new byte[i51];
+                                                                c2757x.m3079E(i16 + 12);
+                                                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr8, 0, i51);
+                                                                c2757x.f6794b += i51;
                                                                 C2757x c2757x2 = new C2757x(bArr8);
                                                                 c2757x2.m3079E(9);
                                                                 int iM3100t5 = c2757x2.m3100t();
@@ -1017,58 +984,58 @@ public final class C3046e {
                                                                 iIntValue = ((Integer) pairCreate.second).intValue();
                                                                 abstractC4523pM6266u = AbstractC4523p.m6266u(bArr8);
                                                             } else {
-                                                                i15 = iIntValue2;
+                                                                i14 = iIntValue2;
                                                                 listM519g = listM6266u2;
                                                             }
                                                         }
-                                                        int i53 = iIntValue2;
+                                                        int i52 = iIntValue2;
                                                         listM519g = abstractC4523pM6266u;
-                                                        i15 = i53;
+                                                        i14 = i52;
                                                     }
                                                 }
                                                 str14 = str14;
                                             }
                                             str11 = str7;
-                                            i23 = i20;
-                                            i22 = i11;
+                                            i22 = i19;
+                                            i21 = i10;
                                         }
-                                        iIntValue2 = i19;
+                                        iIntValue2 = i18;
                                         str14 = str14;
-                                        i15 = iIntValue2;
+                                        i14 = iIntValue2;
                                         listM519g = listM6266u2;
                                         str11 = str7;
-                                        i23 = i20;
-                                        i22 = i11;
+                                        i22 = i19;
+                                        i21 = i10;
                                     } else {
-                                        i21 = 1702061171;
+                                        i20 = 1702061171;
                                     }
                                     listM6266u2 = listM519g;
                                 } else {
-                                    i21 = 1702061171;
+                                    i20 = 1702061171;
                                 }
-                                if (iM3086f2 == i21) {
-                                    i24 = i17;
+                                if (iM3086f2 == i20) {
+                                    i23 = i16;
                                     str11 = str7;
-                                    i23 = i20;
-                                    i22 = i11;
+                                    i22 = i19;
+                                    i21 = i10;
                                 } else {
-                                    i24 = c2757x.f6794b;
-                                    if (i24 >= i17) {
+                                    i23 = c2757x.f6794b;
+                                    if (i23 >= i16) {
                                         z4 = true;
                                     } else {
                                         z4 = false;
                                     }
                                     C1460d.m559q(z4, null);
                                     while (true) {
-                                        i23 = i20;
-                                        if (i24 - i17 < i23) {
+                                        i22 = i19;
+                                        if (i23 - i16 < i22) {
                                             str11 = str7;
-                                            i22 = i11;
-                                            i25 = -1;
+                                            i21 = i10;
                                             i24 = -1;
+                                            i23 = -1;
                                             break;
                                         }
-                                        c2757x.m3079E(i24);
+                                        c2757x.m3079E(i23);
                                         iM3086f3 = c2757x.m3086f();
                                         if (iM3086f3 > 0) {
                                             z5 = true;
@@ -1077,22 +1044,22 @@ public final class C3046e {
                                         }
                                         str11 = str7;
                                         C1460d.m559q(z5, str11);
-                                        i22 = i11;
+                                        i21 = i10;
                                         if (c2757x.m3086f() == 1702061171) {
-                                            i24 += iM3086f3;
-                                            i20 = i23;
-                                            i11 = i22;
+                                            i23 += iM3086f3;
+                                            i19 = i22;
+                                            i10 = i21;
                                             str7 = str11;
                                         }
                                     }
-                                    if (i24 != i25) {
-                                        Pair<String, byte[]> pairM3702a2 = m3702a(c2757x, i24);
+                                    if (i23 != i24) {
+                                        Pair<String, byte[]> pairM3702a2 = m3702a(c2757x, i23);
                                         str6 = (String) pairM3702a2.first;
                                         bArr2 = (byte[]) pairM3702a2.second;
                                         if (bArr2 != null) {
                                             if ("audio/mp4a-latm".equals(str6)) {
                                                 C2928l.b bVarM3489b = C2928l.m3489b(new C2756w(bArr2), false);
-                                                i19 = bVarM3489b.f7766a;
+                                                i18 = bVarM3489b.f7766a;
                                                 iIntValue = bVarM3489b.f7767b;
                                                 str8 = bVarM3489b.f7768c;
                                             } else {
@@ -1100,22 +1067,22 @@ public final class C3046e {
                                             }
                                             listM6266u2 = AbstractC4523p.m6266u(bArr2);
                                             str5 = str8;
-                                            i15 = i19;
+                                            i14 = i18;
                                         }
                                     }
-                                    i15 = i19;
+                                    i14 = i18;
                                     listM519g = listM6266u2;
                                     listM6266u2 = listM519g;
                                 }
-                                i25 = -1;
-                                if (i24 != i25) {
-                                    Pair<String, byte[]> pairM3702a3 = m3702a(c2757x, i24);
+                                i24 = -1;
+                                if (i23 != i24) {
+                                    Pair<String, byte[]> pairM3702a3 = m3702a(c2757x, i23);
                                     str6 = (String) pairM3702a3.first;
                                     bArr2 = (byte[]) pairM3702a3.second;
                                     if (bArr2 != null) {
                                         if ("audio/mp4a-latm".equals(str6)) {
                                             C2928l.b bVarM3489b2 = C2928l.m3489b(new C2756w(bArr2), false);
-                                            i19 = bVarM3489b2.f7766a;
+                                            i18 = bVarM3489b2.f7766a;
                                             iIntValue = bVarM3489b2.f7767b;
                                             str8 = bVarM3489b2.f7768c;
                                         } else {
@@ -1123,53 +1090,53 @@ public final class C3046e {
                                         }
                                         listM6266u2 = AbstractC4523p.m6266u(bArr2);
                                         str5 = str8;
-                                        i15 = i19;
+                                        i14 = i18;
                                     }
                                 }
-                                i15 = i19;
+                                i14 = i18;
                                 listM519g = listM6266u2;
                                 listM6266u2 = listM519g;
                             }
-                            i17 += i23;
-                            i30 = i46;
+                            i16 += i22;
+                            i29 = i45;
                             iM3086f5 = iM3086f5;
-                            i11 = i22;
+                            i10 = i21;
                             str14 = str14;
                         }
-                        i18 = i15;
-                        i13 = i30;
-                        i12 = iM3086f5;
+                        i17 = i14;
+                        i12 = i29;
+                        i11 = iM3086f5;
                         if (bVar2.f8356b == null && str6 != null) {
                             C2811j1.b bVar8 = new C2811j1.b();
                             bVar8.m3278b(i);
                             bVar8.f7173k = str6;
                             bVar8.f7170h = str5;
                             bVar8.f7186x = iIntValue;
-                            bVar8.f7187y = i18;
-                            bVar8.f7188z = i16;
+                            bVar8.f7187y = i17;
+                            bVar8.f7188z = i15;
                             bVar8.f7175m = listM6266u2;
                             bVar8.f7176n = drmInitDataM8835a2;
                             bVar8.f7165c = str;
                             bVar2.f8356b = bVar8.m3277a();
                         }
                         bVar = bVar2;
-                        i4 = i13;
-                        i5 = i12;
+                        i4 = i12;
+                        i5 = i11;
                     }
                     str15 = str4;
                 }
-                i14 = -1;
-                i15 = iRound;
-                iIntValue = i45;
+                i13 = -1;
+                i14 = iRound;
+                iIntValue = i44;
                 str5 = null;
-                i3 = i29;
+                i3 = i28;
                 String str17 = str15;
-                i16 = i14;
+                i15 = i13;
                 str6 = str17;
                 listM6266u2 = null;
-                i17 = i44;
-                while (i17 - i30 < iM3086f5) {
-                    c2757x.m3079E(i17);
+                i16 = i43;
+                while (i16 - i29 < iM3086f5) {
+                    c2757x.m3079E(i16);
                     iM3086f = c2757x.m3086f();
                     if (iM3086f > 0) {
                         z3 = true;
@@ -1178,55 +1145,55 @@ public final class C3046e {
                     }
                     C1460d.m559q(z3, str11);
                     iM3086f2 = c2757x.m3086f();
-                    int i410 = i30;
+                    int i410 = i29;
                     if (iM3086f2 == 1835557187) {
                         int i411 = iM3086f - 13;
                         byte[] bArr9 = new byte[i411];
-                        c2757x.m3079E(i17 + 13);
+                        c2757x.m3079E(i16 + 13);
                         System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr9, 0, i411);
                         c2757x.f6794b += i411;
                         listM6266u2 = AbstractC4523p.m6266u(bArr9);
                         str11 = str11;
-                        i23 = iM3086f;
-                        i15 = i15;
+                        i22 = iM3086f;
+                        i14 = i14;
                         str14 = str14;
-                        i22 = i11;
+                        i21 = i10;
                     } else {
-                        i19 = i15;
-                        i20 = iM3086f;
+                        i18 = i14;
+                        i19 = iM3086f;
                         str7 = str11;
                         if (iM3086f2 != 1702061171) {
                             if (z2) {
                             }
                             if (iM3086f2 == 1684103987) {
-                                c2757x.m3079E(i17 + 8);
+                                c2757x.m3079E(i16 + 8);
                                 String string4 = Integer.toString(i);
                                 int i412 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
                                 iM3100t2 = c2757x.m3100t();
-                                i28 = C2929m.f7772d[(iM3100t2 & 56) >> 3];
+                                i27 = C2929m.f7772d[(iM3100t2 & 56) >> 3];
                                 if ((iM3100t2 & 4) != 0) {
-                                    i28++;
+                                    i27++;
                                 }
                                 C2811j1.b bVar9 = new C2811j1.b();
                                 bVar9.f7163a = string4;
                                 bVar9.f7173k = str14;
-                                bVar9.f7186x = i28;
+                                bVar9.f7186x = i27;
                                 bVar9.f7187y = i412;
                                 bVar9.f7176n = drmInitDataM8835a2;
                                 bVar9.f7165c = str;
                                 bVar2.f8356b = bVar9.m3277a();
                             } else if (iM3086f2 == 1684366131) {
-                                c2757x.m3079E(i17 + 8);
+                                c2757x.m3079E(i16 + 8);
                                 String string5 = Integer.toString(i);
                                 c2757x.m3080F(2);
                                 int i413 = C2929m.f7770b[(c2757x.m3100t() & Opcodes.CHECKCAST) >> 6];
                                 iM3100t = c2757x.m3100t();
-                                i27 = C2929m.f7772d[(iM3100t & 14) >> 1];
+                                i26 = C2929m.f7772d[(iM3100t & 14) >> 1];
                                 if ((iM3100t & 1) != 0) {
-                                    i27++;
+                                    i26++;
                                 }
                                 if (((c2757x.m3100t() & 30) >> 1) > 0) {
-                                    i27 += 2;
+                                    i26 += 2;
                                 }
                                 if (c2757x.m3081a() > 0) {
                                     str9 = "audio/eac3";
@@ -1236,81 +1203,81 @@ public final class C3046e {
                                 C2811j1.b bVar10 = new C2811j1.b();
                                 bVar10.f7163a = string5;
                                 bVar10.f7173k = str9;
-                                bVar10.f7186x = i27;
+                                bVar10.f7186x = i26;
                                 bVar10.f7187y = i413;
                                 bVar10.f7176n = drmInitDataM8835a2;
                                 bVar10.f7165c = str;
                                 bVar2.f8356b = bVar10.m3277a();
                             } else {
                                 if (iM3086f2 == 1684103988) {
-                                    c2757x.m3079E(i17 + 8);
+                                    c2757x.m3079E(i16 + 8);
                                     String string6 = Integer.toString(i);
                                     c2757x.m3080F(1);
                                     if (((c2757x.m3100t() & 32) >> 5) == 1) {
-                                        i26 = 48000;
+                                        i25 = 48000;
                                     } else {
-                                        i26 = 44100;
+                                        i25 = 44100;
                                     }
                                     C2811j1.b bVar11 = new C2811j1.b();
                                     bVar11.f7163a = string6;
                                     bVar11.f7173k = "audio/ac4";
                                     bVar11.f7186x = 2;
-                                    bVar11.f7187y = i26;
+                                    bVar11.f7187y = i25;
                                     bVar11.f7176n = drmInitDataM8835a2;
                                     bVar11.f7165c = str;
                                     bVar2.f8356b = bVar11.m3277a();
                                 } else {
                                     if (iM3086f2 == 1684892784) {
-                                        if (i11 > 0) {
-                                            throw C1643a.m884w0(60, "Invalid sample rate for Dolby TrueHD MLP stream: ", i11, null);
+                                        if (i10 > 0) {
+                                            throw C1643a.m884w0(60, "Invalid sample rate for Dolby TrueHD MLP stream: ", i10, null);
                                         }
                                         iIntValue = 2;
-                                        i15 = i11;
+                                        i14 = i10;
                                         listM519g = listM6266u2;
                                     } else if (iM3086f2 == 1684305011) {
                                         C2811j1.b bVar12 = new C2811j1.b();
                                         bVar12.m3278b(i);
                                         bVar12.f7173k = str6;
                                         bVar12.f7186x = iIntValue;
-                                        iIntValue2 = i19;
+                                        iIntValue2 = i18;
                                         bVar12.f7187y = iIntValue2;
                                         bVar12.f7176n = drmInitDataM8835a2;
                                         bVar12.f7165c = str;
                                         bVar2.f8356b = bVar12.m3277a();
                                         str14 = str14;
-                                        i15 = iIntValue2;
+                                        i14 = iIntValue2;
                                         listM519g = listM6266u2;
                                     } else {
-                                        iIntValue2 = i19;
+                                        iIntValue2 = i18;
                                         if (iM3086f2 == 1682927731) {
-                                            int i54 = i20 - 8;
+                                            int i414 = i19 - 8;
                                             byte[] bArr10 = f8354a;
-                                            byte[] bArrCopyOf2 = Arrays.copyOf(bArr10, bArr10.length + i54);
-                                            c2757x.m3079E(i17 + 8);
-                                            c2757x.m3085e(bArrCopyOf2, bArr10.length, i54);
+                                            byte[] bArrCopyOf2 = Arrays.copyOf(bArr10, bArr10.length + i414);
+                                            c2757x.m3079E(i16 + 8);
+                                            c2757x.m3085e(bArrCopyOf2, bArr10.length, i414);
                                             listM519g = C1460d.m519g(bArrCopyOf2);
-                                            i15 = iIntValue2;
+                                            i14 = iIntValue2;
                                         } else {
                                             if (iM3086f2 == 1684425825) {
-                                                int i55 = i20 - 12;
-                                                byte[] bArr11 = new byte[i55 + 4];
+                                                int i53 = i19 - 12;
+                                                byte[] bArr11 = new byte[i53 + 4];
                                                 bArr11[0] = 102;
                                                 bArr11[1] = 76;
                                                 bArr11[2] = 97;
                                                 bArr11[3] = 67;
-                                                c2757x.m3079E(i17 + 12);
+                                                c2757x.m3079E(i16 + 12);
                                                 str14 = str14;
-                                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr11, 4, i55);
-                                                c2757x.f6794b += i55;
+                                                System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr11, 4, i53);
+                                                c2757x.f6794b += i53;
                                                 abstractC4523pM6266u = AbstractC4523p.m6266u(bArr11);
                                             } else {
                                                 str14 = str14;
                                                 if (iM3086f2 == 1634492771) {
-                                                    int i56 = i20 - 12;
-                                                    byte[] bArr12 = new byte[i56];
-                                                    c2757x.m3079E(i17 + 12);
-                                                    System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr12, 0, i56);
-                                                    c2757x.f6794b += i56;
+                                                    int i54 = i19 - 12;
+                                                    byte[] bArr12 = new byte[i54];
+                                                    c2757x.m3079E(i16 + 12);
+                                                    System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr12, 0, i54);
+                                                    c2757x.f6794b += i54;
                                                     C2757x c2757x3 = new C2757x(bArr12);
                                                     c2757x3.m3079E(9);
                                                     int iM3100t6 = c2757x3.m3100t();
@@ -1320,56 +1287,56 @@ public final class C3046e {
                                                     iIntValue = ((Integer) pairCreate2.second).intValue();
                                                     abstractC4523pM6266u = AbstractC4523p.m6266u(bArr12);
                                                 } else {
-                                                    i15 = iIntValue2;
+                                                    i14 = iIntValue2;
                                                     listM519g = listM6266u2;
                                                 }
                                             }
-                                            int i57 = iIntValue2;
+                                            int i55 = iIntValue2;
                                             listM519g = abstractC4523pM6266u;
-                                            i15 = i57;
+                                            i14 = i55;
                                         }
                                     }
                                     str14 = str14;
                                 }
                                 str11 = str7;
-                                i23 = i20;
-                                i22 = i11;
+                                i22 = i19;
+                                i21 = i10;
                                 listM6266u2 = listM519g;
                             }
-                            iIntValue2 = i19;
+                            iIntValue2 = i18;
                             str14 = str14;
-                            i15 = iIntValue2;
+                            i14 = iIntValue2;
                             listM519g = listM6266u2;
                             str11 = str7;
-                            i23 = i20;
-                            i22 = i11;
+                            i22 = i19;
+                            i21 = i10;
                             listM6266u2 = listM519g;
                         } else {
-                            i21 = 1702061171;
+                            i20 = 1702061171;
                         }
-                        if (iM3086f2 == i21) {
-                            i24 = i17;
+                        if (iM3086f2 == i20) {
+                            i23 = i16;
                             str11 = str7;
-                            i23 = i20;
-                            i22 = i11;
+                            i22 = i19;
+                            i21 = i10;
                         } else {
-                            i24 = c2757x.f6794b;
-                            if (i24 >= i17) {
+                            i23 = c2757x.f6794b;
+                            if (i23 >= i16) {
                                 z4 = true;
                             } else {
                                 z4 = false;
                             }
                             C1460d.m559q(z4, null);
                             while (true) {
-                                i23 = i20;
-                                if (i24 - i17 < i23) {
+                                i22 = i19;
+                                if (i23 - i16 < i22) {
                                     str11 = str7;
-                                    i22 = i11;
-                                    i25 = -1;
+                                    i21 = i10;
                                     i24 = -1;
+                                    i23 = -1;
                                     break;
                                 }
-                                c2757x.m3079E(i24);
+                                c2757x.m3079E(i23);
                                 iM3086f3 = c2757x.m3086f();
                                 if (iM3086f3 > 0) {
                                     z5 = true;
@@ -1378,22 +1345,22 @@ public final class C3046e {
                                 }
                                 str11 = str7;
                                 C1460d.m559q(z5, str11);
-                                i22 = i11;
+                                i21 = i10;
                                 if (c2757x.m3086f() == 1702061171) {
-                                    i24 += iM3086f3;
-                                    i20 = i23;
-                                    i11 = i22;
+                                    i23 += iM3086f3;
+                                    i19 = i22;
+                                    i10 = i21;
                                     str7 = str11;
                                 }
                             }
-                            if (i24 != i25) {
-                                Pair<String, byte[]> pairM3702a4 = m3702a(c2757x, i24);
+                            if (i23 != i24) {
+                                Pair<String, byte[]> pairM3702a4 = m3702a(c2757x, i23);
                                 str6 = (String) pairM3702a4.first;
                                 bArr2 = (byte[]) pairM3702a4.second;
                                 if (bArr2 != null) {
                                     if ("audio/mp4a-latm".equals(str6)) {
                                         C2928l.b bVarM3489b3 = C2928l.m3489b(new C2756w(bArr2), false);
-                                        i19 = bVarM3489b3.f7766a;
+                                        i18 = bVarM3489b3.f7766a;
                                         iIntValue = bVarM3489b3.f7767b;
                                         str8 = bVarM3489b3.f7768c;
                                     } else {
@@ -1401,22 +1368,22 @@ public final class C3046e {
                                     }
                                     listM6266u2 = AbstractC4523p.m6266u(bArr2);
                                     str5 = str8;
-                                    i15 = i19;
+                                    i14 = i18;
                                 }
                             }
-                            i15 = i19;
+                            i14 = i18;
                             listM519g = listM6266u2;
                             listM6266u2 = listM519g;
                         }
-                        i25 = -1;
-                        if (i24 != i25) {
-                            Pair<String, byte[]> pairM3702a5 = m3702a(c2757x, i24);
+                        i24 = -1;
+                        if (i23 != i24) {
+                            Pair<String, byte[]> pairM3702a5 = m3702a(c2757x, i23);
                             str6 = (String) pairM3702a5.first;
                             bArr2 = (byte[]) pairM3702a5.second;
                             if (bArr2 != null) {
                                 if ("audio/mp4a-latm".equals(str6)) {
                                     C2928l.b bVarM3489b4 = C2928l.m3489b(new C2756w(bArr2), false);
-                                    i19 = bVarM3489b4.f7766a;
+                                    i18 = bVarM3489b4.f7766a;
                                     iIntValue = bVarM3489b4.f7767b;
                                     str8 = bVarM3489b4.f7768c;
                                 } else {
@@ -1424,51 +1391,51 @@ public final class C3046e {
                                 }
                                 listM6266u2 = AbstractC4523p.m6266u(bArr2);
                                 str5 = str8;
-                                i15 = i19;
+                                i14 = i18;
                             }
                         }
-                        i15 = i19;
+                        i14 = i18;
                         listM519g = listM6266u2;
                         listM6266u2 = listM519g;
                     }
-                    i17 += i23;
-                    i30 = i410;
+                    i16 += i22;
+                    i29 = i410;
                     iM3086f5 = iM3086f5;
-                    i11 = i22;
+                    i10 = i21;
                     str14 = str14;
                 }
-                i18 = i15;
-                i13 = i30;
-                i12 = iM3086f5;
+                i17 = i14;
+                i12 = i29;
+                i11 = iM3086f5;
                 if (bVar2.f8356b == null) {
                     C2811j1.b bVar13 = new C2811j1.b();
                     bVar13.m3278b(i);
                     bVar13.f7173k = str6;
                     bVar13.f7170h = str5;
                     bVar13.f7186x = iIntValue;
-                    bVar13.f7187y = i18;
-                    bVar13.f7188z = i16;
+                    bVar13.f7187y = i17;
+                    bVar13.f7188z = i15;
                     bVar13.f7175m = listM6266u2;
                     bVar13.f7176n = drmInitDataM8835a2;
                     bVar13.f7165c = str;
                     bVar2.f8356b = bVar13.m3277a();
                 }
                 bVar = bVar2;
-                i4 = i13;
-                i5 = i12;
+                i4 = i12;
+                i5 = i11;
             } else {
                 if (iM3086f6 == 1414810956 || iM3086f6 == 1954034535 || iM3086f6 == 2004251764 || iM3086f6 == 1937010800 || iM3086f6 == 1664495672) {
-                    c2757x.m3079E(i30 + 8 + 8);
+                    c2757x.m3079E(i29 + 8 + 8);
                     long j = RecyclerView.FOREVER_NS;
                     String str18 = "application/ttml+xml";
                     if (iM3086f6 == 1414810956) {
                         abstractC4523pM6266u2 = null;
                         str10 = str18;
                     } else if (iM3086f6 == 1954034535) {
-                        int i58 = (iM3086f5 - 8) - 8;
-                        byte[] bArr13 = new byte[i58];
-                        System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr13, 0, i58);
-                        c2757x.f6794b += i58;
+                        int i56 = (iM3086f5 - 8) - 8;
+                        byte[] bArr13 = new byte[i56];
+                        System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr13, 0, i56);
+                        c2757x.f6794b += i56;
                         abstractC4523pM6266u2 = AbstractC4523p.m6266u(bArr13);
                         str10 = "application/x-quicktime-tx3g";
                     } else {
@@ -1494,7 +1461,7 @@ public final class C3046e {
                     bVar14.f7175m = abstractC4523pM6266u2;
                     bVar2.f8356b = bVar14.m3277a();
                 } else if (iM3086f6 == 1835365492) {
-                    c2757x.m3079E(i30 + 8 + 8);
+                    c2757x.m3079E(i29 + 8 + 8);
                     if (iM3086f6 == 1835365492) {
                         c2757x.m3094n();
                         String strM3094n = c2757x.m3094n();
@@ -1513,12 +1480,12 @@ public final class C3046e {
                 }
                 iM3086f4 = iM3086f4;
                 bVar = bVar2;
-                i3 = i29;
-                i4 = i30;
+                i3 = i28;
+                i4 = i29;
                 i5 = iM3086f5;
             }
             c2757x.m3079E(i4 + i5);
-            i29 = i3 + 1;
+            i28 = i3 + 1;
             bVar2 = bVar;
             iM3086f4 = iM3086f4;
         }
@@ -3069,5 +3036,27 @@ public final class C3046e {
             arrayList3 = arrayList2;
         }
         return arrayList3;
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.i0.e$b */
+    /* JADX INFO: compiled from: AtomParsers.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: a */
+        public final C3055n[] f8355a;
+
+        /* JADX INFO: renamed from: b */
+        @Nullable
+        public C2811j1 f8356b;
+
+        /* JADX INFO: renamed from: c */
+        public int f8357c;
+
+        /* JADX INFO: renamed from: d */
+        public int f8358d = 0;
+
+        public b(int i) {
+            this.f8355a = new C3055n[i];
+        }
     }
 }

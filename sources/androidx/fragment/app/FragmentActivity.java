@@ -146,54 +146,6 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
         init();
     }
 
-    private void init() {
-        getSavedStateRegistry().registerSavedStateProvider(FRAGMENTS_TAG, new SavedStateRegistry.SavedStateProvider() { // from class: androidx.fragment.app.FragmentActivity.1
-            @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
-            @NonNull
-            public Bundle saveState() {
-                Bundle bundle = new Bundle();
-                FragmentActivity.this.markFragmentsCreated();
-                FragmentActivity.this.mFragmentLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
-                Parcelable parcelableSaveAllState = FragmentActivity.this.mFragments.saveAllState();
-                if (parcelableSaveAllState != null) {
-                    bundle.putParcelable(FragmentActivity.FRAGMENTS_TAG, parcelableSaveAllState);
-                }
-                return bundle;
-            }
-        });
-        addOnContextAvailableListener(new OnContextAvailableListener() { // from class: androidx.fragment.app.FragmentActivity.2
-            @Override // androidx.activity.contextaware.OnContextAvailableListener
-            public void onContextAvailable(@NonNull Context context) {
-                FragmentActivity.this.mFragments.attachHost(null);
-                Bundle bundleConsumeRestoredStateForKey = FragmentActivity.this.getSavedStateRegistry().consumeRestoredStateForKey(FragmentActivity.FRAGMENTS_TAG);
-                if (bundleConsumeRestoredStateForKey != null) {
-                    FragmentActivity.this.mFragments.restoreSaveState(bundleConsumeRestoredStateForKey.getParcelable(FragmentActivity.FRAGMENTS_TAG));
-                }
-            }
-        });
-    }
-
-    private static boolean markState(FragmentManager fragmentManager, Lifecycle.State state) {
-        boolean zMarkState = false;
-        for (Fragment fragment : fragmentManager.getFragments()) {
-            if (fragment != null) {
-                if (fragment.getHost() != null) {
-                    zMarkState |= markState(fragment.getChildFragmentManager(), state);
-                }
-                FragmentViewLifecycleOwner fragmentViewLifecycleOwner = fragment.mViewLifecycleOwner;
-                if (fragmentViewLifecycleOwner != null && fragmentViewLifecycleOwner.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                    fragment.mViewLifecycleOwner.setCurrentState(state);
-                    zMarkState = true;
-                }
-                if (fragment.mLifecycleRegistry.getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                    fragment.mLifecycleRegistry.setCurrentState(state);
-                    zMarkState = true;
-                }
-            }
-        }
-        return zMarkState;
-    }
-
     @Nullable
     public final View dispatchFragmentsOnCreateView(@Nullable View view, @NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
         return this.mFragments.onCreateView(view, str, context, attributeSet);
@@ -231,9 +183,57 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
         return LoaderManager.getInstance(this);
     }
 
+    private void init() {
+        getSavedStateRegistry().registerSavedStateProvider(FRAGMENTS_TAG, new SavedStateRegistry.SavedStateProvider() { // from class: androidx.fragment.app.FragmentActivity.1
+            @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
+            @NonNull
+            public Bundle saveState() {
+                Bundle bundle = new Bundle();
+                FragmentActivity.this.markFragmentsCreated();
+                FragmentActivity.this.mFragmentLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
+                Parcelable parcelableSaveAllState = FragmentActivity.this.mFragments.saveAllState();
+                if (parcelableSaveAllState != null) {
+                    bundle.putParcelable(FragmentActivity.FRAGMENTS_TAG, parcelableSaveAllState);
+                }
+                return bundle;
+            }
+        });
+        addOnContextAvailableListener(new OnContextAvailableListener() { // from class: androidx.fragment.app.FragmentActivity.2
+            @Override // androidx.activity.contextaware.OnContextAvailableListener
+            public void onContextAvailable(@NonNull Context context) {
+                FragmentActivity.this.mFragments.attachHost(null);
+                Bundle bundleConsumeRestoredStateForKey = FragmentActivity.this.getSavedStateRegistry().consumeRestoredStateForKey(FragmentActivity.FRAGMENTS_TAG);
+                if (bundleConsumeRestoredStateForKey != null) {
+                    FragmentActivity.this.mFragments.restoreSaveState(bundleConsumeRestoredStateForKey.getParcelable(FragmentActivity.FRAGMENTS_TAG));
+                }
+            }
+        });
+    }
+
     public void markFragmentsCreated() {
         while (markState(getSupportFragmentManager(), Lifecycle.State.CREATED)) {
         }
+    }
+
+    private static boolean markState(FragmentManager fragmentManager, Lifecycle.State state) {
+        boolean zMarkState = false;
+        for (Fragment fragment : fragmentManager.getFragments()) {
+            if (fragment != null) {
+                if (fragment.getHost() != null) {
+                    zMarkState |= markState(fragment.getChildFragmentManager(), state);
+                }
+                FragmentViewLifecycleOwner fragmentViewLifecycleOwner = fragment.mViewLifecycleOwner;
+                if (fragmentViewLifecycleOwner != null && fragmentViewLifecycleOwner.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    fragment.mViewLifecycleOwner.setCurrentState(state);
+                    zMarkState = true;
+                }
+                if (fragment.mLifecycleRegistry.getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    fragment.mLifecycleRegistry.setCurrentState(state);
+                    zMarkState = true;
+                }
+            }
+        }
+        return zMarkState;
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity

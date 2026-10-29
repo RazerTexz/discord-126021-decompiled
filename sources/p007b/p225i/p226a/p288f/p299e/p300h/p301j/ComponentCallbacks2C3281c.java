@@ -16,6 +16,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /* JADX INFO: loaded from: classes3.dex */
 public final class ComponentCallbacks2C3281c implements Application.ActivityLifecycleCallbacks, ComponentCallbacks2 {
 
+    /* JADX INFO: renamed from: n */
+    public boolean f9353n = false;
+
     /* JADX INFO: renamed from: j */
     public static final ComponentCallbacks2C3281c f9349j = new ComponentCallbacks2C3281c();
 
@@ -27,9 +30,6 @@ public final class ComponentCallbacks2C3281c implements Application.ActivityLife
 
     /* JADX INFO: renamed from: m */
     public final ArrayList<a> f9352m = new ArrayList<>();
-
-    /* JADX INFO: renamed from: n */
-    public boolean f9353n = false;
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.j.c$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */

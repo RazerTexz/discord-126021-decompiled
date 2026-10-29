@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserTrialOfferCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserTrialOfferCreated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long trialOfferId = null;
-    private final Long trialId = null;
     private final Long expiresAt = null;
+    private TrackBase trackBase;
+    private final Long trialId = null;
+    private final Long trialOfferId = null;
     private final transient String analyticsSchemaTypeName = "user_trial_offer_created";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackUserTrialOfferCreated implements AnalyticsSch
         }
         TrackUserTrialOfferCreated trackUserTrialOfferCreated = (TrackUserTrialOfferCreated) other;
         return C12238m.areEqual(this.trialOfferId, trackUserTrialOfferCreated.trialOfferId) && C12238m.areEqual(this.trialId, trackUserTrialOfferCreated.trialId) && C12238m.areEqual(this.expiresAt, trackUserTrialOfferCreated.expiresAt);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

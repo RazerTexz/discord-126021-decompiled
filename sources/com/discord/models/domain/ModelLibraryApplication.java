@@ -18,7 +18,7 @@ public final /* data */ class ModelLibraryApplication {
     private final long skuId;
 
     /* JADX INFO: compiled from: ModelLibraryApplication.kt */
-    public static final class Parser implements Model.Parser<ModelLibraryApplication> {
+    public final class Parser implements Model.Parser<ModelLibraryApplication> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -127,31 +127,6 @@ public final /* data */ class ModelLibraryApplication {
         return modelLibraryApplication.copy(application, str2, j3, i3, j2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getCreatedAt() {
-        return this.createdAt;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getSkuId() {
-        return this.skuId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getFlags() {
-        return this.flags;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getBranchId() {
-        return this.branchId;
-    }
-
     public final ModelLibraryApplication copy(Application application, String createdAt, long skuId, int flags, long branchId) {
         C12238m.checkNotNullParameter(application, "application");
         C12238m.checkNotNullParameter(createdAt, "createdAt");
@@ -169,20 +144,45 @@ public final /* data */ class ModelLibraryApplication {
         return C12238m.areEqual(this.application, modelLibraryApplication.application) && C12238m.areEqual(this.createdAt, modelLibraryApplication.createdAt) && this.skuId == modelLibraryApplication.skuId && this.flags == modelLibraryApplication.flags && this.branchId == modelLibraryApplication.branchId;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getBranchId() {
+        return this.branchId;
     }
 
     public final long getBranchId() {
         return this.branchId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getCreatedAt() {
         return this.createdAt;
     }
 
+    public final String getCreatedAt() {
+        return this.createdAt;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getFlags() {
         return this.flags;
+    }
+
+    public final int getFlags() {
+        return this.flags;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getSkuId() {
+        return this.skuId;
     }
 
     public final long getSkuId() {

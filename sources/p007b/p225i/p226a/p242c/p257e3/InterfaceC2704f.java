@@ -15,14 +15,14 @@ public interface InterfaceC2704f {
 
         /* JADX INFO: renamed from: b.i.a.c.e3.f$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: BandwidthMeter.java */
-        public static final class C13224a {
+        public final class C13224a {
 
             /* JADX INFO: renamed from: a */
             public final CopyOnWriteArrayList<C13225a> f6524a = new CopyOnWriteArrayList<>();
 
             /* JADX INFO: renamed from: b.i.a.c.e3.f$a$a$a, reason: collision with other inner class name */
             /* JADX INFO: compiled from: BandwidthMeter.java */
-            public static final class C13225a {
+            public final class C13225a {
 
                 /* JADX INFO: renamed from: a */
                 public final Handler f6525a;

@@ -17,7 +17,7 @@ public final class C11420m implements InterfaceC11562b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.a.m$a */
     /* JADX INFO: compiled from: RuntimeSourceElementFactory.kt */
-    public static final class a implements InterfaceC11561a {
+    public final class a implements InterfaceC11561a {
 
         /* JADX INFO: renamed from: b */
         public final AbstractC11435n f23026b;

@@ -37,7 +37,7 @@ public abstract class MGRecyclerAdapterSimple<D extends MGRecyclerDataPayload> e
 
     /* JADX INFO: renamed from: com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple$setData$2 */
     /* JADX INFO: compiled from: MGRecyclerAdapterSimple.kt */
-    public static final class C68162 extends AbstractC12240o implements Function1<DiffUtil.DiffResult, Unit> {
+    public final class C68162 extends AbstractC12240o implements Function1<DiffUtil.DiffResult, Unit> {
         public final /* synthetic */ List $newData;
         public final /* synthetic */ List $oldData;
 
@@ -62,7 +62,7 @@ public abstract class MGRecyclerAdapterSimple<D extends MGRecyclerDataPayload> e
 
     /* JADX INFO: renamed from: com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple$setData$3 */
     /* JADX INFO: compiled from: MGRecyclerAdapterSimple.kt */
-    public static final class C68173 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C68173 extends AbstractC12240o implements Function1<Error, Unit> {
         public C68173() {
             super(1);
         }
@@ -85,7 +85,7 @@ public abstract class MGRecyclerAdapterSimple<D extends MGRecyclerDataPayload> e
 
     /* JADX INFO: renamed from: com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple$setData$4 */
     /* JADX INFO: compiled from: MGRecyclerAdapterSimple.kt */
-    public static final class C68184 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C68184 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C68184() {
             super(1);
         }
@@ -125,12 +125,13 @@ public abstract class MGRecyclerAdapterSimple<D extends MGRecyclerDataPayload> e
         }
     }
 
-    private final void handleError(Throwable throwable) {
-        AppLog.f14950g.mo8364e("Unable to configure recycler.", throwable, C12134g0.mapOf(C12116o.m10073to("adapterClass", getClass().getSimpleName())));
-    }
-
     public final List<D> getInternalData() {
         return this.internalData;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public int getItemViewType(int position) {
+        return getItem(position).getType();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -139,9 +140,8 @@ public abstract class MGRecyclerAdapterSimple<D extends MGRecyclerDataPayload> e
         return this.internalData.size();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public int getItemViewType(int position) {
-        return getItem(position).getType();
+    private final void handleError(Throwable throwable) {
+        AppLog.f14950g.mo8364e("Unable to configure recycler.", throwable, C12134g0.mapOf(C12116o.m10073to("adapterClass", getClass().getSimpleName())));
     }
 
     public void setData(final List<? extends D> data) {

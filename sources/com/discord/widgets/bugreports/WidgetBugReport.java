@@ -62,6 +62,10 @@ import p658rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetBugReport.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetBugReport extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetBugReport.class, "binding", "getBinding()Lcom/discord/databinding/WidgetBugReportBinding;", 0)};
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final String INTENT_EXTRA_SCREENSHOT_FILENAME = "extra_screenshot_filename";
     public static final String INTENT_EXTRA_SCREENSHOT_URI = "extra_screenshot_uri";
     public static final int VIEW_INDEX_FEATURE_AREA = 2;
@@ -82,14 +86,110 @@ public final class WidgetBugReport extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetBugReport.class, "binding", "getBinding()Lcom/discord/databinding/WidgetBugReportBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final List<Priority> priorityLevels = C12147n.listOf((Object[]) new Priority[]{new Priority(C5419R.string.bug_report_priority_critical_title, C5419R.string.bug_report_priority_critical_description, 801497159479722084L), new Priority(C5419R.string.bug_report_priority_high_title, C5419R.string.bug_report_priority_high_description, 410336837563973632L), new Priority(C5419R.string.bug_report_priority_low_title, C5419R.string.bug_report_priority_low_description, 841420679643529296L), new Priority(C5419R.string.bug_report_priority_very_low_title, C5419R.string.bug_report_priority_very_low_description, 827645852352512021L)});
 
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final class Companion {
+    public final class C72902 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C72902() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetBugReport.this.getViewModel().updateReportName(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final class C72913 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C72913() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetBugReport.this.getViewModel().updateReportDescription(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final class C72924 extends AbstractC12240o implements Function1<String, Unit> {
+        public C72924() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "it");
+            WidgetBugReport.this.getViewModel().m11400filterFeatures(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final class C72971 extends AbstractC12240o implements Function1<BugReportViewModel.ViewState, Unit> {
+        public C72971() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(BugReportViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(BugReportViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetBugReport.this.updateView(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final /* synthetic */ class C72982 extends C12236k implements Function1<BugReportViewModel.Event, Unit> {
+        public C72982(WidgetBugReport widgetBugReport) {
+            super(1, widgetBugReport, WidgetBugReport.class, "handleEvent", "handleEvent(Lcom/discord/widgets/bugreports/BugReportViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(BugReportViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(BugReportViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetBugReport) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -111,106 +211,6 @@ public final class WidgetBugReport extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final class C72902 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C72902() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetBugReport.this.getViewModel().updateReportName(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final class C72913 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C72913() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetBugReport.this.getViewModel().updateReportDescription(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final class C72924 extends AbstractC12240o implements Function1<String, Unit> {
-        public C72924() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "it");
-            WidgetBugReport.this.getViewModel().m11400filterFeatures(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final class C72971 extends AbstractC12240o implements Function1<BugReportViewModel.ViewState, Unit> {
-        public C72971() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(BugReportViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(BugReportViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetBugReport.this.updateView(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static final /* synthetic */ class C72982 extends C12236k implements Function1<BugReportViewModel.Event, Unit> {
-        public C72982(WidgetBugReport widgetBugReport) {
-            super(1, widgetBugReport, WidgetBugReport.class, "handleEvent", "handleEvent(Lcom/discord/widgets/bugreports/BugReportViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(BugReportViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(BugReportViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetBugReport) this.receiver).handleEvent(event);
-        }
-    }
-
     public WidgetBugReport() {
         super(C5419R.layout.widget_bug_report);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetBugReport$binding$2.INSTANCE, null, 2, null);
@@ -227,6 +227,14 @@ public final class WidgetBugReport extends AppFragment {
         return (WidgetBugReportBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    public final BugReportFeatureAdapter getFeaturesAdapter() {
+        return this.featuresAdapter;
+    }
+
+    public final List<C1324c0> getItems() {
+        return (List) this.items.getValue();
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
     }
@@ -241,37 +249,6 @@ public final class WidgetBugReport extends AppFragment {
             return;
         }
         appActivity.finish();
-    }
-
-    private final void submit() {
-        InputStream inputStreamOpenInputStream;
-        byte[] bytes;
-        RequestBody requestBodyM10986d = null;
-        MediaType mediaTypeM10967a = null;
-        requestBodyM10986d = null;
-        requestBodyM10986d = null;
-        requestBodyM10986d = null;
-        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            Uri screenshotUri = getViewModel().getScreenshotUri();
-            if (getViewModel().getUseScreenshot() && screenshotUri.getPath() != null && (inputStreamOpenInputStream = requireContext().getContentResolver().openInputStream(screenshotUri)) != null && (bytes = C12200a.readBytes(inputStreamOpenInputStream)) != null) {
-                RequestBody.Companion companion = RequestBody.INSTANCE;
-                String type = requireContext().getContentResolver().getType(screenshotUri);
-                if (type != null) {
-                    MediaType.Companion companion2 = MediaType.INSTANCE;
-                    mediaTypeM10967a = MediaType.Companion.m10967a(type);
-                }
-                requestBodyM10986d = RequestBody.Companion.m10986d(companion, bytes, mediaTypeM10967a, 0, 0, 6);
-            }
-            getViewModel().sendReport(requestBodyM10986d);
-        }
-    }
-
-    public final BugReportFeatureAdapter getFeaturesAdapter() {
-        return this.featuresAdapter;
-    }
-
-    public final List<C1324c0> getItems() {
-        return (List) this.items.getValue();
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -319,7 +296,7 @@ public final class WidgetBugReport extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.bugreports.WidgetBugReport$onViewBound$6$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetBugReport.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -365,6 +342,29 @@ public final class WidgetBugReport extends AppFragment {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetBugReport.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72971());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetBugReport.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72982(this));
+    }
+
+    private final void submit() {
+        InputStream inputStreamOpenInputStream;
+        byte[] bytes;
+        RequestBody requestBodyM10986d = null;
+        MediaType mediaTypeM10967a = null;
+        requestBodyM10986d = null;
+        requestBodyM10986d = null;
+        requestBodyM10986d = null;
+        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            Uri screenshotUri = getViewModel().getScreenshotUri();
+            if (getViewModel().getUseScreenshot() && screenshotUri.getPath() != null && (inputStreamOpenInputStream = requireContext().getContentResolver().openInputStream(screenshotUri)) != null && (bytes = C12200a.readBytes(inputStreamOpenInputStream)) != null) {
+                RequestBody.Companion companion = RequestBody.INSTANCE;
+                String type = requireContext().getContentResolver().getType(screenshotUri);
+                if (type != null) {
+                    MediaType.Companion companion2 = MediaType.INSTANCE;
+                    mediaTypeM10967a = MediaType.Companion.m10967a(type);
+                }
+                requestBodyM10986d = RequestBody.Companion.m10986d(companion, bytes, mediaTypeM10967a, 0, 0, 6);
+            }
+            getViewModel().sendReport(requestBodyM10986d);
+        }
     }
 
     public final void updateView(BugReportViewModel.ViewState viewState) {

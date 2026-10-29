@@ -31,16 +31,6 @@ public final /* data */ class ServerSettingsRoleMemberAdapterItem implements Dif
         return serverSettingsRoleMemberAdapterItem.copy(guildMember, member);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final PermissionOwner.Member getPermissionOwner() {
-        return this.permissionOwner;
-    }
-
     public final ServerSettingsRoleMemberAdapterItem copy(GuildMember guildMember, PermissionOwner.Member permissionOwner) {
         C12238m.checkNotNullParameter(guildMember, "guildMember");
         C12238m.checkNotNullParameter(permissionOwner, "permissionOwner");
@@ -58,6 +48,11 @@ public final /* data */ class ServerSettingsRoleMemberAdapterItem implements Dif
         return C12238m.areEqual(this.guildMember, serverSettingsRoleMemberAdapterItem.guildMember) && C12238m.areEqual(this.permissionOwner, serverSettingsRoleMemberAdapterItem.permissionOwner);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
     public final GuildMember getGuildMember() {
         return this.guildMember;
     }
@@ -65,6 +60,11 @@ public final /* data */ class ServerSettingsRoleMemberAdapterItem implements Dif
     @Override // com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final PermissionOwner.Member getPermissionOwner() {
+        return this.permissionOwner;
     }
 
     public final PermissionOwner.Member getPermissionOwner() {

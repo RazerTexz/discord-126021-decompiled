@@ -13,9 +13,6 @@ public class C2138b {
     /* JADX INFO: renamed from: b */
     public Class<?> f4585b;
 
-    /* JADX INFO: renamed from: c */
-    public Object f4586c = null;
-
     /* JADX INFO: renamed from: d */
     public String f4587d;
 
@@ -27,6 +24,9 @@ public class C2138b {
 
     /* JADX INFO: renamed from: g */
     public boolean f4590g;
+
+    /* JADX INFO: renamed from: c */
+    public Object f4586c = null;
 
     public C2138b(Object obj, EnumC2112h enumC2112h) {
         this.f4584a = obj;

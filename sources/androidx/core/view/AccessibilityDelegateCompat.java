@@ -20,11 +20,11 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AccessibilityDelegateCompat {
-    private static final View.AccessibilityDelegate DEFAULT_DELEGATE = new View.AccessibilityDelegate();
     private final View.AccessibilityDelegate mBridge;
     private final View.AccessibilityDelegate mOriginalDelegate;
+    private static final View.AccessibilityDelegate DEFAULT_DELEGATE = new View.AccessibilityDelegate();
 
-    public static final class AccessibilityDelegateAdapter extends View.AccessibilityDelegate {
+    public final class AccessibilityDelegateAdapter extends View.AccessibilityDelegate {
         public final AccessibilityDelegateCompat mCompat;
 
         public AccessibilityDelegateAdapter(AccessibilityDelegateCompat accessibilityDelegateCompat) {
@@ -96,37 +96,6 @@ public class AccessibilityDelegateCompat {
         this(DEFAULT_DELEGATE);
     }
 
-    public static List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> getActionList(View view) {
-        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> list = (List) view.getTag(C0205R.id.tag_accessibility_actions);
-        return list == null ? Collections.emptyList() : list;
-    }
-
-    private boolean isSpanStillValid(ClickableSpan clickableSpan, View view) {
-        if (clickableSpan != null) {
-            ClickableSpan[] clickableSpans = AccessibilityNodeInfoCompat.getClickableSpans(view.createAccessibilityNodeInfo().getText());
-            for (int i = 0; clickableSpans != null && i < clickableSpans.length; i++) {
-                if (clickableSpan.equals(clickableSpans[i])) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean performClickableSpanAction(int i, View view) {
-        WeakReference weakReference;
-        SparseArray sparseArray = (SparseArray) view.getTag(C0205R.id.tag_accessibility_clickable_spans);
-        if (sparseArray == null || (weakReference = (WeakReference) sparseArray.get(i)) == null) {
-            return false;
-        }
-        ClickableSpan clickableSpan = (ClickableSpan) weakReference.get();
-        if (!isSpanStillValid(clickableSpan, view)) {
-            return false;
-        }
-        clickableSpan.onClick(view);
-        return true;
-    }
-
     public boolean dispatchPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
         return this.mOriginalDelegate.dispatchPopulateAccessibilityEvent(view, accessibilityEvent);
     }
@@ -139,8 +108,25 @@ public class AccessibilityDelegateCompat {
         return null;
     }
 
+    public static List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> getActionList(View view) {
+        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> list = (List) view.getTag(C0205R.id.tag_accessibility_actions);
+        return list == null ? Collections.emptyList() : list;
+    }
+
     public View.AccessibilityDelegate getBridge() {
         return this.mBridge;
+    }
+
+    private boolean isSpanStillValid(ClickableSpan clickableSpan, View view) {
+        if (clickableSpan != null) {
+            ClickableSpan[] clickableSpans = AccessibilityNodeInfoCompat.getClickableSpans(view.createAccessibilityNodeInfo().getText());
+            for (int i = 0; clickableSpans != null && i < clickableSpans.length; i++) {
+                if (clickableSpan.equals(clickableSpans[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
@@ -173,6 +159,20 @@ public class AccessibilityDelegateCompat {
             zPerformAccessibilityAction = this.mOriginalDelegate.performAccessibilityAction(view, i, bundle);
         }
         return (zPerformAccessibilityAction || i != C0205R.id.accessibility_action_clickable_span) ? zPerformAccessibilityAction : performClickableSpanAction(bundle.getInt(AccessibilityClickableSpanCompat.SPAN_ID, -1), view);
+    }
+
+    private boolean performClickableSpanAction(int i, View view) {
+        WeakReference weakReference;
+        SparseArray sparseArray = (SparseArray) view.getTag(C0205R.id.tag_accessibility_clickable_spans);
+        if (sparseArray == null || (weakReference = (WeakReference) sparseArray.get(i)) == null) {
+            return false;
+        }
+        ClickableSpan clickableSpan = (ClickableSpan) weakReference.get();
+        if (!isSpanStillValid(clickableSpan, view)) {
+            return false;
+        }
+        clickableSpan.onClick(view);
+        return true;
     }
 
     public void sendAccessibilityEvent(View view, int i) {

@@ -74,22 +74,22 @@ import p658rx.functions.Func2;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0805c extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f232j = {C1643a.m846d0(C0805c.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAcceptGiftDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f232j = {C1643a.m846d0(C0805c.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAcceptGiftDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: b.a.a.a0.c$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: renamed from: b.a.a.a0.c$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-        public static final class C13206a {
+        public final class C13206a {
 
             /* JADX INFO: renamed from: a */
             public final StoreGifting.GiftState f235a;
@@ -140,7 +140,7 @@ public final class C0805c extends AppDialog {
 
         /* JADX INFO: renamed from: b.a.a.a0.c$a$b */
         /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-        public static final class b extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+        public final class b extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
             public final /* synthetic */ long $channelId;
             public final /* synthetic */ String $giftCode;
             public final /* synthetic */ String $source;
@@ -186,7 +186,7 @@ public final class C0805c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.c$b */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C1007m4> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C1007m4> {
 
         /* JADX INFO: renamed from: j */
         public static final b f237j = new b();
@@ -247,7 +247,7 @@ public final class C0805c extends AppDialog {
     /* JADX INFO: renamed from: b.a.a.a0.c$c */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
     @InterfaceC12188e(m10084c = "com.discord.dialogs.gifting.WidgetGiftAcceptDialog$configureUI$1$1", m10085f = "WidgetGiftAcceptDialog.kt", m10086l = {118}, m10087m = "invokeSuspend")
-    public static final class c extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class c extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ RLottieImageView $this_apply;
         public int label;
 
@@ -271,7 +271,7 @@ public final class C0805c extends AppDialog {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -293,7 +293,7 @@ public final class C0805c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.c$d */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-    public static final class d<T1, T2, R> implements Func2<StoreGifting.GiftState, Boolean, Companion.C13206a> {
+    public final class d<T1, T2, R> implements Func2<StoreGifting.GiftState, Boolean, Companion.C13206a> {
 
         /* JADX INFO: renamed from: j */
         public static final d f238j = new d();
@@ -310,7 +310,7 @@ public final class C0805c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.c$e */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-    public static final class e extends AbstractC12240o implements Function1<Companion.C13206a, Unit> {
+    public final class e extends AbstractC12240o implements Function1<Companion.C13206a, Unit> {
         public e() {
             super(1);
         }
@@ -462,7 +462,7 @@ public final class C0805c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.a0.c$f */
     /* JADX INFO: compiled from: WidgetGiftAcceptDialog.kt */
-    public static final class f extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class f extends AbstractC12240o implements Function1<Error, Unit> {
         public f() {
             super(1);
         }

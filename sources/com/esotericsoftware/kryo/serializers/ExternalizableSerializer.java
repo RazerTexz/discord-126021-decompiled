@@ -75,6 +75,12 @@ public class ExternalizableSerializer extends Serializer {
         return hasInheritableReplaceMethod(cls, "writeReplace") || hasInheritableReplaceMethod(cls, "readResolve");
     }
 
+    @Override // com.esotericsoftware.kryo.Serializer
+    public Object read(Kryo kryo, Input input, Class cls) {
+        JavaSerializer javaSerializerIfRequired = getJavaSerializerIfRequired(cls);
+        return javaSerializerIfRequired == null ? readExternal(kryo, input, cls) : javaSerializerIfRequired.read(kryo, input, cls);
+    }
+
     private Object readExternal(Kryo kryo, Input input, Class cls) {
         try {
             Externalizable externalizable = (Externalizable) kryo.newInstance(cls);
@@ -89,22 +95,6 @@ public class ExternalizableSerializer extends Serializer {
         }
     }
 
-    private void writeExternal(Kryo kryo, Output output, Object obj) {
-        try {
-            ((Externalizable) obj).writeExternal(getObjectOutput(kryo, output));
-        } catch (IOException e) {
-            throw new KryoException(e);
-        } catch (ClassCastException e2) {
-            throw new KryoException(e2);
-        }
-    }
-
-    @Override // com.esotericsoftware.kryo.Serializer
-    public Object read(Kryo kryo, Input input, Class cls) {
-        JavaSerializer javaSerializerIfRequired = getJavaSerializerIfRequired(cls);
-        return javaSerializerIfRequired == null ? readExternal(kryo, input, cls) : javaSerializerIfRequired.read(kryo, input, cls);
-    }
-
     @Override // com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, Object obj) {
         JavaSerializer javaSerializerIfRequired = getJavaSerializerIfRequired(obj.getClass());
@@ -112,6 +102,16 @@ public class ExternalizableSerializer extends Serializer {
             writeExternal(kryo, output, obj);
         } else {
             javaSerializerIfRequired.write(kryo, output, obj);
+        }
+    }
+
+    private void writeExternal(Kryo kryo, Output output, Object obj) {
+        try {
+            ((Externalizable) obj).writeExternal(getObjectOutput(kryo, output));
+        } catch (IOException e) {
+            throw new KryoException(e);
+        } catch (ClassCastException e2) {
+            throw new KryoException(e2);
         }
     }
 }

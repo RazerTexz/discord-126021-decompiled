@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionGracePeriodScheduled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionGracePeriodScheduled implements AnalyticsSchema, TrackBaseReceiver, TrackSubscriptionMetadataReceiver {
+    private final Long currentPeriodEnd = null;
+    private final Long currentPeriodStart = null;
+    private final Long gracePeriodDays = null;
+    private final Long invoiceDueAt = null;
+    private final Long invoiceId = null;
+    private final Long paymentGateway = null;
+    private final Long subscriptionId = null;
     private TrackBase trackBase;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final Long subscriptionId = null;
-    private final Long paymentGateway = null;
-    private final Long currentPeriodStart = null;
-    private final Long currentPeriodEnd = null;
-    private final Long invoiceId = null;
-    private final Long invoiceDueAt = null;
-    private final Long gracePeriodDays = null;
     private final transient String analyticsSchemaTypeName = "subscription_grace_period_scheduled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackSubscriptionGracePeriodScheduled implements A
         }
         TrackSubscriptionGracePeriodScheduled trackSubscriptionGracePeriodScheduled = (TrackSubscriptionGracePeriodScheduled) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionGracePeriodScheduled.subscriptionId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionGracePeriodScheduled.paymentGateway) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionGracePeriodScheduled.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionGracePeriodScheduled.currentPeriodEnd) && C12238m.areEqual(this.invoiceId, trackSubscriptionGracePeriodScheduled.invoiceId) && C12238m.areEqual(this.invoiceDueAt, trackSubscriptionGracePeriodScheduled.invoiceDueAt) && C12238m.areEqual(this.gracePeriodDays, trackSubscriptionGracePeriodScheduled.gracePeriodDays);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

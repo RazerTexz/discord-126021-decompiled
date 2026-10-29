@@ -34,6 +34,30 @@ public abstract class AbstractC1965b<T> implements InterfaceC1995l<T> {
         return (i & i2) == i2;
     }
 
+    /* JADX INFO: renamed from: k */
+    public void m1427k(Exception exc) {
+        String strM886y = C1643a.m886y(EnvironmentCompat.MEDIA_UNKNOWN, ":", getClass().getSimpleName());
+        StringBuilder sb = new StringBuilder();
+        sb.append("unhandled exception");
+        sb.append('\n');
+        StringWriter stringWriter = new StringWriter();
+        exc.printStackTrace(new PrintWriter(stringWriter));
+        sb.append(stringWriter.toString());
+        Log.println(6, strM886y, sb.toString());
+    }
+
+    /* JADX INFO: renamed from: g */
+    public abstract void mo1318g();
+
+    /* JADX INFO: renamed from: h */
+    public abstract void mo1319h(Throwable th);
+
+    /* JADX INFO: renamed from: i */
+    public abstract void mo1320i(T t, int i);
+
+    /* JADX INFO: renamed from: j */
+    public abstract void mo1321j(float f);
+
     @Override // p007b.p109f.p161j.p181p.InterfaceC1995l
     /* JADX INFO: renamed from: a */
     public synchronized void mo1423a(float f) {
@@ -87,29 +111,5 @@ public abstract class AbstractC1965b<T> implements InterfaceC1995l<T> {
         } catch (Exception e) {
             m1427k(e);
         }
-    }
-
-    /* JADX INFO: renamed from: g */
-    public abstract void mo1318g();
-
-    /* JADX INFO: renamed from: h */
-    public abstract void mo1319h(Throwable th);
-
-    /* JADX INFO: renamed from: i */
-    public abstract void mo1320i(T t, int i);
-
-    /* JADX INFO: renamed from: j */
-    public abstract void mo1321j(float f);
-
-    /* JADX INFO: renamed from: k */
-    public void m1427k(Exception exc) {
-        String strM886y = C1643a.m886y(EnvironmentCompat.MEDIA_UNKNOWN, ":", getClass().getSimpleName());
-        StringBuilder sb = new StringBuilder();
-        sb.append("unhandled exception");
-        sb.append('\n');
-        StringWriter stringWriter = new StringWriter();
-        exc.printStackTrace(new PrintWriter(stringWriter));
-        sb.append(stringWriter.toString());
-        Log.println(6, strM886y, sb.toString());
     }
 }

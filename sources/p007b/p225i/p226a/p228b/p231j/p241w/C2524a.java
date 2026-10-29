@@ -11,11 +11,11 @@ import p007b.p225i.p226a.p228b.EnumC2409d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2524a {
 
-    /* JADX INFO: renamed from: a */
-    public static SparseArray<EnumC2409d> f5461a = new SparseArray<>();
-
     /* JADX INFO: renamed from: b */
     public static EnumMap<EnumC2409d, Integer> f5462b;
+
+    /* JADX INFO: renamed from: a */
+    public static SparseArray<EnumC2409d> f5461a = new SparseArray<>();
 
     static {
         EnumMap<EnumC2409d, Integer> enumMap = new EnumMap<>(EnumC2409d.class);

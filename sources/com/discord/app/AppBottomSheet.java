@@ -55,7 +55,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
     /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class C5439a implements OnApplyWindowInsetsListener {
+    public final class C5439a implements OnApplyWindowInsetsListener {
 
         /* JADX INFO: renamed from: a */
         public static final C5439a f14929a = new C5439a(0);
@@ -91,7 +91,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
     /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$b */
     /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class C5440b extends AbstractC12240o implements Function0<AppLogger> {
+    public final class C5440b extends AbstractC12240o implements Function0<AppLogger> {
         public C5440b() {
             super(0);
         }
@@ -102,9 +102,30 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$d */
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class C5442d extends BottomSheetBehavior.BottomSheetCallback {
+        public C5442d() {
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onSlide(View view, float f) {
+            C12238m.checkNotNullParameter(view, "bottomSheet");
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onStateChanged(View view, int i) {
+            C12238m.checkNotNullParameter(view, "bottomSheet");
+            AppBottomSheet.this.onStateChanged(i);
+            if (i == 5) {
+                AppBottomSheet.this.dismiss();
+            }
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$c */
     /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class DialogInterfaceOnShowListenerC5441c implements DialogInterface.OnShowListener {
+    public final class DialogInterfaceOnShowListenerC5441c implements DialogInterface.OnShowListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Dialog f14932a;
@@ -114,7 +135,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
         /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$c$a */
         /* JADX INFO: compiled from: AppBottomSheet.kt */
-        public static final class a extends AbstractC12240o implements Function1<Unit, Unit> {
+        public final class a extends AbstractC12240o implements Function1<Unit, Unit> {
             public a() {
                 super(1);
             }
@@ -147,42 +168,9 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$d */
-    /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class C5442d extends BottomSheetBehavior.BottomSheetCallback {
-        public C5442d() {
-        }
-
-        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
-        public void onSlide(View view, float f) {
-            C12238m.checkNotNullParameter(view, "bottomSheet");
-        }
-
-        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
-        public void onStateChanged(View view, int i) {
-            C12238m.checkNotNullParameter(view, "bottomSheet");
-            AppBottomSheet.this.onStateChanged(i);
-            if (i == 5) {
-                AppBottomSheet.this.dismiss();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$e */
-    /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class ViewOnLayoutChangeListenerC5443e implements View.OnLayoutChangeListener {
-        public ViewOnLayoutChangeListenerC5443e() {
-        }
-
-        @Override // android.view.View.OnLayoutChangeListener
-        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-            AppBottomSheet.this.updatePeekHeightPx(i4);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$f */
     /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class DialogInterfaceOnShowListenerC5444f implements DialogInterface.OnShowListener {
+    public final class DialogInterfaceOnShowListenerC5444f implements DialogInterface.OnShowListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Dialog f14936a;
@@ -202,7 +190,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
     /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$g */
     /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public static final class ViewOnClickListenerC5445g implements View.OnClickListener {
+    public final class ViewOnClickListenerC5445g implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ View f14938k;
@@ -221,12 +209,36 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.app.AppBottomSheet$e */
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class ViewOnLayoutChangeListenerC5443e implements View.OnLayoutChangeListener {
+        public ViewOnLayoutChangeListenerC5443e() {
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            AppBottomSheet.this.updatePeekHeightPx(i4);
+        }
+    }
+
     public AppBottomSheet() {
         this(false, 1, null);
     }
 
     public /* synthetic */ AppBottomSheet(boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this((i & 1) != 0 ? false : z2);
+    }
+
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+    }
+
+    @Override // com.google.android.material.bottomsheet.BottomSheetDialogFragment, androidx.fragment.app.DialogFragment
+    public void dismiss() {
+        try {
+            super.dismiss();
+        } catch (Exception unused) {
+        }
     }
 
     private final void fixWindowInsetHandling() {
@@ -243,8 +255,21 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         ViewCompat.setOnApplyWindowInsetsListener(view, C5439a.f14930b);
     }
 
+    public final AppActivity getAppActivity() {
+        return (AppActivity) m95e();
+    }
+
     private final AppLogger getAppLogger() {
         return (AppLogger) this.appLogger.getValue();
+    }
+
+    public final Bundle getArgumentsOrDefault() {
+        Bundle arguments = getArguments();
+        if (arguments == null) {
+            arguments = new Bundle();
+        }
+        C12238m.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
+        return arguments;
     }
 
     private final BottomSheetBehavior<View> getBottomSheetBehavior() {
@@ -263,50 +288,6 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         return (BottomSheetBehavior) (behavior instanceof BottomSheetBehavior ? behavior : null);
     }
 
-    public static /* synthetic */ void hideKeyboard$default(AppBottomSheet appBottomSheet, View view, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
-        }
-        if ((i & 1) != 0) {
-            view = null;
-        }
-        appBottomSheet.hideKeyboard(view);
-    }
-
-    private final void resizeContentForSoftInput() {
-        Window window;
-        Dialog dialog = getDialog();
-        if (dialog == null || (window = dialog.getWindow()) == null) {
-            return;
-        }
-        window.setSoftInputMode(16);
-    }
-
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-    }
-
-    @Override // com.google.android.material.bottomsheet.BottomSheetDialogFragment, androidx.fragment.app.DialogFragment
-    public void dismiss() {
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-    }
-
-    public final AppActivity getAppActivity() {
-        return (AppActivity) m95e();
-    }
-
-    public final Bundle getArgumentsOrDefault() {
-        Bundle arguments = getArguments();
-        if (arguments == null) {
-            arguments = new Bundle();
-        }
-        C12238m.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
-        return arguments;
-    }
-
     @LayoutRes
     public abstract int getContentViewResId();
 
@@ -323,6 +304,16 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     @Override // com.discord.app.AppPermissionsRequests
     public boolean hasMedia() {
         return requireAppActivity().appPermissions.hasMedia();
+    }
+
+    public static /* synthetic */ void hideKeyboard$default(AppBottomSheet appBottomSheet, View view, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
+        }
+        if ((i & 1) != 0) {
+            view = null;
+        }
+        appBottomSheet.hideKeyboard(view);
     }
 
     public final void hideKeyboard(View view) {
@@ -446,6 +437,15 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         AppActivity appActivity = getAppActivity();
         C12238m.checkNotNull(appActivity);
         return appActivity;
+    }
+
+    private final void resizeContentForSoftInput() {
+        Window window;
+        Dialog dialog = getDialog();
+        if (dialog == null || (window = dialog.getWindow()) == null) {
+            return;
+        }
+        window.setSoftInputMode(16);
     }
 
     public final Unit setBottomSheetCollapsedStateDisabled() {

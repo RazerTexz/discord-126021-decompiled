@@ -74,110 +74,6 @@ public class MotionController {
         setView(view);
     }
 
-    private float getAdjustedPosition(float f, float[] fArr) {
-        float f2 = 0.0f;
-        if (fArr != null) {
-            fArr[0] = 1.0f;
-        } else {
-            float f3 = this.mStaggerScale;
-            if (f3 != 1.0d) {
-                float f4 = this.mStaggerOffset;
-                if (f < f4) {
-                    f = 0.0f;
-                }
-                if (f > f4 && f < 1.0d) {
-                    f = (f - f4) * f3;
-                }
-            }
-        }
-        Easing easing = this.mStartMotionPath.mKeyFrameEasing;
-        float f5 = Float.NaN;
-        for (MotionPaths motionPaths : this.mMotionPaths) {
-            Easing easing2 = motionPaths.mKeyFrameEasing;
-            if (easing2 != null) {
-                float f6 = motionPaths.time;
-                if (f6 < f) {
-                    easing = easing2;
-                    f2 = f6;
-                } else if (Float.isNaN(f5)) {
-                    f5 = motionPaths.time;
-                }
-            }
-        }
-        if (easing != null) {
-            float f7 = (Float.isNaN(f5) ? 1.0f : f5) - f2;
-            double d = (f - f2) / f7;
-            f = (((float) easing.get(d)) * f7) + f2;
-            if (fArr != null) {
-                fArr[0] = (float) easing.getDiff(d);
-            }
-        }
-        return f;
-    }
-
-    private float getPreCycleDistance() {
-        float[] fArr = new float[2];
-        float f = 1.0f / 99;
-        double d = 0.0d;
-        double d2 = 0.0d;
-        int i = 0;
-        float fHypot = 0.0f;
-        while (i < 100) {
-            float f2 = i * f;
-            double d3 = f2;
-            Easing easing = this.mStartMotionPath.mKeyFrameEasing;
-            float f3 = Float.NaN;
-            float f4 = 0.0f;
-            for (MotionPaths motionPaths : this.mMotionPaths) {
-                Easing easing2 = motionPaths.mKeyFrameEasing;
-                float f5 = f;
-                if (easing2 != null) {
-                    float f6 = motionPaths.time;
-                    if (f6 < f2) {
-                        f4 = f6;
-                        easing = easing2;
-                    } else if (Float.isNaN(f3)) {
-                        f3 = motionPaths.time;
-                    }
-                }
-                f = f5;
-            }
-            float f7 = f;
-            if (easing != null) {
-                if (Float.isNaN(f3)) {
-                    f3 = 1.0f;
-                }
-                float f8 = f3 - f4;
-                d3 = (((float) easing.get((f2 - f4) / f8)) * f8) + f4;
-            }
-            this.mSpline[0].getPos(d3, this.mInterpolateData);
-            this.mStartMotionPath.getCenter(this.mInterpolateVariables, this.mInterpolateData, fArr, 0);
-            if (i > 0) {
-                fHypot = (float) (Math.hypot(d2 - ((double) fArr[1]), d - ((double) fArr[0])) + ((double) fHypot));
-            }
-            d = fArr[0];
-            d2 = fArr[1];
-            i++;
-            f = f7;
-        }
-        return fHypot;
-    }
-
-    private void insertKey(MotionPaths motionPaths) {
-        int iBinarySearch = Collections.binarySearch(this.mMotionPaths, motionPaths);
-        if (iBinarySearch == 0) {
-            StringBuilder sbM833U = C1643a.m833U(" KeyPath positon \"");
-            sbM833U.append(motionPaths.position);
-            sbM833U.append("\" outside of range");
-            Log.e(TAG, sbM833U.toString());
-        }
-        this.mMotionPaths.add((-iBinarySearch) - 1, motionPaths);
-    }
-
-    private void readView(MotionPaths motionPaths) {
-        motionPaths.setBounds((int) this.mView.getX(), (int) this.mView.getY(), this.mView.getWidth(), this.mView.getHeight());
-    }
-
     public void addKey(Key key) {
         this.mKeyList.add(key);
     }
@@ -410,6 +306,47 @@ public class MotionController {
             this.mSpline[0].getPos(getAdjustedPosition(i2 * f, null), this.mInterpolateData);
             this.mStartMotionPath.getRect(this.mInterpolateVariables, this.mInterpolateData, fArr, i2 * 8);
         }
+    }
+
+    private float getAdjustedPosition(float f, float[] fArr) {
+        float f2 = 0.0f;
+        if (fArr != null) {
+            fArr[0] = 1.0f;
+        } else {
+            float f3 = this.mStaggerScale;
+            if (f3 != 1.0d) {
+                float f4 = this.mStaggerOffset;
+                if (f < f4) {
+                    f = 0.0f;
+                }
+                if (f > f4 && f < 1.0d) {
+                    f = (f - f4) * f3;
+                }
+            }
+        }
+        Easing easing = this.mStartMotionPath.mKeyFrameEasing;
+        float f5 = Float.NaN;
+        for (MotionPaths motionPaths : this.mMotionPaths) {
+            Easing easing2 = motionPaths.mKeyFrameEasing;
+            if (easing2 != null) {
+                float f6 = motionPaths.time;
+                if (f6 < f) {
+                    easing = easing2;
+                    f2 = f6;
+                } else if (Float.isNaN(f5)) {
+                    f5 = motionPaths.time;
+                }
+            }
+        }
+        if (easing != null) {
+            float f7 = (Float.isNaN(f5) ? 1.0f : f5) - f2;
+            double d = (f - f2) / f7;
+            f = (((float) easing.get(d)) * f7) + f2;
+            if (fArr != null) {
+                fArr[0] = (float) easing.getDiff(d);
+            }
+        }
+        return f;
     }
 
     public int getAttributeValues(String str, float[] fArr, int i) {
@@ -675,6 +612,54 @@ public class MotionController {
         }
     }
 
+    private float getPreCycleDistance() {
+        float[] fArr = new float[2];
+        float f = 1.0f / 99;
+        double d = 0.0d;
+        double d2 = 0.0d;
+        int i = 0;
+        float fHypot = 0.0f;
+        while (i < 100) {
+            float f2 = i * f;
+            double d3 = f2;
+            Easing easing = this.mStartMotionPath.mKeyFrameEasing;
+            float f3 = Float.NaN;
+            float f4 = 0.0f;
+            for (MotionPaths motionPaths : this.mMotionPaths) {
+                Easing easing2 = motionPaths.mKeyFrameEasing;
+                float f5 = f;
+                if (easing2 != null) {
+                    float f6 = motionPaths.time;
+                    if (f6 < f2) {
+                        f4 = f6;
+                        easing = easing2;
+                    } else if (Float.isNaN(f3)) {
+                        f3 = motionPaths.time;
+                    }
+                }
+                f = f5;
+            }
+            float f7 = f;
+            if (easing != null) {
+                if (Float.isNaN(f3)) {
+                    f3 = 1.0f;
+                }
+                float f8 = f3 - f4;
+                d3 = (((float) easing.get((f2 - f4) / f8)) * f8) + f4;
+            }
+            this.mSpline[0].getPos(d3, this.mInterpolateData);
+            this.mStartMotionPath.getCenter(this.mInterpolateVariables, this.mInterpolateData, fArr, 0);
+            if (i > 0) {
+                fHypot = (float) (Math.hypot(d2 - ((double) fArr[1]), d - ((double) fArr[0])) + ((double) fHypot));
+            }
+            d = fArr[0];
+            d2 = fArr[1];
+            i++;
+            f = f7;
+        }
+        return fHypot;
+    }
+
     public float getStartX() {
         return this.mStartMotionPath.f108x;
     }
@@ -695,6 +680,17 @@ public class MotionController {
             i++;
         }
         return i;
+    }
+
+    private void insertKey(MotionPaths motionPaths) {
+        int iBinarySearch = Collections.binarySearch(this.mMotionPaths, motionPaths);
+        if (iBinarySearch == 0) {
+            StringBuilder sbM833U = C1643a.m833U(" KeyPath positon \"");
+            sbM833U.append(motionPaths.position);
+            sbM833U.append("\" outside of range");
+            Log.e(TAG, sbM833U.toString());
+        }
+        this.mMotionPaths.add((-iBinarySearch) - 1, motionPaths);
     }
 
     public boolean interpolate(View view, float f, long j, KeyCache keyCache) {
@@ -843,6 +839,10 @@ public class MotionController {
         rectF2.right = f5 + motionPaths2.width;
         rectF2.bottom = f6 + motionPaths2.height;
         keyPositionBase.positionAttributes(view, rectF, rectF2, f, f2, strArr, fArr);
+    }
+
+    private void readView(MotionPaths motionPaths) {
+        motionPaths.setBounds((int) this.mView.getX(), (int) this.mView.getY(), this.mView.getWidth(), this.mView.getHeight());
     }
 
     public void setDrawPath(int i) {

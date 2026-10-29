@@ -22,8 +22,6 @@ public final class NativeCapturerObserver implements CapturerObserver {
         this(j, context, CameraEnumeratorProvider.createCapturer(str));
     }
 
-    private native void nativeOnFrame(long j, @NonNull VideoFrame.Buffer buffer, int i, int i2, int i3, long j2);
-
     public synchronized void dispose() {
         VideoCapturer videoCapturer = this.videoCapturer_;
         if (videoCapturer != null) {
@@ -41,6 +39,8 @@ public final class NativeCapturerObserver implements CapturerObserver {
             this.surfaceTextureHelper_ = null;
         }
     }
+
+    private native void nativeOnFrame(long j, @NonNull VideoFrame.Buffer buffer, int i, int i2, int i3, long j2);
 
     @Override // org.webrtc.CapturerObserver
     public void onCapturerStarted(boolean z2) {

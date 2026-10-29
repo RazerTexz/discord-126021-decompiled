@@ -49,9 +49,6 @@ import p007b.p452o.p453a.p473x.InterfaceC5237c;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d.a {
 
-    /* JADX INFO: renamed from: j */
-    public static final C5103b f13918j = new C5103b(AbstractC5135i.class.getSimpleName());
-
     /* JADX INFO: renamed from: k */
     public C5206g f13919k;
 
@@ -60,6 +57,9 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
 
     /* JADX INFO: renamed from: n */
     public final C5179f f13922n = new C5179f(new c());
+
+    /* JADX INFO: renamed from: j */
+    public static final C5103b f13918j = new C5103b(AbstractC5135i.class.getSimpleName());
 
     /* JADX INFO: renamed from: l */
     @VisibleForTesting
@@ -161,7 +161,7 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
 
     /* JADX INFO: renamed from: b.o.a.n.i$i */
     /* JADX INFO: compiled from: CameraEngine.java */
-    public static class i implements Thread.UncaughtExceptionHandler {
+    public class i implements Thread.UncaughtExceptionHandler {
         public i(c cVar) {
         }
 
@@ -187,54 +187,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
         abstractC5135i.f13920l.post(new RunnableC5136j(abstractC5135i, th));
     }
 
-    /* JADX INFO: renamed from: A */
-    public abstract float mo7250A();
-
-    /* JADX INFO: renamed from: A0 */
-    public abstract void mo7251A0(int i2);
-
-    /* JADX INFO: renamed from: B */
-    public abstract boolean mo7252B();
-
-    /* JADX INFO: renamed from: B0 */
-    public abstract void mo7253B0(@NonNull EnumC5125l enumC5125l);
-
-    @Nullable
-    /* JADX INFO: renamed from: C */
-    public abstract C5236b mo7254C(@NonNull EnumC5171b enumC5171b);
-
-    /* JADX INFO: renamed from: C0 */
-    public abstract void mo7255C0(int i2);
-
-    /* JADX INFO: renamed from: D */
-    public abstract int mo7256D();
-
-    /* JADX INFO: renamed from: D0 */
-    public abstract void mo7257D0(long j);
-
-    /* JADX INFO: renamed from: E */
-    public abstract int mo7258E();
-
-    /* JADX INFO: renamed from: E0 */
-    public abstract void mo7259E0(@NonNull InterfaceC5237c interfaceC5237c);
-
-    @Nullable
-    /* JADX INFO: renamed from: F */
-    public abstract C5236b mo7260F(@NonNull EnumC5171b enumC5171b);
-
-    /* JADX INFO: renamed from: F0 */
-    public abstract void mo7190F0(@NonNull EnumC5126m enumC5126m);
-
-    /* JADX INFO: renamed from: G */
-    public abstract int mo7261G();
-
-    /* JADX INFO: renamed from: G0 */
-    public abstract void mo7191G0(float f2, @Nullable PointF[] pointFArr, boolean z2);
-
-    @NonNull
-    /* JADX INFO: renamed from: H */
-    public abstract EnumC5125l mo7262H();
-
     @NonNull
     /* JADX INFO: renamed from: H0 */
     public Task<Void> m7318H0() {
@@ -245,34 +197,17 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
         return taskMo6022q;
     }
 
-    /* JADX INFO: renamed from: I */
-    public abstract int mo7263I();
-
-    /* JADX INFO: renamed from: I0 */
-    public abstract void mo7192I0(@Nullable EnumC5193a enumC5193a, @NonNull C5211b c5211b, @NonNull PointF pointF);
-
-    /* JADX INFO: renamed from: J */
-    public abstract long mo7264J();
-
     @NonNull
     /* JADX INFO: renamed from: J0 */
     public final Task<Void> m7319J0() {
         return this.f13922n.m7368f(EnumC5178e.ENGINE, EnumC5178e.BIND, true, new e());
     }
 
-    @Nullable
-    /* JADX INFO: renamed from: K */
-    public abstract C5236b mo7265K(@NonNull EnumC5171b enumC5171b);
-
     @NonNull
     /* JADX INFO: renamed from: K0 */
     public final Task<Void> m7320K0() {
         return this.f13922n.m7368f(EnumC5178e.BIND, EnumC5178e.PREVIEW, true, new a());
     }
-
-    @NonNull
-    /* JADX INFO: renamed from: L */
-    public abstract InterfaceC5237c mo7266L();
 
     @NonNull
     /* JADX INFO: renamed from: L0 */
@@ -289,17 +224,10 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
     }
 
     @NonNull
-    /* JADX INFO: renamed from: M */
-    public abstract EnumC5126m mo7267M();
-
-    @NonNull
     /* JADX INFO: renamed from: M0 */
     public final Task<Void> m7322M0(boolean z2) {
         return this.f13922n.m7368f(EnumC5178e.BIND, EnumC5178e.ENGINE, !z2, new f());
     }
-
-    /* JADX INFO: renamed from: N */
-    public abstract float mo7268N();
 
     @NonNull
     /* JADX INFO: renamed from: N0 */
@@ -323,36 +251,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
         }
         return z2;
     }
-
-    /* JADX INFO: renamed from: O0 */
-    public abstract void mo7269O0(@NonNull C5113l.a aVar);
-
-    @NonNull
-    /* JADX INFO: renamed from: P */
-    public abstract Task<Void> mo7193P();
-
-    /* JADX INFO: renamed from: P0 */
-    public abstract void mo7270P0(@NonNull C5113l.a aVar);
-
-    @NonNull
-    /* JADX INFO: renamed from: Q */
-    public abstract Task<AbstractC5104c> mo7194Q();
-
-    @NonNull
-    /* JADX INFO: renamed from: R */
-    public abstract Task<Void> mo7195R();
-
-    @NonNull
-    /* JADX INFO: renamed from: S */
-    public abstract Task<Void> mo7196S();
-
-    @NonNull
-    /* JADX INFO: renamed from: T */
-    public abstract Task<Void> mo7197T();
-
-    @NonNull
-    /* JADX INFO: renamed from: U */
-    public abstract Task<Void> mo7199U();
 
     /* JADX INFO: renamed from: V */
     public final void m7325V() {
@@ -408,21 +306,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
         return m7320K0();
     }
 
-    /* JADX INFO: renamed from: Z */
-    public abstract void mo7276Z(@NonNull EnumC5114a enumC5114a);
-
-    /* JADX INFO: renamed from: a0 */
-    public abstract void mo7277a0(int i2);
-
-    /* JADX INFO: renamed from: b0 */
-    public abstract void mo7279b0(@NonNull EnumC5115b enumC5115b);
-
-    /* JADX INFO: renamed from: c */
-    public abstract boolean mo7205c(@NonNull EnumC5118e enumC5118e);
-
-    /* JADX INFO: renamed from: c0 */
-    public abstract void mo7280c0(long j);
-
     /* JADX INFO: renamed from: d */
     public final void m7329d(boolean z2, int i2) {
         C5103b c5103b = f13918j;
@@ -448,8 +331,149 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
         }
     }
 
+    /* JADX INFO: renamed from: F0 */
+    public abstract void mo7190F0(@NonNull EnumC5126m enumC5126m);
+
+    /* JADX INFO: renamed from: G0 */
+    public abstract void mo7191G0(float f2, @Nullable PointF[] pointFArr, boolean z2);
+
+    /* JADX INFO: renamed from: I0 */
+    public abstract void mo7192I0(@Nullable EnumC5193a enumC5193a, @NonNull C5211b c5211b, @NonNull PointF pointF);
+
+    @NonNull
+    /* JADX INFO: renamed from: P */
+    public abstract Task<Void> mo7193P();
+
+    @NonNull
+    /* JADX INFO: renamed from: Q */
+    public abstract Task<AbstractC5104c> mo7194Q();
+
+    @NonNull
+    /* JADX INFO: renamed from: R */
+    public abstract Task<Void> mo7195R();
+
+    @NonNull
+    /* JADX INFO: renamed from: S */
+    public abstract Task<Void> mo7196S();
+
+    @NonNull
+    /* JADX INFO: renamed from: T */
+    public abstract Task<Void> mo7197T();
+
+    @NonNull
+    /* JADX INFO: renamed from: U */
+    public abstract Task<Void> mo7199U();
+
+    /* JADX INFO: renamed from: c */
+    public abstract boolean mo7205c(@NonNull EnumC5118e enumC5118e);
+
     /* JADX INFO: renamed from: d0 */
     public abstract void mo7207d0(float f2, @NonNull float[] fArr, @Nullable PointF[] pointFArr, boolean z2);
+
+    /* JADX INFO: renamed from: f0 */
+    public abstract void mo7210f0(@NonNull EnumC5119f enumC5119f);
+
+    /* JADX INFO: renamed from: g0 */
+    public abstract void mo7212g0(int i2);
+
+    /* JADX INFO: renamed from: k0 */
+    public abstract void mo7217k0(boolean z2);
+
+    /* JADX INFO: renamed from: l0 */
+    public abstract void mo7219l0(@NonNull EnumC5121h enumC5121h);
+
+    /* JADX INFO: renamed from: m0 */
+    public abstract void mo7221m0(@Nullable Location location);
+
+    /* JADX INFO: renamed from: p0 */
+    public abstract void mo7223p0(@NonNull EnumC5123j enumC5123j);
+
+    /* JADX INFO: renamed from: t0 */
+    public abstract void mo7224t0(boolean z2);
+
+    /* JADX INFO: renamed from: v0 */
+    public abstract void mo7225v0(float f2);
+
+    /* JADX INFO: renamed from: A */
+    public abstract float mo7250A();
+
+    /* JADX INFO: renamed from: A0 */
+    public abstract void mo7251A0(int i2);
+
+    /* JADX INFO: renamed from: B */
+    public abstract boolean mo7252B();
+
+    /* JADX INFO: renamed from: B0 */
+    public abstract void mo7253B0(@NonNull EnumC5125l enumC5125l);
+
+    @Nullable
+    /* JADX INFO: renamed from: C */
+    public abstract C5236b mo7254C(@NonNull EnumC5171b enumC5171b);
+
+    /* JADX INFO: renamed from: C0 */
+    public abstract void mo7255C0(int i2);
+
+    /* JADX INFO: renamed from: D */
+    public abstract int mo7256D();
+
+    /* JADX INFO: renamed from: D0 */
+    public abstract void mo7257D0(long j);
+
+    /* JADX INFO: renamed from: E */
+    public abstract int mo7258E();
+
+    /* JADX INFO: renamed from: E0 */
+    public abstract void mo7259E0(@NonNull InterfaceC5237c interfaceC5237c);
+
+    @Nullable
+    /* JADX INFO: renamed from: F */
+    public abstract C5236b mo7260F(@NonNull EnumC5171b enumC5171b);
+
+    /* JADX INFO: renamed from: G */
+    public abstract int mo7261G();
+
+    @NonNull
+    /* JADX INFO: renamed from: H */
+    public abstract EnumC5125l mo7262H();
+
+    /* JADX INFO: renamed from: I */
+    public abstract int mo7263I();
+
+    /* JADX INFO: renamed from: J */
+    public abstract long mo7264J();
+
+    @Nullable
+    /* JADX INFO: renamed from: K */
+    public abstract C5236b mo7265K(@NonNull EnumC5171b enumC5171b);
+
+    @NonNull
+    /* JADX INFO: renamed from: L */
+    public abstract InterfaceC5237c mo7266L();
+
+    @NonNull
+    /* JADX INFO: renamed from: M */
+    public abstract EnumC5126m mo7267M();
+
+    /* JADX INFO: renamed from: N */
+    public abstract float mo7268N();
+
+    /* JADX INFO: renamed from: O0 */
+    public abstract void mo7269O0(@NonNull C5113l.a aVar);
+
+    /* JADX INFO: renamed from: P0 */
+    public abstract void mo7270P0(@NonNull C5113l.a aVar);
+
+    /* JADX INFO: renamed from: Z */
+    public abstract void mo7276Z(@NonNull EnumC5114a enumC5114a);
+
+    /* JADX INFO: renamed from: a0 */
+    public abstract void mo7277a0(int i2);
+
+    /* JADX INFO: renamed from: b0 */
+    public abstract void mo7279b0(@NonNull EnumC5115b enumC5115b);
+
+    /* JADX INFO: renamed from: c0 */
+    public abstract void mo7280c0(long j);
 
     @NonNull
     /* JADX INFO: renamed from: e */
@@ -462,14 +486,8 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
     /* JADX INFO: renamed from: f */
     public abstract EnumC5114a mo7283f();
 
-    /* JADX INFO: renamed from: f0 */
-    public abstract void mo7210f0(@NonNull EnumC5119f enumC5119f);
-
     /* JADX INFO: renamed from: g */
     public abstract int mo7284g();
-
-    /* JADX INFO: renamed from: g0 */
-    public abstract void mo7212g0(int i2);
 
     @NonNull
     /* JADX INFO: renamed from: h */
@@ -494,22 +512,13 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
     /* JADX INFO: renamed from: k */
     public abstract float mo7291k();
 
-    /* JADX INFO: renamed from: k0 */
-    public abstract void mo7217k0(boolean z2);
-
     @NonNull
     /* JADX INFO: renamed from: l */
     public abstract EnumC5118e mo7292l();
 
-    /* JADX INFO: renamed from: l0 */
-    public abstract void mo7219l0(@NonNull EnumC5121h enumC5121h);
-
     @NonNull
     /* JADX INFO: renamed from: m */
     public abstract EnumC5119f mo7293m();
-
-    /* JADX INFO: renamed from: m0 */
-    public abstract void mo7221m0(@Nullable Location location);
 
     /* JADX INFO: renamed from: n */
     public abstract int mo7294n();
@@ -525,9 +534,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
 
     /* JADX INFO: renamed from: p */
     public abstract int mo7298p();
-
-    /* JADX INFO: renamed from: p0 */
-    public abstract void mo7223p0(@NonNull EnumC5123j enumC5123j);
 
     /* JADX INFO: renamed from: q */
     public abstract int mo7299q();
@@ -553,9 +559,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
     /* JADX INFO: renamed from: t */
     public abstract EnumC5122i mo7305t();
 
-    /* JADX INFO: renamed from: t0 */
-    public abstract void mo7224t0(boolean z2);
-
     @NonNull
     /* JADX INFO: renamed from: u */
     public abstract EnumC5123j mo7306u();
@@ -565,9 +568,6 @@ public abstract class AbstractC5135i implements AbstractC5225a.c, AbstractC5219d
 
     /* JADX INFO: renamed from: v */
     public abstract boolean mo7308v();
-
-    /* JADX INFO: renamed from: v0 */
-    public abstract void mo7225v0(float f2);
 
     @Nullable
     /* JADX INFO: renamed from: w */

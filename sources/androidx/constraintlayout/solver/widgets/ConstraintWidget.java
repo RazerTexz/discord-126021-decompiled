@@ -144,7 +144,7 @@ public class ConstraintWidget {
     public VerticalWidgetRun verticalRun;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.ConstraintWidget$1 */
-    public static /* synthetic */ class C01901 {
+    public /* synthetic */ class C01901 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
         public static final /* synthetic */ int[] f116x4c44d048;
@@ -307,779 +307,6 @@ public class ConstraintWidget {
         this.mAnchors.add(this.mCenterY);
         this.mAnchors.add(this.mCenter);
         this.mAnchors.add(this.mBaseline);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:101:0x01c9  */
-    /* JADX WARN: Code duplicated, block: B:103:0x01de A[ADDED_TO_REGION] */
-    /* JADX WARN: Code duplicated, block: B:213:0x037e  */
-    /* JADX WARN: Code duplicated, block: B:215:0x0382  */
-    /* JADX WARN: Code duplicated, block: B:221:0x0395  */
-    /* JADX WARN: Code duplicated, block: B:223:0x03c4  */
-    /* JADX WARN: Code duplicated, block: B:231:0x03e3  */
-    /* JADX WARN: Code duplicated, block: B:239:0x03f3  */
-    /* JADX WARN: Code duplicated, block: B:248:0x0417  */
-    /* JADX WARN: Code duplicated, block: B:250:0x041d  */
-    /* JADX WARN: Code duplicated, block: B:272:0x044b  */
-    /* JADX WARN: Code duplicated, block: B:274:0x044f  */
-    /* JADX WARN: Code duplicated, block: B:27:0x007e  */
-    /* JADX WARN: Code duplicated, block: B:280:0x045d A[PHI: r2
-      0x045d: PHI (r2v39 int) = (r2v38 int), (r2v43 int), (r2v43 int), (r2v43 int) binds: [B:273:0x044d, B:275:0x0453, B:276:0x0455, B:278:0x0459] A[DONT_GENERATE, DONT_INLINE]] */
-    /* JADX WARN: Code duplicated, block: B:283:0x046f  */
-    /* JADX WARN: Code duplicated, block: B:285:0x0473  */
-    /* JADX WARN: Code duplicated, block: B:286:0x0478  */
-    /* JADX WARN: Code duplicated, block: B:288:0x047b  */
-    /* JADX WARN: Code duplicated, block: B:28:0x0082  */
-    /* JADX WARN: Code duplicated, block: B:299:0x049c  */
-    /* JADX WARN: Code duplicated, block: B:30:0x0086  */
-    /* JADX WARN: Code duplicated, block: B:324:0x04e0 A[ADDED_TO_REGION] */
-    /* JADX WARN: Code duplicated, block: B:343:0x0515  */
-    /* JADX WARN: Code duplicated, block: B:34:0x0092 A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:355:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
-    /* JADX WARN: Code duplicated, block: B:35:0x0094 A[ADDED_TO_REGION] */
-    /* JADX WARN: Code duplicated, block: B:37:0x00a2  */
-    /* JADX WARN: Code duplicated, block: B:39:0x00a8 A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:40:0x00aa  */
-    /* JADX WARN: Code duplicated, block: B:42:0x00b3  */
-    /* JADX WARN: Code duplicated, block: B:45:0x00bb  */
-    /* JADX WARN: Code duplicated, block: B:46:0x00bf  */
-    /* JADX WARN: Code duplicated, block: B:49:0x00d4  */
-    /* JADX WARN: Code duplicated, block: B:61:0x00fd  */
-    /* JADX WARN: Code duplicated, block: B:62:0x00ff  */
-    /* JADX WARN: Code duplicated, block: B:64:0x0102  */
-    /* JADX WARN: Code duplicated, block: B:65:0x0104  */
-    /* JADX WARN: Code duplicated, block: B:71:0x010d  */
-    /* JADX WARN: Code duplicated, block: B:73:0x0118  */
-    /* JADX WARN: Code duplicated, block: B:77:0x011f  */
-    /* JADX WARN: Code duplicated, block: B:79:0x0122  */
-    /* JADX WARN: Code duplicated, block: B:80:0x0128  */
-    /* JADX WARN: Code duplicated, block: B:82:0x012f  */
-    /* JADX WARN: Code duplicated, block: B:85:0x0134 A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:86:0x0136  */
-    /* JADX WARN: Code duplicated, block: B:87:0x013a A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:88:0x013c  */
-    /* JADX WARN: Code duplicated, block: B:89:0x0144  */
-    /* JADX WARN: Code duplicated, block: B:91:0x015d  */
-    /* JADX WARN: Code duplicated, block: B:93:0x0160  */
-    /* JADX WARN: Code duplicated, block: B:99:0x018a  */
-    private void applyConstraints(LinearSystem linearSystem, boolean z2, boolean z3, boolean z4, boolean z5, SolverVariable solverVariable, SolverVariable solverVariable2, DimensionBehaviour dimensionBehaviour, boolean z6, ConstraintAnchor constraintAnchor, ConstraintAnchor constraintAnchor2, int i, int i2, int i3, int i4, float f, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, int i5, int i6, int i7, int i8, float f2, boolean z12) {
-        int i9;
-        boolean z13;
-        int iMin;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        boolean z14;
-        ConstraintAnchor.Type type;
-        ConstraintAnchor.Type type2;
-        SolverVariable solverVariableCreateObjectVariable;
-        SolverVariable solverVariableCreateObjectVariable2;
-        boolean z15;
-        boolean z16;
-        ConstraintAnchor constraintAnchor3;
-        boolean z17;
-        int i14;
-        boolean z18;
-        boolean z19;
-        int i15;
-        int i16;
-        boolean z20;
-        ConstraintWidget constraintWidget;
-        SolverVariable solverVariable3;
-        int i17;
-        boolean z21;
-        SolverVariable solverVariable4;
-        int iMin2;
-        int i18;
-        SolverVariable solverVariable5;
-        int margin;
-        int margin2;
-        ConstraintWidget constraintWidget2;
-        int i19;
-        int i20;
-        boolean z22;
-        int i21;
-        int i22;
-        int i23;
-        boolean z23;
-        ConstraintWidget constraintWidget3;
-        ConstraintWidget constraintWidget4;
-        int i24 = i8;
-        SolverVariable solverVariableCreateObjectVariable3 = linearSystem.createObjectVariable(constraintAnchor);
-        SolverVariable solverVariableCreateObjectVariable4 = linearSystem.createObjectVariable(constraintAnchor2);
-        SolverVariable solverVariableCreateObjectVariable5 = linearSystem.createObjectVariable(constraintAnchor.getTarget());
-        SolverVariable solverVariableCreateObjectVariable6 = linearSystem.createObjectVariable(constraintAnchor2.getTarget());
-        if (LinearSystem.getMetrics() != null) {
-            LinearSystem.getMetrics().nonresolvedWidgets++;
-        }
-        boolean zIsConnected = constraintAnchor.isConnected();
-        boolean zIsConnected2 = constraintAnchor2.isConnected();
-        boolean zIsConnected3 = this.mCenter.isConnected();
-        int i25 = zIsConnected2 ? (zIsConnected ? 1 : 0) + 1 : zIsConnected ? 1 : 0;
-        if (zIsConnected3) {
-            i25++;
-        }
-        int i26 = z7 ? 3 : i5;
-        int iOrdinal = dimensionBehaviour.ordinal();
-        if (iOrdinal != 0 && iOrdinal != 1 && iOrdinal == 2) {
-            i9 = i26;
-            z13 = i9 != 4;
-            if (this.mVisibility == 8) {
-                iMin = 0;
-                z13 = false;
-            } else {
-                iMin = i2;
-            }
-            if (!z12) {
-                if (zIsConnected && !zIsConnected2 && !zIsConnected3) {
-                    linearSystem.addEquality(solverVariableCreateObjectVariable3, i);
-                } else if (!zIsConnected && !zIsConnected2) {
-                    linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), 8);
-                }
-            }
-            if (!z13) {
-                if (i25 == 2 && !z7 && (i9 == 1 || i9 == 0)) {
-                    int iMax = Math.max(i7, iMin);
-                    if (i24 > 0) {
-                        iMax = Math.min(i24, iMax);
-                    }
-                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMax, 8);
-                    z14 = false;
-                } else {
-                    if (i7 == -2) {
-                        i10 = iMin;
-                    } else {
-                        i10 = i7;
-                    }
-                    if (i24 == -2) {
-                        i11 = iMin;
-                    } else {
-                        i11 = i24;
-                    }
-                    if (iMin > 0 && i9 != 1) {
-                        iMin = 0;
-                    }
-                    if (i10 > 0) {
-                        linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i10, 8);
-                        iMin = Math.max(iMin, i10);
-                    }
-                    if (i11 > 0) {
-                        if (z3 || i9 != 1) {
-                            z15 = true;
-                        } else {
-                            z15 = false;
-                        }
-                        if (z15) {
-                            i12 = 8;
-                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i11, 8);
-                        } else {
-                            i12 = 8;
-                        }
-                        iMin = Math.min(iMin, i11);
-                    } else {
-                        i12 = 8;
-                    }
-                    if (i9 == 1) {
-                        if (z3) {
-                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                        } else if (z9) {
-                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
-                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                        } else {
-                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
-                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                        }
-                        i24 = i11;
-                        i25 = i25 == true ? 1 : 0;
-                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                        z14 = z13;
-                        z5 = z5;
-                        i13 = i10;
-                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-                    } else if (i9 == 2) {
-                        type = constraintAnchor.getType();
-                        type2 = ConstraintAnchor.Type.TOP;
-                        if (type != type2 || constraintAnchor.getType() == ConstraintAnchor.Type.BOTTOM) {
-                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
-                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
-                        } else {
-                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.LEFT));
-                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.RIGHT));
-                        }
-                        SolverVariable solverVariable6 = solverVariableCreateObjectVariable;
-                        SolverVariable solverVariable7 = solverVariableCreateObjectVariable2;
-                        ArrayRow arrayRowCreateRow = linearSystem.createRow();
-                        int i27 = i11;
-                        i25 = i25 == true ? 1 : 0;
-                        int i28 = i10;
-                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                        linearSystem.addConstraint(arrayRowCreateRow.createRowDimensionRatio(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, solverVariable7, solverVariable6, f2));
-                        z5 = z5;
-                        i24 = i27;
-                        i13 = i28;
-                        z14 = false;
-                    } else {
-                        int i29 = i11;
-                        i25 = i25 == true ? 1 : 0;
-                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                        int i30 = i10;
-                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-                        i24 = i29;
-                        i13 = i30;
-                        z14 = z13;
-                        z5 = true;
-                    }
-                }
-                if (z12 || z9) {
-                    SolverVariable solverVariable8 = solverVariableCreateObjectVariable4;
-                    if (i25 >= 2 && z3 && z5) {
-                        linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, 0, 8);
-                        boolean z24 = z2 || this.mBaseline.mTarget == null;
-                        if (z2 || (constraintAnchor3 = this.mBaseline.mTarget) == null) {
-                            z16 = z24;
-                        } else {
-                            ConstraintWidget constraintWidget5 = constraintAnchor3.mOwner;
-                            if (constraintWidget5.mDimensionRatio != 0.0f) {
-                                DimensionBehaviour[] dimensionBehaviourArr = constraintWidget5.mListDimensionBehaviors;
-                                DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[0];
-                                DimensionBehaviour dimensionBehaviour3 = DimensionBehaviour.MATCH_CONSTRAINT;
-                                if (dimensionBehaviour2 == dimensionBehaviour3 && dimensionBehaviourArr[1] == dimensionBehaviour3) {
-                                    z16 = true;
-                                } else {
-                                    z16 = false;
-                                }
-                            } else {
-                                z16 = false;
-                            }
-                        }
-                        if (z16) {
-                            linearSystem.addGreaterThan(solverVariable2, solverVariable8, 0, 8);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                if ((zIsConnected || zIsConnected2 || zIsConnected3) && (!zIsConnected || zIsConnected2)) {
-                    if (!zIsConnected && zIsConnected2) {
-                        linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), 8);
-                        if (z3) {
-                            if (this.OPTIMIZE_WRAP && solverVariableCreateObjectVariable3.isFinalValue && (constraintWidget3 = this.mParent) != null) {
-                                ConstraintWidgetContainer constraintWidgetContainer = (ConstraintWidgetContainer) constraintWidget3;
-                                if (z2) {
-                                    constraintWidgetContainer.addHorizontalWrapMinVariable(constraintAnchor);
-                                } else {
-                                    constraintWidgetContainer.addVerticalWrapMinVariable(constraintAnchor);
-                                }
-                            } else {
-                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, 0, 5);
-                            }
-                        }
-                    } else if (zIsConnected && zIsConnected2) {
-                        ConstraintWidget constraintWidget6 = constraintAnchor.mTarget.mOwner;
-                        ConstraintWidget constraintWidget7 = constraintAnchor2.mTarget.mOwner;
-                        ConstraintWidget parent = getParent();
-                        int i31 = 6;
-                        if (z14) {
-                            if (i9 == 0) {
-                                if (i24 != 0 || i13 != 0) {
-                                    z17 = true;
-                                    z23 = false;
-                                    z18 = true;
-                                    i16 = 5;
-                                    i15 = 5;
-                                } else if (solverVariableCreateObjectVariable5.isFinalValue && solverVariableCreateObjectVariable6.isFinalValue) {
-                                    linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), 8);
-                                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), 8);
-                                    return;
-                                } else {
-                                    z17 = false;
-                                    z23 = true;
-                                    z18 = false;
-                                    i16 = 8;
-                                    i15 = 8;
-                                }
-                                if ((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
-                                    i15 = 4;
-                                }
-                                z19 = z23;
-                                i14 = 6;
-                            } else {
-                                if (i9 == 1) {
-                                    solverVariable2 = solverVariable2;
-                                    z17 = true;
-                                    i14 = 6;
-                                    z18 = true;
-                                    z19 = false;
-                                    i15 = 4;
-                                } else if (i9 != 3) {
-                                    z17 = false;
-                                    i14 = 6;
-                                    z18 = false;
-                                } else if (this.mResolvedDimensionRatioSide == -1) {
-                                    if (z10) {
-                                        solverVariable2 = solverVariable2;
-                                        z17 = true;
-                                        i14 = z3 ? 5 : 4;
-                                    } else {
-                                        solverVariable2 = solverVariable2;
-                                        z17 = true;
-                                        i14 = 8;
-                                    }
-                                    z18 = true;
-                                    z19 = true;
-                                    i15 = 5;
-                                } else if (z7) {
-                                    if (i6 == 2 || i6 == 1) {
-                                        i22 = 5;
-                                        i23 = 4;
-                                    } else {
-                                        i22 = 8;
-                                        i23 = 5;
-                                    }
-                                    solverVariable2 = solverVariable2;
-                                    i16 = i22;
-                                    i15 = i23;
-                                    z17 = true;
-                                    i14 = 6;
-                                    z18 = true;
-                                    z19 = true;
-                                } else {
-                                    if (i24 > 0) {
-                                        solverVariable2 = solverVariable2;
-                                        z17 = true;
-                                        i14 = 6;
-                                        z18 = true;
-                                        z19 = true;
-                                        i15 = 5;
-                                    } else if (i24 != 0 || i13 != 0) {
-                                        solverVariable2 = solverVariable2;
-                                        z17 = true;
-                                        i14 = 6;
-                                        z18 = true;
-                                        z19 = true;
-                                        i15 = 4;
-                                    } else if (z10) {
-                                        solverVariable2 = solverVariable2;
-                                        i16 = (constraintWidget6 == parent || constraintWidget7 == parent) ? 5 : 4;
-                                        z17 = true;
-                                        i14 = 6;
-                                        z18 = true;
-                                        z19 = true;
-                                        i15 = 4;
-                                    } else {
-                                        solverVariable2 = solverVariable2;
-                                        z17 = true;
-                                        i14 = 6;
-                                        z18 = true;
-                                        z19 = true;
-                                        i15 = 8;
-                                    }
-                                    i16 = 5;
-                                }
-                                i16 = 8;
-                            }
-                            if (z18 || solverVariableCreateObjectVariable5 != solverVariableCreateObjectVariable6 || constraintWidget6 == parent) {
-                                z20 = true;
-                            } else {
-                                z18 = false;
-                                z20 = false;
-                            }
-                            if (z17) {
-                                if (z14 && !z8 && !z10 && solverVariableCreateObjectVariable5 == solverVariable && solverVariableCreateObjectVariable6 == solverVariable2) {
-                                    z21 = false;
-                                    i21 = 8;
-                                    z22 = false;
-                                    i17 = 8;
-                                } else {
-                                    i17 = i16;
-                                    z22 = z20;
-                                    z21 = z3;
-                                    i21 = i14;
-                                }
-                                solverVariable3 = solverVariableCreateObjectVariable5;
-                                constraintWidget = parent;
-                                linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariable3, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), i21);
-                                z20 = z22;
-                            } else {
-                                constraintWidget = parent;
-                                solverVariable3 = solverVariableCreateObjectVariable5;
-                                i17 = i16;
-                                z21 = z3;
-                            }
-                            if (this.mVisibility != 8 && !constraintAnchor2.hasDependents()) {
-                                return;
-                            }
-                            solverVariable4 = solverVariable3;
-                            if (z18) {
-                                if (z21 || solverVariable4 == solverVariableCreateObjectVariable6 || z14 || !((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier))) {
-                                    i20 = i17;
-                                } else {
-                                    i20 = 6;
-                                }
-                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i20);
-                                linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i20);
-                                i17 = i20;
-                            }
-                            if (z21 || !z11 || (constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
-                                iMin2 = i15;
-                                i18 = i17;
-                            } else {
-                                iMin2 = 6;
-                                i18 = 6;
-                                z20 = true;
-                            }
-                            if (z20) {
-                                if (z19 || (z10 && !z4)) {
-                                    constraintWidget2 = constraintWidget;
-                                } else {
-                                    constraintWidget2 = constraintWidget;
-                                    if (constraintWidget6 != constraintWidget2 && constraintWidget7 != constraintWidget2) {
-                                        i31 = iMin2;
-                                    }
-                                    if ((constraintWidget6 instanceof Guideline) || (constraintWidget7 instanceof Guideline)) {
-                                        i31 = 5;
-                                    }
-                                    if ((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
-                                        i31 = 5;
-                                    }
-                                    iMin2 = Math.max(z10 ? 5 : i31, iMin2);
-                                }
-                                if (z21) {
-                                    iMin2 = Math.min(i18, iMin2);
-                                    if (z7 || z10 || !(constraintWidget6 == constraintWidget2 || constraintWidget7 == constraintWidget2)) {
-                                        i19 = iMin2;
-                                    } else {
-                                        i19 = 4;
-                                    }
-                                } else {
-                                    i19 = iMin2;
-                                }
-                                linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i19);
-                                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i19);
-                            }
-                            if (z21) {
-                                if (solverVariable == solverVariable4) {
-                                    margin2 = constraintAnchor.getMargin();
-                                } else {
-                                    margin2 = 0;
-                                }
-                                if (solverVariable4 != solverVariable) {
-                                    linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, margin2, 5);
-                                }
-                            }
-                            if (z21 || !z14) {
-                                solverVariable5 = solverVariableCreateObjectVariable4;
-                            } else {
-                                solverVariable5 = solverVariableCreateObjectVariable4;
-                                if (i3 == 0 && i13 == 0) {
-                                    if (z14 && i9 == 3) {
-                                        margin = 0;
-                                        linearSystem.addGreaterThan(solverVariable5, solverVariableCreateObjectVariable3, 0, 8);
-                                    } else {
-                                        margin = 0;
-                                        linearSystem.addGreaterThan(solverVariable5, solverVariableCreateObjectVariable3, 0, 5);
-                                    }
-                                }
-                            }
-                            margin = 0;
-                        } else {
-                            if (solverVariableCreateObjectVariable5.isFinalValue && solverVariableCreateObjectVariable6.isFinalValue) {
-                                linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), 8);
-                                if (z3 && z5) {
-                                    int margin3 = constraintAnchor2.mTarget != null ? constraintAnchor2.getMargin() : 0;
-                                    if (solverVariableCreateObjectVariable6 != solverVariable2) {
-                                        linearSystem.addGreaterThan(solverVariable2, solverVariableCreateObjectVariable4, margin3, 5);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            }
-                            z17 = true;
-                            i14 = 6;
-                            z18 = true;
-                        }
-                        z19 = false;
-                        i15 = 4;
-                        i16 = 5;
-                        if (z18) {
-                            z20 = true;
-                        } else {
-                            z20 = true;
-                        }
-                        if (z17) {
-                            if (z14) {
-                                i17 = i16;
-                                z22 = z20;
-                                z21 = z3;
-                                i21 = i14;
-                            } else {
-                                i17 = i16;
-                                z22 = z20;
-                                z21 = z3;
-                                i21 = i14;
-                            }
-                            solverVariable3 = solverVariableCreateObjectVariable5;
-                            constraintWidget = parent;
-                            linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariable3, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), i21);
-                            z20 = z22;
-                        } else {
-                            constraintWidget = parent;
-                            solverVariable3 = solverVariableCreateObjectVariable5;
-                            i17 = i16;
-                            z21 = z3;
-                        }
-                        if (this.mVisibility != 8) {
-                        }
-                        solverVariable4 = solverVariable3;
-                        if (z18) {
-                            if (z21) {
-                                i20 = i17;
-                            } else {
-                                i20 = i17;
-                            }
-                            linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i20);
-                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i20);
-                            i17 = i20;
-                        }
-                        if (z21) {
-                            iMin2 = i15;
-                            i18 = i17;
-                        } else {
-                            iMin2 = i15;
-                            i18 = i17;
-                        }
-                        if (z20) {
-                            if (z19) {
-                                constraintWidget2 = constraintWidget;
-                            } else {
-                                constraintWidget2 = constraintWidget;
-                            }
-                            if (z21) {
-                                iMin2 = Math.min(i18, iMin2);
-                                if (z7) {
-                                    i19 = iMin2;
-                                } else {
-                                    i19 = iMin2;
-                                }
-                            } else {
-                                i19 = iMin2;
-                            }
-                            linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i19);
-                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i19);
-                        }
-                        if (z21) {
-                            if (solverVariable == solverVariable4) {
-                                margin2 = constraintAnchor.getMargin();
-                            } else {
-                                margin2 = 0;
-                            }
-                            if (solverVariable4 != solverVariable) {
-                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, margin2, 5);
-                            }
-                        }
-                        if (z21) {
-                            solverVariable5 = solverVariableCreateObjectVariable4;
-                            margin = 0;
-                        } else {
-                            solverVariable5 = solverVariableCreateObjectVariable4;
-                            margin = 0;
-                        }
-                    }
-                    solverVariable5 = solverVariableCreateObjectVariable4;
-                    margin = 0;
-                    z21 = z3;
-                } else {
-                    solverVariable5 = solverVariableCreateObjectVariable4;
-                    margin = 0;
-                    z21 = z3;
-                }
-                if (z21 && z5) {
-                    if (constraintAnchor2.mTarget != null) {
-                        margin = constraintAnchor2.getMargin();
-                    }
-                    if (solverVariableCreateObjectVariable6 != solverVariable2) {
-                        if (!this.OPTIMIZE_WRAP || !solverVariable5.isFinalValue || (constraintWidget4 = this.mParent) == null) {
-                            linearSystem.addGreaterThan(solverVariable2, solverVariable5, margin, 5);
-                            return;
-                        }
-                        ConstraintWidgetContainer constraintWidgetContainer2 = (ConstraintWidgetContainer) constraintWidget4;
-                        if (z2) {
-                            constraintWidgetContainer2.addHorizontalWrapMaxVariable(constraintAnchor2);
-                            return;
-                        } else {
-                            constraintWidgetContainer2.addVerticalWrapMaxVariable(constraintAnchor2);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            }
-            if (z6) {
-                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, 0, 3);
-                if (i3 > 0) {
-                    linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i3, 8);
-                }
-                if (i4 < Integer.MAX_VALUE) {
-                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i4, 8);
-                }
-            } else {
-                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 8);
-            }
-            z14 = z13;
-            i13 = i7;
-            if (z12) {
-            }
-            SolverVariable solverVariable9 = solverVariableCreateObjectVariable4;
-            if (i25 >= 2) {
-            }
-        }
-        i9 = i26;
-        if (this.mVisibility == 8) {
-            iMin = 0;
-            z13 = false;
-        } else {
-            iMin = i2;
-        }
-        if (!z12) {
-            if (zIsConnected) {
-                if (!zIsConnected) {
-                }
-            } else if (!zIsConnected) {
-            }
-        }
-        if (!z13) {
-            if (i25 == 2) {
-            }
-            if (i7 == -2) {
-                i10 = iMin;
-            } else {
-                i10 = i7;
-            }
-            if (i24 == -2) {
-                i11 = iMin;
-            } else {
-                i11 = i24;
-            }
-            if (iMin > 0) {
-                iMin = 0;
-            }
-            if (i10 > 0) {
-                linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i10, 8);
-                iMin = Math.max(iMin, i10);
-            }
-            if (i11 > 0) {
-                if (z3) {
-                    z15 = true;
-                } else {
-                    z15 = true;
-                }
-                if (z15) {
-                    i12 = 8;
-                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i11, 8);
-                } else {
-                    i12 = 8;
-                }
-                iMin = Math.min(iMin, i11);
-            } else {
-                i12 = 8;
-            }
-            if (i9 == 1) {
-                if (z3) {
-                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                } else if (z9) {
-                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
-                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                } else {
-                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
-                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
-                }
-                i24 = i11;
-                i25 = i25 == true ? 1 : 0;
-                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                z14 = z13;
-                z5 = z5;
-                i13 = i10;
-                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-            } else if (i9 == 2) {
-                type = constraintAnchor.getType();
-                type2 = ConstraintAnchor.Type.TOP;
-                if (type != type2) {
-                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
-                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
-                } else {
-                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
-                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
-                }
-                SolverVariable solverVariable10 = solverVariableCreateObjectVariable;
-                SolverVariable solverVariable11 = solverVariableCreateObjectVariable2;
-                ArrayRow arrayRowCreateRow2 = linearSystem.createRow();
-                int i210 = i11;
-                i25 = i25 == true ? 1 : 0;
-                int i211 = i10;
-                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                linearSystem.addConstraint(arrayRowCreateRow2.createRowDimensionRatio(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, solverVariable11, solverVariable10, f2));
-                z5 = z5;
-                i24 = i210;
-                i13 = i211;
-                z14 = false;
-            } else {
-                int i212 = i11;
-                i25 = i25 == true ? 1 : 0;
-                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
-                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
-                int i32 = i10;
-                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
-                i24 = i212;
-                i13 = i32;
-                z14 = z13;
-                z5 = true;
-            }
-            if (z12) {
-            }
-            SolverVariable solverVariable12 = solverVariableCreateObjectVariable4;
-            if (i25 >= 2) {
-            }
-        }
-        if (z6) {
-            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, 0, 3);
-            if (i3 > 0) {
-                linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i3, 8);
-            }
-            if (i4 < Integer.MAX_VALUE) {
-                linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i4, 8);
-            }
-        } else {
-            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 8);
-        }
-        z14 = z13;
-        i13 = i7;
-        if (z12) {
-        }
-        SolverVariable solverVariable13 = solverVariableCreateObjectVariable4;
-        if (i25 >= 2) {
-        }
-    }
-
-    private boolean isChainHead(int i) {
-        int i2 = i * 2;
-        ConstraintAnchor[] constraintAnchorArr = this.mListAnchors;
-        if (constraintAnchorArr[i2].mTarget != null && constraintAnchorArr[i2].mTarget.mTarget != constraintAnchorArr[i2]) {
-            int i3 = i2 + 1;
-            if (constraintAnchorArr[i3].mTarget != null && constraintAnchorArr[i3].mTarget.mTarget == constraintAnchorArr[i3]) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void addChildrenToSolverByDependency(ConstraintWidgetContainer constraintWidgetContainer, LinearSystem linearSystem, HashSet<ConstraintWidget> hashSet, int i, boolean z2) {
@@ -1861,6 +1088,767 @@ public class ConstraintWidget {
         return this.mVisibility != 8;
     }
 
+    /* JADX WARN: Code duplicated, block: B:101:0x01c9  */
+    /* JADX WARN: Code duplicated, block: B:103:0x01de A[ADDED_TO_REGION] */
+    /* JADX WARN: Code duplicated, block: B:213:0x037e  */
+    /* JADX WARN: Code duplicated, block: B:215:0x0382  */
+    /* JADX WARN: Code duplicated, block: B:221:0x0395  */
+    /* JADX WARN: Code duplicated, block: B:223:0x03c4  */
+    /* JADX WARN: Code duplicated, block: B:231:0x03e3  */
+    /* JADX WARN: Code duplicated, block: B:239:0x03f3  */
+    /* JADX WARN: Code duplicated, block: B:248:0x0417  */
+    /* JADX WARN: Code duplicated, block: B:250:0x041d  */
+    /* JADX WARN: Code duplicated, block: B:272:0x044b  */
+    /* JADX WARN: Code duplicated, block: B:274:0x044f  */
+    /* JADX WARN: Code duplicated, block: B:27:0x007e  */
+    /* JADX WARN: Code duplicated, block: B:280:0x045d A[PHI: r2
+      0x045d: PHI (r2v39 int) = (r2v38 int), (r2v43 int), (r2v43 int), (r2v43 int) binds: [B:273:0x044d, B:275:0x0453, B:276:0x0455, B:278:0x0459] A[DONT_GENERATE, DONT_INLINE]] */
+    /* JADX WARN: Code duplicated, block: B:283:0x046f  */
+    /* JADX WARN: Code duplicated, block: B:285:0x0473  */
+    /* JADX WARN: Code duplicated, block: B:286:0x0478  */
+    /* JADX WARN: Code duplicated, block: B:288:0x047b  */
+    /* JADX WARN: Code duplicated, block: B:28:0x0082  */
+    /* JADX WARN: Code duplicated, block: B:299:0x049c  */
+    /* JADX WARN: Code duplicated, block: B:30:0x0086  */
+    /* JADX WARN: Code duplicated, block: B:324:0x04e0 A[ADDED_TO_REGION] */
+    /* JADX WARN: Code duplicated, block: B:343:0x0515  */
+    /* JADX WARN: Code duplicated, block: B:34:0x0092 A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:355:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
+    /* JADX WARN: Code duplicated, block: B:35:0x0094 A[ADDED_TO_REGION] */
+    /* JADX WARN: Code duplicated, block: B:37:0x00a2  */
+    /* JADX WARN: Code duplicated, block: B:39:0x00a8 A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:40:0x00aa  */
+    /* JADX WARN: Code duplicated, block: B:42:0x00b3  */
+    /* JADX WARN: Code duplicated, block: B:45:0x00bb  */
+    /* JADX WARN: Code duplicated, block: B:46:0x00bf  */
+    /* JADX WARN: Code duplicated, block: B:49:0x00d4  */
+    /* JADX WARN: Code duplicated, block: B:61:0x00fd  */
+    /* JADX WARN: Code duplicated, block: B:62:0x00ff  */
+    /* JADX WARN: Code duplicated, block: B:64:0x0102  */
+    /* JADX WARN: Code duplicated, block: B:65:0x0104  */
+    /* JADX WARN: Code duplicated, block: B:71:0x010d  */
+    /* JADX WARN: Code duplicated, block: B:73:0x0118  */
+    /* JADX WARN: Code duplicated, block: B:77:0x011f  */
+    /* JADX WARN: Code duplicated, block: B:79:0x0122  */
+    /* JADX WARN: Code duplicated, block: B:80:0x0128  */
+    /* JADX WARN: Code duplicated, block: B:82:0x012f  */
+    /* JADX WARN: Code duplicated, block: B:85:0x0134 A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:86:0x0136  */
+    /* JADX WARN: Code duplicated, block: B:87:0x013a A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:88:0x013c  */
+    /* JADX WARN: Code duplicated, block: B:89:0x0144  */
+    /* JADX WARN: Code duplicated, block: B:91:0x015d  */
+    /* JADX WARN: Code duplicated, block: B:93:0x0160  */
+    /* JADX WARN: Code duplicated, block: B:99:0x018a  */
+    private void applyConstraints(LinearSystem linearSystem, boolean z2, boolean z3, boolean z4, boolean z5, SolverVariable solverVariable, SolverVariable solverVariable2, DimensionBehaviour dimensionBehaviour, boolean z6, ConstraintAnchor constraintAnchor, ConstraintAnchor constraintAnchor2, int i, int i2, int i3, int i4, float f, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, int i5, int i6, int i7, int i8, float f2, boolean z12) {
+        int i9;
+        boolean z13;
+        int iMin;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        boolean z14;
+        ConstraintAnchor.Type type;
+        ConstraintAnchor.Type type2;
+        SolverVariable solverVariableCreateObjectVariable;
+        SolverVariable solverVariableCreateObjectVariable2;
+        boolean z15;
+        boolean z16;
+        ConstraintAnchor constraintAnchor3;
+        boolean z17;
+        int i14;
+        boolean z18;
+        boolean z19;
+        int i15;
+        int i16;
+        boolean z20;
+        ConstraintWidget constraintWidget;
+        SolverVariable solverVariable3;
+        int i17;
+        boolean z21;
+        SolverVariable solverVariable4;
+        int iMin2;
+        int i18;
+        SolverVariable solverVariable5;
+        int margin;
+        int margin2;
+        ConstraintWidget constraintWidget2;
+        int i19;
+        int i20;
+        boolean z22;
+        int i21;
+        int i22;
+        int i23;
+        boolean z23;
+        ConstraintWidget constraintWidget3;
+        ConstraintWidget constraintWidget4;
+        int i24 = i8;
+        SolverVariable solverVariableCreateObjectVariable3 = linearSystem.createObjectVariable(constraintAnchor);
+        SolverVariable solverVariableCreateObjectVariable4 = linearSystem.createObjectVariable(constraintAnchor2);
+        SolverVariable solverVariableCreateObjectVariable5 = linearSystem.createObjectVariable(constraintAnchor.getTarget());
+        SolverVariable solverVariableCreateObjectVariable6 = linearSystem.createObjectVariable(constraintAnchor2.getTarget());
+        if (LinearSystem.getMetrics() != null) {
+            LinearSystem.getMetrics().nonresolvedWidgets++;
+        }
+        boolean zIsConnected = constraintAnchor.isConnected();
+        boolean zIsConnected2 = constraintAnchor2.isConnected();
+        boolean zIsConnected3 = this.mCenter.isConnected();
+        int i25 = zIsConnected2 ? (zIsConnected ? 1 : 0) + 1 : zIsConnected ? 1 : 0;
+        if (zIsConnected3) {
+            i25++;
+        }
+        int i26 = z7 ? 3 : i5;
+        int iOrdinal = dimensionBehaviour.ordinal();
+        if (iOrdinal != 0 && iOrdinal != 1 && iOrdinal == 2) {
+            i9 = i26;
+            z13 = i9 != 4;
+            if (this.mVisibility == 8) {
+                iMin = 0;
+                z13 = false;
+            } else {
+                iMin = i2;
+            }
+            if (!z12) {
+                if (zIsConnected && !zIsConnected2 && !zIsConnected3) {
+                    linearSystem.addEquality(solverVariableCreateObjectVariable3, i);
+                } else if (!zIsConnected && !zIsConnected2) {
+                    linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), 8);
+                }
+            }
+            if (!z13) {
+                if (i25 == 2 && !z7 && (i9 == 1 || i9 == 0)) {
+                    int iMax = Math.max(i7, iMin);
+                    if (i24 > 0) {
+                        iMax = Math.min(i24, iMax);
+                    }
+                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMax, 8);
+                    z14 = false;
+                } else {
+                    if (i7 == -2) {
+                        i10 = iMin;
+                    } else {
+                        i10 = i7;
+                    }
+                    if (i24 == -2) {
+                        i11 = iMin;
+                    } else {
+                        i11 = i24;
+                    }
+                    if (iMin > 0 && i9 != 1) {
+                        iMin = 0;
+                    }
+                    if (i10 > 0) {
+                        linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i10, 8);
+                        iMin = Math.max(iMin, i10);
+                    }
+                    if (i11 > 0) {
+                        if (z3 || i9 != 1) {
+                            z15 = true;
+                        } else {
+                            z15 = false;
+                        }
+                        if (z15) {
+                            i12 = 8;
+                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i11, 8);
+                        } else {
+                            i12 = 8;
+                        }
+                        iMin = Math.min(iMin, i11);
+                    } else {
+                        i12 = 8;
+                    }
+                    if (i9 == 1) {
+                        if (z3) {
+                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                        } else if (z9) {
+                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
+                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                        } else {
+                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
+                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                        }
+                        i24 = i11;
+                        i25 = i25 == true ? 1 : 0;
+                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                        z14 = z13;
+                        z5 = z5;
+                        i13 = i10;
+                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+                    } else if (i9 == 2) {
+                        type = constraintAnchor.getType();
+                        type2 = ConstraintAnchor.Type.TOP;
+                        if (type != type2 || constraintAnchor.getType() == ConstraintAnchor.Type.BOTTOM) {
+                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
+                        } else {
+                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.LEFT));
+                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.RIGHT));
+                        }
+                        SolverVariable solverVariable6 = solverVariableCreateObjectVariable;
+                        SolverVariable solverVariable7 = solverVariableCreateObjectVariable2;
+                        ArrayRow arrayRowCreateRow = linearSystem.createRow();
+                        int i27 = i11;
+                        i25 = i25 == true ? 1 : 0;
+                        int i28 = i10;
+                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                        linearSystem.addConstraint(arrayRowCreateRow.createRowDimensionRatio(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, solverVariable7, solverVariable6, f2));
+                        z5 = z5;
+                        i24 = i27;
+                        i13 = i28;
+                        z14 = false;
+                    } else {
+                        int i29 = i11;
+                        i25 = i25 == true ? 1 : 0;
+                        solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                        solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                        int i30 = i10;
+                        solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+                        i24 = i29;
+                        i13 = i30;
+                        z14 = z13;
+                        z5 = true;
+                    }
+                }
+                if (z12 || z9) {
+                    SolverVariable solverVariable8 = solverVariableCreateObjectVariable4;
+                    if (i25 >= 2 && z3 && z5) {
+                        linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, 0, 8);
+                        boolean z24 = z2 || this.mBaseline.mTarget == null;
+                        if (z2 || (constraintAnchor3 = this.mBaseline.mTarget) == null) {
+                            z16 = z24;
+                        } else {
+                            ConstraintWidget constraintWidget5 = constraintAnchor3.mOwner;
+                            if (constraintWidget5.mDimensionRatio != 0.0f) {
+                                DimensionBehaviour[] dimensionBehaviourArr = constraintWidget5.mListDimensionBehaviors;
+                                DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[0];
+                                DimensionBehaviour dimensionBehaviour3 = DimensionBehaviour.MATCH_CONSTRAINT;
+                                if (dimensionBehaviour2 == dimensionBehaviour3 && dimensionBehaviourArr[1] == dimensionBehaviour3) {
+                                    z16 = true;
+                                } else {
+                                    z16 = false;
+                                }
+                            } else {
+                                z16 = false;
+                            }
+                        }
+                        if (z16) {
+                            linearSystem.addGreaterThan(solverVariable2, solverVariable8, 0, 8);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                if ((zIsConnected || zIsConnected2 || zIsConnected3) && (!zIsConnected || zIsConnected2)) {
+                    if (!zIsConnected && zIsConnected2) {
+                        linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), 8);
+                        if (z3) {
+                            if (this.OPTIMIZE_WRAP && solverVariableCreateObjectVariable3.isFinalValue && (constraintWidget3 = this.mParent) != null) {
+                                ConstraintWidgetContainer constraintWidgetContainer = (ConstraintWidgetContainer) constraintWidget3;
+                                if (z2) {
+                                    constraintWidgetContainer.addHorizontalWrapMinVariable(constraintAnchor);
+                                } else {
+                                    constraintWidgetContainer.addVerticalWrapMinVariable(constraintAnchor);
+                                }
+                            } else {
+                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, 0, 5);
+                            }
+                        }
+                    } else if (zIsConnected && zIsConnected2) {
+                        ConstraintWidget constraintWidget6 = constraintAnchor.mTarget.mOwner;
+                        ConstraintWidget constraintWidget7 = constraintAnchor2.mTarget.mOwner;
+                        ConstraintWidget parent = getParent();
+                        int i31 = 6;
+                        if (z14) {
+                            if (i9 == 0) {
+                                if (i24 != 0 || i13 != 0) {
+                                    z17 = true;
+                                    z23 = false;
+                                    z18 = true;
+                                    i16 = 5;
+                                    i15 = 5;
+                                } else if (solverVariableCreateObjectVariable5.isFinalValue && solverVariableCreateObjectVariable6.isFinalValue) {
+                                    linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), 8);
+                                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), 8);
+                                    return;
+                                } else {
+                                    z17 = false;
+                                    z23 = true;
+                                    z18 = false;
+                                    i16 = 8;
+                                    i15 = 8;
+                                }
+                                if ((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
+                                    i15 = 4;
+                                }
+                                z19 = z23;
+                                i14 = 6;
+                            } else {
+                                if (i9 == 1) {
+                                    solverVariable2 = solverVariable2;
+                                    z17 = true;
+                                    i14 = 6;
+                                    z18 = true;
+                                    z19 = false;
+                                    i15 = 4;
+                                } else if (i9 != 3) {
+                                    z17 = false;
+                                    i14 = 6;
+                                    z18 = false;
+                                } else if (this.mResolvedDimensionRatioSide == -1) {
+                                    if (z10) {
+                                        solverVariable2 = solverVariable2;
+                                        z17 = true;
+                                        i14 = z3 ? 5 : 4;
+                                    } else {
+                                        solverVariable2 = solverVariable2;
+                                        z17 = true;
+                                        i14 = 8;
+                                    }
+                                    z18 = true;
+                                    z19 = true;
+                                    i15 = 5;
+                                } else if (z7) {
+                                    if (i6 == 2 || i6 == 1) {
+                                        i22 = 5;
+                                        i23 = 4;
+                                    } else {
+                                        i22 = 8;
+                                        i23 = 5;
+                                    }
+                                    solverVariable2 = solverVariable2;
+                                    i16 = i22;
+                                    i15 = i23;
+                                    z17 = true;
+                                    i14 = 6;
+                                    z18 = true;
+                                    z19 = true;
+                                } else {
+                                    if (i24 > 0) {
+                                        solverVariable2 = solverVariable2;
+                                        z17 = true;
+                                        i14 = 6;
+                                        z18 = true;
+                                        z19 = true;
+                                        i15 = 5;
+                                    } else if (i24 != 0 || i13 != 0) {
+                                        solverVariable2 = solverVariable2;
+                                        z17 = true;
+                                        i14 = 6;
+                                        z18 = true;
+                                        z19 = true;
+                                        i15 = 4;
+                                    } else if (z10) {
+                                        solverVariable2 = solverVariable2;
+                                        i16 = (constraintWidget6 == parent || constraintWidget7 == parent) ? 5 : 4;
+                                        z17 = true;
+                                        i14 = 6;
+                                        z18 = true;
+                                        z19 = true;
+                                        i15 = 4;
+                                    } else {
+                                        solverVariable2 = solverVariable2;
+                                        z17 = true;
+                                        i14 = 6;
+                                        z18 = true;
+                                        z19 = true;
+                                        i15 = 8;
+                                    }
+                                    i16 = 5;
+                                }
+                                i16 = 8;
+                            }
+                            if (z18 || solverVariableCreateObjectVariable5 != solverVariableCreateObjectVariable6 || constraintWidget6 == parent) {
+                                z20 = true;
+                            } else {
+                                z18 = false;
+                                z20 = false;
+                            }
+                            if (z17) {
+                                if (z14 && !z8 && !z10 && solverVariableCreateObjectVariable5 == solverVariable && solverVariableCreateObjectVariable6 == solverVariable2) {
+                                    z21 = false;
+                                    i21 = 8;
+                                    z22 = false;
+                                    i17 = 8;
+                                } else {
+                                    i17 = i16;
+                                    z22 = z20;
+                                    z21 = z3;
+                                    i21 = i14;
+                                }
+                                solverVariable3 = solverVariableCreateObjectVariable5;
+                                constraintWidget = parent;
+                                linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariable3, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), i21);
+                                z20 = z22;
+                            } else {
+                                constraintWidget = parent;
+                                solverVariable3 = solverVariableCreateObjectVariable5;
+                                i17 = i16;
+                                z21 = z3;
+                            }
+                            if (this.mVisibility != 8 && !constraintAnchor2.hasDependents()) {
+                                return;
+                            }
+                            solverVariable4 = solverVariable3;
+                            if (z18) {
+                                if (z21 || solverVariable4 == solverVariableCreateObjectVariable6 || z14 || !((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier))) {
+                                    i20 = i17;
+                                } else {
+                                    i20 = 6;
+                                }
+                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i20);
+                                linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i20);
+                                i17 = i20;
+                            }
+                            if (z21 || !z11 || (constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
+                                iMin2 = i15;
+                                i18 = i17;
+                            } else {
+                                iMin2 = 6;
+                                i18 = 6;
+                                z20 = true;
+                            }
+                            if (z20) {
+                                if (z19 || (z10 && !z4)) {
+                                    constraintWidget2 = constraintWidget;
+                                } else {
+                                    constraintWidget2 = constraintWidget;
+                                    if (constraintWidget6 != constraintWidget2 && constraintWidget7 != constraintWidget2) {
+                                        i31 = iMin2;
+                                    }
+                                    if ((constraintWidget6 instanceof Guideline) || (constraintWidget7 instanceof Guideline)) {
+                                        i31 = 5;
+                                    }
+                                    if ((constraintWidget6 instanceof Barrier) || (constraintWidget7 instanceof Barrier)) {
+                                        i31 = 5;
+                                    }
+                                    iMin2 = Math.max(z10 ? 5 : i31, iMin2);
+                                }
+                                if (z21) {
+                                    iMin2 = Math.min(i18, iMin2);
+                                    if (z7 || z10 || !(constraintWidget6 == constraintWidget2 || constraintWidget7 == constraintWidget2)) {
+                                        i19 = iMin2;
+                                    } else {
+                                        i19 = 4;
+                                    }
+                                } else {
+                                    i19 = iMin2;
+                                }
+                                linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i19);
+                                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i19);
+                            }
+                            if (z21) {
+                                if (solverVariable == solverVariable4) {
+                                    margin2 = constraintAnchor.getMargin();
+                                } else {
+                                    margin2 = 0;
+                                }
+                                if (solverVariable4 != solverVariable) {
+                                    linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, margin2, 5);
+                                }
+                            }
+                            if (z21 || !z14) {
+                                solverVariable5 = solverVariableCreateObjectVariable4;
+                            } else {
+                                solverVariable5 = solverVariableCreateObjectVariable4;
+                                if (i3 == 0 && i13 == 0) {
+                                    if (z14 && i9 == 3) {
+                                        margin = 0;
+                                        linearSystem.addGreaterThan(solverVariable5, solverVariableCreateObjectVariable3, 0, 8);
+                                    } else {
+                                        margin = 0;
+                                        linearSystem.addGreaterThan(solverVariable5, solverVariableCreateObjectVariable3, 0, 5);
+                                    }
+                                }
+                            }
+                            margin = 0;
+                        } else {
+                            if (solverVariableCreateObjectVariable5.isFinalValue && solverVariableCreateObjectVariable6.isFinalValue) {
+                                linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), 8);
+                                if (z3 && z5) {
+                                    int margin3 = constraintAnchor2.mTarget != null ? constraintAnchor2.getMargin() : 0;
+                                    if (solverVariableCreateObjectVariable6 != solverVariable2) {
+                                        linearSystem.addGreaterThan(solverVariable2, solverVariableCreateObjectVariable4, margin3, 5);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            }
+                            z17 = true;
+                            i14 = 6;
+                            z18 = true;
+                        }
+                        z19 = false;
+                        i15 = 4;
+                        i16 = 5;
+                        if (z18) {
+                            z20 = true;
+                        } else {
+                            z20 = true;
+                        }
+                        if (z17) {
+                            if (z14) {
+                                i17 = i16;
+                                z22 = z20;
+                                z21 = z3;
+                                i21 = i14;
+                            } else {
+                                i17 = i16;
+                                z22 = z20;
+                                z21 = z3;
+                                i21 = i14;
+                            }
+                            solverVariable3 = solverVariableCreateObjectVariable5;
+                            constraintWidget = parent;
+                            linearSystem.addCentering(solverVariableCreateObjectVariable3, solverVariable3, constraintAnchor.getMargin(), f, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable4, constraintAnchor2.getMargin(), i21);
+                            z20 = z22;
+                        } else {
+                            constraintWidget = parent;
+                            solverVariable3 = solverVariableCreateObjectVariable5;
+                            i17 = i16;
+                            z21 = z3;
+                        }
+                        if (this.mVisibility != 8) {
+                        }
+                        solverVariable4 = solverVariable3;
+                        if (z18) {
+                            if (z21) {
+                                i20 = i17;
+                            } else {
+                                i20 = i17;
+                            }
+                            linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i20);
+                            linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i20);
+                            i17 = i20;
+                        }
+                        if (z21) {
+                            iMin2 = i15;
+                            i18 = i17;
+                        } else {
+                            iMin2 = i15;
+                            i18 = i17;
+                        }
+                        if (z20) {
+                            if (z19) {
+                                constraintWidget2 = constraintWidget;
+                            } else {
+                                constraintWidget2 = constraintWidget;
+                            }
+                            if (z21) {
+                                iMin2 = Math.min(i18, iMin2);
+                                if (z7) {
+                                    i19 = iMin2;
+                                } else {
+                                    i19 = iMin2;
+                                }
+                            } else {
+                                i19 = iMin2;
+                            }
+                            linearSystem.addEquality(solverVariableCreateObjectVariable3, solverVariable4, constraintAnchor.getMargin(), i19);
+                            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, -constraintAnchor2.getMargin(), i19);
+                        }
+                        if (z21) {
+                            if (solverVariable == solverVariable4) {
+                                margin2 = constraintAnchor.getMargin();
+                            } else {
+                                margin2 = 0;
+                            }
+                            if (solverVariable4 != solverVariable) {
+                                linearSystem.addGreaterThan(solverVariableCreateObjectVariable3, solverVariable, margin2, 5);
+                            }
+                        }
+                        if (z21) {
+                            solverVariable5 = solverVariableCreateObjectVariable4;
+                            margin = 0;
+                        } else {
+                            solverVariable5 = solverVariableCreateObjectVariable4;
+                            margin = 0;
+                        }
+                    }
+                    solverVariable5 = solverVariableCreateObjectVariable4;
+                    margin = 0;
+                    z21 = z3;
+                } else {
+                    solverVariable5 = solverVariableCreateObjectVariable4;
+                    margin = 0;
+                    z21 = z3;
+                }
+                if (z21 && z5) {
+                    if (constraintAnchor2.mTarget != null) {
+                        margin = constraintAnchor2.getMargin();
+                    }
+                    if (solverVariableCreateObjectVariable6 != solverVariable2) {
+                        if (!this.OPTIMIZE_WRAP || !solverVariable5.isFinalValue || (constraintWidget4 = this.mParent) == null) {
+                            linearSystem.addGreaterThan(solverVariable2, solverVariable5, margin, 5);
+                            return;
+                        }
+                        ConstraintWidgetContainer constraintWidgetContainer2 = (ConstraintWidgetContainer) constraintWidget4;
+                        if (z2) {
+                            constraintWidgetContainer2.addHorizontalWrapMaxVariable(constraintAnchor2);
+                            return;
+                        } else {
+                            constraintWidgetContainer2.addVerticalWrapMaxVariable(constraintAnchor2);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                return;
+            }
+            if (z6) {
+                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, 0, 3);
+                if (i3 > 0) {
+                    linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i3, 8);
+                }
+                if (i4 < Integer.MAX_VALUE) {
+                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i4, 8);
+                }
+            } else {
+                linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 8);
+            }
+            z14 = z13;
+            i13 = i7;
+            if (z12) {
+            }
+            SolverVariable solverVariable9 = solverVariableCreateObjectVariable4;
+            if (i25 >= 2) {
+            }
+        }
+        i9 = i26;
+        if (this.mVisibility == 8) {
+            iMin = 0;
+            z13 = false;
+        } else {
+            iMin = i2;
+        }
+        if (!z12) {
+            if (zIsConnected) {
+                if (!zIsConnected) {
+                }
+            } else if (!zIsConnected) {
+            }
+        }
+        if (!z13) {
+            if (i25 == 2) {
+            }
+            if (i7 == -2) {
+                i10 = iMin;
+            } else {
+                i10 = i7;
+            }
+            if (i24 == -2) {
+                i11 = iMin;
+            } else {
+                i11 = i24;
+            }
+            if (iMin > 0) {
+                iMin = 0;
+            }
+            if (i10 > 0) {
+                linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i10, 8);
+                iMin = Math.max(iMin, i10);
+            }
+            if (i11 > 0) {
+                if (z3) {
+                    z15 = true;
+                } else {
+                    z15 = true;
+                }
+                if (z15) {
+                    i12 = 8;
+                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i11, 8);
+                } else {
+                    i12 = 8;
+                }
+                iMin = Math.min(iMin, i11);
+            } else {
+                i12 = 8;
+            }
+            if (i9 == 1) {
+                if (z3) {
+                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                } else if (z9) {
+                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
+                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                } else {
+                    linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 5);
+                    linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, i12);
+                }
+                i24 = i11;
+                i25 = i25 == true ? 1 : 0;
+                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                z14 = z13;
+                z5 = z5;
+                i13 = i10;
+                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+            } else if (i9 == 2) {
+                type = constraintAnchor.getType();
+                type2 = ConstraintAnchor.Type.TOP;
+                if (type != type2) {
+                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
+                } else {
+                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
+                }
+                SolverVariable solverVariable10 = solverVariableCreateObjectVariable;
+                SolverVariable solverVariable11 = solverVariableCreateObjectVariable2;
+                ArrayRow arrayRowCreateRow2 = linearSystem.createRow();
+                int i210 = i11;
+                i25 = i25 == true ? 1 : 0;
+                int i211 = i10;
+                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                linearSystem.addConstraint(arrayRowCreateRow2.createRowDimensionRatio(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, solverVariable11, solverVariable10, f2));
+                z5 = z5;
+                i24 = i210;
+                i13 = i211;
+                z14 = false;
+            } else {
+                int i212 = i11;
+                i25 = i25 == true ? 1 : 0;
+                solverVariableCreateObjectVariable5 = solverVariableCreateObjectVariable5;
+                solverVariableCreateObjectVariable4 = solverVariableCreateObjectVariable4;
+                int i32 = i10;
+                solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
+                i24 = i212;
+                i13 = i32;
+                z14 = z13;
+                z5 = true;
+            }
+            if (z12) {
+            }
+            SolverVariable solverVariable12 = solverVariableCreateObjectVariable4;
+            if (i25 >= 2) {
+            }
+        }
+        if (z6) {
+            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, 0, 3);
+            if (i3 > 0) {
+                linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i3, 8);
+            }
+            if (i4 < Integer.MAX_VALUE) {
+                linearSystem.addLowerThan(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, i4, 8);
+            }
+        } else {
+            linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable3, iMin, 8);
+        }
+        z14 = z13;
+        i13 = i7;
+        if (z12) {
+        }
+        SolverVariable solverVariable13 = solverVariableCreateObjectVariable4;
+        if (i25 >= 2) {
+        }
+    }
+
     public void connect(ConstraintAnchor constraintAnchor, ConstraintAnchor constraintAnchor2, int i) {
         if (constraintAnchor.getOwner() == this) {
             connect(constraintAnchor.getType(), constraintAnchor2.getOwner(), constraintAnchor2.getType(), i);
@@ -2351,6 +2339,18 @@ public class ConstraintWidget {
 
     public void immediateConnect(ConstraintAnchor.Type type, ConstraintWidget constraintWidget, ConstraintAnchor.Type type2, int i, int i2) {
         getAnchor(type).connect(constraintWidget.getAnchor(type2), i, i2, true);
+    }
+
+    private boolean isChainHead(int i) {
+        int i2 = i * 2;
+        ConstraintAnchor[] constraintAnchorArr = this.mListAnchors;
+        if (constraintAnchorArr[i2].mTarget != null && constraintAnchorArr[i2].mTarget.mTarget != constraintAnchorArr[i2]) {
+            int i3 = i2 + 1;
+            if (constraintAnchorArr[i3].mTarget != null && constraintAnchorArr[i3].mTarget.mTarget == constraintAnchorArr[i3]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isHeightWrapContent() {

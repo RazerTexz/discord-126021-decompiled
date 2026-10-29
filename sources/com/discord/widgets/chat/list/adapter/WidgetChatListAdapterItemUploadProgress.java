@@ -58,13 +58,53 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
     private final WidgetChatListAdapterItemUploadProgressBinding binding;
     private Subscription subscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-    public static abstract class Model {
+    public final /* synthetic */ class C81541 extends C12236k implements Function1<Model, Unit> {
+        public C81541(WidgetChatListAdapterItemUploadProgress widgetChatListAdapterItemUploadProgress) {
+            super(1, widgetChatListAdapterItemUploadProgress, WidgetChatListAdapterItemUploadProgress.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemUploadProgress$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetChatListAdapterItemUploadProgress) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$onConfigure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
+    public final class C81552 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C81552() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemUploadProgress.this.subscription = subscription;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
+    public abstract class Model {
         public static final int PROGRESS_INDETERMINATE = -1;
         public static final long SIZE_UNKNOWN = -1;
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-        public static final /* data */ class Few extends Model {
+        public final /* data */ class Few extends Model {
             private final List<Single> uploads;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -74,16 +114,16 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 this.uploads = list;
             }
 
+            public final List<Single> component1() {
+                return this.uploads;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Few copy$default(Few few, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = few.uploads;
                 }
                 return few.copy(list);
-            }
-
-            public final List<Single> component1() {
-                return this.uploads;
             }
 
             public final Few copy(List<Single> uploads) {
@@ -116,7 +156,7 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-        public static final /* data */ class Many extends Model {
+        public final /* data */ class Many extends Model {
             private final int numFiles;
             private final int progress;
             private final long sizeBytes;
@@ -141,21 +181,6 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return many.copy(i, j, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getNumFiles() {
-                return this.numFiles;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getSizeBytes() {
-                return this.sizeBytes;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getProgress() {
-                return this.progress;
-            }
-
             public final Many copy(int numFiles, long sizeBytes, int progress) {
                 return new Many(numFiles, sizeBytes, progress);
             }
@@ -171,12 +196,27 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return this.numFiles == many.numFiles && this.sizeBytes == many.sizeBytes && this.progress == many.progress;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getNumFiles() {
                 return this.numFiles;
             }
 
+            public final int getNumFiles() {
+                return this.numFiles;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final int getProgress() {
                 return this.progress;
+            }
+
+            public final int getProgress() {
+                return this.progress;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getSizeBytes() {
+                return this.sizeBytes;
             }
 
             public final long getSizeBytes() {
@@ -198,7 +238,7 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-        public static final class None extends Model {
+        public final class None extends Model {
             public static final None INSTANCE = new None();
 
             private None() {
@@ -207,7 +247,7 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-        public static final /* data */ class Preprocessing extends Model {
+        public final /* data */ class Preprocessing extends Model {
             private final String displayName;
             private final String mimeType;
             private final int numFiles;
@@ -232,21 +272,6 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return preprocessing.copy(i, str, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getNumFiles() {
-                return this.numFiles;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getDisplayName() {
-                return this.displayName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getMimeType() {
-                return this.mimeType;
-            }
-
             public final Preprocessing copy(int numFiles, String displayName, String mimeType) {
                 return new Preprocessing(numFiles, displayName, mimeType);
             }
@@ -262,12 +287,27 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return this.numFiles == preprocessing.numFiles && C12238m.areEqual(this.displayName, preprocessing.displayName) && C12238m.areEqual(this.mimeType, preprocessing.mimeType);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getDisplayName() {
                 return this.displayName;
             }
 
+            public final String getDisplayName() {
+                return this.displayName;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getMimeType() {
                 return this.mimeType;
+            }
+
+            public final String getMimeType() {
+                return this.mimeType;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getNumFiles() {
+                return this.numFiles;
             }
 
             public final int getNumFiles() {
@@ -293,7 +333,7 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-        public static final /* data */ class Single extends Model {
+        public final /* data */ class Single extends Model {
             private final String mimeType;
             private final String name;
             private final int progress;
@@ -328,26 +368,6 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return single.copy(str, str3, j2, i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getName() {
-                return this.name;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getMimeType() {
-                return this.mimeType;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getSizeBytes() {
-                return this.sizeBytes;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final int getProgress() {
-                return this.progress;
-            }
-
             public final Single copy(String name, String mimeType, long sizeBytes, int progress) {
                 C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
                 C12238m.checkNotNullParameter(mimeType, "mimeType");
@@ -365,16 +385,36 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
                 return C12238m.areEqual(this.name, single.name) && C12238m.areEqual(this.mimeType, single.mimeType) && this.sizeBytes == single.sizeBytes && this.progress == single.progress;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getMimeType() {
                 return this.mimeType;
+            }
+
+            public final String getMimeType() {
+                return this.mimeType;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getName() {
+                return this.name;
             }
 
             public final String getName() {
                 return this.name;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final int getProgress() {
                 return this.progress;
+            }
+
+            public final int getProgress() {
+                return this.progress;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final long getSizeBytes() {
+                return this.sizeBytes;
             }
 
             public final long getSizeBytes() {
@@ -409,11 +449,38 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-    public static final class ModelProvider {
-        public static final ModelProvider INSTANCE = new ModelProvider();
+    public final class ModelProvider {
         private static final int MAX_DETAILED_UPLOADS = 3;
+        public static final ModelProvider INSTANCE = new ModelProvider();
 
         private ModelProvider() {
+        }
+
+        public final Observable<? extends Model> get(String nonce, final long throttleIntervalMs) {
+            C12238m.checkNotNullParameter(nonce, "nonce");
+            StoreMessageUploads messageUploads = StoreStream.INSTANCE.getMessageUploads();
+            Observable<? extends Model> observableM11099Y = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{messageUploads}, false, null, null, new WidgetChatListAdapterItemUploadProgress$ModelProvider$get$1(messageUploads, nonce), 14, null).m11099Y(new InterfaceC12589b<StoreMessageUploads.MessageUploadState, Observable<? extends Model>>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$ModelProvider$get$2
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetChatListAdapterItemUploadProgress.Model> call(StoreMessageUploads.MessageUploadState messageUploadState) {
+                    if (messageUploadState instanceof StoreMessageUploads.MessageUploadState.None) {
+                        return new C12721k(WidgetChatListAdapterItemUploadProgress.Model.None.INSTANCE);
+                    }
+                    if (messageUploadState instanceof StoreMessageUploads.MessageUploadState.Preprocessing) {
+                        StoreMessageUploads.MessageUploadState.Preprocessing preprocessing = (StoreMessageUploads.MessageUploadState.Preprocessing) messageUploadState;
+                        return new C12721k(new WidgetChatListAdapterItemUploadProgress.Model.Preprocessing(preprocessing.getNumFiles(), preprocessing.getDisplayName(), preprocessing.getMimeType()));
+                    }
+                    if (!(messageUploadState instanceof StoreMessageUploads.MessageUploadState.Uploading)) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    List<SendUtils.FileUpload> uploads = ((StoreMessageUploads.MessageUploadState.Uploading) messageUploadState).getUploads();
+                    if (uploads.size() == 1) {
+                        return WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getSingleUploadObservable((SendUtils.FileUpload) C12163u.first((List) uploads), throttleIntervalMs);
+                    }
+                    return uploads.size() <= 3 ? WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getFewUploadsObservable(uploads, throttleIntervalMs) : WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getManyUploadsObservable(uploads, throttleIntervalMs);
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "ObservationDeckProvider.…      }\n        }\n      }");
+            return observableM11099Y;
         }
 
         private final Observable<Model.Few> getFewUploadsObservable(List<SendUtils.FileUpload> uploads, long throttleIntervalMs) {
@@ -525,73 +592,6 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
             });
             C12238m.checkNotNullExpressionValue(observableM11083G, "upload\n            .byte…          )\n            }");
             return observableM11083G;
-        }
-
-        public final Observable<? extends Model> get(String nonce, final long throttleIntervalMs) {
-            C12238m.checkNotNullParameter(nonce, "nonce");
-            StoreMessageUploads messageUploads = StoreStream.INSTANCE.getMessageUploads();
-            Observable<? extends Model> observableM11099Y = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{messageUploads}, false, null, null, new WidgetChatListAdapterItemUploadProgress$ModelProvider$get$1(messageUploads, nonce), 14, null).m11099Y(new InterfaceC12589b<StoreMessageUploads.MessageUploadState, Observable<? extends Model>>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$ModelProvider$get$2
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetChatListAdapterItemUploadProgress.Model> call(StoreMessageUploads.MessageUploadState messageUploadState) {
-                    if (messageUploadState instanceof StoreMessageUploads.MessageUploadState.None) {
-                        return new C12721k(WidgetChatListAdapterItemUploadProgress.Model.None.INSTANCE);
-                    }
-                    if (messageUploadState instanceof StoreMessageUploads.MessageUploadState.Preprocessing) {
-                        StoreMessageUploads.MessageUploadState.Preprocessing preprocessing = (StoreMessageUploads.MessageUploadState.Preprocessing) messageUploadState;
-                        return new C12721k(new WidgetChatListAdapterItemUploadProgress.Model.Preprocessing(preprocessing.getNumFiles(), preprocessing.getDisplayName(), preprocessing.getMimeType()));
-                    }
-                    if (!(messageUploadState instanceof StoreMessageUploads.MessageUploadState.Uploading)) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    List<SendUtils.FileUpload> uploads = ((StoreMessageUploads.MessageUploadState.Uploading) messageUploadState).getUploads();
-                    if (uploads.size() == 1) {
-                        return WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getSingleUploadObservable((SendUtils.FileUpload) C12163u.first((List) uploads), throttleIntervalMs);
-                    }
-                    return uploads.size() <= 3 ? WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getFewUploadsObservable(uploads, throttleIntervalMs) : WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE.getManyUploadsObservable(uploads, throttleIntervalMs);
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "ObservationDeckProvider.…      }\n        }\n      }");
-            return observableM11099Y;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-    public static final /* synthetic */ class C81541 extends C12236k implements Function1<Model, Unit> {
-        public C81541(WidgetChatListAdapterItemUploadProgress widgetChatListAdapterItemUploadProgress) {
-            super(1, widgetChatListAdapterItemUploadProgress, WidgetChatListAdapterItemUploadProgress.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemUploadProgress$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetChatListAdapterItemUploadProgress) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemUploadProgress$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemUploadProgress.kt */
-    public static final class C81552 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C81552() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemUploadProgress.this.subscription = subscription;
         }
     }
 
@@ -717,6 +717,11 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
         imageView4.setVisibility(8);
     }
 
+    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+    public Subscription getSubscription() {
+        return this.subscription;
+    }
+
     private final void setUploadState(UploadProgressView uploadProgressView, Model model) {
         if (C12238m.areEqual(model, Model.None.INSTANCE)) {
             CharSequence charSequenceM212d = C1107b.m212d(uploadProgressView, C5419R.string.upload_queued, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null);
@@ -770,11 +775,6 @@ public final class WidgetChatListAdapterItemUploadProgress extends WidgetChatLis
             C12238m.checkNotNullExpressionValue(context7, "context");
             uploadProgressView.setIcon(DrawableCompat.getThemedDrawableRes$default(context7, C5419R.attr.ic_uploads_generic, 0, 2, (Object) null));
         }
-    }
-
-    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public Subscription getSubscription() {
-        return this.subscription;
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

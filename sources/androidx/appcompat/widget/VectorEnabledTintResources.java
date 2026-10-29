@@ -19,6 +19,12 @@ public class VectorEnabledTintResources extends Resources {
         this.mContextRef = new WeakReference<>(context);
     }
 
+    @Override // android.content.res.Resources
+    public Drawable getDrawable(int i) throws Resources.NotFoundException {
+        Context context = this.mContextRef.get();
+        return context != null ? ResourceManagerInternal.get().onDrawableLoadedFromResources(context, this, i) : super.getDrawable(i);
+    }
+
     public static boolean isCompatVectorFromResourcesEnabled() {
         return sCompatVectorFromResourcesEnabled;
     }
@@ -30,12 +36,6 @@ public class VectorEnabledTintResources extends Resources {
     public static boolean shouldBeUsed() {
         isCompatVectorFromResourcesEnabled();
         return false;
-    }
-
-    @Override // android.content.res.Resources
-    public Drawable getDrawable(int i) throws Resources.NotFoundException {
-        Context context = this.mContextRef.get();
-        return context != null ? ResourceManagerInternal.get().onDrawableLoadedFromResources(context, this, i) : super.getDrawable(i);
     }
 
     public final Drawable superGetDrawable(int i) {

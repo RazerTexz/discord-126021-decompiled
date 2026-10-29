@@ -58,7 +58,7 @@ public final class C12267d {
 
     /* JADX INFO: renamed from: f0.d$a */
     /* JADX INFO: compiled from: CacheControl.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

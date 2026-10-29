@@ -8,7 +8,7 @@ import com.discord.C5419R;
 public final class C10759R {
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$a */
-    public static final class a {
+    public final class a {
         public static final int androidx_core_ripple_material_light = 2131099679;
         public static final int androidx_core_secondary_text_default_material_light = 2131099680;
         public static final int exo_black_opacity_60 = 2131099868;
@@ -32,7 +32,7 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$b */
-    public static final class b {
+    public final class b {
         public static final int exo_controls_fastforward = 2131231376;
         public static final int exo_controls_fullscreen_enter = 2131231377;
         public static final int exo_controls_fullscreen_exit = 2131231378;
@@ -130,7 +130,7 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$c */
-    public static final class c {
+    public final class c {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -280,7 +280,7 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$d */
-    public static final class d {
+    public final class d {
         public static final int cancel_button_image_alpha = 2131427335;
         public static final int exo_media_button_opacity_percentage_disabled = 2131427340;
         public static final int exo_media_button_opacity_percentage_enabled = 2131427341;
@@ -291,7 +291,7 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$e */
-    public static final class e {
+    public final class e {
         public static final int custom_dialog = 2131558460;
         public static final int exo_list_divider = 2131558493;
         public static final int exo_player_control_view = 2131558494;
@@ -325,7 +325,7 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$f */
-    public static final class f {
+    public final class f {
         public static final int exo_controls_cc_disabled_description = 2131888906;
         public static final int exo_controls_cc_enabled_description = 2131888907;
         public static final int exo_controls_custom_playback_speed = 2131888908;
@@ -387,13 +387,17 @@ public final class C10759R {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.R$g */
-    public static final class g {
+    public final class g {
+        public static final int[] AspectRatioFrameLayout = {C5419R.attr.resize_mode};
         public static final int AspectRatioFrameLayout_resize_mode = 0;
+        public static final int[] Capability = {C5419R.attr.queryPatterns, C5419R.attr.shortcutMatchRequired};
         public static final int Capability_queryPatterns = 0;
         public static final int Capability_shortcutMatchRequired = 1;
+        public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] DefaultTimeBar = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
         public static final int DefaultTimeBar_ad_marker_color = 0;
         public static final int DefaultTimeBar_ad_marker_width = 1;
         public static final int DefaultTimeBar_bar_gravity = 2;
@@ -408,6 +412,8 @@ public final class C10759R {
         public static final int DefaultTimeBar_scrubber_enabled_size = 11;
         public static final int DefaultTimeBar_touch_target_height = 12;
         public static final int DefaultTimeBar_unplayed_color = 13;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -425,6 +431,8 @@ public final class C10759R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
+        public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -439,6 +447,7 @@ public final class C10759R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
+        public static final int[] PlayerControlView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.repeat_toggle_modes, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_fastforward_button, C5419R.attr.show_next_button, C5419R.attr.show_previous_button, C5419R.attr.show_rewind_button, C5419R.attr.show_shuffle_button, C5419R.attr.show_timeout, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
         public static final int PlayerControlView_ad_marker_color = 0;
         public static final int PlayerControlView_ad_marker_width = 1;
         public static final int PlayerControlView_bar_gravity = 2;
@@ -462,6 +471,7 @@ public final class C10759R {
         public static final int PlayerControlView_time_bar_min_update_interval = 20;
         public static final int PlayerControlView_touch_target_height = 21;
         public static final int PlayerControlView_unplayed_color = 22;
+        public static final int[] PlayerView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.auto_show, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.default_artwork, C5419R.attr.hide_during_ads, C5419R.attr.hide_on_touch, C5419R.attr.keep_content_on_player_reset, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.player_layout_id, C5419R.attr.repeat_toggle_modes, C5419R.attr.resize_mode, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_buffering, C5419R.attr.show_shuffle_button, C5419R.attr.show_timeout, C5419R.attr.shutter_background_color, C5419R.attr.surface_type, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color, C5419R.attr.use_artwork, C5419R.attr.use_controller};
         public static final int PlayerView_ad_marker_color = 0;
         public static final int PlayerView_ad_marker_width = 1;
         public static final int PlayerView_auto_show = 2;
@@ -492,6 +502,7 @@ public final class C10759R {
         public static final int PlayerView_unplayed_color = 27;
         public static final int PlayerView_use_artwork = 28;
         public static final int PlayerView_use_controller = 29;
+        public static final int[] RecyclerView = {R.attr.orientation, R.attr.clipToPadding, R.attr.descendantFocusability, C5419R.attr.fastScrollEnabled, C5419R.attr.fastScrollHorizontalThumbDrawable, C5419R.attr.fastScrollHorizontalTrackDrawable, C5419R.attr.fastScrollVerticalThumbDrawable, C5419R.attr.fastScrollVerticalTrackDrawable, C5419R.attr.layoutManager, C5419R.attr.reverseLayout, C5419R.attr.spanCount, C5419R.attr.stackFromEnd};
         public static final int RecyclerView_android_clipToPadding = 1;
         public static final int RecyclerView_android_descendantFocusability = 2;
         public static final int RecyclerView_android_orientation = 0;
@@ -504,6 +515,7 @@ public final class C10759R {
         public static final int RecyclerView_reverseLayout = 9;
         public static final int RecyclerView_spanCount = 10;
         public static final int RecyclerView_stackFromEnd = 11;
+        public static final int[] StyledPlayerControlView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.animation_enabled, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.repeat_toggle_modes, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_fastforward_button, C5419R.attr.show_next_button, C5419R.attr.show_previous_button, C5419R.attr.show_rewind_button, C5419R.attr.show_shuffle_button, C5419R.attr.show_subtitle_button, C5419R.attr.show_timeout, C5419R.attr.show_vr_button, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
         public static final int StyledPlayerControlView_ad_marker_color = 0;
         public static final int StyledPlayerControlView_ad_marker_width = 1;
         public static final int StyledPlayerControlView_animation_enabled = 2;
@@ -530,6 +542,7 @@ public final class C10759R {
         public static final int StyledPlayerControlView_time_bar_min_update_interval = 23;
         public static final int StyledPlayerControlView_touch_target_height = 24;
         public static final int StyledPlayerControlView_unplayed_color = 25;
+        public static final int[] StyledPlayerView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.animation_enabled, C5419R.attr.auto_show, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.default_artwork, C5419R.attr.hide_during_ads, C5419R.attr.hide_on_touch, C5419R.attr.keep_content_on_player_reset, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.player_layout_id, C5419R.attr.repeat_toggle_modes, C5419R.attr.resize_mode, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_buffering, C5419R.attr.show_shuffle_button, C5419R.attr.show_subtitle_button, C5419R.attr.show_timeout, C5419R.attr.show_vr_button, C5419R.attr.shutter_background_color, C5419R.attr.surface_type, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color, C5419R.attr.use_artwork, C5419R.attr.use_controller};
         public static final int StyledPlayerView_ad_marker_color = 0;
         public static final int StyledPlayerView_ad_marker_width = 1;
         public static final int StyledPlayerView_animation_enabled = 2;
@@ -564,19 +577,6 @@ public final class C10759R {
         public static final int StyledPlayerView_unplayed_color = 31;
         public static final int StyledPlayerView_use_artwork = 32;
         public static final int StyledPlayerView_use_controller = 33;
-        public static final int[] AspectRatioFrameLayout = {C5419R.attr.resize_mode};
-        public static final int[] Capability = {C5419R.attr.queryPatterns, C5419R.attr.shortcutMatchRequired};
-        public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] DefaultTimeBar = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
-        public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
-        public static final int[] PlayerControlView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.repeat_toggle_modes, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_fastforward_button, C5419R.attr.show_next_button, C5419R.attr.show_previous_button, C5419R.attr.show_rewind_button, C5419R.attr.show_shuffle_button, C5419R.attr.show_timeout, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
-        public static final int[] PlayerView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.auto_show, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.default_artwork, C5419R.attr.hide_during_ads, C5419R.attr.hide_on_touch, C5419R.attr.keep_content_on_player_reset, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.player_layout_id, C5419R.attr.repeat_toggle_modes, C5419R.attr.resize_mode, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_buffering, C5419R.attr.show_shuffle_button, C5419R.attr.show_timeout, C5419R.attr.shutter_background_color, C5419R.attr.surface_type, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color, C5419R.attr.use_artwork, C5419R.attr.use_controller};
-        public static final int[] RecyclerView = {R.attr.orientation, R.attr.clipToPadding, R.attr.descendantFocusability, C5419R.attr.fastScrollEnabled, C5419R.attr.fastScrollHorizontalThumbDrawable, C5419R.attr.fastScrollHorizontalTrackDrawable, C5419R.attr.fastScrollVerticalThumbDrawable, C5419R.attr.fastScrollVerticalTrackDrawable, C5419R.attr.layoutManager, C5419R.attr.reverseLayout, C5419R.attr.spanCount, C5419R.attr.stackFromEnd};
-        public static final int[] StyledPlayerControlView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.animation_enabled, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.repeat_toggle_modes, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_fastforward_button, C5419R.attr.show_next_button, C5419R.attr.show_previous_button, C5419R.attr.show_rewind_button, C5419R.attr.show_shuffle_button, C5419R.attr.show_subtitle_button, C5419R.attr.show_timeout, C5419R.attr.show_vr_button, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color};
-        public static final int[] StyledPlayerView = {C5419R.attr.ad_marker_color, C5419R.attr.ad_marker_width, C5419R.attr.animation_enabled, C5419R.attr.auto_show, C5419R.attr.bar_gravity, C5419R.attr.bar_height, C5419R.attr.buffered_color, C5419R.attr.controller_layout_id, C5419R.attr.default_artwork, C5419R.attr.hide_during_ads, C5419R.attr.hide_on_touch, C5419R.attr.keep_content_on_player_reset, C5419R.attr.played_ad_marker_color, C5419R.attr.played_color, C5419R.attr.player_layout_id, C5419R.attr.repeat_toggle_modes, C5419R.attr.resize_mode, C5419R.attr.scrubber_color, C5419R.attr.scrubber_disabled_size, C5419R.attr.scrubber_dragged_size, C5419R.attr.scrubber_drawable, C5419R.attr.scrubber_enabled_size, C5419R.attr.show_buffering, C5419R.attr.show_shuffle_button, C5419R.attr.show_subtitle_button, C5419R.attr.show_timeout, C5419R.attr.show_vr_button, C5419R.attr.shutter_background_color, C5419R.attr.surface_type, C5419R.attr.time_bar_min_update_interval, C5419R.attr.touch_target_height, C5419R.attr.unplayed_color, C5419R.attr.use_artwork, C5419R.attr.use_controller};
 
         private g() {
         }

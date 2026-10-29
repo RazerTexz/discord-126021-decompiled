@@ -21,14 +21,14 @@ import p658rx.functions.Func2;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12656o1<R, T> implements Observable.InterfaceC13006b<R, T> {
 
-    /* JADX INFO: renamed from: j */
-    public static final Object f26957j = new Object();
-
     /* JADX INFO: renamed from: k */
     public final Func0<R> f26958k;
 
     /* JADX INFO: renamed from: l */
     public final Func2<R, ? super T, R> f26959l;
+
+    /* JADX INFO: renamed from: j */
+    public static final Object f26957j = new Object();
 
     /* JADX INFO: renamed from: j0.l.a.o1$a */
     /* JADX INFO: compiled from: OperatorScan.java */
@@ -49,7 +49,7 @@ public final class C12656o1<R, T> implements Observable.InterfaceC13006b<R, T> {
 
     /* JADX INFO: renamed from: j0.l.a.o1$b */
     /* JADX INFO: compiled from: OperatorScan.java */
-    public static final class b<R> implements Producer, InterfaceC12581g<R> {
+    public final class b<R> implements Producer, InterfaceC12581g<R> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super R> f26961j;

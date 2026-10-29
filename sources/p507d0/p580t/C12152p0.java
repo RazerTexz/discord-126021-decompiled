@@ -21,7 +21,7 @@ public final class C12152p0 {
     /* JADX INFO: renamed from: d0.t.p0$a */
     /* JADX INFO: compiled from: SlidingWindow.kt */
     @InterfaceC12188e(m10084c = "kotlin.collections.SlidingWindowKt$windowedIterator$1", m10085f = "SlidingWindow.kt", m10086l = {34, 40, 49, 55, 58}, m10087m = "invokeSuspend")
-    public static final class a<T> extends AbstractC12193j implements Function2<AbstractC12072k<? super List<? extends T>>, Continuation<? super Unit>, Object> {
+    public final class a<T> extends AbstractC12193j implements Function2<AbstractC12072k<? super List<? extends T>>, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Iterator $iterator;
         public final /* synthetic */ boolean $partialWindows;
         public final /* synthetic */ boolean $reuseBuffer;

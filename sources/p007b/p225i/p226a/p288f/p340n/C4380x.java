@@ -24,16 +24,16 @@ public final class C4380x<TResult, TContinuationResult> implements InterfaceC436
         this.f11523c = c4358c0;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p340n.InterfaceC4381y
-    /* JADX INFO: renamed from: a */
-    public final void mo6030a(@NonNull Task<TResult> task) {
-        this.f11521a.execute(new RunnableC4379w(this, task));
-    }
-
     @Override // p007b.p225i.p226a.p288f.p340n.InterfaceC4355b
     /* JADX INFO: renamed from: b */
     public final void mo6005b() {
         this.f11523c.m6026u();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p340n.InterfaceC4381y
+    /* JADX INFO: renamed from: a */
+    public final void mo6030a(@NonNull Task<TResult> task) {
+        this.f11521a.execute(new RunnableC4379w(this, task));
     }
 
     @Override // p007b.p225i.p226a.p288f.p340n.InterfaceC4359d

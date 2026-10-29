@@ -57,6 +57,12 @@ public final class InlineMediaViewBinding implements ViewBinding {
         this.f15173h = view2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15166a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static InlineMediaViewBinding m8388a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -91,11 +97,5 @@ public final class InlineMediaViewBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15166a;
     }
 }

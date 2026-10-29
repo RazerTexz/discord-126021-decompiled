@@ -13,23 +13,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkActionEmailSettingsFetch.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkActionEmailSettingsFetch implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
+    private final Boolean initialized = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackNetworkMetadata trackNetworkMetadata;
-    private final Boolean initialized = null;
     private final transient String analyticsSchemaTypeName = "network_action_email_settings_fetch";
-
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
@@ -38,12 +26,24 @@ public final /* data */ class TrackNetworkActionEmailSettingsFetch implements An
         return true;
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         Boolean bool = this.initialized;
         if (bool != null) {
             return bool.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

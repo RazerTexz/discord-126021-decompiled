@@ -39,7 +39,7 @@ public final class ViewKt$allViews$1 extends AbstractC12193j implements Function
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         AbstractC12072k abstractC12072k;
         Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
         int i = this.label;

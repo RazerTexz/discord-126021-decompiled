@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackMultiAccountAccountRemove.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackMultiAccountAccountRemove implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "multi_account_account_remove";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "multi_account_account_remove";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

@@ -29,7 +29,7 @@ public final class ApngException extends Exception {
         private final int errorCode;
 
         /* JADX INFO: compiled from: ApngException.kt */
-        public static final class Companion {
+        public final class Companion {
             public Companion() {
             }
 

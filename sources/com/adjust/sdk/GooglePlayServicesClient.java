@@ -16,37 +16,7 @@ import java.util.concurrent.TimeUnit;
 /* JADX INFO: loaded from: classes.dex */
 public class GooglePlayServicesClient {
 
-    public static final class GooglePlayServicesConnection implements ServiceConnection {
-        public long timeoutMilliSec;
-        public boolean retrieved = false;
-        private final LinkedBlockingQueue<IBinder> queue = new LinkedBlockingQueue<>(1);
-
-        public GooglePlayServicesConnection(long j) {
-            this.timeoutMilliSec = j;
-        }
-
-        public IBinder getBinder() throws InterruptedException {
-            if (this.retrieved) {
-                throw new IllegalStateException();
-            }
-            this.retrieved = true;
-            return this.queue.poll(this.timeoutMilliSec, TimeUnit.MILLISECONDS);
-        }
-
-        @Override // android.content.ServiceConnection
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            try {
-                this.queue.put(iBinder);
-            } catch (InterruptedException unused) {
-            }
-        }
-
-        @Override // android.content.ServiceConnection
-        public void onServiceDisconnected(ComponentName componentName) {
-        }
-    }
-
-    public static final class GooglePlayServicesInfo {
+    public final class GooglePlayServicesInfo {
         private final String gpsAdid;
         private final Boolean trackingEnabled;
 
@@ -64,7 +34,7 @@ public class GooglePlayServicesClient {
         }
     }
 
-    public static final class GooglePlayServicesInterface implements IInterface {
+    public final class GooglePlayServicesInterface implements IInterface {
         private IBinder binder;
 
         public GooglePlayServicesInterface(IBinder iBinder) {
@@ -140,6 +110,36 @@ public class GooglePlayServicesClient {
             }
         } catch (Exception e2) {
             throw e2;
+        }
+    }
+
+    public final class GooglePlayServicesConnection implements ServiceConnection {
+        public long timeoutMilliSec;
+        public boolean retrieved = false;
+        private final LinkedBlockingQueue<IBinder> queue = new LinkedBlockingQueue<>(1);
+
+        public GooglePlayServicesConnection(long j) {
+            this.timeoutMilliSec = j;
+        }
+
+        public IBinder getBinder() throws InterruptedException {
+            if (this.retrieved) {
+                throw new IllegalStateException();
+            }
+            this.retrieved = true;
+            return this.queue.poll(this.timeoutMilliSec, TimeUnit.MILLISECONDS);
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            try {
+                this.queue.put(iBinder);
+            } catch (InterruptedException unused) {
+            }
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceDisconnected(ComponentName componentName) {
         }
     }
 }

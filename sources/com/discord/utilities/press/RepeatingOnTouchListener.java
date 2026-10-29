@@ -39,25 +39,6 @@ public final class RepeatingOnTouchListener implements View.OnTouchListener {
         this.initialAction = action1;
     }
 
-    private final void subscribe() {
-        this.subscription = Observable.m11068d0(this.initialDelay, this.timeUnit).m11082A(new InterfaceC12589b<Long, Observable<? extends Long>>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Long> call(Long l) {
-                long repeatRate = RepeatingOnTouchListener.this.getRepeatRate();
-                return Observable.m11062F(repeatRate, repeatRate, RepeatingOnTouchListener.this.getTimeUnit(), C12781a.m10873a());
-            }
-        }).m11084J(C12586a.m10738a()).m11097W(new Action1<Long>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.2
-            @Override // p658rx.functions.Action1
-            public final void call(Long l) {
-                RepeatingOnTouchListener.this.getAction().call();
-            }
-        }, new Action1<Throwable>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.3
-            @Override // p658rx.functions.Action1
-            public final void call(Throwable th) {
-            }
-        });
-    }
-
     public final Action0 getAction() {
         return this.action;
     }
@@ -95,6 +76,25 @@ public final class RepeatingOnTouchListener implements View.OnTouchListener {
         }
         this.subscription = null;
         return true;
+    }
+
+    private final void subscribe() {
+        this.subscription = Observable.m11068d0(this.initialDelay, this.timeUnit).m11082A(new InterfaceC12589b<Long, Observable<? extends Long>>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Long> call(Long l) {
+                long repeatRate = RepeatingOnTouchListener.this.getRepeatRate();
+                return Observable.m11062F(repeatRate, repeatRate, RepeatingOnTouchListener.this.getTimeUnit(), C12781a.m10873a());
+            }
+        }).m11084J(C12586a.m10738a()).m11097W(new Action1<Long>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.2
+            @Override // p658rx.functions.Action1
+            public final void call(Long l) {
+                RepeatingOnTouchListener.this.getAction().call();
+            }
+        }, new Action1<Throwable>() { // from class: com.discord.utilities.press.RepeatingOnTouchListener.subscribe.3
+            @Override // p658rx.functions.Action1
+            public final void call(Throwable th) {
+            }
+        });
     }
 
     public /* synthetic */ RepeatingOnTouchListener(long j, long j2, TimeUnit timeUnit, Action0 action0, Action0 action1, int i, DefaultConstructorMarker defaultConstructorMarker) {

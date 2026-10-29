@@ -17,8 +17,8 @@ public interface InterfaceC13072s<E> {
     /* JADX INFO: renamed from: o */
     Object mo11224o(E e, Continuation<? super Unit> continuation);
 
-    boolean offer(E e);
-
     /* JADX INFO: renamed from: p */
     boolean mo11225p();
+
+    boolean offer(E e);
 }

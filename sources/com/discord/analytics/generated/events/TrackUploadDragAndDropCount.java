@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUploadDragAndDropCount.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUploadDragAndDropCount implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long count = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "upload_drag_and_drop_count";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackUploadDragAndDropCount) && C12238m.areEqual(this.count, ((TrackUploadDragAndDropCount) other).count);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

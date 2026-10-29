@@ -54,10 +54,14 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetClaimOutboundPromo extends AppDialog {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetClaimOutboundPromo.class, "binding", "getBinding()Lcom/discord/databinding/WidgetClaimOutboundPromoBinding;", 0)};
     private static final String ARG_CLAIM_STATUS = "ARG_CLAIM_STATUS";
     private static final int INDEX_FAILURE = 2;
     private static final int INDEX_LOADING = 0;
     private static final int INDEX_SUCCESS = 1;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String KEY_PROMO_CLAIMED = "KEY_PROMO_CLAIMED";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -66,13 +70,49 @@ public final class WidgetClaimOutboundPromo extends AppDialog {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetClaimOutboundPromo.class, "binding", "getBinding()Lcom/discord/databinding/WidgetClaimOutboundPromoBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetClaimOutboundPromo$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
+    public final /* synthetic */ class C98991 extends C12236k implements Function1<ClaimOutboundPromoViewModel.ViewState, Unit> {
+        public C98991(WidgetClaimOutboundPromo widgetClaimOutboundPromo) {
+            super(1, widgetClaimOutboundPromo, WidgetClaimOutboundPromo.class, "configureUi", "configureUi(Lcom/discord/widgets/settings/premium/ClaimOutboundPromoViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ClaimOutboundPromoViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ClaimOutboundPromoViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetClaimOutboundPromo) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetClaimOutboundPromo$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
+    public final /* synthetic */ class C99002 extends C12236k implements Function1<ClaimOutboundPromoViewModel.Event, Unit> {
+        public C99002(WidgetClaimOutboundPromo widgetClaimOutboundPromo) {
+            super(1, widgetClaimOutboundPromo, WidgetClaimOutboundPromo.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/ClaimOutboundPromoViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ClaimOutboundPromoViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ClaimOutboundPromoViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetClaimOutboundPromo) this.receiver).handleEvent(event);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -97,46 +137,6 @@ public final class WidgetClaimOutboundPromo extends AppDialog {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetClaimOutboundPromo$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
-    public static final /* synthetic */ class C98991 extends C12236k implements Function1<ClaimOutboundPromoViewModel.ViewState, Unit> {
-        public C98991(WidgetClaimOutboundPromo widgetClaimOutboundPromo) {
-            super(1, widgetClaimOutboundPromo, WidgetClaimOutboundPromo.class, "configureUi", "configureUi(Lcom/discord/widgets/settings/premium/ClaimOutboundPromoViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ClaimOutboundPromoViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ClaimOutboundPromoViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetClaimOutboundPromo) this.receiver).configureUi(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetClaimOutboundPromo$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
-    public static final /* synthetic */ class C99002 extends C12236k implements Function1<ClaimOutboundPromoViewModel.Event, Unit> {
-        public C99002(WidgetClaimOutboundPromo widgetClaimOutboundPromo) {
-            super(1, widgetClaimOutboundPromo, WidgetClaimOutboundPromo.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/ClaimOutboundPromoViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ClaimOutboundPromoViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ClaimOutboundPromoViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetClaimOutboundPromo) this.receiver).handleEvent(event);
         }
     }
 
@@ -241,11 +241,6 @@ public final class WidgetClaimOutboundPromo extends AppDialog {
         KotlinExtensionsKt.getExhaustive(unit);
     }
 
-    private final void setCodeBoxColor(@ColorInt int color) {
-        this.codeBoxBackground.setStroke(DimenUtils.dpToPixels(1), color);
-        getBinding().f16391d.invalidate();
-    }
-
     @Override // androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -289,5 +284,10 @@ public final class WidgetClaimOutboundPromo extends AppDialog {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetClaimOutboundPromo.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98991(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetClaimOutboundPromo.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99002(this));
+    }
+
+    private final void setCodeBoxColor(@ColorInt int color) {
+        this.codeBoxBackground.setStroke(DimenUtils.dpToPixels(1), color);
+        getBinding().f16391d.invalidate();
     }
 }

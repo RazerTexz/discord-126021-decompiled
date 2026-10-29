@@ -72,6 +72,15 @@ public final class Response implements Closeable {
         this.exchange = c12283c;
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        ResponseBody responseBody = this.body;
+        if (responseBody == null) {
+            throw new IllegalStateException("response is not eligible for a body and must not be closed".toString());
+        }
+        responseBody.close();
+    }
+
     /* JADX INFO: renamed from: a */
     public static String m10989a(Response response, String str, String str2, int i) {
         int i2 = i & 2;
@@ -90,15 +99,6 @@ public final class Response implements Closeable {
         return 200 <= i && 299 >= i;
     }
 
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        ResponseBody responseBody = this.body;
-        if (responseBody == null) {
-            throw new IllegalStateException("response is not eligible for a body and must not be closed".toString());
-        }
-        responseBody.close();
-    }
-
     public String toString() {
         StringBuilder sbM833U = C1643a.m833U("Response{protocol=");
         sbM833U.append(this.protocol);
@@ -114,7 +114,7 @@ public final class Response implements Closeable {
 
     /* JADX INFO: renamed from: okhttp3.Response$a */
     /* JADX INFO: compiled from: Response.kt */
-    public static class C12937a {
+    public class C12937a {
 
         /* JADX INFO: renamed from: a */
         public Request f27565a;

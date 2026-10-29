@@ -14,7 +14,7 @@ import java.net.SocketImpl;
 /* JADX INFO: loaded from: classes.dex */
 public class DatagramSocketWrapper extends Socket {
 
-    public static class DatagramSocketImplWrapper extends SocketImpl {
+    public class DatagramSocketImplWrapper extends SocketImpl {
         public DatagramSocketImplWrapper(DatagramSocket datagramSocket, FileDescriptor fileDescriptor) {
             ((SocketImpl) this).localport = datagramSocket.getLocalPort();
             ((SocketImpl) this).fd = fileDescriptor;

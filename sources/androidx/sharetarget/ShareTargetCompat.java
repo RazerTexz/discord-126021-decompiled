@@ -9,7 +9,7 @@ public class ShareTargetCompat {
     public final String mTargetClass;
     public final TargetData[] mTargetData;
 
-    public static class TargetData {
+    public class TargetData {
         public final String mHost;
         public final String mMimeType;
         public final String mPath;

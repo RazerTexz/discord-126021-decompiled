@@ -88,27 +88,6 @@ import p007b.p225i.p361c.p369m.p370d.p387t.InterfaceC4755d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4663x {
 
-    /* JADX INFO: renamed from: a */
-    public static final FilenameFilter f12415a = new a("BeginSession");
-
-    /* JADX INFO: renamed from: b */
-    public static final FilenameFilter f12416b = new b();
-
-    /* JADX INFO: renamed from: c */
-    public static final Comparator<File> f12417c = new c();
-
-    /* JADX INFO: renamed from: d */
-    public static final Comparator<File> f12418d = new d();
-
-    /* JADX INFO: renamed from: e */
-    public static final Pattern f12419e = Pattern.compile("([\\d|A-Z|a-z]{12}\\-[\\d|A-Z|a-z]{4}\\-[\\d|A-Z|a-z]{4}\\-[\\d|A-Z|a-z]{12}).+");
-
-    /* JADX INFO: renamed from: f */
-    public static final Map<String, String> f12420f = Collections.singletonMap("X-CRASHLYTICS-SEND-FLAGS", "1");
-
-    /* JADX INFO: renamed from: g */
-    public static final String[] f12421g = {"SessionUser", "SessionApp", "SessionOS", "SessionDevice"};
-
     /* JADX INFO: renamed from: A */
     public final C4618d1 f12422A;
 
@@ -166,20 +145,41 @@ public class C4663x {
     /* JADX INFO: renamed from: z */
     public final InterfaceC4599a f12446z;
 
+    /* JADX INFO: renamed from: a */
+    public static final FilenameFilter f12415a = new a("BeginSession");
+
+    /* JADX INFO: renamed from: b */
+    public static final FilenameFilter f12416b = new b();
+
     /* JADX INFO: renamed from: h */
     public final AtomicInteger f12428h = new AtomicInteger(0);
+
+    /* JADX INFO: renamed from: c */
+    public static final Comparator<File> f12417c = new c();
 
     /* JADX INFO: renamed from: C */
     public TaskCompletionSource<Boolean> f12424C = new TaskCompletionSource<>();
 
+    /* JADX INFO: renamed from: d */
+    public static final Comparator<File> f12418d = new d();
+
     /* JADX INFO: renamed from: D */
     public TaskCompletionSource<Boolean> f12425D = new TaskCompletionSource<>();
+
+    /* JADX INFO: renamed from: e */
+    public static final Pattern f12419e = Pattern.compile("([\\d|A-Z|a-z]{12}\\-[\\d|A-Z|a-z]{4}\\-[\\d|A-Z|a-z]{4}\\-[\\d|A-Z|a-z]{12}).+");
 
     /* JADX INFO: renamed from: E */
     public TaskCompletionSource<Void> f12426E = new TaskCompletionSource<>();
 
+    /* JADX INFO: renamed from: f */
+    public static final Map<String, String> f12420f = Collections.singletonMap("X-CRASHLYTICS-SEND-FLAGS", "1");
+
     /* JADX INFO: renamed from: F */
     public AtomicBoolean f12427F = new AtomicBoolean(false);
+
+    /* JADX INFO: renamed from: g */
+    public static final String[] f12421g = {"SessionUser", "SessionApp", "SessionOS", "SessionDevice"};
 
     /* JADX INFO: renamed from: r */
     public final C4721b.b f12438r = new C4629h0(this);
@@ -249,7 +249,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$f */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static class f implements FilenameFilter {
+    public class f implements FilenameFilter {
         public f(a aVar) {
         }
 
@@ -268,7 +268,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$h */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static class h implements FilenameFilter {
+    public class h implements FilenameFilter {
 
         /* JADX INFO: renamed from: a */
         public final String f12450a;
@@ -285,7 +285,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$i */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static class i implements FilenameFilter {
+    public class i implements FilenameFilter {
         @Override // java.io.FilenameFilter
         public boolean accept(File file, String str) {
             return ((C4717b.a) C4717b.f12686j).accept(file, str) || str.contains("SessionMissingBinaryImages");
@@ -294,7 +294,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$j */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static final class j implements C4670b.b {
+    public final class j implements C4670b.b {
 
         /* JADX INFO: renamed from: a */
         public final C4715h f12451a;
@@ -329,7 +329,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$m */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static final class m implements Runnable {
+    public final class m implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final Context f12454j;
@@ -361,7 +361,7 @@ public class C4663x {
 
     /* JADX INFO: renamed from: b.i.c.m.d.k.x$n */
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public static class n implements FilenameFilter {
+    public class n implements FilenameFilter {
 
         /* JADX INFO: renamed from: a */
         public final String f12458a;

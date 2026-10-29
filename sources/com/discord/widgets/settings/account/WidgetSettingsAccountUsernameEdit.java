@@ -59,24 +59,9 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
-    /* JADX INFO: compiled from: WidgetSettingsAccountUsernameEdit.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsAccountUsernameEdit.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountUsernameEdit$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountUsernameEdit.kt */
-    public static final class C97701 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C97701 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C97701() {
             super(1);
         }
@@ -98,7 +83,7 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountUsernameEdit$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetSettingsAccountUsernameEdit.kt */
-    public static final class C97712 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C97712 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C97712() {
             super(1);
         }
@@ -118,7 +103,7 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountUsernameEdit$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountUsernameEdit.kt */
-    public static final class C97731 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C97731 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public C97731() {
             super(1);
         }
@@ -133,6 +118,21 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
         public final void invoke2(MeUser meUser) {
             C12238m.checkNotNullParameter(meUser, "it");
             WidgetSettingsAccountUsernameEdit.this.configureUI(meUser);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountUsernameEdit.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsAccountUsernameEdit.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -203,20 +203,6 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
         return (ValidationManager) this.validationManager.getValue();
     }
 
-    private final void showPasswordVerification() {
-        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            WidgetUserPasswordVerify.Companion companion = WidgetUserPasswordVerify.INSTANCE;
-            Context contextRequireContext = requireContext();
-            ActivityResultLauncher<Intent> activityResultLauncher = this.passwordVerifyLauncher;
-            TextInputLayout textInputLayout = getBinding().f17832c;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountUsernameWrap");
-            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
-            TextInputLayout textInputLayout2 = getBinding().f17831b;
-            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editAccountDiscriminatorWrap");
-            companion.launchUpdateAccountSettings(contextRequireContext, activityResultLauncher, (56 & 4) != 0 ? null : null, (56 & 8) != 0 ? null : textOrEmpty, (56 & 16) != 0 ? null : ViewExtensions.getTextOrEmpty(textInputLayout2), (56 & 32) != 0 ? null : null);
-        }
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -249,5 +235,19 @@ public final class WidgetSettingsAccountUsernameEdit extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) WidgetSettingsAccountUsernameEdit.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97731());
+    }
+
+    private final void showPasswordVerification() {
+        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            WidgetUserPasswordVerify.Companion companion = WidgetUserPasswordVerify.INSTANCE;
+            Context contextRequireContext = requireContext();
+            ActivityResultLauncher<Intent> activityResultLauncher = this.passwordVerifyLauncher;
+            TextInputLayout textInputLayout = getBinding().f17832c;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountUsernameWrap");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+            TextInputLayout textInputLayout2 = getBinding().f17831b;
+            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editAccountDiscriminatorWrap");
+            companion.launchUpdateAccountSettings(contextRequireContext, activityResultLauncher, (56 & 4) != 0 ? null : null, (56 & 8) != 0 ? null : textOrEmpty, (56 & 16) != 0 ? null : ViewExtensions.getTextOrEmpty(textInputLayout2), (56 & 32) != 0 ? null : null);
+        }
     }
 }

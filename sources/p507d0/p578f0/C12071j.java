@@ -31,20 +31,6 @@ public final class C12071j<T> extends AbstractC12072k<T> implements Iterator<T>,
     /* JADX INFO: renamed from: m */
     public Continuation<? super Unit> f25103m;
 
-    /* JADX INFO: renamed from: b */
-    public final Throwable m10064b() {
-        int i = this.f25100j;
-        if (i == 4) {
-            return new NoSuchElementException();
-        }
-        if (i == 5) {
-            return new IllegalStateException("Iterator has failed.");
-        }
-        StringBuilder sbM833U = C1643a.m833U("Unexpected state of the iterator: ");
-        sbM833U.append(this.f25100j);
-        return new IllegalStateException(sbM833U.toString());
-    }
-
     @Override // kotlin.coroutines.Continuation
     public CoroutineContext getContext() {
         return C12179f.f25237j;
@@ -82,6 +68,20 @@ public final class C12071j<T> extends AbstractC12072k<T> implements Iterator<T>,
         }
     }
 
+    /* JADX INFO: renamed from: b */
+    public final Throwable m10064b() {
+        int i = this.f25100j;
+        if (i == 4) {
+            return new NoSuchElementException();
+        }
+        if (i == 5) {
+            return new IllegalStateException("Iterator has failed.");
+        }
+        StringBuilder sbM833U = C1643a.m833U("Unexpected state of the iterator: ");
+        sbM833U.append(this.f25100j);
+        return new IllegalStateException(sbM833U.toString());
+    }
+
     @Override // java.util.Iterator
     public T next() throws Throwable {
         int i = this.f25100j;
@@ -112,7 +112,7 @@ public final class C12071j<T> extends AbstractC12072k<T> implements Iterator<T>,
     }
 
     @Override // kotlin.coroutines.Continuation
-    public void resumeWith(Object obj) {
+    public void resumeWith(Object obj) throws Throwable {
         C12113l.throwOnFailure(obj);
         this.f25100j = 4;
     }

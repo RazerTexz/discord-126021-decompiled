@@ -19,7 +19,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$a */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class a implements InterfaceC4784c<AbstractC4695v.b> {
+    public final class a implements InterfaceC4784c<AbstractC4695v.b> {
 
         /* JADX INFO: renamed from: a */
         public static final a f12498a = new a();
@@ -36,7 +36,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$b */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class b implements InterfaceC4784c<AbstractC4695v> {
+    public final class b implements InterfaceC4784c<AbstractC4695v> {
 
         /* JADX INFO: renamed from: a */
         public static final b f12499a = new b();
@@ -59,7 +59,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$c */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class c implements InterfaceC4784c<AbstractC4695v.c> {
+    public final class c implements InterfaceC4784c<AbstractC4695v.c> {
 
         /* JADX INFO: renamed from: a */
         public static final c f12500a = new c();
@@ -76,7 +76,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$d */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class d implements InterfaceC4784c<AbstractC4695v.c.a> {
+    public final class d implements InterfaceC4784c<AbstractC4695v.c.a> {
 
         /* JADX INFO: renamed from: a */
         public static final d f12501a = new d();
@@ -93,7 +93,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$e */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class e implements InterfaceC4784c<AbstractC4695v.d.a> {
+    public final class e implements InterfaceC4784c<AbstractC4695v.d.a> {
 
         /* JADX INFO: renamed from: a */
         public static final e f12502a = new e();
@@ -115,7 +115,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$f */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class f implements InterfaceC4784c<AbstractC4695v.d.a.AbstractC13232a> {
+    public final class f implements InterfaceC4784c<AbstractC4695v.d.a.AbstractC13232a> {
 
         /* JADX INFO: renamed from: a */
         public static final f f12503a = new f();
@@ -129,7 +129,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$g */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class g implements InterfaceC4784c<AbstractC4695v.d.c> {
+    public final class g implements InterfaceC4784c<AbstractC4695v.d.c> {
 
         /* JADX INFO: renamed from: a */
         public static final g f12504a = new g();
@@ -153,7 +153,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$h */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class h implements InterfaceC4784c<AbstractC4695v.d> {
+    public final class h implements InterfaceC4784c<AbstractC4695v.d> {
 
         /* JADX INFO: renamed from: a */
         public static final h f12505a = new h();
@@ -179,7 +179,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$i */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class i implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a> {
+    public final class i implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a> {
 
         /* JADX INFO: renamed from: a */
         public static final i f12506a = new i();
@@ -198,7 +198,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$j */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class j implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a> {
+    public final class j implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a> {
 
         /* JADX INFO: renamed from: a */
         public static final j f12507a = new j();
@@ -218,7 +218,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$k */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class k implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b> {
+    public final class k implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b> {
 
         /* JADX INFO: renamed from: a */
         public static final k f12508a = new k();
@@ -237,7 +237,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$l */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class l implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b> {
+    public final class l implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b> {
 
         /* JADX INFO: renamed from: a */
         public static final l f12509a = new l();
@@ -257,7 +257,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$m */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class m implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.c> {
+    public final class m implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.c> {
 
         /* JADX INFO: renamed from: a */
         public static final m f12510a = new m();
@@ -275,7 +275,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$n */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class n implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d> {
+    public final class n implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d> {
 
         /* JADX INFO: renamed from: a */
         public static final n f12511a = new n();
@@ -293,7 +293,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$o */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class o implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a> {
+    public final class o implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a> {
 
         /* JADX INFO: renamed from: a */
         public static final o f12512a = new o();
@@ -313,7 +313,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$p */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class p implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.b> {
+    public final class p implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.b> {
 
         /* JADX INFO: renamed from: a */
         public static final p f12513a = new p();
@@ -334,7 +334,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$q */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class q implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d> {
+    public final class q implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d> {
 
         /* JADX INFO: renamed from: a */
         public static final q f12514a = new q();
@@ -354,7 +354,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$r */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class r implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.c> {
+    public final class r implements InterfaceC4784c<AbstractC4695v.d.AbstractC13233d.c> {
 
         /* JADX INFO: renamed from: a */
         public static final r f12515a = new r();
@@ -368,7 +368,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$s */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class s implements InterfaceC4784c<AbstractC4695v.d.e> {
+    public final class s implements InterfaceC4784c<AbstractC4695v.d.e> {
 
         /* JADX INFO: renamed from: a */
         public static final s f12516a = new s();
@@ -387,7 +387,7 @@ public final class C4674a implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.a$t */
     /* JADX INFO: compiled from: AutoCrashlyticsReportEncoder.java */
-    public static final class t implements InterfaceC4784c<AbstractC4695v.d.f> {
+    public final class t implements InterfaceC4784c<AbstractC4695v.d.f> {
 
         /* JADX INFO: renamed from: a */
         public static final t f12517a = new t();

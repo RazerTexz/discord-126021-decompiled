@@ -14,33 +14,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageInstanceUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageInstanceUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Long guildScheduledEventId = null;
+    private final Long privacyLevel = null;
+    private final Long stageInstanceId = null;
+    private final CharSequence topic = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final Long stageInstanceId = null;
-    private final CharSequence topic = null;
-    private final Long privacyLevel = null;
     private final Long updaterId = null;
-    private final Long guildScheduledEventId = null;
     private final transient String analyticsSchemaTypeName = "stage_instance_updated";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -51,6 +33,18 @@ public final /* data */ class TrackStageInstanceUpdated implements AnalyticsSche
         }
         TrackStageInstanceUpdated trackStageInstanceUpdated = (TrackStageInstanceUpdated) other;
         return C12238m.areEqual(this.stageInstanceId, trackStageInstanceUpdated.stageInstanceId) && C12238m.areEqual(this.topic, trackStageInstanceUpdated.topic) && C12238m.areEqual(this.privacyLevel, trackStageInstanceUpdated.privacyLevel) && C12238m.areEqual(this.updaterId, trackStageInstanceUpdated.updaterId) && C12238m.areEqual(this.guildScheduledEventId, trackStageInstanceUpdated.guildScheduledEventId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -64,6 +58,12 @@ public final /* data */ class TrackStageInstanceUpdated implements AnalyticsSche
         int iHashCode4 = (iHashCode3 + (l3 != null ? l3.hashCode() : 0)) * 31;
         Long l4 = this.guildScheduledEventId;
         return iHashCode4 + (l4 != null ? l4.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

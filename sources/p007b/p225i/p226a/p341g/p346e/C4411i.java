@@ -37,7 +37,7 @@ public class C4411i extends C4408f {
 
     /* JADX INFO: renamed from: b.i.a.g.e.i$a */
     /* JADX INFO: compiled from: FloatingActionButtonImplLollipop.java */
-    public static class a extends MaterialShapeDrawable {
+    public class a extends MaterialShapeDrawable {
         public a(ShapeAppearanceModel shapeAppearanceModel) {
             super(shapeAppearanceModel);
         }
@@ -50,6 +50,15 @@ public class C4411i extends C4408f {
 
     public C4411i(FloatingActionButton floatingActionButton, ShadowViewDelegate shadowViewDelegate) {
         super(floatingActionButton, shadowViewDelegate);
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: x */
+    public final Animator m6111x(float f, float f2) {
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(ObjectAnimator.ofFloat(this.f11664F, Key.ELEVATION, f).setDuration(0L)).with(ObjectAnimator.ofFloat(this.f11664F, (Property<FloatingActionButton, Float>) View.TRANSLATION_Z, f2).setDuration(100L));
+        animatorSet.setInterpolator(C4408f.f11652a);
+        return animatorSet;
     }
 
     @Override // p007b.p225i.p226a.p341g.p346e.C4408f
@@ -194,14 +203,5 @@ public class C4411i extends C4408f {
     @Override // p007b.p225i.p226a.p341g.p346e.C4408f
     /* JADX INFO: renamed from: u */
     public void mo6105u() {
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: x */
-    public final Animator m6111x(float f, float f2) {
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.play(ObjectAnimator.ofFloat(this.f11664F, Key.ELEVATION, f).setDuration(0L)).with(ObjectAnimator.ofFloat(this.f11664F, (Property<FloatingActionButton, Float>) View.TRANSLATION_Z, f2).setDuration(100L));
-        animatorSet.setInterpolator(C4408f.f11652a);
-        return animatorSet;
     }
 }

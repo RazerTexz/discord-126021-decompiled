@@ -45,85 +45,12 @@ public final class C2831o1 implements InterfaceC2963w0 {
 
     /* JADX INFO: renamed from: b.i.a.c.o1$b */
     /* JADX INFO: compiled from: MediaItem.java */
-    public static final class b {
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.o1$c */
-    /* JADX INFO: compiled from: MediaItem.java */
-    public static final class c {
-
-        /* JADX INFO: renamed from: a */
-        @Nullable
-        public String f7267a;
-
-        /* JADX INFO: renamed from: b */
-        @Nullable
-        public Uri f7268b;
-
-        /* JADX INFO: renamed from: c */
-        @Nullable
-        public String f7269c;
-
-        /* JADX INFO: renamed from: g */
-        @Nullable
-        public String f7273g;
-
-        /* JADX INFO: renamed from: i */
-        @Nullable
-        public Object f7275i;
-
-        /* JADX INFO: renamed from: j */
-        @Nullable
-        public C2835p1 f7276j;
-
-        /* JADX INFO: renamed from: d */
-        public d.a f7270d = new d.a();
-
-        /* JADX INFO: renamed from: e */
-        public f.a f7271e = new f.a(null);
-
-        /* JADX INFO: renamed from: f */
-        public List<?> f7272f = Collections.emptyList();
-
-        /* JADX INFO: renamed from: h */
-        public AbstractC4523p<k> f7274h = C4508h0.f12012l;
-
-        /* JADX INFO: renamed from: k */
-        public g.a f7277k = new g.a();
-
-        /* JADX INFO: renamed from: a */
-        public C2831o1 m3320a() {
-            i iVar;
-            f.a aVar = this.f7271e;
-            C1460d.m426D(aVar.f7299b == null || aVar.f7298a != null);
-            Uri uri = this.f7268b;
-            if (uri != null) {
-                String str = this.f7269c;
-                f.a aVar2 = this.f7271e;
-                iVar = new i(uri, str, aVar2.f7298a != null ? new f(aVar2, null) : null, null, this.f7272f, this.f7273g, this.f7274h, this.f7275i, null);
-            } else {
-                iVar = null;
-            }
-            String str2 = this.f7267a;
-            if (str2 == null) {
-                str2 = "";
-            }
-            String str3 = str2;
-            e eVarM3322a = this.f7270d.m3322a();
-            g.a aVar3 = this.f7277k;
-            Objects.requireNonNull(aVar3);
-            g gVar = new g(aVar3, null);
-            C2835p1 c2835p1 = this.f7276j;
-            if (c2835p1 == null) {
-                c2835p1 = C2835p1.f7368j;
-            }
-            return new C2831o1(str3, eVarM3322a, iVar, gVar, c2835p1, null);
-        }
+    public final class b {
     }
 
     /* JADX INFO: renamed from: b.i.a.c.o1$d */
     /* JADX INFO: compiled from: MediaItem.java */
-    public static class d implements InterfaceC2963w0 {
+    public class d implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         public static final InterfaceC2963w0.a<e> f7278j;
@@ -143,32 +70,6 @@ public final class C2831o1 implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: o */
         public final boolean f7283o;
-
-        /* JADX INFO: renamed from: b.i.a.c.o1$d$a */
-        /* JADX INFO: compiled from: MediaItem.java */
-        public static final class a {
-
-            /* JADX INFO: renamed from: a */
-            public long f7284a;
-
-            /* JADX INFO: renamed from: b */
-            public long f7285b = Long.MIN_VALUE;
-
-            /* JADX INFO: renamed from: c */
-            public boolean f7286c;
-
-            /* JADX INFO: renamed from: d */
-            public boolean f7287d;
-
-            /* JADX INFO: renamed from: e */
-            public boolean f7288e;
-
-            @Deprecated
-            /* JADX INFO: renamed from: a */
-            public e m3322a() {
-                return new e(this, null);
-            }
-        }
 
         static {
             new a().m3322a();
@@ -203,11 +104,6 @@ public final class C2831o1 implements InterfaceC2963w0 {
             this.f7283o = aVar.f7288e;
         }
 
-        /* JADX INFO: renamed from: a */
-        public static String m3321a(int i) {
-            return Integer.toString(i, 36);
-        }
-
         public boolean equals(@Nullable Object obj) {
             if (this == obj) {
                 return true;
@@ -225,24 +121,42 @@ public final class C2831o1 implements InterfaceC2963w0 {
             long j2 = this.f7280l;
             return ((((((i + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (this.f7281m ? 1 : 0)) * 31) + (this.f7282n ? 1 : 0)) * 31) + (this.f7283o ? 1 : 0);
         }
-    }
 
-    /* JADX INFO: renamed from: b.i.a.c.o1$e */
-    /* JADX INFO: compiled from: MediaItem.java */
-    @Deprecated
-    public static final class e extends d {
+        /* JADX INFO: renamed from: a */
+        public static String m3321a(int i) {
+            return Integer.toString(i, 36);
+        }
 
-        /* JADX INFO: renamed from: p */
-        public static final e f7289p = new d.a().m3322a();
+        /* JADX INFO: renamed from: b.i.a.c.o1$d$a */
+        /* JADX INFO: compiled from: MediaItem.java */
+        public final class a {
 
-        public e(d.a aVar, a aVar2) {
-            super(aVar, null);
+            /* JADX INFO: renamed from: a */
+            public long f7284a;
+
+            /* JADX INFO: renamed from: c */
+            public boolean f7286c;
+
+            /* JADX INFO: renamed from: d */
+            public boolean f7287d;
+
+            /* JADX INFO: renamed from: e */
+            public boolean f7288e;
+
+            /* JADX INFO: renamed from: b */
+            public long f7285b = Long.MIN_VALUE;
+
+            @Deprecated
+            /* JADX INFO: renamed from: a */
+            public e m3322a() {
+                return new e(this, null);
+            }
         }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.o1$f */
     /* JADX INFO: compiled from: MediaItem.java */
-    public static final class f {
+    public final class f {
 
         /* JADX INFO: renamed from: a */
         public final UUID f7290a;
@@ -269,43 +183,6 @@ public final class C2831o1 implements InterfaceC2963w0 {
         /* JADX INFO: renamed from: h */
         @Nullable
         public final byte[] f7297h;
-
-        /* JADX INFO: renamed from: b.i.a.c.o1$f$a */
-        /* JADX INFO: compiled from: MediaItem.java */
-        public static final class a {
-
-            /* JADX INFO: renamed from: a */
-            @Nullable
-            public UUID f7298a;
-
-            /* JADX INFO: renamed from: b */
-            @Nullable
-            public Uri f7299b;
-
-            /* JADX INFO: renamed from: c */
-            public AbstractC4525q<String, String> f7300c = C4510i0.f12015m;
-
-            /* JADX INFO: renamed from: d */
-            public boolean f7301d;
-
-            /* JADX INFO: renamed from: e */
-            public boolean f7302e;
-
-            /* JADX INFO: renamed from: f */
-            public boolean f7303f;
-
-            /* JADX INFO: renamed from: g */
-            public AbstractC4523p<Integer> f7304g;
-
-            /* JADX INFO: renamed from: h */
-            @Nullable
-            public byte[] f7305h;
-
-            public a(a aVar) {
-                AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
-                this.f7304g = C4508h0.f12012l;
-            }
-        }
 
         public f(a aVar, a aVar2) {
             C1460d.m426D((aVar.f7303f && aVar.f7299b == null) ? false : true);
@@ -338,11 +215,155 @@ public final class C2831o1 implements InterfaceC2963w0 {
             Uri uri = this.f7291b;
             return Arrays.hashCode(this.f7297h) + ((this.f7296g.hashCode() + ((((((((this.f7292c.hashCode() + ((iHashCode + (uri != null ? uri.hashCode() : 0)) * 31)) * 31) + (this.f7293d ? 1 : 0)) * 31) + (this.f7295f ? 1 : 0)) * 31) + (this.f7294e ? 1 : 0)) * 31)) * 31);
         }
+
+        /* JADX INFO: renamed from: b.i.a.c.o1$f$a */
+        /* JADX INFO: compiled from: MediaItem.java */
+        public final class a {
+
+            /* JADX INFO: renamed from: a */
+            @Nullable
+            public UUID f7298a;
+
+            /* JADX INFO: renamed from: b */
+            @Nullable
+            public Uri f7299b;
+
+            /* JADX INFO: renamed from: d */
+            public boolean f7301d;
+
+            /* JADX INFO: renamed from: e */
+            public boolean f7302e;
+
+            /* JADX INFO: renamed from: f */
+            public boolean f7303f;
+
+            /* JADX INFO: renamed from: g */
+            public AbstractC4523p<Integer> f7304g;
+
+            /* JADX INFO: renamed from: h */
+            @Nullable
+            public byte[] f7305h;
+
+            /* JADX INFO: renamed from: c */
+            public AbstractC4525q<String, String> f7300c = C4510i0.f12015m;
+
+            public a(a aVar) {
+                AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
+                this.f7304g = C4508h0.f12012l;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.o1$g */
+    /* JADX INFO: compiled from: MediaItem.java */
+    public final class g implements InterfaceC2963w0 {
+
+        /* JADX INFO: renamed from: l */
+        public final long f7308l;
+
+        /* JADX INFO: renamed from: m */
+        public final long f7309m;
+
+        /* JADX INFO: renamed from: n */
+        public final long f7310n;
+
+        /* JADX INFO: renamed from: o */
+        public final float f7311o;
+
+        /* JADX INFO: renamed from: p */
+        public final float f7312p;
+
+        /* JADX INFO: renamed from: j */
+        public static final g f7306j = new a().m3324a();
+
+        /* JADX INFO: renamed from: k */
+        public static final InterfaceC2963w0.a<g> f7307k = new InterfaceC2963w0.a() { // from class: b.i.a.c.j0
+            @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
+            /* JADX INFO: renamed from: a */
+            public final InterfaceC2963w0 mo2576a(Bundle bundle) {
+                return new C2831o1.g(bundle.getLong(C2831o1.g.m3323a(0), -9223372036854775807L), bundle.getLong(C2831o1.g.m3323a(1), -9223372036854775807L), bundle.getLong(C2831o1.g.m3323a(2), -9223372036854775807L), bundle.getFloat(C2831o1.g.m3323a(3), -3.4028235E38f), bundle.getFloat(C2831o1.g.m3323a(4), -3.4028235E38f));
+            }
+        };
+
+        public g(a aVar, a aVar2) {
+            long j = aVar.f7313a;
+            long j2 = aVar.f7314b;
+            long j3 = aVar.f7315c;
+            float f = aVar.f7316d;
+            float f2 = aVar.f7317e;
+            this.f7308l = j;
+            this.f7309m = j2;
+            this.f7310n = j3;
+            this.f7311o = f;
+            this.f7312p = f2;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof g)) {
+                return false;
+            }
+            g gVar = (g) obj;
+            return this.f7308l == gVar.f7308l && this.f7309m == gVar.f7309m && this.f7310n == gVar.f7310n && this.f7311o == gVar.f7311o && this.f7312p == gVar.f7312p;
+        }
+
+        public int hashCode() {
+            long j = this.f7308l;
+            long j2 = this.f7309m;
+            int i = ((((int) (j ^ (j >>> 32))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31;
+            long j3 = this.f7310n;
+            int i2 = (i + ((int) (j3 ^ (j3 >>> 32)))) * 31;
+            float f = this.f7311o;
+            int iFloatToIntBits = (i2 + (f != 0.0f ? Float.floatToIntBits(f) : 0)) * 31;
+            float f2 = this.f7312p;
+            return iFloatToIntBits + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static String m3323a(int i) {
+            return Integer.toString(i, 36);
+        }
+
+        /* JADX INFO: renamed from: b.i.a.c.o1$g$a */
+        /* JADX INFO: compiled from: MediaItem.java */
+        public final class a {
+
+            /* JADX INFO: renamed from: a */
+            public long f7313a = -9223372036854775807L;
+
+            /* JADX INFO: renamed from: b */
+            public long f7314b = -9223372036854775807L;
+
+            /* JADX INFO: renamed from: c */
+            public long f7315c = -9223372036854775807L;
+
+            /* JADX INFO: renamed from: d */
+            public float f7316d = -3.4028235E38f;
+
+            /* JADX INFO: renamed from: e */
+            public float f7317e = -3.4028235E38f;
+
+            /* JADX INFO: renamed from: a */
+            public g m3324a() {
+                return new g(this, null);
+            }
+        }
+
+        @Deprecated
+        public g(long j, long j2, long j3, float f, float f2) {
+            this.f7308l = j;
+            this.f7309m = j2;
+            this.f7310n = j3;
+            this.f7311o = f;
+            this.f7312p = f2;
+        }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.o1$h */
     /* JADX INFO: compiled from: MediaItem.java */
-    public static class h {
+    public class h {
 
         /* JADX INFO: renamed from: a */
         public final Uri f7318a;
@@ -423,7 +444,7 @@ public final class C2831o1 implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: b.i.a.c.o1$i */
     /* JADX INFO: compiled from: MediaItem.java */
     @Deprecated
-    public static final class i extends h {
+    public final class i extends h {
         public i(Uri uri, String str, f fVar, b bVar, List list, String str2, AbstractC4523p abstractC4523p, Object obj, a aVar) {
             super(uri, str, fVar, null, list, str2, abstractC4523p, obj, null);
         }
@@ -432,7 +453,7 @@ public final class C2831o1 implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: b.i.a.c.o1$j */
     /* JADX INFO: compiled from: MediaItem.java */
     @Deprecated
-    public static final class j extends k {
+    public final class j extends k {
         public j(k.a aVar, a aVar2) {
             super(aVar, null);
         }
@@ -440,7 +461,7 @@ public final class C2831o1 implements InterfaceC2963w0 {
 
     /* JADX INFO: renamed from: b.i.a.c.o1$k */
     /* JADX INFO: compiled from: MediaItem.java */
-    public static class k {
+    public class k {
 
         /* JADX INFO: renamed from: a */
         public final Uri f7325a;
@@ -465,7 +486,7 @@ public final class C2831o1 implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: b.i.a.c.o1$k$a */
         /* JADX INFO: compiled from: MediaItem.java */
-        public static final class a {
+        public final class a {
 
             /* JADX INFO: renamed from: a */
             public Uri f7331a;
@@ -555,11 +576,6 @@ public final class C2831o1 implements InterfaceC2963w0 {
         this.f7266o = eVar;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static String m3319a(int i2) {
-        return Integer.toString(i2, 36);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -577,118 +593,102 @@ public final class C2831o1 implements InterfaceC2963w0 {
         return this.f7265n.hashCode() + ((this.f7266o.hashCode() + ((this.f7264m.hashCode() + ((iHashCode + (hVar != null ? hVar.hashCode() : 0)) * 31)) * 31)) * 31);
     }
 
+    /* JADX INFO: renamed from: a */
+    public static String m3319a(int i2) {
+        return Integer.toString(i2, 36);
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.o1$c */
+    /* JADX INFO: compiled from: MediaItem.java */
+    public final class c {
+
+        /* JADX INFO: renamed from: a */
+        @Nullable
+        public String f7267a;
+
+        /* JADX INFO: renamed from: b */
+        @Nullable
+        public Uri f7268b;
+
+        /* JADX INFO: renamed from: c */
+        @Nullable
+        public String f7269c;
+
+        /* JADX INFO: renamed from: g */
+        @Nullable
+        public String f7273g;
+
+        /* JADX INFO: renamed from: i */
+        @Nullable
+        public Object f7275i;
+
+        /* JADX INFO: renamed from: j */
+        @Nullable
+        public C2835p1 f7276j;
+
+        /* JADX INFO: renamed from: d */
+        public d.a f7270d = new d.a();
+
+        /* JADX INFO: renamed from: e */
+        public f.a f7271e = new f.a(null);
+
+        /* JADX INFO: renamed from: f */
+        public List<?> f7272f = Collections.emptyList();
+
+        /* JADX INFO: renamed from: h */
+        public AbstractC4523p<k> f7274h = C4508h0.f12012l;
+
+        /* JADX INFO: renamed from: k */
+        public g.a f7277k = new g.a();
+
+        /* JADX INFO: renamed from: a */
+        public C2831o1 m3320a() {
+            i iVar;
+            f.a aVar = this.f7271e;
+            C1460d.m426D(aVar.f7299b == null || aVar.f7298a != null);
+            Uri uri = this.f7268b;
+            if (uri != null) {
+                String str = this.f7269c;
+                f.a aVar2 = this.f7271e;
+                iVar = new i(uri, str, aVar2.f7298a != null ? new f(aVar2, null) : null, null, this.f7272f, this.f7273g, this.f7274h, this.f7275i, null);
+            } else {
+                iVar = null;
+            }
+            String str2 = this.f7267a;
+            if (str2 == null) {
+                str2 = "";
+            }
+            String str3 = str2;
+            e eVarM3322a = this.f7270d.m3322a();
+            g.a aVar3 = this.f7277k;
+            Objects.requireNonNull(aVar3);
+            g gVar = new g(aVar3, null);
+            C2835p1 c2835p1 = this.f7276j;
+            if (c2835p1 == null) {
+                c2835p1 = C2835p1.f7368j;
+            }
+            return new C2831o1(str3, eVarM3322a, iVar, gVar, c2835p1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.o1$e */
+    /* JADX INFO: compiled from: MediaItem.java */
+    @Deprecated
+    public final class e extends d {
+
+        /* JADX INFO: renamed from: p */
+        public static final e f7289p = new d.a().m3322a();
+
+        public e(d.a aVar, a aVar2) {
+            super(aVar, null);
+        }
+    }
+
     public C2831o1(String str, e eVar, i iVar, g gVar, C2835p1 c2835p1, a aVar) {
         this.f7262k = str;
         this.f7263l = iVar;
         this.f7264m = gVar;
         this.f7265n = c2835p1;
         this.f7266o = eVar;
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.o1$g */
-    /* JADX INFO: compiled from: MediaItem.java */
-    public static final class g implements InterfaceC2963w0 {
-
-        /* JADX INFO: renamed from: j */
-        public static final g f7306j = new a().m3324a();
-
-        /* JADX INFO: renamed from: k */
-        public static final InterfaceC2963w0.a<g> f7307k = new InterfaceC2963w0.a() { // from class: b.i.a.c.j0
-            @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
-            /* JADX INFO: renamed from: a */
-            public final InterfaceC2963w0 mo2576a(Bundle bundle) {
-                return new C2831o1.g(bundle.getLong(C2831o1.g.m3323a(0), -9223372036854775807L), bundle.getLong(C2831o1.g.m3323a(1), -9223372036854775807L), bundle.getLong(C2831o1.g.m3323a(2), -9223372036854775807L), bundle.getFloat(C2831o1.g.m3323a(3), -3.4028235E38f), bundle.getFloat(C2831o1.g.m3323a(4), -3.4028235E38f));
-            }
-        };
-
-        /* JADX INFO: renamed from: l */
-        public final long f7308l;
-
-        /* JADX INFO: renamed from: m */
-        public final long f7309m;
-
-        /* JADX INFO: renamed from: n */
-        public final long f7310n;
-
-        /* JADX INFO: renamed from: o */
-        public final float f7311o;
-
-        /* JADX INFO: renamed from: p */
-        public final float f7312p;
-
-        /* JADX INFO: renamed from: b.i.a.c.o1$g$a */
-        /* JADX INFO: compiled from: MediaItem.java */
-        public static final class a {
-
-            /* JADX INFO: renamed from: a */
-            public long f7313a = -9223372036854775807L;
-
-            /* JADX INFO: renamed from: b */
-            public long f7314b = -9223372036854775807L;
-
-            /* JADX INFO: renamed from: c */
-            public long f7315c = -9223372036854775807L;
-
-            /* JADX INFO: renamed from: d */
-            public float f7316d = -3.4028235E38f;
-
-            /* JADX INFO: renamed from: e */
-            public float f7317e = -3.4028235E38f;
-
-            /* JADX INFO: renamed from: a */
-            public g m3324a() {
-                return new g(this, null);
-            }
-        }
-
-        public g(a aVar, a aVar2) {
-            long j = aVar.f7313a;
-            long j2 = aVar.f7314b;
-            long j3 = aVar.f7315c;
-            float f = aVar.f7316d;
-            float f2 = aVar.f7317e;
-            this.f7308l = j;
-            this.f7309m = j2;
-            this.f7310n = j3;
-            this.f7311o = f;
-            this.f7312p = f2;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static String m3323a(int i) {
-            return Integer.toString(i, 36);
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof g)) {
-                return false;
-            }
-            g gVar = (g) obj;
-            return this.f7308l == gVar.f7308l && this.f7309m == gVar.f7309m && this.f7310n == gVar.f7310n && this.f7311o == gVar.f7311o && this.f7312p == gVar.f7312p;
-        }
-
-        public int hashCode() {
-            long j = this.f7308l;
-            long j2 = this.f7309m;
-            int i = ((((int) (j ^ (j >>> 32))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31;
-            long j3 = this.f7310n;
-            int i2 = (i + ((int) (j3 ^ (j3 >>> 32)))) * 31;
-            float f = this.f7311o;
-            int iFloatToIntBits = (i2 + (f != 0.0f ? Float.floatToIntBits(f) : 0)) * 31;
-            float f2 = this.f7312p;
-            return iFloatToIntBits + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0);
-        }
-
-        @Deprecated
-        public g(long j, long j2, long j3, float f, float f2) {
-            this.f7308l = j;
-            this.f7309m = j2;
-            this.f7310n = j3;
-            this.f7311o = f;
-            this.f7312p = f2;
-        }
     }
 }

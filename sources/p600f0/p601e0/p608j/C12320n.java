@@ -66,258 +66,17 @@ public final class C12320n {
     /* JADX INFO: renamed from: n */
     public final C12311e f25725n;
 
-    /* JADX INFO: renamed from: f0.e0.j.n$a */
-    /* JADX INFO: compiled from: Http2Stream.kt */
-    public final class a implements InterfaceC12405v {
-
-        /* JADX INFO: renamed from: j */
-        public final C12388e f25726j = new C12388e();
-
-        /* JADX INFO: renamed from: k */
-        public boolean f25727k;
-
-        /* JADX INFO: renamed from: l */
-        public boolean f25728l;
-
-        public a(boolean z2) {
-            this.f25728l = z2;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m10294a(boolean z2) throws IOException {
-            long jMin;
-            boolean z3;
-            synchronized (C12320n.this) {
-                C12320n.this.f25721j.m10424i();
-                while (true) {
-                    try {
-                        C12320n c12320n = C12320n.this;
-                        if (c12320n.f25714c < c12320n.f25715d || this.f25728l || this.f25727k || c12320n.m10287f() != null) {
-                            break;
-                        } else {
-                            C12320n.this.m10293l();
-                        }
-                    } catch (Throwable th) {
-                        C12320n.this.f25721j.m10297m();
-                        throw th;
-                    }
-                }
-                C12320n.this.f25721j.m10297m();
-                C12320n.this.m10283b();
-                C12320n c12320n2 = C12320n.this;
-                jMin = Math.min(c12320n2.f25715d - c12320n2.f25714c, this.f25726j.f26080k);
-                C12320n c12320n3 = C12320n.this;
-                c12320n3.f25714c += jMin;
-                z3 = z2 && jMin == this.f25726j.f26080k && c12320n3.m10287f() == null;
-            }
-            C12320n.this.f25721j.m10424i();
-            try {
-                C12320n c12320n4 = C12320n.this;
-                c12320n4.f25725n.m10264n(c12320n4.f25724m, z3, this.f25726j, jMin);
-            } finally {
-                C12320n.this.f25721j.m10297m();
-            }
-        }
-
-        @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-            C12320n c12320n = C12320n.this;
-            byte[] bArr = C12272c.f25397a;
-            synchronized (c12320n) {
-                if (this.f25727k) {
-                    return;
-                }
-                boolean z2 = C12320n.this.m10287f() == null;
-                C12320n c12320n2 = C12320n.this;
-                if (!c12320n2.f25719h.f25728l) {
-                    if (this.f25726j.f26080k > 0) {
-                        while (this.f25726j.f26080k > 0) {
-                            m10294a(true);
-                        }
-                    } else if (z2) {
-                        c12320n2.f25725n.m10264n(c12320n2.f25724m, true, null, 0L);
-                    }
-                }
-                synchronized (C12320n.this) {
-                    this.f25727k = true;
-                }
-                C12320n.this.f25725n.f25627K.flush();
-                C12320n.this.m10282a();
-            }
-        }
-
-        @Override // p615g0.InterfaceC12405v, java.io.Flushable
-        public void flush() throws IOException {
-            C12320n c12320n = C12320n.this;
-            byte[] bArr = C12272c.f25397a;
-            synchronized (c12320n) {
-                C12320n.this.m10283b();
-            }
-            while (this.f25726j.f26080k > 0) {
-                m10294a(false);
-                C12320n.this.f25725n.f25627K.flush();
-            }
-        }
-
-        @Override // p615g0.InterfaceC12405v
-        public C12408y timeout() {
-            return C12320n.this.f25721j;
-        }
-
-        @Override // p615g0.InterfaceC12405v
-        public void write(C12388e c12388e, long j) throws IOException {
-            C12238m.checkParameterIsNotNull(c12388e, "source");
-            byte[] bArr = C12272c.f25397a;
-            this.f25726j.write(c12388e, j);
-            while (this.f25726j.f26080k >= Permission.EMBED_LINKS) {
-                m10294a(false);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: f0.e0.j.n$b */
-    /* JADX INFO: compiled from: Http2Stream.kt */
-    public final class b implements InterfaceC12407x {
-
-        /* JADX INFO: renamed from: j */
-        public final C12388e f25730j = new C12388e();
-
-        /* JADX INFO: renamed from: k */
-        public final C12388e f25731k = new C12388e();
-
-        /* JADX INFO: renamed from: l */
-        public boolean f25732l;
-
-        /* JADX INFO: renamed from: m */
-        public final long f25733m;
-
-        /* JADX INFO: renamed from: n */
-        public boolean f25734n;
-
-        public b(long j, boolean z2) {
-            this.f25733m = j;
-            this.f25734n = z2;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m10295a(long j) {
-            C12320n c12320n = C12320n.this;
-            byte[] bArr = C12272c.f25397a;
-            c12320n.f25725n.m10263f(j);
-        }
-
-        @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-            long j;
-            synchronized (C12320n.this) {
-                this.f25732l = true;
-                C12388e c12388e = this.f25731k;
-                j = c12388e.f26080k;
-                c12388e.skip(j);
-                C12320n c12320n = C12320n.this;
-                if (c12320n == null) {
-                    throw new TypeCastException("null cannot be cast to non-null type java.lang.Object");
-                }
-                c12320n.notifyAll();
-            }
-            if (j > 0) {
-                m10295a(j);
-            }
-            C12320n.this.m10282a();
-        }
-
-        @Override // p615g0.InterfaceC12407x
-        /* JADX INFO: renamed from: i0 */
-        public long mo10176i0(C12388e c12388e, long j) throws Throwable {
-            long jMo10176i0;
-            boolean z2;
-            long j2;
-            C12238m.checkParameterIsNotNull(c12388e, "sink");
-            long j3 = 0;
-            if (!(j >= 0)) {
-                throw new IllegalArgumentException(C1643a.m877t("byteCount < 0: ", j).toString());
-            }
-            while (true) {
-                Throwable streamResetException = null;
-                synchronized (C12320n.this) {
-                    C12320n.this.f25720i.m10424i();
-                    try {
-                        if (C12320n.this.m10287f() != null && (streamResetException = C12320n.this.f25723l) == null) {
-                            EnumC12307a enumC12307aM10287f = C12320n.this.m10287f();
-                            if (enumC12307aM10287f == null) {
-                                C12238m.throwNpe();
-                            }
-                            streamResetException = new StreamResetException(enumC12307aM10287f);
-                        }
-                        if (this.f25732l) {
-                            throw new IOException("stream closed");
-                        }
-                        C12388e c12388e2 = this.f25731k;
-                        long j4 = c12388e2.f26080k;
-                        if (j4 > j3) {
-                            jMo10176i0 = c12388e2.mo10176i0(c12388e, Math.min(j, j4));
-                            C12320n c12320n = C12320n.this;
-                            long j5 = c12320n.f25712a + jMo10176i0;
-                            c12320n.f25712a = j5;
-                            long j6 = j5 - c12320n.f25713b;
-                            if (streamResetException == null && j6 >= c12320n.f25725n.f25620D.m10312a() / 2) {
-                                C12320n c12320n2 = C12320n.this;
-                                c12320n2.f25725n.m10267t(c12320n2.f25724m, j6);
-                                C12320n c12320n3 = C12320n.this;
-                                c12320n3.f25713b = c12320n3.f25712a;
-                            }
-                        } else {
-                            if (this.f25734n || streamResetException != null) {
-                                jMo10176i0 = -1;
-                            } else {
-                                C12320n.this.m10293l();
-                                z2 = true;
-                                j2 = -1;
-                            }
-                            C12320n.this.f25720i.m10297m();
-                        }
-                        j2 = jMo10176i0;
-                        z2 = false;
-                        C12320n.this.f25720i.m10297m();
-                    } catch (Throwable th) {
-                        C12320n.this.f25720i.m10297m();
-                        throw th;
-                    }
-                }
-                if (!z2) {
-                    if (j2 != -1) {
-                        m10295a(j2);
-                        return j2;
-                    }
-                    if (streamResetException == null) {
-                        return -1L;
-                    }
-                    throw streamResetException;
-                }
-                j3 = 0;
-            }
-        }
-
-        @Override // p615g0.InterfaceC12407x
-        public C12408y timeout() {
-            return C12320n.this.f25720i;
-        }
-    }
-
     /* JADX INFO: renamed from: f0.e0.j.n$c */
     /* JADX INFO: compiled from: Http2Stream.kt */
     public final class c extends C12385b {
         public c() {
         }
 
-        @Override // p615g0.C12385b
-        /* JADX INFO: renamed from: k */
-        public IOException mo10296k(IOException iOException) {
-            SocketTimeoutException socketTimeoutException = new SocketTimeoutException("timeout");
-            if (iOException != null) {
-                socketTimeoutException.initCause(iOException);
+        /* JADX INFO: renamed from: m */
+        public final void m10297m() throws IOException {
+            if (m10425j()) {
+                throw new SocketTimeoutException("timeout");
             }
-            return socketTimeoutException;
         }
 
         @Override // p615g0.C12385b
@@ -339,11 +98,14 @@ public final class C12320n {
             }
         }
 
-        /* JADX INFO: renamed from: m */
-        public final void m10297m() throws IOException {
-            if (m10425j()) {
-                throw new SocketTimeoutException("timeout");
+        @Override // p615g0.C12385b
+        /* JADX INFO: renamed from: k */
+        public IOException mo10296k(IOException iOException) {
+            SocketTimeoutException socketTimeoutException = new SocketTimeoutException("timeout");
+            if (iOException != null) {
+                socketTimeoutException.initCause(iOException);
             }
+            return socketTimeoutException;
         }
     }
 
@@ -535,6 +297,244 @@ public final class C12320n {
         } catch (InterruptedException unused) {
             Thread.currentThread().interrupt();
             throw new InterruptedIOException();
+        }
+    }
+
+    /* JADX INFO: renamed from: f0.e0.j.n$a */
+    /* JADX INFO: compiled from: Http2Stream.kt */
+    public final class a implements InterfaceC12405v {
+
+        /* JADX INFO: renamed from: k */
+        public boolean f25727k;
+
+        /* JADX INFO: renamed from: l */
+        public boolean f25728l;
+
+        /* JADX INFO: renamed from: j */
+        public final C12388e f25726j = new C12388e();
+
+        public a(boolean z2) {
+            this.f25728l = z2;
+        }
+
+        @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            C12320n c12320n = C12320n.this;
+            byte[] bArr = C12272c.f25397a;
+            synchronized (c12320n) {
+                if (this.f25727k) {
+                    return;
+                }
+                boolean z2 = C12320n.this.m10287f() == null;
+                C12320n c12320n2 = C12320n.this;
+                if (!c12320n2.f25719h.f25728l) {
+                    if (this.f25726j.f26080k > 0) {
+                        while (this.f25726j.f26080k > 0) {
+                            m10294a(true);
+                        }
+                    } else if (z2) {
+                        c12320n2.f25725n.m10264n(c12320n2.f25724m, true, null, 0L);
+                    }
+                }
+                synchronized (C12320n.this) {
+                    this.f25727k = true;
+                }
+                C12320n.this.f25725n.f25627K.flush();
+                C12320n.this.m10282a();
+            }
+        }
+
+        @Override // p615g0.InterfaceC12405v, java.io.Flushable
+        public void flush() throws IOException {
+            C12320n c12320n = C12320n.this;
+            byte[] bArr = C12272c.f25397a;
+            synchronized (c12320n) {
+                C12320n.this.m10283b();
+            }
+            while (this.f25726j.f26080k > 0) {
+                m10294a(false);
+                C12320n.this.f25725n.f25627K.flush();
+            }
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m10294a(boolean z2) throws IOException {
+            long jMin;
+            boolean z3;
+            synchronized (C12320n.this) {
+                C12320n.this.f25721j.m10424i();
+                while (true) {
+                    try {
+                        C12320n c12320n = C12320n.this;
+                        if (c12320n.f25714c < c12320n.f25715d || this.f25728l || this.f25727k || c12320n.m10287f() != null) {
+                            break;
+                        } else {
+                            C12320n.this.m10293l();
+                        }
+                    } catch (Throwable th) {
+                        C12320n.this.f25721j.m10297m();
+                        throw th;
+                    }
+                }
+                C12320n.this.f25721j.m10297m();
+                C12320n.this.m10283b();
+                C12320n c12320n2 = C12320n.this;
+                jMin = Math.min(c12320n2.f25715d - c12320n2.f25714c, this.f25726j.f26080k);
+                C12320n c12320n3 = C12320n.this;
+                c12320n3.f25714c += jMin;
+                z3 = z2 && jMin == this.f25726j.f26080k && c12320n3.m10287f() == null;
+            }
+            C12320n.this.f25721j.m10424i();
+            try {
+                C12320n c12320n4 = C12320n.this;
+                c12320n4.f25725n.m10264n(c12320n4.f25724m, z3, this.f25726j, jMin);
+            } finally {
+                C12320n.this.f25721j.m10297m();
+            }
+        }
+
+        @Override // p615g0.InterfaceC12405v
+        public C12408y timeout() {
+            return C12320n.this.f25721j;
+        }
+
+        @Override // p615g0.InterfaceC12405v
+        public void write(C12388e c12388e, long j) throws IOException {
+            C12238m.checkParameterIsNotNull(c12388e, "source");
+            byte[] bArr = C12272c.f25397a;
+            this.f25726j.write(c12388e, j);
+            while (this.f25726j.f26080k >= Permission.EMBED_LINKS) {
+                m10294a(false);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: f0.e0.j.n$b */
+    /* JADX INFO: compiled from: Http2Stream.kt */
+    public final class b implements InterfaceC12407x {
+
+        /* JADX INFO: renamed from: l */
+        public boolean f25732l;
+
+        /* JADX INFO: renamed from: m */
+        public final long f25733m;
+
+        /* JADX INFO: renamed from: n */
+        public boolean f25734n;
+
+        /* JADX INFO: renamed from: j */
+        public final C12388e f25730j = new C12388e();
+
+        /* JADX INFO: renamed from: k */
+        public final C12388e f25731k = new C12388e();
+
+        public b(long j, boolean z2) {
+            this.f25733m = j;
+            this.f25734n = z2;
+        }
+
+        @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            long j;
+            synchronized (C12320n.this) {
+                this.f25732l = true;
+                C12388e c12388e = this.f25731k;
+                j = c12388e.f26080k;
+                c12388e.skip(j);
+                C12320n c12320n = C12320n.this;
+                if (c12320n == null) {
+                    throw new TypeCastException("null cannot be cast to non-null type java.lang.Object");
+                }
+                c12320n.notifyAll();
+            }
+            if (j > 0) {
+                m10295a(j);
+            }
+            C12320n.this.m10282a();
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m10295a(long j) {
+            C12320n c12320n = C12320n.this;
+            byte[] bArr = C12272c.f25397a;
+            c12320n.f25725n.m10263f(j);
+        }
+
+        @Override // p615g0.InterfaceC12407x
+        /* JADX INFO: renamed from: i0 */
+        public long mo10176i0(C12388e c12388e, long j) throws Throwable {
+            long jMo10176i0;
+            boolean z2;
+            long j2;
+            C12238m.checkParameterIsNotNull(c12388e, "sink");
+            long j3 = 0;
+            if (!(j >= 0)) {
+                throw new IllegalArgumentException(C1643a.m877t("byteCount < 0: ", j).toString());
+            }
+            while (true) {
+                Throwable streamResetException = null;
+                synchronized (C12320n.this) {
+                    C12320n.this.f25720i.m10424i();
+                    try {
+                        if (C12320n.this.m10287f() != null && (streamResetException = C12320n.this.f25723l) == null) {
+                            EnumC12307a enumC12307aM10287f = C12320n.this.m10287f();
+                            if (enumC12307aM10287f == null) {
+                                C12238m.throwNpe();
+                            }
+                            streamResetException = new StreamResetException(enumC12307aM10287f);
+                        }
+                        if (this.f25732l) {
+                            throw new IOException("stream closed");
+                        }
+                        C12388e c12388e2 = this.f25731k;
+                        long j4 = c12388e2.f26080k;
+                        if (j4 > j3) {
+                            jMo10176i0 = c12388e2.mo10176i0(c12388e, Math.min(j, j4));
+                            C12320n c12320n = C12320n.this;
+                            long j5 = c12320n.f25712a + jMo10176i0;
+                            c12320n.f25712a = j5;
+                            long j6 = j5 - c12320n.f25713b;
+                            if (streamResetException == null && j6 >= c12320n.f25725n.f25620D.m10312a() / 2) {
+                                C12320n c12320n2 = C12320n.this;
+                                c12320n2.f25725n.m10267t(c12320n2.f25724m, j6);
+                                C12320n c12320n3 = C12320n.this;
+                                c12320n3.f25713b = c12320n3.f25712a;
+                            }
+                        } else {
+                            if (this.f25734n || streamResetException != null) {
+                                jMo10176i0 = -1;
+                            } else {
+                                C12320n.this.m10293l();
+                                z2 = true;
+                                j2 = -1;
+                            }
+                            C12320n.this.f25720i.m10297m();
+                        }
+                        j2 = jMo10176i0;
+                        z2 = false;
+                        C12320n.this.f25720i.m10297m();
+                    } catch (Throwable th) {
+                        C12320n.this.f25720i.m10297m();
+                        throw th;
+                    }
+                }
+                if (!z2) {
+                    if (j2 != -1) {
+                        m10295a(j2);
+                        return j2;
+                    }
+                    if (streamResetException == null) {
+                        return -1L;
+                    }
+                    throw streamResetException;
+                }
+                j3 = 0;
+            }
+        }
+
+        @Override // p615g0.InterfaceC12407x
+        public C12408y timeout() {
+            return C12320n.this.f25720i;
         }
     }
 }

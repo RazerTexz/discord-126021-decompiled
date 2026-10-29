@@ -64,7 +64,7 @@ public class ImageRequestBuilder {
     /* JADX INFO: renamed from: o */
     public C1880a f19626o = null;
 
-    public static class BuilderException extends RuntimeException {
+    public class BuilderException extends RuntimeException {
         public BuilderException(String str) {
             super(C1643a.m883w("Invalid request builder: ", str));
         }

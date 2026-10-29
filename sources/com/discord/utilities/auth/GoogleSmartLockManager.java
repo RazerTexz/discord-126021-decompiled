@@ -64,117 +64,22 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GoogleSmartLockManager {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final String DISCORD_ACCOUNT_IDENTITY = "https://discord.com/";
     public static final boolean ENABLE_SMART_LOCK = false;
     public static final int GOOGLE_SMART_LOCK_REQUEST_CODE_RESOLVE = 4008;
     public static final int GOOGLE_SMART_LOCK_REQUEST_CODE_RESOLVE_FOR_REQUEST = 4009;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final boolean SET_DISCORD_ACCOUNT_DETAILS = true;
     public static final String SMART_LOCK_NOTICE_NAME = "smartlock_resolution_";
     private CredentialsClient credentialsClient;
     private final List<InterfaceC11230c<? extends AppFragment>> resolvableFragments;
     private final GoogleSmartLockRepo smartLockRepo;
 
-    /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void handleResult(int resultCode, Intent data) {
-            if (resultCode != -1 || data == null) {
-                return;
-            }
-            Credential credential = (Credential) data.getParcelableExtra("com.google.android.gms.credentials.Credential");
-            String str = credential != null ? credential.f20389j : null;
-            String str2 = credential != null ? credential.f20393n : null;
-            if (str == null || str2 == null) {
-                return;
-            }
-            GoogleSmartLockRepo.INSTANCE.getINSTANCE().setSmartLockLogin(str, str2);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
-    public static final /* data */ class SmartLockCredentials {
-        private final String id;
-        private final String password;
-
-        public SmartLockCredentials(String str, String str2) {
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-            C12238m.checkNotNullParameter(str2, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
-            this.id = str;
-            this.password = str2;
-        }
-
-        public static /* synthetic */ SmartLockCredentials copy$default(SmartLockCredentials smartLockCredentials, String str, String str2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = smartLockCredentials.id;
-            }
-            if ((i & 2) != 0) {
-                str2 = smartLockCredentials.password;
-            }
-            return smartLockCredentials.copy(str, str2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getPassword() {
-            return this.password;
-        }
-
-        public final SmartLockCredentials copy(String id2, String password) {
-            C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-            C12238m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
-            return new SmartLockCredentials(id2, password);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof SmartLockCredentials)) {
-                return false;
-            }
-            SmartLockCredentials smartLockCredentials = (SmartLockCredentials) other;
-            return C12238m.areEqual(this.id, smartLockCredentials.id) && C12238m.areEqual(this.password, smartLockCredentials.password);
-        }
-
-        public final String getId() {
-            return this.id;
-        }
-
-        public final String getPassword() {
-            return this.password;
-        }
-
-        public int hashCode() {
-            String str = this.id;
-            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-            String str2 = this.password;
-            return iHashCode + (str2 != null ? str2.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("SmartLockCredentials(id=");
-            sbM833U.append(this.id);
-            sbM833U.append(", password=");
-            return C1643a.m822J(sbM833U, this.password, ")");
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.auth.GoogleSmartLockManager$saveCredentials$1 */
     /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
-    public static final class C67001 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C67001 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public final /* synthetic */ String $id;
         public final /* synthetic */ String $password;
 
@@ -230,6 +135,101 @@ public final class GoogleSmartLockManager {
         }
     }
 
+    /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void handleResult(int resultCode, Intent data) {
+            if (resultCode != -1 || data == null) {
+                return;
+            }
+            Credential credential = (Credential) data.getParcelableExtra("com.google.android.gms.credentials.Credential");
+            String str = credential != null ? credential.f20389j : null;
+            String str2 = credential != null ? credential.f20393n : null;
+            if (str == null || str2 == null) {
+                return;
+            }
+            GoogleSmartLockRepo.INSTANCE.getINSTANCE().setSmartLockLogin(str, str2);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: GoogleSmartLockManager.kt */
+    public final /* data */ class SmartLockCredentials {
+        private final String id;
+        private final String password;
+
+        public SmartLockCredentials(String str, String str2) {
+            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+            C12238m.checkNotNullParameter(str2, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            this.id = str;
+            this.password = str2;
+        }
+
+        public static /* synthetic */ SmartLockCredentials copy$default(SmartLockCredentials smartLockCredentials, String str, String str2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = smartLockCredentials.id;
+            }
+            if ((i & 2) != 0) {
+                str2 = smartLockCredentials.password;
+            }
+            return smartLockCredentials.copy(str, str2);
+        }
+
+        public final SmartLockCredentials copy(String id2, String password) {
+            C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+            C12238m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            return new SmartLockCredentials(id2, password);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SmartLockCredentials)) {
+                return false;
+            }
+            SmartLockCredentials smartLockCredentials = (SmartLockCredentials) other;
+            return C12238m.areEqual(this.id, smartLockCredentials.id) && C12238m.areEqual(this.password, smartLockCredentials.password);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getId() {
+            return this.id;
+        }
+
+        public final String getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getPassword() {
+            return this.password;
+        }
+
+        public final String getPassword() {
+            return this.password;
+        }
+
+        public int hashCode() {
+            String str = this.id;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            String str2 = this.password;
+            return iHashCode + (str2 != null ? str2.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("SmartLockCredentials(id=");
+            sbM833U.append(this.id);
+            sbM833U.append(", password=");
+            return C1643a.m822J(sbM833U, this.password, ")");
+        }
+    }
+
     public GoogleSmartLockManager(Context context, GoogleSmartLockRepo googleSmartLockRepo) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(googleSmartLockRepo, "smartLockRepo");
@@ -248,21 +248,6 @@ public final class GoogleSmartLockManager {
             Objects.requireNonNull((C3459h) interfaceC3188c);
             C1460d.m595z(abstractC3268c, "client must not be null");
             C3363k.m4164a(abstractC3268c.mo4049b(new C3462k(abstractC3268c)));
-        }
-    }
-
-    private final void resolveResult(Fragment fragment, int requestCode, ResolvableApiException rae) {
-        try {
-            if (!(rae.mStatus.f20495p != 4) || fragment.isDetached() || fragment.isRemoving()) {
-                return;
-            }
-            PendingIntent pendingIntent = rae.mStatus.f20497r;
-            C12238m.checkNotNullExpressionValue(pendingIntent, "rae.resolution");
-            fragment.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode, null, 0, 0, 0, null);
-        } catch (IntentSender.SendIntentException e) {
-            AppLog.f14950g.mo8369w("Google Smart Lock", "Failed to send resolution.", e);
-        } catch (Exception e2) {
-            AppLog.f14950g.mo8369w("Google Smart Lock", "Failed to resolve", e2);
         }
     }
 
@@ -337,6 +322,21 @@ public final class GoogleSmartLockManager {
                 }
             }
         });
+    }
+
+    private final void resolveResult(Fragment fragment, int requestCode, ResolvableApiException rae) {
+        try {
+            if (!(rae.mStatus.f20495p != 4) || fragment.isDetached() || fragment.isRemoving()) {
+                return;
+            }
+            PendingIntent pendingIntent = rae.mStatus.f20497r;
+            C12238m.checkNotNullExpressionValue(pendingIntent, "rae.resolution");
+            fragment.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode, null, 0, 0, 0, null);
+        } catch (IntentSender.SendIntentException e) {
+            AppLog.f14950g.mo8369w("Google Smart Lock", "Failed to send resolution.", e);
+        } catch (Exception e2) {
+            AppLog.f14950g.mo8369w("Google Smart Lock", "Failed to resolve", e2);
+        }
     }
 
     public final void saveCredentials(String id2, String password) {

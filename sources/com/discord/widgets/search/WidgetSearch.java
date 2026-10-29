@@ -66,8 +66,102 @@ public final class WidgetSearch extends AppFragment {
     private long targetId;
     private int targetType;
 
+    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$1 */
     /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final class Companion {
+    public final class C91261 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
+        public C91261() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
+            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
+        }
+
+        public final boolean invoke(TextView textView, int i, KeyEvent keyEvent) {
+            C12238m.checkNotNullParameter(textView, "textView");
+            if (i != 2 && i != 3 && i != 6) {
+                return false;
+            }
+            AppFragment.hideKeyboard$default(WidgetSearch.this, null, 1, null);
+            StoreSearch search = StoreStream.INSTANCE.getSearch();
+            TextInputLayout textInputLayout = WidgetSearch.this.getBinding().f17421c;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+            Context context = textView.getContext();
+            C12238m.checkNotNullExpressionValue(context, "textView.context");
+            search.loadInitial(textOrEmpty, new ContextSearchStringProvider(context));
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$2 */
+    /* JADX INFO: compiled from: WidgetSearch.kt */
+    public final class C91272 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public static final C91272 INSTANCE = new C91272();
+
+        public C91272() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().updateInput(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$5 */
+    /* JADX INFO: compiled from: WidgetSearch.kt */
+    public final class C91305 extends AbstractC12240o implements Function1<String, Unit> {
+        public C91305() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            TextInputLayout textInputLayout = WidgetSearch.this.getBinding().f17421c;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
+            ViewExtensions.setText(textInputLayout, str);
+            TextInputLayout textInputLayout2 = WidgetSearch.this.getBinding().f17421c;
+            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.widgetSearchInput");
+            ViewExtensions.setSelectionEnd(textInputLayout2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSearch.kt */
+    public final class C91311 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C91311() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetSearch.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSearch.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -93,7 +187,7 @@ public final class WidgetSearch extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -103,7 +197,7 @@ public final class WidgetSearch extends AppFragment {
         private final boolean isQueryValid;
 
         /* JADX INFO: compiled from: WidgetSearch.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -153,26 +247,6 @@ public final class WidgetSearch extends AppFragment {
             return model.copy(guild, channel, displayState, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreSearch.DisplayState getDisplayState() {
-            return this.displayState;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsQueryValid() {
-            return this.isQueryValid;
-        }
-
         public final Model copy(Guild guild, Channel channel, StoreSearch.DisplayState displayState, boolean isQueryValid) {
             return new Model(guild, channel, displayState, isQueryValid);
         }
@@ -188,16 +262,36 @@ public final class WidgetSearch extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.channel, model.channel) && C12238m.areEqual(this.displayState, model.displayState) && this.isQueryValid == model.isQueryValid;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreSearch.DisplayState getDisplayState() {
+            return this.displayState;
         }
 
         public final StoreSearch.DisplayState getDisplayState() {
             return this.displayState;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsQueryValid() {
+            return this.isQueryValid;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -245,100 +339,6 @@ public final class WidgetSearch extends AppFragment {
             $EnumSwitchMapping$0 = iArr;
             iArr[StoreSearch.DisplayState.SUGGESTIONS.ordinal()] = 1;
             iArr[StoreSearch.DisplayState.RESULTS.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$1 */
-    /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final class C91261 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
-        public C91261() {
-            super(3);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
-            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
-        }
-
-        public final boolean invoke(TextView textView, int i, KeyEvent keyEvent) {
-            C12238m.checkNotNullParameter(textView, "textView");
-            if (i != 2 && i != 3 && i != 6) {
-                return false;
-            }
-            AppFragment.hideKeyboard$default(WidgetSearch.this, null, 1, null);
-            StoreSearch search = StoreStream.INSTANCE.getSearch();
-            TextInputLayout textInputLayout = WidgetSearch.this.getBinding().f17421c;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
-            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
-            Context context = textView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "textView.context");
-            search.loadInitial(textOrEmpty, new ContextSearchStringProvider(context));
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$2 */
-    /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final class C91272 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public static final C91272 INSTANCE = new C91272();
-
-        public C91272() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().updateInput(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$configureSearchInput$5 */
-    /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final class C91305 extends AbstractC12240o implements Function1<String, Unit> {
-        public C91305() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            TextInputLayout textInputLayout = WidgetSearch.this.getBinding().f17421c;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
-            ViewExtensions.setText(textInputLayout, str);
-            TextInputLayout textInputLayout2 = WidgetSearch.this.getBinding().f17421c;
-            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.widgetSearchInput");
-            ViewExtensions.setSelectionEnd(textInputLayout2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.WidgetSearch$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSearch.kt */
-    public static final class C91311 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C91311() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetSearch.this.configureUI(model);
         }
     }
 
@@ -439,14 +439,6 @@ public final class WidgetSearch extends AppFragment {
         return (WidgetSearchBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void sendQuery(Context context) {
-        AppFragment.hideKeyboard$default(this, null, 1, null);
-        StoreSearch search = StoreStream.INSTANCE.getSearch();
-        TextInputLayout textInputLayout = getBinding().f17421c;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
-        search.loadInitial(ViewExtensions.getTextOrEmpty(textInputLayout), new ContextSearchStringProvider(context));
-    }
-
     public final long getTargetId() {
         return this.targetId;
     }
@@ -506,6 +498,14 @@ public final class WidgetSearch extends AppFragment {
                 WidgetSearch.this.requireActivity().onBackPressed();
             }
         });
+    }
+
+    private final void sendQuery(Context context) {
+        AppFragment.hideKeyboard$default(this, null, 1, null);
+        StoreSearch search = StoreStream.INSTANCE.getSearch();
+        TextInputLayout textInputLayout = getBinding().f17421c;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.widgetSearchInput");
+        search.loadInitial(ViewExtensions.getTextOrEmpty(textInputLayout), new ContextSearchStringProvider(context));
     }
 
     public final void setTargetId(long j) {

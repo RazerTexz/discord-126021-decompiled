@@ -18,6 +18,17 @@ public final class C2322a extends AbstractC2333l {
         this._emptyArray = obj;
     }
 
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj != null && obj.getClass() == C2322a.class) {
+            return this._componentType.equals(((C2322a) obj)._componentType);
+        }
+        return false;
+    }
+
     /* JADX INFO: renamed from: L */
     public static C2322a m2092L(AbstractC2360j abstractC2360j, C2334m c2334m) {
         return new C2322a(abstractC2360j, c2334m, Array.newInstance(abstractC2360j._class, 0), null, null, false);
@@ -40,35 +51,6 @@ public final class C2322a extends AbstractC2333l {
     public AbstractC2360j mo2095E(Object obj) {
         AbstractC2360j abstractC2360j = this._componentType;
         return obj == abstractC2360j._typeHandler ? this : new C2322a(abstractC2360j.mo2130N(obj), this._bindings, this._emptyArray, this._valueHandler, this._typeHandler, this._asStatic);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: G */
-    public AbstractC2360j mo2129M() {
-        return this._asStatic ? this : new C2322a(this._componentType.mo2129M(), this._bindings, this._emptyArray, this._valueHandler, this._typeHandler, true);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: H */
-    public AbstractC2360j mo2130N(Object obj) {
-        return obj == this._typeHandler ? this : new C2322a(this._componentType, this._bindings, this._emptyArray, this._valueHandler, obj, this._asStatic);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: I */
-    public AbstractC2360j mo2131O(Object obj) {
-        return obj == this._valueHandler ? this : new C2322a(this._componentType, this._bindings, this._emptyArray, obj, this._typeHandler, this._asStatic);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj != null && obj.getClass() == C2322a.class) {
-            return this._componentType.equals(((C2322a) obj)._componentType);
-        }
-        return false;
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
@@ -103,16 +85,34 @@ public final class C2322a extends AbstractC2333l {
         return super.mo2103s() || this._componentType.mo2103s();
     }
 
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: v */
+    public boolean mo2104v() {
+        return true;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: G */
+    public AbstractC2360j mo2129M() {
+        return this._asStatic ? this : new C2322a(this._componentType.mo2129M(), this._bindings, this._emptyArray, this._valueHandler, this._typeHandler, true);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: H */
+    public AbstractC2360j mo2130N(Object obj) {
+        return obj == this._typeHandler ? this : new C2322a(this._componentType, this._bindings, this._emptyArray, this._valueHandler, obj, this._asStatic);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: I */
+    public AbstractC2360j mo2131O(Object obj) {
+        return obj == this._valueHandler ? this : new C2322a(this._componentType, this._bindings, this._emptyArray, obj, this._typeHandler, this._asStatic);
+    }
+
     public String toString() {
         StringBuilder sbM833U = C1643a.m833U("[array type, component type: ");
         sbM833U.append(this._componentType);
         sbM833U.append("]");
         return sbM833U.toString();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: v */
-    public boolean mo2104v() {
-        return true;
     }
 }

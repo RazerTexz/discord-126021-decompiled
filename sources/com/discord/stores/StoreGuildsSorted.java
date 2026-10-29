@@ -46,11 +46,125 @@ public final class StoreGuildsSorted extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final List<ModelGuildFolder> positions;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$ensureValidPositions$6 */
     /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static abstract class Entry {
+    public final class C61186 extends AbstractC12240o implements Function1<ModelGuildFolder, Boolean> {
+        public static final C61186 INSTANCE = new C61186();
+
+        public C61186() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(ModelGuildFolder modelGuildFolder) {
+            return Boolean.valueOf(invoke2(modelGuildFolder));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(ModelGuildFolder modelGuildFolder) {
+            C12238m.checkNotNullParameter(modelGuildFolder, "it");
+            return modelGuildFolder.getGuildIds().isEmpty();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$init$1 */
+    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+    public final class C61191 extends AbstractC12240o implements Function1<State, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$init$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ State $state;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(State state) {
+                super(0);
+                this.$state = state;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreGuildsSorted.this.handleNewState(this.$state);
+            }
+        }
+
+        public C61191() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(State state) {
+            invoke2(state);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(State state) {
+            C12238m.checkNotNullParameter(state, "state");
+            StoreGuildsSorted.this.dispatcher.schedule(new AnonymousClass1(state));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$observeEntries$1 */
+    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+    public final class C61201 extends AbstractC12240o implements Function0<List<? extends Entry>> {
+        public C61201() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final List<? extends Entry> invoke() {
+            return StoreGuildsSorted.this.getEntries();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$observeOrderedGuilds$1 */
+    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+    public final class C61211 extends AbstractC12240o implements Function0<LinkedHashMap<Long, Guild>> {
+        public C61211() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final LinkedHashMap<Long, Guild> invoke() {
+            return StoreGuildsSorted.this.getOrderedGuilds();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$setPositions$1 */
+    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+    public final class C61241 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ List $guildPositions;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C61241(List list) {
+            super(0);
+            this.$guildPositions = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildsSorted.this.handleNewPositionsFromUser(this.$guildPositions);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
+    public abstract class Entry {
 
         /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-        public static final /* data */ class Folder extends Entry {
+        public final /* data */ class Folder extends Entry {
             private final Integer color;
             private final List<Guild> guilds;
             private final long id;
@@ -64,6 +178,22 @@ public final class StoreGuildsSorted extends StoreV2 {
                 this.guilds = list;
                 this.color = num;
                 this.name = str;
+            }
+
+            @Override // com.discord.stores.StoreGuildsSorted.Entry
+            public ModelGuildFolder asModelGuildFolder() {
+                Long lValueOf = Long.valueOf(this.id);
+                List<Guild> list = this.guilds;
+                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
+                Iterator<T> it = list.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(Long.valueOf(((Guild) it.next()).getId()));
+                }
+                return new ModelGuildFolder(lValueOf, arrayList, this.color, this.name);
+            }
+
+            public final List<Guild> component2() {
+                return this.guilds;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -86,37 +216,6 @@ public final class StoreGuildsSorted extends StoreV2 {
                 return folder.copy(j2, list2, num2, str);
             }
 
-            @Override // com.discord.stores.StoreGuildsSorted.Entry
-            public ModelGuildFolder asModelGuildFolder() {
-                Long lValueOf = Long.valueOf(this.id);
-                List<Guild> list = this.guilds;
-                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
-                Iterator<T> it = list.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(Long.valueOf(((Guild) it.next()).getId()));
-                }
-                return new ModelGuildFolder(lValueOf, arrayList, this.color, this.name);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getId() {
-                return this.id;
-            }
-
-            public final List<Guild> component2() {
-                return this.guilds;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Integer getColor() {
-                return this.color;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getName() {
-                return this.name;
-            }
-
             public final Folder copy(long id2, List<Guild> guilds, Integer color, String name) {
                 C12238m.checkNotNullParameter(guilds, "guilds");
                 return new Folder(id2, guilds, color, name);
@@ -133,6 +232,11 @@ public final class StoreGuildsSorted extends StoreV2 {
                 return this.id == folder.id && C12238m.areEqual(this.guilds, folder.guilds) && C12238m.areEqual(this.color, folder.color) && C12238m.areEqual(this.name, folder.name);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Integer getColor() {
+                return this.color;
+            }
+
             public final Integer getColor() {
                 return this.color;
             }
@@ -141,8 +245,18 @@ public final class StoreGuildsSorted extends StoreV2 {
                 return this.guilds;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getId() {
                 return this.id;
+            }
+
+            public final long getId() {
+                return this.id;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getName() {
+                return this.name;
             }
 
             public final String getName() {
@@ -172,7 +286,7 @@ public final class StoreGuildsSorted extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-        public static final /* data */ class SingletonGuild extends Entry {
+        public final /* data */ class SingletonGuild extends Entry {
             private final Guild guild;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -182,21 +296,16 @@ public final class StoreGuildsSorted extends StoreV2 {
                 this.guild = guild;
             }
 
-            public static /* synthetic */ SingletonGuild copy$default(SingletonGuild singletonGuild, Guild guild, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    guild = singletonGuild.guild;
-                }
-                return singletonGuild.copy(guild);
-            }
-
             @Override // com.discord.stores.StoreGuildsSorted.Entry
             public ModelGuildFolder asModelGuildFolder() {
                 return new ModelGuildFolder(null, C12145m.listOf(Long.valueOf(this.guild.getId())), null, null, 8, null);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
+            public static /* synthetic */ SingletonGuild copy$default(SingletonGuild singletonGuild, Guild guild, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    guild = singletonGuild.guild;
+                }
+                return singletonGuild.copy(guild);
             }
 
             public final SingletonGuild copy(Guild guild) {
@@ -209,6 +318,11 @@ public final class StoreGuildsSorted extends StoreV2 {
                     return (other instanceof SingletonGuild) && C12238m.areEqual(this.guild, ((SingletonGuild) other).guild);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
@@ -242,7 +356,7 @@ public final class StoreGuildsSorted extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final Map<Long, Long> joinedAt;
         private final Set<Long> mutedGuilds;
         private final List<ModelGuildFolder> userSettingsGuildPositions;
@@ -254,6 +368,18 @@ public final class StoreGuildsSorted extends StoreV2 {
             this.mutedGuilds = set;
             this.joinedAt = map;
             this.userSettingsGuildPositions = list;
+        }
+
+        public final Set<Long> component1() {
+            return this.mutedGuilds;
+        }
+
+        public final Map<Long, Long> component2() {
+            return this.joinedAt;
+        }
+
+        public final List<ModelGuildFolder> component3() {
+            return this.userSettingsGuildPositions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -268,18 +394,6 @@ public final class StoreGuildsSorted extends StoreV2 {
                 list = state.userSettingsGuildPositions;
             }
             return state.copy(set, map, list);
-        }
-
-        public final Set<Long> component1() {
-            return this.mutedGuilds;
-        }
-
-        public final Map<Long, Long> component2() {
-            return this.joinedAt;
-        }
-
-        public final List<ModelGuildFolder> component3() {
-            return this.userSettingsGuildPositions;
         }
 
         public final State copy(Set<Long> mutedGuilds, Map<Long, Long> joinedAt, List<ModelGuildFolder> userSettingsGuildPositions) {
@@ -328,120 +442,6 @@ public final class StoreGuildsSorted extends StoreV2 {
             sbM833U.append(this.joinedAt);
             sbM833U.append(", userSettingsGuildPositions=");
             return C1643a.m824L(sbM833U, this.userSettingsGuildPositions, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$ensureValidPositions$6 */
-    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final class C61186 extends AbstractC12240o implements Function1<ModelGuildFolder, Boolean> {
-        public static final C61186 INSTANCE = new C61186();
-
-        public C61186() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(ModelGuildFolder modelGuildFolder) {
-            return Boolean.valueOf(invoke2(modelGuildFolder));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(ModelGuildFolder modelGuildFolder) {
-            C12238m.checkNotNullParameter(modelGuildFolder, "it");
-            return modelGuildFolder.getGuildIds().isEmpty();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$init$1 */
-    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final class C61191 extends AbstractC12240o implements Function1<State, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$init$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ State $state;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(State state) {
-                super(0);
-                this.$state = state;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreGuildsSorted.this.handleNewState(this.$state);
-            }
-        }
-
-        public C61191() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(State state) {
-            invoke2(state);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(State state) {
-            C12238m.checkNotNullParameter(state, "state");
-            StoreGuildsSorted.this.dispatcher.schedule(new AnonymousClass1(state));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$observeEntries$1 */
-    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final class C61201 extends AbstractC12240o implements Function0<List<? extends Entry>> {
-        public C61201() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final List<? extends Entry> invoke() {
-            return StoreGuildsSorted.this.getEntries();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$observeOrderedGuilds$1 */
-    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final class C61211 extends AbstractC12240o implements Function0<LinkedHashMap<Long, Guild>> {
-        public C61211() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final LinkedHashMap<Long, Guild> invoke() {
-            return StoreGuildsSorted.this.getOrderedGuilds();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsSorted$setPositions$1 */
-    /* JADX INFO: compiled from: StoreGuildsSorted.kt */
-    public static final class C61241 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $guildPositions;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C61241(List list) {
-            super(0);
-            this.$guildPositions = list;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildsSorted.this.handleNewPositionsFromUser(this.$guildPositions);
         }
     }
 
@@ -509,6 +509,26 @@ public final class StoreGuildsSorted extends StoreV2 {
         C12160r.removeAll((List) this.positions, (Function1) C61186.INSTANCE);
     }
 
+    public final List<Entry> getEntries() {
+        return this.entriesSnapshot;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public final LinkedHashMap<Long, Guild> getOrderedGuilds() {
+        LinkedHashMap<Long, Guild> linkedHashMap = new LinkedHashMap<>();
+        for (Entry entry : getEntries()) {
+            if (entry instanceof Entry.SingletonGuild) {
+                Entry.SingletonGuild singletonGuild = (Entry.SingletonGuild) entry;
+                linkedHashMap.put(Long.valueOf(singletonGuild.getGuild().getId()), singletonGuild.getGuild());
+            } else if (entry instanceof Entry.Folder) {
+                for (Object obj : ((Entry.Folder) entry).getGuilds()) {
+                    linkedHashMap.put(Long.valueOf(((Guild) obj).getId()), obj);
+                }
+            }
+        }
+        return linkedHashMap;
+    }
+
     @StoreThread
     private final void handleNewPositionsFromUser(List<? extends Entry> guildPositions) {
         this.positions.clear();
@@ -528,6 +548,25 @@ public final class StoreGuildsSorted extends StoreV2 {
         updatePositions(state);
         ensureValidPositions();
         rebuildSortedGuilds();
+    }
+
+    @Override // com.discord.stores.Store
+    public void init(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        super.init(context);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.leadingEdgeThrottle(ObservableExtensionsKt.computationLatest(observeStores()), 1L, TimeUnit.SECONDS), (Class<?>) StoreGuildsSorted.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61191());
+    }
+
+    public final Observable<List<Entry>> observeEntries() {
+        Observable<List<Entry>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C61201(), 14, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public final Observable<LinkedHashMap<Long, Guild>> observeOrderedGuilds() {
+        Observable<LinkedHashMap<Long, Guild>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C61211(), 14, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
+        return observableM11112r;
     }
 
     private final Observable<State> observeStores() {
@@ -586,6 +625,17 @@ public final class StoreGuildsSorted extends StoreV2 {
         markChanged();
     }
 
+    public final void setPositions(List<? extends Entry> guildPositions) {
+        C12238m.checkNotNullParameter(guildPositions, "guildPositions");
+        this.dispatcher.schedule(new C61241(guildPositions));
+    }
+
+    @Override // com.discord.stores.StoreV2
+    public void snapshotData() {
+        super.snapshotData();
+        this.entriesSnapshot = new ArrayList(this.entries);
+    }
+
     @StoreThread
     private final void updatePositions(final State state) {
         this.positions.clear();
@@ -629,55 +679,5 @@ public final class StoreGuildsSorted extends StoreV2 {
             arrayList.add(new ModelGuildFolder(null, C12145m.listOf(Long.valueOf(((Number) it.next()).longValue())), null, null, 8, null));
         }
         list.addAll(arrayList);
-    }
-
-    public final List<Entry> getEntries() {
-        return this.entriesSnapshot;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public final LinkedHashMap<Long, Guild> getOrderedGuilds() {
-        LinkedHashMap<Long, Guild> linkedHashMap = new LinkedHashMap<>();
-        for (Entry entry : getEntries()) {
-            if (entry instanceof Entry.SingletonGuild) {
-                Entry.SingletonGuild singletonGuild = (Entry.SingletonGuild) entry;
-                linkedHashMap.put(Long.valueOf(singletonGuild.getGuild().getId()), singletonGuild.getGuild());
-            } else if (entry instanceof Entry.Folder) {
-                for (Object obj : ((Entry.Folder) entry).getGuilds()) {
-                    linkedHashMap.put(Long.valueOf(((Guild) obj).getId()), obj);
-                }
-            }
-        }
-        return linkedHashMap;
-    }
-
-    @Override // com.discord.stores.Store
-    public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        super.init(context);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.leadingEdgeThrottle(ObservableExtensionsKt.computationLatest(observeStores()), 1L, TimeUnit.SECONDS), (Class<?>) StoreGuildsSorted.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61191());
-    }
-
-    public final Observable<List<Entry>> observeEntries() {
-        Observable<List<Entry>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C61201(), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final Observable<LinkedHashMap<Long, Guild>> observeOrderedGuilds() {
-        Observable<LinkedHashMap<Long, Guild>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C61211(), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final void setPositions(List<? extends Entry> guildPositions) {
-        C12238m.checkNotNullParameter(guildPositions, "guildPositions");
-        this.dispatcher.schedule(new C61241(guildPositions));
-    }
-
-    @Override // com.discord.stores.StoreV2
-    public void snapshotData() {
-        super.snapshotData();
-        this.entriesSnapshot = new ArrayList(this.entries);
     }
 }

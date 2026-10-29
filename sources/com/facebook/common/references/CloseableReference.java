@@ -21,21 +21,6 @@ import p007b.p109f.p115d.p123h.InterfaceC1709f;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class CloseableReference<T> implements Cloneable, Closeable {
 
-    /* JADX INFO: renamed from: j */
-    public static Class<CloseableReference> f19438j = CloseableReference.class;
-
-    /* JADX INFO: renamed from: k */
-    public static int f19439k = 0;
-
-    /* JADX INFO: renamed from: l */
-    public static final InterfaceC1709f<Closeable> f19440l = new C10635a();
-
-    /* JADX INFO: renamed from: m */
-    public static final InterfaceC10637c f19441m = new C10636b();
-
-    /* JADX INFO: renamed from: n */
-    public boolean f19442n = false;
-
     /* JADX INFO: renamed from: o */
     public final SharedReference<T> f19443o;
 
@@ -45,8 +30,23 @@ public abstract class CloseableReference<T> implements Cloneable, Closeable {
     /* JADX INFO: renamed from: q */
     public final Throwable f19445q;
 
+    /* JADX INFO: renamed from: j */
+    public static Class<CloseableReference> f19438j = CloseableReference.class;
+
+    /* JADX INFO: renamed from: k */
+    public static int f19439k = 0;
+
+    /* JADX INFO: renamed from: n */
+    public boolean f19442n = false;
+
+    /* JADX INFO: renamed from: l */
+    public static final InterfaceC1709f<Closeable> f19440l = new C10635a();
+
+    /* JADX INFO: renamed from: m */
+    public static final InterfaceC10637c f19441m = new C10636b();
+
     /* JADX INFO: renamed from: com.facebook.common.references.CloseableReference$a */
-    public static class C10635a implements InterfaceC1709f<Closeable> {
+    public final class C10635a implements InterfaceC1709f<Closeable> {
         @Override // p007b.p109f.p115d.p123h.InterfaceC1709f
         public void release(Closeable closeable) {
             try {
@@ -57,7 +57,7 @@ public abstract class CloseableReference<T> implements Cloneable, Closeable {
     }
 
     /* JADX INFO: renamed from: com.facebook.common.references.CloseableReference$b */
-    public static class C10636b implements InterfaceC10637c {
+    public final class C10636b implements InterfaceC10637c {
         @Override // com.facebook.common.references.CloseableReference.InterfaceC10637c
         /* JADX INFO: renamed from: a */
         public void mo1252a(SharedReference<Object> sharedReference, Throwable th) {
@@ -96,6 +96,20 @@ public abstract class CloseableReference<T> implements Cloneable, Closeable {
         }
         this.f19444p = interfaceC10637c;
         this.f19445q = th;
+    }
+
+    @Override // 
+    /* JADX INFO: renamed from: b, reason: merged with bridge method [inline-methods] */
+    public abstract CloseableReference<T> clone();
+
+    public void close() {
+        synchronized (this) {
+            if (this.f19442n) {
+                return;
+            }
+            this.f19442n = true;
+            this.f19443o.m8644a();
+        }
     }
 
     /* JADX WARN: Incorrect types in method signature: <T::Ljava/io/Closeable;>(TT;)Lcom/facebook/common/references/CloseableReference<TT;>; */
@@ -176,20 +190,6 @@ public abstract class CloseableReference<T> implements Cloneable, Closeable {
     /* JADX INFO: renamed from: y */
     public static boolean m8640y(CloseableReference<?> closeableReference) {
         return closeableReference != null && closeableReference.m8643x();
-    }
-
-    @Override // 
-    /* JADX INFO: renamed from: b, reason: merged with bridge method [inline-methods] */
-    public abstract CloseableReference<T> clone();
-
-    public void close() {
-        synchronized (this) {
-            if (this.f19442n) {
-                return;
-            }
-            this.f19442n = true;
-            this.f19443o.m8644a();
-        }
     }
 
     /* JADX INFO: renamed from: f */

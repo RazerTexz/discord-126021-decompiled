@@ -123,7 +123,7 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.f$a */
     /* JADX INFO: compiled from: LazyJavaClassDescriptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -140,7 +140,7 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.f$b$a */
         /* JADX INFO: compiled from: LazyJavaClassDescriptor.kt */
-        public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
+        public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
             public final /* synthetic */ C11539f this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -161,6 +161,16 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
             C12238m.checkNotNullParameter(c11539f, "this$0");
             this.f23359d = c11539f;
             this.f23358c = c11539f.f23352u.getStorageManager().createLazyValue(new a(c11539f));
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public List<InterfaceC11477z0> getParameters() {
+            return this.f23358c.invoke();
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public boolean isDenotable() {
+            return true;
         }
 
         /* JADX WARN: Code duplicated, block: B:16:0x0057  */
@@ -323,16 +333,6 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
             return this.f23359d.f23352u.getComponents().getSupertypeLoopChecker();
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public List<InterfaceC11477z0> getParameters() {
-            return this.f23358c.invoke();
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public boolean isDenotable() {
-            return true;
-        }
-
         public String toString() {
             String strAsString = this.f23359d.getName().asString();
             C12238m.checkNotNullExpressionValue(strAsString, "name.asString()");
@@ -347,7 +347,7 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.f$c */
     /* JADX INFO: compiled from: LazyJavaClassDescriptor.kt */
-    public static final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
+    public final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
         public c() {
             super(0);
         }
@@ -370,7 +370,7 @@ public final class C11539f extends AbstractC11375h implements InterfaceC11513d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.f$d */
     /* JADX INFO: compiled from: LazyJavaClassDescriptor.kt */
-    public static final class d extends AbstractC12240o implements Function1<AbstractC11947g, C11541h> {
+    public final class d extends AbstractC12240o implements Function1<AbstractC11947g, C11541h> {
         public d() {
             super(1);
         }

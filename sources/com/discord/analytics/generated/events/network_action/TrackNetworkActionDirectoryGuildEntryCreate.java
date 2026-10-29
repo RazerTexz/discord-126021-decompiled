@@ -28,18 +28,6 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
         this.analyticsSchemaTypeName = "network_action_directory_guild_entry_create";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -51,6 +39,12 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
         return C12238m.areEqual(this.directoryChannelId, trackNetworkActionDirectoryGuildEntryCreate.directoryChannelId) && C12238m.areEqual(this.guildId, trackNetworkActionDirectoryGuildEntryCreate.guildId) && C12238m.areEqual(this.primaryCategoryId, trackNetworkActionDirectoryGuildEntryCreate.primaryCategoryId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         Long l = this.directoryChannelId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -58,6 +52,12 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
         int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
         Long l3 = this.primaryCategoryId;
         return iHashCode2 + (l3 != null ? l3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

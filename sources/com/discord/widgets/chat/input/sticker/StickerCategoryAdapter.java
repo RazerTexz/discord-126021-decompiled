@@ -39,7 +39,7 @@ public final class StickerCategoryAdapter extends RecyclerView.Adapter<StickerCa
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerCategoryAdapter$setItems$1 */
     /* JADX INFO: compiled from: StickerCategoryAdapter.kt */
-    public static final class C78921 extends AbstractC12240o implements Function1<List<? extends StickerCategoryItem>, Unit> {
+    public final class C78921 extends AbstractC12240o implements Function1<List<? extends StickerCategoryItem>, Unit> {
         public C78921() {
             super(1);
         }
@@ -77,12 +77,6 @@ public final class StickerCategoryAdapter extends RecyclerView.Adapter<StickerCa
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public long getItemId(int position) {
         StickerCategoryItem stickerCategoryItem = this.items.get(position);
         if (stickerCategoryItem instanceof StickerCategoryItem.RecentItem) {
@@ -110,6 +104,12 @@ public final class StickerCategoryAdapter extends RecyclerView.Adapter<StickerCa
             return 2;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItems(List<? extends StickerCategoryItem> newItems) {

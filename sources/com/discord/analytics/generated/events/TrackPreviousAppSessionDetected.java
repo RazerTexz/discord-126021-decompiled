@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPreviousAppSessionDetected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPreviousAppSessionDetected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence deviceMemoryState = null;
-    private final Boolean wasConnectedToVoice = null;
+    private TrackBase trackBase;
     private final Boolean wasAppBackgrounded = null;
+    private final Boolean wasConnectedToVoice = null;
     private final transient String analyticsSchemaTypeName = "previous_app_session_detected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackPreviousAppSessionDetected implements Analyti
         }
         TrackPreviousAppSessionDetected trackPreviousAppSessionDetected = (TrackPreviousAppSessionDetected) other;
         return C12238m.areEqual(this.deviceMemoryState, trackPreviousAppSessionDetected.deviceMemoryState) && C12238m.areEqual(this.wasConnectedToVoice, trackPreviousAppSessionDetected.wasConnectedToVoice) && C12238m.areEqual(this.wasAppBackgrounded, trackPreviousAppSessionDetected.wasAppBackgrounded);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

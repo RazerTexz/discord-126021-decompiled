@@ -10,16 +10,11 @@ import androidx.work.impl.model.WorkSpec;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemAlarmScheduler implements Scheduler {
-    private static final String TAG = Logger.tagWithPrefix("SystemAlarmScheduler");
     private final Context mContext;
+    private static final String TAG = Logger.tagWithPrefix("SystemAlarmScheduler");
 
     public SystemAlarmScheduler(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
-    }
-
-    private void scheduleWorkSpec(@NonNull WorkSpec workSpec) {
-        Logger.get().debug(TAG, String.format("Scheduling work with workSpecId %s", workSpec.f163id), new Throwable[0]);
-        this.mContext.startService(CommandHandler.createScheduleWorkIntent(this.mContext, workSpec.f163id));
     }
 
     @Override // androidx.work.impl.Scheduler
@@ -37,5 +32,10 @@ public class SystemAlarmScheduler implements Scheduler {
         for (WorkSpec workSpec : workSpecArr) {
             scheduleWorkSpec(workSpec);
         }
+    }
+
+    private void scheduleWorkSpec(@NonNull WorkSpec workSpec) {
+        Logger.get().debug(TAG, String.format("Scheduling work with workSpecId %s", workSpec.f163id), new Throwable[0]);
+        this.mContext.startService(CommandHandler.createScheduleWorkIntent(this.mContext, workSpec.f163id));
     }
 }

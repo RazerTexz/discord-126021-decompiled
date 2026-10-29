@@ -32,8 +32,136 @@ public final class NoticeBuilders {
     public static final NoticeBuilders INSTANCE;
     private static final Map<StoreNotices.Dialog.Type, Function2<Context, StoreNotices.Dialog, DialogData>> noticeDataBuilders;
 
+    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$deleteConnectionModalBuilder$1 */
     /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final /* data */ class DialogData {
+    public final class C68251 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public static final C68251 INSTANCE = new C68251();
+
+        public C68251() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.uppercase = true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$deleteConnectionModalBuilder$2 */
+    /* JADX INFO: compiled from: NoticeBuilders.kt */
+    public final class C68262 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ StoreNotices.Dialog $notice;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68262(StoreNotices.Dialog dialog) {
+            super(1);
+            this.$notice = dialog;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            if (this.$notice.getMetadata() != null) {
+                Object obj = this.$notice.getMetadata().get(WidgetSettingsUserConnections.PLATFORM_NAME);
+                if (!(obj instanceof String)) {
+                    obj = null;
+                }
+                String str = (String) obj;
+                Object obj2 = this.$notice.getMetadata().get(WidgetSettingsUserConnections.CONNECTION_ID);
+                String str2 = (String) (obj2 instanceof String ? obj2 : null);
+                if (str == null || str2 == null) {
+                    Logger.e$default(AppLog.f14950g, "Delete Connections", new Exception(C1643a.m886y(str, ", ", str2)), null, 4, null);
+                } else {
+                    StoreStream.INSTANCE.getUserConnections().deleteUserConnection(str, str2);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$1 */
+    /* JADX INFO: compiled from: NoticeBuilders.kt */
+    public final class C68271 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C68271 INSTANCE = new C68271();
+
+        public C68271() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+            StoreStream.INSTANCE.getReviewRequest().onReviewRequestShown();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$2 */
+    /* JADX INFO: compiled from: NoticeBuilders.kt */
+    public final class C68282 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C68282 INSTANCE = new C68282();
+
+        public C68282() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "view");
+            StoreStream.INSTANCE.getReviewRequest().onUserAcceptedRequest();
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "view.context");
+            UriHandler.directToPlayStore$default(context, null, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$3 */
+    /* JADX INFO: compiled from: NoticeBuilders.kt */
+    public final class C68293 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C68293 INSTANCE = new C68293();
+
+        public C68293() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+            StoreStream.INSTANCE.getReviewRequest().onUserDismissedRequest();
+        }
+    }
+
+    /* JADX INFO: compiled from: NoticeBuilders.kt */
+    public final /* data */ class DialogData {
         private final CharSequence bodyText;
         private final CharSequence cancelText;
         private final Integer extraLayoutId;
@@ -51,6 +179,10 @@ public final class NoticeBuilders {
             this.cancelText = charSequence4;
             this.listenerMap = map;
             this.extraLayoutId = num;
+        }
+
+        public final Map<Integer, Function1<View, Unit>> component5() {
+            return this.listenerMap;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -80,35 +212,6 @@ public final class NoticeBuilders {
             return dialogData.copy(charSequence, charSequence5, charSequence6, charSequence7, map2, num);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getHeaderText() {
-            return this.headerText;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getBodyText() {
-            return this.bodyText;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final CharSequence getOkText() {
-            return this.okText;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final CharSequence getCancelText() {
-            return this.cancelText;
-        }
-
-        public final Map<Integer, Function1<View, Unit>> component5() {
-            return this.listenerMap;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getExtraLayoutId() {
-            return this.extraLayoutId;
-        }
-
         public final DialogData copy(CharSequence headerText, CharSequence bodyText, CharSequence okText, CharSequence cancelText, Map<Integer, ? extends Function1<? super View, Unit>> listenerMap, Integer extraLayoutId) {
             C12238m.checkNotNullParameter(headerText, "headerText");
             C12238m.checkNotNullParameter(bodyText, "bodyText");
@@ -126,16 +229,36 @@ public final class NoticeBuilders {
             return C12238m.areEqual(this.headerText, dialogData.headerText) && C12238m.areEqual(this.bodyText, dialogData.bodyText) && C12238m.areEqual(this.okText, dialogData.okText) && C12238m.areEqual(this.cancelText, dialogData.cancelText) && C12238m.areEqual(this.listenerMap, dialogData.listenerMap) && C12238m.areEqual(this.extraLayoutId, dialogData.extraLayoutId);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getBodyText() {
             return this.bodyText;
+        }
+
+        public final CharSequence getBodyText() {
+            return this.bodyText;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final CharSequence getCancelText() {
+            return this.cancelText;
         }
 
         public final CharSequence getCancelText() {
             return this.cancelText;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Integer getExtraLayoutId() {
             return this.extraLayoutId;
+        }
+
+        public final Integer getExtraLayoutId() {
+            return this.extraLayoutId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getHeaderText() {
+            return this.headerText;
         }
 
         public final CharSequence getHeaderText() {
@@ -144,6 +267,11 @@ public final class NoticeBuilders {
 
         public final Map<Integer, Function1<View, Unit>> getListenerMap() {
             return this.listenerMap;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final CharSequence getOkText() {
+            return this.okText;
         }
 
         public final CharSequence getOkText() {
@@ -182,134 +310,6 @@ public final class NoticeBuilders {
 
         public /* synthetic */ DialogData(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, Map map, Integer num, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(charSequence, charSequence2, (i & 4) != 0 ? null : charSequence3, (i & 8) != 0 ? null : charSequence4, (i & 16) != 0 ? null : map, (i & 32) != 0 ? null : num);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$deleteConnectionModalBuilder$1 */
-    /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final class C68251 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public static final C68251 INSTANCE = new C68251();
-
-        public C68251() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.uppercase = true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$deleteConnectionModalBuilder$2 */
-    /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final class C68262 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ StoreNotices.Dialog $notice;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68262(StoreNotices.Dialog dialog) {
-            super(1);
-            this.$notice = dialog;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            if (this.$notice.getMetadata() != null) {
-                Object obj = this.$notice.getMetadata().get(WidgetSettingsUserConnections.PLATFORM_NAME);
-                if (!(obj instanceof String)) {
-                    obj = null;
-                }
-                String str = (String) obj;
-                Object obj2 = this.$notice.getMetadata().get(WidgetSettingsUserConnections.CONNECTION_ID);
-                String str2 = (String) (obj2 instanceof String ? obj2 : null);
-                if (str == null || str2 == null) {
-                    Logger.e$default(AppLog.f14950g, "Delete Connections", new Exception(C1643a.m886y(str, ", ", str2)), null, 4, null);
-                } else {
-                    StoreStream.INSTANCE.getUserConnections().deleteUserConnection(str, str2);
-                }
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$1 */
-    /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final class C68271 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C68271 INSTANCE = new C68271();
-
-        public C68271() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-            StoreStream.INSTANCE.getReviewRequest().onReviewRequestShown();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$2 */
-    /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final class C68282 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C68282 INSTANCE = new C68282();
-
-        public C68282() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "view");
-            StoreStream.INSTANCE.getReviewRequest().onUserAcceptedRequest();
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "view.context");
-            UriHandler.directToPlayStore$default(context, null, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.notices.NoticeBuilders$requestRatingModalBuilder$3 */
-    /* JADX INFO: compiled from: NoticeBuilders.kt */
-    public static final class C68293 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C68293 INSTANCE = new C68293();
-
-        public C68293() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-            StoreStream.INSTANCE.getReviewRequest().onUserDismissedRequest();
         }
     }
 

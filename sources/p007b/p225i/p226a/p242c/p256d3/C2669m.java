@@ -16,7 +16,7 @@ public final class C2669m {
 
     /* JADX INFO: renamed from: b.i.a.c.d3.m$b */
     /* JADX INFO: compiled from: SpannedToHtmlConverter.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public final String f6358a;
@@ -32,7 +32,7 @@ public final class C2669m {
 
     /* JADX INFO: renamed from: b.i.a.c.d3.m$c */
     /* JADX INFO: compiled from: SpannedToHtmlConverter.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f6360a;
@@ -54,19 +54,19 @@ public final class C2669m {
         }
     }
 
+    /* JADX INFO: renamed from: a */
+    public static String m2759a(CharSequence charSequence) {
+        return f6357a.matcher(Html.escapeHtml(charSequence)).replaceAll("<br>");
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.d3.m$d */
     /* JADX INFO: compiled from: SpannedToHtmlConverter.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final List<c> f6364a = new ArrayList();
 
         /* JADX INFO: renamed from: b */
         public final List<c> f6365b = new ArrayList();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static String m2759a(CharSequence charSequence) {
-        return f6357a.matcher(Html.escapeHtml(charSequence)).replaceAll("<br>");
     }
 }

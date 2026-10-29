@@ -59,18 +59,17 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/Delombok.SCL.lombok */
 public class Delombok {
-    private Writer presetWriter;
-    private boolean verbose;
+    private static Method attributeMethod;
+    private String bootclasspath;
+    private String classpath;
+    private boolean disablePreview;
+    private static Method flowMethod;
+    private String modulepath;
     private boolean noCopy;
     private boolean onlyChanged;
-    private boolean disablePreview;
-    private String classpath;
+    private Writer presetWriter;
     private String sourcepath;
-    private String bootclasspath;
-    private String modulepath;
-    private static final Field MODULE_FIELD = getModuleField();
-    private static Method attributeMethod;
-    private static Method flowMethod;
+    private boolean verbose;
     private Charset charset = Charset.defaultCharset();
     private Context context = new Context();
     private PrintStream feedback = System.err;
@@ -79,50 +78,33 @@ public class Delombok {
     private List<File> filesToParse = new ArrayList();
     private Map<String, String> formatPrefs = new HashMap();
     private File output = null;
+    private static final Field MODULE_FIELD = getModuleField();
 
     public void setWriter(Writer writer) {
         this.presetWriter = writer;
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/Delombok$CmdArgs.SCL.lombok */
-    private static class CmdArgs {
+    class CmdArgs {
 
-        @Excludes({"quiet"})
-        @Description("Print the name of each file as it is being delombok-ed.")
-        @Shorthand({"v"})
-        private boolean verbose;
-
-        @FullName("format-help")
-        private boolean formatHelp;
-
-        @Excludes({"verbose"})
-        @Description("No warnings or errors will be emitted to standard error")
-        @Shorthand({"q"})
-        private boolean quiet;
-
-        @Description("Sets the encoding of your source files. Defaults to the system default charset. Example: \"UTF-8\"")
-        @Shorthand({"e"})
-        private String encoding;
-
-        @Description("Print delombok-ed code to standard output instead of saving it in target directory")
-        @Shorthand({"p"})
-        private boolean print;
-
-        @Description("Directory to save delomboked files to")
-        @Mandatory(onlyIfNot = {"print", "help", "format-help"})
-        @Shorthand({"d"})
-        private String target;
+        @Description("override Bootclasspath (analogous to javac -bootclasspath option)")
+        private String bootclasspath;
 
         @Description("Classpath (analogous to javac -cp option)")
         @Shorthand({"c"})
         private String classpath;
 
-        @Description("Sourcepath (analogous to javac -sourcepath option)")
-        @Shorthand({"s"})
-        private String sourcepath;
+        @Description("By default lombok enables preview features if available (introduced in JDK 12). With this option, lombok won't do that.")
+        @FullName("disable-preview")
+        private boolean disablePreview;
 
-        @Description("override Bootclasspath (analogous to javac -bootclasspath option)")
-        private String bootclasspath;
+        @Description("Sets the encoding of your source files. Defaults to the system default charset. Example: \"UTF-8\"")
+        @Shorthand({"e"})
+        private String encoding;
+
+        @FullName("format-help")
+        private boolean formatHelp;
+        private boolean help;
 
         @Description("Module path (analogous to javac --module-path option)")
         @FullName("module-path")
@@ -135,10 +117,28 @@ public class Delombok {
         @Description("Output only changed files (implies -n)")
         private boolean onlyChanged;
 
-        @Description("By default lombok enables preview features if available (introduced in JDK 12). With this option, lombok won't do that.")
-        @FullName("disable-preview")
-        private boolean disablePreview;
-        private boolean help;
+        @Description("Print delombok-ed code to standard output instead of saving it in target directory")
+        @Shorthand({"p"})
+        private boolean print;
+
+        @Excludes({"verbose"})
+        @Description("No warnings or errors will be emitted to standard error")
+        @Shorthand({"q"})
+        private boolean quiet;
+
+        @Description("Sourcepath (analogous to javac -sourcepath option)")
+        @Shorthand({"s"})
+        private String sourcepath;
+
+        @Description("Directory to save delomboked files to")
+        @Mandatory(onlyIfNot = {"print", "help", "format-help"})
+        @Shorthand({"d"})
+        private String target;
+
+        @Excludes({"quiet"})
+        @Description("Print the name of each file as it is being delombok-ed.")
+        @Shorthand({"v"})
+        private boolean verbose;
 
         @Description("Sets formatting rules. Use --format-help to list all available rules. Unset format rules are inferred by scanning the source for usages.")
         @Shorthand({"f"})
@@ -450,7 +450,7 @@ public class Delombok {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/Delombok$InvalidFormatOptionException.SCL.lombok */
-    public static class InvalidFormatOptionException extends Exception {
+    public class InvalidFormatOptionException extends Exception {
         public InvalidFormatOptionException(String msg) {
             super(msg);
         }

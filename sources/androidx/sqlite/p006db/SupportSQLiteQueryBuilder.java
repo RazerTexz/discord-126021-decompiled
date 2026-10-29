@@ -5,10 +5,10 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class SupportSQLiteQueryBuilder {
-    private static final Pattern sLimitPattern = Pattern.compile("\\s*\\d+\\s*(,\\s*\\d+\\s*)?");
     private Object[] mBindArgs;
     private String mSelection;
     private final String mTable;
+    private static final Pattern sLimitPattern = Pattern.compile("\\s*\\d+\\s*(,\\s*\\d+\\s*)?");
     private boolean mDistinct = false;
     private String[] mColumns = null;
     private String mGroupBy = null;
@@ -42,10 +42,6 @@ public final class SupportSQLiteQueryBuilder {
 
     public static SupportSQLiteQueryBuilder builder(String str) {
         return new SupportSQLiteQueryBuilder(str);
-    }
-
-    private static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
     }
 
     public SupportSQLiteQueryBuilder columns(String[] strArr) {
@@ -91,6 +87,10 @@ public final class SupportSQLiteQueryBuilder {
     public SupportSQLiteQueryBuilder having(String str) {
         this.mHaving = str;
         return this;
+    }
+
+    private static boolean isEmpty(String str) {
+        return str == null || str.length() == 0;
     }
 
     public SupportSQLiteQueryBuilder limit(String str) {

@@ -18,7 +18,7 @@ public final class C11769h extends AbstractC11762a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.h$a */
     /* JADX INFO: compiled from: LazyScopeAdapter.kt */
-    public static final class a extends AbstractC12240o implements Function0<InterfaceC11770i> {
+    public final class a extends AbstractC12240o implements Function0<InterfaceC11770i> {
         public final /* synthetic */ Function0<InterfaceC11770i> $getScope;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -36,6 +36,13 @@ public final class C11769h extends AbstractC11762a {
         }
     }
 
+    /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
+    /* JADX WARN: Multi-variable type inference failed */
+    public C11769h(Function0<? extends InterfaceC11770i> function0) {
+        this(null, function0, 1, 0 == true ? 1 : 0);
+        C12238m.checkNotNullParameter(function0, "getScope");
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ C11769h(InterfaceC11905o interfaceC11905o, Function0 function0, int i, DefaultConstructorMarker defaultConstructorMarker) {
         if ((i & 1) != 0) {
@@ -43,13 +50,6 @@ public final class C11769h extends AbstractC11762a {
             C12238m.checkNotNullExpressionValue(interfaceC11905o, "NO_LOCKS");
         }
         this(interfaceC11905o, function0);
-    }
-
-    /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
-    /* JADX WARN: Multi-variable type inference failed */
-    public C11769h(Function0<? extends InterfaceC11770i> function0) {
-        this(null, function0, 1, 0 == true ? 1 : 0);
-        C12238m.checkNotNullParameter(function0, "getScope");
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11762a

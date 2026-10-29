@@ -33,11 +33,11 @@ public final class StoreUserAffinities extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$fetchUserAffinities$1 */
     /* JADX INFO: compiled from: StoreUserAffinities.kt */
-    public static final class C65581 extends AbstractC12240o implements Function1<ModelUserAffinities, Unit> {
+    public final class C65581 extends AbstractC12240o implements Function1<ModelUserAffinities, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$fetchUserAffinities$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserAffinities.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ ModelUserAffinities $affinities;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,7 +77,7 @@ public final class StoreUserAffinities extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$observeUserAffinities$1 */
     /* JADX INFO: compiled from: StoreUserAffinities.kt */
-    public static final class C65601 extends AbstractC12240o implements Function0<ModelUserAffinities> {
+    public final class C65601 extends AbstractC12240o implements Function0<ModelUserAffinities> {
         public C65601() {
             super(0);
         }
@@ -99,18 +99,14 @@ public final class StoreUserAffinities extends StoreV2 {
     }
 
     @StoreThread
-    private final void handleUserAffinitiesFetchSuccess(ModelUserAffinities affinities) {
-        this.affinities = affinities;
-        markChanged();
-    }
-
-    private final Observable<ModelUserAffinities> observeUserAffinities() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65601(), 14, null);
+    public final void handleConnectionOpen() {
+        fetchUserAffinities();
     }
 
     @StoreThread
-    public final void handleConnectionOpen() {
-        fetchUserAffinities();
+    private final void handleUserAffinitiesFetchSuccess(ModelUserAffinities affinities) {
+        this.affinities = affinities;
+        markChanged();
     }
 
     public final Observable<List<Long>> observeAffinityUserIds() {
@@ -128,6 +124,10 @@ public final class StoreUserAffinities extends StoreV2 {
         }).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "observeUserAffinities()\n…  .distinctUntilChanged()");
         return observableM11112r;
+    }
+
+    private final Observable<ModelUserAffinities> observeUserAffinities() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65601(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2

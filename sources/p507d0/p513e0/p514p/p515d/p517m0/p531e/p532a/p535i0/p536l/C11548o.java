@@ -48,7 +48,7 @@ public final class C11548o extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.o$a */
     /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends InterfaceC11453n0>> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends InterfaceC11453n0>> {
         public final /* synthetic */ C11716e $name;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -66,7 +66,7 @@ public final class C11548o extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.o$b */
     /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends C11716e>> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends C11716e>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23412j = new b();
@@ -90,6 +90,28 @@ public final class C11548o extends AbstractC11551r {
         C12238m.checkNotNullParameter(c11539f, "ownerDescriptor");
         this.f23410n = interfaceC11574g;
         this.f23411o = c11539f;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        return null;
+    }
+
+    /* JADX INFO: renamed from: o */
+    public final InterfaceC11453n0 m9497o(InterfaceC11453n0 interfaceC11453n0) {
+        if (interfaceC11453n0.getKind().isReal()) {
+            return interfaceC11453n0;
+        }
+        Collection<? extends InterfaceC11453n0> overriddenDescriptors = interfaceC11453n0.getOverriddenDescriptors();
+        C12238m.checkNotNullExpressionValue(overriddenDescriptors, "this.overriddenDescriptors");
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(overriddenDescriptors, 10));
+        for (InterfaceC11453n0 interfaceC11453n1 : overriddenDescriptors) {
+            C12238m.checkNotNullExpressionValue(interfaceC11453n1, "it");
+            arrayList.add(m9497o(interfaceC11453n1));
+        }
+        return (InterfaceC11453n0) C12163u.single(C12163u.distinct(arrayList));
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
@@ -178,13 +200,6 @@ public final class C11548o extends AbstractC11551r {
         collection.addAll(arrayList2);
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        return null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
     /* JADX INFO: renamed from: h */
     public Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
@@ -199,20 +214,5 @@ public final class C11548o extends AbstractC11551r {
     /* JADX INFO: renamed from: j */
     public InterfaceC11450m mo9478j() {
         return this.f23411o;
-    }
-
-    /* JADX INFO: renamed from: o */
-    public final InterfaceC11453n0 m9497o(InterfaceC11453n0 interfaceC11453n0) {
-        if (interfaceC11453n0.getKind().isReal()) {
-            return interfaceC11453n0;
-        }
-        Collection<? extends InterfaceC11453n0> overriddenDescriptors = interfaceC11453n0.getOverriddenDescriptors();
-        C12238m.checkNotNullExpressionValue(overriddenDescriptors, "this.overriddenDescriptors");
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(overriddenDescriptors, 10));
-        for (InterfaceC11453n0 interfaceC11453n1 : overriddenDescriptors) {
-            C12238m.checkNotNullExpressionValue(interfaceC11453n1, "it");
-            arrayList.add(m9497o(interfaceC11453n1));
-        }
-        return (InterfaceC11453n0) C12163u.single(C12163u.distinct(arrayList));
     }
 }

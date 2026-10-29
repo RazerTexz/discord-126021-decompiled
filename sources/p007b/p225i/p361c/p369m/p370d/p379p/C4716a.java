@@ -18,15 +18,6 @@ public final class C4716a {
         this.f12684a = bArr;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static C4716a m6637a(String str) {
-        try {
-            return new C4716a(str.getBytes(Constants.ENCODING));
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("UTF-8 not supported.", e);
-        }
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -60,5 +51,14 @@ public final class C4716a {
             this.f12685b = i;
         }
         return i;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static C4716a m6637a(String str) {
+        try {
+            return new C4716a(str.getBytes(Constants.ENCODING));
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 not supported.", e);
+        }
     }
 }

@@ -15,7 +15,7 @@ public final class NonceGenerator {
     private static long previousNonce;
 
     /* JADX INFO: compiled from: NonceGenerator.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

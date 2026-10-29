@@ -27,6 +27,18 @@ public final class C5055g {
         throw new IllegalArgumentException();
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof C5055g)) {
+            return false;
+        }
+        C5055g c5055g = (C5055g) obj;
+        return this.f13534b == c5055g.f13534b && this.f13535c == c5055g.f13535c;
+    }
+
+    public int hashCode() {
+        return (this.f13534b.ordinal() << 3) | this.f13535c;
+    }
+
     /* JADX INFO: renamed from: a */
     public static C5055g m7099a(int i, int i2) {
         int iM7100b;
@@ -56,17 +68,5 @@ public final class C5055g {
     /* JADX INFO: renamed from: b */
     public static int m7100b(int i, int i2) {
         return Integer.bitCount(i ^ i2);
-    }
-
-    public boolean equals(Object obj) {
-        if (!(obj instanceof C5055g)) {
-            return false;
-        }
-        C5055g c5055g = (C5055g) obj;
-        return this.f13534b == c5055g.f13534b && this.f13535c == c5055g.f13535c;
-    }
-
-    public int hashCode() {
-        return (this.f13534b.ordinal() << 3) | this.f13535c;
     }
 }

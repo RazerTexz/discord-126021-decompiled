@@ -9,9 +9,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: SharedPreferencesProvider.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SharedPreferencesProvider {
-    public static final SharedPreferencesProvider INSTANCE = new SharedPreferencesProvider();
     private static SharedPreferences prefsSessionDurable;
     private static SharedPreferences sharedPreferences;
+    public static final SharedPreferencesProvider INSTANCE = new SharedPreferencesProvider();
 
     private SharedPreferencesProvider() {
     }

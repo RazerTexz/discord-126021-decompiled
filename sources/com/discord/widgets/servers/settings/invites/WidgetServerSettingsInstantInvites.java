@@ -80,7 +80,7 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
     private final StoreInstantInvites storeInstantInvites;
 
     /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<Model.InviteItem> {
+    public final class Adapter extends MGRecyclerAdapterSimple<Model.InviteItem> {
         private Function1<? super ModelInvite, Unit> onInviteExpiredListener;
         private Function1<? super ModelInvite, Unit> onInviteSelectedListener;
 
@@ -121,8 +121,74 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$configureUI$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final class Companion {
+    public final class C95831 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+        public C95831() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
+            invoke2(modelInvite);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelInvite modelInvite) {
+            C12238m.checkNotNullParameter(modelInvite, "invite");
+            WidgetServerSettingsInstantInvitesActions.Companion companion = WidgetServerSettingsInstantInvitesActions.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetServerSettingsInstantInvites.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            String str = modelInvite.code;
+            C12238m.checkNotNullExpressionValue(str, "invite.code");
+            companion.create(parentFragmentManager, str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$configureUI$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
+    public final class C95842 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+        public static final C95842 INSTANCE = new C95842();
+
+        public C95842() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
+            invoke2(modelInvite);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelInvite modelInvite) {
+            C12238m.checkNotNullParameter(modelInvite, "invite");
+            StoreStream.INSTANCE.getInstantInvites().onInviteRemoved(modelInvite);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
+    public final /* synthetic */ class C95851 extends C12236k implements Function1<Model, Unit> {
+        public C95851(WidgetServerSettingsInstantInvites widgetServerSettingsInstantInvites) {
+            super(1, widgetServerSettingsInstantInvites, WidgetServerSettingsInstantInvites.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/settings/invites/WidgetServerSettingsInstantInvites$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) throws Exception {
+            ((WidgetServerSettingsInstantInvites) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -140,7 +206,7 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -148,7 +214,7 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
         private final List<InviteItem> inviteItems;
 
         /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -176,7 +242,7 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-        public static final /* data */ class InviteItem implements MGRecyclerDataPayload, Comparable<InviteItem> {
+        public final /* data */ class InviteItem implements MGRecyclerDataPayload, Comparable<InviteItem> {
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = new Companion(null);
@@ -188,7 +254,7 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
             private final int type;
 
             /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-            public static final class Companion {
+            public final class Companion {
                 private Companion() {
                 }
 
@@ -232,21 +298,6 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
                 return inviteItem.copy(modelInvite, j, guildMember);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelInvite getInvite() {
-                return this.invite;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GuildMember getGuildMember() {
-                return this.guildMember;
-            }
-
             public final InviteItem copy(ModelInvite invite, long guildId, GuildMember guildMember) {
                 C12238m.checkNotNullParameter(invite, "invite");
                 return new InviteItem(invite, guildId, guildMember);
@@ -263,12 +314,27 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
                 return C12238m.areEqual(this.invite, inviteItem.invite) && this.guildId == inviteItem.guildId && C12238m.areEqual(this.guildMember, inviteItem.guildMember);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
             }
 
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final GuildMember getGuildMember() {
                 return this.guildMember;
+            }
+
+            public final GuildMember getGuildMember() {
+                return this.guildMember;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelInvite getInvite() {
+                return this.invite;
             }
 
             public final ModelInvite getInvite() {
@@ -335,6 +401,10 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
             this.inviteItems = list;
         }
 
+        public final List<InviteItem> component2() {
+            return this.inviteItems;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, Guild guild, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -344,15 +414,6 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
                 list = model.inviteItems;
             }
             return model.copy(guild, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final List<InviteItem> component2() {
-            return this.inviteItems;
         }
 
         public final Model copy(Guild guild, List<InviteItem> inviteItems) {
@@ -369,6 +430,11 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
             }
             Model model = (Model) other;
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.inviteItems, model.inviteItems);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -391,72 +457,6 @@ public final class WidgetServerSettingsInstantInvites extends AppFragment {
             sbM833U.append(this.guild);
             sbM833U.append(", inviteItems=");
             return C1643a.m824L(sbM833U, this.inviteItems, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final class C95831 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
-        public C95831() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
-            invoke2(modelInvite);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelInvite modelInvite) {
-            C12238m.checkNotNullParameter(modelInvite, "invite");
-            WidgetServerSettingsInstantInvitesActions.Companion companion = WidgetServerSettingsInstantInvitesActions.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetServerSettingsInstantInvites.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            String str = modelInvite.code;
-            C12238m.checkNotNullExpressionValue(str, "invite.code");
-            companion.create(parentFragmentManager, str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final class C95842 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
-        public static final C95842 INSTANCE = new C95842();
-
-        public C95842() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
-            invoke2(modelInvite);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelInvite modelInvite) {
-            C12238m.checkNotNullParameter(modelInvite, "invite");
-            StoreStream.INSTANCE.getInstantInvites().onInviteRemoved(modelInvite);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvites$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
-    public static final /* synthetic */ class C95851 extends C12236k implements Function1<Model, Unit> {
-        public C95851(WidgetServerSettingsInstantInvites widgetServerSettingsInstantInvites) {
-            super(1, widgetServerSettingsInstantInvites, WidgetServerSettingsInstantInvites.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/settings/invites/WidgetServerSettingsInstantInvites$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) throws Exception {
-            ((WidgetServerSettingsInstantInvites) this.receiver).configureUI(model);
         }
     }
 

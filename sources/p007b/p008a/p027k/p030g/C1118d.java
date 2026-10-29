@@ -11,18 +11,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1118d extends AbstractC1116b {
 
-    /* JADX INFO: renamed from: a */
-    public static final Lazy f1503a = C12083g.lazy(a.f1506j);
-
     /* JADX INFO: renamed from: b */
     public static final C1118d f1504b = null;
+
+    /* JADX INFO: renamed from: a */
+    public static final Lazy f1503a = C12083g.lazy(a.f1506j);
 
     /* JADX INFO: renamed from: c */
     public final ThreadLocal<C1115a> f1505c = new b();
 
     /* JADX INFO: renamed from: b.a.k.g.d$a */
     /* JADX INFO: compiled from: FormattingParserProvider.kt */
-    public static final class a extends AbstractC12240o implements Function0<C1118d> {
+    public final class a extends AbstractC12240o implements Function0<C1118d> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1506j = new a();
@@ -39,7 +39,7 @@ public final class C1118d extends AbstractC1116b {
 
     /* JADX INFO: renamed from: b.a.k.g.d$b */
     /* JADX INFO: compiled from: FormattingParserProvider.kt */
-    public static final class b extends ThreadLocal<C1115a> {
+    public final class b extends ThreadLocal<C1115a> {
         @Override // java.lang.ThreadLocal
         public C1115a initialValue() {
             return new C1115a();

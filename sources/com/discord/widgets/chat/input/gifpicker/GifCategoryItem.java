@@ -13,7 +13,7 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
     private final String key;
 
     /* JADX INFO: compiled from: GifCategoryItem.kt */
-    public static final /* data */ class Standard extends GifCategoryItem {
+    public final /* data */ class Standard extends GifCategoryItem {
         private final ModelGifCategory gifCategory;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -30,11 +30,6 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
             return standard.copy(modelGifCategory);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelGifCategory getGifCategory() {
-            return this.gifCategory;
-        }
-
         public final Standard copy(ModelGifCategory gifCategory) {
             C12238m.checkNotNullParameter(gifCategory, "gifCategory");
             return new Standard(gifCategory);
@@ -45,6 +40,11 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
                 return (other instanceof Standard) && C12238m.areEqual(this.gifCategory, ((Standard) other).gifCategory);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelGifCategory getGifCategory() {
+            return this.gifCategory;
         }
 
         public final ModelGifCategory getGifCategory() {
@@ -68,7 +68,7 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
     }
 
     /* JADX INFO: compiled from: GifCategoryItem.kt */
-    public static final /* data */ class Trending extends GifCategoryItem {
+    public final /* data */ class Trending extends GifCategoryItem {
         private final String gifPreviewUrl;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -85,11 +85,6 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
             return trending.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getGifPreviewUrl() {
-            return this.gifPreviewUrl;
-        }
-
         public final Trending copy(String gifPreviewUrl) {
             C12238m.checkNotNullParameter(gifPreviewUrl, "gifPreviewUrl");
             return new Trending(gifPreviewUrl);
@@ -100,6 +95,11 @@ public abstract class GifCategoryItem implements DiffKeyProvider, Serializable {
                 return (other instanceof Trending) && C12238m.areEqual(this.gifPreviewUrl, ((Trending) other).gifPreviewUrl);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getGifPreviewUrl() {
+            return this.gifPreviewUrl;
         }
 
         public final String getGifPreviewUrl() {

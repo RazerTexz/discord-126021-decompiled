@@ -20,20 +20,6 @@ public final class C4678e extends AbstractC4695v.c.a {
         this.f12539b = bArr;
     }
 
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.c.a
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public byte[] mo6529a() {
-        return this.f12539b;
-    }
-
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.c.a
-    @NonNull
-    /* JADX INFO: renamed from: b */
-    public String mo6530b() {
-        return this.f12538a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -52,6 +38,20 @@ public final class C4678e extends AbstractC4695v.c.a {
 
     public int hashCode() {
         return ((this.f12538a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f12539b);
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.c.a
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public byte[] mo6529a() {
+        return this.f12539b;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.c.a
+    @NonNull
+    /* JADX INFO: renamed from: b */
+    public String mo6530b() {
+        return this.f12538a;
     }
 
     public String toString() {

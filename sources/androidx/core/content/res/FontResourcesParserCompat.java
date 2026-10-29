@@ -36,7 +36,7 @@ public class FontResourcesParserCompat {
     public @interface FetchStrategy {
     }
 
-    public static final class FontFamilyFilesResourceEntry implements FamilyResourceEntry {
+    public final class FontFamilyFilesResourceEntry implements FamilyResourceEntry {
 
         @NonNull
         private final FontFileResourceEntry[] mEntries;
@@ -51,7 +51,7 @@ public class FontResourcesParserCompat {
         }
     }
 
-    public static final class FontFileResourceEntry {
+    public final class FontFileResourceEntry {
 
         @NonNull
         private final String mFileName;
@@ -243,7 +243,7 @@ public class FontResourcesParserCompat {
         return arrayList;
     }
 
-    public static final class ProviderResourceEntry implements FamilyResourceEntry {
+    public final class ProviderResourceEntry implements FamilyResourceEntry {
 
         @NonNull
         private final FontRequest mRequest;

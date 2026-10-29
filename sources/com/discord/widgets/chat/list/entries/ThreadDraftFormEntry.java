@@ -41,51 +41,6 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         this.key = sbM833U.toString();
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getParentChannel() {
-        return this.parentChannel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getParentMessageId() {
-        return this.parentMessageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Integer getDefaultAutoArchiveDuration() {
-        return this.defaultAutoArchiveDuration;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
-        return this.threadDraftState;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getCanCreatePrivateThread() {
-        return this.canCreatePrivateThread;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getCanSeePrivateThreadOption() {
-        return this.canSeePrivateThreadOption;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getCanCreatePublicThread() {
-        return this.canCreatePublicThread;
-    }
-
     public final ThreadDraftFormEntry copy(Channel parentChannel, Long parentMessageId, long guildId, Guild guild, Integer defaultAutoArchiveDuration, StoreThreadDraft.ThreadDraftState threadDraftState, boolean canCreatePrivateThread, boolean canSeePrivateThreadOption, boolean canCreatePublicThread) {
         C12238m.checkNotNullParameter(parentChannel, "parentChannel");
         C12238m.checkNotNullParameter(threadDraftState, "threadDraftState");
@@ -103,24 +58,54 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         return C12238m.areEqual(this.parentChannel, threadDraftFormEntry.parentChannel) && C12238m.areEqual(this.parentMessageId, threadDraftFormEntry.parentMessageId) && this.guildId == threadDraftFormEntry.guildId && C12238m.areEqual(this.guild, threadDraftFormEntry.guild) && C12238m.areEqual(this.defaultAutoArchiveDuration, threadDraftFormEntry.defaultAutoArchiveDuration) && C12238m.areEqual(this.threadDraftState, threadDraftFormEntry.threadDraftState) && this.canCreatePrivateThread == threadDraftFormEntry.canCreatePrivateThread && this.canSeePrivateThreadOption == threadDraftFormEntry.canSeePrivateThreadOption && this.canCreatePublicThread == threadDraftFormEntry.canCreatePublicThread;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getCanCreatePrivateThread() {
         return this.canCreatePrivateThread;
+    }
+
+    public final boolean getCanCreatePrivateThread() {
+        return this.canCreatePrivateThread;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getCanCreatePublicThread() {
+        return this.canCreatePublicThread;
     }
 
     public final boolean getCanCreatePublicThread() {
         return this.canCreatePublicThread;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final boolean getCanSeePrivateThreadOption() {
         return this.canSeePrivateThreadOption;
+    }
+
+    public final boolean getCanSeePrivateThreadOption() {
+        return this.canSeePrivateThreadOption;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final Integer getDefaultAutoArchiveDuration() {
+        return this.defaultAutoArchiveDuration;
     }
 
     public final Integer getDefaultAutoArchiveDuration() {
         return this.defaultAutoArchiveDuration;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {
@@ -132,12 +117,27 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getParentChannel() {
         return this.parentChannel;
     }
 
+    public final Channel getParentChannel() {
+        return this.parentChannel;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getParentMessageId() {
         return this.parentMessageId;
+    }
+
+    public final Long getParentMessageId() {
+        return this.parentMessageId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
+        return this.threadDraftState;
     }
 
     public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {

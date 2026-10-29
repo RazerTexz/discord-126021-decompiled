@@ -35,10 +35,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetForumGuidelinesBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetForumGuidelinesBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetForumGuidelinesBottomSheetBinding;", 0)};
+    private static final String EXTRA_REQUEST_KEY = "INTENT_EXTRA_REQUEST_KEY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_REQUEST_KEY = "INTENT_EXTRA_REQUEST_KEY";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -52,8 +52,28 @@ public final class WidgetForumGuidelinesBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: requestKey$delegate, reason: from kotlin metadata */
     private final Lazy requestKey;
 
+    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumGuidelinesBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetForumGuidelinesBottomSheet.kt */
-    public static final class Companion {
+    public final class C83541 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C83541() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            WidgetForumGuidelinesBottomSheet.this.configureUI(channel);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetForumGuidelinesBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -75,26 +95,6 @@ public final class WidgetForumGuidelinesBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumGuidelinesBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetForumGuidelinesBottomSheet.kt */
-    public static final class C83541 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C83541() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            WidgetForumGuidelinesBottomSheet.this.configureUI(channel);
         }
     }
 
@@ -133,17 +133,17 @@ public final class WidgetForumGuidelinesBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_forum_guidelines_bottom_sheet;
+    }
+
     private final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
     private final String getRequestKey() {
         return (String) this.requestKey.getValue();
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_forum_guidelines_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

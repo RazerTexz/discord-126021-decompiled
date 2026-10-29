@@ -16,6 +16,7 @@ import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.model.Media;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -45,7 +46,7 @@ public final class AttachmentPreviewAdapter<T extends Attachment<? extends Objec
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.adapters.AttachmentPreviewAdapter$a */
     /* JADX INFO: compiled from: AttachmentPreviewAdapter.kt */
-    public static final class C11171a extends AbstractC12240o implements Function2<SelectionAggregator<T>, T, Unit> {
+    public final class C11171a extends AbstractC12240o implements Function2<SelectionAggregator<T>, T, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final C11171a f22017j = new C11171a();
@@ -125,7 +126,7 @@ public final class AttachmentPreviewAdapter<T extends Attachment<? extends Objec
 
     /* JADX WARN: Type inference failed for: r2v3, types: [REQUEST, com.facebook.imagepipeline.request.ImageRequest] */
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, IOException, InvocationTargetException {
         C11172b c11172b = (C11172b) viewHolder;
         C12238m.checkNotNullParameter(c11172b, "holder");
         Attachment attachment = this.selectionAggregator.get(i);

@@ -13,6 +13,17 @@ public final /* data */ class SubscriptionPlan {
     private final String name;
     private final int price;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof SubscriptionPlan)) {
+            return false;
+        }
+        SubscriptionPlan subscriptionPlan = (SubscriptionPlan) other;
+        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && C12238m.areEqual(this.interval, subscriptionPlan.interval) && C12238m.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getId() {
         return this.id;
@@ -31,17 +42,6 @@ public final /* data */ class SubscriptionPlan {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final int getPrice() {
         return this.price;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof SubscriptionPlan)) {
-            return false;
-        }
-        SubscriptionPlan subscriptionPlan = (SubscriptionPlan) other;
-        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && C12238m.areEqual(this.interval, subscriptionPlan.interval) && C12238m.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
     }
 
     public int hashCode() {

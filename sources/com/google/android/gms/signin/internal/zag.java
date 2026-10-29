@@ -13,7 +13,6 @@ import p007b.p225i.p226a.p288f.p337l.p338b.C4343h;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zag extends AbstractSafeParcelable implements InterfaceC3273h {
-    public static final Parcelable.Creator<zag> CREATOR = new C4343h();
 
     /* JADX INFO: renamed from: j */
     public final List<String> f20837j;
@@ -21,6 +20,7 @@ public final class zag extends AbstractSafeParcelable implements InterfaceC3273h
     /* JADX INFO: renamed from: k */
     @Nullable
     public final String f20838k;
+    public static final Parcelable.Creator<zag> CREATOR = new C4343h();
 
     public zag(List<String> list, @Nullable String str) {
         this.f20837j = list;

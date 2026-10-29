@@ -49,28 +49,6 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
         addView(realtimeBlurView);
     }
 
-    private final SimpleDraweeView createGridViewItem(boolean isFullWidth) {
-        SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getContext());
-        simpleDraweeView.setLayoutParams(new GridLayout.LayoutParams(GridLayout.spec(Integer.MIN_VALUE, 1.0f), GridLayout.spec(Integer.MIN_VALUE, isFullWidth ? getColumnSize() : 1, 1.0f)));
-        return simpleDraweeView;
-    }
-
-    private final int getColumnSize() {
-        Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        return isLandscape(resources) ? 3 : 2;
-    }
-
-    private final int getMaxShownParticipants() {
-        Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        return isLandscape(resources) ? 6 : 4;
-    }
-
-    private final boolean isLandscape(Resources resources) {
-        return resources.getConfiguration().orientation == 2;
-    }
-
     public final void configure(List<StoreVoiceParticipants.VoiceUser> callUsers) {
         C12238m.checkNotNullParameter(callUsers, "callUsers");
         List listTake = C12163u.take(callUsers, getMaxShownParticipants());
@@ -102,6 +80,28 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
             i = i2;
         }
         this.callUsers = callUsers;
+    }
+
+    private final SimpleDraweeView createGridViewItem(boolean isFullWidth) {
+        SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getContext());
+        simpleDraweeView.setLayoutParams(new GridLayout.LayoutParams(GridLayout.spec(Integer.MIN_VALUE, 1.0f), GridLayout.spec(Integer.MIN_VALUE, isFullWidth ? getColumnSize() : 1, 1.0f)));
+        return simpleDraweeView;
+    }
+
+    private final int getColumnSize() {
+        Resources resources = getResources();
+        C12238m.checkNotNullExpressionValue(resources, "resources");
+        return isLandscape(resources) ? 3 : 2;
+    }
+
+    private final int getMaxShownParticipants() {
+        Resources resources = getResources();
+        C12238m.checkNotNullExpressionValue(resources, "resources");
+        return isLandscape(resources) ? 6 : 4;
+    }
+
+    private final boolean isLandscape(Resources resources) {
+        return resources.getConfiguration().orientation == 2;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

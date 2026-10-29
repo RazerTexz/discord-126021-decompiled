@@ -28,16 +28,6 @@ public final /* data */ class ApplicationCommandChoiceAutocompletable extends Au
         return applicationCommandChoiceAutocompletable.copy(commandChoice, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CommandChoice getChoice() {
-        return this.choice;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getOptionName() {
-        return this.optionName;
-    }
-
     public final ApplicationCommandChoiceAutocompletable copy(CommandChoice choice, String optionName) {
         C12238m.checkNotNullParameter(choice, "choice");
         return new ApplicationCommandChoiceAutocompletable(choice, optionName);
@@ -54,6 +44,11 @@ public final /* data */ class ApplicationCommandChoiceAutocompletable extends Au
         return C12238m.areEqual(this.choice, applicationCommandChoiceAutocompletable.choice) && C12238m.areEqual(this.optionName, applicationCommandChoiceAutocompletable.optionName);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CommandChoice getChoice() {
+        return this.choice;
+    }
+
     public final CommandChoice getChoice() {
         return this.choice;
     }
@@ -66,6 +61,11 @@ public final /* data */ class ApplicationCommandChoiceAutocompletable extends Au
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
         return this.textMatchers;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getOptionName() {
+        return this.optionName;
     }
 
     public final String getOptionName() {

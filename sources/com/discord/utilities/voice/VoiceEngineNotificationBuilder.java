@@ -20,22 +20,6 @@ public final class VoiceEngineNotificationBuilder {
     private VoiceEngineNotificationBuilder() {
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ PendingIntent getCallScreenNavigationIntent$default(VoiceEngineNotificationBuilder voiceEngineNotificationBuilder, Context context, long j, String str, Class cls, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str = "com.discord.utilities.voice.action.main";
-        }
-        String str2 = str;
-        if ((i & 4) != 0) {
-            cls = AppActivity.Main.class;
-        }
-        return voiceEngineNotificationBuilder.getCallScreenNavigationIntent(context, j, str2, cls);
-    }
-
-    private final PendingIntent getServiceActionIntent(Context context, Class<?> cls, String str) {
-        return PendingIntent.getService(context, 0, new Intent(context, cls).setAction(str), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
-    }
-
     public final Notification buildNotification(Context context, String actionMain, String actionDisconnect, String actionStopStream, String actionToggleMuted, String actionToggleDeafened, Class<?> notificationServiceClass, String notificationChannel, long notificationChannelId, CharSequence notificationTitle, CharSequence notificationSubtitle, Class<?> notificationClass, boolean isStreaming, boolean isMuted, boolean isDeafened) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(actionMain, "actionMain");
@@ -62,6 +46,18 @@ public final class VoiceEngineNotificationBuilder {
         return notificationBuild;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ PendingIntent getCallScreenNavigationIntent$default(VoiceEngineNotificationBuilder voiceEngineNotificationBuilder, Context context, long j, String str, Class cls, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str = "com.discord.utilities.voice.action.main";
+        }
+        String str2 = str;
+        if ((i & 4) != 0) {
+            cls = AppActivity.Main.class;
+        }
+        return voiceEngineNotificationBuilder.getCallScreenNavigationIntent(context, j, str2, cls);
+    }
+
     public final PendingIntent getCallScreenNavigationIntent(Context context, long j, String str, Class<?> cls) {
         C12238m.checkNotNullParameter(context, "$this$getCallScreenNavigationIntent");
         C12238m.checkNotNullParameter(str, "action");
@@ -69,5 +65,9 @@ public final class VoiceEngineNotificationBuilder {
         PendingIntent activity = PendingIntent.getActivity(context, 0, IntentUtils.RouteBuilders.INSTANCE.connectVoice(j).setClass(context, cls).setAction(str).setFlags(268468224), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
         C12238m.checkNotNullExpressionValue(activity, "PendingIntent.getActivit…lePendingIntentFlag()\n  )");
         return activity;
+    }
+
+    private final PendingIntent getServiceActionIntent(Context context, Class<?> cls, String str) {
+        return PendingIntent.getService(context, 0, new Intent(context, cls).setAction(str), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
     }
 }

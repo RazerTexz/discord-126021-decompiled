@@ -29,9 +29,9 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleUtilityClass.SCL.lombok */
 @HandlerPriority(-4096)
 public class HandleUtilityClass extends EclipseAnnotationHandler<UtilityClass> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
     private static final char[][] JAVA_LANG_UNSUPPORTED_OPERATION_EXCEPTION = {TypeConstants.JAVA, TypeConstants.LANG, "UnsupportedOperationException".toCharArray()};
     private static final char[] UNSUPPORTED_MESSAGE = "This is a utility class and cannot be instantiated".toCharArray();
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

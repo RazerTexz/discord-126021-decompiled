@@ -66,7 +66,7 @@ public final class SpeakerPulseView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$a */
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public static final class C7101a extends AbstractC12240o implements Function0<ImageView> {
+    public final class C7101a extends AbstractC12240o implements Function0<ImageView> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f19218j;
@@ -97,7 +97,7 @@ public final class SpeakerPulseView extends FrameLayout {
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$b */
     /* JADX INFO: compiled from: SpeakerPulseView.kt */
     @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView", m10085f = "SpeakerPulseView.kt", m10086l = {Opcodes.LOR, Opcodes.I2D}, m10087m = "animatePulse")
-    public static final class C7102b extends AbstractC12187d {
+    public final class C7102b extends AbstractC12187d {
         public long J$0;
         public Object L$0;
         public Object L$1;
@@ -119,7 +119,7 @@ public final class SpeakerPulseView extends FrameLayout {
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$c */
     /* JADX INFO: compiled from: SpeakerPulseView.kt */
     @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView", m10085f = "SpeakerPulseView.kt", m10086l = {117}, m10087m = "performPulseAnimation")
-    public static final class C7103c extends AbstractC12187d {
+    public final class C7103c extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public int label;
@@ -140,7 +140,7 @@ public final class SpeakerPulseView extends FrameLayout {
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$d */
     /* JADX INFO: compiled from: SpeakerPulseView.kt */
     @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView$performPulseAnimation$inner$1", m10085f = "SpeakerPulseView.kt", m10086l = {106}, m10087m = "invokeSuspend")
-    public static final class C7104d extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C7104d extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C7104d(Continuation continuation) {
@@ -161,7 +161,7 @@ public final class SpeakerPulseView extends FrameLayout {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -185,7 +185,7 @@ public final class SpeakerPulseView extends FrameLayout {
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$e */
     /* JADX INFO: compiled from: SpeakerPulseView.kt */
     @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView$performPulseAnimation$outer$1", m10085f = "SpeakerPulseView.kt", m10086l = {113}, m10087m = "invokeSuspend")
-    public static final class C7105e extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C7105e extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C7105e(Continuation continuation) {
@@ -206,7 +206,7 @@ public final class SpeakerPulseView extends FrameLayout {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -230,13 +230,13 @@ public final class SpeakerPulseView extends FrameLayout {
     /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$f */
     /* JADX INFO: compiled from: SpeakerPulseView.kt */
     @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView$startAnimating$1", m10085f = "SpeakerPulseView.kt", m10086l = {87}, m10087m = "invokeSuspend")
-    public static final class C7106f extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C7106f extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         /* JADX INFO: renamed from: com.discord.views.calls.SpeakerPulseView$f$a */
         /* JADX INFO: compiled from: SpeakerPulseView.kt */
         @InterfaceC12188e(m10084c = "com.discord.views.calls.SpeakerPulseView$startAnimating$1$1", m10085f = "SpeakerPulseView.kt", m10086l = {88}, m10087m = "invokeSuspend")
-        public static final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             private /* synthetic */ Object L$0;
             public int label;
 
@@ -262,7 +262,7 @@ public final class SpeakerPulseView extends FrameLayout {
             }
 
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                 int i = this.label;
                 if (i == 0) {
@@ -301,7 +301,7 @@ public final class SpeakerPulseView extends FrameLayout {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -338,6 +338,14 @@ public final class SpeakerPulseView extends FrameLayout {
         setClipToPadding(false);
     }
 
+    private final ImageView getInnerView() {
+        return (ImageView) this.innerView.getValue();
+    }
+
+    private final ImageView getOuterView() {
+        return (ImageView) this.outerView.getValue();
+    }
+
     /* JADX INFO: renamed from: a */
     public static final ImageView m8574a(SpeakerPulseView speakerPulseView, int i) {
         Integer numValueOf;
@@ -362,17 +370,9 @@ public final class SpeakerPulseView extends FrameLayout {
         return imageView;
     }
 
-    private final ImageView getInnerView() {
-        return (ImageView) this.innerView.getValue();
-    }
-
-    private final ImageView getOuterView() {
-        return (ImageView) this.outerView.getValue();
-    }
-
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX INFO: renamed from: d */
-    public final /* synthetic */ Object m8577d(View view, long j, long j2, Continuation<? super Unit> continuation) {
+    public final /* synthetic */ Object m8577d(View view, long j, long j2, Continuation<? super Unit> continuation) throws Throwable {
         C7102b c7102b;
         SpeakerPulseView speakerPulseView;
         if (continuation instanceof C7102b) {
@@ -427,7 +427,7 @@ public final class SpeakerPulseView extends FrameLayout {
 
     /* JADX WARN: Code duplicated, block: B:7:0x0017  */
     /* JADX INFO: renamed from: e */
-    public final /* synthetic */ Object m8578e(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+    public final /* synthetic */ Object m8578e(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) throws Throwable {
         C7103c c7103c;
         SpeakerPulseView speakerPulseView;
         CoroutineScope coroutineScope2;

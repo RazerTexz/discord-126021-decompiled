@@ -30,7 +30,7 @@ public final class GifLoadingView extends RecyclerView {
     private final LoadingGifAdapter loadingGifAdapter;
 
     /* JADX INFO: compiled from: GifLoadingView.kt */
-    public static final class LoadingGifAdapter extends RecyclerView.Adapter<LoadingGifViewHolder> {
+    public final class LoadingGifAdapter extends RecyclerView.Adapter<LoadingGifViewHolder> {
         private List<Integer> heightsDp = C12147n.emptyList();
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -62,7 +62,7 @@ public final class GifLoadingView extends RecyclerView {
     }
 
     /* JADX INFO: compiled from: GifLoadingView.kt */
-    public static final class LoadingGifViewHolder extends RecyclerView.ViewHolder {
+    public final class LoadingGifViewHolder extends RecyclerView.ViewHolder {
         private final LoadingGifItemViewBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -14,6 +14,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1285k {
 
+    /* JADX INFO: renamed from: g */
+    public static final C1285k f1933g = null;
+
     /* JADX INFO: renamed from: a */
     public static final String[] f1927a = {"import|from|export|default|package", "class|enum", "function|super|extends|implements|arguments", "var|let|const|static|get|set|new", "return|break|continue|yield|void", "if|else|for|while|do|switch|async|await|case|try|catch|finally|delete|throw|NaN|Infinity", "of|in|instanceof|typeof", "debugger|with", "true|false|null|undefined"};
 
@@ -32,12 +35,9 @@ public final class C1285k {
     /* JADX INFO: renamed from: f */
     public static final Pattern f1932f = Pattern.compile("^('.*?(?<!\\\\)'|\".*?(?<!\\\\)\"|`[\\s\\S]*?(?<!\\\\)`)(?=\\W|\\s|$)");
 
-    /* JADX INFO: renamed from: g */
-    public static final C1285k f1933g = null;
-
     /* JADX INFO: renamed from: b.a.t.a.k$a */
     /* JADX INFO: compiled from: JavaScript.kt */
-    public static final class a<RC> extends Node.C5655a<RC> {
+    public final class a<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final C13214a f1935b = new C13214a(null);
@@ -47,7 +47,7 @@ public final class C1285k {
 
         /* JADX INFO: renamed from: b.a.t.a.k$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: JavaScript.kt */
-        public static final class C13214a {
+        public final class C13214a {
             public C13214a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -63,7 +63,7 @@ public final class C1285k {
 
     /* JADX INFO: renamed from: b.a.t.a.k$b */
     /* JADX INFO: compiled from: JavaScript.kt */
-    public static final class b<RC> extends Node.C5655a<RC> {
+    public final class b<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final a f1937b = new a(null);
@@ -73,7 +73,7 @@ public final class C1285k {
 
         /* JADX INFO: renamed from: b.a.t.a.k$b$a */
         /* JADX INFO: compiled from: JavaScript.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -93,7 +93,7 @@ public final class C1285k {
 
     /* JADX INFO: renamed from: b.a.t.a.k$c */
     /* JADX INFO: compiled from: JavaScript.kt */
-    public static final class c<RC> extends Node.C5655a<RC> {
+    public final class c<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final a f1939b = new a(null);
@@ -103,7 +103,7 @@ public final class C1285k {
 
         /* JADX INFO: renamed from: b.a.t.a.k$c$a */
         /* JADX INFO: compiled from: JavaScript.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }

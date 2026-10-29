@@ -82,6 +82,54 @@ public final class StickerUtils {
     /* JADX INFO: renamed from: DEFAULT_STICKER_SIZE_PX$delegate, reason: from kotlin metadata */
     private static final Lazy DEFAULT_STICKER_SIZE_PX = C12083g.lazy(StickerUtils$DEFAULT_STICKER_SIZE_PX$2.INSTANCE);
 
+    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$1 */
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public final class C69261 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C69261(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, C5419R.color.white));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$2 */
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public final class C69272 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C69272(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, C5419R.color.white));
+        }
+    }
+
     /* JADX INFO: compiled from: StickerUtils.kt */
     public enum StickerSendability {
         SENDABLE,
@@ -108,137 +156,7 @@ public final class StickerUtils {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$1 */
-    /* JADX INFO: compiled from: StickerUtils.kt */
-    public static final class C69261 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C69261(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, C5419R.color.white));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$2 */
-    /* JADX INFO: compiled from: StickerUtils.kt */
-    public static final class C69272 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C69272(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, C5419R.color.white));
-        }
-    }
-
     private StickerUtils() {
-    }
-
-    public static /* synthetic */ Set findStickerMatches$default(StickerUtils stickerUtils, String str, List list, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        return stickerUtils.findStickerMatches(str, list, z2);
-    }
-
-    public static /* synthetic */ String getBannerCDNAssetUrl$default(StickerUtils stickerUtils, ModelStickerPack modelStickerPack, Integer num, int i, Object obj) {
-        if ((i & 2) != 0) {
-            num = null;
-        }
-        return stickerUtils.getBannerCDNAssetUrl(modelStickerPack, num);
-    }
-
-    public static /* synthetic */ String getCDNAssetUrl$default(StickerUtils stickerUtils, BaseSticker baseSticker, Integer num, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            num = Integer.valueOf(stickerUtils.getDEFAULT_STICKER_SIZE_PX());
-        }
-        if ((i & 4) != 0) {
-            z2 = true;
-        }
-        return stickerUtils.getCDNAssetUrl(baseSticker, num, z2);
-    }
-
-    public static /* synthetic */ Observable getGuildOrStandardSticker$default(StickerUtils stickerUtils, long j, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return stickerUtils.getGuildOrStandardSticker(j, z2);
-    }
-
-    private final int getStickerPackPrice(PremiumTier premiumTier) {
-        if (premiumTier.ordinal() != 4) {
-            return 299;
-        }
-        return Opcodes.IFNONNULL;
-    }
-
-    private final Integer getStickerPackPriceForPremiumTier(ModelStickerPack stickerPack, PremiumTier premiumTier) {
-        ModelSku sku;
-        ModelSku.Price price;
-        ModelSku.ModelPremiumSkuPrice modelPremiumSkuPrice;
-        ModelStickerPackStoreListing storeListing = stickerPack.getStoreListing();
-        if (storeListing == null || (sku = storeListing.getSku()) == null || (price = sku.getPrice()) == null) {
-            return null;
-        }
-        Map<PremiumTier, ModelSku.ModelPremiumSkuPrice> premium = price.getPremium();
-        return Integer.valueOf((premium == null || (modelPremiumSkuPrice = premium.get(premiumTier)) == null) ? price.getAmount() : modelPremiumSkuPrice.getAmount());
-    }
-
-    public static /* synthetic */ StickerSendability getStickerSendability$default(StickerUtils stickerUtils, Sticker sticker, User user, Channel channel, Long l, int i, Object obj) {
-        if ((i & 4) != 0) {
-            channel = null;
-        }
-        if ((i & 8) != 0) {
-            l = null;
-        }
-        return stickerUtils.getStickerSendability(sticker, user, channel, l);
-    }
-
-    public static /* synthetic */ List getStickersForAutocomplete$default(StickerUtils stickerUtils, StoreUser storeUser, StoreGuilds storeGuilds, StoreStickers storeStickers, StoreGuildSelected storeGuildSelected, StoreGuildStickers storeGuildStickers, int i, Object obj) {
-        if ((i & 1) != 0) {
-            storeUser = StoreStream.INSTANCE.getUsers();
-        }
-        if ((i & 2) != 0) {
-            storeGuilds = StoreStream.INSTANCE.getGuilds();
-        }
-        StoreGuilds storeGuilds2 = storeGuilds;
-        if ((i & 4) != 0) {
-            storeStickers = StoreStream.INSTANCE.getStickers();
-        }
-        StoreStickers storeStickers2 = storeStickers;
-        if ((i & 8) != 0) {
-            storeGuildSelected = StoreStream.INSTANCE.getGuildSelected();
-        }
-        StoreGuildSelected storeGuildSelected2 = storeGuildSelected;
-        if ((i & 16) != 0) {
-            storeGuildStickers = StoreStream.INSTANCE.getGuildStickers();
-        }
-        return stickerUtils.getStickersForAutocomplete(storeUser, storeGuilds2, storeStickers2, storeGuildSelected2, storeGuildStickers);
     }
 
     public final int calculatePremiumStickerPackDiscount() {
@@ -261,6 +179,13 @@ public final class StickerUtils {
         C12721k c12721k = new C12721k(new DownloadUtils.DownloadState.Completed(file2));
         C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(Download…oadState.Completed(file))");
         return c12721k;
+    }
+
+    public static /* synthetic */ Set findStickerMatches$default(StickerUtils stickerUtils, String str, List list, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        return stickerUtils.findStickerMatches(str, list, z2);
     }
 
     public final Set<Sticker> findStickerMatches(String searchText, List<Sticker> stickers, boolean allowPartialMatches) {
@@ -358,6 +283,13 @@ public final class StickerUtils {
         return linkedHashSet;
     }
 
+    public static /* synthetic */ String getBannerCDNAssetUrl$default(StickerUtils stickerUtils, ModelStickerPack modelStickerPack, Integer num, int i, Object obj) {
+        if ((i & 2) != 0) {
+            num = null;
+        }
+        return stickerUtils.getBannerCDNAssetUrl(modelStickerPack, num);
+    }
+
     public final String getBannerCDNAssetUrl(ModelStickerPack stickerPack, Integer size) {
         String string;
         C12238m.checkNotNullParameter(stickerPack, "stickerPack");
@@ -375,6 +307,16 @@ public final class StickerUtils {
         }
         sb.append(string);
         return sb.toString();
+    }
+
+    public static /* synthetic */ String getCDNAssetUrl$default(StickerUtils stickerUtils, BaseSticker baseSticker, Integer num, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            num = Integer.valueOf(stickerUtils.getDEFAULT_STICKER_SIZE_PX());
+        }
+        if ((i & 4) != 0) {
+            z2 = true;
+        }
+        return stickerUtils.getCDNAssetUrl(baseSticker, num, z2);
     }
 
     public final String getCDNAssetUrl(BaseSticker sticker, Integer size, boolean passthrough) {
@@ -406,6 +348,13 @@ public final class StickerUtils {
 
     public final int getDEFAULT_STICKER_SIZE_PX() {
         return ((Number) DEFAULT_STICKER_SIZE_PX.getValue()).intValue();
+    }
+
+    public static /* synthetic */ Observable getGuildOrStandardSticker$default(StickerUtils stickerUtils, long j, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return stickerUtils.getGuildOrStandardSticker(j, z2);
     }
 
     public final Observable<Sticker> getGuildOrStandardSticker(long stickerId, boolean fetchIfMissing) {
@@ -492,6 +441,35 @@ public final class StickerUtils {
         return PremiumUtilsKt.grantsAccessToPremiumStickers(currentPremiumTier) ? formattedPriceUsd2 : C1107b.m216h(context, C5419R.string.sticker_picker_price_with_premium_tier_2, new Object[]{formattedPriceUsd2}, null, 4);
     }
 
+    private final int getStickerPackPrice(PremiumTier premiumTier) {
+        if (premiumTier.ordinal() != 4) {
+            return 299;
+        }
+        return Opcodes.IFNONNULL;
+    }
+
+    private final Integer getStickerPackPriceForPremiumTier(ModelStickerPack stickerPack, PremiumTier premiumTier) {
+        ModelSku sku;
+        ModelSku.Price price;
+        ModelSku.ModelPremiumSkuPrice modelPremiumSkuPrice;
+        ModelStickerPackStoreListing storeListing = stickerPack.getStoreListing();
+        if (storeListing == null || (sku = storeListing.getSku()) == null || (price = sku.getPrice()) == null) {
+            return null;
+        }
+        Map<PremiumTier, ModelSku.ModelPremiumSkuPrice> premium = price.getPremium();
+        return Integer.valueOf((premium == null || (modelPremiumSkuPrice = premium.get(premiumTier)) == null) ? price.getAmount() : modelPremiumSkuPrice.getAmount());
+    }
+
+    public static /* synthetic */ StickerSendability getStickerSendability$default(StickerUtils stickerUtils, Sticker sticker, User user, Channel channel, Long l, int i, Object obj) {
+        if ((i & 4) != 0) {
+            channel = null;
+        }
+        if ((i & 8) != 0) {
+            l = null;
+        }
+        return stickerUtils.getStickerSendability(sticker, user, channel, l);
+    }
+
     public final StickerSendability getStickerSendability(Sticker sticker, User meUser, Channel currentChannel, Long currentChannelPermissions) {
         C12238m.checkNotNullParameter(sticker, "sticker");
         C12238m.checkNotNullParameter(meUser, "meUser");
@@ -512,6 +490,28 @@ public final class StickerUtils {
             return canUsePremiumStickers ? StickerSendability.SENDABLE : StickerSendability.SENDABLE_WITH_PREMIUM;
         }
         return StickerSendability.NONSENDABLE;
+    }
+
+    public static /* synthetic */ List getStickersForAutocomplete$default(StickerUtils stickerUtils, StoreUser storeUser, StoreGuilds storeGuilds, StoreStickers storeStickers, StoreGuildSelected storeGuildSelected, StoreGuildStickers storeGuildStickers, int i, Object obj) {
+        if ((i & 1) != 0) {
+            storeUser = StoreStream.INSTANCE.getUsers();
+        }
+        if ((i & 2) != 0) {
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
+        }
+        StoreGuilds storeGuilds2 = storeGuilds;
+        if ((i & 4) != 0) {
+            storeStickers = StoreStream.INSTANCE.getStickers();
+        }
+        StoreStickers storeStickers2 = storeStickers;
+        if ((i & 8) != 0) {
+            storeGuildSelected = StoreStream.INSTANCE.getGuildSelected();
+        }
+        StoreGuildSelected storeGuildSelected2 = storeGuildSelected;
+        if ((i & 16) != 0) {
+            storeGuildStickers = StoreStream.INSTANCE.getGuildStickers();
+        }
+        return stickerUtils.getStickersForAutocomplete(storeUser, storeGuilds2, storeStickers2, storeGuildSelected2, storeGuildStickers);
     }
 
     public final List<Sticker> getStickersForAutocomplete(StoreUser storeUser, StoreGuilds storeGuilds, StoreStickers storeStickers, StoreGuildSelected storeGuildSelected, StoreGuildStickers storeGuildStickers) {

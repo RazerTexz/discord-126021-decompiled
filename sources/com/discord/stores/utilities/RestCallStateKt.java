@@ -35,7 +35,7 @@ public final class RestCallStateKt {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.utilities.RestCallStateKt$executeRequest$1 */
     /* JADX INFO: compiled from: RestCallState.kt */
-    public static final class C66371<T> extends AbstractC12240o implements Function1<T, Unit> {
+    public final class C66371<T> extends AbstractC12240o implements Function1<T, Unit> {
         public final /* synthetic */ Function1 $resultHandler;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -59,7 +59,7 @@ public final class RestCallStateKt {
 
     /* JADX INFO: renamed from: com.discord.stores.utilities.RestCallStateKt$executeRequest$2 */
     /* JADX INFO: compiled from: RestCallState.kt */
-    public static final class C66382 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C66382 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Function1 $resultHandler;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -83,7 +83,7 @@ public final class RestCallStateKt {
 
     /* JADX INFO: renamed from: com.discord.stores.utilities.RestCallStateKt$handleResponse$1 */
     /* JADX INFO: compiled from: RestCallState.kt */
-    public static final class C66391 extends AbstractC12240o implements Function1<Loading, Unit> {
+    public final class C66391 extends AbstractC12240o implements Function1<Loading, Unit> {
         public static final C66391 INSTANCE = new C66391();
 
         public C66391() {
@@ -105,19 +105,13 @@ public final class RestCallStateKt {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.utilities.RestCallStateKt$handleResponse$2 */
     /* JADX INFO: compiled from: RestCallState.kt */
-    public static final class C66402<T> extends AbstractC12240o implements Function1<Failure<? extends T>, Unit> {
+    public final class C66402<T> extends AbstractC12240o implements Function1<Failure<? extends T>, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public C66402(Context context) {
             super(1);
             this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
-            invoke((Failure) obj);
-            return Unit.f27425a;
         }
 
         public final void invoke(final Failure<? extends T> failure) {
@@ -129,26 +123,32 @@ public final class RestCallStateKt {
                 }
             });
         }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke((Failure) obj);
+            return Unit.f27425a;
+        }
     }
 
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.utilities.RestCallStateKt$handleResponse$3 */
     /* JADX INFO: compiled from: RestCallState.kt */
-    public static final class C66413<T> extends AbstractC12240o implements Function1<Success<? extends T>, Unit> {
+    public final class C66413<T> extends AbstractC12240o implements Function1<Success<? extends T>, Unit> {
         public static final C66413 INSTANCE = new C66413();
 
         public C66413() {
             super(1);
         }
 
+        public final void invoke(Success<? extends T> success) {
+            C12238m.checkNotNullParameter(success, "it");
+        }
+
         @Override // kotlin.jvm.functions.Function1
         public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
             invoke((Success) obj);
             return Unit.f27425a;
-        }
-
-        public final void invoke(Success<? extends T> success) {
-            C12238m.checkNotNullParameter(success, "it");
         }
     }
 
@@ -166,6 +166,13 @@ public final class RestCallStateKt {
         return response2.request;
     }
 
+    public static /* synthetic */ TrackNetworkMetadataReceiver getSchema$default(Function1 function1, TrackNetworkMetadata trackNetworkMetadata, Object obj, int i, Object obj2) {
+        if ((i & 4) != 0) {
+            obj = null;
+        }
+        return getSchema(function1, trackNetworkMetadata, obj);
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static final <T> TrackNetworkMetadataReceiver getSchema(Function1<? super T, ? extends TrackNetworkMetadataReceiver> function1, TrackNetworkMetadata trackNetworkMetadata, T t) {
         C12238m.checkNotNullParameter(function1, "networkActionProvider");
@@ -176,11 +183,17 @@ public final class RestCallStateKt {
         return trackNetworkMetadataReceiverInvoke;
     }
 
-    public static /* synthetic */ TrackNetworkMetadataReceiver getSchema$default(Function1 function1, TrackNetworkMetadata trackNetworkMetadata, Object obj, int i, Object obj2) {
-        if ((i & 4) != 0) {
-            obj = null;
+    public static /* synthetic */ void handleResponse$default(RestCallState restCallState, Context context, Function1 function1, Function1 function2, Function1 function3, int i, Object obj) {
+        if ((i & 2) != 0) {
+            function1 = C66391.INSTANCE;
         }
-        return getSchema(function1, trackNetworkMetadata, obj);
+        if ((i & 4) != 0) {
+            function2 = new C66402(context);
+        }
+        if ((i & 8) != 0) {
+            function3 = C66413.INSTANCE;
+        }
+        handleResponse(restCallState, context, function1, function2, function3);
     }
 
     @MainThread
@@ -197,19 +210,6 @@ public final class RestCallStateKt {
         } else if (restCallState instanceof Failure) {
             function2.invoke(restCallState);
         }
-    }
-
-    public static /* synthetic */ void handleResponse$default(RestCallState restCallState, Context context, Function1 function1, Function1 function2, Function1 function3, int i, Object obj) {
-        if ((i & 2) != 0) {
-            function1 = C66391.INSTANCE;
-        }
-        if ((i & 4) != 0) {
-            function2 = new C66402(context);
-        }
-        if ((i & 8) != 0) {
-            function3 = C66413.INSTANCE;
-        }
-        handleResponse(restCallState, context, function1, function2, function3);
     }
 
     public static final <T> Observable<T> logNetworkAction(Observable<Response<T>> observable, final Function1<? super T, ? extends TrackNetworkMetadataReceiver> function1) {

@@ -326,55 +326,6 @@ public class C3028e implements InterfaceC3031h {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: b */
-    public final boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
-        C3029f c3029f = new C3029f();
-        long jMo3642b = interfaceC3041i.mo3642b();
-        long j = Permission.VIEW_CHANNEL;
-        if (jMo3642b != -1 && jMo3642b <= Permission.VIEW_CHANNEL) {
-            j = jMo3642b;
-        }
-        int i = (int) j;
-        interfaceC3041i.mo3652o(c3029f.f8300a.f6793a, 0, 4);
-        c3029f.f8301b = 4;
-        for (long jM3101u = c3029f.f8300a.m3101u(); jM3101u != 440786851; jM3101u = ((jM3101u << 8) & (-256)) | ((long) (c3029f.f8300a.f6793a[0] & 255))) {
-            int i2 = c3029f.f8301b + 1;
-            c3029f.f8301b = i2;
-            if (i2 == i) {
-                return false;
-            }
-            interfaceC3041i.mo3652o(c3029f.f8300a.f6793a, 0, 1);
-        }
-        long jM3684a = c3029f.m3684a(interfaceC3041i);
-        long j2 = c3029f.f8301b;
-        if (jM3684a == Long.MIN_VALUE) {
-            return false;
-        }
-        if (jMo3642b != -1 && j2 + jM3684a >= jMo3642b) {
-            return false;
-        }
-        while (true) {
-            long j3 = c3029f.f8301b;
-            long j4 = j2 + jM3684a;
-            if (j3 >= j4) {
-                return j3 == j4;
-            }
-            if (c3029f.m3684a(interfaceC3041i) == Long.MIN_VALUE) {
-                return false;
-            }
-            long jM3684a2 = c3029f.m3684a(interfaceC3041i);
-            if (jM3684a2 < 0 || jM3684a2 > 2147483647L) {
-                return false;
-            }
-            if (jM3684a2 != 0) {
-                int i3 = (int) jM3684a2;
-                interfaceC3041i.mo3646g(i3);
-                c3029f.f8301b += i3;
-            }
-        }
-    }
-
     @EnsuresNonNull({"currentTrack"})
     /* JADX INFO: renamed from: c */
     public final void m3674c(int i) throws ParserException {
@@ -451,872 +402,6 @@ public class C3028e implements InterfaceC3031h {
             cVar.f8272X.mo2525d(j, i, i2, i3, cVar.f8283j);
         }
         this.f8205K = true;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:463:0x08d3 A[SYNTHETIC] */
-    /* JADX WARN: Code duplicated, block: B:465:0x08d5 A[SYNTHETIC] */
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r14v6, types: [int[]] */
-    /* JADX WARN: Type inference failed for: r3v145 */
-    /* JADX WARN: Type inference failed for: r3v68 */
-    /* JADX WARN: Type inference failed for: r3v79 */
-    /* JADX WARN: Type inference failed for: r4v141 */
-    /* JADX WARN: Type inference failed for: r4v56, types: [int] */
-    /* JADX WARN: Type inference failed for: r4v69 */
-    /* JADX WARN: Type inference fix 'apply assigned field type' failed
-    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
-    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-     */
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: e */
-    public final int mo3635e(InterfaceC3041i interfaceC3041i, C3118s c3118s) throws IOException {
-        int i;
-        int i2;
-        String str;
-        ?? r4;
-        long j;
-        int i3;
-        int[] iArr;
-        boolean z2;
-        boolean z3 = false;
-        this.f8205K = false;
-        boolean z4 = true;
-        boolean z5 = true;
-        while (z5 && !this.f8205K) {
-            C3025b c3025b = (C3025b) this.f8226f;
-            C1460d.m438H(c3025b.f8184d);
-            boolean z6 = z3;
-            boolean z7 = z4;
-            while (true) {
-                C3025b.b bVarPeek = c3025b.f8182b.peek();
-                if (bVarPeek == null || interfaceC3041i.getPosition() < bVarPeek.f8189b) {
-                    if (c3025b.f8185e == 0) {
-                        long jM3687c = c3025b.f8183c.m3687c(interfaceC3041i, z7, z6, 4);
-                        if (jM3687c == -2) {
-                            interfaceC3041i.mo3649k();
-                            while (true) {
-                                interfaceC3041i.mo3652o(c3025b.f8181a, z6 ? 1 : 0, 4);
-                                int iM3686b = C3030g.m3686b(c3025b.f8181a[z6 ? 1 : 0]);
-                                if (iM3686b != -1 && iM3686b <= 4) {
-                                    int iM3685a = (int) C3030g.m3685a(c3025b.f8181a, iM3686b, z6);
-                                    Objects.requireNonNull(C3028e.this);
-                                    if (iM3685a == 357149030 || iM3685a == 524531317 || iM3685a == 475249515 || iM3685a == 374648427) {
-                                        interfaceC3041i.mo3650l(iM3686b);
-                                        jM3687c = iM3685a;
-                                    }
-                                }
-                                interfaceC3041i.mo3650l(z7 ? 1 : 0);
-                            }
-                        }
-                        if (jM3687c == -1) {
-                            z5 = false;
-                        } else {
-                            c3025b.f8186f = (int) jM3687c;
-                            c3025b.f8185e = z7 ? 1 : 0;
-                        }
-                    }
-                    if (c3025b.f8185e == z7) {
-                        c3025b.f8187g = c3025b.f8183c.m3687c(interfaceC3041i, z6, z7, 8);
-                        c3025b.f8185e = 2;
-                    }
-                    InterfaceC3026c interfaceC3026c = c3025b.f8184d;
-                    int i4 = c3025b.f8186f;
-                    Objects.requireNonNull(C3028e.this);
-                    switch (i4) {
-                        case Opcodes.LXOR /* 131 */:
-                        case Opcodes.L2I /* 136 */:
-                        case 155:
-                        case Opcodes.IF_ICMPEQ /* 159 */:
-                        case Opcodes.ARETURN /* 176 */:
-                        case Opcodes.PUTSTATIC /* 179 */:
-                        case Opcodes.INVOKEDYNAMIC /* 186 */:
-                        case 215:
-                        case 231:
-                        case 238:
-                        case 241:
-                        case 251:
-                        case 16871:
-                        case 16980:
-                        case 17029:
-                        case 17143:
-                        case 18401:
-                        case 18408:
-                        case 20529:
-                        case 20530:
-                        case 21420:
-                        case 21432:
-                        case 21680:
-                        case 21682:
-                        case 21690:
-                        case 21930:
-                        case 21945:
-                        case 21946:
-                        case 21947:
-                        case 21948:
-                        case 21949:
-                        case 21998:
-                        case 22186:
-                        case 22203:
-                        case 25188:
-                        case 30321:
-                        case 2352003:
-                        case 2807729:
-                            i = 2;
-                            break;
-                        case Opcodes.I2F /* 134 */:
-                        case 17026:
-                        case 21358:
-                        case 2274716:
-                            i = 3;
-                            break;
-                        case Opcodes.IF_ICMPNE /* 160 */:
-                        case Opcodes.IF_ACMPNE /* 166 */:
-                        case Opcodes.FRETURN /* 174 */:
-                        case Opcodes.INVOKESPECIAL /* 183 */:
-                        case Opcodes.NEW /* 187 */:
-                        case 224:
-                        case HideBottomViewOnScrollBehavior.ENTER_ANIMATION_DURATION /* 225 */:
-                        case 16868:
-                        case 18407:
-                        case 19899:
-                        case 20532:
-                        case 20533:
-                        case 21936:
-                        case 21968:
-                        case 25152:
-                        case 28032:
-                        case 30113:
-                        case 30320:
-                        case 290298740:
-                        case 357149030:
-                        case 374648427:
-                        case 408125543:
-                        case 440786851:
-                        case 475249515:
-                        case 524531317:
-                            i = 1;
-                            break;
-                        case Opcodes.IF_ICMPLT /* 161 */:
-                        case Opcodes.IF_ICMPGT /* 163 */:
-                        case Opcodes.IF_ACMPEQ /* 165 */:
-                        case 16877:
-                        case 16981:
-                        case 18402:
-                        case 21419:
-                        case 25506:
-                        case 30322:
-                            i = 4;
-                            break;
-                        case Opcodes.PUTFIELD /* 181 */:
-                        case 17545:
-                        case 21969:
-                        case 21970:
-                        case 21971:
-                        case 21972:
-                        case 21973:
-                        case 21974:
-                        case 21975:
-                        case 21976:
-                        case 21977:
-                        case 21978:
-                        case 30323:
-                        case 30324:
-                        case 30325:
-                            i = 5;
-                            break;
-                        default:
-                            i = 0;
-                            break;
-                    }
-                    if (i == 0) {
-                        interfaceC3041i.mo3650l((int) c3025b.f8187g);
-                        z6 = false;
-                        c3025b.f8185e = 0;
-                        z7 = true;
-                    } else if (i == z7) {
-                        long position = interfaceC3041i.getPosition();
-                        c3025b.f8182b.push(new C3025b.b(c3025b.f8186f, c3025b.f8187g + position, null));
-                        InterfaceC3026c interfaceC3026c2 = c3025b.f8184d;
-                        int i5 = c3025b.f8186f;
-                        long j2 = c3025b.f8187g;
-                        C3028e c3028e = C3028e.this;
-                        C1460d.m438H(c3028e.f8227f0);
-                        if (i5 == 160) {
-                            i2 = 0;
-                            c3028e.f8216V = false;
-                        } else if (i5 == 174) {
-                            i2 = 0;
-                            c3028e.f8247z = new c(null);
-                        } else if (i5 != 187) {
-                            if (i5 == 19899) {
-                                c3028e.f8196B = -1;
-                                c3028e.f8197C = -1L;
-                            } else if (i5 == 20533) {
-                                c3028e.m3674c(i5);
-                                c3028e.f8247z.f8281h = true;
-                            } else if (i5 == 21968) {
-                                c3028e.m3674c(i5);
-                                c3028e.f8247z.f8297x = true;
-                            } else if (i5 == 408125543) {
-                                long j3 = c3028e.f8243v;
-                                if (j3 != -1 && j3 != position) {
-                                    throw ParserException.m8755a("Multiple Segment elements not supported", null);
-                                }
-                                c3028e.f8243v = position;
-                                c3028e.f8242u = j2;
-                            } else if (i5 == 475249515) {
-                                c3028e.f8202H = new C2751r();
-                                c3028e.f8203I = new C2751r();
-                            } else if (i5 == 524531317 && !c3028e.f8195A) {
-                                if (!c3028e.f8230i || c3028e.f8199E == -1) {
-                                    c3028e.f8227f0.mo2477a(new InterfaceC3119t.b(c3028e.f8246y, 0L));
-                                    c3028e.f8195A = true;
-                                } else {
-                                    c3028e.f8198D = true;
-                                }
-                            }
-                            i2 = 0;
-                        } else {
-                            i2 = 0;
-                            c3028e.f8204J = false;
-                        }
-                        c3025b.f8185e = i2;
-                    } else if (i == 2) {
-                        long j4 = c3025b.f8187g;
-                        if (j4 > 8) {
-                            StringBuilder sb = new StringBuilder(42);
-                            sb.append("Invalid integer size: ");
-                            sb.append(j4);
-                            throw ParserException.m8755a(sb.toString(), null);
-                        }
-                        InterfaceC3026c interfaceC3026c3 = c3025b.f8184d;
-                        int i6 = c3025b.f8186f;
-                        long jM3670a = c3025b.m3670a(interfaceC3041i, (int) j4);
-                        C3028e c3028e2 = C3028e.this;
-                        Objects.requireNonNull(c3028e2);
-                        if (i6 != 20529) {
-                            if (i6 != 20530) {
-                                switch (i6) {
-                                    case Opcodes.LXOR /* 131 */:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8277d = (int) jM3670a;
-                                        break;
-                                    case Opcodes.L2I /* 136 */:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8270V = jM3670a == 1;
-                                        break;
-                                    case 155:
-                                        c3028e2.f8208N = c3028e2.m3679m(jM3670a);
-                                        break;
-                                    case Opcodes.IF_ICMPEQ /* 159 */:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8263O = (int) jM3670a;
-                                        break;
-                                    case Opcodes.ARETURN /* 176 */:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8286m = (int) jM3670a;
-                                        break;
-                                    case Opcodes.PUTSTATIC /* 179 */:
-                                        c3028e2.m3673a(i6);
-                                        c3028e2.f8202H.m3041a(c3028e2.m3679m(jM3670a));
-                                        break;
-                                    case Opcodes.INVOKEDYNAMIC /* 186 */:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8287n = (int) jM3670a;
-                                        break;
-                                    case 215:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8276c = (int) jM3670a;
-                                        break;
-                                    case 231:
-                                        c3028e2.f8201G = c3028e2.m3679m(jM3670a);
-                                        break;
-                                    case 238:
-                                        c3028e2.f8215U = (int) jM3670a;
-                                        break;
-                                    case 241:
-                                        if (!c3028e2.f8204J) {
-                                            c3028e2.m3673a(i6);
-                                            c3028e2.f8203I.m3041a(jM3670a);
-                                            c3028e2.f8204J = true;
-                                        }
-                                        break;
-                                    case 251:
-                                        c3028e2.f8216V = true;
-                                        break;
-                                    case 16871:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8280g = (int) jM3670a;
-                                        break;
-                                    case 16980:
-                                        if (jM3670a != 3) {
-                                            throw ParserException.m8755a(C1643a.m855i(50, "ContentCompAlgo ", jM3670a, " not supported"), null);
-                                        }
-                                        break;
-                                    case 17029:
-                                        if (jM3670a < 1 || jM3670a > 2) {
-                                            throw ParserException.m8755a(C1643a.m855i(53, "DocTypeReadVersion ", jM3670a, " not supported"), null);
-                                        }
-                                        break;
-                                    case 17143:
-                                        if (jM3670a != 1) {
-                                            throw ParserException.m8755a(C1643a.m855i(50, "EBMLReadVersion ", jM3670a, " not supported"), null);
-                                        }
-                                        break;
-                                    case 18401:
-                                        if (jM3670a != 5) {
-                                            throw ParserException.m8755a(C1643a.m855i(49, "ContentEncAlgo ", jM3670a, " not supported"), null);
-                                        }
-                                        break;
-                                    case 18408:
-                                        if (jM3670a != 1) {
-                                            throw ParserException.m8755a(C1643a.m855i(56, "AESSettingsCipherMode ", jM3670a, " not supported"), null);
-                                        }
-                                        break;
-                                    case 21420:
-                                        c3028e2.f8197C = jM3670a + c3028e2.f8243v;
-                                        break;
-                                    case 21432:
-                                        int i7 = (int) jM3670a;
-                                        c3028e2.m3674c(i6);
-                                        if (i7 == 0) {
-                                            c3028e2.f8247z.f8296w = 0;
-                                        } else if (i7 == 1) {
-                                            c3028e2.f8247z.f8296w = 2;
-                                        } else if (i7 == 3) {
-                                            c3028e2.f8247z.f8296w = 1;
-                                        } else if (i7 == 15) {
-                                            c3028e2.f8247z.f8296w = 3;
-                                        }
-                                        break;
-                                    case 21680:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8288o = (int) jM3670a;
-                                        break;
-                                    case 21682:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8290q = (int) jM3670a;
-                                        break;
-                                    case 21690:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8289p = (int) jM3670a;
-                                        break;
-                                    case 21930:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8269U = jM3670a == 1;
-                                        break;
-                                    case 21998:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8279f = (int) jM3670a;
-                                        break;
-                                    case 22186:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8266R = jM3670a;
-                                        break;
-                                    case 22203:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8267S = jM3670a;
-                                        break;
-                                    case 25188:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8264P = (int) jM3670a;
-                                        break;
-                                    case 30321:
-                                        c3028e2.m3674c(i6);
-                                        int i8 = (int) jM3670a;
-                                        if (i8 == 0) {
-                                            c3028e2.f8247z.f8291r = 0;
-                                        } else if (i8 == 1) {
-                                            c3028e2.f8247z.f8291r = 1;
-                                        } else if (i8 == 2) {
-                                            c3028e2.f8247z.f8291r = 2;
-                                        } else if (i8 == 3) {
-                                            c3028e2.f8247z.f8291r = 3;
-                                        }
-                                        break;
-                                    case 2352003:
-                                        c3028e2.m3674c(i6);
-                                        c3028e2.f8247z.f8278e = (int) jM3670a;
-                                        break;
-                                    case 2807729:
-                                        c3028e2.f8244w = jM3670a;
-                                        break;
-                                    default:
-                                        switch (i6) {
-                                            case 21945:
-                                                c3028e2.m3674c(i6);
-                                                int i9 = (int) jM3670a;
-                                                if (i9 == 1) {
-                                                    c3028e2.f8247z.f8249A = 2;
-                                                } else if (i9 == 2) {
-                                                    c3028e2.f8247z.f8249A = 1;
-                                                }
-                                                break;
-                                            case 21946:
-                                                c3028e2.m3674c(i6);
-                                                int iM3124b = C2777n.m3124b((int) jM3670a);
-                                                if (iM3124b != -1) {
-                                                    c3028e2.f8247z.f8299z = iM3124b;
-                                                }
-                                                break;
-                                            case 21947:
-                                                c3028e2.m3674c(i6);
-                                                c3028e2.f8247z.f8297x = true;
-                                                int iM3123a = C2777n.m3123a((int) jM3670a);
-                                                if (iM3123a != -1) {
-                                                    c3028e2.f8247z.f8298y = iM3123a;
-                                                }
-                                                break;
-                                            case 21948:
-                                                c3028e2.m3674c(i6);
-                                                c3028e2.f8247z.f8250B = (int) jM3670a;
-                                                break;
-                                            case 21949:
-                                                c3028e2.m3674c(i6);
-                                                c3028e2.f8247z.f8251C = (int) jM3670a;
-                                                break;
-                                        }
-                                        break;
-                                }
-                            } else if (jM3670a != 1) {
-                                throw ParserException.m8755a(C1643a.m855i(55, "ContentEncodingScope ", jM3670a, " not supported"), null);
-                            }
-                        } else if (jM3670a != 0) {
-                            throw ParserException.m8755a(C1643a.m855i(55, "ContentEncodingOrder ", jM3670a, " not supported"), null);
-                        }
-                        c3025b.f8185e = 0;
-                    } else if (i == 3) {
-                        long j5 = c3025b.f8187g;
-                        if (j5 > 2147483647L) {
-                            StringBuilder sb2 = new StringBuilder(41);
-                            sb2.append("String element size: ");
-                            sb2.append(j5);
-                            throw ParserException.m8755a(sb2.toString(), null);
-                        }
-                        InterfaceC3026c interfaceC3026c4 = c3025b.f8184d;
-                        int i10 = c3025b.f8186f;
-                        int i11 = (int) j5;
-                        if (i11 == 0) {
-                            str = "";
-                        } else {
-                            byte[] bArr = new byte[i11];
-                            interfaceC3041i.readFully(bArr, 0, i11);
-                            while (i11 > 0) {
-                                int i12 = i11 - 1;
-                                if (bArr[i12] == 0) {
-                                    i11 = i12;
-                                } else {
-                                    str = new String(bArr, 0, i11);
-                                }
-                            }
-                            str = new String(bArr, 0, i11);
-                        }
-                        C3028e c3028e3 = C3028e.this;
-                        Objects.requireNonNull(c3028e3);
-                        if (i10 == 134) {
-                            c3028e3.m3674c(i10);
-                            c3028e3.f8247z.f8275b = str;
-                        } else if (i10 != 17026) {
-                            if (i10 == 21358) {
-                                c3028e3.m3674c(i10);
-                                c3028e3.f8247z.f8274a = str;
-                            } else if (i10 == 2274716) {
-                                c3028e3.m3674c(i10);
-                                c3028e3.f8247z.f8271W = str;
-                            }
-                        } else if (!"webm".equals(str) && !"matroska".equals(str)) {
-                            StringBuilder sb3 = new StringBuilder(str.length() + 22);
-                            sb3.append("DocType ");
-                            sb3.append(str);
-                            sb3.append(" not supported");
-                            throw ParserException.m8755a(sb3.toString(), null);
-                        }
-                        c3025b.f8185e = 0;
-                    } else if (i == 4) {
-                        InterfaceC3026c interfaceC3026c5 = c3025b.f8184d;
-                        int i13 = c3025b.f8186f;
-                        int i14 = (int) c3025b.f8187g;
-                        C3028e c3028e4 = C3028e.this;
-                        Objects.requireNonNull(c3028e4);
-                        if (i13 == 161 || i13 == 163) {
-                            if (c3028e4.f8206L == 0) {
-                                c3028e4.f8212R = (int) c3028e4.f8228g.m3687c(interfaceC3041i, z6, z7, 8);
-                                c3028e4.f8213S = c3028e4.f8228g.f8305d;
-                                c3028e4.f8208N = -9223372036854775807L;
-                                c3028e4.f8206L = z7 ? 1 : 0;
-                                c3028e4.f8233l.m3075A(z6 ? 1 : 0);
-                            }
-                            c cVar = c3028e4.f8229h.get(c3028e4.f8212R);
-                            if (cVar == null) {
-                                interfaceC3041i.mo3650l(i14 - c3028e4.f8213S);
-                                c3028e4.f8206L = z6 ? 1 : 0;
-                            } else {
-                                Objects.requireNonNull(cVar.f8272X);
-                                if (c3028e4.f8206L == z7) {
-                                    c3028e4.m3677k(interfaceC3041i, 3);
-                                    int i15 = (c3028e4.f8233l.f6793a[2] & 6) >> (z7 ? 1 : 0);
-                                    byte b2 = 255;
-                                    if (i15 == 0) {
-                                        c3028e4.f8210P = z7 ? 1 : 0;
-                                        int[] iArrM3671i = m3671i(c3028e4.f8211Q, z7 ? 1 : 0);
-                                        c3028e4.f8211Q = iArrM3671i;
-                                        iArrM3671i[z6 ? 1 : 0] = (i14 - c3028e4.f8213S) - 3;
-                                    } else {
-                                        c3028e4.m3677k(interfaceC3041i, 4);
-                                        int i16 = (c3028e4.f8233l.f6793a[3] & 255) + (z7 ? 1 : 0);
-                                        c3028e4.f8210P = i16;
-                                        int[] iArrM3671i2 = m3671i(c3028e4.f8211Q, i16);
-                                        c3028e4.f8211Q = iArrM3671i2;
-                                        if (i15 == 2) {
-                                            int i17 = (i14 - c3028e4.f8213S) - 4;
-                                            int i18 = c3028e4.f8210P;
-                                            Arrays.fill(iArrM3671i2, z6 ? 1 : 0, i18, i17 / i18);
-                                        } else {
-                                            int i19 = 4;
-                                            if (i15 == z7) {
-                                                int i20 = 0;
-                                                int i21 = 0;
-                                                while (true) {
-                                                    int i22 = c3028e4.f8210P;
-                                                    if (i20 < i22 - 1) {
-                                                        c3028e4.f8211Q[i20] = z6 ? 1 : 0;
-                                                        do {
-                                                            i19 += z7 ? 1 : 0;
-                                                            c3028e4.m3677k(interfaceC3041i, i19);
-                                                            i3 = c3028e4.f8233l.f6793a[i19 - 1] & 255;
-                                                            iArr = c3028e4.f8211Q;
-                                                            iArr[i20] = iArr[i20] + i3;
-                                                        } while (i3 == 255);
-                                                        i21 += iArr[i20];
-                                                        i20++;
-                                                    } else {
-                                                        c3028e4.f8211Q[i22 - 1] = ((i14 - c3028e4.f8213S) - i19) - i21;
-                                                    }
-                                                }
-                                            } else {
-                                                if (i15 != 3) {
-                                                    throw C1643a.m884w0(36, "Unexpected lacing value: ", i15, null);
-                                                }
-                                                int i23 = 0;
-                                                int i24 = 0;
-                                                ?? r3 = z6;
-                                                boolean z8 = z7;
-                                                while (true) {
-                                                    int i25 = c3028e4.f8210P;
-                                                    if (i23 < i25 - 1) {
-                                                        c3028e4.f8211Q[i23] = r3;
-                                                        i19++;
-                                                        c3028e4.m3677k(interfaceC3041i, i19);
-                                                        int i26 = i19 - 1;
-                                                        if (c3028e4.f8233l.f6793a[i26] == 0) {
-                                                            throw ParserException.m8755a("No valid varint length mask found", null);
-                                                        }
-                                                        int i27 = 8;
-                                                        int i28 = 0;
-                                                        while (true) {
-                                                            if (i28 < i27) {
-                                                                int i29 = r4 << (7 - i28);
-                                                                if ((c3028e4.f8233l.f6793a[i26] & i29) != 0) {
-                                                                    r4 = z8;
-                                                                    int i30 = i19 + i28;
-                                                                    c3028e4.m3677k(interfaceC3041i, i30);
-                                                                    j = (~i29) & c3028e4.f8233l.f6793a[i26] & b2;
-                                                                    int i31 = i26 + 1;
-                                                                    while (i31 < i30) {
-                                                                        j = (j << 8) | ((long) (c3028e4.f8233l.f6793a[i31] & 255));
-                                                                        i31++;
-                                                                        i30 = i30;
-                                                                    }
-                                                                    int i32 = i30;
-                                                                    if (i23 > 0) {
-                                                                        j -= (1 << ((i28 * 7) + 6)) - 1;
-                                                                    }
-                                                                    i19 = i32;
-                                                                } else {
-                                                                    r4 = z8;
-                                                                    i28++;
-                                                                    i27 = 8;
-                                                                    r4 = 1;
-                                                                    b2 = 255;
-                                                                }
-                                                            } else {
-                                                                r4 = z8;
-                                                                j = 0;
-                                                            }
-                                                        }
-                                                        if (j < -2147483648L || j > 2147483647L) {
-                                                            throw ParserException.m8755a("EBML lacing sample size out of range.", null);
-                                                        }
-                                                        int i33 = (int) j;
-                                                        int[] iArr2 = c3028e4.f8211Q;
-                                                        if (i23 != 0) {
-                                                            i33 += iArr2[i23 - 1];
-                                                        }
-                                                        iArr2[i23] = i33;
-                                                        i24 += iArr2[i23];
-                                                        i23++;
-                                                        r3 = 0;
-                                                        z8 = true;
-                                                        b2 = 255;
-                                                    } else {
-                                                        c3028e4.f8211Q[i25 - 1] = ((i14 - c3028e4.f8213S) - i19) - i24;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    byte[] bArr2 = c3028e4.f8233l.f6793a;
-                                    c3028e4.f8207M = c3028e4.m3679m((bArr2[1] & 255) | (bArr2[0] << 8)) + c3028e4.f8201G;
-                                    c3028e4.f8214T = (cVar.f8277d == 2 || (i13 == 163 && (c3028e4.f8233l.f6793a[2] & 128) == 128)) ? 1 : 0;
-                                    c3028e4.f8206L = 2;
-                                    c3028e4.f8209O = 0;
-                                }
-                                if (i13 == 163) {
-                                    while (true) {
-                                        int i34 = c3028e4.f8209O;
-                                        if (i34 < c3028e4.f8210P) {
-                                            c3028e4.m3675d(cVar, ((long) ((c3028e4.f8209O * cVar.f8278e) / 1000)) + c3028e4.f8207M, c3028e4.f8214T, c3028e4.m3680n(interfaceC3041i, cVar, c3028e4.f8211Q[i34]), 0);
-                                            c3028e4.f8209O++;
-                                        } else {
-                                            c3028e4.f8206L = 0;
-                                        }
-                                    }
-                                } else {
-                                    while (true) {
-                                        int i35 = c3028e4.f8209O;
-                                        if (i35 < c3028e4.f8210P) {
-                                            int[] iArr3 = c3028e4.f8211Q;
-                                            iArr3[i35] = c3028e4.m3680n(interfaceC3041i, cVar, iArr3[i35]);
-                                            c3028e4.f8209O++;
-                                        }
-                                    }
-                                }
-                            }
-                        } else if (i13 != 165) {
-                            if (i13 == 16877) {
-                                c3028e4.m3674c(i13);
-                                c cVar2 = c3028e4.f8247z;
-                                int i36 = cVar2.f8280g;
-                                if (i36 == 1685485123 || i36 == 1685480259) {
-                                    byte[] bArr3 = new byte[i14];
-                                    cVar2.f8262N = bArr3;
-                                    interfaceC3041i.readFully(bArr3, z6 ? 1 : 0, i14);
-                                } else {
-                                    interfaceC3041i.mo3650l(i14);
-                                }
-                            } else if (i13 == 16981) {
-                                c3028e4.m3674c(i13);
-                                byte[] bArr4 = new byte[i14];
-                                c3028e4.f8247z.f8282i = bArr4;
-                                interfaceC3041i.readFully(bArr4, z6 ? 1 : 0, i14);
-                            } else if (i13 == 18402) {
-                                byte[] bArr5 = new byte[i14];
-                                interfaceC3041i.readFully(bArr5, z6 ? 1 : 0, i14);
-                                c3028e4.m3674c(i13);
-                                c3028e4.f8247z.f8283j = new InterfaceC3122w.a(z7 ? 1 : 0, bArr5, z6 ? 1 : 0, z6 ? 1 : 0);
-                            } else if (i13 == 21419) {
-                                Arrays.fill(c3028e4.f8235n.f6793a, z6 ? (byte) 1 : (byte) 0);
-                                interfaceC3041i.readFully(c3028e4.f8235n.f6793a, 4 - i14, i14);
-                                c3028e4.f8235n.m3079E(z6 ? 1 : 0);
-                                c3028e4.f8196B = (int) c3028e4.f8235n.m3101u();
-                            } else if (i13 == 25506) {
-                                c3028e4.m3674c(i13);
-                                byte[] bArr6 = new byte[i14];
-                                c3028e4.f8247z.f8284k = bArr6;
-                                interfaceC3041i.readFully(bArr6, z6 ? 1 : 0, i14);
-                            } else {
-                                if (i13 != 30322) {
-                                    throw C1643a.m884w0(26, "Unexpected id: ", i13, null);
-                                }
-                                c3028e4.m3674c(i13);
-                                byte[] bArr7 = new byte[i14];
-                                c3028e4.f8247z.f8295v = bArr7;
-                                interfaceC3041i.readFully(bArr7, z6 ? 1 : 0, i14);
-                            }
-                        } else if (c3028e4.f8206L == 2) {
-                            c cVar3 = c3028e4.f8229h.get(c3028e4.f8212R);
-                            if (c3028e4.f8215U == 4 && "V_VP9".equals(cVar3.f8275b)) {
-                                C2757x c2757x = c3028e4.f8240s;
-                                byte[] bArr8 = c2757x.f6793a;
-                                if (bArr8.length < i14) {
-                                    bArr8 = new byte[i14];
-                                }
-                                c2757x.m3077C(bArr8, i14);
-                                interfaceC3041i.readFully(c3028e4.f8240s.f6793a, z6 ? 1 : 0, i14);
-                            } else {
-                                interfaceC3041i.mo3650l(i14);
-                            }
-                        }
-                        c3025b.f8185e = 0;
-                    } else {
-                        if (i != 5) {
-                            throw C1643a.m884w0(32, "Invalid element type ", i, null);
-                        }
-                        long j6 = c3025b.f8187g;
-                        if (j6 != 4 && j6 != 8) {
-                            StringBuilder sb4 = new StringBuilder(40);
-                            sb4.append("Invalid float size: ");
-                            sb4.append(j6);
-                            throw ParserException.m8755a(sb4.toString(), null);
-                        }
-                        InterfaceC3026c interfaceC3026c6 = c3025b.f8184d;
-                        int i37 = c3025b.f8186f;
-                        int i38 = (int) j6;
-                        long jM3670a2 = c3025b.m3670a(interfaceC3041i, i38);
-                        double dIntBitsToFloat = i38 == 4 ? Float.intBitsToFloat((int) jM3670a2) : Double.longBitsToDouble(jM3670a2);
-                        C3028e c3028e5 = C3028e.this;
-                        Objects.requireNonNull(c3028e5);
-                        if (i37 == 181) {
-                            c3028e5.m3674c(i37);
-                            c3028e5.f8247z.f8265Q = (int) dIntBitsToFloat;
-                        } else if (i37 != 17545) {
-                            switch (i37) {
-                                case 21969:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8252D = (float) dIntBitsToFloat;
-                                    break;
-                                case 21970:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8253E = (float) dIntBitsToFloat;
-                                    break;
-                                case 21971:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8254F = (float) dIntBitsToFloat;
-                                    break;
-                                case 21972:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8255G = (float) dIntBitsToFloat;
-                                    break;
-                                case 21973:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8256H = (float) dIntBitsToFloat;
-                                    break;
-                                case 21974:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8257I = (float) dIntBitsToFloat;
-                                    break;
-                                case 21975:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8258J = (float) dIntBitsToFloat;
-                                    break;
-                                case 21976:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8259K = (float) dIntBitsToFloat;
-                                    break;
-                                case 21977:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8260L = (float) dIntBitsToFloat;
-                                    break;
-                                case 21978:
-                                    c3028e5.m3674c(i37);
-                                    c3028e5.f8247z.f8261M = (float) dIntBitsToFloat;
-                                    break;
-                                default:
-                                    switch (i37) {
-                                        case 30323:
-                                            c3028e5.m3674c(i37);
-                                            c3028e5.f8247z.f8292s = (float) dIntBitsToFloat;
-                                            break;
-                                        case 30324:
-                                            c3028e5.m3674c(i37);
-                                            c3028e5.f8247z.f8293t = (float) dIntBitsToFloat;
-                                            break;
-                                        case 30325:
-                                            c3028e5.m3674c(i37);
-                                            c3028e5.f8247z.f8294u = (float) dIntBitsToFloat;
-                                            break;
-                                    }
-                                    break;
-                            }
-                        } else {
-                            c3028e5.f8245x = (long) dIntBitsToFloat;
-                        }
-                        c3025b.f8185e = z6 ? 1 : 0;
-                    }
-                } else {
-                    C3028e.this.m3676h(c3025b.f8182b.pop().f8188a);
-                }
-                z5 = true;
-            }
-            if (z5) {
-                long position2 = interfaceC3041i.getPosition();
-                if (this.f8198D) {
-                    this.f8200F = position2;
-                    c3118s.f8992a = this.f8199E;
-                    this.f8198D = false;
-                } else {
-                    if (this.f8195A) {
-                        long j7 = this.f8200F;
-                        if (j7 != -1) {
-                            c3118s.f8992a = j7;
-                            this.f8200F = -1L;
-                        }
-                        if (z2) {
-                            return 1;
-                        }
-                    }
-                    z2 = false;
-                    if (z2) {
-                        return 1;
-                    }
-                }
-                z2 = true;
-                if (z2) {
-                    return 1;
-                }
-            }
-            z3 = false;
-            z4 = true;
-        }
-        if (z5) {
-            return 0;
-        }
-        for (int i39 = 0; i39 < this.f8229h.size(); i39++) {
-            c cVarValueAt = this.f8229h.valueAt(i39);
-            Objects.requireNonNull(cVarValueAt.f8272X);
-            C3123x c3123x = cVarValueAt.f8268T;
-            if (c3123x != null) {
-                c3123x.m3819a(cVarValueAt.f8272X, cVarValueAt.f8283j);
-            }
-        }
-        return -1;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: f */
-    public final void mo3636f(InterfaceC3058j interfaceC3058j) {
-        this.f8227f0 = interfaceC3058j;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    @CallSuper
-    /* JADX INFO: renamed from: g */
-    public void mo3637g(long j, long j2) {
-        this.f8201G = -9223372036854775807L;
-        this.f8206L = 0;
-        C3025b c3025b = (C3025b) this.f8226f;
-        c3025b.f8185e = 0;
-        c3025b.f8182b.clear();
-        C3030g c3030g = c3025b.f8183c;
-        c3030g.f8304c = 0;
-        c3030g.f8305d = 0;
-        C3030g c3030g2 = this.f8228g;
-        c3030g2.f8304c = 0;
-        c3030g2.f8305d = 0;
-        m3678l();
-        for (int i = 0; i < this.f8229h.size(); i++) {
-            C3123x c3123x = this.f8229h.valueAt(i).f8268T;
-            if (c3123x != null) {
-                c3123x.f9005b = false;
-                c3123x.f9006c = 0;
-            }
-        }
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -6158,12 +5243,924 @@ public class C3028e implements InterfaceC3031h {
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: b */
+    public final boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
+        C3029f c3029f = new C3029f();
+        long jMo3642b = interfaceC3041i.mo3642b();
+        long j = Permission.VIEW_CHANNEL;
+        if (jMo3642b != -1 && jMo3642b <= Permission.VIEW_CHANNEL) {
+            j = jMo3642b;
+        }
+        int i = (int) j;
+        interfaceC3041i.mo3652o(c3029f.f8300a.f6793a, 0, 4);
+        c3029f.f8301b = 4;
+        for (long jM3101u = c3029f.f8300a.m3101u(); jM3101u != 440786851; jM3101u = ((jM3101u << 8) & (-256)) | ((long) (c3029f.f8300a.f6793a[0] & 255))) {
+            int i2 = c3029f.f8301b + 1;
+            c3029f.f8301b = i2;
+            if (i2 == i) {
+                return false;
+            }
+            interfaceC3041i.mo3652o(c3029f.f8300a.f6793a, 0, 1);
+        }
+        long jM3684a = c3029f.m3684a(interfaceC3041i);
+        long j2 = c3029f.f8301b;
+        if (jM3684a == Long.MIN_VALUE) {
+            return false;
+        }
+        if (jMo3642b != -1 && j2 + jM3684a >= jMo3642b) {
+            return false;
+        }
+        while (true) {
+            long j3 = c3029f.f8301b;
+            long j4 = j2 + jM3684a;
+            if (j3 >= j4) {
+                return j3 == j4;
+            }
+            if (c3029f.m3684a(interfaceC3041i) == Long.MIN_VALUE) {
+                return false;
+            }
+            long jM3684a2 = c3029f.m3684a(interfaceC3041i);
+            if (jM3684a2 < 0 || jM3684a2 > 2147483647L) {
+                return false;
+            }
+            if (jM3684a2 != 0) {
+                int i3 = (int) jM3684a2;
+                interfaceC3041i.mo3646g(i3);
+                c3029f.f8301b += i3;
+            }
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:463:0x08d3 A[SYNTHETIC] */
+    /* JADX WARN: Code duplicated, block: B:465:0x08d5 A[SYNTHETIC] */
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r14v6, types: [int[]] */
+    /* JADX WARN: Type inference failed for: r3v145 */
+    /* JADX WARN: Type inference failed for: r3v68 */
+    /* JADX WARN: Type inference failed for: r3v79 */
+    /* JADX WARN: Type inference failed for: r4v141 */
+    /* JADX WARN: Type inference failed for: r4v56, types: [int] */
+    /* JADX WARN: Type inference failed for: r4v69 */
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: e */
+    public final int mo3635e(InterfaceC3041i interfaceC3041i, C3118s c3118s) throws IOException {
+        int i;
+        int i2;
+        String str;
+        long j;
+        int i3;
+        int[] iArr;
+        boolean z2;
+        boolean z3 = false;
+        this.f8205K = false;
+        boolean z4 = true;
+        boolean z5 = true;
+        while (z5 && !this.f8205K) {
+            C3025b c3025b = (C3025b) this.f8226f;
+            C1460d.m438H(c3025b.f8184d);
+            boolean z6 = z3;
+            boolean z7 = z4;
+            while (true) {
+                C3025b.b bVarPeek = c3025b.f8182b.peek();
+                if (bVarPeek == null || interfaceC3041i.getPosition() < bVarPeek.f8189b) {
+                    if (c3025b.f8185e == 0) {
+                        long jM3687c = c3025b.f8183c.m3687c(interfaceC3041i, z7, z6, 4);
+                        if (jM3687c == -2) {
+                            interfaceC3041i.mo3649k();
+                            while (true) {
+                                interfaceC3041i.mo3652o(c3025b.f8181a, z6 ? 1 : 0, 4);
+                                int iM3686b = C3030g.m3686b(c3025b.f8181a[z6 ? 1 : 0]);
+                                if (iM3686b != -1 && iM3686b <= 4) {
+                                    int iM3685a = (int) C3030g.m3685a(c3025b.f8181a, iM3686b, z6);
+                                    Objects.requireNonNull(C3028e.this);
+                                    if (iM3685a == 357149030 || iM3685a == 524531317 || iM3685a == 475249515 || iM3685a == 374648427) {
+                                        interfaceC3041i.mo3650l(iM3686b);
+                                        jM3687c = iM3685a;
+                                    }
+                                }
+                                interfaceC3041i.mo3650l(z7 ? 1 : 0);
+                            }
+                        }
+                        if (jM3687c == -1) {
+                            z5 = false;
+                        } else {
+                            c3025b.f8186f = (int) jM3687c;
+                            c3025b.f8185e = z7 ? 1 : 0;
+                        }
+                    }
+                    if (c3025b.f8185e == z7) {
+                        c3025b.f8187g = c3025b.f8183c.m3687c(interfaceC3041i, z6, z7, 8);
+                        c3025b.f8185e = 2;
+                    }
+                    InterfaceC3026c interfaceC3026c = c3025b.f8184d;
+                    int i4 = c3025b.f8186f;
+                    Objects.requireNonNull(C3028e.this);
+                    switch (i4) {
+                        case Opcodes.LXOR /* 131 */:
+                        case Opcodes.L2I /* 136 */:
+                        case 155:
+                        case Opcodes.IF_ICMPEQ /* 159 */:
+                        case Opcodes.ARETURN /* 176 */:
+                        case Opcodes.PUTSTATIC /* 179 */:
+                        case Opcodes.INVOKEDYNAMIC /* 186 */:
+                        case 215:
+                        case 231:
+                        case 238:
+                        case 241:
+                        case 251:
+                        case 16871:
+                        case 16980:
+                        case 17029:
+                        case 17143:
+                        case 18401:
+                        case 18408:
+                        case 20529:
+                        case 20530:
+                        case 21420:
+                        case 21432:
+                        case 21680:
+                        case 21682:
+                        case 21690:
+                        case 21930:
+                        case 21945:
+                        case 21946:
+                        case 21947:
+                        case 21948:
+                        case 21949:
+                        case 21998:
+                        case 22186:
+                        case 22203:
+                        case 25188:
+                        case 30321:
+                        case 2352003:
+                        case 2807729:
+                            i = 2;
+                            break;
+                        case Opcodes.I2F /* 134 */:
+                        case 17026:
+                        case 21358:
+                        case 2274716:
+                            i = 3;
+                            break;
+                        case Opcodes.IF_ICMPNE /* 160 */:
+                        case Opcodes.IF_ACMPNE /* 166 */:
+                        case Opcodes.FRETURN /* 174 */:
+                        case Opcodes.INVOKESPECIAL /* 183 */:
+                        case Opcodes.NEW /* 187 */:
+                        case 224:
+                        case HideBottomViewOnScrollBehavior.ENTER_ANIMATION_DURATION /* 225 */:
+                        case 16868:
+                        case 18407:
+                        case 19899:
+                        case 20532:
+                        case 20533:
+                        case 21936:
+                        case 21968:
+                        case 25152:
+                        case 28032:
+                        case 30113:
+                        case 30320:
+                        case 290298740:
+                        case 357149030:
+                        case 374648427:
+                        case 408125543:
+                        case 440786851:
+                        case 475249515:
+                        case 524531317:
+                            i = 1;
+                            break;
+                        case Opcodes.IF_ICMPLT /* 161 */:
+                        case Opcodes.IF_ICMPGT /* 163 */:
+                        case Opcodes.IF_ACMPEQ /* 165 */:
+                        case 16877:
+                        case 16981:
+                        case 18402:
+                        case 21419:
+                        case 25506:
+                        case 30322:
+                            i = 4;
+                            break;
+                        case Opcodes.PUTFIELD /* 181 */:
+                        case 17545:
+                        case 21969:
+                        case 21970:
+                        case 21971:
+                        case 21972:
+                        case 21973:
+                        case 21974:
+                        case 21975:
+                        case 21976:
+                        case 21977:
+                        case 21978:
+                        case 30323:
+                        case 30324:
+                        case 30325:
+                            i = 5;
+                            break;
+                        default:
+                            i = 0;
+                            break;
+                    }
+                    if (i == 0) {
+                        interfaceC3041i.mo3650l((int) c3025b.f8187g);
+                        z6 = false;
+                        c3025b.f8185e = 0;
+                        z7 = true;
+                    } else if (i == z7) {
+                        long position = interfaceC3041i.getPosition();
+                        c3025b.f8182b.push(new C3025b.b(c3025b.f8186f, c3025b.f8187g + position, null));
+                        InterfaceC3026c interfaceC3026c2 = c3025b.f8184d;
+                        int i5 = c3025b.f8186f;
+                        long j2 = c3025b.f8187g;
+                        C3028e c3028e = C3028e.this;
+                        C1460d.m438H(c3028e.f8227f0);
+                        if (i5 == 160) {
+                            i2 = 0;
+                            c3028e.f8216V = false;
+                        } else if (i5 == 174) {
+                            i2 = 0;
+                            c3028e.f8247z = new c(null);
+                        } else if (i5 != 187) {
+                            if (i5 == 19899) {
+                                c3028e.f8196B = -1;
+                                c3028e.f8197C = -1L;
+                            } else if (i5 == 20533) {
+                                c3028e.m3674c(i5);
+                                c3028e.f8247z.f8281h = true;
+                            } else if (i5 == 21968) {
+                                c3028e.m3674c(i5);
+                                c3028e.f8247z.f8297x = true;
+                            } else if (i5 == 408125543) {
+                                long j3 = c3028e.f8243v;
+                                if (j3 != -1 && j3 != position) {
+                                    throw ParserException.m8755a("Multiple Segment elements not supported", null);
+                                }
+                                c3028e.f8243v = position;
+                                c3028e.f8242u = j2;
+                            } else if (i5 == 475249515) {
+                                c3028e.f8202H = new C2751r();
+                                c3028e.f8203I = new C2751r();
+                            } else if (i5 == 524531317 && !c3028e.f8195A) {
+                                if (!c3028e.f8230i || c3028e.f8199E == -1) {
+                                    c3028e.f8227f0.mo2477a(new InterfaceC3119t.b(c3028e.f8246y, 0L));
+                                    c3028e.f8195A = true;
+                                } else {
+                                    c3028e.f8198D = true;
+                                }
+                            }
+                            i2 = 0;
+                        } else {
+                            i2 = 0;
+                            c3028e.f8204J = false;
+                        }
+                        c3025b.f8185e = i2;
+                    } else if (i == 2) {
+                        long j4 = c3025b.f8187g;
+                        if (j4 > 8) {
+                            StringBuilder sb = new StringBuilder(42);
+                            sb.append("Invalid integer size: ");
+                            sb.append(j4);
+                            throw ParserException.m8755a(sb.toString(), null);
+                        }
+                        InterfaceC3026c interfaceC3026c3 = c3025b.f8184d;
+                        int i6 = c3025b.f8186f;
+                        long jM3670a = c3025b.m3670a(interfaceC3041i, (int) j4);
+                        C3028e c3028e2 = C3028e.this;
+                        Objects.requireNonNull(c3028e2);
+                        if (i6 != 20529) {
+                            if (i6 != 20530) {
+                                switch (i6) {
+                                    case Opcodes.LXOR /* 131 */:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8277d = (int) jM3670a;
+                                        break;
+                                    case Opcodes.L2I /* 136 */:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8270V = jM3670a == 1;
+                                        break;
+                                    case 155:
+                                        c3028e2.f8208N = c3028e2.m3679m(jM3670a);
+                                        break;
+                                    case Opcodes.IF_ICMPEQ /* 159 */:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8263O = (int) jM3670a;
+                                        break;
+                                    case Opcodes.ARETURN /* 176 */:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8286m = (int) jM3670a;
+                                        break;
+                                    case Opcodes.PUTSTATIC /* 179 */:
+                                        c3028e2.m3673a(i6);
+                                        c3028e2.f8202H.m3041a(c3028e2.m3679m(jM3670a));
+                                        break;
+                                    case Opcodes.INVOKEDYNAMIC /* 186 */:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8287n = (int) jM3670a;
+                                        break;
+                                    case 215:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8276c = (int) jM3670a;
+                                        break;
+                                    case 231:
+                                        c3028e2.f8201G = c3028e2.m3679m(jM3670a);
+                                        break;
+                                    case 238:
+                                        c3028e2.f8215U = (int) jM3670a;
+                                        break;
+                                    case 241:
+                                        if (!c3028e2.f8204J) {
+                                            c3028e2.m3673a(i6);
+                                            c3028e2.f8203I.m3041a(jM3670a);
+                                            c3028e2.f8204J = true;
+                                        }
+                                        break;
+                                    case 251:
+                                        c3028e2.f8216V = true;
+                                        break;
+                                    case 16871:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8280g = (int) jM3670a;
+                                        break;
+                                    case 16980:
+                                        if (jM3670a != 3) {
+                                            throw ParserException.m8755a(C1643a.m855i(50, "ContentCompAlgo ", jM3670a, " not supported"), null);
+                                        }
+                                        break;
+                                    case 17029:
+                                        if (jM3670a < 1 || jM3670a > 2) {
+                                            throw ParserException.m8755a(C1643a.m855i(53, "DocTypeReadVersion ", jM3670a, " not supported"), null);
+                                        }
+                                        break;
+                                    case 17143:
+                                        if (jM3670a != 1) {
+                                            throw ParserException.m8755a(C1643a.m855i(50, "EBMLReadVersion ", jM3670a, " not supported"), null);
+                                        }
+                                        break;
+                                    case 18401:
+                                        if (jM3670a != 5) {
+                                            throw ParserException.m8755a(C1643a.m855i(49, "ContentEncAlgo ", jM3670a, " not supported"), null);
+                                        }
+                                        break;
+                                    case 18408:
+                                        if (jM3670a != 1) {
+                                            throw ParserException.m8755a(C1643a.m855i(56, "AESSettingsCipherMode ", jM3670a, " not supported"), null);
+                                        }
+                                        break;
+                                    case 21420:
+                                        c3028e2.f8197C = jM3670a + c3028e2.f8243v;
+                                        break;
+                                    case 21432:
+                                        int i7 = (int) jM3670a;
+                                        c3028e2.m3674c(i6);
+                                        if (i7 == 0) {
+                                            c3028e2.f8247z.f8296w = 0;
+                                        } else if (i7 == 1) {
+                                            c3028e2.f8247z.f8296w = 2;
+                                        } else if (i7 == 3) {
+                                            c3028e2.f8247z.f8296w = 1;
+                                        } else if (i7 == 15) {
+                                            c3028e2.f8247z.f8296w = 3;
+                                        }
+                                        break;
+                                    case 21680:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8288o = (int) jM3670a;
+                                        break;
+                                    case 21682:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8290q = (int) jM3670a;
+                                        break;
+                                    case 21690:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8289p = (int) jM3670a;
+                                        break;
+                                    case 21930:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8269U = jM3670a == 1;
+                                        break;
+                                    case 21998:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8279f = (int) jM3670a;
+                                        break;
+                                    case 22186:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8266R = jM3670a;
+                                        break;
+                                    case 22203:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8267S = jM3670a;
+                                        break;
+                                    case 25188:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8264P = (int) jM3670a;
+                                        break;
+                                    case 30321:
+                                        c3028e2.m3674c(i6);
+                                        int i8 = (int) jM3670a;
+                                        if (i8 == 0) {
+                                            c3028e2.f8247z.f8291r = 0;
+                                        } else if (i8 == 1) {
+                                            c3028e2.f8247z.f8291r = 1;
+                                        } else if (i8 == 2) {
+                                            c3028e2.f8247z.f8291r = 2;
+                                        } else if (i8 == 3) {
+                                            c3028e2.f8247z.f8291r = 3;
+                                        }
+                                        break;
+                                    case 2352003:
+                                        c3028e2.m3674c(i6);
+                                        c3028e2.f8247z.f8278e = (int) jM3670a;
+                                        break;
+                                    case 2807729:
+                                        c3028e2.f8244w = jM3670a;
+                                        break;
+                                    default:
+                                        switch (i6) {
+                                            case 21945:
+                                                c3028e2.m3674c(i6);
+                                                int i9 = (int) jM3670a;
+                                                if (i9 == 1) {
+                                                    c3028e2.f8247z.f8249A = 2;
+                                                } else if (i9 == 2) {
+                                                    c3028e2.f8247z.f8249A = 1;
+                                                }
+                                                break;
+                                            case 21946:
+                                                c3028e2.m3674c(i6);
+                                                int iM3124b = C2777n.m3124b((int) jM3670a);
+                                                if (iM3124b != -1) {
+                                                    c3028e2.f8247z.f8299z = iM3124b;
+                                                }
+                                                break;
+                                            case 21947:
+                                                c3028e2.m3674c(i6);
+                                                c3028e2.f8247z.f8297x = true;
+                                                int iM3123a = C2777n.m3123a((int) jM3670a);
+                                                if (iM3123a != -1) {
+                                                    c3028e2.f8247z.f8298y = iM3123a;
+                                                }
+                                                break;
+                                            case 21948:
+                                                c3028e2.m3674c(i6);
+                                                c3028e2.f8247z.f8250B = (int) jM3670a;
+                                                break;
+                                            case 21949:
+                                                c3028e2.m3674c(i6);
+                                                c3028e2.f8247z.f8251C = (int) jM3670a;
+                                                break;
+                                        }
+                                        break;
+                                }
+                            } else if (jM3670a != 1) {
+                                throw ParserException.m8755a(C1643a.m855i(55, "ContentEncodingScope ", jM3670a, " not supported"), null);
+                            }
+                        } else if (jM3670a != 0) {
+                            throw ParserException.m8755a(C1643a.m855i(55, "ContentEncodingOrder ", jM3670a, " not supported"), null);
+                        }
+                        c3025b.f8185e = 0;
+                    } else if (i == 3) {
+                        long j5 = c3025b.f8187g;
+                        if (j5 > 2147483647L) {
+                            StringBuilder sb2 = new StringBuilder(41);
+                            sb2.append("String element size: ");
+                            sb2.append(j5);
+                            throw ParserException.m8755a(sb2.toString(), null);
+                        }
+                        InterfaceC3026c interfaceC3026c4 = c3025b.f8184d;
+                        int i10 = c3025b.f8186f;
+                        int i11 = (int) j5;
+                        if (i11 == 0) {
+                            str = "";
+                        } else {
+                            byte[] bArr = new byte[i11];
+                            interfaceC3041i.readFully(bArr, 0, i11);
+                            while (i11 > 0) {
+                                int i12 = i11 - 1;
+                                if (bArr[i12] == 0) {
+                                    i11 = i12;
+                                } else {
+                                    str = new String(bArr, 0, i11);
+                                }
+                            }
+                            str = new String(bArr, 0, i11);
+                        }
+                        C3028e c3028e3 = C3028e.this;
+                        Objects.requireNonNull(c3028e3);
+                        if (i10 == 134) {
+                            c3028e3.m3674c(i10);
+                            c3028e3.f8247z.f8275b = str;
+                        } else if (i10 != 17026) {
+                            if (i10 == 21358) {
+                                c3028e3.m3674c(i10);
+                                c3028e3.f8247z.f8274a = str;
+                            } else if (i10 == 2274716) {
+                                c3028e3.m3674c(i10);
+                                c3028e3.f8247z.f8271W = str;
+                            }
+                        } else if (!"webm".equals(str) && !"matroska".equals(str)) {
+                            StringBuilder sb3 = new StringBuilder(str.length() + 22);
+                            sb3.append("DocType ");
+                            sb3.append(str);
+                            sb3.append(" not supported");
+                            throw ParserException.m8755a(sb3.toString(), null);
+                        }
+                        c3025b.f8185e = 0;
+                    } else if (i == 4) {
+                        InterfaceC3026c interfaceC3026c5 = c3025b.f8184d;
+                        int i13 = c3025b.f8186f;
+                        int i14 = (int) c3025b.f8187g;
+                        C3028e c3028e4 = C3028e.this;
+                        Objects.requireNonNull(c3028e4);
+                        if (i13 == 161 || i13 == 163) {
+                            if (c3028e4.f8206L == 0) {
+                                c3028e4.f8212R = (int) c3028e4.f8228g.m3687c(interfaceC3041i, z6, z7, 8);
+                                c3028e4.f8213S = c3028e4.f8228g.f8305d;
+                                c3028e4.f8208N = -9223372036854775807L;
+                                c3028e4.f8206L = z7 ? 1 : 0;
+                                c3028e4.f8233l.m3075A(z6 ? 1 : 0);
+                            }
+                            c cVar = c3028e4.f8229h.get(c3028e4.f8212R);
+                            if (cVar == null) {
+                                interfaceC3041i.mo3650l(i14 - c3028e4.f8213S);
+                                c3028e4.f8206L = z6 ? 1 : 0;
+                            } else {
+                                Objects.requireNonNull(cVar.f8272X);
+                                if (c3028e4.f8206L == z7) {
+                                    c3028e4.m3677k(interfaceC3041i, 3);
+                                    int i15 = (c3028e4.f8233l.f6793a[2] & 6) >> (z7 ? 1 : 0);
+                                    byte b2 = 255;
+                                    if (i15 == 0) {
+                                        c3028e4.f8210P = z7 ? 1 : 0;
+                                        int[] iArrM3671i = m3671i(c3028e4.f8211Q, z7 ? 1 : 0);
+                                        c3028e4.f8211Q = iArrM3671i;
+                                        iArrM3671i[z6 ? 1 : 0] = (i14 - c3028e4.f8213S) - 3;
+                                    } else {
+                                        c3028e4.m3677k(interfaceC3041i, 4);
+                                        int i16 = (c3028e4.f8233l.f6793a[3] & 255) + (z7 ? 1 : 0);
+                                        c3028e4.f8210P = i16;
+                                        int[] iArrM3671i2 = m3671i(c3028e4.f8211Q, i16);
+                                        c3028e4.f8211Q = iArrM3671i2;
+                                        if (i15 == 2) {
+                                            int i17 = (i14 - c3028e4.f8213S) - 4;
+                                            int i18 = c3028e4.f8210P;
+                                            Arrays.fill(iArrM3671i2, z6 ? 1 : 0, i18, i17 / i18);
+                                        } else {
+                                            int i19 = 4;
+                                            if (i15 == z7) {
+                                                int i20 = 0;
+                                                int i21 = 0;
+                                                while (true) {
+                                                    int i22 = c3028e4.f8210P;
+                                                    if (i20 < i22 - 1) {
+                                                        c3028e4.f8211Q[i20] = z6 ? 1 : 0;
+                                                        do {
+                                                            i19 += z7 ? 1 : 0;
+                                                            c3028e4.m3677k(interfaceC3041i, i19);
+                                                            i3 = c3028e4.f8233l.f6793a[i19 - 1] & 255;
+                                                            iArr = c3028e4.f8211Q;
+                                                            iArr[i20] = iArr[i20] + i3;
+                                                        } while (i3 == 255);
+                                                        i21 += iArr[i20];
+                                                        i20++;
+                                                    } else {
+                                                        c3028e4.f8211Q[i22 - 1] = ((i14 - c3028e4.f8213S) - i19) - i21;
+                                                    }
+                                                }
+                                            } else {
+                                                if (i15 != 3) {
+                                                    throw C1643a.m884w0(36, "Unexpected lacing value: ", i15, null);
+                                                }
+                                                int i23 = 0;
+                                                int i24 = 0;
+                                                ?? r3 = z6;
+                                                boolean z8 = z7;
+                                                while (true) {
+                                                    int i25 = c3028e4.f8210P;
+                                                    if (i23 < i25 - 1) {
+                                                        c3028e4.f8211Q[i23] = r3;
+                                                        i19++;
+                                                        c3028e4.m3677k(interfaceC3041i, i19);
+                                                        int i26 = i19 - 1;
+                                                        if (c3028e4.f8233l.f6793a[i26] == 0) {
+                                                            throw ParserException.m8755a("No valid varint length mask found", null);
+                                                        }
+                                                        int i27 = 8;
+                                                        int i28 = 0;
+                                                        ?? r4 = z8;
+                                                        while (true) {
+                                                            if (i28 < i27) {
+                                                                int i29 = r4 << (7 - i28);
+                                                                if ((c3028e4.f8233l.f6793a[i26] & i29) != 0) {
+                                                                    int i30 = i19 + i28;
+                                                                    c3028e4.m3677k(interfaceC3041i, i30);
+                                                                    j = (~i29) & c3028e4.f8233l.f6793a[i26] & b2;
+                                                                    int i31 = i26 + 1;
+                                                                    while (i31 < i30) {
+                                                                        j = (j << 8) | ((long) (c3028e4.f8233l.f6793a[i31] & 255));
+                                                                        i31++;
+                                                                        i30 = i30;
+                                                                    }
+                                                                    int i32 = i30;
+                                                                    if (i23 > 0) {
+                                                                        j -= (1 << ((i28 * 7) + 6)) - 1;
+                                                                    }
+                                                                    i19 = i32;
+                                                                } else {
+                                                                    i28++;
+                                                                    i27 = 8;
+                                                                    r4 = 1;
+                                                                    b2 = 255;
+                                                                }
+                                                            } else {
+                                                                j = 0;
+                                                            }
+                                                        }
+                                                        if (j < -2147483648L || j > 2147483647L) {
+                                                            throw ParserException.m8755a("EBML lacing sample size out of range.", null);
+                                                        }
+                                                        int i33 = (int) j;
+                                                        int[] iArr2 = c3028e4.f8211Q;
+                                                        if (i23 != 0) {
+                                                            i33 += iArr2[i23 - 1];
+                                                        }
+                                                        iArr2[i23] = i33;
+                                                        i24 += iArr2[i23];
+                                                        i23++;
+                                                        r3 = 0;
+                                                        z8 = true;
+                                                        b2 = 255;
+                                                    } else {
+                                                        c3028e4.f8211Q[i25 - 1] = ((i14 - c3028e4.f8213S) - i19) - i24;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    byte[] bArr2 = c3028e4.f8233l.f6793a;
+                                    c3028e4.f8207M = c3028e4.m3679m((bArr2[1] & 255) | (bArr2[0] << 8)) + c3028e4.f8201G;
+                                    c3028e4.f8214T = (cVar.f8277d == 2 || (i13 == 163 && (c3028e4.f8233l.f6793a[2] & 128) == 128)) ? 1 : 0;
+                                    c3028e4.f8206L = 2;
+                                    c3028e4.f8209O = 0;
+                                }
+                                if (i13 == 163) {
+                                    while (true) {
+                                        int i34 = c3028e4.f8209O;
+                                        if (i34 < c3028e4.f8210P) {
+                                            c3028e4.m3675d(cVar, ((long) ((c3028e4.f8209O * cVar.f8278e) / 1000)) + c3028e4.f8207M, c3028e4.f8214T, c3028e4.m3680n(interfaceC3041i, cVar, c3028e4.f8211Q[i34]), 0);
+                                            c3028e4.f8209O++;
+                                        } else {
+                                            c3028e4.f8206L = 0;
+                                        }
+                                    }
+                                } else {
+                                    while (true) {
+                                        int i35 = c3028e4.f8209O;
+                                        if (i35 < c3028e4.f8210P) {
+                                            int[] iArr3 = c3028e4.f8211Q;
+                                            iArr3[i35] = c3028e4.m3680n(interfaceC3041i, cVar, iArr3[i35]);
+                                            c3028e4.f8209O++;
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (i13 != 165) {
+                            if (i13 == 16877) {
+                                c3028e4.m3674c(i13);
+                                c cVar2 = c3028e4.f8247z;
+                                int i36 = cVar2.f8280g;
+                                if (i36 == 1685485123 || i36 == 1685480259) {
+                                    byte[] bArr3 = new byte[i14];
+                                    cVar2.f8262N = bArr3;
+                                    interfaceC3041i.readFully(bArr3, z6 ? 1 : 0, i14);
+                                } else {
+                                    interfaceC3041i.mo3650l(i14);
+                                }
+                            } else if (i13 == 16981) {
+                                c3028e4.m3674c(i13);
+                                byte[] bArr4 = new byte[i14];
+                                c3028e4.f8247z.f8282i = bArr4;
+                                interfaceC3041i.readFully(bArr4, z6 ? 1 : 0, i14);
+                            } else if (i13 == 18402) {
+                                byte[] bArr5 = new byte[i14];
+                                interfaceC3041i.readFully(bArr5, z6 ? 1 : 0, i14);
+                                c3028e4.m3674c(i13);
+                                c3028e4.f8247z.f8283j = new InterfaceC3122w.a(z7 ? 1 : 0, bArr5, z6 ? 1 : 0, z6 ? 1 : 0);
+                            } else if (i13 == 21419) {
+                                Arrays.fill(c3028e4.f8235n.f6793a, z6 ? (byte) 1 : (byte) 0);
+                                interfaceC3041i.readFully(c3028e4.f8235n.f6793a, 4 - i14, i14);
+                                c3028e4.f8235n.m3079E(z6 ? 1 : 0);
+                                c3028e4.f8196B = (int) c3028e4.f8235n.m3101u();
+                            } else if (i13 == 25506) {
+                                c3028e4.m3674c(i13);
+                                byte[] bArr6 = new byte[i14];
+                                c3028e4.f8247z.f8284k = bArr6;
+                                interfaceC3041i.readFully(bArr6, z6 ? 1 : 0, i14);
+                            } else {
+                                if (i13 != 30322) {
+                                    throw C1643a.m884w0(26, "Unexpected id: ", i13, null);
+                                }
+                                c3028e4.m3674c(i13);
+                                byte[] bArr7 = new byte[i14];
+                                c3028e4.f8247z.f8295v = bArr7;
+                                interfaceC3041i.readFully(bArr7, z6 ? 1 : 0, i14);
+                            }
+                        } else if (c3028e4.f8206L == 2) {
+                            c cVar3 = c3028e4.f8229h.get(c3028e4.f8212R);
+                            if (c3028e4.f8215U == 4 && "V_VP9".equals(cVar3.f8275b)) {
+                                C2757x c2757x = c3028e4.f8240s;
+                                byte[] bArr8 = c2757x.f6793a;
+                                if (bArr8.length < i14) {
+                                    bArr8 = new byte[i14];
+                                }
+                                c2757x.m3077C(bArr8, i14);
+                                interfaceC3041i.readFully(c3028e4.f8240s.f6793a, z6 ? 1 : 0, i14);
+                            } else {
+                                interfaceC3041i.mo3650l(i14);
+                            }
+                        }
+                        c3025b.f8185e = 0;
+                    } else {
+                        if (i != 5) {
+                            throw C1643a.m884w0(32, "Invalid element type ", i, null);
+                        }
+                        long j6 = c3025b.f8187g;
+                        if (j6 != 4 && j6 != 8) {
+                            StringBuilder sb4 = new StringBuilder(40);
+                            sb4.append("Invalid float size: ");
+                            sb4.append(j6);
+                            throw ParserException.m8755a(sb4.toString(), null);
+                        }
+                        InterfaceC3026c interfaceC3026c6 = c3025b.f8184d;
+                        int i37 = c3025b.f8186f;
+                        int i38 = (int) j6;
+                        long jM3670a2 = c3025b.m3670a(interfaceC3041i, i38);
+                        double dIntBitsToFloat = i38 == 4 ? Float.intBitsToFloat((int) jM3670a2) : Double.longBitsToDouble(jM3670a2);
+                        C3028e c3028e5 = C3028e.this;
+                        Objects.requireNonNull(c3028e5);
+                        if (i37 == 181) {
+                            c3028e5.m3674c(i37);
+                            c3028e5.f8247z.f8265Q = (int) dIntBitsToFloat;
+                        } else if (i37 != 17545) {
+                            switch (i37) {
+                                case 21969:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8252D = (float) dIntBitsToFloat;
+                                    break;
+                                case 21970:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8253E = (float) dIntBitsToFloat;
+                                    break;
+                                case 21971:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8254F = (float) dIntBitsToFloat;
+                                    break;
+                                case 21972:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8255G = (float) dIntBitsToFloat;
+                                    break;
+                                case 21973:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8256H = (float) dIntBitsToFloat;
+                                    break;
+                                case 21974:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8257I = (float) dIntBitsToFloat;
+                                    break;
+                                case 21975:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8258J = (float) dIntBitsToFloat;
+                                    break;
+                                case 21976:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8259K = (float) dIntBitsToFloat;
+                                    break;
+                                case 21977:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8260L = (float) dIntBitsToFloat;
+                                    break;
+                                case 21978:
+                                    c3028e5.m3674c(i37);
+                                    c3028e5.f8247z.f8261M = (float) dIntBitsToFloat;
+                                    break;
+                                default:
+                                    switch (i37) {
+                                        case 30323:
+                                            c3028e5.m3674c(i37);
+                                            c3028e5.f8247z.f8292s = (float) dIntBitsToFloat;
+                                            break;
+                                        case 30324:
+                                            c3028e5.m3674c(i37);
+                                            c3028e5.f8247z.f8293t = (float) dIntBitsToFloat;
+                                            break;
+                                        case 30325:
+                                            c3028e5.m3674c(i37);
+                                            c3028e5.f8247z.f8294u = (float) dIntBitsToFloat;
+                                            break;
+                                    }
+                                    break;
+                            }
+                        } else {
+                            c3028e5.f8245x = (long) dIntBitsToFloat;
+                        }
+                        c3025b.f8185e = z6 ? 1 : 0;
+                    }
+                } else {
+                    C3028e.this.m3676h(c3025b.f8182b.pop().f8188a);
+                }
+                z5 = true;
+            }
+            if (z5) {
+                long position2 = interfaceC3041i.getPosition();
+                if (this.f8198D) {
+                    this.f8200F = position2;
+                    c3118s.f8992a = this.f8199E;
+                    this.f8198D = false;
+                } else {
+                    if (this.f8195A) {
+                        long j7 = this.f8200F;
+                        if (j7 != -1) {
+                            c3118s.f8992a = j7;
+                            this.f8200F = -1L;
+                        }
+                        if (z2) {
+                            return 1;
+                        }
+                    }
+                    z2 = false;
+                    if (z2) {
+                        return 1;
+                    }
+                }
+                z2 = true;
+                if (z2) {
+                    return 1;
+                }
+            }
+            z3 = false;
+            z4 = true;
+        }
+        if (z5) {
+            return 0;
+        }
+        for (int i39 = 0; i39 < this.f8229h.size(); i39++) {
+            c cVarValueAt = this.f8229h.valueAt(i39);
+            Objects.requireNonNull(cVarValueAt.f8272X);
+            C3123x c3123x = cVarValueAt.f8268T;
+            if (c3123x != null) {
+                c3123x.m3819a(cVarValueAt.f8272X, cVarValueAt.f8283j);
+            }
+        }
+        return -1;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: f */
+    public final void mo3636f(InterfaceC3058j interfaceC3058j) {
+        this.f8227f0 = interfaceC3058j;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    @CallSuper
+    /* JADX INFO: renamed from: g */
+    public void mo3637g(long j, long j2) {
+        this.f8201G = -9223372036854775807L;
+        this.f8206L = 0;
+        C3025b c3025b = (C3025b) this.f8226f;
+        c3025b.f8185e = 0;
+        c3025b.f8182b.clear();
+        C3030g c3030g = c3025b.f8183c;
+        c3030g.f8304c = 0;
+        c3030g.f8305d = 0;
+        C3030g c3030g2 = this.f8228g;
+        c3030g2.f8304c = 0;
+        c3030g2.f8305d = 0;
+        m3678l();
+        for (int i = 0; i < this.f8229h.size(); i++) {
+            C3123x c3123x = this.f8229h.valueAt(i).f8268T;
+            if (c3123x != null) {
+                c3123x.f9005b = false;
+                c3123x.f9006c = 0;
+            }
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
     public final void release() {
     }
 
     /* JADX INFO: renamed from: b.i.a.c.x2.g0.e$c */
     /* JADX INFO: compiled from: MatroskaExtractor.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: N */
         public byte[] f8262N;

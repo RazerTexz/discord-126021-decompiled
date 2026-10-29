@@ -26,7 +26,7 @@ public final class C4690q extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.q$b */
     /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Application_Execution_Thread_Frame.java */
-    public static final class b extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a.AbstractC13239a {
+    public final class b extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a.AbstractC13239a {
 
         /* JADX INFO: renamed from: a */
         public Long f12624a;
@@ -70,6 +70,27 @@ public final class C4690q extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
         this.f12623e = i;
     }
 
+    public boolean equals(Object obj) {
+        String str;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a)) {
+            return false;
+        }
+        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a abstractC13238a = (AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a) obj;
+        return this.f12619a == abstractC13238a.mo6596d() && this.f12620b.equals(abstractC13238a.mo6597e()) && ((str = this.f12621c) != null ? str.equals(abstractC13238a.mo6593a()) : abstractC13238a.mo6593a() == null) && this.f12622d == abstractC13238a.mo6595c() && this.f12623e == abstractC13238a.mo6594b();
+    }
+
+    public int hashCode() {
+        long j = this.f12619a;
+        int iHashCode = (((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f12620b.hashCode()) * 1000003;
+        String str = this.f12621c;
+        int iHashCode2 = (iHashCode ^ (str == null ? 0 : str.hashCode())) * 1000003;
+        long j2 = this.f12622d;
+        return this.f12623e ^ ((iHashCode2 ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003);
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a
     @Nullable
     /* JADX INFO: renamed from: a */
@@ -100,27 +121,6 @@ public final class C4690q extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
     /* JADX INFO: renamed from: e */
     public String mo6597e() {
         return this.f12620b;
-    }
-
-    public boolean equals(Object obj) {
-        String str;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a)) {
-            return false;
-        }
-        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a abstractC13238a = (AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d.AbstractC13238a) obj;
-        return this.f12619a == abstractC13238a.mo6596d() && this.f12620b.equals(abstractC13238a.mo6597e()) && ((str = this.f12621c) != null ? str.equals(abstractC13238a.mo6593a()) : abstractC13238a.mo6593a() == null) && this.f12622d == abstractC13238a.mo6595c() && this.f12623e == abstractC13238a.mo6594b();
-    }
-
-    public int hashCode() {
-        long j = this.f12619a;
-        int iHashCode = (((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f12620b.hashCode()) * 1000003;
-        String str = this.f12621c;
-        int iHashCode2 = (iHashCode ^ (str == null ? 0 : str.hashCode())) * 1000003;
-        long j2 = this.f12622d;
-        return this.f12623e ^ ((iHashCode2 ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003);
     }
 
     public String toString() {

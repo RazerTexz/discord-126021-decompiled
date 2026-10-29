@@ -34,12 +34,25 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class EnqueueRunnable implements Runnable {
+    private final WorkContinuationImpl mWorkContinuation;
     private static final String TAG = Logger.tagWithPrefix("EnqueueRunnable");
     private final OperationImpl mOperation = new OperationImpl();
-    private final WorkContinuationImpl mWorkContinuation;
 
     public EnqueueRunnable(@NonNull WorkContinuationImpl workContinuationImpl) {
         this.mWorkContinuation = workContinuationImpl;
+    }
+
+    @VisibleForTesting
+    public boolean addToDatabase() {
+        WorkDatabase workDatabase = this.mWorkContinuation.getWorkManagerImpl().getWorkDatabase();
+        workDatabase.beginTransaction();
+        try {
+            boolean zProcessContinuation = processContinuation(this.mWorkContinuation);
+            workDatabase.setTransactionSuccessful();
+            return zProcessContinuation;
+        } finally {
+            workDatabase.endTransaction();
+        }
     }
 
     private static boolean enqueueContinuation(@NonNull WorkContinuationImpl workContinuationImpl) {
@@ -230,6 +243,10 @@ public class EnqueueRunnable implements Runnable {
         return z5;
     }
 
+    public Operation getOperation() {
+        return this.mOperation;
+    }
+
     private static boolean processContinuation(@NonNull WorkContinuationImpl workContinuationImpl) {
         List<WorkContinuationImpl> parents = workContinuationImpl.getParents();
         boolean z2 = false;
@@ -245,6 +262,28 @@ public class EnqueueRunnable implements Runnable {
             z2 = zProcessContinuation;
         }
         return enqueueContinuation(workContinuationImpl) | z2;
+    }
+
+    @Override // java.lang.Runnable
+    public void run() {
+        try {
+            if (this.mWorkContinuation.hasCycles()) {
+                throw new IllegalStateException(String.format("WorkContinuation has cycles (%s)", this.mWorkContinuation));
+            }
+            if (addToDatabase()) {
+                PackageManagerHelper.setComponentEnabled(this.mWorkContinuation.getWorkManagerImpl().getApplicationContext(), RescheduleReceiver.class, true);
+                scheduleWorkInBackground();
+            }
+            this.mOperation.setState(Operation.SUCCESS);
+        } catch (Throwable th) {
+            this.mOperation.setState(new Operation.State.FAILURE(th));
+        }
+    }
+
+    @VisibleForTesting
+    public void scheduleWorkInBackground() {
+        WorkManagerImpl workManagerImpl = this.mWorkContinuation.getWorkManagerImpl();
+        Schedulers.schedule(workManagerImpl.getConfiguration(), workManagerImpl.getWorkDatabase(), workManagerImpl.getSchedulers());
     }
 
     private static void tryDelegateConstrainedWorkSpec(WorkSpec workSpec) {
@@ -270,44 +309,5 @@ public class EnqueueRunnable implements Runnable {
         } catch (ClassNotFoundException unused) {
         }
         return false;
-    }
-
-    @VisibleForTesting
-    public boolean addToDatabase() {
-        WorkDatabase workDatabase = this.mWorkContinuation.getWorkManagerImpl().getWorkDatabase();
-        workDatabase.beginTransaction();
-        try {
-            boolean zProcessContinuation = processContinuation(this.mWorkContinuation);
-            workDatabase.setTransactionSuccessful();
-            return zProcessContinuation;
-        } finally {
-            workDatabase.endTransaction();
-        }
-    }
-
-    public Operation getOperation() {
-        return this.mOperation;
-    }
-
-    @Override // java.lang.Runnable
-    public void run() {
-        try {
-            if (this.mWorkContinuation.hasCycles()) {
-                throw new IllegalStateException(String.format("WorkContinuation has cycles (%s)", this.mWorkContinuation));
-            }
-            if (addToDatabase()) {
-                PackageManagerHelper.setComponentEnabled(this.mWorkContinuation.getWorkManagerImpl().getApplicationContext(), RescheduleReceiver.class, true);
-                scheduleWorkInBackground();
-            }
-            this.mOperation.setState(Operation.SUCCESS);
-        } catch (Throwable th) {
-            this.mOperation.setState(new Operation.State.FAILURE(th));
-        }
-    }
-
-    @VisibleForTesting
-    public void scheduleWorkInBackground() {
-        WorkManagerImpl workManagerImpl = this.mWorkContinuation.getWorkManagerImpl();
-        Schedulers.schedule(workManagerImpl.getConfiguration(), workManagerImpl.getWorkDatabase(), workManagerImpl.getSchedulers());
     }
 }

@@ -14,6 +14,17 @@ public final /* data */ class StageInstance {
     private final StageInstancePrivacyLevel privacyLevel;
     private final String topic;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof StageInstance)) {
+            return false;
+        }
+        StageInstance stageInstance = (StageInstance) other;
+        return this.id == stageInstance.id && this.guildId == stageInstance.guildId && this.channelId == stageInstance.channelId && C12238m.areEqual(this.topic, stageInstance.topic) && C12238m.areEqual(this.privacyLevel, stageInstance.privacyLevel) && C12238m.areEqual(this.inviteCode, stageInstance.inviteCode);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -37,17 +48,6 @@ public final /* data */ class StageInstance {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final StageInstancePrivacyLevel getPrivacyLevel() {
         return this.privacyLevel;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof StageInstance)) {
-            return false;
-        }
-        StageInstance stageInstance = (StageInstance) other;
-        return this.id == stageInstance.id && this.guildId == stageInstance.guildId && this.channelId == stageInstance.channelId && C12238m.areEqual(this.topic, stageInstance.topic) && C12238m.areEqual(this.privacyLevel, stageInstance.privacyLevel) && C12238m.areEqual(this.inviteCode, stageInstance.inviteCode);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

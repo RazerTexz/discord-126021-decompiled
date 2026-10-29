@@ -54,46 +54,21 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetStickerSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStickerSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStickerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStickerSheetBinding;", 0)};
     private static final String ANALYTICS_LOCATION = "widget_sticker_sheet_analytics_location";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStickerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStickerSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetStickerSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, Sticker sticker, long channelId) {
-            Channel channelFindChannelById;
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(sticker, "sticker");
-            if (sticker.getType() == StickerType.STANDARD && (channelFindChannelById = StoreStream.INSTANCE.getChannels().findChannelById(channelId)) != null) {
-                String str = channelFindChannelById.getGuildId() == 0 ? "DM Channel" : Traits.Location.Page.GUILD_CHANNEL;
-                WidgetStickerSheet widgetStickerSheet = new WidgetStickerSheet();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("com.discord.intent.extra.EXTRA_STICKER", sticker);
-                bundle.putString(WidgetStickerSheet.ANALYTICS_LOCATION, str);
-                widgetStickerSheet.setArguments(bundle);
-                widgetStickerSheet.show(fragmentManager, WidgetStickerSheet.class.getName());
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetStickerSheet$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetStickerSheet.kt */
-    public static final /* synthetic */ class C101361 extends C12236k implements Function1<StickerSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C101361 extends C12236k implements Function1<StickerSheetViewModel.ViewState, Unit> {
         public C101361(WidgetStickerSheet widgetStickerSheet) {
             super(1, widgetStickerSheet, WidgetStickerSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/stickers/StickerSheetViewModel$ViewState;)V", 0);
         }
@@ -113,12 +88,12 @@ public final class WidgetStickerSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetStickerSheet$configureUI$2 */
     /* JADX INFO: compiled from: WidgetStickerSheet.kt */
-    public static final class C101382 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C101382 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C101382 INSTANCE = new C101382();
 
         /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetStickerSheet$configureUI$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetStickerSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -158,12 +133,45 @@ public final class WidgetStickerSheet extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetStickerSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Sticker sticker, long channelId) {
+            Channel channelFindChannelById;
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(sticker, "sticker");
+            if (sticker.getType() == StickerType.STANDARD && (channelFindChannelById = StoreStream.INSTANCE.getChannels().findChannelById(channelId)) != null) {
+                String str = channelFindChannelById.getGuildId() == 0 ? "DM Channel" : Traits.Location.Page.GUILD_CHANNEL;
+                WidgetStickerSheet widgetStickerSheet = new WidgetStickerSheet();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("com.discord.intent.extra.EXTRA_STICKER", sticker);
+                bundle.putString(WidgetStickerSheet.ANALYTICS_LOCATION, str);
+                widgetStickerSheet.setArguments(bundle);
+                widgetStickerSheet.show(fragmentManager, WidgetStickerSheet.class.getName());
+            }
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetStickerSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetStickerSheet$binding$2.INSTANCE, null, 2, null);
         WidgetStickerSheet$viewModel$2 widgetStickerSheet$viewModel$2 = new WidgetStickerSheet$viewModel$2(this);
         C0865g0 c0865g0 = new C0865g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(StickerSheetViewModel.class), new WidgetStickerSheet$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetStickerSheet$viewModel$2));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Observable observableM11112r = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) WidgetStickerSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101361(this));
     }
 
     private final void configureUI(final StickerSheetViewModel.ViewState viewState) {
@@ -255,24 +263,16 @@ public final class WidgetStickerSheet extends AppBottomSheet {
         return (WidgetStickerSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_sticker_sheet;
+    }
+
     private final StickerSheetViewModel getViewModel() {
         return (StickerSheetViewModel) this.viewModel.getValue();
     }
 
     public static final void show(FragmentManager fragmentManager, Sticker sticker, long j) {
         INSTANCE.show(fragmentManager, sticker, j);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        Observable observableM11112r = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) WidgetStickerSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101361(this));
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_sticker_sheet;
     }
 }

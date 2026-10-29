@@ -49,18 +49,6 @@ public final /* data */ class TrackNetworkActionInviteResolve implements Analyti
         this.analyticsSchemaTypeName = "network_action_invite_resolve";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -70,6 +58,12 @@ public final /* data */ class TrackNetworkActionInviteResolve implements Analyti
         }
         TrackNetworkActionInviteResolve trackNetworkActionInviteResolve = (TrackNetworkActionInviteResolve) other;
         return C12238m.areEqual(this.resolved, trackNetworkActionInviteResolve.resolved) && C12238m.areEqual(this.code, trackNetworkActionInviteResolve.code) && C12238m.areEqual(this.authenticated, trackNetworkActionInviteResolve.authenticated) && C12238m.areEqual(this.guildId, trackNetworkActionInviteResolve.guildId) && C12238m.areEqual(this.channelId, trackNetworkActionInviteResolve.channelId) && C12238m.areEqual(this.channelType, trackNetworkActionInviteResolve.channelType) && C12238m.areEqual(this.inviterId, trackNetworkActionInviteResolve.inviterId) && C12238m.areEqual(this.sizeTotal, trackNetworkActionInviteResolve.sizeTotal) && C12238m.areEqual(this.sizeOnline, trackNetworkActionInviteResolve.sizeOnline) && C12238m.areEqual(this.inviteType, trackNetworkActionInviteResolve.inviteType) && C12238m.areEqual(this.destinationUserId, trackNetworkActionInviteResolve.destinationUserId) && C12238m.areEqual(this.userBanned, trackNetworkActionInviteResolve.userBanned) && C12238m.areEqual(this.inputValue, trackNetworkActionInviteResolve.inputValue);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {
@@ -99,6 +93,12 @@ public final /* data */ class TrackNetworkActionInviteResolve implements Analyti
         int iHashCode12 = (iHashCode11 + (bool3 != null ? bool3.hashCode() : 0)) * 31;
         CharSequence charSequence3 = this.inputValue;
         return iHashCode12 + (charSequence3 != null ? charSequence3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

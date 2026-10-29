@@ -47,11 +47,11 @@ import p658rx.functions.Action2;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetThreadBrowser extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetThreadBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadBrowserBinding;", 0)};
+    private final int ACTIVE_PAGE;
+    private final int ARCHIVED_PAGE;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private final int ACTIVE_PAGE;
-    private final int ARCHIVED_PAGE;
 
     /* JADX INFO: renamed from: archivedViewModel$delegate, reason: from kotlin metadata */
     private final Lazy archivedViewModel;
@@ -70,8 +70,56 @@ public final class WidgetThreadBrowser extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public static final class Companion {
+    public final class C76361 extends AbstractC12240o implements Function0<Fragment> {
+        public C76361() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Fragment invoke() {
+            return WidgetThreadBrowserActive.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$2 */
+    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
+    public final class C76372 extends AbstractC12240o implements Function0<Fragment> {
+        public C76372() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Fragment invoke() {
+            return WidgetThreadBrowserArchived.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$onResume$1 */
+    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
+    public final class C76391 extends AbstractC12240o implements Function1<WidgetThreadBrowserViewModel.ViewState, Unit> {
+        public C76391() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadBrowserViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetThreadBrowserViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetThreadBrowser.this.updateView(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -88,54 +136,6 @@ public final class WidgetThreadBrowser extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$1 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public static final class C76361 extends AbstractC12240o implements Function0<Fragment> {
-        public C76361() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return WidgetThreadBrowserActive.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$2 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public static final class C76372 extends AbstractC12240o implements Function0<Fragment> {
-        public C76372() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return WidgetThreadBrowserArchived.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$onResume$1 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public static final class C76391 extends AbstractC12240o implements Function1<WidgetThreadBrowserViewModel.ViewState, Unit> {
-        public C76391() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadBrowserViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetThreadBrowserViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetThreadBrowser.this.updateView(viewState);
         }
     }
 
@@ -222,6 +222,20 @@ public final class WidgetThreadBrowser extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76391());
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        setActionBarTitle(C5419R.string.thread_browser_title);
+    }
+
     public static final void show(Context context, long j, long j2, String str) {
         INSTANCE.show(context, j, j2, str);
     }
@@ -283,19 +297,5 @@ public final class WidgetThreadBrowser extends AppFragment {
             C12238m.checkNotNullExpressionValue(simplePager, "binding.threadBrowserViewPager");
             updateMenu(simplePager.getCurrentItem(), Boolean.valueOf(browser.getCanCreateThread()));
         }
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76391());
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarTitle(C5419R.string.thread_browser_title);
     }
 }

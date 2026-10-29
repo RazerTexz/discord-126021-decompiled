@@ -92,6 +92,30 @@ public final class C2540f0 extends AbstractC2551l implements C2538e0.b {
         this.f5573o = -9223372036854775807L;
     }
 
+    /* JADX INFO: renamed from: t */
+    public final void m2511t() {
+        AbstractC2832o2 c2552l0 = new C2552l0(this.f5573o, this.f5574p, false, this.f5575q, null, this.f5565g);
+        if (this.f5572n) {
+            c2552l0 = new a(c2552l0);
+        }
+        m2553r(c2552l0);
+    }
+
+    /* JADX INFO: renamed from: u */
+    public void m2512u(long j, boolean z2, boolean z3) {
+        if (j == -9223372036854775807L) {
+            j = this.f5573o;
+        }
+        if (!this.f5572n && this.f5573o == j && this.f5574p == z2 && this.f5575q == z3) {
+            return;
+        }
+        this.f5573o = j;
+        this.f5574p = z2;
+        this.f5575q = z3;
+        this.f5572n = false;
+        m2511t();
+    }
+
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2530a0
     /* JADX INFO: renamed from: e */
     public C2831o1 mo2450e() {
@@ -153,29 +177,5 @@ public final class C2540f0 extends AbstractC2551l implements C2538e0.b {
     /* JADX INFO: renamed from: s */
     public void mo2510s() {
         this.f5569k.release();
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final void m2511t() {
-        AbstractC2832o2 c2552l0 = new C2552l0(this.f5573o, this.f5574p, false, this.f5575q, null, this.f5565g);
-        if (this.f5572n) {
-            c2552l0 = new a(c2552l0);
-        }
-        m2553r(c2552l0);
-    }
-
-    /* JADX INFO: renamed from: u */
-    public void m2512u(long j, boolean z2, boolean z3) {
-        if (j == -9223372036854775807L) {
-            j = this.f5573o;
-        }
-        if (!this.f5572n && this.f5573o == j && this.f5574p == z2 && this.f5575q == z3) {
-            return;
-        }
-        this.f5573o = j;
-        this.f5574p = z2;
-        this.f5575q = z3;
-        this.f5572n = false;
-        m2511t();
     }
 }

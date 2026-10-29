@@ -177,7 +177,7 @@ public final class C12285e implements InterfaceC12269e {
 
     /* JADX INFO: renamed from: f0.e0.g.e$b */
     /* JADX INFO: compiled from: RealCall.kt */
-    public static final class b extends WeakReference<C12285e> {
+    public final class b extends WeakReference<C12285e> {
 
         /* JADX INFO: renamed from: a */
         public final Object f25485a;
@@ -192,7 +192,7 @@ public final class C12285e implements InterfaceC12269e {
 
     /* JADX INFO: renamed from: f0.e0.g.e$c */
     /* JADX INFO: compiled from: RealCall.kt */
-    public static final class c extends C12385b {
+    public final class c extends C12385b {
         public c() {
         }
 
@@ -218,22 +218,6 @@ public final class C12285e implements InterfaceC12269e {
         this.f25476u = true;
     }
 
-    /* JADX INFO: renamed from: b */
-    public static final String m10180b(C12285e c12285e) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(c12285e.f25477v ? "canceled " : "");
-        sb.append(c12285e.f25464A ? "web socket" : NotificationCompat.CATEGORY_CALL);
-        sb.append(" to ");
-        sb.append(c12285e.f25481z.url.m10406h());
-        return sb.toString();
-    }
-
-    @Override // p600f0.InterfaceC12269e
-    /* JADX INFO: renamed from: c */
-    public Request mo10111c() {
-        return this.f25481z;
-    }
-
     @Override // p600f0.InterfaceC12269e
     public void cancel() {
         Socket socket;
@@ -255,53 +239,6 @@ public final class C12285e implements InterfaceC12269e {
 
     public Object clone() {
         return new C12285e(this.f25480y, this.f25481z, this.f25464A);
-    }
-
-    @Override // p600f0.InterfaceC12269e
-    /* JADX INFO: renamed from: d */
-    public boolean mo10112d() {
-        return this.f25477v;
-    }
-
-    @Override // p600f0.InterfaceC12269e
-    /* JADX INFO: renamed from: e */
-    public void mo10113e(InterfaceC12361f interfaceC12361f) {
-        a next;
-        C12238m.checkParameterIsNotNull(interfaceC12361f, "responseCallback");
-        if (!this.f25468m.compareAndSet(false, true)) {
-            throw new IllegalStateException("Already Executed".toString());
-        }
-        m10183h();
-        C12373q c12373q = this.f25480y.f26012m;
-        a aVar = new a(this, interfaceC12361f);
-        Objects.requireNonNull(c12373q);
-        C12238m.checkParameterIsNotNull(aVar, NotificationCompat.CATEGORY_CALL);
-        synchronized (c12373q) {
-            c12373q.f25958b.add(aVar);
-            if (!aVar.f25484l.f25464A) {
-                String strM10190a = aVar.m10190a();
-                Iterator<a> it = c12373q.f25959c.iterator();
-                do {
-                    if (!it.hasNext()) {
-                        Iterator<a> it2 = c12373q.f25958b.iterator();
-                        do {
-                            if (!it2.hasNext()) {
-                                next = null;
-                                break;
-                            }
-                            next = it2.next();
-                        } while (!C12238m.areEqual(next.m10190a(), strM10190a));
-                    } else {
-                        next = it.next();
-                    }
-                } while (!C12238m.areEqual(next.m10190a(), strM10190a));
-                if (next != null) {
-                    C12238m.checkParameterIsNotNull(next, "other");
-                    aVar.f25482j = next.f25482j;
-                }
-            }
-        }
-        c12373q.m10391d();
     }
 
     @Override // p600f0.InterfaceC12269e
@@ -330,6 +267,16 @@ public final class C12285e implements InterfaceC12269e {
             c12373q3.m10389b(c12373q3.f25960d, this);
             throw th;
         }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static final String m10180b(C12285e c12285e) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(c12285e.f25477v ? "canceled " : "");
+        sb.append(c12285e.f25464A ? "web socket" : NotificationCompat.CATEGORY_CALL);
+        sb.append(" to ");
+        sb.append(c12285e.f25481z.url.m10406h());
+        return sb.toString();
     }
 
     /* JADX INFO: renamed from: f */
@@ -619,5 +566,58 @@ public final class C12285e implements InterfaceC12269e {
         }
         this.f25472q = true;
         this.f25467l.m10425j();
+    }
+
+    @Override // p600f0.InterfaceC12269e
+    /* JADX INFO: renamed from: c */
+    public Request mo10111c() {
+        return this.f25481z;
+    }
+
+    @Override // p600f0.InterfaceC12269e
+    /* JADX INFO: renamed from: d */
+    public boolean mo10112d() {
+        return this.f25477v;
+    }
+
+    @Override // p600f0.InterfaceC12269e
+    /* JADX INFO: renamed from: e */
+    public void mo10113e(InterfaceC12361f interfaceC12361f) {
+        a next;
+        C12238m.checkParameterIsNotNull(interfaceC12361f, "responseCallback");
+        if (!this.f25468m.compareAndSet(false, true)) {
+            throw new IllegalStateException("Already Executed".toString());
+        }
+        m10183h();
+        C12373q c12373q = this.f25480y.f26012m;
+        a aVar = new a(this, interfaceC12361f);
+        Objects.requireNonNull(c12373q);
+        C12238m.checkParameterIsNotNull(aVar, NotificationCompat.CATEGORY_CALL);
+        synchronized (c12373q) {
+            c12373q.f25958b.add(aVar);
+            if (!aVar.f25484l.f25464A) {
+                String strM10190a = aVar.m10190a();
+                Iterator<a> it = c12373q.f25959c.iterator();
+                do {
+                    if (!it.hasNext()) {
+                        Iterator<a> it2 = c12373q.f25958b.iterator();
+                        do {
+                            if (!it2.hasNext()) {
+                                next = null;
+                                break;
+                            }
+                            next = it2.next();
+                        } while (!C12238m.areEqual(next.m10190a(), strM10190a));
+                    } else {
+                        next = it.next();
+                    }
+                } while (!C12238m.areEqual(next.m10190a(), strM10190a));
+                if (next != null) {
+                    C12238m.checkParameterIsNotNull(next, "other");
+                    aVar.f25482j = next.f25482j;
+                }
+            }
+        }
+        c12373q.m10391d();
     }
 }

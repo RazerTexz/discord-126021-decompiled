@@ -25,6 +25,12 @@ public abstract class LoaderManager {
         void onLoaderReset(@NonNull Loader<D> loader);
     }
 
+    @MainThread
+    public abstract void destroyLoader(int i);
+
+    @Deprecated
+    public abstract void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr);
+
     public static void enableDebugLogging(boolean z2) {
         LoaderManagerImpl.DEBUG = z2;
     }
@@ -33,12 +39,6 @@ public abstract class LoaderManager {
     public static <T extends LifecycleOwner & ViewModelStoreOwner> LoaderManager getInstance(@NonNull T t) {
         return new LoaderManagerImpl(t, t.getViewModelStore());
     }
-
-    @MainThread
-    public abstract void destroyLoader(int i);
-
-    @Deprecated
-    public abstract void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr);
 
     @Nullable
     public abstract <D> Loader<D> getLoader(int i);

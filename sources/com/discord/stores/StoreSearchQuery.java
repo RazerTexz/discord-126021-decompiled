@@ -39,15 +39,15 @@ import p658rx.subjects.SerializedSubject;
 /* JADX INFO: compiled from: StoreSearchQuery.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreSearchQuery {
-    private static final SearchState SEARCH_STATE_NONE = new SearchState(QueryFetchState.NONE, null, null, null, null, false, 0, 126, null);
     private SearchState currentSearchState;
     private Subscription querySubscription;
     private final SearchFetcher searchFetcher;
     private final SerializedSubject<SearchState, SearchState> searchStateSubject;
+    private static final SearchState SEARCH_STATE_NONE = new SearchState(QueryFetchState.NONE, null, null, null, null, false, 0, 126, null);
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchQuery$makeQuery$1 */
     /* JADX INFO: compiled from: StoreSearchQuery.kt */
-    public static final class C63931 extends AbstractC12240o implements Function1<ModelSearchResponse, Unit> {
+    public final class C63931 extends AbstractC12240o implements Function1<ModelSearchResponse, Unit> {
         public final /* synthetic */ boolean $isInitialLoad;
         public final /* synthetic */ SearchQuery $query;
 
@@ -73,7 +73,7 @@ public final class StoreSearchQuery {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchQuery$makeQuery$2 */
     /* JADX INFO: compiled from: StoreSearchQuery.kt */
-    public static final class C63942 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C63942 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C63942() {
             super(1);
         }
@@ -93,7 +93,7 @@ public final class StoreSearchQuery {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchQuery$makeQuery$3 */
     /* JADX INFO: compiled from: StoreSearchQuery.kt */
-    public static final class C63953 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C63953 extends AbstractC12240o implements Function1<Error, Unit> {
         public C63953() {
             super(1);
         }
@@ -113,7 +113,7 @@ public final class StoreSearchQuery {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchQuery$parseAndQuery$3 */
     /* JADX INFO: compiled from: StoreSearchQuery.kt */
-    public static final class C63983 extends AbstractC12240o implements Function1<SearchQuery, Boolean> {
+    public final class C63983 extends AbstractC12240o implements Function1<SearchQuery, Boolean> {
         public static final C63983 INSTANCE = new C63983();
 
         public C63983() {
@@ -133,7 +133,7 @@ public final class StoreSearchQuery {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchQuery$parseAndQuery$4 */
     /* JADX INFO: compiled from: StoreSearchQuery.kt */
-    public static final class C63994 extends AbstractC12240o implements Function1<SearchQuery, Unit> {
+    public final class C63994 extends AbstractC12240o implements Function1<SearchQuery, Unit> {
         public final /* synthetic */ StoreSearch.SearchTarget $searchTarget;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -164,6 +164,17 @@ public final class StoreSearchQuery {
         SearchState searchState = SEARCH_STATE_NONE;
         this.searchStateSubject = new SerializedSubject<>(BehaviorSubject.m11130l0(searchState));
         this.currentSearchState = searchState;
+    }
+
+    public final void clear() {
+        unsubscribe();
+        updateAndPublish(SEARCH_STATE_NONE);
+    }
+
+    public final Observable<SearchState> getState() {
+        Observable<SearchState> observableM11112r = this.searchStateSubject.m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "searchStateSubject\n        .distinctUntilChanged()");
+        return observableM11112r;
     }
 
     private final void handleError() {
@@ -202,48 +213,6 @@ public final class StoreSearchQuery {
         updateAndPublish(searchState);
     }
 
-    private final void makeQuery(SearchQuery query, StoreSearch.SearchTarget searchTarget, Long oldestMessageId, boolean isInitialLoad) {
-        ObservableExtensionsKt.appSubscribe(this.searchFetcher.makeQuery(searchTarget, oldestMessageId, query), (117 & 1) != 0 ? null : null, "makeQuery", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : new C63942()), new C63931(query, isInitialLoad), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : new C63953()), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
-    }
-
-    public static /* synthetic */ void makeQuery$default(StoreSearchQuery storeSearchQuery, SearchQuery searchQuery, StoreSearch.SearchTarget searchTarget, Long l, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            l = null;
-        }
-        if ((i & 8) != 0) {
-            z2 = true;
-        }
-        storeSearchQuery.makeQuery(searchQuery, searchTarget, l, z2);
-    }
-
-    private final void performInitialLoad(StoreSearch.SearchTarget searchTarget, SearchQuery query) {
-        unsubscribe();
-        makeQuery$default(this, query, searchTarget, null, false, 12, null);
-    }
-
-    private final synchronized void unsubscribe() {
-        Subscription subscription = this.querySubscription;
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-    }
-
-    private final synchronized void updateAndPublish(SearchState searchState) {
-        this.currentSearchState = searchState;
-        this.searchStateSubject.f27653k.onNext(searchState);
-    }
-
-    public final void clear() {
-        unsubscribe();
-        updateAndPublish(SEARCH_STATE_NONE);
-    }
-
-    public final Observable<SearchState> getState() {
-        Observable<SearchState> observableM11112r = this.searchStateSubject.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "searchStateSubject\n        .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
     public final synchronized void loadMore(StoreSearch.SearchTarget searchTarget, long oldestMessageId) {
         C12238m.checkNotNullParameter(searchTarget, "searchTarget");
         SearchQuery searchQuery = this.currentSearchState.getSearchQuery();
@@ -257,6 +226,20 @@ public final class StoreSearchQuery {
                 makeQuery(searchQuery, searchTarget, Long.valueOf(oldestMessageId), false);
             }
         }
+    }
+
+    public static /* synthetic */ void makeQuery$default(StoreSearchQuery storeSearchQuery, SearchQuery searchQuery, StoreSearch.SearchTarget searchTarget, Long l, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            l = null;
+        }
+        if ((i & 8) != 0) {
+            z2 = true;
+        }
+        storeSearchQuery.makeQuery(searchQuery, searchTarget, l, z2);
+    }
+
+    private final void makeQuery(SearchQuery query, StoreSearch.SearchTarget searchTarget, Long oldestMessageId, boolean isInitialLoad) {
+        ObservableExtensionsKt.appSubscribe(this.searchFetcher.makeQuery(searchTarget, oldestMessageId, query), (117 & 1) != 0 ? null : null, "makeQuery", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : new C63942()), new C63931(query, isInitialLoad), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : new C63953()), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
     public final void parseAndQuery(final StoreSearch searchStore, final StoreSearch.SearchTarget searchTarget, String queryString, final SearchStringProvider searchStringProvider, final boolean includeNsfw) {
@@ -290,5 +273,22 @@ public final class StoreSearchQuery {
         }).m11108k(C0879o.m177c(C63983.INSTANCE, null, 1L, TimeUnit.SECONDS)).m11100Z(1);
         C12238m.checkNotNullExpressionValue(observableM11100Z, "Observable\n            .…   )\n            .take(1)");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(observableM11100Z), (117 & 1) != 0 ? null : null, "parseAndQuery", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C63994(searchTarget), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
+    }
+
+    private final void performInitialLoad(StoreSearch.SearchTarget searchTarget, SearchQuery query) {
+        unsubscribe();
+        makeQuery$default(this, query, searchTarget, null, false, 12, null);
+    }
+
+    private final synchronized void unsubscribe() {
+        Subscription subscription = this.querySubscription;
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+    }
+
+    private final synchronized void updateAndPublish(SearchState searchState) {
+        this.currentSearchState = searchState;
+        this.searchStateSubject.f27653k.onNext(searchState);
     }
 }

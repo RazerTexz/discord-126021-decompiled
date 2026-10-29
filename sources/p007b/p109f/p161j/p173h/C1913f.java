@@ -15,7 +15,7 @@ public class C1913f implements InterfaceC1911d {
 
     /* JADX INFO: renamed from: b.f.j.h.f$b */
     /* JADX INFO: compiled from: SimpleProgressiveJpegConfig.java */
-    public static class b implements c {
+    public class b implements c {
         public b(a aVar) {
         }
 

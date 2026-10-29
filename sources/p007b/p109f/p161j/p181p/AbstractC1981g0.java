@@ -89,17 +89,6 @@ public abstract class AbstractC1981g0 implements InterfaceC2018w0<C1919e> {
         this.f4061b = interfaceC1700g;
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
-    /* JADX INFO: renamed from: b */
-    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
-        InterfaceC2024z0 interfaceC2024z0Mo1457o = interfaceC2020x0.mo1457o();
-        ImageRequest imageRequestMo1447e = interfaceC2020x0.mo1447e();
-        interfaceC2020x0.mo1451i("local", "fetch");
-        a aVar = new a(interfaceC1995l, interfaceC2024z0Mo1457o, interfaceC2020x0, mo1429e(), imageRequestMo1447e, interfaceC2024z0Mo1457o, interfaceC2020x0);
-        interfaceC2020x0.mo1448f(new b(this, aVar));
-        this.f4060a.execute(aVar);
-    }
-
     /* JADX INFO: renamed from: c */
     public C1919e m1478c(InputStream inputStream, int i) throws IOException {
         CloseableReference closeableReferenceM8632A = null;
@@ -119,6 +108,17 @@ public abstract class AbstractC1981g0 implements InterfaceC2018w0<C1919e> {
             }
             throw th;
         }
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
+    /* JADX INFO: renamed from: b */
+    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
+        InterfaceC2024z0 interfaceC2024z0Mo1457o = interfaceC2020x0.mo1457o();
+        ImageRequest imageRequestMo1447e = interfaceC2020x0.mo1447e();
+        interfaceC2020x0.mo1451i("local", "fetch");
+        a aVar = new a(interfaceC1995l, interfaceC2024z0Mo1457o, interfaceC2020x0, mo1429e(), imageRequestMo1447e, interfaceC2024z0Mo1457o, interfaceC2020x0);
+        interfaceC2020x0.mo1448f(new b(this, aVar));
+        this.f4060a.execute(aVar);
     }
 
     /* JADX INFO: renamed from: d */

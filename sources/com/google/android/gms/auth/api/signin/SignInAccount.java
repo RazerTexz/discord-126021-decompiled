@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p296f.C3222g;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class SignInAccount extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<SignInAccount> CREATOR = new C3222g();
 
     /* JADX INFO: renamed from: j */
     @Deprecated
@@ -22,6 +21,7 @@ public class SignInAccount extends AbstractSafeParcelable implements ReflectedPa
     /* JADX INFO: renamed from: l */
     @Deprecated
     public String f20457l;
+    public static final Parcelable.Creator<SignInAccount> CREATOR = new C3222g();
 
     public SignInAccount(String str, GoogleSignInAccount googleSignInAccount, String str2) {
         this.f20456k = googleSignInAccount;

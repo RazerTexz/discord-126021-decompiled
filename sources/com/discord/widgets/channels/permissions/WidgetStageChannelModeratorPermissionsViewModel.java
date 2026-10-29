@@ -51,7 +51,7 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetStageChannelModeratorPermissionsViewModel$1 */
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-    public static final class C75651 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C75651 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C75651() {
             super(1);
         }
@@ -71,12 +71,8 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
     }
 
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Observable<StoreState> observeStores(long channelId, StoreGuilds guildStore, StoreChannels channelStore, StoreUser userStore, StorePermissions permissionStore) {
-            return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{guildStore, channelStore, userStore, permissionStore}, false, null, null, new C7566xb23e47b(channelStore, channelId, guildStore, userStore, permissionStore), 14, null);
         }
 
         public static /* synthetic */ Observable observeStores$default(Companion companion, long j, StoreGuilds storeGuilds, StoreChannels storeChannels, StoreUser storeUser, StorePermissions storePermissions, int i, Object obj) {
@@ -98,16 +94,20 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
             return companion.observeStores(j, storeGuilds2, storeChannels2, storeUser2, storePermissions);
         }
 
+        private final Observable<StoreState> observeStores(long channelId, StoreGuilds guildStore, StoreChannels channelStore, StoreUser userStore, StorePermissions permissionStore) {
+            return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{guildStore, channelStore, userStore, permissionStore}, false, null, null, new C7566xb23e47b(channelStore, channelId, guildStore, userStore, permissionStore), 14, null);
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -116,7 +116,7 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
         }
 
         /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-        public static final /* data */ class Valid extends StoreState {
+        public final /* data */ class Valid extends StoreState {
             private final boolean canEditModerators;
             private final List<PermissionOverwrite> channelPermissionOverwrites;
             private final Guild guild;
@@ -141,6 +141,22 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 this.guildMembers = map3;
                 this.guildOwnerUser = user;
                 this.canEditModerators = z2;
+            }
+
+            public final List<PermissionOverwrite> component2() {
+                return this.channelPermissionOverwrites;
+            }
+
+            public final Map<Long, GuildRole> component3() {
+                return this.guildRoles;
+            }
+
+            public final Map<Long, User> component4() {
+                return this.usersWithOverwrites;
+            }
+
+            public final Map<Long, GuildMember> component5() {
+                return this.guildMembers;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -174,37 +190,6 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 return valid.copy(guild, list2, map4, map5, map6, user2, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            public final List<PermissionOverwrite> component2() {
-                return this.channelPermissionOverwrites;
-            }
-
-            public final Map<Long, GuildRole> component3() {
-                return this.guildRoles;
-            }
-
-            public final Map<Long, User> component4() {
-                return this.usersWithOverwrites;
-            }
-
-            public final Map<Long, GuildMember> component5() {
-                return this.guildMembers;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final User getGuildOwnerUser() {
-                return this.guildOwnerUser;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getCanEditModerators() {
-                return this.canEditModerators;
-            }
-
             public final Valid copy(Guild guild, List<PermissionOverwrite> channelPermissionOverwrites, Map<Long, GuildRole> guildRoles, Map<Long, ? extends User> usersWithOverwrites, Map<Long, GuildMember> guildMembers, User guildOwnerUser, boolean canEditModerators) {
                 C12238m.checkNotNullParameter(guild, "guild");
                 C12238m.checkNotNullParameter(channelPermissionOverwrites, "channelPermissionOverwrites");
@@ -225,6 +210,11 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 return C12238m.areEqual(this.guild, valid.guild) && C12238m.areEqual(this.channelPermissionOverwrites, valid.channelPermissionOverwrites) && C12238m.areEqual(this.guildRoles, valid.guildRoles) && C12238m.areEqual(this.usersWithOverwrites, valid.usersWithOverwrites) && C12238m.areEqual(this.guildMembers, valid.guildMembers) && C12238m.areEqual(this.guildOwnerUser, valid.guildOwnerUser) && this.canEditModerators == valid.canEditModerators;
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getCanEditModerators() {
+                return this.canEditModerators;
+            }
+
             public final boolean getCanEditModerators() {
                 return this.canEditModerators;
             }
@@ -233,12 +223,22 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 return this.channelPermissionOverwrites;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
+            }
+
             public final Guild getGuild() {
                 return this.guild;
             }
 
             public final Map<Long, GuildMember> getGuildMembers() {
                 return this.guildMembers;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final User getGuildOwnerUser() {
+                return this.guildOwnerUser;
             }
 
             public final User getGuildOwnerUser() {
@@ -306,10 +306,10 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
     }
 
     /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -318,7 +318,7 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
         }
 
         /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final boolean canEditModerators;
             private final List<PermissionOwnerListView.Item> memberItems;
             private final List<PermissionOwnerListView.Item> roleItems;
@@ -333,6 +333,14 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 this.canEditModerators = z2;
             }
 
+            public final List<PermissionOwnerListView.Item> component1() {
+                return this.roleItems;
+            }
+
+            public final List<PermissionOwnerListView.Item> component2() {
+                return this.memberItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Valid copy$default(Valid valid, List list, List list2, boolean z2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -345,19 +353,6 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                     z2 = valid.canEditModerators;
                 }
                 return valid.copy(list, list2, z2);
-            }
-
-            public final List<PermissionOwnerListView.Item> component1() {
-                return this.roleItems;
-            }
-
-            public final List<PermissionOwnerListView.Item> component2() {
-                return this.memberItems;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getCanEditModerators() {
-                return this.canEditModerators;
             }
 
             public final Valid copy(List<PermissionOwnerListView.Item> roleItems, List<PermissionOwnerListView.Item> memberItems, boolean canEditModerators) {
@@ -375,6 +370,11 @@ public final class WidgetStageChannelModeratorPermissionsViewModel extends Abstr
                 }
                 Valid valid = (Valid) other;
                 return C12238m.areEqual(this.roleItems, valid.roleItems) && C12238m.areEqual(this.memberItems, valid.memberItems) && this.canEditModerators == valid.canEditModerators;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getCanEditModerators() {
+                return this.canEditModerators;
             }
 
             public final boolean getCanEditModerators() {

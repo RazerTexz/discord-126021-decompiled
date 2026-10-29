@@ -20,15 +20,6 @@ public final class GooglePlayInAppSkus {
     private GooglePlayInAppSkus() {
     }
 
-    private final Map<String, GooglePlayInAppSku> getSkusById() {
-        List<GooglePlayInAppSku> list = skus;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(list, 10)), 16));
-        for (Object obj : list) {
-            linkedHashMap.put(((GooglePlayInAppSku) obj).getPaymentGatewaySkuId(), obj);
-        }
-        return linkedHashMap;
-    }
-
     public final GooglePlayInAppSku getInAppSku(String paymentGatewaySkuId) {
         C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
         return getSkusById().get(paymentGatewaySkuId);
@@ -36,6 +27,15 @@ public final class GooglePlayInAppSkus {
 
     public final List<GooglePlayInAppSku> getSkus() {
         return skus;
+    }
+
+    private final Map<String, GooglePlayInAppSku> getSkusById() {
+        List<GooglePlayInAppSku> list = skus;
+        LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(list, 10)), 16));
+        for (Object obj : list) {
+            linkedHashMap.put(((GooglePlayInAppSku) obj).getPaymentGatewaySkuId(), obj);
+        }
+        return linkedHashMap;
     }
 
     public final boolean isInAppSku(String paymentGatewaySkuId) {

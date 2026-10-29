@@ -224,12 +224,6 @@ public final class C4060h7 extends AbstractC3974a5 {
         return (this.f11202a.f11260h.m5526o(C4142p.f11104v0) && this.f10781i != null) ? this.f10781i : c4072i7;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
-    /* JADX INFO: renamed from: v */
-    public final boolean mo5499v() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: w */
     public final C4072i7 m5656w(boolean z2) {
@@ -266,5 +260,11 @@ public final class C4060h7 extends AbstractC3974a5 {
         this.f10775c = c4072i8;
         Objects.requireNonNull((C3401c) this.f11202a.f11267o);
         mo5725f().m5852v(new RunnableC4084j7(this, c4072i8, c4072i9, SystemClock.elapsedRealtime(), z2));
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
+    /* JADX INFO: renamed from: v */
+    public final boolean mo5499v() {
+        return false;
     }
 }

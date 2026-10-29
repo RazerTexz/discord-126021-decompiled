@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherHostModeToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final Boolean isHost = null;
     private final Boolean isHostMode = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_internal_watch_together_host_mode_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled 
         }
         TrackActivityInternalWatchTogetherHostModeToggled trackActivityInternalWatchTogetherHostModeToggled = (TrackActivityInternalWatchTogetherHostModeToggled) other;
         return C12238m.areEqual(this.isHost, trackActivityInternalWatchTogetherHostModeToggled.isHost) && C12238m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherHostModeToggled.isHostMode);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

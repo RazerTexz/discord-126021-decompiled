@@ -25,9 +25,6 @@ import p007b.p225i.p355b.p357b.AbstractC4530s0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2987r {
 
-    /* JADX INFO: renamed from: a */
-    public final Object f8009a = new Object();
-
     /* JADX INFO: renamed from: b */
     @GuardedBy("lock")
     public C2831o1.f f8010b;
@@ -35,6 +32,9 @@ public final class C2987r {
     /* JADX INFO: renamed from: c */
     @GuardedBy("lock")
     public InterfaceC2990u f8011c;
+
+    /* JADX INFO: renamed from: a */
+    public final Object f8009a = new Object();
 
     @RequiresApi(18)
     /* JADX INFO: renamed from: a */

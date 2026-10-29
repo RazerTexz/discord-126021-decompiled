@@ -17,11 +17,45 @@ public interface EglBase {
     public static final int[] CONFIG_PIXEL_RGBA_BUFFER = new ConfigBuilder().setHasAlphaChannel(true).setSupportsPixelBuffer(true).createConfigAttributes();
     public static final int[] CONFIG_RECORDABLE = new ConfigBuilder().setIsRecordable(true).createConfigAttributes();
 
-    public static class ConfigBuilder {
+    public interface Context {
+        public static final long NO_CONTEXT = 0;
+
+        long getNativeEglContext();
+    }
+
+    void createDummyPbufferSurface();
+
+    void createPbufferSurface(int i, int i2);
+
+    void createSurface(SurfaceTexture surfaceTexture);
+
+    void createSurface(Surface surface);
+
+    void detachCurrent();
+
+    Context getEglBaseContext();
+
+    boolean hasSurface();
+
+    void makeCurrent();
+
+    void release();
+
+    void releaseSurface();
+
+    int surfaceHeight();
+
+    int surfaceWidth();
+
+    void swapBuffers();
+
+    void swapBuffers(long j);
+
+    public class ConfigBuilder {
         private boolean hasAlphaChannel;
         private boolean isRecordable;
-        private int openGlesVersion = 2;
         private boolean supportsPixelBuffer;
+        private int openGlesVersion = 2;
 
         public int[] createConfigAttributes() {
             ArrayList arrayList = new ArrayList();
@@ -79,38 +113,4 @@ public interface EglBase {
             return this;
         }
     }
-
-    public interface Context {
-        public static final long NO_CONTEXT = 0;
-
-        long getNativeEglContext();
-    }
-
-    void createDummyPbufferSurface();
-
-    void createPbufferSurface(int i, int i2);
-
-    void createSurface(SurfaceTexture surfaceTexture);
-
-    void createSurface(Surface surface);
-
-    void detachCurrent();
-
-    Context getEglBaseContext();
-
-    boolean hasSurface();
-
-    void makeCurrent();
-
-    void release();
-
-    void releaseSurface();
-
-    int surfaceHeight();
-
-    int surfaceWidth();
-
-    void swapBuffers();
-
-    void swapBuffers(long j);
 }

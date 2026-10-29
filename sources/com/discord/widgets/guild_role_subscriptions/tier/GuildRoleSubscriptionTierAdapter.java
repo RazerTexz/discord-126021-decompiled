@@ -42,7 +42,7 @@ public final class GuildRoleSubscriptionTierAdapter extends RecyclerView.Adapter
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.GuildRoleSubscriptionTierAdapter$setItems$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierAdapter.kt */
-    public static final class C84751 extends AbstractC12240o implements Function1<List<? extends GuildRoleSubscriptionTierAdapterItem>, Unit> {
+    public final class C84751 extends AbstractC12240o implements Function1<List<? extends GuildRoleSubscriptionTierAdapterItem>, Unit> {
         public C84751() {
             super(1);
         }
@@ -62,12 +62,6 @@ public final class GuildRoleSubscriptionTierAdapter extends RecyclerView.Adapter
 
     public /* synthetic */ GuildRoleSubscriptionTierAdapter(AppComponent appComponent, DiffCreator diffCreator, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(appComponent, (i & 2) != 0 ? new DiffCreator(appComponent) : diffCreator);
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -92,6 +86,12 @@ public final class GuildRoleSubscriptionTierAdapter extends RecyclerView.Adapter
             return 5;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItems(List<? extends GuildRoleSubscriptionTierAdapterItem> newItems) {

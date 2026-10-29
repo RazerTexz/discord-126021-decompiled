@@ -45,7 +45,7 @@ public final class C12319m implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.m$a */
     /* JADX INFO: compiled from: Http2Reader.kt */
-    public static final class a implements InterfaceC12407x {
+    public final class a implements InterfaceC12407x {
 
         /* JADX INFO: renamed from: j */
         public int f25706j;
@@ -168,6 +168,11 @@ public final class C12319m implements Closeable {
         a aVar = new a(interfaceC12390g);
         this.f25702l = aVar;
         this.f25703m = new C12309c.a(aVar, 4096, 0, 4);
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        this.f25704n.close();
     }
 
     /* JADX INFO: renamed from: a */
@@ -516,11 +521,6 @@ public final class C12319m implements Closeable {
         List<C12308b> list2 = C12163u.toList(aVar3.f25592a);
         aVar3.f25592a.clear();
         return list2;
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        this.f25704n.close();
     }
 
     /* JADX INFO: renamed from: d */

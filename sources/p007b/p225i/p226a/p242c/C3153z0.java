@@ -74,6 +74,24 @@ public class C3153z0 implements InterfaceC2827n1 {
         C1460d.m543m(z2, sb.toString());
     }
 
+    /* JADX INFO: renamed from: k */
+    public final void m3872k(boolean z2) {
+        int i = this.f9130f;
+        if (i == -1) {
+            i = 13107200;
+        }
+        this.f9134j = i;
+        this.f9135k = false;
+        if (z2) {
+            C2713o c2713o = this.f9125a;
+            synchronized (c2713o) {
+                if (c2713o.f6562a) {
+                    c2713o.m2859b(0);
+                }
+            }
+        }
+    }
+
     @Override // p007b.p225i.p226a.p242c.InterfaceC2827n1
     /* JADX INFO: renamed from: a */
     public boolean mo3309a() {
@@ -212,23 +230,5 @@ public class C3153z0 implements InterfaceC2827n1 {
     /* JADX INFO: renamed from: i */
     public void mo3317i() {
         m3872k(true);
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final void m3872k(boolean z2) {
-        int i = this.f9130f;
-        if (i == -1) {
-            i = 13107200;
-        }
-        this.f9134j = i;
-        this.f9135k = false;
-        if (z2) {
-            C2713o c2713o = this.f9125a;
-            synchronized (c2713o) {
-                if (c2713o.f6562a) {
-                    c2713o.m2859b(0);
-                }
-            }
-        }
     }
 }

@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMktgPageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMktgPageViewed implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+    private final Boolean hasSession = null;
+    private final CharSequence pageName = null;
+    private final CharSequence previousLinkLocation = null;
+    private final CharSequence previousPageName = null;
+    private final CharSequence queryReferrer = null;
+    private final CharSequence staticExperimentUuid = null;
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
-    private final CharSequence pageName = null;
-    private final CharSequence previousPageName = null;
-    private final CharSequence previousLinkLocation = null;
-    private final CharSequence queryReferrer = null;
-    private final Boolean hasSession = null;
-    private final CharSequence staticExperimentUuid = null;
     private final transient String analyticsSchemaTypeName = "mktg_page_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackMktgPageViewed implements AnalyticsSchema, Tr
         }
         TrackMktgPageViewed trackMktgPageViewed = (TrackMktgPageViewed) other;
         return C12238m.areEqual(this.pageName, trackMktgPageViewed.pageName) && C12238m.areEqual(this.previousPageName, trackMktgPageViewed.previousPageName) && C12238m.areEqual(this.previousLinkLocation, trackMktgPageViewed.previousLinkLocation) && C12238m.areEqual(this.queryReferrer, trackMktgPageViewed.queryReferrer) && C12238m.areEqual(this.hasSession, trackMktgPageViewed.hasSession) && C12238m.areEqual(this.staticExperimentUuid, trackMktgPageViewed.staticExperimentUuid);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

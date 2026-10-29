@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p330i.p332b.C4207u9;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzku extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzku> CREATOR = new C4185s9();
 
     /* JADX INFO: renamed from: j */
     public final int f20670j;
@@ -32,6 +31,7 @@ public final class zzku extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: p */
     public final Double f20676p;
+    public static final Parcelable.Creator<zzku> CREATOR = new C4185s9();
 
     public zzku(C4207u9 c4207u9) {
         this(c4207u9.f11292c, c4207u9.f11293d, c4207u9.f11294e, c4207u9.f11291b);

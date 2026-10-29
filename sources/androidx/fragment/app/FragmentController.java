@@ -28,14 +28,14 @@ public class FragmentController {
         this.mHost = fragmentHostCallback;
     }
 
-    @NonNull
-    public static FragmentController createController(@NonNull FragmentHostCallback<?> fragmentHostCallback) {
-        return new FragmentController((FragmentHostCallback) Preconditions.checkNotNull(fragmentHostCallback, "callbacks == null"));
-    }
-
     public void attachHost(@Nullable Fragment fragment) {
         FragmentHostCallback<?> fragmentHostCallback = this.mHost;
         fragmentHostCallback.mFragmentManager.attachController(fragmentHostCallback, fragmentHostCallback, fragment);
+    }
+
+    @NonNull
+    public static FragmentController createController(@NonNull FragmentHostCallback<?> fragmentHostCallback) {
+        return new FragmentController((FragmentHostCallback) Preconditions.checkNotNull(fragmentHostCallback, "callbacks == null"));
     }
 
     public void dispatchActivityCreated() {

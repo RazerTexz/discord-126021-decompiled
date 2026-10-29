@@ -32,7 +32,7 @@ public class C12141k extends C12139j {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.k$a */
     /* JADX INFO: compiled from: Iterables.kt */
-    public static final class a<T> implements Iterable<T>, InterfaceC12228a {
+    public final class a<T> implements Iterable<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Object[] f25188j;
@@ -50,7 +50,7 @@ public class C12141k extends C12139j {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.k$b */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class b<T> implements Sequence<T> {
+    public final class b<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Object[] f25189a;
@@ -68,7 +68,7 @@ public class C12141k extends C12139j {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.t.k$c */
     /* JADX INFO: compiled from: _Arrays.kt */
-    public static final class c<T> extends AbstractC12240o implements Function0<Iterator<? extends T>> {
+    public final class c<T> extends AbstractC12240o implements Function0<Iterator<? extends T>> {
         public final /* synthetic */ Object[] $this_withIndex;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -197,17 +197,6 @@ public class C12141k extends C12139j {
         return a2;
     }
 
-    public static final <T> String joinToString(T[] tArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
-        C12238m.checkNotNullParameter(tArr, "$this$joinToString");
-        C12238m.checkNotNullParameter(charSequence, "separator");
-        C12238m.checkNotNullParameter(charSequence2, "prefix");
-        C12238m.checkNotNullParameter(charSequence3, "postfix");
-        C12238m.checkNotNullParameter(charSequence4, "truncated");
-        String string = ((StringBuilder) joinTo(tArr, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
-        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
-        return string;
-    }
-
     public static /* synthetic */ String joinToString$default(Object[] objArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
@@ -223,6 +212,17 @@ public class C12141k extends C12139j {
             function1 = null;
         }
         return joinToString(objArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+    }
+
+    public static final <T> String joinToString(T[] tArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
+        C12238m.checkNotNullParameter(tArr, "$this$joinToString");
+        C12238m.checkNotNullParameter(charSequence, "separator");
+        C12238m.checkNotNullParameter(charSequence2, "prefix");
+        C12238m.checkNotNullParameter(charSequence3, "postfix");
+        C12238m.checkNotNullParameter(charSequence4, "truncated");
+        String string = ((StringBuilder) joinTo(tArr, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
+        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
+        return string;
     }
 
     public static final <T> T last(T[] tArr) {
@@ -385,17 +385,6 @@ public class C12141k extends C12139j {
         return Integer.valueOf(iArr[i]);
     }
 
-    public static final String joinToString(byte[] bArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super Byte, ? extends CharSequence> function1) {
-        C12238m.checkNotNullParameter(bArr, "$this$joinToString");
-        C12238m.checkNotNullParameter(charSequence, "separator");
-        C12238m.checkNotNullParameter(charSequence2, "prefix");
-        C12238m.checkNotNullParameter(charSequence3, "postfix");
-        C12238m.checkNotNullParameter(charSequence4, "truncated");
-        String string = ((StringBuilder) joinTo(bArr, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
-        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
-        return string;
-    }
-
     public static /* synthetic */ String joinToString$default(byte[] bArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
@@ -411,6 +400,17 @@ public class C12141k extends C12139j {
             function1 = null;
         }
         return joinToString(bArr, charSequence, charSequence5, charSequence6, i3, charSequence7, (Function1<? super Byte, ? extends CharSequence>) function1);
+    }
+
+    public static final String joinToString(byte[] bArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super Byte, ? extends CharSequence> function1) {
+        C12238m.checkNotNullParameter(bArr, "$this$joinToString");
+        C12238m.checkNotNullParameter(charSequence, "separator");
+        C12238m.checkNotNullParameter(charSequence2, "prefix");
+        C12238m.checkNotNullParameter(charSequence3, "postfix");
+        C12238m.checkNotNullParameter(charSequence4, "truncated");
+        String string = ((StringBuilder) joinTo(bArr, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
+        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
+        return string;
     }
 
     public static final List<Byte> toMutableList(byte[] bArr) {

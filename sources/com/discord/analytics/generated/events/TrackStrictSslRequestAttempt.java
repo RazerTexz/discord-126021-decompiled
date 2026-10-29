@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStrictSslRequestAttempt.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStrictSslRequestAttempt implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean success = null;
     private final CharSequence method = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "strict_ssl_request_attempt";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackStrictSslRequestAttempt implements AnalyticsS
         }
         TrackStrictSslRequestAttempt trackStrictSslRequestAttempt = (TrackStrictSslRequestAttempt) other;
         return C12238m.areEqual(this.success, trackStrictSslRequestAttempt.success) && C12238m.areEqual(this.method, trackStrictSslRequestAttempt.method);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

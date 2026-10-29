@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationGeneratedGenericEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationGeneratedGenericEvent implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long applicationId = null;
     private final CharSequence activitySessionId = null;
-    private final CharSequence type = null;
-    private final CharSequence name = null;
+    private final Long applicationId = null;
     private final CharSequence details = null;
+    private final CharSequence name = null;
+    private TrackBase trackBase;
+    private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "application_generated_generic_event";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackApplicationGeneratedGenericEvent implements A
         }
         TrackApplicationGeneratedGenericEvent trackApplicationGeneratedGenericEvent = (TrackApplicationGeneratedGenericEvent) other;
         return C12238m.areEqual(this.applicationId, trackApplicationGeneratedGenericEvent.applicationId) && C12238m.areEqual(this.activitySessionId, trackApplicationGeneratedGenericEvent.activitySessionId) && C12238m.areEqual(this.type, trackApplicationGeneratedGenericEvent.type) && C12238m.areEqual(this.name, trackApplicationGeneratedGenericEvent.name) && C12238m.areEqual(this.details, trackApplicationGeneratedGenericEvent.details);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

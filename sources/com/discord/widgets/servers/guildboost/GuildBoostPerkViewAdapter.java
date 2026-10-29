@@ -23,7 +23,7 @@ import p507d0.p592z.p594d.C12238m;
 public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<GuildBoostPerkViewListItem> {
 
     /* JADX INFO: compiled from: GuildBoostPerkViewAdapter.kt */
-    public static final /* data */ class GuildBoostPerkViewListItem implements MGRecyclerDataPayload {
+    public final /* data */ class GuildBoostPerkViewListItem implements MGRecyclerDataPayload {
         public static final int TYPE_LIST_ITEM = 1;
         private final int iconResId;
         private final String key;
@@ -48,16 +48,6 @@ public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<Gui
             return guildBoostPerkViewListItem.copy(i, charSequence);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getIconResId() {
-            return this.iconResId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getText() {
-            return this.text;
-        }
-
         public final GuildBoostPerkViewListItem copy(@DrawableRes int iconResId, CharSequence text) {
             C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             return new GuildBoostPerkViewListItem(iconResId, text);
@@ -74,6 +64,11 @@ public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<Gui
             return this.iconResId == guildBoostPerkViewListItem.iconResId && C12238m.areEqual(this.text, guildBoostPerkViewListItem.text);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getIconResId() {
+            return this.iconResId;
+        }
+
         public final int getIconResId() {
             return this.iconResId;
         }
@@ -81,6 +76,11 @@ public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<Gui
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getText() {
+            return this.text;
         }
 
         public final CharSequence getText() {
@@ -107,7 +107,7 @@ public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<Gui
     }
 
     /* JADX INFO: compiled from: GuildBoostPerkViewAdapter.kt */
-    public static final class PerkViewHolder extends MGRecyclerViewHolder<GuildBoostPerkViewAdapter, GuildBoostPerkViewListItem> {
+    public final class PerkViewHolder extends MGRecyclerViewHolder<GuildBoostPerkViewAdapter, GuildBoostPerkViewListItem> {
         private final ViewNitroBoostPerksListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

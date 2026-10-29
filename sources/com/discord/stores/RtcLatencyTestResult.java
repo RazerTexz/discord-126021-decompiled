@@ -26,6 +26,14 @@ public final /* data */ class RtcLatencyTestResult {
         this.lastTestTimestampMs = j;
     }
 
+    public final List<String> component1() {
+        return this.latencyRankedRegions;
+    }
+
+    public final List<String> component2() {
+        return this.geoRankedRegions;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ RtcLatencyTestResult copy$default(RtcLatencyTestResult rtcLatencyTestResult, List list, List list2, long j, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -38,19 +46,6 @@ public final /* data */ class RtcLatencyTestResult {
             j = rtcLatencyTestResult.lastTestTimestampMs;
         }
         return rtcLatencyTestResult.copy(list, list2, j);
-    }
-
-    public final List<String> component1() {
-        return this.latencyRankedRegions;
-    }
-
-    public final List<String> component2() {
-        return this.geoRankedRegions;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getLastTestTimestampMs() {
-        return this.lastTestTimestampMs;
     }
 
     public final RtcLatencyTestResult copy(List<String> latencyRankedRegions, List<String> geoRankedRegions, long lastTestTimestampMs) {
@@ -72,6 +67,11 @@ public final /* data */ class RtcLatencyTestResult {
 
     public final List<String> getGeoRankedRegions() {
         return this.geoRankedRegions;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getLastTestTimestampMs() {
+        return this.lastTestTimestampMs;
     }
 
     public final long getLastTestTimestampMs() {

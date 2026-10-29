@@ -23,7 +23,7 @@ public final class C13080b<T> extends C13081c<T> {
     /* JADX INFO: renamed from: s.a.d2.b$a */
     /* JADX INFO: compiled from: Builders.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.flow.CallbackFlowBuilder", m10085f = "Builders.kt", m10086l = {358}, m10087m = "collectTo")
-    public static final class a extends AbstractC12187d {
+    public final class a extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public int label;
@@ -49,7 +49,7 @@ public final class C13080b<T> extends C13081c<T> {
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     @Override // p659s.p660a.p664d2.p665g.AbstractC13085a
     /* JADX INFO: renamed from: b */
-    public Object mo11248b(ProducerScope<? super T> producerScope, Continuation<? super Unit> continuation) {
+    public Object mo11248b(ProducerScope<? super T> producerScope, Continuation<? super Unit> continuation) throws Throwable {
         a aVar;
         if (continuation instanceof a) {
             aVar = (a) continuation;

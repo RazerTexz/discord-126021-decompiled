@@ -26,7 +26,7 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
     private final UserProfileVoiceSettingsViewBinding binding;
 
     /* JADX INFO: compiled from: UserProfileVoiceSettingsView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final Boolean isDeafened;
         private final boolean isMuted;
         private final Float outputVolume;
@@ -50,21 +50,6 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
             return viewState.copy(z2, bool, f);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getIsDeafened() {
-            return this.isDeafened;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Float getOutputVolume() {
-            return this.outputVolume;
-        }
-
         public final ViewState copy(boolean isMuted, Boolean isDeafened, Float outputVolume) {
             return new ViewState(isMuted, isDeafened, outputVolume);
         }
@@ -78,6 +63,21 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
             }
             ViewState viewState = (ViewState) other;
             return this.isMuted == viewState.isMuted && C12238m.areEqual(this.isDeafened, viewState.isDeafened) && C12238m.areEqual(this.outputVolume, viewState.outputVolume);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Boolean getIsDeafened() {
+            return this.isDeafened;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Float getOutputVolume() {
+            return this.outputVolume;
         }
 
         public final Float getOutputVolume() {

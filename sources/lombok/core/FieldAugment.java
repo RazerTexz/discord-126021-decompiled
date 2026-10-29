@@ -10,17 +10,17 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/FieldAugment.SCL.lombok */
 public abstract class FieldAugment<T, F> {
-    public abstract F get(T t);
-
-    public abstract F getAndSet(T t, F f);
-
     public abstract F clear(T t);
 
     public abstract F compareAndClear(T t, F f);
 
-    public abstract F setIfAbsent(T t, F f);
-
     public abstract F compareAndSet(T t, F f, F f2);
+
+    public abstract F get(T t);
+
+    public abstract F getAndSet(T t, F f);
+
+    public abstract F setIfAbsent(T t, F f);
 
     private static Object getDefaultValue(Class<?> type) {
         if (type == Boolean.TYPE) {
@@ -137,7 +137,7 @@ public abstract class FieldAugment<T, F> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/FieldAugment$ReflectionFieldAugment.SCL.lombok */
-    private static class ReflectionFieldAugment<T, F> extends FieldAugment<T, F> {
+    class ReflectionFieldAugment<T, F> extends FieldAugment<T, F> {
         private final Object lock;
         private final Field field;
         private final Class<F> targetType;
@@ -299,7 +299,7 @@ public abstract class FieldAugment<T, F> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/FieldAugment$MapFieldAugment.SCL.lombok */
-    private static class MapFieldAugment<T, F> extends FieldAugment<T, F> {
+    class MapFieldAugment<T, F> extends FieldAugment<T, F> {
         final Map<T, Object> values;
         final F defaultValue;
 
@@ -440,7 +440,7 @@ public abstract class FieldAugment<T, F> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/FieldAugment$MapWeakFieldAugment.SCL.lombok */
-    static class MapWeakFieldAugment<T, F> extends MapFieldAugment<T, F> {
+    class MapWeakFieldAugment<T, F> extends MapFieldAugment<T, F> {
         MapWeakFieldAugment(F defaultValue) {
             super(defaultValue);
         }

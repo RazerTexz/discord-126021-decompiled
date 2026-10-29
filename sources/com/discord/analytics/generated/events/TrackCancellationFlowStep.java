@@ -13,21 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCancellationFlowStep.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCancellationFlowStep implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSubscriptionMetadataReceiver {
+    private final Long flowDurationMs = null;
+    private final CharSequence fromStep = null;
+    private final Long stepDurationMs = null;
+    private final Long subscriptionId = null;
+    private final CharSequence toStep = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final CharSequence toStep = null;
-    private final CharSequence fromStep = null;
-    private final Long stepDurationMs = null;
-    private final Long flowDurationMs = null;
-    private final Long subscriptionId = null;
     private final transient String analyticsSchemaTypeName = "cancellation_flow_step";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
         }
         TrackCancellationFlowStep trackCancellationFlowStep = (TrackCancellationFlowStep) other;
         return C12238m.areEqual(this.toStep, trackCancellationFlowStep.toStep) && C12238m.areEqual(this.fromStep, trackCancellationFlowStep.fromStep) && C12238m.areEqual(this.stepDurationMs, trackCancellationFlowStep.stepDurationMs) && C12238m.areEqual(this.flowDurationMs, trackCancellationFlowStep.flowDurationMs) && C12238m.areEqual(this.subscriptionId, trackCancellationFlowStep.subscriptionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

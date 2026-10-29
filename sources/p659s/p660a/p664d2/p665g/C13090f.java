@@ -18,7 +18,7 @@ public final class C13090f {
 
     /* JADX INFO: renamed from: s.a.d2.g.f$a */
     /* JADX INFO: compiled from: SafeCollector.kt */
-    public static final /* synthetic */ class a extends C12236k implements Function3<InterfaceC13083e<? super Object>, Object, Continuation<? super Unit>, Object> {
+    public final /* synthetic */ class a extends C12236k implements Function3<InterfaceC13083e<? super Object>, Object, Continuation<? super Unit>, Object> {
         public a() {
             super(3, InterfaceC13083e.class, "emit", "emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", 0);
         }

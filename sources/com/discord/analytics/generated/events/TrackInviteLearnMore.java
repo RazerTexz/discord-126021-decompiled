@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInviteLearnMore.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence inviteCode = null;
-    private final Long guildId = null;
     private final Long channelId = null;
+    private final Long guildId = null;
+    private final CharSequence inviteCode = null;
     private final Long inviterId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "invite_learn_more";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, T
         }
         TrackInviteLearnMore trackInviteLearnMore = (TrackInviteLearnMore) other;
         return C12238m.areEqual(this.inviteCode, trackInviteLearnMore.inviteCode) && C12238m.areEqual(this.guildId, trackInviteLearnMore.guildId) && C12238m.areEqual(this.channelId, trackInviteLearnMore.channelId) && C12238m.areEqual(this.inviterId, trackInviteLearnMore.inviterId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

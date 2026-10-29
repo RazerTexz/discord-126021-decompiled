@@ -50,28 +50,6 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
         this.richPresenceImageLargeText = textView5;
     }
 
-    private final void configureButtonUi(final FragmentManager fragmentManager, Activity model, final boolean isMe, final boolean userInSameVoiceChannel) {
-        final StageCallRichPresencePartyData stageChannelRichPresencePartyData = model != null ? ActivityUtilsKt.getStageChannelRichPresencePartyData(model) : null;
-        if (stageChannelRichPresencePartyData == null) {
-            Button richPresencePrimaryButton = getRichPresencePrimaryButton();
-            if (richPresencePrimaryButton != null) {
-                ViewKt.setVisible(richPresencePrimaryButton, false);
-                return;
-            }
-            return;
-        }
-        final Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
-        if (richPresencePrimaryButton2 != null) {
-            richPresencePrimaryButton2.setVisibility(!isMe && !userInSameVoiceChannel ? 0 : 8);
-            richPresencePrimaryButton2.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderStageChannelRichPresence$configureButtonUi$$inlined$apply$lambda$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    StageChannelJoinHelper.INSTANCE.lurkAndJoinStage(C1643a.m885x(view, "it", "it.context"), fragmentManager, ViewCoroutineScopeKt.getCoroutineScope(richPresencePrimaryButton2), stageChannelRichPresencePartyData.getGuildId(), stageChannelRichPresencePartyData.getChannelId(), (448 & 32) != 0 ? false : true, (448 & 64) != 0 ? StoreStream.INSTANCE.getGuilds() : null, (448 & 128) != 0 ? StoreStream.INSTANCE.getLurking() : null, (448 & 256) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : null);
-                }
-            });
-        }
-    }
-
     @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
     @MainThread
     public void configureAssetUi(Activity model, StreamContext streamContext) {
@@ -97,6 +75,28 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
             SimpleDraweeViewExtensionsKt.setGuildIcon(getRichPresenceImageLarge(), true, (496 & 2) != 0 ? null : guild, resources.getDimensionPixelSize(C5419R.dimen.guild_icon_radius), (496 & 8) != 0 ? null : Integer.valueOf(IconUtils.getMediaProxySize(resources.getDimensionPixelSize(C5419R.dimen.avatar_size_large))), (496 & 16) != 0 ? null : null, (496 & 32) != 0 ? null : null, (496 & 64) != 0 ? null : null, (496 & 128) != 0 ? false : false, (496 & 256) != 0 ? null : null);
         } else {
             this.richPresenceImageLargeText.setText(guild.getShortName());
+        }
+    }
+
+    private final void configureButtonUi(final FragmentManager fragmentManager, Activity model, final boolean isMe, final boolean userInSameVoiceChannel) {
+        final StageCallRichPresencePartyData stageChannelRichPresencePartyData = model != null ? ActivityUtilsKt.getStageChannelRichPresencePartyData(model) : null;
+        if (stageChannelRichPresencePartyData == null) {
+            Button richPresencePrimaryButton = getRichPresencePrimaryButton();
+            if (richPresencePrimaryButton != null) {
+                ViewKt.setVisible(richPresencePrimaryButton, false);
+                return;
+            }
+            return;
+        }
+        final Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
+        if (richPresencePrimaryButton2 != null) {
+            richPresencePrimaryButton2.setVisibility(!isMe && !userInSameVoiceChannel ? 0 : 8);
+            richPresencePrimaryButton2.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderStageChannelRichPresence$configureButtonUi$$inlined$apply$lambda$1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(View view) {
+                    StageChannelJoinHelper.INSTANCE.lurkAndJoinStage(C1643a.m885x(view, "it", "it.context"), fragmentManager, ViewCoroutineScopeKt.getCoroutineScope(richPresencePrimaryButton2), stageChannelRichPresencePartyData.getGuildId(), stageChannelRichPresencePartyData.getChannelId(), (448 & 32) != 0 ? false : true, (448 & 64) != 0 ? StoreStream.INSTANCE.getGuilds() : null, (448 & 128) != 0 ? StoreStream.INSTANCE.getLurking() : null, (448 & 256) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : null);
+                }
+            });
         }
     }
 

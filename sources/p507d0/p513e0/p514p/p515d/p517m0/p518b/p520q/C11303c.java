@@ -72,7 +72,7 @@ public final class C11303c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.c$a */
     /* JADX INFO: compiled from: JavaToKotlinClassMap.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C11712a f22627a;
@@ -329,6 +329,26 @@ public final class C11303c {
         }
     }
 
+    public final C11713b getFUNCTION_N_FQ_NAME() {
+        return f22620g;
+    }
+
+    public final List<a> getMutabilityMappings() {
+        return f22626m;
+    }
+
+    public final boolean isMutable(C11714c c11714c) {
+        HashMap<C11714c, C11713b> map = f22624k;
+        Objects.requireNonNull(map, "null cannot be cast to non-null type kotlin.collections.Map<K, *>");
+        return map.containsKey(c11714c);
+    }
+
+    public final boolean isReadOnly(C11714c c11714c) {
+        HashMap<C11714c, C11713b> map = f22625l;
+        Objects.requireNonNull(map, "null cannot be cast to non-null type kotlin.collections.Map<K, *>");
+        return map.containsKey(c11714c);
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m9375a(C11712a c11712a, C11712a c11712a2) {
         HashMap<C11714c, C11712a> map = f22622i;
@@ -389,26 +409,6 @@ public final class C11303c {
         C12238m.checkNotNullExpressionValue(strAsString, "kotlinFqName.asString()");
         String strSubstringAfter = C12106w.substringAfter(strAsString, str, "");
         return (strSubstringAfter.length() > 0) && !C12106w.startsWith$default((CharSequence) strSubstringAfter, '0', false, 2, (Object) null) && (intOrNull = C12102s.toIntOrNull(strSubstringAfter)) != null && intOrNull.intValue() >= 23;
-    }
-
-    public final C11713b getFUNCTION_N_FQ_NAME() {
-        return f22620g;
-    }
-
-    public final List<a> getMutabilityMappings() {
-        return f22626m;
-    }
-
-    public final boolean isMutable(C11714c c11714c) {
-        HashMap<C11714c, C11713b> map = f22624k;
-        Objects.requireNonNull(map, "null cannot be cast to non-null type kotlin.collections.Map<K, *>");
-        return map.containsKey(c11714c);
-    }
-
-    public final boolean isReadOnly(C11714c c11714c) {
-        HashMap<C11714c, C11713b> map = f22625l;
-        Objects.requireNonNull(map, "null cannot be cast to non-null type kotlin.collections.Map<K, *>");
-        return map.containsKey(c11714c);
     }
 
     public final C11712a mapJavaToKotlin(C11713b c11713b) {

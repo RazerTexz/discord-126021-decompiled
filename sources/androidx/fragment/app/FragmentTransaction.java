@@ -59,7 +59,7 @@ public abstract class FragmentTransaction {
     public int mTransition;
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransaction$Op */
-    public static final class C0394Op {
+    public final class C0394Op {
         public int mCmd;
         public Lifecycle.State mCurrentMaxState;
         public int mEnterAnim;
@@ -95,23 +95,6 @@ public abstract class FragmentTransaction {
         this.mReorderingAllowed = false;
         this.mFragmentFactory = null;
         this.mClassLoader = null;
-    }
-
-    @NonNull
-    private Fragment createFragment(@NonNull Class<? extends Fragment> cls, @Nullable Bundle bundle) {
-        FragmentFactory fragmentFactory = this.mFragmentFactory;
-        if (fragmentFactory == null) {
-            throw new IllegalStateException("Creating a Fragment requires that this FragmentTransaction was built with FragmentManager.beginTransaction()");
-        }
-        ClassLoader classLoader = this.mClassLoader;
-        if (classLoader == null) {
-            throw new IllegalStateException("The FragmentManager must be attached to itshost to create a Fragment");
-        }
-        Fragment fragmentInstantiate = fragmentFactory.instantiate(classLoader, cls.getName());
-        if (bundle != null) {
-            fragmentInstantiate.setArguments(bundle);
-        }
-        return fragmentInstantiate;
     }
 
     @NonNull
@@ -174,6 +157,23 @@ public abstract class FragmentTransaction {
     public abstract void commitNow();
 
     public abstract void commitNowAllowingStateLoss();
+
+    @NonNull
+    private Fragment createFragment(@NonNull Class<? extends Fragment> cls, @Nullable Bundle bundle) {
+        FragmentFactory fragmentFactory = this.mFragmentFactory;
+        if (fragmentFactory == null) {
+            throw new IllegalStateException("Creating a Fragment requires that this FragmentTransaction was built with FragmentManager.beginTransaction()");
+        }
+        ClassLoader classLoader = this.mClassLoader;
+        if (classLoader == null) {
+            throw new IllegalStateException("The FragmentManager must be attached to itshost to create a Fragment");
+        }
+        Fragment fragmentInstantiate = fragmentFactory.instantiate(classLoader, cls.getName());
+        if (bundle != null) {
+            fragmentInstantiate.setArguments(bundle);
+        }
+        return fragmentInstantiate;
+    }
 
     @NonNull
     public FragmentTransaction detach(@NonNull Fragment fragment) {

@@ -58,7 +58,7 @@ public final class C11543j extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$a */
     /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C11716e f23381a;
@@ -91,11 +91,23 @@ public final class C11543j extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$b */
     /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-    public static abstract class b {
+    public abstract class b {
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
+        public final class C13311b extends b {
+
+            /* JADX INFO: renamed from: a */
+            public static final C13311b f23384a = new C13311b();
+
+            public C13311b() {
+                super(null);
+            }
+        }
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$b$a */
         /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-        public static final class a extends b {
+        public final class a extends b {
 
             /* JADX INFO: renamed from: a */
             public final InterfaceC11330e f23383a;
@@ -112,21 +124,9 @@ public final class C11543j extends AbstractC11551r {
             }
         }
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$b$b, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-        public static final class C13311b extends b {
-
-            /* JADX INFO: renamed from: a */
-            public static final C13311b f23384a = new C13311b();
-
-            public C13311b() {
-                super(null);
-            }
-        }
-
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$b$c */
         /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-        public static final class c extends b {
+        public final class c extends b {
 
             /* JADX INFO: renamed from: a */
             public static final c f23385a = new c();
@@ -142,7 +142,7 @@ public final class C11543j extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$c */
     /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-    public static final class c extends AbstractC12240o implements Function1<a, InterfaceC11330e> {
+    public final class c extends AbstractC12240o implements Function1<a, InterfaceC11330e> {
 
         /* JADX INFO: renamed from: $c */
         public final /* synthetic */ C11529g f23386$c;
@@ -209,7 +209,7 @@ public final class C11543j extends AbstractC11551r {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.j$d */
     /* JADX INFO: compiled from: LazyJavaPackageScope.kt */
-    public static final class d extends AbstractC12240o implements Function0<Set<? extends String>> {
+    public final class d extends AbstractC12240o implements Function0<Set<? extends String>> {
 
         /* JADX INFO: renamed from: $c */
         public final /* synthetic */ C11529g f23387$c;
@@ -250,6 +250,62 @@ public final class C11543j extends AbstractC11551r {
         }
         InterfaceC11330e interfaceC11330eResolveClass = c11543j.f23389c.getComponents().getDeserializedDescriptorResolver().resolveClass(interfaceC11655p);
         return interfaceC11330eResolveClass != null ? new b.a(interfaceC11330eResolveClass) : b.C13311b.f23384a;
+    }
+
+    public final InterfaceC11330e findClassifierByJavaClass$descriptors_jvm(InterfaceC11574g interfaceC11574g) {
+        C12238m.checkNotNullParameter(interfaceC11574g, "javaClass");
+        return m9493o(interfaceC11574g.getName(), interfaceC11574g);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:13:0x005b  */
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+        boolean z2;
+        C12238m.checkNotNullParameter(c11765d, "kindFilter");
+        C12238m.checkNotNullParameter(function1, "nameFilter");
+        C11765d.a aVar = C11765d.f24339a;
+        if (!c11765d.acceptsKinds(aVar.getNON_SINGLETON_CLASSIFIERS_MASK() | aVar.getCLASSIFIERS_MASK())) {
+            return C12147n.emptyList();
+        }
+        Collection<InterfaceC11450m> collectionInvoke = this.f23391e.invoke();
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : collectionInvoke) {
+            InterfaceC11450m interfaceC11450m = (InterfaceC11450m) obj;
+            if (interfaceC11450m instanceof InterfaceC11330e) {
+                C11716e name = ((InterfaceC11330e) interfaceC11450m).getName();
+                C12238m.checkNotNullExpressionValue(name, "it.name");
+                if (function1.invoke(name).booleanValue()) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+            } else {
+                z2 = false;
+            }
+            if (z2) {
+                arrayList.add(obj);
+            }
+        }
+        return arrayList;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+    public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        return C12147n.emptyList();
+    }
+
+    /* JADX INFO: renamed from: o */
+    public final InterfaceC11330e m9493o(C11716e c11716e, InterfaceC11574g interfaceC11574g) {
+        if (!C11718g.isSafeIdentifier(c11716e)) {
+            return null;
+        }
+        Set<String> setInvoke = this.f23379p.invoke();
+        if (interfaceC11574g != null || setInvoke == null || setInvoke.contains(c11716e.asString())) {
+            return this.f23380q.invoke(new a(c11716e, interfaceC11574g));
+        }
+        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
@@ -303,50 +359,6 @@ public final class C11543j extends AbstractC11551r {
         C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
     }
 
-    public final InterfaceC11330e findClassifierByJavaClass$descriptors_jvm(InterfaceC11574g interfaceC11574g) {
-        C12238m.checkNotNullParameter(interfaceC11574g, "javaClass");
-        return m9493o(interfaceC11574g.getName(), interfaceC11574g);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:13:0x005b  */
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-        boolean z2;
-        C12238m.checkNotNullParameter(c11765d, "kindFilter");
-        C12238m.checkNotNullParameter(function1, "nameFilter");
-        C11765d.a aVar = C11765d.f24339a;
-        if (!c11765d.acceptsKinds(aVar.getNON_SINGLETON_CLASSIFIERS_MASK() | aVar.getCLASSIFIERS_MASK())) {
-            return C12147n.emptyList();
-        }
-        Collection<InterfaceC11450m> collectionInvoke = this.f23391e.invoke();
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : collectionInvoke) {
-            InterfaceC11450m interfaceC11450m = (InterfaceC11450m) obj;
-            if (interfaceC11450m instanceof InterfaceC11330e) {
-                C11716e name = ((InterfaceC11330e) interfaceC11450m).getName();
-                C12238m.checkNotNullExpressionValue(name, "it.name");
-                if (function1.invoke(name).booleanValue()) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-            } else {
-                z2 = false;
-            }
-            if (z2) {
-                arrayList.add(obj);
-            }
-        }
-        return arrayList;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-    public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        return C12147n.emptyList();
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
     /* JADX INFO: renamed from: h */
     public Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
@@ -358,18 +370,6 @@ public final class C11543j extends AbstractC11551r {
     /* JADX INFO: renamed from: j */
     public InterfaceC11450m mo9478j() {
         return this.f23378o;
-    }
-
-    /* JADX INFO: renamed from: o */
-    public final InterfaceC11330e m9493o(C11716e c11716e, InterfaceC11574g interfaceC11574g) {
-        if (!C11718g.isSafeIdentifier(c11716e)) {
-            return null;
-        }
-        Set<String> setInvoke = this.f23379p.invoke();
-        if (interfaceC11574g != null || setInvoke == null || setInvoke.contains(c11716e.asString())) {
-            return this.f23380q.invoke(new a(c11716e, interfaceC11574g));
-        }
-        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l

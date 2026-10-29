@@ -35,10 +35,10 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
     private final List<SelectItem> selectedOptions;
 
     /* JADX INFO: compiled from: SelectComponentBottomSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: SelectComponentBottomSheetViewModel.kt */
-        public static final class CloseSheet extends Event {
+        public final class CloseSheet extends Event {
             public static final CloseSheet INSTANCE = new CloseSheet();
 
             private CloseSheet() {
@@ -55,7 +55,7 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: SelectComponentBottomSheetViewModel.kt */
-    public static final class ViewState {
+    public final class ViewState {
         private final boolean emojiAnimationsEnabled;
         private final boolean isMultiSelect;
         private final boolean isValidSelection;
@@ -81,6 +81,16 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
             return this.emojiAnimationsEnabled;
         }
 
+        /* JADX INFO: renamed from: isMultiSelect, reason: from getter */
+        public final boolean getIsMultiSelect() {
+            return this.isMultiSelect;
+        }
+
+        /* JADX INFO: renamed from: isValidSelection, reason: from getter */
+        public final boolean getIsValidSelection() {
+            return this.isValidSelection;
+        }
+
         public final List<SelectComponentBottomSheetItem> getItems() {
             return this.items;
         }
@@ -99,16 +109,6 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
 
         public final String getTitle() {
             return this.title;
-        }
-
-        /* JADX INFO: renamed from: isMultiSelect, reason: from getter */
-        public final boolean getIsMultiSelect() {
-            return this.isMultiSelect;
-        }
-
-        /* JADX INFO: renamed from: isValidSelection, reason: from getter */
-        public final boolean getIsValidSelection() {
-            return this.isValidSelection;
         }
     }
 
@@ -132,34 +132,6 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
         this.selectedItems = C12163u.toMutableSet(list2);
         updateViewState();
         this.eventSubject = PublishSubject.m11133k0();
-    }
-
-    private final boolean isValidSelection() {
-        int i = this.min;
-        int i2 = this.max;
-        int size = this.selectedItems.size();
-        return i <= size && i2 >= size;
-    }
-
-    private final void sendSelectInteraction(Set<SelectItem> selection) {
-        StoreStream.Companion companion = StoreStream.INSTANCE;
-        companion.getLocalActionComponentState().setSelectComponentSelection(this.componentContext.getMessageId(), this.componentIndex, C12163u.toList(selection));
-        StoreApplicationInteractions interactions = companion.getInteractions();
-        long applicationId = this.componentContext.getApplicationId();
-        Long guildId = this.componentContext.getGuildId();
-        long channelId = this.componentContext.getChannelId();
-        long messageId = this.componentContext.getMessageId();
-        Long messageFlags = this.componentContext.getMessageFlags();
-        int i = this.componentIndex;
-        String str = this.customId;
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(selection, 10));
-        Iterator<T> it = selection.iterator();
-        while (it.hasNext()) {
-            arrayList.add(((SelectItem) it.next()).getValue());
-        }
-        interactions.sendComponentInteraction(applicationId, guildId, channelId, messageId, i, new RestAPIParams.ComponentInteractionData.SelectComponentInteractionData(null, str, C12163u.toList(arrayList), 1, null), messageFlags);
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.CloseSheet.INSTANCE);
     }
 
     public final ComponentContext getComponentContext() {
@@ -202,6 +174,13 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
         return this.selectedOptions;
     }
 
+    private final boolean isValidSelection() {
+        int i = this.min;
+        int i2 = this.max;
+        int size = this.selectedItems.size();
+        return i <= size && i2 >= size;
+    }
+
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -225,6 +204,27 @@ public final class SelectComponentBottomSheetViewModel extends AbstractC0859d0<V
             this.selectedItems.remove(selectItem);
         }
         updateViewState();
+    }
+
+    private final void sendSelectInteraction(Set<SelectItem> selection) {
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        companion.getLocalActionComponentState().setSelectComponentSelection(this.componentContext.getMessageId(), this.componentIndex, C12163u.toList(selection));
+        StoreApplicationInteractions interactions = companion.getInteractions();
+        long applicationId = this.componentContext.getApplicationId();
+        Long guildId = this.componentContext.getGuildId();
+        long channelId = this.componentContext.getChannelId();
+        long messageId = this.componentContext.getMessageId();
+        Long messageFlags = this.componentContext.getMessageFlags();
+        int i = this.componentIndex;
+        String str = this.customId;
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(selection, 10));
+        Iterator<T> it = selection.iterator();
+        while (it.hasNext()) {
+            arrayList.add(((SelectItem) it.next()).getValue());
+        }
+        interactions.sendComponentInteraction(applicationId, guildId, channelId, messageId, i, new RestAPIParams.ComponentInteractionData.SelectComponentInteractionData(null, str, C12163u.toList(arrayList), 1, null), messageFlags);
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(Event.CloseSheet.INSTANCE);
     }
 
     public final void updateViewState() {

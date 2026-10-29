@@ -65,25 +65,9 @@ public final class WidgetServerSettingsRoleMembers extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetServerSettingsRoleMembers newInstance(long guildRoleId, long guildId) {
-            WidgetServerSettingsRoleMembers widgetServerSettingsRoleMembers = new WidgetServerSettingsRoleMembers();
-            widgetServerSettingsRoleMembers.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetServerSettingsRoleMembers.INTENT_EXTRA_GUILD_ROLE_ID, Long.valueOf(guildRoleId)), C12116o.m10073to("INTENT_EXTRA_GUILD_ID", Long.valueOf(guildId))));
-            return widgetServerSettingsRoleMembers;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.WidgetServerSettingsRoleMembers$configureUI$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class C95771 extends AbstractC12240o implements Function2<GuildMember, User, Unit> {
+    public final class C95771 extends AbstractC12240o implements Function2<GuildMember, User, Unit> {
         public final /* synthetic */ ServerSettingsRoleMembersViewModel.ViewState $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -125,7 +109,7 @@ public final class WidgetServerSettingsRoleMembers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.WidgetServerSettingsRoleMembers$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class C95781 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C95781 extends AbstractC12240o implements Function1<String, Unit> {
         public C95781() {
             super(1);
         }
@@ -145,7 +129,7 @@ public final class WidgetServerSettingsRoleMembers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.WidgetServerSettingsRoleMembers$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class C95791 extends AbstractC12240o implements Function1<ServerSettingsRoleMembersViewModel.ViewState, Unit> {
+    public final class C95791 extends AbstractC12240o implements Function1<ServerSettingsRoleMembersViewModel.ViewState, Unit> {
         public C95791() {
             super(1);
         }
@@ -166,7 +150,7 @@ public final class WidgetServerSettingsRoleMembers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.WidgetServerSettingsRoleMembers$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
-    public static final class C95802 extends AbstractC12240o implements Function1<ServerSettingsRoleMembersViewModel.Event, Unit> {
+    public final class C95802 extends AbstractC12240o implements Function1<ServerSettingsRoleMembersViewModel.Event, Unit> {
         public C95802() {
             super(1);
         }
@@ -181,6 +165,22 @@ public final class WidgetServerSettingsRoleMembers extends AppFragment {
         public final void invoke2(ServerSettingsRoleMembersViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "it");
             WidgetServerSettingsRoleMembers.this.handleEvents(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsRoleMembers.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetServerSettingsRoleMembers newInstance(long guildRoleId, long guildId) {
+            WidgetServerSettingsRoleMembers widgetServerSettingsRoleMembers = new WidgetServerSettingsRoleMembers();
+            widgetServerSettingsRoleMembers.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetServerSettingsRoleMembers.INTENT_EXTRA_GUILD_ROLE_ID, Long.valueOf(guildRoleId)), C12116o.m10073to("INTENT_EXTRA_GUILD_ID", Long.valueOf(guildId))));
+            return widgetServerSettingsRoleMembers;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

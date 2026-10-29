@@ -12,6 +12,17 @@ public final /* data */ class EmbeddedActivityInboundUpdate {
     private final long guildId;
     private final List<Long> users;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbeddedActivityInboundUpdate)) {
+            return false;
+        }
+        EmbeddedActivityInboundUpdate embeddedActivityInboundUpdate = (EmbeddedActivityInboundUpdate) other;
+        return this.channelId == embeddedActivityInboundUpdate.channelId && C12238m.areEqual(this.embeddedActivity, embeddedActivityInboundUpdate.embeddedActivity) && this.guildId == embeddedActivityInboundUpdate.guildId && C12238m.areEqual(this.users, embeddedActivityInboundUpdate.users);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -27,22 +38,6 @@ public final /* data */ class EmbeddedActivityInboundUpdate {
         return this.guildId;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final List<Long> m7808d() {
-        return this.users;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbeddedActivityInboundUpdate)) {
-            return false;
-        }
-        EmbeddedActivityInboundUpdate embeddedActivityInboundUpdate = (EmbeddedActivityInboundUpdate) other;
-        return this.channelId == embeddedActivityInboundUpdate.channelId && C12238m.areEqual(this.embeddedActivity, embeddedActivityInboundUpdate.embeddedActivity) && this.guildId == embeddedActivityInboundUpdate.guildId && C12238m.areEqual(this.users, embeddedActivityInboundUpdate.users);
-    }
-
     public int hashCode() {
         long j = this.channelId;
         int i = ((int) (j ^ (j >>> 32))) * 31;
@@ -52,6 +47,11 @@ public final /* data */ class EmbeddedActivityInboundUpdate {
         int i2 = (((i + iHashCode) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31;
         List<Long> list = this.users;
         return i2 + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Long> m7808d() {
+        return this.users;
     }
 
     public String toString() {

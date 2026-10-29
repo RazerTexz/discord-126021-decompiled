@@ -17,7 +17,7 @@ public interface InterfaceC3087i0 {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.i0$a */
     /* JADX INFO: compiled from: TsPayloadReader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final String f8674a;
@@ -33,7 +33,7 @@ public interface InterfaceC3087i0 {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.i0$b */
     /* JADX INFO: compiled from: TsPayloadReader.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f8676a;
@@ -66,7 +66,7 @@ public interface InterfaceC3087i0 {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.i0$d */
     /* JADX INFO: compiled from: TsPayloadReader.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final String f8680a;

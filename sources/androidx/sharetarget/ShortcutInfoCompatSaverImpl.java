@@ -39,14 +39,14 @@ public class ShortcutInfoCompatSaverImpl extends ShortcutInfoCompatSaver<Interfa
     private static final String DIRECTORY_TARGETS = "ShortcutInfoCompatSaver_share_targets";
     private static final int EXECUTOR_KEEP_ALIVE_TIME_SECS = 20;
     private static final String FILENAME_XML = "targets.xml";
-    private static final Object GET_INSTANCE_LOCK = new Object();
     public static final String TAG = "ShortcutInfoCompatSaver";
-    private static volatile ShortcutInfoCompatSaverImpl sInstance;
     public final File mBitmapsDir;
     public final ExecutorService mCacheUpdateService;
     public final Context mContext;
     private final ExecutorService mDiskIoService;
     public final File mTargetsXmlFile;
+    private static volatile ShortcutInfoCompatSaverImpl sInstance;
+    private static final Object GET_INSTANCE_LOCK = new Object();
     public final Map<String, ShortcutsInfoSerialization.ShortcutContainer> mShortcutsMap = new ArrayMap();
     public final Map<String, InterfaceFutureC4539a<?>> mScheduledBitmapTasks = new ArrayMap();
 
@@ -72,52 +72,6 @@ public class ShortcutInfoCompatSaverImpl extends ShortcutInfoCompatSaver<Interfa
                 }
             }
         });
-    }
-
-    @AnyThread
-    public static ExecutorService createExecutorService() {
-        return new ThreadPoolExecutor(0, 1, 20L, TimeUnit.SECONDS, new LinkedBlockingQueue());
-    }
-
-    public static boolean ensureDir(File file) {
-        if (file.exists() && !file.isDirectory() && !file.delete()) {
-            return false;
-        }
-        if (file.exists()) {
-            return true;
-        }
-        return file.mkdirs();
-    }
-
-    @AnyThread
-    public static ShortcutInfoCompatSaverImpl getInstance(Context context) {
-        if (sInstance == null) {
-            synchronized (GET_INSTANCE_LOCK) {
-                if (sInstance == null) {
-                    sInstance = new ShortcutInfoCompatSaverImpl(context, createExecutorService(), createExecutorService());
-                }
-            }
-        }
-        return sInstance;
-    }
-
-    private InterfaceFutureC4539a<Void> submitDiskOperation(final Runnable runnable) {
-        final ResolvableFuture resolvableFutureCreate = ResolvableFuture.create();
-        this.mDiskIoService.submit(new Runnable() { // from class: androidx.sharetarget.ShortcutInfoCompatSaverImpl.9
-            @Override // java.lang.Runnable
-            public void run() {
-                if (resolvableFutureCreate.isCancelled()) {
-                    return;
-                }
-                try {
-                    runnable.run();
-                    resolvableFutureCreate.set(null);
-                } catch (Exception e) {
-                    resolvableFutureCreate.setException(e);
-                }
-            }
-        });
-        return resolvableFutureCreate;
     }
 
     @Override // androidx.core.content.p004pm.ShortcutInfoCompatSaver
@@ -154,6 +108,11 @@ public class ShortcutInfoCompatSaverImpl extends ShortcutInfoCompatSaver<Interfa
         return new ShortcutsInfoSerialization.ShortcutContainer(new ShortcutInfoCompat.Builder(shortcutInfoCompat).setIcon(null).build(), resourceName, absolutePath);
     }
 
+    @AnyThread
+    public static ExecutorService createExecutorService() {
+        return new ThreadPoolExecutor(0, 1, 20L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+    }
+
     public void deleteDanglingBitmaps(List<ShortcutsInfoSerialization.ShortcutContainer> list) {
         ArrayList arrayList = new ArrayList();
         for (ShortcutsInfoSerialization.ShortcutContainer shortcutContainer : list) {
@@ -166,6 +125,28 @@ public class ShortcutInfoCompatSaverImpl extends ShortcutInfoCompatSaver<Interfa
                 file.delete();
             }
         }
+    }
+
+    public static boolean ensureDir(File file) {
+        if (file.exists() && !file.isDirectory() && !file.delete()) {
+            return false;
+        }
+        if (file.exists()) {
+            return true;
+        }
+        return file.mkdirs();
+    }
+
+    @AnyThread
+    public static ShortcutInfoCompatSaverImpl getInstance(Context context) {
+        if (sInstance == null) {
+            synchronized (GET_INSTANCE_LOCK) {
+                if (sInstance == null) {
+                    sInstance = new ShortcutInfoCompatSaverImpl(context, createExecutorService(), createExecutorService());
+                }
+            }
+        }
+        return sInstance;
     }
 
     @WorkerThread
@@ -285,6 +266,25 @@ public class ShortcutInfoCompatSaverImpl extends ShortcutInfoCompatSaver<Interfa
                 }
             }
         }, this.mCacheUpdateService);
+    }
+
+    private InterfaceFutureC4539a<Void> submitDiskOperation(final Runnable runnable) {
+        final ResolvableFuture resolvableFutureCreate = ResolvableFuture.create();
+        this.mDiskIoService.submit(new Runnable() { // from class: androidx.sharetarget.ShortcutInfoCompatSaverImpl.9
+            @Override // java.lang.Runnable
+            public void run() {
+                if (resolvableFutureCreate.isCancelled()) {
+                    return;
+                }
+                try {
+                    runnable.run();
+                    resolvableFutureCreate.set(null);
+                } catch (Exception e) {
+                    resolvableFutureCreate.setException(e);
+                }
+            }
+        });
+        return resolvableFutureCreate;
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

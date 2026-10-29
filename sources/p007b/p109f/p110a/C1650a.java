@@ -16,11 +16,6 @@ public class C1650a {
         this.f3016a = file;
     }
 
-    /* JADX INFO: renamed from: a */
-    public long m928a() {
-        return this.f3016a.length();
-    }
-
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof C1650a)) {
             return false;
@@ -30,5 +25,10 @@ public class C1650a {
 
     public int hashCode() {
         return this.f3016a.hashCode();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public long m928a() {
+        return this.f3016a.length();
     }
 }

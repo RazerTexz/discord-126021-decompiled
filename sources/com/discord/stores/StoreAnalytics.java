@@ -93,100 +93,14 @@ public final class StoreAnalytics extends Store {
     private Channel selectedVoiceChannel;
     private final StoreStream stores;
 
-    /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final /* data */ class ScreenViewed {
-        private final Class<? extends AppComponent> screen;
-        private final long timestamp;
-
-        public ScreenViewed(Class<? extends AppComponent> cls, long j) {
-            C12238m.checkNotNullParameter(cls, "screen");
-            this.screen = cls;
-            this.timestamp = j;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ScreenViewed copy$default(ScreenViewed screenViewed, Class cls, long j, int i, Object obj) {
-            if ((i & 1) != 0) {
-                cls = screenViewed.screen;
-            }
-            if ((i & 2) != 0) {
-                j = screenViewed.timestamp;
-            }
-            return screenViewed.copy(cls, j);
-        }
-
-        public final Class<? extends AppComponent> component1() {
-            return this.screen;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
-        public final ScreenViewed copy(Class<? extends AppComponent> screen, long timestamp) {
-            C12238m.checkNotNullParameter(screen, "screen");
-            return new ScreenViewed(screen, timestamp);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ScreenViewed)) {
-                return false;
-            }
-            ScreenViewed screenViewed = (ScreenViewed) other;
-            return C12238m.areEqual(this.screen, screenViewed.screen) && this.timestamp == screenViewed.timestamp;
-        }
-
-        public final Class<? extends AppComponent> getScreen() {
-            return this.screen;
-        }
-
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
-        public int hashCode() {
-            Class<? extends AppComponent> cls = this.screen;
-            return C0002b.m3a(this.timestamp) + ((cls != null ? cls.hashCode() : 0) * 31);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ScreenViewed(screen=");
-            sbM833U.append(this.screen);
-            sbM833U.append(", timestamp=");
-            return C1643a.m815C(sbM833U, this.timestamp, ")");
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            FeedbackIssue.values();
-            int[] iArr = new int[24];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_BLACK.ordinal()] = 1;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_BLURRY.ordinal()] = 2;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_LAGGING.ordinal()] = 3;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_OUT_OF_SYNC.ordinal()] = 4;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_MISSING.ordinal()] = 5;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_POOR.ordinal()] = 6;
-            iArr[FeedbackIssue.STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY.ordinal()] = 7;
-            iArr[FeedbackIssue.OTHER.ordinal()] = 8;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$ackMessage$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56751 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56751 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$ackMessage$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreAnalytics.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
             public final /* synthetic */ Map $properties;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -224,7 +138,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$init$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56761 extends AbstractC12240o implements Function1<MediaEngineConnection.InputMode, Unit> {
+    public final class C56761 extends AbstractC12240o implements Function1<MediaEngineConnection.InputMode, Unit> {
         public C56761() {
             super(1);
         }
@@ -244,7 +158,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$init$2 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56772 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C56772 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C56772() {
             super(1);
         }
@@ -263,7 +177,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$init$4 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final /* synthetic */ class C56794 extends C12236k implements Function1<ScreenViewed, Unit> {
+    public final /* synthetic */ class C56794 extends C12236k implements Function1<ScreenViewed, Unit> {
         public C56794(StoreAnalytics storeAnalytics) {
             super(1, storeAnalytics, StoreAnalytics.class, "onScreenViewed", "onScreenViewed(Lcom/discord/stores/StoreAnalytics$ScreenViewed;)V", 0);
         }
@@ -283,7 +197,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$onGuildSettingsPaneViewed$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56801 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56801 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ String $pane;
 
@@ -308,7 +222,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$onNotificationSettingsUpdated$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56811 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56811 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ ModelNotificationSettings $notifSettings;
 
@@ -363,7 +277,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$onOverlayVoiceEvent$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56821 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56821 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $isActive;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -406,7 +320,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$onScreenViewed$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56831 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56831 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ScreenViewed $screenViewed;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -442,7 +356,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$onThreadNotificationSettingsUpdated$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56841 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56841 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ int $flags;
         public final /* synthetic */ int $oldFlags;
@@ -483,7 +397,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackCallReportProblem$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56851 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56851 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ PendingFeedback.CallFeedback $pendingCallFeedback;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -518,7 +432,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackGuildViewed$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56861 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+    public final class C56861 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
         public final /* synthetic */ Map $properties;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -535,7 +449,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackMediaSessionJoined$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56871 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56871 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Map $properties;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -558,7 +472,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackOpenGiftAcceptModal$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56881 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56881 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ String $giftCode;
         public final /* synthetic */ String $location;
@@ -596,7 +510,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackShowCallFeedbackSheet$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56891 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56891 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -622,7 +536,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackVoiceAudioOutputModeSelected$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56901 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56901 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ DiscordAudioManager.DeviceTypes $fromAudioOutputMode;
         public final /* synthetic */ DiscordAudioManager.DeviceTypes $toAudioOutputMode;
@@ -654,7 +568,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackVoiceConnectionFailure$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56911 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56911 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Map $properties;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -677,12 +591,12 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackVoiceConnectionSuccess$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56921 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56921 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Map $properties;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackVoiceConnectionSuccess$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreAnalytics.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<MediaEngine.AudioInfo, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<MediaEngine.AudioInfo, Unit> {
             public final /* synthetic */ Channel $channel;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -727,7 +641,7 @@ public final class StoreAnalytics extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAnalytics$trackVoiceDisconnect$1 */
     /* JADX INFO: compiled from: StoreAnalytics.kt */
-    public static final class C56931 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56931 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Map $properties;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -748,6 +662,92 @@ public final class StoreAnalytics extends Store {
         }
     }
 
+    /* JADX INFO: compiled from: StoreAnalytics.kt */
+    public final /* data */ class ScreenViewed {
+        private final Class<? extends AppComponent> screen;
+        private final long timestamp;
+
+        public ScreenViewed(Class<? extends AppComponent> cls, long j) {
+            C12238m.checkNotNullParameter(cls, "screen");
+            this.screen = cls;
+            this.timestamp = j;
+        }
+
+        public final Class<? extends AppComponent> component1() {
+            return this.screen;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ScreenViewed copy$default(ScreenViewed screenViewed, Class cls, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                cls = screenViewed.screen;
+            }
+            if ((i & 2) != 0) {
+                j = screenViewed.timestamp;
+            }
+            return screenViewed.copy(cls, j);
+        }
+
+        public final ScreenViewed copy(Class<? extends AppComponent> screen, long timestamp) {
+            C12238m.checkNotNullParameter(screen, "screen");
+            return new ScreenViewed(screen, timestamp);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ScreenViewed)) {
+                return false;
+            }
+            ScreenViewed screenViewed = (ScreenViewed) other;
+            return C12238m.areEqual(this.screen, screenViewed.screen) && this.timestamp == screenViewed.timestamp;
+        }
+
+        public final Class<? extends AppComponent> getScreen() {
+            return this.screen;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getTimestamp() {
+            return this.timestamp;
+        }
+
+        public final long getTimestamp() {
+            return this.timestamp;
+        }
+
+        public int hashCode() {
+            Class<? extends AppComponent> cls = this.screen;
+            return C0002b.m3a(this.timestamp) + ((cls != null ? cls.hashCode() : 0) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ScreenViewed(screen=");
+            sbM833U.append(this.screen);
+            sbM833U.append(", timestamp=");
+            return C1643a.m815C(sbM833U, this.timestamp, ")");
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FeedbackIssue.values();
+            int[] iArr = new int[24];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_BLACK.ordinal()] = 1;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_BLURRY.ordinal()] = 2;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_LAGGING.ordinal()] = 3;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_OUT_OF_SYNC.ordinal()] = 4;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_MISSING.ordinal()] = 5;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_AUDIO_POOR.ordinal()] = 6;
+            iArr[FeedbackIssue.STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY.ordinal()] = 7;
+            iArr[FeedbackIssue.OTHER.ordinal()] = 8;
+        }
+    }
+
     public StoreAnalytics(StoreStream storeStream, Dispatcher dispatcher, Clock clock) {
         C12238m.checkNotNullParameter(storeStream, "stores");
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -757,6 +757,57 @@ public final class StoreAnalytics extends Store {
         this.clock = clock;
         this.hasTrackedAppUiShown = new AtomicBoolean(false);
         this.screenViewedSubject = PublishSubject.m11133k0();
+    }
+
+    public final void ackMessage(long channelId) {
+        this.dispatcher.schedule(new C56751(channelId));
+    }
+
+    public final void appLandingViewed() {
+        AnalyticsTracker.appLandingViewed(getPrefsSessionDurable().getLong("CACHE_KEY_LOGOUT_TS", 0L));
+    }
+
+    public final void appUiViewed(Class<? extends AppComponent> screen) {
+        C12238m.checkNotNullParameter(screen, "screen");
+        PublishSubject<ScreenViewed> publishSubject = this.screenViewedSubject;
+        publishSubject.f27650k.onNext(new ScreenViewed(screen, this.clock.currentTimeMillis()));
+    }
+
+    public final void deepLinkReceived(Intent intent, RouteHandlers.AnalyticsMetadata metadata) {
+        C12238m.checkNotNullParameter(intent, "intent");
+        C12238m.checkNotNullParameter(metadata, "metadata");
+        Long channelId = metadata.getChannelId();
+        Map<String, ? extends Object> guildAndChannelSnapshotAnalyticsProperties = channelId != null ? getGuildAndChannelSnapshotAnalyticsProperties(channelId.longValue()) : null;
+        if (guildAndChannelSnapshotAnalyticsProperties == null) {
+            guildAndChannelSnapshotAnalyticsProperties = C12136h0.emptyMap();
+        }
+        AnalyticsTracker.INSTANCE.deepLinkReceived(intent, metadata, guildAndChannelSnapshotAnalyticsProperties);
+    }
+
+    public final void emojiAutocompleteUpsellInlineViewed() {
+        AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, AnalyticsTracker.PremiumUpsellType.EmojiAutocompleteInline, null, C12136h0.emptyMap(), null, 8, null);
+    }
+
+    public final void emojiAutocompleteUpsellModalViewed() {
+        AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, AnalyticsTracker.PremiumUpsellType.EmojiAutocompleteModal, null, C12136h0.emptyMap(), null, 8, null);
+    }
+
+    public final void emojiPickerUpsellHeaderViewed(EmojiPickerContextType emojiPickerContextType) {
+        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
+        emojiPickerUpsellViewed$default(this, AnalyticsTracker.PremiumUpsellType.EmojiPickerHeaderViewed, emojiPickerContextType, null, 4, null);
+    }
+
+    public final void emojiPickerUpsellLockedItemClicked(EmojiPickerContextType emojiPickerContextType, boolean isAnimated) {
+        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
+        emojiPickerUpsellViewed(AnalyticsTracker.PremiumUpsellType.EmojiPickerLockedItemClicked, emojiPickerContextType, C12136h0.mapOf(C12116o.m10073to("is_animated", Boolean.valueOf(isAnimated)), C12116o.m10073to("is_external", Boolean.TRUE)));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void emojiPickerUpsellViewed$default(StoreAnalytics storeAnalytics, AnalyticsTracker.PremiumUpsellType premiumUpsellType, EmojiPickerContextType emojiPickerContextType, Map map, int i, Object obj) {
+        if ((i & 4) != 0) {
+            map = C12136h0.emptyMap();
+        }
+        storeAnalytics.emojiPickerUpsellViewed(premiumUpsellType, emojiPickerContextType, map);
     }
 
     private final void emojiPickerUpsellViewed(AnalyticsTracker.PremiumUpsellType type, EmojiPickerContextType emojiPickerContextType, Map<String, ? extends Object> properties) {
@@ -772,12 +823,11 @@ public final class StoreAnalytics extends Store {
         AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, type, new Traits.Location((String) KotlinExtensionsKt.getExhaustive(str), Traits.Location.Section.EMOJI_PICKER_POPOUT, Traits.Location.Obj.BUTTON_UPSELL, Traits.Location.ObjType.SEARCH, null, 16, null), C12136h0.plus(properties, C12116o.m10073to("has_search_query", Boolean.TRUE)), null, 8, null);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void emojiPickerUpsellViewed$default(StoreAnalytics storeAnalytics, AnalyticsTracker.PremiumUpsellType premiumUpsellType, EmojiPickerContextType emojiPickerContextType, Map map, int i, Object obj) {
-        if ((i & 4) != 0) {
-            map = C12136h0.emptyMap();
+    public static /* synthetic */ Map getChannelSnapshotAnalyticsProperties$default(StoreAnalytics storeAnalytics, long j, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
         }
-        storeAnalytics.emojiPickerUpsellViewed(premiumUpsellType, emojiPickerContextType, map);
+        return storeAnalytics.getChannelSnapshotAnalyticsProperties(j, z2);
     }
 
     private final Map<String, Object> getChannelSnapshotAnalyticsProperties(long channelId, boolean includeNsfw) {
@@ -786,11 +836,9 @@ public final class StoreAnalytics extends Store {
         return channelSnapshotAnalyticsProperties != null ? channelSnapshotAnalyticsProperties : C12136h0.emptyMap();
     }
 
-    public static /* synthetic */ Map getChannelSnapshotAnalyticsProperties$default(StoreAnalytics storeAnalytics, long j, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return storeAnalytics.getChannelSnapshotAnalyticsProperties(j, z2);
+    public final Traits.Location getEmojiPickerUpsellLocation() {
+        Channel channel = this.stores.getChannels().getChannel(this.stores.getChannelsSelected().getId());
+        return new Traits.Location((channel == null || channel.getGuildId() != 0) ? Traits.Location.Page.GUILD_CHANNEL : "DM Channel", Traits.Location.Section.EMOJI_PICKER_POPOUT, null, null, null, 28, null);
     }
 
     @StoreThread
@@ -918,150 +966,6 @@ public final class StoreAnalytics extends Store {
     }
 
     @StoreThread
-    private final void handleVideoInputUpdate(VideoInputDeviceDescription selectedVideoInputDevice, boolean isScreenSharing) {
-        Channel channel = this.selectedVoiceChannel;
-        if (channel != null) {
-            Map<Long, VoiceState> mapEmptyMap = this.stores.getVoiceStates().get().get(Long.valueOf(channel.getGuildId()));
-            if (mapEmptyMap == null) {
-                mapEmptyMap = C12136h0.emptyMap();
-            }
-            Map<Long, VoiceState> map = mapEmptyMap;
-            long id2 = this.stores.getUsers().getMe().getId();
-            AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
-            RtcConnection.Metadata rtcConnectionMetadata = this.stores.getRtcConnection().getRtcConnectionMetadata();
-            analyticsTracker.videoInputsUpdate(id2, channel, map, selectedVideoInputDevice, isScreenSharing, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null);
-        }
-    }
-
-    private final void onScreenViewed(ScreenViewed screenViewed) {
-        if (this.hasTrackedAppUiShown.getAndSet(true)) {
-            return;
-        }
-        this.dispatcher.schedule(new C56831(screenViewed));
-    }
-
-    public static /* synthetic */ void onUserSettingsPaneViewed$default(StoreAnalytics storeAnalytics, String str, String str2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str2 = null;
-        }
-        storeAnalytics.onUserSettingsPaneViewed(str, str2);
-    }
-
-    public static /* synthetic */ void trackSearchResultSelected$default(StoreAnalytics storeAnalytics, SearchType searchType, int i, Traits.Location location, Traits.Source source, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            location = null;
-        }
-        if ((i2 & 8) != 0) {
-            source = null;
-        }
-        storeAnalytics.trackSearchResultSelected(searchType, i, location, source);
-    }
-
-    public static /* synthetic */ void trackSearchResultsEmpty$default(StoreAnalytics storeAnalytics, SearchType searchType, Traits.Location location, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            location = null;
-        }
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        storeAnalytics.trackSearchResultsEmpty(searchType, location, z2);
-    }
-
-    public static /* synthetic */ void trackSearchStarted$default(StoreAnalytics storeAnalytics, SearchType searchType, Traits.Location location, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            location = null;
-        }
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        storeAnalytics.trackSearchStarted(searchType, location, z2);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:20:0x0025  */
-    /* JADX WARN: Code duplicated, block: B:31:0x003a  */
-    private final void updateTrackingData() {
-        boolean z2;
-        boolean z3;
-        String str = this.authToken;
-        boolean z4 = !(str == null || str.length() == 0);
-        if (z4) {
-            z2 = false;
-        } else {
-            String str2 = this.fingerprint;
-            if (str2 == null || str2.length() == 0) {
-                z2 = false;
-            } else {
-                z2 = true;
-            }
-        }
-        if (z4) {
-            String str3 = this.analyticsToken;
-            if (str3 == null || str3.length() == 0) {
-                z3 = false;
-            } else {
-                z3 = true;
-            }
-        } else {
-            z3 = false;
-        }
-        if (z2) {
-            AnalyticsTracker.INSTANCE.getTracker().setTrackingData(null, true);
-        } else if (z3) {
-            AnalyticsUtils.Tracker.setTrackingData$default(AnalyticsTracker.INSTANCE.getTracker(), this.analyticsToken, false, 2, null);
-        } else {
-            AnalyticsTracker.INSTANCE.getTracker().setTrackingData(null, false);
-        }
-    }
-
-    public final void ackMessage(long channelId) {
-        this.dispatcher.schedule(new C56751(channelId));
-    }
-
-    public final void appLandingViewed() {
-        AnalyticsTracker.appLandingViewed(getPrefsSessionDurable().getLong("CACHE_KEY_LOGOUT_TS", 0L));
-    }
-
-    public final void appUiViewed(Class<? extends AppComponent> screen) {
-        C12238m.checkNotNullParameter(screen, "screen");
-        PublishSubject<ScreenViewed> publishSubject = this.screenViewedSubject;
-        publishSubject.f27650k.onNext(new ScreenViewed(screen, this.clock.currentTimeMillis()));
-    }
-
-    public final void deepLinkReceived(Intent intent, RouteHandlers.AnalyticsMetadata metadata) {
-        C12238m.checkNotNullParameter(intent, "intent");
-        C12238m.checkNotNullParameter(metadata, "metadata");
-        Long channelId = metadata.getChannelId();
-        Map<String, ? extends Object> guildAndChannelSnapshotAnalyticsProperties = channelId != null ? getGuildAndChannelSnapshotAnalyticsProperties(channelId.longValue()) : null;
-        if (guildAndChannelSnapshotAnalyticsProperties == null) {
-            guildAndChannelSnapshotAnalyticsProperties = C12136h0.emptyMap();
-        }
-        AnalyticsTracker.INSTANCE.deepLinkReceived(intent, metadata, guildAndChannelSnapshotAnalyticsProperties);
-    }
-
-    public final void emojiAutocompleteUpsellInlineViewed() {
-        AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, AnalyticsTracker.PremiumUpsellType.EmojiAutocompleteInline, null, C12136h0.emptyMap(), null, 8, null);
-    }
-
-    public final void emojiAutocompleteUpsellModalViewed() {
-        AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, AnalyticsTracker.PremiumUpsellType.EmojiAutocompleteModal, null, C12136h0.emptyMap(), null, 8, null);
-    }
-
-    public final void emojiPickerUpsellHeaderViewed(EmojiPickerContextType emojiPickerContextType) {
-        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
-        emojiPickerUpsellViewed$default(this, AnalyticsTracker.PremiumUpsellType.EmojiPickerHeaderViewed, emojiPickerContextType, null, 4, null);
-    }
-
-    public final void emojiPickerUpsellLockedItemClicked(EmojiPickerContextType emojiPickerContextType, boolean isAnimated) {
-        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
-        emojiPickerUpsellViewed(AnalyticsTracker.PremiumUpsellType.EmojiPickerLockedItemClicked, emojiPickerContextType, C12136h0.mapOf(C12116o.m10073to("is_animated", Boolean.valueOf(isAnimated)), C12116o.m10073to("is_external", Boolean.TRUE)));
-    }
-
-    public final Traits.Location getEmojiPickerUpsellLocation() {
-        Channel channel = this.stores.getChannels().getChannel(this.stores.getChannelsSelected().getId());
-        return new Traits.Location((channel == null || channel.getGuildId() != 0) ? Traits.Location.Page.GUILD_CHANNEL : "DM Channel", Traits.Location.Section.EMOJI_PICKER_POPOUT, null, null, null, 28, null);
-    }
-
-    @StoreThread
     public final void handleAuthToken(String authToken) {
         this.authToken = authToken;
         updateTrackingData();
@@ -1119,6 +1023,22 @@ public final class StoreAnalytics extends Store {
     @StoreThread
     public final void handleVideoInputDeviceSelected(VideoInputDeviceDescription videoInputDevice) {
         handleVideoInputUpdate(videoInputDevice, this.stores.getApplicationStreaming().isScreenSharing());
+    }
+
+    @StoreThread
+    private final void handleVideoInputUpdate(VideoInputDeviceDescription selectedVideoInputDevice, boolean isScreenSharing) {
+        Channel channel = this.selectedVoiceChannel;
+        if (channel != null) {
+            Map<Long, VoiceState> mapEmptyMap = this.stores.getVoiceStates().get().get(Long.valueOf(channel.getGuildId()));
+            if (mapEmptyMap == null) {
+                mapEmptyMap = C12136h0.emptyMap();
+            }
+            Map<Long, VoiceState> map = mapEmptyMap;
+            long id2 = this.stores.getUsers().getMe().getId();
+            AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+            RtcConnection.Metadata rtcConnectionMetadata = this.stores.getRtcConnection().getRtcConnectionMetadata();
+            analyticsTracker.videoInputsUpdate(id2, channel, map, selectedVideoInputDevice, isScreenSharing, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null);
+        }
     }
 
     @Override // com.discord.stores.Store
@@ -1181,8 +1101,22 @@ public final class StoreAnalytics extends Store {
         this.dispatcher.schedule(new C56821(isActive));
     }
 
+    private final void onScreenViewed(ScreenViewed screenViewed) {
+        if (this.hasTrackedAppUiShown.getAndSet(true)) {
+            return;
+        }
+        this.dispatcher.schedule(new C56831(screenViewed));
+    }
+
     public final void onThreadNotificationSettingsUpdated(long channelId, long parentChannelId, int flags, int oldFlags) {
         this.dispatcher.schedule(new C56841(channelId, parentChannelId, oldFlags, flags));
+    }
+
+    public static /* synthetic */ void onUserSettingsPaneViewed$default(StoreAnalytics storeAnalytics, String str, String str2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str2 = null;
+        }
+        storeAnalytics.onUserSettingsPaneViewed(str, str2);
     }
 
     public final void onUserSettingsPaneViewed(String pane, String locationSection) {
@@ -1298,6 +1232,16 @@ public final class StoreAnalytics extends Store {
         this.dispatcher.schedule(new C56881(giftCode, channelId, location));
     }
 
+    public static /* synthetic */ void trackSearchResultSelected$default(StoreAnalytics storeAnalytics, SearchType searchType, int i, Traits.Location location, Traits.Source source, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            location = null;
+        }
+        if ((i2 & 8) != 0) {
+            source = null;
+        }
+        storeAnalytics.trackSearchResultSelected(searchType, i, location, source);
+    }
+
     public final void trackSearchResultSelected(SearchType searchType, int totalResultsCount, Traits.Location locationTrait, Traits.Source sourceTrait) {
         C12238m.checkNotNullParameter(searchType, "searchType");
         AnalyticsTracker.INSTANCE.searchResultSelected(searchType, locationTrait, sourceTrait, totalResultsCount, getSnapshotAnalyticsProperties());
@@ -1308,9 +1252,29 @@ public final class StoreAnalytics extends Store {
         AnalyticsTracker.INSTANCE.searchResultViewed(searchType, totalResultsCount, lockedResultsCount, locationTrait, getSnapshotAnalyticsProperties(), throttle);
     }
 
+    public static /* synthetic */ void trackSearchResultsEmpty$default(StoreAnalytics storeAnalytics, SearchType searchType, Traits.Location location, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            location = null;
+        }
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        storeAnalytics.trackSearchResultsEmpty(searchType, location, z2);
+    }
+
     public final void trackSearchResultsEmpty(SearchType searchType, Traits.Location locationTrait, boolean throttle) {
         C12238m.checkNotNullParameter(searchType, "searchType");
         AnalyticsTracker.INSTANCE.searchResultsEmpty(searchType, locationTrait, getSnapshotAnalyticsProperties(), throttle);
+    }
+
+    public static /* synthetic */ void trackSearchStarted$default(StoreAnalytics storeAnalytics, SearchType searchType, Traits.Location location, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            location = null;
+        }
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        storeAnalytics.trackSearchStarted(searchType, location, z2);
     }
 
     public final void trackSearchStarted(SearchType searchType, Traits.Location locationTrait, boolean throttle) {
@@ -1392,6 +1356,42 @@ public final class StoreAnalytics extends Store {
     public final void trackVoiceDisconnect(Map<String, Object> properties) {
         C12238m.checkNotNullParameter(properties, "properties");
         this.dispatcher.schedule(new C56931(properties));
+    }
+
+    /* JADX WARN: Code duplicated, block: B:20:0x0025  */
+    /* JADX WARN: Code duplicated, block: B:31:0x003a  */
+    private final void updateTrackingData() {
+        boolean z2;
+        boolean z3;
+        String str = this.authToken;
+        boolean z4 = !(str == null || str.length() == 0);
+        if (z4) {
+            z2 = false;
+        } else {
+            String str2 = this.fingerprint;
+            if (str2 == null || str2.length() == 0) {
+                z2 = false;
+            } else {
+                z2 = true;
+            }
+        }
+        if (z4) {
+            String str3 = this.analyticsToken;
+            if (str3 == null || str3.length() == 0) {
+                z3 = false;
+            } else {
+                z3 = true;
+            }
+        } else {
+            z3 = false;
+        }
+        if (z2) {
+            AnalyticsTracker.INSTANCE.getTracker().setTrackingData(null, true);
+        } else if (z3) {
+            AnalyticsUtils.Tracker.setTrackingData$default(AnalyticsTracker.INSTANCE.getTracker(), this.analyticsToken, false, 2, null);
+        } else {
+            AnalyticsTracker.INSTANCE.getTracker().setTrackingData(null, false);
+        }
     }
 
     public static /* synthetic */ Map getChannelSnapshotAnalyticsProperties$default(StoreAnalytics storeAnalytics, Channel channel, boolean z2, int i, Object obj) {

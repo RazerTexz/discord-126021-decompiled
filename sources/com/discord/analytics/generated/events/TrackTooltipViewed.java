@@ -16,17 +16,17 @@ public final /* data */ class TrackTooltipViewed implements AnalyticsSchema, Tra
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "tooltip_viewed";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackTooltipViewed) && C12238m.areEqual(this.type, ((TrackTooltipViewed) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

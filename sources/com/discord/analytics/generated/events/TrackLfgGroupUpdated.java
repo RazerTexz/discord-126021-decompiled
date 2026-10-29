@@ -13,20 +13,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLfgGroupUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLfgGroupUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLfgGroupReceiver {
+    private final Long previousSize = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackLfgGroup trackLfgGroup;
-    private final Boolean updatedSize = null;
-    private final Long previousSize = null;
-    private final Boolean updatedTitle = null;
     private final Boolean updatedDescription = null;
+    private final Boolean updatedSize = null;
+    private final Boolean updatedTitle = null;
     private final transient String analyticsSchemaTypeName = "lfg_group_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackLfgGroupUpdated implements AnalyticsSchema, T
         }
         TrackLfgGroupUpdated trackLfgGroupUpdated = (TrackLfgGroupUpdated) other;
         return C12238m.areEqual(this.updatedSize, trackLfgGroupUpdated.updatedSize) && C12238m.areEqual(this.previousSize, trackLfgGroupUpdated.previousSize) && C12238m.areEqual(this.updatedTitle, trackLfgGroupUpdated.updatedTitle) && C12238m.areEqual(this.updatedDescription, trackLfgGroupUpdated.updatedDescription);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

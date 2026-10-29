@@ -71,7 +71,7 @@ public final class C11291k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.k$a */
     /* JADX INFO: compiled from: StandardNames.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: A */
         public static final C11713b f22504A;
@@ -463,13 +463,6 @@ public final class C11291k {
             f22561p0 = mapNewHashMapWithExpectedSize2;
         }
 
-        public static final C11714c reflect(String str) {
-            C12238m.checkNotNullParameter(str, "simpleName");
-            C11714c unsafe = C11291k.f22496i.child(C11716e.identifier(str)).toUnsafe();
-            C12238m.checkNotNullExpressionValue(unsafe, "KOTLIN_REFLECT_FQ_NAME.child(Name.identifier(simpleName)).toUnsafe()");
-            return unsafe;
-        }
-
         /* JADX INFO: renamed from: a */
         public final C11713b m9366a(String str) {
             C11713b c11713bChild = C11291k.f22500m.child(C11716e.identifier(str));
@@ -489,6 +482,13 @@ public final class C11291k {
             C11713b c11713bChild = C11291k.f22499l.child(C11716e.identifier(str));
             C12238m.checkNotNullExpressionValue(c11713bChild, "BUILT_INS_PACKAGE_FQ_NAME.child(Name.identifier(simpleName))");
             return c11713bChild;
+        }
+
+        public static final C11714c reflect(String str) {
+            C12238m.checkNotNullParameter(str, "simpleName");
+            C11714c unsafe = C11291k.f22496i.child(C11716e.identifier(str)).toUnsafe();
+            C12238m.checkNotNullExpressionValue(unsafe, "KOTLIN_REFLECT_FQ_NAME.child(Name.identifier(simpleName)).toUnsafe()");
+            return unsafe;
         }
     }
 

@@ -10,21 +10,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageDiscoveryLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence loadId = null;
-    private final CharSequence stageInstanceRecommendations = null;
-    private final Long lastVisibleIndexAtLoad = null;
     private final List<Long> indexes = null;
-    private final List<Long> stageInstanceIds = null;
-    private final List<Long> recommendationSources = null;
+    private final Long lastVisibleIndexAtLoad = null;
+    private final CharSequence loadId = null;
     private final List<Float> recommendationScores = null;
+    private final List<Long> recommendationSources = null;
+    private final List<Long> stageInstanceIds = null;
+    private final CharSequence stageInstanceRecommendations = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stage_discovery_loaded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
         }
         TrackStageDiscoveryLoaded trackStageDiscoveryLoaded = (TrackStageDiscoveryLoaded) other;
         return C12238m.areEqual(this.loadId, trackStageDiscoveryLoaded.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryLoaded.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryLoaded.lastVisibleIndexAtLoad) && C12238m.areEqual(this.indexes, trackStageDiscoveryLoaded.indexes) && C12238m.areEqual(this.stageInstanceIds, trackStageDiscoveryLoaded.stageInstanceIds) && C12238m.areEqual(this.recommendationSources, trackStageDiscoveryLoaded.recommendationSources) && C12238m.areEqual(this.recommendationScores, trackStageDiscoveryLoaded.recommendationScores);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

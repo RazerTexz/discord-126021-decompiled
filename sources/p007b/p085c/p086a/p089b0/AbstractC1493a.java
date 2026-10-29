@@ -29,6 +29,11 @@ public abstract class AbstractC1493a extends ValueAnimator {
         this.f2293j.add(animatorUpdateListener);
     }
 
+    @Override // android.animation.ValueAnimator, android.animation.Animator
+    public long getStartDelay() {
+        throw new UnsupportedOperationException("LottieAnimator does not support getStartDelay.");
+    }
+
     /* JADX INFO: renamed from: b */
     public void m637b(boolean z2) {
         for (Animator.AnimatorListener animatorListener : this.f2294k) {
@@ -46,11 +51,6 @@ public abstract class AbstractC1493a extends ValueAnimator {
         while (it.hasNext()) {
             it.next().onAnimationUpdate(this);
         }
-    }
-
-    @Override // android.animation.ValueAnimator, android.animation.Animator
-    public long getStartDelay() {
-        throw new UnsupportedOperationException("LottieAnimator does not support getStartDelay.");
     }
 
     @Override // android.animation.Animator

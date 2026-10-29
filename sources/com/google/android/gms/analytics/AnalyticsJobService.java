@@ -18,6 +18,14 @@ public final class AnalyticsJobService extends JobService implements InterfaceC3
     /* JADX INFO: renamed from: j */
     public C3543t0<AnalyticsJobService> f20386j;
 
+    /* JADX INFO: renamed from: c */
+    public final C3543t0<AnalyticsJobService> m9007c() {
+        if (this.f20386j == null) {
+            this.f20386j = new C3543t0<>(this);
+        }
+        return this.f20386j;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p323j.InterfaceC3551x0
     @TargetApi(24)
     /* JADX INFO: renamed from: a */
@@ -29,14 +37,6 @@ public final class AnalyticsJobService extends JobService implements InterfaceC3
     /* JADX INFO: renamed from: b */
     public final boolean mo4504b(int i) {
         return stopSelfResult(i);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C3543t0<AnalyticsJobService> m9007c() {
-        if (this.f20386j == null) {
-            this.f20386j = new C3543t0<>(this);
-        }
-        return this.f20386j;
     }
 
     @Override // android.app.Service

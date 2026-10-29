@@ -35,6 +35,19 @@ public abstract class TrustedWebActivityService extends Service {
     private NotificationManager mNotificationManager;
     public int mVerifiedUid = -1;
     private final InterfaceC13180b.a mBinder = new InterfaceC13180b.a() { // from class: androidx.browser.trusted.TrustedWebActivityService.1
+        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
+        public Bundle areNotificationsEnabled(Bundle bundle) {
+            checkCaller();
+            return new TrustedWebActivityServiceConnection.ResultArgs(TrustedWebActivityService.this.onAreNotificationsEnabled(TrustedWebActivityServiceConnection.NotificationsEnabledArgs.fromBundle(bundle).channelName)).toBundle();
+        }
+
+        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
+        public void cancelNotification(Bundle bundle) {
+            checkCaller();
+            TrustedWebActivityServiceConnection.CancelNotificationArgs cancelNotificationArgsFromBundle = TrustedWebActivityServiceConnection.CancelNotificationArgs.fromBundle(bundle);
+            TrustedWebActivityService.this.onCancelNotification(cancelNotificationArgsFromBundle.platformTag, cancelNotificationArgsFromBundle.platformId);
+        }
+
         private void checkCaller() {
             TrustedWebActivityService trustedWebActivityService = TrustedWebActivityService.this;
             if (trustedWebActivityService.mVerifiedUid == -1) {
@@ -56,19 +69,6 @@ public abstract class TrustedWebActivityService extends Service {
             if (TrustedWebActivityService.this.mVerifiedUid != Binder.getCallingUid()) {
                 throw new SecurityException("Caller is not verified as Trusted Web Activity provider.");
             }
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle areNotificationsEnabled(Bundle bundle) {
-            checkCaller();
-            return new TrustedWebActivityServiceConnection.ResultArgs(TrustedWebActivityService.this.onAreNotificationsEnabled(TrustedWebActivityServiceConnection.NotificationsEnabledArgs.fromBundle(bundle).channelName)).toBundle();
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public void cancelNotification(Bundle bundle) {
-            checkCaller();
-            TrustedWebActivityServiceConnection.CancelNotificationArgs cancelNotificationArgsFromBundle = TrustedWebActivityServiceConnection.CancelNotificationArgs.fromBundle(bundle);
-            TrustedWebActivityService.this.onCancelNotification(cancelNotificationArgsFromBundle.platformTag, cancelNotificationArgsFromBundle.platformId);
         }
 
         @Override // p668x.p669a.p670a.p671d.InterfaceC13180b

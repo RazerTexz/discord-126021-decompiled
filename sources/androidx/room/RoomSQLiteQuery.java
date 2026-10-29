@@ -25,9 +25,6 @@ public class RoomSQLiteQuery implements SupportSQLiteQuery, SupportSQLiteProgram
     private static final int STRING = 4;
 
     @VisibleForTesting
-    public static final TreeMap<Integer, RoomSQLiteQuery> sQueryPool = new TreeMap<>();
-
-    @VisibleForTesting
     public int mArgCount;
     private final int[] mBindingTypes;
 
@@ -46,6 +43,9 @@ public class RoomSQLiteQuery implements SupportSQLiteQuery, SupportSQLiteProgram
 
     @VisibleForTesting
     public final String[] mStringBindings;
+
+    @VisibleForTesting
+    public static final TreeMap<Integer, RoomSQLiteQuery> sQueryPool = new TreeMap<>();
 
     private RoomSQLiteQuery(int i) {
         this.mCapacity = i;
@@ -70,64 +70,6 @@ public class RoomSQLiteQuery implements SupportSQLiteQuery, SupportSQLiteProgram
             RoomSQLiteQuery value = entryCeilingEntry.getValue();
             value.init(str, i);
             return value;
-        }
-    }
-
-    public static RoomSQLiteQuery copyFrom(SupportSQLiteQuery supportSQLiteQuery) {
-        RoomSQLiteQuery roomSQLiteQueryAcquire = acquire(supportSQLiteQuery.getSql(), supportSQLiteQuery.getArgCount());
-        supportSQLiteQuery.bindTo(new SupportSQLiteProgram() { // from class: androidx.room.RoomSQLiteQuery.1
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void bindBlob(int i, byte[] bArr) {
-                RoomSQLiteQuery.this.bindBlob(i, bArr);
-            }
-
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void bindDouble(int i, double d) {
-                RoomSQLiteQuery.this.bindDouble(i, d);
-            }
-
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void bindLong(int i, long j) {
-                RoomSQLiteQuery.this.bindLong(i, j);
-            }
-
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void bindNull(int i) {
-                RoomSQLiteQuery.this.bindNull(i);
-            }
-
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void bindString(int i, String str) {
-                RoomSQLiteQuery.this.bindString(i, str);
-            }
-
-            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
-            public void clearBindings() {
-                RoomSQLiteQuery.this.clearBindings();
-            }
-
-            @Override // java.io.Closeable, java.lang.AutoCloseable
-            public void close() {
-            }
-        });
-        return roomSQLiteQueryAcquire;
-    }
-
-    private static void prunePoolLocked() {
-        TreeMap<Integer, RoomSQLiteQuery> treeMap = sQueryPool;
-        if (treeMap.size() <= 15) {
-            return;
-        }
-        int size = treeMap.size() - 10;
-        Iterator<Integer> it = treeMap.descendingKeySet().iterator();
-        while (true) {
-            int i = size - 1;
-            if (size <= 0) {
-                return;
-            }
-            it.next();
-            it.remove();
-            size = i;
         }
     }
 
@@ -199,6 +141,46 @@ public class RoomSQLiteQuery implements SupportSQLiteQuery, SupportSQLiteProgram
         System.arraycopy(roomSQLiteQuery.mDoubleBindings, 0, this.mDoubleBindings, 0, argCount);
     }
 
+    public static RoomSQLiteQuery copyFrom(SupportSQLiteQuery supportSQLiteQuery) {
+        RoomSQLiteQuery roomSQLiteQueryAcquire = acquire(supportSQLiteQuery.getSql(), supportSQLiteQuery.getArgCount());
+        supportSQLiteQuery.bindTo(new SupportSQLiteProgram() { // from class: androidx.room.RoomSQLiteQuery.1
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void bindBlob(int i, byte[] bArr) {
+                RoomSQLiteQuery.this.bindBlob(i, bArr);
+            }
+
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void bindDouble(int i, double d) {
+                RoomSQLiteQuery.this.bindDouble(i, d);
+            }
+
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void bindLong(int i, long j) {
+                RoomSQLiteQuery.this.bindLong(i, j);
+            }
+
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void bindNull(int i) {
+                RoomSQLiteQuery.this.bindNull(i);
+            }
+
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void bindString(int i, String str) {
+                RoomSQLiteQuery.this.bindString(i, str);
+            }
+
+            @Override // androidx.sqlite.p006db.SupportSQLiteProgram
+            public void clearBindings() {
+                RoomSQLiteQuery.this.clearBindings();
+            }
+
+            @Override // java.io.Closeable, java.lang.AutoCloseable
+            public void close() {
+            }
+        });
+        return roomSQLiteQueryAcquire;
+    }
+
     @Override // androidx.sqlite.p006db.SupportSQLiteQuery
     public int getArgCount() {
         return this.mArgCount;
@@ -212,6 +194,24 @@ public class RoomSQLiteQuery implements SupportSQLiteQuery, SupportSQLiteProgram
     public void init(String str, int i) {
         this.mQuery = str;
         this.mArgCount = i;
+    }
+
+    private static void prunePoolLocked() {
+        TreeMap<Integer, RoomSQLiteQuery> treeMap = sQueryPool;
+        if (treeMap.size() <= 15) {
+            return;
+        }
+        int size = treeMap.size() - 10;
+        Iterator<Integer> it = treeMap.descendingKeySet().iterator();
+        while (true) {
+            int i = size - 1;
+            if (size <= 0) {
+                return;
+            }
+            it.next();
+            it.remove();
+            size = i;
+        }
     }
 
     public void release() {

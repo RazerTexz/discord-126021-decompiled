@@ -29,9 +29,6 @@ public class SignInHubActivity extends FragmentActivity {
     /* JADX INFO: renamed from: j */
     public static boolean f20463j = false;
 
-    /* JADX INFO: renamed from: k */
-    public boolean f20464k = false;
-
     /* JADX INFO: renamed from: l */
     public SignInConfiguration f20465l;
 
@@ -44,9 +41,12 @@ public class SignInHubActivity extends FragmentActivity {
     /* JADX INFO: renamed from: o */
     public Intent f20468o;
 
+    /* JADX INFO: renamed from: k */
+    public boolean f20464k = false;
+
     /* JADX INFO: renamed from: com.google.android.gms.auth.api.signin.internal.SignInHubActivity$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
-    public class C10795a implements LoaderManager.LoaderCallbacks<Void> {
+    public final class C10795a implements LoaderManager.LoaderCallbacks<Void> {
         public C10795a(C3217t c3217t) {
         }
 
@@ -71,6 +71,11 @@ public class SignInHubActivity extends FragmentActivity {
         }
     }
 
+    @Override // android.app.Activity, android.view.Window.Callback
+    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        return true;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m9016a(int i) {
         Status status = new Status(i, null);
@@ -79,11 +84,6 @@ public class SignInHubActivity extends FragmentActivity {
         setResult(0, intent);
         finish();
         f20463j = false;
-    }
-
-    @Override // android.app.Activity, android.view.Window.Callback
-    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        return true;
     }
 
     @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, android.app.Activity

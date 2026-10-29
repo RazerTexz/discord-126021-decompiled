@@ -37,7 +37,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$1 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68791 extends AbstractC12240o implements Function0<Unit> {
+    public final class C68791 extends AbstractC12240o implements Function0<Unit> {
         public static final C68791 INSTANCE = new C68791();
 
         public C68791() {
@@ -57,7 +57,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$2 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68802 extends AbstractC12240o implements Function0<Unit> {
+    public final class C68802 extends AbstractC12240o implements Function0<Unit> {
         public static final C68802 INSTANCE = new C68802();
 
         public C68802() {
@@ -77,7 +77,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$3 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68813 extends AbstractC12240o implements Function0<Unit> {
+    public final class C68813 extends AbstractC12240o implements Function0<Unit> {
         public static final C68813 INSTANCE = new C68813();
 
         public C68813() {
@@ -97,7 +97,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$4 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68824 extends AbstractC12240o implements Function0<Unit> {
+    public final class C68824 extends AbstractC12240o implements Function0<Unit> {
         public static final C68824 INSTANCE = new C68824();
 
         public C68824() {
@@ -117,7 +117,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68871<T, R> implements InterfaceC12589b<T, Boolean> {
+    public final class C68871<T, R> implements InterfaceC12589b<T, Boolean> {
         public static final C68871 INSTANCE = new C68871();
 
         /* JADX WARN: Can't rename method to resolve collision */
@@ -129,7 +129,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68882<T, R> implements InterfaceC12589b<T, T> {
+    public final class C68882<T, R> implements InterfaceC12589b<T, T> {
         public static final C68882 INSTANCE = new C68882();
 
         @Override // p637j0.p641k.InterfaceC12589b
@@ -141,7 +141,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$withDimmer$1 */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class C68911 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C68911 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ DimmerView $dimmer;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -175,6 +175,13 @@ public final class ObservableExtensionsKt {
         appSubscribe(observable, context, simpleName, function1, function4, function2, function0, function3);
     }
 
+    public static /* synthetic */ Observable bindToComponentLifecycle$default(Observable observable, AppComponent appComponent, MGRecyclerAdapterSimple mGRecyclerAdapterSimple, int i, Object obj) {
+        if ((i & 2) != 0) {
+            mGRecyclerAdapterSimple = null;
+        }
+        return bindToComponentLifecycle(observable, appComponent, mGRecyclerAdapterSimple);
+    }
+
     public static final <T> Observable<T> bindToComponentLifecycle(Observable<T> observable, final AppComponent appComponent, final MGRecyclerAdapterSimple<?> mGRecyclerAdapterSimple) {
         C12238m.checkNotNullParameter(observable, "$this$bindToComponentLifecycle");
         C12238m.checkNotNullParameter(appComponent, "appComponent");
@@ -200,13 +207,6 @@ public final class ObservableExtensionsKt {
         });
         C12238m.checkNotNullExpressionValue(observableM11117w, "takeUntil(appComponent.u…beFromUpdates()\n        }");
         return observableM11117w;
-    }
-
-    public static /* synthetic */ Observable bindToComponentLifecycle$default(Observable observable, AppComponent appComponent, MGRecyclerAdapterSimple mGRecyclerAdapterSimple, int i, Object obj) {
-        if ((i & 2) != 0) {
-            mGRecyclerAdapterSimple = null;
-        }
-        return bindToComponentLifecycle(observable, appComponent, mGRecyclerAdapterSimple);
     }
 
     public static final <T> Observable<T> computationBuffered(Observable<T> observable) {
@@ -262,6 +262,21 @@ public final class ObservableExtensionsKt {
         return observableM11074h0;
     }
 
+    /* JADX INFO: renamed from: ui */
+    public static final <T> Observable<T> m8518ui(Observable<T> observable) {
+        C12238m.checkNotNullParameter(observable, "$this$ui");
+        Observable<T> observableM11084J = observable.m11084J(C12586a.m10738a());
+        C12238m.checkNotNullExpressionValue(observableM11084J, "observeOn(AndroidSchedulers.mainThread())");
+        return observableM11084J;
+    }
+
+    public static /* synthetic */ Observable restSubscribeOn$default(Observable observable, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return restSubscribeOn(observable, z2);
+    }
+
     public static final <T> Observable<T> restSubscribeOn(Observable<T> observable, boolean z2) {
         C12238m.checkNotNullParameter(observable, "$this$restSubscribeOn");
         Observable<T> observableM11098X = observable.m11098X(C12781a.m10875c());
@@ -274,21 +289,6 @@ public final class ObservableExtensionsKt {
         return observableM11098X;
     }
 
-    public static /* synthetic */ Observable restSubscribeOn$default(Observable observable, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return restSubscribeOn(observable, z2);
-    }
-
-    public static final <T> Observable<T> takeSingleUntilTimeout(Observable<T> observable, long j, boolean z2) {
-        C12238m.checkNotNullParameter(observable, "$this$takeSingleUntilTimeout");
-        Observable<T> observableM11100Z = observable.m11100Z(1);
-        Observable<T> observableM11104c0 = z2 ? observableM11100Z.m11104c0(j, TimeUnit.MILLISECONDS) : observableM11100Z.m11102a0(Observable.m11068d0(j, TimeUnit.MILLISECONDS));
-        C12238m.checkNotNullExpressionValue(observableM11104c0, "take(1).let {\n      if (…LISECONDS))\n      }\n    }");
-        return computationLatest(observableM11104c0);
-    }
-
     public static /* synthetic */ Observable takeSingleUntilTimeout$default(Observable observable, long j, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             j = 5000;
@@ -297,6 +297,14 @@ public final class ObservableExtensionsKt {
             z2 = true;
         }
         return takeSingleUntilTimeout(observable, j, z2);
+    }
+
+    public static final <T> Observable<T> takeSingleUntilTimeout(Observable<T> observable, long j, boolean z2) {
+        C12238m.checkNotNullParameter(observable, "$this$takeSingleUntilTimeout");
+        Observable<T> observableM11100Z = observable.m11100Z(1);
+        Observable<T> observableM11104c0 = z2 ? observableM11100Z.m11104c0(j, TimeUnit.MILLISECONDS) : observableM11100Z.m11102a0(Observable.m11068d0(j, TimeUnit.MILLISECONDS));
+        C12238m.checkNotNullExpressionValue(observableM11104c0, "take(1).let {\n      if (…LISECONDS))\n      }\n    }");
+        return computationLatest(observableM11104c0);
     }
 
     public static final <K, V> Observable<Map<K, V>> toMap(Observable<Pair<K, V>> observable) {
@@ -316,14 +324,6 @@ public final class ObservableExtensionsKt {
         return observableM11106g0;
     }
 
-    /* JADX INFO: renamed from: ui */
-    public static final <T> Observable<T> m8518ui(Observable<T> observable) {
-        C12238m.checkNotNullParameter(observable, "$this$ui");
-        Observable<T> observableM11084J = observable.m11084J(C12586a.m10738a());
-        C12238m.checkNotNullExpressionValue(observableM11084J, "observeOn(AndroidSchedulers.mainThread())");
-        return observableM11084J;
-    }
-
     public static /* synthetic */ Observable ui$default(Observable observable, AppComponent appComponent, MGRecyclerAdapterSimple mGRecyclerAdapterSimple, int i, Object obj) {
         if ((i & 2) != 0) {
             mGRecyclerAdapterSimple = null;
@@ -331,18 +331,18 @@ public final class ObservableExtensionsKt {
         return m8519ui(observable, appComponent, mGRecyclerAdapterSimple);
     }
 
-    public static final <T> Observable<T> withDimmer(Observable<T> observable, DimmerView dimmerView, long j) {
-        C12238m.checkNotNullParameter(observable, "$this$withDimmer");
-        Observable<T> observableM11074h0 = Observable.m11074h0(new C12666r(observable.f27640j, new OnDelayedEmissionHandler(new C68911(dimmerView), j, TimeUnit.MILLISECONDS, null, 8, null)));
-        C12238m.checkNotNullExpressionValue(observableM11074h0, "lift(\n        OnDelayedE…LISECONDS\n        )\n    )");
-        return observableM11074h0;
-    }
-
     public static /* synthetic */ Observable withDimmer$default(Observable observable, DimmerView dimmerView, long j, int i, Object obj) {
         if ((i & 2) != 0) {
             j = 300;
         }
         return withDimmer(observable, dimmerView, j);
+    }
+
+    public static final <T> Observable<T> withDimmer(Observable<T> observable, DimmerView dimmerView, long j) {
+        C12238m.checkNotNullParameter(observable, "$this$withDimmer");
+        Observable<T> observableM11074h0 = Observable.m11074h0(new C12666r(observable.f27640j, new OnDelayedEmissionHandler(new C68911(dimmerView), j, TimeUnit.MILLISECONDS, null, 8, null)));
+        C12238m.checkNotNullExpressionValue(observableM11074h0, "lift(\n        OnDelayedE…LISECONDS\n        )\n    )");
+        return observableM11074h0;
     }
 
     /* JADX INFO: renamed from: ui */

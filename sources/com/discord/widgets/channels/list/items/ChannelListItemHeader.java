@@ -19,11 +19,7 @@ public final /* data */ class ChannelListItemHeader implements ChannelListItem {
         this.textResId = i;
         this.ableToManageChannel = z2;
         this.selectedGuildId = j2;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        sb.append(i);
-        this.key = sb.toString();
+        this.key = "" + getType() + j + i;
     }
 
     public static /* synthetic */ ChannelListItemHeader copy$default(ChannelListItemHeader channelListItemHeader, long j, int i, boolean z2, long j2, int i2, Object obj) {
@@ -45,26 +41,6 @@ public final /* data */ class ChannelListItemHeader implements ChannelListItem {
         return channelListItemHeader.copy(j3, i3, z3, j2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getTextResId() {
-        return this.textResId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getAbleToManageChannel() {
-        return this.ableToManageChannel;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getSelectedGuildId() {
-        return this.selectedGuildId;
-    }
-
     public final ChannelListItemHeader copy(long id2, int textResId, boolean ableToManageChannel, long selectedGuildId) {
         return new ChannelListItemHeader(id2, textResId, ableToManageChannel, selectedGuildId);
     }
@@ -80,8 +56,18 @@ public final /* data */ class ChannelListItemHeader implements ChannelListItem {
         return this.id == channelListItemHeader.id && this.textResId == channelListItemHeader.textResId && this.ableToManageChannel == channelListItemHeader.ableToManageChannel && this.selectedGuildId == channelListItemHeader.selectedGuildId;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getAbleToManageChannel() {
         return this.ableToManageChannel;
+    }
+
+    public final boolean getAbleToManageChannel() {
+        return this.ableToManageChannel;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {
@@ -93,8 +79,18 @@ public final /* data */ class ChannelListItemHeader implements ChannelListItem {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getSelectedGuildId() {
         return this.selectedGuildId;
+    }
+
+    public final long getSelectedGuildId() {
+        return this.selectedGuildId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getTextResId() {
+        return this.textResId;
     }
 
     public final int getTextResId() {

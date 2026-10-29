@@ -24,7 +24,7 @@ public abstract class MGRecyclerAdapter<D> extends RecyclerView.Adapter<MGRecycl
     private RecyclerView recycler;
 
     /* JADX INFO: compiled from: MGRecyclerAdapter.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

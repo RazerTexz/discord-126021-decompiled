@@ -24,6 +24,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1211c extends BroadcastReceiver implements BluetoothProfile.ServiceListener {
 
+    /* JADX INFO: renamed from: k */
+    public static final a f1648k = new a(null);
+
     /* JADX INFO: renamed from: l */
     public boolean f1649l;
 
@@ -36,15 +39,12 @@ public final class C1211c extends BroadcastReceiver implements BluetoothProfile.
     /* JADX INFO: renamed from: o */
     public final InterfaceC1217i f1652o;
 
-    /* JADX INFO: renamed from: k */
-    public static final a f1648k = new a(null);
-
     /* JADX INFO: renamed from: j */
     public static final Set<BluetoothBroadcastAction> f1647j = C12148n0.setOf((Object[]) new BluetoothBroadcastAction[]{BluetoothBroadcastAction.HeadsetConnectionStateChanged, BluetoothBroadcastAction.HeadsetAudioStateChanged});
 
     /* JADX INFO: renamed from: b.a.q.k0.c$a */
     /* JADX INFO: compiled from: BluetoothBroadcastReceiver.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

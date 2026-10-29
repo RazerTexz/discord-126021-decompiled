@@ -25,7 +25,7 @@ public final class StoreExpandedGuildFolders extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpandedGuildFolders$closeFolder$1 */
     /* JADX INFO: compiled from: StoreExpandedGuildFolders.kt */
-    public static final class C59121 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59121 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $folderId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -48,7 +48,7 @@ public final class StoreExpandedGuildFolders extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpandedGuildFolders$observeOpenFolderIds$1 */
     /* JADX INFO: compiled from: StoreExpandedGuildFolders.kt */
-    public static final class C59131 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C59131 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public C59131() {
             super(0);
         }
@@ -61,7 +61,7 @@ public final class StoreExpandedGuildFolders extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpandedGuildFolders$openFolder$1 */
     /* JADX INFO: compiled from: StoreExpandedGuildFolders.kt */
-    public static final class C59141 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59141 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $folderId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

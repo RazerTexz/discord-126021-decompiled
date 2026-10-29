@@ -36,7 +36,7 @@ public final class C11526d implements InterfaceC11344g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.d$a */
     /* JADX INFO: compiled from: LazyJavaAnnotations.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11564a, InterfaceC11340c> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11564a, InterfaceC11340c> {
         public a() {
             super(1);
         }

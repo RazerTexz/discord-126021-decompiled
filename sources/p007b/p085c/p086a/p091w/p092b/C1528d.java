@@ -85,6 +85,45 @@ public class C1528d implements InterfaceC1529e, InterfaceC1537m, AbstractC1544a.
         this(c1511j, abstractC1603b, str, z2, arrayList, c1583l);
     }
 
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2487f;
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
+    public Path getPath() {
+        this.f2484c.reset();
+        C1558o c1558o = this.f2492k;
+        if (c1558o != null) {
+            this.f2484c.set(c1558o.m747e());
+        }
+        this.f2485d.reset();
+        if (this.f2488g) {
+            return this.f2485d;
+        }
+        for (int size = this.f2489h.size() - 1; size >= 0; size--) {
+            InterfaceC1527c interfaceC1527c = this.f2489h.get(size);
+            if (interfaceC1527c instanceof InterfaceC1537m) {
+                this.f2485d.addPath(((InterfaceC1537m) interfaceC1527c).getPath(), this.f2484c);
+            }
+        }
+        return this.f2485d;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public List<InterfaceC1537m> m716e() {
+        if (this.f2491j == null) {
+            this.f2491j = new ArrayList();
+            for (int i = 0; i < this.f2489h.size(); i++) {
+                InterfaceC1527c interfaceC1527c = this.f2489h.get(i);
+                if (interfaceC1527c instanceof InterfaceC1537m) {
+                    this.f2491j.add((InterfaceC1537m) interfaceC1527c);
+                }
+            }
+        }
+        return this.f2491j;
+    }
+
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
     /* JADX INFO: renamed from: a */
     public void mo709a() {
@@ -141,20 +180,6 @@ public class C1528d implements InterfaceC1529e, InterfaceC1537m, AbstractC1544a.
                 rectF.union(this.f2486e);
             }
         }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public List<InterfaceC1537m> m716e() {
-        if (this.f2491j == null) {
-            this.f2491j = new ArrayList();
-            for (int i = 0; i < this.f2489h.size(); i++) {
-                InterfaceC1527c interfaceC1527c = this.f2489h.get(i);
-                if (interfaceC1527c instanceof InterfaceC1537m) {
-                    this.f2491j.add((InterfaceC1537m) interfaceC1527c);
-                }
-            }
-        }
-        return this.f2491j;
     }
 
     @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
@@ -218,31 +243,6 @@ public class C1528d implements InterfaceC1529e, InterfaceC1537m, AbstractC1544a.
         if (c1558o != null) {
             c1558o.m745c(t, c1503c);
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2487f;
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
-    public Path getPath() {
-        this.f2484c.reset();
-        C1558o c1558o = this.f2492k;
-        if (c1558o != null) {
-            this.f2484c.set(c1558o.m747e());
-        }
-        this.f2485d.reset();
-        if (this.f2488g) {
-            return this.f2485d;
-        }
-        for (int size = this.f2489h.size() - 1; size >= 0; size--) {
-            InterfaceC1527c interfaceC1527c = this.f2489h.get(size);
-            if (interfaceC1527c instanceof InterfaceC1537m) {
-                this.f2485d.addPath(((InterfaceC1537m) interfaceC1527c).getPath(), this.f2484c);
-            }
-        }
-        return this.f2485d;
     }
 
     public C1528d(C1511j c1511j, AbstractC1603b abstractC1603b, String str, boolean z2, List<InterfaceC1527c> list, @Nullable C1583l c1583l) {

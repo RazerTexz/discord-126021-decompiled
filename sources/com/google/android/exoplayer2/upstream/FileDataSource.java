@@ -33,7 +33,17 @@ public final class FileDataSource extends AbstractC2705g {
     /* JADX INFO: renamed from: h */
     public boolean f20228h;
 
-    public static class FileDataSourceException extends DataSourceException {
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.upstream.FileDataSource$a */
+    @RequiresApi(21)
+    public final class C10765a {
+        @DoNotInline
+        /* JADX INFO: renamed from: b */
+        private static boolean m8936b(@Nullable Throwable th) {
+            return (th instanceof ErrnoException) && ((ErrnoException) th).errno == OsConstants.EACCES;
+        }
+    }
+
+    public class FileDataSourceException extends DataSourceException {
         public FileDataSourceException(Throwable th, int i) {
             super(th, i);
         }
@@ -43,18 +53,30 @@ public final class FileDataSource extends AbstractC2705g {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.upstream.FileDataSource$a */
-    @RequiresApi(21)
-    public static final class C10765a {
-        @DoNotInline
-        /* JADX INFO: renamed from: b */
-        private static boolean m8936b(@Nullable Throwable th) {
-            return (th instanceof ErrnoException) && ((ErrnoException) th).errno == OsConstants.EACCES;
-        }
-    }
-
     public FileDataSource() {
         super(false);
+    }
+
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0017 */
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    public void close() throws FileDataSourceException {
+        this.f20226f = null;
+        try {
+            RandomAccessFile randomAccessFile = this.f20225e;
+            if (randomAccessFile != null) {
+                randomAccessFile.close();
+            }
+            this.f20225e = null;
+            if (this.f20228h) {
+                this.f20228h = false;
+                m2849q();
+            }
+        } catch (IOException e) {
+            throw new FileDataSourceException(e, 2000);
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
@@ -93,28 +115,6 @@ public final class FileDataSource extends AbstractC2705g {
             throw new FileDataSourceException(e3, 2006);
         } catch (RuntimeException e4) {
             throw new FileDataSourceException(e4, 2000);
-        }
-    }
-
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0017 */
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public void close() throws FileDataSourceException {
-        this.f20226f = null;
-        try {
-            RandomAccessFile randomAccessFile = this.f20225e;
-            if (randomAccessFile != null) {
-                randomAccessFile.close();
-            }
-            this.f20225e = null;
-            if (this.f20228h) {
-                this.f20228h = false;
-                m2849q();
-            }
-        } catch (IOException e) {
-            throw new FileDataSourceException(e, 2000);
         }
     }
 

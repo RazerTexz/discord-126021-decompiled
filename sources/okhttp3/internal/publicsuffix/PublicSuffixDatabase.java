@@ -3,6 +3,7 @@ package okhttp3.internal.publicsuffix;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.IDN;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -29,11 +30,8 @@ import p615g0.C12408y;
 /* JADX INFO: loaded from: classes3.dex */
 public final class PublicSuffixDatabase {
 
-    /* JADX INFO: renamed from: e */
-    public final AtomicBoolean f27588e = new AtomicBoolean(false);
-
-    /* JADX INFO: renamed from: f */
-    public final CountDownLatch f27589f = new CountDownLatch(1);
+    /* JADX INFO: renamed from: d */
+    public static final C12940a f27587d = new C12940a(null);
 
     /* JADX INFO: renamed from: g */
     public byte[] f27590g;
@@ -41,21 +39,24 @@ public final class PublicSuffixDatabase {
     /* JADX INFO: renamed from: h */
     public byte[] f27591h;
 
-    /* JADX INFO: renamed from: d */
-    public static final C12940a f27587d = new C12940a(null);
-
     /* JADX INFO: renamed from: a */
     public static final byte[] f27584a = {(byte) 42};
 
     /* JADX INFO: renamed from: b */
     public static final List<String> f27585b = C12145m.listOf("*");
 
+    /* JADX INFO: renamed from: e */
+    public final AtomicBoolean f27588e = new AtomicBoolean(false);
+
     /* JADX INFO: renamed from: c */
     public static final PublicSuffixDatabase f27586c = new PublicSuffixDatabase();
 
+    /* JADX INFO: renamed from: f */
+    public final CountDownLatch f27589f = new CountDownLatch(1);
+
     /* JADX INFO: renamed from: okhttp3.internal.publicsuffix.PublicSuffixDatabase$a */
     /* JADX INFO: compiled from: PublicSuffixDatabase.kt */
-    public static final class C12940a {
+    public final class C12940a {
         public C12940a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -301,7 +302,7 @@ public final class PublicSuffixDatabase {
 
     /* JADX WARN: Code duplicated, block: B:12:0x0048 A[Catch: all -> 0x0054, TryCatch #0 {, blocks: (B:9:0x0041, B:10:0x0044, B:12:0x0048, B:13:0x004b), top: B:26:0x0041 }] */
     /* JADX INFO: renamed from: b */
-    public final void m11003b() throws IOException {
+    public final void m11003b() throws IllegalAccessException, IOException, InvocationTargetException {
         InputStream resourceAsStream = PublicSuffixDatabase.class.getResourceAsStream("publicsuffixes.gz");
         if (resourceAsStream != null) {
             C12238m.checkParameterIsNotNull(resourceAsStream, "$this$source");
@@ -327,7 +328,6 @@ public final class PublicSuffixDatabase {
                         }
                         this.f27591h = bArrMo10450Z2;
                     }
-                    throw th;
                 }
                 this.f27589f.countDown();
             } catch (Throwable th) {

@@ -103,10 +103,6 @@ public final class StageCallAdapter extends MGRecyclerAdapterSimple<StageCallIte
         };
     }
 
-    private final void openWidgetUserSheet(long userId, Channel channel) {
-        WidgetUserSheet.Companion.show$default(WidgetUserSheet.INSTANCE, userId, Long.valueOf(channel.getId()), this.fragmentManager, Long.valueOf(channel.getGuildId()), Boolean.TRUE, null, null, 96, null);
-    }
-
     public final RecyclerView.ItemDecoration getItemDecoration() {
         return this.itemDecoration;
     }
@@ -142,6 +138,10 @@ public final class StageCallAdapter extends MGRecyclerAdapterSimple<StageCallIte
             StageCallParticipantItem stageCallParticipantItem = (StageCallParticipantItem) item;
             openWidgetUserSheet(stageCallParticipantItem.getVoiceUser().getUser().getId(), stageCallParticipantItem.getChannel());
         }
+    }
+
+    private final void openWidgetUserSheet(long userId, Channel channel) {
+        WidgetUserSheet.Companion.show$default(WidgetUserSheet.INSTANCE, userId, Long.valueOf(channel.getId()), this.fragmentManager, Long.valueOf(channel.getGuildId()), Boolean.TRUE, null, null, 96, null);
     }
 
     public final void setData(List<? extends StageCallItem> data, int numSpeakers) {

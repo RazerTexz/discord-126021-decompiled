@@ -41,7 +41,7 @@ public final class PrivateCallGridView extends TableLayout {
     private List<StoreVoiceParticipants.VoiceUser> callUsers;
 
     /* JADX INFO: compiled from: PrivateCallGridView.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -56,6 +56,42 @@ public final class PrivateCallGridView extends TableLayout {
         C12238m.checkNotNullParameter(context, "context");
         this.callUsers = C12147n.emptyList();
         this.callUserViews = new LinkedHashMap<>();
+    }
+
+    public final void configure(List<StoreVoiceParticipants.VoiceUser> callUsers) {
+        C12238m.checkNotNullParameter(callUsers, "callUsers");
+        if (!CollectionExtensionsKt.equals(this.callUsers, callUsers, PrivateCallGridView$configure$callUserOrderChanged$1.INSTANCE)) {
+            removeViewsAndSubviews();
+            int i = 0;
+            for (Object obj : C12163u.chunked(getVisibleCallUsers(callUsers), getColumnSize())) {
+                int i2 = i + 1;
+                if (i < 0) {
+                    C12147n.throwIndexOverflow();
+                }
+                TableRow tableRow = new TableRow(getContext());
+                tableRow.setGravity(17);
+                Iterator it = ((List) obj).iterator();
+                while (it.hasNext()) {
+                    tableRow.addView(getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it.next()));
+                }
+                View overflowParticipantView = getOverflowParticipantView(callUsers, i);
+                if (overflowParticipantView != null) {
+                    tableRow.addView(overflowParticipantView);
+                }
+                View oneOnOneSpacerView = getOneOnOneSpacerView(callUsers, i);
+                if (oneOnOneSpacerView != null) {
+                    tableRow.addView(oneOnOneSpacerView, 1);
+                }
+                addView(tableRow);
+                i = i2;
+            }
+        } else {
+            Iterator<T> it2 = getVisibleCallUsers(callUsers).iterator();
+            while (it2.hasNext()) {
+                getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it2.next());
+            }
+        }
+        this.callUsers = callUsers;
     }
 
     private final VoiceUserView createCallUserView() {
@@ -143,42 +179,6 @@ public final class PrivateCallGridView extends TableLayout {
             ((TableRow) view).removeAllViews();
         }
         removeAllViews();
-    }
-
-    public final void configure(List<StoreVoiceParticipants.VoiceUser> callUsers) {
-        C12238m.checkNotNullParameter(callUsers, "callUsers");
-        if (!CollectionExtensionsKt.equals(this.callUsers, callUsers, PrivateCallGridView$configure$callUserOrderChanged$1.INSTANCE)) {
-            removeViewsAndSubviews();
-            int i = 0;
-            for (Object obj : C12163u.chunked(getVisibleCallUsers(callUsers), getColumnSize())) {
-                int i2 = i + 1;
-                if (i < 0) {
-                    C12147n.throwIndexOverflow();
-                }
-                TableRow tableRow = new TableRow(getContext());
-                tableRow.setGravity(17);
-                Iterator it = ((List) obj).iterator();
-                while (it.hasNext()) {
-                    tableRow.addView(getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it.next()));
-                }
-                View overflowParticipantView = getOverflowParticipantView(callUsers, i);
-                if (overflowParticipantView != null) {
-                    tableRow.addView(overflowParticipantView);
-                }
-                View oneOnOneSpacerView = getOneOnOneSpacerView(callUsers, i);
-                if (oneOnOneSpacerView != null) {
-                    tableRow.addView(oneOnOneSpacerView, 1);
-                }
-                addView(tableRow);
-                i = i2;
-            }
-        } else {
-            Iterator<T> it2 = getVisibleCallUsers(callUsers).iterator();
-            while (it2.hasNext()) {
-                getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it2.next());
-            }
-        }
-        this.callUsers = callUsers;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

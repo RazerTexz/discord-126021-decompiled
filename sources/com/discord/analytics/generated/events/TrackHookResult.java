@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackHookResult.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean success = null;
     private final CharSequence error = null;
-    private final CharSequence gameName = null;
     private final Long gameId = null;
+    private final CharSequence gameName = null;
     private final CharSequence soundshareSession = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "hook_result";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
         }
         TrackHookResult trackHookResult = (TrackHookResult) other;
         return C12238m.areEqual(this.success, trackHookResult.success) && C12238m.areEqual(this.error, trackHookResult.error) && C12238m.areEqual(this.gameName, trackHookResult.gameName) && C12238m.areEqual(this.gameId, trackHookResult.gameId) && C12238m.areEqual(this.soundshareSession, trackHookResult.soundshareSession);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

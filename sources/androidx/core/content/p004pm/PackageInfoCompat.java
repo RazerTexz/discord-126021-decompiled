@@ -23,7 +23,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public final class PackageInfoCompat {
 
     @RequiresApi(28)
-    public static class Api28Impl {
+    public class Api28Impl {
         private Api28Impl() {
         }
 

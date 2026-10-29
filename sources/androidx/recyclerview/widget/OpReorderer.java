@@ -28,6 +28,17 @@ public class OpReorderer {
         return -1;
     }
 
+    public void reorderOps(List<AdapterHelper.UpdateOp> list) {
+        while (true) {
+            int lastMoveOutOfOrder = getLastMoveOutOfOrder(list);
+            if (lastMoveOutOfOrder == -1) {
+                return;
+            } else {
+                swapMoveOp(list, lastMoveOutOfOrder, lastMoveOutOfOrder + 1);
+            }
+        }
+    }
+
     private void swapMoveAdd(List<AdapterHelper.UpdateOp> list, int i, AdapterHelper.UpdateOp updateOp, int i2, AdapterHelper.UpdateOp updateOp2) {
         int i3 = updateOp.itemCount;
         int i4 = updateOp2.positionStart;
@@ -61,17 +72,6 @@ public class OpReorderer {
                 return;
             }
             swapMoveUpdate(list, i, updateOp, i2, updateOp2);
-        }
-    }
-
-    public void reorderOps(List<AdapterHelper.UpdateOp> list) {
-        while (true) {
-            int lastMoveOutOfOrder = getLastMoveOutOfOrder(list);
-            if (lastMoveOutOfOrder == -1) {
-                return;
-            } else {
-                swapMoveOp(list, lastMoveOutOfOrder, lastMoveOutOfOrder + 1);
-            }
         }
     }
 

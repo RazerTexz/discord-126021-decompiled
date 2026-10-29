@@ -47,6 +47,12 @@ public final class C11724d {
         this.f24112f = inputStream;
     }
 
+    public void checkLastTagWas(int i) throws InvalidProtocolBufferException {
+        if (this.f24113g != i) {
+            throw new InvalidProtocolBufferException("Protocol message end-group tag did not match expected tag.");
+        }
+    }
+
     public static int decodeZigZag32(int i) {
         return (-(i & 1)) ^ (i >>> 1);
     }
@@ -55,8 +61,16 @@ public final class C11724d {
         return (-(j & 1)) ^ (j >>> 1);
     }
 
-    public static C11724d newInstance(InputStream inputStream) {
-        return new C11724d(inputStream);
+    public int getBytesUntilLimit() {
+        int i = this.f24115i;
+        if (i == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return i - (this.f24114h + this.f24111e);
+    }
+
+    public boolean isAtEnd() throws IOException {
+        return this.f24111e == this.f24109c && !m9837e(1);
     }
 
     /* JADX INFO: renamed from: a */
@@ -149,12 +163,6 @@ public final class C11724d {
         this.f24109c = i - i4;
     }
 
-    public void checkLastTagWas(int i) throws InvalidProtocolBufferException {
-        if (this.f24113g != i) {
-            throw new InvalidProtocolBufferException("Protocol message end-group tag did not match expected tag.");
-        }
-    }
-
     /* JADX INFO: renamed from: d */
     public final void m9836d(int i) throws IOException {
         if (!m9837e(i)) {
@@ -210,16 +218,8 @@ public final class C11724d {
         return false;
     }
 
-    public int getBytesUntilLimit() {
-        int i = this.f24115i;
-        if (i == Integer.MAX_VALUE) {
-            return -1;
-        }
-        return i - (this.f24114h + this.f24111e);
-    }
-
-    public boolean isAtEnd() throws IOException {
-        return this.f24111e == this.f24109c && !m9837e(1);
+    public static C11724d newInstance(InputStream inputStream) {
+        return new C11724d(inputStream);
     }
 
     public void popLimit(int i) {

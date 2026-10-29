@@ -16,15 +16,6 @@ public class ViewInfo {
         this.sql = str2;
     }
 
-    public static ViewInfo read(SupportSQLiteDatabase supportSQLiteDatabase, String str) {
-        Cursor cursorQuery = supportSQLiteDatabase.query("SELECT name, sql FROM sqlite_master WHERE type = 'view' AND name = '" + str + "'");
-        try {
-            return cursorQuery.moveToFirst() ? new ViewInfo(cursorQuery.getString(0), cursorQuery.getString(1)) : new ViewInfo(str, null);
-        } finally {
-            cursorQuery.close();
-        }
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -52,6 +43,15 @@ public class ViewInfo {
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         String str2 = this.sql;
         return iHashCode + (str2 != null ? str2.hashCode() : 0);
+    }
+
+    public static ViewInfo read(SupportSQLiteDatabase supportSQLiteDatabase, String str) {
+        Cursor cursorQuery = supportSQLiteDatabase.query("SELECT name, sql FROM sqlite_master WHERE type = 'view' AND name = '" + str + "'");
+        try {
+            return cursorQuery.moveToFirst() ? new ViewInfo(cursorQuery.getString(0), cursorQuery.getString(1)) : new ViewInfo(str, null);
+        } finally {
+            cursorQuery.close();
+        }
     }
 
     public String toString() {

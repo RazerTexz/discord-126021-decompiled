@@ -31,27 +31,6 @@ public class ConstraintProperties {
         this.mView = view;
     }
 
-    private String sideToString(int i) {
-        switch (i) {
-            case 1:
-                return "left";
-            case 2:
-                return "right";
-            case 3:
-                return "top";
-            case 4:
-                return "bottom";
-            case 5:
-                return "baseline";
-            case 6:
-                return "start";
-            case 7:
-                return "end";
-            default:
-                return "undefined";
-        }
-    }
-
     public ConstraintProperties addToHorizontalChain(int i, int i2) {
         connect(1, i, i == 0 ? 1 : 2, 0);
         connect(2, i2, i2 == 0 ? 2 : 1, 0);
@@ -531,6 +510,27 @@ public class ConstraintProperties {
 
     public ConstraintProperties scaleY(float f) {
         return this;
+    }
+
+    private String sideToString(int i) {
+        switch (i) {
+            case 1:
+                return "left";
+            case 2:
+                return "right";
+            case 3:
+                return "top";
+            case 4:
+                return "bottom";
+            case 5:
+                return "baseline";
+            case 6:
+                return "start";
+            case 7:
+                return "end";
+            default:
+                return "undefined";
+        }
     }
 
     public ConstraintProperties transformPivot(float f, float f2) {

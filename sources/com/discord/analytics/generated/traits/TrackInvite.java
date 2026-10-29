@@ -6,10 +6,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInvite.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInvite {
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
     private final Long inviteChannelId = null;
     private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
     private final Long inviteInviterId = null;
 
     public boolean equals(Object other) {

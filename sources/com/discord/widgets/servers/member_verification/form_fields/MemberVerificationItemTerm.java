@@ -36,17 +36,7 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
         this.isFirstItem = z3;
         this.isLastItem = z4;
         this.type = 3;
-        this.key = getType() + i + str;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getIndex() {
-        return this.index;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getRule() {
-        return this.rule;
+        this.key = "" + getType() + i + str;
     }
 
     public final List<Node<MessageRenderContext>> component3() {
@@ -59,21 +49,6 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
 
     public final Map<Long, GuildRole> component5() {
         return this.roles;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getAllowAnimatedEmojis() {
-        return this.allowAnimatedEmojis;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getIsFirstItem() {
-        return this.isFirstItem;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsLastItem() {
-        return this.isLastItem;
     }
 
     public final MemberVerificationItemTerm copy(int index, String rule, List<Node<MessageRenderContext>> ast, Map<Long, String> channelNames, Map<Long, GuildRole> roles, boolean allowAnimatedEmojis, boolean isFirstItem, boolean isLastItem) {
@@ -95,6 +70,11 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
         return this.index == memberVerificationItemTerm.index && C12238m.areEqual(this.rule, memberVerificationItemTerm.rule) && C12238m.areEqual(this.ast, memberVerificationItemTerm.ast) && C12238m.areEqual(this.channelNames, memberVerificationItemTerm.channelNames) && C12238m.areEqual(this.roles, memberVerificationItemTerm.roles) && this.allowAnimatedEmojis == memberVerificationItemTerm.allowAnimatedEmojis && this.isFirstItem == memberVerificationItemTerm.isFirstItem && this.isLastItem == memberVerificationItemTerm.isLastItem;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getAllowAnimatedEmojis() {
+        return this.allowAnimatedEmojis;
+    }
+
     public final boolean getAllowAnimatedEmojis() {
         return this.allowAnimatedEmojis;
     }
@@ -107,8 +87,23 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
         return this.channelNames;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getIndex() {
         return this.index;
+    }
+
+    public final int getIndex() {
+        return this.index;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getIsFirstItem() {
+        return this.isFirstItem;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsLastItem() {
+        return this.isLastItem;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -118,6 +113,11 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
 
     public final Map<Long, GuildRole> getRoles() {
         return this.roles;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getRule() {
+        return this.rule;
     }
 
     public final String getRule() {

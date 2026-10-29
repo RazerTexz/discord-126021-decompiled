@@ -18,7 +18,7 @@ public class ObjectField extends FieldSerializer.CachedField {
     public final Kryo kryo;
     public final Class type;
 
-    public static final class ObjectBooleanField extends ObjectField {
+    public final class ObjectBooleanField extends ObjectField {
         public ObjectBooleanField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -72,7 +72,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectByteField extends ObjectField {
+    public final class ObjectByteField extends ObjectField {
         public ObjectByteField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -126,7 +126,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectCharField extends ObjectField {
+    public final class ObjectCharField extends ObjectField {
         public ObjectCharField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -180,7 +180,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectDoubleField extends ObjectField {
+    public final class ObjectDoubleField extends ObjectField {
         public ObjectDoubleField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -234,7 +234,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectFloatField extends ObjectField {
+    public final class ObjectFloatField extends ObjectField {
         public ObjectFloatField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -288,7 +288,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectIntField extends ObjectField {
+    public final class ObjectIntField extends ObjectField {
         public ObjectIntField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -350,7 +350,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectLongField extends ObjectField {
+    public final class ObjectLongField extends ObjectField {
         public ObjectLongField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -412,7 +412,7 @@ public class ObjectField extends FieldSerializer.CachedField {
         }
     }
 
-    public static final class ObjectShortField extends ObjectField {
+    public final class ObjectShortField extends ObjectField {
         public ObjectShortField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }

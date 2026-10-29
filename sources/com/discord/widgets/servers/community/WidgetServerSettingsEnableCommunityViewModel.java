@@ -2,12 +2,12 @@ package com.discord.widgets.servers.community;
 
 import androidx.annotation.MainThread;
 import com.discord.api.channel.Channel;
+import com.discord.api.guild.Guild;
 import com.discord.api.guild.GuildExplicitContentFilter;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.guild.GuildVerificationLevel;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.models.guild.Guild;
 import com.discord.models.user.MeUser;
 import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreChannels;
@@ -53,7 +53,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final /* synthetic */ class C94051 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C94051 extends C12236k implements Function1<StoreState, Unit> {
         public C94051(WidgetServerSettingsEnableCommunityViewModel widgetServerSettingsEnableCommunityViewModel) {
             super(1, widgetServerSettingsEnableCommunityViewModel, WidgetServerSettingsEnableCommunityViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$StoreState;)V", 0);
         }
@@ -71,13 +71,112 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$patchRole$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final /* data */ class CommunityGuildConfig {
+    public final class C94071 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C94071() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetServerSettingsEnableCommunityViewModel.this.handleGuildUpdateError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$patchRole$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
+    public final class C94082 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ ViewState.Loaded $currentViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C94082(ViewState.Loaded loaded) {
+            super(1);
+            this.$currentViewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            WidgetServerSettingsEnableCommunityViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, 0, false, null, 5, null));
+            WidgetServerSettingsEnableCommunityViewModel.this.eventSubject.f27650k.onNext((T) Event.SaveSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$updateGuild$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
+    public final class C94091 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C94091() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetServerSettingsEnableCommunityViewModel.this.handleGuildUpdateError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$updateGuild$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
+    public final class C94102 extends AbstractC12240o implements Function1<Guild, Unit> {
+        public final /* synthetic */ CommunityGuildConfig $currentConfig;
+        public final /* synthetic */ ViewState.Loaded $currentViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C94102(CommunityGuildConfig communityGuildConfig, ViewState.Loaded loaded) {
+            super(1);
+            this.$currentConfig = communityGuildConfig;
+            this.$currentViewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Guild guild) {
+            invoke2(guild);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Guild guild) {
+            GuildRole guildRole;
+            C12238m.checkNotNullParameter(guild, "it");
+            if (this.$currentConfig.getEveryonePermissions()) {
+                Map<Long, GuildRole> roles = this.$currentConfig.getRoles();
+                WidgetServerSettingsEnableCommunityViewModel.this.patchRole(new RestAPIParams.Role(null, null, null, null, null, Long.valueOf((-1116960071743L) & ((roles == null || (guildRole = roles.get(Long.valueOf(WidgetServerSettingsEnableCommunityViewModel.this.getGuildId()))) == null) ? 0L : guildRole.getPermissions())), guild.getId(), null, Opcodes.IF_ICMPEQ, null));
+            } else {
+                WidgetServerSettingsEnableCommunityViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, 0, false, null, 5, null));
+                WidgetServerSettingsEnableCommunityViewModel.this.eventSubject.f27650k.onNext((T) Event.SaveSuccess.INSTANCE);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
+    public final /* data */ class CommunityGuildConfig {
         private final boolean defaultMessageNotifications;
         private final boolean everyonePermissions;
         private final boolean explicitContentFilter;
         private final List<GuildFeature> features;
-        private final Guild guild;
+        private final com.discord.models.guild.Guild guild;
         private final boolean isPrivacyPolicyAccepted;
         private final Map<Long, GuildRole> roles;
         private final Channel rulesChannel;
@@ -87,7 +186,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         private final boolean verificationLevel;
 
         /* JADX WARN: Multi-variable type inference failed */
-        public CommunityGuildConfig(Channel channel, Channel channel2, Long l, Long l2, boolean z2, boolean z3, boolean z4, boolean z5, Guild guild, boolean z6, List<? extends GuildFeature> list, Map<Long, GuildRole> map) {
+        public CommunityGuildConfig(Channel channel, Channel channel2, Long l, Long l2, boolean z2, boolean z3, boolean z4, boolean z5, com.discord.models.guild.Guild guild, boolean z6, List<? extends GuildFeature> list, Map<Long, GuildRole> map) {
             C12238m.checkNotNullParameter(list, "features");
             this.rulesChannel = channel;
             this.updatesChannel = channel2;
@@ -103,16 +202,6 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             this.roles = map;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getRulesChannel() {
-            return this.rulesChannel;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getEveryonePermissions() {
-            return this.everyonePermissions;
-        }
-
         public final List<GuildFeature> component11() {
             return this.features;
         }
@@ -121,47 +210,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return this.roles;
         }
 
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getUpdatesChannel() {
-            return this.updatesChannel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getRulesChannelId() {
-            return this.rulesChannelId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getUpdatesChannelId() {
-            return this.updatesChannelId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsPrivacyPolicyAccepted() {
-            return this.isPrivacyPolicyAccepted;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getDefaultMessageNotifications() {
-            return this.defaultMessageNotifications;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getVerificationLevel() {
-            return this.verificationLevel;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getExplicitContentFilter() {
-            return this.explicitContentFilter;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final CommunityGuildConfig copy(Channel rulesChannel, Channel updatesChannel, Long rulesChannelId, Long updatesChannelId, boolean isPrivacyPolicyAccepted, boolean defaultMessageNotifications, boolean verificationLevel, boolean explicitContentFilter, Guild guild, boolean everyonePermissions, List<? extends GuildFeature> features, Map<Long, GuildRole> roles) {
+        public final CommunityGuildConfig copy(Channel rulesChannel, Channel updatesChannel, Long rulesChannelId, Long updatesChannelId, boolean isPrivacyPolicyAccepted, boolean defaultMessageNotifications, boolean verificationLevel, boolean explicitContentFilter, com.discord.models.guild.Guild guild, boolean everyonePermissions, List<? extends GuildFeature> features, Map<Long, GuildRole> roles) {
             C12238m.checkNotNullParameter(features, "features");
             return new CommunityGuildConfig(rulesChannel, updatesChannel, rulesChannelId, updatesChannelId, isPrivacyPolicyAccepted, defaultMessageNotifications, verificationLevel, explicitContentFilter, guild, everyonePermissions, features, roles);
         }
@@ -177,12 +226,27 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return C12238m.areEqual(this.rulesChannel, communityGuildConfig.rulesChannel) && C12238m.areEqual(this.updatesChannel, communityGuildConfig.updatesChannel) && C12238m.areEqual(this.rulesChannelId, communityGuildConfig.rulesChannelId) && C12238m.areEqual(this.updatesChannelId, communityGuildConfig.updatesChannelId) && this.isPrivacyPolicyAccepted == communityGuildConfig.isPrivacyPolicyAccepted && this.defaultMessageNotifications == communityGuildConfig.defaultMessageNotifications && this.verificationLevel == communityGuildConfig.verificationLevel && this.explicitContentFilter == communityGuildConfig.explicitContentFilter && C12238m.areEqual(this.guild, communityGuildConfig.guild) && this.everyonePermissions == communityGuildConfig.everyonePermissions && C12238m.areEqual(this.features, communityGuildConfig.features) && C12238m.areEqual(this.roles, communityGuildConfig.roles);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getDefaultMessageNotifications() {
             return this.defaultMessageNotifications;
         }
 
+        public final boolean getDefaultMessageNotifications() {
+            return this.defaultMessageNotifications;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final boolean getEveryonePermissions() {
             return this.everyonePermissions;
+        }
+
+        public final boolean getEveryonePermissions() {
+            return this.everyonePermissions;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getExplicitContentFilter() {
+            return this.explicitContentFilter;
         }
 
         public final boolean getExplicitContentFilter() {
@@ -193,28 +257,63 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return this.features;
         }
 
-        public final Guild getGuild() {
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final com.discord.models.guild.Guild getGuild() {
             return this.guild;
+        }
+
+        public final com.discord.models.guild.Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsPrivacyPolicyAccepted() {
+            return this.isPrivacyPolicyAccepted;
         }
 
         public final Map<Long, GuildRole> getRoles() {
             return this.roles;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getRulesChannel() {
             return this.rulesChannel;
+        }
+
+        public final Channel getRulesChannel() {
+            return this.rulesChannel;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getRulesChannelId() {
+            return this.rulesChannelId;
         }
 
         public final Long getRulesChannelId() {
             return this.rulesChannelId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getUpdatesChannel() {
             return this.updatesChannel;
         }
 
+        public final Channel getUpdatesChannel() {
+            return this.updatesChannel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Long getUpdatesChannelId() {
             return this.updatesChannelId;
+        }
+
+        public final Long getUpdatesChannelId() {
+            return this.updatesChannelId;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getVerificationLevel() {
+            return this.verificationLevel;
         }
 
         public final boolean getVerificationLevel() {
@@ -271,7 +370,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 r5 = 1;
             }
             int i4 = (i3 + r5) * 31;
-            Guild guild = this.guild;
+            com.discord.models.guild.Guild guild = this.guild;
             int iHashCode5 = (i4 + (guild != null ? guild.hashCode() : 0)) * 31;
             boolean z6 = this.everyonePermissions;
             int i5 = (iHashCode5 + (z6 ? 1 : z6)) * 31;
@@ -312,48 +411,14 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return C1643a.m825M(sbM833U, this.roles, ")");
         }
 
-        public /* synthetic */ CommunityGuildConfig(Channel channel, Channel channel2, Long l, Long l2, boolean z2, boolean z3, boolean z4, boolean z5, Guild guild, boolean z6, List list, Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        public /* synthetic */ CommunityGuildConfig(Channel channel, Channel channel2, Long l, Long l2, boolean z2, boolean z3, boolean z4, boolean z5, com.discord.models.guild.Guild guild, boolean z6, List list, Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(channel, channel2, l, l2, z2, z3, z4, z5, guild, z6, (i & 1024) != 0 ? new ArrayList() : list, map);
         }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Observable<StoreState> observeStoreState(final long guildId, StoreGuilds storeGuilds, final StoreChannels storeChannels, final StorePermissions storePermissions, final StoreUser storeUsers) {
-            Observable observableM11099Y = storeGuilds.observeGuild(guildId).m11099Y(new InterfaceC12589b<Guild, Observable<? extends StoreState>>() { // from class: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$Companion$observeStoreState$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetServerSettingsEnableCommunityViewModel.StoreState> call(final Guild guild) {
-                    if (guild == null) {
-                        return new C12721k(WidgetServerSettingsEnableCommunityViewModel.StoreState.Invalid.INSTANCE);
-                    }
-                    Observable observableObserveMe$default = StoreUser.observeMe$default(storeUsers, false, 1, null);
-                    Observable<Long> observableObservePermissionsForGuild = storePermissions.observePermissionsForGuild(guildId);
-                    Observable<Map<Long, GuildRole>> observableObserveRoles = StoreStream.INSTANCE.getGuilds().observeRoles(guildId);
-                    StoreChannels storeChannels2 = storeChannels;
-                    Long rulesChannelId = guild.getRulesChannelId();
-                    Observable<Channel> observableObserveChannel = storeChannels2.observeChannel(rulesChannelId != null ? rulesChannelId.longValue() : 0L);
-                    StoreChannels storeChannels3 = storeChannels;
-                    Long publicUpdatesChannelId = guild.getPublicUpdatesChannelId();
-                    return Observable.m11072g(observableObserveMe$default, observableObservePermissionsForGuild, observableObserveRoles, observableObserveChannel, storeChannels3.observeChannel(publicUpdatesChannelId != null ? publicUpdatesChannelId.longValue() : 0L), new Func5<MeUser, Long, Map<Long, ? extends GuildRole>, Channel, Channel, WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid>() { // from class: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$Companion$observeStoreState$1.1
-                        @Override // p658rx.functions.Func5
-                        public /* bridge */ /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid call(MeUser meUser, Long l, Map<Long, ? extends GuildRole> map, Channel channel, Channel channel2) {
-                            return call2(meUser, l, (Map<Long, GuildRole>) map, channel, channel2);
-                        }
-
-                        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                        public final WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid call2(MeUser meUser, Long l, Map<Long, GuildRole> map, Channel channel, Channel channel2) {
-                            Guild guild2 = guild;
-                            C12238m.checkNotNullExpressionValue(meUser, "me");
-                            return new WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid(guild2, meUser, l, map, channel, channel2);
-                        }
-                    });
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "storeGuilds.observeGuild…      }\n        }\n      }");
-            return observableM11099Y;
         }
 
         public static /* synthetic */ Observable observeStoreState$default(Companion companion, long j, StoreGuilds storeGuilds, StoreChannels storeChannels, StorePermissions storePermissions, StoreUser storeUser, int i, Object obj) {
@@ -375,16 +440,50 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return companion.observeStoreState(j, storeGuilds2, storeChannels2, storePermissions2, storeUser);
         }
 
+        private final Observable<StoreState> observeStoreState(final long guildId, StoreGuilds storeGuilds, final StoreChannels storeChannels, final StorePermissions storePermissions, final StoreUser storeUsers) {
+            Observable observableM11099Y = storeGuilds.observeGuild(guildId).m11099Y(new InterfaceC12589b<com.discord.models.guild.Guild, Observable<? extends StoreState>>() { // from class: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$Companion$observeStoreState$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetServerSettingsEnableCommunityViewModel.StoreState> call(final com.discord.models.guild.Guild guild) {
+                    if (guild == null) {
+                        return new C12721k(WidgetServerSettingsEnableCommunityViewModel.StoreState.Invalid.INSTANCE);
+                    }
+                    Observable observableObserveMe$default = StoreUser.observeMe$default(storeUsers, false, 1, null);
+                    Observable<Long> observableObservePermissionsForGuild = storePermissions.observePermissionsForGuild(guildId);
+                    Observable<Map<Long, GuildRole>> observableObserveRoles = StoreStream.INSTANCE.getGuilds().observeRoles(guildId);
+                    StoreChannels storeChannels2 = storeChannels;
+                    Long rulesChannelId = guild.getRulesChannelId();
+                    Observable<Channel> observableObserveChannel = storeChannels2.observeChannel(rulesChannelId != null ? rulesChannelId.longValue() : 0L);
+                    StoreChannels storeChannels3 = storeChannels;
+                    Long publicUpdatesChannelId = guild.getPublicUpdatesChannelId();
+                    return Observable.m11072g(observableObserveMe$default, observableObservePermissionsForGuild, observableObserveRoles, observableObserveChannel, storeChannels3.observeChannel(publicUpdatesChannelId != null ? publicUpdatesChannelId.longValue() : 0L), new Func5<MeUser, Long, Map<Long, ? extends GuildRole>, Channel, Channel, WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid>() { // from class: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$Companion$observeStoreState$1.1
+                        @Override // p658rx.functions.Func5
+                        public /* bridge */ /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid call(MeUser meUser, Long l, Map<Long, ? extends GuildRole> map, Channel channel, Channel channel2) {
+                            return call2(meUser, l, (Map<Long, GuildRole>) map, channel, channel2);
+                        }
+
+                        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                        public final WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid call2(MeUser meUser, Long l, Map<Long, GuildRole> map, Channel channel, Channel channel2) {
+                            com.discord.models.guild.Guild guild2 = guild;
+                            C12238m.checkNotNullExpressionValue(meUser, "me");
+                            return new WidgetServerSettingsEnableCommunityViewModel.StoreState.Valid(guild2, meUser, l, map, channel, channel2);
+                        }
+                    });
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "storeGuilds.observeGuild…      }\n        }\n      }");
+            return observableM11099Y;
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final class Error extends Event {
+        public final class Error extends Event {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -393,7 +492,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final class SaveSuccess extends Event {
+        public final class SaveSuccess extends Event {
             public static final SaveSuccess INSTANCE = new SaveSuccess();
 
             private SaveSuccess() {
@@ -410,10 +509,10 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -422,8 +521,8 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final /* data */ class Valid extends StoreState {
-            private final Guild guild;
+        public final /* data */ class Valid extends StoreState {
+            private final com.discord.models.guild.Guild guild;
             private final MeUser me;
             private final Long permissions;
             private final Map<Long, GuildRole> roles;
@@ -431,7 +530,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             private final Channel updatesChannel;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Valid(Guild guild, MeUser meUser, Long l, Map<Long, GuildRole> map, Channel channel, Channel channel2) {
+            public Valid(com.discord.models.guild.Guild guild, MeUser meUser, Long l, Map<Long, GuildRole> map, Channel channel, Channel channel2) {
                 super(null);
                 C12238m.checkNotNullParameter(guild, "guild");
                 C12238m.checkNotNullParameter(meUser, "me");
@@ -443,8 +542,12 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 this.updatesChannel = channel2;
             }
 
+            public final Map<Long, GuildRole> component4() {
+                return this.roles;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Valid copy$default(Valid valid, Guild guild, MeUser meUser, Long l, Map map, Channel channel, Channel channel2, int i, Object obj) {
+            public static /* synthetic */ Valid copy$default(Valid valid, com.discord.models.guild.Guild guild, MeUser meUser, Long l, Map map, Channel channel, Channel channel2, int i, Object obj) {
                 if ((i & 1) != 0) {
                     guild = valid.guild;
                 }
@@ -470,36 +573,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 return valid.copy(guild, meUser2, l2, map2, channel3, channel2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final MeUser getMe() {
-                return this.me;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Long getPermissions() {
-                return this.permissions;
-            }
-
-            public final Map<Long, GuildRole> component4() {
-                return this.roles;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Channel getRulesChannel() {
-                return this.rulesChannel;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Channel getUpdatesChannel() {
-                return this.updatesChannel;
-            }
-
-            public final Valid copy(Guild guild, MeUser me2, Long permissions, Map<Long, GuildRole> roles, Channel rulesChannel, Channel updatesChannel) {
+            public final Valid copy(com.discord.models.guild.Guild guild, MeUser me2, Long permissions, Map<Long, GuildRole> roles, Channel rulesChannel, Channel updatesChannel) {
                 C12238m.checkNotNullParameter(guild, "guild");
                 C12238m.checkNotNullParameter(me2, "me");
                 return new Valid(guild, me2, permissions, roles, rulesChannel, updatesChannel);
@@ -516,12 +590,27 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 return C12238m.areEqual(this.guild, valid.guild) && C12238m.areEqual(this.me, valid.me) && C12238m.areEqual(this.permissions, valid.permissions) && C12238m.areEqual(this.roles, valid.roles) && C12238m.areEqual(this.rulesChannel, valid.rulesChannel) && C12238m.areEqual(this.updatesChannel, valid.updatesChannel);
             }
 
-            public final Guild getGuild() {
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final com.discord.models.guild.Guild getGuild() {
                 return this.guild;
+            }
+
+            public final com.discord.models.guild.Guild getGuild() {
+                return this.guild;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final MeUser getMe() {
+                return this.me;
             }
 
             public final MeUser getMe() {
                 return this.me;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Long getPermissions() {
+                return this.permissions;
             }
 
             public final Long getPermissions() {
@@ -532,8 +621,18 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 return this.roles;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final Channel getRulesChannel() {
                 return this.rulesChannel;
+            }
+
+            public final Channel getRulesChannel() {
+                return this.rulesChannel;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final Channel getUpdatesChannel() {
+                return this.updatesChannel;
             }
 
             public final Channel getUpdatesChannel() {
@@ -541,7 +640,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             }
 
             public int hashCode() {
-                Guild guild = this.guild;
+                com.discord.models.guild.Guild guild = this.guild;
                 int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
                 MeUser meUser = this.me;
                 int iHashCode2 = (iHashCode + (meUser != null ? meUser.hashCode() : 0)) * 31;
@@ -582,10 +681,10 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -594,7 +693,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final CommunityGuildConfig communityGuildConfig;
             private final int currentPage;
             private final boolean isLoading;
@@ -621,21 +720,6 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 return loaded.copy(i, z2, communityGuildConfig);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getCurrentPage() {
-                return this.currentPage;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsLoading() {
-                return this.isLoading;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final CommunityGuildConfig getCommunityGuildConfig() {
-                return this.communityGuildConfig;
-            }
-
             public final Loaded copy(int currentPage, boolean isLoading, CommunityGuildConfig communityGuildConfig) {
                 C12238m.checkNotNullParameter(communityGuildConfig, "communityGuildConfig");
                 return new Loaded(currentPage, isLoading, communityGuildConfig);
@@ -652,12 +736,27 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
                 return this.currentPage == loaded.currentPage && this.isLoading == loaded.isLoading && C12238m.areEqual(this.communityGuildConfig, loaded.communityGuildConfig);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final CommunityGuildConfig getCommunityGuildConfig() {
                 return this.communityGuildConfig;
             }
 
+            public final CommunityGuildConfig getCommunityGuildConfig() {
+                return this.communityGuildConfig;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getCurrentPage() {
                 return this.currentPage;
+            }
+
+            public final int getCurrentPage() {
+                return this.currentPage;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsLoading() {
+                return this.isLoading;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -694,7 +793,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -710,107 +809,12 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$patchRole$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final class C94071 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C94071() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetServerSettingsEnableCommunityViewModel.this.handleGuildUpdateError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$patchRole$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final class C94082 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ ViewState.Loaded $currentViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C94082(ViewState.Loaded loaded) {
-            super(1);
-            this.$currentViewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r7) {
-            WidgetServerSettingsEnableCommunityViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, 0, false, null, 5, null));
-            WidgetServerSettingsEnableCommunityViewModel.this.eventSubject.f27650k.onNext((T) Event.SaveSuccess.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$updateGuild$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final class C94091 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C94091() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetServerSettingsEnableCommunityViewModel.this.handleGuildUpdateError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel$updateGuild$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunityViewModel.kt */
-    public static final class C94102 extends AbstractC12240o implements Function1<com.discord.api.guild.Guild, Unit> {
-        public final /* synthetic */ CommunityGuildConfig $currentConfig;
-        public final /* synthetic */ ViewState.Loaded $currentViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C94102(CommunityGuildConfig communityGuildConfig, ViewState.Loaded loaded) {
-            super(1);
-            this.$currentConfig = communityGuildConfig;
-            this.$currentViewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(com.discord.api.guild.Guild guild) {
-            invoke2(guild);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(com.discord.api.guild.Guild guild) {
-            GuildRole guildRole;
-            C12238m.checkNotNullParameter(guild, "it");
-            if (this.$currentConfig.getEveryonePermissions()) {
-                Map<Long, GuildRole> roles = this.$currentConfig.getRoles();
-                WidgetServerSettingsEnableCommunityViewModel.this.patchRole(new RestAPIParams.Role(null, null, null, null, null, Long.valueOf((-1116960071743L) & ((roles == null || (guildRole = roles.get(Long.valueOf(WidgetServerSettingsEnableCommunityViewModel.this.getGuildId()))) == null) ? 0L : guildRole.getPermissions())), guild.getId(), null, Opcodes.IF_ICMPEQ, null));
-            } else {
-                WidgetServerSettingsEnableCommunityViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, 0, false, null, 5, null));
-                WidgetServerSettingsEnableCommunityViewModel.this.eventSubject.f27650k.onNext((T) Event.SaveSuccess.INSTANCE);
-            }
-        }
-    }
-
     public /* synthetic */ WidgetServerSettingsEnableCommunityViewModel(long j, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(j, (i & 2) != 0 ? Companion.observeStoreState$default(INSTANCE, j, null, null, null, null, 30, null) : observable);
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     @MainThread
@@ -829,7 +833,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         }
         CommunityGuildConfig communityGuildConfig = loaded.getCommunityGuildConfig();
         List listPlus = C12163u.plus((Collection<? extends GuildFeature>) communityGuildConfig.getFeatures(), GuildFeature.COMMUNITY);
-        Guild guild = communityGuildConfig.getGuild();
+        com.discord.models.guild.Guild guild = communityGuildConfig.getGuild();
         if (guild == null || (verificationLevel = guild.getVerificationLevel()) == null) {
             verificationLevel = GuildVerificationLevel.NONE;
         }
@@ -842,7 +846,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         } else {
             guildVerificationLevel = guildVerificationLevel2;
         }
-        Guild guild2 = communityGuildConfig.getGuild();
+        com.discord.models.guild.Guild guild2 = communityGuildConfig.getGuild();
         if (guild2 == null || (explicitContentFilter = guild2.getExplicitContentFilter()) == null) {
             explicitContentFilter = GuildExplicitContentFilter.NONE;
         }
@@ -866,6 +870,18 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         return new RestAPIParams.UpdateGuild(null, null, null, Integer.valueOf(i), null, null, guildVerificationLevel, guildExplicitContentFilter, null, null, null, listPlus, communityGuildConfig.getRulesChannelId(), communityGuildConfig.getUpdatesChannelId(), null, 18231, null);
     }
 
+    @MainThread
+    public final void goBackToPreviousPage() {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateCurrentPage(loaded.getCurrentPage() - 1);
+        }
+    }
+
     private final void handleGuildUpdateError() {
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Loaded)) {
@@ -887,7 +903,7 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
             return;
         }
         StoreState.Valid valid = (StoreState.Valid) storeState;
-        Guild guild = valid.getGuild();
+        com.discord.models.guild.Guild guild = valid.getGuild();
         MeUser me2 = valid.getMe();
         if (!(guild.isOwner(me2.getId()) || PermissionUtils.canAndIsElevated(32L, valid.getPermissions(), me2.getMfaEnabled(), guild.getMfaLevel()))) {
             updateViewState(ViewState.Invalid.INSTANCE);
@@ -902,35 +918,6 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         long permissions = (-1116960071743L) & ((roles == null || (guildRole2 = roles.get(Long.valueOf(this.guildId))) == null) ? 0L : guildRole2.getPermissions());
         Map<Long, GuildRole> roles2 = valid.getRoles();
         updateViewState(new ViewState.Loaded(0, false, new CommunityGuildConfig(rulesChannel, updatesChannel, 1L, 1L, false, z2, z3, z4, guild, (roles2 == null || (guildRole = roles2.get(Long.valueOf(this.guildId))) == null || permissions != guildRole.getPermissions()) ? false : true, C12163u.toList(guild.getFeatures()), valid.getRoles())));
-    }
-
-    private final void patchRole(RestAPIParams.Role roleParams) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            RestAPI api = RestAPI.INSTANCE.getApi();
-            long j = this.guildId;
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.updateRole(j, j, roleParams), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsEnableCommunityViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C94071()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94082(loaded));
-        }
-    }
-
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    @MainThread
-    public final void goBackToPreviousPage() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            updateCurrentPage(loaded.getCurrentPage() - 1);
-        }
     }
 
     @MainThread
@@ -950,6 +937,19 @@ public final class WidgetServerSettingsEnableCommunityViewModel extends Abstract
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
+    }
+
+    private final void patchRole(RestAPIParams.Role roleParams) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            RestAPI api = RestAPI.INSTANCE.getApi();
+            long j = this.guildId;
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.updateRole(j, j, roleParams), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsEnableCommunityViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C94071()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94082(loaded));
+        }
     }
 
     @MainThread

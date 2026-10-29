@@ -41,7 +41,7 @@ public final class DirectoryEntryCategory {
     private final int titleRes;
 
     /* JADX INFO: compiled from: DirectoryEntryCategory.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -105,14 +105,6 @@ public final class DirectoryEntryCategory {
         this.idealSize = i4;
     }
 
-    public static DirectoryEntryCategory valueOf(String str) {
-        return (DirectoryEntryCategory) Enum.valueOf(DirectoryEntryCategory.class, str);
-    }
-
-    public static DirectoryEntryCategory[] values() {
-        return (DirectoryEntryCategory[]) $VALUES.clone();
-    }
-
     public final int getIdealSize() {
         return this.idealSize;
     }
@@ -130,6 +122,14 @@ public final class DirectoryEntryCategory {
 
     public final int getTitleRes() {
         return this.titleRes;
+    }
+
+    public static DirectoryEntryCategory valueOf(String str) {
+        return (DirectoryEntryCategory) Enum.valueOf(DirectoryEntryCategory.class, str);
+    }
+
+    public static DirectoryEntryCategory[] values() {
+        return (DirectoryEntryCategory[]) $VALUES.clone();
     }
 
     public /* synthetic */ DirectoryEntryCategory(String str, int i, int i2, int i3, int i4, int i5, DefaultConstructorMarker defaultConstructorMarker) {

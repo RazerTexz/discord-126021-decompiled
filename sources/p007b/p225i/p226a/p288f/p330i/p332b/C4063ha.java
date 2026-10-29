@@ -24,24 +24,6 @@ public final class C4063ha extends AbstractC4027ea {
         this.f10796g = c3769o0;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: a */
-    public final int mo5593a() {
-        return this.f10796g.m5148w();
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: g */
-    public final boolean mo5594g() {
-        return true;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: h */
-    public final boolean mo5595h() {
-        return false;
-    }
-
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
     java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
     	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
@@ -125,5 +107,23 @@ public final class C4063ha extends AbstractC4027ea {
             }
         }
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: a */
+    public final int mo5593a() {
+        return this.f10796g.m5148w();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: g */
+    public final boolean mo5594g() {
+        return true;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: h */
+    public final boolean mo5595h() {
+        return false;
     }
 }

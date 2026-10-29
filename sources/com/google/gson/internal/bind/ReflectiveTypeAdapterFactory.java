@@ -39,7 +39,35 @@ public final class ReflectiveTypeAdapterFactory implements InterfaceC4911o {
     /* JADX INFO: renamed from: n */
     public final AbstractC4944b f21531n = AbstractC4944b.f13148a;
 
-    public static final class Adapter<T> extends TypeAdapter<T> {
+    /* JADX INFO: renamed from: com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a */
+    public abstract class AbstractC11109a {
+
+        /* JADX INFO: renamed from: a */
+        public final String f21534a;
+
+        /* JADX INFO: renamed from: b */
+        public final boolean f21535b;
+
+        /* JADX INFO: renamed from: c */
+        public final boolean f21536c;
+
+        public AbstractC11109a(String str, boolean z2, boolean z3) {
+            this.f21534a = str;
+            this.f21535b = z2;
+            this.f21536c = z3;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public abstract void mo6906a(JsonReader jsonReader, Object obj) throws IllegalAccessException, IOException;
+
+        /* JADX INFO: renamed from: b */
+        public abstract void mo6907b(JsonWriter jsonWriter, Object obj) throws IllegalAccessException, IOException;
+
+        /* JADX INFO: renamed from: c */
+        public abstract boolean mo6908c(Object obj) throws IllegalAccessException, IOException;
+    }
+
+    public final class Adapter<T> extends TypeAdapter<T> {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC4933r<T> f21532a;
@@ -99,40 +127,59 @@ public final class ReflectiveTypeAdapterFactory implements InterfaceC4911o {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a */
-    public static abstract class AbstractC11109a {
-
-        /* JADX INFO: renamed from: a */
-        public final String f21534a;
-
-        /* JADX INFO: renamed from: b */
-        public final boolean f21535b;
-
-        /* JADX INFO: renamed from: c */
-        public final boolean f21536c;
-
-        public AbstractC11109a(String str, boolean z2, boolean z3) {
-            this.f21534a = str;
-            this.f21535b = z2;
-            this.f21536c = z3;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public abstract void mo6906a(JsonReader jsonReader, Object obj) throws IllegalAccessException, IOException;
-
-        /* JADX INFO: renamed from: b */
-        public abstract void mo6907b(JsonWriter jsonWriter, Object obj) throws IllegalAccessException, IOException;
-
-        /* JADX INFO: renamed from: c */
-        public abstract boolean mo6908c(Object obj) throws IllegalAccessException, IOException;
-    }
-
     public ReflectiveTypeAdapterFactory(C4922g c4922g, InterfaceC4900d interfaceC4900d, Excluder excluder, JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory) {
         this.f21527j = c4922g;
         this.f21528k = interfaceC4900d;
         this.f21529l = excluder;
         this.f21530m = jsonAdapterAnnotationTypeAdapterFactory;
     }
+
+    /*  JADX ERROR: NullPointerException in pass: ConstructorVisitor
+        java.lang.NullPointerException: Cannot invoke "jadx.core.dex.instructions.args.RegisterArg.sameRegAndSVar(jadx.core.dex.instructions.args.InsnArg)" because "resultArg" is null
+        	at jadx.core.dex.visitors.MoveInlineVisitor.processMove(MoveInlineVisitor.java:52)
+        	at jadx.core.dex.visitors.MoveInlineVisitor.moveInline(MoveInlineVisitor.java:41)
+        	at jadx.core.dex.visitors.ConstructorVisitor.visit(ConstructorVisitor.java:43)
+        */
+    @Override // p007b.p225i.p408d.InterfaceC4911o
+    public <T> com.google.gson.TypeAdapter<T> create(
+    /*  JADX ERROR: Method generation error
+        jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r36v0 ??
+        	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
+        	at jadx.core.codegen.MethodGen.addMethodArguments(MethodGen.java:215)
+        	at jadx.core.codegen.MethodGen.addDefinition(MethodGen.java:150)
+        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:443)
+        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:373)
+        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:305)
+        	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+        	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
+        	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:261)
+        	at java.base/java.util.stream.ReferencePipeline$7$1FlatMap.end(ReferencePipeline.java:284)
+        	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:571)
+        	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:560)
+        	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:153)
+        	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
+        	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
+        	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
+        	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+        	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+        	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:107)
+        	at jadx.core.codegen.CodeGen.wrapCodeGen(CodeGen.java:45)
+        	at jadx.core.codegen.CodeGen.generateJavaCode(CodeGen.java:34)
+        	at jadx.core.codegen.CodeGen.generate(CodeGen.java:22)
+        	at jadx.core.ProcessClass.process(ProcessClass.java:89)
+        	at jadx.core.ProcessClass.generateCode(ProcessClass.java:127)
+        	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:401)
+        	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:389)
+        	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:339)
+        */
+    /*  JADX ERROR: NullPointerException in pass: ConstructorVisitor
+        java.lang.NullPointerException: Cannot invoke "jadx.core.dex.instructions.args.RegisterArg.sameRegAndSVar(jadx.core.dex.instructions.args.InsnArg)" because "resultArg" is null
+        	at jadx.core.dex.visitors.MoveInlineVisitor.processMove(MoveInlineVisitor.java:52)
+        	at jadx.core.dex.visitors.MoveInlineVisitor.moveInline(MoveInlineVisitor.java:41)
+        */
 
     /* JADX INFO: renamed from: a */
     public boolean m9233a(Field field, boolean z2) {
@@ -163,51 +210,4 @@ public final class ReflectiveTypeAdapterFactory implements InterfaceC4911o {
         }
         return false;
     }
-
-    /*  JADX ERROR: NullPointerException in pass: ConstructorVisitor
-        java.lang.NullPointerException: Cannot invoke "jadx.core.dex.instructions.args.RegisterArg.sameRegAndSVar(jadx.core.dex.instructions.args.InsnArg)" because "resultArg" is null
-        	at jadx.core.dex.visitors.MoveInlineVisitor.processMove(MoveInlineVisitor.java:52)
-        	at jadx.core.dex.visitors.MoveInlineVisitor.moveInline(MoveInlineVisitor.java:41)
-        	at jadx.core.dex.visitors.ConstructorVisitor.visit(ConstructorVisitor.java:43)
-        */
-    @Override // p007b.p225i.p408d.InterfaceC4911o
-    public <T> com.google.gson.TypeAdapter<T> create(
-    /*  JADX ERROR: Method generation error
-        jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r36v0 ??
-        	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
-        	at jadx.core.codegen.MethodGen.addMethodArguments(MethodGen.java:215)
-        	at jadx.core.codegen.MethodGen.addDefinition(MethodGen.java:150)
-        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:415)
-        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:345)
-        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:299)
-        	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
-        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-        	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
-        	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:261)
-        	at java.base/java.util.stream.ReferencePipeline$7$1FlatMap.end(ReferencePipeline.java:284)
-        	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:571)
-        	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:560)
-        	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:153)
-        	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
-        	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
-        	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-        	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-        	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-        	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:104)
-        	at jadx.core.codegen.CodeGen.wrapCodeGen(CodeGen.java:45)
-        	at jadx.core.codegen.CodeGen.generateJavaCode(CodeGen.java:34)
-        	at jadx.core.codegen.CodeGen.generate(CodeGen.java:22)
-        	at jadx.core.ProcessClass.process(ProcessClass.java:89)
-        	at jadx.core.ProcessClass.generateCode(ProcessClass.java:127)
-        	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:405)
-        	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:393)
-        	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:343)
-        */
-    /*  JADX ERROR: NullPointerException in pass: ConstructorVisitor
-        java.lang.NullPointerException: Cannot invoke "jadx.core.dex.instructions.args.RegisterArg.sameRegAndSVar(jadx.core.dex.instructions.args.InsnArg)" because "resultArg" is null
-        	at jadx.core.dex.visitors.MoveInlineVisitor.processMove(MoveInlineVisitor.java:52)
-        	at jadx.core.dex.visitors.MoveInlineVisitor.moveInline(MoveInlineVisitor.java:41)
-        */
 }

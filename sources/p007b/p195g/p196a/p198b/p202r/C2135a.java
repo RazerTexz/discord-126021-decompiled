@@ -9,7 +9,7 @@ public final class C2135a {
 
     /* JADX INFO: renamed from: b.g.a.b.r.a$a */
     /* JADX INFO: compiled from: ByteQuadsCanonicalizer.java */
-    public static final class a {
+    public final class a {
         public a(int i, int i2, int i3, int[] iArr, String[] strArr, int i4, int i5) {
         }
     }

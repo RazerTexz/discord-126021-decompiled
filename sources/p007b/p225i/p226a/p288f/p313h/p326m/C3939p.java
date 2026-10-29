@@ -10,15 +10,6 @@ import java.util.regex.Pattern;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3939p {
 
-    /* JADX INFO: renamed from: f */
-    public static HashMap<String, String> f10471f;
-
-    /* JADX INFO: renamed from: k */
-    public static Object f10476k;
-
-    /* JADX INFO: renamed from: l */
-    public static boolean f10477l;
-
     /* JADX INFO: renamed from: a */
     public static final Uri f10466a = Uri.parse("content://com.google.android.gsf.gservices");
 
@@ -34,6 +25,9 @@ public class C3939p {
     /* JADX INFO: renamed from: e */
     public static final AtomicBoolean f10470e = new AtomicBoolean();
 
+    /* JADX INFO: renamed from: f */
+    public static HashMap<String, String> f10471f;
+
     /* JADX INFO: renamed from: g */
     public static final HashMap<String, Boolean> f10472g = new HashMap<>();
 
@@ -45,6 +39,12 @@ public class C3939p {
 
     /* JADX INFO: renamed from: j */
     public static final HashMap<String, Float> f10475j = new HashMap<>();
+
+    /* JADX INFO: renamed from: k */
+    public static Object f10476k;
+
+    /* JADX INFO: renamed from: l */
+    public static boolean f10477l;
 
     /* JADX INFO: renamed from: m */
     public static String[] f10478m = new String[0];

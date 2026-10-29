@@ -17,8 +17,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: PhoneCountryCodeAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class PhoneCountryCodeAdapter extends RecyclerView.Adapter<PhoneCountryCodeAdapterItem> {
-    private List<PhoneCountryCode> items = C12147n.emptyList();
     private OnCountryCodeSelectedListener onCountryCodeSelectedListener;
+    private List<PhoneCountryCode> items = C12147n.emptyList();
 
     public final void configure(List<PhoneCountryCode> countryCodes, OnCountryCodeSelectedListener onCountryCodeSelectedListener) {
         C12238m.checkNotNullParameter(countryCodes, "countryCodes");

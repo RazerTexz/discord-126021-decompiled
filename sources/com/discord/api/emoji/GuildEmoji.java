@@ -27,6 +27,17 @@ public final /* data */ class GuildEmoji {
         this.available = bool;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildEmoji)) {
+            return false;
+        }
+        GuildEmoji guildEmoji = (GuildEmoji) other;
+        return this.id == guildEmoji.id && C12238m.areEqual(this.name, guildEmoji.name) && C12238m.areEqual(this.roles, guildEmoji.roles) && this.requireColons == guildEmoji.requireColons && this.managed == guildEmoji.managed && this.animated == guildEmoji.animated && C12238m.areEqual(this.available, guildEmoji.available);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getAnimated() {
         return this.animated;
@@ -52,25 +63,9 @@ public final /* data */ class GuildEmoji {
         return this.name;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildEmoji)) {
-            return false;
-        }
-        GuildEmoji guildEmoji = (GuildEmoji) other;
-        return this.id == guildEmoji.id && C12238m.areEqual(this.name, guildEmoji.name) && C12238m.areEqual(this.roles, guildEmoji.roles) && this.requireColons == guildEmoji.requireColons && this.managed == guildEmoji.managed && this.animated == guildEmoji.animated && C12238m.areEqual(this.available, guildEmoji.available);
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final boolean getRequireColons() {
         return this.requireColons;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final List<Long> m7815g() {
-        return this.roles;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -107,6 +102,11 @@ public final /* data */ class GuildEmoji {
         int i4 = (i3 + (z4 ? 1 : z4)) * 31;
         Boolean bool = this.available;
         return i4 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final List<Long> m7815g() {
+        return this.roles;
     }
 
     public String toString() {

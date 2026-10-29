@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackPremiumPageOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackPremiumPageOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "premium_page_opened";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "premium_page_opened";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

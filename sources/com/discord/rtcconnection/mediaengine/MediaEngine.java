@@ -19,7 +19,7 @@ import p658rx.Observable;
 public interface MediaEngine {
 
     /* JADX INFO: compiled from: MediaEngine.kt */
-    public static final /* data */ class AudioInfo {
+    public final /* data */ class AudioInfo {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final String audioSubsystem;
@@ -60,8 +60,64 @@ public interface MediaEngine {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$a */
     /* JADX INFO: compiled from: MediaEngine.kt */
-    public static final /* data */ class EchoCancellationInfo {
+    public final class C5640a {
+
+        /* JADX INFO: renamed from: a */
+        public final int f18898a;
+
+        /* JADX INFO: renamed from: b */
+        public final String f18899b;
+
+        /* JADX INFO: renamed from: c */
+        public final int f18900c;
+
+        /* JADX INFO: renamed from: d */
+        public final List<StreamParameters> f18901d;
+
+        public C5640a(int i, String str, int i2, List<StreamParameters> list) {
+            C12238m.checkNotNullParameter(str, "ip");
+            C12238m.checkNotNullParameter(list, "streams");
+            this.f18898a = i;
+            this.f18899b = str;
+            this.f18900c = i2;
+            this.f18901d = list;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof C5640a)) {
+                return false;
+            }
+            C5640a c5640a = (C5640a) obj;
+            return this.f18898a == c5640a.f18898a && C12238m.areEqual(this.f18899b, c5640a.f18899b) && this.f18900c == c5640a.f18900c && C12238m.areEqual(this.f18901d, c5640a.f18901d);
+        }
+
+        public int hashCode() {
+            int i = this.f18898a * 31;
+            String str = this.f18899b;
+            int iHashCode = (((i + (str != null ? str.hashCode() : 0)) * 31) + this.f18900c) * 31;
+            List<StreamParameters> list = this.f18901d;
+            return iHashCode + (list != null ? list.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ConnectionOptions(ssrc=");
+            sbM833U.append(this.f18898a);
+            sbM833U.append(", ip=");
+            sbM833U.append(this.f18899b);
+            sbM833U.append(", port=");
+            sbM833U.append(this.f18900c);
+            sbM833U.append(", streams=");
+            return C1643a.m824L(sbM833U, this.f18901d, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngine.kt */
+    public final /* data */ class EchoCancellationInfo {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final boolean builtinAecRequested;
@@ -232,8 +288,26 @@ public interface MediaEngine {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$b */
     /* JADX INFO: compiled from: MediaEngine.kt */
-    public static final /* data */ class LocalVoiceStatus {
+    public interface InterfaceC5641b {
+        void onEchoCancellationUpdated(EchoCancellationInfo echoCancellationInfo);
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$c */
+    /* JADX INFO: compiled from: MediaEngine.kt */
+    public interface InterfaceC5642c {
+        void onConnected();
+
+        void onConnecting();
+
+        void onNativeEngineInitialized();
+
+        void onNewConnection(MediaEngineConnection mediaEngineConnection);
+    }
+
+    /* JADX INFO: compiled from: MediaEngine.kt */
+    public final /* data */ class LocalVoiceStatus {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final float amplitude;
@@ -294,7 +368,7 @@ public interface MediaEngine {
     }
 
     /* JADX INFO: compiled from: MediaEngine.kt */
-    public static final /* data */ class VoiceConfig {
+    public final /* data */ class VoiceConfig {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final float outputVolume;
@@ -435,79 +509,7 @@ public interface MediaEngine {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$a */
-    /* JADX INFO: compiled from: MediaEngine.kt */
-    public static final class C5640a {
-
-        /* JADX INFO: renamed from: a */
-        public final int f18898a;
-
-        /* JADX INFO: renamed from: b */
-        public final String f18899b;
-
-        /* JADX INFO: renamed from: c */
-        public final int f18900c;
-
-        /* JADX INFO: renamed from: d */
-        public final List<StreamParameters> f18901d;
-
-        public C5640a(int i, String str, int i2, List<StreamParameters> list) {
-            C12238m.checkNotNullParameter(str, "ip");
-            C12238m.checkNotNullParameter(list, "streams");
-            this.f18898a = i;
-            this.f18899b = str;
-            this.f18900c = i2;
-            this.f18901d = list;
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof C5640a)) {
-                return false;
-            }
-            C5640a c5640a = (C5640a) obj;
-            return this.f18898a == c5640a.f18898a && C12238m.areEqual(this.f18899b, c5640a.f18899b) && this.f18900c == c5640a.f18900c && C12238m.areEqual(this.f18901d, c5640a.f18901d);
-        }
-
-        public int hashCode() {
-            int i = this.f18898a * 31;
-            String str = this.f18899b;
-            int iHashCode = (((i + (str != null ? str.hashCode() : 0)) * 31) + this.f18900c) * 31;
-            List<StreamParameters> list = this.f18901d;
-            return iHashCode + (list != null ? list.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ConnectionOptions(ssrc=");
-            sbM833U.append(this.f18898a);
-            sbM833U.append(", ip=");
-            sbM833U.append(this.f18899b);
-            sbM833U.append(", port=");
-            sbM833U.append(this.f18900c);
-            sbM833U.append(", streams=");
-            return C1643a.m824L(sbM833U, this.f18901d, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$b */
-    /* JADX INFO: compiled from: MediaEngine.kt */
-    public interface InterfaceC5641b {
-        void onEchoCancellationUpdated(EchoCancellationInfo echoCancellationInfo);
-    }
-
-    /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngine$c */
-    /* JADX INFO: compiled from: MediaEngine.kt */
-    public interface InterfaceC5642c {
-        void onConnected();
-
-        void onConnecting();
-
-        void onNativeEngineInitialized();
-
-        void onNewConnection(MediaEngineConnection mediaEngineConnection);
-    }
+    List<MediaEngineConnection> getConnections();
 
     /* JADX INFO: renamed from: a */
     Observable<Unit> mo321a();
@@ -530,8 +532,6 @@ public interface MediaEngine {
 
     /* JADX INFO: renamed from: g */
     MediaEngineConnection mo327g(long userId, C5640a options, MediaEngineConnection.Type type, Function1<? super Exception, Unit> onFailure);
-
-    List<MediaEngineConnection> getConnections();
 
     /* JADX INFO: renamed from: h */
     void mo328h(OpenSLUsageMode openSLUsageMode);

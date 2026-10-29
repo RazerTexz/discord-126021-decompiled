@@ -36,6 +36,10 @@ public class TypeToken<T> {
         return new AssertionError(sb.toString());
     }
 
+    public final boolean equals(Object obj) {
+        return (obj instanceof TypeToken) && C4916a.m6862c(this.type, ((TypeToken) obj).type);
+    }
+
     public static TypeToken<?> get(Type type) {
         return new TypeToken<>(type);
     }
@@ -48,38 +52,16 @@ public class TypeToken<T> {
         return new TypeToken<>(new C4916a.b(null, type, typeArr));
     }
 
+    public final Class<? super T> getRawType() {
+        return this.rawType;
+    }
+
     public static Type getSuperclassTypeParameter(Class<?> cls) {
         Type genericSuperclass = cls.getGenericSuperclass();
         if (genericSuperclass instanceof Class) {
             throw new RuntimeException("Missing type parameter.");
         }
         return C4916a.m6860a(((ParameterizedType) genericSuperclass).getActualTypeArguments()[0]);
-    }
-
-    private static boolean matches(Type type, Type type2, Map<String, Type> map) {
-        return type2.equals(type) || ((type instanceof TypeVariable) && type2.equals(map.get(((TypeVariable) type).getName())));
-    }
-
-    private static boolean typeEquals(ParameterizedType parameterizedType, ParameterizedType parameterizedType2, Map<String, Type> map) {
-        if (!parameterizedType.getRawType().equals(parameterizedType2.getRawType())) {
-            return false;
-        }
-        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
-        Type[] actualTypeArguments2 = parameterizedType2.getActualTypeArguments();
-        for (int i = 0; i < actualTypeArguments.length; i++) {
-            if (!matches(actualTypeArguments[i], actualTypeArguments2[i], map)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        return (obj instanceof TypeToken) && C4916a.m6862c(this.type, ((TypeToken) obj).type);
-    }
-
-    public final Class<? super T> getRawType() {
-        return this.rawType;
     }
 
     public final Type getType() {
@@ -95,8 +77,26 @@ public class TypeToken<T> {
         return isAssignableFrom((Type) cls);
     }
 
+    private static boolean matches(Type type, Type type2, Map<String, Type> map) {
+        return type2.equals(type) || ((type instanceof TypeVariable) && type2.equals(map.get(((TypeVariable) type).getName())));
+    }
+
     public final String toString() {
         return C4916a.m6868i(this.type);
+    }
+
+    private static boolean typeEquals(ParameterizedType parameterizedType, ParameterizedType parameterizedType2, Map<String, Type> map) {
+        if (!parameterizedType.getRawType().equals(parameterizedType2.getRawType())) {
+            return false;
+        }
+        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+        Type[] actualTypeArguments2 = parameterizedType2.getActualTypeArguments();
+        for (int i = 0; i < actualTypeArguments.length; i++) {
+            if (!matches(actualTypeArguments[i], actualTypeArguments2[i], map)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static <T> TypeToken<T> get(Class<T> cls) {

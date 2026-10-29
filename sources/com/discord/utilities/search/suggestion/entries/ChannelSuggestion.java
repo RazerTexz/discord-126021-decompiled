@@ -18,7 +18,7 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
     private final String channelName;
 
     /* JADX INFO: compiled from: ChannelSuggestion.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -53,16 +53,6 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
         return channelSuggestion.copy(str, j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
     public final ChannelSuggestion copy(String channelName, long channelId) {
         C12238m.checkNotNullParameter(channelName, "channelName");
         return new ChannelSuggestion(channelName, channelId);
@@ -84,8 +74,18 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
         return this.category;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getChannelName() {
+        return this.channelName;
     }
 
     public final String getChannelName() {

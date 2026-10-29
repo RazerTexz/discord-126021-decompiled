@@ -87,7 +87,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$a */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public static final class a extends AbstractC12240o implements Function1<Integer, InterfaceC11352h> {
+    public final class a extends AbstractC12240o implements Function1<Integer, InterfaceC11352h> {
         public a() {
             super(1);
         }
@@ -104,7 +104,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$b */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public static final class b extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class b extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public final /* synthetic */ C11692q $proto;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -121,7 +121,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$c */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public static final class c extends AbstractC12240o implements Function1<Integer, InterfaceC11352h> {
+    public final class c extends AbstractC12240o implements Function1<Integer, InterfaceC11352h> {
         public c() {
             super(1);
         }
@@ -138,7 +138,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$d */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public /* synthetic */ class d extends C12235j implements Function1<C11712a, C11712a> {
+    public final /* synthetic */ class d extends C12235j implements Function1<C11712a, C11712a> {
 
         /* JADX INFO: renamed from: j */
         public static final d f24511j = new d();
@@ -171,7 +171,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$e */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public static final class e extends AbstractC12240o implements Function1<C11692q, C11692q> {
+    public final class e extends AbstractC12240o implements Function1<C11692q, C11692q> {
         public e() {
             super(1);
         }
@@ -185,7 +185,7 @@ public final class C11849c0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.c0$f */
     /* JADX INFO: compiled from: TypeDeserializer.kt */
-    public static final class f extends AbstractC12240o implements Function1<C11692q, Integer> {
+    public final class f extends AbstractC12240o implements Function1<C11692q, Integer> {
 
         /* JADX INFO: renamed from: j */
         public static final f f24512j = new f();
@@ -245,6 +245,14 @@ public final class C11849c0 {
         return C11470w.findTypeAliasAcrossModuleDependencies(c11849c0.f24503a.getComponents().getModuleDescriptor(), classId);
     }
 
+    public final boolean getExperimentalSuspendFunctionTypeEncountered() {
+        return this.f24507e;
+    }
+
+    public final List<InterfaceC11477z0> getOwnTypeParameters() {
+        return C12163u.toList(this.f24510h.values());
+    }
+
     /* JADX INFO: renamed from: c */
     public static final List<C11692q.b> m9947c(C11692q c11692q, C11849c0 c11849c0) {
         List<C11692q.b> argumentList = c11692q.getArgumentList();
@@ -266,13 +274,6 @@ public final class C11849c0 {
             mutableList.add(0);
         }
         return c11849c0.f24503a.getComponents().getNotFoundClasses().getClass(classId, mutableList);
-    }
-
-    public static /* synthetic */ AbstractC11934j0 simpleType$default(C11849c0 c11849c0, C11692q c11692q, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = true;
-        }
-        return c11849c0.simpleType(c11692q, z2);
     }
 
     /* JADX INFO: renamed from: a */
@@ -311,12 +312,11 @@ public final class C11849c0 {
         return c11849c0.m9951e(i);
     }
 
-    public final boolean getExperimentalSuspendFunctionTypeEncountered() {
-        return this.f24507e;
-    }
-
-    public final List<InterfaceC11477z0> getOwnTypeParameters() {
-        return C12163u.toList(this.f24510h.values());
+    public static /* synthetic */ AbstractC11934j0 simpleType$default(C11849c0 c11849c0, C11692q c11692q, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = true;
+        }
+        return c11849c0.simpleType(c11692q, z2);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -335,7 +335,6 @@ public final class C11849c0 {
         Object next;
         ?? SimpleType$default;
         int size;
-        AbstractC11934j0 abstractC11934j0WithAbbreviation;
         InterfaceC12012w0 c12016y0;
         C12238m.checkNotNullParameter(c11692q, "proto");
         Object objSimpleType$default = null;
@@ -485,11 +484,13 @@ public final class C11849c0 {
         }
         C11692q c11692qAbbreviatedType = C11707f.abbreviatedType(c11692q, this.f24503a.getTypeTable());
         ?? r15 = SimpleType$default;
-        if (c11692qAbbreviatedType != null && (abstractC11934j0WithAbbreviation = C11968m0.withAbbreviation(SimpleType$default, simpleType(c11692qAbbreviatedType, false))) != null) {
+        if (c11692qAbbreviatedType != null) {
+            AbstractC11934j0 abstractC11934j0WithAbbreviation = C11968m0.withAbbreviation(SimpleType$default, simpleType(c11692qAbbreviatedType, false));
             r15 = SimpleType$default;
-            r15 = abstractC11934j0WithAbbreviation;
+            if (abstractC11934j0WithAbbreviation != null) {
+                r15 = abstractC11934j0WithAbbreviation;
+            }
         }
-        r15 = SimpleType$default;
         return c11692q.hasClassName() ? this.f24503a.getComponents().getPlatformDependentTypeTransformer().transformPlatformType(C11887w.getClassId(this.f24503a.getNameResolver(), c11692q.getClassName()), r15) : r15;
     }
 

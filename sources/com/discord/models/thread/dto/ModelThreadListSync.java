@@ -26,7 +26,7 @@ public final /* data */ class ModelThreadListSync {
     private final List<Channel> threads;
 
     /* JADX INFO: compiled from: ModelThreadListSync.kt */
-    public static final class Parser implements Model.Parser<ModelThreadListSync> {
+    public final class Parser implements Model.Parser<ModelThreadListSync> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -133,6 +133,18 @@ public final /* data */ class ModelThreadListSync {
         this.mostRecentMessages = list3;
     }
 
+    public final List<Channel> component2() {
+        return this.threads;
+    }
+
+    public final List<ThreadMember> component3() {
+        return this.members;
+    }
+
+    public final List<Message> component4() {
+        return this.mostRecentMessages;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelThreadListSync copy$default(ModelThreadListSync modelThreadListSync, long j, List list, List list2, List list3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -153,23 +165,6 @@ public final /* data */ class ModelThreadListSync {
         return modelThreadListSync.copy(j2, list4, list5, list3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    public final List<Channel> component2() {
-        return this.threads;
-    }
-
-    public final List<ThreadMember> component3() {
-        return this.members;
-    }
-
-    public final List<Message> component4() {
-        return this.mostRecentMessages;
-    }
-
     public final ModelThreadListSync copy(long guildId, List<Channel> threads, List<? extends ThreadMember> members, List<Message> mostRecentMessages) {
         C12238m.checkNotNullParameter(threads, "threads");
         return new ModelThreadListSync(guildId, threads, members, mostRecentMessages);
@@ -184,6 +179,11 @@ public final /* data */ class ModelThreadListSync {
         }
         ModelThreadListSync modelThreadListSync = (ModelThreadListSync) other;
         return this.guildId == modelThreadListSync.guildId && C12238m.areEqual(this.threads, modelThreadListSync.threads) && C12238m.areEqual(this.members, modelThreadListSync.members) && C12238m.areEqual(this.mostRecentMessages, modelThreadListSync.mostRecentMessages);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {

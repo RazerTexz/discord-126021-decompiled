@@ -43,16 +43,16 @@ public final class WidgetServerSettingsGuildRoleSubscriptionTierList extends App
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private ServerSettingsGuildRoleSubscriptionTierAdapter adapter;
+
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_TIERS_VIEW_FLIPPER_LOADED_STATE */
     private static final int f19393x64833d6d = 1;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_TIERS_VIEW_FLIPPER_LOADING_STATE */
     private static final int f19394xaaa0cc98 = 0;
-    private ServerSettingsGuildRoleSubscriptionTierAdapter adapter;
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
@@ -60,26 +60,9 @@ public final class WidgetServerSettingsGuildRoleSubscriptionTierList extends App
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionTierList.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptionTierList.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.WidgetServerSettingsGuildRoleSubscriptionTierList$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionTierList.kt */
-    public static final class C94561 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionTierListViewModel.ViewState, Unit> {
+    public final class C94561 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionTierListViewModel.ViewState, Unit> {
         public C94561() {
             super(1);
         }
@@ -95,6 +78,23 @@ public final class WidgetServerSettingsGuildRoleSubscriptionTierList extends App
             WidgetServerSettingsGuildRoleSubscriptionTierList widgetServerSettingsGuildRoleSubscriptionTierList = WidgetServerSettingsGuildRoleSubscriptionTierList.this;
             C12238m.checkNotNullExpressionValue(viewState, "it");
             widgetServerSettingsGuildRoleSubscriptionTierList.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionTierList.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptionTierList.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

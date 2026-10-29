@@ -11,6 +11,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1283i {
 
+    /* JADX INFO: renamed from: h */
+    public static final C1283i f1923h = null;
+
     /* JADX INFO: renamed from: a */
     public static final String[] f1916a = {"true|false|nil", "module|require|include|extend|lib", "abstract|private|protected", "annotation|class|finalize|new|initialize|allocate|self|super", "union|typeof|forall|is_a?|nil?|as?|as|responds_to?|alias|type", "property|getter|setter|struct|of", "previous_def|method|fun|enum|macro", "rescue|raise|begin|end|ensure", "if|else|elsif|then|unless|until", "for|in|of|do|when|select|with", "while|break|next|yield|case", "print|puts|return"};
 
@@ -32,12 +35,9 @@ public final class C1283i {
     /* JADX INFO: renamed from: g */
     public static final Pattern f1922g = Pattern.compile("^(:\"?(?:[+-/%&^|]|\\*\\*?|\\w+|(?:<(?=[<=\\s])[<=]?(?:(?<==)>)?|>(?=[>=\\s])[>=]?(?:(?<==)>)?)|\\[][?=]?|(?:!(?=[=~\\s])[=~]?|=?(?:~|==?)))(?:(?<!\\\\)\"(?=\\s|$))?)");
 
-    /* JADX INFO: renamed from: h */
-    public static final C1283i f1923h = null;
-
     /* JADX INFO: renamed from: b.a.t.a.i$a */
     /* JADX INFO: compiled from: Crystal.kt */
-    public static final class a<RC> extends Node.C5655a<RC> {
+    public final class a<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final C13213a f1925b = new C13213a(null);
@@ -47,7 +47,7 @@ public final class C1283i {
 
         /* JADX INFO: renamed from: b.a.t.a.i$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: Crystal.kt */
-        public static final class C13213a {
+        public final class C13213a {
             public C13213a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }

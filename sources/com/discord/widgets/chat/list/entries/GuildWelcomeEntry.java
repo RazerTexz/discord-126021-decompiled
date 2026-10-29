@@ -23,10 +23,7 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
         this.guildId = j;
         this.guildName = str;
         this.type = 25;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
+        this.key = "" + getType() + j;
     }
 
     public static /* synthetic */ GuildWelcomeEntry copy$default(GuildWelcomeEntry guildWelcomeEntry, boolean z2, boolean z3, boolean z4, long j, String str, int i, Object obj) {
@@ -51,31 +48,6 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
         return guildWelcomeEntry.copy(z2, z5, z6, j2, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getIsOwner() {
-        return this.isOwner;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getGuildHasIcon() {
-        return this.guildHasIcon;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanInvite() {
-        return this.canInvite;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getGuildName() {
-        return this.guildName;
-    }
-
     public final GuildWelcomeEntry copy(boolean isOwner, boolean guildHasIcon, boolean canInvite, long guildId, String guildName) {
         C12238m.checkNotNullParameter(guildName, "guildName");
         return new GuildWelcomeEntry(isOwner, guildHasIcon, canInvite, guildId, guildName);
@@ -92,20 +64,45 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
         return this.isOwner == guildWelcomeEntry.isOwner && this.guildHasIcon == guildWelcomeEntry.guildHasIcon && this.canInvite == guildWelcomeEntry.canInvite && this.guildId == guildWelcomeEntry.guildId && C12238m.areEqual(this.guildName, guildWelcomeEntry.guildName);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getCanInvite() {
         return this.canInvite;
+    }
+
+    public final boolean getCanInvite() {
+        return this.canInvite;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getGuildHasIcon() {
+        return this.guildHasIcon;
     }
 
     public final boolean getGuildHasIcon() {
         return this.guildHasIcon;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
     }
 
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final String getGuildName() {
         return this.guildName;
+    }
+
+    public final String getGuildName() {
+        return this.guildName;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getIsOwner() {
+        return this.isOwner;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

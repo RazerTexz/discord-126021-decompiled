@@ -9,9 +9,6 @@ import p659s.p660a.p661a.C13031n;
 /* JADX INFO: compiled from: MainCoroutineDispatcher.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC13128l1 extends CoroutineDispatcher {
-    /* JADX INFO: renamed from: H */
-    public abstract AbstractC13128l1 mo11194H();
-
     /* JADX INFO: renamed from: I */
     public final String m11332I() {
         AbstractC13128l1 abstractC13128l1Mo11194H;
@@ -30,6 +27,9 @@ public abstract class AbstractC13128l1 extends CoroutineDispatcher {
         }
         return null;
     }
+
+    /* JADX INFO: renamed from: H */
+    public abstract AbstractC13128l1 mo11194H();
 
     @Override // kotlinx.coroutines.CoroutineDispatcher
     public String toString() {

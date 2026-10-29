@@ -26,54 +26,16 @@ public final class AppStartAnalyticsTracker {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy instance$delegate = C12083g.lazy(AppStartAnalyticsTracker$Companion$instance$2.INSTANCE);
     private Long appOpenTimestamp;
     private final Clock clock;
     private final String openAppLoadId;
     private final StoreUserSettingsSystem storeUserSettingsSystem;
     private final AnalyticsUtils.Tracker tracker;
-
-    /* JADX INFO: compiled from: AppStartAnalyticsTracker.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final Map<String, Object> insertUriProperties(Map<String, Object> map, Uri uri) {
-            String host = uri.getHost();
-            if (host != null) {
-                C12238m.checkNotNullExpressionValue(host, "it");
-                map.put("uri_host", host);
-            }
-            String scheme = uri.getScheme();
-            if (scheme != null) {
-                C12238m.checkNotNullExpressionValue(scheme, "it");
-                map.put("uri_scheme", scheme);
-            }
-            String path = uri.getPath();
-            if (!(path == null || path.length() == 0)) {
-                if (path.length() > 100) {
-                    path = path.substring(0, 99);
-                    C12238m.checkNotNullExpressionValue(path, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-                }
-                map.put("uri_path", path);
-            }
-            return map;
-        }
-
-        public final AppStartAnalyticsTracker getInstance() {
-            Lazy lazy = AppStartAnalyticsTracker.instance$delegate;
-            Companion companion = AppStartAnalyticsTracker.INSTANCE;
-            return (AppStartAnalyticsTracker) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Lazy instance$delegate = C12083g.lazy(AppStartAnalyticsTracker$Companion$instance$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.utilities.analytics.AppStartAnalyticsTracker$appOpen$1 */
     /* JADX INFO: compiled from: AppStartAnalyticsTracker.kt */
-    public static final class C66831 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+    public final class C66831 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
         public final /* synthetic */ boolean $isNotificationRoute;
         public final /* synthetic */ Uri $uri;
         public final /* synthetic */ boolean $uriCanBeRouted;
@@ -105,6 +67,44 @@ public final class AppStartAnalyticsTracker {
                 appStartAnalyticsTracker.appOpenTimestamp = Long.valueOf(appStartAnalyticsTracker.clock.currentTimeMillis());
             }
             return mapMutableMapOf;
+        }
+    }
+
+    /* JADX INFO: compiled from: AppStartAnalyticsTracker.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final AppStartAnalyticsTracker getInstance() {
+            Lazy lazy = AppStartAnalyticsTracker.instance$delegate;
+            Companion companion = AppStartAnalyticsTracker.INSTANCE;
+            return (AppStartAnalyticsTracker) lazy.getValue();
+        }
+
+        private final Map<String, Object> insertUriProperties(Map<String, Object> map, Uri uri) {
+            String host = uri.getHost();
+            if (host != null) {
+                C12238m.checkNotNullExpressionValue(host, "it");
+                map.put("uri_host", host);
+            }
+            String scheme = uri.getScheme();
+            if (scheme != null) {
+                C12238m.checkNotNullExpressionValue(scheme, "it");
+                map.put("uri_scheme", scheme);
+            }
+            String path = uri.getPath();
+            if (!(path == null || path.length() == 0)) {
+                if (path.length() > 100) {
+                    path = path.substring(0, 99);
+                    C12238m.checkNotNullExpressionValue(path, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                }
+                map.put("uri_path", path);
+            }
+            return map;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

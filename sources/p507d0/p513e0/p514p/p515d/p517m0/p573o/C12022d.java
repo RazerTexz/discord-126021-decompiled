@@ -32,7 +32,7 @@ public final class C12022d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.d$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12240o implements Function1 {
+    public final class a extends AbstractC12240o implements Function1 {
 
         /* JADX INFO: renamed from: j */
         public static final a f24908j = new a();
@@ -50,7 +50,7 @@ public final class C12022d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.d$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12240o implements Function1 {
+    public final class b extends AbstractC12240o implements Function1 {
 
         /* JADX INFO: renamed from: j */
         public static final b f24909j = new b();
@@ -68,7 +68,7 @@ public final class C12022d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.d$c */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class c extends AbstractC12240o implements Function1 {
+    public final class c extends AbstractC12240o implements Function1 {
 
         /* JADX INFO: renamed from: j */
         public static final c f24910j = new c();

@@ -43,20 +43,6 @@ public final class C4076j extends AbstractC4170r5 {
         super(c4202u4);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    /* JADX INFO: renamed from: r */
-    public final boolean mo5574r() {
-        Calendar calendar = Calendar.getInstance();
-        this.f10829c = TimeUnit.MINUTES.convert(calendar.get(16) + calendar.get(15), TimeUnit.MILLISECONDS);
-        Locale locale = Locale.getDefault();
-        String language = locale.getLanguage();
-        Locale locale2 = Locale.ENGLISH;
-        String lowerCase = language.toLowerCase(locale2);
-        String lowerCase2 = locale.getCountry().toLowerCase(locale2);
-        this.f10830d = C1643a.m859k(C1643a.m841b(lowerCase2, C1643a.m841b(lowerCase, 1)), lowerCase, "-", lowerCase2);
-        return false;
-    }
-
     /* JADX INFO: renamed from: s */
     public final boolean m5688s(Context context) {
         if (this.f10831e == null) {
@@ -133,5 +119,19 @@ public final class C4076j extends AbstractC4170r5 {
         } catch (AuthenticatorException | OperationCanceledException | IOException e) {
             mo5726g().f11142g.m5861b("Exception checking account types", e);
         }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    /* JADX INFO: renamed from: r */
+    public final boolean mo5574r() {
+        Calendar calendar = Calendar.getInstance();
+        this.f10829c = TimeUnit.MINUTES.convert(calendar.get(16) + calendar.get(15), TimeUnit.MILLISECONDS);
+        Locale locale = Locale.getDefault();
+        String language = locale.getLanguage();
+        Locale locale2 = Locale.ENGLISH;
+        String lowerCase = language.toLowerCase(locale2);
+        String lowerCase2 = locale.getCountry().toLowerCase(locale2);
+        this.f10830d = C1643a.m859k(C1643a.m841b(lowerCase2, C1643a.m841b(lowerCase, 1)), lowerCase, "-", lowerCase2);
+        return false;
     }
 }

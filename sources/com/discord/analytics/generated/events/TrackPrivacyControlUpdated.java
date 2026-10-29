@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPrivacyControlUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence controlType = null;
     private final Boolean controlState = null;
+    private final CharSequence controlType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "privacy_control_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSch
         }
         TrackPrivacyControlUpdated trackPrivacyControlUpdated = (TrackPrivacyControlUpdated) other;
         return C12238m.areEqual(this.controlType, trackPrivacyControlUpdated.controlType) && C12238m.areEqual(this.controlState, trackPrivacyControlUpdated.controlState);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -17,7 +17,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p294d.C3190e;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class Credential extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<Credential> CREATOR = new C3190e();
 
     /* JADX INFO: renamed from: j */
     public final String f20389j;
@@ -48,10 +47,11 @@ public class Credential extends AbstractSafeParcelable implements ReflectedParce
     /* JADX INFO: renamed from: q */
     @Nullable
     public final String f20396q;
+    public static final Parcelable.Creator<Credential> CREATOR = new C3190e();
 
     /* JADX INFO: renamed from: com.google.android.gms.auth.api.credentials.Credential$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
-    public static class C10792a {
+    public class C10792a {
 
         /* JADX INFO: renamed from: a */
         public final String f20397a;

@@ -38,7 +38,7 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserViewModel$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-    public static final class C76691 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C76691 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C76691() {
             super(1);
         }
@@ -57,7 +57,7 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -78,7 +78,7 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final Guild guild;
         private final Long permissions;
@@ -102,21 +102,6 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
             return storeState.copy(channel, guild, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getPermissions() {
-            return this.permissions;
-        }
-
         public final StoreState copy(Channel channel, Guild guild, Long permissions) {
             return new StoreState(channel, guild, permissions);
         }
@@ -132,12 +117,27 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
             return C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.permissions, storeState.permissions);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getPermissions() {
+            return this.permissions;
         }
 
         public final Long getPermissions() {
@@ -164,10 +164,10 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-        public static final /* data */ class Browser extends ViewState {
+        public final /* data */ class Browser extends ViewState {
             private final boolean canCreateThread;
             private final boolean canViewArchivedThreads;
             private final String channelName;
@@ -197,26 +197,6 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
                 return browser.copy(str, z2, z3, z4);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getChannelName() {
-                return this.channelName;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanCreateThread() {
-                return this.canCreateThread;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getCanViewArchivedThreads() {
-                return this.canViewArchivedThreads;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsForumChannel() {
-                return this.isForumChannel;
-            }
-
             public final Browser copy(String channelName, boolean canCreateThread, boolean canViewArchivedThreads, boolean isForumChannel) {
                 return new Browser(channelName, canCreateThread, canViewArchivedThreads, isForumChannel);
             }
@@ -232,16 +212,36 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
                 return C12238m.areEqual(this.channelName, browser.channelName) && this.canCreateThread == browser.canCreateThread && this.canViewArchivedThreads == browser.canViewArchivedThreads && this.isForumChannel == browser.isForumChannel;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getCanCreateThread() {
                 return this.canCreateThread;
+            }
+
+            public final boolean getCanCreateThread() {
+                return this.canCreateThread;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getCanViewArchivedThreads() {
+                return this.canViewArchivedThreads;
             }
 
             public final boolean getCanViewArchivedThreads() {
                 return this.canViewArchivedThreads;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final String getChannelName() {
                 return this.channelName;
+            }
+
+            public final String getChannelName() {
+                return this.channelName;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsForumChannel() {
+                return this.isForumChannel;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -293,7 +293,7 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
         }
 
         /* JADX INFO: compiled from: WidgetThreadBrowserViewModel.kt */
-        public static final /* data */ class GoToChannel extends ViewState {
+        public final /* data */ class GoToChannel extends ViewState {
             private final Channel channel;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -310,11 +310,6 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
                 return goToChannel.copy(channel);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
             public final GoToChannel copy(Channel channel) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 return new GoToChannel(channel);
@@ -325,6 +320,11 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
                     return (other instanceof GoToChannel) && C12238m.areEqual(this.channel, ((GoToChannel) other).channel);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
@@ -363,6 +363,14 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
         this(j, j2, channels, guilds, permissions, (i & 32) != 0 ? INSTANCE.observeStoreState(j2, j, channels, guilds, permissions) : observable);
     }
 
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
     @MainThread
     private final void handleStoreState(StoreState storeState) {
         if (getViewState() instanceof ViewState.GoToChannel) {
@@ -375,14 +383,6 @@ public final class WidgetThreadBrowserViewModel extends AbstractC0859d0<ViewStat
         boolean zCanViewAllPublicArchivedThreads = threadUtils.canViewAllPublicArchivedThreads(storeState.getChannel(), storeState.getPermissions());
         Channel channel2 = storeState.getChannel();
         updateViewState(new ViewState.Browser(strM7679c, zCanCreateThread, zCanViewAllPublicArchivedThreads, channel2 != null && channel2.getType() == 15));
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final long getGuildId() {
-        return this.guildId;
     }
 
     public final void openThread(Channel channel) {

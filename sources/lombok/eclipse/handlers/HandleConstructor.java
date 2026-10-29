@@ -72,7 +72,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleNoArgsConstructor.SCL.lombok */
-    public static class HandleNoArgsConstructor extends EclipseAnnotationHandler<NoArgsConstructor> {
+    public class HandleNoArgsConstructor extends EclipseAnnotationHandler<NoArgsConstructor> {
         private static final String NAME = NoArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 
@@ -95,7 +95,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleRequiredArgsConstructor.SCL.lombok */
-    public static class HandleRequiredArgsConstructor extends EclipseAnnotationHandler<RequiredArgsConstructor> {
+    public class HandleRequiredArgsConstructor extends EclipseAnnotationHandler<RequiredArgsConstructor> {
         private static final String NAME = RequiredArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 
@@ -157,7 +157,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleAllArgsConstructor.SCL.lombok */
-    public static class HandleAllArgsConstructor extends EclipseAnnotationHandler<AllArgsConstructor> {
+    public class HandleAllArgsConstructor extends EclipseAnnotationHandler<AllArgsConstructor> {
         private static final String NAME = AllArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 
@@ -369,7 +369,7 @@ public class HandleConstructor {
             if (EclipseHandlerUtil.hasNonNullAnnotations(fieldNode) && (nullCheck = EclipseHandlerUtil.generateNullCheck(parameter, sourceNode, null)) != null) {
                 nullChecks.add(nullCheck);
             }
-            parameter.annotations = EclipseHandlerUtil.copyAnnotations(source, copyableAnnotations);
+            parameter.annotations = EclipseHandlerUtil.copyAnnotations(source, new Annotation[][]{copyableAnnotations});
             params.add(parameter);
         }
         Iterator<EclipseNode> it = fieldsToExplicit.iterator();
@@ -537,7 +537,7 @@ public class HandleConstructor {
             SingleNameReference nameRef = new SingleNameReference(field.name, fieldPos);
             assigns.add(nameRef);
             Argument parameter = new Argument(field.name, fieldPos, EclipseHandlerUtil.copyType(field.type, source), 16);
-            parameter.annotations = EclipseHandlerUtil.copyAnnotations(source, EclipseHandlerUtil.findCopyableAnnotations(fieldNode));
+            parameter.annotations = EclipseHandlerUtil.copyAnnotations(source, new Annotation[][]{EclipseHandlerUtil.findCopyableAnnotations(fieldNode)});
             params.add(parameter);
         }
         statement.arguments = assigns.isEmpty() ? null : (Expression[]) assigns.toArray(new Expression[0]);

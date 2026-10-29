@@ -23,12 +23,6 @@ import p007b.p195g.p196a.p205c.p221z.InterfaceC2387e;
 /* JADX INFO: compiled from: MapperConfigBase.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2395m<CFG extends InterfaceC2387e, T extends AbstractC2395m<CFG, T>> extends AbstractC2394l<T> implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final int f5095j = AbstractC2394l.m2264c(EnumC2366p.class);
-
-    /* JADX INFO: renamed from: k */
-    public static final int f5096k = (((EnumC2366p.AUTO_DETECT_FIELDS.mo2091g() | EnumC2366p.AUTO_DETECT_GETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_IS_GETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_SETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_CREATORS.mo2091g();
     public final AbstractC2391i _attributes;
     public final C2389g _configOverrides;
     public final C2180d0 _mixIns;
@@ -36,6 +30,12 @@ public abstract class AbstractC2395m<CFG extends InterfaceC2387e, T extends Abst
     public final C2354p _rootNames;
     public final AbstractC2212d _subtypeResolver;
     public final Class<?> _view;
+
+    /* JADX INFO: renamed from: j */
+    public static final int f5095j = AbstractC2394l.m2264c(EnumC2366p.class);
+
+    /* JADX INFO: renamed from: k */
+    public static final int f5096k = (((EnumC2366p.AUTO_DETECT_FIELDS.mo2091g() | EnumC2366p.AUTO_DETECT_GETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_IS_GETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_SETTERS.mo2091g()) | EnumC2366p.AUTO_DETECT_CREATORS.mo2091g();
 
     public AbstractC2395m(C2383a c2383a, AbstractC2212d abstractC2212d, C2180d0 c2180d0, C2354p c2354p, C2389g c2389g) {
         super(c2383a, f5095j);
@@ -48,11 +48,35 @@ public abstract class AbstractC2395m<CFG extends InterfaceC2387e, T extends Abst
         this._configOverrides = c2389g;
     }
 
+    /* JADX INFO: renamed from: s */
+    public final InterfaceC2091n.a m2280s(Class<?> cls, C2177c c2177c) {
+        AbstractC2165b abstractC2165bM2267e = m2267e();
+        InterfaceC2091n.a aVarMo1800x = abstractC2165bM2267e == null ? null : abstractC2165bM2267e.mo1800x(this, c2177c);
+        this._configOverrides.m2263a(cls);
+        InterfaceC2091n.a aVar = InterfaceC2091n.a.f4427j;
+        if (aVarMo1800x == null) {
+            return null;
+        }
+        return aVarMo1800x;
+    }
+
+    /* JADX INFO: renamed from: t */
+    public final T m2281t(EnumC2366p... enumC2366pArr) {
+        int i = this._mapperFeatures;
+        for (EnumC2366p enumC2366p : enumC2366pArr) {
+            i &= ~enumC2366p.mo2091g();
+        }
+        return i == this._mapperFeatures ? this : (T) mo1969r(i);
+    }
+
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2199t.a
     /* JADX INFO: renamed from: a */
     public final Class<?> mo1885a(Class<?> cls) {
         return this._mixIns.mo1885a(cls);
     }
+
+    /* JADX INFO: renamed from: r */
+    public abstract T mo1969r(int i);
 
     @Override // p007b.p195g.p196a.p205c.p221z.AbstractC2394l
     /* JADX INFO: renamed from: f */
@@ -112,101 +136,69 @@ public abstract class AbstractC2395m<CFG extends InterfaceC2387e, T extends Abst
     @Override // p007b.p195g.p196a.p205c.p221z.AbstractC2394l
     /* JADX INFO: renamed from: m */
     public final InterfaceC2186g0<?> mo2275m(Class<?> cls, C2177c c2177c) {
-        InterfaceC2186g0<?> aVar;
-        InterfaceC2186g0.a aVar2;
-        InterfaceC2186g0.a aVar3;
-        InterfaceC2186g0.a aVar4;
-        InterfaceC2186g0.a aVar5;
-        InterfaceC2186g0.a aVar6;
-        InterfaceC2073e.a aVar7 = InterfaceC2073e.a.NONE;
+        InterfaceC2073e.a aVar = InterfaceC2073e.a.NONE;
         InterfaceC2186g0<?> interfaceC2186g0 = this._configOverrides._visibilityChecker;
         int i = this._mapperFeatures;
         int i2 = f5096k;
-        InterfaceC2186g0<?> aVar8 = interfaceC2186g0;
+        InterfaceC2186g0<?> aVar2 = interfaceC2186g0;
         if ((i & i2) != i2) {
+            InterfaceC2186g0<?> aVar3 = interfaceC2186g0;
             if (!m2279q(EnumC2366p.AUTO_DETECT_FIELDS)) {
-                aVar6 = (InterfaceC2186g0.a) interfaceC2186g0;
-                if (aVar6._fieldMinLevel != aVar7) {
-                    aVar = interfaceC2186g0;
-                    aVar = aVar6;
-                    aVar = new InterfaceC2186g0.a(aVar6._getterMinLevel, aVar6._isGetterMinLevel, aVar6._setterMinLevel, aVar6._creatorMinLevel, aVar7);
+                InterfaceC2186g0.a aVar4 = (InterfaceC2186g0.a) interfaceC2186g0;
+                InterfaceC2073e.a aVar5 = aVar4._fieldMinLevel;
+                aVar3 = aVar4;
+                if (aVar5 != aVar) {
+                    aVar3 = new InterfaceC2186g0.a(aVar4._getterMinLevel, aVar4._isGetterMinLevel, aVar4._setterMinLevel, aVar4._creatorMinLevel, aVar);
                 }
             }
-            aVar = interfaceC2186g0;
-            aVar = aVar6;
-            aVar = interfaceC2186g0;
-            InterfaceC2186g0<?> aVar9 = aVar;
+            InterfaceC2186g0<?> aVar6 = aVar3;
             if (!m2279q(EnumC2366p.AUTO_DETECT_GETTERS)) {
-                aVar5 = (InterfaceC2186g0.a) aVar;
-                if (aVar5._getterMinLevel != aVar7) {
-                    aVar9 = aVar5;
-                    aVar9 = new InterfaceC2186g0.a(aVar7, aVar5._isGetterMinLevel, aVar5._setterMinLevel, aVar5._creatorMinLevel, aVar5._fieldMinLevel);
+                InterfaceC2186g0.a aVar7 = (InterfaceC2186g0.a) aVar3;
+                InterfaceC2073e.a aVar8 = aVar7._getterMinLevel;
+                aVar6 = aVar7;
+                if (aVar8 != aVar) {
+                    aVar6 = new InterfaceC2186g0.a(aVar, aVar7._isGetterMinLevel, aVar7._setterMinLevel, aVar7._creatorMinLevel, aVar7._fieldMinLevel);
                 }
             }
-            aVar9 = aVar5;
-            InterfaceC2186g0<?> aVar10 = aVar9;
+            InterfaceC2186g0<?> aVar9 = aVar6;
             if (!m2279q(EnumC2366p.AUTO_DETECT_IS_GETTERS)) {
-                aVar4 = (InterfaceC2186g0.a) aVar9;
-                if (aVar4._isGetterMinLevel != aVar7) {
-                    aVar10 = aVar4;
-                    aVar10 = new InterfaceC2186g0.a(aVar4._getterMinLevel, aVar7, aVar4._setterMinLevel, aVar4._creatorMinLevel, aVar4._fieldMinLevel);
+                InterfaceC2186g0.a aVar10 = (InterfaceC2186g0.a) aVar6;
+                InterfaceC2073e.a aVar11 = aVar10._isGetterMinLevel;
+                aVar9 = aVar10;
+                if (aVar11 != aVar) {
+                    aVar9 = new InterfaceC2186g0.a(aVar10._getterMinLevel, aVar, aVar10._setterMinLevel, aVar10._creatorMinLevel, aVar10._fieldMinLevel);
                 }
             }
-            aVar10 = aVar4;
-            InterfaceC2186g0<?> aVar11 = aVar10;
+            InterfaceC2186g0<?> aVar12 = aVar9;
             if (!m2279q(EnumC2366p.AUTO_DETECT_SETTERS)) {
-                aVar3 = (InterfaceC2186g0.a) aVar10;
-                if (aVar3._setterMinLevel != aVar7) {
-                    aVar11 = aVar3;
-                    aVar11 = new InterfaceC2186g0.a(aVar3._getterMinLevel, aVar3._isGetterMinLevel, aVar7, aVar3._creatorMinLevel, aVar3._fieldMinLevel);
+                InterfaceC2186g0.a aVar13 = (InterfaceC2186g0.a) aVar9;
+                InterfaceC2073e.a aVar14 = aVar13._setterMinLevel;
+                aVar12 = aVar13;
+                if (aVar14 != aVar) {
+                    aVar12 = new InterfaceC2186g0.a(aVar13._getterMinLevel, aVar13._isGetterMinLevel, aVar, aVar13._creatorMinLevel, aVar13._fieldMinLevel);
                 }
             }
-            aVar11 = aVar3;
-            aVar8 = aVar11;
+            aVar2 = aVar12;
             if (!m2279q(EnumC2366p.AUTO_DETECT_CREATORS)) {
-                aVar2 = (InterfaceC2186g0.a) aVar11;
-                if (aVar2._creatorMinLevel != aVar7) {
-                    aVar8 = aVar2;
-                    aVar8 = new InterfaceC2186g0.a(aVar2._getterMinLevel, aVar2._isGetterMinLevel, aVar2._setterMinLevel, aVar7, aVar2._fieldMinLevel);
+                InterfaceC2186g0.a aVar15 = (InterfaceC2186g0.a) aVar12;
+                InterfaceC2073e.a aVar16 = aVar15._creatorMinLevel;
+                aVar2 = aVar15;
+                if (aVar16 != aVar) {
+                    aVar2 = new InterfaceC2186g0.a(aVar15._getterMinLevel, aVar15._isGetterMinLevel, aVar15._setterMinLevel, aVar, aVar15._fieldMinLevel);
                 }
             }
         }
-        aVar8 = aVar2;
         AbstractC2165b abstractC2165bM2267e = m2267e();
-        InterfaceC2186g0<?> interfaceC2186g0Mo1773b = aVar8;
+        InterfaceC2186g0<?> interfaceC2186g0Mo1773b = aVar2;
         if (abstractC2165bM2267e != null) {
-            interfaceC2186g0Mo1773b = abstractC2165bM2267e.mo1773b(c2177c, aVar8);
+            interfaceC2186g0Mo1773b = abstractC2165bM2267e.mo1773b(c2177c, aVar2);
         }
         if (this._configOverrides.m2263a(cls) == null) {
             return interfaceC2186g0Mo1773b;
         }
-        InterfaceC2186g0.a aVar12 = (InterfaceC2186g0.a) interfaceC2186g0Mo1773b;
-        Objects.requireNonNull(aVar12);
-        return aVar12;
-    }
-
-    /* JADX INFO: renamed from: r */
-    public abstract T mo1969r(int i);
-
-    /* JADX INFO: renamed from: s */
-    public final InterfaceC2091n.a m2280s(Class<?> cls, C2177c c2177c) {
-        AbstractC2165b abstractC2165bM2267e = m2267e();
-        InterfaceC2091n.a aVarMo1800x = abstractC2165bM2267e == null ? null : abstractC2165bM2267e.mo1800x(this, c2177c);
-        this._configOverrides.m2263a(cls);
-        InterfaceC2091n.a aVar = InterfaceC2091n.a.f4427j;
-        if (aVarMo1800x == null) {
-            return null;
-        }
-        return aVarMo1800x;
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final T m2281t(EnumC2366p... enumC2366pArr) {
-        int i = this._mapperFeatures;
-        for (EnumC2366p enumC2366p : enumC2366pArr) {
-            i &= ~enumC2366p.mo2091g();
-        }
-        return i == this._mapperFeatures ? this : (T) mo1969r(i);
+        InterfaceC2186g0.a aVar17 = (InterfaceC2186g0.a) interfaceC2186g0Mo1773b;
+        Objects.requireNonNull(aVar17);
+        return aVar17;
     }
 
     public AbstractC2395m(AbstractC2395m<CFG, T> abstractC2395m, int i) {

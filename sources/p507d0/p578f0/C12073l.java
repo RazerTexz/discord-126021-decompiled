@@ -16,7 +16,7 @@ public class C12073l {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.l$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a<T> implements Sequence<T> {
+    public final class a<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Function2 f25104a;

@@ -21,7 +21,7 @@ public final class C11662w {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.w$a */
     /* JADX INFO: compiled from: SignatureBuildingComponents.kt */
-    public static final class a extends AbstractC12240o implements Function1<String, CharSequence> {
+    public final class a extends AbstractC12240o implements Function1<String, CharSequence> {
         public a() {
             super(1);
         }
@@ -31,14 +31,6 @@ public final class C11662w {
             C12238m.checkNotNullParameter(str, "it");
             return C11662w.this.m9550a(str);
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final String m9550a(String str) {
-        if (str.length() <= 1) {
-            return str;
-        }
-        return 'L' + str + ';';
     }
 
     public final String[] constructors(String... strArr) {
@@ -100,6 +92,14 @@ public final class C11662w {
         C12238m.checkNotNullParameter(list, "parameters");
         C12238m.checkNotNullParameter(str2, "ret");
         return str + '(' + C12163u.joinToString$default(list, "", null, null, 0, null, new a(), 30, null) + ')' + m9550a(str2);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final String m9550a(String str) {
+        if (str.length() <= 1) {
+            return str;
+        }
+        return 'L' + str + ';';
     }
 
     public final String signature(String str, String str2) {

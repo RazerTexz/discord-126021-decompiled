@@ -144,26 +144,13 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            OverlappingPanelsLayout.Panel.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[OverlappingPanelsLayout.Panel.END.ordinal()] = 1;
-            iArr[OverlappingPanelsLayout.Panel.CENTER.ordinal()] = 2;
-            iArr[OverlappingPanelsLayout.Panel.START.ordinal()] = 3;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89412 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C89412 extends AbstractC12240o implements Function1<Boolean, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHome.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -179,7 +166,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
         /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHome.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass2() {
                 super(0);
             }
@@ -198,12 +185,12 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
         /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2$3, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHome.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
             public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
             /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetHome.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {
@@ -235,7 +222,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
         /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureFirstOpen$2$4, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHome.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<Function0<? extends Unit>, Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<Function0<? extends Unit>, Unit> {
             public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
 
             public AnonymousClass4() {
@@ -283,7 +270,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureLeftPanel$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89421 extends AbstractC12240o implements Function1<OverlappingPanelsLayout.LockState, Unit> {
+    public final class C89421 extends AbstractC12240o implements Function1<OverlappingPanelsLayout.LockState, Unit> {
         public C89421() {
             super(1);
         }
@@ -304,7 +291,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$configureNavigationDrawerAction$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89431 extends AbstractC12240o implements Function1<StoreNavigation.PanelAction, Unit> {
+    public final class C89431 extends AbstractC12240o implements Function1<StoreNavigation.PanelAction, Unit> {
         public final /* synthetic */ StoreNavigation $this_configureNavigationDrawerAction;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -328,7 +315,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$handleViewState$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final /* synthetic */ class C89461 extends C12236k implements Function1<Boolean, Unit> {
+    public final /* synthetic */ class C89461 extends C12236k implements Function1<Boolean, Unit> {
         public C89461(WidgetHome widgetHome) {
             super(1, widgetHome, WidgetHome.class, "onNsfwToggle", "onNsfwToggle(Z)V", 0);
         }
@@ -346,7 +333,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$maybeShowHubEmailUpsell$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89471 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C89471 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public static final C89471 INSTANCE = new C89471();
 
         public C89471() {
@@ -368,7 +355,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onCreate$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89481 extends AbstractC12240o implements Function1<Context, Locale> {
+    public final class C89481 extends AbstractC12240o implements Function1<Context, Locale> {
         public C89481() {
             super(1);
         }
@@ -382,7 +369,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89513 extends AbstractC12240o implements Function1<StoreNux.NuxState, Unit> {
+    public final class C89513 extends AbstractC12240o implements Function1<StoreNux.NuxState, Unit> {
         public C89513() {
             super(1);
         }
@@ -426,7 +413,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89521 extends AbstractC12240o implements Function1<WidgetHomeViewModel.ViewState, Unit> {
+    public final class C89521 extends AbstractC12240o implements Function1<WidgetHomeViewModel.ViewState, Unit> {
         public C89521() {
             super(1);
         }
@@ -446,7 +433,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$11 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C895411 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C895411 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public C895411() {
             super(1);
         }
@@ -465,7 +452,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$12 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C895512 extends AbstractC12240o implements Function1<InteractionModalCreate, Unit> {
+    public final class C895512 extends AbstractC12240o implements Function1<InteractionModalCreate, Unit> {
         public C895512() {
             super(1);
         }
@@ -485,7 +472,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$13 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final /* synthetic */ class C895613 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
+    public final /* synthetic */ class C895613 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
         public C895613(WidgetHome widgetHome) {
             super(1, widgetHome, WidgetHome.class, "handleGlobalStatusIndicatorState", "handleGlobalStatusIndicatorState(Lcom/discord/widgets/status/WidgetGlobalStatusIndicatorState$State;)V", 0);
         }
@@ -505,7 +492,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89572 extends AbstractC12240o implements Function1<WidgetHomeViewModel.Event, Unit> {
+    public final class C89572 extends AbstractC12240o implements Function1<WidgetHomeViewModel.Event, Unit> {
         public C89572() {
             super(1);
         }
@@ -525,7 +512,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89583 extends AbstractC12240o implements Function1<WidgetHomeModel, Unit> {
+    public final class C89583 extends AbstractC12240o implements Function1<WidgetHomeModel, Unit> {
         public C89583() {
             super(1);
         }
@@ -545,7 +532,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$5 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89605 extends AbstractC12240o implements Function1<WidgetHomeModel, Unit> {
+    public final class C89605 extends AbstractC12240o implements Function1<WidgetHomeModel, Unit> {
         public C89605() {
             super(1);
         }
@@ -566,7 +553,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$7 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final /* synthetic */ class C89627 extends C12236k implements Function1<SurveyUtils.Survey, Unit> {
+    public final /* synthetic */ class C89627 extends C12236k implements Function1<SurveyUtils.Survey, Unit> {
         public C89627(WidgetHome widgetHome) {
             super(1, widgetHome, WidgetHome.class, "showSurvey", "showSurvey(Lcom/discord/utilities/surveys/SurveyUtils$Survey;)V", 0);
         }
@@ -586,7 +573,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$onViewBoundOrOnResume$9 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89649 extends AbstractC12240o implements Function1<StoreNux.NuxState, Unit> {
+    public final class C89649 extends AbstractC12240o implements Function1<StoreNux.NuxState, Unit> {
         public C89649() {
             super(1);
         }
@@ -605,7 +592,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$showSurvey$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89681 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C89681 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public final /* synthetic */ SurveyUtils.Survey $survey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -633,7 +620,7 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHome$showUrgentMessageDialog$1 */
     /* JADX INFO: compiled from: WidgetHome.kt */
-    public static final class C89691 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C89691 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public static final C89691 INSTANCE = new C89691();
 
         public C89691() {
@@ -655,6 +642,19 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
             C12238m.checkNotNullParameter(supportFragmentManager, "fragmentManager");
             new C0843t().show(supportFragmentManager, "WidgetUrgentMessageDialog");
             return true;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            OverlappingPanelsLayout.Panel.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[OverlappingPanelsLayout.Panel.END.ordinal()] = 1;
+            iArr[OverlappingPanelsLayout.Panel.CENTER.ordinal()] = 2;
+            iArr[OverlappingPanelsLayout.Panel.START.ordinal()] = 3;
         }
     }
 
@@ -794,6 +794,28 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
         return (WidgetHomeBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    public final PanelLayout getPanelLayout() {
+        HomePanelsLayout homePanelsLayout = getBinding().f17126c;
+        C12238m.checkNotNullExpressionValue(homePanelsLayout, "binding.overlappingPanels");
+        return homePanelsLayout;
+    }
+
+    public final Toolbar getToolbar() {
+        AppActivity appActivity = getAppActivity();
+        if (appActivity != null) {
+            return appActivity.toolbar;
+        }
+        return null;
+    }
+
+    public final TextView getUnreadCountView() {
+        C0994k5 c0994k5 = getBinding().f17127d.f962c.f984c;
+        C12238m.checkNotNullExpressionValue(c0994k5, "binding.panelCenter.widg…omePanelCenterChat.unread");
+        TextView textView = c0994k5.f1007a;
+        C12238m.checkNotNullExpressionValue(textView, "binding.panelCenter.widg…nelCenterChat.unread.root");
+        return textView;
+    }
+
     private final WidgetHomeViewModel getViewModel() {
         return (WidgetHomeViewModel) this.viewModel.getValue();
     }
@@ -808,6 +830,40 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
             getBinding().f17126c.closePanels();
         }
         return true;
+    }
+
+    public final void handleCenterPanelBack$app_productionGoogleRelease() {
+        WidgetHomeModel widgetHomeModel$app_productionGoogleRelease = getViewModel().getWidgetHomeModel();
+        StoreChannelsSelected.ResolvedSelectedChannel selectedChannel = widgetHomeModel$app_productionGoogleRelease != null ? widgetHomeModel$app_productionGoogleRelease.getSelectedChannel() : null;
+        WidgetHomeModel widgetHomeModel$app_productionGoogleRelease2 = getViewModel().getWidgetHomeModel();
+        Channel selectedVoiceChannel = widgetHomeModel$app_productionGoogleRelease2 != null ? widgetHomeModel$app_productionGoogleRelease2.getSelectedVoiceChannel() : null;
+        if (selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) {
+            ChannelSelector.INSTANCE.getInstance().dismissCreateThread();
+            return;
+        }
+        boolean z2 = selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel;
+        if (z2) {
+            StoreChannelsSelected.ResolvedSelectedChannel.Channel channel = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel;
+            if (channel.getPeekParent() != null) {
+                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), channel.getChannel().getGuildId(), channel.getPeekParent().longValue(), null, null, 12, null);
+                return;
+            }
+        }
+        if (z2) {
+            StoreChannelsSelected.ResolvedSelectedChannel.Channel channel2 = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel;
+            if (ChannelUtils.m7675J(channel2.getChannel())) {
+                if (selectedVoiceChannel == null || ChannelUtils.m7667B(selectedVoiceChannel) || selectedVoiceChannel.getId() != selectedChannel.getId()) {
+                    WidgetCallPreviewFullscreen.Companion.launch$default(WidgetCallPreviewFullscreen.INSTANCE, requireContext(), channel2.getChannel().getId(), null, 4, null);
+                    requireAppActivity().overridePendingTransition(C5419R.anim.activity_slide_horizontal_close_in, C5419R.anim.activity_slide_horizontal_close_out);
+                    return;
+                } else {
+                    WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, requireContext(), ((StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel).getChannel().getId(), false, null, null, 28, null);
+                    requireAppActivity().overridePendingTransition(C5419R.anim.activity_slide_horizontal_close_in, C5419R.anim.activity_slide_horizontal_close_out);
+                    return;
+                }
+            }
+        }
+        getBinding().f17126c.openStartPanel();
     }
 
     private final void handleEvent(WidgetHomeViewModel.Event event) {
@@ -882,6 +938,10 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
         return this.storeTabsNavigation.getSelectedTab() == NavigationTab.HOME;
     }
 
+    public final void lockCloseRightPanel(boolean lock) {
+        getBinding().f17126c.setEndPanelLockState(lock ? OverlappingPanelsLayout.LockState.CLOSE : OverlappingPanelsLayout.LockState.UNLOCKED);
+    }
+
     private final void maybeShowHubEmailUpsell() {
         StoreNotices notices = StoreStream.INSTANCE.getNotices();
         String name = WidgetHubEmailFlow.INSTANCE.getNAME();
@@ -918,6 +978,21 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
         constraintLayout.setVisibility((z2 || z4) ? false : true ? 0 : 8);
     }
 
+    @Override // androidx.fragment.app.Fragment
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        C1174a c1174a = C1174a.f1571b;
+        C89481 c89481 = new C89481();
+        C12238m.checkParameterIsNotNull(c89481, "provider");
+        C1174a.f1570a = c89481;
+    }
+
+    @Override // p007b.p008a.p039o.ViewOnLayoutChangeListenerC1175b.a
+    public void onGestureRegionsUpdate(List<Rect> gestureRegions) {
+        C12238m.checkNotNullParameter(gestureRegions, "gestureRegions");
+        getBinding().f17126c.setChildGestureRegions(gestureRegions);
+    }
+
     private final void onNsfwToggle(boolean isHidden) {
         FragmentManager childFragmentManager = getChildFragmentManager();
         C12238m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
@@ -933,230 +1008,6 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
             }
             fragmentTransactionBeginTransaction.commit();
         }
-    }
-
-    private final void roundPanelCorners() {
-        setPanelCorners(DimenUtils.dpToPixels(8));
-    }
-
-    private final void setPanelCorners(float radius) {
-        C0980i5 c0980i5 = getBinding().f17127d;
-        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
-        c0980i5.f960a.updateTopLeftRadius(radius);
-        C0980i5 c0980i6 = getBinding().f17127d;
-        C12238m.checkNotNullExpressionValue(c0980i6, "binding.panelCenter");
-        c0980i6.f960a.updateTopRightRadius(radius);
-        getBinding().f17129f.f1090b.updateTopLeftRadius(radius);
-        getBinding().f17129f.f1090b.updateTopRightRadius(radius);
-    }
-
-    private final void setPanelWindowInsetsListeners() {
-        FrameLayout frameLayout = getBinding().f17131h;
-        C12238m.checkNotNullExpressionValue(frameLayout, "binding.widgetHomeContainer");
-        ViewExtensions.setForwardingWindowInsetsListener(frameLayout);
-        HomePanelsLayout homePanelsLayout = getBinding().f17126c;
-        C12238m.checkNotNullExpressionValue(homePanelsLayout, "binding.overlappingPanels");
-        ViewExtensions.setForwardingWindowInsetsListener(homePanelsLayout);
-        C1001l5 c1001l5 = getBinding().f17128e;
-        C12238m.checkNotNullExpressionValue(c1001l5, "binding.panelLeft");
-        ViewCompat.setOnApplyWindowInsetsListener(c1001l5.f1035a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.1
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
-                ViewGroup.LayoutParams layoutParams = WidgetHome.this.getBinding().f17128e.f1037c.getLayoutParams();
-                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-                ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = windowInsetsCompat.getSystemWindowInsetLeft();
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-        C0980i5 c0980i5 = getBinding().f17127d;
-        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
-        ViewCompat.setOnApplyWindowInsetsListener(c0980i5.f960a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.2
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
-                WindowInsetsCompat windowInsetsCompatBuild = new WindowInsetsCompat.Builder().setSystemWindowInsets(Insets.m82of(0, 0, 0, windowInsetsCompat.getSystemWindowInsetBottom())).build();
-                C12238m.checkNotNullExpressionValue(windowInsetsCompatBuild, "WindowInsetsCompat.Build…        )\n      ).build()");
-                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f962c.f985d, windowInsetsCompatBuild);
-                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f962c.f986e, windowInsetsCompatBuild);
-                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f961b, windowInsetsCompatBuild);
-                WidgetHomePanelNsfw widgetHomePanelNsfw = WidgetHome.this.panelNsfw;
-                if (widgetHomePanelNsfw != null) {
-                    widgetHomePanelNsfw.dispatchApplyWindowInsets(windowInsetsCompat);
-                }
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-        C1015n5 c1015n5 = getBinding().f17129f;
-        C12238m.checkNotNullExpressionValue(c1015n5, "binding.panelRight");
-        ViewCompat.setOnApplyWindowInsetsListener(c1015n5.f1089a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.3
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
-                FragmentContainerView fragmentContainerView = WidgetHome.this.getBinding().f17129f.f1091c;
-                C12238m.checkNotNullExpressionValue(fragmentContainerView, "binding.panelRight.widgetConnectedList");
-                fragmentContainerView.setPadding(fragmentContainerView.getPaddingLeft(), fragmentContainerView.getPaddingTop(), fragmentContainerView.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-    }
-
-    private final void setupSmoothKeyboardReaction() {
-        C0980i5 c0980i5 = getBinding().f17127d;
-        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
-        RoundedRelativeLayout roundedRelativeLayout = c0980i5.f960a;
-        C12238m.checkNotNullExpressionValue(roundedRelativeLayout, "binding.panelCenter.root");
-        Iterator<View> it = ViewGroupKt.iterator(roundedRelativeLayout);
-        while (it.hasNext()) {
-            View next = it.next();
-            if (!(next instanceof AppBarLayout) && !this.fixedPositionViewIds.contains(Integer.valueOf(next.getId()))) {
-                SmoothKeyboardReactionHelper.INSTANCE.install(next);
-            }
-        }
-    }
-
-    private final void showChannelOnboardingSheet() {
-        WidgetChannelOnboarding.Companion companion = WidgetChannelOnboarding.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager);
-    }
-
-    private final void showGuildEventUpsell(long guildId) {
-        WidgetGuildScheduledEventUpsellBottomSheet.Companion companion = WidgetGuildScheduledEventUpsellBottomSheet.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.launch(parentFragmentManager, guildId);
-    }
-
-    private final void showGuildRoleSubscriptionUpsell(long guildId) {
-        WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet.Companion companion = WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager, guildId);
-    }
-
-    private final void showInteractionModal(InteractionModalCreate modal) {
-        Context context = getContext();
-        if (context != null) {
-            ModalComponent.Companion companion = ModalComponent.INSTANCE;
-            C12238m.checkNotNullExpressionValue(context, "context");
-            companion.show(context, new ModalComponent.Options(modal));
-        }
-    }
-
-    private final void showPlaystationUpsell() {
-        WidgetPlaystationIntegrationUpsellBottomSheet.Companion companion = WidgetPlaystationIntegrationUpsellBottomSheet.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager);
-    }
-
-    private final void showSurvey(SurveyUtils.Survey survey) {
-        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(survey.getNoticeKey(), null, 0L, 5, true, null, 0L, false, 0L, new C89681(survey), 486, null));
-    }
-
-    private final void showUrgentMessageDialog() {
-        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice("URGENT_MESSAGE_DIALOG", null, 0L, 0, false, null, 0L, false, 0L, C89691.INSTANCE, Opcodes.IF_ACMPNE, null));
-    }
-
-    private final void showWelcomeSheet(long guildId, Long guildScheduledEventId) {
-        if (StoreStream.INSTANCE.getGuildWelcomeScreens().hasWelcomeScreenBeenSeen(guildId)) {
-            return;
-        }
-        WidgetGuildWelcomeSheet.Companion companion = WidgetGuildWelcomeSheet.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager, guildId, guildScheduledEventId);
-    }
-
-    public static /* synthetic */ void showWelcomeSheet$default(WidgetHome widgetHome, long j, Long l, int i, Object obj) {
-        if ((i & 2) != 0) {
-            l = null;
-        }
-        widgetHome.showWelcomeSheet(j, l);
-    }
-
-    private final void unroundPanelCorners() {
-        setPanelCorners(0.0f);
-    }
-
-    public final PanelLayout getPanelLayout() {
-        HomePanelsLayout homePanelsLayout = getBinding().f17126c;
-        C12238m.checkNotNullExpressionValue(homePanelsLayout, "binding.overlappingPanels");
-        return homePanelsLayout;
-    }
-
-    public final Toolbar getToolbar() {
-        AppActivity appActivity = getAppActivity();
-        if (appActivity != null) {
-            return appActivity.toolbar;
-        }
-        return null;
-    }
-
-    public final TextView getUnreadCountView() {
-        C0994k5 c0994k5 = getBinding().f17127d.f962c.f984c;
-        C12238m.checkNotNullExpressionValue(c0994k5, "binding.panelCenter.widg…omePanelCenterChat.unread");
-        TextView textView = c0994k5.f1007a;
-        C12238m.checkNotNullExpressionValue(textView, "binding.panelCenter.widg…nelCenterChat.unread.root");
-        return textView;
-    }
-
-    public final void handleCenterPanelBack$app_productionGoogleRelease() {
-        WidgetHomeModel widgetHomeModel$app_productionGoogleRelease = getViewModel().getWidgetHomeModel();
-        StoreChannelsSelected.ResolvedSelectedChannel selectedChannel = widgetHomeModel$app_productionGoogleRelease != null ? widgetHomeModel$app_productionGoogleRelease.getSelectedChannel() : null;
-        WidgetHomeModel widgetHomeModel$app_productionGoogleRelease2 = getViewModel().getWidgetHomeModel();
-        Channel selectedVoiceChannel = widgetHomeModel$app_productionGoogleRelease2 != null ? widgetHomeModel$app_productionGoogleRelease2.getSelectedVoiceChannel() : null;
-        if (selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) {
-            ChannelSelector.INSTANCE.getInstance().dismissCreateThread();
-            return;
-        }
-        boolean z2 = selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel;
-        if (z2) {
-            StoreChannelsSelected.ResolvedSelectedChannel.Channel channel = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel;
-            if (channel.getPeekParent() != null) {
-                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), channel.getChannel().getGuildId(), channel.getPeekParent().longValue(), null, null, 12, null);
-                return;
-            }
-        }
-        if (z2) {
-            StoreChannelsSelected.ResolvedSelectedChannel.Channel channel2 = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel;
-            if (ChannelUtils.m7675J(channel2.getChannel())) {
-                if (selectedVoiceChannel == null || ChannelUtils.m7667B(selectedVoiceChannel) || selectedVoiceChannel.getId() != selectedChannel.getId()) {
-                    WidgetCallPreviewFullscreen.Companion.launch$default(WidgetCallPreviewFullscreen.INSTANCE, requireContext(), channel2.getChannel().getId(), null, 4, null);
-                    requireAppActivity().overridePendingTransition(C5419R.anim.activity_slide_horizontal_close_in, C5419R.anim.activity_slide_horizontal_close_out);
-                    return;
-                } else {
-                    WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, requireContext(), ((StoreChannelsSelected.ResolvedSelectedChannel.Channel) selectedChannel).getChannel().getId(), false, null, null, 28, null);
-                    requireAppActivity().overridePendingTransition(C5419R.anim.activity_slide_horizontal_close_in, C5419R.anim.activity_slide_horizontal_close_out);
-                    return;
-                }
-            }
-        }
-        getBinding().f17126c.openStartPanel();
-    }
-
-    public final void lockCloseRightPanel(boolean lock) {
-        getBinding().f17126c.setEndPanelLockState(lock ? OverlappingPanelsLayout.LockState.CLOSE : OverlappingPanelsLayout.LockState.UNLOCKED);
-    }
-
-    @Override // androidx.fragment.app.Fragment
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        C1174a c1174a = C1174a.f1571b;
-        C89481 c89481 = new C89481();
-        C12238m.checkParameterIsNotNull(c89481, "provider");
-        C1174a.f1570a = c89481;
-    }
-
-    @Override // p007b.p008a.p039o.ViewOnLayoutChangeListenerC1175b.a
-    public void onGestureRegionsUpdate(List<Rect> gestureRegions) {
-        C12238m.checkNotNullParameter(gestureRegions, "gestureRegions");
-        getBinding().f17126c.setChildGestureRegions(gestureRegions);
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
@@ -1310,8 +1161,157 @@ public final class WidgetHome extends AppFragment implements OnTabSelectedListen
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.globalStatusIndicatorStateObserver.observeState(), this, null, 2, null), (Class<?>) WidgetHome.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C895613(this));
     }
 
+    private final void roundPanelCorners() {
+        setPanelCorners(DimenUtils.dpToPixels(8));
+    }
+
     public final void setOnGuildListAddHintCreate(Function1<? super View, Unit> onGuildListAddHintCreate) {
         C12238m.checkNotNullParameter(onGuildListAddHintCreate, "onGuildListAddHintCreate");
         this.onGuildListAddHintCreate = onGuildListAddHintCreate;
+    }
+
+    private final void setPanelCorners(float radius) {
+        C0980i5 c0980i5 = getBinding().f17127d;
+        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
+        c0980i5.f960a.updateTopLeftRadius(radius);
+        C0980i5 c0980i6 = getBinding().f17127d;
+        C12238m.checkNotNullExpressionValue(c0980i6, "binding.panelCenter");
+        c0980i6.f960a.updateTopRightRadius(radius);
+        getBinding().f17129f.f1090b.updateTopLeftRadius(radius);
+        getBinding().f17129f.f1090b.updateTopRightRadius(radius);
+    }
+
+    private final void setPanelWindowInsetsListeners() {
+        FrameLayout frameLayout = getBinding().f17131h;
+        C12238m.checkNotNullExpressionValue(frameLayout, "binding.widgetHomeContainer");
+        ViewExtensions.setForwardingWindowInsetsListener(frameLayout);
+        HomePanelsLayout homePanelsLayout = getBinding().f17126c;
+        C12238m.checkNotNullExpressionValue(homePanelsLayout, "binding.overlappingPanels");
+        ViewExtensions.setForwardingWindowInsetsListener(homePanelsLayout);
+        C1001l5 c1001l5 = getBinding().f17128e;
+        C12238m.checkNotNullExpressionValue(c1001l5, "binding.panelLeft");
+        ViewCompat.setOnApplyWindowInsetsListener(c1001l5.f1035a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.1
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
+                ViewGroup.LayoutParams layoutParams = WidgetHome.this.getBinding().f17128e.f1037c.getLayoutParams();
+                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
+                ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = windowInsetsCompat.getSystemWindowInsetLeft();
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
+        C0980i5 c0980i5 = getBinding().f17127d;
+        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
+        ViewCompat.setOnApplyWindowInsetsListener(c0980i5.f960a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.2
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
+                WindowInsetsCompat windowInsetsCompatBuild = new WindowInsetsCompat.Builder().setSystemWindowInsets(Insets.m82of(0, 0, 0, windowInsetsCompat.getSystemWindowInsetBottom())).build();
+                C12238m.checkNotNullExpressionValue(windowInsetsCompatBuild, "WindowInsetsCompat.Build…        )\n      ).build()");
+                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f962c.f985d, windowInsetsCompatBuild);
+                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f962c.f986e, windowInsetsCompatBuild);
+                ViewCompat.dispatchApplyWindowInsets(WidgetHome.this.getBinding().f17127d.f961b, windowInsetsCompatBuild);
+                WidgetHomePanelNsfw widgetHomePanelNsfw = WidgetHome.this.panelNsfw;
+                if (widgetHomePanelNsfw != null) {
+                    widgetHomePanelNsfw.dispatchApplyWindowInsets(windowInsetsCompat);
+                }
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
+        C1015n5 c1015n5 = getBinding().f17129f;
+        C12238m.checkNotNullExpressionValue(c1015n5, "binding.panelRight");
+        ViewCompat.setOnApplyWindowInsetsListener(c1015n5.f1089a, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.home.WidgetHome.setPanelWindowInsetsListeners.3
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
+                FragmentContainerView fragmentContainerView = WidgetHome.this.getBinding().f17129f.f1091c;
+                C12238m.checkNotNullExpressionValue(fragmentContainerView, "binding.panelRight.widgetConnectedList");
+                fragmentContainerView.setPadding(fragmentContainerView.getPaddingLeft(), fragmentContainerView.getPaddingTop(), fragmentContainerView.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
+    }
+
+    private final void setupSmoothKeyboardReaction() {
+        C0980i5 c0980i5 = getBinding().f17127d;
+        C12238m.checkNotNullExpressionValue(c0980i5, "binding.panelCenter");
+        RoundedRelativeLayout roundedRelativeLayout = c0980i5.f960a;
+        C12238m.checkNotNullExpressionValue(roundedRelativeLayout, "binding.panelCenter.root");
+        Iterator<View> it = ViewGroupKt.iterator(roundedRelativeLayout);
+        while (it.hasNext()) {
+            View next = it.next();
+            if (!(next instanceof AppBarLayout) && !this.fixedPositionViewIds.contains(Integer.valueOf(next.getId()))) {
+                SmoothKeyboardReactionHelper.INSTANCE.install(next);
+            }
+        }
+    }
+
+    private final void showChannelOnboardingSheet() {
+        WidgetChannelOnboarding.Companion companion = WidgetChannelOnboarding.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager);
+    }
+
+    private final void showGuildEventUpsell(long guildId) {
+        WidgetGuildScheduledEventUpsellBottomSheet.Companion companion = WidgetGuildScheduledEventUpsellBottomSheet.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.launch(parentFragmentManager, guildId);
+    }
+
+    private final void showGuildRoleSubscriptionUpsell(long guildId) {
+        WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet.Companion companion = WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager, guildId);
+    }
+
+    private final void showInteractionModal(InteractionModalCreate modal) {
+        Context context = getContext();
+        if (context != null) {
+            ModalComponent.Companion companion = ModalComponent.INSTANCE;
+            C12238m.checkNotNullExpressionValue(context, "context");
+            companion.show(context, new ModalComponent.Options(modal));
+        }
+    }
+
+    private final void showPlaystationUpsell() {
+        WidgetPlaystationIntegrationUpsellBottomSheet.Companion companion = WidgetPlaystationIntegrationUpsellBottomSheet.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager);
+    }
+
+    private final void showSurvey(SurveyUtils.Survey survey) {
+        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(survey.getNoticeKey(), null, 0L, 5, true, null, 0L, false, 0L, new C89681(survey), 486, null));
+    }
+
+    private final void showUrgentMessageDialog() {
+        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice("URGENT_MESSAGE_DIALOG", null, 0L, 0, false, null, 0L, false, 0L, C89691.INSTANCE, Opcodes.IF_ACMPNE, null));
+    }
+
+    public static /* synthetic */ void showWelcomeSheet$default(WidgetHome widgetHome, long j, Long l, int i, Object obj) {
+        if ((i & 2) != 0) {
+            l = null;
+        }
+        widgetHome.showWelcomeSheet(j, l);
+    }
+
+    private final void showWelcomeSheet(long guildId, Long guildScheduledEventId) {
+        if (StoreStream.INSTANCE.getGuildWelcomeScreens().hasWelcomeScreenBeenSeen(guildId)) {
+            return;
+        }
+        WidgetGuildWelcomeSheet.Companion companion = WidgetGuildWelcomeSheet.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager, guildId, guildScheduledEventId);
+    }
+
+    private final void unroundPanelCorners() {
+        setPanelCorners(0.0f);
     }
 }

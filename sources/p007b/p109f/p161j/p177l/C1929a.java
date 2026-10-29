@@ -37,6 +37,60 @@ public class C1929a implements InterfaceC1946r, Closeable {
         }
     }
 
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r, java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() {
+        if (!isClosed()) {
+            SharedMemory sharedMemory = this.f3914j;
+            if (sharedMemory != null) {
+                sharedMemory.close();
+            }
+            ByteBuffer byteBuffer = this.f3915k;
+            if (byteBuffer != null) {
+                SharedMemory.unmap(byteBuffer);
+            }
+            this.f3915k = null;
+            this.f3914j = null;
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public ByteBuffer getByteBuffer() {
+        return this.f3915k;
+    }
+
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public int getSize() {
+        Objects.requireNonNull(this.f3914j);
+        return this.f3914j.getSize();
+    }
+
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public long getUniqueId() {
+        return this.f3916l;
+    }
+
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public synchronized boolean isClosed() {
+        return this.f3915k == null || this.f3914j == null;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m1367c(int i, InterfaceC1946r interfaceC1946r, int i2, int i3) {
+        if (!(interfaceC1946r instanceof C1929a)) {
+            throw new IllegalArgumentException("Cannot copy two incompatible MemoryChunks");
+        }
+        C1460d.m419B(!isClosed());
+        C1460d.m419B(!interfaceC1946r.isClosed());
+        Objects.requireNonNull(this.f3915k);
+        Objects.requireNonNull(interfaceC1946r.getByteBuffer());
+        C1460d.m555p(i, interfaceC1946r.getSize(), i2, i3, getSize());
+        this.f3915k.position(i);
+        interfaceC1946r.getByteBuffer().position(i2);
+        byte[] bArr = new byte[i3];
+        this.f3915k.get(bArr, 0, i3);
+        interfaceC1946r.getByteBuffer().put(bArr, 0, i3);
+    }
+
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
     /* JADX INFO: renamed from: a */
     public void mo1365a(int i, InterfaceC1946r interfaceC1946r, int i2, int i3) {
@@ -77,55 +131,6 @@ public class C1929a implements InterfaceC1946r, Closeable {
         return iM507d;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final void m1367c(int i, InterfaceC1946r interfaceC1946r, int i2, int i3) {
-        if (!(interfaceC1946r instanceof C1929a)) {
-            throw new IllegalArgumentException("Cannot copy two incompatible MemoryChunks");
-        }
-        C1460d.m419B(!isClosed());
-        C1460d.m419B(!interfaceC1946r.isClosed());
-        Objects.requireNonNull(this.f3915k);
-        Objects.requireNonNull(interfaceC1946r.getByteBuffer());
-        C1460d.m555p(i, interfaceC1946r.getSize(), i2, i3, getSize());
-        this.f3915k.position(i);
-        interfaceC1946r.getByteBuffer().position(i2);
-        byte[] bArr = new byte[i3];
-        this.f3915k.get(bArr, 0, i3);
-        interfaceC1946r.getByteBuffer().put(bArr, 0, i3);
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r, java.io.Closeable, java.lang.AutoCloseable
-    public synchronized void close() {
-        if (!isClosed()) {
-            SharedMemory sharedMemory = this.f3914j;
-            if (sharedMemory != null) {
-                sharedMemory.close();
-            }
-            ByteBuffer byteBuffer = this.f3915k;
-            if (byteBuffer != null) {
-                SharedMemory.unmap(byteBuffer);
-            }
-            this.f3915k = null;
-            this.f3914j = null;
-        }
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public ByteBuffer getByteBuffer() {
-        return this.f3915k;
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public int getSize() {
-        Objects.requireNonNull(this.f3914j);
-        return this.f3914j.getSize();
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public long getUniqueId() {
-        return this.f3916l;
-    }
-
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
     /* JADX INFO: renamed from: h */
     public synchronized byte mo1368h(int i) {
@@ -151,11 +156,6 @@ public class C1929a implements InterfaceC1946r, Closeable {
         this.f3915k.position(i);
         this.f3915k.get(bArr, i2, iM507d);
         return iM507d;
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public synchronized boolean isClosed() {
-        return this.f3915k == null || this.f3914j == null;
     }
 
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r

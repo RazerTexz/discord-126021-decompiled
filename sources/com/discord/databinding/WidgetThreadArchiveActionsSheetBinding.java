@@ -76,6 +76,12 @@ public final class WidgetThreadArchiveActionsSheetBinding implements ViewBinding
         this.f18263l = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f18252a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetThreadArchiveActionsSheetBinding m8420a(@NonNull View view) {
@@ -133,11 +139,5 @@ public final class WidgetThreadArchiveActionsSheetBinding implements ViewBinding
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f18252a;
     }
 }

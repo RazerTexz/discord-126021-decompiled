@@ -10,22 +10,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDevPortalRpApprovalFormStateChange.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDevPortalRpApprovalFormStateChange implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final Long botId = null;
-    private final CharSequence name = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
-    private final Long state = null;
     private final Boolean joinRequest = null;
+    private final CharSequence name = null;
     private final Boolean spectate = null;
+    private final Long state = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "dev_portal_rp_approval_form_state_change";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackDevPortalRpApprovalFormStateChange implements
         }
         TrackDevPortalRpApprovalFormStateChange trackDevPortalRpApprovalFormStateChange = (TrackDevPortalRpApprovalFormStateChange) other;
         return C12238m.areEqual(this.applicationId, trackDevPortalRpApprovalFormStateChange.applicationId) && C12238m.areEqual(this.botId, trackDevPortalRpApprovalFormStateChange.botId) && C12238m.areEqual(this.name, trackDevPortalRpApprovalFormStateChange.name) && C12238m.areEqual(this.hasBot, trackDevPortalRpApprovalFormStateChange.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackDevPortalRpApprovalFormStateChange.hasRedirectUri) && C12238m.areEqual(this.state, trackDevPortalRpApprovalFormStateChange.state) && C12238m.areEqual(this.joinRequest, trackDevPortalRpApprovalFormStateChange.joinRequest) && C12238m.areEqual(this.spectate, trackDevPortalRpApprovalFormStateChange.spectate);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

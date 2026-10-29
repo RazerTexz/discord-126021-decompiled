@@ -96,19 +96,6 @@ public class C1908a implements InterfaceC1909b {
         this.f3870c = interfaceC1960d;
     }
 
-    @Override // p007b.p109f.p161j.p173h.InterfaceC1909b
-    /* JADX INFO: renamed from: a */
-    public AbstractC1917c mo1322a(C1919e c1919e, int i, InterfaceC1923i interfaceC1923i, C1881b c1881b) {
-        InputStream inputStreamM1342e;
-        Objects.requireNonNull(c1881b);
-        c1919e.m1347x();
-        C1832c c1832c = c1919e.f3893l;
-        if ((c1832c == null || c1832c == C1832c.f3597a) && (inputStreamM1342e = c1919e.m1342e()) != null) {
-            c1919e.f3893l = C1833d.m1174b(inputStreamM1342e);
-        }
-        return this.f3871d.mo1322a(c1919e, i, interfaceC1923i, c1881b);
-    }
-
     /* JADX INFO: renamed from: b */
     public C1918d m1323b(C1919e c1919e, C1881b c1881b) {
         CloseableReference<Bitmap> closeableReferenceMo1414a = this.f3870c.mo1414a(c1919e, c1881b.f3709d, null, null);
@@ -127,5 +114,18 @@ public class C1908a implements InterfaceC1909b {
         } finally {
             closeableReferenceMo1414a.close();
         }
+    }
+
+    @Override // p007b.p109f.p161j.p173h.InterfaceC1909b
+    /* JADX INFO: renamed from: a */
+    public AbstractC1917c mo1322a(C1919e c1919e, int i, InterfaceC1923i interfaceC1923i, C1881b c1881b) {
+        InputStream inputStreamM1342e;
+        Objects.requireNonNull(c1881b);
+        c1919e.m1347x();
+        C1832c c1832c = c1919e.f3893l;
+        if ((c1832c == null || c1832c == C1832c.f3597a) && (inputStreamM1342e = c1919e.m1342e()) != null) {
+            c1919e.f3893l = C1833d.m1174b(inputStreamM1342e);
+        }
+        return this.f3871d.mo1322a(c1919e, i, interfaceC1923i, c1881b);
     }
 }

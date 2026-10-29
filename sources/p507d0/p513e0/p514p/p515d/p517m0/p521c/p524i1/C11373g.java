@@ -26,11 +26,11 @@ import p507d0.p513e0.p514p.p515d.p517m0.p567n.C11914c1;
 /* JADX INFO: loaded from: classes3.dex */
 public class C11373g extends AbstractC11391q implements InterfaceC11327d {
 
-    /* JADX INFO: renamed from: M */
-    public static final C11716e f22873M = C11716e.special("<init>");
-
     /* JADX INFO: renamed from: N */
     public final boolean f22874N;
+
+    /* JADX INFO: renamed from: M */
+    public static final C11716e f22873M = C11716e.special("<init>");
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public C11373g(InterfaceC11330e interfaceC11330e, InterfaceC11448l interfaceC11448l, InterfaceC11344g interfaceC11344g, boolean z2, InterfaceC11321b.a aVar, InterfaceC11467u0 interfaceC11467u0) {
@@ -52,6 +52,81 @@ public class C11373g extends AbstractC11391q implements InterfaceC11327d {
             throw null;
         }
         this.f22874N = z2;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+        return interfaceC11454o.visitConstructorDescriptor(this, d);
+    }
+
+    public InterfaceC11459q0 calculateDispatchReceiverParameter() {
+        InterfaceC11330e containingDeclaration = getContainingDeclaration();
+        if (!containingDeclaration.isInner()) {
+            return null;
+        }
+        InterfaceC11450m containingDeclaration2 = containingDeclaration.getContainingDeclaration();
+        if (containingDeclaration2 instanceof InterfaceC11330e) {
+            return ((InterfaceC11330e) containingDeclaration2).getThisAsReceiverParameter();
+        }
+        return null;
+    }
+
+    public static C11373g create(InterfaceC11330e interfaceC11330e, InterfaceC11344g interfaceC11344g, boolean z2, InterfaceC11467u0 interfaceC11467u0) {
+        if (interfaceC11330e == null) {
+            m9407a(4);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9407a(5);
+            throw null;
+        }
+        if (interfaceC11467u0 != null) {
+            return new C11373g(interfaceC11330e, null, interfaceC11344g, z2, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
+        }
+        m9407a(6);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
+    public InterfaceC11330e getConstructedClass() {
+        InterfaceC11330e containingDeclaration = getContainingDeclaration();
+        if (containingDeclaration != null) {
+            return containingDeclaration;
+        }
+        m9407a(16);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public Collection<? extends InterfaceC11472x> getOverriddenDescriptors() {
+        Set setEmptySet = Collections.emptySet();
+        if (setEmptySet != null) {
+            return setEmptySet;
+        }
+        m9407a(19);
+        throw null;
+    }
+
+    public C11373g initialize(List<InterfaceC11326c1> list, AbstractC11466u abstractC11466u, List<InterfaceC11477z0> list2) {
+        if (list == null) {
+            m9407a(10);
+            throw null;
+        }
+        if (abstractC11466u == null) {
+            m9407a(11);
+            throw null;
+        }
+        if (list2 != null) {
+            initialize(null, calculateDispatchReceiverParameter(), list2, list, null, EnumC11476z.FINAL, abstractC11466u);
+            return this;
+        }
+        m9407a(12);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
+    public boolean isPrimary() {
+        return this.f22874N;
     }
 
     /* JADX WARN: Code duplicated, block: B:13:0x001a  */
@@ -213,39 +288,6 @@ public class C11373g extends AbstractC11391q implements InterfaceC11327d {
         throw new IllegalStateException(str2);
     }
 
-    public static C11373g create(InterfaceC11330e interfaceC11330e, InterfaceC11344g interfaceC11344g, boolean z2, InterfaceC11467u0 interfaceC11467u0) {
-        if (interfaceC11330e == null) {
-            m9407a(4);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9407a(5);
-            throw null;
-        }
-        if (interfaceC11467u0 != null) {
-            return new C11373g(interfaceC11330e, null, interfaceC11344g, z2, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
-        }
-        m9407a(6);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-        return interfaceC11454o.visitConstructorDescriptor(this, d);
-    }
-
-    public InterfaceC11459q0 calculateDispatchReceiverParameter() {
-        InterfaceC11330e containingDeclaration = getContainingDeclaration();
-        if (!containingDeclaration.isInner()) {
-            return null;
-        }
-        InterfaceC11450m containingDeclaration2 = containingDeclaration.getContainingDeclaration();
-        if (containingDeclaration2 instanceof InterfaceC11330e) {
-            return ((InterfaceC11330e) containingDeclaration2).getThisAsReceiverParameter();
-        }
-        return null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
     /* JADX INFO: renamed from: e, reason: merged with bridge method [inline-methods] */
     public C11373g mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
@@ -270,48 +312,6 @@ public class C11373g extends AbstractC11391q implements InterfaceC11327d {
             return new C11373g((InterfaceC11330e) interfaceC11450m, this, interfaceC11344g, this.f22874N, aVar2, interfaceC11467u0);
         }
         throw new IllegalStateException("Attempt at creating a constructor that is not a declaration: \ncopy from: " + this + "\nnewOwner: " + interfaceC11450m + "\nkind: " + aVar);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
-    public InterfaceC11330e getConstructedClass() {
-        InterfaceC11330e containingDeclaration = getContainingDeclaration();
-        if (containingDeclaration != null) {
-            return containingDeclaration;
-        }
-        m9407a(16);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public Collection<? extends InterfaceC11472x> getOverriddenDescriptors() {
-        Set setEmptySet = Collections.emptySet();
-        if (setEmptySet != null) {
-            return setEmptySet;
-        }
-        m9407a(19);
-        throw null;
-    }
-
-    public C11373g initialize(List<InterfaceC11326c1> list, AbstractC11466u abstractC11466u, List<InterfaceC11477z0> list2) {
-        if (list == null) {
-            m9407a(10);
-            throw null;
-        }
-        if (abstractC11466u == null) {
-            m9407a(11);
-            throw null;
-        }
-        if (list2 != null) {
-            initialize(null, calculateDispatchReceiverParameter(), list2, list, null, EnumC11476z.FINAL, abstractC11466u);
-            return this;
-        }
-        m9407a(12);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
-    public boolean isPrimary() {
-        return this.f22874N;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b

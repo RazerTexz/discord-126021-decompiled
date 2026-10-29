@@ -46,6 +46,13 @@ public final class GuildRoleSubscriptionPlanFormatRadioButton extends Constraint
         }
     }
 
+    public static /* synthetic */ void initialize$default(GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton, AttributeSet attributeSet, int i, Object obj) {
+        if ((i & 1) != 0) {
+            attributeSet = null;
+        }
+        guildRoleSubscriptionPlanFormatRadioButton.initialize(attributeSet);
+    }
+
     private final void initialize(AttributeSet attrs) {
         int dimensionPixelSize = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_setup_default_padding);
         setPadding(dimensionPixelSize, dimensionPixelSize, dimensionPixelSize, dimensionPixelSize);
@@ -58,13 +65,6 @@ public final class GuildRoleSubscriptionPlanFormatRadioButton extends Constraint
         C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
         configureUI(typedArrayObtainStyledAttributes.getInt(0, 0));
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    public static /* synthetic */ void initialize$default(GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton, AttributeSet attributeSet, int i, Object obj) {
-        if ((i & 1) != 0) {
-            attributeSet = null;
-        }
-        guildRoleSubscriptionPlanFormatRadioButton.initialize(attributeSet);
     }
 
     @Override // android.widget.Checkable

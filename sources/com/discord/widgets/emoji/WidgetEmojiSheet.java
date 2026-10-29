@@ -66,12 +66,12 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEmojiSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetEmojiSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEmojiSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String EXTRA_EMOJI_ID_AND_TYPE = "EXTRA_EMOJI_ID_AND_TYPE";
     private static final int FLIPPER_INDEX_CONTENT = 0;
     private static final int FLIPPER_INDEX_LOADING = 1;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -84,41 +84,9 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetEmojiSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final String getNoticeName(EmojiNode.EmojiIdAndType emojiIdAndType) {
-            String str = "Emoji Sheet: " + emojiIdAndType.toString();
-            C12238m.checkNotNullExpressionValue(str, "StringBuilder(\"Emoji She…)\n            .toString()");
-            return str;
-        }
-
-        public final void enqueueNotice(EmojiNode.EmojiIdAndType emojiIdAndType) {
-            C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
-            String noticeName = getNoticeName(emojiIdAndType);
-            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetEmojiSheet$Companion$enqueueNotice$showEmojiSheetNotice$1(emojiIdAndType, noticeName), Opcodes.INVOKEVIRTUAL, null));
-        }
-
-        public final void show(FragmentManager fragmentManager, EmojiNode.EmojiIdAndType emojiIdAndType) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
-            WidgetEmojiSheet widgetEmojiSheet = new WidgetEmojiSheet();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(WidgetEmojiSheet.EXTRA_EMOJI_ID_AND_TYPE, emojiIdAndType);
-            widgetEmojiSheet.setArguments(bundle);
-            widgetEmojiSheet.show(fragmentManager, WidgetEmojiSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.emoji.WidgetEmojiSheet$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetEmojiSheet.kt */
-    public static final class C83111 extends AbstractC12240o implements Function1<EmojiSheetViewModel.ViewState, Unit> {
+    public final class C83111 extends AbstractC12240o implements Function1<EmojiSheetViewModel.ViewState, Unit> {
         public C83111() {
             super(1);
         }
@@ -153,6 +121,38 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetEmojiSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void enqueueNotice(EmojiNode.EmojiIdAndType emojiIdAndType) {
+            C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            String noticeName = getNoticeName(emojiIdAndType);
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetEmojiSheet$Companion$enqueueNotice$showEmojiSheetNotice$1(emojiIdAndType, noticeName), Opcodes.INVOKEVIRTUAL, null));
+        }
+
+        private final String getNoticeName(EmojiNode.EmojiIdAndType emojiIdAndType) {
+            String str = "Emoji Sheet: " + emojiIdAndType.toString();
+            C12238m.checkNotNullExpressionValue(str, "StringBuilder(\"Emoji She…)\n            .toString()");
+            return str;
+        }
+
+        public final void show(FragmentManager fragmentManager, EmojiNode.EmojiIdAndType emojiIdAndType) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            WidgetEmojiSheet widgetEmojiSheet = new WidgetEmojiSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(WidgetEmojiSheet.EXTRA_EMOJI_ID_AND_TYPE, emojiIdAndType);
+            widgetEmojiSheet.setArguments(bundle);
+            widgetEmojiSheet.show(fragmentManager, WidgetEmojiSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetEmojiSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEmojiSheet$binding$2.INSTANCE, null, 2, null);
@@ -162,6 +162,12 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         C0865g0 c0865g0 = new C0865g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(EmojiSheetViewModel.class), new WidgetEmojiSheet$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetEmojiSheet$viewModel$2));
         this.emojiIdAndType = C12083g.lazy(new WidgetEmojiSheet$emojiIdAndType$2(this));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetEmojiSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83111());
     }
 
     private final void configureButtons(final boolean isUserPremium, final boolean isUserInGuild, final Guild guild) {
@@ -360,6 +366,11 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         return (WidgetEmojiSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_emoji_sheet;
+    }
+
     private final int getCustomEmojiInfoText(boolean isCurrentGuild, boolean isUserInGuild, boolean isGuildPublic, boolean isUserPremium) {
         if (isCurrentGuild && !isUserPremium) {
             return C5419R.string.emoji_popout_current_guild_description;
@@ -395,16 +406,5 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         AppViewFlipper appViewFlipper = getBinding().f16569e;
         C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.emojiSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetEmojiSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83111());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_emoji_sheet;
     }
 }

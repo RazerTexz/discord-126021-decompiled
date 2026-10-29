@@ -34,7 +34,6 @@ import com.google.android.material.C10817R;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class NavigationMenuItemView extends ForegroundLinearLayout implements MenuView.ItemView {
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
     private final AccessibilityDelegateCompat accessibilityDelegate;
     private FrameLayout actionArea;
     public boolean checkable;
@@ -45,6 +44,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     private MenuItemImpl itemData;
     private boolean needsEmptyIcon;
     private final CheckedTextView textView;
+    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuItemView$a */
     public class C10927a extends AccessibilityDelegateCompat {
@@ -95,20 +95,6 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return stateListDrawable;
     }
 
-    private void setActionView(@Nullable View view) {
-        if (view != null) {
-            if (this.actionArea == null) {
-                this.actionArea = (FrameLayout) ((ViewStub) findViewById(C10817R.id.design_menu_item_action_area_stub)).inflate();
-            }
-            this.actionArea.removeAllViews();
-            this.actionArea.addView(view);
-        }
-    }
-
-    private boolean shouldExpandActionArea() {
-        return this.itemData.getTitle() == null && this.itemData.getIcon() == null && this.itemData.getActionView() != null;
-    }
-
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
     public MenuItemImpl getItemData() {
         return this.itemData;
@@ -156,6 +142,16 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             frameLayout.removeAllViews();
         }
         this.textView.setCompoundDrawables(null, null, null, null);
+    }
+
+    private void setActionView(@Nullable View view) {
+        if (view != null) {
+            if (this.actionArea == null) {
+                this.actionArea = (FrameLayout) ((ViewStub) findViewById(C10817R.id.design_menu_item_action_area_stub)).inflate();
+            }
+            this.actionArea.removeAllViews();
+            this.actionArea.addView(view);
+        }
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
@@ -244,6 +240,10 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
     public void setTitle(CharSequence charSequence) {
         this.textView.setText(charSequence);
+    }
+
+    private boolean shouldExpandActionArea() {
+        return this.itemData.getTitle() == null && this.itemData.getIcon() == null && this.itemData.getActionView() != null;
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView

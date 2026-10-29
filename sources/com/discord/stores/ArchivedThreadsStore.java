@@ -40,257 +40,9 @@ public final class ArchivedThreadsStore extends StoreV2 {
     private final StoreForumPostMessages storeForumPostMessages;
     private final StoreStream storeStream;
 
-    /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-    public static abstract class ThreadListingState {
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class Error extends ThreadListingState {
-            public static final Error INSTANCE = new Error();
-
-            private Error() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final /* data */ class Listing extends ThreadListingState {
-            private final boolean hasMore;
-            private final boolean isLoadingMore;
-            private final List<Channel> threads;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Listing(List<Channel> list, boolean z2, boolean z3) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "threads");
-                this.threads = list;
-                this.hasMore = z2;
-                this.isLoadingMore = z3;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Listing copy$default(Listing listing, List list, boolean z2, boolean z3, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    list = listing.threads;
-                }
-                if ((i & 2) != 0) {
-                    z2 = listing.hasMore;
-                }
-                if ((i & 4) != 0) {
-                    z3 = listing.isLoadingMore;
-                }
-                return listing.copy(list, z2, z3);
-            }
-
-            public final List<Channel> component1() {
-                return this.threads;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getHasMore() {
-                return this.hasMore;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsLoadingMore() {
-                return this.isLoadingMore;
-            }
-
-            public final Listing copy(List<Channel> threads, boolean hasMore, boolean isLoadingMore) {
-                C12238m.checkNotNullParameter(threads, "threads");
-                return new Listing(threads, hasMore, isLoadingMore);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Listing)) {
-                    return false;
-                }
-                Listing listing = (Listing) other;
-                return C12238m.areEqual(this.threads, listing.threads) && this.hasMore == listing.hasMore && this.isLoadingMore == listing.isLoadingMore;
-            }
-
-            public final boolean getHasMore() {
-                return this.hasMore;
-            }
-
-            public final List<Channel> getThreads() {
-                return this.threads;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v3 */
-            /* JADX WARN: Type inference failed for: r1v4 */
-            /* JADX WARN: Type inference failed for: r2v0 */
-            /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v2 */
-            public int hashCode() {
-                List<Channel> list = this.threads;
-                int iHashCode = (list != null ? list.hashCode() : 0) * 31;
-                boolean z2 = this.hasMore;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                int i = (iHashCode + r1) * 31;
-                boolean z3 = this.isLoadingMore;
-                return i + (z3 ? 1 : z3);
-            }
-
-            public final boolean isLoadingMore() {
-                return this.isLoadingMore;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Listing(threads=");
-                sbM833U.append(this.threads);
-                sbM833U.append(", hasMore=");
-                sbM833U.append(this.hasMore);
-                sbM833U.append(", isLoadingMore=");
-                return C1643a.m827O(sbM833U, this.isLoadingMore, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class Uninitialized extends ThreadListingState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        private ThreadListingState() {
-        }
-
-        public /* synthetic */ ThreadListingState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
-    /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
-    /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-    public static final class ThreadListingType {
-        private static final /* synthetic */ ThreadListingType[] $VALUES;
-        public static final ThreadListingType ALL_ARCHIVED_PRIVATE_THREADS;
-        public static final ThreadListingType ALL_ARCHIVED_PUBLIC_THREADS;
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE;
-        public static final ThreadListingType MY_ARCHIVED_PRIVATE_THREADS;
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class ALL_ARCHIVED_PRIVATE_THREADS extends ThreadListingType {
-            public ALL_ARCHIVED_PRIVATE_THREADS(String str, int i) {
-                super(str, i, null);
-            }
-
-            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
-            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
-                C12238m.checkNotNullParameter(threads, "threads");
-                try {
-                    return RestAPI.INSTANCE.getApi().getAllPrivateArchivedThreads(channelId, ThreadListingType.INSTANCE.getLastArchiveTimestamp(threads));
-                } catch (IllegalStateException e) {
-                    Observable<ThreadListing> observableM11081x = Observable.m11081x(e);
-                    C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(e)");
-                    return observableM11081x;
-                }
-            }
-        }
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class ALL_ARCHIVED_PUBLIC_THREADS extends ThreadListingType {
-            public ALL_ARCHIVED_PUBLIC_THREADS(String str, int i) {
-                super(str, i, null);
-            }
-
-            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
-            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
-                C12238m.checkNotNullParameter(threads, "threads");
-                try {
-                    return RestAPI.INSTANCE.getApi().getAllPublicArchivedThreads(channelId, ThreadListingType.INSTANCE.getLastArchiveTimestamp(threads));
-                } catch (IllegalStateException e) {
-                    Observable<ThreadListing> observableM11081x = Observable.m11081x(e);
-                    C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(e)");
-                    return observableM11081x;
-                }
-            }
-        }
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class Companion {
-            private Companion() {
-            }
-
-            private final String getLastArchiveTimestamp(List<Channel> threads) {
-                String archiveTimestamp;
-                if (threads.isEmpty()) {
-                    return null;
-                }
-                ThreadMetadata threadMetadata = ((Channel) C12163u.last((List) threads)).getThreadMetadata();
-                if (threadMetadata == null || (archiveTimestamp = threadMetadata.getArchiveTimestamp()) == null) {
-                    throw new IllegalStateException("Thread missing threadMetadata");
-                }
-                return archiveTimestamp;
-            }
-
-            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-
-        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class MY_ARCHIVED_PRIVATE_THREADS extends ThreadListingType {
-            public MY_ARCHIVED_PRIVATE_THREADS(String str, int i) {
-                super(str, i, null);
-            }
-
-            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
-            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
-                C12238m.checkNotNullParameter(threads, "threads");
-                Channel channel = (Channel) C12163u.lastOrNull((List) threads);
-                return RestAPI.INSTANCE.getApi().getMyPrivateArchivedThreads(channelId, channel != null ? Long.valueOf(channel.getId()) : null);
-            }
-        }
-
-        static {
-            MY_ARCHIVED_PRIVATE_THREADS my_archived_private_threads = new MY_ARCHIVED_PRIVATE_THREADS("MY_ARCHIVED_PRIVATE_THREADS", 0);
-            MY_ARCHIVED_PRIVATE_THREADS = my_archived_private_threads;
-            ALL_ARCHIVED_PUBLIC_THREADS all_archived_public_threads = new ALL_ARCHIVED_PUBLIC_THREADS("ALL_ARCHIVED_PUBLIC_THREADS", 1);
-            ALL_ARCHIVED_PUBLIC_THREADS = all_archived_public_threads;
-            ALL_ARCHIVED_PRIVATE_THREADS all_archived_private_threads = new ALL_ARCHIVED_PRIVATE_THREADS("ALL_ARCHIVED_PRIVATE_THREADS", 2);
-            ALL_ARCHIVED_PRIVATE_THREADS = all_archived_private_threads;
-            $VALUES = new ThreadListingType[]{my_archived_private_threads, all_archived_public_threads, all_archived_private_threads};
-            INSTANCE = new Companion(null);
-        }
-
-        private ThreadListingType(String str, int i) {
-            super(str, i);
-        }
-
-        public static ThreadListingType valueOf(String str) {
-            return (ThreadListingType) Enum.valueOf(ThreadListingType.class, str);
-        }
-
-        public static ThreadListingType[] values() {
-            return (ThreadListingType[]) $VALUES.clone();
-        }
-
-        public abstract Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads);
-
-        public /* synthetic */ ThreadListingType(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(str, i);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1 */
     /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-    public static final class C56591 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56591 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Function0 $onTerminated;
         public final /* synthetic */ boolean $reload;
@@ -298,7 +50,7 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Subscription, Unit> {
             public final /* synthetic */ Pair $key;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -322,12 +74,12 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
             public final /* synthetic */ Pair $key;
 
             /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -366,7 +118,7 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass3() {
                 super(0);
             }
@@ -387,13 +139,13 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$4, reason: invalid class name */
         /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<ThreadListing, Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<ThreadListing, Unit> {
             public final /* synthetic */ List $currentThreads;
             public final /* synthetic */ Pair $key;
 
             /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$fetchListing$1$4$1, reason: invalid class name */
             /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ThreadListing $result;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -478,7 +230,7 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$loadAndObserveThreadListing$1 */
     /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-    public static final class C56601 extends AbstractC12240o implements Function0<ThreadListingState> {
+    public final class C56601 extends AbstractC12240o implements Function0<ThreadListingState> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ ThreadListingType $threadListingType;
 
@@ -499,7 +251,7 @@ public final class ArchivedThreadsStore extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.ArchivedThreadsStore$observeGuildForumThreadListing$1 */
     /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
-    public static final class C56611 extends AbstractC12240o implements Function0<ThreadListingState> {
+    public final class C56611 extends AbstractC12240o implements Function0<ThreadListingState> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -513,6 +265,254 @@ public final class ArchivedThreadsStore extends StoreV2 {
         public final ThreadListingState invoke() {
             ThreadListingState threadListingState = (ThreadListingState) ArchivedThreadsStore.this.listingsSnapshot.get(new Pair(Long.valueOf(this.$channelId), ThreadListingType.ALL_ARCHIVED_PUBLIC_THREADS));
             return threadListingState != null ? threadListingState : ThreadListingState.Uninitialized.INSTANCE;
+        }
+    }
+
+    /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+    public abstract class ThreadListingState {
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class Error extends ThreadListingState {
+            public static final Error INSTANCE = new Error();
+
+            private Error() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final /* data */ class Listing extends ThreadListingState {
+            private final boolean hasMore;
+            private final boolean isLoadingMore;
+            private final List<Channel> threads;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Listing(List<Channel> list, boolean z2, boolean z3) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "threads");
+                this.threads = list;
+                this.hasMore = z2;
+                this.isLoadingMore = z3;
+            }
+
+            public final List<Channel> component1() {
+                return this.threads;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Listing copy$default(Listing listing, List list, boolean z2, boolean z3, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = listing.threads;
+                }
+                if ((i & 2) != 0) {
+                    z2 = listing.hasMore;
+                }
+                if ((i & 4) != 0) {
+                    z3 = listing.isLoadingMore;
+                }
+                return listing.copy(list, z2, z3);
+            }
+
+            public final Listing copy(List<Channel> threads, boolean hasMore, boolean isLoadingMore) {
+                C12238m.checkNotNullParameter(threads, "threads");
+                return new Listing(threads, hasMore, isLoadingMore);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Listing)) {
+                    return false;
+                }
+                Listing listing = (Listing) other;
+                return C12238m.areEqual(this.threads, listing.threads) && this.hasMore == listing.hasMore && this.isLoadingMore == listing.isLoadingMore;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getHasMore() {
+                return this.hasMore;
+            }
+
+            public final boolean getHasMore() {
+                return this.hasMore;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsLoadingMore() {
+                return this.isLoadingMore;
+            }
+
+            public final List<Channel> getThreads() {
+                return this.threads;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v3 */
+            /* JADX WARN: Type inference failed for: r1v4 */
+            /* JADX WARN: Type inference failed for: r2v0 */
+            /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r2v2 */
+            public int hashCode() {
+                List<Channel> list = this.threads;
+                int iHashCode = (list != null ? list.hashCode() : 0) * 31;
+                boolean z2 = this.hasMore;
+                ?? r1 = z2;
+                if (z2) {
+                    r1 = 1;
+                }
+                int i = (iHashCode + r1) * 31;
+                boolean z3 = this.isLoadingMore;
+                return i + (z3 ? 1 : z3);
+            }
+
+            public final boolean isLoadingMore() {
+                return this.isLoadingMore;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Listing(threads=");
+                sbM833U.append(this.threads);
+                sbM833U.append(", hasMore=");
+                sbM833U.append(this.hasMore);
+                sbM833U.append(", isLoadingMore=");
+                return C1643a.m827O(sbM833U, this.isLoadingMore, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class Uninitialized extends ThreadListingState {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private ThreadListingState() {
+        }
+
+        public /* synthetic */ ThreadListingState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+    /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
+    /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+    public abstract class ThreadListingType {
+        private static final /* synthetic */ ThreadListingType[] $VALUES;
+        public static final ThreadListingType ALL_ARCHIVED_PRIVATE_THREADS;
+        public static final ThreadListingType ALL_ARCHIVED_PUBLIC_THREADS;
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE;
+        public static final ThreadListingType MY_ARCHIVED_PRIVATE_THREADS;
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class ALL_ARCHIVED_PRIVATE_THREADS extends ThreadListingType {
+            public ALL_ARCHIVED_PRIVATE_THREADS(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
+            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
+                C12238m.checkNotNullParameter(threads, "threads");
+                try {
+                    return RestAPI.INSTANCE.getApi().getAllPrivateArchivedThreads(channelId, ThreadListingType.INSTANCE.getLastArchiveTimestamp(threads));
+                } catch (IllegalStateException e) {
+                    Observable<ThreadListing> observableM11081x = Observable.m11081x(e);
+                    C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(e)");
+                    return observableM11081x;
+                }
+            }
+        }
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class ALL_ARCHIVED_PUBLIC_THREADS extends ThreadListingType {
+            public ALL_ARCHIVED_PUBLIC_THREADS(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
+            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
+                C12238m.checkNotNullParameter(threads, "threads");
+                try {
+                    return RestAPI.INSTANCE.getApi().getAllPublicArchivedThreads(channelId, ThreadListingType.INSTANCE.getLastArchiveTimestamp(threads));
+                } catch (IllegalStateException e) {
+                    Observable<ThreadListing> observableM11081x = Observable.m11081x(e);
+                    C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(e)");
+                    return observableM11081x;
+                }
+            }
+        }
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            private final String getLastArchiveTimestamp(List<Channel> threads) {
+                String archiveTimestamp;
+                if (threads.isEmpty()) {
+                    return null;
+                }
+                ThreadMetadata threadMetadata = ((Channel) C12163u.last((List) threads)).getThreadMetadata();
+                if (threadMetadata == null || (archiveTimestamp = threadMetadata.getArchiveTimestamp()) == null) {
+                    throw new IllegalStateException("Thread missing threadMetadata");
+                }
+                return archiveTimestamp;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        /* JADX INFO: compiled from: ArchivedThreadsStore.kt */
+        public final class MY_ARCHIVED_PRIVATE_THREADS extends ThreadListingType {
+            public MY_ARCHIVED_PRIVATE_THREADS(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // com.discord.stores.ArchivedThreadsStore.ThreadListingType
+            public Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads) {
+                C12238m.checkNotNullParameter(threads, "threads");
+                Channel channel = (Channel) C12163u.lastOrNull((List) threads);
+                return RestAPI.INSTANCE.getApi().getMyPrivateArchivedThreads(channelId, channel != null ? Long.valueOf(channel.getId()) : null);
+            }
+        }
+
+        static {
+            MY_ARCHIVED_PRIVATE_THREADS my_archived_private_threads = new MY_ARCHIVED_PRIVATE_THREADS("MY_ARCHIVED_PRIVATE_THREADS", 0);
+            MY_ARCHIVED_PRIVATE_THREADS = my_archived_private_threads;
+            ALL_ARCHIVED_PUBLIC_THREADS all_archived_public_threads = new ALL_ARCHIVED_PUBLIC_THREADS("ALL_ARCHIVED_PUBLIC_THREADS", 1);
+            ALL_ARCHIVED_PUBLIC_THREADS = all_archived_public_threads;
+            ALL_ARCHIVED_PRIVATE_THREADS all_archived_private_threads = new ALL_ARCHIVED_PRIVATE_THREADS("ALL_ARCHIVED_PRIVATE_THREADS", 2);
+            ALL_ARCHIVED_PRIVATE_THREADS = all_archived_private_threads;
+            $VALUES = new ThreadListingType[]{my_archived_private_threads, all_archived_public_threads, all_archived_private_threads};
+            INSTANCE = new Companion(null);
+        }
+
+        private ThreadListingType(String str, int i) {
+            super(str, i);
+        }
+
+        public abstract Observable<ThreadListing> fetchNext(long channelId, List<Channel> threads);
+
+        public static ThreadListingType valueOf(String str) {
+            return (ThreadListingType) Enum.valueOf(ThreadListingType.class, str);
+        }
+
+        public static ThreadListingType[] values() {
+            return (ThreadListingType[]) $VALUES.clone();
+        }
+
+        public /* synthetic */ ThreadListingType(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(str, i);
         }
     }
 
@@ -531,6 +531,10 @@ public final class ArchivedThreadsStore extends StoreV2 {
         archivedThreadsStore.fetchGuildForumThreadListing(j, z2, function0);
     }
 
+    public final void fetchGuildForumThreadListing(long channelId, boolean reload, Function0<Unit> onTerminated) {
+        fetchListing(channelId, ThreadListingType.ALL_ARCHIVED_PUBLIC_THREADS, reload, onTerminated);
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ void fetchListing$default(ArchivedThreadsStore archivedThreadsStore, long j, ThreadListingType threadListingType, boolean z2, Function0 function0, int i, Object obj) {
         boolean z3 = (i & 4) != 0 ? false : z2;
@@ -538,10 +542,6 @@ public final class ArchivedThreadsStore extends StoreV2 {
             function0 = null;
         }
         archivedThreadsStore.fetchListing(j, threadListingType, z3, function0);
-    }
-
-    public final void fetchGuildForumThreadListing(long channelId, boolean reload, Function0<Unit> onTerminated) {
-        fetchListing(channelId, ThreadListingType.ALL_ARCHIVED_PUBLIC_THREADS, reload, onTerminated);
     }
 
     public final void fetchListing(long channelId, ThreadListingType threadListingType, boolean reload, Function0<Unit> onTerminated) {

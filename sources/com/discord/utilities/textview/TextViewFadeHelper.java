@@ -44,45 +44,6 @@ public final class TextViewFadeHelper {
         this.span = new LinearGradientSpan();
     }
 
-    private final void updateFade() {
-        Layout layout = this.textView.getLayout();
-        if (layout != null) {
-            CharSequence text = this.textView.getText();
-            if (!(text instanceof Spannable)) {
-                text = null;
-            }
-            Spannable spannable = (Spannable) text;
-            if (spannable != null) {
-                int lineCount = this.textView.getLineCount();
-                int maxLines = this.textView.getMaxLines();
-                int spanStart = spannable.getSpanStart(this.span);
-                int spanEnd = spannable.getSpanEnd(this.span);
-                boolean z2 = (spanStart == -1 || spanEnd == -1) ? false : true;
-                if (lineCount <= maxLines && z2) {
-                    spannable.removeSpan(this.span);
-                } else {
-                    if (lineCount <= maxLines) {
-                        return;
-                    }
-                    int i = maxLines - 1;
-                    int lineStart = layout.getLineStart(i);
-                    int lineEnd = layout.getLineEnd(i);
-                    float lineWidth = layout.getLineWidth(i);
-                    if (z2) {
-                        if (spanStart == lineStart && spanEnd == lineEnd && C12238m.areEqual(this.lineWidth, lineWidth)) {
-                            return;
-                        } else {
-                            spannable.removeSpan(this.span);
-                        }
-                    }
-                    this.lineWidth = Float.valueOf(lineWidth);
-                    spannable.setSpan(this.span, lineStart, lineEnd, 0);
-                }
-                this.textView.setText(spannable);
-            }
-        }
-    }
-
     public final Float getLineWidth() {
         return this.lineWidth;
     }
@@ -136,5 +97,44 @@ public final class TextViewFadeHelper {
 
     public final void setLineWidth(Float f) {
         this.lineWidth = f;
+    }
+
+    private final void updateFade() {
+        Layout layout = this.textView.getLayout();
+        if (layout != null) {
+            CharSequence text = this.textView.getText();
+            if (!(text instanceof Spannable)) {
+                text = null;
+            }
+            Spannable spannable = (Spannable) text;
+            if (spannable != null) {
+                int lineCount = this.textView.getLineCount();
+                int maxLines = this.textView.getMaxLines();
+                int spanStart = spannable.getSpanStart(this.span);
+                int spanEnd = spannable.getSpanEnd(this.span);
+                boolean z2 = (spanStart == -1 || spanEnd == -1) ? false : true;
+                if (lineCount <= maxLines && z2) {
+                    spannable.removeSpan(this.span);
+                } else {
+                    if (lineCount <= maxLines) {
+                        return;
+                    }
+                    int i = maxLines - 1;
+                    int lineStart = layout.getLineStart(i);
+                    int lineEnd = layout.getLineEnd(i);
+                    float lineWidth = layout.getLineWidth(i);
+                    if (z2) {
+                        if (spanStart == lineStart && spanEnd == lineEnd && C12238m.areEqual(this.lineWidth, lineWidth)) {
+                            return;
+                        } else {
+                            spannable.removeSpan(this.span);
+                        }
+                    }
+                    this.lineWidth = Float.valueOf(lineWidth);
+                    spannable.setSpan(this.span, lineStart, lineEnd, 0);
+                }
+                this.textView.setText(spannable);
+            }
+        }
     }
 }

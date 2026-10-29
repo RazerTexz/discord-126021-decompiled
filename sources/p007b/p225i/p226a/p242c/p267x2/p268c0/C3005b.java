@@ -146,12 +146,6 @@ public final class C3005b implements InterfaceC3031h {
         throw ParserException.m8755a(sb.toString(), null);
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: b */
-    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
-        return m3634c(interfaceC3041i);
-    }
-
     /* JADX INFO: renamed from: c */
     public final boolean m3634c(InterfaceC3041i interfaceC3041i) throws IOException {
         byte[] bArr = f8070c;
@@ -173,6 +167,12 @@ public final class C3005b implements InterfaceC3031h {
         this.f8075h = true;
         interfaceC3041i.mo3650l(bArr3.length);
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: b */
+    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
+        return m3634c(interfaceC3041i);
     }
 
     /* JADX WARN: Code duplicated, block: B:31:0x0088  */

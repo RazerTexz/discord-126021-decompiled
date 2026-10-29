@@ -130,7 +130,7 @@ public abstract class AbstractC2060m extends C2050c {
 
     /* JADX INFO: renamed from: b.f.m.m$b */
     /* JADX INFO: compiled from: UnpackingSoSource.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: j */
         public final String f4353j;
@@ -146,7 +146,7 @@ public abstract class AbstractC2060m extends C2050c {
 
     /* JADX INFO: renamed from: b.f.m.m$c */
     /* JADX INFO: compiled from: UnpackingSoSource.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final b[] f4355a;
@@ -174,7 +174,7 @@ public abstract class AbstractC2060m extends C2050c {
 
     /* JADX INFO: renamed from: b.f.m.m$d */
     /* JADX INFO: compiled from: UnpackingSoSource.java */
-    public static final class d implements Closeable {
+    public final class d implements Closeable {
 
         /* JADX INFO: renamed from: j */
         public final b f4356j;
@@ -195,30 +195,30 @@ public abstract class AbstractC2060m extends C2050c {
 
     /* JADX INFO: renamed from: b.f.m.m$e */
     /* JADX INFO: compiled from: UnpackingSoSource.java */
-    public static abstract class e implements Closeable {
+    public abstract class e implements Closeable {
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+        }
+
         /* JADX INFO: renamed from: a */
         public abstract boolean mo1575a();
 
         /* JADX INFO: renamed from: b */
         public abstract d mo1576b() throws IOException;
-
-        @Override // java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-        }
     }
 
     /* JADX INFO: renamed from: b.f.m.m$f */
     /* JADX INFO: compiled from: UnpackingSoSource.java */
-    public static abstract class f implements Closeable {
+    public abstract class f implements Closeable {
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+        }
+
         /* JADX INFO: renamed from: a */
         public abstract c mo1573a() throws IOException;
 
         /* JADX INFO: renamed from: b */
         public abstract e mo1574b() throws IOException;
-
-        @Override // java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-        }
     }
 
     public AbstractC2060m(Context context, String str) {
@@ -247,51 +247,6 @@ public abstract class AbstractC2060m extends C2050c {
                 }
                 throw th2;
             }
-        }
-    }
-
-    @Override // p007b.p109f.p190m.C2050c, p007b.p109f.p190m.AbstractC2059l
-    /* JADX INFO: renamed from: a */
-    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
-        int iM1572c;
-        synchronized (m1583h(str)) {
-            iM1572c = m1572c(str, i, this.f4319a, threadPolicy);
-        }
-        return iM1572c;
-    }
-
-    @Override // p007b.p109f.p190m.AbstractC2059l
-    /* JADX INFO: renamed from: b */
-    public void mo1569b(int i) throws IOException {
-        File file = this.f4319a;
-        if (!file.mkdirs() && !file.isDirectory()) {
-            throw new IOException("cannot mkdir: " + file);
-        }
-        C2054g c2054g = new C2054g(new File(this.f4319a, "dso_lock"));
-        try {
-            Log.v("fb-UnpackingSoSource", "locked dso store " + this.f4319a);
-            if (m1584j(c2054g, i, mo1565g())) {
-                c2054g = null;
-            } else {
-                Log.i("fb-UnpackingSoSource", "dso store is up-to-date: " + this.f4319a);
-            }
-            if (c2054g != null) {
-                StringBuilder sbM833U = C1643a.m833U("releasing dso store lock for ");
-                sbM833U.append(this.f4319a);
-                Log.v("fb-UnpackingSoSource", sbM833U.toString());
-                c2054g.close();
-                return;
-            }
-            StringBuilder sbM833U2 = C1643a.m833U("not releasing dso store lock for ");
-            sbM833U2.append(this.f4319a);
-            sbM833U2.append(" (syncer thread started)");
-            Log.v("fb-UnpackingSoSource", sbM833U2.toString());
-        } catch (Throwable th) {
-            StringBuilder sbM833U3 = C1643a.m833U("releasing dso store lock for ");
-            sbM833U3.append(this.f4319a);
-            Log.v("fb-UnpackingSoSource", sbM833U3.toString());
-            c2054g.close();
-            throw th;
         }
     }
 
@@ -414,38 +369,6 @@ public abstract class AbstractC2060m extends C2050c {
         throw th;
     }
 
-    /* JADX INFO: renamed from: g */
-    public byte[] mo1565g() throws IOException {
-        Parcel parcelObtain = Parcel.obtain();
-        f fVarMo1566i = mo1566i();
-        try {
-            b[] bVarArr = fVarMo1566i.mo1573a().f4355a;
-            parcelObtain.writeByte((byte) 1);
-            parcelObtain.writeInt(bVarArr.length);
-            for (int i = 0; i < bVarArr.length; i++) {
-                parcelObtain.writeString(bVarArr[i].f4353j);
-                parcelObtain.writeString(bVarArr[i].f4354k);
-            }
-            fVarMo1566i.close();
-            byte[] bArrMarshall = parcelObtain.marshall();
-            parcelObtain.recycle();
-            return bArrMarshall;
-        } catch (Throwable th) {
-            try {
-                throw th;
-            } catch (Throwable th2) {
-                if (fVarMo1566i != null) {
-                    try {
-                        fVarMo1566i.close();
-                    } catch (Throwable th3) {
-                        th.addSuppressed(th3);
-                    }
-                }
-                throw th2;
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: h */
     public final Object m1583h(String str) {
         Object obj;
@@ -458,9 +381,6 @@ public abstract class AbstractC2060m extends C2050c {
         }
         return obj;
     }
-
-    /* JADX INFO: renamed from: i */
-    public abstract f mo1566i() throws IOException;
 
     /* JADX INFO: renamed from: j */
     public final boolean m1584j(C2054g c2054g, int i, byte[] bArr) throws IOException {
@@ -628,6 +548,86 @@ public abstract class AbstractC2060m extends C2050c {
                 }
                 throw th5;
             }
+        }
+    }
+
+    /* JADX INFO: renamed from: g */
+    public byte[] mo1565g() throws IOException {
+        Parcel parcelObtain = Parcel.obtain();
+        f fVarMo1566i = mo1566i();
+        try {
+            b[] bVarArr = fVarMo1566i.mo1573a().f4355a;
+            parcelObtain.writeByte((byte) 1);
+            parcelObtain.writeInt(bVarArr.length);
+            for (int i = 0; i < bVarArr.length; i++) {
+                parcelObtain.writeString(bVarArr[i].f4353j);
+                parcelObtain.writeString(bVarArr[i].f4354k);
+            }
+            fVarMo1566i.close();
+            byte[] bArrMarshall = parcelObtain.marshall();
+            parcelObtain.recycle();
+            return bArrMarshall;
+        } catch (Throwable th) {
+            try {
+                throw th;
+            } catch (Throwable th2) {
+                if (fVarMo1566i != null) {
+                    try {
+                        fVarMo1566i.close();
+                    } catch (Throwable th3) {
+                        th.addSuppressed(th3);
+                    }
+                }
+                throw th2;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: i */
+    public abstract f mo1566i() throws IOException;
+
+    @Override // p007b.p109f.p190m.C2050c, p007b.p109f.p190m.AbstractC2059l
+    /* JADX INFO: renamed from: a */
+    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
+        int iM1572c;
+        synchronized (m1583h(str)) {
+            iM1572c = m1572c(str, i, this.f4319a, threadPolicy);
+        }
+        return iM1572c;
+    }
+
+    @Override // p007b.p109f.p190m.AbstractC2059l
+    /* JADX INFO: renamed from: b */
+    public void mo1569b(int i) throws IOException {
+        File file = this.f4319a;
+        if (!file.mkdirs() && !file.isDirectory()) {
+            throw new IOException("cannot mkdir: " + file);
+        }
+        C2054g c2054g = new C2054g(new File(this.f4319a, "dso_lock"));
+        try {
+            Log.v("fb-UnpackingSoSource", "locked dso store " + this.f4319a);
+            if (m1584j(c2054g, i, mo1565g())) {
+                c2054g = null;
+            } else {
+                Log.i("fb-UnpackingSoSource", "dso store is up-to-date: " + this.f4319a);
+            }
+            if (c2054g != null) {
+                StringBuilder sbM833U = C1643a.m833U("releasing dso store lock for ");
+                sbM833U.append(this.f4319a);
+                Log.v("fb-UnpackingSoSource", sbM833U.toString());
+                c2054g.close();
+                return;
+            }
+            StringBuilder sbM833U2 = C1643a.m833U("not releasing dso store lock for ");
+            sbM833U2.append(this.f4319a);
+            sbM833U2.append(" (syncer thread started)");
+            Log.v("fb-UnpackingSoSource", sbM833U2.toString());
+        } catch (Throwable th) {
+            StringBuilder sbM833U3 = C1643a.m833U("releasing dso store lock for ");
+            sbM833U3.append(this.f4319a);
+            Log.v("fb-UnpackingSoSource", sbM833U3.toString());
+            c2054g.close();
+            throw th;
         }
     }
 }

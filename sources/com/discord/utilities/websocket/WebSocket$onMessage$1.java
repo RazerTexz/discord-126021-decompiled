@@ -15,13 +15,13 @@ public final class WebSocket$onMessage$1 extends AbstractC12240o implements Func
         super(2);
     }
 
+    public final void invoke(InputStreamReader inputStreamReader, int i) {
+        C12238m.checkNotNullParameter(inputStreamReader, "<anonymous parameter 0>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(InputStreamReader inputStreamReader, Integer num) {
         invoke(inputStreamReader, num.intValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(InputStreamReader inputStreamReader, int i) {
-        C12238m.checkNotNullParameter(inputStreamReader, "<anonymous parameter 0>");
     }
 }

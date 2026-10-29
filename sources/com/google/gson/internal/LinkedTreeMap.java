@@ -15,9 +15,6 @@ import java.util.Set;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final Comparator<Comparable> f21495j = new C11101a();
     public Comparator<? super K> comparator;
     private LinkedTreeMap<K, V>.C11102b entrySet;
     public final C11105e<K, V> header;
@@ -25,6 +22,9 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
     public int modCount;
     public C11105e<K, V> root;
     public int size;
+
+    /* JADX INFO: renamed from: j */
+    public static final Comparator<Comparable> f21495j = new C11101a();
 
     /* JADX INFO: renamed from: com.google.gson.internal.LinkedTreeMap$a */
     public class C11101a implements Comparator<Comparable> {
@@ -132,55 +132,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         }
     }
 
-    /* JADX INFO: renamed from: com.google.gson.internal.LinkedTreeMap$d */
-    public abstract class AbstractC11104d<T> implements Iterator<T> {
-
-        /* JADX INFO: renamed from: j */
-        public C11105e<K, V> f21498j;
-
-        /* JADX INFO: renamed from: k */
-        public C11105e<K, V> f21499k = null;
-
-        /* JADX INFO: renamed from: l */
-        public int f21500l;
-
-        public AbstractC11104d() {
-            this.f21498j = LinkedTreeMap.this.header.f21505m;
-            this.f21500l = LinkedTreeMap.this.modCount;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final C11105e<K, V> m9231a() {
-            C11105e<K, V> c11105e = this.f21498j;
-            LinkedTreeMap linkedTreeMap = LinkedTreeMap.this;
-            if (c11105e == linkedTreeMap.header) {
-                throw new NoSuchElementException();
-            }
-            if (linkedTreeMap.modCount != this.f21500l) {
-                throw new ConcurrentModificationException();
-            }
-            this.f21498j = c11105e.f21505m;
-            this.f21499k = c11105e;
-            return c11105e;
-        }
-
-        @Override // java.util.Iterator
-        public final boolean hasNext() {
-            return this.f21498j != LinkedTreeMap.this.header;
-        }
-
-        @Override // java.util.Iterator
-        public final void remove() {
-            C11105e<K, V> c11105e = this.f21499k;
-            if (c11105e == null) {
-                throw new IllegalStateException();
-            }
-            LinkedTreeMap.this.m9227e(c11105e, true);
-            this.f21499k = null;
-            this.f21500l = LinkedTreeMap.this.modCount;
-        }
-    }
-
     public LinkedTreeMap() {
         Comparator<Comparable> comparator = f21495j;
         this.size = 0;
@@ -189,8 +140,50 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         this.comparator = comparator;
     }
 
-    private Object writeReplace() throws ObjectStreamException {
-        return new LinkedHashMap(this);
+    @Override // java.util.AbstractMap, java.util.Map
+    public void clear() {
+        this.root = null;
+        this.size = 0;
+        this.modCount++;
+        C11105e<K, V> c11105e = this.header;
+        c11105e.f21506n = c11105e;
+        c11105e.f21505m = c11105e;
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public boolean containsKey(Object obj) {
+        return m9225c(obj) != null;
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public Set<Map.Entry<K, V>> entrySet() {
+        LinkedTreeMap<K, V>.C11102b c11102b = this.entrySet;
+        if (c11102b != null) {
+            return c11102b;
+        }
+        LinkedTreeMap<K, V>.C11102b c11102b2 = new C11102b();
+        this.entrySet = c11102b2;
+        return c11102b2;
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public V get(Object obj) {
+        C11105e<K, V> c11105eM9225c = m9225c(obj);
+        if (c11105eM9225c != null) {
+            return c11105eM9225c.f21508p;
+        }
+        return null;
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public Set<K> keySet() {
+        LinkedTreeMap<K, V>.C11103c c11103c = this.keySet;
+        if (c11103c != null) {
+            return c11103c;
+        }
+        LinkedTreeMap<K, V>.C11103c c11103c2 = new C11103c();
+        this.keySet = c11103c2;
+        return c11103c2;
     }
 
     /* JADX INFO: renamed from: a */
@@ -266,21 +259,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         } catch (ClassCastException unused) {
             return null;
         }
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public void clear() {
-        this.root = null;
-        this.size = 0;
-        this.modCount++;
-        C11105e<K, V> c11105e = this.header;
-        c11105e.f21506n = c11105e;
-        c11105e.f21505m = c11105e;
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public boolean containsKey(Object obj) {
-        return m9225c(obj) != null;
     }
 
     /* JADX INFO: renamed from: d */
@@ -407,17 +385,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         m9228f(c11105e, c11105e3);
     }
 
-    @Override // java.util.AbstractMap, java.util.Map
-    public Set<Map.Entry<K, V>> entrySet() {
-        LinkedTreeMap<K, V>.C11102b c11102b = this.entrySet;
-        if (c11102b != null) {
-            return c11102b;
-        }
-        LinkedTreeMap<K, V>.C11102b c11102b2 = new C11102b();
-        this.entrySet = c11102b2;
-        return c11102b2;
-    }
-
     /* JADX INFO: renamed from: f */
     public final void m9228f(C11105e<K, V> c11105e, C11105e<K, V> c11105e2) {
         C11105e<K, V> c11105e3 = c11105e.f21502j;
@@ -452,15 +419,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         c11105e3.f21509q = Math.max(iMax, c11105e5 != null ? c11105e5.f21509q : 0) + 1;
     }
 
-    @Override // java.util.AbstractMap, java.util.Map
-    public V get(Object obj) {
-        C11105e<K, V> c11105eM9225c = m9225c(obj);
-        if (c11105eM9225c != null) {
-            return c11105eM9225c.f21508p;
-        }
-        return null;
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m9230h(C11105e<K, V> c11105e) {
         C11105e<K, V> c11105e2 = c11105e.f21503k;
@@ -477,17 +435,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         int iMax = Math.max(c11105e3 != null ? c11105e3.f21509q : 0, c11105e5 != null ? c11105e5.f21509q : 0) + 1;
         c11105e.f21509q = iMax;
         c11105e2.f21509q = Math.max(iMax, c11105e4 != null ? c11105e4.f21509q : 0) + 1;
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public Set<K> keySet() {
-        LinkedTreeMap<K, V>.C11103c c11103c = this.keySet;
-        if (c11103c != null) {
-            return c11103c;
-        }
-        LinkedTreeMap<K, V>.C11103c c11103c2 = new C11103c();
-        this.keySet = c11103c2;
-        return c11103c2;
     }
 
     @Override // java.util.AbstractMap, java.util.Map
@@ -516,8 +463,61 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
         return this.size;
     }
 
+    private Object writeReplace() throws ObjectStreamException {
+        return new LinkedHashMap(this);
+    }
+
+    /* JADX INFO: renamed from: com.google.gson.internal.LinkedTreeMap$d */
+    public abstract class AbstractC11104d<T> implements Iterator<T> {
+
+        /* JADX INFO: renamed from: j */
+        public C11105e<K, V> f21498j;
+
+        /* JADX INFO: renamed from: l */
+        public int f21500l;
+
+        /* JADX INFO: renamed from: k */
+        public C11105e<K, V> f21499k = null;
+
+        public AbstractC11104d() {
+            this.f21498j = LinkedTreeMap.this.header.f21505m;
+            this.f21500l = LinkedTreeMap.this.modCount;
+        }
+
+        @Override // java.util.Iterator
+        public final boolean hasNext() {
+            return this.f21498j != LinkedTreeMap.this.header;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final C11105e<K, V> m9231a() {
+            C11105e<K, V> c11105e = this.f21498j;
+            LinkedTreeMap linkedTreeMap = LinkedTreeMap.this;
+            if (c11105e == linkedTreeMap.header) {
+                throw new NoSuchElementException();
+            }
+            if (linkedTreeMap.modCount != this.f21500l) {
+                throw new ConcurrentModificationException();
+            }
+            this.f21498j = c11105e.f21505m;
+            this.f21499k = c11105e;
+            return c11105e;
+        }
+
+        @Override // java.util.Iterator
+        public final void remove() {
+            C11105e<K, V> c11105e = this.f21499k;
+            if (c11105e == null) {
+                throw new IllegalStateException();
+            }
+            LinkedTreeMap.this.m9227e(c11105e, true);
+            this.f21499k = null;
+            this.f21500l = LinkedTreeMap.this.modCount;
+        }
+    }
+
     /* JADX INFO: renamed from: com.google.gson.internal.LinkedTreeMap$e */
-    public static final class C11105e<K, V> implements Map.Entry<K, V> {
+    public final class C11105e<K, V> implements Map.Entry<K, V> {
 
         /* JADX INFO: renamed from: j */
         public C11105e<K, V> f21502j;

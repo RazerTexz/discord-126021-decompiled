@@ -16,10 +16,10 @@ import p659s.p660a.C13162x;
 /* JADX INFO: compiled from: DispatchedContinuation.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13024g<T> extends AbstractC13121j0<T> implements CoroutineStackFrame, Continuation<T> {
+    public volatile Object _reusableCancellableContinuation;
 
     /* JADX INFO: renamed from: m */
     public static final AtomicReferenceFieldUpdater f27675m = AtomicReferenceFieldUpdater.newUpdater(C13024g.class, Object.class, "_reusableCancellableContinuation");
-    public volatile Object _reusableCancellableContinuation;
 
     /* JADX INFO: renamed from: n */
     public Object f27676n;
@@ -90,6 +90,11 @@ public final class C13024g<T> extends AbstractC13121j0<T> implements CoroutineSt
         throw new UnsupportedOperationException("Method not decompiled: p659s.p660a.p661a.C13024g.<init>(kotlinx.coroutines.CoroutineDispatcher, kotlin.coroutines.Continuation):void");
     }
 
+    @Override // kotlin.coroutines.Continuation
+    public CoroutineContext getContext() {
+        return this.f27680r.getContext();
+    }
+
     @Override // p659s.p660a.AbstractC13121j0
     /* JADX INFO: renamed from: b */
     public void mo11145b(Object obj, Throwable th) {
@@ -102,11 +107,6 @@ public final class C13024g<T> extends AbstractC13121j0<T> implements CoroutineSt
     /* JADX INFO: renamed from: d */
     public Continuation<T> mo11146d() {
         return this;
-    }
-
-    @Override // kotlin.coroutines.Continuation
-    public CoroutineContext getContext() {
-        return this.f27680r.getContext();
     }
 
     @Override // p659s.p660a.AbstractC13121j0

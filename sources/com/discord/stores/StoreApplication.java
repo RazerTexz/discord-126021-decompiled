@@ -32,16 +32,16 @@ public final class StoreApplication extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1 */
     /* JADX INFO: compiled from: StoreApplication.kt */
-    public static final class C56941 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56941 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $appId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplication.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends Application>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends Application>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreApplication.kt */
-            public static final class C132461 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132461 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $results;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -95,11 +95,11 @@ public final class StoreApplication extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplication.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreApplication.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -157,7 +157,7 @@ public final class StoreApplication extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplication$observeApplication$1 */
     /* JADX INFO: compiled from: StoreApplication.kt */
-    public static final class C56951 extends AbstractC12240o implements Function0<Application> {
+    public final class C56951 extends AbstractC12240o implements Function0<Application> {
         public final /* synthetic */ Long $appId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -175,7 +175,7 @@ public final class StoreApplication extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplication$observeApplications$1 */
     /* JADX INFO: compiled from: StoreApplication.kt */
-    public static final class C56961 extends AbstractC12240o implements Function0<Map<Long, ? extends Application>> {
+    public final class C56961 extends AbstractC12240o implements Function0<Map<Long, ? extends Application>> {
         public final /* synthetic */ Collection $applicationIds;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

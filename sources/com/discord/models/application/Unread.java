@@ -19,7 +19,7 @@ public final /* data */ class Unread {
     private final Marker marker;
 
     /* JADX INFO: compiled from: Unread.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -45,7 +45,7 @@ public final /* data */ class Unread {
     }
 
     /* JADX INFO: compiled from: Unread.kt */
-    public static final /* data */ class Marker {
+    public final /* data */ class Marker {
         private final long channelId;
         private final Long messageId;
 
@@ -64,16 +64,6 @@ public final /* data */ class Unread {
             return marker.copy(j, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getMessageId() {
-            return this.messageId;
-        }
-
         public final Marker copy(long channelId, Long messageId) {
             return new Marker(channelId, messageId);
         }
@@ -89,8 +79,18 @@ public final /* data */ class Unread {
             return this.channelId == marker.channelId && C12238m.areEqual(this.messageId, marker.messageId);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getMessageId() {
+            return this.messageId;
         }
 
         public final Long getMessageId() {
@@ -144,16 +144,6 @@ public final /* data */ class Unread {
         return unread.copy(marker, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Marker getMarker() {
-        return this.marker;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getCount() {
-        return this.count;
-    }
-
     public final Unread copy(Marker marker, int count) {
         C12238m.checkNotNullParameter(marker, "marker");
         return new Unread(marker, count);
@@ -174,8 +164,18 @@ public final /* data */ class Unread {
         return C12238m.areEqual(this.marker, unread.marker) && this.count == unread.count;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getCount() {
         return this.count;
+    }
+
+    public final int getCount() {
+        return this.count;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Marker getMarker() {
+        return this.marker;
     }
 
     public final Marker getMarker() {

@@ -32,7 +32,7 @@ public class AsyncListUtil<T> {
     public int mRequestedGeneration = 0;
     public final SparseIntArray mMissingPositions = new SparseIntArray();
 
-    public static abstract class DataCallback<T> {
+    public abstract class DataCallback<T> {
         @WorkerThread
         public abstract void fillData(@NonNull T[] tArr, int i, int i2);
 
@@ -49,7 +49,7 @@ public class AsyncListUtil<T> {
         public abstract int refreshData();
     }
 
-    public static abstract class ViewCallback {
+    public abstract class ViewCallback {
         public static final int HINT_SCROLL_ASC = 2;
         public static final int HINT_SCROLL_DESC = 1;
         public static final int HINT_SCROLL_NONE = 0;
@@ -78,18 +78,6 @@ public class AsyncListUtil<T> {
 
     public AsyncListUtil(@NonNull Class<T> cls, int i, @NonNull DataCallback<T> dataCallback, @NonNull ViewCallback viewCallback) {
         ThreadUtil.MainThreadCallback<T> mainThreadCallback = new ThreadUtil.MainThreadCallback<T>() { // from class: androidx.recyclerview.widget.AsyncListUtil.1
-            private boolean isRequestedGeneration(int i2) {
-                return i2 == AsyncListUtil.this.mRequestedGeneration;
-            }
-
-            private void recycleAllTiles() {
-                for (int i2 = 0; i2 < AsyncListUtil.this.mTileList.size(); i2++) {
-                    AsyncListUtil asyncListUtil = AsyncListUtil.this;
-                    asyncListUtil.mBackgroundProxy.recycleTile(asyncListUtil.mTileList.getAtIndex(i2));
-                }
-                AsyncListUtil.this.mTileList.clear();
-            }
-
             @Override // androidx.recyclerview.widget.ThreadUtil.MainThreadCallback
             public void addTile(int i2, TileList.Tile<T> tile) {
                 if (!isRequestedGeneration(i2)) {
@@ -114,6 +102,18 @@ public class AsyncListUtil<T> {
                         AsyncListUtil.this.mViewCallback.onItemLoaded(iKeyAt);
                     }
                 }
+            }
+
+            private boolean isRequestedGeneration(int i2) {
+                return i2 == AsyncListUtil.this.mRequestedGeneration;
+            }
+
+            private void recycleAllTiles() {
+                for (int i2 = 0; i2 < AsyncListUtil.this.mTileList.size(); i2++) {
+                    AsyncListUtil asyncListUtil = AsyncListUtil.this;
+                    asyncListUtil.mBackgroundProxy.recycleTile(asyncListUtil.mTileList.getAtIndex(i2));
+                }
+                AsyncListUtil.this.mTileList.clear();
             }
 
             @Override // androidx.recyclerview.widget.ThreadUtil.MainThreadCallback
@@ -149,8 +149,8 @@ public class AsyncListUtil<T> {
             private int mGeneration;
             private int mItemCount;
             private int mLastRequiredTileStart;
-            public final SparseBooleanArray mLoadedTiles = new SparseBooleanArray();
             private TileList.Tile<T> mRecycledRoot;
+            public final SparseBooleanArray mLoadedTiles = new SparseBooleanArray();
 
             private TileList.Tile<T> acquireTile() {
                 TileList.Tile<T> tile = this.mRecycledRoot;
@@ -198,25 +198,6 @@ public class AsyncListUtil<T> {
                 return this.mLoadedTiles.get(i2);
             }
 
-            private void log(String str, Object... objArr) {
-                StringBuilder sbM833U = C1643a.m833U("[BKGR] ");
-                sbM833U.append(String.format(str, objArr));
-                Log.d(AsyncListUtil.TAG, sbM833U.toString());
-            }
-
-            private void removeTile(int i2) {
-                this.mLoadedTiles.delete(i2);
-                AsyncListUtil.this.mMainThreadProxy.removeTile(this.mGeneration, i2);
-            }
-
-            private void requestTiles(int i2, int i3, int i4, boolean z2) {
-                int i5 = i2;
-                while (i5 <= i3) {
-                    AsyncListUtil.this.mBackgroundProxy.loadTile(z2 ? (i3 + i2) - i5 : i5, i4);
-                    i5 += AsyncListUtil.this.mTileSize;
-                }
-            }
-
             @Override // androidx.recyclerview.widget.ThreadUtil.BackgroundCallback
             public void loadTile(int i2, int i3) {
                 if (isTileLoaded(i2)) {
@@ -229,6 +210,12 @@ public class AsyncListUtil<T> {
                 AsyncListUtil.this.mDataCallback.fillData(tileAcquireTile.mItems, tileAcquireTile.mStartPosition, iMin);
                 flushTileCache(i3);
                 addTile(tileAcquireTile);
+            }
+
+            private void log(String str, Object... objArr) {
+                StringBuilder sbM833U = C1643a.m833U("[BKGR] ");
+                sbM833U.append(String.format(str, objArr));
+                Log.d(AsyncListUtil.TAG, sbM833U.toString());
             }
 
             @Override // androidx.recyclerview.widget.ThreadUtil.BackgroundCallback
@@ -245,6 +232,19 @@ public class AsyncListUtil<T> {
                 int iRefreshData = AsyncListUtil.this.mDataCallback.refreshData();
                 this.mItemCount = iRefreshData;
                 AsyncListUtil.this.mMainThreadProxy.updateItemCount(this.mGeneration, iRefreshData);
+            }
+
+            private void removeTile(int i2) {
+                this.mLoadedTiles.delete(i2);
+                AsyncListUtil.this.mMainThreadProxy.removeTile(this.mGeneration, i2);
+            }
+
+            private void requestTiles(int i2, int i3, int i4, boolean z2) {
+                int i5 = i2;
+                while (i5 <= i3) {
+                    AsyncListUtil.this.mBackgroundProxy.loadTile(z2 ? (i3 + i2) - i5 : i5, i4);
+                    i5 += AsyncListUtil.this.mTileSize;
+                }
             }
 
             @Override // androidx.recyclerview.widget.ThreadUtil.BackgroundCallback
@@ -278,10 +278,6 @@ public class AsyncListUtil<T> {
         refresh();
     }
 
-    private boolean isRefreshPending() {
-        return this.mRequestedGeneration != this.mDisplayedGeneration;
-    }
-
     @Nullable
     public T getItem(int i) {
         if (i < 0 || i >= this.mItemCount) {
@@ -296,6 +292,10 @@ public class AsyncListUtil<T> {
 
     public int getItemCount() {
         return this.mItemCount;
+    }
+
+    private boolean isRefreshPending() {
+        return this.mRequestedGeneration != this.mDisplayedGeneration;
     }
 
     public void log(String str, Object... objArr) {

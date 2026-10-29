@@ -31,21 +31,6 @@ public final /* data */ class ActionComponentStoreState extends ComponentState {
         return actionComponentStoreState.copy(z2, failed, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getLoading() {
-        return this.loading;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final StoreApplicationInteractions.InteractionSendState.Failed getFailed() {
-        return this.failed;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getDisabled() {
-        return this.disabled;
-    }
-
     public final ActionComponentStoreState copy(boolean loading, StoreApplicationInteractions.InteractionSendState.Failed failed, boolean disabled) {
         return new ActionComponentStoreState(loading, failed, disabled);
     }
@@ -61,12 +46,27 @@ public final /* data */ class ActionComponentStoreState extends ComponentState {
         return this.loading == actionComponentStoreState.loading && C12238m.areEqual(this.failed, actionComponentStoreState.failed) && this.disabled == actionComponentStoreState.disabled;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getDisabled() {
         return this.disabled;
     }
 
+    public final boolean getDisabled() {
+        return this.disabled;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final StoreApplicationInteractions.InteractionSendState.Failed getFailed() {
         return this.failed;
+    }
+
+    public final StoreApplicationInteractions.InteractionSendState.Failed getFailed() {
+        return this.failed;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getLoading() {
+        return this.loading;
     }
 
     public final boolean getLoading() {

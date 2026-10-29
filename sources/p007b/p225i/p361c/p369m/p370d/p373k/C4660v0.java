@@ -17,12 +17,6 @@ import p007b.p225i.p361c.p401u.InterfaceC4843g;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4660v0 implements InterfaceC4662w0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f12407a = Pattern.compile("[^\\p{Alnum}]");
-
-    /* JADX INFO: renamed from: b */
-    public static final String f12408b = Pattern.quote(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-
     /* JADX INFO: renamed from: c */
     public final C4664x0 f12409c;
 
@@ -37,6 +31,12 @@ public class C4660v0 implements InterfaceC4662w0 {
 
     /* JADX INFO: renamed from: g */
     public String f12413g;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f12407a = Pattern.compile("[^\\p{Alnum}]");
+
+    /* JADX INFO: renamed from: b */
+    public static final String f12408b = Pattern.quote(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
 
     public C4660v0(Context context, String str, InterfaceC4843g interfaceC4843g) {
         if (str == null) {

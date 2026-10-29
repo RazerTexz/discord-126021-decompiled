@@ -28,7 +28,7 @@ public final class CountingRequestBody extends RequestBody {
     private int numWriteToCalls;
 
     /* JADX INFO: compiled from: CountingRequestBody.kt */
-    public static final class CountingSink extends AbstractC12392i {
+    public final class CountingSink extends AbstractC12392i {
         private long bytesWritten;
         private final Function1<Long, Unit> listener;
 
@@ -55,12 +55,6 @@ public final class CountingRequestBody extends RequestBody {
         this(requestBody, (i2 & 2) != 0 ? 0 : i);
     }
 
-    private final void updateProgress(long bytesWritten) {
-        if (this.numWriteToCalls > this.ignoreWriteToCount) {
-            this.bytesWrittenSubject.onNext(Long.valueOf(bytesWritten));
-        }
-    }
-
     @Override // okhttp3.RequestBody
     public long contentLength() throws IOException {
         return -1L;
@@ -79,6 +73,12 @@ public final class CountingRequestBody extends RequestBody {
 
     public final long getEstimatedContentLength() {
         return this.estimatedContentLength;
+    }
+
+    private final void updateProgress(long bytesWritten) {
+        if (this.numWriteToCalls > this.ignoreWriteToCount) {
+            this.bytesWrittenSubject.onNext(Long.valueOf(bytesWritten));
+        }
     }
 
     @Override // okhttp3.RequestBody

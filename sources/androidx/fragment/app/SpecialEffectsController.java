@@ -24,7 +24,7 @@ public abstract class SpecialEffectsController {
     public boolean mIsContainerPostponed = false;
 
     /* JADX INFO: renamed from: androidx.fragment.app.SpecialEffectsController$3 */
-    public static /* synthetic */ class C04173 {
+    public /* synthetic */ class C04173 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$fragment$app$SpecialEffectsController$Operation$LifecycleImpact */
         public static final /* synthetic */ int[] f143xb9e640f0;
@@ -70,7 +70,7 @@ public abstract class SpecialEffectsController {
         }
     }
 
-    public static class FragmentStateManagerOperation extends Operation {
+    public class FragmentStateManagerOperation extends Operation {
 
         @NonNull
         private final FragmentStateManager mFragmentStateManager;
@@ -139,39 +139,6 @@ public abstract class SpecialEffectsController {
                     SpecialEffectsController.this.mRunningOperations.remove(fragmentStateManagerOperation);
                 }
             });
-        }
-    }
-
-    @Nullable
-    private Operation findPendingOperation(@NonNull Fragment fragment) {
-        for (Operation operation : this.mPendingOperations) {
-            if (operation.getFragment().equals(fragment) && !operation.isCanceled()) {
-                return operation;
-            }
-        }
-        return null;
-    }
-
-    @Nullable
-    private Operation findRunningOperation(@NonNull Fragment fragment) {
-        for (Operation operation : this.mRunningOperations) {
-            if (operation.getFragment().equals(fragment) && !operation.isCanceled()) {
-                return operation;
-            }
-        }
-        return null;
-    }
-
-    @NonNull
-    public static SpecialEffectsController getOrCreateController(@NonNull ViewGroup viewGroup, @NonNull FragmentManager fragmentManager) {
-        return getOrCreateController(viewGroup, fragmentManager.getSpecialEffectsControllerFactory());
-    }
-
-    private void updateFinalState() {
-        for (Operation operation : this.mPendingOperations) {
-            if (operation.getLifecycleImpact() == Operation.LifecycleImpact.ADDING) {
-                operation.mergeWith(Operation.State.from(operation.getFragment().requireView().getVisibility()), Operation.LifecycleImpact.NONE);
-            }
         }
     }
 
@@ -249,6 +216,26 @@ public abstract class SpecialEffectsController {
         }
     }
 
+    @Nullable
+    private Operation findPendingOperation(@NonNull Fragment fragment) {
+        for (Operation operation : this.mPendingOperations) {
+            if (operation.getFragment().equals(fragment) && !operation.isCanceled()) {
+                return operation;
+            }
+        }
+        return null;
+    }
+
+    @Nullable
+    private Operation findRunningOperation(@NonNull Fragment fragment) {
+        for (Operation operation : this.mRunningOperations) {
+            if (operation.getFragment().equals(fragment) && !operation.isCanceled()) {
+                return operation;
+            }
+        }
+        return null;
+    }
+
     public void forceCompleteAllOperations() {
         boolean zIsAttachedToWindow = ViewCompat.isAttachedToWindow(this.mContainer);
         synchronized (this.mPendingOperations) {
@@ -307,6 +294,11 @@ public abstract class SpecialEffectsController {
         return this.mContainer;
     }
 
+    @NonNull
+    public static SpecialEffectsController getOrCreateController(@NonNull ViewGroup viewGroup, @NonNull FragmentManager fragmentManager) {
+        return getOrCreateController(viewGroup, fragmentManager.getSpecialEffectsControllerFactory());
+    }
+
     public void markPostponedState() {
         synchronized (this.mPendingOperations) {
             updateFinalState();
@@ -324,11 +316,19 @@ public abstract class SpecialEffectsController {
         }
     }
 
+    private void updateFinalState() {
+        for (Operation operation : this.mPendingOperations) {
+            if (operation.getLifecycleImpact() == Operation.LifecycleImpact.ADDING) {
+                operation.mergeWith(Operation.State.from(operation.getFragment().requireView().getVisibility()), Operation.LifecycleImpact.NONE);
+            }
+        }
+    }
+
     public void updateOperationDirection(boolean z2) {
         this.mOperationDirectionIsPop = z2;
     }
 
-    public static class Operation {
+    public class Operation {
 
         @NonNull
         private State mFinalState;
@@ -514,11 +514,6 @@ public abstract class SpecialEffectsController {
             GONE,
             INVISIBLE;
 
-            @NonNull
-            public static State from(@NonNull View view) {
-                return (view.getAlpha() == 0.0f && view.getVisibility() == 0) ? INVISIBLE : from(view.getVisibility());
-            }
-
             public void applyState(@NonNull View view) {
                 int iOrdinal = ordinal();
                 if (iOrdinal == 0) {
@@ -553,6 +548,11 @@ public abstract class SpecialEffectsController {
                     Log.v(FragmentManager.TAG, "SpecialEffectsController: Setting view " + view + " to INVISIBLE");
                 }
                 view.setVisibility(4);
+            }
+
+            @NonNull
+            public static State from(@NonNull View view) {
+                return (view.getAlpha() == 0.0f && view.getVisibility() == 0) ? INVISIBLE : from(view.getVisibility());
             }
 
             @NonNull

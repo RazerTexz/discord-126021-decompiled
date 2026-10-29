@@ -19,16 +19,16 @@ import java.util.jar.JarFile;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/ScriptManager.SCL.lombok */
 public class ScriptManager {
-    private static final String DEBUG_PATCHING = System.getProperty("lombok.patcher.patchDebugDir", null);
     private static final boolean LOG_TO_STANDARD_ERR = false;
     private final List<PatchScript> scripts = new ArrayList();
     private final Map<String, List<WitnessAction>> witnessActions = new HashMap();
     private TransplantMapper transplantMapper = TransplantMapper.IDENTITY_MAPPER;
     private Filter filter = Filter.ALWAYS;
+    private static final String DEBUG_PATCHING = System.getProperty("lombok.patcher.patchDebugDir", null);
     private final OurClassFileTransformer transformer = new OurClassFileTransformer(this, null);
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/ScriptManager$WitnessAction.SCL.lombok */
-    private static final class WitnessAction {
+    final class WitnessAction {
         boolean triggered;
         boolean ifWitnessRemove;
         PatchScript script;
@@ -95,7 +95,7 @@ public class ScriptManager {
         for (Class<?> c : instrumentation.getAllLoadedClasses()) {
             if (toReload.contains(c.getName())) {
                 try {
-                    Instrumentation.class.getMethod("retransformClasses", Class[].class).invoke(instrumentation, new Class[]{c});
+                    Instrumentation.class.getMethod("retransformClasses", Class[].class).invoke(instrumentation, new Object[]{new Class[]{c}});
                 } catch (InvocationTargetException e) {
                     throw new UnsupportedOperationException("The " + c.getName() + " class is already loaded and cannot be modified. You'll have to restart the application to patch it. Reason: " + e.getCause());
                 } catch (Throwable unused) {
@@ -106,7 +106,7 @@ public class ScriptManager {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/ScriptManager$OurClassFileTransformer.SCL.lombok */
-    private class OurClassFileTransformer implements ClassFileTransformer {
+    class OurClassFileTransformer implements ClassFileTransformer {
         private OurClassFileTransformer() {
         }
 

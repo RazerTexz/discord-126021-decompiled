@@ -14,9 +14,6 @@ public class C1543s implements InterfaceC1527c, AbstractC1544a.b {
     /* JADX INFO: renamed from: a */
     public final boolean f2590a;
 
-    /* JADX INFO: renamed from: b */
-    public final List<AbstractC1544a.b> f2591b = new ArrayList();
-
     /* JADX INFO: renamed from: c */
     public final int f2592c;
 
@@ -28,6 +25,9 @@ public class C1543s implements InterfaceC1527c, AbstractC1544a.b {
 
     /* JADX INFO: renamed from: f */
     public final AbstractC1544a<?, Float> f2595f;
+
+    /* JADX INFO: renamed from: b */
+    public final List<AbstractC1544a.b> f2591b = new ArrayList();
 
     public C1543s(AbstractC1603b abstractC1603b, C1601p c1601p) {
         this.f2590a = c1601p.f2834f;

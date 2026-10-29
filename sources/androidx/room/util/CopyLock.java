@@ -15,11 +15,11 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class CopyLock {
-    private static final Map<String, Lock> sThreadLocks = new HashMap();
     private final File mCopyLockFile;
     private final boolean mFileLevelLock;
     private FileChannel mLockChannel;
     private final Lock mThreadLock;
+    private static final Map<String, Lock> sThreadLocks = new HashMap();
 
     public CopyLock(@NonNull String str, @NonNull File file, boolean z2) {
         File file2 = new File(file, C1643a.m883w(str, ".lck"));

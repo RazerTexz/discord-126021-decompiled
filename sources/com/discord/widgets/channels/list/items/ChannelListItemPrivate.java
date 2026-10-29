@@ -27,10 +27,11 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         this.isApplicationStreaming = z3;
         this.muted = z4;
         this.type = 3;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(channel.getId());
-        this.key = sb.toString();
+        this.key = "" + getType() + channel.getId();
+    }
+
+    public final int component4() {
+        return getMentionCount();
     }
 
     public static /* synthetic */ ChannelListItemPrivate copy$default(ChannelListItemPrivate channelListItemPrivate, Channel channel, Presence presence, boolean z2, int i, boolean z3, boolean z4, int i2, Object obj) {
@@ -59,35 +60,6 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return channelListItemPrivate.copy(channel, presence2, z5, i3, z6, z4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Presence getPresence() {
-        return this.presence;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
-    public final int component4() {
-        return getMentionCount();
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsApplicationStreaming() {
-        return this.isApplicationStreaming;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getMuted() {
-        return this.muted;
-    }
-
     public final ChannelListItemPrivate copy(Channel channel, Presence presence, boolean selected, int mentionCount, boolean isApplicationStreaming, boolean muted) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemPrivate(channel, presence, selected, mentionCount, isApplicationStreaming, muted);
@@ -104,8 +76,24 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return C12238m.areEqual(this.channel, channelListItemPrivate.channel) && C12238m.areEqual(this.presence, channelListItemPrivate.presence) && this.selected == channelListItemPrivate.selected && getMentionCount() == channelListItemPrivate.getMentionCount() && this.isApplicationStreaming == channelListItemPrivate.isApplicationStreaming && this.muted == channelListItemPrivate.muted;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsApplicationStreaming() {
+        return this.isApplicationStreaming;
+    }
+
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    /* JADX INFO: renamed from: isUnread */
+    public boolean getIsUnread() {
+        return false;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -118,12 +106,27 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return this.mentionCount;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getMuted() {
         return this.muted;
     }
 
+    public final boolean getMuted() {
+        return this.muted;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Presence getPresence() {
         return this.presence;
+    }
+
+    public final Presence getPresence() {
+        return this.presence;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getSelected() {
+        return this.selected;
     }
 
     public final boolean getSelected() {
@@ -170,12 +173,6 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
 
     public final boolean isApplicationStreaming() {
         return this.isApplicationStreaming;
-    }
-
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-    /* JADX INFO: renamed from: isUnread */
-    public boolean getIsUnread() {
-        return false;
     }
 
     public String toString() {

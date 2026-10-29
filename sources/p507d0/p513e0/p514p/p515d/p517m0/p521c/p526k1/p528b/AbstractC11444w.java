@@ -19,7 +19,7 @@ public abstract class AbstractC11444w implements InterfaceC11591x {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.w$a */
     /* JADX INFO: compiled from: ReflectJavaType.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

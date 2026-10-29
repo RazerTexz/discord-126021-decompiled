@@ -90,11 +90,168 @@ public final class WidgetFriendsFindNearby extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$acceptFriendRequest$1 */
     /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static abstract class Model {
+    public final class C83861 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C83861() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r5) {
+            C0876m.m169g(WidgetFriendsFindNearby.this.getContext(), C5419R.string.accept_request_button_after, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$declineFriendRequest$1 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83871 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ int $successMessageStringRes;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C83871(int i) {
+            super(1);
+            this.$successMessageStringRes = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r5) {
+            C0876m.m169g(WidgetFriendsFindNearby.this.getContext(), this.$successMessageStringRes, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83881 extends AbstractC12240o implements Function2<String, Integer, Unit> {
+        public C83881() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num) {
+            invoke(str, num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(String str, int i) {
+            C12238m.checkNotNullParameter(str, "username");
+            WidgetFriendsFindNearby.sendFriendRequest$default(WidgetFriendsFindNearby.this, str, i, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83892 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C83892() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            WidgetFriendsFindNearby.this.acceptFriendRequest(j);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83903 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
+        public C83903() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, Boolean bool) {
+            invoke(l.longValue(), bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, boolean z2) {
+            WidgetFriendsFindNearby.this.declineFriendRequest(j, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83914 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C83914() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetFriendsFindNearby.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            WidgetUserSheet.Companion.show$default(companion, j, null, parentFragmentManager, null, null, null, null, 122, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83941 extends AbstractC12240o implements Function1<WidgetFriendsAddUserRequestsModel, Unit> {
+        public C83941() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
+            invoke2(widgetFriendsAddUserRequestsModel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
+            WidgetFriendsFindNearby.access$getResultsAdapter$p(WidgetFriendsFindNearby.this).addFriendRequestUserIds(widgetFriendsAddUserRequestsModel.outgoingIds, widgetFriendsAddUserRequestsModel.incomingIds);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class C83952 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C83952() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "it");
+            WidgetFriendsFindNearby.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public abstract class Model {
 
         /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-        public static final class Empty extends Model {
+        public final class Empty extends Model {
             public static final Empty INSTANCE = new Empty();
 
             private Empty() {
@@ -103,7 +260,7 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-        public static final /* data */ class Error extends Model {
+        public final /* data */ class Error extends Model {
             private final Integer errorCode;
 
             public Error(Integer num) {
@@ -118,11 +275,6 @@ public final class WidgetFriendsFindNearby extends AppFragment {
                 return error.copy(num);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Integer getErrorCode() {
-                return this.errorCode;
-            }
-
             public final Error copy(Integer errorCode) {
                 return new Error(errorCode);
             }
@@ -132,6 +284,11 @@ public final class WidgetFriendsFindNearby extends AppFragment {
                     return (other instanceof Error) && C12238m.areEqual(this.errorCode, ((Error) other).errorCode);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Integer getErrorCode() {
+                return this.errorCode;
             }
 
             public final Integer getErrorCode() {
@@ -152,7 +309,7 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-        public static final /* data */ class NearbyUsers extends Model {
+        public final /* data */ class NearbyUsers extends Model {
             private final List<WidgetFriendsAddUserAdapter.ItemUser> items;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,16 +319,16 @@ public final class WidgetFriendsFindNearby extends AppFragment {
                 this.items = list;
             }
 
+            public final List<WidgetFriendsAddUserAdapter.ItemUser> component1() {
+                return this.items;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ NearbyUsers copy$default(NearbyUsers nearbyUsers, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = nearbyUsers.items;
                 }
                 return nearbyUsers.copy(list);
-            }
-
-            public final List<WidgetFriendsAddUserAdapter.ItemUser> component1() {
-                return this.items;
             }
 
             public final NearbyUsers copy(List<WidgetFriendsAddUserAdapter.ItemUser> items) {
@@ -204,7 +361,7 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-        public static final class Uninitialized extends Model {
+        public final class Uninitialized extends Model {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -221,10 +378,38 @@ public final class WidgetFriendsFindNearby extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class ModelProvider {
+    public final class ModelProvider {
         public static final ModelProvider INSTANCE = new ModelProvider();
 
         private ModelProvider() {
+        }
+
+        public final Observable<Model> get(Observable<NearbyManager.NearbyState> nearbyStateObservable) {
+            C12238m.checkNotNullParameter(nearbyStateObservable, "nearbyStateObservable");
+            Observable observableM11099Y = nearbyStateObservable.m11099Y(new InterfaceC12589b<NearbyManager.NearbyState, Observable<? extends Model>>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby$ModelProvider$get$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetFriendsFindNearby.Model> call(NearbyManager.NearbyState nearbyState) {
+                    C12721k c12721k;
+                    if (nearbyState instanceof NearbyManager.NearbyState.Disconnected) {
+                        return new C12721k(new WidgetFriendsFindNearby.Model.Error(Integer.valueOf(((NearbyManager.NearbyState.Disconnected) nearbyState).getCode())));
+                    }
+                    if (nearbyState instanceof NearbyManager.NearbyState.Uninitialized) {
+                        c12721k = new C12721k(WidgetFriendsFindNearby.Model.Uninitialized.INSTANCE);
+                    } else {
+                        if (!(nearbyState instanceof NearbyManager.NearbyState.Connected)) {
+                            throw new NoWhenBranchMatchedException();
+                        }
+                        NearbyManager.NearbyState.Connected connected = (NearbyManager.NearbyState.Connected) nearbyState;
+                        if (!connected.getNearbyUserIds().isEmpty()) {
+                            return WidgetFriendsFindNearby.ModelProvider.INSTANCE.getUserModels(connected.getNearbyUserIds());
+                        }
+                        c12721k = new C12721k(WidgetFriendsFindNearby.Model.Empty.INSTANCE);
+                    }
+                    return c12721k;
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "nearbyStateObservable\n  …          }\n            }");
+            return observableM11099Y;
         }
 
         private final Observable<Model.NearbyUsers> getUserModels(Collection<Long> userIds) {
@@ -256,191 +441,6 @@ public final class WidgetFriendsFindNearby extends AppFragment {
             });
             C12238m.checkNotNullExpressionValue(observableM11075i, "Observable\n          .co…yUsers(items)\n          }");
             return observableM11075i;
-        }
-
-        public final Observable<Model> get(Observable<NearbyManager.NearbyState> nearbyStateObservable) {
-            C12238m.checkNotNullParameter(nearbyStateObservable, "nearbyStateObservable");
-            Observable observableM11099Y = nearbyStateObservable.m11099Y(new InterfaceC12589b<NearbyManager.NearbyState, Observable<? extends Model>>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby$ModelProvider$get$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetFriendsFindNearby.Model> call(NearbyManager.NearbyState nearbyState) {
-                    C12721k c12721k;
-                    if (nearbyState instanceof NearbyManager.NearbyState.Disconnected) {
-                        return new C12721k(new WidgetFriendsFindNearby.Model.Error(Integer.valueOf(((NearbyManager.NearbyState.Disconnected) nearbyState).getCode())));
-                    }
-                    if (nearbyState instanceof NearbyManager.NearbyState.Uninitialized) {
-                        c12721k = new C12721k(WidgetFriendsFindNearby.Model.Uninitialized.INSTANCE);
-                    } else {
-                        if (!(nearbyState instanceof NearbyManager.NearbyState.Connected)) {
-                            throw new NoWhenBranchMatchedException();
-                        }
-                        NearbyManager.NearbyState.Connected connected = (NearbyManager.NearbyState.Connected) nearbyState;
-                        if (!connected.getNearbyUserIds().isEmpty()) {
-                            return WidgetFriendsFindNearby.ModelProvider.INSTANCE.getUserModels(connected.getNearbyUserIds());
-                        }
-                        c12721k = new C12721k(WidgetFriendsFindNearby.Model.Empty.INSTANCE);
-                    }
-                    return c12721k;
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "nearbyStateObservable\n  …          }\n            }");
-            return observableM11099Y;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$acceptFriendRequest$1 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83861 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C83861() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r5) {
-            C0876m.m169g(WidgetFriendsFindNearby.this.getContext(), C5419R.string.accept_request_button_after, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$declineFriendRequest$1 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83871 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ int $successMessageStringRes;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C83871(int i) {
-            super(1);
-            this.$successMessageStringRes = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r5) {
-            C0876m.m169g(WidgetFriendsFindNearby.this.getContext(), this.$successMessageStringRes, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83881 extends AbstractC12240o implements Function2<String, Integer, Unit> {
-        public C83881() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num) {
-            invoke(str, num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(String str, int i) {
-            C12238m.checkNotNullParameter(str, "username");
-            WidgetFriendsFindNearby.sendFriendRequest$default(WidgetFriendsFindNearby.this, str, i, null, 4, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83892 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C83892() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetFriendsFindNearby.this.acceptFriendRequest(j);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83903 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
-        public C83903() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, Boolean bool) {
-            invoke(l.longValue(), bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, boolean z2) {
-            WidgetFriendsFindNearby.this.declineFriendRequest(j, z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83914 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C83914() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetFriendsFindNearby.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            WidgetUserSheet.Companion.show$default(companion, j, null, parentFragmentManager, null, null, null, null, 122, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83941 extends AbstractC12240o implements Function1<WidgetFriendsAddUserRequestsModel, Unit> {
-        public C83941() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
-            invoke2(widgetFriendsAddUserRequestsModel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
-            WidgetFriendsFindNearby.access$getResultsAdapter$p(WidgetFriendsFindNearby.this).addFriendRequestUserIds(widgetFriendsAddUserRequestsModel.outgoingIds, widgetFriendsAddUserRequestsModel.incomingIds);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-    public static final class C83952 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C83952() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "it");
-            WidgetFriendsFindNearby.this.configureUI(model);
         }
     }
 
@@ -623,78 +623,6 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         WidgetCaptcha.INSTANCE.launch(requireContext(), this.captchaLauncher, CaptchaErrorBody.INSTANCE.createFromError(error));
     }
 
-    private final void sendFriendRequest(final String username, final int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
-        getViewModel().setUsername(username);
-        getViewModel().setDiscriminator(Integer.valueOf(discriminator));
-        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().sendRelationshipRequest("Nearby - Add Friend Suggestion", username, discriminator, captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby.sendFriendRequest.1
-            @Override // p658rx.functions.Action1
-            public final void call(Void r7) {
-                Context context = WidgetFriendsFindNearby.this.getContext();
-                Context context2 = WidgetFriendsFindNearby.this.getContext();
-                C0876m.m170h(context, context2 != null ? C1107b.m216h(context2, C5419R.string.add_friend_confirmation, new Object[]{username}, null, 4) : null, 0, null, 12);
-            }
-        }, getAppActivity(), new Action1<Error>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby.sendFriendRequest.2
-
-            /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$sendFriendRequest$2$1, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-                public final /* synthetic */ Error $error;
-
-                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                public AnonymousClass1(Error error) {
-                    super(0);
-                    this.$error = error;
-                }
-
-                @Override // kotlin.jvm.functions.Function0
-                public /* bridge */ /* synthetic */ Unit invoke() {
-                    invoke2();
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2() {
-                    Error error = this.$error;
-                    C12238m.checkNotNullExpressionValue(error, "error");
-                    if (WidgetCaptchaKt.isCaptchaError(error)) {
-                        WidgetFriendsFindNearby widgetFriendsFindNearby = WidgetFriendsFindNearby.this;
-                        Error error2 = this.$error;
-                        C12238m.checkNotNullExpressionValue(error2, "error");
-                        widgetFriendsFindNearby.launchCaptchaFlow(error2);
-                        return;
-                    }
-                    RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
-                    Context context = WidgetFriendsFindNearby.this.getContext();
-                    Error error3 = this.$error;
-                    C12238m.checkNotNullExpressionValue(error3, "error");
-                    Error.Response response = error3.getResponse();
-                    C12238m.checkNotNullExpressionValue(response, "error.response");
-                    C0876m.m170h(WidgetFriendsFindNearby.this.getContext(), responseResolver.getRelationshipResponse(context, response.getCode(), username + MentionUtilsKt.CHANNELS_CHAR + UserUtils.INSTANCE.padDiscriminator(discriminator)), 0, null, 12);
-                }
-            }
-
-            @Override // p658rx.functions.Action1
-            public final void call(Error error) {
-                RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
-                C12238m.checkNotNullExpressionValue(error, "error");
-                RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
-            }
-        }));
-    }
-
-    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            captchaPayload = null;
-        }
-        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaPayload);
-    }
-
-    private final void updateMeUserIdAndInitNearbyManager() {
-        long id2 = StoreStream.INSTANCE.getUsers().getMeSnapshot().getId();
-        this.meUserId = Long.valueOf(id2);
-        this.nearbyManager.initialize(id2);
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onPause() {
         this.nearbyManager.disableNearby();
@@ -774,5 +702,77 @@ public final class WidgetFriendsFindNearby extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8519ui(observable, this, widgetFriendsAddUserAdapter), (Class<?>) WidgetFriendsFindNearby.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83952());
+    }
+
+    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            captchaPayload = null;
+        }
+        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaPayload);
+    }
+
+    private final void sendFriendRequest(final String username, final int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
+        getViewModel().setUsername(username);
+        getViewModel().setDiscriminator(Integer.valueOf(discriminator));
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().sendRelationshipRequest("Nearby - Add Friend Suggestion", username, discriminator, captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby.sendFriendRequest.1
+            @Override // p658rx.functions.Action1
+            public final void call(Void r7) {
+                Context context = WidgetFriendsFindNearby.this.getContext();
+                Context context2 = WidgetFriendsFindNearby.this.getContext();
+                C0876m.m170h(context, context2 != null ? C1107b.m216h(context2, C5419R.string.add_friend_confirmation, new Object[]{username}, null, 4) : null, 0, null, 12);
+            }
+        }, getAppActivity(), new Action1<Error>() { // from class: com.discord.widgets.friends.WidgetFriendsFindNearby.sendFriendRequest.2
+
+            /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$sendFriendRequest$2$1, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final /* synthetic */ Error $error;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public AnonymousClass1(Error error) {
+                    super(0);
+                    this.$error = error;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    Error error = this.$error;
+                    C12238m.checkNotNullExpressionValue(error, "error");
+                    if (WidgetCaptchaKt.isCaptchaError(error)) {
+                        WidgetFriendsFindNearby widgetFriendsFindNearby = WidgetFriendsFindNearby.this;
+                        Error error2 = this.$error;
+                        C12238m.checkNotNullExpressionValue(error2, "error");
+                        widgetFriendsFindNearby.launchCaptchaFlow(error2);
+                        return;
+                    }
+                    RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
+                    Context context = WidgetFriendsFindNearby.this.getContext();
+                    Error error3 = this.$error;
+                    C12238m.checkNotNullExpressionValue(error3, "error");
+                    Error.Response response = error3.getResponse();
+                    C12238m.checkNotNullExpressionValue(response, "error.response");
+                    C0876m.m170h(WidgetFriendsFindNearby.this.getContext(), responseResolver.getRelationshipResponse(context, response.getCode(), username + MentionUtilsKt.CHANNELS_CHAR + UserUtils.INSTANCE.padDiscriminator(discriminator)), 0, null, 12);
+                }
+            }
+
+            @Override // p658rx.functions.Action1
+            public final void call(Error error) {
+                RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
+                C12238m.checkNotNullExpressionValue(error, "error");
+                RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
+            }
+        }));
+    }
+
+    private final void updateMeUserIdAndInitNearbyManager() {
+        long id2 = StoreStream.INSTANCE.getUsers().getMeSnapshot().getId();
+        this.meUserId = Long.valueOf(id2);
+        this.nearbyManager.initialize(id2);
     }
 }

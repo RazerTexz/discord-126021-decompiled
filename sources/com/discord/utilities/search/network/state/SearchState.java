@@ -32,6 +32,18 @@ public final /* data */ class SearchState {
         this.totalResults = i;
     }
 
+    public final List<Channel> component3() {
+        return this.threads;
+    }
+
+    public final List<ThreadMember> component4() {
+        return this.threadMembers;
+    }
+
+    public final List<Message> component5() {
+        return this.hits;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ SearchState copy$default(SearchState searchState, QueryFetchState queryFetchState, SearchQuery searchQuery, List list, List list2, List list3, boolean z2, int i, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -63,38 +75,6 @@ public final /* data */ class SearchState {
         return searchState.copy(queryFetchState, searchQuery2, list4, list5, list6, z3, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final QueryFetchState getQueryFetchState() {
-        return this.queryFetchState;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final SearchQuery getSearchQuery() {
-        return this.searchQuery;
-    }
-
-    public final List<Channel> component3() {
-        return this.threads;
-    }
-
-    public final List<ThreadMember> component4() {
-        return this.threadMembers;
-    }
-
-    public final List<Message> component5() {
-        return this.hits;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getHasMore() {
-        return this.hasMore;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getTotalResults() {
-        return this.totalResults;
-    }
-
     public final SearchState copy(QueryFetchState queryFetchState, SearchQuery searchQuery, List<Channel> threads, List<? extends ThreadMember> threadMembers, List<Message> hits, boolean hasMore, int totalResults) {
         C12238m.checkNotNullParameter(queryFetchState, "queryFetchState");
         return new SearchState(queryFetchState, searchQuery, threads, threadMembers, hits, hasMore, totalResults);
@@ -111,6 +91,11 @@ public final /* data */ class SearchState {
         return C12238m.areEqual(this.queryFetchState, searchState.queryFetchState) && C12238m.areEqual(this.searchQuery, searchState.searchQuery) && C12238m.areEqual(this.threads, searchState.threads) && C12238m.areEqual(this.threadMembers, searchState.threadMembers) && C12238m.areEqual(this.hits, searchState.hits) && this.hasMore == searchState.hasMore && this.totalResults == searchState.totalResults;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getHasMore() {
+        return this.hasMore;
+    }
+
     public final boolean getHasMore() {
         return this.hasMore;
     }
@@ -119,8 +104,18 @@ public final /* data */ class SearchState {
         return this.hits;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final QueryFetchState getQueryFetchState() {
         return this.queryFetchState;
+    }
+
+    public final QueryFetchState getQueryFetchState() {
+        return this.queryFetchState;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final SearchQuery getSearchQuery() {
+        return this.searchQuery;
     }
 
     public final SearchQuery getSearchQuery() {
@@ -133,6 +128,11 @@ public final /* data */ class SearchState {
 
     public final List<Channel> getThreads() {
         return this.threads;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getTotalResults() {
+        return this.totalResults;
     }
 
     public final int getTotalResults() {

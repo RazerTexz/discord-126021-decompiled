@@ -84,11 +84,18 @@ public final class RoleUtils {
         return ViewCompat.MEASURED_STATE_MASK + defaultColor;
     }
 
+    public static /* synthetic */ void getROLE_COMPARATOR$annotations() {
+    }
+
     public static final Comparator<GuildRole> getROLE_COMPARATOR() {
         return ROLE_COMPARATOR;
     }
 
-    public static /* synthetic */ void getROLE_COMPARATOR$annotations() {
+    public static /* synthetic */ int getRoleColor$default(GuildRole guildRole, Context context, Integer num, int i, Object obj) {
+        if ((i & 2) != 0) {
+            num = null;
+        }
+        return getRoleColor(guildRole, context, num);
     }
 
     @ColorInt
@@ -104,13 +111,6 @@ public final class RoleUtils {
             return num != null ? num.intValue() : ColorCompat.getColor(context, C5419R.color.primary_300);
         }
         return getOpaqueColor(guildRole);
-    }
-
-    public static /* synthetic */ int getRoleColor$default(GuildRole guildRole, Context context, Integer num, int i, Object obj) {
-        if ((i & 2) != 0) {
-            num = null;
-        }
-        return getRoleColor(guildRole, context, num);
     }
 
     public static final boolean hasSubscriptionListingId(GuildRole guildRole) {

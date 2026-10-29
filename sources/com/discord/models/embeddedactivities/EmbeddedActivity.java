@@ -31,7 +31,7 @@ public final /* data */ class EmbeddedActivity {
     private final List<Long> userIds;
 
     /* JADX INFO: compiled from: EmbeddedActivity.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -77,63 +77,8 @@ public final /* data */ class EmbeddedActivity {
         this.guildId = j2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
     public final List<Long> component10() {
         return this.userIds;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ActivityAssets getAssets() {
-        return this.assets;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getCreatedAt() {
-        return this.createdAt;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getDetails() {
-        return this.details;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final ActivitySecrets getSecrets() {
-        return this.secrets;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getState() {
-        return this.state;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final ActivityTimestamps getTimestamps() {
-        return this.timestamps;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final ActivityType getType() {
-        return this.type;
     }
 
     public final EmbeddedActivity copy(long applicationId, ActivityAssets assets, Long createdAt, String details, String name, ActivitySecrets secrets, String state, ActivityTimestamps timestamps, ActivityType type, List<Long> userIds, String url, long guildId) {
@@ -154,44 +99,99 @@ public final /* data */ class EmbeddedActivity {
         return this.applicationId == embeddedActivity.applicationId && C12238m.areEqual(this.assets, embeddedActivity.assets) && C12238m.areEqual(this.createdAt, embeddedActivity.createdAt) && C12238m.areEqual(this.details, embeddedActivity.details) && C12238m.areEqual(this.name, embeddedActivity.name) && C12238m.areEqual(this.secrets, embeddedActivity.secrets) && C12238m.areEqual(this.state, embeddedActivity.state) && C12238m.areEqual(this.timestamps, embeddedActivity.timestamps) && C12238m.areEqual(this.type, embeddedActivity.type) && C12238m.areEqual(this.userIds, embeddedActivity.userIds) && C12238m.areEqual(this.url, embeddedActivity.url) && this.guildId == embeddedActivity.guildId;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
+    }
+
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final ActivityAssets getAssets() {
+        return this.assets;
     }
 
     public final ActivityAssets getAssets() {
         return this.assets;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getCreatedAt() {
         return this.createdAt;
+    }
+
+    public final Long getCreatedAt() {
+        return this.createdAt;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getDetails() {
+        return this.details;
     }
 
     public final String getDetails() {
         return this.details;
     }
 
+    /* JADX INFO: renamed from: component12, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {
         return this.name;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final ActivitySecrets getSecrets() {
         return this.secrets;
+    }
+
+    public final ActivitySecrets getSecrets() {
+        return this.secrets;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final String getState() {
+        return this.state;
     }
 
     public final String getState() {
         return this.state;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final ActivityTimestamps getTimestamps() {
         return this.timestamps;
     }
 
+    public final ActivityTimestamps getTimestamps() {
+        return this.timestamps;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final ActivityType getType() {
         return this.type;
+    }
+
+    public final ActivityType getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final String getUrl() {
+        return this.url;
     }
 
     public final String getUrl() {

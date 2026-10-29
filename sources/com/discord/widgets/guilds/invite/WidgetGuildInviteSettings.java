@@ -70,10 +70,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildInviteSettings extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildInviteSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInviteSettingsBinding;", 0)};
+    private static final String EXTRA_CREATED_INVITE = "EXTRA_CREATED_INVITE";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_CREATED_INVITE = "EXTRA_CREATED_INVITE";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -83,29 +83,87 @@ public final class WidgetGuildInviteSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final class ChannelsSpinnerAdapter extends ArrayAdapter<Channel> {
+    public final class C86541 extends AbstractC12240o implements Function1<Integer, CharSequence> {
+        public C86541() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final CharSequence invoke(int i) {
+            return DurationUtilsKt.formatInviteExpireAfterString(WidgetGuildInviteSettings.this.requireContext(), i);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
+    public final /* synthetic */ class C86552 extends C12236k implements Function1<Integer, String> {
+        public C86552(WidgetGuildInviteSettings widgetGuildInviteSettings) {
+            super(1, widgetGuildInviteSettings, WidgetGuildInviteSettings.class, "getMaxUsesString", "getMaxUsesString(I)Ljava/lang/String;", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final String invoke(int i) {
+            return ((WidgetGuildInviteSettings) this.receiver).getMaxUsesString(i);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
+    public final class C86561 extends AbstractC12240o implements Function1<GuildInviteSettingsViewModel.ViewState, Unit> {
+        public C86561() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildInviteSettingsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildInviteSettingsViewModel.ViewState viewState) {
+            WidgetGuildInviteSettings widgetGuildInviteSettings = WidgetGuildInviteSettings.this;
+            C12238m.checkNotNullExpressionValue(viewState, "viewState");
+            widgetGuildInviteSettings.configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
+    public final class C86572 extends AbstractC12240o implements Function1<GuildInviteSettingsViewModel.Event, Unit> {
+        public C86572() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildInviteSettingsViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildInviteSettingsViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "event");
+            WidgetGuildInviteSettings.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
+    public final class ChannelsSpinnerAdapter extends ArrayAdapter<Channel> {
         private Channel[] channels;
 
         public /* synthetic */ ChannelsSpinnerAdapter(Context context, int i, Channel[] channelArr, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this(context, i, (i2 & 4) != 0 ? new Channel[0] : channelArr);
-        }
-
-        private final View getItemView(int position, int layoutId, View convertView, boolean dropDownMode) {
-            if (convertView == null) {
-                convertView = View.inflate(getContext(), layoutId, null);
-            }
-            C12238m.checkNotNullExpressionValue(convertView, "view");
-            setupViews(convertView, position, dropDownMode);
-            return convertView;
-        }
-
-        private final void setupViews(View convertView, int position, boolean dropDownMode) {
-            TextView textView = (TextView) convertView.findViewById(new WidgetGuildInviteSettings$ChannelsSpinnerAdapter$setupViews$1(dropDownMode).invoke2());
-            C12238m.checkNotNullExpressionValue(textView, "label");
-            String str = String.format("#%s", Arrays.copyOf(new Object[]{ChannelUtils.m7679c(this.channels[position])}, 1));
-            C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
-            textView.setText(str);
         }
 
         @Override // android.widget.ArrayAdapter, android.widget.Adapter
@@ -119,6 +177,15 @@ public final class WidgetGuildInviteSettings extends AppFragment {
             return getItemView(position, C5419R.layout.view_invite_settngs_channel_spinner_item_open, convertView, true);
         }
 
+        private final View getItemView(int position, int layoutId, View convertView, boolean dropDownMode) {
+            if (convertView == null) {
+                convertView = View.inflate(getContext(), layoutId, null);
+            }
+            C12238m.checkNotNullExpressionValue(convertView, "view");
+            setupViews(convertView, position, dropDownMode);
+            return convertView;
+        }
+
         @Override // android.widget.ArrayAdapter, android.widget.Adapter
         public View getView(int position, View convertView, ViewGroup parent) {
             C12238m.checkNotNullParameter(parent, "parent");
@@ -129,6 +196,14 @@ public final class WidgetGuildInviteSettings extends AppFragment {
             C12238m.checkNotNullParameter(newData, "newData");
             this.channels = newData;
             notifyDataSetChanged();
+        }
+
+        private final void setupViews(View convertView, int position, boolean dropDownMode) {
+            TextView textView = (TextView) convertView.findViewById(new WidgetGuildInviteSettings$ChannelsSpinnerAdapter$setupViews$1(dropDownMode).invoke2());
+            C12238m.checkNotNullExpressionValue(textView, "label");
+            String str = String.format("#%s", Arrays.copyOf(new Object[]{ChannelUtils.m7679c(this.channels[position])}, 1));
+            C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
+            textView.setText(str);
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -146,7 +221,7 @@ public final class WidgetGuildInviteSettings extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -189,81 +264,6 @@ public final class WidgetGuildInviteSettings extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final class C86541 extends AbstractC12240o implements Function1<Integer, CharSequence> {
-        public C86541() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ CharSequence invoke(Integer num) {
-            return invoke(num.intValue());
-        }
-
-        public final CharSequence invoke(int i) {
-            return DurationUtilsKt.formatInviteExpireAfterString(WidgetGuildInviteSettings.this.requireContext(), i);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final /* synthetic */ class C86552 extends C12236k implements Function1<Integer, String> {
-        public C86552(WidgetGuildInviteSettings widgetGuildInviteSettings) {
-            super(1, widgetGuildInviteSettings, WidgetGuildInviteSettings.class, "getMaxUsesString", "getMaxUsesString(I)Ljava/lang/String;", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ String invoke(Integer num) {
-            return invoke(num.intValue());
-        }
-
-        public final String invoke(int i) {
-            return ((WidgetGuildInviteSettings) this.receiver).getMaxUsesString(i);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final class C86561 extends AbstractC12240o implements Function1<GuildInviteSettingsViewModel.ViewState, Unit> {
-        public C86561() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildInviteSettingsViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildInviteSettingsViewModel.ViewState viewState) {
-            WidgetGuildInviteSettings widgetGuildInviteSettings = WidgetGuildInviteSettings.this;
-            C12238m.checkNotNullExpressionValue(viewState, "viewState");
-            widgetGuildInviteSettings.configureUi(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
-    public static final class C86572 extends AbstractC12240o implements Function1<GuildInviteSettingsViewModel.Event, Unit> {
-        public C86572() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildInviteSettingsViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildInviteSettingsViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            WidgetGuildInviteSettings.this.handleEvent(event);
-        }
-    }
-
     public WidgetGuildInviteSettings() {
         super(C5419R.layout.widget_guild_invite_settings);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildInviteSettings$binding$2.INSTANCE, null, 2, null);
@@ -279,65 +279,6 @@ public final class WidgetGuildInviteSettings extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("channelsSpinnerAdapter");
         }
         return channelsSpinnerAdapter;
-    }
-
-    @MainThread
-    private final void createHorizontalCheckableButtons(RadioGroup radioGroup, int[] valueSet, Function1<? super Integer, ? extends CharSequence> textFactory) {
-        if (radioGroup.getChildCount() > 0) {
-            return;
-        }
-        boolean z2 = false;
-        for (int i : valueSet) {
-            View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.invite_settings_radio_button, (ViewGroup) radioGroup, false);
-            Objects.requireNonNull(viewInflate, "rootView");
-            AppCompatRadioButton appCompatRadioButton = (AppCompatRadioButton) viewInflate;
-            C12238m.checkNotNullExpressionValue(new C0944e0(appCompatRadioButton), "InviteSettingsRadioButto…text), radioGroup, false)");
-            C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
-            appCompatRadioButton.setId(i);
-            C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
-            appCompatRadioButton.setText(textFactory.invoke(Integer.valueOf(i)));
-            if (!z2) {
-                C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
-                ViewGroup.LayoutParams layoutParams = appCompatRadioButton.getLayoutParams();
-                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.RadioGroup.LayoutParams");
-                RadioGroup.LayoutParams layoutParams2 = (RadioGroup.LayoutParams) layoutParams;
-                layoutParams2.leftMargin = DimenUtils.dpToPixels(16);
-                C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
-                appCompatRadioButton.setLayoutParams(layoutParams2);
-                z2 = true;
-            }
-            radioGroup.addView(appCompatRadioButton);
-        }
-    }
-
-    private final WidgetGuildInviteSettingsBinding getBinding() {
-        return (WidgetGuildInviteSettingsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final String getMaxUsesString(int numUses) {
-        return numUses != 0 ? String.valueOf(numUses) : "∞";
-    }
-
-    private final GuildInviteSettingsViewModel getViewModel() {
-        return (GuildInviteSettingsViewModel) this.viewModel.getValue();
-    }
-
-    private final void setOnItemSelected() {
-        Spinner spinner = getBinding().f16799b;
-        C12238m.checkNotNullExpressionValue(spinner, "binding.guildInviteChannelSpinner");
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings.setOnItemSelected.1
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
-                C12238m.checkNotNullParameter(parent, "parent");
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetGuildInviteSettings.this.getViewModel().selectChannel(WidgetGuildInviteSettings.access$getChannelsSpinnerAdapter$p(WidgetGuildInviteSettings.this).getItem(position));
-            }
-
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onNothingSelected(AdapterView<?> parent) {
-                C12238m.checkNotNullParameter(parent, "parent");
-            }
-        });
     }
 
     public final void configureUi(GuildInviteSettingsViewModel.ViewState viewState) {
@@ -454,9 +395,50 @@ public final class WidgetGuildInviteSettings extends AppFragment {
         });
     }
 
+    @MainThread
+    private final void createHorizontalCheckableButtons(RadioGroup radioGroup, int[] valueSet, Function1<? super Integer, ? extends CharSequence> textFactory) {
+        if (radioGroup.getChildCount() > 0) {
+            return;
+        }
+        boolean z2 = false;
+        for (int i : valueSet) {
+            View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.invite_settings_radio_button, (ViewGroup) radioGroup, false);
+            Objects.requireNonNull(viewInflate, "rootView");
+            AppCompatRadioButton appCompatRadioButton = (AppCompatRadioButton) viewInflate;
+            C12238m.checkNotNullExpressionValue(new C0944e0(appCompatRadioButton), "InviteSettingsRadioButto…text), radioGroup, false)");
+            C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
+            appCompatRadioButton.setId(i);
+            C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
+            appCompatRadioButton.setText(textFactory.invoke(Integer.valueOf(i)));
+            if (!z2) {
+                C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
+                ViewGroup.LayoutParams layoutParams = appCompatRadioButton.getLayoutParams();
+                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.RadioGroup.LayoutParams");
+                RadioGroup.LayoutParams layoutParams2 = (RadioGroup.LayoutParams) layoutParams;
+                layoutParams2.leftMargin = DimenUtils.dpToPixels(16);
+                C12238m.checkNotNullExpressionValue(appCompatRadioButton, "binding.root");
+                appCompatRadioButton.setLayoutParams(layoutParams2);
+                z2 = true;
+            }
+            radioGroup.addView(appCompatRadioButton);
+        }
+    }
+
+    private final WidgetGuildInviteSettingsBinding getBinding() {
+        return (WidgetGuildInviteSettingsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
+    }
+
+    private final String getMaxUsesString(int numUses) {
+        return numUses != 0 ? String.valueOf(numUses) : "∞";
+    }
+
+    private final GuildInviteSettingsViewModel getViewModel() {
+        return (GuildInviteSettingsViewModel) this.viewModel.getValue();
     }
 
     public final void handleEvent(GuildInviteSettingsViewModel.Event event) {
@@ -505,5 +487,23 @@ public final class WidgetGuildInviteSettings extends AppFragment {
         C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetGuildInviteSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86561());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetGuildInviteSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86572());
+    }
+
+    private final void setOnItemSelected() {
+        Spinner spinner = getBinding().f16799b;
+        C12238m.checkNotNullExpressionValue(spinner, "binding.guildInviteChannelSpinner");
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteSettings.setOnItemSelected.1
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
+                C12238m.checkNotNullParameter(parent, "parent");
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetGuildInviteSettings.this.getViewModel().selectChannel(WidgetGuildInviteSettings.access$getChannelsSpinnerAdapter$p(WidgetGuildInviteSettings.this).getItem(position));
+            }
+
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onNothingSelected(AdapterView<?> parent) {
+                C12238m.checkNotNullParameter(parent, "parent");
+            }
+        });
     }
 }

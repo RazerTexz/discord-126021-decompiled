@@ -15,13 +15,13 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationValues.SCL.lombok */
 public class AnnotationValues<A extends Annotation> {
+    private final LombokNode<?, ?, ?> ast;
     private final Class<A> type;
     private final Map<String, AnnotationValue> values;
-    private final LombokNode<?, ?, ?> ast;
     private A cachedInstance = null;
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationValues$AnnotationValue.SCL.lombok */
-    public static class AnnotationValue {
+    public class AnnotationValue {
         public final List<String> raws;
         public final List<Object> valueGuesses;
         public final List<Object> expressions;
@@ -70,7 +70,7 @@ public class AnnotationValues<A extends Annotation> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationValues$AnnotationValueDecodeFail.SCL.lombok */
-    public static class AnnotationValueDecodeFail extends RuntimeException {
+    public class AnnotationValueDecodeFail extends RuntimeException {
         private static final long serialVersionUID = 1;
         public final int idx;
         public final AnnotationValue owner;

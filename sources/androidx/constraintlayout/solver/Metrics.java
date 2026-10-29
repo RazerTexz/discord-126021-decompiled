@@ -40,7 +40,6 @@ public class Metrics {
     public long oldresolvedWidgets;
     public long optimize;
     public long pivots;
-    public ArrayList<String> problematicLayouts = new ArrayList<>();
     public long resolutions;
     public long resolvedWidgets;
     public long simpleconstraints;
@@ -48,6 +47,7 @@ public class Metrics {
     public long tableSizeIncrease;
     public long variables;
     public long widgets;
+    public ArrayList<String> problematicLayouts = new ArrayList<>();
 
     public void reset() {
         this.measures = 0L;

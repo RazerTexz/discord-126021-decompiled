@@ -41,6 +41,7 @@ import p007b.p225i.p226a.p341g.p344c.C4389a;
 /* JADX INFO: loaded from: classes3.dex */
 public class MaterialCardView extends CardView implements Checkable, Shapeable {
     private static final String ACCESSIBILITY_CLASS_NAME = "androidx.cardview.widget.CardView";
+    private static final int[] DRAGGED_STATE_SET = {C10817R.attr.state_dragged};
     private static final String LOG_TAG = "MaterialCardView";
 
     @NonNull
@@ -51,7 +52,6 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
     private OnCheckedChangeListener onCheckedChangeListener;
     private static final int[] CHECKABLE_STATE_SET = {R.attr.state_checkable};
     private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-    private static final int[] DRAGGED_STATE_SET = {C10817R.attr.state_dragged};
     private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CardView;
 
     public interface OnCheckedChangeListener {

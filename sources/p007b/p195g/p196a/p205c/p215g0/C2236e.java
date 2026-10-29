@@ -14,17 +14,11 @@ import p007b.p195g.p196a.p205c.p215g0.p216t.C2260j;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2236e {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2234c[] f4796a = new C2234c[0];
-
     /* JADX INFO: renamed from: b */
     public final AbstractC2172c f4797b;
 
     /* JADX INFO: renamed from: c */
     public C2372v f4798c;
-
-    /* JADX INFO: renamed from: d */
-    public List<C2234c> f4799d = Collections.emptyList();
 
     /* JADX INFO: renamed from: e */
     public C2234c[] f4800e;
@@ -40,6 +34,12 @@ public class C2236e {
 
     /* JADX INFO: renamed from: i */
     public C2260j f4804i;
+
+    /* JADX INFO: renamed from: a */
+    public static final C2234c[] f4796a = new C2234c[0];
+
+    /* JADX INFO: renamed from: d */
+    public List<C2234c> f4799d = Collections.emptyList();
 
     public C2236e(AbstractC2172c abstractC2172c) {
         this.f4797b = abstractC2172c;

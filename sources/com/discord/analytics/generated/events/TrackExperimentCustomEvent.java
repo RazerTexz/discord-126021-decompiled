@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExperimentCustomEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExperimentCustomEvent implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence experimentName = null;
-    private final Long experimentBucket = null;
     private final CharSequence eventName = null;
+    private final Long experimentBucket = null;
+    private final CharSequence experimentName = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "experiment_custom_event";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackExperimentCustomEvent implements AnalyticsSch
         }
         TrackExperimentCustomEvent trackExperimentCustomEvent = (TrackExperimentCustomEvent) other;
         return C12238m.areEqual(this.experimentName, trackExperimentCustomEvent.experimentName) && C12238m.areEqual(this.experimentBucket, trackExperimentCustomEvent.experimentBucket) && C12238m.areEqual(this.eventName, trackExperimentCustomEvent.eventName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

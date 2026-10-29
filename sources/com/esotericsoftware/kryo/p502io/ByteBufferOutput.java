@@ -11,122 +11,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ByteBufferOutput extends Output {
-    public static final ByteOrder nativeOrder = ByteOrder.nativeOrder();
     public ByteOrder byteOrder;
     public ByteBuffer niobuffer;
     public boolean varIntsEnabled;
+    public static final ByteOrder nativeOrder = ByteOrder.nativeOrder();
 
     public ByteBufferOutput() {
         this.varIntsEnabled = true;
         this.byteOrder = ByteOrder.BIG_ENDIAN;
-    }
-
-    private boolean isNativeOrder() {
-        return this.byteOrder == nativeOrder;
-    }
-
-    private void writeAscii_slow(String str, int i) throws KryoException {
-        ByteBuffer byteBuffer = this.niobuffer;
-        int iMin = Math.min(i, this.capacity - this.position);
-        int i2 = 0;
-        while (i2 < i) {
-            byte[] bArr = new byte[i];
-            int i3 = i2 + iMin;
-            str.getBytes(i2, i3, bArr, 0);
-            byteBuffer.put(bArr, 0, iMin);
-            this.position += iMin;
-            iMin = Math.min(i - i3, this.capacity);
-            if (require(iMin)) {
-                byteBuffer = this.niobuffer;
-            }
-            i2 = i3;
-        }
-    }
-
-    private void writeString_slow(CharSequence charSequence, int i, int i2) {
-        while (i2 < i) {
-            int i3 = this.position;
-            int i4 = this.capacity;
-            if (i3 == i4) {
-                require(Math.min(i4, i - i2));
-            }
-            char cCharAt = charSequence.charAt(i2);
-            if (cCharAt <= 127) {
-                ByteBuffer byteBuffer = this.niobuffer;
-                int i5 = this.position;
-                this.position = i5 + 1;
-                byteBuffer.put(i5, (byte) cCharAt);
-            } else if (cCharAt > 2047) {
-                ByteBuffer byteBuffer2 = this.niobuffer;
-                int i6 = this.position;
-                this.position = i6 + 1;
-                byteBuffer2.put(i6, (byte) (((cCharAt >> '\f') & 15) | 224));
-                require(2);
-                ByteBuffer byteBuffer3 = this.niobuffer;
-                int i7 = this.position;
-                this.position = i7 + 1;
-                byteBuffer3.put(i7, (byte) (((cCharAt >> 6) & 63) | 128));
-                ByteBuffer byteBuffer4 = this.niobuffer;
-                int i8 = this.position;
-                this.position = i8 + 1;
-                byteBuffer4.put(i8, (byte) ((cCharAt & '?') | 128));
-            } else {
-                ByteBuffer byteBuffer5 = this.niobuffer;
-                int i9 = this.position;
-                this.position = i9 + 1;
-                byteBuffer5.put(i9, (byte) (((cCharAt >> 6) & 31) | Opcodes.CHECKCAST));
-                require(1);
-                ByteBuffer byteBuffer6 = this.niobuffer;
-                int i10 = this.position;
-                this.position = i10 + 1;
-                byteBuffer6.put(i10, (byte) ((cCharAt & '?') | 128));
-            }
-            i2++;
-        }
-    }
-
-    private void writeUtf8Length(int i) {
-        int i2 = i >>> 6;
-        if (i2 == 0) {
-            require(1);
-            this.niobuffer.put((byte) (i | 128));
-            this.position++;
-            return;
-        }
-        int i3 = i >>> 13;
-        if (i3 == 0) {
-            require(2);
-            this.niobuffer.put((byte) (i | 64 | 128));
-            this.niobuffer.put((byte) i2);
-            this.position += 2;
-            return;
-        }
-        int i4 = i >>> 20;
-        if (i4 == 0) {
-            require(3);
-            this.niobuffer.put((byte) (i | 64 | 128));
-            this.niobuffer.put((byte) (i2 | 128));
-            this.niobuffer.put((byte) i3);
-            this.position += 3;
-            return;
-        }
-        int i5 = i >>> 27;
-        if (i5 == 0) {
-            require(4);
-            this.niobuffer.put((byte) (i | 64 | 128));
-            this.niobuffer.put((byte) (i2 | 128));
-            this.niobuffer.put((byte) (i3 | 128));
-            this.niobuffer.put((byte) i4);
-            this.position += 4;
-            return;
-        }
-        require(5);
-        this.niobuffer.put((byte) (i | 64 | 128));
-        this.niobuffer.put((byte) (i2 | 128));
-        this.niobuffer.put((byte) (i3 | 128));
-        this.niobuffer.put((byte) (i4 | 128));
-        this.niobuffer.put((byte) i5);
-        this.position += 5;
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Output
@@ -178,6 +70,10 @@ public class ByteBufferOutput extends Output {
 
     public boolean getVarIntsEnabled() {
         return this.varIntsEnabled;
+    }
+
+    private boolean isNativeOrder() {
+        return this.byteOrder == nativeOrder;
     }
 
     public ByteOrder order() {
@@ -297,6 +193,24 @@ public class ByteBufferOutput extends Output {
         ByteBuffer byteBuffer = this.niobuffer;
         int i = this.position;
         byteBuffer.put(i - 1, (byte) (128 | byteBuffer.get(i - 1)));
+    }
+
+    private void writeAscii_slow(String str, int i) throws KryoException {
+        ByteBuffer byteBuffer = this.niobuffer;
+        int iMin = Math.min(i, this.capacity - this.position);
+        int i2 = 0;
+        while (i2 < i) {
+            byte[] bArr = new byte[i];
+            int i3 = i2 + iMin;
+            str.getBytes(i2, i3, bArr, 0);
+            byteBuffer.put(bArr, 0, iMin);
+            this.position += iMin;
+            iMin = Math.min(i - i3, this.capacity);
+            if (require(iMin)) {
+                byteBuffer = this.niobuffer;
+            }
+            i2 = i3;
+        }
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Output
@@ -590,6 +504,92 @@ public class ByteBufferOutput extends Output {
             writeString_slow(str, length, i);
         }
         this.niobuffer.position(this.position);
+    }
+
+    private void writeString_slow(CharSequence charSequence, int i, int i2) {
+        while (i2 < i) {
+            int i3 = this.position;
+            int i4 = this.capacity;
+            if (i3 == i4) {
+                require(Math.min(i4, i - i2));
+            }
+            char cCharAt = charSequence.charAt(i2);
+            if (cCharAt <= 127) {
+                ByteBuffer byteBuffer = this.niobuffer;
+                int i5 = this.position;
+                this.position = i5 + 1;
+                byteBuffer.put(i5, (byte) cCharAt);
+            } else if (cCharAt > 2047) {
+                ByteBuffer byteBuffer2 = this.niobuffer;
+                int i6 = this.position;
+                this.position = i6 + 1;
+                byteBuffer2.put(i6, (byte) (((cCharAt >> '\f') & 15) | 224));
+                require(2);
+                ByteBuffer byteBuffer3 = this.niobuffer;
+                int i7 = this.position;
+                this.position = i7 + 1;
+                byteBuffer3.put(i7, (byte) (((cCharAt >> 6) & 63) | 128));
+                ByteBuffer byteBuffer4 = this.niobuffer;
+                int i8 = this.position;
+                this.position = i8 + 1;
+                byteBuffer4.put(i8, (byte) ((cCharAt & '?') | 128));
+            } else {
+                ByteBuffer byteBuffer5 = this.niobuffer;
+                int i9 = this.position;
+                this.position = i9 + 1;
+                byteBuffer5.put(i9, (byte) (((cCharAt >> 6) & 31) | Opcodes.CHECKCAST));
+                require(1);
+                ByteBuffer byteBuffer6 = this.niobuffer;
+                int i10 = this.position;
+                this.position = i10 + 1;
+                byteBuffer6.put(i10, (byte) ((cCharAt & '?') | 128));
+            }
+            i2++;
+        }
+    }
+
+    private void writeUtf8Length(int i) {
+        int i2 = i >>> 6;
+        if (i2 == 0) {
+            require(1);
+            this.niobuffer.put((byte) (i | 128));
+            this.position++;
+            return;
+        }
+        int i3 = i >>> 13;
+        if (i3 == 0) {
+            require(2);
+            this.niobuffer.put((byte) (i | 64 | 128));
+            this.niobuffer.put((byte) i2);
+            this.position += 2;
+            return;
+        }
+        int i4 = i >>> 20;
+        if (i4 == 0) {
+            require(3);
+            this.niobuffer.put((byte) (i | 64 | 128));
+            this.niobuffer.put((byte) (i2 | 128));
+            this.niobuffer.put((byte) i3);
+            this.position += 3;
+            return;
+        }
+        int i5 = i >>> 27;
+        if (i5 == 0) {
+            require(4);
+            this.niobuffer.put((byte) (i | 64 | 128));
+            this.niobuffer.put((byte) (i2 | 128));
+            this.niobuffer.put((byte) (i3 | 128));
+            this.niobuffer.put((byte) i4);
+            this.position += 4;
+            return;
+        }
+        require(5);
+        this.niobuffer.put((byte) (i | 64 | 128));
+        this.niobuffer.put((byte) (i2 | 128));
+        this.niobuffer.put((byte) (i3 | 128));
+        this.niobuffer.put((byte) (i4 | 128));
+        this.niobuffer.put((byte) i5);
+        this.position += 5;
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Output

@@ -8,10 +8,10 @@ import java.util.Iterator;
 public final class SavedStateHandleController implements LifecycleEventObserver {
     public static final String TAG_SAVED_STATE_HANDLE_CONTROLLER = "androidx.lifecycle.savedstate.vm.tag";
     private final SavedStateHandle mHandle;
-    private boolean mIsAttached = false;
     private final String mKey;
+    private boolean mIsAttached = false;
 
-    public static final class OnRecreation implements SavedStateRegistry.AutoRecreated {
+    public final class OnRecreation implements SavedStateRegistry.AutoRecreated {
         @Override // androidx.savedstate.SavedStateRegistry.AutoRecreated
         public void onRecreated(@NonNull SavedStateRegistryOwner savedStateRegistryOwner) {
             if (!(savedStateRegistryOwner instanceof ViewModelStoreOwner)) {
@@ -44,11 +44,36 @@ public final class SavedStateHandleController implements LifecycleEventObserver 
         tryToAddRecreator(savedStateRegistry, lifecycle);
     }
 
+    public void attachToLifecycle(SavedStateRegistry savedStateRegistry, Lifecycle lifecycle) {
+        if (this.mIsAttached) {
+            throw new IllegalStateException("Already attached to lifecycleOwner");
+        }
+        this.mIsAttached = true;
+        lifecycle.addObserver(this);
+        savedStateRegistry.registerSavedStateProvider(this.mKey, this.mHandle.savedStateProvider());
+    }
+
     public static SavedStateHandleController create(SavedStateRegistry savedStateRegistry, Lifecycle lifecycle, String str, Bundle bundle) {
         SavedStateHandleController savedStateHandleController = new SavedStateHandleController(str, SavedStateHandle.createHandle(savedStateRegistry.consumeRestoredStateForKey(str), bundle));
         savedStateHandleController.attachToLifecycle(savedStateRegistry, lifecycle);
         tryToAddRecreator(savedStateRegistry, lifecycle);
         return savedStateHandleController;
+    }
+
+    public SavedStateHandle getHandle() {
+        return this.mHandle;
+    }
+
+    public boolean isAttached() {
+        return this.mIsAttached;
+    }
+
+    @Override // androidx.view.LifecycleEventObserver
+    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+        if (event == Lifecycle.Event.ON_DESTROY) {
+            this.mIsAttached = false;
+            lifecycleOwner.getLifecycle().removeObserver(this);
+        }
     }
 
     private static void tryToAddRecreator(final SavedStateRegistry savedStateRegistry, final Lifecycle lifecycle) {
@@ -65,31 +90,6 @@ public final class SavedStateHandleController implements LifecycleEventObserver 
                     }
                 }
             });
-        }
-    }
-
-    public void attachToLifecycle(SavedStateRegistry savedStateRegistry, Lifecycle lifecycle) {
-        if (this.mIsAttached) {
-            throw new IllegalStateException("Already attached to lifecycleOwner");
-        }
-        this.mIsAttached = true;
-        lifecycle.addObserver(this);
-        savedStateRegistry.registerSavedStateProvider(this.mKey, this.mHandle.savedStateProvider());
-    }
-
-    public SavedStateHandle getHandle() {
-        return this.mHandle;
-    }
-
-    public boolean isAttached() {
-        return this.mIsAttached;
-    }
-
-    @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-        if (event == Lifecycle.Event.ON_DESTROY) {
-            this.mIsAttached = false;
-            lifecycleOwner.getLifecycle().removeObserver(this);
         }
     }
 }

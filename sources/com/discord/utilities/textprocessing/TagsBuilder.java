@@ -24,7 +24,7 @@ public final class TagsBuilder implements InterfaceC1307a {
     private Set<Long> taggedUserIds;
 
     /* JADX INFO: compiled from: TagsBuilder.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

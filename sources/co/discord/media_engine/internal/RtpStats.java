@@ -32,21 +32,6 @@ public final /* data */ class RtpStats {
         return rtpStats.copy(packetStats, packetStats2, packetStats3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final PacketStats getFec() {
-        return this.fec;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final PacketStats getRetransmitted() {
-        return this.retransmitted;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final PacketStats getTransmitted() {
-        return this.transmitted;
-    }
-
     public final RtpStats copy(PacketStats fec, PacketStats retransmitted, PacketStats transmitted) {
         C12238m.checkNotNullParameter(fec, "fec");
         C12238m.checkNotNullParameter(retransmitted, "retransmitted");
@@ -65,12 +50,27 @@ public final /* data */ class RtpStats {
         return C12238m.areEqual(this.fec, rtpStats.fec) && C12238m.areEqual(this.retransmitted, rtpStats.retransmitted) && C12238m.areEqual(this.transmitted, rtpStats.transmitted);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final PacketStats getFec() {
         return this.fec;
     }
 
+    public final PacketStats getFec() {
+        return this.fec;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final PacketStats getRetransmitted() {
         return this.retransmitted;
+    }
+
+    public final PacketStats getRetransmitted() {
+        return this.retransmitted;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final PacketStats getTransmitted() {
+        return this.transmitted;
     }
 
     public final PacketStats getTransmitted() {

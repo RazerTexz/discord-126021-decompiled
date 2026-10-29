@@ -11,10 +11,10 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackLfgGroupCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackLfgGroupCreated implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLfgGroupReceiver {
-    private final transient String analyticsSchemaTypeName = "lfg_group_created";
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackLfgGroup trackLfgGroup;
+    private final transient String analyticsSchemaTypeName = "lfg_group_created";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

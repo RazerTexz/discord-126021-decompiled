@@ -13,12 +13,12 @@ public final class UserProfileHeaderView$onAvatarRepresentativeColorUpdated$1 ex
         super(1);
     }
 
+    public final void invoke(int i) {
+    }
+
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
         invoke(num.intValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(int i) {
     }
 }

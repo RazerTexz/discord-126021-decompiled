@@ -62,41 +62,6 @@ public final /* data */ class ModelBillingAddress {
         return modelBillingAddress.copy(str, str8, str9, str10, str11, str12, str7);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getLine_1() {
-        return this.line_1;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getLine_2() {
-        return this.line_2;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCity() {
-        return this.city;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getState() {
-        return this.state;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getCountry() {
-        return this.country;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getPostalCode() {
-        return this.postalCode;
-    }
-
     public final ModelBillingAddress copy(String name, String line_1, String line_2, String city, String state, String country, String postalCode) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(line_1, "line_1");
@@ -119,28 +84,63 @@ public final /* data */ class ModelBillingAddress {
         return C12238m.areEqual(this.name, modelBillingAddress.name) && C12238m.areEqual(this.line_1, modelBillingAddress.line_1) && C12238m.areEqual(this.line_2, modelBillingAddress.line_2) && C12238m.areEqual(this.city, modelBillingAddress.city) && C12238m.areEqual(this.state, modelBillingAddress.state) && C12238m.areEqual(this.country, modelBillingAddress.country) && C12238m.areEqual(this.postalCode, modelBillingAddress.postalCode);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCity() {
         return this.city;
+    }
+
+    public final String getCity() {
+        return this.city;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getCountry() {
+        return this.country;
     }
 
     public final String getCountry() {
         return this.country;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getLine_1() {
         return this.line_1;
+    }
+
+    public final String getLine_1() {
+        return this.line_1;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getLine_2() {
+        return this.line_2;
     }
 
     public final String getLine_2() {
         return this.line_2;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getName() {
         return this.name;
     }
 
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final String getPostalCode() {
         return this.postalCode;
+    }
+
+    public final String getPostalCode() {
+        return this.postalCode;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getState() {
+        return this.state;
     }
 
     public final String getState() {

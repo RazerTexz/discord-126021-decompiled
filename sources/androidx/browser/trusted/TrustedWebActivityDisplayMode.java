@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 public interface TrustedWebActivityDisplayMode {
     public static final String KEY_ID = "androidx.browser.trusted.displaymode.KEY_ID";
 
-    public static class DefaultMode implements TrustedWebActivityDisplayMode {
+    public class DefaultMode implements TrustedWebActivityDisplayMode {
 
         /* JADX INFO: renamed from: ID */
         private static final int f89ID = 0;
@@ -21,7 +21,7 @@ public interface TrustedWebActivityDisplayMode {
         }
     }
 
-    public static class ImmersiveMode implements TrustedWebActivityDisplayMode {
+    public class ImmersiveMode implements TrustedWebActivityDisplayMode {
 
         /* JADX INFO: renamed from: ID */
         private static final int f90ID = 1;

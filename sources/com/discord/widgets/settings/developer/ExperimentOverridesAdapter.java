@@ -32,7 +32,7 @@ public final class ExperimentOverridesAdapter extends RecyclerView.Adapter<Exper
     private List<? extends Item> items = C12147n.emptyList();
 
     /* JADX INFO: compiled from: ExperimentOverridesAdapter.kt */
-    public static final class ExperimentViewHolder extends RecyclerView.ViewHolder {
+    public final class ExperimentViewHolder extends RecyclerView.ViewHolder {
         private final ExperimentOverridesListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

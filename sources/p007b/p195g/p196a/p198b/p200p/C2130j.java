@@ -10,10 +10,6 @@ import p007b.p195g.p196a.p198b.InterfaceC2115k;
 /* JADX INFO: compiled from: SerializedString.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2130j implements InterfaceC2115k, Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final C2125e f4558j = C2125e.f4551b;
-    private static final long serialVersionUID = 1;
     public char[] _quotedChars;
     public byte[] _quotedUTF8Ref;
     public byte[] _unquotedUTF8Ref;
@@ -21,6 +17,10 @@ public class C2130j implements InterfaceC2115k, Serializable {
 
     /* JADX INFO: renamed from: k */
     public transient String f4559k;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2125e f4558j = C2125e.f4551b;
 
     public C2130j(String str) {
         if (str == null) {
@@ -29,12 +29,23 @@ public class C2130j implements InterfaceC2115k, Serializable {
         this._value = str;
     }
 
-    private void readObject(ObjectInputStream objectInputStream) throws IOException {
-        this.f4559k = objectInputStream.readUTF();
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != C2130j.class) {
+            return false;
+        }
+        return this._value.equals(((C2130j) obj)._value);
     }
 
-    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
-        objectOutputStream.writeUTF(this._value);
+    @Override // p007b.p195g.p196a.p198b.InterfaceC2115k
+    public final String getValue() {
+        return this._value;
+    }
+
+    public final int hashCode() {
+        return this._value.hashCode();
     }
 
     @Override // p007b.p195g.p196a.p198b.InterfaceC2115k
@@ -77,23 +88,8 @@ public class C2130j implements InterfaceC2115k, Serializable {
         return length;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != C2130j.class) {
-            return false;
-        }
-        return this._value.equals(((C2130j) obj)._value);
-    }
-
-    @Override // p007b.p195g.p196a.p198b.InterfaceC2115k
-    public final String getValue() {
-        return this._value;
-    }
-
-    public final int hashCode() {
-        return this._value.hashCode();
+    private void readObject(ObjectInputStream objectInputStream) throws IOException {
+        this.f4559k = objectInputStream.readUTF();
     }
 
     public Object readResolve() {
@@ -102,5 +98,9 @@ public class C2130j implements InterfaceC2115k, Serializable {
 
     public final String toString() {
         return this._value;
+    }
+
+    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+        objectOutputStream.writeUTF(this._value);
     }
 }

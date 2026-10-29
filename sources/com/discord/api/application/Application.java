@@ -25,12 +25,15 @@ public final /* data */ class Application {
     private final List<ThirdPartySku> thirdPartySkus;
     private final ApplicationType type;
 
-    /* JADX INFO: renamed from: a */
-    public final String m7563a() {
-        String strRemoveSuffix;
-        String strM883w;
-        String str = this.deeplinkUri;
-        return (str == null || (strRemoveSuffix = C12106w.removeSuffix(str, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) == null || (strM883w = C1643a.m883w(strRemoveSuffix, "/_discord")) == null) ? C1643a.m815C(C1643a.m833U("dscd"), this.id, "://connect/_discord") : strM883w;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Application)) {
+            return false;
+        }
+        Application application = (Application) other;
+        return this.id == application.id && C12238m.areEqual(this.name, application.name) && C12238m.areEqual(this.description, application.description) && C12238m.areEqual(this.splash, application.splash) && C12238m.areEqual(this.coverImage, application.coverImage) && C12238m.areEqual(this.icon, application.icon) && C12238m.areEqual(this.thirdPartySkus, application.thirdPartySkus) && C12238m.areEqual(this.deeplinkUri, application.deeplinkUri) && C12238m.areEqual(this.type, application.type) && C12238m.areEqual(this.guildId, application.guildId) && C12238m.areEqual(this.team, application.team);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -43,43 +46,9 @@ public final /* data */ class Application {
         return this.description;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final List<String> m7566d() {
-        List<ThirdPartySku> list = this.thirdPartySkus;
-        if (list == null) {
-            return C12147n.emptyList();
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : list) {
-            if (C12238m.areEqual(((ThirdPartySku) obj).getDistributor(), "google_play")) {
-                arrayList.add(obj);
-            }
-        }
-        ArrayList arrayList2 = new ArrayList();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            String strM7581b = ((ThirdPartySku) it.next()).getSku();
-            if (strM7581b != null) {
-                arrayList2.add(strM7581b);
-            }
-        }
-        return arrayList2;
-    }
-
     /* JADX INFO: renamed from: e, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Application)) {
-            return false;
-        }
-        Application application = (Application) other;
-        return this.id == application.id && C12238m.areEqual(this.name, application.name) && C12238m.areEqual(this.description, application.description) && C12238m.areEqual(this.splash, application.splash) && C12238m.areEqual(this.coverImage, application.coverImage) && C12238m.areEqual(this.icon, application.icon) && C12238m.areEqual(this.thirdPartySkus, application.thirdPartySkus) && C12238m.areEqual(this.deeplinkUri, application.deeplinkUri) && C12238m.areEqual(this.type, application.type) && C12238m.areEqual(this.guildId, application.guildId) && C12238m.areEqual(this.team, application.team);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -95,6 +64,16 @@ public final /* data */ class Application {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final String getSplash() {
+        return this.splash;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final ApplicationType getType() {
+        return this.type;
     }
 
     public int hashCode() {
@@ -122,14 +101,35 @@ public final /* data */ class Application {
         return iHashCode9 + (team != null ? team.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final String getSplash() {
-        return this.splash;
+    /* JADX INFO: renamed from: a */
+    public final String m7563a() {
+        String strRemoveSuffix;
+        String strM883w;
+        String str = this.deeplinkUri;
+        return (str == null || (strRemoveSuffix = C12106w.removeSuffix(str, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) == null || (strM883w = C1643a.m883w(strRemoveSuffix, "/_discord")) == null) ? C1643a.m815C(C1643a.m833U("dscd"), this.id, "://connect/_discord") : strM883w;
     }
 
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final ApplicationType getType() {
-        return this.type;
+    /* JADX INFO: renamed from: d */
+    public final List<String> m7566d() {
+        List<ThirdPartySku> list = this.thirdPartySkus;
+        if (list == null) {
+            return C12147n.emptyList();
+        }
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : list) {
+            if (C12238m.areEqual(((ThirdPartySku) obj).getDistributor(), "google_play")) {
+                arrayList.add(obj);
+            }
+        }
+        ArrayList arrayList2 = new ArrayList();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            String strM7581b = ((ThirdPartySku) it.next()).getSku();
+            if (strM7581b != null) {
+                arrayList2.add(strM7581b);
+            }
+        }
+        return arrayList2;
     }
 
     public String toString() {

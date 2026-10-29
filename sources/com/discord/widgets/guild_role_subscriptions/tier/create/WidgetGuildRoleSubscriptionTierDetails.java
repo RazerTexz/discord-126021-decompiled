@@ -27,6 +27,7 @@ import com.discord.widgets.guild_role_subscriptions.WidgetPriceTierPickerBottomS
 import com.discord.widgets.guild_role_subscriptions.tier.model.GuildRoleSubscriptionTier;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -64,32 +65,9 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ WidgetGuildRoleSubscriptionTierDetails newInstance$default(Companion companion, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = false;
-            }
-            return companion.newInstance(z2);
-        }
-
-        public final WidgetGuildRoleSubscriptionTierDetails newInstance(boolean isEditMode) {
-            WidgetGuildRoleSubscriptionTierDetails widgetGuildRoleSubscriptionTierDetails = new WidgetGuildRoleSubscriptionTierDetails();
-            widgetGuildRoleSubscriptionTierDetails.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetGuildRoleSubscriptionTierDetails.INTENT_IS_EDIT_MODE, Boolean.valueOf(isEditMode))));
-            return widgetGuildRoleSubscriptionTierDetails;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$isEditMode$2 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85102 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C85102 extends AbstractC12240o implements Function0<Boolean> {
         public C85102() {
             super(0);
         }
@@ -111,7 +89,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85111 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C85111 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C85111() {
             super(1);
         }
@@ -129,7 +107,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85122 extends AbstractC12240o implements Function0<Unit> {
+    public final class C85122 extends AbstractC12240o implements Function0<Unit> {
         public static final C85122 INSTANCE = new C85122();
 
         public C85122() {
@@ -149,7 +127,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85133 extends AbstractC12240o implements Function0<Unit> {
+    public final class C85133 extends AbstractC12240o implements Function0<Unit> {
         public C85133() {
             super(0);
         }
@@ -168,7 +146,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85144 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C85144 extends AbstractC12240o implements Function1<String, Unit> {
         public C85144() {
             super(1);
         }
@@ -188,7 +166,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85155 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C85155 extends AbstractC12240o implements Function1<String, Unit> {
         public C85155() {
             super(1);
         }
@@ -208,7 +186,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
-    public static final class C85161 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C85161 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C85161() {
             super(1);
         }
@@ -224,6 +202,29 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
             WidgetGuildRoleSubscriptionTierDetails widgetGuildRoleSubscriptionTierDetails = WidgetGuildRoleSubscriptionTierDetails.this;
             C12238m.checkNotNullExpressionValue(viewState, "viewState");
             widgetGuildRoleSubscriptionTierDetails.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDetails.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ WidgetGuildRoleSubscriptionTierDetails newInstance$default(Companion companion, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = false;
+            }
+            return companion.newInstance(z2);
+        }
+
+        public final WidgetGuildRoleSubscriptionTierDetails newInstance(boolean isEditMode) {
+            WidgetGuildRoleSubscriptionTierDetails widgetGuildRoleSubscriptionTierDetails = new WidgetGuildRoleSubscriptionTierDetails();
+            widgetGuildRoleSubscriptionTierDetails.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetGuildRoleSubscriptionTierDetails.INTENT_IS_EDIT_MODE, Boolean.valueOf(isEditMode))));
+            return widgetGuildRoleSubscriptionTierDetails;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -305,7 +306,7 @@ public final class WidgetGuildRoleSubscriptionTierDetails extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);

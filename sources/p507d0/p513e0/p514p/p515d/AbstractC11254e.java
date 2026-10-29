@@ -34,7 +34,7 @@ public abstract class AbstractC11254e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e$a */
     /* JADX INFO: compiled from: RuntimeTypeMapper.kt */
-    public static final class a extends AbstractC11254e {
+    public final class a extends AbstractC11254e {
 
         /* JADX INFO: renamed from: a */
         public final Field f22337a;
@@ -66,7 +66,7 @@ public abstract class AbstractC11254e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e$b */
     /* JADX INFO: compiled from: RuntimeTypeMapper.kt */
-    public static final class b extends AbstractC11254e {
+    public final class b extends AbstractC11254e {
 
         /* JADX INFO: renamed from: a */
         public final Method f22338a;
@@ -98,7 +98,7 @@ public abstract class AbstractC11254e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e$c */
     /* JADX INFO: compiled from: RuntimeTypeMapper.kt */
-    public static final class c extends AbstractC11254e {
+    public final class c extends AbstractC11254e {
 
         /* JADX INFO: renamed from: a */
         public final String f22340a;
@@ -214,7 +214,7 @@ public abstract class AbstractC11254e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.e$d */
     /* JADX INFO: compiled from: RuntimeTypeMapper.kt */
-    public static final class d extends AbstractC11254e {
+    public final class d extends AbstractC11254e {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11252d.e f22346a;

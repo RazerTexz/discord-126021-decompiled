@@ -15,7 +15,7 @@ public final /* data */ class ForumPostReadState {
     private final boolean hasUnread;
 
     /* JADX INFO: compiled from: ForumPostReadState.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -47,21 +47,6 @@ public final /* data */ class ForumPostReadState {
         return forumPostReadState.copy(j, z2, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getHasSeenBefore() {
-        return this.hasSeenBefore;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getHasUnread() {
-        return this.hasUnread;
-    }
-
     public final ForumPostReadState copy(long channelId, boolean hasSeenBefore, boolean hasUnread) {
         return new ForumPostReadState(channelId, hasSeenBefore, hasUnread);
     }
@@ -77,12 +62,27 @@ public final /* data */ class ForumPostReadState {
         return this.channelId == forumPostReadState.channelId && this.hasSeenBefore == forumPostReadState.hasSeenBefore && this.hasUnread == forumPostReadState.hasUnread;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
     }
 
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getHasSeenBefore() {
         return this.hasSeenBefore;
+    }
+
+    public final boolean getHasSeenBefore() {
+        return this.hasSeenBefore;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getHasUnread() {
+        return this.hasUnread;
     }
 
     public final boolean getHasUnread() {

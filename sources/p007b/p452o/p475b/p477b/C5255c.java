@@ -11,12 +11,12 @@ import p007b.p452o.p475b.p478c.C5261f;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5255c extends AbstractC5253a {
 
+    /* JADX INFO: renamed from: d */
+    public FloatBuffer f14267d;
+
     /* JADX INFO: renamed from: c */
     @Deprecated
     public static final float[] f14266c = {-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f};
-
-    /* JADX INFO: renamed from: d */
-    public FloatBuffer f14267d;
 
     public C5255c() {
         float[] fArr = f14266c;

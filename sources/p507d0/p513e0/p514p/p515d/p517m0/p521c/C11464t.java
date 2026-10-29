@@ -72,7 +72,7 @@ public class C11464t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$a */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class a implements InterfaceC11780d {
+    public final class a implements InterfaceC11780d {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.p554p.InterfaceC11780d
         public AbstractC11913c0 getType() {
             throw new IllegalStateException("This method should not be called");
@@ -81,7 +81,7 @@ public class C11464t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$b */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class b implements InterfaceC11780d {
+    public final class b implements InterfaceC11780d {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.p554p.InterfaceC11780d
         public AbstractC11913c0 getType() {
             throw new IllegalStateException("This method should not be called");
@@ -90,7 +90,7 @@ public class C11464t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$c */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class c implements InterfaceC11780d {
+    public final class c implements InterfaceC11780d {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.p554p.InterfaceC11780d
         public AbstractC11913c0 getType() {
             throw new IllegalStateException("This method should not be called");
@@ -99,28 +99,9 @@ public class C11464t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$d */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class d extends AbstractC11460r {
+    public final class d extends AbstractC11460r {
         public d(AbstractC11335f1 abstractC11335f1) {
             super(abstractC11335f1);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9439a(int i) {
-            Object[] objArr = new Object[3];
-            if (i == 1) {
-                objArr[0] = "what";
-            } else if (i != 2) {
-                objArr[0] = "descriptor";
-            } else {
-                objArr[0] = "from";
-            }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$1";
-            if (i == 1 || i == 2) {
-                objArr[2] = "isVisible";
-            } else {
-                objArr[2] = "hasContainingSourceFile";
-            }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -169,26 +150,32 @@ public class C11464t {
             }
             return false;
         }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9439a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1) {
+                objArr[0] = "what";
+            } else if (i != 2) {
+                objArr[0] = "descriptor";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$1";
+            if (i == 1 || i == 2) {
+                objArr[2] = "isVisible";
+            } else {
+                objArr[2] = "hasContainingSourceFile";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$e */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class e extends AbstractC11460r {
+    public final class e extends AbstractC11460r {
         public e(AbstractC11335f1 abstractC11335f1) {
             super(abstractC11335f1);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9440a(int i) {
-            Object[] objArr = new Object[3];
-            if (i != 1) {
-                objArr[0] = "what";
-            } else {
-                objArr[0] = "from";
-            }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$2";
-            objArr[2] = "isVisible";
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -212,34 +199,26 @@ public class C11464t {
             }
             return false;
         }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9440a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$2";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$f */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class f extends AbstractC11460r {
+    public final class f extends AbstractC11460r {
         public f(AbstractC11335f1 abstractC11335f1) {
             super(abstractC11335f1);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9441a(int i) {
-            Object[] objArr = new Object[3];
-            if (i == 1) {
-                objArr[0] = "from";
-            } else if (i == 2) {
-                objArr[0] = "whatDeclaration";
-            } else if (i != 3) {
-                objArr[0] = "what";
-            } else {
-                objArr[0] = "fromClass";
-            }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$3";
-            if (i == 2 || i == 3) {
-                objArr[2] = "doesReceiverFitForProtectedVisibility";
-            } else {
-                objArr[2] = "isVisible";
-            }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
         /* JADX WARN: Code duplicated, block: B:47:0x007b  */
@@ -289,26 +268,34 @@ public class C11464t {
             }
             return isVisible(interfaceC11780d, interfaceC11458q, interfaceC11330e3.getContainingDeclaration());
         }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9441a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1) {
+                objArr[0] = "from";
+            } else if (i == 2) {
+                objArr[0] = "whatDeclaration";
+            } else if (i != 3) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "fromClass";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$3";
+            if (i == 2 || i == 3) {
+                objArr[2] = "doesReceiverFitForProtectedVisibility";
+            } else {
+                objArr[2] = "isVisible";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$g */
     /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class g extends AbstractC11460r {
+    public final class g extends AbstractC11460r {
         public g(AbstractC11335f1 abstractC11335f1) {
             super(abstractC11335f1);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9442a(int i) {
-            Object[] objArr = new Object[3];
-            if (i != 1) {
-                objArr[0] = "what";
-            } else {
-                objArr[0] = "from";
-            }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$4";
-            objArr[2] = "isVisible";
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -326,26 +313,26 @@ public class C11464t {
             }
             return false;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$h */
-    /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class h extends AbstractC11460r {
-        public h(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9443a(int i) {
+        public static /* synthetic */ void m9442a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$5";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$4";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$h */
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class h extends AbstractC11460r {
+        public h(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -360,26 +347,26 @@ public class C11464t {
             m9443a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$i */
-    /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class i extends AbstractC11460r {
-        public i(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9444a(int i) {
+        public static /* synthetic */ void m9443a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$6";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$5";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$i */
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class i extends AbstractC11460r {
+        public i(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -394,26 +381,26 @@ public class C11464t {
             m9444a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$j */
-    /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class j extends AbstractC11460r {
-        public j(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9445a(int i) {
+        public static /* synthetic */ void m9444a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$7";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$6";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$j */
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class j extends AbstractC11460r {
+        public j(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -428,26 +415,26 @@ public class C11464t {
             m9445a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$k */
-    /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class k extends AbstractC11460r {
-        public k(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9446a(int i) {
+        public static /* synthetic */ void m9445a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$8";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$7";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$k */
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class k extends AbstractC11460r {
+        public k(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -462,26 +449,26 @@ public class C11464t {
             m9446a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$l */
-    /* JADX INFO: compiled from: DescriptorVisibilities.java */
-    public static class l extends AbstractC11460r {
-        public l(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9447a(int i) {
+        public static /* synthetic */ void m9446a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$9";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$8";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.t$l */
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class l extends AbstractC11460r {
+        public l(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -495,6 +482,19 @@ public class C11464t {
             }
             m9447a(1);
             throw null;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9447a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$9";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
     }
 
@@ -541,6 +541,83 @@ public class C11464t {
         m9438b(jVar);
         m9438b(kVar);
         m9438b(lVar);
+    }
+
+    public static Integer compare(AbstractC11466u abstractC11466u, AbstractC11466u abstractC11466u2) {
+        if (abstractC11466u == null) {
+            m9437a(12);
+            throw null;
+        }
+        if (abstractC11466u2 == null) {
+            m9437a(13);
+            throw null;
+        }
+        Integer numCompareTo = abstractC11466u.compareTo(abstractC11466u2);
+        if (numCompareTo != null) {
+            return numCompareTo;
+        }
+        Integer numCompareTo2 = abstractC11466u2.compareTo(abstractC11466u);
+        if (numCompareTo2 != null) {
+            return Integer.valueOf(-numCompareTo2.intValue());
+        }
+        return null;
+    }
+
+    public static InterfaceC11458q findInvisibleMember(InterfaceC11780d interfaceC11780d, InterfaceC11458q interfaceC11458q, InterfaceC11450m interfaceC11450m) {
+        InterfaceC11458q interfaceC11458qFindInvisibleMember;
+        if (interfaceC11458q == null) {
+            m9437a(8);
+            throw null;
+        }
+        if (interfaceC11450m == null) {
+            m9437a(9);
+            throw null;
+        }
+        for (InterfaceC11458q interfaceC11458q2 = (InterfaceC11458q) interfaceC11458q.getOriginal(); interfaceC11458q2 != null && interfaceC11458q2.getVisibility() != f23088f; interfaceC11458q2 = (InterfaceC11458q) C11787e.getParentOfType(interfaceC11458q2, InterfaceC11458q.class)) {
+            if (!interfaceC11458q2.getVisibility().isVisible(interfaceC11780d, interfaceC11458q2, interfaceC11450m)) {
+                return interfaceC11458q2;
+            }
+        }
+        if (!(interfaceC11458q instanceof InterfaceC11378i0) || (interfaceC11458qFindInvisibleMember = findInvisibleMember(interfaceC11780d, ((InterfaceC11378i0) interfaceC11458q).getUnderlyingConstructorDescriptor(), interfaceC11450m)) == null) {
+            return null;
+        }
+        return interfaceC11458qFindInvisibleMember;
+    }
+
+    public static boolean inSameFile(InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2) {
+        if (interfaceC11450m == null) {
+            m9437a(6);
+            throw null;
+        }
+        if (interfaceC11450m2 == null) {
+            m9437a(7);
+            throw null;
+        }
+        InterfaceC11469v0 containingSourceFile = C11787e.getContainingSourceFile(interfaceC11450m2);
+        if (containingSourceFile != InterfaceC11469v0.f23100a) {
+            return containingSourceFile.equals(C11787e.getContainingSourceFile(interfaceC11450m));
+        }
+        return false;
+    }
+
+    public static boolean isPrivate(AbstractC11466u abstractC11466u) {
+        if (abstractC11466u != null) {
+            return abstractC11466u == f23083a || abstractC11466u == f23084b;
+        }
+        m9437a(14);
+        throw null;
+    }
+
+    public static boolean isVisibleIgnoringReceiver(InterfaceC11458q interfaceC11458q, InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11458q == null) {
+            m9437a(2);
+            throw null;
+        }
+        if (interfaceC11450m != null) {
+            return findInvisibleMember(f23095m, interfaceC11458q, interfaceC11450m) == null;
+        }
+        m9437a(3);
+        throw null;
     }
 
     /* JADX WARN: Code duplicated, block: B:23:0x003a  */
@@ -626,83 +703,6 @@ public class C11464t {
     /* JADX INFO: renamed from: b */
     public static void m9438b(AbstractC11466u abstractC11466u) {
         f23098p.put(abstractC11466u.getDelegate(), abstractC11466u);
-    }
-
-    public static Integer compare(AbstractC11466u abstractC11466u, AbstractC11466u abstractC11466u2) {
-        if (abstractC11466u == null) {
-            m9437a(12);
-            throw null;
-        }
-        if (abstractC11466u2 == null) {
-            m9437a(13);
-            throw null;
-        }
-        Integer numCompareTo = abstractC11466u.compareTo(abstractC11466u2);
-        if (numCompareTo != null) {
-            return numCompareTo;
-        }
-        Integer numCompareTo2 = abstractC11466u2.compareTo(abstractC11466u);
-        if (numCompareTo2 != null) {
-            return Integer.valueOf(-numCompareTo2.intValue());
-        }
-        return null;
-    }
-
-    public static InterfaceC11458q findInvisibleMember(InterfaceC11780d interfaceC11780d, InterfaceC11458q interfaceC11458q, InterfaceC11450m interfaceC11450m) {
-        InterfaceC11458q interfaceC11458qFindInvisibleMember;
-        if (interfaceC11458q == null) {
-            m9437a(8);
-            throw null;
-        }
-        if (interfaceC11450m == null) {
-            m9437a(9);
-            throw null;
-        }
-        for (InterfaceC11458q interfaceC11458q2 = (InterfaceC11458q) interfaceC11458q.getOriginal(); interfaceC11458q2 != null && interfaceC11458q2.getVisibility() != f23088f; interfaceC11458q2 = (InterfaceC11458q) C11787e.getParentOfType(interfaceC11458q2, InterfaceC11458q.class)) {
-            if (!interfaceC11458q2.getVisibility().isVisible(interfaceC11780d, interfaceC11458q2, interfaceC11450m)) {
-                return interfaceC11458q2;
-            }
-        }
-        if (!(interfaceC11458q instanceof InterfaceC11378i0) || (interfaceC11458qFindInvisibleMember = findInvisibleMember(interfaceC11780d, ((InterfaceC11378i0) interfaceC11458q).getUnderlyingConstructorDescriptor(), interfaceC11450m)) == null) {
-            return null;
-        }
-        return interfaceC11458qFindInvisibleMember;
-    }
-
-    public static boolean inSameFile(InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2) {
-        if (interfaceC11450m == null) {
-            m9437a(6);
-            throw null;
-        }
-        if (interfaceC11450m2 == null) {
-            m9437a(7);
-            throw null;
-        }
-        InterfaceC11469v0 containingSourceFile = C11787e.getContainingSourceFile(interfaceC11450m2);
-        if (containingSourceFile != InterfaceC11469v0.f23100a) {
-            return containingSourceFile.equals(C11787e.getContainingSourceFile(interfaceC11450m));
-        }
-        return false;
-    }
-
-    public static boolean isPrivate(AbstractC11466u abstractC11466u) {
-        if (abstractC11466u != null) {
-            return abstractC11466u == f23083a || abstractC11466u == f23084b;
-        }
-        m9437a(14);
-        throw null;
-    }
-
-    public static boolean isVisibleIgnoringReceiver(InterfaceC11458q interfaceC11458q, InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11458q == null) {
-            m9437a(2);
-            throw null;
-        }
-        if (interfaceC11450m != null) {
-            return findInvisibleMember(f23095m, interfaceC11458q, interfaceC11450m) == null;
-        }
-        m9437a(3);
-        throw null;
     }
 
     public static AbstractC11466u toDescriptorVisibility(AbstractC11335f1 abstractC11335f1) {

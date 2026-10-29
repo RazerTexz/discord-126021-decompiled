@@ -12,6 +12,17 @@ public final /* data */ class GuildWelcomeChannel {
     private final Long emojiId;
     private final String emojiName;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildWelcomeChannel)) {
+            return false;
+        }
+        GuildWelcomeChannel guildWelcomeChannel = (GuildWelcomeChannel) other;
+        return this.channelId == guildWelcomeChannel.channelId && C12238m.areEqual(this.description, guildWelcomeChannel.description) && C12238m.areEqual(this.emojiId, guildWelcomeChannel.emojiId) && C12238m.areEqual(this.emojiName, guildWelcomeChannel.emojiName);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -30,17 +41,6 @@ public final /* data */ class GuildWelcomeChannel {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getEmojiName() {
         return this.emojiName;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildWelcomeChannel)) {
-            return false;
-        }
-        GuildWelcomeChannel guildWelcomeChannel = (GuildWelcomeChannel) other;
-        return this.channelId == guildWelcomeChannel.channelId && C12238m.areEqual(this.description, guildWelcomeChannel.description) && C12238m.areEqual(this.emojiId, guildWelcomeChannel.emojiId) && C12238m.areEqual(this.emojiName, guildWelcomeChannel.emojiName);
     }
 
     public int hashCode() {

@@ -13,12 +13,6 @@ import p637j0.p642l.p647e.C12723m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12730g<T> implements Queue<T> {
 
-    /* JADX INFO: renamed from: j */
-    public static final int f27322j = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
-
-    /* JADX INFO: renamed from: k */
-    public static final Object f27323k = new Object();
-
     /* JADX INFO: renamed from: l */
     public final AtomicLong f27324l;
 
@@ -42,6 +36,12 @@ public final class C12730g<T> implements Queue<T> {
 
     /* JADX INFO: renamed from: s */
     public final AtomicLong f27331s;
+
+    /* JADX INFO: renamed from: j */
+    public static final int f27322j = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
+
+    /* JADX INFO: renamed from: k */
+    public static final Object f27323k = new Object();
 
     public C12730g(int i) {
         int iM10823b = C12723m.m10823b(Math.max(8, i));
@@ -69,11 +69,6 @@ public final class C12730g<T> implements Queue<T> {
         throw new UnsupportedOperationException();
     }
 
-    /* JADX INFO: renamed from: c */
-    public final long m10831c() {
-        return this.f27331s.get();
-    }
-
     @Override // java.util.Collection
     public void clear() {
         while (true) {
@@ -93,13 +88,6 @@ public final class C12730g<T> implements Queue<T> {
         throw new UnsupportedOperationException();
     }
 
-    /* JADX INFO: renamed from: d */
-    public final boolean m10832d(AtomicReferenceArray<Object> atomicReferenceArray, T t, long j, int i) {
-        this.f27324l.lazySet(j + 1);
-        atomicReferenceArray.lazySet(i, t);
-        return true;
-    }
-
     @Override // java.util.Queue
     public T element() {
         throw new UnsupportedOperationException();
@@ -113,6 +101,18 @@ public final class C12730g<T> implements Queue<T> {
     @Override // java.util.Collection, java.lang.Iterable
     public Iterator<T> iterator() {
         throw new UnsupportedOperationException();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final long m10831c() {
+        return this.f27331s.get();
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final boolean m10832d(AtomicReferenceArray<Object> atomicReferenceArray, T t, long j, int i) {
+        this.f27324l.lazySet(j + 1);
+        atomicReferenceArray.lazySet(i, t);
+        return true;
     }
 
     @Override // java.util.Queue

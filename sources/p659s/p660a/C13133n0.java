@@ -15,16 +15,16 @@ public final class C13133n0 extends AbstractC13120j {
         this.f27876j = interfaceC13130m0;
     }
 
-    @Override // p659s.p660a.AbstractC13123k
-    /* JADX INFO: renamed from: a */
-    public void mo11193a(Throwable th) {
-        this.f27876j.dispose();
-    }
-
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(Throwable th) {
         this.f27876j.dispose();
         return Unit.f27425a;
+    }
+
+    @Override // p659s.p660a.AbstractC13123k
+    /* JADX INFO: renamed from: a */
+    public void mo11193a(Throwable th) {
+        this.f27876j.dispose();
     }
 
     public String toString() {

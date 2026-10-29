@@ -30,16 +30,11 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationAcceptTerm
         this.analyticsSchemaTypeName = "impression_enable_creator_monetization_accept_terms_landing";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackImpressionEnableCreatorMonetizationAcceptTermsLanding) && C12238m.areEqual(this.creatorMonetizationEnableRequestId, ((TrackImpressionEnableCreatorMonetizationAcceptTermsLanding) other).creatorMonetizationEnableRequestId);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +43,10 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationAcceptTerm
         return this.analyticsSchemaTypeName;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackImpressionEnableCreatorMonetizationAcceptTermsLanding) && C12238m.areEqual(this.creatorMonetizationEnableRequestId, ((TrackImpressionEnableCreatorMonetizationAcceptTermsLanding) other).creatorMonetizationEnableRequestId);
-        }
-        return true;
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -61,6 +55,12 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationAcceptTerm
             return charSequence.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

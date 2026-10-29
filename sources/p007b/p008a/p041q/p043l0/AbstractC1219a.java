@@ -12,7 +12,7 @@ public abstract class AbstractC1219a {
 
     /* JADX INFO: renamed from: b.a.q.l0.a$a */
     /* JADX INFO: compiled from: WiredHeadsetState.kt */
-    public static final class a extends AbstractC1219a {
+    public final class a extends AbstractC1219a {
 
         /* JADX INFO: renamed from: a */
         public final String f1667a;
@@ -65,7 +65,7 @@ public abstract class AbstractC1219a {
 
     /* JADX INFO: renamed from: b.a.q.l0.a$b */
     /* JADX INFO: compiled from: WiredHeadsetState.kt */
-    public static final class b extends AbstractC1219a {
+    public final class b extends AbstractC1219a {
 
         /* JADX INFO: renamed from: a */
         public static final b f1669a = new b();

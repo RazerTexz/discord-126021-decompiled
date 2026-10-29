@@ -12,14 +12,14 @@ public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderF
         }
 
         @Override // org.webrtc.Predicate
-        public /* synthetic */ Predicate<MediaCodecInfo> negate() {
-            return Predicate.CC.m11036b(this);
-        }
-
-        @Override // org.webrtc.Predicate
         /* JADX INFO: renamed from: or */
         public /* synthetic */ Predicate<MediaCodecInfo> mo11025or(Predicate<? super MediaCodecInfo> predicate) {
             return Predicate.CC.m11037c(this, predicate);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> negate() {
+            return Predicate.CC.m11036b(this);
         }
 
         @Override // org.webrtc.Predicate

@@ -53,20 +53,40 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetApplicationCommandBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetApplicationCommandBottomSheetBinding;", 0)};
     public static final String ARG_MESSAGE_NONCE = "arg_message_nonce";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetApplicationCommandBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetApplicationCommandBottomSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$onResume$1 */
+    /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
+    public final class C81661 extends AbstractC12240o implements Function1<WidgetApplicationCommandBottomSheetViewModel.ViewState, Unit> {
+        public C81661() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetApplicationCommandBottomSheet.this.configureUI(viewState);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -96,26 +116,6 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class C81661 extends AbstractC12240o implements Function1<WidgetApplicationCommandBottomSheetViewModel.ViewState, Unit> {
-        public C81661() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetApplicationCommandBottomSheet.this.configureUI(viewState);
         }
     }
 
@@ -174,6 +174,21 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         TextView textView5 = getBinding().f15656g;
         C12238m.checkNotNullExpressionValue(textView5, "binding.commandBottomShe…mmandTitleApplicationName");
         textView5.setText(name);
+    }
+
+    public final void configureLoaded(final WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
+        C12238m.checkNotNullParameter(viewState, "viewState");
+        configureCommandTitle(viewState);
+        configureSlashCommandString(viewState);
+        getBinding().f15653d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet.configureLoaded.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                Context contextRequireContext = WidgetApplicationCommandBottomSheet.this.requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                C0876m.m165c(contextRequireContext, WidgetApplicationCommandBottomSheetKt.toSlashCommandCopyString(viewState.getApplicationCommandData(), viewState.getCommandValues()), 0, 4);
+                WidgetApplicationCommandBottomSheet.this.dismiss();
+            }
+        });
     }
 
     private final void configureSlashCommandString(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
@@ -240,28 +255,13 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         return (WidgetApplicationCommandBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetApplicationCommandBottomSheetViewModel getViewModel() {
-        return (WidgetApplicationCommandBottomSheetViewModel) this.viewModel.getValue();
-    }
-
-    public final void configureLoaded(final WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
-        C12238m.checkNotNullParameter(viewState, "viewState");
-        configureCommandTitle(viewState);
-        configureSlashCommandString(viewState);
-        getBinding().f15653d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet.configureLoaded.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Context contextRequireContext = WidgetApplicationCommandBottomSheet.this.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                C0876m.m165c(contextRequireContext, WidgetApplicationCommandBottomSheetKt.toSlashCommandCopyString(viewState.getApplicationCommandData(), viewState.getCommandValues()), 0, 4);
-                WidgetApplicationCommandBottomSheet.this.dismiss();
-            }
-        });
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_application_command_bottom_sheet;
+    }
+
+    private final WidgetApplicationCommandBottomSheetViewModel getViewModel() {
+        return (WidgetApplicationCommandBottomSheetViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

@@ -30,7 +30,7 @@ public final class WidgetPublicAnnouncementProfileSheet extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetPublicAnnouncementProfileSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -53,10 +53,6 @@ public final class WidgetPublicAnnouncementProfileSheet extends AppBottomSheet {
         return (WidgetAnnouncementGuildProfileSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    public static final void show(FragmentManager fragmentManager) {
-        INSTANCE.show(fragmentManager);
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_announcement_guild_profile_sheet;
@@ -69,5 +65,9 @@ public final class WidgetPublicAnnouncementProfileSheet extends AppBottomSheet {
         SimpleDraweeView simpleDraweeView = getBinding().f15649b;
         C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.announcementGuildAvatar");
         IconUtils.setIcon$default(simpleDraweeView, "asset://asset/images/system_user_avatar.png", C5419R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
+    }
+
+    public static final void show(FragmentManager fragmentManager) {
+        INSTANCE.show(fragmentManager);
     }
 }

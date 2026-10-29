@@ -36,6 +36,15 @@ public final class C2707i extends AbstractC2705g {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    public void close() {
+        if (this.f6533f != null) {
+            this.f6533f = null;
+            m2849q();
+        }
+        this.f6532e = null;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
     /* JADX INFO: renamed from: a */
     public long mo2586a(C2712n c2712n) throws IOException {
         m2850r(c2712n);
@@ -78,15 +87,6 @@ public final class C2707i extends AbstractC2705g {
         m2851s(c2712n);
         long j3 = c2712n.f6548g;
         return j3 != -1 ? j3 : this.f6535h;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() {
-        if (this.f6533f != null) {
-            this.f6533f = null;
-            m2849q();
-        }
-        this.f6532e = null;
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l

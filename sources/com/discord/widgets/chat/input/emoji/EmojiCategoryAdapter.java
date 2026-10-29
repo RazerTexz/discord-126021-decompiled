@@ -35,7 +35,7 @@ public final class EmojiCategoryAdapter extends RecyclerView.Adapter<EmojiCatego
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.emoji.EmojiCategoryAdapter$setItems$1 */
     /* JADX INFO: compiled from: EmojiCategoryAdapter.kt */
-    public static final class C78111 extends AbstractC12240o implements Function1<List<? extends EmojiCategoryItem>, Unit> {
+    public final class C78111 extends AbstractC12240o implements Function1<List<? extends EmojiCategoryItem>, Unit> {
         public C78111() {
             super(1);
         }
@@ -77,12 +77,6 @@ public final class EmojiCategoryAdapter extends RecyclerView.Adapter<EmojiCatego
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public long getItemId(int position) {
         return this.items.get(position).getStableId();
     }
@@ -97,6 +91,12 @@ public final class EmojiCategoryAdapter extends RecyclerView.Adapter<EmojiCatego
             return 1;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItems(List<? extends EmojiCategoryItem> newItems) {

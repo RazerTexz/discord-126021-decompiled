@@ -6,8 +6,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ApplicationProvider.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ApplicationProvider {
-    public static final ApplicationProvider INSTANCE = new ApplicationProvider();
     private static Application application;
+    public static final ApplicationProvider INSTANCE = new ApplicationProvider();
 
     private ApplicationProvider() {
     }

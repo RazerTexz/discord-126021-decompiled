@@ -10,17 +10,17 @@ import p007b.p085c.p086a.p087a0.C1460d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2734c0<V> {
 
-    /* JADX INFO: renamed from: a */
-    public long[] f6695a = new long[10];
-
-    /* JADX INFO: renamed from: b */
-    public V[] f6696b = (V[]) new Object[10];
-
     /* JADX INFO: renamed from: c */
     public int f6697c;
 
     /* JADX INFO: renamed from: d */
     public int f6698d;
+
+    /* JADX INFO: renamed from: a */
+    public long[] f6695a = new long[10];
+
+    /* JADX INFO: renamed from: b */
+    public V[] f6696b = (V[]) new Object[10];
 
     /* JADX INFO: renamed from: a */
     public synchronized void m2966a(long j, V v) {

@@ -15,8 +15,72 @@ public final class StoreThreadDraft extends StoreV2 {
     private final Dispatcher dispatcher;
     private final BehaviorSubject<ThreadDraftState> draftStateSubject;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$clearDraftState$1 */
     /* JADX INFO: compiled from: StoreThreadDraft.kt */
-    public static final /* data */ class ThreadDraftState {
+    public final class C65291 extends AbstractC12240o implements Function0<Unit> {
+        public C65291() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreThreadDraft.this.draftStateSubject.onNext(new ThreadDraftState(false, null, null, false, false, 31, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$setDraftSending$1 */
+    /* JADX INFO: compiled from: StoreThreadDraft.kt */
+    public final class C65301 extends AbstractC12240o implements Function0<Unit> {
+        public C65301() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            BehaviorSubject behaviorSubject = StoreThreadDraft.this.draftStateSubject;
+            BehaviorSubject behaviorSubject2 = StoreThreadDraft.this.draftStateSubject;
+            C12238m.checkNotNullExpressionValue(behaviorSubject2, "draftStateSubject");
+            behaviorSubject.onNext(ThreadDraftState.copy$default((ThreadDraftState) behaviorSubject2.m11132n0(), false, null, null, true, false, 23, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$setDraftState$1 */
+    /* JADX INFO: compiled from: StoreThreadDraft.kt */
+    public final class C65311 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ThreadDraftState $draftState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65311(ThreadDraftState threadDraftState) {
+            super(0);
+            this.$draftState = threadDraftState;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreThreadDraft.this.draftStateSubject.onNext(this.$draftState);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreThreadDraft.kt */
+    public final /* data */ class ThreadDraftState {
         private final Integer autoArchiveDuration;
         private final boolean isPrivate;
         private final boolean isSending;
@@ -57,31 +121,6 @@ public final class StoreThreadDraft extends StoreV2 {
             return threadDraftState.copy(z2, num2, str2, z5, z4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsPrivate() {
-            return this.isPrivate;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getAutoArchiveDuration() {
-            return this.autoArchiveDuration;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getThreadName() {
-            return this.threadName;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsSending() {
-            return this.isSending;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getShouldDisplayNameError() {
-            return this.shouldDisplayNameError;
-        }
-
         public final ThreadDraftState copy(boolean isPrivate, Integer autoArchiveDuration, String threadName, boolean isSending, boolean shouldDisplayNameError) {
             return new ThreadDraftState(isPrivate, autoArchiveDuration, threadName, isSending, shouldDisplayNameError);
         }
@@ -97,12 +136,37 @@ public final class StoreThreadDraft extends StoreV2 {
             return this.isPrivate == threadDraftState.isPrivate && C12238m.areEqual(this.autoArchiveDuration, threadDraftState.autoArchiveDuration) && C12238m.areEqual(this.threadName, threadDraftState.threadName) && this.isSending == threadDraftState.isSending && this.shouldDisplayNameError == threadDraftState.shouldDisplayNameError;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Integer getAutoArchiveDuration() {
             return this.autoArchiveDuration;
         }
 
+        public final Integer getAutoArchiveDuration() {
+            return this.autoArchiveDuration;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsPrivate() {
+            return this.isPrivate;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsSending() {
+            return this.isSending;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getShouldDisplayNameError() {
             return this.shouldDisplayNameError;
+        }
+
+        public final boolean getShouldDisplayNameError() {
+            return this.shouldDisplayNameError;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getThreadName() {
+            return this.threadName;
         }
 
         public final String getThreadName() {
@@ -165,70 +229,6 @@ public final class StoreThreadDraft extends StoreV2 {
 
         public /* synthetic */ ThreadDraftState(boolean z2, Integer num, String str, boolean z3, boolean z4, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? null : num, (i & 4) == 0 ? str : null, (i & 8) != 0 ? false : z3, (i & 16) != 0 ? false : z4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$clearDraftState$1 */
-    /* JADX INFO: compiled from: StoreThreadDraft.kt */
-    public static final class C65291 extends AbstractC12240o implements Function0<Unit> {
-        public C65291() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreThreadDraft.this.draftStateSubject.onNext(new ThreadDraftState(false, null, null, false, false, 31, null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$setDraftSending$1 */
-    /* JADX INFO: compiled from: StoreThreadDraft.kt */
-    public static final class C65301 extends AbstractC12240o implements Function0<Unit> {
-        public C65301() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            BehaviorSubject behaviorSubject = StoreThreadDraft.this.draftStateSubject;
-            BehaviorSubject behaviorSubject2 = StoreThreadDraft.this.draftStateSubject;
-            C12238m.checkNotNullExpressionValue(behaviorSubject2, "draftStateSubject");
-            behaviorSubject.onNext(ThreadDraftState.copy$default((ThreadDraftState) behaviorSubject2.m11132n0(), false, null, null, true, false, 23, null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadDraft$setDraftState$1 */
-    /* JADX INFO: compiled from: StoreThreadDraft.kt */
-    public static final class C65311 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ThreadDraftState $draftState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65311(ThreadDraftState threadDraftState) {
-            super(0);
-            this.$draftState = threadDraftState;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreThreadDraft.this.draftStateSubject.onNext(this.$draftState);
         }
     }
 

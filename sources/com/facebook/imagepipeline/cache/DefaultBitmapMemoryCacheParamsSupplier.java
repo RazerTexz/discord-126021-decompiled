@@ -10,8 +10,8 @@ public class DefaultBitmapMemoryCacheParamsSupplier implements Supplier<MemoryCa
     private static final int MAX_CACHE_ENTRY_SIZE = Integer.MAX_VALUE;
     private static final int MAX_EVICTION_QUEUE_ENTRIES = Integer.MAX_VALUE;
     private static final int MAX_EVICTION_QUEUE_SIZE = Integer.MAX_VALUE;
-    private static final long PARAMS_CHECK_INTERVAL_MS = TimeUnit.MINUTES.toMillis(5);
     private final ActivityManager mActivityManager;
+    private static final long PARAMS_CHECK_INTERVAL_MS = TimeUnit.MINUTES.toMillis(5);
 
     public DefaultBitmapMemoryCacheParamsSupplier(ActivityManager activityManager) {
         this.mActivityManager = activityManager;

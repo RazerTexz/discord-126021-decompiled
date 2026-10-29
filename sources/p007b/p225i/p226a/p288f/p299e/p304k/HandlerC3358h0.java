@@ -23,12 +23,6 @@ public final class HandlerC3358h0 extends HandlerC3484d {
         this.f9523a = abstractC3345b;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static final boolean m4158a(Message message) {
-        int i = message.what;
-        return i == 2 || i == 1 || i == 7;
-    }
-
     /* JADX WARN: Code duplicated, block: B:85:0x0155  */
     @Override // android.os.Handler
     public final void handleMessage(Message message) {
@@ -139,5 +133,11 @@ public final class HandlerC3358h0 extends HandlerC3484d {
             abstractC3360i4.f9525b = true;
         }
         abstractC3360i4.m4161c();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final boolean m4158a(Message message) {
+        int i = message.what;
+        return i == 2 || i == 1 || i == 7;
     }
 }

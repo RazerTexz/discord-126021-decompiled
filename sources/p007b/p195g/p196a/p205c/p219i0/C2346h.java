@@ -26,14 +26,6 @@ public class C2346h<K, V> implements InterfaceC2348j<K, V>, Serializable {
         this.f4954j = i2;
     }
 
-    private void readObject(ObjectInputStream objectInputStream) throws IOException {
-        this.f4956l = objectInputStream.readInt();
-    }
-
-    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
-        objectOutputStream.writeInt(this.f4956l);
-    }
-
     @Override // p007b.p195g.p196a.p205c.p219i0.InterfaceC2348j
     public V get(Object obj) {
         return this.f4955k.get(obj);
@@ -51,8 +43,16 @@ public class C2346h<K, V> implements InterfaceC2348j<K, V>, Serializable {
         return this.f4955k.putIfAbsent(k, v);
     }
 
+    private void readObject(ObjectInputStream objectInputStream) throws IOException {
+        this.f4956l = objectInputStream.readInt();
+    }
+
     public Object readResolve() {
         int i = this.f4956l;
         return new C2346h(i, i);
+    }
+
+    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+        objectOutputStream.writeInt(this.f4956l);
     }
 }

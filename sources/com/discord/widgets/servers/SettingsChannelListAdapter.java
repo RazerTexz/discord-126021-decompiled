@@ -39,188 +39,109 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
     private Function1<? super Long, Unit> onClickListener;
     private Function1<? super Map<Long, UpdatedPosition>, Unit> onPositionUpdateListener;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$1 */
     /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final /* data */ class CategoryItem implements CategoricalDragAndDropAdapter.Payload {
-        private final boolean canManageCategory;
-        private final boolean canManageChannelsOfCategory;
-        private final long id;
-        private final boolean isDraggable;
-        private final String key;
-        private final String name;
-        private final int pos;
-        private final int type = 1;
+    public final class C91501 extends AbstractC12240o implements Function1<CategoricalDragAndDropAdapter.Payload, Long> {
+        public static final C91501 INSTANCE = new C91501();
 
-        public CategoryItem(String str, long j, int i, boolean z2, boolean z3, boolean z4) {
-            this.name = str;
-            this.id = j;
-            this.pos = i;
-            this.isDraggable = z2;
-            this.canManageCategory = z3;
-            this.canManageChannelsOfCategory = z4;
-            this.key = String.valueOf(j);
+        public C91501() {
+            super(1);
         }
 
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        private final int getPos() {
-            return this.pos;
-        }
-
-        public static /* synthetic */ CategoryItem copy$default(CategoryItem categoryItem, String str, long j, int i, boolean z2, boolean z3, boolean z4, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                str = categoryItem.name;
+        @Override // kotlin.jvm.functions.Function1
+        public final Long invoke(CategoricalDragAndDropAdapter.Payload payload) {
+            C12238m.checkNotNullParameter(payload, "item");
+            int type = payload.getType();
+            if (type == 0) {
+                return Long.valueOf(((ChannelItem) payload).getChannel().getId());
             }
-            if ((i2 & 2) != 0) {
-                j = categoryItem.id;
+            if (type == 1) {
+                return Long.valueOf(((CategoryItem) payload).getId());
             }
-            long j2 = j;
-            if ((i2 & 4) != 0) {
-                i = categoryItem.pos;
+            AppLog appLog = AppLog.f14950g;
+            StringBuilder sbM833U = C1643a.m833U("Invalid type: ");
+            sbM833U.append(payload.getType());
+            Logger.e$default(appLog, sbM833U.toString(), null, null, 6, null);
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$2 */
+    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
+    public final class C91512 extends AbstractC12240o implements Function1<Long, Long> {
+        public static final C91512 INSTANCE = new C91512();
+
+        public C91512() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Long invoke(Long l) {
+            return invoke(l.longValue());
+        }
+
+        public final Long invoke(long j) {
+            if (j > 0) {
+                return Long.valueOf(j);
             }
-            int i3 = i;
-            if ((i2 & 8) != 0) {
-                z2 = categoryItem.isDraggable;
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$3 */
+    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
+    public final class C91523 extends AbstractC12240o implements Function1<CategoricalDragAndDropAdapter.Payload, Boolean> {
+        public static final C91523 INSTANCE = new C91523();
+
+        public C91523() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(CategoricalDragAndDropAdapter.Payload payload) {
+            return Boolean.valueOf(invoke2(payload));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(CategoricalDragAndDropAdapter.Payload payload) {
+            C12238m.checkNotNullParameter(payload, "item");
+            int type = payload.getType();
+            if (type == 0) {
+                return ((ChannelItem) payload).getCanManageCategoryOfChannel();
             }
-            boolean z5 = z2;
-            if ((i2 & 16) != 0) {
-                z3 = categoryItem.canManageCategory;
-            }
-            boolean z6 = z3;
-            if ((i2 & 32) != 0) {
-                z4 = categoryItem.canManageChannelsOfCategory;
-            }
-            return categoryItem.copy(str, j2, i3, z5, z6, z4);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsDraggable() {
-            return this.isDraggable;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getCanManageCategory() {
-            return this.canManageCategory;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanManageChannelsOfCategory() {
-            return this.canManageChannelsOfCategory;
-        }
-
-        public final CategoryItem copy(String name, long id2, int pos, boolean isDraggable, boolean canManageCategory, boolean canManageChannelsOfCategory) {
-            return new CategoryItem(name, id2, pos, isDraggable, canManageCategory, canManageChannelsOfCategory);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof CategoryItem)) {
+            if (type != 1) {
                 return false;
             }
-            CategoryItem categoryItem = (CategoryItem) other;
-            return C12238m.areEqual(this.name, categoryItem.name) && this.id == categoryItem.id && this.pos == categoryItem.pos && this.isDraggable == categoryItem.isDraggable && this.canManageCategory == categoryItem.canManageCategory && this.canManageChannelsOfCategory == categoryItem.canManageChannelsOfCategory;
+            return ((CategoryItem) payload).getCanManageCategory();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$setPositionUpdateListener$1 */
+    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
+    public final class C91531 extends AbstractC12240o implements Function1<Map<Long, ? extends UpdatedPosition>, Unit> {
+        public final /* synthetic */ Action1 $onPositionUpdateListener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91531(Action1 action1) {
+            super(1);
+            this.$onPositionUpdateListener = action1;
         }
 
-        public final boolean getCanManageCategory() {
-            return this.canManageCategory;
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<Long, ? extends UpdatedPosition> map) {
+            invoke2((Map<Long, UpdatedPosition>) map);
+            return Unit.f27425a;
         }
 
-        public final boolean getCanManageChannelsOfCategory() {
-            return this.canManageChannelsOfCategory;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter.Payload
-        public String getCategory() {
-            return String.valueOf(getType());
-        }
-
-        public final long getId() {
-            return this.id;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        public final String getName() {
-            return this.name;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.DragAndDropAdapter.Payload
-        public int getPosition() {
-            return this.pos;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v10 */
-        /* JADX WARN: Type inference failed for: r0v11 */
-        /* JADX WARN: Type inference failed for: r0v13 */
-        /* JADX WARN: Type inference failed for: r0v14 */
-        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v8, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v10, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v8, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v0 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v2 */
-        public int hashCode() {
-            String str = this.name;
-            int iM3a = (((C0002b.m3a(this.id) + ((str != null ? str.hashCode() : 0) * 31)) * 31) + this.pos) * 31;
-            boolean z2 = this.isDraggable;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = (iM3a + r0) * 31;
-            boolean z3 = this.canManageCategory;
-            ?? r1 = z3;
-            if (z3) {
-                r1 = 1;
-            }
-            int i2 = (i + r1) * 31;
-            boolean z4 = this.canManageChannelsOfCategory;
-            return i2 + (z4 ? 1 : z4);
-        }
-
-        public final boolean isDraggable() {
-            return this.isDraggable;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("CategoryItem(name=");
-            sbM833U.append(this.name);
-            sbM833U.append(", id=");
-            sbM833U.append(this.id);
-            sbM833U.append(", pos=");
-            sbM833U.append(this.pos);
-            sbM833U.append(", isDraggable=");
-            sbM833U.append(this.isDraggable);
-            sbM833U.append(", canManageCategory=");
-            sbM833U.append(this.canManageCategory);
-            sbM833U.append(", canManageChannelsOfCategory=");
-            return C1643a.m827O(sbM833U, this.canManageChannelsOfCategory, ")");
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<Long, UpdatedPosition> map) {
+            C12238m.checkNotNullParameter(map, "map");
+            this.$onPositionUpdateListener.call(map);
         }
     }
 
     /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class CategoryListItem extends MGRecyclerViewHolder<SettingsChannelListAdapter, CategoricalDragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
+    public final class CategoryListItem extends MGRecyclerViewHolder<SettingsChannelListAdapter, CategoricalDragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
         private final SettingsChannelListCategoryItemBinding binding;
         private CategoryItem categoryItem;
 
@@ -288,7 +209,7 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
     }
 
     /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final /* data */ class ChannelItem implements CategoricalDragAndDropAdapter.Payload {
+    public final /* data */ class ChannelItem implements CategoricalDragAndDropAdapter.Payload {
         private final boolean canManageCategoryOfChannel;
         private final Channel channel;
         private final boolean isDraggable;
@@ -323,26 +244,6 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
             return channelItem.copy(channel, z4, j2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsDraggable() {
-            return this.isDraggable;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getParentId() {
-            return this.parentId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getCanManageCategoryOfChannel() {
-            return this.canManageCategoryOfChannel;
-        }
-
         public final ChannelItem copy(Channel channel, boolean isDraggable, long parentId, boolean canManageCategoryOfChannel) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new ChannelItem(channel, isDraggable, parentId, canManageCategoryOfChannel);
@@ -359,6 +260,11 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
             return C12238m.areEqual(this.channel, channelItem.channel) && this.isDraggable == channelItem.isDraggable && this.parentId == channelItem.parentId && this.canManageCategoryOfChannel == channelItem.canManageCategoryOfChannel;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getCanManageCategoryOfChannel() {
+            return this.canManageCategoryOfChannel;
+        }
+
         public final boolean getCanManageCategoryOfChannel() {
             return this.canManageCategoryOfChannel;
         }
@@ -368,13 +274,28 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
             return String.valueOf(getType());
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsDraggable() {
+            return this.isDraggable;
         }
 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final long getParentId() {
+            return this.parentId;
         }
 
         public final long getParentId() {
@@ -430,7 +351,7 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
     }
 
     /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class ChannelListItem extends MGRecyclerViewHolder<SettingsChannelListAdapter, CategoricalDragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
+    public final class ChannelListItem extends MGRecyclerViewHolder<SettingsChannelListAdapter, CategoricalDragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
         private final SettingsChannelListItemBinding binding;
         private ChannelItem channelItem;
 
@@ -515,7 +436,7 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
     }
 
     /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final /* data */ class UpdatedPosition {
+    public final /* data */ class UpdatedPosition {
         private final Long parentId;
         private final int position;
 
@@ -534,16 +455,6 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
             return updatedPosition.copy(i, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getPosition() {
-            return this.position;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getParentId() {
-            return this.parentId;
-        }
-
         public final UpdatedPosition copy(int position, Long parentId) {
             return new UpdatedPosition(position, parentId);
         }
@@ -559,8 +470,18 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
             return this.position == updatedPosition.position && C12238m.areEqual(this.parentId, updatedPosition.parentId);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getParentId() {
             return this.parentId;
+        }
+
+        public final Long getParentId() {
+            return this.parentId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getPosition() {
+            return this.position;
         }
 
         public final int getPosition() {
@@ -581,121 +502,8 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$1 */
-    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class C91501 extends AbstractC12240o implements Function1<CategoricalDragAndDropAdapter.Payload, Long> {
-        public static final C91501 INSTANCE = new C91501();
-
-        public C91501() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final Long invoke(CategoricalDragAndDropAdapter.Payload payload) {
-            C12238m.checkNotNullParameter(payload, "item");
-            int type = payload.getType();
-            if (type == 0) {
-                return Long.valueOf(((ChannelItem) payload).getChannel().getId());
-            }
-            if (type == 1) {
-                return Long.valueOf(((CategoryItem) payload).getId());
-            }
-            AppLog appLog = AppLog.f14950g;
-            StringBuilder sbM833U = C1643a.m833U("Invalid type: ");
-            sbM833U.append(payload.getType());
-            Logger.e$default(appLog, sbM833U.toString(), null, null, 6, null);
-            return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$2 */
-    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class C91512 extends AbstractC12240o implements Function1<Long, Long> {
-        public static final C91512 INSTANCE = new C91512();
-
-        public C91512() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Long invoke(Long l) {
-            return invoke(l.longValue());
-        }
-
-        public final Long invoke(long j) {
-            if (j > 0) {
-                return Long.valueOf(j);
-            }
-            return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$computeChangedPositions$3 */
-    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class C91523 extends AbstractC12240o implements Function1<CategoricalDragAndDropAdapter.Payload, Boolean> {
-        public static final C91523 INSTANCE = new C91523();
-
-        public C91523() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(CategoricalDragAndDropAdapter.Payload payload) {
-            return Boolean.valueOf(invoke2(payload));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(CategoricalDragAndDropAdapter.Payload payload) {
-            C12238m.checkNotNullParameter(payload, "item");
-            int type = payload.getType();
-            if (type == 0) {
-                return ((ChannelItem) payload).getCanManageCategoryOfChannel();
-            }
-            if (type != 1) {
-                return false;
-            }
-            return ((CategoryItem) payload).getCanManageCategory();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.SettingsChannelListAdapter$setPositionUpdateListener$1 */
-    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
-    public static final class C91531 extends AbstractC12240o implements Function1<Map<Long, ? extends UpdatedPosition>, Unit> {
-        public final /* synthetic */ Action1 $onPositionUpdateListener;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91531(Action1 action1) {
-            super(1);
-            this.$onPositionUpdateListener = action1;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<Long, ? extends UpdatedPosition> map) {
-            invoke2((Map<Long, UpdatedPosition>) map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<Long, UpdatedPosition> map) {
-            C12238m.checkNotNullParameter(map, "map");
-            this.$onPositionUpdateListener.call(map);
-        }
-    }
-
     public /* synthetic */ SettingsChannelListAdapter(RecyclerView recyclerView, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(recyclerView, (i & 2) != 0 ? true : z2);
-    }
-
-    private final void handleChangedPositions(Map<Long, Integer> changedPositions, Map<Long, Long> changedParentIds) {
-        HashMap map = new HashMap();
-        for (Map.Entry<Long, Integer> entry : changedPositions.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            map.put(Long.valueOf(jLongValue), new UpdatedPosition(entry.getValue().intValue(), changedParentIds.get(Long.valueOf(jLongValue))));
-        }
-        Function1<? super Map<Long, UpdatedPosition>, Unit> function1 = this.onPositionUpdateListener;
-        if (function1 != null) {
-            function1.invoke(map);
-        }
     }
 
     @Override // com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter, com.discord.utilities.mg_recycler.DragAndDropAdapter
@@ -736,6 +544,18 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
         return this.onClickListener;
     }
 
+    private final void handleChangedPositions(Map<Long, Integer> changedPositions, Map<Long, Long> changedParentIds) {
+        HashMap map = new HashMap();
+        for (Map.Entry<Long, Integer> entry : changedPositions.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            map.put(Long.valueOf(jLongValue), new UpdatedPosition(entry.getValue().intValue(), changedParentIds.get(Long.valueOf(jLongValue))));
+        }
+        Function1<? super Map<Long, UpdatedPosition>, Unit> function1 = this.onPositionUpdateListener;
+        if (function1 != null) {
+            function1.invoke(map);
+        }
+    }
+
     @Override // com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter, com.discord.utilities.mg_recycler.DragAndDropHelper.Adapter
     public boolean isValidMove(int fromPosition, int toPosition) {
         if (toPosition <= 0) {
@@ -764,6 +584,186 @@ public final class SettingsChannelListAdapter extends CategoricalDragAndDropAdap
     public final void setPositionUpdateListener(Action1<Map<Long, UpdatedPosition>> onPositionUpdateListener) {
         C12238m.checkNotNullParameter(onPositionUpdateListener, "onPositionUpdateListener");
         this.onPositionUpdateListener = new C91531(onPositionUpdateListener);
+    }
+
+    /* JADX INFO: compiled from: SettingsChannelListAdapter.kt */
+    public final /* data */ class CategoryItem implements CategoricalDragAndDropAdapter.Payload {
+        private final boolean canManageCategory;
+        private final boolean canManageChannelsOfCategory;
+        private final long id;
+        private final boolean isDraggable;
+        private final String key;
+        private final String name;
+        private final int pos;
+        private final int type = 1;
+
+        public CategoryItem(String str, long j, int i, boolean z2, boolean z3, boolean z4) {
+            this.name = str;
+            this.id = j;
+            this.pos = i;
+            this.isDraggable = z2;
+            this.canManageCategory = z3;
+            this.canManageChannelsOfCategory = z4;
+            this.key = String.valueOf(j);
+        }
+
+        public static /* synthetic */ CategoryItem copy$default(CategoryItem categoryItem, String str, long j, int i, boolean z2, boolean z3, boolean z4, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                str = categoryItem.name;
+            }
+            if ((i2 & 2) != 0) {
+                j = categoryItem.id;
+            }
+            long j2 = j;
+            if ((i2 & 4) != 0) {
+                i = categoryItem.pos;
+            }
+            int i3 = i;
+            if ((i2 & 8) != 0) {
+                z2 = categoryItem.isDraggable;
+            }
+            boolean z5 = z2;
+            if ((i2 & 16) != 0) {
+                z3 = categoryItem.canManageCategory;
+            }
+            boolean z6 = z3;
+            if ((i2 & 32) != 0) {
+                z4 = categoryItem.canManageChannelsOfCategory;
+            }
+            return categoryItem.copy(str, j2, i3, z5, z6, z4);
+        }
+
+        public final CategoryItem copy(String name, long id2, int pos, boolean isDraggable, boolean canManageCategory, boolean canManageChannelsOfCategory) {
+            return new CategoryItem(name, id2, pos, isDraggable, canManageCategory, canManageChannelsOfCategory);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof CategoryItem)) {
+                return false;
+            }
+            CategoryItem categoryItem = (CategoryItem) other;
+            return C12238m.areEqual(this.name, categoryItem.name) && this.id == categoryItem.id && this.pos == categoryItem.pos && this.isDraggable == categoryItem.isDraggable && this.canManageCategory == categoryItem.canManageCategory && this.canManageChannelsOfCategory == categoryItem.canManageChannelsOfCategory;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getCanManageCategory() {
+            return this.canManageCategory;
+        }
+
+        public final boolean getCanManageCategory() {
+            return this.canManageCategory;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getCanManageChannelsOfCategory() {
+            return this.canManageChannelsOfCategory;
+        }
+
+        public final boolean getCanManageChannelsOfCategory() {
+            return this.canManageChannelsOfCategory;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter.Payload
+        public String getCategory() {
+            return String.valueOf(getType());
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getId() {
+            return this.id;
+        }
+
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsDraggable() {
+            return this.isDraggable;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
+        }
+
+        public final String getName() {
+            return this.name;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        private final int getPos() {
+            return this.pos;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.DragAndDropAdapter.Payload
+        public int getPosition() {
+            return this.pos;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v10 */
+        /* JADX WARN: Type inference failed for: r0v11 */
+        /* JADX WARN: Type inference failed for: r0v13 */
+        /* JADX WARN: Type inference failed for: r0v14 */
+        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v8, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v10, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v8, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v0 */
+        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v2 */
+        public int hashCode() {
+            String str = this.name;
+            int iM3a = (((C0002b.m3a(this.id) + ((str != null ? str.hashCode() : 0) * 31)) * 31) + this.pos) * 31;
+            boolean z2 = this.isDraggable;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = (iM3a + r0) * 31;
+            boolean z3 = this.canManageCategory;
+            ?? r1 = z3;
+            if (z3) {
+                r1 = 1;
+            }
+            int i2 = (i + r1) * 31;
+            boolean z4 = this.canManageChannelsOfCategory;
+            return i2 + (z4 ? 1 : z4);
+        }
+
+        public final boolean isDraggable() {
+            return this.isDraggable;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("CategoryItem(name=");
+            sbM833U.append(this.name);
+            sbM833U.append(", id=");
+            sbM833U.append(this.id);
+            sbM833U.append(", pos=");
+            sbM833U.append(this.pos);
+            sbM833U.append(", isDraggable=");
+            sbM833U.append(this.isDraggable);
+            sbM833U.append(", canManageCategory=");
+            sbM833U.append(this.canManageCategory);
+            sbM833U.append(", canManageChannelsOfCategory=");
+            return C1643a.m827O(sbM833U, this.canManageChannelsOfCategory, ")");
+        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

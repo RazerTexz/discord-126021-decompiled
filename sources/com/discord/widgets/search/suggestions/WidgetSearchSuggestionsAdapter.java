@@ -77,7 +77,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     private Function1<? super UserSuggestion, Unit> onUserClicked;
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -117,7 +117,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class FilterViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class FilterViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionsItemSuggestionBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -265,7 +265,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class HasViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class HasViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -273,7 +273,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
         private final SearchStringProvider searchStringProvider;
 
         /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
 
             public final /* synthetic */ class WhenMappings {
                 public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -371,7 +371,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionItemHeaderBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -436,7 +436,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class HistoryHeaderViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class HistoryHeaderViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionItemHeaderHistoryBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -481,7 +481,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class InChannelViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class InChannelViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionsItemChannelBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -527,7 +527,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class RecentQueryViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class RecentQueryViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionsItemRecentQueryBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -577,7 +577,7 @@ public final class WidgetSearchSuggestionsAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: WidgetSearchSuggestionsAdapter.kt */
-    public static final class UserViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
+    public final class UserViewHolder extends MGRecyclerViewHolder<WidgetSearchSuggestionsAdapter, MGRecyclerDataPayload> {
         private final WidgetSearchSuggestionsItemUserBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

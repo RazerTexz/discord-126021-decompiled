@@ -38,7 +38,7 @@ public abstract class AbstractC11650k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.k$a */
     /* JADX INFO: compiled from: methodSignatureMapping.kt */
-    public static final class a extends AbstractC11650k {
+    public final class a extends AbstractC11650k {
 
         /* JADX INFO: renamed from: j */
         public final AbstractC11650k f23626j;
@@ -57,7 +57,7 @@ public abstract class AbstractC11650k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.k$b */
     /* JADX INFO: compiled from: methodSignatureMapping.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -96,7 +96,7 @@ public abstract class AbstractC11650k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.k$c */
     /* JADX INFO: compiled from: methodSignatureMapping.kt */
-    public static final class c extends AbstractC11650k {
+    public final class c extends AbstractC11650k {
 
         /* JADX INFO: renamed from: j */
         public final String f23627j;
@@ -115,7 +115,7 @@ public abstract class AbstractC11650k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.k$d */
     /* JADX INFO: compiled from: methodSignatureMapping.kt */
-    public static final class d extends AbstractC11650k {
+    public final class d extends AbstractC11650k {
 
         /* JADX INFO: renamed from: j */
         public final EnumC11840d f23628j;

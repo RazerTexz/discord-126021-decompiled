@@ -75,16 +75,6 @@ public class MediaStreamTrack {
         return null;
     }
 
-    private static native boolean nativeGetEnabled(long j);
-
-    private static native String nativeGetId(long j);
-
-    private static native String nativeGetKind(long j);
-
-    private static native State nativeGetState(long j);
-
-    private static native boolean nativeSetEnabled(long j, boolean z2);
-
     public void dispose() {
         checkMediaStreamTrackExists();
         JniCommon.nativeReleaseRef(this.nativeTrack);
@@ -101,16 +91,26 @@ public class MediaStreamTrack {
         return this.nativeTrack;
     }
 
+    public String kind() {
+        checkMediaStreamTrackExists();
+        return nativeGetKind(this.nativeTrack);
+    }
+
     /* JADX INFO: renamed from: id */
     public String m11033id() {
         checkMediaStreamTrackExists();
         return nativeGetId(this.nativeTrack);
     }
 
-    public String kind() {
-        checkMediaStreamTrackExists();
-        return nativeGetKind(this.nativeTrack);
-    }
+    private static native boolean nativeGetEnabled(long j);
+
+    private static native String nativeGetId(long j);
+
+    private static native String nativeGetKind(long j);
+
+    private static native State nativeGetState(long j);
+
+    private static native boolean nativeSetEnabled(long j, boolean z2);
 
     public boolean setEnabled(boolean z2) {
         checkMediaStreamTrackExists();

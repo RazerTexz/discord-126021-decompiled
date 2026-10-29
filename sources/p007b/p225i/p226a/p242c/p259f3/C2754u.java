@@ -23,7 +23,7 @@ public final class C2754u {
 
     /* JADX INFO: renamed from: b.i.a.c.f3.u$a */
     /* JADX INFO: compiled from: NalUnitUtil.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f6757a;
@@ -67,7 +67,7 @@ public final class C2754u {
 
     /* JADX INFO: renamed from: b.i.a.c.f3.u$b */
     /* JADX INFO: compiled from: NalUnitUtil.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f6766a;
@@ -87,7 +87,7 @@ public final class C2754u {
 
     /* JADX INFO: renamed from: b.i.a.c.f3.u$c */
     /* JADX INFO: compiled from: NalUnitUtil.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f6769a;

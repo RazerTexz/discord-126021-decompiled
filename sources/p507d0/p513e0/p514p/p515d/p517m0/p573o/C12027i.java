@@ -33,7 +33,7 @@ public final class C12027i extends AbstractC12019a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.i$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24919j = new a();
@@ -65,7 +65,7 @@ public final class C12027i extends AbstractC12019a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.i$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24920j = new b();
@@ -115,7 +115,7 @@ public final class C12027i extends AbstractC12019a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.i$c */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class c extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
+    public final class c extends AbstractC12240o implements Function1<InterfaceC11472x, String> {
 
         /* JADX INFO: renamed from: j */
         public static final c f24921j = new c();

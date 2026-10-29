@@ -14,12 +14,6 @@ public final class C4516l0<T> extends AbstractC4506g0<T> implements Serializable
         this.forwardOrder = abstractC4506g0;
     }
 
-    @Override // p007b.p225i.p355b.p357b.AbstractC4506g0
-    /* JADX INFO: renamed from: b */
-    public <S extends T> AbstractC4506g0<S> mo6236b() {
-        return this.forwardOrder;
-    }
-
     @Override // p007b.p225i.p355b.p357b.AbstractC4506g0, java.util.Comparator
     public int compare(T t, T t2) {
         return this.forwardOrder.compare(t2, t);
@@ -38,6 +32,12 @@ public final class C4516l0<T> extends AbstractC4506g0<T> implements Serializable
 
     public int hashCode() {
         return -this.forwardOrder.hashCode();
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4506g0
+    /* JADX INFO: renamed from: b */
+    public <S extends T> AbstractC4506g0<S> mo6236b() {
+        return this.forwardOrder;
     }
 
     public String toString() {

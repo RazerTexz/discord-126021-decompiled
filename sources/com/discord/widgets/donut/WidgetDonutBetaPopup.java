@@ -32,7 +32,7 @@ public final class WidgetDonutBetaPopup extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetDonutBetaPopup.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -55,10 +55,6 @@ public final class WidgetDonutBetaPopup extends AppFragment {
 
     private final WidgetDonutBetaPopupBinding getBinding() {
         return (WidgetDonutBetaPopupBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public static final void show(Context context, String str) {
-        INSTANCE.show(context, str);
     }
 
     @Override // com.discord.app.AppFragment
@@ -92,5 +88,9 @@ public final class WidgetDonutBetaPopup extends AppFragment {
                 }
             }
         });
+    }
+
+    public static final void show(Context context, String str) {
+        INSTANCE.show(context, str);
     }
 }

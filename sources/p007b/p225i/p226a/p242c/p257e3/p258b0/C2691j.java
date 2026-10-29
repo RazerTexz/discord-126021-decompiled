@@ -68,22 +68,22 @@ public class C2691j {
 
     /* JADX INFO: renamed from: b.i.a.c.e3.b0.j$a */
     /* JADX INFO: compiled from: CachedContentIndex.java */
-    public static final class a implements c {
-
-        /* JADX INFO: renamed from: a */
-        public static final String[] f6484a = {ModelAuditLogEntry.CHANGE_KEY_ID, "key", "metadata"};
+    public final class a implements c {
 
         /* JADX INFO: renamed from: b */
         public final InterfaceC2946a f6485b;
-
-        /* JADX INFO: renamed from: c */
-        public final SparseArray<C2690i> f6486c = new SparseArray<>();
 
         /* JADX INFO: renamed from: d */
         public String f6487d;
 
         /* JADX INFO: renamed from: e */
         public String f6488e;
+
+        /* JADX INFO: renamed from: a */
+        public static final String[] f6484a = {ModelAuditLogEntry.CHANGE_KEY_ID, "key", "metadata"};
+
+        /* JADX INFO: renamed from: c */
+        public final SparseArray<C2690i> f6486c = new SparseArray<>();
 
         public a(InterfaceC2946a interfaceC2946a) {
             this.f6485b = interfaceC2946a;
@@ -99,6 +99,32 @@ public class C2691j {
         public static String m2801k(String str) {
             String strValueOf = String.valueOf(str);
             return strValueOf.length() != 0 ? "ExoPlayerCacheIndex".concat(strValueOf) : new String("ExoPlayerCacheIndex");
+        }
+
+        /* JADX INFO: renamed from: i */
+        public final void m2810i(SQLiteDatabase sQLiteDatabase, C2690i c2690i) throws IOException {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            C2691j.m2794b(c2690i.f6475e, new DataOutputStream(byteArrayOutputStream));
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(ModelAuditLogEntry.CHANGE_KEY_ID, Integer.valueOf(c2690i.f6471a));
+            contentValues.put("key", c2690i.f6472b);
+            contentValues.put("metadata", byteArray);
+            String str = this.f6488e;
+            Objects.requireNonNull(str);
+            sQLiteDatabase.replaceOrThrow(str, null, contentValues);
+        }
+
+        /* JADX INFO: renamed from: l */
+        public final void m2811l(SQLiteDatabase sQLiteDatabase) throws DatabaseIOException {
+            String str = this.f6487d;
+            Objects.requireNonNull(str);
+            C2949d.m3546b(sQLiteDatabase, 1, str, 1);
+            String str2 = this.f6488e;
+            Objects.requireNonNull(str2);
+            m2800j(sQLiteDatabase, str2);
+            String str3 = this.f6488e;
+            sQLiteDatabase.execSQL(C1643a.m861l(C1643a.m841b(str3, 88), "CREATE TABLE ", str3, " ", "(id INTEGER PRIMARY KEY NOT NULL,key TEXT NOT NULL,metadata BLOB NOT NULL)"));
         }
 
         @Override // p007b.p225i.p226a.p242c.p257e3.p258b0.C2691j.c
@@ -269,37 +295,11 @@ public class C2691j {
                 throw new DatabaseIOException(e2);
             }
         }
-
-        /* JADX INFO: renamed from: i */
-        public final void m2810i(SQLiteDatabase sQLiteDatabase, C2690i c2690i) throws IOException {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            C2691j.m2794b(c2690i.f6475e, new DataOutputStream(byteArrayOutputStream));
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(ModelAuditLogEntry.CHANGE_KEY_ID, Integer.valueOf(c2690i.f6471a));
-            contentValues.put("key", c2690i.f6472b);
-            contentValues.put("metadata", byteArray);
-            String str = this.f6488e;
-            Objects.requireNonNull(str);
-            sQLiteDatabase.replaceOrThrow(str, null, contentValues);
-        }
-
-        /* JADX INFO: renamed from: l */
-        public final void m2811l(SQLiteDatabase sQLiteDatabase) throws DatabaseIOException {
-            String str = this.f6487d;
-            Objects.requireNonNull(str);
-            C2949d.m3546b(sQLiteDatabase, 1, str, 1);
-            String str2 = this.f6488e;
-            Objects.requireNonNull(str2);
-            m2800j(sQLiteDatabase, str2);
-            String str3 = this.f6488e;
-            sQLiteDatabase.execSQL(C1643a.m861l(C1643a.m841b(str3, 88), "CREATE TABLE ", str3, " ", "(id INTEGER PRIMARY KEY NOT NULL,key TEXT NOT NULL,metadata BLOB NOT NULL)"));
-        }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.e3.b0.j$b */
     /* JADX INFO: compiled from: CachedContentIndex.java */
-    public static class b implements c {
+    public class b implements c {
 
         /* JADX INFO: renamed from: a */
         public final boolean f6489a;
@@ -356,6 +356,32 @@ public class C2691j {
             this.f6491c = secretKeySpec;
             this.f6492d = z2 ? new SecureRandom() : null;
             this.f6493e = new C2737e(file);
+        }
+
+        /* JADX INFO: renamed from: i */
+        public final int m2812i(C2690i c2690i, int i) {
+            int iHashCode = c2690i.f6472b.hashCode() + (c2690i.f6471a * 31);
+            if (i >= 2) {
+                return (iHashCode * 31) + c2690i.f6475e.hashCode();
+            }
+            long jM2814a = C2692k.m2814a(c2690i.f6475e);
+            return (iHashCode * 31) + ((int) (jM2814a ^ (jM2814a >>> 32)));
+        }
+
+        /* JADX INFO: renamed from: j */
+        public final C2690i m2813j(int i, DataInputStream dataInputStream) throws IOException {
+            C2695n c2695nM2793a;
+            int i2 = dataInputStream.readInt();
+            String utf = dataInputStream.readUTF();
+            if (i < 2) {
+                long j = dataInputStream.readLong();
+                C2694m c2694m = new C2694m();
+                C2694m.m2815a(c2694m, j);
+                c2695nM2793a = C2695n.f6498a.m2817a(c2694m);
+            } else {
+                c2695nM2793a = C2691j.m2793a(dataInputStream);
+            }
+            return new C2690i(i2, utf, c2695nM2793a);
         }
 
         @Override // p007b.p225i.p226a.p242c.p257e3.p258b0.C2691j.c
@@ -563,32 +589,6 @@ public class C2691j {
             C2737e c2737e = this.f6493e;
             c2737e.f6704a.delete();
             c2737e.f6705b.delete();
-        }
-
-        /* JADX INFO: renamed from: i */
-        public final int m2812i(C2690i c2690i, int i) {
-            int iHashCode = c2690i.f6472b.hashCode() + (c2690i.f6471a * 31);
-            if (i >= 2) {
-                return (iHashCode * 31) + c2690i.f6475e.hashCode();
-            }
-            long jM2814a = C2692k.m2814a(c2690i.f6475e);
-            return (iHashCode * 31) + ((int) (jM2814a ^ (jM2814a >>> 32)));
-        }
-
-        /* JADX INFO: renamed from: j */
-        public final C2690i m2813j(int i, DataInputStream dataInputStream) throws IOException {
-            C2695n c2695nM2793a;
-            int i2 = dataInputStream.readInt();
-            String utf = dataInputStream.readUTF();
-            if (i < 2) {
-                long j = dataInputStream.readLong();
-                C2694m c2694m = new C2694m();
-                C2694m.m2815a(c2694m, j);
-                c2695nM2793a = C2695n.f6498a.m2817a(c2694m);
-            } else {
-                c2695nM2793a = C2691j.m2793a(dataInputStream);
-            }
-            return new C2690i(i2, utf, c2695nM2793a);
         }
     }
 

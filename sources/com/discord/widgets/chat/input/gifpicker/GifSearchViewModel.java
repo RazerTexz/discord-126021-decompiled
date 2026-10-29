@@ -52,7 +52,7 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifSearchViewModel$1 */
     /* JADX INFO: compiled from: GifSearchViewModel.kt */
-    public static final class C78711 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78711 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78711() {
             super(1);
         }
@@ -71,7 +71,7 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifSearchViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -142,11 +142,11 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifSearchViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
         private final List<String> trendingSearchTerms;
 
         /* JADX INFO: compiled from: GifSearchViewModel.kt */
-        public static final /* data */ class SearchResults extends StoreState {
+        public final /* data */ class SearchResults extends StoreState {
             private final List<ModelGif> gifs;
             private final String searchQuery;
             private final List<String> suggested;
@@ -164,6 +164,18 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
                 this.searchQuery = str;
             }
 
+            public final List<ModelGif> component1() {
+                return this.gifs;
+            }
+
+            public final List<String> component2() {
+                return this.suggested;
+            }
+
+            public final List<String> component3() {
+                return this.trending;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ SearchResults copy$default(SearchResults searchResults, List list, List list2, List list3, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -179,23 +191,6 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
                     str = searchResults.searchQuery;
                 }
                 return searchResults.copy(list, list2, list3, str);
-            }
-
-            public final List<ModelGif> component1() {
-                return this.gifs;
-            }
-
-            public final List<String> component2() {
-                return this.suggested;
-            }
-
-            public final List<String> component3() {
-                return this.trending;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getSearchQuery() {
-                return this.searchQuery;
             }
 
             public final SearchResults copy(List<ModelGif> gifs, List<String> suggested, List<String> trending, String searchQuery) {
@@ -218,6 +213,11 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
 
             public final List<ModelGif> getGifs() {
                 return this.gifs;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getSearchQuery() {
+                return this.searchQuery;
             }
 
             public final String getSearchQuery() {
@@ -256,7 +256,7 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: GifSearchViewModel.kt */
-        public static final /* data */ class TrendingSearchTermsResults extends StoreState {
+        public final /* data */ class TrendingSearchTermsResults extends StoreState {
             private final List<String> trending;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -266,16 +266,16 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
                 this.trending = list;
             }
 
+            public final List<String> component1() {
+                return this.trending;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ TrendingSearchTermsResults copy$default(TrendingSearchTermsResults trendingSearchTermsResults, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = trendingSearchTermsResults.trending;
                 }
                 return trendingSearchTermsResults.copy(list);
-            }
-
-            public final List<String> component1() {
-                return this.trending;
             }
 
             public final TrendingSearchTermsResults copy(List<String> trending) {
@@ -321,10 +321,10 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: GifSearchViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: GifSearchViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<GifAdapterItem> adapterItems;
 
             /* JADX INFO: renamed from: gifCount$delegate, reason: from kotlin metadata */
@@ -339,16 +339,16 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
                 this.gifCount = C12083g.lazy(new GifSearchViewModel$ViewState$Loaded$gifCount$2(this));
             }
 
+            public final List<GifAdapterItem> component1() {
+                return this.adapterItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.adapterItems;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<GifAdapterItem> component1() {
-                return this.adapterItems;
             }
 
             public final Loaded copy(List<? extends GifAdapterItem> adapterItems) {
@@ -385,7 +385,7 @@ public final class GifSearchViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: GifSearchViewModel.kt */
-        public static final class LoadingSearchResults extends ViewState {
+        public final class LoadingSearchResults extends ViewState {
             public static final LoadingSearchResults INSTANCE = new LoadingSearchResults();
 
             private LoadingSearchResults() {

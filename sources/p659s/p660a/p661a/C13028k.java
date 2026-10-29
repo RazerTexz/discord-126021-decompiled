@@ -24,7 +24,7 @@ public class C13028k {
 
     /* JADX INFO: renamed from: s.a.a.k$a */
     /* JADX INFO: compiled from: LockFreeLinkedList.kt */
-    public static abstract class a extends AbstractC13021d<C13028k> {
+    public abstract class a extends AbstractC13021d<C13028k> {
 
         /* JADX INFO: renamed from: b */
         public C13028k f27687b;
@@ -53,7 +53,7 @@ public class C13028k {
 
     /* JADX INFO: renamed from: s.a.a.k$b */
     /* JADX INFO: compiled from: LockFreeLinkedList.kt */
-    public static final class b extends AbstractC13033p {
+    public final class b extends AbstractC13033p {
     }
 
     /* JADX INFO: renamed from: e */
@@ -179,16 +179,6 @@ public class C13028k {
         }
     }
 
-    /* JADX INFO: renamed from: m */
-    public boolean mo11150m() {
-        return m11155i() instanceof C13034q;
-    }
-
-    /* JADX INFO: renamed from: n */
-    public boolean mo11151n() {
-        return m11159o() == null;
-    }
-
     /* JADX INFO: renamed from: o */
     public final C13028k m11159o() {
         Object objM11155i;
@@ -224,6 +214,16 @@ public class C13028k {
             return aVar.mo11142a(this) == null ? 1 : 2;
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: m */
+    public boolean mo11150m() {
+        return m11155i() instanceof C13034q;
+    }
+
+    /* JADX INFO: renamed from: n */
+    public boolean mo11151n() {
+        return m11159o() == null;
     }
 
     public String toString() {

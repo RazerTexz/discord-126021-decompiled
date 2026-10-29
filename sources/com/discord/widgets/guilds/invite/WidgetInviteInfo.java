@@ -183,62 +183,6 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         textView4.setText(getIntroText(inviter2 != null ? inviter2.getUsername() : null));
     }
 
-    private final CharSequence getFormattedGuildName(String guildName) {
-        return C1107b.m215g(C1643a.m886y("**", guildName, "**"), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null);
-    }
-
-    private final CharSequence getIntroText(String userName) {
-        return userName == null ? C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_join, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null) : C1107b.m212d(this, C5419R.string.auth_message_invited_by, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
-    }
-
-    private final CharSequence getIntroTextForGroup(String userName, String channelName) {
-        return channelName.length() > 0 ? C1107b.m212d(this, C5419R.string.auth_message_invited_by, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null) : C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null);
-    }
-
-    private final CharSequence getInviteSubtitleForDirectFriend(String userName) {
-        return C1107b.m212d(this, C5419R.string.instant_invite_direct_friend_description, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
-    }
-
-    private final CharSequence getInviteTitleForDirectFriend(String userName) {
-        return C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_chat, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
-    }
-
-    private final void parseAttributeSet(Context context, AttributeSet attributeSet, int defStyleAttr) {
-        if (attributeSet == null) {
-            return;
-        }
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C5419R.a.WidgetInviteInfo, defStyleAttr, 0);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…iteInfo, defStyleAttr, 0)");
-        final int dimension = (int) typedArrayObtainStyledAttributes.getDimension(0, 0.0f);
-        final int dimension2 = (int) typedArrayObtainStyledAttributes.getDimension(1, 0.0f);
-        typedArrayObtainStyledAttributes.recycle();
-        post(new Runnable() { // from class: com.discord.widgets.guilds.invite.WidgetInviteInfo.parseAttributeSet.1
-            @Override // java.lang.Runnable
-            public final void run() {
-                if (dimension != 0) {
-                    GuildView guildView = WidgetInviteInfo.this.binding.f16789c;
-                    C12238m.checkNotNullExpressionValue(guildView, "binding.inviteAvatar");
-                    ViewGroup.LayoutParams layoutParams = guildView.getLayoutParams();
-                    Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
-                    int i = dimension;
-                    layoutParams.height = i;
-                    layoutParams.width = i;
-                    guildView.setLayoutParams(layoutParams);
-                }
-                if (dimension2 != 0) {
-                    SimpleDraweeView simpleDraweeView = WidgetInviteInfo.this.binding.f16790d;
-                    C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
-                    ViewGroup.LayoutParams layoutParams2 = simpleDraweeView.getLayoutParams();
-                    Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
-                    int i2 = dimension2;
-                    layoutParams2.height = i2;
-                    layoutParams2.width = i2;
-                    simpleDraweeView.setLayoutParams(layoutParams2);
-                }
-            }
-        });
-    }
-
     public final void configureUI(ModelInvite model, final Function0<Unit> onAcceptClick) {
         C12238m.checkNotNullParameter(model, "model");
         C12238m.checkNotNullParameter(onAcceptClick, "onAcceptClick");
@@ -302,6 +246,62 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         simpleDraweeView2.setVisibility(8);
     }
 
+    private final CharSequence getFormattedGuildName(String guildName) {
+        return C1107b.m215g(C1643a.m886y("**", guildName, "**"), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null);
+    }
+
+    private final CharSequence getIntroText(String userName) {
+        return userName == null ? C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_join, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null) : C1107b.m212d(this, C5419R.string.auth_message_invited_by, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
+    }
+
+    private final CharSequence getIntroTextForGroup(String userName, String channelName) {
+        return channelName.length() > 0 ? C1107b.m212d(this, C5419R.string.auth_message_invited_by, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null) : C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null);
+    }
+
+    private final CharSequence getInviteSubtitleForDirectFriend(String userName) {
+        return C1107b.m212d(this, C5419R.string.instant_invite_direct_friend_description, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
+    }
+
+    private final CharSequence getInviteTitleForDirectFriend(String userName) {
+        return C1107b.m212d(this, C5419R.string.instant_invite_you_have_been_invited_to_chat, new Object[]{userName}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
+    }
+
+    private final void parseAttributeSet(Context context, AttributeSet attributeSet, int defStyleAttr) {
+        if (attributeSet == null) {
+            return;
+        }
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C5419R.a.WidgetInviteInfo, defStyleAttr, 0);
+        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…iteInfo, defStyleAttr, 0)");
+        final int dimension = (int) typedArrayObtainStyledAttributes.getDimension(0, 0.0f);
+        final int dimension2 = (int) typedArrayObtainStyledAttributes.getDimension(1, 0.0f);
+        typedArrayObtainStyledAttributes.recycle();
+        post(new Runnable() { // from class: com.discord.widgets.guilds.invite.WidgetInviteInfo.parseAttributeSet.1
+            @Override // java.lang.Runnable
+            public final void run() {
+                if (dimension != 0) {
+                    GuildView guildView = WidgetInviteInfo.this.binding.f16789c;
+                    C12238m.checkNotNullExpressionValue(guildView, "binding.inviteAvatar");
+                    ViewGroup.LayoutParams layoutParams = guildView.getLayoutParams();
+                    Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
+                    int i = dimension;
+                    layoutParams.height = i;
+                    layoutParams.width = i;
+                    guildView.setLayoutParams(layoutParams);
+                }
+                if (dimension2 != 0) {
+                    SimpleDraweeView simpleDraweeView = WidgetInviteInfo.this.binding.f16790d;
+                    C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+                    ViewGroup.LayoutParams layoutParams2 = simpleDraweeView.getLayoutParams();
+                    Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
+                    int i2 = dimension2;
+                    layoutParams2.height = i2;
+                    layoutParams2.width = i2;
+                    simpleDraweeView.setLayoutParams(layoutParams2);
+                }
+            }
+        });
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetInviteInfo(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
@@ -350,7 +350,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetInviteInfo$configureUIFailure$1 */
     /* JADX INFO: compiled from: WidgetInviteInfo.kt */
-    public static final class C87131 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C87131 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ MeUser $meUser;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

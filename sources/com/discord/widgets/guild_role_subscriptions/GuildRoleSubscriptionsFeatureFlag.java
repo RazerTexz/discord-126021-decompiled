@@ -27,36 +27,16 @@ public final class GuildRoleSubscriptionsFeatureFlag {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildRoleSubscriptionsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
     private final ObservationDeck observationDeck;
     private final StoreExperiments storeExperiments;
     private final StoreGuilds storeGuilds;
     private final StorePermissions storePermissions;
     private final StoreUser storeUser;
-
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final boolean isCreatorMonetizable(Guild guild) {
-            return guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE) && !guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE_DISABLED);
-        }
-
-        public final GuildRoleSubscriptionsFeatureFlag getINSTANCE() {
-            Lazy lazy = GuildRoleSubscriptionsFeatureFlag.INSTANCE$delegate;
-            Companion companion = GuildRoleSubscriptionsFeatureFlag.INSTANCE;
-            return (GuildRoleSubscriptionsFeatureFlag) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildRoleSubscriptionsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptions$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public static final class C84311 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C84311 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -78,7 +58,7 @@ public final class GuildRoleSubscriptionsFeatureFlag {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptionsSettings$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public static final class C84321 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C84321 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -100,7 +80,7 @@ public final class GuildRoleSubscriptionsFeatureFlag {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeePurchaseFeedbackLoopSystemMessages$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public static final class C84331 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C84331 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ Long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -122,7 +102,7 @@ public final class GuildRoleSubscriptionsFeatureFlag {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeIsGuildEligibleForGuildRoleSubscriptionFreeTrials$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public static final class C84341 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C84341 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -139,6 +119,26 @@ public final class GuildRoleSubscriptionsFeatureFlag {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2() {
             return GuildRoleSubscriptionsFeatureFlag.this.isGuildEligibleForGuildRoleSubscriptionTrials(this.$guildId);
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GuildRoleSubscriptionsFeatureFlag getINSTANCE() {
+            Lazy lazy = GuildRoleSubscriptionsFeatureFlag.INSTANCE$delegate;
+            Companion companion = GuildRoleSubscriptionsFeatureFlag.INSTANCE;
+            return (GuildRoleSubscriptionsFeatureFlag) lazy.getValue();
+        }
+
+        private final boolean isCreatorMonetizable(Guild guild) {
+            return guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE) && !guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE_DISABLED);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -159,25 +159,6 @@ public final class GuildRoleSubscriptionsFeatureFlag {
         this.observationDeck = observationDeck;
     }
 
-    public static /* synthetic */ boolean canGuildSeeGuildRoleSubscriptionSettings$default(GuildRoleSubscriptionsFeatureFlag guildRoleSubscriptionsFeatureFlag, long j, CreatorMonetizationCountryAllowlist creatorMonetizationCountryAllowlist, int i, Object obj) {
-        if ((i & 2) != 0) {
-            creatorMonetizationCountryAllowlist = CreatorMonetizationCountryAllowlist.INSTANCE.getINSTANCE();
-        }
-        return guildRoleSubscriptionsFeatureFlag.canGuildSeeGuildRoleSubscriptionSettings(j, creatorMonetizationCountryAllowlist);
-    }
-
-    public static /* synthetic */ boolean canUserAccessRoleSubscriptionManagement$default(GuildRoleSubscriptionsFeatureFlag guildRoleSubscriptionsFeatureFlag, StoreExperiments storeExperiments, int i, Object obj) {
-        if ((i & 1) != 0) {
-            storeExperiments = guildRoleSubscriptionsFeatureFlag.storeExperiments;
-        }
-        return guildRoleSubscriptionsFeatureFlag.canUserAccessRoleSubscriptionManagement(storeExperiments);
-    }
-
-    private final boolean canUserCreateRoleSubscriptions() {
-        Experiment userExperiment = this.storeExperiments.getUserExperiment("2021-08_guild_role_subscription_users", false);
-        return userExperiment != null && userExperiment.getBucket() == 1;
-    }
-
     public final boolean canGuildAccessMobileWebPurchases(long guildId) {
         Experiment guildExperiment = this.storeExperiments.getGuildExperiment("2022-05_mobile_web_role_subscription_purchase_page", guildId, false);
         return guildExperiment != null && guildExperiment.getBucket() == 1;
@@ -186,6 +167,13 @@ public final class GuildRoleSubscriptionsFeatureFlag {
     public final boolean canGuildCreateRoleSubscriptions(long guildId) {
         Experiment guildExperiment = this.storeExperiments.getGuildExperiment("2021-06_guild_role_subscriptions", guildId, false);
         return guildExperiment != null && guildExperiment.getBucket() == 1;
+    }
+
+    public static /* synthetic */ boolean canGuildSeeGuildRoleSubscriptionSettings$default(GuildRoleSubscriptionsFeatureFlag guildRoleSubscriptionsFeatureFlag, long j, CreatorMonetizationCountryAllowlist creatorMonetizationCountryAllowlist, int i, Object obj) {
+        if ((i & 2) != 0) {
+            creatorMonetizationCountryAllowlist = CreatorMonetizationCountryAllowlist.INSTANCE.getINSTANCE();
+        }
+        return guildRoleSubscriptionsFeatureFlag.canGuildSeeGuildRoleSubscriptionSettings(j, creatorMonetizationCountryAllowlist);
     }
 
     public final boolean canGuildSeeGuildRoleSubscriptionSettings(long guildId, CreatorMonetizationCountryAllowlist countryAllowlist) {
@@ -213,9 +201,21 @@ public final class GuildRoleSubscriptionsFeatureFlag {
         return guildExperiment != null && guildExperiment.getBucket() == 1 && isGuildEligibleForRoleSubscriptions(guildId);
     }
 
+    public static /* synthetic */ boolean canUserAccessRoleSubscriptionManagement$default(GuildRoleSubscriptionsFeatureFlag guildRoleSubscriptionsFeatureFlag, StoreExperiments storeExperiments, int i, Object obj) {
+        if ((i & 1) != 0) {
+            storeExperiments = guildRoleSubscriptionsFeatureFlag.storeExperiments;
+        }
+        return guildRoleSubscriptionsFeatureFlag.canUserAccessRoleSubscriptionManagement(storeExperiments);
+    }
+
     public final boolean canUserAccessRoleSubscriptionManagement(StoreExperiments experiments) {
         C12238m.checkNotNullParameter(experiments, "experiments");
         Experiment userExperiment = experiments.getUserExperiment("2022-06_native_mobile_role_subscription_management", false);
+        return userExperiment != null && userExperiment.getBucket() == 1;
+    }
+
+    private final boolean canUserCreateRoleSubscriptions() {
+        Experiment userExperiment = this.storeExperiments.getUserExperiment("2021-08_guild_role_subscription_users", false);
         return userExperiment != null && userExperiment.getBucket() == 1;
     }
 

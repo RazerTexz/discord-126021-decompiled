@@ -40,10 +40,7 @@ public final class C3183a {
     /* JADX INFO: renamed from: b.i.a.f.c.a.a$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
     @Deprecated
-    public static class a implements C3266a.d {
-
-        /* JADX INFO: renamed from: j */
-        public static final a f9210j = new a(new C13228a());
+    public class a implements C3266a.d {
 
         /* JADX INFO: renamed from: k */
         public final String f9211k;
@@ -54,6 +51,9 @@ public final class C3183a {
         /* JADX INFO: renamed from: m */
         @Nullable
         public final String f9213m;
+
+        /* JADX INFO: renamed from: j */
+        public static final a f9210j = new a(new C13228a());
 
         public a(C13228a c13228a) {
             this.f9211k = c13228a.f9214a;
@@ -79,7 +79,7 @@ public final class C3183a {
         /* JADX INFO: renamed from: b.i.a.f.c.a.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
         @Deprecated
-        public static class C13228a {
+        public class C13228a {
 
             /* JADX INFO: renamed from: a */
             public String f9214a;

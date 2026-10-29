@@ -34,7 +34,7 @@ public class C5215c extends FrameLayout implements InterfaceC5213a {
 
     /* JADX INFO: renamed from: b.o.a.u.c$a */
     /* JADX INFO: compiled from: OverlayLayout.java */
-    public static class a extends FrameLayout.LayoutParams {
+    public class a extends FrameLayout.LayoutParams {
 
         /* JADX INFO: renamed from: a */
         public boolean f14158a;
@@ -90,6 +90,37 @@ public class C5215c extends FrameLayout implements InterfaceC5213a {
         setWillNotDraw(false);
     }
 
+    @Override // android.view.View
+    @SuppressLint({"MissingSuperCall"})
+    public void draw(Canvas canvas) {
+        f14155k.m7159a(1, "normal draw called.");
+        InterfaceC5213a.a aVar = InterfaceC5213a.a.PREVIEW;
+        if (m7413b(aVar)) {
+            m7412a(aVar, canvas);
+        }
+    }
+
+    @Override // android.view.ViewGroup
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        a aVar = (a) view.getLayoutParams();
+        if (aVar.m7415a(this.f14156l)) {
+            f14155k.m7159a(0, "Performing drawing for view:", view.getClass().getSimpleName(), "target:", this.f14156l, "params:", aVar);
+            return super.drawChild(canvas, view, j);
+        }
+        f14155k.m7159a(0, "Skipping drawing for view:", view.getClass().getSimpleName(), "target:", this.f14156l, "params:", aVar);
+        return false;
+    }
+
+    @Override // android.widget.FrameLayout, android.view.ViewGroup
+    /* JADX INFO: renamed from: c, reason: merged with bridge method [inline-methods] */
+    public a generateLayoutParams(AttributeSet attributeSet) {
+        return new a(getContext(), attributeSet);
+    }
+
+    public boolean getHardwareCanvasEnabled() {
+        return this.f14157m;
+    }
+
     /* JADX INFO: renamed from: a */
     public void m7412a(@NonNull InterfaceC5213a.a aVar, @NonNull Canvas canvas) {
         synchronized (this) {
@@ -117,37 +148,6 @@ public class C5215c extends FrameLayout implements InterfaceC5213a {
             }
         }
         return false;
-    }
-
-    @Override // android.widget.FrameLayout, android.view.ViewGroup
-    /* JADX INFO: renamed from: c, reason: merged with bridge method [inline-methods] */
-    public a generateLayoutParams(AttributeSet attributeSet) {
-        return new a(getContext(), attributeSet);
-    }
-
-    @Override // android.view.View
-    @SuppressLint({"MissingSuperCall"})
-    public void draw(Canvas canvas) {
-        f14155k.m7159a(1, "normal draw called.");
-        InterfaceC5213a.a aVar = InterfaceC5213a.a.PREVIEW;
-        if (m7413b(aVar)) {
-            m7412a(aVar, canvas);
-        }
-    }
-
-    @Override // android.view.ViewGroup
-    public boolean drawChild(Canvas canvas, View view, long j) {
-        a aVar = (a) view.getLayoutParams();
-        if (aVar.m7415a(this.f14156l)) {
-            f14155k.m7159a(0, "Performing drawing for view:", view.getClass().getSimpleName(), "target:", this.f14156l, "params:", aVar);
-            return super.drawChild(canvas, view, j);
-        }
-        f14155k.m7159a(0, "Skipping drawing for view:", view.getClass().getSimpleName(), "target:", this.f14156l, "params:", aVar);
-        return false;
-    }
-
-    public boolean getHardwareCanvasEnabled() {
-        return this.f14157m;
     }
 
     public void setHardwareCanvasEnabled(boolean z2) {

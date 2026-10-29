@@ -12,7 +12,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class ArcMotion extends PathMotion {
     private static final float DEFAULT_MAX_ANGLE_DEGREES = 70.0f;
-    private static final float DEFAULT_MAX_TANGENT = (float) Math.tan(Math.toRadians(35.0d));
     private static final float DEFAULT_MIN_ANGLE_DEGREES = 0.0f;
     private float mMaximumAngle;
     private float mMaximumTangent;
@@ -20,6 +19,7 @@ public class ArcMotion extends PathMotion {
     private float mMinimumHorizontalTangent;
     private float mMinimumVerticalAngle;
     private float mMinimumVerticalTangent;
+    private static final float DEFAULT_MAX_TANGENT = (float) Math.tan(Math.toRadians(35.0d));
 
     public ArcMotion() {
         this.mMinimumHorizontalAngle = 0.0f;
@@ -28,13 +28,6 @@ public class ArcMotion extends PathMotion {
         this.mMinimumHorizontalTangent = 0.0f;
         this.mMinimumVerticalTangent = 0.0f;
         this.mMaximumTangent = DEFAULT_MAX_TANGENT;
-    }
-
-    private static float toTangent(float f) {
-        if (f < 0.0f || f > 90.0f) {
-            throw new IllegalArgumentException("Arc must be between 0 and 90 degrees");
-        }
-        return (float) Math.tan(Math.toRadians(f / 2.0f));
     }
 
     public float getMaximumAngle() {
@@ -115,6 +108,13 @@ public class ArcMotion extends PathMotion {
     public void setMinimumVerticalAngle(float f) {
         this.mMinimumVerticalAngle = f;
         this.mMinimumVerticalTangent = toTangent(f);
+    }
+
+    private static float toTangent(float f) {
+        if (f < 0.0f || f > 90.0f) {
+            throw new IllegalArgumentException("Arc must be between 0 and 90 degrees");
+        }
+        return (float) Math.tan(Math.toRadians(f / 2.0f));
     }
 
     @SuppressLint({"RestrictedApi"})

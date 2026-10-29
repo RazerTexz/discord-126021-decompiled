@@ -60,7 +60,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$1 */
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final class C98861 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C98861 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C98861() {
             super(1);
         }
@@ -78,8 +78,47 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$1 */
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final class Companion {
+    public final class C98891 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C98891() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            SettingsPremiumViewModel.this.fetchData();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$2 */
+    /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
+    public final class C98902 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C98902() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            SettingsPremiumViewModel.this.onCancelError();
+        }
+    }
+
+    /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -152,10 +191,10 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final /* data */ class ErrorToast extends Event {
+        public final /* data */ class ErrorToast extends Event {
             private final int errorStringResId;
 
             public ErrorToast(@StringRes int i) {
@@ -170,11 +209,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return errorToast.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getErrorStringResId() {
-                return this.errorStringResId;
-            }
-
             public final ErrorToast copy(@StringRes int errorStringResId) {
                 return new ErrorToast(errorStringResId);
             }
@@ -184,6 +218,11 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ErrorToast) && this.errorStringResId == ((ErrorToast) other).errorStringResId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getErrorStringResId() {
+                return this.errorStringResId;
             }
 
             public final int getErrorStringResId() {
@@ -208,10 +247,10 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static abstract class InvoicePreviewFetch {
+    public abstract class InvoicePreviewFetch {
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final class Error extends InvoicePreviewFetch {
+        public final class Error extends InvoicePreviewFetch {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -220,7 +259,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final /* data */ class Invoice extends InvoicePreviewFetch {
+        public final /* data */ class Invoice extends InvoicePreviewFetch {
             private final ModelInvoicePreview modelInvoicePreview;
 
             public Invoice(ModelInvoicePreview modelInvoicePreview) {
@@ -235,11 +274,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return invoice.copy(modelInvoicePreview);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelInvoicePreview getModelInvoicePreview() {
-                return this.modelInvoicePreview;
-            }
-
             public final Invoice copy(ModelInvoicePreview modelInvoicePreview) {
                 return new Invoice(modelInvoicePreview);
             }
@@ -249,6 +283,11 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof Invoice) && C12238m.areEqual(this.modelInvoicePreview, ((Invoice) other).modelInvoicePreview);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelInvoicePreview getModelInvoicePreview() {
+                return this.modelInvoicePreview;
             }
 
             public final ModelInvoicePreview getModelInvoicePreview() {
@@ -280,7 +319,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final InvoicePreviewFetch currentInvoicePreviewFetch;
         private final StoreEntitlements.State entitlementState;
         private final StoreGuildBoost.State guildBoostState;
@@ -309,46 +348,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
             this.purchaseState = state4;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StorePaymentSources.PaymentSourcesState getPaymentSourcesState() {
-            return this.paymentSourcesState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
-            return this.subscriptionsState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreEntitlements.State getEntitlementState() {
-            return this.entitlementState;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StoreGuildBoost.State getGuildBoostState() {
-            return this.guildBoostState;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final InvoicePreviewFetch getRenewalInvoicePreviewFetch() {
-            return this.renewalInvoicePreviewFetch;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final InvoicePreviewFetch getCurrentInvoicePreviewFetch() {
-            return this.currentInvoicePreviewFetch;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
-            return this.skuDetailsState;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final StoreGooglePlayPurchases.State getPurchaseState() {
-            return this.purchaseState;
-        }
-
         public final StoreState copy(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState, StoreEntitlements.State entitlementState, StoreGuildBoost.State guildBoostState, InvoicePreviewFetch renewalInvoicePreviewFetch, InvoicePreviewFetch currentInvoicePreviewFetch, StoreGooglePlaySkuDetails.State skuDetailsState, StoreGooglePlayPurchases.State purchaseState) {
             C12238m.checkNotNullParameter(paymentSourcesState, "paymentSourcesState");
             C12238m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
@@ -372,32 +371,72 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.paymentSourcesState, storeState.paymentSourcesState) && C12238m.areEqual(this.subscriptionsState, storeState.subscriptionsState) && C12238m.areEqual(this.entitlementState, storeState.entitlementState) && C12238m.areEqual(this.guildBoostState, storeState.guildBoostState) && C12238m.areEqual(this.renewalInvoicePreviewFetch, storeState.renewalInvoicePreviewFetch) && C12238m.areEqual(this.currentInvoicePreviewFetch, storeState.currentInvoicePreviewFetch) && C12238m.areEqual(this.skuDetailsState, storeState.skuDetailsState) && C12238m.areEqual(this.purchaseState, storeState.purchaseState);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final InvoicePreviewFetch getCurrentInvoicePreviewFetch() {
             return this.currentInvoicePreviewFetch;
+        }
+
+        public final InvoicePreviewFetch getCurrentInvoicePreviewFetch() {
+            return this.currentInvoicePreviewFetch;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreEntitlements.State getEntitlementState() {
+            return this.entitlementState;
         }
 
         public final StoreEntitlements.State getEntitlementState() {
             return this.entitlementState;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final StoreGuildBoost.State getGuildBoostState() {
             return this.guildBoostState;
+        }
+
+        public final StoreGuildBoost.State getGuildBoostState() {
+            return this.guildBoostState;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StorePaymentSources.PaymentSourcesState getPaymentSourcesState() {
+            return this.paymentSourcesState;
         }
 
         public final StorePaymentSources.PaymentSourcesState getPaymentSourcesState() {
             return this.paymentSourcesState;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final StoreGooglePlayPurchases.State getPurchaseState() {
             return this.purchaseState;
+        }
+
+        public final StoreGooglePlayPurchases.State getPurchaseState() {
+            return this.purchaseState;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final InvoicePreviewFetch getRenewalInvoicePreviewFetch() {
+            return this.renewalInvoicePreviewFetch;
         }
 
         public final InvoicePreviewFetch getRenewalInvoicePreviewFetch() {
             return this.renewalInvoicePreviewFetch;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
             return this.skuDetailsState;
+        }
+
+        public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
+            return this.skuDetailsState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
         }
 
         public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
@@ -446,7 +485,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final /* data */ class SubscriptionAndInvoice {
+    public final /* data */ class SubscriptionAndInvoice {
         private final InvoicePreviewFetch invoicePreviewFetch;
         private final StoreSubscriptions.SubscriptionsState subscriptionsState;
 
@@ -467,16 +506,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
             return subscriptionAndInvoice.copy(subscriptionsState, invoicePreviewFetch);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
-            return this.subscriptionsState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final InvoicePreviewFetch getInvoicePreviewFetch() {
-            return this.invoicePreviewFetch;
-        }
-
         public final SubscriptionAndInvoice copy(StoreSubscriptions.SubscriptionsState subscriptionsState, InvoicePreviewFetch invoicePreviewFetch) {
             C12238m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
             C12238m.checkNotNullParameter(invoicePreviewFetch, "invoicePreviewFetch");
@@ -494,8 +523,18 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.subscriptionsState, subscriptionAndInvoice.subscriptionsState) && C12238m.areEqual(this.invoicePreviewFetch, subscriptionAndInvoice.invoicePreviewFetch);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final InvoicePreviewFetch getInvoicePreviewFetch() {
             return this.invoicePreviewFetch;
+        }
+
+        public final InvoicePreviewFetch getInvoicePreviewFetch() {
+            return this.invoicePreviewFetch;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
         }
 
         public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
@@ -520,10 +559,10 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final class Failure extends ViewState {
+        public final class Failure extends ViewState {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -532,7 +571,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final ModelInvoicePreview currentInvoicePreview;
             private final List<ModelEntitlement> entitlements;
             private final Map<Long, ModelGuildBoostSlot> guildSubscriptions;
@@ -567,32 +606,12 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 this.pastDueGracePeriodDays = i;
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelSubscription modelSubscription, List list, boolean z2, List list2, Map map, boolean z3, ModelInvoicePreview modelInvoicePreview, ModelInvoicePreview modelInvoicePreview2, Map map2, List list3, int i, int i2, Object obj) {
-                return loaded.copy((i2 & 1) != 0 ? loaded.premiumSubscription : modelSubscription, (i2 & 2) != 0 ? loaded.paymentSources : list, (i2 & 4) != 0 ? loaded.isBusy : z2, (i2 & 8) != 0 ? loaded.entitlements : list2, (i2 & 16) != 0 ? loaded.guildSubscriptions : map, (i2 & 32) != 0 ? loaded.hasAnyGuildBoosts : z3, (i2 & 64) != 0 ? loaded.renewalInvoicePreview : modelInvoicePreview, (i2 & 128) != 0 ? loaded.currentInvoicePreview : modelInvoicePreview2, (i2 & 256) != 0 ? loaded.skuDetails : map2, (i2 & 512) != 0 ? loaded.purchases : list3, (i2 & 1024) != 0 ? loaded.pastDueGracePeriodDays : i);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelSubscription getPremiumSubscription() {
-                return this.premiumSubscription;
-            }
-
             public final List<Purchase> component10() {
                 return this.purchases;
             }
 
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final int getPastDueGracePeriodDays() {
-                return this.pastDueGracePeriodDays;
-            }
-
             public final List<ModelPaymentSource> component2() {
                 return this.paymentSources;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsBusy() {
-                return this.isBusy;
             }
 
             public final List<ModelEntitlement> component4() {
@@ -603,23 +622,13 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return this.guildSubscriptions;
             }
 
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getHasAnyGuildBoosts() {
-                return this.hasAnyGuildBoosts;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final ModelInvoicePreview getRenewalInvoicePreview() {
-                return this.renewalInvoicePreview;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final ModelInvoicePreview getCurrentInvoicePreview() {
-                return this.currentInvoicePreview;
-            }
-
             public final Map<String, SkuDetails> component9() {
                 return this.skuDetails;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelSubscription modelSubscription, List list, boolean z2, List list2, Map map, boolean z3, ModelInvoicePreview modelInvoicePreview, ModelInvoicePreview modelInvoicePreview2, Map map2, List list3, int i, int i2, Object obj) {
+                return loaded.copy((i2 & 1) != 0 ? loaded.premiumSubscription : modelSubscription, (i2 & 2) != 0 ? loaded.paymentSources : list, (i2 & 4) != 0 ? loaded.isBusy : z2, (i2 & 8) != 0 ? loaded.entitlements : list2, (i2 & 16) != 0 ? loaded.guildSubscriptions : map, (i2 & 32) != 0 ? loaded.hasAnyGuildBoosts : z3, (i2 & 64) != 0 ? loaded.renewalInvoicePreview : modelInvoicePreview, (i2 & 128) != 0 ? loaded.currentInvoicePreview : modelInvoicePreview2, (i2 & 256) != 0 ? loaded.skuDetails : map2, (i2 & 512) != 0 ? loaded.purchases : list3, (i2 & 1024) != 0 ? loaded.pastDueGracePeriodDays : i);
             }
 
             public final Loaded copy(ModelSubscription premiumSubscription, List<? extends ModelPaymentSource> paymentSources, boolean isBusy, List<ModelEntitlement> entitlements, Map<Long, ModelGuildBoostSlot> guildSubscriptions, boolean hasAnyGuildBoosts, ModelInvoicePreview renewalInvoicePreview, ModelInvoicePreview currentInvoicePreview, Map<String, ? extends SkuDetails> skuDetails, List<? extends Purchase> purchases, int pastDueGracePeriodDays) {
@@ -642,6 +651,11 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.premiumSubscription, loaded.premiumSubscription) && C12238m.areEqual(this.paymentSources, loaded.paymentSources) && this.isBusy == loaded.isBusy && C12238m.areEqual(this.entitlements, loaded.entitlements) && C12238m.areEqual(this.guildSubscriptions, loaded.guildSubscriptions) && this.hasAnyGuildBoosts == loaded.hasAnyGuildBoosts && C12238m.areEqual(this.renewalInvoicePreview, loaded.renewalInvoicePreview) && C12238m.areEqual(this.currentInvoicePreview, loaded.currentInvoicePreview) && C12238m.areEqual(this.skuDetails, loaded.skuDetails) && C12238m.areEqual(this.purchases, loaded.purchases) && this.pastDueGracePeriodDays == loaded.pastDueGracePeriodDays;
             }
 
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final ModelInvoicePreview getCurrentInvoicePreview() {
+                return this.currentInvoicePreview;
+            }
+
             public final ModelInvoicePreview getCurrentInvoicePreview() {
                 return this.currentInvoicePreview;
             }
@@ -654,8 +668,23 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return this.guildSubscriptions;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final boolean getHasAnyGuildBoosts() {
                 return this.hasAnyGuildBoosts;
+            }
+
+            public final boolean getHasAnyGuildBoosts() {
+                return this.hasAnyGuildBoosts;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsBusy() {
+                return this.isBusy;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final int getPastDueGracePeriodDays() {
+                return this.pastDueGracePeriodDays;
             }
 
             public final int getPastDueGracePeriodDays() {
@@ -666,12 +695,22 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
                 return this.paymentSources;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelSubscription getPremiumSubscription() {
+                return this.premiumSubscription;
+            }
+
             public final ModelSubscription getPremiumSubscription() {
                 return this.premiumSubscription;
             }
 
             public final List<Purchase> getPurchases() {
                 return this.purchases;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final ModelInvoicePreview getRenewalInvoicePreview() {
+                return this.renewalInvoicePreview;
             }
 
             public final ModelInvoicePreview getRenewalInvoicePreview() {
@@ -748,7 +787,7 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -761,45 +800,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$1 */
-    /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final class C98891 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C98891() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            SettingsPremiumViewModel.this.fetchData();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$2 */
-    /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public static final class C98902 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C98902() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            SettingsPremiumViewModel.this.onCancelError();
         }
     }
 
@@ -825,12 +825,34 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
         this(paymentSources, subscriptions, entitlements, guildBoosts, api, observableObserveStores);
     }
 
+    @MainThread
+    public final void cancelSubscription() {
+        ModelSubscription premiumSubscription;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded == null || (premiumSubscription = loaded.getPremiumSubscription()) == null) {
+            return;
+        }
+        markBusy();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.deleteSubscription(premiumSubscription.getId()), false, 1, null), this, null, 2, null), (Class<?>) SettingsPremiumViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C98902()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98891());
+    }
+
     private final void fetchData() {
         this.storePaymentsSources.fetchPaymentSources();
         this.storeSubscriptions.fetchSubscriptions();
         this.storeEntitlements.fetchMyEntitlementsForApplication(521842831262875670L);
         this.storeGuildBoost.fetchUserGuildBoostState();
         GooglePlayBillingManager.INSTANCE.querySkuDetails();
+    }
+
+    @MainThread
+    public final Observable<Event> getEventSubject() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
     }
 
     private final int getPastDueGracePeriodDays(ModelSubscription sub) {
@@ -884,28 +906,6 @@ public final class SettingsPremiumViewModel extends AbstractC0859d0<ViewState> {
             PublishSubject<Event> publishSubject = this.eventSubject;
             publishSubject.f27650k.onNext(new Event.ErrorToast(C5419R.string.premium_alert_error_title));
         }
-    }
-
-    @MainThread
-    public final void cancelSubscription() {
-        ModelSubscription premiumSubscription;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded == null || (premiumSubscription = loaded.getPremiumSubscription()) == null) {
-            return;
-        }
-        markBusy();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.deleteSubscription(premiumSubscription.getId()), false, 1, null), this, null, 2, null), (Class<?>) SettingsPremiumViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C98902()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98891());
-    }
-
-    @MainThread
-    public final Observable<Event> getEventSubject() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
     }
 
     @MainThread

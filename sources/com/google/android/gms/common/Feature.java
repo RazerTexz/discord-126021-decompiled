@@ -55,18 +55,18 @@ public class Feature extends AbstractSafeParcelable {
         return Arrays.hashCode(new Object[]{this.f20477j, Long.valueOf(m9021w0())});
     }
 
+    /* JADX INFO: renamed from: w0 */
+    public long m9021w0() {
+        long j = this.f20479l;
+        return j == -1 ? this.f20478k : j;
+    }
+
     @RecentlyNonNull
     public final String toString() {
         C3361j c3361j = new C3361j(this);
         c3361j.m4162a(ModelAuditLogEntry.CHANGE_KEY_NAME, this.f20477j);
         c3361j.m4162a("version", Long.valueOf(m9021w0()));
         return c3361j.toString();
-    }
-
-    /* JADX INFO: renamed from: w0 */
-    public long m9021w0() {
-        long j = this.f20479l;
-        return j == -1 ? this.f20478k : j;
     }
 
     @Override // android.os.Parcelable

@@ -18,7 +18,7 @@ import javax.crypto.Mac;
 public class FingerprintManagerCompat {
     private final Context mContext;
 
-    public static abstract class AuthenticationCallback {
+    public abstract class AuthenticationCallback {
         public void onAuthenticationError(int i, CharSequence charSequence) {
         }
 
@@ -32,7 +32,7 @@ public class FingerprintManagerCompat {
         }
     }
 
-    public static final class AuthenticationResult {
+    public final class AuthenticationResult {
         private final CryptoObject mCryptoObject;
 
         public AuthenticationResult(CryptoObject cryptoObject) {
@@ -46,6 +46,15 @@ public class FingerprintManagerCompat {
 
     private FingerprintManagerCompat(Context context) {
         this.mContext = context;
+    }
+
+    @RequiresPermission("android.permission.USE_FINGERPRINT")
+    public void authenticate(@Nullable CryptoObject cryptoObject, int i, @Nullable CancellationSignal cancellationSignal, @NonNull AuthenticationCallback authenticationCallback, @Nullable Handler handler) {
+        FingerprintManager fingerprintManagerOrNull;
+        if (Build.VERSION.SDK_INT < 23 || (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) == null) {
+            return;
+        }
+        fingerprintManagerOrNull.authenticate(wrapCryptoObject(cryptoObject), cancellationSignal != null ? (android.os.CancellationSignal) cancellationSignal.getCancellationSignalObject() : null, i, wrapCallback(authenticationCallback), handler);
     }
 
     @NonNull
@@ -64,6 +73,18 @@ public class FingerprintManagerCompat {
             return null;
         }
         return (FingerprintManager) context.getSystemService(FingerprintManager.class);
+    }
+
+    @RequiresPermission("android.permission.USE_FINGERPRINT")
+    public boolean hasEnrolledFingerprints() {
+        FingerprintManager fingerprintManagerOrNull;
+        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.hasEnrolledFingerprints();
+    }
+
+    @RequiresPermission("android.permission.USE_FINGERPRINT")
+    public boolean isHardwareDetected() {
+        FingerprintManager fingerprintManagerOrNull;
+        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.isHardwareDetected();
     }
 
     @RequiresApi(23)
@@ -125,28 +146,7 @@ public class FingerprintManagerCompat {
         return null;
     }
 
-    @RequiresPermission("android.permission.USE_FINGERPRINT")
-    public void authenticate(@Nullable CryptoObject cryptoObject, int i, @Nullable CancellationSignal cancellationSignal, @NonNull AuthenticationCallback authenticationCallback, @Nullable Handler handler) {
-        FingerprintManager fingerprintManagerOrNull;
-        if (Build.VERSION.SDK_INT < 23 || (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) == null) {
-            return;
-        }
-        fingerprintManagerOrNull.authenticate(wrapCryptoObject(cryptoObject), cancellationSignal != null ? (android.os.CancellationSignal) cancellationSignal.getCancellationSignalObject() : null, i, wrapCallback(authenticationCallback), handler);
-    }
-
-    @RequiresPermission("android.permission.USE_FINGERPRINT")
-    public boolean hasEnrolledFingerprints() {
-        FingerprintManager fingerprintManagerOrNull;
-        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.hasEnrolledFingerprints();
-    }
-
-    @RequiresPermission("android.permission.USE_FINGERPRINT")
-    public boolean isHardwareDetected() {
-        FingerprintManager fingerprintManagerOrNull;
-        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.isHardwareDetected();
-    }
-
-    public static class CryptoObject {
+    public class CryptoObject {
         private final Cipher mCipher;
         private final Mac mMac;
         private final Signature mSignature;

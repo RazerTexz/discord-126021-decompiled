@@ -12,14 +12,6 @@ public class VideoTrack extends MediaStreamTrack {
         this.sinks = new IdentityHashMap<>();
     }
 
-    private static native void nativeAddSink(long j, long j2);
-
-    private static native void nativeFreeSink(long j);
-
-    private static native void nativeRemoveSink(long j, long j2);
-
-    private static native long nativeWrapSink(VideoSink videoSink);
-
     public void addSink(VideoSink videoSink) {
         if (videoSink == null) {
             throw new IllegalArgumentException("The VideoSink is not allowed to be null");
@@ -47,6 +39,14 @@ public class VideoTrack extends MediaStreamTrack {
     public long getNativeVideoTrack() {
         return getNativeMediaStreamTrack();
     }
+
+    private static native void nativeAddSink(long j, long j2);
+
+    private static native void nativeFreeSink(long j);
+
+    private static native void nativeRemoveSink(long j, long j2);
+
+    private static native long nativeWrapSink(VideoSink videoSink);
 
     public void removeSink(VideoSink videoSink) {
         Long lRemove = this.sinks.remove(videoSink);

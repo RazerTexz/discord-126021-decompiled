@@ -13,18 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSkuEntitlementUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSkuEntitlementUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackEntitlementMetadataReceiver {
+    private final CharSequence entitlementType = null;
+    private final CharSequence redemptionCode = null;
     private TrackBase trackBase;
     private TrackEntitlementMetadata trackEntitlementMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence entitlementType = null;
-    private final CharSequence redemptionCode = null;
     private final transient String analyticsSchemaTypeName = "sku_entitlement_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackSkuEntitlementUpdated implements AnalyticsSch
         }
         TrackSkuEntitlementUpdated trackSkuEntitlementUpdated = (TrackSkuEntitlementUpdated) other;
         return C12238m.areEqual(this.entitlementType, trackSkuEntitlementUpdated.entitlementType) && C12238m.areEqual(this.redemptionCode, trackSkuEntitlementUpdated.redemptionCode);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

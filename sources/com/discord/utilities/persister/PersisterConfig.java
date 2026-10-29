@@ -31,7 +31,7 @@ public final class PersisterConfig {
 
     /* JADX INFO: renamed from: com.discord.utilities.persister.PersisterConfig$init$1 */
     /* JADX INFO: compiled from: PersisterConfig.kt */
-    public static final class C68331 extends AbstractC12240o implements Function1<Kryo, Unit> {
+    public final class C68331 extends AbstractC12240o implements Function1<Kryo, Unit> {
         public static final C68331 INSTANCE = new C68331();
 
         public C68331() {
@@ -70,6 +70,17 @@ public final class PersisterConfig {
         return observableM11064I;
     }
 
+    public final void init(Context context, Clock clock) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(clock, "clock");
+        Persister.Companion companion = Persister.INSTANCE;
+        companion.setKryoConfig(C68331.INSTANCE);
+        Objects.requireNonNull(AppLog.f14950g);
+        C12238m.checkNotNullParameter("[Persister]", "tag");
+        companion.setLogger(new C0864g("[Persister]"));
+        companion.init(context, clock, getPersistenceStrategy());
+    }
+
     private final Observable<Boolean> isNotActive() {
         Observable<Boolean> observableM11093S = C0894d.f600d.m185a().m11093S(1);
         C0874l c0874l = C0874l.f530c;
@@ -82,16 +93,5 @@ public final class PersisterConfig {
                 return Boolean.valueOf(bool.booleanValue() && !bool2.booleanValue());
             }
         }).m11112r();
-    }
-
-    public final void init(Context context, Clock clock) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(clock, "clock");
-        Persister.Companion companion = Persister.INSTANCE;
-        companion.setKryoConfig(C68331.INSTANCE);
-        Objects.requireNonNull(AppLog.f14950g);
-        C12238m.checkNotNullParameter("[Persister]", "tag");
-        companion.setLogger(new C0864g("[Persister]"));
-        companion.init(context, clock, getPersistenceStrategy());
     }
 }

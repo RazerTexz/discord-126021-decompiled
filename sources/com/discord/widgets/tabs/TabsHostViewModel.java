@@ -50,7 +50,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostViewModel$1 */
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final class C101541 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C101541 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C101541() {
             super(1);
         }
@@ -70,7 +70,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostViewModel$2 */
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final class C101552 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C101552 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C101552() {
             super(1);
         }
@@ -88,7 +88,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostViewModel$3 */
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final class C101563 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C101563 extends AbstractC12240o implements Function1<Unit, Unit> {
         public C101563() {
             super(1);
         }
@@ -107,8 +107,24 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Set<NavigationTab> getAT_LEAST_ONE_GUILD_TABS() {
+            return TabsHostViewModel.AT_LEAST_ONE_GUILD_TABS;
+        }
+
+        public final List<NavigationTab> getNON_HOME_TAB_DESTINATIONS() {
+            return TabsHostViewModel.NON_HOME_TAB_DESTINATIONS;
+        }
+
+        public final Set<NavigationTab> getNO_GUILD_TABS() {
+            return TabsHostViewModel.NO_GUILD_TABS;
+        }
+
+        public final List<NavigationTab> getTAB_DESTINATIONS() {
+            return TabsHostViewModel.TAB_DESTINATIONS;
         }
 
         private final Observable<StoreState> observeStoreState(StoreNavigation storeNavigation, StoreTabsNavigation storeTabsNavigation, StoreUser storeUser, StoreGuilds storeGuilds, StoreMentions storeMentions, StoreUserRelationships storeUserRelationships) {
@@ -135,32 +151,16 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             return observableM11071f;
         }
 
-        public final Set<NavigationTab> getAT_LEAST_ONE_GUILD_TABS() {
-            return TabsHostViewModel.AT_LEAST_ONE_GUILD_TABS;
-        }
-
-        public final List<NavigationTab> getNON_HOME_TAB_DESTINATIONS() {
-            return TabsHostViewModel.NON_HOME_TAB_DESTINATIONS;
-        }
-
-        public final Set<NavigationTab> getNO_GUILD_TABS() {
-            return TabsHostViewModel.NO_GUILD_TABS;
-        }
-
-        public final List<NavigationTab> getTAB_DESTINATIONS() {
-            return TabsHostViewModel.TAB_DESTINATIONS;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: TabsHostViewModel.kt */
-        public static final class DismissSearchDialog extends Event {
+        public final class DismissSearchDialog extends Event {
             public static final DismissSearchDialog INSTANCE = new DismissSearchDialog();
 
             private DismissSearchDialog() {
@@ -169,7 +169,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: TabsHostViewModel.kt */
-        public static final class TrackFriendsListShown extends Event {
+        public final class TrackFriendsListShown extends Event {
             public static final TrackFriendsListShown INSTANCE = new TrackFriendsListShown();
 
             private TrackFriendsListShown() {
@@ -186,7 +186,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, Guild> guildIdToGuildMap;
         private final PanelState leftPanelState;
         private final long myUserId;
@@ -205,6 +205,14 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             this.guildIdToGuildMap = map;
             this.numTotalMentions = i;
             this.userRelationships = map2;
+        }
+
+        public final Map<Long, Guild> component4() {
+            return this.guildIdToGuildMap;
+        }
+
+        public final Map<Long, Integer> component6() {
+            return this.userRelationships;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -234,34 +242,6 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(panelState, navigationTab2, j2, map3, i3, map2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PanelState getLeftPanelState() {
-            return this.leftPanelState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final NavigationTab getSelectedTab() {
-            return this.selectedTab;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getMyUserId() {
-            return this.myUserId;
-        }
-
-        public final Map<Long, Guild> component4() {
-            return this.guildIdToGuildMap;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getNumTotalMentions() {
-            return this.numTotalMentions;
-        }
-
-        public final Map<Long, Integer> component6() {
-            return this.userRelationships;
-        }
-
         public final StoreState copy(PanelState leftPanelState, NavigationTab selectedTab, long myUserId, Map<Long, Guild> guildIdToGuildMap, int numTotalMentions, Map<Long, Integer> userRelationships) {
             C12238m.checkNotNullParameter(leftPanelState, "leftPanelState");
             C12238m.checkNotNullParameter(selectedTab, "selectedTab");
@@ -285,16 +265,36 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             return this.guildIdToGuildMap;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final PanelState getLeftPanelState() {
             return this.leftPanelState;
+        }
+
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final long getMyUserId() {
+            return this.myUserId;
         }
 
         public final long getMyUserId() {
             return this.myUserId;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final int getNumTotalMentions() {
             return this.numTotalMentions;
+        }
+
+        public final int getNumTotalMentions() {
+            return this.numTotalMentions;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final NavigationTab getSelectedTab() {
+            return this.selectedTab;
         }
 
         public final NavigationTab getSelectedTab() {
@@ -333,7 +333,7 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: TabsHostViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final int bottomNavHeight;
         private final long myUserId;
         private final int numFriendsNotifications;
@@ -355,43 +355,13 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             this.numFriendsNotifications = i3;
         }
 
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ViewState copy$default(ViewState viewState, NavigationTab navigationTab, boolean z2, int i, long j, Set set, int i2, int i3, int i4, Object obj) {
-            return viewState.copy((i4 & 1) != 0 ? viewState.selectedTab : navigationTab, (i4 & 2) != 0 ? viewState.showBottomNav : z2, (i4 & 4) != 0 ? viewState.bottomNavHeight : i, (i4 & 8) != 0 ? viewState.myUserId : j, (i4 & 16) != 0 ? viewState.visibleTabs : set, (i4 & 32) != 0 ? viewState.numHomeNotifications : i2, (i4 & 64) != 0 ? viewState.numFriendsNotifications : i3);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final NavigationTab getSelectedTab() {
-            return this.selectedTab;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowBottomNav() {
-            return this.showBottomNav;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getBottomNavHeight() {
-            return this.bottomNavHeight;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getMyUserId() {
-            return this.myUserId;
-        }
-
         public final Set<NavigationTab> component5() {
             return this.visibleTabs;
         }
 
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final int getNumHomeNotifications() {
-            return this.numHomeNotifications;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final int getNumFriendsNotifications() {
-            return this.numFriendsNotifications;
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ViewState copy$default(ViewState viewState, NavigationTab navigationTab, boolean z2, int i, long j, Set set, int i2, int i3, int i4, Object obj) {
+            return viewState.copy((i4 & 1) != 0 ? viewState.selectedTab : navigationTab, (i4 & 2) != 0 ? viewState.showBottomNav : z2, (i4 & 4) != 0 ? viewState.bottomNavHeight : i, (i4 & 8) != 0 ? viewState.myUserId : j, (i4 & 16) != 0 ? viewState.visibleTabs : set, (i4 & 32) != 0 ? viewState.numHomeNotifications : i2, (i4 & 64) != 0 ? viewState.numFriendsNotifications : i3);
         }
 
         public final ViewState copy(NavigationTab selectedTab, boolean showBottomNav, int bottomNavHeight, long myUserId, Set<? extends NavigationTab> visibleTabs, int numHomeNotifications, int numFriendsNotifications) {
@@ -411,24 +381,54 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.selectedTab, viewState.selectedTab) && this.showBottomNav == viewState.showBottomNav && this.bottomNavHeight == viewState.bottomNavHeight && this.myUserId == viewState.myUserId && C12238m.areEqual(this.visibleTabs, viewState.visibleTabs) && this.numHomeNotifications == viewState.numHomeNotifications && this.numFriendsNotifications == viewState.numFriendsNotifications;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getBottomNavHeight() {
             return this.bottomNavHeight;
+        }
+
+        public final int getBottomNavHeight() {
+            return this.bottomNavHeight;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getMyUserId() {
+            return this.myUserId;
         }
 
         public final long getMyUserId() {
             return this.myUserId;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final int getNumFriendsNotifications() {
             return this.numFriendsNotifications;
+        }
+
+        public final int getNumFriendsNotifications() {
+            return this.numFriendsNotifications;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final int getNumHomeNotifications() {
+            return this.numHomeNotifications;
         }
 
         public final int getNumHomeNotifications() {
             return this.numHomeNotifications;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final NavigationTab getSelectedTab() {
             return this.selectedTab;
+        }
+
+        public final NavigationTab getSelectedTab() {
+            return this.selectedTab;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShowBottomNav() {
+            return this.showBottomNav;
         }
 
         public final boolean getShowBottomNav() {
@@ -526,6 +526,17 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
     }
 
     @MainThread
+    public final boolean handleBackPress() {
+        NavigationTab navigationTab;
+        NavigationTab selectedTab = requireViewState().getSelectedTab();
+        if (!TAB_DESTINATIONS.contains(selectedTab) || selectedTab == (navigationTab = NavigationTab.HOME)) {
+            return false;
+        }
+        selectTab(navigationTab);
+        return true;
+    }
+
+    @MainThread
     private final void handleBottomNavHeight(int height) {
         updateViewState(ViewState.copy$default(requireViewState(), null, false, height, 0L, null, 0, 0, 123, null));
     }
@@ -544,17 +555,6 @@ public final class TabsHostViewModel extends AbstractC0859d0<ViewState> {
             }
         }
         updateViewState(ViewState.copy$default(requireViewState(), selectedTab, z2, 0, storeState.getMyUserId(), set, storeState.getNumTotalMentions(), linkedHashMap.size(), 4, null));
-    }
-
-    @MainThread
-    public final boolean handleBackPress() {
-        NavigationTab navigationTab;
-        NavigationTab selectedTab = requireViewState().getSelectedTab();
-        if (!TAB_DESTINATIONS.contains(selectedTab) || selectedTab == (navigationTab = NavigationTab.HOME)) {
-            return false;
-        }
-        selectTab(navigationTab);
-        return true;
     }
 
     public final Observable<Event> observeEvents() {

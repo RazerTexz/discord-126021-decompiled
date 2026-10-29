@@ -20,8 +20,8 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TransitionInflater {
-    private final Context mContext;
     private static final Class<?>[] CONSTRUCTOR_SIGNATURE = {Context.class, AttributeSet.class};
+    private final Context mContext;
     private static final ArrayMap<String, Constructor<?>> CONSTRUCTORS = new ArrayMap<>();
 
     private TransitionInflater(@NonNull Context context) {
@@ -213,28 +213,6 @@ public class TransitionInflater {
         }
     }
 
-    @SuppressLint({"RestrictedApi"})
-    private void loadTransition(AttributeSet attributeSet, XmlPullParser xmlPullParser, ViewGroup viewGroup, TransitionManager transitionManager) throws Resources.NotFoundException {
-        Transition transitionInflateTransition;
-        TypedArray typedArrayObtainStyledAttributes = this.mContext.obtainStyledAttributes(attributeSet, Styleable.TRANSITION_MANAGER);
-        int namedResourceId = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "transition", 2, -1);
-        int namedResourceId2 = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "fromScene", 0, -1);
-        Scene sceneForLayout = namedResourceId2 < 0 ? null : Scene.getSceneForLayout(viewGroup, namedResourceId2, this.mContext);
-        int namedResourceId3 = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "toScene", 1, -1);
-        Scene sceneForLayout2 = namedResourceId3 >= 0 ? Scene.getSceneForLayout(viewGroup, namedResourceId3, this.mContext) : null;
-        if (namedResourceId >= 0 && (transitionInflateTransition = inflateTransition(namedResourceId)) != null) {
-            if (sceneForLayout2 == null) {
-                throw new RuntimeException(C1643a.m871q("No toScene for transition ID ", namedResourceId));
-            }
-            if (sceneForLayout == null) {
-                transitionManager.setTransition(sceneForLayout2, transitionInflateTransition);
-            } else {
-                transitionManager.setTransition(sceneForLayout, sceneForLayout2, transitionInflateTransition);
-            }
-        }
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
     public Transition inflateTransition(int i) {
         XmlResourceParser xml = this.mContext.getResources().getXml(i);
         try {
@@ -273,5 +251,27 @@ public class TransitionInflater {
             xml.close();
             throw th;
         }
+    }
+
+    @SuppressLint({"RestrictedApi"})
+    private void loadTransition(AttributeSet attributeSet, XmlPullParser xmlPullParser, ViewGroup viewGroup, TransitionManager transitionManager) throws Resources.NotFoundException {
+        Transition transitionInflateTransition;
+        TypedArray typedArrayObtainStyledAttributes = this.mContext.obtainStyledAttributes(attributeSet, Styleable.TRANSITION_MANAGER);
+        int namedResourceId = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "transition", 2, -1);
+        int namedResourceId2 = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "fromScene", 0, -1);
+        Scene sceneForLayout = namedResourceId2 < 0 ? null : Scene.getSceneForLayout(viewGroup, namedResourceId2, this.mContext);
+        int namedResourceId3 = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "toScene", 1, -1);
+        Scene sceneForLayout2 = namedResourceId3 >= 0 ? Scene.getSceneForLayout(viewGroup, namedResourceId3, this.mContext) : null;
+        if (namedResourceId >= 0 && (transitionInflateTransition = inflateTransition(namedResourceId)) != null) {
+            if (sceneForLayout2 == null) {
+                throw new RuntimeException(C1643a.m871q("No toScene for transition ID ", namedResourceId));
+            }
+            if (sceneForLayout == null) {
+                transitionManager.setTransition(sceneForLayout2, transitionInflateTransition);
+            } else {
+                transitionManager.setTransition(sceneForLayout, sceneForLayout2, transitionInflateTransition);
+            }
+        }
+        typedArrayObtainStyledAttributes.recycle();
     }
 }

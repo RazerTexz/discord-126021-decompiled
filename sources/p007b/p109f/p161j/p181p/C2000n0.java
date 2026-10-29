@@ -124,20 +124,6 @@ public class C2000n0 implements InterfaceC2018w0<C1919e> {
         }
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
-    /* JADX INFO: renamed from: b */
-    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
-        interfaceC2020x0.mo1457o().mo1358e(interfaceC2020x0, "NetworkFetchProducer");
-        Objects.requireNonNull((C1963a0) this.f4171c);
-        C1963a0.a aVar = new C1963a0.a(interfaceC1995l, interfaceC2020x0);
-        InterfaceC2002o0 interfaceC2002o0 = this.f4171c;
-        a aVar2 = new a(aVar);
-        C1963a0 c1963a0 = (C1963a0) interfaceC2002o0;
-        Objects.requireNonNull(c1963a0);
-        aVar.f3990d = c1963a0.f3989c.now();
-        interfaceC2020x0.mo1448f(new C2023z(c1963a0, c1963a0.f3988b.submit(new RunnableC2021y(c1963a0, aVar, aVar2)), aVar2));
-    }
-
     /* JADX INFO: renamed from: c */
     public void m1506c(AbstractC1702i abstractC1702i, C2019x c2019x) throws Throwable {
         HashMap map;
@@ -176,5 +162,19 @@ public class C2000n0 implements InterfaceC2018w0<C1919e> {
         c2019x.f4260c = jUptimeMillis;
         c2019x.m1524a().mo1354a(c2019x.f4259b, "NetworkFetchProducer", "intermediate_result");
         m1505e(abstractC1702i, 0, null, c2019x.f4258a, c2019x.f4259b);
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
+    /* JADX INFO: renamed from: b */
+    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
+        interfaceC2020x0.mo1457o().mo1358e(interfaceC2020x0, "NetworkFetchProducer");
+        Objects.requireNonNull((C1963a0) this.f4171c);
+        C1963a0.a aVar = new C1963a0.a(interfaceC1995l, interfaceC2020x0);
+        InterfaceC2002o0 interfaceC2002o0 = this.f4171c;
+        a aVar2 = new a(aVar);
+        C1963a0 c1963a0 = (C1963a0) interfaceC2002o0;
+        Objects.requireNonNull(c1963a0);
+        aVar.f3990d = c1963a0.f3989c.now();
+        interfaceC2020x0.mo1448f(new C2023z(c1963a0, c1963a0.f3988b.submit(new RunnableC2021y(c1963a0, aVar, aVar2)), aVar2));
     }
 }

@@ -16,7 +16,7 @@ public class C5113l {
 
     /* JADX INFO: renamed from: b.o.a.l$a */
     /* JADX INFO: compiled from: PictureResult.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public boolean f13715a;

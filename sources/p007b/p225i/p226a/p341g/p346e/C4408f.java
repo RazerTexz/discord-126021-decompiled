@@ -41,9 +41,6 @@ import java.util.Iterator;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4408f {
 
-    /* JADX INFO: renamed from: a */
-    public static final TimeInterpolator f11652a = AnimationUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR;
-
     /* JADX INFO: renamed from: b */
     public static final int[] f11653b = {R.attr.state_pressed, R.attr.state_enabled};
 
@@ -55,12 +52,6 @@ public class C4408f {
 
     /* JADX INFO: renamed from: e */
     public static final int[] f11656e = {R.attr.state_hovered, R.attr.state_enabled};
-
-    /* JADX INFO: renamed from: f */
-    public static final int[] f11657f = {R.attr.state_enabled};
-
-    /* JADX INFO: renamed from: g */
-    public static final int[] f11658g = new int[0];
 
     /* JADX INFO: renamed from: A */
     public int f11659A;
@@ -146,6 +137,9 @@ public class C4408f {
     /* JADX INFO: renamed from: y */
     public float f11688y;
 
+    /* JADX INFO: renamed from: a */
+    public static final TimeInterpolator f11652a = AnimationUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR;
+
     /* JADX INFO: renamed from: n */
     public boolean f11677n = true;
 
@@ -158,8 +152,14 @@ public class C4408f {
     /* JADX INFO: renamed from: H */
     public final Rect f11666H = new Rect();
 
+    /* JADX INFO: renamed from: f */
+    public static final int[] f11657f = {R.attr.state_enabled};
+
     /* JADX INFO: renamed from: I */
     public final RectF f11667I = new RectF();
+
+    /* JADX INFO: renamed from: g */
+    public static final int[] f11658g = new int[0];
 
     /* JADX INFO: renamed from: J */
     public final RectF f11668J = new RectF();
@@ -351,25 +351,6 @@ public class C4408f {
         return valueAnimator;
     }
 
-    /* JADX INFO: renamed from: d */
-    public float mo6088d() {
-        throw null;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void mo6089e(@NonNull Rect rect) {
-        int sizeDimension = this.f11676m ? (this.f11681r - this.f11664F.getSizeDimension()) / 2 : 0;
-        float fMo6088d = this.f11677n ? mo6088d() + this.f11680q : 0.0f;
-        int iMax = Math.max(sizeDimension, (int) Math.ceil(fMo6088d));
-        int iMax2 = Math.max(sizeDimension, (int) Math.ceil(fMo6088d * 1.5f));
-        rect.set(iMax, iMax2, iMax, iMax2);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public void mo6090f(ColorStateList colorStateList, @Nullable PorterDuff.Mode mode, ColorStateList colorStateList2, int i) {
-        throw null;
-    }
-
     /* JADX INFO: renamed from: g */
     public boolean m6091g() {
         if (this.f11664F.getVisibility() == 0) {
@@ -384,26 +365,6 @@ public class C4408f {
             return this.f11660B == 2;
         }
         return this.f11660B != 1;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public void mo6093i() {
-        throw null;
-    }
-
-    /* JADX INFO: renamed from: j */
-    public void mo6094j() {
-        throw null;
-    }
-
-    /* JADX INFO: renamed from: k */
-    public void mo6095k(int[] iArr) {
-        throw null;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public void mo6096l(float f2, float f3, float f4) {
-        throw null;
     }
 
     /* JADX INFO: renamed from: m */
@@ -436,11 +397,6 @@ public class C4408f {
         this.f11664F.setImageMatrix(matrix);
     }
 
-    /* JADX INFO: renamed from: p */
-    public void mo6100p(@Nullable ColorStateList colorStateList) {
-        throw null;
-    }
-
     /* JADX INFO: renamed from: q */
     public final void m6101q(@NonNull ShapeAppearanceModel shapeAppearanceModel) {
         this.f11671h = shapeAppearanceModel;
@@ -459,11 +415,6 @@ public class C4408f {
         }
     }
 
-    /* JADX INFO: renamed from: r */
-    public boolean mo6102r() {
-        throw null;
-    }
-
     /* JADX INFO: renamed from: s */
     public final boolean m6103s() {
         return ViewCompat.isLaidOut(this.f11664F) && !this.f11664F.isInEditMode();
@@ -472,11 +423,6 @@ public class C4408f {
     /* JADX INFO: renamed from: t */
     public final boolean m6104t() {
         return !this.f11676m || this.f11664F.getSizeDimension() >= this.f11681r;
-    }
-
-    /* JADX INFO: renamed from: u */
-    public void mo6105u() {
-        throw null;
     }
 
     /* JADX INFO: renamed from: v */
@@ -498,6 +444,60 @@ public class C4408f {
         if (materialShapeDrawable != null) {
             materialShapeDrawable.setElevation(f2);
         }
+    }
+
+    /* JADX INFO: renamed from: d */
+    public float mo6088d() {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void mo6089e(@NonNull Rect rect) {
+        int sizeDimension = this.f11676m ? (this.f11681r - this.f11664F.getSizeDimension()) / 2 : 0;
+        float fMo6088d = this.f11677n ? mo6088d() + this.f11680q : 0.0f;
+        int iMax = Math.max(sizeDimension, (int) Math.ceil(fMo6088d));
+        int iMax2 = Math.max(sizeDimension, (int) Math.ceil(fMo6088d * 1.5f));
+        rect.set(iMax, iMax2, iMax, iMax2);
+    }
+
+    /* JADX INFO: renamed from: f */
+    public void mo6090f(ColorStateList colorStateList, @Nullable PorterDuff.Mode mode, ColorStateList colorStateList2, int i) {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public void mo6093i() {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: j */
+    public void mo6094j() {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: k */
+    public void mo6095k(int[] iArr) {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public void mo6096l(float f2, float f3, float f4) {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: p */
+    public void mo6100p(@Nullable ColorStateList colorStateList) {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: r */
+    public boolean mo6102r() {
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: u */
+    public void mo6105u() {
+        throw null;
     }
 
     /* JADX INFO: renamed from: b.i.a.g.e.f$a */

@@ -9,19 +9,6 @@ import androidx.annotation.NonNull;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class FragmentState implements Parcelable {
-    public static final Parcelable.Creator<FragmentState> CREATOR = new Parcelable.Creator<FragmentState>() { // from class: androidx.fragment.app.FragmentState.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public FragmentState createFromParcel(Parcel parcel) {
-            return new FragmentState(parcel);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public FragmentState[] newArray(int i) {
-            return new FragmentState[i];
-        }
-    };
     public final Bundle mArguments;
     public final String mClassName;
     public final int mContainerId;
@@ -35,6 +22,19 @@ public final class FragmentState implements Parcelable {
     public Bundle mSavedFragmentState;
     public final String mTag;
     public final String mWho;
+    public static final Parcelable.Creator<FragmentState> CREATOR = new Parcelable.Creator<FragmentState>() { // from class: androidx.fragment.app.FragmentState.1
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public FragmentState createFromParcel(Parcel parcel) {
+            return new FragmentState(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public FragmentState[] newArray(int i) {
+            return new FragmentState[i];
+        }
+    };
 
     public FragmentState(Fragment fragment) {
         this.mClassName = fragment.getClass().getName();

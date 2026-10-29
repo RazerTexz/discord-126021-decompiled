@@ -24,7 +24,7 @@ public class IntProgression implements Iterable<Integer>, InterfaceC12228a {
 
     /* JADX INFO: renamed from: kotlin.ranges.IntProgression$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: Progressions.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

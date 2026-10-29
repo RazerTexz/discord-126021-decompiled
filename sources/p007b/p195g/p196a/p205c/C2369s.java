@@ -8,16 +8,6 @@ import p007b.p195g.p196a.p205c.p210c0.AbstractC2188i;
 /* JADX INFO: compiled from: PropertyMetadata.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2369s implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final C2369s f5025j = new C2369s(Boolean.TRUE, null, null, null, null, null, null);
-
-    /* JADX INFO: renamed from: k */
-    public static final C2369s f5026k = new C2369s(Boolean.FALSE, null, null, null, null, null, null);
-
-    /* JADX INFO: renamed from: l */
-    public static final C2369s f5027l = new C2369s(null, null, null, null, null, null, null);
-    private static final long serialVersionUID = -1;
     public EnumC2080h0 _contentNulls;
     public final String _defaultValue;
     public final String _description;
@@ -27,10 +17,20 @@ public class C2369s implements Serializable {
 
     /* JADX INFO: renamed from: m */
     public final transient a f5028m;
+    private static final long serialVersionUID = -1;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2369s f5025j = new C2369s(Boolean.TRUE, null, null, null, null, null, null);
+
+    /* JADX INFO: renamed from: k */
+    public static final C2369s f5026k = new C2369s(Boolean.FALSE, null, null, null, null, null, null);
+
+    /* JADX INFO: renamed from: l */
+    public static final C2369s f5027l = new C2369s(null, null, null, null, null, null, null);
 
     /* JADX INFO: renamed from: b.g.a.c.s$a */
     /* JADX INFO: compiled from: PropertyMetadata.java */
-    public static final class a {
+    public final class a {
         public a(AbstractC2188i abstractC2188i, boolean z2) {
         }
     }

@@ -53,11 +53,11 @@ public final class WidgetSettingsLanguageSelect extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetSettingsLanguageSelect.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<Model.Item> {
+    public final class Adapter extends MGRecyclerAdapterSimple<Model.Item> {
         private final WidgetSettingsLanguageSelect dialog;
 
         /* JADX INFO: compiled from: WidgetSettingsLanguageSelect.kt */
-        public static final class AdapterItemLocale extends MGRecyclerViewHolder<Adapter, Model.Item> {
+        public final class AdapterItemLocale extends MGRecyclerViewHolder<Adapter, Model.Item> {
             private final WidgetSettingsLanguageSelectItemBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -132,7 +132,7 @@ public final class WidgetSettingsLanguageSelect extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsLanguageSelect.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -157,11 +157,11 @@ public final class WidgetSettingsLanguageSelect extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsLanguageSelect.kt */
-    public static final class Model {
+    public final class Model {
         public static final Model INSTANCE = new Model();
 
         /* JADX INFO: compiled from: WidgetSettingsLanguageSelect.kt */
-        public static final /* data */ class Item implements MGRecyclerDataPayload {
+        public final /* data */ class Item implements MGRecyclerDataPayload {
             private final String key;
             private final String locale;
             private final int type;
@@ -179,11 +179,6 @@ public final class WidgetSettingsLanguageSelect extends AppDialog {
                 return item.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getLocale() {
-                return this.locale;
-            }
-
             public final Item copy(String locale) {
                 C12238m.checkNotNullParameter(locale, "locale");
                 return new Item(locale);
@@ -199,6 +194,11 @@ public final class WidgetSettingsLanguageSelect extends AppDialog {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getLocale() {
+                return this.locale;
             }
 
             public final String getLocale() {

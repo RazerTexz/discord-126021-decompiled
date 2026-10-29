@@ -33,7 +33,7 @@ public final class BlockRunner<T> {
     /* JADX INFO: renamed from: androidx.lifecycle.BlockRunner$cancel$1 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.BlockRunner$cancel$1", m10085f = "CoroutineLiveData.kt", m10086l = {Opcodes.NEW}, m10087m = "invokeSuspend")
-    public static final class C04241 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04241 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C04241(Continuation continuation) {
@@ -52,7 +52,7 @@ public final class BlockRunner<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -82,7 +82,7 @@ public final class BlockRunner<T> {
     /* JADX INFO: renamed from: androidx.lifecycle.BlockRunner$maybeRun$1 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.BlockRunner$maybeRun$1", m10085f = "CoroutineLiveData.kt", m10086l = {Opcodes.ARETURN}, m10087m = "invokeSuspend")
-    public static final class C04251 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04251 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         private /* synthetic */ Object L$0;
         public int label;
 
@@ -104,7 +104,7 @@ public final class BlockRunner<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

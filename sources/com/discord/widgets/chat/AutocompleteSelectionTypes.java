@@ -9,10 +9,10 @@ public final class AutocompleteSelectionTypes {
     public static final String COMMAND = "COMMAND";
     public static final String EMOJI = "EMOJI";
     public static final String GIF = "GIF";
-    public static final AutocompleteSelectionTypes INSTANCE = new AutocompleteSelectionTypes();
     public static final String MENTION = "MENTION";
     public static final String REACTION = "REACTION";
     public static final String STICKER = "STICKER";
+    public static final AutocompleteSelectionTypes INSTANCE = new AutocompleteSelectionTypes();
 
     private AutocompleteSelectionTypes() {
     }

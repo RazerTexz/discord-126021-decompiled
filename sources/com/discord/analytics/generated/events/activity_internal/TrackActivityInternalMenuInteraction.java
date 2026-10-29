@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalMenuInteraction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalMenuInteraction implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+    private final CharSequence interactionType = null;
+    private final CharSequence menuName = null;
+    private final CharSequence phase = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
-    private final CharSequence menuName = null;
-    private final CharSequence interactionType = null;
-    private final CharSequence phase = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_menu_interaction";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackActivityInternalMenuInteraction implements An
         }
         TrackActivityInternalMenuInteraction trackActivityInternalMenuInteraction = (TrackActivityInternalMenuInteraction) other;
         return C12238m.areEqual(this.menuName, trackActivityInternalMenuInteraction.menuName) && C12238m.areEqual(this.interactionType, trackActivityInternalMenuInteraction.interactionType) && C12238m.areEqual(this.phase, trackActivityInternalMenuInteraction.phase);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

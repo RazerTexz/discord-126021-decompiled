@@ -10,49 +10,43 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMessageEdited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMessageEdited implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long messageId = null;
-    private final Long messageType = null;
+    private final Long activityAction = null;
+    private final CharSequence activityPartyPlatform = null;
+    private final Long applicationId = null;
+    private final List<Long> attachmentIds = null;
     private final Long channel = null;
     private final Long channelType = null;
-    private final Boolean private = null;
-    private final Long server = null;
-    private final Long numAttachments = null;
-    private final Long maxAttachmentSize = null;
-    private final List<Long> recipientIds = null;
-    private final List<Long> mentionIds = null;
-    private final Long length = null;
-    private final Long wordCount = null;
-    private final Long emojiUnicode = null;
+    private final Long clientApplicationId = null;
+    private final Long emojiAnimated = null;
     private final Long emojiCustom = null;
     private final Long emojiCustomExternal = null;
     private final Long emojiManaged = null;
     private final Long emojiManagedExternal = null;
-    private final Long emojiAnimated = null;
     private final Boolean emojiOnly = null;
-    private final Long numEmbeds = null;
-    private final Long clientApplicationId = null;
-    private final Long applicationId = null;
-    private final List<Long> attachmentIds = null;
-    private final Long activityAction = null;
-    private final CharSequence activityPartyPlatform = null;
+    private final Long emojiUnicode = null;
     private final Boolean hasSpoiler = null;
+    private final Long length = null;
+    private final Long maxAttachmentSize = null;
+    private final List<Long> mentionIds = null;
+    private final List<Long> mentionRoleIds = null;
+    private final Long messageId = null;
+    private final Long messageType = null;
+    private final Long numAttachments = null;
+    private final Long numEmbeds = null;
+    private final Long numMentions = null;
+    private final Long numUrls = null;
+    private final Boolean private = null;
     private final Boolean probablyHasMarkdown = null;
-    private final Long referenceMessageId = null;
+    private final List<Long> recipientIds = null;
     private final Long referenceMessageChannel = null;
     private final Long referenceMessageGuild = null;
+    private final Long referenceMessageId = null;
     private final Long replyAgeSeconds = null;
+    private final Long server = null;
     private final List<Long> stickerIds = null;
-    private final Long numUrls = null;
-    private final Long numMentions = null;
-    private final List<Long> mentionRoleIds = null;
+    private TrackBase trackBase;
+    private final Long wordCount = null;
     private final transient String analyticsSchemaTypeName = "message_edited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -63,6 +57,12 @@ public final /* data */ class TrackMessageEdited implements AnalyticsSchema, Tra
         }
         TrackMessageEdited trackMessageEdited = (TrackMessageEdited) other;
         return C12238m.areEqual(this.messageId, trackMessageEdited.messageId) && C12238m.areEqual(this.messageType, trackMessageEdited.messageType) && C12238m.areEqual(this.channel, trackMessageEdited.channel) && C12238m.areEqual(this.channelType, trackMessageEdited.channelType) && C12238m.areEqual(this.private, trackMessageEdited.private) && C12238m.areEqual(this.server, trackMessageEdited.server) && C12238m.areEqual(this.numAttachments, trackMessageEdited.numAttachments) && C12238m.areEqual(this.maxAttachmentSize, trackMessageEdited.maxAttachmentSize) && C12238m.areEqual(this.recipientIds, trackMessageEdited.recipientIds) && C12238m.areEqual(this.mentionIds, trackMessageEdited.mentionIds) && C12238m.areEqual(this.length, trackMessageEdited.length) && C12238m.areEqual(this.wordCount, trackMessageEdited.wordCount) && C12238m.areEqual(this.emojiUnicode, trackMessageEdited.emojiUnicode) && C12238m.areEqual(this.emojiCustom, trackMessageEdited.emojiCustom) && C12238m.areEqual(this.emojiCustomExternal, trackMessageEdited.emojiCustomExternal) && C12238m.areEqual(this.emojiManaged, trackMessageEdited.emojiManaged) && C12238m.areEqual(this.emojiManagedExternal, trackMessageEdited.emojiManagedExternal) && C12238m.areEqual(this.emojiAnimated, trackMessageEdited.emojiAnimated) && C12238m.areEqual(this.emojiOnly, trackMessageEdited.emojiOnly) && C12238m.areEqual(this.numEmbeds, trackMessageEdited.numEmbeds) && C12238m.areEqual(this.clientApplicationId, trackMessageEdited.clientApplicationId) && C12238m.areEqual(this.applicationId, trackMessageEdited.applicationId) && C12238m.areEqual(this.attachmentIds, trackMessageEdited.attachmentIds) && C12238m.areEqual(this.activityAction, trackMessageEdited.activityAction) && C12238m.areEqual(this.activityPartyPlatform, trackMessageEdited.activityPartyPlatform) && C12238m.areEqual(this.hasSpoiler, trackMessageEdited.hasSpoiler) && C12238m.areEqual(this.probablyHasMarkdown, trackMessageEdited.probablyHasMarkdown) && C12238m.areEqual(this.referenceMessageId, trackMessageEdited.referenceMessageId) && C12238m.areEqual(this.referenceMessageChannel, trackMessageEdited.referenceMessageChannel) && C12238m.areEqual(this.referenceMessageGuild, trackMessageEdited.referenceMessageGuild) && C12238m.areEqual(this.replyAgeSeconds, trackMessageEdited.replyAgeSeconds) && C12238m.areEqual(this.stickerIds, trackMessageEdited.stickerIds) && C12238m.areEqual(this.numUrls, trackMessageEdited.numUrls) && C12238m.areEqual(this.numMentions, trackMessageEdited.numMentions) && C12238m.areEqual(this.mentionRoleIds, trackMessageEdited.mentionRoleIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

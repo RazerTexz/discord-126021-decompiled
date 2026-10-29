@@ -6,13 +6,15 @@ import androidx.annotation.NonNull;
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
 public final class SharedPreferencesCompat {
+    private SharedPreferencesCompat() {
+    }
 
     @Deprecated
-    public static final class EditorCompat {
+    public final class EditorCompat {
         private static EditorCompat sInstance;
         private final Helper mHelper = new Helper();
 
-        public static class Helper {
+        public class Helper {
             public void apply(@NonNull SharedPreferences.Editor editor) {
                 try {
                     editor.apply();
@@ -26,19 +28,16 @@ public final class SharedPreferencesCompat {
         }
 
         @Deprecated
+        public void apply(@NonNull SharedPreferences.Editor editor) {
+            this.mHelper.apply(editor);
+        }
+
+        @Deprecated
         public static EditorCompat getInstance() {
             if (sInstance == null) {
                 sInstance = new EditorCompat();
             }
             return sInstance;
         }
-
-        @Deprecated
-        public void apply(@NonNull SharedPreferences.Editor editor) {
-            this.mHelper.apply(editor);
-        }
-    }
-
-    private SharedPreferencesCompat() {
     }
 }

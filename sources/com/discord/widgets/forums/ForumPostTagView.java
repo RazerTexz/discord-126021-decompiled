@@ -18,10 +18,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ForumPostTagView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ForumPostTagView extends LinearLayout {
+    private final ForumPostTagViewBinding binding;
     private static final int EMOJI_SIZE_PX = DimenUtils.dpToPixels(12);
     private static final int HORIZONTAL_PADDING = DimenUtils.dpToPixels(8);
     private static final int VERTICAL_PADDING = DimenUtils.dpToPixels(2);
-    private final ForumPostTagViewBinding binding;
 
     public ForumPostTagView(Context context) {
         this(context, null, 0, 6, null);

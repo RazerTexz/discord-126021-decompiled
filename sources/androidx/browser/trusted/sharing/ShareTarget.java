@@ -43,7 +43,7 @@ public final class ShareTarget {
     public @interface EncodingType {
     }
 
-    public static final class FileFormField {
+    public final class FileFormField {
         public static final String KEY_ACCEPTED_TYPES = "androidx.browser.trusted.sharing.KEY_ACCEPTED_TYPES";
         public static final String KEY_NAME = "androidx.browser.trusted.sharing.KEY_FILE_NAME";
 
@@ -80,7 +80,7 @@ public final class ShareTarget {
         }
     }
 
-    public static class Params {
+    public class Params {
         public static final String KEY_FILES = "androidx.browser.trusted.sharing.KEY_FILES";
         public static final String KEY_TEXT = "androidx.browser.trusted.sharing.KEY_TEXT";
         public static final String KEY_TITLE = "androidx.browser.trusted.sharing.KEY_TITLE";

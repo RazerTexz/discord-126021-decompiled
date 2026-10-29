@@ -11,11 +11,11 @@ import p658rx.Scheduler;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12586a {
 
-    /* JADX INFO: renamed from: a */
-    public static final AtomicReference<C12586a> f26701a = new AtomicReference<>();
-
     /* JADX INFO: renamed from: b */
     public final Scheduler f26702b;
+
+    /* JADX INFO: renamed from: a */
+    public static final AtomicReference<C12586a> f26701a = new AtomicReference<>();
 
     public C12586a() {
         Objects.requireNonNull(C12584a.f26698a.m10737a());

@@ -17,11 +17,11 @@ public class Node<R> {
 
     /* JADX INFO: renamed from: com.discord.simpleast.core.node.Node$a */
     /* JADX INFO: compiled from: Node.kt */
-    public static class C5655a<R> extends Node<R> {
+    public class C5655a<R> extends Node<R> {
 
         /* JADX INFO: renamed from: com.discord.simpleast.core.node.Node$a$a */
         /* JADX INFO: compiled from: Node.kt */
-        public static final class a extends AbstractC12240o implements Function1<Node<R>, CharSequence> {
+        public final class a extends AbstractC12240o implements Function1<Node<R>, CharSequence> {
 
             /* JADX INFO: renamed from: j */
             public static final a f18951j = new a();

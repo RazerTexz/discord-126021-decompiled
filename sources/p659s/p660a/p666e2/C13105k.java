@@ -10,9 +10,6 @@ import p659s.p660a.p661a.C13038u;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13105k {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f27831a = C3404f.m4317m1("kotlinx.coroutines.scheduler.resolution.ns", 100000, 0, 0, 12, null);
-
     /* JADX INFO: renamed from: b */
     public static final int f27832b;
 
@@ -24,6 +21,9 @@ public final class C13105k {
 
     /* JADX INFO: renamed from: e */
     public static AbstractC13106l f27835e;
+
+    /* JADX INFO: renamed from: a */
+    public static final long f27831a = C3404f.m4317m1("kotlinx.coroutines.scheduler.resolution.ns", 100000, 0, 0, 12, null);
 
     static {
         C3404f.m4313l1("kotlinx.coroutines.scheduler.blocking.parallelism", 16, 0, 0, 12, null);

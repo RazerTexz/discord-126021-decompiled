@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackSmartLockAutoLogin.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackSmartLockAutoLogin implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "smart_lock_auto_login";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "smart_lock_auto_login";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

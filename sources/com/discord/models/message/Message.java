@@ -37,7 +37,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Message.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Message {
-    private static final Map<String, MessageReaction> EMPTY_REACTIONS = C12136h0.emptyMap();
     private final MessageActivity activity;
     private final MessageAllowedMentions allowedMentions;
     private final Application application;
@@ -78,6 +77,7 @@ public final /* data */ class Message {
     private final Boolean tts;
     private final Integer type;
     private final Long webhookId;
+    private static final Map<String, MessageReaction> EMPTY_REACTIONS = C12136h0.emptyMap();
 
     /* JADX WARN: Multi-variable type inference failed */
     public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper.CaptchaPayload captchaPayload) {
@@ -122,19 +122,9 @@ public final /* data */ class Message {
         this.captchaPayload = captchaPayload;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, Object obj) {
-        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaPayload);
-    }
-
     public final boolean canResend() {
         Integer num = this.type;
         return num != null && num.intValue() == -2;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
     }
 
     public final List<User> component10() {
@@ -157,56 +147,6 @@ public final /* data */ class Message {
         return this.reactions;
     }
 
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final Boolean getPinned() {
-        return this.pinned;
-    }
-
-    /* JADX INFO: renamed from: component17, reason: from getter */
-    public final Long getWebhookId() {
-        return this.webhookId;
-    }
-
-    /* JADX INFO: renamed from: component18, reason: from getter */
-    public final Integer getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component19, reason: from getter */
-    public final MessageActivity getActivity() {
-        return this.activity;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component20, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component21, reason: from getter */
-    public final Long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: component22, reason: from getter */
-    public final MessageReference getMessageReference() {
-        return this.messageReference;
-    }
-
-    /* JADX INFO: renamed from: component23, reason: from getter */
-    public final Long getFlags() {
-        return this.flags;
-    }
-
     public final List<Sticker> component24() {
         return this.stickers;
     }
@@ -215,107 +155,17 @@ public final /* data */ class Message {
         return this.stickerItems;
     }
 
-    /* JADX INFO: renamed from: component26, reason: from getter */
-    public final com.discord.api.message.Message getReferencedMessage() {
-        return this.referencedMessage;
-    }
-
-    /* JADX INFO: renamed from: component27, reason: from getter */
-    public final Interaction getInteraction() {
-        return this.interaction;
-    }
-
-    /* JADX INFO: renamed from: component28, reason: from getter */
-    public final Channel getThread() {
-        return this.thread;
-    }
-
     public final List<Component> component29() {
         return this.components;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component30, reason: from getter */
-    public final MessageCall getCall() {
-        return this.call;
-    }
-
-    /* JADX INFO: renamed from: component31, reason: from getter */
-    public final Boolean getHit() {
-        return this.hit;
-    }
-
-    /* JADX INFO: renamed from: component32, reason: from getter */
-    public final RoleSubscriptionData getRoleSubscriptionData() {
-        return this.roleSubscriptionData;
-    }
-
-    /* JADX INFO: renamed from: component33, reason: from getter */
-    public final boolean getHasLocalUploads() {
-        return this.hasLocalUploads;
-    }
-
-    /* JADX INFO: renamed from: component34, reason: from getter */
-    public final MessageAllowedMentions getAllowedMentions() {
-        return this.allowedMentions;
-    }
-
-    /* JADX INFO: renamed from: component35, reason: from getter */
-    public final Integer getNumRetries() {
-        return this.numRetries;
-    }
-
-    /* JADX INFO: renamed from: component36, reason: from getter */
-    public final Long getLastManualAttemptTimestamp() {
-        return this.lastManualAttemptTimestamp;
-    }
-
-    /* JADX INFO: renamed from: component37, reason: from getter */
-    public final Long getInitialAttemptTimestamp() {
-        return this.initialAttemptTimestamp;
     }
 
     public final List<LocalAttachment> component38() {
         return this.localAttachments;
     }
 
-    /* JADX INFO: renamed from: component39, reason: from getter */
-    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
-        return this.captchaPayload;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final User getAuthor() {
-        return this.author;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getContent() {
-        return this.content;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final UtcDateTime getTimestamp() {
-        return this.timestamp;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final UtcDateTime getEditedTimestamp() {
-        return this.editedTimestamp;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final Boolean getTts() {
-        return this.tts;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Boolean getMentionEveryone() {
-        return this.mentionEveryone;
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, Object obj) {
+        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaPayload);
     }
 
     public final Message copy(long id2, long channelId, Long guildId, User author, String content, UtcDateTime timestamp, UtcDateTime editedTimestamp, Boolean tts, Boolean mentionEveryone, List<User> mentions, List<Long> mentionRoles, List<MessageAttachment> attachments, List<MessageEmbed> embeds, List<MessageReaction> reactions, String nonce, Boolean pinned, Long webhookId, Integer type, MessageActivity activity, Application application, Long applicationId, MessageReference messageReference, Long flags, List<Sticker> stickers, List<StickerPartial> stickerItems, com.discord.api.message.Message referencedMessage, Interaction interaction, Channel thread, List<? extends Component> components, MessageCall call, Boolean hit, RoleSubscriptionData roleSubscriptionData, boolean hasLocalUploads, MessageAllowedMentions allowedMentions, Integer numRetries, Long lastManualAttemptTimestamp, Long initialAttemptTimestamp, List<LocalAttachment> localAttachments, CaptchaHelper.CaptchaPayload captchaPayload) {
@@ -333,16 +183,36 @@ public final /* data */ class Message {
         return this.id == message.id && this.channelId == message.channelId && C12238m.areEqual(this.guildId, message.guildId) && C12238m.areEqual(this.author, message.author) && C12238m.areEqual(this.content, message.content) && C12238m.areEqual(this.timestamp, message.timestamp) && C12238m.areEqual(this.editedTimestamp, message.editedTimestamp) && C12238m.areEqual(this.tts, message.tts) && C12238m.areEqual(this.mentionEveryone, message.mentionEveryone) && C12238m.areEqual(this.mentions, message.mentions) && C12238m.areEqual(this.mentionRoles, message.mentionRoles) && C12238m.areEqual(this.attachments, message.attachments) && C12238m.areEqual(this.embeds, message.embeds) && C12238m.areEqual(this.reactions, message.reactions) && C12238m.areEqual(this.nonce, message.nonce) && C12238m.areEqual(this.pinned, message.pinned) && C12238m.areEqual(this.webhookId, message.webhookId) && C12238m.areEqual(this.type, message.type) && C12238m.areEqual(this.activity, message.activity) && C12238m.areEqual(this.application, message.application) && C12238m.areEqual(this.applicationId, message.applicationId) && C12238m.areEqual(this.messageReference, message.messageReference) && C12238m.areEqual(this.flags, message.flags) && C12238m.areEqual(this.stickers, message.stickers) && C12238m.areEqual(this.stickerItems, message.stickerItems) && C12238m.areEqual(this.referencedMessage, message.referencedMessage) && C12238m.areEqual(this.interaction, message.interaction) && C12238m.areEqual(this.thread, message.thread) && C12238m.areEqual(this.components, message.components) && C12238m.areEqual(this.call, message.call) && C12238m.areEqual(this.hit, message.hit) && C12238m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData) && this.hasLocalUploads == message.hasLocalUploads && C12238m.areEqual(this.allowedMentions, message.allowedMentions) && C12238m.areEqual(this.numRetries, message.numRetries) && C12238m.areEqual(this.lastManualAttemptTimestamp, message.lastManualAttemptTimestamp) && C12238m.areEqual(this.initialAttemptTimestamp, message.initialAttemptTimestamp) && C12238m.areEqual(this.localAttachments, message.localAttachments) && C12238m.areEqual(this.captchaPayload, message.captchaPayload);
     }
 
+    /* JADX INFO: renamed from: component19, reason: from getter */
     public final MessageActivity getActivity() {
         return this.activity;
+    }
+
+    public final MessageActivity getActivity() {
+        return this.activity;
+    }
+
+    /* JADX INFO: renamed from: component34, reason: from getter */
+    public final MessageAllowedMentions getAllowedMentions() {
+        return this.allowedMentions;
     }
 
     public final MessageAllowedMentions getAllowedMentions() {
         return this.allowedMentions;
     }
 
+    /* JADX INFO: renamed from: component20, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component21, reason: from getter */
+    public final Long getApplicationId() {
+        return this.applicationId;
     }
 
     public final Long getApplicationId() {
@@ -353,8 +223,18 @@ public final /* data */ class Message {
         return this.attachments;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final User getAuthor() {
         return this.author;
+    }
+
+    public final User getAuthor() {
+        return this.author;
+    }
+
+    /* JADX INFO: renamed from: component30, reason: from getter */
+    public final MessageCall getCall() {
+        return this.call;
     }
 
     public final MessageCall getCall() {
@@ -371,8 +251,18 @@ public final /* data */ class Message {
         return utcDateTimeM8074a.getDateTimeMillis() - utcDateTime.getDateTimeMillis();
     }
 
+    /* JADX INFO: renamed from: component39, reason: from getter */
     public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
         return this.captchaPayload;
+    }
+
+    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
+        return this.captchaPayload;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {
@@ -383,8 +273,18 @@ public final /* data */ class Message {
         return this.components;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final String getContent() {
         return this.content;
+    }
+
+    public final String getContent() {
+        return this.content;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final UtcDateTime getEditedTimestamp() {
+        return this.editedTimestamp;
     }
 
     public final UtcDateTime getEditedTimestamp() {
@@ -395,32 +295,72 @@ public final /* data */ class Message {
         return this.embeds;
     }
 
+    /* JADX INFO: renamed from: component23, reason: from getter */
     public final Long getFlags() {
         return this.flags;
+    }
+
+    public final Long getFlags() {
+        return this.flags;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Long getGuildId() {
+        return this.guildId;
     }
 
     public final Long getGuildId() {
         return this.guildId;
     }
 
+    /* JADX INFO: renamed from: component33, reason: from getter */
     public final boolean getHasLocalUploads() {
         return this.hasLocalUploads;
+    }
+
+    public final boolean getHasLocalUploads() {
+        return this.hasLocalUploads;
+    }
+
+    /* JADX INFO: renamed from: component31, reason: from getter */
+    public final Boolean getHit() {
+        return this.hit;
     }
 
     public final Boolean getHit() {
         return this.hit;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component37, reason: from getter */
+    public final Long getInitialAttemptTimestamp() {
+        return this.initialAttemptTimestamp;
     }
 
     public final Long getInitialAttemptTimestamp() {
         return this.initialAttemptTimestamp;
     }
 
+    /* JADX INFO: renamed from: component27, reason: from getter */
     public final Interaction getInteraction() {
         return this.interaction;
+    }
+
+    public final Interaction getInteraction() {
+        return this.interaction;
+    }
+
+    /* JADX INFO: renamed from: component36, reason: from getter */
+    public final Long getLastManualAttemptTimestamp() {
+        return this.lastManualAttemptTimestamp;
     }
 
     public final Long getLastManualAttemptTimestamp() {
@@ -429,6 +369,11 @@ public final /* data */ class Message {
 
     public final List<LocalAttachment> getLocalAttachments() {
         return this.localAttachments;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final Boolean getMentionEveryone() {
+        return this.mentionEveryone;
     }
 
     public final Boolean getMentionEveryone() {
@@ -443,16 +388,36 @@ public final /* data */ class Message {
         return this.mentions;
     }
 
+    /* JADX INFO: renamed from: component22, reason: from getter */
     public final MessageReference getMessageReference() {
         return this.messageReference;
+    }
+
+    public final MessageReference getMessageReference() {
+        return this.messageReference;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
     }
 
     public final String getNonce() {
         return this.nonce;
     }
 
+    /* JADX INFO: renamed from: component35, reason: from getter */
     public final Integer getNumRetries() {
         return this.numRetries;
+    }
+
+    public final Integer getNumRetries() {
+        return this.numRetries;
+    }
+
+    /* JADX INFO: renamed from: component16, reason: from getter */
+    public final Boolean getPinned() {
+        return this.pinned;
     }
 
     public final Boolean getPinned() {
@@ -484,8 +449,18 @@ public final /* data */ class Message {
         return map;
     }
 
+    /* JADX INFO: renamed from: component26, reason: from getter */
     public final com.discord.api.message.Message getReferencedMessage() {
         return this.referencedMessage;
+    }
+
+    public final com.discord.api.message.Message getReferencedMessage() {
+        return this.referencedMessage;
+    }
+
+    /* JADX INFO: renamed from: component32, reason: from getter */
+    public final RoleSubscriptionData getRoleSubscriptionData() {
+        return this.roleSubscriptionData;
     }
 
     public final RoleSubscriptionData getRoleSubscriptionData() {
@@ -500,20 +475,45 @@ public final /* data */ class Message {
         return this.stickers;
     }
 
+    /* JADX INFO: renamed from: component28, reason: from getter */
     public final Channel getThread() {
         return this.thread;
+    }
+
+    public final Channel getThread() {
+        return this.thread;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final UtcDateTime getTimestamp() {
+        return this.timestamp;
     }
 
     public final UtcDateTime getTimestamp() {
         return this.timestamp;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final Boolean getTts() {
         return this.tts;
     }
 
+    public final Boolean getTts() {
+        return this.tts;
+    }
+
+    /* JADX INFO: renamed from: component18, reason: from getter */
     public final Integer getType() {
         return this.type;
+    }
+
+    public final Integer getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: component17, reason: from getter */
+    public final Long getWebhookId() {
+        return this.webhookId;
     }
 
     public final Long getWebhookId() {

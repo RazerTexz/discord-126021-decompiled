@@ -19,6 +19,9 @@ import p007b.p225i.p414e.p418n.p420l.C4975c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4960a {
 
+    /* JADX INFO: renamed from: f */
+    public C4958a f13217f;
+
     /* JADX INFO: renamed from: a */
     public static final String[] f13212a = {"CTRL_PS", " ", ExifInterface.GPS_MEASUREMENT_IN_PROGRESS, "B", "C", "D", ExifInterface.LONGITUDE_EAST, "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", ExifInterface.LATITUDE_SOUTH, ExifInterface.GPS_DIRECTION_TRUE, "U", ExifInterface.GPS_MEASUREMENT_INTERRUPTED, ExifInterface.LONGITUDE_WEST, "X", "Y", "Z", "CTRL_LL", "CTRL_ML", "CTRL_DL", "CTRL_BS"};
 
@@ -33,9 +36,6 @@ public final class C4960a {
 
     /* JADX INFO: renamed from: e */
     public static final String[] f13216e = {"CTRL_PS", " ", "0", "1", ExifInterface.GPS_MEASUREMENT_2D, ExifInterface.GPS_MEASUREMENT_3D, "4", "5", "6", "7", "8", "9", ",", ".", "CTRL_UL", "CTRL_US"};
-
-    /* JADX INFO: renamed from: f */
-    public C4958a f13217f;
 
     /* JADX INFO: renamed from: b */
     public static int m6925b(boolean[] zArr, int i, int i2) {

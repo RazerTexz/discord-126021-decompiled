@@ -23,7 +23,7 @@ public final class DebugPrintableCollection {
     private final Object sync = new Object();
 
     /* JADX INFO: compiled from: DebugPrintable.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -42,27 +42,6 @@ public final class DebugPrintableCollection {
             str = null;
         }
         return debugPrintableCollection.add(debugPrintable, str);
-    }
-
-    private final void addSystemEntry(DebugPrintBuilder dp) {
-        dp.appendLine("System:");
-        dp.appendKeyValue("libdiscordVersion", libdiscordVersion);
-        dp.appendKeyValue("SDK_INT", Integer.valueOf(Build.VERSION.SDK_INT));
-        dp.append("\n");
-    }
-
-    private final void removeDeadReferencesLocked() {
-        ArrayList arrayList = new ArrayList();
-        for (Map.Entry<Long, DebugPrintableRef> entry : this.collection.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            if (entry.getValue().getReference().get() == null) {
-                arrayList.add(Long.valueOf(jLongValue));
-            }
-        }
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            this.collection.remove(Long.valueOf(((Number) it.next()).longValue()));
-        }
     }
 
     public final long add(DebugPrintable ref, String tag) {
@@ -84,6 +63,13 @@ public final class DebugPrintableCollection {
             removeDeadReferencesLocked();
         }
         return j;
+    }
+
+    private final void addSystemEntry(DebugPrintBuilder dp) {
+        dp.appendLine("System:");
+        dp.appendKeyValue("libdiscordVersion", libdiscordVersion);
+        dp.appendKeyValue("SDK_INT", Integer.valueOf(Build.VERSION.SDK_INT));
+        dp.append("\n");
     }
 
     public final void debugPrint(StringBuilder sb) {
@@ -124,6 +110,20 @@ public final class DebugPrintableCollection {
             if (this.collection.remove(Long.valueOf(debugPrintableId)) == null) {
                 Logger.w$default(LoggingProvider.INSTANCE.get(), "DebugPrintable", "Unable to locate tag '" + debugPrintableId + '\'', null, 4, null);
             }
+        }
+    }
+
+    private final void removeDeadReferencesLocked() {
+        ArrayList arrayList = new ArrayList();
+        for (Map.Entry<Long, DebugPrintableRef> entry : this.collection.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            if (entry.getValue().getReference().get() == null) {
+                arrayList.add(Long.valueOf(jLongValue));
+            }
+        }
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            this.collection.remove(Long.valueOf(((Number) it.next()).longValue()));
         }
     }
 }

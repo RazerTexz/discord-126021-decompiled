@@ -19,20 +19,20 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11680e extends AbstractC11727g implements InterfaceC11735o {
+    private List<C11681f> effect_;
 
     /* JADX INFO: renamed from: j */
     public static final C11680e f23793j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11680e> f23794k = new a();
-    private List<C11681f> effect_;
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
     private final AbstractC11723c unknownFields;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11680e> f23794k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.e$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11680e> {
+    public final class a extends AbstractC11722b<C11680e> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11680e parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11680e(c11724d, c11725e, null);
@@ -41,7 +41,7 @@ public final class C11680e extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.e$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.b<C11680e, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.b<C11680e, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: k */
         public int f23795k;
@@ -146,10 +146,6 @@ public final class C11680e extends AbstractC11727g implements InterfaceC11735o {
         return f23793j;
     }
 
-    public static b newBuilder(C11680e c11680e) {
-        return newBuilder().mergeFrom(c11680e);
-    }
-
     public C11681f getEffect(int i) {
         return this.effect_.get(i);
     }
@@ -190,6 +186,10 @@ public final class C11680e extends AbstractC11727g implements InterfaceC11735o {
         }
         this.memoizedIsInitialized = (byte) 1;
         return true;
+    }
+
+    public static b newBuilder(C11680e c11680e) {
+        return newBuilder().mergeFrom(c11680e);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

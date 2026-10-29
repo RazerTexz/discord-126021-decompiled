@@ -19,7 +19,7 @@ public interface InterfaceC11535b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.b$a */
     /* JADX INFO: compiled from: DeclaredMemberIndex.kt */
-    public static final class a implements InterfaceC11535b {
+    public final class a implements InterfaceC11535b {
 
         /* JADX INFO: renamed from: a */
         public static final a f23328a = new a();

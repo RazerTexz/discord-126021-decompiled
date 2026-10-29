@@ -37,24 +37,6 @@ public final /* data */ class TrackSearchResultSelected implements AnalyticsSche
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSourceMetadata trackSourceMetadata;
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -64,6 +46,18 @@ public final /* data */ class TrackSearchResultSelected implements AnalyticsSche
         }
         TrackSearchResultSelected trackSearchResultSelected = (TrackSearchResultSelected) other;
         return C12238m.areEqual(this.searchType, trackSearchResultSelected.searchType) && C12238m.areEqual(this.loadId, trackSearchResultSelected.loadId) && C12238m.areEqual(this.searchId, trackSearchResultSelected.searchId) && C12238m.areEqual(this.indexNum, trackSearchResultSelected.indexNum) && C12238m.areEqual(this.limit, trackSearchResultSelected.limit) && C12238m.areEqual(this.offset, trackSearchResultSelected.offset) && C12238m.areEqual(this.page, trackSearchResultSelected.page) && C12238m.areEqual(this.totalResults, trackSearchResultSelected.totalResults) && C12238m.areEqual(this.pageResults, trackSearchResultSelected.pageResults) && this.modifiers == trackSearchResultSelected.modifiers && C12238m.areEqual(this.numModifiers, trackSearchResultSelected.numModifiers) && C12238m.areEqual(this.previewEnabled, trackSearchResultSelected.previewEnabled) && C12238m.areEqual(this.query, trackSearchResultSelected.query);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -93,6 +87,12 @@ public final /* data */ class TrackSearchResultSelected implements AnalyticsSche
         int iHashCode11 = (iHashCode10 + (bool != null ? bool.hashCode() : 0)) * 31;
         CharSequence charSequence4 = this.query;
         return iHashCode11 + (charSequence4 != null ? charSequence4.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

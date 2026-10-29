@@ -13,18 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMktgVideoPlayed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMktgVideoPlayed implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver, TrackLocationMetadataReceiver {
+    private final CharSequence pageName = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackMarketingSite trackMarketingSite;
-    private final CharSequence pageName = null;
     private final CharSequence videoUrl = null;
     private final transient String analyticsSchemaTypeName = "mktg_video_played";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackMktgVideoPlayed implements AnalyticsSchema, T
         }
         TrackMktgVideoPlayed trackMktgVideoPlayed = (TrackMktgVideoPlayed) other;
         return C12238m.areEqual(this.pageName, trackMktgVideoPlayed.pageName) && C12238m.areEqual(this.videoUrl, trackMktgVideoPlayed.videoUrl);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

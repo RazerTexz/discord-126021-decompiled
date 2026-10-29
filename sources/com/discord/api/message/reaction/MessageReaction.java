@@ -17,6 +17,17 @@ public final /* data */ class MessageReaction {
         this.me = z2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageReaction)) {
+            return false;
+        }
+        MessageReaction messageReaction = (MessageReaction) other;
+        return this.count == messageReaction.count && C12238m.areEqual(this.emoji, messageReaction.emoji) && this.me == messageReaction.me;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final int getCount() {
         return this.count;
@@ -30,17 +41,6 @@ public final /* data */ class MessageReaction {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final boolean getMe() {
         return this.me;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageReaction)) {
-            return false;
-        }
-        MessageReaction messageReaction = (MessageReaction) other;
-        return this.count == messageReaction.count && C12238m.areEqual(this.emoji, messageReaction.emoji) && this.me == messageReaction.me;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

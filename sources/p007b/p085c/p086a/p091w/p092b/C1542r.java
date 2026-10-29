@@ -47,6 +47,11 @@ public class C1542r extends AbstractC1525a {
         abstractC1603b.m777e(abstractC1544aMo773a);
     }
 
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2586p;
+    }
+
     @Override // p007b.p085c.p086a.p091w.p092b.AbstractC1525a, p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
     /* JADX INFO: renamed from: f */
     public void mo713f(Canvas canvas, Matrix matrix, int i) {
@@ -86,10 +91,5 @@ public class C1542r extends AbstractC1525a {
             c1559p.f2596a.add(this);
             this.f2585o.m777e(this.f2588r);
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2586p;
     }
 }

@@ -26,108 +26,13 @@ public abstract class Visibility extends Transition {
     private static final String PROPNAME_PARENT = "android:visibility:parent";
     private static final String[] sTransitionProperties = {PROPNAME_VISIBILITY, PROPNAME_PARENT};
 
-    public static class DisappearListener extends AnimatorListenerAdapter implements Transition.TransitionListener, AnimatorUtils.AnimatorPauseListenerCompat {
-        public boolean mCanceled = false;
-        private final int mFinalVisibility;
-        private boolean mLayoutSuppressed;
-        private final ViewGroup mParent;
-        private final boolean mSuppressLayout;
-        private final View mView;
-
-        public DisappearListener(View view, int i, boolean z2) {
-            this.mView = view;
-            this.mFinalVisibility = i;
-            this.mParent = (ViewGroup) view.getParent();
-            this.mSuppressLayout = z2;
-            suppressLayout(true);
-        }
-
-        private void hideViewWhenNotCanceled() {
-            if (!this.mCanceled) {
-                ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
-                ViewGroup viewGroup = this.mParent;
-                if (viewGroup != null) {
-                    viewGroup.invalidate();
-                }
-            }
-            suppressLayout(false);
-        }
-
-        private void suppressLayout(boolean z2) {
-            ViewGroup viewGroup;
-            if (!this.mSuppressLayout || this.mLayoutSuppressed == z2 || (viewGroup = this.mParent) == null) {
-                return;
-            }
-            this.mLayoutSuppressed = z2;
-            ViewGroupUtils.suppressLayout(viewGroup, z2);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationCancel(Animator animator) {
-            this.mCanceled = true;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            hideViewWhenNotCanceled();
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
-        public void onAnimationPause(Animator animator) {
-            if (this.mCanceled) {
-                return;
-            }
-            ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationRepeat(Animator animator) {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
-        public void onAnimationResume(Animator animator) {
-            if (this.mCanceled) {
-                return;
-            }
-            ViewUtils.setTransitionVisibility(this.mView, 0);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-        }
-
-        @Override // androidx.transition.Transition.TransitionListener
-        public void onTransitionCancel(@NonNull Transition transition) {
-        }
-
-        @Override // androidx.transition.Transition.TransitionListener
-        public void onTransitionEnd(@NonNull Transition transition) {
-            hideViewWhenNotCanceled();
-            transition.removeListener(this);
-        }
-
-        @Override // androidx.transition.Transition.TransitionListener
-        public void onTransitionPause(@NonNull Transition transition) {
-            suppressLayout(false);
-        }
-
-        @Override // androidx.transition.Transition.TransitionListener
-        public void onTransitionResume(@NonNull Transition transition) {
-            suppressLayout(true);
-        }
-
-        @Override // androidx.transition.Transition.TransitionListener
-        public void onTransitionStart(@NonNull Transition transition) {
-        }
-    }
-
     @SuppressLint({"UniqueConstants"})
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public @interface Mode {
     }
 
-    public static class VisibilityInfo {
+    public class VisibilityInfo {
         public ViewGroup mEndParent;
         public int mEndVisibility;
         public boolean mFadeIn;
@@ -140,12 +45,45 @@ public abstract class Visibility extends Transition {
         this.mMode = 3;
     }
 
+    @Override // androidx.transition.Transition
+    public void captureEndValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
+    @Override // androidx.transition.Transition
+    public void captureStartValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
     private void captureValues(TransitionValues transitionValues) {
         transitionValues.values.put(PROPNAME_VISIBILITY, Integer.valueOf(transitionValues.view.getVisibility()));
         transitionValues.values.put(PROPNAME_PARENT, transitionValues.view.getParent());
         int[] iArr = new int[2];
         transitionValues.view.getLocationOnScreen(iArr);
         transitionValues.values.put(PROPNAME_SCREEN_LOCATION, iArr);
+    }
+
+    @Override // androidx.transition.Transition
+    @Nullable
+    public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
+        VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
+        if (!visibilityChangeInfo.mVisibilityChange) {
+            return null;
+        }
+        if (visibilityChangeInfo.mStartParent == null && visibilityChangeInfo.mEndParent == null) {
+            return null;
+        }
+        return visibilityChangeInfo.mFadeIn ? onAppear(viewGroup, transitionValues, visibilityChangeInfo.mStartVisibility, transitionValues2, visibilityChangeInfo.mEndVisibility) : onDisappear(viewGroup, transitionValues, visibilityChangeInfo.mStartVisibility, transitionValues2, visibilityChangeInfo.mEndVisibility);
+    }
+
+    public int getMode() {
+        return this.mMode;
+    }
+
+    @Override // androidx.transition.Transition
+    @Nullable
+    public String[] getTransitionProperties() {
+        return sTransitionProperties;
     }
 
     private VisibilityInfo getVisibilityChangeInfo(TransitionValues transitionValues, TransitionValues transitionValues2) {
@@ -195,39 +133,6 @@ public abstract class Visibility extends Transition {
             visibilityInfo.mVisibilityChange = true;
         }
         return visibilityInfo;
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureEndValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureStartValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
-    }
-
-    @Override // androidx.transition.Transition
-    @Nullable
-    public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
-        VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
-        if (!visibilityChangeInfo.mVisibilityChange) {
-            return null;
-        }
-        if (visibilityChangeInfo.mStartParent == null && visibilityChangeInfo.mEndParent == null) {
-            return null;
-        }
-        return visibilityChangeInfo.mFadeIn ? onAppear(viewGroup, transitionValues, visibilityChangeInfo.mStartVisibility, transitionValues2, visibilityChangeInfo.mEndVisibility) : onDisappear(viewGroup, transitionValues, visibilityChangeInfo.mStartVisibility, transitionValues2, visibilityChangeInfo.mEndVisibility);
-    }
-
-    public int getMode() {
-        return this.mMode;
-    }
-
-    @Override // androidx.transition.Transition
-    @Nullable
-    public String[] getTransitionProperties() {
-        return sTransitionProperties;
     }
 
     @Override // androidx.transition.Transition
@@ -400,6 +305,101 @@ public abstract class Visibility extends Transition {
             throw new IllegalArgumentException("Only MODE_IN and MODE_OUT flags are allowed");
         }
         this.mMode = i;
+    }
+
+    public class DisappearListener extends AnimatorListenerAdapter implements Transition.TransitionListener, AnimatorUtils.AnimatorPauseListenerCompat {
+        private final int mFinalVisibility;
+        private boolean mLayoutSuppressed;
+        private final ViewGroup mParent;
+        private final boolean mSuppressLayout;
+        private final View mView;
+        public boolean mCanceled = false;
+
+        public DisappearListener(View view, int i, boolean z2) {
+            this.mView = view;
+            this.mFinalVisibility = i;
+            this.mParent = (ViewGroup) view.getParent();
+            this.mSuppressLayout = z2;
+            suppressLayout(true);
+        }
+
+        private void hideViewWhenNotCanceled() {
+            if (!this.mCanceled) {
+                ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
+                ViewGroup viewGroup = this.mParent;
+                if (viewGroup != null) {
+                    viewGroup.invalidate();
+                }
+            }
+            suppressLayout(false);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            this.mCanceled = true;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            hideViewWhenNotCanceled();
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
+        public void onAnimationPause(Animator animator) {
+            if (this.mCanceled) {
+                return;
+            }
+            ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationRepeat(Animator animator) {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
+        public void onAnimationResume(Animator animator) {
+            if (this.mCanceled) {
+                return;
+            }
+            ViewUtils.setTransitionVisibility(this.mView, 0);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionCancel(@NonNull Transition transition) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            hideViewWhenNotCanceled();
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+            suppressLayout(false);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+            suppressLayout(true);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionStart(@NonNull Transition transition) {
+        }
+
+        private void suppressLayout(boolean z2) {
+            ViewGroup viewGroup;
+            if (!this.mSuppressLayout || this.mLayoutSuppressed == z2 || (viewGroup = this.mParent) == null) {
+                return;
+            }
+            this.mLayoutSuppressed = z2;
+            ViewGroupUtils.suppressLayout(viewGroup, z2);
+        }
     }
 
     @SuppressLint({"RestrictedApi"})

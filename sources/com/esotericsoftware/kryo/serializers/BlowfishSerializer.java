@@ -21,6 +21,11 @@ public class BlowfishSerializer extends Serializer {
         keySpec = new SecretKeySpec(bArr, "Blowfish");
     }
 
+    @Override // com.esotericsoftware.kryo.Serializer
+    public Object copy(Kryo kryo, Object obj) {
+        return this.serializer.copy(kryo, obj);
+    }
+
     private static Cipher getCipher(int i) {
         try {
             Cipher cipher = Cipher.getInstance("Blowfish");
@@ -29,11 +34,6 @@ public class BlowfishSerializer extends Serializer {
         } catch (Exception e) {
             throw new KryoException(e);
         }
-    }
-
-    @Override // com.esotericsoftware.kryo.Serializer
-    public Object copy(Kryo kryo, Object obj) {
-        return this.serializer.copy(kryo, obj);
     }
 
     @Override // com.esotericsoftware.kryo.Serializer

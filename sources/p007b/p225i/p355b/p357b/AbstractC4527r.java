@@ -28,7 +28,7 @@ public abstract class AbstractC4527r<E> extends AbstractC4519n<E> implements Set
 
     /* JADX INFO: renamed from: b.i.b.b.r$a */
     /* JADX INFO: compiled from: ImmutableSet.java */
-    public static class a implements Serializable {
+    public class a implements Serializable {
         private static final long serialVersionUID = 0;
         public final Object[] elements;
 
@@ -39,6 +39,39 @@ public abstract class AbstractC4527r<E> extends AbstractC4519n<E> implements Set
         public Object readResolve() {
             return AbstractC4527r.m6282n(this.elements);
         }
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public boolean equals(@NullableDecl Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if ((obj instanceof AbstractC4527r) && mo6278p() && ((AbstractC4527r) obj).mo6278p() && hashCode() != obj.hashCode()) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size() && containsAll(set)) {
+                    return true;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public int hashCode() {
+        return C4507h.m6238a(this);
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+    public /* bridge */ /* synthetic */ Iterator iterator() {
+        return iterator();
     }
 
     /* JADX INFO: renamed from: k */
@@ -131,6 +164,11 @@ public abstract class AbstractC4527r<E> extends AbstractC4519n<E> implements Set
         return m6280l(3, e, e2, e3);
     }
 
+    /* JADX INFO: renamed from: o */
+    public AbstractC4523p<E> mo6252o() {
+        return AbstractC4523p.m6261k(toArray());
+    }
+
     @Override // p007b.p225i.p355b.p357b.AbstractC4519n
     /* JADX INFO: renamed from: c */
     public AbstractC4523p<E> mo6253c() {
@@ -141,44 +179,6 @@ public abstract class AbstractC4527r<E> extends AbstractC4519n<E> implements Set
         AbstractC4523p<E> abstractC4523pMo6252o = mo6252o();
         this.f12058l = abstractC4523pMo6252o;
         return abstractC4523pMo6252o;
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public boolean equals(@NullableDecl Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if ((obj instanceof AbstractC4527r) && mo6278p() && ((AbstractC4527r) obj).mo6278p() && hashCode() != obj.hashCode()) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size() && containsAll(set)) {
-                    return true;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public int hashCode() {
-        return C4507h.m6238a(this);
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    public /* bridge */ /* synthetic */ Iterator iterator() {
-        return iterator();
-    }
-
-    /* JADX INFO: renamed from: o */
-    public AbstractC4523p<E> mo6252o() {
-        return AbstractC4523p.m6261k(toArray());
     }
 
     /* JADX INFO: renamed from: p */

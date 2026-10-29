@@ -10,34 +10,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
-    private final CharSequence iconEditType = null;
-    private final CharSequence guildName = null;
-    private final CharSequence oldGuildName = null;
+    private final Boolean animatedBanner = null;
     private final Boolean animatedIcon = null;
     private final CharSequence bannerEditType = null;
-    private final CharSequence splashEditType = null;
-    private final CharSequence vanityUrlCodeEditType = null;
-    private final CharSequence vanityUrlCode = null;
-    private final CharSequence oldVanityUrlCode = null;
-    private final CharSequence discoverySplashEditType = null;
     private final CharSequence description = null;
-    private final CharSequence preferredLocale = null;
-    private final Boolean isPublic = null;
+    private final CharSequence discoverySplashEditType = null;
+    private final Long guildId = null;
+    private final CharSequence guildName = null;
+    private final CharSequence iconEditType = null;
     private final Boolean isDiscoverable = null;
     private final Boolean isFeaturable = null;
-    private final Long rulesChannelId = null;
-    private final Long publicUpdatesChannelId = null;
+    private final Boolean isPublic = null;
+    private final CharSequence oldGuildName = null;
+    private final CharSequence oldVanityUrlCode = null;
+    private final CharSequence preferredLocale = null;
     private final Boolean premiumProgressBarEnabled = null;
-    private final Boolean animatedBanner = null;
+    private final Long publicUpdatesChannelId = null;
+    private final Long rulesChannelId = null;
+    private final CharSequence splashEditType = null;
+    private TrackBase trackBase;
+    private final CharSequence vanityUrlCode = null;
+    private final CharSequence vanityUrlCodeEditType = null;
     private final transient String analyticsSchemaTypeName = "guild_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +42,12 @@ public final /* data */ class TrackGuildSettingsUpdated implements AnalyticsSche
         }
         TrackGuildSettingsUpdated trackGuildSettingsUpdated = (TrackGuildSettingsUpdated) other;
         return C12238m.areEqual(this.guildId, trackGuildSettingsUpdated.guildId) && C12238m.areEqual(this.iconEditType, trackGuildSettingsUpdated.iconEditType) && C12238m.areEqual(this.guildName, trackGuildSettingsUpdated.guildName) && C12238m.areEqual(this.oldGuildName, trackGuildSettingsUpdated.oldGuildName) && C12238m.areEqual(this.animatedIcon, trackGuildSettingsUpdated.animatedIcon) && C12238m.areEqual(this.bannerEditType, trackGuildSettingsUpdated.bannerEditType) && C12238m.areEqual(this.splashEditType, trackGuildSettingsUpdated.splashEditType) && C12238m.areEqual(this.vanityUrlCodeEditType, trackGuildSettingsUpdated.vanityUrlCodeEditType) && C12238m.areEqual(this.vanityUrlCode, trackGuildSettingsUpdated.vanityUrlCode) && C12238m.areEqual(this.oldVanityUrlCode, trackGuildSettingsUpdated.oldVanityUrlCode) && C12238m.areEqual(this.discoverySplashEditType, trackGuildSettingsUpdated.discoverySplashEditType) && C12238m.areEqual(this.description, trackGuildSettingsUpdated.description) && C12238m.areEqual(this.preferredLocale, trackGuildSettingsUpdated.preferredLocale) && C12238m.areEqual(this.isPublic, trackGuildSettingsUpdated.isPublic) && C12238m.areEqual(this.isDiscoverable, trackGuildSettingsUpdated.isDiscoverable) && C12238m.areEqual(this.isFeaturable, trackGuildSettingsUpdated.isFeaturable) && C12238m.areEqual(this.rulesChannelId, trackGuildSettingsUpdated.rulesChannelId) && C12238m.areEqual(this.publicUpdatesChannelId, trackGuildSettingsUpdated.publicUpdatesChannelId) && C12238m.areEqual(this.premiumProgressBarEnabled, trackGuildSettingsUpdated.premiumProgressBarEnabled) && C12238m.areEqual(this.animatedBanner, trackGuildSettingsUpdated.animatedBanner);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

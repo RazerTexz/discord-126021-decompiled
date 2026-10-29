@@ -9,7 +9,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ExpressionPickerEvent {
 
     /* JADX INFO: compiled from: ExpressionPickerEvent.kt */
-    public static final class CloseExpressionPicker extends ExpressionPickerEvent {
+    public final class CloseExpressionPicker extends ExpressionPickerEvent {
         public static final CloseExpressionPicker INSTANCE = new CloseExpressionPicker();
 
         private CloseExpressionPicker() {
@@ -18,7 +18,7 @@ public abstract class ExpressionPickerEvent {
     }
 
     /* JADX INFO: compiled from: ExpressionPickerEvent.kt */
-    public static final /* data */ class OpenStickerPicker extends ExpressionPickerEvent {
+    public final /* data */ class OpenStickerPicker extends ExpressionPickerEvent {
         private final boolean inline;
         private final String searchText;
         private final Long stickerPackId;
@@ -44,21 +44,6 @@ public abstract class ExpressionPickerEvent {
             return openStickerPicker.copy(l, str, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getStickerPackId() {
-            return this.stickerPackId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSearchText() {
-            return this.searchText;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getInline() {
-            return this.inline;
-        }
-
         public final OpenStickerPicker copy(Long stickerPackId, String searchText, boolean inline) {
             return new OpenStickerPicker(stickerPackId, searchText, inline);
         }
@@ -74,12 +59,27 @@ public abstract class ExpressionPickerEvent {
             return C12238m.areEqual(this.stickerPackId, openStickerPicker.stickerPackId) && C12238m.areEqual(this.searchText, openStickerPicker.searchText) && this.inline == openStickerPicker.inline;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getInline() {
             return this.inline;
         }
 
+        public final boolean getInline() {
+            return this.inline;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getSearchText() {
             return this.searchText;
+        }
+
+        public final String getSearchText() {
+            return this.searchText;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Long getStickerPackId() {
+            return this.stickerPackId;
         }
 
         public final Long getStickerPackId() {

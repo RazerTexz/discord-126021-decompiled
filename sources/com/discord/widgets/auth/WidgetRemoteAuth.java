@@ -36,10 +36,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetRemoteAuth extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetRemoteAuth.class, "binding", "getBinding()Lcom/discord/databinding/WidgetRemoteAuthBinding;", 0)};
+    private static final String EXTRA_REMOTE_AUTH_FINGERPRINT = "REMOTE_AUTH_FINGERPRINT";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_REMOTE_AUTH_FINGERPRINT = "REMOTE_AUTH_FINGERPRINT";
     private static final int VIEW_LOADED = 0;
     private static final int VIEW_LOADING = 2;
     private static final int VIEW_NOT_FOUND = 1;
@@ -51,27 +51,9 @@ public final class WidgetRemoteAuth extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, String fingerprint) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(fingerprint, "fingerprint");
-            Intent intent = new Intent("android.intent.action.VIEW");
-            intent.putExtra(WidgetRemoteAuth.EXTRA_REMOTE_AUTH_FINGERPRINT, fingerprint);
-            C0870j.m156d(context, WidgetRemoteAuth.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
-    public static final class C72641 extends AbstractC12240o implements Function1<WidgetRemoteAuthViewModel.ViewState, Unit> {
+    public final class C72641 extends AbstractC12240o implements Function1<WidgetRemoteAuthViewModel.ViewState, Unit> {
         public C72641() {
             super(1);
         }
@@ -87,6 +69,24 @@ public final class WidgetRemoteAuth extends AppFragment {
             WidgetRemoteAuth widgetRemoteAuth = WidgetRemoteAuth.this;
             C12238m.checkNotNullExpressionValue(viewState, "it");
             widgetRemoteAuth.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, String fingerprint) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(fingerprint, "fingerprint");
+            Intent intent = new Intent("android.intent.action.VIEW");
+            intent.putExtra(WidgetRemoteAuth.EXTRA_REMOTE_AUTH_FINGERPRINT, fingerprint);
+            C0870j.m156d(context, WidgetRemoteAuth.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

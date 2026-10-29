@@ -30,7 +30,7 @@ public final class C2434a extends AbstractC2439f {
 
     /* JADX INFO: renamed from: b.i.a.b.j.a$b */
     /* JADX INFO: compiled from: AutoValue_EventInternal.java */
-    public static final class b extends AbstractC2439f.a {
+    public final class b extends AbstractC2439f.a {
 
         /* JADX INFO: renamed from: a */
         public String f5252a;
@@ -49,6 +49,32 @@ public final class C2434a extends AbstractC2439f {
 
         /* JADX INFO: renamed from: f */
         public Map<String, String> f5257f;
+
+        /* JADX INFO: renamed from: d */
+        public AbstractC2439f.a m2344d(C2438e c2438e) {
+            Objects.requireNonNull(c2438e, "Null encodedPayload");
+            this.f5254c = c2438e;
+            return this;
+        }
+
+        /* JADX INFO: renamed from: e */
+        public AbstractC2439f.a m2345e(long j) {
+            this.f5255d = Long.valueOf(j);
+            return this;
+        }
+
+        /* JADX INFO: renamed from: f */
+        public AbstractC2439f.a m2346f(String str) {
+            Objects.requireNonNull(str, "Null transportName");
+            this.f5252a = str;
+            return this;
+        }
+
+        /* JADX INFO: renamed from: g */
+        public AbstractC2439f.a m2347g(long j) {
+            this.f5256e = Long.valueOf(j);
+            return this;
+        }
 
         @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2439f.a
         /* JADX INFO: renamed from: b */
@@ -81,32 +107,6 @@ public final class C2434a extends AbstractC2439f {
             }
             throw new IllegalStateException("Property \"autoMetadata\" has not been set");
         }
-
-        /* JADX INFO: renamed from: d */
-        public AbstractC2439f.a m2344d(C2438e c2438e) {
-            Objects.requireNonNull(c2438e, "Null encodedPayload");
-            this.f5254c = c2438e;
-            return this;
-        }
-
-        /* JADX INFO: renamed from: e */
-        public AbstractC2439f.a m2345e(long j) {
-            this.f5255d = Long.valueOf(j);
-            return this;
-        }
-
-        /* JADX INFO: renamed from: f */
-        public AbstractC2439f.a m2346f(String str) {
-            Objects.requireNonNull(str, "Null transportName");
-            this.f5252a = str;
-            return this;
-        }
-
-        /* JADX INFO: renamed from: g */
-        public AbstractC2439f.a m2347g(long j) {
-            this.f5256e = Long.valueOf(j);
-            return this;
-        }
     }
 
     public C2434a(String str, Integer num, C2438e c2438e, long j, long j2, Map map, a aVar) {
@@ -116,6 +116,28 @@ public final class C2434a extends AbstractC2439f {
         this.f5249d = j;
         this.f5250e = j2;
         this.f5251f = map;
+    }
+
+    public boolean equals(Object obj) {
+        Integer num;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC2439f)) {
+            return false;
+        }
+        AbstractC2439f abstractC2439f = (AbstractC2439f) obj;
+        return this.f5246a.equals(abstractC2439f.mo2340g()) && ((num = this.f5247b) != null ? num.equals(abstractC2439f.mo2337c()) : abstractC2439f.mo2337c() == null) && this.f5248c.equals(abstractC2439f.mo2338d()) && this.f5249d == abstractC2439f.mo2339e() && this.f5250e == abstractC2439f.mo2341h() && this.f5251f.equals(abstractC2439f.mo2336b());
+    }
+
+    public int hashCode() {
+        int iHashCode = (this.f5246a.hashCode() ^ 1000003) * 1000003;
+        Integer num = this.f5247b;
+        int iHashCode2 = (((iHashCode ^ (num == null ? 0 : num.hashCode())) * 1000003) ^ this.f5248c.hashCode()) * 1000003;
+        long j = this.f5249d;
+        int i = (iHashCode2 ^ ((int) (j ^ (j >>> 32)))) * 1000003;
+        long j2 = this.f5250e;
+        return ((i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ this.f5251f.hashCode();
     }
 
     @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2439f
@@ -143,18 +165,6 @@ public final class C2434a extends AbstractC2439f {
         return this.f5249d;
     }
 
-    public boolean equals(Object obj) {
-        Integer num;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC2439f)) {
-            return false;
-        }
-        AbstractC2439f abstractC2439f = (AbstractC2439f) obj;
-        return this.f5246a.equals(abstractC2439f.mo2340g()) && ((num = this.f5247b) != null ? num.equals(abstractC2439f.mo2337c()) : abstractC2439f.mo2337c() == null) && this.f5248c.equals(abstractC2439f.mo2338d()) && this.f5249d == abstractC2439f.mo2339e() && this.f5250e == abstractC2439f.mo2341h() && this.f5251f.equals(abstractC2439f.mo2336b());
-    }
-
     @Override // p007b.p225i.p226a.p228b.p231j.AbstractC2439f
     /* JADX INFO: renamed from: g */
     public String mo2340g() {
@@ -165,16 +175,6 @@ public final class C2434a extends AbstractC2439f {
     /* JADX INFO: renamed from: h */
     public long mo2341h() {
         return this.f5250e;
-    }
-
-    public int hashCode() {
-        int iHashCode = (this.f5246a.hashCode() ^ 1000003) * 1000003;
-        Integer num = this.f5247b;
-        int iHashCode2 = (((iHashCode ^ (num == null ? 0 : num.hashCode())) * 1000003) ^ this.f5248c.hashCode()) * 1000003;
-        long j = this.f5249d;
-        int i = (iHashCode2 ^ ((int) (j ^ (j >>> 32)))) * 1000003;
-        long j2 = this.f5250e;
-        return ((i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ this.f5251f.hashCode();
     }
 
     public String toString() {

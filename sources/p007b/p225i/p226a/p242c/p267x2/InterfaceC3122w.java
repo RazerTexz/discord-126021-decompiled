@@ -14,7 +14,7 @@ public interface InterfaceC3122w {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.w$a */
     /* JADX INFO: compiled from: TrackOutput.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f9000a;

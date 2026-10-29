@@ -11,32 +11,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserFlowTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
-    private TrackBase trackBase;
-    private TrackGuild trackGuild;
     private final CharSequence flowType = null;
     private final CharSequence fromStep = null;
-    private final CharSequence toStep = null;
-    private final Boolean skip = null;
     private final Float secondsOnFromStep = null;
+    private final Boolean skip = null;
+    private final CharSequence toStep = null;
+    private TrackBase trackBase;
+    private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "user_flow_transition";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,6 +29,18 @@ public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema
         }
         TrackUserFlowTransition trackUserFlowTransition = (TrackUserFlowTransition) other;
         return C12238m.areEqual(this.flowType, trackUserFlowTransition.flowType) && C12238m.areEqual(this.fromStep, trackUserFlowTransition.fromStep) && C12238m.areEqual(this.toStep, trackUserFlowTransition.toStep) && C12238m.areEqual(this.skip, trackUserFlowTransition.skip) && C12238m.areEqual(this.secondsOnFromStep, trackUserFlowTransition.secondsOnFromStep);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -60,6 +54,12 @@ public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema
         int iHashCode4 = (iHashCode3 + (bool != null ? bool.hashCode() : 0)) * 31;
         Float f = this.secondsOnFromStep;
         return iHashCode4 + (f != null ? f.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

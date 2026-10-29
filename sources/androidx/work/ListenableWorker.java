@@ -31,10 +31,10 @@ public abstract class ListenableWorker {
     @NonNull
     private WorkerParameters mWorkerParams;
 
-    public static abstract class Result {
+    public abstract class Result {
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public static final class Failure extends Result {
+        public final class Failure extends Result {
             private final Data mOutputData;
 
             public Failure() {
@@ -74,7 +74,7 @@ public abstract class ListenableWorker {
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public static final class Retry extends Result {
+        public final class Retry extends Result {
             public boolean equals(Object obj) {
                 if (this == obj) {
                     return true;
@@ -92,7 +92,7 @@ public abstract class ListenableWorker {
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public static final class Success extends Result {
+        public final class Success extends Result {
             private final Data mOutputData;
 
             public Success() {

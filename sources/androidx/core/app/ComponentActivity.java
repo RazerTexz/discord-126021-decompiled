@@ -24,7 +24,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, KeyEv
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
-    public static class ExtraData {
+    public class ExtraData {
     }
 
     @Override // android.app.Activity, android.view.Window.Callback

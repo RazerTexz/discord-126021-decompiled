@@ -24,7 +24,7 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes.dex */
 public final class TimeSerializers {
 
-    public static class DurationSerializer extends Serializer<Duration> {
+    public class DurationSerializer extends Serializer<Duration> {
         private DurationSerializer() {
             setImmutable(true);
         }
@@ -41,7 +41,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class InstantSerializer extends Serializer<Instant> {
+    public class InstantSerializer extends Serializer<Instant> {
         private InstantSerializer() {
             setImmutable(true);
         }
@@ -58,7 +58,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class LocalDateSerializer extends Serializer<LocalDate> {
+    public class LocalDateSerializer extends Serializer<LocalDate> {
         private LocalDateSerializer() {
             setImmutable(true);
         }
@@ -84,7 +84,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class LocalDateTimeSerializer extends Serializer<LocalDateTime> {
+    public class LocalDateTimeSerializer extends Serializer<LocalDateTime> {
         private LocalDateTimeSerializer() {
             setImmutable(true);
         }
@@ -101,7 +101,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class LocalTimeSerializer extends Serializer<LocalTime> {
+    public class LocalTimeSerializer extends Serializer<LocalTime> {
         private LocalTimeSerializer() {
             setImmutable(true);
         }
@@ -172,7 +172,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class MonthDaySerializer extends Serializer<MonthDay> {
+    public class MonthDaySerializer extends Serializer<MonthDay> {
         private MonthDaySerializer() {
             setImmutable(true);
         }
@@ -189,7 +189,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class OffsetDateTimeSerializer extends Serializer<OffsetDateTime> {
+    public class OffsetDateTimeSerializer extends Serializer<OffsetDateTime> {
         private OffsetDateTimeSerializer() {
             setImmutable(true);
         }
@@ -207,7 +207,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class OffsetTimeSerializer extends Serializer<OffsetTime> {
+    public class OffsetTimeSerializer extends Serializer<OffsetTime> {
         private OffsetTimeSerializer() {
             setImmutable(true);
         }
@@ -224,7 +224,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class PeriodSerializer extends Serializer<Period> {
+    public class PeriodSerializer extends Serializer<Period> {
         private PeriodSerializer() {
             setImmutable(true);
         }
@@ -242,7 +242,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class YearMonthSerializer extends Serializer<YearMonth> {
+    public class YearMonthSerializer extends Serializer<YearMonth> {
         private YearMonthSerializer() {
             setImmutable(true);
         }
@@ -259,7 +259,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class YearSerializer extends Serializer<Year> {
+    public class YearSerializer extends Serializer<Year> {
         private YearSerializer() {
             setImmutable(true);
         }
@@ -275,7 +275,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class ZoneIdSerializer extends Serializer<ZoneId> {
+    public class ZoneIdSerializer extends Serializer<ZoneId> {
         private ZoneIdSerializer() {
             setImmutable(true);
         }
@@ -299,7 +299,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class ZoneOffsetSerializer extends Serializer<ZoneOffset> {
+    public class ZoneOffsetSerializer extends Serializer<ZoneOffset> {
         private ZoneOffsetSerializer() {
             setImmutable(true);
         }
@@ -329,7 +329,7 @@ public final class TimeSerializers {
         }
     }
 
-    public static class ZonedDateTimeSerializer extends Serializer<ZonedDateTime> {
+    public class ZonedDateTimeSerializer extends Serializer<ZonedDateTime> {
         private ZonedDateTimeSerializer() {
             setImmutable(true);
         }

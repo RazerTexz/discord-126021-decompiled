@@ -20,6 +20,17 @@ public class C1872s<K, V> implements InterfaceC1876w<K, V> {
     }
 
     @Override // p007b.p109f.p161j.p168c.InterfaceC1876w
+    public CloseableReference<V> get(K k) {
+        CloseableReference<V> closeableReference = this.f3687a.get(k);
+        if (closeableReference == null) {
+            this.f3688b.mo1233b(k);
+        } else {
+            this.f3688b.mo1232a(k);
+        }
+        return closeableReference;
+    }
+
+    @Override // p007b.p109f.p161j.p168c.InterfaceC1876w
     /* JADX INFO: renamed from: a */
     public CloseableReference<V> mo1235a(K k, CloseableReference<V> closeableReference) {
         this.f3688b.mo1234c(k);
@@ -30,16 +41,5 @@ public class C1872s<K, V> implements InterfaceC1876w<K, V> {
     /* JADX INFO: renamed from: d */
     public int mo1236d(InterfaceC1687j<K> interfaceC1687j) {
         return this.f3687a.mo1236d(interfaceC1687j);
-    }
-
-    @Override // p007b.p109f.p161j.p168c.InterfaceC1876w
-    public CloseableReference<V> get(K k) {
-        CloseableReference<V> closeableReference = this.f3687a.get(k);
-        if (closeableReference == null) {
-            this.f3688b.mo1233b(k);
-        } else {
-            this.f3688b.mo1232a(k);
-        }
-        return closeableReference;
     }
 }

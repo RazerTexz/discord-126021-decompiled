@@ -6,19 +6,19 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3691i1 extends AbstractC3851u4<C3691i1, a> implements InterfaceC3626d6 {
-    private static final C3691i1 zzj;
-    private static volatile InterfaceC3710j6<C3691i1> zzk;
     private int zzc;
     private long zzd;
-    private String zze = "";
-    private String zzf = "";
     private long zzg;
     private float zzh;
     private double zzi;
+    private static final C3691i1 zzj;
+    private static volatile InterfaceC3710j6<C3691i1> zzk;
+    private String zze = "";
+    private String zzf = "";
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.i1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3691i1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3691i1, a> implements InterfaceC3626d6 {
         public a() {
             super(C3691i1.zzj);
         }
@@ -156,6 +156,16 @@ public final class C3691i1 extends AbstractC3851u4<C3691i1, a> implements Interf
         return this.zzi;
     }
 
+    /* JADX INFO: renamed from: y */
+    public final boolean m4956y() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final long m4957z() {
+        return this.zzd;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -188,15 +198,5 @@ public final class C3691i1 extends AbstractC3851u4<C3691i1, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final boolean m4956y() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final long m4957z() {
-        return this.zzd;
     }
 }

@@ -50,6 +50,9 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
     /* JADX INFO: renamed from: j */
     public static int f1763j;
 
+    /* JADX INFO: renamed from: l */
+    public static final b f1765l = new b(null);
+
     /* JADX INFO: renamed from: A */
     public Long f1766A;
 
@@ -122,20 +125,17 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
     /* JADX INFO: renamed from: z */
     public TimerTask f1789z;
 
-    /* JADX INFO: renamed from: l */
-    public static final b f1765l = new b(null);
-
     /* JADX INFO: renamed from: k */
     public static final Type f1764k = new a().getType();
 
     /* JADX INFO: renamed from: b.a.q.n0.a$a */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class a extends TypeToken<Map<String, ? extends Integer>> {
+    public final class a extends TypeToken<Map<String, ? extends Integer>> {
     }
 
     /* JADX INFO: renamed from: b.a.q.n0.a$b */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -194,7 +194,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$e */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class e extends AbstractC12240o implements Function1<WebSocket, Unit> {
+    public final class e extends AbstractC12240o implements Function1<WebSocket, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final e f1797j = new e();
@@ -214,7 +214,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$f */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class f extends AbstractC12240o implements Function1<WebSocket, Unit> {
+    public final class f extends AbstractC12240o implements Function1<WebSocket, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final f f1798j = new f();
@@ -234,11 +234,11 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$g */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class g extends TimerTask {
+    public final class g extends TimerTask {
 
         /* JADX INFO: renamed from: b.a.q.n0.a$g$a */
         /* JADX INFO: compiled from: RtcControlSocket.kt */
-        public static final class a extends AbstractC12240o implements Function0<Unit> {
+        public final class a extends AbstractC12240o implements Function0<Unit> {
             public a() {
                 super(0);
             }
@@ -261,7 +261,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$h */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class h extends AbstractC12240o implements Function0<Unit> {
+    public final class h extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $code;
         public final /* synthetic */ String $reason;
         public final /* synthetic */ WebSocket $webSocket;
@@ -285,7 +285,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$i */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class i extends AbstractC12240o implements Function0<Unit> {
+    public final class i extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: $t */
         public final /* synthetic */ Throwable f1800$t;
@@ -312,7 +312,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$j */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class j extends AbstractC12240o implements Function0<Unit> {
+    public final class j extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Payloads.Incoming $message;
         public final /* synthetic */ WebSocket $webSocket;
 
@@ -483,7 +483,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$k */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class k extends AbstractC12240o implements Function0<Unit> {
+    public final class k extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ WebSocket $webSocket;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -551,7 +551,7 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
 
     /* JADX INFO: renamed from: b.a.q.n0.a$l */
     /* JADX INFO: compiled from: RtcControlSocket.kt */
-    public static final class l extends AbstractC12240o implements Function1<WebSocket, Unit> {
+    public final class l extends AbstractC12240o implements Function1<WebSocket, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final l f1801j = new l();
@@ -596,6 +596,18 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
         this.f1781r = 3;
         this.f1787x = new C1246b(this);
         this.f1767B = c.DISCONNECTED;
+    }
+
+    @Override // com.discord.utilities.debug.DebugPrintable
+    public void debugPrint(DebugPrintBuilder debugPrintBuilder) {
+        C12238m.checkNotNullParameter(debugPrintBuilder, "dp");
+        debugPrintBuilder.appendKeyValue("serverId", this.f1783t);
+        debugPrintBuilder.appendKeyValue("sessionId", this.f1784u);
+        debugPrintBuilder.appendKeyValue("heartbeatInterval", this.f1785v);
+        debugPrintBuilder.appendKeyValue("lastHeartbeatAckTime", this.f1788y);
+        debugPrintBuilder.appendKeyValue("connectionStartTime", this.f1766A);
+        debugPrintBuilder.appendKeyValue("connectionState", this.f1767B);
+        debugPrintBuilder.appendKeyValue("resumable", Boolean.valueOf(this.f1768C));
     }
 
     /* JADX INFO: renamed from: a */
@@ -660,18 +672,6 @@ public final class C1245a extends WebSocketListener implements DebugPrintable {
             dVar.onConnecting();
         }
         return true;
-    }
-
-    @Override // com.discord.utilities.debug.DebugPrintable
-    public void debugPrint(DebugPrintBuilder debugPrintBuilder) {
-        C12238m.checkNotNullParameter(debugPrintBuilder, "dp");
-        debugPrintBuilder.appendKeyValue("serverId", this.f1783t);
-        debugPrintBuilder.appendKeyValue("sessionId", this.f1784u);
-        debugPrintBuilder.appendKeyValue("heartbeatInterval", this.f1785v);
-        debugPrintBuilder.appendKeyValue("lastHeartbeatAckTime", this.f1788y);
-        debugPrintBuilder.appendKeyValue("connectionStartTime", this.f1766A);
-        debugPrintBuilder.appendKeyValue("connectionState", this.f1767B);
-        debugPrintBuilder.appendKeyValue("resumable", Boolean.valueOf(this.f1768C));
     }
 
     /* JADX INFO: renamed from: e */

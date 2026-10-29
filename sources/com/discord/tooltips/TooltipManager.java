@@ -50,10 +50,13 @@ public class TooltipManager {
 
     /* JADX INFO: renamed from: com.discord.tooltips.TooltipManager$a */
     /* JADX INFO: compiled from: TooltipManager.kt */
-    public static final class C6647a {
+    public final class C6647a {
 
         /* JADX INFO: renamed from: a */
         public static WeakReference<TooltipManager> f18972a;
+
+        /* JADX INFO: renamed from: d */
+        public static final C6647a f18975d = null;
 
         /* JADX INFO: renamed from: b */
         public static final Lazy f18973b = C12083g.lazy(a.f18976j);
@@ -61,12 +64,9 @@ public class TooltipManager {
         /* JADX INFO: renamed from: c */
         public static final Lazy f18974c = C12083g.lazy(b.f18977j);
 
-        /* JADX INFO: renamed from: d */
-        public static final C6647a f18975d = null;
-
         /* JADX INFO: renamed from: com.discord.tooltips.TooltipManager$a$a */
         /* JADX INFO: compiled from: TooltipManager.kt */
-        public static final class a extends AbstractC12240o implements Function0<C1311a> {
+        public final class a extends AbstractC12240o implements Function0<C1311a> {
 
             /* JADX INFO: renamed from: j */
             public static final a f18976j = new a();
@@ -83,7 +83,7 @@ public class TooltipManager {
 
         /* JADX INFO: renamed from: com.discord.tooltips.TooltipManager$a$b */
         /* JADX INFO: compiled from: TooltipManager.kt */
-        public static final class b extends AbstractC12240o implements Function0<Set<String>> {
+        public final class b extends AbstractC12240o implements Function0<Set<String>> {
 
             /* JADX INFO: renamed from: j */
             public static final b f18977j = new b();
@@ -101,7 +101,7 @@ public class TooltipManager {
 
     /* JADX INFO: renamed from: com.discord.tooltips.TooltipManager$b */
     /* JADX INFO: compiled from: TooltipManager.kt */
-    public static class C6648b {
+    public class C6648b {
         private final String cacheKey;
         private final String tooltipName;
 

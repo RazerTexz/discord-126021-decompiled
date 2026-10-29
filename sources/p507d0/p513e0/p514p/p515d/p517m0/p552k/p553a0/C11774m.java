@@ -39,7 +39,7 @@ public final class C11774m extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.m$a */
     /* JADX INFO: compiled from: StaticScopeForKotlinEnum.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
         public a() {
             super(0);
         }
@@ -64,16 +64,16 @@ public final class C11774m extends AbstractC11771j {
         return (InterfaceC11352h) m11469getContributedClassifier(c11716e, interfaceC11480b);
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public /* bridge */ /* synthetic */ Collection getContributedDescriptors(C11765d c11765d, Function1 function1) {
+        return getContributedDescriptors(c11765d, (Function1<? super C11716e, Boolean>) function1);
+    }
+
     /* JADX INFO: renamed from: getContributedClassifier, reason: collision with other method in class */
     public Void m11469getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
         C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public /* bridge */ /* synthetic */ Collection getContributedDescriptors(C11765d c11765d, Function1 function1) {
-        return getContributedDescriptors(c11765d, (Function1<? super C11716e, Boolean>) function1);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l

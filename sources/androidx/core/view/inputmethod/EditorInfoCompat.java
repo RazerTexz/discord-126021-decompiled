@@ -18,7 +18,6 @@ public final class EditorInfoCompat {
     private static final String CONTENT_SELECTION_END_KEY = "androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_END";
     private static final String CONTENT_SELECTION_HEAD_KEY = "androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_HEAD";
     private static final String CONTENT_SURROUNDING_TEXT_KEY = "androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SURROUNDING_TEXT";
-    private static final String[] EMPTY_STRING_ARRAY = new String[0];
     public static final int IME_FLAG_FORCE_ASCII = Integer.MIN_VALUE;
     public static final int IME_FLAG_NO_PERSONALIZED_LEARNING = 16777216;
 
@@ -27,9 +26,10 @@ public final class EditorInfoCompat {
 
     @VisibleForTesting
     public static final int MEMORY_EFFICIENT_TEXT_LENGTH = 2048;
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     @RequiresApi(30)
-    public static class Impl30 {
+    public class Impl30 {
         private Impl30() {
         }
 

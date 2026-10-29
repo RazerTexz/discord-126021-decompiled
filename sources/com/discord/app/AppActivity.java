@@ -84,8 +84,23 @@ import p658rx.subjects.Subject;
 /* JADX INFO: loaded from: classes.dex */
 public class AppActivity extends AbstractActivityC0858d implements AppComponent {
 
+    /* JADX INFO: renamed from: x, reason: from kotlin metadata */
+    public final AppPermissionsRequests appPermissions;
+
     /* JADX INFO: renamed from: m */
     public static boolean f14908m;
+
+    /* JADX INFO: renamed from: w, reason: from kotlin metadata */
+    public Intent mostRecentIntent;
+
+    /* JADX INFO: renamed from: v, reason: from kotlin metadata */
+    public final Lazy screen;
+
+    /* JADX INFO: renamed from: u, reason: from kotlin metadata */
+    public Toolbar toolbar;
+
+    /* JADX INFO: renamed from: t, reason: from kotlin metadata */
+    public final Subject<Void, Void> unsubscribeSignal;
 
     /* JADX INFO: renamed from: n */
     public static final Intent f14909n = new Intent();
@@ -105,90 +120,9 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
     /* JADX INFO: renamed from: s, reason: from kotlin metadata */
     public boolean refreshEnabled = true;
 
-    /* JADX INFO: renamed from: t, reason: from kotlin metadata */
-    public final Subject<Void, Void> unsubscribeSignal;
-
-    /* JADX INFO: renamed from: u, reason: from kotlin metadata */
-    public Toolbar toolbar;
-
-    /* JADX INFO: renamed from: v, reason: from kotlin metadata */
-    public final Lazy screen;
-
-    /* JADX INFO: renamed from: w, reason: from kotlin metadata */
-    public Intent mostRecentIntent;
-
-    /* JADX INFO: renamed from: x, reason: from kotlin metadata */
-    public final AppPermissionsRequests appPermissions;
-
-    /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class AppAction extends AppActivity {
-
-        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
-        public final Lazy screen = C12083g.lazy(new C5431a());
-
-        /* JADX INFO: renamed from: com.discord.app.AppActivity$AppAction$a */
-        /* JADX INFO: compiled from: AppActivity.kt */
-        public static final class C5431a extends AbstractC12240o implements Function0<Class<? extends AppFragment>> {
-            public C5431a() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public Class<? extends AppFragment> invoke() {
-                int iHashCode;
-                String action = AppAction.this.m8343c().getAction();
-                return (action != null && ((iHashCode = action.hashCode()) == -1173264947 ? action.equals("android.intent.action.SEND") : !(iHashCode == -1103390587 ? !action.equals("com.discord.intent.action.SDK") : !(iHashCode == -58484670 && action.equals("android.intent.action.SEND_MULTIPLE"))))) ? WidgetIncomingShare.class : WidgetTabsHost.class;
-            }
-        }
-
-        @Override // com.discord.app.AppActivity
-        /* JADX INFO: renamed from: d */
-        public Class<? extends AppComponent> mo8344d() {
-            return (Class) this.screen.getValue();
-        }
-
-        @Override // com.discord.app.AppActivity, androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            if (AppActivity.f14908m) {
-                finish();
-            }
-        }
-    }
-
-    /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class Call extends AppActivity {
-
-        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
-        public final Class<? extends AppComponent> screen = WidgetCallFullscreen.class;
-
-        @Override // com.discord.app.AppActivity
-        /* JADX INFO: renamed from: d */
-        public Class<? extends AppComponent> mo8344d() {
-            return this.screen;
-        }
-    }
-
-    /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class IncomingCall extends AppActivity {
-
-        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
-        public final Class<? extends AppComponent> screen = WidgetVoiceCallIncoming.SystemCallIncoming.class;
-
-        @Override // com.discord.app.AppActivity
-        /* JADX INFO: renamed from: d */
-        public Class<? extends AppComponent> mo8344d() {
-            return this.screen;
-        }
-    }
-
-    /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class Main extends AppActivity {
-    }
-
     /* JADX INFO: renamed from: com.discord.app.AppActivity$b */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class C5433b extends AbstractC12240o implements Function0<Unit> {
+    public final class C5433b extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final C5433b f14925j = new C5433b();
@@ -228,7 +162,7 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.app.AppActivity$c */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class C5434c extends AbstractC12240o implements Function1<StoreUserSettingsSystem.Settings, Unit> {
+    public final class C5434c extends AbstractC12240o implements Function1<StoreUserSettingsSystem.Settings, Unit> {
         public C5434c() {
             super(1);
         }
@@ -274,7 +208,7 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.app.AppActivity$d */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class C5435d extends AbstractC12240o implements Function1<ScreenshotDetector.Screenshot, Unit> {
+    public final class C5435d extends AbstractC12240o implements Function1<ScreenshotDetector.Screenshot, Unit> {
         public C5435d() {
             super(1);
         }
@@ -290,7 +224,7 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.app.AppActivity$e */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class C5436e extends AbstractC12240o implements Function0<Class<? extends AppComponent>> {
+    public final class C5436e extends AbstractC12240o implements Function0<Class<? extends AppComponent>> {
         public C5436e() {
             super(0);
         }
@@ -303,9 +237,13 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         }
     }
 
+    /* JADX INFO: compiled from: AppActivity.kt */
+    public final class Main extends AppActivity {
+    }
+
     /* JADX INFO: renamed from: com.discord.app.AppActivity$f */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class RunnableC5437f implements Runnable {
+    public final class RunnableC5437f implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ View f14926j;
@@ -335,7 +273,7 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.app.AppActivity$g */
     /* JADX INFO: compiled from: AppActivity.kt */
-    public static final class ViewOnClickListenerC5438g implements View.OnClickListener {
+    public final class ViewOnClickListenerC5438g implements View.OnClickListener {
         public ViewOnClickListenerC5438g() {
         }
 
@@ -357,22 +295,6 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         int i = AppPermissionsRequests.f14960a;
         C12238m.checkNotNullParameter(this, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         this.appPermissions = new C0866h(this);
-    }
-
-    /* JADX INFO: renamed from: i */
-    public static void m8341i(AppActivity appActivity, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        if (appActivity.refreshEnabled) {
-            appActivity.finish();
-            if (z2) {
-                AppTransitionActivity.Transition transition = AppTransitionActivity.Transition.TYPE_FADE;
-                appActivity.overridePendingTransition(transition.getAnimations().f14967c, transition.getAnimations().f14968d);
-                appActivity.getIntent().putExtra("transition", transition);
-            }
-            C0870j.m156d(appActivity, appActivity.mo8344d(), appActivity.getIntent());
-        }
     }
 
     @Override // android.view.ContextThemeWrapper
@@ -430,6 +352,31 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         super.attachBaseContext(r5);
     }
 
+    @Override // com.discord.app.AppComponent
+    public Subject<Void, Void> getUnsubscribeSignal() {
+        return this.unsubscribeSignal;
+    }
+
+    public final void hideKeyboard(View view) {
+        m8352m(false, view);
+    }
+
+    /* JADX INFO: renamed from: i */
+    public static void m8341i(AppActivity appActivity, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        if (appActivity.refreshEnabled) {
+            appActivity.finish();
+            if (z2) {
+                AppTransitionActivity.Transition transition = AppTransitionActivity.Transition.TYPE_FADE;
+                appActivity.overridePendingTransition(transition.getAnimations().f14967c, transition.getAnimations().f14968d);
+                appActivity.getIntent().putExtra("transition", transition);
+            }
+            C0870j.m156d(appActivity, appActivity.mo8344d(), appActivity.getIntent());
+        }
+    }
+
     /* JADX INFO: renamed from: b */
     public final void m8342b(String localeString, boolean refreshIfChanged) {
         Locale localeObject = ModelUserSettings.getLocaleObject(localeString);
@@ -467,11 +414,6 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         }
         Intent intent3 = getIntent();
         return intent3 != null ? intent3 : new Intent(intent2);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public Class<? extends AppComponent> mo8344d() {
-        return (Class) this.screen.getValue();
     }
 
     /* JADX INFO: renamed from: e */
@@ -528,19 +470,10 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         return false;
     }
 
-    @Override // com.discord.app.AppComponent
-    public Subject<Void, Void> getUnsubscribeSignal() {
-        return this.unsubscribeSignal;
-    }
-
     /* JADX INFO: renamed from: h */
     public final boolean m8348h(InterfaceC11230c<? extends AppComponent> screen) {
         C12238m.checkNotNullParameter(screen, "screen");
         return C12238m.areEqual(C12209a.getJavaClass(screen), mo8344d());
-    }
-
-    public final void hideKeyboard(View view) {
-        m8352m(false, view);
     }
 
     /* JADX INFO: renamed from: j */
@@ -637,6 +570,11 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         }
     }
 
+    /* JADX INFO: renamed from: d */
+    public Class<? extends AppComponent> mo8344d() {
+        return (Class) this.screen.getValue();
+    }
+
     @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -729,10 +667,72 @@ public class AppActivity extends AbstractActivityC0858d implements AppComponent 
         m8352m(true, view);
     }
 
+    /* JADX INFO: compiled from: AppActivity.kt */
+    public final class AppAction extends AppActivity {
+
+        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
+        public final Lazy screen = C12083g.lazy(new C5431a());
+
+        /* JADX INFO: renamed from: com.discord.app.AppActivity$AppAction$a */
+        /* JADX INFO: compiled from: AppActivity.kt */
+        public final class C5431a extends AbstractC12240o implements Function0<Class<? extends AppFragment>> {
+            public C5431a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Class<? extends AppFragment> invoke() {
+                int iHashCode;
+                String action = AppAction.this.m8343c().getAction();
+                return (action != null && ((iHashCode = action.hashCode()) == -1173264947 ? action.equals("android.intent.action.SEND") : !(iHashCode == -1103390587 ? !action.equals("com.discord.intent.action.SDK") : !(iHashCode == -58484670 && action.equals("android.intent.action.SEND_MULTIPLE"))))) ? WidgetIncomingShare.class : WidgetTabsHost.class;
+            }
+        }
+
+        @Override // com.discord.app.AppActivity
+        /* JADX INFO: renamed from: d */
+        public Class<? extends AppComponent> mo8344d() {
+            return (Class) this.screen.getValue();
+        }
+
+        @Override // com.discord.app.AppActivity, androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if (AppActivity.f14908m) {
+                finish();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppActivity.kt */
+    public final class Call extends AppActivity {
+
+        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
+        public final Class<? extends AppComponent> screen = WidgetCallFullscreen.class;
+
+        @Override // com.discord.app.AppActivity
+        /* JADX INFO: renamed from: d */
+        public Class<? extends AppComponent> mo8344d() {
+            return this.screen;
+        }
+    }
+
+    /* JADX INFO: compiled from: AppActivity.kt */
+    public final class IncomingCall extends AppActivity {
+
+        /* JADX INFO: renamed from: y, reason: from kotlin metadata */
+        public final Class<? extends AppComponent> screen = WidgetVoiceCallIncoming.SystemCallIncoming.class;
+
+        @Override // com.discord.app.AppActivity
+        /* JADX INFO: renamed from: d */
+        public Class<? extends AppComponent> mo8344d() {
+            return this.screen;
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.app.AppActivity$a */
     /* JADX INFO: compiled from: kotlin-style lambda group */
     /* JADX INFO: loaded from: classes2.dex */
-    public static final class C5432a extends AbstractC12240o implements Function0<Unit> {
+    public final class C5432a extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f14923j;

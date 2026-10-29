@@ -70,7 +70,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomeViewModel$1 */
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final class C89791 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C89791 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C89791() {
             super(1);
         }
@@ -91,7 +91,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomeViewModel$2 */
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final class C89802 extends AbstractC12240o implements Function1<StoreNavigation.PanelAction, Unit> {
+    public final class C89802 extends AbstractC12240o implements Function1<StoreNavigation.PanelAction, Unit> {
         public C89802() {
             super(1);
         }
@@ -110,7 +110,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -162,10 +162,10 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class AnimatePeekIn extends Event {
+        public final class AnimatePeekIn extends Event {
             public static final AnimatePeekIn INSTANCE = new AnimatePeekIn();
 
             private AnimatePeekIn() {
@@ -174,7 +174,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class AnimatePeekOut extends Event {
+        public final class AnimatePeekOut extends Event {
             public static final AnimatePeekOut INSTANCE = new AnimatePeekOut();
 
             private AnimatePeekOut() {
@@ -183,7 +183,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class ClosePanels extends Event {
+        public final class ClosePanels extends Event {
             public static final ClosePanels INSTANCE = new ClosePanels();
 
             private ClosePanels() {
@@ -192,7 +192,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class OpenLeftPanel extends Event {
+        public final class OpenLeftPanel extends Event {
             public static final OpenLeftPanel INSTANCE = new OpenLeftPanel();
 
             private OpenLeftPanel() {
@@ -201,7 +201,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class ShowChannelOnboardingSheet extends Event {
+        public final class ShowChannelOnboardingSheet extends Event {
             public static final ShowChannelOnboardingSheet INSTANCE = new ShowChannelOnboardingSheet();
 
             private ShowChannelOnboardingSheet() {
@@ -210,7 +210,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final /* data */ class ShowGuildEventUpsell extends Event {
+        public final /* data */ class ShowGuildEventUpsell extends Event {
             private final long guildId;
 
             public ShowGuildEventUpsell(long j) {
@@ -225,11 +225,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                 return showGuildEventUpsell.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final ShowGuildEventUpsell copy(long guildId) {
                 return new ShowGuildEventUpsell(guildId);
             }
@@ -239,6 +234,11 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ShowGuildEventUpsell) && this.guildId == ((ShowGuildEventUpsell) other).guildId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
@@ -255,7 +255,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final /* data */ class ShowGuildRoleSubscriptionUpsell extends Event {
+        public final /* data */ class ShowGuildRoleSubscriptionUpsell extends Event {
             private final long guildId;
 
             public ShowGuildRoleSubscriptionUpsell(long j) {
@@ -270,11 +270,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                 return showGuildRoleSubscriptionUpsell.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final ShowGuildRoleSubscriptionUpsell copy(long guildId) {
                 return new ShowGuildRoleSubscriptionUpsell(guildId);
             }
@@ -284,6 +279,11 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ShowGuildRoleSubscriptionUpsell) && this.guildId == ((ShowGuildRoleSubscriptionUpsell) other).guildId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
@@ -300,7 +300,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final /* data */ class ShowGuildWelcomeSheet extends Event {
+        public final /* data */ class ShowGuildWelcomeSheet extends Event {
             private final long guildId;
 
             public ShowGuildWelcomeSheet(long j) {
@@ -315,11 +315,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                 return showGuildWelcomeSheet.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final ShowGuildWelcomeSheet copy(long guildId) {
                 return new ShowGuildWelcomeSheet(guildId);
             }
@@ -329,6 +324,11 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ShowGuildWelcomeSheet) && this.guildId == ((ShowGuildWelcomeSheet) other).guildId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
@@ -345,7 +345,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class ShowPlaystationUpsell extends Event {
+        public final class ShowPlaystationUpsell extends Event {
             public static final ShowPlaystationUpsell INSTANCE = new ShowPlaystationUpsell();
 
             private ShowPlaystationUpsell() {
@@ -354,7 +354,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-        public static final class UnlockLeftPanel extends Event {
+        public final class UnlockLeftPanel extends Event {
             public static final UnlockLeftPanel INSTANCE = new UnlockLeftPanel();
 
             private UnlockLeftPanel() {
@@ -371,7 +371,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final /* data */ class GuildInfo {
+    public final /* data */ class GuildInfo {
         private final boolean canManageEvents;
         private final Guild guild;
         private final long guildId;
@@ -386,36 +386,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             this.welcomeScreenState = state;
             this.isNsfwUnconsented = z3;
             this.canManageEvents = z4;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsLurking() {
-            return this.isLurking;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StoreGuildWelcomeScreens.State getWelcomeScreenState() {
-            return this.welcomeScreenState;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsNsfwUnconsented() {
-            return this.isNsfwUnconsented;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanManageEvents() {
-            return this.canManageEvents;
         }
 
         public final GuildInfo copy(long guildId, Guild guild, boolean isLurking, StoreGuildWelcomeScreens.State welcomeScreenState, boolean isNsfwUnconsented, boolean canManageEvents) {
@@ -433,16 +403,46 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             return this.guildId == guildInfo.guildId && C12238m.areEqual(this.guild, guildInfo.guild) && this.isLurking == guildInfo.isLurking && C12238m.areEqual(this.welcomeScreenState, guildInfo.welcomeScreenState) && this.isNsfwUnconsented == guildInfo.isNsfwUnconsented && this.canManageEvents == guildInfo.canManageEvents;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getCanManageEvents() {
             return this.canManageEvents;
+        }
+
+        public final boolean getCanManageEvents() {
+            return this.canManageEvents;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsLurking() {
+            return this.isLurking;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsNsfwUnconsented() {
+            return this.isNsfwUnconsented;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final StoreGuildWelcomeScreens.State getWelcomeScreenState() {
+            return this.welcomeScreenState;
         }
 
         public final StoreGuildWelcomeScreens.State getWelcomeScreenState() {
@@ -509,7 +509,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreUserConnections.State connectedAccountsState;
         private final long guildId;
         private final GuildInfo guildInfo;
@@ -539,56 +539,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             this.connectedAccountsState = state;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PanelState getLeftPanelState() {
-            return this.leftPanelState;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final StoreUserConnections.State getConnectedAccountsState() {
-            return this.connectedAccountsState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final PanelState getRightPanelState() {
-            return this.rightPanelState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildInfo getGuildInfo() {
-            return this.guildInfo;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsThreadPeek() {
-            return this.isThreadPeek;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsInEventsUpsellExperiment() {
-            return this.isInEventsUpsellExperiment;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsChannelNsfw() {
-            return this.isChannelNsfw;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final NsfwAllowance getNsfwAllowed() {
-            return this.nsfwAllowed;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final StoreState copy(PanelState leftPanelState, PanelState rightPanelState, GuildInfo guildInfo, MeUser me2, boolean isThreadPeek, boolean isInEventsUpsellExperiment, boolean isChannelNsfw, NsfwAllowance nsfwAllowed, long guildId, StoreUserConnections.State connectedAccountsState) {
             C12238m.checkNotNullParameter(leftPanelState, "leftPanelState");
             C12238m.checkNotNullParameter(rightPanelState, "rightPanelState");
@@ -609,28 +559,78 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.leftPanelState, storeState.leftPanelState) && C12238m.areEqual(this.rightPanelState, storeState.rightPanelState) && C12238m.areEqual(this.guildInfo, storeState.guildInfo) && C12238m.areEqual(this.me, storeState.me) && this.isThreadPeek == storeState.isThreadPeek && this.isInEventsUpsellExperiment == storeState.isInEventsUpsellExperiment && this.isChannelNsfw == storeState.isChannelNsfw && C12238m.areEqual(this.nsfwAllowed, storeState.nsfwAllowed) && this.guildId == storeState.guildId && C12238m.areEqual(this.connectedAccountsState, storeState.connectedAccountsState);
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final StoreUserConnections.State getConnectedAccountsState() {
             return this.connectedAccountsState;
+        }
+
+        public final StoreUserConnections.State getConnectedAccountsState() {
+            return this.connectedAccountsState;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final GuildInfo getGuildInfo() {
             return this.guildInfo;
+        }
+
+        public final GuildInfo getGuildInfo() {
+            return this.guildInfo;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsChannelNsfw() {
+            return this.isChannelNsfw;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsInEventsUpsellExperiment() {
+            return this.isInEventsUpsellExperiment;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsThreadPeek() {
+            return this.isThreadPeek;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
         }
 
         public final PanelState getLeftPanelState() {
             return this.leftPanelState;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final MeUser getMe() {
             return this.me;
         }
 
+        public final MeUser getMe() {
+            return this.me;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final NsfwAllowance getNsfwAllowed() {
             return this.nsfwAllowed;
+        }
+
+        public final NsfwAllowance getNsfwAllowed() {
+            return this.nsfwAllowed;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final PanelState getRightPanelState() {
+            return this.rightPanelState;
         }
 
         public final PanelState getRightPanelState() {
@@ -716,7 +716,7 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: WidgetHomeViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final long guildId;
         private final boolean isChannelNsfw;
         private final boolean isNsfwUnconsented;
@@ -761,36 +761,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             return viewState.copy(panelState, panelState3, z4, z5, nsfwAllowance2, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PanelState getLeftPanelState() {
-            return this.leftPanelState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final PanelState getRightPanelState() {
-            return this.rightPanelState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsNsfwUnconsented() {
-            return this.isNsfwUnconsented;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsChannelNsfw() {
-            return this.isChannelNsfw;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final NsfwAllowance getNsfwAllowed() {
-            return this.nsfwAllowed;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final ViewState copy(PanelState leftPanelState, PanelState rightPanelState, boolean isNsfwUnconsented, boolean isChannelNsfw, NsfwAllowance nsfwAllowed, long guildId) {
             C12238m.checkNotNullParameter(leftPanelState, "leftPanelState");
             C12238m.checkNotNullParameter(rightPanelState, "rightPanelState");
@@ -808,16 +778,46 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.leftPanelState, viewState.leftPanelState) && C12238m.areEqual(this.rightPanelState, viewState.rightPanelState) && this.isNsfwUnconsented == viewState.isNsfwUnconsented && this.isChannelNsfw == viewState.isChannelNsfw && C12238m.areEqual(this.nsfwAllowed, viewState.nsfwAllowed) && this.guildId == viewState.guildId;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsChannelNsfw() {
+            return this.isChannelNsfw;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsNsfwUnconsented() {
+            return this.isNsfwUnconsented;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
         }
 
         public final PanelState getLeftPanelState() {
             return this.leftPanelState;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final NsfwAllowance getNsfwAllowed() {
             return this.nsfwAllowed;
+        }
+
+        public final NsfwAllowance getNsfwAllowed() {
+            return this.nsfwAllowed;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final PanelState getRightPanelState() {
+            return this.rightPanelState;
         }
 
         public final PanelState getRightPanelState() {
@@ -929,6 +929,12 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     }
 
     @MainThread
+    public final void emitOpenLeftPanelEvent() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(Event.OpenLeftPanel.INSTANCE);
+    }
+
+    @MainThread
     private final void emitShowChannelOnboardingSheet() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.f27650k.onNext(Event.ShowChannelOnboardingSheet.INSTANCE);
@@ -962,6 +968,11 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
     private final void emitUnlockLeftPanelEvent() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.f27650k.onNext(Event.UnlockLeftPanel.INSTANCE);
+    }
+
+    /* JADX INFO: renamed from: getWidgetHomeModel$app_productionGoogleRelease, reason: from getter */
+    public final WidgetHomeModel getWidgetHomeModel() {
+        return this.widgetHomeModel;
     }
 
     @MainThread
@@ -1020,25 +1031,6 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
         this.wasThreadPeek = storeState.isThreadPeek();
     }
 
-    private final boolean shouldShowChannelOnboardingSheet(PanelState previousLeftPanelState, PanelState leftPanelState, long guildId, boolean isNewUser) {
-        return ((previousLeftPanelState instanceof PanelState.C5581d) && (leftPanelState instanceof PanelState.C5580c)) && ((guildId > 0L ? 1 : (guildId == 0L ? 0 : -1)) != 0) && isNewUser && !this.channelOnboardingManager.hasUserSeenChannelOnboarding();
-    }
-
-    private final boolean shouldShowGuildEventUpsell(boolean canManageEvents, boolean isInEventsUpsellExperiment) {
-        return canManageEvents && !this.sharedPreferences.getBoolean(WidgetGuildScheduledEventUpsellBottomSheet.GUILD_EVENT_UPSELL_CACHE_KEY, false) && isInEventsUpsellExperiment;
-    }
-
-    @MainThread
-    public final void emitOpenLeftPanelEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.OpenLeftPanel.INSTANCE);
-    }
-
-    /* JADX INFO: renamed from: getWidgetHomeModel$app_productionGoogleRelease, reason: from getter */
-    public final WidgetHomeModel getWidgetHomeModel() {
-        return this.widgetHomeModel;
-    }
-
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -1057,6 +1049,14 @@ public final class WidgetHomeViewModel extends AbstractC0859d0<ViewState> {
 
     public final void setWidgetHomeModel$app_productionGoogleRelease(WidgetHomeModel widgetHomeModel) {
         this.widgetHomeModel = widgetHomeModel;
+    }
+
+    private final boolean shouldShowChannelOnboardingSheet(PanelState previousLeftPanelState, PanelState leftPanelState, long guildId, boolean isNewUser) {
+        return ((previousLeftPanelState instanceof PanelState.C5581d) && (leftPanelState instanceof PanelState.C5580c)) && ((guildId > 0L ? 1 : (guildId == 0L ? 0 : -1)) != 0) && isNewUser && !this.channelOnboardingManager.hasUserSeenChannelOnboarding();
+    }
+
+    private final boolean shouldShowGuildEventUpsell(boolean canManageEvents, boolean isInEventsUpsellExperiment) {
+        return canManageEvents && !this.sharedPreferences.getBoolean(WidgetGuildScheduledEventUpsellBottomSheet.GUILD_EVENT_UPSELL_CACHE_KEY, false) && isInEventsUpsellExperiment;
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

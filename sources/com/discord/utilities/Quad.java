@@ -19,6 +19,22 @@ public final /* data */ class Quad<A, B, C, D> {
         this.fourth = d;
     }
 
+    public final A component1() {
+        return this.first;
+    }
+
+    public final B component2() {
+        return this.second;
+    }
+
+    public final C component3() {
+        return this.third;
+    }
+
+    public final D component4() {
+        return this.fourth;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Quad copy$default(Quad quad, Object obj, Object obj2, Object obj3, Object obj4, int i, Object obj5) {
         if ((i & 1) != 0) {
@@ -34,22 +50,6 @@ public final /* data */ class Quad<A, B, C, D> {
             obj4 = quad.fourth;
         }
         return quad.copy(obj, obj2, obj3, obj4);
-    }
-
-    public final A component1() {
-        return this.first;
-    }
-
-    public final B component2() {
-        return this.second;
-    }
-
-    public final C component3() {
-        return this.third;
-    }
-
-    public final D component4() {
-        return this.fourth;
     }
 
     public final Quad<A, B, C, D> copy(A first, B second, C third, D fourth) {

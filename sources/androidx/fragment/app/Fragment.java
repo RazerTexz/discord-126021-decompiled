@@ -85,7 +85,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public static final int INITIALIZING = -1;
     public static final int RESUMED = 7;
     public static final int STARTED = 5;
-    public static final Object USE_DEFAULT_TRANSITION = new Object();
     public static final int VIEW_CREATED = 2;
     public boolean mAdded;
     public AnimationInfo mAnimationInfo;
@@ -149,51 +148,15 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @NonNull
     public String mWho;
+    public static final Object USE_DEFAULT_TRANSITION = new Object();
 
-    public static class AnimationInfo {
-        public Boolean mAllowEnterTransitionOverlap;
-        public Boolean mAllowReturnTransitionOverlap;
-        public View mAnimatingAway;
-        public Animator mAnimator;
-        public Object mEnterTransition = null;
-        public SharedElementCallback mEnterTransitionCallback;
-        public boolean mEnterTransitionPostponed;
-        public Object mExitTransition;
-        public SharedElementCallback mExitTransitionCallback;
-        public View mFocusedView;
-        public boolean mIsHideReplaced;
-        public int mNextAnim;
-        public int mNextTransition;
-        public float mPostOnViewCreatedAlpha;
-        public Object mReenterTransition;
-        public Object mReturnTransition;
-        public Object mSharedElementEnterTransition;
-        public Object mSharedElementReturnTransition;
-        public ArrayList<String> mSharedElementSourceNames;
-        public ArrayList<String> mSharedElementTargetNames;
-        public OnStartEnterTransitionListener mStartEnterTransitionListener;
-
-        public AnimationInfo() {
-            Object obj = Fragment.USE_DEFAULT_TRANSITION;
-            this.mReturnTransition = obj;
-            this.mExitTransition = null;
-            this.mReenterTransition = obj;
-            this.mSharedElementEnterTransition = null;
-            this.mSharedElementReturnTransition = obj;
-            this.mEnterTransitionCallback = null;
-            this.mExitTransitionCallback = null;
-            this.mPostOnViewCreatedAlpha = 1.0f;
-            this.mFocusedView = null;
-        }
-    }
-
-    public static class InstantiationException extends RuntimeException {
+    public class InstantiationException extends RuntimeException {
         public InstantiationException(@NonNull String str, @Nullable Exception exc) {
             super(str, exc);
         }
     }
 
-    public static abstract class OnPreAttachedListener {
+    public abstract class OnPreAttachedListener {
         private OnPreAttachedListener() {
         }
 
@@ -204,6 +167,53 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         void onStartEnterTransition();
 
         void startListening();
+    }
+
+    @SuppressLint({"BanParcelableUsage, ParcelClassLoader"})
+    public class SavedState implements Parcelable {
+        public final Bundle mState;
+
+        @NonNull
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.fragment.app.Fragment.SavedState.1
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+        };
+
+        public SavedState(Bundle bundle) {
+            this.mState = bundle;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            parcel.writeBundle(this.mState);
+        }
+
+        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
+            Bundle bundle = parcel.readBundle();
+            this.mState = bundle;
+            if (classLoader == null || bundle == null) {
+                return;
+            }
+            bundle.setClassLoader(classLoader);
+        }
     }
 
     public Fragment() {
@@ -225,81 +235,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mNextLocalRequestCode = new AtomicInteger();
         this.mOnPreAttachedListeners = new ArrayList<>();
         initLifecycle();
-    }
-
-    private AnimationInfo ensureAnimationInfo() {
-        if (this.mAnimationInfo == null) {
-            this.mAnimationInfo = new AnimationInfo();
-        }
-        return this.mAnimationInfo;
-    }
-
-    private int getMinimumMaxLifecycleState() {
-        Lifecycle.State state = this.mMaxState;
-        return (state == Lifecycle.State.INITIALIZED || this.mParentFragment == null) ? state.ordinal() : Math.min(state.ordinal(), this.mParentFragment.getMinimumMaxLifecycleState());
-    }
-
-    private void initLifecycle() {
-        this.mLifecycleRegistry = new LifecycleRegistry(this);
-        this.mSavedStateRegistryController = SavedStateRegistryController.create(this);
-    }
-
-    @NonNull
-    @Deprecated
-    public static Fragment instantiate(@NonNull Context context, @NonNull String str) {
-        return instantiate(context, str, null);
-    }
-
-    @NonNull
-    private <I, O> ActivityResultLauncher<I> prepareCallInternal(@NonNull final ActivityResultContract<I, O> activityResultContract, @NonNull final Function<Void, ActivityResultRegistry> function, @NonNull final ActivityResultCallback<O> activityResultCallback) {
-        if (this.mState > 1) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " is attempting to registerForActivityResult after being created. Fragments must call registerForActivityResult() before they are created (i.e. initialization, onAttach(), or onCreate())."));
-        }
-        final AtomicReference atomicReference = new AtomicReference();
-        registerOnPreAttachListener(new OnPreAttachedListener() { // from class: androidx.fragment.app.Fragment.8
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            {
-                super();
-            }
-
-            @Override // androidx.fragment.app.Fragment.OnPreAttachedListener
-            public void onPreAttached() {
-                String strGenerateActivityResultKey = Fragment.this.generateActivityResultKey();
-                atomicReference.set(((ActivityResultRegistry) function.apply(null)).register(strGenerateActivityResultKey, Fragment.this, activityResultContract, activityResultCallback));
-            }
-        });
-        return new ActivityResultLauncher<I>() { // from class: androidx.fragment.app.Fragment.9
-            @Override // androidx.activity.result.ActivityResultLauncher
-            @NonNull
-            public ActivityResultContract<I, ?> getContract() {
-                return activityResultContract;
-            }
-
-            @Override // androidx.activity.result.ActivityResultLauncher
-            public void launch(I i, @Nullable ActivityOptionsCompat activityOptionsCompat) {
-                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.get();
-                if (activityResultLauncher == null) {
-                    throw new IllegalStateException("Operation cannot be started before fragment is in created state");
-                }
-                activityResultLauncher.launch(i, activityOptionsCompat);
-            }
-
-            @Override // androidx.activity.result.ActivityResultLauncher
-            public void unregister() {
-                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.getAndSet(null);
-                if (activityResultLauncher != null) {
-                    activityResultLauncher.unregister();
-                }
-            }
-        };
-    }
-
-    private void registerOnPreAttachListener(@NonNull OnPreAttachedListener onPreAttachedListener) {
-        if (this.mState >= 0) {
-            onPreAttachedListener.onPreAttached();
-        } else {
-            this.mOnPreAttachedListeners.add(onPreAttachedListener);
-        }
     }
 
     public void callStartTransitionListener(boolean z2) {
@@ -466,6 +401,13 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mChildFragmentManager.dump(C1643a.m883w(str, "  "), fileDescriptor, printWriter, strArr);
     }
 
+    private AnimationInfo ensureAnimationInfo() {
+        if (this.mAnimationInfo == null) {
+            this.mAnimationInfo = new AnimationInfo();
+        }
+        return this.mAnimationInfo;
+    }
+
     public final boolean equals(@Nullable Object obj) {
         return super.equals(obj);
     }
@@ -482,16 +424,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         sbM833U.append("_rq#");
         sbM833U.append(this.mNextLocalRequestCode.getAndIncrement());
         return sbM833U.toString();
-    }
-
-    @Nullable
-    /* JADX INFO: renamed from: getActivity, reason: merged with bridge method [inline-methods] */
-    public final FragmentActivity m95e() {
-        FragmentHostCallback<?> fragmentHostCallback = this.mHost;
-        if (fragmentHostCallback == null) {
-            return null;
-        }
-        return (FragmentActivity) fragmentHostCallback.getActivity();
     }
 
     public boolean getAllowEnterTransitionOverlap() {
@@ -652,6 +584,11 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     @Deprecated
     public LoaderManager getLoaderManager() {
         return LoaderManager.getInstance(this);
+    }
+
+    private int getMinimumMaxLifecycleState() {
+        Lifecycle.State state = this.mMaxState;
+        return (state == Lifecycle.State.INITIALIZED || this.mParentFragment == null) ? state.ordinal() : Math.min(state.ordinal(), this.mParentFragment.getMinimumMaxLifecycleState());
     }
 
     public int getNextAnim() {
@@ -843,6 +780,11 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         return super.hashCode();
     }
 
+    private void initLifecycle() {
+        this.mLifecycleRegistry = new LifecycleRegistry(this);
+        this.mSavedStateRegistryController = SavedStateRegistryController.create(this);
+    }
+
     public void initState() {
         initLifecycle();
         this.mWho = UUID.randomUUID().toString();
@@ -860,6 +802,12 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mTag = null;
         this.mHidden = false;
         this.mDetached = false;
+    }
+
+    @NonNull
+    @Deprecated
+    public static Fragment instantiate(@NonNull Context context, @NonNull String str) {
+        return instantiate(context, str, null);
     }
 
     public final boolean isAdded() {
@@ -928,6 +876,16 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public final boolean isVisible() {
         View view;
         return (!isAdded() || isHidden() || (view = this.mView) == null || view.getWindowToken() == null || this.mView.getVisibility() != 0) ? false : true;
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: getActivity, reason: merged with bridge method [inline-methods] */
+    public final FragmentActivity m95e() {
+        FragmentHostCallback<?> fragmentHostCallback = this.mHost;
+        if (fragmentHostCallback == null) {
+            return null;
+        }
+        return (FragmentActivity) fragmentHostCallback.getActivity();
     }
 
     public void noteStateNotSaved() {
@@ -1421,6 +1379,50 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         ensureAnimationInfo().mEnterTransitionPostponed = true;
     }
 
+    @NonNull
+    private <I, O> ActivityResultLauncher<I> prepareCallInternal(@NonNull final ActivityResultContract<I, O> activityResultContract, @NonNull final Function<Void, ActivityResultRegistry> function, @NonNull final ActivityResultCallback<O> activityResultCallback) {
+        if (this.mState > 1) {
+            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " is attempting to registerForActivityResult after being created. Fragments must call registerForActivityResult() before they are created (i.e. initialization, onAttach(), or onCreate())."));
+        }
+        final AtomicReference atomicReference = new AtomicReference();
+        registerOnPreAttachListener(new OnPreAttachedListener() { // from class: androidx.fragment.app.Fragment.8
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            {
+                super();
+            }
+
+            @Override // androidx.fragment.app.Fragment.OnPreAttachedListener
+            public void onPreAttached() {
+                String strGenerateActivityResultKey = Fragment.this.generateActivityResultKey();
+                atomicReference.set(((ActivityResultRegistry) function.apply(null)).register(strGenerateActivityResultKey, Fragment.this, activityResultContract, activityResultCallback));
+            }
+        });
+        return new ActivityResultLauncher<I>() { // from class: androidx.fragment.app.Fragment.9
+            @Override // androidx.activity.result.ActivityResultLauncher
+            @NonNull
+            public ActivityResultContract<I, ?> getContract() {
+                return activityResultContract;
+            }
+
+            @Override // androidx.activity.result.ActivityResultLauncher
+            public void launch(I i, @Nullable ActivityOptionsCompat activityOptionsCompat) {
+                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.get();
+                if (activityResultLauncher == null) {
+                    throw new IllegalStateException("Operation cannot be started before fragment is in created state");
+                }
+                activityResultLauncher.launch(i, activityOptionsCompat);
+            }
+
+            @Override // androidx.activity.result.ActivityResultLauncher
+            public void unregister() {
+                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.getAndSet(null);
+                if (activityResultLauncher != null) {
+                    activityResultLauncher.unregister();
+                }
+            }
+        };
+    }
+
     @Override // androidx.activity.result.ActivityResultCaller
     @NonNull
     @MainThread
@@ -1437,6 +1439,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     public void registerForContextMenu(@NonNull View view) {
         view.setOnCreateContextMenuListener(this);
+    }
+
+    private void registerOnPreAttachListener(@NonNull OnPreAttachedListener onPreAttachedListener) {
+        if (this.mState >= 0) {
+            onPreAttachedListener.onPreAttached();
+        } else {
+            this.mOnPreAttachedListeners.add(onPreAttachedListener);
+        }
     }
 
     @Deprecated
@@ -1799,51 +1809,46 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         view.setOnCreateContextMenuListener(null);
     }
 
-    @SuppressLint({"BanParcelableUsage, ParcelClassLoader"})
-    public static class SavedState implements Parcelable {
+    public class AnimationInfo {
+        public Boolean mAllowEnterTransitionOverlap;
+        public Boolean mAllowReturnTransitionOverlap;
+        public View mAnimatingAway;
+        public Animator mAnimator;
+        public SharedElementCallback mEnterTransitionCallback;
+        public boolean mEnterTransitionPostponed;
+        public Object mExitTransition;
+        public SharedElementCallback mExitTransitionCallback;
+        public View mFocusedView;
+        public boolean mIsHideReplaced;
+        public int mNextAnim;
+        public int mNextTransition;
+        public float mPostOnViewCreatedAlpha;
+        public Object mReenterTransition;
+        public Object mReturnTransition;
+        public Object mSharedElementEnterTransition;
+        public Object mSharedElementReturnTransition;
+        public ArrayList<String> mSharedElementSourceNames;
+        public ArrayList<String> mSharedElementTargetNames;
+        public OnStartEnterTransitionListener mStartEnterTransitionListener;
+        public Object mEnterTransition = null;
 
-        @NonNull
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.fragment.app.Fragment.SavedState.1
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-        };
-        public final Bundle mState;
-
-        public SavedState(Bundle bundle) {
-            this.mState = bundle;
+        public AnimationInfo() {
+            Object obj = Fragment.USE_DEFAULT_TRANSITION;
+            this.mReturnTransition = obj;
+            this.mExitTransition = null;
+            this.mReenterTransition = obj;
+            this.mSharedElementEnterTransition = null;
+            this.mSharedElementReturnTransition = obj;
+            this.mEnterTransitionCallback = null;
+            this.mExitTransitionCallback = null;
+            this.mPostOnViewCreatedAlpha = 1.0f;
+            this.mFocusedView = null;
         }
+    }
 
-        @Override // android.os.Parcelable
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override // android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            parcel.writeBundle(this.mState);
-        }
-
-        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
-            Bundle bundle = parcel.readBundle();
-            this.mState = bundle;
-            if (classLoader == null || bundle == null) {
-                return;
-            }
-            bundle.setClassLoader(classLoader);
-        }
+    @NonNull
+    public final String getString(@StringRes int i, @Nullable Object... objArr) {
+        return getResources().getString(i, objArr);
     }
 
     @NonNull
@@ -1865,11 +1870,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         } catch (InvocationTargetException e4) {
             throw new InstantiationException(C1643a.m886y("Unable to instantiate fragment ", str, ": calling Fragment constructor caused an exception"), e4);
         }
-    }
-
-    @NonNull
-    public final String getString(@StringRes int i, @Nullable Object... objArr) {
-        return getResources().getString(i, objArr);
     }
 
     public final void postponeEnterTransition(long j, @NonNull TimeUnit timeUnit) {

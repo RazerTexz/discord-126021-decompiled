@@ -64,8 +64,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public class C1413a extends AppCompatDialogFragment {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ int f2113j = 0;
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public FloatingActionButton actionButton;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public ViewPager contentPager;
@@ -73,14 +73,11 @@ public class C1413a extends AppCompatDialogFragment {
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public TabLayout contentTabs;
 
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public FloatingActionButton actionButton;
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ int f2113j = 0;
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public ImageView launchButton;
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public SelectionAggregator<Attachment<Object>> selectionAggregator;
 
     /* JADX INFO: renamed from: p, reason: from kotlin metadata */
     public Function1<? super View, Unit> onKeyboardSelectedListener;
@@ -88,13 +85,16 @@ public class C1413a extends AppCompatDialogFragment {
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public ViewPager.OnPageChangeListener onPageChangeListener;
 
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public SelectionAggregator<Attachment<Object>> selectionAggregator;
+
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
     public final c itemSelectionListener = new c();
 
     /* JADX INFO: renamed from: b.b.a.a.a$a */
     /* JADX INFO: compiled from: java-style lambda group */
     /* JADX INFO: loaded from: classes.dex */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f2122j;
@@ -147,7 +147,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$b */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class b implements Animation.AnimationListener {
+    public final class b implements Animation.AnimationListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ boolean f2125k;
@@ -182,7 +182,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$c */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class c implements SelectionCoordinator.ItemSelectionListener<Attachment<?>> {
+    public final class c implements SelectionCoordinator.ItemSelectionListener<Attachment<?>> {
         public c() {
         }
 
@@ -205,7 +205,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$d */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class d extends AppCompatDialog {
+    public final class d extends AppCompatDialog {
         public d(C1413a c1413a, Context context, int i) {
             super(context, i);
         }
@@ -222,7 +222,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$e */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class e extends AbstractC12240o implements Function0<Unit> {
+    public final class e extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Fragment $flexInputFragment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -302,7 +302,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$f */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class f extends AccessibilityDelegateCompat {
+    public final class f extends AccessibilityDelegateCompat {
         public f() {
         }
 
@@ -319,7 +319,7 @@ public class C1413a extends AppCompatDialogFragment {
 
     /* JADX INFO: renamed from: b.b.a.a.a$g */
     /* JADX INFO: compiled from: AddContentDialogFragment.kt */
-    public static final class g implements Runnable {
+    public final class g implements Runnable {
         public g() {
         }
 

@@ -17,10 +17,10 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class ThemeEnforcement {
-    private static final String APPCOMPAT_THEME_NAME = "Theme.AppCompat";
-    private static final String MATERIAL_THEME_NAME = "Theme.MaterialComponents";
     private static final int[] APPCOMPAT_CHECK_ATTRS = {C10817R.attr.colorPrimary};
+    private static final String APPCOMPAT_THEME_NAME = "Theme.AppCompat";
     private static final int[] MATERIAL_CHECK_ATTRS = {C10817R.attr.colorPrimaryVariant};
+    private static final String MATERIAL_THEME_NAME = "Theme.MaterialComponents";
 
     private ThemeEnforcement() {
     }

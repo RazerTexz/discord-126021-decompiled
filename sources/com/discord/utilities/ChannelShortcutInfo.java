@@ -31,21 +31,6 @@ public final /* data */ class ChannelShortcutInfo {
         return channelShortcutInfo.copy(channel, i, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getRank() {
-        return this.rank;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsPinnedOnly() {
-        return this.isPinnedOnly;
-    }
-
     public final ChannelShortcutInfo copy(Channel channel, int rank, boolean isPinnedOnly) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelShortcutInfo(channel, rank, isPinnedOnly);
@@ -62,8 +47,23 @@ public final /* data */ class ChannelShortcutInfo {
         return C12238m.areEqual(this.channel, channelShortcutInfo.channel) && this.rank == channelShortcutInfo.rank && this.isPinnedOnly == channelShortcutInfo.isPinnedOnly;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsPinnedOnly() {
+        return this.isPinnedOnly;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getRank() {
+        return this.rank;
     }
 
     public final int getRank() {

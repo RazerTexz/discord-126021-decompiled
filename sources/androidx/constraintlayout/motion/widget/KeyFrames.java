@@ -74,17 +74,6 @@ public class KeyFrames {
         }
     }
 
-    private void addKey(Key key) {
-        if (!this.mFramesMap.containsKey(Integer.valueOf(key.mTargetId))) {
-            this.mFramesMap.put(Integer.valueOf(key.mTargetId), new ArrayList<>());
-        }
-        this.mFramesMap.get(Integer.valueOf(key.mTargetId)).add(key);
-    }
-
-    public static String name(int i, Context context) {
-        return context.getResources().getResourceEntryName(i);
-    }
-
     public void addFrames(MotionController motionController) {
         ArrayList<Key> arrayList = this.mFramesMap.get(Integer.valueOf(motionController.mId));
         if (arrayList != null) {
@@ -100,11 +89,22 @@ public class KeyFrames {
         }
     }
 
+    private void addKey(Key key) {
+        if (!this.mFramesMap.containsKey(Integer.valueOf(key.mTargetId))) {
+            this.mFramesMap.put(Integer.valueOf(key.mTargetId), new ArrayList<>());
+        }
+        this.mFramesMap.get(Integer.valueOf(key.mTargetId)).add(key);
+    }
+
     public ArrayList<Key> getKeyFramesForView(int i) {
         return this.mFramesMap.get(Integer.valueOf(i));
     }
 
     public Set<Integer> getKeys() {
         return this.mFramesMap.keySet();
+    }
+
+    public static String name(int i, Context context) {
+        return context.getResources().getResourceEntryName(i);
     }
 }

@@ -36,7 +36,7 @@ public class KeyPosition extends KeyPositionBase {
     private float mCalculatedPositionX = Float.NaN;
     private float mCalculatedPositionY = Float.NaN;
 
-    public static class Loader {
+    public class Loader {
         private static final int CURVE_FIT = 4;
         private static final int DRAW_PATH = 5;
         private static final int FRAME_POSITION = 2;
@@ -147,6 +147,10 @@ public class KeyPosition extends KeyPositionBase {
         this.mType = 2;
     }
 
+    @Override // androidx.constraintlayout.motion.widget.Key
+    public void addValues(HashMap<String, SplineSet> map) {
+    }
+
     private void calcCartesianPosition(float f, float f2, float f3, float f4) {
         float f5 = f3 - f;
         float f6 = f4 - f2;
@@ -167,17 +171,6 @@ public class KeyPosition extends KeyPositionBase {
         this.mCalculatedPositionY = (f5 * f9) + (f6 * f7) + f2;
     }
 
-    private void calcScreenPosition(int i, int i2) {
-        float f = this.mPercentX;
-        float f2 = 0;
-        this.mCalculatedPositionX = ((i - 0) * f) + f2;
-        this.mCalculatedPositionY = ((i2 - 0) * f) + f2;
-    }
-
-    @Override // androidx.constraintlayout.motion.widget.Key
-    public void addValues(HashMap<String, SplineSet> map) {
-    }
-
     @Override // androidx.constraintlayout.motion.widget.KeyPositionBase
     public void calcPosition(int i, int i2, float f, float f2, float f3, float f4) {
         int i3 = this.mPositionType;
@@ -188,6 +181,13 @@ public class KeyPosition extends KeyPositionBase {
         } else {
             calcScreenPosition(i, i2);
         }
+    }
+
+    private void calcScreenPosition(int i, int i2) {
+        float f = this.mPercentX;
+        float f2 = 0;
+        this.mCalculatedPositionX = ((i - 0) * f) + f2;
+        this.mCalculatedPositionY = ((i2 - 0) * f) + f2;
     }
 
     @Override // androidx.constraintlayout.motion.widget.KeyPositionBase

@@ -83,6 +83,11 @@ public class C1531g implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
         abstractC1603b.m777e(abstractC1544aMo773a2);
     }
 
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2504d;
+    }
+
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
     /* JADX INFO: renamed from: a */
     public void mo709a() {
@@ -167,10 +172,5 @@ public class C1531g implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
             c1559p.f2596a.add(this);
             this.f2503c.m777e(this.f2509i);
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2504d;
     }
 }

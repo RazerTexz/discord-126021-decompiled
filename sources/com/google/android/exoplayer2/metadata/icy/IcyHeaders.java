@@ -16,7 +16,6 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class IcyHeaders implements Metadata.Entry {
-    public static final Parcelable.Creator<IcyHeaders> CREATOR = new C10724a();
 
     /* JADX INFO: renamed from: j */
     public final int f19957j;
@@ -38,6 +37,7 @@ public final class IcyHeaders implements Metadata.Entry {
 
     /* JADX INFO: renamed from: o */
     public final int f19962o;
+    public static final Parcelable.Creator<IcyHeaders> CREATOR = new C10724a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.icy.IcyHeaders$a */
     public class C10724a implements Parcelable.Creator<IcyHeaders> {
@@ -60,6 +60,32 @@ public final class IcyHeaders implements Metadata.Entry {
         this.f19960m = str3;
         this.f19961n = z2;
         this.f19962o = i2;
+    }
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || IcyHeaders.class != obj.getClass()) {
+            return false;
+        }
+        IcyHeaders icyHeaders = (IcyHeaders) obj;
+        return this.f19957j == icyHeaders.f19957j && C2738e0.m2993a(this.f19958k, icyHeaders.f19958k) && C2738e0.m2993a(this.f19959l, icyHeaders.f19959l) && C2738e0.m2993a(this.f19960m, icyHeaders.f19960m) && this.f19961n == icyHeaders.f19961n && this.f19962o == icyHeaders.f19962o;
+    }
+
+    public int hashCode() {
+        int i = (527 + this.f19957j) * 31;
+        String str = this.f19958k;
+        int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
+        String str2 = this.f19959l;
+        int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
+        String str3 = this.f19960m;
+        return ((((iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31) + (this.f19961n ? 1 : 0)) * 31) + this.f19962o;
     }
 
     @Nullable
@@ -158,32 +184,6 @@ public final class IcyHeaders implements Metadata.Entry {
         return null;
     }
 
-    @Override // android.os.Parcelable
-    public int describeContents() {
-        return 0;
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || IcyHeaders.class != obj.getClass()) {
-            return false;
-        }
-        IcyHeaders icyHeaders = (IcyHeaders) obj;
-        return this.f19957j == icyHeaders.f19957j && C2738e0.m2993a(this.f19958k, icyHeaders.f19958k) && C2738e0.m2993a(this.f19959l, icyHeaders.f19959l) && C2738e0.m2993a(this.f19960m, icyHeaders.f19960m) && this.f19961n == icyHeaders.f19961n && this.f19962o == icyHeaders.f19962o;
-    }
-
-    public int hashCode() {
-        int i = (527 + this.f19957j) * 31;
-        String str = this.f19958k;
-        int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f19959l;
-        int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-        String str3 = this.f19960m;
-        return ((((iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31) + (this.f19961n ? 1 : 0)) * 31) + this.f19962o;
-    }
-
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     /* JADX INFO: renamed from: n */
     public /* synthetic */ void mo8878n(C2835p1.b bVar) {
@@ -194,6 +194,12 @@ public final class IcyHeaders implements Metadata.Entry {
     /* JADX INFO: renamed from: o0 */
     public /* synthetic */ byte[] mo8879o0() {
         return C3155a.m3892a(this);
+    }
+
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
     }
 
     public String toString() {
@@ -219,12 +225,6 @@ public final class IcyHeaders implements Metadata.Entry {
         int i2 = C2738e0.f6708a;
         parcel.writeInt(z2 ? 1 : 0);
         parcel.writeInt(this.f19962o);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 
     public IcyHeaders(Parcel parcel) {

@@ -55,51 +55,6 @@ public class C1762b extends Drawable implements Drawable.Callback, InterfaceC176
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public Drawable m1093a(int i) {
-        C1460d.m527i(Boolean.valueOf(i >= 0));
-        C1460d.m527i(Boolean.valueOf(i < this.f3328l.length));
-        return this.f3328l[i];
-    }
-
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1767d0
-    /* JADX INFO: renamed from: b */
-    public void mo1094b(InterfaceC1769e0 interfaceC1769e0) {
-        this.f3326j = interfaceC1769e0;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public Drawable m1095c(int i, Drawable drawable) {
-        C1460d.m527i(Boolean.valueOf(i >= 0));
-        C1460d.m527i(Boolean.valueOf(i < this.f3328l.length));
-        Drawable drawable2 = this.f3328l[i];
-        if (drawable != drawable2) {
-            if (drawable != null && this.f3333q) {
-                drawable.mutate();
-            }
-            C1460d.m488X1(this.f3328l[i], null, null);
-            C1460d.m488X1(drawable, null, null);
-            C1460d.m494Z1(drawable, this.f3327k);
-            C1460d.m450L(drawable, this);
-            C1460d.m488X1(drawable, this, this);
-            this.f3332p = false;
-            this.f3328l[i] = drawable;
-            invalidateSelf();
-        }
-        return drawable2;
-    }
-
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1769e0
-    /* JADX INFO: renamed from: d */
-    public void mo1096d(Matrix matrix) {
-        InterfaceC1769e0 interfaceC1769e0 = this.f3326j;
-        if (interfaceC1769e0 != null) {
-            interfaceC1769e0.mo1096d(matrix);
-        } else {
-            matrix.reset();
-        }
-    }
-
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         int i = 0;
@@ -203,17 +158,6 @@ public class C1762b extends Drawable implements Drawable.Callback, InterfaceC176
         }
     }
 
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1769e0
-    /* JADX INFO: renamed from: h */
-    public void mo1097h(RectF rectF) {
-        InterfaceC1769e0 interfaceC1769e0 = this.f3326j;
-        if (interfaceC1769e0 != null) {
-            interfaceC1769e0.mo1097h(rectF);
-        } else {
-            rectF.set(getBounds());
-        }
-    }
-
     @Override // android.graphics.drawable.Drawable.Callback
     public void invalidateDrawable(Drawable drawable) {
         invalidateSelf();
@@ -241,6 +185,62 @@ public class C1762b extends Drawable implements Drawable.Callback, InterfaceC176
             this.f3332p = true;
         }
         return this.f3331o;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public Drawable m1093a(int i) {
+        C1460d.m527i(Boolean.valueOf(i >= 0));
+        C1460d.m527i(Boolean.valueOf(i < this.f3328l.length));
+        return this.f3328l[i];
+    }
+
+    /* JADX INFO: renamed from: c */
+    public Drawable m1095c(int i, Drawable drawable) {
+        C1460d.m527i(Boolean.valueOf(i >= 0));
+        C1460d.m527i(Boolean.valueOf(i < this.f3328l.length));
+        Drawable drawable2 = this.f3328l[i];
+        if (drawable != drawable2) {
+            if (drawable != null && this.f3333q) {
+                drawable.mutate();
+            }
+            C1460d.m488X1(this.f3328l[i], null, null);
+            C1460d.m488X1(drawable, null, null);
+            C1460d.m494Z1(drawable, this.f3327k);
+            C1460d.m450L(drawable, this);
+            C1460d.m488X1(drawable, this, this);
+            this.f3332p = false;
+            this.f3328l[i] = drawable;
+            invalidateSelf();
+        }
+        return drawable2;
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1767d0
+    /* JADX INFO: renamed from: b */
+    public void mo1094b(InterfaceC1769e0 interfaceC1769e0) {
+        this.f3326j = interfaceC1769e0;
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1769e0
+    /* JADX INFO: renamed from: d */
+    public void mo1096d(Matrix matrix) {
+        InterfaceC1769e0 interfaceC1769e0 = this.f3326j;
+        if (interfaceC1769e0 != null) {
+            interfaceC1769e0.mo1096d(matrix);
+        } else {
+            matrix.reset();
+        }
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1769e0
+    /* JADX INFO: renamed from: h */
+    public void mo1097h(RectF rectF) {
+        InterfaceC1769e0 interfaceC1769e0 = this.f3326j;
+        if (interfaceC1769e0 != null) {
+            interfaceC1769e0.mo1097h(rectF);
+        } else {
+            rectF.set(getBounds());
+        }
     }
 
     @Override // android.graphics.drawable.Drawable

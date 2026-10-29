@@ -23,6 +23,10 @@ public final /* data */ class DomainsState {
         this.verifyEmailAsync = restCallState;
     }
 
+    public final RestCallState<Object> component2() {
+        return this.verifyEmailAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ DomainsState copy$default(DomainsState domainsState, Long l, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -32,15 +36,6 @@ public final /* data */ class DomainsState {
             restCallState = domainsState.verifyEmailAsync;
         }
         return domainsState.copy(l, restCallState);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getSelectedGuildId() {
-        return this.selectedGuildId;
-    }
-
-    public final RestCallState<Object> component2() {
-        return this.verifyEmailAsync;
     }
 
     public final DomainsState copy(Long selectedGuildId, RestCallState<? extends Object> verifyEmailAsync) {
@@ -57,6 +52,11 @@ public final /* data */ class DomainsState {
         }
         DomainsState domainsState = (DomainsState) other;
         return C12238m.areEqual(this.selectedGuildId, domainsState.selectedGuildId) && C12238m.areEqual(this.verifyEmailAsync, domainsState.verifyEmailAsync);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Long getSelectedGuildId() {
+        return this.selectedGuildId;
     }
 
     public final Long getSelectedGuildId() {

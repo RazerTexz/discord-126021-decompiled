@@ -29,7 +29,7 @@ public class MenuPopupWindow extends ListPopupWindow implements MenuItemHoverLis
     private MenuItemHoverListener mHoverListener;
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class MenuDropDownListView extends DropDownListView {
+    public class MenuDropDownListView extends DropDownListView {
         public final int mAdvanceKey;
         private MenuItemHoverListener mHoverListener;
         private MenuItem mHoveredMenuItem;

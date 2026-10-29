@@ -44,27 +44,9 @@ public final class WidgetNoiseCancellationBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Fragment fragment) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            WidgetNoiseCancellationBottomSheet widgetNoiseCancellationBottomSheet = new WidgetNoiseCancellationBottomSheet();
-            FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
-            widgetNoiseCancellationBottomSheet.show(parentFragmentManager, WidgetNoiseCancellationBottomSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetNoiseCancellationBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheet.kt */
-    public static final class C105741 extends AbstractC12240o implements Function1<WidgetNoiseCancellationBottomSheetViewModel.Event, Unit> {
+    public final class C105741 extends AbstractC12240o implements Function1<WidgetNoiseCancellationBottomSheetViewModel.Event, Unit> {
         public C105741() {
             super(1);
         }
@@ -79,6 +61,24 @@ public final class WidgetNoiseCancellationBottomSheet extends AppBottomSheet {
         public final void invoke2(WidgetNoiseCancellationBottomSheetViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetNoiseCancellationBottomSheet.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Fragment fragment) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            WidgetNoiseCancellationBottomSheet widgetNoiseCancellationBottomSheet = new WidgetNoiseCancellationBottomSheet();
+            FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            widgetNoiseCancellationBottomSheet.show(parentFragmentManager, WidgetNoiseCancellationBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -110,6 +110,11 @@ public final class WidgetNoiseCancellationBottomSheet extends AppBottomSheet {
         return (WidgetVoiceNoiseCancellationBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_voice_noise_cancellation_bottom_sheet;
+    }
+
     private final WidgetNoiseCancellationBottomSheetViewModel getViewModel() {
         return (WidgetNoiseCancellationBottomSheetViewModel) this.viewModel.getValue();
     }
@@ -118,11 +123,6 @@ public final class WidgetNoiseCancellationBottomSheet extends AppBottomSheet {
         if (event instanceof WidgetNoiseCancellationBottomSheetViewModel.Event.ShowToast) {
             C0876m.m169g(requireContext(), ((WidgetNoiseCancellationBottomSheetViewModel.Event.ShowToast) event).getToastResId(), 0, null, 12);
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_voice_noise_cancellation_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

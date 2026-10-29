@@ -76,6 +76,11 @@ public class C1824e implements InterfaceC1914a {
         this.f3560i = supplier3;
     }
 
+    /* JADX INFO: renamed from: c */
+    public final C1847c m1165c(C1838e c1838e) {
+        return new C1847c(new C1808a(c1838e.hashCode(), Boolean.FALSE.booleanValue()), this.f3557f);
+    }
+
     @Override // p007b.p109f.p161j.p174i.InterfaceC1914a
     /* JADX INFO: renamed from: a */
     public boolean mo1035a(AbstractC1917c abstractC1917c) {
@@ -152,10 +157,5 @@ public class C1824e implements InterfaceC1914a {
         }
         C1805a c1805a2 = new C1805a(this.f3556e, interfaceC1806b2, new C1816a(interfaceC1834aMo1164a), c1817b, c1815d, c1814c);
         return new C1818a(new C1803c(c1805a2, c1805a2, this.f3555d, this.f3553b));
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C1847c m1165c(C1838e c1838e) {
-        return new C1847c(new C1808a(c1838e.hashCode(), Boolean.FALSE.booleanValue()), this.f3557f);
     }
 }

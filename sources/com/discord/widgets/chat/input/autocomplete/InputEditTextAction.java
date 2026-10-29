@@ -15,7 +15,7 @@ public abstract class InputEditTextAction {
     private final CharSequence assumedInput;
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class ClearSpans extends InputEditTextAction {
+    public final /* data */ class ClearSpans extends InputEditTextAction {
         private final CharSequence assumedInput;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -25,15 +25,15 @@ public abstract class InputEditTextAction {
             this.assumedInput = charSequence;
         }
 
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
         public static /* synthetic */ ClearSpans copy$default(ClearSpans clearSpans, CharSequence charSequence, int i, Object obj) {
             if ((i & 1) != 0) {
                 charSequence = clearSpans.getAssumedInput();
             }
             return clearSpans.copy(charSequence);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
         }
 
         public final ClearSpans copy(CharSequence assumedInput) {
@@ -70,7 +70,7 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class InsertText extends InputEditTextAction {
+    public final /* data */ class InsertText extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final IntRange insertRange;
         private final int selectionIndex;
@@ -88,6 +88,10 @@ public abstract class InputEditTextAction {
             this.selectionIndex = i;
         }
 
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
         public static /* synthetic */ InsertText copy$default(InsertText insertText, CharSequence charSequence, CharSequence charSequence2, IntRange intRange, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 charSequence = insertText.getAssumedInput();
@@ -102,25 +106,6 @@ public abstract class InputEditTextAction {
                 i = insertText.selectionIndex;
             }
             return insertText.copy(charSequence, charSequence2, intRange, i);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getToAppend() {
-            return this.toAppend;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final IntRange getInsertRange() {
-            return this.insertRange;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getSelectionIndex() {
-            return this.selectionIndex;
         }
 
         public final InsertText copy(CharSequence assumedInput, CharSequence toAppend, IntRange insertRange, int selectionIndex) {
@@ -146,12 +131,27 @@ public abstract class InputEditTextAction {
             return this.assumedInput;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final IntRange getInsertRange() {
             return this.insertRange;
         }
 
+        public final IntRange getInsertRange() {
+            return this.insertRange;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getSelectionIndex() {
             return this.selectionIndex;
+        }
+
+        public final int getSelectionIndex() {
+            return this.selectionIndex;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getToAppend() {
+            return this.toAppend;
         }
 
         public final CharSequence getToAppend() {
@@ -180,7 +180,7 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class None extends InputEditTextAction {
+    public final /* data */ class None extends InputEditTextAction {
         private final CharSequence assumedInput;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -190,15 +190,15 @@ public abstract class InputEditTextAction {
             this.assumedInput = charSequence;
         }
 
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
         public static /* synthetic */ None copy$default(None none, CharSequence charSequence, int i, Object obj) {
             if ((i & 1) != 0) {
                 charSequence = none.getAssumedInput();
             }
             return none.copy(charSequence);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
         }
 
         public final None copy(CharSequence assumedInput) {
@@ -235,7 +235,7 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class RemoveText extends InputEditTextAction {
+    public final /* data */ class RemoveText extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final IntRange range;
         private final int selectionIndex;
@@ -250,6 +250,10 @@ public abstract class InputEditTextAction {
             this.selectionIndex = i;
         }
 
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
         public static /* synthetic */ RemoveText copy$default(RemoveText removeText, CharSequence charSequence, IntRange intRange, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 charSequence = removeText.getAssumedInput();
@@ -261,20 +265,6 @@ public abstract class InputEditTextAction {
                 i = removeText.selectionIndex;
             }
             return removeText.copy(charSequence, intRange, i);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final IntRange getRange() {
-            return this.range;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getSelectionIndex() {
-            return this.selectionIndex;
         }
 
         public final RemoveText copy(CharSequence assumedInput, IntRange range, int selectionIndex) {
@@ -299,8 +289,18 @@ public abstract class InputEditTextAction {
             return this.assumedInput;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final IntRange getRange() {
             return this.range;
+        }
+
+        public final IntRange getRange() {
+            return this.range;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getSelectionIndex() {
+            return this.selectionIndex;
         }
 
         public final int getSelectionIndex() {
@@ -325,12 +325,20 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class ReplaceCharacterStyleSpans extends InputEditTextAction {
+    public final /* data */ class ReplaceCharacterStyleSpans extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final Map<IntRange, List<CharacterStyle>> spans;
 
         public /* synthetic */ ReplaceCharacterStyleSpans(CharSequence charSequence, Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(charSequence, (i & 2) != 0 ? C12136h0.emptyMap() : map);
+        }
+
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
+        public final Map<IntRange, List<CharacterStyle>> component2() {
+            return this.spans;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -342,14 +350,6 @@ public abstract class InputEditTextAction {
                 map = replaceCharacterStyleSpans.spans;
             }
             return replaceCharacterStyleSpans.copy(charSequence, map);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        public final Map<IntRange, List<CharacterStyle>> component2() {
-            return this.spans;
         }
 
         public final ReplaceCharacterStyleSpans copy(CharSequence assumedInput, Map<IntRange, ? extends List<? extends CharacterStyle>> spans) {
@@ -404,12 +404,20 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class ReplacePillSpans extends InputEditTextAction {
+    public final /* data */ class ReplacePillSpans extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final Map<IntRange, List<CharacterStyle>> spans;
 
         public /* synthetic */ ReplacePillSpans(CharSequence charSequence, Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(charSequence, (i & 2) != 0 ? C12136h0.emptyMap() : map);
+        }
+
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
+        public final Map<IntRange, List<CharacterStyle>> component2() {
+            return this.spans;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -421,14 +429,6 @@ public abstract class InputEditTextAction {
                 map = replacePillSpans.spans;
             }
             return replacePillSpans.copy(charSequence, map);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        public final Map<IntRange, List<CharacterStyle>> component2() {
-            return this.spans;
         }
 
         public final ReplacePillSpans copy(CharSequence assumedInput, Map<IntRange, ? extends List<? extends CharacterStyle>> spans) {
@@ -483,13 +483,17 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class ReplaceText extends InputEditTextAction {
+    public final /* data */ class ReplaceText extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final CharSequence newText;
         private final int selectionIndex;
 
         public /* synthetic */ ReplaceText(CharSequence charSequence, CharSequence charSequence2, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this(charSequence, charSequence2, (i2 & 4) != 0 ? charSequence2.length() : i);
+        }
+
+        public final CharSequence component1() {
+            return getAssumedInput();
         }
 
         public static /* synthetic */ ReplaceText copy$default(ReplaceText replaceText, CharSequence charSequence, CharSequence charSequence2, int i, int i2, Object obj) {
@@ -503,20 +507,6 @@ public abstract class InputEditTextAction {
                 i = replaceText.selectionIndex;
             }
             return replaceText.copy(charSequence, charSequence2, i);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getNewText() {
-            return this.newText;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getSelectionIndex() {
-            return this.selectionIndex;
         }
 
         public final ReplaceText copy(CharSequence assumedInput, CharSequence newText, int selectionIndex) {
@@ -541,8 +531,18 @@ public abstract class InputEditTextAction {
             return this.assumedInput;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getNewText() {
             return this.newText;
+        }
+
+        public final CharSequence getNewText() {
+            return this.newText;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getSelectionIndex() {
+            return this.selectionIndex;
         }
 
         public final int getSelectionIndex() {
@@ -577,7 +577,7 @@ public abstract class InputEditTextAction {
     }
 
     /* JADX INFO: compiled from: InputEditTextAction.kt */
-    public static final /* data */ class SelectText extends InputEditTextAction {
+    public final /* data */ class SelectText extends InputEditTextAction {
         private final CharSequence assumedInput;
         private final IntRange selection;
 
@@ -590,6 +590,10 @@ public abstract class InputEditTextAction {
             this.selection = intRange;
         }
 
+        public final CharSequence component1() {
+            return getAssumedInput();
+        }
+
         public static /* synthetic */ SelectText copy$default(SelectText selectText, CharSequence charSequence, IntRange intRange, int i, Object obj) {
             if ((i & 1) != 0) {
                 charSequence = selectText.getAssumedInput();
@@ -598,15 +602,6 @@ public abstract class InputEditTextAction {
                 intRange = selectText.selection;
             }
             return selectText.copy(charSequence, intRange);
-        }
-
-        public final CharSequence component1() {
-            return getAssumedInput();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final IntRange getSelection() {
-            return this.selection;
         }
 
         public final SelectText copy(CharSequence assumedInput, IntRange selection) {
@@ -629,6 +624,11 @@ public abstract class InputEditTextAction {
         @Override // com.discord.widgets.chat.input.autocomplete.InputEditTextAction
         public CharSequence getAssumedInput() {
             return this.assumedInput;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final IntRange getSelection() {
+            return this.selection;
         }
 
         public final IntRange getSelection() {

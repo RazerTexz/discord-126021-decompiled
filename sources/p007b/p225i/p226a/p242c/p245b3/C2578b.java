@@ -19,58 +19,6 @@ import p007b.p225i.p226a.p242c.InterfaceC2963w0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2578b implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2578b f5754j = new C2578b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
-
-    /* JADX INFO: renamed from: k */
-    public static final InterfaceC2963w0.a<C2578b> f5755k = new InterfaceC2963w0.a() { // from class: b.i.a.c.b3.a
-        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
-            float f;
-            int i;
-            int i2;
-            float f2;
-            boolean z2;
-            int i3;
-            CharSequence charSequence = bundle.getCharSequence(C2578b.m2604b(0));
-            CharSequence charSequence2 = charSequence != null ? charSequence : null;
-            Layout.Alignment alignment = (Layout.Alignment) bundle.getSerializable(C2578b.m2604b(1));
-            Layout.Alignment alignment2 = alignment != null ? alignment : null;
-            Layout.Alignment alignment3 = (Layout.Alignment) bundle.getSerializable(C2578b.m2604b(2));
-            Layout.Alignment alignment4 = alignment3 != null ? alignment3 : null;
-            Bitmap bitmap = (Bitmap) bundle.getParcelable(C2578b.m2604b(3));
-            Bitmap bitmap2 = bitmap != null ? bitmap : null;
-            if (bundle.containsKey(C2578b.m2604b(4)) && bundle.containsKey(C2578b.m2604b(5))) {
-                f = bundle.getFloat(C2578b.m2604b(4));
-                i = bundle.getInt(C2578b.m2604b(5));
-            } else {
-                f = -3.4028235E38f;
-                i = Integer.MIN_VALUE;
-            }
-            int i4 = bundle.containsKey(C2578b.m2604b(6)) ? bundle.getInt(C2578b.m2604b(6)) : Integer.MIN_VALUE;
-            float f3 = bundle.containsKey(C2578b.m2604b(7)) ? bundle.getFloat(C2578b.m2604b(7)) : -3.4028235E38f;
-            int i5 = bundle.containsKey(C2578b.m2604b(8)) ? bundle.getInt(C2578b.m2604b(8)) : Integer.MIN_VALUE;
-            if (bundle.containsKey(C2578b.m2604b(10)) && bundle.containsKey(C2578b.m2604b(9))) {
-                f2 = bundle.getFloat(C2578b.m2604b(10));
-                i2 = bundle.getInt(C2578b.m2604b(9));
-            } else {
-                i2 = Integer.MIN_VALUE;
-                f2 = -3.4028235E38f;
-            }
-            float f4 = bundle.containsKey(C2578b.m2604b(11)) ? bundle.getFloat(C2578b.m2604b(11)) : -3.4028235E38f;
-            float f5 = bundle.containsKey(C2578b.m2604b(12)) ? bundle.getFloat(C2578b.m2604b(12)) : -3.4028235E38f;
-            if (bundle.containsKey(C2578b.m2604b(13))) {
-                i3 = bundle.getInt(C2578b.m2604b(13));
-                z2 = true;
-            } else {
-                z2 = false;
-                i3 = ViewCompat.MEASURED_STATE_MASK;
-            }
-            return new C2578b(charSequence2, alignment2, alignment4, bitmap2, f, i, i4, f3, i5, i2, f2, f4, f5, bundle.getBoolean(C2578b.m2604b(14), false) ? z2 : false, i3, bundle.containsKey(C2578b.m2604b(15)) ? bundle.getInt(C2578b.m2604b(15)) : Integer.MIN_VALUE, bundle.containsKey(C2578b.m2604b(16)) ? bundle.getFloat(C2578b.m2604b(16)) : 0.0f, null);
-        }
-    };
-
     /* JADX INFO: renamed from: A */
     public final int f5756A;
 
@@ -126,6 +74,58 @@ public final class C2578b implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: z */
     public final float f5772z;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2578b f5754j = new C2578b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
+
+    /* JADX INFO: renamed from: k */
+    public static final InterfaceC2963w0.a<C2578b> f5755k = new InterfaceC2963w0.a() { // from class: b.i.a.c.b3.a
+        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
+            float f;
+            int i;
+            int i2;
+            float f2;
+            boolean z2;
+            int i3;
+            CharSequence charSequence = bundle.getCharSequence(C2578b.m2604b(0));
+            CharSequence charSequence2 = charSequence != null ? charSequence : null;
+            Layout.Alignment alignment = (Layout.Alignment) bundle.getSerializable(C2578b.m2604b(1));
+            Layout.Alignment alignment2 = alignment != null ? alignment : null;
+            Layout.Alignment alignment3 = (Layout.Alignment) bundle.getSerializable(C2578b.m2604b(2));
+            Layout.Alignment alignment4 = alignment3 != null ? alignment3 : null;
+            Bitmap bitmap = (Bitmap) bundle.getParcelable(C2578b.m2604b(3));
+            Bitmap bitmap2 = bitmap != null ? bitmap : null;
+            if (bundle.containsKey(C2578b.m2604b(4)) && bundle.containsKey(C2578b.m2604b(5))) {
+                f = bundle.getFloat(C2578b.m2604b(4));
+                i = bundle.getInt(C2578b.m2604b(5));
+            } else {
+                f = -3.4028235E38f;
+                i = Integer.MIN_VALUE;
+            }
+            int i4 = bundle.containsKey(C2578b.m2604b(6)) ? bundle.getInt(C2578b.m2604b(6)) : Integer.MIN_VALUE;
+            float f3 = bundle.containsKey(C2578b.m2604b(7)) ? bundle.getFloat(C2578b.m2604b(7)) : -3.4028235E38f;
+            int i5 = bundle.containsKey(C2578b.m2604b(8)) ? bundle.getInt(C2578b.m2604b(8)) : Integer.MIN_VALUE;
+            if (bundle.containsKey(C2578b.m2604b(10)) && bundle.containsKey(C2578b.m2604b(9))) {
+                f2 = bundle.getFloat(C2578b.m2604b(10));
+                i2 = bundle.getInt(C2578b.m2604b(9));
+            } else {
+                i2 = Integer.MIN_VALUE;
+                f2 = -3.4028235E38f;
+            }
+            float f4 = bundle.containsKey(C2578b.m2604b(11)) ? bundle.getFloat(C2578b.m2604b(11)) : -3.4028235E38f;
+            float f5 = bundle.containsKey(C2578b.m2604b(12)) ? bundle.getFloat(C2578b.m2604b(12)) : -3.4028235E38f;
+            if (bundle.containsKey(C2578b.m2604b(13))) {
+                i3 = bundle.getInt(C2578b.m2604b(13));
+                z2 = true;
+            } else {
+                z2 = false;
+                i3 = ViewCompat.MEASURED_STATE_MASK;
+            }
+            return new C2578b(charSequence2, alignment2, alignment4, bitmap2, f, i, i4, f3, i5, i2, f2, f4, f5, bundle.getBoolean(C2578b.m2604b(14), false) ? z2 : false, i3, bundle.containsKey(C2578b.m2604b(15)) ? bundle.getInt(C2578b.m2604b(15)) : Integer.MIN_VALUE, bundle.containsKey(C2578b.m2604b(16)) ? bundle.getFloat(C2578b.m2604b(16)) : 0.0f, null);
+        }
+    };
+
     public C2578b(CharSequence charSequence, Layout.Alignment alignment, Layout.Alignment alignment2, Bitmap bitmap, float f, int i, int i2, float f2, int i3, int i4, float f3, float f4, float f5, boolean z2, int i5, int i6, float f6, a aVar) {
         if (charSequence == null) {
             Objects.requireNonNull(bitmap);
@@ -157,16 +157,6 @@ public final class C2578b implements InterfaceC2963w0 {
         this.f5757B = f6;
     }
 
-    /* JADX INFO: renamed from: b */
-    public static String m2604b(int i) {
-        return Integer.toString(i, 36);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public b m2605a() {
-        return new b(this, null);
-    }
-
     public boolean equals(@Nullable Object obj) {
         Bitmap bitmap;
         Bitmap bitmap2;
@@ -184,9 +174,19 @@ public final class C2578b implements InterfaceC2963w0 {
         return Arrays.hashCode(new Object[]{this.f5758l, this.f5759m, this.f5760n, this.f5761o, Float.valueOf(this.f5762p), Integer.valueOf(this.f5763q), Integer.valueOf(this.f5764r), Float.valueOf(this.f5765s), Integer.valueOf(this.f5766t), Float.valueOf(this.f5767u), Float.valueOf(this.f5768v), Boolean.valueOf(this.f5769w), Integer.valueOf(this.f5770x), Integer.valueOf(this.f5771y), Float.valueOf(this.f5772z), Integer.valueOf(this.f5756A), Float.valueOf(this.f5757B)});
     }
 
+    /* JADX INFO: renamed from: b */
+    public static String m2604b(int i) {
+        return Integer.toString(i, 36);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public b m2605a() {
+        return new b(this, null);
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.b3.b$b */
     /* JADX INFO: compiled from: Cue.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         @Nullable

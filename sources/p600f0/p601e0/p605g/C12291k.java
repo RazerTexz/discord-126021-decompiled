@@ -37,7 +37,7 @@ public final class C12291k {
 
     /* JADX INFO: renamed from: f0.e0.g.k$a */
     /* JADX INFO: compiled from: RealConnectionPool.kt */
-    public static final class a extends AbstractC12277a {
+    public final class a extends AbstractC12277a {
         public a(String str) {
             super(str, true);
         }

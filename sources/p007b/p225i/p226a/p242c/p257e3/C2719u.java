@@ -10,12 +10,12 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2719u {
 
-    /* JADX INFO: renamed from: a */
-    public final Map<String, String> f6626a = new HashMap();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public Map<String, String> f6627b;
+
+    /* JADX INFO: renamed from: a */
+    public final Map<String, String> f6626a = new HashMap();
 
     /* JADX INFO: renamed from: a */
     public synchronized Map<String, String> m2874a() {

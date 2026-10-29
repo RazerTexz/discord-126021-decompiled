@@ -37,15 +37,6 @@ import p007b.p109f.p161j.p183r.C2030b;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractDraweeController<T, INFO> implements DraweeController, AbstractC1749a.a, C1797a.a {
 
-    /* JADX INFO: renamed from: a */
-    public static final Map<String, Object> f19451a = C1683f.m967of("component_tag", "drawee");
-
-    /* JADX INFO: renamed from: b */
-    public static final Map<String, Object> f19452b = C1683f.m968of("origin", "memory_bitmap", "origin_sub", "shortcut");
-
-    /* JADX INFO: renamed from: c */
-    public static final Class<?> f19453c = AbstractDraweeController.class;
-
     /* JADX INFO: renamed from: d */
     public final C1751c f19454d;
 
@@ -105,6 +96,15 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
 
     /* JADX INFO: renamed from: w */
     public Drawable f19473w;
+
+    /* JADX INFO: renamed from: a */
+    public static final Map<String, Object> f19451a = C1683f.m967of("component_tag", "drawee");
+
+    /* JADX INFO: renamed from: b */
+    public static final Map<String, Object> f19452b = C1683f.m968of("origin", "memory_bitmap", "origin_sub", "shortcut");
+
+    /* JADX INFO: renamed from: c */
+    public static final Class<?> f19453c = AbstractDraweeController.class;
 
     /* JADX INFO: renamed from: com.facebook.drawee.controller.AbstractDraweeController$a */
     public class C10640a extends AbstractC1724d<T> {
@@ -173,7 +173,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     }
 
     /* JADX INFO: renamed from: com.facebook.drawee.controller.AbstractDraweeController$b */
-    public static class C10641b<INFO> extends C1756d<INFO> {
+    public class C10641b<INFO> extends C1756d<INFO> {
     }
 
     public AbstractDraweeController(AbstractC1749a abstractC1749a, Executor executor, String str, Object obj) {
@@ -259,90 +259,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         C2030b.m1527b();
     }
 
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    /* JADX INFO: renamed from: a */
-    public void mo8652a() {
-        C2030b.m1527b();
-        if (C1691a.m980h(2)) {
-            System.identityHashCode(this);
-        }
-        this.f19454d.m1084a(C1751c.a.ON_DETACH_CONTROLLER);
-        this.f19465o = false;
-        C1750b c1750b = (C1750b) this.f19455e;
-        Objects.requireNonNull(c1750b);
-        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            synchronized (c1750b.f3254b) {
-                if (!c1750b.f3256d.contains(this)) {
-                    c1750b.f3256d.add(this);
-                    boolean z2 = c1750b.f3256d.size() == 1;
-                    if (z2) {
-                        c1750b.f3255c.post(c1750b.f3258f);
-                    }
-                }
-            }
-        } else {
-            release();
-        }
-        C2030b.m1527b();
-    }
-
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    /* JADX INFO: renamed from: b */
-    public DraweeHierarchy mo8653b() {
-        return this.f19461k;
-    }
-
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    /* JADX INFO: renamed from: c */
-    public Animatable mo8654c() {
-        Object obj = this.f19473w;
-        if (obj instanceof Animatable) {
-            return (Animatable) obj;
-        }
-        return null;
-    }
-
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    /* JADX INFO: renamed from: d */
-    public void mo8655d() {
-        C2030b.m1527b();
-        if (C1691a.m980h(2)) {
-            C1691a.m982j(f19453c, "controller %x %s: onAttach: %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, this.f19466p ? "request already submitted" : "request needs submit");
-        }
-        this.f19454d.m1084a(C1751c.a.ON_ATTACH_CONTROLLER);
-        Objects.requireNonNull(this.f19461k);
-        this.f19455e.mo1083a(this);
-        this.f19465o = true;
-        if (!this.f19466p) {
-            m8651E();
-        }
-        C2030b.m1527b();
-    }
-
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    /* JADX INFO: renamed from: e */
-    public void mo1045e(DraweeHierarchy draweeHierarchy) {
-        if (C1691a.m980h(2)) {
-            C1691a.m982j(f19453c, "controller %x %s: setHierarchy: %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, draweeHierarchy);
-        }
-        this.f19454d.m1084a(draweeHierarchy != null ? C1751c.a.ON_SET_HIERARCHY : C1751c.a.ON_CLEAR_HIERARCHY);
-        if (this.f19466p) {
-            this.f19455e.mo1083a(this);
-            release();
-        }
-        InterfaceC1798a interfaceC1798a = this.f19461k;
-        if (interfaceC1798a != null) {
-            interfaceC1798a.mo1131a(null);
-            this.f19461k = null;
-        }
-        if (draweeHierarchy != null) {
-            C1460d.m527i(Boolean.valueOf(draweeHierarchy instanceof InterfaceC1798a));
-            InterfaceC1798a interfaceC1798a2 = (InterfaceC1798a) draweeHierarchy;
-            this.f19461k = interfaceC1798a2;
-            interfaceC1798a2.mo1131a(this.f19462l);
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX INFO: renamed from: f */
     public void m8656f(ControllerListener<? super INFO> controllerListener) {
@@ -364,34 +280,10 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         this.f19459i = c10641b;
     }
 
-    /* JADX INFO: renamed from: g */
-    public abstract Drawable mo1046g(T t);
-
-    /* JADX INFO: renamed from: h */
-    public T mo1047h() {
-        return null;
-    }
-
     /* JADX INFO: renamed from: i */
     public ControllerListener<INFO> m8657i() {
         ControllerListener<INFO> controllerListener = this.f19459i;
         return controllerListener == null ? C1755c.getNoOpListener() : controllerListener;
-    }
-
-    /* JADX INFO: renamed from: j */
-    public abstract DataSource<T> mo1048j();
-
-    /* JADX INFO: renamed from: k */
-    public int mo1049k(T t) {
-        return System.identityHashCode(t);
-    }
-
-    /* JADX INFO: renamed from: l */
-    public abstract INFO mo1050l(T t);
-
-    /* JADX INFO: renamed from: m */
-    public Uri mo1051m() {
-        return null;
     }
 
     /* JADX INFO: renamed from: n */
@@ -450,57 +342,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         return str.equals(this.f19463m) && dataSource == this.f19470t && this.f19466p;
     }
 
-    @Override // com.facebook.drawee.interfaces.DraweeController
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        C1797a.a aVar;
-        boolean zM980h = C1691a.m980h(2);
-        if (zM980h) {
-            C1691a.m982j(f19453c, "controller %x %s: onTouchEvent %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, motionEvent);
-        }
-        C1797a c1797a = this.f19458h;
-        if (c1797a == null) {
-            return false;
-        }
-        if (!c1797a.f3482c && !m8650D()) {
-            return false;
-        }
-        C1797a c1797a2 = this.f19458h;
-        Objects.requireNonNull(c1797a2);
-        int action = motionEvent.getAction();
-        if (action == 0) {
-            c1797a2.f3482c = true;
-            c1797a2.f3483d = true;
-            c1797a2.f3484e = motionEvent.getEventTime();
-            c1797a2.f3485f = motionEvent.getX();
-            c1797a2.f3486g = motionEvent.getY();
-        } else if (action == 1) {
-            c1797a2.f3482c = false;
-            if (Math.abs(motionEvent.getX() - c1797a2.f3485f) > c1797a2.f3481b || Math.abs(motionEvent.getY() - c1797a2.f3486g) > c1797a2.f3481b) {
-                c1797a2.f3483d = false;
-            }
-            if (c1797a2.f3483d && motionEvent.getEventTime() - c1797a2.f3484e <= ViewConfiguration.getLongPressTimeout() && (aVar = c1797a2.f3480a) != null) {
-                AbstractDraweeController abstractDraweeController = (AbstractDraweeController) aVar;
-                if (zM980h) {
-                    System.identityHashCode(abstractDraweeController);
-                }
-                if (abstractDraweeController.m8650D()) {
-                    abstractDraweeController.f19457g.f3290c++;
-                    abstractDraweeController.f19461k.reset();
-                    abstractDraweeController.m8651E();
-                }
-            }
-            c1797a2.f3483d = false;
-        } else if (action != 2) {
-            if (action == 3) {
-                c1797a2.f3482c = false;
-                c1797a2.f3483d = false;
-            }
-        } else if (Math.abs(motionEvent.getX() - c1797a2.f3485f) > c1797a2.f3481b || Math.abs(motionEvent.getY() - c1797a2.f3486g) > c1797a2.f3481b) {
-            c1797a2.f3483d = false;
-        }
-        return true;
-    }
-
     /* JADX INFO: renamed from: p */
     public final void m8660p(String str, Throwable th) {
         if (C1691a.m980h(2)) {
@@ -522,25 +363,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     /* JADX INFO: renamed from: r */
     public final InterfaceC1827b.a m8662r(DataSource<T> dataSource, INFO info, Uri uri) {
         return m8663s(dataSource == null ? null : dataSource.mo1017a(), mo1052t(info), uri);
-    }
-
-    @Override // p007b.p109f.p132g.p138b.AbstractC1749a.a
-    public void release() {
-        this.f19454d.m1084a(C1751c.a.ON_RELEASE_CONTROLLER);
-        C1752d c1752d = this.f19457g;
-        if (c1752d != null) {
-            c1752d.f3290c = 0;
-        }
-        C1797a c1797a = this.f19458h;
-        if (c1797a != null) {
-            c1797a.f3482c = false;
-            c1797a.f3483d = false;
-        }
-        InterfaceC1798a interfaceC1798a = this.f19461k;
-        if (interfaceC1798a != null) {
-            interfaceC1798a.reset();
-        }
-        m8666y();
     }
 
     /* JADX INFO: renamed from: s */
@@ -569,19 +391,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         aVar.f3564b = map4;
         aVar.f3563a = map3;
         return aVar;
-    }
-
-    /* JADX INFO: renamed from: t */
-    public abstract Map<String, Object> mo1052t(INFO info);
-
-    public String toString() {
-        C1686i c1686iM526h2 = C1460d.m526h2(this);
-        c1686iM526h2.m970b("isAttached", this.f19465o);
-        c1686iM526h2.m970b("isRequestSubmitted", this.f19466p);
-        c1686iM526h2.m970b("hasFetchFailed", this.f19467q);
-        c1686iM526h2.m969a("fetchedImage", mo1049k(this.f19471u));
-        c1686iM526h2.m971c("events", this.f19454d.toString());
-        return c1686iM526h2.toString();
     }
 
     /* JADX INFO: renamed from: u */
@@ -618,10 +427,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
             Objects.requireNonNull(this.f19460j);
         }
         C2030b.m1527b();
-    }
-
-    /* JADX INFO: renamed from: v */
-    public void mo1053v(String str, T t) {
     }
 
     /* JADX INFO: renamed from: w */
@@ -688,9 +493,6 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         }
     }
 
-    /* JADX INFO: renamed from: x */
-    public abstract void mo1054x(Drawable drawable);
-
     /* JADX INFO: renamed from: y */
     public final void m8666y() {
         Map<String, Object> mapMo1017a;
@@ -729,6 +531,204 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         }
     }
 
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    /* JADX INFO: renamed from: e */
+    public void mo1045e(DraweeHierarchy draweeHierarchy) {
+        if (C1691a.m980h(2)) {
+            C1691a.m982j(f19453c, "controller %x %s: setHierarchy: %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, draweeHierarchy);
+        }
+        this.f19454d.m1084a(draweeHierarchy != null ? C1751c.a.ON_SET_HIERARCHY : C1751c.a.ON_CLEAR_HIERARCHY);
+        if (this.f19466p) {
+            this.f19455e.mo1083a(this);
+            release();
+        }
+        InterfaceC1798a interfaceC1798a = this.f19461k;
+        if (interfaceC1798a != null) {
+            interfaceC1798a.mo1131a(null);
+            this.f19461k = null;
+        }
+        if (draweeHierarchy != null) {
+            C1460d.m527i(Boolean.valueOf(draweeHierarchy instanceof InterfaceC1798a));
+            InterfaceC1798a interfaceC1798a2 = (InterfaceC1798a) draweeHierarchy;
+            this.f19461k = interfaceC1798a2;
+            interfaceC1798a2.mo1131a(this.f19462l);
+        }
+    }
+
+    /* JADX INFO: renamed from: g */
+    public abstract Drawable mo1046g(T t);
+
+    /* JADX INFO: renamed from: h */
+    public T mo1047h() {
+        return null;
+    }
+
+    /* JADX INFO: renamed from: j */
+    public abstract DataSource<T> mo1048j();
+
+    /* JADX INFO: renamed from: k */
+    public int mo1049k(T t) {
+        return System.identityHashCode(t);
+    }
+
+    /* JADX INFO: renamed from: l */
+    public abstract INFO mo1050l(T t);
+
+    /* JADX INFO: renamed from: m */
+    public Uri mo1051m() {
+        return null;
+    }
+
+    /* JADX INFO: renamed from: t */
+    public abstract Map<String, Object> mo1052t(INFO info);
+
+    /* JADX INFO: renamed from: v */
+    public void mo1053v(String str, T t) {
+    }
+
+    /* JADX INFO: renamed from: x */
+    public abstract void mo1054x(Drawable drawable);
+
     /* JADX INFO: renamed from: z */
     public abstract void mo1055z(T t);
+
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    /* JADX INFO: renamed from: a */
+    public void mo8652a() {
+        C2030b.m1527b();
+        if (C1691a.m980h(2)) {
+            System.identityHashCode(this);
+        }
+        this.f19454d.m1084a(C1751c.a.ON_DETACH_CONTROLLER);
+        this.f19465o = false;
+        C1750b c1750b = (C1750b) this.f19455e;
+        Objects.requireNonNull(c1750b);
+        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+            synchronized (c1750b.f3254b) {
+                if (!c1750b.f3256d.contains(this)) {
+                    c1750b.f3256d.add(this);
+                    boolean z2 = c1750b.f3256d.size() == 1;
+                    if (z2) {
+                        c1750b.f3255c.post(c1750b.f3258f);
+                    }
+                }
+            }
+        } else {
+            release();
+        }
+        C2030b.m1527b();
+    }
+
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    /* JADX INFO: renamed from: b */
+    public DraweeHierarchy mo8653b() {
+        return this.f19461k;
+    }
+
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    /* JADX INFO: renamed from: c */
+    public Animatable mo8654c() {
+        Object obj = this.f19473w;
+        if (obj instanceof Animatable) {
+            return (Animatable) obj;
+        }
+        return null;
+    }
+
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    /* JADX INFO: renamed from: d */
+    public void mo8655d() {
+        C2030b.m1527b();
+        if (C1691a.m980h(2)) {
+            C1691a.m982j(f19453c, "controller %x %s: onAttach: %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, this.f19466p ? "request already submitted" : "request needs submit");
+        }
+        this.f19454d.m1084a(C1751c.a.ON_ATTACH_CONTROLLER);
+        Objects.requireNonNull(this.f19461k);
+        this.f19455e.mo1083a(this);
+        this.f19465o = true;
+        if (!this.f19466p) {
+            m8651E();
+        }
+        C2030b.m1527b();
+    }
+
+    @Override // com.facebook.drawee.interfaces.DraweeController
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        C1797a.a aVar;
+        boolean zM980h = C1691a.m980h(2);
+        if (zM980h) {
+            C1691a.m982j(f19453c, "controller %x %s: onTouchEvent %s", Integer.valueOf(System.identityHashCode(this)), this.f19463m, motionEvent);
+        }
+        C1797a c1797a = this.f19458h;
+        if (c1797a == null) {
+            return false;
+        }
+        if (!c1797a.f3482c && !m8650D()) {
+            return false;
+        }
+        C1797a c1797a2 = this.f19458h;
+        Objects.requireNonNull(c1797a2);
+        int action = motionEvent.getAction();
+        if (action == 0) {
+            c1797a2.f3482c = true;
+            c1797a2.f3483d = true;
+            c1797a2.f3484e = motionEvent.getEventTime();
+            c1797a2.f3485f = motionEvent.getX();
+            c1797a2.f3486g = motionEvent.getY();
+        } else if (action == 1) {
+            c1797a2.f3482c = false;
+            if (Math.abs(motionEvent.getX() - c1797a2.f3485f) > c1797a2.f3481b || Math.abs(motionEvent.getY() - c1797a2.f3486g) > c1797a2.f3481b) {
+                c1797a2.f3483d = false;
+            }
+            if (c1797a2.f3483d && motionEvent.getEventTime() - c1797a2.f3484e <= ViewConfiguration.getLongPressTimeout() && (aVar = c1797a2.f3480a) != null) {
+                AbstractDraweeController abstractDraweeController = (AbstractDraweeController) aVar;
+                if (zM980h) {
+                    System.identityHashCode(abstractDraweeController);
+                }
+                if (abstractDraweeController.m8650D()) {
+                    abstractDraweeController.f19457g.f3290c++;
+                    abstractDraweeController.f19461k.reset();
+                    abstractDraweeController.m8651E();
+                }
+            }
+            c1797a2.f3483d = false;
+        } else if (action != 2) {
+            if (action == 3) {
+                c1797a2.f3482c = false;
+                c1797a2.f3483d = false;
+            }
+        } else if (Math.abs(motionEvent.getX() - c1797a2.f3485f) > c1797a2.f3481b || Math.abs(motionEvent.getY() - c1797a2.f3486g) > c1797a2.f3481b) {
+            c1797a2.f3483d = false;
+        }
+        return true;
+    }
+
+    @Override // p007b.p109f.p132g.p138b.AbstractC1749a.a
+    public void release() {
+        this.f19454d.m1084a(C1751c.a.ON_RELEASE_CONTROLLER);
+        C1752d c1752d = this.f19457g;
+        if (c1752d != null) {
+            c1752d.f3290c = 0;
+        }
+        C1797a c1797a = this.f19458h;
+        if (c1797a != null) {
+            c1797a.f3482c = false;
+            c1797a.f3483d = false;
+        }
+        InterfaceC1798a interfaceC1798a = this.f19461k;
+        if (interfaceC1798a != null) {
+            interfaceC1798a.reset();
+        }
+        m8666y();
+    }
+
+    public String toString() {
+        C1686i c1686iM526h2 = C1460d.m526h2(this);
+        c1686iM526h2.m970b("isAttached", this.f19465o);
+        c1686iM526h2.m970b("isRequestSubmitted", this.f19466p);
+        c1686iM526h2.m970b("hasFetchFailed", this.f19467q);
+        c1686iM526h2.m969a("fetchedImage", mo1049k(this.f19471u));
+        c1686iM526h2.m971c("events", this.f19454d.toString());
+        return c1686iM526h2.toString();
+    }
 }

@@ -39,7 +39,7 @@ public final class ViewOnClickListenerC0895a<K, T extends ChipsView.InterfaceC54
 
     /* JADX INFO: renamed from: b.a.f.a$a */
     /* JADX INFO: compiled from: Chip.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f609a;

@@ -9,9 +9,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12044a<E> implements Iterable<E> {
 
-    /* JADX INFO: renamed from: j */
-    public static final C12044a<Object> f25018j = new C12044a<>();
-
     /* JADX INFO: renamed from: k */
     public final E f25019k;
 
@@ -21,9 +18,12 @@ public final class C12044a<E> implements Iterable<E> {
     /* JADX INFO: renamed from: m */
     public final int f25021m;
 
+    /* JADX INFO: renamed from: j */
+    public static final C12044a<Object> f25018j = new C12044a<>();
+
     /* JADX INFO: renamed from: d0.e0.p.d.n0.a$a */
     /* JADX INFO: compiled from: ConsPStack.java */
-    public static class a<E> implements Iterator<E> {
+    public class a<E> implements Iterator<E> {
 
         /* JADX INFO: renamed from: j */
         public C12044a<E> f25022j;
@@ -61,6 +61,22 @@ public final class C12044a<E> implements Iterable<E> {
         return (C12044a<E>) f25018j;
     }
 
+    public E get(int i) {
+        if (i < 0 || i > this.f25021m) {
+            throw new IndexOutOfBoundsException();
+        }
+        try {
+            return new a(m10050d(i)).next();
+        } catch (NoSuchElementException unused) {
+            throw new IndexOutOfBoundsException(C1643a.m871q("Index: ", i));
+        }
+    }
+
+    @Override // java.lang.Iterable
+    public Iterator<E> iterator() {
+        return new a(m10050d(0));
+    }
+
     /* JADX INFO: renamed from: c */
     public final C12044a<E> m10049c(Object obj) {
         if (this.f25021m == 0) {
@@ -79,22 +95,6 @@ public final class C12044a<E> implements Iterable<E> {
             throw new IndexOutOfBoundsException();
         }
         return i == 0 ? this : this.f25020l.m10050d(i - 1);
-    }
-
-    public E get(int i) {
-        if (i < 0 || i > this.f25021m) {
-            throw new IndexOutOfBoundsException();
-        }
-        try {
-            return new a(m10050d(i)).next();
-        } catch (NoSuchElementException unused) {
-            throw new IndexOutOfBoundsException(C1643a.m871q("Index: ", i));
-        }
-    }
-
-    @Override // java.lang.Iterable
-    public Iterator<E> iterator() {
-        return new a(m10050d(0));
     }
 
     public C12044a<E> minus(int i) {

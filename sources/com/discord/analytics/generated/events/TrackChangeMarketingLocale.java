@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChangeMarketingLocale.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private TrackBase trackBase;
-    private TrackMarketingSite trackMarketingSite;
     private final CharSequence from = null;
     private final CharSequence to = null;
+    private TrackBase trackBase;
+    private TrackMarketingSite trackMarketingSite;
     private final transient String analyticsSchemaTypeName = "change_marketing_locale";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSch
         }
         TrackChangeMarketingLocale trackChangeMarketingLocale = (TrackChangeMarketingLocale) other;
         return C12238m.areEqual(this.from, trackChangeMarketingLocale.from) && C12238m.areEqual(this.to, trackChangeMarketingLocale.to);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

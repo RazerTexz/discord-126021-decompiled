@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUpdateUserSettingsLocal.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUpdateUserSettingsLocal implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean alwaysPreviewVideo = null;
     private final Boolean showSnowsgiving2021 = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "update_user_settings_local";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackUpdateUserSettingsLocal implements AnalyticsS
         }
         TrackUpdateUserSettingsLocal trackUpdateUserSettingsLocal = (TrackUpdateUserSettingsLocal) other;
         return C12238m.areEqual(this.alwaysPreviewVideo, trackUpdateUserSettingsLocal.alwaysPreviewVideo) && C12238m.areEqual(this.showSnowsgiving2021, trackUpdateUserSettingsLocal.showSnowsgiving2021);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

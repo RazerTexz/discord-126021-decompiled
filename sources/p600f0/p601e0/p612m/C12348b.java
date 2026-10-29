@@ -32,6 +32,14 @@ public final class C12348b implements InterfaceC12351e {
         this.f25810a = linkedHashMap;
     }
 
+    public boolean equals(Object obj) {
+        return obj == this || ((obj instanceof C12348b) && C12238m.areEqual(((C12348b) obj).f25810a, this.f25810a));
+    }
+
+    public int hashCode() {
+        return this.f25810a.hashCode();
+    }
+
     @Override // p600f0.p601e0.p612m.InterfaceC12351e
     /* JADX INFO: renamed from: a */
     public X509Certificate mo10323a(X509Certificate x509Certificate) {
@@ -55,13 +63,5 @@ public final class C12348b implements InterfaceC12351e {
             }
         }
         return (X509Certificate) obj;
-    }
-
-    public boolean equals(Object obj) {
-        return obj == this || ((obj instanceof C12348b) && C12238m.areEqual(((C12348b) obj).f25810a, this.f25810a));
-    }
-
-    public int hashCode() {
-        return this.f25810a.hashCode();
     }
 }

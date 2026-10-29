@@ -44,12 +44,6 @@ public class C5197e extends AbstractC5195c {
         scaleGestureDetector.setQuickScaleEnabled(false);
     }
 
-    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
-    /* JADX INFO: renamed from: b */
-    public float mo7393b(float f, float f2, float f3) {
-        return C1643a.m839a(f3, f2, this.f14089f, f);
-    }
-
     /* JADX INFO: renamed from: c */
     public boolean m7394c(@NonNull MotionEvent motionEvent) {
         boolean z2 = false;
@@ -67,5 +61,11 @@ public class C5197e extends AbstractC5195c {
             }
         }
         return z2;
+    }
+
+    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
+    /* JADX INFO: renamed from: b */
+    public float mo7393b(float f, float f2, float f3) {
+        return C1643a.m839a(f3, f2, this.f14089f, f);
     }
 }

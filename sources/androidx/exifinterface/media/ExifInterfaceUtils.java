@@ -18,7 +18,7 @@ public class ExifInterfaceUtils {
     private static final String TAG = "ExifInterfaceUtils";
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 
@@ -39,7 +39,7 @@ public class ExifInterfaceUtils {
     }
 
     @RequiresApi(23)
-    public static class Api23Impl {
+    public class Api23Impl {
         private Api23Impl() {
         }
 

@@ -30,11 +30,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0809a extends AppDialog {
 
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public final FragmentViewBindingDelegate binding;
+
     /* JADX INFO: renamed from: j */
     public static final /* synthetic */ KProperty[] f242j = {C1643a.m846d0(C0809a.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostUpgradeDialogBinding;", 0)};
 
-    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public boolean hasBoostPlan;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Function0<Unit> onContinueClickListener;
@@ -45,15 +51,16 @@ public final class C0809a extends AppDialog {
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public String upgradePrice;
 
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public boolean hasBoostPlan;
-
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public final FragmentViewBindingDelegate binding;
+    /* JADX INFO: renamed from: b.a.a.b.a$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: UpgradeGuildBoostDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     /* JADX INFO: renamed from: b.a.a.b.a$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f249j;
@@ -92,16 +99,9 @@ public final class C0809a extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.b.a$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: UpgradeGuildBoostDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.b.a$c */
     /* JADX INFO: compiled from: UpgradeGuildBoostDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1065v> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1065v> {
 
         /* JADX INFO: renamed from: j */
         public static final c f251j = new c();

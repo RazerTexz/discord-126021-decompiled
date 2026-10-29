@@ -128,14 +128,115 @@ public final /* data */ class Message {
         this.roleSubscriptionData = roleSubscriptionData2;
     }
 
-    /* JADX INFO: renamed from: A */
-    public final List<StickerPartial> m8021A() {
-        return this.stickerItems;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Message)) {
+            return false;
+        }
+        Message message = (Message) other;
+        return this.id == message.id && this.channelId == message.channelId && C12238m.areEqual(this.author, message.author) && C12238m.areEqual(this.content, message.content) && C12238m.areEqual(this.timestamp, message.timestamp) && C12238m.areEqual(this.editedTimestamp, message.editedTimestamp) && C12238m.areEqual(this.tts, message.tts) && C12238m.areEqual(this.mentionEveryone, message.mentionEveryone) && C12238m.areEqual(this.mentions, message.mentions) && C12238m.areEqual(this.mentionRoles, message.mentionRoles) && C12238m.areEqual(this.attachments, message.attachments) && C12238m.areEqual(this.embeds, message.embeds) && C12238m.areEqual(this.reactions, message.reactions) && C12238m.areEqual(this.nonce, message.nonce) && C12238m.areEqual(this.pinned, message.pinned) && C12238m.areEqual(this.webhookId, message.webhookId) && C12238m.areEqual(this.type, message.type) && C12238m.areEqual(this.activity, message.activity) && C12238m.areEqual(this.application, message.application) && C12238m.areEqual(this.applicationId, message.applicationId) && C12238m.areEqual(this.messageReference, message.messageReference) && C12238m.areEqual(this.flags, message.flags) && C12238m.areEqual(this.stickers, message.stickers) && C12238m.areEqual(this.stickerItems, message.stickerItems) && C12238m.areEqual(this.referencedMessage, message.referencedMessage) && C12238m.areEqual(this.interaction, message.interaction) && C12238m.areEqual(this.thread, message.thread) && C12238m.areEqual(this.components, message.components) && C12238m.areEqual(this.call, message.call) && C12238m.areEqual(this.guildId, message.guildId) && C12238m.areEqual(this.member, message.member) && C12238m.areEqual(this.hit, message.hit) && C12238m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData);
     }
 
-    /* JADX INFO: renamed from: B */
-    public final List<Sticker> m8022B() {
-        return this.stickers;
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final MessageActivity getActivity() {
+        return this.activity;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final Long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final User getAuthor() {
+        return this.author;
+    }
+
+    /* JADX INFO: renamed from: f, reason: from getter */
+    public final MessageCall getCall() {
+        return this.call;
+    }
+
+    /* JADX INFO: renamed from: g, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final String getContent() {
+        return this.content;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final UtcDateTime getEditedTimestamp() {
+        return this.editedTimestamp;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final Long getFlags() {
+        return this.flags;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final Boolean getHit() {
+        return this.hit;
+    }
+
+    /* JADX INFO: renamed from: o, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: p, reason: from getter */
+    public final Interaction getInteraction() {
+        return this.interaction;
+    }
+
+    /* JADX INFO: renamed from: q, reason: from getter */
+    public final GuildMember getMember() {
+        return this.member;
+    }
+
+    /* JADX INFO: renamed from: r, reason: from getter */
+    public final Boolean getMentionEveryone() {
+        return this.mentionEveryone;
+    }
+
+    /* JADX INFO: renamed from: u, reason: from getter */
+    public final MessageReference getMessageReference() {
+        return this.messageReference;
+    }
+
+    /* JADX INFO: renamed from: v, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
+    }
+
+    /* JADX INFO: renamed from: w, reason: from getter */
+    public final Boolean getPinned() {
+        return this.pinned;
+    }
+
+    /* JADX INFO: renamed from: y, reason: from getter */
+    public final Message getReferencedMessage() {
+        return this.referencedMessage;
+    }
+
+    /* JADX INFO: renamed from: z, reason: from getter */
+    public final RoleSubscriptionData getRoleSubscriptionData() {
+        return this.roleSubscriptionData;
     }
 
     /* JADX INFO: renamed from: C, reason: from getter */
@@ -161,57 +262,6 @@ public final /* data */ class Message {
     /* JADX INFO: renamed from: G, reason: from getter */
     public final Long getWebhookId() {
         return this.webhookId;
-    }
-
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final MessageActivity getActivity() {
-        return this.activity;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final Long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<MessageAttachment> m8031d() {
-        return this.attachments;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final User getAuthor() {
-        return this.author;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Message)) {
-            return false;
-        }
-        Message message = (Message) other;
-        return this.id == message.id && this.channelId == message.channelId && C12238m.areEqual(this.author, message.author) && C12238m.areEqual(this.content, message.content) && C12238m.areEqual(this.timestamp, message.timestamp) && C12238m.areEqual(this.editedTimestamp, message.editedTimestamp) && C12238m.areEqual(this.tts, message.tts) && C12238m.areEqual(this.mentionEveryone, message.mentionEveryone) && C12238m.areEqual(this.mentions, message.mentions) && C12238m.areEqual(this.mentionRoles, message.mentionRoles) && C12238m.areEqual(this.attachments, message.attachments) && C12238m.areEqual(this.embeds, message.embeds) && C12238m.areEqual(this.reactions, message.reactions) && C12238m.areEqual(this.nonce, message.nonce) && C12238m.areEqual(this.pinned, message.pinned) && C12238m.areEqual(this.webhookId, message.webhookId) && C12238m.areEqual(this.type, message.type) && C12238m.areEqual(this.activity, message.activity) && C12238m.areEqual(this.application, message.application) && C12238m.areEqual(this.applicationId, message.applicationId) && C12238m.areEqual(this.messageReference, message.messageReference) && C12238m.areEqual(this.flags, message.flags) && C12238m.areEqual(this.stickers, message.stickers) && C12238m.areEqual(this.stickerItems, message.stickerItems) && C12238m.areEqual(this.referencedMessage, message.referencedMessage) && C12238m.areEqual(this.interaction, message.interaction) && C12238m.areEqual(this.thread, message.thread) && C12238m.areEqual(this.components, message.components) && C12238m.areEqual(this.call, message.call) && C12238m.areEqual(this.guildId, message.guildId) && C12238m.areEqual(this.member, message.member) && C12238m.areEqual(this.hit, message.hit) && C12238m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData);
-    }
-
-    /* JADX INFO: renamed from: f, reason: from getter */
-    public final MessageCall getCall() {
-        return this.call;
-    }
-
-    /* JADX INFO: renamed from: g, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final List<Component> m8035h() {
-        return this.components;
     }
 
     public int hashCode() {
@@ -282,54 +332,29 @@ public final /* data */ class Message {
         return iHashCode30 + (roleSubscriptionData != null ? roleSubscriptionData.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final String getContent() {
-        return this.content;
+    /* JADX INFO: renamed from: A */
+    public final List<StickerPartial> m8021A() {
+        return this.stickerItems;
     }
 
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final UtcDateTime getEditedTimestamp() {
-        return this.editedTimestamp;
+    /* JADX INFO: renamed from: B */
+    public final List<Sticker> m8022B() {
+        return this.stickers;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<MessageAttachment> m8031d() {
+        return this.attachments;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final List<Component> m8035h() {
+        return this.components;
     }
 
     /* JADX INFO: renamed from: k */
     public final List<MessageEmbed> m8038k() {
         return this.embeds;
-    }
-
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final Long getFlags() {
-        return this.flags;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final Boolean getHit() {
-        return this.hit;
-    }
-
-    /* JADX INFO: renamed from: o, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: p, reason: from getter */
-    public final Interaction getInteraction() {
-        return this.interaction;
-    }
-
-    /* JADX INFO: renamed from: q, reason: from getter */
-    public final GuildMember getMember() {
-        return this.member;
-    }
-
-    /* JADX INFO: renamed from: r, reason: from getter */
-    public final Boolean getMentionEveryone() {
-        return this.mentionEveryone;
     }
 
     /* JADX INFO: renamed from: s */
@@ -340,6 +365,11 @@ public final /* data */ class Message {
     /* JADX INFO: renamed from: t */
     public final List<User> m8047t() {
         return this.mentions;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final List<MessageReaction> m8051x() {
+        return this.reactions;
     }
 
     public String toString() {
@@ -411,35 +441,5 @@ public final /* data */ class Message {
         sbM833U.append(this.roleSubscriptionData);
         sbM833U.append(")");
         return sbM833U.toString();
-    }
-
-    /* JADX INFO: renamed from: u, reason: from getter */
-    public final MessageReference getMessageReference() {
-        return this.messageReference;
-    }
-
-    /* JADX INFO: renamed from: v, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: w, reason: from getter */
-    public final Boolean getPinned() {
-        return this.pinned;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final List<MessageReaction> m8051x() {
-        return this.reactions;
-    }
-
-    /* JADX INFO: renamed from: y, reason: from getter */
-    public final Message getReferencedMessage() {
-        return this.referencedMessage;
-    }
-
-    /* JADX INFO: renamed from: z, reason: from getter */
-    public final RoleSubscriptionData getRoleSubscriptionData() {
-        return this.roleSubscriptionData;
     }
 }

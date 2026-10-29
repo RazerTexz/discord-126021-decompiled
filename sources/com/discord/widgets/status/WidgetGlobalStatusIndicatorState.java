@@ -18,7 +18,7 @@ public final class WidgetGlobalStatusIndicatorState {
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorState$Provider, reason: from kotlin metadata */
     /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorState.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -32,7 +32,7 @@ public final class WidgetGlobalStatusIndicatorState {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorState.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final boolean isCustomBackground;
         private final boolean isViewingCall;
         private final boolean isVisible;
@@ -56,21 +56,6 @@ public final class WidgetGlobalStatusIndicatorState {
             return state.copy(z2, z3, z4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsVisible() {
-            return this.isVisible;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsCustomBackground() {
-            return this.isCustomBackground;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsViewingCall() {
-            return this.isViewingCall;
-        }
-
         public final State copy(boolean isVisible, boolean isCustomBackground, boolean isViewingCall) {
             return new State(isVisible, isCustomBackground, isViewingCall);
         }
@@ -84,6 +69,21 @@ public final class WidgetGlobalStatusIndicatorState {
             }
             State state = (State) other;
             return this.isVisible == state.isVisible && this.isCustomBackground == state.isCustomBackground && this.isViewingCall == state.isViewingCall;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsCustomBackground() {
+            return this.isCustomBackground;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsViewingCall() {
+            return this.isViewingCall;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsVisible() {
+            return this.isVisible;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -137,6 +137,12 @@ public final class WidgetGlobalStatusIndicatorState {
         }
     }
 
+    public final Observable<State> observeState() {
+        Observable<State> observableM11112r = this.stateSubject.m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "stateSubject.distinctUntilChanged()");
+        return observableM11112r;
+    }
+
     public static /* synthetic */ void updateState$default(WidgetGlobalStatusIndicatorState widgetGlobalStatusIndicatorState, boolean z2, boolean z3, boolean z4, int i, Object obj) {
         if ((i & 1) != 0) {
             BehaviorSubject<State> behaviorSubject = widgetGlobalStatusIndicatorState.stateSubject;
@@ -157,12 +163,6 @@ public final class WidgetGlobalStatusIndicatorState {
             z4 = stateM11132n2 != null ? stateM11132n2.isViewingCall() : false;
         }
         widgetGlobalStatusIndicatorState.updateState(z2, z3, z4);
-    }
-
-    public final Observable<State> observeState() {
-        Observable<State> observableM11112r = this.stateSubject.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "stateSubject.distinctUntilChanged()");
-        return observableM11112r;
     }
 
     @MainThread

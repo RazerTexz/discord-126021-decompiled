@@ -13,11 +13,11 @@ public class C4757a {
     /* JADX INFO: renamed from: a */
     public final Context f12781a;
 
-    /* JADX INFO: renamed from: b */
-    public boolean f12782b = false;
-
     /* JADX INFO: renamed from: c */
     public String f12783c;
+
+    /* JADX INFO: renamed from: b */
+    public boolean f12782b = false;
 
     public C4757a(Context context) {
         this.f12781a = context;

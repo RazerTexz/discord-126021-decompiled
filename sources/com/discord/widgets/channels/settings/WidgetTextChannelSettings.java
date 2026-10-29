@@ -79,6 +79,10 @@ import p658rx.functions.Func3;
 /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetTextChannelSettings extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetTextChannelSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTextChannelSettingsBinding;", 0)};
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int ONE_DAY = 86400;
     public static final int ONE_HOUR = 3600;
     public static final int ONE_MINUTE = 60;
@@ -86,22 +90,51 @@ public final class WidgetTextChannelSettings extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final StatefulViews state;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetTextChannelSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTextChannelSettingsBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final List<Integer> SLOWMODE_COOLDOWN_VALUES = C12147n.listOf((Object[]) new Integer[]{0, 5, 10, 15, 30, 60, 120, 300, 600, 900, Integer.valueOf(ModelInvite.Settings.HALF_HOUR), 3600, 7200, Integer.valueOf(ModelInvite.Settings.SIX_HOURS)});
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetTextChannelSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-    public static final class Companion {
-        private Companion() {
+    public final class C76071 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C76071() {
+            super(1);
         }
 
-        public static /* synthetic */ void setDurationSecondsLabel$default(Companion companion, TextView textView, int i, Context context, int i2, int i3, Object obj) {
-            if ((i3 & 8) != 0) {
-                i2 = C5419R.string.form_label_slowmode_off;
-            }
-            companion.setDurationSecondsLabel(textView, i, context, i2);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetTextChannelSettings.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetTextChannelSettings$saveChannel$1 */
+    /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
+    public final class C76081 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C76081() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            Context context = WidgetTextChannelSettings.this.getContext();
+            C12238m.checkNotNullExpressionValue(channel, "it");
+            C0876m.m169g(context, ChannelUtils.m7687k(channel) ? C5419R.string.category_settings_have_been_updated : C5419R.string.channel_settings_have_been_updated, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
+    public final class Companion {
+        private Companion() {
         }
 
         public final List<Integer> getSLOWMODE_COOLDOWN_VALUES() {
@@ -113,6 +146,13 @@ public final class WidgetTextChannelSettings extends AppFragment {
             Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
             C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…RA_CHANNEL_ID, channelId)");
             C0870j.m156d(context, WidgetTextChannelSettings.class, intentPutExtra);
+        }
+
+        public static /* synthetic */ void setDurationSecondsLabel$default(Companion companion, TextView textView, int i, Context context, int i2, int i3, Object obj) {
+            if ((i3 & 8) != 0) {
+                i2 = C5419R.string.form_label_slowmode_off;
+            }
+            companion.setDurationSecondsLabel(textView, i, context, i2);
         }
 
         public final void setDurationSecondsLabel(TextView textView, int seconds, Context context, int zeroLabel) {
@@ -141,7 +181,7 @@ public final class WidgetTextChannelSettings extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -155,7 +195,7 @@ public final class WidgetTextChannelSettings extends AppFragment {
         private final boolean isPublicGuildUpdatesChannel;
 
         /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -208,46 +248,6 @@ public final class WidgetTextChannelSettings extends AppFragment {
             this.isCommunityGuild = z7;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanManageChannel() {
-            return this.canManageChannel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getCanManagePermissions() {
-            return this.canManagePermissions;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsPinsEnabled() {
-            return this.isPinsEnabled;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsPublicGuildRulesChannel() {
-            return this.isPublicGuildRulesChannel;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsPublicGuildUpdatesChannel() {
-            return this.isPublicGuildUpdatesChannel;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getIsCommunityGuild() {
-            return this.isCommunityGuild;
-        }
-
         public final Model copy(Guild guild, Channel channel, boolean canManageChannel, boolean canManagePermissions, boolean isPinsEnabled, boolean isPublicGuildRulesChannel, boolean isPublicGuildUpdatesChannel, boolean isCommunityGuild) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -265,20 +265,60 @@ public final class WidgetTextChannelSettings extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.channel, model.channel) && this.canManageChannel == model.canManageChannel && this.canManagePermissions == model.canManagePermissions && this.isPinsEnabled == model.isPinsEnabled && this.isPublicGuildRulesChannel == model.isPublicGuildRulesChannel && this.isPublicGuildUpdatesChannel == model.isPublicGuildUpdatesChannel && this.isCommunityGuild == model.isCommunityGuild;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getCanManageChannel() {
             return this.canManageChannel;
+        }
+
+        public final boolean getCanManageChannel() {
+            return this.canManageChannel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getCanManagePermissions() {
+            return this.canManagePermissions;
         }
 
         public final boolean getCanManagePermissions() {
             return this.canManagePermissions;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getIsCommunityGuild() {
+            return this.isCommunityGuild;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsPinsEnabled() {
+            return this.isPinsEnabled;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsPublicGuildRulesChannel() {
+            return this.isPublicGuildRulesChannel;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsPublicGuildUpdatesChannel() {
+            return this.isPublicGuildUpdatesChannel;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -378,46 +418,6 @@ public final class WidgetTextChannelSettings extends AppFragment {
             sbM833U.append(this.isPublicGuildUpdatesChannel);
             sbM833U.append(", isCommunityGuild=");
             return C1643a.m827O(sbM833U, this.isCommunityGuild, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetTextChannelSettings$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-    public static final class C76071 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C76071() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetTextChannelSettings.this.configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetTextChannelSettings$saveChannel$1 */
-    /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-    public static final class C76081 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C76081() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            Context context = WidgetTextChannelSettings.this.getContext();
-            C12238m.checkNotNullExpressionValue(channel, "it");
-            C0876m.m169g(context, ChannelUtils.m7687k(channel) ? C5419R.string.category_settings_have_been_updated : C5419R.string.channel_settings_have_been_updated, 0, null, 12);
         }
     }
 
@@ -697,7 +697,7 @@ public final class WidgetTextChannelSettings extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetTextChannelSettings$confirmDelete$2$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetTextChannelSettings.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
                 public AnonymousClass2() {
                     super(1);
                 }
@@ -737,27 +737,6 @@ public final class WidgetTextChannelSettings extends AppFragment {
 
     public static final void launch(long j, Context context) {
         INSTANCE.launch(j, context);
-    }
-
-    private final void saveChannel(long id2, String name, Integer type, String topic, Boolean nsfw, Integer rateLimit, Integer defaultAutoArchiveDuration) {
-        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().editTextChannel(id2, name, type, topic, nsfw, rateLimit, defaultAutoArchiveDuration), this, null, 2, null).m11108k(C0879o.f566a.m184g(getContext(), new C76081(), null));
-    }
-
-    public static /* synthetic */ void saveChannel$default(WidgetTextChannelSettings widgetTextChannelSettings, long j, String str, Integer num, String str2, Boolean bool, Integer num2, Integer num3, int i, Object obj) {
-        widgetTextChannelSettings.saveChannel(j, (i & 2) != 0 ? null : str, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : bool, (i & 32) != 0 ? null : num2, (i & 64) != 0 ? null : num3);
-    }
-
-    private final void setSlowmodeLabel(int cooldownSecs) {
-        Companion companion = INSTANCE;
-        TextView textView = getBinding().f18242p;
-        C12238m.checkNotNullExpressionValue(textView, "binding.channelSettingsSlowModeCooldownLabel");
-        companion.setDurationSecondsLabel(textView, cooldownSecs, requireContext(), C5419R.string.form_label_slowmode_off);
-    }
-
-    private final void updateRadioState(Map<MaterialRadioButton, Integer> durationMap, int newDuration) {
-        for (Map.Entry<MaterialRadioButton, Integer> entry : durationMap.entrySet()) {
-            entry.getKey().setChecked(entry.getValue().intValue() == newDuration);
-        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -805,5 +784,26 @@ public final class WidgetTextChannelSettings extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", -1L)), this, null, 2, null), (Class<?>) WidgetTextChannelSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76071());
+    }
+
+    public static /* synthetic */ void saveChannel$default(WidgetTextChannelSettings widgetTextChannelSettings, long j, String str, Integer num, String str2, Boolean bool, Integer num2, Integer num3, int i, Object obj) {
+        widgetTextChannelSettings.saveChannel(j, (i & 2) != 0 ? null : str, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : bool, (i & 32) != 0 ? null : num2, (i & 64) != 0 ? null : num3);
+    }
+
+    private final void saveChannel(long id2, String name, Integer type, String topic, Boolean nsfw, Integer rateLimit, Integer defaultAutoArchiveDuration) {
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().editTextChannel(id2, name, type, topic, nsfw, rateLimit, defaultAutoArchiveDuration), this, null, 2, null).m11108k(C0879o.f566a.m184g(getContext(), new C76081(), null));
+    }
+
+    private final void setSlowmodeLabel(int cooldownSecs) {
+        Companion companion = INSTANCE;
+        TextView textView = getBinding().f18242p;
+        C12238m.checkNotNullExpressionValue(textView, "binding.channelSettingsSlowModeCooldownLabel");
+        companion.setDurationSecondsLabel(textView, cooldownSecs, requireContext(), C5419R.string.form_label_slowmode_off);
+    }
+
+    private final void updateRadioState(Map<MaterialRadioButton, Integer> durationMap, int newDuration) {
+        for (Map.Entry<MaterialRadioButton, Integer> entry : durationMap.entrySet()) {
+            entry.getKey().setChecked(entry.getValue().intValue() == newDuration);
+        }
     }
 }

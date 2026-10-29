@@ -20,7 +20,7 @@ public final class GuildEventPromptListView extends LinearLayout {
     private final GuildEventPromptListViewBinding binding;
 
     /* JADX INFO: compiled from: GuildEventPromptListView.kt */
-    public static final /* data */ class ScheduledEventData {
+    public final /* data */ class ScheduledEventData {
         private final GuildScheduledEvent guildScheduledEvent;
         private final Function0<Unit> onScheduledEventClick;
 
@@ -29,6 +29,10 @@ public final class GuildEventPromptListView extends LinearLayout {
             C12238m.checkNotNullParameter(function0, "onScheduledEventClick");
             this.guildScheduledEvent = guildScheduledEvent;
             this.onScheduledEventClick = function0;
+        }
+
+        public final Function0<Unit> component2() {
+            return this.onScheduledEventClick;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -40,15 +44,6 @@ public final class GuildEventPromptListView extends LinearLayout {
                 function0 = scheduledEventData.onScheduledEventClick;
             }
             return scheduledEventData.copy(guildScheduledEvent, function0);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildScheduledEvent getGuildScheduledEvent() {
-            return this.guildScheduledEvent;
-        }
-
-        public final Function0<Unit> component2() {
-            return this.onScheduledEventClick;
         }
 
         public final ScheduledEventData copy(GuildScheduledEvent guildScheduledEvent, Function0<Unit> onScheduledEventClick) {
@@ -66,6 +61,11 @@ public final class GuildEventPromptListView extends LinearLayout {
             }
             ScheduledEventData scheduledEventData = (ScheduledEventData) other;
             return C12238m.areEqual(this.guildScheduledEvent, scheduledEventData.guildScheduledEvent) && C12238m.areEqual(this.onScheduledEventClick, scheduledEventData.onScheduledEventClick);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildScheduledEvent getGuildScheduledEvent() {
+            return this.guildScheduledEvent;
         }
 
         public final GuildScheduledEvent getGuildScheduledEvent() {

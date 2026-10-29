@@ -90,7 +90,11 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsPremium extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsPremium.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsPremiumBinding;", 0)};
     private static final String ANALYTICS_LOCATION_SECTION = "analytics_location_section";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_SCROLL_TO_SECTION = "intent_section";
     public static final int SECTION_NITRO = 1;
     public static final int SECTION_NITRO_CLASSIC = 0;
@@ -104,16 +108,342 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsPremium.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsPremiumBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99271 extends AbstractC12240o implements Function0<Unit> {
+        public C99271() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsGuildBoost.INSTANCE.launch(WidgetSettingsPremium.this.requireContext());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99282 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $skuName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99282(String str) {
+            super(0);
+            this.$skuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$3 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99293 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $skuName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99293(String str) {
+            super(0);
+            this.$skuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetChoosePlan.INSTANCE.launch(WidgetSettingsPremium.this.requireContext(), (34 & 2) != 0 ? null : null, WidgetChoosePlan.ViewType.SWITCH_PLANS, (34 & 8) != 0 ? null : this.$skuName, new Traits.Location(Traits.Location.Page.USER_SETTINGS, WidgetSettingsPremium.this.getAnalyticsLocationSection(), Traits.Location.Obj.BUTTON_CTA, Traits.Location.ObjType.BUY, null, 16, null), (34 & 32) != 0 ? null : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$4 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99304 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $skuName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99304(String str) {
+            super(0);
+            this.$skuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$5 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99315 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $skuName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99315(String str) {
+            super(0);
+            this.$skuName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$6 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99326 extends AbstractC12240o implements Function0<Unit> {
+        public C99326() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsGuildBoost.INSTANCE.launch(WidgetSettingsPremium.this.requireContext());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99331 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ModelSubscription $premiumSubscription;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99331(ModelSubscription modelSubscription) {
+            super(0);
+            this.$premiumSubscription = modelSubscription;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99342 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ModelSubscription $premiumSubscription;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99342(ModelSubscription modelSubscription) {
+            super(0);
+            this.$premiumSubscription = modelSubscription;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$3 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99353 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ModelSubscription $premiumSubscription;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99353(ModelSubscription modelSubscription) {
+            super(0);
+            this.$premiumSubscription = modelSubscription;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$4 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99364 extends AbstractC12240o implements Function0<Unit> {
+        public C99364() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsPremium.this.showDesktopManageAlert();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$5 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99375 extends AbstractC12240o implements Function0<Unit> {
+        public C99375() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsPremium widgetSettingsPremium = WidgetSettingsPremium.this;
+            widgetSettingsPremium.showCancelConfirmationAlert(widgetSettingsPremium.getViewModel());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99471 extends AbstractC12240o implements Function1<SettingsPremiumViewModel.ViewState, Unit> {
+        public C99471() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(SettingsPremiumViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(SettingsPremiumViewModel.ViewState viewState) {
+            if (viewState instanceof SettingsPremiumViewModel.ViewState.Loaded) {
+                WidgetSettingsPremium.this.showContent((SettingsPremiumViewModel.ViewState.Loaded) viewState);
+            } else if (viewState instanceof SettingsPremiumViewModel.ViewState.Loading) {
+                WidgetSettingsPremium.this.showLoadingUI();
+            } else if (viewState instanceof SettingsPremiumViewModel.ViewState.Failure) {
+                WidgetSettingsPremium.this.showFailureUI();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final /* synthetic */ class C99482 extends C12236k implements Function1<SettingsPremiumViewModel.Event, Unit> {
+        public C99482(WidgetSettingsPremium widgetSettingsPremium) {
+            super(1, widgetSettingsPremium, WidgetSettingsPremium.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/SettingsPremiumViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(SettingsPremiumViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(SettingsPremiumViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetSettingsPremium) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showCancelConfirmationAlert$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99491 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ SettingsPremiumViewModel $viewModel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99491(SettingsPremiumViewModel settingsPremiumViewModel) {
+            super(1);
+            this.$viewModel = settingsPremiumViewModel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            this.$viewModel.cancelSubscription();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showContent$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
+    public final class C99501 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ Integer $scrollTargetSection;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99501(Integer num) {
+            super(1);
+            this.$scrollTargetSection = num;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            WidgetSettingsPremium.this.scrollToSection(this.$scrollTargetSection);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-        public static final /* data */ class SubscriptionViewCallbacks {
+        public final /* data */ class SubscriptionViewCallbacks {
             private final Function0<Unit> cancelCallback;
             private final Function0<Unit> manageBillingCallback;
             private final Function0<Unit> manageGuildBoostCallback;
@@ -126,6 +456,26 @@ public final class WidgetSettingsPremium extends AppFragment {
                 this.cancelCallback = function2;
                 this.manageGuildBoostCallback = function3;
                 this.manageBillingCallback = function4;
+            }
+
+            public final Function0<Unit> component1() {
+                return this.restoreCallback;
+            }
+
+            public final Function0<Unit> component2() {
+                return this.managePlanCallback;
+            }
+
+            public final Function0<Unit> component3() {
+                return this.cancelCallback;
+            }
+
+            public final Function0<Unit> component4() {
+                return this.manageGuildBoostCallback;
+            }
+
+            public final Function0<Unit> component5() {
+                return this.manageBillingCallback;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -149,26 +499,6 @@ public final class WidgetSettingsPremium extends AppFragment {
                     function4 = subscriptionViewCallbacks.manageBillingCallback;
                 }
                 return subscriptionViewCallbacks.copy(function0, function5, function6, function7, function4);
-            }
-
-            public final Function0<Unit> component1() {
-                return this.restoreCallback;
-            }
-
-            public final Function0<Unit> component2() {
-                return this.managePlanCallback;
-            }
-
-            public final Function0<Unit> component3() {
-                return this.cancelCallback;
-            }
-
-            public final Function0<Unit> component4() {
-                return this.manageGuildBoostCallback;
-            }
-
-            public final Function0<Unit> component5() {
-                return this.manageBillingCallback;
             }
 
             public final SubscriptionViewCallbacks copy(Function0<Unit> restoreCallback, Function0<Unit> managePlanCallback, Function0<Unit> cancelCallback, Function0<Unit> manageGuildBoostCallback, Function0<Unit> manageBillingCallback) {
@@ -309,336 +639,6 @@ public final class WidgetSettingsPremium extends AppFragment {
             iArr6[SubscriptionPlanType.PREMIUM_3_MONTH_TIER_2.ordinal()] = 4;
             iArr6[SubscriptionPlanType.PREMIUM_6_MONTH_TIER_2.ordinal()] = 5;
             iArr6[SubscriptionPlanType.PREMIUM_YEAR_TIER_2.ordinal()] = 6;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99271 extends AbstractC12240o implements Function0<Unit> {
-        public C99271() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetSettingsGuildBoost.INSTANCE.launch(WidgetSettingsPremium.this.requireContext());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99282 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $skuName;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99282(String str) {
-            super(0);
-            this.$skuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$3 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99293 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $skuName;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99293(String str) {
-            super(0);
-            this.$skuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetChoosePlan.INSTANCE.launch(WidgetSettingsPremium.this.requireContext(), (34 & 2) != 0 ? null : null, WidgetChoosePlan.ViewType.SWITCH_PLANS, (34 & 8) != 0 ? null : this.$skuName, new Traits.Location(Traits.Location.Page.USER_SETTINGS, WidgetSettingsPremium.this.getAnalyticsLocationSection(), Traits.Location.Obj.BUTTON_CTA, Traits.Location.ObjType.BUY, null, 16, null), (34 & 32) != 0 ? null : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$4 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99304 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $skuName;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99304(String str) {
-            super(0);
-            this.$skuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$5 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99315 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $skuName;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99315(String str) {
-            super(0);
-            this.$skuName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$skuName);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$6 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99326 extends AbstractC12240o implements Function0<Unit> {
-        public C99326() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetSettingsGuildBoost.INSTANCE.launch(WidgetSettingsPremium.this.requireContext());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99331 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ModelSubscription $premiumSubscription;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99331(ModelSubscription modelSubscription) {
-            super(0);
-            this.$premiumSubscription = modelSubscription;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99342 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ModelSubscription $premiumSubscription;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99342(ModelSubscription modelSubscription) {
-            super(0);
-            this.$premiumSubscription = modelSubscription;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$3 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99353 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ModelSubscription $premiumSubscription;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99353(ModelSubscription modelSubscription) {
-            super(0);
-            this.$premiumSubscription = modelSubscription;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PremiumUtils.INSTANCE.openGooglePlayBilling(WidgetSettingsPremium.this.requireContext(), this.$premiumSubscription.getPaymentGatewayPlanId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$4 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99364 extends AbstractC12240o implements Function0<Unit> {
-        public C99364() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetSettingsPremium.this.showDesktopManageAlert();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$5 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99375 extends AbstractC12240o implements Function0<Unit> {
-        public C99375() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetSettingsPremium widgetSettingsPremium = WidgetSettingsPremium.this;
-            widgetSettingsPremium.showCancelConfirmationAlert(widgetSettingsPremium.getViewModel());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99471 extends AbstractC12240o implements Function1<SettingsPremiumViewModel.ViewState, Unit> {
-        public C99471() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(SettingsPremiumViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(SettingsPremiumViewModel.ViewState viewState) {
-            if (viewState instanceof SettingsPremiumViewModel.ViewState.Loaded) {
-                WidgetSettingsPremium.this.showContent((SettingsPremiumViewModel.ViewState.Loaded) viewState);
-            } else if (viewState instanceof SettingsPremiumViewModel.ViewState.Loading) {
-                WidgetSettingsPremium.this.showLoadingUI();
-            } else if (viewState instanceof SettingsPremiumViewModel.ViewState.Failure) {
-                WidgetSettingsPremium.this.showFailureUI();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final /* synthetic */ class C99482 extends C12236k implements Function1<SettingsPremiumViewModel.Event, Unit> {
-        public C99482(WidgetSettingsPremium widgetSettingsPremium) {
-            super(1, widgetSettingsPremium, WidgetSettingsPremium.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/SettingsPremiumViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(SettingsPremiumViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(SettingsPremiumViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetSettingsPremium) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showCancelConfirmationAlert$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99491 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ SettingsPremiumViewModel $viewModel;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99491(SettingsPremiumViewModel settingsPremiumViewModel) {
-            super(1);
-            this.$viewModel = settingsPremiumViewModel;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            this.$viewModel.cancelSubscription();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showContent$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99501 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ Integer $scrollTargetSection;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99501(Integer num) {
-            super(1);
-            this.$scrollTargetSection = num;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            WidgetSettingsPremium.this.scrollToSection(this.$scrollTargetSection);
         }
     }
 
@@ -878,6 +878,14 @@ public final class WidgetSettingsPremium extends AppFragment {
         activeSubscriptionView6.m8521a(activeSubscriptionType, status7, false, priceText2, zIsBusy, i, function1, manageGuildBoostCallback, cancelCallback, false);
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void configureButtonText$default(WidgetSettingsPremium widgetSettingsPremium, Map map, int i, Object obj) {
+        if ((i & 1) != 0) {
+            map = null;
+        }
+        widgetSettingsPremium.configureButtonText(map);
+    }
+
     private final void configureButtonText(Map<String, ? extends SkuDetails> skuDetails) {
         MaterialButton materialButton = getBinding().f18048t.f667b;
         C12238m.checkNotNullExpressionValue(materialButton, "binding.premiumTier1.premiumSettingsPremiumClassic");
@@ -885,14 +893,6 @@ public final class WidgetSettingsPremium extends AppFragment {
         MaterialButton materialButton2 = getBinding().f18049u.f706b;
         C12238m.checkNotNullExpressionValue(materialButton2, "binding.premiumTier2.premiumSettingsPremium");
         materialButton2.setText(getPriceText(skuDetails != null ? skuDetails.get(GooglePlaySku.PREMIUM_TIER_2_MONTHLY.getSkuName()) : null));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void configureButtonText$default(WidgetSettingsPremium widgetSettingsPremium, Map map, int i, Object obj) {
-        if ((i & 1) != 0) {
-            map = null;
-        }
-        widgetSettingsPremium.configureButtonText(map);
     }
 
     private final void configureButtons(final ModelSubscription premiumSubscription, Map<String, ? extends SkuDetails> skuDetails) {
@@ -1332,6 +1332,49 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setActionBarSubtitle(C5419R.string.user_settings);
+        setActionBarTitle(C5419R.string.premium_title);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        TextView textView = getBinding().f18032d.f1439e;
+        C12238m.checkNotNullExpressionValue(textView, "binding.premiumPerks.uploadSizePerk");
+        textView.setText(C1107b.m212d(view, C5419R.string.premium_perks_upload_size, new Object[0], new C99411()));
+        TextView textView2 = getBinding().f18048t.f669d;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.premiumTier1.tier1UploadSizePerk");
+        textView2.setText(C1107b.m212d(view, C5419R.string.premium_perks_upload_size, new Object[0], new C99422()));
+        TextView textView3 = getBinding().f18032d.f1436b;
+        C12238m.checkNotNullExpressionValue(textView3, "binding.premiumPerks.guildSubscriptionPerk");
+        textView3.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_2_guild_subscription, new Object[0], C99433.INSTANCE));
+        TextView textView4 = getBinding().f18048t.f668c;
+        C12238m.checkNotNullExpressionValue(textView4, "binding.premiumTier1.tier1GuildSubscriptionPerk");
+        textView4.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_1_guild_subscription, new Object[0], C99444.INSTANCE));
+        NumberFormat numberFormat = NumberFormat.getInstance(this.localeManager.getPrimaryLocale(requireContext()));
+        TextView textView5 = getBinding().f18032d.f1437c;
+        C12238m.checkNotNullExpressionValue(textView5, "binding.premiumPerks.maxGuildsPerk");
+        textView5.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_2_max_guilds, new Object[0], new C99455(numberFormat)));
+        TextView textView6 = getBinding().f18032d.f1438d;
+        C12238m.checkNotNullExpressionValue(textView6, "binding.premiumPerks.maxMessageLengthPerk");
+        textView6.setText(C1107b.m213e(this, C5419R.string.premium_chat_perks_max_message_length, new Object[0], new C99466(numberFormat)));
+        configureButtonText$default(this, null, 1, null);
+        for (TextView textView7 : C12147n.listOf((Object[]) new TextView[]{getBinding().f18046r, getBinding().f18036h, getBinding().f18031c.f1201g})) {
+            AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
+            C12238m.checkNotNullExpressionValue(textView7, "header");
+            accessibilityUtils.setViewIsHeading(textView7);
+        }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<SettingsPremiumViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11111q(200L, TimeUnit.MILLISECONDS).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99471());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().getEventSubject(), this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99482(this));
+    }
+
     private final void scrollToSection(Integer section) {
         int top;
         if (section != null && section.intValue() == 0) {
@@ -1440,49 +1483,6 @@ public final class WidgetSettingsPremium extends AppFragment {
         scrollToTop();
     }
 
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setActionBarSubtitle(C5419R.string.user_settings);
-        setActionBarTitle(C5419R.string.premium_title);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        TextView textView = getBinding().f18032d.f1439e;
-        C12238m.checkNotNullExpressionValue(textView, "binding.premiumPerks.uploadSizePerk");
-        textView.setText(C1107b.m212d(view, C5419R.string.premium_perks_upload_size, new Object[0], new C99411()));
-        TextView textView2 = getBinding().f18048t.f669d;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.premiumTier1.tier1UploadSizePerk");
-        textView2.setText(C1107b.m212d(view, C5419R.string.premium_perks_upload_size, new Object[0], new C99422()));
-        TextView textView3 = getBinding().f18032d.f1436b;
-        C12238m.checkNotNullExpressionValue(textView3, "binding.premiumPerks.guildSubscriptionPerk");
-        textView3.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_2_guild_subscription, new Object[0], C99433.INSTANCE));
-        TextView textView4 = getBinding().f18048t.f668c;
-        C12238m.checkNotNullExpressionValue(textView4, "binding.premiumTier1.tier1GuildSubscriptionPerk");
-        textView4.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_1_guild_subscription, new Object[0], C99444.INSTANCE));
-        NumberFormat numberFormat = NumberFormat.getInstance(this.localeManager.getPrimaryLocale(requireContext()));
-        TextView textView5 = getBinding().f18032d.f1437c;
-        C12238m.checkNotNullExpressionValue(textView5, "binding.premiumPerks.maxGuildsPerk");
-        textView5.setText(C1107b.m212d(view, C5419R.string.premium_perks_tier_2_max_guilds, new Object[0], new C99455(numberFormat)));
-        TextView textView6 = getBinding().f18032d.f1438d;
-        C12238m.checkNotNullExpressionValue(textView6, "binding.premiumPerks.maxMessageLengthPerk");
-        textView6.setText(C1107b.m213e(this, C5419R.string.premium_chat_perks_max_message_length, new Object[0], new C99466(numberFormat)));
-        configureButtonText$default(this, null, 1, null);
-        for (TextView textView7 : C12147n.listOf((Object[]) new TextView[]{getBinding().f18046r, getBinding().f18036h, getBinding().f18031c.f1201g})) {
-            AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
-            C12238m.checkNotNullExpressionValue(textView7, "header");
-            accessibilityUtils.setViewIsHeading(textView7);
-        }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<SettingsPremiumViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11111q(200L, TimeUnit.MILLISECONDS).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99471());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().getEventSubject(), this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99482(this));
-    }
-
     private final CharSequence getPriceText(ModelSubscription premiumSubscription, Map<String, ? extends SkuDetails> skuDetails, ModelInvoiceItem invoiceItem) {
         SubscriptionPlanType planType;
         SkuDetails skuDetails2;
@@ -1515,7 +1515,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99411 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99411 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C99411() {
             super(1);
         }
@@ -1536,7 +1536,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99422 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99422 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C99422() {
             super(1);
         }
@@ -1557,7 +1557,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99444 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99444 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C99444 INSTANCE = new C99444();
 
         public C99444() {
@@ -1582,7 +1582,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99455 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99455 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ NumberFormat $numberFormat;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1613,7 +1613,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99433 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99433 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C99433 INSTANCE = new C99433();
 
         public C99433() {
@@ -1639,7 +1639,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$6 */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public static final class C99466 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C99466 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ NumberFormat $numberFormat;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -14,12 +14,12 @@ public final class C9345xc9665753 extends AbstractC12240o implements Function2<L
         super(2);
     }
 
+    public final void invoke(long j, Long l) {
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Long l, Long l2) {
         invoke(l.longValue(), l2);
         return Unit.f27425a;
-    }
-
-    public final void invoke(long j, Long l) {
     }
 }

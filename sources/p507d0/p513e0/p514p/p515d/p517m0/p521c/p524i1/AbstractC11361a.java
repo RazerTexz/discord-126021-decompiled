@@ -115,6 +115,87 @@ public abstract class AbstractC11361a extends AbstractC11395u {
         this.f22804n = interfaceC11905o.createLazyValue(new c());
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+        return interfaceC11454o.visitClassDescriptor(this, d);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11352h
+    public AbstractC11934j0 getDefaultType() {
+        AbstractC11934j0 abstractC11934j0Invoke = this.f22802l.invoke();
+        if (abstractC11934j0Invoke != null) {
+            return abstractC11934j0Invoke;
+        }
+        m9387a(19);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
+    public InterfaceC11770i getMemberScope(AbstractC12018z0 abstractC12018z0, AbstractC11947g abstractC11947g) {
+        if (abstractC12018z0 == null) {
+            m9387a(9);
+            throw null;
+        }
+        if (abstractC11947g == null) {
+            m9387a(10);
+            throw null;
+        }
+        if (!abstractC12018z0.isEmpty()) {
+            return new C11775n(getUnsubstitutedMemberScope(abstractC11947g), C11914c1.create(abstractC12018z0));
+        }
+        InterfaceC11770i unsubstitutedMemberScope = getUnsubstitutedMemberScope(abstractC11947g);
+        if (unsubstitutedMemberScope != null) {
+            return unsubstitutedMemberScope;
+        }
+        m9387a(11);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public C11716e getName() {
+        C11716e c11716e = this.f22801k;
+        if (c11716e != null) {
+            return c11716e;
+        }
+        m9387a(2);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public InterfaceC11330e getOriginal() {
+        return this;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11459q0 getThisAsReceiverParameter() {
+        InterfaceC11459q0 interfaceC11459q0Invoke = this.f22804n.invoke();
+        if (interfaceC11459q0Invoke != null) {
+            return interfaceC11459q0Invoke;
+        }
+        m9387a(5);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11770i getUnsubstitutedInnerClassesScope() {
+        InterfaceC11770i interfaceC11770iInvoke = this.f22803m.invoke();
+        if (interfaceC11770iInvoke != null) {
+            return interfaceC11770iInvoke;
+        }
+        m9387a(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11770i getUnsubstitutedMemberScope() {
+        InterfaceC11770i unsubstitutedMemberScope = getUnsubstitutedMemberScope(C11836a.getKotlinTypeRefiner(C11787e.getContainingModule(this)));
+        if (unsubstitutedMemberScope != null) {
+            return unsubstitutedMemberScope;
+        }
+        m9387a(16);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9387a(int i) {
         String str = (i == 2 || i == 3 || i == 4 || i == 5 || i == 8 || i == 11 || i == 13 || i == 15 || i == 16 || i == 18 || i == 19) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -207,87 +288,6 @@ public abstract class AbstractC11361a extends AbstractC11395u {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-        return interfaceC11454o.visitClassDescriptor(this, d);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11352h
-    public AbstractC11934j0 getDefaultType() {
-        AbstractC11934j0 abstractC11934j0Invoke = this.f22802l.invoke();
-        if (abstractC11934j0Invoke != null) {
-            return abstractC11934j0Invoke;
-        }
-        m9387a(19);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
-    public InterfaceC11770i getMemberScope(AbstractC12018z0 abstractC12018z0, AbstractC11947g abstractC11947g) {
-        if (abstractC12018z0 == null) {
-            m9387a(9);
-            throw null;
-        }
-        if (abstractC11947g == null) {
-            m9387a(10);
-            throw null;
-        }
-        if (!abstractC12018z0.isEmpty()) {
-            return new C11775n(getUnsubstitutedMemberScope(abstractC11947g), C11914c1.create(abstractC12018z0));
-        }
-        InterfaceC11770i unsubstitutedMemberScope = getUnsubstitutedMemberScope(abstractC11947g);
-        if (unsubstitutedMemberScope != null) {
-            return unsubstitutedMemberScope;
-        }
-        m9387a(11);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public C11716e getName() {
-        C11716e c11716e = this.f22801k;
-        if (c11716e != null) {
-            return c11716e;
-        }
-        m9387a(2);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public InterfaceC11330e getOriginal() {
-        return this;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11459q0 getThisAsReceiverParameter() {
-        InterfaceC11459q0 interfaceC11459q0Invoke = this.f22804n.invoke();
-        if (interfaceC11459q0Invoke != null) {
-            return interfaceC11459q0Invoke;
-        }
-        m9387a(5);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11770i getUnsubstitutedInnerClassesScope() {
-        InterfaceC11770i interfaceC11770iInvoke = this.f22803m.invoke();
-        if (interfaceC11770iInvoke != null) {
-            return interfaceC11770iInvoke;
-        }
-        m9387a(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11770i getUnsubstitutedMemberScope() {
-        InterfaceC11770i unsubstitutedMemberScope = getUnsubstitutedMemberScope(C11836a.getKotlinTypeRefiner(C11787e.getContainingModule(this)));
-        if (unsubstitutedMemberScope != null) {
-            return unsubstitutedMemberScope;
-        }
-        m9387a(16);
-        throw null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11471w0

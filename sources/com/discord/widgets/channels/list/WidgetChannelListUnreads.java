@@ -64,8 +64,50 @@ public final class WidgetChannelListUnreads {
     private int unreadsResId;
     private final ViewStub unreadsStub;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1 */
     /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-    public static final class Companion {
+    @InterfaceC12188e(m10084c = "com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1", m10085f = "WidgetChannelListUnreads.kt", m10086l = {74}, m10087m = "invokeSuspend")
+    public final class C74231 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public C74231(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            C12238m.checkNotNullParameter(continuation, "completion");
+            return WidgetChannelListUnreads.this.new C74231(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((C74231) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i == 0) {
+                C12113l.throwOnFailure(obj);
+                this.label = 1;
+                if (C3404f.m4234P(50L, this) == coroutine_suspended) {
+                    return coroutine_suspended;
+                }
+            } else {
+                if (i != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                C12113l.throwOnFailure(obj);
+            }
+            WidgetChannelListUnreads.this.handleVisibleRangeUpdate();
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -75,7 +117,7 @@ public final class WidgetChannelListUnreads {
     }
 
     /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -86,7 +128,7 @@ public final class WidgetChannelListUnreads {
         private final Indicator topIndicator;
 
         /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -131,22 +173,6 @@ public final class WidgetChannelListUnreads {
                 return companion.get(intRange, list, z2);
             }
 
-            private final boolean hasUnread(List<? extends Object> list, IntRange intRange) {
-                List listSlice = C12163u.slice(list, intRange);
-                if (!(listSlice instanceof Collection) || !listSlice.isEmpty()) {
-                    for (Object obj : listSlice) {
-                        if (!(obj instanceof UnreadItem)) {
-                            obj = null;
-                        }
-                        UnreadItem unreadItem = (UnreadItem) obj;
-                        if (unreadItem != null && unreadItem.isUnread()) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-
             /* JADX WARN: Code duplicated, block: B:7:0x0017  */
             /* JADX WARN: Multi-variable type inference failed */
             public final Model get(IntRange visibleRange, List<? extends Object> items, boolean unreadsEnabled) {
@@ -169,13 +195,29 @@ public final class WidgetChannelListUnreads {
                 return new Model(findIndicator(items, C11226f.until(0, visibleRange.getFirst()), z2, unreadsEnabled), findIndicator(items, C11226f.downTo(C12147n.getLastIndex(items), visibleRange.getLast() + 1), z2, unreadsEnabled));
             }
 
+            private final boolean hasUnread(List<? extends Object> list, IntRange intRange) {
+                List listSlice = C12163u.slice(list, intRange);
+                if (!(listSlice instanceof Collection) || !listSlice.isEmpty()) {
+                    for (Object obj : listSlice) {
+                        if (!(obj instanceof UnreadItem)) {
+                            obj = null;
+                        }
+                        UnreadItem unreadItem = (UnreadItem) obj;
+                        if (unreadItem != null && unreadItem.isUnread()) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
                 this();
             }
         }
 
         /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-        public static final /* data */ class Indicator {
+        public final /* data */ class Indicator {
             private final int index;
             private final int type;
 
@@ -194,16 +236,6 @@ public final class WidgetChannelListUnreads {
                 return indicator.copy(i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getType() {
-                return this.type;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getIndex() {
-                return this.index;
-            }
-
             public final Indicator copy(int type, int index) {
                 return new Indicator(type, index);
             }
@@ -219,8 +251,18 @@ public final class WidgetChannelListUnreads {
                 return this.type == indicator.type && this.index == indicator.index;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final int getIndex() {
                 return this.index;
+            }
+
+            public final int getIndex() {
+                return this.index;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getType() {
+                return this.type;
             }
 
             public final int getType() {
@@ -259,16 +301,6 @@ public final class WidgetChannelListUnreads {
             return model.copy(indicator, indicator2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Indicator getTopIndicator() {
-            return this.topIndicator;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Indicator getBottomIndicator() {
-            return this.bottomIndicator;
-        }
-
         public final Model copy(Indicator topIndicator, Indicator bottomIndicator) {
             return new Model(topIndicator, bottomIndicator);
         }
@@ -284,8 +316,18 @@ public final class WidgetChannelListUnreads {
             return C12238m.areEqual(this.topIndicator, model.topIndicator) && C12238m.areEqual(this.bottomIndicator, model.bottomIndicator);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Indicator getBottomIndicator() {
             return this.bottomIndicator;
+        }
+
+        public final Indicator getBottomIndicator() {
+            return this.bottomIndicator;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Indicator getTopIndicator() {
+            return this.topIndicator;
         }
 
         public final Indicator getTopIndicator() {
@@ -318,48 +360,6 @@ public final class WidgetChannelListUnreads {
         int getMentionCount();
 
         boolean isUnread();
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1 */
-    /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-    @InterfaceC12188e(m10084c = "com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1", m10085f = "WidgetChannelListUnreads.kt", m10086l = {74}, m10087m = "invokeSuspend")
-    public static final class C74231 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
-        public int label;
-
-        public C74231(Continuation continuation) {
-            super(2, continuation);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            C12238m.checkNotNullParameter(continuation, "completion");
-            return WidgetChannelListUnreads.this.new C74231(continuation);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
-            return ((C74231) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
-            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
-            int i = this.label;
-            if (i == 0) {
-                C12113l.throwOnFailure(obj);
-                this.label = 1;
-                if (C3404f.m4234P(50L, this) == coroutine_suspended) {
-                    return coroutine_suspended;
-                }
-            } else {
-                if (i != 1) {
-                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                }
-                C12113l.throwOnFailure(obj);
-            }
-            WidgetChannelListUnreads.this.handleVisibleRangeUpdate();
-            return Unit.f27425a;
-        }
     }
 
     public WidgetChannelListUnreads(ViewStub viewStub, RecyclerView recyclerView, AppBarLayout appBarLayout, Function0<Integer> function0, int i, int i2, boolean z2) {
@@ -404,8 +404,20 @@ public final class WidgetChannelListUnreads {
         return indicator.getType() != 0 ? C5419R.drawable.drawable_button_grey : C5419R.drawable.drawable_button_red;
     }
 
+    public final int getMentionResId() {
+        return this.mentionResId;
+    }
+
     private final int getText(Model.Indicator indicator) {
         return indicator.getType() != 0 ? this.unreadsResId : this.mentionResId;
+    }
+
+    public final boolean getUnreadsEnabled() {
+        return this.unreadsEnabled;
+    }
+
+    public final int getUnreadsResId() {
+        return this.unreadsResId;
     }
 
     private final void handleClick(Model.Indicator indicator, boolean z2) {
@@ -481,18 +493,6 @@ public final class WidgetChannelListUnreads {
         FrameLayout frameLayout3 = getBinding().f16081a;
         C12238m.checkNotNullExpressionValue(frameLayout3, "binding.root");
         frameLayout3.setImportantForAccessibility(4);
-    }
-
-    public final int getMentionResId() {
-        return this.mentionResId;
-    }
-
-    public final boolean getUnreadsEnabled() {
-        return this.unreadsEnabled;
-    }
-
-    public final int getUnreadsResId() {
-        return this.unreadsResId;
     }
 
     public final void onDatasetChanged(List<? extends Object> data) {

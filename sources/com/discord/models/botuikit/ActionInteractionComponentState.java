@@ -10,7 +10,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ActionInteractionComponentState {
 
     /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public static final class Disabled extends ActionInteractionComponentState {
+    public final class Disabled extends ActionInteractionComponentState {
         public static final Disabled INSTANCE = new Disabled();
 
         private Disabled() {
@@ -19,7 +19,7 @@ public abstract class ActionInteractionComponentState {
     }
 
     /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public static final class Enabled extends ActionInteractionComponentState {
+    public final class Enabled extends ActionInteractionComponentState {
         public static final Enabled INSTANCE = new Enabled();
 
         private Enabled() {
@@ -28,7 +28,7 @@ public abstract class ActionInteractionComponentState {
     }
 
     /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public static final /* data */ class Failed extends ActionInteractionComponentState {
+    public final /* data */ class Failed extends ActionInteractionComponentState {
         private final String errorMessage;
 
         public Failed(String str) {
@@ -43,11 +43,6 @@ public abstract class ActionInteractionComponentState {
             return failed.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getErrorMessage() {
-            return this.errorMessage;
-        }
-
         public final Failed copy(String errorMessage) {
             return new Failed(errorMessage);
         }
@@ -57,6 +52,11 @@ public abstract class ActionInteractionComponentState {
                 return (other instanceof Failed) && C12238m.areEqual(this.errorMessage, ((Failed) other).errorMessage);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getErrorMessage() {
+            return this.errorMessage;
         }
 
         public final String getErrorMessage() {
@@ -77,7 +77,7 @@ public abstract class ActionInteractionComponentState {
     }
 
     /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public static final class Loading extends ActionInteractionComponentState {
+    public final class Loading extends ActionInteractionComponentState {
         public static final Loading INSTANCE = new Loading();
 
         private Loading() {

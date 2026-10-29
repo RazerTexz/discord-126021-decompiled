@@ -10,6 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: IOStreams.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12200a {
+    public static /* synthetic */ long copyTo$default(InputStream inputStream, OutputStream outputStream, int i, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 8192;
+        }
+        return copyTo(inputStream, outputStream, i);
+    }
+
     public static final long copyTo(InputStream inputStream, OutputStream outputStream, int i) throws IOException {
         C12238m.checkNotNullParameter(inputStream, "$this$copyTo");
         C12238m.checkNotNullParameter(outputStream, "out");
@@ -22,13 +29,6 @@ public final class C12200a {
             i2 = inputStream.read(bArr);
         }
         return j;
-    }
-
-    public static /* synthetic */ long copyTo$default(InputStream inputStream, OutputStream outputStream, int i, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 8192;
-        }
-        return copyTo(inputStream, outputStream, i);
     }
 
     public static final byte[] readBytes(InputStream inputStream) {

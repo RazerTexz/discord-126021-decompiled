@@ -31,7 +31,7 @@ public class TableInfo {
     public final Set<Index> indices;
     public final String name;
 
-    public static class Column {
+    public class Column {
 
         @ColumnInfo.SQLiteTypeAffinity
         public final int affinity;
@@ -45,24 +45,6 @@ public class TableInfo {
         @Deprecated
         public Column(String str, String str2, boolean z2, int i) {
             this(str, str2, z2, i, null, 0);
-        }
-
-        @ColumnInfo.SQLiteTypeAffinity
-        private static int findAffinity(@Nullable String str) {
-            if (str == null) {
-                return 5;
-            }
-            String upperCase = str.toUpperCase(Locale.US);
-            if (upperCase.contains("INT")) {
-                return 3;
-            }
-            if (upperCase.contains("CHAR") || upperCase.contains("CLOB") || upperCase.contains("TEXT")) {
-                return 2;
-            }
-            if (upperCase.contains("BLOB")) {
-                return 5;
-            }
-            return (upperCase.contains("REAL") || upperCase.contains("FLOA") || upperCase.contains("DOUB")) ? 4 : 1;
         }
 
         public boolean equals(Object obj) {
@@ -87,6 +69,24 @@ public class TableInfo {
             }
             int i = this.mCreatedFrom;
             return (i == 0 || i != column.mCreatedFrom || ((str = this.defaultValue) == null ? column.defaultValue == null : str.equals(column.defaultValue))) && this.affinity == column.affinity;
+        }
+
+        @ColumnInfo.SQLiteTypeAffinity
+        private static int findAffinity(@Nullable String str) {
+            if (str == null) {
+                return 5;
+            }
+            String upperCase = str.toUpperCase(Locale.US);
+            if (upperCase.contains("INT")) {
+                return 3;
+            }
+            if (upperCase.contains("CHAR") || upperCase.contains("CLOB") || upperCase.contains("TEXT")) {
+                return 2;
+            }
+            if (upperCase.contains("BLOB")) {
+                return 5;
+            }
+            return (upperCase.contains("REAL") || upperCase.contains("FLOA") || upperCase.contains("DOUB")) ? 4 : 1;
         }
 
         public int hashCode() {
@@ -130,7 +130,7 @@ public class TableInfo {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class ForeignKey {
+    public class ForeignKey {
 
         @NonNull
         public final List<String> columnNames;
@@ -193,7 +193,7 @@ public class TableInfo {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class ForeignKeyWithSequence implements Comparable<ForeignKeyWithSequence> {
+    public class ForeignKeyWithSequence implements Comparable<ForeignKeyWithSequence> {
         public final String mFrom;
         public final int mId;
         public final int mSequence;
@@ -214,7 +214,7 @@ public class TableInfo {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class Index {
+    public class Index {
         public static final String DEFAULT_PREFIX = "index_";
         public final List<String> columns;
         public final String name;
@@ -262,6 +262,43 @@ public class TableInfo {
         this.columns = Collections.unmodifiableMap(map);
         this.foreignKeys = Collections.unmodifiableSet(set);
         this.indices = set2 == null ? null : Collections.unmodifiableSet(set2);
+    }
+
+    public boolean equals(Object obj) {
+        Set<Index> set;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        TableInfo tableInfo = (TableInfo) obj;
+        String str = this.name;
+        if (str == null ? tableInfo.name != null : !str.equals(tableInfo.name)) {
+            return false;
+        }
+        Map<String, Column> map = this.columns;
+        if (map == null ? tableInfo.columns != null : !map.equals(tableInfo.columns)) {
+            return false;
+        }
+        Set<ForeignKey> set2 = this.foreignKeys;
+        if (set2 == null ? tableInfo.foreignKeys != null : !set2.equals(tableInfo.foreignKeys)) {
+            return false;
+        }
+        Set<Index> set3 = this.indices;
+        if (set3 == null || (set = tableInfo.indices) == null) {
+            return true;
+        }
+        return set3.equals(set);
+    }
+
+    public int hashCode() {
+        String str = this.name;
+        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+        Map<String, Column> map = this.columns;
+        int iHashCode2 = (iHashCode + (map != null ? map.hashCode() : 0)) * 31;
+        Set<ForeignKey> set = this.foreignKeys;
+        return iHashCode2 + (set != null ? set.hashCode() : 0);
     }
 
     public static TableInfo read(SupportSQLiteDatabase supportSQLiteDatabase, String str) {
@@ -393,43 +430,6 @@ public class TableInfo {
             cursorQuery.close();
             throw th;
         }
-    }
-
-    public boolean equals(Object obj) {
-        Set<Index> set;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        TableInfo tableInfo = (TableInfo) obj;
-        String str = this.name;
-        if (str == null ? tableInfo.name != null : !str.equals(tableInfo.name)) {
-            return false;
-        }
-        Map<String, Column> map = this.columns;
-        if (map == null ? tableInfo.columns != null : !map.equals(tableInfo.columns)) {
-            return false;
-        }
-        Set<ForeignKey> set2 = this.foreignKeys;
-        if (set2 == null ? tableInfo.foreignKeys != null : !set2.equals(tableInfo.foreignKeys)) {
-            return false;
-        }
-        Set<Index> set3 = this.indices;
-        if (set3 == null || (set = tableInfo.indices) == null) {
-            return true;
-        }
-        return set3.equals(set);
-    }
-
-    public int hashCode() {
-        String str = this.name;
-        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        Map<String, Column> map = this.columns;
-        int iHashCode2 = (iHashCode + (map != null ? map.hashCode() : 0)) * 31;
-        Set<ForeignKey> set = this.foreignKeys;
-        return iHashCode2 + (set != null ? set.hashCode() : 0);
     }
 
     public String toString() {

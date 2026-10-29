@@ -33,30 +33,9 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
 
-    /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final Map<Long, Set<Long>> fromCache(SharedPreferences prefs) {
-            return SharedPreferenceExtensionsKt.getStringEntrySetAsMap$default(prefs, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, null, StoreCollapsedChannelCategories$Companion$fromCache$1.INSTANCE, 2, null);
-        }
-
-        private final void toCache(SharedPreferences prefs, Map<Long, Set<Long>> collapsedCategories) {
-            SharedPreferences.Editor editorEdit = prefs.edit();
-            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-            SharedPreferenceExtensionsKt.putStringEntrySetAsMap$default(editorEdit, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, collapsedCategories, null, StoreCollapsedChannelCategories$Companion$toCache$1$1.INSTANCE, 4, null);
-            editorEdit.apply();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreCollapsedChannelCategories$observeCollapsedCategories$1 */
     /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
-    public static final class C58501 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C58501 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,7 +56,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCollapsedChannelCategories$setCollapsedCategory$1 */
     /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
-    public static final class C58511 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58511 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $categoryId;
         public final /* synthetic */ boolean $collapsed;
         public final /* synthetic */ long $guildId;
@@ -102,6 +81,27 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final Map<Long, Set<Long>> fromCache(SharedPreferences prefs) {
+            return SharedPreferenceExtensionsKt.getStringEntrySetAsMap$default(prefs, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, null, StoreCollapsedChannelCategories$Companion$fromCache$1.INSTANCE, 2, null);
+        }
+
+        private final void toCache(SharedPreferences prefs, Map<Long, Set<Long>> collapsedCategories) {
+            SharedPreferences.Editor editorEdit = prefs.edit();
+            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+            SharedPreferenceExtensionsKt.putStringEntrySetAsMap$default(editorEdit, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, collapsedCategories, null, StoreCollapsedChannelCategories$Companion$toCache$1$1.INSTANCE, 4, null);
+            editorEdit.apply();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public StoreCollapsedChannelCategories(Dispatcher dispatcher, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         C12238m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -109,26 +109,6 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
         this.observationDeck = observationDeck;
         this.collapsedCategories = new HashMap();
         this.collapsedCategoriesSnapshot = new HashMap();
-    }
-
-    private final void setCollapsedState(long guildId, long categoryId, boolean collapsed) {
-        Map<Long, Set<Long>> map = this.collapsedCategories;
-        Long lValueOf = Long.valueOf(guildId);
-        Set<Long> hashSet = map.get(lValueOf);
-        if (hashSet == null) {
-            hashSet = new HashSet<>();
-            map.put(lValueOf, hashSet);
-        }
-        Set<Long> set = hashSet;
-        if (collapsed) {
-            set.add(Long.valueOf(categoryId));
-        } else {
-            set.remove(Long.valueOf(categoryId));
-            if (set.isEmpty()) {
-                this.collapsedCategories.remove(Long.valueOf(guildId));
-            }
-        }
-        markChanged();
     }
 
     public final Map<Long, Set<Long>> getCollapsedCategories() {
@@ -184,6 +164,26 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
 
     public final void setCollapsedCategory(long guildId, long categoryId, boolean collapsed) {
         this.dispatcher.schedule(new C58511(guildId, categoryId, collapsed));
+    }
+
+    private final void setCollapsedState(long guildId, long categoryId, boolean collapsed) {
+        Map<Long, Set<Long>> map = this.collapsedCategories;
+        Long lValueOf = Long.valueOf(guildId);
+        Set<Long> hashSet = map.get(lValueOf);
+        if (hashSet == null) {
+            hashSet = new HashSet<>();
+            map.put(lValueOf, hashSet);
+        }
+        Set<Long> set = hashSet;
+        if (collapsed) {
+            set.add(Long.valueOf(categoryId));
+        } else {
+            set.remove(Long.valueOf(categoryId));
+            if (set.isEmpty()) {
+                this.collapsedCategories.remove(Long.valueOf(guildId));
+            }
+        }
+        markChanged();
     }
 
     @Override // com.discord.stores.StoreV2

@@ -35,7 +35,7 @@ public final class C4675b extends AbstractC4695v {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.b$b */
     /* JADX INFO: compiled from: AutoValue_CrashlyticsReport.java */
-    public static final class b extends AbstractC4695v.a {
+    public final class b extends AbstractC4695v.a {
 
         /* JADX INFO: renamed from: a */
         public String f12526a;
@@ -113,6 +113,36 @@ public final class C4675b extends AbstractC4695v {
         this.f12525i = cVar;
     }
 
+    public boolean equals(Object obj) {
+        AbstractC4695v.d dVar;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v)) {
+            return false;
+        }
+        AbstractC4695v abstractC4695v = (AbstractC4695v) obj;
+        if (this.f12518b.equals(abstractC4695v.mo6521g()) && this.f12519c.equals(abstractC4695v.mo6517c()) && this.f12520d == abstractC4695v.mo6520f() && this.f12521e.equals(abstractC4695v.mo6518d()) && this.f12522f.equals(abstractC4695v.mo6515a()) && this.f12523g.equals(abstractC4695v.mo6516b()) && ((dVar = this.f12524h) != null ? dVar.equals(abstractC4695v.mo6522h()) : abstractC4695v.mo6522h() == null)) {
+            AbstractC4695v.c cVar = this.f12525i;
+            if (cVar == null) {
+                if (abstractC4695v.mo6519e() == null) {
+                    return true;
+                }
+            } else if (cVar.equals(abstractC4695v.mo6519e())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        int iHashCode = (((((((((((this.f12518b.hashCode() ^ 1000003) * 1000003) ^ this.f12519c.hashCode()) * 1000003) ^ this.f12520d) * 1000003) ^ this.f12521e.hashCode()) * 1000003) ^ this.f12522f.hashCode()) * 1000003) ^ this.f12523g.hashCode()) * 1000003;
+        AbstractC4695v.d dVar = this.f12524h;
+        int iHashCode2 = (iHashCode ^ (dVar == null ? 0 : dVar.hashCode())) * 1000003;
+        AbstractC4695v.c cVar = this.f12525i;
+        return iHashCode2 ^ (cVar != null ? cVar.hashCode() : 0);
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v
     @NonNull
     /* JADX INFO: renamed from: a */
@@ -148,28 +178,6 @@ public final class C4675b extends AbstractC4695v {
         return this.f12525i;
     }
 
-    public boolean equals(Object obj) {
-        AbstractC4695v.d dVar;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v)) {
-            return false;
-        }
-        AbstractC4695v abstractC4695v = (AbstractC4695v) obj;
-        if (this.f12518b.equals(abstractC4695v.mo6521g()) && this.f12519c.equals(abstractC4695v.mo6517c()) && this.f12520d == abstractC4695v.mo6520f() && this.f12521e.equals(abstractC4695v.mo6518d()) && this.f12522f.equals(abstractC4695v.mo6515a()) && this.f12523g.equals(abstractC4695v.mo6516b()) && ((dVar = this.f12524h) != null ? dVar.equals(abstractC4695v.mo6522h()) : abstractC4695v.mo6522h() == null)) {
-            AbstractC4695v.c cVar = this.f12525i;
-            if (cVar == null) {
-                if (abstractC4695v.mo6519e() == null) {
-                    return true;
-                }
-            } else if (cVar.equals(abstractC4695v.mo6519e())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v
     /* JADX INFO: renamed from: f */
     public int mo6520f() {
@@ -188,14 +196,6 @@ public final class C4675b extends AbstractC4695v {
     /* JADX INFO: renamed from: h */
     public AbstractC4695v.d mo6522h() {
         return this.f12524h;
-    }
-
-    public int hashCode() {
-        int iHashCode = (((((((((((this.f12518b.hashCode() ^ 1000003) * 1000003) ^ this.f12519c.hashCode()) * 1000003) ^ this.f12520d) * 1000003) ^ this.f12521e.hashCode()) * 1000003) ^ this.f12522f.hashCode()) * 1000003) ^ this.f12523g.hashCode()) * 1000003;
-        AbstractC4695v.d dVar = this.f12524h;
-        int iHashCode2 = (iHashCode ^ (dVar == null ? 0 : dVar.hashCode())) * 1000003;
-        AbstractC4695v.c cVar = this.f12525i;
-        return iHashCode2 ^ (cVar != null ? cVar.hashCode() : 0);
     }
 
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v

@@ -20,11 +20,6 @@ public final /* data */ class ModelConnectionAccessToken {
         return modelConnectionAccessToken.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getAccessToken() {
-        return this.accessToken;
-    }
-
     public final ModelConnectionAccessToken copy(String accessToken) {
         C12238m.checkNotNullParameter(accessToken, "accessToken");
         return new ModelConnectionAccessToken(accessToken);
@@ -35,6 +30,11 @@ public final /* data */ class ModelConnectionAccessToken {
             return (other instanceof ModelConnectionAccessToken) && C12238m.areEqual(this.accessToken, ((ModelConnectionAccessToken) other).accessToken);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getAccessToken() {
+        return this.accessToken;
     }
 
     public final String getAccessToken() {

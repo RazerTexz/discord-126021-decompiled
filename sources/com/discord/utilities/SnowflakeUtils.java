@@ -7,8 +7,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class SnowflakeUtils {
     public static final long DISCORD_EPOCH = 1420070400000L;
-    public static final SnowflakeUtils INSTANCE = new SnowflakeUtils();
     public static final int SNOWFLAKE_TIMESTAMP_SHIFT = 22;
+    public static final SnowflakeUtils INSTANCE = new SnowflakeUtils();
 
     private SnowflakeUtils() {
     }
@@ -21,15 +21,11 @@ public final class SnowflakeUtils {
         return (timestamp - DISCORD_EPOCH) << 22;
     }
 
-    public static final long getTimestampPart(long j) {
-        return j >>> 22;
-    }
-
     public static /* synthetic */ void getTimestampPart$annotations(long j) {
     }
 
-    public static final long toTimestamp(long snowflakeId) {
-        return (snowflakeId >>> 22) + DISCORD_EPOCH;
+    public static final long getTimestampPart(long j) {
+        return j >>> 22;
     }
 
     public final Long toSnowflake(String str) {
@@ -41,5 +37,9 @@ public final class SnowflakeUtils {
             }
         }
         return null;
+    }
+
+    public static final long toTimestamp(long snowflakeId) {
+        return (snowflakeId >>> 22) + DISCORD_EPOCH;
     }
 }

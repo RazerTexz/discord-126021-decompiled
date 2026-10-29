@@ -16,7 +16,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class JavaSerializer extends Serializer {
 
-    public static class ObjectInputStreamWithKryoClassLoader extends ObjectInputStream {
+    public class ObjectInputStreamWithKryoClassLoader extends ObjectInputStream {
         private final ClassLoader loader;
 
         public ObjectInputStreamWithKryoClassLoader(InputStream inputStream, Kryo kryo) throws IOException {

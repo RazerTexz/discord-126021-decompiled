@@ -35,21 +35,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0837n extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f410j = {C1643a.m846d0(C0837n.class, "binding", "getBinding()Lcom/discord/databinding/DialogSimpleSelectorBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public Function1<? super Integer, Unit> onSelectedListener;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f410j = {C1643a.m846d0(C0837n.class, "binding", "getBinding()Lcom/discord/databinding/DialogSimpleSelectorBinding;", 0)};
+
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public Function1<? super Integer, Unit> onSelectedListener;
+
     /* JADX INFO: renamed from: b.a.a.n$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: SelectorDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -103,7 +103,7 @@ public final class C0837n extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.n$c */
     /* JADX INFO: compiled from: SelectorDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C0995l> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C0995l> {
 
         /* JADX INFO: renamed from: j */
         public static final c f416j = new c();
@@ -135,7 +135,7 @@ public final class C0837n extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.n$d */
     /* JADX INFO: compiled from: SelectorDialog.kt */
-    public static final class d implements View.OnClickListener {
+    public final class d implements View.OnClickListener {
         public d() {
         }
 
@@ -147,7 +147,7 @@ public final class C0837n extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.n$e */
     /* JADX INFO: compiled from: SelectorDialog.kt */
-    public static final class e extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, b> {
+    public final class e extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, b> {
         public e() {
             super(2);
         }

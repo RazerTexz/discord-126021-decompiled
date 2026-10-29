@@ -41,26 +41,6 @@ public class ServiceConnectionC4812d0 implements ServiceConnection {
     @GuardedBy("this")
     public boolean f12857o;
 
-    /* JADX INFO: renamed from: b.i.c.s.d0$a */
-    /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
-    public static class a {
-
-        /* JADX INFO: renamed from: a */
-        public final Intent f12858a;
-
-        /* JADX INFO: renamed from: b */
-        public final TaskCompletionSource<Void> f12859b = new TaskCompletionSource<>();
-
-        public a(Intent intent) {
-            this.f12858a = intent;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m6723a() {
-            this.f12859b.m9126b(null);
-        }
-    }
-
     public ServiceConnectionC4812d0(Context context, String str) {
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(0, new ThreadFactoryC3408a("Firebase-FirebaseInstanceIdServiceConnection"));
         this.f12855m = new ArrayDeque();
@@ -160,5 +140,25 @@ public class ServiceConnectionC4812d0 implements ServiceConnection {
             Log.d("FirebaseInstanceId", sb.toString());
         }
         m6721b();
+    }
+
+    /* JADX INFO: renamed from: b.i.c.s.d0$a */
+    /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
+    public class a {
+
+        /* JADX INFO: renamed from: a */
+        public final Intent f12858a;
+
+        /* JADX INFO: renamed from: b */
+        public final TaskCompletionSource<Void> f12859b = new TaskCompletionSource<>();
+
+        public a(Intent intent) {
+            this.f12858a = intent;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public void m6723a() {
+            this.f12859b.m9126b(null);
+        }
     }
 }

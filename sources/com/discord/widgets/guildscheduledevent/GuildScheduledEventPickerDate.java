@@ -17,7 +17,7 @@ public final /* data */ class GuildScheduledEventPickerDate implements Serializa
     private final int year;
 
     /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -50,21 +50,6 @@ public final /* data */ class GuildScheduledEventPickerDate implements Serializa
         return guildScheduledEventPickerDate.copy(i, i2, i3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getYear() {
-        return this.year;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getMonth() {
-        return this.month;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getDayOfMonth() {
-        return this.dayOfMonth;
-    }
-
     public final GuildScheduledEventPickerDate copy(int year, int month, int dayOfMonth) {
         return new GuildScheduledEventPickerDate(year, month, dayOfMonth);
     }
@@ -80,12 +65,27 @@ public final /* data */ class GuildScheduledEventPickerDate implements Serializa
         return this.year == guildScheduledEventPickerDate.year && this.month == guildScheduledEventPickerDate.month && this.dayOfMonth == guildScheduledEventPickerDate.dayOfMonth;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getDayOfMonth() {
         return this.dayOfMonth;
     }
 
+    public final int getDayOfMonth() {
+        return this.dayOfMonth;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getMonth() {
         return this.month;
+    }
+
+    public final int getMonth() {
+        return this.month;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getYear() {
+        return this.year;
     }
 
     public final int getYear() {

@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence openedFrom = null;
-    private final CharSequence uriHost = null;
-    private final CharSequence uriScheme = null;
-    private final CharSequence uriPath = null;
     private final CharSequence loadId = null;
+    private final CharSequence openedFrom = null;
     private final CharSequence theme = null;
+    private TrackBase trackBase;
+    private final CharSequence uriHost = null;
+    private final CharSequence uriPath = null;
+    private final CharSequence uriScheme = null;
     private final transient String analyticsSchemaTypeName = "app_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBa
         }
         TrackAppOpened trackAppOpened = (TrackAppOpened) other;
         return C12238m.areEqual(this.openedFrom, trackAppOpened.openedFrom) && C12238m.areEqual(this.uriHost, trackAppOpened.uriHost) && C12238m.areEqual(this.uriScheme, trackAppOpened.uriScheme) && C12238m.areEqual(this.uriPath, trackAppOpened.uriPath) && C12238m.areEqual(this.loadId, trackAppOpened.loadId) && C12238m.areEqual(this.theme, trackAppOpened.theme);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

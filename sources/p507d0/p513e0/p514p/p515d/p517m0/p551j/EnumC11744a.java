@@ -16,20 +16,20 @@ public enum EnumC11744a {
         this.includeEmptyAnnotationArguments = z3;
     }
 
-    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-    public static EnumC11744a[] valuesCustom() {
-        EnumC11744a[] enumC11744aArrValuesCustom = values();
-        EnumC11744a[] enumC11744aArr = new EnumC11744a[enumC11744aArrValuesCustom.length];
-        System.arraycopy(enumC11744aArrValuesCustom, 0, enumC11744aArr, 0, enumC11744aArrValuesCustom.length);
-        return enumC11744aArr;
-    }
-
     public final boolean getIncludeAnnotationArguments() {
         return this.includeAnnotationArguments;
     }
 
     public final boolean getIncludeEmptyAnnotationArguments() {
         return this.includeEmptyAnnotationArguments;
+    }
+
+    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+    public static EnumC11744a[] valuesCustom() {
+        EnumC11744a[] enumC11744aArrValuesCustom = values();
+        EnumC11744a[] enumC11744aArr = new EnumC11744a[enumC11744aArrValuesCustom.length];
+        System.arraycopy(enumC11744aArrValuesCustom, 0, enumC11744aArr, 0, enumC11744aArrValuesCustom.length);
+        return enumC11744aArr;
     }
 
     EnumC11744a(boolean z2, boolean z3, int i) {

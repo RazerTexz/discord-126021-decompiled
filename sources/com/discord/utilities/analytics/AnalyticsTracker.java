@@ -134,7 +134,7 @@ public final class AnalyticsTracker {
     private static final Lazy firebaseAnalytics = C12083g.lazy(AnalyticsTracker$firebaseAnalytics$2.INSTANCE);
 
     /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class AdjustEventTracker {
+    public final class AdjustEventTracker {
         private static final String EVENT_TOKEN_LOGIN = "ctt5aq";
         private static final String EVENT_TOKEN_REGISTER = "ebn8ke";
         public static final AdjustEventTracker INSTANCE = new AdjustEventTracker();
@@ -148,6 +148,264 @@ public final class AnalyticsTracker {
 
         public final void trackRegister() {
             Adjust.trackEvent(new AdjustEvent(EVENT_TOKEN_REGISTER));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$ackMessage$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66681 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $propertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66681(Function0 function0) {
+            super(0);
+            this.$propertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<String, ? extends Object> invoke() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$propertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$addAttachment$2 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66702 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, Unit> {
+        public static final C66702 INSTANCE = new C66702();
+
+        public C66702() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, ? extends Object> map) {
+            invoke2(map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, ? extends Object> map) {
+            AnalyticsTracker.INSTANCE.getTracker().track("message_attachment_updated", map);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$channelOpened$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66711 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66711(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<String, ? extends Object> invoke() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$guildViewed$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66741 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66741(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<String, ? extends Object> invoke() {
+            return (Map) this.$lazyPropertyProvider.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$inviteSuggestionOpened$2 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66762 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
+        public final /* synthetic */ List $channelSuggestions;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ List $userSuggestions;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66762(List list, List list2, long j) {
+            super(1);
+            this.$channelSuggestions = list;
+            this.$userSuggestions = list2;
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
+            invoke2((Set<Long>) set);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Set<Long> set) {
+            List list = this.$channelSuggestions;
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Object obj : list) {
+                Integer numValueOf = Integer.valueOf(((Channel) obj).getType());
+                Object arrayList = linkedHashMap.get(numValueOf);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    linkedHashMap.put(numValueOf, arrayList);
+                }
+                ((List) arrayList).add(obj);
+            }
+            List list2 = (List) linkedHashMap.get(1);
+            int size = list2 != null ? list2.size() : 0;
+            List list3 = (List) linkedHashMap.get(3);
+            AnalyticsTracker.INSTANCE.getTracker().track("invite_suggestion_opened", C12136h0.mapOf(C12116o.m10073to("num_suggestions", Integer.valueOf(this.$userSuggestions.size() + this.$channelSuggestions.size())), C12116o.m10073to("num_friends", Integer.valueOf(set.size())), C12116o.m10073to("num_dms", Integer.valueOf(this.$userSuggestions.size() + size)), C12116o.m10073to("num_group_dms", Integer.valueOf(list3 != null ? list3.size() : 0)), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(this.$guildId))));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$textInVoiceOpened$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66771 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66771(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<String, ? extends Object> invoke() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66781 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ String $inputMode;
+        public final /* synthetic */ Channel $this_trackUserVoiceEvent;
+        public final /* synthetic */ Pair $throttleKey;
+
+        /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: AnalyticsTracker.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+            public final /* synthetic */ Map $gameProperties;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Map map) {
+                super(0);
+                this.$gameProperties = map;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public final Map<String, ? extends Object> invoke() {
+                this.$gameProperties.put("mode", C66781.this.$inputMode);
+                this.$gameProperties.put("channel", Long.valueOf(C66781.this.$this_trackUserVoiceEvent.getId()));
+                this.$gameProperties.put("channel_type", Integer.valueOf(C66781.this.$this_trackUserVoiceEvent.getType()));
+                this.$gameProperties.put("server", Long.valueOf(C66781.this.$this_trackUserVoiceEvent.getGuildId()));
+                return this.$gameProperties;
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66781(Channel channel, Pair pair, String str) {
+            super(1);
+            this.$this_trackUserVoiceEvent = channel;
+            this.$throttleKey = pair;
+            this.$inputMode = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            C12238m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsTracker.INSTANCE.getTracker().track(this.$throttleKey, 900000L, new AnonymousClass1(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$videoInputsUpdate$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66791 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66791(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            C12238m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
+            Map map2 = this.$voiceProperties;
+            map2.putAll(map);
+            tracker.track("video_input_toggled", CollectionExtensionsKt.filterNonNullValues(map2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelJoin$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66801 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66801(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            C12238m.checkNotNullParameter(map, "gameProperties");
+            this.$voiceProperties.putAll(map);
+            AnalyticsTracker.INSTANCE.getTracker().track("join_voice_channel", CollectionExtensionsKt.filterNonNullValues(this.$voiceProperties));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelLeave$1 */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class C66811 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66811(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            C12238m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
+            Map map2 = this.$voiceProperties;
+            map2.putAll(map);
+            tracker.track("leave_voice_channel", CollectionExtensionsKt.filterNonNullValues(map2));
         }
     }
 
@@ -201,264 +459,6 @@ public final class AnalyticsTracker {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$ackMessage$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66681 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
-        public final /* synthetic */ Function0 $propertyProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66681(Function0 function0) {
-            super(0);
-            this.$propertyProvider = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<String, ? extends Object> invoke() {
-            return CollectionExtensionsKt.filterNonNullValues((Map) this.$propertyProvider.invoke());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$addAttachment$2 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66702 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, Unit> {
-        public static final C66702 INSTANCE = new C66702();
-
-        public C66702() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, ? extends Object> map) {
-            invoke2(map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, ? extends Object> map) {
-            AnalyticsTracker.INSTANCE.getTracker().track("message_attachment_updated", map);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$channelOpened$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66711 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
-        public final /* synthetic */ Function0 $lazyPropertyProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66711(Function0 function0) {
-            super(0);
-            this.$lazyPropertyProvider = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<String, ? extends Object> invoke() {
-            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$guildViewed$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66741 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
-        public final /* synthetic */ Function0 $lazyPropertyProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66741(Function0 function0) {
-            super(0);
-            this.$lazyPropertyProvider = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<String, ? extends Object> invoke() {
-            return (Map) this.$lazyPropertyProvider.invoke();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$inviteSuggestionOpened$2 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66762 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
-        public final /* synthetic */ List $channelSuggestions;
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ List $userSuggestions;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66762(List list, List list2, long j) {
-            super(1);
-            this.$channelSuggestions = list;
-            this.$userSuggestions = list2;
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
-            invoke2((Set<Long>) set);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Set<Long> set) {
-            List list = this.$channelSuggestions;
-            LinkedHashMap linkedHashMap = new LinkedHashMap();
-            for (Object obj : list) {
-                Integer numValueOf = Integer.valueOf(((Channel) obj).getType());
-                Object arrayList = linkedHashMap.get(numValueOf);
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                    linkedHashMap.put(numValueOf, arrayList);
-                }
-                ((List) arrayList).add(obj);
-            }
-            List list2 = (List) linkedHashMap.get(1);
-            int size = list2 != null ? list2.size() : 0;
-            List list3 = (List) linkedHashMap.get(3);
-            AnalyticsTracker.INSTANCE.getTracker().track("invite_suggestion_opened", C12136h0.mapOf(C12116o.m10073to("num_suggestions", Integer.valueOf(this.$userSuggestions.size() + this.$channelSuggestions.size())), C12116o.m10073to("num_friends", Integer.valueOf(set.size())), C12116o.m10073to("num_dms", Integer.valueOf(this.$userSuggestions.size() + size)), C12116o.m10073to("num_group_dms", Integer.valueOf(list3 != null ? list3.size() : 0)), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(this.$guildId))));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$textInVoiceOpened$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66771 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
-        public final /* synthetic */ Function0 $lazyPropertyProvider;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66771(Function0 function0) {
-            super(0);
-            this.$lazyPropertyProvider = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<String, ? extends Object> invoke() {
-            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66781 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
-        public final /* synthetic */ String $inputMode;
-        public final /* synthetic */ Channel $this_trackUserVoiceEvent;
-        public final /* synthetic */ Pair $throttleKey;
-
-        /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: AnalyticsTracker.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
-            public final /* synthetic */ Map $gameProperties;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(Map map) {
-                super(0);
-                this.$gameProperties = map;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public final Map<String, ? extends Object> invoke() {
-                this.$gameProperties.put("mode", C66781.this.$inputMode);
-                this.$gameProperties.put("channel", Long.valueOf(C66781.this.$this_trackUserVoiceEvent.getId()));
-                this.$gameProperties.put("channel_type", Integer.valueOf(C66781.this.$this_trackUserVoiceEvent.getType()));
-                this.$gameProperties.put("server", Long.valueOf(C66781.this.$this_trackUserVoiceEvent.getGuildId()));
-                return this.$gameProperties;
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66781(Channel channel, Pair pair, String str) {
-            super(1);
-            this.$this_trackUserVoiceEvent = channel;
-            this.$throttleKey = pair;
-            this.$inputMode = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
-            invoke2(map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, Object> map) {
-            C12238m.checkNotNullParameter(map, "gameProperties");
-            AnalyticsTracker.INSTANCE.getTracker().track(this.$throttleKey, 900000L, new AnonymousClass1(map));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$videoInputsUpdate$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66791 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
-        public final /* synthetic */ Map $voiceProperties;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66791(Map map) {
-            super(1);
-            this.$voiceProperties = map;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
-            invoke2(map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, Object> map) {
-            C12238m.checkNotNullParameter(map, "gameProperties");
-            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
-            Map map2 = this.$voiceProperties;
-            map2.putAll(map);
-            tracker.track("video_input_toggled", CollectionExtensionsKt.filterNonNullValues(map2));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelJoin$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66801 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
-        public final /* synthetic */ Map $voiceProperties;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66801(Map map) {
-            super(1);
-            this.$voiceProperties = map;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
-            invoke2(map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, Object> map) {
-            C12238m.checkNotNullParameter(map, "gameProperties");
-            this.$voiceProperties.putAll(map);
-            AnalyticsTracker.INSTANCE.getTracker().track("join_voice_channel", CollectionExtensionsKt.filterNonNullValues(this.$voiceProperties));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelLeave$1 */
-    /* JADX INFO: compiled from: AnalyticsTracker.kt */
-    public static final class C66811 extends AbstractC12240o implements Function1<Map<String, Object>, Unit> {
-        public final /* synthetic */ Map $voiceProperties;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66811(Map map) {
-            super(1);
-            this.$voiceProperties = map;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
-            invoke2(map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, Object> map) {
-            C12238m.checkNotNullParameter(map, "gameProperties");
-            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
-            Map map2 = this.$voiceProperties;
-            map2.putAll(map);
-            tracker.track("leave_voice_channel", CollectionExtensionsKt.filterNonNullValues(map2));
-        }
-    }
-
     private AnalyticsTracker() {
     }
 
@@ -481,6 +481,26 @@ public final class AnalyticsTracker {
         analyticsTracker.accountLinkFailed(str, num, str2, str3, str4);
     }
 
+    public final void accountLinkFailed(String errorMessage, Integer statusCode, String linkMethod, String currentStep, String platformType) {
+        HashMap map = new HashMap();
+        if (errorMessage != null) {
+            map.put("error_message", errorMessage);
+        }
+        if (statusCode != null) {
+            map.put("status_code", Integer.valueOf(statusCode.intValue()));
+        }
+        if (linkMethod != null) {
+            map.put("link_method", linkMethod);
+        }
+        if (currentStep != null) {
+            map.put("current_step", currentStep);
+        }
+        if (platformType != null) {
+            map.put("platform_type", platformType);
+        }
+        tracker.track("account_link_failed", map);
+    }
+
     public static /* synthetic */ void accountLinkStep$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, String str4, int i, Object obj) {
         if ((i & 1) != 0) {
             str = null;
@@ -495,6 +515,38 @@ public final class AnalyticsTracker {
             str4 = null;
         }
         analyticsTracker.accountLinkStep(str, str2, str3, str4);
+    }
+
+    public final void accountLinkStep(String previousStep, String currentStep, String sessionId, String platformType) {
+        HashMap map = new HashMap();
+        if (previousStep != null) {
+            map.put("previous_step", previousStep);
+        }
+        if (currentStep != null) {
+            map.put("current_step", currentStep);
+        }
+        if (sessionId != null) {
+            map.put("session_id", sessionId);
+        }
+        if (platformType != null) {
+            map.put("platform_type", platformType);
+        }
+        tracker.track("account_link_step", map);
+    }
+
+    public final void ackMessage(Channel channel, Function0<? extends Map<String, ? extends Object>> propertyProvider) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        C12238m.checkNotNullParameter(propertyProvider, "propertyProvider");
+        tracker.track(C12116o.m10073to("ack_messages", Long.valueOf(channel.getGuildId())), 900000L, new C66681(propertyProvider));
+    }
+
+    public final void activityUpdatedSpotify(String trackId, boolean hasImages) {
+        C12238m.checkNotNullParameter(trackId, "trackId");
+        HashMap map = new HashMap();
+        map.put("track_id", trackId);
+        map.put("party_platform", Platform.SPOTIFY.getProperName());
+        map.put("has_images", Boolean.valueOf(hasImages));
+        tracker.track("activity_updated", map);
     }
 
     public static final void addAttachment(final String source, final String mimeType, final int totalAttachments) {
@@ -530,6 +582,47 @@ public final class AnalyticsTracker {
         }
     }
 
+    public final void ageGateSubmitted(long dob, String sourcePage) {
+        C12238m.checkNotNullParameter(sourcePage, "sourcePage");
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        Long lValueOf = Long.valueOf(dob);
+        Locale locale = Locale.ROOT;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd", locale);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String str = simpleDateFormat.format(new Date(dob));
+        C12238m.checkNotNullExpressionValue(str, "formatter.format(Date(this))");
+        Long lValueOf2 = Long.valueOf(Long.parseLong(str));
+        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("MM", locale);
+        simpleDateFormat2.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String str2 = simpleDateFormat2.format(new Date(dob));
+        C12238m.checkNotNullExpressionValue(str2, "formatter.format(Date(this))");
+        Long lValueOf3 = Long.valueOf(Long.parseLong(str2));
+        SimpleDateFormat simpleDateFormat3 = new SimpleDateFormat("yyyy", locale);
+        simpleDateFormat3.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String str3 = simpleDateFormat3.format(new Date(dob));
+        C12238m.checkNotNullExpressionValue(str3, "formatter.format(Date(this))");
+        TrackAgeGateSubmitted trackAgeGateSubmitted = new TrackAgeGateSubmitted(lValueOf, lValueOf2, lValueOf3, Long.valueOf(Long.parseLong(str3)));
+        trackAgeGateSubmitted.m7509e(new TrackSourceMetadata(sourcePage, null, null, null, null, 30));
+        tracker2.track(trackAgeGateSubmitted);
+    }
+
+    public final void appCrashed() {
+        AnalyticsUtils.Tracker.track$default(tracker, "app_crashed", null, 2, null);
+    }
+
+    public final void appExceptionThrown(String stacktrace) {
+        C12238m.checkNotNullParameter(stacktrace, "stacktrace");
+        tracker.track("app_exception_thrown", C12134g0.mapOf(C12116o.m10073to("stacktrace", stacktrace)));
+    }
+
+    public final void appFirstLogin() {
+        Persister persister = new Persister("app_first_login", Boolean.TRUE);
+        if (((Boolean) persister.get()).booleanValue()) {
+            tracker.track("app_first_login", C12134g0.mapOf(C12116o.m10073to("platform", "Android")));
+            persister.set(Boolean.FALSE, true);
+        }
+    }
+
     public static final void appLandingViewed(long lastLogoutTs) {
         Long lValueOf = Long.valueOf(lastLogoutTs);
         if (!(lValueOf.longValue() != 0)) {
@@ -538,11 +631,48 @@ public final class AnalyticsTracker {
         tracker.track("app_landing_viewed", lValueOf != null ? C12134g0.mapOf(C12116o.m10073to("last_logout_ts", Long.valueOf(lValueOf.longValue()))) : null);
     }
 
+    public final void appNativeCrash(boolean didCrash, String exitReason, String exitDescription, String tombstoneGroupHash, String tombstoneCause) {
+        tracker.track("app_native_crash", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to("did_crash", Boolean.valueOf(didCrash)), C12116o.m10073to("exit_reason", exitReason), C12116o.m10073to("exit_description", exitDescription), C12116o.m10073to("tombstone_hash", tombstoneGroupHash), C12116o.m10073to("tombstone_cause", tombstoneCause))));
+    }
+
     public static final void appNotificationClicked(Map<String, ? extends Object> properties) {
         C12238m.checkNotNullParameter(properties, "properties");
         if (!properties.isEmpty()) {
             tracker.track("notification_clicked", properties);
         }
+    }
+
+    public final void appNotificationDropped(Map<String, ? extends Object> properties) {
+        C12238m.checkNotNullParameter(properties, "properties");
+        tracker.track("notification_dropped", properties);
+    }
+
+    public final void applicationCommandBrowserJump(long targetApplicationId) {
+        tracker.track("application_command_browser_jumped", C12134g0.mapOf(C12116o.m10073to("target_application_id", Long.valueOf(targetApplicationId))));
+    }
+
+    public final void applicationCommandBrowserOpened(Map<String, ? extends Object> snapshotProperties) {
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        tracker.track("application_command_browser_opened", CollectionExtensionsKt.filterNonNullValues(snapshotProperties));
+    }
+
+    public final void applicationCommandBrowserScrolled() {
+        AnalyticsUtils.Tracker.track$default(tracker, "application_command_browser_scrolled", null, 2, null);
+    }
+
+    public final void applicationCommandSelected(long applicationId, long commandId, Map<String, ? extends Object> snapshotProperties) {
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        tracker.track("application_command_selected", C12136h0.plus(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), C12116o.m10073to("command_id", Long.valueOf(commandId))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+    }
+
+    public final void applicationCommandValidationFailure(long applicationId, long commandId, String argumentType, boolean isRequired) {
+        C12238m.checkNotNullParameter(argumentType, "argumentType");
+        tracker.track("application_command_validation_failed", C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), C12116o.m10073to("command_id", Long.valueOf(commandId)), C12116o.m10073to("argument_type", argumentType), C12116o.m10073to("is_required", Boolean.valueOf(isRequired))));
+    }
+
+    public final void attributionChange(AdjustAttribution attribution) {
+        C12238m.checkNotNullParameter(attribution, "attribution");
+        tracker.track("user_attribution_received", C12136h0.mapOf(C12116o.m10073to("adjust_tracker_token", attribution.trackerToken), C12116o.m10073to("adjust_tracker_name", attribution.trackerName), C12116o.m10073to("adjust_adid", attribution.adid), C12116o.m10073to("attribution_network", attribution.network), C12116o.m10073to("attribution_campaign", attribution.campaign), C12116o.m10073to("attribution_adgroup", attribution.adgroup), C12116o.m10073to("attribution_creative", attribution.creative)));
     }
 
     private final String audioOutputDeviceTypeToString(DiscordAudioManager.DeviceTypes type) {
@@ -568,6 +698,72 @@ public final class AnalyticsTracker {
         return "bluetooth_headset";
     }
 
+    public final void autocompleteOpen(Map<String, ? extends Object> snapshotProperties, String autocompleteType, int numEmojiResults, int numStickerResults) {
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        C12238m.checkNotNullParameter(autocompleteType, "autocompleteType");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.putAll(snapshotProperties);
+        linkedHashMap.put("autocomplete_type", autocompleteType);
+        linkedHashMap.put("num_emoji_results", Integer.valueOf(numEmojiResults));
+        linkedHashMap.put("num_sticker_results", Integer.valueOf(numStickerResults));
+        tracker.track("channel_autocomplete_open", C12136h0.toMap(linkedHashMap));
+    }
+
+    public final void autocompleteSelect(Map<String, ? extends Object> snapshotProperties, String autocompleteType, int numEmojiResults, int numStickerResults, String selectionType, String selection, Long stickerId) {
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        C12238m.checkNotNullParameter(autocompleteType, "autocompleteType");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.putAll(snapshotProperties);
+        linkedHashMap.put("autocomplete_type", autocompleteType);
+        linkedHashMap.put("num_emoji_results", Integer.valueOf(numEmojiResults));
+        linkedHashMap.put("num_sticker_results", Integer.valueOf(numStickerResults));
+        if (selectionType != null) {
+            linkedHashMap.put("selection_type", selectionType);
+        }
+        if (selection != null) {
+            linkedHashMap.put("selection", selection);
+        }
+        if (stickerId != null) {
+            linkedHashMap.put("sticker_id", Long.valueOf(stickerId.longValue()));
+        }
+        tracker.track("channel_autocomplete_selected", C12136h0.toMap(linkedHashMap));
+    }
+
+    public final void callReportProblem(long meId, String rtcConnectionId, Channel channel, Map<Long, VoiceState> guildVoiceStates, Long durationMs, String mediaSessionId, FeedbackRating feedbackRating, Integer reasonCode, String reasonDescription, StoreMediaSettings.VoiceConfiguration voiceConfig, DiscordAudioManager.AudioDevice audioOutputDevice, boolean videoHardwareScalingEnabled, String issueDetails) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        C12238m.checkNotNullParameter(guildVoiceStates, "guildVoiceStates");
+        C12238m.checkNotNullParameter(feedbackRating, "feedbackRating");
+        C12238m.checkNotNullParameter(voiceConfig, "voiceConfig");
+        C12238m.checkNotNullParameter(audioOutputDevice, "audioOutputDevice");
+        HashMap map = new HashMap(C12136h0.plus(getVoiceChannelProperties$default(this, meId, channel, durationMs, guildVoiceStates, null, rtcConnectionId, 16, null), toProperties(voiceConfig)));
+        map.put("media_session_id", mediaSessionId);
+        map.put("audio_output_mode", audioOutputDeviceTypeToString(audioOutputDevice.type));
+        String str = audioOutputDevice.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_NAME java.lang.String;
+        if (str != null) {
+            map.put("output_device_name", str);
+        }
+        map.put("rating", feedbackRating.getAnalyticsValue());
+        map.put("reason_code", reasonCode);
+        map.put("reason_description", reasonDescription);
+        map.put("feedback", issueDetails);
+        map.put("video_hardware_scaling_enabled", Boolean.valueOf(videoHardwareScalingEnabled));
+        if (reasonCode != null) {
+            AppLog appLog = AppLog.f14950g;
+            String strValueOf = String.valueOf(reasonCode);
+            LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
+            for (Map.Entry entry : map.entrySet()) {
+                linkedHashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+            }
+            appLog.mo8363e("call_report_problem", strValueOf, null, linkedHashMap);
+        }
+        tracker.track("call_report_problem", CollectionExtensionsKt.filterNonNullValues(map));
+    }
+
+    public final void captchaFailed(String reason) {
+        C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
+        tracker.track("captcha_failed", C12134g0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason)));
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ void changeLogEvent$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Map map, int i, Object obj) {
         if ((i & 8) != 0) {
@@ -576,8 +772,41 @@ public final class AnalyticsTracker {
         analyticsTracker.changeLogEvent(str, str2, str3, map);
     }
 
+    public final void changeLogEvent(String event, String version, String revision, Map<String, ? extends Object> properties) {
+        C12238m.checkNotNullParameter(event, "event");
+        C12238m.checkNotNullParameter(version, "version");
+        C12238m.checkNotNullParameter(revision, "revision");
+        C12238m.checkNotNullParameter(properties, "properties");
+        HashMap map = new HashMap();
+        map.put("change_log_id", version + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + revision);
+        tracker.track(event, C12136h0.plus(map, properties));
+    }
+
+    public final void channelOpened(long channelId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
+        C12238m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
+        tracker.track(C12116o.m10073to("channel_opened", Long.valueOf(channelId)), 900000L, new C66711(lazyPropertyProvider));
+    }
+
+    public final void chatInputComponentViewed(String type) {
+        C12238m.checkNotNullParameter(type, "type");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("type", type);
+        tracker.track("chat_input_component_viewed", linkedHashMap);
+    }
+
+    public final void closeFirstServerTipTutorial(boolean acknowledged) {
+        closeTutorial("create-first-server-tip", acknowledged);
+    }
+
     private final void closeTutorial(String tutorial, boolean acknowledged) {
         tracker.track("close_tutorial", C12136h0.mapOf(C12116o.m10073to("tutorial", tutorial), C12116o.m10073to("acknowledged", Boolean.valueOf(acknowledged))));
+    }
+
+    public static /* synthetic */ void connectedAccountViewed$default(String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            str = null;
+        }
+        connectedAccountViewed(str);
     }
 
     public static final void connectedAccountViewed(String platformType) {
@@ -588,11 +817,34 @@ public final class AnalyticsTracker {
         tracker.track("connected_account_viewed", map);
     }
 
-    public static /* synthetic */ void connectedAccountViewed$default(String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = null;
+    public final void contactSyncToggled(boolean enabled, boolean phoneDiscoverable, boolean emailDiscoverable) {
+        tracker.track("contact_sync_toggled", C12136h0.mapOf(C12116o.m10073to("is_enabled", Boolean.valueOf(enabled)), C12116o.m10073to("am_discoverable_phone", Boolean.valueOf(phoneDiscoverable)), C12116o.m10073to("am_discoverable_email", Boolean.valueOf(emailDiscoverable))));
+    }
+
+    public final void createGuildViewed(StockGuildTemplate stockGuildTemplate, ModelGuildTemplate guildTemplate, String source) {
+        Map mapMapOf;
+        C12238m.checkNotNullParameter(stockGuildTemplate, "stockGuildTemplate");
+        C12238m.checkNotNullParameter(source, "source");
+        if (guildTemplate == null || (mapMapOf = C12136h0.mapOf(C12116o.m10073to("guild_template_code", guildTemplate.getCode()), C12116o.m10073to("guild_template_name", guildTemplate.getName()), C12116o.m10073to("guild_template_description", guildTemplate.getDescription()), C12116o.m10073to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId())))) == null) {
+            mapMapOf = C12134g0.mapOf(C12116o.m10073to("guild_template_name", stockGuildTemplate.name()));
         }
-        connectedAccountViewed(str);
+        tracker.track("create_guild_viewed", C12136h0.plus(mapMapOf, C12134g0.mapOf(C12116o.m10073to("location_section", source))));
+    }
+
+    public final void customStatusUpdated(WidgetUserSetCustomStatusViewModel.FormState formState, Traits.Location locationTrait) {
+        C12238m.checkNotNullParameter(formState, "formState");
+        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+        HashMap map = new HashMap();
+        locationTrait.serializeTo(map);
+        toProperties(formState, map);
+        tracker.track("custom_status_updated", map);
+    }
+
+    public final void deepLinkReceived(Intent intent, RouteHandlers.AnalyticsMetadata metadata, Map<String, ? extends Object> snapshotProperties) {
+        C12238m.checkNotNullParameter(intent, "intent");
+        C12238m.checkNotNullParameter(metadata, "metadata");
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        tracker.track("deep_link_received", C12136h0.plus(CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to("type", metadata.getType()), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, metadata.getGuildId()), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, metadata.getChannelId()), C12116o.m10073to("voice_action", Boolean.valueOf(intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN") != null)), C12116o.m10073to("source", intent.getStringExtra("com.discord.intent.extra.EXTRA_SOURCE")))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
     }
 
     public static /* synthetic */ void dismissModal$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Long l, int i, Object obj) {
@@ -600,6 +852,35 @@ public final class AnalyticsTracker {
             l = null;
         }
         analyticsTracker.dismissModal(str, str2, str3, l);
+    }
+
+    public final void dismissModal(String modalName, String location, String dismissType, Long guildId) {
+        C1643a.m872q0(modalName, "modalName", location, ModelAuditLogEntry.CHANGE_KEY_LOCATION, dismissType, "dismissType");
+        Map<String, ? extends Object> mapMutableMapOf = C12136h0.mutableMapOf(C12116o.m10073to("location_section", location), C12116o.m10073to("type", modalName), C12116o.m10073to("dismiss_type", dismissType));
+        if (guildId != null) {
+            guildId.longValue();
+            mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
+        }
+        tracker.track("modal_dismissed", mapMutableMapOf);
+    }
+
+    public final void echoCancellationConfigured(MediaEngine.EchoCancellationInfo info) {
+        C12238m.checkNotNullParameter(info, "info");
+        tracker.track("native_echo_cancellation_configured", C12136h0.mapOf(C12116o.m10073to("builtin_aec_supported_java", Boolean.valueOf(info.builtinAecSupportedJava)), C12116o.m10073to("builtin_aec_supported_native", Boolean.valueOf(info.builtinAecSupportedNative)), C12116o.m10073to("builtin_aec_requested", Boolean.valueOf(info.builtinAecRequested)), C12116o.m10073to("builtin_aec_enabled", Boolean.valueOf(info.builtinAecEnabled)), C12116o.m10073to("aec_enabled_in_settings", Boolean.valueOf(info.aecEnabledInSettings)), C12116o.m10073to("aec_enabled_in_native_config", Boolean.valueOf(info.aecEnabledInNativeConfig)), C12116o.m10073to("aec_mobile_mode", Boolean.valueOf(info.aecMobileMode)), C12116o.m10073to("aec_enabled_by_default", Boolean.valueOf(info.aecEnabledByDefault)), C12116o.m10073to("aec_mobile_mode_by_default", Boolean.valueOf(info.aecMobileModeByDefault))));
+    }
+
+    public final void emojiCategorySelected(long guildId) {
+        expressionPickerCategorySelected$default(this, null, Long.valueOf(guildId), "emoji", 1, null);
+    }
+
+    public static /* synthetic */ void expressionPickerCategorySelected$default(AnalyticsTracker analyticsTracker, Long l, Long l2, String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        if ((i & 2) != 0) {
+            l2 = null;
+        }
+        analyticsTracker.expressionPickerCategorySelected(l, l2, str);
     }
 
     private final void expressionPickerCategorySelected(Long stickerPackId, Long guildId, String tab) {
@@ -616,14 +897,45 @@ public final class AnalyticsTracker {
         tracker.track("expression_picker_category_selected", linkedHashMap);
     }
 
-    public static /* synthetic */ void expressionPickerCategorySelected$default(AnalyticsTracker analyticsTracker, Long l, Long l2, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
+    public final void expressionPickerOpened(String tab, boolean badged) {
+        C12238m.checkNotNullParameter(tab, "tab");
+        tracker.track("expression_picker_opened", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged)), C12116o.m10073to("tab", tab)));
+    }
+
+    public final void expressionPickerStickerShopViewed(boolean badged) {
+        tracker.track("expression_picker_sticker_shop_viewed", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged))));
+    }
+
+    public final void expressionPickerTabClicked(String tab, boolean badged) {
+        C12238m.checkNotNullParameter(tab, "tab");
+        tracker.track("expression_picker_tab_clicked", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged)), C12116o.m10073to("tab", tab)));
+    }
+
+    public final void expressionSuggestionsDisplayed(String suggestionTrigger) {
+        C12238m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
+        tracker.track("auto_suggest_displayed", C12134g0.mapOf(C12116o.m10073to("suggestion_trigger", suggestionTrigger)));
+    }
+
+    public final void expressionSuggestionsSelected(long stickerId, String suggestionTrigger) {
+        C12238m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
+        tracker.track("auto_suggest_expression_selected", C12136h0.mapOf(C12116o.m10073to("sticker_id", Long.valueOf(stickerId)), C12116o.m10073to("suggestion_trigger", suggestionTrigger)));
+    }
+
+    public final void externalDynamicLinkReceived(String fingerprint, String attemptId, String inviteCode, String guildTemplateCode, String authToken, boolean isBackgrounded) {
+        String str = fingerprint != null ? fingerprint : inviteCode;
+        if (str == null) {
+            str = authToken;
         }
-        if ((i & 2) != 0) {
-            l2 = null;
+        if (str != null) {
+            Pair[] pairArr = new Pair[6];
+            pairArr[0] = C12116o.m10073to("fingerprint", fingerprint != null ? toFingerprintNumber(fingerprint) : null);
+            pairArr[1] = C12116o.m10073to("attempt_id", attemptId);
+            pairArr[2] = C12116o.m10073to("invite_code", inviteCode);
+            pairArr[3] = C12116o.m10073to("guild_template_code", guildTemplateCode);
+            pairArr[4] = C12116o.m10073to("has_auth_token", Boolean.valueOf(true ^ (authToken == null || C12103t.isBlank(authToken))));
+            pairArr[5] = C12116o.m10073to("is_backgrounded", Boolean.valueOf(isBackgrounded));
+            tracker.track("external_dynamic_link_received", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(pairArr)));
         }
-        analyticsTracker.expressionPickerCategorySelected(l, l2, str);
     }
 
     public static final void externalFingerprintDropped(String fingerprint, String droppedFingerprint) {
@@ -642,11 +954,81 @@ public final class AnalyticsTracker {
         tracker.track("external_fingerprint_dropped", linkedHashMap);
     }
 
+    public final void externalShare(Uri uri) {
+        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        tracker.trackFireBase("handle_ext_share", insertUriProperties(new HashMap(), uri));
+    }
+
+    public final void externalViewClosed(String type, long durationMs) {
+        C12238m.checkNotNullParameter(type, "type");
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        Pair[] pairArr = new Pair[2];
+        pairArr[0] = C12116o.m10073to("type", type);
+        Long lValueOf = Long.valueOf(durationMs);
+        if (!(lValueOf.longValue() != 0)) {
+            lValueOf = null;
+        }
+        pairArr[1] = C12116o.m10073to("duration_open_ms", lValueOf);
+        tracker2.track("app_external_view_closed", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(pairArr)));
+    }
+
+    public final void failedMessageResolved(int numAttachments, int maxAttachmentSize, int totalAttachmentSize, boolean hasImage, boolean hasVideo, FailedMessageResolutionType resolutionType, long initialAttemptTimestamp, int numRetries, Map<String, ? extends Object> snapshotProperties) {
+        C12238m.checkNotNullParameter(resolutionType, "resolutionType");
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("num_attachments", Integer.valueOf(numAttachments));
+        linkedHashMap.put("max_attachment_size", Integer.valueOf(maxAttachmentSize));
+        linkedHashMap.put("total_attachment_size", Integer.valueOf(totalAttachmentSize));
+        linkedHashMap.put("has_image", Boolean.valueOf(hasImage));
+        linkedHashMap.put("has_video", Boolean.valueOf(hasVideo));
+        linkedHashMap.put("resolution_type", resolutionType.getAnalyticsValue());
+        linkedHashMap.put("initial_attempt_ts", Long.valueOf(initialAttemptTimestamp));
+        linkedHashMap.put("num_retries", Integer.valueOf(numRetries));
+        tracker.track("failed_message_resolved", C12136h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+    }
+
+    public final void fileUploadAlertViewed(FileUploadAlertType alertType, int numAttachments, int maxAttachmentSize, int totalAttachmentSize, boolean hasImage, boolean hasVideo, boolean isPremium, Map<String, ? extends Object> snapshotProperties) {
+        C12238m.checkNotNullParameter(alertType, "alertType");
+        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("alert_type", alertType.getAnalyticsValue());
+        linkedHashMap.put("num_attachments", Integer.valueOf(numAttachments));
+        linkedHashMap.put("max_attachment_size", Integer.valueOf(maxAttachmentSize));
+        linkedHashMap.put("total_attachment_size", Integer.valueOf(totalAttachmentSize));
+        linkedHashMap.put("has_image", Boolean.valueOf(hasImage));
+        linkedHashMap.put("has_video", Boolean.valueOf(hasVideo));
+        linkedHashMap.put("is_premium", Boolean.valueOf(isPremium));
+        tracker.track("file_upload_alert_viewed", C12136h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+    }
+
+    public final void friendAddViewed(String type) {
+        C12238m.checkNotNullParameter(type, "type");
+        tracker.track("friend_add_viewed", C12134g0.mapOf(C12116o.m10073to("friend_add_type", type)));
+    }
+
     public static /* synthetic */ void friendRequestFailed$default(AnalyticsTracker analyticsTracker, CharSequence charSequence, String str, Integer num, String str2, int i, Object obj) {
         if ((i & 8) != 0) {
             str2 = null;
         }
         analyticsTracker.friendRequestFailed(charSequence, str, num, str2);
+    }
+
+    public final void friendRequestFailed(CharSequence query, String username, Integer discriminator, String reason) {
+        C12238m.checkNotNullParameter(query, "query");
+        C12238m.checkNotNullParameter(username, "username");
+        HashMap map = new HashMap();
+        if (reason != null) {
+            map.put(ModelAuditLogEntry.CHANGE_KEY_REASON, reason);
+            map.put("discrim_len", Integer.valueOf(String.valueOf(discriminator).length()));
+            map.put("username_len", Integer.valueOf(username.length()));
+            map.put("is_email_like", Boolean.valueOf(EmailUtils.INSTANCE.isEmailLike(query.toString())));
+            map.put("is_num_only", Boolean.valueOf(PhoneUtils.INSTANCE.isValidPhoneFragment(query.toString())));
+        }
+        tracker.track("friend_request_failed", map);
+    }
+
+    public final void friendsListViewed() {
+        AnalyticsUtils.Tracker.track$default(tracker, "friends_list_viewed", null, 2, null);
     }
 
     private final String getAnalyticsValueForNotificationFrequency(Integer messageNotifications) {
@@ -774,6 +1156,15 @@ public final class AnalyticsTracker {
     public static /* synthetic */ void getTHROTTLE_SHORT$annotations() {
     }
 
+    public final AnalyticsUtils.Tracker getTracker() {
+        return tracker;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ Map getVoiceChannelProperties$default(AnalyticsTracker analyticsTracker, long j, Channel channel, Long l, Map map, VideoInputDeviceDescription videoInputDeviceDescription, String str, int i, Object obj) {
+        return analyticsTracker.getVoiceChannelProperties(j, channel, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : map, (i & 16) != 0 ? null : videoInputDeviceDescription, (i & 32) != 0 ? null : str);
+    }
+
     private final Map<String, Object> getVoiceChannelProperties(long meId, Channel channel, Long durationMs, Map<Long, VoiceState> guildVoiceStates, VideoInputDeviceDescription videoInputDevice, String rtcConnectionId) {
         int i;
         int i2;
@@ -810,9 +1201,15 @@ public final class AnalyticsTracker {
         return mapMutableMapOf;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Map getVoiceChannelProperties$default(AnalyticsTracker analyticsTracker, long j, Channel channel, Long l, Map map, VideoInputDeviceDescription videoInputDeviceDescription, String str, int i, Object obj) {
-        return analyticsTracker.getVoiceChannelProperties(j, channel, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : map, (i & 16) != 0 ? null : videoInputDeviceDescription, (i & 32) != 0 ? null : str);
+    public final void giftResolved(ModelGift gift) {
+        C12238m.checkNotNullParameter(gift, "gift");
+        ModelStoreListing storeListing = gift.getStoreListing();
+        tracker.track("gift_code_resolved", C12136h0.plus(toProperties(storeListing != null ? storeListing.getSku() : null), C12136h0.mapOf(C12116o.m10073to("gift_code", gift.getCode()), C12116o.m10073to("gift_code_max_uses", Integer.valueOf(gift.getMaxUses())), C12116o.m10073to("resolved", Boolean.TRUE))));
+    }
+
+    public final void giftResolvedFailed(String giftCode) {
+        C12238m.checkNotNullParameter(giftCode, "giftCode");
+        tracker.track("gift_code_resolved", C12136h0.mapOf(C12116o.m10073to("gift_code", giftCode), C12116o.m10073to("resolved", Boolean.FALSE)));
     }
 
     public static /* synthetic */ void guildBoostPromotionClosed$default(AnalyticsTracker analyticsTracker, long j, Traits.Location location, Long l, int i, Object obj) {
@@ -822,11 +1219,45 @@ public final class AnalyticsTracker {
         analyticsTracker.guildBoostPromotionClosed(j, location, l);
     }
 
+    public final void guildBoostPromotionClosed(long guildId, Traits.Location locationTrait, Long channelId) {
+        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+        HashMap map = new HashMap();
+        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
+        if (channelId != null) {
+            map.put(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId.longValue()));
+        }
+        locationTrait.serializeTo(map);
+        tracker.track("premium_guild_promotion_closed", map);
+    }
+
     public static /* synthetic */ void guildBoostPromotionOpened$default(AnalyticsTracker analyticsTracker, long j, Traits.Location location, Long l, int i, Object obj) {
         if ((i & 4) != 0) {
             l = null;
         }
         analyticsTracker.guildBoostPromotionOpened(j, location, l);
+    }
+
+    public final void guildBoostPromotionOpened(long guildId, Traits.Location locationTrait, Long channelId) {
+        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+        HashMap map = new HashMap();
+        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
+        if (channelId != null) {
+            map.put(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId.longValue()));
+        }
+        locationTrait.serializeTo(map);
+        tracker.track("premium_guild_promotion_opened", map);
+    }
+
+    public final void guildCategorySelected(long guildId) {
+        expressionPickerCategorySelected$default(this, null, Long.valueOf(guildId), "sticker", 1, null);
+    }
+
+    public final void guildCreationIntentSelected(Boolean isCommunity) {
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        Pair[] pairArr = new Pair[2];
+        pairArr[0] = C12116o.m10073to("skipped", Boolean.valueOf(isCommunity == null));
+        pairArr[1] = C12116o.m10073to("is_community", Boolean.valueOf(isCommunity != null ? isCommunity.booleanValue() : false));
+        tracker2.track("guild_creation_intent_selected", C12136h0.mapOf(pairArr));
     }
 
     public static final void guildExperimentTriggered(String name, int revision, int bucket, long guildId) {
@@ -842,9 +1273,33 @@ public final class AnalyticsTracker {
         analyticsTracker.guildRoleSubscriptionUpsellOpened(j, list, z2, str);
     }
 
+    public final void guildRoleSubscriptionUpsellOpened(long guildRoleSubscriptionGroupListingId, List<Long> guildRoleSubscriptionTierListingIds, boolean hasUserActiveSubscriptions, String location) {
+        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        TrackRoleSubscriptionListingUpsellPageViewedV3 trackRoleSubscriptionListingUpsellPageViewedV3 = new TrackRoleSubscriptionListingUpsellPageViewedV3(Long.valueOf(guildRoleSubscriptionGroupListingId), guildRoleSubscriptionTierListingIds, Boolean.valueOf(hasUserActiveSubscriptions));
+        trackRoleSubscriptionListingUpsellPageViewedV3.m7511e(new TrackBase(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, location, null, null, null, null, null, null, null, null, null, null, null, null, -1, -1073741825, 2047));
+        tracker2.track(trackRoleSubscriptionListingUpsellPageViewedV3);
+    }
+
     public static final void guildTemplateResolveFailed(String guildTemplateCode) {
         C12238m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
         tracker.track("guild_template_resolved", C12136h0.mapOf(C12116o.m10073to("resolved", Boolean.FALSE), C12116o.m10073to("guild_template_code", guildTemplateCode)));
+    }
+
+    public final void guildTemplateResolved(ModelGuildTemplate guildTemplate) {
+        C12238m.checkNotNullParameter(guildTemplate, "guildTemplate");
+        tracker.track("guild_template_resolved", C12136h0.mapOf(C12116o.m10073to("resolved", Boolean.TRUE), C12116o.m10073to("guild_template_code", guildTemplate.getCode()), C12116o.m10073to("guild_template_name", guildTemplate.getName()), C12116o.m10073to("guild_template_description", guildTemplate.getDescription()), C12116o.m10073to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId()))));
+    }
+
+    public final void guildViewed(long guildId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
+        C12238m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
+        tracker.track(C12116o.m10073to("guild_viewed", Long.valueOf(guildId)), 900000L, new C66741(lazyPropertyProvider));
+    }
+
+    public final void impressionInviteAccept(String inviteCode) {
+        if (inviteCode != null) {
+            tracker.track(new TrackImpressionInviteAccept(inviteCode, null, 2));
+        }
     }
 
     private final Map<String, Object> insertUriProperties(Map<String, Object> map, Uri uri) {
@@ -892,13 +1347,6 @@ public final class AnalyticsTracker {
         tracker.track("invite_opened", C12134g0.mapOf(C12116o.m10073to("invite_code", inviteCode)));
     }
 
-    public static final void inviteResolveFailed(String inviteCode, String location, String errorMessage, Integer errorCode) {
-        C12238m.checkNotNullParameter(inviteCode, "inviteCode");
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsUtils.Tracker tracker2 = tracker;
-        tracker2.track("resolve_invite", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), C12116o.m10073to("resolved", Boolean.FALSE), C12116o.m10073to("authenticated", Boolean.valueOf(tracker2.isAuthed$app_productionGoogleRelease())), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), C12116o.m10073to("error_message", errorMessage), C12116o.m10073to("error_code", errorCode))));
-    }
-
     public static /* synthetic */ void inviteResolveFailed$default(String str, String str2, String str3, Integer num, int i, Object obj) {
         if ((i & 4) != 0) {
             str3 = null;
@@ -909,677 +1357,11 @@ public final class AnalyticsTracker {
         inviteResolveFailed(str, str2, str3, num);
     }
 
-    public static final void inviteShareClicked(ModelInvite invite) {
-        if (invite == null) {
-            return;
-        }
-        AnalyticsTracker analyticsTracker = INSTANCE;
-        String str = invite.code;
-        C12238m.checkNotNullExpressionValue(str, "invite.code");
-        Guild guild = invite.guild;
-        Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
-        Channel channel = invite.getChannel();
-        Long lValueOf2 = channel != null ? Long.valueOf(channel.getId()) : null;
-        Channel channel2 = invite.getChannel();
-        Integer numValueOf = channel2 != null ? Integer.valueOf(channel2.getType()) : null;
-        User inviter = invite.getInviter();
-        Long lValueOf3 = inviter != null ? Long.valueOf(inviter.getId()) : null;
-        GuildScheduledEvent guildScheduledEvent = invite.getGuildScheduledEvent();
-        analyticsTracker.inviteShareClicked(str, lValueOf, lValueOf2, numValueOf, lValueOf3, guildScheduledEvent != null ? Long.valueOf(guildScheduledEvent.getId()) : null);
-    }
-
-    public static final void nearbyConnected() {
-        AnalyticsUtils.Tracker.track$default(tracker, "friend_add_nearby_connected", null, 2, null);
-    }
-
-    public static /* synthetic */ void newUserOnboarding$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Long l, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            l = null;
-        }
-        analyticsTracker.newUserOnboarding(str, str2, str3, l, (i & 16) != 0 ? false : z2);
-    }
-
-    public static final void openGiftModal(ModelGift gift, Channel channel, String location) {
-        Map<String, Object> mapEmptyMap;
-        C12238m.checkNotNullParameter(gift, "gift");
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsTracker analyticsTracker = INSTANCE;
-        ModelStoreListing storeListing = gift.getStoreListing();
-        Map<String, Object> properties = analyticsTracker.toProperties(storeListing != null ? storeListing.getSku() : null);
-        if (channel == null || (mapEmptyMap = AnalyticsUtils.INSTANCE.getProperties$app_productionGoogleRelease(channel)) == null) {
-            mapEmptyMap = C12136h0.emptyMap();
-        }
-        tracker.track("open_modal", C12136h0.plus(C12136h0.plus(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), C12116o.m10073to("type", "gift")), mapEmptyMap), properties));
-    }
-
-    public static final void openModal(String modalName, String location, Long guildId) {
-        C12238m.checkNotNullParameter(modalName, "modalName");
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        Map<String, ? extends Object> mapMutableMapOf = C12136h0.mutableMapOf(C12116o.m10073to("location_section", location), C12116o.m10073to("type", modalName));
-        if (guildId != null) {
-            guildId.longValue();
-            mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
-        }
-        tracker.track("open_modal", mapMutableMapOf);
-    }
-
-    public static /* synthetic */ void openModal$default(String str, String str2, Long l, int i, Object obj) {
-        if ((i & 4) != 0) {
-            l = null;
-        }
-        openModal(str, str2, l);
-    }
-
-    public static /* synthetic */ void openUserSheet$default(AnalyticsTracker analyticsTracker, boolean z2, String str, ActivityPlatform activityPlatform, GuildMember guildMember, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str = null;
-        }
-        if ((i & 4) != 0) {
-            activityPlatform = null;
-        }
-        if ((i & 8) != 0) {
-            guildMember = null;
-        }
-        analyticsTracker.openUserSheet(z2, str, activityPlatform, guildMember);
-    }
-
-    public static final void overlayToggled(boolean isEnabled) {
-        tracker.track("mobile_overlay_toggled", C12134g0.mapOf(C12116o.m10073to("enabled", Boolean.valueOf(isEnabled))));
-    }
-
-    public static /* synthetic */ void paymentFlowFailed$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
-        if ((i & 2) != 0) {
-            subscription = null;
-        }
-        if ((i & 4) != 0) {
-            storeSku = null;
-        }
-        if ((i & 8) != 0) {
-            payment = null;
-        }
-        analyticsTracker.paymentFlowFailed(location, subscription, storeSku, payment);
-    }
-
-    public static /* synthetic */ void paymentFlowStarted$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
-        if ((i & 2) != 0) {
-            subscription = null;
-        }
-        if ((i & 4) != 0) {
-            storeSku = null;
-        }
-        if ((i & 8) != 0) {
-            payment = null;
-        }
-        analyticsTracker.paymentFlowStarted(location, subscription, storeSku, payment);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void premiumUpsellViewed$default(AnalyticsTracker analyticsTracker, PremiumUpsellType premiumUpsellType, Traits.Location location, Map map, Traits.Source source, int i, Object obj) {
-        if ((i & 2) != 0) {
-            location = null;
-        }
-        if ((i & 4) != 0) {
-            map = C12136h0.emptyMap();
-        }
-        if ((i & 8) != 0) {
-            source = null;
-        }
-        analyticsTracker.premiumUpsellViewed(premiumUpsellType, location, map, source);
-    }
-
-    public static final void readyPayloadReceived(Map<String, ? extends Object> properties) {
-        C12238m.checkNotNullParameter(properties, "properties");
-        tracker.track("ready_payload_received", properties);
-    }
-
-    public static /* synthetic */ void registerViewed$default(AnalyticsTracker analyticsTracker, ModelInvite modelInvite, int i, Object obj) {
-        if ((i & 1) != 0) {
-            modelInvite = null;
-        }
-        analyticsTracker.registerViewed(modelInvite);
-    }
-
-    public static /* synthetic */ void reportStreamProblem$default(AnalyticsTracker analyticsTracker, ModelApplicationStream modelApplicationStream, FeedbackRating feedbackRating, String str, String str2, String str3, int i, Object obj) {
-        if ((i & 16) != 0) {
-            str3 = null;
-        }
-        analyticsTracker.reportStreamProblem(modelApplicationStream, feedbackRating, str, str2, str3);
-    }
-
-    public static /* synthetic */ void searchStart$default(AnalyticsTracker analyticsTracker, SearchType searchType, Traits.Location location, Map map, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z2 = false;
-        }
-        analyticsTracker.searchStart(searchType, location, map, z2);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void settingsPaneViewed$default(AnalyticsTracker analyticsTracker, String str, String str2, Map map, int i, Object obj) {
-        if ((i & 4) != 0) {
-            map = null;
-        }
-        analyticsTracker.settingsPaneViewed(str, str2, map);
-    }
-
-    private final void showTutorial(String tutorial) {
-        tracker.track("show_tutorial", C12134g0.mapOf(C12116o.m10073to("tutorial", tutorial)));
-    }
-
-    private final Long toFingerprintNumber(String str) {
-        String strSubstringBefore = C12106w.substringBefore(str, '.', "");
-        if (!(strSubstringBefore.length() > 0)) {
-            strSubstringBefore = null;
-        }
-        if (strSubstringBefore != null) {
-            return C12102s.toLongOrNull(strSubstringBefore);
-        }
-        return null;
-    }
-
-    private final Map<String, Object> toProperties(MediaEngine.AudioInfo audioInfo, Map<String, Object> map) {
-        if (audioInfo == null) {
-            return map;
-        }
-        map.put("audio_subsystem", audioInfo.audioSubsystem);
-        map.put("audio_layer", audioInfo.audioLayer);
-        return map;
-    }
-
-    private final void trackStageChannelEvent(String event, long channelId, Map<String, ? extends Object> extraProperties) {
-        Map<String, Object> stageChannelMetadata = getStageChannelMetadata(channelId);
-        if (stageChannelMetadata != null) {
-            tracker.track(event, C12136h0.plus(stageChannelMetadata, extraProperties));
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void trackStageChannelEvent$default(AnalyticsTracker analyticsTracker, String str, long j, Map map, int i, Object obj) {
-        if ((i & 4) != 0) {
-            map = C12136h0.emptyMap();
-        }
-        analyticsTracker.trackStageChannelEvent(str, j, map);
-    }
-
-    private final void trackUserVoiceEvent(Channel channel, long j, String str, Pair<String, Long> pair) {
-        withGameProperties(j, new C66781(channel, pair, str));
-    }
-
-    public static final void userExperimentTriggered(String experimentName, int revision, int population, int bucket) {
-        C12238m.checkNotNullParameter(experimentName, "experimentName");
-        tracker.track("experiment_user_triggered", C12136h0.mutableMapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_NAME, experimentName), C12116o.m10073to("revision", Integer.valueOf(revision)), C12116o.m10073to("population", Integer.valueOf(population)), C12116o.m10073to("bucket", Integer.valueOf(bucket))));
-    }
-
-    public static final void welcomeScreenChannelSelected(int index, long guildId, List<String> optionDescriptions, List<Long> channelIds, String description, boolean hasCustomEmojis) {
-        C12238m.checkNotNullParameter(optionDescriptions, "optionDescriptions");
-        C12238m.checkNotNullParameter(channelIds, "channelIds");
-        C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
-        HashMap map = new HashMap();
-        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
-        map.put("index", Integer.valueOf(index));
-        map.put("options", optionDescriptions);
-        map.put("options_channel_ids", channelIds);
-        map.put("guild_description", description);
-        map.put("has_custom_emojis", Boolean.valueOf(hasCustomEmojis));
-        tracker.track("guild_welcome_screen_option_selected", map);
-    }
-
-    private final void withGameProperties(long meId, Function1<? super Map<String, Object>, Unit> onGameProps) {
-        ObservableExtensionsKt.appSubscribe(getGameProperties(meId), (Class<?>) AnalyticsTracker.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), onGameProps);
-    }
-
-    public final void accountLinkFailed(String errorMessage, Integer statusCode, String linkMethod, String currentStep, String platformType) {
-        HashMap map = new HashMap();
-        if (errorMessage != null) {
-            map.put("error_message", errorMessage);
-        }
-        if (statusCode != null) {
-            map.put("status_code", Integer.valueOf(statusCode.intValue()));
-        }
-        if (linkMethod != null) {
-            map.put("link_method", linkMethod);
-        }
-        if (currentStep != null) {
-            map.put("current_step", currentStep);
-        }
-        if (platformType != null) {
-            map.put("platform_type", platformType);
-        }
-        tracker.track("account_link_failed", map);
-    }
-
-    public final void accountLinkStep(String previousStep, String currentStep, String sessionId, String platformType) {
-        HashMap map = new HashMap();
-        if (previousStep != null) {
-            map.put("previous_step", previousStep);
-        }
-        if (currentStep != null) {
-            map.put("current_step", currentStep);
-        }
-        if (sessionId != null) {
-            map.put("session_id", sessionId);
-        }
-        if (platformType != null) {
-            map.put("platform_type", platformType);
-        }
-        tracker.track("account_link_step", map);
-    }
-
-    public final void ackMessage(Channel channel, Function0<? extends Map<String, ? extends Object>> propertyProvider) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(propertyProvider, "propertyProvider");
-        tracker.track(C12116o.m10073to("ack_messages", Long.valueOf(channel.getGuildId())), 900000L, new C66681(propertyProvider));
-    }
-
-    public final void activityUpdatedSpotify(String trackId, boolean hasImages) {
-        C12238m.checkNotNullParameter(trackId, "trackId");
-        HashMap map = new HashMap();
-        map.put("track_id", trackId);
-        map.put("party_platform", Platform.SPOTIFY.getProperName());
-        map.put("has_images", Boolean.valueOf(hasImages));
-        tracker.track("activity_updated", map);
-    }
-
-    public final void ageGateSubmitted(long dob, String sourcePage) {
-        C12238m.checkNotNullParameter(sourcePage, "sourcePage");
-        AnalyticsUtils.Tracker tracker2 = tracker;
-        Long lValueOf = Long.valueOf(dob);
-        Locale locale = Locale.ROOT;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd", locale);
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String str = simpleDateFormat.format(new Date(dob));
-        C12238m.checkNotNullExpressionValue(str, "formatter.format(Date(this))");
-        Long lValueOf2 = Long.valueOf(Long.parseLong(str));
-        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("MM", locale);
-        simpleDateFormat2.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String str2 = simpleDateFormat2.format(new Date(dob));
-        C12238m.checkNotNullExpressionValue(str2, "formatter.format(Date(this))");
-        Long lValueOf3 = Long.valueOf(Long.parseLong(str2));
-        SimpleDateFormat simpleDateFormat3 = new SimpleDateFormat("yyyy", locale);
-        simpleDateFormat3.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String str3 = simpleDateFormat3.format(new Date(dob));
-        C12238m.checkNotNullExpressionValue(str3, "formatter.format(Date(this))");
-        TrackAgeGateSubmitted trackAgeGateSubmitted = new TrackAgeGateSubmitted(lValueOf, lValueOf2, lValueOf3, Long.valueOf(Long.parseLong(str3)));
-        trackAgeGateSubmitted.m7509e(new TrackSourceMetadata(sourcePage, null, null, null, null, 30));
-        tracker2.track(trackAgeGateSubmitted);
-    }
-
-    public final void appCrashed() {
-        AnalyticsUtils.Tracker.track$default(tracker, "app_crashed", null, 2, null);
-    }
-
-    public final void appExceptionThrown(String stacktrace) {
-        C12238m.checkNotNullParameter(stacktrace, "stacktrace");
-        tracker.track("app_exception_thrown", C12134g0.mapOf(C12116o.m10073to("stacktrace", stacktrace)));
-    }
-
-    public final void appFirstLogin() {
-        Persister persister = new Persister("app_first_login", Boolean.TRUE);
-        if (((Boolean) persister.get()).booleanValue()) {
-            tracker.track("app_first_login", C12134g0.mapOf(C12116o.m10073to("platform", "Android")));
-            persister.set(Boolean.FALSE, true);
-        }
-    }
-
-    public final void appNativeCrash(boolean didCrash, String exitReason, String exitDescription, String tombstoneGroupHash, String tombstoneCause) {
-        tracker.track("app_native_crash", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to("did_crash", Boolean.valueOf(didCrash)), C12116o.m10073to("exit_reason", exitReason), C12116o.m10073to("exit_description", exitDescription), C12116o.m10073to("tombstone_hash", tombstoneGroupHash), C12116o.m10073to("tombstone_cause", tombstoneCause))));
-    }
-
-    public final void appNotificationDropped(Map<String, ? extends Object> properties) {
-        C12238m.checkNotNullParameter(properties, "properties");
-        tracker.track("notification_dropped", properties);
-    }
-
-    public final void applicationCommandBrowserJump(long targetApplicationId) {
-        tracker.track("application_command_browser_jumped", C12134g0.mapOf(C12116o.m10073to("target_application_id", Long.valueOf(targetApplicationId))));
-    }
-
-    public final void applicationCommandBrowserOpened(Map<String, ? extends Object> snapshotProperties) {
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        tracker.track("application_command_browser_opened", CollectionExtensionsKt.filterNonNullValues(snapshotProperties));
-    }
-
-    public final void applicationCommandBrowserScrolled() {
-        AnalyticsUtils.Tracker.track$default(tracker, "application_command_browser_scrolled", null, 2, null);
-    }
-
-    public final void applicationCommandSelected(long applicationId, long commandId, Map<String, ? extends Object> snapshotProperties) {
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        tracker.track("application_command_selected", C12136h0.plus(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), C12116o.m10073to("command_id", Long.valueOf(commandId))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
-    }
-
-    public final void applicationCommandValidationFailure(long applicationId, long commandId, String argumentType, boolean isRequired) {
-        C12238m.checkNotNullParameter(argumentType, "argumentType");
-        tracker.track("application_command_validation_failed", C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), C12116o.m10073to("command_id", Long.valueOf(commandId)), C12116o.m10073to("argument_type", argumentType), C12116o.m10073to("is_required", Boolean.valueOf(isRequired))));
-    }
-
-    public final void attributionChange(AdjustAttribution attribution) {
-        C12238m.checkNotNullParameter(attribution, "attribution");
-        tracker.track("user_attribution_received", C12136h0.mapOf(C12116o.m10073to("adjust_tracker_token", attribution.trackerToken), C12116o.m10073to("adjust_tracker_name", attribution.trackerName), C12116o.m10073to("adjust_adid", attribution.adid), C12116o.m10073to("attribution_network", attribution.network), C12116o.m10073to("attribution_campaign", attribution.campaign), C12116o.m10073to("attribution_adgroup", attribution.adgroup), C12116o.m10073to("attribution_creative", attribution.creative)));
-    }
-
-    public final void autocompleteOpen(Map<String, ? extends Object> snapshotProperties, String autocompleteType, int numEmojiResults, int numStickerResults) {
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        C12238m.checkNotNullParameter(autocompleteType, "autocompleteType");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.putAll(snapshotProperties);
-        linkedHashMap.put("autocomplete_type", autocompleteType);
-        linkedHashMap.put("num_emoji_results", Integer.valueOf(numEmojiResults));
-        linkedHashMap.put("num_sticker_results", Integer.valueOf(numStickerResults));
-        tracker.track("channel_autocomplete_open", C12136h0.toMap(linkedHashMap));
-    }
-
-    public final void autocompleteSelect(Map<String, ? extends Object> snapshotProperties, String autocompleteType, int numEmojiResults, int numStickerResults, String selectionType, String selection, Long stickerId) {
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        C12238m.checkNotNullParameter(autocompleteType, "autocompleteType");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.putAll(snapshotProperties);
-        linkedHashMap.put("autocomplete_type", autocompleteType);
-        linkedHashMap.put("num_emoji_results", Integer.valueOf(numEmojiResults));
-        linkedHashMap.put("num_sticker_results", Integer.valueOf(numStickerResults));
-        if (selectionType != null) {
-            linkedHashMap.put("selection_type", selectionType);
-        }
-        if (selection != null) {
-            linkedHashMap.put("selection", selection);
-        }
-        if (stickerId != null) {
-            linkedHashMap.put("sticker_id", Long.valueOf(stickerId.longValue()));
-        }
-        tracker.track("channel_autocomplete_selected", C12136h0.toMap(linkedHashMap));
-    }
-
-    public final void callReportProblem(long meId, String rtcConnectionId, Channel channel, Map<Long, VoiceState> guildVoiceStates, Long durationMs, String mediaSessionId, FeedbackRating feedbackRating, Integer reasonCode, String reasonDescription, StoreMediaSettings.VoiceConfiguration voiceConfig, DiscordAudioManager.AudioDevice audioOutputDevice, boolean videoHardwareScalingEnabled, String issueDetails) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(guildVoiceStates, "guildVoiceStates");
-        C12238m.checkNotNullParameter(feedbackRating, "feedbackRating");
-        C12238m.checkNotNullParameter(voiceConfig, "voiceConfig");
-        C12238m.checkNotNullParameter(audioOutputDevice, "audioOutputDevice");
-        HashMap map = new HashMap(C12136h0.plus(getVoiceChannelProperties$default(this, meId, channel, durationMs, guildVoiceStates, null, rtcConnectionId, 16, null), toProperties(voiceConfig)));
-        map.put("media_session_id", mediaSessionId);
-        map.put("audio_output_mode", audioOutputDeviceTypeToString(audioOutputDevice.type));
-        String str = audioOutputDevice.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_NAME java.lang.String;
-        if (str != null) {
-            map.put("output_device_name", str);
-        }
-        map.put("rating", feedbackRating.getAnalyticsValue());
-        map.put("reason_code", reasonCode);
-        map.put("reason_description", reasonDescription);
-        map.put("feedback", issueDetails);
-        map.put("video_hardware_scaling_enabled", Boolean.valueOf(videoHardwareScalingEnabled));
-        if (reasonCode != null) {
-            AppLog appLog = AppLog.f14950g;
-            String strValueOf = String.valueOf(reasonCode);
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
-            for (Map.Entry entry : map.entrySet()) {
-                linkedHashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
-            }
-            appLog.mo8363e("call_report_problem", strValueOf, null, linkedHashMap);
-        }
-        tracker.track("call_report_problem", CollectionExtensionsKt.filterNonNullValues(map));
-    }
-
-    public final void captchaFailed(String reason) {
-        C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
-        tracker.track("captcha_failed", C12134g0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason)));
-    }
-
-    public final void changeLogEvent(String event, String version, String revision, Map<String, ? extends Object> properties) {
-        C12238m.checkNotNullParameter(event, "event");
-        C12238m.checkNotNullParameter(version, "version");
-        C12238m.checkNotNullParameter(revision, "revision");
-        C12238m.checkNotNullParameter(properties, "properties");
-        HashMap map = new HashMap();
-        map.put("change_log_id", version + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + revision);
-        tracker.track(event, C12136h0.plus(map, properties));
-    }
-
-    public final void channelOpened(long channelId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
-        C12238m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
-        tracker.track(C12116o.m10073to("channel_opened", Long.valueOf(channelId)), 900000L, new C66711(lazyPropertyProvider));
-    }
-
-    public final void chatInputComponentViewed(String type) {
-        C12238m.checkNotNullParameter(type, "type");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("type", type);
-        tracker.track("chat_input_component_viewed", linkedHashMap);
-    }
-
-    public final void closeFirstServerTipTutorial(boolean acknowledged) {
-        closeTutorial("create-first-server-tip", acknowledged);
-    }
-
-    public final void contactSyncToggled(boolean enabled, boolean phoneDiscoverable, boolean emailDiscoverable) {
-        tracker.track("contact_sync_toggled", C12136h0.mapOf(C12116o.m10073to("is_enabled", Boolean.valueOf(enabled)), C12116o.m10073to("am_discoverable_phone", Boolean.valueOf(phoneDiscoverable)), C12116o.m10073to("am_discoverable_email", Boolean.valueOf(emailDiscoverable))));
-    }
-
-    public final void createGuildViewed(StockGuildTemplate stockGuildTemplate, ModelGuildTemplate guildTemplate, String source) {
-        Map mapMapOf;
-        C12238m.checkNotNullParameter(stockGuildTemplate, "stockGuildTemplate");
-        C12238m.checkNotNullParameter(source, "source");
-        if (guildTemplate == null || (mapMapOf = C12136h0.mapOf(C12116o.m10073to("guild_template_code", guildTemplate.getCode()), C12116o.m10073to("guild_template_name", guildTemplate.getName()), C12116o.m10073to("guild_template_description", guildTemplate.getDescription()), C12116o.m10073to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId())))) == null) {
-            mapMapOf = C12134g0.mapOf(C12116o.m10073to("guild_template_name", stockGuildTemplate.name()));
-        }
-        tracker.track("create_guild_viewed", C12136h0.plus(mapMapOf, C12134g0.mapOf(C12116o.m10073to("location_section", source))));
-    }
-
-    public final void customStatusUpdated(WidgetUserSetCustomStatusViewModel.FormState formState, Traits.Location locationTrait) {
-        C12238m.checkNotNullParameter(formState, "formState");
-        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-        HashMap map = new HashMap();
-        locationTrait.serializeTo(map);
-        toProperties(formState, map);
-        tracker.track("custom_status_updated", map);
-    }
-
-    public final void deepLinkReceived(Intent intent, RouteHandlers.AnalyticsMetadata metadata, Map<String, ? extends Object> snapshotProperties) {
-        C12238m.checkNotNullParameter(intent, "intent");
-        C12238m.checkNotNullParameter(metadata, "metadata");
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        tracker.track("deep_link_received", C12136h0.plus(CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to("type", metadata.getType()), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, metadata.getGuildId()), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, metadata.getChannelId()), C12116o.m10073to("voice_action", Boolean.valueOf(intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN") != null)), C12116o.m10073to("source", intent.getStringExtra("com.discord.intent.extra.EXTRA_SOURCE")))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
-    }
-
-    public final void dismissModal(String modalName, String location, String dismissType, Long guildId) {
-        C1643a.m872q0(modalName, "modalName", location, ModelAuditLogEntry.CHANGE_KEY_LOCATION, dismissType, "dismissType");
-        Map<String, ? extends Object> mapMutableMapOf = C12136h0.mutableMapOf(C12116o.m10073to("location_section", location), C12116o.m10073to("type", modalName), C12116o.m10073to("dismiss_type", dismissType));
-        if (guildId != null) {
-            guildId.longValue();
-            mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
-        }
-        tracker.track("modal_dismissed", mapMutableMapOf);
-    }
-
-    public final void echoCancellationConfigured(MediaEngine.EchoCancellationInfo info) {
-        C12238m.checkNotNullParameter(info, "info");
-        tracker.track("native_echo_cancellation_configured", C12136h0.mapOf(C12116o.m10073to("builtin_aec_supported_java", Boolean.valueOf(info.builtinAecSupportedJava)), C12116o.m10073to("builtin_aec_supported_native", Boolean.valueOf(info.builtinAecSupportedNative)), C12116o.m10073to("builtin_aec_requested", Boolean.valueOf(info.builtinAecRequested)), C12116o.m10073to("builtin_aec_enabled", Boolean.valueOf(info.builtinAecEnabled)), C12116o.m10073to("aec_enabled_in_settings", Boolean.valueOf(info.aecEnabledInSettings)), C12116o.m10073to("aec_enabled_in_native_config", Boolean.valueOf(info.aecEnabledInNativeConfig)), C12116o.m10073to("aec_mobile_mode", Boolean.valueOf(info.aecMobileMode)), C12116o.m10073to("aec_enabled_by_default", Boolean.valueOf(info.aecEnabledByDefault)), C12116o.m10073to("aec_mobile_mode_by_default", Boolean.valueOf(info.aecMobileModeByDefault))));
-    }
-
-    public final void emojiCategorySelected(long guildId) {
-        expressionPickerCategorySelected$default(this, null, Long.valueOf(guildId), "emoji", 1, null);
-    }
-
-    public final void expressionPickerOpened(String tab, boolean badged) {
-        C12238m.checkNotNullParameter(tab, "tab");
-        tracker.track("expression_picker_opened", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged)), C12116o.m10073to("tab", tab)));
-    }
-
-    public final void expressionPickerStickerShopViewed(boolean badged) {
-        tracker.track("expression_picker_sticker_shop_viewed", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged))));
-    }
-
-    public final void expressionPickerTabClicked(String tab, boolean badged) {
-        C12238m.checkNotNullParameter(tab, "tab");
-        tracker.track("expression_picker_tab_clicked", C12136h0.mutableMapOf(C12116o.m10073to("badged", Boolean.valueOf(badged)), C12116o.m10073to("tab", tab)));
-    }
-
-    public final void expressionSuggestionsDisplayed(String suggestionTrigger) {
-        C12238m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
-        tracker.track("auto_suggest_displayed", C12134g0.mapOf(C12116o.m10073to("suggestion_trigger", suggestionTrigger)));
-    }
-
-    public final void expressionSuggestionsSelected(long stickerId, String suggestionTrigger) {
-        C12238m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
-        tracker.track("auto_suggest_expression_selected", C12136h0.mapOf(C12116o.m10073to("sticker_id", Long.valueOf(stickerId)), C12116o.m10073to("suggestion_trigger", suggestionTrigger)));
-    }
-
-    public final void externalDynamicLinkReceived(String fingerprint, String attemptId, String inviteCode, String guildTemplateCode, String authToken, boolean isBackgrounded) {
-        String str = fingerprint != null ? fingerprint : inviteCode;
-        if (str == null) {
-            str = authToken;
-        }
-        if (str != null) {
-            Pair[] pairArr = new Pair[6];
-            pairArr[0] = C12116o.m10073to("fingerprint", fingerprint != null ? toFingerprintNumber(fingerprint) : null);
-            pairArr[1] = C12116o.m10073to("attempt_id", attemptId);
-            pairArr[2] = C12116o.m10073to("invite_code", inviteCode);
-            pairArr[3] = C12116o.m10073to("guild_template_code", guildTemplateCode);
-            pairArr[4] = C12116o.m10073to("has_auth_token", Boolean.valueOf(true ^ (authToken == null || C12103t.isBlank(authToken))));
-            pairArr[5] = C12116o.m10073to("is_backgrounded", Boolean.valueOf(isBackgrounded));
-            tracker.track("external_dynamic_link_received", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(pairArr)));
-        }
-    }
-
-    public final void externalShare(Uri uri) {
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        tracker.trackFireBase("handle_ext_share", insertUriProperties(new HashMap(), uri));
-    }
-
-    public final void externalViewClosed(String type, long durationMs) {
-        C12238m.checkNotNullParameter(type, "type");
-        AnalyticsUtils.Tracker tracker2 = tracker;
-        Pair[] pairArr = new Pair[2];
-        pairArr[0] = C12116o.m10073to("type", type);
-        Long lValueOf = Long.valueOf(durationMs);
-        if (!(lValueOf.longValue() != 0)) {
-            lValueOf = null;
-        }
-        pairArr[1] = C12116o.m10073to("duration_open_ms", lValueOf);
-        tracker2.track("app_external_view_closed", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(pairArr)));
-    }
-
-    public final void failedMessageResolved(int numAttachments, int maxAttachmentSize, int totalAttachmentSize, boolean hasImage, boolean hasVideo, FailedMessageResolutionType resolutionType, long initialAttemptTimestamp, int numRetries, Map<String, ? extends Object> snapshotProperties) {
-        C12238m.checkNotNullParameter(resolutionType, "resolutionType");
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("num_attachments", Integer.valueOf(numAttachments));
-        linkedHashMap.put("max_attachment_size", Integer.valueOf(maxAttachmentSize));
-        linkedHashMap.put("total_attachment_size", Integer.valueOf(totalAttachmentSize));
-        linkedHashMap.put("has_image", Boolean.valueOf(hasImage));
-        linkedHashMap.put("has_video", Boolean.valueOf(hasVideo));
-        linkedHashMap.put("resolution_type", resolutionType.getAnalyticsValue());
-        linkedHashMap.put("initial_attempt_ts", Long.valueOf(initialAttemptTimestamp));
-        linkedHashMap.put("num_retries", Integer.valueOf(numRetries));
-        tracker.track("failed_message_resolved", C12136h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
-    }
-
-    public final void fileUploadAlertViewed(FileUploadAlertType alertType, int numAttachments, int maxAttachmentSize, int totalAttachmentSize, boolean hasImage, boolean hasVideo, boolean isPremium, Map<String, ? extends Object> snapshotProperties) {
-        C12238m.checkNotNullParameter(alertType, "alertType");
-        C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("alert_type", alertType.getAnalyticsValue());
-        linkedHashMap.put("num_attachments", Integer.valueOf(numAttachments));
-        linkedHashMap.put("max_attachment_size", Integer.valueOf(maxAttachmentSize));
-        linkedHashMap.put("total_attachment_size", Integer.valueOf(totalAttachmentSize));
-        linkedHashMap.put("has_image", Boolean.valueOf(hasImage));
-        linkedHashMap.put("has_video", Boolean.valueOf(hasVideo));
-        linkedHashMap.put("is_premium", Boolean.valueOf(isPremium));
-        tracker.track("file_upload_alert_viewed", C12136h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
-    }
-
-    public final void friendAddViewed(String type) {
-        C12238m.checkNotNullParameter(type, "type");
-        tracker.track("friend_add_viewed", C12134g0.mapOf(C12116o.m10073to("friend_add_type", type)));
-    }
-
-    public final void friendRequestFailed(CharSequence query, String username, Integer discriminator, String reason) {
-        C12238m.checkNotNullParameter(query, "query");
-        C12238m.checkNotNullParameter(username, "username");
-        HashMap map = new HashMap();
-        if (reason != null) {
-            map.put(ModelAuditLogEntry.CHANGE_KEY_REASON, reason);
-            map.put("discrim_len", Integer.valueOf(String.valueOf(discriminator).length()));
-            map.put("username_len", Integer.valueOf(username.length()));
-            map.put("is_email_like", Boolean.valueOf(EmailUtils.INSTANCE.isEmailLike(query.toString())));
-            map.put("is_num_only", Boolean.valueOf(PhoneUtils.INSTANCE.isValidPhoneFragment(query.toString())));
-        }
-        tracker.track("friend_request_failed", map);
-    }
-
-    public final void friendsListViewed() {
-        AnalyticsUtils.Tracker.track$default(tracker, "friends_list_viewed", null, 2, null);
-    }
-
-    public final AnalyticsUtils.Tracker getTracker() {
-        return tracker;
-    }
-
-    public final void giftResolved(ModelGift gift) {
-        C12238m.checkNotNullParameter(gift, "gift");
-        ModelStoreListing storeListing = gift.getStoreListing();
-        tracker.track("gift_code_resolved", C12136h0.plus(toProperties(storeListing != null ? storeListing.getSku() : null), C12136h0.mapOf(C12116o.m10073to("gift_code", gift.getCode()), C12116o.m10073to("gift_code_max_uses", Integer.valueOf(gift.getMaxUses())), C12116o.m10073to("resolved", Boolean.TRUE))));
-    }
-
-    public final void giftResolvedFailed(String giftCode) {
-        C12238m.checkNotNullParameter(giftCode, "giftCode");
-        tracker.track("gift_code_resolved", C12136h0.mapOf(C12116o.m10073to("gift_code", giftCode), C12116o.m10073to("resolved", Boolean.FALSE)));
-    }
-
-    public final void guildBoostPromotionClosed(long guildId, Traits.Location locationTrait, Long channelId) {
-        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-        HashMap map = new HashMap();
-        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
-        if (channelId != null) {
-            map.put(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId.longValue()));
-        }
-        locationTrait.serializeTo(map);
-        tracker.track("premium_guild_promotion_closed", map);
-    }
-
-    public final void guildBoostPromotionOpened(long guildId, Traits.Location locationTrait, Long channelId) {
-        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-        HashMap map = new HashMap();
-        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
-        if (channelId != null) {
-            map.put(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId.longValue()));
-        }
-        locationTrait.serializeTo(map);
-        tracker.track("premium_guild_promotion_opened", map);
-    }
-
-    public final void guildCategorySelected(long guildId) {
-        expressionPickerCategorySelected$default(this, null, Long.valueOf(guildId), "sticker", 1, null);
-    }
-
-    public final void guildCreationIntentSelected(Boolean isCommunity) {
-        AnalyticsUtils.Tracker tracker2 = tracker;
-        Pair[] pairArr = new Pair[2];
-        pairArr[0] = C12116o.m10073to("skipped", Boolean.valueOf(isCommunity == null));
-        pairArr[1] = C12116o.m10073to("is_community", Boolean.valueOf(isCommunity != null ? isCommunity.booleanValue() : false));
-        tracker2.track("guild_creation_intent_selected", C12136h0.mapOf(pairArr));
-    }
-
-    public final void guildRoleSubscriptionUpsellOpened(long guildRoleSubscriptionGroupListingId, List<Long> guildRoleSubscriptionTierListingIds, boolean hasUserActiveSubscriptions, String location) {
+    public static final void inviteResolveFailed(String inviteCode, String location, String errorMessage, Integer errorCode) {
+        C12238m.checkNotNullParameter(inviteCode, "inviteCode");
         C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         AnalyticsUtils.Tracker tracker2 = tracker;
-        TrackRoleSubscriptionListingUpsellPageViewedV3 trackRoleSubscriptionListingUpsellPageViewedV3 = new TrackRoleSubscriptionListingUpsellPageViewedV3(Long.valueOf(guildRoleSubscriptionGroupListingId), guildRoleSubscriptionTierListingIds, Boolean.valueOf(hasUserActiveSubscriptions));
-        trackRoleSubscriptionListingUpsellPageViewedV3.m7511e(new TrackBase(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, location, null, null, null, null, null, null, null, null, null, null, null, null, -1, -1073741825, 2047));
-        tracker2.track(trackRoleSubscriptionListingUpsellPageViewedV3);
-    }
-
-    public final void guildTemplateResolved(ModelGuildTemplate guildTemplate) {
-        C12238m.checkNotNullParameter(guildTemplate, "guildTemplate");
-        tracker.track("guild_template_resolved", C12136h0.mapOf(C12116o.m10073to("resolved", Boolean.TRUE), C12116o.m10073to("guild_template_code", guildTemplate.getCode()), C12116o.m10073to("guild_template_name", guildTemplate.getName()), C12116o.m10073to("guild_template_description", guildTemplate.getDescription()), C12116o.m10073to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId()))));
-    }
-
-    public final void guildViewed(long guildId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
-        C12238m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
-        tracker.track(C12116o.m10073to("guild_viewed", Long.valueOf(guildId)), 900000L, new C66741(lazyPropertyProvider));
-    }
-
-    public final void impressionInviteAccept(String inviteCode) {
-        if (inviteCode != null) {
-            tracker.track(new TrackImpressionInviteAccept(inviteCode, null, 2));
-        }
+        tracker2.track("resolve_invite", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), C12116o.m10073to("resolved", Boolean.FALSE), C12116o.m10073to("authenticated", Boolean.valueOf(tracker2.isAuthed$app_productionGoogleRelease())), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), C12116o.m10073to("error_message", errorMessage), C12116o.m10073to("error_code", errorCode))));
     }
 
     public final void inviteResolved(ModelInvite invite, String location) {
@@ -1610,6 +1392,25 @@ public final class AnalyticsTracker {
     public final void inviteSent(ModelInvite invite, Map<String, ? extends Object> snapshotProperties) {
         C12238m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
         tracker.track("invite_sent", toProperties(invite, CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+    }
+
+    public static final void inviteShareClicked(ModelInvite invite) {
+        if (invite == null) {
+            return;
+        }
+        AnalyticsTracker analyticsTracker = INSTANCE;
+        String str = invite.code;
+        C12238m.checkNotNullExpressionValue(str, "invite.code");
+        Guild guild = invite.guild;
+        Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
+        Channel channel = invite.getChannel();
+        Long lValueOf2 = channel != null ? Long.valueOf(channel.getId()) : null;
+        Channel channel2 = invite.getChannel();
+        Integer numValueOf = channel2 != null ? Integer.valueOf(channel2.getType()) : null;
+        User inviter = invite.getInviter();
+        Long lValueOf3 = inviter != null ? Long.valueOf(inviter.getId()) : null;
+        GuildScheduledEvent guildScheduledEvent = invite.getGuildScheduledEvent();
+        analyticsTracker.inviteShareClicked(str, lValueOf, lValueOf2, numValueOf, lValueOf3, guildScheduledEvent != null ? Long.valueOf(guildScheduledEvent.getId()) : null);
     }
 
     public final void inviteSuggestionOpened(long guildId, List<Channel> channelSuggestions, List<? extends com.discord.models.user.User> userSuggestions) {
@@ -1725,6 +1526,17 @@ public final class AnalyticsTracker {
         tracker.track("name_submitted", C12136h0.mapOf(C12116o.m10073to("num_words", Integer.valueOf(numWords)), C12116o.m10073to("num_chars", Integer.valueOf(numChars))));
     }
 
+    public static final void nearbyConnected() {
+        AnalyticsUtils.Tracker.track$default(tracker, "friend_add_nearby_connected", null, 2, null);
+    }
+
+    public static /* synthetic */ void newUserOnboarding$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Long l, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            l = null;
+        }
+        analyticsTracker.newUserOnboarding(str, str2, str3, l, (i & 16) != 0 ? false : z2);
+    }
+
     public final void newUserOnboarding(String flowType, String fromStep, String toStep, Long fromStepStartTime, boolean skip) {
         C1643a.m872q0(flowType, "flowType", fromStep, "fromStep", toStep, "toStep");
         Map<String, ? extends Object> mapMutableMapOf = C12136h0.mutableMapOf(C12116o.m10073to("flow_type", flowType), C12116o.m10073to("from_step", fromStep), C12116o.m10073to("to_step", toStep), C12116o.m10073to("skip", Boolean.valueOf(skip)));
@@ -1818,6 +1630,19 @@ public final class AnalyticsTracker {
         tracker.track("open_popout", C12136h0.plus(channelProperties, C12136h0.mapOf(C12116o.m10073to("type", "Custom Emoji Popout" + str), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), C12116o.m10073to("emoji_id", Long.valueOf(emojiId)))));
     }
 
+    public static final void openGiftModal(ModelGift gift, Channel channel, String location) {
+        Map<String, Object> mapEmptyMap;
+        C12238m.checkNotNullParameter(gift, "gift");
+        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        AnalyticsTracker analyticsTracker = INSTANCE;
+        ModelStoreListing storeListing = gift.getStoreListing();
+        Map<String, Object> properties = analyticsTracker.toProperties(storeListing != null ? storeListing.getSku() : null);
+        if (channel == null || (mapEmptyMap = AnalyticsUtils.INSTANCE.getProperties$app_productionGoogleRelease(channel)) == null) {
+            mapEmptyMap = C12136h0.emptyMap();
+        }
+        tracker.track("open_modal", C12136h0.plus(C12136h0.plus(C12136h0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), C12116o.m10073to("type", "gift")), mapEmptyMap), properties));
+    }
+
     public final void openGuildProfileSheet(long guildId) {
         HashMap map = new HashMap();
         map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
@@ -1829,6 +1654,24 @@ public final class AnalyticsTracker {
         tracker.track("open_modal", C12136h0.mapOf(C12116o.m10073to("type", "Guild Events Modal"), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), C12116o.m10073to("guild_events_count", Integer.valueOf(numEvents))));
     }
 
+    public static /* synthetic */ void openModal$default(String str, String str2, Long l, int i, Object obj) {
+        if ((i & 4) != 0) {
+            l = null;
+        }
+        openModal(str, str2, l);
+    }
+
+    public static final void openModal(String modalName, String location, Long guildId) {
+        C12238m.checkNotNullParameter(modalName, "modalName");
+        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        Map<String, ? extends Object> mapMutableMapOf = C12136h0.mutableMapOf(C12116o.m10073to("location_section", location), C12116o.m10073to("type", modalName));
+        if (guildId != null) {
+            guildId.longValue();
+            mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
+        }
+        tracker.track("open_modal", mapMutableMapOf);
+    }
+
     public final void openPopout(String popoutName, String location) {
         C12238m.checkNotNullParameter(popoutName, "popoutName");
         C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
@@ -1838,6 +1681,19 @@ public final class AnalyticsTracker {
     public final void openUnicodeEmojiPopout(long guildId, Map<String, ? extends Object> channelProperties) {
         C12238m.checkNotNullParameter(channelProperties, "channelProperties");
         tracker.track("open_popout", C12136h0.plus(channelProperties, C12136h0.mapOf(C12116o.m10073to("type", "Standard Emoji Popout"), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)))));
+    }
+
+    public static /* synthetic */ void openUserSheet$default(AnalyticsTracker analyticsTracker, boolean z2, String str, ActivityPlatform activityPlatform, GuildMember guildMember, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str = null;
+        }
+        if ((i & 4) != 0) {
+            activityPlatform = null;
+        }
+        if ((i & 8) != 0) {
+            guildMember = null;
+        }
+        analyticsTracker.openUserSheet(z2, str, activityPlatform, guildMember);
     }
 
     public final void openUserSheet(boolean profileHasPremiumCustomization, String gameName, ActivityPlatform gamePlatform, GuildMember guildMember) {
@@ -1876,6 +1732,10 @@ public final class AnalyticsTracker {
         tracker.track("open_popout", map);
     }
 
+    public static final void overlayToggled(boolean isEnabled) {
+        tracker.track("mobile_overlay_toggled", C12134g0.mapOf(C12116o.m10073to("enabled", Boolean.valueOf(isEnabled))));
+    }
+
     public final void overlayVoiceClosed(Map<String, ? extends Object> properties) {
         C12238m.checkNotNullParameter(properties, "properties");
         tracker.track("mobile_overlay_closed", C12136h0.plus(C12134g0.mapOf(C12116o.m10073to("type", "voice")), properties));
@@ -1906,6 +1766,19 @@ public final class AnalyticsTracker {
         tracker.track("payment_flow_completed", map);
     }
 
+    public static /* synthetic */ void paymentFlowFailed$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
+        if ((i & 2) != 0) {
+            subscription = null;
+        }
+        if ((i & 4) != 0) {
+            storeSku = null;
+        }
+        if ((i & 8) != 0) {
+            payment = null;
+        }
+        analyticsTracker.paymentFlowFailed(location, subscription, storeSku, payment);
+    }
+
     public final void paymentFlowFailed(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
         HashMap map = new HashMap();
         if (locationTrait != null) {
@@ -1921,6 +1794,19 @@ public final class AnalyticsTracker {
             paymentTrait.serializeTo(map);
         }
         tracker.track("payment_flow_failed", map);
+    }
+
+    public static /* synthetic */ void paymentFlowStarted$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
+        if ((i & 2) != 0) {
+            subscription = null;
+        }
+        if ((i & 4) != 0) {
+            storeSku = null;
+        }
+        if ((i & 8) != 0) {
+            payment = null;
+        }
+        analyticsTracker.paymentFlowStarted(location, subscription, storeSku, payment);
     }
 
     public final void paymentFlowStarted(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
@@ -1983,6 +1869,20 @@ public final class AnalyticsTracker {
         tracker.track("premium_promotion_opened", map);
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void premiumUpsellViewed$default(AnalyticsTracker analyticsTracker, PremiumUpsellType premiumUpsellType, Traits.Location location, Map map, Traits.Source source, int i, Object obj) {
+        if ((i & 2) != 0) {
+            location = null;
+        }
+        if ((i & 4) != 0) {
+            map = C12136h0.emptyMap();
+        }
+        if ((i & 8) != 0) {
+            source = null;
+        }
+        analyticsTracker.premiumUpsellViewed(premiumUpsellType, location, map, source);
+    }
+
     public final void premiumUpsellViewed(PremiumUpsellType type, Traits.Location locationTrait, Map<String, ? extends Object> properties, Traits.Source sourceTrait) {
         C12238m.checkNotNullParameter(type, "type");
         C12238m.checkNotNullParameter(properties, "properties");
@@ -2043,6 +1943,11 @@ public final class AnalyticsTracker {
         tracker.track("quickswitcher_result_selected", mapMutableMapOf);
     }
 
+    public static final void readyPayloadReceived(Map<String, ? extends Object> properties) {
+        C12238m.checkNotNullParameter(properties, "properties");
+        tracker.track("ready_payload_received", properties);
+    }
+
     public final void registerTransition(String step, String actionType, String identityType, List<String> details, Map<String, ? extends Object> additionalProps) {
         Map<String, ? extends Object> linkedHashMap;
         C12238m.checkNotNullParameter(step, "step");
@@ -2059,6 +1964,13 @@ public final class AnalyticsTracker {
             linkedHashMap.put("action_details", details);
         }
         tracker.track("register_transition", linkedHashMap);
+    }
+
+    public static /* synthetic */ void registerViewed$default(AnalyticsTracker analyticsTracker, ModelInvite modelInvite, int i, Object obj) {
+        if ((i & 1) != 0) {
+            modelInvite = null;
+        }
+        analyticsTracker.registerViewed(modelInvite);
     }
 
     public final void registerViewed(ModelInvite invite) {
@@ -2084,6 +1996,13 @@ public final class AnalyticsTracker {
         linkedHashMap.put("back", Boolean.valueOf(back));
         linkedHashMap.put("seconds_on_from_step", Integer.valueOf(secondsOnFromStep));
         tracker.track("relationship_sync_flow", linkedHashMap);
+    }
+
+    public static /* synthetic */ void reportStreamProblem$default(AnalyticsTracker analyticsTracker, ModelApplicationStream modelApplicationStream, FeedbackRating feedbackRating, String str, String str2, String str3, int i, Object obj) {
+        if ((i & 16) != 0) {
+            str3 = null;
+        }
+        analyticsTracker.reportStreamProblem(modelApplicationStream, feedbackRating, str, str2, str3);
     }
 
     public final void reportStreamProblem(ModelApplicationStream stream, FeedbackRating rating, String reason, String mediaSessionId, String issueDetails) {
@@ -2165,6 +2084,13 @@ public final class AnalyticsTracker {
         }
     }
 
+    public static /* synthetic */ void searchStart$default(AnalyticsTracker analyticsTracker, SearchType searchType, Traits.Location location, Map map, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z2 = false;
+        }
+        analyticsTracker.searchStart(searchType, location, map, z2);
+    }
+
     public final void searchStart(SearchType searchType, Traits.Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
         C12238m.checkNotNullParameter(searchType, "searchType");
         C12238m.checkNotNullParameter(properties, "properties");
@@ -2174,6 +2100,14 @@ public final class AnalyticsTracker {
         } else {
             tracker.track("search_started", analyticsTracker$searchStart$propertyProvider$1.invoke());
         }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void settingsPaneViewed$default(AnalyticsTracker analyticsTracker, String str, String str2, Map map, int i, Object obj) {
+        if ((i & 4) != 0) {
+            map = null;
+        }
+        analyticsTracker.settingsPaneViewed(str, str2, map);
     }
 
     public final void settingsPaneViewed(String settingsType, String pane, Map<String, ? extends Object> extraProperties) {
@@ -2188,6 +2122,10 @@ public final class AnalyticsTracker {
 
     public final void showFirstServerTipTutorial() {
         showTutorial("create-first-server-tip");
+    }
+
+    private final void showTutorial(String tutorial) {
+        tracker.track("show_tutorial", C12134g0.mapOf(C12116o.m10073to("tutorial", tutorial)));
     }
 
     public final void smartLockAutoLogin() {
@@ -2275,6 +2213,26 @@ public final class AnalyticsTracker {
         tracker.track("notification_settings_updated", CollectionExtensionsKt.filterNonNullValues(map));
     }
 
+    private final Long toFingerprintNumber(String str) {
+        String strSubstringBefore = C12106w.substringBefore(str, '.', "");
+        if (!(strSubstringBefore.length() > 0)) {
+            strSubstringBefore = null;
+        }
+        if (strSubstringBefore != null) {
+            return C12102s.toLongOrNull(strSubstringBefore);
+        }
+        return null;
+    }
+
+    private final Map<String, Object> toProperties(MediaEngine.AudioInfo audioInfo, Map<String, Object> map) {
+        if (audioInfo == null) {
+            return map;
+        }
+        map.put("audio_subsystem", audioInfo.audioSubsystem);
+        map.put("audio_layer", audioInfo.audioLayer);
+        return map;
+    }
+
     public final void trackAccountLinkStep(String platformType, String previousStep) {
         C12238m.checkNotNullParameter(platformType, "platformType");
         C12238m.checkNotNullParameter(previousStep, "previousStep");
@@ -2310,8 +2268,27 @@ public final class AnalyticsTracker {
         tracker.track(new TrackGuildAutomodFeedback(decisionId, String.valueOf(messageId), null, feedbackType, content, 4));
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void trackStageChannelEvent$default(AnalyticsTracker analyticsTracker, String str, long j, Map map, int i, Object obj) {
+        if ((i & 4) != 0) {
+            map = C12136h0.emptyMap();
+        }
+        analyticsTracker.trackStageChannelEvent(str, j, map);
+    }
+
+    private final void trackStageChannelEvent(String event, long channelId, Map<String, ? extends Object> extraProperties) {
+        Map<String, Object> stageChannelMetadata = getStageChannelMetadata(channelId);
+        if (stageChannelMetadata != null) {
+            tracker.track(event, C12136h0.plus(stageChannelMetadata, extraProperties));
+        }
+    }
+
     public final void trackStartStageOpened(boolean canStartPublicStage, Long stageInstanceId, Long guildId) {
         tracker.track("start_stage_opened", CollectionExtensionsKt.filterNonNullValues(C12136h0.mapOf(C12116o.m10073to("can_start_public_stage", Boolean.valueOf(canStartPublicStage)), C12116o.m10073to("stage_instance_id", stageInstanceId), C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, guildId))));
+    }
+
+    private final void trackUserVoiceEvent(Channel channel, long j, String str, Pair<String, Long> pair) {
+        withGameProperties(j, new C66781(channel, pair, str));
     }
 
     public final void unhandledUrl(String url) {
@@ -2332,6 +2309,11 @@ public final class AnalyticsTracker {
         HashMap map = new HashMap();
         locationTrait.serializeTo(map);
         tracker.track("upgrade_premium_yearly_closed", map);
+    }
+
+    public static final void userExperimentTriggered(String experimentName, int revision, int population, int bucket) {
+        C12238m.checkNotNullParameter(experimentName, "experimentName");
+        tracker.track("experiment_user_triggered", C12136h0.mutableMapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_NAME, experimentName), C12116o.m10073to("revision", Integer.valueOf(revision)), C12116o.m10073to("population", Integer.valueOf(population)), C12116o.m10073to("bucket", Integer.valueOf(bucket))));
     }
 
     public final void userListening(long meId, Set<Long> speakingList, String inputMode, Channel channel) {
@@ -2501,6 +2483,24 @@ public final class AnalyticsTracker {
         tracker.track("voice_disconnect", C12136h0.plus(CollectionExtensionsKt.filterNonNullValues(mutableMap), toProperties(voiceConfig)));
     }
 
+    public static final void welcomeScreenChannelSelected(int index, long guildId, List<String> optionDescriptions, List<Long> channelIds, String description, boolean hasCustomEmojis) {
+        C12238m.checkNotNullParameter(optionDescriptions, "optionDescriptions");
+        C12238m.checkNotNullParameter(channelIds, "channelIds");
+        C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        HashMap map = new HashMap();
+        map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
+        map.put("index", Integer.valueOf(index));
+        map.put("options", optionDescriptions);
+        map.put("options_channel_ids", channelIds);
+        map.put("guild_description", description);
+        map.put("has_custom_emojis", Boolean.valueOf(hasCustomEmojis));
+        tracker.track("guild_welcome_screen_option_selected", map);
+    }
+
+    private final void withGameProperties(long meId, Function1<? super Map<String, Object>, Unit> onGameProps) {
+        ObservableExtensionsKt.appSubscribe(getGameProperties(meId), (Class<?>) AnalyticsTracker.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), onGameProps);
+    }
+
     public final void inviteSent(GuildInvite guildInvite, Channel channel, Map<String, ? extends Object> snapshotProperties) {
         Long inviterId;
         Long guildId;
@@ -2528,6 +2528,15 @@ public final class AnalyticsTracker {
         return modelInviteToProperties(modelInvite, map);
     }
 
+    public final void openPopout(String popoutName, Traits.Location locationTrait) {
+        C12238m.checkNotNullParameter(popoutName, "popoutName");
+        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+        HashMap map = new HashMap();
+        locationTrait.serializeTo(map);
+        map.put("type", popoutName);
+        tracker.track("open_popout", map);
+    }
+
     private final Map<String, Object> toProperties(ModelSku modelSku) {
         HashMap map = new HashMap();
         if (modelSku == null) {
@@ -2543,15 +2552,6 @@ public final class AnalyticsTracker {
             map.put("application_name", application.getName());
         }
         return map;
-    }
-
-    public final void openPopout(String popoutName, Traits.Location locationTrait) {
-        C12238m.checkNotNullParameter(popoutName, "popoutName");
-        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-        HashMap map = new HashMap();
-        locationTrait.serializeTo(map);
-        map.put("type", popoutName);
-        tracker.track("open_popout", map);
     }
 
     public final void openModal(String modalName, Traits.Source sourceTrait) {

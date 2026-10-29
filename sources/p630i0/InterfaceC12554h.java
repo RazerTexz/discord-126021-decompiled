@@ -14,7 +14,7 @@ public interface InterfaceC12554h<F, T> {
 
     /* JADX INFO: renamed from: i0.h$a */
     /* JADX INFO: compiled from: Converter.java */
-    public static abstract class a {
+    public abstract class a {
         public static Type getParameterUpperBound(int i, ParameterizedType parameterizedType) {
             return C12503c0.m10685e(i, parameterizedType);
         }

@@ -82,7 +82,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configurePhoneInput$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72281 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C72281 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C72281() {
             super(1);
         }
@@ -102,7 +102,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureSegmentControl$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72291 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C72291 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C72291() {
             super(1);
         }
@@ -121,7 +121,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureUI$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72301 extends AbstractC12240o implements Function0<PhoneCountryCode> {
+    public final class C72301 extends AbstractC12240o implements Function0<PhoneCountryCode> {
         public final /* synthetic */ StorePhone $phoneStore;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -139,7 +139,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureUI$2 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72312 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
+    public final class C72312 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
         public C72312() {
             super(1);
         }
@@ -159,7 +159,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72331 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+    public final class C72331 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
         public static final C72331 INSTANCE = new C72331();
 
         public C72331() {
@@ -183,7 +183,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72341 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class C72341 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
         public static final C72341 INSTANCE = new C72341();
 
         public C72341() {
@@ -198,7 +198,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$2 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72352 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C72352 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ String $phone;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -222,7 +222,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$3 */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public static final class C72363 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C72363 extends AbstractC12240o implements Function1<Error, Unit> {
         public C72363() {
             super(1);
         }
@@ -323,6 +323,11 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         return (ValidationManager) this.emailValidationManager.getValue();
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final ValidationManager getPhoneValidationManager() {
         return (ValidationManager) this.phoneValidationManager.getValue();
     }
@@ -342,40 +347,6 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         } else {
             RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Identity", "input_error", null, 4, null);
         }
-    }
-
-    private final void registerViaEmail() {
-        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
-        companion.getINSTANCE().setEmail(getBinding().f15711d.getTextOrEmpty());
-        RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Identity", "success", null, 4, null);
-        C0870j.m157e(requireContext(), WidgetAuthRegisterAccountInformation.class, null, 4);
-    }
-
-    private final void registerViaPhone(CaptchaHelper.CaptchaPayload captchaPayload) {
-        String textOrEmpty = getBinding().f15711d.getTextOrEmpty();
-        RegistrationFlowRepo.INSTANCE.getINSTANCE().setPhone(textOrEmpty);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthRegisterPhone(new RestAPIParams.AuthRegisterPhone(textOrEmpty, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), C72341.INSTANCE), this, null, 2, null), getBinding().f15715h, 0L, 2, null), (Class<?>) WidgetAuthRegisterIdentity.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72363()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72352(textOrEmpty));
-    }
-
-    public static /* synthetic */ void registerViaPhone$default(WidgetAuthRegisterIdentity widgetAuthRegisterIdentity, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetAuthRegisterIdentity.registerViaPhone(captchaPayload);
-    }
-
-    private final void setInputMode(PhoneOrEmailInputView.Mode newInputMode) {
-        if (this.inputMode == newInputMode) {
-            return;
-        }
-        this.inputMode = newInputMode;
-        getBinding().f15711d.getMainTextInputLayout().setError(null);
-        configurePhoneInput();
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
@@ -431,5 +402,34 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         this.shouldValidateInputs = z2;
         configureUI();
         companion.getInviteSettings().trackWithInvite$app_productionGoogleRelease(WidgetAuthRegisterIdentity.class, C72331.INSTANCE);
+    }
+
+    private final void registerViaEmail() {
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        companion.getINSTANCE().setEmail(getBinding().f15711d.getTextOrEmpty());
+        RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Identity", "success", null, 4, null);
+        C0870j.m157e(requireContext(), WidgetAuthRegisterAccountInformation.class, null, 4);
+    }
+
+    public static /* synthetic */ void registerViaPhone$default(WidgetAuthRegisterIdentity widgetAuthRegisterIdentity, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetAuthRegisterIdentity.registerViaPhone(captchaPayload);
+    }
+
+    private final void registerViaPhone(CaptchaHelper.CaptchaPayload captchaPayload) {
+        String textOrEmpty = getBinding().f15711d.getTextOrEmpty();
+        RegistrationFlowRepo.INSTANCE.getINSTANCE().setPhone(textOrEmpty);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthRegisterPhone(new RestAPIParams.AuthRegisterPhone(textOrEmpty, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), C72341.INSTANCE), this, null, 2, null), getBinding().f15715h, 0L, 2, null), (Class<?>) WidgetAuthRegisterIdentity.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72363()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72352(textOrEmpty));
+    }
+
+    private final void setInputMode(PhoneOrEmailInputView.Mode newInputMode) {
+        if (this.inputMode == newInputMode) {
+            return;
+        }
+        this.inputMode = newInputMode;
+        getBinding().f15711d.getMainTextInputLayout().setError(null);
+        configurePhoneInput();
     }
 }

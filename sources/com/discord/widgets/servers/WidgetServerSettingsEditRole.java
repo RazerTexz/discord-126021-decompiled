@@ -81,10 +81,10 @@ import p658rx.functions.Func6;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEditRole extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsEditRole.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEditRoleBinding;", 0)};
+    private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final String INTENT_EXTRA_ROLE_ID = "INTENT_EXTRA_ROLE_ID";
 
@@ -92,8 +92,49 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final StatefulViews state;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C92381 extends C12236k implements Function1<Model, Unit> {
+        public C92381(WidgetServerSettingsEditRole widgetServerSettingsEditRole) {
+            super(1, widgetServerSettingsEditRole, WidgetServerSettingsEditRole.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditRole$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsEditRole) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$setupActionBar$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
+    public final class C92401 extends AbstractC12240o implements Function2<String, Integer, SpannableStringBuilder> {
+        public static final C92401 INSTANCE = new C92401();
+
+        public C92401() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ SpannableStringBuilder invoke(String str, Integer num) {
+            return invoke(str, num.intValue());
+        }
+
+        public final SpannableStringBuilder invoke(String str, @ColorInt int i) {
+            C12238m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(i), 0, spannableStringBuilder.length(), 0);
+            return spannableStringBuilder;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -111,7 +152,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -126,7 +167,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         private final boolean useNewThreadPermissions;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -237,51 +278,6 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             return manageStatus == ManageStatus.CAN_MANAGE_CONDITIONAL || manageStatus == ManageStatus.CAN_MANAGE_ADMIN;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getOwner() {
-            return this.owner;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ManageStatus getManageStatus() {
-            return this.manageStatus;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Long getMyPermissions() {
-            return this.myPermissions;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getMyPermissionsFromOtherRoles() {
-            return this.myPermissionsFromOtherRoles;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsCommunityServer() {
-            return this.isCommunityServer;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getUseNewThreadPermissions() {
-            return this.useNewThreadPermissions;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getHasGuildCommunicationDisabledFeature() {
-            return this.hasGuildCommunicationDisabledFeature;
-        }
-
         public final Model copy(boolean owner, long guildId, GuildRole role, ManageStatus manageStatus, Long myPermissions, long myPermissionsFromOtherRoles, boolean isCommunityServer, boolean useNewThreadPermissions, boolean hasGuildCommunicationDisabledFeature) {
             C12238m.checkNotNullParameter(role, "role");
             return new Model(owner, guildId, role, manageStatus, myPermissions, myPermissionsFromOtherRoles, isCommunityServer, useNewThreadPermissions, hasGuildCommunicationDisabledFeature);
@@ -298,32 +294,77 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             return this.owner == model.owner && this.guildId == model.guildId && C12238m.areEqual(this.role, model.role) && C12238m.areEqual(this.manageStatus, model.manageStatus) && C12238m.areEqual(this.myPermissions, model.myPermissions) && this.myPermissionsFromOtherRoles == model.myPermissionsFromOtherRoles && this.isCommunityServer == model.isCommunityServer && this.useNewThreadPermissions == model.useNewThreadPermissions && this.hasGuildCommunicationDisabledFeature == model.hasGuildCommunicationDisabledFeature;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getHasGuildCommunicationDisabledFeature() {
+            return this.hasGuildCommunicationDisabledFeature;
         }
 
         public final boolean getHasGuildCommunicationDisabledFeature() {
             return this.hasGuildCommunicationDisabledFeature;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsCommunityServer() {
+            return this.isCommunityServer;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ManageStatus getManageStatus() {
             return this.manageStatus;
+        }
+
+        public final ManageStatus getManageStatus() {
+            return this.manageStatus;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Long getMyPermissions() {
+            return this.myPermissions;
         }
 
         public final Long getMyPermissions() {
             return this.myPermissions;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final long getMyPermissionsFromOtherRoles() {
             return this.myPermissionsFromOtherRoles;
+        }
+
+        public final long getMyPermissionsFromOtherRoles() {
+            return this.myPermissionsFromOtherRoles;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getOwner() {
+            return this.owner;
         }
 
         public final boolean getOwner() {
             return this.owner;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final GuildRole getRole() {
             return this.role;
+        }
+
+        public final GuildRole getRole() {
+            return this.role;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getUseNewThreadPermissions() {
+            return this.useNewThreadPermissions;
         }
 
         public final boolean getUseNewThreadPermissions() {
@@ -426,47 +467,6 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             iArr2[Model.ManageStatus.LOCKED_HIGHER.ordinal()] = 2;
             iArr2[Model.ManageStatus.LOCKED_HIGHEST.ordinal()] = 3;
             iArr2[Model.ManageStatus.USER_NOT_ELEVATED.ordinal()] = 4;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public static final /* synthetic */ class C92381 extends C12236k implements Function1<Model, Unit> {
-        public C92381(WidgetServerSettingsEditRole widgetServerSettingsEditRole) {
-            super(1, widgetServerSettingsEditRole, WidgetServerSettingsEditRole.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditRole$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsEditRole) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$setupActionBar$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public static final class C92401 extends AbstractC12240o implements Function2<String, Integer, SpannableStringBuilder> {
-        public static final C92401 INSTANCE = new C92401();
-
-        public C92401() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ SpannableStringBuilder invoke(String str, Integer num) {
-            return invoke(str, num.intValue());
-        }
-
-        public final SpannableStringBuilder invoke(String str, @ColorInt int i) {
-            C12238m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(i), 0, spannableStringBuilder.length(), 0);
-            return spannableStringBuilder;
         }
     }
 
@@ -614,6 +614,34 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         };
         AppFragment.hideKeyboard$default(this, null, 1, null);
         colorPickerDialogBuildColorPickerDialog.show(getParentFragmentManager(), DIALOG_TAG_COLOR_PICKER);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setRetainInstance(true);
+        this.state.setupUnsavedChangesConfirmation(this);
+        StatefulViews statefulViews = this.state;
+        FloatingActionButton floatingActionButton = getBinding().f16527c;
+        TextInputLayout textInputLayout = getBinding().f16526b;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
+        statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout);
+        FloatingActionButton floatingActionButton2 = getBinding().f16527c;
+        C12238m.checkNotNullExpressionValue(floatingActionButton2, "binding.editRoleSave");
+        floatingActionButton2.setVisibility(8);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(Model.INSTANCE.get(getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L), getMostRecentIntent().getLongExtra(INTENT_EXTRA_ROLE_ID, -1L))), this, null, 2, null), (Class<?>) WidgetServerSettingsEditRole.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92381(this));
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Fragment fragmentFindFragmentByTag = parentFragmentManager.findFragmentByTag(DIALOG_TAG_COLOR_PICKER);
+        if (fragmentFindFragmentByTag != null) {
+            parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();
+        }
     }
 
     private final void patchRole(long guildId, RestAPIParams.Role roleParams) {
@@ -980,33 +1008,5 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         C12238m.checkNotNullExpressionValue(view2, "binding.roleSettingsEditNameDisabledOverlay");
         view2.setVisibility(8);
         getBinding().f16539o.setOnClickListener(null);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setRetainInstance(true);
-        this.state.setupUnsavedChangesConfirmation(this);
-        StatefulViews statefulViews = this.state;
-        FloatingActionButton floatingActionButton = getBinding().f16527c;
-        TextInputLayout textInputLayout = getBinding().f16526b;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
-        statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout);
-        FloatingActionButton floatingActionButton2 = getBinding().f16527c;
-        C12238m.checkNotNullExpressionValue(floatingActionButton2, "binding.editRoleSave");
-        floatingActionButton2.setVisibility(8);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(Model.INSTANCE.get(getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L), getMostRecentIntent().getLongExtra(INTENT_EXTRA_ROLE_ID, -1L))), this, null, 2, null), (Class<?>) WidgetServerSettingsEditRole.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92381(this));
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        Fragment fragmentFindFragmentByTag = parentFragmentManager.findFragmentByTag(DIALOG_TAG_COLOR_PICKER);
-        if (fragmentFindFragmentByTag != null) {
-            parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();
-        }
     }
 }

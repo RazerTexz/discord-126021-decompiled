@@ -18,6 +18,17 @@ public final /* data */ class ActivityAssets {
         this.smallText = str4;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ActivityAssets)) {
+            return false;
+        }
+        ActivityAssets activityAssets = (ActivityAssets) other;
+        return C12238m.areEqual(this.largeImage, activityAssets.largeImage) && C12238m.areEqual(this.largeText, activityAssets.largeText) && C12238m.areEqual(this.smallImage, activityAssets.smallImage) && C12238m.areEqual(this.smallText, activityAssets.smallText);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getLargeImage() {
         return this.largeImage;
@@ -36,17 +47,6 @@ public final /* data */ class ActivityAssets {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getSmallText() {
         return this.smallText;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ActivityAssets)) {
-            return false;
-        }
-        ActivityAssets activityAssets = (ActivityAssets) other;
-        return C12238m.areEqual(this.largeImage, activityAssets.largeImage) && C12238m.areEqual(this.largeText, activityAssets.largeText) && C12238m.areEqual(this.smallImage, activityAssets.smallImage) && C12238m.areEqual(this.smallText, activityAssets.smallText);
     }
 
     public int hashCode() {

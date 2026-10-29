@@ -19,9 +19,17 @@ public abstract class AbstractC4511j {
 
     /* JADX INFO: renamed from: b.i.b.b.j$a */
     /* JADX INFO: compiled from: ComparisonChain.java */
-    public static class a extends AbstractC4511j {
+    public final class a extends AbstractC4511j {
         public a() {
             super(null);
+        }
+
+        /* JADX INFO: renamed from: f */
+        public AbstractC4511j m6259f(int i) {
+            if (i < 0) {
+                return AbstractC4511j.f12029b;
+            }
+            return i > 0 ? AbstractC4511j.f12030c : AbstractC4511j.f12028a;
         }
 
         @Override // p007b.p225i.p355b.p357b.AbstractC4511j
@@ -71,19 +79,11 @@ public abstract class AbstractC4511j {
         public int mo6258e() {
             return 0;
         }
-
-        /* JADX INFO: renamed from: f */
-        public AbstractC4511j m6259f(int i) {
-            if (i < 0) {
-                return AbstractC4511j.f12029b;
-            }
-            return i > 0 ? AbstractC4511j.f12030c : AbstractC4511j.f12028a;
-        }
     }
 
     /* JADX INFO: renamed from: b.i.b.b.j$b */
     /* JADX INFO: compiled from: ComparisonChain.java */
-    public static final class b extends AbstractC4511j {
+    public final class b extends AbstractC4511j {
 
         /* JADX INFO: renamed from: d */
         public final int f12031d;

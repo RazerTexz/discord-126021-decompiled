@@ -138,7 +138,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$a */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public /* synthetic */ class a extends C12235j implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final /* synthetic */ class a extends C12235j implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public a(C11541h c11541h) {
             super(1, c11541h);
         }
@@ -167,7 +167,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$b */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public /* synthetic */ class b extends C12235j implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final /* synthetic */ class b extends C12235j implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public b(C11541h c11541h) {
             super(1, c11541h);
         }
@@ -196,7 +196,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$c */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class c extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final class c extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public c() {
             super(1);
         }
@@ -210,7 +210,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$d */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class d extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final class d extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public d() {
             super(1);
         }
@@ -224,7 +224,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$e */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11327d>> {
+    public final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11327d>> {
 
         /* JADX INFO: renamed from: $c */
         public final /* synthetic */ C11529g f23368$c;
@@ -278,7 +278,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$f */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class f extends AbstractC12240o implements Function0<Map<C11716e, ? extends InterfaceC11581n>> {
+    public final class f extends AbstractC12240o implements Function0<Map<C11716e, ? extends InterfaceC11581n>> {
         public f() {
             super(0);
         }
@@ -302,7 +302,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$g */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class g extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final class g extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public final /* synthetic */ InterfaceC11465t0 $function;
         public final /* synthetic */ C11541h this$0;
 
@@ -322,7 +322,7 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$h */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class h extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class h extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public h() {
             super(0);
         }
@@ -335,14 +335,14 @@ public final class C11541h extends AbstractC11544k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$i */
     /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-    public static final class i extends AbstractC12240o implements Function1<C11716e, AbstractC11375h> {
+    public final class i extends AbstractC12240o implements Function1<C11716e, AbstractC11375h> {
 
         /* JADX INFO: renamed from: $c */
         public final /* synthetic */ C11529g f23369$c;
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$i$a */
         /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
-        public static final class a extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class a extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public final /* synthetic */ C11541h this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -528,6 +528,40 @@ public final class C11541h extends AbstractC11544k {
             }
         }
         return arrayList;
+    }
+
+    public final InterfaceC11900j<List<InterfaceC11327d>> getConstructors$descriptors_jvm() {
+        return this.f23364q;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        InterfaceC11899i<C11716e, AbstractC11375h> interfaceC11899i;
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        recordLookup(c11716e, interfaceC11480b);
+        C11541h c11541h = (C11541h) this.f23390d;
+        AbstractC11375h abstractC11375hInvoke = null;
+        if (c11541h != null && (interfaceC11899i = c11541h.f23367t) != null) {
+            abstractC11375hInvoke = interfaceC11899i.invoke(c11716e);
+        }
+        return abstractC11375hInvoke == null ? this.f23367t.invoke(c11716e) : abstractC11375hInvoke;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+    public Collection<InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        recordLookup(c11716e, interfaceC11480b);
+        return super.getContributedFunctions(c11716e, interfaceC11480b);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+    public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        recordLookup(c11716e, interfaceC11480b);
+        return super.getContributedVariables(c11716e, interfaceC11480b);
     }
 
     /* JADX INFO: renamed from: A */
@@ -789,247 +823,6 @@ public final class C11541h extends AbstractC11544k {
         return false;
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: a */
-    public Set<C11716e> mo9470a(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-        C12238m.checkNotNullParameter(c11765d, "kindFilter");
-        return C12150o0.plus((Set) this.f23365r.invoke(), (Iterable) this.f23366s.invoke().keySet());
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: b */
-    public Set mo9471b(C11765d c11765d, Function1 function1) {
-        C12238m.checkNotNullParameter(c11765d, "kindFilter");
-        Collection<AbstractC11913c0> supertypes = this.f23361n.getTypeConstructor().getSupertypes();
-        C12238m.checkNotNullExpressionValue(supertypes, "ownerDescriptor.typeConstructor.supertypes");
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        Iterator<T> it = supertypes.iterator();
-        while (it.hasNext()) {
-            C12160r.addAll(linkedHashSet, ((AbstractC11913c0) it.next()).getMemberScope().getFunctionNames());
-        }
-        linkedHashSet.addAll(this.f23392f.invoke().getMethodNames());
-        linkedHashSet.addAll(this.f23392f.invoke().getRecordComponentNames());
-        linkedHashSet.addAll(mo9470a(c11765d, function1));
-        return linkedHashSet;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: c */
-    public void mo9472c(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
-        boolean z2;
-        C12238m.checkNotNullParameter(collection, "result");
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        if (!this.f23362o.isRecord() || this.f23392f.invoke().findRecordComponentByName(c11716e) == null) {
-            return;
-        }
-        if (!collection.isEmpty()) {
-            Iterator it = collection.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    z2 = true;
-                    break;
-                } else if (((InterfaceC11465t0) it.next()).getValueParameters().isEmpty()) {
-                    z2 = false;
-                    break;
-                }
-            }
-        } else {
-            z2 = true;
-            break;
-        }
-        if (z2) {
-            InterfaceC11590w interfaceC11590wFindRecordComponentByName = this.f23392f.invoke().findRecordComponentByName(c11716e);
-            C12238m.checkNotNull(interfaceC11590wFindRecordComponentByName);
-            C11515f c11515fCreateJavaMethod = C11515f.createJavaMethod(this.f23361n, C11527e.resolveAnnotations(this.f23389c, interfaceC11590wFindRecordComponentByName), interfaceC11590wFindRecordComponentByName.getName(), this.f23389c.getComponents().getSourceElementFactory().source(interfaceC11590wFindRecordComponentByName), true);
-            C12238m.checkNotNullExpressionValue(c11515fCreateJavaMethod, "createJavaMethod(\n            ownerDescriptor, annotations, recordComponent.name, c.components.sourceElementFactory.source(recordComponent), true\n        )");
-            c11515fCreateJavaMethod.initialize(null, mo9477i(), C12147n.emptyList(), C12147n.emptyList(), this.f23389c.getTypeResolver().transformJavaType(interfaceC11590wFindRecordComponentByName.getType(), C11557e.toAttributes$default(EnumC11508k.COMMON, false, null, 2, null)), EnumC11476z.f23104j.convertFromFlags(false, false, true), C11464t.f23087e, null);
-            c11515fCreateJavaMethod.setParameterNamesStatus(false, false);
-            ((InterfaceC11504g.a) this.f23389c.getComponents().getJavaResolverCache()).recordMethod(interfaceC11590wFindRecordComponentByName, c11515fCreateJavaMethod);
-            collection.add(c11515fCreateJavaMethod);
-        }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: d */
-    public InterfaceC11535b mo9473d() {
-        return new C11534a(this.f23362o, C11540g.f23360j);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: f */
-    public void mo9474f(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
-        boolean z2;
-        C12238m.checkNotNullParameter(collection, "result");
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        Set<InterfaceC11465t0> setM9466C = m9466C(c11716e);
-        if (!C11497g.f23218m.getSameAsRenamedInJvmBuiltin(c11716e) && !C11509h.f23259m.getSameAsBuiltinMethodWithErasedValueParameters(c11716e)) {
-            if (setM9466C.isEmpty()) {
-                z2 = true;
-                break;
-            }
-            Iterator<T> it = setM9466C.iterator();
-            while (true) {
-                if (it.hasNext()) {
-                    if (((InterfaceC11472x) it.next()).isSuspend()) {
-                        z2 = false;
-                        break;
-                    }
-                } else {
-                    z2 = true;
-                    break;
-                }
-            }
-            if (z2) {
-                ArrayList arrayList = new ArrayList();
-                for (Object obj : setM9466C) {
-                    if (m9469F((InterfaceC11465t0) obj)) {
-                        arrayList.add(obj);
-                    }
-                }
-                m9482p(collection, c11716e, arrayList, false);
-                return;
-            }
-        }
-        Collection<InterfaceC11465t0> collectionCreate = C12042j.f25003j.create();
-        Collection<? extends InterfaceC11465t0> collectionResolveOverridesForNonStaticMembers = C11498a.resolveOverridesForNonStaticMembers(c11716e, setM9466C, C12147n.emptyList(), this.f23361n, InterfaceC11880p.f24676a, this.f23389c.getComponents().getKotlinTypeChecker().getOverridingUtil());
-        C12238m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n            name, functionsFromSupertypes, emptyList(), ownerDescriptor, ErrorReporter.DO_NOTHING,\n            c.components.kotlinTypeChecker.overridingUtil\n        )");
-        m9483q(c11716e, collection, collectionResolveOverridesForNonStaticMembers, collection, new a(this));
-        m9483q(c11716e, collection, collectionResolveOverridesForNonStaticMembers, collectionCreate, new b(this));
-        ArrayList arrayList2 = new ArrayList();
-        for (Object obj2 : setM9466C) {
-            if (m9469F((InterfaceC11465t0) obj2)) {
-                arrayList2.add(obj2);
-            }
-        }
-        m9482p(collection, c11716e, C12163u.plus((Collection) arrayList2, (Iterable) collectionCreate), true);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: g */
-    public void mo9475g(C11716e c11716e, Collection<InterfaceC11453n0> collection) {
-        InterfaceC11585r interfaceC11585r;
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(collection, "result");
-        if (this.f23362o.isAnnotationType() && (interfaceC11585r = (InterfaceC11585r) C12163u.singleOrNull(this.f23392f.invoke().findMethodsByName(c11716e))) != null) {
-            C11516g c11516gCreate = C11516g.create(this.f23361n, C11527e.resolveAnnotations(this.f23389c, interfaceC11585r), EnumC11476z.FINAL, C11496f0.toDescriptorVisibility(interfaceC11585r.getVisibility()), false, interfaceC11585r.getName(), this.f23389c.getComponents().getSourceElementFactory().source(interfaceC11585r), false);
-            C12238m.checkNotNullExpressionValue(c11516gCreate, "create(\n            ownerDescriptor, annotations, modality, method.visibility.toDescriptorVisibility(),\n            /* isVar = */ false, method.name, c.components.sourceElementFactory.source(method),\n            /* isStaticFinal = */ false\n        )");
-            C11368d0 c11368d0CreateDefaultGetter = C11786d.createDefaultGetter(c11516gCreate, InterfaceC11344g.f22735f.getEMPTY());
-            C12238m.checkNotNullExpressionValue(c11368d0CreateDefaultGetter, "createDefaultGetter(propertyDescriptor, Annotations.EMPTY)");
-            c11516gCreate.initialize(c11368d0CreateDefaultGetter, null);
-            AbstractC11913c0 abstractC11913c0M9494e = m9494e(interfaceC11585r, C11523a.childForMethod$default(this.f23389c, c11516gCreate, interfaceC11585r, 0, 4, null));
-            c11516gCreate.setType(abstractC11913c0M9494e, C12147n.emptyList(), mo9477i(), null);
-            c11368d0CreateDefaultGetter.initialize(abstractC11913c0M9494e);
-            collection.add(c11516gCreate);
-        }
-        Set<InterfaceC11453n0> setM9467D = m9467D(c11716e);
-        if (setM9467D.isEmpty()) {
-            return;
-        }
-        C12042j.b bVar = C12042j.f25003j;
-        C12042j c12042jCreate = bVar.create();
-        C12042j c12042jCreate2 = bVar.create();
-        m9484r(setM9467D, collection, c12042jCreate, new c());
-        m9484r(C12150o0.minus((Set) setM9467D, (Iterable) c12042jCreate), c12042jCreate2, null, new d());
-        Collection<? extends InterfaceC11453n0> collectionResolveOverridesForNonStaticMembers = C11498a.resolveOverridesForNonStaticMembers(c11716e, C12150o0.plus((Set) setM9467D, (Iterable) c12042jCreate2), collection, this.f23361n, this.f23389c.getComponents().getErrorReporter(), this.f23389c.getComponents().getKotlinTypeChecker().getOverridingUtil());
-        C12238m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n                name,\n                propertiesFromSupertypes + propertiesOverridesFromSuperTypes,\n                result,\n                ownerDescriptor,\n                c.components.errorReporter,\n                c.components.kotlinTypeChecker.overridingUtil\n            )");
-        collection.addAll(collectionResolveOverridesForNonStaticMembers);
-    }
-
-    public final InterfaceC11900j<List<InterfaceC11327d>> getConstructors$descriptors_jvm() {
-        return this.f23364q;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-    public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        InterfaceC11899i<C11716e, AbstractC11375h> interfaceC11899i;
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        recordLookup(c11716e, interfaceC11480b);
-        C11541h c11541h = (C11541h) this.f23390d;
-        AbstractC11375h abstractC11375hInvoke = null;
-        if (c11541h != null && (interfaceC11899i = c11541h.f23367t) != null) {
-            abstractC11375hInvoke = interfaceC11899i.invoke(c11716e);
-        }
-        return abstractC11375hInvoke == null ? this.f23367t.invoke(c11716e) : abstractC11375hInvoke;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-    public Collection<InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        recordLookup(c11716e, interfaceC11480b);
-        return super.getContributedFunctions(c11716e, interfaceC11480b);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-    public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        recordLookup(c11716e, interfaceC11480b);
-        return super.getContributedVariables(c11716e, interfaceC11480b);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: h */
-    public Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-        C12238m.checkNotNullParameter(c11765d, "kindFilter");
-        if (this.f23362o.isAnnotationType()) {
-            return getFunctionNames();
-        }
-        LinkedHashSet linkedHashSet = new LinkedHashSet(this.f23392f.invoke().getFieldNames());
-        Collection<AbstractC11913c0> supertypes = this.f23361n.getTypeConstructor().getSupertypes();
-        C12238m.checkNotNullExpressionValue(supertypes, "ownerDescriptor.typeConstructor.supertypes");
-        Iterator<T> it = supertypes.iterator();
-        while (it.hasNext()) {
-            C12160r.addAll(linkedHashSet, ((AbstractC11913c0) it.next()).getMemberScope().getVariableNames());
-        }
-        return linkedHashSet;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: i */
-    public InterfaceC11459q0 mo9477i() {
-        return C11787e.getDispatchReceiverParameterIfNeeded(this.f23361n);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: j */
-    public InterfaceC11450m mo9478j() {
-        return this.f23361n;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: k */
-    public boolean mo9479k(C11515f c11515f) {
-        C12238m.checkNotNullParameter(c11515f, "<this>");
-        if (this.f23362o.isAnnotationType()) {
-            return false;
-        }
-        return m9469F(c11515f);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    /* JADX INFO: renamed from: l */
-    public AbstractC11544k.a mo9480l(InterfaceC11585r interfaceC11585r, List<? extends InterfaceC11477z0> list, AbstractC11913c0 abstractC11913c0, List<? extends InterfaceC11326c1> list2) {
-        C12238m.checkNotNullParameter(interfaceC11585r, "method");
-        C12238m.checkNotNullParameter(list, "methodTypeParameters");
-        C12238m.checkNotNullParameter(abstractC11913c0, "returnType");
-        C12238m.checkNotNullParameter(list2, "valueParameters");
-        InterfaceC11507j.b bVarResolvePropagatedSignature = ((InterfaceC11507j.a) this.f23389c.getComponents().getSignaturePropagator()).resolvePropagatedSignature(interfaceC11585r, this.f23361n, abstractC11913c0, null, list2, list);
-        C12238m.checkNotNullExpressionValue(bVarResolvePropagatedSignature, "c.components.signaturePropagator.resolvePropagatedSignature(\n            method, ownerDescriptor, returnType, null, valueParameters, methodTypeParameters\n        )");
-        AbstractC11913c0 returnType = bVarResolvePropagatedSignature.getReturnType();
-        C12238m.checkNotNullExpressionValue(returnType, "propagated.returnType");
-        AbstractC11913c0 receiverType = bVarResolvePropagatedSignature.getReceiverType();
-        List<InterfaceC11326c1> valueParameters = bVarResolvePropagatedSignature.getValueParameters();
-        C12238m.checkNotNullExpressionValue(valueParameters, "propagated.valueParameters");
-        List<InterfaceC11477z0> typeParameters = bVarResolvePropagatedSignature.getTypeParameters();
-        C12238m.checkNotNullExpressionValue(typeParameters, "propagated.typeParameters");
-        boolean zHasStableParameterNames = bVarResolvePropagatedSignature.hasStableParameterNames();
-        List<String> errors = bVarResolvePropagatedSignature.getErrors();
-        C12238m.checkNotNullExpressionValue(errors, "propagated.errors");
-        return new AbstractC11544k.a(returnType, receiverType, valueParameters, typeParameters, zHasStableParameterNames, errors);
-    }
-
     /* JADX INFO: renamed from: o */
     public final void m9481o(List<InterfaceC11326c1> list, InterfaceC11448l interfaceC11448l, int i2, InterfaceC11585r interfaceC11585r, AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1) {
         InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
@@ -1226,12 +1019,6 @@ public final class C11541h extends AbstractC11544k {
         }
     }
 
-    public void recordLookup(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C11478a.record(this.f23389c.getComponents().getLookupTracker(), interfaceC11480b, this.f23361n, c11716e);
-    }
-
     /* JADX INFO: renamed from: s */
     public final Collection<AbstractC11913c0> m9485s() {
         if (!this.f23363p) {
@@ -1259,11 +1046,6 @@ public final class C11541h extends AbstractC11544k {
         InterfaceC11465t0 interfaceC11465t2 = (InterfaceC11465t0) interfaceC11465t0.newCopyBuilder().setHiddenToOvercomeSignatureClash().build();
         C12238m.checkNotNull(interfaceC11465t2);
         return interfaceC11465t2;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
-    public String toString() {
-        return C12238m.stringPlus("Lazy Java member scope for ", this.f23362o.getFqName());
     }
 
     /* JADX WARN: Code duplicated, block: B:10:0x002a  */
@@ -1376,6 +1158,224 @@ public final class C11541h extends AbstractC11544k {
         String strAsString = interfaceC11453n0.getName().asString();
         C12238m.checkNotNullExpressionValue(strAsString, "name.asString()");
         return m9491y(interfaceC11453n0, C11632z.getterName(strAsString), function1);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: a */
+    public Set<C11716e> mo9470a(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+        C12238m.checkNotNullParameter(c11765d, "kindFilter");
+        return C12150o0.plus((Set) this.f23365r.invoke(), (Iterable) this.f23366s.invoke().keySet());
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: b */
+    public Set mo9471b(C11765d c11765d, Function1 function1) {
+        C12238m.checkNotNullParameter(c11765d, "kindFilter");
+        Collection<AbstractC11913c0> supertypes = this.f23361n.getTypeConstructor().getSupertypes();
+        C12238m.checkNotNullExpressionValue(supertypes, "ownerDescriptor.typeConstructor.supertypes");
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        Iterator<T> it = supertypes.iterator();
+        while (it.hasNext()) {
+            C12160r.addAll(linkedHashSet, ((AbstractC11913c0) it.next()).getMemberScope().getFunctionNames());
+        }
+        linkedHashSet.addAll(this.f23392f.invoke().getMethodNames());
+        linkedHashSet.addAll(this.f23392f.invoke().getRecordComponentNames());
+        linkedHashSet.addAll(mo9470a(c11765d, function1));
+        return linkedHashSet;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: c */
+    public void mo9472c(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
+        boolean z2;
+        C12238m.checkNotNullParameter(collection, "result");
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        if (!this.f23362o.isRecord() || this.f23392f.invoke().findRecordComponentByName(c11716e) == null) {
+            return;
+        }
+        if (!collection.isEmpty()) {
+            Iterator it = collection.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    z2 = true;
+                    break;
+                } else if (((InterfaceC11465t0) it.next()).getValueParameters().isEmpty()) {
+                    z2 = false;
+                    break;
+                }
+            }
+        } else {
+            z2 = true;
+            break;
+        }
+        if (z2) {
+            InterfaceC11590w interfaceC11590wFindRecordComponentByName = this.f23392f.invoke().findRecordComponentByName(c11716e);
+            C12238m.checkNotNull(interfaceC11590wFindRecordComponentByName);
+            C11515f c11515fCreateJavaMethod = C11515f.createJavaMethod(this.f23361n, C11527e.resolveAnnotations(this.f23389c, interfaceC11590wFindRecordComponentByName), interfaceC11590wFindRecordComponentByName.getName(), this.f23389c.getComponents().getSourceElementFactory().source(interfaceC11590wFindRecordComponentByName), true);
+            C12238m.checkNotNullExpressionValue(c11515fCreateJavaMethod, "createJavaMethod(\n            ownerDescriptor, annotations, recordComponent.name, c.components.sourceElementFactory.source(recordComponent), true\n        )");
+            c11515fCreateJavaMethod.initialize(null, mo9477i(), C12147n.emptyList(), C12147n.emptyList(), this.f23389c.getTypeResolver().transformJavaType(interfaceC11590wFindRecordComponentByName.getType(), C11557e.toAttributes$default(EnumC11508k.COMMON, false, null, 2, null)), EnumC11476z.f23104j.convertFromFlags(false, false, true), C11464t.f23087e, null);
+            c11515fCreateJavaMethod.setParameterNamesStatus(false, false);
+            ((InterfaceC11504g.a) this.f23389c.getComponents().getJavaResolverCache()).recordMethod(interfaceC11590wFindRecordComponentByName, c11515fCreateJavaMethod);
+            collection.add(c11515fCreateJavaMethod);
+        }
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: d */
+    public InterfaceC11535b mo9473d() {
+        return new C11534a(this.f23362o, C11540g.f23360j);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: f */
+    public void mo9474f(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
+        boolean z2;
+        C12238m.checkNotNullParameter(collection, "result");
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Set<InterfaceC11465t0> setM9466C = m9466C(c11716e);
+        if (!C11497g.f23218m.getSameAsRenamedInJvmBuiltin(c11716e) && !C11509h.f23259m.getSameAsBuiltinMethodWithErasedValueParameters(c11716e)) {
+            if (setM9466C.isEmpty()) {
+                z2 = true;
+                break;
+            }
+            Iterator<T> it = setM9466C.iterator();
+            while (true) {
+                if (it.hasNext()) {
+                    if (((InterfaceC11472x) it.next()).isSuspend()) {
+                        z2 = false;
+                        break;
+                    }
+                } else {
+                    z2 = true;
+                    break;
+                }
+            }
+            if (z2) {
+                ArrayList arrayList = new ArrayList();
+                for (Object obj : setM9466C) {
+                    if (m9469F((InterfaceC11465t0) obj)) {
+                        arrayList.add(obj);
+                    }
+                }
+                m9482p(collection, c11716e, arrayList, false);
+                return;
+            }
+        }
+        Collection<InterfaceC11465t0> collectionCreate = C12042j.f25003j.create();
+        Collection<? extends InterfaceC11465t0> collectionResolveOverridesForNonStaticMembers = C11498a.resolveOverridesForNonStaticMembers(c11716e, setM9466C, C12147n.emptyList(), this.f23361n, InterfaceC11880p.f24676a, this.f23389c.getComponents().getKotlinTypeChecker().getOverridingUtil());
+        C12238m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n            name, functionsFromSupertypes, emptyList(), ownerDescriptor, ErrorReporter.DO_NOTHING,\n            c.components.kotlinTypeChecker.overridingUtil\n        )");
+        m9483q(c11716e, collection, collectionResolveOverridesForNonStaticMembers, collection, new a(this));
+        m9483q(c11716e, collection, collectionResolveOverridesForNonStaticMembers, collectionCreate, new b(this));
+        ArrayList arrayList2 = new ArrayList();
+        for (Object obj2 : setM9466C) {
+            if (m9469F((InterfaceC11465t0) obj2)) {
+                arrayList2.add(obj2);
+            }
+        }
+        m9482p(collection, c11716e, C12163u.plus((Collection) arrayList2, (Iterable) collectionCreate), true);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: g */
+    public void mo9475g(C11716e c11716e, Collection<InterfaceC11453n0> collection) {
+        InterfaceC11585r interfaceC11585r;
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(collection, "result");
+        if (this.f23362o.isAnnotationType() && (interfaceC11585r = (InterfaceC11585r) C12163u.singleOrNull(this.f23392f.invoke().findMethodsByName(c11716e))) != null) {
+            C11516g c11516gCreate = C11516g.create(this.f23361n, C11527e.resolveAnnotations(this.f23389c, interfaceC11585r), EnumC11476z.FINAL, C11496f0.toDescriptorVisibility(interfaceC11585r.getVisibility()), false, interfaceC11585r.getName(), this.f23389c.getComponents().getSourceElementFactory().source(interfaceC11585r), false);
+            C12238m.checkNotNullExpressionValue(c11516gCreate, "create(\n            ownerDescriptor, annotations, modality, method.visibility.toDescriptorVisibility(),\n            /* isVar = */ false, method.name, c.components.sourceElementFactory.source(method),\n            /* isStaticFinal = */ false\n        )");
+            C11368d0 c11368d0CreateDefaultGetter = C11786d.createDefaultGetter(c11516gCreate, InterfaceC11344g.f22735f.getEMPTY());
+            C12238m.checkNotNullExpressionValue(c11368d0CreateDefaultGetter, "createDefaultGetter(propertyDescriptor, Annotations.EMPTY)");
+            c11516gCreate.initialize(c11368d0CreateDefaultGetter, null);
+            AbstractC11913c0 abstractC11913c0M9494e = m9494e(interfaceC11585r, C11523a.childForMethod$default(this.f23389c, c11516gCreate, interfaceC11585r, 0, 4, null));
+            c11516gCreate.setType(abstractC11913c0M9494e, C12147n.emptyList(), mo9477i(), null);
+            c11368d0CreateDefaultGetter.initialize(abstractC11913c0M9494e);
+            collection.add(c11516gCreate);
+        }
+        Set<InterfaceC11453n0> setM9467D = m9467D(c11716e);
+        if (setM9467D.isEmpty()) {
+            return;
+        }
+        C12042j.b bVar = C12042j.f25003j;
+        C12042j c12042jCreate = bVar.create();
+        C12042j c12042jCreate2 = bVar.create();
+        m9484r(setM9467D, collection, c12042jCreate, new c());
+        m9484r(C12150o0.minus((Set) setM9467D, (Iterable) c12042jCreate), c12042jCreate2, null, new d());
+        Collection<? extends InterfaceC11453n0> collectionResolveOverridesForNonStaticMembers = C11498a.resolveOverridesForNonStaticMembers(c11716e, C12150o0.plus((Set) setM9467D, (Iterable) c12042jCreate2), collection, this.f23361n, this.f23389c.getComponents().getErrorReporter(), this.f23389c.getComponents().getKotlinTypeChecker().getOverridingUtil());
+        C12238m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n                name,\n                propertiesFromSupertypes + propertiesOverridesFromSuperTypes,\n                result,\n                ownerDescriptor,\n                c.components.errorReporter,\n                c.components.kotlinTypeChecker.overridingUtil\n            )");
+        collection.addAll(collectionResolveOverridesForNonStaticMembers);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: h */
+    public Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+        C12238m.checkNotNullParameter(c11765d, "kindFilter");
+        if (this.f23362o.isAnnotationType()) {
+            return getFunctionNames();
+        }
+        LinkedHashSet linkedHashSet = new LinkedHashSet(this.f23392f.invoke().getFieldNames());
+        Collection<AbstractC11913c0> supertypes = this.f23361n.getTypeConstructor().getSupertypes();
+        C12238m.checkNotNullExpressionValue(supertypes, "ownerDescriptor.typeConstructor.supertypes");
+        Iterator<T> it = supertypes.iterator();
+        while (it.hasNext()) {
+            C12160r.addAll(linkedHashSet, ((AbstractC11913c0) it.next()).getMemberScope().getVariableNames());
+        }
+        return linkedHashSet;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: i */
+    public InterfaceC11459q0 mo9477i() {
+        return C11787e.getDispatchReceiverParameterIfNeeded(this.f23361n);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: j */
+    public InterfaceC11450m mo9478j() {
+        return this.f23361n;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: k */
+    public boolean mo9479k(C11515f c11515f) {
+        C12238m.checkNotNullParameter(c11515f, "<this>");
+        if (this.f23362o.isAnnotationType()) {
+            return false;
+        }
+        return m9469F(c11515f);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    /* JADX INFO: renamed from: l */
+    public AbstractC11544k.a mo9480l(InterfaceC11585r interfaceC11585r, List<? extends InterfaceC11477z0> list, AbstractC11913c0 abstractC11913c0, List<? extends InterfaceC11326c1> list2) {
+        C12238m.checkNotNullParameter(interfaceC11585r, "method");
+        C12238m.checkNotNullParameter(list, "methodTypeParameters");
+        C12238m.checkNotNullParameter(abstractC11913c0, "returnType");
+        C12238m.checkNotNullParameter(list2, "valueParameters");
+        InterfaceC11507j.b bVarResolvePropagatedSignature = ((InterfaceC11507j.a) this.f23389c.getComponents().getSignaturePropagator()).resolvePropagatedSignature(interfaceC11585r, this.f23361n, abstractC11913c0, null, list2, list);
+        C12238m.checkNotNullExpressionValue(bVarResolvePropagatedSignature, "c.components.signaturePropagator.resolvePropagatedSignature(\n            method, ownerDescriptor, returnType, null, valueParameters, methodTypeParameters\n        )");
+        AbstractC11913c0 returnType = bVarResolvePropagatedSignature.getReturnType();
+        C12238m.checkNotNullExpressionValue(returnType, "propagated.returnType");
+        AbstractC11913c0 receiverType = bVarResolvePropagatedSignature.getReceiverType();
+        List<InterfaceC11326c1> valueParameters = bVarResolvePropagatedSignature.getValueParameters();
+        C12238m.checkNotNullExpressionValue(valueParameters, "propagated.valueParameters");
+        List<InterfaceC11477z0> typeParameters = bVarResolvePropagatedSignature.getTypeParameters();
+        C12238m.checkNotNullExpressionValue(typeParameters, "propagated.typeParameters");
+        boolean zHasStableParameterNames = bVarResolvePropagatedSignature.hasStableParameterNames();
+        List<String> errors = bVarResolvePropagatedSignature.getErrors();
+        C12238m.checkNotNullExpressionValue(errors, "propagated.errors");
+        return new AbstractC11544k.a(returnType, receiverType, valueParameters, typeParameters, zHasStableParameterNames, errors);
+    }
+
+    public void recordLookup(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        C11478a.record(this.f23389c.getComponents().getLookupTracker(), interfaceC11480b, this.f23361n, c11716e);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p535i0.p536l.AbstractC11544k
+    public String toString() {
+        return C12238m.stringPlus("Lazy Java member scope for ", this.f23362o.getFqName());
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

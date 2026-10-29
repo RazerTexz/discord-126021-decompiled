@@ -18,16 +18,16 @@ import p507d0.p592z.p594d.C12238m;
 public final class TextInVoiceOnboardingManager {
     private final Clock clock = ClockFactory.get();
 
+    public final Clock getClock() {
+        return this.clock;
+    }
+
     private final boolean hasUserSeenTextInVoiceOnboarding() {
         return StoreStream.INSTANCE.getNotices().hasSeen("NOTICE_NAME_TEXT_IN_VOICE_ONBOARDED");
     }
 
     private final boolean isTooYoung(long userId) {
         return this.clock.currentTimeMillis() < ((userId >>> 22) + SnowflakeUtils.DISCORD_EPOCH) + 604800000;
-    }
-
-    public final Clock getClock() {
-        return this.clock;
     }
 
     public final void markSeen() {

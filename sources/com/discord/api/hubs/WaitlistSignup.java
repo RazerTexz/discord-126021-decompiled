@@ -11,11 +11,6 @@ public final /* data */ class WaitlistSignup {
     private final String emailDomain;
     private final String school;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getSchool() {
-        return this.school;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,6 +20,11 @@ public final /* data */ class WaitlistSignup {
         }
         WaitlistSignup waitlistSignup = (WaitlistSignup) other;
         return C12238m.areEqual(this.email, waitlistSignup.email) && C12238m.areEqual(this.emailDomain, waitlistSignup.emailDomain) && C12238m.areEqual(this.school, waitlistSignup.school);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getSchool() {
+        return this.school;
     }
 
     public int hashCode() {

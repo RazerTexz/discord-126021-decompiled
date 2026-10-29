@@ -11,6 +11,17 @@ public final /* data */ class EmbedThumbnail {
     private final String url;
     private final Integer width;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbedThumbnail)) {
+            return false;
+        }
+        EmbedThumbnail embedThumbnail = (EmbedThumbnail) other;
+        return C12238m.areEqual(this.url, embedThumbnail.url) && C12238m.areEqual(this.proxyUrl, embedThumbnail.proxyUrl) && C12238m.areEqual(this.height, embedThumbnail.height) && C12238m.areEqual(this.width, embedThumbnail.width);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Integer getHeight() {
         return this.height;
@@ -29,17 +40,6 @@ public final /* data */ class EmbedThumbnail {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final Integer getWidth() {
         return this.width;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbedThumbnail)) {
-            return false;
-        }
-        EmbedThumbnail embedThumbnail = (EmbedThumbnail) other;
-        return C12238m.areEqual(this.url, embedThumbnail.url) && C12238m.areEqual(this.proxyUrl, embedThumbnail.proxyUrl) && C12238m.areEqual(this.height, embedThumbnail.height) && C12238m.areEqual(this.width, embedThumbnail.width);
     }
 
     public int hashCode() {

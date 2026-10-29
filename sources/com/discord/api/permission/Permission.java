@@ -18,7 +18,6 @@ public final class Permission {
     public static final long DEFAULT = 521942851137L;
     public static final long ELEVATED = 1125549875262L;
     public static final long EMBED_LINKS = 16384;
-    public static final Permission INSTANCE = new Permission();
     public static final long KICK_MEMBERS = 2;
     public static final long MANAGEMENT_PERMISSIONS = 1110127411262L;
     public static final long MANAGE_CHANNELS = 16;
@@ -54,12 +53,13 @@ public final class Permission {
     public static final long VIEW_AUDIT_LOG = 128;
     public static final long VIEW_CHANNEL = 1024;
     public static final long VIEW_GUILD_ANALYTICS = 524288;
+    public static final Permission INSTANCE = new Permission();
 
     /* JADX INFO: compiled from: Permission.kt */
-    public static final class AllowList {
+    public final class AllowList {
         public static final long COMMUNICATIONS_DISABLED_DEFAULT = 66560;
-        public static final AllowList INSTANCE = new AllowList();
         public static final long LURKER_DEFAULT = 66560;
         public static final long LURKER_STAGE_CHANNEL = 4331734016L;
+        public static final AllowList INSTANCE = new AllowList();
     }
 }

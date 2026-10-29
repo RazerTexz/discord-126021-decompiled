@@ -9,15 +9,6 @@ import p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3025b implements InterfaceC3027d {
 
-    /* JADX INFO: renamed from: a */
-    public final byte[] f8181a = new byte[8];
-
-    /* JADX INFO: renamed from: b */
-    public final ArrayDeque<b> f8182b = new ArrayDeque<>();
-
-    /* JADX INFO: renamed from: c */
-    public final C3030g f8183c = new C3030g();
-
     /* JADX INFO: renamed from: d */
     public InterfaceC3026c f8184d;
 
@@ -30,9 +21,18 @@ public final class C3025b implements InterfaceC3027d {
     /* JADX INFO: renamed from: g */
     public long f8187g;
 
+    /* JADX INFO: renamed from: a */
+    public final byte[] f8181a = new byte[8];
+
+    /* JADX INFO: renamed from: b */
+    public final ArrayDeque<b> f8182b = new ArrayDeque<>();
+
+    /* JADX INFO: renamed from: c */
+    public final C3030g f8183c = new C3030g();
+
     /* JADX INFO: renamed from: b.i.a.c.x2.g0.b$b */
     /* JADX INFO: compiled from: DefaultEbmlReader.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f8188a;

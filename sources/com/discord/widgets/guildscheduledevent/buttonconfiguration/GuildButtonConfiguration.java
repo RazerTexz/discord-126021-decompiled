@@ -109,76 +109,6 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         this.isAnyButtonVisible = z9;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final GuildScheduledEvent getGuildScheduledEvent() {
-        return this.guildScheduledEvent;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final View.OnClickListener getOnJoinButtonClicked() {
-        return this.onJoinButtonClicked;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final View.OnClickListener getOnEndEventButtonClicked() {
-        return this.onEndEventButtonClicked;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final View.OnClickListener getOnStartEventButtonClicked() {
-        return this.onStartEventButtonClicked;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final View.OnClickListener getOnShareButtonClicked() {
-        return this.onShareButtonClicked;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final View.OnClickListener getOnExtraButtonClicked() {
-        return this.onExtraButtonClicked;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanRsvp() {
-        return this.canRsvp;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanStartEvent() {
-        return this.canStartEvent;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsConnected() {
-        return this.isConnected;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanConnect() {
-        return this.canConnect;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsInGuild() {
-        return this.isInGuild;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getIsRsvped() {
-        return this.isRsvped;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsDetailView() {
-        return this.isDetailView;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final View.OnClickListener getOnRsvpButtonClicked() {
-        return this.onRsvpButtonClicked;
-    }
-
     public final GuildButtonConfiguration copy(GuildScheduledEvent guildScheduledEvent, boolean canRsvp, boolean canStartEvent, boolean isConnected, boolean canConnect, boolean isInGuild, boolean isRsvped, boolean isDetailView, View.OnClickListener onRsvpButtonClicked, View.OnClickListener onJoinButtonClicked, View.OnClickListener onEndEventButtonClicked, View.OnClickListener onStartEventButtonClicked, View.OnClickListener onShareButtonClicked, View.OnClickListener onExtraButtonClicked) {
         C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         return new GuildButtonConfiguration(guildScheduledEvent, canRsvp, canStartEvent, isConnected, canConnect, isInGuild, isRsvped, isDetailView, onRsvpButtonClicked, onJoinButtonClicked, onEndEventButtonClicked, onStartEventButtonClicked, onShareButtonClicked, onExtraButtonClicked);
@@ -195,12 +125,27 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         return C12238m.areEqual(this.guildScheduledEvent, guildButtonConfiguration.guildScheduledEvent) && this.canRsvp == guildButtonConfiguration.canRsvp && this.canStartEvent == guildButtonConfiguration.canStartEvent && this.isConnected == guildButtonConfiguration.isConnected && this.canConnect == guildButtonConfiguration.canConnect && this.isInGuild == guildButtonConfiguration.isInGuild && this.isRsvped == guildButtonConfiguration.isRsvped && this.isDetailView == guildButtonConfiguration.isDetailView && C12238m.areEqual(this.onRsvpButtonClicked, guildButtonConfiguration.onRsvpButtonClicked) && C12238m.areEqual(this.onJoinButtonClicked, guildButtonConfiguration.onJoinButtonClicked) && C12238m.areEqual(this.onEndEventButtonClicked, guildButtonConfiguration.onEndEventButtonClicked) && C12238m.areEqual(this.onStartEventButtonClicked, guildButtonConfiguration.onStartEventButtonClicked) && C12238m.areEqual(this.onShareButtonClicked, guildButtonConfiguration.onShareButtonClicked) && C12238m.areEqual(this.onExtraButtonClicked, guildButtonConfiguration.onExtraButtonClicked);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanConnect() {
         return this.canConnect;
     }
 
+    public final boolean getCanConnect() {
+        return this.canConnect;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getCanRsvp() {
         return this.canRsvp;
+    }
+
+    public final boolean getCanRsvp() {
+        return this.canRsvp;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getCanStartEvent() {
+        return this.canStartEvent;
     }
 
     public final boolean getCanStartEvent() {
@@ -212,28 +157,101 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         return this.extrasButtonOnClickListener;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final GuildScheduledEvent getGuildScheduledEvent() {
         return this.guildScheduledEvent;
+    }
+
+    public final GuildScheduledEvent getGuildScheduledEvent() {
+        return this.guildScheduledEvent;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isAnyButtonVisible, reason: from getter */
+    public boolean getIsAnyButtonVisible() {
+        return this.isAnyButtonVisible;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsConnected() {
+        return this.isConnected;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsDetailView() {
+        return this.isDetailView;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isExtrasVisible, reason: from getter */
+    public boolean getIsExtrasVisible() {
+        return this.isExtrasVisible;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsInGuild() {
+        return this.isInGuild;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getIsRsvped() {
+        return this.isRsvped;
+    }
+
+    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
+    /* JADX INFO: renamed from: isShareVisible, reason: from getter */
+    public boolean getIsShareVisible() {
+        return this.isShareVisible;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final View.OnClickListener getOnEndEventButtonClicked() {
+        return this.onEndEventButtonClicked;
     }
 
     public final View.OnClickListener getOnEndEventButtonClicked() {
         return this.onEndEventButtonClicked;
     }
 
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final View.OnClickListener getOnExtraButtonClicked() {
         return this.onExtraButtonClicked;
+    }
+
+    public final View.OnClickListener getOnExtraButtonClicked() {
+        return this.onExtraButtonClicked;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final View.OnClickListener getOnJoinButtonClicked() {
+        return this.onJoinButtonClicked;
     }
 
     public final View.OnClickListener getOnJoinButtonClicked() {
         return this.onJoinButtonClicked;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final View.OnClickListener getOnRsvpButtonClicked() {
         return this.onRsvpButtonClicked;
     }
 
+    public final View.OnClickListener getOnRsvpButtonClicked() {
+        return this.onRsvpButtonClicked;
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final View.OnClickListener getOnShareButtonClicked() {
         return this.onShareButtonClicked;
+    }
+
+    public final View.OnClickListener getOnShareButtonClicked() {
+        return this.onShareButtonClicked;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final View.OnClickListener getOnStartEventButtonClicked() {
+        return this.onStartEventButtonClicked;
     }
 
     public final View.OnClickListener getOnStartEventButtonClicked() {
@@ -358,12 +376,6 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         return iHashCode6 + (onClickListener6 != null ? onClickListener6.hashCode() : 0);
     }
 
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isAnyButtonVisible, reason: from getter */
-    public boolean getIsAnyButtonVisible() {
-        return this.isAnyButtonVisible;
-    }
-
     public final boolean isConnected() {
         return this.isConnected;
     }
@@ -372,24 +384,12 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         return this.isDetailView;
     }
 
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isExtrasVisible, reason: from getter */
-    public boolean getIsExtrasVisible() {
-        return this.isExtrasVisible;
-    }
-
     public final boolean isInGuild() {
         return this.isInGuild;
     }
 
     public final boolean isRsvped() {
         return this.isRsvped;
-    }
-
-    @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    /* JADX INFO: renamed from: isShareVisible, reason: from getter */
-    public boolean getIsShareVisible() {
-        return this.isShareVisible;
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration

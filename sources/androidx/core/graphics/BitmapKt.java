@@ -30,17 +30,17 @@ public final class BitmapKt {
         return i2 >= 0 && i2 < bitmap.getWidth() && (i = point.y) >= 0 && i < bitmap.getHeight();
     }
 
-    public static final Bitmap createBitmap(int i, int i2, Bitmap.Config config) {
+    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap.Config config, int i3, Object obj) {
+        if ((i3 & 4) != 0) {
+            config = Bitmap.Config.ARGB_8888;
+        }
         C12238m.checkNotNullParameter(config, "config");
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
         C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config)");
         return bitmapCreateBitmap;
     }
 
-    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap.Config config, int i3, Object obj) {
-        if ((i3 & 4) != 0) {
-            config = Bitmap.Config.ARGB_8888;
-        }
+    public static final Bitmap createBitmap(int i, int i2, Bitmap.Config config) {
         C12238m.checkNotNullParameter(config, "config");
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
         C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config)");
@@ -52,17 +52,17 @@ public final class BitmapKt {
         return bitmap.getPixel(i, i2);
     }
 
-    public static final Bitmap scale(Bitmap bitmap, int i, int i2, boolean z2) {
+    public static /* synthetic */ Bitmap scale$default(Bitmap bitmap, int i, int i2, boolean z2, int i3, Object obj) {
+        if ((i3 & 4) != 0) {
+            z2 = true;
+        }
         C12238m.checkNotNullParameter(bitmap, "<this>");
         Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmap, i, i2, z2);
         C12238m.checkNotNullExpressionValue(bitmapCreateScaledBitmap, "createScaledBitmap(this, width, height, filter)");
         return bitmapCreateScaledBitmap;
     }
 
-    public static /* synthetic */ Bitmap scale$default(Bitmap bitmap, int i, int i2, boolean z2, int i3, Object obj) {
-        if ((i3 & 4) != 0) {
-            z2 = true;
-        }
+    public static final Bitmap scale(Bitmap bitmap, int i, int i2, boolean z2) {
         C12238m.checkNotNullParameter(bitmap, "<this>");
         Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmap, i, i2, z2);
         C12238m.checkNotNullExpressionValue(bitmapCreateScaledBitmap, "createScaledBitmap(this, width, height, filter)");

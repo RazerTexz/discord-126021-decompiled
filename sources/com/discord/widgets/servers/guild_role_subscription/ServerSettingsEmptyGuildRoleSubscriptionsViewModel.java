@@ -24,7 +24,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends Ab
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsEmptyGuildRoleSubscriptionsViewModel$1 */
     /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
-    public static final class C94391 extends AbstractC12240o implements Function1<List<? extends Application>, Unit> {
+    public final class C94391 extends AbstractC12240o implements Function1<List<? extends Application>, Unit> {
         public C94391() {
             super(1);
         }
@@ -44,7 +44,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends Ab
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsEmptyGuildRoleSubscriptionsViewModel$2 */
     /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
-    public static final class C94402 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C94402 extends AbstractC12240o implements Function1<Error, Unit> {
         public C94402() {
             super(1);
         }
@@ -64,7 +64,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends Ab
     }
 
     /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isLoading;
         private final Boolean isMonetizationEnabled;
 
@@ -88,16 +88,6 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends Ab
             return viewState.copy(z2, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsLoading() {
-            return this.isLoading;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getIsMonetizationEnabled() {
-            return this.isMonetizationEnabled;
-        }
-
         public final ViewState copy(boolean isLoading, Boolean isMonetizationEnabled) {
             return new ViewState(isLoading, isMonetizationEnabled);
         }
@@ -111,6 +101,16 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends Ab
             }
             ViewState viewState = (ViewState) other;
             return this.isLoading == viewState.isLoading && C12238m.areEqual(this.isMonetizationEnabled, viewState.isMonetizationEnabled);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsLoading() {
+            return this.isLoading;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Boolean getIsMonetizationEnabled() {
+            return this.isMonetizationEnabled;
         }
 
         /* JADX WARN: Multi-variable type inference failed */

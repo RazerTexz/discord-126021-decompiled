@@ -61,7 +61,7 @@ public final class C3096q implements InterfaceC3094o {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.q$a */
     /* JADX INFO: compiled from: H263Reader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final byte[] f8774a = {0, 0, 1};
@@ -110,7 +110,7 @@ public final class C3096q implements InterfaceC3094o {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.q$b */
     /* JADX INFO: compiled from: H263Reader.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC3122w f8780a;

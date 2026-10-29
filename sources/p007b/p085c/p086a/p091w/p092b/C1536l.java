@@ -15,6 +15,9 @@ import p007b.p085c.p086a.p095y.p097l.C1592g;
 @TargetApi(19)
 public class C1536l implements InterfaceC1537m, InterfaceC1534j {
 
+    /* JADX INFO: renamed from: e */
+    public final C1592g f2544e;
+
     /* JADX INFO: renamed from: a */
     public final Path f2540a = new Path();
 
@@ -27,11 +30,32 @@ public class C1536l implements InterfaceC1537m, InterfaceC1534j {
     /* JADX INFO: renamed from: d */
     public final List<InterfaceC1537m> f2543d = new ArrayList();
 
-    /* JADX INFO: renamed from: e */
-    public final C1592g f2544e;
-
     public C1536l(C1592g c1592g) {
         this.f2544e = c1592g;
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
+    public Path getPath() {
+        this.f2542c.reset();
+        C1592g c1592g = this.f2544e;
+        if (c1592g.f2773c) {
+            return this.f2542c;
+        }
+        int iOrdinal = c1592g.f2772b.ordinal();
+        if (iOrdinal == 0) {
+            for (int i = 0; i < this.f2543d.size(); i++) {
+                this.f2542c.addPath(this.f2543d.get(i).getPath());
+            }
+        } else if (iOrdinal == 1) {
+            m722a(Path.Op.UNION);
+        } else if (iOrdinal == 2) {
+            m722a(Path.Op.REVERSE_DIFFERENCE);
+        } else if (iOrdinal == 3) {
+            m722a(Path.Op.INTERSECT);
+        } else if (iOrdinal == 4) {
+            m722a(Path.Op.XOR);
+        }
+        return this.f2542c;
     }
 
     @TargetApi(19)
@@ -104,29 +128,5 @@ public class C1536l implements InterfaceC1537m, InterfaceC1534j {
                 listIterator.remove();
             }
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
-    public Path getPath() {
-        this.f2542c.reset();
-        C1592g c1592g = this.f2544e;
-        if (c1592g.f2773c) {
-            return this.f2542c;
-        }
-        int iOrdinal = c1592g.f2772b.ordinal();
-        if (iOrdinal == 0) {
-            for (int i = 0; i < this.f2543d.size(); i++) {
-                this.f2542c.addPath(this.f2543d.get(i).getPath());
-            }
-        } else if (iOrdinal == 1) {
-            m722a(Path.Op.UNION);
-        } else if (iOrdinal == 2) {
-            m722a(Path.Op.REVERSE_DIFFERENCE);
-        } else if (iOrdinal == 3) {
-            m722a(Path.Op.INTERSECT);
-        } else if (iOrdinal == 4) {
-            m722a(Path.Op.XOR);
-        }
-        return this.f2542c;
     }
 }

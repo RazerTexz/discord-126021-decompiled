@@ -41,14 +41,14 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public long getItemId(int position) {
-        return position;
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

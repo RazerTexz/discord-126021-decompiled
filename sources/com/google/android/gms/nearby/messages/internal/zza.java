@@ -27,18 +27,6 @@ public final class zza extends AbstractSafeParcelable implements BleSignal {
         this.f20773l = (-169 >= i3 || i3 >= 87) ? Integer.MIN_VALUE : i3;
     }
 
-    @Override // com.google.android.gms.nearby.messages.BleSignal
-    /* JADX INFO: renamed from: U */
-    public final int mo9118U() {
-        return this.f20773l;
-    }
-
-    @Override // com.google.android.gms.nearby.messages.BleSignal
-    /* JADX INFO: renamed from: V */
-    public final int mo9119V() {
-        return this.f20772k;
-    }
-
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -52,6 +40,18 @@ public final class zza extends AbstractSafeParcelable implements BleSignal {
 
     public final int hashCode() {
         return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20772k), Integer.valueOf(this.f20773l)});
+    }
+
+    @Override // com.google.android.gms.nearby.messages.BleSignal
+    /* JADX INFO: renamed from: U */
+    public final int mo9118U() {
+        return this.f20773l;
+    }
+
+    @Override // com.google.android.gms.nearby.messages.BleSignal
+    /* JADX INFO: renamed from: V */
+    public final int mo9119V() {
+        return this.f20772k;
     }
 
     public final String toString() {

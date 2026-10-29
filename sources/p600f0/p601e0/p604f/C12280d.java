@@ -57,6 +57,8 @@ public final class C12280d {
     /* JADX INFO: renamed from: f0.e0.f.d$a */
     /* JADX INFO: compiled from: TaskRunner.kt */
     public interface a {
+        void execute(Runnable runnable);
+
         /* JADX INFO: renamed from: a */
         void mo10163a(C12280d c12280d);
 
@@ -65,20 +67,18 @@ public final class C12280d {
 
         /* JADX INFO: renamed from: c */
         long mo10165c();
-
-        void execute(Runnable runnable);
     }
 
     /* JADX INFO: renamed from: f0.e0.f.d$b */
     /* JADX INFO: compiled from: TaskRunner.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: f0.e0.f.d$c */
     /* JADX INFO: compiled from: TaskRunner.kt */
-    public static final class c implements a {
+    public final class c implements a {
 
         /* JADX INFO: renamed from: a */
         public final ThreadPoolExecutor f25430a;
@@ -86,6 +86,12 @@ public final class C12280d {
         public c(ThreadFactory threadFactory) {
             C12238m.checkParameterIsNotNull(threadFactory, "threadFactory");
             this.f25430a = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue(), threadFactory);
+        }
+
+        @Override // p600f0.p601e0.p604f.C12280d.a
+        public void execute(Runnable runnable) {
+            C12238m.checkParameterIsNotNull(runnable, "runnable");
+            this.f25430a.execute(runnable);
         }
 
         @Override // p600f0.p601e0.p604f.C12280d.a
@@ -111,17 +117,11 @@ public final class C12280d {
         public long mo10165c() {
             return System.nanoTime();
         }
-
-        @Override // p600f0.p601e0.p604f.C12280d.a
-        public void execute(Runnable runnable) {
-            C12238m.checkParameterIsNotNull(runnable, "runnable");
-            this.f25430a.execute(runnable);
-        }
     }
 
     /* JADX INFO: renamed from: f0.e0.f.d$d */
     /* JADX INFO: compiled from: TaskRunner.kt */
-    public static final class d implements Runnable {
+    public final class d implements Runnable {
         public d() {
         }
 
@@ -341,9 +341,6 @@ public final class C12280d {
             i = this.f25423d;
             this.f25423d = i + 1;
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append('Q');
-        sb.append(i);
-        return new C12279c(this, sb.toString());
+        return new C12279c(this, "" + 'Q' + i);
     }
 }

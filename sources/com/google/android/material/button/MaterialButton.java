@@ -53,9 +53,6 @@ import p007b.p225i.p226a.p341g.p343b.C4388a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MaterialButton extends AppCompatButton implements Checkable, Shapeable {
-    private static final int[] CHECKABLE_STATE_SET = {R.attr.state_checkable};
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Button;
     public static final int ICON_GRAVITY_END = 3;
     public static final int ICON_GRAVITY_START = 1;
     public static final int ICON_GRAVITY_TEXT_END = 4;
@@ -96,23 +93,30 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
 
     @Nullable
     private InterfaceC10866a onPressedChangeListenerInternal;
+    private static final int[] CHECKABLE_STATE_SET = {R.attr.state_checkable};
+    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Button;
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface IconGravity {
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.button.MaterialButton$a */
+    public interface InterfaceC10866a {
     }
 
     public interface OnCheckedChangeListener {
         void onCheckedChanged(MaterialButton materialButton, boolean z2);
     }
 
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10865a();
+    public class SavedState extends AbsSavedState {
 
         /* JADX INFO: renamed from: j */
         public boolean f20940j;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10865a();
 
         /* JADX INFO: renamed from: com.google.android.material.button.MaterialButton$SavedState$a */
-        public static class C10865a implements Parcelable.ClassLoaderCreator<SavedState> {
+        public final class C10865a implements Parcelable.ClassLoaderCreator<SavedState> {
             @Override // android.os.Parcelable.ClassLoaderCreator
             @NonNull
             public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
@@ -151,158 +155,8 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.button.MaterialButton$a */
-    public interface InterfaceC10866a {
-    }
-
     public MaterialButton(@NonNull Context context) {
         this(context, null);
-    }
-
-    @NonNull
-    private String getA11yClassName() {
-        return (isCheckable() ? CompoundButton.class : Button.class).getName();
-    }
-
-    private int getTextHeight() {
-        TextPaint paint = getPaint();
-        String string = getText().toString();
-        if (getTransformationMethod() != null) {
-            string = getTransformationMethod().getTransformation(string, this).toString();
-        }
-        Rect rect = new Rect();
-        paint.getTextBounds(string, 0, string.length(), rect);
-        return Math.min(rect.height(), getLayout().getHeight());
-    }
-
-    private int getTextWidth() {
-        TextPaint paint = getPaint();
-        String string = getText().toString();
-        if (getTransformationMethod() != null) {
-            string = getTransformationMethod().getTransformation(string, this).toString();
-        }
-        return Math.min((int) paint.measureText(string), getLayout().getEllipsizedWidth());
-    }
-
-    private boolean isIconEnd() {
-        int i = this.iconGravity;
-        return i == 3 || i == 4;
-    }
-
-    private boolean isIconStart() {
-        int i = this.iconGravity;
-        return i == 1 || i == 2;
-    }
-
-    private boolean isIconTop() {
-        int i = this.iconGravity;
-        return i == 16 || i == 32;
-    }
-
-    private boolean isLayoutRTL() {
-        return ViewCompat.getLayoutDirection(this) == 1;
-    }
-
-    private boolean isUsingOriginalBackground() {
-        C4388a c4388a = this.materialButtonHelper;
-        return (c4388a == null || c4388a.f11552o) ? false : true;
-    }
-
-    private void resetIconDrawable() {
-        if (isIconStart()) {
-            TextViewCompat.setCompoundDrawablesRelative(this, this.icon, null, null, null);
-        } else if (isIconEnd()) {
-            TextViewCompat.setCompoundDrawablesRelative(this, null, null, this.icon, null);
-        } else if (isIconTop()) {
-            TextViewCompat.setCompoundDrawablesRelative(this, null, this.icon, null, null);
-        }
-    }
-
-    private void updateIcon(boolean z2) {
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            Drawable drawableMutate = DrawableCompat.wrap(drawable).mutate();
-            this.icon = drawableMutate;
-            DrawableCompat.setTintList(drawableMutate, this.iconTint);
-            PorterDuff.Mode mode = this.iconTintMode;
-            if (mode != null) {
-                DrawableCompat.setTintMode(this.icon, mode);
-            }
-            int intrinsicWidth = this.iconSize;
-            if (intrinsicWidth == 0) {
-                intrinsicWidth = this.icon.getIntrinsicWidth();
-            }
-            int intrinsicHeight = this.iconSize;
-            if (intrinsicHeight == 0) {
-                intrinsicHeight = this.icon.getIntrinsicHeight();
-            }
-            Drawable drawable2 = this.icon;
-            int i = this.iconLeft;
-            int i2 = this.iconTop;
-            drawable2.setBounds(i, i2, intrinsicWidth + i, intrinsicHeight + i2);
-        }
-        if (z2) {
-            resetIconDrawable();
-            return;
-        }
-        Drawable[] compoundDrawablesRelative = TextViewCompat.getCompoundDrawablesRelative(this);
-        boolean z3 = false;
-        Drawable drawable3 = compoundDrawablesRelative[0];
-        Drawable drawable4 = compoundDrawablesRelative[1];
-        Drawable drawable5 = compoundDrawablesRelative[2];
-        if ((isIconStart() && drawable3 != this.icon) || ((isIconEnd() && drawable5 != this.icon) || (isIconTop() && drawable4 != this.icon))) {
-            z3 = true;
-        }
-        if (z3) {
-            resetIconDrawable();
-        }
-    }
-
-    private void updateIconPosition(int i, int i2) {
-        if (this.icon == null || getLayout() == null) {
-            return;
-        }
-        if (!isIconStart() && !isIconEnd()) {
-            if (isIconTop()) {
-                this.iconLeft = 0;
-                if (this.iconGravity == 16) {
-                    this.iconTop = 0;
-                    updateIcon(false);
-                    return;
-                }
-                int intrinsicHeight = this.iconSize;
-                if (intrinsicHeight == 0) {
-                    intrinsicHeight = this.icon.getIntrinsicHeight();
-                }
-                int textHeight = (((((i2 - getTextHeight()) - getPaddingTop()) - intrinsicHeight) - this.iconPadding) - getPaddingBottom()) / 2;
-                if (this.iconTop != textHeight) {
-                    this.iconTop = textHeight;
-                    updateIcon(false);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        this.iconTop = 0;
-        int i3 = this.iconGravity;
-        if (i3 == 1 || i3 == 3) {
-            this.iconLeft = 0;
-            updateIcon(false);
-            return;
-        }
-        int intrinsicWidth = this.iconSize;
-        if (intrinsicWidth == 0) {
-            intrinsicWidth = this.icon.getIntrinsicWidth();
-        }
-        int textWidth = (((((i - getTextWidth()) - ViewCompat.getPaddingEnd(this)) - intrinsicWidth) - this.iconPadding) - ViewCompat.getPaddingStart(this)) / 2;
-        if (isLayoutRTL() != (this.iconGravity == 4)) {
-            textWidth = -textWidth;
-        }
-        if (this.iconLeft != textWidth) {
-            this.iconLeft = textWidth;
-            updateIcon(false);
-        }
     }
 
     public void addOnCheckedChangeListener(@NonNull OnCheckedChangeListener onCheckedChangeListener) {
@@ -311,6 +165,11 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
 
     public void clearOnCheckedChangeListeners() {
         this.onCheckedChangeListeners.clear();
+    }
+
+    @NonNull
+    private String getA11yClassName() {
+        return (isCheckable() ? CompoundButton.class : Button.class).getName();
     }
 
     @Override // android.view.View
@@ -415,6 +274,26 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
         return isUsingOriginalBackground() ? this.materialButtonHelper.f11546i : super.getSupportBackgroundTintMode();
     }
 
+    private int getTextHeight() {
+        TextPaint paint = getPaint();
+        String string = getText().toString();
+        if (getTransformationMethod() != null) {
+            string = getTransformationMethod().getTransformation(string, this).toString();
+        }
+        Rect rect = new Rect();
+        paint.getTextBounds(string, 0, string.length(), rect);
+        return Math.min(rect.height(), getLayout().getHeight());
+    }
+
+    private int getTextWidth() {
+        TextPaint paint = getPaint();
+        String string = getText().toString();
+        if (getTransformationMethod() != null) {
+            string = getTransformationMethod().getTransformation(string, this).toString();
+        }
+        return Math.min((int) paint.measureText(string), getLayout().getEllipsizedWidth());
+    }
+
     public boolean isCheckable() {
         C4388a c4388a = this.materialButtonHelper;
         return c4388a != null && c4388a.f11554q;
@@ -423,6 +302,30 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
     @Override // android.widget.Checkable
     public boolean isChecked() {
         return this.checked;
+    }
+
+    private boolean isIconEnd() {
+        int i = this.iconGravity;
+        return i == 3 || i == 4;
+    }
+
+    private boolean isIconStart() {
+        int i = this.iconGravity;
+        return i == 1 || i == 2;
+    }
+
+    private boolean isIconTop() {
+        int i = this.iconGravity;
+        return i == 16 || i == 32;
+    }
+
+    private boolean isLayoutRTL() {
+        return ViewCompat.getLayoutDirection(this) == 1;
+    }
+
+    private boolean isUsingOriginalBackground() {
+        C4388a c4388a = this.materialButtonHelper;
+        return (c4388a == null || c4388a.f11552o) ? false : true;
     }
 
     @Override // android.widget.TextView, android.view.View
@@ -515,6 +418,16 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
 
     public void removeOnCheckedChangeListener(@NonNull OnCheckedChangeListener onCheckedChangeListener) {
         this.onCheckedChangeListeners.remove(onCheckedChangeListener);
+    }
+
+    private void resetIconDrawable() {
+        if (isIconStart()) {
+            TextViewCompat.setCompoundDrawablesRelative(this, this.icon, null, null, null);
+        } else if (isIconEnd()) {
+            TextViewCompat.setCompoundDrawablesRelative(this, null, null, this.icon, null);
+        } else if (isIconTop()) {
+            TextViewCompat.setCompoundDrawablesRelative(this, null, this.icon, null, null);
+        }
     }
 
     @Override // android.view.View
@@ -800,6 +713,93 @@ public class MaterialButton extends AppCompatButton implements Checkable, Shapea
     @Override // android.widget.Checkable
     public void toggle() {
         setChecked(!this.checked);
+    }
+
+    private void updateIcon(boolean z2) {
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            Drawable drawableMutate = DrawableCompat.wrap(drawable).mutate();
+            this.icon = drawableMutate;
+            DrawableCompat.setTintList(drawableMutate, this.iconTint);
+            PorterDuff.Mode mode = this.iconTintMode;
+            if (mode != null) {
+                DrawableCompat.setTintMode(this.icon, mode);
+            }
+            int intrinsicWidth = this.iconSize;
+            if (intrinsicWidth == 0) {
+                intrinsicWidth = this.icon.getIntrinsicWidth();
+            }
+            int intrinsicHeight = this.iconSize;
+            if (intrinsicHeight == 0) {
+                intrinsicHeight = this.icon.getIntrinsicHeight();
+            }
+            Drawable drawable2 = this.icon;
+            int i = this.iconLeft;
+            int i2 = this.iconTop;
+            drawable2.setBounds(i, i2, intrinsicWidth + i, intrinsicHeight + i2);
+        }
+        if (z2) {
+            resetIconDrawable();
+            return;
+        }
+        Drawable[] compoundDrawablesRelative = TextViewCompat.getCompoundDrawablesRelative(this);
+        boolean z3 = false;
+        Drawable drawable3 = compoundDrawablesRelative[0];
+        Drawable drawable4 = compoundDrawablesRelative[1];
+        Drawable drawable5 = compoundDrawablesRelative[2];
+        if ((isIconStart() && drawable3 != this.icon) || ((isIconEnd() && drawable5 != this.icon) || (isIconTop() && drawable4 != this.icon))) {
+            z3 = true;
+        }
+        if (z3) {
+            resetIconDrawable();
+        }
+    }
+
+    private void updateIconPosition(int i, int i2) {
+        if (this.icon == null || getLayout() == null) {
+            return;
+        }
+        if (!isIconStart() && !isIconEnd()) {
+            if (isIconTop()) {
+                this.iconLeft = 0;
+                if (this.iconGravity == 16) {
+                    this.iconTop = 0;
+                    updateIcon(false);
+                    return;
+                }
+                int intrinsicHeight = this.iconSize;
+                if (intrinsicHeight == 0) {
+                    intrinsicHeight = this.icon.getIntrinsicHeight();
+                }
+                int textHeight = (((((i2 - getTextHeight()) - getPaddingTop()) - intrinsicHeight) - this.iconPadding) - getPaddingBottom()) / 2;
+                if (this.iconTop != textHeight) {
+                    this.iconTop = textHeight;
+                    updateIcon(false);
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        this.iconTop = 0;
+        int i3 = this.iconGravity;
+        if (i3 == 1 || i3 == 3) {
+            this.iconLeft = 0;
+            updateIcon(false);
+            return;
+        }
+        int intrinsicWidth = this.iconSize;
+        if (intrinsicWidth == 0) {
+            intrinsicWidth = this.icon.getIntrinsicWidth();
+        }
+        int textWidth = (((((i - getTextWidth()) - ViewCompat.getPaddingEnd(this)) - intrinsicWidth) - this.iconPadding) - ViewCompat.getPaddingStart(this)) / 2;
+        if (isLayoutRTL() != (this.iconGravity == 4)) {
+            textWidth = -textWidth;
+        }
+        if (this.iconLeft != textWidth) {
+            this.iconLeft = textWidth;
+            updateIcon(false);
+        }
     }
 
     public MaterialButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {

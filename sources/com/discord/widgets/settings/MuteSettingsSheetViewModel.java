@@ -52,7 +52,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.MuteSettingsSheetViewModel$1 */
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static final class C95971 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C95971 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C95971() {
             super(1);
         }
@@ -71,7 +71,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -117,10 +117,10 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static abstract class Config {
+    public abstract class Config {
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final /* data */ class Channel extends Config {
+        public final /* data */ class Channel extends Config {
             private final long channelId;
 
             public Channel(long j) {
@@ -135,11 +135,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                 return channel.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
             public final Channel copy(long channelId) {
                 return new Channel(channelId);
             }
@@ -149,6 +144,11 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                     return (other instanceof Channel) && this.channelId == ((Channel) other).channelId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getChannelId() {
+                return this.channelId;
             }
 
             public final long getChannelId() {
@@ -165,7 +165,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final /* data */ class Guild extends Config {
+        public final /* data */ class Guild extends Config {
             private final long guildId;
 
             public Guild(long j) {
@@ -180,11 +180,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                 return guild.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final Guild copy(long guildId) {
                 return new Guild(guildId);
             }
@@ -194,6 +189,11 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                     return (other instanceof Guild) && this.guildId == ((Guild) other).guildId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
@@ -218,10 +218,10 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final class Dismiss extends Event {
+        public final class Dismiss extends Event {
             public static final Dismiss INSTANCE = new Dismiss();
 
             private Dismiss() {
@@ -230,7 +230,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final /* data */ class NavigateToChannelSettings extends Event {
+        public final /* data */ class NavigateToChannelSettings extends Event {
             private final long channelId;
 
             public NavigateToChannelSettings(long j) {
@@ -245,11 +245,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                 return navigateToChannelSettings.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
             public final NavigateToChannelSettings copy(long channelId) {
                 return new NavigateToChannelSettings(channelId);
             }
@@ -259,6 +254,11 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                     return (other instanceof NavigateToChannelSettings) && this.channelId == ((NavigateToChannelSettings) other).channelId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getChannelId() {
+                return this.channelId;
             }
 
             public final long getChannelId() {
@@ -294,7 +294,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final Guild guild;
         private final ModelNotificationSettings guildNotificationSettings;
@@ -323,26 +323,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
             return storeState.copy(guild, channel, modelNotificationSettings, joinedThread);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final ModelNotificationSettings getGuildNotificationSettings() {
-            return this.guildNotificationSettings;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StoreThreadsJoined.JoinedThread getJoinedThread() {
-            return this.joinedThread;
-        }
-
         public final StoreState copy(Guild guild, Channel channel, ModelNotificationSettings guildNotificationSettings, StoreThreadsJoined.JoinedThread joinedThread) {
             return new StoreState(guild, channel, guildNotificationSettings, joinedThread);
         }
@@ -358,16 +338,36 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.guildNotificationSettings, storeState.guildNotificationSettings) && C12238m.areEqual(this.joinedThread, storeState.joinedThread);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final ModelNotificationSettings getGuildNotificationSettings() {
             return this.guildNotificationSettings;
+        }
+
+        public final ModelNotificationSettings getGuildNotificationSettings() {
+            return this.guildNotificationSettings;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final StoreThreadsJoined.JoinedThread getJoinedThread() {
+            return this.joinedThread;
         }
 
         public final StoreThreadsJoined.JoinedThread getJoinedThread() {
@@ -404,10 +404,10 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final class Failure extends ViewState {
+        public final class Failure extends ViewState {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -416,7 +416,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean isChannelMuted;
             private final boolean isGuildMuted;
             private final String muteEndTime;
@@ -454,36 +454,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                 return loaded.copy(settingsType, str3, z4, z5, str4, i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final SettingsType getSettingsType() {
-                return this.settingsType;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getSubtitle() {
-                return this.subtitle;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsChannelMuted() {
-                return this.isChannelMuted;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsGuildMuted() {
-                return this.isGuildMuted;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getMuteEndTime() {
-                return this.muteEndTime;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final int getNotificationSetting() {
-                return this.notificationSetting;
-            }
-
             public final Loaded copy(SettingsType settingsType, String subtitle, boolean isChannelMuted, boolean isGuildMuted, String muteEndTime, int notificationSetting) {
                 C12238m.checkNotNullParameter(settingsType, "settingsType");
                 C12238m.checkNotNullParameter(subtitle, "subtitle");
@@ -501,16 +471,46 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
                 return C12238m.areEqual(this.settingsType, loaded.settingsType) && C12238m.areEqual(this.subtitle, loaded.subtitle) && this.isChannelMuted == loaded.isChannelMuted && this.isGuildMuted == loaded.isGuildMuted && C12238m.areEqual(this.muteEndTime, loaded.muteEndTime) && this.notificationSetting == loaded.notificationSetting;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsChannelMuted() {
+                return this.isChannelMuted;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsGuildMuted() {
+                return this.isGuildMuted;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final String getMuteEndTime() {
                 return this.muteEndTime;
+            }
+
+            public final String getMuteEndTime() {
+                return this.muteEndTime;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final int getNotificationSetting() {
+                return this.notificationSetting;
             }
 
             public final int getNotificationSetting() {
                 return this.notificationSetting;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final SettingsType getSettingsType() {
                 return this.settingsType;
+            }
+
+            public final SettingsType getSettingsType() {
+                return this.settingsType;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getSubtitle() {
+                return this.subtitle;
             }
 
             public final String getSubtitle() {
@@ -580,7 +580,7 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: MuteSettingsSheetViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -629,6 +629,36 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
     private final void emitDismissEvent() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.f27650k.onNext(Event.Dismiss.INSTANCE);
+    }
+
+    @MainThread
+    public final void emitNotificationSettingsEvent(long channelId) {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(new Event.NavigateToChannelSettings(channelId));
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Clock getClock() {
+        return this.clock;
+    }
+
+    public final Config getConfig() {
+        return this.config;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    public final Observable<StoreState> getStoreStateObservable() {
+        return this.storeStateObservable;
+    }
+
+    public final StoreUserGuildSettings getStoreUserGuildSettings() {
+        return this.storeUserGuildSettings;
     }
 
     /* JADX WARN: Code duplicated, block: B:38:0x0091  */
@@ -747,36 +777,6 @@ public final class MuteSettingsSheetViewModel extends AbstractC0859d0<ViewState>
             numValueOf = Integer.valueOf(channelOverride.getMessageNotifications());
         }
         updateViewState(new ViewState.Loaded(settingsType2, name, z3, (channel == null || ChannelUtils.m7667B(channel) || (guildNotificationSettings = storeState.getGuildNotificationSettings()) == null || !guildNotificationSettings.isMuted()) ? false : true, muteEndTime, numValueOf != null ? numValueOf.intValue() : ModelNotificationSettings.FREQUENCY_UNSET));
-    }
-
-    @MainThread
-    public final void emitNotificationSettingsEvent(long channelId) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.NavigateToChannelSettings(channelId));
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Clock getClock() {
-        return this.clock;
-    }
-
-    public final Config getConfig() {
-        return this.config;
-    }
-
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    public final Observable<StoreState> getStoreStateObservable() {
-        return this.storeStateObservable;
-    }
-
-    public final StoreUserGuildSettings getStoreUserGuildSettings() {
-        return this.storeUserGuildSettings;
     }
 
     public final Observable<Event> observeEvents() {

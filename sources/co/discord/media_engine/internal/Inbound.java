@@ -38,26 +38,6 @@ public final /* data */ class Inbound {
         return inbound.copy(str, inboundAudio, inboundVideo, inboundPlayout);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final InboundAudio getAudio() {
-        return this.audio;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final InboundVideo getVideo() {
-        return this.video;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final InboundPlayout getPlayout() {
-        return this.playout;
-    }
-
     public final Inbound copy(String id2, InboundAudio audio, InboundVideo video, InboundPlayout playout) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(audio, MediaStreamTrack.AUDIO_TRACK_KIND);
@@ -75,16 +55,36 @@ public final /* data */ class Inbound {
         return C12238m.areEqual(this.id, inbound.id) && C12238m.areEqual(this.audio, inbound.audio) && C12238m.areEqual(this.video, inbound.video) && C12238m.areEqual(this.playout, inbound.playout);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final InboundAudio getAudio() {
         return this.audio;
+    }
+
+    public final InboundAudio getAudio() {
+        return this.audio;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getId() {
+        return this.id;
     }
 
     public final String getId() {
         return this.id;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final InboundPlayout getPlayout() {
         return this.playout;
+    }
+
+    public final InboundPlayout getPlayout() {
+        return this.playout;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final InboundVideo getVideo() {
+        return this.video;
     }
 
     public final InboundVideo getVideo() {

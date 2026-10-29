@@ -45,30 +45,7 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
         this.availableTags = list;
         this.appliedTags = list2;
         this.type = 3;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getIsTextInVoice() {
-        return this.isTextInVoice;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final boolean getIsGuildForumPost() {
-        return this.isGuildForumPost;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final boolean getCanAccessRedesignedForumChannels() {
-        return this.canAccessRedesignedForumChannels;
+        this.key = "" + getType() + j;
     }
 
     public final List<ForumTag> component13() {
@@ -77,46 +54,6 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
 
     public final List<Long> component14() {
         return this.appliedTags;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanReadMessageHistory() {
-        return this.canReadMessageHistory;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getCanManageChannel() {
-        return this.canManageChannel;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanManageThread() {
-        return this.canManageThread;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsThread() {
-        return this.isThread;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Integer getThreadAutoArchiveDuration() {
-        return this.threadAutoArchiveDuration;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final GuildMember getThreadCreatorMember() {
-        return this.threadCreatorMember;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final String getThreadCreatorName() {
-        return this.threadCreatorName;
     }
 
     public final StartOfChatEntry copy(long channelId, String channelName, boolean canReadMessageHistory, boolean canManageChannel, boolean canManageThread, boolean isThread, Integer threadAutoArchiveDuration, GuildMember threadCreatorMember, String threadCreatorName, boolean isTextInVoice, boolean isGuildForumPost, boolean canAccessRedesignedForumChannels, List<ForumTag> availableTags, List<Long> appliedTags) {
@@ -144,28 +81,73 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
         return this.availableTags;
     }
 
+    /* JADX INFO: renamed from: component12, reason: from getter */
     public final boolean getCanAccessRedesignedForumChannels() {
         return this.canAccessRedesignedForumChannels;
+    }
+
+    public final boolean getCanAccessRedesignedForumChannels() {
+        return this.canAccessRedesignedForumChannels;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getCanManageChannel() {
+        return this.canManageChannel;
     }
 
     public final boolean getCanManageChannel() {
         return this.canManageChannel;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanManageThread() {
         return this.canManageThread;
+    }
+
+    public final boolean getCanManageThread() {
+        return this.canManageThread;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getCanReadMessageHistory() {
+        return this.canReadMessageHistory;
     }
 
     public final boolean getCanReadMessageHistory() {
         return this.canReadMessageHistory;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
     }
 
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getChannelName() {
         return this.channelName;
+    }
+
+    public final String getChannelName() {
+        return this.channelName;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final boolean getIsGuildForumPost() {
+        return this.isGuildForumPost;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getIsTextInVoice() {
+        return this.isTextInVoice;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsThread() {
+        return this.isThread;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -173,12 +155,27 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final Integer getThreadAutoArchiveDuration() {
         return this.threadAutoArchiveDuration;
     }
 
+    public final Integer getThreadAutoArchiveDuration() {
+        return this.threadAutoArchiveDuration;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final GuildMember getThreadCreatorMember() {
         return this.threadCreatorMember;
+    }
+
+    public final GuildMember getThreadCreatorMember() {
+        return this.threadCreatorMember;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final String getThreadCreatorName() {
+        return this.threadCreatorName;
     }
 
     public final String getThreadCreatorName() {

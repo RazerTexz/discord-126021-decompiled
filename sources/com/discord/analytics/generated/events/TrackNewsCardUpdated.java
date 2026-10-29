@@ -13,35 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNewsCardUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNewsCardUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Long applicationId = null;
+    private final CharSequence applicationName = null;
+    private final Long messageId = null;
+    private final Long newsCardBodyLength = null;
+    private final Long newsId = null;
+    private final CharSequence newsUrl = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final CharSequence applicationName = null;
-    private final Long applicationId = null;
-    private final Long messageId = null;
-    private final Long newsId = null;
-    private final CharSequence newsUrl = null;
-    private final Long newsCardBodyLength = null;
     private final CharSequence updateType = null;
     private final transient String analyticsSchemaTypeName = "news_card_updated";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -52,6 +34,18 @@ public final /* data */ class TrackNewsCardUpdated implements AnalyticsSchema, T
         }
         TrackNewsCardUpdated trackNewsCardUpdated = (TrackNewsCardUpdated) other;
         return C12238m.areEqual(this.applicationName, trackNewsCardUpdated.applicationName) && C12238m.areEqual(this.applicationId, trackNewsCardUpdated.applicationId) && C12238m.areEqual(this.messageId, trackNewsCardUpdated.messageId) && C12238m.areEqual(this.newsId, trackNewsCardUpdated.newsId) && C12238m.areEqual(this.newsUrl, trackNewsCardUpdated.newsUrl) && C12238m.areEqual(this.newsCardBodyLength, trackNewsCardUpdated.newsCardBodyLength) && C12238m.areEqual(this.updateType, trackNewsCardUpdated.updateType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -69,6 +63,12 @@ public final /* data */ class TrackNewsCardUpdated implements AnalyticsSchema, T
         int iHashCode6 = (iHashCode5 + (l4 != null ? l4.hashCode() : 0)) * 31;
         CharSequence charSequence3 = this.updateType;
         return iHashCode6 + (charSequence3 != null ? charSequence3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

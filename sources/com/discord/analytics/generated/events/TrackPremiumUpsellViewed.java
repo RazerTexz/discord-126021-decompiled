@@ -13,23 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumUpsellViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumUpsellViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
+    private final Float duration = null;
+    private final Boolean hasPremiumStreamFps = null;
+    private final Boolean hasPremiumStreamResolution = null;
+    private final Boolean hasSearchQuery = null;
+    private final Boolean isAnimated = null;
+    private final Boolean isExternal = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private final CharSequence type = null;
-    private final Boolean isAnimated = null;
-    private final Boolean isExternal = null;
-    private final Boolean hasSearchQuery = null;
-    private final Boolean hasPremiumStreamFps = null;
-    private final Boolean hasPremiumStreamResolution = null;
-    private final Float duration = null;
     private final transient String analyticsSchemaTypeName = "premium_upsell_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackPremiumUpsellViewed implements AnalyticsSchem
         }
         TrackPremiumUpsellViewed trackPremiumUpsellViewed = (TrackPremiumUpsellViewed) other;
         return C12238m.areEqual(this.type, trackPremiumUpsellViewed.type) && C12238m.areEqual(this.isAnimated, trackPremiumUpsellViewed.isAnimated) && C12238m.areEqual(this.isExternal, trackPremiumUpsellViewed.isExternal) && C12238m.areEqual(this.hasSearchQuery, trackPremiumUpsellViewed.hasSearchQuery) && C12238m.areEqual(this.hasPremiumStreamFps, trackPremiumUpsellViewed.hasPremiumStreamFps) && C12238m.areEqual(this.hasPremiumStreamResolution, trackPremiumUpsellViewed.hasPremiumStreamResolution) && C12238m.areEqual(this.duration, trackPremiumUpsellViewed.duration);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

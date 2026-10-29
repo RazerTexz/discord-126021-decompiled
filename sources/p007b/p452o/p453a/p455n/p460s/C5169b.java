@@ -22,9 +22,6 @@ import p007b.p452o.p453a.p473x.C5236b;
 @RequiresApi(21)
 public class C5169b implements InterfaceC5212c<MeteringRectangle> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f13988a = new C5103b(C5169b.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public final C5170a f13989b;
 
@@ -42,6 +39,9 @@ public class C5169b implements InterfaceC5212c<MeteringRectangle> {
 
     /* JADX INFO: renamed from: g */
     public final CaptureRequest.Builder f13994g;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f13988a = new C5103b(C5169b.class.getSimpleName());
 
     public C5169b(@NonNull C5170a c5170a, @NonNull C5236b c5236b, @NonNull C5236b c5236b2, boolean z2, @NonNull CameraCharacteristics cameraCharacteristics, @NonNull CaptureRequest.Builder builder) {
         this.f13989b = c5170a;

@@ -675,7 +675,7 @@ final class SymbolTable {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/SymbolTable$Entry.SCL.lombok */
-    private static class Entry extends Symbol {
+    class Entry extends Symbol {
         final int hashCode;
         Entry next;
 

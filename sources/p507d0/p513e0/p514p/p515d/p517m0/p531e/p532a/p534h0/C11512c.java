@@ -48,6 +48,37 @@ public class C11512c extends C11373g implements InterfaceC11511b {
         this.f23261P = null;
     }
 
+    public static C11512c createJavaConstructor(InterfaceC11330e interfaceC11330e, InterfaceC11344g interfaceC11344g, boolean z2, InterfaceC11467u0 interfaceC11467u0) {
+        if (interfaceC11330e == null) {
+            m9456a(4);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9456a(5);
+            throw null;
+        }
+        if (interfaceC11467u0 != null) {
+            return new C11512c(interfaceC11330e, null, interfaceC11344g, z2, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
+        }
+        m9456a(6);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
+    public /* bridge */ /* synthetic */ InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List list, AbstractC11913c0 abstractC11913c1, Pair pair) {
+        return enhance(abstractC11913c0, (List<C11521l>) list, abstractC11913c1, (Pair<InterfaceC11318a.a<?>, ?>) pair);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    public boolean hasStableParameterNames() {
+        return this.f23260O.booleanValue();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return this.f23261P.booleanValue();
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9456a(int i) {
         String str = (i == 11 || i == 18) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -134,27 +165,6 @@ public class C11512c extends C11373g implements InterfaceC11511b {
         throw new IllegalStateException(str2);
     }
 
-    public static C11512c createJavaConstructor(InterfaceC11330e interfaceC11330e, InterfaceC11344g interfaceC11344g, boolean z2, InterfaceC11467u0 interfaceC11467u0) {
-        if (interfaceC11330e == null) {
-            m9456a(4);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9456a(5);
-            throw null;
-        }
-        if (interfaceC11467u0 != null) {
-            return new C11512c(interfaceC11330e, null, interfaceC11344g, z2, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
-        }
-        m9456a(6);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
-    public /* bridge */ /* synthetic */ InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List list, AbstractC11913c0 abstractC11913c1, Pair pair) {
-        return enhance(abstractC11913c0, (List<C11521l>) list, abstractC11913c1, (Pair<InterfaceC11318a.a<?>, ?>) pair);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11373g
     /* JADX INFO: renamed from: f, reason: merged with bridge method [inline-methods] */
     public C11512c mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
@@ -199,16 +209,6 @@ public class C11512c extends C11373g implements InterfaceC11511b {
         c11512c2.setHasStableParameterNames(hasStableParameterNames());
         c11512c2.setHasSynthesizedParameterNames(hasSynthesizedParameterNames());
         return c11512c2;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    public boolean hasStableParameterNames() {
-        return this.f23260O.booleanValue();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return this.f23261P.booleanValue();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q

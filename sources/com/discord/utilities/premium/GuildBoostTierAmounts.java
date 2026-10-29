@@ -28,21 +28,6 @@ public final /* data */ class GuildBoostTierAmounts {
         return guildBoostTierAmounts.copy(i, i2, i3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getTier1Boosts() {
-        return this.tier1Boosts;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getTier2Boosts() {
-        return this.tier2Boosts;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getTier3Boosts() {
-        return this.tier3Boosts;
-    }
-
     public final GuildBoostTierAmounts copy(int tier1Boosts, int tier2Boosts, int tier3Boosts) {
         return new GuildBoostTierAmounts(tier1Boosts, tier2Boosts, tier3Boosts);
     }
@@ -58,12 +43,27 @@ public final /* data */ class GuildBoostTierAmounts {
         return this.tier1Boosts == guildBoostTierAmounts.tier1Boosts && this.tier2Boosts == guildBoostTierAmounts.tier2Boosts && this.tier3Boosts == guildBoostTierAmounts.tier3Boosts;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getTier1Boosts() {
         return this.tier1Boosts;
     }
 
+    public final int getTier1Boosts() {
+        return this.tier1Boosts;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getTier2Boosts() {
         return this.tier2Boosts;
+    }
+
+    public final int getTier2Boosts() {
+        return this.tier2Boosts;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getTier3Boosts() {
+        return this.tier3Boosts;
     }
 
     public final int getTier3Boosts() {

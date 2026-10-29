@@ -13,17 +13,17 @@ public final /* data */ class TrackVerifyAccountAppOpened implements AnalyticsSc
     private final Long verifyingUserId = null;
     private final transient String analyticsSchemaTypeName = "verify_account_app_opened";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackVerifyAccountAppOpened) && C12238m.areEqual(this.verifyingUserId, ((TrackVerifyAccountAppOpened) other).verifyingUserId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

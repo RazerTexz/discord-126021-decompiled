@@ -7,10 +7,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionMetadata {
-    private final CharSequence subscriptionPlanGatewayPlanId = null;
-    private final Long subscriptionType = null;
-    private final Long subscriptionPlanId = null;
     private final CharSequence code = null;
+    private final CharSequence subscriptionPlanGatewayPlanId = null;
+    private final Long subscriptionPlanId = null;
+    private final Long subscriptionType = null;
 
     public boolean equals(Object other) {
         if (this == other) {

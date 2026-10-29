@@ -12,21 +12,6 @@ public final /* data */ class GuildStickersUpdate {
     private final long guildId;
     private final List<Sticker> stickers;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final GuildHashes getGuildHashes() {
-        return this.guildHashes;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Sticker> m8233c() {
-        return this.stickers;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -38,6 +23,16 @@ public final /* data */ class GuildStickersUpdate {
         return this.guildId == guildStickersUpdate.guildId && C12238m.areEqual(this.stickers, guildStickersUpdate.stickers) && C12238m.areEqual(this.guildHashes, guildStickersUpdate.guildHashes);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final GuildHashes getGuildHashes() {
+        return this.guildHashes;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
     public int hashCode() {
         long j = this.guildId;
         int i = ((int) (j ^ (j >>> 32))) * 31;
@@ -45,6 +40,11 @@ public final /* data */ class GuildStickersUpdate {
         int iHashCode = (i + (list != null ? list.hashCode() : 0)) * 31;
         GuildHashes guildHashes = this.guildHashes;
         return iHashCode + (guildHashes != null ? guildHashes.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<Sticker> m8233c() {
+        return this.stickers;
     }
 
     public String toString() {

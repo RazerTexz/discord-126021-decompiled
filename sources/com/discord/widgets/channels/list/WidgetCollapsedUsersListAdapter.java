@@ -26,7 +26,7 @@ import p507d0.p592z.p594d.C12238m;
 public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimple<CollapsedUser> {
 
     /* JADX INFO: compiled from: WidgetCollapsedUsersListAdapter.kt */
-    public static final class OverlapDecoration extends RecyclerView.ItemDecoration {
+    public final class OverlapDecoration extends RecyclerView.ItemDecoration {
         private final int offset;
 
         public OverlapDecoration(int i) {
@@ -46,7 +46,7 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
     }
 
     /* JADX INFO: compiled from: WidgetCollapsedUsersListAdapter.kt */
-    public static final class WidgetCollapsedUserListItem extends MGRecyclerViewHolder<WidgetCollapsedUsersListAdapter, CollapsedUser> {
+    public final class WidgetCollapsedUserListItem extends MGRecyclerViewHolder<WidgetCollapsedUsersListAdapter, CollapsedUser> {
         private final WidgetCollapsedVoiceUserListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -87,10 +87,7 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
             }
             TextView textView2 = this.binding.f16400b;
             C12238m.checkNotNullExpressionValue(textView2, "binding.widgetCollapsedUserCount");
-            StringBuilder sb = new StringBuilder();
-            sb.append('+');
-            sb.append(data.getExtraCount());
-            ViewExtensions.setTextAndVisibilityBy(textView2, sb.toString());
+            ViewExtensions.setTextAndVisibilityBy(textView2, "" + '+' + data.getExtraCount());
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView2 = this.binding.f16401c;
             C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.widgetCollapsedUserImageview");

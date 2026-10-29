@@ -152,277 +152,6 @@ public class PlayerView extends FrameLayout {
     /* JADX INFO: renamed from: z */
     public boolean f20186z;
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerView$a */
-    public final class ViewOnLayoutChangeListenerC10758a implements InterfaceC3128y1.e, View.OnLayoutChangeListener, View.OnClickListener, PlayerControlView.InterfaceC10757e {
-
-        /* JADX INFO: renamed from: j */
-        public final AbstractC2832o2.b f20187j = new AbstractC2832o2.b();
-
-        /* JADX INFO: renamed from: k */
-        @Nullable
-        public Object f20188k;
-
-        public ViewOnLayoutChangeListenerC10758a() {
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: A */
-        public /* synthetic */ void mo235A(C2835p1 c2835p1) {
-            C2528a2.m2427i(this, c2835p1);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: D */
-        public /* synthetic */ void mo236D(boolean z2) {
-            C2528a2.m2438t(this, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: E */
-        public /* synthetic */ void mo237E(InterfaceC3128y1 interfaceC3128y1, InterfaceC3128y1.d dVar) {
-            C2528a2.m2423e(this, interfaceC3128y1, dVar);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: G */
-        public /* synthetic */ void mo238G(int i, boolean z2) {
-            C2528a2.m2422d(this, i, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: H */
-        public /* synthetic */ void mo239H(boolean z2, int i) {
-            C3154z1.m3883k(this, z2, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: L */
-        public /* synthetic */ void mo240L(int i) {
-            C2528a2.m2437s(this, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: M */
-        public /* synthetic */ void mo241M(C2831o1 c2831o1, int i) {
-            C2528a2.m2426h(this, c2831o1, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: W */
-        public void mo242W(boolean z2, int i) {
-            PlayerView playerView = PlayerView.this;
-            int i2 = PlayerView.f20159j;
-            playerView.m8924l();
-            PlayerView playerView2 = PlayerView.this;
-            if (playerView2.m8917e() && playerView2.f20167H) {
-                playerView2.m8916d();
-            } else {
-                playerView2.m8918f(false);
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: Y */
-        public /* synthetic */ void mo243Y(C2558o0 c2558o0, C2648n c2648n) {
-            C3154z1.m3890r(this, c2558o0, c2648n);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: a */
-        public /* synthetic */ void mo244a() {
-            C3154z1.m3887o(this);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: a0 */
-        public /* synthetic */ void mo245a0(int i, int i2) {
-            C2528a2.m2440v(this, i, i2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: b */
-        public /* synthetic */ void mo246b(Metadata metadata) {
-            C2528a2.m2428j(this, metadata);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: b0 */
-        public /* synthetic */ void mo247b0(C2998x1 c2998x1) {
-            C2528a2.m2430l(this, c2998x1);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: c */
-        public void mo248c() {
-            View view = PlayerView.this.f20173m;
-            if (view != null) {
-                view.setVisibility(4);
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: d */
-        public /* synthetic */ void mo249d(boolean z2) {
-            C2528a2.m2439u(this, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: e */
-        public void mo250e(List<C2578b> list) {
-            SubtitleView subtitleView = PlayerView.this.f20177q;
-            if (subtitleView != null) {
-                subtitleView.setCues(list);
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: f */
-        public void mo251f(C2788y c2788y) {
-            PlayerView playerView = PlayerView.this;
-            int i = PlayerView.f20159j;
-            playerView.m8923k();
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: f0 */
-        public /* synthetic */ void mo252f0(PlaybackException playbackException) {
-            C2528a2.m2434p(this, playbackException);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: g */
-        public void mo253g(InterfaceC3128y1.f fVar, InterfaceC3128y1.f fVar2, int i) {
-            PlayerView playerView = PlayerView.this;
-            int i2 = PlayerView.f20159j;
-            if (playerView.m8917e()) {
-                PlayerView playerView2 = PlayerView.this;
-                if (playerView2.f20167H) {
-                    playerView2.m8916d();
-                }
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: h */
-        public /* synthetic */ void mo254h(int i) {
-            C2528a2.m2432n(this, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: i */
-        public /* synthetic */ void mo255i(boolean z2) {
-            C3154z1.m3876d(this, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: j */
-        public /* synthetic */ void mo256j(int i) {
-            C3154z1.m3884l(this, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: j0 */
-        public /* synthetic */ void mo257j0(boolean z2) {
-            C2528a2.m2425g(this, z2);
-        }
-
-        @Override // com.google.android.exoplayer2.p505ui.PlayerControlView.InterfaceC10757e
-        /* JADX INFO: renamed from: k */
-        public void mo8912k(int i) {
-            PlayerView playerView = PlayerView.this;
-            int i2 = PlayerView.f20159j;
-            playerView.m8925m();
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            PlayerView playerView = PlayerView.this;
-            int i = PlayerView.f20159j;
-            playerView.m8922j();
-        }
-
-        @Override // android.view.View.OnLayoutChangeListener
-        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-            PlayerView.m8913a((TextureView) view, PlayerView.this.f20169J);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: p */
-        public void mo258p(C2836p2 c2836p2) {
-            InterfaceC3128y1 interfaceC3128y1 = PlayerView.this.f20183w;
-            Objects.requireNonNull(interfaceC3128y1);
-            AbstractC2832o2 abstractC2832o2Mo2888K = interfaceC3128y1.mo2888K();
-            if (abstractC2832o2Mo2888K.m3331q()) {
-                this.f20188k = null;
-            } else if (interfaceC3128y1.mo2885H().f7434k.isEmpty()) {
-                Object obj = this.f20188k;
-                if (obj != null) {
-                    int iMo2554b = abstractC2832o2Mo2888K.mo2554b(obj);
-                    if (iMo2554b != -1) {
-                        if (interfaceC3128y1.mo2881C() == abstractC2832o2Mo2888K.m3326f(iMo2554b, this.f20187j).f7340l) {
-                            return;
-                        }
-                    }
-                    this.f20188k = null;
-                }
-            } else {
-                this.f20188k = abstractC2832o2Mo2888K.mo2513g(interfaceC3128y1.mo2912m(), this.f20187j, true).f7339k;
-            }
-            PlayerView.this.m8927o(false);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: r */
-        public /* synthetic */ void mo259r(boolean z2) {
-            C2528a2.m2424f(this, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: s */
-        public /* synthetic */ void mo260s(PlaybackException playbackException) {
-            C2528a2.m2433o(this, playbackException);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: t */
-        public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
-            C2528a2.m2419a(this, bVar);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: v */
-        public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
-            C2528a2.m2441w(this, abstractC2832o2, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: w */
-        public /* synthetic */ void mo263w(float f) {
-            C2528a2.m2444z(this, f);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: y */
-        public void mo264y(int i) {
-            PlayerView playerView = PlayerView.this;
-            int i2 = PlayerView.f20159j;
-            playerView.m8924l();
-            PlayerView.this.m8926n();
-            PlayerView playerView2 = PlayerView.this;
-            if (playerView2.m8917e() && playerView2.f20167H) {
-                playerView2.m8916d();
-            } else {
-                playerView2.m8918f(false);
-            }
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: z */
-        public /* synthetic */ void mo265z(C2633c1 c2633c1) {
-            C2528a2.m2421c(this, c2633c1);
-        }
-    }
-
     public PlayerView(Context context, @Nullable AttributeSet attributeSet) {
         int i;
         int i2;
@@ -622,48 +351,6 @@ public class PlayerView extends FrameLayout {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public static void m8913a(TextureView textureView, int i) {
-        Matrix matrix = new Matrix();
-        float width = textureView.getWidth();
-        float height = textureView.getHeight();
-        if (width != 0.0f && height != 0.0f && i != 0) {
-            float f = width / 2.0f;
-            float f2 = height / 2.0f;
-            matrix.postRotate(i, f, f2);
-            RectF rectF = new RectF(0.0f, 0.0f, width, height);
-            RectF rectF2 = new RectF();
-            matrix.mapRect(rectF2, rectF);
-            matrix.postScale(width / rectF2.width(), height / rectF2.height(), f, f2);
-        }
-        textureView.setTransform(matrix);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final void m8914b() {
-        View view = this.f20173m;
-        if (view != null) {
-            view.setVisibility(0);
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m8915c() {
-        ImageView imageView = this.f20176p;
-        if (imageView != null) {
-            imageView.setImageResource(R.color.transparent);
-            this.f20176p.setVisibility(4);
-        }
-    }
-
-    /* JADX INFO: renamed from: d */
-    public void m8916d() {
-        PlayerControlView playerControlView = this.f20180t;
-        if (playerControlView != null) {
-            playerControlView.m8895c();
-        }
-    }
-
     @Override // android.view.ViewGroup, android.view.View
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
         InterfaceC3128y1 interfaceC3128y1 = this.f20183w;
@@ -685,43 +372,6 @@ public class PlayerView extends FrameLayout {
             m8918f(true);
         }
         return true;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final boolean m8917e() {
-        InterfaceC3128y1 interfaceC3128y1 = this.f20183w;
-        return interfaceC3128y1 != null && interfaceC3128y1.mo2900f() && this.f20183w.mo2908j();
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m8918f(boolean z2) {
-        if (!(m8917e() && this.f20167H) && m8928p()) {
-            boolean z3 = this.f20180t.m8897e() && this.f20180t.getShowTimeoutMs() <= 0;
-            boolean zM8920h = m8920h();
-            if (z2 || z3 || zM8920h) {
-                m8921i(zM8920h);
-            }
-        }
-    }
-
-    @RequiresNonNull({"artworkView"})
-    /* JADX INFO: renamed from: g */
-    public final boolean m8919g(@Nullable Drawable drawable) {
-        if (drawable != null) {
-            int intrinsicWidth = drawable.getIntrinsicWidth();
-            int intrinsicHeight = drawable.getIntrinsicHeight();
-            if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                float f = intrinsicWidth / intrinsicHeight;
-                AspectRatioFrameLayout aspectRatioFrameLayout = this.f20172l;
-                if (aspectRatioFrameLayout != null) {
-                    aspectRatioFrameLayout.setAspectRatio(f);
-                }
-                this.f20176p.setImageDrawable(drawable);
-                this.f20176p.setVisibility(0);
-                return true;
-            }
-        }
-        return false;
     }
 
     public List<C2665i> getAdOverlayInfos() {
@@ -793,6 +443,85 @@ public class PlayerView extends FrameLayout {
     @Nullable
     public View getVideoSurfaceView() {
         return this.f20174n;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static void m8913a(TextureView textureView, int i) {
+        Matrix matrix = new Matrix();
+        float width = textureView.getWidth();
+        float height = textureView.getHeight();
+        if (width != 0.0f && height != 0.0f && i != 0) {
+            float f = width / 2.0f;
+            float f2 = height / 2.0f;
+            matrix.postRotate(i, f, f2);
+            RectF rectF = new RectF(0.0f, 0.0f, width, height);
+            RectF rectF2 = new RectF();
+            matrix.mapRect(rectF2, rectF);
+            matrix.postScale(width / rectF2.width(), height / rectF2.height(), f, f2);
+        }
+        textureView.setTransform(matrix);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m8914b() {
+        View view = this.f20173m;
+        if (view != null) {
+            view.setVisibility(0);
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m8915c() {
+        ImageView imageView = this.f20176p;
+        if (imageView != null) {
+            imageView.setImageResource(R.color.transparent);
+            this.f20176p.setVisibility(4);
+        }
+    }
+
+    /* JADX INFO: renamed from: d */
+    public void m8916d() {
+        PlayerControlView playerControlView = this.f20180t;
+        if (playerControlView != null) {
+            playerControlView.m8895c();
+        }
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final boolean m8917e() {
+        InterfaceC3128y1 interfaceC3128y1 = this.f20183w;
+        return interfaceC3128y1 != null && interfaceC3128y1.mo2900f() && this.f20183w.mo2908j();
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final void m8918f(boolean z2) {
+        if (!(m8917e() && this.f20167H) && m8928p()) {
+            boolean z3 = this.f20180t.m8897e() && this.f20180t.getShowTimeoutMs() <= 0;
+            boolean zM8920h = m8920h();
+            if (z2 || z3 || zM8920h) {
+                m8921i(zM8920h);
+            }
+        }
+    }
+
+    @RequiresNonNull({"artworkView"})
+    /* JADX INFO: renamed from: g */
+    public final boolean m8919g(@Nullable Drawable drawable) {
+        if (drawable != null) {
+            int intrinsicWidth = drawable.getIntrinsicWidth();
+            int intrinsicHeight = drawable.getIntrinsicHeight();
+            if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+                float f = intrinsicWidth / intrinsicHeight;
+                AspectRatioFrameLayout aspectRatioFrameLayout = this.f20172l;
+                if (aspectRatioFrameLayout != null) {
+                    aspectRatioFrameLayout.setAspectRatio(f);
+                }
+                this.f20176p.setImageDrawable(drawable);
+                this.f20176p.setVisibility(0);
+                return true;
+            }
+        }
+        return false;
     }
 
     /* JADX INFO: renamed from: h */
@@ -972,6 +701,16 @@ public class PlayerView extends FrameLayout {
         m8915c();
     }
 
+    @EnsuresNonNullIf(expression = {"controller"}, result = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS)
+    /* JADX INFO: renamed from: p */
+    public final boolean m8928p() {
+        if (!this.f20184x) {
+            return false;
+        }
+        C1460d.m438H(this.f20180t);
+        return true;
+    }
+
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (!m8928p() || this.f20183w == null) {
@@ -996,16 +735,6 @@ public class PlayerView extends FrameLayout {
             return false;
         }
         m8918f(true);
-        return true;
-    }
-
-    @EnsuresNonNullIf(expression = {"controller"}, result = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS)
-    /* JADX INFO: renamed from: p */
-    public final boolean m8928p() {
-        if (!this.f20184x) {
-            return false;
-        }
-        C1460d.m438H(this.f20180t);
         return true;
     }
 
@@ -1221,6 +950,277 @@ public class PlayerView extends FrameLayout {
         View view = this.f20174n;
         if (view instanceof SurfaceView) {
             view.setVisibility(i);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerView$a */
+    public final class ViewOnLayoutChangeListenerC10758a implements InterfaceC3128y1.e, View.OnLayoutChangeListener, View.OnClickListener, PlayerControlView.InterfaceC10757e {
+
+        /* JADX INFO: renamed from: k */
+        @Nullable
+        public Object f20188k;
+
+        /* JADX INFO: renamed from: j */
+        public final AbstractC2832o2.b f20187j = new AbstractC2832o2.b();
+
+        public ViewOnLayoutChangeListenerC10758a() {
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: A */
+        public /* synthetic */ void mo235A(C2835p1 c2835p1) {
+            C2528a2.m2427i(this, c2835p1);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: D */
+        public /* synthetic */ void mo236D(boolean z2) {
+            C2528a2.m2438t(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: E */
+        public /* synthetic */ void mo237E(InterfaceC3128y1 interfaceC3128y1, InterfaceC3128y1.d dVar) {
+            C2528a2.m2423e(this, interfaceC3128y1, dVar);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: G */
+        public /* synthetic */ void mo238G(int i, boolean z2) {
+            C2528a2.m2422d(this, i, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: H */
+        public /* synthetic */ void mo239H(boolean z2, int i) {
+            C3154z1.m3883k(this, z2, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: L */
+        public /* synthetic */ void mo240L(int i) {
+            C2528a2.m2437s(this, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: M */
+        public /* synthetic */ void mo241M(C2831o1 c2831o1, int i) {
+            C2528a2.m2426h(this, c2831o1, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: W */
+        public void mo242W(boolean z2, int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.f20159j;
+            playerView.m8924l();
+            PlayerView playerView2 = PlayerView.this;
+            if (playerView2.m8917e() && playerView2.f20167H) {
+                playerView2.m8916d();
+            } else {
+                playerView2.m8918f(false);
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: Y */
+        public /* synthetic */ void mo243Y(C2558o0 c2558o0, C2648n c2648n) {
+            C3154z1.m3890r(this, c2558o0, c2648n);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: a */
+        public /* synthetic */ void mo244a() {
+            C3154z1.m3887o(this);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: a0 */
+        public /* synthetic */ void mo245a0(int i, int i2) {
+            C2528a2.m2440v(this, i, i2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: b */
+        public /* synthetic */ void mo246b(Metadata metadata) {
+            C2528a2.m2428j(this, metadata);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: b0 */
+        public /* synthetic */ void mo247b0(C2998x1 c2998x1) {
+            C2528a2.m2430l(this, c2998x1);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: c */
+        public void mo248c() {
+            View view = PlayerView.this.f20173m;
+            if (view != null) {
+                view.setVisibility(4);
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: d */
+        public /* synthetic */ void mo249d(boolean z2) {
+            C2528a2.m2439u(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: e */
+        public void mo250e(List<C2578b> list) {
+            SubtitleView subtitleView = PlayerView.this.f20177q;
+            if (subtitleView != null) {
+                subtitleView.setCues(list);
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: f */
+        public void mo251f(C2788y c2788y) {
+            PlayerView playerView = PlayerView.this;
+            int i = PlayerView.f20159j;
+            playerView.m8923k();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: f0 */
+        public /* synthetic */ void mo252f0(PlaybackException playbackException) {
+            C2528a2.m2434p(this, playbackException);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: g */
+        public void mo253g(InterfaceC3128y1.f fVar, InterfaceC3128y1.f fVar2, int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.f20159j;
+            if (playerView.m8917e()) {
+                PlayerView playerView2 = PlayerView.this;
+                if (playerView2.f20167H) {
+                    playerView2.m8916d();
+                }
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: h */
+        public /* synthetic */ void mo254h(int i) {
+            C2528a2.m2432n(this, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: i */
+        public /* synthetic */ void mo255i(boolean z2) {
+            C3154z1.m3876d(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: j */
+        public /* synthetic */ void mo256j(int i) {
+            C3154z1.m3884l(this, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: j0 */
+        public /* synthetic */ void mo257j0(boolean z2) {
+            C2528a2.m2425g(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: p */
+        public void mo258p(C2836p2 c2836p2) {
+            InterfaceC3128y1 interfaceC3128y1 = PlayerView.this.f20183w;
+            Objects.requireNonNull(interfaceC3128y1);
+            AbstractC2832o2 abstractC2832o2Mo2888K = interfaceC3128y1.mo2888K();
+            if (abstractC2832o2Mo2888K.m3331q()) {
+                this.f20188k = null;
+            } else if (interfaceC3128y1.mo2885H().f7434k.isEmpty()) {
+                Object obj = this.f20188k;
+                if (obj != null) {
+                    int iMo2554b = abstractC2832o2Mo2888K.mo2554b(obj);
+                    if (iMo2554b != -1) {
+                        if (interfaceC3128y1.mo2881C() == abstractC2832o2Mo2888K.m3326f(iMo2554b, this.f20187j).f7340l) {
+                            return;
+                        }
+                    }
+                    this.f20188k = null;
+                }
+            } else {
+                this.f20188k = abstractC2832o2Mo2888K.mo2513g(interfaceC3128y1.mo2912m(), this.f20187j, true).f7339k;
+            }
+            PlayerView.this.m8927o(false);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: r */
+        public /* synthetic */ void mo259r(boolean z2) {
+            C2528a2.m2424f(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: s */
+        public /* synthetic */ void mo260s(PlaybackException playbackException) {
+            C2528a2.m2433o(this, playbackException);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: t */
+        public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
+            C2528a2.m2419a(this, bVar);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: v */
+        public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
+            C2528a2.m2441w(this, abstractC2832o2, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: w */
+        public /* synthetic */ void mo263w(float f) {
+            C2528a2.m2444z(this, f);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: y */
+        public void mo264y(int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.f20159j;
+            playerView.m8924l();
+            PlayerView.this.m8926n();
+            PlayerView playerView2 = PlayerView.this;
+            if (playerView2.m8917e() && playerView2.f20167H) {
+                playerView2.m8916d();
+            } else {
+                playerView2.m8918f(false);
+            }
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: z */
+        public /* synthetic */ void mo265z(C2633c1 c2633c1) {
+            C2528a2.m2421c(this, c2633c1);
+        }
+
+        @Override // com.google.android.exoplayer2.p505ui.PlayerControlView.InterfaceC10757e
+        /* JADX INFO: renamed from: k */
+        public void mo8912k(int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.f20159j;
+            playerView.m8925m();
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            PlayerView playerView = PlayerView.this;
+            int i = PlayerView.f20159j;
+            playerView.m8922j();
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            PlayerView.m8913a((TextureView) view, PlayerView.this.f20169J);
         }
     }
 }

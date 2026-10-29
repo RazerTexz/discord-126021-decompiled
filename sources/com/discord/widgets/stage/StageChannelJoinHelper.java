@@ -57,27 +57,12 @@ import p659s.p660a.C13126l;
 /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StageChannelJoinHelper {
-    public static final StageChannelJoinHelper INSTANCE = new StageChannelJoinHelper();
     private static Job lurkJob;
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            VoiceChannelJoinability.values();
-            int[] iArr = new int[5];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY.ordinal()] = 1;
-            iArr[VoiceChannelJoinability.PERMISSIONS_MISSING.ordinal()] = 2;
-            iArr[VoiceChannelJoinability.CHANNEL_FULL.ordinal()] = 3;
-            iArr[VoiceChannelJoinability.CHANNEL_DOES_NOT_EXIST.ordinal()] = 4;
-            iArr[VoiceChannelJoinability.CAN_JOIN.ordinal()] = 5;
-        }
-    }
+    public static final StageChannelJoinHelper INSTANCE = new StageChannelJoinHelper();
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$1 */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public static final class C100041 extends AbstractC12240o implements Function0<Unit> {
+    public final class C100041 extends AbstractC12240o implements Function0<Unit> {
         public static final C100041 INSTANCE = new C100041();
 
         public C100041() {
@@ -97,7 +82,7 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$2 */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public static final class C100052 extends AbstractC12240o implements Function0<Unit> {
+    public final class C100052 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ StoreChannels $channelsStore;
         public final /* synthetic */ Context $context;
@@ -111,7 +96,7 @@ public final class StageChannelJoinHelper {
 
         /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreVoiceChannelSelected.JoinVoiceChannelResult, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreVoiceChannelSelected.JoinVoiceChannelResult, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -194,7 +179,7 @@ public final class StageChannelJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStage$1 */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStage$1", m10085f = "StageChannelJoinHelper.kt", m10086l = {123}, m10087m = "invokeSuspend")
-    public static final class C100081 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C100081 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ FragmentManager $fragmentManager;
@@ -230,7 +215,7 @@ public final class StageChannelJoinHelper {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -261,7 +246,7 @@ public final class StageChannelJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$1 */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.stage.StageChannelJoinHelper", m10085f = "StageChannelJoinHelper.kt", m10086l = {180, Opcodes.IF_ICMPEQ, Opcodes.IF_ACMPNE}, m10087m = "lurkAndJoinStageAsync")
-    public static final class C100091 extends AbstractC12187d {
+    public final class C100091 extends AbstractC12187d {
         public long J$0;
         public long J$1;
         public Object L$0;
@@ -288,7 +273,7 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$5 */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public static final class C100125 extends AbstractC12240o implements Function0<Unit> {
+    public final class C100125 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ StoreLurking $lurkingStore;
 
@@ -308,6 +293,21 @@ public final class StageChannelJoinHelper {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             this.$lurkingStore.removeOldLurkingGuilds(this.$guildId);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            VoiceChannelJoinability.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY.ordinal()] = 1;
+            iArr[VoiceChannelJoinability.PERMISSIONS_MISSING.ordinal()] = 2;
+            iArr[VoiceChannelJoinability.CHANNEL_FULL.ordinal()] = 3;
+            iArr[VoiceChannelJoinability.CHANNEL_DOES_NOT_EXIST.ordinal()] = 4;
+            iArr[VoiceChannelJoinability.CAN_JOIN.ordinal()] = 5;
         }
     }
 
@@ -348,7 +348,7 @@ public final class StageChannelJoinHelper {
     /* JADX WARN: Code duplicated, block: B:32:0x0184 A[RETURN] */
     /* JADX WARN: Code duplicated, block: B:33:0x0185  */
     /* JADX WARN: Code duplicated, block: B:7:0x0017  */
-    public final Object lurkAndJoinStageAsync(Context context, FragmentManager fragmentManager, long j, long j2, boolean z2, StoreGuilds storeGuilds, StoreLurking storeLurking, StoreVoiceChannelSelected storeVoiceChannelSelected, Continuation<? super Boolean> continuation) {
+    public final Object lurkAndJoinStageAsync(Context context, FragmentManager fragmentManager, long j, long j2, boolean z2, StoreGuilds storeGuilds, StoreLurking storeLurking, StoreVoiceChannelSelected storeVoiceChannelSelected, Continuation<? super Boolean> continuation) throws Throwable {
         C100091 c100091;
         FragmentManager fragmentManager2;
         StoreGuilds storeGuilds2;

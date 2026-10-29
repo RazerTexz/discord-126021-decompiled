@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 public final class CheckedTextViewCompat {
     private static final String TAG = "CheckedTextViewCompat";
 
-    public static class Api14Impl {
+    public class Api14Impl {
         private static Field sCheckMarkDrawableField;
         private static boolean sResolved;
 
@@ -47,7 +47,7 @@ public final class CheckedTextViewCompat {
     }
 
     @RequiresApi(16)
-    public static class Api16Impl {
+    public class Api16Impl {
         private Api16Impl() {
         }
 
@@ -58,7 +58,7 @@ public final class CheckedTextViewCompat {
     }
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 

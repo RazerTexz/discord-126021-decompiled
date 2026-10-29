@@ -26,19 +26,6 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withMatrix(Canvas canvas, Matrix matrix, Function1<? super Canvas, Unit> function1) {
-        C12238m.checkNotNullParameter(canvas, "<this>");
-        C12238m.checkNotNullParameter(matrix, "matrix");
-        C12238m.checkNotNullParameter(function1, "block");
-        int iSave = canvas.save();
-        canvas.concat(matrix);
-        try {
-            function1.invoke(canvas);
-        } finally {
-            C1643a.m850f0(1, canvas, iSave, 1);
-        }
-    }
-
     public static /* synthetic */ void withMatrix$default(Canvas canvas, Matrix matrix, Function1 function1, int i, Object obj) {
         if ((i & 1) != 0) {
             matrix = new Matrix();
@@ -55,11 +42,12 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withRotation(Canvas canvas, float f, float f2, float f3, Function1<? super Canvas, Unit> function1) {
+    public static final void withMatrix(Canvas canvas, Matrix matrix, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
+        C12238m.checkNotNullParameter(matrix, "matrix");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();
-        canvas.rotate(f, f2, f3);
+        canvas.concat(matrix);
         try {
             function1.invoke(canvas);
         } finally {
@@ -88,10 +76,11 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withSave(Canvas canvas, Function1<? super Canvas, Unit> function1) {
+    public static final void withRotation(Canvas canvas, float f, float f2, float f3, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();
+        canvas.rotate(f, f2, f3);
         try {
             function1.invoke(canvas);
         } finally {
@@ -99,11 +88,10 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withScale(Canvas canvas, float f, float f2, float f3, float f4, Function1<? super Canvas, Unit> function1) {
+    public static final void withSave(Canvas canvas, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();
-        canvas.scale(f, f2, f3, f4);
         try {
             function1.invoke(canvas);
         } finally {
@@ -135,11 +123,11 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withSkew(Canvas canvas, float f, float f2, Function1<? super Canvas, Unit> function1) {
+    public static final void withScale(Canvas canvas, float f, float f2, float f3, float f4, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();
-        canvas.skew(f, f2);
+        canvas.scale(f, f2, f3, f4);
         try {
             function1.invoke(canvas);
         } finally {
@@ -165,11 +153,11 @@ public final class CanvasKt {
         }
     }
 
-    public static final void withTranslation(Canvas canvas, float f, float f2, Function1<? super Canvas, Unit> function1) {
+    public static final void withSkew(Canvas canvas, float f, float f2, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();
-        canvas.translate(f, f2);
+        canvas.skew(f, f2);
         try {
             function1.invoke(canvas);
         } finally {
@@ -184,6 +172,18 @@ public final class CanvasKt {
         if ((i & 2) != 0) {
             f2 = 0.0f;
         }
+        C12238m.checkNotNullParameter(canvas, "<this>");
+        C12238m.checkNotNullParameter(function1, "block");
+        int iSave = canvas.save();
+        canvas.translate(f, f2);
+        try {
+            function1.invoke(canvas);
+        } finally {
+            C1643a.m850f0(1, canvas, iSave, 1);
+        }
+    }
+
+    public static final void withTranslation(Canvas canvas, float f, float f2, Function1<? super Canvas, Unit> function1) {
         C12238m.checkNotNullParameter(canvas, "<this>");
         C12238m.checkNotNullParameter(function1, "block");
         int iSave = canvas.save();

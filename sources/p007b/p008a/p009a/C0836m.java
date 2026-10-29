@@ -22,18 +22,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0836m extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f405j = {C1643a.m846d0(C0836m.class, "binding", "getBinding()Lcom/discord/databinding/GuildVideoAtCapacityBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f405j = {C1643a.m846d0(C0836m.class, "binding", "getBinding()Lcom/discord/databinding/GuildVideoAtCapacityBinding;", 0)};
+
     /* JADX INFO: renamed from: b.a.a.m$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: GuildVideoAtCapacityDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -46,7 +46,7 @@ public final class C0836m extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.m$b */
     /* JADX INFO: compiled from: GuildVideoAtCapacityDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C1093z> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C1093z> {
 
         /* JADX INFO: renamed from: j */
         public static final b f408j = new b();
@@ -74,7 +74,7 @@ public final class C0836m extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.m$c */
     /* JADX INFO: compiled from: GuildVideoAtCapacityDialog.kt */
-    public static final class c implements View.OnClickListener {
+    public final class c implements View.OnClickListener {
         public c() {
         }
 

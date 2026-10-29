@@ -24,14 +24,14 @@ public abstract class SpliceCommand implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
-    public String toString() {
-        String simpleName = getClass().getSimpleName();
-        return simpleName.length() != 0 ? "SCTE-35 splice command: type=".concat(simpleName) : new String("SCTE-35 splice command: type=");
-    }
-
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     /* JADX INFO: renamed from: y */
     public /* synthetic */ C2811j1 mo8880y() {
         return C3155a.m3893b(this);
+    }
+
+    public String toString() {
+        String simpleName = getClass().getSimpleName();
+        return simpleName.length() != 0 ? "SCTE-35 splice command: type=".concat(simpleName) : new String("SCTE-35 splice command: type=");
     }
 }

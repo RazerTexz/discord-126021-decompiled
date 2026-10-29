@@ -13,6 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: propertiesConventionUtil.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11490c0 {
+    public static final List<C11716e> getPropertyNamesCandidatesByAccessorName(C11716e c11716e) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        String strAsString = c11716e.asString();
+        C12238m.checkNotNullExpressionValue(strAsString, "name.asString()");
+        C11632z c11632z = C11632z.f23531a;
+        if (C11632z.isGetterName(strAsString)) {
+            return C12147n.listOfNotNull(propertyNameByGetMethodName(c11716e));
+        }
+        return C11632z.isSetterName(strAsString) ? propertyNamesBySetMethodName(c11716e) : C11522i.f23276a.getPropertyNameCandidatesBySpecialGetterName(c11716e);
+    }
+
     /* JADX INFO: renamed from: a */
     public static C11716e m9449a(C11716e c11716e, String str, boolean z2, String str2, int i) {
         if ((i & 4) != 0) {
@@ -45,17 +56,6 @@ public final class C11490c0 {
             }
         }
         return null;
-    }
-
-    public static final List<C11716e> getPropertyNamesCandidatesByAccessorName(C11716e c11716e) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        String strAsString = c11716e.asString();
-        C12238m.checkNotNullExpressionValue(strAsString, "name.asString()");
-        C11632z c11632z = C11632z.f23531a;
-        if (C11632z.isGetterName(strAsString)) {
-            return C12147n.listOfNotNull(propertyNameByGetMethodName(c11716e));
-        }
-        return C11632z.isSetterName(strAsString) ? propertyNamesBySetMethodName(c11716e) : C11522i.f23276a.getPropertyNameCandidatesBySpecialGetterName(c11716e);
     }
 
     public static final C11716e propertyNameByGetMethodName(C11716e c11716e) {

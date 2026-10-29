@@ -20,7 +20,7 @@ public abstract class AbstractC4519n<E> extends AbstractCollection<E> implements
 
     /* JADX INFO: renamed from: b.i.b.b.n$a */
     /* JADX INFO: compiled from: ImmutableCollection.java */
-    public static abstract class a<E> extends b<E> {
+    public abstract class a<E> extends b<E> {
 
         /* JADX INFO: renamed from: a */
         public Object[] f12040a;
@@ -40,7 +40,7 @@ public abstract class AbstractC4519n<E> extends AbstractCollection<E> implements
 
     /* JADX INFO: renamed from: b.i.b.b.n$b */
     /* JADX INFO: compiled from: ImmutableCollection.java */
-    public static abstract class b<E> {
+    public abstract class b<E> {
         /* JADX INFO: renamed from: a */
         public static int m6260a(int i, int i2) {
             if (i2 < 0) {
@@ -71,15 +71,6 @@ public abstract class AbstractC4519n<E> extends AbstractCollection<E> implements
         throw new UnsupportedOperationException();
     }
 
-    /* JADX INFO: renamed from: c */
-    public AbstractC4523p<E> mo6253c() {
-        if (!isEmpty()) {
-            return AbstractC4523p.m6261k(toArray());
-        }
-        AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
-        return (AbstractC4523p<E>) C4508h0.f12012l;
-    }
-
     @Override // java.util.AbstractCollection, java.util.Collection
     @Deprecated
     public final void clear() {
@@ -88,6 +79,10 @@ public abstract class AbstractC4519n<E> extends AbstractCollection<E> implements
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
     public abstract boolean contains(@NullableDecl Object obj);
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+    /* JADX INFO: renamed from: j, reason: merged with bridge method [inline-methods] */
+    public abstract AbstractC4530s0<E> iterator();
 
     @CanIgnoreReturnValue
     /* JADX INFO: renamed from: d */
@@ -118,9 +113,14 @@ public abstract class AbstractC4519n<E> extends AbstractCollection<E> implements
     /* JADX INFO: renamed from: i */
     public abstract boolean mo6246i();
 
-    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    /* JADX INFO: renamed from: j, reason: merged with bridge method [inline-methods] */
-    public abstract AbstractC4530s0<E> iterator();
+    /* JADX INFO: renamed from: c */
+    public AbstractC4523p<E> mo6253c() {
+        if (!isEmpty()) {
+            return AbstractC4523p.m6261k(toArray());
+        }
+        AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
+        return (AbstractC4523p<E>) C4508h0.f12012l;
+    }
 
     @Override // java.util.AbstractCollection, java.util.Collection
     @CanIgnoreReturnValue

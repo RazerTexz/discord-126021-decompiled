@@ -32,7 +32,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     private static final int VIEW_TYPE_USER = 0;
 
     /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final class ErrorItem implements MGRecyclerDataPayload {
+    public final class ErrorItem implements MGRecyclerDataPayload {
         private final long channelId;
         private final MessageReactionEmoji emoji;
         private final String key;
@@ -72,7 +72,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     }
 
     /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final class ErrorViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
+    public final class ErrorViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
         private final WidgetManageReactionsResultErrorBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -112,23 +112,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     }
 
     /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final class LoadingItem implements MGRecyclerDataPayload {
-        private final int type = 1;
-        private final String key = String.valueOf(getType());
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-    }
-
-    /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final class LoadingViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
+    public final class LoadingViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public LoadingViewHolder(ManageReactionsResultsAdapter manageReactionsResultsAdapter) {
             super(C5419R.layout.widget_manage_reactions_result_loading, manageReactionsResultsAdapter);
@@ -137,7 +121,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     }
 
     /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final /* data */ class ReactionUserItem implements MGRecyclerDataPayload {
+    public final /* data */ class ReactionUserItem implements MGRecyclerDataPayload {
         private final boolean canDelete;
         private final long channelId;
         private final MessageReactionEmoji emoji;
@@ -159,36 +143,6 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
             this.key = String.valueOf(user.getId());
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final MessageReactionEmoji getEmoji() {
-            return this.emoji;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getCanDelete() {
-            return this.canDelete;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
         public final ReactionUserItem copy(User user, long channelId, long messageId, MessageReactionEmoji emoji, boolean canDelete, GuildMember guildMember) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(emoji, "emoji");
@@ -206,16 +160,36 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
             return C12238m.areEqual(this.user, reactionUserItem.user) && this.channelId == reactionUserItem.channelId && this.messageId == reactionUserItem.messageId && C12238m.areEqual(this.emoji, reactionUserItem.emoji) && this.canDelete == reactionUserItem.canDelete && C12238m.areEqual(this.guildMember, reactionUserItem.guildMember);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getCanDelete() {
             return this.canDelete;
+        }
+
+        public final boolean getCanDelete() {
+            return this.canDelete;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final MessageReactionEmoji getEmoji() {
             return this.emoji;
+        }
+
+        public final MessageReactionEmoji getEmoji() {
+            return this.emoji;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
         }
 
         public final GuildMember getGuildMember() {
@@ -227,6 +201,11 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
         public final long getMessageId() {
             return this.messageId;
         }
@@ -234,6 +213,11 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -279,7 +263,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     }
 
     /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
-    public static final class ReactionUserViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
+    public final class ReactionUserViewHolder extends MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> {
         private final WidgetManageReactionsResultUserBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -340,6 +324,22 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     public ManageReactionsResultsAdapter(RecyclerView recyclerView) {
         super(recyclerView, false, 2, null);
         C12238m.checkNotNullParameter(recyclerView, "recycler");
+    }
+
+    /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
+    public final class LoadingItem implements MGRecyclerDataPayload {
+        private final int type = 1;
+        private final String key = String.valueOf(getType());
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

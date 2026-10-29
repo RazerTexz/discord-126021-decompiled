@@ -155,18 +155,106 @@ public final class C3037f implements InterfaceC3031h {
         return ((j * 1000000) / ((long) this.f8319e.f7680d)) + this.f8328n;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: b */
-    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
-        return m3698j(interfaceC3041i, true);
-    }
-
     /* JADX INFO: renamed from: c */
     public final InterfaceC3038g m3696c(InterfaceC3041i interfaceC3041i, boolean z2) throws IOException {
         interfaceC3041i.mo3652o(this.f8318d.f6793a, 0, 4);
         this.f8318d.m3079E(0);
         this.f8319e.m3469a(this.f8318d.m3086f());
         return new C3034c(interfaceC3041i.mo3642b(), interfaceC3041i.getPosition(), this.f8319e, z2);
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final boolean m3697i(InterfaceC3041i interfaceC3041i) throws IOException {
+        InterfaceC3038g interfaceC3038g = this.f8332r;
+        if (interfaceC3038g != null) {
+            long jMo3689a = interfaceC3038g.mo3689a();
+            if (jMo3689a != -1 && interfaceC3041i.mo3645f() > jMo3689a - 4) {
+                return true;
+            }
+        }
+        try {
+            return !interfaceC3041i.mo3644e(this.f8318d.f6793a, 0, 4, true);
+        } catch (EOFException unused) {
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final boolean m3698j(InterfaceC3041i interfaceC3041i, boolean z2) throws IOException {
+        int i;
+        int iMo3645f;
+        int iM3465a;
+        int i2 = z2 ? 32768 : 131072;
+        interfaceC3041i.mo3649k();
+        if (interfaceC3041i.getPosition() == 0) {
+            Metadata metadataM3816a = this.f8321g.m3816a(interfaceC3041i, (this.f8316b & 8) == 0 ? null : f8315a);
+            this.f8327m = metadataM3816a;
+            if (metadataM3816a != null) {
+                this.f8320f.m3815b(metadataM3816a);
+            }
+            iMo3645f = (int) interfaceC3041i.mo3645f();
+            if (!z2) {
+                interfaceC3041i.mo3650l(iMo3645f);
+            }
+            i = 0;
+        } else {
+            i = 0;
+            iMo3645f = 0;
+        }
+        int i3 = 0;
+        int i4 = 0;
+        while (true) {
+            if (m3697i(interfaceC3041i)) {
+                if (i3 > 0) {
+                    break;
+                }
+                throw new EOFException();
+            }
+            this.f8318d.m3079E(0);
+            int iM3086f = this.f8318d.m3086f();
+            if ((i == 0 || m3694h(iM3086f, i)) && (iM3465a = C2912a0.m3465a(iM3086f)) != -1) {
+                i3++;
+                if (i3 != 1) {
+                    if (i3 == 4) {
+                        break;
+                    }
+                } else {
+                    this.f8319e.m3469a(iM3086f);
+                    i = iM3086f;
+                }
+                interfaceC3041i.mo3646g(iM3465a - 4);
+            } else {
+                int i5 = i4 + 1;
+                if (i4 == i2) {
+                    if (z2) {
+                        return false;
+                    }
+                    throw ParserException.m8755a("Searched too many bytes.", null);
+                }
+                if (z2) {
+                    interfaceC3041i.mo3649k();
+                    interfaceC3041i.mo3646g(iMo3645f + i5);
+                } else {
+                    interfaceC3041i.mo3650l(1);
+                }
+                i4 = i5;
+                i = 0;
+                i3 = 0;
+            }
+        }
+        if (z2) {
+            interfaceC3041i.mo3650l(iMo3645f + i4);
+        } else {
+            interfaceC3041i.mo3649k();
+        }
+        this.f8326l = i;
+        return true;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: b */
+    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
+        return m3698j(interfaceC3041i, true);
     }
 
     /* JADX WARN: Code duplicated, block: B:100:0x0230  */
@@ -242,10 +330,9 @@ public final class C3037f implements InterfaceC3031h {
         InterfaceC3038g interfaceC3038gM3696c;
         C3115p c3115p;
         boolean z2;
-        int i4;
         C3115p c3115p2;
+        int i4;
         int i5;
-        int i6;
         int iM3103w;
         C3040i c3040i;
         Metadata metadata;
@@ -257,17 +344,17 @@ public final class C3037f implements InterfaceC3031h {
         long jMo3689a;
         Metadata metadata2;
         int length;
-        int i7;
+        int i6;
         Metadata.Entry entry;
         MlltFrame mlltFrame;
         int length2;
         long[] jArr;
         long[] jArr2;
         long j2;
-        int i8;
+        int i7;
         int iM3100t;
         C1460d.m438H(this.f8324j);
-        int i9 = C2738e0.f6708a;
+        int i8 = C2738e0.f6708a;
         if (this.f8326l == 0) {
             try {
                 m3698j(interfaceC3041i, false);
@@ -314,20 +401,20 @@ public final class C3037f implements InterfaceC3031h {
                         long jMo3642b = interfaceC3041i.mo3642b();
                         long position3 = interfaceC3041i.getPosition();
                         C2912a0.a aVar2 = c3037f.f8319e;
-                        int i10 = aVar2.f7683g;
-                        int i11 = aVar2.f7680d;
+                        int i9 = aVar2.f7683g;
+                        int i10 = aVar2.f7680d;
                         iM3086f3 = c2757x.m3086f();
                         if ((iM3086f3 & 1) == 1 || (iM3103w = c2757x.m3103w()) == 0) {
                             interfaceC3038gM3696c = null;
                         } else {
-                            long jM2985F = C2738e0.m2985F(iM3103w, ((long) i10) * 1000000, i11);
+                            long jM2985F = C2738e0.m2985F(iM3103w, ((long) i9) * 1000000, i10);
                             if ((iM3086f3 & 6) != 6) {
                                 c3040i = new C3040i(position3, aVar2.f7679c, jM2985F, -1L, null);
                             } else {
                                 long jM3101u = c2757x.m3101u();
                                 long[] jArr3 = new long[100];
-                                for (int i12 = 0; i12 < 100; i12++) {
-                                    jArr3[i12] = c2757x.m3100t();
+                                for (int i11 = 0; i11 < 100; i11++) {
+                                    jArr3[i11] = c2757x.m3100t();
                                 }
                                 if (jMo3642b != -1) {
                                     long j3 = position3 + jM3101u;
@@ -353,18 +440,17 @@ public final class C3037f implements InterfaceC3031h {
                             } else {
                                 interfaceC3041i.mo3649k();
                                 interfaceC3041i2 = interfaceC3041i;
-                                interfaceC3041i2.mo3646g(i4 + Opcodes.F2D);
+                                interfaceC3041i2.mo3646g(i3 + Opcodes.F2D);
                                 interfaceC3041i2.mo3652o(c3037f.f8318d.f6793a, 0, 3);
                                 c3037f.f8318d.m3079E(0);
                                 c3115p2 = c3037f.f8320f;
                                 int iM3102v = c3037f.f8318d.m3102v();
                                 Objects.requireNonNull(c3115p2);
-                                i5 = iM3102v >> 12;
-                                i6 = iM3102v & 4095;
-                                if (i5 <= 0 || i6 > 0) {
-                                    i4 = i3;
-                                    c3115p2.f8985b = i5;
-                                    c3115p2.f8986c = i6;
+                                i4 = iM3102v >> 12;
+                                i5 = iM3102v & 4095;
+                                if (i4 <= 0 || i5 > 0) {
+                                    c3115p2.f8985b = i4;
+                                    c3115p2.f8986c = i5;
                                 }
                             }
                         } else {
@@ -384,8 +470,8 @@ public final class C3037f implements InterfaceC3031h {
                             interfaceC3038gM3696c = null;
                             break;
                         }
-                        int i13 = aVar3.f7680d;
-                        long jM2985F2 = C2738e0.m2985F(iM3086f4, ((long) (i13 >= 32000 ? 1152 : 576)) * 1000000, i13);
+                        int i12 = aVar3.f7680d;
+                        long jM2985F2 = C2738e0.m2985F(iM3086f4, ((long) (i12 >= 32000 ? 1152 : 576)) * 1000000, i12);
                         int iM3105y = c2757x.m3105y();
                         int iM3105y2 = c2757x.m3105y();
                         int iM3105y3 = c2757x.m3105y();
@@ -393,10 +479,10 @@ public final class C3037f implements InterfaceC3031h {
                         long j4 = ((long) aVar3.f7679c) + position4;
                         long[] jArr4 = new long[iM3105y];
                         long[] jArr5 = new long[iM3105y];
-                        int i14 = 0;
+                        int i13 = 0;
                         long j5 = position4;
                         while (true) {
-                            if (i14 >= iM3105y) {
+                            if (i13 >= iM3105y) {
                                 String str2 = str;
                                 long j6 = jMo3642b2;
                                 if (j6 != -1 && j6 != j5) {
@@ -409,8 +495,8 @@ public final class C3037f implements InterfaceC3031h {
                             }
                             String str3 = str;
                             long j7 = jMo3642b2;
-                            jArr4[i14] = (((long) i14) * jM2985F2) / ((long) iM3105y);
-                            jArr5[i14] = Math.max(j5, j4);
+                            jArr4[i13] = (((long) i13) * jM2985F2) / ((long) iM3105y);
+                            jArr5[i13] = Math.max(j5, j4);
                             if (iM3105y3 == 1) {
                                 iM3100t = c2757x.m3100t();
                             } else if (iM3105y3 == 2) {
@@ -425,7 +511,7 @@ public final class C3037f implements InterfaceC3031h {
                                 iM3100t = c2757x.m3103w();
                             }
                             j5 += (long) (iM3100t * iM3105y2);
-                            i14++;
+                            i13++;
                             str = str3;
                             jMo3642b2 = j7;
                         }
@@ -445,34 +531,34 @@ public final class C3037f implements InterfaceC3031h {
                         break;
                     }
                     length = metadata.f19936j.length;
-                    i7 = 0;
+                    i6 = 0;
                     while (true) {
-                        if (i7 < length) {
+                        if (i6 < length) {
                             c3036e = null;
                             break;
                         }
-                        entry = metadata.f19936j[i7];
+                        entry = metadata.f19936j[i6];
                         if (entry instanceof MlltFrame) {
                             mlltFrame = (MlltFrame) entry;
                             long jM3693d2 = m3693d(metadata);
                             length2 = mlltFrame.f19996n.length;
-                            int i15 = length2 + 1;
-                            jArr = new long[i15];
-                            jArr2 = new long[i15];
+                            int i14 = length2 + 1;
+                            jArr = new long[i14];
+                            jArr2 = new long[i14];
                             jArr[0] = position2;
                             jArr2[0] = 0;
                             j2 = 0;
-                            for (i8 = 1; i8 <= length2; i8++) {
-                                int i16 = i8 - 1;
-                                position2 += (long) (mlltFrame.f19994l + mlltFrame.f19996n[i16]);
-                                j2 += (long) (mlltFrame.f19995m + mlltFrame.f19997o[i16]);
-                                jArr[i8] = position2;
-                                jArr2[i8] = j2;
+                            for (i7 = 1; i7 <= length2; i7++) {
+                                int i15 = i7 - 1;
+                                position2 += (long) (mlltFrame.f19994l + mlltFrame.f19996n[i15]);
+                                j2 += (long) (mlltFrame.f19995m + mlltFrame.f19997o[i15]);
+                                jArr[i7] = position2;
+                                jArr2[i7] = j2;
                             }
                             c3036e = new C3036e(jArr, jArr2, jM3693d2);
                             break;
                         }
-                        i7++;
+                        i6++;
                     }
                     if (c3037f.f8333s) {
                         interfaceC3038gM3696c = new InterfaceC3038g.a();
@@ -648,8 +734,8 @@ public final class C3037f implements InterfaceC3031h {
                     long jMo3642b3 = interfaceC3041i.mo3642b();
                     long position6 = interfaceC3041i.getPosition();
                     C2912a0.a aVar6 = c3037f.f8319e;
-                    int i17 = aVar6.f7683g;
-                    int i18 = aVar6.f7680d;
+                    int i16 = aVar6.f7683g;
+                    int i17 = aVar6.f7680d;
                     iM3086f3 = c2757x.m3086f();
                     if ((iM3086f3 & 1) == 1) {
                         interfaceC3038gM3696c = null;
@@ -666,22 +752,20 @@ public final class C3037f implements InterfaceC3031h {
                         if (z2) {
                             interfaceC3041i.mo3649k();
                             interfaceC3041i2 = interfaceC3041i;
-                            interfaceC3041i2.mo3646g(i4 + Opcodes.F2D);
+                            interfaceC3041i2.mo3646g(i3 + Opcodes.F2D);
                             interfaceC3041i2.mo3652o(c3037f.f8318d.f6793a, 0, 3);
                             c3037f.f8318d.m3079E(0);
                             c3115p2 = c3037f.f8320f;
                             int iM3102v2 = c3037f.f8318d.m3102v();
                             Objects.requireNonNull(c3115p2);
-                            i5 = iM3102v2 >> 12;
-                            i6 = iM3102v2 & 4095;
-                            if (i5 <= 0) {
-                                i4 = i3;
-                                c3115p2.f8985b = i5;
-                                c3115p2.f8986c = i6;
+                            i4 = iM3102v2 >> 12;
+                            i5 = iM3102v2 & 4095;
+                            if (i4 <= 0) {
+                                c3115p2.f8985b = i4;
+                                c3115p2.f8986c = i5;
                             } else {
-                                i4 = i3;
-                                c3115p2.f8985b = i5;
-                                c3115p2.f8986c = i6;
+                                c3115p2.f8985b = i4;
+                                c3115p2.f8986c = i5;
                             }
                         } else {
                             interfaceC3041i2 = interfaceC3041i;
@@ -698,8 +782,8 @@ public final class C3037f implements InterfaceC3031h {
                     long jMo3642b4 = interfaceC3041i.mo3642b();
                     long position7 = interfaceC3041i.getPosition();
                     C2912a0.a aVar7 = c3037f.f8319e;
-                    int i19 = aVar7.f7683g;
-                    int i110 = aVar7.f7680d;
+                    int i18 = aVar7.f7683g;
+                    int i19 = aVar7.f7680d;
                     iM3086f3 = c2757x.m3086f();
                     if ((iM3086f3 & 1) == 1) {
                         interfaceC3038gM3696c = null;
@@ -716,22 +800,20 @@ public final class C3037f implements InterfaceC3031h {
                         if (z2) {
                             interfaceC3041i.mo3649k();
                             interfaceC3041i2 = interfaceC3041i;
-                            interfaceC3041i2.mo3646g(i4 + Opcodes.F2D);
+                            interfaceC3041i2.mo3646g(i3 + Opcodes.F2D);
                             interfaceC3041i2.mo3652o(c3037f.f8318d.f6793a, 0, 3);
                             c3037f.f8318d.m3079E(0);
                             c3115p2 = c3037f.f8320f;
                             int iM3102v3 = c3037f.f8318d.m3102v();
                             Objects.requireNonNull(c3115p2);
-                            i5 = iM3102v3 >> 12;
-                            i6 = iM3102v3 & 4095;
-                            if (i5 <= 0) {
-                                i4 = i3;
-                                c3115p2.f8985b = i5;
-                                c3115p2.f8986c = i6;
+                            i4 = iM3102v3 >> 12;
+                            i5 = iM3102v3 & 4095;
+                            if (i4 <= 0) {
+                                c3115p2.f8985b = i4;
+                                c3115p2.f8986c = i5;
                             } else {
-                                i4 = i3;
-                                c3115p2.f8985b = i5;
-                                c3115p2.f8986c = i6;
+                                c3115p2.f8985b = i4;
+                                c3115p2.f8986c = i5;
                             }
                         } else {
                             interfaceC3041i2 = interfaceC3041i;
@@ -751,34 +833,34 @@ public final class C3037f implements InterfaceC3031h {
                     break;
                 }
                 length = metadata.f19936j.length;
-                i7 = 0;
+                i6 = 0;
                 while (true) {
-                    if (i7 < length) {
+                    if (i6 < length) {
                         c3036e = null;
                         break;
                     }
-                    entry = metadata.f19936j[i7];
+                    entry = metadata.f19936j[i6];
                     if (entry instanceof MlltFrame) {
                         mlltFrame = (MlltFrame) entry;
                         long jM3693d3 = m3693d(metadata);
                         length2 = mlltFrame.f19996n.length;
-                        int i111 = length2 + 1;
-                        jArr = new long[i111];
-                        jArr2 = new long[i111];
+                        int i110 = length2 + 1;
+                        jArr = new long[i110];
+                        jArr2 = new long[i110];
                         jArr[0] = position2;
                         jArr2[0] = 0;
                         j2 = 0;
-                        while (i8 <= length2) {
-                            int i112 = i8 - 1;
-                            position2 += (long) (mlltFrame.f19994l + mlltFrame.f19996n[i112]);
-                            j2 += (long) (mlltFrame.f19995m + mlltFrame.f19997o[i112]);
-                            jArr[i8] = position2;
-                            jArr2[i8] = j2;
+                        while (i7 <= length2) {
+                            int i111 = i7 - 1;
+                            position2 += (long) (mlltFrame.f19994l + mlltFrame.f19996n[i111]);
+                            j2 += (long) (mlltFrame.f19995m + mlltFrame.f19997o[i111]);
+                            jArr[i7] = position2;
+                            jArr2[i7] = j2;
                         }
                         c3036e = new C3036e(jArr, jArr2, jM3693d3);
                         break;
                     }
-                    i7++;
+                    i6++;
                 }
                 if (c3037f.f8333s) {
                     interfaceC3038gM3696c = new InterfaceC3038g.a();
@@ -914,94 +996,6 @@ public final class C3037f implements InterfaceC3031h {
         }
         this.f8334t = true;
         this.f8325k = this.f8322h;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final boolean m3697i(InterfaceC3041i interfaceC3041i) throws IOException {
-        InterfaceC3038g interfaceC3038g = this.f8332r;
-        if (interfaceC3038g != null) {
-            long jMo3689a = interfaceC3038g.mo3689a();
-            if (jMo3689a != -1 && interfaceC3041i.mo3645f() > jMo3689a - 4) {
-                return true;
-            }
-        }
-        try {
-            return !interfaceC3041i.mo3644e(this.f8318d.f6793a, 0, 4, true);
-        } catch (EOFException unused) {
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final boolean m3698j(InterfaceC3041i interfaceC3041i, boolean z2) throws IOException {
-        int i;
-        int iMo3645f;
-        int iM3465a;
-        int i2 = z2 ? 32768 : 131072;
-        interfaceC3041i.mo3649k();
-        if (interfaceC3041i.getPosition() == 0) {
-            Metadata metadataM3816a = this.f8321g.m3816a(interfaceC3041i, (this.f8316b & 8) == 0 ? null : f8315a);
-            this.f8327m = metadataM3816a;
-            if (metadataM3816a != null) {
-                this.f8320f.m3815b(metadataM3816a);
-            }
-            iMo3645f = (int) interfaceC3041i.mo3645f();
-            if (!z2) {
-                interfaceC3041i.mo3650l(iMo3645f);
-            }
-            i = 0;
-        } else {
-            i = 0;
-            iMo3645f = 0;
-        }
-        int i3 = 0;
-        int i4 = 0;
-        while (true) {
-            if (m3697i(interfaceC3041i)) {
-                if (i3 > 0) {
-                    break;
-                }
-                throw new EOFException();
-            }
-            this.f8318d.m3079E(0);
-            int iM3086f = this.f8318d.m3086f();
-            if ((i == 0 || m3694h(iM3086f, i)) && (iM3465a = C2912a0.m3465a(iM3086f)) != -1) {
-                i3++;
-                if (i3 != 1) {
-                    if (i3 == 4) {
-                        break;
-                    }
-                } else {
-                    this.f8319e.m3469a(iM3086f);
-                    i = iM3086f;
-                }
-                interfaceC3041i.mo3646g(iM3465a - 4);
-            } else {
-                int i5 = i4 + 1;
-                if (i4 == i2) {
-                    if (z2) {
-                        return false;
-                    }
-                    throw ParserException.m8755a("Searched too many bytes.", null);
-                }
-                if (z2) {
-                    interfaceC3041i.mo3649k();
-                    interfaceC3041i.mo3646g(iMo3645f + i5);
-                } else {
-                    interfaceC3041i.mo3650l(1);
-                }
-                i4 = i5;
-                i = 0;
-                i3 = 0;
-            }
-        }
-        if (z2) {
-            interfaceC3041i.mo3650l(iMo3645f + i4);
-        } else {
-            interfaceC3041i.mo3649k();
-        }
-        this.f8326l = i;
-        return true;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h

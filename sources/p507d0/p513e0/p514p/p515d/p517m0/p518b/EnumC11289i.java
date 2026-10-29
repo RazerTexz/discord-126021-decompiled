@@ -34,7 +34,7 @@ public enum EnumC11289i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.i$b */
     /* JADX INFO: compiled from: PrimitiveType.kt */
-    public static final class b extends AbstractC12240o implements Function0<C11713b> {
+    public final class b extends AbstractC12240o implements Function0<C11713b> {
         public b() {
             super(0);
         }
@@ -50,7 +50,7 @@ public enum EnumC11289i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.i$c */
     /* JADX INFO: compiled from: PrimitiveType.kt */
-    public static final class c extends AbstractC12240o implements Function0<C11713b> {
+    public final class c extends AbstractC12240o implements Function0<C11713b> {
         public c() {
             super(0);
         }
@@ -89,14 +89,6 @@ public enum EnumC11289i {
         this.arrayTypeFqName$delegate = C12083g.lazy(enumC12110i, new b());
     }
 
-    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-    public static EnumC11289i[] valuesCustom() {
-        EnumC11289i[] enumC11289iArrValuesCustom = values();
-        EnumC11289i[] enumC11289iArr = new EnumC11289i[enumC11289iArrValuesCustom.length];
-        System.arraycopy(enumC11289iArrValuesCustom, 0, enumC11289iArr, 0, enumC11289iArrValuesCustom.length);
-        return enumC11289iArr;
-    }
-
     public final C11713b getArrayTypeFqName() {
         return (C11713b) this.arrayTypeFqName$delegate.getValue();
     }
@@ -111,5 +103,13 @@ public enum EnumC11289i {
 
     public final C11716e getTypeName() {
         return this.typeName;
+    }
+
+    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+    public static EnumC11289i[] valuesCustom() {
+        EnumC11289i[] enumC11289iArrValuesCustom = values();
+        EnumC11289i[] enumC11289iArr = new EnumC11289i[enumC11289iArrValuesCustom.length];
+        System.arraycopy(enumC11289iArrValuesCustom, 0, enumC11289iArr, 0, enumC11289iArrValuesCustom.length);
+        return enumC11289iArr;
     }
 }

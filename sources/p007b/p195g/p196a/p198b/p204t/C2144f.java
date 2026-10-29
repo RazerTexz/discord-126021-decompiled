@@ -6,11 +6,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /* JADX INFO: compiled from: InternCache.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2144f extends ConcurrentHashMap<String, String> {
+    private final Object lock;
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: j */
     public static final C2144f f4602j = new C2144f();
-    private static final long serialVersionUID = 1;
-    private final Object lock;
 
     public C2144f() {
         super(180, 0.8f, 4);

@@ -68,7 +68,7 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserActiveViewModel$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserActiveViewModel.kt */
-    public static final class C76481 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C76481 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C76481() {
             super(1);
         }
@@ -87,7 +87,7 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserActiveViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -123,7 +123,7 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
 
                 /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserActiveViewModel$Companion$observeStoreState$3$2 */
                 /* JADX INFO: compiled from: WidgetThreadBrowserActiveViewModel.kt */
-                public static final class C76492 extends AbstractC12240o implements Function10<MeUser, Map<Long, ? extends User>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends String>, Long, Map<Long, ? extends Integer>, Channel, Guild, WidgetThreadBrowserActiveViewModel.StoreState> {
+                public final class C76492 extends AbstractC12240o implements Function10<MeUser, Map<Long, ? extends User>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends String>, Long, Map<Long, ? extends Integer>, Channel, Guild, WidgetThreadBrowserActiveViewModel.StoreState> {
                     public final /* synthetic */ Map $activeJoinedThreads;
                     public final /* synthetic */ Map $activeThreads;
 
@@ -197,7 +197,7 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserActiveViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, Channel> activeJoinedThreads;
         private final Map<Long, Channel> activeThreads;
         private final Map<Long, Integer> blockedUsers;
@@ -236,23 +236,8 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
             this.guild = guild;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
         public final Map<Long, Integer> component10() {
             return this.blockedUsers;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component12, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
         }
 
         public final Map<Long, Channel> component2() {
@@ -281,11 +266,6 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
 
         public final Map<Long, String> component8() {
             return this.channelNames;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final Long getPermissions() {
-            return this.permissions;
         }
 
         public final StoreState copy(MeUser meUser, Map<Long, Channel> activeJoinedThreads, Map<Long, Channel> activeThreads, Map<Long, StoreThreadMessages.ThreadState> threadStates, Map<Long, GuildMember> guildMembers, Map<Long, ? extends User> users, Map<Long, GuildRole> guildRoles, Map<Long, String> channelNames, Long permissions, Map<Long, Integer> blockedUsers, Channel channel, Guild guild) {
@@ -324,12 +304,22 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
             return this.blockedUsers;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
         public final Channel getChannel() {
             return this.channel;
         }
 
         public final Map<Long, String> getChannelNames() {
             return this.channelNames;
+        }
+
+        /* JADX INFO: renamed from: component12, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -344,8 +334,18 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
             return this.guildRoles;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMeUser() {
             return this.meUser;
+        }
+
+        public final MeUser getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final Long getPermissions() {
+            return this.permissions;
         }
 
         public final Long getPermissions() {
@@ -418,7 +418,7 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserActiveViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canCreateThread;
         private final List<WidgetThreadBrowserAdapter.Item> listItems;
 
@@ -427,6 +427,10 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
             C12238m.checkNotNullParameter(list, "listItems");
             this.listItems = list;
             this.canCreateThread = z2;
+        }
+
+        public final List<WidgetThreadBrowserAdapter.Item> component1() {
+            return this.listItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -438,15 +442,6 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
                 z2 = viewState.canCreateThread;
             }
             return viewState.copy(list, z2);
-        }
-
-        public final List<WidgetThreadBrowserAdapter.Item> component1() {
-            return this.listItems;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanCreateThread() {
-            return this.canCreateThread;
         }
 
         public final ViewState copy(List<? extends WidgetThreadBrowserAdapter.Item> listItems, boolean canCreateThread) {
@@ -463,6 +458,11 @@ public final class WidgetThreadBrowserActiveViewModel extends AbstractC0859d0<Vi
             }
             ViewState viewState = (ViewState) other;
             return C12238m.areEqual(this.listItems, viewState.listItems) && this.canCreateThread == viewState.canCreateThread;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getCanCreateThread() {
+            return this.canCreateThread;
         }
 
         public final boolean getCanCreateThread() {

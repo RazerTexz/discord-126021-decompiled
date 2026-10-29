@@ -13,22 +13,7 @@ public abstract class AbstractC2364n<T> {
 
     /* JADX INFO: renamed from: b.g.a.c.n$a */
     /* JADX INFO: compiled from: JsonSerializer.java */
-    public static abstract class a extends AbstractC2364n<Object> {
-    }
-
-    /* JADX INFO: renamed from: c */
-    public Class<T> mo2041c() {
-        return null;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, T t) {
-        return t == null;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public boolean mo2058e() {
-        return this instanceof C2270t;
+    public abstract class a extends AbstractC2364n<Object> {
     }
 
     /* JADX INFO: renamed from: f */
@@ -49,8 +34,23 @@ public abstract class AbstractC2364n<T> {
         return this;
     }
 
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, T t) {
+        return t == null;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public Class<T> mo2041c() {
+        return null;
+    }
+
     /* JADX INFO: renamed from: i */
     public boolean mo2052i() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public boolean mo2058e() {
+        return this instanceof C2270t;
     }
 }

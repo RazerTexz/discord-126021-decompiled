@@ -24,7 +24,7 @@ public class C12052r<D, E, V> extends AbstractC12053s<V> implements KProperty, F
 
     /* JADX INFO: renamed from: d0.e0.p.d.r$a */
     /* JADX INFO: compiled from: KProperty2Impl.kt */
-    public static final class a<D, E, V> extends AbstractC12053s.c<V> implements KProperty.Getter, Function2 {
+    public final class a<D, E, V> extends AbstractC12053s.c<V> implements KProperty.Getter, Function2 {
 
         /* JADX INFO: renamed from: q */
         public final C12052r<D, E, V> f25047q;
@@ -48,7 +48,7 @@ public class C12052r<D, E, V> extends AbstractC12053s<V> implements KProperty, F
 
     /* JADX INFO: renamed from: d0.e0.p.d.r$b */
     /* JADX INFO: compiled from: KProperty2Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<D, E, ? extends V>> {
+    public final class b extends AbstractC12240o implements Function0<a<D, E, ? extends V>> {
         public b() {
             super(0);
         }
@@ -61,7 +61,7 @@ public class C12052r<D, E, V> extends AbstractC12053s<V> implements KProperty, F
 
     /* JADX INFO: renamed from: d0.e0.p.d.r$c */
     /* JADX INFO: compiled from: KProperty2Impl.kt */
-    public static final class c extends AbstractC12240o implements Function0<Field> {
+    public final class c extends AbstractC12240o implements Function0<Field> {
         public c() {
             super(0);
         }

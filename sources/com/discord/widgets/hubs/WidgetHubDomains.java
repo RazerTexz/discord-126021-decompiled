@@ -52,7 +52,7 @@ public final class WidgetHubDomains extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomains$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubDomains.kt */
-    public static final class C90301 extends AbstractC12240o implements Function1<DomainsState, Unit> {
+    public final class C90301 extends AbstractC12240o implements Function1<DomainsState, Unit> {
         public C90301() {
             super(1);
         }
@@ -73,7 +73,7 @@ public final class WidgetHubDomains extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomains$updateView$1 */
     /* JADX INFO: compiled from: WidgetHubDomains.kt */
-    public static final class C90311 extends AbstractC12240o implements Function1<Success<? extends Object>, Unit> {
+    public final class C90311 extends AbstractC12240o implements Function1<Success<? extends Object>, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ DomainsState $state;
 
@@ -104,14 +104,6 @@ public final class WidgetHubDomains extends AppFragment {
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubDomains$binding$2.INSTANCE, null, 2, null);
         this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetHubDomains$adapter$1(this), 1, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetHubDomainsViewModel.class), new C9027x7a97847d(this), new C0863f0(WidgetHubDomains$viewModel$2.INSTANCE));
-    }
-
-    private final void updateView(DomainsState state) {
-        Context context = getContext();
-        if (context != null) {
-            C12238m.checkNotNullExpressionValue(context, "context ?: return");
-            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new C90311(context, state), 6, null);
-        }
     }
 
     public final SimpleRecyclerAdapter<DomainGuildInfo, HubDomainViewHolder> getAdapter() {
@@ -174,5 +166,13 @@ public final class WidgetHubDomains extends AppFragment {
         Observable<DomainsState> observableM11112r = getViewModel().observeViewState().m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetHubDomains.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90301());
+    }
+
+    private final void updateView(DomainsState state) {
+        Context context = getContext();
+        if (context != null) {
+            C12238m.checkNotNullExpressionValue(context, "context ?: return");
+            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new C90311(context, state), 6, null);
+        }
     }
 }

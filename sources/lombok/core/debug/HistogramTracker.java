@@ -7,12 +7,12 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/HistogramTracker.SCL.lombok */
 public class HistogramTracker {
-    private static final long[] RANGES = {250001, 500001, 1000001, 2000001, 4000001, 8000001, 16000001, 32000001, 64000001, 128000001, 256000001, 512000001, 1024000001, 2048000001, 10000000001L};
     private static final long REPORT_WINDOW = 60000;
-    private final String category;
-    private final AtomicStampedReference<long[]> bars;
     private final AtomicBoolean addedSysHook;
+    private final AtomicStampedReference<long[]> bars;
+    private final String category;
     private final PrintStream out;
+    private static final long[] RANGES = {250001, 500001, 1000001, 2000001, 4000001, 8000001, 16000001, 32000001, 64000001, 128000001, 256000001, 512000001, 1024000001, 2048000001, 10000000001L};
 
     public HistogramTracker(String category) {
         this.bars = new AtomicStampedReference<>(new long[RANGES.length + 2], 0);

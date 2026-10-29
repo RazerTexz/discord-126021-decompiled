@@ -27,15 +27,15 @@ import lombok.javac.JavacTreeMaker;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleWithBy.SCL.lombok */
 public class HandleWithBy extends JavacAnnotationHandler<WithBy> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27491x2486df07;
     private static final LombokImmutableList<String> NAME_JUF_FUNCTION = LombokImmutableList.m10922of("java", "util", "function", "Function");
     private static final LombokImmutableList<String> NAME_JUF_OP = LombokImmutableList.m10922of("java", "util", "function", "UnaryOperator");
     private static final LombokImmutableList<String> NAME_JUF_DOUBLEOP = LombokImmutableList.m10922of("java", "util", "function", "DoubleUnaryOperator");
     private static final LombokImmutableList<String> NAME_JUF_INTOP = LombokImmutableList.m10922of("java", "util", "function", "IntUnaryOperator");
     private static final LombokImmutableList<String> NAME_JUF_LONGOP = LombokImmutableList.m10922of("java", "util", "function", "LongUnaryOperator");
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27491x2486df07;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

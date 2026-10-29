@@ -77,19 +77,133 @@ import p658rx.functions.Func5;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsAccount extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAccount.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountBinding;", 0)};
+    private static final String EXTRA_HINT_DATA_MANAGEMENT = "com.discord.extra.HINT_DATA_MANAGEMENT";
+    private static final String EXTRA_REDIRECT = "extra_redirect";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_HINT_DATA_MANAGEMENT = "com.discord.extra.HINT_DATA_MANAGEMENT";
-    private static final String EXTRA_REDIRECT = "extra_redirect";
     private static final int MFA_DISABLED_VIEW_INDEX = 1;
     private static final int MFA_ENABLED_VIEW_INDEX = 0;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-    public static final class Companion {
+    @InterfaceC12188e(m10084c = "com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBound$1", m10085f = "WidgetSettingsAccount.kt", m10086l = {65}, m10087m = "invokeSuspend")
+    public final class C97301 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public C97301(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            C12238m.checkNotNullParameter(continuation, "completion");
+            return WidgetSettingsAccount.this.new C97301(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((C97301) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
+        }
+
+        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i == 0) {
+                C12113l.throwOnFailure(obj);
+                this.label = 1;
+                if (C3404f.m4234P(500L, this) == coroutine_suspended) {
+                    return coroutine_suspended;
+                }
+            } else {
+                if (i != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                C12113l.throwOnFailure(obj);
+            }
+            NestedScrollView nestedScrollView = WidgetSettingsAccount.this.getBinding().f17815x;
+            LinearLayout linearLayout = WidgetSettingsAccount.this.getBinding().f17813v;
+            C12238m.checkNotNullExpressionValue(linearLayout, "binding.settingsAccountPrivateDataWrap");
+            nestedScrollView.smoothScrollTo(0, linearLayout.getBottom());
+            TextView textView = WidgetSettingsAccount.this.getBinding().f17812u;
+            C12238m.checkNotNullExpressionValue(textView, "binding.settingsAccountPrivateDataDisable");
+            ViewExtensions.hintWithRipple$default(textView, 0L, 1, null);
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
+    public final class C97311 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C97311() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetSettingsAccount widgetSettingsAccount = WidgetSettingsAccount.this;
+            C12238m.checkNotNullExpressionValue(model, "it");
+            widgetSettingsAccount.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$showRemove2FAModal$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
+    public final class C97321 extends AbstractC12240o implements Function2<Context, String, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$showRemove2FAModal$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<DisableMfaResponse, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(DisableMfaResponse disableMfaResponse) {
+                invoke2(disableMfaResponse);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(DisableMfaResponse disableMfaResponse) {
+                C12238m.checkNotNullParameter(disableMfaResponse, "it");
+                C0876m.m170h(WidgetSettingsAccount.this.requireContext(), WidgetSettingsAccount.this.requireContext().getString(C5419R.string.user_settings_mfa_removed), 0, null, 12);
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                companion.getAuthentication().setAuthed(disableMfaResponse.getToken());
+                companion.getMFA().updatePendingMFAState(StoreMFA.MFAActivationState.PENDING_DISABLED);
+            }
+        }
+
+        public C97321() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str) {
+            invoke2(context, str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Context context, String str) {
+            C12238m.checkNotNullParameter(context, "<anonymous parameter 0>");
+            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().disableMFA(new DisableMfaRequestBody(str)), WidgetSettingsAccount.this, null, 2, null), WidgetSettingsAccount.this.getBinding().f17793b, 0L, 2, null), false, 1, null), (Class<?>) WidgetSettingsAccount.class, (58 & 2) != 0 ? null : WidgetSettingsAccount.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -129,7 +243,7 @@ public final class WidgetSettingsAccount extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -139,7 +253,7 @@ public final class WidgetSettingsAccount extends AppFragment {
         private final StoreMFA.State pendingMFAState;
 
         /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -220,26 +334,6 @@ public final class WidgetSettingsAccount extends AppFragment {
             return model.copy(meUser, state, z2, connectedAccount);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreMFA.State getPendingMFAState() {
-            return this.pendingMFAState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getOwnsAnyGuilds() {
-            return this.ownsAnyGuilds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ConnectedAccount getContactSyncConnection() {
-            return this.contactSyncConnection;
-        }
-
         public final Model copy(MeUser meUser, StoreMFA.State pendingMFAState, boolean ownsAnyGuilds, ConnectedAccount contactSyncConnection) {
             C12238m.checkNotNullParameter(meUser, "meUser");
             C12238m.checkNotNullParameter(pendingMFAState, "pendingMFAState");
@@ -257,16 +351,36 @@ public final class WidgetSettingsAccount extends AppFragment {
             return C12238m.areEqual(this.meUser, model.meUser) && C12238m.areEqual(this.pendingMFAState, model.pendingMFAState) && this.ownsAnyGuilds == model.ownsAnyGuilds && C12238m.areEqual(this.contactSyncConnection, model.contactSyncConnection);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ConnectedAccount getContactSyncConnection() {
             return this.contactSyncConnection;
+        }
+
+        public final ConnectedAccount getContactSyncConnection() {
+            return this.contactSyncConnection;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MeUser getMeUser() {
+            return this.meUser;
         }
 
         public final MeUser getMeUser() {
             return this.meUser;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getOwnsAnyGuilds() {
             return this.ownsAnyGuilds;
+        }
+
+        public final boolean getOwnsAnyGuilds() {
+            return this.ownsAnyGuilds;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreMFA.State getPendingMFAState() {
+            return this.pendingMFAState;
         }
 
         public final StoreMFA.State getPendingMFAState() {
@@ -310,120 +424,6 @@ public final class WidgetSettingsAccount extends AppFragment {
     /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
     public enum Redirect {
         SMS_BACKUP
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-    @InterfaceC12188e(m10084c = "com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBound$1", m10085f = "WidgetSettingsAccount.kt", m10086l = {65}, m10087m = "invokeSuspend")
-    public static final class C97301 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
-        public int label;
-
-        public C97301(Continuation continuation) {
-            super(2, continuation);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            C12238m.checkNotNullParameter(continuation, "completion");
-            return WidgetSettingsAccount.this.new C97301(continuation);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
-            return ((C97301) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
-        }
-
-        @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
-            Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
-            int i = this.label;
-            if (i == 0) {
-                C12113l.throwOnFailure(obj);
-                this.label = 1;
-                if (C3404f.m4234P(500L, this) == coroutine_suspended) {
-                    return coroutine_suspended;
-                }
-            } else {
-                if (i != 1) {
-                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                }
-                C12113l.throwOnFailure(obj);
-            }
-            NestedScrollView nestedScrollView = WidgetSettingsAccount.this.getBinding().f17815x;
-            LinearLayout linearLayout = WidgetSettingsAccount.this.getBinding().f17813v;
-            C12238m.checkNotNullExpressionValue(linearLayout, "binding.settingsAccountPrivateDataWrap");
-            nestedScrollView.smoothScrollTo(0, linearLayout.getBottom());
-            TextView textView = WidgetSettingsAccount.this.getBinding().f17812u;
-            C12238m.checkNotNullExpressionValue(textView, "binding.settingsAccountPrivateDataDisable");
-            ViewExtensions.hintWithRipple$default(textView, 0L, 1, null);
-            return Unit.f27425a;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-    public static final class C97311 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C97311() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetSettingsAccount widgetSettingsAccount = WidgetSettingsAccount.this;
-            C12238m.checkNotNullExpressionValue(model, "it");
-            widgetSettingsAccount.configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$showRemove2FAModal$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-    public static final class C97321 extends AbstractC12240o implements Function2<Context, String, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccount$showRemove2FAModal$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsAccount.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<DisableMfaResponse, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(DisableMfaResponse disableMfaResponse) {
-                invoke2(disableMfaResponse);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(DisableMfaResponse disableMfaResponse) {
-                C12238m.checkNotNullParameter(disableMfaResponse, "it");
-                C0876m.m170h(WidgetSettingsAccount.this.requireContext(), WidgetSettingsAccount.this.requireContext().getString(C5419R.string.user_settings_mfa_removed), 0, null, 12);
-                StoreStream.Companion companion = StoreStream.INSTANCE;
-                companion.getAuthentication().setAuthed(disableMfaResponse.getToken());
-                companion.getMFA().updatePendingMFAState(StoreMFA.MFAActivationState.PENDING_DISABLED);
-            }
-        }
-
-        public C97321() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str) {
-            invoke2(context, str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Context context, String str) {
-            C12238m.checkNotNullParameter(context, "<anonymous parameter 0>");
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().disableMFA(new DisableMfaRequestBody(str)), WidgetSettingsAccount.this, null, 2, null), WidgetSettingsAccount.this.getBinding().f17793b, 0L, 2, null), false, 1, null), (Class<?>) WidgetSettingsAccount.class, (58 & 2) != 0 ? null : WidgetSettingsAccount.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
-        }
     }
 
     public WidgetSettingsAccount() {
@@ -733,27 +733,6 @@ public final class WidgetSettingsAccount extends AppFragment {
         INSTANCE.launch(context, z2, redirect);
     }
 
-    private final void showOwnsGuildModal() {
-        WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(new WidgetNoticeDialog.Builder(requireContext()).setTitle(C5419R.string.delete_account_transfer_ownership).setMessage(C5419R.string.delete_account_transfer_ownership_body), C5419R.string.okay, (Function1) null, 2, (Object) null);
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        positiveButton$default.show(parentFragmentManager);
-    }
-
-    private final void showRemove2FAModal() {
-        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
-        AppActivity appActivity = getAppActivity();
-        if (appActivity != null) {
-            String string = requireContext().getString(C5419R.string.two_fa_remove);
-            C12238m.checkNotNullExpressionValue(string, "requireContext().getString(R.string.two_fa_remove)");
-            String string2 = requireContext().getString(C5419R.string.user_settings_mfa_enable_code_body);
-            C12238m.checkNotNullExpressionValue(string2, "requireContext().getStri…ngs_mfa_enable_code_body)");
-            String string3 = requireContext().getString(C5419R.string.two_fa_auth_code);
-            C12238m.checkNotNullExpressionValue(string3, "requireContext().getStri….string.two_fa_auth_code)");
-            companion.showInputModal(appActivity, string, string2, string3, new C97321(), (640 & 32) != 0 ? null : null, (640 & 64) != 0 ? null : null, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : null, (640 & 256) != 0 ? null : null, (640 & 512) != 0 ? false : false);
-        }
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -786,5 +765,26 @@ public final class WidgetSettingsAccount extends AppFragment {
         Observable<Model> observableM11112r = Model.INSTANCE.get().m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "Model\n        .get()\n   …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableM11112r), this, null, 2, null), (Class<?>) WidgetSettingsAccount.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97311());
+    }
+
+    private final void showOwnsGuildModal() {
+        WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(new WidgetNoticeDialog.Builder(requireContext()).setTitle(C5419R.string.delete_account_transfer_ownership).setMessage(C5419R.string.delete_account_transfer_ownership_body), C5419R.string.okay, (Function1) null, 2, (Object) null);
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        positiveButton$default.show(parentFragmentManager);
+    }
+
+    private final void showRemove2FAModal() {
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        AppActivity appActivity = getAppActivity();
+        if (appActivity != null) {
+            String string = requireContext().getString(C5419R.string.two_fa_remove);
+            C12238m.checkNotNullExpressionValue(string, "requireContext().getString(R.string.two_fa_remove)");
+            String string2 = requireContext().getString(C5419R.string.user_settings_mfa_enable_code_body);
+            C12238m.checkNotNullExpressionValue(string2, "requireContext().getStri…ngs_mfa_enable_code_body)");
+            String string3 = requireContext().getString(C5419R.string.two_fa_auth_code);
+            C12238m.checkNotNullExpressionValue(string3, "requireContext().getStri….string.two_fa_auth_code)");
+            companion.showInputModal(appActivity, string, string2, string3, new C97321(), (640 & 32) != 0 ? null : null, (640 & 64) != 0 ? null : null, (640 & 128) != 0 ? StoreNotices.InputDialog.Type.PASSWORD : null, (640 & 256) != 0 ? null : null, (640 & 512) != 0 ? false : false);
+        }
     }
 }

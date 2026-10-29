@@ -21,8 +21,6 @@ public class NV12Buffer implements VideoFrame.Buffer {
         this.refCountDelegate = new RefCountDelegate(runnable);
     }
 
-    private static native void nativeCropAndScale(int i, int i2, int i3, int i4, int i5, int i6, ByteBuffer byteBuffer, int i7, int i8, int i9, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, ByteBuffer byteBuffer4, int i13);
-
     @Override // org.webrtc.VideoFrame.Buffer
     public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
         JavaI420Buffer javaI420BufferAllocate = JavaI420Buffer.allocate(i5, i6);
@@ -39,6 +37,8 @@ public class NV12Buffer implements VideoFrame.Buffer {
     public int getWidth() {
         return this.width;
     }
+
+    private static native void nativeCropAndScale(int i, int i2, int i3, int i4, int i5, int i6, ByteBuffer byteBuffer, int i7, int i8, int i9, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, ByteBuffer byteBuffer4, int i13);
 
     @Override // org.webrtc.VideoFrame.Buffer, org.webrtc.RefCounted
     public void release() {

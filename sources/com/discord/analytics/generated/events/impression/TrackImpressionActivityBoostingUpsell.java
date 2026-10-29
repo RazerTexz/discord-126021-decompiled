@@ -17,33 +17,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImpressionActivityBoostingUpsell.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImpressionActivityBoostingUpsell implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
+    private final Long applicationId = null;
+    private final CharSequence sourceSection = null;
+    private final Long tier = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
-    private final Long applicationId = null;
-    private final CharSequence sourceSection = null;
-    private final Long tier = null;
     private final transient String analyticsSchemaTypeName = "impression_activity_boosting_upsell";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -56,6 +38,18 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
         return C12238m.areEqual(this.applicationId, trackImpressionActivityBoostingUpsell.applicationId) && C12238m.areEqual(this.sourceSection, trackImpressionActivityBoostingUpsell.sourceSection) && C12238m.areEqual(this.tier, trackImpressionActivityBoostingUpsell.tier);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.applicationId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -63,6 +57,12 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
         int iHashCode2 = (iHashCode + (charSequence != null ? charSequence.hashCode() : 0)) * 31;
         Long l2 = this.tier;
         return iHashCode2 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

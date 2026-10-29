@@ -10,9 +10,6 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12699d implements InterfaceC12706k {
 
-    /* JADX INFO: renamed from: a */
-    public static final ScheduledExecutorService[] f27215a = new ScheduledExecutorService[0];
-
     /* JADX INFO: renamed from: b */
     public static final ScheduledExecutorService f27216b;
 
@@ -21,6 +18,9 @@ public final class C12699d implements InterfaceC12706k {
 
     /* JADX INFO: renamed from: d */
     public static int f27218d;
+
+    /* JADX INFO: renamed from: a */
+    public static final ScheduledExecutorService[] f27215a = new ScheduledExecutorService[0];
 
     /* JADX INFO: renamed from: e */
     public final AtomicReference<ScheduledExecutorService[]> f27219e = new AtomicReference<>(f27215a);

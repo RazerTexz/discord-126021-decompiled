@@ -74,7 +74,6 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final BehaviorSubject<Boolean> isExpressionTrayActiveSubject;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -91,6 +90,7 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
     private WidgetGifPicker gifPickerFragment;
     private boolean gifPickerInitialized;
     private final BehaviorSubject<Boolean> isAtInitialScrollPositionSubject;
+    private static final BehaviorSubject<Boolean> isExpressionTrayActiveSubject;
     private OnBackspacePressedListener onBackspacePressedListener;
     private Function0<Unit> onEmojiSearchOpenedListener;
     private WidgetStickerPicker stickerPickerFragment;
@@ -98,8 +98,263 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
     private StickerPickerListener stickerPickerListener;
     private boolean wasActive;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$1 */
     /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C78501 extends C12236k implements Function0<Unit> {
+        public C78501(WidgetExpressionTray widgetExpressionTray) {
+            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSelected", "onGifSelected()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetExpressionTray) this.receiver).onGifSelected();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$2 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class C78512 extends C12236k implements Function0<Unit> {
+        public C78512(WidgetExpressionTray widgetExpressionTray) {
+            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSearchSheetCanceled", "onGifSearchSheetCanceled()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetExpressionTray) this.receiver).onGifSearchSheetCanceled();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$3 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78523 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public final /* synthetic */ ExpressionTrayViewModel.Event $event;
+        public final /* synthetic */ WidgetStickerPickerSheet $pickerSheet;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C78523(WidgetStickerPickerSheet widgetStickerPickerSheet, ExpressionTrayViewModel.Event event) {
+            super(1);
+            this.$pickerSheet = widgetStickerPickerSheet;
+            this.$event = event;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            this.$pickerSheet.scrollToPack(((ExpressionTrayViewModel.Event.ShowStickerPicker) this.$event).getStickerPackId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78551 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public C78551() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetExpressionTray.this.handleViewState(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78562 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.Event, Unit> {
+        public C78562() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "event");
+            WidgetExpressionTray.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpGifPicker$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class C78571 extends C12236k implements Function1<GifCategoryItem, Unit> {
+        public C78571(ExpressionTrayViewModel expressionTrayViewModel) {
+            super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "selectGifCategory", "selectGifCategory(Lcom/discord/widgets/chat/input/gifpicker/GifCategoryItem;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifCategoryItem gifCategoryItem) {
+            invoke2(gifCategoryItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifCategoryItem gifCategoryItem) {
+            C12238m.checkNotNullParameter(gifCategoryItem, "p1");
+            ((ExpressionTrayViewModel) this.receiver).selectGifCategory(gifCategoryItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class C78581 extends C12236k implements Function1<Boolean, Unit> {
+        public C78581(WidgetExpressionTray widgetExpressionTray) {
+            super(1, widgetExpressionTray, WidgetExpressionTray.class, "showStickersSearchBar", "showStickersSearchBar(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((WidgetExpressionTray) this.receiver).showStickersSearchBar(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$2 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78592 extends AbstractC12240o implements Function0<Unit> {
+        public C78592() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetExpressionTray.this.getBinding().f16615n.scrollTo(0, 0);
+            WidgetExpressionTray.this.getBinding().f16615n.setExpanded(true, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpTabs$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78601 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public C78601() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i) {
+            ExpressionTrayTab expressionTrayTab = ExpressionTrayTab.values()[i];
+            TextView textView = WidgetExpressionTray.this.getBinding().f16611j;
+            C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
+            textView.setText("");
+            if (WidgetExpressionTray.this.stickerPickerInitialized && WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).isVisible()) {
+                WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).clearSearchInput();
+            }
+            WidgetExpressionTray.this.getExpressionTrayViewModel().selectTab(expressionTrayTab);
+            WidgetExpressionTray.this.trackExpressionPickerTabClicked(expressionTrayTab);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerOpened$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78631 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public static final C78631 INSTANCE = new C78631();
+
+        public C78631() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            String str;
+            int iOrdinal = viewState.getSelectedExpressionTab().ordinal();
+            if (iOrdinal == 0) {
+                str = "emoji";
+            } else if (iOrdinal == 1) {
+                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
+            } else {
+                if (iOrdinal != 2) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                str = "sticker";
+            }
+            AnalyticsTracker.INSTANCE.expressionPickerOpened(str, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerTabClicked$1 */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class C78641 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public final /* synthetic */ ExpressionTrayTab $clickedTab;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C78641(ExpressionTrayTab expressionTrayTab) {
+            super(1);
+            this.$clickedTab = expressionTrayTab;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            String str;
+            int iOrdinal = this.$clickedTab.ordinal();
+            if (iOrdinal == 0) {
+                str = "emoji";
+            } else if (iOrdinal == 1) {
+                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
+            } else {
+                if (iOrdinal != 2) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                str = "sticker";
+            }
+            AnalyticsTracker.INSTANCE.expressionPickerTabClicked(str, false);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -146,261 +401,6 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
             iArr4[expressionTrayTab.ordinal()] = 1;
             iArr4[expressionTrayTab2.ordinal()] = 2;
             iArr4[expressionTrayTab3.ordinal()] = 3;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final /* synthetic */ class C78501 extends C12236k implements Function0<Unit> {
-        public C78501(WidgetExpressionTray widgetExpressionTray) {
-            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSelected", "onGifSelected()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetExpressionTray) this.receiver).onGifSelected();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$2 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final /* synthetic */ class C78512 extends C12236k implements Function0<Unit> {
-        public C78512(WidgetExpressionTray widgetExpressionTray) {
-            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSearchSheetCanceled", "onGifSearchSheetCanceled()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetExpressionTray) this.receiver).onGifSearchSheetCanceled();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$3 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78523 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public final /* synthetic */ ExpressionTrayViewModel.Event $event;
-        public final /* synthetic */ WidgetStickerPickerSheet $pickerSheet;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C78523(WidgetStickerPickerSheet widgetStickerPickerSheet, ExpressionTrayViewModel.Event event) {
-            super(1);
-            this.$pickerSheet = widgetStickerPickerSheet;
-            this.$event = event;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            this.$pickerSheet.scrollToPack(((ExpressionTrayViewModel.Event.ShowStickerPicker) this.$event).getStickerPackId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78551 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
-        public C78551() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetExpressionTray.this.handleViewState(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78562 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.Event, Unit> {
-        public C78562() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ExpressionTrayViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            WidgetExpressionTray.this.handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpGifPicker$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final /* synthetic */ class C78571 extends C12236k implements Function1<GifCategoryItem, Unit> {
-        public C78571(ExpressionTrayViewModel expressionTrayViewModel) {
-            super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "selectGifCategory", "selectGifCategory(Lcom/discord/widgets/chat/input/gifpicker/GifCategoryItem;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GifCategoryItem gifCategoryItem) {
-            invoke2(gifCategoryItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GifCategoryItem gifCategoryItem) {
-            C12238m.checkNotNullParameter(gifCategoryItem, "p1");
-            ((ExpressionTrayViewModel) this.receiver).selectGifCategory(gifCategoryItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final /* synthetic */ class C78581 extends C12236k implements Function1<Boolean, Unit> {
-        public C78581(WidgetExpressionTray widgetExpressionTray) {
-            super(1, widgetExpressionTray, WidgetExpressionTray.class, "showStickersSearchBar", "showStickersSearchBar(Z)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            ((WidgetExpressionTray) this.receiver).showStickersSearchBar(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$2 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78592 extends AbstractC12240o implements Function0<Unit> {
-        public C78592() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetExpressionTray.this.getBinding().f16615n.scrollTo(0, 0);
-            WidgetExpressionTray.this.getBinding().f16615n.setExpanded(true, false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpTabs$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78601 extends AbstractC12240o implements Function1<Integer, Unit> {
-        public C78601() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
-            invoke(num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i) {
-            ExpressionTrayTab expressionTrayTab = ExpressionTrayTab.values()[i];
-            TextView textView = WidgetExpressionTray.this.getBinding().f16611j;
-            C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
-            textView.setText("");
-            if (WidgetExpressionTray.this.stickerPickerInitialized && WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).isVisible()) {
-                WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).clearSearchInput();
-            }
-            WidgetExpressionTray.this.getExpressionTrayViewModel().selectTab(expressionTrayTab);
-            WidgetExpressionTray.this.trackExpressionPickerTabClicked(expressionTrayTab);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerOpened$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78631 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
-        public static final C78631 INSTANCE = new C78631();
-
-        public C78631() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
-            String str;
-            int iOrdinal = viewState.getSelectedExpressionTab().ordinal();
-            if (iOrdinal == 0) {
-                str = "emoji";
-            } else if (iOrdinal == 1) {
-                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
-            } else {
-                if (iOrdinal != 2) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                str = "sticker";
-            }
-            AnalyticsTracker.INSTANCE.expressionPickerOpened(str, false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerTabClicked$1 */
-    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
-    public static final class C78641 extends AbstractC12240o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
-        public final /* synthetic */ ExpressionTrayTab $clickedTab;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C78641(ExpressionTrayTab expressionTrayTab) {
-            super(1);
-            this.$clickedTab = expressionTrayTab;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
-            String str;
-            int iOrdinal = this.$clickedTab.ordinal();
-            if (iOrdinal == 0) {
-                str = "emoji";
-            } else if (iOrdinal == 1) {
-                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
-            } else {
-                if (iOrdinal != 2) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                str = "sticker";
-            }
-            AnalyticsTracker.INSTANCE.expressionPickerTabClicked(str, false);
         }
     }
 
@@ -616,6 +616,72 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
         this.expressionTabToContentViewsMap = C12136h0.linkedMapOf(C12116o.m10073to(ExpressionTrayTab.EMOJI, getBinding().f16606e), C12116o.m10073to(ExpressionTrayTab.GIF, getBinding().f16608g), C12116o.m10073to(ExpressionTrayTab.STICKER, getBinding().f16614m));
     }
 
+    @Override // p007b.p076b.p077a.InterfaceC1430c
+    public void isShown(boolean isActive) {
+        getExpressionTrayViewModel().handleIsActive(isActive);
+        isExpressionTrayActiveSubject.onNext(Boolean.valueOf(isActive));
+        if (isActive && !this.wasActive) {
+            getBinding().f16615n.setExpanded(true);
+            if (this.emojiPickerInitialized) {
+                WidgetEmojiPicker widgetEmojiPicker = this.emojiPickerFragment;
+                if (widgetEmojiPicker == null) {
+                    C12238m.throwUninitializedPropertyAccessException("emojiPickerFragment");
+                }
+                widgetEmojiPicker.scrollToTop();
+            }
+            if (this.gifPickerInitialized) {
+                WidgetGifPicker widgetGifPicker = this.gifPickerFragment;
+                if (widgetGifPicker == null) {
+                    C12238m.throwUninitializedPropertyAccessException("gifPickerFragment");
+                }
+                widgetGifPicker.scrollToTop();
+            }
+            if (this.stickerPickerInitialized) {
+                WidgetStickerPicker widgetStickerPicker = this.stickerPickerFragment;
+                if (widgetStickerPicker == null) {
+                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
+                }
+                widgetStickerPicker.scrollToTop();
+            }
+            fetchDataForTrayOpen();
+            trackExpressionPickerOpened();
+        } else if (!isActive && this.wasActive) {
+            getExpressionTrayViewModel().clickBack();
+        }
+        if (!isActive) {
+            TextView textView = getBinding().f16611j;
+            C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
+            textView.setText("");
+            if (this.stickerPickerInitialized) {
+                WidgetStickerPicker widgetStickerPicker2 = this.stickerPickerFragment;
+                if (widgetStickerPicker2 == null) {
+                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
+                }
+                if (widgetStickerPicker2.isVisible()) {
+                    WidgetStickerPicker widgetStickerPicker3 = this.stickerPickerFragment;
+                    if (widgetStickerPicker3 == null) {
+                        C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
+                    }
+                    widgetStickerPicker3.clearSearchInput();
+                }
+            }
+        }
+        if (this.stickerPickerInitialized) {
+            WidgetStickerPicker widgetStickerPicker4 = this.stickerPickerFragment;
+            if (widgetStickerPicker4 == null) {
+                C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
+            }
+            if (widgetStickerPicker4.getCanHandleIsShown()) {
+                WidgetStickerPicker widgetStickerPicker5 = this.stickerPickerFragment;
+                if (widgetStickerPicker5 == null) {
+                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
+                }
+                widgetStickerPicker5.isShown(isActive);
+            }
+        }
+        this.wasActive = isActive;
+    }
+
     private final void onGifSearchSheetCanceled() {
         if (isAdded()) {
             getFlexInputViewModel().showKeyboardAndHideExpressionTray();
@@ -626,6 +692,56 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
         if (isAdded()) {
             getFlexInputViewModel().showKeyboardAndHideExpressionTray();
         }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        initializeExpressionTabToViewsMap();
+        setUpTabs();
+        getBinding().f16610i.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionTray.onViewBound.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                ExpressionTrayViewModel expressionTrayViewModel = WidgetExpressionTray.this.getExpressionTrayViewModel();
+                TextView textView = WidgetExpressionTray.this.getBinding().f16611j;
+                C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
+                expressionTrayViewModel.clickSearch(textView.getText().toString());
+            }
+        });
+        setWindowInsetsListeners();
+        getBinding().f16615n.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionTray.onViewBound.2
+            @Override // com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener, com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
+            public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                WidgetExpressionTray.this.isAtInitialScrollPositionSubject.onNext(Boolean.valueOf(i == 0));
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetExpressionTray.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78551());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetExpressionTray.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78562());
+    }
+
+    public final void setEmojiPickerListener(EmojiPickerListener emojiPickerListener) {
+        C12238m.checkNotNullParameter(emojiPickerListener, "emojiPickerListener");
+        this.emojiPickerListener = emojiPickerListener;
+    }
+
+    public final void setOnBackspacePressedListener(OnBackspacePressedListener onBackspacePressedListener) {
+        this.onBackspacePressedListener = onBackspacePressedListener;
+    }
+
+    public final void setOnEmojiSearchOpenedListener(Function0<Unit> callback) {
+        C12238m.checkNotNullParameter(callback, "callback");
+        this.onEmojiSearchOpenedListener = callback;
+    }
+
+    public final void setStickerPickerListener(StickerPickerListener stickerPickerListener) {
+        C12238m.checkNotNullParameter(stickerPickerListener, "stickerPickerListener");
+        this.stickerPickerListener = stickerPickerListener;
     }
 
     private final void setUpEmojiPicker() {
@@ -732,121 +848,5 @@ public final class WidgetExpressionTray extends AppFragment implements Interface
 
     private final void trackExpressionPickerTabClicked(ExpressionTrayTab clickedTab) {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout$default(getExpressionTrayViewModel().observeViewState(), 0L, false, 3, null), (Class<?>) WidgetExpressionTray.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78641(clickedTab));
-    }
-
-    @Override // p007b.p076b.p077a.InterfaceC1430c
-    public void isShown(boolean isActive) {
-        getExpressionTrayViewModel().handleIsActive(isActive);
-        isExpressionTrayActiveSubject.onNext(Boolean.valueOf(isActive));
-        if (isActive && !this.wasActive) {
-            getBinding().f16615n.setExpanded(true);
-            if (this.emojiPickerInitialized) {
-                WidgetEmojiPicker widgetEmojiPicker = this.emojiPickerFragment;
-                if (widgetEmojiPicker == null) {
-                    C12238m.throwUninitializedPropertyAccessException("emojiPickerFragment");
-                }
-                widgetEmojiPicker.scrollToTop();
-            }
-            if (this.gifPickerInitialized) {
-                WidgetGifPicker widgetGifPicker = this.gifPickerFragment;
-                if (widgetGifPicker == null) {
-                    C12238m.throwUninitializedPropertyAccessException("gifPickerFragment");
-                }
-                widgetGifPicker.scrollToTop();
-            }
-            if (this.stickerPickerInitialized) {
-                WidgetStickerPicker widgetStickerPicker = this.stickerPickerFragment;
-                if (widgetStickerPicker == null) {
-                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
-                }
-                widgetStickerPicker.scrollToTop();
-            }
-            fetchDataForTrayOpen();
-            trackExpressionPickerOpened();
-        } else if (!isActive && this.wasActive) {
-            getExpressionTrayViewModel().clickBack();
-        }
-        if (!isActive) {
-            TextView textView = getBinding().f16611j;
-            C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
-            textView.setText("");
-            if (this.stickerPickerInitialized) {
-                WidgetStickerPicker widgetStickerPicker2 = this.stickerPickerFragment;
-                if (widgetStickerPicker2 == null) {
-                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
-                }
-                if (widgetStickerPicker2.isVisible()) {
-                    WidgetStickerPicker widgetStickerPicker3 = this.stickerPickerFragment;
-                    if (widgetStickerPicker3 == null) {
-                        C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
-                    }
-                    widgetStickerPicker3.clearSearchInput();
-                }
-            }
-        }
-        if (this.stickerPickerInitialized) {
-            WidgetStickerPicker widgetStickerPicker4 = this.stickerPickerFragment;
-            if (widgetStickerPicker4 == null) {
-                C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
-            }
-            if (widgetStickerPicker4.getCanHandleIsShown()) {
-                WidgetStickerPicker widgetStickerPicker5 = this.stickerPickerFragment;
-                if (widgetStickerPicker5 == null) {
-                    C12238m.throwUninitializedPropertyAccessException("stickerPickerFragment");
-                }
-                widgetStickerPicker5.isShown(isActive);
-            }
-        }
-        this.wasActive = isActive;
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        initializeExpressionTabToViewsMap();
-        setUpTabs();
-        getBinding().f16610i.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionTray.onViewBound.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                ExpressionTrayViewModel expressionTrayViewModel = WidgetExpressionTray.this.getExpressionTrayViewModel();
-                TextView textView = WidgetExpressionTray.this.getBinding().f16611j;
-                C12238m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
-                expressionTrayViewModel.clickSearch(textView.getText().toString());
-            }
-        });
-        setWindowInsetsListeners();
-        getBinding().f16615n.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionTray.onViewBound.2
-            @Override // com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener, com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
-            public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-                WidgetExpressionTray.this.isAtInitialScrollPositionSubject.onNext(Boolean.valueOf(i == 0));
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetExpressionTray.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78551());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetExpressionTray.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78562());
-    }
-
-    public final void setEmojiPickerListener(EmojiPickerListener emojiPickerListener) {
-        C12238m.checkNotNullParameter(emojiPickerListener, "emojiPickerListener");
-        this.emojiPickerListener = emojiPickerListener;
-    }
-
-    public final void setOnBackspacePressedListener(OnBackspacePressedListener onBackspacePressedListener) {
-        this.onBackspacePressedListener = onBackspacePressedListener;
-    }
-
-    public final void setOnEmojiSearchOpenedListener(Function0<Unit> callback) {
-        C12238m.checkNotNullParameter(callback, "callback");
-        this.onEmojiSearchOpenedListener = callback;
-    }
-
-    public final void setStickerPickerListener(StickerPickerListener stickerPickerListener) {
-        C12238m.checkNotNullParameter(stickerPickerListener, "stickerPickerListener");
-        this.stickerPickerListener = stickerPickerListener;
     }
 }

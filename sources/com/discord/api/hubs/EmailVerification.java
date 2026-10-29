@@ -10,16 +10,6 @@ public final /* data */ class EmailVerification {
     private final List<GuildInfo> guildsInfo;
     private final boolean hasMatchingGuild;
 
-    /* JADX INFO: renamed from: a */
-    public final List<GuildInfo> m7998a() {
-        return this.guildsInfo;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getHasMatchingGuild() {
-        return this.hasMatchingGuild;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,11 @@ public final /* data */ class EmailVerification {
         }
         EmailVerification emailVerification = (EmailVerification) other;
         return C12238m.areEqual(this.guildsInfo, emailVerification.guildsInfo) && this.hasMatchingGuild == emailVerification.hasMatchingGuild;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getHasMatchingGuild() {
+        return this.hasMatchingGuild;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -45,6 +40,11 @@ public final /* data */ class EmailVerification {
             r1 = 1;
         }
         return iHashCode + r1;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<GuildInfo> m7998a() {
+        return this.guildsInfo;
     }
 
     public String toString() {

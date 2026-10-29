@@ -60,12 +60,6 @@ public final class C4113m3 extends AbstractC3974a5 {
         return null;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
-    /* JADX INFO: renamed from: v */
-    public final boolean mo5499v() {
-        return false;
-    }
-
     /* JADX WARN: Code duplicated, block: B:78:0x011c  */
     /* JADX WARN: Code duplicated, block: B:80:0x0121  */
     /* JADX WARN: Multi-variable type inference failed */
@@ -93,7 +87,7 @@ public final class C4113m3 extends AbstractC3974a5 {
     /* JADX WARN: Type inference failed for: r7v9 */
     @WorkerThread
     /* JADX INFO: renamed from: x */
-    public final boolean m5755x(int i, byte[] bArr) {
+    public final boolean m5755x(int i, byte[] bArr) throws Throwable {
         SQLiteDatabase sQLiteDatabaseM5754A;
         ?? r2;
         mo5848b();
@@ -326,6 +320,12 @@ public final class C4113m3 extends AbstractC3974a5 {
             }
         }
         mo5726g().f11144i.m5860a("Error deleting app launch break from local database in reasonable time");
+        return false;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
+    /* JADX INFO: renamed from: v */
+    public final boolean mo5499v() {
         return false;
     }
 }

@@ -26,6 +26,9 @@ import p007b.p225i.p355b.p358c.C4538a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2649o implements InterfaceC2963w0 {
 
+    /* JADX INFO: renamed from: l */
+    public final AbstractC4525q<C2556n0, a> f6272l;
+
     /* JADX INFO: renamed from: j */
     public static final C2649o f6270j = new C2649o(C4510i0.f12015m);
 
@@ -67,9 +70,6 @@ public final class C2649o implements InterfaceC2963w0 {
         }
     };
 
-    /* JADX INFO: renamed from: l */
-    public final AbstractC4525q<C2556n0, a> f6272l;
-
     public C2649o(Map<C2556n0, a> map) {
         this.f6272l = AbstractC4525q.m6273a(map);
     }
@@ -90,7 +90,7 @@ public final class C2649o implements InterfaceC2963w0 {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.o$a */
     /* JADX INFO: compiled from: TrackSelectionOverrides.java */
-    public static final class a implements InterfaceC2963w0 {
+    public final class a implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         public static final /* synthetic */ int f6273j = 0;

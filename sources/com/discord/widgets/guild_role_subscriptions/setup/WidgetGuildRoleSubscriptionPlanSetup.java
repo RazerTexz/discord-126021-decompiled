@@ -67,26 +67,9 @@ public final class WidgetGuildRoleSubscriptionPlanSetup extends AppFragment {
     /* JADX INFO: renamed from: subscriptionPlanDetailsViewModel$delegate, reason: from kotlin metadata */
     private final Lazy subscriptionPlanDetailsViewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetGuildRoleSubscriptionPlanSetup.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanSetup$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
-    public static final class C84701 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.ViewState, Unit> {
+    public final class C84701 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.ViewState, Unit> {
         public C84701() {
             super(1);
         }
@@ -106,7 +89,7 @@ public final class WidgetGuildRoleSubscriptionPlanSetup extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanSetup$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
-    public static final class C84712 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.Event, Unit> {
+    public final class C84712 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanSetupViewModel.Event, Unit> {
         public C84712() {
             super(1);
         }
@@ -126,7 +109,7 @@ public final class WidgetGuildRoleSubscriptionPlanSetup extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanSetup$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
-    public static final class C84723 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C84723 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C84723() {
             super(1);
         }
@@ -145,7 +128,7 @@ public final class WidgetGuildRoleSubscriptionPlanSetup extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanSetup$onViewBoundOrOnResume$4 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
-    public static final class C84734 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
+    public final class C84734 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
         public C84734() {
             super(1);
         }
@@ -160,6 +143,23 @@ public final class WidgetGuildRoleSubscriptionPlanSetup extends AppFragment {
         public final void invoke2(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
             WidgetGuildRoleSubscriptionPlanSetup.this.getSetupViewModel().onSubscriptionPlanUpdated(viewState.getCoverImage(), viewState.getDescription(), viewState.isFullServerGate());
             WidgetGuildRoleSubscriptionPlanSetup.this.getCreateTierViewModel().setFullServerGating(viewState.isFullServerGate());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanSetup.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetGuildRoleSubscriptionPlanSetup.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

@@ -81,76 +81,6 @@ public final class C11265j0 {
     /* JADX INFO: renamed from: a */
     public static final C11713b f22397a = new C11713b("kotlin.jvm.JvmStatic");
 
-    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    /* JADX INFO: renamed from: a */
-    public static final Class<?> m9349a(ClassLoader classLoader, C11712a c11712a, int i) {
-        C11303c c11303c = C11303c.f22614a;
-        C11714c unsafe = c11712a.asSingleFqName().toUnsafe();
-        C12238m.checkNotNullExpressionValue(unsafe, "kotlinClassId.asSingleFqName().toUnsafe()");
-        C11712a c11712aMapKotlinToJava = c11303c.mapKotlinToJava(unsafe);
-        if (c11712aMapKotlinToJava != null) {
-            c11712a = c11712aMapKotlinToJava;
-        }
-        String strAsString = c11712a.getPackageFqName().asString();
-        C12238m.checkNotNullExpressionValue(strAsString, "javaClassId.packageFqName.asString()");
-        String strAsString2 = c11712a.getRelativeClassName().asString();
-        C12238m.checkNotNullExpressionValue(strAsString2, "javaClassId.relativeClassName.asString()");
-        if (C12238m.areEqual(strAsString, "kotlin")) {
-            switch (strAsString2.hashCode()) {
-                case -901856463:
-                    if (strAsString2.equals("BooleanArray")) {
-                        return boolean[].class;
-                    }
-                    break;
-                case -763279523:
-                    if (strAsString2.equals("ShortArray")) {
-                        return short[].class;
-                    }
-                    break;
-                case -755911549:
-                    if (strAsString2.equals("CharArray")) {
-                        return char[].class;
-                    }
-                    break;
-                case -74930671:
-                    if (strAsString2.equals("ByteArray")) {
-                        return byte[].class;
-                    }
-                    break;
-                case 22374632:
-                    if (strAsString2.equals("DoubleArray")) {
-                        return double[].class;
-                    }
-                    break;
-                case 63537721:
-                    if (strAsString2.equals("Array")) {
-                        return Object[].class;
-                    }
-                    break;
-                case 601811914:
-                    if (strAsString2.equals("IntArray")) {
-                        return int[].class;
-                    }
-                    break;
-                case 948852093:
-                    if (strAsString2.equals("FloatArray")) {
-                        return float[].class;
-                    }
-                    break;
-                case 2104330525:
-                    if (strAsString2.equals("LongArray")) {
-                        return long[].class;
-                    }
-                    break;
-            }
-        }
-        String str = strAsString + '.' + C12103t.replace$default(strAsString2, '.', '$', false, 4, (Object) null);
-        if (i > 0) {
-            str = C12103t.repeat("[", i) + 'L' + str + ';';
-        }
-        return C11412e.tryLoadClass(classLoader, str);
-    }
-
     public static final C11264j asKFunctionImpl(Object obj) {
         C11264j c11264j = (C11264j) (!(obj instanceof C11264j) ? null : obj);
         if (c11264j != null) {
@@ -175,85 +105,6 @@ public final class C11265j0 {
         AbstractC12251z abstractC12251z = (AbstractC12251z) obj;
         KCallable kCallableCompute = abstractC12251z != null ? abstractC12251z.compute() : null;
         return (AbstractC12053s) (kCallableCompute instanceof AbstractC12053s ? kCallableCompute : null);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public static final Annotation m9350b(InterfaceC11340c interfaceC11340c) {
-        InterfaceC11330e annotationClass = C11836a.getAnnotationClass(interfaceC11340c);
-        Class<?> javaClass = annotationClass != null ? toJavaClass(annotationClass) : null;
-        if (!(javaClass instanceof Class)) {
-            javaClass = null;
-        }
-        if (javaClass == null) {
-            return null;
-        }
-        Set<Map.Entry<C11716e, AbstractC11815g<?>>> setEntrySet = interfaceC11340c.getAllValueArguments().entrySet();
-        ArrayList arrayList = new ArrayList();
-        Iterator<T> it = setEntrySet.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            C11716e c11716e = (C11716e) entry.getKey();
-            AbstractC11815g abstractC11815g = (AbstractC11815g) entry.getValue();
-            ClassLoader classLoader = javaClass.getClassLoader();
-            C12238m.checkNotNullExpressionValue(classLoader, "annotationClass.classLoader");
-            Object objM9351c = m9351c(abstractC11815g, classLoader);
-            Pair pairM10073to = objM9351c != null ? C12116o.m10073to(c11716e.asString(), objM9351c) : null;
-            if (pairM10073to != null) {
-                arrayList.add(pairM10073to);
-            }
-        }
-        return (Annotation) C11270b.createAnnotationInstance$default(javaClass, C12136h0.toMap(arrayList), null, 4, null);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public static final Object m9351c(AbstractC11815g<?> abstractC11815g, ClassLoader classLoader) {
-        if (abstractC11815g instanceof C11807a) {
-            return m9350b(((C11807a) abstractC11815g).getValue());
-        }
-        if (abstractC11815g instanceof C11809b) {
-            List<? extends AbstractC11815g<?>> value = ((C11809b) abstractC11815g).getValue();
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(value, 10));
-            Iterator<T> it = value.iterator();
-            while (it.hasNext()) {
-                arrayList.add(m9351c((AbstractC11815g) it.next(), classLoader));
-            }
-            Object[] array = arrayList.toArray(new Object[0]);
-            Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-            return array;
-        }
-        if (abstractC11815g instanceof C11818j) {
-            Pair<? extends C11712a, ? extends C11716e> value2 = ((C11818j) abstractC11815g).getValue();
-            C11712a c11712aComponent1 = value2.component1();
-            C11716e c11716eComponent2 = value2.component2();
-            Class<?> clsM9349a = m9349a(classLoader, c11712aComponent1, 0);
-            if (clsM9349a != null) {
-                return C11263i0.getEnumConstantByName(clsM9349a, c11716eComponent2.asString());
-            }
-            return null;
-        }
-        if (!(abstractC11815g instanceof C11826r)) {
-            if ((abstractC11815g instanceof AbstractC11819k) || (abstractC11815g instanceof C11828t)) {
-                return null;
-            }
-            return abstractC11815g.getValue();
-        }
-        C11826r.b value3 = ((C11826r) abstractC11815g).getValue();
-        if (value3 instanceof C11826r.b.C13329b) {
-            C11826r.b.C13329b c13329b = (C11826r.b.C13329b) value3;
-            return m9349a(classLoader, c13329b.getClassId(), c13329b.getArrayDimensions());
-        }
-        if (!(value3 instanceof C11826r.b.a)) {
-            throw new NoWhenBranchMatchedException();
-        }
-        InterfaceC11352h declarationDescriptor = ((C11826r.b.a) value3).getType().getConstructor().getDeclarationDescriptor();
-        if (!(declarationDescriptor instanceof InterfaceC11330e)) {
-            declarationDescriptor = null;
-        }
-        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) declarationDescriptor;
-        if (interfaceC11330e != null) {
-            return toJavaClass(interfaceC11330e);
-        }
-        return null;
     }
 
     public static final List<Annotation> computeAnnotations(InterfaceC11338a interfaceC11338a) {
@@ -366,6 +217,155 @@ public final class C11265j0 {
         }
         C12058x c12058x = (C12058x) kType;
         return (c12058x == null || (type = c12058x.getType()) == null || !C11789g.isInlineClassType(type)) ? false : true;
+    }
+
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /* JADX INFO: renamed from: a */
+    public static final Class<?> m9349a(ClassLoader classLoader, C11712a c11712a, int i) {
+        C11303c c11303c = C11303c.f22614a;
+        C11714c unsafe = c11712a.asSingleFqName().toUnsafe();
+        C12238m.checkNotNullExpressionValue(unsafe, "kotlinClassId.asSingleFqName().toUnsafe()");
+        C11712a c11712aMapKotlinToJava = c11303c.mapKotlinToJava(unsafe);
+        if (c11712aMapKotlinToJava != null) {
+            c11712a = c11712aMapKotlinToJava;
+        }
+        String strAsString = c11712a.getPackageFqName().asString();
+        C12238m.checkNotNullExpressionValue(strAsString, "javaClassId.packageFqName.asString()");
+        String strAsString2 = c11712a.getRelativeClassName().asString();
+        C12238m.checkNotNullExpressionValue(strAsString2, "javaClassId.relativeClassName.asString()");
+        if (C12238m.areEqual(strAsString, "kotlin")) {
+            switch (strAsString2.hashCode()) {
+                case -901856463:
+                    if (strAsString2.equals("BooleanArray")) {
+                        return boolean[].class;
+                    }
+                    break;
+                case -763279523:
+                    if (strAsString2.equals("ShortArray")) {
+                        return short[].class;
+                    }
+                    break;
+                case -755911549:
+                    if (strAsString2.equals("CharArray")) {
+                        return char[].class;
+                    }
+                    break;
+                case -74930671:
+                    if (strAsString2.equals("ByteArray")) {
+                        return byte[].class;
+                    }
+                    break;
+                case 22374632:
+                    if (strAsString2.equals("DoubleArray")) {
+                        return double[].class;
+                    }
+                    break;
+                case 63537721:
+                    if (strAsString2.equals("Array")) {
+                        return Object[].class;
+                    }
+                    break;
+                case 601811914:
+                    if (strAsString2.equals("IntArray")) {
+                        return int[].class;
+                    }
+                    break;
+                case 948852093:
+                    if (strAsString2.equals("FloatArray")) {
+                        return float[].class;
+                    }
+                    break;
+                case 2104330525:
+                    if (strAsString2.equals("LongArray")) {
+                        return long[].class;
+                    }
+                    break;
+            }
+        }
+        String str = strAsString + '.' + C12103t.replace$default(strAsString2, '.', '$', false, 4, (Object) null);
+        if (i > 0) {
+            str = C12103t.repeat("[", i) + 'L' + str + ';';
+        }
+        return C11412e.tryLoadClass(classLoader, str);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static final Annotation m9350b(InterfaceC11340c interfaceC11340c) {
+        InterfaceC11330e annotationClass = C11836a.getAnnotationClass(interfaceC11340c);
+        Class<?> javaClass = annotationClass != null ? toJavaClass(annotationClass) : null;
+        if (!(javaClass instanceof Class)) {
+            javaClass = null;
+        }
+        if (javaClass == null) {
+            return null;
+        }
+        Set<Map.Entry<C11716e, AbstractC11815g<?>>> setEntrySet = interfaceC11340c.getAllValueArguments().entrySet();
+        ArrayList arrayList = new ArrayList();
+        Iterator<T> it = setEntrySet.iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            C11716e c11716e = (C11716e) entry.getKey();
+            AbstractC11815g abstractC11815g = (AbstractC11815g) entry.getValue();
+            ClassLoader classLoader = javaClass.getClassLoader();
+            C12238m.checkNotNullExpressionValue(classLoader, "annotationClass.classLoader");
+            Object objM9351c = m9351c(abstractC11815g, classLoader);
+            Pair pairM10073to = objM9351c != null ? C12116o.m10073to(c11716e.asString(), objM9351c) : null;
+            if (pairM10073to != null) {
+                arrayList.add(pairM10073to);
+            }
+        }
+        return (Annotation) C11270b.createAnnotationInstance$default(javaClass, C12136h0.toMap(arrayList), null, 4, null);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public static final Object m9351c(AbstractC11815g<?> abstractC11815g, ClassLoader classLoader) {
+        if (abstractC11815g instanceof C11807a) {
+            return m9350b(((C11807a) abstractC11815g).getValue());
+        }
+        if (abstractC11815g instanceof C11809b) {
+            List<? extends AbstractC11815g<?>> value = ((C11809b) abstractC11815g).getValue();
+            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(value, 10));
+            Iterator<T> it = value.iterator();
+            while (it.hasNext()) {
+                arrayList.add(m9351c((AbstractC11815g) it.next(), classLoader));
+            }
+            Object[] array = arrayList.toArray(new Object[0]);
+            Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
+            return array;
+        }
+        if (abstractC11815g instanceof C11818j) {
+            Pair<? extends C11712a, ? extends C11716e> value2 = ((C11818j) abstractC11815g).getValue();
+            C11712a c11712aComponent1 = value2.component1();
+            C11716e c11716eComponent2 = value2.component2();
+            Class<?> clsM9349a = m9349a(classLoader, c11712aComponent1, 0);
+            if (clsM9349a != null) {
+                return C11263i0.getEnumConstantByName(clsM9349a, c11716eComponent2.asString());
+            }
+            return null;
+        }
+        if (!(abstractC11815g instanceof C11826r)) {
+            if ((abstractC11815g instanceof AbstractC11819k) || (abstractC11815g instanceof C11828t)) {
+                return null;
+            }
+            return abstractC11815g.getValue();
+        }
+        C11826r.b value3 = ((C11826r) abstractC11815g).getValue();
+        if (value3 instanceof C11826r.b.C13329b) {
+            C11826r.b.C13329b c13329b = (C11826r.b.C13329b) value3;
+            return m9349a(classLoader, c13329b.getClassId(), c13329b.getArrayDimensions());
+        }
+        if (!(value3 instanceof C11826r.b.a)) {
+            throw new NoWhenBranchMatchedException();
+        }
+        InterfaceC11352h declarationDescriptor = ((C11826r.b.a) value3).getType().getConstructor().getDeclarationDescriptor();
+        if (!(declarationDescriptor instanceof InterfaceC11330e)) {
+            declarationDescriptor = null;
+        }
+        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) declarationDescriptor;
+        if (interfaceC11330e != null) {
+            return toJavaClass(interfaceC11330e);
+        }
+        return null;
     }
 
     public static final Class<?> toJavaClass(InterfaceC11330e interfaceC11330e) {

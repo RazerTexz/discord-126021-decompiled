@@ -33,7 +33,7 @@ public final class C11559g extends AbstractC12009v implements InterfaceC11931i0 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.m.g$a */
     /* JADX INFO: compiled from: RawType.kt */
-    public static final class a extends AbstractC12240o implements Function1<String, CharSequence> {
+    public final class a extends AbstractC12240o implements Function1<String, CharSequence> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23435j = new a();
@@ -57,6 +57,23 @@ public final class C11559g extends AbstractC12009v implements InterfaceC11931i0 
         InterfaceC11946f.f24806a.isSubtypeOf(abstractC11934j0, abstractC11934j1);
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12009v
+    public AbstractC11934j0 getDelegate() {
+        return getLowerBound();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12009v, p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11913c0
+    public InterfaceC11770i getMemberScope() {
+        InterfaceC11352h declarationDescriptor = getConstructor().getDeclarationDescriptor();
+        InterfaceC11330e interfaceC11330e = declarationDescriptor instanceof InterfaceC11330e ? (InterfaceC11330e) declarationDescriptor : null;
+        if (interfaceC11330e == null) {
+            throw new IllegalStateException(C12238m.stringPlus("Incorrect classifier: ", getConstructor().getDeclarationDescriptor()).toString());
+        }
+        InterfaceC11770i memberScope = interfaceC11330e.getMemberScope(C11558f.f23432b);
+        C12238m.checkNotNullExpressionValue(memberScope, "classDescriptor.getMemberScope(RawSubstitution)");
+        return memberScope;
+    }
+
     /* JADX INFO: renamed from: a */
     public static final List<String> m9503a(AbstractC11746c abstractC11746c, AbstractC11913c0 abstractC11913c0) {
         List<InterfaceC12012w0> arguments = abstractC11913c0.getArguments();
@@ -74,23 +91,6 @@ public final class C11559g extends AbstractC12009v implements InterfaceC11931i0 
             return str;
         }
         return C12106w.substringBefore$default(str, '<', (String) null, 2, (Object) null) + '<' + str2 + '>' + C12106w.substringAfterLast$default(str, '>', null, 2, null);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12009v
-    public AbstractC11934j0 getDelegate() {
-        return getLowerBound();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12009v, p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11913c0
-    public InterfaceC11770i getMemberScope() {
-        InterfaceC11352h declarationDescriptor = getConstructor().getDeclarationDescriptor();
-        InterfaceC11330e interfaceC11330e = declarationDescriptor instanceof InterfaceC11330e ? (InterfaceC11330e) declarationDescriptor : null;
-        if (interfaceC11330e == null) {
-            throw new IllegalStateException(C12238m.stringPlus("Incorrect classifier: ", getConstructor().getDeclarationDescriptor()).toString());
-        }
-        InterfaceC11770i memberScope = interfaceC11330e.getMemberScope(C11558f.f23432b);
-        C12238m.checkNotNullExpressionValue(memberScope, "classDescriptor.getMemberScope(RawSubstitution)");
-        return memberScope;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12009v

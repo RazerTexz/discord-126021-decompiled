@@ -5,9 +5,6 @@ package p637j0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12580f<T> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12580f<Void> f26688a = new C12580f<>(a.OnCompleted, null, null);
-
     /* JADX INFO: renamed from: b */
     public final a f26689b;
 
@@ -16,6 +13,9 @@ public final class C12580f<T> {
 
     /* JADX INFO: renamed from: d */
     public final T f26691d;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12580f<Void> f26688a = new C12580f<>(a.OnCompleted, null, null);
 
     /* JADX INFO: renamed from: j0.f$a */
     /* JADX INFO: compiled from: Notification.java */
@@ -29,16 +29,6 @@ public final class C12580f<T> {
         this.f26691d = t;
         this.f26690c = th;
         this.f26689b = aVar;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public boolean m10733a() {
-        return (this.f26689b == a.OnError) && this.f26690c != null;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public boolean m10734b() {
-        return (this.f26689b == a.OnNext) && this.f26691d != null;
     }
 
     public boolean equals(Object obj) {
@@ -71,6 +61,16 @@ public final class C12580f<T> {
             iHashCode = (iHashCode * 31) + this.f26691d.hashCode();
         }
         return m10733a() ? (iHashCode * 31) + this.f26690c.hashCode() : iHashCode;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m10733a() {
+        return (this.f26689b == a.OnError) && this.f26690c != null;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public boolean m10734b() {
+        return (this.f26689b == a.OnNext) && this.f26691d != null;
     }
 
     public String toString() {

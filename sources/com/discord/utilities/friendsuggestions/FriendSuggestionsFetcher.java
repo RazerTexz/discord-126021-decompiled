@@ -25,7 +25,7 @@ public final class FriendSuggestionsFetcher {
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$1 */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public static final class C67581 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C67581 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C67581() {
             super(1);
         }
@@ -45,11 +45,11 @@ public final class FriendSuggestionsFetcher {
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2 */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public static final class C67592 extends AbstractC12240o implements Function1<List<? extends FriendSuggestion>, Unit> {
+    public final class C67592 extends AbstractC12240o implements Function1<List<? extends FriendSuggestion>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $response;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -89,11 +89,11 @@ public final class FriendSuggestionsFetcher {
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3 */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public static final class C67603 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C67603 extends AbstractC12240o implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }

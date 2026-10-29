@@ -19,7 +19,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public interface SupportSQLiteOpenHelper extends Closeable {
 
-    public static abstract class Callback {
+    public abstract class Callback {
         private static final String TAG = "SupportSQLite";
         public final int version;
 
@@ -84,7 +84,7 @@ public interface SupportSQLiteOpenHelper extends Closeable {
         public abstract void onUpgrade(@NonNull SupportSQLiteDatabase supportSQLiteDatabase, int i, int i2);
     }
 
-    public static class Configuration {
+    public class Configuration {
 
         @NonNull
         public final Callback callback;
@@ -96,7 +96,7 @@ public interface SupportSQLiteOpenHelper extends Closeable {
         public final String name;
         public final boolean useNoBackupDirectory;
 
-        public static class Builder {
+        public class Builder {
             public Callback mCallback;
             public Context mContext;
             public String mName;

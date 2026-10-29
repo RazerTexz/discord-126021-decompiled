@@ -37,31 +37,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: GiftingUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GiftingUtils {
-    public static final GiftingUtils INSTANCE = new GiftingUtils();
     public static final long PREMIUM_SUBSCRIPTION_APPLICATION_ID = 521842831262875670L;
-
-    /* JADX INFO: compiled from: GiftingUtils.kt */
-    public enum SkuTypes {
-        DURABLE_PRIMARY(1),
-        DURABLE(2),
-        CONSUMABLE(3),
-        BUNDLE(4),
-        SUBSCRIPTION(5);
-
-        private final int id;
-
-        SkuTypes(int i) {
-            this.id = i;
-        }
-
-        public final int getId() {
-            return this.id;
-        }
-    }
+    public static final GiftingUtils INSTANCE = new GiftingUtils();
 
     /* JADX INFO: renamed from: com.discord.utilities.gifting.GiftingUtils$buyGift$1 */
     /* JADX INFO: compiled from: GiftingUtils.kt */
-    public static final class C67611 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67611 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ FragmentActivity $activity;
         public final /* synthetic */ BillingFlowParams $billingParams;
 
@@ -89,7 +70,7 @@ public final class GiftingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.gifting.GiftingUtils$buyGift$2 */
     /* JADX INFO: compiled from: GiftingUtils.kt */
-    public static final class C67622 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C67622 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ GooglePlayInAppSku $inAppSku;
         public final /* synthetic */ C67611 $launchBillingFlow$1;
 
@@ -116,7 +97,7 @@ public final class GiftingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.gifting.GiftingUtils$buyGift$3 */
     /* JADX INFO: compiled from: GiftingUtils.kt */
-    public static final class C67633 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C67633 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Function0 $dismissWarningCallback;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -142,7 +123,7 @@ public final class GiftingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.gifting.GiftingUtils$buyGift$4 */
     /* JADX INFO: compiled from: GiftingUtils.kt */
-    public static final class C67644 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67644 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Function0 $dismissWarningCallback;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,6 +143,25 @@ public final class GiftingUtils {
             Function0 function0 = this.$dismissWarningCallback;
             if (function0 != null) {
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: GiftingUtils.kt */
+    public enum SkuTypes {
+        DURABLE_PRIMARY(1),
+        DURABLE(2),
+        CONSUMABLE(3),
+        BUNDLE(4),
+        SUBSCRIPTION(5);
+
+        private final int id;
+
+        SkuTypes(int i) {
+            this.id = i;
+        }
+
+        public final int getId() {
+            return this.id;
         }
     }
 

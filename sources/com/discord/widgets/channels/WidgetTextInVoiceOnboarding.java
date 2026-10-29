@@ -39,27 +39,9 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
     private Function0<Unit> onCtaClicked;
 
-    /* JADX INFO: compiled from: WidgetTextInVoiceOnboarding.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, Function0<Unit> onCtaClicked) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(onCtaClicked, "onCtaClicked");
-            WidgetTextInVoiceOnboarding widgetTextInVoiceOnboarding = new WidgetTextInVoiceOnboarding();
-            widgetTextInVoiceOnboarding.onCtaClicked = onCtaClicked;
-            widgetTextInVoiceOnboarding.show(fragmentManager, "javaClass");
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetTextInVoiceOnboarding$hideVideoOverlay$1 */
     /* JADX INFO: compiled from: WidgetTextInVoiceOnboarding.kt */
-    public static final class C73971 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C73971 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C73971 INSTANCE = new C73971();
 
         public C73971() {
@@ -82,7 +64,7 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetTextInVoiceOnboarding$showVideoOverlay$1 */
     /* JADX INFO: compiled from: WidgetTextInVoiceOnboarding.kt */
-    public static final class C74001 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C74001 extends AbstractC12240o implements Function1<View, Unit> {
         public static final C74001 INSTANCE = new C74001();
 
         public C74001() {
@@ -105,7 +87,7 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetTextInVoiceOnboarding$showVideoOverlay$2 */
     /* JADX INFO: compiled from: WidgetTextInVoiceOnboarding.kt */
-    public static final class C74012 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C74012 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C74012 INSTANCE = new C74012();
 
         public C74012() {
@@ -123,6 +105,24 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
             C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
             viewPropertyAnimator.scaleX(1.0f);
             viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetTextInVoiceOnboarding.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Function0<Unit> onCtaClicked) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(onCtaClicked, "onCtaClicked");
+            WidgetTextInVoiceOnboarding widgetTextInVoiceOnboarding = new WidgetTextInVoiceOnboarding();
+            widgetTextInVoiceOnboarding.onCtaClicked = onCtaClicked;
+            widgetTextInVoiceOnboarding.show(fragmentManager, "javaClass");
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -207,17 +207,13 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
         return (WidgetTextInVoiceOnboardingBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void hideVideoOverlay() {
-        ViewExtensions.fadeOut$default(getBinding().f18250f, 200L, C73971.INSTANCE, null, 4, null);
-    }
-
-    private final void showVideoOverlay() {
-        ViewExtensions.fadeIn$default(getBinding().f18250f, 200L, C74001.INSTANCE, C74012.INSTANCE, null, 8, null);
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_text_in_voice_onboarding;
+    }
+
+    private final void hideVideoOverlay() {
+        ViewExtensions.fadeOut$default(getBinding().f18250f, 200L, C73971.INSTANCE, null, 4, null);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -242,5 +238,9 @@ public final class WidgetTextInVoiceOnboarding extends AppBottomSheet {
             }
         });
         configureMedia(VIDEO_URL);
+    }
+
+    private final void showVideoOverlay() {
+        ViewExtensions.fadeIn$default(getBinding().f18250f, 200L, C74001.INSTANCE, C74012.INSTANCE, null, 8, null);
     }
 }

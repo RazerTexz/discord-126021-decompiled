@@ -169,41 +169,6 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
         this.mBuilder.addAction(builder.build());
     }
 
-    @Nullable
-    private static List<String> combineLists(@Nullable List<String> list, @Nullable List<String> list2) {
-        if (list == null) {
-            return list2;
-        }
-        if (list2 == null) {
-            return list;
-        }
-        ArraySet arraySet = new ArraySet(list2.size() + list.size());
-        arraySet.addAll(list);
-        arraySet.addAll(list2);
-        return new ArrayList(arraySet);
-    }
-
-    @Nullable
-    private static List<String> getPeople(@Nullable List<Person> list) {
-        if (list == null) {
-            return null;
-        }
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator<Person> it = list.iterator();
-        while (it.hasNext()) {
-            arrayList.add(it.next().resolveToLegacyUri());
-        }
-        return arrayList;
-    }
-
-    private void removeSoundAndVibration(Notification notification) {
-        notification.sound = null;
-        notification.vibrate = null;
-        int i = notification.defaults & (-2);
-        notification.defaults = i;
-        notification.defaults = i & (-3);
-    }
-
     public Notification build() {
         Bundle extras;
         RemoteViews remoteViewsMakeHeadsUpContentView;
@@ -276,6 +241,20 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
         return notificationBuild2;
     }
 
+    @Nullable
+    private static List<String> combineLists(@Nullable List<String> list, @Nullable List<String> list2) {
+        if (list == null) {
+            return list2;
+        }
+        if (list2 == null) {
+            return list;
+        }
+        ArraySet arraySet = new ArraySet(list2.size() + list.size());
+        arraySet.addAll(list);
+        arraySet.addAll(list2);
+        return new ArrayList(arraySet);
+    }
+
     @Override // androidx.core.app.NotificationBuilderWithBuilderAccessor
     public Notification.Builder getBuilder() {
         return this.mBuilder;
@@ -283,5 +262,26 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
 
     public Context getContext() {
         return this.mContext;
+    }
+
+    @Nullable
+    private static List<String> getPeople(@Nullable List<Person> list) {
+        if (list == null) {
+            return null;
+        }
+        ArrayList arrayList = new ArrayList(list.size());
+        Iterator<Person> it = list.iterator();
+        while (it.hasNext()) {
+            arrayList.add(it.next().resolveToLegacyUri());
+        }
+        return arrayList;
+    }
+
+    private void removeSoundAndVibration(Notification notification) {
+        notification.sound = null;
+        notification.vibrate = null;
+        int i = notification.defaults & (-2);
+        notification.defaults = i;
+        notification.defaults = i & (-3);
     }
 }

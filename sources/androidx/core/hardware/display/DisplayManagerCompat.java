@@ -10,11 +10,21 @@ import java.util.WeakHashMap;
 /* JADX INFO: loaded from: classes.dex */
 public final class DisplayManagerCompat {
     public static final String DISPLAY_CATEGORY_PRESENTATION = "android.hardware.display.category.PRESENTATION";
-    private static final WeakHashMap<Context, DisplayManagerCompat> sInstances = new WeakHashMap<>();
     private final Context mContext;
+    private static final WeakHashMap<Context, DisplayManagerCompat> sInstances = new WeakHashMap<>();
 
     private DisplayManagerCompat(Context context) {
         this.mContext = context;
+    }
+
+    @Nullable
+    public Display getDisplay(int i) {
+        return ((DisplayManager) this.mContext.getSystemService("display")).getDisplay(i);
+    }
+
+    @NonNull
+    public Display[] getDisplays() {
+        return ((DisplayManager) this.mContext.getSystemService("display")).getDisplays();
     }
 
     @NonNull
@@ -29,16 +39,6 @@ public final class DisplayManagerCompat {
             }
         }
         return displayManagerCompat;
-    }
-
-    @Nullable
-    public Display getDisplay(int i) {
-        return ((DisplayManager) this.mContext.getSystemService("display")).getDisplay(i);
-    }
-
-    @NonNull
-    public Display[] getDisplays() {
-        return ((DisplayManager) this.mContext.getSystemService("display")).getDisplays();
     }
 
     @NonNull

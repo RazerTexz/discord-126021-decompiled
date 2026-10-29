@@ -41,6 +41,12 @@ import p007b.p225i.p226a.p288f.p313h.p325l.C3777o8;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4040g extends AbstractC4074i9 {
 
+    /* JADX INFO: renamed from: l */
+    public final C4052h f10743l;
+
+    /* JADX INFO: renamed from: m */
+    public final C4026e9 f10744m;
+
     /* JADX INFO: renamed from: d */
     public static final String[] f10735d = {"last_bundled_timestamp", "ALTER TABLE events ADD COLUMN last_bundled_timestamp INTEGER;", "last_bundled_day", "ALTER TABLE events ADD COLUMN last_bundled_day INTEGER;", "last_sampled_complex_event_id", "ALTER TABLE events ADD COLUMN last_sampled_complex_event_id INTEGER;", "last_sampling_rate", "ALTER TABLE events ADD COLUMN last_sampling_rate INTEGER;", "last_exempt_from_sampling", "ALTER TABLE events ADD COLUMN last_exempt_from_sampling INTEGER;", "current_session_count", "ALTER TABLE events ADD COLUMN current_session_count INTEGER;"};
 
@@ -64,12 +70,6 @@ public final class C4040g extends AbstractC4074i9 {
 
     /* JADX INFO: renamed from: k */
     public static final String[] f10742k = {"previous_install_count", "ALTER TABLE app2 ADD COLUMN previous_install_count INTEGER;"};
-
-    /* JADX INFO: renamed from: l */
-    public final C4052h f10743l;
-
-    /* JADX INFO: renamed from: m */
-    public final C4026e9 f10744m;
 
     public C4040g(C4097k9 c4097k9) {
         super(c4097k9);
@@ -1172,7 +1172,7 @@ public final class C4040g extends AbstractC4074i9 {
     /* JADX WARN: Type inference failed for: r9v1, types: [android.database.Cursor] */
     /* JADX WARN: Type inference failed for: r9v2 */
     /* JADX INFO: renamed from: c0 */
-    public final Map<Integer, List<C3730l0>> m5631c0(String str, String str2) {
+    public final Map<Integer, List<C3730l0>> m5631c0(String str, String str2) throws Throwable {
         Cursor cursorQuery;
         m5684n();
         mo5848b();
@@ -1246,7 +1246,7 @@ public final class C4040g extends AbstractC4074i9 {
     /* JADX WARN: Type inference failed for: r9v1, types: [android.database.Cursor] */
     /* JADX WARN: Type inference failed for: r9v2 */
     /* JADX INFO: renamed from: d0 */
-    public final Map<Integer, List<C3769o0>> m5632d0(String str, String str2) {
+    public final Map<Integer, List<C3769o0>> m5632d0(String str, String str2) throws Throwable {
         Cursor cursorQuery;
         m5684n();
         mo5848b();
@@ -1514,12 +1514,6 @@ public final class C4040g extends AbstractC4074i9 {
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: s */
     public final void m5639s() {
@@ -1709,7 +1703,7 @@ public final class C4040g extends AbstractC4074i9 {
     /* JADX WARN: Not initialized variable reg: 14, insn: 0x0143: MOVE (r18 I:??[OBJECT, ARRAY]) = (r14 I:??[OBJECT, ARRAY]), block:B:64:0x0143 */
     @WorkerThread
     /* JADX INFO: renamed from: z */
-    public final C4098l m5646z(String str, String str2) {
+    public final C4098l m5646z(String str, String str2) throws Throwable {
         Cursor cursorQuery;
         Cursor cursor;
         Cursor cursor2;
@@ -1783,5 +1777,11 @@ public final class C4040g extends AbstractC4074i9 {
             cursorQuery.close();
         }
         return null;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        return false;
     }
 }

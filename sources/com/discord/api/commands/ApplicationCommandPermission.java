@@ -11,16 +11,6 @@ public final /* data */ class ApplicationCommandPermission {
     private final boolean permission;
     private final ApplicationCommandPermissionType type;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getPermission() {
-        return this.permission;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class ApplicationCommandPermission {
         }
         ApplicationCommandPermission applicationCommandPermission = (ApplicationCommandPermission) other;
         return this.id == applicationCommandPermission.id && C12238m.areEqual(this.type, applicationCommandPermission.type) && this.permission == applicationCommandPermission.permission;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getPermission() {
+        return this.permission;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

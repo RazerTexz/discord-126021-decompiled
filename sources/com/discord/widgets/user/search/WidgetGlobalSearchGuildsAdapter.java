@@ -36,7 +36,7 @@ public final class WidgetGlobalSearchGuildsAdapter extends MGRecyclerAdapterSimp
     private final int overlayColor;
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsAdapter.kt */
-    public static abstract class Item extends MGRecyclerViewHolder<WidgetGlobalSearchGuildsAdapter, WidgetGlobalSearchGuildsModel.Item> {
+    public abstract class Item extends MGRecyclerViewHolder<WidgetGlobalSearchGuildsAdapter, WidgetGlobalSearchGuildsModel.Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Item(@LayoutRes int i, WidgetGlobalSearchGuildsAdapter widgetGlobalSearchGuildsAdapter) {
             super(i, widgetGlobalSearchGuildsAdapter);
@@ -79,7 +79,7 @@ public final class WidgetGlobalSearchGuildsAdapter extends MGRecyclerAdapterSimp
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsAdapter.kt */
-    public static final class ItemDirectMessage extends Item {
+    public final class ItemDirectMessage extends Item {
         private final WidgetGuildsListItemDmBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -106,7 +106,7 @@ public final class WidgetGlobalSearchGuildsAdapter extends MGRecyclerAdapterSimp
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsAdapter.kt */
-    public static final class ItemDivider extends Item {
+    public final class ItemDivider extends Item {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ItemDivider(WidgetGlobalSearchGuildsAdapter widgetGlobalSearchGuildsAdapter, int i) {
             super(i, widgetGlobalSearchGuildsAdapter);
@@ -115,7 +115,7 @@ public final class WidgetGlobalSearchGuildsAdapter extends MGRecyclerAdapterSimp
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsAdapter.kt */
-    public static final class ItemGuild extends Item {
+    public final class ItemGuild extends Item {
         private final WidgetGlobalSearchItemGuildBinding binding;
         private final WidgetGuildsListItemGuildBinding bindingGuild;
         private final int overlayColor;

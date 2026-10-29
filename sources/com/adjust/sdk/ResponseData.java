@@ -15,7 +15,7 @@ public class ResponseData {
     public boolean willRetry;
 
     /* JADX INFO: renamed from: com.adjust.sdk.ResponseData$1 */
-    public static /* synthetic */ class C53881 {
+    public /* synthetic */ class C53881 {
         public static final /* synthetic */ int[] $SwitchMap$com$adjust$sdk$ActivityKind;
 
         static {

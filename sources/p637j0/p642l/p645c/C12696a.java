@@ -25,9 +25,6 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
     /* JADX INFO: renamed from: a */
     public static final long f27166a;
 
-    /* JADX INFO: renamed from: b */
-    public static final TimeUnit f27167b = TimeUnit.SECONDS;
-
     /* JADX INFO: renamed from: c */
     public static final c f27168c;
 
@@ -40,9 +37,12 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
     /* JADX INFO: renamed from: f */
     public final AtomicReference<a> f27171f;
 
+    /* JADX INFO: renamed from: b */
+    public static final TimeUnit f27167b = TimeUnit.SECONDS;
+
     /* JADX INFO: renamed from: j0.l.c.a$a */
     /* JADX INFO: compiled from: CachedThreadScheduler.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final ThreadFactory f27172a;
@@ -141,9 +141,64 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
         }
     }
 
+    /* JADX INFO: renamed from: j0.l.c.a$c */
+    /* JADX INFO: compiled from: CachedThreadScheduler.java */
+    public final class c extends C12702g {
+
+        /* JADX INFO: renamed from: r */
+        public long f27186r;
+
+        public c(ThreadFactory threadFactory) {
+            super(threadFactory);
+            this.f27186r = 0L;
+        }
+    }
+
+    static {
+        c cVar = new c(ThreadFactoryC12720j.f27286j);
+        f27168c = cVar;
+        cVar.unsubscribe();
+        a aVar = new a(null, 0L, null);
+        f27169d = aVar;
+        aVar.m10800a();
+        f27166a = Integer.getInteger("rx.io-scheduler.keepalive", 60).intValue();
+    }
+
+    public C12696a(ThreadFactory threadFactory) {
+        this.f27170e = threadFactory;
+        a aVar = f27169d;
+        AtomicReference<a> atomicReference = new AtomicReference<>(aVar);
+        this.f27171f = atomicReference;
+        a aVar2 = new a(threadFactory, f27166a, f27167b);
+        if (atomicReference.compareAndSet(aVar, aVar2)) {
+            return;
+        }
+        aVar2.m10800a();
+    }
+
+    @Override // p658rx.Scheduler
+    /* JADX INFO: renamed from: a */
+    public Scheduler.Worker mo10739a() {
+        return new b(this.f27171f.get());
+    }
+
+    @Override // p637j0.p642l.p645c.InterfaceC12706k
+    public void shutdown() {
+        a aVar;
+        a aVar2;
+        do {
+            aVar = this.f27171f.get();
+            aVar2 = f27169d;
+            if (aVar == aVar2) {
+                return;
+            }
+        } while (!this.f27171f.compareAndSet(aVar, aVar2));
+        aVar.m10800a();
+    }
+
     /* JADX INFO: renamed from: j0.l.c.a$b */
     /* JADX INFO: compiled from: CachedThreadScheduler.java */
-    public static final class b extends Scheduler.Worker implements Action0 {
+    public final class b extends Scheduler.Worker implements Action0 {
 
         /* JADX INFO: renamed from: k */
         public final a f27181k;
@@ -197,6 +252,20 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
             this.f27182l = cVar2;
         }
 
+        @Override // p658rx.functions.Action0
+        public void call() {
+            a aVar = this.f27181k;
+            c cVar = this.f27182l;
+            Objects.requireNonNull(aVar);
+            cVar.f27186r = System.nanoTime() + aVar.f27173b;
+            aVar.f27174c.offer(cVar);
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f27180j.f27656k;
+        }
+
         @Override // rx.Scheduler.Worker
         /* JADX INFO: renamed from: a */
         public Subscription mo10740a(Action0 action0) {
@@ -215,20 +284,6 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
             return runnableC12705jM10805f;
         }
 
-        @Override // p658rx.functions.Action0
-        public void call() {
-            a aVar = this.f27181k;
-            c cVar = this.f27182l;
-            Objects.requireNonNull(aVar);
-            cVar.f27186r = System.nanoTime() + aVar.f27173b;
-            aVar.f27174c.offer(cVar);
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.f27180j.f27656k;
-        }
-
         @Override // p658rx.Subscription
         public void unsubscribe() {
             if (this.f27183m.compareAndSet(false, true)) {
@@ -236,60 +291,5 @@ public final class C12696a extends Scheduler implements InterfaceC12706k {
             }
             this.f27180j.unsubscribe();
         }
-    }
-
-    /* JADX INFO: renamed from: j0.l.c.a$c */
-    /* JADX INFO: compiled from: CachedThreadScheduler.java */
-    public static final class c extends C12702g {
-
-        /* JADX INFO: renamed from: r */
-        public long f27186r;
-
-        public c(ThreadFactory threadFactory) {
-            super(threadFactory);
-            this.f27186r = 0L;
-        }
-    }
-
-    static {
-        c cVar = new c(ThreadFactoryC12720j.f27286j);
-        f27168c = cVar;
-        cVar.unsubscribe();
-        a aVar = new a(null, 0L, null);
-        f27169d = aVar;
-        aVar.m10800a();
-        f27166a = Integer.getInteger("rx.io-scheduler.keepalive", 60).intValue();
-    }
-
-    public C12696a(ThreadFactory threadFactory) {
-        this.f27170e = threadFactory;
-        a aVar = f27169d;
-        AtomicReference<a> atomicReference = new AtomicReference<>(aVar);
-        this.f27171f = atomicReference;
-        a aVar2 = new a(threadFactory, f27166a, f27167b);
-        if (atomicReference.compareAndSet(aVar, aVar2)) {
-            return;
-        }
-        aVar2.m10800a();
-    }
-
-    @Override // p658rx.Scheduler
-    /* JADX INFO: renamed from: a */
-    public Scheduler.Worker mo10739a() {
-        return new b(this.f27171f.get());
-    }
-
-    @Override // p637j0.p642l.p645c.InterfaceC12706k
-    public void shutdown() {
-        a aVar;
-        a aVar2;
-        do {
-            aVar = this.f27171f.get();
-            aVar2 = f27169d;
-            if (aVar == aVar2) {
-                return;
-            }
-        } while (!this.f27171f.compareAndSet(aVar, aVar2));
-        aVar.m10800a();
     }
 }

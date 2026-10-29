@@ -27,11 +27,6 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
         return channelAutocompletable.copy(channel);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
     public final ChannelAutocompletable copy(Channel channel) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelAutocompletable(channel);
@@ -42,6 +37,11 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
             return (other instanceof ChannelAutocompletable) && C12238m.areEqual(this.channel, ((ChannelAutocompletable) other).channel);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Channel getChannel() {
+        return this.channel;
     }
 
     public final Channel getChannel() {

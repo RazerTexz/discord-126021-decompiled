@@ -27,7 +27,7 @@ public final class C11238k implements ParameterizedType, Type {
 
     /* JADX INFO: renamed from: d0.e0.k$a */
     /* JADX INFO: compiled from: TypesJVM.kt */
-    public static final /* synthetic */ class a extends C12236k implements Function1<Type, String> {
+    public final /* synthetic */ class a extends C12236k implements Function1<Type, String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22311j = new a();

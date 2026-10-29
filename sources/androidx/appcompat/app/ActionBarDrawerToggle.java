@@ -48,7 +48,7 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
         Delegate getDrawerToggleDelegate();
     }
 
-    public static class FrameworkActionBarDelegate implements Delegate {
+    public class FrameworkActionBarDelegate implements Delegate {
         private final Activity mActivity;
         private ActionBarDrawerToggleHoneycomb.SetIndicatorInfo mSetIndicatorInfo;
 
@@ -94,7 +94,7 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
         }
     }
 
-    public static class ToolbarCompatDelegate implements Delegate {
+    public class ToolbarCompatDelegate implements Delegate {
         public final CharSequence mDefaultContentDescription;
         public final Drawable mDefaultUpIndicator;
         public final Toolbar mToolbar;
@@ -138,15 +138,6 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
 
     public ActionBarDrawerToggle(Activity activity, DrawerLayout drawerLayout, @StringRes int i, @StringRes int i2) {
         this(activity, null, drawerLayout, null, i, i2);
-    }
-
-    private void setPosition(float f) {
-        if (f == 1.0f) {
-            this.mSlider.setVerticalMirror(true);
-        } else if (f == 0.0f) {
-            this.mSlider.setVerticalMirror(false);
-        }
-        this.mSlider.setProgress(f);
     }
 
     @NonNull
@@ -262,6 +253,15 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
             return;
         }
         setActionBarUpIndicator(this.mHomeAsUpIndicator, 0);
+    }
+
+    private void setPosition(float f) {
+        if (f == 1.0f) {
+            this.mSlider.setVerticalMirror(true);
+        } else if (f == 0.0f) {
+            this.mSlider.setVerticalMirror(false);
+        }
+        this.mSlider.setProgress(f);
     }
 
     public void setToolbarNavigationClickListener(View.OnClickListener onClickListener) {

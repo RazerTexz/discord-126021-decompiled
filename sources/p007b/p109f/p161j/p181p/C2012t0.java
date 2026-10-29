@@ -120,50 +120,6 @@ public class C2012t0 implements InterfaceC2018w0<CloseableReference<AbstractC191
             }
         }
 
-        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: g */
-        public void mo1318g() {
-            if (m1518o()) {
-                this.f4179b.mo1426d();
-            }
-        }
-
-        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: h */
-        public void mo1319h(Throwable th) {
-            if (m1518o()) {
-                this.f4179b.mo1425c(th);
-            }
-        }
-
-        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: i */
-        public void mo1320i(Object obj, int i) {
-            CloseableReference closeableReference = (CloseableReference) obj;
-            if (!CloseableReference.m8640y(closeableReference)) {
-                if (AbstractC1965b.m1419e(i)) {
-                    m1520q(null, i);
-                    return;
-                }
-                return;
-            }
-            synchronized (this) {
-                if (!this.f4227f) {
-                    CloseableReference<AbstractC1917c> closeableReference2 = this.f4228g;
-                    this.f4228g = CloseableReference.m8636n(closeableReference);
-                    this.f4229h = i;
-                    this.f4230i = true;
-                    boolean zM1522s = m1522s();
-                    if (closeableReference2 != null) {
-                        closeableReference2.close();
-                    }
-                    if (zM1522s) {
-                        C2012t0.this.f4223c.execute(new RunnableC2014u0(this));
-                    }
-                }
-            }
-        }
-
         /* JADX INFO: renamed from: o */
         public final boolean m1518o() {
             synchronized (this) {
@@ -258,6 +214,50 @@ public class C2012t0 implements InterfaceC2018w0<CloseableReference<AbstractC191
             this.f4231j = true;
             return true;
         }
+
+        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: g */
+        public void mo1318g() {
+            if (m1518o()) {
+                this.f4179b.mo1426d();
+            }
+        }
+
+        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: h */
+        public void mo1319h(Throwable th) {
+            if (m1518o()) {
+                this.f4179b.mo1425c(th);
+            }
+        }
+
+        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: i */
+        public void mo1320i(Object obj, int i) {
+            CloseableReference closeableReference = (CloseableReference) obj;
+            if (!CloseableReference.m8640y(closeableReference)) {
+                if (AbstractC1965b.m1419e(i)) {
+                    m1520q(null, i);
+                    return;
+                }
+                return;
+            }
+            synchronized (this) {
+                if (!this.f4227f) {
+                    CloseableReference<AbstractC1917c> closeableReference2 = this.f4228g;
+                    this.f4228g = CloseableReference.m8636n(closeableReference);
+                    this.f4229h = i;
+                    this.f4230i = true;
+                    boolean zM1522s = m1522s();
+                    if (closeableReference2 != null) {
+                        closeableReference2.close();
+                    }
+                    if (zM1522s) {
+                        C2012t0.this.f4223c.execute(new RunnableC2014u0(this));
+                    }
+                }
+            }
+        }
     }
 
     /* JADX INFO: renamed from: b.f.j.p.t0$c */
@@ -276,6 +276,23 @@ public class C2012t0 implements InterfaceC2018w0<CloseableReference<AbstractC191
             this.f4235d = null;
             interfaceC2027c.m1525a(this);
             interfaceC2020x0.mo1448f(new C2016v0(this, c2012t0));
+        }
+
+        /* JADX INFO: renamed from: n */
+        public final boolean m1523n() {
+            synchronized (this) {
+                if (this.f4234c) {
+                    return false;
+                }
+                CloseableReference<AbstractC1917c> closeableReference = this.f4235d;
+                this.f4235d = null;
+                this.f4234c = true;
+                Class<CloseableReference> cls = CloseableReference.f19438j;
+                if (closeableReference != null) {
+                    closeableReference.close();
+                }
+                return true;
+            }
         }
 
         @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
@@ -323,23 +340,6 @@ public class C2012t0 implements InterfaceC2018w0<CloseableReference<AbstractC191
                         }
                     }
                 }
-            }
-        }
-
-        /* JADX INFO: renamed from: n */
-        public final boolean m1523n() {
-            synchronized (this) {
-                if (this.f4234c) {
-                    return false;
-                }
-                CloseableReference<AbstractC1917c> closeableReference = this.f4235d;
-                this.f4235d = null;
-                this.f4234c = true;
-                Class<CloseableReference> cls = CloseableReference.f19438j;
-                if (closeableReference != null) {
-                    closeableReference.close();
-                }
-                return true;
             }
         }
     }

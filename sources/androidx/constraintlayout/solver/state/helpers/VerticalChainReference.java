@@ -12,7 +12,7 @@ public class VerticalChainReference extends ChainReference {
     private Object mTopToTop;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.helpers.VerticalChainReference$1 */
-    public static /* synthetic */ class C01881 {
+    public /* synthetic */ class C01881 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain;
 
         static {

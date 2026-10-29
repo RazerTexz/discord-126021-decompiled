@@ -46,11 +46,6 @@ public abstract class AbstractC12735e<E> extends AbstractC12736f<E> {
         this.f27338n = (E[]) new Object[(iM10823b << f27334j) + 64];
     }
 
-    /* JADX INFO: renamed from: c */
-    public final long m10835c(long j) {
-        return f27335k + ((j & this.f27337m) << f27336l);
-    }
-
     @Override // java.util.AbstractQueue, java.util.AbstractCollection, java.util.Collection
     public void clear() {
         while (true) {
@@ -58,6 +53,16 @@ public abstract class AbstractC12735e<E> extends AbstractC12736f<E> {
                 return;
             }
         }
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable
+    public Iterator<E> iterator() {
+        throw new UnsupportedOperationException();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final long m10835c(long j) {
+        return f27335k + ((j & this.f27337m) << f27336l);
     }
 
     /* JADX INFO: renamed from: d */
@@ -78,10 +83,5 @@ public abstract class AbstractC12735e<E> extends AbstractC12736f<E> {
     /* JADX INFO: renamed from: h */
     public final void m10839h(E[] eArr, long j, E e) {
         C12755y.f27357a.putObject(eArr, j, e);
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable
-    public Iterator<E> iterator() {
-        throw new UnsupportedOperationException();
     }
 }

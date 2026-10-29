@@ -62,7 +62,7 @@ public class AppMeasurementDynamiteService extends AbstractBinderC3632dc {
 
     /* JADX INFO: renamed from: com.google.android.gms.measurement.internal.AppMeasurementDynamiteService$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk@@18.0.0 */
-    public class C10806a implements InterfaceC4225w5 {
+    public final class C10806a implements InterfaceC4225w5 {
 
         /* JADX INFO: renamed from: a */
         public InterfaceC3605c f20661a;
@@ -74,7 +74,7 @@ public class AppMeasurementDynamiteService extends AbstractBinderC3632dc {
 
     /* JADX INFO: renamed from: com.google.android.gms.measurement.internal.AppMeasurementDynamiteService$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk@@18.0.0 */
-    public class C10807b implements InterfaceC4258z5 {
+    public final class C10807b implements InterfaceC4258z5 {
 
         /* JADX INFO: renamed from: a */
         public InterfaceC3605c f20663a;
@@ -118,13 +118,6 @@ public class AppMeasurementDynamiteService extends AbstractBinderC3632dc {
     public void endAdUnitExposure(String str, long j) throws RemoteException {
         m9111g();
         this.f20659a.m5937A().m5445y(str, j);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final void m9111g() {
-        if (this.f20659a == null) {
-            throw new IllegalStateException("Attempting to perform action before initialize.");
-        }
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3646ec
@@ -278,6 +271,13 @@ public class AppMeasurementDynamiteService extends AbstractBinderC3632dc {
     public void logHealthData(int i, String str, InterfaceC3422a interfaceC3422a, InterfaceC3422a interfaceC3422a2, InterfaceC3422a interfaceC3422a3) throws RemoteException {
         m9111g();
         this.f20659a.mo5726g().m5799w(i, true, false, str, interfaceC3422a == null ? null : BinderC3423b.m4381i(interfaceC3422a), interfaceC3422a2 == null ? null : BinderC3423b.m4381i(interfaceC3422a2), interfaceC3422a3 != null ? BinderC3423b.m4381i(interfaceC3422a3) : null);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final void m9111g() {
+        if (this.f20659a == null) {
+            throw new IllegalStateException("Attempting to perform action before initialize.");
+        }
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3646ec

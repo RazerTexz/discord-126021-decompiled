@@ -33,7 +33,7 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_automod.ReportIssueWithAutoModViewModel$1 */
     /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-    public static final /* synthetic */ class C84141 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C84141 extends C12236k implements Function1<StoreState, Unit> {
         public C84141(ReportIssueWithAutoModViewModel reportIssueWithAutoModViewModel) {
             super(1, reportIssueWithAutoModViewModel, ReportIssueWithAutoModViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guild_automod/ReportIssueWithAutoModViewModel$StoreState;)V", 0);
         }
@@ -52,7 +52,7 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,7 +73,7 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Message message;
 
         public StoreState(Message message) {
@@ -87,11 +87,6 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
             return storeState.copy(message);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Message getMessage() {
-            return this.message;
-        }
-
         public final StoreState copy(Message message) {
             return new StoreState(message);
         }
@@ -101,6 +96,11 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
                 return (other instanceof StoreState) && C12238m.areEqual(this.message, ((StoreState) other).message);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Message getMessage() {
+            return this.message;
         }
 
         public final Message getMessage() {
@@ -124,10 +124,10 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -136,7 +136,7 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
         }
 
         /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final Message message;
             private final String selectedOption;
 
@@ -159,16 +159,6 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
                 return valid.copy(message, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Message getMessage() {
-                return this.message;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getSelectedOption() {
-                return this.selectedOption;
-            }
-
             public final Valid copy(Message message, String selectedOption) {
                 C12238m.checkNotNullParameter(message, "message");
                 C12238m.checkNotNullParameter(selectedOption, "selectedOption");
@@ -186,8 +176,18 @@ public final class ReportIssueWithAutoModViewModel extends AbstractC0859d0<ViewS
                 return C12238m.areEqual(this.message, valid.message) && C12238m.areEqual(this.selectedOption, valid.selectedOption);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Message getMessage() {
                 return this.message;
+            }
+
+            public final Message getMessage() {
+                return this.message;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getSelectedOption() {
+                return this.selectedOption;
             }
 
             public final String getSelectedOption() {

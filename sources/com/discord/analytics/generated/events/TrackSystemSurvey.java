@@ -9,26 +9,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSystemSurvey.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSystemSurvey implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long batteries = null;
     private final CharSequence cpuBrand = null;
-    private final CharSequence cpuVendor = null;
     private final Long cpuMemory = null;
+    private final CharSequence cpuVendor = null;
+    private final Long displayDesktopHeight = null;
+    private final Long displayDesktopWidth = null;
+    private final Long displayMonitors = null;
+    private final Long displayPrimaryHeight = null;
+    private final Long displayPrimaryWidth = null;
     private final CharSequence gpuBrand = null;
     private final Long gpuCount = null;
     private final Long gpuMemory = null;
-    private final Long batteries = null;
-    private final Long displayMonitors = null;
-    private final Long displayPrimaryWidth = null;
-    private final Long displayPrimaryHeight = null;
-    private final Long displayDesktopWidth = null;
-    private final Long displayDesktopHeight = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "system_survey";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackSystemSurvey implements AnalyticsSchema, Trac
         }
         TrackSystemSurvey trackSystemSurvey = (TrackSystemSurvey) other;
         return C12238m.areEqual(this.cpuBrand, trackSystemSurvey.cpuBrand) && C12238m.areEqual(this.cpuVendor, trackSystemSurvey.cpuVendor) && C12238m.areEqual(this.cpuMemory, trackSystemSurvey.cpuMemory) && C12238m.areEqual(this.gpuBrand, trackSystemSurvey.gpuBrand) && C12238m.areEqual(this.gpuCount, trackSystemSurvey.gpuCount) && C12238m.areEqual(this.gpuMemory, trackSystemSurvey.gpuMemory) && C12238m.areEqual(this.batteries, trackSystemSurvey.batteries) && C12238m.areEqual(this.displayMonitors, trackSystemSurvey.displayMonitors) && C12238m.areEqual(this.displayPrimaryWidth, trackSystemSurvey.displayPrimaryWidth) && C12238m.areEqual(this.displayPrimaryHeight, trackSystemSurvey.displayPrimaryHeight) && C12238m.areEqual(this.displayDesktopWidth, trackSystemSurvey.displayDesktopWidth) && C12238m.areEqual(this.displayDesktopHeight, trackSystemSurvey.displayDesktopHeight);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

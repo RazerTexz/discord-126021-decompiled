@@ -14,10 +14,10 @@ public final class AuthStateCache {
     private final SharedPreferences prefs;
 
     /* JADX INFO: compiled from: AuthStateCache.kt */
-    public static final class Keys {
+    public final class Keys {
         public static final String AUTH_STATE = "STORE_AUTH_STATE";
-        public static final Keys INSTANCE = new Keys();
         public static final String TOKEN = "STORE_AUTHED_TOKEN";
+        public static final Keys INSTANCE = new Keys();
 
         private Keys() {
         }

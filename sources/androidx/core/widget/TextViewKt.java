@@ -15,45 +15,45 @@ public final class TextViewKt {
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$1 */
     /* JADX INFO: compiled from: TextView.kt */
-    public static final class C03041 extends AbstractC12240o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
+    public final class C03041 extends AbstractC12240o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
         public static final C03041 INSTANCE = new C03041();
 
         public C03041() {
             super(4);
         }
 
+        public final void invoke(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
         @Override // kotlin.jvm.functions.Function4
         public /* bridge */ /* synthetic */ Unit invoke(CharSequence charSequence, Integer num, Integer num2, Integer num3) {
             invoke(charSequence, num.intValue(), num2.intValue(), num3.intValue());
             return Unit.f27425a;
         }
-
-        public final void invoke(CharSequence charSequence, int i, int i2, int i3) {
-        }
     }
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$2 */
     /* JADX INFO: compiled from: TextView.kt */
-    public static final class C03052 extends AbstractC12240o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
+    public final class C03052 extends AbstractC12240o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
         public static final C03052 INSTANCE = new C03052();
 
         public C03052() {
             super(4);
         }
 
+        public final void invoke(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
         @Override // kotlin.jvm.functions.Function4
         public /* bridge */ /* synthetic */ Unit invoke(CharSequence charSequence, Integer num, Integer num2, Integer num3) {
             invoke(charSequence, num.intValue(), num2.intValue(), num3.intValue());
             return Unit.f27425a;
         }
-
-        public final void invoke(CharSequence charSequence, int i, int i2, int i3) {
-        }
     }
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$3 */
     /* JADX INFO: compiled from: TextView.kt */
-    public static final class C03063 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C03063 extends AbstractC12240o implements Function1<Editable, Unit> {
         public static final C03063 INSTANCE = new C03063();
 
         public C03063() {
@@ -71,16 +71,6 @@ public final class TextViewKt {
         }
     }
 
-    public static final TextWatcher addTextChangedListener(TextView textView, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function4, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function5, Function1<? super Editable, Unit> function1) {
-        C12238m.checkNotNullParameter(textView, "<this>");
-        C12238m.checkNotNullParameter(function4, "beforeTextChanged");
-        C12238m.checkNotNullParameter(function5, "onTextChanged");
-        C12238m.checkNotNullParameter(function1, "afterTextChanged");
-        TextViewKt$addTextChangedListener$textWatcher$1 textViewKt$addTextChangedListener$textWatcher$1 = new TextViewKt$addTextChangedListener$textWatcher$1(function1, function4, function5);
-        textView.addTextChangedListener(textViewKt$addTextChangedListener$textWatcher$1);
-        return textViewKt$addTextChangedListener$textWatcher$1;
-    }
-
     public static /* synthetic */ TextWatcher addTextChangedListener$default(TextView textView, Function4 function4, Function4 function5, Function1 function1, int i, Object obj) {
         if ((i & 1) != 0) {
             function4 = C03041.INSTANCE;
@@ -91,6 +81,16 @@ public final class TextViewKt {
         if ((i & 4) != 0) {
             function1 = C03063.INSTANCE;
         }
+        C12238m.checkNotNullParameter(textView, "<this>");
+        C12238m.checkNotNullParameter(function4, "beforeTextChanged");
+        C12238m.checkNotNullParameter(function5, "onTextChanged");
+        C12238m.checkNotNullParameter(function1, "afterTextChanged");
+        TextViewKt$addTextChangedListener$textWatcher$1 textViewKt$addTextChangedListener$textWatcher$1 = new TextViewKt$addTextChangedListener$textWatcher$1(function1, function4, function5);
+        textView.addTextChangedListener(textViewKt$addTextChangedListener$textWatcher$1);
+        return textViewKt$addTextChangedListener$textWatcher$1;
+    }
+
+    public static final TextWatcher addTextChangedListener(TextView textView, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function4, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function5, Function1<? super Editable, Unit> function1) {
         C12238m.checkNotNullParameter(textView, "<this>");
         C12238m.checkNotNullParameter(function4, "beforeTextChanged");
         C12238m.checkNotNullParameter(function5, "onTextChanged");

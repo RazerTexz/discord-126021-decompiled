@@ -19,7 +19,7 @@ public final class C12676u0<T, U> implements Observable.InterfaceC13006b<T, T>, 
 
     /* JADX INFO: renamed from: j0.l.a.u0$a */
     /* JADX INFO: compiled from: OperatorDistinctUntilChanged.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12676u0<?, ?> f27059a = new C12676u0<>(C12723m.a.INSTANCE);

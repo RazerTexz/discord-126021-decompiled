@@ -24,6 +24,9 @@ import p007b.p225i.p408d.p410q.p411x.p412d.C4942a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class DateTypeAdapter extends TypeAdapter<Date> {
 
+    /* JADX INFO: renamed from: b */
+    public final List<DateFormat> f21517b;
+
     /* JADX INFO: renamed from: a */
     public static final InterfaceC4911o f21516a = new InterfaceC4911o() { // from class: com.google.gson.internal.bind.DateTypeAdapter.1
         @Override // p007b.p225i.p408d.InterfaceC4911o
@@ -34,9 +37,6 @@ public final class DateTypeAdapter extends TypeAdapter<Date> {
             return null;
         }
     };
-
-    /* JADX INFO: renamed from: b */
-    public final List<DateFormat> f21517b;
 
     public DateTypeAdapter() {
         ArrayList arrayList = new ArrayList();

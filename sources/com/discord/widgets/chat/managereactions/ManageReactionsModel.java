@@ -19,6 +19,14 @@ public final /* data */ class ManageReactionsModel {
         this.userItems = list2;
     }
 
+    public final List<ManageReactionsEmojisAdapter.ReactionEmojiItem> component1() {
+        return this.reactionItems;
+    }
+
+    public final List<MGRecyclerDataPayload> component2() {
+        return this.userItems;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ManageReactionsModel copy$default(ManageReactionsModel manageReactionsModel, List list, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -28,14 +36,6 @@ public final /* data */ class ManageReactionsModel {
             list2 = manageReactionsModel.userItems;
         }
         return manageReactionsModel.copy(list, list2);
-    }
-
-    public final List<ManageReactionsEmojisAdapter.ReactionEmojiItem> component1() {
-        return this.reactionItems;
-    }
-
-    public final List<MGRecyclerDataPayload> component2() {
-        return this.userItems;
     }
 
     public final ManageReactionsModel copy(List<ManageReactionsEmojisAdapter.ReactionEmojiItem> reactionItems, List<? extends MGRecyclerDataPayload> userItems) {

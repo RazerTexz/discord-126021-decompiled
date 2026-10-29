@@ -21,7 +21,6 @@ import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class StandardMenuPopup extends MenuPopup implements PopupWindow.OnDismissListener, AdapterView.OnItemClickListener, MenuPresenter, View.OnKeyListener {
-    private static final int ITEM_LAYOUT = C0051R.layout.abc_popup_menu_item_layout;
     private final MenuAdapter mAdapter;
     private View mAnchorView;
     private int mContentWidth;
@@ -39,6 +38,7 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
     public View mShownAnchorView;
     public ViewTreeObserver mTreeObserver;
     private boolean mWasDismissed;
+    private static final int ITEM_LAYOUT = C0051R.layout.abc_popup_menu_item_layout;
     public final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() { // from class: androidx.appcompat.view.menu.StandardMenuPopup.1
         @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
         public void onGlobalLayout() {
@@ -85,52 +85,6 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
         this.mAnchorView = view;
         this.mPopup = new MenuPopupWindow(context, null, i, i2);
         menuBuilder.addMenuPresenter(this, context);
-    }
-
-    private boolean tryShow() {
-        View view;
-        if (isShowing()) {
-            return true;
-        }
-        if (this.mWasDismissed || (view = this.mAnchorView) == null) {
-            return false;
-        }
-        this.mShownAnchorView = view;
-        this.mPopup.setOnDismissListener(this);
-        this.mPopup.setOnItemClickListener(this);
-        this.mPopup.setModal(true);
-        View view2 = this.mShownAnchorView;
-        boolean z2 = this.mTreeObserver == null;
-        ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
-        this.mTreeObserver = viewTreeObserver;
-        if (z2) {
-            viewTreeObserver.addOnGlobalLayoutListener(this.mGlobalLayoutListener);
-        }
-        view2.addOnAttachStateChangeListener(this.mAttachStateChangeListener);
-        this.mPopup.setAnchorView(view2);
-        this.mPopup.setDropDownGravity(this.mDropDownGravity);
-        if (!this.mHasContentWidth) {
-            this.mContentWidth = MenuPopup.measureIndividualMenuWidth(this.mAdapter, null, this.mContext, this.mPopupMaxWidth);
-            this.mHasContentWidth = true;
-        }
-        this.mPopup.setContentWidth(this.mContentWidth);
-        this.mPopup.setInputMethodMode(2);
-        this.mPopup.setEpicenterBounds(getEpicenterBounds());
-        this.mPopup.show();
-        ListView listView = this.mPopup.getListView();
-        listView.setOnKeyListener(this);
-        if (this.mShowTitle && this.mMenu.getHeaderTitle() != null) {
-            FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(this.mContext).inflate(C0051R.layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
-            TextView textView = (TextView) frameLayout.findViewById(R.id.title);
-            if (textView != null) {
-                textView.setText(this.mMenu.getHeaderTitle());
-            }
-            frameLayout.setEnabled(false);
-            listView.addHeaderView(frameLayout, null, false);
-        }
-        this.mPopup.setAdapter(this.mAdapter);
-        this.mPopup.show();
-        return true;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPopup
@@ -279,6 +233,52 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
         if (!tryShow()) {
             throw new IllegalStateException("StandardMenuPopup cannot be used without an anchor");
         }
+    }
+
+    private boolean tryShow() {
+        View view;
+        if (isShowing()) {
+            return true;
+        }
+        if (this.mWasDismissed || (view = this.mAnchorView) == null) {
+            return false;
+        }
+        this.mShownAnchorView = view;
+        this.mPopup.setOnDismissListener(this);
+        this.mPopup.setOnItemClickListener(this);
+        this.mPopup.setModal(true);
+        View view2 = this.mShownAnchorView;
+        boolean z2 = this.mTreeObserver == null;
+        ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
+        this.mTreeObserver = viewTreeObserver;
+        if (z2) {
+            viewTreeObserver.addOnGlobalLayoutListener(this.mGlobalLayoutListener);
+        }
+        view2.addOnAttachStateChangeListener(this.mAttachStateChangeListener);
+        this.mPopup.setAnchorView(view2);
+        this.mPopup.setDropDownGravity(this.mDropDownGravity);
+        if (!this.mHasContentWidth) {
+            this.mContentWidth = MenuPopup.measureIndividualMenuWidth(this.mAdapter, null, this.mContext, this.mPopupMaxWidth);
+            this.mHasContentWidth = true;
+        }
+        this.mPopup.setContentWidth(this.mContentWidth);
+        this.mPopup.setInputMethodMode(2);
+        this.mPopup.setEpicenterBounds(getEpicenterBounds());
+        this.mPopup.show();
+        ListView listView = this.mPopup.getListView();
+        listView.setOnKeyListener(this);
+        if (this.mShowTitle && this.mMenu.getHeaderTitle() != null) {
+            FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(this.mContext).inflate(C0051R.layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
+            TextView textView = (TextView) frameLayout.findViewById(R.id.title);
+            if (textView != null) {
+                textView.setText(this.mMenu.getHeaderTitle());
+            }
+            frameLayout.setEnabled(false);
+            listView.addHeaderView(frameLayout, null, false);
+        }
+        this.mPopup.setAdapter(this.mAdapter);
+        this.mPopup.show();
+        return true;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter

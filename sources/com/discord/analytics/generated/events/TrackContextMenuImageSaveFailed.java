@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackContextMenuImageSaveFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackContextMenuImageSaveFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
+    private TrackBase trackBase;
     private final CharSequence url = null;
     private final transient String analyticsSchemaTypeName = "context_menu_image_save_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackContextMenuImageSaveFailed implements Analyti
         }
         TrackContextMenuImageSaveFailed trackContextMenuImageSaveFailed = (TrackContextMenuImageSaveFailed) other;
         return C12238m.areEqual(this.channelId, trackContextMenuImageSaveFailed.channelId) && C12238m.areEqual(this.url, trackContextMenuImageSaveFailed.url);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

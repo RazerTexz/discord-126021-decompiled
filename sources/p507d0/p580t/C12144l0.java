@@ -26,7 +26,7 @@ public final class C12144l0<T> extends AbstractC12125c<T> implements RandomAcces
 
     /* JADX INFO: renamed from: d0.t.l0$a */
     /* JADX INFO: compiled from: SlidingWindow.kt */
-    public static final class a extends AbstractC12123b<T> {
+    public final class a extends AbstractC12123b<T> {
 
         /* JADX INFO: renamed from: l */
         public int f25195l;

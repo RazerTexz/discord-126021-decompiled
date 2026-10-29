@@ -39,7 +39,7 @@ public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetStickerA
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerViewHolder$onConfigure$1 */
     /* JADX INFO: compiled from: StickerAdapterViewHolders.kt */
-    public static final class C78981 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C78981 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ MGRecyclerDataPayload $data;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -70,7 +70,7 @@ public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetStickerA
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerViewHolder$onConfigure$2 */
     /* JADX INFO: compiled from: StickerAdapterViewHolders.kt */
-    public static final class C78992 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C78992 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C78992() {
             super(1);
         }
@@ -96,6 +96,20 @@ public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetStickerA
         return (WidgetStickerAdapter) stickerViewHolder.adapter;
     }
 
+    public final void cancelLoading() {
+        StickerView stickerView = this.binding.f15276b;
+        Job job = stickerView.apngLoadingJob;
+        if (job != null) {
+            C3404f.m4343t(job, null, 1, null);
+        }
+        stickerView.binding.f1178c.clearAnimation();
+        Subscription subscription = this.scrollingSpeedSubscription;
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+        this.scrollingSpeedSubscription = null;
+    }
+
     private final void configureSticker(final MGRecyclerDataPayload data) {
         Sticker sticker;
         StickerItem stickerItem = (StickerItem) (!(data instanceof StickerItem) ? null : data);
@@ -117,20 +131,6 @@ public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetStickerA
                 }
             }
         });
-    }
-
-    public final void cancelLoading() {
-        StickerView stickerView = this.binding.f15276b;
-        Job job = stickerView.apngLoadingJob;
-        if (job != null) {
-            C3404f.m4343t(job, null, 1, null);
-        }
-        stickerView.binding.f1178c.clearAnimation();
-        Subscription subscription = this.scrollingSpeedSubscription;
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-        this.scrollingSpeedSubscription = null;
     }
 
     public final AppComponent getAppComponent() {

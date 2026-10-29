@@ -16,12 +16,6 @@ public class C1774h extends C1772g {
     /* JADX INFO: renamed from: o */
     public int f3364o;
 
-    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
-    /* JADX INFO: renamed from: d */
-    public void mo1096d(Matrix matrix) {
-        m1103n(matrix);
-    }
-
     @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         if (this.f3363n != this.f3360k.getIntrinsicWidth() || this.f3364o != this.f3360k.getIntrinsicHeight()) {
@@ -31,6 +25,27 @@ public class C1774h extends C1772g {
         if (drawable != null) {
             drawable.draw(canvas);
         }
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final void m1105p() {
+        Drawable drawable = this.f3360k;
+        Rect bounds = getBounds();
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        this.f3363n = intrinsicWidth;
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        this.f3364o = intrinsicHeight;
+        if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
+            drawable.setBounds(bounds);
+        } else {
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+        }
+    }
+
+    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
+    /* JADX INFO: renamed from: d */
+    public void mo1096d(Matrix matrix) {
+        m1103n(matrix);
     }
 
     @Override // p007b.p109f.p132g.p142e.C1772g
@@ -48,20 +63,5 @@ public class C1774h extends C1772g {
             drawable.setBounds(rect);
         }
         m1105p();
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final void m1105p() {
-        Drawable drawable = this.f3360k;
-        Rect bounds = getBounds();
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        this.f3363n = intrinsicWidth;
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        this.f3364o = intrinsicHeight;
-        if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
-            drawable.setBounds(bounds);
-        } else {
-            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-        }
     }
 }

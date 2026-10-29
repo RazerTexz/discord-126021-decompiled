@@ -69,15 +69,6 @@ public final class C11295o {
         }
     }
 
-    public static final boolean isUnsignedType(AbstractC11913c0 abstractC11913c0) {
-        InterfaceC11352h declarationDescriptor;
-        C12238m.checkNotNullParameter(abstractC11913c0, "type");
-        if (C11920e1.noExpectedType(abstractC11913c0) || (declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor()) == null) {
-            return false;
-        }
-        return f22584a.isUnsignedClass(declarationDescriptor);
-    }
-
     public final C11712a getUnsignedClassIdByArrayClassId(C11712a c11712a) {
         C12238m.checkNotNullParameter(c11712a, "arrayClassId");
         return f22586c.get(c11712a);
@@ -92,5 +83,14 @@ public final class C11295o {
         C12238m.checkNotNullParameter(interfaceC11450m, "descriptor");
         InterfaceC11450m containingDeclaration = interfaceC11450m.getContainingDeclaration();
         return (containingDeclaration instanceof InterfaceC11331e0) && C12238m.areEqual(((InterfaceC11331e0) containingDeclaration).getFqName(), C11291k.f22499l) && f22585b.contains(interfaceC11450m.getName());
+    }
+
+    public static final boolean isUnsignedType(AbstractC11913c0 abstractC11913c0) {
+        InterfaceC11352h declarationDescriptor;
+        C12238m.checkNotNullParameter(abstractC11913c0, "type");
+        if (C11920e1.noExpectedType(abstractC11913c0) || (declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor()) == null) {
+            return false;
+        }
+        return f22584a.isUnsignedClass(declarationDescriptor);
     }
 }

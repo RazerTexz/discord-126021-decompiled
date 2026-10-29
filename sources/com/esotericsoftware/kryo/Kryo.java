@@ -84,7 +84,7 @@ public class Kryo {
     private volatile Thread thread;
     private boolean warnUnregisteredClasses;
 
-    public static class DefaultInstantiatorStrategy implements InterfaceC12447a {
+    public class DefaultInstantiatorStrategy implements InterfaceC12447a {
         private InterfaceC12447a fallbackStrategy;
 
         public DefaultInstantiatorStrategy() {
@@ -167,7 +167,7 @@ public class Kryo {
         }
     }
 
-    public static final class DefaultSerializerEntry {
+    public final class DefaultSerializerEntry {
         public final SerializerFactory serializerFactory;
         public final Class type;
 
@@ -181,18 +181,6 @@ public class Kryo {
         this(new DefaultClassResolver(), new MapReferenceResolver(), new DefaultStreamFactory());
     }
 
-    private void beginObject() {
-        C1644a.a aVar = C1644a.f3007a;
-        int i = this.depth;
-        if (i != this.maxDepth) {
-            this.depth = i + 1;
-        } else {
-            StringBuilder sbM833U = C1643a.m833U("Max depth exceeded: ");
-            sbM833U.append(this.depth);
-            throw new KryoException(sbM833U.toString());
-        }
-    }
-
     public void addDefaultSerializer(Class cls, Serializer serializer) {
         if (cls == null) {
             throw new IllegalArgumentException("type cannot be null.");
@@ -203,6 +191,18 @@ public class Kryo {
         DefaultSerializerEntry defaultSerializerEntry = new DefaultSerializerEntry(cls, new PseudoSerializerFactory(serializer));
         ArrayList<DefaultSerializerEntry> arrayList = this.defaultSerializers;
         arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, defaultSerializerEntry);
+    }
+
+    private void beginObject() {
+        C1644a.a aVar = C1644a.f3007a;
+        int i = this.depth;
+        if (i != this.maxDepth) {
+            this.depth = i + 1;
+        } else {
+            StringBuilder sbM833U = C1643a.m833U("Max depth exceeded: ");
+            sbM833U.append(this.depth);
+            throw new KryoException(sbM833U.toString());
+        }
     }
 
     public <T> T copy(T t) {

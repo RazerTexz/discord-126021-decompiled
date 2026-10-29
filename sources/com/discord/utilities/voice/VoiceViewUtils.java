@@ -46,18 +46,18 @@ public final class VoiceViewUtils {
     private VoiceViewUtils() {
     }
 
-    public static /* synthetic */ CharSequence getConnectedText$default(VoiceViewUtils voiceViewUtils, Context context, RtcConnection.State state, StreamContext streamContext, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z2 = false;
-        }
-        return voiceViewUtils.getConnectedText(context, state, streamContext, z2);
-    }
-
     public final int getCallIndicatorIcon(boolean hasVideo, StreamContext streamContext) {
         if (streamContext == null || !streamContext.isCurrentUserParticipating()) {
             return hasVideo ? C5419R.drawable.ic_videocam_white_16dp : C5419R.drawable.ic_call_indicator_voice_16dp;
         }
         return streamContext.isSelfStream() ? C5419R.drawable.ic_call_indicator_mobile_screenshare_16dp : C5419R.drawable.ic_call_indicator_streaming_16dp;
+    }
+
+    public static /* synthetic */ CharSequence getConnectedText$default(VoiceViewUtils voiceViewUtils, Context context, RtcConnection.State state, StreamContext streamContext, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z2 = false;
+        }
+        return voiceViewUtils.getConnectedText(context, state, streamContext, z2);
     }
 
     public final CharSequence getConnectedText(Context context, RtcConnection.State rtcConnectionState, StreamContext streamContext, boolean hasVideo) {

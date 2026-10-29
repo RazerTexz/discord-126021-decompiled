@@ -36,6 +36,24 @@ public final class C2777n implements InterfaceC2963w0 {
         this.f6847n = bArr;
     }
 
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || C2777n.class != obj.getClass()) {
+            return false;
+        }
+        C2777n c2777n = (C2777n) obj;
+        return this.f6844k == c2777n.f6844k && this.f6845l == c2777n.f6845l && this.f6846m == c2777n.f6846m && Arrays.equals(this.f6847n, c2777n.f6847n);
+    }
+
+    public int hashCode() {
+        if (this.f6848o == 0) {
+            this.f6848o = Arrays.hashCode(this.f6847n) + ((((((527 + this.f6844k) * 31) + this.f6845l) * 31) + this.f6846m) * 31);
+        }
+        return this.f6848o;
+    }
+
     @Pure
     /* JADX INFO: renamed from: a */
     public static int m3123a(int i) {
@@ -66,24 +84,6 @@ public final class C2777n implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: c */
     public static String m3125c(int i) {
         return Integer.toString(i, 36);
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || C2777n.class != obj.getClass()) {
-            return false;
-        }
-        C2777n c2777n = (C2777n) obj;
-        return this.f6844k == c2777n.f6844k && this.f6845l == c2777n.f6845l && this.f6846m == c2777n.f6846m && Arrays.equals(this.f6847n, c2777n.f6847n);
-    }
-
-    public int hashCode() {
-        if (this.f6848o == 0) {
-            this.f6848o = Arrays.hashCode(this.f6847n) + ((((((527 + this.f6844k) * 31) + this.f6845l) * 31) + this.f6846m) * 31);
-        }
-        return this.f6848o;
     }
 
     public String toString() {

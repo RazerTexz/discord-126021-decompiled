@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSentMissedMessageEmail.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSentMissedMessageEmail implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence trackingPixelUuid = null;
+    private final Boolean didSend = null;
+    private final Long lastAckAt = null;
     private final CharSequence subjectClassification = null;
-    private final Long totalGuildsMissed = null;
+    private final Long totalApproximateMessagesMissed = null;
     private final Long totalChannelsMissed = null;
     private final Long totalDmsMissed = null;
-    private final Long totalApproximateMessagesMissed = null;
-    private final Long lastAckAt = null;
-    private final Boolean didSend = null;
+    private final Long totalGuildsMissed = null;
+    private TrackBase trackBase;
+    private final CharSequence trackingPixelUuid = null;
     private final transient String analyticsSchemaTypeName = "sent_missed_message_email";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackSentMissedMessageEmail implements AnalyticsSc
         }
         TrackSentMissedMessageEmail trackSentMissedMessageEmail = (TrackSentMissedMessageEmail) other;
         return C12238m.areEqual(this.trackingPixelUuid, trackSentMissedMessageEmail.trackingPixelUuid) && C12238m.areEqual(this.subjectClassification, trackSentMissedMessageEmail.subjectClassification) && C12238m.areEqual(this.totalGuildsMissed, trackSentMissedMessageEmail.totalGuildsMissed) && C12238m.areEqual(this.totalChannelsMissed, trackSentMissedMessageEmail.totalChannelsMissed) && C12238m.areEqual(this.totalDmsMissed, trackSentMissedMessageEmail.totalDmsMissed) && C12238m.areEqual(this.totalApproximateMessagesMissed, trackSentMissedMessageEmail.totalApproximateMessagesMissed) && C12238m.areEqual(this.lastAckAt, trackSentMissedMessageEmail.lastAckAt) && C12238m.areEqual(this.didSend, trackSentMissedMessageEmail.didSend);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -10,26 +10,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreListingUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long storeListingId = null;
+    private final List<CharSequence> carouselItems = null;
+    private final List<Long> childSkuIds = null;
+    private final CharSequence flavorText = null;
+    private final Long guildId = null;
+    private final Boolean isPublished = null;
+    private final Long previewVideoAssetId = null;
     private final Long skuId = null;
+    private final Long storeListingId = null;
+    private final CharSequence tagline = null;
+    private final Long thumbnailAssetId = null;
+    private TrackBase trackBase;
     private final CharSequence updateFrom = null;
     private final CharSequence updateType = null;
-    private final Long guildId = null;
-    private final List<Long> childSkuIds = null;
-    private final Boolean isPublished = null;
-    private final CharSequence tagline = null;
-    private final CharSequence flavorText = null;
-    private final Long thumbnailAssetId = null;
-    private final Long previewVideoAssetId = null;
-    private final List<CharSequence> carouselItems = null;
     private final transient String analyticsSchemaTypeName = "store_listing_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
         }
         TrackStoreListingUpdated trackStoreListingUpdated = (TrackStoreListingUpdated) other;
         return C12238m.areEqual(this.storeListingId, trackStoreListingUpdated.storeListingId) && C12238m.areEqual(this.skuId, trackStoreListingUpdated.skuId) && C12238m.areEqual(this.updateFrom, trackStoreListingUpdated.updateFrom) && C12238m.areEqual(this.updateType, trackStoreListingUpdated.updateType) && C12238m.areEqual(this.guildId, trackStoreListingUpdated.guildId) && C12238m.areEqual(this.childSkuIds, trackStoreListingUpdated.childSkuIds) && C12238m.areEqual(this.isPublished, trackStoreListingUpdated.isPublished) && C12238m.areEqual(this.tagline, trackStoreListingUpdated.tagline) && C12238m.areEqual(this.flavorText, trackStoreListingUpdated.flavorText) && C12238m.areEqual(this.thumbnailAssetId, trackStoreListingUpdated.thumbnailAssetId) && C12238m.areEqual(this.previewVideoAssetId, trackStoreListingUpdated.previewVideoAssetId) && C12238m.areEqual(this.carouselItems, trackStoreListingUpdated.carouselItems);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayToggled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean enabled = null;
-    private final CharSequence settingType = null;
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
+    private final Boolean enabled = null;
+    private final CharSequence settingType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "overlay_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackOverlayToggled implements AnalyticsSchema, Tr
         }
         TrackOverlayToggled trackOverlayToggled = (TrackOverlayToggled) other;
         return C12238m.areEqual(this.enabled, trackOverlayToggled.enabled) && C12238m.areEqual(this.settingType, trackOverlayToggled.settingType) && C12238m.areEqual(this.applicationId, trackOverlayToggled.applicationId) && C12238m.areEqual(this.applicationName, trackOverlayToggled.applicationName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

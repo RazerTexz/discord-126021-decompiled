@@ -25,7 +25,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p296f.C3219d;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class GoogleSignInAccount extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<GoogleSignInAccount> CREATOR = new C3219d();
 
     /* JADX INFO: renamed from: j */
     public final int f20416j;
@@ -70,6 +69,7 @@ public class GoogleSignInAccount extends AbstractSafeParcelable implements Refle
     /* JADX INFO: renamed from: u */
     @Nullable
     public String f20427u;
+    public static final Parcelable.Creator<GoogleSignInAccount> CREATOR = new C3219d();
 
     /* JADX INFO: renamed from: v */
     public Set<Scope> f20428v = new HashSet();
@@ -87,6 +87,24 @@ public class GoogleSignInAccount extends AbstractSafeParcelable implements Refle
         this.f20425s = list;
         this.f20426t = str7;
         this.f20427u = str8;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof GoogleSignInAccount)) {
+            return false;
+        }
+        GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) obj;
+        return googleSignInAccount.f20424r.equals(this.f20424r) && googleSignInAccount.m9011w0().equals(m9011w0());
+    }
+
+    public int hashCode() {
+        return m9011w0().hashCode() + C1643a.m863m(this.f20424r, 527, 31);
     }
 
     @Nullable
@@ -121,24 +139,6 @@ public class GoogleSignInAccount extends AbstractSafeParcelable implements Refle
         GoogleSignInAccount googleSignInAccount = new GoogleSignInAccount(3, strOptString2, strOptString3, strOptString4, strOptString5, uri, null, jLongValue, string, new ArrayList(hashSet), strOptString6, strOptString7);
         googleSignInAccount.f20422p = jSONObject.has("serverAuthCode") ? jSONObject.optString("serverAuthCode") : null;
         return googleSignInAccount;
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof GoogleSignInAccount)) {
-            return false;
-        }
-        GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) obj;
-        return googleSignInAccount.f20424r.equals(this.f20424r) && googleSignInAccount.m9011w0().equals(m9011w0());
-    }
-
-    public int hashCode() {
-        return m9011w0().hashCode() + C1643a.m863m(this.f20424r, 527, 31);
     }
 
     @NonNull

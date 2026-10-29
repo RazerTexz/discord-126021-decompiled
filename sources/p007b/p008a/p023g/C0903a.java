@@ -19,9 +19,6 @@ public final class C0903a {
     /* JADX INFO: renamed from: a */
     public static final b f626a = new b(null);
 
-    /* JADX INFO: renamed from: b */
-    public final float[] f627b = new float[3];
-
     /* JADX INFO: renamed from: c */
     public final int[] f628c;
 
@@ -31,9 +28,12 @@ public final class C0903a {
     /* JADX INFO: renamed from: e */
     public final List<C0906d> f630e;
 
+    /* JADX INFO: renamed from: b */
+    public final float[] f627b = new float[3];
+
     /* JADX INFO: renamed from: b.a.g.a$a */
     /* JADX INFO: compiled from: ColorCutQuantizer.kt */
-    public static final class a<T> implements Comparator<c> {
+    public final class a<T> implements Comparator<c> {
 
         /* JADX INFO: renamed from: j */
         public static final a f631j = new a();
@@ -46,7 +46,7 @@ public final class C0903a {
 
     /* JADX INFO: renamed from: b.a.g.a$b */
     /* JADX INFO: compiled from: ColorCutQuantizer.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

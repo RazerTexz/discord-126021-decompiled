@@ -37,6 +37,61 @@ public abstract class AbstractC1996l0<K, T extends Closeable> implements Interfa
     /* JADX INFO: renamed from: e */
     public final String f4131e;
 
+    public AbstractC1996l0(InterfaceC2018w0<T> interfaceC2018w0, String str, String str2) {
+        this.f4128b = interfaceC2018w0;
+        this.f4127a = new HashMap();
+        this.f4129c = false;
+        this.f4130d = str;
+        this.f4131e = str2;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public synchronized void m1482e(K k, AbstractC1996l0<K, T>.b bVar) {
+        if (this.f4127a.get(k) == bVar) {
+            this.f4127a.remove(k);
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
+    /* JADX INFO: renamed from: b */
+    public void mo1417b(InterfaceC1995l<T> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
+        boolean z2;
+        AbstractC1996l0<K, T>.b bVar;
+        try {
+            C2030b.m1527b();
+            interfaceC2020x0.mo1457o().mo1358e(interfaceC2020x0, this.f4130d);
+            K kMo1477d = mo1477d(interfaceC2020x0);
+            do {
+                z2 = false;
+                synchronized (this) {
+                    synchronized (this) {
+                        bVar = this.f4127a.get(kMo1477d);
+                    }
+                }
+                if (bVar == null) {
+                    synchronized (this) {
+                        bVar = new b(kMo1477d);
+                        this.f4127a.put(kMo1477d, bVar);
+                        z2 = true;
+                    }
+                }
+            } while (!bVar.m1483a(interfaceC1995l, interfaceC2020x0));
+            if (z2) {
+                bVar.m1491i(EnumC1716a.m1004f(interfaceC2020x0.mo1453k()));
+            }
+            C2030b.m1527b();
+        } catch (Throwable th) {
+            C2030b.m1527b();
+            throw th;
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public abstract T mo1476c(T t);
+
+    /* JADX INFO: renamed from: d */
+    public abstract K mo1477d(InterfaceC2020x0 interfaceC2020x0);
+
     /* JADX INFO: renamed from: b.f.j.p.l0$b */
     /* JADX INFO: compiled from: MultiplexProducer.java */
     @VisibleForTesting
@@ -44,9 +99,6 @@ public abstract class AbstractC1996l0<K, T extends Closeable> implements Interfa
 
         /* JADX INFO: renamed from: a */
         public final K f4132a;
-
-        /* JADX INFO: renamed from: b */
-        public final CopyOnWriteArraySet<Pair<InterfaceC1995l<T>, InterfaceC2020x0>> f4133b = new CopyOnWriteArraySet<>();
 
         /* JADX INFO: renamed from: c */
         public T f4134c;
@@ -62,6 +114,9 @@ public abstract class AbstractC1996l0<K, T extends Closeable> implements Interfa
 
         /* JADX INFO: renamed from: g */
         public AbstractC1996l0<K, T>.b.a f4138g;
+
+        /* JADX INFO: renamed from: b */
+        public final CopyOnWriteArraySet<Pair<InterfaceC1995l<T>, InterfaceC2020x0>> f4133b = new CopyOnWriteArraySet<>();
 
         /* JADX INFO: renamed from: b.f.j.p.l0$b$a */
         /* JADX INFO: compiled from: MultiplexProducer.java */
@@ -375,61 +430,6 @@ public abstract class AbstractC1996l0<K, T extends Closeable> implements Interfa
                 return null;
             }
             return c1971d.m1461v(m1487e());
-        }
-    }
-
-    public AbstractC1996l0(InterfaceC2018w0<T> interfaceC2018w0, String str, String str2) {
-        this.f4128b = interfaceC2018w0;
-        this.f4127a = new HashMap();
-        this.f4129c = false;
-        this.f4130d = str;
-        this.f4131e = str2;
-    }
-
-    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
-    /* JADX INFO: renamed from: b */
-    public void mo1417b(InterfaceC1995l<T> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
-        boolean z2;
-        AbstractC1996l0<K, T>.b bVar;
-        try {
-            C2030b.m1527b();
-            interfaceC2020x0.mo1457o().mo1358e(interfaceC2020x0, this.f4130d);
-            K kMo1477d = mo1477d(interfaceC2020x0);
-            do {
-                z2 = false;
-                synchronized (this) {
-                    synchronized (this) {
-                        bVar = this.f4127a.get(kMo1477d);
-                    }
-                }
-                if (bVar == null) {
-                    synchronized (this) {
-                        bVar = new b(kMo1477d);
-                        this.f4127a.put(kMo1477d, bVar);
-                        z2 = true;
-                    }
-                }
-            } while (!bVar.m1483a(interfaceC1995l, interfaceC2020x0));
-            if (z2) {
-                bVar.m1491i(EnumC1716a.m1004f(interfaceC2020x0.mo1453k()));
-            }
-            C2030b.m1527b();
-        } catch (Throwable th) {
-            C2030b.m1527b();
-            throw th;
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public abstract T mo1476c(T t);
-
-    /* JADX INFO: renamed from: d */
-    public abstract K mo1477d(InterfaceC2020x0 interfaceC2020x0);
-
-    /* JADX INFO: renamed from: e */
-    public synchronized void m1482e(K k, AbstractC1996l0<K, T>.b bVar) {
-        if (this.f4127a.get(k) == bVar) {
-            this.f4127a.remove(k);
         }
     }
 

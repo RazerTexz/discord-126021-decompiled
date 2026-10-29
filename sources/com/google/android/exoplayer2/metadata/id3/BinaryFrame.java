@@ -9,10 +9,10 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class BinaryFrame extends Id3Frame {
-    public static final Parcelable.Creator<BinaryFrame> CREATOR = new C10727a();
 
     /* JADX INFO: renamed from: k */
     public final byte[] f19970k;
+    public static final Parcelable.Creator<BinaryFrame> CREATOR = new C10727a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.BinaryFrame$a */
     public class C10727a implements Parcelable.Creator<BinaryFrame> {

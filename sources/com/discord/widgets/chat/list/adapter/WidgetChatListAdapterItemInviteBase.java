@@ -24,7 +24,7 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1", m10085f = "WidgetChatListAdapterItemInviteBase.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C80961 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    public final class C80961 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public C80961(Continuation continuation) {
@@ -43,7 +43,7 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -56,7 +56,7 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2", m10085f = "WidgetChatListAdapterItemInviteBase.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C80972 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    public final class C80972 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public C80972(Continuation continuation) {
@@ -75,7 +75,7 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");

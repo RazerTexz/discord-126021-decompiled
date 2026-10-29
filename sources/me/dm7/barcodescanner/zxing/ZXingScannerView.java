@@ -41,6 +41,11 @@ public class ZXingScannerView extends AbstractC12253a {
     /* JADX INFO: renamed from: G */
     public InterfaceC12927b f27498G;
 
+    /* JADX INFO: renamed from: me.dm7.barcodescanner.zxing.ZXingScannerView$b */
+    public interface InterfaceC12927b {
+        void handleResult(Result result);
+    }
+
     /* JADX INFO: renamed from: me.dm7.barcodescanner.zxing.ZXingScannerView$a */
     public class RunnableC12926a implements Runnable {
 
@@ -64,11 +69,6 @@ public class ZXingScannerView extends AbstractC12253a {
                 interfaceC12927b.handleResult(this.f27499j);
             }
         }
-    }
-
-    /* JADX INFO: renamed from: me.dm7.barcodescanner.zxing.ZXingScannerView$b */
-    public interface InterfaceC12927b {
-        void handleResult(Result result);
     }
 
     static {
@@ -96,6 +96,11 @@ public class ZXingScannerView extends AbstractC12253a {
     public ZXingScannerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m10953c();
+    }
+
+    public Collection<EnumC4946a> getFormats() {
+        List<EnumC4946a> list = this.f27497F;
+        return list == null ? f27495D : list;
     }
 
     /* JADX INFO: renamed from: b */
@@ -142,11 +147,6 @@ public class ZXingScannerView extends AbstractC12253a {
         C4952g c4952g = new C4952g();
         this.f27496E = c4952g;
         c4952g.m6921c(enumMap);
-    }
-
-    public Collection<EnumC4946a> getFormats() {
-        List<EnumC4946a> list = this.f27497F;
-        return list == null ? f27495D : list;
     }
 
     @Override // android.hardware.Camera.PreviewCallback

@@ -19,7 +19,7 @@ public interface InterfaceC11507j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.j$a */
     /* JADX INFO: compiled from: SignaturePropagator.java */
-    public static class a implements InterfaceC11507j {
+    public final class a implements InterfaceC11507j {
         /* JADX INFO: renamed from: a */
         public static /* synthetic */ void m9454a(int i) {
             Object[] objArr = new Object[3];
@@ -94,7 +94,7 @@ public interface InterfaceC11507j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.j$b */
     /* JADX INFO: compiled from: SignaturePropagator.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11913c0 f23250a;
@@ -137,6 +137,50 @@ public interface InterfaceC11507j {
             this.f23253d = list2;
             this.f23254e = list3;
             this.f23255f = z2;
+        }
+
+        public List<String> getErrors() {
+            List<String> list = this.f23254e;
+            if (list != null) {
+                return list;
+            }
+            m9455a(7);
+            throw null;
+        }
+
+        public AbstractC11913c0 getReceiverType() {
+            return this.f23251b;
+        }
+
+        public AbstractC11913c0 getReturnType() {
+            AbstractC11913c0 abstractC11913c0 = this.f23250a;
+            if (abstractC11913c0 != null) {
+                return abstractC11913c0;
+            }
+            m9455a(4);
+            throw null;
+        }
+
+        public List<InterfaceC11477z0> getTypeParameters() {
+            List<InterfaceC11477z0> list = this.f23253d;
+            if (list != null) {
+                return list;
+            }
+            m9455a(6);
+            throw null;
+        }
+
+        public List<InterfaceC11326c1> getValueParameters() {
+            List<InterfaceC11326c1> list = this.f23252c;
+            if (list != null) {
+                return list;
+            }
+            m9455a(5);
+            throw null;
+        }
+
+        public boolean hasStableParameterNames() {
+            return this.f23255f;
         }
 
         /* JADX INFO: renamed from: a */
@@ -182,50 +226,6 @@ public interface InterfaceC11507j {
                 throw new IllegalArgumentException(str2);
             }
             throw new IllegalStateException(str2);
-        }
-
-        public List<String> getErrors() {
-            List<String> list = this.f23254e;
-            if (list != null) {
-                return list;
-            }
-            m9455a(7);
-            throw null;
-        }
-
-        public AbstractC11913c0 getReceiverType() {
-            return this.f23251b;
-        }
-
-        public AbstractC11913c0 getReturnType() {
-            AbstractC11913c0 abstractC11913c0 = this.f23250a;
-            if (abstractC11913c0 != null) {
-                return abstractC11913c0;
-            }
-            m9455a(4);
-            throw null;
-        }
-
-        public List<InterfaceC11477z0> getTypeParameters() {
-            List<InterfaceC11477z0> list = this.f23253d;
-            if (list != null) {
-                return list;
-            }
-            m9455a(6);
-            throw null;
-        }
-
-        public List<InterfaceC11326c1> getValueParameters() {
-            List<InterfaceC11326c1> list = this.f23252c;
-            if (list != null) {
-                return list;
-            }
-            m9455a(5);
-            throw null;
-        }
-
-        public boolean hasStableParameterNames() {
-            return this.f23255f;
         }
     }
 }

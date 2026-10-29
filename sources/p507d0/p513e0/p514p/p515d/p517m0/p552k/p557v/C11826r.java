@@ -37,7 +37,7 @@ public final class C11826r extends AbstractC11815g<b> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$a */
     /* JADX INFO: compiled from: constantValues.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -69,48 +69,11 @@ public final class C11826r extends AbstractC11815g<b> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$b */
     /* JADX INFO: compiled from: constantValues.kt */
-    public static abstract class b {
-
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$b$a */
-        /* JADX INFO: compiled from: constantValues.kt */
-        public static final class a extends b {
-
-            /* JADX INFO: renamed from: a */
-            public final AbstractC11913c0 f24452a;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public a(AbstractC11913c0 abstractC11913c0) {
-                super(null);
-                C12238m.checkNotNullParameter(abstractC11913c0, "type");
-                this.f24452a = abstractC11913c0;
-            }
-
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                return (obj instanceof a) && C12238m.areEqual(this.f24452a, ((a) obj).f24452a);
-            }
-
-            public final AbstractC11913c0 getType() {
-                return this.f24452a;
-            }
-
-            public int hashCode() {
-                return this.f24452a.hashCode();
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("LocalClass(type=");
-                sbM833U.append(this.f24452a);
-                sbM833U.append(')');
-                return sbM833U.toString();
-            }
-        }
+    public abstract class b {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: constantValues.kt */
-        public static final class C13329b extends b {
+        public final class C13329b extends b {
 
             /* JADX INFO: renamed from: a */
             public final C11814f f24453a;
@@ -148,6 +111,43 @@ public final class C11826r extends AbstractC11815g<b> {
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("NormalClass(value=");
                 sbM833U.append(this.f24453a);
+                sbM833U.append(')');
+                return sbM833U.toString();
+            }
+        }
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$b$a */
+        /* JADX INFO: compiled from: constantValues.kt */
+        public final class a extends b {
+
+            /* JADX INFO: renamed from: a */
+            public final AbstractC11913c0 f24452a;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(AbstractC11913c0 abstractC11913c0) {
+                super(null);
+                C12238m.checkNotNullParameter(abstractC11913c0, "type");
+                this.f24452a = abstractC11913c0;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                return (obj instanceof a) && C12238m.areEqual(this.f24452a, ((a) obj).f24452a);
+            }
+
+            public final AbstractC11913c0 getType() {
+                return this.f24452a;
+            }
+
+            public int hashCode() {
+                return this.f24452a.hashCode();
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("LocalClass(type=");
+                sbM833U.append(this.f24452a);
                 sbM833U.append(')');
                 return sbM833U.toString();
             }

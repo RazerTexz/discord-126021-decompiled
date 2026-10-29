@@ -12,16 +12,16 @@ public final class ConcatAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final String TAG = "ConcatAdapter";
     private final ConcatAdapterController mController;
 
-    public static final class Config {
-
-        @NonNull
-        public static final Config DEFAULT = new Config(true, StableIdMode.NO_STABLE_IDS);
+    public final class Config {
         public final boolean isolateViewTypes;
 
         @NonNull
         public final StableIdMode stableIdMode;
 
-        public static final class Builder {
+        @NonNull
+        public static final Config DEFAULT = new Config(true, StableIdMode.NO_STABLE_IDS);
+
+        public final class Builder {
             private boolean mIsolateViewTypes;
             private StableIdMode mStableIdMode;
 

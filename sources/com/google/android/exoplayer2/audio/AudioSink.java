@@ -11,7 +11,7 @@ import p007b.p225i.p226a.p242c.p263t2.C2937u;
 /* JADX INFO: loaded from: classes3.dex */
 public interface AudioSink {
 
-    public static final class InitializationException extends Exception {
+    public final class InitializationException extends Exception {
         public final int audioTrackState;
         public final C2811j1 format;
         public final boolean isRecoverable;
@@ -37,7 +37,11 @@ public interface AudioSink {
         }
     }
 
-    public static final class UnexpectedDiscontinuityException extends Exception {
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.AudioSink$a */
+    public interface InterfaceC10686a {
+    }
+
+    public final class UnexpectedDiscontinuityException extends Exception {
         public final long actualPresentationTimeUs;
         public final long expectedPresentationTimeUs;
 
@@ -51,7 +55,7 @@ public interface AudioSink {
         }
     }
 
-    public static final class WriteException extends Exception {
+    public final class WriteException extends Exception {
         public final int errorCode;
         public final C2811j1 format;
         public final boolean isRecoverable;
@@ -64,9 +68,7 @@ public interface AudioSink {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.AudioSink$a */
-    public interface InterfaceC10686a {
-    }
+    void flush();
 
     /* JADX INFO: renamed from: a */
     boolean mo8757a(C2811j1 c2811j1);
@@ -82,8 +84,6 @@ public interface AudioSink {
 
     /* JADX INFO: renamed from: e */
     void mo8761e();
-
-    void flush();
 
     /* JADX INFO: renamed from: i */
     void mo8762i(C2998x1 c2998x1);
@@ -115,8 +115,6 @@ public interface AudioSink {
     /* JADX INFO: renamed from: r */
     void mo8771r();
 
-    void reset();
-
     /* JADX INFO: renamed from: s */
     boolean mo8772s(ByteBuffer byteBuffer, long j, int i) throws WriteException, InitializationException;
 
@@ -135,7 +133,9 @@ public interface AudioSink {
     /* JADX INFO: renamed from: x */
     void mo8777x(C2937u c2937u);
 
-    public static final class ConfigurationException extends Exception {
+    void reset();
+
+    public final class ConfigurationException extends Exception {
         public final C2811j1 format;
 
         public ConfigurationException(Throwable th, C2811j1 c2811j1) {

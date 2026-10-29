@@ -42,51 +42,6 @@ public final /* data */ class ApplicationCommandOption {
         this.maxValue = number2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ApplicationCommandType getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getAutocomplete() {
-        return this.autocomplete;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final Number getMinValue() {
-        return this.minValue;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final Number getMaxValue() {
-        return this.maxValue;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Integer getDescriptionRes() {
-        return this.descriptionRes;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getRequired() {
-        return this.required;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getDefault() {
-        return this.default;
-    }
-
     public final List<Integer> component7() {
         return this.channelTypes;
     }
@@ -116,6 +71,11 @@ public final /* data */ class ApplicationCommandOption {
         return C12238m.areEqual(this.type, applicationCommandOption.type) && C12238m.areEqual(this.name, applicationCommandOption.name) && C12238m.areEqual(this.description, applicationCommandOption.description) && C12238m.areEqual(this.descriptionRes, applicationCommandOption.descriptionRes) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && C12238m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && C12238m.areEqual(this.choices, applicationCommandOption.choices) && C12238m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && C12238m.areEqual(this.minValue, applicationCommandOption.minValue) && C12238m.areEqual(this.maxValue, applicationCommandOption.maxValue);
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getAutocomplete() {
+        return this.autocomplete;
+    }
+
     public final boolean getAutocomplete() {
         return this.autocomplete;
     }
@@ -128,24 +88,54 @@ public final /* data */ class ApplicationCommandOption {
         return this.choices;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getDefault() {
         return this.default;
+    }
+
+    public final boolean getDefault() {
+        return this.default;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getDescription() {
+        return this.description;
     }
 
     public final String getDescription() {
         return this.description;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Integer getDescriptionRes() {
         return this.descriptionRes;
+    }
+
+    public final Integer getDescriptionRes() {
+        return this.descriptionRes;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final Number getMaxValue() {
+        return this.maxValue;
     }
 
     public final Number getMaxValue() {
         return this.maxValue;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final Number getMinValue() {
         return this.minValue;
+    }
+
+    public final Number getMinValue() {
+        return this.minValue;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {
@@ -156,8 +146,18 @@ public final /* data */ class ApplicationCommandOption {
         return this.options;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getRequired() {
         return this.required;
+    }
+
+    public final boolean getRequired() {
+        return this.required;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ApplicationCommandType getType() {
+        return this.type;
     }
 
     public final ApplicationCommandType getType() {

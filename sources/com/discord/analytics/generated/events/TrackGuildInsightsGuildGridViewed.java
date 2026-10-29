@@ -10,21 +10,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildInsightsGuildGridViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildInsightsGuildGridViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final List<Long> guildIds = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "guild_insights_guild_grid_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGuildInsightsGuildGridViewed) && C12238m.areEqual(this.guildIds, ((TrackGuildInsightsGuildGridViewed) other).guildIds);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

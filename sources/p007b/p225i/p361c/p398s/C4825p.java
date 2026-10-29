@@ -17,13 +17,13 @@ public final class C4825p implements InterfaceC4824o {
     }
 
     @Override // p007b.p225i.p361c.p398s.InterfaceC4824o
-    /* JADX INFO: renamed from: a */
-    public final String mo6729a() {
-        return this.f12884b;
+    public final String getId() {
+        return this.f12883a;
     }
 
     @Override // p007b.p225i.p361c.p398s.InterfaceC4824o
-    public final String getId() {
-        return this.f12883a;
+    /* JADX INFO: renamed from: a */
+    public final String mo6729a() {
+        return this.f12884b;
     }
 }

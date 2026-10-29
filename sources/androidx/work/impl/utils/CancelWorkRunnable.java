@@ -21,6 +21,15 @@ import java.util.UUID;
 public abstract class CancelWorkRunnable implements Runnable {
     private final OperationImpl mOperation = new OperationImpl();
 
+    public void cancel(WorkManagerImpl workManagerImpl, String str) {
+        iterativelyCancelWorkAndDependents(workManagerImpl.getWorkDatabase(), str);
+        workManagerImpl.getProcessor().stopAndCancelWork(str);
+        Iterator<Scheduler> it = workManagerImpl.getSchedulers().iterator();
+        while (it.hasNext()) {
+            it.next().cancel(str);
+        }
+    }
+
     public static CancelWorkRunnable forAll(@NonNull final WorkManagerImpl workManagerImpl) {
         return new CancelWorkRunnable() { // from class: androidx.work.impl.utils.CancelWorkRunnable.4
             @Override // androidx.work.impl.utils.CancelWorkRunnable
@@ -110,6 +119,10 @@ public abstract class CancelWorkRunnable implements Runnable {
         };
     }
 
+    public Operation getOperation() {
+        return this.mOperation;
+    }
+
     private void iterativelyCancelWorkAndDependents(WorkDatabase workDatabase, String str) {
         WorkSpecDao workSpecDao = workDatabase.workSpecDao();
         DependencyDao dependencyDao = workDatabase.dependencyDao();
@@ -123,19 +136,6 @@ public abstract class CancelWorkRunnable implements Runnable {
             }
             linkedList.addAll(dependencyDao.getDependentWorkIds(str2));
         }
-    }
-
-    public void cancel(WorkManagerImpl workManagerImpl, String str) {
-        iterativelyCancelWorkAndDependents(workManagerImpl.getWorkDatabase(), str);
-        workManagerImpl.getProcessor().stopAndCancelWork(str);
-        Iterator<Scheduler> it = workManagerImpl.getSchedulers().iterator();
-        while (it.hasNext()) {
-            it.next().cancel(str);
-        }
-    }
-
-    public Operation getOperation() {
-        return this.mOperation;
     }
 
     public void reschedulePendingWorkers(WorkManagerImpl workManagerImpl) {

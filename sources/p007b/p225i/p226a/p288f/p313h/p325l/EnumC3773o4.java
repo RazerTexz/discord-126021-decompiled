@@ -269,12 +269,12 @@ public final class EnumC3773o4 {
         this.zzbd = (enumC3799q4 != EnumC3799q4.SCALAR || (i3 = C3812r4.f10286b[enumC3639e5.ordinal()]) == 1 || i3 == 2 || i3 == 3) ? false : true;
     }
 
-    public static EnumC3773o4[] values() {
-        return (EnumC3773o4[]) f10160j0.clone();
-    }
-
     /* JADX INFO: renamed from: a */
     public final int m5154a() {
         return this.zzba;
+    }
+
+    public static EnumC3773o4[] values() {
+        return (EnumC3773o4[]) f10160j0.clone();
     }
 }

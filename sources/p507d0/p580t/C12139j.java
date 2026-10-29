@@ -15,7 +15,7 @@ public class C12139j extends C12137i {
 
     /* JADX INFO: renamed from: d0.t.j$a */
     /* JADX INFO: compiled from: _ArraysJvm.kt */
-    public static final class a extends AbstractC12125c<Integer> implements RandomAccess {
+    public final class a extends AbstractC12125c<Integer> implements RandomAccess {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ int[] f25186k;
@@ -83,13 +83,6 @@ public class C12139j extends C12137i {
         return listAsList;
     }
 
-    public static final <T> T[] copyInto(T[] tArr, T[] tArr2, int i, int i2, int i3) {
-        C12238m.checkNotNullParameter(tArr, "$this$copyInto");
-        C12238m.checkNotNullParameter(tArr2, "destination");
-        System.arraycopy(tArr, i2, tArr2, i, i3 - i2);
-        return tArr2;
-    }
-
     public static /* synthetic */ Object[] copyInto$default(Object[] objArr, Object[] objArr2, int i, int i2, int i3, int i4, Object obj) {
         if ((i4 & 2) != 0) {
             i = 0;
@@ -103,17 +96,19 @@ public class C12139j extends C12137i {
         return copyInto(objArr, objArr2, i, i2, i3);
     }
 
+    public static final <T> T[] copyInto(T[] tArr, T[] tArr2, int i, int i2, int i3) {
+        C12238m.checkNotNullParameter(tArr, "$this$copyInto");
+        C12238m.checkNotNullParameter(tArr2, "destination");
+        System.arraycopy(tArr, i2, tArr2, i, i3 - i2);
+        return tArr2;
+    }
+
     public static final <T> T[] copyOfRange(T[] tArr, int i, int i2) {
         C12238m.checkNotNullParameter(tArr, "$this$copyOfRangeImpl");
         C12135h.copyOfRangeToIndexCheck(i2, tArr.length);
         T[] tArr2 = (T[]) Arrays.copyOfRange(tArr, i, i2);
         C12238m.checkNotNullExpressionValue(tArr2, "java.util.Arrays.copyOfR…this, fromIndex, toIndex)");
         return tArr2;
-    }
-
-    public static final <T> void fill(T[] tArr, T t, int i, int i2) {
-        C12238m.checkNotNullParameter(tArr, "$this$fill");
-        Arrays.fill(tArr, i, i2, t);
     }
 
     public static /* synthetic */ void fill$default(Object[] objArr, Object obj, int i, int i2, int i3, Object obj2) {
@@ -124,6 +119,11 @@ public class C12139j extends C12137i {
             i2 = objArr.length;
         }
         fill(objArr, obj, i, i2);
+    }
+
+    public static final <T> void fill(T[] tArr, T t, int i, int i2) {
+        C12238m.checkNotNullParameter(tArr, "$this$fill");
+        Arrays.fill(tArr, i, i2, t);
     }
 
     public static final <T> T[] plus(T[] tArr, Collection<? extends T> collection) {
@@ -155,13 +155,6 @@ public class C12139j extends C12137i {
         }
     }
 
-    public static final byte[] copyInto(byte[] bArr, byte[] bArr2, int i, int i2, int i3) {
-        C12238m.checkNotNullParameter(bArr, "$this$copyInto");
-        C12238m.checkNotNullParameter(bArr2, "destination");
-        System.arraycopy(bArr, i2, bArr2, i, i3 - i2);
-        return bArr2;
-    }
-
     public static /* synthetic */ byte[] copyInto$default(byte[] bArr, byte[] bArr2, int i, int i2, int i3, int i4, Object obj) {
         if ((i4 & 2) != 0) {
             i = 0;
@@ -173,6 +166,13 @@ public class C12139j extends C12137i {
             i3 = bArr.length;
         }
         return copyInto(bArr, bArr2, i, i2, i3);
+    }
+
+    public static final byte[] copyInto(byte[] bArr, byte[] bArr2, int i, int i2, int i3) {
+        C12238m.checkNotNullParameter(bArr, "$this$copyInto");
+        C12238m.checkNotNullParameter(bArr2, "destination");
+        System.arraycopy(bArr, i2, bArr2, i, i3 - i2);
+        return bArr2;
     }
 
     public static final void fill(int[] iArr, int i, int i2, int i3) {

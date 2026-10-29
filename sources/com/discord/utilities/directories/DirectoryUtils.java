@@ -49,45 +49,9 @@ public final class DirectoryUtils {
     private static final List<DirectoryServerMenuOptions> SERVER_OWNER_MENU_OPTIONS = C12147n.listOf((Object[]) new DirectoryServerMenuOptions[]{DirectoryServerMenuOptions.Edit, DirectoryServerMenuOptions.Remove});
     private static final List<DirectoryServerMenuOptions> NON_SERVER_OWNER_MENU_OPTIONS = C12145m.listOf(DirectoryServerMenuOptions.Report);
 
-    /* JADX INFO: compiled from: DirectoryUtils.kt */
-    public enum DirectoryServerMenuOptions {
-        Edit(C5419R.string.hub_entry_update, C5419R.drawable.ic_edit_24dp),
-        Remove(C5419R.string.hub_entry_remove, C5419R.drawable.ic_delete_24dp),
-        Report(C5419R.string.report, C5419R.drawable.ic_flag_24dp);
-
-        private final int iconRes;
-        private final int titleRes;
-
-        DirectoryServerMenuOptions(int i, int i2) {
-            this.titleRes = i;
-            this.iconRes = i2;
-        }
-
-        public final int getIconRes() {
-            return this.iconRes;
-        }
-
-        public final int getTitleRes() {
-            return this.titleRes;
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            DirectoryServerMenuOptions.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[DirectoryServerMenuOptions.Edit.ordinal()] = 1;
-            iArr[DirectoryServerMenuOptions.Remove.ordinal()] = 2;
-            iArr[DirectoryServerMenuOptions.Report.ordinal()] = 3;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.directories.DirectoryUtils$maybeJoinAndGoToGuild$1 */
     /* JADX INFO: compiled from: DirectoryUtils.kt */
-    public static final class C67421 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C67421 extends AbstractC12240o implements Function1<Guild, Unit> {
         public final /* synthetic */ AppBottomSheet $bottomSheet;
         public final /* synthetic */ GuildScheduledEvent $guildScheduledEvent;
         public final /* synthetic */ boolean $shouldToggleRsvp;
@@ -129,7 +93,7 @@ public final class DirectoryUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.directories.DirectoryUtils$showServerOptions$2 */
     /* JADX INFO: compiled from: DirectoryUtils.kt */
-    public static final class C67432 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C67432 extends AbstractC12240o implements Function1<Integer, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ DirectoryEntryGuild $directoryEntry;
         public final /* synthetic */ AppFragment $fragment;
@@ -179,6 +143,42 @@ public final class DirectoryUtils {
                     });
                 }
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: DirectoryUtils.kt */
+    public enum DirectoryServerMenuOptions {
+        Edit(C5419R.string.hub_entry_update, C5419R.drawable.ic_edit_24dp),
+        Remove(C5419R.string.hub_entry_remove, C5419R.drawable.ic_delete_24dp),
+        Report(C5419R.string.report, C5419R.drawable.ic_flag_24dp);
+
+        private final int iconRes;
+        private final int titleRes;
+
+        DirectoryServerMenuOptions(int i, int i2) {
+            this.titleRes = i;
+            this.iconRes = i2;
+        }
+
+        public final int getIconRes() {
+            return this.iconRes;
+        }
+
+        public final int getTitleRes() {
+            return this.titleRes;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            DirectoryServerMenuOptions.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[DirectoryServerMenuOptions.Edit.ordinal()] = 1;
+            iArr[DirectoryServerMenuOptions.Remove.ordinal()] = 2;
+            iArr[DirectoryServerMenuOptions.Report.ordinal()] = 3;
         }
     }
 

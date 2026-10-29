@@ -16,8 +16,6 @@ public class RtcCertificatePem {
         return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, DEFAULT_EXPIRY);
     }
 
-    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection.KeyType keyType, long j);
-
     @CalledByNative
     public String getCertificate() {
         return this.certificate;
@@ -27,6 +25,8 @@ public class RtcCertificatePem {
     public String getPrivateKey() {
         return this.privateKey;
     }
+
+    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection.KeyType keyType, long j);
 
     public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType) {
         return nativeGenerateCertificate(keyType, DEFAULT_EXPIRY);

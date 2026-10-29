@@ -25,6 +25,10 @@ public final /* data */ class ModelLoginResult {
         this.requiredActions = list;
     }
 
+    public final List<RequiredAction> component5() {
+        return this.requiredActions;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelLoginResult copy$default(ModelLoginResult modelLoginResult, boolean z2, String str, String str2, ModelUserSettingsBootstrap modelUserSettingsBootstrap, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -48,30 +52,6 @@ public final /* data */ class ModelLoginResult {
         return modelLoginResult.copy(z2, str3, str4, modelUserSettingsBootstrap2, list);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getMfa() {
-        return this.mfa;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getTicket() {
-        return this.ticket;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelUserSettingsBootstrap getUserSettings() {
-        return this.userSettings;
-    }
-
-    public final List<RequiredAction> component5() {
-        return this.requiredActions;
-    }
-
     public final ModelLoginResult copy(boolean mfa, String ticket, String token, ModelUserSettingsBootstrap userSettings, List<? extends RequiredAction> requiredActions) {
         return new ModelLoginResult(mfa, ticket, token, userSettings, requiredActions);
     }
@@ -87,6 +67,11 @@ public final /* data */ class ModelLoginResult {
         return this.mfa == modelLoginResult.mfa && C12238m.areEqual(this.ticket, modelLoginResult.ticket) && C12238m.areEqual(this.token, modelLoginResult.token) && C12238m.areEqual(this.userSettings, modelLoginResult.userSettings) && C12238m.areEqual(this.requiredActions, modelLoginResult.requiredActions);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getMfa() {
+        return this.mfa;
+    }
+
     public final boolean getMfa() {
         return this.mfa;
     }
@@ -95,12 +80,27 @@ public final /* data */ class ModelLoginResult {
         return this.requiredActions;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getTicket() {
         return this.ticket;
     }
 
+    public final String getTicket() {
+        return this.ticket;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getToken() {
         return this.token;
+    }
+
+    public final String getToken() {
+        return this.token;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final ModelUserSettingsBootstrap getUserSettings() {
+        return this.userSettings;
     }
 
     public final ModelUserSettingsBootstrap getUserSettings() {

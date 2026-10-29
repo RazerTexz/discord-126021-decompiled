@@ -29,6 +29,14 @@ public final /* data */ class WidgetHubEventsState {
         this.eventsAsync = restCallState;
     }
 
+    public final List<HubGuildScheduledEventData> component2() {
+        return this.eventsData;
+    }
+
+    public final RestCallState<List<DirectoryEntryEvent>> component3() {
+        return this.eventsAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetHubEventsState copy$default(WidgetHubEventsState widgetHubEventsState, boolean z2, List list, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -41,19 +49,6 @@ public final /* data */ class WidgetHubEventsState {
             restCallState = widgetHubEventsState.eventsAsync;
         }
         return widgetHubEventsState.copy(z2, list, restCallState);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getShowHeader() {
-        return this.showHeader;
-    }
-
-    public final List<HubGuildScheduledEventData> component2() {
-        return this.eventsData;
-    }
-
-    public final RestCallState<List<DirectoryEntryEvent>> component3() {
-        return this.eventsAsync;
     }
 
     public final WidgetHubEventsState copy(boolean showHeader, List<HubGuildScheduledEventData> eventsData, RestCallState<? extends List<DirectoryEntryEvent>> eventsAsync) {
@@ -79,6 +74,11 @@ public final /* data */ class WidgetHubEventsState {
 
     public final List<HubGuildScheduledEventData> getEventsData() {
         return this.eventsData;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getShowHeader() {
+        return this.showHeader;
     }
 
     public final boolean getShowHeader() {

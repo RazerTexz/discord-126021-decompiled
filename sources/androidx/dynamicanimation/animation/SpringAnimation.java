@@ -18,20 +18,6 @@ public final class SpringAnimation extends DynamicAnimation<SpringAnimation> {
         this.mEndRequested = false;
     }
 
-    private void sanityCheck() {
-        SpringForce springForce = this.mSpring;
-        if (springForce == null) {
-            throw new UnsupportedOperationException("Incomplete SpringAnimation: Either final position or a spring force needs to be set.");
-        }
-        double finalPosition = springForce.getFinalPosition();
-        if (finalPosition > this.mMaxValue) {
-            throw new UnsupportedOperationException("Final position of the spring cannot be greater than the max value.");
-        }
-        if (finalPosition < this.mMinValue) {
-            throw new UnsupportedOperationException("Final position of the spring cannot be less than the min value.");
-        }
-    }
-
     public void animateToFinalPosition(float f) {
         if (isRunning()) {
             this.mPendingPosition = f;
@@ -76,6 +62,20 @@ public final class SpringAnimation extends DynamicAnimation<SpringAnimation> {
     @Override // androidx.dynamicanimation.animation.DynamicAnimation
     public boolean isAtEquilibrium(float f, float f2) {
         return this.mSpring.isAtEquilibrium(f, f2);
+    }
+
+    private void sanityCheck() {
+        SpringForce springForce = this.mSpring;
+        if (springForce == null) {
+            throw new UnsupportedOperationException("Incomplete SpringAnimation: Either final position or a spring force needs to be set.");
+        }
+        double finalPosition = springForce.getFinalPosition();
+        if (finalPosition > this.mMaxValue) {
+            throw new UnsupportedOperationException("Final position of the spring cannot be greater than the max value.");
+        }
+        if (finalPosition < this.mMinValue) {
+            throw new UnsupportedOperationException("Final position of the spring cannot be less than the min value.");
+        }
     }
 
     public SpringAnimation setSpring(SpringForce springForce) {

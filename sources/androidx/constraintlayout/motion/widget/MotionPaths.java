@@ -24,8 +24,13 @@ public class MotionPaths implements Comparable<MotionPaths> {
     public static final int PERPENDICULAR = 1;
     public static final int SCREEN = 3;
     public static final String TAG = "MotionPaths";
-    public static String[] names = {ModelAuditLogEntry.CHANGE_KEY_POSITION, "x", "y", "width", "height", "pathRotate"};
     public LinkedHashMap<String, ConstraintAttribute> attributes;
+
+    /* JADX INFO: renamed from: x */
+    public float f108x;
+
+    /* JADX INFO: renamed from: y */
+    public float f109y;
     public float height;
     public int mDrawPath;
     public Easing mKeyFrameEasing;
@@ -38,12 +43,7 @@ public class MotionPaths implements Comparable<MotionPaths> {
     public float position;
     public float time;
     public float width;
-
-    /* JADX INFO: renamed from: x */
-    public float f108x;
-
-    /* JADX INFO: renamed from: y */
-    public float f109y;
+    public static String[] names = {ModelAuditLogEntry.CHANGE_KEY_POSITION, "x", "y", "width", "height", "pathRotate"};
 
     public MotionPaths() {
         this.mDrawPath = 0;
@@ -54,21 +54,6 @@ public class MotionPaths implements Comparable<MotionPaths> {
         this.mMode = 0;
         this.mTempValue = new double[18];
         this.mTempDelta = new double[18];
-    }
-
-    private boolean diff(float f, float f2) {
-        if (Float.isNaN(f) || Float.isNaN(f2)) {
-            return Float.isNaN(f) != Float.isNaN(f2);
-        }
-        return Math.abs(f - f2) > 1.0E-6f;
-    }
-
-    private static final float xRotate(float f, float f2, float f3, float f4, float f5, float f6) {
-        return (((f5 - f3) * f2) - ((f6 - f4) * f)) + f3;
-    }
-
-    private static final float yRotate(float f, float f2, float f3, float f4, float f5, float f6) {
-        return ((f6 - f4) * f2) + ((f5 - f3) * f) + f4;
     }
 
     public void applyParameters(ConstraintSet.Constraint constraint) {
@@ -84,6 +69,13 @@ public class MotionPaths implements Comparable<MotionPaths> {
                 this.attributes.put(str, constraintAttribute);
             }
         }
+    }
+
+    private boolean diff(float f, float f2) {
+        if (Float.isNaN(f) || Float.isNaN(f2)) {
+            return Float.isNaN(f) != Float.isNaN(f2);
+        }
+        return Math.abs(f - f2) > 1.0E-6f;
     }
 
     public void different(MotionPaths motionPaths, boolean[] zArr, String[] strArr, boolean z2) {
@@ -428,6 +420,14 @@ public class MotionPaths implements Comparable<MotionPaths> {
             view.measure(View.MeasureSpec.makeMeasureSpec(i8, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY));
         }
         view.layout(i4, i5, i6, i7);
+    }
+
+    private static final float xRotate(float f, float f2, float f3, float f4, float f5, float f6) {
+        return (((f5 - f3) * f2) - ((f6 - f4) * f)) + f3;
+    }
+
+    private static final float yRotate(float f, float f2, float f3, float f4, float f5, float f6) {
+        return ((f6 - f4) * f2) + ((f5 - f3) * f) + f4;
     }
 
     @Override // java.lang.Comparable

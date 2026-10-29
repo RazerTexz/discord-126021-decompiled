@@ -18,13 +18,13 @@ import p007b.p195g.p196a.p205c.p212e0.AbstractC2215g;
 /* JADX INFO: compiled from: TypeBase.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2333l extends AbstractC2360j implements InterfaceC2363m {
-
-    /* JADX INFO: renamed from: j */
-    public static final C2334m f4905j = C2334m.f4908l;
-    private static final long serialVersionUID = 1;
     public final C2334m _bindings;
     public final AbstractC2360j _superClass;
     public final AbstractC2360j[] _superInterfaces;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2334m f4905j = C2334m.f4908l;
 
     public AbstractC2333l(Class<?> cls, C2334m c2334m, AbstractC2360j abstractC2360j, AbstractC2360j[] abstractC2360jArr, int i, Object obj, Object obj2, boolean z2) {
         super(cls, i, obj, obj2, z2);
@@ -76,9 +76,27 @@ public abstract class AbstractC2333l extends AbstractC2360j implements Interface
         return sb;
     }
 
+    @Override // p007b.p195g.p196a.p198b.p203s.AbstractC2137a
+    /* JADX INFO: renamed from: e */
+    public String mo1729e() {
+        return mo2106K();
+    }
+
     /* JADX INFO: renamed from: K */
     public String mo2106K() {
         return this._class.getName();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: j */
+    public C2334m mo2136j() {
+        return this._bindings;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: q */
+    public AbstractC2360j mo2137q() {
+        return this._superClass;
     }
 
     @Override // p007b.p195g.p196a.p205c.InterfaceC2363m
@@ -94,12 +112,6 @@ public abstract class AbstractC2333l extends AbstractC2360j implements Interface
         abstractC2215g.mo1959e(abstractC2108d, c2138b);
         abstractC2108d.mo1658j0(mo2106K());
         abstractC2215g.mo1960f(abstractC2108d, c2138b);
-    }
-
-    @Override // p007b.p195g.p196a.p198b.p203s.AbstractC2137a
-    /* JADX INFO: renamed from: e */
-    public String mo1729e() {
-        return mo2106K();
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
@@ -139,12 +151,6 @@ public abstract class AbstractC2333l extends AbstractC2360j implements Interface
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: j */
-    public C2334m mo2136j() {
-        return this._bindings;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
     /* JADX INFO: renamed from: n */
     public List<AbstractC2360j> mo2145n() {
         AbstractC2360j[] abstractC2360jArr = this._superInterfaces;
@@ -156,11 +162,5 @@ public abstract class AbstractC2333l extends AbstractC2360j implements Interface
             return length != 1 ? Arrays.asList(abstractC2360jArr) : Collections.singletonList(abstractC2360jArr[0]);
         }
         return Collections.emptyList();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: q */
-    public AbstractC2360j mo2137q() {
-        return this._superClass;
     }
 }

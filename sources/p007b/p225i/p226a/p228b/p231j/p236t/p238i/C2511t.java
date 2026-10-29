@@ -41,9 +41,6 @@ import p007b.p225i.p226a.p228b.p231j.p241w.C2524a;
 @WorkerThread
 public class C2511t implements InterfaceC2494c, InterfaceC2518a {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2407b f5441j = new C2407b("proto");
-
     /* JADX INFO: renamed from: k */
     public final C2517z f5442k;
 
@@ -56,6 +53,9 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
     /* JADX INFO: renamed from: n */
     public final AbstractC2495d f5445n;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2407b f5441j = new C2407b("proto");
+
     /* JADX INFO: renamed from: b.i.a.b.j.t.i.t$b */
     /* JADX INFO: compiled from: SQLiteEventStore.java */
     public interface b<T, U> {
@@ -64,7 +64,7 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.t.i.t$c */
     /* JADX INFO: compiled from: SQLiteEventStore.java */
-    public static class c {
+    public class c {
 
         /* JADX INFO: renamed from: a */
         public final String f5446a;
@@ -92,6 +92,11 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
         this.f5445n = abstractC2495d;
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        this.f5442k.close();
+    }
+
     /* JADX INFO: renamed from: f */
     public static String m2404f(Iterable<AbstractC2499h> iterable) {
         StringBuilder sb = new StringBuilder("(");
@@ -115,40 +120,76 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
         }
     }
 
-    @Override // p007b.p225i.p226a.p228b.p231j.p239u.InterfaceC2518a
-    /* JADX INFO: renamed from: a */
-    public <T> T mo2406a(InterfaceC2518a.a<T> aVar) {
-        final SQLiteDatabase sQLiteDatabaseM2407b = m2407b();
-        m2410e(new d(sQLiteDatabaseM2407b) { // from class: b.i.a.b.j.t.i.m
+    @VisibleForTesting
+    /* JADX INFO: renamed from: b */
+    public SQLiteDatabase m2407b() {
+        final C2517z c2517z = this.f5442k;
+        c2517z.getClass();
+        return (SQLiteDatabase) m2410e(new d(c2517z) { // from class: b.i.a.b.j.t.i.o
 
             /* JADX INFO: renamed from: a */
-            public final SQLiteDatabase f5432a;
+            public final C2517z f5434a;
 
             {
-                this.f5432a = sQLiteDatabaseM2407b;
+                this.f5434a = c2517z;
             }
 
             @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.d
             /* JADX INFO: renamed from: a */
             public Object mo2403a() {
-                SQLiteDatabase sQLiteDatabase = this.f5432a;
-                C2407b c2407b = C2511t.f5441j;
-                sQLiteDatabase.beginTransaction();
-                return null;
+                return this.f5434a.getWritableDatabase();
             }
-        }, new b() { // from class: b.i.a.b.j.t.i.n
+        }, new b() { // from class: b.i.a.b.j.t.i.r
             @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.b
             public Object apply(Object obj) {
                 C2407b c2407b = C2511t.f5441j;
-                throw new SynchronizationException("Timed out while trying to acquire the lock.", (Throwable) obj);
+                throw new SynchronizationException("Timed out while trying to open db.", (Throwable) obj);
             }
         });
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public final Long m2408c(SQLiteDatabase sQLiteDatabase, AbstractC2442i abstractC2442i) {
+        StringBuilder sb = new StringBuilder("backend_name = ? and priority = ?");
+        ArrayList arrayList = new ArrayList(Arrays.asList(abstractC2442i.mo2348b(), String.valueOf(C2524a.m2414a(abstractC2442i.mo2350d()))));
+        if (abstractC2442i.mo2349c() != null) {
+            sb.append(" and extras = ?");
+            arrayList.add(Base64.encodeToString(abstractC2442i.mo2349c(), 0));
+        }
+        Cursor cursorQuery = sQLiteDatabase.query("transport_contexts", new String[]{"_id"}, sb.toString(), (String[]) arrayList.toArray(new String[0]), null, null, null);
         try {
-            T tExecute = aVar.execute();
+            return !cursorQuery.moveToNext() ? null : Long.valueOf(cursorQuery.getLong(0));
+        } finally {
+            cursorQuery.close();
+        }
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final <T> T m2409d(b<SQLiteDatabase, T> bVar) {
+        SQLiteDatabase sQLiteDatabaseM2407b = m2407b();
+        sQLiteDatabaseM2407b.beginTransaction();
+        try {
+            T tApply = bVar.apply(sQLiteDatabaseM2407b);
             sQLiteDatabaseM2407b.setTransactionSuccessful();
-            return tExecute;
+            return tApply;
         } finally {
             sQLiteDatabaseM2407b.endTransaction();
+        }
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final <T> T m2410e(d<T> dVar, b<Throwable, T> bVar) {
+        long jMo2413a = this.f5444m.mo2413a();
+        while (true) {
+            try {
+                return dVar.mo2403a();
+            } catch (SQLiteDatabaseLockedException e) {
+                if (this.f5444m.mo2413a() >= ((long) this.f5445n.mo2386a()) + jMo2413a) {
+                    return bVar.apply(e);
+                }
+                SystemClock.sleep(50L);
+            }
         }
     }
 
@@ -237,84 +278,6 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
             return null;
         }
         return new C2493b(jLongValue, abstractC2442i, abstractC2439f);
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: b */
-    public SQLiteDatabase m2407b() {
-        final C2517z c2517z = this.f5442k;
-        c2517z.getClass();
-        return (SQLiteDatabase) m2410e(new d(c2517z) { // from class: b.i.a.b.j.t.i.o
-
-            /* JADX INFO: renamed from: a */
-            public final C2517z f5434a;
-
-            {
-                this.f5434a = c2517z;
-            }
-
-            @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.d
-            /* JADX INFO: renamed from: a */
-            public Object mo2403a() {
-                return this.f5434a.getWritableDatabase();
-            }
-        }, new b() { // from class: b.i.a.b.j.t.i.r
-            @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.b
-            public Object apply(Object obj) {
-                C2407b c2407b = C2511t.f5441j;
-                throw new SynchronizationException("Timed out while trying to open db.", (Throwable) obj);
-            }
-        });
-    }
-
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public final Long m2408c(SQLiteDatabase sQLiteDatabase, AbstractC2442i abstractC2442i) {
-        StringBuilder sb = new StringBuilder("backend_name = ? and priority = ?");
-        ArrayList arrayList = new ArrayList(Arrays.asList(abstractC2442i.mo2348b(), String.valueOf(C2524a.m2414a(abstractC2442i.mo2350d()))));
-        if (abstractC2442i.mo2349c() != null) {
-            sb.append(" and extras = ?");
-            arrayList.add(Base64.encodeToString(abstractC2442i.mo2349c(), 0));
-        }
-        Cursor cursorQuery = sQLiteDatabase.query("transport_contexts", new String[]{"_id"}, sb.toString(), (String[]) arrayList.toArray(new String[0]), null, null, null);
-        try {
-            return !cursorQuery.moveToNext() ? null : Long.valueOf(cursorQuery.getLong(0));
-        } finally {
-            cursorQuery.close();
-        }
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        this.f5442k.close();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final <T> T m2409d(b<SQLiteDatabase, T> bVar) {
-        SQLiteDatabase sQLiteDatabaseM2407b = m2407b();
-        sQLiteDatabaseM2407b.beginTransaction();
-        try {
-            T tApply = bVar.apply(sQLiteDatabaseM2407b);
-            sQLiteDatabaseM2407b.setTransactionSuccessful();
-            return tApply;
-        } finally {
-            sQLiteDatabaseM2407b.endTransaction();
-        }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final <T> T m2410e(d<T> dVar, b<Throwable, T> bVar) {
-        long jMo2413a = this.f5444m.mo2413a();
-        while (true) {
-            try {
-                return dVar.mo2403a();
-            } catch (SQLiteDatabaseLockedException e) {
-                if (this.f5444m.mo2413a() >= ((long) this.f5445n.mo2386a()) + jMo2413a) {
-                    return bVar.apply(e);
-                }
-                SystemClock.sleep(50L);
-            }
-        }
     }
 
     @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.InterfaceC2494c
@@ -588,6 +551,43 @@ public class C2511t implements InterfaceC2494c, InterfaceC2518a {
             });
             sQLiteDatabaseM2407b.setTransactionSuccessful();
             return list;
+        } finally {
+            sQLiteDatabaseM2407b.endTransaction();
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p239u.InterfaceC2518a
+    /* JADX INFO: renamed from: a */
+    public <T> T mo2406a(InterfaceC2518a.a<T> aVar) {
+        final SQLiteDatabase sQLiteDatabaseM2407b = m2407b();
+        m2410e(new d(sQLiteDatabaseM2407b) { // from class: b.i.a.b.j.t.i.m
+
+            /* JADX INFO: renamed from: a */
+            public final SQLiteDatabase f5432a;
+
+            {
+                this.f5432a = sQLiteDatabaseM2407b;
+            }
+
+            @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.d
+            /* JADX INFO: renamed from: a */
+            public Object mo2403a() {
+                SQLiteDatabase sQLiteDatabase = this.f5432a;
+                C2407b c2407b = C2511t.f5441j;
+                sQLiteDatabase.beginTransaction();
+                return null;
+            }
+        }, new b() { // from class: b.i.a.b.j.t.i.n
+            @Override // p007b.p225i.p226a.p228b.p231j.p236t.p238i.C2511t.b
+            public Object apply(Object obj) {
+                C2407b c2407b = C2511t.f5441j;
+                throw new SynchronizationException("Timed out while trying to acquire the lock.", (Throwable) obj);
+            }
+        });
+        try {
+            T tExecute = aVar.execute();
+            sQLiteDatabaseM2407b.setTransactionSuccessful();
+            return tExecute;
         } finally {
             sQLiteDatabaseM2407b.endTransaction();
         }

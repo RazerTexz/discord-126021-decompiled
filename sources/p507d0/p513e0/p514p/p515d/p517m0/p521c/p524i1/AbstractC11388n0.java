@@ -42,6 +42,20 @@ public abstract class AbstractC11388n0 extends AbstractC11386m0 {
         this.f22907o = z2;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
+    public AbstractC11815g<?> getCompileTimeInitializer() {
+        InterfaceC11901k<AbstractC11815g<?>> interfaceC11901k = this.f22908p;
+        if (interfaceC11901k != null) {
+            return interfaceC11901k.invoke();
+        }
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
+    public boolean isVar() {
+        return this.f22907o;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9418a(int i) {
         Object[] objArr = new Object[3];
@@ -63,20 +77,6 @@ public abstract class AbstractC11388n0 extends AbstractC11386m0 {
             objArr[2] = "setCompileTimeInitializer";
         }
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
-    public AbstractC11815g<?> getCompileTimeInitializer() {
-        InterfaceC11901k<AbstractC11815g<?>> interfaceC11901k = this.f22908p;
-        if (interfaceC11901k != null) {
-            return interfaceC11901k.invoke();
-        }
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
-    public boolean isVar() {
-        return this.f22907o;
     }
 
     public void setCompileTimeInitializer(InterfaceC11901k<AbstractC11815g<?>> interfaceC11901k) {

@@ -29,12 +29,20 @@ public final class ColorCompat {
     private ColorCompat() {
     }
 
+    public final ColorStateList createDefaultColorStateList(@ColorInt int color) {
+        return new ColorStateList(new int[][]{new int[]{R.attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R.attr.state_pressed}}, new int[]{color, color, color, color});
+    }
+
     @ColorInt
     public static final int getColor(Context context, @ColorRes int colorResourceId) {
         if (context != null) {
             return ContextCompat.getColor(context, colorResourceId);
         }
         return 0;
+    }
+
+    public final String getColorHexFromColorInt(@ColorInt int colorInt) {
+        return C1643a.m828P(new Object[]{Integer.valueOf(colorInt & ViewCompat.MEASURED_SIZE_MASK)}, 1, "#%06X", "java.lang.String.format(format, *args)");
     }
 
     @ColorInt
@@ -47,6 +55,13 @@ public final class ColorCompat {
         return typedValue.data;
     }
 
+    public static /* synthetic */ boolean isColorDark$default(int i, float f, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            f = 0.4f;
+        }
+        return isColorDark(i, f);
+    }
+
     public static final boolean isColorDark(int i) {
         return isColorDark$default(i, 0.0f, 2, null);
     }
@@ -55,11 +70,15 @@ public final class ColorCompat {
         return ((double) 1) - (((((double) Color.blue(color)) * 0.114d) + ((((double) Color.green(color)) * 0.587d) + (((double) Color.red(color)) * 0.299d))) / ((double) 255)) >= ((double) darkThreshold);
     }
 
-    public static /* synthetic */ boolean isColorDark$default(int i, float f, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            f = 0.4f;
+    public final int removeAlphaComponent(@ColorInt int colorInt) {
+        return Color.argb(0, Color.red(colorInt), Color.green(colorInt), Color.blue(colorInt));
+    }
+
+    public static /* synthetic */ void setStatusBarColor$default(Fragment fragment, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            z2 = false;
         }
-        return isColorDark(i, f);
+        setStatusBarColor(fragment, i, z2);
     }
 
     public static final void setStatusBarColor(Activity activity, @ColorInt int i) {
@@ -79,13 +98,6 @@ public final class ColorCompat {
         setStatusBarColor(fragment.m95e(), color, forceDarkUi);
     }
 
-    public static /* synthetic */ void setStatusBarColor$default(Fragment fragment, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            z2 = false;
-        }
-        setStatusBarColor(fragment, i, z2);
-    }
-
     public static final void setStatusBarColorResourceId(Fragment fragment, @ColorRes int colorResourceId) {
         C12238m.checkNotNullParameter(fragment, "fragment");
         setStatusBarColorResourceId(fragment.m95e(), colorResourceId);
@@ -96,26 +108,10 @@ public final class ColorCompat {
         setStatusBarTranslucent(fragment.m95e());
     }
 
-    public final ColorStateList createDefaultColorStateList(@ColorInt int color) {
-        return new ColorStateList(new int[][]{new int[]{R.attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R.attr.state_pressed}}, new int[]{color, color, color, color});
-    }
-
-    public final String getColorHexFromColorInt(@ColorInt int colorInt) {
-        return C1643a.m828P(new Object[]{Integer.valueOf(colorInt & ViewCompat.MEASURED_SIZE_MASK)}, 1, "#%06X", "java.lang.String.format(format, *args)");
-    }
-
-    public final int removeAlphaComponent(@ColorInt int colorInt) {
-        return Color.argb(0, Color.red(colorInt), Color.green(colorInt), Color.blue(colorInt));
-    }
-
     @ColorInt
     public static final int getColor(View view, @ColorRes int colorResourceId) {
         C12238m.checkNotNullParameter(view, "view");
         return getColor(view.getContext(), colorResourceId);
-    }
-
-    public static final void setStatusBarColor(Activity activity, @ColorInt int color, boolean forceDarkUi) {
-        setStatusBarColor(activity != null ? activity.getWindow() : null, color, forceDarkUi);
     }
 
     public static /* synthetic */ void setStatusBarColor$default(Activity activity, int i, boolean z2, int i2, Object obj) {
@@ -123,6 +119,10 @@ public final class ColorCompat {
             z2 = false;
         }
         setStatusBarColor(activity, i, z2);
+    }
+
+    public static final void setStatusBarColor(Activity activity, @ColorInt int color, boolean forceDarkUi) {
+        setStatusBarColor(activity != null ? activity.getWindow() : null, color, forceDarkUi);
     }
 
     public static final void setStatusBarColorResourceId(Activity activity, @ColorRes int colorResourceId) {
@@ -137,6 +137,13 @@ public final class ColorCompat {
     public static final int getColor(Fragment fragment, @ColorRes int colorResourceId) {
         C12238m.checkNotNullParameter(fragment, "fragment");
         return getColor(fragment.getContext(), colorResourceId);
+    }
+
+    public static /* synthetic */ void setStatusBarColor$default(Window window, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            z2 = false;
+        }
+        setStatusBarColor(window, i, z2);
     }
 
     public static final void setStatusBarColor(Window window, @ColorInt int color, boolean forceDarkUi) {
@@ -154,13 +161,6 @@ public final class ColorCompat {
             return;
         }
         decorView.setSystemUiVisibility(0);
-    }
-
-    public static /* synthetic */ void setStatusBarColor$default(Window window, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            z2 = false;
-        }
-        setStatusBarColor(window, i, z2);
     }
 
     public static final void setStatusBarColorResourceId(Window window, @ColorRes int colorResourceId) {

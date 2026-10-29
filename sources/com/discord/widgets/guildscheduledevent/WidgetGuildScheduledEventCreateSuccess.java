@@ -63,28 +63,9 @@ public final class WidgetGuildScheduledEventCreateSuccess extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, Long channelId, long guildId, long guildScheduledEventId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", guildScheduledEventId);
-            C0870j.m156d(context, WidgetGuildScheduledEventCreateSuccess.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
-    public static final class C88511 extends AbstractC12240o implements Function1<WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded, Unit> {
+    public final class C88511 extends AbstractC12240o implements Function1<WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded, Unit> {
         public C88511() {
             super(1);
         }
@@ -99,6 +80,25 @@ public final class WidgetGuildScheduledEventCreateSuccess extends AppFragment {
         public final void invoke2(WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded loaded) {
             C12238m.checkNotNullParameter(loaded, "viewState");
             WidgetGuildScheduledEventCreateSuccess.this.configureUI(loaded);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, Long channelId, long guildId, long guildScheduledEventId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", guildScheduledEventId);
+            C0870j.m156d(context, WidgetGuildScheduledEventCreateSuccess.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

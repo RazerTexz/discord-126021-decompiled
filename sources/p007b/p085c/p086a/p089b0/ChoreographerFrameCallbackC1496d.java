@@ -106,13 +106,6 @@ public class ChoreographerFrameCallbackC1496d extends AbstractC1493a implements 
         C1500c.m663a("LottieValueAnimator#doFrame");
     }
 
-    @MainThread
-    /* JADX INFO: renamed from: g */
-    public void m642g() {
-        m648m();
-        m637b(m646k());
-    }
-
     @Override // android.animation.ValueAnimator
     @FloatRange(from = 0.0d, m75to = 1.0d)
     public float getAnimatedFraction() {
@@ -148,6 +141,18 @@ public class ChoreographerFrameCallbackC1496d extends AbstractC1493a implements 
         return (long) c1505d.m670b();
     }
 
+    @Override // android.animation.ValueAnimator, android.animation.Animator
+    public boolean isRunning() {
+        return this.f2305t;
+    }
+
+    @MainThread
+    /* JADX INFO: renamed from: g */
+    public void m642g() {
+        m648m();
+        m637b(m646k());
+    }
+
     @FloatRange(from = 0.0d, m75to = 1.0d)
     /* JADX INFO: renamed from: h */
     public float m643h() {
@@ -168,11 +173,6 @@ public class ChoreographerFrameCallbackC1496d extends AbstractC1493a implements 
         }
         float f = this.f2303r;
         return f == 2.1474836E9f ? c1505d.f2347l : f;
-    }
-
-    @Override // android.animation.ValueAnimator, android.animation.Animator
-    public boolean isRunning() {
-        return this.f2305t;
     }
 
     /* JADX INFO: renamed from: j */

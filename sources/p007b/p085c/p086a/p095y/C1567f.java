@@ -13,15 +13,15 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1567f {
 
-    /* JADX INFO: renamed from: a */
-    public static final C1567f f2712a = new C1567f("COMPOSITION");
-
     /* JADX INFO: renamed from: b */
     public final List<String> f2713b;
 
     /* JADX INFO: renamed from: c */
     @Nullable
     public InterfaceC1568g f2714c;
+
+    /* JADX INFO: renamed from: a */
+    public static final C1567f f2712a = new C1567f("COMPOSITION");
 
     public C1567f(String... strArr) {
         this.f2713b = Arrays.asList(strArr);

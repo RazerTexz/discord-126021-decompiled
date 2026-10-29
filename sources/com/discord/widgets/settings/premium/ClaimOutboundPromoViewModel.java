@@ -26,11 +26,56 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
     private final PublishSubject<Event> eventSubject;
     private final StoreOutboundPromotions storeOutboundPromotions;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ClaimOutboundPromoViewModel$claimPromo$1 */
     /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-    public static abstract class Event {
+    public final class C98711 extends AbstractC12240o implements Function1<ClaimedOutboundPromotion, Unit> {
+        public C98711() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ClaimedOutboundPromotion claimedOutboundPromotion) {
+            invoke2(claimedOutboundPromotion);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ClaimedOutboundPromotion claimedOutboundPromotion) {
+            C12238m.checkNotNullParameter(claimedOutboundPromotion, "claimedPromo");
+            ClaimOutboundPromoViewModel claimOutboundPromoViewModel = ClaimOutboundPromoViewModel.this;
+            ClaimStatus.Claimed claimed = new ClaimStatus.Claimed(claimedOutboundPromotion.getPromotion().getId(), claimedOutboundPromotion.getCode(), claimedOutboundPromotion.getPromotion().getOutboundRedemptionModalBody(), claimedOutboundPromotion.m8136d(), claimedOutboundPromotion.m8135c());
+            ClaimOutboundPromoViewModel.this.updateViewState(new ViewState.Claimed(claimed));
+            ClaimOutboundPromoViewModel.this.eventSubject.f27650k.onNext((T) new Event.Claimed(claimed));
+            claimOutboundPromoViewModel.claimStatus = claimed;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ClaimOutboundPromoViewModel$claimPromo$2 */
+    /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
+    public final class C98722 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C98722() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            ClaimOutboundPromoViewModel.this.updateViewState(ViewState.ClaimFailed.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final /* data */ class Claimed extends Event {
+        public final /* data */ class Claimed extends Event {
             private final ClaimStatus.Claimed claimedStatus;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -47,11 +92,6 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                 return claimed.copy(claimed2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ClaimStatus.Claimed getClaimedStatus() {
-                return this.claimedStatus;
-            }
-
             public final Claimed copy(ClaimStatus.Claimed claimedStatus) {
                 C12238m.checkNotNullParameter(claimedStatus, "claimedStatus");
                 return new Claimed(claimedStatus);
@@ -62,6 +102,11 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof Claimed) && C12238m.areEqual(this.claimedStatus, ((Claimed) other).claimedStatus);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ClaimStatus.Claimed getClaimedStatus() {
+                return this.claimedStatus;
             }
 
             public final ClaimStatus.Claimed getClaimedStatus() {
@@ -85,7 +130,7 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final /* data */ class CopyCode extends Event {
+        public final /* data */ class CopyCode extends Event {
             private final String code;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -102,11 +147,6 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                 return copyCode.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getCode() {
-                return this.code;
-            }
-
             public final CopyCode copy(String code) {
                 C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
                 return new CopyCode(code);
@@ -117,6 +157,11 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof CopyCode) && C12238m.areEqual(this.code, ((CopyCode) other).code);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getCode() {
+                return this.code;
             }
 
             public final String getCode() {
@@ -137,7 +182,7 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final class Dismiss extends Event {
+        public final class Dismiss extends Event {
             public static final Dismiss INSTANCE = new Dismiss();
 
             private Dismiss() {
@@ -146,7 +191,7 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final /* data */ class OpenRedemptionUrl extends Event {
+        public final /* data */ class OpenRedemptionUrl extends Event {
             private final String url;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -163,11 +208,6 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                 return openRedemptionUrl.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getUrl() {
-                return this.url;
-            }
-
             public final OpenRedemptionUrl copy(String url) {
                 C12238m.checkNotNullParameter(url, "url");
                 return new OpenRedemptionUrl(url);
@@ -178,6 +218,11 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof OpenRedemptionUrl) && C12238m.areEqual(this.url, ((OpenRedemptionUrl) other).url);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getUrl() {
+                return this.url;
             }
 
             public final String getUrl() {
@@ -206,10 +251,10 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final class ClaimFailed extends ViewState {
+        public final class ClaimFailed extends ViewState {
             public static final ClaimFailed INSTANCE = new ClaimFailed();
 
             private ClaimFailed() {
@@ -218,7 +263,7 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final class ClaimInProgress extends ViewState {
+        public final class ClaimInProgress extends ViewState {
             public static final ClaimInProgress INSTANCE = new ClaimInProgress();
 
             private ClaimInProgress() {
@@ -227,7 +272,7 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-        public static final /* data */ class Claimed extends ViewState {
+        public final /* data */ class Claimed extends ViewState {
             private final ClaimStatus.Claimed claimedStatus;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -244,11 +289,6 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                 return claimed.copy(claimed2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ClaimStatus.Claimed getClaimedStatus() {
-                return this.claimedStatus;
-            }
-
             public final Claimed copy(ClaimStatus.Claimed claimedStatus) {
                 C12238m.checkNotNullParameter(claimedStatus, "claimedStatus");
                 return new Claimed(claimedStatus);
@@ -259,6 +299,11 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof Claimed) && C12238m.areEqual(this.claimedStatus, ((Claimed) other).claimedStatus);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ClaimStatus.Claimed getClaimedStatus() {
+                return this.claimedStatus;
             }
 
             public final ClaimStatus.Claimed getClaimedStatus() {
@@ -289,67 +334,12 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ClaimOutboundPromoViewModel$claimPromo$1 */
-    /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-    public static final class C98711 extends AbstractC12240o implements Function1<ClaimedOutboundPromotion, Unit> {
-        public C98711() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ClaimedOutboundPromotion claimedOutboundPromotion) {
-            invoke2(claimedOutboundPromotion);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ClaimedOutboundPromotion claimedOutboundPromotion) {
-            C12238m.checkNotNullParameter(claimedOutboundPromotion, "claimedPromo");
-            ClaimOutboundPromoViewModel claimOutboundPromoViewModel = ClaimOutboundPromoViewModel.this;
-            ClaimStatus.Claimed claimed = new ClaimStatus.Claimed(claimedOutboundPromotion.getPromotion().getId(), claimedOutboundPromotion.getCode(), claimedOutboundPromotion.getPromotion().getOutboundRedemptionModalBody(), claimedOutboundPromotion.m8136d(), claimedOutboundPromotion.m8135c());
-            ClaimOutboundPromoViewModel.this.updateViewState(new ViewState.Claimed(claimed));
-            ClaimOutboundPromoViewModel.this.eventSubject.f27650k.onNext((T) new Event.Claimed(claimed));
-            claimOutboundPromoViewModel.claimStatus = claimed;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ClaimOutboundPromoViewModel$claimPromo$2 */
-    /* JADX INFO: compiled from: ClaimOutboundPromoViewModel.kt */
-    public static final class C98722 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C98722() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            ClaimOutboundPromoViewModel.this.updateViewState(ViewState.ClaimFailed.INSTANCE);
-        }
-    }
-
     public /* synthetic */ ClaimOutboundPromoViewModel(ClaimStatus claimStatus, StoreOutboundPromotions storeOutboundPromotions, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(claimStatus, (i & 2) != 0 ? StoreStream.INSTANCE.getOutboundPromotions() : storeOutboundPromotions);
     }
 
     private final void claimPromo(long promoId) {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.storeOutboundPromotions.claimOutboundPromotion(promoId), false, 1, null), this, null, 2, null), (Class<?>) ClaimOutboundPromoViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C98722()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98711());
-    }
-
-    @MainThread
-    private final void handleClaimStatus() {
-        ClaimStatus claimStatus = this.claimStatus;
-        if (claimStatus instanceof ClaimStatus.Claimed) {
-            updateViewState(new ViewState.Claimed((ClaimStatus.Claimed) claimStatus));
-        } else if (claimStatus instanceof ClaimStatus.Unclaimed) {
-            claimPromo(((ClaimStatus.Unclaimed) claimStatus).getPromoId());
-        }
     }
 
     @MainThread
@@ -369,6 +359,16 @@ public final class ClaimOutboundPromoViewModel extends AbstractC0859d0<ViewState
     public final void failureCloseClicked() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.f27650k.onNext(Event.Dismiss.INSTANCE);
+    }
+
+    @MainThread
+    private final void handleClaimStatus() {
+        ClaimStatus claimStatus = this.claimStatus;
+        if (claimStatus instanceof ClaimStatus.Claimed) {
+            updateViewState(new ViewState.Claimed((ClaimStatus.Claimed) claimStatus));
+        } else if (claimStatus instanceof ClaimStatus.Unclaimed) {
+            claimPromo(((ClaimStatus.Unclaimed) claimStatus).getPromoId());
+        }
     }
 
     @MainThread

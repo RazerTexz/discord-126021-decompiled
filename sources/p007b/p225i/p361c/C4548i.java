@@ -49,6 +49,18 @@ public final class C4548i {
         this.f12140g = str7;
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof C4548i)) {
+            return false;
+        }
+        C4548i c4548i = (C4548i) obj;
+        return C1460d.m524h0(this.f12135b, c4548i.f12135b) && C1460d.m524h0(this.f12134a, c4548i.f12134a) && C1460d.m524h0(this.f12136c, c4548i.f12136c) && C1460d.m524h0(this.f12137d, c4548i.f12137d) && C1460d.m524h0(this.f12138e, c4548i.f12138e) && C1460d.m524h0(this.f12139f, c4548i.f12139f) && C1460d.m524h0(this.f12140g, c4548i.f12140g);
+    }
+
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f12135b, this.f12134a, this.f12136c, this.f12137d, this.f12138e, this.f12139f, this.f12140g});
+    }
+
     @Nullable
     /* JADX INFO: renamed from: a */
     public static C4548i m6337a(@NonNull Context context) {
@@ -72,18 +84,6 @@ public final class C4548i {
         String string6 = identifier6 == 0 ? null : resources.getString(identifier6);
         int identifier7 = resources.getIdentifier("project_id", "string", resourcePackageName);
         return new C4548i(string, string2, string3, string4, string5, string6, identifier7 != 0 ? resources.getString(identifier7) : null);
-    }
-
-    public boolean equals(Object obj) {
-        if (!(obj instanceof C4548i)) {
-            return false;
-        }
-        C4548i c4548i = (C4548i) obj;
-        return C1460d.m524h0(this.f12135b, c4548i.f12135b) && C1460d.m524h0(this.f12134a, c4548i.f12134a) && C1460d.m524h0(this.f12136c, c4548i.f12136c) && C1460d.m524h0(this.f12137d, c4548i.f12137d) && C1460d.m524h0(this.f12138e, c4548i.f12138e) && C1460d.m524h0(this.f12139f, c4548i.f12139f) && C1460d.m524h0(this.f12140g, c4548i.f12140g);
-    }
-
-    public int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f12135b, this.f12134a, this.f12136c, this.f12137d, this.f12138e, this.f12139f, this.f12140g});
     }
 
     public String toString() {

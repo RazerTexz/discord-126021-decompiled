@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionRemoved implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
+    private final Long paymentGateway = null;
     private final CharSequence paymentGatewayPlanId = null;
     private final Long planId = null;
-    private final Long paymentGateway = null;
     private final CharSequence removalType = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_removed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackSubscriptionRemoved implements AnalyticsSchem
         }
         TrackSubscriptionRemoved trackSubscriptionRemoved = (TrackSubscriptionRemoved) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionRemoved.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionRemoved.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionRemoved.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionRemoved.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionRemoved.paymentGateway) && C12238m.areEqual(this.removalType, trackSubscriptionRemoved.removalType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

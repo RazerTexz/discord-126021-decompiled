@@ -30,51 +30,6 @@ public final /* data */ class PermissionLabelOverrides {
         this.announcementChannelSubtext = charSequence4;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CharSequence getCategorySubtext() {
-        return this.categorySubtext;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getCategoryLabel() {
-        return this.categoryLabel;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getVoiceChannelSubtext() {
-        return this.voiceChannelSubtext;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final CharSequence getStageChannelSubtext() {
-        return this.stageChannelSubtext;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getTextChannelEveryoneSubtext() {
-        return this.textChannelEveryoneSubtext;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getVoiceChannelEveryoneSubtext() {
-        return this.voiceChannelEveryoneSubtext;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getStageChannelEveryoneSubtext() {
-        return this.stageChannelEveryoneSubtext;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final CharSequence getCategoryEveryoneSubtext() {
-        return this.categoryEveryoneSubtext;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final CharSequence getAnnouncementChannelSubtext() {
-        return this.announcementChannelSubtext;
-    }
-
     public final PermissionLabelOverrides copy(CharSequence categorySubtext, String categoryLabel, String voiceChannelSubtext, CharSequence stageChannelSubtext, String textChannelEveryoneSubtext, String voiceChannelEveryoneSubtext, String stageChannelEveryoneSubtext, CharSequence categoryEveryoneSubtext, CharSequence announcementChannelSubtext) {
         C12238m.checkNotNullParameter(categorySubtext, "categorySubtext");
         return new PermissionLabelOverrides(categorySubtext, categoryLabel, voiceChannelSubtext, stageChannelSubtext, textChannelEveryoneSubtext, voiceChannelEveryoneSubtext, stageChannelEveryoneSubtext, categoryEveryoneSubtext, announcementChannelSubtext);
@@ -91,36 +46,81 @@ public final /* data */ class PermissionLabelOverrides {
         return C12238m.areEqual(this.categorySubtext, permissionLabelOverrides.categorySubtext) && C12238m.areEqual(this.categoryLabel, permissionLabelOverrides.categoryLabel) && C12238m.areEqual(this.voiceChannelSubtext, permissionLabelOverrides.voiceChannelSubtext) && C12238m.areEqual(this.stageChannelSubtext, permissionLabelOverrides.stageChannelSubtext) && C12238m.areEqual(this.textChannelEveryoneSubtext, permissionLabelOverrides.textChannelEveryoneSubtext) && C12238m.areEqual(this.voiceChannelEveryoneSubtext, permissionLabelOverrides.voiceChannelEveryoneSubtext) && C12238m.areEqual(this.stageChannelEveryoneSubtext, permissionLabelOverrides.stageChannelEveryoneSubtext) && C12238m.areEqual(this.categoryEveryoneSubtext, permissionLabelOverrides.categoryEveryoneSubtext) && C12238m.areEqual(this.announcementChannelSubtext, permissionLabelOverrides.announcementChannelSubtext);
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final CharSequence getAnnouncementChannelSubtext() {
         return this.announcementChannelSubtext;
+    }
+
+    public final CharSequence getAnnouncementChannelSubtext() {
+        return this.announcementChannelSubtext;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final CharSequence getCategoryEveryoneSubtext() {
+        return this.categoryEveryoneSubtext;
     }
 
     public final CharSequence getCategoryEveryoneSubtext() {
         return this.categoryEveryoneSubtext;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getCategoryLabel() {
         return this.categoryLabel;
+    }
+
+    public final String getCategoryLabel() {
+        return this.categoryLabel;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CharSequence getCategorySubtext() {
+        return this.categorySubtext;
     }
 
     public final CharSequence getCategorySubtext() {
         return this.categorySubtext;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final String getStageChannelEveryoneSubtext() {
         return this.stageChannelEveryoneSubtext;
+    }
+
+    public final String getStageChannelEveryoneSubtext() {
+        return this.stageChannelEveryoneSubtext;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final CharSequence getStageChannelSubtext() {
+        return this.stageChannelSubtext;
     }
 
     public final CharSequence getStageChannelSubtext() {
         return this.stageChannelSubtext;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final String getTextChannelEveryoneSubtext() {
         return this.textChannelEveryoneSubtext;
     }
 
+    public final String getTextChannelEveryoneSubtext() {
+        return this.textChannelEveryoneSubtext;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final String getVoiceChannelEveryoneSubtext() {
         return this.voiceChannelEveryoneSubtext;
+    }
+
+    public final String getVoiceChannelEveryoneSubtext() {
+        return this.voiceChannelEveryoneSubtext;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getVoiceChannelSubtext() {
+        return this.voiceChannelSubtext;
     }
 
     public final String getVoiceChannelSubtext() {

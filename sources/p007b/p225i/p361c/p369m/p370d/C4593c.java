@@ -13,7 +13,7 @@ public final class C4593c implements InterfaceC4591a {
 
     /* JADX INFO: renamed from: b.i.c.m.d.c$b */
     /* JADX INFO: compiled from: MissingNativeComponent.java */
-    public static final class b implements InterfaceC4594d {
+    public final class b implements InterfaceC4594d {
         public b(a aVar) {
         }
 

@@ -17,7 +17,7 @@ public final class StoreUserRequiredActions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserRequiredActions$observeUserRequiredAction$1 */
     /* JADX INFO: compiled from: StoreUserRequiredActions.kt */
-    public static final class C65961 extends AbstractC12240o implements Function0<RequiredAction> {
+    public final class C65961 extends AbstractC12240o implements Function0<RequiredAction> {
         public C65961() {
             super(0);
         }
@@ -36,14 +36,6 @@ public final class StoreUserRequiredActions extends StoreV2 {
     }
 
     @StoreThread
-    private final void updateUserRequiredAction(RequiredAction userRequiredAction) {
-        if (userRequiredAction == RequiredAction.REQUIRE_CAPTCHA) {
-            userRequiredAction = RequiredAction.REQUIRE_VERIFIED_PHONE;
-        }
-        this.userRequiredAction = userRequiredAction;
-    }
-
-    @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
         updateUserRequiredAction(RequiredAction.INSTANCE.fromApiString(payload != null ? payload.getRequiredAction() : null));
         markChanged();
@@ -58,5 +50,13 @@ public final class StoreUserRequiredActions extends StoreV2 {
 
     public final Observable<RequiredAction> observeUserRequiredAction() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65961(), 14, null);
+    }
+
+    @StoreThread
+    private final void updateUserRequiredAction(RequiredAction userRequiredAction) {
+        if (userRequiredAction == RequiredAction.REQUIRE_CAPTCHA) {
+            userRequiredAction = RequiredAction.REQUIRE_VERIFIED_PHONE;
+        }
+        this.userRequiredAction = userRequiredAction;
     }
 }

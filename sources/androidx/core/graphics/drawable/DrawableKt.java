@@ -11,6 +11,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Drawable.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class DrawableKt {
+    public static /* synthetic */ Bitmap toBitmap$default(Drawable drawable, int i, int i2, Bitmap.Config config, int i3, Object obj) {
+        if ((i3 & 1) != 0) {
+            i = drawable.getIntrinsicWidth();
+        }
+        if ((i3 & 2) != 0) {
+            i2 = drawable.getIntrinsicHeight();
+        }
+        if ((i3 & 4) != 0) {
+            config = null;
+        }
+        return toBitmap(drawable, i, i2, config);
+    }
+
     public static final Bitmap toBitmap(Drawable drawable, @Px int i, @Px int i2, Bitmap.Config config) {
         C12238m.checkNotNullParameter(drawable, "<this>");
         if ((drawable instanceof BitmapDrawable) && (config == null || ((BitmapDrawable) drawable).getBitmap().getConfig() == config)) {
@@ -41,24 +54,6 @@ public final class DrawableKt {
         return bitmapCreateBitmap;
     }
 
-    public static /* synthetic */ Bitmap toBitmap$default(Drawable drawable, int i, int i2, Bitmap.Config config, int i3, Object obj) {
-        if ((i3 & 1) != 0) {
-            i = drawable.getIntrinsicWidth();
-        }
-        if ((i3 & 2) != 0) {
-            i2 = drawable.getIntrinsicHeight();
-        }
-        if ((i3 & 4) != 0) {
-            config = null;
-        }
-        return toBitmap(drawable, i, i2, config);
-    }
-
-    public static final void updateBounds(Drawable drawable, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
-        C12238m.checkNotNullParameter(drawable, "<this>");
-        drawable.setBounds(i, i2, i3, i4);
-    }
-
     public static /* synthetic */ void updateBounds$default(Drawable drawable, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
             i = drawable.getBounds().left;
@@ -73,5 +68,10 @@ public final class DrawableKt {
             i4 = drawable.getBounds().bottom;
         }
         updateBounds(drawable, i, i2, i3, i4);
+    }
+
+    public static final void updateBounds(Drawable drawable, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
+        C12238m.checkNotNullParameter(drawable, "<this>");
+        drawable.setBounds(i, i2, i3, i4);
     }
 }

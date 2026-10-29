@@ -10,16 +10,6 @@ public final /* data */ class ApplicationCommandAutocompleteResult {
     private final List<ApplicationCommandAutocompleteChoice> choices;
     private final String nonce;
 
-    /* JADX INFO: renamed from: a */
-    public final List<ApplicationCommandAutocompleteChoice> m7722a() {
-        return this.choices;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,11 +21,21 @@ public final /* data */ class ApplicationCommandAutocompleteResult {
         return C12238m.areEqual(this.nonce, applicationCommandAutocompleteResult.nonce) && C12238m.areEqual(this.choices, applicationCommandAutocompleteResult.choices);
     }
 
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
+    }
+
     public int hashCode() {
         String str = this.nonce;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         List<ApplicationCommandAutocompleteChoice> list = this.choices;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<ApplicationCommandAutocompleteChoice> m7722a() {
+        return this.choices;
     }
 
     public String toString() {

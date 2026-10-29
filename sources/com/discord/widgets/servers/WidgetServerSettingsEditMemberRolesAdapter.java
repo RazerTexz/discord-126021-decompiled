@@ -26,7 +26,7 @@ public final class WidgetServerSettingsEditMemberRolesAdapter extends MGRecycler
     private Function1<? super Long, Unit> roleClickListener;
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditMemberRolesAdapter.kt */
-    public static final class RoleListItem extends MGRecyclerViewHolder<WidgetServerSettingsEditMemberRolesAdapter, RoleItem> {
+    public final class RoleListItem extends MGRecyclerViewHolder<WidgetServerSettingsEditMemberRolesAdapter, RoleItem> {
         private final ViewCheckableRoleListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -100,7 +100,7 @@ public final class WidgetServerSettingsEditMemberRolesAdapter extends MGRecycler
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditMemberRolesAdapter.kt */
-    public static final /* data */ class RoleItem implements MGRecyclerDataPayload {
+    public final /* data */ class RoleItem implements MGRecyclerDataPayload {
         public static final int TYPE_ROLE = 1;
         private final boolean isManageable;
         private final boolean isUserHasRole;
@@ -130,21 +130,6 @@ public final class WidgetServerSettingsEditMemberRolesAdapter extends MGRecycler
             return roleItem.copy(guildRole, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsUserHasRole() {
-            return this.isUserHasRole;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsManageable() {
-            return this.isManageable;
-        }
-
         public final RoleItem copy(GuildRole role, boolean isUserHasRole, boolean isManageable) {
             C12238m.checkNotNullParameter(role, "role");
             return new RoleItem(role, isUserHasRole, isManageable);
@@ -161,9 +146,24 @@ public final class WidgetServerSettingsEditMemberRolesAdapter extends MGRecycler
             return C12238m.areEqual(this.role, roleItem.role) && this.isUserHasRole == roleItem.isUserHasRole && this.isManageable == roleItem.isManageable;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsManageable() {
+            return this.isManageable;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsUserHasRole() {
+            return this.isUserHasRole;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
         }
 
         public final GuildRole getRole() {

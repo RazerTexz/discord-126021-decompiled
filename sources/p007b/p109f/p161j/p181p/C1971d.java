@@ -89,6 +89,11 @@ public class C1971d implements InterfaceC2020x0 {
         this.f4038n = interfaceC1896k;
     }
 
+    @Override // p007b.p109f.p161j.p181p.InterfaceC2020x0
+    public String getId() {
+        return this.f4027c;
+    }
+
     /* JADX INFO: renamed from: r */
     public static void m1440r(List<InterfaceC2022y0> list) {
         if (list == null) {
@@ -120,6 +125,35 @@ public class C1971d implements InterfaceC2020x0 {
         while (it.hasNext()) {
             it.next().mo1462c();
         }
+    }
+
+    /* JADX INFO: renamed from: u */
+    public void m1460u() {
+        ArrayList arrayList;
+        synchronized (this) {
+            if (this.f4036l) {
+                arrayList = null;
+            } else {
+                this.f4036l = true;
+                arrayList = new ArrayList(this.f4037m);
+            }
+        }
+        if (arrayList == null) {
+            return;
+        }
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            ((InterfaceC2022y0) it.next()).mo1438a();
+        }
+    }
+
+    /* JADX INFO: renamed from: v */
+    public synchronized List<InterfaceC2022y0> m1461v(EnumC1883d enumC1883d) {
+        if (enumC1883d == this.f4034j) {
+            return null;
+        }
+        this.f4034j = enumC1883d;
+        return new ArrayList(this.f4037m);
     }
 
     @Override // p007b.p109f.p161j.p181p.InterfaceC2020x0
@@ -172,11 +206,6 @@ public class C1971d implements InterfaceC2020x0 {
     /* JADX INFO: renamed from: g */
     public InterfaceC1896k mo1449g() {
         return this.f4038n;
-    }
-
-    @Override // p007b.p109f.p161j.p181p.InterfaceC2020x0
-    public String getId() {
-        return this.f4027c;
     }
 
     @Override // p007b.p109f.p161j.p181p.InterfaceC2020x0
@@ -243,34 +272,5 @@ public class C1971d implements InterfaceC2020x0 {
     /* JADX INFO: renamed from: q */
     public ImageRequest.EnumC10667c mo1459q() {
         return this.f4031g;
-    }
-
-    /* JADX INFO: renamed from: u */
-    public void m1460u() {
-        ArrayList arrayList;
-        synchronized (this) {
-            if (this.f4036l) {
-                arrayList = null;
-            } else {
-                this.f4036l = true;
-                arrayList = new ArrayList(this.f4037m);
-            }
-        }
-        if (arrayList == null) {
-            return;
-        }
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            ((InterfaceC2022y0) it.next()).mo1438a();
-        }
-    }
-
-    /* JADX INFO: renamed from: v */
-    public synchronized List<InterfaceC2022y0> m1461v(EnumC1883d enumC1883d) {
-        if (enumC1883d == this.f4034j) {
-            return null;
-        }
-        this.f4034j = enumC1883d;
-        return new ArrayList(this.f4037m);
     }
 }

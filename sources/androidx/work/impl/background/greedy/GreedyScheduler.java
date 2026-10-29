@@ -29,13 +29,13 @@ import java.util.Set;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, ExecutionListener {
-    private static final String TAG = Logger.tagWithPrefix("GreedyScheduler");
     private final Context mContext;
     private DelayedWorkTracker mDelayedWorkTracker;
     public Boolean mIsMainProcess;
     private boolean mRegisteredExecutionListener;
     private final WorkConstraintsTracker mWorkConstraintsTracker;
     private final WorkManagerImpl mWorkManagerImpl;
+    private static final String TAG = Logger.tagWithPrefix("GreedyScheduler");
     private final Set<WorkSpec> mConstrainedWorkSpecs = new HashSet();
     private final Object mLock = new Object();
 
@@ -44,6 +44,24 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
         this.mWorkManagerImpl = workManagerImpl;
         this.mWorkConstraintsTracker = new WorkConstraintsTracker(context, taskExecutor, this);
         this.mDelayedWorkTracker = new DelayedWorkTracker(this, configuration.getRunnableScheduler());
+    }
+
+    @Override // androidx.work.impl.Scheduler
+    public void cancel(@NonNull String str) {
+        if (this.mIsMainProcess == null) {
+            this.mIsMainProcess = Boolean.valueOf(TextUtils.equals(this.mContext.getPackageName(), getProcessName()));
+        }
+        if (!this.mIsMainProcess.booleanValue()) {
+            Logger.get().info(TAG, "Ignoring schedule request in non-main process", new Throwable[0]);
+            return;
+        }
+        registerExecutionListenerIfNeeded();
+        Logger.get().debug(TAG, String.format("Cancelling work ID %s", str), new Throwable[0]);
+        DelayedWorkTracker delayedWorkTracker = this.mDelayedWorkTracker;
+        if (delayedWorkTracker != null) {
+            delayedWorkTracker.unschedule(str);
+        }
+        this.mWorkManagerImpl.stopWork(str);
     }
 
     @Nullable
@@ -75,45 +93,6 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
         return null;
     }
 
-    private void registerExecutionListenerIfNeeded() {
-        if (this.mRegisteredExecutionListener) {
-            return;
-        }
-        this.mWorkManagerImpl.getProcessor().addExecutionListener(this);
-        this.mRegisteredExecutionListener = true;
-    }
-
-    private void removeConstraintTrackingFor(@NonNull String str) {
-        synchronized (this.mLock) {
-            for (WorkSpec workSpec : this.mConstrainedWorkSpecs) {
-                if (workSpec.f163id.equals(str)) {
-                    Logger.get().debug(TAG, String.format("Stopping tracking for %s", str), new Throwable[0]);
-                    this.mConstrainedWorkSpecs.remove(workSpec);
-                    this.mWorkConstraintsTracker.replace(this.mConstrainedWorkSpecs);
-                    break;
-                }
-            }
-        }
-    }
-
-    @Override // androidx.work.impl.Scheduler
-    public void cancel(@NonNull String str) {
-        if (this.mIsMainProcess == null) {
-            this.mIsMainProcess = Boolean.valueOf(TextUtils.equals(this.mContext.getPackageName(), getProcessName()));
-        }
-        if (!this.mIsMainProcess.booleanValue()) {
-            Logger.get().info(TAG, "Ignoring schedule request in non-main process", new Throwable[0]);
-            return;
-        }
-        registerExecutionListenerIfNeeded();
-        Logger.get().debug(TAG, String.format("Cancelling work ID %s", str), new Throwable[0]);
-        DelayedWorkTracker delayedWorkTracker = this.mDelayedWorkTracker;
-        if (delayedWorkTracker != null) {
-            delayedWorkTracker.unschedule(str);
-        }
-        this.mWorkManagerImpl.stopWork(str);
-    }
-
     @Override // androidx.work.impl.Scheduler
     public boolean hasLimitedSchedulingSlots() {
         return false;
@@ -138,6 +117,27 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
     @Override // androidx.work.impl.ExecutionListener
     public void onExecuted(@NonNull String str, boolean z2) {
         removeConstraintTrackingFor(str);
+    }
+
+    private void registerExecutionListenerIfNeeded() {
+        if (this.mRegisteredExecutionListener) {
+            return;
+        }
+        this.mWorkManagerImpl.getProcessor().addExecutionListener(this);
+        this.mRegisteredExecutionListener = true;
+    }
+
+    private void removeConstraintTrackingFor(@NonNull String str) {
+        synchronized (this.mLock) {
+            for (WorkSpec workSpec : this.mConstrainedWorkSpecs) {
+                if (workSpec.f163id.equals(str)) {
+                    Logger.get().debug(TAG, String.format("Stopping tracking for %s", str), new Throwable[0]);
+                    this.mConstrainedWorkSpecs.remove(workSpec);
+                    this.mWorkConstraintsTracker.replace(this.mConstrainedWorkSpecs);
+                    break;
+                }
+            }
+        }
     }
 
     @Override // androidx.work.impl.Scheduler

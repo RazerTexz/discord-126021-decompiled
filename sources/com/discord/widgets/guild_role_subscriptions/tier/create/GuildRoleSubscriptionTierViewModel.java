@@ -17,7 +17,7 @@ import p507d0.p592z.p594d.C12238m;
 public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final GuildRoleSubscriptionTier guildRoleSubscriptionTier;
         private final Boolean isFullServerGating;
 
@@ -42,16 +42,6 @@ public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<Vi
             return viewState.copy(guildRoleSubscriptionTier, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
-            return this.guildRoleSubscriptionTier;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getIsFullServerGating() {
-            return this.isFullServerGating;
-        }
-
         public final ViewState copy(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean isFullServerGating) {
             C12238m.checkNotNullParameter(guildRoleSubscriptionTier, "guildRoleSubscriptionTier");
             return new ViewState(guildRoleSubscriptionTier, isFullServerGating);
@@ -68,8 +58,18 @@ public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<Vi
             return C12238m.areEqual(this.guildRoleSubscriptionTier, viewState.guildRoleSubscriptionTier) && C12238m.areEqual(this.isFullServerGating, viewState.isFullServerGating);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
             return this.guildRoleSubscriptionTier;
+        }
+
+        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
+            return this.guildRoleSubscriptionTier;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Boolean getIsFullServerGating() {
+            return this.isFullServerGating;
         }
 
         public int hashCode() {
@@ -140,34 +140,6 @@ public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<Vi
         }
     }
 
-    public static /* synthetic */ void updateFreeTrialInterval$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, SubscriptionTrialInterval subscriptionTrialInterval, int i, Object obj) {
-        if ((i & 1) != 0) {
-            subscriptionTrialInterval = null;
-        }
-        guildRoleSubscriptionTierViewModel.updateFreeTrialInterval(subscriptionTrialInterval);
-    }
-
-    public static /* synthetic */ void updateFreeTrialLimit$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, Integer num, int i, Object obj) {
-        if ((i & 1) != 0) {
-            num = null;
-        }
-        guildRoleSubscriptionTierViewModel.updateFreeTrialLimit(num);
-    }
-
-    public static /* synthetic */ void updateImage$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = null;
-        }
-        guildRoleSubscriptionTierViewModel.updateImage(str);
-    }
-
-    public static /* synthetic */ void updateMemberIcon$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = null;
-        }
-        guildRoleSubscriptionTierViewModel.updateMemberIcon(str);
-    }
-
     public final void setCanAccessAllChannels(boolean canAccessAllChannels) {
         GuildRoleSubscriptionTier guildRoleSubscriptionTier = requireViewState().getGuildRoleSubscriptionTier();
         updateViewState(ViewState.copy$default(requireViewState(), guildRoleSubscriptionTier.copy((30719 & 1) != 0 ? guildRoleSubscriptionTier.name : null, (30719 & 2) != 0 ? guildRoleSubscriptionTier.applicationId : null, (30719 & 4) != 0 ? guildRoleSubscriptionTier.priceTier : null, (30719 & 8) != 0 ? guildRoleSubscriptionTier.memberColor : null, (30719 & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : null, (30719 & 32) != 0 ? guildRoleSubscriptionTier.guildRole : null, (30719 & 64) != 0 ? guildRoleSubscriptionTier.image : null, (30719 & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : null, (30719 & 256) != 0 ? guildRoleSubscriptionTier.description : null, (30719 & 512) != 0 ? guildRoleSubscriptionTier.isPublished : null, (30719 & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : Boolean.valueOf(canAccessAllChannels), (30719 & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : null, (30719 & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : null, (30719 & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : null, (30719 & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : null), null, 2, null));
@@ -233,14 +205,35 @@ public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<Vi
         updateViewState(ViewState.copy$default(requireViewState(), guildRoleSubscriptionTier.copy((30719 & 1) != 0 ? guildRoleSubscriptionTier.name : null, (30719 & 2) != 0 ? guildRoleSubscriptionTier.applicationId : null, (30719 & 4) != 0 ? guildRoleSubscriptionTier.priceTier : null, (30719 & 8) != 0 ? guildRoleSubscriptionTier.memberColor : null, (30719 & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : null, (30719 & 32) != 0 ? guildRoleSubscriptionTier.guildRole : null, (30719 & 64) != 0 ? guildRoleSubscriptionTier.image : null, (30719 & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : null, (30719 & 256) != 0 ? guildRoleSubscriptionTier.description : description, (30719 & 512) != 0 ? guildRoleSubscriptionTier.isPublished : null, (30719 & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : null, (30719 & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : null, (30719 & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : null, (30719 & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : null, (30719 & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : null), null, 2, null));
     }
 
+    public static /* synthetic */ void updateFreeTrialInterval$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, SubscriptionTrialInterval subscriptionTrialInterval, int i, Object obj) {
+        if ((i & 1) != 0) {
+            subscriptionTrialInterval = null;
+        }
+        guildRoleSubscriptionTierViewModel.updateFreeTrialInterval(subscriptionTrialInterval);
+    }
+
     public final void updateFreeTrialInterval(SubscriptionTrialInterval trialInterval) {
         GuildRoleSubscriptionTier guildRoleSubscriptionTier = requireViewState().getGuildRoleSubscriptionTier();
         updateViewState(ViewState.copy$default(requireViewState(), guildRoleSubscriptionTier.copy((30719 & 1) != 0 ? guildRoleSubscriptionTier.name : null, (30719 & 2) != 0 ? guildRoleSubscriptionTier.applicationId : null, (30719 & 4) != 0 ? guildRoleSubscriptionTier.priceTier : null, (30719 & 8) != 0 ? guildRoleSubscriptionTier.memberColor : null, (30719 & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : null, (30719 & 32) != 0 ? guildRoleSubscriptionTier.guildRole : null, (30719 & 64) != 0 ? guildRoleSubscriptionTier.image : null, (30719 & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : null, (30719 & 256) != 0 ? guildRoleSubscriptionTier.description : null, (30719 & 512) != 0 ? guildRoleSubscriptionTier.isPublished : null, (30719 & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : null, (30719 & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : null, (30719 & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : null, (30719 & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : trialInterval, (30719 & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : null), null, 2, null));
     }
 
+    public static /* synthetic */ void updateFreeTrialLimit$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, Integer num, int i, Object obj) {
+        if ((i & 1) != 0) {
+            num = null;
+        }
+        guildRoleSubscriptionTierViewModel.updateFreeTrialLimit(num);
+    }
+
     public final void updateFreeTrialLimit(Integer limit) {
         GuildRoleSubscriptionTier guildRoleSubscriptionTier = requireViewState().getGuildRoleSubscriptionTier();
         updateViewState(ViewState.copy$default(requireViewState(), guildRoleSubscriptionTier.copy((30719 & 1) != 0 ? guildRoleSubscriptionTier.name : null, (30719 & 2) != 0 ? guildRoleSubscriptionTier.applicationId : null, (30719 & 4) != 0 ? guildRoleSubscriptionTier.priceTier : null, (30719 & 8) != 0 ? guildRoleSubscriptionTier.memberColor : null, (30719 & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : null, (30719 & 32) != 0 ? guildRoleSubscriptionTier.guildRole : null, (30719 & 64) != 0 ? guildRoleSubscriptionTier.image : null, (30719 & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : null, (30719 & 256) != 0 ? guildRoleSubscriptionTier.description : null, (30719 & 512) != 0 ? guildRoleSubscriptionTier.isPublished : null, (30719 & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : null, (30719 & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : null, (30719 & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : null, (30719 & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : null, (30719 & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : limit), null, 2, null));
+    }
+
+    public static /* synthetic */ void updateImage$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            str = null;
+        }
+        guildRoleSubscriptionTierViewModel.updateImage(str);
     }
 
     public final void updateImage(String image) {
@@ -267,6 +260,13 @@ public final class GuildRoleSubscriptionTierViewModel extends AbstractC0859d0<Vi
     public final void updateMemberColor(Integer memberColor) {
         GuildRoleSubscriptionTier guildRoleSubscriptionTier = requireViewState().getGuildRoleSubscriptionTier();
         updateViewState(ViewState.copy$default(requireViewState(), guildRoleSubscriptionTier.copy((30719 & 1) != 0 ? guildRoleSubscriptionTier.name : null, (30719 & 2) != 0 ? guildRoleSubscriptionTier.applicationId : null, (30719 & 4) != 0 ? guildRoleSubscriptionTier.priceTier : null, (30719 & 8) != 0 ? guildRoleSubscriptionTier.memberColor : memberColor, (30719 & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : null, (30719 & 32) != 0 ? guildRoleSubscriptionTier.guildRole : null, (30719 & 64) != 0 ? guildRoleSubscriptionTier.image : null, (30719 & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : null, (30719 & 256) != 0 ? guildRoleSubscriptionTier.description : null, (30719 & 512) != 0 ? guildRoleSubscriptionTier.isPublished : null, (30719 & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : null, (30719 & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : null, (30719 & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : null, (30719 & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : null, (30719 & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : null), null, 2, null));
+    }
+
+    public static /* synthetic */ void updateMemberIcon$default(GuildRoleSubscriptionTierViewModel guildRoleSubscriptionTierViewModel, String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            str = null;
+        }
+        guildRoleSubscriptionTierViewModel.updateMemberIcon(str);
     }
 
     public final void updateMemberIcon(String memberIcon) {

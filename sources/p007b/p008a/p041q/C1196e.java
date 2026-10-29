@@ -36,7 +36,7 @@ public final class C1196e {
 
     /* JADX INFO: renamed from: b.a.q.e$a */
     /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f1618a;
@@ -86,14 +86,14 @@ public final class C1196e {
 
     /* JADX INFO: renamed from: b.a.q.e$b */
     /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.q.e$c */
     /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final C1244n f1622a;

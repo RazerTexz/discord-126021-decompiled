@@ -68,28 +68,8 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     private final StoreUserSettings storeUserSettings;
     private final boolean viewingGuild;
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class C88031 extends AbstractC12240o implements Function1<StoreState, Unit> {
-        public C88031() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "storeState");
-            WidgetGuildProfileSheetViewModel.this.handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class Actions {
+    public final /* data */ class Actions {
         private final boolean canChangeNickname;
         private final boolean canLeaveGuild;
         private final boolean canManageChannels;
@@ -124,61 +104,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             this.displayGuildIdentityRow = z10;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsUnread() {
-            return this.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final String getUsername() {
-            return this.username;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanManageChannels() {
-            return this.canManageChannels;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanManageEvents() {
-            return this.canManageEvents;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getCanChangeNickname() {
-            return this.canChangeNickname;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getNick() {
-            return this.nick;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getGuildAvatar() {
-            return this.guildAvatar;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsAllowDMChecked() {
-            return this.isAllowDMChecked;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getHideMutedChannels() {
-            return this.hideMutedChannels;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getCanLeaveGuild() {
-            return this.canLeaveGuild;
-        }
-
         public final Actions copy(boolean isUnread, boolean canManageChannels, boolean canManageEvents, boolean canChangeNickname, String nick, String guildAvatar, boolean isAllowDMChecked, boolean hideMutedChannels, boolean canLeaveGuild, boolean isDeveloper, String username) {
             C12238m.checkNotNullParameter(username, "username");
             return new Actions(isUnread, canManageChannels, canManageEvents, canChangeNickname, nick, guildAvatar, isAllowDMChecked, hideMutedChannels, canLeaveGuild, isDeveloper, username);
@@ -195,16 +120,36 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.isUnread == actions.isUnread && this.canManageChannels == actions.canManageChannels && this.canManageEvents == actions.canManageEvents && this.canChangeNickname == actions.canChangeNickname && C12238m.areEqual(this.nick, actions.nick) && C12238m.areEqual(this.guildAvatar, actions.guildAvatar) && this.isAllowDMChecked == actions.isAllowDMChecked && this.hideMutedChannels == actions.hideMutedChannels && this.canLeaveGuild == actions.canLeaveGuild && this.isDeveloper == actions.isDeveloper && C12238m.areEqual(this.username, actions.username);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getCanChangeNickname() {
             return this.canChangeNickname;
+        }
+
+        public final boolean getCanChangeNickname() {
+            return this.canChangeNickname;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getCanLeaveGuild() {
+            return this.canLeaveGuild;
         }
 
         public final boolean getCanLeaveGuild() {
             return this.canLeaveGuild;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getCanManageChannels() {
             return this.canManageChannels;
+        }
+
+        public final boolean getCanManageChannels() {
+            return this.canManageChannels;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getCanManageEvents() {
+            return this.canManageEvents;
         }
 
         public final boolean getCanManageEvents() {
@@ -215,16 +160,51 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.displayGuildIdentityRow;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getGuildAvatar() {
             return this.guildAvatar;
+        }
+
+        public final String getGuildAvatar() {
+            return this.guildAvatar;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getHideMutedChannels() {
+            return this.hideMutedChannels;
         }
 
         public final boolean getHideMutedChannels() {
             return this.hideMutedChannels;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsAllowDMChecked() {
+            return this.isAllowDMChecked;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getIsDeveloper() {
+            return this.isDeveloper;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsUnread() {
+            return this.isUnread;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final String getNick() {
             return this.nick;
+        }
+
+        public final String getNick() {
+            return this.nick;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final String getUsername() {
+            return this.username;
         }
 
         public final String getUsername() {
@@ -352,7 +332,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class Banner {
+    public final /* data */ class Banner {
         private final long guildId;
         private final String hash;
         private final Type type;
@@ -383,21 +363,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return banner.copy(j, str, type);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getHash() {
-            return this.hash;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
         public final Banner copy(long guildId, String hash, Type type) {
             C12238m.checkNotNullParameter(type, "type");
             return new Banner(guildId, hash, type);
@@ -414,12 +379,27 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.guildId == banner.guildId && C12238m.areEqual(this.hash, banner.hash) && C12238m.areEqual(this.type, banner.type);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
         }
 
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getHash() {
             return this.hash;
+        }
+
+        public final String getHash() {
+            return this.hash;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Type getType() {
+            return this.type;
         }
 
         public final Type getType() {
@@ -447,7 +427,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class BottomActions {
+    public final /* data */ class BottomActions {
         private final boolean showJoinServer;
         private final boolean showUploadEmoji;
         private final boolean showViewServer;
@@ -471,21 +451,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return bottomActions.copy(z2, z3, z4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShowUploadEmoji() {
-            return this.showUploadEmoji;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowJoinServer() {
-            return this.showJoinServer;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowViewServer() {
-            return this.showViewServer;
-        }
-
         public final BottomActions copy(boolean showUploadEmoji, boolean showJoinServer, boolean showViewServer) {
             return new BottomActions(showUploadEmoji, showJoinServer, showViewServer);
         }
@@ -501,12 +466,27 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.showUploadEmoji == bottomActions.showUploadEmoji && this.showJoinServer == bottomActions.showJoinServer && this.showViewServer == bottomActions.showViewServer;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getShowJoinServer() {
             return this.showJoinServer;
         }
 
+        public final boolean getShowJoinServer() {
+            return this.showJoinServer;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getShowUploadEmoji() {
             return this.showUploadEmoji;
+        }
+
+        public final boolean getShowUploadEmoji() {
+            return this.showUploadEmoji;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getShowViewServer() {
+            return this.showViewServer;
         }
 
         public final boolean getShowViewServer() {
@@ -552,8 +532,117 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class Companion {
+    public final class C88031 extends AbstractC12240o implements Function1<StoreState, Unit> {
+        public C88031() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            C12238m.checkNotNullParameter(storeState, "storeState");
+            WidgetGuildProfileSheetViewModel.this.handleStoreState(storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickLeaveServer$1 */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
+    public final class C88051 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ Function0 $onSuccess;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88051(Function0 function0) {
+            super(1);
+            this.$onSuccess = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            this.$onSuccess.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickMarkAsRead$1 */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
+    public final class C88061 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C88061() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r3) {
+            WidgetGuildProfileSheetViewModel.this.eventSubject.f27650k.onNext((T) new Event.DismissAndShowToast(C5419R.string.marked_as_read));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickResetNickname$1 */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
+    public final class C88071 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ Function0 $onSuccess;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88071(Function0 function0) {
+            super(1);
+            this.$onSuccess = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            this.$onSuccess.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickSaveNickname$1 */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
+    public final class C88081 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ Function0 $onSuccess;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88081(Function0 function0) {
+            super(1);
+            this.$onSuccess = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            this.$onSuccess.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -608,7 +697,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class EmojisData {
+    public final /* data */ class EmojisData {
         private final List<Emoji> emojis;
         private final boolean isExpanded;
         private final boolean isPremium;
@@ -619,6 +708,10 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             this.isPremium = z2;
             this.isExpanded = z3;
             this.emojis = list;
+        }
+
+        public final List<Emoji> component3() {
+            return this.emojis;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -633,20 +726,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 list = emojisData.emojis;
             }
             return emojisData.copy(z2, z3, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsPremium() {
-            return this.isPremium;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsExpanded() {
-            return this.isExpanded;
-        }
-
-        public final List<Emoji> component3() {
-            return this.emojis;
         }
 
         public final EmojisData copy(boolean isPremium, boolean isExpanded, List<? extends Emoji> emojis) {
@@ -667,6 +746,16 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
 
         public final List<Emoji> getEmojis() {
             return this.emojis;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsExpanded() {
+            return this.isExpanded;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsPremium() {
+            return this.isPremium;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -709,10 +798,10 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public static final /* data */ class DismissAndShowToast extends Event {
+        public final /* data */ class DismissAndShowToast extends Event {
             private final int stringRes;
 
             public DismissAndShowToast(@StringRes int i) {
@@ -727,11 +816,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 return dismissAndShowToast.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getStringRes() {
-                return this.stringRes;
-            }
-
             public final DismissAndShowToast copy(@StringRes int stringRes) {
                 return new DismissAndShowToast(stringRes);
             }
@@ -741,6 +825,11 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                     return (other instanceof DismissAndShowToast) && this.stringRes == ((DismissAndShowToast) other).stringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getStringRes() {
+                return this.stringRes;
             }
 
             public final int getStringRes() {
@@ -765,7 +854,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final GuildMember computedMe;
         private final List<Emoji> emojis;
         private final Guild guild;
@@ -795,52 +884,12 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             this.isUnread = z4;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getIsUnread() {
-            return this.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
-            return this.guildProfile;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildChannelsInfo getGuildChannelsInfo() {
-            return this.guildChannelsInfo;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildMember getComputedMe() {
-            return this.computedMe;
-        }
-
         public final List<Long> component6() {
             return this.restrictedGuildIds;
         }
 
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
         public final List<Emoji> component8() {
             return this.emojis;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsLurking() {
-            return this.isLurking;
         }
 
         public final StoreState copy(Guild guild, StoreGuildProfiles.GuildProfileData guildProfile, GuildChannelsInfo guildChannelsInfo, MeUser me2, GuildMember computedMe, List<Long> restrictedGuildIds, boolean isDeveloper, List<? extends Emoji> emojis, boolean isLurking, boolean isUnread) {
@@ -862,6 +911,11 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.guildProfile, storeState.guildProfile) && C12238m.areEqual(this.guildChannelsInfo, storeState.guildChannelsInfo) && C12238m.areEqual(this.me, storeState.me) && C12238m.areEqual(this.computedMe, storeState.computedMe) && C12238m.areEqual(this.restrictedGuildIds, storeState.restrictedGuildIds) && this.isDeveloper == storeState.isDeveloper && C12238m.areEqual(this.emojis, storeState.emojis) && this.isLurking == storeState.isLurking && this.isUnread == storeState.isUnread;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final GuildMember getComputedMe() {
+            return this.computedMe;
+        }
+
         public final GuildMember getComputedMe() {
             return this.computedMe;
         }
@@ -870,16 +924,51 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.emojis;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final GuildChannelsInfo getGuildChannelsInfo() {
+            return this.guildChannelsInfo;
         }
 
         public final GuildChannelsInfo getGuildChannelsInfo() {
             return this.guildChannelsInfo;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
             return this.guildProfile;
+        }
+
+        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
+            return this.guildProfile;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsDeveloper() {
+            return this.isDeveloper;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getIsLurking() {
+            return this.isLurking;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getIsUnread() {
+            return this.isUnread;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final MeUser getMe() {
+            return this.me;
         }
 
         public final MeUser getMe() {
@@ -971,7 +1060,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final /* data */ class TabItems {
+    public final /* data */ class TabItems {
         private final boolean ableToInstantInvite;
         private final boolean canAccessSettings;
         private final int premiumSubscriptionCount;
@@ -995,21 +1084,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return tabItems.copy(z2, z3, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getCanAccessSettings() {
-            return this.canAccessSettings;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getAbleToInstantInvite() {
-            return this.ableToInstantInvite;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getPremiumSubscriptionCount() {
-            return this.premiumSubscriptionCount;
-        }
-
         public final TabItems copy(boolean canAccessSettings, boolean ableToInstantInvite, int premiumSubscriptionCount) {
             return new TabItems(canAccessSettings, ableToInstantInvite, premiumSubscriptionCount);
         }
@@ -1025,12 +1099,27 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return this.canAccessSettings == tabItems.canAccessSettings && this.ableToInstantInvite == tabItems.ableToInstantInvite && this.premiumSubscriptionCount == tabItems.premiumSubscriptionCount;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getAbleToInstantInvite() {
             return this.ableToInstantInvite;
         }
 
+        public final boolean getAbleToInstantInvite() {
+            return this.ableToInstantInvite;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getCanAccessSettings() {
             return this.canAccessSettings;
+        }
+
+        public final boolean getCanAccessSettings() {
+            return this.canAccessSettings;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getPremiumSubscriptionCount() {
+            return this.premiumSubscriptionCount;
         }
 
         public final int getPremiumSubscriptionCount() {
@@ -1067,10 +1156,10 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -1079,7 +1168,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         }
 
         /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Actions actions;
             private final Banner banner;
             private final BottomActions bottomActions;
@@ -1126,81 +1215,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 return loaded.copy((i & 1) != 0 ? loaded.guildId : j, (i & 2) != 0 ? loaded.guildName : str, (i & 4) != 0 ? loaded.guildShortName : str2, (i & 8) != 0 ? loaded.guildIcon : str3, (i & 16) != 0 ? loaded.guildDescription : str4, (i & 32) != 0 ? loaded.verifiedPartneredIconRes : num, (i & 64) != 0 ? loaded.banner : banner, (i & 128) != 0 ? loaded.onlineCount : num2, (i & 256) != 0 ? loaded.memberCount : num3, (i & 512) != 0 ? loaded.tabItems : tabItems, (i & 1024) != 0 ? loaded.actions : actions, (i & 2048) != 0 ? loaded.emojisData : emojisData, (i & 4096) != 0 ? loaded.bottomActions : bottomActions, (i & 8192) != 0 ? loaded.isGuildHub : z2, (i & 16384) != 0 ? loaded.meUser : meUser);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final TabItems getTabItems() {
-                return this.tabItems;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final Actions getActions() {
-                return this.actions;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final EmojisData getEmojisData() {
-                return this.emojisData;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final BottomActions getBottomActions() {
-                return this.bottomActions;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final boolean getIsGuildHub() {
-                return this.isGuildHub;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getGuildShortName() {
-                return this.guildShortName;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getGuildIcon() {
-                return this.guildIcon;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getGuildDescription() {
-                return this.guildDescription;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Integer getVerifiedPartneredIconRes() {
-                return this.verifiedPartneredIconRes;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Banner getBanner() {
-                return this.banner;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final Integer getOnlineCount() {
-                return this.onlineCount;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final Integer getMemberCount() {
-                return this.memberCount;
-            }
-
             public final Loaded copy(long guildId, String guildName, String guildShortName, String guildIcon, String guildDescription, Integer verifiedPartneredIconRes, Banner banner, Integer onlineCount, Integer memberCount, TabItems tabItems, Actions actions, EmojisData emojisData, BottomActions bottomActions, boolean isGuildHub, MeUser meUser) {
                 C12238m.checkNotNullParameter(guildName, "guildName");
                 C12238m.checkNotNullParameter(guildShortName, "guildShortName");
@@ -1222,56 +1236,131 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 return this.guildId == loaded.guildId && C12238m.areEqual(this.guildName, loaded.guildName) && C12238m.areEqual(this.guildShortName, loaded.guildShortName) && C12238m.areEqual(this.guildIcon, loaded.guildIcon) && C12238m.areEqual(this.guildDescription, loaded.guildDescription) && C12238m.areEqual(this.verifiedPartneredIconRes, loaded.verifiedPartneredIconRes) && C12238m.areEqual(this.banner, loaded.banner) && C12238m.areEqual(this.onlineCount, loaded.onlineCount) && C12238m.areEqual(this.memberCount, loaded.memberCount) && C12238m.areEqual(this.tabItems, loaded.tabItems) && C12238m.areEqual(this.actions, loaded.actions) && C12238m.areEqual(this.emojisData, loaded.emojisData) && C12238m.areEqual(this.bottomActions, loaded.bottomActions) && this.isGuildHub == loaded.isGuildHub && C12238m.areEqual(this.meUser, loaded.meUser);
             }
 
+            /* JADX INFO: renamed from: component11, reason: from getter */
             public final Actions getActions() {
                 return this.actions;
+            }
+
+            public final Actions getActions() {
+                return this.actions;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final Banner getBanner() {
+                return this.banner;
             }
 
             public final Banner getBanner() {
                 return this.banner;
             }
 
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final BottomActions getBottomActions() {
                 return this.bottomActions;
+            }
+
+            public final BottomActions getBottomActions() {
+                return this.bottomActions;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final EmojisData getEmojisData() {
+                return this.emojisData;
             }
 
             public final EmojisData getEmojisData() {
                 return this.emojisData;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final String getGuildDescription() {
                 return this.guildDescription;
+            }
+
+            public final String getGuildDescription() {
+                return this.guildDescription;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getGuildIcon() {
+                return this.guildIcon;
             }
 
             public final String getGuildIcon() {
                 return this.guildIcon;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getGuildName() {
+                return this.guildName;
             }
 
             public final String getGuildName() {
                 return this.guildName;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getGuildShortName() {
                 return this.guildShortName;
+            }
+
+            public final String getGuildShortName() {
+                return this.guildShortName;
+            }
+
+            /* JADX INFO: renamed from: component14, reason: from getter */
+            public final boolean getIsGuildHub() {
+                return this.isGuildHub;
+            }
+
+            /* JADX INFO: renamed from: component15, reason: from getter */
+            public final MeUser getMeUser() {
+                return this.meUser;
             }
 
             public final MeUser getMeUser() {
                 return this.meUser;
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final Integer getMemberCount() {
                 return this.memberCount;
+            }
+
+            public final Integer getMemberCount() {
+                return this.memberCount;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final Integer getOnlineCount() {
+                return this.onlineCount;
             }
 
             public final Integer getOnlineCount() {
                 return this.onlineCount;
             }
 
+            /* JADX INFO: renamed from: component10, reason: from getter */
             public final TabItems getTabItems() {
                 return this.tabItems;
+            }
+
+            public final TabItems getTabItems() {
+                return this.tabItems;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final Integer getVerifiedPartneredIconRes() {
+                return this.verifiedPartneredIconRes;
             }
 
             public final Integer getVerifiedPartneredIconRes() {
@@ -1360,7 +1449,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         }
 
         /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -1373,95 +1462,6 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickLeaveServer$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class C88051 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88051(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickMarkAsRead$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class C88061 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C88061() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            WidgetGuildProfileSheetViewModel.this.eventSubject.f27650k.onNext((T) new Event.DismissAndShowToast(C5419R.string.marked_as_read));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickResetNickname$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class C88071 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88071(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickSaveNickname$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public static final class C88081 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88081(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
         }
     }
 

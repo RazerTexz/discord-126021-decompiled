@@ -28,120 +28,17 @@ public final class StoreSubscriptions extends StoreV2 {
     private SubscriptionsState subscriptionsState;
     private SubscriptionsState subscriptionsStateSnapshot;
 
-    /* JADX INFO: compiled from: StoreSubscriptions.kt */
-    public static abstract class SubscriptionsState {
-
-        /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final class Failure extends SubscriptionsState {
-            public static final Failure INSTANCE = new Failure();
-
-            private Failure() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final /* data */ class Loaded extends SubscriptionsState {
-            private final List<ModelSubscription> subscriptions;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(List<ModelSubscription> list) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "subscriptions");
-                this.subscriptions = list;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    list = loaded.subscriptions;
-                }
-                return loaded.copy(list);
-            }
-
-            public final List<ModelSubscription> component1() {
-                return this.subscriptions;
-            }
-
-            public final Loaded copy(List<ModelSubscription> subscriptions) {
-                C12238m.checkNotNullParameter(subscriptions, "subscriptions");
-                return new Loaded(subscriptions);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.subscriptions, ((Loaded) other).subscriptions);
-                }
-                return true;
-            }
-
-            public final ModelSubscription getPremiumSubscription() {
-                Object next;
-                Iterator<T> it = this.subscriptions.iterator();
-                while (it.hasNext()) {
-                    next = it.next();
-                    if (((ModelSubscription) next).getType() == ModelSubscription.Type.PREMIUM) {
-                        return (ModelSubscription) next;
-                    }
-                }
-                next = null;
-                return (ModelSubscription) next;
-            }
-
-            public final List<ModelSubscription> getSubscriptions() {
-                return this.subscriptions;
-            }
-
-            public int hashCode() {
-                List<ModelSubscription> list = this.subscriptions;
-                if (list != null) {
-                    return list.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m824L(C1643a.m833U("Loaded(subscriptions="), this.subscriptions, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final class Loading extends SubscriptionsState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final class Unfetched extends SubscriptionsState {
-            public static final Unfetched INSTANCE = new Unfetched();
-
-            private Unfetched() {
-                super(null);
-            }
-        }
-
-        private SubscriptionsState() {
-        }
-
-        public /* synthetic */ SubscriptionsState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1 */
     /* JADX INFO: compiled from: StoreSubscriptions.kt */
-    public static final class C65241 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65241 extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ModelSubscription>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ModelSubscription>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreSubscriptions.kt */
-            public static final class C132641 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132641 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $subscriptions;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -181,11 +78,11 @@ public final class StoreSubscriptions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreSubscriptions.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreSubscriptions.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -241,7 +138,7 @@ public final class StoreSubscriptions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$observeSubscriptions$1 */
     /* JADX INFO: compiled from: StoreSubscriptions.kt */
-    public static final class C65251 extends AbstractC12240o implements Function0<SubscriptionsState> {
+    public final class C65251 extends AbstractC12240o implements Function0<SubscriptionsState> {
         public C65251() {
             super(0);
         }
@@ -250,6 +147,109 @@ public final class StoreSubscriptions extends StoreV2 {
         @Override // kotlin.jvm.functions.Function0
         public final SubscriptionsState invoke() {
             return StoreSubscriptions.this.getSubscriptionsStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreSubscriptions.kt */
+    public abstract class SubscriptionsState {
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Failure extends SubscriptionsState {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final /* data */ class Loaded extends SubscriptionsState {
+            private final List<ModelSubscription> subscriptions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(List<ModelSubscription> list) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "subscriptions");
+                this.subscriptions = list;
+            }
+
+            public final List<ModelSubscription> component1() {
+                return this.subscriptions;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.subscriptions;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<ModelSubscription> subscriptions) {
+                C12238m.checkNotNullParameter(subscriptions, "subscriptions");
+                return new Loaded(subscriptions);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.subscriptions, ((Loaded) other).subscriptions);
+                }
+                return true;
+            }
+
+            public final ModelSubscription getPremiumSubscription() {
+                Object next;
+                Iterator<T> it = this.subscriptions.iterator();
+                while (it.hasNext()) {
+                    next = it.next();
+                    if (((ModelSubscription) next).getType() == ModelSubscription.Type.PREMIUM) {
+                        return (ModelSubscription) next;
+                    }
+                }
+                next = null;
+                return (ModelSubscription) next;
+            }
+
+            public final List<ModelSubscription> getSubscriptions() {
+                return this.subscriptions;
+            }
+
+            public int hashCode() {
+                List<ModelSubscription> list = this.subscriptions;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m824L(C1643a.m833U("Loaded(subscriptions="), this.subscriptions, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Loading extends SubscriptionsState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Unfetched extends SubscriptionsState {
+            public static final Unfetched INSTANCE = new Unfetched();
+
+            private Unfetched() {
+                super(null);
+            }
+        }
+
+        private SubscriptionsState() {
+        }
+
+        public /* synthetic */ SubscriptionsState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -263,6 +263,21 @@ public final class StoreSubscriptions extends StoreV2 {
         SubscriptionsState.Unfetched unfetched = SubscriptionsState.Unfetched.INSTANCE;
         this.subscriptionsState = unfetched;
         this.subscriptionsStateSnapshot = unfetched;
+    }
+
+    public final void fetchSubscriptions() {
+        this.dispatcher.schedule(new C65241());
+    }
+
+    /* JADX INFO: renamed from: getSubscriptions, reason: from getter */
+    public final SubscriptionsState getSubscriptionsStateSnapshot() {
+        return this.subscriptionsStateSnapshot;
+    }
+
+    @StoreThread
+    public final void handlePreLogout() {
+        this.subscriptionsState = SubscriptionsState.Unfetched.INSTANCE;
+        markChanged();
     }
 
     @StoreThread
@@ -280,21 +295,6 @@ public final class StoreSubscriptions extends StoreV2 {
     @StoreThread
     private final void handleSubscriptionsFetchSuccess(List<ModelSubscription> subscriptions) {
         this.subscriptionsState = new SubscriptionsState.Loaded(subscriptions);
-        markChanged();
-    }
-
-    public final void fetchSubscriptions() {
-        this.dispatcher.schedule(new C65241());
-    }
-
-    /* JADX INFO: renamed from: getSubscriptions, reason: from getter */
-    public final SubscriptionsState getSubscriptionsStateSnapshot() {
-        return this.subscriptionsStateSnapshot;
-    }
-
-    @StoreThread
-    public final void handlePreLogout() {
-        this.subscriptionsState = SubscriptionsState.Unfetched.INSTANCE;
         markChanged();
     }
 

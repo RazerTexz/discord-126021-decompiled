@@ -26,6 +26,8 @@ public enum EnumC11759p {
     EnumC11759p(DefaultConstructorMarker defaultConstructorMarker) {
     }
 
+    public abstract String escape(String str);
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11759p[] valuesCustom() {
         EnumC11759p[] enumC11759pArrValuesCustom = values();
@@ -33,6 +35,4 @@ public enum EnumC11759p {
         System.arraycopy(enumC11759pArrValuesCustom, 0, enumC11759pArr, 0, enumC11759pArrValuesCustom.length);
         return enumC11759pArr;
     }
-
-    public abstract String escape(String str);
 }

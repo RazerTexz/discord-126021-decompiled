@@ -24,6 +24,17 @@ public class GhostViewHolder extends FrameLayout {
         this.mAttached = true;
     }
 
+    public void addGhostView(GhostViewPort ghostViewPort) {
+        ArrayList<View> arrayList = new ArrayList<>();
+        getParents(ghostViewPort.mView, arrayList);
+        int insertIndex = getInsertIndex(arrayList);
+        if (insertIndex < 0 || insertIndex >= getChildCount()) {
+            addView(ghostViewPort);
+        } else {
+            addView(ghostViewPort, insertIndex);
+        }
+    }
+
     public static GhostViewHolder getHolder(@NonNull ViewGroup viewGroup) {
         return (GhostViewHolder) viewGroup.getTag(C0658R.id.ghost_view_holder);
     }
@@ -66,17 +77,6 @@ public class GhostViewHolder extends FrameLayout {
             }
         }
         return arrayList2.size() == iMin;
-    }
-
-    public void addGhostView(GhostViewPort ghostViewPort) {
-        ArrayList<View> arrayList = new ArrayList<>();
-        getParents(ghostViewPort.mView, arrayList);
-        int insertIndex = getInsertIndex(arrayList);
-        if (insertIndex < 0 || insertIndex >= getChildCount()) {
-            addView(ghostViewPort);
-        } else {
-            addView(ghostViewPort, insertIndex);
-        }
     }
 
     @Override // android.view.ViewGroup

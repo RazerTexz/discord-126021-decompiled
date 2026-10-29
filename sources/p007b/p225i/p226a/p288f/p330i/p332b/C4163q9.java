@@ -676,12 +676,6 @@ public final class C4163q9 extends AbstractC4074i9 {
         return arrayList;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: t */
     public final long m5842t(byte[] bArr) {
@@ -894,5 +888,11 @@ public final class C4163q9 extends AbstractC4074i9 {
         }
         sbM833U.append("}\n");
         return sbM833U.toString();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        return false;
     }
 }

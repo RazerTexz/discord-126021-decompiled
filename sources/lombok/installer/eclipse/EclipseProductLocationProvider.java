@@ -188,7 +188,7 @@ public class EclipseProductLocationProvider implements IdeLocationProvider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductLocationProvider$UnixFinder.SCL.lombok */
-    private class UnixFinder extends DirectoryFinder {
+    class UnixFinder extends DirectoryFinder {
         UnixFinder() {
             super(EclipseProductLocationProvider.this.getNestedSourceLocationOnUnix(), EclipseProductLocationProvider.this.getFlatSourceLocationsOnUnix());
         }
@@ -231,7 +231,7 @@ public class EclipseProductLocationProvider implements IdeLocationProvider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductLocationProvider$WindowsFinder.SCL.lombok */
-    private class WindowsFinder extends DirectoryFinder {
+    class WindowsFinder extends DirectoryFinder {
         WindowsFinder() {
             super(EclipseProductLocationProvider.this.transformToFiles(EclipseProductLocationProvider.this.getSourceDirsOnWindowsWithDriveLetters()), Collections.emptyList());
         }
@@ -247,7 +247,7 @@ public class EclipseProductLocationProvider implements IdeLocationProvider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductLocationProvider$MacFinder.SCL.lombok */
-    private class MacFinder extends DirectoryFinder {
+    class MacFinder extends DirectoryFinder {
         MacFinder() {
             super(EclipseProductLocationProvider.this.transformToFiles(EclipseProductLocationProvider.this.descriptor.getSourceDirsOnMac()), Collections.emptyList());
         }
@@ -265,7 +265,7 @@ public class EclipseProductLocationProvider implements IdeLocationProvider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductLocationProvider$DirectoryFinder.SCL.lombok */
-    private abstract class DirectoryFinder {
+    abstract class DirectoryFinder {
         private final List<File> flatSourceDirs;
         private final List<File> nestedSourceDirs;
 

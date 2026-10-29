@@ -46,18 +46,6 @@ public final class C3466o extends AbstractC3349d<InterfaceC3471t> {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: u */
-    public final Bundle mo4140u() {
-        C3183a.a aVar = this.f9644A;
-        Objects.requireNonNull(aVar);
-        Bundle bundle = new Bundle();
-        bundle.putString("consumer_package", aVar.f9211k);
-        bundle.putBoolean("force_save_dialog", aVar.f9212l);
-        bundle.putString("log_session_id", aVar.f9213m);
-        return bundle;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
     /* JADX INFO: renamed from: x */
     public final String mo3984x() {
         return "com.google.android.gms.auth.api.credentials.internal.ICredentialsService";
@@ -67,5 +55,17 @@ public final class C3466o extends AbstractC3349d<InterfaceC3471t> {
     /* JADX INFO: renamed from: y */
     public final String mo3985y() {
         return "com.google.android.gms.auth.api.credentials.service.START";
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: u */
+    public final Bundle mo4140u() {
+        C3183a.a aVar = this.f9644A;
+        Objects.requireNonNull(aVar);
+        Bundle bundle = new Bundle();
+        bundle.putString("consumer_package", aVar.f9211k);
+        bundle.putBoolean("force_save_dialog", aVar.f9212l);
+        bundle.putString("log_session_id", aVar.f9213m);
+        return bundle;
     }
 }

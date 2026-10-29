@@ -63,7 +63,7 @@ public final class WidgetHubDescription extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescription$configureUI$3 */
     /* JADX INFO: compiled from: WidgetHubDescription.kt */
-    public static final class C90093 extends AbstractC12240o implements Function1<Success<? extends DirectoryEntryGuild>, Unit> {
+    public final class C90093 extends AbstractC12240o implements Function1<Success<? extends DirectoryEntryGuild>, Unit> {
         public C90093() {
             super(1);
         }
@@ -90,7 +90,7 @@ public final class WidgetHubDescription extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescription$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubDescription.kt */
-    public static final class C90111 extends AbstractC12240o implements Function1<HubDescriptionState, Unit> {
+    public final class C90111 extends AbstractC12240o implements Function1<HubDescriptionState, Unit> {
         public C90111() {
             super(1);
         }
@@ -155,27 +155,6 @@ public final class WidgetHubDescription extends AppFragment {
         }
     }
 
-    private final RadioSelectorItems getSelectorArgs() {
-        String string = requireContext().getString(C5419R.string.categories);
-        C12238m.checkNotNullExpressionValue(string, "requireContext().getString(R.string.categories)");
-        return new RadioSelectorItems(string, (List) getViewModel().withViewState(new WidgetHubDescription$selectorArgs$1(this)));
-    }
-
-    private final ValidationManager getValidationManager() {
-        return (ValidationManager) this.validationManager.getValue();
-    }
-
-    private final void maybeAddServer() {
-        if (getValidationManager().validate(true)) {
-            WidgetHubDescriptionViewModel viewModel = getViewModel();
-            long channelId = getArgs().getChannelId();
-            long guildId = getArgs().getGuildId();
-            TextInputEditText textInputEditText = getBinding().f17159f;
-            C12238m.checkNotNullExpressionValue(textInputEditText, "binding.description");
-            viewModel.addServer(channelId, guildId, String.valueOf(textInputEditText.getText()));
-        }
-    }
-
     public final HubDescriptionArgs getArgs() {
         return (HubDescriptionArgs) this.args.getValue();
     }
@@ -189,8 +168,29 @@ public final class WidgetHubDescription extends AppFragment {
         return this.loggingConfig;
     }
 
+    private final RadioSelectorItems getSelectorArgs() {
+        String string = requireContext().getString(C5419R.string.categories);
+        C12238m.checkNotNullExpressionValue(string, "requireContext().getString(R.string.categories)");
+        return new RadioSelectorItems(string, (List) getViewModel().withViewState(new WidgetHubDescription$selectorArgs$1(this)));
+    }
+
+    private final ValidationManager getValidationManager() {
+        return (ValidationManager) this.validationManager.getValue();
+    }
+
     public final WidgetHubDescriptionViewModel getViewModel() {
         return (WidgetHubDescriptionViewModel) this.viewModel.getValue();
+    }
+
+    private final void maybeAddServer() {
+        if (getValidationManager().validate(true)) {
+            WidgetHubDescriptionViewModel viewModel = getViewModel();
+            long channelId = getArgs().getChannelId();
+            long guildId = getArgs().getGuildId();
+            TextInputEditText textInputEditText = getBinding().f17159f;
+            C12238m.checkNotNullExpressionValue(textInputEditText, "binding.description");
+            viewModel.addServer(channelId, guildId, String.valueOf(textInputEditText.getText()));
+        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -202,7 +202,7 @@ public final class WidgetHubDescription extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescription$onViewBound$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetHubDescription.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }

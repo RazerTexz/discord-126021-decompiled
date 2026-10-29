@@ -20,6 +20,17 @@ public final /* data */ class GuildRoleSubscriptionTierListing {
     private final long roleId;
     private final List<SubscriptionPlan> subscriptionPlans;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRoleSubscriptionTierListing)) {
+            return false;
+        }
+        GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing = (GuildRoleSubscriptionTierListing) other;
+        return this.id == guildRoleSubscriptionTierListing.id && this.applicationId == guildRoleSubscriptionTierListing.applicationId && C12238m.areEqual(this.name, guildRoleSubscriptionTierListing.name) && this.published == guildRoleSubscriptionTierListing.published && C12238m.areEqual(this.description, guildRoleSubscriptionTierListing.description) && C12238m.areEqual(this.imageAsset, guildRoleSubscriptionTierListing.imageAsset) && C12238m.areEqual(this.subscriptionPlans, guildRoleSubscriptionTierListing.subscriptionPlans) && C12238m.areEqual(this.roleBenefits, guildRoleSubscriptionTierListing.roleBenefits) && this.roleId == guildRoleSubscriptionTierListing.roleId;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
@@ -43,17 +54,6 @@ public final /* data */ class GuildRoleSubscriptionTierListing {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRoleSubscriptionTierListing)) {
-            return false;
-        }
-        GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing = (GuildRoleSubscriptionTierListing) other;
-        return this.id == guildRoleSubscriptionTierListing.id && this.applicationId == guildRoleSubscriptionTierListing.applicationId && C12238m.areEqual(this.name, guildRoleSubscriptionTierListing.name) && this.published == guildRoleSubscriptionTierListing.published && C12238m.areEqual(this.description, guildRoleSubscriptionTierListing.description) && C12238m.areEqual(this.imageAsset, guildRoleSubscriptionTierListing.imageAsset) && C12238m.areEqual(this.subscriptionPlans, guildRoleSubscriptionTierListing.subscriptionPlans) && C12238m.areEqual(this.roleBenefits, guildRoleSubscriptionTierListing.roleBenefits) && this.roleId == guildRoleSubscriptionTierListing.roleId;
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

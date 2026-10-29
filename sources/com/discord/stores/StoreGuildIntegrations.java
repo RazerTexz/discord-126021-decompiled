@@ -34,11 +34,11 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$1 */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public static final class C60241 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C60241 extends AbstractC12240o implements Function1<Long, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-        public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function0<Unit> {
+        public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function0<Unit> {
             public AnonymousClass1(StoreGuildIntegrations storeGuildIntegrations) {
                 super(0, storeGuildIntegrations, StoreGuildIntegrations.class, "handleIntegrationScreenClosed", "handleIntegrationScreenClosed()V", 0);
             }
@@ -73,7 +73,7 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$2 */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public static final class C60252 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C60252 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C60252() {
             super(1);
         }
@@ -93,7 +93,7 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenOpened$1 */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public static final class C60261 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60261 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -116,12 +116,12 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$requestGuildIntegrations$1 */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public static final class C60271 extends AbstractC12240o implements Function1<List<? extends ModelGuildIntegration>, Unit> {
+    public final class C60271 extends AbstractC12240o implements Function1<List<? extends ModelGuildIntegration>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$requestGuildIntegrations$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $integrations;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -169,6 +169,17 @@ public final class StoreGuildIntegrations {
         this.integrationsSubject = BehaviorSubject.m11130l0(new HashMap());
     }
 
+    public final Observable<Map<Long, ModelGuildIntegration>> get(final long guildId) {
+        Observable<Map<Long, ModelGuildIntegration>> observableM11112r = this.integrationsSubject.m11083G(new InterfaceC12589b<Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>>, Map<Long, ? extends ModelGuildIntegration>>() { // from class: com.discord.stores.StoreGuildIntegrations.get.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Map<Long, ModelGuildIntegration> call(Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>> map) {
+                return (Map) map.get(Long.valueOf(guildId));
+            }
+        }).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "integrationsSubject\n    …  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
     @StoreThread
     private final void handleIntegrationScreenClosed() {
         this.isOnIntegrationsScreen = false;
@@ -195,21 +206,6 @@ public final class StoreGuildIntegrations {
         this.integrationsSubject.onNext(new HashMap(this.allIntegrations));
     }
 
-    private final void requestGuildIntegrations(long guildId) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildIntegrations(guildId), false, 1, null), (Class<?>) StoreGuildIntegrations.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60271(guildId));
-    }
-
-    public final Observable<Map<Long, ModelGuildIntegration>> get(final long guildId) {
-        Observable<Map<Long, ModelGuildIntegration>> observableM11112r = this.integrationsSubject.m11083G(new InterfaceC12589b<Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>>, Map<Long, ? extends ModelGuildIntegration>>() { // from class: com.discord.stores.StoreGuildIntegrations.get.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Map<Long, ModelGuildIntegration> call(Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>> map) {
-                return (Map) map.get(Long.valueOf(guildId));
-            }
-        }).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "integrationsSubject\n    …  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
     @StoreThread
     public final void handleUpdate(ModelGuildIntegration.Update update) {
         if (!this.isOnIntegrationsScreen || update == null) {
@@ -234,6 +230,10 @@ public final class StoreGuildIntegrations {
             subscription.unsubscribe();
         }
         this.dispatcher.schedule(new C60261(guildId));
+    }
+
+    private final void requestGuildIntegrations(long guildId) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildIntegrations(guildId), false, 1, null), (Class<?>) StoreGuildIntegrations.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60271(guildId));
     }
 
     public final Observable<ModelGuildIntegration> get(long guildId, final long integrationId) {

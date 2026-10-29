@@ -37,7 +37,7 @@ public class C1662e implements InterfaceC1660c {
     /* JADX INFO: renamed from: b.f.b.b.e$a */
     /* JADX INFO: compiled from: DynamicDefaultDiskStorage.java */
     @VisibleForTesting
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC1660c f3070a;
@@ -57,6 +57,46 @@ public class C1662e implements InterfaceC1660c {
         this.f3068d = interfaceC1651a;
         this.f3066b = supplier;
         this.f3067c = str;
+    }
+
+    @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
+    public boolean isExternal() {
+        try {
+            return m960i().isExternal();
+        } catch (IOException unused) {
+            return false;
+        }
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m959h() throws IOException {
+        File file = new File(this.f3066b.get(), this.f3067c);
+        try {
+            C1460d.m541l1(file);
+            file.getAbsolutePath();
+            int i = C1691a.f3102a;
+            this.f3069e = new a(file, new C1658a(file, this.f3065a, this.f3068d));
+        } catch (FileUtils$CreateDirectoryException e) {
+            Objects.requireNonNull((C1654d) this.f3068d);
+            throw e;
+        }
+    }
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: i */
+    public synchronized InterfaceC1660c m960i() throws IOException {
+        InterfaceC1660c interfaceC1660c;
+        File file;
+        a aVar = this.f3069e;
+        if (aVar.f3070a == null || (file = aVar.f3071b) == null || !file.exists()) {
+            if (this.f3069e.f3070a != null && this.f3069e.f3071b != null) {
+                C1460d.m492Z(this.f3069e.f3071b);
+            }
+            m959h();
+        }
+        interfaceC1660c = this.f3069e.f3070a;
+        Objects.requireNonNull(interfaceC1660c);
+        return interfaceC1660c;
     }
 
     @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
@@ -103,45 +143,5 @@ public class C1662e implements InterfaceC1660c {
     /* JADX INFO: renamed from: g */
     public long mo938g(InterfaceC1660c.a aVar) throws IOException {
         return m960i().mo938g(aVar);
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m959h() throws IOException {
-        File file = new File(this.f3066b.get(), this.f3067c);
-        try {
-            C1460d.m541l1(file);
-            file.getAbsolutePath();
-            int i = C1691a.f3102a;
-            this.f3069e = new a(file, new C1658a(file, this.f3065a, this.f3068d));
-        } catch (FileUtils$CreateDirectoryException e) {
-            Objects.requireNonNull((C1654d) this.f3068d);
-            throw e;
-        }
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: i */
-    public synchronized InterfaceC1660c m960i() throws IOException {
-        InterfaceC1660c interfaceC1660c;
-        File file;
-        a aVar = this.f3069e;
-        if (aVar.f3070a == null || (file = aVar.f3071b) == null || !file.exists()) {
-            if (this.f3069e.f3070a != null && this.f3069e.f3071b != null) {
-                C1460d.m492Z(this.f3069e.f3071b);
-            }
-            m959h();
-        }
-        interfaceC1660c = this.f3069e.f3070a;
-        Objects.requireNonNull(interfaceC1660c);
-        return interfaceC1660c;
-    }
-
-    @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
-    public boolean isExternal() {
-        try {
-            return m960i().isExternal();
-        } catch (IOException unused) {
-            return false;
-        }
     }
 }

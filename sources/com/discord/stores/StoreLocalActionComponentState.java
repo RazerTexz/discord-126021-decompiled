@@ -26,7 +26,7 @@ public final class StoreLocalActionComponentState extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLocalActionComponentState$observeSelectComponentSelections$1 */
     /* JADX INFO: compiled from: StoreLocalActionComponentState.kt */
-    public static final class C61431 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Integer, ? extends List<? extends SelectItem>>>> {
+    public final class C61431 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Integer, ? extends List<? extends SelectItem>>>> {
         public C61431() {
             super(0);
         }
@@ -39,7 +39,7 @@ public final class StoreLocalActionComponentState extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLocalActionComponentState$setSelectComponentSelection$1 */
     /* JADX INFO: compiled from: StoreLocalActionComponentState.kt */
-    public static final class C61441 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61441 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $componentIndex;
         public final /* synthetic */ long $messageId;
         public final /* synthetic */ List $selectedItems;

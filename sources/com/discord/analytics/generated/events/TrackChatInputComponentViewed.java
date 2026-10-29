@@ -13,17 +13,17 @@ public final /* data */ class TrackChatInputComponentViewed implements Analytics
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "chat_input_component_viewed";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackChatInputComponentViewed) && C12238m.areEqual(this.type, ((TrackChatInputComponentViewed) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

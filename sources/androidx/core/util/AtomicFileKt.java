@@ -22,6 +22,13 @@ public final class AtomicFileKt {
         return fully;
     }
 
+    public static /* synthetic */ String readText$default(android.util.AtomicFile atomicFile, Charset charset, int i, Object obj) {
+        if ((i & 1) != 0) {
+            charset = C12086c.f25136a;
+        }
+        return readText(atomicFile, charset);
+    }
+
     @RequiresApi(17)
     public static final String readText(android.util.AtomicFile atomicFile, Charset charset) throws IOException {
         C12238m.checkNotNullParameter(atomicFile, "<this>");
@@ -29,13 +36,6 @@ public final class AtomicFileKt {
         byte[] fully = atomicFile.readFully();
         C12238m.checkNotNullExpressionValue(fully, "readFully()");
         return new String(fully, charset);
-    }
-
-    public static /* synthetic */ String readText$default(android.util.AtomicFile atomicFile, Charset charset, int i, Object obj) {
-        if ((i & 1) != 0) {
-            charset = C12086c.f25136a;
-        }
-        return readText(atomicFile, charset);
     }
 
     @RequiresApi(17)
@@ -70,6 +70,13 @@ public final class AtomicFileKt {
         }
     }
 
+    public static /* synthetic */ void writeText$default(android.util.AtomicFile atomicFile, String str, Charset charset, int i, Object obj) throws IOException {
+        if ((i & 2) != 0) {
+            charset = C12086c.f25136a;
+        }
+        writeText(atomicFile, str, charset);
+    }
+
     @RequiresApi(17)
     public static final void writeText(android.util.AtomicFile atomicFile, String str, Charset charset) throws IOException {
         C12238m.checkNotNullParameter(atomicFile, "<this>");
@@ -78,12 +85,5 @@ public final class AtomicFileKt {
         byte[] bytes = str.getBytes(charset);
         C12238m.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");
         writeBytes(atomicFile, bytes);
-    }
-
-    public static /* synthetic */ void writeText$default(android.util.AtomicFile atomicFile, String str, Charset charset, int i, Object obj) throws IOException {
-        if ((i & 2) != 0) {
-            charset = C12086c.f25136a;
-        }
-        writeText(atomicFile, str, charset);
     }
 }

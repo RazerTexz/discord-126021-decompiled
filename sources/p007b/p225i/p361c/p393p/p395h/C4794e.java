@@ -22,9 +22,6 @@ import p007b.p225i.p361c.p393p.p394g.InterfaceC4789b;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4794e implements InterfaceC4789b<C4794e> {
 
-    /* JADX INFO: renamed from: a */
-    public static final a f12821a = new a(null);
-
     /* JADX INFO: renamed from: b */
     public final Map<Class<?>, InterfaceC4784c<?>> f12822b;
 
@@ -37,9 +34,12 @@ public final class C4794e implements InterfaceC4789b<C4794e> {
     /* JADX INFO: renamed from: e */
     public boolean f12825e;
 
+    /* JADX INFO: renamed from: a */
+    public static final a f12821a = new a(null);
+
     /* JADX INFO: renamed from: b.i.c.p.h.e$a */
     /* JADX INFO: compiled from: JsonDataEncoderBuilder.java */
-    public static final class a implements InterfaceC4786e<Date> {
+    public final class a implements InterfaceC4786e<Date> {
 
         /* JADX INFO: renamed from: a */
         public static final DateFormat f12826a;

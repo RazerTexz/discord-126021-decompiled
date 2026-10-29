@@ -46,7 +46,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class PremiumUtils {
     public static final float GUILD_BOOST_FOR_PREMIUM_USER_DISCOUNT_PERCENT = 0.3f;
-    public static final PremiumUtils INSTANCE = new PremiumUtils();
     public static final int MAX_NON_PREMIUM_GUILD_COUNT = 100;
     public static final int MAX_PREMIUM_GUILD_COUNT = 200;
     private static final String MONTHLY_ISO8601 = "P1M";
@@ -57,9 +56,10 @@ public final class PremiumUtils {
     private static final Set<GuildFeature> tier1BoostFeatures;
     private static final Set<GuildFeature> tier2BoostFeatures;
     private static final Set<GuildFeature> tier3BoostFeatures;
+    public static final PremiumUtils INSTANCE = new PremiumUtils();
 
     /* JADX INFO: compiled from: PremiumUtils.kt */
-    public static final /* data */ class BoostFeatureBadgeData {
+    public final /* data */ class BoostFeatureBadgeData {
         private final int iconColor;
         private final Function1<View, Unit> onClickListener;
         private final CharSequence text;
@@ -72,6 +72,10 @@ public final class PremiumUtils {
             this.iconColor = i;
             this.text = charSequence;
             this.textColor = i2;
+        }
+
+        public final Function1<View, Unit> component1() {
+            return this.onClickListener;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -91,25 +95,6 @@ public final class PremiumUtils {
             return boostFeatureBadgeData.copy(function1, i, charSequence, i2);
         }
 
-        public final Function1<View, Unit> component1() {
-            return this.onClickListener;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getIconColor() {
-            return this.iconColor;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final CharSequence getText() {
-            return this.text;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getTextColor() {
-            return this.textColor;
-        }
-
         public final BoostFeatureBadgeData copy(Function1<? super View, Unit> onClickListener, int iconColor, CharSequence text, int textColor) {
             C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             return new BoostFeatureBadgeData(onClickListener, iconColor, text, textColor);
@@ -126,6 +111,11 @@ public final class PremiumUtils {
             return C12238m.areEqual(this.onClickListener, boostFeatureBadgeData.onClickListener) && this.iconColor == boostFeatureBadgeData.iconColor && C12238m.areEqual(this.text, boostFeatureBadgeData.text) && this.textColor == boostFeatureBadgeData.textColor;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getIconColor() {
+            return this.iconColor;
+        }
+
         public final int getIconColor() {
             return this.iconColor;
         }
@@ -134,8 +124,18 @@ public final class PremiumUtils {
             return this.onClickListener;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final CharSequence getText() {
             return this.text;
+        }
+
+        public final CharSequence getText() {
+            return this.text;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getTextColor() {
+            return this.textColor;
         }
 
         public final int getTextColor() {
@@ -161,21 +161,9 @@ public final class PremiumUtils {
         }
     }
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            ModelSku.SkuCategory.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[ModelSku.SkuCategory.NITRO_CLASSIC.ordinal()] = 1;
-            iArr[ModelSku.SkuCategory.NITRO.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.premium.PremiumUtils$getBoostFeatureBadgeDataForGuildFeature$1 */
     /* JADX INFO: compiled from: PremiumUtils.kt */
-    public static final class C68401 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C68401 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ FragmentManager $fragmentManager;
         public final /* synthetic */ Guild $guild;
@@ -205,6 +193,18 @@ public final class PremiumUtils {
             if (guild != null) {
                 C0813e.INSTANCE.m119a(this.$fragmentManager, guild.getId(), this.$channelId, this.$minimumBoostTier, this.$locationTrait);
             }
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ModelSku.SkuCategory.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ModelSku.SkuCategory.NITRO_CLASSIC.ordinal()] = 1;
+            iArr[ModelSku.SkuCategory.NITRO.ordinal()] = 2;
         }
     }
 

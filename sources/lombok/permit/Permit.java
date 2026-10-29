@@ -67,7 +67,7 @@ public class Permit {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/permit/Permit$Fake.SCL.lombok */
-    static class Fake {
+    class Fake {
         boolean override;
         Object accessCheckCache;
 

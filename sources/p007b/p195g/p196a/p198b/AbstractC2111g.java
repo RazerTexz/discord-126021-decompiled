@@ -17,9 +17,6 @@ public abstract class AbstractC2111g {
     public AbstractC2111g() {
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract String mo1673a();
-
     /* JADX INFO: renamed from: b */
     public final boolean m1674b() {
         return this.f4503a == 1;
@@ -29,9 +26,6 @@ public abstract class AbstractC2111g {
     public final boolean m1675c() {
         return this.f4503a == 2;
     }
-
-    /* JADX INFO: renamed from: d */
-    public abstract void mo1676d(Object obj);
 
     /* JADX INFO: renamed from: e */
     public String m1677e() {
@@ -44,6 +38,12 @@ public abstract class AbstractC2111g {
         }
         return "Array";
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract String mo1673a();
+
+    /* JADX INFO: renamed from: d */
+    public abstract void mo1676d(Object obj);
 
     public String toString() {
         StringBuilder sb = new StringBuilder(64);

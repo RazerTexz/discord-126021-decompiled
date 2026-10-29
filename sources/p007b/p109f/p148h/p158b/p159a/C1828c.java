@@ -12,6 +12,11 @@ public class C1828c<I> extends C1826a<I> {
     /* JADX INFO: renamed from: j */
     public final List<InterfaceC1827b<I>> f3568j = new ArrayList(2);
 
+    /* JADX INFO: renamed from: e */
+    public final synchronized void m1168e(String str, Throwable th) {
+        Log.e("FwdControllerListener2", str, th);
+    }
+
     @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
     /* JADX INFO: renamed from: a */
     public void mo1071a(String str, Object obj, InterfaceC1827b.a aVar) {
@@ -74,10 +79,5 @@ public class C1828c<I> extends C1826a<I> {
                 m1168e("ForwardingControllerListener2 exception in onFinalImageSet", e);
             }
         }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final synchronized void m1168e(String str, Throwable th) {
-        Log.e("FwdControllerListener2", str, th);
     }
 }

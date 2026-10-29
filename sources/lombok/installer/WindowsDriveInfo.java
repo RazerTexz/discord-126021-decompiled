@@ -6,9 +6,9 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/WindowsDriveInfo.SCL.lombok */
 public class WindowsDriveInfo {
-    private native int getLogicalDrives0();
-
     private native int getDriveType(String str);
+
+    private native int getLogicalDrives0();
 
     public List<String> getLogicalDrives() {
         int flags = getLogicalDrives0();

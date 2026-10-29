@@ -16,17 +16,17 @@ public abstract class AbstractC3464m<R extends InterfaceC3273h> extends Abstract
         super(C3183a.f9207e, abstractC3268c);
     }
 
-    @Override // com.google.android.gms.common.api.internal.BasePendingResult, p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
-    /* JADX INFO: renamed from: b */
-    public /* bridge */ /* synthetic */ void mo3989b(Object obj) {
-        mo3989b((InterfaceC3273h) obj);
-    }
-
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3284d
     /* JADX INFO: renamed from: k */
     public void mo3988k(C3266a.b bVar) throws RemoteException {
         C3466o c3466o = (C3466o) bVar;
         mo4400m(c3466o.f9479d, (InterfaceC3471t) c3466o.m4142w());
+    }
+
+    @Override // com.google.android.gms.common.api.internal.BasePendingResult, p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
+    /* JADX INFO: renamed from: b */
+    public /* bridge */ /* synthetic */ void mo3989b(Object obj) {
+        mo3989b((InterfaceC3273h) obj);
     }
 
     /* JADX INFO: renamed from: m */

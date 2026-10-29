@@ -25,28 +25,6 @@ public class Barrier extends ConstraintHelper {
         super.setVisibility(8);
     }
 
-    private void updateType(ConstraintWidget constraintWidget, int i, boolean z2) {
-        this.mResolvedType = i;
-        if (z2) {
-            int i2 = this.mIndicatedType;
-            if (i2 == 5) {
-                this.mResolvedType = 1;
-            } else if (i2 == 6) {
-                this.mResolvedType = 0;
-            }
-        } else {
-            int i3 = this.mIndicatedType;
-            if (i3 == 5) {
-                this.mResolvedType = 0;
-            } else if (i3 == 6) {
-                this.mResolvedType = 1;
-            }
-        }
-        if (constraintWidget instanceof androidx.constraintlayout.solver.widgets.Barrier) {
-            ((androidx.constraintlayout.solver.widgets.Barrier) constraintWidget).setBarrierType(this.mResolvedType);
-        }
-    }
-
     public boolean allowsGoneWidget() {
         return this.mBarrier.allowsGoneWidget();
     }
@@ -112,6 +90,28 @@ public class Barrier extends ConstraintHelper {
 
     public void setType(int i) {
         this.mIndicatedType = i;
+    }
+
+    private void updateType(ConstraintWidget constraintWidget, int i, boolean z2) {
+        this.mResolvedType = i;
+        if (z2) {
+            int i2 = this.mIndicatedType;
+            if (i2 == 5) {
+                this.mResolvedType = 1;
+            } else if (i2 == 6) {
+                this.mResolvedType = 0;
+            }
+        } else {
+            int i3 = this.mIndicatedType;
+            if (i3 == 5) {
+                this.mResolvedType = 0;
+            } else if (i3 == 6) {
+                this.mResolvedType = 1;
+            }
+        }
+        if (constraintWidget instanceof androidx.constraintlayout.solver.widgets.Barrier) {
+            ((androidx.constraintlayout.solver.widgets.Barrier) constraintWidget).setBarrierType(this.mResolvedType);
+        }
     }
 
     public Barrier(Context context, AttributeSet attributeSet) {

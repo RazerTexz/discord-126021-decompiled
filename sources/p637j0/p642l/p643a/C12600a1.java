@@ -20,9 +20,31 @@ public class C12600a1<T> implements Observable.InterfaceC13006b<T, T> {
     /* JADX INFO: renamed from: j */
     public final C12575a.b f26727j;
 
+    /* JADX INFO: renamed from: j0.l.a.a1$b */
+    /* JADX INFO: compiled from: OperatorOnBackpressureBuffer.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: a */
+        public static final C12600a1<?> f26735a = new C12600a1<>();
+    }
+
+    public C12600a1() {
+        int i = C12575a.f26683a;
+        this.f26727j = C12575a.a.f26684a;
+    }
+
+    @Override // p637j0.p641k.InterfaceC12589b
+    public Object call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        a aVar = new a(subscriber, null, null, this.f26727j);
+        subscriber.add(aVar);
+        subscriber.setProducer(aVar.f26732n);
+        return aVar;
+    }
+
     /* JADX INFO: renamed from: j0.l.a.a1$a */
     /* JADX INFO: compiled from: OperatorOnBackpressureBuffer.java */
-    public static final class a<T> extends Subscriber<T> implements C12713c.a {
+    public final class a<T> extends Subscriber<T> implements C12713c.a {
 
         /* JADX INFO: renamed from: l */
         public final Subscriber<? super T> f26730l;
@@ -80,7 +102,6 @@ public class C12600a1<T> implements Observable.InterfaceC13006b<T, T> {
         @Override // p637j0.InterfaceC12581g
         public void onNext(T t) throws Throwable {
             boolean z2;
-            Object obj;
             boolean z3 = false;
             if (this.f26729k == null) {
                 z3 = true;
@@ -142,11 +163,10 @@ public class C12600a1<T> implements Observable.InterfaceC13006b<T, T> {
             }
             if (z3) {
                 ConcurrentLinkedQueue<Object> concurrentLinkedQueue = this.f26728j;
+                Object obj = t;
                 if (t == null) {
-                    obj = t;
                     obj = C12614e.f26769b;
                 }
-                obj = t;
                 concurrentLinkedQueue.offer(obj);
                 this.f26732n.m10810a();
             }
@@ -156,27 +176,5 @@ public class C12600a1<T> implements Observable.InterfaceC13006b<T, T> {
         public void onStart() {
             request(RecyclerView.FOREVER_NS);
         }
-    }
-
-    /* JADX INFO: renamed from: j0.l.a.a1$b */
-    /* JADX INFO: compiled from: OperatorOnBackpressureBuffer.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public static final C12600a1<?> f26735a = new C12600a1<>();
-    }
-
-    public C12600a1() {
-        int i = C12575a.f26683a;
-        this.f26727j = C12575a.a.f26684a;
-    }
-
-    @Override // p637j0.p641k.InterfaceC12589b
-    public Object call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        a aVar = new a(subscriber, null, null, this.f26727j);
-        subscriber.add(aVar);
-        subscriber.setProducer(aVar.f26732n);
-        return aVar;
     }
 }

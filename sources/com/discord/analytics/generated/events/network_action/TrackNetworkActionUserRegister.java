@@ -28,18 +28,6 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
         this.analyticsSchemaTypeName = "network_action_user_register";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -51,6 +39,12 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
         return C12238m.areEqual(this.inviteCode, trackNetworkActionUserRegister.inviteCode) && C12238m.areEqual(this.promotionalEmailOptIn, trackNetworkActionUserRegister.promotionalEmailOptIn) && C12238m.areEqual(this.promotionalEmailPreChecked, trackNetworkActionUserRegister.promotionalEmailPreChecked);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.inviteCode;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
@@ -58,6 +52,12 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
         int iHashCode2 = (iHashCode + (bool != null ? bool.hashCode() : 0)) * 31;
         Boolean bool2 = this.promotionalEmailPreChecked;
         return iHashCode2 + (bool2 != null ? bool2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

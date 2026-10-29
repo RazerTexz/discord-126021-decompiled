@@ -21,6 +21,10 @@ public final /* data */ class Presence {
         this.activities = list;
     }
 
+    public final List<Activity> component3() {
+        return this.activities;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Presence copy$default(Presence presence, ClientStatus clientStatus, ClientStatuses clientStatuses, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -33,20 +37,6 @@ public final /* data */ class Presence {
             list = presence.activities;
         }
         return presence.copy(clientStatus, clientStatuses, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ClientStatus getStatus() {
-        return this.status;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ClientStatuses getClientStatuses() {
-        return this.clientStatuses;
-    }
-
-    public final List<Activity> component3() {
-        return this.activities;
     }
 
     public final Presence copy(ClientStatus status, ClientStatuses clientStatuses, List<Activity> activities) {
@@ -69,8 +59,18 @@ public final /* data */ class Presence {
         return this.activities;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final ClientStatuses getClientStatuses() {
         return this.clientStatuses;
+    }
+
+    public final ClientStatuses getClientStatuses() {
+        return this.clientStatuses;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ClientStatus getStatus() {
+        return this.status;
     }
 
     public final ClientStatus getStatus() {

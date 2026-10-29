@@ -35,7 +35,7 @@ public final class ScrollEventAdapter extends RecyclerView.OnScrollListener {
     @NonNull
     private final ViewPager2 mViewPager;
 
-    public static final class ScrollEventValues {
+    public final class ScrollEventValues {
         public float mOffset;
         public int mOffsetPx;
         public int mPosition;
@@ -85,85 +85,6 @@ public final class ScrollEventAdapter extends RecyclerView.OnScrollListener {
         return this.mLayoutManager.findFirstVisibleItemPosition();
     }
 
-    private boolean isInAnyDraggingState() {
-        int i = this.mAdapterState;
-        return i == 1 || i == 4;
-    }
-
-    private void resetState() {
-        this.mAdapterState = 0;
-        this.mScrollState = 0;
-        this.mScrollValues.reset();
-        this.mDragStartPosition = -1;
-        this.mTarget = -1;
-        this.mDispatchSelected = false;
-        this.mScrollHappened = false;
-        this.mFakeDragging = false;
-        this.mDataSetChangeHappened = false;
-    }
-
-    private void startDrag(boolean z2) {
-        this.mFakeDragging = z2;
-        this.mAdapterState = z2 ? 4 : 1;
-        int i = this.mTarget;
-        if (i != -1) {
-            this.mDragStartPosition = i;
-            this.mTarget = -1;
-        } else if (this.mDragStartPosition == -1) {
-            this.mDragStartPosition = getPosition();
-        }
-        dispatchStateChanged(1);
-    }
-
-    private void updateScrollEventValues() {
-        int top;
-        ScrollEventValues scrollEventValues = this.mScrollValues;
-        int iFindFirstVisibleItemPosition = this.mLayoutManager.findFirstVisibleItemPosition();
-        scrollEventValues.mPosition = iFindFirstVisibleItemPosition;
-        if (iFindFirstVisibleItemPosition == -1) {
-            scrollEventValues.reset();
-            return;
-        }
-        View viewFindViewByPosition = this.mLayoutManager.findViewByPosition(iFindFirstVisibleItemPosition);
-        if (viewFindViewByPosition == null) {
-            scrollEventValues.reset();
-            return;
-        }
-        int leftDecorationWidth = this.mLayoutManager.getLeftDecorationWidth(viewFindViewByPosition);
-        int rightDecorationWidth = this.mLayoutManager.getRightDecorationWidth(viewFindViewByPosition);
-        int topDecorationHeight = this.mLayoutManager.getTopDecorationHeight(viewFindViewByPosition);
-        int bottomDecorationHeight = this.mLayoutManager.getBottomDecorationHeight(viewFindViewByPosition);
-        ViewGroup.LayoutParams layoutParams = viewFindViewByPosition.getLayoutParams();
-        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-            leftDecorationWidth += marginLayoutParams.leftMargin;
-            rightDecorationWidth += marginLayoutParams.rightMargin;
-            topDecorationHeight += marginLayoutParams.topMargin;
-            bottomDecorationHeight += marginLayoutParams.bottomMargin;
-        }
-        int height = viewFindViewByPosition.getHeight() + topDecorationHeight + bottomDecorationHeight;
-        int width = viewFindViewByPosition.getWidth() + leftDecorationWidth + rightDecorationWidth;
-        if (this.mLayoutManager.getOrientation() == 0) {
-            top = (viewFindViewByPosition.getLeft() - leftDecorationWidth) - this.mRecyclerView.getPaddingLeft();
-            if (this.mViewPager.isRtl()) {
-                top = -top;
-            }
-            height = width;
-        } else {
-            top = (viewFindViewByPosition.getTop() - topDecorationHeight) - this.mRecyclerView.getPaddingTop();
-        }
-        int i = -top;
-        scrollEventValues.mOffsetPx = i;
-        if (i >= 0) {
-            scrollEventValues.mOffset = height == 0 ? 0.0f : i / height;
-        } else {
-            if (!new AnimateLayoutChangeDetector(this.mLayoutManager).mayHaveInterferingAnimations()) {
-                throw new IllegalStateException(String.format(Locale.US, "Page can only be offset by a positive amount, not by %d", Integer.valueOf(scrollEventValues.mOffsetPx)));
-            }
-            throw new IllegalStateException("Page(s) contain a ViewGroup with a LayoutTransition (or animateLayoutChanges=\"true\"), which interferes with the scrolling animation. Make sure to call getLayoutTransition().setAnimateParentHierarchy(false) on all ViewGroups with a LayoutTransition before an animation is started.");
-        }
-    }
-
     public double getRelativeScrollPosition() {
         updateScrollEventValues();
         ScrollEventValues scrollEventValues = this.mScrollValues;
@@ -184,6 +105,11 @@ public final class ScrollEventAdapter extends RecyclerView.OnScrollListener {
 
     public boolean isIdle() {
         return this.mScrollState == 0;
+    }
+
+    private boolean isInAnyDraggingState() {
+        int i = this.mAdapterState;
+        return i == 1 || i == 4;
     }
 
     public void notifyBeginFakeDrag() {
@@ -332,7 +258,81 @@ public final class ScrollEventAdapter extends RecyclerView.OnScrollListener {
         }
     }
 
+    private void resetState() {
+        this.mAdapterState = 0;
+        this.mScrollState = 0;
+        this.mScrollValues.reset();
+        this.mDragStartPosition = -1;
+        this.mTarget = -1;
+        this.mDispatchSelected = false;
+        this.mScrollHappened = false;
+        this.mFakeDragging = false;
+        this.mDataSetChangeHappened = false;
+    }
+
     public void setOnPageChangeCallback(ViewPager2.OnPageChangeCallback onPageChangeCallback) {
         this.mCallback = onPageChangeCallback;
+    }
+
+    private void startDrag(boolean z2) {
+        this.mFakeDragging = z2;
+        this.mAdapterState = z2 ? 4 : 1;
+        int i = this.mTarget;
+        if (i != -1) {
+            this.mDragStartPosition = i;
+            this.mTarget = -1;
+        } else if (this.mDragStartPosition == -1) {
+            this.mDragStartPosition = getPosition();
+        }
+        dispatchStateChanged(1);
+    }
+
+    private void updateScrollEventValues() {
+        int top;
+        ScrollEventValues scrollEventValues = this.mScrollValues;
+        int iFindFirstVisibleItemPosition = this.mLayoutManager.findFirstVisibleItemPosition();
+        scrollEventValues.mPosition = iFindFirstVisibleItemPosition;
+        if (iFindFirstVisibleItemPosition == -1) {
+            scrollEventValues.reset();
+            return;
+        }
+        View viewFindViewByPosition = this.mLayoutManager.findViewByPosition(iFindFirstVisibleItemPosition);
+        if (viewFindViewByPosition == null) {
+            scrollEventValues.reset();
+            return;
+        }
+        int leftDecorationWidth = this.mLayoutManager.getLeftDecorationWidth(viewFindViewByPosition);
+        int rightDecorationWidth = this.mLayoutManager.getRightDecorationWidth(viewFindViewByPosition);
+        int topDecorationHeight = this.mLayoutManager.getTopDecorationHeight(viewFindViewByPosition);
+        int bottomDecorationHeight = this.mLayoutManager.getBottomDecorationHeight(viewFindViewByPosition);
+        ViewGroup.LayoutParams layoutParams = viewFindViewByPosition.getLayoutParams();
+        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            leftDecorationWidth += marginLayoutParams.leftMargin;
+            rightDecorationWidth += marginLayoutParams.rightMargin;
+            topDecorationHeight += marginLayoutParams.topMargin;
+            bottomDecorationHeight += marginLayoutParams.bottomMargin;
+        }
+        int height = viewFindViewByPosition.getHeight() + topDecorationHeight + bottomDecorationHeight;
+        int width = viewFindViewByPosition.getWidth() + leftDecorationWidth + rightDecorationWidth;
+        if (this.mLayoutManager.getOrientation() == 0) {
+            top = (viewFindViewByPosition.getLeft() - leftDecorationWidth) - this.mRecyclerView.getPaddingLeft();
+            if (this.mViewPager.isRtl()) {
+                top = -top;
+            }
+            height = width;
+        } else {
+            top = (viewFindViewByPosition.getTop() - topDecorationHeight) - this.mRecyclerView.getPaddingTop();
+        }
+        int i = -top;
+        scrollEventValues.mOffsetPx = i;
+        if (i >= 0) {
+            scrollEventValues.mOffset = height == 0 ? 0.0f : i / height;
+        } else {
+            if (!new AnimateLayoutChangeDetector(this.mLayoutManager).mayHaveInterferingAnimations()) {
+                throw new IllegalStateException(String.format(Locale.US, "Page can only be offset by a positive amount, not by %d", Integer.valueOf(scrollEventValues.mOffsetPx)));
+            }
+            throw new IllegalStateException("Page(s) contain a ViewGroup with a LayoutTransition (or animateLayoutChanges=\"true\"), which interferes with the scrolling animation. Make sure to call getLayoutTransition().setAnimateParentHierarchy(false) on all ViewGroups with a LayoutTransition before an animation is started.");
+        }
     }
 }

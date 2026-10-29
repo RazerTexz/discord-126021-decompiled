@@ -74,10 +74,14 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetVoiceBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceBottomSheetBinding;", 0)};
     private static final String ANALYTICS_SOURCE = "Voice Channel Bottom Sheet";
     private static final String ARG_FEATURE_CONTEXT = "ARG_FEATURE_CONTEXT";
     private static final String ARG_FORWARD_TO_FULLSCREEN_IF_VIDEO_ACTIVATED = "ARG_FORWARD_TO_FULLSCREEN_IF_VIDEO_ACTIVATED";
     private static final String END_EVENT_REQUEST_KEY = "END_EVENT_REQUEST_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -96,16 +100,12 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
     private Subscription viewModelEventSubscription;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetVoiceBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceBottomSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static abstract class BottomContent {
+    public abstract class BottomContent {
 
         /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-        public static final /* data */ class Connect extends BottomContent {
+        public final /* data */ class Connect extends BottomContent {
             private final boolean isConnectEnabled;
 
             public Connect(boolean z2) {
@@ -120,11 +120,6 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                 return connect.copy(z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsConnectEnabled() {
-                return this.isConnectEnabled;
-            }
-
             public final Connect copy(boolean isConnectEnabled) {
                 return new Connect(isConnectEnabled);
             }
@@ -134,6 +129,11 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                     return (other instanceof Connect) && this.isConnectEnabled == ((Connect) other).isConnectEnabled;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsConnectEnabled() {
+                return this.isConnectEnabled;
             }
 
             public int hashCode() {
@@ -154,7 +154,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         }
 
         /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-        public static final /* data */ class Controls extends BottomContent {
+        public final /* data */ class Controls extends BottomContent {
             private final StoreAudioManagerV2.State audioManagerState;
             private final CameraState cameraState;
             private final MediaEngineConnection.InputMode inputMode;
@@ -202,36 +202,6 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                 return controls.copy(inputMode, state2, z5, cameraState2, z6, z4);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MediaEngineConnection.InputMode getInputMode() {
-                return this.inputMode;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final StoreAudioManagerV2.State getAudioManagerState() {
-                return this.audioManagerState;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsMuted() {
-                return this.isMuted;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final CameraState getCameraState() {
-                return this.cameraState;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getShowScreenShareSparkle() {
-                return this.showScreenShareSparkle;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsScreensharing() {
-                return this.isScreensharing;
-            }
-
             public final Controls copy(MediaEngineConnection.InputMode inputMode, StoreAudioManagerV2.State audioManagerState, boolean isMuted, CameraState cameraState, boolean showScreenShareSparkle, boolean isScreensharing) {
                 C12238m.checkNotNullParameter(inputMode, "inputMode");
                 C12238m.checkNotNullParameter(audioManagerState, "audioManagerState");
@@ -250,16 +220,46 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                 return C12238m.areEqual(this.inputMode, controls.inputMode) && C12238m.areEqual(this.audioManagerState, controls.audioManagerState) && this.isMuted == controls.isMuted && C12238m.areEqual(this.cameraState, controls.cameraState) && this.showScreenShareSparkle == controls.showScreenShareSparkle && this.isScreensharing == controls.isScreensharing;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final StoreAudioManagerV2.State getAudioManagerState() {
                 return this.audioManagerState;
+            }
+
+            public final StoreAudioManagerV2.State getAudioManagerState() {
+                return this.audioManagerState;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final CameraState getCameraState() {
+                return this.cameraState;
             }
 
             public final CameraState getCameraState() {
                 return this.cameraState;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final MediaEngineConnection.InputMode getInputMode() {
                 return this.inputMode;
+            }
+
+            public final MediaEngineConnection.InputMode getInputMode() {
+                return this.inputMode;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsMuted() {
+                return this.isMuted;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsScreensharing() {
+                return this.isScreensharing;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getShowScreenShareSparkle() {
+                return this.showScreenShareSparkle;
             }
 
             public final boolean getShowScreenShareSparkle() {
@@ -334,11 +334,461 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$1 */
     /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static abstract class CenterContent {
+    public final /* synthetic */ class C105751 extends C12236k implements Function0<Unit> {
+        public C105751(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onMutePressed", "onMutePressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onMutePressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$2 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C105762 extends C12236k implements Function0<Unit> {
+        public C105762(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onScreenSharePressed", "onScreenSharePressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onScreenSharePressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$3 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105773 extends AbstractC12240o implements Function0<Unit> {
+        public C105773() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            C0826a.Companion companion = C0826a.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Objects.requireNonNull(companion);
+            C12238m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+            new C0826a().show(parentFragmentManager, C0826a.class.getName());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$4 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C105784 extends C12236k implements Function0<Unit> {
+        public C105784(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onCameraButtonPressed", "onCameraButtonPressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onCameraButtonPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$5 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C105795 extends C12236k implements Function0<Unit> {
+        public C105795(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnectPressed", "onDisconnectPressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnectPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$6 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105806 extends AbstractC12240o implements Function0<Unit> {
+        public C105806() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C105831 extends C12236k implements Function1<StreamContext, Unit> {
+        public C105831(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
+            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "onStreamPreviewClicked", "onStreamPreviewClicked(Lcom/discord/utilities/streams/StreamContext;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StreamContext streamContext) {
+            invoke2(streamContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StreamContext streamContext) {
+            C12238m.checkNotNullParameter(streamContext, "p1");
+            ((WidgetVoiceBottomSheet) this.receiver).onStreamPreviewClicked(streamContext);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$2 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105842 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C105842(Channel channel) {
+            super(1);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+            invoke2(voiceUser);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+            C12238m.checkNotNullParameter(voiceUser, "clickedUser");
+            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+            long id2 = voiceUser.getUser().getId();
+            Long lValueOf = Long.valueOf(this.$channel.getId());
+            FragmentManager childFragmentManager = WidgetVoiceBottomSheet.this.getChildFragmentManager();
+            C12238m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+            WidgetUserSheet.Companion.show$default(companion, id2, lValueOf, childFragmentManager, Long.valueOf(this.$channel.getGuildId()), Boolean.TRUE, null, null, 96, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$3 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105853 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+        public C105853() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+            invoke2(voiceUser);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+            C12238m.checkNotNullParameter(voiceUser, "voiceUser");
+            WidgetVoiceBottomSheet.this.getViewModel().onToggleRingingPressed(voiceUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$4 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105864 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C105864(Channel channel) {
+            super(1);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            ChannelInviteLaunchUtils.INSTANCE.inviteToChannel(WidgetVoiceBottomSheet.this, this.$channel, WidgetVoiceBottomSheet.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? null : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$5 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105875 extends AbstractC12240o implements Function0<Unit> {
+        public C105875() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Context contextRequireContext = WidgetVoiceBottomSheet.this.requireContext();
+            C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            C12238m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(contextRequireContext, "context");
+            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+            String string = contextRequireContext.getString(C5419R.string.embedded_activities_desktop_only_modal_title);
+            String string2 = contextRequireContext.getString(C5419R.string.embedded_activities_desktop_only_modal_description);
+            C12238m.checkNotNullExpressionValue(string2, "context.getString(R.stri…p_only_modal_description)");
+            WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(C5419R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$handleEvent$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105921 extends AbstractC12240o implements Function0<Unit> {
+        public C105921() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.this.getViewModel().onCameraPermissionsGranted();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onActivityResult$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105931 extends AbstractC12240o implements Function1<Intent, Unit> {
+        public C105931() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
+            invoke2(intent);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Intent intent) {
+            C12238m.checkNotNullParameter(intent, "it");
+            WidgetVoiceBottomSheet.this.getViewModel().startStream(intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105941 extends AbstractC12240o implements Function1<GuildScheduledEvent, Unit> {
+        public C105941() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
+            invoke2(guildScheduledEvent);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
+            C12238m.checkNotNullParameter(guildScheduledEvent, "event");
+            WidgetGuildScheduledEventDetailsBottomSheet.Companion companion = WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForGuild(parentFragmentManager, guildScheduledEvent.getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$2 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105952 extends AbstractC12240o implements Function1<GuildScheduledEvent, Unit> {
+        public C105952() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
+            invoke2(guildScheduledEvent);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
+            C12238m.checkNotNullParameter(guildScheduledEvent, "event");
+            WidgetPreviewGuildScheduledEvent.Companion companion = WidgetPreviewGuildScheduledEvent.INSTANCE;
+            WidgetVoiceBottomSheetBinding binding = WidgetVoiceBottomSheet.this.getBinding();
+            C12238m.checkNotNullExpressionValue(binding, "binding");
+            CoordinatorLayout coordinatorLayout = binding.f18437a;
+            C12238m.checkNotNullExpressionValue(coordinatorLayout, "binding.root");
+            Context context = coordinatorLayout.getContext();
+            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
+            companion.launch(context, GuildScheduledEventModelKt.toModel(guildScheduledEvent), (24 & 4) != 0 ? null : new WidgetPreviewGuildScheduledEvent.Companion.ExistingEventData(guildScheduledEvent.getId(), WidgetPreviewGuildScheduledEvent.Companion.Action.START_EVENT), (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? false : false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$3 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105963 extends AbstractC12240o implements Function1<WidgetVoiceBottomSheetViewModel.ViewState, Unit> {
+        public C105963() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetVoiceBottomSheet.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$4 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C105974 extends C12236k implements Function1<WidgetVoiceBottomSheetViewModel.Event, Unit> {
+        public C105974(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
+            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/voice/sheet/WidgetVoiceBottomSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetVoiceBottomSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetVoiceBottomSheet) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$5 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105985 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C105985() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetVoiceBottomSheet.this.viewModelEventSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onStreamPreviewClicked$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class C105991 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ StreamContext $streamContext;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C105991(StreamContext streamContext) {
+            super(0);
+            this.$streamContext = streamContext;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.this.getViewModel().onStreamPreviewClicked(this.$streamContext.getStream().getEncodedStreamKey());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$1 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C106001 extends C12236k implements Function1<Boolean, Unit> {
+        public C106001(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(1, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onPttPressed", "onPttPressed(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onPttPressed(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$2 */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class C106012 extends C12236k implements Function0<Unit> {
+        public C106012(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnect", "onDisconnect()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnect();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public abstract class CenterContent {
 
         /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-        public static final /* data */ class Empty extends CenterContent {
+        public final /* data */ class Empty extends CenterContent {
             private final List<CallParticipantsAdapter.ListItem> items;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -349,16 +799,16 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                 this.items = list;
             }
 
+            public final List<CallParticipantsAdapter.ListItem> component1() {
+                return this.items;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Empty copy$default(Empty empty, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = empty.items;
                 }
                 return empty.copy(list);
-            }
-
-            public final List<CallParticipantsAdapter.ListItem> component1() {
-                return this.items;
             }
 
             public final Empty copy(List<? extends CallParticipantsAdapter.ListItem> items) {
@@ -391,7 +841,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         }
 
         /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-        public static final /* data */ class ListItems extends CenterContent {
+        public final /* data */ class ListItems extends CenterContent {
             private final List<CallParticipantsAdapter.ListItem> items;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -402,16 +852,16 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
                 this.items = list;
             }
 
+            public final List<CallParticipantsAdapter.ListItem> component1() {
+                return this.items;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ ListItems copy$default(ListItems listItems, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = listItems.items;
                 }
                 return listItems.copy(list);
-            }
-
-            public final List<CallParticipantsAdapter.ListItem> component1() {
-                return this.items;
             }
 
             public final ListItems copy(List<? extends CallParticipantsAdapter.ListItem> items) {
@@ -452,7 +902,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -488,17 +938,17 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
 
         Channel getChannel();
 
-        boolean getShowInviteOption();
-
-        String getSubtitle();
-
-        String getTitle();
-
         /* JADX INFO: renamed from: isDeafened */
         boolean getIsDeafened();
 
         /* JADX INFO: renamed from: isNoiseCancellationActive */
         Boolean getIsNoiseCancellationActive();
+
+        boolean getShowInviteOption();
+
+        String getSubtitle();
+
+        String getTitle();
     }
 
     public final /* synthetic */ class WhenMappings {
@@ -510,456 +960,6 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             $EnumSwitchMapping$0 = iArr;
             iArr[FeatureContext.HOME.ordinal()] = 1;
             iArr[FeatureContext.FULLSCREEN_CALL.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105751 extends C12236k implements Function0<Unit> {
-        public C105751(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onMutePressed", "onMutePressed()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onMutePressed();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$2 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105762 extends C12236k implements Function0<Unit> {
-        public C105762(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onScreenSharePressed", "onScreenSharePressed()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onScreenSharePressed();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$3 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105773 extends AbstractC12240o implements Function0<Unit> {
-        public C105773() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            C0826a.Companion companion = C0826a.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            Objects.requireNonNull(companion);
-            C12238m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
-            new C0826a().show(parentFragmentManager, C0826a.class.getName());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$4 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105784 extends C12236k implements Function0<Unit> {
-        public C105784(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onCameraButtonPressed", "onCameraButtonPressed()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onCameraButtonPressed();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$5 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105795 extends C12236k implements Function0<Unit> {
-        public C105795(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnectPressed", "onDisconnectPressed()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnectPressed();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$6 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105806 extends AbstractC12240o implements Function0<Unit> {
-        public C105806() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetVoiceBottomSheet.this.dismiss();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105831 extends C12236k implements Function1<StreamContext, Unit> {
-        public C105831(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
-            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "onStreamPreviewClicked", "onStreamPreviewClicked(Lcom/discord/utilities/streams/StreamContext;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StreamContext streamContext) {
-            invoke2(streamContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StreamContext streamContext) {
-            C12238m.checkNotNullParameter(streamContext, "p1");
-            ((WidgetVoiceBottomSheet) this.receiver).onStreamPreviewClicked(streamContext);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$2 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105842 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
-        public final /* synthetic */ Channel $channel;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C105842(Channel channel) {
-            super(1);
-            this.$channel = channel;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
-            invoke2(voiceUser);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
-            C12238m.checkNotNullParameter(voiceUser, "clickedUser");
-            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
-            long id2 = voiceUser.getUser().getId();
-            Long lValueOf = Long.valueOf(this.$channel.getId());
-            FragmentManager childFragmentManager = WidgetVoiceBottomSheet.this.getChildFragmentManager();
-            C12238m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
-            WidgetUserSheet.Companion.show$default(companion, id2, lValueOf, childFragmentManager, Long.valueOf(this.$channel.getGuildId()), Boolean.TRUE, null, null, 96, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$3 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105853 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
-        public C105853() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
-            invoke2(voiceUser);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
-            C12238m.checkNotNullParameter(voiceUser, "voiceUser");
-            WidgetVoiceBottomSheet.this.getViewModel().onToggleRingingPressed(voiceUser);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$4 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105864 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Channel $channel;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C105864(Channel channel) {
-            super(1);
-            this.$channel = channel;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            ChannelInviteLaunchUtils.INSTANCE.inviteToChannel(WidgetVoiceBottomSheet.this, this.$channel, WidgetVoiceBottomSheet.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? null : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$5 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105875 extends AbstractC12240o implements Function0<Unit> {
-        public C105875() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            Context contextRequireContext = WidgetVoiceBottomSheet.this.requireContext();
-            C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-            C12238m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(contextRequireContext, "context");
-            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
-            String string = contextRequireContext.getString(C5419R.string.embedded_activities_desktop_only_modal_title);
-            String string2 = contextRequireContext.getString(C5419R.string.embedded_activities_desktop_only_modal_description);
-            C12238m.checkNotNullExpressionValue(string2, "context.getString(R.stri…p_only_modal_description)");
-            WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(C5419R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$handleEvent$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105921 extends AbstractC12240o implements Function0<Unit> {
-        public C105921() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetVoiceBottomSheet.this.getViewModel().onCameraPermissionsGranted();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onActivityResult$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105931 extends AbstractC12240o implements Function1<Intent, Unit> {
-        public C105931() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
-            invoke2(intent);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Intent intent) {
-            C12238m.checkNotNullParameter(intent, "it");
-            WidgetVoiceBottomSheet.this.getViewModel().startStream(intent);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105941 extends AbstractC12240o implements Function1<GuildScheduledEvent, Unit> {
-        public C105941() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
-            invoke2(guildScheduledEvent);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
-            C12238m.checkNotNullParameter(guildScheduledEvent, "event");
-            WidgetGuildScheduledEventDetailsBottomSheet.Companion companion = WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            companion.showForGuild(parentFragmentManager, guildScheduledEvent.getId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$2 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105952 extends AbstractC12240o implements Function1<GuildScheduledEvent, Unit> {
-        public C105952() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
-            invoke2(guildScheduledEvent);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
-            C12238m.checkNotNullParameter(guildScheduledEvent, "event");
-            WidgetPreviewGuildScheduledEvent.Companion companion = WidgetPreviewGuildScheduledEvent.INSTANCE;
-            WidgetVoiceBottomSheetBinding binding = WidgetVoiceBottomSheet.this.getBinding();
-            C12238m.checkNotNullExpressionValue(binding, "binding");
-            CoordinatorLayout coordinatorLayout = binding.f18437a;
-            C12238m.checkNotNullExpressionValue(coordinatorLayout, "binding.root");
-            Context context = coordinatorLayout.getContext();
-            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
-            companion.launch(context, GuildScheduledEventModelKt.toModel(guildScheduledEvent), (24 & 4) != 0 ? null : new WidgetPreviewGuildScheduledEvent.Companion.ExistingEventData(guildScheduledEvent.getId(), WidgetPreviewGuildScheduledEvent.Companion.Action.START_EVENT), (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? false : false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$3 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105963 extends AbstractC12240o implements Function1<WidgetVoiceBottomSheetViewModel.ViewState, Unit> {
-        public C105963() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetVoiceBottomSheet.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$4 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C105974 extends C12236k implements Function1<WidgetVoiceBottomSheetViewModel.Event, Unit> {
-        public C105974(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
-            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/voice/sheet/WidgetVoiceBottomSheetViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetVoiceBottomSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetVoiceBottomSheet) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$5 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105985 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C105985() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            WidgetVoiceBottomSheet.this.viewModelEventSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onStreamPreviewClicked$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final class C105991 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ StreamContext $streamContext;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C105991(StreamContext streamContext) {
-            super(0);
-            this.$streamContext = streamContext;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetVoiceBottomSheet.this.getViewModel().onStreamPreviewClicked(this.$streamContext.getStream().getEncodedStreamKey());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C106001 extends C12236k implements Function1<Boolean, Unit> {
-        public C106001(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(1, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onPttPressed", "onPttPressed(Z)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onPttPressed(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$2 */
-    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-    public static final /* synthetic */ class C106012 extends C12236k implements Function0<Unit> {
-        public C106012(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
-            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnect", "onDisconnect()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnect();
         }
     }
 
@@ -1039,7 +1039,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
 
                 /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$7$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }
@@ -1068,7 +1068,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
 
                 /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$8$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }
@@ -1227,12 +1227,21 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_voice_bottom_sheet;
+    }
+
     private final FeatureContext getFeatureContext() {
         return (FeatureContext) this.featureContext.getValue();
     }
 
     private final boolean getForwardToFullscreenIfVideoActivated() {
         return ((Boolean) this.forwardToFullscreenIfVideoActivated.getValue()).booleanValue();
+    }
+
+    public final Function1<StreamContext, Unit> getOnStreamPreviewClickedListener() {
+        return this.onStreamPreviewClickedListener;
     }
 
     private final WidgetVoiceBottomSheetViewModel getViewModel() {
@@ -1353,6 +1362,34 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         }
     }
 
+    @Override // androidx.fragment.app.Fragment
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        StreamNavigator.handleActivityResult(requestCode, resultCode, intent, new C105931());
+    }
+
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
+        RecyclerView recyclerView = getBinding().f18444h;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.voiceBottomSheetRecycler");
+        CallParticipantsAdapter callParticipantsAdapter = (CallParticipantsAdapter) companion.configure(new CallParticipantsAdapter(recyclerView, false, true, 2, null));
+        this.participantsAdapter = callParticipantsAdapter;
+        if (callParticipantsAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("participantsAdapter");
+        }
+        callParticipantsAdapter.setOnEventClicked(new C105941());
+        CallParticipantsAdapter callParticipantsAdapter2 = this.participantsAdapter;
+        if (callParticipantsAdapter2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("participantsAdapter");
+        }
+        callParticipantsAdapter2.setOnStartEventClicked(new C105952());
+        getBinding().f18444h.setHasFixedSize(false);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetVoiceBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105963());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetVoiceBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C105985()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105974(this));
+    }
+
     private final void onStreamPreviewClicked(StreamContext streamContext) {
         int iOrdinal = getFeatureContext().ordinal();
         if (iOrdinal == 0) {
@@ -1364,6 +1401,20 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             dismiss();
             this.onStreamPreviewClickedListener.invoke(streamContext);
         }
+    }
+
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        setBottomSheetState(3);
+        getBinding().f18442f.setOnPttPressedListener(new C106001(getViewModel()));
+        WidgetEndGuildScheduledEventBottomSheet.INSTANCE.registerForResult(this, END_EVENT_REQUEST_KEY, new C106012(getViewModel()));
+    }
+
+    public final void setOnStreamPreviewClickedListener(Function1<? super StreamContext, Unit> function1) {
+        C12238m.checkNotNullParameter(function1, "<set-?>");
+        this.onStreamPreviewClickedListener = function1;
     }
 
     private final void showNoScreenSharePermissionDialog() {
@@ -1438,56 +1489,5 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         String string2 = contextRequireContext.getString(C5419R.string.suppressed_permission_body);
         C12238m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ppressed_permission_body)");
         WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(C5419R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_voice_bottom_sheet;
-    }
-
-    public final Function1<StreamContext, Unit> getOnStreamPreviewClickedListener() {
-        return this.onStreamPreviewClickedListener;
-    }
-
-    @Override // androidx.fragment.app.Fragment
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        StreamNavigator.handleActivityResult(requestCode, resultCode, intent, new C105931());
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f18444h;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.voiceBottomSheetRecycler");
-        CallParticipantsAdapter callParticipantsAdapter = (CallParticipantsAdapter) companion.configure(new CallParticipantsAdapter(recyclerView, false, true, 2, null));
-        this.participantsAdapter = callParticipantsAdapter;
-        if (callParticipantsAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("participantsAdapter");
-        }
-        callParticipantsAdapter.setOnEventClicked(new C105941());
-        CallParticipantsAdapter callParticipantsAdapter2 = this.participantsAdapter;
-        if (callParticipantsAdapter2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("participantsAdapter");
-        }
-        callParticipantsAdapter2.setOnStartEventClicked(new C105952());
-        getBinding().f18444h.setHasFixedSize(false);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetVoiceBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105963());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetVoiceBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C105985()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105974(this));
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        setBottomSheetState(3);
-        getBinding().f18442f.setOnPttPressedListener(new C106001(getViewModel()));
-        WidgetEndGuildScheduledEventBottomSheet.INSTANCE.registerForResult(this, END_EVENT_REQUEST_KEY, new C106012(getViewModel()));
-    }
-
-    public final void setOnStreamPreviewClickedListener(Function1<? super StreamContext, Unit> function1) {
-        C12238m.checkNotNullParameter(function1, "<set-?>");
-        this.onStreamPreviewClickedListener = function1;
     }
 }

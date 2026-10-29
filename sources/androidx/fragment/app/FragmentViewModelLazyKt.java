@@ -20,7 +20,7 @@ public final class FragmentViewModelLazyKt {
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$activityViewModels$1 */
     /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
-    public static final class C04091 extends AbstractC12240o implements Function0<ViewModelStore> {
+    public final class C04091 extends AbstractC12240o implements Function0<ViewModelStore> {
         public final /* synthetic */ Fragment $this_activityViewModels;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -38,7 +38,7 @@ public final class FragmentViewModelLazyKt {
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$activityViewModels$2 */
     /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
-    public static final class C04102 extends AbstractC12240o implements Function0<ViewModelProvider.Factory> {
+    public final class C04102 extends AbstractC12240o implements Function0<ViewModelProvider.Factory> {
         public final /* synthetic */ Fragment $this_activityViewModels;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -56,7 +56,7 @@ public final class FragmentViewModelLazyKt {
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$viewModels$1 */
     /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
-    public static final class C04111 extends AbstractC12240o implements Function0<Fragment> {
+    public final class C04111 extends AbstractC12240o implements Function0<Fragment> {
         public final /* synthetic */ Fragment $this_viewModels;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -74,7 +74,7 @@ public final class FragmentViewModelLazyKt {
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$viewModels$2 */
     /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
-    public static final class C04122 extends AbstractC12240o implements Function0<ViewModelStore> {
+    public final class C04122 extends AbstractC12240o implements Function0<ViewModelStore> {
         public final /* synthetic */ Function0 $ownerProducer;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -92,18 +92,6 @@ public final class FragmentViewModelLazyKt {
         }
     }
 
-    @MainThread
-    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> activityViewModels(Fragment fragment, Function0<? extends ViewModelProvider.Factory> function0) {
-        C12238m.checkNotNullParameter(fragment, "$this$activityViewModels");
-        C12238m.reifiedOperationMarker(4, "VM");
-        InterfaceC11230c orCreateKotlinClass = C12216a0.getOrCreateKotlinClass(ViewModel.class);
-        C04091 c04091 = new C04091(fragment);
-        if (function0 == null) {
-            function0 = new C04102(fragment);
-        }
-        return createViewModelLazy(fragment, orCreateKotlinClass, c04091, function0);
-    }
-
     public static /* synthetic */ Lazy activityViewModels$default(Fragment fragment, Function0 function0, int i, Object obj) {
         if ((i & 1) != 0) {
             function0 = null;
@@ -119,14 +107,15 @@ public final class FragmentViewModelLazyKt {
     }
 
     @MainThread
-    public static final <VM extends ViewModel> Lazy<VM> createViewModelLazy(Fragment fragment, InterfaceC11230c<VM> interfaceC11230c, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider.Factory> function1) {
-        C12238m.checkNotNullParameter(fragment, "$this$createViewModelLazy");
-        C12238m.checkNotNullParameter(interfaceC11230c, "viewModelClass");
-        C12238m.checkNotNullParameter(function0, "storeProducer");
-        if (function1 == null) {
-            function1 = new FragmentViewModelLazyKt$createViewModelLazy$factoryPromise$1(fragment);
+    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> activityViewModels(Fragment fragment, Function0<? extends ViewModelProvider.Factory> function0) {
+        C12238m.checkNotNullParameter(fragment, "$this$activityViewModels");
+        C12238m.reifiedOperationMarker(4, "VM");
+        InterfaceC11230c orCreateKotlinClass = C12216a0.getOrCreateKotlinClass(ViewModel.class);
+        C04091 c04091 = new C04091(fragment);
+        if (function0 == null) {
+            function0 = new C04102(fragment);
         }
-        return new ViewModelLazy(interfaceC11230c, function0, function1);
+        return createViewModelLazy(fragment, orCreateKotlinClass, c04091, function0);
     }
 
     public static /* synthetic */ Lazy createViewModelLazy$default(Fragment fragment, InterfaceC11230c interfaceC11230c, Function0 function0, Function0 function1, int i, Object obj) {
@@ -137,11 +126,14 @@ public final class FragmentViewModelLazyKt {
     }
 
     @MainThread
-    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> viewModels(Fragment fragment, Function0<? extends ViewModelStoreOwner> function0, Function0<? extends ViewModelProvider.Factory> function1) {
-        C12238m.checkNotNullParameter(fragment, "$this$viewModels");
-        C12238m.checkNotNullParameter(function0, "ownerProducer");
-        C12238m.reifiedOperationMarker(4, "VM");
-        return createViewModelLazy(fragment, C12216a0.getOrCreateKotlinClass(ViewModel.class), new C04122(function0), function1);
+    public static final <VM extends ViewModel> Lazy<VM> createViewModelLazy(Fragment fragment, InterfaceC11230c<VM> interfaceC11230c, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider.Factory> function1) {
+        C12238m.checkNotNullParameter(fragment, "$this$createViewModelLazy");
+        C12238m.checkNotNullParameter(interfaceC11230c, "viewModelClass");
+        C12238m.checkNotNullParameter(function0, "storeProducer");
+        if (function1 == null) {
+            function1 = new FragmentViewModelLazyKt$createViewModelLazy$factoryPromise$1(fragment);
+        }
+        return new ViewModelLazy(interfaceC11230c, function0, function1);
     }
 
     public static /* synthetic */ Lazy viewModels$default(Fragment fragment, Function0 function0, Function0 function1, int i, Object obj) {
@@ -151,6 +143,14 @@ public final class FragmentViewModelLazyKt {
         if ((i & 2) != 0) {
             function1 = null;
         }
+        C12238m.checkNotNullParameter(fragment, "$this$viewModels");
+        C12238m.checkNotNullParameter(function0, "ownerProducer");
+        C12238m.reifiedOperationMarker(4, "VM");
+        return createViewModelLazy(fragment, C12216a0.getOrCreateKotlinClass(ViewModel.class), new C04122(function0), function1);
+    }
+
+    @MainThread
+    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> viewModels(Fragment fragment, Function0<? extends ViewModelStoreOwner> function0, Function0<? extends ViewModelProvider.Factory> function1) {
         C12238m.checkNotNullParameter(fragment, "$this$viewModels");
         C12238m.checkNotNullParameter(function0, "ownerProducer");
         C12238m.reifiedOperationMarker(4, "VM");

@@ -17,7 +17,7 @@ public final class C1434d extends FragmentStatePagerAdapter {
 
     /* JADX INFO: renamed from: b.b.a.d.d$a */
     /* JADX INFO: compiled from: AddContentPagerAdapter.kt */
-    public static abstract class a {
+    public abstract class a {
         private final int contentDesc;
         private final int icon;
 

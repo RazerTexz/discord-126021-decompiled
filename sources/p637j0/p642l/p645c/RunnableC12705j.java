@@ -47,7 +47,7 @@ public final class RunnableC12705j extends AtomicReference<Thread> implements Ru
 
     /* JADX INFO: renamed from: j0.l.c.j$b */
     /* JADX INFO: compiled from: ScheduledAction.java */
-    public static final class b extends AtomicBoolean implements Subscription {
+    public final class b extends AtomicBoolean implements Subscription {
         private static final long serialVersionUID = 247232374289553518L;
         public final SubscriptionList parent;
 
@@ -87,7 +87,7 @@ public final class RunnableC12705j extends AtomicReference<Thread> implements Ru
 
     /* JADX INFO: renamed from: j0.l.c.j$c */
     /* JADX INFO: compiled from: ScheduledAction.java */
-    public static final class c extends AtomicBoolean implements Subscription {
+    public final class c extends AtomicBoolean implements Subscription {
         private static final long serialVersionUID = 247232374289553518L;
         public final CompositeSubscription parent;
 
@@ -117,14 +117,14 @@ public final class RunnableC12705j extends AtomicReference<Thread> implements Ru
         this.cancel = new SubscriptionList();
     }
 
-    /* JADX INFO: renamed from: a */
-    public void m10807a(Future<?> future) {
-        this.cancel.m11128a(new a(future));
-    }
-
     @Override // p658rx.Subscription
     public boolean isUnsubscribed() {
         return this.cancel.f27645k;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void m10807a(Future<?> future) {
+        this.cancel.m11128a(new a(future));
     }
 
     @Override // java.lang.Runnable

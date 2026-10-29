@@ -44,13 +44,6 @@ public class C1777k extends AbstractC1780n {
         paint3.setStyle(Paint.Style.STROKE);
     }
 
-    @Override // p007b.p109f.p132g.p142e.AbstractC1780n
-    @VisibleForTesting
-    /* JADX INFO: renamed from: d */
-    public boolean mo1113d() {
-        return super.mo1113d() && this.f3372O != null;
-    }
-
     @Override // p007b.p109f.p132g.p142e.AbstractC1780n, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         C2030b.m1527b();
@@ -86,6 +79,13 @@ public class C1777k extends AbstractC1780n {
         }
         canvas.restoreToCount(iSave);
         C2030b.m1527b();
+    }
+
+    @Override // p007b.p109f.p132g.p142e.AbstractC1780n
+    @VisibleForTesting
+    /* JADX INFO: renamed from: d */
+    public boolean mo1113d() {
+        return super.mo1113d() && this.f3372O != null;
     }
 
     @Override // p007b.p109f.p132g.p142e.AbstractC1780n, android.graphics.drawable.Drawable

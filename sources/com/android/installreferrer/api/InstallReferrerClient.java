@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class InstallReferrerClient {
 
-    public static final class Builder {
+    public final class Builder {
         private final Context mContext;
 
         private Builder(Context context) {
@@ -36,15 +36,15 @@ public abstract class InstallReferrerClient {
         public static final int SERVICE_UNAVAILABLE = 1;
     }
 
-    public static Builder newBuilder(Context context) {
-        return new Builder(context);
-    }
-
     public abstract void endConnection();
 
     public abstract ReferrerDetails getInstallReferrer() throws RemoteException;
 
     public abstract boolean isReady();
+
+    public static Builder newBuilder(Context context) {
+        return new Builder(context);
+    }
 
     public abstract void startConnection(InstallReferrerStateListener installReferrerStateListener);
 }

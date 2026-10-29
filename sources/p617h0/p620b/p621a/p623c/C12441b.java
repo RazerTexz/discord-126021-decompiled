@@ -48,7 +48,7 @@ public class C12441b<T> implements InterfaceC12436a<T> {
 
     /* JADX INFO: renamed from: h0.b.a.c.b$a */
     /* JADX INFO: compiled from: ObjectInputStreamInstantiator.java */
-    public static class a extends InputStream {
+    public class a extends InputStream {
 
         /* JADX INFO: renamed from: j */
         public static final int[] f26386j = {1, 2, 2};

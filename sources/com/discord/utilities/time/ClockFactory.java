@@ -9,8 +9,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ClockFactory.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ClockFactory {
-    public static final ClockFactory INSTANCE = new ClockFactory();
     private static NtpClock ntpClock;
+    public static final ClockFactory INSTANCE = new ClockFactory();
 
     private ClockFactory() {
     }

@@ -23,6 +23,10 @@ public final /* data */ class ChannelListItemGuildScheduledEvents implements Cha
         this.key = String.valueOf(getType());
     }
 
+    public final List<GuildScheduledEvent> component1() {
+        return this.data;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ChannelListItemGuildScheduledEvents copy$default(ChannelListItemGuildScheduledEvents channelListItemGuildScheduledEvents, List list, Guild guild, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -32,15 +36,6 @@ public final /* data */ class ChannelListItemGuildScheduledEvents implements Cha
             guild = channelListItemGuildScheduledEvents.guild;
         }
         return channelListItemGuildScheduledEvents.copy(list, guild);
-    }
-
-    public final List<GuildScheduledEvent> component1() {
-        return this.data;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
     }
 
     public final ChannelListItemGuildScheduledEvents copy(List<GuildScheduledEvent> data, Guild guild) {
@@ -62,6 +57,11 @@ public final /* data */ class ChannelListItemGuildScheduledEvents implements Cha
 
     public final List<GuildScheduledEvent> getData() {
         return this.data;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Guild getGuild() {
+        return this.guild;
     }
 
     public final Guild getGuild() {

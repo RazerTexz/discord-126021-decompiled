@@ -88,6 +88,57 @@ public final class C3800q5 extends AbstractC3772o3<Long> implements InterfaceC36
         return indexOf(obj) != -1;
     }
 
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof C3800q5)) {
+            return super.equals(obj);
+        }
+        C3800q5 c3800q5 = (C3800q5) obj;
+        if (this.f10273m != c3800q5.f10273m) {
+            return false;
+        }
+        long[] jArr = c3800q5.f10272l;
+        for (int i = 0; i < this.f10273m; i++) {
+            if (this.f10272l[i] != jArr[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override // java.util.AbstractList, java.util.List
+    public final Object get(int i) {
+        m5189h(i);
+        return Long.valueOf(this.f10272l[i]);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
+    public final int hashCode() {
+        int iM5344a = 1;
+        for (int i = 0; i < this.f10273m; i++) {
+            iM5344a = (iM5344a * 31) + C3877w4.m5344a(this.f10272l[i]);
+        }
+        return iM5344a;
+    }
+
+    @Override // java.util.AbstractList, java.util.List
+    public final int indexOf(Object obj) {
+        if (!(obj instanceof Long)) {
+            return -1;
+        }
+        long jLongValue = ((Long) obj).longValue();
+        int i = this.f10273m;
+        for (int i2 = 0; i2 < i; i2++) {
+            if (this.f10272l[i2] == jLongValue) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
     /* JADX INFO: renamed from: d */
     public final void m5186d(long j) {
         m5153c();
@@ -110,25 +161,16 @@ public final class C3800q5 extends AbstractC3772o3<Long> implements InterfaceC36
         return this.f10272l[i];
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    /* JADX INFO: renamed from: h */
+    public final void m5189h(int i) {
+        if (i < 0 || i >= this.f10273m) {
+            throw new IndexOutOfBoundsException(m5190i(i));
         }
-        if (!(obj instanceof C3800q5)) {
-            return super.equals(obj);
-        }
-        C3800q5 c3800q5 = (C3800q5) obj;
-        if (this.f10273m != c3800q5.f10273m) {
-            return false;
-        }
-        long[] jArr = c3800q5.f10272l;
-        for (int i = 0; i < this.f10273m; i++) {
-            if (this.f10272l[i] != jArr[i]) {
-                return false;
-            }
-        }
-        return true;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final String m5190i(int i) {
+        return C1643a.m853h(35, "Index:", i, ", Size:", this.f10273m);
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
@@ -138,48 +180,6 @@ public final class C3800q5 extends AbstractC3772o3<Long> implements InterfaceC36
             return new C3800q5(Arrays.copyOf(this.f10272l, i), this.f10273m);
         }
         throw new IllegalArgumentException();
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public final Object get(int i) {
-        m5189h(i);
-        return Long.valueOf(this.f10272l[i]);
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m5189h(int i) {
-        if (i < 0 || i >= this.f10273m) {
-            throw new IndexOutOfBoundsException(m5190i(i));
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
-    public final int hashCode() {
-        int iM5344a = 1;
-        for (int i = 0; i < this.f10273m; i++) {
-            iM5344a = (iM5344a * 31) + C3877w4.m5344a(this.f10272l[i]);
-        }
-        return iM5344a;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final String m5190i(int i) {
-        return C1643a.m853h(35, "Index:", i, ", Size:", this.f10273m);
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public final int indexOf(Object obj) {
-        if (!(obj instanceof Long)) {
-            return -1;
-        }
-        long jLongValue = ((Long) obj).longValue();
-        int i = this.f10273m;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (this.f10272l[i2] == jLongValue) {
-                return i2;
-            }
-        }
-        return -1;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List

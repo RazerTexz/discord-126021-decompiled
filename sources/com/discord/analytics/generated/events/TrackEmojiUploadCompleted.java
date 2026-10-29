@@ -16,16 +16,11 @@ public final /* data */ class TrackEmojiUploadCompleted implements AnalyticsSche
     private final CharSequence uploadId = null;
     private final transient String analyticsSchemaTypeName = "emoji_upload_completed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackEmojiUploadCompleted) && C12238m.areEqual(this.uploadId, ((TrackEmojiUploadCompleted) other).uploadId);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -34,11 +29,10 @@ public final /* data */ class TrackEmojiUploadCompleted implements AnalyticsSche
         return this.analyticsSchemaTypeName;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackEmojiUploadCompleted) && C12238m.areEqual(this.uploadId, ((TrackEmojiUploadCompleted) other).uploadId);
-        }
-        return true;
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -47,6 +41,12 @@ public final /* data */ class TrackEmojiUploadCompleted implements AnalyticsSche
             return charSequence.hashCode();
         }
         return 0;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

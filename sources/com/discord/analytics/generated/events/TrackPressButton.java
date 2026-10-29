@@ -12,17 +12,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPressButton.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPressButton implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private TrackBase trackBase;
-    private TrackMarketingSite trackMarketingSite;
     private final CharSequence game = null;
     private final CharSequence name = null;
+    private TrackBase trackBase;
+    private TrackMarketingSite trackMarketingSite;
     private final transient String analyticsSchemaTypeName = "press_button";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackPressButton implements AnalyticsSchema, Track
         }
         TrackPressButton trackPressButton = (TrackPressButton) other;
         return C12238m.areEqual(this.game, trackPressButton.game) && C12238m.areEqual(this.name, trackPressButton.name);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

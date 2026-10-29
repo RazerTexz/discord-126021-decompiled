@@ -8,10 +8,10 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class SpliceScheduleCommand extends SpliceCommand {
-    public static final Parcelable.Creator<SpliceScheduleCommand> CREATOR = new C10746a();
 
     /* JADX INFO: renamed from: j */
     public final List<C10748c> f20038j;
+    public static final Parcelable.Creator<SpliceScheduleCommand> CREATOR = new C10746a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand$a */
     public class C10746a implements Parcelable.Creator<SpliceScheduleCommand> {
@@ -57,7 +57,7 @@ public final class SpliceScheduleCommand extends SpliceCommand {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand$b */
-    public static final class C10747b {
+    public final class C10747b {
 
         /* JADX INFO: renamed from: a */
         public final int f20039a;
@@ -86,7 +86,7 @@ public final class SpliceScheduleCommand extends SpliceCommand {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand$c */
-    public static final class C10748c {
+    public final class C10748c {
 
         /* JADX INFO: renamed from: a */
         public final long f20041a;

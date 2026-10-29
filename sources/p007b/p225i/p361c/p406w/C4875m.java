@@ -25,7 +25,7 @@ public final class C4875m {
 
     /* JADX INFO: renamed from: b.i.c.w.m$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public static class a implements InterfaceC4784c<C4875m> {
+    public class a implements InterfaceC4784c<C4875m> {
         /* JADX WARN: Code duplicated, block: B:30:0x009e  */
         /* JADX WARN: Code duplicated, block: B:31:0x00a0  */
         /* JADX WARN: Code duplicated, block: B:33:0x00a8  */
@@ -134,7 +134,7 @@ public final class C4875m {
 
     /* JADX INFO: renamed from: b.i.c.w.m$b */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final C4875m f13032a;
@@ -146,7 +146,7 @@ public final class C4875m {
 
     /* JADX INFO: renamed from: b.i.c.w.m$c */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public static final class c implements InterfaceC4784c<b> {
+    public final class c implements InterfaceC4784c<b> {
         @Override // p007b.p225i.p361c.p393p.InterfaceC4783b
         /* JADX INFO: renamed from: a */
         public final void mo2312a(Object obj, InterfaceC4785d interfaceC4785d) throws IOException {

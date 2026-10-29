@@ -22,7 +22,7 @@ public final class C12505a<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: i0.d0.a.a$a */
     /* JADX INFO: compiled from: BodyOnSubscribe.java */
-    public static class a<R> extends Subscriber<Response<R>> {
+    public class a<R> extends Subscriber<Response<R>> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super R> f26498j;

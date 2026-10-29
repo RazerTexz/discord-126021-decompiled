@@ -24,6 +24,12 @@ public final class C5089b implements KronosClock {
         this.f13647b = interfaceC5083b;
     }
 
+    /* JADX INFO: renamed from: c */
+    public C5085d m7139c() {
+        C5085d c5085dMo7150a = this.f13646a.mo7150a();
+        return c5085dMo7150a != null ? c5085dMo7150a : new C5085d(this.f13647b.mo7128a(), null);
+    }
+
     @Override // com.lyft.kronos.KronosClock, p007b.p445m.p446a.InterfaceC5083b
     /* JADX INFO: renamed from: a */
     public long mo7128a() {
@@ -34,11 +40,5 @@ public final class C5089b implements KronosClock {
     /* JADX INFO: renamed from: b */
     public long mo7129b() {
         return this.f13647b.mo7129b();
-    }
-
-    /* JADX INFO: renamed from: c */
-    public C5085d m7139c() {
-        C5085d c5085dMo7150a = this.f13646a.mo7150a();
-        return c5085dMo7150a != null ? c5085dMo7150a : new C5085d(this.f13647b.mo7128a(), null);
     }
 }

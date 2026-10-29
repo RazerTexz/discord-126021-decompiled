@@ -34,7 +34,7 @@ public class DecoderInputBuffer extends AbstractC2953a {
     /* JADX INFO: renamed from: q */
     public final int f19783q = 0;
 
-    public static final class InsufficientCapacityException extends IllegalStateException {
+    public final class InsufficientCapacityException extends IllegalStateException {
         public final int currentCapacity;
         public final int requiredCapacity;
 
@@ -57,20 +57,6 @@ public class DecoderInputBuffer extends AbstractC2953a {
 
     public DecoderInputBuffer(int i) {
         this.f19782p = i;
-    }
-
-    /* JADX INFO: renamed from: p */
-    public void mo3856p() {
-        this.f7901j = 0;
-        ByteBuffer byteBuffer = this.f19778l;
-        if (byteBuffer != null) {
-            byteBuffer.clear();
-        }
-        ByteBuffer byteBuffer2 = this.f19781o;
-        if (byteBuffer2 != null) {
-            byteBuffer2.clear();
-        }
-        this.f19779m = false;
     }
 
     /* JADX INFO: renamed from: q */
@@ -126,5 +112,19 @@ public class DecoderInputBuffer extends AbstractC2953a {
     /* JADX INFO: renamed from: t */
     public final boolean m8814t() {
         return m3552k(BasicMeasure.EXACTLY);
+    }
+
+    /* JADX INFO: renamed from: p */
+    public void mo3856p() {
+        this.f7901j = 0;
+        ByteBuffer byteBuffer = this.f19778l;
+        if (byteBuffer != null) {
+            byteBuffer.clear();
+        }
+        ByteBuffer byteBuffer2 = this.f19781o;
+        if (byteBuffer2 != null) {
+            byteBuffer2.clear();
+        }
+        this.f19779m = false;
     }
 }

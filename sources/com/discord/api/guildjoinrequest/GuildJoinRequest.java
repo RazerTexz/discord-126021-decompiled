@@ -17,6 +17,17 @@ public final /* data */ class GuildJoinRequest {
     private final User user;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildJoinRequest)) {
+            return false;
+        }
+        GuildJoinRequest guildJoinRequest = (GuildJoinRequest) other;
+        return this.userId == guildJoinRequest.userId && C12238m.areEqual(this.user, guildJoinRequest.user) && this.guildId == guildJoinRequest.guildId && C12238m.areEqual(this.createdAt, guildJoinRequest.createdAt) && C12238m.areEqual(this.applicationStatus, guildJoinRequest.applicationStatus) && C12238m.areEqual(this.rejectionReason, guildJoinRequest.rejectionReason) && C12238m.areEqual(this.inviteCode, guildJoinRequest.inviteCode) && C12238m.areEqual(this.lastSeen, guildJoinRequest.lastSeen) && C12238m.areEqual(this.actionedAt, guildJoinRequest.actionedAt);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final ApplicationStatus getApplicationStatus() {
         return this.applicationStatus;
@@ -40,17 +51,6 @@ public final /* data */ class GuildJoinRequest {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final long getUserId() {
         return this.userId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildJoinRequest)) {
-            return false;
-        }
-        GuildJoinRequest guildJoinRequest = (GuildJoinRequest) other;
-        return this.userId == guildJoinRequest.userId && C12238m.areEqual(this.user, guildJoinRequest.user) && this.guildId == guildJoinRequest.guildId && C12238m.areEqual(this.createdAt, guildJoinRequest.createdAt) && C12238m.areEqual(this.applicationStatus, guildJoinRequest.applicationStatus) && C12238m.areEqual(this.rejectionReason, guildJoinRequest.rejectionReason) && C12238m.areEqual(this.inviteCode, guildJoinRequest.inviteCode) && C12238m.areEqual(this.lastSeen, guildJoinRequest.lastSeen) && C12238m.areEqual(this.actionedAt, guildJoinRequest.actionedAt);
     }
 
     public int hashCode() {

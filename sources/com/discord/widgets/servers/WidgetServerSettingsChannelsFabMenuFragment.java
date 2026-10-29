@@ -36,7 +36,7 @@ public final class WidgetServerSettingsChannelsFabMenuFragment extends Fragment 
     private Action0 dismissHandler;
 
     /* JADX INFO: compiled from: WidgetServerSettingsChannelsFabMenuFragment.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -84,10 +84,6 @@ public final class WidgetServerSettingsChannelsFabMenuFragment extends Fragment 
 
     private final WidgetServerSettingsChannelsSortFabMenuBinding getBinding() {
         return (WidgetServerSettingsChannelsSortFabMenuBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public static final void show(long j, FragmentManager fragmentManager, Action0 action0) {
-        INSTANCE.show(j, fragmentManager, action0);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -150,5 +146,9 @@ public final class WidgetServerSettingsChannelsFabMenuFragment extends Fragment 
                 WidgetServerSettingsChannelsFabMenuFragment.this.dismiss();
             }
         });
+    }
+
+    public static final void show(long j, FragmentManager fragmentManager, Action0 action0) {
+        INSTANCE.show(j, fragmentManager, action0);
     }
 }

@@ -47,26 +47,6 @@ public final /* data */ class GameInviteEntry extends ChatListEntry {
         return gameInviteEntry.copy(j3, j4, messageActivity2, application);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getAuthorId() {
-        return this.authorId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final MessageActivity getActivity() {
-        return this.activity;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
     public final GameInviteEntry copy(long authorId, long messageId, MessageActivity activity, Application application) {
         C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         C12238m.checkNotNullParameter(application, "application");
@@ -84,12 +64,27 @@ public final /* data */ class GameInviteEntry extends ChatListEntry {
         return this.authorId == gameInviteEntry.authorId && this.messageId == gameInviteEntry.messageId && C12238m.areEqual(this.activity, gameInviteEntry.activity) && C12238m.areEqual(this.application, gameInviteEntry.application);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final MessageActivity getActivity() {
         return this.activity;
     }
 
+    public final MessageActivity getActivity() {
+        return this.activity;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getAuthorId() {
+        return this.authorId;
     }
 
     public final long getAuthorId() {
@@ -99,6 +94,11 @@ public final /* data */ class GameInviteEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
     }
 
     public final long getMessageId() {

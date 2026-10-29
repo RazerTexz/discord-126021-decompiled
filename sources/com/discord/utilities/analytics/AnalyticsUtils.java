@@ -49,12 +49,12 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: AnalyticsUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AnalyticsUtils {
-    public static final AnalyticsUtils INSTANCE = new AnalyticsUtils();
     private static FirebaseAnalytics fireBaseInstance;
+    public static final AnalyticsUtils INSTANCE = new AnalyticsUtils();
 
     /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsUtils$initAppOpen$1 */
     /* JADX INFO: compiled from: AnalyticsUtils.kt */
-    public static final class C66821 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C66821 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public static final C66821 INSTANCE = new C66821();
 
         public C66821() {
@@ -92,49 +92,21 @@ public final class AnalyticsUtils {
         }
     }
 
-    private AnalyticsUtils() {
-    }
-
-    public static final /* synthetic */ FirebaseAnalytics access$getFireBaseInstance$p(AnalyticsUtils analyticsUtils) {
-        return fireBaseInstance;
-    }
-
-    public final Map<String, Object> getProperties$app_productionGoogleRelease(Channel channel) {
-        C12238m.checkNotNullParameter(channel, "$this$properties");
-        Pair[] pairArr = new Pair[3];
-        pairArr[0] = C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId()));
-        pairArr[1] = C12116o.m10073to("channel_type", Integer.valueOf(channel.getType()));
-        List<User> listM7659z = channel.m7659z();
-        pairArr[2] = C12116o.m10073to("channel_size_total", Integer.valueOf(listM7659z != null ? listM7659z.size() : 0));
-        return C12136h0.mapOf(pairArr);
-    }
-
-    @MainThread
-    public final void initAppOpen(Application context) {
-        C12238m.checkNotNullParameter(context, "context");
-        if (fireBaseInstance != null) {
-            return;
-        }
-        fireBaseInstance = FirebaseAnalytics.getInstance(context);
-        ObservableExtensionsKt.appSubscribe(StoreStream.INSTANCE.getUsers().observeMe(true), (Class<?>) AnalyticsUtils.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C66821.INSTANCE);
-        RtcCameraConfig.INSTANCE.init();
-    }
-
     /* JADX INFO: compiled from: AnalyticsUtils.kt */
-    public static final class Tracker {
+    public final class Tracker {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
-        private static final Lazy instance$delegate = C12083g.lazy(AnalyticsUtils$Tracker$Companion$instance$2.INSTANCE);
         private String analyticsToken;
         private final Clock clock;
         private final ConcurrentLinkedQueue<Science.Event> eventsQueue;
         private final ConcurrentHashMap<Pair<String, Long>, Long> eventsThrottledUntilMillis;
         private boolean fingerprinted;
         private final RestAPI restAPI;
+        private static final Lazy instance$delegate = C12083g.lazy(AnalyticsUtils$Tracker$Companion$instance$2.INSTANCE);
 
         /* JADX INFO: compiled from: AnalyticsUtils.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -169,6 +141,11 @@ public final class AnalyticsUtils {
 
         private final boolean getCanDrain() {
             return (this.eventsQueue.isEmpty() ^ true) && (this.fingerprinted || isAuthed$app_productionGoogleRelease());
+        }
+
+        public final boolean isAuthed$app_productionGoogleRelease() {
+            String str = this.analyticsToken;
+            return !(str == null || C12103t.isBlank(str));
         }
 
         private final boolean isEventThrottled(Pair<String, Long> throttleKey) {
@@ -211,24 +188,19 @@ public final class AnalyticsUtils {
             tracker.setTrackingData(str, z2);
         }
 
+        public final synchronized void setTrackingData(String analyticsToken, boolean fingerprinted) {
+            drainEventsQueue();
+            this.analyticsToken = analyticsToken;
+            this.fingerprinted = fingerprinted;
+            drainEventsQueue();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ void track$default(Tracker tracker, String str, Map map, int i, Object obj) {
             if ((i & 2) != 0) {
                 map = null;
             }
             tracker.track(str, map);
-        }
-
-        public final boolean isAuthed$app_productionGoogleRelease() {
-            String str = this.analyticsToken;
-            return !(str == null || C12103t.isBlank(str));
-        }
-
-        public final synchronized void setTrackingData(String analyticsToken, boolean fingerprinted) {
-            drainEventsQueue();
-            this.analyticsToken = analyticsToken;
-            this.fingerprinted = fingerprinted;
-            drainEventsQueue();
         }
 
         public final void track(Pair<String, Long> throttleKey, long throttleTimeMs, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
@@ -275,6 +247,34 @@ public final class AnalyticsUtils {
             C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n          .ti…0, TimeUnit.MILLISECONDS)");
             ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) Tracker.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnalyticsUtils$Tracker$track$1(this));
         }
+    }
+
+    private AnalyticsUtils() {
+    }
+
+    public static final /* synthetic */ FirebaseAnalytics access$getFireBaseInstance$p(AnalyticsUtils analyticsUtils) {
+        return fireBaseInstance;
+    }
+
+    public final Map<String, Object> getProperties$app_productionGoogleRelease(Channel channel) {
+        C12238m.checkNotNullParameter(channel, "$this$properties");
+        Pair[] pairArr = new Pair[3];
+        pairArr[0] = C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId()));
+        pairArr[1] = C12116o.m10073to("channel_type", Integer.valueOf(channel.getType()));
+        List<User> listM7659z = channel.m7659z();
+        pairArr[2] = C12116o.m10073to("channel_size_total", Integer.valueOf(listM7659z != null ? listM7659z.size() : 0));
+        return C12136h0.mapOf(pairArr);
+    }
+
+    @MainThread
+    public final void initAppOpen(Application context) {
+        C12238m.checkNotNullParameter(context, "context");
+        if (fireBaseInstance != null) {
+            return;
+        }
+        fireBaseInstance = FirebaseAnalytics.getInstance(context);
+        ObservableExtensionsKt.appSubscribe(StoreStream.INSTANCE.getUsers().observeMe(true), (Class<?>) AnalyticsUtils.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C66821.INSTANCE);
+        RtcCameraConfig.INSTANCE.init();
     }
 
     public final Map<String, String> getProperties$app_productionGoogleRelease(RtcConnection rtcConnection) {

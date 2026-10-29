@@ -36,7 +36,7 @@ public final class C11907a0 implements InterfaceC12008u0, InterfaceC11978g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.a0$a */
     /* JADX INFO: compiled from: IntersectionTypeConstructor.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
         public a() {
             super(1);
         }

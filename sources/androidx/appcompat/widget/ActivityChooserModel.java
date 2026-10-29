@@ -45,10 +45,10 @@ public class ActivityChooserModel extends DataSetObservable {
     public final String mHistoryFileName;
     private Intent mIntent;
     public static final String LOG_TAG = ActivityChooserModel.class.getSimpleName();
-    private static final Object sRegistryLock = new Object();
-    private static final Map<String, ActivityChooserModel> sDataModelRegistry = new HashMap();
     private final Object mInstanceLock = new Object();
+    private static final Object sRegistryLock = new Object();
     private final List<ActivityResolveInfo> mActivities = new ArrayList();
+    private static final Map<String, ActivityChooserModel> sDataModelRegistry = new HashMap();
     private final List<HistoricalRecord> mHistoricalRecords = new ArrayList();
     private ActivitySorter mActivitySorter = new DefaultSorter();
     private int mHistoryMaxSize = 50;
@@ -61,7 +61,7 @@ public class ActivityChooserModel extends DataSetObservable {
         void setActivityChooserModel(ActivityChooserModel activityChooserModel);
     }
 
-    public static final class ActivityResolveInfo implements Comparable<ActivityResolveInfo> {
+    public final class ActivityResolveInfo implements Comparable<ActivityResolveInfo> {
         public final ResolveInfo resolveInfo;
         public float weight;
 
@@ -99,35 +99,7 @@ public class ActivityChooserModel extends DataSetObservable {
         void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2);
     }
 
-    public static final class DefaultSorter implements ActivitySorter {
-        private static final float WEIGHT_DECAY_COEFFICIENT = 0.95f;
-        private final Map<ComponentName, ActivityResolveInfo> mPackageNameToActivityMap = new HashMap();
-
-        @Override // androidx.appcompat.widget.ActivityChooserModel.ActivitySorter
-        public void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2) {
-            Map<ComponentName, ActivityResolveInfo> map = this.mPackageNameToActivityMap;
-            map.clear();
-            int size = list.size();
-            for (int i = 0; i < size; i++) {
-                ActivityResolveInfo activityResolveInfo = list.get(i);
-                activityResolveInfo.weight = 0.0f;
-                ActivityInfo activityInfo = activityResolveInfo.resolveInfo.activityInfo;
-                map.put(new ComponentName(activityInfo.packageName, activityInfo.name), activityResolveInfo);
-            }
-            float f = 1.0f;
-            for (int size2 = list2.size() - 1; size2 >= 0; size2--) {
-                HistoricalRecord historicalRecord = list2.get(size2);
-                ActivityResolveInfo activityResolveInfo2 = map.get(historicalRecord.activity);
-                if (activityResolveInfo2 != null) {
-                    activityResolveInfo2.weight = (historicalRecord.weight * f) + activityResolveInfo2.weight;
-                    f *= WEIGHT_DECAY_COEFFICIENT;
-                }
-            }
-            Collections.sort(list);
-        }
-    }
-
-    public static final class HistoricalRecord {
+    public final class HistoricalRecord {
         public final ComponentName activity;
         public final long time;
         public final float weight;
@@ -255,6 +227,26 @@ public class ActivityChooserModel extends DataSetObservable {
         return zAdd;
     }
 
+    public Intent chooseActivity(int i) {
+        synchronized (this.mInstanceLock) {
+            if (this.mIntent == null) {
+                return null;
+            }
+            ensureConsistentState();
+            ActivityInfo activityInfo = this.mActivities.get(i).resolveInfo.activityInfo;
+            ComponentName componentName = new ComponentName(activityInfo.packageName, activityInfo.name);
+            Intent intent = new Intent(this.mIntent);
+            intent.setComponent(componentName);
+            if (this.mActivityChoserModelPolicy != null) {
+                if (this.mActivityChoserModelPolicy.onChooseActivity(this, new Intent(intent))) {
+                    return null;
+                }
+            }
+            addHistoricalRecord(new HistoricalRecord(componentName, System.currentTimeMillis(), 1.0f));
+            return intent;
+        }
+    }
+
     private void ensureConsistentState() {
         boolean zLoadActivitiesIfNeeded = loadActivitiesIfNeeded() | readHistoricalDataIfNeeded();
         pruneExcessiveHistoricalRecordsIfNeeded();
@@ -275,6 +267,73 @@ public class ActivityChooserModel extends DataSetObservable {
             }
         }
         return activityChooserModel;
+    }
+
+    public ResolveInfo getActivity(int i) {
+        ResolveInfo resolveInfo;
+        synchronized (this.mInstanceLock) {
+            ensureConsistentState();
+            resolveInfo = this.mActivities.get(i).resolveInfo;
+        }
+        return resolveInfo;
+    }
+
+    public int getActivityCount() {
+        int size;
+        synchronized (this.mInstanceLock) {
+            ensureConsistentState();
+            size = this.mActivities.size();
+        }
+        return size;
+    }
+
+    public int getActivityIndex(ResolveInfo resolveInfo) {
+        synchronized (this.mInstanceLock) {
+            ensureConsistentState();
+            List<ActivityResolveInfo> list = this.mActivities;
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                if (list.get(i).resolveInfo == resolveInfo) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
+
+    public ResolveInfo getDefaultActivity() {
+        synchronized (this.mInstanceLock) {
+            ensureConsistentState();
+            if (this.mActivities.isEmpty()) {
+                return null;
+            }
+            return this.mActivities.get(0).resolveInfo;
+        }
+    }
+
+    public int getHistoryMaxSize() {
+        int i;
+        synchronized (this.mInstanceLock) {
+            i = this.mHistoryMaxSize;
+        }
+        return i;
+    }
+
+    public int getHistorySize() {
+        int size;
+        synchronized (this.mInstanceLock) {
+            ensureConsistentState();
+            size = this.mHistoricalRecords.size();
+        }
+        return size;
+    }
+
+    public Intent getIntent() {
+        Intent intent;
+        synchronized (this.mInstanceLock) {
+            intent = this.mIntent;
+        }
+        return intent;
     }
 
     private boolean loadActivitiesIfNeeded() {
@@ -381,101 +440,6 @@ public class ActivityChooserModel extends DataSetObservable {
         }
     }
 
-    private boolean sortActivitiesIfNeeded() {
-        if (this.mActivitySorter == null || this.mIntent == null || this.mActivities.isEmpty() || this.mHistoricalRecords.isEmpty()) {
-            return false;
-        }
-        this.mActivitySorter.sort(this.mIntent, this.mActivities, Collections.unmodifiableList(this.mHistoricalRecords));
-        return true;
-    }
-
-    public Intent chooseActivity(int i) {
-        synchronized (this.mInstanceLock) {
-            if (this.mIntent == null) {
-                return null;
-            }
-            ensureConsistentState();
-            ActivityInfo activityInfo = this.mActivities.get(i).resolveInfo.activityInfo;
-            ComponentName componentName = new ComponentName(activityInfo.packageName, activityInfo.name);
-            Intent intent = new Intent(this.mIntent);
-            intent.setComponent(componentName);
-            if (this.mActivityChoserModelPolicy != null) {
-                if (this.mActivityChoserModelPolicy.onChooseActivity(this, new Intent(intent))) {
-                    return null;
-                }
-            }
-            addHistoricalRecord(new HistoricalRecord(componentName, System.currentTimeMillis(), 1.0f));
-            return intent;
-        }
-    }
-
-    public ResolveInfo getActivity(int i) {
-        ResolveInfo resolveInfo;
-        synchronized (this.mInstanceLock) {
-            ensureConsistentState();
-            resolveInfo = this.mActivities.get(i).resolveInfo;
-        }
-        return resolveInfo;
-    }
-
-    public int getActivityCount() {
-        int size;
-        synchronized (this.mInstanceLock) {
-            ensureConsistentState();
-            size = this.mActivities.size();
-        }
-        return size;
-    }
-
-    public int getActivityIndex(ResolveInfo resolveInfo) {
-        synchronized (this.mInstanceLock) {
-            ensureConsistentState();
-            List<ActivityResolveInfo> list = this.mActivities;
-            int size = list.size();
-            for (int i = 0; i < size; i++) {
-                if (list.get(i).resolveInfo == resolveInfo) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-    }
-
-    public ResolveInfo getDefaultActivity() {
-        synchronized (this.mInstanceLock) {
-            ensureConsistentState();
-            if (this.mActivities.isEmpty()) {
-                return null;
-            }
-            return this.mActivities.get(0).resolveInfo;
-        }
-    }
-
-    public int getHistoryMaxSize() {
-        int i;
-        synchronized (this.mInstanceLock) {
-            i = this.mHistoryMaxSize;
-        }
-        return i;
-    }
-
-    public int getHistorySize() {
-        int size;
-        synchronized (this.mInstanceLock) {
-            ensureConsistentState();
-            size = this.mHistoricalRecords.size();
-        }
-        return size;
-    }
-
-    public Intent getIntent() {
-        Intent intent;
-        synchronized (this.mInstanceLock) {
-            intent = this.mIntent;
-        }
-        return intent;
-    }
-
     public void setActivitySorter(ActivitySorter activitySorter) {
         synchronized (this.mInstanceLock) {
             if (this.mActivitySorter == activitySorter) {
@@ -526,6 +490,42 @@ public class ActivityChooserModel extends DataSetObservable {
     public void setOnChooseActivityListener(OnChooseActivityListener onChooseActivityListener) {
         synchronized (this.mInstanceLock) {
             this.mActivityChoserModelPolicy = onChooseActivityListener;
+        }
+    }
+
+    private boolean sortActivitiesIfNeeded() {
+        if (this.mActivitySorter == null || this.mIntent == null || this.mActivities.isEmpty() || this.mHistoricalRecords.isEmpty()) {
+            return false;
+        }
+        this.mActivitySorter.sort(this.mIntent, this.mActivities, Collections.unmodifiableList(this.mHistoricalRecords));
+        return true;
+    }
+
+    public final class DefaultSorter implements ActivitySorter {
+        private static final float WEIGHT_DECAY_COEFFICIENT = 0.95f;
+        private final Map<ComponentName, ActivityResolveInfo> mPackageNameToActivityMap = new HashMap();
+
+        @Override // androidx.appcompat.widget.ActivityChooserModel.ActivitySorter
+        public void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2) {
+            Map<ComponentName, ActivityResolveInfo> map = this.mPackageNameToActivityMap;
+            map.clear();
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                ActivityResolveInfo activityResolveInfo = list.get(i);
+                activityResolveInfo.weight = 0.0f;
+                ActivityInfo activityInfo = activityResolveInfo.resolveInfo.activityInfo;
+                map.put(new ComponentName(activityInfo.packageName, activityInfo.name), activityResolveInfo);
+            }
+            float f = 1.0f;
+            for (int size2 = list2.size() - 1; size2 >= 0; size2--) {
+                HistoricalRecord historicalRecord = list2.get(size2);
+                ActivityResolveInfo activityResolveInfo2 = map.get(historicalRecord.activity);
+                if (activityResolveInfo2 != null) {
+                    activityResolveInfo2.weight = (historicalRecord.weight * f) + activityResolveInfo2.weight;
+                    f *= WEIGHT_DECAY_COEFFICIENT;
+                }
+            }
+            Collections.sort(list);
         }
     }
 }

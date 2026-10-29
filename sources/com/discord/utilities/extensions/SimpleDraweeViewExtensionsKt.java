@@ -27,16 +27,6 @@ public final class SimpleDraweeViewExtensionsKt {
         }
     }
 
-    public static final void setAvatar(SimpleDraweeView simpleDraweeView, User user, boolean z2, @DimenRes int i, GuildMember guildMember) {
-        C12238m.checkNotNullParameter(simpleDraweeView, "$this$setAvatar");
-        int dimensionPixelSize = simpleDraweeView.getResources().getDimensionPixelSize(i);
-        String forGuildMemberOrUser = IconUtils.INSTANCE.getForGuildMemberOrUser(user, guildMember, dimensionPixelSize > 0 ? Integer.valueOf(IconUtils.getMediaProxySize(dimensionPixelSize)) : null, z2);
-        if (!C12238m.areEqual(forGuildMemberOrUser, simpleDraweeView.getTag(C5419R.id.uikit_icon_url))) {
-            simpleDraweeView.setTag(C5419R.id.uikit_icon_url, forGuildMemberOrUser);
-            IconUtils.setIcon$default(simpleDraweeView, forGuildMemberOrUser, i, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
-        }
-    }
-
     public static /* synthetic */ void setAvatar$default(SimpleDraweeView simpleDraweeView, User user, boolean z2, int i, GuildMember guildMember, int i2, Object obj) {
         if ((i2 & 2) != 0) {
             z2 = false;
@@ -48,6 +38,16 @@ public final class SimpleDraweeViewExtensionsKt {
             guildMember = null;
         }
         setAvatar(simpleDraweeView, user, z2, i, guildMember);
+    }
+
+    public static final void setAvatar(SimpleDraweeView simpleDraweeView, User user, boolean z2, @DimenRes int i, GuildMember guildMember) {
+        C12238m.checkNotNullParameter(simpleDraweeView, "$this$setAvatar");
+        int dimensionPixelSize = simpleDraweeView.getResources().getDimensionPixelSize(i);
+        String forGuildMemberOrUser = IconUtils.INSTANCE.getForGuildMemberOrUser(user, guildMember, dimensionPixelSize > 0 ? Integer.valueOf(IconUtils.getMediaProxySize(dimensionPixelSize)) : null, z2);
+        if (!C12238m.areEqual(forGuildMemberOrUser, simpleDraweeView.getTag(C5419R.id.uikit_icon_url))) {
+            simpleDraweeView.setTag(C5419R.id.uikit_icon_url, forGuildMemberOrUser);
+            IconUtils.setIcon$default(simpleDraweeView, forGuildMemberOrUser, i, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
+        }
     }
 
     public static final void setGuildIcon(SimpleDraweeView simpleDraweeView, boolean z2, Guild guild, float f, Integer num, @ColorInt Integer num2, @ColorInt Integer num3, Float f2, boolean z3, Function1<? super ImageRequestBuilder, Unit> function1) {

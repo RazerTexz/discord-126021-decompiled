@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class MediaDescriptionCompat implements Parcelable {
-    public static final Parcelable.Creator<MediaDescriptionCompat> CREATOR = new C0015a();
 
     /* JADX INFO: renamed from: j */
     public final String f27j;
@@ -44,6 +43,7 @@ public final class MediaDescriptionCompat implements Parcelable {
 
     /* JADX INFO: renamed from: r */
     public MediaDescription f35r;
+    public static final Parcelable.Creator<MediaDescriptionCompat> CREATOR = new C0015a();
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaDescriptionCompat$a */
     public class C0015a implements Parcelable.Creator<MediaDescriptionCompat> {
@@ -60,7 +60,7 @@ public final class MediaDescriptionCompat implements Parcelable {
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaDescriptionCompat$b */
     @RequiresApi(21)
-    public static class C0016b {
+    public class C0016b {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static MediaDescription m15a(MediaDescription.Builder builder) {
@@ -167,7 +167,7 @@ public final class MediaDescriptionCompat implements Parcelable {
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaDescriptionCompat$c */
     @RequiresApi(23)
-    public static class C0017c {
+    public class C0017c {
         @Nullable
         @DoNotInline
         /* JADX INFO: renamed from: a */
@@ -191,6 +191,11 @@ public final class MediaDescriptionCompat implements Parcelable {
         this.f32o = uri;
         this.f33p = bundle;
         this.f34q = uri2;
+    }
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
     }
 
     /* JADX INFO: renamed from: a */
@@ -227,11 +232,6 @@ public final class MediaDescriptionCompat implements Parcelable {
         MediaDescriptionCompat mediaDescriptionCompat = new MediaDescriptionCompat(strM21g, charSequenceM23i, charSequenceM22h, charSequenceM17c, bitmapM19e, uriM20f, bundle, uriM31a);
         mediaDescriptionCompat.f35r = mediaDescription;
         return mediaDescriptionCompat;
-    }
-
-    @Override // android.os.Parcelable
-    public int describeContents() {
-        return 0;
     }
 
     public String toString() {

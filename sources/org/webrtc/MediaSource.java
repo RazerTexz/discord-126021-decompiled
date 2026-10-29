@@ -35,8 +35,6 @@ public class MediaSource {
         }
     }
 
-    private static native State nativeGetState(long j);
-
     public void dispose() {
         checkMediaSourceExists();
         this.refCountDelegate.release();
@@ -47,6 +45,8 @@ public class MediaSource {
         checkMediaSourceExists();
         return this.nativeSource;
     }
+
+    private static native State nativeGetState(long j);
 
     public void runWithReference(Runnable runnable) {
         if (this.refCountDelegate.safeRetain()) {

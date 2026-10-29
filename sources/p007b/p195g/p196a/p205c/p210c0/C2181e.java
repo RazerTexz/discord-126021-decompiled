@@ -18,7 +18,7 @@ public final class C2181e extends AbstractC2193n {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.e$a */
     /* JADX INFO: compiled from: AnnotatedConstructor.java */
-    public static final class a implements Serializable {
+    public final class a implements Serializable {
         private static final long serialVersionUID = 1;
         public Class<?>[] args;
         public Class<?> clazz;
@@ -35,6 +35,19 @@ public final class C2181e extends AbstractC2193n {
             throw new IllegalArgumentException("Null constructor not allowed");
         }
         this._constructor = constructor;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return C2342d.m2183o(obj, C2181e.class) && ((C2181e) obj)._constructor == this._constructor;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this._constructor.getName().hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
@@ -55,23 +68,10 @@ public final class C2181e extends AbstractC2193n {
         return this.f4716j.mo1831a(mo1820d());
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        return C2342d.m2183o(obj, C2181e.class) && ((C2181e) obj)._constructor == this._constructor;
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
     /* JADX INFO: renamed from: g */
     public Class<?> mo1887g() {
         return this._constructor.getDeclaringClass();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this._constructor.getName().hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i

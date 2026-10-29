@@ -14,7 +14,7 @@ public class C12034b {
     /* JADX INFO: Add missing generic type declarations: [N] */
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.b$a */
     /* JADX INFO: compiled from: DFS.java */
-    public static class a<N> extends b<N, Boolean> {
+    public final class a<N> extends b<N, Boolean> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Function1 f24970a;
@@ -43,7 +43,7 @@ public class C12034b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.b$b */
     /* JADX INFO: compiled from: DFS.java */
-    public static abstract class b<N, R> implements d<N, R> {
+    public abstract class b<N, R> implements d<N, R> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p576p.C12034b.d
         public void afterChildren(N n) {
         }
@@ -72,7 +72,7 @@ public class C12034b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.b$f */
     /* JADX INFO: compiled from: DFS.java */
-    public static class f<N> implements e<N> {
+    public class f<N> implements e<N> {
 
         /* JADX INFO: renamed from: a */
         public final Set<N> f24972a;
@@ -91,6 +91,73 @@ public class C12034b {
             }
             this.f24972a = set;
         }
+    }
+
+    public static <N, R> R dfs(Collection<N> collection, c<N> cVar, e<N> eVar, d<N, R> dVar) {
+        if (collection == null) {
+            m10043a(0);
+            throw null;
+        }
+        if (cVar == null) {
+            m10043a(1);
+            throw null;
+        }
+        if (eVar == null) {
+            m10043a(2);
+            throw null;
+        }
+        if (dVar == null) {
+            m10043a(3);
+            throw null;
+        }
+        Iterator<N> it = collection.iterator();
+        while (it.hasNext()) {
+            doDfs(it.next(), cVar, eVar, dVar);
+        }
+        return dVar.result();
+    }
+
+    public static <N> void doDfs(N n, c<N> cVar, e<N> eVar, d<N, ?> dVar) {
+        if (n == null) {
+            m10043a(22);
+            throw null;
+        }
+        if (cVar == null) {
+            m10043a(23);
+            throw null;
+        }
+        if (eVar == null) {
+            m10043a(24);
+            throw null;
+        }
+        if (dVar == null) {
+            m10043a(25);
+            throw null;
+        }
+        f fVar = (f) eVar;
+        if (fVar.checkAndMarkVisited(n) && dVar.beforeChildren(n)) {
+            Iterator<? extends N> it = cVar.getNeighbors(n).iterator();
+            while (it.hasNext()) {
+                doDfs(it.next(), cVar, fVar, dVar);
+            }
+            dVar.afterChildren(n);
+        }
+    }
+
+    public static <N> Boolean ifAny(Collection<N> collection, c<N> cVar, Function1<N, Boolean> function1) {
+        if (collection == null) {
+            m10043a(7);
+            throw null;
+        }
+        if (cVar == null) {
+            m10043a(8);
+            throw null;
+        }
+        if (function1 != null) {
+            return (Boolean) dfs(collection, cVar, new a(function1, new boolean[1]));
+        }
+        m10043a(9);
+        throw null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -172,73 +239,6 @@ public class C12034b {
                 break;
         }
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-    }
-
-    public static <N, R> R dfs(Collection<N> collection, c<N> cVar, e<N> eVar, d<N, R> dVar) {
-        if (collection == null) {
-            m10043a(0);
-            throw null;
-        }
-        if (cVar == null) {
-            m10043a(1);
-            throw null;
-        }
-        if (eVar == null) {
-            m10043a(2);
-            throw null;
-        }
-        if (dVar == null) {
-            m10043a(3);
-            throw null;
-        }
-        Iterator<N> it = collection.iterator();
-        while (it.hasNext()) {
-            doDfs(it.next(), cVar, eVar, dVar);
-        }
-        return dVar.result();
-    }
-
-    public static <N> void doDfs(N n, c<N> cVar, e<N> eVar, d<N, ?> dVar) {
-        if (n == null) {
-            m10043a(22);
-            throw null;
-        }
-        if (cVar == null) {
-            m10043a(23);
-            throw null;
-        }
-        if (eVar == null) {
-            m10043a(24);
-            throw null;
-        }
-        if (dVar == null) {
-            m10043a(25);
-            throw null;
-        }
-        f fVar = (f) eVar;
-        if (fVar.checkAndMarkVisited(n) && dVar.beforeChildren(n)) {
-            Iterator<? extends N> it = cVar.getNeighbors(n).iterator();
-            while (it.hasNext()) {
-                doDfs(it.next(), cVar, fVar, dVar);
-            }
-            dVar.afterChildren(n);
-        }
-    }
-
-    public static <N> Boolean ifAny(Collection<N> collection, c<N> cVar, Function1<N, Boolean> function1) {
-        if (collection == null) {
-            m10043a(7);
-            throw null;
-        }
-        if (cVar == null) {
-            m10043a(8);
-            throw null;
-        }
-        if (function1 != null) {
-            return (Boolean) dfs(collection, cVar, new a(function1, new boolean[1]));
-        }
-        m10043a(9);
-        throw null;
     }
 
     public static <N, R> R dfs(Collection<N> collection, c<N> cVar, d<N, R> dVar) {

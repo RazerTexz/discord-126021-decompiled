@@ -9,9 +9,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4080j3<V> {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f10838a = new Object();
-
     /* JADX INFO: renamed from: b */
     public final String f10839b;
 
@@ -23,6 +20,9 @@ public final class C4080j3<V> {
 
     /* JADX INFO: renamed from: e */
     public final V f10842e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Object f10838a = new Object();
 
     /* JADX INFO: renamed from: f */
     public final Object f10843f = new Object();

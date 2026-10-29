@@ -27,7 +27,7 @@ public final class Data {
     private static final String TAG = Logger.tagWithPrefix("Data");
     public static final Data EMPTY = new Builder().build();
 
-    public static final class Builder {
+    public final class Builder {
         private Map<String, Object> mValues = new HashMap();
 
         @NonNull
@@ -222,6 +222,28 @@ public final class Data {
         return lArr;
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || Data.class != obj.getClass()) {
+            return false;
+        }
+        Data data = (Data) obj;
+        Set<String> setKeySet = this.mValues.keySet();
+        if (!setKeySet.equals(data.mValues.keySet())) {
+            return false;
+        }
+        for (String str : setKeySet) {
+            Object obj2 = this.mValues.get(str);
+            Object obj3 = data.mValues.get(str);
+            if (!((obj2 == null || obj3 == null) ? obj2 == obj3 : ((obj2 instanceof Object[]) && (obj3 instanceof Object[])) ? Arrays.deepEquals((Object[]) obj2, (Object[]) obj3) : obj2.equals(obj3))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /* JADX WARN: Code duplicated, block: B:54:0x004e A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:56:0x006b A[EXC_TOP_SPLITTER, SYNTHETIC] */
     @NonNull
@@ -320,101 +342,6 @@ public final class Data {
             Log.e(TAG, "Error in Data#fromByteArray: ", e10);
         }
         return new Data(map);
-    }
-
-    @NonNull
-    @TypeConverter
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static byte[] toByteArrayInternal(@NonNull Data data) throws Throwable {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = null;
-        try {
-            try {
-                ObjectOutputStream objectOutputStream2 = new ObjectOutputStream(byteArrayOutputStream);
-                try {
-                    objectOutputStream2.writeInt(data.size());
-                    for (Map.Entry<String, Object> entry : data.mValues.entrySet()) {
-                        objectOutputStream2.writeUTF(entry.getKey());
-                        objectOutputStream2.writeObject(entry.getValue());
-                    }
-                    try {
-                        objectOutputStream2.close();
-                    } catch (IOException e) {
-                        Log.e(TAG, "Error in Data#toByteArray: ", e);
-                    }
-                    try {
-                        byteArrayOutputStream.close();
-                    } catch (IOException e2) {
-                        Log.e(TAG, "Error in Data#toByteArray: ", e2);
-                    }
-                    if (byteArrayOutputStream.size() <= 10240) {
-                        return byteArrayOutputStream.toByteArray();
-                    }
-                    throw new IllegalStateException("Data cannot occupy more than 10240 bytes when serialized");
-                } catch (IOException e3) {
-                    e = e3;
-                    objectOutputStream = objectOutputStream2;
-                    Log.e(TAG, "Error in Data#toByteArray: ", e);
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    if (objectOutputStream != null) {
-                        try {
-                            objectOutputStream.close();
-                        } catch (IOException e4) {
-                            Log.e(TAG, "Error in Data#toByteArray: ", e4);
-                        }
-                    }
-                    try {
-                        byteArrayOutputStream.close();
-                    } catch (IOException e5) {
-                        Log.e(TAG, "Error in Data#toByteArray: ", e5);
-                    }
-                    return byteArray;
-                } catch (Throwable th) {
-                    th = th;
-                    objectOutputStream = objectOutputStream2;
-                    if (objectOutputStream != null) {
-                        try {
-                            objectOutputStream.close();
-                        } catch (IOException e6) {
-                            Log.e(TAG, "Error in Data#toByteArray: ", e6);
-                        }
-                    }
-                    try {
-                        byteArrayOutputStream.close();
-                        throw th;
-                    } catch (IOException e7) {
-                        Log.e(TAG, "Error in Data#toByteArray: ", e7);
-                        throw th;
-                    }
-                }
-            } catch (Throwable th2) {
-                th = th2;
-            }
-        } catch (IOException e8) {
-            e = e8;
-        }
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || Data.class != obj.getClass()) {
-            return false;
-        }
-        Data data = (Data) obj;
-        Set<String> setKeySet = this.mValues.keySet();
-        if (!setKeySet.equals(data.mValues.keySet())) {
-            return false;
-        }
-        for (String str : setKeySet) {
-            Object obj2 = this.mValues.get(str);
-            Object obj3 = data.mValues.get(str);
-            if (!((obj2 == null || obj3 == null) ? obj2 == obj3 : ((obj2 instanceof Object[]) && (obj3 instanceof Object[])) ? Arrays.deepEquals((Object[]) obj2, (Object[]) obj3) : obj2.equals(obj3))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public boolean getBoolean(@NonNull String str, boolean z2) {
@@ -572,6 +499,79 @@ public final class Data {
     @NonNull
     public byte[] toByteArray() {
         return toByteArrayInternal(this);
+    }
+
+    @NonNull
+    @TypeConverter
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static byte[] toByteArrayInternal(@NonNull Data data) throws Throwable {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            try {
+                ObjectOutputStream objectOutputStream2 = new ObjectOutputStream(byteArrayOutputStream);
+                try {
+                    objectOutputStream2.writeInt(data.size());
+                    for (Map.Entry<String, Object> entry : data.mValues.entrySet()) {
+                        objectOutputStream2.writeUTF(entry.getKey());
+                        objectOutputStream2.writeObject(entry.getValue());
+                    }
+                    try {
+                        objectOutputStream2.close();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error in Data#toByteArray: ", e);
+                    }
+                    try {
+                        byteArrayOutputStream.close();
+                    } catch (IOException e2) {
+                        Log.e(TAG, "Error in Data#toByteArray: ", e2);
+                    }
+                    if (byteArrayOutputStream.size() <= 10240) {
+                        return byteArrayOutputStream.toByteArray();
+                    }
+                    throw new IllegalStateException("Data cannot occupy more than 10240 bytes when serialized");
+                } catch (IOException e3) {
+                    e = e3;
+                    objectOutputStream = objectOutputStream2;
+                    Log.e(TAG, "Error in Data#toByteArray: ", e);
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    if (objectOutputStream != null) {
+                        try {
+                            objectOutputStream.close();
+                        } catch (IOException e4) {
+                            Log.e(TAG, "Error in Data#toByteArray: ", e4);
+                        }
+                    }
+                    try {
+                        byteArrayOutputStream.close();
+                    } catch (IOException e5) {
+                        Log.e(TAG, "Error in Data#toByteArray: ", e5);
+                    }
+                    return byteArray;
+                } catch (Throwable th) {
+                    th = th;
+                    objectOutputStream = objectOutputStream2;
+                    if (objectOutputStream != null) {
+                        try {
+                            objectOutputStream.close();
+                        } catch (IOException e6) {
+                            Log.e(TAG, "Error in Data#toByteArray: ", e6);
+                        }
+                    }
+                    try {
+                        byteArrayOutputStream.close();
+                        throw th;
+                    } catch (IOException e7) {
+                        Log.e(TAG, "Error in Data#toByteArray: ", e7);
+                        throw th;
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+            }
+        } catch (IOException e8) {
+            e = e8;
+        }
     }
 
     @NonNull

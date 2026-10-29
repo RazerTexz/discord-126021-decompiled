@@ -17,6 +17,14 @@ public final /* data */ class TrendingGifCategoriesResponseDto {
         this.gifs = list2;
     }
 
+    public final List<GifCategoryDto> component1() {
+        return this.categories;
+    }
+
+    public final List<TrendingGifPreviewDto> component2() {
+        return this.gifs;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ TrendingGifCategoriesResponseDto copy$default(TrendingGifCategoriesResponseDto trendingGifCategoriesResponseDto, List list, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,14 +34,6 @@ public final /* data */ class TrendingGifCategoriesResponseDto {
             list2 = trendingGifCategoriesResponseDto.gifs;
         }
         return trendingGifCategoriesResponseDto.copy(list, list2);
-    }
-
-    public final List<GifCategoryDto> component1() {
-        return this.categories;
-    }
-
-    public final List<TrendingGifPreviewDto> component2() {
-        return this.gifs;
     }
 
     public final TrendingGifCategoriesResponseDto copy(List<GifCategoryDto> categories, List<TrendingGifPreviewDto> gifs) {

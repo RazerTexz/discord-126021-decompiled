@@ -68,19 +68,9 @@ public final class VoiceUserView extends FrameLayout {
     /* JADX INFO: renamed from: s, reason: from kotlin metadata */
     public boolean animateAvatarWhenRinging;
 
-    /* JADX INFO: renamed from: com.discord.views.VoiceUserView$a */
-    /* JADX INFO: compiled from: VoiceUserView.kt */
-    public enum EnumC7097a {
-        CONNECTED,
-        SPEAKING,
-        MUTED,
-        RINGING,
-        DISCONNECTED
-    }
-
     /* JADX INFO: renamed from: com.discord.views.VoiceUserView$b */
     /* JADX INFO: compiled from: VoiceUserView.kt */
-    public static final class C7098b extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C7098b extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ int $avatarSize;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -111,7 +101,7 @@ public final class VoiceUserView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.VoiceUserView$c */
     /* JADX INFO: compiled from: VoiceUserView.kt */
-    public static final class C7099c extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
+    public final class C7099c extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
         public final /* synthetic */ String $newAvatarUrl;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -127,6 +117,16 @@ public final class VoiceUserView extends FrameLayout {
             imageRequestBuilder2.f19623l = new C1336i0(this);
             return Unit.f27425a;
         }
+    }
+
+    /* JADX INFO: renamed from: com.discord.views.VoiceUserView$a */
+    /* JADX INFO: compiled from: VoiceUserView.kt */
+    public enum EnumC7097a {
+        CONNECTED,
+        SPEAKING,
+        MUTED,
+        RINGING,
+        DISCONNECTED
     }
 
     public VoiceUserView(Context context, AttributeSet attributeSet) {
@@ -170,22 +170,6 @@ public final class VoiceUserView extends FrameLayout {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i3)));
-    }
-
-    private final void setVoiceState(StoreVoiceParticipants.VoiceUser voiceUser) {
-        EnumC7097a enumC7097a;
-        VoiceState voiceState = voiceUser.getVoiceState();
-        boolean z2 = voiceState != null && (voiceState.getSelfMute() || voiceState.getMute() || voiceState.getSuppress());
-        if (voiceUser.getIsSpeaking()) {
-            enumC7097a = EnumC7097a.SPEAKING;
-        } else if (voiceUser.isRinging()) {
-            enumC7097a = EnumC7097a.RINGING;
-        } else if (voiceUser.isConnected()) {
-            enumC7097a = z2 ? EnumC7097a.MUTED : EnumC7097a.CONNECTED;
-        } else {
-            enumC7097a = EnumC7097a.DISCONNECTED;
-        }
-        setVoiceState(enumC7097a);
     }
 
     @MainThread
@@ -266,6 +250,22 @@ public final class VoiceUserView extends FrameLayout {
         if (z2) {
             ViewExtensions.fadeBy$default(this.binding.f981c, isSelected(), 0L, 2, null);
         }
+    }
+
+    private final void setVoiceState(StoreVoiceParticipants.VoiceUser voiceUser) {
+        EnumC7097a enumC7097a;
+        VoiceState voiceState = voiceUser.getVoiceState();
+        boolean z2 = voiceState != null && (voiceState.getSelfMute() || voiceState.getMute() || voiceState.getSuppress());
+        if (voiceUser.getIsSpeaking()) {
+            enumC7097a = EnumC7097a.SPEAKING;
+        } else if (voiceUser.isRinging()) {
+            enumC7097a = EnumC7097a.RINGING;
+        } else if (voiceUser.isConnected()) {
+            enumC7097a = z2 ? EnumC7097a.MUTED : EnumC7097a.CONNECTED;
+        } else {
+            enumC7097a = EnumC7097a.DISCONNECTED;
+        }
+        setVoiceState(enumC7097a);
     }
 
     @MainThread

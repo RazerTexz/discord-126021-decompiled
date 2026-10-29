@@ -44,6 +44,11 @@ public abstract class CustomTabsService extends Service {
         public BinderC01531() {
         }
 
+        @Override // p668x.p669a.p670a.InterfaceC13177b
+        public Bundle extraCommand(@NonNull String str, @Nullable Bundle bundle) {
+            return CustomTabsService.this.extraCommand(str, bundle);
+        }
+
         @Nullable
         private PendingIntent getSessionIdFromBundle(@Nullable Bundle bundle) {
             if (bundle == null) {
@@ -52,6 +57,16 @@ public abstract class CustomTabsService extends Service {
             PendingIntent pendingIntent = (PendingIntent) bundle.getParcelable(CustomTabsIntent.EXTRA_SESSION_ID);
             bundle.remove(CustomTabsIntent.EXTRA_SESSION_ID);
             return pendingIntent;
+        }
+
+        @Override // p668x.p669a.p670a.InterfaceC13177b
+        public boolean mayLaunchUrl(@Nullable InterfaceC13176a interfaceC13176a, @Nullable Uri uri, @Nullable Bundle bundle, @Nullable List<Bundle> list) {
+            return CustomTabsService.this.mayLaunchUrl(new CustomTabsSessionToken(interfaceC13176a, getSessionIdFromBundle(bundle)), uri, bundle, list);
+        }
+
+        @Override // p668x.p669a.p670a.InterfaceC13177b
+        public boolean newSession(@NonNull InterfaceC13176a interfaceC13176a) {
+            return newSessionInternal(interfaceC13176a, null);
         }
 
         private boolean newSessionInternal(@NonNull InterfaceC13176a interfaceC13176a, @Nullable PendingIntent pendingIntent) {
@@ -72,21 +87,6 @@ public abstract class CustomTabsService extends Service {
             } catch (RemoteException unused) {
                 return false;
             }
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13177b
-        public Bundle extraCommand(@NonNull String str, @Nullable Bundle bundle) {
-            return CustomTabsService.this.extraCommand(str, bundle);
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13177b
-        public boolean mayLaunchUrl(@Nullable InterfaceC13176a interfaceC13176a, @Nullable Uri uri, @Nullable Bundle bundle, @Nullable List<Bundle> list) {
-            return CustomTabsService.this.mayLaunchUrl(new CustomTabsSessionToken(interfaceC13176a, getSessionIdFromBundle(bundle)), uri, bundle, list);
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13177b
-        public boolean newSession(@NonNull InterfaceC13176a interfaceC13176a) {
-            return newSessionInternal(interfaceC13176a, null);
         }
 
         @Override // p668x.p669a.p670a.InterfaceC13177b

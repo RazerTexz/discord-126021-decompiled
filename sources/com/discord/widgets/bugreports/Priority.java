@@ -31,21 +31,6 @@ public final /* data */ class Priority {
         return priority.copy(i, i2, j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getTitle() {
-        return this.title;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getEmojiId() {
-        return this.emojiId;
-    }
-
     public final Priority copy(@StringRes int title, @StringRes int description, long emojiId) {
         return new Priority(title, description, emojiId);
     }
@@ -61,12 +46,27 @@ public final /* data */ class Priority {
         return this.title == priority.title && this.description == priority.description && this.emojiId == priority.emojiId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getDescription() {
         return this.description;
     }
 
+    public final int getDescription() {
+        return this.description;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getEmojiId() {
         return this.emojiId;
+    }
+
+    public final long getEmojiId() {
+        return this.emojiId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getTitle() {
+        return this.title;
     }
 
     public final int getTitle() {

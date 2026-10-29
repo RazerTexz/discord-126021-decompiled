@@ -33,8 +33,27 @@ public class SdkClickHandler implements ISdkClickHandler {
         this.scheduler = new SingleThreadCachedScheduler(SCHEDULED_EXECUTOR_SOURCE);
     }
 
+    @Override // com.adjust.sdk.ISdkClickHandler
+    public void init(IActivityHandler iActivityHandler, boolean z2) {
+        this.paused = !z2;
+        this.packageQueue = new ArrayList();
+        this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
+        this.basePath = iActivityHandler.getBasePath();
+    }
+
     private void logErrorMessageI(ActivityPackage activityPackage, String str, Throwable th) {
         this.logger.error(Util.formatString("%s. (%s)", activityPackage.getFailureMessage(), Util.getReasonString(str, th)), new Object[0]);
+    }
+
+    @Override // com.adjust.sdk.ISdkClickHandler
+    public void pauseSending() {
+        this.paused = true;
+    }
+
+    @Override // com.adjust.sdk.ISdkClickHandler
+    public void resumeSending() {
+        this.paused = false;
+        sendNextSdkClick();
     }
 
     private void retrySendingI(ActivityPackage activityPackage) {
@@ -72,6 +91,49 @@ public class SdkClickHandler implements ISdkClickHandler {
         long waitingTime = Util.getWaitingTime(retries, this.backoffStrategy);
         this.logger.verbose("Waiting for %s seconds before retrying sdk_click for the %d time", Util.SecondsDisplayFormat.format(waitingTime / MILLISECONDS_TO_SECONDS_DIVISOR), Integer.valueOf(retries));
         this.scheduler.schedule(runnable, waitingTime);
+    }
+
+    @Override // com.adjust.sdk.ISdkClickHandler
+    public void sendReftagReferrers() {
+        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.2
+            @Override // java.lang.Runnable
+            public void run() {
+                IActivityHandler iActivityHandler = (IActivityHandler) SdkClickHandler.this.activityHandlerWeakRef.get();
+                SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(iActivityHandler.getContext());
+                try {
+                    JSONArray rawReferrerArray = sharedPreferencesManager.getRawReferrerArray();
+                    boolean z2 = false;
+                    for (int i = 0; i < rawReferrerArray.length(); i++) {
+                        JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+                        if (jSONArray.optInt(2, -1) == 0) {
+                            String strOptString = jSONArray.optString(0, null);
+                            long jOptLong = jSONArray.optLong(1, -1L);
+                            jSONArray.put(2, 1);
+                            SdkClickHandler.this.sendSdkClick(PackageFactory.buildReftagSdkClickPackage(strOptString, jOptLong, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
+                            z2 = true;
+                        }
+                    }
+                    if (z2) {
+                        sharedPreferencesManager.saveRawReferrerArray(rawReferrerArray);
+                    }
+                } catch (JSONException e) {
+                    SdkClickHandler.this.logger.error("Send saved raw referrers error (%s)", e.getMessage());
+                }
+            }
+        });
+    }
+
+    @Override // com.adjust.sdk.ISdkClickHandler
+    public void sendSdkClick(final ActivityPackage activityPackage) {
+        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.1
+            @Override // java.lang.Runnable
+            public void run() {
+                SdkClickHandler.this.packageQueue.add(activityPackage);
+                SdkClickHandler.this.logger.debug("Added sdk_click %d", Integer.valueOf(SdkClickHandler.this.packageQueue.size()));
+                SdkClickHandler.this.logger.verbose("%s", activityPackage.getExtendedString());
+                SdkClickHandler.this.sendNextSdkClick();
+            }
+        });
     }
 
     private void sendSdkClickI(ActivityPackage activityPackage) {
@@ -142,68 +204,6 @@ public class SdkClickHandler implements ISdkClickHandler {
         } catch (Throwable th) {
             logErrorMessageI(activityPackage, "Sdk_click runtime exception", th);
         }
-    }
-
-    @Override // com.adjust.sdk.ISdkClickHandler
-    public void init(IActivityHandler iActivityHandler, boolean z2) {
-        this.paused = !z2;
-        this.packageQueue = new ArrayList();
-        this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
-        this.basePath = iActivityHandler.getBasePath();
-    }
-
-    @Override // com.adjust.sdk.ISdkClickHandler
-    public void pauseSending() {
-        this.paused = true;
-    }
-
-    @Override // com.adjust.sdk.ISdkClickHandler
-    public void resumeSending() {
-        this.paused = false;
-        sendNextSdkClick();
-    }
-
-    @Override // com.adjust.sdk.ISdkClickHandler
-    public void sendReftagReferrers() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                IActivityHandler iActivityHandler = (IActivityHandler) SdkClickHandler.this.activityHandlerWeakRef.get();
-                SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(iActivityHandler.getContext());
-                try {
-                    JSONArray rawReferrerArray = sharedPreferencesManager.getRawReferrerArray();
-                    boolean z2 = false;
-                    for (int i = 0; i < rawReferrerArray.length(); i++) {
-                        JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
-                        if (jSONArray.optInt(2, -1) == 0) {
-                            String strOptString = jSONArray.optString(0, null);
-                            long jOptLong = jSONArray.optLong(1, -1L);
-                            jSONArray.put(2, 1);
-                            SdkClickHandler.this.sendSdkClick(PackageFactory.buildReftagSdkClickPackage(strOptString, jOptLong, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
-                            z2 = true;
-                        }
-                    }
-                    if (z2) {
-                        sharedPreferencesManager.saveRawReferrerArray(rawReferrerArray);
-                    }
-                } catch (JSONException e) {
-                    SdkClickHandler.this.logger.error("Send saved raw referrers error (%s)", e.getMessage());
-                }
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.ISdkClickHandler
-    public void sendSdkClick(final ActivityPackage activityPackage) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.1
-            @Override // java.lang.Runnable
-            public void run() {
-                SdkClickHandler.this.packageQueue.add(activityPackage);
-                SdkClickHandler.this.logger.debug("Added sdk_click %d", Integer.valueOf(SdkClickHandler.this.packageQueue.size()));
-                SdkClickHandler.this.logger.verbose("%s", activityPackage.getExtendedString());
-                SdkClickHandler.this.sendNextSdkClick();
-            }
-        });
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler

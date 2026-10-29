@@ -21,7 +21,7 @@ public final class C5264c {
 
     /* JADX INFO: renamed from: b.o.b.d.c$a */
     /* JADX INFO: compiled from: GlShader.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

@@ -21,7 +21,7 @@ public final /* data */ class CollapsedUser implements MGRecyclerDataPayload {
     private final User user;
 
     /* JADX INFO: compiled from: CollapsedUser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,21 +62,6 @@ public final /* data */ class CollapsedUser implements MGRecyclerDataPayload {
         return collapsedUser.copy(user, z2, j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getEmptySlot() {
-        return this.emptySlot;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getExtraCount() {
-        return this.extraCount;
-    }
-
     public final CollapsedUser copy(User user, boolean emptySlot, long extraCount) {
         C12238m.checkNotNullParameter(user, "user");
         return new CollapsedUser(user, emptySlot, extraCount);
@@ -93,8 +78,18 @@ public final /* data */ class CollapsedUser implements MGRecyclerDataPayload {
         return C12238m.areEqual(this.user, collapsedUser.user) && this.emptySlot == collapsedUser.emptySlot && this.extraCount == collapsedUser.extraCount;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getEmptySlot() {
         return this.emptySlot;
+    }
+
+    public final boolean getEmptySlot() {
+        return this.emptySlot;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getExtraCount() {
+        return this.extraCount;
     }
 
     public final long getExtraCount() {
@@ -109,6 +104,11 @@ public final /* data */ class CollapsedUser implements MGRecyclerDataPayload {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

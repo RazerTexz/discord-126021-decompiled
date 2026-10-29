@@ -21,11 +21,6 @@ public final class C12105v extends AbstractC12240o implements Function2<CharSequ
         this.$ignoreCase = z2;
     }
 
-    @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Pair<? extends Integer, ? extends Integer> invoke(CharSequence charSequence, Integer num) {
-        return invoke(charSequence, num.intValue());
-    }
-
     public final Pair<Integer, Integer> invoke(CharSequence charSequence, int i) {
         C12238m.checkNotNullParameter(charSequence, "$receiver");
         Pair pairAccess$findAnyOf = C12106w.access$findAnyOf(charSequence, this.$delimitersList, i, this.$ignoreCase, false);
@@ -33,5 +28,10 @@ public final class C12105v extends AbstractC12240o implements Function2<CharSequ
             return C12116o.m10073to(pairAccess$findAnyOf.getFirst(), Integer.valueOf(((String) pairAccess$findAnyOf.getSecond()).length()));
         }
         return null;
+    }
+
+    @Override // kotlin.jvm.functions.Function2
+    public /* bridge */ /* synthetic */ Pair<? extends Integer, ? extends Integer> invoke(CharSequence charSequence, Integer num) {
+        return invoke(charSequence, num.intValue());
     }
 }

@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGameNotificationSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGameNotificationSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean autoFollow = null;
     private final Boolean desktop = null;
     private final Boolean mobile = null;
     private final Boolean peakHours = null;
-    private final Boolean autoFollow = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "game_notification_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackGameNotificationSettingsUpdated implements An
         }
         TrackGameNotificationSettingsUpdated trackGameNotificationSettingsUpdated = (TrackGameNotificationSettingsUpdated) other;
         return C12238m.areEqual(this.desktop, trackGameNotificationSettingsUpdated.desktop) && C12238m.areEqual(this.mobile, trackGameNotificationSettingsUpdated.mobile) && C12238m.areEqual(this.peakHours, trackGameNotificationSettingsUpdated.peakHours) && C12238m.areEqual(this.autoFollow, trackGameNotificationSettingsUpdated.autoFollow);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

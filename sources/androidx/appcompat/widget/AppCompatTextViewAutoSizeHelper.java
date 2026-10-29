@@ -46,17 +46,17 @@ public class AppCompatTextViewAutoSizeHelper {
     @NonNull
     private final TextView mTextView;
     private static final RectF TEMP_RECTF = new RectF();
-    private static ConcurrentHashMap<String, Method> sTextViewMethodByNameCache = new ConcurrentHashMap<>();
-    private static ConcurrentHashMap<String, Field> sTextViewFieldByNameCache = new ConcurrentHashMap<>();
     private int mAutoSizeTextType = 0;
+    private static ConcurrentHashMap<String, Method> sTextViewMethodByNameCache = new ConcurrentHashMap<>();
     private boolean mNeedsAutoSizeText = false;
+    private static ConcurrentHashMap<String, Field> sTextViewFieldByNameCache = new ConcurrentHashMap<>();
     private float mAutoSizeStepGranularityInPx = -1.0f;
     private float mAutoSizeMinTextSizeInPx = -1.0f;
     private float mAutoSizeMaxTextSizeInPx = -1.0f;
     private int[] mAutoSizeTextSizesInPx = new int[0];
     private boolean mHasPresetAutoSizeValues = false;
 
-    public static class Impl {
+    public class Impl {
         public void computeAndSetTextDirection(StaticLayout.Builder builder, TextView textView) {
         }
 
@@ -66,7 +66,7 @@ public class AppCompatTextViewAutoSizeHelper {
     }
 
     @RequiresApi(23)
-    public static class Impl23 extends Impl {
+    public class Impl23 extends Impl {
         @Override // androidx.appcompat.widget.AppCompatTextViewAutoSizeHelper.Impl
         public void computeAndSetTextDirection(StaticLayout.Builder builder, TextView textView) {
             builder.setTextDirection((TextDirectionHeuristic) AppCompatTextViewAutoSizeHelper.invokeAndReturnWithDefault(textView, "getTextDirectionHeuristic", TextDirectionHeuristics.FIRSTSTRONG_LTR));
@@ -74,7 +74,7 @@ public class AppCompatTextViewAutoSizeHelper {
     }
 
     @RequiresApi(29)
-    public static class Impl29 extends Impl23 {
+    public class Impl29 extends Impl23 {
         @Override // androidx.appcompat.widget.AppCompatTextViewAutoSizeHelper.Impl23, androidx.appcompat.widget.AppCompatTextViewAutoSizeHelper.Impl
         public void computeAndSetTextDirection(StaticLayout.Builder builder, TextView textView) {
             builder.setTextDirection(textView.getTextDirectionHeuristic());
@@ -109,6 +109,33 @@ public class AppCompatTextViewAutoSizeHelper {
         }
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void autoSizeText() {
+        if (isAutoSizeEnabled()) {
+            if (this.mNeedsAutoSizeText) {
+                if (this.mTextView.getMeasuredHeight() <= 0 || this.mTextView.getMeasuredWidth() <= 0) {
+                    return;
+                }
+                int measuredWidth = this.mImpl.isHorizontallyScrollable(this.mTextView) ? 1048576 : (this.mTextView.getMeasuredWidth() - this.mTextView.getTotalPaddingLeft()) - this.mTextView.getTotalPaddingRight();
+                int height = (this.mTextView.getHeight() - this.mTextView.getCompoundPaddingBottom()) - this.mTextView.getCompoundPaddingTop();
+                if (measuredWidth <= 0 || height <= 0) {
+                    return;
+                }
+                RectF rectF = TEMP_RECTF;
+                synchronized (rectF) {
+                    rectF.setEmpty();
+                    rectF.right = measuredWidth;
+                    rectF.bottom = height;
+                    float fFindLargestTextSizeWhichFits = findLargestTextSizeWhichFits(rectF);
+                    if (fFindLargestTextSizeWhichFits != this.mTextView.getTextSize()) {
+                        setTextSizeInternal(0, fFindLargestTextSizeWhichFits);
+                    }
+                }
+            }
+            this.mNeedsAutoSizeText = true;
+        }
+    }
+
     private int[] cleanupAutoSizePresetSizes(int[] iArr) {
         int length = iArr.length;
         if (length == 0) {
@@ -139,6 +166,11 @@ public class AppCompatTextViewAutoSizeHelper {
         this.mAutoSizeStepGranularityInPx = -1.0f;
         this.mAutoSizeTextSizesInPx = new int[0];
         this.mNeedsAutoSizeText = false;
+    }
+
+    @VisibleForTesting
+    public StaticLayout createLayout(CharSequence charSequence, Layout.Alignment alignment, int i, int i2) {
+        return Build.VERSION.SDK_INT >= 23 ? createStaticLayoutForMeasuring(charSequence, alignment, i, i2) : createStaticLayoutForMeasuringPre23(charSequence, alignment, i);
     }
 
     @RequiresApi(23)
@@ -188,6 +220,31 @@ public class AppCompatTextViewAutoSizeHelper {
         return this.mAutoSizeTextSizesInPx[i3];
     }
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int getAutoSizeMaxTextSize() {
+        return Math.round(this.mAutoSizeMaxTextSizeInPx);
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int getAutoSizeMinTextSize() {
+        return Math.round(this.mAutoSizeMinTextSizeInPx);
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int getAutoSizeStepGranularity() {
+        return Math.round(this.mAutoSizeStepGranularityInPx);
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int[] getAutoSizeTextAvailableSizes() {
+        return this.mAutoSizeTextSizesInPx;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public int getAutoSizeTextType() {
+        return this.mAutoSizeTextType;
+    }
+
     @Nullable
     private static Field getTextViewField(@NonNull String str) {
         try {
@@ -218,173 +275,6 @@ public class AppCompatTextViewAutoSizeHelper {
         }
     }
 
-    public static <T> T invokeAndReturnWithDefault(@NonNull Object obj, @NonNull String str, @NonNull T t) {
-        try {
-            return (T) getTextViewMethod(str).invoke(obj, new Object[0]);
-        } catch (Exception e) {
-            Log.w(TAG, "Failed to invoke TextView#" + str + "() method", e);
-            return t;
-        }
-    }
-
-    private void setRawTextSize(float f) {
-        if (f != this.mTextView.getPaint().getTextSize()) {
-            this.mTextView.getPaint().setTextSize(f);
-            boolean zIsInLayout = this.mTextView.isInLayout();
-            if (this.mTextView.getLayout() != null) {
-                this.mNeedsAutoSizeText = false;
-                try {
-                    Method textViewMethod = getTextViewMethod("nullLayouts");
-                    if (textViewMethod != null) {
-                        textViewMethod.invoke(this.mTextView, new Object[0]);
-                    }
-                } catch (Exception e) {
-                    Log.w(TAG, "Failed to invoke TextView#nullLayouts() method", e);
-                }
-                if (zIsInLayout) {
-                    this.mTextView.forceLayout();
-                } else {
-                    this.mTextView.requestLayout();
-                }
-                this.mTextView.invalidate();
-            }
-        }
-    }
-
-    private boolean setupAutoSizeText() {
-        if (supportsAutoSizeText() && this.mAutoSizeTextType == 1) {
-            if (!this.mHasPresetAutoSizeValues || this.mAutoSizeTextSizesInPx.length == 0) {
-                int iFloor = ((int) Math.floor((this.mAutoSizeMaxTextSizeInPx - this.mAutoSizeMinTextSizeInPx) / this.mAutoSizeStepGranularityInPx)) + 1;
-                int[] iArr = new int[iFloor];
-                for (int i = 0; i < iFloor; i++) {
-                    iArr[i] = Math.round((i * this.mAutoSizeStepGranularityInPx) + this.mAutoSizeMinTextSizeInPx);
-                }
-                this.mAutoSizeTextSizesInPx = cleanupAutoSizePresetSizes(iArr);
-            }
-            this.mNeedsAutoSizeText = true;
-        } else {
-            this.mNeedsAutoSizeText = false;
-        }
-        return this.mNeedsAutoSizeText;
-    }
-
-    private void setupAutoSizeUniformPresetSizes(TypedArray typedArray) {
-        int length = typedArray.length();
-        int[] iArr = new int[length];
-        if (length > 0) {
-            for (int i = 0; i < length; i++) {
-                iArr[i] = typedArray.getDimensionPixelSize(i, -1);
-            }
-            this.mAutoSizeTextSizesInPx = cleanupAutoSizePresetSizes(iArr);
-            setupAutoSizeUniformPresetSizesConfiguration();
-        }
-    }
-
-    private boolean setupAutoSizeUniformPresetSizesConfiguration() {
-        int[] iArr = this.mAutoSizeTextSizesInPx;
-        int length = iArr.length;
-        boolean z2 = length > 0;
-        this.mHasPresetAutoSizeValues = z2;
-        if (z2) {
-            this.mAutoSizeTextType = 1;
-            this.mAutoSizeMinTextSizeInPx = iArr[0];
-            this.mAutoSizeMaxTextSizeInPx = iArr[length - 1];
-            this.mAutoSizeStepGranularityInPx = -1.0f;
-        }
-        return z2;
-    }
-
-    private boolean suggestedSizeFitsInSpace(int i, RectF rectF) {
-        CharSequence transformation;
-        CharSequence text = this.mTextView.getText();
-        TransformationMethod transformationMethod = this.mTextView.getTransformationMethod();
-        if (transformationMethod != null && (transformation = transformationMethod.getTransformation(text, this.mTextView)) != null) {
-            text = transformation;
-        }
-        int maxLines = this.mTextView.getMaxLines();
-        initTempTextPaint(i);
-        StaticLayout staticLayoutCreateLayout = createLayout(text, (Layout.Alignment) invokeAndReturnWithDefault(this.mTextView, "getLayoutAlignment", Layout.Alignment.ALIGN_NORMAL), Math.round(rectF.right), maxLines);
-        return (maxLines == -1 || (staticLayoutCreateLayout.getLineCount() <= maxLines && staticLayoutCreateLayout.getLineEnd(staticLayoutCreateLayout.getLineCount() - 1) == text.length())) && ((float) staticLayoutCreateLayout.getHeight()) <= rectF.bottom;
-    }
-
-    private boolean supportsAutoSizeText() {
-        return !(this.mTextView instanceof AppCompatEditText);
-    }
-
-    private void validateAndSetAutoSizeTextTypeUniformConfiguration(float f, float f2, float f3) throws IllegalArgumentException {
-        if (f <= 0.0f) {
-            throw new IllegalArgumentException("Minimum auto-size text size (" + f + "px) is less or equal to (0px)");
-        }
-        if (f2 <= f) {
-            throw new IllegalArgumentException("Maximum auto-size text size (" + f2 + "px) is less or equal to minimum auto-size text size (" + f + "px)");
-        }
-        if (f3 <= 0.0f) {
-            throw new IllegalArgumentException("The auto-size step granularity (" + f3 + "px) is less or equal to (0px)");
-        }
-        this.mAutoSizeTextType = 1;
-        this.mAutoSizeMinTextSizeInPx = f;
-        this.mAutoSizeMaxTextSizeInPx = f2;
-        this.mAutoSizeStepGranularityInPx = f3;
-        this.mHasPresetAutoSizeValues = false;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void autoSizeText() {
-        if (isAutoSizeEnabled()) {
-            if (this.mNeedsAutoSizeText) {
-                if (this.mTextView.getMeasuredHeight() <= 0 || this.mTextView.getMeasuredWidth() <= 0) {
-                    return;
-                }
-                int measuredWidth = this.mImpl.isHorizontallyScrollable(this.mTextView) ? 1048576 : (this.mTextView.getMeasuredWidth() - this.mTextView.getTotalPaddingLeft()) - this.mTextView.getTotalPaddingRight();
-                int height = (this.mTextView.getHeight() - this.mTextView.getCompoundPaddingBottom()) - this.mTextView.getCompoundPaddingTop();
-                if (measuredWidth <= 0 || height <= 0) {
-                    return;
-                }
-                RectF rectF = TEMP_RECTF;
-                synchronized (rectF) {
-                    rectF.setEmpty();
-                    rectF.right = measuredWidth;
-                    rectF.bottom = height;
-                    float fFindLargestTextSizeWhichFits = findLargestTextSizeWhichFits(rectF);
-                    if (fFindLargestTextSizeWhichFits != this.mTextView.getTextSize()) {
-                        setTextSizeInternal(0, fFindLargestTextSizeWhichFits);
-                    }
-                }
-            }
-            this.mNeedsAutoSizeText = true;
-        }
-    }
-
-    @VisibleForTesting
-    public StaticLayout createLayout(CharSequence charSequence, Layout.Alignment alignment, int i, int i2) {
-        return Build.VERSION.SDK_INT >= 23 ? createStaticLayoutForMeasuring(charSequence, alignment, i, i2) : createStaticLayoutForMeasuringPre23(charSequence, alignment, i);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int getAutoSizeMaxTextSize() {
-        return Math.round(this.mAutoSizeMaxTextSizeInPx);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int getAutoSizeMinTextSize() {
-        return Math.round(this.mAutoSizeMinTextSizeInPx);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int getAutoSizeStepGranularity() {
-        return Math.round(this.mAutoSizeStepGranularityInPx);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int[] getAutoSizeTextAvailableSizes() {
-        return this.mAutoSizeTextSizesInPx;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public int getAutoSizeTextType() {
-        return this.mAutoSizeTextType;
-    }
-
     @VisibleForTesting
     public void initTempTextPaint(int i) {
         TextPaint textPaint = this.mTempTextPaint;
@@ -395,6 +285,15 @@ public class AppCompatTextViewAutoSizeHelper {
         }
         this.mTempTextPaint.set(this.mTextView.getPaint());
         this.mTempTextPaint.setTextSize(i);
+    }
+
+    public static <T> T invokeAndReturnWithDefault(@NonNull Object obj, @NonNull String str, @NonNull T t) {
+        try {
+            return (T) getTextViewMethod(str).invoke(obj, new Object[0]);
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to invoke TextView#" + str + "() method", e);
+            return t;
+        }
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -506,9 +405,110 @@ public class AppCompatTextViewAutoSizeHelper {
         }
     }
 
+    private void setRawTextSize(float f) {
+        if (f != this.mTextView.getPaint().getTextSize()) {
+            this.mTextView.getPaint().setTextSize(f);
+            boolean zIsInLayout = this.mTextView.isInLayout();
+            if (this.mTextView.getLayout() != null) {
+                this.mNeedsAutoSizeText = false;
+                try {
+                    Method textViewMethod = getTextViewMethod("nullLayouts");
+                    if (textViewMethod != null) {
+                        textViewMethod.invoke(this.mTextView, new Object[0]);
+                    }
+                } catch (Exception e) {
+                    Log.w(TAG, "Failed to invoke TextView#nullLayouts() method", e);
+                }
+                if (zIsInLayout) {
+                    this.mTextView.forceLayout();
+                } else {
+                    this.mTextView.requestLayout();
+                }
+                this.mTextView.invalidate();
+            }
+        }
+    }
+
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setTextSizeInternal(int i, float f) {
         Context context = this.mContext;
         setRawTextSize(TypedValue.applyDimension(i, f, (context == null ? Resources.getSystem() : context.getResources()).getDisplayMetrics()));
+    }
+
+    private boolean setupAutoSizeText() {
+        if (supportsAutoSizeText() && this.mAutoSizeTextType == 1) {
+            if (!this.mHasPresetAutoSizeValues || this.mAutoSizeTextSizesInPx.length == 0) {
+                int iFloor = ((int) Math.floor((this.mAutoSizeMaxTextSizeInPx - this.mAutoSizeMinTextSizeInPx) / this.mAutoSizeStepGranularityInPx)) + 1;
+                int[] iArr = new int[iFloor];
+                for (int i = 0; i < iFloor; i++) {
+                    iArr[i] = Math.round((i * this.mAutoSizeStepGranularityInPx) + this.mAutoSizeMinTextSizeInPx);
+                }
+                this.mAutoSizeTextSizesInPx = cleanupAutoSizePresetSizes(iArr);
+            }
+            this.mNeedsAutoSizeText = true;
+        } else {
+            this.mNeedsAutoSizeText = false;
+        }
+        return this.mNeedsAutoSizeText;
+    }
+
+    private void setupAutoSizeUniformPresetSizes(TypedArray typedArray) {
+        int length = typedArray.length();
+        int[] iArr = new int[length];
+        if (length > 0) {
+            for (int i = 0; i < length; i++) {
+                iArr[i] = typedArray.getDimensionPixelSize(i, -1);
+            }
+            this.mAutoSizeTextSizesInPx = cleanupAutoSizePresetSizes(iArr);
+            setupAutoSizeUniformPresetSizesConfiguration();
+        }
+    }
+
+    private boolean setupAutoSizeUniformPresetSizesConfiguration() {
+        int[] iArr = this.mAutoSizeTextSizesInPx;
+        int length = iArr.length;
+        boolean z2 = length > 0;
+        this.mHasPresetAutoSizeValues = z2;
+        if (z2) {
+            this.mAutoSizeTextType = 1;
+            this.mAutoSizeMinTextSizeInPx = iArr[0];
+            this.mAutoSizeMaxTextSizeInPx = iArr[length - 1];
+            this.mAutoSizeStepGranularityInPx = -1.0f;
+        }
+        return z2;
+    }
+
+    private boolean suggestedSizeFitsInSpace(int i, RectF rectF) {
+        CharSequence transformation;
+        CharSequence text = this.mTextView.getText();
+        TransformationMethod transformationMethod = this.mTextView.getTransformationMethod();
+        if (transformationMethod != null && (transformation = transformationMethod.getTransformation(text, this.mTextView)) != null) {
+            text = transformation;
+        }
+        int maxLines = this.mTextView.getMaxLines();
+        initTempTextPaint(i);
+        StaticLayout staticLayoutCreateLayout = createLayout(text, (Layout.Alignment) invokeAndReturnWithDefault(this.mTextView, "getLayoutAlignment", Layout.Alignment.ALIGN_NORMAL), Math.round(rectF.right), maxLines);
+        return (maxLines == -1 || (staticLayoutCreateLayout.getLineCount() <= maxLines && staticLayoutCreateLayout.getLineEnd(staticLayoutCreateLayout.getLineCount() - 1) == text.length())) && ((float) staticLayoutCreateLayout.getHeight()) <= rectF.bottom;
+    }
+
+    private boolean supportsAutoSizeText() {
+        return !(this.mTextView instanceof AppCompatEditText);
+    }
+
+    private void validateAndSetAutoSizeTextTypeUniformConfiguration(float f, float f2, float f3) throws IllegalArgumentException {
+        if (f <= 0.0f) {
+            throw new IllegalArgumentException("Minimum auto-size text size (" + f + "px) is less or equal to (0px)");
+        }
+        if (f2 <= f) {
+            throw new IllegalArgumentException("Maximum auto-size text size (" + f2 + "px) is less or equal to minimum auto-size text size (" + f + "px)");
+        }
+        if (f3 <= 0.0f) {
+            throw new IllegalArgumentException("The auto-size step granularity (" + f3 + "px) is less or equal to (0px)");
+        }
+        this.mAutoSizeTextType = 1;
+        this.mAutoSizeMinTextSizeInPx = f;
+        this.mAutoSizeMaxTextSizeInPx = f2;
+        this.mAutoSizeStepGranularityInPx = f3;
+        this.mHasPresetAutoSizeValues = false;
     }
 }

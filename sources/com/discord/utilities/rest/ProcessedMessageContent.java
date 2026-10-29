@@ -26,20 +26,8 @@ public final /* data */ class ProcessedMessageContent {
     private final List<Attachment<?>> validAttachments;
 
     /* JADX INFO: compiled from: SendUtils.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final boolean isUriValid(Uri uri, ContentResolver contentResolver) {
-            try {
-                InputStream inputStreamOpenInputStream = contentResolver.openInputStream(uri);
-                if (inputStreamOpenInputStream != null) {
-                    C12201b.closeFinally(inputStreamOpenInputStream, null);
-                }
-                return true;
-            } catch (Exception unused) {
-                return false;
-            }
         }
 
         public final ProcessedMessageContent fromAttachments(List<? extends Attachment<?>> attachments, String content, Context context) {
@@ -65,6 +53,18 @@ public final /* data */ class ProcessedMessageContent {
             return new ProcessedMessageContent(arrayList, arrayList2, strAppendLinks);
         }
 
+        private final boolean isUriValid(Uri uri, ContentResolver contentResolver) {
+            try {
+                InputStream inputStreamOpenInputStream = contentResolver.openInputStream(uri);
+                if (inputStreamOpenInputStream != null) {
+                    C12201b.closeFinally(inputStreamOpenInputStream, null);
+                }
+                return true;
+            } catch (Exception unused) {
+                return false;
+            }
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
@@ -80,6 +80,14 @@ public final /* data */ class ProcessedMessageContent {
         this.content = str;
     }
 
+    public final List<Attachment<?>> component1() {
+        return this.validAttachments;
+    }
+
+    public final List<Attachment<?>> component2() {
+        return this.invalidAttachments;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ProcessedMessageContent copy$default(ProcessedMessageContent processedMessageContent, List list, List list2, String str, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -92,19 +100,6 @@ public final /* data */ class ProcessedMessageContent {
             str = processedMessageContent.content;
         }
         return processedMessageContent.copy(list, list2, str);
-    }
-
-    public final List<Attachment<?>> component1() {
-        return this.validAttachments;
-    }
-
-    public final List<Attachment<?>> component2() {
-        return this.invalidAttachments;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getContent() {
-        return this.content;
     }
 
     public final ProcessedMessageContent copy(List<? extends Attachment<?>> validAttachments, List<? extends Attachment<?>> invalidAttachments, String content) {
@@ -123,6 +118,11 @@ public final /* data */ class ProcessedMessageContent {
         }
         ProcessedMessageContent processedMessageContent = (ProcessedMessageContent) other;
         return C12238m.areEqual(this.validAttachments, processedMessageContent.validAttachments) && C12238m.areEqual(this.invalidAttachments, processedMessageContent.invalidAttachments) && C12238m.areEqual(this.content, processedMessageContent.content);
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getContent() {
+        return this.content;
     }
 
     public final String getContent() {

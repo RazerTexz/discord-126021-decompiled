@@ -125,7 +125,7 @@ public final class C3050i implements InterfaceC3031h, InterfaceC3119t {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.i$a */
     /* JADX INFO: compiled from: Mp4Extractor.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C3054m f8444a;
@@ -189,16 +189,643 @@ public final class C3050i implements InterfaceC3031h, InterfaceC3119t {
         return iM3732a == -1 ? j2 : Math.min(c3057p.f8495c[iM3732a], j2);
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: b */
-    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
-        return C3053l.m3730a(interfaceC3041i, false, (this.f8420b & 2) != 0);
+    /* JADX INFO: renamed from: j */
+    public final void m3728j() {
+        this.f8428j = 0;
+        this.f8431m = 0;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:155:0x02a8 A[Catch: all -> 0x022a, TryCatch #0 {all -> 0x022a, blocks: (B:38:0x00cb, B:40:0x00d1, B:42:0x00d6, B:45:0x00de, B:46:0x00e5, B:49:0x00f3, B:52:0x0100, B:55:0x010d, B:58:0x011d, B:61:0x012a, B:64:0x0135, B:67:0x0142, B:70:0x014e, B:73:0x015a, B:76:0x0166, B:79:0x0172, B:82:0x017e, B:85:0x018c, B:88:0x0199, B:91:0x01a5, B:96:0x01b7, B:98:0x01bb, B:100:0x01d0, B:103:0x01dd, B:107:0x01ec, B:115:0x01ff, B:153:0x0298, B:155:0x02a8, B:157:0x02b2, B:156:0x02ad, B:117:0x0219, B:119:0x0224, B:134:0x024a, B:137:0x0257, B:140:0x0263, B:143:0x026f, B:146:0x027b, B:149:0x0287, B:152:0x0291, B:159:0x02b7, B:160:0x02be), top: B:343:0x00cb }] */
+    /* JADX WARN: Code duplicated, block: B:156:0x02ad A[Catch: all -> 0x022a, TryCatch #0 {all -> 0x022a, blocks: (B:38:0x00cb, B:40:0x00d1, B:42:0x00d6, B:45:0x00de, B:46:0x00e5, B:49:0x00f3, B:52:0x0100, B:55:0x010d, B:58:0x011d, B:61:0x012a, B:64:0x0135, B:67:0x0142, B:70:0x014e, B:73:0x015a, B:76:0x0166, B:79:0x0172, B:82:0x017e, B:85:0x018c, B:88:0x0199, B:91:0x01a5, B:96:0x01b7, B:98:0x01bb, B:100:0x01d0, B:103:0x01dd, B:107:0x01ec, B:115:0x01ff, B:153:0x0298, B:155:0x02a8, B:157:0x02b2, B:156:0x02ad, B:117:0x0219, B:119:0x0224, B:134:0x024a, B:137:0x0257, B:140:0x0263, B:143:0x026f, B:146:0x027b, B:149:0x0287, B:152:0x0291, B:159:0x02b7, B:160:0x02be), top: B:343:0x00cb }] */
+    /* JADX WARN: Code duplicated, block: B:236:0x0494  */
+    /* JADX WARN: Code duplicated, block: B:294:0x05ac  */
+    /* JADX WARN: Code duplicated, block: B:43:0x00db  */
+    /* JADX INFO: renamed from: l */
+    public final void m3729l(long j) throws ParserException {
+        ArrayList arrayList;
+        boolean z2;
+        Metadata metadata;
+        int i;
+        Metadata metadata2;
+        Metadata metadata3;
+        Metadata metadata4;
+        Metadata metadata5;
+        int i2;
+        ArrayList arrayList2;
+        int i3;
+        int i4;
+        MdtaMetadataEntry mdtaMetadataEntry;
+        ArrayList arrayList3;
+        boolean z3;
+        Metadata metadata6;
+        boolean z4;
+        Id3Frame id3FrameM3724d;
+        String strValueOf;
+        String str;
+        String str2;
+        while (!this.f8425g.isEmpty() && this.f8425g.peek().f8350b == j) {
+            AbstractC3045d.a aVarPop = this.f8425g.pop();
+            if (aVarPop.f8349a == 1836019574) {
+                ArrayList arrayList4 = new ArrayList();
+                boolean z5 = this.f8442x == 1;
+                C3115p c3115p = new C3115p();
+                AbstractC3045d.b bVarM3701c = aVarPop.m3701c(1969517665);
+                int i5 = 1768715124;
+                int i6 = 1751411826;
+                int i7 = 1835365473;
+                int i8 = 4;
+                int i9 = 8;
+                Metadata metadata7 = null;
+                if (bVarM3701c != null) {
+                    byte[] bArr = C3046e.f8354a;
+                    C2757x c2757x = bVarM3701c.f8353b;
+                    c2757x.m3079E(8);
+                    Metadata metadata8 = null;
+                    String strM3095o = null;
+                    while (c2757x.m3081a() >= i9) {
+                        int i10 = c2757x.f6794b;
+                        int iM3086f = c2757x.m3086f();
+                        int i11 = i5;
+                        int iM3086f2 = c2757x.m3086f();
+                        if (iM3086f2 == i7) {
+                            c2757x.m3079E(i10);
+                            int i12 = i10 + iM3086f;
+                            c2757x.m3080F(i9);
+                            int i13 = c2757x.f6794b;
+                            c2757x.m3080F(i8);
+                            if (c2757x.m3086f() != i6) {
+                                i13 += 4;
+                            }
+                            c2757x.m3079E(i13);
+                            int i14 = i11;
+                            while (true) {
+                                int i15 = c2757x.f6794b;
+                                if (i15 < i12) {
+                                    int iM3086f3 = c2757x.m3086f();
+                                    if (c2757x.m3086f() == i14) {
+                                        c2757x.m3079E(i15);
+                                        int i16 = i15 + iM3086f3;
+                                        c2757x.m3080F(i9);
+                                        ArrayList arrayList5 = new ArrayList();
+                                        while (true) {
+                                            int i17 = c2757x.f6794b;
+                                            if (i17 >= i16) {
+                                                break;
+                                            }
+                                            int iM3086f4 = c2757x.m3086f() + i17;
+                                            int iM3086f5 = c2757x.m3086f();
+                                            int i18 = (iM3086f5 >> 24) & 255;
+                                            int i19 = i16;
+                                            ArrayList arrayList6 = arrayList4;
+                                            if (i18 == 169 || i18 == 253) {
+                                                z4 = z5;
+                                                int i20 = 16777215 & iM3086f5;
+                                                if (i20 == 6516084) {
+                                                    id3FrameM3724d = C3049h.m3721a(iM3086f5, c2757x);
+                                                } else if (i20 == 7233901 || i20 == 7631467) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TIT2", c2757x);
+                                                } else if (i20 == 6516589 || i20 == 7828084) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TCOM", c2757x);
+                                                } else if (i20 == 6578553) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TDRC", c2757x);
+                                                } else if (i20 == 4280916) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TPE1", c2757x);
+                                                } else if (i20 == 7630703) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSSE", c2757x);
+                                                } else if (i20 == 6384738) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TALB", c2757x);
+                                                } else if (i20 == 7108978) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "USLT", c2757x);
+                                                } else if (i20 == 6776174) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TCON", c2757x);
+                                                } else if (i20 == 6779504) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TIT1", c2757x);
+                                                } else {
+                                                    strValueOf = String.valueOf(AbstractC3045d.m3699a(iM3086f5));
+                                                    if (strValueOf.length() != 0) {
+                                                        str = "Skipped unknown metadata entry: ".concat(strValueOf);
+                                                    } else {
+                                                        str = new String("Skipped unknown metadata entry: ");
+                                                    }
+                                                    Log.d("MetadataUtil", str);
+                                                    id3FrameM3724d = null;
+                                                }
+                                            } else if (iM3086f5 == 1735291493) {
+                                                try {
+                                                    int iM3726f = C3049h.m3726f(c2757x);
+                                                    if (iM3726f > 0) {
+                                                        String[] strArr = C3049h.f8418a;
+                                                        if (iM3726f <= strArr.length) {
+                                                            str2 = strArr[iM3726f - 1];
+                                                        } else {
+                                                            str2 = strM3095o;
+                                                        }
+                                                    } else {
+                                                        str2 = strM3095o;
+                                                    }
+                                                    if (str2 != null) {
+                                                        id3FrameM3724d = new TextInformationFrame("TCON", strM3095o, str2);
+                                                        z4 = z5;
+                                                    } else {
+                                                        Log.w("MetadataUtil", "Failed to parse standard genre code");
+                                                        z4 = z5;
+                                                        id3FrameM3724d = null;
+                                                    }
+                                                } catch (Throwable th) {
+                                                    c2757x.m3079E(iM3086f4);
+                                                    throw th;
+                                                }
+                                            } else {
+                                                if (iM3086f5 == 1684632427) {
+                                                    id3FrameM3724d = C3049h.m3723c(iM3086f5, "TPOS", c2757x);
+                                                } else if (iM3086f5 == 1953655662) {
+                                                    id3FrameM3724d = C3049h.m3723c(iM3086f5, "TRCK", c2757x);
+                                                } else if (iM3086f5 == 1953329263) {
+                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "TBPM", c2757x, true, false);
+                                                } else if (iM3086f5 == 1668311404) {
+                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "TCMP", c2757x, true, true);
+                                                } else if (iM3086f5 == 1668249202) {
+                                                    id3FrameM3724d = C3049h.m3722b(c2757x);
+                                                } else if (iM3086f5 == 1631670868) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TPE2", c2757x);
+                                                } else if (iM3086f5 == 1936682605) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOT", c2757x);
+                                                } else if (iM3086f5 == 1936679276) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSO2", c2757x);
+                                                } else if (iM3086f5 == 1936679282) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOA", c2757x);
+                                                } else if (iM3086f5 == 1936679265) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOP", c2757x);
+                                                } else if (iM3086f5 == 1936679791) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOC", c2757x);
+                                                } else if (iM3086f5 == 1920233063) {
+                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "ITUNESADVISORY", c2757x, false, false);
+                                                } else if (iM3086f5 == 1885823344) {
+                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "ITUNESGAPLESS", c2757x, false, true);
+                                                } else if (iM3086f5 == 1936683886) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TVSHOWSORT", c2757x);
+                                                } else if (iM3086f5 == 1953919848) {
+                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TVSHOW", c2757x);
+                                                } else if (iM3086f5 == 757935405) {
+                                                    int i21 = -1;
+                                                    int i22 = -1;
+                                                    String strM3095o2 = strM3095o;
+                                                    while (true) {
+                                                        int i23 = c2757x.f6794b;
+                                                        if (i23 >= iM3086f4) {
+                                                            break;
+                                                        }
+                                                        int iM3086f6 = c2757x.m3086f();
+                                                        int iM3086f7 = c2757x.m3086f();
+                                                        boolean z6 = z5;
+                                                        c2757x.m3080F(4);
+                                                        if (iM3086f7 == 1835360622) {
+                                                            strM3095o = c2757x.m3095o(iM3086f6 - 12);
+                                                        } else if (iM3086f7 == 1851878757) {
+                                                            strM3095o2 = c2757x.m3095o(iM3086f6 - 12);
+                                                        } else {
+                                                            if (iM3086f7 == 1684108385) {
+                                                                i22 = iM3086f6;
+                                                                i21 = i23;
+                                                            }
+                                                            c2757x.m3080F(iM3086f6 - 12);
+                                                        }
+                                                        z5 = z6;
+                                                    }
+                                                    z4 = z5;
+                                                    if (strM3095o == null || strM3095o2 == null || i21 == -1) {
+                                                        id3FrameM3724d = null;
+                                                    } else {
+                                                        c2757x.m3079E(i21);
+                                                        c2757x.m3080F(16);
+                                                        id3FrameM3724d = new InternalFrame(strM3095o, strM3095o2, c2757x.m3095o(i22 - 16));
+                                                    }
+                                                } else {
+                                                    z4 = z5;
+                                                    strValueOf = String.valueOf(AbstractC3045d.m3699a(iM3086f5));
+                                                    if (strValueOf.length() != 0) {
+                                                        str = "Skipped unknown metadata entry: ".concat(strValueOf);
+                                                    } else {
+                                                        str = new String("Skipped unknown metadata entry: ");
+                                                    }
+                                                    Log.d("MetadataUtil", str);
+                                                    id3FrameM3724d = null;
+                                                }
+                                                z4 = z5;
+                                            }
+                                            c2757x.m3079E(iM3086f4);
+                                            if (id3FrameM3724d != null) {
+                                                arrayList5.add(id3FrameM3724d);
+                                            }
+                                            strM3095o = null;
+                                            i16 = i19;
+                                            arrayList4 = arrayList6;
+                                            z5 = z4;
+                                        }
+                                        arrayList3 = arrayList4;
+                                        z3 = z5;
+                                        if (!arrayList5.isEmpty()) {
+                                            metadata6 = new Metadata(arrayList5);
+                                            break;
+                                        }
+                                        break;
+                                    }
+                                    c2757x.m3079E(i15 + iM3086f3);
+                                    i9 = 8;
+                                    i14 = 1768715124;
+                                    strM3095o = null;
+                                } else {
+                                    arrayList3 = arrayList4;
+                                    z3 = z5;
+                                }
+                                metadata6 = null;
+                                break;
+                            }
+                            metadata7 = metadata6;
+                        } else {
+                            arrayList3 = arrayList4;
+                            z3 = z5;
+                            if (iM3086f2 == 1936553057) {
+                                c2757x.m3079E(i10);
+                                int i24 = i10 + iM3086f;
+                                c2757x.m3080F(12);
+                                while (true) {
+                                    int i25 = c2757x.f6794b;
+                                    if (i25 < i24) {
+                                        int iM3086f8 = c2757x.m3086f();
+                                        if (c2757x.m3086f() != 1935766900) {
+                                            c2757x.m3079E(i25 + iM3086f8);
+                                        } else if (iM3086f8 >= 14) {
+                                            c2757x.m3080F(5);
+                                            int iM3100t = c2757x.m3100t();
+                                            if (iM3100t == 12 || iM3100t == 13) {
+                                                float f = iM3100t == 12 ? 240.0f : 120.0f;
+                                                c2757x.m3080F(1);
+                                                metadata8 = new Metadata(new SmtaMetadataEntry(f, c2757x.m3100t()));
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    metadata8 = null;
+                                    break;
+                                }
+                            }
+                        }
+                        c2757x.m3079E(i10 + iM3086f);
+                        i9 = 8;
+                        i5 = 1768715124;
+                        i6 = 1751411826;
+                        i7 = 1835365473;
+                        strM3095o = null;
+                        i8 = 4;
+                        arrayList4 = arrayList3;
+                        z5 = z3;
+                    }
+                    arrayList = arrayList4;
+                    z2 = z5;
+                    Pair pairCreate = Pair.create(metadata7, metadata8);
+                    metadata2 = (Metadata) pairCreate.first;
+                    metadata = (Metadata) pairCreate.second;
+                    if (metadata2 != null) {
+                        c3115p.m3815b(metadata2);
+                    }
+                    i = 1835365473;
+                } else {
+                    arrayList = arrayList4;
+                    z2 = z5;
+                    metadata = null;
+                    i = 1835365473;
+                    metadata2 = null;
+                }
+                Metadata metadata9 = metadata2;
+                AbstractC3045d.a aVarM3700b = aVarPop.m3700b(i);
+                if (aVarM3700b != null) {
+                    byte[] bArr2 = C3046e.f8354a;
+                    AbstractC3045d.b bVarM3701c2 = aVarM3700b.m3701c(1751411826);
+                    AbstractC3045d.b bVarM3701c3 = aVarM3700b.m3701c(1801812339);
+                    AbstractC3045d.b bVarM3701c4 = aVarM3700b.m3701c(1768715124);
+                    if (bVarM3701c2 == null || bVarM3701c3 == null || bVarM3701c4 == null) {
+                        metadata3 = metadata9;
+                        metadata4 = null;
+                    } else {
+                        C2757x c2757x2 = bVarM3701c2.f8353b;
+                        c2757x2.m3079E(16);
+                        if (c2757x2.m3086f() != 1835299937) {
+                            metadata3 = metadata9;
+                        } else {
+                            C2757x c2757x3 = bVarM3701c3.f8353b;
+                            c2757x3.m3079E(12);
+                            int iM3086f9 = c2757x3.m3086f();
+                            String[] strArr2 = new String[iM3086f9];
+                            for (int i26 = 0; i26 < iM3086f9; i26++) {
+                                int iM3086f10 = c2757x3.m3086f();
+                                c2757x3.m3080F(4);
+                                strArr2[i26] = c2757x3.m3097q(iM3086f10 - 8);
+                            }
+                            int i27 = 8;
+                            C2757x c2757x4 = bVarM3701c4.f8353b;
+                            c2757x4.m3079E(8);
+                            ArrayList arrayList7 = new ArrayList();
+                            while (c2757x4.m3081a() > i27) {
+                                int i28 = c2757x4.f6794b;
+                                int iM3086f11 = c2757x4.m3086f();
+                                int iM3086f12 = c2757x4.m3086f() - 1;
+                                if (iM3086f12 < 0 || iM3086f12 >= iM3086f9) {
+                                    i4 = iM3086f9;
+                                    strArr2 = strArr2;
+                                    metadata9 = metadata9;
+                                    C1643a.m852g0(52, "Skipped metadata with unknown key index: ", iM3086f12, "AtomParsers");
+                                } else {
+                                    String str3 = strArr2[iM3086f12];
+                                    int i29 = i28 + iM3086f11;
+                                    while (true) {
+                                        int i30 = c2757x4.f6794b;
+                                        if (i30 >= i29) {
+                                            i4 = iM3086f9;
+                                            mdtaMetadataEntry = null;
+                                            break;
+                                        }
+                                        int iM3086f13 = c2757x4.m3086f();
+                                        i4 = iM3086f9;
+                                        if (c2757x4.m3086f() == 1684108385) {
+                                            int iM3086f14 = c2757x4.m3086f();
+                                            int iM3086f15 = c2757x4.m3086f();
+                                            int i31 = iM3086f13 - 16;
+                                            byte[] bArr3 = new byte[i31];
+                                            System.arraycopy(c2757x4.f6793a, c2757x4.f6794b, bArr3, 0, i31);
+                                            c2757x4.f6794b += i31;
+                                            mdtaMetadataEntry = new MdtaMetadataEntry(str3, bArr3, iM3086f15, iM3086f14);
+                                            break;
+                                        }
+                                        c2757x4.m3079E(i30 + iM3086f13);
+                                        iM3086f9 = i4;
+                                    }
+                                    if (mdtaMetadataEntry != null) {
+                                        arrayList7.add(mdtaMetadataEntry);
+                                    }
+                                }
+                                c2757x4.m3079E(i28 + iM3086f11);
+                                i27 = 8;
+                                iM3086f9 = i4;
+                                strArr2 = strArr2;
+                                metadata9 = metadata9;
+                            }
+                            metadata3 = metadata9;
+                            if (!arrayList7.isEmpty()) {
+                                metadata4 = new Metadata(arrayList7);
+                            }
+                        }
+                        metadata4 = null;
+                    }
+                } else {
+                    metadata3 = metadata9;
+                    metadata4 = null;
+                }
+                Metadata metadata10 = metadata4;
+                List<C3057p> listM3706e = C3046e.m3706e(aVarPop, c3115p, -9223372036854775807L, null, (this.f8420b & 1) != 0, z2, new InterfaceC4485e() { // from class: b.i.a.c.x2.i0.a
+                    @Override // p007b.p225i.p355b.p356a.InterfaceC4485e
+                    public final Object apply(Object obj) {
+                        C3054m c3054m = (C3054m) obj;
+                        int i32 = C3050i.f8419a;
+                        return c3054m;
+                    }
+                });
+                InterfaceC3058j interfaceC3058j = this.f8437s;
+                Objects.requireNonNull(interfaceC3058j);
+                ArrayList arrayList8 = (ArrayList) listM3706e;
+                int size = arrayList8.size();
+                long jMax = -9223372036854775807L;
+                long j2 = -9223372036854775807L;
+                int i32 = 0;
+                int size2 = -1;
+                while (i32 < size) {
+                    C3057p c3057p = (C3057p) arrayList8.get(i32);
+                    if (c3057p.f8494b == 0) {
+                        metadata5 = metadata;
+                        arrayList2 = arrayList;
+                    } else {
+                        C3054m c3054m = c3057p.f8493a;
+                        Metadata metadata11 = metadata10;
+                        int i33 = size2;
+                        long j3 = c3054m.f8464e;
+                        if (j3 == j2) {
+                            j3 = c3057p.f8500h;
+                        }
+                        jMax = Math.max(jMax, j3);
+                        a aVar = new a(c3054m, c3057p, interfaceC3058j.mo2492p(i32, c3054m.f8461b));
+                        int i34 = "audio/true-hd".equals(c3054m.f8465f.f7155w) ? c3057p.f8497e * 16 : c3057p.f8497e + 30;
+                        C2811j1.b bVarM3275a = c3054m.f8465f.m3275a();
+                        bVarM3275a.f7174l = i34;
+                        int i35 = c3054m.f8461b;
+                        if (i35 == 2 && j3 > 0 && (i3 = c3057p.f8494b) > 1) {
+                            bVarM3275a.f7180r = i3 / (j3 / 1000000.0f);
+                        }
+                        if (i35 == 1) {
+                            int i36 = c3115p.f8985b;
+                            if ((i36 == -1 || c3115p.f8986c == -1) ? false : true) {
+                                bVarM3275a.f7159A = i36;
+                                bVarM3275a.f7160B = c3115p.f8986c;
+                            }
+                        }
+                        Metadata[] metadataArr = new Metadata[2];
+                        metadataArr[0] = metadata;
+                        metadataArr[1] = this.f8427i.isEmpty() ? null : new Metadata(this.f8427i);
+                        Metadata metadata12 = new Metadata(new Metadata.Entry[0]);
+                        if (i35 != 1) {
+                            if (i35 == 2 && metadata11 != null) {
+                                int i37 = 0;
+                                metadata10 = metadata11;
+                                while (true) {
+                                    Metadata.Entry[] entryArr = metadata10.f19936j;
+                                    if (i37 >= entryArr.length) {
+                                        metadata5 = metadata;
+                                        break;
+                                    }
+                                    Metadata.Entry entry = entryArr[i37];
+                                    if (entry instanceof MdtaMetadataEntry) {
+                                        MdtaMetadataEntry mdtaMetadataEntry2 = (MdtaMetadataEntry) entry;
+                                        metadata5 = metadata;
+                                        if ("com.android.capture.fps".equals(mdtaMetadataEntry2.f20004j)) {
+                                            metadata12 = new Metadata(mdtaMetadataEntry2);
+                                            break;
+                                        }
+                                    } else {
+                                        metadata5 = metadata;
+                                    }
+                                    i37++;
+                                    metadata = metadata5;
+                                }
+                            } else {
+                                metadata5 = metadata;
+                                metadata10 = metadata11;
+                            }
+                        } else if (metadata3 != null) {
+                            metadata5 = metadata;
+                            metadata10 = metadata11;
+                            metadata12 = metadata3;
+                        } else {
+                            metadata5 = metadata;
+                            metadata10 = metadata11;
+                        }
+                        for (int i38 = 0; i38 < 2; i38++) {
+                            Metadata metadata13 = metadataArr[i38];
+                            if (metadata13 != null) {
+                                metadata12 = metadata12.m8877a(metadata13.f19936j);
+                            }
+                        }
+                        if (metadata12.f19936j.length > 0) {
+                            bVarM3275a.f7171i = metadata12;
+                        }
+                        aVar.f8446c.mo2526e(bVarM3275a.m3277a());
+                        if (c3054m.f8461b == 2) {
+                            i2 = i33;
+                            if (i2 == -1) {
+                                size2 = arrayList.size();
+                            }
+                            arrayList2 = arrayList;
+                            arrayList2.add(aVar);
+                        } else {
+                            i2 = i33;
+                        }
+                        size2 = i2;
+                        arrayList2 = arrayList;
+                        arrayList2.add(aVar);
+                    }
+                    i32++;
+                    j2 = -9223372036854775807L;
+                    arrayList = arrayList2;
+                    arrayList8 = arrayList8;
+                    size = size;
+                    metadata = metadata5;
+                }
+                long j4 = 0;
+                this.f8440v = size2;
+                this.f8441w = jMax;
+                a[] aVarArr = (a[]) arrayList.toArray(new a[0]);
+                this.f8438t = aVarArr;
+                long[][] jArr = new long[aVarArr.length][];
+                int[] iArr = new int[aVarArr.length];
+                long[] jArr2 = new long[aVarArr.length];
+                boolean[] zArr = new boolean[aVarArr.length];
+                for (int i39 = 0; i39 < aVarArr.length; i39++) {
+                    jArr[i39] = new long[aVarArr[i39].f8445b.f8494b];
+                    jArr2[i39] = aVarArr[i39].f8445b.f8498f[0];
+                }
+                int i40 = 0;
+                while (i40 < aVarArr.length) {
+                    long j5 = RecyclerView.FOREVER_NS;
+                    int i41 = -1;
+                    for (int i42 = 0; i42 < aVarArr.length; i42++) {
+                        if (!zArr[i42] && jArr2[i42] <= j5) {
+                            j5 = jArr2[i42];
+                            i41 = i42;
+                        }
+                    }
+                    int i43 = iArr[i41];
+                    jArr[i41][i43] = j4;
+                    j4 += (long) aVarArr[i41].f8445b.f8496d[i43];
+                    int i44 = i43 + 1;
+                    iArr[i41] = i44;
+                    if (i44 < jArr[i41].length) {
+                        jArr2[i41] = aVarArr[i41].f8445b.f8498f[i44];
+                    } else {
+                        zArr[i41] = true;
+                        i40++;
+                    }
+                }
+                this.f8439u = jArr;
+                interfaceC3058j.mo2486j();
+                interfaceC3058j.mo2477a(this);
+                this.f8425g.clear();
+                this.f8428j = 2;
+            } else if (!this.f8425g.isEmpty()) {
+                this.f8425g.peek().f8352d.add(aVarPop);
+            }
+        }
+        if (this.f8428j != 2) {
+            m3728j();
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
     /* JADX INFO: renamed from: c */
     public boolean mo3619c() {
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
+    /* JADX INFO: renamed from: h */
+    public InterfaceC3119t.a mo3620h(long j) {
+        long j2;
+        long jM3727k;
+        long j3;
+        long j4;
+        int iM3733b;
+        long j5 = j;
+        a[] aVarArr = this.f8438t;
+        Objects.requireNonNull(aVarArr);
+        if (aVarArr.length == 0) {
+            return new InterfaceC3119t.a(C3120u.f8997a);
+        }
+        long j6 = -1;
+        int i = this.f8440v;
+        if (i != -1) {
+            C3057p c3057p = this.f8438t[i].f8445b;
+            int iM3732a = c3057p.m3732a(j5);
+            if (iM3732a == -1) {
+                iM3732a = c3057p.m3733b(j5);
+            }
+            if (iM3732a == -1) {
+                return new InterfaceC3119t.a(C3120u.f8997a);
+            }
+            long j7 = c3057p.f8498f[iM3732a];
+            j2 = c3057p.f8495c[iM3732a];
+            if (j7 >= j5 || iM3732a >= c3057p.f8494b - 1 || (iM3733b = c3057p.m3733b(j5)) == -1 || iM3733b == iM3732a) {
+                j4 = -9223372036854775807L;
+            } else {
+                long j8 = c3057p.f8498f[iM3733b];
+                long j9 = c3057p.f8495c[iM3733b];
+                j4 = j8;
+                j6 = j9;
+            }
+            jM3727k = j6;
+            j3 = j4;
+            j5 = j7;
+        } else {
+            j2 = RecyclerView.FOREVER_NS;
+            jM3727k = -1;
+            j3 = -9223372036854775807L;
+        }
+        int i2 = 0;
+        while (true) {
+            a[] aVarArr2 = this.f8438t;
+            if (i2 >= aVarArr2.length) {
+                break;
+            }
+            if (i2 != this.f8440v) {
+                C3057p c3057p2 = aVarArr2[i2].f8445b;
+                long jM3727k2 = m3727k(c3057p2, j5, j2);
+                if (j3 != -9223372036854775807L) {
+                    jM3727k = m3727k(c3057p2, j3, jM3727k);
+                }
+                j2 = jM3727k2;
+            }
+            i2++;
+        }
+        C3120u c3120u = new C3120u(j5, j2);
+        return j3 == -9223372036854775807L ? new InterfaceC3119t.a(c3120u) : new InterfaceC3119t.a(c3120u, new C3120u(j3, jM3727k));
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
+    /* JADX INFO: renamed from: i */
+    public long mo3621i() {
+        return this.f8441w;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: b */
+    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
+        return C3053l.m3730a(interfaceC3041i, false, (this.f8420b & 2) != 0);
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -811,633 +1438,6 @@ public final class C3050i implements InterfaceC3031h, InterfaceC3119t {
                     c3123x.f9006c = 0;
                 }
             }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
-    /* JADX INFO: renamed from: h */
-    public InterfaceC3119t.a mo3620h(long j) {
-        long j2;
-        long jM3727k;
-        long j3;
-        long j4;
-        int iM3733b;
-        long j5 = j;
-        a[] aVarArr = this.f8438t;
-        Objects.requireNonNull(aVarArr);
-        if (aVarArr.length == 0) {
-            return new InterfaceC3119t.a(C3120u.f8997a);
-        }
-        long j6 = -1;
-        int i = this.f8440v;
-        if (i != -1) {
-            C3057p c3057p = this.f8438t[i].f8445b;
-            int iM3732a = c3057p.m3732a(j5);
-            if (iM3732a == -1) {
-                iM3732a = c3057p.m3733b(j5);
-            }
-            if (iM3732a == -1) {
-                return new InterfaceC3119t.a(C3120u.f8997a);
-            }
-            long j7 = c3057p.f8498f[iM3732a];
-            j2 = c3057p.f8495c[iM3732a];
-            if (j7 >= j5 || iM3732a >= c3057p.f8494b - 1 || (iM3733b = c3057p.m3733b(j5)) == -1 || iM3733b == iM3732a) {
-                j4 = -9223372036854775807L;
-            } else {
-                long j8 = c3057p.f8498f[iM3733b];
-                long j9 = c3057p.f8495c[iM3733b];
-                j4 = j8;
-                j6 = j9;
-            }
-            jM3727k = j6;
-            j3 = j4;
-            j5 = j7;
-        } else {
-            j2 = RecyclerView.FOREVER_NS;
-            jM3727k = -1;
-            j3 = -9223372036854775807L;
-        }
-        int i2 = 0;
-        while (true) {
-            a[] aVarArr2 = this.f8438t;
-            if (i2 >= aVarArr2.length) {
-                break;
-            }
-            if (i2 != this.f8440v) {
-                C3057p c3057p2 = aVarArr2[i2].f8445b;
-                long jM3727k2 = m3727k(c3057p2, j5, j2);
-                if (j3 != -9223372036854775807L) {
-                    jM3727k = m3727k(c3057p2, j3, jM3727k);
-                }
-                j2 = jM3727k2;
-            }
-            i2++;
-        }
-        C3120u c3120u = new C3120u(j5, j2);
-        return j3 == -9223372036854775807L ? new InterfaceC3119t.a(c3120u) : new InterfaceC3119t.a(c3120u, new C3120u(j3, jM3727k));
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
-    /* JADX INFO: renamed from: i */
-    public long mo3621i() {
-        return this.f8441w;
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final void m3728j() {
-        this.f8428j = 0;
-        this.f8431m = 0;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:155:0x02a8 A[Catch: all -> 0x022a, TryCatch #0 {all -> 0x022a, blocks: (B:38:0x00cb, B:40:0x00d1, B:42:0x00d6, B:45:0x00de, B:46:0x00e5, B:49:0x00f3, B:52:0x0100, B:55:0x010d, B:58:0x011d, B:61:0x012a, B:64:0x0135, B:67:0x0142, B:70:0x014e, B:73:0x015a, B:76:0x0166, B:79:0x0172, B:82:0x017e, B:85:0x018c, B:88:0x0199, B:91:0x01a5, B:96:0x01b7, B:98:0x01bb, B:100:0x01d0, B:103:0x01dd, B:107:0x01ec, B:115:0x01ff, B:153:0x0298, B:155:0x02a8, B:157:0x02b2, B:156:0x02ad, B:117:0x0219, B:119:0x0224, B:134:0x024a, B:137:0x0257, B:140:0x0263, B:143:0x026f, B:146:0x027b, B:149:0x0287, B:152:0x0291, B:159:0x02b7, B:160:0x02be), top: B:343:0x00cb }] */
-    /* JADX WARN: Code duplicated, block: B:156:0x02ad A[Catch: all -> 0x022a, TryCatch #0 {all -> 0x022a, blocks: (B:38:0x00cb, B:40:0x00d1, B:42:0x00d6, B:45:0x00de, B:46:0x00e5, B:49:0x00f3, B:52:0x0100, B:55:0x010d, B:58:0x011d, B:61:0x012a, B:64:0x0135, B:67:0x0142, B:70:0x014e, B:73:0x015a, B:76:0x0166, B:79:0x0172, B:82:0x017e, B:85:0x018c, B:88:0x0199, B:91:0x01a5, B:96:0x01b7, B:98:0x01bb, B:100:0x01d0, B:103:0x01dd, B:107:0x01ec, B:115:0x01ff, B:153:0x0298, B:155:0x02a8, B:157:0x02b2, B:156:0x02ad, B:117:0x0219, B:119:0x0224, B:134:0x024a, B:137:0x0257, B:140:0x0263, B:143:0x026f, B:146:0x027b, B:149:0x0287, B:152:0x0291, B:159:0x02b7, B:160:0x02be), top: B:343:0x00cb }] */
-    /* JADX WARN: Code duplicated, block: B:236:0x0494  */
-    /* JADX WARN: Code duplicated, block: B:294:0x05ac  */
-    /* JADX WARN: Code duplicated, block: B:43:0x00db  */
-    /* JADX INFO: renamed from: l */
-    public final void m3729l(long j) throws ParserException {
-        ArrayList arrayList;
-        boolean z2;
-        Metadata metadata;
-        int i;
-        Metadata metadata2;
-        Metadata metadata3;
-        Metadata metadata4;
-        Metadata metadata5;
-        int i2;
-        ArrayList arrayList2;
-        int i3;
-        int i4;
-        MdtaMetadataEntry mdtaMetadataEntry;
-        ArrayList arrayList3;
-        boolean z3;
-        Metadata metadata6;
-        boolean z4;
-        Id3Frame id3FrameM3724d;
-        String strValueOf;
-        String str;
-        String str2;
-        while (!this.f8425g.isEmpty() && this.f8425g.peek().f8350b == j) {
-            AbstractC3045d.a aVarPop = this.f8425g.pop();
-            if (aVarPop.f8349a == 1836019574) {
-                ArrayList arrayList4 = new ArrayList();
-                boolean z5 = this.f8442x == 1;
-                C3115p c3115p = new C3115p();
-                AbstractC3045d.b bVarM3701c = aVarPop.m3701c(1969517665);
-                int i5 = 1768715124;
-                int i6 = 1751411826;
-                int i7 = 1835365473;
-                int i8 = 4;
-                int i9 = 8;
-                Metadata metadata7 = null;
-                if (bVarM3701c != null) {
-                    byte[] bArr = C3046e.f8354a;
-                    C2757x c2757x = bVarM3701c.f8353b;
-                    c2757x.m3079E(8);
-                    Metadata metadata8 = null;
-                    String strM3095o = null;
-                    while (c2757x.m3081a() >= i9) {
-                        int i10 = c2757x.f6794b;
-                        int iM3086f = c2757x.m3086f();
-                        int i11 = i5;
-                        int iM3086f2 = c2757x.m3086f();
-                        if (iM3086f2 == i7) {
-                            c2757x.m3079E(i10);
-                            int i12 = i10 + iM3086f;
-                            c2757x.m3080F(i9);
-                            int i13 = c2757x.f6794b;
-                            c2757x.m3080F(i8);
-                            if (c2757x.m3086f() != i6) {
-                                i13 += 4;
-                            }
-                            c2757x.m3079E(i13);
-                            int i14 = i11;
-                            while (true) {
-                                int i15 = c2757x.f6794b;
-                                if (i15 < i12) {
-                                    int iM3086f3 = c2757x.m3086f();
-                                    if (c2757x.m3086f() == i14) {
-                                        c2757x.m3079E(i15);
-                                        int i16 = i15 + iM3086f3;
-                                        c2757x.m3080F(i9);
-                                        ArrayList arrayList5 = new ArrayList();
-                                        while (true) {
-                                            int i17 = c2757x.f6794b;
-                                            if (i17 >= i16) {
-                                                break;
-                                            }
-                                            int iM3086f4 = c2757x.m3086f() + i17;
-                                            int iM3086f5 = c2757x.m3086f();
-                                            int i18 = (iM3086f5 >> 24) & 255;
-                                            int i19 = i16;
-                                            ArrayList arrayList6 = arrayList4;
-                                            if (i18 == 169 || i18 == 253) {
-                                                z4 = z5;
-                                                int i20 = 16777215 & iM3086f5;
-                                                if (i20 == 6516084) {
-                                                    id3FrameM3724d = C3049h.m3721a(iM3086f5, c2757x);
-                                                } else if (i20 == 7233901 || i20 == 7631467) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TIT2", c2757x);
-                                                } else if (i20 == 6516589 || i20 == 7828084) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TCOM", c2757x);
-                                                } else if (i20 == 6578553) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TDRC", c2757x);
-                                                } else if (i20 == 4280916) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TPE1", c2757x);
-                                                } else if (i20 == 7630703) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSSE", c2757x);
-                                                } else if (i20 == 6384738) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TALB", c2757x);
-                                                } else if (i20 == 7108978) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "USLT", c2757x);
-                                                } else if (i20 == 6776174) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TCON", c2757x);
-                                                } else if (i20 == 6779504) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TIT1", c2757x);
-                                                } else {
-                                                    strValueOf = String.valueOf(AbstractC3045d.m3699a(iM3086f5));
-                                                    if (strValueOf.length() != 0) {
-                                                        str = "Skipped unknown metadata entry: ".concat(strValueOf);
-                                                    } else {
-                                                        str = new String("Skipped unknown metadata entry: ");
-                                                    }
-                                                    Log.d("MetadataUtil", str);
-                                                    id3FrameM3724d = null;
-                                                }
-                                            } else if (iM3086f5 == 1735291493) {
-                                                try {
-                                                    int iM3726f = C3049h.m3726f(c2757x);
-                                                    if (iM3726f > 0) {
-                                                        String[] strArr = C3049h.f8418a;
-                                                        if (iM3726f <= strArr.length) {
-                                                            str2 = strArr[iM3726f - 1];
-                                                        } else {
-                                                            str2 = strM3095o;
-                                                        }
-                                                    } else {
-                                                        str2 = strM3095o;
-                                                    }
-                                                    if (str2 != null) {
-                                                        id3FrameM3724d = new TextInformationFrame("TCON", strM3095o, str2);
-                                                        z4 = z5;
-                                                    } else {
-                                                        Log.w("MetadataUtil", "Failed to parse standard genre code");
-                                                        z4 = z5;
-                                                        id3FrameM3724d = null;
-                                                    }
-                                                } catch (Throwable th) {
-                                                    c2757x.m3079E(iM3086f4);
-                                                    throw th;
-                                                }
-                                            } else {
-                                                if (iM3086f5 == 1684632427) {
-                                                    id3FrameM3724d = C3049h.m3723c(iM3086f5, "TPOS", c2757x);
-                                                } else if (iM3086f5 == 1953655662) {
-                                                    id3FrameM3724d = C3049h.m3723c(iM3086f5, "TRCK", c2757x);
-                                                } else if (iM3086f5 == 1953329263) {
-                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "TBPM", c2757x, true, false);
-                                                } else if (iM3086f5 == 1668311404) {
-                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "TCMP", c2757x, true, true);
-                                                } else if (iM3086f5 == 1668249202) {
-                                                    id3FrameM3724d = C3049h.m3722b(c2757x);
-                                                } else if (iM3086f5 == 1631670868) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TPE2", c2757x);
-                                                } else if (iM3086f5 == 1936682605) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOT", c2757x);
-                                                } else if (iM3086f5 == 1936679276) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSO2", c2757x);
-                                                } else if (iM3086f5 == 1936679282) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOA", c2757x);
-                                                } else if (iM3086f5 == 1936679265) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOP", c2757x);
-                                                } else if (iM3086f5 == 1936679791) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TSOC", c2757x);
-                                                } else if (iM3086f5 == 1920233063) {
-                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "ITUNESADVISORY", c2757x, false, false);
-                                                } else if (iM3086f5 == 1885823344) {
-                                                    id3FrameM3724d = C3049h.m3725e(iM3086f5, "ITUNESGAPLESS", c2757x, false, true);
-                                                } else if (iM3086f5 == 1936683886) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TVSHOWSORT", c2757x);
-                                                } else if (iM3086f5 == 1953919848) {
-                                                    id3FrameM3724d = C3049h.m3724d(iM3086f5, "TVSHOW", c2757x);
-                                                } else if (iM3086f5 == 757935405) {
-                                                    int i21 = -1;
-                                                    int i22 = -1;
-                                                    String strM3095o2 = strM3095o;
-                                                    while (true) {
-                                                        int i23 = c2757x.f6794b;
-                                                        if (i23 >= iM3086f4) {
-                                                            break;
-                                                        }
-                                                        int iM3086f6 = c2757x.m3086f();
-                                                        int iM3086f7 = c2757x.m3086f();
-                                                        boolean z6 = z5;
-                                                        c2757x.m3080F(4);
-                                                        if (iM3086f7 == 1835360622) {
-                                                            strM3095o = c2757x.m3095o(iM3086f6 - 12);
-                                                        } else if (iM3086f7 == 1851878757) {
-                                                            strM3095o2 = c2757x.m3095o(iM3086f6 - 12);
-                                                        } else {
-                                                            if (iM3086f7 == 1684108385) {
-                                                                i22 = iM3086f6;
-                                                                i21 = i23;
-                                                            }
-                                                            c2757x.m3080F(iM3086f6 - 12);
-                                                        }
-                                                        z5 = z6;
-                                                    }
-                                                    z4 = z5;
-                                                    if (strM3095o == null || strM3095o2 == null || i21 == -1) {
-                                                        id3FrameM3724d = null;
-                                                    } else {
-                                                        c2757x.m3079E(i21);
-                                                        c2757x.m3080F(16);
-                                                        id3FrameM3724d = new InternalFrame(strM3095o, strM3095o2, c2757x.m3095o(i22 - 16));
-                                                    }
-                                                } else {
-                                                    z4 = z5;
-                                                    strValueOf = String.valueOf(AbstractC3045d.m3699a(iM3086f5));
-                                                    if (strValueOf.length() != 0) {
-                                                        str = "Skipped unknown metadata entry: ".concat(strValueOf);
-                                                    } else {
-                                                        str = new String("Skipped unknown metadata entry: ");
-                                                    }
-                                                    Log.d("MetadataUtil", str);
-                                                    id3FrameM3724d = null;
-                                                }
-                                                z4 = z5;
-                                            }
-                                            c2757x.m3079E(iM3086f4);
-                                            if (id3FrameM3724d != null) {
-                                                arrayList5.add(id3FrameM3724d);
-                                            }
-                                            strM3095o = null;
-                                            i16 = i19;
-                                            arrayList4 = arrayList6;
-                                            z5 = z4;
-                                        }
-                                        arrayList3 = arrayList4;
-                                        z3 = z5;
-                                        if (!arrayList5.isEmpty()) {
-                                            metadata6 = new Metadata(arrayList5);
-                                            break;
-                                        }
-                                        break;
-                                    }
-                                    c2757x.m3079E(i15 + iM3086f3);
-                                    i9 = 8;
-                                    i14 = 1768715124;
-                                    strM3095o = null;
-                                } else {
-                                    arrayList3 = arrayList4;
-                                    z3 = z5;
-                                }
-                                metadata6 = null;
-                                break;
-                            }
-                            metadata7 = metadata6;
-                        } else {
-                            arrayList3 = arrayList4;
-                            z3 = z5;
-                            if (iM3086f2 == 1936553057) {
-                                c2757x.m3079E(i10);
-                                int i24 = i10 + iM3086f;
-                                c2757x.m3080F(12);
-                                while (true) {
-                                    int i25 = c2757x.f6794b;
-                                    if (i25 < i24) {
-                                        int iM3086f8 = c2757x.m3086f();
-                                        if (c2757x.m3086f() != 1935766900) {
-                                            c2757x.m3079E(i25 + iM3086f8);
-                                        } else if (iM3086f8 >= 14) {
-                                            c2757x.m3080F(5);
-                                            int iM3100t = c2757x.m3100t();
-                                            if (iM3100t == 12 || iM3100t == 13) {
-                                                float f = iM3100t == 12 ? 240.0f : 120.0f;
-                                                c2757x.m3080F(1);
-                                                metadata8 = new Metadata(new SmtaMetadataEntry(f, c2757x.m3100t()));
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    metadata8 = null;
-                                    break;
-                                }
-                            }
-                        }
-                        c2757x.m3079E(i10 + iM3086f);
-                        i9 = 8;
-                        i5 = 1768715124;
-                        i6 = 1751411826;
-                        i7 = 1835365473;
-                        strM3095o = null;
-                        i8 = 4;
-                        arrayList4 = arrayList3;
-                        z5 = z3;
-                    }
-                    arrayList = arrayList4;
-                    z2 = z5;
-                    Pair pairCreate = Pair.create(metadata7, metadata8);
-                    metadata2 = (Metadata) pairCreate.first;
-                    metadata = (Metadata) pairCreate.second;
-                    if (metadata2 != null) {
-                        c3115p.m3815b(metadata2);
-                    }
-                    i = 1835365473;
-                } else {
-                    arrayList = arrayList4;
-                    z2 = z5;
-                    metadata = null;
-                    i = 1835365473;
-                    metadata2 = null;
-                }
-                Metadata metadata9 = metadata2;
-                AbstractC3045d.a aVarM3700b = aVarPop.m3700b(i);
-                if (aVarM3700b != null) {
-                    byte[] bArr2 = C3046e.f8354a;
-                    AbstractC3045d.b bVarM3701c2 = aVarM3700b.m3701c(1751411826);
-                    AbstractC3045d.b bVarM3701c3 = aVarM3700b.m3701c(1801812339);
-                    AbstractC3045d.b bVarM3701c4 = aVarM3700b.m3701c(1768715124);
-                    if (bVarM3701c2 == null || bVarM3701c3 == null || bVarM3701c4 == null) {
-                        metadata3 = metadata9;
-                        metadata4 = null;
-                    } else {
-                        C2757x c2757x2 = bVarM3701c2.f8353b;
-                        c2757x2.m3079E(16);
-                        if (c2757x2.m3086f() != 1835299937) {
-                            metadata3 = metadata9;
-                        } else {
-                            C2757x c2757x3 = bVarM3701c3.f8353b;
-                            c2757x3.m3079E(12);
-                            int iM3086f9 = c2757x3.m3086f();
-                            String[] strArr2 = new String[iM3086f9];
-                            for (int i26 = 0; i26 < iM3086f9; i26++) {
-                                int iM3086f10 = c2757x3.m3086f();
-                                c2757x3.m3080F(4);
-                                strArr2[i26] = c2757x3.m3097q(iM3086f10 - 8);
-                            }
-                            int i27 = 8;
-                            C2757x c2757x4 = bVarM3701c4.f8353b;
-                            c2757x4.m3079E(8);
-                            ArrayList arrayList7 = new ArrayList();
-                            while (c2757x4.m3081a() > i27) {
-                                int i28 = c2757x4.f6794b;
-                                int iM3086f11 = c2757x4.m3086f();
-                                int iM3086f12 = c2757x4.m3086f() - 1;
-                                if (iM3086f12 < 0 || iM3086f12 >= iM3086f9) {
-                                    i4 = iM3086f9;
-                                    strArr2 = strArr2;
-                                    metadata9 = metadata9;
-                                    C1643a.m852g0(52, "Skipped metadata with unknown key index: ", iM3086f12, "AtomParsers");
-                                } else {
-                                    String str3 = strArr2[iM3086f12];
-                                    int i29 = i28 + iM3086f11;
-                                    while (true) {
-                                        int i30 = c2757x4.f6794b;
-                                        if (i30 >= i29) {
-                                            i4 = iM3086f9;
-                                            mdtaMetadataEntry = null;
-                                            break;
-                                        }
-                                        int iM3086f13 = c2757x4.m3086f();
-                                        i4 = iM3086f9;
-                                        if (c2757x4.m3086f() == 1684108385) {
-                                            int iM3086f14 = c2757x4.m3086f();
-                                            int iM3086f15 = c2757x4.m3086f();
-                                            int i31 = iM3086f13 - 16;
-                                            byte[] bArr3 = new byte[i31];
-                                            System.arraycopy(c2757x4.f6793a, c2757x4.f6794b, bArr3, 0, i31);
-                                            c2757x4.f6794b += i31;
-                                            mdtaMetadataEntry = new MdtaMetadataEntry(str3, bArr3, iM3086f15, iM3086f14);
-                                            break;
-                                        }
-                                        c2757x4.m3079E(i30 + iM3086f13);
-                                        iM3086f9 = i4;
-                                    }
-                                    if (mdtaMetadataEntry != null) {
-                                        arrayList7.add(mdtaMetadataEntry);
-                                    }
-                                }
-                                c2757x4.m3079E(i28 + iM3086f11);
-                                i27 = 8;
-                                iM3086f9 = i4;
-                                strArr2 = strArr2;
-                                metadata9 = metadata9;
-                            }
-                            metadata3 = metadata9;
-                            if (!arrayList7.isEmpty()) {
-                                metadata4 = new Metadata(arrayList7);
-                            }
-                        }
-                        metadata4 = null;
-                    }
-                } else {
-                    metadata3 = metadata9;
-                    metadata4 = null;
-                }
-                Metadata metadata10 = metadata4;
-                List<C3057p> listM3706e = C3046e.m3706e(aVarPop, c3115p, -9223372036854775807L, null, (this.f8420b & 1) != 0, z2, new InterfaceC4485e() { // from class: b.i.a.c.x2.i0.a
-                    @Override // p007b.p225i.p355b.p356a.InterfaceC4485e
-                    public final Object apply(Object obj) {
-                        C3054m c3054m = (C3054m) obj;
-                        int i32 = C3050i.f8419a;
-                        return c3054m;
-                    }
-                });
-                InterfaceC3058j interfaceC3058j = this.f8437s;
-                Objects.requireNonNull(interfaceC3058j);
-                ArrayList arrayList8 = (ArrayList) listM3706e;
-                int size = arrayList8.size();
-                long jMax = -9223372036854775807L;
-                long j2 = -9223372036854775807L;
-                int i32 = 0;
-                int size2 = -1;
-                while (i32 < size) {
-                    C3057p c3057p = (C3057p) arrayList8.get(i32);
-                    if (c3057p.f8494b == 0) {
-                        metadata5 = metadata;
-                        arrayList2 = arrayList;
-                    } else {
-                        C3054m c3054m = c3057p.f8493a;
-                        Metadata metadata11 = metadata10;
-                        int i33 = size2;
-                        long j3 = c3054m.f8464e;
-                        if (j3 == j2) {
-                            j3 = c3057p.f8500h;
-                        }
-                        jMax = Math.max(jMax, j3);
-                        a aVar = new a(c3054m, c3057p, interfaceC3058j.mo2492p(i32, c3054m.f8461b));
-                        int i34 = "audio/true-hd".equals(c3054m.f8465f.f7155w) ? c3057p.f8497e * 16 : c3057p.f8497e + 30;
-                        C2811j1.b bVarM3275a = c3054m.f8465f.m3275a();
-                        bVarM3275a.f7174l = i34;
-                        int i35 = c3054m.f8461b;
-                        if (i35 == 2 && j3 > 0 && (i3 = c3057p.f8494b) > 1) {
-                            bVarM3275a.f7180r = i3 / (j3 / 1000000.0f);
-                        }
-                        if (i35 == 1) {
-                            int i36 = c3115p.f8985b;
-                            if ((i36 == -1 || c3115p.f8986c == -1) ? false : true) {
-                                bVarM3275a.f7159A = i36;
-                                bVarM3275a.f7160B = c3115p.f8986c;
-                            }
-                        }
-                        Metadata[] metadataArr = new Metadata[2];
-                        metadataArr[0] = metadata;
-                        metadataArr[1] = this.f8427i.isEmpty() ? null : new Metadata(this.f8427i);
-                        Metadata metadata12 = new Metadata(new Metadata.Entry[0]);
-                        if (i35 != 1) {
-                            if (i35 == 2 && metadata11 != null) {
-                                int i37 = 0;
-                                metadata10 = metadata11;
-                                while (true) {
-                                    Metadata.Entry[] entryArr = metadata10.f19936j;
-                                    if (i37 >= entryArr.length) {
-                                        metadata5 = metadata;
-                                        break;
-                                    }
-                                    Metadata.Entry entry = entryArr[i37];
-                                    if (entry instanceof MdtaMetadataEntry) {
-                                        MdtaMetadataEntry mdtaMetadataEntry2 = (MdtaMetadataEntry) entry;
-                                        metadata5 = metadata;
-                                        if ("com.android.capture.fps".equals(mdtaMetadataEntry2.f20004j)) {
-                                            metadata12 = new Metadata(mdtaMetadataEntry2);
-                                            break;
-                                        }
-                                    } else {
-                                        metadata5 = metadata;
-                                    }
-                                    i37++;
-                                    metadata = metadata5;
-                                }
-                            } else {
-                                metadata5 = metadata;
-                                metadata10 = metadata11;
-                            }
-                        } else if (metadata3 != null) {
-                            metadata5 = metadata;
-                            metadata10 = metadata11;
-                            metadata12 = metadata3;
-                        } else {
-                            metadata5 = metadata;
-                            metadata10 = metadata11;
-                        }
-                        for (int i38 = 0; i38 < 2; i38++) {
-                            Metadata metadata13 = metadataArr[i38];
-                            if (metadata13 != null) {
-                                metadata12 = metadata12.m8877a(metadata13.f19936j);
-                            }
-                        }
-                        if (metadata12.f19936j.length > 0) {
-                            bVarM3275a.f7171i = metadata12;
-                        }
-                        aVar.f8446c.mo2526e(bVarM3275a.m3277a());
-                        if (c3054m.f8461b == 2) {
-                            i2 = i33;
-                            if (i2 == -1) {
-                                size2 = arrayList.size();
-                            }
-                            arrayList2 = arrayList;
-                            arrayList2.add(aVar);
-                        } else {
-                            i2 = i33;
-                        }
-                        size2 = i2;
-                        arrayList2 = arrayList;
-                        arrayList2.add(aVar);
-                    }
-                    i32++;
-                    j2 = -9223372036854775807L;
-                    arrayList = arrayList2;
-                    arrayList8 = arrayList8;
-                    size = size;
-                    metadata = metadata5;
-                }
-                long j4 = 0;
-                this.f8440v = size2;
-                this.f8441w = jMax;
-                a[] aVarArr = (a[]) arrayList.toArray(new a[0]);
-                this.f8438t = aVarArr;
-                long[][] jArr = new long[aVarArr.length][];
-                int[] iArr = new int[aVarArr.length];
-                long[] jArr2 = new long[aVarArr.length];
-                boolean[] zArr = new boolean[aVarArr.length];
-                for (int i39 = 0; i39 < aVarArr.length; i39++) {
-                    jArr[i39] = new long[aVarArr[i39].f8445b.f8494b];
-                    jArr2[i39] = aVarArr[i39].f8445b.f8498f[0];
-                }
-                int i40 = 0;
-                while (i40 < aVarArr.length) {
-                    long j5 = RecyclerView.FOREVER_NS;
-                    int i41 = -1;
-                    for (int i42 = 0; i42 < aVarArr.length; i42++) {
-                        if (!zArr[i42] && jArr2[i42] <= j5) {
-                            j5 = jArr2[i42];
-                            i41 = i42;
-                        }
-                    }
-                    int i43 = iArr[i41];
-                    jArr[i41][i43] = j4;
-                    j4 += (long) aVarArr[i41].f8445b.f8496d[i43];
-                    int i44 = i43 + 1;
-                    iArr[i41] = i44;
-                    if (i44 < jArr[i41].length) {
-                        jArr2[i41] = aVarArr[i41].f8445b.f8498f[i44];
-                    } else {
-                        zArr[i41] = true;
-                        i40++;
-                    }
-                }
-                this.f8439u = jArr;
-                interfaceC3058j.mo2486j();
-                interfaceC3058j.mo2477a(this);
-                this.f8425g.clear();
-                this.f8428j = 2;
-            } else if (!this.f8425g.isEmpty()) {
-                this.f8425g.peek().f8352d.add(aVarPop);
-            }
-        }
-        if (this.f8428j != 2) {
-            m3728j();
         }
     }
 

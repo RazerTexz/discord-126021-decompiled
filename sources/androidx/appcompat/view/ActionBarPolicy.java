@@ -16,12 +16,12 @@ public class ActionBarPolicy {
         this.mContext = context;
     }
 
-    public static ActionBarPolicy get(Context context) {
-        return new ActionBarPolicy(context);
-    }
-
     public boolean enableHomeButtonByDefault() {
         return this.mContext.getApplicationInfo().targetSdkVersion < 14;
+    }
+
+    public static ActionBarPolicy get(Context context) {
+        return new ActionBarPolicy(context);
     }
 
     public int getEmbeddedMenuWidthLimit() {

@@ -55,22 +55,6 @@ public final class StreamPreviewView extends FrameLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }
 
-    private final void setCaptionText(CharSequence text) {
-        TextView textView = this.binding.f1443d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.streamPreviewPlaceholderCaption");
-        ViewExtensions.setTextAndVisibilityBy(textView, text);
-    }
-
-    private final void setImage(String url) {
-        this.binding.f1441b.setImageURI(url);
-    }
-
-    private final void setOverlayCaptionText(CharSequence text) {
-        TextView textView = this.binding.f1442c;
-        C12238m.checkNotNullExpressionValue(textView, "binding.streamPreviewOverlayText");
-        ViewExtensions.setTextAndVisibilityBy(textView, text);
-    }
-
     @MainThread
     /* JADX INFO: renamed from: a */
     public final void m8557a(StoreApplicationStreamPreviews.StreamPreview preview, StreamContext.Joinability joinability, boolean isAlreadyWatchingStream) {
@@ -110,5 +94,21 @@ public final class StreamPreviewView extends FrameLayout {
             }
             setOverlayCaptionText(C1107b.m212d(this, C5419R.string.channel_locked_short, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null));
         }
+    }
+
+    private final void setCaptionText(CharSequence text) {
+        TextView textView = this.binding.f1443d;
+        C12238m.checkNotNullExpressionValue(textView, "binding.streamPreviewPlaceholderCaption");
+        ViewExtensions.setTextAndVisibilityBy(textView, text);
+    }
+
+    private final void setImage(String url) {
+        this.binding.f1441b.setImageURI(url);
+    }
+
+    private final void setOverlayCaptionText(CharSequence text) {
+        TextView textView = this.binding.f1442c;
+        C12238m.checkNotNullExpressionValue(textView, "binding.streamPreviewOverlayText");
+        ViewExtensions.setTextAndVisibilityBy(textView, text);
     }
 }

@@ -4,7 +4,7 @@ package org.webrtc;
 public class GlRectDrawer extends GlGenericDrawer {
     private static final String FRAGMENT_SHADER = "void main() {\n  gl_FragColor = sample(tc);\n}\n";
 
-    public static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
+    public class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
         private ShaderCallbacks() {
         }
 

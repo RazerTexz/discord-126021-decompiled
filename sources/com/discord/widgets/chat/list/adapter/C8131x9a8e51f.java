@@ -28,7 +28,7 @@ public final class C8131x9a8e51f extends AbstractC12240o implements Function1<Re
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$actorRenderContext$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
         public AnonymousClass1() {
             super(1);
         }

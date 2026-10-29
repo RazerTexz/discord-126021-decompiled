@@ -28,6 +28,14 @@ public final /* data */ class HubAuthenticationState {
         this.authenticationAsync = restCallState2;
     }
 
+    public final RestCallState<EmailVerification> component2() {
+        return this.resendEmailAsync;
+    }
+
+    public final RestCallState<EmailVerificationCode> component3() {
+        return this.authenticationAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubAuthenticationState copy$default(HubAuthenticationState hubAuthenticationState, String str, RestCallState restCallState, RestCallState restCallState2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -40,19 +48,6 @@ public final /* data */ class HubAuthenticationState {
             restCallState2 = hubAuthenticationState.authenticationAsync;
         }
         return hubAuthenticationState.copy(str, restCallState, restCallState2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
-    public final RestCallState<EmailVerification> component2() {
-        return this.resendEmailAsync;
-    }
-
-    public final RestCallState<EmailVerificationCode> component3() {
-        return this.authenticationAsync;
     }
 
     public final HubAuthenticationState copy(String email, RestCallState<EmailVerification> resendEmailAsync, RestCallState<EmailVerificationCode> authenticationAsync) {
@@ -74,6 +69,11 @@ public final /* data */ class HubAuthenticationState {
 
     public final RestCallState<EmailVerificationCode> getAuthenticationAsync() {
         return this.authenticationAsync;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getEmail() {
+        return this.email;
     }
 
     public final String getEmail() {

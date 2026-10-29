@@ -41,7 +41,7 @@ public class C12339f implements InterfaceC12344k {
 
     /* JADX INFO: renamed from: f0.e0.k.i.f$a */
     /* JADX INFO: compiled from: AndroidSocketAdapter.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

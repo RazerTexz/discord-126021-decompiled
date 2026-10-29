@@ -24,13 +24,6 @@ public final class C4952g implements InterfaceC4954i {
     /* JADX INFO: renamed from: b */
     public InterfaceC4954i[] f13189b;
 
-    @Override // p007b.p225i.p414e.InterfaceC4954i
-    /* JADX INFO: renamed from: a */
-    public Result mo6919a(C4948c c4948c, Map<EnumC4949d, ?> map) throws NotFoundException {
-        m6921c(map);
-        return m6920b(c4948c);
-    }
-
     /* JADX INFO: renamed from: b */
     public final Result m6920b(C4948c c4948c) throws NotFoundException {
         InterfaceC4954i[] interfaceC4954iArr = this.f13189b;
@@ -89,6 +82,13 @@ public final class C4952g implements InterfaceC4954i {
             }
         }
         this.f13189b = (InterfaceC4954i[]) arrayList.toArray(new InterfaceC4954i[arrayList.size()]);
+    }
+
+    @Override // p007b.p225i.p414e.InterfaceC4954i
+    /* JADX INFO: renamed from: a */
+    public Result mo6919a(C4948c c4948c, Map<EnumC4949d, ?> map) throws NotFoundException {
+        m6921c(map);
+        return m6920b(c4948c);
     }
 
     @Override // p007b.p225i.p414e.InterfaceC4954i

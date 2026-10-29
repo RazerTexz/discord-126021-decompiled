@@ -37,6 +37,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: descriptorBasedTypeSignatureMapping.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11643d {
+    public static /* synthetic */ String computeInternalName$default(InterfaceC11330e interfaceC11330e, InterfaceC11663x interfaceC11663x, int i, Object obj) {
+        if ((i & 2) != 0) {
+            interfaceC11663x = C11664y.f23637a;
+        }
+        return computeInternalName(interfaceC11330e, interfaceC11663x);
+    }
+
     public static final String computeInternalName(InterfaceC11330e interfaceC11330e, InterfaceC11663x<?> interfaceC11663x) {
         C12238m.checkNotNullParameter(interfaceC11330e, "klass");
         C12238m.checkNotNullParameter(interfaceC11663x, "typeMappingConfiguration");
@@ -72,13 +79,6 @@ public final class C11643d {
         return predefinedInternalNameForClass + '$' + identifier;
     }
 
-    public static /* synthetic */ String computeInternalName$default(InterfaceC11330e interfaceC11330e, InterfaceC11663x interfaceC11663x, int i, Object obj) {
-        if ((i & 2) != 0) {
-            interfaceC11663x = C11664y.f23637a;
-        }
-        return computeInternalName(interfaceC11330e, interfaceC11663x);
-    }
-
     public static final boolean hasVoidReturnType(InterfaceC11318a interfaceC11318a) {
         C12238m.checkNotNullParameter(interfaceC11318a, "descriptor");
         if (interfaceC11318a instanceof InterfaceC11448l) {
@@ -94,6 +94,13 @@ public final class C11643d {
             }
         }
         return false;
+    }
+
+    public static /* synthetic */ Object mapType$default(AbstractC11913c0 abstractC11913c0, InterfaceC11651l interfaceC11651l, C11665z c11665z, InterfaceC11663x interfaceC11663x, C11648i c11648i, Function3 function3, int i, Object obj) {
+        if ((i & 32) != 0) {
+            function3 = C12036d.getDO_NOTHING_3();
+        }
+        return mapType(abstractC11913c0, interfaceC11651l, c11665z, interfaceC11663x, c11648i, function3);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -205,12 +212,5 @@ public final class C11643d {
         }
         function3.invoke(abstractC11913c0, t, c11665z);
         return t;
-    }
-
-    public static /* synthetic */ Object mapType$default(AbstractC11913c0 abstractC11913c0, InterfaceC11651l interfaceC11651l, C11665z c11665z, InterfaceC11663x interfaceC11663x, C11648i c11648i, Function3 function3, int i, Object obj) {
-        if ((i & 32) != 0) {
-            function3 = C12036d.getDO_NOTHING_3();
-        }
-        return mapType(abstractC11913c0, interfaceC11651l, c11665z, interfaceC11663x, c11648i, function3);
     }
 }

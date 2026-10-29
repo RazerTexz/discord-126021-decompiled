@@ -8,7 +8,7 @@ public interface InterfaceC11469v0 {
     public static final InterfaceC11469v0 f23100a = new a();
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.v0$a */
-    public static class a implements InterfaceC11469v0 {
+    public final class a implements InterfaceC11469v0 {
         public String getName() {
             return null;
         }

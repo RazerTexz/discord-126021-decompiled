@@ -42,25 +42,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class C1322b0 extends AppBottomSheet implements InterfaceC1335i {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f2008j = {C1643a.m846d0(C1322b0.class, "binding", "getBinding()Lcom/discord/databinding/BottomSheetSimpleSelectorBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public Function1<? super Integer, Unit> onSelectedListener;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f2008j = {C1643a.m846d0(C1322b0.class, "binding", "getBinding()Lcom/discord/databinding/BottomSheetSimpleSelectorBinding;", 0)};
+
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public Function1<? super Integer, Unit> onSelectedListener;
+
     /* JADX INFO: renamed from: b.a.y.b0$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: SelectorBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: renamed from: b.a.y.b0$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: SelectorBottomSheet.kt */
-        public static final class C13218a extends AbstractC12240o implements Function1<Integer, Unit> {
+        public final class C13218a extends AbstractC12240o implements Function1<Integer, Unit> {
 
             /* JADX INFO: renamed from: j */
             public static final C13218a f2012j = new C13218a();
@@ -105,7 +105,7 @@ public final class C1322b0 extends AppBottomSheet implements InterfaceC1335i {
 
     /* JADX INFO: renamed from: b.a.y.b0$b */
     /* JADX INFO: compiled from: SelectorBottomSheet.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C0927c> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C0927c> {
 
         /* JADX INFO: renamed from: j */
         public static final b f2013j = new b();
@@ -137,7 +137,7 @@ public final class C1322b0 extends AppBottomSheet implements InterfaceC1335i {
 
     /* JADX INFO: renamed from: b.a.y.b0$c */
     /* JADX INFO: compiled from: SelectorBottomSheet.kt */
-    public static final class c extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, C1328e0> {
+    public final class c extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, C1328e0> {
         public c() {
             super(2);
         }
@@ -176,13 +176,9 @@ public final class C1322b0 extends AppBottomSheet implements InterfaceC1335i {
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, b.f2013j, null, 2, null);
     }
 
-    @Override // p007b.p008a.p062y.InterfaceC1335i
-    /* JADX INFO: renamed from: c */
-    public void mo376c(int position) {
-        Function1<? super Integer, Unit> function1 = this.onSelectedListener;
-        if (function1 != null) {
-            function1.invoke(Integer.valueOf(position));
-        }
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.bottom_sheet_simple_selector;
     }
 
     /* JADX INFO: renamed from: g */
@@ -190,9 +186,13 @@ public final class C1322b0 extends AppBottomSheet implements InterfaceC1335i {
         return (C0927c) this.binding.getValue((Fragment) this, f2008j[0]);
     }
 
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.bottom_sheet_simple_selector;
+    @Override // p007b.p008a.p062y.InterfaceC1335i
+    /* JADX INFO: renamed from: c */
+    public void mo376c(int position) {
+        Function1<? super Integer, Unit> function1 = this.onSelectedListener;
+        if (function1 != null) {
+            function1.invoke(Integer.valueOf(position));
+        }
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener

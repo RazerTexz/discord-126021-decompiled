@@ -27,9 +27,6 @@ import p007b.p452o.p453a.p473x.C5236b;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC5225a<T extends View, Output> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14206a = new C5103b(AbstractC5225a.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public c f14207b;
 
@@ -53,6 +50,9 @@ public abstract class AbstractC5225a<T extends View, Output> {
 
     /* JADX INFO: renamed from: i */
     public int f14214i;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14206a = new C5103b(AbstractC5225a.class.getSimpleName());
 
     /* JADX INFO: renamed from: b.o.a.w.a$a */
     /* JADX INFO: compiled from: CameraPreview.java */
@@ -90,10 +90,6 @@ public abstract class AbstractC5225a<T extends View, Output> {
 
     public AbstractC5225a(@NonNull Context context, @NonNull ViewGroup viewGroup) {
         this.f14208c = (T) mo7434n(context, viewGroup);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void mo7425e(@Nullable b bVar) {
     }
 
     /* JADX INFO: renamed from: f */
@@ -145,6 +141,49 @@ public abstract class AbstractC5225a<T extends View, Output> {
     }
 
     @NonNull
+    /* JADX INFO: renamed from: l */
+    public final C5236b m7432l() {
+        return new C5236b(this.f14210e, this.f14211f);
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final boolean m7433m() {
+        return this.f14210e > 0 && this.f14211f > 0;
+    }
+
+    /* JADX INFO: renamed from: s */
+    public void m7439s(int i, int i2) {
+        f14206a.m7159a(1, "setStreamSize:", "desiredW=", Integer.valueOf(i), "desiredH=", Integer.valueOf(i2));
+        this.f14212g = i;
+        this.f14213h = i2;
+        if (i <= 0 || i2 <= 0) {
+            return;
+        }
+        mo7425e(null);
+    }
+
+    /* JADX INFO: renamed from: t */
+    public void m7440t(@Nullable c cVar) {
+        c cVar2;
+        c cVar3;
+        if (m7433m() && (cVar3 = this.f14207b) != null) {
+            AbstractC5135i abstractC5135i = (AbstractC5135i) cVar3;
+            AbstractC5135i.f13918j.m7159a(1, "onSurfaceDestroyed");
+            abstractC5135i.m7323N0(false);
+            abstractC5135i.m7322M0(false);
+        }
+        this.f14207b = cVar;
+        if (!m7433m() || (cVar2 = this.f14207b) == null) {
+            return;
+        }
+        ((AbstractC5135i) cVar2).m7325V();
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void mo7425e(@Nullable b bVar) {
+    }
+
+    @NonNull
     /* JADX INFO: renamed from: i */
     public abstract Output mo7429i();
 
@@ -155,17 +194,6 @@ public abstract class AbstractC5225a<T extends View, Output> {
     @NonNull
     /* JADX INFO: renamed from: k */
     public abstract View mo7431k();
-
-    @NonNull
-    /* JADX INFO: renamed from: l */
-    public final C5236b m7432l() {
-        return new C5236b(this.f14210e, this.f14211f);
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final boolean m7433m() {
-        return this.f14210e > 0 && this.f14211f > 0;
-    }
 
     @NonNull
     /* JADX INFO: renamed from: n */
@@ -203,34 +231,6 @@ public abstract class AbstractC5225a<T extends View, Output> {
     /* JADX INFO: renamed from: r */
     public void mo7438r(int i) {
         this.f14214i = i;
-    }
-
-    /* JADX INFO: renamed from: s */
-    public void m7439s(int i, int i2) {
-        f14206a.m7159a(1, "setStreamSize:", "desiredW=", Integer.valueOf(i), "desiredH=", Integer.valueOf(i2));
-        this.f14212g = i;
-        this.f14213h = i2;
-        if (i <= 0 || i2 <= 0) {
-            return;
-        }
-        mo7425e(null);
-    }
-
-    /* JADX INFO: renamed from: t */
-    public void m7440t(@Nullable c cVar) {
-        c cVar2;
-        c cVar3;
-        if (m7433m() && (cVar3 = this.f14207b) != null) {
-            AbstractC5135i abstractC5135i = (AbstractC5135i) cVar3;
-            AbstractC5135i.f13918j.m7159a(1, "onSurfaceDestroyed");
-            abstractC5135i.m7323N0(false);
-            abstractC5135i.m7322M0(false);
-        }
-        this.f14207b = cVar;
-        if (!m7433m() || (cVar2 = this.f14207b) == null) {
-            return;
-        }
-        ((AbstractC5135i) cVar2).m7325V();
     }
 
     /* JADX INFO: renamed from: u */

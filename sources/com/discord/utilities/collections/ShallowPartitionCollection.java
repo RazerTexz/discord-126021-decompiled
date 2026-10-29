@@ -27,7 +27,7 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
     private int size;
 
     /* JADX INFO: compiled from: ShallowPartitionCollection.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,14 +67,6 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
             size += ((Collection) it.next()).size();
         }
         this.size = size;
-    }
-
-    private final T getPartition(E key) {
-        return this.partitions.get(this.partitionStrategy.invoke(key).intValue());
-    }
-
-    public static final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int i, Function1<? super E, Integer> function1) {
-        return INSTANCE.withArrayListPartions(i, function1);
     }
 
     @Override // java.util.Collection
@@ -125,6 +117,10 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
             elements = C12163u.minus((Iterable) elements, (Iterable) it.next());
         }
         return elements.isEmpty();
+    }
+
+    private final T getPartition(E key) {
+        return this.partitions.get(this.partitionStrategy.invoke(key).intValue());
     }
 
     public final Function1<E, Integer> getPartitionStrategy() {
@@ -201,6 +197,10 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
     @Override // java.util.Collection
     public <T> T[] toArray(T[] tArr) {
         return (T[]) C12227g.toArray(this, tArr);
+    }
+
+    public static final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int i, Function1<? super E, Integer> function1) {
+        return INSTANCE.withArrayListPartions(i, function1);
     }
 
     @Override // java.util.Collection, java.lang.Iterable

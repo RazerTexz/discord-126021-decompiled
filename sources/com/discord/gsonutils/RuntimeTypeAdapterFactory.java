@@ -29,17 +29,17 @@ public final class RuntimeTypeAdapterFactory<T> implements InterfaceC4911o {
     /* JADX INFO: renamed from: k */
     public final String f18534k;
 
-    /* JADX INFO: renamed from: l */
-    public final Map<String, Class<?>> f18535l = new LinkedHashMap();
-
-    /* JADX INFO: renamed from: m */
-    public final Map<Class<?>, String> f18536m = new LinkedHashMap();
-
     /* JADX INFO: renamed from: n */
     public final boolean f18537n;
 
     /* JADX INFO: renamed from: o */
     public final Class<?> f18538o;
+
+    /* JADX INFO: renamed from: l */
+    public final Map<String, Class<?>> f18535l = new LinkedHashMap();
+
+    /* JADX INFO: renamed from: m */
+    public final Map<Class<?>, String> f18536m = new LinkedHashMap();
 
     public RuntimeTypeAdapterFactory(Class<?> cls, String str, boolean z2, Class<?> cls2) {
         if (str == null || cls == null) {

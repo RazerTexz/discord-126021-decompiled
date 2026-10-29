@@ -22,12 +22,6 @@ public abstract class AbstractC3360i0<TListener> {
         this.f9524a = tlistener;
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract void mo4159a();
-
-    /* JADX INFO: renamed from: b */
-    public abstract void mo4160b(TListener tlistener);
-
     /* JADX INFO: renamed from: c */
     public final void m4161c() {
         synchronized (this) {
@@ -37,4 +31,10 @@ public abstract class AbstractC3360i0<TListener> {
             this.f9526c.f9488m.remove(this);
         }
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo4159a();
+
+    /* JADX INFO: renamed from: b */
+    public abstract void mo4160b(TListener tlistener);
 }

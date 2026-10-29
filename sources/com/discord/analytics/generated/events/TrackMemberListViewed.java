@@ -13,33 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMemberListViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Boolean hasAddMembersCta = null;
+    private final Long numUsersVisible = null;
+    private final Long numUsersVisibleWithActivity = null;
+    private final Long numUsersVisibleWithGameActivity = null;
+    private final Long numUsersVisibleWithMobileIndicator = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final Long numUsersVisible = null;
-    private final Long numUsersVisibleWithMobileIndicator = null;
-    private final Long numUsersVisibleWithGameActivity = null;
-    private final Long numUsersVisibleWithActivity = null;
-    private final Boolean hasAddMembersCta = null;
     private final transient String analyticsSchemaTypeName = "member_list_viewed";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +32,18 @@ public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, 
         }
         TrackMemberListViewed trackMemberListViewed = (TrackMemberListViewed) other;
         return C12238m.areEqual(this.numUsersVisible, trackMemberListViewed.numUsersVisible) && C12238m.areEqual(this.numUsersVisibleWithMobileIndicator, trackMemberListViewed.numUsersVisibleWithMobileIndicator) && C12238m.areEqual(this.numUsersVisibleWithGameActivity, trackMemberListViewed.numUsersVisibleWithGameActivity) && C12238m.areEqual(this.numUsersVisibleWithActivity, trackMemberListViewed.numUsersVisibleWithActivity) && C12238m.areEqual(this.hasAddMembersCta, trackMemberListViewed.hasAddMembersCta);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -63,6 +57,12 @@ public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, 
         int iHashCode4 = (iHashCode3 + (l4 != null ? l4.hashCode() : 0)) * 31;
         Boolean bool = this.hasAddMembersCta;
         return iHashCode4 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

@@ -10,20 +10,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSmsEnqueueFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSmsEnqueueFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence phoneNumber = null;
-    private final CharSequence reason = null;
-    private final CharSequence phoneCountry = null;
     private final CharSequence carrierName = null;
     private final CharSequence carrierType = null;
+    private final CharSequence phoneCountry = null;
+    private final CharSequence phoneNumber = null;
+    private final CharSequence reason = null;
     private final CharSequence source = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "sms_enqueue_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackSmsEnqueueFailed implements AnalyticsSchema, 
         }
         TrackSmsEnqueueFailed trackSmsEnqueueFailed = (TrackSmsEnqueueFailed) other;
         return C12238m.areEqual(this.phoneNumber, trackSmsEnqueueFailed.phoneNumber) && C12238m.areEqual(this.reason, trackSmsEnqueueFailed.reason) && C12238m.areEqual(this.phoneCountry, trackSmsEnqueueFailed.phoneCountry) && C12238m.areEqual(this.carrierName, trackSmsEnqueueFailed.carrierName) && C12238m.areEqual(this.carrierType, trackSmsEnqueueFailed.carrierType) && C12238m.areEqual(this.source, trackSmsEnqueueFailed.source);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

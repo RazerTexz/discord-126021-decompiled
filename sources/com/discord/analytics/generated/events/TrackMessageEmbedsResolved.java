@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMessageEmbedsResolved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMessageEmbedsResolved implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
-    private TrackBase trackBase;
-    private TrackChannel trackChannel;
     private final Long messageId = null;
     private final Long numEmbeds = null;
+    private TrackBase trackBase;
+    private TrackChannel trackChannel;
     private final transient String analyticsSchemaTypeName = "message_embeds_resolved";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackMessageEmbedsResolved implements AnalyticsSch
         }
         TrackMessageEmbedsResolved trackMessageEmbedsResolved = (TrackMessageEmbedsResolved) other;
         return C12238m.areEqual(this.messageId, trackMessageEmbedsResolved.messageId) && C12238m.areEqual(this.numEmbeds, trackMessageEmbedsResolved.numEmbeds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

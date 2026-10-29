@@ -21,7 +21,7 @@ public class TransitionUtils {
     private static final boolean HAS_PICTURE_BITMAP;
     private static final int MAX_IMAGE_SIZE = 1048576;
 
-    public static class MatrixEvaluator implements TypeEvaluator<Matrix> {
+    public class MatrixEvaluator implements TypeEvaluator<Matrix> {
         public final float[] mTempStartValues = new float[9];
         public final float[] mTempEndValues = new float[9];
         public final Matrix mTempMatrix = new Matrix();

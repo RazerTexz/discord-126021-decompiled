@@ -25,8 +25,8 @@ import lombok.patcher.ClassRootFinder;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer.SCL.lombok */
 public class Installer {
-    static final URI ABOUT_LOMBOK_URL = URI.create("https://projectlombok.org");
     static final List<IdeLocationProvider> locationProviders;
+    static final URI ABOUT_LOMBOK_URL = URI.create("https://projectlombok.org");
 
     static {
         List<IdeLocationProvider> list = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Installer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$GraphicalInstallerApp.SCL.lombok */
-    public static class GraphicalInstallerApp extends LombokApp {
+    public class GraphicalInstallerApp extends LombokApp {
         @Override // lombok.core.LombokApp
         public String getAppName() {
             return "installer";
@@ -109,7 +109,7 @@ public class Installer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CommandLineInstallerApp.SCL.lombok */
-    public static class CommandLineInstallerApp extends LombokApp {
+    public class CommandLineInstallerApp extends LombokApp {
         @Override // lombok.core.LombokApp
         public String getAppName() {
             return "install";
@@ -127,7 +127,7 @@ public class Installer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CommandLineUninstallerApp.SCL.lombok */
-    public static class CommandLineUninstallerApp extends LombokApp {
+    public class CommandLineUninstallerApp extends LombokApp {
         @Override // lombok.core.LombokApp
         public String getAppName() {
             return "uninstall";
@@ -194,15 +194,15 @@ public class Installer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CmdArgs.SCL.lombok */
-    private static class CmdArgs {
-
-        @Description("Specify paths to a location to install/uninstall. Use 'auto' to apply to all automatically discoverable installations.")
-        @Sequential
-        List<String> path = new ArrayList();
+    class CmdArgs {
 
         @Description("Shows this help text")
         @Shorthand({"h", "?"})
         boolean help;
+
+        @Description("Specify paths to a location to install/uninstall. Use 'auto' to apply to all automatically discoverable installations.")
+        @Sequential
+        List<String> path = new ArrayList();
 
         private CmdArgs() {
         }

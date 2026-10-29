@@ -26,16 +26,6 @@ public final /* data */ class ViewState {
         return viewState.copy(autocompleteViewState, selectedCommandViewState);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final AutocompleteViewState getAutocompleteViewState() {
-        return this.autocompleteViewState;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final SelectedCommandViewState getSelectedCommandViewState() {
-        return this.selectedCommandViewState;
-    }
-
     public final ViewState copy(AutocompleteViewState autocompleteViewState, SelectedCommandViewState selectedCommandViewState) {
         C12238m.checkNotNullParameter(autocompleteViewState, "autocompleteViewState");
         C12238m.checkNotNullParameter(selectedCommandViewState, "selectedCommandViewState");
@@ -53,8 +43,18 @@ public final /* data */ class ViewState {
         return C12238m.areEqual(this.autocompleteViewState, viewState.autocompleteViewState) && C12238m.areEqual(this.selectedCommandViewState, viewState.selectedCommandViewState);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final AutocompleteViewState getAutocompleteViewState() {
         return this.autocompleteViewState;
+    }
+
+    public final AutocompleteViewState getAutocompleteViewState() {
+        return this.autocompleteViewState;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final SelectedCommandViewState getSelectedCommandViewState() {
+        return this.selectedCommandViewState;
     }
 
     public final SelectedCommandViewState getSelectedCommandViewState() {

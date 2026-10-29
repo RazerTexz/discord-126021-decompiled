@@ -21,12 +21,6 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2395m;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2179d {
 
-    /* JADX INFO: renamed from: a */
-    public static final Class<?> f4692a = List.class;
-
-    /* JADX INFO: renamed from: b */
-    public static final Class<?> f4693b = Map.class;
-
     /* JADX INFO: renamed from: c */
     public final AbstractC2394l<?> f4694c;
 
@@ -50,6 +44,12 @@ public class C2179d {
 
     /* JADX INFO: renamed from: j */
     public final boolean f4701j;
+
+    /* JADX INFO: renamed from: a */
+    public static final Class<?> f4692a = List.class;
+
+    /* JADX INFO: renamed from: b */
+    public static final Class<?> f4693b = Map.class;
 
     public C2179d(AbstractC2394l<?> abstractC2394l, AbstractC2360j abstractC2360j, AbstractC2199t.a aVar) {
         this.f4694c = abstractC2394l;

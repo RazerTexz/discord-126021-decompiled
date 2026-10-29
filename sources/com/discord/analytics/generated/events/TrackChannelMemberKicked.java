@@ -13,23 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelMemberKicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelMemberKicked implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLfgGroupReceiver {
+    private final Long targetUser = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackLfgGroup trackLfgGroup;
-    private final Long targetUser = null;
     private final transient String analyticsSchemaTypeName = "channel_member_kicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackChannelMemberKicked) && C12238m.areEqual(this.targetUser, ((TrackChannelMemberKicked) other).targetUser);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

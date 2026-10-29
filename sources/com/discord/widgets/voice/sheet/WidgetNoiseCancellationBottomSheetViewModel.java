@@ -19,10 +19,10 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends AbstractC
     private final StoreMediaSettings mediaSettingsStore;
 
     /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheetViewModel.kt */
-        public static final /* data */ class ShowToast extends Event {
+        public final /* data */ class ShowToast extends Event {
             private final int toastResId;
 
             public ShowToast(@StringRes int i) {
@@ -37,11 +37,6 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends AbstractC
                 return showToast.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getToastResId() {
-                return this.toastResId;
-            }
-
             public final ShowToast copy(@StringRes int toastResId) {
                 return new ShowToast(toastResId);
             }
@@ -51,6 +46,11 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends AbstractC
                     return (other instanceof ShowToast) && this.toastResId == ((ShowToast) other).toastResId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getToastResId() {
+                return this.toastResId;
             }
 
             public final int getToastResId() {
@@ -75,7 +75,7 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends AbstractC
     }
 
     /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private ViewState() {
         }
     }

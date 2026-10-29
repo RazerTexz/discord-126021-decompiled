@@ -20,6 +20,10 @@ public final /* data */ class ChatInputMentionsMap {
         this.mentions = map;
     }
 
+    public final Map<IntRange, Autocompletable> component2() {
+        return this.mentions;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ChatInputMentionsMap copy$default(ChatInputMentionsMap chatInputMentionsMap, CharSequence charSequence, Map map, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -29,15 +33,6 @@ public final /* data */ class ChatInputMentionsMap {
             map = chatInputMentionsMap.mentions;
         }
         return chatInputMentionsMap.copy(charSequence, map);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CharSequence getInput() {
-        return this.input;
-    }
-
-    public final Map<IntRange, Autocompletable> component2() {
-        return this.mentions;
     }
 
     public final ChatInputMentionsMap copy(CharSequence input, Map<IntRange, ? extends Autocompletable> mentions) {
@@ -55,6 +50,11 @@ public final /* data */ class ChatInputMentionsMap {
         }
         ChatInputMentionsMap chatInputMentionsMap = (ChatInputMentionsMap) other;
         return C12238m.areEqual(this.input, chatInputMentionsMap.input) && C12238m.areEqual(this.mentions, chatInputMentionsMap.mentions);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CharSequence getInput() {
+        return this.input;
     }
 
     public final CharSequence getInput() {

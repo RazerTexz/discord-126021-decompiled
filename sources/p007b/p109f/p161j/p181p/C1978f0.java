@@ -24,6 +24,9 @@ import p007b.p109f.p161j.p175j.C1919e;
 /* JADX INFO: loaded from: classes3.dex */
 public class C1978f0 extends AbstractC1981g0 implements InterfaceC1994k1<C1919e> {
 
+    /* JADX INFO: renamed from: g */
+    public final ContentResolver f4050g;
+
     /* JADX INFO: renamed from: c */
     public static final String[] f4046c = {"_id", "_data"};
 
@@ -36,19 +39,37 @@ public class C1978f0 extends AbstractC1981g0 implements InterfaceC1994k1<C1919e>
     /* JADX INFO: renamed from: f */
     public static final Rect f4049f = new Rect(0, 0, 96, 96);
 
-    /* JADX INFO: renamed from: g */
-    public final ContentResolver f4050g;
-
     public C1978f0(Executor executor, InterfaceC1700g interfaceC1700g, ContentResolver contentResolver) {
         super(executor, interfaceC1700g);
         this.f4050g = contentResolver;
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC1994k1
-    /* JADX INFO: renamed from: a */
-    public boolean mo1474a(C1884e c1884e) {
-        Rect rect = f4048e;
-        return C1460d.m472S0(rect.width(), rect.height(), c1884e);
+    /* JADX INFO: renamed from: f */
+    public final C1919e m1475f(C1884e c1884e, long j) throws IOException {
+        int i;
+        Cursor cursorQueryMiniThumbnail;
+        Rect rect = f4049f;
+        if (C1460d.m472S0(rect.width(), rect.height(), c1884e)) {
+            i = 3;
+        } else {
+            Rect rect2 = f4048e;
+            i = C1460d.m472S0(rect2.width(), rect2.height(), c1884e) ? 1 : 0;
+        }
+        if (i == 0 || (cursorQueryMiniThumbnail = MediaStore.Images.Thumbnails.queryMiniThumbnail(this.f4050g, j, i, f4047d)) == null) {
+            return null;
+        }
+        try {
+            if (cursorQueryMiniThumbnail.moveToFirst()) {
+                String string = cursorQueryMiniThumbnail.getString(cursorQueryMiniThumbnail.getColumnIndex("_data"));
+                Objects.requireNonNull(string);
+                if (new File(string).exists()) {
+                    return m1478c(new FileInputStream(string), (int) new File(string).length());
+                }
+            }
+            return null;
+        } finally {
+            cursorQueryMiniThumbnail.close();
+        }
     }
 
     @Override // p007b.p109f.p161j.p181p.AbstractC1981g0
@@ -90,31 +111,10 @@ public class C1978f0 extends AbstractC1981g0 implements InterfaceC1994k1<C1919e>
         return "LocalContentUriThumbnailFetchProducer";
     }
 
-    /* JADX INFO: renamed from: f */
-    public final C1919e m1475f(C1884e c1884e, long j) throws IOException {
-        int i;
-        Cursor cursorQueryMiniThumbnail;
-        Rect rect = f4049f;
-        if (C1460d.m472S0(rect.width(), rect.height(), c1884e)) {
-            i = 3;
-        } else {
-            Rect rect2 = f4048e;
-            i = C1460d.m472S0(rect2.width(), rect2.height(), c1884e) ? 1 : 0;
-        }
-        if (i == 0 || (cursorQueryMiniThumbnail = MediaStore.Images.Thumbnails.queryMiniThumbnail(this.f4050g, j, i, f4047d)) == null) {
-            return null;
-        }
-        try {
-            if (cursorQueryMiniThumbnail.moveToFirst()) {
-                String string = cursorQueryMiniThumbnail.getString(cursorQueryMiniThumbnail.getColumnIndex("_data"));
-                Objects.requireNonNull(string);
-                if (new File(string).exists()) {
-                    return m1478c(new FileInputStream(string), (int) new File(string).length());
-                }
-            }
-            return null;
-        } finally {
-            cursorQueryMiniThumbnail.close();
-        }
+    @Override // p007b.p109f.p161j.p181p.InterfaceC1994k1
+    /* JADX INFO: renamed from: a */
+    public boolean mo1474a(C1884e c1884e) {
+        Rect rect = f4048e;
+        return C1460d.m472S0(rect.width(), rect.height(), c1884e);
     }
 }

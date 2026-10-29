@@ -30,11 +30,6 @@ public class C2571y {
         this.f5736e = c2571y.f5736e;
     }
 
-    /* JADX INFO: renamed from: a */
-    public boolean m2593a() {
-        return this.f5733b != -1;
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -48,6 +43,11 @@ public class C2571y {
 
     public int hashCode() {
         return ((((((((this.f5732a.hashCode() + 527) * 31) + this.f5733b) * 31) + this.f5734c) * 31) + ((int) this.f5735d)) * 31) + this.f5736e;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m2593a() {
+        return this.f5733b != -1;
     }
 
     public C2571y(Object obj) {

@@ -19,7 +19,7 @@ public interface InterfaceC2966a0 {
 
     /* JADX INFO: renamed from: b.i.a.c.w2.a0$a */
     /* JADX INFO: compiled from: ExoMediaDrm.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final byte[] f7967a;
@@ -47,7 +47,7 @@ public interface InterfaceC2966a0 {
 
     /* JADX INFO: renamed from: b.i.a.c.w2.a0$d */
     /* JADX INFO: compiled from: ExoMediaDrm.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final byte[] f7969a;

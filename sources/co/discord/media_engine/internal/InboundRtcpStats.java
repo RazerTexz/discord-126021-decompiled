@@ -20,31 +20,6 @@ public final /* data */ class InboundRtcpStats {
         this.uniqueNackRequests = j5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getFirPackets() {
-        return this.firPackets;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getNackPackets() {
-        return this.nackPackets;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getNackRequests() {
-        return this.nackRequests;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getPliPackets() {
-        return this.pliPackets;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getUniqueNackRequests() {
-        return this.uniqueNackRequests;
-    }
-
     public final InboundRtcpStats copy(long firPackets, long nackPackets, long nackRequests, long pliPackets, long uniqueNackRequests) {
         return new InboundRtcpStats(firPackets, nackPackets, nackRequests, pliPackets, uniqueNackRequests);
     }
@@ -60,20 +35,45 @@ public final /* data */ class InboundRtcpStats {
         return this.firPackets == inboundRtcpStats.firPackets && this.nackPackets == inboundRtcpStats.nackPackets && this.nackRequests == inboundRtcpStats.nackRequests && this.pliPackets == inboundRtcpStats.pliPackets && this.uniqueNackRequests == inboundRtcpStats.uniqueNackRequests;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getFirPackets() {
         return this.firPackets;
+    }
+
+    public final long getFirPackets() {
+        return this.firPackets;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getNackPackets() {
+        return this.nackPackets;
     }
 
     public final long getNackPackets() {
         return this.nackPackets;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getNackRequests() {
         return this.nackRequests;
     }
 
+    public final long getNackRequests() {
+        return this.nackRequests;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getPliPackets() {
         return this.pliPackets;
+    }
+
+    public final long getPliPackets() {
+        return this.pliPackets;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getUniqueNackRequests() {
+        return this.uniqueNackRequests;
     }
 
     public final long getUniqueNackRequests() {

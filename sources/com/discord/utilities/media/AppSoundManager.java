@@ -25,8 +25,34 @@ public final class AppSoundManager {
     private final Context context;
     private Map<Integer, SoundPlayer> soundPlayers;
 
+    /* JADX INFO: renamed from: com.discord.utilities.media.AppSoundManager$play$1 */
     /* JADX INFO: compiled from: AppSoundManager.kt */
-    public static final class Provider {
+    public final class C67931 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ AppSound $sound;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67931(AppSound appSound) {
+            super(0);
+            this.$sound = appSound;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (this.$sound.getShouldLoop()) {
+                return;
+            }
+            AppSoundManager.this.stop(this.$sound);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppSoundManager.kt */
+    public final class Provider {
         public static final Provider INSTANCE = new Provider();
 
         /* JADX INFO: renamed from: INSTANCE$delegate, reason: from kotlin metadata */
@@ -35,17 +61,17 @@ public final class AppSoundManager {
         private Provider() {
         }
 
-        private final AppSoundManager getINSTANCE() {
-            return (AppSoundManager) INSTANCE.getValue();
-        }
-
         public final AppSoundManager get() {
             return getINSTANCE();
+        }
+
+        private final AppSoundManager getINSTANCE() {
+            return (AppSoundManager) INSTANCE.getValue();
         }
     }
 
     /* JADX INFO: compiled from: AppSoundManager.kt */
-    public static final class SoundPlayer {
+    public final class SoundPlayer {
         private MediaPlayer mediaPlayer;
 
         public SoundPlayer(final Context context, final AppSound appSound, final Function0<Unit> function0) throws IOException {
@@ -152,32 +178,6 @@ public final class AppSoundManager {
             if (thM11476exceptionOrNullimpl != null) {
                 AppLog.f14950g.mo8370w("Called stop on uninitialized MediaPlayer", thM11476exceptionOrNullimpl);
             }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.media.AppSoundManager$play$1 */
-    /* JADX INFO: compiled from: AppSoundManager.kt */
-    public static final class C67931 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ AppSound $sound;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67931(AppSound appSound) {
-            super(0);
-            this.$sound = appSound;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (this.$sound.getShouldLoop()) {
-                return;
-            }
-            AppSoundManager.this.stop(this.$sound);
         }
     }
 

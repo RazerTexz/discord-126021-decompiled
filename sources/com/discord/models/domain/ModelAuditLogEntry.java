@@ -143,8 +143,15 @@ public class ModelAuditLogEntry implements Model {
     private Long timestampEnd;
     private long userId;
 
+    public enum ActionType {
+        ALL,
+        CREATE,
+        UPDATE,
+        DELETE
+    }
+
     /* JADX INFO: renamed from: com.discord.models.domain.ModelAuditLogEntry$1 */
-    public static /* synthetic */ class C55331 {
+    public /* synthetic */ class C55331 {
         public static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken;
 
         static {
@@ -166,14 +173,7 @@ public class ModelAuditLogEntry implements Model {
         }
     }
 
-    public enum ActionType {
-        ALL,
-        CREATE,
-        UPDATE,
-        DELETE
-    }
-
-    public static class Change implements Model {
+    public class Change implements Model {
         private String key;
         private Object newValue;
         private Object oldValue;
@@ -276,7 +276,7 @@ public class ModelAuditLogEntry implements Model {
         }
     }
 
-    public static class ChangeNameId implements Model {
+    public class ChangeNameId implements Model {
 
         /* JADX INFO: renamed from: id */
         private long f18562id;
@@ -480,7 +480,7 @@ public class ModelAuditLogEntry implements Model {
         THREAD
     }
 
-    public static class ValueFactory implements Model.JsonReader.ItemFactory<Object> {
+    public class ValueFactory implements Model.JsonReader.ItemFactory<Object> {
         private final Model.JsonReader reader;
 
         public ValueFactory(Model.JsonReader jsonReader) {

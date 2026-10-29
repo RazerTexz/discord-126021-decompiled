@@ -5,11 +5,11 @@ package p007b.p225i.p226a.p242c.p259f3;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2743j {
 
-    /* JADX INFO: renamed from: a */
-    public final InterfaceC2740g f6727a = InterfaceC2740g.f6720a;
-
     /* JADX INFO: renamed from: b */
     public boolean f6728b;
+
+    /* JADX INFO: renamed from: a */
+    public final InterfaceC2740g f6727a = InterfaceC2740g.f6720a;
 
     /* JADX INFO: renamed from: a */
     public synchronized boolean m3025a() {

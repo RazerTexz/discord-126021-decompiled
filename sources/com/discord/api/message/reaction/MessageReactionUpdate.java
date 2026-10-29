@@ -19,6 +19,17 @@ public final /* data */ class MessageReactionUpdate {
         this.emoji = messageReactionEmoji;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageReactionUpdate)) {
+            return false;
+        }
+        MessageReactionUpdate messageReactionUpdate = (MessageReactionUpdate) other;
+        return this.userId == messageReactionUpdate.userId && this.channelId == messageReactionUpdate.channelId && this.messageId == messageReactionUpdate.messageId && C12238m.areEqual(this.emoji, messageReactionUpdate.emoji);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -37,17 +48,6 @@ public final /* data */ class MessageReactionUpdate {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final long getUserId() {
         return this.userId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageReactionUpdate)) {
-            return false;
-        }
-        MessageReactionUpdate messageReactionUpdate = (MessageReactionUpdate) other;
-        return this.userId == messageReactionUpdate.userId && this.channelId == messageReactionUpdate.channelId && this.messageId == messageReactionUpdate.messageId && C12238m.areEqual(this.emoji, messageReactionUpdate.emoji);
     }
 
     public int hashCode() {

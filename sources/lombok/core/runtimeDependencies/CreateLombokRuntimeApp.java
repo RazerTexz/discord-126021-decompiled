@@ -43,7 +43,7 @@ public class CreateLombokRuntimeApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/runtimeDependencies/CreateLombokRuntimeApp$CmdArgs.SCL.lombok */
-    private static class CmdArgs {
+    class CmdArgs {
 
         @Description("Prints those lombok transformations that require lombok-runtime.jar.")
         @Mandatory(onlyIfNot = {"create"})
@@ -199,7 +199,7 @@ public class CreateLombokRuntimeApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/runtimeDependencies/CreateLombokRuntimeApp$Fail.SCL.lombok */
-    private static class Fail extends Exception {
+    class Fail extends Exception {
         Fail(String message) {
             super(message);
         }

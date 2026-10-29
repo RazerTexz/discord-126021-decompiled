@@ -34,24 +34,8 @@ public final /* data */ class WidgetInviteModel {
     private final Channel targetChannel;
 
     /* JADX INFO: compiled from: WidgetInviteModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final ModelInvite tryGetStaticInvite(Long selectedChannelId, Guild guild, Map<Long, StageInstance> guildStageInstances) {
-            String inviteCode;
-            if (guild == null) {
-                return null;
-            }
-            StageInstance stageInstance = guildStageInstances.get(selectedChannelId);
-            if (stageInstance != null && (inviteCode = stageInstance.getInviteCode()) != null) {
-                return ModelInvite.createForStaticUrl(inviteCode, GuildUtilsKt.createApiGuild(guild));
-            }
-            String vanityUrlCode = guild.getVanityUrlCode();
-            if (vanityUrlCode != null) {
-                return ModelInvite.createForStaticUrl(vanityUrlCode, GuildUtilsKt.createApiGuild(guild));
-            }
-            return null;
         }
 
         public final WidgetInviteModel create(ModelInvite.Settings settings, Map<Long, Channel> invitableChannels, InviteGenerator.InviteGenerationState inviteGenerationState, Long selectedChannelId, MeUser me2, List<Channel> dms, Guild guild, Map<Long, StageInstance> guildStageInstances, GuildScheduledEvent guildScheduledEvent, ModelInvite existingInviteFromStore) {
@@ -90,6 +74,22 @@ public final /* data */ class WidgetInviteModel {
             return new WidgetInviteModel(channel3, settings, modelInviteTryGetStaticInvite, inviteGenerationState.getState() == InviteGenerator.GenerationState.GENERATING, z2, arrayList, me2, dms, false);
         }
 
+        private final ModelInvite tryGetStaticInvite(Long selectedChannelId, Guild guild, Map<Long, StageInstance> guildStageInstances) {
+            String inviteCode;
+            if (guild == null) {
+                return null;
+            }
+            StageInstance stageInstance = guildStageInstances.get(selectedChannelId);
+            if (stageInstance != null && (inviteCode = stageInstance.getInviteCode()) != null) {
+                return ModelInvite.createForStaticUrl(inviteCode, GuildUtilsKt.createApiGuild(guild));
+            }
+            String vanityUrlCode = guild.getVanityUrlCode();
+            if (vanityUrlCode != null) {
+                return ModelInvite.createForStaticUrl(vanityUrlCode, GuildUtilsKt.createApiGuild(guild));
+            }
+            return null;
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
@@ -110,47 +110,12 @@ public final /* data */ class WidgetInviteModel {
         this.isInviteFromStore = z4;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getTargetChannel() {
-        return this.targetChannel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ModelInvite.Settings getSettings() {
-        return this.settings;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final ModelInvite getInvite() {
-        return this.invite;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsGeneratingInvite() {
-        return this.isGeneratingInvite;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsValidInvite() {
-        return this.isValidInvite;
-    }
-
     public final List<Channel> component6() {
         return this.invitableChannels;
     }
 
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final MeUser getMe() {
-        return this.me;
-    }
-
     public final List<Channel> component8() {
         return this.dms;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsInviteFromStore() {
-        return this.isInviteFromStore;
     }
 
     public final WidgetInviteModel copy(Channel targetChannel, ModelInvite.Settings settings, ModelInvite invite, boolean isGeneratingInvite, boolean isValidInvite, List<Channel> invitableChannels, MeUser me2, List<Channel> dms, boolean isInviteFromStore) {
@@ -179,16 +144,51 @@ public final /* data */ class WidgetInviteModel {
         return this.invitableChannels;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final ModelInvite getInvite() {
         return this.invite;
+    }
+
+    public final ModelInvite getInvite() {
+        return this.invite;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsGeneratingInvite() {
+        return this.isGeneratingInvite;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsInviteFromStore() {
+        return this.isInviteFromStore;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsValidInvite() {
+        return this.isValidInvite;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final MeUser getMe() {
+        return this.me;
     }
 
     public final MeUser getMe() {
         return this.me;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final ModelInvite.Settings getSettings() {
         return this.settings;
+    }
+
+    public final ModelInvite.Settings getSettings() {
+        return this.settings;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Channel getTargetChannel() {
+        return this.targetChannel;
     }
 
     public final Channel getTargetChannel() {

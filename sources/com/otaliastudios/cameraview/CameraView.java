@@ -207,23 +207,6 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
     /* JADX INFO: renamed from: z */
     public AbstractC5135i f22138z;
 
-    /* JADX INFO: renamed from: com.otaliastudios.cameraview.CameraView$a */
-    public class ThreadFactoryC11194a implements ThreadFactory {
-
-        /* JADX INFO: renamed from: j */
-        public final AtomicInteger f22139j = new AtomicInteger(1);
-
-        public ThreadFactoryC11194a(CameraView cameraView) {
-        }
-
-        @Override // java.util.concurrent.ThreadFactory
-        public Thread newThread(@NonNull Runnable runnable) {
-            StringBuilder sbM833U = C1643a.m833U("FrameExecutor #");
-            sbM833U.append(this.f22139j.getAndIncrement());
-            return new Thread(runnable, sbM833U.toString());
-        }
-    }
-
     /* JADX INFO: renamed from: com.otaliastudios.cameraview.CameraView$b */
     @VisibleForTesting
     public class C11195b implements AbstractC5135i.g, C5205f.c, AbstractC5195c.a {
@@ -701,60 +684,6 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
         this.f22137y = new C5205f(context, this.f22135w);
     }
 
-    @SuppressLint({"NewApi"})
-    /* JADX INFO: renamed from: a */
-    public boolean m9304a(@NonNull EnumC5114a enumC5114a) {
-        EnumC5114a enumC5114a2 = EnumC5114a.STEREO;
-        EnumC5114a enumC5114a3 = EnumC5114a.MONO;
-        EnumC5114a enumC5114a4 = EnumC5114a.ON;
-        if (enumC5114a == enumC5114a4 || enumC5114a == enumC5114a3 || enumC5114a == enumC5114a2) {
-            try {
-                String[] strArr = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 4096).requestedPermissions;
-                int length = strArr.length;
-                int i = 0;
-                while (true) {
-                    if (i >= length) {
-                        throw new IllegalStateException(f22109k.m7159a(3, "Permission error: when audio is enabled (Audio.ON) the RECORD_AUDIO permission should be added to the app manifest file."));
-                    }
-                    if (strArr[i].equals("android.permission.RECORD_AUDIO")) {
-                        break;
-                    }
-                    i++;
-                }
-            } catch (PackageManager.NameNotFoundException unused) {
-            }
-        }
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        Context context = getContext();
-        boolean z2 = enumC5114a == enumC5114a4 || enumC5114a == enumC5114a3 || enumC5114a == enumC5114a2;
-        boolean z3 = context.checkSelfPermission("android.permission.CAMERA") != 0;
-        boolean z4 = z2 && context.checkSelfPermission("android.permission.RECORD_AUDIO") != 0;
-        if (!z3 && !z4) {
-            return true;
-        }
-        if (this.f22126n) {
-            Activity activity = null;
-            for (Context context2 = getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
-                if (context2 instanceof Activity) {
-                    activity = (Activity) context2;
-                }
-            }
-            ArrayList arrayList = new ArrayList();
-            if (z3) {
-                arrayList.add("android.permission.CAMERA");
-            }
-            if (z4) {
-                arrayList.add("android.permission.RECORD_AUDIO");
-            }
-            if (activity != null) {
-                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), 16);
-            }
-        }
-        return false;
-    }
-
     @Override // android.view.ViewGroup
     public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
         if (!this.f22122M) {
@@ -765,30 +694,6 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
             }
         }
         super.addView(view, i, layoutParams);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final void m9305b() {
-        AbstractC5135i c5128b;
-        C5103b c5103b = f22109k;
-        c5103b.m7159a(2, "doInstantiateEngine:", "instantiating. engine:", this.f22129q);
-        EnumC5117d enumC5117d = this.f22129q;
-        C11195b c11195b = this.f22135w;
-        if (this.f22121L && enumC5117d == EnumC5117d.CAMERA2) {
-            c5128b = new C5130d(c11195b);
-        } else {
-            this.f22129q = EnumC5117d.CAMERA1;
-            c5128b = new C5128b(c11195b);
-        }
-        this.f22138z = c5128b;
-        c5103b.m7159a(2, "doInstantiateEngine:", "instantiated. engine:", c5128b.getClass().getSimpleName());
-        this.f22138z.mo7297o0(this.f22123N);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final boolean m9306c() {
-        AbstractC5135i abstractC5135i = this.f22138z;
-        return abstractC5135i.f13922n.f14028f == EnumC5178e.OFF && !abstractC5135i.m7324O();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -811,13 +716,6 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
         }
     }
 
-    /* JADX INFO: renamed from: d */
-    public boolean m9307d() {
-        EnumC5178e enumC5178e = this.f22138z.f13922n.f14028f;
-        EnumC5178e enumC5178e2 = EnumC5178e.ENGINE;
-        return enumC5178e.m7367f(enumC5178e2) && this.f22138z.f13922n.f14029g.m7367f(enumC5178e2);
-    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void destroy() {
         if (this.f22122M) {
@@ -833,115 +731,6 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
         AbstractC5225a abstractC5225a = this.f22136x;
         if (abstractC5225a != null) {
             abstractC5225a.mo7435o();
-        }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public boolean m9308e(@NonNull EnumC5193a enumC5193a, @NonNull EnumC5194b enumC5194b) {
-        EnumC5194b enumC5194b2 = EnumC5194b.f14072j;
-        if (!enumC5193a.m7388f(enumC5194b)) {
-            m9308e(enumC5193a, enumC5194b2);
-            return false;
-        }
-        this.f22127o.put(enumC5193a, enumC5194b);
-        int iOrdinal = enumC5193a.ordinal();
-        if (iOrdinal == 0) {
-            this.f22116G.f14081a = this.f22127o.get(EnumC5193a.f14066j) != enumC5194b2;
-        } else if (iOrdinal == 1 || iOrdinal == 2) {
-            this.f22117H.f14081a = (this.f22127o.get(EnumC5193a.f14067k) == enumC5194b2 && this.f22127o.get(EnumC5193a.f14068l) == enumC5194b2) ? false : true;
-        } else if (iOrdinal == 3 || iOrdinal == 4) {
-            this.f22118I.f14081a = (this.f22127o.get(EnumC5193a.f14069m) == enumC5194b2 && this.f22127o.get(EnumC5193a.f14070n) == enumC5194b2) ? false : true;
-        }
-        this.f22132t = 0;
-        Iterator<EnumC5194b> it = this.f22127o.values().iterator();
-        while (it.hasNext()) {
-            this.f22132t += it.next() == enumC5194b2 ? 0 : 1;
-        }
-        return true;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final String m9309f(int i) {
-        if (i == Integer.MIN_VALUE) {
-            return "AT_MOST";
-        }
-        if (i == 0) {
-            return "UNSPECIFIED";
-        }
-        if (i != 1073741824) {
-            return null;
-        }
-        return "EXACTLY";
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final void m9310g(@NonNull AbstractC5195c abstractC5195c, @NonNull AbstractC5104c abstractC5104c) {
-        EnumC5193a enumC5193a = abstractC5195c.f14082b;
-        EnumC5194b enumC5194b = this.f22127o.get(enumC5193a);
-        PointF[] pointFArr = abstractC5195c.f14083c;
-        switch (enumC5194b.ordinal()) {
-            case 1:
-                float width = getWidth();
-                float height = getHeight();
-                RectF rectFM7409a = C5211b.m7409a(pointFArr[0], width * 0.05f, 0.05f * height);
-                ArrayList<C5210a> arrayList = new ArrayList();
-                PointF pointF = new PointF(rectFM7409a.centerX(), rectFM7409a.centerY());
-                float fWidth = rectFM7409a.width();
-                float fHeight = rectFM7409a.height();
-                arrayList.add(new C5210a(rectFM7409a, 1000));
-                arrayList.add(new C5210a(C5211b.m7409a(pointF, fWidth * 1.5f, fHeight * 1.5f), Math.round(1000 * 0.1f)));
-                ArrayList arrayList2 = new ArrayList();
-                for (C5210a c5210a : arrayList) {
-                    Objects.requireNonNull(c5210a);
-                    RectF rectF = new RectF(0.0f, 0.0f, width, height);
-                    RectF rectF2 = new RectF();
-                    rectF2.set(Math.max(rectF.left, c5210a.f14140j.left), Math.max(rectF.top, c5210a.f14140j.top), Math.min(rectF.right, c5210a.f14140j.right), Math.min(rectF.bottom, c5210a.f14140j.bottom));
-                    arrayList2.add(new C5210a(rectF2, c5210a.f14141k));
-                }
-                this.f22138z.mo7192I0(enumC5193a, new C5211b(arrayList2), pointFArr[0]);
-                break;
-            case 2:
-                this.f22138z.mo7269O0(new C5113l.a());
-                break;
-            case 3:
-                this.f22138z.mo7270P0(new C5113l.a());
-                break;
-            case 4:
-                float fMo7268N = this.f22138z.mo7268N();
-                float fM7392a = abstractC5195c.m7392a(fMo7268N, 0.0f, 1.0f);
-                if (fM7392a != fMo7268N) {
-                    this.f22138z.mo7191G0(fM7392a, pointFArr, true);
-                }
-                break;
-            case 5:
-                float fMo7291k = this.f22138z.mo7291k();
-                float f = abstractC5104c.f13694m;
-                float f2 = abstractC5104c.f13695n;
-                float fM7392a2 = abstractC5195c.m7392a(fMo7291k, f, f2);
-                if (fM7392a2 != fMo7291k) {
-                    this.f22138z.mo7207d0(fM7392a2, new float[]{f, f2}, pointFArr, true);
-                }
-                break;
-            case 6:
-                if (getFilter() instanceof InterfaceC5186d) {
-                    InterfaceC5186d interfaceC5186d = (InterfaceC5186d) getFilter();
-                    float fM7377i = interfaceC5186d.m7377i();
-                    float fM7392a3 = abstractC5195c.m7392a(fM7377i, 0.0f, 1.0f);
-                    if (fM7392a3 != fM7377i) {
-                        interfaceC5186d.m7376d(fM7392a3);
-                    }
-                }
-                break;
-            case 7:
-                if (getFilter() instanceof InterfaceC5187e) {
-                    InterfaceC5187e interfaceC5187e = (InterfaceC5187e) getFilter();
-                    float fM7379g = interfaceC5187e.m7379g();
-                    float fM7392a4 = abstractC5195c.m7392a(fM7379g, 0.0f, 1.0f);
-                    if (fM7392a4 != fM7379g) {
-                        interfaceC5187e.m7378b(fM7392a4);
-                    }
-                }
-                break;
         }
     }
 
@@ -1144,6 +933,200 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
 
     public float getZoom() {
         return this.f22138z.mo7268N();
+    }
+
+    @SuppressLint({"NewApi"})
+    /* JADX INFO: renamed from: a */
+    public boolean m9304a(@NonNull EnumC5114a enumC5114a) {
+        EnumC5114a enumC5114a2 = EnumC5114a.STEREO;
+        EnumC5114a enumC5114a3 = EnumC5114a.MONO;
+        EnumC5114a enumC5114a4 = EnumC5114a.ON;
+        if (enumC5114a == enumC5114a4 || enumC5114a == enumC5114a3 || enumC5114a == enumC5114a2) {
+            try {
+                String[] strArr = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 4096).requestedPermissions;
+                int length = strArr.length;
+                int i = 0;
+                while (true) {
+                    if (i >= length) {
+                        throw new IllegalStateException(f22109k.m7159a(3, "Permission error: when audio is enabled (Audio.ON) the RECORD_AUDIO permission should be added to the app manifest file."));
+                    }
+                    if (strArr[i].equals("android.permission.RECORD_AUDIO")) {
+                        break;
+                    }
+                    i++;
+                }
+            } catch (PackageManager.NameNotFoundException unused) {
+            }
+        }
+        if (Build.VERSION.SDK_INT < 23) {
+            return true;
+        }
+        Context context = getContext();
+        boolean z2 = enumC5114a == enumC5114a4 || enumC5114a == enumC5114a3 || enumC5114a == enumC5114a2;
+        boolean z3 = context.checkSelfPermission("android.permission.CAMERA") != 0;
+        boolean z4 = z2 && context.checkSelfPermission("android.permission.RECORD_AUDIO") != 0;
+        if (!z3 && !z4) {
+            return true;
+        }
+        if (this.f22126n) {
+            Activity activity = null;
+            for (Context context2 = getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
+                if (context2 instanceof Activity) {
+                    activity = (Activity) context2;
+                }
+            }
+            ArrayList arrayList = new ArrayList();
+            if (z3) {
+                arrayList.add("android.permission.CAMERA");
+            }
+            if (z4) {
+                arrayList.add("android.permission.RECORD_AUDIO");
+            }
+            if (activity != null) {
+                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), 16);
+            }
+        }
+        return false;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m9305b() {
+        AbstractC5135i c5128b;
+        C5103b c5103b = f22109k;
+        c5103b.m7159a(2, "doInstantiateEngine:", "instantiating. engine:", this.f22129q);
+        EnumC5117d enumC5117d = this.f22129q;
+        C11195b c11195b = this.f22135w;
+        if (this.f22121L && enumC5117d == EnumC5117d.CAMERA2) {
+            c5128b = new C5130d(c11195b);
+        } else {
+            this.f22129q = EnumC5117d.CAMERA1;
+            c5128b = new C5128b(c11195b);
+        }
+        this.f22138z = c5128b;
+        c5103b.m7159a(2, "doInstantiateEngine:", "instantiated. engine:", c5128b.getClass().getSimpleName());
+        this.f22138z.mo7297o0(this.f22123N);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final boolean m9306c() {
+        AbstractC5135i abstractC5135i = this.f22138z;
+        return abstractC5135i.f13922n.f14028f == EnumC5178e.OFF && !abstractC5135i.m7324O();
+    }
+
+    /* JADX INFO: renamed from: d */
+    public boolean m9307d() {
+        EnumC5178e enumC5178e = this.f22138z.f13922n.f14028f;
+        EnumC5178e enumC5178e2 = EnumC5178e.ENGINE;
+        return enumC5178e.m7367f(enumC5178e2) && this.f22138z.f13922n.f14029g.m7367f(enumC5178e2);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public boolean m9308e(@NonNull EnumC5193a enumC5193a, @NonNull EnumC5194b enumC5194b) {
+        EnumC5194b enumC5194b2 = EnumC5194b.f14072j;
+        if (!enumC5193a.m7388f(enumC5194b)) {
+            m9308e(enumC5193a, enumC5194b2);
+            return false;
+        }
+        this.f22127o.put(enumC5193a, enumC5194b);
+        int iOrdinal = enumC5193a.ordinal();
+        if (iOrdinal == 0) {
+            this.f22116G.f14081a = this.f22127o.get(EnumC5193a.f14066j) != enumC5194b2;
+        } else if (iOrdinal == 1 || iOrdinal == 2) {
+            this.f22117H.f14081a = (this.f22127o.get(EnumC5193a.f14067k) == enumC5194b2 && this.f22127o.get(EnumC5193a.f14068l) == enumC5194b2) ? false : true;
+        } else if (iOrdinal == 3 || iOrdinal == 4) {
+            this.f22118I.f14081a = (this.f22127o.get(EnumC5193a.f14069m) == enumC5194b2 && this.f22127o.get(EnumC5193a.f14070n) == enumC5194b2) ? false : true;
+        }
+        this.f22132t = 0;
+        Iterator<EnumC5194b> it = this.f22127o.values().iterator();
+        while (it.hasNext()) {
+            this.f22132t += it.next() == enumC5194b2 ? 0 : 1;
+        }
+        return true;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final String m9309f(int i) {
+        if (i == Integer.MIN_VALUE) {
+            return "AT_MOST";
+        }
+        if (i == 0) {
+            return "UNSPECIFIED";
+        }
+        if (i != 1073741824) {
+            return null;
+        }
+        return "EXACTLY";
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final void m9310g(@NonNull AbstractC5195c abstractC5195c, @NonNull AbstractC5104c abstractC5104c) {
+        EnumC5193a enumC5193a = abstractC5195c.f14082b;
+        EnumC5194b enumC5194b = this.f22127o.get(enumC5193a);
+        PointF[] pointFArr = abstractC5195c.f14083c;
+        switch (enumC5194b.ordinal()) {
+            case 1:
+                float width = getWidth();
+                float height = getHeight();
+                RectF rectFM7409a = C5211b.m7409a(pointFArr[0], width * 0.05f, 0.05f * height);
+                ArrayList<C5210a> arrayList = new ArrayList();
+                PointF pointF = new PointF(rectFM7409a.centerX(), rectFM7409a.centerY());
+                float fWidth = rectFM7409a.width();
+                float fHeight = rectFM7409a.height();
+                arrayList.add(new C5210a(rectFM7409a, 1000));
+                arrayList.add(new C5210a(C5211b.m7409a(pointF, fWidth * 1.5f, fHeight * 1.5f), Math.round(1000 * 0.1f)));
+                ArrayList arrayList2 = new ArrayList();
+                for (C5210a c5210a : arrayList) {
+                    Objects.requireNonNull(c5210a);
+                    RectF rectF = new RectF(0.0f, 0.0f, width, height);
+                    RectF rectF2 = new RectF();
+                    rectF2.set(Math.max(rectF.left, c5210a.f14140j.left), Math.max(rectF.top, c5210a.f14140j.top), Math.min(rectF.right, c5210a.f14140j.right), Math.min(rectF.bottom, c5210a.f14140j.bottom));
+                    arrayList2.add(new C5210a(rectF2, c5210a.f14141k));
+                }
+                this.f22138z.mo7192I0(enumC5193a, new C5211b(arrayList2), pointFArr[0]);
+                break;
+            case 2:
+                this.f22138z.mo7269O0(new C5113l.a());
+                break;
+            case 3:
+                this.f22138z.mo7270P0(new C5113l.a());
+                break;
+            case 4:
+                float fMo7268N = this.f22138z.mo7268N();
+                float fM7392a = abstractC5195c.m7392a(fMo7268N, 0.0f, 1.0f);
+                if (fM7392a != fMo7268N) {
+                    this.f22138z.mo7191G0(fM7392a, pointFArr, true);
+                }
+                break;
+            case 5:
+                float fMo7291k = this.f22138z.mo7291k();
+                float f = abstractC5104c.f13694m;
+                float f2 = abstractC5104c.f13695n;
+                float fM7392a2 = abstractC5195c.m7392a(fMo7291k, f, f2);
+                if (fM7392a2 != fMo7291k) {
+                    this.f22138z.mo7207d0(fM7392a2, new float[]{f, f2}, pointFArr, true);
+                }
+                break;
+            case 6:
+                if (getFilter() instanceof InterfaceC5186d) {
+                    InterfaceC5186d interfaceC5186d = (InterfaceC5186d) getFilter();
+                    float fM7377i = interfaceC5186d.m7377i();
+                    float fM7392a3 = abstractC5195c.m7392a(fM7377i, 0.0f, 1.0f);
+                    if (fM7392a3 != fM7377i) {
+                        interfaceC5186d.m7376d(fM7392a3);
+                    }
+                }
+                break;
+            case 7:
+                if (getFilter() instanceof InterfaceC5187e) {
+                    InterfaceC5187e interfaceC5187e = (InterfaceC5187e) getFilter();
+                    float fM7379g = interfaceC5187e.m7379g();
+                    float fM7392a4 = abstractC5195c.m7392a(fM7379g, 0.0f, 1.0f);
+                    if (fM7392a4 != fM7379g) {
+                        interfaceC5187e.m7378b(fM7392a4);
+                    }
+                }
+                break;
+        }
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -1670,6 +1653,23 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
             f = 1.0f;
         }
         this.f22138z.mo7191G0(f, null, false);
+    }
+
+    /* JADX INFO: renamed from: com.otaliastudios.cameraview.CameraView$a */
+    public class ThreadFactoryC11194a implements ThreadFactory {
+
+        /* JADX INFO: renamed from: j */
+        public final AtomicInteger f22139j = new AtomicInteger(1);
+
+        public ThreadFactoryC11194a(CameraView cameraView) {
+        }
+
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(@NonNull Runnable runnable) {
+            StringBuilder sbM833U = C1643a.m833U("FrameExecutor #");
+            sbM833U.append(this.f22139j.getAndIncrement());
+            return new Thread(runnable, sbM833U.toString());
+        }
     }
 
     @Override // android.widget.FrameLayout, android.view.ViewGroup

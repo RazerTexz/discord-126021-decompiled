@@ -10,29 +10,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackResolveInvite.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackResolveInvite implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean resolved = null;
-    private final CharSequence code = null;
     private final Boolean authenticated = null;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long inviterId = null;
-    private final Long sizeTotal = null;
-    private final Long sizeOnline = null;
-    private final CharSequence inviteType = null;
+    private final CharSequence code = null;
     private final Long destinationUserId = null;
-    private final Boolean userBanned = null;
-    private final CharSequence inputValue = null;
     private final Long errorCode = null;
     private final CharSequence errorMessage = null;
+    private final Long guildId = null;
+    private final CharSequence inputValue = null;
+    private final CharSequence inviteType = null;
+    private final Long inviterId = null;
+    private final Boolean resolved = null;
+    private final Long sizeOnline = null;
+    private final Long sizeTotal = null;
+    private TrackBase trackBase;
+    private final Boolean userBanned = null;
     private final transient String analyticsSchemaTypeName = "resolve_invite";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -43,6 +37,12 @@ public final /* data */ class TrackResolveInvite implements AnalyticsSchema, Tra
         }
         TrackResolveInvite trackResolveInvite = (TrackResolveInvite) other;
         return C12238m.areEqual(this.resolved, trackResolveInvite.resolved) && C12238m.areEqual(this.code, trackResolveInvite.code) && C12238m.areEqual(this.authenticated, trackResolveInvite.authenticated) && C12238m.areEqual(this.guildId, trackResolveInvite.guildId) && C12238m.areEqual(this.channelId, trackResolveInvite.channelId) && C12238m.areEqual(this.channelType, trackResolveInvite.channelType) && C12238m.areEqual(this.inviterId, trackResolveInvite.inviterId) && C12238m.areEqual(this.sizeTotal, trackResolveInvite.sizeTotal) && C12238m.areEqual(this.sizeOnline, trackResolveInvite.sizeOnline) && C12238m.areEqual(this.inviteType, trackResolveInvite.inviteType) && C12238m.areEqual(this.destinationUserId, trackResolveInvite.destinationUserId) && C12238m.areEqual(this.userBanned, trackResolveInvite.userBanned) && C12238m.areEqual(this.inputValue, trackResolveInvite.inputValue) && C12238m.areEqual(this.errorCode, trackResolveInvite.errorCode) && C12238m.areEqual(this.errorMessage, trackResolveInvite.errorMessage);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

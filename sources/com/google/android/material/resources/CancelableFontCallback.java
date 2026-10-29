@@ -19,13 +19,6 @@ public final class CancelableFontCallback extends TextAppearanceFontCallback {
         this.applyFont = applyFont;
     }
 
-    private void updateIfNotCancelled(Typeface typeface) {
-        if (this.cancelled) {
-            return;
-        }
-        this.applyFont.apply(typeface);
-    }
-
     public void cancel() {
         this.cancelled = true;
     }
@@ -38,5 +31,12 @@ public final class CancelableFontCallback extends TextAppearanceFontCallback {
     @Override // com.google.android.material.resources.TextAppearanceFontCallback
     public void onFontRetrieved(Typeface typeface, boolean z2) {
         updateIfNotCancelled(typeface);
+    }
+
+    private void updateIfNotCancelled(Typeface typeface) {
+        if (this.cancelled) {
+            return;
+        }
+        this.applyFont.apply(typeface);
     }
 }

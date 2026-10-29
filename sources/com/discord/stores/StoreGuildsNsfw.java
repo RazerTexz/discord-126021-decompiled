@@ -39,19 +39,9 @@ public final class StoreGuildsNsfw extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final StoreChannels storeChannels;
 
-    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$allow$1 */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public static final class C61151 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61151 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -75,7 +65,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$deny$1 */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public static final class C61161 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C61161 extends AbstractC12240o implements Function1<Channel, Unit> {
         public static final C61161 INSTANCE = new C61161();
 
         public C61161() {
@@ -100,7 +90,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$observeIsGuildNsfwGateAgreed$1 */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public static final class C61171 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C61171 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -120,6 +110,16 @@ public final class StoreGuildsNsfw extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public StoreGuildsNsfw(Dispatcher dispatcher, StoreChannels storeChannels, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         C12238m.checkNotNullParameter(storeChannels, "storeChannels");
@@ -129,27 +129,6 @@ public final class StoreGuildsNsfw extends StoreV2 {
         this.observationDeck = observationDeck;
         this.guildIdsAllowed = new LinkedHashSet();
         this.guildIdsAllowedSnapshot = C12148n0.emptySet();
-    }
-
-    private final Set<Long> toGuildIdSet(Set<String> set) {
-        ArrayList arrayList = new ArrayList();
-        Iterator<T> it = set.iterator();
-        while (it.hasNext()) {
-            Long longOrNull = C12102s.toLongOrNull((String) it.next());
-            if (longOrNull != null) {
-                arrayList.add(longOrNull);
-            }
-        }
-        return C12163u.toSet(arrayList);
-    }
-
-    private final Set<String> toStringSet(Set<Long> set) {
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(set, 10));
-        Iterator<T> it = set.iterator();
-        while (it.hasNext()) {
-            arrayList.add(String.valueOf(((Number) it.next()).longValue()));
-        }
-        return C12163u.toSet(arrayList);
     }
 
     public final void allow(long guildId) {
@@ -191,5 +170,26 @@ public final class StoreGuildsNsfw extends StoreV2 {
         C12238m.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putStringSet(GUILDS_ALLOWED_KEY, toStringSet(this.guildIdsAllowed));
         editorEdit.apply();
+    }
+
+    private final Set<Long> toGuildIdSet(Set<String> set) {
+        ArrayList arrayList = new ArrayList();
+        Iterator<T> it = set.iterator();
+        while (it.hasNext()) {
+            Long longOrNull = C12102s.toLongOrNull((String) it.next());
+            if (longOrNull != null) {
+                arrayList.add(longOrNull);
+            }
+        }
+        return C12163u.toSet(arrayList);
+    }
+
+    private final Set<String> toStringSet(Set<Long> set) {
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(set, 10));
+        Iterator<T> it = set.iterator();
+        while (it.hasNext()) {
+            arrayList.add(String.valueOf(((Number) it.next()).longValue()));
+        }
+        return C12163u.toSet(arrayList);
     }
 }

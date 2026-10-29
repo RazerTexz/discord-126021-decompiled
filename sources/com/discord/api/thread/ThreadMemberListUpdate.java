@@ -11,21 +11,6 @@ public final /* data */ class ThreadMemberListUpdate {
     private final List<ThreadListMember> members;
     private final long threadId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<ThreadListMember> m8266b() {
-        return this.members;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final long getThreadId() {
-        return this.threadId;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,12 +22,27 @@ public final /* data */ class ThreadMemberListUpdate {
         return this.guildId == threadMemberListUpdate.guildId && this.threadId == threadMemberListUpdate.threadId && C12238m.areEqual(this.members, threadMemberListUpdate.members);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final long getThreadId() {
+        return this.threadId;
+    }
+
     public int hashCode() {
         long j = this.guildId;
         long j2 = this.threadId;
         int i = ((((int) (j ^ (j >>> 32))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31;
         List<ThreadListMember> list = this.members;
         return i + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<ThreadListMember> m8266b() {
+        return this.members;
     }
 
     public String toString() {

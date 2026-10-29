@@ -18,6 +18,20 @@ public class C4956k {
         this.f13208b = f2;
     }
 
+    public final boolean equals(Object obj) {
+        if (obj instanceof C4956k) {
+            C4956k c4956k = (C4956k) obj;
+            if (this.f13207a == c4956k.f13207a && this.f13208b == c4956k.f13208b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Float.floatToIntBits(this.f13208b) + (Float.floatToIntBits(this.f13207a) * 31);
+    }
+
     /* JADX INFO: renamed from: a */
     public static float m6922a(C4956k c4956k, C4956k c4956k2) {
         return C3404f.m4237Q(c4956k.f13207a, c4956k.f13208b, c4956k2.f13207a, c4956k2.f13208b);
@@ -54,20 +68,6 @@ public class C4956k {
         c4956kArr[0] = c4956k2;
         c4956kArr[1] = c4956k;
         c4956kArr[2] = c4956k3;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof C4956k) {
-            C4956k c4956k = (C4956k) obj;
-            if (this.f13207a == c4956k.f13207a && this.f13208b == c4956k.f13208b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Float.floatToIntBits(this.f13208b) + (Float.floatToIntBits(this.f13207a) * 31);
     }
 
     public final String toString() {

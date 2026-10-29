@@ -6,28 +6,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPriceByCurrency.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPriceByCurrency {
-    private final Long priceUsd = null;
-    private final Long priceCad = null;
     private final Long priceAud = null;
-    private final Long priceEur = null;
-    private final Long priceJpy = null;
-    private final Long priceRub = null;
-    private final Long priceGbp = null;
-    private final Long priceNok = null;
     private final Long priceBrl = null;
+    private final Long priceCad = null;
+    private final Long priceEur = null;
+    private final Long priceGbp = null;
+    private final Long priceJpy = null;
+    private final Long priceNok = null;
     private final Long pricePln = null;
+    private final Long priceRub = null;
     private final Long priceTry = null;
-    private final Long regularPriceUsd = null;
-    private final Long regularPriceCad = null;
+    private final Long priceUsd = null;
     private final Long regularPriceAud = null;
-    private final Long regularPriceEur = null;
-    private final Long regularPriceJpy = null;
-    private final Long regularPriceRub = null;
-    private final Long regularPriceGbp = null;
-    private final Long regularPriceNok = null;
     private final Long regularPriceBrl = null;
+    private final Long regularPriceCad = null;
+    private final Long regularPriceEur = null;
+    private final Long regularPriceGbp = null;
+    private final Long regularPriceJpy = null;
+    private final Long regularPriceNok = null;
     private final Long regularPricePln = null;
+    private final Long regularPriceRub = null;
     private final Long regularPriceTry = null;
+    private final Long regularPriceUsd = null;
 
     public boolean equals(Object other) {
         if (this == other) {

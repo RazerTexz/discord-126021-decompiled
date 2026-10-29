@@ -57,7 +57,7 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventListViewModel$1 */
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public static final /* synthetic */ class C88221 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C88221 extends C12236k implements Function1<StoreState, Unit> {
         public C88221(GuildScheduledEventListViewModel guildScheduledEventListViewModel) {
             super(1, guildScheduledEventListViewModel, GuildScheduledEventListViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListViewModel$StoreState;)V", 0);
         }
@@ -75,8 +75,41 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventListViewModel$onShareClicked$1 */
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public static final class Companion {
+    public final class C88231 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ long $guildEventId;
+        public final /* synthetic */ WeakReference $weakFragment;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88231(WeakReference weakReference, Channel channel, long j) {
+            super(1);
+            this.$weakFragment = weakReference;
+            this.$channel = channel;
+            this.$guildEventId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            Fragment fragment = (Fragment) this.$weakFragment.get();
+            if (fragment != null) {
+                ChannelInviteLaunchUtils channelInviteLaunchUtils = ChannelInviteLaunchUtils.INSTANCE;
+                C12238m.checkNotNullExpressionValue(fragment, "fragment");
+                Channel channel2 = this.$channel;
+                channelInviteLaunchUtils.inviteToChannel(fragment, channel2 != null ? channel2 : channel, GuildScheduledEventUtilities.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : Long.valueOf(this.$guildEventId), (24 & 16) != 0 ? null : null);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,7 +123,7 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean canCreateEvents;
         private final Map<Long, Long> channelPermissions;
         private final Map<Long, UserGuildMember> creators;
@@ -112,6 +145,26 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
             this.canCreateEvents = z2;
             this.selectedVoiceChannelId = l;
             this.channelPermissions = map3;
+        }
+
+        public final List<GuildScheduledEvent> component1() {
+            return this.guildScheduledEvents;
+        }
+
+        public final Set<Long> component2() {
+            return this.userGuildScheduledEventIds;
+        }
+
+        public final Map<Long, Channel> component3() {
+            return this.guildChannels;
+        }
+
+        public final Map<Long, UserGuildMember> component4() {
+            return this.creators;
+        }
+
+        public final Map<Long, Long> component7() {
+            return this.channelPermissions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -145,36 +198,6 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
             return storeState.copy(list, set2, map4, map5, z3, l2, map3);
         }
 
-        public final List<GuildScheduledEvent> component1() {
-            return this.guildScheduledEvents;
-        }
-
-        public final Set<Long> component2() {
-            return this.userGuildScheduledEventIds;
-        }
-
-        public final Map<Long, Channel> component3() {
-            return this.guildChannels;
-        }
-
-        public final Map<Long, UserGuildMember> component4() {
-            return this.creators;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getCanCreateEvents() {
-            return this.canCreateEvents;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getSelectedVoiceChannelId() {
-            return this.selectedVoiceChannelId;
-        }
-
-        public final Map<Long, Long> component7() {
-            return this.channelPermissions;
-        }
-
         public final StoreState copy(List<GuildScheduledEvent> guildScheduledEvents, Set<Long> userGuildScheduledEventIds, Map<Long, Channel> guildChannels, Map<Long, UserGuildMember> creators, boolean canCreateEvents, Long selectedVoiceChannelId, Map<Long, Long> channelPermissions) {
             C12238m.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
             C12238m.checkNotNullParameter(userGuildScheduledEventIds, "userGuildScheduledEventIds");
@@ -195,6 +218,11 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
             return C12238m.areEqual(this.guildScheduledEvents, storeState.guildScheduledEvents) && C12238m.areEqual(this.userGuildScheduledEventIds, storeState.userGuildScheduledEventIds) && C12238m.areEqual(this.guildChannels, storeState.guildChannels) && C12238m.areEqual(this.creators, storeState.creators) && this.canCreateEvents == storeState.canCreateEvents && C12238m.areEqual(this.selectedVoiceChannelId, storeState.selectedVoiceChannelId) && C12238m.areEqual(this.channelPermissions, storeState.channelPermissions);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getCanCreateEvents() {
+            return this.canCreateEvents;
+        }
+
         public final boolean getCanCreateEvents() {
             return this.canCreateEvents;
         }
@@ -213,6 +241,11 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
 
         public final List<GuildScheduledEvent> getGuildScheduledEvents() {
             return this.guildScheduledEvents;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Long getSelectedVoiceChannelId() {
+            return this.selectedVoiceChannelId;
         }
 
         public final Long getSelectedVoiceChannelId() {
@@ -267,10 +300,10 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-        public static final class Initial extends ViewState {
+        public final class Initial extends ViewState {
             public static final Initial INSTANCE = new Initial();
 
             private Initial() {
@@ -279,7 +312,7 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
         }
 
         /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean canCreateEvents;
             private final List<GuildScheduledEventListItem.Event> guildScheduledEvents;
 
@@ -291,6 +324,10 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
                 this.canCreateEvents = z2;
             }
 
+            public final List<GuildScheduledEventListItem.Event> component1() {
+                return this.guildScheduledEvents;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, boolean z2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -300,15 +337,6 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
                     z2 = loaded.canCreateEvents;
                 }
                 return loaded.copy(list, z2);
-            }
-
-            public final List<GuildScheduledEventListItem.Event> component1() {
-                return this.guildScheduledEvents;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanCreateEvents() {
-                return this.canCreateEvents;
             }
 
             public final Loaded copy(List<GuildScheduledEventListItem.Event> guildScheduledEvents, boolean canCreateEvents) {
@@ -325,6 +353,11 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
                 }
                 Loaded loaded = (Loaded) other;
                 return C12238m.areEqual(this.guildScheduledEvents, loaded.guildScheduledEvents) && this.canCreateEvents == loaded.canCreateEvents;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getCanCreateEvents() {
+                return this.canCreateEvents;
             }
 
             public final boolean getCanCreateEvents() {
@@ -364,39 +397,6 @@ public final class GuildScheduledEventListViewModel extends AbstractC0859d0<View
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventListViewModel$onShareClicked$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public static final class C88231 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public final /* synthetic */ Channel $channel;
-        public final /* synthetic */ long $guildEventId;
-        public final /* synthetic */ WeakReference $weakFragment;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88231(WeakReference weakReference, Channel channel, long j) {
-            super(1);
-            this.$weakFragment = weakReference;
-            this.$channel = channel;
-            this.$guildEventId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            Fragment fragment = (Fragment) this.$weakFragment.get();
-            if (fragment != null) {
-                ChannelInviteLaunchUtils channelInviteLaunchUtils = ChannelInviteLaunchUtils.INSTANCE;
-                C12238m.checkNotNullExpressionValue(fragment, "fragment");
-                Channel channel2 = this.$channel;
-                channelInviteLaunchUtils.inviteToChannel(fragment, channel2 != null ? channel2 : channel, GuildScheduledEventUtilities.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : Long.valueOf(this.$guildEventId), (24 & 16) != 0 ? null : null);
-            }
         }
     }
 

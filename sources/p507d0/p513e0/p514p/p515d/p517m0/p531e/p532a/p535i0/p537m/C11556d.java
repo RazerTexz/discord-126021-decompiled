@@ -63,13 +63,6 @@ public final class C11556d {
         return abstractC11934j0CreateErrorType;
     }
 
-    public static /* synthetic */ AbstractC11913c0 transformArrayType$default(C11556d c11556d, InterfaceC11573f interfaceC11573f, C11553a c11553a, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        return c11556d.transformArrayType(interfaceC11573f, c11553a, z2);
-    }
-
     /* JADX WARN: Code duplicated, block: B:101:0x0184  */
     /* JADX WARN: Code duplicated, block: B:104:0x0192  */
     /* JADX WARN: Code duplicated, block: B:107:0x01a5  */
@@ -413,6 +406,13 @@ public final class C11556d {
         InterfaceC12008u0 typeConstructor = this.f23429a.getComponents().getDeserializedDescriptorResolver().getComponents().getNotFoundClasses().getClass(c11712a, C12145m.listOf(0)).getTypeConstructor();
         C12238m.checkNotNullExpressionValue(typeConstructor, "c.components.deserializedDescriptorResolver.components.notFoundClasses.getClass(classId, listOf(0)).typeConstructor");
         return typeConstructor;
+    }
+
+    public static /* synthetic */ AbstractC11913c0 transformArrayType$default(C11556d c11556d, InterfaceC11573f interfaceC11573f, C11553a c11553a, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        return c11556d.transformArrayType(interfaceC11573f, c11553a, z2);
     }
 
     public final AbstractC11913c0 transformArrayType(InterfaceC11573f interfaceC11573f, C11553a c11553a, boolean z2) {

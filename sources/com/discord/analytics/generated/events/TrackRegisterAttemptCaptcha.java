@@ -15,32 +15,26 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRegisterAttemptCaptcha.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver, TrackGuildTemplateReceiver {
+    private final CharSequence email = null;
+    private final Boolean forceBadCaptcha = null;
+    private final Boolean full = null;
+    private final Boolean hasInvalidFingerprint = null;
+    private final CharSequence identityType = null;
+    private final Boolean instantInvite = null;
+    private final Long inviteChannelId = null;
+    private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
+    private final Long inviteInviterId = null;
+    private final List<CharSequence> ipBlacklists = null;
+    private final CharSequence phone = null;
+    private final CharSequence phoneCarrierName = null;
+    private final CharSequence phoneCountry = null;
+    private final CharSequence registrationSource = null;
     private TrackBase trackBase;
     private TrackGiftCodeMetadata trackGiftCodeMetadata;
     private TrackGuildTemplate trackGuildTemplate;
-    private final CharSequence registrationSource = null;
-    private final Boolean full = null;
-    private final Boolean instantInvite = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
-    private final Long inviteChannelId = null;
-    private final Long inviteChannelType = null;
-    private final Long inviteInviterId = null;
-    private final List<CharSequence> ipBlacklists = null;
-    private final Boolean hasInvalidFingerprint = null;
-    private final Boolean forceBadCaptcha = null;
-    private final CharSequence email = null;
-    private final CharSequence phone = null;
-    private final CharSequence identityType = null;
-    private final CharSequence phoneCarrierName = null;
-    private final CharSequence phoneCountry = null;
     private final transient String analyticsSchemaTypeName = "register_attempt_captcha";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -51,6 +45,12 @@ public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSc
         }
         TrackRegisterAttemptCaptcha trackRegisterAttemptCaptcha = (TrackRegisterAttemptCaptcha) other;
         return C12238m.areEqual(this.registrationSource, trackRegisterAttemptCaptcha.registrationSource) && C12238m.areEqual(this.full, trackRegisterAttemptCaptcha.full) && C12238m.areEqual(this.instantInvite, trackRegisterAttemptCaptcha.instantInvite) && C12238m.areEqual(this.inviteCode, trackRegisterAttemptCaptcha.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterAttemptCaptcha.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterAttemptCaptcha.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterAttemptCaptcha.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterAttemptCaptcha.inviteInviterId) && C12238m.areEqual(this.ipBlacklists, trackRegisterAttemptCaptcha.ipBlacklists) && C12238m.areEqual(this.hasInvalidFingerprint, trackRegisterAttemptCaptcha.hasInvalidFingerprint) && C12238m.areEqual(this.forceBadCaptcha, trackRegisterAttemptCaptcha.forceBadCaptcha) && C12238m.areEqual(this.email, trackRegisterAttemptCaptcha.email) && C12238m.areEqual(this.phone, trackRegisterAttemptCaptcha.phone) && C12238m.areEqual(this.identityType, trackRegisterAttemptCaptcha.identityType) && C12238m.areEqual(this.phoneCarrierName, trackRegisterAttemptCaptcha.phoneCarrierName) && C12238m.areEqual(this.phoneCountry, trackRegisterAttemptCaptcha.phoneCountry);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

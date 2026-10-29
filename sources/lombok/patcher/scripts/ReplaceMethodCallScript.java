@@ -63,7 +63,7 @@ public class ReplaceMethodCallScript extends MethodLevelPatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ReplaceMethodCallScript$ReplaceMethodCall.SCL.lombok */
-    private class ReplaceMethodCall extends MethodVisitor {
+    class ReplaceMethodCall extends MethodVisitor {
         private final String ownClassSpec;
         private final MethodLogistics logistics;
 

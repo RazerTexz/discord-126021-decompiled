@@ -33,8 +33,8 @@ import p007b.p225i.p226a.p341g.p345d.C4401l;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
-    public static final Parcelable.Creator<RangeDateSelector> CREATOR = new C10905c();
     private String invalidRangeStartError;
+    public static final Parcelable.Creator<RangeDateSelector> CREATOR = new C10905c();
     private final String invalidRangeEndError = " ";
 
     @Nullable
@@ -120,7 +120,7 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.RangeDateSelector$c */
-    public static class C10905c implements Parcelable.Creator<RangeDateSelector> {
+    public final class C10905c implements Parcelable.Creator<RangeDateSelector> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public RangeDateSelector createFromParcel(@NonNull Parcel parcel) {
@@ -145,30 +145,6 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
             return;
         }
         textInputLayout2.setError(null);
-    }
-
-    private boolean isValidRange(long j, long j2) {
-        return j <= j2;
-    }
-
-    private void setInvalidRange(@NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2) {
-        textInputLayout.setError(this.invalidRangeStartError);
-        textInputLayout2.setError(" ");
-    }
-
-    private void updateIfValidTextProposal(@NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2, @NonNull OnSelectionChangedListener<Pair<Long, Long>> onSelectionChangedListener) {
-        Long l = this.proposedTextStart;
-        if (l == null || this.proposedTextEnd == null) {
-            clearInvalidRange(textInputLayout, textInputLayout2);
-            onSelectionChangedListener.onIncompleteSelectionChanged();
-        } else if (!isValidRange(l.longValue(), this.proposedTextEnd.longValue())) {
-            setInvalidRange(textInputLayout, textInputLayout2);
-            onSelectionChangedListener.onIncompleteSelectionChanged();
-        } else {
-            this.selectedStartItem = this.proposedTextStart;
-            this.selectedEndItem = this.proposedTextEnd;
-            onSelectionChangedListener.onSelectionChanged(getSelection());
-        }
     }
 
     @Override // android.os.Parcelable
@@ -257,6 +233,10 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
         return (l == null || this.selectedEndItem == null || !isValidRange(l.longValue(), this.selectedEndItem.longValue())) ? false : true;
     }
 
+    private boolean isValidRange(long j, long j2) {
+        return j <= j2;
+    }
+
     @Override // com.google.android.material.datepicker.DateSelector
     public View onCreateTextInputView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle, CalendarConstraints calendarConstraints, @NonNull OnSelectionChangedListener<Pair<Long, Long>> onSelectionChangedListener) {
         View viewInflate = layoutInflater.inflate(C10817R.layout.mtrl_picker_text_input_date_range, viewGroup, false);
@@ -299,6 +279,26 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
         } else {
             this.selectedEndItem = null;
             this.selectedStartItem = Long.valueOf(j);
+        }
+    }
+
+    private void setInvalidRange(@NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2) {
+        textInputLayout.setError(this.invalidRangeStartError);
+        textInputLayout2.setError(" ");
+    }
+
+    private void updateIfValidTextProposal(@NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2, @NonNull OnSelectionChangedListener<Pair<Long, Long>> onSelectionChangedListener) {
+        Long l = this.proposedTextStart;
+        if (l == null || this.proposedTextEnd == null) {
+            clearInvalidRange(textInputLayout, textInputLayout2);
+            onSelectionChangedListener.onIncompleteSelectionChanged();
+        } else if (!isValidRange(l.longValue(), this.proposedTextEnd.longValue())) {
+            setInvalidRange(textInputLayout, textInputLayout2);
+            onSelectionChangedListener.onIncompleteSelectionChanged();
+        } else {
+            this.selectedStartItem = this.proposedTextStart;
+            this.selectedEndItem = this.proposedTextEnd;
+            onSelectionChangedListener.onSelectionChanged(getSelection());
         }
     }
 

@@ -31,7 +31,7 @@ public final class UserMutualGuildsManager {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.UserMutualGuildsManager$observeMutualGuilds$1 */
     /* JADX INFO: compiled from: UserMutualGuildsManager.kt */
-    public static final class C101841 extends AbstractC12240o implements Function0<Map<Long, ? extends List<? extends Guild>>> {
+    public final class C101841 extends AbstractC12240o implements Function0<Map<Long, ? extends List<? extends Guild>>> {
         public final /* synthetic */ Collection $userIds;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

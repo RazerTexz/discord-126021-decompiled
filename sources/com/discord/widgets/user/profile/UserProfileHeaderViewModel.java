@@ -66,7 +66,7 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderViewModel$1 */
     /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-    public static final class C103091 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C103091 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C103091() {
             super(1);
         }
@@ -85,7 +85,7 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -192,7 +192,7 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean allowAnimatedEmojis;
         private final Channel channel;
         private final Collection<Map<Long, GuildMember>> guildMembers;
@@ -223,52 +223,12 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
             this.channel = channel;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
         public final Map<Long, GuildMember> component3() {
             return this.userIdToGuildMemberMap;
         }
 
         public final Collection<Map<Long, GuildMember>> component4() {
             return this.guildMembers;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final ModelRichPresence getRichPresence() {
-            return this.richPresence;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final StreamContext getStreamContext() {
-            return this.streamContext;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final UserProfile getUserProfile() {
-            return this.userProfile;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getAllowAnimatedEmojis() {
-            return this.allowAnimatedEmojis;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getReducedMotionEnabled() {
-            return this.reducedMotionEnabled;
         }
 
         public final StoreState copy(MeUser me2, User user, Map<Long, GuildMember> userIdToGuildMemberMap, Collection<? extends Map<Long, GuildMember>> guildMembers, ModelRichPresence richPresence, StreamContext streamContext, UserProfile userProfile, boolean allowAnimatedEmojis, boolean reducedMotionEnabled, Channel channel) {
@@ -291,8 +251,18 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
             return C12238m.areEqual(this.me, storeState.me) && C12238m.areEqual(this.user, storeState.user) && C12238m.areEqual(this.userIdToGuildMemberMap, storeState.userIdToGuildMemberMap) && C12238m.areEqual(this.guildMembers, storeState.guildMembers) && C12238m.areEqual(this.richPresence, storeState.richPresence) && C12238m.areEqual(this.streamContext, storeState.streamContext) && C12238m.areEqual(this.userProfile, storeState.userProfile) && this.allowAnimatedEmojis == storeState.allowAnimatedEmojis && this.reducedMotionEnabled == storeState.reducedMotionEnabled && C12238m.areEqual(this.channel, storeState.channel);
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final boolean getAllowAnimatedEmojis() {
             return this.allowAnimatedEmojis;
+        }
+
+        public final boolean getAllowAnimatedEmojis() {
+            return this.allowAnimatedEmojis;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -303,20 +273,45 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
             return this.guildMembers;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMe() {
             return this.me;
+        }
+
+        public final MeUser getMe() {
+            return this.me;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getReducedMotionEnabled() {
+            return this.reducedMotionEnabled;
         }
 
         public final boolean getReducedMotionEnabled() {
             return this.reducedMotionEnabled;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final ModelRichPresence getRichPresence() {
             return this.richPresence;
         }
 
+        public final ModelRichPresence getRichPresence() {
+            return this.richPresence;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final StreamContext getStreamContext() {
             return this.streamContext;
+        }
+
+        public final StreamContext getStreamContext() {
+            return this.streamContext;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -325,6 +320,11 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
 
         public final Map<Long, GuildMember> getUserIdToGuildMemberMap() {
             return this.userIdToGuildMemberMap;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final UserProfile getUserProfile() {
+            return this.userProfile;
         }
 
         public final UserProfile getUserProfile() {
@@ -393,10 +393,10 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -412,7 +412,7 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean allowAnimatedEmojis;
             private final boolean allowAnimationInReducedMotion;
 
@@ -448,88 +448,13 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 this(user, str, str2, (i & 8) != 0 ? null : guildMember, (i & 16) != 0 ? C12147n.emptyList() : list, (i & 32) != 0 ? null : presence, (i & 64) != 0 ? null : streamContext, (i & 128) != 0 ? StoreUserProfile.INSTANCE.getEMPTY_PROFILE() : userProfile, z2, z3, (i & 1024) != 0 ? false : z4, z5, (i & 4096) != 0 ? false : z6, (i & 8192) != 0 ? false : z7, (i & 16384) != 0 ? false : z8, (i & 32768) != 0 ? false : z9);
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, User user, String str, String str2, GuildMember guildMember, List list, Presence presence, StreamContext streamContext, UserProfile userProfile, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, int i, Object obj) {
-                return loaded.copy((i & 1) != 0 ? loaded.user : user, (i & 2) != 0 ? loaded.banner : str, (i & 4) != 0 ? loaded.bannerColorHex : str2, (i & 8) != 0 ? loaded.guildMember : guildMember, (i & 16) != 0 ? loaded.guildMembersForAka : list, (i & 32) != 0 ? loaded.presence : presence, (i & 64) != 0 ? loaded.streamContext : streamContext, (i & 128) != 0 ? loaded.userProfile : userProfile, (i & 256) != 0 ? loaded.isMeUserPremium : z2, (i & 512) != 0 ? loaded.isMeUserVerified : z3, (i & 1024) != 0 ? loaded.allowAnimatedEmojis : z4, (i & 2048) != 0 ? loaded.showPresence : z5, (i & 4096) != 0 ? loaded.editable : z6, (i & 8192) != 0 ? loaded.reducedMotionEnabled : z7, (i & 16384) != 0 ? loaded.allowAnimationInReducedMotion : z8, (i & 32768) != 0 ? loaded.isMe : z9);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final User getUser() {
-                return this.user;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getIsMeUserVerified() {
-                return this.isMeUserVerified;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getAllowAnimatedEmojis() {
-                return this.allowAnimatedEmojis;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getShowPresence() {
-                return this.showPresence;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final boolean getEditable() {
-                return this.editable;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final boolean getReducedMotionEnabled() {
-                return this.reducedMotionEnabled;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final boolean getAllowAnimationInReducedMotion() {
-                return this.allowAnimationInReducedMotion;
-            }
-
-            /* JADX INFO: renamed from: component16, reason: from getter */
-            public final boolean getIsMe() {
-                return this.isMe;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getBanner() {
-                return this.banner;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getBannerColorHex() {
-                return this.bannerColorHex;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final GuildMember getGuildMember() {
-                return this.guildMember;
-            }
-
             public final List<GuildMember> component5() {
                 return this.guildMembersForAka;
             }
 
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Presence getPresence() {
-                return this.presence;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final UserProfile getUserProfile() {
-                return this.userProfile;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsMeUserPremium() {
-                return this.isMeUserPremium;
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, User user, String str, String str2, GuildMember guildMember, List list, Presence presence, StreamContext streamContext, UserProfile userProfile, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, int i, Object obj) {
+                return loaded.copy((i & 1) != 0 ? loaded.user : user, (i & 2) != 0 ? loaded.banner : str, (i & 4) != 0 ? loaded.bannerColorHex : str2, (i & 8) != 0 ? loaded.guildMember : guildMember, (i & 16) != 0 ? loaded.guildMembersForAka : list, (i & 32) != 0 ? loaded.presence : presence, (i & 64) != 0 ? loaded.streamContext : streamContext, (i & 128) != 0 ? loaded.userProfile : userProfile, (i & 256) != 0 ? loaded.isMeUserPremium : z2, (i & 512) != 0 ? loaded.isMeUserVerified : z3, (i & 1024) != 0 ? loaded.allowAnimatedEmojis : z4, (i & 2048) != 0 ? loaded.showPresence : z5, (i & 4096) != 0 ? loaded.editable : z6, (i & 8192) != 0 ? loaded.reducedMotionEnabled : z7, (i & 16384) != 0 ? loaded.allowAnimationInReducedMotion : z8, (i & 32768) != 0 ? loaded.isMe : z9);
             }
 
             public final Loaded copy(User user, String banner, String bannerColorHex, GuildMember guildMember, List<GuildMember> guildMembersForAka, Presence presence, StreamContext streamContext, UserProfile userProfile, boolean isMeUserPremium, boolean isMeUserVerified, boolean allowAnimatedEmojis, boolean showPresence, boolean editable, boolean reducedMotionEnabled, boolean allowAnimationInReducedMotion, boolean isMe) {
@@ -550,8 +475,18 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 return C12238m.areEqual(this.user, loaded.user) && C12238m.areEqual(this.banner, loaded.banner) && C12238m.areEqual(this.bannerColorHex, loaded.bannerColorHex) && C12238m.areEqual(this.guildMember, loaded.guildMember) && C12238m.areEqual(this.guildMembersForAka, loaded.guildMembersForAka) && C12238m.areEqual(this.presence, loaded.presence) && C12238m.areEqual(this.streamContext, loaded.streamContext) && C12238m.areEqual(this.userProfile, loaded.userProfile) && this.isMeUserPremium == loaded.isMeUserPremium && this.isMeUserVerified == loaded.isMeUserVerified && this.allowAnimatedEmojis == loaded.allowAnimatedEmojis && this.showPresence == loaded.showPresence && this.editable == loaded.editable && this.reducedMotionEnabled == loaded.reducedMotionEnabled && this.allowAnimationInReducedMotion == loaded.allowAnimationInReducedMotion && this.isMe == loaded.isMe;
             }
 
+            /* JADX INFO: renamed from: component11, reason: from getter */
             public final boolean getAllowAnimatedEmojis() {
                 return this.allowAnimatedEmojis;
+            }
+
+            public final boolean getAllowAnimatedEmojis() {
+                return this.allowAnimatedEmojis;
+            }
+
+            /* JADX INFO: renamed from: component15, reason: from getter */
+            public final boolean getAllowAnimationInReducedMotion() {
+                return this.allowAnimationInReducedMotion;
             }
 
             public final boolean getAllowAnimationInReducedMotion() {
@@ -562,16 +497,36 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 return (String) this.avatarColorId.getValue();
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getBanner() {
                 return this.banner;
+            }
+
+            public final String getBanner() {
+                return this.banner;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getBannerColorHex() {
+                return this.bannerColorHex;
             }
 
             public final String getBannerColorHex() {
                 return this.bannerColorHex;
             }
 
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final boolean getEditable() {
                 return this.editable;
+            }
+
+            public final boolean getEditable() {
+                return this.editable;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final GuildMember getGuildMember() {
+                return this.guildMember;
             }
 
             public final GuildMember getGuildMember() {
@@ -594,8 +549,38 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 return this.hasNickname;
             }
 
+            /* JADX INFO: renamed from: component16, reason: from getter */
+            public final boolean getIsMe() {
+                return this.isMe;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getIsMeUserPremium() {
+                return this.isMeUserPremium;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getIsMeUserVerified() {
+                return this.isMeUserVerified;
+            }
+
+            /* JADX INFO: renamed from: isProfileLoaded, reason: from getter */
+            public final boolean getIsProfileLoaded() {
+                return this.isProfileLoaded;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final Presence getPresence() {
                 return this.presence;
+            }
+
+            public final Presence getPresence() {
+                return this.presence;
+            }
+
+            /* JADX INFO: renamed from: component14, reason: from getter */
+            public final boolean getReducedMotionEnabled() {
+                return this.reducedMotionEnabled;
             }
 
             public final boolean getReducedMotionEnabled() {
@@ -618,6 +603,11 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 return this.showMediumAvatar;
             }
 
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final boolean getShowPresence() {
+                return this.showPresence;
+            }
+
             public final boolean getShowPresence() {
                 return this.showPresence;
             }
@@ -626,12 +616,27 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
                 return this.showSmallAvatar;
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
             public final StreamContext getStreamContext() {
                 return this.streamContext;
             }
 
+            public final StreamContext getStreamContext() {
+                return this.streamContext;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final User getUser() {
                 return this.user;
+            }
+
+            public final User getUser() {
+                return this.user;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final UserProfile getUserProfile() {
+                return this.userProfile;
             }
 
             public final UserProfile getUserProfile() {
@@ -744,11 +749,6 @@ public final class UserProfileHeaderViewModel extends AbstractC0859d0<ViewState>
 
             public final boolean isMeUserVerified() {
                 return this.isMeUserVerified;
-            }
-
-            /* JADX INFO: renamed from: isProfileLoaded, reason: from getter */
-            public final boolean getIsProfileLoaded() {
-                return this.isProfileLoaded;
             }
 
             public String toString() {

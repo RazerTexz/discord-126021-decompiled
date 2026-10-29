@@ -7,7 +7,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public abstract class LoadState {
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class JustLoadedAll extends LoadState {
+    public final class JustLoadedAll extends LoadState {
         public static final JustLoadedAll INSTANCE = new JustLoadedAll();
 
         private JustLoadedAll() {
@@ -16,7 +16,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class JustLoadedDown extends LoadState {
+    public final class JustLoadedDown extends LoadState {
         public static final JustLoadedDown INSTANCE = new JustLoadedDown();
 
         private JustLoadedDown() {
@@ -25,7 +25,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class JustLoadedUp extends LoadState {
+    public final class JustLoadedUp extends LoadState {
         public static final JustLoadedUp INSTANCE = new JustLoadedUp();
 
         private JustLoadedUp() {
@@ -34,7 +34,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class Loading extends LoadState {
+    public final class Loading extends LoadState {
         public static final Loading INSTANCE = new Loading();
 
         private Loading() {
@@ -43,7 +43,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class LoadingDown extends LoadState {
+    public final class LoadingDown extends LoadState {
         public static final LoadingDown INSTANCE = new LoadingDown();
 
         private LoadingDown() {
@@ -52,7 +52,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class LoadingUp extends LoadState {
+    public final class LoadingUp extends LoadState {
         public static final LoadingUp INSTANCE = new LoadingUp();
 
         private LoadingUp() {
@@ -61,7 +61,7 @@ public abstract class LoadState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class None extends LoadState {
+    public final class None extends LoadState {
         public static final None INSTANCE = new None();
 
         private None() {

@@ -58,21 +58,6 @@ public class SelfDestructiveThread {
         this.mDestructAfterMillisec = i2;
     }
 
-    private void post(Runnable runnable) {
-        synchronized (this.mLock) {
-            if (this.mThread == null) {
-                HandlerThread handlerThread = new HandlerThread(this.mThreadName, this.mPriority);
-                this.mThread = handlerThread;
-                handlerThread.start();
-                this.mHandler = new Handler(this.mThread.getLooper(), this.mCallback);
-                this.mGeneration++;
-            }
-            this.mHandler.removeMessages(0);
-            Handler handler = this.mHandler;
-            handler.sendMessage(handler.obtainMessage(1, runnable));
-        }
-    }
-
     @VisibleForTesting
     public int getGeneration() {
         int i;
@@ -108,6 +93,21 @@ public class SelfDestructiveThread {
             this.mHandler.removeMessages(0);
             Handler handler = this.mHandler;
             handler.sendMessageDelayed(handler.obtainMessage(0), this.mDestructAfterMillisec);
+        }
+    }
+
+    private void post(Runnable runnable) {
+        synchronized (this.mLock) {
+            if (this.mThread == null) {
+                HandlerThread handlerThread = new HandlerThread(this.mThreadName, this.mPriority);
+                this.mThread = handlerThread;
+                handlerThread.start();
+                this.mHandler = new Handler(this.mThread.getLooper(), this.mCallback);
+                this.mGeneration++;
+            }
+            this.mHandler.removeMessages(0);
+            Handler handler = this.mHandler;
+            handler.sendMessage(handler.obtainMessage(1, runnable));
         }
     }
 

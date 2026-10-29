@@ -36,7 +36,7 @@ public class FragmentStateManager {
     private int mFragmentManagerState = -1;
 
     /* JADX INFO: renamed from: androidx.fragment.app.FragmentStateManager$2 */
-    public static /* synthetic */ class C03922 {
+    public /* synthetic */ class C03922 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$State;
 
         static {
@@ -66,49 +66,6 @@ public class FragmentStateManager {
         this.mDispatcher = fragmentLifecycleCallbacksDispatcher;
         this.mFragmentStore = fragmentStore;
         this.mFragment = fragment;
-    }
-
-    private boolean isFragmentViewChild(@NonNull View view) {
-        if (view == this.mFragment.mView) {
-            return true;
-        }
-        for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
-            if (parent == this.mFragment.mView) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private Bundle saveBasicState() {
-        Bundle bundle = new Bundle();
-        this.mFragment.performSaveInstanceState(bundle);
-        this.mDispatcher.dispatchOnFragmentSaveInstanceState(this.mFragment, bundle, false);
-        if (bundle.isEmpty()) {
-            bundle = null;
-        }
-        if (this.mFragment.mView != null) {
-            saveViewState();
-        }
-        if (this.mFragment.mSavedViewState != null) {
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putSparseParcelableArray(VIEW_STATE_TAG, this.mFragment.mSavedViewState);
-        }
-        if (this.mFragment.mSavedViewRegistryState != null) {
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putBundle(VIEW_REGISTRY_STATE_TAG, this.mFragment.mSavedViewRegistryState);
-        }
-        if (!this.mFragment.mUserVisibleHint) {
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putBoolean(USER_VISIBLE_HINT_TAG, this.mFragment.mUserVisibleHint);
-        }
-        return bundle;
     }
 
     public void activityCreated() {
@@ -489,6 +446,18 @@ public class FragmentStateManager {
         return this.mFragment;
     }
 
+    private boolean isFragmentViewChild(@NonNull View view) {
+        if (view == this.mFragment.mView) {
+            return true;
+        }
+        for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
+            if (parent == this.mFragment.mView) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void moveToExpectedState() {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
@@ -672,6 +641,37 @@ public class FragmentStateManager {
         fragment.mSavedFragmentState = null;
         fragment.mSavedViewState = null;
         fragment.mSavedViewRegistryState = null;
+    }
+
+    private Bundle saveBasicState() {
+        Bundle bundle = new Bundle();
+        this.mFragment.performSaveInstanceState(bundle);
+        this.mDispatcher.dispatchOnFragmentSaveInstanceState(this.mFragment, bundle, false);
+        if (bundle.isEmpty()) {
+            bundle = null;
+        }
+        if (this.mFragment.mView != null) {
+            saveViewState();
+        }
+        if (this.mFragment.mSavedViewState != null) {
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putSparseParcelableArray(VIEW_STATE_TAG, this.mFragment.mSavedViewState);
+        }
+        if (this.mFragment.mSavedViewRegistryState != null) {
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putBundle(VIEW_REGISTRY_STATE_TAG, this.mFragment.mSavedViewRegistryState);
+        }
+        if (!this.mFragment.mUserVisibleHint) {
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putBoolean(USER_VISIBLE_HINT_TAG, this.mFragment.mUserVisibleHint);
+        }
+        return bundle;
     }
 
     @Nullable

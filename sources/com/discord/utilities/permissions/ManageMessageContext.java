@@ -25,7 +25,7 @@ public final /* data */ class ManageMessageContext {
     private final boolean canTogglePinned;
 
     /* JADX INFO: compiled from: PermissionsContexts.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -105,40 +105,6 @@ public final /* data */ class ManageMessageContext {
         return manageMessageContext.copy(z2, z8, z9, z10, z11, z7);
     }
 
-    public static final ManageMessageContext from(Message message, Long l, MeUser meUser, Integer num, boolean z2, boolean z3, boolean z4) {
-        return INSTANCE.from(message, l, meUser, num, z2, z3, z4);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getCanManageMessages() {
-        return this.canManageMessages;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanEdit() {
-        return this.canEdit;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanDelete() {
-        return this.canDelete;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getCanAddReactions() {
-        return this.canAddReactions;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanTogglePinned() {
-        return this.canTogglePinned;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getCanMarkUnread() {
-        return this.canMarkUnread;
-    }
-
     public final ManageMessageContext copy(boolean canManageMessages, boolean canEdit, boolean canDelete, boolean canAddReactions, boolean canTogglePinned, boolean canMarkUnread) {
         return new ManageMessageContext(canManageMessages, canEdit, canDelete, canAddReactions, canTogglePinned, canMarkUnread);
     }
@@ -154,24 +120,58 @@ public final /* data */ class ManageMessageContext {
         return this.canManageMessages == manageMessageContext.canManageMessages && this.canEdit == manageMessageContext.canEdit && this.canDelete == manageMessageContext.canDelete && this.canAddReactions == manageMessageContext.canAddReactions && this.canTogglePinned == manageMessageContext.canTogglePinned && this.canMarkUnread == manageMessageContext.canMarkUnread;
     }
 
+    public static final ManageMessageContext from(Message message, Long l, MeUser meUser, Integer num, boolean z2, boolean z3, boolean z4) {
+        return INSTANCE.from(message, l, meUser, num, z2, z3, z4);
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getCanAddReactions() {
         return this.canAddReactions;
+    }
+
+    public final boolean getCanAddReactions() {
+        return this.canAddReactions;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getCanDelete() {
+        return this.canDelete;
     }
 
     public final boolean getCanDelete() {
         return this.canDelete;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getCanEdit() {
         return this.canEdit;
+    }
+
+    public final boolean getCanEdit() {
+        return this.canEdit;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getCanManageMessages() {
+        return this.canManageMessages;
     }
 
     public final boolean getCanManageMessages() {
         return this.canManageMessages;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getCanMarkUnread() {
         return this.canMarkUnread;
+    }
+
+    public final boolean getCanMarkUnread() {
+        return this.canMarkUnread;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getCanTogglePinned() {
+        return this.canTogglePinned;
     }
 
     public final boolean getCanTogglePinned() {

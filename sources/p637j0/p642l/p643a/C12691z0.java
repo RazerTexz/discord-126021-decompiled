@@ -29,9 +29,30 @@ public final class C12691z0<T> implements Observable.InterfaceC13006b<T, T> {
     /* JADX INFO: renamed from: l */
     public final int f27147l;
 
+    public C12691z0(Scheduler scheduler, boolean z2, int i) {
+        this.f27145j = scheduler;
+        this.f27146k = z2;
+        this.f27147l = i <= 0 ? C12719i.f27283j : i;
+    }
+
+    @Override // p637j0.p641k.InterfaceC12589b
+    public Object call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        Scheduler scheduler = this.f27145j;
+        if (scheduler instanceof C12708m) {
+            return subscriber;
+        }
+        a aVar = new a(scheduler, subscriber, this.f27146k, this.f27147l);
+        Subscriber<? super T> subscriber2 = aVar.f27148j;
+        subscriber2.setProducer(new C12688y0(aVar));
+        subscriber2.add(aVar.f27149k);
+        subscriber2.add(aVar);
+        return aVar;
+    }
+
     /* JADX INFO: renamed from: j0.l.a.z0$a */
     /* JADX INFO: compiled from: OperatorObserveOn.java */
-    public static final class a<T> extends Subscriber<T> implements Action0 {
+    public final class a<T> extends Subscriber<T> implements Action0 {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f27148j;
@@ -51,17 +72,17 @@ public final class C12691z0<T> implements Observable.InterfaceC13006b<T, T> {
         /* JADX INFO: renamed from: o */
         public volatile boolean f27153o;
 
-        /* JADX INFO: renamed from: p */
-        public final AtomicLong f27154p = new AtomicLong();
-
-        /* JADX INFO: renamed from: q */
-        public final AtomicLong f27155q = new AtomicLong();
-
         /* JADX INFO: renamed from: r */
         public Throwable f27156r;
 
         /* JADX INFO: renamed from: s */
         public long f27157s;
+
+        /* JADX INFO: renamed from: p */
+        public final AtomicLong f27154p = new AtomicLong();
+
+        /* JADX INFO: renamed from: q */
+        public final AtomicLong f27155q = new AtomicLong();
 
         public a(Scheduler scheduler, Subscriber<? super T> subscriber, boolean z2, int i) {
             this.f27148j = subscriber;
@@ -75,6 +96,40 @@ public final class C12691z0<T> implements Observable.InterfaceC13006b<T, T> {
                 this.f27151m = new C12726c(i);
             }
             request(i);
+        }
+
+        @Override // p658rx.functions.Action0
+        public void call() {
+            long j = this.f27157s;
+            Queue<Object> queue = this.f27151m;
+            Subscriber<? super T> subscriber = this.f27148j;
+            long jAddAndGet = 1;
+            do {
+                long jM4250U0 = this.f27154p.get();
+                while (jM4250U0 != j) {
+                    boolean z2 = this.f27153o;
+                    Object objPoll = queue.poll();
+                    boolean z3 = objPoll == null;
+                    if (m10793a(z2, z3, subscriber, queue)) {
+                        return;
+                    }
+                    if (z3) {
+                        break;
+                    }
+                    subscriber.onNext((Object) C12614e.m10745b(objPoll));
+                    j++;
+                    if (j == this.f27152n) {
+                        jM4250U0 = C3404f.m4250U0(this.f27154p, j);
+                        request(j);
+                        j = 0;
+                    }
+                }
+                if (jM4250U0 == j && m10793a(this.f27153o, queue.isEmpty(), subscriber, queue)) {
+                    return;
+                }
+                this.f27157s = j;
+                jAddAndGet = this.f27155q.addAndGet(-jAddAndGet);
+            } while (jAddAndGet != 0);
         }
 
         /* JADX INFO: renamed from: a */
@@ -132,40 +187,6 @@ public final class C12691z0<T> implements Observable.InterfaceC13006b<T, T> {
             }
         }
 
-        @Override // p658rx.functions.Action0
-        public void call() {
-            long j = this.f27157s;
-            Queue<Object> queue = this.f27151m;
-            Subscriber<? super T> subscriber = this.f27148j;
-            long jAddAndGet = 1;
-            do {
-                long jM4250U0 = this.f27154p.get();
-                while (jM4250U0 != j) {
-                    boolean z2 = this.f27153o;
-                    Object objPoll = queue.poll();
-                    boolean z3 = objPoll == null;
-                    if (m10793a(z2, z3, subscriber, queue)) {
-                        return;
-                    }
-                    if (z3) {
-                        break;
-                    }
-                    subscriber.onNext((Object) C12614e.m10745b(objPoll));
-                    j++;
-                    if (j == this.f27152n) {
-                        jM4250U0 = C3404f.m4250U0(this.f27154p, j);
-                        request(j);
-                        j = 0;
-                    }
-                }
-                if (jM4250U0 == j && m10793a(this.f27153o, queue.isEmpty(), subscriber, queue)) {
-                    return;
-                }
-                this.f27157s = j;
-                jAddAndGet = this.f27155q.addAndGet(-jAddAndGet);
-            } while (jAddAndGet != 0);
-        }
-
         @Override // p637j0.InterfaceC12581g
         public void onCompleted() {
             if (isUnsubscribed() || this.f27153o) {
@@ -189,42 +210,19 @@ public final class C12691z0<T> implements Observable.InterfaceC13006b<T, T> {
         /* JADX WARN: Type inference incomplete: some casts might be missing */
         @Override // p637j0.InterfaceC12581g
         public void onNext(T t) {
-            Object obj;
             if (isUnsubscribed() || this.f27153o) {
                 return;
             }
             Queue<Object> queue = this.f27151m;
+            Object obj = t;
             if (t == null) {
-                obj = t;
                 obj = C12614e.f26769b;
             }
-            obj = t;
             if (queue.offer(obj)) {
                 m10794b();
             } else {
                 onError(new MissingBackpressureException());
             }
         }
-    }
-
-    public C12691z0(Scheduler scheduler, boolean z2, int i) {
-        this.f27145j = scheduler;
-        this.f27146k = z2;
-        this.f27147l = i <= 0 ? C12719i.f27283j : i;
-    }
-
-    @Override // p637j0.p641k.InterfaceC12589b
-    public Object call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        Scheduler scheduler = this.f27145j;
-        if (scheduler instanceof C12708m) {
-            return subscriber;
-        }
-        a aVar = new a(scheduler, subscriber, this.f27146k, this.f27147l);
-        Subscriber<? super T> subscriber2 = aVar.f27148j;
-        subscriber2.setProducer(new C12688y0(aVar));
-        subscriber2.add(aVar.f27149k);
-        subscriber2.add(aVar);
-        return aVar;
     }
 }

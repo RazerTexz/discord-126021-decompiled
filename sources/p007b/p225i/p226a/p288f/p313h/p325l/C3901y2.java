@@ -13,6 +13,17 @@ public final class C3901y2<T> extends AbstractC3888x2<T> {
         this.zza = t;
     }
 
+    public final boolean equals(@NullableDecl Object obj) {
+        if (obj instanceof C3901y2) {
+            return this.zza.equals(((C3901y2) obj).zza);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.zza.hashCode() + 1502476572;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3888x2
     /* JADX INFO: renamed from: b */
     public final boolean mo5342b() {
@@ -23,17 +34,6 @@ public final class C3901y2<T> extends AbstractC3888x2<T> {
     /* JADX INFO: renamed from: c */
     public final T mo5343c() {
         return this.zza;
-    }
-
-    public final boolean equals(@NullableDecl Object obj) {
-        if (obj instanceof C3901y2) {
-            return this.zza.equals(((C3901y2) obj).zza);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.zza.hashCode() + 1502476572;
     }
 
     public final String toString() {

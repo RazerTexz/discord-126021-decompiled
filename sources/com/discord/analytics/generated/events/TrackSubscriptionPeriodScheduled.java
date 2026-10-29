@@ -15,26 +15,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionPeriodScheduled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionPeriodScheduled implements AnalyticsSchema, TrackBaseReceiver, TrackSubscriptionMetadataReceiver, TrackEntitlementMetadataReceiver, TrackPaymentMetadataReceiver {
+    private final CharSequence accessType = null;
+    private final Boolean expectedToAutorenew = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final Boolean renewal = null;
+    private final Long scheduledEndTimestamp = null;
+    private final Long scheduledStartTimestamp = null;
+    private final Long skuId = null;
+    private final Long subscriptionId = null;
     private TrackBase trackBase;
     private TrackEntitlementMetadata trackEntitlementMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final Long subscriptionId = null;
-    private final Long paymentId = null;
-    private final Long paymentGateway = null;
-    private final Long skuId = null;
-    private final Long scheduledStartTimestamp = null;
-    private final Long scheduledEndTimestamp = null;
-    private final CharSequence accessType = null;
-    private final Boolean expectedToAutorenew = null;
-    private final Boolean renewal = null;
     private final transient String analyticsSchemaTypeName = "subscription_period_scheduled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -45,6 +39,12 @@ public final /* data */ class TrackSubscriptionPeriodScheduled implements Analyt
         }
         TrackSubscriptionPeriodScheduled trackSubscriptionPeriodScheduled = (TrackSubscriptionPeriodScheduled) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionPeriodScheduled.subscriptionId) && C12238m.areEqual(this.paymentId, trackSubscriptionPeriodScheduled.paymentId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionPeriodScheduled.paymentGateway) && C12238m.areEqual(this.skuId, trackSubscriptionPeriodScheduled.skuId) && C12238m.areEqual(this.scheduledStartTimestamp, trackSubscriptionPeriodScheduled.scheduledStartTimestamp) && C12238m.areEqual(this.scheduledEndTimestamp, trackSubscriptionPeriodScheduled.scheduledEndTimestamp) && C12238m.areEqual(this.accessType, trackSubscriptionPeriodScheduled.accessType) && C12238m.areEqual(this.expectedToAutorenew, trackSubscriptionPeriodScheduled.expectedToAutorenew) && C12238m.areEqual(this.renewal, trackSubscriptionPeriodScheduled.renewal);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

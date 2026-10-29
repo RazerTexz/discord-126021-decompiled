@@ -29,11 +29,30 @@ public final class ConfirmRemovePermissionDialogViewModel extends AbstractC0859d
     private final StoreChannels channelStore;
     private final PermissionOwner permissionOwner;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialogViewModel$submit$1 */
     /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
-    public static abstract class ViewState {
+    public final class C75221 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C75221() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            ConfirmRemovePermissionDialogViewModel.this.handleSubmissionComplete();
+        }
+    }
+
+    /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
-        public static final class Complete extends ViewState {
+        public final class Complete extends ViewState {
             public static final Complete INSTANCE = new Complete();
 
             private Complete() {
@@ -42,7 +61,7 @@ public final class ConfirmRemovePermissionDialogViewModel extends AbstractC0859d
         }
 
         /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
-        public static final /* data */ class Default extends ViewState {
+        public final /* data */ class Default extends ViewState {
             private final boolean isSubmitting;
 
             public Default(boolean z2) {
@@ -57,11 +76,6 @@ public final class ConfirmRemovePermissionDialogViewModel extends AbstractC0859d
                 return r0.copy(z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsSubmitting() {
-                return this.isSubmitting;
-            }
-
             public final Default copy(boolean isSubmitting) {
                 return new Default(isSubmitting);
             }
@@ -71,6 +85,11 @@ public final class ConfirmRemovePermissionDialogViewModel extends AbstractC0859d
                     return (other instanceof Default) && this.isSubmitting == ((Default) other).isSubmitting;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsSubmitting() {
+                return this.isSubmitting;
             }
 
             public int hashCode() {
@@ -95,25 +114,6 @@ public final class ConfirmRemovePermissionDialogViewModel extends AbstractC0859d
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialogViewModel$submit$1 */
-    /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
-    public static final class C75221 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C75221() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            ConfirmRemovePermissionDialogViewModel.this.handleSubmissionComplete();
         }
     }
 

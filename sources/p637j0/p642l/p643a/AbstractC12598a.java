@@ -26,7 +26,7 @@ public abstract class AbstractC12598a<T, R> extends Subscriber<T> {
 
     /* JADX INFO: renamed from: j0.l.a.a$a */
     /* JADX INFO: compiled from: DeferredScalarSubscriber.java */
-    public static final class a implements Producer {
+    public final class a implements Producer {
 
         /* JADX INFO: renamed from: j */
         public final AbstractC12598a<?, ?> f26723j;

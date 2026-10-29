@@ -15,7 +15,6 @@ import com.google.android.material.C10817R;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ShapeAppearanceModel {
-    public static final CornerSize PILL = new RelativeCornerSize(0.5f);
     public EdgeTreatment bottomEdge;
     public CornerTreatment bottomLeftCorner;
     public CornerSize bottomLeftCornerSize;
@@ -28,8 +27,9 @@ public class ShapeAppearanceModel {
     public CornerSize topLeftCornerSize;
     public CornerTreatment topRightCorner;
     public CornerSize topRightCornerSize;
+    public static final CornerSize PILL = new RelativeCornerSize(0.5f);
 
-    public static final class Builder {
+    public final class Builder {
 
         @NonNull
         private EdgeTreatment bottomEdge;
@@ -82,6 +82,11 @@ public class ShapeAppearanceModel {
             this.leftEdge = MaterialShapeUtils.createDefaultEdgeTreatment();
         }
 
+        @NonNull
+        public ShapeAppearanceModel build() {
+            return new ShapeAppearanceModel(this);
+        }
+
         private static float compatCornerTreatmentSize(CornerTreatment cornerTreatment) {
             if (cornerTreatment instanceof RoundedCornerTreatment) {
                 return ((RoundedCornerTreatment) cornerTreatment).radius;
@@ -90,11 +95,6 @@ public class ShapeAppearanceModel {
                 return ((CutCornerTreatment) cornerTreatment).size;
             }
             return -1.0f;
-        }
-
-        @NonNull
-        public ShapeAppearanceModel build() {
-            return new ShapeAppearanceModel(this);
         }
 
         @NonNull
@@ -314,19 +314,6 @@ public class ShapeAppearanceModel {
     }
 
     @NonNull
-    private static CornerSize getCornerSize(TypedArray typedArray, int i, @NonNull CornerSize cornerSize) {
-        TypedValue typedValuePeekValue = typedArray.peekValue(i);
-        if (typedValuePeekValue == null) {
-            return cornerSize;
-        }
-        int i2 = typedValuePeekValue.type;
-        if (i2 == 5) {
-            return new AbsoluteCornerSize(TypedValue.complexToDimensionPixelSize(typedValuePeekValue.data, typedArray.getResources().getDisplayMetrics()));
-        }
-        return i2 == 6 ? new RelativeCornerSize(typedValuePeekValue.getFraction(1.0f, 1.0f)) : cornerSize;
-    }
-
-    @NonNull
     public EdgeTreatment getBottomEdge() {
         return this.bottomEdge;
     }
@@ -349,6 +336,19 @@ public class ShapeAppearanceModel {
     @NonNull
     public CornerSize getBottomRightCornerSize() {
         return this.bottomRightCornerSize;
+    }
+
+    @NonNull
+    private static CornerSize getCornerSize(TypedArray typedArray, int i, @NonNull CornerSize cornerSize) {
+        TypedValue typedValuePeekValue = typedArray.peekValue(i);
+        if (typedValuePeekValue == null) {
+            return cornerSize;
+        }
+        int i2 = typedValuePeekValue.type;
+        if (i2 == 5) {
+            return new AbsoluteCornerSize(TypedValue.complexToDimensionPixelSize(typedValuePeekValue.data, typedArray.getResources().getDisplayMetrics()));
+        }
+        return i2 == 6 ? new RelativeCornerSize(typedValuePeekValue.getFraction(1.0f, 1.0f)) : cornerSize;
     }
 
     @NonNull

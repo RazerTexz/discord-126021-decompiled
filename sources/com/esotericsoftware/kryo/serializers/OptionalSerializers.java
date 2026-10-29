@@ -13,7 +13,7 @@ import java.util.OptionalLong;
 /* JADX INFO: loaded from: classes.dex */
 public final class OptionalSerializers {
 
-    public static class OptionalDoubleSerializer extends Serializer<OptionalDouble> {
+    public class OptionalDoubleSerializer extends Serializer<OptionalDouble> {
         private OptionalDoubleSerializer() {
             setImmutable(true);
         }
@@ -32,7 +32,7 @@ public final class OptionalSerializers {
         }
     }
 
-    public static class OptionalIntSerializer extends Serializer<OptionalInt> {
+    public class OptionalIntSerializer extends Serializer<OptionalInt> {
         private OptionalIntSerializer() {
             setImmutable(true);
         }
@@ -51,7 +51,7 @@ public final class OptionalSerializers {
         }
     }
 
-    public static class OptionalLongSerializer extends Serializer<OptionalLong> {
+    public class OptionalLongSerializer extends Serializer<OptionalLong> {
         private OptionalLongSerializer() {
             setImmutable(true);
         }
@@ -70,7 +70,7 @@ public final class OptionalSerializers {
         }
     }
 
-    public static class OptionalSerializer extends Serializer<Optional> {
+    public class OptionalSerializer extends Serializer<Optional> {
         private OptionalSerializer() {
             setAcceptsNull(false);
         }

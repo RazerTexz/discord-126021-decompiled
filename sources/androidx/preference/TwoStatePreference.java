@@ -18,6 +18,38 @@ public abstract class TwoStatePreference extends Preference {
     private CharSequence mSummaryOff;
     private CharSequence mSummaryOn;
 
+    public class SavedState extends Preference.BaseSavedState {
+        public boolean mChecked;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.TwoStatePreference.SavedState.1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            this.mChecked = parcel.readInt() == 1;
+        }
+
+        @Override // android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.mChecked ? 1 : 0);
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
     public TwoStatePreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
     }
@@ -127,38 +159,6 @@ public abstract class TwoStatePreference extends Preference {
 
     public void syncSummaryView(PreferenceViewHolder preferenceViewHolder) {
         syncSummaryView(preferenceViewHolder.findViewById(android.R.id.summary));
-    }
-
-    public static class SavedState extends Preference.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.TwoStatePreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public boolean mChecked;
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mChecked = parcel.readInt() == 1;
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mChecked ? 1 : 0);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
     }
 
     public TwoStatePreference(Context context, AttributeSet attributeSet, int i) {

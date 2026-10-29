@@ -20,30 +20,14 @@ public final class GuildCommunicationDisabledGuildsFeatureFlag {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildCommunicationDisabledGuildsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
     private final StoreGuilds guildsStore;
     private final ObservationDeck observationDeck;
     private final StoreExperiments storeExperiments;
-
-    /* JADX INFO: compiled from: GuildCommunicationDisabledGuildsFeatureFlag.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final GuildCommunicationDisabledGuildsFeatureFlag getINSTANCE() {
-            Lazy lazy = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE$delegate;
-            Companion companion = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE;
-            return (GuildCommunicationDisabledGuildsFeatureFlag) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildCommunicationDisabledGuildsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.GuildCommunicationDisabledGuildsFeatureFlag$observeCanGuildAccessCommunicationDisabled$1 */
     /* JADX INFO: compiled from: GuildCommunicationDisabledGuildsFeatureFlag.kt */
-    public static final class C85581 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C85581 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -60,6 +44,22 @@ public final class GuildCommunicationDisabledGuildsFeatureFlag {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2() {
             return GuildCommunicationDisabledGuildsFeatureFlag.this.canGuildAccessCommunicationDisabled(this.$guildId) && GuildCommunicationDisabledGuildsFeatureFlag.this.canUserAccessDisableCommunication();
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildCommunicationDisabledGuildsFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GuildCommunicationDisabledGuildsFeatureFlag getINSTANCE() {
+            Lazy lazy = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE$delegate;
+            Companion companion = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE;
+            return (GuildCommunicationDisabledGuildsFeatureFlag) lazy.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

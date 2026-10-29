@@ -41,35 +41,9 @@ public final class StoreMaskedLinks extends StoreV2 {
     private Set<String> userTrustedDomains;
     private Set<String> userTrustedDomainsSnapshot;
 
-    /* JADX INFO: compiled from: StoreMaskedLinks.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final String getDomainName(String url) {
-            try {
-                Uri uri = Uri.parse(url);
-                C12238m.checkNotNullExpressionValue(uri, "Uri.parse(url)");
-                return uri.getHost();
-            } catch (Exception unused) {
-                return null;
-            }
-        }
-
-        @VisibleForTesting
-        public final boolean isImplicitlyTrustedDomain$app_productionGoogleRelease(String name) {
-            C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            return StoreMaskedLinks.TRUSTED_DOMAINS.contains(name) || StoreMaskedLinks.DISCORD_DOMAINS_REGEX.containsMatchIn(name);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreMaskedLinks$trustDomain$1 */
     /* JADX INFO: compiled from: StoreMaskedLinks.kt */
-    public static final class C61631 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61631 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $url;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -91,6 +65,32 @@ public final class StoreMaskedLinks extends StoreV2 {
                 StoreMaskedLinks.this.userTrustedDomains.add(domainName);
                 StoreMaskedLinks.this.markChanged();
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMaskedLinks.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final String getDomainName(String url) {
+            try {
+                Uri uri = Uri.parse(url);
+                C12238m.checkNotNullExpressionValue(uri, "Uri.parse(url)");
+                return uri.getHost();
+            } catch (Exception unused) {
+                return null;
+            }
+        }
+
+        @VisibleForTesting
+        public final boolean isImplicitlyTrustedDomain$app_productionGoogleRelease(String name) {
+            C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            return StoreMaskedLinks.TRUSTED_DOMAINS.contains(name) || StoreMaskedLinks.DISCORD_DOMAINS_REGEX.containsMatchIn(name);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

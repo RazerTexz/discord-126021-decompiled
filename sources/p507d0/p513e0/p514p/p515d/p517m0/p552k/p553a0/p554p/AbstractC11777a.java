@@ -22,6 +22,16 @@ public abstract class AbstractC11777a implements InterfaceC11780d {
         this.f24387b = interfaceC11780d == null ? this : interfaceC11780d;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.p554p.InterfaceC11780d
+    public AbstractC11913c0 getType() {
+        AbstractC11913c0 abstractC11913c0 = this.f24386a;
+        if (abstractC11913c0 != null) {
+            return abstractC11913c0;
+        }
+        m9914a(1);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9914a(int i) {
         String str = (i == 1 || i == 2) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -46,15 +56,5 @@ public abstract class AbstractC11777a implements InterfaceC11780d {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.p554p.InterfaceC11780d
-    public AbstractC11913c0 getType() {
-        AbstractC11913c0 abstractC11913c0 = this.f24386a;
-        if (abstractC11913c0 != null) {
-            return abstractC11913c0;
-        }
-        m9914a(1);
-        throw null;
     }
 }

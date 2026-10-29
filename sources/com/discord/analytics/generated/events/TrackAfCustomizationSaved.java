@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfCustomizationSaved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence loadId = null;
     private final Long addedMemberCount = null;
+    private final CharSequence loadId = null;
     private final Long removedMemberCount = null;
     private final Long selectedFriendCount = null;
-    private final Long selectedTotalCount = null;
     private final Long selectedSuggestedCount = null;
+    private final Long selectedTotalCount = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "af_customization_saved";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSche
         }
         TrackAfCustomizationSaved trackAfCustomizationSaved = (TrackAfCustomizationSaved) other;
         return C12238m.areEqual(this.loadId, trackAfCustomizationSaved.loadId) && C12238m.areEqual(this.addedMemberCount, trackAfCustomizationSaved.addedMemberCount) && C12238m.areEqual(this.removedMemberCount, trackAfCustomizationSaved.removedMemberCount) && C12238m.areEqual(this.selectedFriendCount, trackAfCustomizationSaved.selectedFriendCount) && C12238m.areEqual(this.selectedTotalCount, trackAfCustomizationSaved.selectedTotalCount) && C12238m.areEqual(this.selectedSuggestedCount, trackAfCustomizationSaved.selectedSuggestedCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -19,25 +19,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentFlowFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentFlowFailed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackSubscriptionMetadataReceiver, TrackPaymentMetadataReceiver, TrackSourceMetadataReceiver {
+    private final Long durationMs = null;
+    private final Boolean eligibleForTrial = null;
+    private final CharSequence loadId = null;
+    private final Long paymentErrorCode = null;
+    private final Long paymentGateway = null;
+    private final Long paymentSourceId = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final CharSequence loadId = null;
-    private final Long durationMs = null;
-    private final Long paymentErrorCode = null;
-    private final Long paymentSourceId = null;
-    private final Long paymentGateway = null;
-    private final Boolean eligibleForTrial = null;
     private final transient String analyticsSchemaTypeName = "payment_flow_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +42,12 @@ public final /* data */ class TrackPaymentFlowFailed implements AnalyticsSchema,
         }
         TrackPaymentFlowFailed trackPaymentFlowFailed = (TrackPaymentFlowFailed) other;
         return C12238m.areEqual(this.loadId, trackPaymentFlowFailed.loadId) && C12238m.areEqual(this.durationMs, trackPaymentFlowFailed.durationMs) && C12238m.areEqual(this.paymentErrorCode, trackPaymentFlowFailed.paymentErrorCode) && C12238m.areEqual(this.paymentSourceId, trackPaymentFlowFailed.paymentSourceId) && C12238m.areEqual(this.paymentGateway, trackPaymentFlowFailed.paymentGateway) && C12238m.areEqual(this.eligibleForTrial, trackPaymentFlowFailed.eligibleForTrial);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

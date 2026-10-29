@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLocalSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean notificationsEnabled = null;
-    private final Boolean notificationsInAppEnabled = null;
+    private final Boolean autoStreaming = null;
     private final Boolean colorblindEnabled = null;
-    private final Float saturationLevel = null;
     private final Boolean gameDetectionEnabled = null;
     private final Boolean nativePhoneIntegrationEnabled = null;
-    private final Boolean autoStreaming = null;
+    private final Boolean notificationsEnabled = null;
+    private final Boolean notificationsInAppEnabled = null;
+    private final Float saturationLevel = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "local_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
         }
         TrackLocalSettingsUpdated trackLocalSettingsUpdated = (TrackLocalSettingsUpdated) other;
         return C12238m.areEqual(this.notificationsEnabled, trackLocalSettingsUpdated.notificationsEnabled) && C12238m.areEqual(this.notificationsInAppEnabled, trackLocalSettingsUpdated.notificationsInAppEnabled) && C12238m.areEqual(this.colorblindEnabled, trackLocalSettingsUpdated.colorblindEnabled) && C12238m.areEqual(this.saturationLevel, trackLocalSettingsUpdated.saturationLevel) && C12238m.areEqual(this.gameDetectionEnabled, trackLocalSettingsUpdated.gameDetectionEnabled) && C12238m.areEqual(this.nativePhoneIntegrationEnabled, trackLocalSettingsUpdated.nativePhoneIntegrationEnabled) && C12238m.areEqual(this.autoStreaming, trackLocalSettingsUpdated.autoStreaming);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -38,7 +38,7 @@ public final class C12378v {
 
     /* JADX INFO: renamed from: f0.v$a */
     /* JADX INFO: compiled from: Handshake.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends Certificate>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends Certificate>> {
         public final /* synthetic */ List $peerCertificatesCopy;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -55,7 +55,7 @@ public final class C12378v {
 
     /* JADX INFO: renamed from: f0.v$b */
     /* JADX INFO: compiled from: Handshake.kt */
-    public static final class b extends AbstractC12240o implements Function0<List<? extends Certificate>> {
+    public final class b extends AbstractC12240o implements Function0<List<? extends Certificate>> {
         public final /* synthetic */ Function0 $peerCertificatesFn;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -84,6 +84,20 @@ public final class C12378v {
         this.f25971c = c12366j;
         this.f25972d = list;
         this.f25969a = C12083g.lazy(new b(function0));
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof C12378v) {
+            C12378v c12378v = (C12378v) obj;
+            if (c12378v.f25970b == this.f25970b && C12238m.areEqual(c12378v.f25971c, this.f25971c) && C12238m.areEqual(c12378v.m10398c(), m10398c()) && C12238m.areEqual(c12378v.f25972d, this.f25972d)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        return this.f25972d.hashCode() + ((m10398c().hashCode() + ((this.f25971c.hashCode() + ((this.f25970b.hashCode() + 527) * 31)) * 31)) * 31);
     }
 
     /* JADX INFO: renamed from: a */
@@ -133,20 +147,6 @@ public final class C12378v {
     /* JADX INFO: renamed from: c */
     public final List<Certificate> m10398c() {
         return (List) this.f25969a.getValue();
-    }
-
-    public boolean equals(Object obj) {
-        if (obj instanceof C12378v) {
-            C12378v c12378v = (C12378v) obj;
-            if (c12378v.f25970b == this.f25970b && C12238m.areEqual(c12378v.f25971c, this.f25971c) && C12238m.areEqual(c12378v.m10398c(), m10398c()) && C12238m.areEqual(c12378v.f25972d, this.f25972d)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int hashCode() {
-        return this.f25972d.hashCode() + ((m10398c().hashCode() + ((this.f25971c.hashCode() + ((this.f25970b.hashCode() + 527) * 31)) * 31)) * 31);
     }
 
     public String toString() {

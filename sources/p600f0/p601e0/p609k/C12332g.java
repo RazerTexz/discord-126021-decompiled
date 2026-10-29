@@ -38,7 +38,7 @@ public final class C12332g extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.g$a */
     /* JADX INFO: compiled from: OpenJSSEPlatform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

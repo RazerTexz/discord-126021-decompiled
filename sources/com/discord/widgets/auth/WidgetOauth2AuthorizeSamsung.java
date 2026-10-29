@@ -71,48 +71,9 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
     private final ActivityResultLauncher<Intent> samsungConnectLauncher;
     private final ActivityResultLauncher<Intent> samsungDisclaimerLauncher;
 
-    /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final String createSAStateId() {
-            StringBuilder sbM833U = C1643a.m833U("SA");
-            sbM833U.append(UUID.randomUUID());
-            return C12108y.take(sbM833U.toString(), 115);
-        }
-
-        private final void logI(String message) {
-            AppLog appLog = AppLog.f14950g;
-            appLog.m8360c(message, "Samsung", null, new WidgetOauth2AuthorizeSamsung$Companion$logI$1(appLog));
-        }
-
-        private final void logW(String message, Throwable throwable) {
-            AppLog appLog = AppLog.f14950g;
-            appLog.m8360c(message, "Samsung", throwable, new WidgetOauth2AuthorizeSamsung$Companion$logW$1(appLog));
-        }
-
-        public static /* synthetic */ void logW$default(Companion companion, String str, Throwable th, int i, Object obj) {
-            if ((i & 2) != 0) {
-                th = null;
-            }
-            companion.logW(str, th);
-        }
-
-        public final Observable<Void> getForSamsung(WidgetOauth2Authorize.OAuth2Authorize oAuth2Authorize, String str) {
-            C12238m.checkNotNullParameter(oAuth2Authorize, "$this$getForSamsung");
-            C12238m.checkNotNullParameter(str, "accountUri");
-            return RestAPI.INSTANCE.getApi().getOauth2SamsungAuthorize(String.valueOf(oAuth2Authorize.getClientId()), oAuth2Authorize.getState(), oAuth2Authorize.getResponseType(), str, oAuth2Authorize.getPrompt(), oAuth2Authorize.getScope());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$authorizeForSamsung$1 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
-    public static final class C72521 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C72521 extends AbstractC12240o implements Function1<Error, Unit> {
         public C72521() {
             super(1);
         }
@@ -137,13 +98,13 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$authorizeForSamsung$2 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
-    public static final class C72532 extends AbstractC12240o implements Function1<RestAPIParams.OAuth2Authorize.ResponsePost, Unit> {
+    public final class C72532 extends AbstractC12240o implements Function1<RestAPIParams.OAuth2Authorize.ResponsePost, Unit> {
         public final /* synthetic */ String $samsungAuthCode;
 
         /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$authorizeForSamsung$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
         @InterfaceC12188e(m10084c = "com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$authorizeForSamsung$2$1", m10085f = "WidgetOauth2AuthorizeSamsung.kt", m10086l = {157}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             public final /* synthetic */ RestAPIParams.OAuth2Authorize.ResponsePost $it;
             public int label;
 
@@ -165,7 +126,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
             }
 
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                 int i = this.label;
                 if (i == 0) {
@@ -210,7 +171,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$samsungCallbackHandshake$1 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung", m10085f = "WidgetOauth2AuthorizeSamsung.kt", m10086l = {Opcodes.RETURN, Opcodes.NEWARRAY, Opcodes.CHECKCAST}, m10087m = "samsungCallbackHandshake")
-    public static final class C72551 extends AbstractC12187d {
+    public final class C72551 extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public Object L$2;
@@ -232,7 +193,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$samsungCallbackHandshake$2 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$samsungCallbackHandshake$2", m10085f = "WidgetOauth2AuthorizeSamsung.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C72562 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C72562 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C72562(Continuation continuation) {
@@ -251,7 +212,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -269,7 +230,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$startSamsungAccountLink$1 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
-    public static final class C72571 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C72571 extends AbstractC12240o implements Function1<Error, Unit> {
         public C72571() {
             super(1);
         }
@@ -293,7 +254,7 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetOauth2AuthorizeSamsung$startSamsungAccountLink$2 */
     /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
-    public static final class C72582 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C72582 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ String $samsungAuthCode;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -311,6 +272,45 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Void r3) {
             WidgetOauth2AuthorizeSamsung.this.authorizeForSamsung(this.$samsungAuthCode, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetOauth2AuthorizeSamsung.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final String createSAStateId() {
+            StringBuilder sbM833U = C1643a.m833U("SA");
+            sbM833U.append(UUID.randomUUID());
+            return C12108y.take(sbM833U.toString(), 115);
+        }
+
+        public final Observable<Void> getForSamsung(WidgetOauth2Authorize.OAuth2Authorize oAuth2Authorize, String str) {
+            C12238m.checkNotNullParameter(oAuth2Authorize, "$this$getForSamsung");
+            C12238m.checkNotNullParameter(str, "accountUri");
+            return RestAPI.INSTANCE.getApi().getOauth2SamsungAuthorize(String.valueOf(oAuth2Authorize.getClientId()), oAuth2Authorize.getState(), oAuth2Authorize.getResponseType(), str, oAuth2Authorize.getPrompt(), oAuth2Authorize.getScope());
+        }
+
+        private final void logI(String message) {
+            AppLog appLog = AppLog.f14950g;
+            appLog.m8360c(message, "Samsung", null, new WidgetOauth2AuthorizeSamsung$Companion$logI$1(appLog));
+        }
+
+        public static /* synthetic */ void logW$default(Companion companion, String str, Throwable th, int i, Object obj) {
+            if ((i & 2) != 0) {
+                th = null;
+            }
+            companion.logW(str, th);
+        }
+
+        private final void logW(String message, Throwable throwable) {
+            AppLog appLog = AppLog.f14950g;
+            appLog.m8360c(message, "Samsung", throwable, new WidgetOauth2AuthorizeSamsung$Companion$logW$1(appLog));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -350,39 +350,6 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
 
     private final void authorizeForSamsung(String samsungAuthCode, CaptchaHelper.CaptchaPayload captchaPayload) {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(getOauth2ViewModel().getOauthAuthorize().post(captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), false, 1, null), this, null, 2, null), (Class<?>) WidgetOauth2AuthorizeSamsung.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72521()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72532(samsungAuthCode));
-    }
-
-    private final void handleConnectActivityFailure(SamsungConnectActivity.Result.Failure result) {
-        if (!result.isRetryAllowed || result.attemptCount >= 2) {
-            return;
-        }
-        Companion.logW$default(INSTANCE, "Retrying SA connection.\nBecause sometimes it just doesn't bind the first time.", null, 2, null);
-        SamsungConnectActivity.m8504b(requireContext(), this.samsungConnectLauncher, result.attemptCount);
-    }
-
-    private final void handleConnectActivitySuccess(SamsungConnectActivity.Result.Success result) {
-        String str = result.authCode;
-        this.samsungAuthCode = str;
-        startSamsungAccountLink(result.serverUrl, str);
-    }
-
-    private final void startSamsungAccountLink(String saUrl, String samsungAuthCode) {
-        String str;
-        C12238m.checkNotNullParameter(saUrl, "authServerUrl");
-        String strTake = C12108y.take(saUrl, 2);
-        int iHashCode = strTake.hashCode();
-        if (iHashCode != 3179) {
-            if (iHashCode == 3248) {
-                strTake.equals("eu");
-            } else if (iHashCode == 3742 && strTake.equals("us")) {
-                str = "https://us.account.samsung.com";
-            }
-        } else {
-            str = strTake.equals("cn") ? "https://account.samsung.cn" : "https://account.samsung.com";
-        }
-        Companion companion = INSTANCE;
-        companion.logI("GET /authorize " + str);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(companion.getForSamsung(getOauth2ViewModel().getOauthAuthorize(), str), false, 1, null), this, null, 2, null), (Class<?>) WidgetOauth2AuthorizeSamsung.class, (58 & 2) != 0 ? null : requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72571()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72582(samsungAuthCode));
     }
 
     @Override // com.discord.widgets.auth.WidgetOauth2Authorize
@@ -431,6 +398,20 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
     @Override // com.discord.widgets.auth.WidgetOauth2Authorize
     public ActivityResultLauncher<Intent> getCaptchaLauncher() {
         return this.captchaLauncher;
+    }
+
+    private final void handleConnectActivityFailure(SamsungConnectActivity.Result.Failure result) {
+        if (!result.isRetryAllowed || result.attemptCount >= 2) {
+            return;
+        }
+        Companion.logW$default(INSTANCE, "Retrying SA connection.\nBecause sometimes it just doesn't bind the first time.", null, 2, null);
+        SamsungConnectActivity.m8504b(requireContext(), this.samsungConnectLauncher, result.attemptCount);
+    }
+
+    private final void handleConnectActivitySuccess(SamsungConnectActivity.Result.Success result) {
+        String str = result.authCode;
+        this.samsungAuthCode = str;
+        startSamsungAccountLink(result.serverUrl, str);
     }
 
     /* JADX WARN: Code duplicated, block: B:31:0x0106 A[RETURN] */
@@ -529,5 +510,24 @@ public final class WidgetOauth2AuthorizeSamsung extends WidgetOauth2Authorize {
             return coroutine_suspended;
         }
         return Unit.f27425a;
+    }
+
+    private final void startSamsungAccountLink(String saUrl, String samsungAuthCode) {
+        String str;
+        C12238m.checkNotNullParameter(saUrl, "authServerUrl");
+        String strTake = C12108y.take(saUrl, 2);
+        int iHashCode = strTake.hashCode();
+        if (iHashCode != 3179) {
+            if (iHashCode == 3248) {
+                strTake.equals("eu");
+            } else if (iHashCode == 3742 && strTake.equals("us")) {
+                str = "https://us.account.samsung.com";
+            }
+        } else {
+            str = strTake.equals("cn") ? "https://account.samsung.cn" : "https://account.samsung.com";
+        }
+        Companion companion = INSTANCE;
+        companion.logI("GET /authorize " + str);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(companion.getForSamsung(getOauth2ViewModel().getOauthAuthorize(), str), false, 1, null), this, null, 2, null), (Class<?>) WidgetOauth2AuthorizeSamsung.class, (58 & 2) != 0 ? null : requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72571()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72582(samsungAuthCode));
     }
 }

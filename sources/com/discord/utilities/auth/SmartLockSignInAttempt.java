@@ -30,16 +30,6 @@ public final /* data */ class SmartLockSignInAttempt {
         return smartLockSignInAttempt.copy(z2, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getUsedAutomaticCredentials() {
-        return this.usedAutomaticCredentials;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSignedInWithoutError() {
-        return this.signedInWithoutError;
-    }
-
     public final SmartLockSignInAttempt copy(boolean usedAutomaticCredentials, boolean signedInWithoutError) {
         return new SmartLockSignInAttempt(usedAutomaticCredentials, signedInWithoutError);
     }
@@ -55,8 +45,18 @@ public final /* data */ class SmartLockSignInAttempt {
         return this.usedAutomaticCredentials == smartLockSignInAttempt.usedAutomaticCredentials && this.signedInWithoutError == smartLockSignInAttempt.signedInWithoutError;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getSignedInWithoutError() {
         return this.signedInWithoutError;
+    }
+
+    public final boolean getSignedInWithoutError() {
+        return this.signedInWithoutError;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getUsedAutomaticCredentials() {
+        return this.usedAutomaticCredentials;
     }
 
     public final boolean getUsedAutomaticCredentials() {

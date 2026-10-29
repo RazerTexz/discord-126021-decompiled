@@ -15,44 +15,26 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver {
+    private final Long channeMutedUntil = null;
+    private final Boolean channelIsMuted = null;
+    private final Boolean channelIsOverridden = null;
+    private final CharSequence channelMessageNotificationSettings = null;
+    private final Long channelMutedUntil = null;
+    private final Boolean guildIsMuted = null;
+    private final CharSequence guildMessageNotificationSettings = null;
+    private final Long guildMutedUntil = null;
+    private final Long guildNotifyHighlights = null;
+    private final Boolean guildReceiveMobilePush = null;
+    private final Boolean guildScheduledEventsMuted = null;
+    private final Boolean guildSuppressEveryone = null;
+    private final Boolean guildSuppressRoles = null;
+    private final Long parentId = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
     private final CharSequence updateType = null;
-    private final Boolean guildSuppressEveryone = null;
-    private final Boolean guildSuppressRoles = null;
-    private final Boolean guildIsMuted = null;
-    private final Long guildMutedUntil = null;
-    private final Boolean guildReceiveMobilePush = null;
-    private final CharSequence guildMessageNotificationSettings = null;
-    private final Long parentId = null;
-    private final Boolean channelIsOverridden = null;
-    private final Boolean channelIsMuted = null;
-    private final Long channeMutedUntil = null;
-    private final Long channelMutedUntil = null;
-    private final CharSequence channelMessageNotificationSettings = null;
-    private final Boolean guildScheduledEventsMuted = null;
-    private final Long guildNotifyHighlights = null;
     private final transient String analyticsSchemaTypeName = "notification_settings_updated";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -63,6 +45,18 @@ public final /* data */ class TrackNotificationSettingsUpdated implements Analyt
         }
         TrackNotificationSettingsUpdated trackNotificationSettingsUpdated = (TrackNotificationSettingsUpdated) other;
         return C12238m.areEqual(this.updateType, trackNotificationSettingsUpdated.updateType) && C12238m.areEqual(this.guildSuppressEveryone, trackNotificationSettingsUpdated.guildSuppressEveryone) && C12238m.areEqual(this.guildSuppressRoles, trackNotificationSettingsUpdated.guildSuppressRoles) && C12238m.areEqual(this.guildIsMuted, trackNotificationSettingsUpdated.guildIsMuted) && C12238m.areEqual(this.guildMutedUntil, trackNotificationSettingsUpdated.guildMutedUntil) && C12238m.areEqual(this.guildReceiveMobilePush, trackNotificationSettingsUpdated.guildReceiveMobilePush) && C12238m.areEqual(this.guildMessageNotificationSettings, trackNotificationSettingsUpdated.guildMessageNotificationSettings) && C12238m.areEqual(this.parentId, trackNotificationSettingsUpdated.parentId) && C12238m.areEqual(this.channelIsOverridden, trackNotificationSettingsUpdated.channelIsOverridden) && C12238m.areEqual(this.channelIsMuted, trackNotificationSettingsUpdated.channelIsMuted) && C12238m.areEqual(this.channeMutedUntil, trackNotificationSettingsUpdated.channeMutedUntil) && C12238m.areEqual(this.channelMutedUntil, trackNotificationSettingsUpdated.channelMutedUntil) && C12238m.areEqual(this.channelMessageNotificationSettings, trackNotificationSettingsUpdated.channelMessageNotificationSettings) && C12238m.areEqual(this.guildScheduledEventsMuted, trackNotificationSettingsUpdated.guildScheduledEventsMuted) && C12238m.areEqual(this.guildNotifyHighlights, trackNotificationSettingsUpdated.guildNotifyHighlights);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -96,6 +90,12 @@ public final /* data */ class TrackNotificationSettingsUpdated implements Analyt
         int iHashCode14 = (iHashCode13 + (bool7 != null ? bool7.hashCode() : 0)) * 31;
         Long l5 = this.guildNotifyHighlights;
         return iHashCode14 + (l5 != null ? l5.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

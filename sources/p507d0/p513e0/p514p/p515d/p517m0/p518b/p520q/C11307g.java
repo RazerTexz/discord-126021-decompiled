@@ -120,7 +120,7 @@ public final class C11307g implements InterfaceC11354a, InterfaceC11356c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.g$b */
     /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
-    public static final class b extends AbstractC12240o implements Function0<AbstractC11934j0> {
+    public final class b extends AbstractC12240o implements Function0<AbstractC11934j0> {
         public final /* synthetic */ InterfaceC11905o $storageManager;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -138,7 +138,7 @@ public final class C11307g implements InterfaceC11354a, InterfaceC11356c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.g$c */
     /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
-    public static final class c extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends InterfaceC11465t0>> {
+    public final class c extends AbstractC12240o implements Function1<InterfaceC11770i, Collection<? extends InterfaceC11465t0>> {
         public final /* synthetic */ C11716e $name;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -156,7 +156,7 @@ public final class C11307g implements InterfaceC11354a, InterfaceC11356c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.g$d */
     /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
-    public static final class d extends AbstractC12240o implements Function0<InterfaceC11344g> {
+    public final class d extends AbstractC12240o implements Function0<InterfaceC11344g> {
         public d() {
             super(0);
         }
@@ -183,32 +183,6 @@ public final class C11307g implements InterfaceC11354a, InterfaceC11356c {
         this.f22654f = interfaceC11905o.createLazyValue(new b(interfaceC11905o));
         this.f22655g = interfaceC11905o.createCacheWithNotNullValues();
         this.f22656h = interfaceC11905o.createLazyValue(new d());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final C11539f m9381a(InterfaceC11330e interfaceC11330e) {
-        if (AbstractC11288h.isAny(interfaceC11330e) || !AbstractC11288h.isUnderKotlinPackage(interfaceC11330e)) {
-            return null;
-        }
-        C11714c fqNameUnsafe = C11836a.getFqNameUnsafe(interfaceC11330e);
-        if (!fqNameUnsafe.isSafe()) {
-            return null;
-        }
-        C11712a c11712aMapKotlinToJava = C11303c.f22614a.mapKotlinToJava(fqNameUnsafe);
-        C11713b c11713bAsSingleFqName = c11712aMapKotlinToJava == null ? null : c11712aMapKotlinToJava.asSingleFqName();
-        if (c11713bAsSingleFqName == null) {
-            return null;
-        }
-        InterfaceC11330e interfaceC11330eResolveClassByFqName = C11462s.resolveClassByFqName(m9382b().getOwnerModuleDescriptor(), c11713bAsSingleFqName, EnumC11482d.FROM_BUILTINS);
-        if (interfaceC11330eResolveClassByFqName instanceof C11539f) {
-            return (C11539f) interfaceC11330eResolveClassByFqName;
-        }
-        return null;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final C11306f.b m9382b() {
-        return (C11306f.b) C11904n.getValue(this.f22652d, this, (KProperty<?>) f22649a[0]);
     }
 
     /* JADX WARN: Code duplicated, block: B:43:0x00e2  */
@@ -476,6 +450,32 @@ public final class C11307g implements InterfaceC11354a, InterfaceC11356c {
             }
         }
         return false;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final C11539f m9381a(InterfaceC11330e interfaceC11330e) {
+        if (AbstractC11288h.isAny(interfaceC11330e) || !AbstractC11288h.isUnderKotlinPackage(interfaceC11330e)) {
+            return null;
+        }
+        C11714c fqNameUnsafe = C11836a.getFqNameUnsafe(interfaceC11330e);
+        if (!fqNameUnsafe.isSafe()) {
+            return null;
+        }
+        C11712a c11712aMapKotlinToJava = C11303c.f22614a.mapKotlinToJava(fqNameUnsafe);
+        C11713b c11713bAsSingleFqName = c11712aMapKotlinToJava == null ? null : c11712aMapKotlinToJava.asSingleFqName();
+        if (c11713bAsSingleFqName == null) {
+            return null;
+        }
+        InterfaceC11330e interfaceC11330eResolveClassByFqName = C11462s.resolveClassByFqName(m9382b().getOwnerModuleDescriptor(), c11713bAsSingleFqName, EnumC11482d.FROM_BUILTINS);
+        if (interfaceC11330eResolveClassByFqName instanceof C11539f) {
+            return (C11539f) interfaceC11330eResolveClassByFqName;
+        }
+        return null;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final C11306f.b m9382b() {
+        return (C11306f.b) C11904n.getValue(this.f22652d, this, (KProperty<?>) f22649a[0]);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p523h1.InterfaceC11354a

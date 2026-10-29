@@ -34,6 +34,26 @@ public class C11372f0 extends AbstractC11365c {
         this.f22872n = interfaceC11780d;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public InterfaceC11450m getContainingDeclaration() {
+        InterfaceC11450m interfaceC11450m = this.f22871m;
+        if (interfaceC11450m != null) {
+            return interfaceC11450m;
+        }
+        m9406a(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11459q0
+    public InterfaceC11780d getValue() {
+        InterfaceC11780d interfaceC11780d = this.f22872n;
+        if (interfaceC11780d != null) {
+            return interfaceC11780d;
+        }
+        m9406a(3);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9406a(int i) {
         String str = (i == 3 || i == 4) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -68,25 +88,5 @@ public class C11372f0 extends AbstractC11365c {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public InterfaceC11450m getContainingDeclaration() {
-        InterfaceC11450m interfaceC11450m = this.f22871m;
-        if (interfaceC11450m != null) {
-            return interfaceC11450m;
-        }
-        m9406a(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11459q0
-    public InterfaceC11780d getValue() {
-        InterfaceC11780d interfaceC11780d = this.f22872n;
-        if (interfaceC11780d != null) {
-            return interfaceC11780d;
-        }
-        m9406a(3);
-        throw null;
     }
 }

@@ -46,7 +46,7 @@ public final class WidgetHomeHeaderManager {
     public static final WidgetHomeHeaderManager INSTANCE = new WidgetHomeHeaderManager();
 
     /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
-    public static final /* data */ class HeaderData {
+    public final /* data */ class HeaderData {
         private final Integer drawableRes;
         private final boolean leftButtonIsBack;
         private final CharSequence subtitle;
@@ -83,31 +83,6 @@ public final class WidgetHomeHeaderManager {
             return headerData.copy(charSequence, charSequence3, num3, z3, num2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getTitle() {
-            return this.title;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getSubtitle() {
-            return this.subtitle;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getDrawableRes() {
-            return this.drawableRes;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getLeftButtonIsBack() {
-            return this.leftButtonIsBack;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Integer getTrailingDrawable() {
-            return this.trailingDrawable;
-        }
-
         public final HeaderData copy(CharSequence title, CharSequence subtitle, @DrawableRes Integer drawableRes, boolean leftButtonIsBack, @DrawableRes Integer trailingDrawable) {
             return new HeaderData(title, subtitle, drawableRes, leftButtonIsBack, trailingDrawable);
         }
@@ -123,20 +98,45 @@ public final class WidgetHomeHeaderManager {
             return C12238m.areEqual(this.title, headerData.title) && C12238m.areEqual(this.subtitle, headerData.subtitle) && C12238m.areEqual(this.drawableRes, headerData.drawableRes) && this.leftButtonIsBack == headerData.leftButtonIsBack && C12238m.areEqual(this.trailingDrawable, headerData.trailingDrawable);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Integer getDrawableRes() {
             return this.drawableRes;
+        }
+
+        public final Integer getDrawableRes() {
+            return this.drawableRes;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getLeftButtonIsBack() {
+            return this.leftButtonIsBack;
         }
 
         public final boolean getLeftButtonIsBack() {
             return this.leftButtonIsBack;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getSubtitle() {
             return this.subtitle;
         }
 
+        public final CharSequence getSubtitle() {
+            return this.subtitle;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final CharSequence getTitle() {
             return this.title;
+        }
+
+        public final CharSequence getTitle() {
+            return this.title;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Integer getTrailingDrawable() {
+            return this.trailingDrawable;
         }
 
         public final Integer getTrailingDrawable() {
@@ -184,6 +184,103 @@ public final class WidgetHomeHeaderManager {
     }
 
     private WidgetHomeHeaderManager() {
+    }
+
+    public final void configure(final WidgetHome widgetHome, final WidgetHomeModel model, final WidgetHomeBinding binding) {
+        int themedDrawableRes$default;
+        int i;
+        C12238m.checkNotNullParameter(widgetHome, "widgetHome");
+        C12238m.checkNotNullParameter(model, "model");
+        C12238m.checkNotNullParameter(binding, "binding");
+        widgetHome.lockCloseRightPanel(model.getChannel() == null || !(ChannelUtils.m7667B(model.getChannel()) || ChannelUtils.m7698v(model.getChannel())) || ChannelUtils.m7686j(model.getChannel()));
+        Channel channel = model.getChannel();
+        Integer numValueOf = channel != null ? Integer.valueOf(channel.getType()) : null;
+        if (numValueOf != null && numValueOf.intValue() == 14) {
+            widgetHome.bindToolbar(binding.f17127d.f963d);
+        } else if (numValueOf != null && numValueOf.intValue() == 15) {
+            widgetHome.bindToolbar(binding.f17127d.f961b);
+        } else {
+            C0987j5 c0987j5 = binding.f17127d.f962c;
+            C12238m.checkNotNullExpressionValue(c0987j5, "binding.panelCenter.widgetHomePanelCenterChat");
+            widgetHome.bindToolbar(c0987j5.f982a);
+        }
+        widgetHome.setActionBarTitleLayoutExpandedTappableArea();
+        Context context = widgetHome.getContext();
+        if (context != null) {
+            WidgetHomeHeaderManager widgetHomeHeaderManager = INSTANCE;
+            C12238m.checkNotNullExpressionValue(context, "context");
+            HeaderData headerData = widgetHomeHeaderManager.getHeaderData(model, context);
+            CharSequence title = headerData.getTitle();
+            CharSequence subtitle = headerData.getSubtitle();
+            Integer drawableRes = headerData.getDrawableRes();
+            boolean leftButtonIsBack = headerData.getLeftButtonIsBack();
+            Integer trailingDrawable = headerData.getTrailingDrawable();
+            if (leftButtonIsBack) {
+                themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, C5419R.attr.ic_action_bar_back, 0, 2, (Object) null);
+            } else {
+                if (leftButtonIsBack) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                themedDrawableRes$default = C5419R.drawable.ic_menu_24dp;
+            }
+            Integer numValueOf2 = Integer.valueOf(themedDrawableRes$default);
+            if (leftButtonIsBack) {
+                i = C5419R.string.back;
+            } else {
+                if (leftButtonIsBack) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                i = C5419R.string.toggle_drawer;
+            }
+            widgetHome.setActionBarDisplayHomeAsUpEnabled(true, numValueOf2, Integer.valueOf(i));
+            widgetHome.setActionBarTitle(title, drawableRes, trailingDrawable);
+            widgetHome.setActionBarSubtitle(subtitle);
+            Toolbar toolbar = widgetHome.getToolbar();
+            if (toolbar != null) {
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomeHeaderManager$configure$$inlined$apply$lambda$1
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        widgetHome.handleCenterPanelBack$app_productionGoogleRelease();
+                    }
+                });
+            }
+        }
+        widgetHome.setActionBarTitleClick(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomeHeaderManager$configure$$inlined$apply$lambda$2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                Channel channel2 = model.getChannel();
+                Integer numValueOf3 = channel2 != null ? Integer.valueOf(channel2.getType()) : null;
+                if ((numValueOf3 != null && numValueOf3.intValue() == 1) || ((numValueOf3 != null && numValueOf3.intValue() == 3) || ((numValueOf3 != null && numValueOf3.intValue() == 5) || ((numValueOf3 != null && numValueOf3.intValue() == 15) || (numValueOf3 != null && numValueOf3.intValue() == 0))))) {
+                    widgetHome.getPanelLayout().openEndPanel();
+                }
+            }
+        });
+        WidgetHomeHeaderManager widgetHomeHeaderManager2 = INSTANCE;
+        C89721 onSelectedAction = widgetHomeHeaderManager2.getOnSelectedAction(model, widgetHome, widgetHome.getPanelLayout());
+        Resources resources = widgetHome.getResources();
+        C12238m.checkNotNullExpressionValue(resources, "widgetHome.resources");
+        Toolbar actionBarOptionsMenu = widgetHome.setActionBarOptionsMenu(C5419R.menu.menu_chat_toolbar, onSelectedAction, widgetHomeHeaderManager2.getOnConfigureAction(model, resources));
+        Channel channel2 = model.getChannel();
+        boolean zM7690n = channel2 != null ? ChannelUtils.m7690n(channel2, model.getDmPresence()) : false;
+        ToolbarTitleLayout actionBarTitleLayout = widgetHome.getActionBarTitleLayout();
+        if (actionBarTitleLayout != null) {
+            Presence dmPresence = model.getDmPresence();
+            StatusView statusView = actionBarTitleLayout.binding.f709c;
+            C12238m.checkNotNullExpressionValue(statusView, "binding.toolbarPresence");
+            statusView.setVisibility(zM7690n ? 0 : 8);
+            actionBarTitleLayout.binding.f709c.setPresence(dmPresence);
+        }
+        TextView unreadCountView = widgetHome.getUnreadCountView();
+        Integer numValueOf3 = Integer.valueOf(model.getUnreadCount());
+        if (!(numValueOf3.intValue() > 0)) {
+            numValueOf3 = null;
+        }
+        ViewExtensions.setTextAndVisibilityBy(unreadCountView, numValueOf3 != null ? String.valueOf(numValueOf3.intValue()) : null);
+        Toolbar toolbar2 = widgetHome.getToolbar();
+        if (toolbar2 != null) {
+            ToolbarUtilsKt.positionUnreadCountView(toolbar2, unreadCountView);
+        }
+        widgetHomeHeaderManager2.configureThreadBrowserIconBehavior(actionBarOptionsMenu, model, model.getChannel(), widgetHome.getContext());
     }
 
     private final void configureThreadBrowserIconBehavior(Toolbar toolbar, WidgetHomeModel model, final Channel channel, final Context context) {
@@ -377,102 +474,5 @@ public final class WidgetHomeHeaderManager {
 
     private final boolean isChannelNSFWGated(boolean isChannelNsfw, boolean isNsfwUnConsented, NsfwAllowance nsfwAllowed) {
         return isChannelNsfw && (isNsfwUnConsented || (nsfwAllowed == NsfwAllowance.DISALLOWED));
-    }
-
-    public final void configure(final WidgetHome widgetHome, final WidgetHomeModel model, final WidgetHomeBinding binding) {
-        int themedDrawableRes$default;
-        int i;
-        C12238m.checkNotNullParameter(widgetHome, "widgetHome");
-        C12238m.checkNotNullParameter(model, "model");
-        C12238m.checkNotNullParameter(binding, "binding");
-        widgetHome.lockCloseRightPanel(model.getChannel() == null || !(ChannelUtils.m7667B(model.getChannel()) || ChannelUtils.m7698v(model.getChannel())) || ChannelUtils.m7686j(model.getChannel()));
-        Channel channel = model.getChannel();
-        Integer numValueOf = channel != null ? Integer.valueOf(channel.getType()) : null;
-        if (numValueOf != null && numValueOf.intValue() == 14) {
-            widgetHome.bindToolbar(binding.f17127d.f963d);
-        } else if (numValueOf != null && numValueOf.intValue() == 15) {
-            widgetHome.bindToolbar(binding.f17127d.f961b);
-        } else {
-            C0987j5 c0987j5 = binding.f17127d.f962c;
-            C12238m.checkNotNullExpressionValue(c0987j5, "binding.panelCenter.widgetHomePanelCenterChat");
-            widgetHome.bindToolbar(c0987j5.f982a);
-        }
-        widgetHome.setActionBarTitleLayoutExpandedTappableArea();
-        Context context = widgetHome.getContext();
-        if (context != null) {
-            WidgetHomeHeaderManager widgetHomeHeaderManager = INSTANCE;
-            C12238m.checkNotNullExpressionValue(context, "context");
-            HeaderData headerData = widgetHomeHeaderManager.getHeaderData(model, context);
-            CharSequence title = headerData.getTitle();
-            CharSequence subtitle = headerData.getSubtitle();
-            Integer drawableRes = headerData.getDrawableRes();
-            boolean leftButtonIsBack = headerData.getLeftButtonIsBack();
-            Integer trailingDrawable = headerData.getTrailingDrawable();
-            if (leftButtonIsBack) {
-                themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, C5419R.attr.ic_action_bar_back, 0, 2, (Object) null);
-            } else {
-                if (leftButtonIsBack) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                themedDrawableRes$default = C5419R.drawable.ic_menu_24dp;
-            }
-            Integer numValueOf2 = Integer.valueOf(themedDrawableRes$default);
-            if (leftButtonIsBack) {
-                i = C5419R.string.back;
-            } else {
-                if (leftButtonIsBack) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                i = C5419R.string.toggle_drawer;
-            }
-            widgetHome.setActionBarDisplayHomeAsUpEnabled(true, numValueOf2, Integer.valueOf(i));
-            widgetHome.setActionBarTitle(title, drawableRes, trailingDrawable);
-            widgetHome.setActionBarSubtitle(subtitle);
-            Toolbar toolbar = widgetHome.getToolbar();
-            if (toolbar != null) {
-                toolbar.setNavigationOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomeHeaderManager$configure$$inlined$apply$lambda$1
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        widgetHome.handleCenterPanelBack$app_productionGoogleRelease();
-                    }
-                });
-            }
-        }
-        widgetHome.setActionBarTitleClick(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomeHeaderManager$configure$$inlined$apply$lambda$2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Channel channel2 = model.getChannel();
-                Integer numValueOf3 = channel2 != null ? Integer.valueOf(channel2.getType()) : null;
-                if ((numValueOf3 != null && numValueOf3.intValue() == 1) || ((numValueOf3 != null && numValueOf3.intValue() == 3) || ((numValueOf3 != null && numValueOf3.intValue() == 5) || ((numValueOf3 != null && numValueOf3.intValue() == 15) || (numValueOf3 != null && numValueOf3.intValue() == 0))))) {
-                    widgetHome.getPanelLayout().openEndPanel();
-                }
-            }
-        });
-        WidgetHomeHeaderManager widgetHomeHeaderManager2 = INSTANCE;
-        C89721 onSelectedAction = widgetHomeHeaderManager2.getOnSelectedAction(model, widgetHome, widgetHome.getPanelLayout());
-        Resources resources = widgetHome.getResources();
-        C12238m.checkNotNullExpressionValue(resources, "widgetHome.resources");
-        Toolbar actionBarOptionsMenu = widgetHome.setActionBarOptionsMenu(C5419R.menu.menu_chat_toolbar, onSelectedAction, widgetHomeHeaderManager2.getOnConfigureAction(model, resources));
-        Channel channel2 = model.getChannel();
-        boolean zM7690n = channel2 != null ? ChannelUtils.m7690n(channel2, model.getDmPresence()) : false;
-        ToolbarTitleLayout actionBarTitleLayout = widgetHome.getActionBarTitleLayout();
-        if (actionBarTitleLayout != null) {
-            Presence dmPresence = model.getDmPresence();
-            StatusView statusView = actionBarTitleLayout.binding.f709c;
-            C12238m.checkNotNullExpressionValue(statusView, "binding.toolbarPresence");
-            statusView.setVisibility(zM7690n ? 0 : 8);
-            actionBarTitleLayout.binding.f709c.setPresence(dmPresence);
-        }
-        TextView unreadCountView = widgetHome.getUnreadCountView();
-        Integer numValueOf3 = Integer.valueOf(model.getUnreadCount());
-        if (!(numValueOf3.intValue() > 0)) {
-            numValueOf3 = null;
-        }
-        ViewExtensions.setTextAndVisibilityBy(unreadCountView, numValueOf3 != null ? String.valueOf(numValueOf3.intValue()) : null);
-        Toolbar toolbar2 = widgetHome.getToolbar();
-        if (toolbar2 != null) {
-            ToolbarUtilsKt.positionUnreadCountView(toolbar2, unreadCountView);
-        }
-        widgetHomeHeaderManager2.configureThreadBrowserIconBehavior(actionBarOptionsMenu, model, model.getChannel(), widgetHome.getContext());
     }
 }

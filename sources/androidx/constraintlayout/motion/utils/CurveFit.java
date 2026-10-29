@@ -6,7 +6,7 @@ public abstract class CurveFit {
     public static final int LINEAR = 1;
     public static final int SPLINE = 0;
 
-    public static class Constant extends CurveFit {
+    public class Constant extends CurveFit {
         public double mTime;
         public double[] mValue;
 

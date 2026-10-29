@@ -13,29 +13,6 @@ import p507d0.p513e0.p514p.p515d.p517m0.p552k.C11787e;
 /* JADX INFO: compiled from: DescriptorsJvmAbiUtil.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11620n {
-    /* JADX INFO: renamed from: a */
-    public static /* synthetic */ void m9517a(int i) {
-        Object[] objArr = new Object[3];
-        if (i == 1 || i == 2) {
-            objArr[0] = "companionObject";
-        } else if (i != 3) {
-            objArr[0] = "propertyDescriptor";
-        } else {
-            objArr[0] = "memberDescriptor";
-        }
-        objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/DescriptorsJvmAbiUtil";
-        if (i == 1) {
-            objArr[2] = "isClassCompanionObjectWithBackingFieldsInOuter";
-        } else if (i == 2) {
-            objArr[2] = "isMappedIntrinsicCompanionObject";
-        } else if (i != 3) {
-            objArr[2] = "isPropertyWithBackingFieldInOuterClass";
-        } else {
-            objArr[2] = "hasJvmFieldAnnotation";
-        }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-    }
-
     public static boolean hasJvmFieldAnnotation(InterfaceC11321b interfaceC11321b) {
         InterfaceC11468v backingField;
         if (interfaceC11321b == null) {
@@ -76,5 +53,28 @@ public final class C11620n {
             return true;
         }
         return C11787e.isCompanionObject(interfaceC11453n0.getContainingDeclaration()) && hasJvmFieldAnnotation(interfaceC11453n0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static /* synthetic */ void m9517a(int i) {
+        Object[] objArr = new Object[3];
+        if (i == 1 || i == 2) {
+            objArr[0] = "companionObject";
+        } else if (i != 3) {
+            objArr[0] = "propertyDescriptor";
+        } else {
+            objArr[0] = "memberDescriptor";
+        }
+        objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/DescriptorsJvmAbiUtil";
+        if (i == 1) {
+            objArr[2] = "isClassCompanionObjectWithBackingFieldsInOuter";
+        } else if (i == 2) {
+            objArr[2] = "isMappedIntrinsicCompanionObject";
+        } else if (i != 3) {
+            objArr[2] = "isPropertyWithBackingFieldInOuterClass";
+        } else {
+            objArr[2] = "hasJvmFieldAnnotation";
+        }
+        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
     }
 }

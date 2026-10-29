@@ -11,7 +11,7 @@ public interface InterfaceC11564a extends InterfaceC11579l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.k0.a$a */
     /* JADX INFO: compiled from: javaElements.kt */
-    public static final class a {
+    public final class a {
         public static boolean isFreshlySupportedTypeUseAnnotation(InterfaceC11564a interfaceC11564a) {
             C12238m.checkNotNullParameter(interfaceC11564a, "this");
             return false;

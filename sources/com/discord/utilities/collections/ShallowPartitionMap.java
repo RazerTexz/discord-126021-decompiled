@@ -34,7 +34,7 @@ public class ShallowPartitionMap<K, V> implements Map<K, V>, InterfaceC12231d {
     private int size;
 
     /* JADX INFO: compiled from: ShallowPartitionMap.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -52,10 +52,6 @@ public class ShallowPartitionMap<K, V> implements Map<K, V>, InterfaceC12231d {
             return companion.create(i, i2, i3, function1);
         }
 
-        private final <K> Function1<K, Integer> getHashCodePartitionStrategy(int numPartitions) {
-            return new ShallowPartitionMap$Companion$getHashCodePartitionStrategy$1(numPartitions);
-        }
-
         public final <K, V> ShallowPartitionMap<K, V> create(int mapSize, int partitionSize, int partitionCount, Function1<? super K, Integer> partitionStrategy) {
             C12238m.checkNotNullParameter(partitionStrategy, "partitionStrategy");
             IntRange intRange = new IntRange(0, partitionCount);
@@ -68,13 +64,17 @@ public class ShallowPartitionMap<K, V> implements Map<K, V>, InterfaceC12231d {
             return new ShallowPartitionMap<>(arrayList, partitionStrategy);
         }
 
+        private final <K> Function1<K, Integer> getHashCodePartitionStrategy(int numPartitions) {
+            return new ShallowPartitionMap$Companion$getHashCodePartitionStrategy$1(numPartitions);
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: ShallowPartitionMap.kt */
-    public static class CopiablePartitionMap<K, V> extends ShallowPartitionMap<K, V> {
+    public class CopiablePartitionMap<K, V> extends ShallowPartitionMap<K, V> {
         private List<? extends Map<K, V>> defensiveCopyPartitions;
         private final HashSet<Integer> dirtyPartitionIndices;
 
@@ -149,10 +149,6 @@ public class ShallowPartitionMap<K, V> implements Map<K, V>, InterfaceC12231d {
         this.size = size;
     }
 
-    private final Map<K, V> getPartition(K key) {
-        return this.partitions.get(this.partitionStrategy.invoke(key).intValue());
-    }
-
     @Override // java.util.Map
     public void clear() {
         Iterator<T> it = this.partitions.iterator();
@@ -216,6 +212,10 @@ public class ShallowPartitionMap<K, V> implements Map<K, V>, InterfaceC12231d {
 
     public final int getNumPartitions() {
         return this.numPartitions;
+    }
+
+    private final Map<K, V> getPartition(K key) {
+        return this.partitions.get(this.partitionStrategy.invoke(key).intValue());
     }
 
     public Map<K, V> getPartitionForWrite(K key) {

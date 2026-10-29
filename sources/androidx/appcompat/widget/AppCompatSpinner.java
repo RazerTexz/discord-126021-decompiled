@@ -42,7 +42,6 @@ import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatSpinner extends Spinner implements TintableBackgroundView {
-    private static final int[] ATTRS_ANDROID_SPINNERMODE = {R.attr.spinnerMode};
     private static final int MAX_ITEMS_MEASURED = 15;
     private static final int MODE_DIALOG = 0;
     private static final int MODE_DROPDOWN = 1;
@@ -56,6 +55,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
     private final boolean mPopupSet;
     private SpinnerAdapter mTempAdapter;
     public final Rect mTempRect;
+    private static final int[] ATTRS_ANDROID_SPINNERMODE = {R.attr.spinnerMode};
 
     @VisibleForTesting
     public class DialogPopup implements SpinnerPopup, DialogInterface.OnClickListener {
@@ -169,7 +169,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
         }
     }
 
-    public static class DropDownAdapter implements ListAdapter, SpinnerAdapter {
+    public class DropDownAdapter implements ListAdapter, SpinnerAdapter {
         private SpinnerAdapter mAdapter;
         private ListAdapter mListAdapter;
 
@@ -422,7 +422,8 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
         }
     }
 
-    public static class SavedState extends View.BaseSavedState {
+    public class SavedState extends View.BaseSavedState {
+        public boolean mShowDropdown;
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.appcompat.widget.AppCompatSpinner.SavedState.1
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
@@ -436,7 +437,6 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
                 return new SavedState[i];
             }
         };
-        public boolean mShowDropdown;
 
         public SavedState(Parcelable parcelable) {
             super(parcelable);

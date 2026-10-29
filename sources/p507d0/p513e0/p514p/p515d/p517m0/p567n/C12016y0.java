@@ -26,6 +26,31 @@ public class C12016y0 extends AbstractC12014x0 {
         this.f24895b = abstractC11913c0;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
+    public EnumC11935j1 getProjectionKind() {
+        EnumC11935j1 enumC11935j1 = this.f24894a;
+        if (enumC11935j1 != null) {
+            return enumC11935j1;
+        }
+        m10039a(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
+    public AbstractC11913c0 getType() {
+        AbstractC11913c0 abstractC11913c0 = this.f24895b;
+        if (abstractC11913c0 != null) {
+            return abstractC11913c0;
+        }
+        m10039a(5);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
+    public boolean isStarProjection() {
+        return false;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m10039a(int i) {
         String str = (i == 4 || i == 5) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -68,31 +93,6 @@ public class C12016y0 extends AbstractC12014x0 {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
-    public EnumC11935j1 getProjectionKind() {
-        EnumC11935j1 enumC11935j1 = this.f24894a;
-        if (enumC11935j1 != null) {
-            return enumC11935j1;
-        }
-        m10039a(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
-    public AbstractC11913c0 getType() {
-        AbstractC11913c0 abstractC11913c0 = this.f24895b;
-        if (abstractC11913c0 != null) {
-            return abstractC11913c0;
-        }
-        m10039a(5);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0
-    public boolean isStarProjection() {
-        return false;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12012w0

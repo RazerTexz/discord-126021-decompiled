@@ -19,7 +19,7 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
     private final List<GuildTemplate> templates;
     private final String title;
 
-    public static class Creator implements Parcelable.Creator<GuildTemplateArgs> {
+    public final class Creator implements Parcelable.Creator<GuildTemplateArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final GuildTemplateArgs createFromParcel(Parcel parcel) {
@@ -54,6 +54,10 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
         this.skipCreationIntent = z3;
     }
 
+    public final List<GuildTemplate> component3() {
+        return this.templates;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildTemplateArgs copy$default(GuildTemplateArgs guildTemplateArgs, String str, String str2, List list, boolean z2, boolean z3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -75,30 +79,6 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
             z3 = guildTemplateArgs.skipCreationIntent;
         }
         return guildTemplateArgs.copy(str, str3, list2, z4, z3);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTitle() {
-        return this.title;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getSubtitle() {
-        return this.subtitle;
-    }
-
-    public final List<GuildTemplate> component3() {
-        return this.templates;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getShowInvitePrompt() {
-        return this.showInvitePrompt;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getSkipCreationIntent() {
-        return this.skipCreationIntent;
     }
 
     public final GuildTemplateArgs copy(String title, String subtitle, List<? extends GuildTemplate> templates, boolean showInvitePrompt, boolean skipCreationIntent) {
@@ -124,12 +104,27 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
         return C12238m.areEqual(this.title, guildTemplateArgs.title) && C12238m.areEqual(this.subtitle, guildTemplateArgs.subtitle) && C12238m.areEqual(this.templates, guildTemplateArgs.templates) && this.showInvitePrompt == guildTemplateArgs.showInvitePrompt && this.skipCreationIntent == guildTemplateArgs.skipCreationIntent;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getShowInvitePrompt() {
         return this.showInvitePrompt;
     }
 
+    public final boolean getShowInvitePrompt() {
+        return this.showInvitePrompt;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getSkipCreationIntent() {
         return this.skipCreationIntent;
+    }
+
+    public final boolean getSkipCreationIntent() {
+        return this.skipCreationIntent;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getSubtitle() {
+        return this.subtitle;
     }
 
     public final String getSubtitle() {
@@ -138,6 +133,11 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
 
     public final List<GuildTemplate> getTemplates() {
         return this.templates;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTitle() {
+        return this.title;
     }
 
     public final String getTitle() {

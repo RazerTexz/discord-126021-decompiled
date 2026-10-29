@@ -43,7 +43,7 @@ public abstract class AbstractC2646l extends AbstractC2651q {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.l$a */
     /* JADX INFO: compiled from: MappingTrackSelector.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f6262a;

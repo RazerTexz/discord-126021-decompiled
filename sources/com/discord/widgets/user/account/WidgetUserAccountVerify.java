@@ -38,7 +38,7 @@ public final class WidgetUserAccountVerify extends WidgetUserAccountVerifyBase {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetUserAccountVerify.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -66,56 +66,6 @@ public final class C5008e extends AbstractC5004a {
         collection.add(c5007d);
     }
 
-    @Override // p007b.p225i.p414e.p426q.AbstractC4997k
-    /* JADX INFO: renamed from: b */
-    public Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException {
-        m7013k(this.f13419n, m7015m(c4962a, false, i, map));
-        c4962a.m6939i();
-        m7013k(this.f13420o, m7015m(c4962a, true, i, map));
-        c4962a.m6939i();
-        for (C5007d c5007d : this.f13419n) {
-            if (c5007d.f13411d > 1) {
-                for (C5007d c5007d2 : this.f13420o) {
-                    if (c5007d2.f13411d > 1) {
-                        int i2 = ((c5007d2.f13406b * 16) + c5007d.f13406b) % 79;
-                        int i3 = (c5007d.f13410c.f13407a * 9) + c5007d2.f13410c.f13407a;
-                        if (i3 > 72) {
-                            i3--;
-                        }
-                        if (i3 > 8) {
-                            i3--;
-                        }
-                        if (i2 == i3) {
-                            String strValueOf = String.valueOf((((long) c5007d.f13405a) * 4537077) + ((long) c5007d2.f13405a));
-                            StringBuilder sb = new StringBuilder(14);
-                            for (int length = 13 - strValueOf.length(); length > 0; length--) {
-                                sb.append('0');
-                            }
-                            sb.append(strValueOf);
-                            int i4 = 0;
-                            for (int i5 = 0; i5 < 13; i5++) {
-                                int iCharAt = sb.charAt(i5) - '0';
-                                if ((i5 & 1) == 0) {
-                                    iCharAt *= 3;
-                                }
-                                i4 += iCharAt;
-                            }
-                            int i6 = 10 - (i4 % 10);
-                            if (i6 == 10) {
-                                i6 = 0;
-                            }
-                            sb.append(i6);
-                            C4956k[] c4956kArr = c5007d.f13410c.f13409c;
-                            C4956k[] c4956kArr2 = c5007d2.f13410c.f13409c;
-                            return new Result(sb.toString(), null, new C4956k[]{c4956kArr[0], c4956kArr[1], c4956kArr2[0], c4956kArr2[1]}, EnumC4946a.RSS_14);
-                        }
-                    }
-                }
-            }
-        }
-        throw NotFoundException.f21665l;
-    }
-
     /* JADX WARN: Code duplicated, block: B:49:0x00af A[PHI: r12 r13
       0x00af: PHI (r12v8 boolean) = (r12v6 boolean), (r12v20 boolean) binds: [B:48:0x00ad, B:36:0x0099] A[DONT_GENERATE, DONT_INLINE]
       0x00af: PHI (r13v3 boolean) = (r13v1 boolean), (r13v11 boolean) binds: [B:48:0x00ad, B:36:0x0099] A[DONT_GENERATE, DONT_INLINE]] */
@@ -392,6 +342,56 @@ public final class C5008e extends AbstractC5004a {
             i3 = i5;
         }
         return new C5006c(iM7012j, new int[]{i5, iArr[1]}, i3, i2, i);
+    }
+
+    @Override // p007b.p225i.p414e.p426q.AbstractC4997k
+    /* JADX INFO: renamed from: b */
+    public Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException {
+        m7013k(this.f13419n, m7015m(c4962a, false, i, map));
+        c4962a.m6939i();
+        m7013k(this.f13420o, m7015m(c4962a, true, i, map));
+        c4962a.m6939i();
+        for (C5007d c5007d : this.f13419n) {
+            if (c5007d.f13411d > 1) {
+                for (C5007d c5007d2 : this.f13420o) {
+                    if (c5007d2.f13411d > 1) {
+                        int i2 = ((c5007d2.f13406b * 16) + c5007d.f13406b) % 79;
+                        int i3 = (c5007d.f13410c.f13407a * 9) + c5007d2.f13410c.f13407a;
+                        if (i3 > 72) {
+                            i3--;
+                        }
+                        if (i3 > 8) {
+                            i3--;
+                        }
+                        if (i2 == i3) {
+                            String strValueOf = String.valueOf((((long) c5007d.f13405a) * 4537077) + ((long) c5007d2.f13405a));
+                            StringBuilder sb = new StringBuilder(14);
+                            for (int length = 13 - strValueOf.length(); length > 0; length--) {
+                                sb.append('0');
+                            }
+                            sb.append(strValueOf);
+                            int i4 = 0;
+                            for (int i5 = 0; i5 < 13; i5++) {
+                                int iCharAt = sb.charAt(i5) - '0';
+                                if ((i5 & 1) == 0) {
+                                    iCharAt *= 3;
+                                }
+                                i4 += iCharAt;
+                            }
+                            int i6 = 10 - (i4 % 10);
+                            if (i6 == 10) {
+                                i6 = 0;
+                            }
+                            sb.append(i6);
+                            C4956k[] c4956kArr = c5007d.f13410c.f13409c;
+                            C4956k[] c4956kArr2 = c5007d2.f13410c.f13409c;
+                            return new Result(sb.toString(), null, new C4956k[]{c4956kArr[0], c4956kArr[1], c4956kArr2[0], c4956kArr2[1]}, EnumC4946a.RSS_14);
+                        }
+                    }
+                }
+            }
+        }
+        throw NotFoundException.f21665l;
     }
 
     @Override // p007b.p225i.p414e.p426q.AbstractC4997k, p007b.p225i.p414e.InterfaceC4954i

@@ -9,7 +9,7 @@ import java.util.concurrent.RejectedExecutionException;
 /* JADX INFO: loaded from: classes.dex */
 public final class ExecutorCompat {
 
-    public static class HandlerExecutor implements Executor {
+    public class HandlerExecutor implements Executor {
         private final Handler mHandler;
 
         public HandlerExecutor(@NonNull Handler handler) {

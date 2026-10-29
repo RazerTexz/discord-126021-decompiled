@@ -45,70 +45,9 @@ public final class StepsView extends RelativeLayout {
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public ViewPager2.OnPageChangeCallback pagerAdapterChangeCallback;
 
-    /* JADX INFO: renamed from: com.discord.views.steps.StepsView$a */
-    /* JADX INFO: compiled from: java-style lambda group */
-    /* JADX INFO: loaded from: classes.dex */
-    public static final class ViewOnClickListenerC7122a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f19299j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ int f19300k;
-
-        /* JADX INFO: renamed from: l */
-        public final /* synthetic */ Object f19301l;
-
-        /* JADX INFO: renamed from: m */
-        public final /* synthetic */ Object f19302m;
-
-        public ViewOnClickListenerC7122a(int i, int i2, Object obj, Object obj2) {
-            this.f19299j = i;
-            this.f19300k = i2;
-            this.f19301l = obj;
-            this.f19302m = obj2;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            int i = this.f19299j;
-            if (i != 0) {
-                if (i != 1) {
-                    throw null;
-                }
-                Function1<View, Unit> function1 = ((AbstractC7123b) ((List) this.f19301l).get(this.f19300k)).f19308f;
-                if (function1 == null) {
-                    ((Function0) this.f19302m).invoke();
-                    return;
-                } else {
-                    C12238m.checkNotNullExpressionValue(view, "it");
-                    function1.invoke(view);
-                    return;
-                }
-            }
-            Function1<View, Unit> function2 = ((AbstractC7123b) ((List) this.f19302m).get(this.f19300k)).f19306d;
-            if (function2 != null) {
-                C12238m.checkNotNullExpressionValue(view, "it");
-                function2.invoke(view);
-                return;
-            }
-            ViewPager2 viewPager2 = ((StepsView) this.f19301l).binding.f1425i;
-            C12238m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
-            int currentItem = viewPager2.getCurrentItem();
-            C7125d c7125d = ((StepsView) this.f19301l).pagerAdapter;
-            if (c7125d == null || currentItem != c7125d.getItemCount() - 1) {
-                ViewPager2 viewPager3 = ((StepsView) this.f19301l).binding.f1425i;
-                C12238m.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
-                ViewPager2 viewPager4 = ((StepsView) this.f19301l).binding.f1425i;
-                C12238m.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
-                viewPager3.setCurrentItem(viewPager4.getCurrentItem() + 1);
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$b */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static abstract class AbstractC7123b {
+    public abstract class AbstractC7123b {
 
         /* JADX INFO: renamed from: a */
         public final int f19303a;
@@ -139,7 +78,7 @@ public final class StepsView extends RelativeLayout {
 
         /* JADX INFO: renamed from: com.discord.views.steps.StepsView$b$a */
         /* JADX INFO: compiled from: StepsView.kt */
-        public static final class a extends AbstractC7123b {
+        public final class a extends AbstractC7123b {
 
             /* JADX INFO: renamed from: j */
             public final Class<? extends Fragment> f19312j;
@@ -280,7 +219,7 @@ public final class StepsView extends RelativeLayout {
 
         /* JADX INFO: renamed from: com.discord.views.steps.StepsView$b$b */
         /* JADX INFO: compiled from: StepsView.kt */
-        public static final class b extends AbstractC7123b {
+        public final class b extends AbstractC7123b {
             public boolean equals(Object obj) {
                 if (this == obj) {
                     return true;
@@ -316,7 +255,7 @@ public final class StepsView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$c */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static final class C7124c extends AppFragment {
+    public final class C7124c extends AppFragment {
         public C7124c(@LayoutRes int i) {
             super(i);
         }
@@ -324,7 +263,7 @@ public final class StepsView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$d */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static final class C7125d extends FragmentStateAdapter {
+    public final class C7125d extends FragmentStateAdapter {
 
         /* JADX INFO: renamed from: a */
         public List<? extends AbstractC7123b> f19323a;
@@ -363,7 +302,7 @@ public final class StepsView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$e */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static final class C7126e extends ViewPager2.OnPageChangeCallback {
+    public final class C7126e extends ViewPager2.OnPageChangeCallback {
 
         /* JADX INFO: renamed from: b */
         public final /* synthetic */ Function1 f19325b;
@@ -387,9 +326,70 @@ public final class StepsView extends RelativeLayout {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.views.steps.StepsView$a */
+    /* JADX INFO: compiled from: java-style lambda group */
+    /* JADX INFO: loaded from: classes.dex */
+    public final class ViewOnClickListenerC7122a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f19299j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ int f19300k;
+
+        /* JADX INFO: renamed from: l */
+        public final /* synthetic */ Object f19301l;
+
+        /* JADX INFO: renamed from: m */
+        public final /* synthetic */ Object f19302m;
+
+        public ViewOnClickListenerC7122a(int i, int i2, Object obj, Object obj2) {
+            this.f19299j = i;
+            this.f19300k = i2;
+            this.f19301l = obj;
+            this.f19302m = obj2;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.f19299j;
+            if (i != 0) {
+                if (i != 1) {
+                    throw null;
+                }
+                Function1<View, Unit> function1 = ((AbstractC7123b) ((List) this.f19301l).get(this.f19300k)).f19308f;
+                if (function1 == null) {
+                    ((Function0) this.f19302m).invoke();
+                    return;
+                } else {
+                    C12238m.checkNotNullExpressionValue(view, "it");
+                    function1.invoke(view);
+                    return;
+                }
+            }
+            Function1<View, Unit> function2 = ((AbstractC7123b) ((List) this.f19302m).get(this.f19300k)).f19306d;
+            if (function2 != null) {
+                C12238m.checkNotNullExpressionValue(view, "it");
+                function2.invoke(view);
+                return;
+            }
+            ViewPager2 viewPager2 = ((StepsView) this.f19301l).binding.f1425i;
+            C12238m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+            int currentItem = viewPager2.getCurrentItem();
+            C7125d c7125d = ((StepsView) this.f19301l).pagerAdapter;
+            if (c7125d == null || currentItem != c7125d.getItemCount() - 1) {
+                ViewPager2 viewPager3 = ((StepsView) this.f19301l).binding.f1425i;
+                C12238m.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
+                ViewPager2 viewPager4 = ((StepsView) this.f19301l).binding.f1425i;
+                C12238m.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
+                viewPager3.setCurrentItem(viewPager4.getCurrentItem() + 1);
+            }
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$f */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static final class ViewOnClickListenerC7127f implements View.OnClickListener {
+    public final class ViewOnClickListenerC7127f implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Function0 f19327j;
@@ -406,7 +406,7 @@ public final class StepsView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.steps.StepsView$g */
     /* JADX INFO: compiled from: StepsView.kt */
-    public static final class ViewOnClickListenerC7128g implements View.OnClickListener {
+    public final class ViewOnClickListenerC7128g implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ List f19329k;

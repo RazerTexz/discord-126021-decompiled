@@ -52,24 +52,9 @@ public final /* data */ class GuildRoleSubscriptionTier {
         this.activeTrialUserLimit = num3;
     }
 
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    private final Boolean getCanAccessAllChannels() {
-        return this.canAccessAllChannels;
-    }
-
     public final boolean canAccessAllChannelsOrDefault(Boolean isFullServerGating) {
         Boolean bool = Boolean.TRUE;
         return C12238m.areEqual(isFullServerGating, bool) && (C12238m.areEqual(this.canAccessAllChannels, bool) || this.canAccessAllChannels == null);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final Boolean getIsPublished() {
-        return this.isPublished;
     }
 
     public final List<Benefit.ChannelBenefit> component12() {
@@ -78,56 +63,6 @@ public final /* data */ class GuildRoleSubscriptionTier {
 
     public final List<Benefit.IntangibleBenefit> component13() {
         return this.intangibleBenefits;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final SubscriptionTrialInterval getTrialInterval() {
-        return this.trialInterval;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final Integer getActiveTrialUserLimit() {
-        return this.activeTrialUserLimit;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Integer getPriceTier() {
-        return this.priceTier;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Integer getMemberColor() {
-        return this.memberColor;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getMemberIcon() {
-        return this.memberIcon;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final GuildRole getGuildRole() {
-        return this.guildRole;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getImage() {
-        return this.image;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final Long getImageAssetId() {
-        return this.imageAssetId;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final String getDescription() {
-        return this.description;
     }
 
     public final GuildRoleSubscriptionTier copy(String name, Long applicationId, Integer priceTier, Integer memberColor, String memberIcon, GuildRole guildRole, String image, Long imageAssetId, String description, Boolean isPublished, Boolean canAccessAllChannels, List<Benefit.ChannelBenefit> channelBenefits, List<Benefit.IntangibleBenefit> intangibleBenefits, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
@@ -147,28 +82,63 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return C12238m.areEqual(this.name, guildRoleSubscriptionTier.name) && C12238m.areEqual(this.applicationId, guildRoleSubscriptionTier.applicationId) && C12238m.areEqual(this.priceTier, guildRoleSubscriptionTier.priceTier) && C12238m.areEqual(this.memberColor, guildRoleSubscriptionTier.memberColor) && C12238m.areEqual(this.memberIcon, guildRoleSubscriptionTier.memberIcon) && C12238m.areEqual(this.guildRole, guildRoleSubscriptionTier.guildRole) && C12238m.areEqual(this.image, guildRoleSubscriptionTier.image) && C12238m.areEqual(this.imageAssetId, guildRoleSubscriptionTier.imageAssetId) && C12238m.areEqual(this.description, guildRoleSubscriptionTier.description) && C12238m.areEqual(this.isPublished, guildRoleSubscriptionTier.isPublished) && C12238m.areEqual(this.canAccessAllChannels, guildRoleSubscriptionTier.canAccessAllChannels) && C12238m.areEqual(this.channelBenefits, guildRoleSubscriptionTier.channelBenefits) && C12238m.areEqual(this.intangibleBenefits, guildRoleSubscriptionTier.intangibleBenefits) && C12238m.areEqual(this.trialInterval, guildRoleSubscriptionTier.trialInterval) && C12238m.areEqual(this.activeTrialUserLimit, guildRoleSubscriptionTier.activeTrialUserLimit);
     }
 
+    /* JADX INFO: renamed from: component15, reason: from getter */
     public final Integer getActiveTrialUserLimit() {
         return this.activeTrialUserLimit;
+    }
+
+    public final Integer getActiveTrialUserLimit() {
+        return this.activeTrialUserLimit;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Long getApplicationId() {
+        return this.applicationId;
     }
 
     public final Long getApplicationId() {
         return this.applicationId;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    private final Boolean getCanAccessAllChannels() {
+        return this.canAccessAllChannels;
+    }
+
     public final List<Benefit.ChannelBenefit> getChannelBenefits() {
         return this.channelBenefits;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final String getDescription() {
+        return this.description;
     }
 
     public final String getDescription() {
         return this.description;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final GuildRole getGuildRole() {
         return this.guildRole;
     }
 
+    public final GuildRole getGuildRole() {
+        return this.guildRole;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final String getImage() {
         return this.image;
+    }
+
+    public final String getImage() {
+        return this.image;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final Long getImageAssetId() {
+        return this.imageAssetId;
     }
 
     public final Long getImageAssetId() {
@@ -179,20 +149,50 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return this.intangibleBenefits;
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final Boolean getIsPublished() {
+        return this.isPublished;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Integer getMemberColor() {
         return this.memberColor;
+    }
+
+    public final Integer getMemberColor() {
+        return this.memberColor;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getMemberIcon() {
+        return this.memberIcon;
     }
 
     public final String getMemberIcon() {
         return this.memberIcon;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getName() {
         return this.name;
     }
 
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Integer getPriceTier() {
         return this.priceTier;
+    }
+
+    public final Integer getPriceTier() {
+        return this.priceTier;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
+    public final SubscriptionTrialInterval getTrialInterval() {
+        return this.trialInterval;
     }
 
     public final SubscriptionTrialInterval getTrialInterval() {

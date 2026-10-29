@@ -20,7 +20,7 @@ public final class C12340g implements InterfaceC12344k {
 
     /* JADX INFO: renamed from: f0.e0.k.i.g$a */
     /* JADX INFO: compiled from: BouncyCastleSocketAdapter.kt */
-    public static final class a implements C12343j.a {
+    public final class a implements C12343j.a {
         @Override // p600f0.p601e0.p609k.p610i.C12343j.a
         /* JADX INFO: renamed from: a */
         public boolean mo10339a(SSLSocket sSLSocket) {

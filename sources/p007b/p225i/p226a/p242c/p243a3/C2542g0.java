@@ -41,7 +41,7 @@ public class C2542g0 {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.g0$a */
     /* JADX INFO: compiled from: SampleDataQueue.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final long f5585a;

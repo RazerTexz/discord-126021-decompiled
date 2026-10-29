@@ -13,25 +13,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumUncancelWinbackModalViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumUncancelWinbackModalViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSubscriptionMetadataReceiver {
+    private final Boolean globalEmojiPersonalized = null;
+    private final Long globalEmojiPosition = null;
+    private final Long globalEmojiStats = null;
+    private final Boolean hdStreamingPersonalized = null;
+    private final Long hdStreamingPosition = null;
+    private final Long hdStreamingStats = null;
+    private final Boolean largeFileUploadPersonalized = null;
+    private final Long largeFileUploadPosition = null;
+    private final Long largeFileUploadStats = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final Long globalEmojiPosition = null;
-    private final Long globalEmojiStats = null;
-    private final Boolean globalEmojiPersonalized = null;
-    private final Long hdStreamingPosition = null;
-    private final Long hdStreamingStats = null;
-    private final Boolean hdStreamingPersonalized = null;
-    private final Long largeFileUploadPosition = null;
-    private final Long largeFileUploadStats = null;
-    private final Boolean largeFileUploadPersonalized = null;
     private final transient String analyticsSchemaTypeName = "premium_uncancel_winback_modal_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -42,6 +36,12 @@ public final /* data */ class TrackPremiumUncancelWinbackModalViewed implements 
         }
         TrackPremiumUncancelWinbackModalViewed trackPremiumUncancelWinbackModalViewed = (TrackPremiumUncancelWinbackModalViewed) other;
         return C12238m.areEqual(this.globalEmojiPosition, trackPremiumUncancelWinbackModalViewed.globalEmojiPosition) && C12238m.areEqual(this.globalEmojiStats, trackPremiumUncancelWinbackModalViewed.globalEmojiStats) && C12238m.areEqual(this.globalEmojiPersonalized, trackPremiumUncancelWinbackModalViewed.globalEmojiPersonalized) && C12238m.areEqual(this.hdStreamingPosition, trackPremiumUncancelWinbackModalViewed.hdStreamingPosition) && C12238m.areEqual(this.hdStreamingStats, trackPremiumUncancelWinbackModalViewed.hdStreamingStats) && C12238m.areEqual(this.hdStreamingPersonalized, trackPremiumUncancelWinbackModalViewed.hdStreamingPersonalized) && C12238m.areEqual(this.largeFileUploadPosition, trackPremiumUncancelWinbackModalViewed.largeFileUploadPosition) && C12238m.areEqual(this.largeFileUploadStats, trackPremiumUncancelWinbackModalViewed.largeFileUploadStats) && C12238m.areEqual(this.largeFileUploadPersonalized, trackPremiumUncancelWinbackModalViewed.largeFileUploadPersonalized);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

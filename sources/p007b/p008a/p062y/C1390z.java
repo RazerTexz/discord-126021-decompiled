@@ -54,7 +54,7 @@ public final class C1390z extends AbstractC1356l implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.z$a */
     /* JADX INFO: compiled from: OverlayVoiceSelectorBubbleDialog.kt */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
         public a() {
         }
 
@@ -66,7 +66,7 @@ public final class C1390z extends AbstractC1356l implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.z$b */
     /* JADX INFO: compiled from: OverlayVoiceSelectorBubbleDialog.kt */
-    public static final class b extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class b extends AbstractC12240o implements Function1<Editable, Unit> {
         public b() {
             super(1);
         }
@@ -82,7 +82,7 @@ public final class C1390z extends AbstractC1356l implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.z$c */
     /* JADX INFO: compiled from: OverlayVoiceSelectorBubbleDialog.kt */
-    public static final class c<T, R> implements InterfaceC12589b<String, String> {
+    public final class c<T, R> implements InterfaceC12589b<String, String> {
 
         /* JADX INFO: renamed from: j */
         public static final c f2082j = new c();
@@ -95,7 +95,7 @@ public final class C1390z extends AbstractC1356l implements AppComponent {
 
     /* JADX INFO: renamed from: b.a.y.z$d */
     /* JADX INFO: compiled from: OverlayVoiceSelectorBubbleDialog.kt */
-    public static final class d extends AbstractC12240o implements Function1<WidgetGlobalSearchModel, Unit> {
+    public final class d extends AbstractC12240o implements Function1<WidgetGlobalSearchModel, Unit> {
         public d() {
             super(1);
         }

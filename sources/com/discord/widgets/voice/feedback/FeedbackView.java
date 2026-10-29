@@ -38,7 +38,7 @@ public final class FeedbackView extends LinearLayout {
     private final Map<View, FeedbackRating> viewToFeedbackRatingMap;
 
     /* JADX INFO: compiled from: FeedbackView.kt */
-    public static final class IssueViewHolder extends MGRecyclerViewHolder<IssuesAdapter, FeedbackIssue> {
+    public final class IssueViewHolder extends MGRecyclerViewHolder<IssuesAdapter, FeedbackIssue> {
         private final TextView issueItem;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -70,7 +70,7 @@ public final class FeedbackView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: FeedbackView.kt */
-    public static final class IssuesAdapter extends MGRecyclerAdapterSimple<FeedbackIssue> {
+    public final class IssuesAdapter extends MGRecyclerAdapterSimple<FeedbackIssue> {
         private Function1<? super FeedbackIssue, Unit> onIssueClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

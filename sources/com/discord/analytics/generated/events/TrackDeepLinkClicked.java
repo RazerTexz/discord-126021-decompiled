@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDeepLinkClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDeepLinkClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long fingerprint = null;
     private final CharSequence attemptId = null;
-    private final CharSequence source = null;
-    private final CharSequence inviteCode = null;
-    private final CharSequence guildTemplateCode = null;
     private final CharSequence destination = null;
+    private final Long fingerprint = null;
+    private final CharSequence guildTemplateCode = null;
+    private final CharSequence inviteCode = null;
+    private final CharSequence source = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "deep_link_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackDeepLinkClicked implements AnalyticsSchema, T
         }
         TrackDeepLinkClicked trackDeepLinkClicked = (TrackDeepLinkClicked) other;
         return C12238m.areEqual(this.fingerprint, trackDeepLinkClicked.fingerprint) && C12238m.areEqual(this.attemptId, trackDeepLinkClicked.attemptId) && C12238m.areEqual(this.source, trackDeepLinkClicked.source) && C12238m.areEqual(this.inviteCode, trackDeepLinkClicked.inviteCode) && C12238m.areEqual(this.guildTemplateCode, trackDeepLinkClicked.guildTemplateCode) && C12238m.areEqual(this.destination, trackDeepLinkClicked.destination);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

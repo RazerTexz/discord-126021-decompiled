@@ -20,7 +20,7 @@ public interface NetworkChangeDetector {
         CONNECTION_NONE
     }
 
-    public static class IPAddress {
+    public class IPAddress {
         public final byte[] address;
 
         public IPAddress(byte[] bArr) {
@@ -33,7 +33,7 @@ public interface NetworkChangeDetector {
         }
     }
 
-    public static class NetworkInformation {
+    public class NetworkInformation {
         public final long handle;
         public final IPAddress[] ipAddresses;
         public final String name;

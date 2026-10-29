@@ -50,8 +50,108 @@ public final class StoreConnectivity extends StoreV2 {
     private Long stateTriggeredTimeMillis;
     private final StoreStream stream;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$handleChannelMessagesLoading$1 */
     /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final class Companion {
+    public final class C58531 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $channelMessagesLoading;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58531(boolean z2) {
+            super(0);
+            this.$channelMessagesLoading = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreConnectivity.this.channelMessagesLoading = this.$channelMessagesLoading;
+            StoreConnectivity.this.updateConnectivityState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$handleDeviceNetworkStateUpdated$1 */
+    /* JADX INFO: compiled from: StoreConnectivity.kt */
+    public final class C58541 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ NetworkMonitor.State $state;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58541(NetworkMonitor.State state) {
+            super(0);
+            this.$state = state;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreConnectivity.this.deviceNetworkState = this.$state;
+            StoreConnectivity.this.updateConnectivityState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$init$1 */
+    /* JADX INFO: compiled from: StoreConnectivity.kt */
+    public final /* synthetic */ class C58551 extends C12236k implements Function1<NetworkMonitor.State, Unit> {
+        public C58551(StoreConnectivity storeConnectivity) {
+            super(1, storeConnectivity, StoreConnectivity.class, "handleDeviceNetworkStateUpdated", "handleDeviceNetworkStateUpdated(Lcom/discord/utilities/networking/NetworkMonitor$State;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(NetworkMonitor.State state) {
+            invoke2(state);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(NetworkMonitor.State state) {
+            C12238m.checkNotNullParameter(state, "p1");
+            ((StoreConnectivity) this.receiver).handleDeviceNetworkStateUpdated(state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$init$2 */
+    /* JADX INFO: compiled from: StoreConnectivity.kt */
+    public final /* synthetic */ class C58562 extends C12236k implements Function1<Boolean, Unit> {
+        public C58562(StoreConnectivity storeConnectivity) {
+            super(1, storeConnectivity, StoreConnectivity.class, "handleChannelMessagesLoading", "handleChannelMessagesLoading(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((StoreConnectivity) this.receiver).handleChannelMessagesLoading(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$observeState$1 */
+    /* JADX INFO: compiled from: StoreConnectivity.kt */
+    public final class C58571 extends AbstractC12240o implements Function0<DelayedState> {
+        public C58571() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final DelayedState invoke() {
+            return StoreConnectivity.this.getState();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreConnectivity.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -61,7 +161,7 @@ public final class StoreConnectivity extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final /* data */ class DelayedState {
+    public final /* data */ class DelayedState {
         private final long delay;
         private final State state;
 
@@ -81,16 +181,6 @@ public final class StoreConnectivity extends StoreV2 {
             return delayedState.copy(state, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final State getState() {
-            return this.state;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getDelay() {
-            return this.delay;
-        }
-
         public final DelayedState copy(State state, long delay) {
             C12238m.checkNotNullParameter(state, "state");
             return new DelayedState(state, delay);
@@ -107,8 +197,18 @@ public final class StoreConnectivity extends StoreV2 {
             return C12238m.areEqual(this.state, delayedState.state) && this.delay == delayedState.delay;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getDelay() {
             return this.delay;
+        }
+
+        public final long getDelay() {
+            return this.delay;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final State getState() {
+            return this.state;
         }
 
         public final State getState() {
@@ -159,106 +259,6 @@ public final class StoreConnectivity extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$handleChannelMessagesLoading$1 */
-    /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final class C58531 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $channelMessagesLoading;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58531(boolean z2) {
-            super(0);
-            this.$channelMessagesLoading = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreConnectivity.this.channelMessagesLoading = this.$channelMessagesLoading;
-            StoreConnectivity.this.updateConnectivityState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$handleDeviceNetworkStateUpdated$1 */
-    /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final class C58541 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ NetworkMonitor.State $state;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58541(NetworkMonitor.State state) {
-            super(0);
-            this.$state = state;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreConnectivity.this.deviceNetworkState = this.$state;
-            StoreConnectivity.this.updateConnectivityState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$init$1 */
-    /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final /* synthetic */ class C58551 extends C12236k implements Function1<NetworkMonitor.State, Unit> {
-        public C58551(StoreConnectivity storeConnectivity) {
-            super(1, storeConnectivity, StoreConnectivity.class, "handleDeviceNetworkStateUpdated", "handleDeviceNetworkStateUpdated(Lcom/discord/utilities/networking/NetworkMonitor$State;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(NetworkMonitor.State state) {
-            invoke2(state);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(NetworkMonitor.State state) {
-            C12238m.checkNotNullParameter(state, "p1");
-            ((StoreConnectivity) this.receiver).handleDeviceNetworkStateUpdated(state);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$init$2 */
-    /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final /* synthetic */ class C58562 extends C12236k implements Function1<Boolean, Unit> {
-        public C58562(StoreConnectivity storeConnectivity) {
-            super(1, storeConnectivity, StoreConnectivity.class, "handleChannelMessagesLoading", "handleChannelMessagesLoading(Z)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            ((StoreConnectivity) this.receiver).handleChannelMessagesLoading(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectivity$observeState$1 */
-    /* JADX INFO: compiled from: StoreConnectivity.kt */
-    public static final class C58571 extends AbstractC12240o implements Function0<DelayedState> {
-        public C58571() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final DelayedState invoke() {
-            return StoreConnectivity.this.getState();
-        }
-    }
-
     public StoreConnectivity(StoreStream storeStream, Dispatcher dispatcher, Clock clock) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -306,12 +306,55 @@ public final class StoreConnectivity extends StoreV2 {
         return C11226f.coerceAtLeast(((long) C11210a.roundToInt((defaultDelay - getStateActiveMillis()) / 100)) * 100, 0L);
     }
 
+    @StoreThread
+    public final void handleBackgrounded(boolean backgrounded) {
+        if (backgrounded) {
+            this.stateTriggeredDelay -= getStateActiveMillis();
+        }
+        if (this.stateTriggeredTimeMillis != null) {
+            this.stateTriggeredTimeMillis = Long.valueOf(this.clock.currentTimeMillis());
+        }
+        updateConnectivityState();
+    }
+
     private final void handleChannelMessagesLoading(boolean channelMessagesLoading) {
         this.dispatcher.schedule(new C58531(channelMessagesLoading));
     }
 
+    @StoreThread
+    public final void handleConnected(boolean connected) {
+        if (connected) {
+            return;
+        }
+        this.isReadyPayloadReceived = false;
+        updateConnectivityState();
+    }
+
+    @StoreThread
+    public final void handleConnectionReady(boolean connectionReady) {
+        this.isReadyPayloadReceived = connectionReady;
+        updateConnectivityState();
+    }
+
     private final void handleDeviceNetworkStateUpdated(NetworkMonitor.State state) {
         this.dispatcher.schedule(new C58541(state));
+    }
+
+    @StoreThread
+    public final void init(NetworkMonitor networkMonitor) {
+        C12238m.checkNotNullParameter(networkMonitor, "networkMonitor");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(networkMonitor.observeState()), (Class<?>) StoreConnectivity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58551(this));
+        ObservableExtensionsKt.appSubscribe(this.stream.getMessagesLoader().observeChannelMessagesLoading(), (Class<?>) StoreConnectivity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58562(this));
+    }
+
+    public final boolean isConnected() {
+        return getState().getState() == State.ONLINE;
+    }
+
+    public final Observable<DelayedState> observeState() {
+        Observable<DelayedState> observableM11112r = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58571(), 14, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "ObservationDeckProvider\n…  .distinctUntilChanged()");
+        return observableM11112r;
     }
 
     private final void setState(DelayedState delayedState) {
@@ -333,48 +376,5 @@ public final class StoreConnectivity extends StoreV2 {
             this.stateTriggeredDelay = getNextStateDelayInitial(getState(), state);
         }
         setState(new DelayedState(state, getStateDelay(this.stateTriggeredDelay)));
-    }
-
-    @StoreThread
-    public final void handleBackgrounded(boolean backgrounded) {
-        if (backgrounded) {
-            this.stateTriggeredDelay -= getStateActiveMillis();
-        }
-        if (this.stateTriggeredTimeMillis != null) {
-            this.stateTriggeredTimeMillis = Long.valueOf(this.clock.currentTimeMillis());
-        }
-        updateConnectivityState();
-    }
-
-    @StoreThread
-    public final void handleConnected(boolean connected) {
-        if (connected) {
-            return;
-        }
-        this.isReadyPayloadReceived = false;
-        updateConnectivityState();
-    }
-
-    @StoreThread
-    public final void handleConnectionReady(boolean connectionReady) {
-        this.isReadyPayloadReceived = connectionReady;
-        updateConnectivityState();
-    }
-
-    @StoreThread
-    public final void init(NetworkMonitor networkMonitor) {
-        C12238m.checkNotNullParameter(networkMonitor, "networkMonitor");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(networkMonitor.observeState()), (Class<?>) StoreConnectivity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58551(this));
-        ObservableExtensionsKt.appSubscribe(this.stream.getMessagesLoader().observeChannelMessagesLoading(), (Class<?>) StoreConnectivity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58562(this));
-    }
-
-    public final boolean isConnected() {
-        return getState().getState() == State.ONLINE;
-    }
-
-    public final Observable<DelayedState> observeState() {
-        Observable<DelayedState> observableM11112r = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58571(), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "ObservationDeckProvider\n…  .distinctUntilChanged()");
-        return observableM11112r;
     }
 }

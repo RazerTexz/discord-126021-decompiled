@@ -24,17 +24,35 @@ public interface InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: b.i.a.c.y1$b */
     /* JADX INFO: compiled from: Player.java */
-    public static final class b implements InterfaceC2963w0 {
-
-        /* JADX INFO: renamed from: j */
-        public static final b f9032j = new b(new C2747n.b().m3033b(), null);
+    public final class b implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: k */
         public final C2747n f9033k;
 
+        /* JADX INFO: renamed from: j */
+        public static final b f9032j = new b(new C2747n.b().m3033b(), null);
+
+        public b(C2747n c2747n, a aVar) {
+            this.f9033k = c2747n;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj instanceof b) {
+                return this.f9033k.equals(((b) obj).f9033k);
+            }
+            return false;
+        }
+
+        public int hashCode() {
+            return this.f9033k.hashCode();
+        }
+
         /* JADX INFO: renamed from: b.i.a.c.y1$b$a */
         /* JADX INFO: compiled from: Player.java */
-        public static final class a {
+        public final class a {
 
             /* JADX INFO: renamed from: a */
             public final C2747n.b f9034a = new C2747n.b();
@@ -65,24 +83,6 @@ public interface InterfaceC3128y1 {
             public b m3828c() {
                 return new b(this.f9034a.m3033b(), null);
             }
-        }
-
-        public b(C2747n c2747n, a aVar) {
-            this.f9033k = c2747n;
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj instanceof b) {
-                return this.f9033k.equals(((b) obj).f9033k);
-            }
-            return false;
-        }
-
-        public int hashCode() {
-            return this.f9033k.hashCode();
         }
     }
 
@@ -164,25 +164,13 @@ public interface InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: b.i.a.c.y1$d */
     /* JADX INFO: compiled from: Player.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final C2747n f9035a;
 
         public d(C2747n c2747n) {
             this.f9035a = c2747n;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public boolean m3829a(int... iArr) {
-            C2747n c2747n = this.f9035a;
-            Objects.requireNonNull(c2747n);
-            for (int i : iArr) {
-                if (c2747n.m3029a(i)) {
-                    return true;
-                }
-            }
-            return false;
         }
 
         public boolean equals(@Nullable Object obj) {
@@ -197,6 +185,18 @@ public interface InterfaceC3128y1 {
 
         public int hashCode() {
             return this.f9035a.hashCode();
+        }
+
+        /* JADX INFO: renamed from: a */
+        public boolean m3829a(int... iArr) {
+            C2747n c2747n = this.f9035a;
+            Objects.requireNonNull(c2747n);
+            for (int i : iArr) {
+                if (c2747n.m3029a(i)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -233,7 +233,7 @@ public interface InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: b.i.a.c.y1$f */
     /* JADX INFO: compiled from: Player.java */
-    public static final class f implements InterfaceC2963w0 {
+    public final class f implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         @Nullable
@@ -302,9 +302,6 @@ public interface InterfaceC3128y1 {
     /* JADX INFO: renamed from: C */
     int mo2881C();
 
-    /* JADX INFO: renamed from: D */
-    boolean mo3518D(int i);
-
     /* JADX INFO: renamed from: E */
     void mo2882E(int i);
 
@@ -335,17 +332,8 @@ public interface InterfaceC3128y1 {
     /* JADX INFO: renamed from: N */
     long mo2891N();
 
-    /* JADX INFO: renamed from: O */
-    void mo3519O();
-
-    /* JADX INFO: renamed from: P */
-    void mo3520P();
-
     /* JADX INFO: renamed from: Q */
     void mo2892Q(@Nullable TextureView textureView);
-
-    /* JADX INFO: renamed from: R */
-    void mo3521R();
 
     /* JADX INFO: renamed from: S */
     C2835p1 mo2893S();
@@ -361,12 +349,6 @@ public interface InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: c */
     C2998x1 mo2897c();
-
-    /* JADX INFO: renamed from: d */
-    void mo3531d();
-
-    /* JADX INFO: renamed from: e */
-    void mo3532e();
 
     /* JADX INFO: renamed from: f */
     boolean mo2900f();
@@ -407,9 +389,6 @@ public interface InterfaceC3128y1 {
     /* JADX INFO: renamed from: r */
     void mo2922r(@Nullable SurfaceView surfaceView);
 
-    /* JADX INFO: renamed from: s */
-    void mo3533s();
-
     @Nullable
     /* JADX INFO: renamed from: t */
     PlaybackException mo2925t();
@@ -428,6 +407,27 @@ public interface InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: y */
     int mo2930y();
+
+    /* JADX INFO: renamed from: D */
+    boolean mo3518D(int i);
+
+    /* JADX INFO: renamed from: O */
+    void mo3519O();
+
+    /* JADX INFO: renamed from: P */
+    void mo3520P();
+
+    /* JADX INFO: renamed from: R */
+    void mo3521R();
+
+    /* JADX INFO: renamed from: d */
+    void mo3531d();
+
+    /* JADX INFO: renamed from: e */
+    void mo3532e();
+
+    /* JADX INFO: renamed from: s */
+    void mo3533s();
 
     /* JADX INFO: renamed from: z */
     boolean mo3534z();

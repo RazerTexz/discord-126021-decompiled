@@ -88,21 +88,6 @@ public final class C3890x4 extends AbstractC3772o3<Integer> implements Interface
         return indexOf(obj) != -1;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
-    /* JADX INFO: renamed from: d, reason: merged with bridge method [inline-methods] */
-    public final InterfaceC3916z4 mo4569f(int i) {
-        if (i >= this.f10402m) {
-            return new C3890x4(Arrays.copyOf(this.f10401l, i), this.f10402m);
-        }
-        throw new IllegalArgumentException();
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final int m5357e(int i) {
-        m5359h(i);
-        return this.f10401l[i];
-    }
-
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -124,6 +109,42 @@ public final class C3890x4 extends AbstractC3772o3<Integer> implements Interface
         return true;
     }
 
+    @Override // java.util.AbstractList, java.util.List
+    public final Object get(int i) {
+        m5359h(i);
+        return Integer.valueOf(this.f10401l[i]);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
+    public final int hashCode() {
+        int i = 1;
+        for (int i2 = 0; i2 < this.f10402m; i2++) {
+            i = (i * 31) + this.f10401l[i2];
+        }
+        return i;
+    }
+
+    @Override // java.util.AbstractList, java.util.List
+    public final int indexOf(Object obj) {
+        if (!(obj instanceof Integer)) {
+            return -1;
+        }
+        int iIntValue = ((Integer) obj).intValue();
+        int i = this.f10402m;
+        for (int i2 = 0; i2 < i; i2++) {
+            if (this.f10401l[i2] == iIntValue) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final int m5357e(int i) {
+        m5359h(i);
+        return this.f10401l[i];
+    }
+
     /* JADX INFO: renamed from: g */
     public final void m5358g(int i) {
         m5153c();
@@ -140,12 +161,6 @@ public final class C3890x4 extends AbstractC3772o3<Integer> implements Interface
         iArr3[i3] = i;
     }
 
-    @Override // java.util.AbstractList, java.util.List
-    public final Object get(int i) {
-        m5359h(i);
-        return Integer.valueOf(this.f10401l[i]);
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m5359h(int i) {
         if (i < 0 || i >= this.f10402m) {
@@ -153,33 +168,18 @@ public final class C3890x4 extends AbstractC3772o3<Integer> implements Interface
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
-    public final int hashCode() {
-        int i = 1;
-        for (int i2 = 0; i2 < this.f10402m; i2++) {
-            i = (i * 31) + this.f10401l[i2];
-        }
-        return i;
-    }
-
     /* JADX INFO: renamed from: i */
     public final String m5360i(int i) {
         return C1643a.m853h(35, "Index:", i, ", Size:", this.f10402m);
     }
 
-    @Override // java.util.AbstractList, java.util.List
-    public final int indexOf(Object obj) {
-        if (!(obj instanceof Integer)) {
-            return -1;
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
+    /* JADX INFO: renamed from: d, reason: merged with bridge method [inline-methods] */
+    public final InterfaceC3916z4 mo4569f(int i) {
+        if (i >= this.f10402m) {
+            return new C3890x4(Arrays.copyOf(this.f10401l, i), this.f10402m);
         }
-        int iIntValue = ((Integer) obj).intValue();
-        int i = this.f10402m;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (this.f10401l[i2] == iIntValue) {
-                return i2;
-            }
-        }
-        return -1;
+        throw new IllegalArgumentException();
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List

@@ -99,84 +99,14 @@ public class GenericDraweeHierarchy implements InterfaceC1798a {
         C2030b.m1527b();
     }
 
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    /* JADX INFO: renamed from: a */
-    public void mo1131a(Drawable drawable) {
-        C1794b c1794b = this.f19509d;
-        c1794b.f3469n = drawable;
-        c1794b.invalidateSelf();
-    }
-
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    /* JADX INFO: renamed from: b */
-    public void mo1132b(Throwable th) {
-        this.f19510e.m1098e();
-        m8673i();
-        if (this.f19510e.m1093a(4) != null) {
-            m8672h(4);
-        } else {
-            m8672h(1);
-        }
-        this.f19510e.m1099f();
-    }
-
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    /* JADX INFO: renamed from: c */
-    public void mo1133c(Throwable th) {
-        this.f19510e.m1098e();
-        m8673i();
-        if (this.f19510e.m1093a(5) != null) {
-            m8672h(5);
-        } else {
-            m8672h(1);
-        }
-        this.f19510e.m1099f();
-    }
-
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    /* JADX INFO: renamed from: d */
-    public void mo1134d(float f, boolean z2) {
-        if (this.f19510e.m1093a(3) == null) {
-            return;
-        }
-        this.f19510e.m1098e();
-        m8682r(f);
-        if (z2) {
-            this.f19510e.m1100g();
-        }
-        this.f19510e.m1099f();
-    }
-
     @Override // com.facebook.drawee.interfaces.DraweeHierarchy
-    /* JADX INFO: renamed from: e */
-    public Drawable mo8670e() {
-        return this.f19509d;
-    }
-
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    /* JADX INFO: renamed from: f */
-    public void mo1135f(Drawable drawable, float f, boolean z2) {
-        Drawable drawableM1128c = C1796d.m1128c(drawable, this.f19508c, this.f19507b);
-        drawableM1128c.mutate();
-        this.f19511f.mo1104o(drawableM1128c);
-        this.f19510e.m1098e();
-        m8673i();
-        m8672h(2);
-        m8682r(f);
-        if (z2) {
-            this.f19510e.m1100g();
-        }
-        this.f19510e.m1099f();
+    public Rect getBounds() {
+        return this.f19509d.getBounds();
     }
 
     /* JADX INFO: renamed from: g */
     public final Drawable m8671g(Drawable drawable, ScalingUtils$ScaleType scalingUtils$ScaleType) {
         return C1796d.m1130e(C1796d.m1128c(drawable, this.f19508c, this.f19507b), scalingUtils$ScaleType, null);
-    }
-
-    @Override // com.facebook.drawee.interfaces.DraweeHierarchy
-    public Rect getBounds() {
-        return this.f19509d.getBounds();
     }
 
     /* JADX INFO: renamed from: h */
@@ -301,12 +231,6 @@ public class GenericDraweeHierarchy implements InterfaceC1798a {
         drawableM1093a.setLevel(Math.round(f * 10000.0f));
     }
 
-    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
-    public void reset() {
-        this.f19511f.mo1104o(this.f19506a);
-        m8677m();
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX INFO: renamed from: s */
     public void m8683s(C1795c c1795c) {
@@ -358,5 +282,81 @@ public class GenericDraweeHierarchy implements InterfaceC1798a {
                 interfaceC1766dM8675k.mo1090g(C1796d.m1126a(drawableMo1091l, c1795c2, resources));
             }
         }
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    /* JADX INFO: renamed from: a */
+    public void mo1131a(Drawable drawable) {
+        C1794b c1794b = this.f19509d;
+        c1794b.f3469n = drawable;
+        c1794b.invalidateSelf();
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    /* JADX INFO: renamed from: b */
+    public void mo1132b(Throwable th) {
+        this.f19510e.m1098e();
+        m8673i();
+        if (this.f19510e.m1093a(4) != null) {
+            m8672h(4);
+        } else {
+            m8672h(1);
+        }
+        this.f19510e.m1099f();
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    /* JADX INFO: renamed from: c */
+    public void mo1133c(Throwable th) {
+        this.f19510e.m1098e();
+        m8673i();
+        if (this.f19510e.m1093a(5) != null) {
+            m8672h(5);
+        } else {
+            m8672h(1);
+        }
+        this.f19510e.m1099f();
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    /* JADX INFO: renamed from: d */
+    public void mo1134d(float f, boolean z2) {
+        if (this.f19510e.m1093a(3) == null) {
+            return;
+        }
+        this.f19510e.m1098e();
+        m8682r(f);
+        if (z2) {
+            this.f19510e.m1100g();
+        }
+        this.f19510e.m1099f();
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    /* JADX INFO: renamed from: f */
+    public void mo1135f(Drawable drawable, float f, boolean z2) {
+        Drawable drawableM1128c = C1796d.m1128c(drawable, this.f19508c, this.f19507b);
+        drawableM1128c.mutate();
+        this.f19511f.mo1104o(drawableM1128c);
+        this.f19510e.m1098e();
+        m8673i();
+        m8672h(2);
+        m8682r(f);
+        if (z2) {
+            this.f19510e.m1100g();
+        }
+        this.f19510e.m1099f();
+    }
+
+    @Override // com.facebook.drawee.interfaces.DraweeHierarchy
+    /* JADX INFO: renamed from: e */
+    public Drawable mo8670e() {
+        return this.f19509d;
+    }
+
+    @Override // p007b.p109f.p132g.p145h.InterfaceC1798a
+    public void reset() {
+        this.f19511f.mo1104o(this.f19506a);
+        m8677m();
     }
 }

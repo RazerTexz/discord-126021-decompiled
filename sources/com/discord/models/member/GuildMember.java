@@ -27,7 +27,6 @@ public final /* data */ class GuildMember {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final List<Long> emptyRoles = new ArrayList();
     private final String avatarHash;
     private final String bannerHash;
     private final String bio;
@@ -41,18 +40,11 @@ public final /* data */ class GuildMember {
     private final String premiumSince;
     private final List<Long> roles;
     private final long userId;
+    private static final List<Long> emptyRoles = new ArrayList();
 
     /* JADX INFO: compiled from: GuildMember.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ String getNickOrUsername$default(Companion companion, User user, GuildMember guildMember, Channel channel, List list, int i, Object obj) {
-            if ((i & 8) != 0) {
-                list = null;
-            }
-            return companion.getNickOrUsername(user, guildMember, channel, list);
         }
 
         public final int compareUserNames(User user1, User user2, GuildMember member1, GuildMember member2) {
@@ -109,6 +101,14 @@ public final /* data */ class GuildMember {
                 }
             }
             return guildRole2;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ String getNickOrUsername$default(Companion companion, User user, GuildMember guildMember, Channel channel, List list, int i, Object obj) {
+            if ((i & 8) != 0) {
+                list = null;
+            }
+            return companion.getNickOrUsername(user, guildMember, channel, list);
         }
 
         public final String getNickOrUsername(GuildMember member, User user) {
@@ -175,78 +175,6 @@ public final /* data */ class GuildMember {
         return this.roles;
     }
 
-    public static final int getColor(@ColorInt int i, @ColorInt int i2) {
-        return INSTANCE.getColor(i, i2);
-    }
-
-    public static final int getColor(GuildMember guildMember, @ColorInt int i) {
-        return INSTANCE.getColor(guildMember, i);
-    }
-
-    public static final String getNickOrUsername(GuildMember guildMember, User user) {
-        return INSTANCE.getNickOrUsername(guildMember, user);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getColor() {
-        return this.color;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final String getAvatarHash() {
-        return this.avatarHash;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final String getBannerHash() {
-        return this.bannerHash;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final String getBio() {
-        return this.bio;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final UtcDateTime getCommunicationDisabledUntil() {
-        return this.communicationDisabledUntil;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getHoistRoleId() {
-        return this.hoistRoleId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getNick() {
-        return this.nick;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getPremiumSince() {
-        return this.premiumSince;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getPending() {
-        return this.pending;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final UtcDateTime getJoinedAt() {
-        return this.joinedAt;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
     public final GuildMember copy(@ColorInt int color, long hoistRoleId, List<Long> roles, String nick, String premiumSince, boolean pending, UtcDateTime joinedAt, long guildId, long userId, String avatarHash, String bannerHash, String bio, UtcDateTime communicationDisabledUntil) {
         return new GuildMember(color, hoistRoleId, roles, nick, premiumSince, pending, joinedAt, guildId, userId, avatarHash, bannerHash, bio, communicationDisabledUntil);
     }
@@ -262,44 +190,111 @@ public final /* data */ class GuildMember {
         return this.color == guildMember.color && this.hoistRoleId == guildMember.hoistRoleId && C12238m.areEqual(this.roles, guildMember.roles) && C12238m.areEqual(this.nick, guildMember.nick) && C12238m.areEqual(this.premiumSince, guildMember.premiumSince) && this.pending == guildMember.pending && C12238m.areEqual(this.joinedAt, guildMember.joinedAt) && this.guildId == guildMember.guildId && this.userId == guildMember.userId && C12238m.areEqual(this.avatarHash, guildMember.avatarHash) && C12238m.areEqual(this.bannerHash, guildMember.bannerHash) && C12238m.areEqual(this.bio, guildMember.bio) && C12238m.areEqual(this.communicationDisabledUntil, guildMember.communicationDisabledUntil);
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final String getAvatarHash() {
         return this.avatarHash;
+    }
+
+    public final String getAvatarHash() {
+        return this.avatarHash;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final String getBannerHash() {
+        return this.bannerHash;
     }
 
     public final String getBannerHash() {
         return this.bannerHash;
     }
 
+    /* JADX INFO: renamed from: component12, reason: from getter */
     public final String getBio() {
         return this.bio;
+    }
+
+    public final String getBio() {
+        return this.bio;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getColor() {
+        return this.color;
     }
 
     public final int getColor() {
         return this.color;
     }
 
+    public static final int getColor(@ColorInt int i, @ColorInt int i2) {
+        return INSTANCE.getColor(i, i2);
+    }
+
+    public static final int getColor(GuildMember guildMember, @ColorInt int i) {
+        return INSTANCE.getColor(guildMember, i);
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final UtcDateTime getCommunicationDisabledUntil() {
         return this.communicationDisabledUntil;
+    }
+
+    public final UtcDateTime getCommunicationDisabledUntil() {
+        return this.communicationDisabledUntil;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {
         return this.guildId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getHoistRoleId() {
         return this.hoistRoleId;
+    }
+
+    public final long getHoistRoleId() {
+        return this.hoistRoleId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final UtcDateTime getJoinedAt() {
+        return this.joinedAt;
     }
 
     public final UtcDateTime getJoinedAt() {
         return this.joinedAt;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getNick() {
         return this.nick;
     }
 
+    public final String getNick() {
+        return this.nick;
+    }
+
+    public static final String getNickOrUsername(GuildMember guildMember, User user) {
+        return INSTANCE.getNickOrUsername(guildMember, user);
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getPending() {
         return this.pending;
+    }
+
+    public final boolean getPending() {
+        return this.pending;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getPremiumSince() {
+        return this.premiumSince;
     }
 
     public final String getPremiumSince() {
@@ -309,6 +304,11 @@ public final /* data */ class GuildMember {
     public final List<Long> getRoles() {
         List<Long> list = this.roles;
         return list != null ? list : emptyRoles;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

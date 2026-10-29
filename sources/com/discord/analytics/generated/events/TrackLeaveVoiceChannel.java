@@ -9,39 +9,33 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLeaveVoiceChannel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLeaveVoiceChannel implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long channelBitrate = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long channelBitrate = null;
-    private final Long guildId = null;
-    private final CharSequence nonce = null;
-    private final CharSequence rtcConnectionId = null;
-    private final CharSequence mediaSessionId = null;
     private final Long duration = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
+    private final Long gameId = null;
     private final CharSequence gameName = null;
     private final CharSequence gamePlatform = null;
-    private final Long gameId = null;
-    private final Long maxVoiceStateCount = null;
-    private final Long totalVoiceStateCount = null;
-    private final Long maxSpeakerCount = null;
-    private final Long totalSpeakerCount = null;
-    private final Long maxListenerCount = null;
-    private final Long totalListenerCount = null;
-    private final Long stageInstanceId = null;
+    private final Long guildId = null;
     private final Long guildScheduledEventId = null;
-    private final Long viewModeGridDurationMs = null;
+    private final Long maxListenerCount = null;
+    private final Long maxSpeakerCount = null;
+    private final Long maxVoiceStateCount = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence nonce = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long stageInstanceId = null;
+    private final Long totalListenerCount = null;
+    private final Long totalSpeakerCount = null;
+    private final Long totalVoiceStateCount = null;
+    private TrackBase trackBase;
+    private final Boolean videoEnabled = null;
+    private final Long videoStreamCount = null;
     private final Long viewModeFocusDurationMs = null;
+    private final Long viewModeGridDurationMs = null;
     private final Long viewModeToggleCount = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "leave_voice_channel";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -52,6 +46,12 @@ public final /* data */ class TrackLeaveVoiceChannel implements AnalyticsSchema,
         }
         TrackLeaveVoiceChannel trackLeaveVoiceChannel = (TrackLeaveVoiceChannel) other;
         return C12238m.areEqual(this.channelId, trackLeaveVoiceChannel.channelId) && C12238m.areEqual(this.channelType, trackLeaveVoiceChannel.channelType) && C12238m.areEqual(this.channelBitrate, trackLeaveVoiceChannel.channelBitrate) && C12238m.areEqual(this.guildId, trackLeaveVoiceChannel.guildId) && C12238m.areEqual(this.nonce, trackLeaveVoiceChannel.nonce) && C12238m.areEqual(this.rtcConnectionId, trackLeaveVoiceChannel.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackLeaveVoiceChannel.mediaSessionId) && C12238m.areEqual(this.duration, trackLeaveVoiceChannel.duration) && C12238m.areEqual(this.voiceStateCount, trackLeaveVoiceChannel.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackLeaveVoiceChannel.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackLeaveVoiceChannel.videoEnabled) && C12238m.areEqual(this.gameName, trackLeaveVoiceChannel.gameName) && C12238m.areEqual(this.gamePlatform, trackLeaveVoiceChannel.gamePlatform) && C12238m.areEqual(this.gameId, trackLeaveVoiceChannel.gameId) && C12238m.areEqual(this.maxVoiceStateCount, trackLeaveVoiceChannel.maxVoiceStateCount) && C12238m.areEqual(this.totalVoiceStateCount, trackLeaveVoiceChannel.totalVoiceStateCount) && C12238m.areEqual(this.maxSpeakerCount, trackLeaveVoiceChannel.maxSpeakerCount) && C12238m.areEqual(this.totalSpeakerCount, trackLeaveVoiceChannel.totalSpeakerCount) && C12238m.areEqual(this.maxListenerCount, trackLeaveVoiceChannel.maxListenerCount) && C12238m.areEqual(this.totalListenerCount, trackLeaveVoiceChannel.totalListenerCount) && C12238m.areEqual(this.stageInstanceId, trackLeaveVoiceChannel.stageInstanceId) && C12238m.areEqual(this.guildScheduledEventId, trackLeaveVoiceChannel.guildScheduledEventId) && C12238m.areEqual(this.viewModeGridDurationMs, trackLeaveVoiceChannel.viewModeGridDurationMs) && C12238m.areEqual(this.viewModeFocusDurationMs, trackLeaveVoiceChannel.viewModeFocusDurationMs) && C12238m.areEqual(this.viewModeToggleCount, trackLeaveVoiceChannel.viewModeToggleCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

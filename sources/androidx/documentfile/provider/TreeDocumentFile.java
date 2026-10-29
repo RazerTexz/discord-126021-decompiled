@@ -22,6 +22,16 @@ public class TreeDocumentFile extends DocumentFile {
         this.mUri = uri;
     }
 
+    @Override // androidx.documentfile.provider.DocumentFile
+    public boolean canRead() {
+        return DocumentsContractApi19.canRead(this.mContext, this.mUri);
+    }
+
+    @Override // androidx.documentfile.provider.DocumentFile
+    public boolean canWrite() {
+        return DocumentsContractApi19.canWrite(this.mContext, this.mUri);
+    }
+
     private static void closeQuietly(@Nullable AutoCloseable autoCloseable) {
         if (autoCloseable != null) {
             try {
@@ -31,16 +41,6 @@ public class TreeDocumentFile extends DocumentFile {
             } catch (Exception unused) {
             }
         }
-    }
-
-    @Override // androidx.documentfile.provider.DocumentFile
-    public boolean canRead() {
-        return DocumentsContractApi19.canRead(this.mContext, this.mUri);
-    }
-
-    @Override // androidx.documentfile.provider.DocumentFile
-    public boolean canWrite() {
-        return DocumentsContractApi19.canWrite(this.mContext, this.mUri);
     }
 
     @Override // androidx.documentfile.provider.DocumentFile

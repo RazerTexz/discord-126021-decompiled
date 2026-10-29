@@ -20,7 +20,7 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
     private final boolean isNewGuild;
     private final Integer primaryCategoryId;
 
-    public static class Creator implements Parcelable.Creator<HubDescriptionArgs> {
+    public final class Creator implements Parcelable.Creator<HubDescriptionArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubDescriptionArgs createFromParcel(Parcel parcel) {
@@ -46,41 +46,6 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
         this.primaryCategoryId = num;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsEditing() {
-        return this.isEditing;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getHubName() {
-        return this.hubName;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsNewGuild() {
-        return this.isNewGuild;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Integer getPrimaryCategoryId() {
-        return this.primaryCategoryId;
-    }
-
     public final HubDescriptionArgs copy(long guildId, long channelId, boolean isEditing, String hubName, boolean isNewGuild, String description, Integer primaryCategoryId) {
         C12238m.checkNotNullParameter(hubName, "hubName");
         return new HubDescriptionArgs(guildId, channelId, isEditing, hubName, isNewGuild, description, primaryCategoryId);
@@ -102,20 +67,55 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
         return this.guildId == hubDescriptionArgs.guildId && this.channelId == hubDescriptionArgs.channelId && this.isEditing == hubDescriptionArgs.isEditing && C12238m.areEqual(this.hubName, hubDescriptionArgs.hubName) && this.isNewGuild == hubDescriptionArgs.isNewGuild && C12238m.areEqual(this.description, hubDescriptionArgs.description) && C12238m.areEqual(this.primaryCategoryId, hubDescriptionArgs.primaryCategoryId);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getDescription() {
+        return this.description;
     }
 
     public final String getDescription() {
         return this.description;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
     }
 
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getHubName() {
         return this.hubName;
+    }
+
+    public final String getHubName() {
+        return this.hubName;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsEditing() {
+        return this.isEditing;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsNewGuild() {
+        return this.isNewGuild;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Integer getPrimaryCategoryId() {
+        return this.primaryCategoryId;
     }
 
     public final Integer getPrimaryCategoryId() {

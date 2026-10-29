@@ -13,19 +13,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelDeleted implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackThreadReceiver {
+    private final CharSequence channelName = null;
+    private final Long guildId = null;
+    private final CharSequence guildName = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackThread trackThread;
-    private final Long guildId = null;
-    private final CharSequence guildName = null;
-    private final CharSequence channelName = null;
     private final transient String analyticsSchemaTypeName = "channel_deleted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackChannelDeleted implements AnalyticsSchema, Tr
         }
         TrackChannelDeleted trackChannelDeleted = (TrackChannelDeleted) other;
         return C12238m.areEqual(this.guildId, trackChannelDeleted.guildId) && C12238m.areEqual(this.guildName, trackChannelDeleted.guildName) && C12238m.areEqual(this.channelName, trackChannelDeleted.channelName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

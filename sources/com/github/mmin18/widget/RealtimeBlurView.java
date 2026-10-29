@@ -29,9 +29,6 @@ public class RealtimeBlurView extends View {
     /* JADX INFO: renamed from: k */
     public static int f19674k;
 
-    /* JADX INFO: renamed from: l */
-    public static C10681b f19675l = new C10681b(null);
-
     /* JADX INFO: renamed from: A */
     public final ViewTreeObserver.OnPreDrawListener f19676A;
 
@@ -76,6 +73,15 @@ public class RealtimeBlurView extends View {
 
     /* JADX INFO: renamed from: z */
     public boolean f19690z;
+
+    /* JADX INFO: renamed from: l */
+    public static C10681b f19675l = new C10681b(null);
+
+    /* JADX INFO: renamed from: com.github.mmin18.widget.RealtimeBlurView$b */
+    public class C10681b extends RuntimeException {
+        public C10681b(ViewTreeObserverOnPreDrawListenerC10680a viewTreeObserverOnPreDrawListenerC10680a) {
+        }
+    }
 
     /* JADX INFO: renamed from: com.github.mmin18.widget.RealtimeBlurView$a */
     public class ViewTreeObserverOnPreDrawListenerC10680a implements ViewTreeObserver.OnPreDrawListener {
@@ -234,12 +240,6 @@ public class RealtimeBlurView extends View {
         }
     }
 
-    /* JADX INFO: renamed from: com.github.mmin18.widget.RealtimeBlurView$b */
-    public static class C10681b extends RuntimeException {
-        public C10681b(ViewTreeObserverOnPreDrawListenerC10680a viewTreeObserverOnPreDrawListenerC10680a) {
-        }
-    }
-
     public RealtimeBlurView(Context context, AttributeSet attributeSet) {
         super(context, null);
         this.f19687w = new Rect();
@@ -252,33 +252,6 @@ public class RealtimeBlurView extends View {
         this.f19678n = typedArrayObtainStyledAttributes.getColor(C10679R.a.RealtimeBlurView_realtimeOverlayColor, -1426063361);
         typedArrayObtainStyledAttributes.recycle();
         this.f19686v = new Paint();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static /* synthetic */ int m8750a() {
-        int i = f19673j;
-        f19673j = i - 1;
-        return i;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void m8751b() {
-        m8752c();
-        this.f19680p.release();
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m8752c() {
-        Bitmap bitmap = this.f19682r;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.f19682r = null;
-        }
-        Bitmap bitmap2 = this.f19683s;
-        if (bitmap2 != null) {
-            bitmap2.recycle();
-            this.f19683s = null;
-        }
     }
 
     @Override // android.view.View
@@ -350,6 +323,33 @@ public class RealtimeBlurView extends View {
             return i != 3 ? new C2401d() : new C2398a();
         }
         return new C2402e();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static /* synthetic */ int m8750a() {
+        int i = f19673j;
+        f19673j = i - 1;
+        return i;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void m8751b() {
+        m8752c();
+        this.f19680p.release();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m8752c() {
+        Bitmap bitmap = this.f19682r;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.f19682r = null;
+        }
+        Bitmap bitmap2 = this.f19683s;
+        if (bitmap2 != null) {
+            bitmap2.recycle();
+            this.f19683s = null;
+        }
     }
 
     @Override // android.view.View

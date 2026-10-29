@@ -68,26 +68,9 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long guildId, long directoryChannelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetHubEventsPage widgetHubEventsPage = new WidgetHubEventsPage();
-            widgetHubEventsPage.setArguments(C1460d.m514e2(new HubEventsArgs(guildId, directoryChannelId)));
-            widgetHubEventsPage.show(fragmentManager, WidgetHubEventsPage.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsPage$configUI$3 */
     /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
-    public static final class C90533 extends AbstractC12240o implements Function1<Success<? extends List<? extends DirectoryEntryEvent>>, Unit> {
+    public final class C90533 extends AbstractC12240o implements Function1<Success<? extends List<? extends DirectoryEntryEvent>>, Unit> {
         public C90533() {
             super(1);
         }
@@ -108,7 +91,7 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsPage$onResume$1 */
     /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
-    public static final /* synthetic */ class C90541 extends C12236k implements Function1<WidgetHubEventsState, Unit> {
+    public final /* synthetic */ class C90541 extends C12236k implements Function1<WidgetHubEventsState, Unit> {
         public C90541(WidgetHubEventsPage widgetHubEventsPage) {
             super(1, widgetHubEventsPage, WidgetHubEventsPage.class, "configUI", "configUI(Lcom/discord/widgets/hubs/events/WidgetHubEventsState;)V", 0);
         }
@@ -123,6 +106,23 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
         public final void invoke2(WidgetHubEventsState widgetHubEventsState) {
             C12238m.checkNotNullParameter(widgetHubEventsState, "p1");
             ((WidgetHubEventsPage) this.receiver).configUI(widgetHubEventsState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long guildId, long directoryChannelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetHubEventsPage widgetHubEventsPage = new WidgetHubEventsPage();
+            widgetHubEventsPage.setArguments(C1460d.m514e2(new HubEventsArgs(guildId, directoryChannelId)));
+            widgetHubEventsPage.show(fragmentManager, WidgetHubEventsPage.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

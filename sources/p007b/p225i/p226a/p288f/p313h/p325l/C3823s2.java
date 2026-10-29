@@ -12,10 +12,6 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3823s2 implements InterfaceC3594b2 {
 
-    /* JADX INFO: renamed from: a */
-    @GuardedBy("SharedPreferencesLoader.class")
-    public static final Map<String, C3823s2> f10302a = new ArrayMap();
-
     /* JADX INFO: renamed from: b */
     public final SharedPreferences f10303b;
 
@@ -27,6 +23,10 @@ public final class C3823s2 implements InterfaceC3594b2 {
 
     /* JADX INFO: renamed from: e */
     public volatile Map<String, ?> f10306e;
+
+    /* JADX INFO: renamed from: a */
+    @GuardedBy("SharedPreferencesLoader.class")
+    public static final Map<String, C3823s2> f10302a = new ArrayMap();
 
     /* JADX INFO: renamed from: a */
     public static C3823s2 m5213a(Context context) {

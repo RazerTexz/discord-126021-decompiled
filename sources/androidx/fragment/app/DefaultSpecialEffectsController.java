@@ -28,8 +28,31 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class DefaultSpecialEffectsController extends SpecialEffectsController {
 
+    public class AnimationInfo extends SpecialEffectsInfo {
+
+        @Nullable
+        private FragmentAnim.AnimationOrAnimator mAnimation;
+        private boolean mLoadedAnim;
+
+        public AnimationInfo(@NonNull SpecialEffectsController.Operation operation, @NonNull CancellationSignal cancellationSignal) {
+            super(operation, cancellationSignal);
+            this.mLoadedAnim = false;
+        }
+
+        @Nullable
+        public FragmentAnim.AnimationOrAnimator getAnimation(@NonNull Context context) {
+            if (this.mLoadedAnim) {
+                return this.mAnimation;
+            }
+            FragmentAnim.AnimationOrAnimator animationOrAnimatorLoadAnimation = FragmentAnim.loadAnimation(context, getOperation().getFragment(), getOperation().getFinalState() == SpecialEffectsController.Operation.State.VISIBLE);
+            this.mAnimation = animationOrAnimatorLoadAnimation;
+            this.mLoadedAnim = true;
+            return animationOrAnimatorLoadAnimation;
+        }
+    }
+
     /* JADX INFO: renamed from: androidx.fragment.app.DefaultSpecialEffectsController$10 */
-    public static /* synthetic */ class C034710 {
+    public /* synthetic */ class C034710 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$fragment$app$SpecialEffectsController$Operation$State */
         public static final /* synthetic */ int[] f142xe493b431;
@@ -57,30 +80,7 @@ public class DefaultSpecialEffectsController extends SpecialEffectsController {
         }
     }
 
-    public static class AnimationInfo extends SpecialEffectsInfo {
-
-        @Nullable
-        private FragmentAnim.AnimationOrAnimator mAnimation;
-        private boolean mLoadedAnim;
-
-        public AnimationInfo(@NonNull SpecialEffectsController.Operation operation, @NonNull CancellationSignal cancellationSignal) {
-            super(operation, cancellationSignal);
-            this.mLoadedAnim = false;
-        }
-
-        @Nullable
-        public FragmentAnim.AnimationOrAnimator getAnimation(@NonNull Context context) {
-            if (this.mLoadedAnim) {
-                return this.mAnimation;
-            }
-            FragmentAnim.AnimationOrAnimator animationOrAnimatorLoadAnimation = FragmentAnim.loadAnimation(context, getOperation().getFragment(), getOperation().getFinalState() == SpecialEffectsController.Operation.State.VISIBLE);
-            this.mAnimation = animationOrAnimatorLoadAnimation;
-            this.mLoadedAnim = true;
-            return animationOrAnimatorLoadAnimation;
-        }
-    }
-
-    public static class SpecialEffectsInfo {
+    public class SpecialEffectsInfo {
 
         @NonNull
         private final SpecialEffectsController.Operation mOperation;
@@ -117,6 +117,112 @@ public class DefaultSpecialEffectsController extends SpecialEffectsController {
 
     public DefaultSpecialEffectsController(@NonNull ViewGroup viewGroup) {
         super(viewGroup);
+    }
+
+    public void applyContainerChanges(@NonNull SpecialEffectsController.Operation operation) {
+        operation.getFinalState().applyState(operation.getFragment().mView);
+    }
+
+    public void captureTransitioningViews(ArrayList<View> arrayList, View view) {
+        if (!(view instanceof ViewGroup)) {
+            arrayList.add(view);
+            return;
+        }
+        ViewGroup viewGroup = (ViewGroup) view;
+        if (ViewGroupCompat.isTransitionGroup(viewGroup)) {
+            arrayList.add(viewGroup);
+            return;
+        }
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = viewGroup.getChildAt(i);
+            if (childAt.getVisibility() == 0) {
+                captureTransitioningViews(arrayList, childAt);
+            }
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:28:0x007f  */
+    @Override // androidx.fragment.app.SpecialEffectsController
+    public void executeOperations(@NonNull List<SpecialEffectsController.Operation> list, boolean z2) {
+        SpecialEffectsController.Operation operation = null;
+        SpecialEffectsController.Operation operation2 = null;
+        for (SpecialEffectsController.Operation operation3 : list) {
+            SpecialEffectsController.Operation.State stateFrom = SpecialEffectsController.Operation.State.from(operation3.getFragment().mView);
+            int iOrdinal = operation3.getFinalState().ordinal();
+            if (iOrdinal != 0) {
+                if (iOrdinal != 1) {
+                    if (iOrdinal == 2 || iOrdinal == 3) {
+                    }
+                } else if (stateFrom != SpecialEffectsController.Operation.State.VISIBLE) {
+                    operation2 = operation3;
+                }
+            }
+            if (stateFrom == SpecialEffectsController.Operation.State.VISIBLE && operation == null) {
+                operation = operation3;
+            }
+        }
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        final ArrayList arrayList3 = new ArrayList(list);
+        for (final SpecialEffectsController.Operation operation4 : list) {
+            CancellationSignal cancellationSignal = new CancellationSignal();
+            operation4.markStartedSpecialEffect(cancellationSignal);
+            arrayList.add(new AnimationInfo(operation4, cancellationSignal));
+            CancellationSignal cancellationSignal2 = new CancellationSignal();
+            operation4.markStartedSpecialEffect(cancellationSignal2);
+            boolean z3 = false;
+            if (z2) {
+                if (operation4 == operation) {
+                    z3 = true;
+                }
+            } else if (operation4 == operation2) {
+                z3 = true;
+            }
+            arrayList2.add(new TransitionInfo(operation4, cancellationSignal2, z2, z3));
+            operation4.addCompletionListener(new Runnable() { // from class: androidx.fragment.app.DefaultSpecialEffectsController.1
+                @Override // java.lang.Runnable
+                public void run() {
+                    if (arrayList3.contains(operation4)) {
+                        arrayList3.remove(operation4);
+                        DefaultSpecialEffectsController.this.applyContainerChanges(operation4);
+                    }
+                }
+            });
+        }
+        Map<SpecialEffectsController.Operation, Boolean> mapStartTransitions = startTransitions(arrayList2, z2, operation, operation2);
+        startAnimations(arrayList, arrayList3, mapStartTransitions.containsValue(Boolean.TRUE), mapStartTransitions);
+        Iterator it = arrayList3.iterator();
+        while (it.hasNext()) {
+            applyContainerChanges((SpecialEffectsController.Operation) it.next());
+        }
+        arrayList3.clear();
+    }
+
+    public void findNamedViews(Map<String, View> map, @NonNull View view) {
+        String transitionName = ViewCompat.getTransitionName(view);
+        if (transitionName != null) {
+            map.put(transitionName, view);
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            int childCount = viewGroup.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt.getVisibility() == 0) {
+                    findNamedViews(map, childAt);
+                }
+            }
+        }
+    }
+
+    public void retainMatchingViews(@NonNull ArrayMap<String, View> arrayMap, @NonNull Collection<String> collection) {
+        Iterator<Map.Entry<String, View>> it = arrayMap.entrySet().iterator();
+        while (it.hasNext()) {
+            if (!collection.contains(ViewCompat.getTransitionName(it.next().getValue()))) {
+                it.remove();
+            }
+        }
     }
 
     private void startAnimations(@NonNull List<AnimationInfo> list, @NonNull List<SpecialEffectsController.Operation> list2, boolean z2, @NonNull Map<SpecialEffectsController.Operation, Boolean> map) {
@@ -586,113 +692,7 @@ public class DefaultSpecialEffectsController extends SpecialEffectsController {
         return map8;
     }
 
-    public void applyContainerChanges(@NonNull SpecialEffectsController.Operation operation) {
-        operation.getFinalState().applyState(operation.getFragment().mView);
-    }
-
-    public void captureTransitioningViews(ArrayList<View> arrayList, View view) {
-        if (!(view instanceof ViewGroup)) {
-            arrayList.add(view);
-            return;
-        }
-        ViewGroup viewGroup = (ViewGroup) view;
-        if (ViewGroupCompat.isTransitionGroup(viewGroup)) {
-            arrayList.add(viewGroup);
-            return;
-        }
-        int childCount = viewGroup.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = viewGroup.getChildAt(i);
-            if (childAt.getVisibility() == 0) {
-                captureTransitioningViews(arrayList, childAt);
-            }
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:28:0x007f  */
-    @Override // androidx.fragment.app.SpecialEffectsController
-    public void executeOperations(@NonNull List<SpecialEffectsController.Operation> list, boolean z2) {
-        SpecialEffectsController.Operation operation = null;
-        SpecialEffectsController.Operation operation2 = null;
-        for (SpecialEffectsController.Operation operation3 : list) {
-            SpecialEffectsController.Operation.State stateFrom = SpecialEffectsController.Operation.State.from(operation3.getFragment().mView);
-            int iOrdinal = operation3.getFinalState().ordinal();
-            if (iOrdinal != 0) {
-                if (iOrdinal != 1) {
-                    if (iOrdinal == 2 || iOrdinal == 3) {
-                    }
-                } else if (stateFrom != SpecialEffectsController.Operation.State.VISIBLE) {
-                    operation2 = operation3;
-                }
-            }
-            if (stateFrom == SpecialEffectsController.Operation.State.VISIBLE && operation == null) {
-                operation = operation3;
-            }
-        }
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        final ArrayList arrayList3 = new ArrayList(list);
-        for (final SpecialEffectsController.Operation operation4 : list) {
-            CancellationSignal cancellationSignal = new CancellationSignal();
-            operation4.markStartedSpecialEffect(cancellationSignal);
-            arrayList.add(new AnimationInfo(operation4, cancellationSignal));
-            CancellationSignal cancellationSignal2 = new CancellationSignal();
-            operation4.markStartedSpecialEffect(cancellationSignal2);
-            boolean z3 = false;
-            if (z2) {
-                if (operation4 == operation) {
-                    z3 = true;
-                }
-            } else if (operation4 == operation2) {
-                z3 = true;
-            }
-            arrayList2.add(new TransitionInfo(operation4, cancellationSignal2, z2, z3));
-            operation4.addCompletionListener(new Runnable() { // from class: androidx.fragment.app.DefaultSpecialEffectsController.1
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (arrayList3.contains(operation4)) {
-                        arrayList3.remove(operation4);
-                        DefaultSpecialEffectsController.this.applyContainerChanges(operation4);
-                    }
-                }
-            });
-        }
-        Map<SpecialEffectsController.Operation, Boolean> mapStartTransitions = startTransitions(arrayList2, z2, operation, operation2);
-        startAnimations(arrayList, arrayList3, mapStartTransitions.containsValue(Boolean.TRUE), mapStartTransitions);
-        Iterator it = arrayList3.iterator();
-        while (it.hasNext()) {
-            applyContainerChanges((SpecialEffectsController.Operation) it.next());
-        }
-        arrayList3.clear();
-    }
-
-    public void findNamedViews(Map<String, View> map, @NonNull View view) {
-        String transitionName = ViewCompat.getTransitionName(view);
-        if (transitionName != null) {
-            map.put(transitionName, view);
-        }
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            int childCount = viewGroup.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = viewGroup.getChildAt(i);
-                if (childAt.getVisibility() == 0) {
-                    findNamedViews(map, childAt);
-                }
-            }
-        }
-    }
-
-    public void retainMatchingViews(@NonNull ArrayMap<String, View> arrayMap, @NonNull Collection<String> collection) {
-        Iterator<Map.Entry<String, View>> it = arrayMap.entrySet().iterator();
-        while (it.hasNext()) {
-            if (!collection.contains(ViewCompat.getTransitionName(it.next().getValue()))) {
-                it.remove();
-            }
-        }
-    }
-
-    public static class TransitionInfo extends SpecialEffectsInfo {
+    public class TransitionInfo extends SpecialEffectsInfo {
         private final boolean mOverlapAllowed;
 
         @Nullable

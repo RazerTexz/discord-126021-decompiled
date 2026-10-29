@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationSettingsClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationSettingsClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence settingType = null;
     private final Long currentStatus = null;
+    private final CharSequence settingType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "notification_settings_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackNotificationSettingsClicked implements Analyt
         }
         TrackNotificationSettingsClicked trackNotificationSettingsClicked = (TrackNotificationSettingsClicked) other;
         return C12238m.areEqual(this.settingType, trackNotificationSettingsClicked.settingType) && C12238m.areEqual(this.currentStatus, trackNotificationSettingsClicked.currentStatus);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

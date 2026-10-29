@@ -13,7 +13,7 @@ public final class C11215b extends AbstractC11214a {
 
     /* JADX INFO: renamed from: d0.c0.b$a */
     /* JADX INFO: compiled from: PlatformRandom.kt */
-    public static final class a extends ThreadLocal<Random> {
+    public final class a extends ThreadLocal<Random> {
         @Override // java.lang.ThreadLocal
         public Random initialValue() {
             return new Random();

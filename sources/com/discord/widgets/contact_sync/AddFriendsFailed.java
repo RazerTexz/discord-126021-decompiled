@@ -31,7 +31,7 @@ public final class AddFriendsFailed extends AppDialog {
     private Function0<Unit> onClose;
 
     /* JADX INFO: compiled from: AddFriendsFailed.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

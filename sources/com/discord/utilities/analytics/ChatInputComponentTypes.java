@@ -11,10 +11,10 @@ public final class ChatInputComponentTypes {
     public static final String FILES = "files";
     public static final String GIF = "GIF";
     public static final String GIF_SEARCH = "gif search";
-    public static final ChatInputComponentTypes INSTANCE = new ChatInputComponentTypes();
     public static final String MEDIA_PICKER = "media picker";
     public static final String STICKER = "sticker";
     public static final String STICKER_SEARCH = "sticker search";
+    public static final ChatInputComponentTypes INSTANCE = new ChatInputComponentTypes();
 
     private ChatInputComponentTypes() {
     }

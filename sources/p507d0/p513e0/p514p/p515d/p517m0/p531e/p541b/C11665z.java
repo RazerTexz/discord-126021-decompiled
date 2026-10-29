@@ -53,7 +53,7 @@ public final class C11665z {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.z$a */
     /* JADX INFO: compiled from: TypeMappingMode.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

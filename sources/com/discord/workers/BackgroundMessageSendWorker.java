@@ -16,7 +16,7 @@ public final class BackgroundMessageSendWorker extends Worker {
 
     /* JADX INFO: renamed from: com.discord.workers.BackgroundMessageSendWorker$a */
     /* JADX INFO: compiled from: BackgroundMessageSendWorker.kt */
-    public static final class C10617a<T, R> implements InterfaceC12589b<Boolean, Boolean> {
+    public final class C10617a<T, R> implements InterfaceC12589b<Boolean, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final C10617a f19414j = new C10617a();

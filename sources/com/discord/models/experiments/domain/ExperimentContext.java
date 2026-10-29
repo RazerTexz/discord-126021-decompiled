@@ -34,21 +34,6 @@ public final /* data */ class ExperimentContext {
         return experimentContext.copy(z2, l, l2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getShouldTrigger() {
-        return this.shouldTrigger;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getChannelId() {
-        return this.channelId;
-    }
-
     public final ExperimentContext copy(boolean shouldTrigger, Long guildId, Long channelId) {
         return new ExperimentContext(shouldTrigger, guildId, channelId);
     }
@@ -64,12 +49,27 @@ public final /* data */ class ExperimentContext {
         return this.shouldTrigger == experimentContext.shouldTrigger && C12238m.areEqual(this.guildId, experimentContext.guildId) && C12238m.areEqual(this.channelId, experimentContext.channelId);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
     }
 
+    public final Long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getShouldTrigger() {
+        return this.shouldTrigger;
     }
 
     public final boolean getShouldTrigger() {

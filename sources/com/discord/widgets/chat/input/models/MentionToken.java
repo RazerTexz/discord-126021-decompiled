@@ -40,26 +40,6 @@ public final /* data */ class MentionToken {
         return mentionToken.copy(leadingIdentifier, str, z2, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final LeadingIdentifier getLeadingIdentifier() {
-        return this.leadingIdentifier;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsAtStart() {
-        return this.isAtStart;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getStartIndex() {
-        return this.startIndex;
-    }
-
     public final MentionToken copy(LeadingIdentifier leadingIdentifier, String token, boolean isAtStart, int startIndex) {
         C12238m.checkNotNullParameter(leadingIdentifier, "leadingIdentifier");
         C12238m.checkNotNullParameter(token, "token");
@@ -81,12 +61,32 @@ public final /* data */ class MentionToken {
         return this.formattedToken;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsAtStart() {
+        return this.isAtStart;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final LeadingIdentifier getLeadingIdentifier() {
         return this.leadingIdentifier;
     }
 
+    public final LeadingIdentifier getLeadingIdentifier() {
+        return this.leadingIdentifier;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getStartIndex() {
         return this.startIndex;
+    }
+
+    public final int getStartIndex() {
+        return this.startIndex;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {

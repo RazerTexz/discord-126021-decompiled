@@ -29,7 +29,7 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
     private Function1<? super Integer, Unit> sortTypeSelectedListener;
 
     /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

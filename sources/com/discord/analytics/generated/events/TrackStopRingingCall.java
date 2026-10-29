@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStopRingingCall.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStopRingingCall implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
-    private final Long messageId = null;
     private final Long channelType = null;
-    private final Boolean self = null;
+    private final Long messageId = null;
     private final List<Long> recipientIds = null;
+    private final Boolean self = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stop_ringing_call";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackStopRingingCall implements AnalyticsSchema, T
         }
         TrackStopRingingCall trackStopRingingCall = (TrackStopRingingCall) other;
         return C12238m.areEqual(this.channelId, trackStopRingingCall.channelId) && C12238m.areEqual(this.messageId, trackStopRingingCall.messageId) && C12238m.areEqual(this.channelType, trackStopRingingCall.channelType) && C12238m.areEqual(this.self, trackStopRingingCall.self) && C12238m.areEqual(this.recipientIds, trackStopRingingCall.recipientIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

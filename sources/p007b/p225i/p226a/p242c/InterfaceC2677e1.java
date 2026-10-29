@@ -35,7 +35,7 @@ public interface InterfaceC2677e1 extends InterfaceC3128y1 {
 
     /* JADX INFO: renamed from: b.i.a.c.e1$b */
     /* JADX INFO: compiled from: ExoPlayer.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final Context f6412a;

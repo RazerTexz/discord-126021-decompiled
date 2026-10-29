@@ -5,8 +5,8 @@ import com.discord.utilities.cache.SharedPreferencesProvider;
 /* JADX INFO: compiled from: WidgetStageAudienceNoticeManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetStageAudienceNoticeManager {
-    public static final WidgetStageAudienceNoticeManager INSTANCE = new WidgetStageAudienceNoticeManager();
     private static final String STAGE_AUDIENCE_NOTICE_SHOWN_KEY = "STAGE_AUDIENCE_NOTICE_SHOWN_KEY";
+    public static final WidgetStageAudienceNoticeManager INSTANCE = new WidgetStageAudienceNoticeManager();
 
     private WidgetStageAudienceNoticeManager() {
     }

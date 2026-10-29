@@ -32,7 +32,7 @@ public interface InterfaceC11250c extends Function0<Object>, Function1<Object, O
 
     /* JADX INFO: renamed from: d0.e0.p.d.c$a */
     /* JADX INFO: compiled from: FunctionWithAllInvokes.kt */
-    public static final class a {
+    public final class a {
         /* JADX WARN: Multi-variable type inference failed */
         public static Object invoke(InterfaceC11250c interfaceC11250c) {
             return ((AbstractC11256f) interfaceC11250c).call(new Object[0]);

@@ -59,10 +59,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildFolderSettings extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildFolderSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildFolderSettingsBinding;", 0)};
+    private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -70,24 +70,9 @@ public final class WidgetGuildFolderSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context, long folderId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetGuildFolderSettings.class, new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$configureUI$1 */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public static final class C85721 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C85721 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C85721() {
             super(1);
         }
@@ -107,7 +92,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public static final /* synthetic */ class C85761 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C85761 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.ViewState, Unit> {
         public C85761(WidgetGuildFolderSettings widgetGuildFolderSettings) {
             super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$ViewState;)V", 0);
         }
@@ -127,7 +112,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public static final /* synthetic */ class C85772 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.Event, Unit> {
+    public final /* synthetic */ class C85772 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.Event, Unit> {
         public C85772(WidgetGuildFolderSettings widgetGuildFolderSettings) {
             super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$Event;)V", 0);
         }
@@ -142,6 +127,21 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         public final void invoke2(WidgetGuildFolderSettingsViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "p1");
             ((WidgetGuildFolderSettings) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context, long folderId) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetGuildFolderSettings.class, new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -323,13 +323,6 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         colorPickerDialogM9275a.show(getParentFragmentManager(), DIALOG_TAG_COLOR_PICKER);
     }
 
-    private final Integer rgbColorToARGB(Integer color) {
-        if (color != null) {
-            return Integer.valueOf((int) (((long) color.intValue()) + 4278190080L));
-        }
-        return null;
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -351,5 +344,12 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         if (fragmentFindFragmentByTag != null) {
             parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();
         }
+    }
+
+    private final Integer rgbColorToARGB(Integer color) {
+        if (color != null) {
+            return Integer.valueOf((int) (((long) color.intValue()) + 4278190080L));
+        }
+        return null;
     }
 }

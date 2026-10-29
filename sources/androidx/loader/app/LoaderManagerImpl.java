@@ -31,7 +31,7 @@ public class LoaderManagerImpl extends LoaderManager {
     @NonNull
     private final LoaderViewModel mLoaderViewModel;
 
-    public static class LoaderInfo<D> extends MutableLiveData<D> implements Loader.OnLoadCompleteListener<D> {
+    public class LoaderInfo<D> extends MutableLiveData<D> implements Loader.OnLoadCompleteListener<D> {
 
         @Nullable
         private final Bundle mArgs;
@@ -193,61 +193,7 @@ public class LoaderManagerImpl extends LoaderManager {
         }
     }
 
-    public static class LoaderObserver<D> implements Observer<D> {
-
-        @NonNull
-        private final LoaderManager.LoaderCallbacks<D> mCallback;
-        private boolean mDeliveredData = false;
-
-        @NonNull
-        private final Loader<D> mLoader;
-
-        public LoaderObserver(@NonNull Loader<D> loader, @NonNull LoaderManager.LoaderCallbacks<D> loaderCallbacks) {
-            this.mLoader = loader;
-            this.mCallback = loaderCallbacks;
-        }
-
-        public void dump(String str, PrintWriter printWriter) {
-            printWriter.print(str);
-            printWriter.print("mDeliveredData=");
-            printWriter.println(this.mDeliveredData);
-        }
-
-        public boolean hasDeliveredData() {
-            return this.mDeliveredData;
-        }
-
-        @Override // androidx.view.Observer
-        public void onChanged(@Nullable D d) {
-            if (LoaderManagerImpl.DEBUG) {
-                StringBuilder sbM833U = C1643a.m833U("  onLoadFinished in ");
-                sbM833U.append(this.mLoader);
-                sbM833U.append(": ");
-                sbM833U.append(this.mLoader.dataToString(d));
-                Log.v(LoaderManagerImpl.TAG, sbM833U.toString());
-            }
-            this.mCallback.onLoadFinished(this.mLoader, d);
-            this.mDeliveredData = true;
-        }
-
-        @MainThread
-        public void reset() {
-            if (this.mDeliveredData) {
-                if (LoaderManagerImpl.DEBUG) {
-                    StringBuilder sbM833U = C1643a.m833U("  Resetting: ");
-                    sbM833U.append(this.mLoader);
-                    Log.v(LoaderManagerImpl.TAG, sbM833U.toString());
-                }
-                this.mCallback.onLoaderReset(this.mLoader);
-            }
-        }
-
-        public String toString() {
-            return this.mCallback.toString();
-        }
-    }
-
-    public static class LoaderViewModel extends ViewModel {
+    public class LoaderViewModel extends ViewModel {
         private static final ViewModelProvider.Factory FACTORY = new ViewModelProvider.Factory() { // from class: androidx.loader.app.LoaderManagerImpl.LoaderViewModel.1
             @Override // androidx.lifecycle.ViewModelProvider.Factory
             @NonNull
@@ -257,11 +203,6 @@ public class LoaderManagerImpl extends LoaderManager {
         };
         private SparseArrayCompat<LoaderInfo> mLoaders = new SparseArrayCompat<>();
         private boolean mCreatingLoader = false;
-
-        @NonNull
-        public static LoaderViewModel getInstance(ViewModelStore viewModelStore) {
-            return (LoaderViewModel) new ViewModelProvider(viewModelStore, FACTORY).get(LoaderViewModel.class);
-        }
 
         public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
             if (this.mLoaders.size() > 0) {
@@ -282,6 +223,11 @@ public class LoaderManagerImpl extends LoaderManager {
 
         public void finishCreatingLoader() {
             this.mCreatingLoader = false;
+        }
+
+        @NonNull
+        public static LoaderViewModel getInstance(ViewModelStore viewModelStore) {
+            return (LoaderViewModel) new ViewModelProvider(viewModelStore, FACTORY).get(LoaderViewModel.class);
         }
 
         public <D> LoaderInfo<D> getLoader(int i) {
@@ -458,5 +404,59 @@ public class LoaderManagerImpl extends LoaderManager {
         DebugUtils.buildShortClassTag(this.mLifecycleOwner, sb);
         sb.append("}}");
         return sb.toString();
+    }
+
+    public class LoaderObserver<D> implements Observer<D> {
+
+        @NonNull
+        private final LoaderManager.LoaderCallbacks<D> mCallback;
+
+        @NonNull
+        private final Loader<D> mLoader;
+        private boolean mDeliveredData = false;
+
+        public LoaderObserver(@NonNull Loader<D> loader, @NonNull LoaderManager.LoaderCallbacks<D> loaderCallbacks) {
+            this.mLoader = loader;
+            this.mCallback = loaderCallbacks;
+        }
+
+        public void dump(String str, PrintWriter printWriter) {
+            printWriter.print(str);
+            printWriter.print("mDeliveredData=");
+            printWriter.println(this.mDeliveredData);
+        }
+
+        public boolean hasDeliveredData() {
+            return this.mDeliveredData;
+        }
+
+        @Override // androidx.view.Observer
+        public void onChanged(@Nullable D d) {
+            if (LoaderManagerImpl.DEBUG) {
+                StringBuilder sbM833U = C1643a.m833U("  onLoadFinished in ");
+                sbM833U.append(this.mLoader);
+                sbM833U.append(": ");
+                sbM833U.append(this.mLoader.dataToString(d));
+                Log.v(LoaderManagerImpl.TAG, sbM833U.toString());
+            }
+            this.mCallback.onLoadFinished(this.mLoader, d);
+            this.mDeliveredData = true;
+        }
+
+        @MainThread
+        public void reset() {
+            if (this.mDeliveredData) {
+                if (LoaderManagerImpl.DEBUG) {
+                    StringBuilder sbM833U = C1643a.m833U("  Resetting: ");
+                    sbM833U.append(this.mLoader);
+                    Log.v(LoaderManagerImpl.TAG, sbM833U.toString());
+                }
+                this.mCallback.onLoaderReset(this.mLoader);
+            }
+        }
+
+        public String toString() {
+            return this.mCallback.toString();
+        }
     }
 }

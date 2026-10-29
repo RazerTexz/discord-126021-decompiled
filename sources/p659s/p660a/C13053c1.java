@@ -12,10 +12,10 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13053c1 extends AbstractC13094e1<Job> {
+    public volatile int _invoked;
 
     /* JADX INFO: renamed from: n */
     public static final AtomicIntegerFieldUpdater f27727n = AtomicIntegerFieldUpdater.newUpdater(C13053c1.class, "_invoked");
-    public volatile int _invoked;
 
     /* JADX INFO: renamed from: o */
     public final Function1<Throwable, Unit> f27728o;

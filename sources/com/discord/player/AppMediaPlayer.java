@@ -99,11 +99,11 @@ public final class AppMediaPlayer {
     public final Logger logger;
 
     /* JADX INFO: compiled from: AppMediaPlayer.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$a */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5583a extends Event {
+        public final class C5583a extends Event {
 
             /* JADX INFO: renamed from: a */
             public static final C5583a f18654a = new C5583a();
@@ -115,7 +115,7 @@ public final class AppMediaPlayer {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$b */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5584b extends Event {
+        public final class C5584b extends Event {
 
             /* JADX INFO: renamed from: a */
             public static final C5584b f18655a = new C5584b();
@@ -127,7 +127,7 @@ public final class AppMediaPlayer {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$c */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5585c extends Event {
+        public final class C5585c extends Event {
 
             /* JADX INFO: renamed from: a */
             public final long f18656a;
@@ -155,7 +155,7 @@ public final class AppMediaPlayer {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$d */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5586d extends Event {
+        public final class C5586d extends Event {
 
             /* JADX INFO: renamed from: a */
             public static final C5586d f18657a = new C5586d();
@@ -167,7 +167,7 @@ public final class AppMediaPlayer {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$e */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5587e extends Event {
+        public final class C5587e extends Event {
 
             /* JADX INFO: renamed from: a */
             public static final C5587e f18658a = new C5587e();
@@ -179,7 +179,7 @@ public final class AppMediaPlayer {
 
         /* JADX INFO: renamed from: com.discord.player.AppMediaPlayer$Event$f */
         /* JADX INFO: compiled from: AppMediaPlayer.kt */
-        public static final class C5588f extends Event {
+        public final class C5588f extends Event {
 
             /* JADX INFO: renamed from: a */
             public static final C5588f f18659a = new C5588f();
@@ -229,7 +229,7 @@ public final class AppMediaPlayer {
     }
 
     /* JADX INFO: renamed from: b */
-    public static /* synthetic */ void m8438b(AppMediaPlayer appMediaPlayer, MediaSource mediaSource, boolean z2, boolean z3, long j, PlayerView playerView, PlayerControlView playerControlView, int i) {
+    public static /* synthetic */ void m8438b(AppMediaPlayer appMediaPlayer, MediaSource mediaSource, boolean z2, boolean z3, long j, PlayerView playerView, PlayerControlView playerControlView, int i) throws CloneNotSupportedException {
         int i2 = i & 32;
         appMediaPlayer.m8439a(mediaSource, (i & 2) != 0 ? false : z2, (i & 4) != 0 ? false : z3, (i & 8) != 0 ? 0L : j, playerView, null);
     }
@@ -247,7 +247,7 @@ public final class AppMediaPlayer {
      */
     @MainThread
     /* JADX INFO: renamed from: a */
-    public final void m8439a(MediaSource mediaSource, boolean autoPlayWhenReady, boolean loopMedia, long initialSeekPositionMs, PlayerView playerView, PlayerControlView playerControlView) {
+    public final void m8439a(MediaSource mediaSource, boolean autoPlayWhenReady, boolean loopMedia, long initialSeekPositionMs, PlayerView playerView, PlayerControlView playerControlView) throws CloneNotSupportedException {
         InterfaceC2990u interfaceC2990u;
         C12238m.checkNotNullParameter(mediaSource, "mediaSource");
         C12238m.checkNotNullParameter(playerView, "playerView");
@@ -340,7 +340,7 @@ public final class AppMediaPlayer {
 
     @MainThread
     /* JADX INFO: renamed from: c */
-    public final void m8440c() {
+    public final void m8440c() throws CloneNotSupportedException {
         AudioTrack audioTrack;
         ((C2816k2) this.exoPlayer).mo2926u(false);
         Subscription subscription = this.positionPollingSubscription;

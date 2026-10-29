@@ -18,9 +18,6 @@ import p007b.p225i.p226a.p228b.p231j.InterfaceC2437d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2414a implements InterfaceC2437d {
 
-    /* JADX INFO: renamed from: a */
-    public static final String f5123a = C1460d.m537k1("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-
     /* JADX INFO: renamed from: b */
     public static final String f5124b;
 
@@ -40,6 +37,9 @@ public final class C2414a implements InterfaceC2437d {
     /* JADX INFO: renamed from: g */
     @Nullable
     public final String f5129g;
+
+    /* JADX INFO: renamed from: a */
+    public static final String f5123a = C1460d.m537k1("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
 
     static {
         String strM537k1 = C1460d.m537k1("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");

@@ -12,8 +12,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: InboundGatewayGsonParser.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class InboundGatewayGsonParser {
-    public static final InboundGatewayGsonParser INSTANCE = new InboundGatewayGsonParser();
     private static final Gson gatewayGsonInstance;
+    public static final InboundGatewayGsonParser INSTANCE = new InboundGatewayGsonParser();
 
     static {
         C4901e c4901e = new C4901e();
@@ -35,14 +35,14 @@ public final class InboundGatewayGsonParser {
         return (T) fromJson(jsonReader, clazz);
     }
 
+    public final Gson getGatewayGsonInstance() {
+        return gatewayGsonInstance;
+    }
+
     public static final <T> String toJson(T source) {
         String strM9209m = gatewayGsonInstance.m9209m(source);
         C12238m.checkNotNullExpressionValue(strM9209m, "gatewayGsonInstance.toJson(source)");
         return strM9209m;
-    }
-
-    public final Gson getGatewayGsonInstance() {
-        return gatewayGsonInstance;
     }
 
     public static final <T> T fromJson(JsonReader reader, Class<T> clazz) {

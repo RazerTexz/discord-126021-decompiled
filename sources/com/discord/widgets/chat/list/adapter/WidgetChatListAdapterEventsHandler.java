@@ -126,8 +126,373 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
     private final StoreUser storeUser;
     private final UserReactionHandler userReactionHandler;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onCallMessageClicked$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class UserReactionHandler {
+    public final class C79971 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $voiceChannelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C79971(long j) {
+            super(0);
+            this.$voiceChannelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, WidgetChatListAdapterEventsHandler.this.getContext(), this.$voiceChannelId, true, null, null, 24, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickAddReactionClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C79981 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $messageId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C79981(long j, long j2) {
+            super(0);
+            this.$channelId = j;
+            this.$messageId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            EmojiPickerNavigator.launchBottomSheet$default(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), new EmojiPickerListener() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler.onQuickAddReactionClicked.1.1
+                @Override // com.discord.widgets.chat.input.emoji.EmojiPickerListener
+                public void onEmojiPicked(Emoji emoji) {
+                    C12238m.checkNotNullParameter(emoji, "emoji");
+                    UserReactionHandler userReactionHandler = WidgetChatListAdapterEventsHandler.this.userReactionHandler;
+                    C79981 c79981 = C79981.this;
+                    userReactionHandler.addNewReaction(emoji, c79981.$channelId, c79981.$messageId);
+                }
+            }, EmojiPickerContextType.Chat.INSTANCE, null, 8, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C79991 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $fileName;
+        public final /* synthetic */ Uri $uri;
+        public final /* synthetic */ WeakReference $weakContext;
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(String str) {
+                invoke2(str);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(String str) {
+                Context context = (Context) C79991.this.$weakContext.get();
+                if (context != null) {
+                    C0876m.m170h(context, C1107b.m216h(context, C5419R.string.download_file_complete, new Object[]{str}, null, 4), 0, null, 12);
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Throwable, Unit> {
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
+                invoke2(th);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Throwable th) {
+                C12238m.checkNotNullParameter(th, "error");
+                AppLog.m8358i("Could not download attachment due to:  \n" + th);
+                Context context = (Context) C79991.this.$weakContext.get();
+                if (context != null) {
+                    C0876m.m170h((Context) C79991.this.$weakContext.get(), context.getString(C5419R.string.download_failed), 0, null, 12);
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C79991(Uri uri, String str, WeakReference weakReference) {
+            super(0);
+            this.$uri = uri;
+            this.$fileName = str;
+            this.$weakContext = weakReference;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            NetworkUtils.downloadFile(WidgetChatListAdapterEventsHandler.this.getContext(), this.$uri, this.$fileName, null, new AnonymousClass1(), new AnonymousClass2());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onReactionClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80001 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ long $myUserId;
+        public final /* synthetic */ MessageReaction $reaction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80001(long j, long j2, long j3, MessageReaction messageReaction) {
+            super(0);
+            this.$myUserId = j;
+            this.$channelId = j2;
+            this.$messageId = j3;
+            this.$reaction = messageReaction;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetChatListAdapterEventsHandler.this.userReactionHandler.toggleReaction(this.$myUserId, this.$channelId, this.$messageId, this.$reaction);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onReactionLongClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80011 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ MessageReaction $reaction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80011(long j, long j2, MessageReaction messageReaction) {
+            super(0);
+            this.$channelId = j;
+            this.$messageId = j2;
+            this.$reaction = messageReaction;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetManageReactions.INSTANCE.create(this.$channelId, this.$messageId, WidgetChatListAdapterEventsHandler.this.getContext(), this.$reaction);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onSendGreetMessageClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80021 extends AbstractC12240o implements Function1<Message, Unit> {
+        public static final C80021 INSTANCE = new C80021();
+
+        public C80021() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
+            invoke2(message);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Message message) {
+            C12238m.checkNotNullParameter(message, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onShareButtonClick$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80031 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ long $guildEventId;
+        public final /* synthetic */ WeakReference $weakFragment;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80031(WeakReference weakReference, Channel channel, long j) {
+            super(1);
+            this.$weakFragment = weakReference;
+            this.$channel = channel;
+            this.$guildEventId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            AppFragment appFragment = (AppFragment) this.$weakFragment.get();
+            if (appFragment != null) {
+                ChannelInviteLaunchUtils channelInviteLaunchUtils = ChannelInviteLaunchUtils.INSTANCE;
+                C12238m.checkNotNullExpressionValue(appFragment, "fragment");
+                Channel channel2 = this.$channel;
+                channelInviteLaunchUtils.inviteToChannel(appFragment, channel2 != null ? channel2 : channel, GuildScheduledEventUtilities.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : Long.valueOf(this.$guildEventId), (24 & 16) != 0 ? null : null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80041 extends AbstractC12240o implements Function1<BaseSticker, Unit> {
+        public final /* synthetic */ com.discord.models.message.Message $message;
+        public final /* synthetic */ BaseSticker $sticker;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80041(BaseSticker baseSticker, com.discord.models.message.Message message) {
+            super(1);
+            this.$sticker = baseSticker;
+            this.$message = message;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(BaseSticker baseSticker) {
+            invoke2(baseSticker);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(BaseSticker baseSticker) {
+            if (baseSticker == null) {
+                baseSticker = this.$sticker;
+            }
+            if (baseSticker instanceof StickerPartial) {
+                return;
+            }
+            Objects.requireNonNull(baseSticker, "null cannot be cast to non-null type com.discord.api.sticker.Sticker");
+            Sticker sticker = (Sticker) baseSticker;
+            int iOrdinal = sticker.getType().ordinal();
+            if (iOrdinal == 1) {
+                WidgetStickerSheet.INSTANCE.show(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), sticker, this.$message.getChannelId());
+            } else {
+                if (iOrdinal != 2) {
+                    return;
+                }
+                WidgetGuildStickerSheet.INSTANCE.show(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), sticker);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80052 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ BaseSticker $sticker;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80052(BaseSticker baseSticker) {
+            super(1);
+            this.$sticker = baseSticker;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetUnknownStickerSheet.Companion companion = WidgetUnknownStickerSheet.INSTANCE;
+            FragmentManager fragmentManager = WidgetChatListAdapterEventsHandler.this.getFragmentManager();
+            BaseSticker baseSticker = this.$sticker;
+            Objects.requireNonNull(baseSticker, "null cannot be cast to non-null type com.discord.api.sticker.StickerPartial");
+            companion.show(fragmentManager, (StickerPartial) baseSticker);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$3 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80063 extends AbstractC12240o implements Function1<Sticker, Unit> {
+        public final /* synthetic */ C80041 $handleFullStickerClicked$1;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80063(C80041 c80041) {
+            super(1);
+            this.$handleFullStickerClicked$1 = c80041;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Sticker sticker) {
+            invoke2(sticker);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Sticker sticker) {
+            this.$handleFullStickerClicked$1.invoke2((BaseSticker) sticker);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onUserActivityAction$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class C80071 extends AbstractC12240o implements Function1<ActivityActionConfirmation, Unit> {
+        public final /* synthetic */ Application $application;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80071(Application application) {
+            super(1);
+            this.$application = application;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ActivityActionConfirmation activityActionConfirmation) {
+            invoke2(activityActionConfirmation);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ActivityActionConfirmation activityActionConfirmation) {
+            C12238m.checkNotNullParameter(activityActionConfirmation, "<name for destructuring parameter 0>");
+            try {
+                Intent intentJoin = IntentUtils.RouteBuilders.SDK.join(this.$application.m7563a(), this.$application.getId(), activityActionConfirmation.getSecret());
+                intentJoin.addFlags(268435456);
+                WidgetChatListAdapterEventsHandler.this.getContext().startActivity(intentJoin);
+            } catch (ActivityNotFoundException unused) {
+                C0876m.m170h(WidgetChatListAdapterEventsHandler.this.getContext(), C1107b.m216h(WidgetChatListAdapterEventsHandler.this.getContext(), C5419R.string.user_activity_not_detected, new Object[]{this.$application.getName()}, null, 4), 0, null, 12);
+                String str = (String) C12163u.firstOrNull((List) this.$application.m7566d());
+                if (str != null) {
+                    UriHandler.directToPlayStore$default(WidgetChatListAdapterEventsHandler.this.getContext(), str, null, 4, null);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
+    public final class UserReactionHandler {
         private static final long REQUEST_RATE_LIMIT_MILLIS = 250;
         private final Function1<MessageReactionUpdate, Unit> commitReactionAdd;
         private final Function1<MessageReactionUpdate, Unit> commitReactionRemove;
@@ -138,7 +503,7 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$UserReactionHandler$1 */
         /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-        public static final /* synthetic */ class C79911 extends C12236k implements Function1<UpdateRequest, Unit> {
+        public final /* synthetic */ class C79911 extends C12236k implements Function1<UpdateRequest, Unit> {
             public C79911(UserReactionHandler userReactionHandler) {
                 super(1, userReactionHandler, UserReactionHandler.class, "requestReactionUpdate", "requestReactionUpdate(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterEventsHandler$UserReactionHandler$UpdateRequest;)V", 0);
             }
@@ -157,7 +522,7 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-        public static final /* data */ class UpdateRequest {
+        public final /* data */ class UpdateRequest {
             private final long channelId;
             private final long messageId;
             private final MessageReaction reaction;
@@ -169,26 +534,6 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
                 this.channelId = j2;
                 this.messageId = j3;
                 this.reaction = messageReaction;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getUserId() {
-                return this.userId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getMessageId() {
-                return this.messageId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final MessageReaction getReaction() {
-                return this.reaction;
             }
 
             public final UpdateRequest copy(long userId, long channelId, long messageId, MessageReaction reaction) {
@@ -207,16 +552,36 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
                 return this.userId == updateRequest.userId && this.channelId == updateRequest.channelId && this.messageId == updateRequest.messageId && C12238m.areEqual(this.reaction, updateRequest.reaction);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final long getMessageId() {
+                return this.messageId;
             }
 
             public final long getMessageId() {
                 return this.messageId;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final MessageReaction getReaction() {
                 return this.reaction;
+            }
+
+            public final MessageReaction getReaction() {
+                return this.reaction;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getUserId() {
+                return this.userId;
             }
 
             public final long getUserId() {
@@ -262,6 +627,14 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
             ObservableExtensionsKt.appSubscribe(observableM11074h0, (Class<?>) appFragment.getClass(), (58 & 2) != 0 ? null : appFragment.getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C79911(this));
         }
 
+        public final void addNewReaction(Emoji emoji, long channelId, long messageId) {
+            C12238m.checkNotNullParameter(emoji, "emoji");
+            RestAPI api = RestAPI.INSTANCE.getApi();
+            String reactionKey = emoji.getReactionKey();
+            C12238m.checkNotNullExpressionValue(reactionKey, "emoji.reactionKey");
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.addReaction(channelId, messageId, reactionKey), false, 1, null), this.host, null, 2, null), (Class<?>) this.host.getClass(), (58 & 2) != 0 ? null : this.host.getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C7992x9e32298b.INSTANCE);
+        }
+
         private final void requestReactionUpdate(UpdateRequest updateRequest) {
             String name;
             long userId = updateRequest.getUserId();
@@ -282,14 +655,6 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
             Function1<MessageReactionUpdate, Unit> function2 = reaction.getMe() ? this.commitReactionAdd : this.commitReactionRemove;
             function1.invoke(messageReactionUpdate);
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(observableRemoveSelfReaction, false, 1, null), this.host, null, 2, null), (Class<?>) this.host.getClass(), (58 & 2) != 0 ? null : this.host.getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C7996x99eadd9(function2, messageReactionUpdate)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C7995x99eadd8(this, reaction));
-        }
-
-        public final void addNewReaction(Emoji emoji, long channelId, long messageId) {
-            C12238m.checkNotNullParameter(emoji, "emoji");
-            RestAPI api = RestAPI.INSTANCE.getApi();
-            String reactionKey = emoji.getReactionKey();
-            C12238m.checkNotNullExpressionValue(reactionKey, "emoji.reactionKey");
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.addReaction(channelId, messageId, reactionKey), false, 1, null), this.host, null, 2, null), (Class<?>) this.host.getClass(), (58 & 2) != 0 ? null : this.host.getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C7992x9e32298b.INSTANCE);
         }
 
         public final void toggleReaction(long userId, long channelId, long messageId, MessageReaction reaction) {
@@ -313,371 +678,6 @@ public final class WidgetChatListAdapterEventsHandler implements WidgetChatListA
             $EnumSwitchMapping$1 = iArr2;
             iArr2[StickerType.STANDARD.ordinal()] = 1;
             iArr2[StickerType.GUILD.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onCallMessageClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C79971 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $voiceChannelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C79971(long j) {
-            super(0);
-            this.$voiceChannelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, WidgetChatListAdapterEventsHandler.this.getContext(), this.$voiceChannelId, true, null, null, 24, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickAddReactionClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C79981 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $messageId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C79981(long j, long j2) {
-            super(0);
-            this.$channelId = j;
-            this.$messageId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            EmojiPickerNavigator.launchBottomSheet$default(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), new EmojiPickerListener() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler.onQuickAddReactionClicked.1.1
-                @Override // com.discord.widgets.chat.input.emoji.EmojiPickerListener
-                public void onEmojiPicked(Emoji emoji) {
-                    C12238m.checkNotNullParameter(emoji, "emoji");
-                    UserReactionHandler userReactionHandler = WidgetChatListAdapterEventsHandler.this.userReactionHandler;
-                    C79981 c79981 = C79981.this;
-                    userReactionHandler.addNewReaction(emoji, c79981.$channelId, c79981.$messageId);
-                }
-            }, EmojiPickerContextType.Chat.INSTANCE, null, 8, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C79991 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $fileName;
-        public final /* synthetic */ Uri $uri;
-        public final /* synthetic */ WeakReference $weakContext;
-
-        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(String str) {
-                invoke2(str);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(String str) {
-                Context context = (Context) C79991.this.$weakContext.get();
-                if (context != null) {
-                    C0876m.m170h(context, C1107b.m216h(context, C5419R.string.download_file_complete, new Object[]{str}, null, 4), 0, null, 12);
-                }
-            }
-        }
-
-        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onQuickDownloadClicked$1$2, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Throwable, Unit> {
-            public AnonymousClass2() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
-                invoke2(th);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Throwable th) {
-                C12238m.checkNotNullParameter(th, "error");
-                AppLog.m8358i("Could not download attachment due to:  \n" + th);
-                Context context = (Context) C79991.this.$weakContext.get();
-                if (context != null) {
-                    C0876m.m170h((Context) C79991.this.$weakContext.get(), context.getString(C5419R.string.download_failed), 0, null, 12);
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C79991(Uri uri, String str, WeakReference weakReference) {
-            super(0);
-            this.$uri = uri;
-            this.$fileName = str;
-            this.$weakContext = weakReference;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            NetworkUtils.downloadFile(WidgetChatListAdapterEventsHandler.this.getContext(), this.$uri, this.$fileName, null, new AnonymousClass1(), new AnonymousClass2());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onReactionClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80001 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ long $myUserId;
-        public final /* synthetic */ MessageReaction $reaction;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80001(long j, long j2, long j3, MessageReaction messageReaction) {
-            super(0);
-            this.$myUserId = j;
-            this.$channelId = j2;
-            this.$messageId = j3;
-            this.$reaction = messageReaction;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetChatListAdapterEventsHandler.this.userReactionHandler.toggleReaction(this.$myUserId, this.$channelId, this.$messageId, this.$reaction);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onReactionLongClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80011 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ MessageReaction $reaction;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80011(long j, long j2, MessageReaction messageReaction) {
-            super(0);
-            this.$channelId = j;
-            this.$messageId = j2;
-            this.$reaction = messageReaction;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetManageReactions.INSTANCE.create(this.$channelId, this.$messageId, WidgetChatListAdapterEventsHandler.this.getContext(), this.$reaction);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onSendGreetMessageClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80021 extends AbstractC12240o implements Function1<Message, Unit> {
-        public static final C80021 INSTANCE = new C80021();
-
-        public C80021() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Message message) {
-            invoke2(message);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Message message) {
-            C12238m.checkNotNullParameter(message, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onShareButtonClick$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80031 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public final /* synthetic */ Channel $channel;
-        public final /* synthetic */ long $guildEventId;
-        public final /* synthetic */ WeakReference $weakFragment;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80031(WeakReference weakReference, Channel channel, long j) {
-            super(1);
-            this.$weakFragment = weakReference;
-            this.$channel = channel;
-            this.$guildEventId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            AppFragment appFragment = (AppFragment) this.$weakFragment.get();
-            if (appFragment != null) {
-                ChannelInviteLaunchUtils channelInviteLaunchUtils = ChannelInviteLaunchUtils.INSTANCE;
-                C12238m.checkNotNullExpressionValue(appFragment, "fragment");
-                Channel channel2 = this.$channel;
-                channelInviteLaunchUtils.inviteToChannel(appFragment, channel2 != null ? channel2 : channel, GuildScheduledEventUtilities.ANALYTICS_SOURCE, (24 & 8) != 0 ? null : Long.valueOf(this.$guildEventId), (24 & 16) != 0 ? null : null);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80041 extends AbstractC12240o implements Function1<BaseSticker, Unit> {
-        public final /* synthetic */ com.discord.models.message.Message $message;
-        public final /* synthetic */ BaseSticker $sticker;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80041(BaseSticker baseSticker, com.discord.models.message.Message message) {
-            super(1);
-            this.$sticker = baseSticker;
-            this.$message = message;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(BaseSticker baseSticker) {
-            invoke2(baseSticker);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(BaseSticker baseSticker) {
-            if (baseSticker == null) {
-                baseSticker = this.$sticker;
-            }
-            if (baseSticker instanceof StickerPartial) {
-                return;
-            }
-            Objects.requireNonNull(baseSticker, "null cannot be cast to non-null type com.discord.api.sticker.Sticker");
-            Sticker sticker = (Sticker) baseSticker;
-            int iOrdinal = sticker.getType().ordinal();
-            if (iOrdinal == 1) {
-                WidgetStickerSheet.INSTANCE.show(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), sticker, this.$message.getChannelId());
-            } else {
-                if (iOrdinal != 2) {
-                    return;
-                }
-                WidgetGuildStickerSheet.INSTANCE.show(WidgetChatListAdapterEventsHandler.this.getFragmentManager(), sticker);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80052 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ BaseSticker $sticker;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80052(BaseSticker baseSticker) {
-            super(1);
-            this.$sticker = baseSticker;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetUnknownStickerSheet.Companion companion = WidgetUnknownStickerSheet.INSTANCE;
-            FragmentManager fragmentManager = WidgetChatListAdapterEventsHandler.this.getFragmentManager();
-            BaseSticker baseSticker = this.$sticker;
-            Objects.requireNonNull(baseSticker, "null cannot be cast to non-null type com.discord.api.sticker.StickerPartial");
-            companion.show(fragmentManager, (StickerPartial) baseSticker);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onStickerClicked$3 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80063 extends AbstractC12240o implements Function1<Sticker, Unit> {
-        public final /* synthetic */ C80041 $handleFullStickerClicked$1;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80063(C80041 c80041) {
-            super(1);
-            this.$handleFullStickerClicked$1 = c80041;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Sticker sticker) {
-            invoke2(sticker);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Sticker sticker) {
-            this.$handleFullStickerClicked$1.invoke2((BaseSticker) sticker);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler$onUserActivityAction$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterEventsHandler.kt */
-    public static final class C80071 extends AbstractC12240o implements Function1<ActivityActionConfirmation, Unit> {
-        public final /* synthetic */ Application $application;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80071(Application application) {
-            super(1);
-            this.$application = application;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ActivityActionConfirmation activityActionConfirmation) {
-            invoke2(activityActionConfirmation);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ActivityActionConfirmation activityActionConfirmation) {
-            C12238m.checkNotNullParameter(activityActionConfirmation, "<name for destructuring parameter 0>");
-            try {
-                Intent intentJoin = IntentUtils.RouteBuilders.SDK.join(this.$application.m7563a(), this.$application.getId(), activityActionConfirmation.getSecret());
-                intentJoin.addFlags(268435456);
-                WidgetChatListAdapterEventsHandler.this.getContext().startActivity(intentJoin);
-            } catch (ActivityNotFoundException unused) {
-                C0876m.m170h(WidgetChatListAdapterEventsHandler.this.getContext(), C1107b.m216h(WidgetChatListAdapterEventsHandler.this.getContext(), C5419R.string.user_activity_not_detected, new Object[]{this.$application.getName()}, null, 4), 0, null, 12);
-                String str = (String) C12163u.firstOrNull((List) this.$application.m7566d());
-                if (str != null) {
-                    UriHandler.directToPlayStore$default(WidgetChatListAdapterEventsHandler.this.getContext(), str, null, 4, null);
-                }
-            }
         }
     }
 

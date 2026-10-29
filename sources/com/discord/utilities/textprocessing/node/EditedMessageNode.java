@@ -20,16 +20,19 @@ public final class EditedMessageNode<RC> extends StyleNode<RC, CharacterStyle> {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: EditedMessageNode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final String getEditedString(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            String string = context.getString(C5419R.string.message_edited);
+            C12238m.checkNotNullExpressionValue(string, "context.getString(R.string.message_edited)");
+            return " (" + string + ')';
         }
 
         private final ForegroundColorSpan getForegroundColorSpan(Context context) {
             return new ForegroundColorSpan(ColorCompat.getThemedColor(context, C5419R.attr.colorTextMuted));
-        }
-
-        private final RelativeSizeSpan getRelativeSizeSpan(float relativeSize) {
-            return new RelativeSizeSpan(relativeSize);
         }
 
         public static /* synthetic */ RelativeSizeSpan getRelativeSizeSpan$default(Companion companion, float f, int i, Object obj) {
@@ -39,11 +42,8 @@ public final class EditedMessageNode<RC> extends StyleNode<RC, CharacterStyle> {
             return companion.getRelativeSizeSpan(f);
         }
 
-        public final String getEditedString(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            String string = context.getString(C5419R.string.message_edited);
-            C12238m.checkNotNullExpressionValue(string, "context.getString(R.string.message_edited)");
-            return " (" + string + ')';
+        private final RelativeSizeSpan getRelativeSizeSpan(float relativeSize) {
+            return new RelativeSizeSpan(relativeSize);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {

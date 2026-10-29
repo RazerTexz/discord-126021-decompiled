@@ -160,9 +160,10 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         this(context, attributeSet, 0, attributeSet);
     }
 
-    /* JADX INFO: renamed from: c */
-    public static int m8885c(float f, int i) {
-        return (int) ((i * f) + 0.5f);
+    @Override // android.view.View
+    public void drawableStateChanged() {
+        super.drawableStateChanged();
+        m8891i();
     }
 
     private long getPositionIncrement() {
@@ -177,6 +178,18 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         return j2 / ((long) this.f20072J);
     }
 
+    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
+    public long getPreferredUpdateDelay() {
+        int iWidth = (int) (this.f20087k.width() / this.f20071I);
+        if (iWidth != 0) {
+            long j = this.f20080R;
+            if (j != 0 && j != -9223372036854775807L) {
+                return j / ((long) iWidth);
+            }
+        }
+        return RecyclerView.FOREVER_NS;
+    }
+
     private String getProgressText() {
         return C2738e0.m3013u(this.f20066D, this.f20067E, this.f20081S);
     }
@@ -188,20 +201,18 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         return (((long) this.f20089m.width()) * this.f20080R) / ((long) this.f20087k.width());
     }
 
-    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
-    /* JADX INFO: renamed from: a */
-    public void mo2761a(@Nullable long[] jArr, @Nullable boolean[] zArr, int i) {
-        C1460d.m531j(i == 0 || !(jArr == null || zArr == null));
-        this.f20083U = i;
-        this.f20084V = jArr;
-        this.f20085W = zArr;
-        m8890h();
+    @Override // android.view.View
+    public void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.f20096t;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+        }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
-    /* JADX INFO: renamed from: b */
-    public void mo2762b(InterfaceC2671o.a aVar) {
-        this.f20069G.add(aVar);
+    /* JADX INFO: renamed from: c */
+    public static int m8885c(float f, int i) {
+        return (int) ((i * f) + 0.5f);
     }
 
     /* JADX INFO: renamed from: d */
@@ -209,12 +220,6 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         Rect rect = this.f20089m;
         Rect rect2 = this.f20087k;
         rect.right = C2738e0.m3000h((int) f, rect2.left, rect2.right);
-    }
-
-    @Override // android.view.View
-    public void drawableStateChanged() {
-        super.drawableStateChanged();
-        m8891i();
     }
 
     /* JADX INFO: renamed from: e */
@@ -268,18 +273,6 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
-    public long getPreferredUpdateDelay() {
-        int iWidth = (int) (this.f20087k.width() / this.f20071I);
-        if (iWidth != 0) {
-            long j = this.f20080R;
-            if (j != 0 && j != -9223372036854775807L) {
-                return j / ((long) iWidth);
-            }
-        }
-        return RecyclerView.FOREVER_NS;
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m8890h() {
         this.f20088l.set(this.f20087k);
@@ -323,13 +316,20 @@ public class DefaultTimeBar extends View implements InterfaceC2671o {
         }
     }
 
-    @Override // android.view.View
-    public void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.f20096t;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
+    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
+    /* JADX INFO: renamed from: a */
+    public void mo2761a(@Nullable long[] jArr, @Nullable boolean[] zArr, int i) {
+        C1460d.m531j(i == 0 || !(jArr == null || zArr == null));
+        this.f20083U = i;
+        this.f20084V = jArr;
+        this.f20085W = zArr;
+        m8890h();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o
+    /* JADX INFO: renamed from: b */
+    public void mo2762b(InterfaceC2671o.a aVar) {
+        this.f20069G.add(aVar);
     }
 
     @Override // android.view.View

@@ -15,46 +15,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInviteSent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver {
+    private final Long applicationId = null;
+    private final Long destinationUserId = null;
+    private final Long inviteChannelId = null;
+    private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
+    private final Long inviteGuildScheduledEventId = null;
+    private final Long inviteInviterId = null;
+    private final CharSequence inviteType = null;
+    private final Boolean isFiltered = null;
+    private final Boolean isSuggested = null;
+    private final Long messageId = null;
+    private final Long numAffinityConnections = null;
+    private final Long numSelected = null;
+    private final Long numTotal = null;
+    private final Long rowNum = null;
+    private final CharSequence sendType = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence inviteType = null;
-    private final CharSequence inviteCode = null;
-    private final Long messageId = null;
-    private final Long inviteGuildId = null;
-    private final Long inviteChannelId = null;
-    private final Long inviteChannelType = null;
-    private final Long inviteInviterId = null;
-    private final Long applicationId = null;
-    private final Long destinationUserId = null;
-    private final Boolean isSuggested = null;
-    private final Long rowNum = null;
-    private final Long numTotal = null;
-    private final Long numAffinityConnections = null;
-    private final Boolean isFiltered = null;
-    private final Long numSelected = null;
-    private final CharSequence sendType = null;
-    private final Long inviteGuildScheduledEventId = null;
     private final transient String analyticsSchemaTypeName = "invite_sent";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -65,6 +47,18 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
         }
         TrackInviteSent trackInviteSent = (TrackInviteSent) other;
         return C12238m.areEqual(this.inviteType, trackInviteSent.inviteType) && C12238m.areEqual(this.inviteCode, trackInviteSent.inviteCode) && C12238m.areEqual(this.messageId, trackInviteSent.messageId) && C12238m.areEqual(this.inviteGuildId, trackInviteSent.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackInviteSent.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackInviteSent.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackInviteSent.inviteInviterId) && C12238m.areEqual(this.applicationId, trackInviteSent.applicationId) && C12238m.areEqual(this.destinationUserId, trackInviteSent.destinationUserId) && C12238m.areEqual(this.isSuggested, trackInviteSent.isSuggested) && C12238m.areEqual(this.rowNum, trackInviteSent.rowNum) && C12238m.areEqual(this.numTotal, trackInviteSent.numTotal) && C12238m.areEqual(this.numAffinityConnections, trackInviteSent.numAffinityConnections) && C12238m.areEqual(this.isFiltered, trackInviteSent.isFiltered) && C12238m.areEqual(this.numSelected, trackInviteSent.numSelected) && C12238m.areEqual(this.sendType, trackInviteSent.sendType) && C12238m.areEqual(this.inviteGuildScheduledEventId, trackInviteSent.inviteGuildScheduledEventId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -102,6 +96,12 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
         int iHashCode16 = (iHashCode15 + (charSequence3 != null ? charSequence3.hashCode() : 0)) * 31;
         Long l12 = this.inviteGuildScheduledEventId;
         return iHashCode16 + (l12 != null ? l12.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

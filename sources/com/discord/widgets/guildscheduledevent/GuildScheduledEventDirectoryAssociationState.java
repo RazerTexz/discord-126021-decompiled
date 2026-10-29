@@ -22,16 +22,16 @@ public final /* data */ class GuildScheduledEventDirectoryAssociationState {
         this.enabledAsync = restCallState;
     }
 
+    public final RestCallState<GuildScheduledEventBroadcast> component1() {
+        return this.enabledAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildScheduledEventDirectoryAssociationState copy$default(GuildScheduledEventDirectoryAssociationState guildScheduledEventDirectoryAssociationState, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
             restCallState = guildScheduledEventDirectoryAssociationState.enabledAsync;
         }
         return guildScheduledEventDirectoryAssociationState.copy(restCallState);
-    }
-
-    public final RestCallState<GuildScheduledEventBroadcast> component1() {
-        return this.enabledAsync;
     }
 
     public final GuildScheduledEventDirectoryAssociationState copy(RestCallState<GuildScheduledEventBroadcast> enabledAsync) {

@@ -32,6 +32,27 @@ public final class C4687n extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
         this.f12612e = i;
     }
 
+    public boolean equals(Object obj) {
+        String str;
+        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b)) {
+            return false;
+        }
+        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b2 = (AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b) obj;
+        return this.f12608a.equals(abstractC13236b2.mo6586e()) && ((str = this.f12609b) != null ? str.equals(abstractC13236b2.mo6585d()) : abstractC13236b2.mo6585d() == null) && this.f12610c.equals(abstractC13236b2.mo6583b()) && ((abstractC13236b = this.f12611d) != null ? abstractC13236b.equals(abstractC13236b2.mo6582a()) : abstractC13236b2.mo6582a() == null) && this.f12612e == abstractC13236b2.mo6584c();
+    }
+
+    public int hashCode() {
+        int iHashCode = (this.f12608a.hashCode() ^ 1000003) * 1000003;
+        String str = this.f12609b;
+        int iHashCode2 = (((iHashCode ^ (str == null ? 0 : str.hashCode())) * 1000003) ^ this.f12610c.hashCode()) * 1000003;
+        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b = this.f12611d;
+        return ((iHashCode2 ^ (abstractC13236b != null ? abstractC13236b.hashCode() : 0)) * 1000003) ^ this.f12612e;
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b
     @Nullable
     /* JADX INFO: renamed from: a */
@@ -64,27 +85,6 @@ public final class C4687n extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
     /* JADX INFO: renamed from: e */
     public String mo6586e() {
         return this.f12608a;
-    }
-
-    public boolean equals(Object obj) {
-        String str;
-        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b)) {
-            return false;
-        }
-        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b2 = (AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b) obj;
-        return this.f12608a.equals(abstractC13236b2.mo6586e()) && ((str = this.f12609b) != null ? str.equals(abstractC13236b2.mo6585d()) : abstractC13236b2.mo6585d() == null) && this.f12610c.equals(abstractC13236b2.mo6583b()) && ((abstractC13236b = this.f12611d) != null ? abstractC13236b.equals(abstractC13236b2.mo6582a()) : abstractC13236b2.mo6582a() == null) && this.f12612e == abstractC13236b2.mo6584c();
-    }
-
-    public int hashCode() {
-        int iHashCode = (this.f12608a.hashCode() ^ 1000003) * 1000003;
-        String str = this.f12609b;
-        int iHashCode2 = (((iHashCode ^ (str == null ? 0 : str.hashCode())) * 1000003) ^ this.f12610c.hashCode()) * 1000003;
-        AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13236b abstractC13236b = this.f12611d;
-        return ((iHashCode2 ^ (abstractC13236b != null ? abstractC13236b.hashCode() : 0)) * 1000003) ^ this.f12612e;
     }
 
     public String toString() {

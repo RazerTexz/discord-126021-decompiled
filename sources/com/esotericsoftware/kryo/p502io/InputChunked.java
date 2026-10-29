@@ -15,28 +15,6 @@ public class InputChunked extends Input {
         this.chunkSize = -1;
     }
 
-    private void readChunkSize() {
-        try {
-            InputStream inputStream = getInputStream();
-            int i = 0;
-            for (int i2 = 0; i2 < 32; i2 += 7) {
-                int i3 = inputStream.read();
-                if (i3 == -1) {
-                    throw new KryoException("Buffer underflow.");
-                }
-                i |= (i3 & Opcodes.LAND) << i2;
-                if ((i3 & 128) == 0) {
-                    this.chunkSize = i;
-                    C1644a.a aVar = C1644a.f3007a;
-                    return;
-                }
-            }
-            throw new KryoException("Malformed integer.");
-        } catch (IOException e) {
-            throw new KryoException(e);
-        }
-    }
-
     @Override // com.esotericsoftware.kryo.p502io.Input
     public int fill(byte[] bArr, int i, int i2) throws KryoException {
         int i3 = this.chunkSize;
@@ -66,6 +44,28 @@ public class InputChunked extends Input {
                 return;
             }
             skip(i);
+        }
+    }
+
+    private void readChunkSize() {
+        try {
+            InputStream inputStream = getInputStream();
+            int i = 0;
+            for (int i2 = 0; i2 < 32; i2 += 7) {
+                int i3 = inputStream.read();
+                if (i3 == -1) {
+                    throw new KryoException("Buffer underflow.");
+                }
+                i |= (i3 & Opcodes.LAND) << i2;
+                if ((i3 & 128) == 0) {
+                    this.chunkSize = i;
+                    C1644a.a aVar = C1644a.f3007a;
+                    return;
+                }
+            }
+            throw new KryoException("Malformed integer.");
+        } catch (IOException e) {
+            throw new KryoException(e);
         }
     }
 

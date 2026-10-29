@@ -14,6 +14,24 @@ public final /* data */ class ActivityTimestamps {
         this.end = str2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ActivityTimestamps)) {
+            return false;
+        }
+        ActivityTimestamps activityTimestamps = (ActivityTimestamps) other;
+        return C12238m.areEqual(this.start, activityTimestamps.start) && C12238m.areEqual(this.end, activityTimestamps.end);
+    }
+
+    public int hashCode() {
+        String str = this.start;
+        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+        String str2 = this.end;
+        return iHashCode + (str2 != null ? str2.hashCode() : 0);
+    }
+
     /* JADX INFO: renamed from: a */
     public final long m7560a(String number) {
         if (number == null || number.length() == 0) {
@@ -38,24 +56,6 @@ public final /* data */ class ActivityTimestamps {
     /* JADX INFO: renamed from: c */
     public final long m7562c() {
         return m7560a(this.start);
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ActivityTimestamps)) {
-            return false;
-        }
-        ActivityTimestamps activityTimestamps = (ActivityTimestamps) other;
-        return C12238m.areEqual(this.start, activityTimestamps.start) && C12238m.areEqual(this.end, activityTimestamps.end);
-    }
-
-    public int hashCode() {
-        String str = this.start;
-        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        String str2 = this.end;
-        return iHashCode + (str2 != null ? str2.hashCode() : 0);
     }
 
     public String toString() {

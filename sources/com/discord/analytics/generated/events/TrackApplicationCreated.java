@@ -10,22 +10,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationCreated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final Long botId = null;
-    private final CharSequence name = null;
+    private final CharSequence coverImageHash = null;
+    private final CharSequence description = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
-    private final CharSequence description = null;
     private final CharSequence iconHash = null;
-    private final CharSequence coverImageHash = null;
+    private final CharSequence name = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_created";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
         }
         TrackApplicationCreated trackApplicationCreated = (TrackApplicationCreated) other;
         return C12238m.areEqual(this.applicationId, trackApplicationCreated.applicationId) && C12238m.areEqual(this.botId, trackApplicationCreated.botId) && C12238m.areEqual(this.name, trackApplicationCreated.name) && C12238m.areEqual(this.hasBot, trackApplicationCreated.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationCreated.hasRedirectUri) && C12238m.areEqual(this.description, trackApplicationCreated.description) && C12238m.areEqual(this.iconHash, trackApplicationCreated.iconHash) && C12238m.areEqual(this.coverImageHash, trackApplicationCreated.coverImageHash);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

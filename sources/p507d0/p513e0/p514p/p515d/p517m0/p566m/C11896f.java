@@ -17,12 +17,6 @@ import p507d0.p579g0.C12106w;
 /* JADX INFO: loaded from: classes3.dex */
 public class C11896f implements InterfaceC11905o {
 
-    /* JADX INFO: renamed from: a */
-    public static final String f24709a = C12106w.substringBeforeLast(C11896f.class.getCanonicalName(), ".", "");
-
-    /* JADX INFO: renamed from: b */
-    public static final InterfaceC11905o f24710b = new a("NO_LOCKS", f.f24717a, C11895e.f24708b);
-
     /* JADX INFO: renamed from: c */
     public final InterfaceC11902l f24711c;
 
@@ -32,9 +26,15 @@ public class C11896f implements InterfaceC11905o {
     /* JADX INFO: renamed from: e */
     public final String f24713e;
 
+    /* JADX INFO: renamed from: a */
+    public static final String f24709a = C12106w.substringBeforeLast(C11896f.class.getCanonicalName(), ".", "");
+
+    /* JADX INFO: renamed from: b */
+    public static final InterfaceC11905o f24710b = new a("NO_LOCKS", f.f24717a, C11895e.f24708b);
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$a */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class a extends C11896f {
+    public final class a extends C11896f {
         public a(String str, f fVar, InterfaceC11902l interfaceC11902l) {
             super(str, fVar, interfaceC11902l);
         }
@@ -163,9 +163,23 @@ public class C11896f implements InterfaceC11905o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$d */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class d<K, V> extends e<K, V> implements InterfaceC11891a<K, V> {
+    public class d<K, V> extends e<K, V> implements InterfaceC11891a<K, V> {
         public d(C11896f c11896f, ConcurrentMap concurrentMap, a aVar) {
             super(c11896f, concurrentMap, null);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.e
+        public V computeIfAbsent(K k, Function0<? extends V> function0) {
+            if (function0 == null) {
+                m9984a(2);
+                throw null;
+            }
+            V v = (V) super.computeIfAbsent(k, function0);
+            if (v != null) {
+                return v;
+            }
+            m9984a(3);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -196,25 +210,11 @@ public class C11896f implements InterfaceC11905o {
                 throw new IllegalStateException(str2);
             }
         }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.e
-        public V computeIfAbsent(K k, Function0<? extends V> function0) {
-            if (function0 == null) {
-                m9984a(2);
-                throw null;
-            }
-            V v = (V) super.computeIfAbsent(k, function0);
-            if (v != null) {
-                return v;
-            }
-            m9984a(3);
-            throw null;
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$e */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class e<K, V> extends l<g<K, V>, V> implements InterfaceC11892b<K, V> {
+    public class e<K, V> extends l<g<K, V>, V> implements InterfaceC11892b<K, V> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public e(C11896f c11896f, ConcurrentMap concurrentMap, a aVar) {
             super(c11896f, concurrentMap, new C11897g());
@@ -227,6 +227,14 @@ public class C11896f implements InterfaceC11905o {
                 m9985a(1);
                 throw null;
             }
+        }
+
+        public V computeIfAbsent(K k, Function0<? extends V> function0) {
+            if (function0 != null) {
+                return invoke(new g(k, function0));
+            }
+            m9985a(2);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -247,14 +255,6 @@ public class C11896f implements InterfaceC11905o {
             }
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
-
-        public V computeIfAbsent(K k, Function0<? extends V> function0) {
-            if (function0 != null) {
-                return invoke(new g(k, function0));
-            }
-            m9985a(2);
-            throw null;
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$f */
@@ -266,7 +266,7 @@ public class C11896f implements InterfaceC11905o {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$f$a */
         /* JADX INFO: compiled from: LockBasedStorageManager.java */
-        public static class a implements f {
+        public final class a implements f {
             public RuntimeException handleException(Throwable th) {
                 if (th == null) {
                     throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "throwable", "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$ExceptionHandlingStrategy$1", "handleException"));
@@ -278,7 +278,7 @@ public class C11896f implements InterfaceC11905o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$g */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class g<K, V> {
+    public class g<K, V> {
 
         /* JADX INFO: renamed from: a */
         public final K f24718a;
@@ -305,7 +305,7 @@ public class C11896f implements InterfaceC11905o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$h */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class h<T> implements InterfaceC11901k<T> {
+    public class h<T> implements InterfaceC11901k<T> {
 
         /* JADX INFO: renamed from: j */
         public final C11896f f24720j;
@@ -328,48 +328,6 @@ public class C11896f implements InterfaceC11905o {
             this.f24722l = n.NOT_COMPUTED;
             this.f24720j = c11896f;
             this.f24721k = function0;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9986a(int i) {
-            String str = (i == 2 || i == 3) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-            Object[] objArr = new Object[(i == 2 || i == 3) ? 2 : 3];
-            if (i == 1) {
-                objArr[0] = "computable";
-            } else if (i == 2 || i == 3) {
-                objArr[0] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$LockBasedLazyValue";
-            } else {
-                objArr[0] = "storageManager";
-            }
-            if (i == 2) {
-                objArr[1] = "recursionDetected";
-            } else if (i != 3) {
-                objArr[1] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$LockBasedLazyValue";
-            } else {
-                objArr[1] = "renderDebugInformation";
-            }
-            if (i != 2 && i != 3) {
-                objArr[2] = "<init>";
-            }
-            String str2 = String.format(str, objArr);
-            if (i != 2 && i != 3) {
-                throw new IllegalArgumentException(str2);
-            }
-            throw new IllegalStateException(str2);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public void mo9987b(T t) {
-        }
-
-        /* JADX INFO: renamed from: c */
-        public o<T> mo9982c(boolean z2) {
-            o<T> oVarMo9980c = this.f24720j.mo9980c("in a lazy value", null);
-            if (oVarMo9980c != null) {
-                return oVarMo9980c;
-            }
-            m9986a(2);
-            throw null;
         }
 
         /* JADX WARN: Code duplicated, block: B:16:0x003c A[DONT_INVERT] */
@@ -450,11 +408,53 @@ public class C11896f implements InterfaceC11905o {
         public boolean isComputed() {
             return (this.f24722l == n.NOT_COMPUTED || this.f24722l == n.COMPUTING) ? false : true;
         }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9986a(int i) {
+            String str = (i == 2 || i == 3) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+            Object[] objArr = new Object[(i == 2 || i == 3) ? 2 : 3];
+            if (i == 1) {
+                objArr[0] = "computable";
+            } else if (i == 2 || i == 3) {
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$LockBasedLazyValue";
+            } else {
+                objArr[0] = "storageManager";
+            }
+            if (i == 2) {
+                objArr[1] = "recursionDetected";
+            } else if (i != 3) {
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$LockBasedLazyValue";
+            } else {
+                objArr[1] = "renderDebugInformation";
+            }
+            if (i != 2 && i != 3) {
+                objArr[2] = "<init>";
+            }
+            String str2 = String.format(str, objArr);
+            if (i != 2 && i != 3) {
+                throw new IllegalArgumentException(str2);
+            }
+            throw new IllegalStateException(str2);
+        }
+
+        /* JADX INFO: renamed from: c */
+        public o<T> mo9982c(boolean z2) {
+            o<T> oVarMo9980c = this.f24720j.mo9980c("in a lazy value", null);
+            if (oVarMo9980c != null) {
+                return oVarMo9980c;
+            }
+            m9986a(2);
+            throw null;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public void mo9987b(T t) {
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$i */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static abstract class i<T> extends h<T> {
+    public abstract class i<T> extends h<T> {
 
         /* JADX INFO: renamed from: m */
         public volatile C11903m<T> f24723m;
@@ -471,6 +471,12 @@ public class C11896f implements InterfaceC11905o {
                 throw null;
             }
             this.f24723m = null;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
+        public T invoke() {
+            C11903m<T> c11903m = this.f24723m;
+            return (c11903m == null || !c11903m.hasValue()) ? (T) super.invoke() : c11903m.getValue();
         }
 
         /* JADX INFO: renamed from: a */
@@ -503,17 +509,11 @@ public class C11896f implements InterfaceC11905o {
                 throw th;
             }
         }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
-        public T invoke() {
-            C11903m<T> c11903m = this.f24723m;
-            return (c11903m == null || !c11903m.hasValue()) ? (T) super.invoke() : c11903m.getValue();
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$j */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class j<T> extends h<T> implements InterfaceC11900j<T> {
+    public class j<T> extends h<T> implements InterfaceC11900j<T> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public j(C11896f c11896f, Function0<? extends T> function0) {
             super(c11896f, function0);
@@ -526,6 +526,16 @@ public class C11896f implements InterfaceC11905o {
                 m9989a(1);
                 throw null;
             }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
+        public T invoke() {
+            T t = (T) super.invoke();
+            if (t != null) {
+                return t;
+            }
+            m9989a(2);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -552,21 +562,11 @@ public class C11896f implements InterfaceC11905o {
                 throw new IllegalStateException(str2);
             }
         }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
-        public T invoke() {
-            T t = (T) super.invoke();
-            if (t != null) {
-                return t;
-            }
-            m9989a(2);
-            throw null;
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$k */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static abstract class k<T> extends i<T> implements InterfaceC11900j<T> {
+    public abstract class k<T> extends i<T> implements InterfaceC11900j<T> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public k(C11896f c11896f, Function0<? extends T> function0) {
             super(c11896f, function0);
@@ -579,6 +579,16 @@ public class C11896f implements InterfaceC11905o {
                 m9990a(1);
                 throw null;
             }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.i, p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
+        public T invoke() {
+            T t = (T) super.invoke();
+            if (t != null) {
+                return t;
+            }
+            m9990a(2);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -605,21 +615,11 @@ public class C11896f implements InterfaceC11905o {
                 throw new IllegalStateException(str2);
             }
         }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.i, p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.h, kotlin.jvm.functions.Function0
-        public T invoke() {
-            T t = (T) super.invoke();
-            if (t != null) {
-                return t;
-            }
-            m9990a(2);
-            throw null;
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$l */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class l<K, V> implements InterfaceC11899i<K, V> {
+    public class l<K, V> implements InterfaceC11899i<K, V> {
 
         /* JADX INFO: renamed from: j */
         public final C11896f f24724j;
@@ -646,43 +646,6 @@ public class C11896f implements InterfaceC11905o {
             this.f24724j = c11896f;
             this.f24725k = concurrentMap;
             this.f24726l = function1;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9991a(int i) {
-            String str = (i == 3 || i == 4) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-            Object[] objArr = new Object[(i == 3 || i == 4) ? 2 : 3];
-            if (i == 1) {
-                objArr[0] = "map";
-            } else if (i == 2) {
-                objArr[0] = "compute";
-            } else if (i == 3 || i == 4) {
-                objArr[0] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$MapBasedMemoizedFunction";
-            } else {
-                objArr[0] = "storageManager";
-            }
-            if (i == 3) {
-                objArr[1] = "recursionDetected";
-            } else if (i != 4) {
-                objArr[1] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$MapBasedMemoizedFunction";
-            } else {
-                objArr[1] = "raceCondition";
-            }
-            if (i != 3 && i != 4) {
-                objArr[2] = "<init>";
-            }
-            String str2 = String.format(str, objArr);
-            if (i != 3 && i != 4) {
-                throw new IllegalArgumentException(str2);
-            }
-            throw new IllegalStateException(str2);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final AssertionError m9992b(K k, Object obj) {
-            AssertionError assertionError = new AssertionError("Race condition detected on input " + k + ". Old value is " + obj + " under " + this.f24724j);
-            C11896f.m9979d(assertionError);
-            return assertionError;
         }
 
         /* JADX WARN: Code duplicated, block: B:20:0x0041 A[Catch: all -> 0x00c2, TryCatch #0 {all -> 0x00c2, blocks: (B:8:0x001a, B:11:0x0026, B:13:0x002e, B:15:0x0034, B:17:0x003b, B:18:0x003e, B:20:0x0041, B:22:0x0049, B:24:0x004f, B:25:0x0054, B:26:0x0057, B:28:0x005a, B:38:0x008b, B:41:0x0093, B:43:0x009f, B:44:0x00a3, B:45:0x00a4, B:46:0x00ae, B:47:0x00af, B:48:0x00b9, B:49:0x00ba, B:50:0x00c1, B:31:0x0066, B:35:0x0085, B:36:0x0089), top: B:54:0x001a, inners: #1 }] */
@@ -815,11 +778,48 @@ public class C11896f implements InterfaceC11905o {
                 throw th2;
             }
         }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9991a(int i) {
+            String str = (i == 3 || i == 4) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+            Object[] objArr = new Object[(i == 3 || i == 4) ? 2 : 3];
+            if (i == 1) {
+                objArr[0] = "map";
+            } else if (i == 2) {
+                objArr[0] = "compute";
+            } else if (i == 3 || i == 4) {
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$MapBasedMemoizedFunction";
+            } else {
+                objArr[0] = "storageManager";
+            }
+            if (i == 3) {
+                objArr[1] = "recursionDetected";
+            } else if (i != 4) {
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/storage/LockBasedStorageManager$MapBasedMemoizedFunction";
+            } else {
+                objArr[1] = "raceCondition";
+            }
+            if (i != 3 && i != 4) {
+                objArr[2] = "<init>";
+            }
+            String str2 = String.format(str, objArr);
+            if (i != 3 && i != 4) {
+                throw new IllegalArgumentException(str2);
+            }
+            throw new IllegalStateException(str2);
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final AssertionError m9992b(K k, Object obj) {
+            AssertionError assertionError = new AssertionError("Race condition detected on input " + k + ". Old value is " + obj + " under " + this.f24724j);
+            C11896f.m9979d(assertionError);
+            return assertionError;
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$m */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class m<K, V> extends l<K, V> implements InterfaceC11898h<K, V> {
+    public class m<K, V> extends l<K, V> implements InterfaceC11898h<K, V> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public m(C11896f c11896f, ConcurrentMap<K, Object> concurrentMap, Function1<? super K, ? extends V> function1) {
             super(c11896f, concurrentMap, function1);
@@ -836,6 +836,16 @@ public class C11896f implements InterfaceC11905o {
                 m9993a(2);
                 throw null;
             }
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.l, kotlin.jvm.functions.Function1
+        public V invoke(K k) {
+            V v = (V) super.invoke(k);
+            if (v != null) {
+                return v;
+            }
+            m9993a(3);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -864,16 +874,6 @@ public class C11896f implements InterfaceC11905o {
                 throw new IllegalStateException(str2);
             }
         }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.C11896f.l, kotlin.jvm.functions.Function1
-        public V invoke(K k) {
-            V v = (V) super.invoke(k);
-            if (v != null) {
-                return v;
-            }
-            m9993a(3);
-            throw null;
-        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$n */
@@ -886,7 +886,7 @@ public class C11896f implements InterfaceC11905o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.m.f$o */
     /* JADX INFO: compiled from: LockBasedStorageManager.java */
-    public static class o<T> {
+    public class o<T> {
 
         /* JADX INFO: renamed from: a */
         public final T f24731a;
@@ -903,10 +903,6 @@ public class C11896f implements InterfaceC11905o {
             return new o<>(null, true);
         }
 
-        public static <T> o<T> value(T t) {
-            return new o<>(t, false);
-        }
-
         public T getValue() {
             return this.f24731a;
         }
@@ -917,6 +913,10 @@ public class C11896f implements InterfaceC11905o {
 
         public String toString() {
             return isFallThrough() ? "FALL_THROUGH" : String.valueOf(this.f24731a);
+        }
+
+        public static <T> o<T> value(T t) {
+            return new o<>(t, false);
         }
     }
 
@@ -936,6 +936,109 @@ public class C11896f implements InterfaceC11905o {
         this.f24711c = interfaceC11902l;
         this.f24712d = fVar;
         this.f24713e = str;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <T> T compute(Function0<? extends T> function0) {
+        if (function0 == null) {
+            m9977a(34);
+            throw null;
+        }
+        this.f24711c.lock();
+        try {
+            T tInvoke = function0.invoke();
+            this.f24711c.unlock();
+            return tInvoke;
+        } catch (Throwable th) {
+            try {
+                throw ((f.a) this.f24712d).handleException(th);
+            } catch (Throwable th2) {
+                this.f24711c.unlock();
+                throw th2;
+            }
+        }
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <K, V> InterfaceC11891a<K, V> createCacheWithNotNullValues() {
+        return new d(this, m9978b(), null);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <K, V> InterfaceC11892b<K, V> createCacheWithNullableValues() {
+        return new e(this, m9978b(), null);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <T> InterfaceC11900j<T> createLazyValue(Function0<? extends T> function0) {
+        if (function0 != null) {
+            return new j(this, function0);
+        }
+        m9977a(23);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <T> InterfaceC11900j<T> createLazyValueWithPostCompute(Function0<? extends T> function0, Function1<? super Boolean, ? extends T> function1, Function1<? super T, Unit> function2) {
+        if (function0 == null) {
+            m9977a(28);
+            throw null;
+        }
+        if (function2 != null) {
+            return new c(this, this, function0, function1, function2);
+        }
+        m9977a(29);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <K, V> InterfaceC11898h<K, V> createMemoizedFunction(Function1<? super K, ? extends V> function1) {
+        if (function1 == null) {
+            m9977a(9);
+            throw null;
+        }
+        InterfaceC11898h<K, V> interfaceC11898hCreateMemoizedFunction = createMemoizedFunction(function1, m9978b());
+        if (interfaceC11898hCreateMemoizedFunction != null) {
+            return interfaceC11898hCreateMemoizedFunction;
+        }
+        m9977a(10);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <K, V> InterfaceC11899i<K, V> createMemoizedFunctionWithNullableValues(Function1<? super K, ? extends V> function1) {
+        if (function1 == null) {
+            m9977a(19);
+            throw null;
+        }
+        InterfaceC11899i<K, V> interfaceC11899iCreateMemoizedFunctionWithNullableValues = createMemoizedFunctionWithNullableValues(function1, m9978b());
+        if (interfaceC11899iCreateMemoizedFunctionWithNullableValues != null) {
+            return interfaceC11899iCreateMemoizedFunctionWithNullableValues;
+        }
+        m9977a(20);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <T> InterfaceC11901k<T> createNullableLazyValue(Function0<? extends T> function0) {
+        if (function0 != null) {
+            return new h(this, function0);
+        }
+        m9977a(30);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
+    public <T> InterfaceC11900j<T> createRecursionTolerantLazyValue(Function0<? extends T> function0, T t) {
+        if (function0 == null) {
+            m9977a(26);
+            throw null;
+        }
+        if (t != null) {
+            return new b(this, this, function0, t);
+        }
+        m9977a(27);
+        throw null;
     }
 
     /* JADX WARN: Code duplicated, block: B:34:0x0065  */
@@ -1118,109 +1221,6 @@ public class C11896f implements InterfaceC11905o {
         AssertionError assertionError = new AssertionError(sbM836X.toString());
         m9979d(assertionError);
         throw assertionError;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <T> T compute(Function0<? extends T> function0) {
-        if (function0 == null) {
-            m9977a(34);
-            throw null;
-        }
-        this.f24711c.lock();
-        try {
-            T tInvoke = function0.invoke();
-            this.f24711c.unlock();
-            return tInvoke;
-        } catch (Throwable th) {
-            try {
-                throw ((f.a) this.f24712d).handleException(th);
-            } catch (Throwable th2) {
-                this.f24711c.unlock();
-                throw th2;
-            }
-        }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <K, V> InterfaceC11891a<K, V> createCacheWithNotNullValues() {
-        return new d(this, m9978b(), null);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <K, V> InterfaceC11892b<K, V> createCacheWithNullableValues() {
-        return new e(this, m9978b(), null);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <T> InterfaceC11900j<T> createLazyValue(Function0<? extends T> function0) {
-        if (function0 != null) {
-            return new j(this, function0);
-        }
-        m9977a(23);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <T> InterfaceC11900j<T> createLazyValueWithPostCompute(Function0<? extends T> function0, Function1<? super Boolean, ? extends T> function1, Function1<? super T, Unit> function2) {
-        if (function0 == null) {
-            m9977a(28);
-            throw null;
-        }
-        if (function2 != null) {
-            return new c(this, this, function0, function1, function2);
-        }
-        m9977a(29);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <K, V> InterfaceC11898h<K, V> createMemoizedFunction(Function1<? super K, ? extends V> function1) {
-        if (function1 == null) {
-            m9977a(9);
-            throw null;
-        }
-        InterfaceC11898h<K, V> interfaceC11898hCreateMemoizedFunction = createMemoizedFunction(function1, m9978b());
-        if (interfaceC11898hCreateMemoizedFunction != null) {
-            return interfaceC11898hCreateMemoizedFunction;
-        }
-        m9977a(10);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <K, V> InterfaceC11899i<K, V> createMemoizedFunctionWithNullableValues(Function1<? super K, ? extends V> function1) {
-        if (function1 == null) {
-            m9977a(19);
-            throw null;
-        }
-        InterfaceC11899i<K, V> interfaceC11899iCreateMemoizedFunctionWithNullableValues = createMemoizedFunctionWithNullableValues(function1, m9978b());
-        if (interfaceC11899iCreateMemoizedFunctionWithNullableValues != null) {
-            return interfaceC11899iCreateMemoizedFunctionWithNullableValues;
-        }
-        m9977a(20);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <T> InterfaceC11901k<T> createNullableLazyValue(Function0<? extends T> function0) {
-        if (function0 != null) {
-            return new h(this, function0);
-        }
-        m9977a(30);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p566m.InterfaceC11905o
-    public <T> InterfaceC11900j<T> createRecursionTolerantLazyValue(Function0<? extends T> function0, T t) {
-        if (function0 == null) {
-            m9977a(26);
-            throw null;
-        }
-        if (t != null) {
-            return new b(this, this, function0, t);
-        }
-        m9977a(27);
-        throw null;
     }
 
     public String toString() {

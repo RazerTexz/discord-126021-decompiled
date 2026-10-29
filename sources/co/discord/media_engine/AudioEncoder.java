@@ -50,36 +50,6 @@ public final /* data */ class AudioEncoder {
         return audioEncoder.copy(i, str2, i7, i8, i9, i5);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getFreq() {
-        return this.freq;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getPacsize() {
-        return this.pacsize;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getChannels() {
-        return this.channels;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getRate() {
-        return this.rate;
-    }
-
     public final AudioEncoder copy(int type, String name, int freq, int pacsize, int channels, int rate) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new AudioEncoder(type, name, freq, pacsize, channels, rate);
@@ -96,24 +66,54 @@ public final /* data */ class AudioEncoder {
         return this.type == audioEncoder.type && C12238m.areEqual(this.name, audioEncoder.name) && this.freq == audioEncoder.freq && this.pacsize == audioEncoder.pacsize && this.channels == audioEncoder.channels && this.rate == audioEncoder.rate;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final int getChannels() {
         return this.channels;
+    }
+
+    public final int getChannels() {
+        return this.channels;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getFreq() {
+        return this.freq;
     }
 
     public final int getFreq() {
         return this.freq;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getPacsize() {
+        return this.pacsize;
     }
 
     public final int getPacsize() {
         return this.pacsize;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getRate() {
         return this.rate;
+    }
+
+    public final int getRate() {
+        return this.rate;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

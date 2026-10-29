@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImpressionChannelCallVideoGrid.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImpressionChannelCallVideoGrid implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long channelId = null;
-    private final Long guildId = null;
-    private final Long totalParticipants = null;
     private final Boolean canInvite = null;
-    private final Boolean isAfkChannel = null;
+    private final Long channelId = null;
     private final Long channelUserLimit = null;
+    private final Long guildId = null;
+    private final Boolean isAfkChannel = null;
+    private final Long totalParticipants = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "impression_channel_call_video_grid";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackImpressionChannelCallVideoGrid implements Ana
         }
         TrackImpressionChannelCallVideoGrid trackImpressionChannelCallVideoGrid = (TrackImpressionChannelCallVideoGrid) other;
         return C12238m.areEqual(this.channelId, trackImpressionChannelCallVideoGrid.channelId) && C12238m.areEqual(this.guildId, trackImpressionChannelCallVideoGrid.guildId) && C12238m.areEqual(this.totalParticipants, trackImpressionChannelCallVideoGrid.totalParticipants) && C12238m.areEqual(this.canInvite, trackImpressionChannelCallVideoGrid.canInvite) && C12238m.areEqual(this.isAfkChannel, trackImpressionChannelCallVideoGrid.isAfkChannel) && C12238m.areEqual(this.channelUserLimit, trackImpressionChannelCallVideoGrid.channelUserLimit);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

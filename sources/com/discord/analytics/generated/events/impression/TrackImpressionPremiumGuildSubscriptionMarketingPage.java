@@ -13,11 +13,17 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackImpressionPremiumGuildSubscriptionMarketingPage.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackImpressionPremiumGuildSubscriptionMarketingPage implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "impression_premium_guild_subscription_marketing_page";
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "impression_premium_guild_subscription_marketing_page";
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
 
     @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -29,11 +35,5 @@ public final class TrackImpressionPremiumGuildSubscriptionMarketingPage implemen
     /* JADX INFO: renamed from: c */
     public void mo7508c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
     }
 }

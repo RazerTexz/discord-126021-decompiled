@@ -34,7 +34,7 @@ public abstract class RemoteIntentService extends IntentService {
     private final String name;
 
     /* JADX INFO: compiled from: RemoteIntentService.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -76,7 +76,7 @@ public abstract class RemoteIntentService extends IntentService {
     }
 
     /* JADX INFO: compiled from: RemoteIntentService.kt */
-    public static abstract class IpcCallback {
+    public abstract class IpcCallback {
         private final Handler handler;
         private final String name;
 

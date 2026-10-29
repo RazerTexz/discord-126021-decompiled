@@ -33,6 +33,12 @@ public final class WidgetChatListAdapterItemTextDividerBinding implements ViewBi
         this.f16328d = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16325a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChatListAdapterItemTextDividerBinding m8410a(@NonNull View view) {
@@ -50,11 +56,5 @@ public final class WidgetChatListAdapterItemTextDividerBinding implements ViewBi
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16325a;
     }
 }

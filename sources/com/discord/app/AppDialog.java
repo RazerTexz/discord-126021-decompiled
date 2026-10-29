@@ -31,7 +31,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
 
     /* JADX INFO: renamed from: com.discord.app.AppDialog$a */
     /* JADX INFO: compiled from: AppDialog.kt */
-    public static final class ViewOnClickListenerC5446a implements View.OnClickListener {
+    public final class ViewOnClickListenerC5446a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ View f14941k;
@@ -56,16 +56,6 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         this.unsubscribeSignal = publishSubjectM11133k0;
     }
 
-    public static /* synthetic */ void hideKeyboard$default(AppDialog appDialog, View view, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
-        }
-        if ((i & 1) != 0) {
-            view = null;
-        }
-        appDialog.hideKeyboard(view);
-    }
-
     @Override // androidx.fragment.app.DialogFragment
     public void dismiss() {
         try {
@@ -87,9 +77,24 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         return arguments;
     }
 
+    /* JADX INFO: renamed from: isRecreated, reason: from getter */
+    public final boolean getIsRecreated() {
+        return this.isRecreated;
+    }
+
     @Override // com.discord.app.AppComponent
     public Subject<Void, Void> getUnsubscribeSignal() {
         return this.unsubscribeSignal;
+    }
+
+    public static /* synthetic */ void hideKeyboard$default(AppDialog appDialog, View view, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
+        }
+        if ((i & 1) != 0) {
+            view = null;
+        }
+        appDialog.hideKeyboard(view);
     }
 
     public final void hideKeyboard() {
@@ -101,11 +106,6 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         if (appActivity != null) {
             appActivity.hideKeyboard(view);
         }
-    }
-
-    /* JADX INFO: renamed from: isRecreated, reason: from getter */
-    public final boolean getIsRecreated() {
-        return this.isRecreated;
     }
 
     @Override // androidx.fragment.app.DialogFragment

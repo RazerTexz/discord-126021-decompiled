@@ -103,6 +103,18 @@ public class ColorPanelView extends View {
         }
     }
 
+    public int getBorderColor() {
+        return this.f21704s;
+    }
+
+    public int getColor() {
+        return this.f21705t;
+    }
+
+    public int getShape() {
+        return this.f21706u;
+    }
+
     /* JADX INFO: renamed from: a */
     public void m9266a() {
         int[] iArr = new int[2];
@@ -130,18 +142,6 @@ public class ColorPanelView extends View {
             toastMakeText.setGravity(81, 0, height);
         }
         toastMakeText.show();
-    }
-
-    public int getBorderColor() {
-        return this.f21704s;
-    }
-
-    public int getColor() {
-        return this.f21705t;
-    }
-
-    public int getShape() {
-        return this.f21706u;
     }
 
     @Override // android.view.View

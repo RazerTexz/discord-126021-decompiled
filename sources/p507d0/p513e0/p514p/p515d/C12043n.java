@@ -71,7 +71,7 @@ public final class C12043n extends AbstractC11262i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.n$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: KPackageImpl.kt */
-        public static final class C13341a extends AbstractC12240o implements Function0<C11413f> {
+        public final class C13341a extends AbstractC12240o implements Function0<C11413f> {
             public C13341a() {
                 super(0);
             }
@@ -85,7 +85,7 @@ public final class C12043n extends AbstractC11262i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.n$a$b */
         /* JADX INFO: compiled from: KPackageImpl.kt */
-        public static final class b extends AbstractC12240o implements Function0<Collection<? extends AbstractC11256f<?>>> {
+        public final class b extends AbstractC12240o implements Function0<Collection<? extends AbstractC11256f<?>>> {
             public b() {
                 super(0);
             }
@@ -99,7 +99,7 @@ public final class C12043n extends AbstractC11262i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.n$a$c */
         /* JADX INFO: compiled from: KPackageImpl.kt */
-        public static final class c extends AbstractC12240o implements Function0<Triple<? extends C11674g, ? extends C11687l, ? extends C11673f>> {
+        public final class c extends AbstractC12240o implements Function0<Triple<? extends C11674g, ? extends C11687l, ? extends C11673f>> {
             public c() {
                 super(0);
             }
@@ -123,7 +123,7 @@ public final class C12043n extends AbstractC11262i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.n$a$d */
         /* JADX INFO: compiled from: KPackageImpl.kt */
-        public static final class d extends AbstractC12240o implements Function0<Class<?>> {
+        public final class d extends AbstractC12240o implements Function0<Class<?>> {
             public d() {
                 super(0);
             }
@@ -146,7 +146,7 @@ public final class C12043n extends AbstractC11262i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.n$a$e */
         /* JADX INFO: compiled from: KPackageImpl.kt */
-        public static final class e extends AbstractC12240o implements Function0<InterfaceC11770i> {
+        public final class e extends AbstractC12240o implements Function0<InterfaceC11770i> {
             public e() {
                 super(0);
             }
@@ -190,7 +190,7 @@ public final class C12043n extends AbstractC11262i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.n$b */
     /* JADX INFO: compiled from: KPackageImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a> {
+    public final class b extends AbstractC12240o implements Function0<a> {
         public b() {
             super(0);
         }
@@ -204,7 +204,7 @@ public final class C12043n extends AbstractC11262i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.n$c */
     /* JADX INFO: compiled from: KPackageImpl.kt */
-    public static final /* synthetic */ class c extends C12235j implements Function2<C11885u, C11689n, InterfaceC11453n0> {
+    public final /* synthetic */ class c extends C12235j implements Function2<C11885u, C11689n, InterfaceC11453n0> {
 
         /* JADX INFO: renamed from: j */
         public static final c f25017j = new c();
@@ -242,13 +242,6 @@ public final class C12043n extends AbstractC11262i {
         C11251c0.b<a> bVarLazy = C11251c0.lazy(new b());
         C12238m.checkNotNullExpressionValue(bVarLazy, "ReflectProperties.lazy { Data() }");
         this.f25009m = bVarLazy;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.AbstractC11262i
-    /* JADX INFO: renamed from: c */
-    public Class<?> mo9342c() {
-        Class<?> multifileFacade = this.f25009m.invoke().getMultifileFacade();
-        return multifileFacade != null ? multifileFacade : getJClass();
     }
 
     public boolean equals(Object obj) {
@@ -300,6 +293,13 @@ public final class C12043n extends AbstractC11262i {
 
     public int hashCode() {
         return getJClass().hashCode();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.AbstractC11262i
+    /* JADX INFO: renamed from: c */
+    public Class<?> mo9342c() {
+        Class<?> multifileFacade = this.f25009m.invoke().getMultifileFacade();
+        return multifileFacade != null ? multifileFacade : getJClass();
     }
 
     public String toString() {

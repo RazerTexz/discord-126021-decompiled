@@ -39,9 +39,6 @@ public abstract class AbstractC4074i9 extends C4181s5 implements InterfaceC4192t
         this.f10828c = true;
     }
 
-    /* JADX INFO: renamed from: p */
-    public abstract boolean mo5515p();
-
     /* JADX INFO: renamed from: q */
     public C4040g m5686q() {
         return this.f10827b.m5710K();
@@ -51,4 +48,7 @@ public abstract class AbstractC4074i9 extends C4181s5 implements InterfaceC4192t
     public C4147p4 m5687r() {
         return this.f10827b.m5707H();
     }
+
+    /* JADX INFO: renamed from: p */
+    public abstract boolean mo5515p();
 }

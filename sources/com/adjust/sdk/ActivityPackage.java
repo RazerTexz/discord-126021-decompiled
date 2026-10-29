@@ -12,8 +12,6 @@ import java.util.TreeMap;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ActivityPackage implements Serializable {
-    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("path", String.class), new ObjectStreamField("clientSdk", String.class), new ObjectStreamField("parameters", Map.class), new ObjectStreamField("activityKind", ActivityKind.class), new ObjectStreamField("suffix", String.class), new ObjectStreamField("callbackParameters", Map.class), new ObjectStreamField("partnerParameters", Map.class)};
-    private static final long serialVersionUID = -35935556512024097L;
     private ActivityKind activityKind;
     private Map<String, String> callbackParameters;
     private long clickTimeInMilliseconds;
@@ -25,26 +23,13 @@ public class ActivityPackage implements Serializable {
     private Map<String, String> partnerParameters;
     private String path;
     private int retries;
+    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("path", String.class), new ObjectStreamField("clientSdk", String.class), new ObjectStreamField("parameters", Map.class), new ObjectStreamField("activityKind", ActivityKind.class), new ObjectStreamField("suffix", String.class), new ObjectStreamField("callbackParameters", Map.class), new ObjectStreamField("partnerParameters", Map.class)};
+    private static final long serialVersionUID = -35935556512024097L;
     private String suffix;
 
     public ActivityPackage(ActivityKind activityKind) {
         this.activityKind = ActivityKind.UNKNOWN;
         this.activityKind = activityKind;
-    }
-
-    private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
-        ObjectInputStream.GetField fields = objectInputStream.readFields();
-        this.path = Util.readStringField(fields, "path", null);
-        this.clientSdk = Util.readStringField(fields, "clientSdk", null);
-        this.parameters = (Map) Util.readObjectField(fields, "parameters", null);
-        this.activityKind = (ActivityKind) Util.readObjectField(fields, "activityKind", ActivityKind.UNKNOWN);
-        this.suffix = Util.readStringField(fields, "suffix", null);
-        this.callbackParameters = (Map) Util.readObjectField(fields, "callbackParameters", null);
-        this.partnerParameters = (Map) Util.readObjectField(fields, "partnerParameters", null);
-    }
-
-    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
-        objectOutputStream.defaultWriteObject();
     }
 
     public boolean equals(Object obj) {
@@ -150,6 +135,17 @@ public class ActivityPackage implements Serializable {
         return i;
     }
 
+    private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
+        ObjectInputStream.GetField fields = objectInputStream.readFields();
+        this.path = Util.readStringField(fields, "path", null);
+        this.clientSdk = Util.readStringField(fields, "clientSdk", null);
+        this.parameters = (Map) Util.readObjectField(fields, "parameters", null);
+        this.activityKind = (ActivityKind) Util.readObjectField(fields, "activityKind", ActivityKind.UNKNOWN);
+        this.suffix = Util.readStringField(fields, "suffix", null);
+        this.callbackParameters = (Map) Util.readObjectField(fields, "callbackParameters", null);
+        this.partnerParameters = (Map) Util.readObjectField(fields, "partnerParameters", null);
+    }
+
     public void setCallbackParameters(Map<String, String> map) {
         this.callbackParameters = map;
     }
@@ -188,5 +184,9 @@ public class ActivityPackage implements Serializable {
 
     public String toString() {
         return Util.formatString("%s%s", this.activityKind.toString(), this.suffix);
+    }
+
+    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+        objectOutputStream.defaultWriteObject();
     }
 }

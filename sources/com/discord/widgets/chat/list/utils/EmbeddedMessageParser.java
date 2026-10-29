@@ -31,8 +31,100 @@ import p507d0.p592z.p594d.C12238m;
 public final class EmbeddedMessageParser {
     public static final EmbeddedMessageParser INSTANCE = new EmbeddedMessageParser();
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$1 */
     /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
-    public static final /* data */ class ParserData {
+    public final class C81731 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+        public static final C81731 INSTANCE = new C81731();
+
+        public C81731() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
+            invoke2(context, str, str2);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Context context, String str, String str2) {
+            C12238m.checkNotNullParameter(context, "clickContext");
+            C12238m.checkNotNullParameter(str, "url");
+            UriHandler.handleOrUntrusted(context, str, str2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$2 */
+    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
+    public final class C81742 extends AbstractC12240o implements Function1<String, Unit> {
+        public final /* synthetic */ ParserData $parserData;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C81742(ParserData parserData) {
+            super(1);
+            this.$parserData = parserData;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "url");
+            this.$parserData.getAdapter().getEventHandler().onUrlLongClicked(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$3 */
+    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
+    public final class C81753 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ ParserData $parserData;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C81753(ParserData parserData) {
+            super(1);
+            this.$parserData = parserData;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            WidgetChatListAdapter.Data data = this.$parserData.getAdapter().getData();
+            this.$parserData.getAdapter().getEventHandler().onUserMentionClicked(j, data.getChannelId(), data.getGuildId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$4 */
+    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
+    public final class C81764 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ ParserData $parserData;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C81764(ParserData parserData) {
+            super(1);
+            this.$parserData = parserData;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            ChannelSelector.INSTANCE.getInstance().findAndSet(this.$parserData.getContext(), j);
+        }
+    }
+
+    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
+    public final /* data */ class ParserData {
         private final WidgetChatListAdapter adapter;
         private final boolean animateEmojis;
         private final Context context;
@@ -57,42 +149,12 @@ public final class EmbeddedMessageParser {
             this.adapter = widgetChatListAdapter;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Context getContext() {
-            return this.context;
-        }
-
         public final Map<Long, GuildRole> component2() {
             return this.roleMentions;
         }
 
         public final Map<Long, String> component3() {
             return this.nickOrUsernames;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getAnimateEmojis() {
-            return this.animateEmojis;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final StoreMessageState.State getMessageState() {
-            return this.messageState;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getMaxNodes() {
-            return this.maxNodes;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Message getMessage() {
-            return this.message;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final WidgetChatListAdapter getAdapter() {
-            return this.adapter;
         }
 
         public final ParserData copy(Context context, Map<Long, GuildRole> roleMentions, Map<Long, String> nickOrUsernames, boolean animateEmojis, StoreMessageState.State messageState, Integer maxNodes, Message message, WidgetChatListAdapter adapter) {
@@ -114,24 +176,54 @@ public final class EmbeddedMessageParser {
             return C12238m.areEqual(this.context, parserData.context) && C12238m.areEqual(this.roleMentions, parserData.roleMentions) && C12238m.areEqual(this.nickOrUsernames, parserData.nickOrUsernames) && this.animateEmojis == parserData.animateEmojis && C12238m.areEqual(this.messageState, parserData.messageState) && C12238m.areEqual(this.maxNodes, parserData.maxNodes) && C12238m.areEqual(this.message, parserData.message) && C12238m.areEqual(this.adapter, parserData.adapter);
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final WidgetChatListAdapter getAdapter() {
             return this.adapter;
+        }
+
+        public final WidgetChatListAdapter getAdapter() {
+            return this.adapter;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getAnimateEmojis() {
+            return this.animateEmojis;
         }
 
         public final boolean getAnimateEmojis() {
             return this.animateEmojis;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Context getContext() {
             return this.context;
+        }
+
+        public final Context getContext() {
+            return this.context;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Integer getMaxNodes() {
+            return this.maxNodes;
         }
 
         public final Integer getMaxNodes() {
             return this.maxNodes;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final Message getMessage() {
             return this.message;
+        }
+
+        public final Message getMessage() {
+            return this.message;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final StoreMessageState.State getMessageState() {
+            return this.messageState;
         }
 
         public final StoreMessageState.State getMessageState() {
@@ -193,98 +285,6 @@ public final class EmbeddedMessageParser {
             sbM833U.append(this.adapter);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$1 */
-    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
-    public static final class C81731 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
-        public static final C81731 INSTANCE = new C81731();
-
-        public C81731() {
-            super(3);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
-            invoke2(context, str, str2);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Context context, String str, String str2) {
-            C12238m.checkNotNullParameter(context, "clickContext");
-            C12238m.checkNotNullParameter(str, "url");
-            UriHandler.handleOrUntrusted(context, str, str2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$2 */
-    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
-    public static final class C81742 extends AbstractC12240o implements Function1<String, Unit> {
-        public final /* synthetic */ ParserData $parserData;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C81742(ParserData parserData) {
-            super(1);
-            this.$parserData = parserData;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "url");
-            this.$parserData.getAdapter().getEventHandler().onUrlLongClicked(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$3 */
-    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
-    public static final class C81753 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ ParserData $parserData;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C81753(ParserData parserData) {
-            super(1);
-            this.$parserData = parserData;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetChatListAdapter.Data data = this.$parserData.getAdapter().getData();
-            this.$parserData.getAdapter().getEventHandler().onUserMentionClicked(j, data.getChannelId(), data.getGuildId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.utils.EmbeddedMessageParser$getMessageRenderContext$4 */
-    /* JADX INFO: compiled from: EmbeddedMessageParser.kt */
-    public static final class C81764 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ ParserData $parserData;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C81764(ParserData parserData) {
-            super(1);
-            this.$parserData = parserData;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            ChannelSelector.INSTANCE.getInstance().findAndSet(this.$parserData.getContext(), j);
         }
     }
 

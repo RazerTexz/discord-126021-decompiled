@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherVideoAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalWatchTogetherVideoAdded implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+    private final Boolean isHost = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
-    private final Boolean isHost = null;
     private final CharSequence via = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_watch_together_video_added";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoAdded imple
         }
         TrackActivityInternalWatchTogetherVideoAdded trackActivityInternalWatchTogetherVideoAdded = (TrackActivityInternalWatchTogetherVideoAdded) other;
         return C12238m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoAdded.isHost) && C12238m.areEqual(this.via, trackActivityInternalWatchTogetherVideoAdded.via);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

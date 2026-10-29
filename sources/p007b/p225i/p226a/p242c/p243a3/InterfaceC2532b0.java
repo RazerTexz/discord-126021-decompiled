@@ -28,7 +28,7 @@ public interface InterfaceC2532b0 {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.b0$a */
     /* JADX INFO: compiled from: MediaSourceEventListener.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final int f5481a;
@@ -45,7 +45,7 @@ public interface InterfaceC2532b0 {
 
         /* JADX INFO: renamed from: b.i.a.c.a3.b0$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: MediaSourceEventListener.java */
-        public static final class C13222a {
+        public final class C13222a {
 
             /* JADX INFO: renamed from: a */
             public Handler f5485a;

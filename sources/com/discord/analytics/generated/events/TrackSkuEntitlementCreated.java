@@ -15,21 +15,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSkuEntitlementCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver, TrackEntitlementMetadataReceiver {
+    private final Long endTimestamp = null;
+    private final CharSequence entitlementType = null;
+    private final CharSequence redemptionCode = null;
+    private final Long startTimestamp = null;
     private TrackBase trackBase;
     private TrackEntitlementMetadata trackEntitlementMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence entitlementType = null;
-    private final Long startTimestamp = null;
-    private final Long endTimestamp = null;
-    private final CharSequence redemptionCode = null;
     private final transient String analyticsSchemaTypeName = "sku_entitlement_created";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSch
         }
         TrackSkuEntitlementCreated trackSkuEntitlementCreated = (TrackSkuEntitlementCreated) other;
         return C12238m.areEqual(this.entitlementType, trackSkuEntitlementCreated.entitlementType) && C12238m.areEqual(this.startTimestamp, trackSkuEntitlementCreated.startTimestamp) && C12238m.areEqual(this.endTimestamp, trackSkuEntitlementCreated.endTimestamp) && C12238m.areEqual(this.redemptionCode, trackSkuEntitlementCreated.redemptionCode);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

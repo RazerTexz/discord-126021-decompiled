@@ -9,11 +9,6 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class GetBackupCodesResponse {
     private final List<BackupCode> backupCodes;
 
-    /* JADX INFO: renamed from: a */
-    public final List<BackupCode> m7590a() {
-        return this.backupCodes;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof GetBackupCodesResponse) && C12238m.areEqual(this.backupCodes, ((GetBackupCodesResponse) other).backupCodes);
@@ -27,6 +22,11 @@ public final /* data */ class GetBackupCodesResponse {
             return list.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<BackupCode> m7590a() {
+        return this.backupCodes;
     }
 
     public String toString() {

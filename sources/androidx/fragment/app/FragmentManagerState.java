@@ -9,6 +9,14 @@ import java.util.ArrayList;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class FragmentManagerState implements Parcelable {
+    public ArrayList<FragmentState> mActive;
+    public ArrayList<String> mAdded;
+    public BackStackState[] mBackStack;
+    public int mBackStackIndex;
+    public ArrayList<FragmentManager.LaunchedFragmentInfo> mLaunchedFragments;
+    public String mPrimaryNavActiveWho;
+    public ArrayList<String> mResultKeys;
+    public ArrayList<Bundle> mResults;
     public static final Parcelable.Creator<FragmentManagerState> CREATOR = new Parcelable.Creator<FragmentManagerState>() { // from class: androidx.fragment.app.FragmentManagerState.1
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
@@ -22,14 +30,6 @@ public final class FragmentManagerState implements Parcelable {
             return new FragmentManagerState[i];
         }
     };
-    public ArrayList<FragmentState> mActive;
-    public ArrayList<String> mAdded;
-    public BackStackState[] mBackStack;
-    public int mBackStackIndex;
-    public ArrayList<FragmentManager.LaunchedFragmentInfo> mLaunchedFragments;
-    public String mPrimaryNavActiveWho;
-    public ArrayList<String> mResultKeys;
-    public ArrayList<Bundle> mResults;
 
     public FragmentManagerState() {
         this.mPrimaryNavActiveWho = null;

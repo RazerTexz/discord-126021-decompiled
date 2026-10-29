@@ -69,11 +69,11 @@ public final class StoreChannelMembers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$1 */
     /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class C58121 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C58121 extends AbstractC12240o implements Function1<Unit, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreChannelMembers.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -106,8 +106,46 @@ public final class StoreChannelMembers extends StoreV2 {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$handleGuildMemberListUpdate$2 */
     /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class Companion {
+    public final class C58132 extends AbstractC12240o implements Function1<ModelGuildMemberListUpdate.Group, MemberListRow> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58132(long j) {
+            super(1);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final MemberListRow invoke(ModelGuildMemberListUpdate.Group group) {
+            C12238m.checkNotNullParameter(group, "it");
+            return StoreChannelMembers.this.makeGroup(this.$guildId, group);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$observeChannelMemberList$1 */
+    /* JADX INFO: compiled from: StoreChannelMembers.kt */
+    public final class C58151 extends AbstractC12240o implements Function0<ChannelMemberList> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58151(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$channelId = j2;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ChannelMemberList invoke() {
+            return StoreChannelMembers.this.getChannelMemberList(this.$guildId, this.$channelId);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChannelMembers.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -127,7 +165,7 @@ public final class StoreChannelMembers extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class MemberListIdCalculator {
+    public final class MemberListIdCalculator {
         public static final MemberListIdCalculator INSTANCE = new MemberListIdCalculator();
 
         private MemberListIdCalculator() {
@@ -162,10 +200,6 @@ public final class StoreChannelMembers extends StoreV2 {
             return strValueOf != null ? strValueOf : "";
         }
 
-        private final long toUnsignedLong(int i) {
-            return ((long) i) & 4294967295L;
-        }
-
         public final String computeMemberListId(Function1<? super Long, Channel> channelsProvider, long channelId, StoreGuilds storeGuilds) {
             C12238m.checkNotNullParameter(channelsProvider, "channelsProvider");
             C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
@@ -185,10 +219,14 @@ public final class StoreChannelMembers extends StoreV2 {
             }
             return ModelGuildMemberListUpdate.EVERYONE_ID;
         }
+
+        private final long toUnsignedLong(int i) {
+            return ((long) i) & 4294967295L;
+        }
     }
 
     /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class MemberListUpdateException extends RuntimeException {
+    public final class MemberListUpdateException extends RuntimeException {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public MemberListUpdateException(Exception exc) {
             super(exc);
@@ -197,17 +235,13 @@ public final class StoreChannelMembers extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class MemberListUpdateLogger {
+    public final class MemberListUpdateLogger {
         private static final String ERROR_TAG = "MemberListUpdateError";
         private static final int MAX_UPDATE_COUNT = 20;
         public static final MemberListUpdateLogger INSTANCE = new MemberListUpdateLogger();
         private static final Map<String, List<String>> opLogs = new HashMap();
 
         private MemberListUpdateLogger() {
-        }
-
-        private final String makeLogKey(long guildId, String memberListId) {
-            return guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + memberListId;
         }
 
         public final void dumpLogs(long guildId, String memberListId, Exception exception) {
@@ -274,6 +308,10 @@ public final class StoreChannelMembers extends StoreV2 {
             }
             map.put(strMakeLogKey, arrayList3);
         }
+
+        private final String makeLogKey(long guildId, String memberListId) {
+            return "" + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + memberListId;
+        }
     }
 
     public final /* synthetic */ class WhenMappings {
@@ -286,44 +324,6 @@ public final class StoreChannelMembers extends StoreV2 {
             iArr[ModelGuildMemberListUpdate.Group.Type.ROLE.ordinal()] = 1;
             iArr[ModelGuildMemberListUpdate.Group.Type.OFFLINE.ordinal()] = 2;
             iArr[ModelGuildMemberListUpdate.Group.Type.ONLINE.ordinal()] = 3;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$handleGuildMemberListUpdate$2 */
-    /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class C58132 extends AbstractC12240o implements Function1<ModelGuildMemberListUpdate.Group, MemberListRow> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58132(long j) {
-            super(1);
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final MemberListRow invoke(ModelGuildMemberListUpdate.Group group) {
-            C12238m.checkNotNullParameter(group, "it");
-            return StoreChannelMembers.this.makeGroup(this.$guildId, group);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreChannelMembers$observeChannelMemberList$1 */
-    /* JADX INFO: compiled from: StoreChannelMembers.kt */
-    public static final class C58151 extends AbstractC12240o implements Function0<ChannelMemberList> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58151(long j, long j2) {
-            super(0);
-            this.$guildId = j;
-            this.$channelId = j2;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final ChannelMemberList invoke() {
-            return StoreChannelMembers.this.getChannelMemberList(this.$guildId, this.$channelId);
         }
     }
 
@@ -369,6 +369,16 @@ public final class StoreChannelMembers extends StoreV2 {
         return !z2;
     }
 
+    public final ChannelMemberList getChannelMemberList(long guildId, long channelId) {
+        String strComputeMemberListId = MemberListIdCalculator.INSTANCE.computeMemberListId(this.getChannel, channelId, this.storeGuilds);
+        Map<String, ChannelMemberList> mapEmptyMap = this.memberListsSnapshot.get(Long.valueOf(guildId));
+        if (mapEmptyMap == null) {
+            mapEmptyMap = C12136h0.emptyMap();
+        }
+        ChannelMemberList channelMemberList = mapEmptyMap.get(strComputeMemberListId);
+        return channelMemberList != null ? channelMemberList : new ChannelMemberList(strComputeMemberListId, this.getGuildMemberCount.invoke(Long.valueOf(guildId)).intValue(), AppLog.f14950g);
+    }
+
     @StoreThread
     private final ChannelMemberList getMemberList(long guildId, String memberListId) {
         Map<String, ChannelMemberList> map = this.memberLists.get(Long.valueOf(guildId));
@@ -384,6 +394,56 @@ public final class StoreChannelMembers extends StoreV2 {
         if (memberList != null) {
             memberList.delete(deleteOperation.getIndex());
         }
+    }
+
+    @StoreThread
+    public final void handleGuildMemberListUpdate(ModelGuildMemberListUpdate update) {
+        C12238m.checkNotNullParameter(update, "update");
+        long guildId = update.getGuildId();
+        String id2 = update.getId();
+        MemberListUpdateLogger.INSTANCE.logUpdate(update);
+        try {
+            for (ModelGuildMemberListUpdate.Operation operation : update.getOperations()) {
+                if (operation instanceof ModelGuildMemberListUpdate.Operation.Sync) {
+                    handleSync(id2, (ModelGuildMemberListUpdate.Operation.Sync) operation, guildId);
+                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Update) {
+                    handleUpdate(id2, (ModelGuildMemberListUpdate.Operation.Update) operation, guildId);
+                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Insert) {
+                    handleInsert(id2, (ModelGuildMemberListUpdate.Operation.Insert) operation, guildId);
+                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Delete) {
+                    handleDelete(id2, (ModelGuildMemberListUpdate.Operation.Delete) operation, guildId);
+                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Invalidate) {
+                    handleInvalidate(id2, (ModelGuildMemberListUpdate.Operation.Invalidate) operation, guildId);
+                }
+            }
+            ChannelMemberList memberList = getMemberList(update.getGuildId(), id2);
+            if (memberList != null) {
+                memberList.setGroups(update.getGroups(), new C58132(guildId));
+            }
+        } catch (Exception e) {
+            MemberListUpdateLogger.INSTANCE.dumpLogs(guildId, id2, e);
+        }
+        throttleMarkChanged();
+    }
+
+    @StoreThread
+    public final void handleGuildRemove(long guildId) {
+        if (this.memberLists.remove(Long.valueOf(guildId)) != null) {
+            throttleMarkChanged();
+        }
+    }
+
+    @StoreThread
+    public final void handleGuildRoleCreateOrUpdate(long guildId) {
+        boolean zAllowOwnerIndicator = allowOwnerIndicator(guildId);
+        Map<String, ChannelMemberList> map = this.memberLists.get(Long.valueOf(guildId));
+        if (map != null) {
+            Iterator<Map.Entry<String, ChannelMemberList>> it = map.entrySet().iterator();
+            while (it.hasNext()) {
+                it.next().getValue().rebuildMembers(new C5814x791bbf43(this, guildId, zAllowOwnerIndicator));
+            }
+        }
+        throttleMarkChanged();
     }
 
     @StoreThread
@@ -484,71 +544,6 @@ public final class StoreChannelMembers extends StoreV2 {
         return INSTANCE.makeRowMember(userId, this.storeGuilds.getGuildMembersComputedInternal$app_productionGoogleRelease().get(Long.valueOf(guildId)), this.storeUser.getUsersInternal$app_productionGoogleRelease(), this.getPresence.invoke(Long.valueOf(userId)), this.isUserStreaming.invoke(Long.valueOf(userId)).booleanValue(), allowOwnerIndicator && (guild = this.storeGuilds.getGuildsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId))) != null && guild.getOwnerId() == userId);
     }
 
-    private final void throttleMarkChanged() {
-        PublishSubject<Unit> publishSubject = this.markChangedTrigger;
-        publishSubject.f27650k.onNext(Unit.f27425a);
-    }
-
-    public final ChannelMemberList getChannelMemberList(long guildId, long channelId) {
-        String strComputeMemberListId = MemberListIdCalculator.INSTANCE.computeMemberListId(this.getChannel, channelId, this.storeGuilds);
-        Map<String, ChannelMemberList> mapEmptyMap = this.memberListsSnapshot.get(Long.valueOf(guildId));
-        if (mapEmptyMap == null) {
-            mapEmptyMap = C12136h0.emptyMap();
-        }
-        ChannelMemberList channelMemberList = mapEmptyMap.get(strComputeMemberListId);
-        return channelMemberList != null ? channelMemberList : new ChannelMemberList(strComputeMemberListId, this.getGuildMemberCount.invoke(Long.valueOf(guildId)).intValue(), AppLog.f14950g);
-    }
-
-    @StoreThread
-    public final void handleGuildMemberListUpdate(ModelGuildMemberListUpdate update) {
-        C12238m.checkNotNullParameter(update, "update");
-        long guildId = update.getGuildId();
-        String id2 = update.getId();
-        MemberListUpdateLogger.INSTANCE.logUpdate(update);
-        try {
-            for (ModelGuildMemberListUpdate.Operation operation : update.getOperations()) {
-                if (operation instanceof ModelGuildMemberListUpdate.Operation.Sync) {
-                    handleSync(id2, (ModelGuildMemberListUpdate.Operation.Sync) operation, guildId);
-                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Update) {
-                    handleUpdate(id2, (ModelGuildMemberListUpdate.Operation.Update) operation, guildId);
-                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Insert) {
-                    handleInsert(id2, (ModelGuildMemberListUpdate.Operation.Insert) operation, guildId);
-                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Delete) {
-                    handleDelete(id2, (ModelGuildMemberListUpdate.Operation.Delete) operation, guildId);
-                } else if (operation instanceof ModelGuildMemberListUpdate.Operation.Invalidate) {
-                    handleInvalidate(id2, (ModelGuildMemberListUpdate.Operation.Invalidate) operation, guildId);
-                }
-            }
-            ChannelMemberList memberList = getMemberList(update.getGuildId(), id2);
-            if (memberList != null) {
-                memberList.setGroups(update.getGroups(), new C58132(guildId));
-            }
-        } catch (Exception e) {
-            MemberListUpdateLogger.INSTANCE.dumpLogs(guildId, id2, e);
-        }
-        throttleMarkChanged();
-    }
-
-    @StoreThread
-    public final void handleGuildRemove(long guildId) {
-        if (this.memberLists.remove(Long.valueOf(guildId)) != null) {
-            throttleMarkChanged();
-        }
-    }
-
-    @StoreThread
-    public final void handleGuildRoleCreateOrUpdate(long guildId) {
-        boolean zAllowOwnerIndicator = allowOwnerIndicator(guildId);
-        Map<String, ChannelMemberList> map = this.memberLists.get(Long.valueOf(guildId));
-        if (map != null) {
-            Iterator<Map.Entry<String, ChannelMemberList>> it = map.entrySet().iterator();
-            while (it.hasNext()) {
-                it.next().getValue().rebuildMembers(new C5814x791bbf43(this, guildId, zAllowOwnerIndicator));
-            }
-        }
-        throttleMarkChanged();
-    }
-
     public final Observable<ChannelMemberList> observeChannelMemberList(long guildId, long channelId) {
         Observable<ChannelMemberList> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58151(guildId, channelId), 14, null).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
@@ -572,5 +567,10 @@ public final class StoreChannelMembers extends StoreV2 {
             linkedHashMap.put(key, linkedHashMap2);
         }
         this.memberListsSnapshot = linkedHashMap;
+    }
+
+    private final void throttleMarkChanged() {
+        PublishSubject<Unit> publishSubject = this.markChangedTrigger;
+        publishSubject.f27650k.onNext(Unit.f27425a);
     }
 }

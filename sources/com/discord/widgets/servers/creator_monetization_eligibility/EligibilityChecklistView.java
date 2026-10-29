@@ -30,7 +30,7 @@ public final class EligibilityChecklistView extends LinearLayout {
     private List<Requirement> lastRequirements;
 
     /* JADX INFO: compiled from: EligibilityChecklistView.kt */
-    public static final /* data */ class Requirement {
+    public final /* data */ class Requirement {
         private final CharSequence description;
         private final boolean isMet;
         private final CharSequence title;
@@ -56,21 +56,6 @@ public final class EligibilityChecklistView extends LinearLayout {
             return requirement.copy(charSequence, charSequence2, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getTitle() {
-            return this.title;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsMet() {
-            return this.isMet;
-        }
-
         public final Requirement copy(CharSequence title, CharSequence description, boolean isMet) {
             C12238m.checkNotNullParameter(title, "title");
             C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
@@ -88,8 +73,23 @@ public final class EligibilityChecklistView extends LinearLayout {
             return C12238m.areEqual(this.title, requirement.title) && C12238m.areEqual(this.description, requirement.description) && this.isMet == requirement.isMet;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getDescription() {
             return this.description;
+        }
+
+        public final CharSequence getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsMet() {
+            return this.isMet;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getTitle() {
+            return this.title;
         }
 
         public final CharSequence getTitle() {

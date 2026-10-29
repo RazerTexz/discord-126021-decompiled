@@ -8,6 +8,12 @@ import java.nio.charset.Charset;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4483c {
 
+    /* JADX INFO: renamed from: d */
+    public static final Charset f11946d;
+
+    /* JADX INFO: renamed from: e */
+    public static final Charset f11947e;
+
     /* JADX INFO: renamed from: a */
     public static final Charset f11943a = Charset.forName("US-ASCII");
 
@@ -16,12 +22,6 @@ public final class C4483c {
 
     /* JADX INFO: renamed from: c */
     public static final Charset f11945c = Charset.forName(Constants.ENCODING);
-
-    /* JADX INFO: renamed from: d */
-    public static final Charset f11946d;
-
-    /* JADX INFO: renamed from: e */
-    public static final Charset f11947e;
 
     static {
         Charset.forName("UTF-16BE");

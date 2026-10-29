@@ -17,7 +17,6 @@ import p668x.p669a.p670a.InterfaceC13178c;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class PostMessageServiceConnection implements PostMessageBackend, ServiceConnection {
     private static final String TAG = "PostMessageServConn";
-    private final Object mLock = new Object();
     private boolean mMessageChannelCreated;
 
     @Nullable
@@ -26,6 +25,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
     @Nullable
     private InterfaceC13178c mService;
     private final InterfaceC13176a mSessionBinder;
+    private final Object mLock = new Object();
 
     public PostMessageServiceConnection(@NonNull CustomTabsSessionToken customTabsSessionToken) {
         IBinder callbackBinder = customTabsSessionToken.getCallbackBinder();
@@ -33,28 +33,6 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
             throw new IllegalArgumentException("Provided session must have binder.");
         }
         this.mSessionBinder = InterfaceC13176a.a.asInterface(callbackBinder);
-    }
-
-    private boolean isBoundToService() {
-        return this.mService != null;
-    }
-
-    private boolean notifyMessageChannelReadyInternal(@Nullable Bundle bundle) {
-        if (this.mService == null) {
-            return false;
-        }
-        synchronized (this.mLock) {
-            try {
-                try {
-                    this.mService.onMessageChannelReady(this.mSessionBinder, bundle);
-                } catch (RemoteException unused) {
-                    return false;
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        return true;
     }
 
     public boolean bindSessionToPostMessageService(@NonNull Context context, @NonNull String str) {
@@ -74,9 +52,31 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         }
     }
 
+    private boolean isBoundToService() {
+        return this.mService != null;
+    }
+
     public final boolean notifyMessageChannelReady(@Nullable Bundle bundle) {
         this.mMessageChannelCreated = true;
         return notifyMessageChannelReadyInternal(bundle);
+    }
+
+    private boolean notifyMessageChannelReadyInternal(@Nullable Bundle bundle) {
+        if (this.mService == null) {
+            return false;
+        }
+        synchronized (this.mLock) {
+            try {
+                try {
+                    this.mService.onMessageChannelReady(this.mSessionBinder, bundle);
+                } catch (RemoteException unused) {
+                    return false;
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        return true;
     }
 
     @Override // androidx.browser.customtabs.PostMessageBackend

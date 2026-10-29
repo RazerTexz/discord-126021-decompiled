@@ -30,16 +30,11 @@ public final /* data */ class TrackImpressionUserRegistration implements Analyti
         this.analyticsSchemaTypeName = "impression_user_registration";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof TrackImpressionUserRegistration) && C12238m.areEqual(this.step, ((TrackImpressionUserRegistration) other).step);
+        }
+        return true;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,16 +43,10 @@ public final /* data */ class TrackImpressionUserRegistration implements Analyti
         return this.analyticsSchemaTypeName;
     }
 
-    /* JADX INFO: renamed from: e */
-    public void m7528e(TrackImpressionMetadata trackImpressionMetadata) {
-        this.trackImpressionMetadata = trackImpressionMetadata;
-    }
-
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof TrackImpressionUserRegistration) && C12238m.areEqual(this.step, ((TrackImpressionUserRegistration) other).step);
-        }
-        return true;
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -66,6 +55,17 @@ public final /* data */ class TrackImpressionUserRegistration implements Analyti
             return charSequence.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7528e(TrackImpressionMetadata trackImpressionMetadata) {
+        this.trackImpressionMetadata = trackImpressionMetadata;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

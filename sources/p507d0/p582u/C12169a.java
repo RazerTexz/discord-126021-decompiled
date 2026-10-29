@@ -11,7 +11,7 @@ public class C12169a {
 
     /* JADX INFO: renamed from: d0.u.a$a */
     /* JADX INFO: compiled from: Comparisons.kt */
-    public static final class a<T> implements Comparator {
+    public final class a<T> implements Comparator {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Function1[] f25226j;
@@ -28,7 +28,7 @@ public class C12169a {
 
     /* JADX INFO: renamed from: d0.u.a$b */
     /* JADX INFO: compiled from: Comparisons.kt */
-    public static final class b<T> implements Comparator {
+    public final class b<T> implements Comparator {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Comparator f25227j;

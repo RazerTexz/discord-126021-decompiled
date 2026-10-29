@@ -17,12 +17,6 @@ public class C5303c {
     /* JADX INFO: renamed from: d */
     public float f14447d;
 
-    /* JADX INFO: renamed from: e */
-    public int f14448e = -1;
-
-    /* JADX INFO: renamed from: f */
-    public int f14449f = -1;
-
     /* JADX INFO: renamed from: g */
     public float f14450g;
 
@@ -32,6 +26,12 @@ public class C5303c {
     /* JADX INFO: renamed from: i */
     public a f14452i;
 
+    /* JADX INFO: renamed from: e */
+    public int f14448e = -1;
+
+    /* JADX INFO: renamed from: f */
+    public int f14449f = -1;
+
     /* JADX INFO: renamed from: b.q.a.k.c$a */
     /* JADX INFO: compiled from: RotationGestureDetector.java */
     public interface a {
@@ -39,7 +39,7 @@ public class C5303c {
 
     /* JADX INFO: renamed from: b.q.a.k.c$b */
     /* JADX INFO: compiled from: RotationGestureDetector.java */
-    public static class b implements a {
+    public class b implements a {
     }
 
     public C5303c(a aVar) {

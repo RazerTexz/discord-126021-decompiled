@@ -16,8 +16,8 @@ public class MultiSelectListPreferenceDialogFragmentCompat extends PreferenceDia
     private static final String SAVE_STATE_VALUES = "MultiSelectListPreferenceDialogFragmentCompat.values";
     public CharSequence[] mEntries;
     public CharSequence[] mEntryValues;
-    public Set<String> mNewValues = new HashSet();
     public boolean mPreferenceChanged;
+    public Set<String> mNewValues = new HashSet();
 
     private MultiSelectListPreference getListPreference() {
         return (MultiSelectListPreference) getPreference();

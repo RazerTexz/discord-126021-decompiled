@@ -39,12 +39,12 @@ public class AnnotationProcessor extends AbstractProcessor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationProcessor$ProcessorDescriptor.SCL.lombok */
-    static abstract class ProcessorDescriptor {
-        abstract boolean want(ProcessingEnvironment processingEnvironment, List<String> list);
-
+    abstract class ProcessorDescriptor {
         abstract String getName();
 
         abstract boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment);
+
+        abstract boolean want(ProcessingEnvironment processingEnvironment, List<String> list);
 
         ProcessorDescriptor() {
         }
@@ -109,7 +109,7 @@ public class AnnotationProcessor extends AbstractProcessor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationProcessor$JavacDescriptor.SCL.lombok */
-    static class JavacDescriptor extends ProcessorDescriptor {
+    class JavacDescriptor extends ProcessorDescriptor {
         private Processor processor;
 
         JavacDescriptor() {
@@ -166,7 +166,7 @@ public class AnnotationProcessor extends AbstractProcessor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AnnotationProcessor$EcjDescriptor.SCL.lombok */
-    static class EcjDescriptor extends ProcessorDescriptor {
+    class EcjDescriptor extends ProcessorDescriptor {
         EcjDescriptor() {
         }
 

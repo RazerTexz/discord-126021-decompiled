@@ -34,17 +34,17 @@ import p658rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSheet {
-    private static final String ARG_INVITE_CODE = "ARG_INVITE_CODE";
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsInstantInvitesActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsInstantInviteActionsBinding;", 0)};
+    private static final String ARG_INVITE_CODE = "ARG_INVITE_CODE";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+
     /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesActions.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -76,14 +76,14 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
         return (WidgetServerSettingsInstantInviteActionsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void handleInviteRevoked(ModelInvite invite) {
-        StoreStream.INSTANCE.getInstantInvites().onInviteRemoved(invite);
-        dismiss();
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_server_settings_instant_invite_actions;
+    }
+
+    private final void handleInviteRevoked(ModelInvite invite) {
+        StoreStream.INSTANCE.getInstantInvites().onInviteRemoved(invite);
+        dismiss();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -108,7 +108,7 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsInstantInvitesActions$onResume$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesActions.kt */
-            public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<ModelInvite, Unit> {
+            public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<ModelInvite, Unit> {
                 public AnonymousClass1(WidgetServerSettingsInstantInvitesActions widgetServerSettingsInstantInvitesActions) {
                     super(1, widgetServerSettingsInstantInvitesActions, WidgetServerSettingsInstantInvitesActions.class, "handleInviteRevoked", "handleInviteRevoked(Lcom/discord/models/domain/ModelInvite;)V", 0);
                 }

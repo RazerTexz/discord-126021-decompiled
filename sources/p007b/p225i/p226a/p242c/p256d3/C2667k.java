@@ -9,9 +9,6 @@ import androidx.core.view.ViewCompat;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2667k {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2667k f6349a = new C2667k(-1, ViewCompat.MEASURED_STATE_MASK, 0, 0, -1, null);
-
     /* JADX INFO: renamed from: b */
     public final int f6350b;
 
@@ -30,6 +27,9 @@ public final class C2667k {
     /* JADX INFO: renamed from: g */
     @Nullable
     public final Typeface f6355g;
+
+    /* JADX INFO: renamed from: a */
+    public static final C2667k f6349a = new C2667k(-1, ViewCompat.MEASURED_STATE_MASK, 0, 0, -1, null);
 
     public C2667k(int i, int i2, int i3, int i4, int i5, @Nullable Typeface typeface) {
         this.f6350b = i;

@@ -10,16 +10,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetHubDomains.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DomainGuildInfo implements Parcelable {
+    public static final Parcelable.Creator<DomainGuildInfo> CREATOR = new Creator();
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String icon;
     private final long id;
     private final String name;
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    public static final Parcelable.Creator<DomainGuildInfo> CREATOR = new Creator();
-
     /* JADX INFO: compiled from: WidgetHubDomains.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -33,7 +33,7 @@ public final class DomainGuildInfo implements Parcelable {
         }
     }
 
-    public static class Creator implements Parcelable.Creator<DomainGuildInfo> {
+    public final class Creator implements Parcelable.Creator<DomainGuildInfo> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final DomainGuildInfo createFromParcel(Parcel parcel) {

@@ -17,7 +17,7 @@ public class ViewInfoStore {
     @VisibleForTesting
     public final LongSparseArray<RecyclerView.ViewHolder> mOldChangedHolders = new LongSparseArray<>();
 
-    public static class InfoRecord {
+    public class InfoRecord {
         public static final int FLAG_APPEAR = 2;
         public static final int FLAG_APPEAR_AND_DISAPPEAR = 3;
         public static final int FLAG_APPEAR_PRE_AND_POST = 14;
@@ -25,7 +25,6 @@ public class ViewInfoStore {
         public static final int FLAG_POST = 8;
         public static final int FLAG_PRE = 4;
         public static final int FLAG_PRE_AND_POST = 12;
-        public static Pools.Pool<InfoRecord> sPool = new Pools.SimplePool(20);
         public int flags;
 
         @Nullable
@@ -33,6 +32,7 @@ public class ViewInfoStore {
 
         @Nullable
         public RecyclerView.ItemAnimator.ItemHolderInfo preInfo;
+        public static Pools.Pool<InfoRecord> sPool = new Pools.SimplePool(20);
 
         private InfoRecord() {
         }
@@ -63,33 +63,6 @@ public class ViewInfoStore {
         void processPersistent(RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo, @NonNull RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo2);
 
         void unused(RecyclerView.ViewHolder viewHolder);
-    }
-
-    private RecyclerView.ItemAnimator.ItemHolderInfo popFromLayoutStep(RecyclerView.ViewHolder viewHolder, int i) {
-        InfoRecord infoRecordValueAt;
-        RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo;
-        int iIndexOfKey = this.mLayoutHolderMap.indexOfKey(viewHolder);
-        if (iIndexOfKey >= 0 && (infoRecordValueAt = this.mLayoutHolderMap.valueAt(iIndexOfKey)) != null) {
-            int i2 = infoRecordValueAt.flags;
-            if ((i2 & i) != 0) {
-                int i3 = (~i) & i2;
-                infoRecordValueAt.flags = i3;
-                if (i == 4) {
-                    itemHolderInfo = infoRecordValueAt.preInfo;
-                } else {
-                    if (i != 8) {
-                        throw new IllegalArgumentException("Must provide flag PRE or POST");
-                    }
-                    itemHolderInfo = infoRecordValueAt.postInfo;
-                }
-                if ((i3 & 12) == 0) {
-                    this.mLayoutHolderMap.removeAt(iIndexOfKey);
-                    InfoRecord.recycle(infoRecordValueAt);
-                }
-                return itemHolderInfo;
-            }
-        }
-        return null;
     }
 
     public void addToAppearedInPreLayoutHolders(RecyclerView.ViewHolder viewHolder, RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo) {
@@ -160,6 +133,33 @@ public class ViewInfoStore {
 
     public void onViewDetached(RecyclerView.ViewHolder viewHolder) {
         removeFromDisappearedInLayout(viewHolder);
+    }
+
+    private RecyclerView.ItemAnimator.ItemHolderInfo popFromLayoutStep(RecyclerView.ViewHolder viewHolder, int i) {
+        InfoRecord infoRecordValueAt;
+        RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo;
+        int iIndexOfKey = this.mLayoutHolderMap.indexOfKey(viewHolder);
+        if (iIndexOfKey >= 0 && (infoRecordValueAt = this.mLayoutHolderMap.valueAt(iIndexOfKey)) != null) {
+            int i2 = infoRecordValueAt.flags;
+            if ((i2 & i) != 0) {
+                int i3 = (~i) & i2;
+                infoRecordValueAt.flags = i3;
+                if (i == 4) {
+                    itemHolderInfo = infoRecordValueAt.preInfo;
+                } else {
+                    if (i != 8) {
+                        throw new IllegalArgumentException("Must provide flag PRE or POST");
+                    }
+                    itemHolderInfo = infoRecordValueAt.postInfo;
+                }
+                if ((i3 & 12) == 0) {
+                    this.mLayoutHolderMap.removeAt(iIndexOfKey);
+                    InfoRecord.recycle(infoRecordValueAt);
+                }
+                return itemHolderInfo;
+            }
+        }
+        return null;
     }
 
     @Nullable

@@ -16,7 +16,7 @@ public final class WidgetApplicationCommandBottomSheetKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheetKt$toSlashCommandCopyString$1 */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class C81671 extends AbstractC12240o implements Function1<ApplicationCommandValue, CharSequence> {
+    public final class C81671 extends AbstractC12240o implements Function1<ApplicationCommandValue, CharSequence> {
         public final /* synthetic */ Map $commandValues;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -34,7 +34,7 @@ public final class WidgetApplicationCommandBottomSheetKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheetKt$toSlashCommandCopyString$2 */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class C81682 extends AbstractC12240o implements Function1<ApplicationCommandValue, CharSequence> {
+    public final class C81682 extends AbstractC12240o implements Function1<ApplicationCommandValue, CharSequence> {
         public final /* synthetic */ Map $commandValues;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

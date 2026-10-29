@@ -58,7 +58,7 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$clearMarker$2 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63412 extends AbstractC12240o implements Function1<Unread, Unit> {
+    public final class C63412 extends AbstractC12240o implements Function1<Unread, Unit> {
         public C63412() {
             super(1);
         }
@@ -79,7 +79,7 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadChannelIds$1 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final /* synthetic */ class C63421 extends C12236k implements Function9<Map<Long, ? extends Long>, Map<Long, ? extends Channel>, Map<Long, ? extends Long>, Map<Long, ? extends ModelNotificationSettings>, Map<Long, ? extends StoreMessageAck.Ack>, Map<Long, ? extends Long>, Long, Map<Long, ? extends Channel>, Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread>, Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>> {
+    public final /* synthetic */ class C63421 extends C12236k implements Function9<Map<Long, ? extends Long>, Map<Long, ? extends Channel>, Map<Long, ? extends Long>, Map<Long, ? extends ModelNotificationSettings>, Map<Long, ? extends StoreMessageAck.Ack>, Map<Long, ? extends Long>, Long, Map<Long, ? extends Channel>, Map<Long, ? extends StoreThreadsActiveJoined.ActiveJoinedThread>, Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>> {
         public C63421(StoreReadStates storeReadStates) {
             super(9, storeReadStates, StoreReadStates.class, "computeUnreadIds", "computeUnreadIds(Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;JLjava/util/Map;Ljava/util/Map;)Lkotlin/Pair;", 0);
         }
@@ -104,7 +104,7 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadChannelIds$2 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63432 extends AbstractC12240o implements Function1<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Unit> {
+    public final class C63432 extends AbstractC12240o implements Function1<Pair<? extends Set<? extends Long>, ? extends Set<? extends Long>>, Unit> {
         public C63432() {
             super(1);
         }
@@ -127,7 +127,7 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadMarker$1 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63441 extends AbstractC12240o implements Function1<Long, Observable<Unread.Marker>> {
+    public final class C63441 extends AbstractC12240o implements Function1<Long, Observable<Unread.Marker>> {
         public static final C63441 INSTANCE = new C63441();
 
         public C63441() {
@@ -175,26 +175,26 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadMarker$2 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63452 extends AbstractC12240o implements Function1<Long, Boolean> {
+    public final class C63452 extends AbstractC12240o implements Function1<Long, Boolean> {
         public static final C63452 INSTANCE = new C63452();
 
         public C63452() {
             super(1);
         }
 
+        public final boolean invoke(long j) {
+            return j <= 0;
+        }
+
         @Override // kotlin.jvm.functions.Function1
         public /* bridge */ /* synthetic */ Boolean invoke(Long l) {
             return Boolean.valueOf(invoke(l.longValue()));
-        }
-
-        public final boolean invoke(long j) {
-            return j <= 0;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadMarker$3 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63463 extends AbstractC12240o implements Function1<Long, Observable<Unread.Marker>> {
+    public final class C63463 extends AbstractC12240o implements Function1<Long, Observable<Unread.Marker>> {
         public static final C63463 INSTANCE = new C63463();
 
         public C63463() {
@@ -215,7 +215,7 @@ public final class StoreReadStates extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreReadStates$computeUnreadMarker$5 */
     /* JADX INFO: compiled from: StoreReadStates.kt */
-    public static final class C63485 extends AbstractC12240o implements Function1<Unread, Unit> {
+    public final class C63485 extends AbstractC12240o implements Function1<Unread, Unit> {
         public C63485() {
             super(1);
         }
@@ -379,30 +379,6 @@ public final class StoreReadStates extends Store {
         ObservableExtensionsKt.appSubscribe(observableM11099Y, (117 & 1) != 0 ? null : null, "unreadMessageMarker", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C63485(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
-    private final boolean isChannelMuted(Channel channel, Map<Long, ? extends ModelNotificationSettings> guildSettings, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread) {
-        if (channel == null) {
-            return false;
-        }
-        if (ChannelUtils.m7673H(channel) && activeJoinedThread != null) {
-            return activeJoinedThread.getMuted();
-        }
-        long id2 = channel.getId();
-        ModelNotificationSettings modelNotificationSettings = (ModelNotificationSettings) C1643a.m843c(channel, guildSettings);
-        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings != null ? modelNotificationSettings.getChannelOverride(id2) : null;
-        return channelOverride != null && channelOverride.isMuted();
-    }
-
-    public static /* synthetic */ Observable observeUnreadCountForChannel$default(StoreReadStates storeReadStates, long j, UtcDateTime utcDateTime, int i, Object obj) {
-        if ((i & 2) != 0) {
-            utcDateTime = null;
-        }
-        return storeReadStates.observeUnreadCountForChannel(j, utcDateTime);
-    }
-
-    private final boolean wasMessageSentAfterTimestamp(UtcDateTime since, Long messageId) {
-        return since == null || (messageId != null && new UtcDateTime((messageId.longValue() >>> 22) + SnowflakeUtils.DISCORD_EPOCH).compareTo(since) >= 0);
-    }
-
     public final Observable<Boolean> getIsUnread(final long guildId) {
         Observable<Boolean> observableM11112r = getUnreadGuildIds().m11083G(new InterfaceC12589b<Set<? extends Long>, Boolean>() { // from class: com.discord.stores.StoreReadStates.getIsUnread.1
             @Override // p637j0.p641k.InterfaceC12589b
@@ -453,6 +429,19 @@ public final class StoreReadStates extends Store {
         computeUnreadMarker();
     }
 
+    private final boolean isChannelMuted(Channel channel, Map<Long, ? extends ModelNotificationSettings> guildSettings, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread) {
+        if (channel == null) {
+            return false;
+        }
+        if (ChannelUtils.m7673H(channel) && activeJoinedThread != null) {
+            return activeJoinedThread.getMuted();
+        }
+        long id2 = channel.getId();
+        ModelNotificationSettings modelNotificationSettings = (ModelNotificationSettings) C1643a.m843c(channel, guildSettings);
+        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings != null ? modelNotificationSettings.getChannelOverride(id2) : null;
+        return channelOverride != null && channelOverride.isMuted();
+    }
+
     public final void markAsRead(Long channelId) {
         if (channelId == null) {
             return;
@@ -462,6 +451,13 @@ public final class StoreReadStates extends Store {
         SerializedSubject<Boolean, Boolean> serializedSubject2 = this.markAsRead;
         serializedSubject2.f27653k.onNext(Boolean.FALSE);
         StoreStream.INSTANCE.getMessageAck().ack(channelId.longValue(), false, false);
+    }
+
+    public static /* synthetic */ Observable observeUnreadCountForChannel$default(StoreReadStates storeReadStates, long j, UtcDateTime utcDateTime, int i, Object obj) {
+        if ((i & 2) != 0) {
+            utcDateTime = null;
+        }
+        return storeReadStates.observeUnreadCountForChannel(j, utcDateTime);
     }
 
     public final Observable<Integer> observeUnreadCountForChannel(final long channelId, final UtcDateTime since) {
@@ -502,5 +498,9 @@ public final class StoreReadStates extends Store {
         });
         C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…\n      messageCount\n    }");
         return observableM11076j;
+    }
+
+    private final boolean wasMessageSentAfterTimestamp(UtcDateTime since, Long messageId) {
+        return since == null || (messageId != null && new UtcDateTime((messageId.longValue() >>> 22) + SnowflakeUtils.DISCORD_EPOCH).compareTo(since) >= 0);
     }
 }

@@ -8,10 +8,10 @@ import kotlin.coroutines.Continuation;
 /* JADX INFO: compiled from: CompletionState.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13132n extends C13159w {
+    public volatile int _resumed;
 
     /* JADX INFO: renamed from: c */
     public static final AtomicIntegerFieldUpdater f27875c = AtomicIntegerFieldUpdater.newUpdater(C13132n.class, "_resumed");
-    public volatile int _resumed;
 
     public C13132n(Continuation<?> continuation, Throwable th, boolean z2) {
         if (th == null) {

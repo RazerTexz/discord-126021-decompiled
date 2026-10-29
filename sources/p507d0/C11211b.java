@@ -1,5 +1,6 @@
 package p507d0;
 
+import java.lang.reflect.InvocationTargetException;
 import p507d0.p588x.C12196b;
 import p507d0.p592z.p594d.C12238m;
 
@@ -7,7 +8,7 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Exceptions.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C11211b {
-    public static final void addSuppressed(Throwable th, Throwable th2) {
+    public static final void addSuppressed(Throwable th, Throwable th2) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(th, "$this$addSuppressed");
         C12238m.checkNotNullParameter(th2, "exception");
         if (th != th2) {

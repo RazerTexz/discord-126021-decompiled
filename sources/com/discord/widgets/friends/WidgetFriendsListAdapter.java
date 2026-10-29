@@ -57,7 +57,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     private Function2<? super View, ? super User, Unit> onClickUserProfile;
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static abstract class Item extends MGRecyclerViewHolder<WidgetFriendsListAdapter, FriendsListViewModel.Item> {
+    public abstract class Item extends MGRecyclerViewHolder<WidgetFriendsListAdapter, FriendsListViewModel.Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Item(@LayoutRes int i, WidgetFriendsListAdapter widgetFriendsListAdapter) {
             super(i, widgetFriendsListAdapter);
@@ -73,7 +73,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemContactSyncUpsell extends Item {
+    public final class ItemContactSyncUpsell extends Item {
         private final WidgetFriendsListContactSyncUpsellBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -131,7 +131,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemHeader extends Item {
+    public final class ItemHeader extends Item {
         private final WidgetFriendsListAdapterItemHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -160,7 +160,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemPendingHeader extends Item {
+    public final class ItemPendingHeader extends Item {
         private final WidgetFriendsListExpandableHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -214,7 +214,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemPendingUser extends Item {
+    public final class ItemPendingUser extends Item {
         private final WidgetFriendsListAdapterItemPendingBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -321,7 +321,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemSuggestedFriend extends Item {
+    public final class ItemSuggestedFriend extends Item {
         private final WidgetFriendsListAdapterSuggestedFriendBinding viewBinding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -359,7 +359,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemSuggestedFriendHeader extends Item {
+    public final class ItemSuggestedFriendHeader extends Item {
         private final WidgetFriendsListExpandableHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -421,7 +421,7 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     }
 
     /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
-    public static final class ItemUser extends Item {
+    public final class ItemUser extends Item {
         private final WidgetFriendsListAdapterItemFriendBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

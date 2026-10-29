@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import p507d0.p579g0.C12086c;
 import p507d0.p591y.C12201b;
@@ -20,7 +21,7 @@ public abstract class ResponseBody implements Closeable {
 
     /* JADX INFO: renamed from: okhttp3.ResponseBody$a */
     /* JADX INFO: compiled from: ResponseBody.kt */
-    public static final class C12938a extends Reader {
+    public final class C12938a extends Reader {
 
         /* JADX INFO: renamed from: j */
         public boolean f27580j;
@@ -67,22 +68,13 @@ public abstract class ResponseBody implements Closeable {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract long mo10103a();
-
-    /* JADX INFO: renamed from: b */
-    public abstract MediaType mo10104b();
-
-    /* JADX INFO: renamed from: c */
-    public abstract InterfaceC12390g mo10105c();
-
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public void close() {
         C12272c.m10123d(mo10105c());
     }
 
     /* JADX INFO: renamed from: d */
-    public final String m10998d() throws IOException {
+    public final String m10998d() throws IllegalAccessException, IOException, InvocationTargetException {
         Charset charsetM10966a;
         InterfaceC12390g interfaceC12390gMo10105c = mo10105c();
         try {
@@ -102,4 +94,13 @@ public abstract class ResponseBody implements Closeable {
             }
         }
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract long mo10103a();
+
+    /* JADX INFO: renamed from: b */
+    public abstract MediaType mo10104b();
+
+    /* JADX INFO: renamed from: c */
+    public abstract InterfaceC12390g mo10105c();
 }

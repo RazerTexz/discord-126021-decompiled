@@ -39,52 +39,6 @@ public class TypefaceCompatBaseImpl {
         }
     }
 
-    private FontResourcesParserCompat.FontFileResourceEntry findBestEntry(FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, int i) {
-        return (FontResourcesParserCompat.FontFileResourceEntry) findBestFont(fontFamilyFilesResourceEntry.getEntries(), i, new StyleExtractor<FontResourcesParserCompat.FontFileResourceEntry>() { // from class: androidx.core.graphics.TypefaceCompatBaseImpl.2
-            @Override // androidx.core.graphics.TypefaceCompatBaseImpl.StyleExtractor
-            public int getWeight(FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry) {
-                return fontFileResourceEntry.getWeight();
-            }
-
-            @Override // androidx.core.graphics.TypefaceCompatBaseImpl.StyleExtractor
-            public boolean isItalic(FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry) {
-                return fontFileResourceEntry.isItalic();
-            }
-        });
-    }
-
-    private static <T> T findBestFont(T[] tArr, int i, StyleExtractor<T> styleExtractor) {
-        int i2 = (i & 1) == 0 ? 400 : 700;
-        boolean z2 = (i & 2) != 0;
-        T t = null;
-        int i3 = Integer.MAX_VALUE;
-        for (T t2 : tArr) {
-            int iAbs = (Math.abs(styleExtractor.getWeight(t2) - i2) * 2) + (styleExtractor.isItalic(t2) == z2 ? 0 : 1);
-            if (t == null || i3 > iAbs) {
-                t = t2;
-                i3 = iAbs;
-            }
-        }
-        return t;
-    }
-
-    private static long getUniqueKey(@Nullable Typeface typeface) {
-        if (typeface == null) {
-            return 0L;
-        }
-        try {
-            Field declaredField = Typeface.class.getDeclaredField("native_instance");
-            declaredField.setAccessible(true);
-            return ((Number) declaredField.get(typeface)).longValue();
-        } catch (IllegalAccessException e) {
-            Log.e(TAG, "Could not retrieve font from family.", e);
-            return 0L;
-        } catch (NoSuchFieldException e2) {
-            Log.e(TAG, "Could not retrieve font from family.", e2);
-            return 0L;
-        }
-    }
-
     @Nullable
     public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i) {
         FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntryFindBestEntry = findBestEntry(fontFamilyFilesResourceEntry, i);
@@ -160,6 +114,35 @@ public class TypefaceCompatBaseImpl {
         }
     }
 
+    private FontResourcesParserCompat.FontFileResourceEntry findBestEntry(FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, int i) {
+        return (FontResourcesParserCompat.FontFileResourceEntry) findBestFont(fontFamilyFilesResourceEntry.getEntries(), i, new StyleExtractor<FontResourcesParserCompat.FontFileResourceEntry>() { // from class: androidx.core.graphics.TypefaceCompatBaseImpl.2
+            @Override // androidx.core.graphics.TypefaceCompatBaseImpl.StyleExtractor
+            public int getWeight(FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry) {
+                return fontFileResourceEntry.getWeight();
+            }
+
+            @Override // androidx.core.graphics.TypefaceCompatBaseImpl.StyleExtractor
+            public boolean isItalic(FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry) {
+                return fontFileResourceEntry.isItalic();
+            }
+        });
+    }
+
+    private static <T> T findBestFont(T[] tArr, int i, StyleExtractor<T> styleExtractor) {
+        int i2 = (i & 1) == 0 ? 400 : 700;
+        boolean z2 = (i & 2) != 0;
+        T t = null;
+        int i3 = Integer.MAX_VALUE;
+        for (T t2 : tArr) {
+            int iAbs = (Math.abs(styleExtractor.getWeight(t2) - i2) * 2) + (styleExtractor.isItalic(t2) == z2 ? 0 : 1);
+            if (t == null || i3 > iAbs) {
+                t = t2;
+                i3 = iAbs;
+            }
+        }
+        return t;
+    }
+
     public FontsContractCompat.FontInfo findBestInfo(FontsContractCompat.FontInfo[] fontInfoArr, int i) {
         return (FontsContractCompat.FontInfo) findBestFont(fontInfoArr, i, new StyleExtractor<FontsContractCompat.FontInfo>() { // from class: androidx.core.graphics.TypefaceCompatBaseImpl.1
             @Override // androidx.core.graphics.TypefaceCompatBaseImpl.StyleExtractor
@@ -181,5 +164,22 @@ public class TypefaceCompatBaseImpl {
             return null;
         }
         return this.mFontFamilies.get(Long.valueOf(uniqueKey));
+    }
+
+    private static long getUniqueKey(@Nullable Typeface typeface) {
+        if (typeface == null) {
+            return 0L;
+        }
+        try {
+            Field declaredField = Typeface.class.getDeclaredField("native_instance");
+            declaredField.setAccessible(true);
+            return ((Number) declaredField.get(typeface)).longValue();
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "Could not retrieve font from family.", e);
+            return 0L;
+        } catch (NoSuchFieldException e2) {
+            Log.e(TAG, "Could not retrieve font from family.", e2);
+            return 0L;
+        }
     }
 }

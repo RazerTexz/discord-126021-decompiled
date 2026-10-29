@@ -18,35 +18,35 @@ public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A,
     protected L parent;
     protected boolean isStructurallySignificant;
 
-    public abstract A getAst();
-
     protected abstract boolean calculateIsStructurallySignificant(N n);
 
-    public abstract String getName();
+    public abstract int countMethodParameters();
 
     protected abstract boolean fieldContainsAnnotation(N n, N n2);
 
-    public abstract boolean hasAnnotation(Class<? extends Annotation> cls);
+    public abstract String fieldOrMethodBaseType();
 
     public abstract <Z extends Annotation> AnnotationValues<Z> findAnnotation(Class<Z> cls);
 
-    public abstract boolean isStatic();
+    public abstract A getAst();
 
-    public abstract boolean isFinal();
+    public abstract String getName();
 
-    public abstract boolean isTransient();
+    public abstract int getStartPos();
 
-    public abstract boolean isPrimitive();
+    public abstract boolean hasAnnotation(Class<? extends Annotation> cls);
 
     public abstract boolean isEnumMember();
 
     public abstract boolean isEnumType();
 
-    public abstract String fieldOrMethodBaseType();
+    public abstract boolean isFinal();
 
-    public abstract int countMethodParameters();
+    public abstract boolean isPrimitive();
 
-    public abstract int getStartPos();
+    public abstract boolean isStatic();
+
+    public abstract boolean isTransient();
 
     protected LombokNode(N node, List<L> children, AST.Kind kind) {
         this.kind = kind;

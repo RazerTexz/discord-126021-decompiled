@@ -40,7 +40,6 @@ public class InvalidationTracker {
     @VisibleForTesting
     public static final String SELECT_UPDATED_TABLES_SQL = "SELECT * FROM room_table_modification_log WHERE invalidated = 1;";
     private static final String TABLE_ID_COLUMN_NAME = "table_id";
-    private static final String[] TRIGGERS = {"UPDATE", "DELETE", "INSERT"};
     private static final String UPDATE_TABLE_NAME = "room_table_modification_log";
     public volatile SupportSQLiteStatement mCleanupStatement;
     public final RoomDatabase mDatabase;
@@ -63,8 +62,9 @@ public class InvalidationTracker {
 
     @NonNull
     private Map<String, Set<String>> mViewTables;
+    private static final String[] TRIGGERS = {"UPDATE", "DELETE", "INSERT"};
 
-    public static class ObservedTableTracker {
+    public class ObservedTableTracker {
         public static final int ADD = 1;
         public static final int NO_OP = 0;
         public static final int REMOVE = 2;
@@ -157,7 +157,7 @@ public class InvalidationTracker {
         }
     }
 
-    public static class ObserverWrapper {
+    public class ObserverWrapper {
         public final Observer mObserver;
         private final Set<String> mSingleTableSet;
         public final int[] mTableIds;
@@ -225,7 +225,7 @@ public class InvalidationTracker {
         }
     }
 
-    public static class WeakObserver extends Observer {
+    public class WeakObserver extends Observer {
         public final WeakReference<Observer> mDelegateRef;
         public final InvalidationTracker mTracker;
 
@@ -249,66 +249,6 @@ public class InvalidationTracker {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public InvalidationTracker(RoomDatabase roomDatabase, String... strArr) {
         this(roomDatabase, new HashMap(), Collections.emptyMap(), strArr);
-    }
-
-    private static void appendTriggerName(StringBuilder sb, String str, String str2) {
-        C1643a.m876s0(sb, "`", "room_table_modification_trigger_", str, "_");
-        sb.append(str2);
-        sb.append("`");
-    }
-
-    private String[] resolveViews(String[] strArr) {
-        HashSet hashSet = new HashSet();
-        for (String str : strArr) {
-            String lowerCase = str.toLowerCase(Locale.US);
-            if (this.mViewTables.containsKey(lowerCase)) {
-                hashSet.addAll(this.mViewTables.get(lowerCase));
-            } else {
-                hashSet.add(str);
-            }
-        }
-        return (String[]) hashSet.toArray(new String[hashSet.size()]);
-    }
-
-    private void startTrackingTable(SupportSQLiteDatabase supportSQLiteDatabase, int i) {
-        supportSQLiteDatabase.execSQL("INSERT OR IGNORE INTO room_table_modification_log VALUES(" + i + ", 0)");
-        String str = this.mTableNames[i];
-        StringBuilder sb = new StringBuilder();
-        for (String str2 : TRIGGERS) {
-            sb.setLength(0);
-            sb.append("CREATE TEMP TRIGGER IF NOT EXISTS ");
-            appendTriggerName(sb, str, str2);
-            C1643a.m876s0(sb, " AFTER ", str2, " ON `", str);
-            C1643a.m876s0(sb, "` BEGIN UPDATE ", UPDATE_TABLE_NAME, " SET ", INVALIDATED_COLUMN_NAME);
-            C1643a.m876s0(sb, " = 1", " WHERE ", TABLE_ID_COLUMN_NAME, " = ");
-            sb.append(i);
-            sb.append(" AND ");
-            sb.append(INVALIDATED_COLUMN_NAME);
-            sb.append(" = 0");
-            sb.append("; END");
-            supportSQLiteDatabase.execSQL(sb.toString());
-        }
-    }
-
-    private void stopTrackingTable(SupportSQLiteDatabase supportSQLiteDatabase, int i) {
-        String str = this.mTableNames[i];
-        StringBuilder sb = new StringBuilder();
-        for (String str2 : TRIGGERS) {
-            sb.setLength(0);
-            sb.append("DROP TRIGGER IF EXISTS ");
-            appendTriggerName(sb, str, str2);
-            supportSQLiteDatabase.execSQL(sb.toString());
-        }
-    }
-
-    private String[] validateAndResolveTableNames(String[] strArr) {
-        String[] strArrResolveViews = resolveViews(strArr);
-        for (String str : strArrResolveViews) {
-            if (!this.mTableIdLookup.containsKey(str.toLowerCase(Locale.US))) {
-                throw new IllegalArgumentException(C1643a.m883w("There is no table with name ", str));
-            }
-        }
-        return strArrResolveViews;
     }
 
     @SuppressLint({"RestrictedApi"})
@@ -339,6 +279,12 @@ public class InvalidationTracker {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void addWeakObserver(Observer observer) {
         addObserver(new WeakObserver(this, observer));
+    }
+
+    private static void appendTriggerName(StringBuilder sb, String str, String str2) {
+        C1643a.m876s0(sb, "`", "room_table_modification_trigger_", str, "_");
+        sb.append(str2);
+        sb.append("`");
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -414,8 +360,41 @@ public class InvalidationTracker {
         syncTriggers();
     }
 
+    private String[] resolveViews(String[] strArr) {
+        HashSet hashSet = new HashSet();
+        for (String str : strArr) {
+            String lowerCase = str.toLowerCase(Locale.US);
+            if (this.mViewTables.containsKey(lowerCase)) {
+                hashSet.addAll(this.mViewTables.get(lowerCase));
+            } else {
+                hashSet.add(str);
+            }
+        }
+        return (String[]) hashSet.toArray(new String[hashSet.size()]);
+    }
+
     public void startMultiInstanceInvalidation(Context context, String str) {
         this.mMultiInstanceInvalidationClient = new MultiInstanceInvalidationClient(context, str, this, this.mDatabase.getQueryExecutor());
+    }
+
+    private void startTrackingTable(SupportSQLiteDatabase supportSQLiteDatabase, int i) {
+        supportSQLiteDatabase.execSQL("INSERT OR IGNORE INTO room_table_modification_log VALUES(" + i + ", 0)");
+        String str = this.mTableNames[i];
+        StringBuilder sb = new StringBuilder();
+        for (String str2 : TRIGGERS) {
+            sb.setLength(0);
+            sb.append("CREATE TEMP TRIGGER IF NOT EXISTS ");
+            appendTriggerName(sb, str, str2);
+            C1643a.m876s0(sb, " AFTER ", str2, " ON `", str);
+            C1643a.m876s0(sb, "` BEGIN UPDATE ", UPDATE_TABLE_NAME, " SET ", INVALIDATED_COLUMN_NAME);
+            C1643a.m876s0(sb, " = 1", " WHERE ", TABLE_ID_COLUMN_NAME, " = ");
+            sb.append(i);
+            sb.append(" AND ");
+            sb.append(INVALIDATED_COLUMN_NAME);
+            sb.append(" = 0");
+            sb.append("; END");
+            supportSQLiteDatabase.execSQL(sb.toString());
+        }
     }
 
     public void stopMultiInstanceInvalidation() {
@@ -423,6 +402,17 @@ public class InvalidationTracker {
         if (multiInstanceInvalidationClient != null) {
             multiInstanceInvalidationClient.stop();
             this.mMultiInstanceInvalidationClient = null;
+        }
+    }
+
+    private void stopTrackingTable(SupportSQLiteDatabase supportSQLiteDatabase, int i) {
+        String str = this.mTableNames[i];
+        StringBuilder sb = new StringBuilder();
+        for (String str2 : TRIGGERS) {
+            sb.setLength(0);
+            sb.append("DROP TRIGGER IF EXISTS ");
+            appendTriggerName(sb, str, str2);
+            supportSQLiteDatabase.execSQL(sb.toString());
         }
     }
 
@@ -468,6 +458,16 @@ public class InvalidationTracker {
                 return;
             }
         }
+    }
+
+    private String[] validateAndResolveTableNames(String[] strArr) {
+        String[] strArrResolveViews = resolveViews(strArr);
+        for (String str : strArrResolveViews) {
+            if (!this.mTableIdLookup.containsKey(str.toLowerCase(Locale.US))) {
+                throw new IllegalArgumentException(C1643a.m883w("There is no table with name ", str));
+            }
+        }
+        return strArrResolveViews;
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -583,7 +583,7 @@ public class InvalidationTracker {
         return this.mInvalidationLiveDataContainer.create(validateAndResolveTableNames(strArr), z2, callable);
     }
 
-    public static abstract class Observer {
+    public abstract class Observer {
         public final String[] mTables;
 
         public Observer(@NonNull String str, String... strArr) {

@@ -50,36 +50,9 @@ public final class DiscordConnectService extends Service {
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
-    /* JADX INFO: renamed from: com.discord.app.DiscordConnectService$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: DiscordConnectService.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static final void m8374a(Companion companion, String str) {
-            AppLog appLog = AppLog.f14950g;
-            String simpleName = DiscordConnectService.class.getSimpleName();
-            C12238m.checkNotNullExpressionValue(simpleName, "DiscordConnectService::class.java.simpleName");
-            Logger.i$default(appLog, simpleName, str, null, 4, null);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final void m8375b(Context context, long j) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = IntentUtils.RouteBuilders.INSTANCE.connectVoice(j).setPackage(context.getPackageName());
-            C12238m.checkNotNullExpressionValue(intent, "IntentUtils.RouteBuilder…kage(context.packageName)");
-            if (Build.VERSION.SDK_INT >= 26) {
-                context.startForegroundService(intent);
-            } else {
-                context.startService(intent);
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.app.DiscordConnectService$b */
     /* JADX INFO: compiled from: DiscordConnectService.kt */
-    public static final class C5459b extends AbstractC12240o implements Function1<Object, Unit> {
+    public final class C5459b extends AbstractC12240o implements Function1<Object, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final C5459b f14971j = new C5459b();
@@ -96,7 +69,7 @@ public final class DiscordConnectService extends Service {
 
     /* JADX INFO: renamed from: com.discord.app.DiscordConnectService$c */
     /* JADX INFO: compiled from: DiscordConnectService.kt */
-    public static final class C5460c extends AbstractC12240o implements Function0<Unit> {
+    public final class C5460c extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $startId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -122,7 +95,7 @@ public final class DiscordConnectService extends Service {
 
     /* JADX INFO: renamed from: com.discord.app.DiscordConnectService$d */
     /* JADX INFO: compiled from: DiscordConnectService.kt */
-    public static final class C5461d extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C5461d extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ int $startId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -147,6 +120,33 @@ public final class DiscordConnectService extends Service {
             discordConnectService.stopForeground(true);
             discordConnectService.stopSelf(i);
             return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.app.DiscordConnectService$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: DiscordConnectService.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static final void m8374a(Companion companion, String str) {
+            AppLog appLog = AppLog.f14950g;
+            String simpleName = DiscordConnectService.class.getSimpleName();
+            C12238m.checkNotNullExpressionValue(simpleName, "DiscordConnectService::class.java.simpleName");
+            Logger.i$default(appLog, simpleName, str, null, 4, null);
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final void m8375b(Context context, long j) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = IntentUtils.RouteBuilders.INSTANCE.connectVoice(j).setPackage(context.getPackageName());
+            C12238m.checkNotNullExpressionValue(intent, "IntentUtils.RouteBuilder…kage(context.packageName)");
+            if (Build.VERSION.SDK_INT >= 26) {
+                context.startForegroundService(intent);
+            } else {
+                context.startService(intent);
+            }
         }
     }
 

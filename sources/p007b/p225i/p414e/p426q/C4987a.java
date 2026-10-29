@@ -14,14 +14,14 @@ import p007b.p225i.p414e.p418n.C4962a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4987a extends AbstractC4997k {
 
-    /* JADX INFO: renamed from: a */
-    public static final char[] f13352a = "0123456789-$:/.+ABCD".toCharArray();
-
     /* JADX INFO: renamed from: b */
     public static final int[] f13353b = {3, 6, 9, 96, 18, 66, 33, 36, 48, 72, 12, 24, 69, 81, 84, 21, 26, 41, 11, 14};
 
     /* JADX INFO: renamed from: c */
     public static final char[] f13354c = {'A', 'B', 'C', 'D'};
+
+    /* JADX INFO: renamed from: a */
+    public static final char[] f13352a = "0123456789-$:/.+ABCD".toCharArray();
 
     /* JADX INFO: renamed from: d */
     public final StringBuilder f13355d = new StringBuilder(20);
@@ -42,6 +42,72 @@ public final class C4987a extends AbstractC4997k {
             }
         }
         return false;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m6984h(int i) {
+        int[] iArr = this.f13356e;
+        int i2 = this.f13357f;
+        iArr[i2] = i;
+        int i3 = i2 + 1;
+        this.f13357f = i3;
+        if (i3 >= iArr.length) {
+            int[] iArr2 = new int[i3 << 1];
+            System.arraycopy(iArr, 0, iArr2, 0, i3);
+            this.f13356e = iArr2;
+        }
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final int m6985i(int i) {
+        int i2 = i + 7;
+        if (i2 >= this.f13357f) {
+            return -1;
+        }
+        int[] iArr = this.f13356e;
+        int i3 = Integer.MAX_VALUE;
+        int i4 = 0;
+        int i5 = Integer.MAX_VALUE;
+        int i6 = 0;
+        for (int i7 = i; i7 < i2; i7 += 2) {
+            int i8 = iArr[i7];
+            if (i8 < i5) {
+                i5 = i8;
+            }
+            if (i8 > i6) {
+                i6 = i8;
+            }
+        }
+        int i9 = (i5 + i6) / 2;
+        int i10 = 0;
+        for (int i11 = i + 1; i11 < i2; i11 += 2) {
+            int i12 = iArr[i11];
+            if (i12 < i3) {
+                i3 = i12;
+            }
+            if (i12 > i10) {
+                i10 = i12;
+            }
+        }
+        int i13 = (i3 + i10) / 2;
+        int i14 = 128;
+        int i15 = 0;
+        for (int i16 = 0; i16 < 7; i16++) {
+            i14 >>= 1;
+            if (iArr[i + i16] > ((i16 & 1) == 0 ? i9 : i13)) {
+                i15 |= i14;
+            }
+        }
+        while (true) {
+            int[] iArr2 = f13353b;
+            if (i4 >= iArr2.length) {
+                return -1;
+            }
+            if (iArr2[i4] == i15) {
+                return i4;
+            }
+            i4++;
+        }
     }
 
     @Override // p007b.p225i.p414e.p426q.AbstractC4997k
@@ -183,71 +249,5 @@ public final class C4987a extends AbstractC4997k {
             i4 += 2;
         }
         throw NotFoundException.f21665l;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m6984h(int i) {
-        int[] iArr = this.f13356e;
-        int i2 = this.f13357f;
-        iArr[i2] = i;
-        int i3 = i2 + 1;
-        this.f13357f = i3;
-        if (i3 >= iArr.length) {
-            int[] iArr2 = new int[i3 << 1];
-            System.arraycopy(iArr, 0, iArr2, 0, i3);
-            this.f13356e = iArr2;
-        }
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final int m6985i(int i) {
-        int i2 = i + 7;
-        if (i2 >= this.f13357f) {
-            return -1;
-        }
-        int[] iArr = this.f13356e;
-        int i3 = Integer.MAX_VALUE;
-        int i4 = 0;
-        int i5 = Integer.MAX_VALUE;
-        int i6 = 0;
-        for (int i7 = i; i7 < i2; i7 += 2) {
-            int i8 = iArr[i7];
-            if (i8 < i5) {
-                i5 = i8;
-            }
-            if (i8 > i6) {
-                i6 = i8;
-            }
-        }
-        int i9 = (i5 + i6) / 2;
-        int i10 = 0;
-        for (int i11 = i + 1; i11 < i2; i11 += 2) {
-            int i12 = iArr[i11];
-            if (i12 < i3) {
-                i3 = i12;
-            }
-            if (i12 > i10) {
-                i10 = i12;
-            }
-        }
-        int i13 = (i3 + i10) / 2;
-        int i14 = 128;
-        int i15 = 0;
-        for (int i16 = 0; i16 < 7; i16++) {
-            i14 >>= 1;
-            if (iArr[i + i16] > ((i16 & 1) == 0 ? i9 : i13)) {
-                i15 |= i14;
-            }
-        }
-        while (true) {
-            int[] iArr2 = f13353b;
-            if (i4 >= iArr2.length) {
-                return -1;
-            }
-            if (iArr2[i4] == i15) {
-                return i4;
-            }
-            i4++;
-        }
     }
 }

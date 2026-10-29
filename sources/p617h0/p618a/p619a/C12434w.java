@@ -9,6 +9,18 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12434w {
 
+    /* JADX INFO: renamed from: j */
+    public final int f26370j;
+
+    /* JADX INFO: renamed from: k */
+    public final String f26371k;
+
+    /* JADX INFO: renamed from: l */
+    public final int f26372l;
+
+    /* JADX INFO: renamed from: m */
+    public final int f26373m;
+
     /* JADX INFO: renamed from: a */
     public static final C12434w f26361a = new C12434w(0, "VZCBSIFJD", 0, 1);
 
@@ -36,23 +48,55 @@ public final class C12434w {
     /* JADX INFO: renamed from: i */
     public static final C12434w f26369i = new C12434w(8, "VZCBSIFJD", 8, 9);
 
-    /* JADX INFO: renamed from: j */
-    public final int f26370j;
-
-    /* JADX INFO: renamed from: k */
-    public final String f26371k;
-
-    /* JADX INFO: renamed from: l */
-    public final int f26372l;
-
-    /* JADX INFO: renamed from: m */
-    public final int f26373m;
-
     public C12434w(int i, String str, int i2, int i3) {
         this.f26370j = i;
         this.f26371k = str;
         this.f26372l = i2;
         this.f26373m = i3;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof C12434w)) {
+            return false;
+        }
+        C12434w c12434w = (C12434w) obj;
+        int i = this.f26370j;
+        if (i == 12) {
+            i = 10;
+        }
+        int i2 = c12434w.f26370j;
+        if (i != (i2 != 12 ? i2 : 10)) {
+            return false;
+        }
+        int i3 = this.f26372l;
+        int i4 = this.f26373m;
+        int i5 = c12434w.f26372l;
+        if (i4 - i3 != c12434w.f26373m - i5) {
+            return false;
+        }
+        while (i3 < i4) {
+            if (this.f26371k.charAt(i3) != c12434w.f26371k.charAt(i5)) {
+                return false;
+            }
+            i3++;
+            i5++;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        int i = this.f26370j;
+        int iCharAt = (i == 12 ? 10 : i) * 13;
+        if (i >= 9) {
+            int i2 = this.f26373m;
+            for (int i3 = this.f26372l; i3 < i2; i3++) {
+                iCharAt = (this.f26371k.charAt(i3) + iCharAt) * 17;
+            }
+        }
+        return iCharAt;
     }
 
     /* JADX INFO: renamed from: a */
@@ -297,38 +341,6 @@ public final class C12434w {
         return sbM829Q.toString();
     }
 
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof C12434w)) {
-            return false;
-        }
-        C12434w c12434w = (C12434w) obj;
-        int i = this.f26370j;
-        if (i == 12) {
-            i = 10;
-        }
-        int i2 = c12434w.f26370j;
-        if (i != (i2 != 12 ? i2 : 10)) {
-            return false;
-        }
-        int i3 = this.f26372l;
-        int i4 = this.f26373m;
-        int i5 = c12434w.f26372l;
-        if (i4 - i3 != c12434w.f26373m - i5) {
-            return false;
-        }
-        while (i3 < i4) {
-            if (this.f26371k.charAt(i3) != c12434w.f26371k.charAt(i5)) {
-                return false;
-            }
-            i3++;
-            i5++;
-        }
-        return true;
-    }
-
     /* JADX INFO: renamed from: f */
     public int m10652f() {
         int i = 1;
@@ -341,18 +353,6 @@ public final class C12434w {
     /* JADX INFO: renamed from: g */
     public String m10653g() {
         return this.f26371k.substring(this.f26372l, this.f26373m);
-    }
-
-    public int hashCode() {
-        int i = this.f26370j;
-        int iCharAt = (i == 12 ? 10 : i) * 13;
-        if (i >= 9) {
-            int i2 = this.f26373m;
-            for (int i3 = this.f26372l; i3 < i2; i3++) {
-                iCharAt = (this.f26371k.charAt(i3) + iCharAt) * 17;
-            }
-        }
-        return iCharAt;
     }
 
     /* JADX INFO: renamed from: i */

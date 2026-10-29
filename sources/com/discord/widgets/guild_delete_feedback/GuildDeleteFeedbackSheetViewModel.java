@@ -18,10 +18,10 @@ import p658rx.subjects.PublishSubject;
 /* JADX INFO: compiled from: GuildDeleteFeedbackSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildDeleteFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSheetViewModel.ViewState> implements FeedbackSheetViewModel {
-    private static final List<FeedbackIssue> REASONS = C12147n.listOf((Object[]) new FeedbackIssue[]{FeedbackIssue.GUILD_DELETE_TOO_HARD, FeedbackIssue.GUILD_DELETE_TEST, FeedbackIssue.GUILD_DELETE_ACCIDENT, FeedbackIssue.GUILD_DELETE_TEMPLATE, FeedbackIssue.GUILD_DELETE_LONELY, FeedbackIssue.GUILD_DELETE_INACTIVE});
     private final PublishSubject<FeedbackSheetViewModel.Event> eventSubject;
     private PendingFeedback.GuildDeleteFeedback pendingFeedback;
     private boolean submitted;
+    private static final List<FeedbackIssue> REASONS = C12147n.listOf((Object[]) new FeedbackIssue[]{FeedbackIssue.GUILD_DELETE_TOO_HARD, FeedbackIssue.GUILD_DELETE_TEST, FeedbackIssue.GUILD_DELETE_ACCIDENT, FeedbackIssue.GUILD_DELETE_TEMPLATE, FeedbackIssue.GUILD_DELETE_LONELY, FeedbackIssue.GUILD_DELETE_INACTIVE});
 
     public GuildDeleteFeedbackSheetViewModel(long j) {
         super(new FeedbackSheetViewModel.ViewState(FeedbackRating.NO_RESPONSE, C12163u.plus((Collection<? extends FeedbackIssue>) C12145m.shuffled(REASONS), FeedbackIssue.GUILD_DELETE_OTHER), C5419R.string.guild_delete_feedback_header, null, C5419R.string.guild_delete_feedback_body, 8, null));

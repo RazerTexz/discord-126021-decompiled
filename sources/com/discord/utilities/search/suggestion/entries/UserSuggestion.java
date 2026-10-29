@@ -29,14 +29,8 @@ public final /* data */ class UserSuggestion implements SearchSuggestion, Compar
     private final String usernameWithDiscriminator;
 
     /* JADX INFO: compiled from: UserSuggestion.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final String getUsernameWithDiscriminator(String userName, int discriminator) {
-            StringBuilder sbM833U = C1643a.m833U(userName);
-            sbM833U.append(UserUtils.INSTANCE.padDiscriminator(discriminator));
-            return sbM833U.toString();
         }
 
         @SuppressLint({"DefaultLocale"})
@@ -52,6 +46,12 @@ public final /* data */ class UserSuggestion implements SearchSuggestion, Compar
                 return true;
             }
             return nickname != null ? C12106w.contains((CharSequence) nickname, (CharSequence) lowerCase, true) : false;
+        }
+
+        private final String getUsernameWithDiscriminator(String userName, int discriminator) {
+            StringBuilder sbM833U = C1643a.m833U(userName);
+            sbM833U.append(UserUtils.INSTANCE.padDiscriminator(discriminator));
+            return sbM833U.toString();
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -116,21 +116,6 @@ public final /* data */ class UserSuggestion implements SearchSuggestion, Compar
         return userSuggestion.copy(user, targetType, guildMember);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final TargetType getTargetType() {
-        return this.targetType;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
     public final UserSuggestion copy(User user, TargetType targetType, GuildMember guildMember) {
         C12238m.checkNotNullParameter(user, "user");
         C12238m.checkNotNullParameter(targetType, "targetType");
@@ -157,6 +142,11 @@ public final /* data */ class UserSuggestion implements SearchSuggestion, Compar
         return this.discriminator;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
     public final GuildMember getGuildMember() {
         return this.guildMember;
     }
@@ -165,8 +155,18 @@ public final /* data */ class UserSuggestion implements SearchSuggestion, Compar
         return this.nickname;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final TargetType getTargetType() {
         return this.targetType;
+    }
+
+    public final TargetType getTargetType() {
+        return this.targetType;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

@@ -27,8 +27,50 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
     private final int MAX_QUERIES_PER_TARGET = 5;
     private final Persister<LinkedList<TargetHistory>> backingCache = new Persister<>("SEARCH_HISTORY_V2", new LinkedList());
 
+    /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$clear$2 */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public static final /* data */ class TargetHistory {
+    public final class C69002 extends AbstractC12240o implements Function1<LinkedList<TargetHistory>, Unit> {
+        public C69002() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(LinkedList<TargetHistory> linkedList) {
+            invoke2(linkedList);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(LinkedList<TargetHistory> linkedList) {
+            Persister persister = MGPreferenceSearchHistoryCache.this.backingCache;
+            C12238m.checkNotNullExpressionValue(linkedList, "it");
+            Persister.set$default(persister, linkedList, false, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$persistQuery$2 */
+    /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
+    public final class C69032 extends AbstractC12240o implements Function1<LinkedList<TargetHistory>, Unit> {
+        public C69032() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(LinkedList<TargetHistory> linkedList) {
+            invoke2(linkedList);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(LinkedList<TargetHistory> linkedList) {
+            Persister persister = MGPreferenceSearchHistoryCache.this.backingCache;
+            C12238m.checkNotNullExpressionValue(linkedList, "it");
+            Persister.set$default(persister, linkedList, false, 2, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
+    public final /* data */ class TargetHistory {
         private final LinkedList<List<QueryNode>> recentQueries;
         private final StoreSearch.SearchTarget searchTarget;
 
@@ -37,6 +79,10 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             C12238m.checkNotNullParameter(linkedList, "recentQueries");
             this.searchTarget = searchTarget;
             this.recentQueries = linkedList;
+        }
+
+        public final LinkedList<List<QueryNode>> component2() {
+            return this.recentQueries;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -48,15 +94,6 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
                 linkedList = targetHistory.recentQueries;
             }
             return targetHistory.copy(searchTarget, linkedList);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreSearch.SearchTarget getSearchTarget() {
-            return this.searchTarget;
-        }
-
-        public final LinkedList<List<QueryNode>> component2() {
-            return this.recentQueries;
         }
 
         public final TargetHistory copy(StoreSearch.SearchTarget searchTarget, LinkedList<List<QueryNode>> recentQueries) {
@@ -80,6 +117,11 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             return this.recentQueries;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreSearch.SearchTarget getSearchTarget() {
+            return this.searchTarget;
+        }
+
         public final StoreSearch.SearchTarget getSearchTarget() {
             return this.searchTarget;
         }
@@ -101,46 +143,19 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$clear$2 */
-    /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public static final class C69002 extends AbstractC12240o implements Function1<LinkedList<TargetHistory>, Unit> {
-        public C69002() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(LinkedList<TargetHistory> linkedList) {
-            invoke2(linkedList);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(LinkedList<TargetHistory> linkedList) {
-            Persister persister = MGPreferenceSearchHistoryCache.this.backingCache;
-            C12238m.checkNotNullExpressionValue(linkedList, "it");
-            Persister.set$default(persister, linkedList, false, 2, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$persistQuery$2 */
-    /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public static final class C69032 extends AbstractC12240o implements Function1<LinkedList<TargetHistory>, Unit> {
-        public C69032() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(LinkedList<TargetHistory> linkedList) {
-            invoke2(linkedList);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(LinkedList<TargetHistory> linkedList) {
-            Persister persister = MGPreferenceSearchHistoryCache.this.backingCache;
-            C12238m.checkNotNullExpressionValue(linkedList, "it");
-            Persister.set$default(persister, linkedList, false, 2, null);
-        }
+    @Override // com.discord.utilities.search.history.SearchHistoryCache
+    public void clear(final StoreSearch.SearchTarget searchTarget) {
+        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
+        Observable<R> observableM11083G = this.backingCache.getObservable().m11100Z(1).m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, LinkedList<TargetHistory>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.clear.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
+                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
+                C12238m.checkNotNullExpressionValue(linkedList, "it");
+                return mGPreferenceSearchHistoryCache.removeAndCopy(linkedList, searchTarget);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…veAndCopy(searchTarget) }");
+        ObservableExtensionsKt.appSubscribe(observableM11083G, (117 & 1) != 0 ? null : null, "clear history", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C69002(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
     private final LinkedList<List<QueryNode>> find(LinkedList<TargetHistory> linkedList, StoreSearch.SearchTarget searchTarget) {
@@ -155,6 +170,37 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             }
         }
         return new LinkedList<>();
+    }
+
+    @Override // com.discord.utilities.search.history.SearchHistoryCache
+    public Observable<Collection<List<QueryNode>>> getHistory(final StoreSearch.SearchTarget searchTarget) {
+        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
+        Observable observableM11083G = this.backingCache.getObservable().m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, Collection<? extends List<? extends QueryNode>>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.getHistory.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Collection<List<QueryNode>> call(LinkedList<TargetHistory> linkedList) {
+                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
+                C12238m.checkNotNullExpressionValue(linkedList, "it");
+                return mGPreferenceSearchHistoryCache.find(linkedList, searchTarget);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…{ it.find(searchTarget) }");
+        return observableM11083G;
+    }
+
+    @Override // com.discord.utilities.search.history.SearchHistoryCache
+    public void persistQuery(final StoreSearch.SearchTarget searchTarget, final List<? extends QueryNode> query) {
+        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
+        C12238m.checkNotNullParameter(query, "query");
+        Observable<R> observableM11083G = this.backingCache.getObservable().m11100Z(1).m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, LinkedList<TargetHistory>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.persistQuery.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
+                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
+                C12238m.checkNotNullExpressionValue(linkedList, "it");
+                return mGPreferenceSearchHistoryCache.putAndCopy(linkedList, searchTarget, query);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…py(searchTarget, query) }");
+        ObservableExtensionsKt.appSubscribe(observableM11083G, (117 & 1) != 0 ? null : null, "persist query", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C69032(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
     private final LinkedList<TargetHistory> putAndCopy(LinkedList<TargetHistory> linkedList, StoreSearch.SearchTarget searchTarget, List<? extends QueryNode> list) {
@@ -203,51 +249,5 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             }
         }
         return new LinkedList<>(linkedList);
-    }
-
-    @Override // com.discord.utilities.search.history.SearchHistoryCache
-    public void clear(final StoreSearch.SearchTarget searchTarget) {
-        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
-        Observable<R> observableM11083G = this.backingCache.getObservable().m11100Z(1).m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, LinkedList<TargetHistory>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.clear.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
-                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-                C12238m.checkNotNullExpressionValue(linkedList, "it");
-                return mGPreferenceSearchHistoryCache.removeAndCopy(linkedList, searchTarget);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…veAndCopy(searchTarget) }");
-        ObservableExtensionsKt.appSubscribe(observableM11083G, (117 & 1) != 0 ? null : null, "clear history", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C69002(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
-    }
-
-    @Override // com.discord.utilities.search.history.SearchHistoryCache
-    public Observable<Collection<List<QueryNode>>> getHistory(final StoreSearch.SearchTarget searchTarget) {
-        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
-        Observable observableM11083G = this.backingCache.getObservable().m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, Collection<? extends List<? extends QueryNode>>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.getHistory.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Collection<List<QueryNode>> call(LinkedList<TargetHistory> linkedList) {
-                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-                C12238m.checkNotNullExpressionValue(linkedList, "it");
-                return mGPreferenceSearchHistoryCache.find(linkedList, searchTarget);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…{ it.find(searchTarget) }");
-        return observableM11083G;
-    }
-
-    @Override // com.discord.utilities.search.history.SearchHistoryCache
-    public void persistQuery(final StoreSearch.SearchTarget searchTarget, final List<? extends QueryNode> query) {
-        C12238m.checkNotNullParameter(searchTarget, "searchTarget");
-        C12238m.checkNotNullParameter(query, "query");
-        Observable<R> observableM11083G = this.backingCache.getObservable().m11100Z(1).m11083G(new InterfaceC12589b<LinkedList<TargetHistory>, LinkedList<TargetHistory>>() { // from class: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache.persistQuery.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
-                MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-                C12238m.checkNotNullExpressionValue(linkedList, "it");
-                return mGPreferenceSearchHistoryCache.putAndCopy(linkedList, searchTarget, query);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "backingCache\n        .ge…py(searchTarget, query) }");
-        ObservableExtensionsKt.appSubscribe(observableM11083G, (117 & 1) != 0 ? null : null, "persist query", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C69032(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 }

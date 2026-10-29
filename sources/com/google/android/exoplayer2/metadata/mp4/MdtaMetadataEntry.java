@@ -13,7 +13,6 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class MdtaMetadataEntry implements Metadata.Entry {
-    public static final Parcelable.Creator<MdtaMetadataEntry> CREATOR = new C10737a();
 
     /* JADX INFO: renamed from: j */
     public final String f20004j;
@@ -26,6 +25,7 @@ public final class MdtaMetadataEntry implements Metadata.Entry {
 
     /* JADX INFO: renamed from: m */
     public final int f20007m;
+    public static final Parcelable.Creator<MdtaMetadataEntry> CREATOR = new C10737a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.mp4.MdtaMetadataEntry$a */
     public class C10737a implements Parcelable.Creator<MdtaMetadataEntry> {
@@ -79,6 +79,12 @@ public final class MdtaMetadataEntry implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         String strValueOf = String.valueOf(this.f20004j);
         return strValueOf.length() != 0 ? "mdta: key=".concat(strValueOf) : new String("mdta: key=");
@@ -90,12 +96,6 @@ public final class MdtaMetadataEntry implements Metadata.Entry {
         parcel.writeByteArray(this.f20005k);
         parcel.writeInt(this.f20006l);
         parcel.writeInt(this.f20007m);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 
     public MdtaMetadataEntry(Parcel parcel, C10737a c10737a) {

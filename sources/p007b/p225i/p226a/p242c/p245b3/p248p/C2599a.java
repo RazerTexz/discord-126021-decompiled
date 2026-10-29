@@ -33,50 +33,6 @@ public final class C2599a extends AbstractC2582f {
     @Nullable
     public Inflater f5970q;
 
-    /* JADX INFO: renamed from: b.i.a.c.b3.p.a$a */
-    /* JADX INFO: compiled from: PgsDecoder.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final C2757x f5971a = new C2757x();
-
-        /* JADX INFO: renamed from: b */
-        public final int[] f5972b = new int[256];
-
-        /* JADX INFO: renamed from: c */
-        public boolean f5973c;
-
-        /* JADX INFO: renamed from: d */
-        public int f5974d;
-
-        /* JADX INFO: renamed from: e */
-        public int f5975e;
-
-        /* JADX INFO: renamed from: f */
-        public int f5976f;
-
-        /* JADX INFO: renamed from: g */
-        public int f5977g;
-
-        /* JADX INFO: renamed from: h */
-        public int f5978h;
-
-        /* JADX INFO: renamed from: i */
-        public int f5979i;
-
-        /* JADX INFO: renamed from: a */
-        public void m2667a() {
-            this.f5974d = 0;
-            this.f5975e = 0;
-            this.f5976f = 0;
-            this.f5977g = 0;
-            this.f5978h = 0;
-            this.f5979i = 0;
-            this.f5971a.m3075A(0);
-            this.f5973c = false;
-        }
-    }
-
     public C2599a() {
         super("PgsDecoder");
         this.f5967n = new C2757x();
@@ -242,5 +198,49 @@ public final class C2599a extends AbstractC2582f {
             c2599a = this;
         }
         return new C2600b(Collections.unmodifiableList(arrayList));
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.p.a$a */
+    /* JADX INFO: compiled from: PgsDecoder.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: c */
+        public boolean f5973c;
+
+        /* JADX INFO: renamed from: d */
+        public int f5974d;
+
+        /* JADX INFO: renamed from: e */
+        public int f5975e;
+
+        /* JADX INFO: renamed from: f */
+        public int f5976f;
+
+        /* JADX INFO: renamed from: g */
+        public int f5977g;
+
+        /* JADX INFO: renamed from: h */
+        public int f5978h;
+
+        /* JADX INFO: renamed from: i */
+        public int f5979i;
+
+        /* JADX INFO: renamed from: a */
+        public final C2757x f5971a = new C2757x();
+
+        /* JADX INFO: renamed from: b */
+        public final int[] f5972b = new int[256];
+
+        /* JADX INFO: renamed from: a */
+        public void m2667a() {
+            this.f5974d = 0;
+            this.f5975e = 0;
+            this.f5976f = 0;
+            this.f5977g = 0;
+            this.f5978h = 0;
+            this.f5979i = 0;
+            this.f5971a.m3075A(0);
+            this.f5973c = false;
+        }
     }
 }

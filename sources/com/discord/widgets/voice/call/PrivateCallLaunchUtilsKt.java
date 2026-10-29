@@ -35,7 +35,7 @@ public final class PrivateCallLaunchUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1 */
     /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-    public static final class C104081 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104081 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ AppComponent $appComponent;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
@@ -45,7 +45,7 @@ public final class PrivateCallLaunchUtilsKt {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1$4, reason: invalid class name */
         /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<Long, Boolean> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<Long, Boolean> {
             public AnonymousClass4() {
                 super(1);
             }
@@ -63,7 +63,7 @@ public final class PrivateCallLaunchUtilsKt {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1$5, reason: invalid class name */
         /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-        public static final class AnonymousClass5 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final class AnonymousClass5 extends AbstractC12240o implements Function1<Long, Unit> {
             public AnonymousClass5() {
                 super(1);
             }
@@ -93,11 +93,11 @@ public final class PrivateCallLaunchUtilsKt {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1$6, reason: invalid class name */
         /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-        public static final class AnonymousClass6 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass6 extends AbstractC12240o implements Function0<Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1$6$1, reason: invalid class name */
             /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {
@@ -136,7 +136,7 @@ public final class PrivateCallLaunchUtilsKt {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$1$7, reason: invalid class name */
         /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-        public static final class AnonymousClass7 extends AbstractC12240o implements Function1<String, Unit> {
+        public final class AnonymousClass7 extends AbstractC12240o implements Function1<String, Unit> {
             public final /* synthetic */ AnonymousClass6 $doCall$6;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -210,7 +210,7 @@ public final class PrivateCallLaunchUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$2 */
     /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-    public static final /* synthetic */ class C104092 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C104092 extends C12236k implements Function0<Unit> {
         public final /* synthetic */ C104081 $onPermissionsGranted$1;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -233,7 +233,7 @@ public final class PrivateCallLaunchUtilsKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt$callAndLaunch$3 */
     /* JADX INFO: compiled from: PrivateCallLaunchUtils.kt */
-    public static final /* synthetic */ class C104103 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C104103 extends C12236k implements Function0<Unit> {
         public final /* synthetic */ C104081 $onPermissionsGranted$1;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

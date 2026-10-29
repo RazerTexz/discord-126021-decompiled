@@ -42,68 +42,7 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
     private Function1<? super GuildRole, Unit> roleSelectedListener;
 
     /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
-    public static final /* data */ class HelpItem implements DragAndDropAdapter.Payload {
-        private final long guildId;
-        private final String key = "key0";
-        private final int type;
-
-        public HelpItem(long j) {
-            this.guildId = j;
-        }
-
-        public static /* synthetic */ HelpItem copy$default(HelpItem helpItem, long j, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = helpItem.guildId;
-            }
-            return helpItem.copy(j);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public final HelpItem copy(long guildId) {
-            return new HelpItem(guildId);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof HelpItem) && this.guildId == ((HelpItem) other).guildId;
-            }
-            return true;
-        }
-
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.DragAndDropAdapter.Payload
-        public int getPosition() {
-            return 0;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-
-        public int hashCode() {
-            return C0002b.m3a(this.guildId);
-        }
-
-        public String toString() {
-            return C1643a.m815C(C1643a.m833U("HelpItem(guildId="), this.guildId, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
-    public static final class RoleListHelpItem extends MGRecyclerViewHolder<MGRecyclerAdapter<DragAndDropAdapter.Payload>, DragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
+    public final class RoleListHelpItem extends MGRecyclerViewHolder<MGRecyclerAdapter<DragAndDropAdapter.Payload>, DragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
         private final WidgetServerSettingsHelpItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -139,7 +78,7 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
-    public static final class RoleListItem extends MGRecyclerViewHolder<MGRecyclerAdapter<DragAndDropAdapter.Payload>, DragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
+    public final class RoleListItem extends MGRecyclerViewHolder<MGRecyclerAdapter<DragAndDropAdapter.Payload>, DragAndDropAdapter.Payload> implements DragAndDropHelper.DraggableViewHolder {
         private final WidgetServerSettingsRoleItemBinding binding;
         private boolean canDrag;
 
@@ -299,6 +238,67 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
         this.roleDropListener.invoke(newPositions);
     }
 
+    /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
+    public final /* data */ class HelpItem implements DragAndDropAdapter.Payload {
+        private final long guildId;
+        private final int type;
+        private final String key = "key0";
+
+        public HelpItem(long j) {
+            this.guildId = j;
+        }
+
+        public static /* synthetic */ HelpItem copy$default(HelpItem helpItem, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = helpItem.guildId;
+            }
+            return helpItem.copy(j);
+        }
+
+        public final HelpItem copy(long guildId) {
+            return new HelpItem(guildId);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof HelpItem) && this.guildId == ((HelpItem) other).guildId;
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.DragAndDropAdapter.Payload
+        public int getPosition() {
+            return 0;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
+
+        public int hashCode() {
+            return C0002b.m3a(this.guildId);
+        }
+
+        public String toString() {
+            return C1643a.m815C(C1643a.m833U("HelpItem(guildId="), this.guildId, ")");
+        }
+    }
+
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, DragAndDropAdapter.Payload> onCreateViewHolder(ViewGroup parent, int viewType) {
         C12238m.checkNotNullParameter(parent, "parent");
@@ -312,7 +312,7 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsRolesAdapter.kt */
-    public static final /* data */ class RoleItem implements DragAndDropAdapter.Payload {
+    public final /* data */ class RoleItem implements DragAndDropAdapter.Payload {
         private final boolean elevated;
         private final boolean everyoneRole;
         private final long guildId;
@@ -332,6 +332,10 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
             this.guildId = j;
             this.key = String.valueOf(guildRole.getId());
             this.type = 1;
+        }
+
+        public final boolean canReorder() {
+            return !this.everyoneRole && !this.locked && this.userAbleToManageRoles && this.elevated;
         }
 
         public static /* synthetic */ RoleItem copy$default(RoleItem roleItem, GuildRole guildRole, boolean z2, boolean z3, boolean z4, boolean z5, long j, int i, Object obj) {
@@ -360,40 +364,6 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
             return roleItem.copy(guildRole, z6, z7, z8, z9, j);
         }
 
-        public final boolean canReorder() {
-            return !this.everyoneRole && !this.locked && this.userAbleToManageRoles && this.elevated;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getEveryoneRole() {
-            return this.everyoneRole;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getLocked() {
-            return this.locked;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getUserAbleToManageRoles() {
-            return this.userAbleToManageRoles;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getElevated() {
-            return this.elevated;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final RoleItem copy(GuildRole role, boolean everyoneRole, boolean locked, boolean userAbleToManageRoles, boolean elevated, long guildId) {
             C12238m.checkNotNullParameter(role, "role");
             return new RoleItem(role, everyoneRole, locked, userAbleToManageRoles, elevated, guildId);
@@ -410,12 +380,27 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
             return C12238m.areEqual(this.role, roleItem.role) && this.everyoneRole == roleItem.everyoneRole && this.locked == roleItem.locked && this.userAbleToManageRoles == roleItem.userAbleToManageRoles && this.elevated == roleItem.elevated && this.guildId == roleItem.guildId;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getElevated() {
             return this.elevated;
         }
 
+        public final boolean getElevated() {
+            return this.elevated;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getEveryoneRole() {
             return this.everyoneRole;
+        }
+
+        public final boolean getEveryoneRole() {
+            return this.everyoneRole;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
@@ -427,6 +412,11 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getLocked() {
+            return this.locked;
+        }
+
         public final boolean getLocked() {
             return this.locked;
         }
@@ -436,6 +426,11 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
             return this.role.getPosition();
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
+        }
+
         public final GuildRole getRole() {
             return this.role;
         }
@@ -443,6 +438,11 @@ public final class WidgetServerSettingsRolesAdapter extends DragAndDropAdapter<D
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getUserAbleToManageRoles() {
+            return this.userAbleToManageRoles;
         }
 
         public final boolean getUserAbleToManageRoles() {

@@ -18,12 +18,6 @@ public final class C3595b3<T> implements InterfaceC3914z2<T>, Serializable {
         this.zza = t;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3914z2
-    /* JADX INFO: renamed from: a */
-    public final T mo4555a() {
-        return this.zza;
-    }
-
     public final boolean equals(@NullableDecl Object obj) {
         if (obj instanceof C3595b3) {
             return C3404f.m4306j2(this.zza, ((C3595b3) obj).zza);
@@ -33,6 +27,12 @@ public final class C3595b3<T> implements InterfaceC3914z2<T>, Serializable {
 
     public final int hashCode() {
         return Arrays.hashCode(new Object[]{this.zza});
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3914z2
+    /* JADX INFO: renamed from: a */
+    public final T mo4555a() {
+        return this.zza;
     }
 
     public final String toString() {

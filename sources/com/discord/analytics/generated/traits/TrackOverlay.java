@@ -6,25 +6,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlay.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlay {
-    private final CharSequence gameName = null;
-    private final Long gameId = null;
+    private final CharSequence cpu = null;
     private final CharSequence error = null;
+    private final Long firstFramebufferAfter = null;
+    private final CharSequence framebufferSource = null;
+    private final Long gameId = null;
+    private final CharSequence gameName = null;
+    private final CharSequence gpu = null;
+    private final CharSequence graphicsApi = null;
+    private final Long graphicsHeight = null;
+    private final Long graphicsInfoAfter = null;
+    private final Long graphicsWidth = null;
+    private final Long hostCrashCount = null;
+    private final Long rendererCrashCount = null;
+    private final Long rendererIgnoredPaints = null;
+    private final Long rendererLoadFailures = null;
+    private final Long rendererLoadSucceededAfter = null;
+    private final Long rendererReadyAfter = null;
     private final Boolean rendererStarted = null;
     private final Long rendererStartedAfter = null;
-    private final Long rendererReadyAfter = null;
-    private final Long rendererLoadSucceededAfter = null;
-    private final Long rendererCrashCount = null;
-    private final Long rendererLoadFailures = null;
-    private final Long rendererIgnoredPaints = null;
-    private final Long hostCrashCount = null;
-    private final CharSequence framebufferSource = null;
-    private final Long firstFramebufferAfter = null;
-    private final Long graphicsWidth = null;
-    private final Long graphicsHeight = null;
-    private final CharSequence graphicsApi = null;
-    private final Long graphicsInfoAfter = null;
-    private final CharSequence cpu = null;
-    private final CharSequence gpu = null;
 
     public boolean equals(Object other) {
         if (this == other) {

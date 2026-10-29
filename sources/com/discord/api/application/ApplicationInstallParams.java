@@ -11,16 +11,6 @@ public final /* data */ class ApplicationInstallParams {
     private final String permissions;
     private final String[] scopes;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getPermissions() {
-        return this.permissions;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String[] getScopes() {
-        return this.scopes;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class ApplicationInstallParams {
         }
         ApplicationInstallParams applicationInstallParams = (ApplicationInstallParams) other;
         return C12238m.areEqual(this.permissions, applicationInstallParams.permissions) && C12238m.areEqual(this.scopes, applicationInstallParams.scopes);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getPermissions() {
+        return this.permissions;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String[] getScopes() {
+        return this.scopes;
     }
 
     public int hashCode() {

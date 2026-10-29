@@ -11,7 +11,7 @@ public abstract class ChannelTemplate {
     private final String name;
 
     /* JADX INFO: compiled from: StockGuildTemplate.kt */
-    public static final class NormalChannel extends ChannelTemplate {
+    public final class NormalChannel extends ChannelTemplate {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         /* JADX WARN: Multi-variable type inference failed */
         public NormalChannel(String str) {
@@ -21,7 +21,7 @@ public abstract class ChannelTemplate {
     }
 
     /* JADX INFO: compiled from: StockGuildTemplate.kt */
-    public static final class SystemChannel extends ChannelTemplate {
+    public final class SystemChannel extends ChannelTemplate {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public SystemChannel(String str) {
             super(11L, str, null);

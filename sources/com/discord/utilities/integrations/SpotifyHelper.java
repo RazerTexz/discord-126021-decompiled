@@ -17,6 +17,7 @@ import com.discord.utilities.receiver.spotify.SpotifyPlayingStateReceiver;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.uri.UriHandler;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -29,13 +30,13 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: SpotifyHelper.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SpotifyHelper {
-    public static final SpotifyHelper INSTANCE = new SpotifyHelper();
     private static final String SPOTIFY_PACKAGE_NAME = "com.spotify.music";
     private static final String SPOTIFY_UTM_PARAMS = "utm_source=discord&utm_medium=mobile";
+    public static final SpotifyHelper INSTANCE = new SpotifyHelper();
 
     /* JADX INFO: renamed from: com.discord.utilities.integrations.SpotifyHelper$launchAlbum$1 */
     /* JADX INFO: compiled from: SpotifyHelper.kt */
-    public static final class C67811 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67811 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $applicationId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ String $sessionId;
@@ -43,7 +44,7 @@ public final class SpotifyHelper {
 
         /* JADX INFO: renamed from: com.discord.utilities.integrations.SpotifyHelper$launchAlbum$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: SpotifyHelper.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ActivityMetadata, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ActivityMetadata, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -88,35 +89,6 @@ public final class SpotifyHelper {
     private SpotifyHelper() {
     }
 
-    private final void launchSpotifyIntent(Context context, Intent intent) {
-        try {
-            intent.putExtra("android.intent.extra.REFERRER", Uri.parse("android-app://" + context.getPackageName()));
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException unused) {
-            if (isSpotifyInstalled(context)) {
-                return;
-            }
-            openPlayStoreForSpotify(context);
-        }
-    }
-
-    public static final void registerSpotifyBroadcastReceivers(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        context.registerReceiver(new SpotifyMetadataReceiver(), new IntentFilter("com.spotify.music.metadatachanged"));
-        context.registerReceiver(new SpotifyPlayingStateReceiver(), new IntentFilter("com.spotify.music.playbackstatechanged"));
-    }
-
-    private final void runIfSpotifyInstalled(Function0<Unit> action, Context context) {
-        try {
-            action.invoke();
-        } catch (ActivityNotFoundException unused) {
-            if (isSpotifyInstalled(context)) {
-                return;
-            }
-            openPlayStoreForSpotify(context);
-        }
-    }
-
     public final boolean isSpotifyInstalled(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         try {
@@ -141,6 +113,18 @@ public final class SpotifyHelper {
         }
     }
 
+    private final void launchSpotifyIntent(Context context, Intent intent) {
+        try {
+            intent.putExtra("android.intent.extra.REFERRER", Uri.parse("android-app://" + context.getPackageName()));
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException unused) {
+            if (isSpotifyInstalled(context)) {
+                return;
+            }
+            openPlayStoreForSpotify(context);
+        }
+    }
+
     public final void launchTrack(Context context, Activity activity) {
         String syncId;
         C12238m.checkNotNullParameter(context, "context");
@@ -154,7 +138,7 @@ public final class SpotifyHelper {
         C12238m.checkNotNullParameter(context, "context");
         new Thread(new Runnable() { // from class: com.discord.utilities.integrations.SpotifyHelper.openPlayStoreForSpotify.1
             @Override // java.lang.Runnable
-            public final void run() {
+            public final void run() throws IllegalAccessException, InvocationTargetException {
                 try {
                     C12201b.closeFinally(new URL("https://app.adjust.com/ndjczk?campaign=" + context.getPackageName()).openStream(), null);
                 } catch (IOException e) {
@@ -170,6 +154,23 @@ public final class SpotifyHelper {
         Intent launchIntentForPackage = context.getPackageManager().getLaunchIntentForPackage(SPOTIFY_PACKAGE_NAME);
         if (launchIntentForPackage != null) {
             context.startActivity(launchIntentForPackage);
+        }
+    }
+
+    public static final void registerSpotifyBroadcastReceivers(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        context.registerReceiver(new SpotifyMetadataReceiver(), new IntentFilter("com.spotify.music.metadatachanged"));
+        context.registerReceiver(new SpotifyPlayingStateReceiver(), new IntentFilter("com.spotify.music.playbackstatechanged"));
+    }
+
+    private final void runIfSpotifyInstalled(Function0<Unit> action, Context context) {
+        try {
+            action.invoke();
+        } catch (ActivityNotFoundException unused) {
+            if (isSpotifyInstalled(context)) {
+                return;
+            }
+            openPlayStoreForSpotify(context);
         }
     }
 }

@@ -46,7 +46,7 @@ public final class C11501d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.d$a */
     /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23239j = new a();

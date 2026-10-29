@@ -22,7 +22,7 @@ public final class C8811xd8386722 extends AbstractC12240o implements Function1<G
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventDescriptionParser$configureDescription$$inlined$apply$lambda$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
         public AnonymousClass1() {
             super(1);
         }

@@ -48,13 +48,13 @@ public final class C2565s implements InterfaceC2710l {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /* JADX INFO: renamed from: a */
-    public long mo2586a(C2712n c2712n) {
+    public void close() {
         throw new UnsupportedOperationException();
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() {
+    /* JADX INFO: renamed from: a */
+    public long mo2586a(C2712n c2712n) {
         throw new UnsupportedOperationException();
     }
 

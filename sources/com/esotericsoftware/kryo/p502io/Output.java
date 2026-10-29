@@ -18,6 +18,47 @@ public class Output extends OutputStream {
     public Output() {
     }
 
+    public void clear() {
+        this.position = 0;
+        this.total = 0L;
+    }
+
+    @Override // java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws KryoException {
+        flush();
+        OutputStream outputStream = this.outputStream;
+        if (outputStream != null) {
+            try {
+                outputStream.close();
+            } catch (IOException unused) {
+            }
+        }
+    }
+
+    @Override // java.io.OutputStream, java.io.Flushable
+    public void flush() throws KryoException {
+        OutputStream outputStream = this.outputStream;
+        if (outputStream == null) {
+            return;
+        }
+        try {
+            outputStream.write(this.buffer, 0, this.position);
+            this.outputStream.flush();
+            this.total += (long) this.position;
+            this.position = 0;
+        } catch (IOException e) {
+            throw new KryoException(e);
+        }
+    }
+
+    public byte[] getBuffer() {
+        return this.buffer;
+    }
+
+    public OutputStream getOutputStream() {
+        return this.outputStream;
+    }
+
     public static int intLength(int i, boolean z2) {
         if (!z2) {
             i = (i >> 31) ^ (i << 1);
@@ -60,184 +101,6 @@ public class Output extends OutputStream {
             return 7;
         }
         return (j >>> 56) == 0 ? 8 : 9;
-    }
-
-    private void writeAscii_slow(String str, int i) throws KryoException {
-        if (i == 0) {
-            return;
-        }
-        if (this.capacity == 0) {
-            require(1);
-        }
-        int i2 = 0;
-        byte[] bArr = this.buffer;
-        int iMin = Math.min(i, this.capacity - this.position);
-        while (i2 < i) {
-            int i3 = i2 + iMin;
-            str.getBytes(i2, i3, bArr, this.position);
-            this.position += iMin;
-            iMin = Math.min(i - i3, this.capacity);
-            if (require(iMin)) {
-                bArr = this.buffer;
-            }
-            i2 = i3;
-        }
-    }
-
-    private void writeString_slow(CharSequence charSequence, int i, int i2) {
-        while (i2 < i) {
-            int i3 = this.position;
-            int i4 = this.capacity;
-            if (i3 == i4) {
-                require(Math.min(i4, i - i2));
-            }
-            char cCharAt = charSequence.charAt(i2);
-            if (cCharAt <= 127) {
-                byte[] bArr = this.buffer;
-                int i5 = this.position;
-                this.position = i5 + 1;
-                bArr[i5] = (byte) cCharAt;
-            } else if (cCharAt > 2047) {
-                byte[] bArr2 = this.buffer;
-                int i6 = this.position;
-                this.position = i6 + 1;
-                bArr2[i6] = (byte) (((cCharAt >> '\f') & 15) | 224);
-                require(2);
-                byte[] bArr3 = this.buffer;
-                int i7 = this.position;
-                int i8 = i7 + 1;
-                this.position = i8;
-                bArr3[i7] = (byte) (((cCharAt >> 6) & 63) | 128);
-                this.position = i8 + 1;
-                bArr3[i8] = (byte) ((cCharAt & '?') | 128);
-            } else {
-                byte[] bArr4 = this.buffer;
-                int i9 = this.position;
-                this.position = i9 + 1;
-                bArr4[i9] = (byte) (((cCharAt >> 6) & 31) | Opcodes.CHECKCAST);
-                require(1);
-                byte[] bArr5 = this.buffer;
-                int i10 = this.position;
-                this.position = i10 + 1;
-                bArr5[i10] = (byte) ((cCharAt & '?') | 128);
-            }
-            i2++;
-        }
-    }
-
-    private void writeUtf8Length(int i) {
-        int i2 = i >>> 6;
-        if (i2 == 0) {
-            require(1);
-            byte[] bArr = this.buffer;
-            int i3 = this.position;
-            this.position = i3 + 1;
-            bArr[i3] = (byte) (i | 128);
-            return;
-        }
-        int i4 = i >>> 13;
-        if (i4 == 0) {
-            require(2);
-            byte[] bArr2 = this.buffer;
-            int i5 = this.position;
-            int i6 = i5 + 1;
-            this.position = i6;
-            bArr2[i5] = (byte) (i | 64 | 128);
-            this.position = i6 + 1;
-            bArr2[i6] = (byte) i2;
-            return;
-        }
-        int i7 = i >>> 20;
-        if (i7 == 0) {
-            require(3);
-            byte[] bArr3 = this.buffer;
-            int i8 = this.position;
-            int i9 = i8 + 1;
-            this.position = i9;
-            bArr3[i8] = (byte) (i | 64 | 128);
-            int i10 = i9 + 1;
-            this.position = i10;
-            bArr3[i9] = (byte) (i2 | 128);
-            this.position = i10 + 1;
-            bArr3[i10] = (byte) i4;
-            return;
-        }
-        int i11 = i >>> 27;
-        if (i11 == 0) {
-            require(4);
-            byte[] bArr4 = this.buffer;
-            int i12 = this.position;
-            int i13 = i12 + 1;
-            this.position = i13;
-            bArr4[i12] = (byte) (i | 64 | 128);
-            int i14 = i13 + 1;
-            this.position = i14;
-            bArr4[i13] = (byte) (i2 | 128);
-            int i15 = i14 + 1;
-            this.position = i15;
-            bArr4[i14] = (byte) (i4 | 128);
-            this.position = i15 + 1;
-            bArr4[i15] = (byte) i7;
-            return;
-        }
-        require(5);
-        byte[] bArr5 = this.buffer;
-        int i16 = this.position;
-        int i17 = i16 + 1;
-        this.position = i17;
-        bArr5[i16] = (byte) (i | 64 | 128);
-        int i18 = i17 + 1;
-        this.position = i18;
-        bArr5[i17] = (byte) (i2 | 128);
-        int i19 = i18 + 1;
-        this.position = i19;
-        bArr5[i18] = (byte) (i4 | 128);
-        int i20 = i19 + 1;
-        this.position = i20;
-        bArr5[i19] = (byte) (i7 | 128);
-        this.position = i20 + 1;
-        bArr5[i20] = (byte) i11;
-    }
-
-    public void clear() {
-        this.position = 0;
-        this.total = 0L;
-    }
-
-    @Override // java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws KryoException {
-        flush();
-        OutputStream outputStream = this.outputStream;
-        if (outputStream != null) {
-            try {
-                outputStream.close();
-            } catch (IOException unused) {
-            }
-        }
-    }
-
-    @Override // java.io.OutputStream, java.io.Flushable
-    public void flush() throws KryoException {
-        OutputStream outputStream = this.outputStream;
-        if (outputStream == null) {
-            return;
-        }
-        try {
-            outputStream.write(this.buffer, 0, this.position);
-            this.outputStream.flush();
-            this.total += (long) this.position;
-            this.position = 0;
-        } catch (IOException e) {
-            throw new KryoException(e);
-        }
-    }
-
-    public byte[] getBuffer() {
-        return this.buffer;
-    }
-
-    public OutputStream getOutputStream() {
-        return this.outputStream;
     }
 
     public int position() {
@@ -345,6 +208,28 @@ public class Output extends OutputStream {
         byte[] bArr = this.buffer;
         int i3 = this.position - 1;
         bArr[i3] = (byte) (128 | bArr[i3]);
+    }
+
+    private void writeAscii_slow(String str, int i) throws KryoException {
+        if (i == 0) {
+            return;
+        }
+        if (this.capacity == 0) {
+            require(1);
+        }
+        int i2 = 0;
+        byte[] bArr = this.buffer;
+        int iMin = Math.min(i, this.capacity - this.position);
+        while (i2 < i) {
+            int i3 = i2 + iMin;
+            str.getBytes(i2, i3, bArr, this.position);
+            this.position += iMin;
+            iMin = Math.min(i - i3, this.capacity);
+            if (require(iMin)) {
+                bArr = this.buffer;
+            }
+            i2 = i3;
+        }
     }
 
     public void writeBoolean(boolean z2) throws KryoException {
@@ -549,6 +434,121 @@ public class Output extends OutputStream {
         if (i < length) {
             writeString_slow(str, length, i);
         }
+    }
+
+    private void writeString_slow(CharSequence charSequence, int i, int i2) {
+        while (i2 < i) {
+            int i3 = this.position;
+            int i4 = this.capacity;
+            if (i3 == i4) {
+                require(Math.min(i4, i - i2));
+            }
+            char cCharAt = charSequence.charAt(i2);
+            if (cCharAt <= 127) {
+                byte[] bArr = this.buffer;
+                int i5 = this.position;
+                this.position = i5 + 1;
+                bArr[i5] = (byte) cCharAt;
+            } else if (cCharAt > 2047) {
+                byte[] bArr2 = this.buffer;
+                int i6 = this.position;
+                this.position = i6 + 1;
+                bArr2[i6] = (byte) (((cCharAt >> '\f') & 15) | 224);
+                require(2);
+                byte[] bArr3 = this.buffer;
+                int i7 = this.position;
+                int i8 = i7 + 1;
+                this.position = i8;
+                bArr3[i7] = (byte) (((cCharAt >> 6) & 63) | 128);
+                this.position = i8 + 1;
+                bArr3[i8] = (byte) ((cCharAt & '?') | 128);
+            } else {
+                byte[] bArr4 = this.buffer;
+                int i9 = this.position;
+                this.position = i9 + 1;
+                bArr4[i9] = (byte) (((cCharAt >> 6) & 31) | Opcodes.CHECKCAST);
+                require(1);
+                byte[] bArr5 = this.buffer;
+                int i10 = this.position;
+                this.position = i10 + 1;
+                bArr5[i10] = (byte) ((cCharAt & '?') | 128);
+            }
+            i2++;
+        }
+    }
+
+    private void writeUtf8Length(int i) {
+        int i2 = i >>> 6;
+        if (i2 == 0) {
+            require(1);
+            byte[] bArr = this.buffer;
+            int i3 = this.position;
+            this.position = i3 + 1;
+            bArr[i3] = (byte) (i | 128);
+            return;
+        }
+        int i4 = i >>> 13;
+        if (i4 == 0) {
+            require(2);
+            byte[] bArr2 = this.buffer;
+            int i5 = this.position;
+            int i6 = i5 + 1;
+            this.position = i6;
+            bArr2[i5] = (byte) (i | 64 | 128);
+            this.position = i6 + 1;
+            bArr2[i6] = (byte) i2;
+            return;
+        }
+        int i7 = i >>> 20;
+        if (i7 == 0) {
+            require(3);
+            byte[] bArr3 = this.buffer;
+            int i8 = this.position;
+            int i9 = i8 + 1;
+            this.position = i9;
+            bArr3[i8] = (byte) (i | 64 | 128);
+            int i10 = i9 + 1;
+            this.position = i10;
+            bArr3[i9] = (byte) (i2 | 128);
+            this.position = i10 + 1;
+            bArr3[i10] = (byte) i4;
+            return;
+        }
+        int i11 = i >>> 27;
+        if (i11 == 0) {
+            require(4);
+            byte[] bArr4 = this.buffer;
+            int i12 = this.position;
+            int i13 = i12 + 1;
+            this.position = i13;
+            bArr4[i12] = (byte) (i | 64 | 128);
+            int i14 = i13 + 1;
+            this.position = i14;
+            bArr4[i13] = (byte) (i2 | 128);
+            int i15 = i14 + 1;
+            this.position = i15;
+            bArr4[i14] = (byte) (i4 | 128);
+            this.position = i15 + 1;
+            bArr4[i15] = (byte) i7;
+            return;
+        }
+        require(5);
+        byte[] bArr5 = this.buffer;
+        int i16 = this.position;
+        int i17 = i16 + 1;
+        this.position = i17;
+        bArr5[i16] = (byte) (i | 64 | 128);
+        int i18 = i17 + 1;
+        this.position = i18;
+        bArr5[i17] = (byte) (i2 | 128);
+        int i19 = i18 + 1;
+        this.position = i19;
+        bArr5[i18] = (byte) (i4 | 128);
+        int i20 = i19 + 1;
+        this.position = i20;
+        bArr5[i19] = (byte) (i7 | 128);
+        this.position = i20 + 1;
+        bArr5[i20] = (byte) i11;
     }
 
     public int writeVarInt(int i, boolean z2) throws KryoException {

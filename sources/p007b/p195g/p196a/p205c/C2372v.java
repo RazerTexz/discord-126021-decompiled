@@ -26,13 +26,6 @@ import p007b.p195g.p196a.p205c.p221z.C2389g;
 /* JADX INFO: compiled from: SerializationConfig.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2372v extends AbstractC2395m<EnumC2373w, C2372v> implements Serializable {
-
-    /* JADX INFO: renamed from: l */
-    public static final InterfaceC2114j f5033l = new C2142d();
-
-    /* JADX INFO: renamed from: m */
-    public static final int f5034m = AbstractC2394l.m2264c(EnumC2373w.class);
-    private static final long serialVersionUID = 1;
     public final InterfaceC2114j _defaultPrettyPrinter;
     public final AbstractC2242k _filterProvider;
     public final int _formatWriteFeatures;
@@ -40,6 +33,13 @@ public final class C2372v extends AbstractC2395m<EnumC2373w, C2372v> implements 
     public final int _generatorFeatures;
     public final int _generatorFeaturesToChange;
     public final int _serFeatures;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: l */
+    public static final InterfaceC2114j f5033l = new C2142d();
+
+    /* JADX INFO: renamed from: m */
+    public static final int f5034m = AbstractC2394l.m2264c(EnumC2373w.class);
 
     public C2372v(C2383a c2383a, AbstractC2212d abstractC2212d, C2180d0 c2180d0, C2354p c2354p, C2389g c2389g) {
         super(c2383a, abstractC2212d, c2180d0, c2354p, c2389g);
@@ -49,12 +49,6 @@ public final class C2372v extends AbstractC2395m<EnumC2373w, C2372v> implements 
         this._generatorFeaturesToChange = 0;
         this._formatWriteFeatures = 0;
         this._formatWriteFeaturesToChange = 0;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p221z.AbstractC2395m
-    /* JADX INFO: renamed from: r */
-    public AbstractC2395m mo1969r(int i) {
-        return new C2372v(this, i, this._serFeatures, this._generatorFeatures, this._generatorFeaturesToChange, this._formatWriteFeatures, this._formatWriteFeaturesToChange);
     }
 
     /* JADX INFO: renamed from: u */
@@ -90,6 +84,12 @@ public final class C2372v extends AbstractC2395m<EnumC2373w, C2372v> implements 
     /* JADX INFO: renamed from: v */
     public final boolean m2237v(EnumC2373w enumC2373w) {
         return (enumC2373w.mo2091g() & this._serFeatures) != 0;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p221z.AbstractC2395m
+    /* JADX INFO: renamed from: r */
+    public AbstractC2395m mo1969r(int i) {
+        return new C2372v(this, i, this._serFeatures, this._generatorFeatures, this._generatorFeaturesToChange, this._formatWriteFeatures, this._formatWriteFeaturesToChange);
     }
 
     public C2372v(C2372v c2372v, int i, int i2, int i3, int i4, int i5, int i6) {

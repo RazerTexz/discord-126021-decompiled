@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalClientStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalClientStatus implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+    private final Long activityHeight = null;
+    private final Long activityWidth = null;
+    private final Float fpsAvg = null;
+    private final Long intervalRateMs = null;
+    private final Long networkAttempts = null;
+    private final Long networkLatencyMs = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
-    private final Long activityWidth = null;
-    private final Long activityHeight = null;
-    private final Long networkLatencyMs = null;
-    private final Long networkAttempts = null;
-    private final Long intervalRateMs = null;
-    private final Float fpsAvg = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_client_status";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackActivityInternalClientStatus implements Analy
         }
         TrackActivityInternalClientStatus trackActivityInternalClientStatus = (TrackActivityInternalClientStatus) other;
         return C12238m.areEqual(this.activityWidth, trackActivityInternalClientStatus.activityWidth) && C12238m.areEqual(this.activityHeight, trackActivityInternalClientStatus.activityHeight) && C12238m.areEqual(this.networkLatencyMs, trackActivityInternalClientStatus.networkLatencyMs) && C12238m.areEqual(this.networkAttempts, trackActivityInternalClientStatus.networkAttempts) && C12238m.areEqual(this.intervalRateMs, trackActivityInternalClientStatus.intervalRateMs) && C12238m.areEqual(this.fpsAvg, trackActivityInternalClientStatus.fpsAvg);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -26,7 +26,7 @@ public class ConcatAdapterController implements NestedAdapterWrapper.Callback {
     private List<NestedAdapterWrapper> mWrappers = new ArrayList();
     private WrapperAndLocalPosition mReusableHolder = new WrapperAndLocalPosition();
 
-    public static class WrapperAndLocalPosition {
+    public class WrapperAndLocalPosition {
         public boolean mInUse;
         public int mLocalPosition;
         public NestedAdapterWrapper mWrapper;
@@ -53,11 +53,25 @@ public class ConcatAdapterController implements NestedAdapterWrapper.Callback {
         }
     }
 
+    public boolean addAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+        return addAdapter(this.mWrappers.size(), adapter);
+    }
+
     private void calculateAndUpdateStateRestorationPolicy() {
         RecyclerView.Adapter.StateRestorationPolicy stateRestorationPolicyComputeStateRestorationPolicy = computeStateRestorationPolicy();
         if (stateRestorationPolicyComputeStateRestorationPolicy != this.mConcatAdapter.getStateRestorationPolicy()) {
             this.mConcatAdapter.internalSetStateRestorationPolicy(stateRestorationPolicyComputeStateRestorationPolicy);
         }
+    }
+
+    public boolean canRestoreState() {
+        Iterator<NestedAdapterWrapper> it = this.mWrappers.iterator();
+        while (it.hasNext()) {
+            if (!it.next().adapter.canRestoreState()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private RecyclerView.Adapter.StateRestorationPolicy computeStateRestorationPolicy() {
@@ -114,56 +128,6 @@ public class ConcatAdapterController implements NestedAdapterWrapper.Callback {
             return null;
         }
         return this.mWrappers.get(iIndexOfWrapper);
-    }
-
-    @NonNull
-    private NestedAdapterWrapper getWrapper(RecyclerView.ViewHolder viewHolder) {
-        NestedAdapterWrapper nestedAdapterWrapper = this.mBinderLookup.get(viewHolder);
-        if (nestedAdapterWrapper != null) {
-            return nestedAdapterWrapper;
-        }
-        throw new IllegalStateException("Cannot find wrapper for " + viewHolder + ", seems like it is not bound by this adapter: " + this);
-    }
-
-    private int indexOfWrapper(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
-        int size = this.mWrappers.size();
-        for (int i = 0; i < size; i++) {
-            if (this.mWrappers.get(i).adapter == adapter) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean isAttachedTo(RecyclerView recyclerView) {
-        Iterator<WeakReference<RecyclerView>> it = this.mAttachedRecyclerViews.iterator();
-        while (it.hasNext()) {
-            if (it.next().get() == recyclerView) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void releaseWrapperAndLocalPosition(WrapperAndLocalPosition wrapperAndLocalPosition) {
-        wrapperAndLocalPosition.mInUse = false;
-        wrapperAndLocalPosition.mWrapper = null;
-        wrapperAndLocalPosition.mLocalPosition = -1;
-        this.mReusableHolder = wrapperAndLocalPosition;
-    }
-
-    public boolean addAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
-        return addAdapter(this.mWrappers.size(), adapter);
-    }
-
-    public boolean canRestoreState() {
-        Iterator<NestedAdapterWrapper> it = this.mWrappers.iterator();
-        while (it.hasNext()) {
-            if (!it.next().adapter.canRestoreState()) {
-                return false;
-            }
-        }
-        return true;
     }
 
     @Nullable
@@ -227,8 +191,37 @@ public class ConcatAdapterController implements NestedAdapterWrapper.Callback {
         return cachedItemCount;
     }
 
+    @NonNull
+    private NestedAdapterWrapper getWrapper(RecyclerView.ViewHolder viewHolder) {
+        NestedAdapterWrapper nestedAdapterWrapper = this.mBinderLookup.get(viewHolder);
+        if (nestedAdapterWrapper != null) {
+            return nestedAdapterWrapper;
+        }
+        throw new IllegalStateException("Cannot find wrapper for " + viewHolder + ", seems like it is not bound by this adapter: " + this);
+    }
+
     public boolean hasStableIds() {
         return this.mStableIdMode != ConcatAdapter.Config.StableIdMode.NO_STABLE_IDS;
+    }
+
+    private int indexOfWrapper(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+        int size = this.mWrappers.size();
+        for (int i = 0; i < size; i++) {
+            if (this.mWrappers.get(i).adapter == adapter) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private boolean isAttachedTo(RecyclerView recyclerView) {
+        Iterator<WeakReference<RecyclerView>> it = this.mAttachedRecyclerViews.iterator();
+        while (it.hasNext()) {
+            if (it.next().get() == recyclerView) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -329,6 +322,13 @@ public class ConcatAdapterController implements NestedAdapterWrapper.Callback {
             return;
         }
         throw new IllegalStateException("Cannot find wrapper for " + viewHolder + ", seems like it is not bound by this adapter: " + this);
+    }
+
+    private void releaseWrapperAndLocalPosition(WrapperAndLocalPosition wrapperAndLocalPosition) {
+        wrapperAndLocalPosition.mInUse = false;
+        wrapperAndLocalPosition.mWrapper = null;
+        wrapperAndLocalPosition.mLocalPosition = -1;
+        this.mReusableHolder = wrapperAndLocalPosition;
     }
 
     public boolean removeAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {

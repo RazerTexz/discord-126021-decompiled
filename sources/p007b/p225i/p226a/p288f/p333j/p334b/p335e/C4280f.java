@@ -88,6 +88,36 @@ public final class C4280f extends AbstractC3349d<InterfaceC4311u0> {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b, p007b.p225i.p226a.p288f.p299e.p300h.C3266a.f
+    /* JADX INFO: renamed from: l */
+    public final int mo3982l() {
+        return 12451000;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: r */
+    public final /* synthetic */ IInterface mo3983r(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.nearby.messages.internal.INearbyMessagesService");
+        return iInterfaceQueryLocalInterface instanceof InterfaceC4311u0 ? (InterfaceC4311u0) iInterfaceQueryLocalInterface : new C4313v0(iBinder);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    @NonNull
+    /* JADX INFO: renamed from: x */
+    public final String mo3984x() {
+        return "com.google.android.gms.nearby.messages.internal.INearbyMessagesService";
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    @NonNull
+    /* JADX INFO: renamed from: y */
+    public final String mo3985y() {
+        return "com.google.android.gms.nearby.messages.service.NearbyMessagesService.START";
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b, p007b.p225i.p226a.p288f.p299e.p300h.C3266a.f
     /* JADX INFO: renamed from: h */
     public final void mo4036h() {
         try {
@@ -107,22 +137,6 @@ public final class C4280f extends AbstractC3349d<InterfaceC4311u0> {
         return C4263a.m5980a(this.f9479d);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b, p007b.p225i.p226a.p288f.p299e.p300h.C3266a.f
-    /* JADX INFO: renamed from: l */
-    public final int mo3982l() {
-        return 12451000;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: r */
-    public final /* synthetic */ IInterface mo3983r(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.nearby.messages.internal.INearbyMessagesService");
-        return iInterfaceQueryLocalInterface instanceof InterfaceC4311u0 ? (InterfaceC4311u0) iInterfaceQueryLocalInterface : new C4313v0(iBinder);
-    }
-
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
     @NonNull
     /* JADX INFO: renamed from: u */
@@ -131,19 +145,5 @@ public final class C4280f extends AbstractC3349d<InterfaceC4311u0> {
         bundle.putInt("NearbyPermissions", this.f11410C);
         bundle.putParcelable("ClientAppContext", this.f11409B);
         return bundle;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    @NonNull
-    /* JADX INFO: renamed from: x */
-    public final String mo3984x() {
-        return "com.google.android.gms.nearby.messages.internal.INearbyMessagesService";
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    @NonNull
-    /* JADX INFO: renamed from: y */
-    public final String mo3985y() {
-        return "com.google.android.gms.nearby.messages.service.NearbyMessagesService.START";
     }
 }

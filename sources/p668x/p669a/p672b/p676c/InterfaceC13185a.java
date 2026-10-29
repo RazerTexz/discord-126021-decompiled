@@ -15,14 +15,14 @@ public interface InterfaceC13185a extends IInterface {
 
     /* JADX INFO: renamed from: x.a.b.c.a$a */
     /* JADX INFO: compiled from: IResultReceiver.java */
-    public static abstract class a extends Binder implements InterfaceC13185a {
+    public abstract class a extends Binder implements InterfaceC13185a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int f27948a = 0;
 
         /* JADX INFO: renamed from: x.a.b.c.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: IResultReceiver.java */
-        public static class C13362a implements InterfaceC13185a {
+        public class C13362a implements InterfaceC13185a {
 
             /* JADX INFO: renamed from: a */
             public IBinder f27949a;

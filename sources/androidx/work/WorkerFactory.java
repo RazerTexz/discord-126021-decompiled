@@ -10,18 +10,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 public abstract class WorkerFactory {
     private static final String TAG = Logger.tagWithPrefix("WorkerFactory");
 
-    @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static WorkerFactory getDefaultWorkerFactory() {
-        return new WorkerFactory() { // from class: androidx.work.WorkerFactory.1
-            @Override // androidx.work.WorkerFactory
-            @Nullable
-            public ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
-                return null;
-            }
-        };
-    }
-
     @Nullable
     public abstract ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters);
 
@@ -48,5 +36,17 @@ public abstract class WorkerFactory {
             return listenableWorkerCreateWorker;
         }
         throw new IllegalStateException(String.format("WorkerFactory (%s) returned an instance of a ListenableWorker (%s) which has already been invoked. createWorker() must always return a new instance of a ListenableWorker.", getClass().getName(), str));
+    }
+
+    @NonNull
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static WorkerFactory getDefaultWorkerFactory() {
+        return new WorkerFactory() { // from class: androidx.work.WorkerFactory.1
+            @Override // androidx.work.WorkerFactory
+            @Nullable
+            public ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
+                return null;
+            }
+        };
     }
 }

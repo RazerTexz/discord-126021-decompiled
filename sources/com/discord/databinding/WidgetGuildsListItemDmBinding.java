@@ -28,6 +28,12 @@ public final class WidgetGuildsListItemDmBinding implements ViewBinding {
         this.f17097c = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f17095a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetGuildsListItemDmBinding m8418a(@NonNull View view) {
@@ -41,11 +47,5 @@ public final class WidgetGuildsListItemDmBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f17095a;
     }
 }

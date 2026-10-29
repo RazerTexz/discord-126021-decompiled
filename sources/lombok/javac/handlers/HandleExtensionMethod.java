@@ -78,7 +78,7 @@ public class HandleExtensionMethod extends JavacAnnotationHandler<ExtensionMetho
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleExtensionMethod$Extension.SCL.lombok */
-    private static class Extension {
+    class Extension {
         final List<Symbol.MethodSymbol> extensionMethods;
         final Symbol.TypeSymbol extensionProvider;
 
@@ -89,7 +89,7 @@ public class HandleExtensionMethod extends JavacAnnotationHandler<ExtensionMetho
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleExtensionMethod$ExtensionMethodReplaceVisitor.SCL.lombok */
-    private static class ExtensionMethodReplaceVisitor extends TreeScanner<Void, Void> {
+    class ExtensionMethodReplaceVisitor extends TreeScanner<Void, Void> {
         final JavacNode annotationNode;
         final List<Extension> extensions;
         final boolean suppressBaseMethods;

@@ -25,6 +25,23 @@ public class FabTransformationSheetBehavior extends FabTransformationBehavior {
     public FabTransformationSheetBehavior() {
     }
 
+    @Override // com.google.android.material.transformation.FabTransformationBehavior
+    @NonNull
+    public FabTransformationBehavior.FabTransformationSpec onCreateMotionSpec(Context context, boolean z2) {
+        int i = z2 ? C10817R.animator.mtrl_fab_transformation_sheet_expand_spec : C10817R.animator.mtrl_fab_transformation_sheet_collapse_spec;
+        FabTransformationBehavior.FabTransformationSpec fabTransformationSpec = new FabTransformationBehavior.FabTransformationSpec();
+        fabTransformationSpec.timings = MotionSpec.createFromResource(context, i);
+        fabTransformationSpec.positioning = new Positioning(17, 0.0f, 0.0f);
+        return fabTransformationSpec;
+    }
+
+    @Override // com.google.android.material.transformation.ExpandableTransformationBehavior, com.google.android.material.transformation.ExpandableBehavior
+    @CallSuper
+    public boolean onExpandedStateChange(@NonNull View view, @NonNull View view2, boolean z2, boolean z3) {
+        updateImportantForAccessibility(view2, z2);
+        return super.onExpandedStateChange(view, view2, z2, z3);
+    }
+
     private void updateImportantForAccessibility(@NonNull View view, boolean z2) {
         ViewParent parent = view.getParent();
         if (parent instanceof CoordinatorLayout) {
@@ -53,23 +70,6 @@ public class FabTransformationSheetBehavior extends FabTransformationBehavior {
             }
             this.importantForAccessibilityMap = null;
         }
-    }
-
-    @Override // com.google.android.material.transformation.FabTransformationBehavior
-    @NonNull
-    public FabTransformationBehavior.FabTransformationSpec onCreateMotionSpec(Context context, boolean z2) {
-        int i = z2 ? C10817R.animator.mtrl_fab_transformation_sheet_expand_spec : C10817R.animator.mtrl_fab_transformation_sheet_collapse_spec;
-        FabTransformationBehavior.FabTransformationSpec fabTransformationSpec = new FabTransformationBehavior.FabTransformationSpec();
-        fabTransformationSpec.timings = MotionSpec.createFromResource(context, i);
-        fabTransformationSpec.positioning = new Positioning(17, 0.0f, 0.0f);
-        return fabTransformationSpec;
-    }
-
-    @Override // com.google.android.material.transformation.ExpandableTransformationBehavior, com.google.android.material.transformation.ExpandableBehavior
-    @CallSuper
-    public boolean onExpandedStateChange(@NonNull View view, @NonNull View view2, boolean z2, boolean z3) {
-        updateImportantForAccessibility(view2, z2);
-        return super.onExpandedStateChange(view, view2, z2, z3);
     }
 
     public FabTransformationSheetBehavior(Context context, AttributeSet attributeSet) {

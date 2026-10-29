@@ -27,11 +27,11 @@ public final class ViewOnClickListenerC1169d implements View.OnClickListener {
 
     /* JADX INFO: renamed from: b.a.n.d$a */
     /* JADX INFO: compiled from: OverlayManager.kt */
-    public static final class a implements View.OnAttachStateChangeListener {
+    public final class a implements View.OnAttachStateChangeListener {
 
         /* JADX INFO: renamed from: b.a.n.d$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: View.kt */
-        public static final class ViewOnLayoutChangeListenerC13211a implements View.OnLayoutChangeListener {
+        public final class ViewOnLayoutChangeListenerC13211a implements View.OnLayoutChangeListener {
 
             /* JADX INFO: renamed from: k */
             public final /* synthetic */ View f1554k;

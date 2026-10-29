@@ -32,7 +32,7 @@ public interface InterfaceC2988s {
 
     /* JADX INFO: renamed from: b.i.a.c.w2.s$a */
     /* JADX INFO: compiled from: DrmSessionEventListener.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final int f8012a;
@@ -46,7 +46,7 @@ public interface InterfaceC2988s {
 
         /* JADX INFO: renamed from: b.i.a.c.w2.s$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: DrmSessionEventListener.java */
-        public static final class C13226a {
+        public final class C13226a {
 
             /* JADX INFO: renamed from: a */
             public Handler f8015a;

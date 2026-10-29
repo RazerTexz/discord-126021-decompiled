@@ -20,7 +20,7 @@ public class ActivityOptionsCompat {
     public static final String EXTRA_USAGE_TIME_REPORT_PACKAGES = "android.usage_time_packages";
 
     @RequiresApi(16)
-    public static class ActivityOptionsCompatImpl extends ActivityOptionsCompat {
+    public class ActivityOptionsCompatImpl extends ActivityOptionsCompat {
         private final ActivityOptions mActivityOptions;
 
         public ActivityOptionsCompatImpl(ActivityOptions activityOptions) {
@@ -61,6 +61,11 @@ public class ActivityOptionsCompat {
         }
     }
 
+    @Nullable
+    public Rect getLaunchBounds() {
+        return null;
+    }
+
     @NonNull
     public static ActivityOptionsCompat makeBasic() {
         return Build.VERSION.SDK_INT >= 23 ? new ActivityOptionsCompatImpl(ActivityOptions.makeBasic()) : new ActivityOptionsCompat();
@@ -94,11 +99,6 @@ public class ActivityOptionsCompat {
     @NonNull
     public static ActivityOptionsCompat makeThumbnailScaleUpAnimation(@NonNull View view, @NonNull Bitmap bitmap, int i, int i2) {
         return new ActivityOptionsCompatImpl(ActivityOptions.makeThumbnailScaleUpAnimation(view, bitmap, i, i2));
-    }
-
-    @Nullable
-    public Rect getLaunchBounds() {
-        return null;
     }
 
     public void requestUsageTimeReport(@NonNull PendingIntent pendingIntent) {

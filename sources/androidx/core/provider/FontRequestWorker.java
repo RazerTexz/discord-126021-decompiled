@@ -163,7 +163,7 @@ public class FontRequestWorker {
         sTypefaceCache.evictAll();
     }
 
-    public static final class TypefaceResult {
+    public final class TypefaceResult {
         public final int mResult;
         public final Typeface mTypeface;
 

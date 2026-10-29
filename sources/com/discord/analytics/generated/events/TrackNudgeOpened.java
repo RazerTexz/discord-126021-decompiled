@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNudgeOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNudgeOpened implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+    private final Long stickerId = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
-    private final Long stickerId = null;
     private final transient String analyticsSchemaTypeName = "nudge_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackNudgeOpened) && C12238m.areEqual(this.stickerId, ((TrackNudgeOpened) other).stickerId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

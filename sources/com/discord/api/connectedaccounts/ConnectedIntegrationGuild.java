@@ -11,6 +11,17 @@ public final /* data */ class ConnectedIntegrationGuild {
     private final long id;
     private final String name;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ConnectedIntegrationGuild)) {
+            return false;
+        }
+        ConnectedIntegrationGuild connectedIntegrationGuild = (ConnectedIntegrationGuild) other;
+        return this.id == connectedIntegrationGuild.id && C12238m.areEqual(this.icon, connectedIntegrationGuild.icon) && C12238m.areEqual(this.name, connectedIntegrationGuild.name);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getIcon() {
         return this.icon;
@@ -24,17 +35,6 @@ public final /* data */ class ConnectedIntegrationGuild {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ConnectedIntegrationGuild)) {
-            return false;
-        }
-        ConnectedIntegrationGuild connectedIntegrationGuild = (ConnectedIntegrationGuild) other;
-        return this.id == connectedIntegrationGuild.id && C12238m.areEqual(this.icon, connectedIntegrationGuild.icon) && C12238m.areEqual(this.name, connectedIntegrationGuild.name);
     }
 
     public int hashCode() {

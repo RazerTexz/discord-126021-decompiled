@@ -17,16 +17,6 @@ public final /* data */ class CreatorMonetizationEnableRequest {
         APPROVED
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final State getState() {
-        return this.state;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,6 +26,16 @@ public final /* data */ class CreatorMonetizationEnableRequest {
         }
         CreatorMonetizationEnableRequest creatorMonetizationEnableRequest = (CreatorMonetizationEnableRequest) other;
         return this.id == creatorMonetizationEnableRequest.id && C12238m.areEqual(this.state, creatorMonetizationEnableRequest.state);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final State getState() {
+        return this.state;
     }
 
     public int hashCode() {

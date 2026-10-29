@@ -16,7 +16,6 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy gsonInstance$delegate = C12083g.lazy(C9411x37fd3d3b.INSTANCE);
     private final boolean canApply;
     private final Integer communicatorCount;
     private final Integer guildMemberCount;
@@ -33,9 +32,10 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
     private final CreatorMonetizationEligibilityRequirements.Rejection rejection;
     private final Double retentionScore;
     private final boolean weeklyCommunicators;
+    private static final Lazy gsonInstance$delegate = C12083g.lazy(C9411x37fd3d3b.INSTANCE);
 
     /* JADX INFO: compiled from: AnalyticsFormattedMonetizationRequirements.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -94,86 +94,6 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
         this.retentionScore = d;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getIsEligibleForMonetization() {
-        return this.isEligibleForMonetization;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final int getMinimumAgeInDays() {
-        return this.minimumAgeInDays;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final int getMinimumSize() {
-        return this.minimumSize;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final CreatorMonetizationEnableRequest getLatestRequest() {
-        return this.latestRequest;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final CreatorMonetizationEligibilityRequirements.Rejection getRejection() {
-        return this.rejection;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final Integer getGuildMemberCount() {
-        return this.guildMemberCount;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final Integer getCommunicatorCount() {
-        return this.communicatorCount;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final Double getRetentionScore() {
-        return this.retentionScore;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getHasSufficientMembers() {
-        return this.hasSufficientMembers;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getMeetsServerAgeRequirement() {
-        return this.meetsServerAgeRequirement;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getNoRecentViolations() {
-        return this.noRecentViolations;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getWeeklyCommunicators() {
-        return this.weeklyCommunicators;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getHasMemberRetention() {
-        return this.hasMemberRetention;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getNotNSFW() {
-        return this.notNSFW;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getCanApply() {
-        return this.canApply;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsApplicationPending() {
-        return this.isApplicationPending;
-    }
-
     public final AnalyticsFormattedMonetizationRequirements copy(boolean isEligibleForMonetization, boolean hasSufficientMembers, boolean meetsServerAgeRequirement, boolean noRecentViolations, boolean weeklyCommunicators, boolean hasMemberRetention, boolean notNSFW, boolean canApply, boolean isApplicationPending, int minimumAgeInDays, int minimumSize, CreatorMonetizationEnableRequest latestRequest, CreatorMonetizationEligibilityRequirements.Rejection rejection, Integer guildMemberCount, Integer communicatorCount, Double retentionScore) {
         return new AnalyticsFormattedMonetizationRequirements(isEligibleForMonetization, hasSufficientMembers, meetsServerAgeRequirement, noRecentViolations, weeklyCommunicators, hasMemberRetention, notNSFW, canApply, isApplicationPending, minimumAgeInDays, minimumSize, latestRequest, rejection, guildMemberCount, communicatorCount, retentionScore);
     }
@@ -189,56 +109,136 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
         return this.isEligibleForMonetization == analyticsFormattedMonetizationRequirements.isEligibleForMonetization && this.hasSufficientMembers == analyticsFormattedMonetizationRequirements.hasSufficientMembers && this.meetsServerAgeRequirement == analyticsFormattedMonetizationRequirements.meetsServerAgeRequirement && this.noRecentViolations == analyticsFormattedMonetizationRequirements.noRecentViolations && this.weeklyCommunicators == analyticsFormattedMonetizationRequirements.weeklyCommunicators && this.hasMemberRetention == analyticsFormattedMonetizationRequirements.hasMemberRetention && this.notNSFW == analyticsFormattedMonetizationRequirements.notNSFW && this.canApply == analyticsFormattedMonetizationRequirements.canApply && this.isApplicationPending == analyticsFormattedMonetizationRequirements.isApplicationPending && this.minimumAgeInDays == analyticsFormattedMonetizationRequirements.minimumAgeInDays && this.minimumSize == analyticsFormattedMonetizationRequirements.minimumSize && C12238m.areEqual(this.latestRequest, analyticsFormattedMonetizationRequirements.latestRequest) && C12238m.areEqual(this.rejection, analyticsFormattedMonetizationRequirements.rejection) && C12238m.areEqual(this.guildMemberCount, analyticsFormattedMonetizationRequirements.guildMemberCount) && C12238m.areEqual(this.communicatorCount, analyticsFormattedMonetizationRequirements.communicatorCount) && C12238m.areEqual(this.retentionScore, analyticsFormattedMonetizationRequirements.retentionScore);
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final boolean getCanApply() {
         return this.canApply;
+    }
+
+    public final boolean getCanApply() {
+        return this.canApply;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final Integer getCommunicatorCount() {
+        return this.communicatorCount;
     }
 
     public final Integer getCommunicatorCount() {
         return this.communicatorCount;
     }
 
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final Integer getGuildMemberCount() {
         return this.guildMemberCount;
+    }
+
+    public final Integer getGuildMemberCount() {
+        return this.guildMemberCount;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getHasMemberRetention() {
+        return this.hasMemberRetention;
     }
 
     public final boolean getHasMemberRetention() {
         return this.hasMemberRetention;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getHasSufficientMembers() {
         return this.hasSufficientMembers;
+    }
+
+    public final boolean getHasSufficientMembers() {
+        return this.hasSufficientMembers;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsApplicationPending() {
+        return this.isApplicationPending;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getIsEligibleForMonetization() {
+        return this.isEligibleForMonetization;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final CreatorMonetizationEnableRequest getLatestRequest() {
+        return this.latestRequest;
     }
 
     public final CreatorMonetizationEnableRequest getLatestRequest() {
         return this.latestRequest;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getMeetsServerAgeRequirement() {
         return this.meetsServerAgeRequirement;
+    }
+
+    public final boolean getMeetsServerAgeRequirement() {
+        return this.meetsServerAgeRequirement;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final int getMinimumAgeInDays() {
+        return this.minimumAgeInDays;
     }
 
     public final int getMinimumAgeInDays() {
         return this.minimumAgeInDays;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final int getMinimumSize() {
         return this.minimumSize;
+    }
+
+    public final int getMinimumSize() {
+        return this.minimumSize;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getNoRecentViolations() {
+        return this.noRecentViolations;
     }
 
     public final boolean getNoRecentViolations() {
         return this.noRecentViolations;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getNotNSFW() {
         return this.notNSFW;
+    }
+
+    public final boolean getNotNSFW() {
+        return this.notNSFW;
+    }
+
+    /* JADX INFO: renamed from: component13, reason: from getter */
+    public final CreatorMonetizationEligibilityRequirements.Rejection getRejection() {
+        return this.rejection;
     }
 
     public final CreatorMonetizationEligibilityRequirements.Rejection getRejection() {
         return this.rejection;
     }
 
+    /* JADX INFO: renamed from: component16, reason: from getter */
     public final Double getRetentionScore() {
         return this.retentionScore;
+    }
+
+    public final Double getRetentionScore() {
+        return this.retentionScore;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getWeeklyCommunicators() {
+        return this.weeklyCommunicators;
     }
 
     public final boolean getWeeklyCommunicators() {

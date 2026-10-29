@@ -44,8 +44,60 @@ public final class StatefulViews {
     private final HashMap<Integer, Object> viewValues;
     private final HashMap<Integer, Object> viewValuesEdited;
 
+    /* JADX INFO: renamed from: com.discord.utilities.stateful.StatefulViews$configureSaveActionView$1 */
     /* JADX INFO: compiled from: StatefulViews.kt */
-    public static final class FragmentOnBackPressedHandler {
+    public final class C69181 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C69181 INSTANCE = new C69181();
+
+        public C69181() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "$this$smartHide");
+            if (view instanceof FloatingActionButton) {
+                ((FloatingActionButton) view).hide();
+            } else {
+                view.setVisibility(8);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.stateful.StatefulViews$configureSaveActionView$2 */
+    /* JADX INFO: compiled from: StatefulViews.kt */
+    public final class C69192 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C69192 INSTANCE = new C69192();
+
+        public C69192() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "$this$smartShow");
+            if (view instanceof FloatingActionButton) {
+                ((FloatingActionButton) view).show();
+            } else {
+                view.setVisibility(0);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StatefulViews.kt */
+    public final class FragmentOnBackPressedHandler {
         private final Activity activity;
         private final AtomicBoolean discardConfirmed;
         private final Function0<Boolean> hasAnythingChanged;
@@ -96,64 +148,19 @@ public final class StatefulViews {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.stateful.StatefulViews$configureSaveActionView$1 */
-    /* JADX INFO: compiled from: StatefulViews.kt */
-    public static final class C69181 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C69181 INSTANCE = new C69181();
-
-        public C69181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "$this$smartHide");
-            if (view instanceof FloatingActionButton) {
-                ((FloatingActionButton) view).hide();
-            } else {
-                view.setVisibility(8);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.stateful.StatefulViews$configureSaveActionView$2 */
-    /* JADX INFO: compiled from: StatefulViews.kt */
-    public static final class C69192 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C69192 INSTANCE = new C69192();
-
-        public C69192() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "$this$smartShow");
-            if (view instanceof FloatingActionButton) {
-                ((FloatingActionButton) view).show();
-            } else {
-                view.setVisibility(0);
-            }
-        }
-    }
-
     public StatefulViews(List<Integer> list) {
         C12238m.checkNotNullParameter(list, "ids");
         this.ids = list;
         this.viewValues = new HashMap<>();
         this.viewValuesEdited = new HashMap<>();
         this.requiredFieldIds = new HashMap<>();
+    }
+
+    public final void addOptionalFields(View... views) {
+        C12238m.checkNotNullParameter(views, "views");
+        for (View view : views) {
+            this.requiredFieldIds.put(Integer.valueOf(view.getId()), Boolean.FALSE);
+        }
     }
 
     public static /* synthetic */ void clear$default(StatefulViews statefulViews, boolean z2, int i, Object obj) {
@@ -163,8 +170,38 @@ public final class StatefulViews {
         statefulViews.clear(z2);
     }
 
+    public final void clear() {
+        clear$default(this, false, 1, null);
+    }
+
+    public final void clear(boolean clearDefaults) {
+        this.viewValuesEdited.clear();
+        if (clearDefaults) {
+            this.viewValues.clear();
+        }
+    }
+
+    public final void configureSaveActionView(View saveActionView) {
+        C69181 c69181 = C69181.INSTANCE;
+        C69192 c69192 = C69192.INSTANCE;
+        if (saveActionView != null) {
+            if (!hasAnythingChanged() || isAnyRequiredFieldBlank()) {
+                c69181.invoke2(saveActionView);
+            } else {
+                c69192.invoke2(saveActionView);
+            }
+        }
+    }
+
     private final <T> T get(int id2) {
         return (T) (this.viewValuesEdited.containsKey(Integer.valueOf(id2)) ? this.viewValuesEdited : this.viewValues).get(Integer.valueOf(id2));
+    }
+
+    public final <T> T getIfChanged(int id2) {
+        if (hasChanged(id2)) {
+            return (T) this.viewValuesEdited.get(Integer.valueOf(id2));
+        }
+        return null;
     }
 
     /* JADX WARN: Code duplicated, block: B:22:0x0072  */
@@ -196,6 +233,13 @@ public final class StatefulViews {
         return false;
     }
 
+    public final boolean hasChanged(int viewId) {
+        if (this.viewValuesEdited.containsKey(Integer.valueOf(viewId))) {
+            return !C12238m.areEqual(this.viewValuesEdited.get(Integer.valueOf(viewId)), this.viewValues.get(Integer.valueOf(viewId)));
+        }
+        return false;
+    }
+
     /* JADX WARN: Code duplicated, block: B:18:0x004b  */
     private final boolean isAnyRequiredFieldBlank() {
         boolean z2;
@@ -221,50 +265,6 @@ public final class StatefulViews {
                     return true;
                 }
             }
-        }
-        return false;
-    }
-
-    public final void addOptionalFields(View... views) {
-        C12238m.checkNotNullParameter(views, "views");
-        for (View view : views) {
-            this.requiredFieldIds.put(Integer.valueOf(view.getId()), Boolean.FALSE);
-        }
-    }
-
-    public final void clear() {
-        clear$default(this, false, 1, null);
-    }
-
-    public final void clear(boolean clearDefaults) {
-        this.viewValuesEdited.clear();
-        if (clearDefaults) {
-            this.viewValues.clear();
-        }
-    }
-
-    public final void configureSaveActionView(View saveActionView) {
-        C69181 c69181 = C69181.INSTANCE;
-        C69192 c69192 = C69192.INSTANCE;
-        if (saveActionView != null) {
-            if (!hasAnythingChanged() || isAnyRequiredFieldBlank()) {
-                c69181.invoke2(saveActionView);
-            } else {
-                c69192.invoke2(saveActionView);
-            }
-        }
-    }
-
-    public final <T> T getIfChanged(int id2) {
-        if (hasChanged(id2)) {
-            return (T) this.viewValuesEdited.get(Integer.valueOf(id2));
-        }
-        return null;
-    }
-
-    public final boolean hasChanged(int viewId) {
-        if (this.viewValuesEdited.containsKey(Integer.valueOf(viewId))) {
-            return !C12238m.areEqual(this.viewValuesEdited.get(Integer.valueOf(viewId)), this.viewValues.get(Integer.valueOf(viewId)));
         }
         return false;
     }

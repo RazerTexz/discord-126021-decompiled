@@ -11,7 +11,6 @@ import p007b.p225i.p226a.p288f.p313h.p324k.C3568m;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzh extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzh> CREATOR = new C3568m();
 
     /* JADX INFO: renamed from: j */
     public final zzk[] f20585j;
@@ -24,6 +23,7 @@ public final class zzh extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: m */
     public final Account f20588m;
+    public static final Parcelable.Creator<zzh> CREATOR = new C3568m();
 
     public zzh(zzk[] zzkVarArr, String str, boolean z2, Account account) {
         this.f20585j = zzkVarArr;

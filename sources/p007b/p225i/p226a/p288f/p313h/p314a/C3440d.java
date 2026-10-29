@@ -19,22 +19,19 @@ public final class C3440d implements InterfaceC3438b, IInterface {
         this.f9623a = iBinder;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p314a.InterfaceC3438b
-    /* JADX INFO: renamed from: D */
-    public final boolean mo4391D(boolean z2) throws RemoteException {
-        Parcel parcelObtain = Parcel.obtain();
-        parcelObtain.writeInterfaceToken(this.f9624b);
-        int i = C3437a.f9621a;
-        parcelObtain.writeInt(1);
-        Parcel parcelM4392c = m4392c(2, parcelObtain);
-        boolean z3 = parcelM4392c.readInt() != 0;
-        parcelM4392c.recycle();
-        return z3;
-    }
-
     @Override // android.os.IInterface
     public IBinder asBinder() {
         return this.f9623a;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p314a.InterfaceC3438b
+    public final String getId() throws RemoteException {
+        Parcel parcelObtain = Parcel.obtain();
+        parcelObtain.writeInterfaceToken(this.f9624b);
+        Parcel parcelM4392c = m4392c(1, parcelObtain);
+        String string = parcelM4392c.readString();
+        parcelM4392c.recycle();
+        return string;
     }
 
     /* JADX INFO: renamed from: c */
@@ -57,12 +54,15 @@ public final class C3440d implements InterfaceC3438b, IInterface {
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p314a.InterfaceC3438b
-    public final String getId() throws RemoteException {
+    /* JADX INFO: renamed from: D */
+    public final boolean mo4391D(boolean z2) throws RemoteException {
         Parcel parcelObtain = Parcel.obtain();
         parcelObtain.writeInterfaceToken(this.f9624b);
-        Parcel parcelM4392c = m4392c(1, parcelObtain);
-        String string = parcelM4392c.readString();
+        int i = C3437a.f9621a;
+        parcelObtain.writeInt(1);
+        Parcel parcelM4392c = m4392c(2, parcelObtain);
+        boolean z3 = parcelM4392c.readInt() != 0;
         parcelM4392c.recycle();
-        return string;
+        return z3;
     }
 }

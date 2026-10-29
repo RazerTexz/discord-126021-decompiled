@@ -14,39 +14,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageInstanceStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageInstanceStarted implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Long guildScheduledEventId = null;
+    private final Long maxConcurrentListeners = null;
+    private final Long maxConcurrentSpeakers = null;
+    private final Long numParticipants = null;
+    private final Long privacyLevel = null;
+    private final Boolean sendStartNotification = null;
+    private final Long stageInstanceId = null;
+    private final CharSequence topic = null;
+    private final Long totalUniqueListeners = null;
+    private final Long totalUniqueSpeakers = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final Long stageInstanceId = null;
-    private final CharSequence topic = null;
-    private final Long privacyLevel = null;
-    private final Long numParticipants = null;
     private final Long updaterId = null;
-    private final Long guildScheduledEventId = null;
-    private final Long totalUniqueListeners = null;
-    private final Long maxConcurrentListeners = null;
-    private final Long totalUniqueSpeakers = null;
-    private final Long maxConcurrentSpeakers = null;
-    private final Boolean sendStartNotification = null;
     private final transient String analyticsSchemaTypeName = "stage_instance_started";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -57,6 +39,18 @@ public final /* data */ class TrackStageInstanceStarted implements AnalyticsSche
         }
         TrackStageInstanceStarted trackStageInstanceStarted = (TrackStageInstanceStarted) other;
         return C12238m.areEqual(this.stageInstanceId, trackStageInstanceStarted.stageInstanceId) && C12238m.areEqual(this.topic, trackStageInstanceStarted.topic) && C12238m.areEqual(this.privacyLevel, trackStageInstanceStarted.privacyLevel) && C12238m.areEqual(this.numParticipants, trackStageInstanceStarted.numParticipants) && C12238m.areEqual(this.updaterId, trackStageInstanceStarted.updaterId) && C12238m.areEqual(this.guildScheduledEventId, trackStageInstanceStarted.guildScheduledEventId) && C12238m.areEqual(this.totalUniqueListeners, trackStageInstanceStarted.totalUniqueListeners) && C12238m.areEqual(this.maxConcurrentListeners, trackStageInstanceStarted.maxConcurrentListeners) && C12238m.areEqual(this.totalUniqueSpeakers, trackStageInstanceStarted.totalUniqueSpeakers) && C12238m.areEqual(this.maxConcurrentSpeakers, trackStageInstanceStarted.maxConcurrentSpeakers) && C12238m.areEqual(this.sendStartNotification, trackStageInstanceStarted.sendStartNotification);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -82,6 +76,12 @@ public final /* data */ class TrackStageInstanceStarted implements AnalyticsSche
         int iHashCode10 = (iHashCode9 + (l9 != null ? l9.hashCode() : 0)) * 31;
         Boolean bool = this.sendStartNotification;
         return iHashCode10 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

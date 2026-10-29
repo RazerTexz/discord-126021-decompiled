@@ -7,13 +7,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLfgGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLfgGroup {
-    private final CharSequence gameName = null;
-    private final Long gameId = null;
-    private final Long totalSize = null;
+    private final CharSequence description = null;
     private final Long freeSize = null;
+    private final Long gameId = null;
+    private final CharSequence gameName = null;
     private final Long ownerId = null;
     private final CharSequence title = null;
-    private final CharSequence description = null;
+    private final Long totalSize = null;
 
     public boolean equals(Object other) {
         if (this == other) {

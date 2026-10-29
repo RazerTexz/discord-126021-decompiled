@@ -153,6 +153,73 @@ public class ActivityHandler implements IActivityHandler {
         });
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void addSessionCallbackParameter(final String str, final String str2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.16
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.addSessionCallbackParameterI(str, str2);
+            }
+        });
+    }
+
+    public void addSessionCallbackParameterI(String str, String str2) {
+        if (Util.isValidParameter(str, "key", "Session Callback") && Util.isValidParameter(str2, "value", "Session Callback")) {
+            SessionParameters sessionParameters = this.sessionParameters;
+            if (sessionParameters.callbackParameters == null) {
+                sessionParameters.callbackParameters = new LinkedHashMap();
+            }
+            String str3 = this.sessionParameters.callbackParameters.get(str);
+            if (str2.equals(str3)) {
+                this.logger.verbose("Key %s already present with the same value", str);
+                return;
+            }
+            if (str3 != null) {
+                this.logger.warn("Key %s will be overwritten", str);
+            }
+            this.sessionParameters.callbackParameters.put(str, str2);
+            writeSessionCallbackParametersI();
+        }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void addSessionPartnerParameter(final String str, final String str2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.17
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.addSessionPartnerParameterI(str, str2);
+            }
+        });
+    }
+
+    public void addSessionPartnerParameterI(String str, String str2) {
+        if (Util.isValidParameter(str, "key", "Session Partner") && Util.isValidParameter(str2, "value", "Session Partner")) {
+            SessionParameters sessionParameters = this.sessionParameters;
+            if (sessionParameters.partnerParameters == null) {
+                sessionParameters.partnerParameters = new LinkedHashMap();
+            }
+            String str3 = this.sessionParameters.partnerParameters.get(str);
+            if (str2.equals(str3)) {
+                this.logger.verbose("Key %s already present with the same value", str);
+                return;
+            }
+            if (str3 != null) {
+                this.logger.warn("Key %s will be overwritten", str);
+            }
+            this.sessionParameters.partnerParameters.put(str, str2);
+            writeSessionPartnerParametersI();
+        }
+    }
+
+    public void backgroundTimerFired() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.29
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.backgroundTimerFiredI();
+            }
+        });
+    }
+
     private void backgroundTimerFiredI() {
         if (toSendI()) {
             this.packageHandler.sendFirstPackage();
@@ -287,6 +354,16 @@ public class ActivityHandler implements IActivityHandler {
         new SharedPreferencesManager(context).clear();
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void disableThirdPartySharing() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.24
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.disableThirdPartySharingI();
+            }
+        });
+    }
+
     private void disableThirdPartySharingI() {
         SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(getContext());
         sharedPreferencesManager.setDisableThirdPartySharing();
@@ -317,6 +394,30 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void finishedTrackingActivity(ResponseData responseData) {
+        if (responseData instanceof SessionResponseData) {
+            this.attributionHandler.checkSessionResponse((SessionResponseData) responseData);
+            return;
+        }
+        if (responseData instanceof SdkClickResponseData) {
+            SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) responseData;
+            checkForInstallReferrerInfo(sdkClickResponseData);
+            this.attributionHandler.checkSdkClickResponse(sdkClickResponseData);
+        } else if (responseData instanceof EventResponseData) {
+            launchEventResponseTasks((EventResponseData) responseData);
+        }
+    }
+
+    public void foregroundTimerFired() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.28
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.foregroundTimerFiredI();
+            }
+        });
+    }
+
     private void foregroundTimerFiredI() {
         if (!isEnabledI()) {
             stopForegroundTimerI();
@@ -328,6 +429,16 @@ public class ActivityHandler implements IActivityHandler {
         if (updateActivityStateI(System.currentTimeMillis())) {
             writeActivityStateI();
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void gdprForgetMe() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.23
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.gdprForgetMeI();
+            }
+        });
     }
 
     private void gdprForgetMeI() {
@@ -347,6 +458,50 @@ public class ActivityHandler implements IActivityHandler {
                 this.packageHandler.sendFirstPackage();
             }
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public ActivityState getActivityState() {
+        return this.activityState;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public String getAdid() {
+        ActivityState activityState = this.activityState;
+        if (activityState == null) {
+            return null;
+        }
+        return activityState.adid;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public AdjustConfig getAdjustConfig() {
+        return this.adjustConfig;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public AdjustAttribution getAttribution() {
+        return this.attribution;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public String getBasePath() {
+        return this.basePath;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public Context getContext() {
+        return this.adjustConfig.context;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public DeviceInfo getDeviceInfo() {
+        return this.deviceInfo;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public String getGdprPath() {
+        return this.gdprPath;
     }
 
     public static ActivityHandler getInstance(AdjustConfig adjustConfig) {
@@ -377,6 +532,30 @@ public class ActivityHandler implements IActivityHandler {
         return new ActivityHandler(adjustConfig);
     }
 
+    public InternalState getInternalState() {
+        return this.internalState;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public SessionParameters getSessionParameters() {
+        return this.sessionParameters;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public String getSubscriptionPath() {
+        return this.subscriptionPath;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void gotOptOutResponse() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.27
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.gotOptOutResponseI();
+            }
+        });
+    }
+
     private void gotOptOutResponseI() {
         this.activityState.isGdprForgotten = true;
         writeActivityStateI();
@@ -394,6 +573,11 @@ public class ActivityHandler implements IActivityHandler {
             this.logger.debug(str2, new Object[0]);
         }
         return false;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void init(AdjustConfig adjustConfig) {
+        this.adjustConfig = adjustConfig;
     }
 
     private void initI() {
@@ -520,6 +704,11 @@ public class ActivityHandler implements IActivityHandler {
         sendReftagReferrerI();
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public boolean isEnabled() {
+        return isEnabledI();
+    }
+
     private boolean isEnabledI() {
         ActivityState activityState = this.activityState;
         return activityState != null ? activityState.enabled : this.internalState.isEnabled();
@@ -545,6 +734,16 @@ public class ActivityHandler implements IActivityHandler {
         });
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void launchAttributionResponseTasks(final AttributionResponseData attributionResponseData) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.14
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.launchAttributionResponseTasksI(attributionResponseData);
+            }
+        });
+    }
+
     private void launchAttributionResponseTasksI(AttributionResponseData attributionResponseData) {
         updateAdidI(attributionResponseData.adid);
         Handler handler = new Handler(this.adjustConfig.context.getMainLooper());
@@ -561,6 +760,16 @@ public class ActivityHandler implements IActivityHandler {
             this.logger.info("Open deferred deep link (%s)", uri);
             this.adjustConfig.context.startActivity(intent);
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void launchEventResponseTasks(final EventResponseData eventResponseData) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.11
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.launchEventResponseTasksI(eventResponseData);
+            }
+        });
     }
 
     private void launchEventResponseTasksI(final EventResponseData eventResponseData) {
@@ -593,6 +802,16 @@ public class ActivityHandler implements IActivityHandler {
                 }
             });
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void launchSdkClickResponseTasks(final SdkClickResponseData sdkClickResponseData) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.12
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.launchSdkClickResponseTasksI(sdkClickResponseData);
+            }
+        });
     }
 
     private void launchSdkClickResponseTasksI(SdkClickResponseData sdkClickResponseData) {
@@ -633,6 +852,16 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void launchSessionResponseTasks(final SessionResponseData sessionResponseData) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.13
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.launchSessionResponseTasksI(sessionResponseData);
+            }
+        });
+    }
+
     private void launchSessionResponseTasksI(SessionResponseData sessionResponseData) {
         updateAdidI(sessionResponseData.adid);
         Handler handler = new Handler(this.adjustConfig.context.getMainLooper());
@@ -647,6 +876,35 @@ public class ActivityHandler implements IActivityHandler {
         }
         launchSessionResponseListenerI(sessionResponseData, handler);
         this.internalState.sessionResponseProcessed = true;
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void onPause() {
+        this.internalState.background = true;
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.3
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.stopForegroundTimerI();
+                ActivityHandler.this.startBackgroundTimerI();
+                ActivityHandler.this.logger.verbose("Subsession end", new Object[0]);
+                ActivityHandler.this.endI();
+            }
+        });
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void onResume() {
+        this.internalState.background = false;
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.2
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.delayStartI();
+                ActivityHandler.this.stopBackgroundTimerI();
+                ActivityHandler.this.startForegroundTimerI();
+                ActivityHandler.this.logger.verbose("Subsession start", new Object[0]);
+                ActivityHandler.this.startI();
+            }
+        });
     }
 
     private void pauseSendingI() {
@@ -773,6 +1031,16 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void readOpenUrl(final Uri uri, final long j) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.7
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.readOpenUrlI(uri, j);
+            }
+        });
+    }
+
     private void readOpenUrlI(Uri uri, long j) {
         if (isEnabledI()) {
             if (!Util.isUrlFilteredOut(uri)) {
@@ -809,10 +1077,104 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void removeSessionCallbackParameter(final String str) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.18
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.removeSessionCallbackParameterI(str);
+            }
+        });
+    }
+
+    public void removeSessionCallbackParameterI(String str) {
+        if (Util.isValidParameter(str, "key", "Session Callback")) {
+            Map<String, String> map = this.sessionParameters.callbackParameters;
+            if (map == null) {
+                this.logger.warn("Session Callback parameters are not set", new Object[0]);
+            } else if (map.remove(str) == null) {
+                this.logger.warn("Key %s does not exist", str);
+            } else {
+                this.logger.debug("Key %s will be removed", str);
+                writeSessionCallbackParametersI();
+            }
+        }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void removeSessionPartnerParameter(final String str) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.19
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.removeSessionPartnerParameterI(str);
+            }
+        });
+    }
+
+    public void removeSessionPartnerParameterI(String str) {
+        if (Util.isValidParameter(str, "key", "Session Partner")) {
+            Map<String, String> map = this.sessionParameters.partnerParameters;
+            if (map == null) {
+                this.logger.warn("Session Partner parameters are not set", new Object[0]);
+            } else if (map.remove(str) == null) {
+                this.logger.warn("Key %s does not exist", str);
+            } else {
+                this.logger.debug("Key %s will be removed", str);
+                writeSessionPartnerParametersI();
+            }
+        }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void resetSessionCallbackParameters() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.20
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.resetSessionCallbackParametersI();
+            }
+        });
+    }
+
+    public void resetSessionCallbackParametersI() {
+        if (this.sessionParameters.callbackParameters == null) {
+            this.logger.warn("Session Callback parameters are not set", new Object[0]);
+        }
+        this.sessionParameters.callbackParameters = null;
+        writeSessionCallbackParametersI();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void resetSessionPartnerParameters() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.21
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.resetSessionPartnerParametersI();
+            }
+        });
+    }
+
+    public void resetSessionPartnerParametersI() {
+        if (this.sessionParameters.partnerParameters == null) {
+            this.logger.warn("Session Partner parameters are not set", new Object[0]);
+        }
+        this.sessionParameters.partnerParameters = null;
+        writeSessionPartnerParametersI();
+    }
+
     private void resumeSendingI() {
         this.attributionHandler.resumeSending();
         this.packageHandler.resumeSending();
         this.sdkClickHandler.resumeSending();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void sendFirstPackages() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.15
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.sendFirstPackagesI();
+            }
+        });
     }
 
     private void sendFirstPackagesI() {
@@ -825,6 +1187,16 @@ public class ActivityHandler implements IActivityHandler {
         this.delayStartTimer.cancel();
         this.delayStartTimer = null;
         updateHandlersStatusAndSendI();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void sendInstallReferrer(final String str, final long j, final long j2, final String str2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.10
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.sendInstallReferrerI(str, j, j2, str2);
+            }
+        });
     }
 
     private void sendInstallReferrerI(String str, long j, long j2, String str2) {
@@ -844,15 +1216,45 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void sendReftagReferrer() {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.9
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.sendReftagReferrerI();
+            }
+        });
+    }
+
     private void sendReftagReferrerI() {
         if (isEnabledI() && !this.internalState.hasFirstSdkStartNotOcurred()) {
             this.sdkClickHandler.sendReftagReferrers();
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void setAskingAttribution(final boolean z2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.8
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.setAskingAttributionI(z2);
+            }
+        });
+    }
+
     private void setAskingAttributionI(boolean z2) {
         this.activityState.askingAttribution = z2;
         writeActivityStateI();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void setEnabled(final boolean z2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.5
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.setEnabledI(z2);
+            }
+        });
     }
 
     private void setEnabledI(boolean z2) {
@@ -886,6 +1288,16 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void setOfflineMode(final boolean z2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.6
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.setOfflineModeI(z2);
+            }
+        });
+    }
+
     private void setOfflineModeI(boolean z2) {
         if (hasChangedStateI(this.internalState.isOffline(), z2, "Adjust already in offline mode", "Adjust already in online mode")) {
             InternalState internalState = this.internalState;
@@ -896,6 +1308,22 @@ public class ActivityHandler implements IActivityHandler {
                 updateStatusI(z2, "Pausing handlers to put SDK offline mode", "Handlers remain paused", "Resuming handlers to put SDK in online mode");
             }
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void setPushToken(final String str, final boolean z2) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.22
+            @Override // java.lang.Runnable
+            public void run() {
+                if (!z2) {
+                    new SharedPreferencesManager(ActivityHandler.this.getContext()).savePushToken(str);
+                }
+                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
+                    return;
+                }
+                ActivityHandler.this.setPushTokenI(str);
+            }
+        });
     }
 
     private void setPushTokenI(String str) {
@@ -983,6 +1411,64 @@ public class ActivityHandler implements IActivityHandler {
         this.foregroundTimer.suspend();
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void teardown() {
+        TimerOnce timerOnce = this.backgroundTimer;
+        if (timerOnce != null) {
+            timerOnce.teardown();
+        }
+        TimerCycle timerCycle = this.foregroundTimer;
+        if (timerCycle != null) {
+            timerCycle.teardown();
+        }
+        TimerOnce timerOnce2 = this.delayStartTimer;
+        if (timerOnce2 != null) {
+            timerOnce2.teardown();
+        }
+        ThreadExecutor threadExecutor = this.executor;
+        if (threadExecutor != null) {
+            threadExecutor.teardown();
+        }
+        IPackageHandler iPackageHandler = this.packageHandler;
+        if (iPackageHandler != null) {
+            iPackageHandler.teardown();
+        }
+        IAttributionHandler iAttributionHandler = this.attributionHandler;
+        if (iAttributionHandler != null) {
+            iAttributionHandler.teardown();
+        }
+        ISdkClickHandler iSdkClickHandler = this.sdkClickHandler;
+        if (iSdkClickHandler != null) {
+            iSdkClickHandler.teardown();
+        }
+        SessionParameters sessionParameters = this.sessionParameters;
+        if (sessionParameters != null) {
+            Map<String, String> map = sessionParameters.callbackParameters;
+            if (map != null) {
+                map.clear();
+            }
+            Map<String, String> map2 = this.sessionParameters.partnerParameters;
+            if (map2 != null) {
+                map2.clear();
+            }
+        }
+        teardownActivityStateS();
+        teardownAttributionS();
+        teardownAllSessionParametersS();
+        this.packageHandler = null;
+        this.logger = null;
+        this.foregroundTimer = null;
+        this.executor = null;
+        this.backgroundTimer = null;
+        this.delayStartTimer = null;
+        this.internalState = null;
+        this.deviceInfo = null;
+        this.adjustConfig = null;
+        this.attributionHandler = null;
+        this.sdkClickHandler = null;
+        this.sessionParameters = null;
+    }
+
     private void teardownActivityStateS() {
         synchronized (ActivityState.class) {
             if (this.activityState == null) {
@@ -1014,11 +1500,35 @@ public class ActivityHandler implements IActivityHandler {
         return toSendI(false);
     }
 
+    @Override // com.adjust.sdk.IActivityHandler
+    public void trackAdRevenue(final String str, final JSONObject jSONObject) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.25
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.trackAdRevenueI(str, jSONObject);
+            }
+        });
+    }
+
     private void trackAdRevenueI(String str, JSONObject jSONObject) {
         if (checkActivityStateI(this.activityState) && isEnabledI() && !this.activityState.isGdprForgotten) {
             this.packageHandler.addPackage(new PackageBuilder(this.adjustConfig, this.deviceInfo, this.activityState, this.sessionParameters, System.currentTimeMillis()).buildAdRevenuePackage(str, jSONObject));
             this.packageHandler.sendFirstPackage();
         }
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void trackEvent(final AdjustEvent adjustEvent) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.4
+            @Override // java.lang.Runnable
+            public void run() {
+                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
+                    ActivityHandler.this.logger.warn("Event tracked before first activity resumed.\nIf it was triggered in the Application class, it might timestamp or even send an install long before the user opens the app.\nPlease check https://github.com/adjust/android_sdk#can-i-trigger-an-event-at-application-launch for more information.", new Object[0]);
+                    ActivityHandler.this.startI();
+                }
+                ActivityHandler.this.trackEventI(adjustEvent);
+            }
+        });
     }
 
     private void trackEventI(AdjustEvent adjustEvent) {
@@ -1048,6 +1558,16 @@ public class ActivityHandler implements IActivityHandler {
         transferSessionPackageI(j);
         this.activityState.resetSessionAttributes(j);
         writeActivityStateI();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public void trackPlayStoreSubscription(final AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
+        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.26
+            @Override // java.lang.Runnable
+            public void run() {
+                ActivityHandler.this.trackSubscriptionI(adjustPlayStoreSubscription);
+            }
+        });
     }
 
     private void trackSubscriptionI(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
@@ -1087,6 +1607,16 @@ public class ActivityHandler implements IActivityHandler {
         }
         this.activityState.adid = str;
         writeActivityStateI();
+    }
+
+    @Override // com.adjust.sdk.IActivityHandler
+    public boolean updateAttributionI(AdjustAttribution adjustAttribution) {
+        if (adjustAttribution == null || adjustAttribution.equals(this.attribution)) {
+            return false;
+        }
+        this.attribution = adjustAttribution;
+        writeAttributionI();
+        return true;
     }
 
     private void updateHandlersStatusAndSendI() {
@@ -1161,536 +1691,6 @@ public class ActivityHandler implements IActivityHandler {
             }
             Util.writeObject(sessionParameters.partnerParameters, this.adjustConfig.context, Constants.SESSION_PARTNER_PARAMETERS_FILENAME, SESSION_PARTNER_PARAMETERS_NAME);
         }
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void addSessionCallbackParameter(final String str, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.16
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.addSessionCallbackParameterI(str, str2);
-            }
-        });
-    }
-
-    public void addSessionCallbackParameterI(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Session Callback") && Util.isValidParameter(str2, "value", "Session Callback")) {
-            SessionParameters sessionParameters = this.sessionParameters;
-            if (sessionParameters.callbackParameters == null) {
-                sessionParameters.callbackParameters = new LinkedHashMap();
-            }
-            String str3 = this.sessionParameters.callbackParameters.get(str);
-            if (str2.equals(str3)) {
-                this.logger.verbose("Key %s already present with the same value", str);
-                return;
-            }
-            if (str3 != null) {
-                this.logger.warn("Key %s will be overwritten", str);
-            }
-            this.sessionParameters.callbackParameters.put(str, str2);
-            writeSessionCallbackParametersI();
-        }
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void addSessionPartnerParameter(final String str, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.17
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.addSessionPartnerParameterI(str, str2);
-            }
-        });
-    }
-
-    public void addSessionPartnerParameterI(String str, String str2) {
-        if (Util.isValidParameter(str, "key", "Session Partner") && Util.isValidParameter(str2, "value", "Session Partner")) {
-            SessionParameters sessionParameters = this.sessionParameters;
-            if (sessionParameters.partnerParameters == null) {
-                sessionParameters.partnerParameters = new LinkedHashMap();
-            }
-            String str3 = this.sessionParameters.partnerParameters.get(str);
-            if (str2.equals(str3)) {
-                this.logger.verbose("Key %s already present with the same value", str);
-                return;
-            }
-            if (str3 != null) {
-                this.logger.warn("Key %s will be overwritten", str);
-            }
-            this.sessionParameters.partnerParameters.put(str, str2);
-            writeSessionPartnerParametersI();
-        }
-    }
-
-    public void backgroundTimerFired() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.29
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.backgroundTimerFiredI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void disableThirdPartySharing() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.24
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.disableThirdPartySharingI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void finishedTrackingActivity(ResponseData responseData) {
-        if (responseData instanceof SessionResponseData) {
-            this.attributionHandler.checkSessionResponse((SessionResponseData) responseData);
-            return;
-        }
-        if (responseData instanceof SdkClickResponseData) {
-            SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) responseData;
-            checkForInstallReferrerInfo(sdkClickResponseData);
-            this.attributionHandler.checkSdkClickResponse(sdkClickResponseData);
-        } else if (responseData instanceof EventResponseData) {
-            launchEventResponseTasks((EventResponseData) responseData);
-        }
-    }
-
-    public void foregroundTimerFired() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.28
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.foregroundTimerFiredI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void gdprForgetMe() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.23
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.gdprForgetMeI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public ActivityState getActivityState() {
-        return this.activityState;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public String getAdid() {
-        ActivityState activityState = this.activityState;
-        if (activityState == null) {
-            return null;
-        }
-        return activityState.adid;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public AdjustConfig getAdjustConfig() {
-        return this.adjustConfig;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public AdjustAttribution getAttribution() {
-        return this.attribution;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public String getBasePath() {
-        return this.basePath;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public Context getContext() {
-        return this.adjustConfig.context;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public DeviceInfo getDeviceInfo() {
-        return this.deviceInfo;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public String getGdprPath() {
-        return this.gdprPath;
-    }
-
-    public InternalState getInternalState() {
-        return this.internalState;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public SessionParameters getSessionParameters() {
-        return this.sessionParameters;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public String getSubscriptionPath() {
-        return this.subscriptionPath;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void gotOptOutResponse() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.27
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.gotOptOutResponseI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void init(AdjustConfig adjustConfig) {
-        this.adjustConfig = adjustConfig;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public boolean isEnabled() {
-        return isEnabledI();
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void launchAttributionResponseTasks(final AttributionResponseData attributionResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.14
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchAttributionResponseTasksI(attributionResponseData);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void launchEventResponseTasks(final EventResponseData eventResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.11
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchEventResponseTasksI(eventResponseData);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void launchSdkClickResponseTasks(final SdkClickResponseData sdkClickResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.12
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchSdkClickResponseTasksI(sdkClickResponseData);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void launchSessionResponseTasks(final SessionResponseData sessionResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.13
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchSessionResponseTasksI(sessionResponseData);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void onPause() {
-        this.internalState.background = true;
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.3
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.stopForegroundTimerI();
-                ActivityHandler.this.startBackgroundTimerI();
-                ActivityHandler.this.logger.verbose("Subsession end", new Object[0]);
-                ActivityHandler.this.endI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void onResume() {
-        this.internalState.background = false;
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.delayStartI();
-                ActivityHandler.this.stopBackgroundTimerI();
-                ActivityHandler.this.startForegroundTimerI();
-                ActivityHandler.this.logger.verbose("Subsession start", new Object[0]);
-                ActivityHandler.this.startI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void readOpenUrl(final Uri uri, final long j) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.7
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.readOpenUrlI(uri, j);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void removeSessionCallbackParameter(final String str) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.18
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.removeSessionCallbackParameterI(str);
-            }
-        });
-    }
-
-    public void removeSessionCallbackParameterI(String str) {
-        if (Util.isValidParameter(str, "key", "Session Callback")) {
-            Map<String, String> map = this.sessionParameters.callbackParameters;
-            if (map == null) {
-                this.logger.warn("Session Callback parameters are not set", new Object[0]);
-            } else if (map.remove(str) == null) {
-                this.logger.warn("Key %s does not exist", str);
-            } else {
-                this.logger.debug("Key %s will be removed", str);
-                writeSessionCallbackParametersI();
-            }
-        }
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void removeSessionPartnerParameter(final String str) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.19
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.removeSessionPartnerParameterI(str);
-            }
-        });
-    }
-
-    public void removeSessionPartnerParameterI(String str) {
-        if (Util.isValidParameter(str, "key", "Session Partner")) {
-            Map<String, String> map = this.sessionParameters.partnerParameters;
-            if (map == null) {
-                this.logger.warn("Session Partner parameters are not set", new Object[0]);
-            } else if (map.remove(str) == null) {
-                this.logger.warn("Key %s does not exist", str);
-            } else {
-                this.logger.debug("Key %s will be removed", str);
-                writeSessionPartnerParametersI();
-            }
-        }
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void resetSessionCallbackParameters() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.20
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.resetSessionCallbackParametersI();
-            }
-        });
-    }
-
-    public void resetSessionCallbackParametersI() {
-        if (this.sessionParameters.callbackParameters == null) {
-            this.logger.warn("Session Callback parameters are not set", new Object[0]);
-        }
-        this.sessionParameters.callbackParameters = null;
-        writeSessionCallbackParametersI();
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void resetSessionPartnerParameters() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.21
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.resetSessionPartnerParametersI();
-            }
-        });
-    }
-
-    public void resetSessionPartnerParametersI() {
-        if (this.sessionParameters.partnerParameters == null) {
-            this.logger.warn("Session Partner parameters are not set", new Object[0]);
-        }
-        this.sessionParameters.partnerParameters = null;
-        writeSessionPartnerParametersI();
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void sendFirstPackages() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.15
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendFirstPackagesI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void sendInstallReferrer(final String str, final long j, final long j2, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.10
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendInstallReferrerI(str, j, j2, str2);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void sendReftagReferrer() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.9
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendReftagReferrerI();
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void setAskingAttribution(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.8
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setAskingAttributionI(z2);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void setEnabled(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.5
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setEnabledI(z2);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void setOfflineMode(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.6
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setOfflineModeI(z2);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void setPushToken(final String str, final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.22
-            @Override // java.lang.Runnable
-            public void run() {
-                if (!z2) {
-                    new SharedPreferencesManager(ActivityHandler.this.getContext()).savePushToken(str);
-                }
-                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                    return;
-                }
-                ActivityHandler.this.setPushTokenI(str);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void teardown() {
-        TimerOnce timerOnce = this.backgroundTimer;
-        if (timerOnce != null) {
-            timerOnce.teardown();
-        }
-        TimerCycle timerCycle = this.foregroundTimer;
-        if (timerCycle != null) {
-            timerCycle.teardown();
-        }
-        TimerOnce timerOnce2 = this.delayStartTimer;
-        if (timerOnce2 != null) {
-            timerOnce2.teardown();
-        }
-        ThreadExecutor threadExecutor = this.executor;
-        if (threadExecutor != null) {
-            threadExecutor.teardown();
-        }
-        IPackageHandler iPackageHandler = this.packageHandler;
-        if (iPackageHandler != null) {
-            iPackageHandler.teardown();
-        }
-        IAttributionHandler iAttributionHandler = this.attributionHandler;
-        if (iAttributionHandler != null) {
-            iAttributionHandler.teardown();
-        }
-        ISdkClickHandler iSdkClickHandler = this.sdkClickHandler;
-        if (iSdkClickHandler != null) {
-            iSdkClickHandler.teardown();
-        }
-        SessionParameters sessionParameters = this.sessionParameters;
-        if (sessionParameters != null) {
-            Map<String, String> map = sessionParameters.callbackParameters;
-            if (map != null) {
-                map.clear();
-            }
-            Map<String, String> map2 = this.sessionParameters.partnerParameters;
-            if (map2 != null) {
-                map2.clear();
-            }
-        }
-        teardownActivityStateS();
-        teardownAttributionS();
-        teardownAllSessionParametersS();
-        this.packageHandler = null;
-        this.logger = null;
-        this.foregroundTimer = null;
-        this.executor = null;
-        this.backgroundTimer = null;
-        this.delayStartTimer = null;
-        this.internalState = null;
-        this.deviceInfo = null;
-        this.adjustConfig = null;
-        this.attributionHandler = null;
-        this.sdkClickHandler = null;
-        this.sessionParameters = null;
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void trackAdRevenue(final String str, final JSONObject jSONObject) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.25
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.trackAdRevenueI(str, jSONObject);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void trackEvent(final AdjustEvent adjustEvent) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.4
-            @Override // java.lang.Runnable
-            public void run() {
-                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                    ActivityHandler.this.logger.warn("Event tracked before first activity resumed.\nIf it was triggered in the Application class, it might timestamp or even send an install long before the user opens the app.\nPlease check https://github.com/adjust/android_sdk#can-i-trigger-an-event-at-application-launch for more information.", new Object[0]);
-                    ActivityHandler.this.startI();
-                }
-                ActivityHandler.this.trackEventI(adjustEvent);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public void trackPlayStoreSubscription(final AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.26
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.trackSubscriptionI(adjustPlayStoreSubscription);
-            }
-        });
-    }
-
-    @Override // com.adjust.sdk.IActivityHandler
-    public boolean updateAttributionI(AdjustAttribution adjustAttribution) {
-        if (adjustAttribution == null || adjustAttribution.equals(this.attribution)) {
-            return false;
-        }
-        this.attribution = adjustAttribution;
-        writeAttributionI();
-        return true;
     }
 
     private boolean pausedI(boolean z2) {

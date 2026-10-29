@@ -32,7 +32,7 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
     private final List<Item> items;
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,6 +73,10 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
         this.hasChannels = z2;
     }
 
+    public final List<Item> component1() {
+        return this.items;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetGlobalSearchGuildsModel copy$default(WidgetGlobalSearchGuildsModel widgetGlobalSearchGuildsModel, List list, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -82,15 +86,6 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
             z2 = widgetGlobalSearchGuildsModel.hasChannels;
         }
         return widgetGlobalSearchGuildsModel.copy(list, z2);
-    }
-
-    public final List<Item> component1() {
-        return this.items;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getHasChannels() {
-        return this.hasChannels;
     }
 
     public final WidgetGlobalSearchGuildsModel copy(List<Item> items, boolean hasChannels) {
@@ -107,6 +102,11 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
         }
         WidgetGlobalSearchGuildsModel widgetGlobalSearchGuildsModel = (WidgetGlobalSearchGuildsModel) other;
         return C12238m.areEqual(this.items, widgetGlobalSearchGuildsModel.items) && this.hasChannels == widgetGlobalSearchGuildsModel.hasChannels;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getHasChannels() {
+        return this.hasChannels;
     }
 
     public final boolean getHasChannels() {
@@ -145,7 +145,7 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
-    public static final /* data */ class Item implements MGRecyclerDataPayload {
+    public final /* data */ class Item implements MGRecyclerDataPayload {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -165,7 +165,7 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
         private final int unavailableGuildCount;
 
         /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -203,56 +203,7 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
             this.connectedToVoice = z4;
             this.unavailableGuildCount = i3;
             this.type = i;
-            StringBuilder sb = new StringBuilder();
-            sb.append(getType());
-            sb.append('-');
-            sb.append(j);
-            this.key = sb.toString();
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final int get_type() {
-            return this._type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getMentionCount() {
-            return this.mentionCount;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsUnread() {
-            return this.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getConnectedToVoice() {
-            return this.connectedToVoice;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final int getUnavailableGuildCount() {
-            return this.unavailableGuildCount;
+            this.key = "" + getType() + '-' + j;
         }
 
         public final Item copy(int _type, long id2, Channel channel, Guild guild, int mentionCount, boolean isUnread, boolean isSelected, boolean connectedToVoice, int unavailableGuildCount) {
@@ -270,25 +221,60 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
             return this._type == item._type && this.id == item.id && C12238m.areEqual(this.channel, item.channel) && C12238m.areEqual(this.guild, item.guild) && this.mentionCount == item.mentionCount && this.isUnread == item.isUnread && this.isSelected == item.isSelected && this.connectedToVoice == item.connectedToVoice && this.unavailableGuildCount == item.unavailableGuildCount;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final boolean getConnectedToVoice() {
+            return this.connectedToVoice;
         }
 
         public final boolean getConnectedToVoice() {
             return this.connectedToVoice;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getId() {
+            return this.id;
         }
 
         public final long getId() {
             return this.id;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsUnread() {
+            return this.isUnread;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getMentionCount() {
+            return this.mentionCount;
         }
 
         public final int getMentionCount() {
@@ -300,8 +286,18 @@ public final /* data */ class WidgetGlobalSearchGuildsModel {
             return this.type;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final int getUnavailableGuildCount() {
             return this.unavailableGuildCount;
+        }
+
+        public final int getUnavailableGuildCount() {
+            return this.unavailableGuildCount;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final int get_type() {
+            return this._type;
         }
 
         /* JADX WARN: Multi-variable type inference failed */

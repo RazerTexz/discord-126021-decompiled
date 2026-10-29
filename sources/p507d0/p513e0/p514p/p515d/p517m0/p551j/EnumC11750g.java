@@ -51,15 +51,15 @@ public enum EnumC11750g {
         this.includeByDefault = z2;
     }
 
+    public final boolean getIncludeByDefault() {
+        return this.includeByDefault;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11750g[] valuesCustom() {
         EnumC11750g[] enumC11750gArrValuesCustom = values();
         EnumC11750g[] enumC11750gArr = new EnumC11750g[enumC11750gArrValuesCustom.length];
         System.arraycopy(enumC11750gArrValuesCustom, 0, enumC11750gArr, 0, enumC11750gArrValuesCustom.length);
         return enumC11750gArr;
-    }
-
-    public final boolean getIncludeByDefault() {
-        return this.includeByDefault;
     }
 }

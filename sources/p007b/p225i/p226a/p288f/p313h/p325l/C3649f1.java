@@ -6,15 +6,15 @@ import com.discord.widgets.chat.input.MentionUtilsKt;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3649f1 extends AbstractC3851u4<C3649f1, a> implements InterfaceC3626d6 {
+    private int zzc;
     private static final C3649f1 zzf;
     private static volatile InterfaceC3710j6<C3649f1> zzg;
-    private int zzc;
     private int zzd = 1;
     private InterfaceC3597b5<C3593b1> zze = C3749m6.f10094k;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.f1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3649f1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3649f1, a> implements InterfaceC3626d6 {
         public a(C3718k1 c3718k1) {
             super(C3649f1.zzf);
         }

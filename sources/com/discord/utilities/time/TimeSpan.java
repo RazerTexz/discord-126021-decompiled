@@ -27,16 +27,6 @@ public final /* data */ class TimeSpan {
         return timeSpan.copy(j, timeUnit);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getAmount() {
-        return this.amount;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final TimeUnit getUnit() {
-        return this.unit;
-    }
-
     public final TimeSpan copy(long amount, TimeUnit unit) {
         C12238m.checkNotNullParameter(unit, "unit");
         return new TimeSpan(amount, unit);
@@ -53,8 +43,18 @@ public final /* data */ class TimeSpan {
         return this.amount == timeSpan.amount && C12238m.areEqual(this.unit, timeSpan.unit);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getAmount() {
         return this.amount;
+    }
+
+    public final long getAmount() {
+        return this.amount;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final TimeUnit getUnit() {
+        return this.unit;
     }
 
     public final TimeUnit getUnit() {

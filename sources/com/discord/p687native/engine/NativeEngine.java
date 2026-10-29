@@ -87,10 +87,6 @@ public final class NativeEngine {
         this.nativeInstance = nativeCreateInstance(applicationContext2, eglContext, i);
     }
 
-    private final native long nativeCreateInstance(Context context, EglBase.Context eglContext, int logLevel);
-
-    private final native void nativeDestroyInstance();
-
     public final native NativeConnection createVoiceConnection(long ssrc, String userId, String serverIp, int port, String experimentsJSON, String streamParametersJSON, ConnectToServerCallback callback);
 
     public final void dispose() {
@@ -108,6 +104,10 @@ public final class NativeEngine {
     public final native void getSupportedVideoCodecs(GetSupportedVideoCodecsCallback callback);
 
     public final native void getVideoInputDevices(GetVideoInputDevicesCallback callback);
+
+    private final native long nativeCreateInstance(Context context, EglBase.Context eglContext, int logLevel);
+
+    private final native void nativeDestroyInstance();
 
     public final native void rankRtcRegions(String regionsWithIpsJSON, GetRankedRtcRegionsCallback callback);
 

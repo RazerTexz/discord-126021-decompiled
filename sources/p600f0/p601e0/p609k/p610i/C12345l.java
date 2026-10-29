@@ -15,7 +15,7 @@ public final class C12345l extends C12339f {
 
     /* JADX INFO: renamed from: f0.e0.k.i.l$a */
     /* JADX INFO: compiled from: StandardAndroidSocketAdapter.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

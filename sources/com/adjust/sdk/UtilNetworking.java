@@ -21,7 +21,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public class UtilNetworking {
     private static String userAgent;
 
-    public static class ConnectionOptions implements IConnectionOptions {
+    public class ConnectionOptions implements IConnectionOptions {
         @Override // com.adjust.sdk.UtilNetworking.IConnectionOptions
         public void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str) {
             httpsURLConnection.setRequestProperty("Client-SDK", str);

@@ -20,7 +20,39 @@ public class ListPreference extends DialogPreference {
     private String mValue;
     private boolean mValueSet;
 
-    public static final class SimpleSummaryProvider implements Preference.SummaryProvider<ListPreference> {
+    public class SavedState extends Preference.BaseSavedState {
+        public String mValue;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.ListPreference.SavedState.1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            this.mValue = parcel.readString();
+        }
+
+        @Override // android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeString(this.mValue);
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
+    public final class SimpleSummaryProvider implements Preference.SummaryProvider<ListPreference> {
         private static SimpleSummaryProvider sSimpleSummaryProvider;
 
         private SimpleSummaryProvider() {
@@ -52,10 +84,6 @@ public class ListPreference extends DialogPreference {
         TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, C0525R.styleable.Preference, i, i2);
         this.mSummary = TypedArrayUtils.getString(typedArrayObtainStyledAttributes2, C0525R.styleable.Preference_summary, C0525R.styleable.Preference_android_summary);
         typedArrayObtainStyledAttributes2.recycle();
-    }
-
-    private int getValueIndex() {
-        return findIndexOfValue(this.mValue);
     }
 
     public int findIndexOfValue(String str) {
@@ -114,6 +142,10 @@ public class ListPreference extends DialogPreference {
 
     public String getValue() {
         return this.mValue;
+    }
+
+    private int getValueIndex() {
+        return findIndexOfValue(this.mValue);
     }
 
     @Override // androidx.preference.Preference
@@ -185,38 +217,6 @@ public class ListPreference extends DialogPreference {
         CharSequence[] charSequenceArr = this.mEntryValues;
         if (charSequenceArr != null) {
             setValue(charSequenceArr[i].toString());
-        }
-    }
-
-    public static class SavedState extends Preference.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.ListPreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public String mValue;
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mValue = parcel.readString();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeString(this.mValue);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
         }
     }
 

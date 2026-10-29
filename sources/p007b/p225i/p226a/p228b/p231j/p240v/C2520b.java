@@ -9,7 +9,7 @@ public final class C2520b implements InterfaceC5318a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.v.b$a */
     /* JADX INFO: compiled from: TimeModule_EventClockFactory.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C2520b f5459a = new C2520b();

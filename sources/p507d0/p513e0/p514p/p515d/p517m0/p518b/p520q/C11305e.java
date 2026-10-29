@@ -46,9 +46,6 @@ public final class C11305e implements InterfaceC11355b {
     /* JADX INFO: renamed from: b */
     public static final /* synthetic */ KProperty<Object>[] f22632b = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(C11305e.class), "cloneable", "getCloneable()Lorg/jetbrains/kotlin/descriptors/impl/ClassDescriptorImpl;"))};
 
-    /* JADX INFO: renamed from: c */
-    public static final C11713b f22633c = C11291k.f22499l;
-
     /* JADX INFO: renamed from: d */
     public static final C11716e f22634d;
 
@@ -64,9 +61,12 @@ public final class C11305e implements InterfaceC11355b {
     /* JADX INFO: renamed from: h */
     public final InterfaceC11900j f22638h;
 
+    /* JADX INFO: renamed from: c */
+    public static final C11713b f22633c = C11291k.f22499l;
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.e$a */
     /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, InterfaceC11282b> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, InterfaceC11282b> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22639j = new a();
@@ -91,7 +91,7 @@ public final class C11305e implements InterfaceC11355b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.e$b */
     /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -102,7 +102,7 @@ public final class C11305e implements InterfaceC11355b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.e$c */
     /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
-    public static final class c extends AbstractC12240o implements Function0<C11377i> {
+    public final class c extends AbstractC12240o implements Function0<C11377i> {
         public final /* synthetic */ InterfaceC11905o $storageManager;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

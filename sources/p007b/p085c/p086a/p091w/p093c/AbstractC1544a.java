@@ -49,8 +49,13 @@ public abstract class AbstractC1544a<K, A> {
 
     /* JADX INFO: renamed from: b.c.a.w.c.a$c */
     /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
-    public static final class c<T> implements d<T> {
+    public final class c<T> implements d<T> {
         public c(a aVar) {
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        public boolean isEmpty() {
+            return true;
         }
 
         @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
@@ -82,16 +87,13 @@ public abstract class AbstractC1544a<K, A> {
         public float mo736e() {
             return 0.0f;
         }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        public boolean isEmpty() {
-            return true;
-        }
     }
 
     /* JADX INFO: renamed from: b.c.a.w.c.a$d */
     /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
     public interface d<T> {
+        boolean isEmpty();
+
         /* JADX INFO: renamed from: a */
         boolean mo732a(float f);
 
@@ -108,149 +110,6 @@ public abstract class AbstractC1544a<K, A> {
         @FloatRange(from = 0.0d, m75to = 1.0d)
         /* JADX INFO: renamed from: e */
         float mo736e();
-
-        boolean isEmpty();
-    }
-
-    /* JADX INFO: renamed from: b.c.a.w.c.a$e */
-    /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
-    public static final class e<T> implements d<T> {
-
-        /* JADX INFO: renamed from: a */
-        public final List<? extends C1501a<T>> f2604a;
-
-        /* JADX INFO: renamed from: c */
-        public C1501a<T> f2606c = null;
-
-        /* JADX INFO: renamed from: d */
-        public float f2607d = -1.0f;
-
-        /* JADX INFO: renamed from: b */
-        @NonNull
-        public C1501a<T> f2605b = m737f(0.0f);
-
-        public e(List<? extends C1501a<T>> list) {
-            this.f2604a = list;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: a */
-        public boolean mo732a(float f) {
-            C1501a<T> c1501a = this.f2606c;
-            C1501a<T> c1501a2 = this.f2605b;
-            if (c1501a == c1501a2 && this.f2607d == f) {
-                return true;
-            }
-            this.f2606c = c1501a2;
-            this.f2607d = f;
-            return false;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        @NonNull
-        /* JADX INFO: renamed from: b */
-        public C1501a<T> mo733b() {
-            return this.f2605b;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: c */
-        public boolean mo734c(float f) {
-            if (this.f2605b.m664a(f)) {
-                return !this.f2605b.m667d();
-            }
-            this.f2605b = m737f(f);
-            return true;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: d */
-        public float mo735d() {
-            List<? extends C1501a<T>> list = this.f2604a;
-            return list.get(list.size() - 1).m665b();
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: e */
-        public float mo736e() {
-            return this.f2604a.get(0).m666c();
-        }
-
-        /* JADX INFO: renamed from: f */
-        public final C1501a<T> m737f(float f) {
-            List<? extends C1501a<T>> list = this.f2604a;
-            C1501a<T> c1501a = list.get(list.size() - 1);
-            if (f >= c1501a.m666c()) {
-                return c1501a;
-            }
-            for (int size = this.f2604a.size() - 2; size >= 1; size--) {
-                C1501a<T> c1501a2 = this.f2604a.get(size);
-                if (this.f2605b != c1501a2 && c1501a2.m664a(f)) {
-                    return c1501a2;
-                }
-            }
-            return this.f2604a.get(0);
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        public boolean isEmpty() {
-            return false;
-        }
-    }
-
-    /* JADX INFO: renamed from: b.c.a.w.c.a$f */
-    /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
-    public static final class f<T> implements d<T> {
-
-        /* JADX INFO: renamed from: a */
-        @NonNull
-        public final C1501a<T> f2608a;
-
-        /* JADX INFO: renamed from: b */
-        public float f2609b = -1.0f;
-
-        public f(List<? extends C1501a<T>> list) {
-            this.f2608a = list.get(0);
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: a */
-        public boolean mo732a(float f) {
-            if (this.f2609b == f) {
-                return true;
-            }
-            this.f2609b = f;
-            return false;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: b */
-        public C1501a<T> mo733b() {
-            return this.f2608a;
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: c */
-        public boolean mo734c(float f) {
-            return !this.f2608a.m667d();
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: d */
-        public float mo735d() {
-            return this.f2608a.m665b();
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        /* JADX INFO: renamed from: e */
-        public float mo736e() {
-            return this.f2608a.m666c();
-        }
-
-        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
-        public boolean isEmpty() {
-            return false;
-        }
     }
 
     public AbstractC1544a(List<? extends C1501a<K>> list) {
@@ -268,15 +127,6 @@ public abstract class AbstractC1544a<K, A> {
         C1501a<K> c1501aMo733b = this.f2598c.mo733b();
         C1500c.m663a("BaseKeyframeAnimation#getCurrentKeyframe");
         return c1501aMo733b;
-    }
-
-    @FloatRange(from = 0.0d, m75to = 1.0d)
-    /* JADX INFO: renamed from: b */
-    public float mo724b() {
-        if (this.f2603h == -1.0f) {
-            this.f2603h = this.f2598c.mo735d();
-        }
-        return this.f2603h;
     }
 
     /* JADX INFO: renamed from: c */
@@ -298,6 +148,21 @@ public abstract class AbstractC1544a<K, A> {
             return 0.0f;
         }
         return (this.f2599d - c1501aM723a.m666c()) / (c1501aM723a.m665b() - c1501aM723a.m666c());
+    }
+
+    /* JADX INFO: renamed from: i */
+    public void m731i(@Nullable C1503c<A> c1503c) {
+        C1503c<A> c1503c2 = this.f2600e;
+        this.f2600e = null;
+    }
+
+    @FloatRange(from = 0.0d, m75to = 1.0d)
+    /* JADX INFO: renamed from: b */
+    public float mo724b() {
+        if (this.f2603h == -1.0f) {
+            this.f2603h = this.f2598c.mo735d();
+        }
+        return this.f2603h;
     }
 
     /* JADX INFO: renamed from: e */
@@ -347,9 +212,144 @@ public abstract class AbstractC1544a<K, A> {
         }
     }
 
-    /* JADX INFO: renamed from: i */
-    public void m731i(@Nullable C1503c<A> c1503c) {
-        C1503c<A> c1503c2 = this.f2600e;
-        this.f2600e = null;
+    /* JADX INFO: renamed from: b.c.a.w.c.a$e */
+    /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
+    public final class e<T> implements d<T> {
+
+        /* JADX INFO: renamed from: a */
+        public final List<? extends C1501a<T>> f2604a;
+
+        /* JADX INFO: renamed from: c */
+        public C1501a<T> f2606c = null;
+
+        /* JADX INFO: renamed from: d */
+        public float f2607d = -1.0f;
+
+        /* JADX INFO: renamed from: b */
+        @NonNull
+        public C1501a<T> f2605b = m737f(0.0f);
+
+        public e(List<? extends C1501a<T>> list) {
+            this.f2604a = list;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        public boolean isEmpty() {
+            return false;
+        }
+
+        /* JADX INFO: renamed from: f */
+        public final C1501a<T> m737f(float f) {
+            List<? extends C1501a<T>> list = this.f2604a;
+            C1501a<T> c1501a = list.get(list.size() - 1);
+            if (f >= c1501a.m666c()) {
+                return c1501a;
+            }
+            for (int size = this.f2604a.size() - 2; size >= 1; size--) {
+                C1501a<T> c1501a2 = this.f2604a.get(size);
+                if (this.f2605b != c1501a2 && c1501a2.m664a(f)) {
+                    return c1501a2;
+                }
+            }
+            return this.f2604a.get(0);
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: a */
+        public boolean mo732a(float f) {
+            C1501a<T> c1501a = this.f2606c;
+            C1501a<T> c1501a2 = this.f2605b;
+            if (c1501a == c1501a2 && this.f2607d == f) {
+                return true;
+            }
+            this.f2606c = c1501a2;
+            this.f2607d = f;
+            return false;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        @NonNull
+        /* JADX INFO: renamed from: b */
+        public C1501a<T> mo733b() {
+            return this.f2605b;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: c */
+        public boolean mo734c(float f) {
+            if (this.f2605b.m664a(f)) {
+                return !this.f2605b.m667d();
+            }
+            this.f2605b = m737f(f);
+            return true;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: d */
+        public float mo735d() {
+            List<? extends C1501a<T>> list = this.f2604a;
+            return list.get(list.size() - 1).m665b();
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: e */
+        public float mo736e() {
+            return this.f2604a.get(0).m666c();
+        }
+    }
+
+    /* JADX INFO: renamed from: b.c.a.w.c.a$f */
+    /* JADX INFO: compiled from: BaseKeyframeAnimation.java */
+    public final class f<T> implements d<T> {
+
+        /* JADX INFO: renamed from: a */
+        @NonNull
+        public final C1501a<T> f2608a;
+
+        /* JADX INFO: renamed from: b */
+        public float f2609b = -1.0f;
+
+        public f(List<? extends C1501a<T>> list) {
+            this.f2608a = list.get(0);
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: a */
+        public boolean mo732a(float f) {
+            if (this.f2609b == f) {
+                return true;
+            }
+            this.f2609b = f;
+            return false;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: b */
+        public C1501a<T> mo733b() {
+            return this.f2608a;
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: c */
+        public boolean mo734c(float f) {
+            return !this.f2608a.m667d();
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: d */
+        public float mo735d() {
+            return this.f2608a.m665b();
+        }
+
+        @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.d
+        /* JADX INFO: renamed from: e */
+        public float mo736e() {
+            return this.f2608a.m666c();
+        }
     }
 }

@@ -37,7 +37,6 @@ public class DeviceInfo {
     public String language;
     public String macSha1;
     public String macShortMd5;
-    private boolean nonGoogleIdsReadOnce = false;
     public String osName;
     public String osVersion;
     public String packageName;
@@ -47,6 +46,7 @@ public class DeviceInfo {
     public String screenDensity;
     public String screenFormat;
     public String screenSize;
+    private boolean nonGoogleIdsReadOnce = false;
 
     public DeviceInfo(Context context, String str) {
         Resources resources = context.getResources();

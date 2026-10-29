@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/MethodTarget.SCL.lombok */
 public final class MethodTarget implements TargetMatcher {
     private final String classSpec;
-    private final String methodName;
-    private final String returnSpec;
-    private final List<String> parameterSpec;
     private boolean hasDescription;
+    private final String methodName;
+    private final List<String> parameterSpec;
+    private final String returnSpec;
     private static final String JVM_TYPE_SPEC = "\\[*(?:[BCDFIJSZ]|L[^;]+;)";
     private static final Pattern PARAM_SPEC = Pattern.compile(JVM_TYPE_SPEC);
     private static final Pattern COMPLETE_SPEC = Pattern.compile("^\\(((?:\\[*(?:[BCDFIJSZ]|L[^;]+;))*)\\)(V|\\[*(?:[BCDFIJSZ]|L[^;]+;))$");

@@ -52,26 +52,6 @@ public final /* data */ class StickerItem implements MGRecyclerDataPayload {
         return stickerItem.copy(sticker, i, mode, stickerSendability);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Sticker getSticker() {
-        return this.sticker;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getStickerAnimationSettings() {
-        return this.stickerAnimationSettings;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Mode getMode() {
-        return this.mode;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StickerUtils.StickerSendability getSendability() {
-        return this.sendability;
-    }
-
     public final StickerItem copy(Sticker sticker, int stickerAnimationSettings, Mode mode, StickerUtils.StickerSendability sendability) {
         C12238m.checkNotNullParameter(sticker, "sticker");
         C12238m.checkNotNullParameter(mode, "mode");
@@ -95,16 +75,36 @@ public final /* data */ class StickerItem implements MGRecyclerDataPayload {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Mode getMode() {
         return this.mode;
+    }
+
+    public final Mode getMode() {
+        return this.mode;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final StickerUtils.StickerSendability getSendability() {
+        return this.sendability;
     }
 
     public final StickerUtils.StickerSendability getSendability() {
         return this.sendability;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Sticker getSticker() {
         return this.sticker;
+    }
+
+    public final Sticker getSticker() {
+        return this.sticker;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getStickerAnimationSettings() {
+        return this.stickerAnimationSettings;
     }
 
     public final int getStickerAnimationSettings() {

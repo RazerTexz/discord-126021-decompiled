@@ -30,7 +30,7 @@ public final class SettingsGuildBoostSampleGuildAdapter extends MGRecyclerAdapte
     private Function1<? super Long, Unit> onGuildClickedListener;
 
     /* JADX INFO: compiled from: SettingsGuildBoostSampleGuildAdapter.kt */
-    public static final class GuildListItem extends MGRecyclerViewHolder<SettingsGuildBoostSampleGuildAdapter, Item> {
+    public final class GuildListItem extends MGRecyclerViewHolder<SettingsGuildBoostSampleGuildAdapter, Item> {
         private final ViewSettingsBoostedSampleGuildBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -92,7 +92,7 @@ public final class SettingsGuildBoostSampleGuildAdapter extends MGRecyclerAdapte
     }
 
     /* JADX INFO: compiled from: SettingsGuildBoostSampleGuildAdapter.kt */
-    public static final /* data */ class Item implements MGRecyclerDataPayload {
+    public final /* data */ class Item implements MGRecyclerDataPayload {
         public static final int TYPE_GUILD = 1;
         private final Guild guild;
         private final String key;
@@ -112,11 +112,6 @@ public final class SettingsGuildBoostSampleGuildAdapter extends MGRecyclerAdapte
             return item.copy(guild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
         public final Item copy(Guild guild) {
             C12238m.checkNotNullParameter(guild, "guild");
             return new Item(guild);
@@ -127,6 +122,11 @@ public final class SettingsGuildBoostSampleGuildAdapter extends MGRecyclerAdapte
                 return (other instanceof Item) && C12238m.areEqual(this.guild, ((Item) other).guild);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {

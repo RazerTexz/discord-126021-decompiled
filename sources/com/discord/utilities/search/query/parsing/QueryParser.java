@@ -31,7 +31,7 @@ public final class QueryParser extends Parser<Context, QueryNode, Object> {
     private static final String USER_REGEX = "(?:\\s*([^@#:]+)#([0-9]{4}))";
 
     /* JADX INFO: compiled from: QueryParser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -99,25 +99,6 @@ public final class QueryParser extends Parser<Context, QueryNode, Object> {
                     FilterNode filterNode = new FilterNode(FilterType.FROM, localizedFrom);
                     C12238m.checkNotNullParameter(filterNode, "node");
                     return new ParseSpec<>(filterNode, state);
-                }
-            };
-        }
-
-        private final Rule<Context, QueryNode, Object> getUserRule() {
-            final Pattern patternCompile = Pattern.compile("^(?:\\s*([^@#:]+)#([0-9]{4}))", 64);
-            C12238m.checkNotNullExpressionValue(patternCompile, "fromUserPattern");
-            return new Rule<Context, QueryNode, Object>(patternCompile) { // from class: com.discord.utilities.search.query.parsing.QueryParser$Companion$getUserRule$1
-                @Override // com.discord.simpleast.core.parser.Rule
-                public ParseSpec<Context, Object> parse(Matcher matcher, Parser<Context, ? super QueryNode, Object> parser, Object state) {
-                    C12238m.checkNotNullParameter(matcher, "matcher");
-                    C12238m.checkNotNullParameter(parser, "parser");
-                    String strGroup = matcher.group(1);
-                    C12238m.checkNotNull(strGroup);
-                    String strGroup2 = matcher.group(2);
-                    C12238m.checkNotNull(strGroup2);
-                    UserNode userNode = new UserNode(strGroup, Integer.parseInt(strGroup2));
-                    C12238m.checkNotNullParameter(userNode, "node");
-                    return new ParseSpec<>(userNode, state);
                 }
             };
         }
@@ -201,6 +182,25 @@ public final class QueryParser extends Parser<Context, QueryNode, Object> {
                     FilterNode filterNode = new FilterNode(FilterType.MENTIONS, localizedMentions);
                     C12238m.checkNotNullParameter(filterNode, "node");
                     return new ParseSpec<>(filterNode, state);
+                }
+            };
+        }
+
+        private final Rule<Context, QueryNode, Object> getUserRule() {
+            final Pattern patternCompile = Pattern.compile("^(?:\\s*([^@#:]+)#([0-9]{4}))", 64);
+            C12238m.checkNotNullExpressionValue(patternCompile, "fromUserPattern");
+            return new Rule<Context, QueryNode, Object>(patternCompile) { // from class: com.discord.utilities.search.query.parsing.QueryParser$Companion$getUserRule$1
+                @Override // com.discord.simpleast.core.parser.Rule
+                public ParseSpec<Context, Object> parse(Matcher matcher, Parser<Context, ? super QueryNode, Object> parser, Object state) {
+                    C12238m.checkNotNullParameter(matcher, "matcher");
+                    C12238m.checkNotNullParameter(parser, "parser");
+                    String strGroup = matcher.group(1);
+                    C12238m.checkNotNull(strGroup);
+                    String strGroup2 = matcher.group(2);
+                    C12238m.checkNotNull(strGroup2);
+                    UserNode userNode = new UserNode(strGroup, Integer.parseInt(strGroup2));
+                    C12238m.checkNotNullParameter(userNode, "node");
+                    return new ParseSpec<>(userNode, state);
                 }
             };
         }

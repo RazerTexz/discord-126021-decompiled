@@ -24,7 +24,7 @@ public final class C11936k extends AbstractC11967m implements InterfaceC11933j, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.k$a */
     /* JADX INFO: compiled from: SpecialTypes.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

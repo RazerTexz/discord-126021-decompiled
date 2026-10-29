@@ -22,7 +22,7 @@ public enum ThermalStatus {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.ThermalStatus$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: ThermalStatus.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

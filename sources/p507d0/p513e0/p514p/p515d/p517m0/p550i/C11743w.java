@@ -41,7 +41,7 @@ public final class C11743w {
     /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b */
     /* JADX INFO: compiled from: WireFormat.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: A */
         public static final b f24189A;
@@ -102,10 +102,10 @@ public final class C11743w {
         private final c javaType;
         private final int wireType;
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$a */
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: WireFormat.java */
-        public static enum a extends b {
-            public a(String str, int i, c cVar, int i2) {
+        public final enum C13326b extends b {
+            public C13326b(String str, int i, c cVar, int i2) {
                 super(str, i, cVar, i2, null);
             }
 
@@ -115,10 +115,10 @@ public final class C11743w {
             }
         }
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$b, reason: collision with other inner class name */
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$a */
         /* JADX INFO: compiled from: WireFormat.java */
-        public static enum C13326b extends b {
-            public C13326b(String str, int i, c cVar, int i2) {
+        public final enum a extends b {
+            public a(String str, int i, c cVar, int i2) {
                 super(str, i, cVar, i2, null);
             }
 
@@ -130,7 +130,7 @@ public final class C11743w {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$c */
         /* JADX INFO: compiled from: WireFormat.java */
-        public static enum c extends b {
+        public final enum c extends b {
             public c(String str, int i, c cVar, int i2) {
                 super(str, i, cVar, i2, null);
             }
@@ -143,7 +143,7 @@ public final class C11743w {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.i.w$b$d */
         /* JADX INFO: compiled from: WireFormat.java */
-        public static enum d extends b {
+        public final enum d extends b {
             public d(String str, int i, c cVar, int i2) {
                 super(str, i, cVar, i2, null);
             }
@@ -203,14 +203,6 @@ public final class C11743w {
             this.wireType = i2;
         }
 
-        public static b valueOf(String str) {
-            return (b) Enum.valueOf(b.class, str);
-        }
-
-        public static b[] values() {
-            return (b[]) f24190B.clone();
-        }
-
         public c getJavaType() {
             return this.javaType;
         }
@@ -221,6 +213,14 @@ public final class C11743w {
 
         public boolean isPackable() {
             return true;
+        }
+
+        public static b valueOf(String str) {
+            return (b) Enum.valueOf(b.class, str);
+        }
+
+        public static b[] values() {
+            return (b[]) f24190B.clone();
         }
 
         public b(String str, int i, c cVar, int i2, a aVar) {

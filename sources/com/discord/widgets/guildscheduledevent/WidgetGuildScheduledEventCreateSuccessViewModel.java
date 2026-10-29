@@ -55,7 +55,7 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccessViewModel$2 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-    public static final /* synthetic */ class C88532 extends C12236k implements Function1<ViewState, Unit> {
+    public final /* synthetic */ class C88532 extends C12236k implements Function1<ViewState, Unit> {
         public C88532(WidgetGuildScheduledEventCreateSuccessViewModel widgetGuildScheduledEventCreateSuccessViewModel) {
             super(1, widgetGuildScheduledEventCreateSuccessViewModel, WidgetGuildScheduledEventCreateSuccessViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
         }
@@ -73,114 +73,9 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
         }
     }
 
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-    public static abstract class ViewState {
-
-        /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
-            private final boolean showInviteSettings;
-            private final WidgetInviteModel widgetInviteModel;
-
-            public /* synthetic */ Loaded(WidgetInviteModel widgetInviteModel, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this(widgetInviteModel, (i & 2) != 0 ? true : z2);
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, WidgetInviteModel widgetInviteModel, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    widgetInviteModel = loaded.widgetInviteModel;
-                }
-                if ((i & 2) != 0) {
-                    z2 = loaded.showInviteSettings;
-                }
-                return loaded.copy(widgetInviteModel, z2);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final WidgetInviteModel getWidgetInviteModel() {
-                return this.widgetInviteModel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getShowInviteSettings() {
-                return this.showInviteSettings;
-            }
-
-            public final Loaded copy(WidgetInviteModel widgetInviteModel, boolean showInviteSettings) {
-                C12238m.checkNotNullParameter(widgetInviteModel, "widgetInviteModel");
-                return new Loaded(widgetInviteModel, showInviteSettings);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Loaded)) {
-                    return false;
-                }
-                Loaded loaded = (Loaded) other;
-                return C12238m.areEqual(this.widgetInviteModel, loaded.widgetInviteModel) && this.showInviteSettings == loaded.showInviteSettings;
-            }
-
-            public final boolean getShowInviteSettings() {
-                return this.showInviteSettings;
-            }
-
-            public final WidgetInviteModel getWidgetInviteModel() {
-                return this.widgetInviteModel;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v2 */
-            /* JADX WARN: Type inference failed for: r1v3 */
-            public int hashCode() {
-                WidgetInviteModel widgetInviteModel = this.widgetInviteModel;
-                int iHashCode = (widgetInviteModel != null ? widgetInviteModel.hashCode() : 0) * 31;
-                boolean z2 = this.showInviteSettings;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iHashCode + r1;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(widgetInviteModel=");
-                sbM833U.append(this.widgetInviteModel);
-                sbM833U.append(", showInviteSettings=");
-                return C1643a.m827O(sbM833U, this.showInviteSettings, ")");
-            }
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(WidgetInviteModel widgetInviteModel, boolean z2) {
-                super(null);
-                C12238m.checkNotNullParameter(widgetInviteModel, "widgetInviteModel");
-                this.widgetInviteModel = widgetInviteModel;
-                this.showInviteSettings = z2;
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-        public static final class Uninitialized extends ViewState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        private ViewState() {
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccessViewModel$generateInviteLink$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-    public static final class C88541 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C88541 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ Long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -209,7 +104,7 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccessViewModel$observeInvite$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
-    public static final class C88551 extends AbstractC12240o implements Function10<ModelInvite.Settings, Map<Long, ? extends Channel>, InviteGenerator.InviteGenerationState, MeUser, List<? extends Channel>, Guild, Map<Long, ? extends StageInstance>, GuildScheduledEvent, StoreInstantInvites.InviteState, Channel, ViewState.Loaded> {
+    public final class C88551 extends AbstractC12240o implements Function10<ModelInvite.Settings, Map<Long, ? extends Channel>, InviteGenerator.InviteGenerationState, MeUser, List<? extends Channel>, Guild, Map<Long, ? extends StageInstance>, GuildScheduledEvent, StoreInstantInvites.InviteState, Channel, ViewState.Loaded> {
         public static final C88551 INSTANCE = new C88551();
 
         public C88551() {
@@ -249,8 +144,119 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
         }
     }
 
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
+        public final /* data */ class Loaded extends ViewState {
+            private final boolean showInviteSettings;
+            private final WidgetInviteModel widgetInviteModel;
+
+            public /* synthetic */ Loaded(WidgetInviteModel widgetInviteModel, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this(widgetInviteModel, (i & 2) != 0 ? true : z2);
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, WidgetInviteModel widgetInviteModel, boolean z2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    widgetInviteModel = loaded.widgetInviteModel;
+                }
+                if ((i & 2) != 0) {
+                    z2 = loaded.showInviteSettings;
+                }
+                return loaded.copy(widgetInviteModel, z2);
+            }
+
+            public final Loaded copy(WidgetInviteModel widgetInviteModel, boolean showInviteSettings) {
+                C12238m.checkNotNullParameter(widgetInviteModel, "widgetInviteModel");
+                return new Loaded(widgetInviteModel, showInviteSettings);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Loaded)) {
+                    return false;
+                }
+                Loaded loaded = (Loaded) other;
+                return C12238m.areEqual(this.widgetInviteModel, loaded.widgetInviteModel) && this.showInviteSettings == loaded.showInviteSettings;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getShowInviteSettings() {
+                return this.showInviteSettings;
+            }
+
+            public final boolean getShowInviteSettings() {
+                return this.showInviteSettings;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final WidgetInviteModel getWidgetInviteModel() {
+                return this.widgetInviteModel;
+            }
+
+            public final WidgetInviteModel getWidgetInviteModel() {
+                return this.widgetInviteModel;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v2 */
+            /* JADX WARN: Type inference failed for: r1v3 */
+            public int hashCode() {
+                WidgetInviteModel widgetInviteModel = this.widgetInviteModel;
+                int iHashCode = (widgetInviteModel != null ? widgetInviteModel.hashCode() : 0) * 31;
+                boolean z2 = this.showInviteSettings;
+                ?? r1 = z2;
+                if (z2) {
+                    r1 = 1;
+                }
+                return iHashCode + r1;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(widgetInviteModel=");
+                sbM833U.append(this.widgetInviteModel);
+                sbM833U.append(", showInviteSettings=");
+                return C1643a.m827O(sbM833U, this.showInviteSettings, ")");
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(WidgetInviteModel widgetInviteModel, boolean z2) {
+                super(null);
+                C12238m.checkNotNullParameter(widgetInviteModel, "widgetInviteModel");
+                this.widgetInviteModel = widgetInviteModel;
+                this.showInviteSettings = z2;
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccessViewModel.kt */
+        public final class Uninitialized extends ViewState {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ WidgetGuildScheduledEventCreateSuccessViewModel(Long l, long j, long j2, StoreChannels storeChannels, StoreGuilds storeGuilds, StoreInviteSettings storeInviteSettings, StoreUser storeUser, StoreStageInstances storeStageInstances, StoreGuildScheduledEvents storeGuildScheduledEvents, StoreInstantInvites storeInstantInvites, InviteGenerator inviteGenerator, Resources resources, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(l, j, j2, (i & 8) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 16) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 32) != 0 ? StoreStream.INSTANCE.getInviteSettings() : storeInviteSettings, (i & 64) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 128) != 0 ? StoreStream.INSTANCE.getStageInstances() : storeStageInstances, (i & 256) != 0 ? StoreStream.INSTANCE.getGuildScheduledEvents() : storeGuildScheduledEvents, (i & 512) != 0 ? StoreStream.INSTANCE.getInstantInvites() : storeInstantInvites, (i & 1024) != 0 ? new InviteGenerator() : inviteGenerator, resources);
+    }
+
+    public final void generateInviteLink(Long channelId) {
+        Observable<Channel> observableM11119z = this.storeChannels.observeDefaultChannel(this.guildId).m11119z();
+        C12238m.checkNotNullExpressionValue(observableM11119z, "storeChannels.observeDef…tChannel(guildId).first()");
+        ObservableExtensionsKt.appSubscribe(observableM11119z, (Class<?>) WidgetGuildScheduledEventCreateSuccessViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88541(channelId));
     }
 
     private final void generateInviteLinkFromViewState(ViewState.Loaded viewState) {
@@ -259,18 +265,6 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
             return;
         }
         this.inviteGenerator.generateForAppComponent(this, widgetInviteModel.getTargetChannel().getId());
-    }
-
-    private final Observable<ViewState.Loaded> observeInvite(long guildId, Long eventId, String inviteStoreKey) {
-        Observable<ViewState.Loaded> observableM11112r = ObservableExtensionsKt.computationLatest(ObservableCombineLatestOverloadsKt.combineLatest(this.storeInviteSettings.getInviteSettings(), this.storeInviteSettings.getInvitableChannels(guildId), this.inviteGenerator.getGenerationState(), StoreUser.observeMe$default(this.storeUser, false, 1, null), this.storeChannels.observeDMs(), this.storeGuilds.observeGuild(guildId), this.storeStageInstances.observeStageInstancesForGuild(guildId), this.storeGuildScheduledEvents.observeGuildScheduledEvent(eventId, Long.valueOf(guildId)), this.storeInstantInvites.observeInvite(inviteStoreKey), this.storeChannels.observeDefaultChannel(guildId), C88551.INSTANCE)).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "combineLatest(\n        s…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final void generateInviteLink(Long channelId) {
-        Observable<Channel> observableM11119z = this.storeChannels.observeDefaultChannel(this.guildId).m11119z();
-        C12238m.checkNotNullExpressionValue(observableM11119z, "storeChannels.observeDef…tChannel(guildId).first()");
-        ObservableExtensionsKt.appSubscribe(observableM11119z, (Class<?>) WidgetGuildScheduledEventCreateSuccessViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88541(channelId));
     }
 
     public final Long getChannelId() {
@@ -319,6 +313,12 @@ public final class WidgetGuildScheduledEventCreateSuccessViewModel extends Abstr
 
     public final StoreUser getStoreUser() {
         return this.storeUser;
+    }
+
+    private final Observable<ViewState.Loaded> observeInvite(long guildId, Long eventId, String inviteStoreKey) {
+        Observable<ViewState.Loaded> observableM11112r = ObservableExtensionsKt.computationLatest(ObservableCombineLatestOverloadsKt.combineLatest(this.storeInviteSettings.getInviteSettings(), this.storeInviteSettings.getInvitableChannels(guildId), this.inviteGenerator.getGenerationState(), StoreUser.observeMe$default(this.storeUser, false, 1, null), this.storeChannels.observeDMs(), this.storeGuilds.observeGuild(guildId), this.storeStageInstances.observeStageInstancesForGuild(guildId), this.storeGuildScheduledEvents.observeGuildScheduledEvent(eventId, Long.valueOf(guildId)), this.storeInstantInvites.observeInvite(inviteStoreKey), this.storeChannels.observeDefaultChannel(guildId), C88551.INSTANCE)).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "combineLatest(\n        s…  .distinctUntilChanged()");
+        return observableM11112r;
     }
 
     public final void updateInviteSettings(ModelInvite.Settings settings) {

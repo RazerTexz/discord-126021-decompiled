@@ -24,28 +24,8 @@ import p007b.p225i.p226a.p341g.p347f.C4414b;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class ViewUtils {
 
-    public interface OnApplyWindowInsetsListener {
-        WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat, RelativePadding relativePadding);
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.ViewUtils$a */
-    public static class RunnableC10948a implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ View f21047j;
-
-        public RunnableC10948a(View view) {
-            this.f21047j = view;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            ((InputMethodManager) this.f21047j.getContext().getSystemService("input_method")).showSoftInput(this.f21047j, 1);
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.internal.ViewUtils$b */
-    public static class C10949b implements OnApplyWindowInsetsListener {
+    public final class C10949b implements OnApplyWindowInsetsListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ boolean f21048a;
@@ -94,7 +74,7 @@ public class ViewUtils {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.ViewUtils$c */
-    public static class C10950c implements androidx.core.view.OnApplyWindowInsetsListener {
+    public final class C10950c implements androidx.core.view.OnApplyWindowInsetsListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ OnApplyWindowInsetsListener f21052a;
@@ -113,8 +93,28 @@ public class ViewUtils {
         }
     }
 
+    public interface OnApplyWindowInsetsListener {
+        WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat, RelativePadding relativePadding);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.internal.ViewUtils$a */
+    public final class RunnableC10948a implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ View f21047j;
+
+        public RunnableC10948a(View view) {
+            this.f21047j = view;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ((InputMethodManager) this.f21047j.getContext().getSystemService("input_method")).showSoftInput(this.f21047j, 1);
+        }
+    }
+
     /* JADX INFO: renamed from: com.google.android.material.internal.ViewUtils$d */
-    public static class ViewOnAttachStateChangeListenerC10951d implements View.OnAttachStateChangeListener {
+    public final class ViewOnAttachStateChangeListenerC10951d implements View.OnAttachStateChangeListener {
         @Override // android.view.View.OnAttachStateChangeListener
         public void onViewAttachedToWindow(@NonNull View view) {
             view.removeOnAttachStateChangeListener(this);
@@ -238,7 +238,7 @@ public class ViewUtils {
         viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener);
     }
 
-    public static class RelativePadding {
+    public class RelativePadding {
         public int bottom;
         public int end;
         public int start;

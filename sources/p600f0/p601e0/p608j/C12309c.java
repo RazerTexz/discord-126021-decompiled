@@ -39,7 +39,7 @@ public final class C12309c {
 
     /* JADX INFO: renamed from: f0.e0.j.c$a */
     /* JADX INFO: compiled from: Hpack.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final List<C12308b> f25592a;
@@ -275,7 +275,7 @@ public final class C12309c {
 
     /* JADX INFO: renamed from: f0.e0.j.c$b */
     /* JADX INFO: compiled from: Hpack.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public int f25600a;

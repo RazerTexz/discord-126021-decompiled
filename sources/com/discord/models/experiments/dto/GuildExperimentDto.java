@@ -18,7 +18,7 @@ public final /* data */ class GuildExperimentDto {
     private final int revision;
 
     /* JADX INFO: compiled from: GuildExperimentDto.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -107,6 +107,14 @@ public final /* data */ class GuildExperimentDto {
         this.overrides = list2;
     }
 
+    public final List<GuildExperimentPopulationDto> component4() {
+        return this.populations;
+    }
+
+    public final List<GuildExperimentOverridesDto> component5() {
+        return this.overrides;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildExperimentDto copy$default(GuildExperimentDto guildExperimentDto, long j, String str, int i, List list, List list2, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -131,29 +139,6 @@ public final /* data */ class GuildExperimentDto {
         return guildExperimentDto.copy(j2, str2, i3, list3, list2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getExperimentIdHash() {
-        return this.experimentIdHash;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getHashKey() {
-        return this.hashKey;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getRevision() {
-        return this.revision;
-    }
-
-    public final List<GuildExperimentPopulationDto> component4() {
-        return this.populations;
-    }
-
-    public final List<GuildExperimentOverridesDto> component5() {
-        return this.overrides;
-    }
-
     public final GuildExperimentDto copy(long experimentIdHash, String hashKey, int revision, List<GuildExperimentPopulationDto> populations, List<GuildExperimentOverridesDto> overrides) {
         C12238m.checkNotNullParameter(populations, "populations");
         C12238m.checkNotNullParameter(overrides, "overrides");
@@ -171,8 +156,18 @@ public final /* data */ class GuildExperimentDto {
         return this.experimentIdHash == guildExperimentDto.experimentIdHash && C12238m.areEqual(this.hashKey, guildExperimentDto.hashKey) && this.revision == guildExperimentDto.revision && C12238m.areEqual(this.populations, guildExperimentDto.populations) && C12238m.areEqual(this.overrides, guildExperimentDto.overrides);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getExperimentIdHash() {
         return this.experimentIdHash;
+    }
+
+    public final long getExperimentIdHash() {
+        return this.experimentIdHash;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getHashKey() {
+        return this.hashKey;
     }
 
     public final String getHashKey() {
@@ -185,6 +180,11 @@ public final /* data */ class GuildExperimentDto {
 
     public final List<GuildExperimentPopulationDto> getPopulations() {
         return this.populations;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getRevision() {
+        return this.revision;
     }
 
     public final int getRevision() {

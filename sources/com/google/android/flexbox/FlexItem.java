@@ -4,6 +4,12 @@ import android.os.Parcelable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public interface FlexItem extends Parcelable {
+    int getHeight();
+
+    int getOrder();
+
+    int getWidth();
+
     /* JADX INFO: renamed from: D */
     int mo8955D();
 
@@ -33,12 +39,6 @@ public interface FlexItem extends Parcelable {
 
     /* JADX INFO: renamed from: f0 */
     int mo8964f0();
-
-    int getHeight();
-
-    int getOrder();
-
-    int getWidth();
 
     /* JADX INFO: renamed from: j0 */
     boolean mo8965j0();

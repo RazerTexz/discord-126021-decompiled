@@ -23,6 +23,10 @@ public final /* data */ class Experiment {
         this.trackExposure = function0;
     }
 
+    public final Function0<Unit> component5() {
+        return this.trackExposure;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Experiment copy$default(Experiment experiment, int i, int i2, int i3, boolean z2, Function0 function0, int i4, Object obj) {
         if ((i4 & 1) != 0) {
@@ -46,30 +50,6 @@ public final /* data */ class Experiment {
         return experiment.copy(i, i5, i6, z3, function0);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getRevision() {
-        return this.revision;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getBucket() {
-        return this.bucket;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getPopulation() {
-        return this.population;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsOverride() {
-        return this.isOverride;
-    }
-
-    public final Function0<Unit> component5() {
-        return this.trackExposure;
-    }
-
     public final Experiment copy(int revision, int bucket, int population, boolean isOverride, Function0<Unit> trackExposure) {
         C12238m.checkNotNullParameter(trackExposure, "trackExposure");
         return new Experiment(revision, bucket, population, isOverride, trackExposure);
@@ -86,12 +66,32 @@ public final /* data */ class Experiment {
         return this.revision == experiment.revision && this.bucket == experiment.bucket && this.population == experiment.population && this.isOverride == experiment.isOverride && C12238m.areEqual(this.trackExposure, experiment.trackExposure);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getBucket() {
         return this.bucket;
     }
 
+    public final int getBucket() {
+        return this.bucket;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsOverride() {
+        return this.isOverride;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getPopulation() {
         return this.population;
+    }
+
+    public final int getPopulation() {
+        return this.population;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getRevision() {
+        return this.revision;
     }
 
     public final int getRevision() {

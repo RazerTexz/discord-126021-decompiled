@@ -12,18 +12,20 @@ public interface InterfaceC1660c {
     /* JADX INFO: renamed from: b.f.b.b.c$a */
     /* JADX INFO: compiled from: DiskStorage.java */
     public interface a {
-        /* JADX INFO: renamed from: a */
-        long mo945a();
-
         String getId();
 
         long getSize();
+
+        /* JADX INFO: renamed from: a */
+        long mo945a();
     }
 
     /* JADX INFO: renamed from: b.f.b.b.c$b */
     /* JADX INFO: compiled from: DiskStorage.java */
     public interface b {
     }
+
+    boolean isExternal();
 
     /* JADX INFO: renamed from: a */
     void mo932a();
@@ -45,6 +47,4 @@ public interface InterfaceC1660c {
 
     /* JADX INFO: renamed from: g */
     long mo938g(a aVar) throws IOException;
-
-    boolean isExternal();
 }

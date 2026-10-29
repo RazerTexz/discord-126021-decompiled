@@ -22,13 +22,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3900y1 implements InterfaceC3594b2 {
 
-    /* JADX INFO: renamed from: a */
-    @GuardedBy("ConfigurationContentLoader.class")
-    public static final Map<Uri, C3900y1> f10417a = new ArrayMap();
-
-    /* JADX INFO: renamed from: b */
-    public static final String[] f10418b = {"key", "value"};
-
     /* JADX INFO: renamed from: c */
     public final ContentResolver f10419c;
 
@@ -47,6 +40,13 @@ public final class C3900y1 implements InterfaceC3594b2 {
     /* JADX INFO: renamed from: h */
     @GuardedBy("this")
     public final List<InterfaceC3913z1> f10424h;
+
+    /* JADX INFO: renamed from: a */
+    @GuardedBy("ConfigurationContentLoader.class")
+    public static final Map<Uri, C3900y1> f10417a = new ArrayMap();
+
+    /* JADX INFO: renamed from: b */
+    public static final String[] f10418b = {"key", "value"};
 
     public C3900y1(ContentResolver contentResolver, Uri uri) {
         C3580a2 c3580a2 = new C3580a2(this);

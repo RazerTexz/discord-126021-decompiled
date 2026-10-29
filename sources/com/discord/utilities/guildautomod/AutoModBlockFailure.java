@@ -25,16 +25,6 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
         return autoModBlockFailure.copy(i, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getErrorStringId() {
-        return this.errorStringId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getReasonCode() {
-        return this.reasonCode;
-    }
-
     public final AutoModBlockFailure copy(int errorStringId, String reasonCode) {
         C12238m.checkNotNullParameter(reasonCode, "reasonCode");
         return new AutoModBlockFailure(errorStringId, reasonCode);
@@ -51,8 +41,18 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
         return this.errorStringId == autoModBlockFailure.errorStringId && C12238m.areEqual(this.reasonCode, autoModBlockFailure.reasonCode);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getErrorStringId() {
         return this.errorStringId;
+    }
+
+    public final int getErrorStringId() {
+        return this.errorStringId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getReasonCode() {
+        return this.reasonCode;
     }
 
     public final String getReasonCode() {

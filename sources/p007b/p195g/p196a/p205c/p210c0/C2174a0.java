@@ -11,9 +11,6 @@ import p007b.p195g.p196a.p205c.p219i0.C2342d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2174a0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2174a0 f4627a = new C2174a0(C2370t.f5030k, Object.class, null, false, null);
-
     /* JADX INFO: renamed from: b */
     public final C2370t f4628b;
 
@@ -28,6 +25,9 @@ public class C2174a0 {
 
     /* JADX INFO: renamed from: f */
     public final boolean f4632f;
+
+    /* JADX INFO: renamed from: a */
+    public static final C2174a0 f4627a = new C2174a0(C2370t.f5030k, Object.class, null, false, null);
 
     /* JADX WARN: Incorrect type for immutable var: ssa=java.lang.Class<?>, code=java.lang.Class, for r5v0, types: [java.lang.Class<?>] */
     /*

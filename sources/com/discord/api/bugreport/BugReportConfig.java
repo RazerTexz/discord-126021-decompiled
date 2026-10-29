@@ -9,11 +9,6 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class BugReportConfig {
     private final List<Feature> features;
 
-    /* JADX INFO: renamed from: a */
-    public final List<Feature> m7625a() {
-        return this.features;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof BugReportConfig) && C12238m.areEqual(this.features, ((BugReportConfig) other).features);
@@ -27,6 +22,11 @@ public final /* data */ class BugReportConfig {
             return list.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<Feature> m7625a() {
+        return this.features;
     }
 
     public String toString() {

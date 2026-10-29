@@ -31,41 +31,6 @@ public final class C4855a extends AbstractC4858d {
         this.f12982e = aVar;
     }
 
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
-    @Nullable
-    /* JADX INFO: renamed from: a */
-    public AbstractC4860f mo6792a() {
-        return this.f12981d;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public String mo6793b() {
-        return this.f12979b;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public String mo6794c() {
-        return this.f12980c;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
-    @Nullable
-    /* JADX INFO: renamed from: d */
-    public AbstractC4858d.a mo6795d() {
-        return this.f12982e;
-    }
-
-    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
-    @Nullable
-    /* JADX INFO: renamed from: e */
-    public String mo6796e() {
-        return this.f12978a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -108,6 +73,41 @@ public final class C4855a extends AbstractC4858d {
         int iHashCode4 = (iHashCode3 ^ (abstractC4860f == null ? 0 : abstractC4860f.hashCode())) * 1000003;
         AbstractC4858d.a aVar = this.f12982e;
         return iHashCode4 ^ (aVar != null ? aVar.hashCode() : 0);
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
+    @Nullable
+    /* JADX INFO: renamed from: a */
+    public AbstractC4860f mo6792a() {
+        return this.f12981d;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public String mo6793b() {
+        return this.f12979b;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public String mo6794c() {
+        return this.f12980c;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
+    @Nullable
+    /* JADX INFO: renamed from: d */
+    public AbstractC4858d.a mo6795d() {
+        return this.f12982e;
+    }
+
+    @Override // p007b.p225i.p361c.p401u.p403p.AbstractC4858d
+    @Nullable
+    /* JADX INFO: renamed from: e */
+    public String mo6796e() {
+        return this.f12978a;
     }
 
     public String toString() {

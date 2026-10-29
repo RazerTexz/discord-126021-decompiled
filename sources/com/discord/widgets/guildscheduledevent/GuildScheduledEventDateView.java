@@ -68,6 +68,13 @@ public final class GuildScheduledEventDateView extends ConstraintLayout {
         guildScheduledEventDateView.configure(guildScheduledEvent, z2);
     }
 
+    public final void configure(GuildScheduledEvent event, boolean truncateDateTime) {
+        C12238m.checkNotNullParameter(event, "event");
+        long dateTimeMillis = event.getScheduledStartTime().getDateTimeMillis();
+        UtcDateTime scheduledEndTime = event.getScheduledEndTime();
+        configure(dateTimeMillis, scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, event.getEntityType(), event.getStatus(), truncateDateTime);
+    }
+
     private final void configureCompleteTimeString(GuildScheduledEventTiming timing, long startTimeMillis, long endTimeMillis, GuildScheduledEventEntityType entityType, GuildScheduledEventStatus status) {
         Context context = getContext();
         C12238m.checkNotNullExpressionValue(context, "context");
@@ -148,13 +155,6 @@ public final class GuildScheduledEventDateView extends ConstraintLayout {
             }
         }
         return ColorCompat.getThemedColor(getContext(), C5419R.attr.colorControlBrandForegroundNew);
-    }
-
-    public final void configure(GuildScheduledEvent event, boolean truncateDateTime) {
-        C12238m.checkNotNullParameter(event, "event");
-        long dateTimeMillis = event.getScheduledStartTime().getDateTimeMillis();
-        UtcDateTime scheduledEndTime = event.getScheduledEndTime();
-        configure(dateTimeMillis, scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, event.getEntityType(), event.getStatus(), truncateDateTime);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

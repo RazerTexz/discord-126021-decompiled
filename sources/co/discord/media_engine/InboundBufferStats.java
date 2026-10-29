@@ -42,31 +42,6 @@ public final /* data */ class InboundBufferStats {
         return inboundBufferStats.copy(playoutMetric, playoutMetric6, playoutMetric7, playoutMetric8, playoutMetric5);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final PlayoutMetric getAudioJitterBuffer() {
-        return this.audioJitterBuffer;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final PlayoutMetric getAudioJitterTarget() {
-        return this.audioJitterTarget;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final PlayoutMetric getAudioJitterDelay() {
-        return this.audioJitterDelay;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final PlayoutMetric getRelativeReceptionDelay() {
-        return this.relativeReceptionDelay;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final PlayoutMetric getRelativePlayoutDelay() {
-        return this.relativePlayoutDelay;
-    }
-
     public final InboundBufferStats copy(PlayoutMetric audioJitterBuffer, PlayoutMetric audioJitterTarget, PlayoutMetric audioJitterDelay, PlayoutMetric relativeReceptionDelay, PlayoutMetric relativePlayoutDelay) {
         return new InboundBufferStats(audioJitterBuffer, audioJitterTarget, audioJitterDelay, relativeReceptionDelay, relativePlayoutDelay);
     }
@@ -82,20 +57,45 @@ public final /* data */ class InboundBufferStats {
         return C12238m.areEqual(this.audioJitterBuffer, inboundBufferStats.audioJitterBuffer) && C12238m.areEqual(this.audioJitterTarget, inboundBufferStats.audioJitterTarget) && C12238m.areEqual(this.audioJitterDelay, inboundBufferStats.audioJitterDelay) && C12238m.areEqual(this.relativeReceptionDelay, inboundBufferStats.relativeReceptionDelay) && C12238m.areEqual(this.relativePlayoutDelay, inboundBufferStats.relativePlayoutDelay);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final PlayoutMetric getAudioJitterBuffer() {
         return this.audioJitterBuffer;
+    }
+
+    public final PlayoutMetric getAudioJitterBuffer() {
+        return this.audioJitterBuffer;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final PlayoutMetric getAudioJitterDelay() {
+        return this.audioJitterDelay;
     }
 
     public final PlayoutMetric getAudioJitterDelay() {
         return this.audioJitterDelay;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final PlayoutMetric getAudioJitterTarget() {
         return this.audioJitterTarget;
     }
 
+    public final PlayoutMetric getAudioJitterTarget() {
+        return this.audioJitterTarget;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final PlayoutMetric getRelativePlayoutDelay() {
         return this.relativePlayoutDelay;
+    }
+
+    public final PlayoutMetric getRelativePlayoutDelay() {
+        return this.relativePlayoutDelay;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final PlayoutMetric getRelativeReceptionDelay() {
+        return this.relativeReceptionDelay;
     }
 
     public final PlayoutMetric getRelativeReceptionDelay() {

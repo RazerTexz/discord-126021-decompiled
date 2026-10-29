@@ -7,6 +7,12 @@ import java.util.NoSuchElementException;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3147s {
 
+    /* JADX INFO: renamed from: d */
+    public int[] f9105d;
+
+    /* JADX INFO: renamed from: e */
+    public int f9106e;
+
     /* JADX INFO: renamed from: a */
     public int f9102a = 0;
 
@@ -15,12 +21,6 @@ public final class C3147s {
 
     /* JADX INFO: renamed from: c */
     public int f9104c = 0;
-
-    /* JADX INFO: renamed from: d */
-    public int[] f9105d;
-
-    /* JADX INFO: renamed from: e */
-    public int f9106e;
 
     public C3147s() {
         int[] iArr = new int[16];

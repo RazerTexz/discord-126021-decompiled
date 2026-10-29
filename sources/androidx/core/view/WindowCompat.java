@@ -16,7 +16,7 @@ public final class WindowCompat {
     public static final int FEATURE_ACTION_MODE_OVERLAY = 10;
 
     @RequiresApi(16)
-    public static class Impl16 {
+    public class Impl16 {
         private Impl16() {
         }
 
@@ -28,7 +28,7 @@ public final class WindowCompat {
     }
 
     @RequiresApi(30)
-    public static class Impl30 {
+    public class Impl30 {
         private Impl30() {
         }
 

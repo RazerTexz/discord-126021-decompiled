@@ -13,38 +13,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFileUploadAlertViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final CharSequence alertType = null;
+    private final Boolean hasImage = null;
+    private final Boolean hasVideo = null;
+    private final Float imageCompressionQuality = null;
+    private final Boolean imageCompressionSettingEnabled = null;
+    private final Boolean isPremium = null;
+    private final Long maxAttachmentSize = null;
+    private final Long numAttachments = null;
+    private final Boolean previewEnabled = null;
+    private final Long totalAttachmentSize = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final CharSequence alertType = null;
-    private final Long numAttachments = null;
-    private final Long maxAttachmentSize = null;
-    private final Long totalAttachmentSize = null;
-    private final Boolean hasImage = null;
-    private final Boolean hasVideo = null;
-    private final Boolean isPremium = null;
-    private final Float imageCompressionQuality = null;
-    private final Boolean imageCompressionSettingEnabled = null;
-    private final Boolean previewEnabled = null;
     private final transient String analyticsSchemaTypeName = "file_upload_alert_viewed";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,6 +37,18 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
         }
         TrackFileUploadAlertViewed trackFileUploadAlertViewed = (TrackFileUploadAlertViewed) other;
         return C12238m.areEqual(this.alertType, trackFileUploadAlertViewed.alertType) && C12238m.areEqual(this.numAttachments, trackFileUploadAlertViewed.numAttachments) && C12238m.areEqual(this.maxAttachmentSize, trackFileUploadAlertViewed.maxAttachmentSize) && C12238m.areEqual(this.totalAttachmentSize, trackFileUploadAlertViewed.totalAttachmentSize) && C12238m.areEqual(this.hasImage, trackFileUploadAlertViewed.hasImage) && C12238m.areEqual(this.hasVideo, trackFileUploadAlertViewed.hasVideo) && C12238m.areEqual(this.isPremium, trackFileUploadAlertViewed.isPremium) && C12238m.areEqual(this.imageCompressionQuality, trackFileUploadAlertViewed.imageCompressionQuality) && C12238m.areEqual(this.imageCompressionSettingEnabled, trackFileUploadAlertViewed.imageCompressionSettingEnabled) && C12238m.areEqual(this.previewEnabled, trackFileUploadAlertViewed.previewEnabled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -78,6 +72,12 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
         int iHashCode9 = (iHashCode8 + (bool4 != null ? bool4.hashCode() : 0)) * 31;
         Boolean bool5 = this.previewEnabled;
         return iHashCode9 + (bool5 != null ? bool5.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

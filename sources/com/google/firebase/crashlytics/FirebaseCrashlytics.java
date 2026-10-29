@@ -29,15 +29,6 @@ public class FirebaseCrashlytics {
     }
 
     @NonNull
-    public static FirebaseCrashlytics getInstance() {
-        C4542c c4542cM6327b = C4542c.m6327b();
-        c4542cM6327b.m6330a();
-        FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) c4542cM6327b.f12121g.mo6346a(FirebaseCrashlytics.class);
-        Objects.requireNonNull(firebaseCrashlytics, "FirebaseCrashlytics component is not present.");
-        return firebaseCrashlytics;
-    }
-
-    @NonNull
     public Task<Boolean> checkForUnsentReports() {
         C4663x c4663x = this.f21418a.f12336h;
         if (c4663x.f12427F.compareAndSet(false, true)) {
@@ -55,6 +46,15 @@ public class FirebaseCrashlytics {
 
     public boolean didCrashOnPreviousExecution() {
         return this.f21418a.f12335g;
+    }
+
+    @NonNull
+    public static FirebaseCrashlytics getInstance() {
+        C4542c c4542cM6327b = C4542c.m6327b();
+        c4542cM6327b.m6330a();
+        FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) c4542cM6327b.f12121g.mo6346a(FirebaseCrashlytics.class);
+        Objects.requireNonNull(firebaseCrashlytics, "FirebaseCrashlytics component is not present.");
+        return firebaseCrashlytics;
     }
 
     public void log(@NonNull String str) {

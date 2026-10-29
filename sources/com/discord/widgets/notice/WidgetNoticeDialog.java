@@ -53,6 +53,7 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetNoticeDialog extends AppDialog {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetNoticeDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetNoticeDialogBinding;", 0)};
     private static final String ARG_ABOVE_LAYOUT_ID = "above_layout_id";
     private static final String ARG_BELOW_LAYOUT_ID = "below_layout_id";
     private static final String ARG_BODY_TEXT = "body_text";
@@ -65,6 +66,9 @@ public final class WidgetNoticeDialog extends AppDialog {
     private static final String ARG_STACK_TRACE_CALLER_FRAME = "stack_trace_caller_frame";
     private static final String ARG_THEME_ID = "theme_id";
     public static final int CANCEL_BUTTON = 2131364550;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int OK_BUTTON = 2131364555;
     public static final int ON_SHOW = 0;
 
@@ -72,13 +76,9 @@ public final class WidgetNoticeDialog extends AppDialog {
     private final FragmentViewBindingDelegate binding;
     private Map<Integer, ? extends Function1<? super View, Unit>> listenerMap;
     private Function0<Unit> onDismiss;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetNoticeDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetNoticeDialogBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
-    public static final class ActionLinkMovementMethod extends LinkMovementMethod {
+    public final class ActionLinkMovementMethod extends LinkMovementMethod {
         private final Function0<Unit> linkAction;
 
         public ActionLinkMovementMethod(Function0<Unit> function0) {
@@ -100,7 +100,7 @@ public final class WidgetNoticeDialog extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
-    public static final class Builder {
+    public final class Builder {
         private String cancelText;
         private String confirmText;
         private final Context context;
@@ -123,22 +123,6 @@ public final class WidgetNoticeDialog extends AppDialog {
             this.onCancel = WidgetNoticeDialog$Builder$onCancel$1.INSTANCE;
         }
 
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Builder setNegativeButton$default(Builder builder, String str, Function1 function1, int i, Object obj) {
-            if ((i & 2) != 0) {
-                function1 = WidgetNoticeDialog$Builder$setNegativeButton$1.INSTANCE;
-            }
-            return builder.setNegativeButton(str, (Function1<? super View, Unit>) function1);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Builder setPositiveButton$default(Builder builder, String str, Function1 function1, int i, Object obj) {
-            if ((i & 2) != 0) {
-                function1 = WidgetNoticeDialog$Builder$setPositiveButton$1.INSTANCE;
-            }
-            return builder.setPositiveButton(str, (Function1<? super View, Unit>) function1);
-        }
-
         public final Context getContext() {
             return this.context;
         }
@@ -159,12 +143,28 @@ public final class WidgetNoticeDialog extends AppDialog {
             return this;
         }
 
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Builder setNegativeButton$default(Builder builder, String str, Function1 function1, int i, Object obj) {
+            if ((i & 2) != 0) {
+                function1 = WidgetNoticeDialog$Builder$setNegativeButton$1.INSTANCE;
+            }
+            return builder.setNegativeButton(str, (Function1<? super View, Unit>) function1);
+        }
+
         public final Builder setNegativeButton(String text, Function1<? super View, Unit> onCancel) {
             C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             C12238m.checkNotNullParameter(onCancel, "onCancel");
             this.cancelText = text;
             this.onCancel = onCancel;
             return this;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Builder setPositiveButton$default(Builder builder, String str, Function1 function1, int i, Object obj) {
+            if ((i & 2) != 0) {
+                function1 = WidgetNoticeDialog$Builder$setPositiveButton$1.INSTANCE;
+            }
+            return builder.setPositiveButton(str, (Function1<? super View, Unit>) function1);
         }
 
         public final Builder setPositiveButton(String text, Function1<? super View, Unit> onConfirm) {
@@ -192,6 +192,11 @@ public final class WidgetNoticeDialog extends AppDialog {
             Companion.show$default(WidgetNoticeDialog.INSTANCE, fragmentManager, this.title, this.message, this.confirmText, this.cancelText, C12136h0.mapOf(C12116o.m10073to(Integer.valueOf(C5419R.id.notice_ok), this.onConfirm), C12116o.m10073to(Integer.valueOf(C5419R.id.notice_cancel), this.onCancel)), null, null, null, this.themeId, null, null, 0, null, 15808, null);
         }
 
+        public final Builder setMessage(@StringRes int stringResId) {
+            this.message = C1107b.m216h(this.context, stringResId, new Object[0], null, 4);
+            return this;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Builder setNegativeButton$default(Builder builder, int i, Function1 function1, int i2, Object obj) {
             if ((i2 & 2) != 0) {
@@ -206,11 +211,6 @@ public final class WidgetNoticeDialog extends AppDialog {
                 function1 = WidgetNoticeDialog$Builder$setPositiveButton$2.INSTANCE;
             }
             return builder.setPositiveButton(i, (Function1<? super View, Unit>) function1);
-        }
-
-        public final Builder setMessage(@StringRes int stringResId) {
-            this.message = C1107b.m216h(this.context, stringResId, new Object[0], null, 4);
-            return this;
         }
 
         public final Builder setTitle(@StringRes int stringResId) {
@@ -239,8 +239,27 @@ public final class WidgetNoticeDialog extends AppDialog {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.notice.WidgetNoticeDialog$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
-    public static final class Companion {
+    public final class C90952 extends AbstractC12240o implements Function0<Unit> {
+        public C90952() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetNoticeDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -322,25 +341,6 @@ public final class WidgetNoticeDialog extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.notice.WidgetNoticeDialog$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
-    public static final class C90952 extends AbstractC12240o implements Function0<Unit> {
-        public C90952() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetNoticeDialog.this.dismiss();
-        }
-    }
-
     public WidgetNoticeDialog() {
         super(C5419R.layout.widget_notice_dialog);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetNoticeDialog$binding$2.INSTANCE, null, 2, null);
@@ -348,6 +348,21 @@ public final class WidgetNoticeDialog extends AppDialog {
 
     private final WidgetNoticeDialogBinding getBinding() {
         return (WidgetNoticeDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    public final Map<Integer, Function1<View, Unit>> getListenerMap() {
+        return this.listenerMap;
+    }
+
+    public final Function0<Unit> getOnDismiss() {
+        return this.onDismiss;
+    }
+
+    public static /* synthetic */ Integer insertLayoutInBundle$default(WidgetNoticeDialog widgetNoticeDialog, Bundle bundle, String str, int i, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 0;
+        }
+        return widgetNoticeDialog.insertLayoutInBundle(bundle, str, i);
     }
 
     private final Integer insertLayoutInBundle(Bundle bundle, String str, int i) {
@@ -363,25 +378,6 @@ public final class WidgetNoticeDialog extends AppDialog {
         }
         getBinding().f17296b.addView(getLayoutInflater().inflate(numValueOf.intValue(), (ViewGroup) getBinding().f17296b, false), i);
         return numValueOf;
-    }
-
-    public static /* synthetic */ Integer insertLayoutInBundle$default(WidgetNoticeDialog widgetNoticeDialog, Bundle bundle, String str, int i, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 0;
-        }
-        return widgetNoticeDialog.insertLayoutInBundle(bundle, str, i);
-    }
-
-    public static final void show(FragmentManager fragmentManager, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, Map<Integer, ? extends Function1<? super View, Unit>> map, StoreNotices.Dialog.Type type, @LayoutRes Integer num, @LayoutRes Integer num2, Integer num3, Boolean bool, String str, int i, Function0<Unit> function0) {
-        INSTANCE.show(fragmentManager, charSequence, charSequence2, charSequence3, charSequence4, map, type, num, num2, num3, bool, str, i, function0);
-    }
-
-    public final Map<Integer, Function1<View, Unit>> getListenerMap() {
-        return this.listenerMap;
-    }
-
-    public final Function0<Unit> getOnDismiss() {
-        return this.onDismiss;
     }
 
     public final void logOnStartError(Exception exception) {
@@ -510,5 +506,9 @@ public final class WidgetNoticeDialog extends AppDialog {
 
     public final void setOnDismiss(Function0<Unit> function0) {
         this.onDismiss = function0;
+    }
+
+    public static final void show(FragmentManager fragmentManager, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, Map<Integer, ? extends Function1<? super View, Unit>> map, StoreNotices.Dialog.Type type, @LayoutRes Integer num, @LayoutRes Integer num2, Integer num3, Boolean bool, String str, int i, Function0<Unit> function0) {
+        INSTANCE.show(fragmentManager, charSequence, charSequence2, charSequence3, charSequence4, map, type, num, num2, num3, bool, str, i, function0);
     }
 }

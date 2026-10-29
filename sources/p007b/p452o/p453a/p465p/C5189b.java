@@ -8,14 +8,14 @@ import p007b.p452o.p453a.C5103b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5189b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14053a = new C5103b(C5189b.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public final AbstractC5190c f14054b;
 
     /* JADX INFO: renamed from: c */
     public Object f14055c = null;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14053a = new C5103b(C5189b.class.getSimpleName());
 
     /* JADX INFO: renamed from: d */
     public long f14056d = -1;
@@ -25,6 +25,10 @@ public class C5189b {
 
     public C5189b(@NonNull AbstractC5190c abstractC5190c) {
         this.f14054b = abstractC5190c;
+    }
+
+    public boolean equals(Object obj) {
+        return (obj instanceof C5189b) && ((C5189b) obj).f14056d == this.f14056d;
     }
 
     /* JADX INFO: renamed from: a */
@@ -48,9 +52,5 @@ public class C5189b {
                 abstractC5190c.mo7380c(obj, abstractC5190c.f14064g.offer(this));
             }
         }
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof C5189b) && ((C5189b) obj).f14056d == this.f14056d;
     }
 }

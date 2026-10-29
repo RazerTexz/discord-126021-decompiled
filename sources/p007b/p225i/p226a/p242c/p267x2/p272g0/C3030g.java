@@ -11,14 +11,14 @@ public final class C3030g {
     /* JADX INFO: renamed from: a */
     public static final long[] f8302a = {128, 64, 32, 16, 8, 4, 2, 1};
 
-    /* JADX INFO: renamed from: b */
-    public final byte[] f8303b = new byte[8];
-
     /* JADX INFO: renamed from: c */
     public int f8304c;
 
     /* JADX INFO: renamed from: d */
     public int f8305d;
+
+    /* JADX INFO: renamed from: b */
+    public final byte[] f8303b = new byte[8];
 
     /* JADX INFO: renamed from: a */
     public static long m3685a(byte[] bArr, int i, boolean z2) {

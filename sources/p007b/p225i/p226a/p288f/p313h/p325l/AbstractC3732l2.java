@@ -13,9 +13,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC3732l2<T> {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f10069a = new Object();
-
     /* JADX INFO: renamed from: b */
     public static volatile AbstractC3836t2 f10070b;
 
@@ -34,14 +31,17 @@ public abstract class AbstractC3732l2<T> {
     /* JADX INFO: renamed from: g */
     public final T f10075g;
 
-    /* JADX INFO: renamed from: h */
-    public volatile int f10076h = -1;
-
     /* JADX INFO: renamed from: i */
     public volatile T f10077i;
 
     /* JADX INFO: renamed from: j */
     public final boolean f10078j;
+
+    /* JADX INFO: renamed from: a */
+    public static final Object f10069a = new Object();
+
+    /* JADX INFO: renamed from: h */
+    public volatile int f10076h = -1;
 
     static {
         new AtomicReference();
@@ -59,9 +59,6 @@ public abstract class AbstractC3732l2<T> {
         this.f10075g = obj;
         this.f10078j = z2;
     }
-
-    /* JADX INFO: renamed from: a */
-    public abstract T mo5047a(Object obj);
 
     /* JADX INFO: renamed from: b */
     public final String m5048b(String str) {
@@ -226,4 +223,7 @@ public abstract class AbstractC3732l2<T> {
         }
         return this.f10077i;
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract T mo5047a(Object obj);
 }

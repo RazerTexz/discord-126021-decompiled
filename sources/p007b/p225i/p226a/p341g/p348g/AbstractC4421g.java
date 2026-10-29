@@ -24,13 +24,13 @@ public abstract class AbstractC4421g<T extends Animator> {
         this.f11738c = new int[i];
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract void mo6123a();
-
     /* JADX INFO: renamed from: b */
     public float m6130b(int i, int i2, int i3) {
         return (i - i2) / i3;
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo6123a();
 
     /* JADX INFO: renamed from: c */
     public abstract void mo6124c();

@@ -38,6 +38,22 @@ public final class ObservationDeck {
     private List<Observer> observers;
     private static final Function0<Unit> ON_UPDATE_EMPTY = ObservationDeck$Companion$ON_UPDATE_EMPTY$1.INSTANCE;
 
+    /* JADX INFO: renamed from: com.discord.stores.updates.ObservationDeck$logNotifyError$2 */
+    /* JADX INFO: compiled from: ObservationDeck.kt */
+    public final class C66352 extends AbstractC12240o implements Function1<Observer, CharSequence> {
+        public static final C66352 INSTANCE = new C66352();
+
+        public C66352() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final CharSequence invoke(Observer observer) {
+            C12238m.checkNotNullParameter(observer, "observer");
+            return observer.toDebugLogString();
+        }
+    }
+
     /* JADX INFO: compiled from: ObservationDeck.kt */
     public enum LogLevel {
         NONE,
@@ -46,19 +62,19 @@ public final class ObservationDeck {
     }
 
     /* JADX INFO: compiled from: ObservationDeck.kt */
-    public static abstract class Observer {
+    public abstract class Observer {
         private boolean isStale;
+
+        /* JADX INFO: renamed from: isStale, reason: from getter */
+        public final boolean getIsStale() {
+            return this.isStale;
+        }
 
         public abstract String getName();
 
         public abstract Set<UpdateSource> getObservingUpdates();
 
         public abstract Function0<Unit> getOnUpdate();
-
-        /* JADX INFO: renamed from: isStale, reason: from getter */
-        public final boolean getIsStale() {
-            return this.isStale;
-        }
 
         public final void markStale() {
             this.isStale = true;
@@ -88,22 +104,6 @@ public final class ObservationDeck {
     public interface UpdateSource {
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.updates.ObservationDeck$logNotifyError$2 */
-    /* JADX INFO: compiled from: ObservationDeck.kt */
-    public static final class C66352 extends AbstractC12240o implements Function1<Observer, CharSequence> {
-        public static final C66352 INSTANCE = new C66352();
-
-        public C66352() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final CharSequence invoke(Observer observer) {
-            C12238m.checkNotNullParameter(observer, "observer");
-            return observer.toDebugLogString();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public ObservationDeck() {
         this(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
@@ -125,59 +125,6 @@ public final class ObservationDeck {
             str = null;
         }
         return observationDeck.connect(updateSourceArr, z2, str, function0);
-    }
-
-    public static /* synthetic */ Observable connectRx$default(ObservationDeck observationDeck, UpdateSource[] updateSourceArr, boolean z2, Emitter.BackpressureMode backpressureMode, String str, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = true;
-        }
-        if ((i & 4) != 0) {
-            backpressureMode = Emitter.BackpressureMode.LATEST;
-        }
-        if ((i & 8) != 0) {
-            str = null;
-        }
-        return observationDeck.connectRx(updateSourceArr, z2, backpressureMode, str);
-    }
-
-    private final void logBreadcrumb(String message) {
-        if (this.logLevel == LogLevel.VERBOSE) {
-            this.logger.recordBreadcrumb(message, LOG_CATEGORY);
-        }
-    }
-
-    private final void logNotifyError(Throwable throwable, Set<? extends UpdateSource> updates) {
-        Logger logger = this.logger;
-        Pair[] pairArr = new Pair[2];
-        pairArr[0] = C12116o.m10073to("Update Sources", C12163u.joinToString$default(updates, ", ", null, null, 0, null, null, 62, null));
-        List<Observer> list = this.observers;
-        ArrayList arrayList = new ArrayList();
-        Iterator<T> it = list.iterator();
-        while (true) {
-            boolean z2 = true;
-            if (!it.hasNext()) {
-                pairArr[1] = C12116o.m10073to("Observers", C12163u.joinToString$default(arrayList, "\n", null, null, 0, null, C66352.INSTANCE, 30, null));
-                logger.mo8364e("ObservationDeck notify error", throwable, C12136h0.mapOf(pairArr));
-                return;
-            }
-            Object next = it.next();
-            Observer observer = (Observer) next;
-            if (!(updates instanceof Collection) || !updates.isEmpty()) {
-                Iterator<T> it2 = updates.iterator();
-                do {
-                    if (!it2.hasNext()) {
-                        z2 = false;
-                        break;
-                    }
-                } while (!observer.getObservingUpdates().contains((UpdateSource) it2.next()));
-            } else {
-                z2 = false;
-                break;
-            }
-            if (z2) {
-                arrayList.add(next);
-            }
-        }
     }
 
     public final synchronized Observer connect(final UpdateSource[] updateSources, boolean updateOnConnect, final String observerName, final Function0<Unit> onUpdate) {
@@ -226,6 +173,19 @@ public final class ObservationDeck {
         return observer;
     }
 
+    public static /* synthetic */ Observable connectRx$default(ObservationDeck observationDeck, UpdateSource[] updateSourceArr, boolean z2, Emitter.BackpressureMode backpressureMode, String str, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = true;
+        }
+        if ((i & 4) != 0) {
+            backpressureMode = Emitter.BackpressureMode.LATEST;
+        }
+        if ((i & 8) != 0) {
+            str = null;
+        }
+        return observationDeck.connectRx(updateSourceArr, z2, backpressureMode, str);
+    }
+
     public final synchronized Observable<Unit> connectRx(final UpdateSource[] updateSources, final boolean updateOnConnect, Emitter.BackpressureMode backpressureMode, final String observerName) {
         Observable<Unit> observableM11117w;
         C12238m.checkNotNullParameter(updateSources, "updateSources");
@@ -236,7 +196,7 @@ public final class ObservationDeck {
 
             /* JADX INFO: renamed from: com.discord.stores.updates.ObservationDeck$connectRx$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: ObservationDeck.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ Emitter $emitter;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -288,56 +248,100 @@ public final class ObservationDeck {
         logBreadcrumb("disconnect END. observer: " + observer.getName());
     }
 
-    public final synchronized void notify(Set<? extends UpdateSource> updates) {
-        String str;
-        boolean z2;
-        C12238m.checkNotNullParameter(updates, "updates");
-        logBreadcrumb("notify START");
-        int i = 0;
-        while (i < this.observers.size()) {
-            try {
-                Observer observer = this.observers.get(i);
-                if (observer.getIsStale()) {
-                    logBreadcrumb("removing observer: " + observer.getName());
-                    this.observers.remove(i);
-                    i += -1;
-                } else {
-                    if (!(updates instanceof Collection) || !updates.isEmpty()) {
-                        Iterator<T> it = updates.iterator();
-                        while (true) {
-                            if (!it.hasNext()) {
-                                z2 = false;
-                                break;
-                            }
-                            if (observer.getObservingUpdates().contains((UpdateSource) it.next())) {
-                                z2 = true;
-                                break;
-                            }
-                        }
-                    } else {
+    private final void logBreadcrumb(String message) {
+        if (this.logLevel == LogLevel.VERBOSE) {
+            this.logger.recordBreadcrumb(message, LOG_CATEGORY);
+        }
+    }
+
+    private final void logNotifyError(Throwable throwable, Set<? extends UpdateSource> updates) {
+        Logger logger = this.logger;
+        Pair[] pairArr = new Pair[2];
+        pairArr[0] = C12116o.m10073to("Update Sources", C12163u.joinToString$default(updates, ", ", null, null, 0, null, null, 62, null));
+        List<Observer> list = this.observers;
+        ArrayList arrayList = new ArrayList();
+        Iterator<T> it = list.iterator();
+        while (true) {
+            boolean z2 = true;
+            if (!it.hasNext()) {
+                pairArr[1] = C12116o.m10073to("Observers", C12163u.joinToString$default(arrayList, "\n", null, null, 0, null, C66352.INSTANCE, 30, null));
+                logger.mo8364e("ObservationDeck notify error", throwable, C12136h0.mapOf(pairArr));
+                return;
+            }
+            Object next = it.next();
+            Observer observer = (Observer) next;
+            if (!(updates instanceof Collection) || !updates.isEmpty()) {
+                Iterator<T> it2 = updates.iterator();
+                do {
+                    if (!it2.hasNext()) {
                         z2 = false;
                         break;
                     }
-                    if (z2) {
-                        observer.getOnUpdate().invoke();
-                    }
-                }
-                i++;
-            } catch (Throwable th) {
-                try {
-                    if (this.logLevel.compareTo(LogLevel.ERROR) < 0) {
-                        throw th;
-                    }
-                    logNotifyError(th, updates);
-                    str = "notify END";
-                } catch (Throwable th2) {
-                    logBreadcrumb("notify END");
-                    throw th2;
-                }
+                } while (!observer.getObservingUpdates().contains((UpdateSource) it2.next()));
+            } else {
+                z2 = false;
+                break;
+            }
+            if (z2) {
+                arrayList.add(next);
             }
         }
-        str = "notify END";
-        logBreadcrumb(str);
+    }
+
+    public final synchronized void notify(Set<? extends UpdateSource> updates) {
+        String str;
+        boolean z2;
+        try {
+            C12238m.checkNotNullParameter(updates, "updates");
+            logBreadcrumb("notify START");
+            int i = 0;
+            while (i < this.observers.size()) {
+                try {
+                    Observer observer = this.observers.get(i);
+                    if (observer.getIsStale()) {
+                        logBreadcrumb("removing observer: " + observer.getName());
+                        this.observers.remove(i);
+                        i += -1;
+                    } else {
+                        if (!(updates instanceof Collection) || !updates.isEmpty()) {
+                            Iterator<T> it = updates.iterator();
+                            while (true) {
+                                if (!it.hasNext()) {
+                                    z2 = false;
+                                    break;
+                                }
+                                if (observer.getObservingUpdates().contains((UpdateSource) it.next())) {
+                                    z2 = true;
+                                    break;
+                                }
+                            }
+                        } else {
+                            z2 = false;
+                            break;
+                        }
+                        if (z2) {
+                            observer.getOnUpdate().invoke();
+                        }
+                    }
+                    i++;
+                } catch (Throwable th) {
+                    try {
+                        if (this.logLevel.compareTo(LogLevel.ERROR) < 0) {
+                            throw th;
+                        }
+                        logNotifyError(th, updates);
+                        str = "notify END";
+                    } catch (Throwable th2) {
+                        logBreadcrumb("notify END");
+                        throw th2;
+                    }
+                }
+            }
+            str = "notify END";
+            logBreadcrumb(str);
+        } catch (Throwable th3) {
+            throw th3;
+        }
     }
 
     public static /* synthetic */ Observer connect$default(ObservationDeck observationDeck, Observer observer, boolean z2, int i, Object obj) {

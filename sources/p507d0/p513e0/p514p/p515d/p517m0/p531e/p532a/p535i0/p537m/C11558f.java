@@ -48,7 +48,7 @@ public final class C11558f extends AbstractC12018z0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.m.f$a */
     /* JADX INFO: compiled from: RawType.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11947g, AbstractC11934j0> {
         public final /* synthetic */ C11553a $attr;
         public final /* synthetic */ InterfaceC11330e $declaration;
         public final /* synthetic */ AbstractC11934j0 $type;
@@ -90,6 +90,31 @@ public final class C11558f extends AbstractC12018z0 {
             abstractC11913c0 = C11557e.getErasedUpperBound$default(interfaceC11477z0, null, null, 3, null);
         }
         return c11558f.computeProjection(interfaceC11477z0, c11553a, abstractC11913c0);
+    }
+
+    public final InterfaceC12012w0 computeProjection(InterfaceC11477z0 interfaceC11477z0, C11553a c11553a, AbstractC11913c0 abstractC11913c0) {
+        EnumC11935j1 enumC11935j1 = EnumC11935j1.INVARIANT;
+        C12238m.checkNotNullParameter(interfaceC11477z0, "parameter");
+        C12238m.checkNotNullParameter(c11553a, "attr");
+        C12238m.checkNotNullParameter(abstractC11913c0, "erasedUpperBound");
+        int iOrdinal = c11553a.getFlexibility().ordinal();
+        if (iOrdinal != 0 && iOrdinal != 1) {
+            if (iOrdinal == 2) {
+                return new C12016y0(enumC11935j1, abstractC11913c0);
+            }
+            throw new NoWhenBranchMatchedException();
+        }
+        if (!interfaceC11477z0.getVariance().getAllowsOutPosition()) {
+            return new C12016y0(enumC11935j1, C11836a.getBuiltIns(interfaceC11477z0).getNothingType());
+        }
+        List<InterfaceC11477z0> parameters = abstractC11913c0.getConstructor().getParameters();
+        C12238m.checkNotNullExpressionValue(parameters, "erasedUpperBound.constructor.parameters");
+        return parameters.isEmpty() ^ true ? new C12016y0(EnumC11935j1.OUT_VARIANCE, abstractC11913c0) : C11557e.makeStarProjection(interfaceC11477z0, c11553a);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
+    public boolean isEmpty() {
+        return false;
     }
 
     /* JADX INFO: renamed from: a */
@@ -151,31 +176,6 @@ public final class C11558f extends AbstractC12018z0 {
         }
         C11916d0 c11916d0 = C11916d0.f24748a;
         return C11916d0.flexibleType(abstractC11934j0Component1, abstractC11934j0Component2);
-    }
-
-    public final InterfaceC12012w0 computeProjection(InterfaceC11477z0 interfaceC11477z0, C11553a c11553a, AbstractC11913c0 abstractC11913c0) {
-        EnumC11935j1 enumC11935j1 = EnumC11935j1.INVARIANT;
-        C12238m.checkNotNullParameter(interfaceC11477z0, "parameter");
-        C12238m.checkNotNullParameter(c11553a, "attr");
-        C12238m.checkNotNullParameter(abstractC11913c0, "erasedUpperBound");
-        int iOrdinal = c11553a.getFlexibility().ordinal();
-        if (iOrdinal != 0 && iOrdinal != 1) {
-            if (iOrdinal == 2) {
-                return new C12016y0(enumC11935j1, abstractC11913c0);
-            }
-            throw new NoWhenBranchMatchedException();
-        }
-        if (!interfaceC11477z0.getVariance().getAllowsOutPosition()) {
-            return new C12016y0(enumC11935j1, C11836a.getBuiltIns(interfaceC11477z0).getNothingType());
-        }
-        List<InterfaceC11477z0> parameters = abstractC11913c0.getConstructor().getParameters();
-        C12238m.checkNotNullExpressionValue(parameters, "erasedUpperBound.constructor.parameters");
-        return parameters.isEmpty() ^ true ? new C12016y0(EnumC11935j1.OUT_VARIANCE, abstractC11913c0) : C11557e.makeStarProjection(interfaceC11477z0, c11553a);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
-    public boolean isEmpty() {
-        return false;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0

@@ -40,7 +40,7 @@ public final class StoreGameParty extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGameParty$observeUsersForPartyId$1 */
     /* JADX INFO: compiled from: StoreGameParty.kt */
-    public static final class C59421 extends AbstractC12240o implements Function0<Map<Long, ? extends User>> {
+    public final class C59421 extends AbstractC12240o implements Function0<Map<Long, ? extends User>> {
         public final /* synthetic */ String $partyId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -96,92 +96,6 @@ public final class StoreGameParty extends StoreV2 {
         }
     }
 
-    public static /* synthetic */ void handlePresenceUpdate$default(StoreGameParty storeGameParty, Presence presence, long j, int i, Object obj) {
-        if ((i & 2) != 0) {
-            Long guildId = presence.getGuildId();
-            j = guildId != null ? guildId.longValue() : 0L;
-        }
-        storeGameParty.handlePresenceUpdate(presence, j);
-    }
-
-    @StoreThread
-    private final void handlePresences(List<Presence> presences) {
-        for (Presence presence : presences) {
-            Long guildId = presence.getGuildId();
-            updateParty(presence, guildId != null ? guildId.longValue() : 0L);
-        }
-    }
-
-    @StoreThread
-    private final void removeUserFromParty(long userId, long guildId) {
-        String strRemove;
-        HashMap<Long, String> map = this.userParties.get(Long.valueOf(userId));
-        if (map == null || (strRemove = map.remove(Long.valueOf(guildId))) == null) {
-            return;
-        }
-        C12238m.checkNotNullExpressionValue(strRemove, "userParties[userId]?.remove(guildId) ?: return");
-        HashSet<Long> hashSet = this.parties.get(strRemove);
-        if (hashSet != null) {
-            if (hashSet.size() != 1) {
-                HashMap<String, HashSet<Long>> map2 = this.parties;
-                HashSet<Long> hashSet2 = new HashSet<>(hashSet);
-                hashSet2.remove(Long.valueOf(userId));
-                map2.put(strRemove, hashSet2);
-            } else {
-                this.parties.remove(strRemove);
-            }
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    private final void updateParty(Presence presence, long guildId) {
-        List<Activity> listEmptyList;
-        boolean z2;
-        Object next;
-        ActivityParty party;
-        ActivityParty party2;
-        com.discord.api.user.User user = presence.getUser();
-        if (user != null) {
-            HashMap<Long, String> map = this.userParties.get(Long.valueOf(user.getId()));
-            String id2 = null;
-            String str = map != null ? map.get(Long.valueOf(guildId)) : null;
-            Map<Long, com.discord.models.presence.Presence> mapM11396getPresences = this.storeUserPresence.m11396getPresences();
-            com.discord.api.user.User user2 = presence.getUser();
-            com.discord.models.presence.Presence presence2 = mapM11396getPresences.get(user2 != null ? Long.valueOf(user2.getId()) : null);
-            if (presence2 == null || (listEmptyList = presence2.getActivities()) == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            Iterator<T> it = listEmptyList.iterator();
-            do {
-                z2 = false;
-                if (!it.hasNext()) {
-                    next = null;
-                    break;
-                } else {
-                    next = it.next();
-                    party2 = ((Activity) next).getParty();
-                }
-            } while (!((party2 != null ? party2.getId() : null) != null));
-            Activity activity = (Activity) next;
-            if (activity != null && (party = activity.getParty()) != null) {
-                id2 = party.getId();
-            }
-            String str2 = id2;
-            if (str2 != null && presence.getStatus() != ClientStatus.OFFLINE) {
-                z2 = true;
-            }
-            if (!z2) {
-                removeUserFromParty(user.getId(), guildId);
-                return;
-            }
-            if (!C12238m.areEqual(str, str2)) {
-                removeUserFromParty(user.getId(), guildId);
-            }
-            addUserToParty(user.getId(), guildId, str2);
-        }
-    }
-
     public final ObservationDeck getObservationDeck() {
         return this.observationDeck;
     }
@@ -224,6 +138,14 @@ public final class StoreGameParty extends StoreV2 {
         handlePresences(presences);
     }
 
+    public static /* synthetic */ void handlePresenceUpdate$default(StoreGameParty storeGameParty, Presence presence, long j, int i, Object obj) {
+        if ((i & 2) != 0) {
+            Long guildId = presence.getGuildId();
+            j = guildId != null ? guildId.longValue() : 0L;
+        }
+        storeGameParty.handlePresenceUpdate(presence, j);
+    }
+
     @StoreThread
     public final void handlePresenceUpdate(Presence presence) {
         handlePresenceUpdate$default(this, presence, 0L, 2, null);
@@ -233,6 +155,14 @@ public final class StoreGameParty extends StoreV2 {
     public final void handlePresenceUpdate(Presence presence, long guildId) {
         C12238m.checkNotNullParameter(presence, "presence");
         updateParty(presence, guildId);
+    }
+
+    @StoreThread
+    private final void handlePresences(List<Presence> presences) {
+        for (Presence presence : presences) {
+            Long guildId = presence.getGuildId();
+            updateParty(presence, guildId != null ? guildId.longValue() : 0L);
+        }
     }
 
     @StoreThread
@@ -281,6 +211,28 @@ public final class StoreGameParty extends StoreV2 {
         return observableM11112r;
     }
 
+    @StoreThread
+    private final void removeUserFromParty(long userId, long guildId) {
+        String strRemove;
+        HashMap<Long, String> map = this.userParties.get(Long.valueOf(userId));
+        if (map == null || (strRemove = map.remove(Long.valueOf(guildId))) == null) {
+            return;
+        }
+        C12238m.checkNotNullExpressionValue(strRemove, "userParties[userId]?.remove(guildId) ?: return");
+        HashSet<Long> hashSet = this.parties.get(strRemove);
+        if (hashSet != null) {
+            if (hashSet.size() != 1) {
+                HashMap<String, HashSet<Long>> map2 = this.parties;
+                HashSet<Long> hashSet2 = new HashSet<>(hashSet);
+                hashSet2.remove(Long.valueOf(userId));
+                map2.put(strRemove, hashSet2);
+            } else {
+                this.parties.remove(strRemove);
+            }
+        }
+        markChanged();
+    }
+
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
@@ -288,6 +240,54 @@ public final class StoreGameParty extends StoreV2 {
         this.partiesSnapshot = new HashMap<>();
         for (Map.Entry<String, HashSet<Long>> entry : this.parties.entrySet()) {
             this.partiesSnapshot.put(entry.getKey(), new HashSet<>(entry.getValue()));
+        }
+    }
+
+    @StoreThread
+    private final void updateParty(Presence presence, long guildId) {
+        List<Activity> listEmptyList;
+        boolean z2;
+        Object next;
+        ActivityParty party;
+        ActivityParty party2;
+        com.discord.api.user.User user = presence.getUser();
+        if (user != null) {
+            HashMap<Long, String> map = this.userParties.get(Long.valueOf(user.getId()));
+            String id2 = null;
+            String str = map != null ? map.get(Long.valueOf(guildId)) : null;
+            Map<Long, com.discord.models.presence.Presence> mapM11396getPresences = this.storeUserPresence.m11396getPresences();
+            com.discord.api.user.User user2 = presence.getUser();
+            com.discord.models.presence.Presence presence2 = mapM11396getPresences.get(user2 != null ? Long.valueOf(user2.getId()) : null);
+            if (presence2 == null || (listEmptyList = presence2.getActivities()) == null) {
+                listEmptyList = C12147n.emptyList();
+            }
+            Iterator<T> it = listEmptyList.iterator();
+            do {
+                z2 = false;
+                if (!it.hasNext()) {
+                    next = null;
+                    break;
+                } else {
+                    next = it.next();
+                    party2 = ((Activity) next).getParty();
+                }
+            } while (!((party2 != null ? party2.getId() : null) != null));
+            Activity activity = (Activity) next;
+            if (activity != null && (party = activity.getParty()) != null) {
+                id2 = party.getId();
+            }
+            String str2 = id2;
+            if (str2 != null && presence.getStatus() != ClientStatus.OFFLINE) {
+                z2 = true;
+            }
+            if (!z2) {
+                removeUserFromParty(user.getId(), guildId);
+                return;
+            }
+            if (!C12238m.areEqual(str, str2)) {
+                removeUserFromParty(user.getId(), guildId);
+            }
+            addUserToParty(user.getId(), guildId, str2);
         }
     }
 }

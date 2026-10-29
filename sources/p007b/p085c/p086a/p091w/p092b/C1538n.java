@@ -107,77 +107,6 @@ public class C1538n implements InterfaceC1537m, AbstractC1544a.b, InterfaceC1535
         }
     }
 
-    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
-    /* JADX INFO: renamed from: a */
-    public void mo709a() {
-        this.f2558n = false;
-        this.f2547c.invalidateSelf();
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    /* JADX INFO: renamed from: b */
-    public void mo710b(List<InterfaceC1527c> list, List<InterfaceC1527c> list2) {
-        for (int i = 0; i < list.size(); i++) {
-            InterfaceC1527c interfaceC1527c = list.get(i);
-            if (interfaceC1527c instanceof C1543s) {
-                C1543s c1543s = (C1543s) interfaceC1527c;
-                if (c1543s.f2592c == 1) {
-                    this.f2557m.f2481a.add(c1543s);
-                    c1543s.f2591b.add(this);
-                }
-            }
-        }
-    }
-
-    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
-    /* JADX INFO: renamed from: c */
-    public void mo711c(C1567f c1567f, int i, List<C1567f> list, C1567f c1567f2) {
-        C1498f.m656f(c1567f, i, list, c1567f2, this);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
-    /* JADX INFO: renamed from: g */
-    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
-        AbstractC1544a<?, Float> abstractC1544a;
-        AbstractC1544a<?, Float> abstractC1544a2;
-        if (t == InterfaceC1516o.f2441s) {
-            AbstractC1544a<?, Float> abstractC1544a3 = this.f2550f;
-            C1503c<Float> c1503c2 = abstractC1544a3.f2600e;
-            abstractC1544a3.f2600e = c1503c;
-            return;
-        }
-        if (t == InterfaceC1516o.f2442t) {
-            AbstractC1544a<?, Float> abstractC1544a4 = this.f2552h;
-            C1503c<Float> c1503c3 = abstractC1544a4.f2600e;
-            abstractC1544a4.f2600e = c1503c;
-            return;
-        }
-        if (t == InterfaceC1516o.f2432j) {
-            AbstractC1544a<?, PointF> abstractC1544a5 = this.f2551g;
-            C1503c<PointF> c1503c4 = abstractC1544a5.f2600e;
-            abstractC1544a5.f2600e = c1503c;
-            return;
-        }
-        if (t == InterfaceC1516o.f2443u && (abstractC1544a2 = this.f2553i) != null) {
-            C1503c<Float> c1503c5 = abstractC1544a2.f2600e;
-            abstractC1544a2.f2600e = c1503c;
-            return;
-        }
-        if (t == InterfaceC1516o.f2444v) {
-            AbstractC1544a<?, Float> abstractC1544a6 = this.f2554j;
-            C1503c<Float> c1503c6 = abstractC1544a6.f2600e;
-            abstractC1544a6.f2600e = c1503c;
-        } else if (t == InterfaceC1516o.f2445w && (abstractC1544a = this.f2555k) != null) {
-            C1503c<Float> c1503c7 = abstractC1544a.f2600e;
-            abstractC1544a.f2600e = c1503c;
-        } else if (t == InterfaceC1516o.f2446x) {
-            AbstractC1544a<?, Float> abstractC1544a7 = this.f2556l;
-            C1503c<Float> c1503c8 = abstractC1544a7.f2600e;
-            abstractC1544a7.f2600e = c1503c;
-        }
-    }
-
     @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
     public String getName() {
         return this.f2546b;
@@ -339,5 +268,76 @@ public class C1538n implements InterfaceC1537m, AbstractC1544a.b, InterfaceC1535
         this.f2557m.m715a(this.f2545a);
         this.f2558n = true;
         return this.f2545a;
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
+    /* JADX INFO: renamed from: a */
+    public void mo709a() {
+        this.f2558n = false;
+        this.f2547c.invalidateSelf();
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    /* JADX INFO: renamed from: b */
+    public void mo710b(List<InterfaceC1527c> list, List<InterfaceC1527c> list2) {
+        for (int i = 0; i < list.size(); i++) {
+            InterfaceC1527c interfaceC1527c = list.get(i);
+            if (interfaceC1527c instanceof C1543s) {
+                C1543s c1543s = (C1543s) interfaceC1527c;
+                if (c1543s.f2592c == 1) {
+                    this.f2557m.f2481a.add(c1543s);
+                    c1543s.f2591b.add(this);
+                }
+            }
+        }
+    }
+
+    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
+    /* JADX INFO: renamed from: c */
+    public void mo711c(C1567f c1567f, int i, List<C1567f> list, C1567f c1567f2) {
+        C1498f.m656f(c1567f, i, list, c1567f2, this);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // p007b.p085c.p086a.p095y.InterfaceC1568g
+    /* JADX INFO: renamed from: g */
+    public <T> void mo714g(T t, @Nullable C1503c<T> c1503c) {
+        AbstractC1544a<?, Float> abstractC1544a;
+        AbstractC1544a<?, Float> abstractC1544a2;
+        if (t == InterfaceC1516o.f2441s) {
+            AbstractC1544a<?, Float> abstractC1544a3 = this.f2550f;
+            C1503c<Float> c1503c2 = abstractC1544a3.f2600e;
+            abstractC1544a3.f2600e = c1503c;
+            return;
+        }
+        if (t == InterfaceC1516o.f2442t) {
+            AbstractC1544a<?, Float> abstractC1544a4 = this.f2552h;
+            C1503c<Float> c1503c3 = abstractC1544a4.f2600e;
+            abstractC1544a4.f2600e = c1503c;
+            return;
+        }
+        if (t == InterfaceC1516o.f2432j) {
+            AbstractC1544a<?, PointF> abstractC1544a5 = this.f2551g;
+            C1503c<PointF> c1503c4 = abstractC1544a5.f2600e;
+            abstractC1544a5.f2600e = c1503c;
+            return;
+        }
+        if (t == InterfaceC1516o.f2443u && (abstractC1544a2 = this.f2553i) != null) {
+            C1503c<Float> c1503c5 = abstractC1544a2.f2600e;
+            abstractC1544a2.f2600e = c1503c;
+            return;
+        }
+        if (t == InterfaceC1516o.f2444v) {
+            AbstractC1544a<?, Float> abstractC1544a6 = this.f2554j;
+            C1503c<Float> c1503c6 = abstractC1544a6.f2600e;
+            abstractC1544a6.f2600e = c1503c;
+        } else if (t == InterfaceC1516o.f2445w && (abstractC1544a = this.f2555k) != null) {
+            C1503c<Float> c1503c7 = abstractC1544a.f2600e;
+            abstractC1544a.f2600e = c1503c;
+        } else if (t == InterfaceC1516o.f2446x) {
+            AbstractC1544a<?, Float> abstractC1544a7 = this.f2556l;
+            C1503c<Float> c1503c8 = abstractC1544a7.f2600e;
+            abstractC1544a7.f2600e = c1503c;
+        }
     }
 }

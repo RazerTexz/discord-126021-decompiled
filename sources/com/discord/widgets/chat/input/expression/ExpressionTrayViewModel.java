@@ -48,7 +48,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.ExpressionTrayViewModel$1 */
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static final /* synthetic */ class C78411 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C78411 extends C12236k implements Function1<StoreState, Unit> {
         public C78411(ExpressionTrayViewModel expressionTrayViewModel) {
             super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/expression/ExpressionTrayViewModel$StoreState;)V", 0);
         }
@@ -68,7 +68,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.ExpressionTrayViewModel$2 */
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static final /* synthetic */ class C78422 extends C12236k implements Function1<ExpressionPickerEvent, Unit> {
+    public final /* synthetic */ class C78422 extends C12236k implements Function1<ExpressionPickerEvent, Unit> {
         public C78422(ExpressionTrayViewModel expressionTrayViewModel) {
             super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "handleExpressionPickerEvents", "handleExpressionPickerEvents(Lcom/discord/widgets/chat/input/expression/ExpressionPickerEvent;)V", 0);
         }
@@ -87,7 +87,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -117,10 +117,10 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public static final class HideExpressionTray extends Event {
+        public final class HideExpressionTray extends Event {
             public static final HideExpressionTray INSTANCE = new HideExpressionTray();
 
             private HideExpressionTray() {
@@ -129,7 +129,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public static final class ShowEmojiPickerSheet extends Event {
+        public final class ShowEmojiPickerSheet extends Event {
             public static final ShowEmojiPickerSheet INSTANCE = new ShowEmojiPickerSheet();
 
             private ShowEmojiPickerSheet() {
@@ -138,7 +138,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public static final class ShowGifPickerSheet extends Event {
+        public final class ShowGifPickerSheet extends Event {
             public static final ShowGifPickerSheet INSTANCE = new ShowGifPickerSheet();
 
             private ShowGifPickerSheet() {
@@ -147,7 +147,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public static final /* data */ class ShowStickerPicker extends Event {
+        public final /* data */ class ShowStickerPicker extends Event {
             private final boolean inline;
             private final String searchText;
             private final Long stickerPackId;
@@ -169,21 +169,6 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
                 return showStickerPicker.copy(l, str, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Long getStickerPackId() {
-                return this.stickerPackId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getSearchText() {
-                return this.searchText;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getInline() {
-                return this.inline;
-            }
-
             public final ShowStickerPicker copy(Long stickerPackId, String searchText, boolean inline) {
                 return new ShowStickerPicker(stickerPackId, searchText, inline);
             }
@@ -199,12 +184,27 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.stickerPackId, showStickerPicker.stickerPackId) && C12238m.areEqual(this.searchText, showStickerPicker.searchText) && this.inline == showStickerPicker.inline;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final boolean getInline() {
                 return this.inline;
             }
 
+            public final boolean getInline() {
+                return this.inline;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getSearchText() {
                 return this.searchText;
+            }
+
+            public final String getSearchText() {
+                return this.searchText;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Long getStickerPackId() {
+                return this.stickerPackId;
             }
 
             public final Long getStickerPackId() {
@@ -255,7 +255,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Long guildId;
         private final Map<Long, Map<Long, Sticker>> guildStickers;
         private final boolean isThreadDraft;
@@ -274,6 +274,14 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             this.guildStickers = map;
             this.userGuildIds = set;
             this.isThreadDraft = z2;
+        }
+
+        public final Map<Long, Map<Long, Sticker>> component4() {
+            return this.guildStickers;
+        }
+
+        public final Set<Long> component5() {
+            return this.userGuildIds;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -303,34 +311,6 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(expressionTrayTab, l2, meUser2, map2, set2, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        public final Map<Long, Map<Long, Sticker>> component4() {
-            return this.guildStickers;
-        }
-
-        public final Set<Long> component5() {
-            return this.userGuildIds;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsThreadDraft() {
-            return this.isThreadDraft;
-        }
-
         public final StoreState copy(ExpressionTrayTab selectedExpressionTab, Long guildId, MeUser meUser, Map<Long, ? extends Map<Long, Sticker>> guildStickers, Set<Long> userGuildIds, boolean isThreadDraft) {
             C12238m.checkNotNullParameter(selectedExpressionTab, "selectedExpressionTab");
             C12238m.checkNotNullParameter(guildStickers, "guildStickers");
@@ -349,6 +329,11 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.selectedExpressionTab, storeState.selectedExpressionTab) && C12238m.areEqual(this.guildId, storeState.guildId) && C12238m.areEqual(this.meUser, storeState.meUser) && C12238m.areEqual(this.guildStickers, storeState.guildStickers) && C12238m.areEqual(this.userGuildIds, storeState.userGuildIds) && this.isThreadDraft == storeState.isThreadDraft;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
         public final Long getGuildId() {
             return this.guildId;
         }
@@ -357,8 +342,23 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             return this.guildStickers;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsThreadDraft() {
+            return this.isThreadDraft;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final MeUser getMeUser() {
             return this.meUser;
+        }
+
+        public final MeUser getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ExpressionTrayTab getSelectedExpressionTab() {
+            return this.selectedExpressionTab;
         }
 
         public final ExpressionTrayTab getSelectedExpressionTab() {
@@ -455,11 +455,32 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         this(analytics, expressionPickerNavigation, channelsSelected, users, guildStickers, guilds, (i & 64) != 0 ? INSTANCE.observeStoreState(expressionPickerNavigation, channelsSelected, users, guildStickers, guilds) : observable, (i & 128) != 0 ? ExpressionPickerEventBus.INSTANCE.getINSTANCE().observeExpressionPickerEvents() : observable2);
     }
 
+    public final void clickBack() {
+        ViewState viewStateRequireViewState = requireViewState();
+        if (viewStateRequireViewState.getExpressionDetailPage() != null) {
+            updateViewState(ViewState.copy$default(viewStateRequireViewState, null, null, false, false, 13, null));
+        }
+    }
+
     public static /* synthetic */ void clickSearch$default(ExpressionTrayViewModel expressionTrayViewModel, String str, int i, Object obj) {
         if ((i & 1) != 0) {
             str = null;
         }
         expressionTrayViewModel.clickSearch(str);
+    }
+
+    public final void clickSearch(String searchText) {
+        int iOrdinal = requireViewState().getSelectedExpressionTab().ordinal();
+        if (iOrdinal == 0) {
+            showEmojiPickerSheet();
+        } else if (iOrdinal == 1) {
+            showGifPickerSheet();
+        } else {
+            if (iOrdinal != 2) {
+                return;
+            }
+            showStickerPickerSheet$default(this, null, searchText, 1, null);
+        }
     }
 
     private final String getChatInputComponentType(ExpressionTrayTab expressionTab) {
@@ -493,76 +514,6 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
-    private final void handleStoreState(StoreState storeState) {
-        updateViewState(ViewState.copy$default(requireViewState(), storeState.getSelectedExpressionTab(), null, false, !storeState.isThreadDraft(), 6, null));
-    }
-
-    private final void hideExpressionPicker() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.HideExpressionTray.INSTANCE);
-    }
-
-    private final void showEmojiPickerSheet() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowEmojiPickerSheet.INSTANCE);
-    }
-
-    private final void showGifPickerSheet() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowGifPickerSheet.INSTANCE);
-    }
-
-    private final void showStickerPickerInline(Long stickerPackId, String searchText) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, true));
-    }
-
-    public static /* synthetic */ void showStickerPickerInline$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        if ((i & 2) != 0) {
-            str = null;
-        }
-        expressionTrayViewModel.showStickerPickerInline(l, str);
-    }
-
-    private final void showStickerPickerSheet(Long stickerPackId, String searchText) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, false, 4, null));
-    }
-
-    public static /* synthetic */ void showStickerPickerSheet$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        if ((i & 2) != 0) {
-            str = null;
-        }
-        expressionTrayViewModel.showStickerPickerSheet(l, str);
-    }
-
-    public final void clickBack() {
-        ViewState viewStateRequireViewState = requireViewState();
-        if (viewStateRequireViewState.getExpressionDetailPage() != null) {
-            updateViewState(ViewState.copy$default(viewStateRequireViewState, null, null, false, false, 13, null));
-        }
-    }
-
-    public final void clickSearch(String searchText) {
-        int iOrdinal = requireViewState().getSelectedExpressionTab().ordinal();
-        if (iOrdinal == 0) {
-            showEmojiPickerSheet();
-        } else if (iOrdinal == 1) {
-            showGifPickerSheet();
-        } else {
-            if (iOrdinal != 2) {
-                return;
-            }
-            showStickerPickerSheet$default(this, null, searchText, 1, null);
-        }
-    }
-
     public final void handleIsActive(boolean isActive) {
         ViewState viewState;
         ExpressionTrayTab selectedExpressionTab;
@@ -570,6 +521,15 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             this.storeAnalytics.trackChatInputComponentViewed(getChatInputComponentType(selectedExpressionTab));
         }
         this.wasActive = isActive;
+    }
+
+    private final void handleStoreState(StoreState storeState) {
+        updateViewState(ViewState.copy$default(requireViewState(), storeState.getSelectedExpressionTab(), null, false, !storeState.isThreadDraft(), 6, null));
+    }
+
+    private final void hideExpressionPicker() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(Event.HideExpressionTray.INSTANCE);
     }
 
     public final Observable<Event> observeEvents() {
@@ -586,6 +546,46 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     public final void selectTab(ExpressionTrayTab expressionTrayTab) {
         C12238m.checkNotNullParameter(expressionTrayTab, "expressionTrayTab");
         this.storeExpressionPickerNavigation.onSelectTab(expressionTrayTab);
+    }
+
+    private final void showEmojiPickerSheet() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(Event.ShowEmojiPickerSheet.INSTANCE);
+    }
+
+    private final void showGifPickerSheet() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(Event.ShowGifPickerSheet.INSTANCE);
+    }
+
+    public static /* synthetic */ void showStickerPickerInline$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        if ((i & 2) != 0) {
+            str = null;
+        }
+        expressionTrayViewModel.showStickerPickerInline(l, str);
+    }
+
+    private final void showStickerPickerInline(Long stickerPackId, String searchText) {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, true));
+    }
+
+    public static /* synthetic */ void showStickerPickerSheet$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        if ((i & 2) != 0) {
+            str = null;
+        }
+        expressionTrayViewModel.showStickerPickerSheet(l, str);
+    }
+
+    private final void showStickerPickerSheet(Long stickerPackId, String searchText) {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, false, 4, null));
     }
 
     public final void showStickersSearchBar(boolean show) {
@@ -605,7 +605,7 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final ExpressionDetailPage expressionDetailPage;
         private final ExpressionTrayTab selectedExpressionTab;
         private final boolean showGifsAndStickers;
@@ -658,26 +658,6 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             return viewState.copy(expressionTrayTab, expressionDetailPage, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ExpressionDetailPage getExpressionDetailPage() {
-            return this.expressionDetailPage;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowStickersSearchBar() {
-            return this.showStickersSearchBar;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getShowGifsAndStickers() {
-            return this.showGifsAndStickers;
-        }
-
         public final ViewState copy(ExpressionTrayTab selectedExpressionTab, ExpressionDetailPage expressionDetailPage, boolean showStickersSearchBar, boolean showGifsAndStickers) {
             C12238m.checkNotNullParameter(selectedExpressionTab, "selectedExpressionTab");
             return new ViewState(selectedExpressionTab, expressionDetailPage, showStickersSearchBar, showGifsAndStickers);
@@ -694,12 +674,27 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.selectedExpressionTab, viewState.selectedExpressionTab) && C12238m.areEqual(this.expressionDetailPage, viewState.expressionDetailPage) && this.showStickersSearchBar == viewState.showStickersSearchBar && this.showGifsAndStickers == viewState.showGifsAndStickers;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ExpressionDetailPage getExpressionDetailPage() {
             return this.expressionDetailPage;
         }
 
+        public final ExpressionDetailPage getExpressionDetailPage() {
+            return this.expressionDetailPage;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final ExpressionTrayTab getSelectedExpressionTab() {
             return this.selectedExpressionTab;
+        }
+
+        public final ExpressionTrayTab getSelectedExpressionTab() {
+            return this.selectedExpressionTab;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getShowGifsAndStickers() {
+            return this.showGifsAndStickers;
         }
 
         public final boolean getShowGifsAndStickers() {
@@ -712,6 +707,11 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
 
         public final boolean getShowSearchBar() {
             return this.showSearchBar;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getShowStickersSearchBar() {
+            return this.showStickersSearchBar;
         }
 
         public final boolean getShowStickersSearchBar() {

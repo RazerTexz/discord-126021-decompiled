@@ -22,7 +22,7 @@ public final class WidgetHubDescription$validationManager$2 extends AbstractC122
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescription$validationManager$2$2 */
     /* JADX INFO: compiled from: WidgetHubDescription.kt */
-    public static final class C90132 extends AbstractC12240o implements Function2<LinearLayout, CharSequence, Boolean> {
+    public final class C90132 extends AbstractC12240o implements Function2<LinearLayout, CharSequence, Boolean> {
         public C90132() {
             super(2);
         }

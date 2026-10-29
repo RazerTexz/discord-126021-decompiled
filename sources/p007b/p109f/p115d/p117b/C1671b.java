@@ -15,9 +15,6 @@ import p007b.p109f.p115d.p120e.C1691a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1671b extends AbstractExecutorService {
 
-    /* JADX INFO: renamed from: j */
-    public static final Class<?> f3079j = C1671b.class;
-
     /* JADX INFO: renamed from: k */
     public final String f3080k;
 
@@ -38,6 +35,9 @@ public class C1671b extends AbstractExecutorService {
 
     /* JADX INFO: renamed from: q */
     public final AtomicInteger f3086q;
+
+    /* JADX INFO: renamed from: j */
+    public static final Class<?> f3079j = C1671b.class;
 
     /* JADX INFO: renamed from: b.f.d.b.b$b */
     /* JADX INFO: compiled from: ConstrainedExecutorService.java */
@@ -84,22 +84,6 @@ public class C1671b extends AbstractExecutorService {
         this.f3086q = new AtomicInteger(0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final void m964a() {
-        int i = this.f3085p.get();
-        while (i < this.f3082m) {
-            int i2 = i + 1;
-            if (this.f3085p.compareAndSet(i, i2)) {
-                C1691a.m982j(f3079j, "%s: starting worker %d of %d", this.f3080k, Integer.valueOf(i2), Integer.valueOf(this.f3082m));
-                this.f3081l.execute(this.f3084o);
-                return;
-            } else {
-                int i3 = C1691a.f3102a;
-                i = this.f3085p.get();
-            }
-        }
-    }
-
     @Override // java.util.concurrent.ExecutorService
     public boolean awaitTermination(long j, TimeUnit timeUnit) throws InterruptedException {
         throw new UnsupportedOperationException();
@@ -127,6 +111,22 @@ public class C1671b extends AbstractExecutorService {
     @Override // java.util.concurrent.ExecutorService
     public boolean isTerminated() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m964a() {
+        int i = this.f3085p.get();
+        while (i < this.f3082m) {
+            int i2 = i + 1;
+            if (this.f3085p.compareAndSet(i, i2)) {
+                C1691a.m982j(f3079j, "%s: starting worker %d of %d", this.f3080k, Integer.valueOf(i2), Integer.valueOf(this.f3082m));
+                this.f3081l.execute(this.f3084o);
+                return;
+            } else {
+                int i3 = C1691a.f3102a;
+                i = this.f3085p.get();
+            }
+        }
     }
 
     @Override // java.util.concurrent.ExecutorService

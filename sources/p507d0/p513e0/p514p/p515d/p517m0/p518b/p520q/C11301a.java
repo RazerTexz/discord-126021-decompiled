@@ -33,7 +33,7 @@ public final class C11301a extends AbstractC11766e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.a$a */
     /* JADX INFO: compiled from: CloneableClassScope.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

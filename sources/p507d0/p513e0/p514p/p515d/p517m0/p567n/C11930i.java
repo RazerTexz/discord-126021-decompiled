@@ -48,6 +48,21 @@ public class C11930i extends AbstractC11909b implements InterfaceC12008u0 {
         this.f24783e = Collections.unmodifiableCollection(collection);
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+    public List<InterfaceC11477z0> getParameters() {
+        List<InterfaceC11477z0> list = this.f24782d;
+        if (list != null) {
+            return list;
+        }
+        m10012g(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+    public boolean isDenotable() {
+        return true;
+    }
+
     /* JADX INFO: renamed from: g */
     public static /* synthetic */ void m10012g(int i) {
         String str = (i == 4 || i == 5 || i == 6 || i == 7) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -108,21 +123,6 @@ public class C11930i extends AbstractC11909b implements InterfaceC12008u0 {
     /* JADX INFO: renamed from: d */
     public InterfaceC11473x0 mo9371d() {
         return InterfaceC11473x0.a.f23103a;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-    public List<InterfaceC11477z0> getParameters() {
-        List<InterfaceC11477z0> list = this.f24782d;
-        if (list != null) {
-            return list;
-        }
-        m10012g(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-    public boolean isDenotable() {
-        return true;
     }
 
     public String toString() {

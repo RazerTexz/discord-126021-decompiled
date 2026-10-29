@@ -49,8 +49,48 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
     private Job inviteJoinJob;
     private Subscription subscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-    public static final /* data */ class Model {
+    public final /* synthetic */ class C80811 extends C12236k implements Function1<Model, Unit> {
+        public C80811(WidgetChatListAdapterItemGuildScheduledEventInvite widgetChatListAdapterItemGuildScheduledEventInvite) {
+            super(1, widgetChatListAdapterItemGuildScheduledEventInvite, WidgetChatListAdapterItemGuildScheduledEventInvite.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGuildScheduledEventInvite$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetChatListAdapterItemGuildScheduledEventInvite) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
+    public final class C80822 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80822() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemGuildScheduledEventInvite.this.subscription = subscription;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -66,7 +106,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
         private final Long selectedVoiceChannelId;
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -105,56 +145,6 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
             this.canShare = z5;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelInvite getInvite() {
-            return this.invite;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getCanShare() {
-            return this.canShare;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsInGuild() {
-            return this.isInGuild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsRsvped() {
-            return this.isRsvped;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final GuildScheduledEvent getGuildScheduledEvent() {
-            return this.guildScheduledEvent;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final UserGuildMember getCreator() {
-            return this.creator;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Long getSelectedVoiceChannelId() {
-            return this.selectedVoiceChannelId;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getCanConnect() {
-            return this.canConnect;
-        }
-
         public final Model copy(ModelInvite invite, boolean isInGuild, boolean isRsvped, GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, Long selectedVoiceChannelId, boolean canConnect, boolean canShare) {
             C12238m.checkNotNullParameter(invite, "invite");
             C12238m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
@@ -172,32 +162,82 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
             return C12238m.areEqual(this.invite, model.invite) && this.isInGuild == model.isInGuild && this.isRsvped == model.isRsvped && C12238m.areEqual(this.guildScheduledEvent, model.guildScheduledEvent) && C12238m.areEqual(this.channel, model.channel) && C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.creator, model.creator) && C12238m.areEqual(this.selectedVoiceChannelId, model.selectedVoiceChannelId) && this.canConnect == model.canConnect && this.canShare == model.canShare;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final boolean getCanConnect() {
             return this.canConnect;
+        }
+
+        public final boolean getCanConnect() {
+            return this.canConnect;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getCanShare() {
+            return this.canShare;
         }
 
         public final boolean getCanShare() {
             return this.canShare;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final UserGuildMember getCreator() {
+            return this.creator;
         }
 
         public final UserGuildMember getCreator() {
             return this.creator;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final GuildScheduledEvent getGuildScheduledEvent() {
+            return this.guildScheduledEvent;
         }
 
         public final GuildScheduledEvent getGuildScheduledEvent() {
             return this.guildScheduledEvent;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final ModelInvite getInvite() {
             return this.invite;
+        }
+
+        public final ModelInvite getInvite() {
+            return this.invite;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsInGuild() {
+            return this.isInGuild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsRsvped() {
+            return this.isRsvped;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Long getSelectedVoiceChannelId() {
+            return this.selectedVoiceChannelId;
         }
 
         public final Long getSelectedVoiceChannelId() {
@@ -284,46 +324,6 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
             sbM833U.append(this.canConnect);
             sbM833U.append(", canShare=");
             return C1643a.m827O(sbM833U, this.canShare, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-    public static final /* synthetic */ class C80811 extends C12236k implements Function1<Model, Unit> {
-        public C80811(WidgetChatListAdapterItemGuildScheduledEventInvite widgetChatListAdapterItemGuildScheduledEventInvite) {
-            super(1, widgetChatListAdapterItemGuildScheduledEventInvite, WidgetChatListAdapterItemGuildScheduledEventInvite.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGuildScheduledEventInvite$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetChatListAdapterItemGuildScheduledEventInvite) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-    public static final class C80822 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80822() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemGuildScheduledEventInvite.this.subscription = subscription;
         }
     }
 

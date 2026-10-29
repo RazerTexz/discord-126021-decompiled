@@ -14,9 +14,6 @@ import p658rx.Subscriber;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12661p2<T> extends Subscriber<T> {
 
-    /* JADX INFO: renamed from: j */
-    public List<T> f26985j = new ArrayList(10);
-
     /* JADX INFO: renamed from: k */
     public boolean f26986k;
 
@@ -28,6 +25,9 @@ public class C12661p2<T> extends Subscriber<T> {
 
     /* JADX INFO: renamed from: n */
     public final /* synthetic */ C12657o2 f26989n;
+
+    /* JADX INFO: renamed from: j */
+    public List<T> f26985j = new ArrayList(10);
 
     public C12661p2(C12657o2 c12657o2, C12694b c12694b, Subscriber subscriber) {
         this.f26989n = c12657o2;

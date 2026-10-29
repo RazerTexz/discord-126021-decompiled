@@ -37,24 +37,9 @@ public final class WidgetSettingsActivityStatus extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsActivityStatus.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsActivityStatus$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
-    public static final class C96261 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C96261 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C96261() {
             super(1);
         }
@@ -67,6 +52,21 @@ public final class WidgetSettingsActivityStatus extends AppFragment {
 
         public final void invoke(boolean z2) {
             WidgetSettingsActivityStatus.this.configureUI(z2);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsActivityStatus.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

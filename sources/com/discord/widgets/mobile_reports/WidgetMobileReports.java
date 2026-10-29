@@ -53,39 +53,9 @@ public final class WidgetMobileReports extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launchDirectoryServerReport(Context context, long guildId, long hubId, long channelId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.DirectoryServer(guildId, hubId, channelId));
-        }
-
-        public final void launchGuildScheduledEventReport(Context context, long guildId, long eventId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.GuildScheduledEvent(guildId, eventId));
-        }
-
-        public final void launchMessageReport(Context context, long messageId, long channelId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.Message(messageId, channelId));
-        }
-
-        public final void launchStageChannelReport(Context context, long channelId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.StageChannel(channelId));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$configureUI$1 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90821 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90821 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ MobileReportsViewModel.ViewState.Menu $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -108,13 +78,13 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$configureUI$2 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90832 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90832 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ReportsMenuNode $nextNodeView;
         public final /* synthetic */ MobileReportsViewModel.ViewState.Menu $viewState;
 
         /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$configureUI$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetMobileReports.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -155,7 +125,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$createNodeView$1 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90841 extends AbstractC12240o implements Function2<ReportNodeChild, MobileReportsViewModel.NodeState, Unit> {
+    public final class C90841 extends AbstractC12240o implements Function2<ReportNodeChild, MobileReportsViewModel.NodeState, Unit> {
         public C90841() {
             super(2);
         }
@@ -178,7 +148,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$createNodeView$2 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90852 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90852 extends AbstractC12240o implements Function0<Unit> {
         public C90852() {
             super(0);
         }
@@ -197,7 +167,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$createNodeView$3 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90863 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90863 extends AbstractC12240o implements Function0<Unit> {
         public C90863() {
             super(0);
         }
@@ -219,7 +189,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$createNodeView$4 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90874 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90874 extends AbstractC12240o implements Function0<Unit> {
         public C90874() {
             super(0);
         }
@@ -238,7 +208,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final /* synthetic */ class C90881 extends C12236k implements Function0<Boolean> {
+    public final /* synthetic */ class C90881 extends C12236k implements Function0<Boolean> {
         public C90881(MobileReportsViewModel mobileReportsViewModel) {
             super(0, mobileReportsViewModel, MobileReportsViewModel.class, "handleBack", "handleBack()Z", 0);
         }
@@ -256,7 +226,7 @@ public final class WidgetMobileReports extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.WidgetMobileReports$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final class C90891 extends AbstractC12240o implements Function1<MobileReportsViewModel.ViewState, Unit> {
+    public final class C90891 extends AbstractC12240o implements Function1<MobileReportsViewModel.ViewState, Unit> {
         public C90891() {
             super(1);
         }
@@ -279,6 +249,36 @@ public final class WidgetMobileReports extends AppFragment {
                 }
                 appActivity.finish();
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetMobileReports.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launchDirectoryServerReport(Context context, long guildId, long hubId, long channelId) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.DirectoryServer(guildId, hubId, channelId));
+        }
+
+        public final void launchGuildScheduledEventReport(Context context, long guildId, long eventId) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.GuildScheduledEvent(guildId, eventId));
+        }
+
+        public final void launchMessageReport(Context context, long messageId, long channelId) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.Message(messageId, channelId));
+        }
+
+        public final void launchStageChannelReport(Context context, long channelId) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetMobileReports.class, new MobileReportArgs.StageChannel(channelId));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

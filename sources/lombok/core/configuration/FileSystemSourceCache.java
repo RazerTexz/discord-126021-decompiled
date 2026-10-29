@@ -9,10 +9,10 @@ import lombok.core.debug.ProblemReporter;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/FileSystemSourceCache.SCL.lombok */
 public class FileSystemSourceCache {
+    static final long MISSING = -88;
+    private static final long NEVER_CHECKED = -1;
     private static final long FULL_CACHE_CLEAR_INTERVAL = TimeUnit.MINUTES.toMillis(30);
     private static final long RECHECK_FILESYSTEM = TimeUnit.SECONDS.toMillis(2);
-    private static final long NEVER_CHECKED = -1;
-    static final long MISSING = -88;
     private final ConcurrentMap<ConfigurationFile, Content> fileCache = new ConcurrentHashMap();
     private final ConcurrentMap<URI, ConfigurationFile> uriCache = new ConcurrentHashMap();
     private volatile long lastCacheClear = System.currentTimeMillis();
@@ -97,7 +97,7 @@ public class FileSystemSourceCache {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/FileSystemSourceCache$Content.SCL.lombok */
-    private static class Content {
+    class Content {
         ConfigurationSource source;
         long lastModified;
         long lastChecked;

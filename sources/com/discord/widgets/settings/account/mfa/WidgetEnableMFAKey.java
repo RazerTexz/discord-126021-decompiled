@@ -41,7 +41,7 @@ public final class WidgetEnableMFAKey extends AppFragment {
     private final Lazy viewModel;
 
     /* JADX INFO: compiled from: WidgetEnableMFAKey.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -84,6 +84,26 @@ public final class WidgetEnableMFAKey extends AppFragment {
 
     private final WidgetEnableMFAViewModel getViewModel() {
         return (WidgetEnableMFAViewModel) this.viewModel.getValue();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        TextView textView = getBinding().f17948b;
+        C12238m.checkNotNullExpressionValue(textView, "binding.enableMfaKeyCode");
+        textView.setText(getViewModel().getTotpSecret());
+        getBinding().f17948b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.account.mfa.WidgetEnableMFAKey.onViewBound.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetEnableMFAKey widgetEnableMFAKey = WidgetEnableMFAKey.this;
+                C12238m.checkNotNullExpressionValue(view2, "it");
+                Context context = view2.getContext();
+                C12238m.checkNotNullExpressionValue(context, "it.context");
+                widgetEnableMFAKey.copyCodeToClipboard(context);
+            }
+        });
+        showLaunchTexts();
     }
 
     private final void showLaunchTexts() {
@@ -131,25 +151,5 @@ public final class WidgetEnableMFAKey extends AppFragment {
                 }
             });
         }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        TextView textView = getBinding().f17948b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.enableMfaKeyCode");
-        textView.setText(getViewModel().getTotpSecret());
-        getBinding().f17948b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.account.mfa.WidgetEnableMFAKey.onViewBound.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetEnableMFAKey widgetEnableMFAKey = WidgetEnableMFAKey.this;
-                C12238m.checkNotNullExpressionValue(view2, "it");
-                Context context = view2.getContext();
-                C12238m.checkNotNullExpressionValue(context, "it.context");
-                widgetEnableMFAKey.copyCodeToClipboard(context);
-            }
-        });
-        showLaunchTexts();
     }
 }

@@ -40,7 +40,7 @@ public final class WidgetPlaystationIntegrationUpsellBottomSheet extends AppBott
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetPlaystationIntegrationUpsellBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -63,17 +63,17 @@ public final class WidgetPlaystationIntegrationUpsellBottomSheet extends AppBott
         return (WidgetPlaystationUpsellBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_playstation_upsell_bottom_sheet;
+    }
+
     private final void logConfirm() {
         AnalyticsTracker.INSTANCE.trackAccountLinkStep(Platform.PLAYSTATION.getPlatformId(), "playstation_connect_upsell");
     }
 
     private final void logDismiss() {
         AnalyticsTracker.INSTANCE.trackDismissibleContentDismissed("PLAYSTATION_CONNECT_UPSELL");
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_playstation_upsell_bottom_sheet;
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
@@ -122,7 +122,7 @@ public final class WidgetPlaystationIntegrationUpsellBottomSheet extends AppBott
 
     /* JADX INFO: renamed from: com.discord.widgets.playstation.WidgetPlaystationIntegrationUpsellBottomSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetPlaystationIntegrationUpsellBottomSheet.kt */
-    public static final class C91191 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C91191 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C91191 INSTANCE = new C91191();
 
         public C91191() {

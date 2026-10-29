@@ -16,15 +16,6 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4451f implements ClockHandView.OnRotateListener, TimePickerView.InterfaceC11031d, TimePickerView.InterfaceC11030c, ClockHandView.OnActionUpListener, InterfaceC4452g {
 
-    /* JADX INFO: renamed from: j */
-    public static final String[] f11865j = {"12", "1", ExifInterface.GPS_MEASUREMENT_2D, ExifInterface.GPS_MEASUREMENT_3D, "4", "5", "6", "7", "8", "9", "10", "11"};
-
-    /* JADX INFO: renamed from: k */
-    public static final String[] f11866k = {"00", ExifInterface.GPS_MEASUREMENT_2D, "4", "6", "8", "10", "12", "14", "16", "18", "20", "22"};
-
-    /* JADX INFO: renamed from: l */
-    public static final String[] f11867l = {"00", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"};
-
     /* JADX INFO: renamed from: m */
     public TimePickerView f11868m;
 
@@ -37,8 +28,17 @@ public class C4451f implements ClockHandView.OnRotateListener, TimePickerView.In
     /* JADX INFO: renamed from: p */
     public float f11871p;
 
+    /* JADX INFO: renamed from: j */
+    public static final String[] f11865j = {"12", "1", ExifInterface.GPS_MEASUREMENT_2D, ExifInterface.GPS_MEASUREMENT_3D, "4", "5", "6", "7", "8", "9", "10", "11"};
+
+    /* JADX INFO: renamed from: k */
+    public static final String[] f11866k = {"00", ExifInterface.GPS_MEASUREMENT_2D, "4", "6", "8", "10", "12", "14", "16", "18", "20", "22"};
+
     /* JADX INFO: renamed from: q */
     public boolean f11872q = false;
+
+    /* JADX INFO: renamed from: l */
+    public static final String[] f11867l = {"00", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"};
 
     public C4451f(TimePickerView timePickerView, TimeModel timeModel) {
         this.f11868m = timePickerView;
@@ -55,28 +55,6 @@ public class C4451f implements ClockHandView.OnRotateListener, TimePickerView.In
         m6177g(f11866k, "%d");
         m6177g(f11867l, "%02d");
         mo6171a();
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g
-    /* JADX INFO: renamed from: a */
-    public void mo6171a() {
-        this.f11871p = m6174d() * this.f11869n.m9161b();
-        TimeModel timeModel = this.f11869n;
-        this.f11870o = timeModel.f21224n * 6;
-        m6175e(timeModel.f21225o, false);
-        m6176f();
-    }
-
-    @Override // com.google.android.material.timepicker.TimePickerView.InterfaceC11031d
-    /* JADX INFO: renamed from: b */
-    public void mo6172b(int i) {
-        m6175e(i, true);
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g
-    /* JADX INFO: renamed from: c */
-    public void mo6173c() {
-        this.f11868m.setVisibility(8);
     }
 
     /* JADX INFO: renamed from: d */
@@ -126,6 +104,28 @@ public class C4451f implements ClockHandView.OnRotateListener, TimePickerView.In
         for (int i = 0; i < strArr.length; i++) {
             strArr[i] = TimeModel.m9160a(this.f11868m.getResources(), strArr[i], str);
         }
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g
+    /* JADX INFO: renamed from: a */
+    public void mo6171a() {
+        this.f11871p = m6174d() * this.f11869n.m9161b();
+        TimeModel timeModel = this.f11869n;
+        this.f11870o = timeModel.f21224n * 6;
+        m6175e(timeModel.f21225o, false);
+        m6176f();
+    }
+
+    @Override // com.google.android.material.timepicker.TimePickerView.InterfaceC11031d
+    /* JADX INFO: renamed from: b */
+    public void mo6172b(int i) {
+        m6175e(i, true);
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g
+    /* JADX INFO: renamed from: c */
+    public void mo6173c() {
+        this.f11868m.setVisibility(8);
     }
 
     @Override // com.google.android.material.timepicker.ClockHandView.OnActionUpListener

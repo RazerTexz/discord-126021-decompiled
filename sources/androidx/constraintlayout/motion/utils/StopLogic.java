@@ -6,7 +6,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class StopLogic extends MotionInterpolator {
-    private boolean mBackwards = false;
     private float mLastPosition;
     private int mNumberOfStages;
     private float mStage1Duration;
@@ -20,6 +19,7 @@ public class StopLogic extends MotionInterpolator {
     private float mStage3Velocity;
     private float mStartPosition;
     private String mType;
+    private boolean mBackwards = false;
 
     private float calcY(float f) {
         float f2 = this.mStage1Duration;
@@ -49,103 +49,6 @@ public class StopLogic extends MotionInterpolator {
         float f10 = this.mStage2EndPosition;
         float f11 = this.mStage3Velocity;
         return ((f11 * f8) + f10) - (((f11 * f8) * f8) / (f9 * 2.0f));
-    }
-
-    private void setup(float f, float f2, float f3, float f4, float f5) {
-        if (f == 0.0f) {
-            f = 1.0E-4f;
-        }
-        this.mStage1Velocity = f;
-        float f6 = f / f3;
-        float f7 = (f6 * f) / 2.0f;
-        if (f < 0.0f) {
-            float fSqrt = (float) Math.sqrt((f2 - ((((-f) / f3) * f) / 2.0f)) * f3);
-            if (fSqrt < f4) {
-                this.mType = "backward accelerate, decelerate";
-                this.mNumberOfStages = 2;
-                this.mStage1Velocity = f;
-                this.mStage2Velocity = fSqrt;
-                this.mStage3Velocity = 0.0f;
-                float f8 = (fSqrt - f) / f3;
-                this.mStage1Duration = f8;
-                this.mStage2Duration = fSqrt / f3;
-                this.mStage1EndPosition = ((f + fSqrt) * f8) / 2.0f;
-                this.mStage2EndPosition = f2;
-                this.mStage3EndPosition = f2;
-                return;
-            }
-            this.mType = "backward accelerate cruse decelerate";
-            this.mNumberOfStages = 3;
-            this.mStage1Velocity = f;
-            this.mStage2Velocity = f4;
-            this.mStage3Velocity = f4;
-            float f9 = (f4 - f) / f3;
-            this.mStage1Duration = f9;
-            float f10 = f4 / f3;
-            this.mStage3Duration = f10;
-            float f11 = ((f + f4) * f9) / 2.0f;
-            float f12 = (f10 * f4) / 2.0f;
-            this.mStage2Duration = ((f2 - f11) - f12) / f4;
-            this.mStage1EndPosition = f11;
-            this.mStage2EndPosition = f2 - f12;
-            this.mStage3EndPosition = f2;
-            return;
-        }
-        if (f7 >= f2) {
-            this.mType = "hard stop";
-            this.mNumberOfStages = 1;
-            this.mStage1Velocity = f;
-            this.mStage2Velocity = 0.0f;
-            this.mStage1EndPosition = f2;
-            this.mStage1Duration = (2.0f * f2) / f;
-            return;
-        }
-        float f13 = f2 - f7;
-        float f14 = f13 / f;
-        if (f14 + f6 < f5) {
-            this.mType = "cruse decelerate";
-            this.mNumberOfStages = 2;
-            this.mStage1Velocity = f;
-            this.mStage2Velocity = f;
-            this.mStage3Velocity = 0.0f;
-            this.mStage1EndPosition = f13;
-            this.mStage2EndPosition = f2;
-            this.mStage1Duration = f14;
-            this.mStage2Duration = f6;
-            return;
-        }
-        float fSqrt2 = (float) Math.sqrt(((f * f) / 2.0f) + (f3 * f2));
-        float f15 = (fSqrt2 - f) / f3;
-        this.mStage1Duration = f15;
-        float f16 = fSqrt2 / f3;
-        this.mStage2Duration = f16;
-        if (fSqrt2 < f4) {
-            this.mType = "accelerate decelerate";
-            this.mNumberOfStages = 2;
-            this.mStage1Velocity = f;
-            this.mStage2Velocity = fSqrt2;
-            this.mStage3Velocity = 0.0f;
-            this.mStage1Duration = f15;
-            this.mStage2Duration = f16;
-            this.mStage1EndPosition = ((f + fSqrt2) * f15) / 2.0f;
-            this.mStage2EndPosition = f2;
-            return;
-        }
-        this.mType = "accelerate cruse decelerate";
-        this.mNumberOfStages = 3;
-        this.mStage1Velocity = f;
-        this.mStage2Velocity = f4;
-        this.mStage3Velocity = f4;
-        float f17 = (f4 - f) / f3;
-        this.mStage1Duration = f17;
-        float f18 = f4 / f3;
-        this.mStage3Duration = f18;
-        float f19 = ((f + f4) * f17) / 2.0f;
-        float f20 = (f18 * f4) / 2.0f;
-        this.mStage2Duration = ((f2 - f19) - f20) / f4;
-        this.mStage1EndPosition = f19;
-        this.mStage2EndPosition = f2 - f20;
-        this.mStage3EndPosition = f2;
     }
 
     public void config(float f, float f2, float f3, float f4, float f5, float f6) {
@@ -254,6 +157,103 @@ public class StopLogic extends MotionInterpolator {
             f3 = this.mStage3Velocity;
         }
         return (((f3 - f2) * f) / f4) + f2;
+    }
+
+    private void setup(float f, float f2, float f3, float f4, float f5) {
+        if (f == 0.0f) {
+            f = 1.0E-4f;
+        }
+        this.mStage1Velocity = f;
+        float f6 = f / f3;
+        float f7 = (f6 * f) / 2.0f;
+        if (f < 0.0f) {
+            float fSqrt = (float) Math.sqrt((f2 - ((((-f) / f3) * f) / 2.0f)) * f3);
+            if (fSqrt < f4) {
+                this.mType = "backward accelerate, decelerate";
+                this.mNumberOfStages = 2;
+                this.mStage1Velocity = f;
+                this.mStage2Velocity = fSqrt;
+                this.mStage3Velocity = 0.0f;
+                float f8 = (fSqrt - f) / f3;
+                this.mStage1Duration = f8;
+                this.mStage2Duration = fSqrt / f3;
+                this.mStage1EndPosition = ((f + fSqrt) * f8) / 2.0f;
+                this.mStage2EndPosition = f2;
+                this.mStage3EndPosition = f2;
+                return;
+            }
+            this.mType = "backward accelerate cruse decelerate";
+            this.mNumberOfStages = 3;
+            this.mStage1Velocity = f;
+            this.mStage2Velocity = f4;
+            this.mStage3Velocity = f4;
+            float f9 = (f4 - f) / f3;
+            this.mStage1Duration = f9;
+            float f10 = f4 / f3;
+            this.mStage3Duration = f10;
+            float f11 = ((f + f4) * f9) / 2.0f;
+            float f12 = (f10 * f4) / 2.0f;
+            this.mStage2Duration = ((f2 - f11) - f12) / f4;
+            this.mStage1EndPosition = f11;
+            this.mStage2EndPosition = f2 - f12;
+            this.mStage3EndPosition = f2;
+            return;
+        }
+        if (f7 >= f2) {
+            this.mType = "hard stop";
+            this.mNumberOfStages = 1;
+            this.mStage1Velocity = f;
+            this.mStage2Velocity = 0.0f;
+            this.mStage1EndPosition = f2;
+            this.mStage1Duration = (2.0f * f2) / f;
+            return;
+        }
+        float f13 = f2 - f7;
+        float f14 = f13 / f;
+        if (f14 + f6 < f5) {
+            this.mType = "cruse decelerate";
+            this.mNumberOfStages = 2;
+            this.mStage1Velocity = f;
+            this.mStage2Velocity = f;
+            this.mStage3Velocity = 0.0f;
+            this.mStage1EndPosition = f13;
+            this.mStage2EndPosition = f2;
+            this.mStage1Duration = f14;
+            this.mStage2Duration = f6;
+            return;
+        }
+        float fSqrt2 = (float) Math.sqrt(((f * f) / 2.0f) + (f3 * f2));
+        float f15 = (fSqrt2 - f) / f3;
+        this.mStage1Duration = f15;
+        float f16 = fSqrt2 / f3;
+        this.mStage2Duration = f16;
+        if (fSqrt2 < f4) {
+            this.mType = "accelerate decelerate";
+            this.mNumberOfStages = 2;
+            this.mStage1Velocity = f;
+            this.mStage2Velocity = fSqrt2;
+            this.mStage3Velocity = 0.0f;
+            this.mStage1Duration = f15;
+            this.mStage2Duration = f16;
+            this.mStage1EndPosition = ((f + fSqrt2) * f15) / 2.0f;
+            this.mStage2EndPosition = f2;
+            return;
+        }
+        this.mType = "accelerate cruse decelerate";
+        this.mNumberOfStages = 3;
+        this.mStage1Velocity = f;
+        this.mStage2Velocity = f4;
+        this.mStage3Velocity = f4;
+        float f17 = (f4 - f) / f3;
+        this.mStage1Duration = f17;
+        float f18 = f4 / f3;
+        this.mStage3Duration = f18;
+        float f19 = ((f + f4) * f17) / 2.0f;
+        float f20 = (f18 * f4) / 2.0f;
+        this.mStage2Duration = ((f2 - f19) - f20) / f4;
+        this.mStage1EndPosition = f19;
+        this.mStage2EndPosition = f2 - f20;
+        this.mStage3EndPosition = f2;
     }
 
     @Override // androidx.constraintlayout.motion.widget.MotionInterpolator

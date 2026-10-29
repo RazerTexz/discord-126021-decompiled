@@ -35,6 +35,18 @@ public final /* data */ class HubAddServerState {
         this.addedDirectories = list3;
     }
 
+    public final List<Guild> component4() {
+        return this.selectableGuilds;
+    }
+
+    public final List<Guild> component5() {
+        return this.addedGuilds;
+    }
+
+    public final List<DirectoryEntryGuild> component6() {
+        return this.addedDirectories;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubAddServerState copy$default(HubAddServerState hubAddServerState, String str, Long l, int i, List list, List list2, List list3, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -60,33 +72,6 @@ public final /* data */ class HubAddServerState {
             list3 = hubAddServerState.addedDirectories;
         }
         return hubAddServerState.copy(str, l2, i3, list4, list5, list3);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getHubName() {
-        return this.hubName;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getDirectoryChannelId() {
-        return this.directoryChannelId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getSelectedIndex() {
-        return this.selectedIndex;
-    }
-
-    public final List<Guild> component4() {
-        return this.selectableGuilds;
-    }
-
-    public final List<Guild> component5() {
-        return this.addedGuilds;
-    }
-
-    public final List<DirectoryEntryGuild> component6() {
-        return this.addedDirectories;
     }
 
     public final HubAddServerState copy(String hubName, Long directoryChannelId, int selectedIndex, List<Guild> selectableGuilds, List<Guild> addedGuilds, List<DirectoryEntryGuild> addedDirectories) {
@@ -116,8 +101,18 @@ public final /* data */ class HubAddServerState {
         return this.addedGuilds;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getDirectoryChannelId() {
         return this.directoryChannelId;
+    }
+
+    public final Long getDirectoryChannelId() {
+        return this.directoryChannelId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getHubName() {
+        return this.hubName;
     }
 
     public final String getHubName() {
@@ -126,6 +121,11 @@ public final /* data */ class HubAddServerState {
 
     public final List<Guild> getSelectableGuilds() {
         return this.selectableGuilds;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getSelectedIndex() {
+        return this.selectedIndex;
     }
 
     public final int getSelectedIndex() {

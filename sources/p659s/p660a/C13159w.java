@@ -6,10 +6,10 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 /* JADX INFO: compiled from: CompletionState.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C13159w {
+    public volatile int _handled;
 
     /* JADX INFO: renamed from: a */
     public static final AtomicIntegerFieldUpdater f27912a = AtomicIntegerFieldUpdater.newUpdater(C13159w.class, "_handled");
-    public volatile int _handled;
 
     /* JADX INFO: renamed from: b */
     public final Throwable f27913b;

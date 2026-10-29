@@ -26,7 +26,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEarnings extends App
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEarnings.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

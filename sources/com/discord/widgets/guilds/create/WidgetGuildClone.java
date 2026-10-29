@@ -48,7 +48,7 @@ public final class WidgetGuildClone extends WidgetGuildCreate {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetGuildClone.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -78,10 +78,6 @@ public final class WidgetGuildClone extends WidgetGuildCreate {
     public WidgetGuildClone() {
         super(C5419R.layout.widget_guild_clone);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildClone$binding$2.INSTANCE, null, 2, null);
-    }
-
-    private final WidgetGuildCloneBinding getBinding() {
-        return (WidgetGuildCloneBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     @Override // com.discord.widgets.guilds.create.WidgetGuildCreate
@@ -177,6 +173,10 @@ public final class WidgetGuildClone extends WidgetGuildCreate {
     @Override // com.discord.widgets.guilds.create.WidgetGuildCreate
     public WidgetGuildCreateViewModel createViewModelFactory() {
         return new WidgetGuildCreateViewModel(C5419R.string.create_server_default_server_name_format, null, getMostRecentIntent().getStringExtra(INTENT_GUILD_TEMPLATE_CODE), false, getArgs().getAnalyticsLocation(), null, false, null, null, null, 962, null);
+    }
+
+    private final WidgetGuildCloneBinding getBinding() {
+        return (WidgetGuildCloneBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     @Override // com.discord.widgets.guilds.create.WidgetGuildCreate

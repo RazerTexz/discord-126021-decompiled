@@ -10,20 +10,20 @@ import p007b.p109f.p115d.p119d.C1686i;
 /* JADX INFO: loaded from: classes.dex */
 public class C1881b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C1881b f3706a = new C1881b(new C1882c());
-
-    /* JADX INFO: renamed from: b */
-    public final int f3707b = 100;
-
-    /* JADX INFO: renamed from: c */
-    public final int f3708c = Integer.MAX_VALUE;
-
     /* JADX INFO: renamed from: d */
     public final Bitmap.Config f3709d;
 
     /* JADX INFO: renamed from: e */
     public final Bitmap.Config f3710e;
+
+    /* JADX INFO: renamed from: b */
+    public final int f3707b = 100;
+
+    /* JADX INFO: renamed from: a */
+    public static final C1881b f3706a = new C1881b(new C1882c());
+
+    /* JADX INFO: renamed from: c */
+    public final int f3708c = Integer.MAX_VALUE;
 
     public C1881b(C1882c c1882c) {
         this.f3709d = c1882c.f3711a;

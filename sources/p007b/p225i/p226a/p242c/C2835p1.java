@@ -11,84 +11,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2835p1 implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2835p1 f7368j = new b().m3345a();
-
-    /* JADX INFO: renamed from: k */
-    public static final InterfaceC2963w0.a<C2835p1> f7369k = new InterfaceC2963w0.a() { // from class: b.i.a.c.l0
-        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
-            Bundle bundle2;
-            Bundle bundle3;
-            C2835p1.b bVar = new C2835p1.b();
-            bVar.f7407a = bundle.getCharSequence(C2835p1.m3343b(0));
-            bVar.f7408b = bundle.getCharSequence(C2835p1.m3343b(1));
-            bVar.f7409c = bundle.getCharSequence(C2835p1.m3343b(2));
-            bVar.f7410d = bundle.getCharSequence(C2835p1.m3343b(3));
-            bVar.f7411e = bundle.getCharSequence(C2835p1.m3343b(4));
-            bVar.f7412f = bundle.getCharSequence(C2835p1.m3343b(5));
-            bVar.f7413g = bundle.getCharSequence(C2835p1.m3343b(6));
-            bVar.f7414h = (Uri) bundle.getParcelable(C2835p1.m3343b(7));
-            byte[] byteArray = bundle.getByteArray(C2835p1.m3343b(10));
-            Integer numValueOf = bundle.containsKey(C2835p1.m3343b(29)) ? Integer.valueOf(bundle.getInt(C2835p1.m3343b(29))) : null;
-            bVar.f7417k = byteArray != null ? (byte[]) byteArray.clone() : null;
-            bVar.f7418l = numValueOf;
-            bVar.f7419m = (Uri) bundle.getParcelable(C2835p1.m3343b(11));
-            bVar.f7430x = bundle.getCharSequence(C2835p1.m3343b(22));
-            bVar.f7431y = bundle.getCharSequence(C2835p1.m3343b(23));
-            bVar.f7432z = bundle.getCharSequence(C2835p1.m3343b(24));
-            bVar.f7404C = bundle.getCharSequence(C2835p1.m3343b(27));
-            bVar.f7405D = bundle.getCharSequence(C2835p1.m3343b(28));
-            bVar.f7406E = bundle.getBundle(C2835p1.m3343b(1000));
-            if (bundle.containsKey(C2835p1.m3343b(8)) && (bundle3 = bundle.getBundle(C2835p1.m3343b(8))) != null) {
-                int i = AbstractC2656d2.f6334j;
-                bVar.f7415i = (AbstractC2656d2) C2830o0.f7260a.mo2576a(bundle3);
-            }
-            if (bundle.containsKey(C2835p1.m3343b(9)) && (bundle2 = bundle.getBundle(C2835p1.m3343b(9))) != null) {
-                int i2 = AbstractC2656d2.f6334j;
-                bVar.f7416j = (AbstractC2656d2) C2830o0.f7260a.mo2576a(bundle2);
-            }
-            if (bundle.containsKey(C2835p1.m3343b(12))) {
-                bVar.f7420n = Integer.valueOf(bundle.getInt(C2835p1.m3343b(12)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(13))) {
-                bVar.f7421o = Integer.valueOf(bundle.getInt(C2835p1.m3343b(13)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(14))) {
-                bVar.f7422p = Integer.valueOf(bundle.getInt(C2835p1.m3343b(14)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(15))) {
-                bVar.f7423q = Boolean.valueOf(bundle.getBoolean(C2835p1.m3343b(15)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(16))) {
-                bVar.f7424r = Integer.valueOf(bundle.getInt(C2835p1.m3343b(16)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(17))) {
-                bVar.f7425s = Integer.valueOf(bundle.getInt(C2835p1.m3343b(17)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(18))) {
-                bVar.f7426t = Integer.valueOf(bundle.getInt(C2835p1.m3343b(18)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(19))) {
-                bVar.f7427u = Integer.valueOf(bundle.getInt(C2835p1.m3343b(19)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(20))) {
-                bVar.f7428v = Integer.valueOf(bundle.getInt(C2835p1.m3343b(20)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(21))) {
-                bVar.f7429w = Integer.valueOf(bundle.getInt(C2835p1.m3343b(21)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(25))) {
-                bVar.f7402A = Integer.valueOf(bundle.getInt(C2835p1.m3343b(25)));
-            }
-            if (bundle.containsKey(C2835p1.m3343b(26))) {
-                bVar.f7403B = Integer.valueOf(bundle.getInt(C2835p1.m3343b(26)));
-            }
-            return bVar.m3345a();
-        }
-    };
-
     /* JADX INFO: renamed from: A */
     @Nullable
     public final Integer f7370A;
@@ -218,9 +140,87 @@ public final class C2835p1 implements InterfaceC2963w0 {
     @Nullable
     public final Integer f7401z;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2835p1 f7368j = new b().m3345a();
+
+    /* JADX INFO: renamed from: k */
+    public static final InterfaceC2963w0.a<C2835p1> f7369k = new InterfaceC2963w0.a() { // from class: b.i.a.c.l0
+        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
+            Bundle bundle2;
+            Bundle bundle3;
+            C2835p1.b bVar = new C2835p1.b();
+            bVar.f7407a = bundle.getCharSequence(C2835p1.m3343b(0));
+            bVar.f7408b = bundle.getCharSequence(C2835p1.m3343b(1));
+            bVar.f7409c = bundle.getCharSequence(C2835p1.m3343b(2));
+            bVar.f7410d = bundle.getCharSequence(C2835p1.m3343b(3));
+            bVar.f7411e = bundle.getCharSequence(C2835p1.m3343b(4));
+            bVar.f7412f = bundle.getCharSequence(C2835p1.m3343b(5));
+            bVar.f7413g = bundle.getCharSequence(C2835p1.m3343b(6));
+            bVar.f7414h = (Uri) bundle.getParcelable(C2835p1.m3343b(7));
+            byte[] byteArray = bundle.getByteArray(C2835p1.m3343b(10));
+            Integer numValueOf = bundle.containsKey(C2835p1.m3343b(29)) ? Integer.valueOf(bundle.getInt(C2835p1.m3343b(29))) : null;
+            bVar.f7417k = byteArray != null ? (byte[]) byteArray.clone() : null;
+            bVar.f7418l = numValueOf;
+            bVar.f7419m = (Uri) bundle.getParcelable(C2835p1.m3343b(11));
+            bVar.f7430x = bundle.getCharSequence(C2835p1.m3343b(22));
+            bVar.f7431y = bundle.getCharSequence(C2835p1.m3343b(23));
+            bVar.f7432z = bundle.getCharSequence(C2835p1.m3343b(24));
+            bVar.f7404C = bundle.getCharSequence(C2835p1.m3343b(27));
+            bVar.f7405D = bundle.getCharSequence(C2835p1.m3343b(28));
+            bVar.f7406E = bundle.getBundle(C2835p1.m3343b(1000));
+            if (bundle.containsKey(C2835p1.m3343b(8)) && (bundle3 = bundle.getBundle(C2835p1.m3343b(8))) != null) {
+                int i = AbstractC2656d2.f6334j;
+                bVar.f7415i = (AbstractC2656d2) C2830o0.f7260a.mo2576a(bundle3);
+            }
+            if (bundle.containsKey(C2835p1.m3343b(9)) && (bundle2 = bundle.getBundle(C2835p1.m3343b(9))) != null) {
+                int i2 = AbstractC2656d2.f6334j;
+                bVar.f7416j = (AbstractC2656d2) C2830o0.f7260a.mo2576a(bundle2);
+            }
+            if (bundle.containsKey(C2835p1.m3343b(12))) {
+                bVar.f7420n = Integer.valueOf(bundle.getInt(C2835p1.m3343b(12)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(13))) {
+                bVar.f7421o = Integer.valueOf(bundle.getInt(C2835p1.m3343b(13)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(14))) {
+                bVar.f7422p = Integer.valueOf(bundle.getInt(C2835p1.m3343b(14)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(15))) {
+                bVar.f7423q = Boolean.valueOf(bundle.getBoolean(C2835p1.m3343b(15)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(16))) {
+                bVar.f7424r = Integer.valueOf(bundle.getInt(C2835p1.m3343b(16)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(17))) {
+                bVar.f7425s = Integer.valueOf(bundle.getInt(C2835p1.m3343b(17)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(18))) {
+                bVar.f7426t = Integer.valueOf(bundle.getInt(C2835p1.m3343b(18)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(19))) {
+                bVar.f7427u = Integer.valueOf(bundle.getInt(C2835p1.m3343b(19)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(20))) {
+                bVar.f7428v = Integer.valueOf(bundle.getInt(C2835p1.m3343b(20)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(21))) {
+                bVar.f7429w = Integer.valueOf(bundle.getInt(C2835p1.m3343b(21)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(25))) {
+                bVar.f7402A = Integer.valueOf(bundle.getInt(C2835p1.m3343b(25)));
+            }
+            if (bundle.containsKey(C2835p1.m3343b(26))) {
+                bVar.f7403B = Integer.valueOf(bundle.getInt(C2835p1.m3343b(26)));
+            }
+            return bVar.m3345a();
+        }
+    };
+
     /* JADX INFO: renamed from: b.i.a.c.p1$b */
     /* JADX INFO: compiled from: MediaMetadata.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: A */
         @Nullable
@@ -434,16 +434,6 @@ public final class C2835p1 implements InterfaceC2963w0 {
         this.f7386Q = bVar.f7406E;
     }
 
-    /* JADX INFO: renamed from: b */
-    public static String m3343b(int i) {
-        return Integer.toString(i, 36);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public b m3344a() {
-        return new b(this, null);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -457,5 +447,15 @@ public final class C2835p1 implements InterfaceC2963w0 {
 
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.f7387l, this.f7388m, this.f7389n, this.f7390o, this.f7391p, this.f7392q, this.f7393r, this.f7394s, this.f7395t, this.f7396u, Integer.valueOf(Arrays.hashCode(this.f7397v)), this.f7398w, this.f7399x, this.f7400y, this.f7401z, this.f7370A, this.f7371B, this.f7373D, this.f7374E, this.f7375F, this.f7376G, this.f7377H, this.f7378I, this.f7379J, this.f7380K, this.f7381L, this.f7382M, this.f7383N, this.f7384O, this.f7385P});
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static String m3343b(int i) {
+        return Integer.toString(i, 36);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public b m3344a() {
+        return new b(this, null);
     }
 }

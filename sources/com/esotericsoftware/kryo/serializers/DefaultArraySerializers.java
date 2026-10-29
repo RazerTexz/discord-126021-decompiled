@@ -12,7 +12,7 @@ import p007b.p106e.p107a.C1644a;
 /* JADX INFO: loaded from: classes.dex */
 public class DefaultArraySerializers {
 
-    public static class BooleanArraySerializer extends Serializer<boolean[]> {
+    public class BooleanArraySerializer extends Serializer<boolean[]> {
         public BooleanArraySerializer() {
             setAcceptsNull(true);
         }
@@ -52,7 +52,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class ByteArraySerializer extends Serializer<byte[]> {
+    public class ByteArraySerializer extends Serializer<byte[]> {
         public ByteArraySerializer() {
             setAcceptsNull(true);
         }
@@ -85,7 +85,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class CharArraySerializer extends Serializer<char[]> {
+    public class CharArraySerializer extends Serializer<char[]> {
         public CharArraySerializer() {
             setAcceptsNull(true);
         }
@@ -118,7 +118,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class DoubleArraySerializer extends Serializer<double[]> {
+    public class DoubleArraySerializer extends Serializer<double[]> {
         public DoubleArraySerializer() {
             setAcceptsNull(true);
         }
@@ -151,7 +151,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class FloatArraySerializer extends Serializer<float[]> {
+    public class FloatArraySerializer extends Serializer<float[]> {
         public FloatArraySerializer() {
             setAcceptsNull(true);
         }
@@ -184,7 +184,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class IntArraySerializer extends Serializer<int[]> {
+    public class IntArraySerializer extends Serializer<int[]> {
         public IntArraySerializer() {
             setAcceptsNull(true);
         }
@@ -217,7 +217,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class LongArraySerializer extends Serializer<long[]> {
+    public class LongArraySerializer extends Serializer<long[]> {
         public LongArraySerializer() {
             setAcceptsNull(true);
         }
@@ -250,11 +250,11 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class ObjectArraySerializer extends Serializer<Object[]> {
+    public class ObjectArraySerializer extends Serializer<Object[]> {
         private boolean elementsAreSameType;
-        private boolean elementsCanBeNull = true;
         private Class[] generics;
         private final Class type;
+        private boolean elementsCanBeNull = true;
 
         public ObjectArraySerializer(Kryo kryo, Class cls) {
             setAcceptsNull(true);
@@ -360,7 +360,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class ShortArraySerializer extends Serializer<short[]> {
+    public class ShortArraySerializer extends Serializer<short[]> {
         public ShortArraySerializer() {
             setAcceptsNull(true);
         }
@@ -393,7 +393,7 @@ public class DefaultArraySerializers {
         }
     }
 
-    public static class StringArraySerializer extends Serializer<String[]> {
+    public class StringArraySerializer extends Serializer<String[]> {
         public StringArraySerializer() {
             setAcceptsNull(true);
         }

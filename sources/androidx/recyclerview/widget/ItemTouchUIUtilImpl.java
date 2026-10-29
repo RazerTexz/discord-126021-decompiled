@@ -9,6 +9,18 @@ import androidx.recyclerview.C0534R;
 public class ItemTouchUIUtilImpl implements ItemTouchUIUtil {
     public static final ItemTouchUIUtil INSTANCE = new ItemTouchUIUtilImpl();
 
+    @Override // androidx.recyclerview.widget.ItemTouchUIUtil
+    public void clearView(View view) {
+        int i = C0534R.id.item_touch_helper_previous_elevation;
+        Object tag = view.getTag(i);
+        if (tag instanceof Float) {
+            ViewCompat.setElevation(view, ((Float) tag).floatValue());
+        }
+        view.setTag(i, null);
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
+    }
+
     private static float findMaxElevation(RecyclerView recyclerView, View view) {
         int childCount = recyclerView.getChildCount();
         float f = 0.0f;
@@ -22,18 +34,6 @@ public class ItemTouchUIUtilImpl implements ItemTouchUIUtil {
             }
         }
         return f;
-    }
-
-    @Override // androidx.recyclerview.widget.ItemTouchUIUtil
-    public void clearView(View view) {
-        int i = C0534R.id.item_touch_helper_previous_elevation;
-        Object tag = view.getTag(i);
-        if (tag instanceof Float) {
-            ViewCompat.setElevation(view, ((Float) tag).floatValue());
-        }
-        view.setTag(i, null);
-        view.setTranslationX(0.0f);
-        view.setTranslationY(0.0f);
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchUIUtil

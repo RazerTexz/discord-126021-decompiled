@@ -32,8 +32,67 @@ public final class WidgetEnableMFAViewModel extends AbstractC0859d0<ViewState> {
     private CompositeSubscription subs;
     private String totpSecret;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$1 */
     /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final class C98011 extends AbstractC12240o implements Function1<EnableMfaResponse, Unit> {
+        public C98011() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(EnableMfaResponse enableMfaResponse) {
+            invoke2(enableMfaResponse);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(EnableMfaResponse enableMfaResponse) {
+            WidgetEnableMFAViewModel.this.handleMFASuccess(enableMfaResponse.getToken());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$2 */
+    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
+    public final class C98022 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C98022() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetEnableMFAViewModel.this.handleMFAFailure();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$3 */
+    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
+    public final class C98033 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C98033() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetEnableMFAViewModel.this.subs.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
+    public final /* data */ class ViewState {
         private final boolean isLoading;
         private final Integer screenIndex;
 
@@ -57,16 +116,6 @@ public final class WidgetEnableMFAViewModel extends AbstractC0859d0<ViewState> {
             return viewState.copy(z2, num);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsLoading() {
-            return this.isLoading;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getScreenIndex() {
-            return this.screenIndex;
-        }
-
         public final ViewState copy(boolean isLoading, Integer screenIndex) {
             return new ViewState(isLoading, screenIndex);
         }
@@ -80,6 +129,16 @@ public final class WidgetEnableMFAViewModel extends AbstractC0859d0<ViewState> {
             }
             ViewState viewState = (ViewState) other;
             return this.isLoading == viewState.isLoading && C12238m.areEqual(this.screenIndex, viewState.screenIndex);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsLoading() {
+            return this.isLoading;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Integer getScreenIndex() {
+            return this.screenIndex;
         }
 
         public final Integer getScreenIndex() {
@@ -117,81 +176,9 @@ public final class WidgetEnableMFAViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$1 */
-    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
-    public static final class C98011 extends AbstractC12240o implements Function1<EnableMfaResponse, Unit> {
-        public C98011() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(EnableMfaResponse enableMfaResponse) {
-            invoke2(enableMfaResponse);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(EnableMfaResponse enableMfaResponse) {
-            WidgetEnableMFAViewModel.this.handleMFASuccess(enableMfaResponse.getToken());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$2 */
-    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
-    public static final class C98022 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C98022() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetEnableMFAViewModel.this.handleMFAFailure();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAViewModel$enableMFA$3 */
-    /* JADX INFO: compiled from: WidgetEnableMFAViewModel.kt */
-    public static final class C98033 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C98033() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetEnableMFAViewModel.this.subs.m11136a(subscription);
-        }
-    }
-
     public WidgetEnableMFAViewModel() {
         super(new ViewState(false, 0));
         this.subs = new CompositeSubscription();
-    }
-
-    @MainThread
-    private final void handleMFAFailure() {
-        updateViewState(new ViewState(false, 2));
-    }
-
-    @MainThread
-    private final void handleMFASuccess(String token) {
-        StoreStream.Companion companion = StoreStream.INSTANCE;
-        companion.getAuthentication().setAuthed(token);
-        updateViewState(new ViewState(false, 3));
-        companion.getMFA().updatePendingMFAState(StoreMFA.MFAActivationState.PENDING_ENABLED);
     }
 
     @MainThread
@@ -218,6 +205,19 @@ public final class WidgetEnableMFAViewModel extends AbstractC0859d0<ViewState> {
     @MainThread
     public final String getTotpSecret() {
         return this.totpSecret;
+    }
+
+    @MainThread
+    private final void handleMFAFailure() {
+        updateViewState(new ViewState(false, 2));
+    }
+
+    @MainThread
+    private final void handleMFASuccess(String token) {
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        companion.getAuthentication().setAuthed(token);
+        updateViewState(new ViewState(false, 3));
+        companion.getMFA().updatePendingMFAState(StoreMFA.MFAActivationState.PENDING_ENABLED);
     }
 
     @Override // p007b.p008a.p018d.AbstractC0859d0, androidx.view.ViewModel

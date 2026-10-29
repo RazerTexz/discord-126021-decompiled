@@ -20,7 +20,7 @@ public final class C6273xb464920a extends AbstractC12240o implements Function2<A
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreNavigation.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function2<AppActivity, Boolean, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function2<AppActivity, Boolean, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {

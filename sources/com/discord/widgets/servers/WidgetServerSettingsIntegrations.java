@@ -64,7 +64,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
     private final LoggingConfig loggingConfig;
 
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<Model.IntegrationItem> {
+    public final class Adapter extends MGRecyclerAdapterSimple<Model.IntegrationItem> {
         private Function1<? super Long, Unit> onIntegrationSelectedListener;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -96,8 +96,49 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$configureUI$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public static final class Companion {
+    public final class C92631 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92631(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            WidgetServerSettingsEditIntegration.INSTANCE.launch(this.$model.getGuildId(), j, WidgetServerSettingsIntegrations.this.requireContext());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$onResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
+    public final /* synthetic */ class C92641 extends C12236k implements Function1<Model, Unit> {
+        public C92641(WidgetServerSettingsIntegrations widgetServerSettingsIntegrations) {
+            super(1, widgetServerSettingsIntegrations, WidgetServerSettingsIntegrations.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsIntegrations$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsIntegrations) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -115,7 +156,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -124,7 +165,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         private final List<IntegrationItem> integrations;
 
         /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -171,7 +212,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-        public static final /* data */ class IntegrationItem implements MGRecyclerDataPayload {
+        public final /* data */ class IntegrationItem implements MGRecyclerDataPayload {
             public static final int TYPE_INTEGRATION = 0;
             private final long guildId;
             private final ModelGuildIntegration integration;
@@ -195,16 +236,6 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
                 return integrationItem.copy(modelGuildIntegration, j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildIntegration getIntegration() {
-                return this.integration;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final IntegrationItem copy(ModelGuildIntegration integration, long guildId) {
                 C12238m.checkNotNullParameter(integration, "integration");
                 return new IntegrationItem(integration, guildId);
@@ -221,8 +252,18 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
                 return C12238m.areEqual(this.integration, integrationItem.integration) && this.guildId == integrationItem.guildId;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelGuildIntegration getIntegration() {
+                return this.integration;
             }
 
             public final ModelGuildIntegration getIntegration() {
@@ -260,6 +301,10 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             this.integrations = list;
         }
 
+        public final List<IntegrationItem> component3() {
+            return this.integrations;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, long j, String str, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -272,20 +317,6 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
                 list = model.integrations;
             }
             return model.copy(j, str, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getGuildName() {
-            return this.guildName;
-        }
-
-        public final List<IntegrationItem> component3() {
-            return this.integrations;
         }
 
         public final Model copy(long guildId, String guildName, List<IntegrationItem> integrations) {
@@ -305,8 +336,18 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             return this.guildId == model.guildId && C12238m.areEqual(this.guildName, model.guildName) && C12238m.areEqual(this.integrations, model.integrations);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getGuildName() {
+            return this.guildName;
         }
 
         public final String getGuildName() {
@@ -332,47 +373,6 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             sbM833U.append(this.guildName);
             sbM833U.append(", integrations=");
             return C1643a.m824L(sbM833U, this.integrations, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public static final class C92631 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92631(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetServerSettingsEditIntegration.INSTANCE.launch(this.$model.getGuildId(), j, WidgetServerSettingsIntegrations.this.requireContext());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$onResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public static final /* synthetic */ class C92641 extends C12236k implements Function1<Model, Unit> {
-        public C92641(WidgetServerSettingsIntegrations widgetServerSettingsIntegrations) {
-            super(1, widgetServerSettingsIntegrations, WidgetServerSettingsIntegrations.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsIntegrations$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsIntegrations) this.receiver).configureUI(model);
         }
     }
 

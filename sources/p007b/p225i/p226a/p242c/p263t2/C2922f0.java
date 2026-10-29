@@ -21,19 +21,23 @@ public final class C2922f0 extends AbstractC2938v {
     /* JADX INFO: renamed from: l */
     public int f7749l;
 
-    /* JADX INFO: renamed from: m */
-    public byte[] f7750m = C2738e0.f6713f;
-
     /* JADX INFO: renamed from: n */
     public int f7751n;
 
     /* JADX INFO: renamed from: o */
     public long f7752o;
 
+    /* JADX INFO: renamed from: m */
+    public byte[] f7750m = C2738e0.f6713f;
+
     @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v, com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: b */
-    public boolean mo3485b() {
-        return super.mo3485b() && this.f7751n == 0;
+    public ByteBuffer getOutput() {
+        int i;
+        if (super.mo3485b() && (i = this.f7751n) > 0) {
+            m3511j(i).put(this.f7750m, 0, this.f7751n).flip();
+            this.f7751n = 0;
+        }
+        return super.getOutput();
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
@@ -94,16 +98,6 @@ public final class C2922f0 extends AbstractC2938v {
         this.f7751n = 0;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v, com.google.android.exoplayer2.audio.AudioProcessor
-    public ByteBuffer getOutput() {
-        int i;
-        if (super.mo3485b() && (i = this.f7751n) > 0) {
-            m3511j(i).put(this.f7750m, 0, this.f7751n).flip();
-            this.f7751n = 0;
-        }
-        return super.getOutput();
-    }
-
     @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v
     /* JADX INFO: renamed from: h */
     public void mo3474h() {
@@ -120,5 +114,11 @@ public final class C2922f0 extends AbstractC2938v {
     /* JADX INFO: renamed from: i */
     public void mo3475i() {
         this.f7750m = C2738e0.f6713f;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v, com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: b */
+    public boolean mo3485b() {
+        return super.mo3485b() && this.f7751n == 0;
     }
 }

@@ -34,11 +34,6 @@ public final /* data */ class UserNode extends AnswerNode {
         this.discriminator = i;
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    private final int getDiscriminator() {
-        return this.discriminator;
-    }
-
     public static /* synthetic */ UserNode copy$default(UserNode userNode, String str, int i, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             str = userNode.userName;
@@ -47,11 +42,6 @@ public final /* data */ class UserNode extends AnswerNode {
             i = userNode.discriminator;
         }
         return userNode.copy(str, i);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getUserName() {
-        return this.userName;
     }
 
     public final UserNode copy(String userName, int discriminator) {
@@ -68,6 +58,16 @@ public final /* data */ class UserNode extends AnswerNode {
         }
         UserNode userNode = (UserNode) other;
         return C12238m.areEqual(this.userName, userNode.userName) && this.discriminator == userNode.discriminator;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    private final int getDiscriminator() {
+        return this.discriminator;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getUserName() {
+        return this.userName;
     }
 
     public final String getUserName() {

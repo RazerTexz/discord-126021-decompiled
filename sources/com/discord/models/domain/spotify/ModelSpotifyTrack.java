@@ -27,6 +27,10 @@ public final /* data */ class ModelSpotifyTrack {
         this.isLocal = z2;
     }
 
+    public final List<ModelSpotifyArtist> component5() {
+        return this.artists;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelSpotifyTrack copy$default(ModelSpotifyTrack modelSpotifyTrack, String str, String str2, long j, ModelSpotifyAlbum modelSpotifyAlbum, List list, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -54,35 +58,6 @@ public final /* data */ class ModelSpotifyTrack {
         return modelSpotifyTrack.copy(str, str3, j2, modelSpotifyAlbum2, list2, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getDurationMs() {
-        return this.durationMs;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelSpotifyAlbum getAlbum() {
-        return this.album;
-    }
-
-    public final List<ModelSpotifyArtist> component5() {
-        return this.artists;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsLocal() {
-        return this.isLocal;
-    }
-
     public final ModelSpotifyTrack copy(String id2, String name, long durationMs, ModelSpotifyAlbum album, List<ModelSpotifyArtist> artists, boolean isLocal) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
@@ -101,6 +76,11 @@ public final /* data */ class ModelSpotifyTrack {
         return C12238m.areEqual(this.id, modelSpotifyTrack.id) && C12238m.areEqual(this.name, modelSpotifyTrack.name) && this.durationMs == modelSpotifyTrack.durationMs && C12238m.areEqual(this.album, modelSpotifyTrack.album) && C12238m.areEqual(this.artists, modelSpotifyTrack.artists) && this.isLocal == modelSpotifyTrack.isLocal;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final ModelSpotifyAlbum getAlbum() {
+        return this.album;
+    }
+
     public final ModelSpotifyAlbum getAlbum() {
         return this.album;
     }
@@ -109,12 +89,32 @@ public final /* data */ class ModelSpotifyTrack {
         return this.artists;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getDurationMs() {
         return this.durationMs;
     }
 
+    public final long getDurationMs() {
+        return this.durationMs;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getId() {
         return this.id;
+    }
+
+    public final String getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsLocal() {
+        return this.isLocal;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

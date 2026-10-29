@@ -28,9 +28,6 @@ import p007b.p225i.p355b.p357b.AbstractC4527r;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2699r implements Cache {
 
-    /* JADX INFO: renamed from: a */
-    public static final HashSet<File> f6506a = new HashSet<>();
-
     /* JADX INFO: renamed from: b */
     public final File f6507b;
 
@@ -61,6 +58,9 @@ public final class C2699r implements Cache {
 
     /* JADX INFO: renamed from: k */
     public Cache.CacheException f6516k;
+
+    /* JADX INFO: renamed from: a */
+    public static final HashSet<File> f6506a = new HashSet<>();
 
     public C2699r(File file, InterfaceC2685d interfaceC2685d, InterfaceC2946a interfaceC2946a) {
         boolean zAdd;
@@ -204,206 +204,6 @@ public final class C2699r implements Cache {
         }
         String strValueOf2 = String.valueOf(file2);
         throw new IOException(C1643a.m857j(strValueOf2.length() + 27, "Failed to create UID file: ", strValueOf2));
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: a */
-    public synchronized File mo2826a(String str, long j, long j2) throws Cache.CacheException {
-        C2690i c2690i;
-        File file;
-        C1460d.m426D(true);
-        m2836l();
-        c2690i = this.f6509d.f6478a.get(str);
-        Objects.requireNonNull(c2690i);
-        C1460d.m426D(c2690i.m2792a(j, j2));
-        if (!this.f6507b.exists()) {
-            m2824m(this.f6507b);
-            m2840r();
-        }
-        this.f6508c.mo2785a(this, str, j, j2);
-        file = new File(this.f6507b, Integer.toString(this.f6512g.nextInt(10)));
-        if (!file.exists()) {
-            m2824m(file);
-        }
-        return C2700s.m2843h(file, c2690i.f6471a, j, System.currentTimeMillis());
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: b */
-    public synchronized InterfaceC2693l mo2827b(String str) {
-        C2690i c2690i;
-        C1460d.m426D(true);
-        c2690i = this.f6509d.f6478a.get(str);
-        return c2690i != null ? c2690i.f6475e : C2695n.f6498a;
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: c */
-    public synchronized void mo2828c(String str, C2694m c2694m) throws Cache.CacheException {
-        C1460d.m426D(true);
-        m2836l();
-        C2691j c2691j = this.f6509d;
-        C2690i c2690iM2796d = c2691j.m2796d(str);
-        C2695n c2695n = c2690iM2796d.f6475e;
-        C2695n c2695nM2817a = c2695n.m2817a(c2694m);
-        c2690iM2796d.f6475e = c2695nM2817a;
-        if (!c2695nM2817a.equals(c2695n)) {
-            c2691j.f6482e.mo2804c(c2690iM2796d);
-        }
-        try {
-            this.f6509d.m2799g();
-        } catch (IOException e) {
-            throw new Cache.CacheException(e);
-        }
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: d */
-    public synchronized void mo2829d(C2689h c2689h) {
-        C1460d.m426D(true);
-        m2839q(c2689h);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:25:0x0059 A[PHI: r20
-      0x0059: PHI (r20v6 b.i.a.c.e3.b0.s) = (r20v3 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s) binds: [B:23:0x0056, B:18:0x0049] A[DONT_GENERATE, DONT_INLINE]] */
-    /* JADX WARN: Code duplicated, block: B:26:0x005b A[PHI: r20
-      0x005b: PHI (r20v4 b.i.a.c.e3.b0.s) = (r20v3 b.i.a.c.e3.b0.s), (r20v3 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s) binds: [B:21:0x0050, B:24:0x0058, B:16:0x0044, B:19:0x004b] A[DONT_GENERATE, DONT_INLINE]] */
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    @Nullable
-    /* JADX INFO: renamed from: e */
-    public synchronized C2689h mo2830e(String str, long j, long j2) throws Cache.CacheException {
-        C2700s c2700s;
-        boolean z2;
-        boolean z3;
-        C1460d.m426D(true);
-        m2836l();
-        C2700s c2700sM2837o = m2837o(str, j, j2);
-        if (c2700sM2837o.f6468m) {
-            return m2841s(str, c2700sM2837o);
-        }
-        C2690i c2690iM2796d = this.f6509d.m2796d(str);
-        long j3 = c2700sM2837o.f6467l;
-        int i = 0;
-        while (true) {
-            if (i >= c2690iM2796d.f6474d.size()) {
-                c2700s = c2700sM2837o;
-                c2690iM2796d.f6474d.add(new C2690i.a(j, j3));
-                z2 = true;
-                break;
-            }
-            C2690i.a aVar = c2690iM2796d.f6474d.get(i);
-            long j4 = aVar.f6476a;
-            if (j4 <= j) {
-                c2700s = c2700sM2837o;
-                long j5 = aVar.f6477b;
-                if (j5 == -1 || j4 + j5 > j) {
-                    z3 = true;
-                } else {
-                    z3 = false;
-                }
-            } else {
-                c2700s = c2700sM2837o;
-                if (j3 == -1 || j + j3 > j4) {
-                    z3 = true;
-                } else {
-                    z3 = false;
-                }
-            }
-            if (z3) {
-                z2 = false;
-                break;
-            }
-            i++;
-            c2700sM2837o = c2700s;
-        }
-        if (z2) {
-            return c2700s;
-        }
-        return null;
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: f */
-    public synchronized C2689h mo2831f(String str, long j, long j2) throws InterruptedException, Cache.CacheException {
-        C2689h c2689hMo2830e;
-        C1460d.m426D(true);
-        m2836l();
-        while (true) {
-            c2689hMo2830e = mo2830e(str, j, j2);
-            if (c2689hMo2830e == null) {
-                wait();
-            }
-        }
-        return c2689hMo2830e;
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: g */
-    public synchronized void mo2832g(File file, long j) throws Cache.CacheException {
-        boolean z2 = true;
-        C1460d.m426D(true);
-        if (file.exists()) {
-            if (j == 0) {
-                file.delete();
-                return;
-            }
-            C2700s c2700sM2842g = C2700s.m2842g(file, j, -9223372036854775807L, this.f6509d);
-            Objects.requireNonNull(c2700sM2842g);
-            C2690i c2690iM2795c = this.f6509d.m2795c(c2700sM2842g.f6465j);
-            Objects.requireNonNull(c2690iM2795c);
-            C1460d.m426D(c2690iM2795c.m2792a(c2700sM2842g.f6466k, c2700sM2842g.f6467l));
-            long jM2814a = C2692k.m2814a(c2690iM2795c.f6475e);
-            if (jM2814a != -1) {
-                if (c2700sM2842g.f6466k + c2700sM2842g.f6467l > jM2814a) {
-                    z2 = false;
-                }
-                C1460d.m426D(z2);
-            }
-            if (this.f6510e == null) {
-                m2835k(c2700sM2842g);
-                this.f6509d.m2799g();
-                notifyAll();
-                return;
-            }
-            try {
-                this.f6510e.m2790d(file.getName(), c2700sM2842g.f6467l, c2700sM2842g.f6470o);
-                m2835k(c2700sM2842g);
-                try {
-                    this.f6509d.m2799g();
-                    notifyAll();
-                    return;
-                } catch (IOException e) {
-                    throw new Cache.CacheException(e);
-                }
-            } catch (IOException e2) {
-                throw new Cache.CacheException(e2);
-            }
-            throw th;
-        }
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: h */
-    public synchronized long mo2833h() {
-        C1460d.m426D(true);
-        return this.f6515j;
-    }
-
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    /* JADX INFO: renamed from: i */
-    public synchronized void mo2834i(C2689h c2689h) {
-        C1460d.m426D(true);
-        C2690i c2690iM2795c = this.f6509d.m2795c(c2689h.f6465j);
-        Objects.requireNonNull(c2690iM2795c);
-        long j = c2689h.f6466k;
-        for (int i = 0; i < c2690iM2795c.f6474d.size(); i++) {
-            if (c2690iM2795c.f6474d.get(i).f6476a == j) {
-                c2690iM2795c.f6474d.remove(i);
-                this.f6509d.m2798f(c2690iM2795c.f6472b);
-                notifyAll();
-            }
-        }
-        throw new IllegalStateException();
     }
 
     /* JADX INFO: renamed from: k */
@@ -618,5 +418,202 @@ public final class C2699r implements Cache {
         }
         this.f6508c.mo2819c(this, c2700s, c2700s2);
         return c2700s2;
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: a */
+    public synchronized File mo2826a(String str, long j, long j2) throws Cache.CacheException {
+        C2690i c2690i;
+        File file;
+        C1460d.m426D(true);
+        m2836l();
+        c2690i = this.f6509d.f6478a.get(str);
+        Objects.requireNonNull(c2690i);
+        C1460d.m426D(c2690i.m2792a(j, j2));
+        if (!this.f6507b.exists()) {
+            m2824m(this.f6507b);
+            m2840r();
+        }
+        this.f6508c.mo2785a(this, str, j, j2);
+        file = new File(this.f6507b, Integer.toString(this.f6512g.nextInt(10)));
+        if (!file.exists()) {
+            m2824m(file);
+        }
+        return C2700s.m2843h(file, c2690i.f6471a, j, System.currentTimeMillis());
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: b */
+    public synchronized InterfaceC2693l mo2827b(String str) {
+        C2690i c2690i;
+        C1460d.m426D(true);
+        c2690i = this.f6509d.f6478a.get(str);
+        return c2690i != null ? c2690i.f6475e : C2695n.f6498a;
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: c */
+    public synchronized void mo2828c(String str, C2694m c2694m) throws Cache.CacheException {
+        C1460d.m426D(true);
+        m2836l();
+        C2691j c2691j = this.f6509d;
+        C2690i c2690iM2796d = c2691j.m2796d(str);
+        C2695n c2695n = c2690iM2796d.f6475e;
+        C2695n c2695nM2817a = c2695n.m2817a(c2694m);
+        c2690iM2796d.f6475e = c2695nM2817a;
+        if (!c2695nM2817a.equals(c2695n)) {
+            c2691j.f6482e.mo2804c(c2690iM2796d);
+        }
+        try {
+            this.f6509d.m2799g();
+        } catch (IOException e) {
+            throw new Cache.CacheException(e);
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: d */
+    public synchronized void mo2829d(C2689h c2689h) {
+        C1460d.m426D(true);
+        m2839q(c2689h);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:25:0x0059 A[PHI: r20
+      0x0059: PHI (r20v6 b.i.a.c.e3.b0.s) = (r20v3 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s) binds: [B:23:0x0056, B:18:0x0049] A[DONT_GENERATE, DONT_INLINE]] */
+    /* JADX WARN: Code duplicated, block: B:26:0x005b A[PHI: r20
+      0x005b: PHI (r20v4 b.i.a.c.e3.b0.s) = (r20v3 b.i.a.c.e3.b0.s), (r20v3 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s) binds: [B:21:0x0050, B:24:0x0058, B:16:0x0044, B:19:0x004b] A[DONT_GENERATE, DONT_INLINE]] */
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    @Nullable
+    /* JADX INFO: renamed from: e */
+    public synchronized C2689h mo2830e(String str, long j, long j2) throws Cache.CacheException {
+        C2700s c2700s;
+        boolean z2;
+        boolean z3;
+        C1460d.m426D(true);
+        m2836l();
+        C2700s c2700sM2837o = m2837o(str, j, j2);
+        if (c2700sM2837o.f6468m) {
+            return m2841s(str, c2700sM2837o);
+        }
+        C2690i c2690iM2796d = this.f6509d.m2796d(str);
+        long j3 = c2700sM2837o.f6467l;
+        int i = 0;
+        while (true) {
+            if (i >= c2690iM2796d.f6474d.size()) {
+                c2700s = c2700sM2837o;
+                c2690iM2796d.f6474d.add(new C2690i.a(j, j3));
+                z2 = true;
+                break;
+            }
+            C2690i.a aVar = c2690iM2796d.f6474d.get(i);
+            long j4 = aVar.f6476a;
+            if (j4 <= j) {
+                c2700s = c2700sM2837o;
+                long j5 = aVar.f6477b;
+                if (j5 == -1 || j4 + j5 > j) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+            } else {
+                c2700s = c2700sM2837o;
+                if (j3 == -1 || j + j3 > j4) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+            }
+            if (z3) {
+                z2 = false;
+                break;
+            }
+            i++;
+            c2700sM2837o = c2700s;
+        }
+        if (z2) {
+            return c2700s;
+        }
+        return null;
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: f */
+    public synchronized C2689h mo2831f(String str, long j, long j2) throws InterruptedException, Cache.CacheException {
+        C2689h c2689hMo2830e;
+        C1460d.m426D(true);
+        m2836l();
+        while (true) {
+            c2689hMo2830e = mo2830e(str, j, j2);
+            if (c2689hMo2830e == null) {
+                wait();
+            }
+        }
+        return c2689hMo2830e;
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: g */
+    public synchronized void mo2832g(File file, long j) throws Cache.CacheException {
+        boolean z2 = true;
+        C1460d.m426D(true);
+        if (file.exists()) {
+            if (j == 0) {
+                file.delete();
+                return;
+            }
+            C2700s c2700sM2842g = C2700s.m2842g(file, j, -9223372036854775807L, this.f6509d);
+            Objects.requireNonNull(c2700sM2842g);
+            C2690i c2690iM2795c = this.f6509d.m2795c(c2700sM2842g.f6465j);
+            Objects.requireNonNull(c2690iM2795c);
+            C1460d.m426D(c2690iM2795c.m2792a(c2700sM2842g.f6466k, c2700sM2842g.f6467l));
+            long jM2814a = C2692k.m2814a(c2690iM2795c.f6475e);
+            if (jM2814a != -1) {
+                if (c2700sM2842g.f6466k + c2700sM2842g.f6467l > jM2814a) {
+                    z2 = false;
+                }
+                C1460d.m426D(z2);
+            }
+            if (this.f6510e == null) {
+                m2835k(c2700sM2842g);
+                this.f6509d.m2799g();
+                notifyAll();
+            }
+            try {
+                this.f6510e.m2790d(file.getName(), c2700sM2842g.f6467l, c2700sM2842g.f6470o);
+                m2835k(c2700sM2842g);
+                try {
+                    this.f6509d.m2799g();
+                    notifyAll();
+                } catch (IOException e) {
+                    throw new Cache.CacheException(e);
+                }
+            } catch (IOException e2) {
+                throw new Cache.CacheException(e2);
+            }
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: h */
+    public synchronized long mo2833h() {
+        C1460d.m426D(true);
+        return this.f6515j;
+    }
+
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache
+    /* JADX INFO: renamed from: i */
+    public synchronized void mo2834i(C2689h c2689h) {
+        C1460d.m426D(true);
+        C2690i c2690iM2795c = this.f6509d.m2795c(c2689h.f6465j);
+        Objects.requireNonNull(c2690iM2795c);
+        long j = c2689h.f6466k;
+        for (int i = 0; i < c2690iM2795c.f6474d.size(); i++) {
+            if (c2690iM2795c.f6474d.get(i).f6476a == j) {
+                c2690iM2795c.f6474d.remove(i);
+                this.f6509d.m2798f(c2690iM2795c.f6472b);
+                notifyAll();
+            }
+        }
+        throw new IllegalStateException();
     }
 }

@@ -65,7 +65,7 @@ public final class C11542i extends AbstractC11362a0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.i$a */
     /* JADX INFO: compiled from: LazyJavaPackageFragment.kt */
-    public static final class a extends AbstractC12240o implements Function0<Map<String, ? extends InterfaceC11655p>> {
+    public final class a extends AbstractC12240o implements Function0<Map<String, ? extends InterfaceC11655p>> {
         public a() {
             super(0);
         }
@@ -93,7 +93,7 @@ public final class C11542i extends AbstractC11362a0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.i$b */
     /* JADX INFO: compiled from: LazyJavaPackageFragment.kt */
-    public static final class b extends AbstractC12240o implements Function0<HashMap<C11839c, C11839c>> {
+    public final class b extends AbstractC12240o implements Function0<HashMap<C11839c, C11839c>> {
         public b() {
             super(0);
         }
@@ -123,7 +123,7 @@ public final class C11542i extends AbstractC11362a0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.i$c */
     /* JADX INFO: compiled from: LazyJavaPackageFragment.kt */
-    public static final class c extends AbstractC12240o implements Function0<List<? extends C11713b>> {
+    public final class c extends AbstractC12240o implements Function0<List<? extends C11713b>> {
         public c() {
             super(0);
         }

@@ -21,6 +21,12 @@ import p007b.p225i.p355b.p357b.C4508h0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2580d implements InterfaceC2584h {
 
+    /* JADX INFO: renamed from: d */
+    public int f5793d;
+
+    /* JADX INFO: renamed from: e */
+    public boolean f5794e;
+
     /* JADX INFO: renamed from: a */
     public final C2579c f5790a = new C2579c();
 
@@ -29,12 +35,6 @@ public final class C2580d implements InterfaceC2584h {
 
     /* JADX INFO: renamed from: c */
     public final Deque<AbstractC2587k> f5792c = new ArrayDeque();
-
-    /* JADX INFO: renamed from: d */
-    public int f5793d;
-
-    /* JADX INFO: renamed from: e */
-    public boolean f5794e;
 
     /* JADX INFO: renamed from: b.i.a.c.b3.d$a */
     /* JADX INFO: compiled from: ExoplayerCuesDecoder.java */
@@ -55,7 +55,7 @@ public final class C2580d implements InterfaceC2584h {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.d$b */
     /* JADX INFO: compiled from: ExoplayerCuesDecoder.java */
-    public static final class b implements InterfaceC2583g {
+    public final class b implements InterfaceC2583g {
 
         /* JADX INFO: renamed from: j */
         public final long f5796j;
@@ -102,6 +102,13 @@ public final class C2580d implements InterfaceC2584h {
         for (int i = 0; i < 2; i++) {
             this.f5792c.addFirst(new a());
         }
+        this.f5793d = 0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
+    public void flush() {
+        C1460d.m426D(!this.f5794e);
+        this.f5791b.mo3856p();
         this.f5793d = 0;
     }
 
@@ -163,13 +170,6 @@ public final class C2580d implements InterfaceC2584h {
         C1460d.m426D(this.f5793d == 1);
         C1460d.m531j(this.f5791b == c2586j2);
         this.f5793d = 2;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
-    public void flush() {
-        C1460d.m426D(!this.f5794e);
-        this.f5791b.mo3856p();
-        this.f5793d = 0;
     }
 
     @Override // p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d

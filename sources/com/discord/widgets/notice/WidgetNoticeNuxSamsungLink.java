@@ -54,58 +54,9 @@ public final class WidgetNoticeNuxSamsungLink extends AppDialog {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetNoticeNuxSamsungLink.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final void internalEnqueue() {
-            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(WidgetNoticeNuxSamsungLink.NOTICE_NAME, null, 0L, 0, true, null, 0L, false, RecyclerView.FOREVER_NS, WidgetNoticeNuxSamsungLink$Companion$internalEnqueue$notice$1.INSTANCE, 230, null));
-        }
-
-        /* JADX WARN: Code duplicated, block: B:13:0x0032  */
-        public final void enqueue(Context context, Clock clock) {
-            boolean z2;
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(clock, "clock");
-            if (Build.VERSION.SDK_INT >= 28 && C12103t.equals(Build.MANUFACTURER, "samsung", true)) {
-                C12238m.checkNotNullParameter(context, "context");
-                try {
-                    try {
-                        if (context.getPackageManager().getPackageInfo("com.samsung.android.game.gametools", 0) != null) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                    } catch (PackageManager.NameNotFoundException unused) {
-                        if (context.getPackageManager().getPackageInfo("com.samsung.android.game.gamehome", 0) == null) {
-                            z2 = false;
-                        }
-                    }
-                } catch (PackageManager.NameNotFoundException unused2) {
-                }
-                if (z2) {
-                    StoreStream.Companion companion = StoreStream.INSTANCE;
-                    Observable observableM11076j = Observable.m11076j(companion.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), new Func2<Boolean, MeUser, Pair<? extends Boolean, ? extends MeUser>>() { // from class: com.discord.widgets.notice.WidgetNoticeNuxSamsungLink$Companion$enqueue$1
-                        @Override // p658rx.functions.Func2
-                        public final Pair<Boolean, MeUser> call(Boolean bool, MeUser meUser) {
-                            return C12116o.m10073to(bool, meUser);
-                        }
-                    });
-                    C12238m.checkNotNullExpressionValue(observableM11076j, "Observable\n          .co…hed to meUser\n          }");
-                    ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11076j, 0L, false, 3, null)), (Class<?>) WidgetNoticeNuxSamsungLink.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new WidgetNoticeNuxSamsungLink$Companion$enqueue$2(clock));
-                }
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.notice.WidgetNoticeNuxSamsungLink$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetNoticeNuxSamsungLink.kt */
-    public static final class C91001 extends AbstractC12240o implements Function1<List<? extends ModelOAuth2Token>, Unit> {
+    public final class C91001 extends AbstractC12240o implements Function1<List<? extends ModelOAuth2Token>, Unit> {
         public C91001() {
             super(1);
         }
@@ -145,6 +96,55 @@ public final class WidgetNoticeNuxSamsungLink extends AppDialog {
             if (z3) {
                 WidgetNoticeNuxSamsungLink.this.dismiss();
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetNoticeNuxSamsungLink.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Code duplicated, block: B:13:0x0032  */
+        public final void enqueue(Context context, Clock clock) {
+            boolean z2;
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(clock, "clock");
+            if (Build.VERSION.SDK_INT >= 28 && C12103t.equals(Build.MANUFACTURER, "samsung", true)) {
+                C12238m.checkNotNullParameter(context, "context");
+                try {
+                    try {
+                        if (context.getPackageManager().getPackageInfo("com.samsung.android.game.gametools", 0) != null) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                    } catch (PackageManager.NameNotFoundException unused) {
+                        if (context.getPackageManager().getPackageInfo("com.samsung.android.game.gamehome", 0) == null) {
+                            z2 = false;
+                        }
+                    }
+                } catch (PackageManager.NameNotFoundException unused2) {
+                }
+                if (z2) {
+                    StoreStream.Companion companion = StoreStream.INSTANCE;
+                    Observable observableM11076j = Observable.m11076j(companion.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), new Func2<Boolean, MeUser, Pair<? extends Boolean, ? extends MeUser>>() { // from class: com.discord.widgets.notice.WidgetNoticeNuxSamsungLink$Companion$enqueue$1
+                        @Override // p658rx.functions.Func2
+                        public final Pair<Boolean, MeUser> call(Boolean bool, MeUser meUser) {
+                            return C12116o.m10073to(bool, meUser);
+                        }
+                    });
+                    C12238m.checkNotNullExpressionValue(observableM11076j, "Observable\n          .co…hed to meUser\n          }");
+                    ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11076j, 0L, false, 3, null)), (Class<?>) WidgetNoticeNuxSamsungLink.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new WidgetNoticeNuxSamsungLink$Companion$enqueue$2(clock));
+                }
+            }
+        }
+
+        private final void internalEnqueue() {
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(WidgetNoticeNuxSamsungLink.NOTICE_NAME, null, 0L, 0, true, null, 0L, false, RecyclerView.FOREVER_NS, WidgetNoticeNuxSamsungLink$Companion$internalEnqueue$notice$1.INSTANCE, 230, null));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

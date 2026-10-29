@@ -26,14 +26,14 @@ public abstract class AbstractC12029k implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12029k {
+    public final class a extends AbstractC12029k {
 
         /* JADX INFO: renamed from: d */
         public static final a f24959d = new a();
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: modifierChecks.kt */
-        public static final class C13340a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
+        public final class C13340a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
 
             /* JADX INFO: renamed from: j */
             public static final C13340a f24960j = new C13340a();
@@ -58,14 +58,14 @@ public abstract class AbstractC12029k implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12029k {
+    public final class b extends AbstractC12029k {
 
         /* JADX INFO: renamed from: d */
         public static final b f24961d = new b();
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$b$a */
         /* JADX INFO: compiled from: modifierChecks.kt */
-        public static final class a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
+        public final class a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
 
             /* JADX INFO: renamed from: j */
             public static final a f24962j = new a();
@@ -90,14 +90,14 @@ public abstract class AbstractC12029k implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$c */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class c extends AbstractC12029k {
+    public final class c extends AbstractC12029k {
 
         /* JADX INFO: renamed from: d */
         public static final c f24963d = new c();
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.o.k$c$a */
         /* JADX INFO: compiled from: modifierChecks.kt */
-        public static final class a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
+        public final class a extends AbstractC12240o implements Function1<AbstractC11288h, AbstractC11913c0> {
 
             /* JADX INFO: renamed from: j */
             public static final a f24964j = new a();

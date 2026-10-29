@@ -20,7 +20,7 @@ public final class C12553g extends InterfaceC12512e.a {
     /* JADX INFO: renamed from: i0.g$a */
     /* JADX INFO: compiled from: CompletableFutureCallAdapterFactory.java */
     @IgnoreJRERequirement
-    public static final class a<R> implements InterfaceC12512e<R, CompletableFuture<R>> {
+    public final class a<R> implements InterfaceC12512e<R, CompletableFuture<R>> {
 
         /* JADX INFO: renamed from: a */
         public final Type f26529a;
@@ -76,7 +76,7 @@ public final class C12553g extends InterfaceC12512e.a {
     /* JADX INFO: renamed from: i0.g$b */
     /* JADX INFO: compiled from: CompletableFutureCallAdapterFactory.java */
     @IgnoreJRERequirement
-    public static final class b<T> extends CompletableFuture<T> {
+    public final class b<T> extends CompletableFuture<T> {
 
         /* JADX INFO: renamed from: j */
         public final InterfaceC12504d<?> f26531j;
@@ -97,7 +97,7 @@ public final class C12553g extends InterfaceC12512e.a {
     /* JADX INFO: renamed from: i0.g$c */
     /* JADX INFO: compiled from: CompletableFutureCallAdapterFactory.java */
     @IgnoreJRERequirement
-    public static final class c<R> implements InterfaceC12512e<R, CompletableFuture<Response<R>>> {
+    public final class c<R> implements InterfaceC12512e<R, CompletableFuture<Response<R>>> {
 
         /* JADX INFO: renamed from: a */
         public final Type f26532a;

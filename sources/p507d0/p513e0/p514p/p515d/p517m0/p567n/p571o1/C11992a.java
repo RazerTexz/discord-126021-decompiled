@@ -37,7 +37,7 @@ public final class C11992a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.o1.a$a */
     /* JADX INFO: compiled from: TypeUtils.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24850j = new a();
@@ -64,7 +64,7 @@ public final class C11992a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.o1.a$b */
     /* JADX INFO: compiled from: TypeUtils.kt */
-    public static final class b extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+    public final class b extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24851j = new b();
@@ -195,7 +195,6 @@ public final class C11992a {
     }
 
     public static final AbstractC11913c0 replaceArgumentsWithStarProjections(AbstractC11913c0 abstractC11913c0) {
-        AbstractC11934j0 abstractC11934j0;
         AbstractC11932i1 abstractC11932i1Replace$default;
         C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
         AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
@@ -229,23 +228,24 @@ public final class C11992a {
             if (!(abstractC11932i1Unwrap instanceof AbstractC11934j0)) {
                 throw new NoWhenBranchMatchedException();
             }
-            abstractC11934j0 = (AbstractC11934j0) abstractC11932i1Unwrap;
-            if (!abstractC11934j0.getConstructor().getParameters().isEmpty() && abstractC11934j0.getConstructor().getDeclarationDescriptor() != null) {
+            AbstractC11934j0 abstractC11934j0 = (AbstractC11934j0) abstractC11932i1Unwrap;
+            boolean zIsEmpty = abstractC11934j0.getConstructor().getParameters().isEmpty();
+            abstractC11932i1Replace$default = abstractC11934j0;
+            if (!zIsEmpty) {
+                InterfaceC11352h declarationDescriptor = abstractC11934j0.getConstructor().getDeclarationDescriptor();
                 abstractC11932i1Replace$default = abstractC11934j0;
-                abstractC11932i1Replace$default = abstractC11934j0;
-                List<InterfaceC11477z0> parameters3 = abstractC11934j0.getConstructor().getParameters();
-                C12238m.checkNotNullExpressionValue(parameters3, "constructor.parameters");
-                ArrayList arrayList3 = new ArrayList(C12149o.collectionSizeOrDefault(parameters3, 10));
-                Iterator<T> it3 = parameters3.iterator();
-                while (it3.hasNext()) {
-                    arrayList3.add(new C11991o0((InterfaceC11477z0) it3.next()));
+                if (declarationDescriptor != null) {
+                    List<InterfaceC11477z0> parameters3 = abstractC11934j0.getConstructor().getParameters();
+                    C12238m.checkNotNullExpressionValue(parameters3, "constructor.parameters");
+                    ArrayList arrayList3 = new ArrayList(C12149o.collectionSizeOrDefault(parameters3, 10));
+                    Iterator<T> it3 = parameters3.iterator();
+                    while (it3.hasNext()) {
+                        arrayList3.add(new C11991o0((InterfaceC11477z0) it3.next()));
+                    }
+                    abstractC11932i1Replace$default = C11908a1.replace$default(abstractC11934j0, arrayList3, null, 2, null);
                 }
-                abstractC11932i1Replace$default = C11908a1.replace$default(abstractC11934j0, arrayList3, null, 2, null);
             }
         }
-        abstractC11932i1Replace$default = abstractC11934j0;
-        abstractC11932i1Replace$default = abstractC11934j0;
-        abstractC11932i1Replace$default = abstractC11934j0;
         return C11926g1.inheritEnhancement(abstractC11932i1Replace$default, abstractC11932i1Unwrap);
     }
 

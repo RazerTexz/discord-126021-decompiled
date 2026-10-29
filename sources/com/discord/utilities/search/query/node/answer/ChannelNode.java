@@ -29,11 +29,6 @@ public final /* data */ class ChannelNode extends AnswerNode {
         return channelNode.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
     public final ChannelNode copy(String channelName) {
         C12238m.checkNotNullParameter(channelName, "channelName");
         return new ChannelNode(channelName);
@@ -44,6 +39,11 @@ public final /* data */ class ChannelNode extends AnswerNode {
             return (other instanceof ChannelNode) && C12238m.areEqual(this.channelName, ((ChannelNode) other).channelName);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getChannelName() {
+        return this.channelName;
     }
 
     public final String getChannelName() {

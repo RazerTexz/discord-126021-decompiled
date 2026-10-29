@@ -67,34 +67,9 @@ public class OverlappingPanelsLayout extends FrameLayout {
     private float xFromInterceptActionDown;
     private float yFromInterceptActionDown;
 
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public enum LockState {
-        OPEN,
-        CLOSE,
-        UNLOCKED
-    }
-
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public enum Panel {
-        START,
-        CENTER,
-        END
-    }
-
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public interface PanelStateListener {
-        void onPanelStateChange(PanelState panelState);
-    }
-
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public enum SwipeDirection {
-        LEFT,
-        RIGHT
-    }
-
     /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class C5573a implements ValueAnimator.AnimatorUpdateListener {
+    public final class C5573a implements ValueAnimator.AnimatorUpdateListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ int f18636a;
@@ -133,9 +108,88 @@ public class OverlappingPanelsLayout extends FrameLayout {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$c */
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public final class C5575c extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $isFling;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C5575c(boolean z2) {
+            super(0);
+            this.$isFling = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            OverlappingPanelsLayout.this.closePanels(this.$isFling);
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$d */
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public final class C5576d extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $isFling;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C5576d(boolean z2) {
+            super(0);
+            this.$isFling = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            OverlappingPanelsLayout.this.openEndPanel(this.$isFling);
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$e */
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public final class C5577e extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $isFling;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C5577e(boolean z2) {
+            super(0);
+            this.$isFling = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            OverlappingPanelsLayout.this.openStartPanel(this.$isFling);
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public enum LockState {
+        OPEN,
+        CLOSE,
+        UNLOCKED
+    }
+
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public enum Panel {
+        START,
+        CENTER,
+        END
+    }
+
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public interface PanelStateListener {
+        void onPanelStateChange(PanelState panelState);
+    }
+
+    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
+    public enum SwipeDirection {
+        LEFT,
+        RIGHT
+    }
+
     /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$b */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class ViewOnLayoutChangeListenerC5574b implements View.OnLayoutChangeListener {
+    public final class ViewOnLayoutChangeListenerC5574b implements View.OnLayoutChangeListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f18638j;
@@ -177,60 +231,6 @@ public class OverlappingPanelsLayout extends FrameLayout {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$c */
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public static final class C5575c extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $isFling;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C5575c(boolean z2) {
-            super(0);
-            this.$isFling = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public Unit invoke() {
-            OverlappingPanelsLayout.this.closePanels(this.$isFling);
-            return Unit.f27425a;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$d */
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public static final class C5576d extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $isFling;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C5576d(boolean z2) {
-            super(0);
-            this.$isFling = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public Unit invoke() {
-            OverlappingPanelsLayout.this.openEndPanel(this.$isFling);
-            return Unit.f27425a;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.panels.OverlappingPanelsLayout$e */
-    /* JADX INFO: compiled from: OverlappingPanelsLayout.kt */
-    public static final class C5577e extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $isFling;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C5577e(boolean z2) {
-            super(0);
-            this.$isFling = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public Unit invoke() {
-            OverlappingPanelsLayout.this.openStartPanel(this.$isFling);
-            return Unit.f27425a;
-        }
-    }
-
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public OverlappingPanelsLayout(Context context) {
         super(context);
@@ -250,6 +250,26 @@ public class OverlappingPanelsLayout extends FrameLayout {
         this.endPanelState = c5578a;
         this.childGestureRegions = C12147n.emptyList();
         this.isSystemGestureNavigationPossible = Build.VERSION.SDK_INT >= 29;
+    }
+
+    public void _$_clearFindViewByIdCache() {
+        HashMap map = this._$_findViewCache;
+        if (map != null) {
+            map.clear();
+        }
+    }
+
+    public View _$_findCachedViewById(int i) {
+        if (this._$_findViewCache == null) {
+            this._$_findViewCache = new HashMap();
+        }
+        View view = (View) this._$_findViewCache.get(Integer.valueOf(i));
+        if (view != null) {
+            return view;
+        }
+        View viewFindViewById = findViewById(i);
+        this._$_findViewCache.put(Integer.valueOf(i), viewFindViewById);
+        return viewFindViewById;
     }
 
     public static final /* synthetic */ View access$getCenterPanel$p(OverlappingPanelsLayout overlappingPanelsLayout) {
@@ -284,6 +304,10 @@ public class OverlappingPanelsLayout extends FrameLayout {
             z2 = false;
         }
         overlappingPanelsLayout.closePanels(z2);
+    }
+
+    public final void closePanels() {
+        closePanels(false);
     }
 
     private final PanelState getEndPanelState(float previousX, float x2) {
@@ -339,6 +363,10 @@ public class OverlappingPanelsLayout extends FrameLayout {
 
     private final LockState getRightPanelLockState() {
         return this.isLeftToRight ? this.endPanelLockState : this.startPanelLockState;
+    }
+
+    public final Panel getSelectedPanel() {
+        return this.selectedPanel;
     }
 
     private final PanelState getStartPanelState(float previousX, float x2) {
@@ -471,6 +499,18 @@ public class OverlappingPanelsLayout extends FrameLayout {
         }
     }
 
+    public final void handleEndPanelState(PanelState endPanelState) {
+        C12238m.checkParameterIsNotNull(endPanelState, "endPanelState");
+        PanelState panelState = this.endPanelState;
+        PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
+        if (C12238m.areEqual(endPanelState, c5580c) && (!C12238m.areEqual(panelState, c5580c))) {
+            openEndPanel();
+        } else if ((endPanelState instanceof PanelState.C5578a) && C12238m.areEqual(panelState, c5580c)) {
+            closePanels();
+        }
+        this.endPanelState = endPanelState;
+    }
+
     private final void handleEndPanelWidthUpdate() {
         float f = this.endPanelOpenedCenterPanelX;
         float dimension = getResources().getDimension(C5582R.a.overlapping_panels_margin_between_panels);
@@ -491,6 +531,18 @@ public class OverlappingPanelsLayout extends FrameLayout {
         if (view2.getX() == f || this.centerPanelAnimationEndX == f) {
             openEndPanel();
         }
+    }
+
+    public final void handleStartPanelState(PanelState startPanelState) {
+        C12238m.checkParameterIsNotNull(startPanelState, "startPanelState");
+        PanelState panelState = this.startPanelState;
+        PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
+        if (C12238m.areEqual(startPanelState, c5580c) && (!C12238m.areEqual(panelState, c5580c))) {
+            openStartPanel();
+        } else if (C12238m.areEqual(startPanelState, PanelState.C5578a.f18640a) && C12238m.areEqual(panelState, c5580c)) {
+            closePanels();
+        }
+        this.startPanelState = startPanelState;
     }
 
     private final void handleStartPanelWidthUpdate() {
@@ -650,242 +702,6 @@ public class OverlappingPanelsLayout extends FrameLayout {
         return true;
     }
 
-    public static /* synthetic */ void openEndPanel$default(OverlappingPanelsLayout overlappingPanelsLayout, boolean z2, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: openEndPanel");
-        }
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        overlappingPanelsLayout.openEndPanel(z2);
-    }
-
-    private final void openPanel(Panel panel) {
-        int iOrdinal = panel.ordinal();
-        if (iOrdinal == 0) {
-            openStartPanel(false);
-        } else if (iOrdinal == 1) {
-            closePanels(false);
-        } else {
-            if (iOrdinal != 2) {
-                return;
-            }
-            openEndPanel(false);
-        }
-    }
-
-    public static /* synthetic */ void openStartPanel$default(OverlappingPanelsLayout overlappingPanelsLayout, boolean z2, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: openStartPanel");
-        }
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        overlappingPanelsLayout.openStartPanel(z2);
-    }
-
-    private final void resetEndPanelWidth() {
-        View view = this.endPanel;
-        if (view == null) {
-            C12238m.throwUninitializedPropertyAccessException("endPanel");
-        }
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.width = this.nonFullScreenSidePanelWidth;
-        View view2 = this.endPanel;
-        if (view2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("endPanel");
-        }
-        view2.setLayoutParams(layoutParams);
-    }
-
-    private final void resetStartPanelWidth() {
-        View view = this.startPanel;
-        if (view != null) {
-            if (view == null) {
-                C12238m.throwUninitializedPropertyAccessException("startPanel");
-            }
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            layoutParams.width = this.useFullWidthForStartPanel ? -1 : this.nonFullScreenSidePanelWidth;
-            View view2 = this.startPanel;
-            if (view2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("startPanel");
-            }
-            view2.setLayoutParams(layoutParams);
-        }
-    }
-
-    private final boolean shouldHandleActionMoveEvent(MotionEvent event) {
-        float normalizedX = getNormalizedX(getTargetedX(event));
-        View view = this.centerPanel;
-        if (view == null) {
-            C12238m.throwUninitializedPropertyAccessException("centerPanel");
-        }
-        float fAbs = Math.abs(normalizedX - view.getX());
-        Resources resources = getResources();
-        C12238m.checkExpressionValueIsNotNull(resources, "resources");
-        return normalizedX == 0.0f || normalizedX == this.startPanelOpenedCenterPanelX || normalizedX == this.endPanelOpenedCenterPanelX || ((fAbs > resources.getDisplayMetrics().density ? 1 : (fAbs == resources.getDisplayMetrics().density ? 0 : -1)) > 0);
-    }
-
-    private final void snapOpenOrClose(MotionEvent event) {
-        float targetedX = getTargetedX(event);
-        VelocityTracker velocityTracker = this.velocityTracker;
-        if (velocityTracker != null) {
-            velocityTracker.computeCurrentVelocity(1000);
-        }
-        VelocityTracker velocityTracker2 = this.velocityTracker;
-        float xVelocity = velocityTracker2 != null ? velocityTracker2.getXVelocity() : C12233h.f25291a.getMIN_VALUE();
-        boolean z2 = false;
-        boolean z3 = Math.abs(xVelocity) > this.minFlingPxPerSecond;
-        if (!this.isLeftToRight ? xVelocity < 0 : xVelocity > 0) {
-            z2 = true;
-        }
-        if (z3) {
-            if (z2) {
-                Panel panel = this.selectedPanel;
-                if (panel == Panel.END) {
-                    closePanels(true);
-                    return;
-                } else if (panel == Panel.CENTER) {
-                    openStartPanel(true);
-                    return;
-                }
-            } else {
-                Panel panel2 = this.selectedPanel;
-                if (panel2 == Panel.START) {
-                    closePanels(true);
-                    return;
-                } else if (panel2 == Panel.CENTER) {
-                    openEndPanel(true);
-                    return;
-                }
-            }
-        }
-        float fMax = Math.max(this.startPanelOpenedCenterPanelX, this.endPanelOpenedCenterPanelX);
-        float fMin = Math.min(this.startPanelOpenedCenterPanelX, this.endPanelOpenedCenterPanelX);
-        float f = 2;
-        if (targetedX > fMax / f) {
-            openPanel(getLeftPanel());
-        } else if (targetedX < fMin / f) {
-            openPanel(getRightPanel());
-        } else {
-            closePanels();
-        }
-    }
-
-    private final void translateCenterPanel(MotionEvent event) {
-        updateCenterPanelX(getNormalizedX(getTargetedX(event)));
-    }
-
-    private final void updateCenterPanelX(float x2) {
-        View view = this.centerPanel;
-        if (view == null) {
-            C12238m.throwUninitializedPropertyAccessException("centerPanel");
-        }
-        float x3 = view.getX();
-        View view2 = this.centerPanel;
-        if (view2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("centerPanel");
-        }
-        view2.setX(x2);
-        handleCenterPanelX(x3, x2);
-    }
-
-    private final void updateCenterPanelXWithAnimation(float x2, boolean isFling, long animationDurationMs) {
-        View view = this.centerPanel;
-        if (view == null) {
-            C12238m.throwUninitializedPropertyAccessException("centerPanel");
-        }
-        float x3 = view.getX();
-        ValueAnimator valueAnimator = this.centerPanelXAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float normalizedX = getNormalizedX(x2);
-        this.centerPanelAnimationEndX = normalizedX;
-        if (isFling) {
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(x3, normalizedX);
-            valueAnimatorOfFloat.setInterpolator(new LinearOutSlowInInterpolator());
-            valueAnimatorOfFloat.setDuration(animationDurationMs);
-            this.centerPanelXAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new C5573a(0, this));
-        } else {
-            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(x3, normalizedX);
-            valueAnimatorOfFloat2.setInterpolator(new FastOutSlowInInterpolator());
-            valueAnimatorOfFloat2.setDuration(animationDurationMs);
-            this.centerPanelXAnimator = valueAnimatorOfFloat2;
-            valueAnimatorOfFloat2.addUpdateListener(new C5573a(1, this));
-        }
-        ValueAnimator valueAnimator2 = this.centerPanelXAnimator;
-        if (valueAnimator2 != null) {
-            valueAnimator2.start();
-        }
-    }
-
-    public static /* synthetic */ void updateCenterPanelXWithAnimation$default(OverlappingPanelsLayout overlappingPanelsLayout, float f, boolean z2, long j, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: updateCenterPanelXWithAnimation");
-        }
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        if ((i & 4) != 0) {
-            j = SIDE_PANEL_OPEN_DURATION_MS;
-        }
-        overlappingPanelsLayout.updateCenterPanelXWithAnimation(f, z2, j);
-    }
-
-    public void _$_clearFindViewByIdCache() {
-        HashMap map = this._$_findViewCache;
-        if (map != null) {
-            map.clear();
-        }
-    }
-
-    public View _$_findCachedViewById(int i) {
-        if (this._$_findViewCache == null) {
-            this._$_findViewCache = new HashMap();
-        }
-        View view = (View) this._$_findViewCache.get(Integer.valueOf(i));
-        if (view != null) {
-            return view;
-        }
-        View viewFindViewById = findViewById(i);
-        this._$_findViewCache.put(Integer.valueOf(i), viewFindViewById);
-        return viewFindViewById;
-    }
-
-    public final void closePanels() {
-        closePanels(false);
-    }
-
-    public final Panel getSelectedPanel() {
-        return this.selectedPanel;
-    }
-
-    public final void handleEndPanelState(PanelState endPanelState) {
-        C12238m.checkParameterIsNotNull(endPanelState, "endPanelState");
-        PanelState panelState = this.endPanelState;
-        PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
-        if (C12238m.areEqual(endPanelState, c5580c) && (!C12238m.areEqual(panelState, c5580c))) {
-            openEndPanel();
-        } else if ((endPanelState instanceof PanelState.C5578a) && C12238m.areEqual(panelState, c5580c)) {
-            closePanels();
-        }
-        this.endPanelState = endPanelState;
-    }
-
-    public final void handleStartPanelState(PanelState startPanelState) {
-        C12238m.checkParameterIsNotNull(startPanelState, "startPanelState");
-        PanelState panelState = this.startPanelState;
-        PanelState.C5580c c5580c = PanelState.C5580c.f18642a;
-        if (C12238m.areEqual(startPanelState, c5580c) && (!C12238m.areEqual(panelState, c5580c))) {
-            openStartPanel();
-        } else if (C12238m.areEqual(startPanelState, PanelState.C5578a.f18640a) && C12238m.areEqual(panelState, c5580c)) {
-            closePanels();
-        }
-        this.startPanelState = startPanelState;
-    }
-
     /* JADX WARN: Code duplicated, block: B:21:0x004f  */
     @Override // android.view.ViewGroup
     public boolean onInterceptTouchEvent(MotionEvent event) {
@@ -1035,8 +851,42 @@ public class OverlappingPanelsLayout extends FrameLayout {
         return true;
     }
 
+    public static /* synthetic */ void openEndPanel$default(OverlappingPanelsLayout overlappingPanelsLayout, boolean z2, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: openEndPanel");
+        }
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        overlappingPanelsLayout.openEndPanel(z2);
+    }
+
     public final void openEndPanel() {
         openEndPanel(false);
+    }
+
+    private final void openPanel(Panel panel) {
+        int iOrdinal = panel.ordinal();
+        if (iOrdinal == 0) {
+            openStartPanel(false);
+        } else if (iOrdinal == 1) {
+            closePanels(false);
+        } else {
+            if (iOrdinal != 2) {
+                return;
+            }
+            openEndPanel(false);
+        }
+    }
+
+    public static /* synthetic */ void openStartPanel$default(OverlappingPanelsLayout overlappingPanelsLayout, boolean z2, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: openStartPanel");
+        }
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        overlappingPanelsLayout.openStartPanel(z2);
     }
 
     public final void openStartPanel() {
@@ -1054,6 +904,36 @@ public class OverlappingPanelsLayout extends FrameLayout {
         C12238m.checkParameterIsNotNull(panelStateListenerArgs, "panelStateListenerArgs");
         for (PanelStateListener panelStateListener : panelStateListenerArgs) {
             this.startPanelStateListeners.add(panelStateListener);
+        }
+    }
+
+    private final void resetEndPanelWidth() {
+        View view = this.endPanel;
+        if (view == null) {
+            C12238m.throwUninitializedPropertyAccessException("endPanel");
+        }
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.width = this.nonFullScreenSidePanelWidth;
+        View view2 = this.endPanel;
+        if (view2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("endPanel");
+        }
+        view2.setLayoutParams(layoutParams);
+    }
+
+    private final void resetStartPanelWidth() {
+        View view = this.startPanel;
+        if (view != null) {
+            if (view == null) {
+                C12238m.throwUninitializedPropertyAccessException("startPanel");
+            }
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            layoutParams.width = this.useFullWidthForStartPanel ? -1 : this.nonFullScreenSidePanelWidth;
+            View view2 = this.startPanel;
+            if (view2 == null) {
+                C12238m.throwUninitializedPropertyAccessException("startPanel");
+            }
+            view2.setLayoutParams(layoutParams);
         }
     }
 
@@ -1081,6 +961,126 @@ public class OverlappingPanelsLayout extends FrameLayout {
     public final void setStartPanelUseFullPortraitWidth(boolean useFullPortraitWidth) {
         this.useFullWidthForStartPanel = useFullPortraitWidth;
         resetStartPanelWidth();
+    }
+
+    private final boolean shouldHandleActionMoveEvent(MotionEvent event) {
+        float normalizedX = getNormalizedX(getTargetedX(event));
+        View view = this.centerPanel;
+        if (view == null) {
+            C12238m.throwUninitializedPropertyAccessException("centerPanel");
+        }
+        float fAbs = Math.abs(normalizedX - view.getX());
+        Resources resources = getResources();
+        C12238m.checkExpressionValueIsNotNull(resources, "resources");
+        return normalizedX == 0.0f || normalizedX == this.startPanelOpenedCenterPanelX || normalizedX == this.endPanelOpenedCenterPanelX || ((fAbs > resources.getDisplayMetrics().density ? 1 : (fAbs == resources.getDisplayMetrics().density ? 0 : -1)) > 0);
+    }
+
+    private final void snapOpenOrClose(MotionEvent event) {
+        float targetedX = getTargetedX(event);
+        VelocityTracker velocityTracker = this.velocityTracker;
+        if (velocityTracker != null) {
+            velocityTracker.computeCurrentVelocity(1000);
+        }
+        VelocityTracker velocityTracker2 = this.velocityTracker;
+        float xVelocity = velocityTracker2 != null ? velocityTracker2.getXVelocity() : C12233h.f25291a.getMIN_VALUE();
+        boolean z2 = false;
+        boolean z3 = Math.abs(xVelocity) > this.minFlingPxPerSecond;
+        if (!this.isLeftToRight ? xVelocity < 0 : xVelocity > 0) {
+            z2 = true;
+        }
+        if (z3) {
+            if (z2) {
+                Panel panel = this.selectedPanel;
+                if (panel == Panel.END) {
+                    closePanels(true);
+                    return;
+                } else if (panel == Panel.CENTER) {
+                    openStartPanel(true);
+                    return;
+                }
+            } else {
+                Panel panel2 = this.selectedPanel;
+                if (panel2 == Panel.START) {
+                    closePanels(true);
+                    return;
+                } else if (panel2 == Panel.CENTER) {
+                    openEndPanel(true);
+                    return;
+                }
+            }
+        }
+        float fMax = Math.max(this.startPanelOpenedCenterPanelX, this.endPanelOpenedCenterPanelX);
+        float fMin = Math.min(this.startPanelOpenedCenterPanelX, this.endPanelOpenedCenterPanelX);
+        float f = 2;
+        if (targetedX > fMax / f) {
+            openPanel(getLeftPanel());
+        } else if (targetedX < fMin / f) {
+            openPanel(getRightPanel());
+        } else {
+            closePanels();
+        }
+    }
+
+    private final void translateCenterPanel(MotionEvent event) {
+        updateCenterPanelX(getNormalizedX(getTargetedX(event)));
+    }
+
+    private final void updateCenterPanelX(float x2) {
+        View view = this.centerPanel;
+        if (view == null) {
+            C12238m.throwUninitializedPropertyAccessException("centerPanel");
+        }
+        float x3 = view.getX();
+        View view2 = this.centerPanel;
+        if (view2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("centerPanel");
+        }
+        view2.setX(x2);
+        handleCenterPanelX(x3, x2);
+    }
+
+    public static /* synthetic */ void updateCenterPanelXWithAnimation$default(OverlappingPanelsLayout overlappingPanelsLayout, float f, boolean z2, long j, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: updateCenterPanelXWithAnimation");
+        }
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        if ((i & 4) != 0) {
+            j = SIDE_PANEL_OPEN_DURATION_MS;
+        }
+        overlappingPanelsLayout.updateCenterPanelXWithAnimation(f, z2, j);
+    }
+
+    private final void updateCenterPanelXWithAnimation(float x2, boolean isFling, long animationDurationMs) {
+        View view = this.centerPanel;
+        if (view == null) {
+            C12238m.throwUninitializedPropertyAccessException("centerPanel");
+        }
+        float x3 = view.getX();
+        ValueAnimator valueAnimator = this.centerPanelXAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float normalizedX = getNormalizedX(x2);
+        this.centerPanelAnimationEndX = normalizedX;
+        if (isFling) {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(x3, normalizedX);
+            valueAnimatorOfFloat.setInterpolator(new LinearOutSlowInInterpolator());
+            valueAnimatorOfFloat.setDuration(animationDurationMs);
+            this.centerPanelXAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new C5573a(0, this));
+        } else {
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(x3, normalizedX);
+            valueAnimatorOfFloat2.setInterpolator(new FastOutSlowInInterpolator());
+            valueAnimatorOfFloat2.setDuration(animationDurationMs);
+            this.centerPanelXAnimator = valueAnimatorOfFloat2;
+            valueAnimatorOfFloat2.addUpdateListener(new C5573a(1, this));
+        }
+        ValueAnimator valueAnimator2 = this.centerPanelXAnimator;
+        if (valueAnimator2 != null) {
+            valueAnimator2.start();
+        }
     }
 
     private final void closePanels(boolean isFling) {

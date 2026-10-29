@@ -9,7 +9,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class GeobFrame extends Id3Frame {
-    public static final Parcelable.Creator<GeobFrame> CREATOR = new C10731a();
 
     /* JADX INFO: renamed from: k */
     public final String f19985k;
@@ -22,6 +21,7 @@ public final class GeobFrame extends Id3Frame {
 
     /* JADX INFO: renamed from: n */
     public final byte[] f19988n;
+    public static final Parcelable.Creator<GeobFrame> CREATOR = new C10731a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.GeobFrame$a */
     public class C10731a implements Parcelable.Creator<GeobFrame> {

@@ -68,7 +68,7 @@ public class Slide extends Visibility {
         float getGoneY(ViewGroup viewGroup, View view);
     }
 
-    public static abstract class CalculateSlideHorizontal implements CalculateSlide {
+    public abstract class CalculateSlideHorizontal implements CalculateSlide {
         private CalculateSlideHorizontal() {
         }
 
@@ -78,7 +78,7 @@ public class Slide extends Visibility {
         }
     }
 
-    public static abstract class CalculateSlideVertical implements CalculateSlide {
+    public abstract class CalculateSlideVertical implements CalculateSlide {
         private CalculateSlideVertical() {
         }
 
@@ -99,12 +99,6 @@ public class Slide extends Visibility {
         setSlideEdge(80);
     }
 
-    private void captureValues(TransitionValues transitionValues) {
-        int[] iArr = new int[2];
-        transitionValues.view.getLocationOnScreen(iArr);
-        transitionValues.values.put(PROPNAME_SCREEN_POSITION, iArr);
-    }
-
     @Override // androidx.transition.Visibility, androidx.transition.Transition
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
         super.captureEndValues(transitionValues);
@@ -115,6 +109,12 @@ public class Slide extends Visibility {
     public void captureStartValues(@NonNull TransitionValues transitionValues) {
         super.captureStartValues(transitionValues);
         captureValues(transitionValues);
+    }
+
+    private void captureValues(TransitionValues transitionValues) {
+        int[] iArr = new int[2];
+        transitionValues.view.getLocationOnScreen(iArr);
+        transitionValues.values.put(PROPNAME_SCREEN_POSITION, iArr);
     }
 
     public int getSlideEdge() {

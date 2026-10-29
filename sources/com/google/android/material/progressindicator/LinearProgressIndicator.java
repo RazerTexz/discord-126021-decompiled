@@ -15,13 +15,13 @@ import p007b.p225i.p226a.p341g.p348g.C4426l;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class LinearProgressIndicator extends BaseProgressIndicator<LinearProgressIndicatorSpec> {
-    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_LinearProgressIndicator;
     public static final int INDETERMINATE_ANIMATION_TYPE_CONTIGUOUS = 0;
     public static final int INDETERMINATE_ANIMATION_TYPE_DISJOINT = 1;
     public static final int INDICATOR_DIRECTION_END_TO_START = 3;
     public static final int INDICATOR_DIRECTION_LEFT_TO_RIGHT = 0;
     public static final int INDICATOR_DIRECTION_RIGHT_TO_LEFT = 1;
     public static final int INDICATOR_DIRECTION_START_TO_END = 2;
+    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_LinearProgressIndicator;
 
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -37,17 +37,17 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
         this(context, null);
     }
 
-    private void initializeDrawables() {
-        setIndeterminateDrawable(IndeterminateDrawable.createLinearDrawable(getContext(), (LinearProgressIndicatorSpec) this.spec));
-        setProgressDrawable(DeterminateDrawable.createLinearDrawable(getContext(), (LinearProgressIndicatorSpec) this.spec));
-    }
-
     public int getIndeterminateAnimationType() {
         return ((LinearProgressIndicatorSpec) this.spec).indeterminateAnimationType;
     }
 
     public int getIndicatorDirection() {
         return ((LinearProgressIndicatorSpec) this.spec).indicatorDirection;
+    }
+
+    private void initializeDrawables() {
+        setIndeterminateDrawable(IndeterminateDrawable.createLinearDrawable(getContext(), (LinearProgressIndicatorSpec) this.spec));
+        setProgressDrawable(DeterminateDrawable.createLinearDrawable(getContext(), (LinearProgressIndicatorSpec) this.spec));
     }
 
     @Override // android.view.View

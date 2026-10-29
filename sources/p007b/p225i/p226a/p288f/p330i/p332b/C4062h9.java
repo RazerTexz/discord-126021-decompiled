@@ -28,17 +28,6 @@ public final class C4062h9 extends AbstractC4074i9 {
         this.f10794e = new C4050g9(this, c4097k9.f10906k, c4097k9);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        this.f10793d.cancel(m5661u());
-        if (Build.VERSION.SDK_INT < 24) {
-            return false;
-        }
-        ((JobScheduler) this.f11202a.f11254b.getSystemService("jobscheduler")).cancel(m5660t());
-        return false;
-    }
-
     /* JADX INFO: renamed from: s */
     public final void m5659s() {
         m5684n();
@@ -63,5 +52,16 @@ public final class C4062h9 extends AbstractC4074i9 {
     public final PendingIntent m5661u() {
         Context context = this.f11202a.f11254b;
         return PendingIntent.getBroadcast(context, 0, new Intent().setClassName(context, "com.google.android.gms.measurement.AppMeasurementReceiver").setAction("com.google.android.gms.measurement.UPLOAD"), 0);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        this.f10793d.cancel(m5661u());
+        if (Build.VERSION.SDK_INT < 24) {
+            return false;
+        }
+        ((JobScheduler) this.f11202a.f11254b.getSystemService("jobscheduler")).cancel(m5660t());
+        return false;
     }
 }

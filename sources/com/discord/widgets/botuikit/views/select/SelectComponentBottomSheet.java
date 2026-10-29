@@ -38,9 +38,6 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class SelectComponentBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(SelectComponentBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSelectComponentBottomSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final String EXTRA_COMPONENT_CONTEXT = "extra_component_context";
     public static final String EXTRA_COMPONENT_INDEX = "extra_component_index";
     public static final String EXTRA_CUSTOM_ID = "extra_custom_id";
@@ -50,6 +47,9 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
     public static final String EXTRA_OPTIONS = "extra_options";
     public static final String EXTRA_PLACEHOLDER = "extra_placeholder";
     public static final String EXTRA_SELECTED = "extra_selected";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final SelectComponentBottomSheetAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -58,30 +58,9 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: SelectComponentBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, ComponentContext componentContext, int componentIndex, String customId, String placeholder, int min, int max, List<SelectItem> options, List<SelectItem> selectedItems, boolean emojiAnimationsEnabled) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(componentContext, "componentContext");
-            C12238m.checkNotNullParameter(customId, "customId");
-            C12238m.checkNotNullParameter(options, "options");
-            C12238m.checkNotNullParameter(selectedItems, "selectedItems");
-            SelectComponentBottomSheet selectComponentBottomSheet = new SelectComponentBottomSheet();
-            selectComponentBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to(SelectComponentBottomSheet.EXTRA_COMPONENT_CONTEXT, componentContext), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_COMPONENT_INDEX, Integer.valueOf(componentIndex)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_CUSTOM_ID, customId), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_PLACEHOLDER, placeholder), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_MIN, Integer.valueOf(min)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_MAX, Integer.valueOf(max)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_OPTIONS, options), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_SELECTED, selectedItems), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_EMOJI_ANIMATIONS_ENABLED, Boolean.valueOf(emojiAnimationsEnabled))));
-            selectComponentBottomSheet.show(fragmentManager, SelectComponentBottomSheet.class.getSimpleName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.botuikit.views.select.SelectComponentBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: SelectComponentBottomSheet.kt */
-    public static final /* synthetic */ class C72771 extends C12236k implements Function1<SelectComponentBottomSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C72771 extends C12236k implements Function1<SelectComponentBottomSheetViewModel.ViewState, Unit> {
         public C72771(SelectComponentBottomSheet selectComponentBottomSheet) {
             super(1, selectComponentBottomSheet, SelectComponentBottomSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/botuikit/views/select/SelectComponentBottomSheetViewModel$ViewState;)V", 0);
         }
@@ -101,7 +80,7 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.botuikit.views.select.SelectComponentBottomSheet$onResume$2 */
     /* JADX INFO: compiled from: SelectComponentBottomSheet.kt */
-    public static final /* synthetic */ class C72782 extends C12236k implements Function1<SelectComponentBottomSheetViewModel.Event, Unit> {
+    public final /* synthetic */ class C72782 extends C12236k implements Function1<SelectComponentBottomSheetViewModel.Event, Unit> {
         public C72782(SelectComponentBottomSheet selectComponentBottomSheet) {
             super(1, selectComponentBottomSheet, SelectComponentBottomSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/botuikit/views/select/SelectComponentBottomSheetViewModel$Event;)V", 0);
         }
@@ -116,6 +95,27 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
         public final void invoke2(SelectComponentBottomSheetViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "p1");
             ((SelectComponentBottomSheet) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: SelectComponentBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, ComponentContext componentContext, int componentIndex, String customId, String placeholder, int min, int max, List<SelectItem> options, List<SelectItem> selectedItems, boolean emojiAnimationsEnabled) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(componentContext, "componentContext");
+            C12238m.checkNotNullParameter(customId, "customId");
+            C12238m.checkNotNullParameter(options, "options");
+            C12238m.checkNotNullParameter(selectedItems, "selectedItems");
+            SelectComponentBottomSheet selectComponentBottomSheet = new SelectComponentBottomSheet();
+            selectComponentBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to(SelectComponentBottomSheet.EXTRA_COMPONENT_CONTEXT, componentContext), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_COMPONENT_INDEX, Integer.valueOf(componentIndex)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_CUSTOM_ID, customId), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_PLACEHOLDER, placeholder), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_MIN, Integer.valueOf(min)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_MAX, Integer.valueOf(max)), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_OPTIONS, options), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_SELECTED, selectedItems), C12116o.m10073to(SelectComponentBottomSheet.EXTRA_EMOJI_ANIMATIONS_ENABLED, Boolean.valueOf(emojiAnimationsEnabled))));
+            selectComponentBottomSheet.show(fragmentManager, SelectComponentBottomSheet.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -162,6 +162,11 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
         return (WidgetSelectComponentBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_select_component_bottom_sheet;
+    }
+
     private final SelectComponentBottomSheetViewModel getViewModel() {
         return (SelectComponentBottomSheetViewModel) this.viewModel.getValue();
     }
@@ -170,11 +175,6 @@ public final class SelectComponentBottomSheet extends AppBottomSheet {
         if (C12238m.areEqual(event, SelectComponentBottomSheetViewModel.Event.CloseSheet.INSTANCE)) {
             dismiss();
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_select_component_bottom_sheet;
     }
 
     public final void onItemSelected(SelectItem item, boolean isSelected) {

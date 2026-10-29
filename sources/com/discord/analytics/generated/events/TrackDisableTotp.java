@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackDisableTotp.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackDisableTotp implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "disable_totp";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "disable_totp";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

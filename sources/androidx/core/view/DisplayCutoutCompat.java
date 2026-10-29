@@ -50,13 +50,6 @@ public final class DisplayCutoutCompat {
         return new DisplayCutout(rect5, arrayList);
     }
 
-    public static DisplayCutoutCompat wrap(Object obj) {
-        if (obj == null) {
-            return null;
-        }
-        return new DisplayCutoutCompat(obj);
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -123,6 +116,13 @@ public final class DisplayCutoutCompat {
     @RequiresApi(api = 28)
     public DisplayCutout unwrap() {
         return (DisplayCutout) this.mDisplayCutout;
+    }
+
+    public static DisplayCutoutCompat wrap(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        return new DisplayCutoutCompat(obj);
     }
 
     public DisplayCutoutCompat(@NonNull Insets insets, @Nullable Rect rect, @Nullable Rect rect2, @Nullable Rect rect3, @Nullable Rect rect4, @NonNull Insets insets2) {

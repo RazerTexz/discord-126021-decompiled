@@ -21,6 +21,12 @@ public final class DialogSimpleSelectorItemBinding implements ViewBinding {
         this.f15039a = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15039a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static DialogSimpleSelectorItemBinding m8381a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -30,11 +36,5 @@ public final class DialogSimpleSelectorItemBinding implements ViewBinding {
         }
         Objects.requireNonNull(viewInflate, "rootView");
         return new DialogSimpleSelectorItemBinding((TextView) viewInflate);
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15039a;
     }
 }

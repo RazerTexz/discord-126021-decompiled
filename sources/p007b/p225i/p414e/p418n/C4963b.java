@@ -30,13 +30,6 @@ public final class C4963b implements Cloneable {
         this.f13232m = new int[i3 * i2];
     }
 
-    /* JADX INFO: renamed from: b */
-    public void m6941b(int i, int i2) {
-        int i3 = (i / 32) + (i2 * this.f13231l);
-        int[] iArr = this.f13232m;
-        iArr[i3] = (1 << (i & 31)) ^ iArr[i3];
-    }
-
     public Object clone() throws CloneNotSupportedException {
         return new C4963b(this.f13229j, this.f13230k, this.f13231l, (int[]) this.f13232m.clone());
     }
@@ -47,6 +40,18 @@ public final class C4963b implements Cloneable {
         }
         C4963b c4963b = (C4963b) obj;
         return this.f13229j == c4963b.f13229j && this.f13230k == c4963b.f13230k && this.f13231l == c4963b.f13231l && Arrays.equals(this.f13232m, c4963b.f13232m);
+    }
+
+    public int hashCode() {
+        int i = this.f13229j;
+        return Arrays.hashCode(this.f13232m) + (((((((i * 31) + i) * 31) + this.f13230k) * 31) + this.f13231l) * 31);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void m6941b(int i, int i2) {
+        int i3 = (i / 32) + (i2 * this.f13231l);
+        int[] iArr = this.f13232m;
+        iArr[i3] = (1 << (i & 31)) ^ iArr[i3];
     }
 
     /* JADX INFO: renamed from: f */
@@ -90,11 +95,6 @@ public final class C4963b implements Cloneable {
             c4962a.f13227j[(i6 << 5) / 32] = this.f13232m[i5 + i6];
         }
         return c4962a;
-    }
-
-    public int hashCode() {
-        int i = this.f13229j;
-        return Arrays.hashCode(this.f13232m) + (((((((i * 31) + i) * 31) + this.f13230k) * 31) + this.f13231l) * 31);
     }
 
     /* JADX INFO: renamed from: i */

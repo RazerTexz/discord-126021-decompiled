@@ -22,7 +22,7 @@ public final class C7751xc61f589<T> extends AbstractC12240o implements Function2
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ SelectionAggregator $aggregator;
         public final /* synthetic */ Attachment $attachment;
 
@@ -47,7 +47,7 @@ public final class C7751xc61f589<T> extends AbstractC12240o implements Function2
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ SelectionAggregator $aggregator;
         public final /* synthetic */ Attachment $attachment;
 

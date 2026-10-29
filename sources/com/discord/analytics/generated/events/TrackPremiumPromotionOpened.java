@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackPremiumPromotionOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackPremiumPromotionOpened implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "premium_promotion_opened";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "premium_promotion_opened";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

@@ -66,7 +66,7 @@ public class WrapMethodCallScript extends MethodLevelPatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/WrapMethodCallScript$WrapMethodCall.SCL.lombok */
-    private class WrapMethodCall extends MethodVisitor {
+    class WrapMethodCall extends MethodVisitor {
         private final String ownClassSpec;
         private final MethodLogistics logistics;
 

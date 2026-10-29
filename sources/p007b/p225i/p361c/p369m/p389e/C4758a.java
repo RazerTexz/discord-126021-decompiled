@@ -19,9 +19,6 @@ import p007b.p225i.p361c.p369m.p370d.p373k.C4628h;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4758a implements InterfaceC4762e {
 
-    /* JADX INFO: renamed from: a */
-    public static final Charset f12784a = Charset.forName(Constants.ENCODING);
-
     /* JADX INFO: renamed from: b */
     public final Context f12785b;
 
@@ -30,6 +27,9 @@ public class C4758a implements InterfaceC4762e {
 
     /* JADX INFO: renamed from: d */
     public final C4763f f12787d;
+
+    /* JADX INFO: renamed from: a */
+    public static final Charset f12784a = Charset.forName(Constants.ENCODING);
 
     public C4758a(Context context, InterfaceC4761d interfaceC4761d, C4763f c4763f) {
         this.f12785b = context;

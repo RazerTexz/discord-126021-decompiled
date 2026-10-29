@@ -37,6 +37,12 @@ public class RequestHandler implements IRequestHandler {
         iPackageHandler.closeFirstPackage(responseDataBuildResponseData, activityPackage);
     }
 
+    @Override // com.adjust.sdk.IRequestHandler
+    public void init(IActivityHandler iActivityHandler, IPackageHandler iPackageHandler) {
+        this.packageHandlerWeakRef = new WeakReference<>(iPackageHandler);
+        this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
+    }
+
     private void sendI(ActivityPackage activityPackage, int i) {
         String baseUrl;
         IActivityHandler iActivityHandler;
@@ -98,12 +104,6 @@ public class RequestHandler implements IRequestHandler {
             return;
         }
         iPackageHandler.sendNextPackage(responseDataBuildResponseData);
-    }
-
-    @Override // com.adjust.sdk.IRequestHandler
-    public void init(IActivityHandler iActivityHandler, IPackageHandler iPackageHandler) {
-        this.packageHandlerWeakRef = new WeakReference<>(iPackageHandler);
-        this.activityHandlerWeakRef = new WeakReference<>(iActivityHandler);
     }
 
     @Override // com.adjust.sdk.IRequestHandler

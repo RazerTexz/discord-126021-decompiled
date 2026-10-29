@@ -30,7 +30,7 @@ public final class StoreEmbeddedActivities extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmbeddedActivities$observeEmbeddedActivities$1 */
     /* JADX INFO: compiled from: StoreEmbeddedActivities.kt */
-    public static final class C58861 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>>> {
+    public final class C58861 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>>> {
         public C58861() {
             super(0);
         }
@@ -50,11 +50,28 @@ public final class StoreEmbeddedActivities extends StoreV2 {
         this((i & 1) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
 
+    public final Map<Long, Map<Long, EmbeddedActivity>> getEmbeddedActivities() {
+        return this.embeddedActivitiesByChannelSnapshot;
+    }
+
     private final String getUrlForApplication(long applicationId) {
         if (BuildConfig.EMBEDDED_ACTIVITY_APPLICATION_HOST.length() == 0) {
             return null;
         }
         return "https://" + applicationId + '.' + BuildConfig.EMBEDDED_ACTIVITY_APPLICATION_HOST;
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        this.embeddedActivitiesByChannel.clear();
+        List<Guild> guilds = payload.getGuilds();
+        C12238m.checkNotNullExpressionValue(guilds, "payload.guilds");
+        for (Guild guild : guilds) {
+            C12238m.checkNotNullExpressionValue(guild, "guild");
+            handleEmbeddedActivitiesForGuild(guild);
+        }
+        markChanged();
     }
 
     @StoreThread
@@ -86,23 +103,6 @@ public final class StoreEmbeddedActivities extends StoreV2 {
             this.embeddedActivitiesByChannel.put(Long.valueOf(channelId), linkedHashMap);
             markChanged();
         }
-    }
-
-    public final Map<Long, Map<Long, EmbeddedActivity>> getEmbeddedActivities() {
-        return this.embeddedActivitiesByChannelSnapshot;
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        this.embeddedActivitiesByChannel.clear();
-        List<Guild> guilds = payload.getGuilds();
-        C12238m.checkNotNullExpressionValue(guilds, "payload.guilds");
-        for (Guild guild : guilds) {
-            C12238m.checkNotNullExpressionValue(guild, "guild");
-            handleEmbeddedActivitiesForGuild(guild);
-        }
-        markChanged();
     }
 
     @StoreThread

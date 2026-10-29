@@ -41,7 +41,7 @@ public final class MGImagesBitmap {
     public static final MGImagesBitmap INSTANCE = new MGImagesBitmap();
 
     /* JADX INFO: compiled from: MGImagesBitmap.kt */
-    public static final class CloseableBitmaps implements Map<String, Bitmap>, Closeable, InterfaceC12228a {
+    public final class CloseableBitmaps implements Map<String, Bitmap>, Closeable, InterfaceC12228a {
         private final boolean recycleBitmaps;
         private final Map<String, Bitmap> underlyingMap;
 
@@ -66,13 +66,18 @@ public final class MGImagesBitmap {
             }
         }
 
+        @Override // java.util.Map
+        public /* synthetic */ Bitmap compute(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
         /* JADX INFO: renamed from: compute, reason: avoid collision after fix types in other method */
         public Bitmap compute2(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
         @Override // java.util.Map
-        public /* synthetic */ Bitmap compute(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
+        public /* synthetic */ Bitmap computeIfAbsent(String str, Function<? super String, ? extends Bitmap> function) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -82,17 +87,12 @@ public final class MGImagesBitmap {
         }
 
         @Override // java.util.Map
-        public /* synthetic */ Bitmap computeIfAbsent(String str, Function<? super String, ? extends Bitmap> function) {
+        public /* synthetic */ Bitmap computeIfPresent(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
         /* JADX INFO: renamed from: computeIfPresent, reason: avoid collision after fix types in other method */
         public Bitmap computeIfPresent2(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
-            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-        }
-
-        @Override // java.util.Map
-        public /* synthetic */ Bitmap computeIfPresent(String str, BiFunction<? super String, ? super Bitmap, ? extends Bitmap> biFunction) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -127,17 +127,17 @@ public final class MGImagesBitmap {
             return getEntries();
         }
 
-        public Bitmap get(String key) {
-            C12238m.checkNotNullParameter(key, "key");
-            return this.underlyingMap.get(key);
-        }
-
         @Override // java.util.Map
         public final /* bridge */ Bitmap get(Object obj) {
             if (obj instanceof String) {
                 return get((String) obj);
             }
             return null;
+        }
+
+        public Bitmap get(String key) {
+            C12238m.checkNotNullParameter(key, "key");
+            return this.underlyingMap.get(key);
         }
 
         public Set<Map.Entry<String, Bitmap>> getEntries() {
@@ -166,13 +166,13 @@ public final class MGImagesBitmap {
             return getKeys();
         }
 
-        /* JADX INFO: renamed from: merge, reason: avoid collision after fix types in other method */
-        public Bitmap merge2(String str, Bitmap bitmap, BiFunction<? super Bitmap, ? super Bitmap, ? extends Bitmap> biFunction) {
+        @Override // java.util.Map
+        public /* synthetic */ Bitmap merge(String str, Bitmap bitmap, BiFunction<? super Bitmap, ? super Bitmap, ? extends Bitmap> biFunction) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
-        @Override // java.util.Map
-        public /* synthetic */ Bitmap merge(String str, Bitmap bitmap, BiFunction<? super Bitmap, ? super Bitmap, ? extends Bitmap> biFunction) {
+        /* JADX INFO: renamed from: merge, reason: avoid collision after fix types in other method */
+        public Bitmap merge2(String str, Bitmap bitmap, BiFunction<? super Bitmap, ? super Bitmap, ? extends Bitmap> biFunction) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -181,13 +181,13 @@ public final class MGImagesBitmap {
             return new CloseableBitmaps(C12136h0.plus(this.underlyingMap, other.underlyingMap), this.recycleBitmaps && other.recycleBitmaps);
         }
 
-        /* JADX INFO: renamed from: put, reason: avoid collision after fix types in other method */
-        public Bitmap put2(String str, Bitmap bitmap) {
+        @Override // java.util.Map
+        public /* synthetic */ Bitmap put(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
-        @Override // java.util.Map
-        public /* synthetic */ Bitmap put(String str, Bitmap bitmap) {
+        /* JADX INFO: renamed from: put, reason: avoid collision after fix types in other method */
+        public Bitmap put2(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -196,13 +196,13 @@ public final class MGImagesBitmap {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
-        /* JADX INFO: renamed from: putIfAbsent, reason: avoid collision after fix types in other method */
-        public Bitmap putIfAbsent2(String str, Bitmap bitmap) {
+        @Override // java.util.Map
+        public /* synthetic */ Bitmap putIfAbsent(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
-        @Override // java.util.Map
-        public /* synthetic */ Bitmap putIfAbsent(String str, Bitmap bitmap) {
+        /* JADX INFO: renamed from: putIfAbsent, reason: avoid collision after fix types in other method */
+        public Bitmap putIfAbsent2(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -216,11 +216,6 @@ public final class MGImagesBitmap {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
-        /* JADX INFO: renamed from: replace, reason: avoid collision after fix types in other method */
-        public Bitmap replace2(String str, Bitmap bitmap) {
-            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-        }
-
         @Override // java.util.Map
         public /* synthetic */ Bitmap replace(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
@@ -228,6 +223,11 @@ public final class MGImagesBitmap {
 
         @Override // java.util.Map
         public /* synthetic */ boolean replace(String str, Bitmap bitmap, Bitmap bitmap2) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        /* JADX INFO: renamed from: replace, reason: avoid collision after fix types in other method */
+        public Bitmap replace2(String str, Bitmap bitmap) {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
 
@@ -257,7 +257,7 @@ public final class MGImagesBitmap {
     }
 
     /* JADX INFO: compiled from: MGImagesBitmap.kt */
-    public static final class DecodeException extends Exception {
+    public final class DecodeException extends Exception {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public DecodeException(String str) {
             super("Unable to decode image: " + str + '.');
@@ -266,7 +266,7 @@ public final class MGImagesBitmap {
     }
 
     /* JADX INFO: compiled from: MGImagesBitmap.kt */
-    public static final class ImageNotFoundException extends Exception {
+    public final class ImageNotFoundException extends Exception {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ImageNotFoundException(String str) {
             super("404 image not found: " + str);
@@ -275,7 +275,7 @@ public final class MGImagesBitmap {
     }
 
     /* JADX INFO: compiled from: MGImagesBitmap.kt */
-    public static final /* data */ class ImageRequest {
+    public final /* data */ class ImageRequest {
         private final String imageUri;
         private final boolean roundAsCircle;
 
@@ -295,16 +295,6 @@ public final class MGImagesBitmap {
             return imageRequest.copy(str, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getImageUri() {
-            return this.imageUri;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getRoundAsCircle() {
-            return this.roundAsCircle;
-        }
-
         public final ImageRequest copy(String imageUri, boolean roundAsCircle) {
             C12238m.checkNotNullParameter(imageUri, "imageUri");
             return new ImageRequest(imageUri, roundAsCircle);
@@ -321,8 +311,18 @@ public final class MGImagesBitmap {
             return C12238m.areEqual(this.imageUri, imageRequest.imageUri) && this.roundAsCircle == imageRequest.roundAsCircle;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getImageUri() {
             return this.imageUri;
+        }
+
+        public final String getImageUri() {
+            return this.imageUri;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getRoundAsCircle() {
+            return this.roundAsCircle;
         }
 
         public final boolean getRoundAsCircle() {
@@ -354,7 +354,7 @@ public final class MGImagesBitmap {
     }
 
     /* JADX INFO: compiled from: MGImagesBitmap.kt */
-    public static final class MissingBitmapException extends Exception {
+    public final class MissingBitmapException extends Exception {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public MissingBitmapException(String str) {
             super("Unable to decode image as bitmap: " + str);
@@ -363,6 +363,66 @@ public final class MGImagesBitmap {
     }
 
     private MGImagesBitmap() {
+    }
+
+    public final Observable<Bitmap> getBitmap(final String imageUri, boolean imageIsCircle) {
+        C12238m.checkNotNullParameter(imageUri, "imageUri");
+        if (!isValidUri(imageUri)) {
+            Observable<Bitmap> observableM11081x = Observable.m11081x(new IllegalArgumentException(C1643a.m883w("invalid uri: ", imageUri)));
+            C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(Illegal…invalid uri: $imageUri\"))");
+            return observableM11081x;
+        }
+        C1898m c1898m = C1898m.f3788a;
+        C1460d.m591y(c1898m, "ImagePipelineFactory was not initialized!");
+        if (c1898m.f3799l == null) {
+            c1898m.f3799l = c1898m.m1295a();
+        }
+        C1893h c1893h = c1898m.f3799l;
+        ImageRequestBuilder imageRequest = MGImages.getImageRequest(imageUri, 0, 0, false);
+        if (imageIsCircle) {
+            imageRequest.f19623l = new RoundAsCirclePostprocessor(imageUri);
+        }
+        final DataSource<CloseableReference<AbstractC1917c>> dataSourceM1262a = c1893h.m1262a(imageRequest.m8724a(), null, com.facebook.imagepipeline.request.ImageRequest.EnumC10667c.FULL_FETCH, null, null);
+        Observable<Bitmap> observableM11074h0 = Observable.m11074h0(new Observable.InterfaceC13005a<Bitmap>() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1
+            @Override // p658rx.functions.Action1
+            public final void call(final Subscriber<? super Bitmap> subscriber) {
+                dataSourceM1262a.mo1022f(new AbstractC1905c() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1.1
+                    @Override // p007b.p109f.p129e.AbstractC1724d
+                    public void onFailureImpl(DataSource<CloseableReference<AbstractC1917c>> dataSource) {
+                        String message;
+                        C12238m.checkNotNullParameter(dataSource, "dataSource");
+                        Throwable thMo1020d = dataSource.mo1020d();
+                        if (thMo1020d != null && (message = thMo1020d.getMessage()) != null && C12106w.contains$default((CharSequence) message, (CharSequence) "404", false, 2, (Object) null)) {
+                            subscriber.onError(new ImageNotFoundException(imageUri));
+                            return;
+                        }
+                        Subscriber subscriber2 = subscriber;
+                        Throwable thMo1020d2 = dataSource.mo1020d();
+                        if (thMo1020d2 == null) {
+                            thMo1020d2 = new DecodeException(imageUri);
+                        }
+                        subscriber2.onError(thMo1020d2);
+                    }
+
+                    @Override // p007b.p109f.p161j.p171f.AbstractC1905c
+                    public void onNewResultImpl(Bitmap bitmap) {
+                        if (bitmap == null) {
+                            subscriber.onError(new MissingBitmapException(imageUri));
+                        } else {
+                            subscriber.onNext(Bitmap.createBitmap(bitmap));
+                            subscriber.onCompleted();
+                        }
+                    }
+                }, new Executor() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1.2
+                    @Override // java.util.concurrent.Executor
+                    public final void execute(Runnable runnable) {
+                        runnable.run();
+                    }
+                });
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11074h0, "Observable.unsafeCreate …y emits the bitmap.\n    }");
+        return observableM11074h0;
     }
 
     public static final Observable<CloseableBitmaps> getBitmaps(Set<ImageRequest> imageRequests) {
@@ -427,65 +487,5 @@ public final class MGImagesBitmap {
         }
         String path = uri.getPath();
         return !(path == null || C12103t.isBlank(path));
-    }
-
-    public final Observable<Bitmap> getBitmap(final String imageUri, boolean imageIsCircle) {
-        C12238m.checkNotNullParameter(imageUri, "imageUri");
-        if (!isValidUri(imageUri)) {
-            Observable<Bitmap> observableM11081x = Observable.m11081x(new IllegalArgumentException(C1643a.m883w("invalid uri: ", imageUri)));
-            C12238m.checkNotNullExpressionValue(observableM11081x, "Observable.error(Illegal…invalid uri: $imageUri\"))");
-            return observableM11081x;
-        }
-        C1898m c1898m = C1898m.f3788a;
-        C1460d.m591y(c1898m, "ImagePipelineFactory was not initialized!");
-        if (c1898m.f3799l == null) {
-            c1898m.f3799l = c1898m.m1295a();
-        }
-        C1893h c1893h = c1898m.f3799l;
-        ImageRequestBuilder imageRequest = MGImages.getImageRequest(imageUri, 0, 0, false);
-        if (imageIsCircle) {
-            imageRequest.f19623l = new RoundAsCirclePostprocessor(imageUri);
-        }
-        final DataSource<CloseableReference<AbstractC1917c>> dataSourceM1262a = c1893h.m1262a(imageRequest.m8724a(), null, com.facebook.imagepipeline.request.ImageRequest.EnumC10667c.FULL_FETCH, null, null);
-        Observable<Bitmap> observableM11074h0 = Observable.m11074h0(new Observable.InterfaceC13005a<Bitmap>() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1
-            @Override // p658rx.functions.Action1
-            public final void call(final Subscriber<? super Bitmap> subscriber) {
-                dataSourceM1262a.mo1022f(new AbstractC1905c() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1.1
-                    @Override // p007b.p109f.p129e.AbstractC1724d
-                    public void onFailureImpl(DataSource<CloseableReference<AbstractC1917c>> dataSource) {
-                        String message;
-                        C12238m.checkNotNullParameter(dataSource, "dataSource");
-                        Throwable thMo1020d = dataSource.mo1020d();
-                        if (thMo1020d != null && (message = thMo1020d.getMessage()) != null && C12106w.contains$default((CharSequence) message, (CharSequence) "404", false, 2, (Object) null)) {
-                            subscriber.onError(new ImageNotFoundException(imageUri));
-                            return;
-                        }
-                        Subscriber subscriber2 = subscriber;
-                        Throwable thMo1020d2 = dataSource.mo1020d();
-                        if (thMo1020d2 == null) {
-                            thMo1020d2 = new DecodeException(imageUri);
-                        }
-                        subscriber2.onError(thMo1020d2);
-                    }
-
-                    @Override // p007b.p109f.p161j.p171f.AbstractC1905c
-                    public void onNewResultImpl(Bitmap bitmap) {
-                        if (bitmap == null) {
-                            subscriber.onError(new MissingBitmapException(imageUri));
-                        } else {
-                            subscriber.onNext(Bitmap.createBitmap(bitmap));
-                            subscriber.onCompleted();
-                        }
-                    }
-                }, new Executor() { // from class: com.discord.utilities.images.MGImagesBitmap.getBitmap.1.2
-                    @Override // java.util.concurrent.Executor
-                    public final void execute(Runnable runnable) {
-                        runnable.run();
-                    }
-                });
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11074h0, "Observable.unsafeCreate …y emits the bitmap.\n    }");
-        return observableM11074h0;
     }
 }

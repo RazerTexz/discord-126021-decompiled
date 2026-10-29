@@ -28,7 +28,7 @@ public final class StoreClientVersion extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreClientVersion$init$2 */
     /* JADX INFO: compiled from: StoreClientVersion.kt */
-    public static final /* synthetic */ class C58482 extends C12236k implements Function1<Integer, Unit> {
+    public final /* synthetic */ class C58482 extends C12236k implements Function1<Integer, Unit> {
         public C58482(StoreClientVersion storeClientVersion) {
             super(1, storeClientVersion, StoreClientVersion.class, "setClientMinVersion", "setClientMinVersion(I)V", 0);
         }
@@ -41,17 +41,6 @@ public final class StoreClientVersion extends Store {
 
         public final void invoke(int i) {
             ((StoreClientVersion) this.receiver).setClientMinVersion(i);
-        }
-    }
-
-    private final synchronized void setClientMinVersion(int clientMinVersion) {
-        if (this.clientMinVersion != clientMinVersion) {
-            this.clientMinVersion = clientMinVersion;
-            this.clientOutdatedSubject.f27653k.onNext(Boolean.valueOf(this.clientVersion < clientMinVersion));
-            SharedPreferences.Editor editorEdit = getPrefs().edit();
-            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-            editorEdit.putInt(this.clientMinVersionKey, clientMinVersion);
-            editorEdit.apply();
         }
     }
 
@@ -76,5 +65,16 @@ public final class StoreClientVersion extends Store {
         });
         C12238m.checkNotNullExpressionValue(observableM11082A, "Observable\n        .inte…ClientVersion()\n        }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(observableM11082A), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58482(this));
+    }
+
+    private final synchronized void setClientMinVersion(int clientMinVersion) {
+        if (this.clientMinVersion != clientMinVersion) {
+            this.clientMinVersion = clientMinVersion;
+            this.clientOutdatedSubject.f27653k.onNext(Boolean.valueOf(this.clientVersion < clientMinVersion));
+            SharedPreferences.Editor editorEdit = getPrefs().edit();
+            C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+            editorEdit.putInt(this.clientMinVersionKey, clientMinVersion);
+            editorEdit.apply();
+        }
     }
 }

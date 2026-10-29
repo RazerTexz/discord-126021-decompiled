@@ -15,7 +15,7 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
     public static final int TYPE_USER = 2;
 
     /* JADX INFO: compiled from: InviteSuggestionItemV2.kt */
-    public static final /* data */ class ChannelItem extends InviteSuggestionItemV2 {
+    public final /* data */ class ChannelItem extends InviteSuggestionItemV2 {
         private final Channel channel;
         private final boolean hasSent;
         private final String key;
@@ -50,21 +50,6 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
             return channelItem.copy(channel, z2, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getHasSent() {
-            return this.hasSent;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getSearchQuery() {
-            return this.searchQuery;
-        }
-
         public final ChannelItem copy(Channel channel, boolean hasSent, String searchQuery) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(searchQuery, "searchQuery");
@@ -82,8 +67,18 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.channel, channelItem.channel) && this.hasSent == channelItem.hasSent && C12238m.areEqual(this.searchQuery, channelItem.searchQuery);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getHasSent() {
+            return this.hasSent;
         }
 
         public final boolean getHasSent() {
@@ -93,6 +88,11 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getSearchQuery() {
+            return this.searchQuery;
         }
 
         public final String getSearchQuery() {
@@ -138,7 +138,7 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: InviteSuggestionItemV2.kt */
-    public static final class SearchNoResultsItem extends InviteSuggestionItemV2 {
+    public final class SearchNoResultsItem extends InviteSuggestionItemV2 {
         public static final SearchNoResultsItem INSTANCE = new SearchNoResultsItem();
         private static final int type = 1;
         private static final String key = "SEARCH_NO_RESULTS";
@@ -164,7 +164,7 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: InviteSuggestionItemV2.kt */
-    public static final /* data */ class UserItem extends InviteSuggestionItemV2 {
+    public final /* data */ class UserItem extends InviteSuggestionItemV2 {
         private final boolean hasSent;
         private final String key;
         private final String searchQuery;
@@ -199,21 +199,6 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
             return userItem.copy(user, z2, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getHasSent() {
-            return this.hasSent;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getSearchQuery() {
-            return this.searchQuery;
-        }
-
         public final UserItem copy(User user, boolean hasSent, String searchQuery) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(searchQuery, "searchQuery");
@@ -231,6 +216,11 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.user, userItem.user) && this.hasSent == userItem.hasSent && C12238m.areEqual(this.searchQuery, userItem.searchQuery);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getHasSent() {
+            return this.hasSent;
+        }
+
         public final boolean getHasSent() {
             return this.hasSent;
         }
@@ -240,6 +230,11 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getSearchQuery() {
+            return this.searchQuery;
+        }
+
         public final String getSearchQuery() {
             return this.searchQuery;
         }
@@ -247,6 +242,11 @@ public abstract class InviteSuggestionItemV2 implements MGRecyclerDataPayload {
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

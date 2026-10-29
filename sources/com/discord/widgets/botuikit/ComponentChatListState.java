@@ -26,7 +26,7 @@ public final class ComponentChatListState {
     public static final ComponentChatListState INSTANCE = new ComponentChatListState();
 
     /* JADX INFO: compiled from: ComponentChatListState.kt */
-    public static final /* data */ class ComponentStoreState {
+    public final /* data */ class ComponentStoreState {
         private final boolean animateEmojis;
         private final Map<Integer, StoreApplicationInteractions.InteractionSendState> interactionState;
         private final Map<Integer, List<SelectItem>> selections;
@@ -40,6 +40,14 @@ public final class ComponentChatListState {
             this.interactionState = map;
             this.selections = map2;
             this.animateEmojis = z2;
+        }
+
+        public final Map<Integer, StoreApplicationInteractions.InteractionSendState> component1() {
+            return this.interactionState;
+        }
+
+        public final Map<Integer, List<SelectItem>> component2() {
+            return this.selections;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -56,19 +64,6 @@ public final class ComponentChatListState {
             return componentStoreState.copy(map, map2, z2);
         }
 
-        public final Map<Integer, StoreApplicationInteractions.InteractionSendState> component1() {
-            return this.interactionState;
-        }
-
-        public final Map<Integer, List<SelectItem>> component2() {
-            return this.selections;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getAnimateEmojis() {
-            return this.animateEmojis;
-        }
-
         public final ComponentStoreState copy(Map<Integer, ? extends StoreApplicationInteractions.InteractionSendState> interactionState, Map<Integer, ? extends List<SelectItem>> selections, boolean animateEmojis) {
             return new ComponentStoreState(interactionState, selections, animateEmojis);
         }
@@ -82,6 +77,11 @@ public final class ComponentChatListState {
             }
             ComponentStoreState componentStoreState = (ComponentStoreState) other;
             return C12238m.areEqual(this.interactionState, componentStoreState.interactionState) && C12238m.areEqual(this.selections, componentStoreState.selections) && this.animateEmojis == componentStoreState.animateEmojis;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getAnimateEmojis() {
+            return this.animateEmojis;
         }
 
         public final boolean getAnimateEmojis() {

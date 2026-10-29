@@ -5,7 +5,6 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AdjustPlayStoreSubscription {
-    private static ILogger logger = AdjustFactory.getLogger();
     private Map<String, String> callbackParameters;
     private String currency;
     private String orderId;
@@ -14,6 +13,7 @@ public class AdjustPlayStoreSubscription {
     private String purchaseToken;
     private String signature;
     private String sku;
+    private static ILogger logger = AdjustFactory.getLogger();
     private long purchaseTime = -1;
     private String billingStore = "GooglePlay";
 

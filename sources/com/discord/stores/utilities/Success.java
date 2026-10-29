@@ -14,16 +14,16 @@ public final /* data */ class Success<T> extends RestCallState<T> {
         this.response = t;
     }
 
+    public final T component1() {
+        return this.response;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Success copy$default(Success success, Object obj, int i, Object obj2) {
         if ((i & 1) != 0) {
             obj = success.response;
         }
         return success.copy(obj);
-    }
-
-    public final T component1() {
-        return this.response;
     }
 
     public final Success<T> copy(T response) {

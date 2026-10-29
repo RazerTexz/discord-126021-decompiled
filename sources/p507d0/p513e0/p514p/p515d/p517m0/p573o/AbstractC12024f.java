@@ -14,7 +14,7 @@ public abstract class AbstractC12024f implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.f$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12024f {
+    public final class a extends AbstractC12024f {
 
         /* JADX INFO: renamed from: b */
         public static final a f24913b = new a();
@@ -32,7 +32,7 @@ public abstract class AbstractC12024f implements InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.f$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12024f {
+    public final class b extends AbstractC12024f {
 
         /* JADX INFO: renamed from: b */
         public static final b f24914b = new b();

@@ -16,7 +16,7 @@ public class C12075n extends C12074m {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.n$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a<T> implements Sequence<T> {
+    public final class a<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Iterator f25105a;
@@ -34,7 +34,7 @@ public class C12075n extends C12074m {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.n$b */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class b<T> extends AbstractC12240o implements Function1<Sequence<? extends T>, Iterator<? extends T>> {
+    public final class b<T> extends AbstractC12240o implements Function1<Sequence<? extends T>, Iterator<? extends T>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f25106j = new b();
@@ -53,7 +53,7 @@ public class C12075n extends C12074m {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.n$c */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class c<T> extends AbstractC12240o implements Function1<Iterable<? extends T>, Iterator<? extends T>> {
+    public final class c<T> extends AbstractC12240o implements Function1<Iterable<? extends T>, Iterator<? extends T>> {
 
         /* JADX INFO: renamed from: j */
         public static final c f25107j = new c();
@@ -72,7 +72,7 @@ public class C12075n extends C12074m {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.n$d */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class d<T> extends AbstractC12240o implements Function1<T, T> {
+    public final class d<T> extends AbstractC12240o implements Function1<T, T> {
         public final /* synthetic */ Function0 $nextFunction;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -91,7 +91,7 @@ public class C12075n extends C12074m {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.n$e */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class e<T> extends AbstractC12240o implements Function0<T> {
+    public final class e<T> extends AbstractC12240o implements Function0<T> {
         public final /* synthetic */ Object $seed;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

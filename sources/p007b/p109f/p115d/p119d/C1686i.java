@@ -19,7 +19,7 @@ public final class C1686i {
 
     /* JADX INFO: renamed from: b.f.d.d.i$a */
     /* JADX INFO: compiled from: Objects.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public String f3097a;

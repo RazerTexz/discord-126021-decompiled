@@ -42,37 +42,12 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return getType();
     }
 
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getEmojiAnimationsEnabled() {
-        return this.emojiAnimationsEnabled;
-    }
-
     public final int component2() {
         return getIndex();
     }
 
     public final ActionInteractionComponentState component3() {
         return getStateInteraction();
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCustomId() {
-        return this.customId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getPlaceholder() {
-        return this.placeholder;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getMinValues() {
-        return this.minValues;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getMaxValues() {
-        return this.maxValues;
     }
 
     public final List<SelectItem> component8() {
@@ -103,8 +78,18 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return C12238m.areEqual(getType(), selectMessageComponent.getType()) && getIndex() == selectMessageComponent.getIndex() && C12238m.areEqual(getStateInteraction(), selectMessageComponent.getStateInteraction()) && C12238m.areEqual(this.customId, selectMessageComponent.customId) && C12238m.areEqual(this.placeholder, selectMessageComponent.placeholder) && this.minValues == selectMessageComponent.minValues && this.maxValues == selectMessageComponent.maxValues && C12238m.areEqual(this.options, selectMessageComponent.options) && C12238m.areEqual(this.selectedOptions, selectMessageComponent.selectedOptions) && this.emojiAnimationsEnabled == selectMessageComponent.emojiAnimationsEnabled;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCustomId() {
         return this.customId;
+    }
+
+    public final String getCustomId() {
+        return this.customId;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getEmojiAnimationsEnabled() {
+        return this.emojiAnimationsEnabled;
     }
 
     public final boolean getEmojiAnimationsEnabled() {
@@ -116,8 +101,18 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return this.index;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final int getMaxValues() {
         return this.maxValues;
+    }
+
+    public final int getMaxValues() {
+        return this.maxValues;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getMinValues() {
+        return this.minValues;
     }
 
     public final int getMinValues() {
@@ -126,6 +121,11 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
 
     public final List<SelectItem> getOptions() {
         return this.options;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getPlaceholder() {
+        return this.placeholder;
     }
 
     public final String getPlaceholder() {

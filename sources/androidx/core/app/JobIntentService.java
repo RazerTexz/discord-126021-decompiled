@@ -31,8 +31,8 @@ public abstract class JobIntentService extends Service {
     public CommandProcessor mCurProcessor;
     public CompatJobEngine mJobImpl;
     public static final Object sLock = new Object();
-    public static final HashMap<ComponentName, WorkEnqueuer> sClassWorkEnqueuer = new HashMap<>();
     public boolean mInterruptIfStopped = false;
+    public static final HashMap<ComponentName, WorkEnqueuer> sClassWorkEnqueuer = new HashMap<>();
     public boolean mStopped = false;
     public boolean mDestroyed = false;
 
@@ -69,7 +69,7 @@ public abstract class JobIntentService extends Service {
         GenericWorkItem dequeueWork();
     }
 
-    public static final class CompatWorkEnqueuer extends WorkEnqueuer {
+    public final class CompatWorkEnqueuer extends WorkEnqueuer {
         private final Context mContext;
         private final PowerManager.WakeLock mLaunchWakeLock;
         public boolean mLaunchingService;
@@ -163,7 +163,7 @@ public abstract class JobIntentService extends Service {
     }
 
     @RequiresApi(26)
-    public static final class JobServiceEngineImpl extends JobServiceEngine implements CompatJobEngine {
+    public final class JobServiceEngineImpl extends JobServiceEngine implements CompatJobEngine {
         public static final boolean DEBUG = false;
         public static final String TAG = "JobServiceEngineImpl";
         public final Object mLock;
@@ -238,7 +238,7 @@ public abstract class JobIntentService extends Service {
     }
 
     @RequiresApi(26)
-    public static final class JobWorkEnqueuer extends WorkEnqueuer {
+    public final class JobWorkEnqueuer extends WorkEnqueuer {
         private final JobInfo mJobInfo;
         private final JobScheduler mJobScheduler;
 
@@ -255,7 +255,7 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public static abstract class WorkEnqueuer {
+    public abstract class WorkEnqueuer {
         public final ComponentName mComponentName;
         public boolean mHasJobId;
         public int mJobId;
@@ -298,30 +298,6 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public static void enqueueWork(@NonNull Context context, @NonNull Class<?> cls, int i, @NonNull Intent intent) {
-        enqueueWork(context, new ComponentName(context, cls), i, intent);
-    }
-
-    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z2, int i) {
-        WorkEnqueuer compatWorkEnqueuer;
-        HashMap<ComponentName, WorkEnqueuer> map = sClassWorkEnqueuer;
-        WorkEnqueuer workEnqueuer = map.get(componentName);
-        if (workEnqueuer != null) {
-            return workEnqueuer;
-        }
-        if (Build.VERSION.SDK_INT < 26) {
-            compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
-        } else {
-            if (!z2) {
-                throw new IllegalArgumentException("Can't be here without a job id");
-            }
-            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
-        }
-        WorkEnqueuer workEnqueuer2 = compatWorkEnqueuer;
-        map.put(componentName, workEnqueuer2);
-        return workEnqueuer2;
-    }
-
     public GenericWorkItem dequeueWork() {
         CompatJobEngine compatJobEngine = this.mJobImpl;
         if (compatJobEngine != null) {
@@ -344,6 +320,10 @@ public abstract class JobIntentService extends Service {
         return onStopCurrentWork();
     }
 
+    public static void enqueueWork(@NonNull Context context, @NonNull Class<?> cls, int i, @NonNull Intent intent) {
+        enqueueWork(context, new ComponentName(context, cls), i, intent);
+    }
+
     public void ensureProcessorRunningLocked(boolean z2) {
         if (this.mCurProcessor == null) {
             this.mCurProcessor = new CommandProcessor();
@@ -353,6 +333,26 @@ public abstract class JobIntentService extends Service {
             }
             this.mCurProcessor.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
         }
+    }
+
+    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z2, int i) {
+        WorkEnqueuer compatWorkEnqueuer;
+        HashMap<ComponentName, WorkEnqueuer> map = sClassWorkEnqueuer;
+        WorkEnqueuer workEnqueuer = map.get(componentName);
+        if (workEnqueuer != null) {
+            return workEnqueuer;
+        }
+        if (Build.VERSION.SDK_INT < 26) {
+            compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
+        } else {
+            if (!z2) {
+                throw new IllegalArgumentException("Can't be here without a job id");
+            }
+            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
+        }
+        WorkEnqueuer workEnqueuer2 = compatWorkEnqueuer;
+        map.put(componentName, workEnqueuer2);
+        return workEnqueuer2;
     }
 
     public boolean isStopped() {

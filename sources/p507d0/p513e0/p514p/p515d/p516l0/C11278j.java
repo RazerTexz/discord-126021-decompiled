@@ -25,12 +25,6 @@ public final class C11278j implements InterfaceC11272d {
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
-    /* JADX INFO: renamed from: getMember */
-    public /* bridge */ /* synthetic */ Member mo11457getMember() {
-        return (Member) getMember();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public List<Type> getParameterTypes() {
         return C12147n.emptyList();
     }
@@ -40,5 +34,11 @@ public final class C11278j implements InterfaceC11272d {
         Class cls = Void.TYPE;
         C12238m.checkNotNullExpressionValue(cls, "Void.TYPE");
         return cls;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
+    /* JADX INFO: renamed from: getMember */
+    public /* bridge */ /* synthetic */ Member mo11457getMember() {
+        return (Member) getMember();
     }
 }

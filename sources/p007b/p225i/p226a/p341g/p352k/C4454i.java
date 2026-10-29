@@ -165,6 +165,29 @@ public class C4454i implements TimePickerView.InterfaceC11031d, InterfaceC4452g 
         editText4.setOnKeyListener(viewOnKeyListenerC4453h);
     }
 
+    /* JADX INFO: renamed from: d */
+    public final void m6179d(TimeModel timeModel) {
+        this.f11884q.removeTextChangedListener(this.f11880m);
+        this.f11885r.removeTextChangedListener(this.f11879l);
+        Locale locale = this.f11877j.getResources().getConfiguration().locale;
+        String str = String.format(locale, "%02d", Integer.valueOf(timeModel.f21224n));
+        String str2 = String.format(locale, "%02d", Integer.valueOf(timeModel.m9161b()));
+        this.f11881n.m9153b(str);
+        this.f11882o.m9153b(str2);
+        this.f11884q.addTextChangedListener(this.f11880m);
+        this.f11885r.addTextChangedListener(this.f11879l);
+        m6180e();
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m6180e() {
+        MaterialButtonToggleGroup materialButtonToggleGroup = this.f11886s;
+        if (materialButtonToggleGroup == null) {
+            return;
+        }
+        materialButtonToggleGroup.check(this.f11878k.f21226p == 0 ? C10817R.id.material_clock_period_am_button : C10817R.id.material_clock_period_pm_button);
+    }
+
     @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g
     /* JADX INFO: renamed from: a */
     public void mo6171a() {
@@ -193,29 +216,6 @@ public class C4454i implements TimePickerView.InterfaceC11031d, InterfaceC4452g 
             inputMethodManager.hideSoftInputFromWindow(focusedChild.getWindowToken(), 0);
         }
         this.f11877j.setVisibility(8);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final void m6179d(TimeModel timeModel) {
-        this.f11884q.removeTextChangedListener(this.f11880m);
-        this.f11885r.removeTextChangedListener(this.f11879l);
-        Locale locale = this.f11877j.getResources().getConfiguration().locale;
-        String str = String.format(locale, "%02d", Integer.valueOf(timeModel.f21224n));
-        String str2 = String.format(locale, "%02d", Integer.valueOf(timeModel.m9161b()));
-        this.f11881n.m9153b(str);
-        this.f11882o.m9153b(str2);
-        this.f11884q.addTextChangedListener(this.f11880m);
-        this.f11885r.addTextChangedListener(this.f11879l);
-        m6180e();
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m6180e() {
-        MaterialButtonToggleGroup materialButtonToggleGroup = this.f11886s;
-        if (materialButtonToggleGroup == null) {
-            return;
-        }
-        materialButtonToggleGroup.check(this.f11878k.f21226p == 0 ? C10817R.id.material_clock_period_am_button : C10817R.id.material_clock_period_pm_button);
     }
 
     @Override // p007b.p225i.p226a.p341g.p352k.InterfaceC4452g

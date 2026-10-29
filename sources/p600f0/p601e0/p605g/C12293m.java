@@ -46,7 +46,7 @@ public final class C12293m {
 
     /* JADX INFO: renamed from: f0.e0.g.m$a */
     /* JADX INFO: compiled from: RouteSelector.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public int f25522a;

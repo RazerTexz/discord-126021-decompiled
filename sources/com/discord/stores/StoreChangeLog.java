@@ -42,7 +42,7 @@ public final class StoreChangeLog extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChangeLog$createChangeLogNotice$1 */
     /* JADX INFO: compiled from: StoreChangeLog.kt */
-    public static final class C58081 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C58081 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public C58081() {
             super(1);
         }
@@ -63,12 +63,12 @@ public final class StoreChangeLog extends Store {
     /* JADX INFO: renamed from: com.discord.stores.StoreChangeLog$handleConnectionOpen$1 */
     /* JADX INFO: compiled from: StoreChangeLog.kt */
     @InterfaceC12188e(m10084c = "com.discord.stores.StoreChangeLog$handleConnectionOpen$1", m10085f = "StoreChangeLog.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C58091 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C58091 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreChangeLog$handleConnectionOpen$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreChangeLog.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -101,7 +101,7 @@ public final class StoreChangeLog extends Store {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -131,6 +131,14 @@ public final class StoreChangeLog extends Store {
         return new StoreNotices.Notice("CHANGE_LOG", null, 1337L, 0, true, null, 0L, false, 604800000L, new C58081(), 226, null);
     }
 
+    public final Application getApp() {
+        Application application = this.app;
+        if (application == null) {
+            C12238m.throwUninitializedPropertyAccessException("app");
+        }
+        return application;
+    }
+
     private final String getChangelogExperimentString(Context context, String name, String fallback) {
         int identifier = context.getResources().getIdentifier(name, "string", context.getPackageName());
         if (identifier <= 0) {
@@ -143,59 +151,6 @@ public final class StoreChangeLog extends Store {
 
     private final String getLastSeenChangeLogVersion() {
         return getPrefs().getString("CACHE_KEY_VIEWED_CHANGE_LOG_VERSION", "");
-    }
-
-    private final boolean isTooYoung(long userId) {
-        long j = (userId >>> 22) + SnowflakeUtils.DISCORD_EPOCH + 432000000;
-        long firstUseTimestamp = this.notices.getFirstUseTimestamp() + 432000000;
-        long jCurrentTimeMillis = this.clock.currentTimeMillis();
-        return jCurrentTimeMillis < j || jCurrentTimeMillis < firstUseTimestamp;
-    }
-
-    public static /* synthetic */ void openChangeLog$default(StoreChangeLog storeChangeLog, Context context, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        storeChangeLog.openChangeLog(context, z2);
-    }
-
-    private final void setLastSeenChangeLogVersion(String str) {
-        SharedPreferences.Editor editorEdit = getPrefs().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putString("CACHE_KEY_VIEWED_CHANGE_LOG_VERSION", str);
-        editorEdit.apply();
-    }
-
-    private final boolean shouldShowChangelog(Context context, long userId, String targetLanguage, Integer experimentBucket) {
-        String string;
-        int identifier = (experimentBucket != null && experimentBucket.intValue() == 1) ? context.getResources().getIdentifier("change_log_md_experiment_body", "string", context.getPackageName()) : C5419R.string.change_log_md_body;
-        CharSequence stringByLocale = StringUtilsKt.getStringByLocale(context, identifier, "en");
-        CharSequence stringByLocale2 = StringUtilsKt.getStringByLocale(context, identifier, targetLanguage);
-        if ((!C12238m.areEqual(targetLanguage, "en")) && C12238m.areEqual(stringByLocale, stringByLocale2)) {
-            return false;
-        }
-        if (experimentBucket != null && experimentBucket.intValue() == 1) {
-            String string2 = context.getString(C5419R.string.change_log_md_date);
-            C12238m.checkNotNullExpressionValue(string2, "context.getString(R.string.change_log_md_date)");
-            string = getChangelogExperimentString(context, "change_log_md_experiment_date", string2);
-        } else {
-            string = context.getString(C5419R.string.change_log_md_date);
-            C12238m.checkNotNullExpressionValue(string, "context.getString(R.string.change_log_md_date)");
-        }
-        String lastSeenChangeLogVersion = getLastSeenChangeLogVersion();
-        if (!(lastSeenChangeLogVersion == null || C12103t.isBlank(lastSeenChangeLogVersion)) && !isTooYoung(userId)) {
-            return !C12238m.areEqual(string, getLastSeenChangeLogVersion());
-        }
-        markSeen(string);
-        return false;
-    }
-
-    public final Application getApp() {
-        Application application = this.app;
-        if (application == null) {
-            C12238m.throwUninitializedPropertyAccessException("app");
-        }
-        return application;
     }
 
     @StoreThread
@@ -223,10 +178,24 @@ public final class StoreChangeLog extends Store {
         this.app = app;
     }
 
+    private final boolean isTooYoung(long userId) {
+        long j = (userId >>> 22) + SnowflakeUtils.DISCORD_EPOCH + 432000000;
+        long firstUseTimestamp = this.notices.getFirstUseTimestamp() + 432000000;
+        long jCurrentTimeMillis = this.clock.currentTimeMillis();
+        return jCurrentTimeMillis < j || jCurrentTimeMillis < firstUseTimestamp;
+    }
+
     public final void markSeen(String currentVersion) {
         C12238m.checkNotNullParameter(currentVersion, "currentVersion");
         setLastSeenChangeLogVersion(currentVersion);
         StoreNotices.markSeen$default(this.notices, "CHANGE_LOG", 0L, 2, null);
+    }
+
+    public static /* synthetic */ void openChangeLog$default(StoreChangeLog storeChangeLog, Context context, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        storeChangeLog.openChangeLog(context, z2);
     }
 
     public final void openChangeLog(Context context, boolean fromSettings) {
@@ -270,5 +239,36 @@ public final class StoreChangeLog extends Store {
     public final void setApp(Application application) {
         C12238m.checkNotNullParameter(application, "<set-?>");
         this.app = application;
+    }
+
+    private final void setLastSeenChangeLogVersion(String str) {
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putString("CACHE_KEY_VIEWED_CHANGE_LOG_VERSION", str);
+        editorEdit.apply();
+    }
+
+    private final boolean shouldShowChangelog(Context context, long userId, String targetLanguage, Integer experimentBucket) {
+        String string;
+        int identifier = (experimentBucket != null && experimentBucket.intValue() == 1) ? context.getResources().getIdentifier("change_log_md_experiment_body", "string", context.getPackageName()) : C5419R.string.change_log_md_body;
+        CharSequence stringByLocale = StringUtilsKt.getStringByLocale(context, identifier, "en");
+        CharSequence stringByLocale2 = StringUtilsKt.getStringByLocale(context, identifier, targetLanguage);
+        if ((!C12238m.areEqual(targetLanguage, "en")) && C12238m.areEqual(stringByLocale, stringByLocale2)) {
+            return false;
+        }
+        if (experimentBucket != null && experimentBucket.intValue() == 1) {
+            String string2 = context.getString(C5419R.string.change_log_md_date);
+            C12238m.checkNotNullExpressionValue(string2, "context.getString(R.string.change_log_md_date)");
+            string = getChangelogExperimentString(context, "change_log_md_experiment_date", string2);
+        } else {
+            string = context.getString(C5419R.string.change_log_md_date);
+            C12238m.checkNotNullExpressionValue(string, "context.getString(R.string.change_log_md_date)");
+        }
+        String lastSeenChangeLogVersion = getLastSeenChangeLogVersion();
+        if (!(lastSeenChangeLogVersion == null || C12103t.isBlank(lastSeenChangeLogVersion)) && !isTooYoung(userId)) {
+            return !C12238m.areEqual(string, getLastSeenChangeLogVersion());
+        }
+        markSeen(string);
+        return false;
     }
 }

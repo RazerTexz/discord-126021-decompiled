@@ -35,63 +35,9 @@ public class MediaFragment extends Fragment {
     private SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a */
-    /* JADX INFO: compiled from: MediaFragment.kt */
-    public static final class ViewOnClickListenerC11187a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ View f22073j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ C1438h f22074k;
-
-        /* JADX INFO: renamed from: l */
-        public final /* synthetic */ MediaFragment f22075l;
-
-        /* JADX INFO: renamed from: m */
-        public final /* synthetic */ InterfaceC1429b f22076m;
-
-        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a$a */
-        /* JADX INFO: compiled from: MediaFragment.kt */
-        public static final class a extends AbstractC12240o implements Function0<Unit> {
-            public a() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public Unit invoke() {
-                RecyclerView recyclerView = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
-                C12238m.checkNotNull(recyclerView);
-                recyclerView.setLayoutManager(new GridLayoutManager(ViewOnClickListenerC11187a.this.f22073j.getContext(), 3));
-                RecyclerView recyclerView2 = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
-                C12238m.checkNotNull(recyclerView2);
-                recyclerView2.setAdapter(ViewOnClickListenerC11187a.this.f22074k);
-                RecyclerView recyclerView3 = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
-                C12238m.checkNotNull(recyclerView3);
-                recyclerView3.invalidateItemDecorations();
-                return Unit.f27425a;
-            }
-        }
-
-        public ViewOnClickListenerC11187a(View view, C1438h c1438h, MediaFragment mediaFragment, InterfaceC1429b interfaceC1429b) {
-            this.f22073j = view;
-            this.f22074k = c1438h;
-            this.f22075l = mediaFragment;
-            this.f22076m = interfaceC1429b;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            InterfaceC1429b interfaceC1429b = this.f22076m;
-            if (interfaceC1429b != null) {
-                interfaceC1429b.requestMediaPermissions(new a());
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$b */
     /* JADX INFO: compiled from: MediaFragment.kt */
-    public static final class C11188b implements SwipeRefreshLayout.OnRefreshListener {
+    public final class C11188b implements SwipeRefreshLayout.OnRefreshListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f22077a;
@@ -129,6 +75,65 @@ public class MediaFragment extends Fragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a */
+    /* JADX INFO: compiled from: MediaFragment.kt */
+    public final class ViewOnClickListenerC11187a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ View f22073j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ C1438h f22074k;
+
+        /* JADX INFO: renamed from: l */
+        public final /* synthetic */ MediaFragment f22075l;
+
+        /* JADX INFO: renamed from: m */
+        public final /* synthetic */ InterfaceC1429b f22076m;
+
+        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a$a */
+        /* JADX INFO: compiled from: MediaFragment.kt */
+        public final class a extends AbstractC12240o implements Function0<Unit> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                RecyclerView recyclerView = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
+                C12238m.checkNotNull(recyclerView);
+                recyclerView.setLayoutManager(new GridLayoutManager(ViewOnClickListenerC11187a.this.f22073j.getContext(), 3));
+                RecyclerView recyclerView2 = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
+                C12238m.checkNotNull(recyclerView2);
+                recyclerView2.setAdapter(ViewOnClickListenerC11187a.this.f22074k);
+                RecyclerView recyclerView3 = ViewOnClickListenerC11187a.this.f22075l.getRecyclerView();
+                C12238m.checkNotNull(recyclerView3);
+                recyclerView3.invalidateItemDecorations();
+                return Unit.f27425a;
+            }
+        }
+
+        public ViewOnClickListenerC11187a(View view, C1438h c1438h, MediaFragment mediaFragment, InterfaceC1429b interfaceC1429b) {
+            this.f22073j = view;
+            this.f22074k = c1438h;
+            this.f22075l = mediaFragment;
+            this.f22076m = interfaceC1429b;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            InterfaceC1429b interfaceC1429b = this.f22076m;
+            if (interfaceC1429b != null) {
+                interfaceC1429b.requestMediaPermissions(new a());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: getRecyclerView$flexinput_release, reason: from getter */
+    public final RecyclerView getRecyclerView() {
+        return this.recyclerView;
+    }
+
     private final boolean hasPermissions(String... requiredPermissionList) {
         int length = requiredPermissionList.length;
         int i = 0;
@@ -141,11 +146,6 @@ public class MediaFragment extends Fragment {
             }
             i++;
         }
-    }
-
-    /* JADX INFO: renamed from: getRecyclerView$flexinput_release, reason: from getter */
-    public final RecyclerView getRecyclerView() {
-        return this.recyclerView;
     }
 
     public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {

@@ -82,6 +82,25 @@ public final class C4994h extends AbstractC4997k {
         throw NotFoundException.f21665l;
     }
 
+    /* JADX INFO: renamed from: i */
+    public final void m6995i(C4962a c4962a, int i) throws NotFoundException {
+        int i2 = this.f13377e * 10;
+        if (i2 >= i) {
+            i2 = i;
+        }
+        while (true) {
+            i--;
+            if (i2 <= 0 || i < 0 || c4962a.m6935b(i)) {
+                break;
+            } else {
+                i2--;
+            }
+        }
+        if (i2 != 0) {
+            throw NotFoundException.f21665l;
+        }
+    }
+
     @Override // p007b.p225i.p414e.p426q.AbstractC4997k
     /* JADX INFO: renamed from: b */
     public Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException, FormatException {
@@ -172,25 +191,6 @@ public final class C4994h extends AbstractC4997k {
         } catch (Throwable th) {
             c4962a.m6939i();
             throw th;
-        }
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final void m6995i(C4962a c4962a, int i) throws NotFoundException {
-        int i2 = this.f13377e * 10;
-        if (i2 >= i) {
-            i2 = i;
-        }
-        while (true) {
-            i--;
-            if (i2 <= 0 || i < 0 || c4962a.m6935b(i)) {
-                break;
-            } else {
-                i2--;
-            }
-        }
-        if (i2 != 0) {
-            throw NotFoundException.f21665l;
         }
     }
 }

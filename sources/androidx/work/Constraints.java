@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class Constraints {
-    public static final Constraints NONE = new Builder().build();
 
     @ColumnInfo(name = "content_uri_triggers")
     private ContentUriTriggers mContentUriTriggers;
@@ -37,8 +36,9 @@ public final class Constraints {
 
     @ColumnInfo(name = "trigger_max_content_delay")
     private long mTriggerMaxContentDelay;
+    public static final Constraints NONE = new Builder().build();
 
-    public static final class Builder {
+    public final class Builder {
         public boolean mRequiresCharging = false;
         public boolean mRequiresDeviceIdle = false;
         public NetworkType mRequiredNetworkType = NetworkType.NOT_REQUIRED;

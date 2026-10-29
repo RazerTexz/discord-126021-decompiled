@@ -8,7 +8,7 @@ public class CleanupRegistry {
     private final ConcurrentMap<CleanupKey, CleanupTask> tasks = new ConcurrentHashMap();
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/CleanupRegistry$CleanupKey.SCL.lombok */
-    private static final class CleanupKey {
+    final class CleanupKey {
         private final String key;
         private final Object target;
 

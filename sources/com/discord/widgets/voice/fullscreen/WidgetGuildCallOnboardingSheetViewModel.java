@@ -39,7 +39,7 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-    public static final /* synthetic */ class C105511 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C105511 extends C12236k implements Function1<StoreState, Unit> {
         public C105511(WidgetGuildCallOnboardingSheetViewModel widgetGuildCallOnboardingSheetViewModel) {
             super(1, widgetGuildCallOnboardingSheetViewModel, WidgetGuildCallOnboardingSheetViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/voice/fullscreen/WidgetGuildCallOnboardingSheetViewModel$StoreState;)V", 0);
         }
@@ -58,10 +58,10 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-        public static final /* data */ class LaunchGuildCallScreen extends Event {
+        public final /* data */ class LaunchGuildCallScreen extends Event {
             private final long channelId;
             private final Long guildId;
 
@@ -81,16 +81,6 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
                 return launchGuildCallScreen.copy(j, l);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getGuildId() {
-                return this.guildId;
-            }
-
             public final LaunchGuildCallScreen copy(long channelId, Long guildId) {
                 return new LaunchGuildCallScreen(channelId, guildId);
             }
@@ -106,8 +96,18 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
                 return this.channelId == launchGuildCallScreen.channelId && C12238m.areEqual(this.guildId, launchGuildCallScreen.guildId);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Long getGuildId() {
+                return this.guildId;
             }
 
             public final Long getGuildId() {
@@ -129,7 +129,7 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-        public static final class ShowGuildVideoCapacityDialog extends Event {
+        public final class ShowGuildVideoCapacityDialog extends Event {
             public static final ShowGuildVideoCapacityDialog INSTANCE = new ShowGuildVideoCapacityDialog();
 
             private ShowGuildVideoCapacityDialog() {
@@ -146,7 +146,7 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Long guildId;
         private final VoiceChannelJoinability voiceChannelJoinability;
 
@@ -166,16 +166,6 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
             return storeState.copy(l, voiceChannelJoinability);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final VoiceChannelJoinability getVoiceChannelJoinability() {
-            return this.voiceChannelJoinability;
-        }
-
         public final StoreState copy(Long guildId, VoiceChannelJoinability voiceChannelJoinability) {
             C12238m.checkNotNullParameter(voiceChannelJoinability, "voiceChannelJoinability");
             return new StoreState(guildId, voiceChannelJoinability);
@@ -192,8 +182,18 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
             return C12238m.areEqual(this.guildId, storeState.guildId) && C12238m.areEqual(this.voiceChannelJoinability, storeState.voiceChannelJoinability);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Long getGuildId() {
             return this.guildId;
+        }
+
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final VoiceChannelJoinability getVoiceChannelJoinability() {
+            return this.voiceChannelJoinability;
         }
 
         public final VoiceChannelJoinability getVoiceChannelJoinability() {
@@ -218,10 +218,10 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Long guildId;
             private final VoiceChannelJoinability joinability;
 
@@ -243,16 +243,6 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
                 return loaded.copy(l, voiceChannelJoinability);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final VoiceChannelJoinability getJoinability() {
-                return this.joinability;
-            }
-
             public final Loaded copy(Long guildId, VoiceChannelJoinability joinability) {
                 C12238m.checkNotNullParameter(joinability, "joinability");
                 return new Loaded(guildId, joinability);
@@ -269,8 +259,18 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
                 return C12238m.areEqual(this.guildId, loaded.guildId) && C12238m.areEqual(this.joinability, loaded.joinability);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Long getGuildId() {
                 return this.guildId;
+            }
+
+            public final Long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final VoiceChannelJoinability getJoinability() {
+                return this.joinability;
             }
 
             public final VoiceChannelJoinability getJoinability() {
@@ -295,7 +295,7 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheetViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -335,6 +335,12 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
         updateViewState(new ViewState.Loaded(storeState.getGuildId(), storeState.getVoiceChannelJoinability()));
     }
 
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
+    }
+
     private final Observable<StoreState> observeStoreState() {
         Observable<StoreState> observableM11076j = Observable.m11076j(this.channelsStore.observeChannel(this.channelId), VoiceChannelJoinabilityUtils.INSTANCE.observeJoinability(this.channelId, (96 & 2) != 0 ? StoreStream.INSTANCE.getChannels() : this.channelsStore, (96 & 4) != 0 ? StoreStream.INSTANCE.getGuilds() : this.guildsStore, (96 & 8) != 0 ? StoreStream.INSTANCE.getPermissions() : this.permissionsStore, (96 & 16) != 0 ? StoreStream.INSTANCE.getVoiceStates() : this.voiceStatesStore, (96 & 32) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : null, (96 & 64) != 0 ? StoreStream.INSTANCE.getStageInstances() : null), new Func2<Channel, VoiceChannelJoinability, StoreState>() { // from class: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheetViewModel.observeStoreState.1
             @Override // p658rx.functions.Func2
@@ -346,12 +352,6 @@ public final class WidgetGuildCallOnboardingSheetViewModel extends AbstractC0859
         });
         C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…dId, joinability)\n      }");
         return observableM11076j;
-    }
-
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
     }
 
     @MainThread

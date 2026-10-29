@@ -9,35 +9,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackTransactionCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackTransactionCompleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentId = null;
-    private final Long paymentGateway = null;
     private final Long createdAt = null;
-    private final Long transactionId = null;
-    private final Long transactionType = null;
-    private final Long skuId = null;
     private final Float exchangeRate = null;
-    private final CharSequence presentmentCurrency = null;
-    private final CharSequence settlementCurrency = null;
-    private final Long presentmentAmount = null;
-    private final Long presentmentFees = null;
-    private final Long presentmentTax = null;
-    private final Long settlementAmount = null;
-    private final Long settlementFees = null;
-    private final Long settlementTax = null;
     private final Long netPresentmentAmount = null;
     private final Long netPresentmentFees = null;
     private final Long netPresentmentTax = null;
     private final Long netSettlementAmount = null;
     private final Long netSettlementFees = null;
     private final Long netSettlementTax = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final Long presentmentAmount = null;
+    private final CharSequence presentmentCurrency = null;
+    private final Long presentmentFees = null;
+    private final Long presentmentTax = null;
+    private final Long settlementAmount = null;
+    private final CharSequence settlementCurrency = null;
+    private final Long settlementFees = null;
+    private final Long settlementTax = null;
+    private final Long skuId = null;
+    private TrackBase trackBase;
+    private final Long transactionId = null;
+    private final Long transactionType = null;
     private final transient String analyticsSchemaTypeName = "transaction_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +42,12 @@ public final /* data */ class TrackTransactionCompleted implements AnalyticsSche
         }
         TrackTransactionCompleted trackTransactionCompleted = (TrackTransactionCompleted) other;
         return C12238m.areEqual(this.paymentId, trackTransactionCompleted.paymentId) && C12238m.areEqual(this.paymentGateway, trackTransactionCompleted.paymentGateway) && C12238m.areEqual(this.createdAt, trackTransactionCompleted.createdAt) && C12238m.areEqual(this.transactionId, trackTransactionCompleted.transactionId) && C12238m.areEqual(this.transactionType, trackTransactionCompleted.transactionType) && C12238m.areEqual(this.skuId, trackTransactionCompleted.skuId) && C12238m.areEqual(this.exchangeRate, trackTransactionCompleted.exchangeRate) && C12238m.areEqual(this.presentmentCurrency, trackTransactionCompleted.presentmentCurrency) && C12238m.areEqual(this.settlementCurrency, trackTransactionCompleted.settlementCurrency) && C12238m.areEqual(this.presentmentAmount, trackTransactionCompleted.presentmentAmount) && C12238m.areEqual(this.presentmentFees, trackTransactionCompleted.presentmentFees) && C12238m.areEqual(this.presentmentTax, trackTransactionCompleted.presentmentTax) && C12238m.areEqual(this.settlementAmount, trackTransactionCompleted.settlementAmount) && C12238m.areEqual(this.settlementFees, trackTransactionCompleted.settlementFees) && C12238m.areEqual(this.settlementTax, trackTransactionCompleted.settlementTax) && C12238m.areEqual(this.netPresentmentAmount, trackTransactionCompleted.netPresentmentAmount) && C12238m.areEqual(this.netPresentmentFees, trackTransactionCompleted.netPresentmentFees) && C12238m.areEqual(this.netPresentmentTax, trackTransactionCompleted.netPresentmentTax) && C12238m.areEqual(this.netSettlementAmount, trackTransactionCompleted.netSettlementAmount) && C12238m.areEqual(this.netSettlementFees, trackTransactionCompleted.netSettlementFees) && C12238m.areEqual(this.netSettlementTax, trackTransactionCompleted.netSettlementTax);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -25,8 +25,8 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
     public long mUpdateThrottle;
 
     public final class LoadTask extends ModernAsyncTask<Void, Void, D> implements Runnable {
-        private final CountDownLatch mDone = new CountDownLatch(1);
         public boolean waiting;
+        private final CountDownLatch mDone = new CountDownLatch(1);
 
         public LoadTask() {
         }

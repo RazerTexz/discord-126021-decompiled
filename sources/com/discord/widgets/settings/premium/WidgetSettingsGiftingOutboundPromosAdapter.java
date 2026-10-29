@@ -25,12 +25,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetSettingsGiftingOutboundPromosAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapter<SettingsGiftingViewModel.OutboundPromoItem, OutboundPromoViewHolder> {
-    private static final SimpleItemCallback<SettingsGiftingViewModel.OutboundPromoItem> DIFF_CALLBACK = new SimpleItemCallback<>(C9920x78cf4fc0.INSTANCE);
     private final Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> onButtonClick;
     private final Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> onMoreDetailsClick;
+    private static final SimpleItemCallback<SettingsGiftingViewModel.OutboundPromoItem> DIFF_CALLBACK = new SimpleItemCallback<>(C9920x78cf4fc0.INSTANCE);
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingOutboundPromosAdapter.kt */
-    public static final class OutboundPromoViewHolder extends RecyclerView.ViewHolder {
+    public final class OutboundPromoViewHolder extends RecyclerView.ViewHolder {
         private final ViewGiftOutboundPromoListItemBinding binding;
         private SettingsGiftingViewModel.OutboundPromoItem boundItem;
         private final Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> onButtonClick;

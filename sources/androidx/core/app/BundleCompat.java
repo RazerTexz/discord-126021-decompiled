@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 /* JADX INFO: loaded from: classes.dex */
 public final class BundleCompat {
 
-    public static class BundleCompatBaseImpl {
+    public class BundleCompatBaseImpl {
         private static final String TAG = "BundleCompatBaseImpl";
         private static Method sGetIBinderMethod;
         private static boolean sGetIBinderMethodFetched;

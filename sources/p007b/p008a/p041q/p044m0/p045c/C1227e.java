@@ -96,7 +96,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$a */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class a extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class a extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ int $audioSsrc;
         public final /* synthetic */ boolean $isMuted;
         public final /* synthetic */ long $resolvedVideoSsrc;
@@ -128,7 +128,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$b */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<Connection, Unit> {
+    public final /* synthetic */ class b extends C12236k implements Function1<Connection, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final b f1715j = new b();
@@ -148,7 +148,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$c */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class c extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class c extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public c() {
             super(1);
         }
@@ -165,7 +165,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$d */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class d extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class d extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $disabled;
         public final /* synthetic */ long $userId;
 
@@ -187,7 +187,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$e */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class e extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class e extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public final /* synthetic */ KrispOveruseDetector.Status $status;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -207,7 +207,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$f */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class f extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class f extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ Function1 $onStats;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -227,7 +227,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$g */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class g extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class g extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
 
         /* JADX INFO: renamed from: $e */
         public final /* synthetic */ MediaEngineConnection.FailedConnectionException f1716$e;
@@ -249,7 +249,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$h */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class h extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class h extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ AudioDecoder $audioDecoder;
         public final /* synthetic */ AudioEncoder $audioEncoder;
         public final /* synthetic */ VideoDecoder $videoDecoder;
@@ -275,7 +275,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$i */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class i extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class i extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ EncryptionSettings $encryptionSettings;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -295,7 +295,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$j */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class j extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class j extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ MediaEngineConnection.InputMode $inputMode;
         public final /* synthetic */ MediaEngineConnection.C5647c $inputModeOptions;
 
@@ -324,7 +324,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$k */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class k extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class k extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $mute;
         public final /* synthetic */ long $userId;
 
@@ -346,7 +346,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$l */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class l extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class l extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public final /* synthetic */ boolean $mute;
         public final /* synthetic */ long $userId;
 
@@ -368,7 +368,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$m */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class m extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class m extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public final /* synthetic */ boolean $offScreen;
         public final /* synthetic */ long $userId;
 
@@ -390,7 +390,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$n */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class n extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class n extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ long $userId;
         public final /* synthetic */ float $volume;
 
@@ -412,7 +412,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$o */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class o extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class o extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $active;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -432,7 +432,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$p */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class p extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class p extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public final /* synthetic */ int $frameRate;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -452,7 +452,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$q */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class q extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
+    public final class q extends AbstractC12240o implements Function1<MediaEngineConnection.InterfaceC5648d, Unit> {
         public final /* synthetic */ MediaEngineConnection.C5646b $quality;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -472,7 +472,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$r */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class r extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class r extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ int $frameRate;
         public final /* synthetic */ MediaEngineConnection.C5646b $quality;
 
@@ -495,7 +495,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$s */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class s extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class s extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $selfDeaf;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -515,7 +515,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$t */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class t extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class t extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $selfMute;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -535,7 +535,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$u */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class u extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class u extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ boolean $isVideoBroadcast;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -555,7 +555,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$v */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class v extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class v extends AbstractC12240o implements Function1<Connection, Unit> {
         public final /* synthetic */ C1222b $screenCapturer;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -576,7 +576,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$w */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class w extends MediaProjection.Callback {
+    public final class w extends MediaProjection.Callback {
         @Override // android.media.projection.MediaProjection.Callback
         public void onStop() {
         }
@@ -584,7 +584,7 @@ public final class C1227e implements MediaEngineConnection {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.e$x */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class x extends AbstractC12240o implements Function1<Connection, Unit> {
+    public final class x extends AbstractC12240o implements Function1<Connection, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final x f1717j = new x();
@@ -641,10 +641,39 @@ public final class C1227e implements MediaEngineConnection {
         m318y(new C1223a(this, connectionState));
     }
 
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
+    public void destroy() {
+        Logger.i$default(this.f1709l, "MediaEngineConnectionLegacy", "destroy(). Disconnecting from server", null, 4, null);
+        m319z(b.f1715j);
+        m318y(new c());
+    }
+
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
+    public MediaEngineConnection.Type getType() {
+        return this.f1713p;
+    }
+
     /* JADX INFO: renamed from: x */
     public static final void m294x(C1227e c1227e, Function0 function0) {
         ExecutorServiceC1192c executorServiceC1192c = c1227e.f1708k;
         executorServiceC1192c.f1609l.execute(new RunnableC1231i(function0));
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final void m318y(Function1<? super MediaEngineConnection.InterfaceC5648d, Unit> function1) {
+        for (MediaEngineConnection.InterfaceC5648d interfaceC5648d : this.f1698a) {
+            try {
+                C12238m.checkNotNullExpressionValue(interfaceC5648d, "it");
+                function1.invoke(interfaceC5648d);
+            } catch (Exception e2) {
+                Logger.e$default(this.f1709l, "MediaEngineConnectionLegacy", "Error in listener", e2, null, 8, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final synchronized void m319z(Function1<? super Connection, Unit> function1) {
+        function1.invoke(this.f1707j);
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
@@ -679,13 +708,6 @@ public final class C1227e implements MediaEngineConnection {
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
-    public void destroy() {
-        Logger.i$default(this.f1709l, "MediaEngineConnectionLegacy", "destroy(). Disconnecting from server", null, 4, null);
-        m319z(b.f1715j);
-        m318y(new c());
-    }
-
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
     /* JADX INFO: renamed from: e */
     public void mo299e(long j2, float f2) {
         m319z(new n(j2, f2));
@@ -702,11 +724,6 @@ public final class C1227e implements MediaEngineConnection {
     /* JADX INFO: renamed from: g */
     public boolean mo301g(long j2) {
         return this.f1704g.contains(Long.valueOf(j2));
-    }
-
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
-    public MediaEngineConnection.Type getType() {
-        return this.f1713p;
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection
@@ -885,22 +902,5 @@ public final class C1227e implements MediaEngineConnection {
             this.f1703f.remove(Long.valueOf(j2));
         }
         m318y(new l(j2, z2));
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final void m318y(Function1<? super MediaEngineConnection.InterfaceC5648d, Unit> function1) {
-        for (MediaEngineConnection.InterfaceC5648d interfaceC5648d : this.f1698a) {
-            try {
-                C12238m.checkNotNullExpressionValue(interfaceC5648d, "it");
-                function1.invoke(interfaceC5648d);
-            } catch (Exception e2) {
-                Logger.e$default(this.f1709l, "MediaEngineConnectionLegacy", "Error in listener", e2, null, 8, null);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final synchronized void m319z(Function1<? super Connection, Unit> function1) {
-        function1.invoke(this.f1707j);
     }
 }

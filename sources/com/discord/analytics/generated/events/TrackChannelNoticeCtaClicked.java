@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelNoticeCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence source = null;
     private final Long guildId = null;
     private final CharSequence noticeType = null;
+    private final CharSequence source = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "channel_notice_cta_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsS
         }
         TrackChannelNoticeCtaClicked trackChannelNoticeCtaClicked = (TrackChannelNoticeCtaClicked) other;
         return C12238m.areEqual(this.source, trackChannelNoticeCtaClicked.source) && C12238m.areEqual(this.guildId, trackChannelNoticeCtaClicked.guildId) && C12238m.areEqual(this.noticeType, trackChannelNoticeCtaClicked.noticeType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

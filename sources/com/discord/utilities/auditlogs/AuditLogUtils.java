@@ -85,6 +85,158 @@ public final class AuditLogUtils {
     private AuditLogUtils() {
     }
 
+    public final List<Integer> getALL_ACTION_TYPES() {
+        return (List) ALL_ACTION_TYPES.getValue();
+    }
+
+    @StringRes
+    public final int getActionName(int actionTypeId) {
+        if (actionTypeId == 0) {
+            return C5419R.string.guild_settings_filter_all_actions;
+        }
+        if (actionTypeId == 1) {
+            return C5419R.string.guild_settings_action_filter_guild_update;
+        }
+        switch (actionTypeId) {
+            case 10:
+                return C5419R.string.guild_settings_action_filter_channel_create;
+            case 11:
+                return C5419R.string.guild_settings_action_filter_channel_update;
+            case 12:
+                return C5419R.string.guild_settings_action_filter_channel_delete;
+            case 13:
+                return C5419R.string.guild_settings_action_filter_channel_overwrite_create;
+            case 14:
+                return C5419R.string.guild_settings_action_filter_channel_overwrite_update;
+            case 15:
+                return C5419R.string.guild_settings_action_filter_channel_overwrite_delete;
+            default:
+                switch (actionTypeId) {
+                    case 20:
+                        return C5419R.string.guild_settings_action_filter_member_kick;
+                    case 21:
+                        return C5419R.string.guild_settings_action_filter_member_prune;
+                    case 22:
+                        return C5419R.string.guild_settings_action_filter_member_ban_add;
+                    case 23:
+                        return C5419R.string.guild_settings_action_filter_member_ban_remove;
+                    case 24:
+                        return C5419R.string.guild_settings_action_filter_member_update;
+                    case 25:
+                        return C5419R.string.guild_settings_action_filter_member_role_update;
+                    case 26:
+                        return C5419R.string.guild_settings_action_filter_member_move;
+                    case 27:
+                        return C5419R.string.guild_settings_action_filter_member_disconnect;
+                    case 28:
+                        return C5419R.string.guild_settings_action_filter_bot_add;
+                    case 100:
+                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_create;
+                    case 101:
+                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_update;
+                    case 102:
+                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_delete;
+                    case 110:
+                        return C5419R.string.guild_settings_action_filter_thread_create;
+                    case 111:
+                        return C5419R.string.guild_settings_action_filter_thread_update;
+                    case 112:
+                        return C5419R.string.guild_settings_action_filter_thread_delete;
+                    default:
+                        switch (actionTypeId) {
+                            case 30:
+                                return C5419R.string.guild_settings_action_filter_role_create;
+                            case 31:
+                                return C5419R.string.guild_settings_action_filter_role_update;
+                            case 32:
+                                return C5419R.string.guild_settings_action_filter_role_delete;
+                            default:
+                                switch (actionTypeId) {
+                                    case 40:
+                                        return C5419R.string.guild_settings_action_filter_invite_create;
+                                    case 41:
+                                        return C5419R.string.guild_settings_action_filter_invite_update;
+                                    case 42:
+                                        return C5419R.string.guild_settings_action_filter_invite_delete;
+                                    default:
+                                        switch (actionTypeId) {
+                                            case 50:
+                                                return C5419R.string.guild_settings_action_filter_webhook_create;
+                                            case 51:
+                                                return C5419R.string.guild_settings_action_filter_webhook_update;
+                                            case 52:
+                                                return C5419R.string.guild_settings_action_filter_webhook_delete;
+                                            default:
+                                                switch (actionTypeId) {
+                                                    case 60:
+                                                        return C5419R.string.guild_settings_action_filter_emoji_create;
+                                                    case 61:
+                                                        return C5419R.string.guild_settings_action_filter_emoji_update;
+                                                    case 62:
+                                                        return C5419R.string.guild_settings_action_filter_emoji_delete;
+                                                    default:
+                                                        switch (actionTypeId) {
+                                                            case 72:
+                                                                return C5419R.string.guild_settings_action_filter_message_delete;
+                                                            case 73:
+                                                                return C5419R.string.guild_settings_action_filter_message_bulk_delete;
+                                                            case 74:
+                                                                return C5419R.string.guild_settings_action_filter_message_pin;
+                                                            case 75:
+                                                                return C5419R.string.guild_settings_action_filter_message_unpin;
+                                                            default:
+                                                                switch (actionTypeId) {
+                                                                    case 80:
+                                                                        return C5419R.string.guild_settings_action_filter_integration_create;
+                                                                    case 81:
+                                                                        return C5419R.string.guild_settings_action_filter_integration_update;
+                                                                    case 82:
+                                                                        return C5419R.string.guild_settings_action_filter_integration_delete;
+                                                                    case 83:
+                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_create;
+                                                                    case 84:
+                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_update;
+                                                                    case 85:
+                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_delete;
+                                                                    default:
+                                                                        switch (actionTypeId) {
+                                                                            case 90:
+                                                                                return C5419R.string.guild_settings_action_filter_sticker_create;
+                                                                            case 91:
+                                                                                return C5419R.string.guild_settings_action_filter_sticker_update;
+                                                                            case 92:
+                                                                                return C5419R.string.guild_settings_action_filter_sticker_delete;
+                                                                            default:
+                                                                                return 0;
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+    }
+
+    @DrawableRes
+    public final int getActionTypeImage(int actionTypeId) {
+        ModelAuditLogEntry.ActionType actionType = ModelAuditLogEntry.getActionType(actionTypeId);
+        if (actionType != null) {
+            int iOrdinal = actionType.ordinal();
+            if (iOrdinal == 1) {
+                return C5419R.drawable.ic_audit_audit_create_24dp;
+            }
+            if (iOrdinal == 2) {
+                return C5419R.drawable.ic_audit_audit_update_24dp;
+            }
+            if (iOrdinal == 3) {
+                return C5419R.drawable.ic_audit_audit_delete_24dp;
+            }
+        }
+        return 0;
+    }
+
     @StringRes
     private final int getEntryTitle(ModelAuditLogEntry auditLogEntry) {
         int actionTypeId = auditLogEntry.getActionTypeId();
@@ -273,239 +425,6 @@ public final class AuditLogUtils {
             str = "";
         }
         return auditLogUtils.getHeaderString(modelAuditLogEntry, charSequence, context, map, str);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:22:0x003d  */
-    private final String getTargetText(ModelAuditLogEntry auditLogEntry, Map<ModelAuditLogEntry.TargetType, ? extends Map<Long, CharSequence>> targets, String channelPrefix) {
-        CharSequence string;
-        ModelAuditLogEntry.TargetType targetType = auditLogEntry.getTargetType();
-        if (targetType == ModelAuditLogEntry.TargetType.CHANNEL_OVERWRITE) {
-            targetType = ModelAuditLogEntry.TargetType.CHANNEL;
-        }
-        Map<Long, CharSequence> map = targets.get(targetType);
-        if (map == null || (string = map.get(Long.valueOf(auditLogEntry.getTargetId()))) == null) {
-            if (targetType != null) {
-                int iOrdinal = targetType.ordinal();
-                if (iOrdinal == 3) {
-                    StringBuilder sbM833U = C1643a.m833U(channelPrefix);
-                    sbM833U.append(getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME));
-                    string = sbM833U.toString();
-                } else if (iOrdinal == 10) {
-                    string = getTargetValue(auditLogEntry, "type");
-                } else if (iOrdinal == 6) {
-                    ModelAuditLogEntry.Options options = auditLogEntry.getOptions();
-                    if (options == null || (string = options.getRoleName()) == null) {
-                        string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME);
-                    }
-                } else if (iOrdinal == 7) {
-                    string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_CODE);
-                } else if (iOrdinal != 8) {
-                    string = null;
-                } else {
-                    string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME);
-                }
-            } else {
-                string = null;
-            }
-        }
-        if (string == null) {
-            string = Long.valueOf(auditLogEntry.getTargetId());
-        }
-        return string.toString();
-    }
-
-    public static /* synthetic */ String getTargetText$default(AuditLogUtils auditLogUtils, ModelAuditLogEntry modelAuditLogEntry, Map map, String str, int i, Object obj) {
-        if ((i & 4) != 0) {
-            str = "";
-        }
-        return auditLogUtils.getTargetText(modelAuditLogEntry, map, str);
-    }
-
-    private final Object getTargetValue(ModelAuditLogEntry modelAuditLogEntry, String str) {
-        Object next;
-        ModelAuditLogEntry.Change change;
-        List<ModelAuditLogEntry.Change> changes = modelAuditLogEntry.getChanges();
-        if (changes == null) {
-            return null;
-        }
-        Iterator<T> it = changes.iterator();
-        do {
-            if (!it.hasNext()) {
-                next = null;
-                break;
-            }
-            next = it.next();
-            change = (ModelAuditLogEntry.Change) next;
-            C12238m.checkNotNullExpressionValue(change, "it");
-        } while (!C12238m.areEqual(change.getKey(), str));
-        ModelAuditLogEntry.Change change2 = (ModelAuditLogEntry.Change) next;
-        if (change2 != null) {
-            return change2.getValue();
-        }
-        return null;
-    }
-
-    private final CharSequence getTimestampText(long timestamp, Context context) {
-        Clock clock = ClockFactory.get();
-        long jCurrentTimeMillis = clock.currentTimeMillis() - timestamp;
-        CharSequence relativeTimeSpanString = DateUtils.getRelativeTimeSpanString(timestamp, clock.currentTimeMillis(), 86400000L, 131092);
-        if (TimeUnit.MILLISECONDS.toDays(jCurrentTimeMillis) < 7) {
-            return C1107b.m216h(context, C5419R.string.guild_settings_audit_log_time_at_android, new Object[]{relativeTimeSpanString, DateUtils.formatDateTime(context, timestamp, 1)}, null, 4);
-        }
-        C12238m.checkNotNullExpressionValue(relativeTimeSpanString, "timeString");
-        return relativeTimeSpanString;
-    }
-
-    public final List<Integer> getALL_ACTION_TYPES() {
-        return (List) ALL_ACTION_TYPES.getValue();
-    }
-
-    @StringRes
-    public final int getActionName(int actionTypeId) {
-        if (actionTypeId == 0) {
-            return C5419R.string.guild_settings_filter_all_actions;
-        }
-        if (actionTypeId == 1) {
-            return C5419R.string.guild_settings_action_filter_guild_update;
-        }
-        switch (actionTypeId) {
-            case 10:
-                return C5419R.string.guild_settings_action_filter_channel_create;
-            case 11:
-                return C5419R.string.guild_settings_action_filter_channel_update;
-            case 12:
-                return C5419R.string.guild_settings_action_filter_channel_delete;
-            case 13:
-                return C5419R.string.guild_settings_action_filter_channel_overwrite_create;
-            case 14:
-                return C5419R.string.guild_settings_action_filter_channel_overwrite_update;
-            case 15:
-                return C5419R.string.guild_settings_action_filter_channel_overwrite_delete;
-            default:
-                switch (actionTypeId) {
-                    case 20:
-                        return C5419R.string.guild_settings_action_filter_member_kick;
-                    case 21:
-                        return C5419R.string.guild_settings_action_filter_member_prune;
-                    case 22:
-                        return C5419R.string.guild_settings_action_filter_member_ban_add;
-                    case 23:
-                        return C5419R.string.guild_settings_action_filter_member_ban_remove;
-                    case 24:
-                        return C5419R.string.guild_settings_action_filter_member_update;
-                    case 25:
-                        return C5419R.string.guild_settings_action_filter_member_role_update;
-                    case 26:
-                        return C5419R.string.guild_settings_action_filter_member_move;
-                    case 27:
-                        return C5419R.string.guild_settings_action_filter_member_disconnect;
-                    case 28:
-                        return C5419R.string.guild_settings_action_filter_bot_add;
-                    case 100:
-                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_create;
-                    case 101:
-                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_update;
-                    case 102:
-                        return C5419R.string.guild_settings_action_filter_guild_scheduled_event_delete;
-                    case 110:
-                        return C5419R.string.guild_settings_action_filter_thread_create;
-                    case 111:
-                        return C5419R.string.guild_settings_action_filter_thread_update;
-                    case 112:
-                        return C5419R.string.guild_settings_action_filter_thread_delete;
-                    default:
-                        switch (actionTypeId) {
-                            case 30:
-                                return C5419R.string.guild_settings_action_filter_role_create;
-                            case 31:
-                                return C5419R.string.guild_settings_action_filter_role_update;
-                            case 32:
-                                return C5419R.string.guild_settings_action_filter_role_delete;
-                            default:
-                                switch (actionTypeId) {
-                                    case 40:
-                                        return C5419R.string.guild_settings_action_filter_invite_create;
-                                    case 41:
-                                        return C5419R.string.guild_settings_action_filter_invite_update;
-                                    case 42:
-                                        return C5419R.string.guild_settings_action_filter_invite_delete;
-                                    default:
-                                        switch (actionTypeId) {
-                                            case 50:
-                                                return C5419R.string.guild_settings_action_filter_webhook_create;
-                                            case 51:
-                                                return C5419R.string.guild_settings_action_filter_webhook_update;
-                                            case 52:
-                                                return C5419R.string.guild_settings_action_filter_webhook_delete;
-                                            default:
-                                                switch (actionTypeId) {
-                                                    case 60:
-                                                        return C5419R.string.guild_settings_action_filter_emoji_create;
-                                                    case 61:
-                                                        return C5419R.string.guild_settings_action_filter_emoji_update;
-                                                    case 62:
-                                                        return C5419R.string.guild_settings_action_filter_emoji_delete;
-                                                    default:
-                                                        switch (actionTypeId) {
-                                                            case 72:
-                                                                return C5419R.string.guild_settings_action_filter_message_delete;
-                                                            case 73:
-                                                                return C5419R.string.guild_settings_action_filter_message_bulk_delete;
-                                                            case 74:
-                                                                return C5419R.string.guild_settings_action_filter_message_pin;
-                                                            case 75:
-                                                                return C5419R.string.guild_settings_action_filter_message_unpin;
-                                                            default:
-                                                                switch (actionTypeId) {
-                                                                    case 80:
-                                                                        return C5419R.string.guild_settings_action_filter_integration_create;
-                                                                    case 81:
-                                                                        return C5419R.string.guild_settings_action_filter_integration_update;
-                                                                    case 82:
-                                                                        return C5419R.string.guild_settings_action_filter_integration_delete;
-                                                                    case 83:
-                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_create;
-                                                                    case 84:
-                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_update;
-                                                                    case 85:
-                                                                        return C5419R.string.guild_settings_action_filter_stage_instance_delete;
-                                                                    default:
-                                                                        switch (actionTypeId) {
-                                                                            case 90:
-                                                                                return C5419R.string.guild_settings_action_filter_sticker_create;
-                                                                            case 91:
-                                                                                return C5419R.string.guild_settings_action_filter_sticker_update;
-                                                                            case 92:
-                                                                                return C5419R.string.guild_settings_action_filter_sticker_delete;
-                                                                            default:
-                                                                                return 0;
-                                                                        }
-                                                                }
-                                                        }
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-    }
-
-    @DrawableRes
-    public final int getActionTypeImage(int actionTypeId) {
-        ModelAuditLogEntry.ActionType actionType = ModelAuditLogEntry.getActionType(actionTypeId);
-        if (actionType != null) {
-            int iOrdinal = actionType.ordinal();
-            if (iOrdinal == 1) {
-                return C5419R.drawable.ic_audit_audit_create_24dp;
-            }
-            if (iOrdinal == 2) {
-                return C5419R.drawable.ic_audit_audit_update_24dp;
-            }
-            if (iOrdinal == 3) {
-                return C5419R.drawable.ic_audit_audit_delete_24dp;
-            }
-        }
-        return 0;
     }
 
     /* JADX WARN: Code duplicated, block: B:106:0x0243  */
@@ -737,6 +656,52 @@ public final class AuditLogUtils {
         }
     }
 
+    public static /* synthetic */ String getTargetText$default(AuditLogUtils auditLogUtils, ModelAuditLogEntry modelAuditLogEntry, Map map, String str, int i, Object obj) {
+        if ((i & 4) != 0) {
+            str = "";
+        }
+        return auditLogUtils.getTargetText(modelAuditLogEntry, map, str);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:22:0x003d  */
+    private final String getTargetText(ModelAuditLogEntry auditLogEntry, Map<ModelAuditLogEntry.TargetType, ? extends Map<Long, CharSequence>> targets, String channelPrefix) {
+        CharSequence string;
+        ModelAuditLogEntry.TargetType targetType = auditLogEntry.getTargetType();
+        if (targetType == ModelAuditLogEntry.TargetType.CHANNEL_OVERWRITE) {
+            targetType = ModelAuditLogEntry.TargetType.CHANNEL;
+        }
+        Map<Long, CharSequence> map = targets.get(targetType);
+        if (map == null || (string = map.get(Long.valueOf(auditLogEntry.getTargetId()))) == null) {
+            if (targetType != null) {
+                int iOrdinal = targetType.ordinal();
+                if (iOrdinal == 3) {
+                    StringBuilder sbM833U = C1643a.m833U(channelPrefix);
+                    sbM833U.append(getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME));
+                    string = sbM833U.toString();
+                } else if (iOrdinal == 10) {
+                    string = getTargetValue(auditLogEntry, "type");
+                } else if (iOrdinal == 6) {
+                    ModelAuditLogEntry.Options options = auditLogEntry.getOptions();
+                    if (options == null || (string = options.getRoleName()) == null) {
+                        string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                    }
+                } else if (iOrdinal == 7) {
+                    string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_CODE);
+                } else if (iOrdinal != 8) {
+                    string = null;
+                } else {
+                    string = getTargetValue(auditLogEntry, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                }
+            } else {
+                string = null;
+            }
+        }
+        if (string == null) {
+            string = Long.valueOf(auditLogEntry.getTargetId());
+        }
+        return string.toString();
+    }
+
     @DrawableRes
     public final int getTargetTypeImage(View view, int actionTypeId) {
         C12238m.checkNotNullParameter(view, "view");
@@ -780,6 +745,30 @@ public final class AuditLogUtils {
         }
     }
 
+    private final Object getTargetValue(ModelAuditLogEntry modelAuditLogEntry, String str) {
+        Object next;
+        ModelAuditLogEntry.Change change;
+        List<ModelAuditLogEntry.Change> changes = modelAuditLogEntry.getChanges();
+        if (changes == null) {
+            return null;
+        }
+        Iterator<T> it = changes.iterator();
+        do {
+            if (!it.hasNext()) {
+                next = null;
+                break;
+            }
+            next = it.next();
+            change = (ModelAuditLogEntry.Change) next;
+            C12238m.checkNotNullExpressionValue(change, "it");
+        } while (!C12238m.areEqual(change.getKey(), str));
+        ModelAuditLogEntry.Change change2 = (ModelAuditLogEntry.Change) next;
+        if (change2 != null) {
+            return change2.getValue();
+        }
+        return null;
+    }
+
     public final long getTimestampStart(ModelAuditLogEntry modelAuditLogEntry) {
         C12238m.checkNotNullParameter(modelAuditLogEntry, "$this$getTimestampStart");
         return (modelAuditLogEntry.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH;
@@ -798,5 +787,16 @@ public final class AuditLogUtils {
         }
         C12238m.checkNotNullExpressionValue(timestampEnd, "auditLogEntry.timestampEnd ?: 0L");
         return timestampText + " - " + getTimestampText(timestampEnd.longValue(), context);
+    }
+
+    private final CharSequence getTimestampText(long timestamp, Context context) {
+        Clock clock = ClockFactory.get();
+        long jCurrentTimeMillis = clock.currentTimeMillis() - timestamp;
+        CharSequence relativeTimeSpanString = DateUtils.getRelativeTimeSpanString(timestamp, clock.currentTimeMillis(), 86400000L, 131092);
+        if (TimeUnit.MILLISECONDS.toDays(jCurrentTimeMillis) < 7) {
+            return C1107b.m216h(context, C5419R.string.guild_settings_audit_log_time_at_android, new Object[]{relativeTimeSpanString, DateUtils.formatDateTime(context, timestamp, 1)}, null, 4);
+        }
+        C12238m.checkNotNullExpressionValue(relativeTimeSpanString, "timeString");
+        return relativeTimeSpanString;
     }
 }

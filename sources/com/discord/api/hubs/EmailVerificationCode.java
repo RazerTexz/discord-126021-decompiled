@@ -10,16 +10,6 @@ public final /* data */ class EmailVerificationCode {
     private final Guild guild;
     private final boolean joined;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getJoined() {
-        return this.joined;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,16 @@ public final /* data */ class EmailVerificationCode {
         }
         EmailVerificationCode emailVerificationCode = (EmailVerificationCode) other;
         return C12238m.areEqual(this.guild, emailVerificationCode.guild) && this.joined == emailVerificationCode.joined;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getJoined() {
+        return this.joined;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

@@ -24,11 +24,11 @@ import java.util.Map;
 public class Camera2Enumerator implements CameraEnumerator {
     private static final double NANO_SECONDS_PER_SECOND = 1.0E9d;
     private static final String TAG = "Camera2Enumerator";
-    private static final Map<String, List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats = new HashMap();
 
     @Nullable
     public final CameraManager cameraManager;
     public final Context context;
+    private static final Map<String, List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats = new HashMap();
 
     public Camera2Enumerator(Context context) {
         this.context = context;
@@ -53,6 +53,11 @@ public class Camera2Enumerator implements CameraEnumerator {
         return arrayList;
     }
 
+    @Override // org.webrtc.CameraEnumerator
+    public CameraVideoCapturer createCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
+        return new Camera2Capturer(this.context, str, cameraEventsHandler);
+    }
+
     @Nullable
     private CameraCharacteristics getCameraCharacteristics(String str) {
         try {
@@ -63,8 +68,24 @@ public class Camera2Enumerator implements CameraEnumerator {
         }
     }
 
+    @Override // org.webrtc.CameraEnumerator
+    public String[] getDeviceNames() {
+        try {
+            return this.cameraManager.getCameraIdList();
+        } catch (AndroidException e) {
+            Logging.m11028e(TAG, "Camera access exception: " + e);
+            return new String[0];
+        }
+    }
+
     public static int getFpsUnitFactor(Range<Integer>[] rangeArr) {
         return (rangeArr.length != 0 && ((Integer) rangeArr[0].getUpper()).intValue() >= 1000) ? 1 : 1000;
+    }
+
+    @Override // org.webrtc.CameraEnumerator
+    @Nullable
+    public List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(String str) {
+        return getSupportedFormats(this.context, str);
     }
 
     public static List<Size> getSupportedSizes(CameraCharacteristics cameraCharacteristics) {
@@ -84,6 +105,18 @@ public class Camera2Enumerator implements CameraEnumerator {
         return arrayList;
     }
 
+    @Override // org.webrtc.CameraEnumerator
+    public boolean isBackFacing(String str) {
+        CameraCharacteristics cameraCharacteristics = getCameraCharacteristics(str);
+        return cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 1;
+    }
+
+    @Override // org.webrtc.CameraEnumerator
+    public boolean isFrontFacing(String str) {
+        CameraCharacteristics cameraCharacteristics = getCameraCharacteristics(str);
+        return cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0;
+    }
+
     public static boolean isSupported(Context context) {
         CameraManager cameraManager = (CameraManager) context.getSystemService(ChatInputComponentTypes.CAMERA);
         try {
@@ -101,39 +134,6 @@ public class Camera2Enumerator implements CameraEnumerator {
             Logging.m11028e(TAG, "Uncaught camera exception: " + th);
             return false;
         }
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    public CameraVideoCapturer createCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
-        return new Camera2Capturer(this.context, str, cameraEventsHandler);
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    public String[] getDeviceNames() {
-        try {
-            return this.cameraManager.getCameraIdList();
-        } catch (AndroidException e) {
-            Logging.m11028e(TAG, "Camera access exception: " + e);
-            return new String[0];
-        }
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    @Nullable
-    public List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(String str) {
-        return getSupportedFormats(this.context, str);
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    public boolean isBackFacing(String str) {
-        CameraCharacteristics cameraCharacteristics = getCameraCharacteristics(str);
-        return cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 1;
-    }
-
-    @Override // org.webrtc.CameraEnumerator
-    public boolean isFrontFacing(String str) {
-        CameraCharacteristics cameraCharacteristics = getCameraCharacteristics(str);
-        return cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0;
     }
 
     @Nullable

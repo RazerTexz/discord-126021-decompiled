@@ -24,41 +24,6 @@ public final /* data */ class RtcpStats {
         this.uniqueNackRequests = j5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getFractionLost() {
-        return this.fractionLost;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getFirPackets() {
-        return this.firPackets;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getNackPackets() {
-        return this.nackPackets;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getNackRequests() {
-        return this.nackRequests;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final long getPliPackets() {
-        return this.pliPackets;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final long getUniqueNackRequests() {
-        return this.uniqueNackRequests;
-    }
-
     public final RtcpStats copy(int fractionLost, int packetsLost, long firPackets, long nackPackets, long nackRequests, long pliPackets, long uniqueNackRequests) {
         return new RtcpStats(fractionLost, packetsLost, firPackets, nackPackets, nackRequests, pliPackets, uniqueNackRequests);
     }
@@ -74,28 +39,63 @@ public final /* data */ class RtcpStats {
         return this.fractionLost == rtcpStats.fractionLost && this.packetsLost == rtcpStats.packetsLost && this.firPackets == rtcpStats.firPackets && this.nackPackets == rtcpStats.nackPackets && this.nackRequests == rtcpStats.nackRequests && this.pliPackets == rtcpStats.pliPackets && this.uniqueNackRequests == rtcpStats.uniqueNackRequests;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getFirPackets() {
         return this.firPackets;
+    }
+
+    public final long getFirPackets() {
+        return this.firPackets;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getFractionLost() {
+        return this.fractionLost;
     }
 
     public final int getFractionLost() {
         return this.fractionLost;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getNackPackets() {
         return this.nackPackets;
+    }
+
+    public final long getNackPackets() {
+        return this.nackPackets;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getNackRequests() {
+        return this.nackRequests;
     }
 
     public final long getNackRequests() {
         return this.nackRequests;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getPacketsLost() {
         return this.packetsLost;
     }
 
+    public final int getPacketsLost() {
+        return this.packetsLost;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final long getPliPackets() {
         return this.pliPackets;
+    }
+
+    public final long getPliPackets() {
+        return this.pliPackets;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final long getUniqueNackRequests() {
+        return this.uniqueNackRequests;
     }
 
     public final long getUniqueNackRequests() {

@@ -25,7 +25,7 @@ public final class C11227e implements Comparable<C11227e> {
 
     /* JADX INFO: renamed from: d0.e$a */
     /* JADX INFO: compiled from: KotlinVersion.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -62,13 +62,7 @@ public final class C11227e implements Comparable<C11227e> {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.f22292l);
-        sb.append('.');
-        sb.append(this.f22293m);
-        sb.append('.');
-        sb.append(this.f22294n);
-        return sb.toString();
+        return "" + this.f22292l + '.' + this.f22293m + '.' + this.f22294n;
     }
 
     @Override // java.lang.Comparable

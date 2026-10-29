@@ -41,6 +41,12 @@ public final class ViewDialogConfirmationBinding implements ViewBinding {
         this.f15424e = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15420a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewDialogConfirmationBinding m8393a(@NonNull View view) {
@@ -68,11 +74,5 @@ public final class ViewDialogConfirmationBinding implements ViewBinding {
     /* JADX INFO: renamed from: b */
     public static ViewDialogConfirmationBinding m8394b(@NonNull LayoutInflater layoutInflater) {
         return m8393a(layoutInflater.inflate(C5419R.layout.view_dialog_confirmation, (ViewGroup) null, false));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15420a;
     }
 }

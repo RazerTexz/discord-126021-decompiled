@@ -49,7 +49,7 @@ public final class C11306f extends AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.f$b */
     /* JADX INFO: compiled from: JvmBuiltIns.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC11325c0 f22647a;
@@ -74,12 +74,12 @@ public final class C11306f extends AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.f$c */
     /* JADX INFO: compiled from: JvmBuiltIns.kt */
-    public static final class c extends AbstractC12240o implements Function0<C11307g> {
+    public final class c extends AbstractC12240o implements Function0<C11307g> {
         public final /* synthetic */ InterfaceC11905o $storageManager;
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.f$c$a */
         /* JADX INFO: compiled from: JvmBuiltIns.kt */
-        public static final class a extends AbstractC12240o implements Function0<b> {
+        public final class a extends AbstractC12240o implements Function0<b> {
             public final /* synthetic */ C11306f this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -118,7 +118,7 @@ public final class C11306f extends AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.f$d */
     /* JADX INFO: compiled from: JvmBuiltIns.kt */
-    public static final class d extends AbstractC12240o implements Function0<b> {
+    public final class d extends AbstractC12240o implements Function0<b> {
         public final /* synthetic */ boolean $isAdditionalBuiltInsFeatureSupported;
         public final /* synthetic */ InterfaceC11325c0 $moduleDescriptor;
 
@@ -153,6 +153,15 @@ public final class C11306f extends AbstractC11288h {
         }
     }
 
+    public final C11307g getCustomizer() {
+        return (C11307g) C11904n.getValue(this.f22642h, this, (KProperty<?>) f22640f[0]);
+    }
+
+    public final void initialize(InterfaceC11325c0 interfaceC11325c0, boolean z2) {
+        C12238m.checkNotNullParameter(interfaceC11325c0, "moduleDescriptor");
+        setPostponedSettingsComputation(new d(interfaceC11325c0, z2));
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p518b.AbstractC11288h
     /* JADX INFO: renamed from: e */
     public InterfaceC11354a mo9362e() {
@@ -175,19 +184,10 @@ public final class C11306f extends AbstractC11288h {
         return C12163u.plus(iterableMo9364g, new C11305e(interfaceC11905o, builtInsModule, null, 4, null));
     }
 
-    public final C11307g getCustomizer() {
-        return (C11307g) C11904n.getValue(this.f22642h, this, (KProperty<?>) f22640f[0]);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p518b.AbstractC11288h
     /* JADX INFO: renamed from: h */
     public InterfaceC11356c mo9365h() {
         return getCustomizer();
-    }
-
-    public final void initialize(InterfaceC11325c0 interfaceC11325c0, boolean z2) {
-        C12238m.checkNotNullParameter(interfaceC11325c0, "moduleDescriptor");
-        setPostponedSettingsComputation(new d(interfaceC11325c0, z2));
     }
 
     public final void setPostponedSettingsComputation(Function0<b> function0) {

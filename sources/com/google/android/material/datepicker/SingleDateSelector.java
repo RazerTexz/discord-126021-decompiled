@@ -30,10 +30,10 @@ import p007b.p225i.p226a.p341g.p345d.C4401l;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SingleDateSelector implements DateSelector<Long> {
-    public static final Parcelable.Creator<SingleDateSelector> CREATOR = new C10907b();
 
     @Nullable
     private Long selectedItem;
+    public static final Parcelable.Creator<SingleDateSelector> CREATOR = new C10907b();
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.SingleDateSelector$a */
     public class C10906a extends AbstractC4392c {
@@ -66,7 +66,7 @@ public class SingleDateSelector implements DateSelector<Long> {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.SingleDateSelector$b */
-    public static class C10907b implements Parcelable.Creator<SingleDateSelector> {
+    public final class C10907b implements Parcelable.Creator<SingleDateSelector> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public SingleDateSelector createFromParcel(@NonNull Parcel parcel) {

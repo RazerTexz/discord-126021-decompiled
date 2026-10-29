@@ -17,12 +17,6 @@ import p007b.p225i.p355b.p357b.AbstractC4523p;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2847s1 {
 
-    /* JADX INFO: renamed from: a */
-    public final AbstractC2832o2.b f7486a = new AbstractC2832o2.b();
-
-    /* JADX INFO: renamed from: b */
-    public final AbstractC2832o2.c f7487b = new AbstractC2832o2.c();
-
     /* JADX INFO: renamed from: c */
     @Nullable
     public final C2868g1 f7488c;
@@ -60,6 +54,12 @@ public final class C2847s1 {
 
     /* JADX INFO: renamed from: m */
     public long f7498m;
+
+    /* JADX INFO: renamed from: a */
+    public final AbstractC2832o2.b f7486a = new AbstractC2832o2.b();
+
+    /* JADX INFO: renamed from: b */
+    public final AbstractC2832o2.c f7487b = new AbstractC2832o2.c();
 
     public C2847s1(@Nullable C2868g1 c2868g1, Handler handler) {
         this.f7488c = c2868g1;

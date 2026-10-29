@@ -46,7 +46,7 @@ public final class WidgetGifPickerSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
-    public static final class C78861 extends AbstractC12240o implements Function1<GifSearchViewModel.ViewState, Unit> {
+    public final class C78861 extends AbstractC12240o implements Function1<GifSearchViewModel.ViewState, Unit> {
         public C78861() {
             super(1);
         }
@@ -67,7 +67,7 @@ public final class WidgetGifPickerSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setUpGifRecycler$1 */
     /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
-    public static final class C78871 extends AbstractC12240o implements Function1<GifAdapterItem.GifItem, Unit> {
+    public final class C78871 extends AbstractC12240o implements Function1<GifAdapterItem.GifItem, Unit> {
         public C78871() {
             super(1);
         }
@@ -90,7 +90,7 @@ public final class WidgetGifPickerSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setUpGifRecycler$2 */
     /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
-    public static final /* synthetic */ class C78882 extends C12236k implements Function1<String, Unit> {
+    public final /* synthetic */ class C78882 extends C12236k implements Function1<String, Unit> {
         public C78882(SearchInputView searchInputView) {
             super(1, searchInputView, SearchInputView.class, "setText", "setText(Ljava/lang/String;)V", 0);
         }
@@ -110,7 +110,7 @@ public final class WidgetGifPickerSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setupSearchBar$1 */
     /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
-    public static final class C78891 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C78891 extends AbstractC12240o implements Function1<String, Unit> {
         public C78891() {
             super(1);
         }
@@ -134,6 +134,10 @@ public final class WidgetGifPickerSearch extends AppFragment {
         WidgetGifPickerSearch$gifPickerViewModel$2 widgetGifPickerSearch$gifPickerViewModel$2 = new WidgetGifPickerSearch$gifPickerViewModel$2(this);
         C0865g0 c0865g0 = new C0865g0(this);
         this.gifPickerViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(GifSearchViewModel.class), new WidgetGifPickerSearch$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetGifPickerSearch$gifPickerViewModel$2));
+    }
+
+    public final void clearSearchBar() {
+        getGifPickerViewModel().setSearchText("");
     }
 
     private final WidgetGifPickerSearchBinding getBinding() {
@@ -168,37 +172,6 @@ public final class WidgetGifPickerSearch extends AppFragment {
         }
     }
 
-    private final void setUpGifRecycler(int categoryColumnsCount) {
-        RecyclerView recyclerView = getBinding().f16703b;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.gifSearchGifRecycler");
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(categoryColumnsCount, 1));
-        RecyclerView recyclerView2 = getBinding().f16703b;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.gifSearchGifRecycler");
-        recyclerView2.setItemAnimator(null);
-        int iDpToPixels = DimenUtils.dpToPixels(8);
-        C78871 c78871 = new C78871();
-        GifAdapter.Companion companion = GifAdapter.INSTANCE;
-        RecyclerView recyclerView3 = getBinding().f16703b;
-        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.gifSearchGifRecycler");
-        this.gifAdapter = new GifAdapter(this, c78871, companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), new C78882(getBinding().f16706e), null, 16, null);
-        RecyclerView recyclerView4 = getBinding().f16703b;
-        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.gifSearchGifRecycler");
-        GifAdapter gifAdapter = this.gifAdapter;
-        if (gifAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("gifAdapter");
-        }
-        recyclerView4.setAdapter(gifAdapter);
-        getBinding().f16703b.addItemDecoration(new C13173u(iDpToPixels, categoryColumnsCount));
-    }
-
-    private final void setupSearchBar() {
-        getBinding().f16706e.m8553a(this, new C78891());
-    }
-
-    public final void clearSearchBar() {
-        getGifPickerViewModel().setSearchText("");
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -224,5 +197,32 @@ public final class WidgetGifPickerSearch extends AppFragment {
     public final void setOnGifSelected(Function0<Unit> onSelected) {
         C12238m.checkNotNullParameter(onSelected, "onSelected");
         this.onGifSelected = onSelected;
+    }
+
+    private final void setUpGifRecycler(int categoryColumnsCount) {
+        RecyclerView recyclerView = getBinding().f16703b;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.gifSearchGifRecycler");
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(categoryColumnsCount, 1));
+        RecyclerView recyclerView2 = getBinding().f16703b;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.gifSearchGifRecycler");
+        recyclerView2.setItemAnimator(null);
+        int iDpToPixels = DimenUtils.dpToPixels(8);
+        C78871 c78871 = new C78871();
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
+        RecyclerView recyclerView3 = getBinding().f16703b;
+        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.gifSearchGifRecycler");
+        this.gifAdapter = new GifAdapter(this, c78871, companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), new C78882(getBinding().f16706e), null, 16, null);
+        RecyclerView recyclerView4 = getBinding().f16703b;
+        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.gifSearchGifRecycler");
+        GifAdapter gifAdapter = this.gifAdapter;
+        if (gifAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("gifAdapter");
+        }
+        recyclerView4.setAdapter(gifAdapter);
+        getBinding().f16703b.addItemDecoration(new C13173u(iDpToPixels, categoryColumnsCount));
+    }
+
+    private final void setupSearchBar() {
+        getBinding().f16706e.m8553a(this, new C78891());
     }
 }

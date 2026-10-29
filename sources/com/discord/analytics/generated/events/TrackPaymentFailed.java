@@ -9,42 +9,36 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence failureReason = null;
-    private final Long paymentId = null;
-    private final Long createdAt = null;
-    private final CharSequence paymentType = null;
-    private final Long paymentGateway = null;
-    private final Long price = null;
-    private final CharSequence currency = null;
     private final Long amount = null;
     private final Long amountRefunded = null;
-    private final Long tax = null;
-    private final Boolean taxInclusive = null;
+    private final Boolean captured = null;
+    private final Long createdAt = null;
+    private final CharSequence currency = null;
+    private final CharSequence failureCode = null;
+    private final CharSequence failureMessage = null;
+    private final CharSequence failureReason = null;
+    private final CharSequence failureSubCode = null;
+    private final Boolean isGift = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final CharSequence paymentSourceCountry = null;
+    private final Long paymentSourceId = null;
+    private final CharSequence paymentType = null;
+    private final Long price = null;
     private final Long skuId = null;
-    private final Long skuType = null;
     private final Long skuSubscriptionPlanId = null;
+    private final Long skuType = null;
+    private final Long subscriptionCreatedAt = null;
+    private final Long subscriptionCurrentPeriodEnd = null;
+    private final Long subscriptionCurrentPeriodStart = null;
     private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
     private final CharSequence subscriptionPaymentGatewayPlanId = null;
     private final Long subscriptionPlanId = null;
-    private final Long subscriptionCreatedAt = null;
-    private final Long subscriptionCurrentPeriodStart = null;
-    private final Long subscriptionCurrentPeriodEnd = null;
-    private final Long paymentSourceId = null;
-    private final CharSequence paymentSourceCountry = null;
-    private final CharSequence failureMessage = null;
-    private final Boolean isGift = null;
-    private final CharSequence failureCode = null;
-    private final CharSequence failureSubCode = null;
-    private final Boolean captured = null;
+    private final Long subscriptionType = null;
+    private final Long tax = null;
+    private final Boolean taxInclusive = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "payment_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,6 +49,12 @@ public final /* data */ class TrackPaymentFailed implements AnalyticsSchema, Tra
         }
         TrackPaymentFailed trackPaymentFailed = (TrackPaymentFailed) other;
         return C12238m.areEqual(this.failureReason, trackPaymentFailed.failureReason) && C12238m.areEqual(this.paymentId, trackPaymentFailed.paymentId) && C12238m.areEqual(this.createdAt, trackPaymentFailed.createdAt) && C12238m.areEqual(this.paymentType, trackPaymentFailed.paymentType) && C12238m.areEqual(this.paymentGateway, trackPaymentFailed.paymentGateway) && C12238m.areEqual(this.price, trackPaymentFailed.price) && C12238m.areEqual(this.currency, trackPaymentFailed.currency) && C12238m.areEqual(this.amount, trackPaymentFailed.amount) && C12238m.areEqual(this.amountRefunded, trackPaymentFailed.amountRefunded) && C12238m.areEqual(this.tax, trackPaymentFailed.tax) && C12238m.areEqual(this.taxInclusive, trackPaymentFailed.taxInclusive) && C12238m.areEqual(this.skuId, trackPaymentFailed.skuId) && C12238m.areEqual(this.skuType, trackPaymentFailed.skuType) && C12238m.areEqual(this.skuSubscriptionPlanId, trackPaymentFailed.skuSubscriptionPlanId) && C12238m.areEqual(this.subscriptionId, trackPaymentFailed.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackPaymentFailed.subscriptionType) && C12238m.areEqual(this.subscriptionPaymentGatewayPlanId, trackPaymentFailed.subscriptionPaymentGatewayPlanId) && C12238m.areEqual(this.subscriptionPlanId, trackPaymentFailed.subscriptionPlanId) && C12238m.areEqual(this.subscriptionCreatedAt, trackPaymentFailed.subscriptionCreatedAt) && C12238m.areEqual(this.subscriptionCurrentPeriodStart, trackPaymentFailed.subscriptionCurrentPeriodStart) && C12238m.areEqual(this.subscriptionCurrentPeriodEnd, trackPaymentFailed.subscriptionCurrentPeriodEnd) && C12238m.areEqual(this.paymentSourceId, trackPaymentFailed.paymentSourceId) && C12238m.areEqual(this.paymentSourceCountry, trackPaymentFailed.paymentSourceCountry) && C12238m.areEqual(this.failureMessage, trackPaymentFailed.failureMessage) && C12238m.areEqual(this.isGift, trackPaymentFailed.isGift) && C12238m.areEqual(this.failureCode, trackPaymentFailed.failureCode) && C12238m.areEqual(this.failureSubCode, trackPaymentFailed.failureSubCode) && C12238m.areEqual(this.captured, trackPaymentFailed.captured);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

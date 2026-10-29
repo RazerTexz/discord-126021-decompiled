@@ -26,14 +26,14 @@ public class DraweeSpanStringBuilder extends SpannableStringBuilder {
     /* JADX INFO: renamed from: j */
     public static final /* synthetic */ int f19512j = 0;
 
+    /* JADX INFO: renamed from: m */
+    public View f19515m;
+
     /* JADX INFO: renamed from: k */
     public final Set<C1799a> f19513k = new HashSet();
 
     /* JADX INFO: renamed from: l */
     public final C10645b f19514l = new C10645b(null);
-
-    /* JADX INFO: renamed from: m */
-    public View f19515m;
 
     /* JADX INFO: renamed from: com.facebook.drawee.span.DraweeSpanStringBuilder$b */
     public class C10645b implements Drawable.Callback {

@@ -15,43 +15,37 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOpenPopout.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOpenPopout implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackOverlayClientMetadataReceiver {
+    private final Long applicationId = null;
+    private final CharSequence applicationName = null;
+    private final Long emojiId = null;
+    private final Long gameId = null;
+    private final CharSequence gameName = null;
+    private final CharSequence gamePlatform = null;
+    private final Long guildId = null;
+    private final Boolean hasCustomStatus = null;
+    private final Boolean hasGuildMemberAvatar = null;
+    private final Boolean hasGuildMemberBanner = null;
+    private final Boolean hasGuildMemberBio = null;
+    private final Boolean hasImages = null;
+    private final Boolean hasNickname = null;
+    private final Boolean isFriend = null;
+    private final Boolean isStreaming = null;
+    private final Long otherUserId = null;
+    private final CharSequence partyId = null;
+    private final Long partyMax = null;
+    private final CharSequence partyPlatform = null;
+    private final Boolean profileHasNitroCustomization = null;
+    private final CharSequence profileUserStatus = null;
+    private final Long skuId = null;
+    private final CharSequence source = null;
+    private final Long stickerId = null;
+    private final Long stickerPackId = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final CharSequence source = null;
     private final CharSequence type = null;
-    private final Long otherUserId = null;
-    private final Long applicationId = null;
-    private final CharSequence applicationName = null;
-    private final Long gameId = null;
-    private final Boolean isFriend = null;
-    private final Boolean hasImages = null;
-    private final Long partyMax = null;
-    private final CharSequence partyId = null;
-    private final CharSequence partyPlatform = null;
-    private final CharSequence gameName = null;
-    private final CharSequence gamePlatform = null;
-    private final Long skuId = null;
-    private final CharSequence profileUserStatus = null;
-    private final Boolean isStreaming = null;
-    private final Boolean hasCustomStatus = null;
-    private final Long guildId = null;
-    private final Long emojiId = null;
-    private final Long stickerId = null;
-    private final Long stickerPackId = null;
-    private final Boolean profileHasNitroCustomization = null;
-    private final Boolean hasNickname = null;
-    private final Boolean hasGuildMemberAvatar = null;
-    private final Boolean hasGuildMemberBanner = null;
-    private final Boolean hasGuildMemberBio = null;
     private final transient String analyticsSchemaTypeName = "open_popout";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -62,6 +56,12 @@ public final /* data */ class TrackOpenPopout implements AnalyticsSchema, TrackB
         }
         TrackOpenPopout trackOpenPopout = (TrackOpenPopout) other;
         return C12238m.areEqual(this.source, trackOpenPopout.source) && C12238m.areEqual(this.type, trackOpenPopout.type) && C12238m.areEqual(this.otherUserId, trackOpenPopout.otherUserId) && C12238m.areEqual(this.applicationId, trackOpenPopout.applicationId) && C12238m.areEqual(this.applicationName, trackOpenPopout.applicationName) && C12238m.areEqual(this.gameId, trackOpenPopout.gameId) && C12238m.areEqual(this.isFriend, trackOpenPopout.isFriend) && C12238m.areEqual(this.hasImages, trackOpenPopout.hasImages) && C12238m.areEqual(this.partyMax, trackOpenPopout.partyMax) && C12238m.areEqual(this.partyId, trackOpenPopout.partyId) && C12238m.areEqual(this.partyPlatform, trackOpenPopout.partyPlatform) && C12238m.areEqual(this.gameName, trackOpenPopout.gameName) && C12238m.areEqual(this.gamePlatform, trackOpenPopout.gamePlatform) && C12238m.areEqual(this.skuId, trackOpenPopout.skuId) && C12238m.areEqual(this.profileUserStatus, trackOpenPopout.profileUserStatus) && C12238m.areEqual(this.isStreaming, trackOpenPopout.isStreaming) && C12238m.areEqual(this.hasCustomStatus, trackOpenPopout.hasCustomStatus) && C12238m.areEqual(this.guildId, trackOpenPopout.guildId) && C12238m.areEqual(this.emojiId, trackOpenPopout.emojiId) && C12238m.areEqual(this.stickerId, trackOpenPopout.stickerId) && C12238m.areEqual(this.stickerPackId, trackOpenPopout.stickerPackId) && C12238m.areEqual(this.profileHasNitroCustomization, trackOpenPopout.profileHasNitroCustomization) && C12238m.areEqual(this.hasNickname, trackOpenPopout.hasNickname) && C12238m.areEqual(this.hasGuildMemberAvatar, trackOpenPopout.hasGuildMemberAvatar) && C12238m.areEqual(this.hasGuildMemberBanner, trackOpenPopout.hasGuildMemberBanner) && C12238m.areEqual(this.hasGuildMemberBio, trackOpenPopout.hasGuildMemberBio);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

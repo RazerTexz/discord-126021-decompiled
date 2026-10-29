@@ -9,43 +9,37 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentRefunded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentRefunded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentId = null;
-    private final Long createdAt = null;
-    private final CharSequence paymentType = null;
-    private final Long paymentGateway = null;
-    private final Long price = null;
-    private final CharSequence currency = null;
     private final Long amount = null;
     private final Long amountRefunded = null;
-    private final Long tax = null;
-    private final Boolean taxInclusive = null;
-    private final Long skuId = null;
-    private final Long skuType = null;
-    private final Long skuSubscriptionPlanId = null;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
-    private final CharSequence subscriptionPaymentGatewayPlanId = null;
-    private final Long subscriptionPlanId = null;
-    private final Long subscriptionCreatedAt = null;
-    private final Long subscriptionCurrentPeriodStart = null;
-    private final Long subscriptionCurrentPeriodEnd = null;
-    private final Long paymentSourceId = null;
-    private final CharSequence paymentSourceCountry = null;
+    private final Boolean captured = null;
+    private final Long createdAt = null;
+    private final CharSequence currency = null;
     private final CharSequence failureMessage = null;
     private final Boolean isGift = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final CharSequence paymentSourceCountry = null;
+    private final Long paymentSourceId = null;
+    private final CharSequence paymentType = null;
+    private final Long price = null;
     private final CharSequence refundReason = null;
-    private final Boolean captured = null;
-    private final Long refunderType = null;
     private final Long refundedBy = null;
     private final Boolean refundedOutOfPolicy = null;
+    private final Long refunderType = null;
+    private final Long skuId = null;
+    private final Long skuSubscriptionPlanId = null;
+    private final Long skuType = null;
+    private final Long subscriptionCreatedAt = null;
+    private final Long subscriptionCurrentPeriodEnd = null;
+    private final Long subscriptionCurrentPeriodStart = null;
+    private final Long subscriptionId = null;
+    private final CharSequence subscriptionPaymentGatewayPlanId = null;
+    private final Long subscriptionPlanId = null;
+    private final Long subscriptionType = null;
+    private final Long tax = null;
+    private final Boolean taxInclusive = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "payment_refunded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -56,6 +50,12 @@ public final /* data */ class TrackPaymentRefunded implements AnalyticsSchema, T
         }
         TrackPaymentRefunded trackPaymentRefunded = (TrackPaymentRefunded) other;
         return C12238m.areEqual(this.paymentId, trackPaymentRefunded.paymentId) && C12238m.areEqual(this.createdAt, trackPaymentRefunded.createdAt) && C12238m.areEqual(this.paymentType, trackPaymentRefunded.paymentType) && C12238m.areEqual(this.paymentGateway, trackPaymentRefunded.paymentGateway) && C12238m.areEqual(this.price, trackPaymentRefunded.price) && C12238m.areEqual(this.currency, trackPaymentRefunded.currency) && C12238m.areEqual(this.amount, trackPaymentRefunded.amount) && C12238m.areEqual(this.amountRefunded, trackPaymentRefunded.amountRefunded) && C12238m.areEqual(this.tax, trackPaymentRefunded.tax) && C12238m.areEqual(this.taxInclusive, trackPaymentRefunded.taxInclusive) && C12238m.areEqual(this.skuId, trackPaymentRefunded.skuId) && C12238m.areEqual(this.skuType, trackPaymentRefunded.skuType) && C12238m.areEqual(this.skuSubscriptionPlanId, trackPaymentRefunded.skuSubscriptionPlanId) && C12238m.areEqual(this.subscriptionId, trackPaymentRefunded.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackPaymentRefunded.subscriptionType) && C12238m.areEqual(this.subscriptionPaymentGatewayPlanId, trackPaymentRefunded.subscriptionPaymentGatewayPlanId) && C12238m.areEqual(this.subscriptionPlanId, trackPaymentRefunded.subscriptionPlanId) && C12238m.areEqual(this.subscriptionCreatedAt, trackPaymentRefunded.subscriptionCreatedAt) && C12238m.areEqual(this.subscriptionCurrentPeriodStart, trackPaymentRefunded.subscriptionCurrentPeriodStart) && C12238m.areEqual(this.subscriptionCurrentPeriodEnd, trackPaymentRefunded.subscriptionCurrentPeriodEnd) && C12238m.areEqual(this.paymentSourceId, trackPaymentRefunded.paymentSourceId) && C12238m.areEqual(this.paymentSourceCountry, trackPaymentRefunded.paymentSourceCountry) && C12238m.areEqual(this.failureMessage, trackPaymentRefunded.failureMessage) && C12238m.areEqual(this.isGift, trackPaymentRefunded.isGift) && C12238m.areEqual(this.refundReason, trackPaymentRefunded.refundReason) && C12238m.areEqual(this.captured, trackPaymentRefunded.captured) && C12238m.areEqual(this.refunderType, trackPaymentRefunded.refunderType) && C12238m.areEqual(this.refundedBy, trackPaymentRefunded.refundedBy) && C12238m.areEqual(this.refundedOutOfPolicy, trackPaymentRefunded.refundedOutOfPolicy);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

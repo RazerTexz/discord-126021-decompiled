@@ -25,7 +25,7 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.utils.SelectionAggregator$a */
     /* JADX INFO: compiled from: SelectionAggregator.kt */
-    public static final class C11191a implements SelectionCoordinator.ItemSelectionListener<T> {
+    public final class C11191a implements SelectionCoordinator.ItemSelectionListener<T> {
 
         /* JADX INFO: renamed from: b */
         public final /* synthetic */ SelectionCoordinator f22085b;
@@ -93,19 +93,6 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         while (it.hasNext()) {
             ((SelectionCoordinator.ItemSelectionListener) it.next()).onItemSelected(item);
         }
-    }
-
-    private final boolean removeItem(T item) {
-        int iIndexOf = this.attachments.indexOf(item);
-        boolean zRemove = this.attachments.remove(item);
-        if (zRemove) {
-            this.adapter.notifyItemRemoved(iIndexOf);
-        }
-        Iterator<T> it = this.itemSelectionListeners.iterator();
-        while (it.hasNext()) {
-            ((SelectionCoordinator.ItemSelectionListener) it.next()).onItemUnselected(item);
-        }
-        return zRemove;
     }
 
     public final SelectionAggregator<T> addItemSelectionListener(SelectionCoordinator.ItemSelectionListener<? super T> itemSelectionListener) {
@@ -189,6 +176,19 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         C12238m.checkNotNullParameter(c11191a, "<set-?>");
         selectionCoordinator.itemSelectionListener = c11191a;
         this.childSelectionCoordinators.add(selectionCoordinator);
+    }
+
+    private final boolean removeItem(T item) {
+        int iIndexOf = this.attachments.indexOf(item);
+        boolean zRemove = this.attachments.remove(item);
+        if (zRemove) {
+            this.adapter.notifyItemRemoved(iIndexOf);
+        }
+        Iterator<T> it = this.itemSelectionListeners.iterator();
+        while (it.hasNext()) {
+            ((SelectionCoordinator.ItemSelectionListener) it.next()).onItemUnselected(item);
+        }
+        return zRemove;
     }
 
     public final void removeItemSelectionListener(SelectionCoordinator.ItemSelectionListener<?> itemSelectionListener) {

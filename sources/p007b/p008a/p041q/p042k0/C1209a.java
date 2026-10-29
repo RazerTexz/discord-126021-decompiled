@@ -34,7 +34,7 @@ public final class C1209a extends BroadcastReceiver {
 
     /* JADX INFO: renamed from: b.a.q.k0.a$a */
     /* JADX INFO: compiled from: AudioManagerBroadcastReceiver.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

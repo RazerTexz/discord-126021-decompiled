@@ -2,13 +2,13 @@ package com.discord.widgets.settings.profile;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
+import com.discord.api.guildmember.GuildMember;
 import com.discord.api.guildmember.PatchGuildMemberBody;
 import com.discord.api.user.PatchUserBody;
 import com.discord.api.user.User;
 import com.discord.api.user.UserProfile;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
-import com.discord.models.member.GuildMember;
 import com.discord.models.user.MeUser;
 import com.discord.nullserializable.NullSerializable;
 import com.discord.simpleast.core.node.Node;
@@ -66,7 +66,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$1 */
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99531 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C99531 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public C99531() {
             super(1);
         }
@@ -85,7 +85,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$2 */
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99542 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C99542 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C99542() {
             super(1);
         }
@@ -104,9 +104,120 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveGuildMemberChanges$1 */
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class Companion {
+    public final class C99571 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C99571() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveGuildMemberChanges$2 */
+    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
+    public final class C99582 extends AbstractC12240o implements Function1<GuildMember, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99582(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildMember guildMember) {
+            invoke2(guildMember);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildMember guildMember) {
+            C12238m.checkNotNullParameter(guildMember, "apiMember");
+            SettingsUserProfileViewModel.this.storeGuilds.handleGuildMember(GuildMember.m7915a(guildMember, SettingsUserProfileViewModel.this.guildId.longValue(), null, null, null, null, null, false, null, null, null, null, null, null, 8190), SettingsUserProfileViewModel.this.guildId.longValue(), true);
+            SettingsUserProfileViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, null, null, com.discord.models.member.GuildMember.INSTANCE.from(guildMember, SettingsUserProfileViewModel.this.guildId.longValue(), (8 & 4) != 0 ? null : null, (8 & 8) != 0 ? null : SettingsUserProfileViewModel.this.storeGuilds), null, null, null, null, null, null, null, false, false, 3979, null));
+            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveUserChanges$1 */
+    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
+    public final class C99591 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C99591() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveUserChanges$2 */
+    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
+    public final class C99602 extends AbstractC12240o implements Function1<User, Unit> {
+        public final /* synthetic */ MeUser $meUser;
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C99602(MeUser meUser, ViewState.Loaded loaded) {
+            super(1);
+            this.$meUser = meUser;
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(User user) {
+            invoke2(user);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(User user) {
+            C12238m.checkNotNullParameter(user, "apiUser");
+            SettingsUserProfileViewModel.this.storeUserProfile.updateUser(user);
+            SettingsUserProfileViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, MeUser.INSTANCE.merge(this.$meUser, user), null, null, null, null, null, null, null, null, null, false, false, 3982, null));
+            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
+    public final class Companion {
         private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, Long l, StoreUser storeUser, StoreGuilds storeGuilds, StoreUserProfile storeUserProfile, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeUser = StoreStream.INSTANCE.getUsers();
+            }
+            if ((i & 4) != 0) {
+                storeGuilds = StoreStream.INSTANCE.getGuilds();
+            }
+            if ((i & 8) != 0) {
+                storeUserProfile = StoreStream.INSTANCE.getUserProfile();
+            }
+            return companion.observeStoreState(l, storeUser, storeGuilds, storeUserProfile);
         }
 
         private final Observable<StoreState> observeStoreState(final Long guildId, StoreUser storeUser, final StoreGuilds storeGuilds, final StoreUserProfile storeUserProfile) {
@@ -128,12 +239,12 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                     Observable<UserProfile> observableObserveUserProfile = storeUserProfile.observeUserProfile(meUserComponent1.getId());
                     StoreGuilds storeGuilds2 = storeGuilds;
                     Long l = guildId;
-                    Observable<GuildMember> observableObserveGuildMember = storeGuilds2.observeGuildMember(l != null ? l.longValue() : -1L, meUserComponent1.getId());
+                    Observable<com.discord.models.member.GuildMember> observableObserveGuildMember = storeGuilds2.observeGuildMember(l != null ? l.longValue() : -1L, meUserComponent1.getId());
                     GuildChannelsInfo.Companion companion = GuildChannelsInfo.INSTANCE;
                     Long l2 = guildId;
-                    return Observable.m11075i(observableObserveUserProfile, observableObserveGuildMember, companion.get(l2 != null ? l2.longValue() : -1L), new Func3<UserProfile, GuildMember, GuildChannelsInfo, SettingsUserProfileViewModel.StoreState>() { // from class: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$Companion$observeStoreState$2.1
+                    return Observable.m11075i(observableObserveUserProfile, observableObserveGuildMember, companion.get(l2 != null ? l2.longValue() : -1L), new Func3<UserProfile, com.discord.models.member.GuildMember, GuildChannelsInfo, SettingsUserProfileViewModel.StoreState>() { // from class: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$Companion$observeStoreState$2.1
                         @Override // p658rx.functions.Func3
-                        public final SettingsUserProfileViewModel.StoreState call(UserProfile userProfile, GuildMember guildMember, GuildChannelsInfo guildChannelsInfo) {
+                        public final SettingsUserProfileViewModel.StoreState call(UserProfile userProfile, com.discord.models.member.GuildMember guildMember, GuildChannelsInfo guildChannelsInfo) {
                             MeUser.Companion companion2 = MeUser.INSTANCE;
                             MeUser meUser = meUserComponent1;
                             C12238m.checkNotNullExpressionValue(meUser, "meUser");
@@ -150,29 +261,16 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             return observableM11099Y;
         }
 
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, Long l, StoreUser storeUser, StoreGuilds storeGuilds, StoreUserProfile storeUserProfile, int i, Object obj) {
-            if ((i & 2) != 0) {
-                storeUser = StoreStream.INSTANCE.getUsers();
-            }
-            if ((i & 4) != 0) {
-                storeGuilds = StoreStream.INSTANCE.getGuilds();
-            }
-            if ((i & 8) != 0) {
-                storeUserProfile = StoreStream.INSTANCE.getUserProfile();
-            }
-            return companion.observeStoreState(l, storeUser, storeGuilds, storeUserProfile);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-        public static final class UserUpdateRequestCompleted extends Event {
+        public final class UserUpdateRequestCompleted extends Event {
             public static final UserUpdateRequestCompleted INSTANCE = new UserUpdateRequestCompleted();
 
             private UserUpdateRequestCompleted() {
@@ -189,14 +287,14 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final GuildChannelsInfo guildChannelsInfo;
-        private final GuildMember meMember;
+        private final com.discord.models.member.GuildMember meMember;
         private final MeUser user;
         private final UserProfile userProfile;
 
-        public StoreState(MeUser meUser, Guild guild, UserProfile userProfile, GuildMember guildMember, GuildChannelsInfo guildChannelsInfo) {
+        public StoreState(MeUser meUser, Guild guild, UserProfile userProfile, com.discord.models.member.GuildMember guildMember, GuildChannelsInfo guildChannelsInfo) {
             C12238m.checkNotNullParameter(meUser, "user");
             C12238m.checkNotNullParameter(userProfile, "userProfile");
             C12238m.checkNotNullParameter(guildChannelsInfo, "guildChannelsInfo");
@@ -207,7 +305,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             this.guildChannelsInfo = guildChannelsInfo;
         }
 
-        public static /* synthetic */ StoreState copy$default(StoreState storeState, MeUser meUser, Guild guild, UserProfile userProfile, GuildMember guildMember, GuildChannelsInfo guildChannelsInfo, int i, Object obj) {
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, MeUser meUser, Guild guild, UserProfile userProfile, com.discord.models.member.GuildMember guildMember, GuildChannelsInfo guildChannelsInfo, int i, Object obj) {
             if ((i & 1) != 0) {
                 meUser = storeState.user;
             }
@@ -222,39 +320,14 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             if ((i & 8) != 0) {
                 guildMember = storeState.meMember;
             }
-            GuildMember guildMember2 = guildMember;
+            com.discord.models.member.GuildMember guildMember2 = guildMember;
             if ((i & 16) != 0) {
                 guildChannelsInfo = storeState.guildChannelsInfo;
             }
             return storeState.copy(meUser, guild2, userProfile2, guildMember2, guildChannelsInfo);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final UserProfile getUserProfile() {
-            return this.userProfile;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final GuildMember getMeMember() {
-            return this.meMember;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildChannelsInfo getGuildChannelsInfo() {
-            return this.guildChannelsInfo;
-        }
-
-        public final StoreState copy(MeUser user, Guild guild, UserProfile userProfile, GuildMember meMember, GuildChannelsInfo guildChannelsInfo) {
+        public final StoreState copy(MeUser user, Guild guild, UserProfile userProfile, com.discord.models.member.GuildMember meMember, GuildChannelsInfo guildChannelsInfo) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(userProfile, "userProfile");
             C12238m.checkNotNullParameter(guildChannelsInfo, "guildChannelsInfo");
@@ -272,20 +345,45 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             return C12238m.areEqual(this.user, storeState.user) && C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.userProfile, storeState.userProfile) && C12238m.areEqual(this.meMember, storeState.meMember) && C12238m.areEqual(this.guildChannelsInfo, storeState.guildChannelsInfo);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final GuildChannelsInfo getGuildChannelsInfo() {
+            return this.guildChannelsInfo;
         }
 
         public final GuildChannelsInfo getGuildChannelsInfo() {
             return this.guildChannelsInfo;
         }
 
-        public final GuildMember getMeMember() {
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final com.discord.models.member.GuildMember getMeMember() {
             return this.meMember;
+        }
+
+        public final com.discord.models.member.GuildMember getMeMember() {
+            return this.meMember;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MeUser getUser() {
+            return this.user;
         }
 
         public final MeUser getUser() {
             return this.user;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final UserProfile getUserProfile() {
+            return this.userProfile;
         }
 
         public final UserProfile getUserProfile() {
@@ -299,7 +397,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             int iHashCode2 = (iHashCode + (guild != null ? guild.hashCode() : 0)) * 31;
             UserProfile userProfile = this.userProfile;
             int iHashCode3 = (iHashCode2 + (userProfile != null ? userProfile.hashCode() : 0)) * 31;
-            GuildMember guildMember = this.meMember;
+            com.discord.models.member.GuildMember guildMember = this.meMember;
             int iHashCode4 = (iHashCode3 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
             GuildChannelsInfo guildChannelsInfo = this.guildChannelsInfo;
             return iHashCode4 + (guildChannelsInfo != null ? guildChannelsInfo.hashCode() : 0);
@@ -322,10 +420,10 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<Node<MessageRenderContext>> bioAst;
             private final boolean canEditNickname;
             private final boolean canHaveAnimatedAvatars;
@@ -344,54 +442,19 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             private final boolean isBioChanged;
             private final boolean isDirty;
             private final boolean isEditingBio;
-            private final GuildMember meMember;
+            private final com.discord.models.member.GuildMember meMember;
             private final String nonDefaultColorPreviewHex;
             private final boolean showBioEditor;
             private final boolean showSaveFab;
             private final MeUser user;
             private final UserProfile userProfile;
 
-            public /* synthetic */ Loaded(MeUser meUser, Guild guild, GuildMember guildMember, UserProfile userProfile, NullSerializable nullSerializable, NullSerializable nullSerializable2, NullSerializable nullSerializable3, String str, String str2, List list, boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            public /* synthetic */ Loaded(MeUser meUser, Guild guild, com.discord.models.member.GuildMember guildMember, UserProfile userProfile, NullSerializable nullSerializable, NullSerializable nullSerializable2, NullSerializable nullSerializable3, String str, String str2, List list, boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this(meUser, guild, guildMember, userProfile, (i & 16) != 0 ? null : nullSerializable, (i & 32) != 0 ? null : nullSerializable2, (i & 64) != 0 ? null : nullSerializable3, (i & 128) != 0 ? null : str, str2, list, z2, z3);
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, MeUser meUser, Guild guild, GuildMember guildMember, UserProfile userProfile, NullSerializable nullSerializable, NullSerializable nullSerializable2, NullSerializable nullSerializable3, String str, String str2, List list, boolean z2, boolean z3, int i, Object obj) {
-                return loaded.copy((i & 1) != 0 ? loaded.user : meUser, (i & 2) != 0 ? loaded.guild : guild, (i & 4) != 0 ? loaded.meMember : guildMember, (i & 8) != 0 ? loaded.userProfile : userProfile, (i & 16) != 0 ? loaded.currentAvatar : nullSerializable, (i & 32) != 0 ? loaded.currentBannerImage : nullSerializable2, (i & 64) != 0 ? loaded.currentBannerColorHex : nullSerializable3, (i & 128) != 0 ? loaded.currentNickname : str, (i & 256) != 0 ? loaded.currentBio : str2, (i & 512) != 0 ? loaded.bioAst : list, (i & 1024) != 0 ? loaded.isEditingBio : z2, (i & 2048) != 0 ? loaded.canEditNickname : z3);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MeUser getUser() {
-                return this.user;
             }
 
             public final List<Node<MessageRenderContext>> component10() {
                 return this.bioAst;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getIsEditingBio() {
-                return this.isEditingBio;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getCanEditNickname() {
-                return this.canEditNickname;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GuildMember getMeMember() {
-                return this.meMember;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final UserProfile getUserProfile() {
-                return this.userProfile;
             }
 
             public final NullSerializable<String> component5() {
@@ -406,17 +469,12 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 return this.currentBannerColorHex;
             }
 
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final String getCurrentNickname() {
-                return this.currentNickname;
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, MeUser meUser, Guild guild, com.discord.models.member.GuildMember guildMember, UserProfile userProfile, NullSerializable nullSerializable, NullSerializable nullSerializable2, NullSerializable nullSerializable3, String str, String str2, List list, boolean z2, boolean z3, int i, Object obj) {
+                return loaded.copy((i & 1) != 0 ? loaded.user : meUser, (i & 2) != 0 ? loaded.guild : guild, (i & 4) != 0 ? loaded.meMember : guildMember, (i & 8) != 0 ? loaded.userProfile : userProfile, (i & 16) != 0 ? loaded.currentAvatar : nullSerializable, (i & 32) != 0 ? loaded.currentBannerImage : nullSerializable2, (i & 64) != 0 ? loaded.currentBannerColorHex : nullSerializable3, (i & 128) != 0 ? loaded.currentNickname : str, (i & 256) != 0 ? loaded.currentBio : str2, (i & 512) != 0 ? loaded.bioAst : list, (i & 1024) != 0 ? loaded.isEditingBio : z2, (i & 2048) != 0 ? loaded.canEditNickname : z3);
             }
 
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final String getCurrentBio() {
-                return this.currentBio;
-            }
-
-            public final Loaded copy(MeUser user, Guild guild, GuildMember meMember, UserProfile userProfile, NullSerializable<String> currentAvatar, NullSerializable<String> currentBannerImage, NullSerializable<String> currentBannerColorHex, String currentNickname, String currentBio, List<Node<MessageRenderContext>> bioAst, boolean isEditingBio, boolean canEditNickname) {
+            public final Loaded copy(MeUser user, Guild guild, com.discord.models.member.GuildMember meMember, UserProfile userProfile, NullSerializable<String> currentAvatar, NullSerializable<String> currentBannerImage, NullSerializable<String> currentBannerColorHex, String currentNickname, String currentBio, List<Node<MessageRenderContext>> bioAst, boolean isEditingBio, boolean canEditNickname) {
                 C12238m.checkNotNullParameter(user, "user");
                 C12238m.checkNotNullParameter(userProfile, "userProfile");
                 return new Loaded(user, guild, meMember, userProfile, currentAvatar, currentBannerImage, currentBannerColorHex, currentNickname, currentBio, bioAst, isEditingBio, canEditNickname);
@@ -435,6 +493,11 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
 
             public final List<Node<MessageRenderContext>> getBioAst() {
                 return this.bioAst;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final boolean getCanEditNickname() {
+                return this.canEditNickname;
             }
 
             public final boolean getCanEditNickname() {
@@ -457,12 +520,27 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 return this.currentBannerImage;
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final String getCurrentBio() {
                 return this.currentBio;
             }
 
+            public final String getCurrentBio() {
+                return this.currentBio;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
             public final String getCurrentNickname() {
                 return this.currentNickname;
+            }
+
+            public final String getCurrentNickname() {
+                return this.currentNickname;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
@@ -477,7 +555,27 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 return this.hasBannerImageForDisplay;
             }
 
-            public final GuildMember getMeMember() {
+            /* JADX INFO: renamed from: isBioChanged, reason: from getter */
+            public final boolean getIsBioChanged() {
+                return this.isBioChanged;
+            }
+
+            /* JADX INFO: renamed from: isDirty, reason: from getter */
+            public final boolean getIsDirty() {
+                return this.isDirty;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final boolean getIsEditingBio() {
+                return this.isEditingBio;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final com.discord.models.member.GuildMember getMeMember() {
+                return this.meMember;
+            }
+
+            public final com.discord.models.member.GuildMember getMeMember() {
                 return this.meMember;
             }
 
@@ -493,8 +591,18 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 return this.showSaveFab;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final MeUser getUser() {
                 return this.user;
+            }
+
+            public final MeUser getUser() {
+                return this.user;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final UserProfile getUserProfile() {
+                return this.userProfile;
             }
 
             public final UserProfile getUserProfile() {
@@ -515,7 +623,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 int iHashCode = (meUser != null ? meUser.hashCode() : 0) * 31;
                 Guild guild = this.guild;
                 int iHashCode2 = (iHashCode + (guild != null ? guild.hashCode() : 0)) * 31;
-                GuildMember guildMember = this.meMember;
+                com.discord.models.member.GuildMember guildMember = this.meMember;
                 int iHashCode3 = (iHashCode2 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
                 UserProfile userProfile = this.userProfile;
                 int iHashCode4 = (iHashCode3 + (userProfile != null ? userProfile.hashCode() : 0)) * 31;
@@ -539,16 +647,6 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 int i = (iHashCode10 + r1) * 31;
                 boolean z3 = this.canEditNickname;
                 return i + (z3 ? 1 : z3);
-            }
-
-            /* JADX INFO: renamed from: isBioChanged, reason: from getter */
-            public final boolean getIsBioChanged() {
-                return this.isBioChanged;
-            }
-
-            /* JADX INFO: renamed from: isDirty, reason: from getter */
-            public final boolean getIsDirty() {
-                return this.isDirty;
             }
 
             public final boolean isEditingBio() {
@@ -585,7 +683,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             /* JADX WARN: Code duplicated, block: B:29:0x0062  */
             /* JADX WARN: Code duplicated, block: B:46:0x008c  */
-            public Loaded(MeUser meUser, Guild guild, GuildMember guildMember, UserProfile userProfile, NullSerializable<String> nullSerializable, NullSerializable<String> nullSerializable2, NullSerializable<String> nullSerializable3, String str, String str2, List<Node<MessageRenderContext>> list, boolean z2, boolean z3) {
+            public Loaded(MeUser meUser, Guild guild, com.discord.models.member.GuildMember guildMember, UserProfile userProfile, NullSerializable<String> nullSerializable, NullSerializable<String> nullSerializable2, NullSerializable<String> nullSerializable3, String str, String str2, List<Node<MessageRenderContext>> list, boolean z2, boolean z3) {
                 boolean z4;
                 boolean z5;
                 super(null);
@@ -652,104 +750,6 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveGuildMemberChanges$1 */
-    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99571 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C99571() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveGuildMemberChanges$2 */
-    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99582 extends AbstractC12240o implements Function1<com.discord.api.guildmember.GuildMember, Unit> {
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99582(ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(com.discord.api.guildmember.GuildMember guildMember) {
-            invoke2(guildMember);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(com.discord.api.guildmember.GuildMember guildMember) {
-            C12238m.checkNotNullParameter(guildMember, "apiMember");
-            SettingsUserProfileViewModel.this.storeGuilds.handleGuildMember(com.discord.api.guildmember.GuildMember.m7915a(guildMember, SettingsUserProfileViewModel.this.guildId.longValue(), null, null, null, null, null, false, null, null, null, null, null, null, 8190), SettingsUserProfileViewModel.this.guildId.longValue(), true);
-            SettingsUserProfileViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, null, null, GuildMember.INSTANCE.from(guildMember, SettingsUserProfileViewModel.this.guildId.longValue(), (8 & 4) != 0 ? null : null, (8 & 8) != 0 ? null : SettingsUserProfileViewModel.this.storeGuilds), null, null, null, null, null, null, null, false, false, 3979, null));
-            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveUserChanges$1 */
-    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99591 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C99591() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.profile.SettingsUserProfileViewModel$saveUserChanges$2 */
-    /* JADX INFO: compiled from: EditUserOrGuildMemberProfileViewModel.kt */
-    public static final class C99602 extends AbstractC12240o implements Function1<User, Unit> {
-        public final /* synthetic */ MeUser $meUser;
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C99602(MeUser meUser, ViewState.Loaded loaded) {
-            super(1);
-            this.$meUser = meUser;
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(User user) {
-            invoke2(user);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(User user) {
-            C12238m.checkNotNullParameter(user, "apiUser");
-            SettingsUserProfileViewModel.this.storeUserProfile.updateUser(user);
-            SettingsUserProfileViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, MeUser.INSTANCE.merge(this.$meUser, user), null, null, null, null, null, null, null, null, null, false, false, 3982, null));
-            SettingsUserProfileViewModel.this.eventSubject.f27650k.onNext((T) Event.UserUpdateRequestCompleted.INSTANCE);
-        }
-    }
-
     public /* synthetic */ SettingsUserProfileViewModel(Long l, StoreUser storeUser, StoreUserProfile storeUserProfile, StoreGuilds storeGuilds, RestAPI restAPI, Parser parser, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(l, (i & 2) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 4) != 0 ? StoreStream.INSTANCE.getUserProfile() : storeUserProfile, (i & 8) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 32) != 0 ? DiscordParser.createParser$default(false, false, false, false, false, 28, null) : parser, (i & 64) != 0 ? Companion.observeStoreState$default(INSTANCE, l, null, null, null, 14, null) : observable);
     }
@@ -765,6 +765,22 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
     }
 
     @MainThread
+    public final void handleBioIndexClicked(SpoilerNode<?> spoilerNode) {
+        String currentBio;
+        C12238m.checkNotNullParameter(spoilerNode, "spoilerNode");
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded == null || (currentBio = loaded.getCurrentBio()) == null) {
+            return;
+        }
+        this.revealedBioIndices.add(Integer.valueOf(spoilerNode.getId()));
+        updateViewState(ViewState.Loaded.copy$default(loaded, null, null, null, null, null, null, null, null, null, createAndProcessBioAstFromText(currentBio), false, false, 3583, null));
+    }
+
+    @MainThread
     private final void handleStoreState(StoreState storeState) {
         String bio;
         String str;
@@ -775,7 +791,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
         }
         ViewState.Loaded loaded = (ViewState.Loaded) viewState;
         if (loaded == null || (bio = loaded.getCurrentBio()) == null) {
-            GuildMember meMember = storeState.getMeMember();
+            com.discord.models.member.GuildMember meMember = storeState.getMeMember();
             if (meMember != null) {
                 bio = meMember.getBio();
                 if (bio == null) {
@@ -796,7 +812,7 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
         }
         ViewState.Loaded loaded2 = (ViewState.Loaded) viewState2;
         if (loaded2 == null || (nick = loaded2.getCurrentNickname()) == null) {
-            GuildMember meMember2 = storeState.getMeMember();
+            com.discord.models.member.GuildMember meMember2 = storeState.getMeMember();
             if (meMember2 != null) {
                 String nick = meMember2.getNick();
                 str = nick;
@@ -816,8 +832,81 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
         updateViewState(new ViewState.Loaded(user, guild, storeState.getMeMember(), userProfile, nullSerializable, nullSerializable2, nullSerializable3, str, str2, listCreateAndProcessBioAstFromText, loaded3 != null ? loaded3.isEditingBio() : false, storeState.getGuildChannelsInfo().getCanChangeNickname(), 112, null));
     }
 
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
+    }
+
+    public final Observable<UserProfileHeaderViewModel.ViewState> observeHeaderViewState() {
+        Observable<UserProfileHeaderViewModel.ViewState> observableM11112r = observeViewState().m11083G(new InterfaceC12589b<ViewState, UserProfileHeaderViewModel.ViewState>() { // from class: com.discord.widgets.settings.profile.SettingsUserProfileViewModel.observeHeaderViewState.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final UserProfileHeaderViewModel.ViewState call(ViewState viewState) {
+                MeUser user;
+                String banner;
+                com.discord.models.member.GuildMember meMember;
+                if (viewState == null) {
+                    return UserProfileHeaderViewModel.ViewState.Uninitialized.INSTANCE;
+                }
+                if (!(viewState instanceof ViewState.Loaded)) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+                if (loaded.getCurrentAvatar() == null || loaded.getMeMember() != null) {
+                    user = loaded.getUser();
+                } else {
+                    MeUser user2 = loaded.getUser();
+                    user = user2.copy((258047 & 1) != 0 ? user2.getId() : 0L, (258047 & 2) != 0 ? user2.getUsername() : null, (258047 & 4) != 0 ? user2.getAvatar() : loaded.getCurrentAvatar().mo8429a(), (258047 & 8) != 0 ? user2.getBanner() : null, (258047 & 16) != 0 ? user2.getIsBot() : false, (258047 & 32) != 0 ? user2.getIsSystemUser() : false, (258047 & 64) != 0 ? user2.getDiscriminator() : 0, (258047 & 128) != 0 ? user2.getPremiumTier() : null, (258047 & 256) != 0 ? user2.email : null, (258047 & 512) != 0 ? user2.mfaEnabled : false, (258047 & 1024) != 0 ? user2.isVerified : false, (258047 & 2048) != 0 ? user2.token : null, (258047 & 4096) != 0 ? user2.getFlags() : 0, (258047 & 8192) != 0 ? user2.getPublicFlags() : 0, (258047 & 16384) != 0 ? user2.phoneNumber : null, (258047 & 32768) != 0 ? user2.nsfwAllowance : null, (258047 & 65536) != 0 ? user2.getBio() : null, (258047 & 131072) != 0 ? user2.getBannerColor() : null);
+                }
+                MeUser meUser = user;
+                UserProfile userProfile = loaded.getUserProfile();
+                if (loaded.getCurrentBannerImage() == null) {
+                    com.discord.models.member.GuildMember meMember2 = loaded.getMeMember();
+                    if (meMember2 == null || (banner = meMember2.getBannerHash()) == null) {
+                        banner = loaded.getUser().getBanner();
+                    }
+                } else if (loaded.getCurrentBannerImage() instanceof NullSerializable.C5565a) {
+                    banner = loaded.getMeMember() != null ? loaded.getUser().getBanner() : null;
+                } else {
+                    banner = loaded.getCurrentBannerImage().mo8429a();
+                }
+                String str = banner;
+                NullSerializable<String> currentBannerColorHex = loaded.getCurrentBannerColorHex();
+                String strMo8429a = ((currentBannerColorHex instanceof NullSerializable.C5566b) || (currentBannerColorHex instanceof NullSerializable.C5565a)) ? currentBannerColorHex.mo8429a() : loaded.getUser().getBannerColor();
+                boolean zIsPremium = UserUtils.INSTANCE.isPremium(loaded.getUser());
+                boolean zIsVerified = loaded.getUser().isVerified();
+                if (loaded.getMeMember() != null) {
+                    com.discord.models.member.GuildMember meMember3 = loaded.getMeMember();
+                    if (loaded.getCurrentAvatar() != null) {
+                        meMember3 = meMember3.copy((7679 & 1) != 0 ? meMember3.color : 0, (7679 & 2) != 0 ? meMember3.hoistRoleId : 0L, (7679 & 4) != 0 ? meMember3.roles : null, (7679 & 8) != 0 ? meMember3.nick : null, (7679 & 16) != 0 ? meMember3.premiumSince : null, (7679 & 32) != 0 ? meMember3.pending : false, (7679 & 64) != 0 ? meMember3.joinedAt : null, (7679 & 128) != 0 ? meMember3.guildId : 0L, (7679 & 256) != 0 ? meMember3.userId : 0L, (7679 & 512) != 0 ? meMember3.avatarHash : loaded.getCurrentAvatar().mo8429a(), (7679 & 1024) != 0 ? meMember3.bannerHash : null, (7679 & 2048) != 0 ? meMember3.bio : null, (7679 & 4096) != 0 ? meMember3.communicationDisabledUntil : null);
+                    }
+                    com.discord.models.member.GuildMember guildMemberCopy = meMember3;
+                    if (loaded.getCurrentBannerImage() != null) {
+                        guildMemberCopy = guildMemberCopy.copy((7679 & 1) != 0 ? guildMemberCopy.color : 0, (7679 & 2) != 0 ? guildMemberCopy.hoistRoleId : 0L, (7679 & 4) != 0 ? guildMemberCopy.roles : null, (7679 & 8) != 0 ? guildMemberCopy.nick : null, (7679 & 16) != 0 ? guildMemberCopy.premiumSince : null, (7679 & 32) != 0 ? guildMemberCopy.pending : false, (7679 & 64) != 0 ? guildMemberCopy.joinedAt : null, (7679 & 128) != 0 ? guildMemberCopy.guildId : 0L, (7679 & 256) != 0 ? guildMemberCopy.userId : 0L, (7679 & 512) != 0 ? guildMemberCopy.avatarHash : null, (7679 & 1024) != 0 ? guildMemberCopy.bannerHash : loaded.getCurrentBannerImage().mo8429a(), (7679 & 2048) != 0 ? guildMemberCopy.bio : null, (7679 & 4096) != 0 ? guildMemberCopy.communicationDisabledUntil : null);
+                    }
+                    meMember = guildMemberCopy;
+                } else {
+                    meMember = loaded.getMeMember();
+                }
+                return new UserProfileHeaderViewModel.ViewState.Loaded(meUser, str, strMo8429a, meMember, null, null, null, userProfile, zIsPremium, zIsVerified, false, false, true, false, false, false, 58480, null);
+            }
+        }).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observeViewState().map {… }.distinctUntilChanged()");
+        return observableM11112r;
+    }
+
     private final List<Node<MessageRenderContext>> parseBio(String bio) {
         return Parser.parse$default(this.bioParser, bio, MessageParseState.INSTANCE.getInitialState(), null, 4, null);
+    }
+
+    @MainThread
+    public final void saveChanges(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        if (this.guildId != null) {
+            saveGuildMemberChanges(context);
+        } else {
+            saveUserChanges(context);
+        }
     }
 
     @MainThread
@@ -852,95 +941,6 @@ public final class SettingsUserProfileViewModel extends AbstractC0859d0<ViewStat
                 c5566b = null;
             }
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.patchUser(new PatchUserBody(loaded.getCurrentAvatar(), loaded.getCurrentBannerImage(), loaded.getCurrentBannerColorHex(), c5566b)), false, 1, null), this, null, 2, null), (Class<?>) SettingsUserProfileViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C99591()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99602(user, loaded));
-        }
-    }
-
-    @MainThread
-    public final void handleBioIndexClicked(SpoilerNode<?> spoilerNode) {
-        String currentBio;
-        C12238m.checkNotNullParameter(spoilerNode, "spoilerNode");
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded == null || (currentBio = loaded.getCurrentBio()) == null) {
-            return;
-        }
-        this.revealedBioIndices.add(Integer.valueOf(spoilerNode.getId()));
-        updateViewState(ViewState.Loaded.copy$default(loaded, null, null, null, null, null, null, null, null, null, createAndProcessBioAstFromText(currentBio), false, false, 3583, null));
-    }
-
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
-    }
-
-    public final Observable<UserProfileHeaderViewModel.ViewState> observeHeaderViewState() {
-        Observable<UserProfileHeaderViewModel.ViewState> observableM11112r = observeViewState().m11083G(new InterfaceC12589b<ViewState, UserProfileHeaderViewModel.ViewState>() { // from class: com.discord.widgets.settings.profile.SettingsUserProfileViewModel.observeHeaderViewState.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final UserProfileHeaderViewModel.ViewState call(ViewState viewState) {
-                MeUser user;
-                String banner;
-                GuildMember meMember;
-                if (viewState == null) {
-                    return UserProfileHeaderViewModel.ViewState.Uninitialized.INSTANCE;
-                }
-                if (!(viewState instanceof ViewState.Loaded)) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-                if (loaded.getCurrentAvatar() == null || loaded.getMeMember() != null) {
-                    user = loaded.getUser();
-                } else {
-                    MeUser user2 = loaded.getUser();
-                    user = user2.copy((258047 & 1) != 0 ? user2.getId() : 0L, (258047 & 2) != 0 ? user2.getUsername() : null, (258047 & 4) != 0 ? user2.getAvatar() : loaded.getCurrentAvatar().mo8429a(), (258047 & 8) != 0 ? user2.getBanner() : null, (258047 & 16) != 0 ? user2.getIsBot() : false, (258047 & 32) != 0 ? user2.getIsSystemUser() : false, (258047 & 64) != 0 ? user2.getDiscriminator() : 0, (258047 & 128) != 0 ? user2.getPremiumTier() : null, (258047 & 256) != 0 ? user2.email : null, (258047 & 512) != 0 ? user2.mfaEnabled : false, (258047 & 1024) != 0 ? user2.isVerified : false, (258047 & 2048) != 0 ? user2.token : null, (258047 & 4096) != 0 ? user2.getFlags() : 0, (258047 & 8192) != 0 ? user2.getPublicFlags() : 0, (258047 & 16384) != 0 ? user2.phoneNumber : null, (258047 & 32768) != 0 ? user2.nsfwAllowance : null, (258047 & 65536) != 0 ? user2.getBio() : null, (258047 & 131072) != 0 ? user2.getBannerColor() : null);
-                }
-                MeUser meUser = user;
-                UserProfile userProfile = loaded.getUserProfile();
-                if (loaded.getCurrentBannerImage() == null) {
-                    GuildMember meMember2 = loaded.getMeMember();
-                    if (meMember2 == null || (banner = meMember2.getBannerHash()) == null) {
-                        banner = loaded.getUser().getBanner();
-                    }
-                } else if (loaded.getCurrentBannerImage() instanceof NullSerializable.C5565a) {
-                    banner = loaded.getMeMember() != null ? loaded.getUser().getBanner() : null;
-                } else {
-                    banner = loaded.getCurrentBannerImage().mo8429a();
-                }
-                String str = banner;
-                NullSerializable<String> currentBannerColorHex = loaded.getCurrentBannerColorHex();
-                String strMo8429a = ((currentBannerColorHex instanceof NullSerializable.C5566b) || (currentBannerColorHex instanceof NullSerializable.C5565a)) ? currentBannerColorHex.mo8429a() : loaded.getUser().getBannerColor();
-                boolean zIsPremium = UserUtils.INSTANCE.isPremium(loaded.getUser());
-                boolean zIsVerified = loaded.getUser().isVerified();
-                if (loaded.getMeMember() != null) {
-                    GuildMember meMember3 = loaded.getMeMember();
-                    if (loaded.getCurrentAvatar() != null) {
-                        meMember3 = meMember3.copy((7679 & 1) != 0 ? meMember3.color : 0, (7679 & 2) != 0 ? meMember3.hoistRoleId : 0L, (7679 & 4) != 0 ? meMember3.roles : null, (7679 & 8) != 0 ? meMember3.nick : null, (7679 & 16) != 0 ? meMember3.premiumSince : null, (7679 & 32) != 0 ? meMember3.pending : false, (7679 & 64) != 0 ? meMember3.joinedAt : null, (7679 & 128) != 0 ? meMember3.guildId : 0L, (7679 & 256) != 0 ? meMember3.userId : 0L, (7679 & 512) != 0 ? meMember3.avatarHash : loaded.getCurrentAvatar().mo8429a(), (7679 & 1024) != 0 ? meMember3.bannerHash : null, (7679 & 2048) != 0 ? meMember3.bio : null, (7679 & 4096) != 0 ? meMember3.communicationDisabledUntil : null);
-                    }
-                    GuildMember guildMemberCopy = meMember3;
-                    if (loaded.getCurrentBannerImage() != null) {
-                        guildMemberCopy = guildMemberCopy.copy((7679 & 1) != 0 ? guildMemberCopy.color : 0, (7679 & 2) != 0 ? guildMemberCopy.hoistRoleId : 0L, (7679 & 4) != 0 ? guildMemberCopy.roles : null, (7679 & 8) != 0 ? guildMemberCopy.nick : null, (7679 & 16) != 0 ? guildMemberCopy.premiumSince : null, (7679 & 32) != 0 ? guildMemberCopy.pending : false, (7679 & 64) != 0 ? guildMemberCopy.joinedAt : null, (7679 & 128) != 0 ? guildMemberCopy.guildId : 0L, (7679 & 256) != 0 ? guildMemberCopy.userId : 0L, (7679 & 512) != 0 ? guildMemberCopy.avatarHash : null, (7679 & 1024) != 0 ? guildMemberCopy.bannerHash : loaded.getCurrentBannerImage().mo8429a(), (7679 & 2048) != 0 ? guildMemberCopy.bio : null, (7679 & 4096) != 0 ? guildMemberCopy.communicationDisabledUntil : null);
-                    }
-                    meMember = guildMemberCopy;
-                } else {
-                    meMember = loaded.getMeMember();
-                }
-                return new UserProfileHeaderViewModel.ViewState.Loaded(meUser, str, strMo8429a, meMember, null, null, null, userProfile, zIsPremium, zIsVerified, false, false, true, false, false, false, 58480, null);
-            }
-        }).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observeViewState().map {… }.distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    @MainThread
-    public final void saveChanges(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        if (this.guildId != null) {
-            saveGuildMemberChanges(context);
-        } else {
-            saveUserChanges(context);
         }
     }
 

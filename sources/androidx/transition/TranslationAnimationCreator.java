@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 /* JADX INFO: loaded from: classes.dex */
 public class TranslationAnimationCreator {
 
-    public static class TransitionPositionListener extends AnimatorListenerAdapter implements Transition.TransitionListener {
+    public class TransitionPositionListener extends AnimatorListenerAdapter implements Transition.TransitionListener {
         private final View mMovingView;
         private float mPausedX;
         private float mPausedY;

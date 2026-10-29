@@ -7,7 +7,7 @@ import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: View.kt */
 /* JADX INFO: loaded from: classes.dex */
-public /* synthetic */ class ViewKt$ancestors$1 extends C12236k implements Function1<ViewParent, ViewParent> {
+public final /* synthetic */ class ViewKt$ancestors$1 extends C12236k implements Function1<ViewParent, ViewParent> {
     public static final ViewKt$ancestors$1 INSTANCE = new ViewKt$ancestors$1();
 
     public ViewKt$ancestors$1() {

@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackJoinedIntegration.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackJoinedIntegration implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long guild = null;
     private final Long guildOwner = null;
     private final CharSequence integration = null;
     private final CharSequence integrationType = null;
     private final Long integrationUser = null;
+    private TrackBase trackBase;
     private final Long userDay = null;
     private final Long userGuilds = null;
     private final transient String analyticsSchemaTypeName = "joined_integration";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackJoinedIntegration implements AnalyticsSchema,
         }
         TrackJoinedIntegration trackJoinedIntegration = (TrackJoinedIntegration) other;
         return C12238m.areEqual(this.guild, trackJoinedIntegration.guild) && C12238m.areEqual(this.guildOwner, trackJoinedIntegration.guildOwner) && C12238m.areEqual(this.integration, trackJoinedIntegration.integration) && C12238m.areEqual(this.integrationType, trackJoinedIntegration.integrationType) && C12238m.areEqual(this.integrationUser, trackJoinedIntegration.integrationUser) && C12238m.areEqual(this.userDay, trackJoinedIntegration.userDay) && C12238m.areEqual(this.userGuilds, trackJoinedIntegration.userGuilds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

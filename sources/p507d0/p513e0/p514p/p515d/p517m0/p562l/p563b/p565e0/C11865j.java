@@ -62,18 +62,6 @@ public final class C11865j extends C11366c0 implements InterfaceC11857b {
         this.f24603N = interfaceC11861f;
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11366c0
-    /* JADX INFO: renamed from: b */
-    public C11366c0 mo9394b(InterfaceC11450m interfaceC11450m, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, InterfaceC11453n0 interfaceC11453n0, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0) {
-        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
-        C12238m.checkNotNullParameter(enumC11476z, "newModality");
-        C12238m.checkNotNullParameter(abstractC11466u, "newVisibility");
-        C12238m.checkNotNullParameter(aVar, "kind");
-        C12238m.checkNotNullParameter(c11716e, "newName");
-        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
-        return new C11865j(interfaceC11450m, interfaceC11453n0, getAnnotations(), enumC11476z, abstractC11466u, isVar(), c11716e, aVar, isLateInit(), isConst(), isExternal(), isDelegated(), isExpect(), getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource());
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.InterfaceC11862g
     public InterfaceC11861f getContainerSource() {
         return this.f24603N;
@@ -109,6 +97,18 @@ public final class C11865j extends C11366c0 implements InterfaceC11857b {
         Boolean bool = C11703b.f24019C.get(getProto().getFlags());
         C12238m.checkNotNullExpressionValue(bool, "IS_EXTERNAL_PROPERTY.get(proto.flags)");
         return bool.booleanValue();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11366c0
+    /* JADX INFO: renamed from: b */
+    public C11366c0 mo9394b(InterfaceC11450m interfaceC11450m, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, InterfaceC11453n0 interfaceC11453n0, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0) {
+        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
+        C12238m.checkNotNullParameter(enumC11476z, "newModality");
+        C12238m.checkNotNullParameter(abstractC11466u, "newVisibility");
+        C12238m.checkNotNullParameter(aVar, "kind");
+        C12238m.checkNotNullParameter(c11716e, "newName");
+        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
+        return new C11865j(interfaceC11450m, interfaceC11453n0, getAnnotations(), enumC11476z, abstractC11466u, isVar(), c11716e, aVar, isLateInit(), isConst(), isExternal(), isDelegated(), isExpect(), getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource());
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.InterfaceC11862g

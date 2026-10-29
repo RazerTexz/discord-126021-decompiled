@@ -136,9 +136,6 @@ public final class C4142p {
     /* JADX INFO: renamed from: Z */
     public static C4080j3<Boolean> f11060Z;
 
-    /* JADX INFO: renamed from: a */
-    public static List<C4080j3<?>> f11061a = Collections.synchronizedList(new ArrayList());
-
     /* JADX INFO: renamed from: a0 */
     public static C4080j3<Boolean> f11062a0;
 
@@ -291,6 +288,9 @@ public final class C4142p {
 
     /* JADX INFO: renamed from: z0 */
     public static C4080j3<Boolean> f11112z0;
+
+    /* JADX INFO: renamed from: a */
+    public static List<C4080j3<?>> f11061a = Collections.synchronizedList(new ArrayList());
 
     static {
         Collections.synchronizedSet(new HashSet());

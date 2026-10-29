@@ -99,7 +99,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$3 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77793 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+    public final class C77793 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
         public C77793() {
             super(2);
         }
@@ -117,7 +117,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$4 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77804 extends AbstractC12240o implements Function1<Application, Unit> {
+    public final class C77804 extends AbstractC12240o implements Function1<Application, Unit> {
         public C77804() {
             super(1);
         }
@@ -138,7 +138,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$5 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77815 extends AbstractC12240o implements Function1<Autocompletable, Unit> {
+    public final class C77815 extends AbstractC12240o implements Function1<Autocompletable, Unit> {
         public C77815() {
             super(1);
         }
@@ -158,7 +158,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$6 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77826 extends AbstractC12240o implements Function1<Sticker, Unit> {
+    public final class C77826 extends AbstractC12240o implements Function1<Sticker, Unit> {
         public C77826() {
             super(1);
         }
@@ -182,7 +182,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$7 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77837 extends AbstractC12240o implements Function1<ApplicationCommandOption, Unit> {
+    public final class C77837 extends AbstractC12240o implements Function1<ApplicationCommandOption, Unit> {
         public C77837() {
             super(1);
         }
@@ -202,7 +202,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$configureAutocompleteBrowser$1 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77841 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+    public final class C77841 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
         public C77841() {
             super(2);
         }
@@ -229,7 +229,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$configureCommandBrowser$1 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77851 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+    public final class C77851 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
         public C77851() {
             super(2);
         }
@@ -256,7 +256,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$1 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77861 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77861 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Event $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -279,7 +279,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$2 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77872 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C77872 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ Event $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -301,7 +301,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$3 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77883 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77883 extends AbstractC12240o implements Function0<Unit> {
         public C77883() {
             super(0);
         }
@@ -320,7 +320,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final /* synthetic */ class C77891 extends C12236k implements Function1<ViewState, Unit> {
+    public final /* synthetic */ class C77891 extends C12236k implements Function1<ViewState, Unit> {
         public C77891(InputAutocomplete inputAutocomplete) {
             super(1, inputAutocomplete, InputAutocomplete.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/input/autocomplete/ViewState;)V", 0);
         }
@@ -340,7 +340,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final class C77902 extends AbstractC12240o implements Function1<InputEditTextAction, Unit> {
+    public final class C77902 extends AbstractC12240o implements Function1<InputEditTextAction, Unit> {
         public C77902() {
             super(1);
         }
@@ -361,7 +361,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public static final /* synthetic */ class C77913 extends C12236k implements Function1<Event, Unit> {
+    public final /* synthetic */ class C77913 extends C12236k implements Function1<Event, Unit> {
         public C77913(InputAutocomplete inputAutocomplete) {
             super(1, inputAutocomplete, InputAutocomplete.class, "handleEvent", "handleEvent(Lcom/discord/widgets/chat/input/autocomplete/Event;)V", 0);
         }
@@ -688,6 +688,14 @@ public final class InputAutocomplete {
         return inputAutocomplete.getApplicationCommandData(applicationCommandOption);
     }
 
+    public final ApplicationCommandData getApplicationCommandData(ApplicationCommandOption focusedOption) {
+        return getViewModel().getApplicationSendData(focusedOption);
+    }
+
+    public final Map<ApplicationCommandOption, Attachment<?>> getCommandAttachments() {
+        return getViewModel().getCommandAttachments();
+    }
+
     private final Long getCurrentlySelectedCategory(int topPosition) {
         Application application;
         ChatInputAutocompleteAdapter chatInputAutocompleteAdapter = this.autocompleteAdapter;
@@ -701,6 +709,34 @@ public final class InputAutocomplete {
             return null;
         }
         return Long.valueOf(application.getId());
+    }
+
+    public final MessageContent getInputContent() {
+        WidgetChatInputEditText.Companion companion = WidgetChatInputEditText.INSTANCE;
+        String stringSafe = companion.toStringSafe(this.editText);
+        String stringSafe2 = companion.toStringSafe(this.editText);
+        int length = stringSafe2.length() - 1;
+        int i = 0;
+        boolean z2 = false;
+        while (i <= length) {
+            boolean z3 = C12238m.compare(stringSafe2.charAt(!z2 ? i : length), 32) <= 0;
+            if (z2) {
+                if (!z3) {
+                    break;
+                }
+                length--;
+            } else if (z3) {
+                i++;
+            } else {
+                z2 = true;
+            }
+        }
+        String string = stringSafe2.subSequence(i, length + 1).toString();
+        return !TextUtils.isEmpty(string) ? getViewModel().replaceAutocompletableDataWithServerValues(stringSafe) : new MessageContent(string, C12147n.emptyList());
+    }
+
+    public final Function1<ApplicationCommandOption, Unit> getOnPerformCommandAutocomplete() {
+        return this.onPerformCommandAutocomplete;
     }
 
     private final AutocompleteViewModel getViewModel() {
@@ -757,65 +793,6 @@ public final class InputAutocomplete {
         constraintLayout.setVisibility(8);
     }
 
-    private final void removePillSpans(Spannable spannable) {
-        for (Object obj : spannable.getSpans(0, spannable.length(), Object.class)) {
-            if (obj instanceof SimpleRoundedBackgroundSpan) {
-                spannable.removeSpan(obj);
-            }
-        }
-    }
-
-    private final void removeSpans(Spannable spannable, IntRange spanRange) {
-        for (Object obj : spannable.getSpans(spanRange.getFirst(), spanRange.getLast(), Object.class)) {
-            if ((obj instanceof CharacterStyle) && !(obj instanceof SimpleRoundedBackgroundSpan)) {
-                spannable.removeSpan(obj);
-            }
-        }
-    }
-
-    public static /* synthetic */ void removeSpans$default(InputAutocomplete inputAutocomplete, Spannable spannable, IntRange intRange, int i, Object obj) {
-        if ((i & 2) != 0) {
-            intRange = new IntRange(0, spannable.length());
-        }
-        inputAutocomplete.removeSpans(spannable, intRange);
-    }
-
-    public final ApplicationCommandData getApplicationCommandData(ApplicationCommandOption focusedOption) {
-        return getViewModel().getApplicationSendData(focusedOption);
-    }
-
-    public final Map<ApplicationCommandOption, Attachment<?>> getCommandAttachments() {
-        return getViewModel().getCommandAttachments();
-    }
-
-    public final MessageContent getInputContent() {
-        WidgetChatInputEditText.Companion companion = WidgetChatInputEditText.INSTANCE;
-        String stringSafe = companion.toStringSafe(this.editText);
-        String stringSafe2 = companion.toStringSafe(this.editText);
-        int length = stringSafe2.length() - 1;
-        int i = 0;
-        boolean z2 = false;
-        while (i <= length) {
-            boolean z3 = C12238m.compare(stringSafe2.charAt(!z2 ? i : length), 32) <= 0;
-            if (z2) {
-                if (!z3) {
-                    break;
-                }
-                length--;
-            } else if (z3) {
-                i++;
-            } else {
-                z2 = true;
-            }
-        }
-        String string = stringSafe2.subSequence(i, length + 1).toString();
-        return !TextUtils.isEmpty(string) ? getViewModel().replaceAutocompletableDataWithServerValues(stringSafe) : new MessageContent(string, C12147n.emptyList());
-    }
-
-    public final Function1<ApplicationCommandOption, Unit> getOnPerformCommandAutocomplete() {
-        return this.onPerformCommandAutocomplete;
-    }
-
     public final void onCommandInputsSendError() {
         getViewModel().onApplicationCommandSendError();
     }
@@ -829,6 +806,29 @@ public final class InputAutocomplete {
         C12238m.checkNotNullExpressionValue(observableM11112r2, "viewModel.observeEditTex…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11112r2, this.fragment, null, 2, null), (Class<?>) InputAutocomplete.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77902());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeEvents(), this.fragment, null, 2, null), (Class<?>) InputAutocomplete.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77913(this));
+    }
+
+    private final void removePillSpans(Spannable spannable) {
+        for (Object obj : spannable.getSpans(0, spannable.length(), Object.class)) {
+            if (obj instanceof SimpleRoundedBackgroundSpan) {
+                spannable.removeSpan(obj);
+            }
+        }
+    }
+
+    public static /* synthetic */ void removeSpans$default(InputAutocomplete inputAutocomplete, Spannable spannable, IntRange intRange, int i, Object obj) {
+        if ((i & 2) != 0) {
+            intRange = new IntRange(0, spannable.length());
+        }
+        inputAutocomplete.removeSpans(spannable, intRange);
+    }
+
+    private final void removeSpans(Spannable spannable, IntRange spanRange) {
+        for (Object obj : spannable.getSpans(spanRange.getFirst(), spanRange.getLast(), Object.class)) {
+            if ((obj instanceof CharacterStyle) && !(obj instanceof SimpleRoundedBackgroundSpan)) {
+                spannable.removeSpan(obj);
+            }
+        }
     }
 
     public final void setOnPerformCommandAutocomplete(Function1<? super ApplicationCommandOption, Unit> function1) {

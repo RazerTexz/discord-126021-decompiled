@@ -15,10 +15,10 @@ public class VideoSource extends MediaSource {
     private VideoProcessor videoProcessor;
     private final Object videoProcessorLock;
 
-    public static class AspectRatio {
-        public static final AspectRatio UNDEFINED = new AspectRatio(0, 0);
+    public class AspectRatio {
         public final int height;
         public final int width;
+        public static final AspectRatio UNDEFINED = new AspectRatio(0, 0);
 
         public AspectRatio(int i, int i2) {
             this.width = i;
@@ -71,11 +71,6 @@ public class VideoSource extends MediaSource {
         this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j);
     }
 
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m11053a(VideoFrame videoFrame) {
-        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
-    }
-
     public void adaptOutputFormat(int i, int i2, int i3) {
         int iMax = Math.max(i, i2);
         int iMin = Math.min(i, i2);
@@ -94,6 +89,11 @@ public class VideoSource extends MediaSource {
 
     public long getNativeVideoTrackSource() {
         return getNativeMediaSource();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ void m11053a(VideoFrame videoFrame) {
+        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
     }
 
     public void setIsScreencast(boolean z2) {

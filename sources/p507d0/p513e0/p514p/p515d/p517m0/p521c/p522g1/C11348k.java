@@ -22,7 +22,7 @@ public final class C11348k implements InterfaceC11344g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g1.k$a */
     /* JADX INFO: compiled from: Annotations.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11344g, InterfaceC11340c> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11344g, InterfaceC11340c> {
         public final /* synthetic */ C11713b $fqName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -40,7 +40,7 @@ public final class C11348k implements InterfaceC11344g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g1.k$b */
     /* JADX INFO: compiled from: Annotations.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11344g, Sequence<? extends InterfaceC11340c>> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11344g, Sequence<? extends InterfaceC11340c>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f22744j = new b();

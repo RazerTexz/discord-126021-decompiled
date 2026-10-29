@@ -29,9 +29,6 @@ public final class C3101v implements InterfaceC3094o {
     /* JADX INFO: renamed from: e */
     public String f8895e;
 
-    /* JADX INFO: renamed from: f */
-    public int f8896f = 0;
-
     /* JADX INFO: renamed from: g */
     public int f8897g;
 
@@ -49,6 +46,9 @@ public final class C3101v implements InterfaceC3094o {
 
     /* JADX INFO: renamed from: l */
     public long f8902l;
+
+    /* JADX INFO: renamed from: f */
+    public int f8896f = 0;
 
     public C3101v(@Nullable String str) {
         C2757x c2757x = new C2757x(4);

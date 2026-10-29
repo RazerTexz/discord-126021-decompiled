@@ -86,8 +86,28 @@ public final class WidgetSearchResults extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.search.results.WidgetSearchResults$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSearchResults.kt */
-    public static final /* data */ class Model implements WidgetChatListAdapter.Data {
+    public final /* synthetic */ class C91351 extends C12236k implements Function1<Model, Unit> {
+        public C91351(WidgetSearchResults widgetSearchResults) {
+            super(1, widgetSearchResults, WidgetSearchResults.class, "configureUI", "configureUI(Lcom/discord/widgets/search/results/WidgetSearchResults$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetSearchResults) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSearchResults.kt */
+    public final /* data */ class Model implements WidgetChatListAdapter.Data {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -103,7 +123,7 @@ public final class WidgetSearchResults extends AppFragment {
         private final long userId;
 
         /* JADX INFO: compiled from: WidgetSearchResults.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -112,7 +132,7 @@ public final class WidgetSearchResults extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.search.results.WidgetSearchResults$Model$Companion$get$1$1 */
                     /* JADX INFO: compiled from: WidgetSearchResults.kt */
-                    public static final class C91341 extends AbstractC12240o implements Function10<WidgetChatListModelMessages.MessagesWithMetadata, Long, Map<Long, ? extends String>, Map<Long, ? extends Guild>, Map<Long, ? extends Map<Long, ? extends GuildMember>>, Map<Long, ? extends Map<Long, ? extends GuildRole>>, Map<Long, ? extends Channel>, Boolean, Boolean, InviteEmbedModel, WidgetSearchResults.Model> {
+                    public final class C91341 extends AbstractC12240o implements Function10<WidgetChatListModelMessages.MessagesWithMetadata, Long, Map<Long, ? extends String>, Map<Long, ? extends Guild>, Map<Long, ? extends Map<Long, ? extends GuildMember>>, Map<Long, ? extends Map<Long, ? extends GuildRole>>, Map<Long, ? extends Channel>, Boolean, Boolean, InviteEmbedModel, WidgetSearchResults.Model> {
                         public final /* synthetic */ SearchState $searchState;
 
                         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -225,6 +245,26 @@ public final class WidgetSearchResults extends AppFragment {
             this.myRoleIds = set;
         }
 
+        public final List<ChatListEntry> component1() {
+            return getList();
+        }
+
+        public final long component2() {
+            return getUserId();
+        }
+
+        public final Map<Long, String> component3() {
+            return getChannelNames();
+        }
+
+        public final long component4() {
+            return getOldestMessageId();
+        }
+
+        public final Set<Long> component5() {
+            return getMyRoleIds();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, List list, long j, Map map, long j2, Set set, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -246,26 +286,6 @@ public final class WidgetSearchResults extends AppFragment {
                 set = model.getMyRoleIds();
             }
             return model.copy(list, j3, map2, j4, set);
-        }
-
-        public final List<ChatListEntry> component1() {
-            return getList();
-        }
-
-        public final long component2() {
-            return getUserId();
-        }
-
-        public final Map<Long, String> component3() {
-            return getChannelNames();
-        }
-
-        public final long component4() {
-            return getOldestMessageId();
-        }
-
-        public final Set<Long> component5() {
-            return getMyRoleIds();
         }
 
         public final Model copy(List<? extends ChatListEntry> list, long userId, Map<Long, String> channelNames, long oldestMessageId, Set<Long> myRoleIds) {
@@ -307,6 +327,12 @@ public final class WidgetSearchResults extends AppFragment {
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
+        public boolean getIsSpoilerClickAllowed() {
+            return this.isSpoilerClickAllowed;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
         public List<ChatListEntry> getList() {
             return this.list;
         }
@@ -340,12 +366,6 @@ public final class WidgetSearchResults extends AppFragment {
             return iM3a2 + (myRoleIds != null ? myRoleIds.hashCode() : 0);
         }
 
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
-        public boolean getIsSpoilerClickAllowed() {
-            return this.isSpoilerClickAllowed;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("Model(list=");
             sbM833U.append(getList());
@@ -367,7 +387,7 @@ public final class WidgetSearchResults extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSearchResults.kt */
-    public static final class SearchResultAdapterEventHandler implements WidgetChatListAdapter.EventHandler {
+    public final class SearchResultAdapterEventHandler implements WidgetChatListAdapter.EventHandler {
         private final ChannelSelector channelSelector;
         private final Context context;
         private final FragmentManager fragmentManager;
@@ -561,26 +581,6 @@ public final class WidgetSearchResults extends AppFragment {
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onUserMentionClicked(long userId, long channelId, long guildId) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.search.results.WidgetSearchResults$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSearchResults.kt */
-    public static final /* synthetic */ class C91351 extends C12236k implements Function1<Model, Unit> {
-        public C91351(WidgetSearchResults widgetSearchResults) {
-            super(1, widgetSearchResults, WidgetSearchResults.class, "configureUI", "configureUI(Lcom/discord/widgets/search/results/WidgetSearchResults$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetSearchResults) this.receiver).configureUI(model);
         }
     }
 

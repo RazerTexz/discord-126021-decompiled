@@ -19,62 +19,6 @@ public class ChainRun extends WidgetRun {
         build();
     }
 
-    private void build() {
-        ConstraintWidget constraintWidget;
-        ConstraintWidget constraintWidget2 = this.widget;
-        ConstraintWidget previousChainMember = constraintWidget2.getPreviousChainMember(this.orientation);
-        while (true) {
-            ConstraintWidget constraintWidget3 = previousChainMember;
-            constraintWidget = constraintWidget2;
-            constraintWidget2 = constraintWidget3;
-            if (constraintWidget2 == null) {
-                break;
-            } else {
-                previousChainMember = constraintWidget2.getPreviousChainMember(this.orientation);
-            }
-        }
-        this.widget = constraintWidget;
-        this.widgets.add(constraintWidget.getRun(this.orientation));
-        ConstraintWidget nextChainMember = constraintWidget.getNextChainMember(this.orientation);
-        while (nextChainMember != null) {
-            this.widgets.add(nextChainMember.getRun(this.orientation));
-            nextChainMember = nextChainMember.getNextChainMember(this.orientation);
-        }
-        for (WidgetRun widgetRun : this.widgets) {
-            int i = this.orientation;
-            if (i == 0) {
-                widgetRun.widget.horizontalChainRun = this;
-            } else if (i == 1) {
-                widgetRun.widget.verticalChainRun = this;
-            }
-        }
-        if ((this.orientation == 0 && ((ConstraintWidgetContainer) this.widget.getParent()).isRtl()) && this.widgets.size() > 1) {
-            ArrayList<WidgetRun> arrayList = this.widgets;
-            this.widget = arrayList.get(arrayList.size() - 1).widget;
-        }
-        this.chainStyle = this.orientation == 0 ? this.widget.getHorizontalChainStyle() : this.widget.getVerticalChainStyle();
-    }
-
-    private ConstraintWidget getFirstVisibleWidget() {
-        for (int i = 0; i < this.widgets.size(); i++) {
-            WidgetRun widgetRun = this.widgets.get(i);
-            if (widgetRun.widget.getVisibility() != 8) {
-                return widgetRun.widget;
-            }
-        }
-        return null;
-    }
-
-    private ConstraintWidget getLastVisibleWidget() {
-        for (int size = this.widgets.size() - 1; size >= 0; size--) {
-            WidgetRun widgetRun = this.widgets.get(size);
-            if (widgetRun.widget.getVisibility() != 8) {
-                return widgetRun.widget;
-            }
-        }
-        return null;
-    }
-
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun
     public void apply() {
         Iterator<WidgetRun> it = this.widgets.iterator();
@@ -141,6 +85,42 @@ public class ChainRun extends WidgetRun {
         }
     }
 
+    private void build() {
+        ConstraintWidget constraintWidget;
+        ConstraintWidget constraintWidget2 = this.widget;
+        ConstraintWidget previousChainMember = constraintWidget2.getPreviousChainMember(this.orientation);
+        while (true) {
+            ConstraintWidget constraintWidget3 = previousChainMember;
+            constraintWidget = constraintWidget2;
+            constraintWidget2 = constraintWidget3;
+            if (constraintWidget2 == null) {
+                break;
+            } else {
+                previousChainMember = constraintWidget2.getPreviousChainMember(this.orientation);
+            }
+        }
+        this.widget = constraintWidget;
+        this.widgets.add(constraintWidget.getRun(this.orientation));
+        ConstraintWidget nextChainMember = constraintWidget.getNextChainMember(this.orientation);
+        while (nextChainMember != null) {
+            this.widgets.add(nextChainMember.getRun(this.orientation));
+            nextChainMember = nextChainMember.getNextChainMember(this.orientation);
+        }
+        for (WidgetRun widgetRun : this.widgets) {
+            int i = this.orientation;
+            if (i == 0) {
+                widgetRun.widget.horizontalChainRun = this;
+            } else if (i == 1) {
+                widgetRun.widget.verticalChainRun = this;
+            }
+        }
+        if ((this.orientation == 0 && ((ConstraintWidgetContainer) this.widget.getParent()).isRtl()) && this.widgets.size() > 1) {
+            ArrayList<WidgetRun> arrayList = this.widgets;
+            this.widget = arrayList.get(arrayList.size() - 1).widget;
+        }
+        this.chainStyle = this.orientation == 0 ? this.widget.getHorizontalChainStyle() : this.widget.getVerticalChainStyle();
+    }
+
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun
     public void clear() {
         this.runGroup = null;
@@ -148,6 +128,26 @@ public class ChainRun extends WidgetRun {
         while (it.hasNext()) {
             it.next().clear();
         }
+    }
+
+    private ConstraintWidget getFirstVisibleWidget() {
+        for (int i = 0; i < this.widgets.size(); i++) {
+            WidgetRun widgetRun = this.widgets.get(i);
+            if (widgetRun.widget.getVisibility() != 8) {
+                return widgetRun.widget;
+            }
+        }
+        return null;
+    }
+
+    private ConstraintWidget getLastVisibleWidget() {
+        for (int size = this.widgets.size() - 1; size >= 0; size--) {
+            WidgetRun widgetRun = this.widgets.get(size);
+            if (widgetRun.widget.getVisibility() != 8) {
+                return widgetRun.widget;
+            }
+        }
+        return null;
     }
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun

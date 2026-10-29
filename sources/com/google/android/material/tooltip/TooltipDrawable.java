@@ -34,12 +34,6 @@ import com.google.android.material.shape.OffsetEdgeTreatment;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawableHelper.TextDrawableDelegate {
-
-    @StyleRes
-    private static final int DEFAULT_STYLE = C10817R.style.Widget_MaterialComponents_Tooltip;
-
-    @AttrRes
-    private static final int DEFAULT_THEME_ATTR = C10817R.attr.tooltipStyle;
     private int arrowSize;
 
     @NonNull
@@ -69,6 +63,12 @@ public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawab
     private float tooltipPivotY;
     private float tooltipScaleX;
     private float tooltipScaleY;
+
+    @StyleRes
+    private static final int DEFAULT_STYLE = C10817R.style.Widget_MaterialComponents_Tooltip;
+
+    @AttrRes
+    private static final int DEFAULT_THEME_ATTR = C10817R.attr.tooltipStyle;
 
     /* JADX INFO: renamed from: com.google.android.material.tooltip.TooltipDrawable$a */
     public class ViewOnLayoutChangeListenerC11032a implements View.OnLayoutChangeListener {
@@ -139,51 +139,6 @@ public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawab
         return new OffsetEdgeTreatment(new MarkerEdgeTreatment(this.arrowSize), Math.min(Math.max(f, -fWidth), fWidth));
     }
 
-    private void drawText(@NonNull Canvas canvas) {
-        if (this.text == null) {
-            return;
-        }
-        Rect bounds = getBounds();
-        int iCalculateTextOriginAndAlignment = (int) calculateTextOriginAndAlignment(bounds);
-        if (this.textDrawableHelper.getTextAppearance() != null) {
-            this.textDrawableHelper.getTextPaint().drawableState = getState();
-            this.textDrawableHelper.updateTextPaintDrawState(this.context);
-            this.textDrawableHelper.getTextPaint().setAlpha((int) (this.labelOpacity * 255.0f));
-        }
-        CharSequence charSequence = this.text;
-        canvas.drawText(charSequence, 0, charSequence.length(), bounds.centerX(), iCalculateTextOriginAndAlignment, this.textDrawableHelper.getTextPaint());
-    }
-
-    private float getTextWidth() {
-        CharSequence charSequence = this.text;
-        if (charSequence == null) {
-            return 0.0f;
-        }
-        return this.textDrawableHelper.getTextWidth(charSequence.toString());
-    }
-
-    private void loadFromAttributes(@Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(this.context, attributeSet, C10817R.styleable.Tooltip, i, i2, new int[0]);
-        this.arrowSize = this.context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_tooltip_arrowSize);
-        setShapeAppearanceModel(getShapeAppearanceModel().toBuilder().setBottomEdge(createMarkerEdge()).build());
-        setText(typedArrayObtainStyledAttributes.getText(C10817R.styleable.Tooltip_android_text));
-        setTextAppearance(MaterialResources.getTextAppearance(this.context, typedArrayObtainStyledAttributes, C10817R.styleable.Tooltip_android_textAppearance));
-        setFillColor(ColorStateList.valueOf(typedArrayObtainStyledAttributes.getColor(C10817R.styleable.Tooltip_backgroundTint, MaterialColors.layer(ColorUtils.setAlphaComponent(MaterialColors.getColor(this.context, R.attr.colorBackground, TooltipDrawable.class.getCanonicalName()), 229), ColorUtils.setAlphaComponent(MaterialColors.getColor(this.context, C10817R.attr.colorOnBackground, TooltipDrawable.class.getCanonicalName()), 153)))));
-        setStrokeColor(ColorStateList.valueOf(MaterialColors.getColor(this.context, C10817R.attr.colorSurface, TooltipDrawable.class.getCanonicalName())));
-        this.padding = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_padding, 0);
-        this.minWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_minWidth, 0);
-        this.minHeight = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_minHeight, 0);
-        this.layoutMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_layout_margin, 0);
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private void updateLocationOnScreen(@NonNull View view) {
-        int[] iArr = new int[2];
-        view.getLocationOnScreen(iArr);
-        this.locationOnScreenX = iArr[0];
-        view.getWindowVisibleDisplayFrame(this.displayFrame);
-    }
-
     public void detachView(@Nullable View view) {
         if (view == null) {
             return;
@@ -201,6 +156,21 @@ public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawab
         super.draw(canvas);
         drawText(canvas);
         canvas.restore();
+    }
+
+    private void drawText(@NonNull Canvas canvas) {
+        if (this.text == null) {
+            return;
+        }
+        Rect bounds = getBounds();
+        int iCalculateTextOriginAndAlignment = (int) calculateTextOriginAndAlignment(bounds);
+        if (this.textDrawableHelper.getTextAppearance() != null) {
+            this.textDrawableHelper.getTextPaint().drawableState = getState();
+            this.textDrawableHelper.updateTextPaintDrawState(this.context);
+            this.textDrawableHelper.getTextPaint().setAlpha((int) (this.labelOpacity * 255.0f));
+        }
+        CharSequence charSequence = this.text;
+        canvas.drawText(charSequence, 0, charSequence.length(), bounds.centerX(), iCalculateTextOriginAndAlignment, this.textDrawableHelper.getTextPaint());
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -237,6 +207,29 @@ public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawab
 
     public int getTextPadding() {
         return this.padding;
+    }
+
+    private float getTextWidth() {
+        CharSequence charSequence = this.text;
+        if (charSequence == null) {
+            return 0.0f;
+        }
+        return this.textDrawableHelper.getTextWidth(charSequence.toString());
+    }
+
+    private void loadFromAttributes(@Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(this.context, attributeSet, C10817R.styleable.Tooltip, i, i2, new int[0]);
+        this.arrowSize = this.context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_tooltip_arrowSize);
+        setShapeAppearanceModel(getShapeAppearanceModel().toBuilder().setBottomEdge(createMarkerEdge()).build());
+        setText(typedArrayObtainStyledAttributes.getText(C10817R.styleable.Tooltip_android_text));
+        setTextAppearance(MaterialResources.getTextAppearance(this.context, typedArrayObtainStyledAttributes, C10817R.styleable.Tooltip_android_textAppearance));
+        setFillColor(ColorStateList.valueOf(typedArrayObtainStyledAttributes.getColor(C10817R.styleable.Tooltip_backgroundTint, MaterialColors.layer(ColorUtils.setAlphaComponent(MaterialColors.getColor(this.context, R.attr.colorBackground, TooltipDrawable.class.getCanonicalName()), 229), ColorUtils.setAlphaComponent(MaterialColors.getColor(this.context, C10817R.attr.colorOnBackground, TooltipDrawable.class.getCanonicalName()), 153)))));
+        setStrokeColor(ColorStateList.valueOf(MaterialColors.getColor(this.context, C10817R.attr.colorSurface, TooltipDrawable.class.getCanonicalName())));
+        this.padding = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_padding, 0);
+        this.minWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_minWidth, 0);
+        this.minHeight = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_minHeight, 0);
+        this.layoutMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Tooltip_android_layout_margin, 0);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     @Override // com.google.android.material.shape.MaterialShapeDrawable, android.graphics.drawable.Drawable
@@ -310,6 +303,13 @@ public class TooltipDrawable extends MaterialShapeDrawable implements TextDrawab
 
     public void setTextResource(@StringRes int i) {
         setText(this.context.getResources().getString(i));
+    }
+
+    private void updateLocationOnScreen(@NonNull View view) {
+        int[] iArr = new int[2];
+        view.getLocationOnScreen(iArr);
+        this.locationOnScreenX = iArr[0];
+        view.getWindowVisibleDisplayFrame(this.displayFrame);
     }
 
     @NonNull

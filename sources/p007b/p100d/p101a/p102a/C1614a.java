@@ -114,6 +114,66 @@ public class C1614a extends BillingClient {
         this.f2946p = z2;
     }
 
+    /* JADX INFO: renamed from: i */
+    public final Handler m807i() {
+        return Looper.myLooper() == null ? this.f2933c : new Handler(Looper.myLooper());
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final BillingResult m808j(final BillingResult billingResult) {
+        if (Thread.interrupted()) {
+            return billingResult;
+        }
+        this.f2933c.post(new Runnable() { // from class: b.d.a.a.w
+            @Override // java.lang.Runnable
+            public final void run() {
+                C1614a c1614a = this.f3001j;
+                c1614a.f2934d.f2990b.f2986a.onPurchasesUpdated(billingResult, null);
+            }
+        });
+        return billingResult;
+    }
+
+    /* JADX INFO: renamed from: k */
+    public final BillingResult m809k() {
+        return (this.f2931a == 0 || this.f2931a == 3) ? C1631p.f2981j : C1631p.f2979h;
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: l */
+    public final <T> Future<T> m810l(Callable<T> callable, long j, @Nullable final Runnable runnable, Handler handler) {
+        long j2 = (long) (j * 0.95d);
+        if (this.f2947q == null) {
+            this.f2947q = Executors.newFixedThreadPool(C3941a.f10479a, new ThreadFactoryC1626k(this));
+        }
+        try {
+            final Future<T> futureSubmit = this.f2947q.submit(callable);
+            handler.postDelayed(new Runnable() { // from class: b.d.a.a.a0
+                @Override // java.lang.Runnable
+                public final void run() {
+                    Future future = futureSubmit;
+                    Runnable runnable2 = runnable;
+                    if (future.isDone() || future.isCancelled()) {
+                        return;
+                    }
+                    future.cancel(true);
+                    C3941a.m5416f("BillingClient", "Async task is taking too long, cancel it!");
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                }
+            }, j2);
+            return futureSubmit;
+        } catch (Exception e) {
+            String strValueOf = String.valueOf(e);
+            StringBuilder sb = new StringBuilder(strValueOf.length() + 28);
+            sb.append("Async task throws exception ");
+            sb.append(strValueOf);
+            C3941a.m5416f("BillingClient", sb.toString());
+            return null;
+        }
+    }
+
     @Override // com.android.billingclient.api.BillingClient
     /* JADX INFO: renamed from: a */
     public final void mo799a(final C1619d c1619d, final InterfaceC1620e interfaceC1620e) {
@@ -314,7 +374,7 @@ public class C1614a extends BillingClient {
                 bundle.putBoolean("vr", true);
             }
             if (!TextUtils.isEmpty(null)) {
-                bundle.putStringArrayList("skusToReplace", new ArrayList<>(Arrays.asList(null)));
+                bundle.putStringArrayList("skusToReplace", new ArrayList<>(Arrays.asList(new String[]{null})));
             }
             if (!TextUtils.isEmpty(billingFlowParams.f14548c)) {
                 bundle.putString("oldSkuPurchaseToken", billingFlowParams.f14548c);
@@ -709,65 +769,5 @@ public class C1614a extends BillingClient {
         this.f2931a = 0;
         C3941a.m5415e("BillingClient", "Billing service unavailable on device.");
         interfaceC1616b.onBillingSetupFinished(C1631p.f2973b);
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final Handler m807i() {
-        return Looper.myLooper() == null ? this.f2933c : new Handler(Looper.myLooper());
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final BillingResult m808j(final BillingResult billingResult) {
-        if (Thread.interrupted()) {
-            return billingResult;
-        }
-        this.f2933c.post(new Runnable() { // from class: b.d.a.a.w
-            @Override // java.lang.Runnable
-            public final void run() {
-                C1614a c1614a = this.f3001j;
-                c1614a.f2934d.f2990b.f2986a.onPurchasesUpdated(billingResult, null);
-            }
-        });
-        return billingResult;
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final BillingResult m809k() {
-        return (this.f2931a == 0 || this.f2931a == 3) ? C1631p.f2981j : C1631p.f2979h;
-    }
-
-    @Nullable
-    /* JADX INFO: renamed from: l */
-    public final <T> Future<T> m810l(Callable<T> callable, long j, @Nullable final Runnable runnable, Handler handler) {
-        long j2 = (long) (j * 0.95d);
-        if (this.f2947q == null) {
-            this.f2947q = Executors.newFixedThreadPool(C3941a.f10479a, new ThreadFactoryC1626k(this));
-        }
-        try {
-            final Future<T> futureSubmit = this.f2947q.submit(callable);
-            handler.postDelayed(new Runnable() { // from class: b.d.a.a.a0
-                @Override // java.lang.Runnable
-                public final void run() {
-                    Future future = futureSubmit;
-                    Runnable runnable2 = runnable;
-                    if (future.isDone() || future.isCancelled()) {
-                        return;
-                    }
-                    future.cancel(true);
-                    C3941a.m5416f("BillingClient", "Async task is taking too long, cancel it!");
-                    if (runnable2 != null) {
-                        runnable2.run();
-                    }
-                }
-            }, j2);
-            return futureSubmit;
-        } catch (Exception e) {
-            String strValueOf = String.valueOf(e);
-            StringBuilder sb = new StringBuilder(strValueOf.length() + 28);
-            sb.append("Async task throws exception ");
-            sb.append(strValueOf);
-            C3941a.m5416f("BillingClient", sb.toString());
-            return null;
-        }
     }
 }

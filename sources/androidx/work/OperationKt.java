@@ -13,30 +13,6 @@ import p659s.p660a.C13126l;
 /* JADX INFO: compiled from: Operation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class OperationKt {
-    public static final Object await(Operation operation, Continuation<? super Operation.State.SUCCESS> continuation) throws Throwable {
-        InterfaceFutureC4539a<Operation.State.SUCCESS> result = operation.getResult();
-        C12238m.checkExpressionValueIsNotNull(result, "result");
-        if (result.isDone()) {
-            try {
-                return result.get();
-            } catch (ExecutionException e) {
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    throw cause;
-                }
-                throw e;
-            }
-        }
-        C13126l c13126l = new C13126l(C12182b.intercepted(continuation), 1);
-        result.addListener(new OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$1(c13126l, result), DirectExecutor.INSTANCE);
-        Object objM11326u = c13126l.m11326u();
-        if (objM11326u != C12183c.getCOROUTINE_SUSPENDED()) {
-            return objM11326u;
-        }
-        C12190g.probeCoroutineSuspended(continuation);
-        return objM11326u;
-    }
-
     private static final Object await$$forInline(Operation operation, Continuation continuation) throws Throwable {
         InterfaceFutureC4539a<Operation.State.SUCCESS> result = operation.getResult();
         C12238m.checkExpressionValueIsNotNull(result, "result");
@@ -59,6 +35,30 @@ public final class OperationKt {
             C12190g.probeCoroutineSuspended(continuation);
         }
         C12237l.mark(1);
+        return objM11326u;
+    }
+
+    public static final Object await(Operation operation, Continuation<? super Operation.State.SUCCESS> continuation) throws Throwable {
+        InterfaceFutureC4539a<Operation.State.SUCCESS> result = operation.getResult();
+        C12238m.checkExpressionValueIsNotNull(result, "result");
+        if (result.isDone()) {
+            try {
+                return result.get();
+            } catch (ExecutionException e) {
+                Throwable cause = e.getCause();
+                if (cause != null) {
+                    throw cause;
+                }
+                throw e;
+            }
+        }
+        C13126l c13126l = new C13126l(C12182b.intercepted(continuation), 1);
+        result.addListener(new OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$1(c13126l, result), DirectExecutor.INSTANCE);
+        Object objM11326u = c13126l.m11326u();
+        if (objM11326u != C12183c.getCOROUTINE_SUSPENDED()) {
+            return objM11326u;
+        }
+        C12190g.probeCoroutineSuspended(continuation);
         return objM11326u;
     }
 }

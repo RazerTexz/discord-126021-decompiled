@@ -5,8 +5,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: LoggingProvider.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class LoggingProvider {
-    public static final LoggingProvider INSTANCE = new LoggingProvider();
     private static Logger logger;
+    public static final LoggingProvider INSTANCE = new LoggingProvider();
 
     private LoggingProvider() {
     }

@@ -8,6 +8,7 @@ import com.discord.utilities.persister.Persister;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Unit;
@@ -28,7 +29,7 @@ public final class StorePhone extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePhone$updateDefaultCountryCode$1 */
     /* JADX INFO: compiled from: StorePhone.kt */
-    public static final class C63341 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63341 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $alpha2;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -64,7 +65,7 @@ public final class StorePhone extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePhone$updateSelectedCountryCode$1 */
     /* JADX INFO: compiled from: StorePhone.kt */
-    public static final class C63351 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63351 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ PhoneCountryCode $newSelectedCountryCode;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -103,24 +104,6 @@ public final class StorePhone extends StoreV2 {
         return list;
     }
 
-    private final List<PhoneCountryCode> loadCountryCodesFromDisk(Context context) throws IOException {
-        InputStreamReader inputStreamReader = new InputStreamReader(context.getAssets().open("data/countries.json"), Constants.ENCODING);
-        try {
-            Object objM9201e = new Gson().m9201e(inputStreamReader, PhoneCountryCode[].class);
-            C12238m.checkNotNullExpressionValue(objM9201e, "Gson().fromJson(it, Arra…CountryCode>::class.java)");
-            List<PhoneCountryCode> list = C12141k.toList((Object[]) objM9201e);
-            C12201b.closeFinally(inputStreamReader, null);
-            return list;
-        } catch (Throwable th) {
-            try {
-                throw th;
-            } catch (Throwable th2) {
-                C12201b.closeFinally(inputStreamReader, th);
-                throw th2;
-            }
-        }
-    }
-
     public final PhoneCountryCode getCountryCode() {
         return C12238m.areEqual(this.selectedCountryCode, PhoneCountryCode.INSTANCE.getMISSING_COUNTRY_CODE()) ? this.defaultCountryCode : this.selectedCountryCode;
     }
@@ -149,6 +132,24 @@ public final class StorePhone extends StoreV2 {
         this.countryCodes = loadCountryCodesFromDisk(context);
         this.selectedCountryCode = this.selectedCountryCodeCache.get();
         markChanged();
+    }
+
+    private final List<PhoneCountryCode> loadCountryCodesFromDisk(Context context) throws IllegalAccessException, IOException, InvocationTargetException {
+        InputStreamReader inputStreamReader = new InputStreamReader(context.getAssets().open("data/countries.json"), Constants.ENCODING);
+        try {
+            Object objM9201e = new Gson().m9201e(inputStreamReader, PhoneCountryCode[].class);
+            C12238m.checkNotNullExpressionValue(objM9201e, "Gson().fromJson(it, Arra…CountryCode>::class.java)");
+            List<PhoneCountryCode> list = C12141k.toList((Object[]) objM9201e);
+            C12201b.closeFinally(inputStreamReader, null);
+            return list;
+        } catch (Throwable th) {
+            try {
+                throw th;
+            } catch (Throwable th2) {
+                C12201b.closeFinally(inputStreamReader, th);
+                throw th2;
+            }
+        }
     }
 
     @Override // com.discord.stores.StoreV2

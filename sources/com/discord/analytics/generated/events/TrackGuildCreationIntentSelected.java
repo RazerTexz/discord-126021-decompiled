@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildCreationIntentSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildCreationIntentSelected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean isCommunity = null;
     private final Boolean skipped = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "guild_creation_intent_selected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackGuildCreationIntentSelected implements Analyt
         }
         TrackGuildCreationIntentSelected trackGuildCreationIntentSelected = (TrackGuildCreationIntentSelected) other;
         return C12238m.areEqual(this.isCommunity, trackGuildCreationIntentSelected.isCommunity) && C12238m.areEqual(this.skipped, trackGuildCreationIntentSelected.skipped);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

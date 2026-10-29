@@ -71,7 +71,6 @@ import p007b.p225i.p226a.p341g.p346e.ViewTreeObserverOnPreDrawListenerC4410h;
 /* JADX INFO: loaded from: classes3.dex */
 public class FloatingActionButton extends VisibilityAwareImageButton implements TintableBackgroundView, TintableImageSourceView, ExpandableTransformationWidget, Shapeable, CoordinatorLayout.AttachedBehavior {
     private static final int AUTO_MINI_LARGEST_SCREEN_WIDTH = 470;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_FloatingActionButton;
     private static final String EXPANDABLE_WIDGET_HELPER_KEY = "expandableWidgetHelper";
     private static final String LOG_TAG = "FloatingActionButton";
     public static final int NO_CUSTOM_SIZE = 0;
@@ -108,8 +107,9 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
     public final Rect shadowPadding;
     private int size;
     private final Rect touchArea;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_FloatingActionButton;
 
-    public static class BaseBehavior<T extends FloatingActionButton> extends CoordinatorLayout.Behavior<T> {
+    public class BaseBehavior<T extends FloatingActionButton> extends CoordinatorLayout.Behavior<T> {
         private static final boolean AUTO_HIDE_DEFAULT = true;
         private boolean autoHideEnabled;
         private OnVisibilityChangedListener internalAutoHideListener;
@@ -117,6 +117,10 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
 
         public BaseBehavior() {
             this.autoHideEnabled = true;
+        }
+
+        public boolean isAutoHideEnabled() {
+            return this.autoHideEnabled;
         }
 
         private static boolean isBottomSheet(@NonNull View view) {
@@ -153,6 +157,22 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
             }
         }
 
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public void onAttachedToLayoutParams(@NonNull CoordinatorLayout.LayoutParams layoutParams) {
+            if (layoutParams.dodgeInsetEdges == 0) {
+                layoutParams.dodgeInsetEdges = 80;
+            }
+        }
+
+        public void setAutoHideEnabled(boolean z2) {
+            this.autoHideEnabled = z2;
+        }
+
+        @VisibleForTesting
+        public void setInternalAutoHideListener(OnVisibilityChangedListener onVisibilityChangedListener) {
+            this.internalAutoHideListener = onVisibilityChangedListener;
+        }
+
         private boolean shouldUpdateVisibility(@NonNull View view, @NonNull FloatingActionButton floatingActionButton) {
             return this.autoHideEnabled && ((CoordinatorLayout.LayoutParams) floatingActionButton.getLayoutParams()).getAnchorId() == view.getId() && floatingActionButton.getUserSetVisibility() == 0;
         }
@@ -184,26 +204,6 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
             }
             floatingActionButton.show(this.internalAutoHideListener, false);
             return true;
-        }
-
-        public boolean isAutoHideEnabled() {
-            return this.autoHideEnabled;
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onAttachedToLayoutParams(@NonNull CoordinatorLayout.LayoutParams layoutParams) {
-            if (layoutParams.dodgeInsetEdges == 0) {
-                layoutParams.dodgeInsetEdges = 80;
-            }
-        }
-
-        public void setAutoHideEnabled(boolean z2) {
-            this.autoHideEnabled = z2;
-        }
-
-        @VisibleForTesting
-        public void setInternalAutoHideListener(OnVisibilityChangedListener onVisibilityChangedListener) {
-            this.internalAutoHideListener = onVisibilityChangedListener;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
@@ -255,7 +255,7 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
         }
     }
 
-    public static class Behavior extends BaseBehavior<FloatingActionButton> {
+    public class Behavior extends BaseBehavior<FloatingActionButton> {
         public Behavior() {
         }
 
@@ -298,19 +298,6 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
         public Behavior(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
         }
-    }
-
-    public static abstract class OnVisibilityChangedListener {
-        public void onHidden(FloatingActionButton floatingActionButton) {
-        }
-
-        public void onShown(FloatingActionButton floatingActionButton) {
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface Size {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.FloatingActionButton$a */
@@ -365,6 +352,14 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
             this.f21021a = transformationCallback;
         }
 
+        public boolean equals(@Nullable Object obj) {
+            return (obj instanceof C10921c) && ((C10921c) obj).f21021a.equals(this.f21021a);
+        }
+
+        public int hashCode() {
+            return this.f21021a.hashCode();
+        }
+
         @Override // p007b.p225i.p226a.p341g.p346e.C4408f.e
         /* JADX INFO: renamed from: a */
         public void mo6109a() {
@@ -376,80 +371,23 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
         public void mo6110b() {
             this.f21021a.onScaleChanged(FloatingActionButton.this);
         }
+    }
 
-        public boolean equals(@Nullable Object obj) {
-            return (obj instanceof C10921c) && ((C10921c) obj).f21021a.equals(this.f21021a);
+    public abstract class OnVisibilityChangedListener {
+        public void onHidden(FloatingActionButton floatingActionButton) {
         }
 
-        public int hashCode() {
-            return this.f21021a.hashCode();
+        public void onShown(FloatingActionButton floatingActionButton) {
         }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface Size {
     }
 
     public FloatingActionButton(@NonNull Context context) {
         this(context, null);
-    }
-
-    @NonNull
-    private C4408f createImpl() {
-        return new C4411i(this, new C10920b());
-    }
-
-    private C4408f getImpl() {
-        if (this.impl == null) {
-            this.impl = createImpl();
-        }
-        return this.impl;
-    }
-
-    private void offsetRectWithShadow(@NonNull Rect rect) {
-        int i = rect.left;
-        Rect rect2 = this.shadowPadding;
-        rect.left = i + rect2.left;
-        rect.top += rect2.top;
-        rect.right -= rect2.right;
-        rect.bottom -= rect2.bottom;
-    }
-
-    private void onApplySupportImageTint() {
-        Drawable drawable = getDrawable();
-        if (drawable == null) {
-            return;
-        }
-        ColorStateList colorStateList = this.imageTint;
-        if (colorStateList == null) {
-            DrawableCompat.clearColorFilter(drawable);
-            return;
-        }
-        int colorForState = colorStateList.getColorForState(getDrawableState(), 0);
-        PorterDuff.Mode mode = this.imageMode;
-        if (mode == null) {
-            mode = PorterDuff.Mode.SRC_IN;
-        }
-        drawable.mutate().setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(colorForState, mode));
-    }
-
-    private static int resolveAdjustedSize(int i, int i2) {
-        int mode = View.MeasureSpec.getMode(i2);
-        int size = View.MeasureSpec.getSize(i2);
-        if (mode == Integer.MIN_VALUE) {
-            return Math.min(i, size);
-        }
-        if (mode == 0) {
-            return i;
-        }
-        if (mode == 1073741824) {
-            return size;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    @Nullable
-    private C4408f.f wrapOnVisibilityChangedListener(@Nullable OnVisibilityChangedListener onVisibilityChangedListener) {
-        if (onVisibilityChangedListener == null) {
-            return null;
-        }
-        return new C10919a(onVisibilityChangedListener);
     }
 
     public void addOnHideAnimationListener(@NonNull Animator.AnimatorListener animatorListener) {
@@ -479,6 +417,11 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
 
     public void clearCustomSize() {
         setCustomSize(0);
+    }
+
+    @NonNull
+    private C4408f createImpl() {
+        return new C4411i(this, new C10920b());
     }
 
     @Override // android.widget.ImageView, android.view.View
@@ -545,6 +488,13 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
     @Nullable
     public MotionSpec getHideMotionSpec() {
         return getImpl().f11687x;
+    }
+
+    private C4408f getImpl() {
+        if (this.impl == null) {
+            this.impl = createImpl();
+        }
+        return this.impl;
     }
 
     public void getMeasuredContentRect(@NonNull Rect rect) {
@@ -635,6 +585,33 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
         getImpl().mo6093i();
+    }
+
+    private void offsetRectWithShadow(@NonNull Rect rect) {
+        int i = rect.left;
+        Rect rect2 = this.shadowPadding;
+        rect.left = i + rect2.left;
+        rect.top += rect2.top;
+        rect.right -= rect2.right;
+        rect.bottom -= rect2.bottom;
+    }
+
+    private void onApplySupportImageTint() {
+        Drawable drawable = getDrawable();
+        if (drawable == null) {
+            return;
+        }
+        ColorStateList colorStateList = this.imageTint;
+        if (colorStateList == null) {
+            DrawableCompat.clearColorFilter(drawable);
+            return;
+        }
+        int colorForState = colorStateList.getColorForState(getDrawableState(), 0);
+        PorterDuff.Mode mode = this.imageMode;
+        if (mode == null) {
+            mode = PorterDuff.Mode.SRC_IN;
+        }
+        drawable.mutate().setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(colorForState, mode));
     }
 
     @Override // android.widget.ImageView, android.view.View
@@ -730,6 +707,21 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
             return;
         }
         arrayList.remove(c10921c);
+    }
+
+    private static int resolveAdjustedSize(int i, int i2) {
+        int mode = View.MeasureSpec.getMode(i2);
+        int size = View.MeasureSpec.getSize(i2);
+        if (mode == Integer.MIN_VALUE) {
+            return Math.min(i, size);
+        }
+        if (mode == 0) {
+            return i;
+        }
+        if (mode == 1073741824) {
+            return size;
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override // android.view.View
@@ -980,6 +972,14 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
 
     public void show() {
         show(null);
+    }
+
+    @Nullable
+    private C4408f.f wrapOnVisibilityChangedListener(@Nullable OnVisibilityChangedListener onVisibilityChangedListener) {
+        if (onVisibilityChangedListener == null) {
+            return null;
+        }
+        return new C10919a(onVisibilityChangedListener);
     }
 
     public FloatingActionButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {

@@ -21,7 +21,7 @@ import p658rx.functions.Func0;
 public interface Model {
 
     /* JADX INFO: renamed from: com.discord.models.domain.Model$1 */
-    public static /* synthetic */ class C55311 {
+    public /* synthetic */ class C55311 {
         public static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken;
 
         static {
@@ -47,7 +47,7 @@ public interface Model {
         }
     }
 
-    public static class JsonReader implements Closeable {
+    public class JsonReader implements Closeable {
 
         /* JADX INFO: renamed from: in */
         public final com.google.gson.stream.JsonReader f18559in;
@@ -257,7 +257,7 @@ public interface Model {
         T parse(JsonReader jsonReader);
     }
 
-    public static class TypeAdapterFactory implements InterfaceC4911o {
+    public class TypeAdapterFactory implements InterfaceC4911o {
         @Override // p007b.p225i.p408d.InterfaceC4911o
         public <T> TypeAdapter<T> create(Gson gson, final TypeToken<T> typeToken) {
             if (Model.class.isAssignableFrom(typeToken.getRawType())) {

@@ -6,13 +6,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreSkuMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreSkuMetadata {
-    private final Long skuId = null;
-    private final Long skuType = null;
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
-    private final CharSequence storeTitle = null;
     private final CharSequence distributionType = null;
     private final Long quantity = null;
+    private final Long skuId = null;
+    private final Long skuType = null;
+    private final CharSequence storeTitle = null;
 
     public boolean equals(Object other) {
         if (this == other) {

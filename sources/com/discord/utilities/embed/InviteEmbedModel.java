@@ -29,7 +29,7 @@ public final /* data */ class InviteEmbedModel {
     private final Map<Long, StageInstance> stageInstances;
 
     /* JADX INFO: compiled from: InviteEmbedModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

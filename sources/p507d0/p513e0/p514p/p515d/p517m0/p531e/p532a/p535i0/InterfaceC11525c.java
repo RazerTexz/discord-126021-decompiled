@@ -7,7 +7,7 @@ public interface InterfaceC11525c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.c$a */
     /* JADX INFO: compiled from: context.kt */
-    public static final class a implements InterfaceC11525c {
+    public final class a implements InterfaceC11525c {
 
         /* JADX INFO: renamed from: a */
         public static final a f23303a = new a();

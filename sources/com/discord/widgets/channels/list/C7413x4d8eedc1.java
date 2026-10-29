@@ -52,7 +52,7 @@ public final class C7413x4d8eedc1 extends AbstractC12240o implements Function3<C
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Boolean> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ Boolean $isParentMuted;
         public final /* synthetic */ Channel $textChannel;
 
@@ -84,7 +84,7 @@ public final class C7413x4d8eedc1 extends AbstractC12240o implements Function3<C
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelListModel.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Boolean> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ boolean $channelSelected;
         public final /* synthetic */ boolean $isMuted;
         public final /* synthetic */ int $mentionCount;

@@ -19,30 +19,6 @@ public class AccessibilityWindowInfoCompat {
         this.mInfo = obj;
     }
 
-    public static AccessibilityWindowInfoCompat obtain() {
-        return wrapNonNullInstance(AccessibilityWindowInfo.obtain());
-    }
-
-    private static String typeToString(int i) {
-        if (i == 1) {
-            return "TYPE_APPLICATION";
-        }
-        if (i == 2) {
-            return "TYPE_INPUT_METHOD";
-        }
-        if (i != 3) {
-            return i != 4 ? "<UNKNOWN>" : "TYPE_ACCESSIBILITY_OVERLAY";
-        }
-        return "TYPE_SYSTEM";
-    }
-
-    public static AccessibilityWindowInfoCompat wrapNonNullInstance(Object obj) {
-        if (obj != null) {
-            return new AccessibilityWindowInfoCompat(obj);
-        }
-        return null;
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -128,6 +104,10 @@ public class AccessibilityWindowInfoCompat {
         return ((AccessibilityWindowInfo) this.mInfo).isFocused();
     }
 
+    public static AccessibilityWindowInfoCompat obtain() {
+        return wrapNonNullInstance(AccessibilityWindowInfo.obtain());
+    }
+
     public void recycle() {
         ((AccessibilityWindowInfo) this.mInfo).recycle();
     }
@@ -156,6 +136,26 @@ public class AccessibilityWindowInfoCompat {
         sb.append(getChildCount() > 0);
         sb.append(']');
         return sb.toString();
+    }
+
+    private static String typeToString(int i) {
+        if (i == 1) {
+            return "TYPE_APPLICATION";
+        }
+        if (i == 2) {
+            return "TYPE_INPUT_METHOD";
+        }
+        if (i != 3) {
+            return i != 4 ? "<UNKNOWN>" : "TYPE_ACCESSIBILITY_OVERLAY";
+        }
+        return "TYPE_SYSTEM";
+    }
+
+    public static AccessibilityWindowInfoCompat wrapNonNullInstance(Object obj) {
+        if (obj != null) {
+            return new AccessibilityWindowInfoCompat(obj);
+        }
+        return null;
     }
 
     public static AccessibilityWindowInfoCompat obtain(AccessibilityWindowInfoCompat accessibilityWindowInfoCompat) {

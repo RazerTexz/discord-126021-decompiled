@@ -137,7 +137,7 @@ public class C2544h0 implements InterfaceC3122w {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.h0$b */
     /* JADX INFO: compiled from: SampleQueue.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public int f5622a;
@@ -152,7 +152,7 @@ public class C2544h0 implements InterfaceC3122w {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.h0$c */
     /* JADX INFO: compiled from: SampleQueue.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final C2811j1 f5625a;
@@ -176,173 +176,6 @@ public class C2544h0 implements InterfaceC3122w {
         this.f5599d = interfaceC2990u;
         this.f5600e = aVar;
         this.f5596a = new C2542g0(c2713o);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: a */
-    public final int mo2522a(InterfaceC2706h interfaceC2706h, int i, boolean z2, int i2) throws IOException {
-        C2542g0 c2542g0 = this.f5596a;
-        int iM2520c = c2542g0.m2520c(i);
-        C2542g0.a aVar = c2542g0.f5583f;
-        int i3 = interfaceC2706h.read(aVar.f5588d.f6522a, aVar.m2521a(c2542g0.f5584g), iM2520c);
-        if (i3 != -1) {
-            c2542g0.m2519b(i3);
-            return i3;
-        }
-        if (z2) {
-            return -1;
-        }
-        throw new EOFException();
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: b */
-    public /* synthetic */ int mo2523b(InterfaceC2706h interfaceC2706h, int i, boolean z2) {
-        return C3121v.m3817a(this, interfaceC2706h, i, z2);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: c */
-    public /* synthetic */ void mo2524c(C2757x c2757x, int i) {
-        C3121v.m3818b(this, c2757x, i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: d */
-    public void mo2525d(long j, int i, int i2, int i3, @Nullable InterfaceC3122w.a aVar) {
-        InterfaceC2990u.b bVarMo3598b;
-        int i4 = i & 1;
-        boolean z2 = i4 != 0;
-        if (this.f5620y) {
-            if (!z2) {
-                return;
-            } else {
-                this.f5620y = false;
-            }
-        }
-        long j2 = j + 0;
-        if (this.f5594C) {
-            if (j2 < this.f5616u) {
-                return;
-            }
-            if (i4 == 0) {
-                if (!this.f5595D) {
-                    String strValueOf = String.valueOf(this.f5593B);
-                    C1643a.m854h0(strValueOf.length() + 50, "Overriding unexpected non-sync sample for format: ", strValueOf, "SampleQueue");
-                    this.f5595D = true;
-                }
-                i |= 1;
-            }
-        }
-        long j3 = (this.f5596a.f5584g - ((long) i2)) - ((long) i3);
-        synchronized (this) {
-            int i5 = this.f5612q;
-            if (i5 > 0) {
-                int iM2533l = m2533l(i5 - 1);
-                C1460d.m531j(this.f5607l[iM2533l] + ((long) this.f5608m[iM2533l]) <= j3);
-            }
-            this.f5619x = (536870912 & i) != 0;
-            this.f5618w = Math.max(this.f5618w, j2);
-            int iM2533l2 = m2533l(this.f5612q);
-            this.f5610o[iM2533l2] = j2;
-            this.f5607l[iM2533l2] = j3;
-            this.f5608m[iM2533l2] = i2;
-            this.f5609n[iM2533l2] = i;
-            this.f5611p[iM2533l2] = aVar;
-            this.f5606k[iM2533l2] = 0;
-            if ((this.f5598c.f5649b.size() == 0) || !this.f5598c.m2562c().f5625a.equals(this.f5593B)) {
-                InterfaceC2990u interfaceC2990u = this.f5599d;
-                if (interfaceC2990u != null) {
-                    Looper looper = this.f5601f;
-                    Objects.requireNonNull(looper);
-                    bVarMo3598b = interfaceC2990u.mo3598b(looper, this.f5600e, this.f5593B);
-                } else {
-                    bVarMo3598b = C2982m.f8003b;
-                }
-                C2554m0<c> c2554m0 = this.f5598c;
-                int iM2535n = m2535n();
-                C2811j1 c2811j1 = this.f5593B;
-                Objects.requireNonNull(c2811j1);
-                c2554m0.m2560a(iM2535n, new c(c2811j1, bVarMo3598b, null));
-            }
-            int i6 = this.f5612q + 1;
-            this.f5612q = i6;
-            int i7 = this.f5605j;
-            if (i6 == i7) {
-                int i8 = i7 + 1000;
-                int[] iArr = new int[i8];
-                long[] jArr = new long[i8];
-                long[] jArr2 = new long[i8];
-                int[] iArr2 = new int[i8];
-                int[] iArr3 = new int[i8];
-                InterfaceC3122w.a[] aVarArr = new InterfaceC3122w.a[i8];
-                int i9 = this.f5614s;
-                int i10 = i7 - i9;
-                System.arraycopy(this.f5607l, i9, jArr, 0, i10);
-                System.arraycopy(this.f5610o, this.f5614s, jArr2, 0, i10);
-                System.arraycopy(this.f5609n, this.f5614s, iArr2, 0, i10);
-                System.arraycopy(this.f5608m, this.f5614s, iArr3, 0, i10);
-                System.arraycopy(this.f5611p, this.f5614s, aVarArr, 0, i10);
-                System.arraycopy(this.f5606k, this.f5614s, iArr, 0, i10);
-                int i11 = this.f5614s;
-                System.arraycopy(this.f5607l, 0, jArr, i10, i11);
-                System.arraycopy(this.f5610o, 0, jArr2, i10, i11);
-                System.arraycopy(this.f5609n, 0, iArr2, i10, i11);
-                System.arraycopy(this.f5608m, 0, iArr3, i10, i11);
-                System.arraycopy(this.f5611p, 0, aVarArr, i10, i11);
-                System.arraycopy(this.f5606k, 0, iArr, i10, i11);
-                this.f5607l = jArr;
-                this.f5610o = jArr2;
-                this.f5609n = iArr2;
-                this.f5608m = iArr3;
-                this.f5611p = aVarArr;
-                this.f5606k = iArr;
-                this.f5614s = 0;
-                this.f5605j = i8;
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: e */
-    public final void mo2526e(C2811j1 c2811j1) {
-        boolean z2;
-        this.f5592A = c2811j1;
-        synchronized (this) {
-            z2 = false;
-            this.f5621z = false;
-            if (!C2738e0.m2993a(c2811j1, this.f5593B)) {
-                if ((this.f5598c.f5649b.size() == 0) || !this.f5598c.m2562c().f5625a.equals(c2811j1)) {
-                    this.f5593B = c2811j1;
-                } else {
-                    this.f5593B = this.f5598c.m2562c().f5625a;
-                }
-                C2811j1 c2811j2 = this.f5593B;
-                this.f5594C = C2753t.m3043a(c2811j2.f7155w, c2811j2.f7152t);
-                this.f5595D = false;
-                z2 = true;
-            }
-        }
-        d dVar = this.f5602g;
-        if (dVar == null || !z2) {
-            return;
-        }
-        C2538e0 c2538e0 = (C2538e0) dVar;
-        c2538e0.f5500A.post(c2538e0.f5536y);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
-    /* JADX INFO: renamed from: f */
-    public final void mo2527f(C2757x c2757x, int i, int i2) {
-        C2542g0 c2542g0 = this.f5596a;
-        Objects.requireNonNull(c2542g0);
-        while (i > 0) {
-            int iM2520c = c2542g0.m2520c(i);
-            C2542g0.a aVar = c2542g0.f5583f;
-            c2757x.m3085e(aVar.f5588d.f6522a, aVar.m2521a(c2542g0.f5584g), iM2520c);
-            i -= iM2520c;
-            c2542g0.m2519b(iM2520c);
-        }
     }
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */
@@ -597,5 +430,172 @@ public class C2544h0 implements InterfaceC3122w {
             return true;
         }
         return false;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: a */
+    public final int mo2522a(InterfaceC2706h interfaceC2706h, int i, boolean z2, int i2) throws IOException {
+        C2542g0 c2542g0 = this.f5596a;
+        int iM2520c = c2542g0.m2520c(i);
+        C2542g0.a aVar = c2542g0.f5583f;
+        int i3 = interfaceC2706h.read(aVar.f5588d.f6522a, aVar.m2521a(c2542g0.f5584g), iM2520c);
+        if (i3 != -1) {
+            c2542g0.m2519b(i3);
+            return i3;
+        }
+        if (z2) {
+            return -1;
+        }
+        throw new EOFException();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: b */
+    public /* synthetic */ int mo2523b(InterfaceC2706h interfaceC2706h, int i, boolean z2) {
+        return C3121v.m3817a(this, interfaceC2706h, i, z2);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: c */
+    public /* synthetic */ void mo2524c(C2757x c2757x, int i) {
+        C3121v.m3818b(this, c2757x, i);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: d */
+    public void mo2525d(long j, int i, int i2, int i3, @Nullable InterfaceC3122w.a aVar) {
+        InterfaceC2990u.b bVarMo3598b;
+        int i4 = i & 1;
+        boolean z2 = i4 != 0;
+        if (this.f5620y) {
+            if (!z2) {
+                return;
+            } else {
+                this.f5620y = false;
+            }
+        }
+        long j2 = j + 0;
+        if (this.f5594C) {
+            if (j2 < this.f5616u) {
+                return;
+            }
+            if (i4 == 0) {
+                if (!this.f5595D) {
+                    String strValueOf = String.valueOf(this.f5593B);
+                    C1643a.m854h0(strValueOf.length() + 50, "Overriding unexpected non-sync sample for format: ", strValueOf, "SampleQueue");
+                    this.f5595D = true;
+                }
+                i |= 1;
+            }
+        }
+        long j3 = (this.f5596a.f5584g - ((long) i2)) - ((long) i3);
+        synchronized (this) {
+            int i5 = this.f5612q;
+            if (i5 > 0) {
+                int iM2533l = m2533l(i5 - 1);
+                C1460d.m531j(this.f5607l[iM2533l] + ((long) this.f5608m[iM2533l]) <= j3);
+            }
+            this.f5619x = (536870912 & i) != 0;
+            this.f5618w = Math.max(this.f5618w, j2);
+            int iM2533l2 = m2533l(this.f5612q);
+            this.f5610o[iM2533l2] = j2;
+            this.f5607l[iM2533l2] = j3;
+            this.f5608m[iM2533l2] = i2;
+            this.f5609n[iM2533l2] = i;
+            this.f5611p[iM2533l2] = aVar;
+            this.f5606k[iM2533l2] = 0;
+            if ((this.f5598c.f5649b.size() == 0) || !this.f5598c.m2562c().f5625a.equals(this.f5593B)) {
+                InterfaceC2990u interfaceC2990u = this.f5599d;
+                if (interfaceC2990u != null) {
+                    Looper looper = this.f5601f;
+                    Objects.requireNonNull(looper);
+                    bVarMo3598b = interfaceC2990u.mo3598b(looper, this.f5600e, this.f5593B);
+                } else {
+                    bVarMo3598b = C2982m.f8003b;
+                }
+                C2554m0<c> c2554m0 = this.f5598c;
+                int iM2535n = m2535n();
+                C2811j1 c2811j1 = this.f5593B;
+                Objects.requireNonNull(c2811j1);
+                c2554m0.m2560a(iM2535n, new c(c2811j1, bVarMo3598b, null));
+            }
+            int i6 = this.f5612q + 1;
+            this.f5612q = i6;
+            int i7 = this.f5605j;
+            if (i6 == i7) {
+                int i8 = i7 + 1000;
+                int[] iArr = new int[i8];
+                long[] jArr = new long[i8];
+                long[] jArr2 = new long[i8];
+                int[] iArr2 = new int[i8];
+                int[] iArr3 = new int[i8];
+                InterfaceC3122w.a[] aVarArr = new InterfaceC3122w.a[i8];
+                int i9 = this.f5614s;
+                int i10 = i7 - i9;
+                System.arraycopy(this.f5607l, i9, jArr, 0, i10);
+                System.arraycopy(this.f5610o, this.f5614s, jArr2, 0, i10);
+                System.arraycopy(this.f5609n, this.f5614s, iArr2, 0, i10);
+                System.arraycopy(this.f5608m, this.f5614s, iArr3, 0, i10);
+                System.arraycopy(this.f5611p, this.f5614s, aVarArr, 0, i10);
+                System.arraycopy(this.f5606k, this.f5614s, iArr, 0, i10);
+                int i11 = this.f5614s;
+                System.arraycopy(this.f5607l, 0, jArr, i10, i11);
+                System.arraycopy(this.f5610o, 0, jArr2, i10, i11);
+                System.arraycopy(this.f5609n, 0, iArr2, i10, i11);
+                System.arraycopy(this.f5608m, 0, iArr3, i10, i11);
+                System.arraycopy(this.f5611p, 0, aVarArr, i10, i11);
+                System.arraycopy(this.f5606k, 0, iArr, i10, i11);
+                this.f5607l = jArr;
+                this.f5610o = jArr2;
+                this.f5609n = iArr2;
+                this.f5608m = iArr3;
+                this.f5611p = aVarArr;
+                this.f5606k = iArr;
+                this.f5614s = 0;
+                this.f5605j = i8;
+            }
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: e */
+    public final void mo2526e(C2811j1 c2811j1) {
+        boolean z2;
+        this.f5592A = c2811j1;
+        synchronized (this) {
+            z2 = false;
+            this.f5621z = false;
+            if (!C2738e0.m2993a(c2811j1, this.f5593B)) {
+                if ((this.f5598c.f5649b.size() == 0) || !this.f5598c.m2562c().f5625a.equals(c2811j1)) {
+                    this.f5593B = c2811j1;
+                } else {
+                    this.f5593B = this.f5598c.m2562c().f5625a;
+                }
+                C2811j1 c2811j2 = this.f5593B;
+                this.f5594C = C2753t.m3043a(c2811j2.f7155w, c2811j2.f7152t);
+                this.f5595D = false;
+                z2 = true;
+            }
+        }
+        d dVar = this.f5602g;
+        if (dVar == null || !z2) {
+            return;
+        }
+        C2538e0 c2538e0 = (C2538e0) dVar;
+        c2538e0.f5500A.post(c2538e0.f5536y);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3122w
+    /* JADX INFO: renamed from: f */
+    public final void mo2527f(C2757x c2757x, int i, int i2) {
+        C2542g0 c2542g0 = this.f5596a;
+        Objects.requireNonNull(c2542g0);
+        while (i > 0) {
+            int iM2520c = c2542g0.m2520c(i);
+            C2542g0.a aVar = c2542g0.f5583f;
+            c2757x.m3085e(aVar.f5588d.f6522a, aVar.m2521a(c2542g0.f5584g), iM2520c);
+            i -= iM2520c;
+            c2542g0.m2519b(iM2520c);
+        }
     }
 }

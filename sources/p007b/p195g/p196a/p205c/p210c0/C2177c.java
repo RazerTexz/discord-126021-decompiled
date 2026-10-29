@@ -26,9 +26,6 @@ import p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final a f4653j = new a(null, Collections.emptyList(), Collections.emptyList());
-
     /* JADX INFO: renamed from: k */
     public final AbstractC2360j f4654k;
 
@@ -71,9 +68,12 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
     /* JADX INFO: renamed from: x */
     public transient Boolean f4667x;
 
+    /* JADX INFO: renamed from: j */
+    public static final a f4653j = new a(null, Collections.emptyList(), Collections.emptyList());
+
     /* JADX INFO: renamed from: b.g.a.c.c0.c$a */
     /* JADX INFO: compiled from: AnnotatedClass.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C2181e f4668a;
@@ -104,42 +104,17 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
         this.f4662s = z2;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.InterfaceC2182e0
-    /* JADX INFO: renamed from: a */
-    public AbstractC2360j mo1831a(Type type) {
-        return this.f4659p.m2160b(null, type, this.f4656m);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    /* JADX INFO: renamed from: b */
-    public <A extends Annotation> A mo1818b(Class<A> cls) {
-        return (A) this.f4663t.mo1915a(cls);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    /* JADX INFO: renamed from: c */
-    public String mo1819c() {
-        return this.f4655l.getName();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    /* JADX INFO: renamed from: d */
-    public Class<?> mo1820d() {
-        return this.f4655l;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    /* JADX INFO: renamed from: e */
-    public AbstractC2360j mo1821e() {
-        return this.f4654k;
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
         return C2342d.m2183o(obj, C2177c.class) && ((C2177c) obj).f4655l == this.f4655l;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this.f4655l.getName().hashCode();
     }
 
     /* JADX WARN: Code duplicated, block: B:100:0x01c4  */
@@ -218,7 +193,6 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
         int size3;
         int size4;
         C2342d.a[] aVarArr;
-        List listEmptyList2;
         a aVar3 = this.f4664u;
         if (aVar3 == null) {
             AbstractC2360j abstractC2360j2 = this.f4654k;
@@ -249,12 +223,12 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
                     }
                 }
                 if (arrayList == null) {
-                    listEmptyList2 = Collections.emptyList();
+                    List listEmptyList2 = Collections.emptyList();
+                    r2 = listEmptyList2;
                     if (aVar != null) {
                         arrayList2 = listEmptyList2;
                         size = 0;
                     }
-                    r2 = listEmptyList2;
                     arrayList3 = null;
                     for (Method method2 : C2342d.m2179k(abstractC2360j2._class)) {
                         if (C2183f.m1892f(method2)) {
@@ -507,8 +481,6 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
                                         break;
                                     }
                                 }
-                            } else {
-                                r2 = listEmptyList2;
                             }
                         } else if (aVar != null) {
                             aVarArr = aVarArrM2180l;
@@ -520,7 +492,6 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
                         i14++;
                         aVarArrM2180l = aVarArr;
                     }
-                    r2 = listEmptyList2;
                 }
                 if (aVar != null) {
                     c2183f.f4707f = new C2181e(c2183f.f4705d, aVar.f4947a, c2183f.m1893g(aVar, null), C2200u.f4748a);
@@ -531,7 +502,6 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
                     }
                 }
                 r2 = arrayList2;
-                r2 = listEmptyList2;
                 arrayList3 = null;
                 while (i < r6) {
                     if (C2183f.m1892f(method2)) {
@@ -751,8 +721,33 @@ public final class C2177c extends AbstractC2175b implements InterfaceC2182e0 {
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this.f4655l.getName().hashCode();
+    /* JADX INFO: renamed from: b */
+    public <A extends Annotation> A mo1818b(Class<A> cls) {
+        return (A) this.f4663t.mo1915a(cls);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    /* JADX INFO: renamed from: c */
+    public String mo1819c() {
+        return this.f4655l.getName();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    /* JADX INFO: renamed from: d */
+    public Class<?> mo1820d() {
+        return this.f4655l;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    /* JADX INFO: renamed from: e */
+    public AbstractC2360j mo1821e() {
+        return this.f4654k;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.InterfaceC2182e0
+    /* JADX INFO: renamed from: a */
+    public AbstractC2360j mo1831a(Type type) {
+        return this.f4659p.m2160b(null, type, this.f4656m);
     }
 
     public String toString() {

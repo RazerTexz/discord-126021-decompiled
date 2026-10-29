@@ -9,11 +9,6 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class ForumPostFirstMessages {
     private final Map<Long, ForumPostFirstMessage> threads;
 
-    /* JADX INFO: renamed from: a */
-    public final Map<Long, ForumPostFirstMessage> m7821a() {
-        return this.threads;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof ForumPostFirstMessages) && C12238m.areEqual(this.threads, ((ForumPostFirstMessages) other).threads);
@@ -27,6 +22,11 @@ public final /* data */ class ForumPostFirstMessages {
             return map.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final Map<Long, ForumPostFirstMessage> m7821a() {
+        return this.threads;
     }
 
     public String toString() {

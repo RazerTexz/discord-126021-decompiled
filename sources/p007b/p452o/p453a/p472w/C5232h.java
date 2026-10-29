@@ -15,14 +15,14 @@ import p007b.p452o.p453a.C5103b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5232h extends AbstractC5225a<SurfaceView, SurfaceHolder> {
 
-    /* JADX INFO: renamed from: j */
-    public static final C5103b f14238j = new C5103b(C5232h.class.getSimpleName());
-
     /* JADX INFO: renamed from: k */
     public boolean f14239k;
 
     /* JADX INFO: renamed from: l */
     public View f14240l;
+
+    /* JADX INFO: renamed from: j */
+    public static final C5103b f14238j = new C5103b(C5232h.class.getSimpleName());
 
     public C5232h(@NonNull Context context, @NonNull ViewGroup viewGroup) {
         super(context, viewGroup);

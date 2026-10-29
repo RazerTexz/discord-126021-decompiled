@@ -40,6 +40,16 @@ public final class MaterialSharedAxis extends AbstractC4477h<VisibilityAnimatorP
         this.forward = z2;
     }
 
+    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
+    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
+        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
+    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
+        super.clearAdditionalAnimatorProvider();
+    }
+
     private static VisibilityAnimatorProvider createPrimaryAnimatorProvider(int i, boolean z2) {
         if (i == 0) {
             return new SlideDistanceProvider(z2 ? GravityCompat.END : GravityCompat.START);
@@ -55,16 +65,6 @@ public final class MaterialSharedAxis extends AbstractC4477h<VisibilityAnimatorP
 
     private static VisibilityAnimatorProvider createSecondaryAnimatorProvider() {
         return new FadeThroughProvider();
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
-    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
-        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
-    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
-        super.clearAdditionalAnimatorProvider();
     }
 
     public int getAxis() {

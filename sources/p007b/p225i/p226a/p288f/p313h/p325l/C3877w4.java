@@ -11,11 +11,11 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3877w4 {
 
-    /* JADX INFO: renamed from: a */
-    public static final Charset f10379a = Charset.forName(Constants.ENCODING);
-
     /* JADX INFO: renamed from: b */
     public static final byte[] f10380b;
+
+    /* JADX INFO: renamed from: a */
+    public static final Charset f10379a = Charset.forName(Constants.ENCODING);
 
     static {
         Charset.forName("ISO-8859-1");

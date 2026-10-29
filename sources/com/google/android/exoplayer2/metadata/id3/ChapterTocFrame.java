@@ -8,7 +8,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class ChapterTocFrame extends Id3Frame {
-    public static final Parcelable.Creator<ChapterTocFrame> CREATOR = new C10729a();
 
     /* JADX INFO: renamed from: k */
     public final String f19977k;
@@ -24,6 +23,7 @@ public final class ChapterTocFrame extends Id3Frame {
 
     /* JADX INFO: renamed from: o */
     public final Id3Frame[] f19981o;
+    public static final Parcelable.Creator<ChapterTocFrame> CREATOR = new C10729a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.ChapterTocFrame$a */
     public class C10729a implements Parcelable.Creator<ChapterTocFrame> {

@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackGifFavorited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackGifFavorited implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "gif_favorited";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "gif_favorited";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

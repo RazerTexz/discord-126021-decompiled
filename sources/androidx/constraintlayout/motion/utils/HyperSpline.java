@@ -11,7 +11,7 @@ public class HyperSpline {
     public int mPoints;
     public double mTotalLength;
 
-    public static class Cubic {
+    public class Cubic {
         public static final double HALF = 0.5d;
         public static final double THIRD = 0.3333333333333333d;
 
@@ -45,41 +45,6 @@ public class HyperSpline {
 
     public HyperSpline(double[][] dArr) {
         setup(dArr);
-    }
-
-    public static Cubic[] calcNaturalCubic(int i, double[] dArr) {
-        double[] dArr2 = new double[i];
-        double[] dArr3 = new double[i];
-        double[] dArr4 = new double[i];
-        int i2 = i - 1;
-        int i3 = 0;
-        dArr2[0] = 0.5d;
-        int i4 = 1;
-        for (int i5 = 1; i5 < i2; i5++) {
-            dArr2[i5] = 1.0d / (4.0d - dArr2[i5 - 1]);
-        }
-        int i6 = i2 - 1;
-        dArr2[i2] = 1.0d / (2.0d - dArr2[i6]);
-        dArr3[0] = (dArr[1] - dArr[0]) * 3.0d * dArr2[0];
-        while (i4 < i2) {
-            int i7 = i4 + 1;
-            int i8 = i4 - 1;
-            dArr3[i4] = (((dArr[i7] - dArr[i8]) * 3.0d) - dArr3[i8]) * dArr2[i4];
-            i4 = i7;
-        }
-        dArr3[i2] = (((dArr[i2] - dArr[i6]) * 3.0d) - dArr3[i6]) * dArr2[i2];
-        dArr4[i2] = dArr3[i2];
-        while (i6 >= 0) {
-            dArr4[i6] = dArr3[i6] - (dArr2[i6] * dArr4[i6 + 1]);
-            i6--;
-        }
-        Cubic[] cubicArr = new Cubic[i2];
-        while (i3 < i2) {
-            int i9 = i3 + 1;
-            cubicArr[i3] = new Cubic((float) dArr[i3], dArr4[i3], (((dArr[i9] - dArr[i3]) * 3.0d) - (dArr4[i3] * 2.0d)) - dArr4[i9], ((dArr[i3] - dArr[i9]) * 2.0d) + dArr4[i3] + dArr4[i9]);
-            i3 = i9;
-        }
-        return cubicArr;
     }
 
     public double approxLength(Cubic[] cubicArr) {
@@ -117,6 +82,41 @@ public class HyperSpline {
             i++;
         }
         return Math.sqrt(d) + dSqrt;
+    }
+
+    public static Cubic[] calcNaturalCubic(int i, double[] dArr) {
+        double[] dArr2 = new double[i];
+        double[] dArr3 = new double[i];
+        double[] dArr4 = new double[i];
+        int i2 = i - 1;
+        int i3 = 0;
+        dArr2[0] = 0.5d;
+        int i4 = 1;
+        for (int i5 = 1; i5 < i2; i5++) {
+            dArr2[i5] = 1.0d / (4.0d - dArr2[i5 - 1]);
+        }
+        int i6 = i2 - 1;
+        dArr2[i2] = 1.0d / (2.0d - dArr2[i6]);
+        dArr3[0] = (dArr[1] - dArr[0]) * 3.0d * dArr2[0];
+        while (i4 < i2) {
+            int i7 = i4 + 1;
+            int i8 = i4 - 1;
+            dArr3[i4] = (((dArr[i7] - dArr[i8]) * 3.0d) - dArr3[i8]) * dArr2[i4];
+            i4 = i7;
+        }
+        dArr3[i2] = (((dArr[i2] - dArr[i6]) * 3.0d) - dArr3[i6]) * dArr2[i2];
+        dArr4[i2] = dArr3[i2];
+        while (i6 >= 0) {
+            dArr4[i6] = dArr3[i6] - (dArr2[i6] * dArr4[i6 + 1]);
+            i6--;
+        }
+        Cubic[] cubicArr = new Cubic[i2];
+        while (i3 < i2) {
+            int i9 = i3 + 1;
+            cubicArr[i3] = new Cubic((float) dArr[i3], dArr4[i3], (((dArr[i9] - dArr[i3]) * 3.0d) - (dArr4[i3] * 2.0d)) - dArr4[i9], ((dArr[i3] - dArr[i9]) * 2.0d) + dArr4[i3] + dArr4[i9]);
+            i3 = i9;
+        }
+        return cubicArr;
     }
 
     public void getPos(double d, double[] dArr) {

@@ -15,11 +15,11 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class ConstraintsCommandHandler {
-    private static final String TAG = Logger.tagWithPrefix("ConstraintsCmdHandler");
     private final Context mContext;
     private final SystemAlarmDispatcher mDispatcher;
     private final int mStartId;
     private final WorkConstraintsTracker mWorkConstraintsTracker;
+    private static final String TAG = Logger.tagWithPrefix("ConstraintsCmdHandler");
 
     public ConstraintsCommandHandler(@NonNull Context context, int i, @NonNull SystemAlarmDispatcher systemAlarmDispatcher) {
         this.mContext = context;

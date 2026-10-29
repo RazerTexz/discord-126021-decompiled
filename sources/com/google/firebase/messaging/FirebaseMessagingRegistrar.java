@@ -33,7 +33,7 @@ public class FirebaseMessagingRegistrar implements InterfaceC4575g {
 
     /* JADX INFO: renamed from: com.google.firebase.messaging.FirebaseMessagingRegistrar$b */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public static class C11090b<T> implements InterfaceC2411f<T> {
+    public class C11090b<T> implements InterfaceC2411f<T> {
         public C11090b(C11089a c11089a) {
         }
 
@@ -52,7 +52,7 @@ public class FirebaseMessagingRegistrar implements InterfaceC4575g {
     /* JADX INFO: renamed from: com.google.firebase.messaging.FirebaseMessagingRegistrar$c */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
     @VisibleForTesting
-    public static class C11091c implements InterfaceC2412g {
+    public class C11091c implements InterfaceC2412g {
         @Override // p007b.p225i.p226a.p228b.InterfaceC2412g
         /* JADX INFO: renamed from: a */
         public <T> InterfaceC2411f<T> mo2291a(String str, Class<T> cls, C2407b c2407b, InterfaceC2410e<T, byte[]> interfaceC2410e) {
@@ -71,10 +71,6 @@ public class FirebaseMessagingRegistrar implements InterfaceC4575g {
         return new C11091c();
     }
 
-    public static final /* synthetic */ FirebaseMessaging lambda$getComponents$0$FirebaseMessagingRegistrar(InterfaceC4573e interfaceC4573e) {
-        return new FirebaseMessaging((C4542c) interfaceC4573e.mo6346a(C4542c.class), (FirebaseInstanceId) interfaceC4573e.mo6346a(FirebaseInstanceId.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class), (InterfaceC4843g) interfaceC4573e.mo6346a(InterfaceC4843g.class), determineFactory((InterfaceC2412g) interfaceC4573e.mo6346a(InterfaceC2412g.class)), (InterfaceC4799d) interfaceC4573e.mo6346a(InterfaceC4799d.class));
-    }
-
     @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
     @Keep
     public List<C4572d<?>> getComponents() {
@@ -89,5 +85,9 @@ public class FirebaseMessagingRegistrar implements InterfaceC4575g {
         bVarM6348a.m6353c(C4874l.f13029a);
         bVarM6348a.m6354d(1);
         return Arrays.asList(bVarM6348a.m6352b(), C3404f.m4228N("fire-fcm", "20.1.7_1p"));
+    }
+
+    public static final /* synthetic */ FirebaseMessaging lambda$getComponents$0$FirebaseMessagingRegistrar(InterfaceC4573e interfaceC4573e) {
+        return new FirebaseMessaging((C4542c) interfaceC4573e.mo6346a(C4542c.class), (FirebaseInstanceId) interfaceC4573e.mo6346a(FirebaseInstanceId.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class), (InterfaceC4843g) interfaceC4573e.mo6346a(InterfaceC4843g.class), determineFactory((InterfaceC2412g) interfaceC4573e.mo6346a(InterfaceC2412g.class)), (InterfaceC4799d) interfaceC4573e.mo6346a(InterfaceC4799d.class));
     }
 }

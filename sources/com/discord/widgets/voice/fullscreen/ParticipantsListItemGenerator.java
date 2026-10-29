@@ -37,7 +37,7 @@ public final class ParticipantsListItemGenerator {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: ParticipantsListItemGenerator.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -49,6 +49,60 @@ public final class ParticipantsListItemGenerator {
                     listItems.add(new CallParticipantsAdapter.ListItem.EmbeddedActivityItem(embeddedActivity, activityParticipants, com.discord.models.commands.Application.INSTANCE.fromApiApplication(application)));
                 }
             }
+        }
+
+        public final List<CallParticipantsAdapter.ListItem> createConnectedListItems(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, String mySpectatingStreamKey, Channel channel, CallModel callModel, List<EmbeddedActivity> embeddedActivities, Map<Long, Application> applications) {
+            C12238m.checkNotNullParameter(voiceParticipants, "voiceParticipants");
+            C12238m.checkNotNullParameter(channel, "channel");
+            C12238m.checkNotNullParameter(callModel, "callModel");
+            C12238m.checkNotNullParameter(embeddedActivities, "embeddedActivities");
+            C12238m.checkNotNullParameter(applications, "applications");
+            ArrayList<CallParticipantsAdapter.ListItem> arrayList = new ArrayList<>();
+            List<GuildScheduledEvent> guildScheduledEvents = callModel.getGuildScheduledEvents();
+            ArrayList arrayList2 = new ArrayList();
+            Iterator<T> it = guildScheduledEvents.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                Object next = it.next();
+                GuildScheduledEventTiming eventTiming = GuildScheduledEventUtilitiesKt.getEventTiming((GuildScheduledEvent) next);
+                if (eventTiming.isStartable() || eventTiming == GuildScheduledEventTiming.LIVE) {
+                    arrayList2.add(next);
+                }
+            }
+            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) C12163u.minWithOrNull(arrayList2, GuildScheduledEventsComparator.INSTANCE);
+            if (guildScheduledEvent != null) {
+                arrayList.add(new CallParticipantsAdapter.ListItem.Event(guildScheduledEvent, callModel.canManageEvent(), callModel.isConnected()));
+            }
+            addEmbeddedActivitiesToListItems(arrayList, embeddedActivities, voiceParticipants, applications);
+            ArrayList arrayList3 = new ArrayList();
+            for (StoreVoiceParticipants.VoiceUser voiceUser : voiceParticipants.values()) {
+                if (voiceUser.isConnected() || ChannelUtils.m7667B(channel)) {
+                    arrayList3.add(voiceUser);
+                }
+            }
+            boolean z2 = !arrayList3.isEmpty();
+            boolean z3 = mySpectatingStreamKey != null;
+            if (z2) {
+                List<StoreVoiceParticipants.VoiceUser> listSortedWith = C12163u.sortedWith(arrayList3, createUserItemsComparator(mySpectatingStreamKey));
+                ArrayList arrayList4 = new ArrayList(C12149o.collectionSizeOrDefault(listSortedWith, 10));
+                for (StoreVoiceParticipants.VoiceUser voiceUser2 : listSortedWith) {
+                    arrayList4.add(new CallParticipantsAdapter.ListItem.VoiceUser(voiceUser2, ChannelUtils.m7667B(channel) && !voiceUser2.isConnected(), z3 && C12238m.areEqual(mySpectatingStreamKey, voiceUser2.getWatchingStream())));
+                }
+                arrayList.addAll(arrayList4);
+            }
+            if ((!arrayList3.isEmpty()) && callModel.canInvite()) {
+                arrayList.add(CallParticipantsAdapter.ListItem.Invite.INSTANCE);
+            }
+            return arrayList;
+        }
+
+        public static /* synthetic */ Comparator createUserItemsComparator$default(Companion companion, String str, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = null;
+            }
+            return companion.createUserItemsComparator(str);
         }
 
         private final Comparator<StoreVoiceParticipants.VoiceUser> createUserItemsComparator(final String mySpectatingStreamKey) {
@@ -100,60 +154,6 @@ public final class ParticipantsListItemGenerator {
                     return -1;
                 }
             };
-        }
-
-        public static /* synthetic */ Comparator createUserItemsComparator$default(Companion companion, String str, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = null;
-            }
-            return companion.createUserItemsComparator(str);
-        }
-
-        public final List<CallParticipantsAdapter.ListItem> createConnectedListItems(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, String mySpectatingStreamKey, Channel channel, CallModel callModel, List<EmbeddedActivity> embeddedActivities, Map<Long, Application> applications) {
-            C12238m.checkNotNullParameter(voiceParticipants, "voiceParticipants");
-            C12238m.checkNotNullParameter(channel, "channel");
-            C12238m.checkNotNullParameter(callModel, "callModel");
-            C12238m.checkNotNullParameter(embeddedActivities, "embeddedActivities");
-            C12238m.checkNotNullParameter(applications, "applications");
-            ArrayList<CallParticipantsAdapter.ListItem> arrayList = new ArrayList<>();
-            List<GuildScheduledEvent> guildScheduledEvents = callModel.getGuildScheduledEvents();
-            ArrayList arrayList2 = new ArrayList();
-            Iterator<T> it = guildScheduledEvents.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                Object next = it.next();
-                GuildScheduledEventTiming eventTiming = GuildScheduledEventUtilitiesKt.getEventTiming((GuildScheduledEvent) next);
-                if (eventTiming.isStartable() || eventTiming == GuildScheduledEventTiming.LIVE) {
-                    arrayList2.add(next);
-                }
-            }
-            GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) C12163u.minWithOrNull(arrayList2, GuildScheduledEventsComparator.INSTANCE);
-            if (guildScheduledEvent != null) {
-                arrayList.add(new CallParticipantsAdapter.ListItem.Event(guildScheduledEvent, callModel.canManageEvent(), callModel.isConnected()));
-            }
-            addEmbeddedActivitiesToListItems(arrayList, embeddedActivities, voiceParticipants, applications);
-            ArrayList arrayList3 = new ArrayList();
-            for (StoreVoiceParticipants.VoiceUser voiceUser : voiceParticipants.values()) {
-                if (voiceUser.isConnected() || ChannelUtils.m7667B(channel)) {
-                    arrayList3.add(voiceUser);
-                }
-            }
-            boolean z2 = !arrayList3.isEmpty();
-            boolean z3 = mySpectatingStreamKey != null;
-            if (z2) {
-                List<StoreVoiceParticipants.VoiceUser> listSortedWith = C12163u.sortedWith(arrayList3, createUserItemsComparator(mySpectatingStreamKey));
-                ArrayList arrayList4 = new ArrayList(C12149o.collectionSizeOrDefault(listSortedWith, 10));
-                for (StoreVoiceParticipants.VoiceUser voiceUser2 : listSortedWith) {
-                    arrayList4.add(new CallParticipantsAdapter.ListItem.VoiceUser(voiceUser2, ChannelUtils.m7667B(channel) && !voiceUser2.isConnected(), z3 && C12238m.areEqual(mySpectatingStreamKey, voiceUser2.getWatchingStream())));
-                }
-                arrayList.addAll(arrayList4);
-            }
-            if ((!arrayList3.isEmpty()) && callModel.canInvite()) {
-                arrayList.add(CallParticipantsAdapter.ListItem.Invite.INSTANCE);
-            }
-            return arrayList;
         }
 
         public final boolean refreshStreams(List<? extends CallParticipantsAdapter.ListItem> listItems, Set<String> fetchedPreviews, StoreApplicationStreamPreviews storeApplicationStreamPreviews) {

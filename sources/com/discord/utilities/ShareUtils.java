@@ -23,6 +23,7 @@ import com.discord.utilities.images.MGImagesBitmap;
 import com.discord.utilities.intent.IntentUtils;
 import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -60,78 +61,9 @@ import p658rx.functions.Func2;
 public final class ShareUtils {
     public static final ShareUtils INSTANCE = new ShareUtils();
 
-    /* JADX INFO: compiled from: ShareUtils.kt */
-    public static final /* data */ class SharedContent {
-        private final CharSequence text;
-        private final List<Uri> uris;
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public SharedContent(CharSequence charSequence, List<? extends Uri> list) {
-            this.text = charSequence;
-            this.uris = list;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ SharedContent copy$default(SharedContent sharedContent, CharSequence charSequence, List list, int i, Object obj) {
-            if ((i & 1) != 0) {
-                charSequence = sharedContent.text;
-            }
-            if ((i & 2) != 0) {
-                list = sharedContent.uris;
-            }
-            return sharedContent.copy(charSequence, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getText() {
-            return this.text;
-        }
-
-        public final List<Uri> component2() {
-            return this.uris;
-        }
-
-        public final SharedContent copy(CharSequence text, List<? extends Uri> uris) {
-            return new SharedContent(text, uris);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof SharedContent)) {
-                return false;
-            }
-            SharedContent sharedContent = (SharedContent) other;
-            return C12238m.areEqual(this.text, sharedContent.text) && C12238m.areEqual(this.uris, sharedContent.uris);
-        }
-
-        public final CharSequence getText() {
-            return this.text;
-        }
-
-        public final List<Uri> getUris() {
-            return this.uris;
-        }
-
-        public int hashCode() {
-            CharSequence charSequence = this.text;
-            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
-            List<Uri> list = this.uris;
-            return iHashCode + (list != null ? list.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("SharedContent(text=");
-            sbM833U.append(this.text);
-            sbM833U.append(", uris=");
-            return C1643a.m824L(sbM833U, this.uris, ")");
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.ShareUtils$loadAdaptiveBitmaps$1 */
     /* JADX INFO: compiled from: ShareUtils.kt */
-    public static final class C66491<T, R> implements InterfaceC12589b<MGImagesBitmap.CloseableBitmaps, Observable<? extends MGImagesBitmap.CloseableBitmaps>> {
+    public final class C66491<T, R> implements InterfaceC12589b<MGImagesBitmap.CloseableBitmaps, Observable<? extends MGImagesBitmap.CloseableBitmaps>> {
         public final /* synthetic */ int $fillMargins;
         public final /* synthetic */ int $fullBitmapSize;
         public final /* synthetic */ int $iconSize;
@@ -202,7 +134,7 @@ public final class ShareUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.ShareUtils$updateDirectShareTargets$2 */
     /* JADX INFO: compiled from: ShareUtils.kt */
-    public static final class C66592 extends AbstractC12240o implements Function1<Pair<? extends List<? extends Pair<? extends ChannelShortcutInfo, ? extends String>>, ? extends MGImagesBitmap.CloseableBitmaps>, Unit> {
+    public final class C66592 extends AbstractC12240o implements Function1<Pair<? extends List<? extends Pair<? extends ChannelShortcutInfo, ? extends String>>, ? extends MGImagesBitmap.CloseableBitmaps>, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -212,13 +144,13 @@ public final class ShareUtils {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends List<? extends Pair<? extends ChannelShortcutInfo, ? extends String>>, ? extends MGImagesBitmap.CloseableBitmaps> pair) throws IOException {
+        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends List<? extends Pair<? extends ChannelShortcutInfo, ? extends String>>, ? extends MGImagesBitmap.CloseableBitmaps> pair) throws IllegalAccessException, IOException, InvocationTargetException {
             invoke2((Pair<? extends List<Pair<ChannelShortcutInfo, String>>, MGImagesBitmap.CloseableBitmaps>) pair);
             return Unit.f27425a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Pair<? extends List<Pair<ChannelShortcutInfo, String>>, MGImagesBitmap.CloseableBitmaps> pair) throws IOException {
+        public final void invoke2(Pair<? extends List<Pair<ChannelShortcutInfo, String>>, MGImagesBitmap.CloseableBitmaps> pair) throws IllegalAccessException, IOException, InvocationTargetException {
             List<Pair<ChannelShortcutInfo, String>> listComponent1 = pair.component1();
             MGImagesBitmap.CloseableBitmaps closeableBitmapsComponent2 = pair.component2();
             try {
@@ -241,7 +173,7 @@ public final class ShareUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.ShareUtils$updateDirectShareTargets$4 */
     /* JADX INFO: compiled from: ShareUtils.kt */
-    public static final class C66614 extends AbstractC12240o implements Function1<Map<Long, ? extends Channel>, Unit> {
+    public final class C66614 extends AbstractC12240o implements Function1<Map<Long, ? extends Channel>, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -290,6 +222,75 @@ public final class ShareUtils {
         }
     }
 
+    /* JADX INFO: compiled from: ShareUtils.kt */
+    public final /* data */ class SharedContent {
+        private final CharSequence text;
+        private final List<Uri> uris;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public SharedContent(CharSequence charSequence, List<? extends Uri> list) {
+            this.text = charSequence;
+            this.uris = list;
+        }
+
+        public final List<Uri> component2() {
+            return this.uris;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ SharedContent copy$default(SharedContent sharedContent, CharSequence charSequence, List list, int i, Object obj) {
+            if ((i & 1) != 0) {
+                charSequence = sharedContent.text;
+            }
+            if ((i & 2) != 0) {
+                list = sharedContent.uris;
+            }
+            return sharedContent.copy(charSequence, list);
+        }
+
+        public final SharedContent copy(CharSequence text, List<? extends Uri> uris) {
+            return new SharedContent(text, uris);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SharedContent)) {
+                return false;
+            }
+            SharedContent sharedContent = (SharedContent) other;
+            return C12238m.areEqual(this.text, sharedContent.text) && C12238m.areEqual(this.uris, sharedContent.uris);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getText() {
+            return this.text;
+        }
+
+        public final CharSequence getText() {
+            return this.text;
+        }
+
+        public final List<Uri> getUris() {
+            return this.uris;
+        }
+
+        public int hashCode() {
+            CharSequence charSequence = this.text;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            List<Uri> list = this.uris;
+            return iHashCode + (list != null ? list.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("SharedContent(text=");
+            sbM833U.append(this.text);
+            sbM833U.append(", uris=");
+            return C1643a.m824L(sbM833U, this.uris, ")");
+        }
+    }
+
     private ShareUtils() {
     }
 
@@ -298,6 +299,76 @@ public final class ShareUtils {
             builder = null;
         }
         shareUtils.addShortcut(context, shortcutInfoCompat, builder);
+    }
+
+    public final void addShortcut(Context context, ShortcutInfoCompat shortcutInfo, NotificationCompat.Builder notificationBuilder) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(shortcutInfo, "shortcutInfo");
+        if (notificationBuilder != null) {
+            notificationBuilder.setShortcutId(shortcutInfo.getId());
+        }
+        if (notificationBuilder != null) {
+            notificationBuilder.setLocusId(new LocusIdCompat(shortcutInfo.getId()));
+        }
+        List<ShortcutInfoCompat> dynamicShortcuts = ShortcutManagerCompat.getDynamicShortcuts(context);
+        C12238m.checkNotNullExpressionValue(dynamicShortcuts, "ShortcutManagerCompat.getDynamicShortcuts(context)");
+        boolean z2 = false;
+        if (!(dynamicShortcuts instanceof Collection) || !dynamicShortcuts.isEmpty()) {
+            for (ShortcutInfoCompat shortcutInfoCompat : dynamicShortcuts) {
+                C12238m.checkNotNullExpressionValue(shortcutInfoCompat, "it");
+                if (C12238m.areEqual(shortcutInfoCompat.getId(), shortcutInfo.getId())) {
+                    z2 = true;
+                    break;
+                }
+            }
+        }
+        if (z2) {
+            return;
+        }
+        ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
+    }
+
+    public final SharedContent getSharedContent(Intent intent, boolean deleteExtras) {
+        Uri uri;
+        C12238m.checkNotNullParameter(intent, "intent");
+        CharSequence charSequenceExtra = intent.getCharSequenceExtra("android.intent.extra.TEXT");
+        String stringExtra = intent.getStringExtra("android.intent.extra.SUBJECT");
+        ArrayList arrayListArrayListOf = null;
+        if (charSequenceExtra == null || C12103t.isBlank(charSequenceExtra)) {
+            charSequenceExtra = !(stringExtra == null || C12103t.isBlank(stringExtra)) ? stringExtra : null;
+        }
+        String action = intent.getAction();
+        if (action != null) {
+            int iHashCode = action.hashCode();
+            if (iHashCode != -1173264947) {
+                if (iHashCode == -58484670 && action.equals("android.intent.action.SEND_MULTIPLE")) {
+                    arrayListArrayListOf = intent.getParcelableArrayListExtra("android.intent.extra.STREAM");
+                }
+            } else if (action.equals("android.intent.action.SEND") && (uri = (Uri) intent.getParcelableExtra("android.intent.extra.STREAM")) != null) {
+                arrayListArrayListOf = C12147n.arrayListOf(uri);
+            }
+        }
+        if (deleteExtras) {
+            intent.removeExtra("android.intent.extra.TEXT");
+            intent.removeExtra("android.intent.extra.SUBJECT");
+            intent.removeExtra("android.intent.extra.STREAM");
+        }
+        return new SharedContent(charSequenceExtra, arrayListArrayListOf);
+    }
+
+    public final Observable<MGImagesBitmap.CloseableBitmaps> loadAdaptiveBitmaps(Sequence<String> iconUris) {
+        C12238m.checkNotNullParameter(iconUris, "iconUris");
+        int iDpToPixels = DimenUtils.dpToPixels(72);
+        int iDpToPixels2 = DimenUtils.dpToPixels(108);
+        int iDpToPixels3 = DimenUtils.dpToPixels(18);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        Iterator<String> it = iconUris.iterator();
+        while (it.hasNext()) {
+            linkedHashSet.add(new MGImagesBitmap.ImageRequest(it.next(), false));
+        }
+        Observable observableM11082A = MGImagesBitmap.getBitmaps(linkedHashSet).m11082A(new C66491(iDpToPixels, iDpToPixels2, iDpToPixels3));
+        C12238m.checkNotNullExpressionValue(observableM11082A, "MGImagesBitmap\n        .…              }\n        }");
+        return observableM11082A;
     }
 
     private final Observable<List<Pair<ChannelShortcutInfo, String>>> observeChannelAndIconPairs(final Context context) {
@@ -373,108 +444,6 @@ public final class ShareUtils {
         return shareUtils.toShortcutInfo(context, j, charSequence, (i2 & 8) != 0 ? charSequence : charSequence2, (i2 & 16) != 0 ? null : iconCompat, (i2 & 32) != 0 ? C12147n.emptyList() : list, (i2 & 64) != 0 ? 0 : i);
     }
 
-    private final void updateDynamicShortcuts(List<Pair<ChannelShortcutInfo, String>> channelAndIconUriPairs, Context context, MGImagesBitmap.CloseableBitmaps iconBitmaps) {
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Iterator<T> it = channelAndIconUriPairs.iterator();
-        while (it.hasNext()) {
-            Pair pair = (Pair) it.next();
-            Boolean boolValueOf = Boolean.valueOf(((ChannelShortcutInfo) pair.component1()).isPinnedOnly());
-            Object arrayList = linkedHashMap.get(boolValueOf);
-            if (arrayList == null) {
-                arrayList = new ArrayList();
-                linkedHashMap.put(boolValueOf, arrayList);
-            }
-            List list = (List) arrayList;
-            ChannelShortcutInfo channelShortcutInfo = (ChannelShortcutInfo) pair.component1();
-            String str = (String) pair.component2();
-            ShareUtils shareUtils = INSTANCE;
-            Channel channel = channelShortcutInfo.getChannel();
-            Bitmap bitmap = (Bitmap) iconBitmaps.get((Object) str);
-            list.add(shareUtils.toShortcutInfo(channel, context, bitmap != null ? IconCompat.createWithAdaptiveBitmap(bitmap) : null, channelShortcutInfo.getRank()));
-        }
-        Object objEmptyList = linkedHashMap.get(Boolean.FALSE);
-        if (objEmptyList == null) {
-            objEmptyList = C12147n.emptyList();
-        }
-        List list2 = (List) objEmptyList;
-        Object objEmptyList2 = linkedHashMap.get(Boolean.TRUE);
-        if (objEmptyList2 == null) {
-            objEmptyList2 = C12147n.emptyList();
-        }
-        ShortcutManagerCompat.setDynamicShortcuts(context, list2);
-        ShortcutManagerCompat.updateShortcuts(context, (List) objEmptyList2);
-    }
-
-    public final void addShortcut(Context context, ShortcutInfoCompat shortcutInfo, NotificationCompat.Builder notificationBuilder) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(shortcutInfo, "shortcutInfo");
-        if (notificationBuilder != null) {
-            notificationBuilder.setShortcutId(shortcutInfo.getId());
-        }
-        if (notificationBuilder != null) {
-            notificationBuilder.setLocusId(new LocusIdCompat(shortcutInfo.getId()));
-        }
-        List<ShortcutInfoCompat> dynamicShortcuts = ShortcutManagerCompat.getDynamicShortcuts(context);
-        C12238m.checkNotNullExpressionValue(dynamicShortcuts, "ShortcutManagerCompat.getDynamicShortcuts(context)");
-        boolean z2 = false;
-        if (!(dynamicShortcuts instanceof Collection) || !dynamicShortcuts.isEmpty()) {
-            for (ShortcutInfoCompat shortcutInfoCompat : dynamicShortcuts) {
-                C12238m.checkNotNullExpressionValue(shortcutInfoCompat, "it");
-                if (C12238m.areEqual(shortcutInfoCompat.getId(), shortcutInfo.getId())) {
-                    z2 = true;
-                    break;
-                }
-            }
-        }
-        if (z2) {
-            return;
-        }
-        ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
-    }
-
-    public final SharedContent getSharedContent(Intent intent, boolean deleteExtras) {
-        Uri uri;
-        C12238m.checkNotNullParameter(intent, "intent");
-        CharSequence charSequenceExtra = intent.getCharSequenceExtra("android.intent.extra.TEXT");
-        String stringExtra = intent.getStringExtra("android.intent.extra.SUBJECT");
-        ArrayList arrayListArrayListOf = null;
-        if (charSequenceExtra == null || C12103t.isBlank(charSequenceExtra)) {
-            charSequenceExtra = !(stringExtra == null || C12103t.isBlank(stringExtra)) ? stringExtra : null;
-        }
-        String action = intent.getAction();
-        if (action != null) {
-            int iHashCode = action.hashCode();
-            if (iHashCode != -1173264947) {
-                if (iHashCode == -58484670 && action.equals("android.intent.action.SEND_MULTIPLE")) {
-                    arrayListArrayListOf = intent.getParcelableArrayListExtra("android.intent.extra.STREAM");
-                }
-            } else if (action.equals("android.intent.action.SEND") && (uri = (Uri) intent.getParcelableExtra("android.intent.extra.STREAM")) != null) {
-                arrayListArrayListOf = C12147n.arrayListOf(uri);
-            }
-        }
-        if (deleteExtras) {
-            intent.removeExtra("android.intent.extra.TEXT");
-            intent.removeExtra("android.intent.extra.SUBJECT");
-            intent.removeExtra("android.intent.extra.STREAM");
-        }
-        return new SharedContent(charSequenceExtra, arrayListArrayListOf);
-    }
-
-    public final Observable<MGImagesBitmap.CloseableBitmaps> loadAdaptiveBitmaps(Sequence<String> iconUris) {
-        C12238m.checkNotNullParameter(iconUris, "iconUris");
-        int iDpToPixels = DimenUtils.dpToPixels(72);
-        int iDpToPixels2 = DimenUtils.dpToPixels(108);
-        int iDpToPixels3 = DimenUtils.dpToPixels(18);
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        Iterator<String> it = iconUris.iterator();
-        while (it.hasNext()) {
-            linkedHashSet.add(new MGImagesBitmap.ImageRequest(it.next(), false));
-        }
-        Observable observableM11082A = MGImagesBitmap.getBitmaps(linkedHashSet).m11082A(new C66491(iDpToPixels, iDpToPixels2, iDpToPixels3));
-        C12238m.checkNotNullExpressionValue(observableM11082A, "MGImagesBitmap\n        .…              }\n        }");
-        return observableM11082A;
-    }
-
     public final ShortcutInfoCompat toShortcutInfo(Context context, long channelId, CharSequence shortLabel, CharSequence longLabel, IconCompat icon, List<? extends Person> persons, int rank) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(shortLabel, "shortLabel");
@@ -525,6 +494,38 @@ public final class ShareUtils {
         });
         C12238m.checkNotNullExpressionValue(observableM11118y, "StoreStream.getChannels(…ilter { it.isNotEmpty() }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11118y, 0L, false, 1, null)), (Class<?>) ShareUtils.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C66614(context));
+    }
+
+    private final void updateDynamicShortcuts(List<Pair<ChannelShortcutInfo, String>> channelAndIconUriPairs, Context context, MGImagesBitmap.CloseableBitmaps iconBitmaps) {
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        Iterator<T> it = channelAndIconUriPairs.iterator();
+        while (it.hasNext()) {
+            Pair pair = (Pair) it.next();
+            Boolean boolValueOf = Boolean.valueOf(((ChannelShortcutInfo) pair.component1()).isPinnedOnly());
+            Object arrayList = linkedHashMap.get(boolValueOf);
+            if (arrayList == null) {
+                arrayList = new ArrayList();
+                linkedHashMap.put(boolValueOf, arrayList);
+            }
+            List list = (List) arrayList;
+            ChannelShortcutInfo channelShortcutInfo = (ChannelShortcutInfo) pair.component1();
+            String str = (String) pair.component2();
+            ShareUtils shareUtils = INSTANCE;
+            Channel channel = channelShortcutInfo.getChannel();
+            Bitmap bitmap = (Bitmap) iconBitmaps.get((Object) str);
+            list.add(shareUtils.toShortcutInfo(channel, context, bitmap != null ? IconCompat.createWithAdaptiveBitmap(bitmap) : null, channelShortcutInfo.getRank()));
+        }
+        Object objEmptyList = linkedHashMap.get(Boolean.FALSE);
+        if (objEmptyList == null) {
+            objEmptyList = C12147n.emptyList();
+        }
+        List list2 = (List) objEmptyList;
+        Object objEmptyList2 = linkedHashMap.get(Boolean.TRUE);
+        if (objEmptyList2 == null) {
+            objEmptyList2 = C12147n.emptyList();
+        }
+        ShortcutManagerCompat.setDynamicShortcuts(context, list2);
+        ShortcutManagerCompat.updateShortcuts(context, (List) objEmptyList2);
     }
 
     private final ShortcutInfoCompat toShortcutInfo(Channel channel, Context context, IconCompat iconCompat, int i) {

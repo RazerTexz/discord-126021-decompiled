@@ -11,19 +11,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExpressionPickerCategoryCollapseToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExpressionPickerCategoryCollapseToggled implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence tab = null;
     private final Boolean collapsed = null;
     private final Long guildId = null;
     private final Long stickerPackId = null;
+    private final CharSequence tab = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "expression_picker_category_collapse_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackExpressionPickerCategoryCollapseToggled imple
         }
         TrackExpressionPickerCategoryCollapseToggled trackExpressionPickerCategoryCollapseToggled = (TrackExpressionPickerCategoryCollapseToggled) other;
         return C12238m.areEqual(this.tab, trackExpressionPickerCategoryCollapseToggled.tab) && C12238m.areEqual(this.collapsed, trackExpressionPickerCategoryCollapseToggled.collapsed) && C12238m.areEqual(this.guildId, trackExpressionPickerCategoryCollapseToggled.guildId) && C12238m.areEqual(this.stickerPackId, trackExpressionPickerCategoryCollapseToggled.stickerPackId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

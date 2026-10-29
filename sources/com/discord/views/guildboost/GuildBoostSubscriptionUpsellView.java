@@ -32,7 +32,7 @@ public final class GuildBoostSubscriptionUpsellView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.guildboost.GuildBoostSubscriptionUpsellView$a */
     /* JADX INFO: compiled from: GuildBoostSubscriptionUpsellView.kt */
-    public static final class C7115a extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C7115a extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C7115a() {
             super(1);
         }

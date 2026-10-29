@@ -37,7 +37,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
     private int mAlpha = 255;
     private int mCurIndex = -1;
 
-    public static class BlockInvalidateCallback implements Drawable.Callback {
+    public class BlockInvalidateCallback implements Drawable.Callback {
         private Drawable.Callback mCallback;
 
         @Override // android.graphics.drawable.Drawable.Callback
@@ -72,7 +72,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         }
     }
 
-    public static abstract class DrawableContainerState extends Drawable.ConstantState {
+    public abstract class DrawableContainerState extends Drawable.ConstantState {
         public boolean mAutoMirrored;
         public boolean mCanConstantState;
         public int mChangingConfigurations;
@@ -186,26 +186,6 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
             }
         }
 
-        private void createAllFutures() {
-            SparseArray<Drawable.ConstantState> sparseArray = this.mDrawableFutures;
-            if (sparseArray != null) {
-                int size = sparseArray.size();
-                for (int i = 0; i < size; i++) {
-                    this.mDrawables[this.mDrawableFutures.keyAt(i)] = prepareDrawable(this.mDrawableFutures.valueAt(i).newDrawable(this.mSourceRes));
-                }
-                this.mDrawableFutures = null;
-            }
-        }
-
-        private Drawable prepareDrawable(Drawable drawable) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                drawable.setLayoutDirection(this.mLayoutDirection);
-            }
-            Drawable drawableMutate = drawable.mutate();
-            drawableMutate.setCallback(this.mOwner);
-            return drawableMutate;
-        }
-
         public final int addChild(Drawable drawable) {
             int i = this.mNumChildren;
             if (i >= this.mDrawables.length) {
@@ -309,6 +289,17 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
                 if (minimumHeight > this.mConstantMinimumHeight) {
                     this.mConstantMinimumHeight = minimumHeight;
                 }
+            }
+        }
+
+        private void createAllFutures() {
+            SparseArray<Drawable.ConstantState> sparseArray = this.mDrawableFutures;
+            if (sparseArray != null) {
+                int size = sparseArray.size();
+                for (int i = 0; i < size; i++) {
+                    this.mDrawables[this.mDrawableFutures.keyAt(i)] = prepareDrawable(this.mDrawableFutures.valueAt(i).newDrawable(this.mSourceRes));
+                }
+                this.mDrawableFutures = null;
             }
         }
 
@@ -482,6 +473,15 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
             this.mMutated = true;
         }
 
+        private Drawable prepareDrawable(Drawable drawable) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                drawable.setLayoutDirection(this.mLayoutDirection);
+            }
+            Drawable drawableMutate = drawable.mutate();
+            drawableMutate.setCallback(this.mOwner);
+            return drawableMutate;
+        }
+
         public final void setConstantSize(boolean z2) {
             this.mConstantSize = z2;
         }
@@ -526,56 +526,6 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
                 }
             }
         }
-    }
-
-    private void initializeDrawableForDisplay(Drawable drawable) {
-        if (this.mBlockInvalidateCallback == null) {
-            this.mBlockInvalidateCallback = new BlockInvalidateCallback();
-        }
-        drawable.setCallback(this.mBlockInvalidateCallback.wrap(drawable.getCallback()));
-        try {
-            if (this.mDrawableContainerState.mEnterFadeDuration <= 0 && this.mHasAlpha) {
-                drawable.setAlpha(this.mAlpha);
-            }
-            DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-            if (drawableContainerState.mHasColorFilter) {
-                drawable.setColorFilter(drawableContainerState.mColorFilter);
-            } else {
-                if (drawableContainerState.mHasTintList) {
-                    DrawableCompat.setTintList(drawable, drawableContainerState.mTintList);
-                }
-                DrawableContainerState drawableContainerState2 = this.mDrawableContainerState;
-                if (drawableContainerState2.mHasTintMode) {
-                    DrawableCompat.setTintMode(drawable, drawableContainerState2.mTintMode);
-                }
-            }
-            drawable.setVisible(isVisible(), true);
-            drawable.setDither(this.mDrawableContainerState.mDither);
-            drawable.setState(getState());
-            drawable.setLevel(getLevel());
-            drawable.setBounds(getBounds());
-            if (Build.VERSION.SDK_INT >= 23) {
-                drawable.setLayoutDirection(getLayoutDirection());
-            }
-            drawable.setAutoMirrored(this.mDrawableContainerState.mAutoMirrored);
-            Rect rect = this.mHotspotBounds;
-            if (rect != null) {
-                drawable.setHotspotBounds(rect.left, rect.top, rect.right, rect.bottom);
-            }
-        } finally {
-            drawable.setCallback(this.mBlockInvalidateCallback.unwrap());
-        }
-    }
-
-    private boolean needsMirroring() {
-        return isAutoMirrored() && DrawableCompat.getLayoutDirection(this) == 1;
-    }
-
-    public static int resolveDensity(@Nullable Resources resources, int i) {
-        if (resources != null) {
-            i = resources.getDisplayMetrics().densityDpi;
-        }
-        return i == 0 ? Opcodes.IF_ICMPNE : i;
     }
 
     /* JADX WARN: Code duplicated, block: B:14:0x003f  */
@@ -806,6 +756,45 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         return padding;
     }
 
+    private void initializeDrawableForDisplay(Drawable drawable) {
+        if (this.mBlockInvalidateCallback == null) {
+            this.mBlockInvalidateCallback = new BlockInvalidateCallback();
+        }
+        drawable.setCallback(this.mBlockInvalidateCallback.wrap(drawable.getCallback()));
+        try {
+            if (this.mDrawableContainerState.mEnterFadeDuration <= 0 && this.mHasAlpha) {
+                drawable.setAlpha(this.mAlpha);
+            }
+            DrawableContainerState drawableContainerState = this.mDrawableContainerState;
+            if (drawableContainerState.mHasColorFilter) {
+                drawable.setColorFilter(drawableContainerState.mColorFilter);
+            } else {
+                if (drawableContainerState.mHasTintList) {
+                    DrawableCompat.setTintList(drawable, drawableContainerState.mTintList);
+                }
+                DrawableContainerState drawableContainerState2 = this.mDrawableContainerState;
+                if (drawableContainerState2.mHasTintMode) {
+                    DrawableCompat.setTintMode(drawable, drawableContainerState2.mTintMode);
+                }
+            }
+            drawable.setVisible(isVisible(), true);
+            drawable.setDither(this.mDrawableContainerState.mDither);
+            drawable.setState(getState());
+            drawable.setLevel(getLevel());
+            drawable.setBounds(getBounds());
+            if (Build.VERSION.SDK_INT >= 23) {
+                drawable.setLayoutDirection(getLayoutDirection());
+            }
+            drawable.setAutoMirrored(this.mDrawableContainerState.mAutoMirrored);
+            Rect rect = this.mHotspotBounds;
+            if (rect != null) {
+                drawable.setHotspotBounds(rect.left, rect.top, rect.right, rect.bottom);
+            }
+        } finally {
+            drawable.setCallback(this.mBlockInvalidateCallback.unwrap());
+        }
+    }
+
     public void invalidateDrawable(@NonNull Drawable drawable) {
         DrawableContainerState drawableContainerState = this.mDrawableContainerState;
         if (drawableContainerState != null) {
@@ -872,6 +861,10 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         return this;
     }
 
+    private boolean needsMirroring() {
+        return isAutoMirrored() && DrawableCompat.getLayoutDirection(this) == 1;
+    }
+
     @Override // android.graphics.drawable.Drawable
     public void onBoundsChange(Rect rect) {
         Drawable drawable = this.mLastDrawable;
@@ -913,6 +906,13 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
             return drawable2.setState(iArr);
         }
         return false;
+    }
+
+    public static int resolveDensity(@Nullable Resources resources, int i) {
+        if (resources != null) {
+            i = resources.getDisplayMetrics().densityDpi;
+        }
+        return i == 0 ? Opcodes.IF_ICMPNE : i;
     }
 
     public void scheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable, long j) {

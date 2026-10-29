@@ -47,9 +47,6 @@ import p007b.p225i.p408d.p410q.p411x.C4939a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class Gson {
 
-    /* JADX INFO: renamed from: a */
-    public static final TypeToken<?> f21464a = TypeToken.get(Object.class);
-
     /* JADX INFO: renamed from: b */
     public final ThreadLocal<Map<TypeToken<?>, FutureTypeAdapter<?>>> f21465b;
 
@@ -89,7 +86,10 @@ public final class Gson {
     /* JADX INFO: renamed from: n */
     public final List<InterfaceC4911o> f21477n;
 
-    public static class FutureTypeAdapter<T> extends TypeAdapter<T> {
+    /* JADX INFO: renamed from: a */
+    public static final TypeToken<?> f21464a = TypeToken.get(Object.class);
+
+    public class FutureTypeAdapter<T> extends TypeAdapter<T> {
 
         /* JADX INFO: renamed from: a */
         public TypeAdapter<T> f21480a;

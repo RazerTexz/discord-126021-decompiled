@@ -77,7 +77,7 @@ public class PatchValEclipsePortal {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchValEclipsePortal$Reflection.SCL.lombok */
-    private static final class Reflection {
+    final class Reflection {
         public static final Method copyInitializationOfForEachIterable;
         public static final Method copyInitializationOfLocalDeclaration;
         public static final Method addFinalAndValAnnotationToVariableDeclarationStatement;

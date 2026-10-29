@@ -12,6 +12,29 @@ public class OutputChunked extends Output {
         super(2048);
     }
 
+    public void endChunks() {
+        flush();
+        C1644a.a aVar = C1644a.f3007a;
+        try {
+            getOutputStream().write(0);
+        } catch (IOException e) {
+            throw new KryoException(e);
+        }
+    }
+
+    @Override // com.esotericsoftware.kryo.p502io.Output, java.io.OutputStream, java.io.Flushable
+    public void flush() throws KryoException {
+        if (position() > 0) {
+            try {
+                writeChunkSize();
+                super.flush();
+            } catch (IOException e) {
+                throw new KryoException(e);
+            }
+        }
+        super.flush();
+    }
+
     private void writeChunkSize() throws IOException {
         int iPosition = position();
         C1644a.a aVar = C1644a.f3007a;
@@ -40,29 +63,6 @@ public class OutputChunked extends Output {
             outputStream.write((i3 & Opcodes.LAND) | 128);
             outputStream.write(i3 >>> 7);
         }
-    }
-
-    public void endChunks() {
-        flush();
-        C1644a.a aVar = C1644a.f3007a;
-        try {
-            getOutputStream().write(0);
-        } catch (IOException e) {
-            throw new KryoException(e);
-        }
-    }
-
-    @Override // com.esotericsoftware.kryo.p502io.Output, java.io.OutputStream, java.io.Flushable
-    public void flush() throws KryoException {
-        if (position() > 0) {
-            try {
-                writeChunkSize();
-                super.flush();
-            } catch (IOException e) {
-                throw new KryoException(e);
-            }
-        }
-        super.flush();
     }
 
     public OutputChunked(int i) {

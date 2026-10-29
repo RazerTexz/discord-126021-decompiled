@@ -19,36 +19,6 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
         this.layoutLock = new Object();
     }
 
-    private void logD(String str) {
-        Logging.m11027d(TAG, this.name + ": " + str);
-    }
-
-    private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
-        synchronized (this.layoutLock) {
-            if (this.isRenderingPaused) {
-                return;
-            }
-            if (!this.isFirstFrameRendered) {
-                this.isFirstFrameRendered = true;
-                logD("Reporting first rendered frame.");
-                RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
-                if (rendererEvents != null) {
-                    rendererEvents.onFirstFrameRendered();
-                }
-            }
-            if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
-                logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
-                RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
-                if (rendererEvents2 != null) {
-                    rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
-                }
-                this.rotatedFrameWidth = videoFrame.getRotatedWidth();
-                this.rotatedFrameHeight = videoFrame.getRotatedHeight();
-                this.frameRotation = videoFrame.getRotation();
-            }
-        }
-    }
-
     @Override // org.webrtc.EglRenderer
     public void disableFpsReduction() {
         synchronized (this.layoutLock) {
@@ -67,6 +37,10 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
             this.frameRotation = 0;
         }
         super.init(context, iArr, glDrawer);
+    }
+
+    private void logD(String str) {
+        Logging.m11027d(TAG, this.name + ": " + str);
     }
 
     @Override // org.webrtc.EglRenderer, org.webrtc.VideoSink
@@ -114,6 +88,32 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
             }
         });
         ThreadUtils.awaitUninterruptibly(countDownLatch);
+    }
+
+    private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
+        synchronized (this.layoutLock) {
+            if (this.isRenderingPaused) {
+                return;
+            }
+            if (!this.isFirstFrameRendered) {
+                this.isFirstFrameRendered = true;
+                logD("Reporting first rendered frame.");
+                RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+                if (rendererEvents != null) {
+                    rendererEvents.onFirstFrameRendered();
+                }
+            }
+            if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
+                logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
+                RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
+                if (rendererEvents2 != null) {
+                    rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
+                }
+                this.rotatedFrameWidth = videoFrame.getRotatedWidth();
+                this.rotatedFrameHeight = videoFrame.getRotatedHeight();
+                this.frameRotation = videoFrame.getRotation();
+            }
+        }
     }
 
     @Override // org.webrtc.EglRenderer

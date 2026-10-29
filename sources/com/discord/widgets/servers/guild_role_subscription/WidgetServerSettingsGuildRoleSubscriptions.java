@@ -45,14 +45,14 @@ public final class WidgetServerSettingsGuildRoleSubscriptions extends AppFragmen
     public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_GUILD_ID = "INTENT_EXTRA_SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_GUILD_ID";
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTIONS_VIEW_FLIPPER_LOADING_STATE */
     private static final int f19395x4404778b = 0;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTIONS_VIEW_FLIPPER_OVERVIEW_STATE */
     private static final int f19396xcae62dce = 1;
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
@@ -63,26 +63,9 @@ public final class WidgetServerSettingsGuildRoleSubscriptions extends AppFragmen
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptions.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptions.INTENT_EXTRA_SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_GUILD_ID, guildId);
-            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptions.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.WidgetServerSettingsGuildRoleSubscriptions$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptions.kt */
-    public static final class C94611 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionViewModel.ViewState, Unit> {
+    public final class C94611 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionViewModel.ViewState, Unit> {
         public C94611() {
             super(1);
         }
@@ -103,7 +86,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptions extends AppFragmen
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.WidgetServerSettingsGuildRoleSubscriptions$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptions.kt */
-    public static final class C94622 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionViewModel.Event, Unit> {
+    public final class C94622 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionViewModel.Event, Unit> {
         public C94622() {
             super(1);
         }
@@ -124,7 +107,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptions extends AppFragmen
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.WidgetServerSettingsGuildRoleSubscriptions$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptions.kt */
-    public static final class C94633 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
+    public final class C94633 extends AbstractC12240o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
         public C94633() {
             super(1);
         }
@@ -138,6 +121,23 @@ public final class WidgetServerSettingsGuildRoleSubscriptions extends AppFragmen
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
             WidgetServerSettingsGuildRoleSubscriptions.this.getViewModel().onGuildRoleSubscriptionGroupUpdated(viewState.getDescription(), viewState.getCoverImage(), viewState.isFullServerGate());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptions.INTENT_EXTRA_SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_GUILD_ID, guildId);
+            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptions.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

@@ -31,7 +31,7 @@ public final class StickerFullSizeDialog extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: StickerFullSizeDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

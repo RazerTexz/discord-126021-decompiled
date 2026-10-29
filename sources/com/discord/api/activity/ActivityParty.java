@@ -16,16 +16,6 @@ public final /* data */ class ActivityParty {
         this.size = list;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Long> m7559b() {
-        return this.size;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,11 +27,21 @@ public final /* data */ class ActivityParty {
         return C12238m.areEqual(this.id, activityParty.id) && C12238m.areEqual(this.size, activityParty.size);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getId() {
+        return this.id;
+    }
+
     public int hashCode() {
         String str = this.id;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         List<Long> list = this.size;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<Long> m7559b() {
+        return this.size;
     }
 
     public String toString() {

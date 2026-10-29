@@ -12,8 +12,8 @@ import java.util.List;
 public abstract class ConstraintController<T> implements ConstraintListener<T> {
     private OnConstraintUpdatedCallback mCallback;
     private T mCurrentValue;
-    private final List<String> mMatchingWorkSpecIds = new ArrayList();
     private ConstraintTracker<T> mTracker;
+    private final List<String> mMatchingWorkSpecIds = new ArrayList();
 
     public interface OnConstraintUpdatedCallback {
         void onConstraintMet(@NonNull List<String> list);
@@ -23,17 +23,6 @@ public abstract class ConstraintController<T> implements ConstraintListener<T> {
 
     public ConstraintController(ConstraintTracker<T> constraintTracker) {
         this.mTracker = constraintTracker;
-    }
-
-    private void updateCallback(@Nullable OnConstraintUpdatedCallback onConstraintUpdatedCallback, @Nullable T t) {
-        if (this.mMatchingWorkSpecIds.isEmpty() || onConstraintUpdatedCallback == null) {
-            return;
-        }
-        if (t == null || isConstrained(t)) {
-            onConstraintUpdatedCallback.onConstraintNotMet(this.mMatchingWorkSpecIds);
-        } else {
-            onConstraintUpdatedCallback.onConstraintMet(this.mMatchingWorkSpecIds);
-        }
     }
 
     public abstract boolean hasConstraint(@NonNull WorkSpec workSpec);
@@ -78,6 +67,17 @@ public abstract class ConstraintController<T> implements ConstraintListener<T> {
         if (this.mCallback != onConstraintUpdatedCallback) {
             this.mCallback = onConstraintUpdatedCallback;
             updateCallback(onConstraintUpdatedCallback, this.mCurrentValue);
+        }
+    }
+
+    private void updateCallback(@Nullable OnConstraintUpdatedCallback onConstraintUpdatedCallback, @Nullable T t) {
+        if (this.mMatchingWorkSpecIds.isEmpty() || onConstraintUpdatedCallback == null) {
+            return;
+        }
+        if (t == null || isConstrained(t)) {
+            onConstraintUpdatedCallback.onConstraintNotMet(this.mMatchingWorkSpecIds);
+        } else {
+            onConstraintUpdatedCallback.onConstraintMet(this.mMatchingWorkSpecIds);
         }
     }
 }

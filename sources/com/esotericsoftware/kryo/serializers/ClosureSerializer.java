@@ -12,7 +12,7 @@ public class ClosureSerializer extends Serializer {
     private static Method readResolve;
     private static Class serializedLambda = SerializedLambda.class;
 
-    public static class Closure {
+    public class Closure {
     }
 
     static {

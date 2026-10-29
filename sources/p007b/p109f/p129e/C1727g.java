@@ -16,6 +16,36 @@ public class C1727g<T> implements Supplier<DataSource<T>> {
     /* JADX INFO: renamed from: a */
     public final List<Supplier<DataSource<T>>> f3160a;
 
+    public C1727g(List<Supplier<DataSource<T>>> list) {
+        C1460d.m535k(!list.isEmpty(), "List of suppliers is empty!");
+        this.f3160a = list;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof C1727g) {
+            return C1460d.m520g0(this.f3160a, ((C1727g) obj).f3160a);
+        }
+        return false;
+    }
+
+    @Override // com.facebook.common.internal.Supplier
+    public Object get() {
+        return new b();
+    }
+
+    public int hashCode() {
+        return this.f3160a.hashCode();
+    }
+
+    public String toString() {
+        C1686i c1686iM526h2 = C1460d.m526h2(this);
+        c1686iM526h2.m971c("list", this.f3160a);
+        return c1686iM526h2.toString();
+    }
+
     /* JADX INFO: renamed from: b.f.e.g$b */
     /* JADX INFO: compiled from: FirstAvailableDataSourceSupplier.java */
     public class b extends AbstractC1723c<T> {
@@ -88,36 +118,6 @@ public class C1727g<T> implements Supplier<DataSource<T>> {
             m1027k(new RuntimeException("No data source supplier or supplier returned null."), null);
         }
 
-        /* JADX INFO: renamed from: o */
-        public static void m1031o(b bVar, DataSource dataSource) {
-            boolean z2;
-            synchronized (bVar) {
-                if (bVar.m1025i() || dataSource != bVar.f3162i) {
-                    z2 = false;
-                } else {
-                    bVar.f3162i = null;
-                    z2 = true;
-                }
-            }
-            if (z2) {
-                if (dataSource != bVar.m1032p() && dataSource != null) {
-                    dataSource.close();
-                }
-                if (bVar.m1033q()) {
-                    return;
-                }
-                bVar.m1027k(dataSource.mo1020d(), dataSource.mo1017a());
-            }
-        }
-
-        @Override // p007b.p109f.p129e.AbstractC1723c, com.facebook.datasource.DataSource
-        /* JADX INFO: renamed from: b */
-        public synchronized boolean mo1018b() {
-            DataSource<T> dataSourceM1032p;
-            dataSourceM1032p = m1032p();
-            return dataSourceM1032p != null && dataSourceM1032p.mo1018b();
-        }
-
         @Override // p007b.p109f.p129e.AbstractC1723c, com.facebook.datasource.DataSource
         public boolean close() {
             synchronized (this) {
@@ -144,6 +144,28 @@ public class C1727g<T> implements Supplier<DataSource<T>> {
             DataSource<T> dataSourceM1032p;
             dataSourceM1032p = m1032p();
             return dataSourceM1032p != null ? dataSourceM1032p.getResult() : null;
+        }
+
+        /* JADX INFO: renamed from: o */
+        public static void m1031o(b bVar, DataSource dataSource) {
+            boolean z2;
+            synchronized (bVar) {
+                if (bVar.m1025i() || dataSource != bVar.f3162i) {
+                    z2 = false;
+                } else {
+                    bVar.f3162i = null;
+                    z2 = true;
+                }
+            }
+            if (z2) {
+                if (dataSource != bVar.m1032p() && dataSource != null) {
+                    dataSource.close();
+                }
+                if (bVar.m1033q()) {
+                    return;
+                }
+                bVar.m1027k(dataSource.mo1020d(), dataSource.mo1017a());
+            }
         }
 
         /* JADX INFO: renamed from: p */
@@ -183,35 +205,13 @@ public class C1727g<T> implements Supplier<DataSource<T>> {
             }
             return false;
         }
-    }
 
-    public C1727g(List<Supplier<DataSource<T>>> list) {
-        C1460d.m535k(!list.isEmpty(), "List of suppliers is empty!");
-        this.f3160a = list;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+        @Override // p007b.p109f.p129e.AbstractC1723c, com.facebook.datasource.DataSource
+        /* JADX INFO: renamed from: b */
+        public synchronized boolean mo1018b() {
+            DataSource<T> dataSourceM1032p;
+            dataSourceM1032p = m1032p();
+            return dataSourceM1032p != null && dataSourceM1032p.mo1018b();
         }
-        if (obj instanceof C1727g) {
-            return C1460d.m520g0(this.f3160a, ((C1727g) obj).f3160a);
-        }
-        return false;
-    }
-
-    @Override // com.facebook.common.internal.Supplier
-    public Object get() {
-        return new b();
-    }
-
-    public int hashCode() {
-        return this.f3160a.hashCode();
-    }
-
-    public String toString() {
-        C1686i c1686iM526h2 = C1460d.m526h2(this);
-        c1686iM526h2.m971c("list", this.f3160a);
-        return c1686iM526h2.toString();
     }
 }

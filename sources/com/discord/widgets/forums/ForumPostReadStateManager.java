@@ -35,108 +35,17 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ForumPostReadStateManager {
-    public static final ForumPostReadStateManager INSTANCE = new ForumPostReadStateManager();
     private static final BehaviorSubject<StoreMessageAck.Ack> forumChannelAckBeforeChannelSelect;
     private static Subscription forumChannelAckSubscription;
     private static Map<Long, StoreMessageAck.Ack> internalMessageAcks;
     private static final Set<Long> internalThreadSyncedGuilds;
     private static long lastSelectedChannelId;
     private static long lastSyncedGuildId;
-
-    /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
-    public static final /* data */ class ManagerInitializeState {
-        private final Map<Long, StoreMessageAck.Ack> messageAcks;
-        private final StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel;
-        private final Set<Long> threadSyncedGuilds;
-
-        public ManagerInitializeState(Map<Long, StoreMessageAck.Ack> map, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set<Long> set) {
-            C12238m.checkNotNullParameter(map, "messageAcks");
-            C12238m.checkNotNullParameter(resolvedSelectedChannel, "resolvedSelectedChannel");
-            C12238m.checkNotNullParameter(set, "threadSyncedGuilds");
-            this.messageAcks = map;
-            this.resolvedSelectedChannel = resolvedSelectedChannel;
-            this.threadSyncedGuilds = set;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ManagerInitializeState copy$default(ManagerInitializeState managerInitializeState, Map map, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set set, int i, Object obj) {
-            if ((i & 1) != 0) {
-                map = managerInitializeState.messageAcks;
-            }
-            if ((i & 2) != 0) {
-                resolvedSelectedChannel = managerInitializeState.resolvedSelectedChannel;
-            }
-            if ((i & 4) != 0) {
-                set = managerInitializeState.threadSyncedGuilds;
-            }
-            return managerInitializeState.copy(map, resolvedSelectedChannel, set);
-        }
-
-        public final Map<Long, StoreMessageAck.Ack> component1() {
-            return this.messageAcks;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreChannelsSelected.ResolvedSelectedChannel getResolvedSelectedChannel() {
-            return this.resolvedSelectedChannel;
-        }
-
-        public final Set<Long> component3() {
-            return this.threadSyncedGuilds;
-        }
-
-        public final ManagerInitializeState copy(Map<Long, StoreMessageAck.Ack> messageAcks, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set<Long> threadSyncedGuilds) {
-            C12238m.checkNotNullParameter(messageAcks, "messageAcks");
-            C12238m.checkNotNullParameter(resolvedSelectedChannel, "resolvedSelectedChannel");
-            C12238m.checkNotNullParameter(threadSyncedGuilds, "threadSyncedGuilds");
-            return new ManagerInitializeState(messageAcks, resolvedSelectedChannel, threadSyncedGuilds);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ManagerInitializeState)) {
-                return false;
-            }
-            ManagerInitializeState managerInitializeState = (ManagerInitializeState) other;
-            return C12238m.areEqual(this.messageAcks, managerInitializeState.messageAcks) && C12238m.areEqual(this.resolvedSelectedChannel, managerInitializeState.resolvedSelectedChannel) && C12238m.areEqual(this.threadSyncedGuilds, managerInitializeState.threadSyncedGuilds);
-        }
-
-        public final Map<Long, StoreMessageAck.Ack> getMessageAcks() {
-            return this.messageAcks;
-        }
-
-        public final StoreChannelsSelected.ResolvedSelectedChannel getResolvedSelectedChannel() {
-            return this.resolvedSelectedChannel;
-        }
-
-        public final Set<Long> getThreadSyncedGuilds() {
-            return this.threadSyncedGuilds;
-        }
-
-        public int hashCode() {
-            Map<Long, StoreMessageAck.Ack> map = this.messageAcks;
-            int iHashCode = (map != null ? map.hashCode() : 0) * 31;
-            StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel = this.resolvedSelectedChannel;
-            int iHashCode2 = (iHashCode + (resolvedSelectedChannel != null ? resolvedSelectedChannel.hashCode() : 0)) * 31;
-            Set<Long> set = this.threadSyncedGuilds;
-            return iHashCode2 + (set != null ? set.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ManagerInitializeState(messageAcks=");
-            sbM833U.append(this.messageAcks);
-            sbM833U.append(", resolvedSelectedChannel=");
-            sbM833U.append(this.resolvedSelectedChannel);
-            sbM833U.append(", threadSyncedGuilds=");
-            return C1643a.m826N(sbM833U, this.threadSyncedGuilds, ")");
-        }
-    }
+    public static final ForumPostReadStateManager INSTANCE = new ForumPostReadStateManager();
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostReadStateManager$initialize$2 */
     /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
-    public static final /* synthetic */ class C83312 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C83312 extends C12236k implements Function1<Subscription, Unit> {
         public C83312(ForumPostReadStateManager forumPostReadStateManager) {
             super(1, forumPostReadStateManager, ForumPostReadStateManager.class, "handleSubscription", "handleSubscription(Lrx/Subscription;)V", 0);
         }
@@ -156,7 +65,7 @@ public final class ForumPostReadStateManager {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostReadStateManager$initialize$3 */
     /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
-    public static final class C83323 extends AbstractC12240o implements Function1<ManagerInitializeState, Unit> {
+    public final class C83323 extends AbstractC12240o implements Function1<ManagerInitializeState, Unit> {
         public static final C83323 INSTANCE = new C83323();
 
         public C83323() {
@@ -192,6 +101,97 @@ public final class ForumPostReadStateManager {
             ForumPostReadStateManager forumPostReadStateManager3 = ForumPostReadStateManager.INSTANCE;
             ForumPostReadStateManager.lastSelectedChannelId = resolvedSelectedChannel.getId();
             ForumPostReadStateManager.internalMessageAcks = mapComponent1;
+        }
+    }
+
+    /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
+    public final /* data */ class ManagerInitializeState {
+        private final Map<Long, StoreMessageAck.Ack> messageAcks;
+        private final StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel;
+        private final Set<Long> threadSyncedGuilds;
+
+        public ManagerInitializeState(Map<Long, StoreMessageAck.Ack> map, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set<Long> set) {
+            C12238m.checkNotNullParameter(map, "messageAcks");
+            C12238m.checkNotNullParameter(resolvedSelectedChannel, "resolvedSelectedChannel");
+            C12238m.checkNotNullParameter(set, "threadSyncedGuilds");
+            this.messageAcks = map;
+            this.resolvedSelectedChannel = resolvedSelectedChannel;
+            this.threadSyncedGuilds = set;
+        }
+
+        public final Map<Long, StoreMessageAck.Ack> component1() {
+            return this.messageAcks;
+        }
+
+        public final Set<Long> component3() {
+            return this.threadSyncedGuilds;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ManagerInitializeState copy$default(ManagerInitializeState managerInitializeState, Map map, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set set, int i, Object obj) {
+            if ((i & 1) != 0) {
+                map = managerInitializeState.messageAcks;
+            }
+            if ((i & 2) != 0) {
+                resolvedSelectedChannel = managerInitializeState.resolvedSelectedChannel;
+            }
+            if ((i & 4) != 0) {
+                set = managerInitializeState.threadSyncedGuilds;
+            }
+            return managerInitializeState.copy(map, resolvedSelectedChannel, set);
+        }
+
+        public final ManagerInitializeState copy(Map<Long, StoreMessageAck.Ack> messageAcks, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Set<Long> threadSyncedGuilds) {
+            C12238m.checkNotNullParameter(messageAcks, "messageAcks");
+            C12238m.checkNotNullParameter(resolvedSelectedChannel, "resolvedSelectedChannel");
+            C12238m.checkNotNullParameter(threadSyncedGuilds, "threadSyncedGuilds");
+            return new ManagerInitializeState(messageAcks, resolvedSelectedChannel, threadSyncedGuilds);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ManagerInitializeState)) {
+                return false;
+            }
+            ManagerInitializeState managerInitializeState = (ManagerInitializeState) other;
+            return C12238m.areEqual(this.messageAcks, managerInitializeState.messageAcks) && C12238m.areEqual(this.resolvedSelectedChannel, managerInitializeState.resolvedSelectedChannel) && C12238m.areEqual(this.threadSyncedGuilds, managerInitializeState.threadSyncedGuilds);
+        }
+
+        public final Map<Long, StoreMessageAck.Ack> getMessageAcks() {
+            return this.messageAcks;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreChannelsSelected.ResolvedSelectedChannel getResolvedSelectedChannel() {
+            return this.resolvedSelectedChannel;
+        }
+
+        public final StoreChannelsSelected.ResolvedSelectedChannel getResolvedSelectedChannel() {
+            return this.resolvedSelectedChannel;
+        }
+
+        public final Set<Long> getThreadSyncedGuilds() {
+            return this.threadSyncedGuilds;
+        }
+
+        public int hashCode() {
+            Map<Long, StoreMessageAck.Ack> map = this.messageAcks;
+            int iHashCode = (map != null ? map.hashCode() : 0) * 31;
+            StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel = this.resolvedSelectedChannel;
+            int iHashCode2 = (iHashCode + (resolvedSelectedChannel != null ? resolvedSelectedChannel.hashCode() : 0)) * 31;
+            Set<Long> set = this.threadSyncedGuilds;
+            return iHashCode2 + (set != null ? set.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ManagerInitializeState(messageAcks=");
+            sbM833U.append(this.messageAcks);
+            sbM833U.append(", resolvedSelectedChannel=");
+            sbM833U.append(this.resolvedSelectedChannel);
+            sbM833U.append(", threadSyncedGuilds=");
+            return C1643a.m826N(sbM833U, this.threadSyncedGuilds, ")");
         }
     }
 
@@ -248,10 +248,6 @@ public final class ForumPostReadStateManager {
         forumPostReadStateManager.initialize(storeMessageAck, storeChannelsSelected, storeThreadsActive);
     }
 
-    private final BehaviorSubject<StoreMessageAck.Ack> observeForumChannelAckBeforeChannelSelect() {
-        return forumChannelAckBeforeChannelSelect;
-    }
-
     public final void initialize(StoreMessageAck storeMessageAck, StoreChannelsSelected storeChannelsSelected, StoreThreadsActive storeThreadsActive) {
         C12238m.checkNotNullParameter(storeMessageAck, "storeMessageAck");
         C12238m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
@@ -278,6 +274,10 @@ public final class ForumPostReadStateManager {
         ObservableExtensionsKt.appSubscribe(observableM11075i, (Class<?>) ForumPostReadStateManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C83312(this)), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C83323.INSTANCE);
     }
 
+    private final BehaviorSubject<StoreMessageAck.Ack> observeForumChannelAckBeforeChannelSelect() {
+        return forumChannelAckBeforeChannelSelect;
+    }
+
     public final Observable<Map<Long, ForumPostReadState>> observeForumPostReadStates(long guildId, long channelId, StoreReadStates storeReadStates, StoreThreadsActive storeThreadsActive, StoreForumPostReadStates storeForumPostReadStates) {
         C12238m.checkNotNullParameter(storeReadStates, "storeReadStates");
         C12238m.checkNotNullParameter(storeThreadsActive, "storeThreadsActive");
@@ -286,7 +286,7 @@ public final class ForumPostReadStateManager {
 
             /* JADX INFO: renamed from: com.discord.widgets.forums.ForumPostReadStateManager$observeForumPostReadStates$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: ForumPostReadStateManager.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Long, ForumPostReadState> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Long, ForumPostReadState> {
                 public final /* synthetic */ StoreMessageAck.Ack $forumChannelAck;
                 public final /* synthetic */ Set $persistedThreadIds;
                 public final /* synthetic */ Set $unreadChannelIds;

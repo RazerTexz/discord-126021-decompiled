@@ -35,7 +35,7 @@ public abstract class DalvikPurgeableDecoder implements InterfaceC1960d {
     public final C1930b f19567b;
 
     @InterfaceC2051d
-    public static class OreoUtils {
+    public class OreoUtils {
         private OreoUtils() {
         }
     }
@@ -63,61 +63,6 @@ public abstract class DalvikPurgeableDecoder implements InterfaceC1960d {
         PooledByteBuffer pooledByteBufferM8642u = closeableReference.m8642u();
         return i >= 2 && pooledByteBufferM8642u.mo1395h(i + (-2)) == -1 && pooledByteBufferM8642u.mo1395h(i - 1) == -39;
     }
-
-    @InterfaceC1680c
-    private static native void nativePinBitmap(Bitmap bitmap);
-
-    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
-    /* JADX INFO: renamed from: a */
-    public CloseableReference<Bitmap> mo1414a(C1919e c1919e, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
-        int i = c1919e.f3898q;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inDither = true;
-        options.inPreferredConfig = config;
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        options.inSampleSize = i;
-        options.inMutable = true;
-        if (Build.VERSION.SDK_INT >= 26) {
-            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
-        }
-        CloseableReference<PooledByteBuffer> closeableReferenceM1340c = c1919e.m1340c();
-        Objects.requireNonNull(closeableReferenceM1340c);
-        try {
-            return m8712f(mo8710c(closeableReferenceM1340c, options));
-        } finally {
-            closeableReferenceM1340c.close();
-        }
-    }
-
-    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
-    /* JADX INFO: renamed from: b */
-    public CloseableReference<Bitmap> mo1415b(C1919e c1919e, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
-        int i2 = c1919e.f3898q;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inDither = true;
-        options.inPreferredConfig = config;
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        options.inSampleSize = i2;
-        options.inMutable = true;
-        if (Build.VERSION.SDK_INT >= 26) {
-            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
-        }
-        CloseableReference<PooledByteBuffer> closeableReferenceM1340c = c1919e.m1340c();
-        Objects.requireNonNull(closeableReferenceM1340c);
-        try {
-            return m8712f(mo8711d(closeableReferenceM1340c, i, options));
-        } finally {
-            closeableReferenceM1340c.close();
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public abstract Bitmap mo8710c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options);
-
-    /* JADX INFO: renamed from: d */
-    public abstract Bitmap mo8711d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options);
 
     /* JADX INFO: renamed from: f */
     public CloseableReference<Bitmap> m8712f(Bitmap bitmap) throws Throwable {
@@ -176,4 +121,59 @@ public abstract class DalvikPurgeableDecoder implements InterfaceC1960d {
             throw new RuntimeException(e);
         }
     }
+
+    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
+    /* JADX INFO: renamed from: a */
+    public CloseableReference<Bitmap> mo1414a(C1919e c1919e, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
+        int i = c1919e.f3898q;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inDither = true;
+        options.inPreferredConfig = config;
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = i;
+        options.inMutable = true;
+        if (Build.VERSION.SDK_INT >= 26) {
+            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
+        }
+        CloseableReference<PooledByteBuffer> closeableReferenceM1340c = c1919e.m1340c();
+        Objects.requireNonNull(closeableReferenceM1340c);
+        try {
+            return m8712f(mo8710c(closeableReferenceM1340c, options));
+        } finally {
+            closeableReferenceM1340c.close();
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p179n.InterfaceC1960d
+    /* JADX INFO: renamed from: b */
+    public CloseableReference<Bitmap> mo1415b(C1919e c1919e, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
+        int i2 = c1919e.f3898q;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inDither = true;
+        options.inPreferredConfig = config;
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = i2;
+        options.inMutable = true;
+        if (Build.VERSION.SDK_INT >= 26) {
+            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
+        }
+        CloseableReference<PooledByteBuffer> closeableReferenceM1340c = c1919e.m1340c();
+        Objects.requireNonNull(closeableReferenceM1340c);
+        try {
+            return m8712f(mo8711d(closeableReferenceM1340c, i, options));
+        } finally {
+            closeableReferenceM1340c.close();
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public abstract Bitmap mo8710c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options);
+
+    /* JADX INFO: renamed from: d */
+    public abstract Bitmap mo8711d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options);
+
+    @InterfaceC1680c
+    private static native void nativePinBitmap(Bitmap bitmap);
 }

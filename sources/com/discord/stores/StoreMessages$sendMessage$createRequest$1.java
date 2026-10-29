@@ -27,12 +27,12 @@ public final class StoreMessages$sendMessage$createRequest$1 extends AbstractC12
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$1 */
     /* JADX INFO: compiled from: StoreMessages.kt */
-    public static final class C62451 extends AbstractC12240o implements Function2<MessageResult, Boolean, Unit> {
+    public final class C62451 extends AbstractC12240o implements Function2<MessageResult, Boolean, Unit> {
         public final /* synthetic */ Emitter $emitter;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessages.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ boolean $isLastMessage;
             public final /* synthetic */ MessageResult $result;
 
@@ -115,11 +115,11 @@ public final class StoreMessages$sendMessage$createRequest$1 extends AbstractC12
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$2 */
     /* JADX INFO: compiled from: StoreMessages.kt */
-    public static final class C62462 extends AbstractC12240o implements Function1<SendUtils.SendPayload.Preprocessing, Unit> {
+    public final class C62462 extends AbstractC12240o implements Function1<SendUtils.SendPayload.Preprocessing, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessages.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ String $displayName;
             public final /* synthetic */ String $mimeType;
             public final /* synthetic */ int $numFiles;
@@ -166,11 +166,11 @@ public final class StoreMessages$sendMessage$createRequest$1 extends AbstractC12
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$3 */
     /* JADX INFO: compiled from: StoreMessages.kt */
-    public static final class C62473 extends AbstractC12240o implements Function1<List<? extends SendUtils.FileUpload>, Unit> {
+    public final class C62473 extends AbstractC12240o implements Function1<List<? extends SendUtils.FileUpload>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessages$sendMessage$createRequest$1$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessages.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $uploads;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

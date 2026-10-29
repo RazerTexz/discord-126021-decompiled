@@ -22,11 +22,11 @@ public abstract class RequestBody {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: RequestBody.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: renamed from: okhttp3.RequestBody$Companion$a */
         /* JADX INFO: compiled from: RequestBody.kt */
-        public static final class C12936a extends RequestBody {
+        public final class C12936a extends RequestBody {
 
             /* JADX INFO: renamed from: a */
             public final /* synthetic */ byte[] f27548a;
@@ -124,6 +124,12 @@ public abstract class RequestBody {
         }
     }
 
+    public long contentLength() throws IOException {
+        return -1L;
+    }
+
+    public abstract MediaType contentType();
+
     public static final RequestBody create(File file, MediaType mediaType) {
         Objects.requireNonNull(INSTANCE);
         C12238m.checkParameterIsNotNull(file, "$this$asRequestBody");
@@ -157,12 +163,6 @@ public abstract class RequestBody {
     public static final RequestBody create(byte[] bArr, MediaType mediaType, int i, int i2) {
         return INSTANCE.m10988b(bArr, mediaType, i, i2);
     }
-
-    public long contentLength() throws IOException {
-        return -1L;
-    }
-
-    public abstract MediaType contentType();
 
     public boolean isDuplex() {
         return false;

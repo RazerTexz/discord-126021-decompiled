@@ -52,14 +52,14 @@ public final class C12327b extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.b$a */
     /* JADX INFO: compiled from: AndroidPlatform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: f0.e0.k.b$b */
     /* JADX INFO: compiled from: AndroidPlatform.kt */
-    public static final class b implements InterfaceC12351e {
+    public final class b implements InterfaceC12351e {
 
         /* JADX INFO: renamed from: a */
         public final X509TrustManager f25761a;
@@ -72,23 +72,6 @@ public final class C12327b extends C12333h {
             C12238m.checkParameterIsNotNull(method, "findByIssuerAndSignatureMethod");
             this.f25761a = x509TrustManager;
             this.f25762b = method;
-        }
-
-        @Override // p600f0.p601e0.p612m.InterfaceC12351e
-        /* JADX INFO: renamed from: a */
-        public X509Certificate mo10323a(X509Certificate x509Certificate) {
-            C12238m.checkParameterIsNotNull(x509Certificate, "cert");
-            try {
-                Object objInvoke = this.f25762b.invoke(this.f25761a, x509Certificate);
-                if (objInvoke != null) {
-                    return ((TrustAnchor) objInvoke).getTrustedCert();
-                }
-                throw new TypeCastException("null cannot be cast to non-null type java.security.cert.TrustAnchor");
-            } catch (IllegalAccessException e) {
-                throw new AssertionError("unable to get issues and signature", e);
-            } catch (InvocationTargetException unused) {
-                return null;
-            }
         }
 
         public boolean equals(Object obj) {
@@ -107,6 +90,23 @@ public final class C12327b extends C12333h {
             int iHashCode = (x509TrustManager != null ? x509TrustManager.hashCode() : 0) * 31;
             Method method = this.f25762b;
             return iHashCode + (method != null ? method.hashCode() : 0);
+        }
+
+        @Override // p600f0.p601e0.p612m.InterfaceC12351e
+        /* JADX INFO: renamed from: a */
+        public X509Certificate mo10323a(X509Certificate x509Certificate) {
+            C12238m.checkParameterIsNotNull(x509Certificate, "cert");
+            try {
+                Object objInvoke = this.f25762b.invoke(this.f25761a, x509Certificate);
+                if (objInvoke != null) {
+                    return ((TrustAnchor) objInvoke).getTrustedCert();
+                }
+                throw new TypeCastException("null cannot be cast to non-null type java.security.cert.TrustAnchor");
+            } catch (IllegalAccessException e) {
+                throw new AssertionError("unable to get issues and signature", e);
+            } catch (InvocationTargetException unused) {
+                return null;
+            }
         }
 
         public String toString() {
@@ -187,20 +187,6 @@ public final class C12327b extends C12333h {
     }
 
     @Override // p600f0.p601e0.p609k.C12333h
-    /* JADX INFO: renamed from: c */
-    public InterfaceC12351e mo10319c(X509TrustManager x509TrustManager) {
-        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
-        try {
-            Method declaredMethod = x509TrustManager.getClass().getDeclaredMethod("findTrustAnchorByIssuerAndSignature", X509Certificate.class);
-            C12238m.checkExpressionValueIsNotNull(declaredMethod, "method");
-            declaredMethod.setAccessible(true);
-            return new b(x509TrustManager, declaredMethod);
-        } catch (NoSuchMethodException unused) {
-            return super.mo10319c(x509TrustManager);
-        }
-    }
-
-    @Override // p600f0.p601e0.p609k.C12333h
     /* JADX INFO: renamed from: d */
     public void mo10316d(SSLSocket sSLSocket, String str, List<EnumC12381y> list) {
         Object next;
@@ -217,21 +203,6 @@ public final class C12327b extends C12333h {
         InterfaceC12344k interfaceC12344k = (InterfaceC12344k) next;
         if (interfaceC12344k != null) {
             interfaceC12344k.mo10337d(sSLSocket, str, list);
-        }
-    }
-
-    @Override // p600f0.p601e0.p609k.C12333h
-    /* JADX INFO: renamed from: e */
-    public void mo10320e(Socket socket, InetSocketAddress inetSocketAddress, int i) throws IOException {
-        C12238m.checkParameterIsNotNull(socket, "socket");
-        C12238m.checkParameterIsNotNull(inetSocketAddress, "address");
-        try {
-            socket.connect(inetSocketAddress, i);
-        } catch (ClassCastException e) {
-            if (Build.VERSION.SDK_INT != 26) {
-                throw e;
-            }
-            throw new IOException("Exception in connect", e);
         }
     }
 
@@ -256,6 +227,51 @@ public final class C12327b extends C12333h {
     }
 
     @Override // p600f0.p601e0.p609k.C12333h
+    /* JADX INFO: renamed from: h */
+    public boolean mo10318h(String str) {
+        C12238m.checkParameterIsNotNull(str, "hostname");
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 24) {
+            return NetworkSecurityPolicy.getInstance().isCleartextTrafficPermitted(str);
+        }
+        if (i < 23) {
+            return true;
+        }
+        NetworkSecurityPolicy networkSecurityPolicy = NetworkSecurityPolicy.getInstance();
+        C12238m.checkExpressionValueIsNotNull(networkSecurityPolicy, "NetworkSecurityPolicy.getInstance()");
+        return networkSecurityPolicy.isCleartextTrafficPermitted();
+    }
+
+    @Override // p600f0.p601e0.p609k.C12333h
+    /* JADX INFO: renamed from: c */
+    public InterfaceC12351e mo10319c(X509TrustManager x509TrustManager) {
+        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+        try {
+            Method declaredMethod = x509TrustManager.getClass().getDeclaredMethod("findTrustAnchorByIssuerAndSignature", X509Certificate.class);
+            C12238m.checkExpressionValueIsNotNull(declaredMethod, "method");
+            declaredMethod.setAccessible(true);
+            return new b(x509TrustManager, declaredMethod);
+        } catch (NoSuchMethodException unused) {
+            return super.mo10319c(x509TrustManager);
+        }
+    }
+
+    @Override // p600f0.p601e0.p609k.C12333h
+    /* JADX INFO: renamed from: e */
+    public void mo10320e(Socket socket, InetSocketAddress inetSocketAddress, int i) throws IOException {
+        C12238m.checkParameterIsNotNull(socket, "socket");
+        C12238m.checkParameterIsNotNull(inetSocketAddress, "address");
+        try {
+            socket.connect(inetSocketAddress, i);
+        } catch (ClassCastException e) {
+            if (Build.VERSION.SDK_INT != 26) {
+                throw e;
+            }
+            throw new IOException("Exception in connect", e);
+        }
+    }
+
+    @Override // p600f0.p601e0.p609k.C12333h
     /* JADX INFO: renamed from: g */
     public Object mo10321g(String str) {
         C12238m.checkParameterIsNotNull(str, "closer");
@@ -277,22 +293,6 @@ public final class C12327b extends C12333h {
         } catch (Exception unused) {
             return null;
         }
-    }
-
-    @Override // p600f0.p601e0.p609k.C12333h
-    /* JADX INFO: renamed from: h */
-    public boolean mo10318h(String str) {
-        C12238m.checkParameterIsNotNull(str, "hostname");
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 24) {
-            return NetworkSecurityPolicy.getInstance().isCleartextTrafficPermitted(str);
-        }
-        if (i < 23) {
-            return true;
-        }
-        NetworkSecurityPolicy networkSecurityPolicy = NetworkSecurityPolicy.getInstance();
-        C12238m.checkExpressionValueIsNotNull(networkSecurityPolicy, "NetworkSecurityPolicy.getInstance()");
-        return networkSecurityPolicy.isCleartextTrafficPermitted();
     }
 
     @Override // p600f0.p601e0.p609k.C12333h

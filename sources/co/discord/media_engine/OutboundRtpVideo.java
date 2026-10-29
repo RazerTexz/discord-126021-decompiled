@@ -76,121 +76,6 @@ public final /* data */ class OutboundRtpVideo {
         return outboundRtpVideo.copy(str3, j10, statsCodec2, j11, j12, i9, f2, i10, i11, i12, (i8 & 1024) != 0 ? outboundRtpVideo.encoderImplementationName : str2, (i8 & 2048) != 0 ? outboundRtpVideo.averageEncodeTime : i5, (i8 & 4096) != 0 ? outboundRtpVideo.resolution : resolution, (i8 & 8192) != 0 ? outboundRtpVideo.framesSent : j4, (i8 & 16384) != 0 ? outboundRtpVideo.framesEncoded : j5, (i8 & 32768) != 0 ? outboundRtpVideo.frameRateInput : i6, (65536 & i8) != 0 ? outboundRtpVideo.frameRateEncode : i7, (i8 & 131072) != 0 ? outboundRtpVideo.firCount : j6, (i8 & 262144) != 0 ? outboundRtpVideo.nackCount : j7, (i8 & 524288) != 0 ? outboundRtpVideo.pliCount : j8, (i8 & 1048576) != 0 ? outboundRtpVideo.qpSum : j9, (i8 & 2097152) != 0 ? outboundRtpVideo.bandwidthLimitedResolution : z2, (i8 & 4194304) != 0 ? outboundRtpVideo.cpuLimitedResolution : z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final int getEncodeUsage() {
-        return this.encodeUsage;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final String getEncoderImplementationName() {
-        return this.encoderImplementationName;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final int getAverageEncodeTime() {
-        return this.averageEncodeTime;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final Resolution getResolution() {
-        return this.resolution;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final long getFramesSent() {
-        return this.framesSent;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final long getFramesEncoded() {
-        return this.framesEncoded;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final int getFrameRateInput() {
-        return this.frameRateInput;
-    }
-
-    /* JADX INFO: renamed from: component17, reason: from getter */
-    public final int getFrameRateEncode() {
-        return this.frameRateEncode;
-    }
-
-    /* JADX INFO: renamed from: component18, reason: from getter */
-    public final long getFirCount() {
-        return this.firCount;
-    }
-
-    /* JADX INFO: renamed from: component19, reason: from getter */
-    public final long getNackCount() {
-        return this.nackCount;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getSsrc() {
-        return this.ssrc;
-    }
-
-    /* JADX INFO: renamed from: component20, reason: from getter */
-    public final long getPliCount() {
-        return this.pliCount;
-    }
-
-    /* JADX INFO: renamed from: component21, reason: from getter */
-    public final long getQpSum() {
-        return this.qpSum;
-    }
-
-    /* JADX INFO: renamed from: component22, reason: from getter */
-    public final boolean getBandwidthLimitedResolution() {
-        return this.bandwidthLimitedResolution;
-    }
-
-    /* JADX INFO: renamed from: component23, reason: from getter */
-    public final boolean getCpuLimitedResolution() {
-        return this.cpuLimitedResolution;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StatsCodec getCodec() {
-        return this.codec;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getBytesSent() {
-        return this.bytesSent;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getPacketsSent() {
-        return this.packetsSent;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final float getFractionLost() {
-        return this.fractionLost;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getBitrate() {
-        return this.bitrate;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getBitrateTarget() {
-        return this.bitrateTarget;
-    }
-
     public final OutboundRtpVideo copy(String type, long ssrc, StatsCodec codec, long bytesSent, long packetsSent, int packetsLost, float fractionLost, int bitrate, int bitrateTarget, int encodeUsage, String encoderImplementationName, int averageEncodeTime, Resolution resolution, long framesSent, long framesEncoded, int frameRateInput, int frameRateEncode, long firCount, long nackCount, long pliCount, long qpSum, boolean bandwidthLimitedResolution, boolean cpuLimitedResolution) {
         C12238m.checkNotNullParameter(type, "type");
         C12238m.checkNotNullParameter(codec, "codec");
@@ -210,92 +95,207 @@ public final /* data */ class OutboundRtpVideo {
         return C12238m.areEqual(this.type, outboundRtpVideo.type) && this.ssrc == outboundRtpVideo.ssrc && C12238m.areEqual(this.codec, outboundRtpVideo.codec) && this.bytesSent == outboundRtpVideo.bytesSent && this.packetsSent == outboundRtpVideo.packetsSent && this.packetsLost == outboundRtpVideo.packetsLost && Float.compare(this.fractionLost, outboundRtpVideo.fractionLost) == 0 && this.bitrate == outboundRtpVideo.bitrate && this.bitrateTarget == outboundRtpVideo.bitrateTarget && this.encodeUsage == outboundRtpVideo.encodeUsage && C12238m.areEqual(this.encoderImplementationName, outboundRtpVideo.encoderImplementationName) && this.averageEncodeTime == outboundRtpVideo.averageEncodeTime && C12238m.areEqual(this.resolution, outboundRtpVideo.resolution) && this.framesSent == outboundRtpVideo.framesSent && this.framesEncoded == outboundRtpVideo.framesEncoded && this.frameRateInput == outboundRtpVideo.frameRateInput && this.frameRateEncode == outboundRtpVideo.frameRateEncode && this.firCount == outboundRtpVideo.firCount && this.nackCount == outboundRtpVideo.nackCount && this.pliCount == outboundRtpVideo.pliCount && this.qpSum == outboundRtpVideo.qpSum && this.bandwidthLimitedResolution == outboundRtpVideo.bandwidthLimitedResolution && this.cpuLimitedResolution == outboundRtpVideo.cpuLimitedResolution;
     }
 
+    /* JADX INFO: renamed from: component12, reason: from getter */
     public final int getAverageEncodeTime() {
         return this.averageEncodeTime;
+    }
+
+    public final int getAverageEncodeTime() {
+        return this.averageEncodeTime;
+    }
+
+    /* JADX INFO: renamed from: component22, reason: from getter */
+    public final boolean getBandwidthLimitedResolution() {
+        return this.bandwidthLimitedResolution;
     }
 
     public final boolean getBandwidthLimitedResolution() {
         return this.bandwidthLimitedResolution;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final int getBitrate() {
         return this.bitrate;
+    }
+
+    public final int getBitrate() {
+        return this.bitrate;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final int getBitrateTarget() {
+        return this.bitrateTarget;
     }
 
     public final int getBitrateTarget() {
         return this.bitrateTarget;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getBytesSent() {
         return this.bytesSent;
+    }
+
+    public final long getBytesSent() {
+        return this.bytesSent;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final StatsCodec getCodec() {
+        return this.codec;
     }
 
     public final StatsCodec getCodec() {
         return this.codec;
     }
 
+    /* JADX INFO: renamed from: component23, reason: from getter */
     public final boolean getCpuLimitedResolution() {
         return this.cpuLimitedResolution;
+    }
+
+    public final boolean getCpuLimitedResolution() {
+        return this.cpuLimitedResolution;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final int getEncodeUsage() {
+        return this.encodeUsage;
     }
 
     public final int getEncodeUsage() {
         return this.encodeUsage;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final String getEncoderImplementationName() {
         return this.encoderImplementationName;
+    }
+
+    public final String getEncoderImplementationName() {
+        return this.encoderImplementationName;
+    }
+
+    /* JADX INFO: renamed from: component18, reason: from getter */
+    public final long getFirCount() {
+        return this.firCount;
     }
 
     public final long getFirCount() {
         return this.firCount;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final float getFractionLost() {
         return this.fractionLost;
+    }
+
+    public final float getFractionLost() {
+        return this.fractionLost;
+    }
+
+    /* JADX INFO: renamed from: component17, reason: from getter */
+    public final int getFrameRateEncode() {
+        return this.frameRateEncode;
     }
 
     public final int getFrameRateEncode() {
         return this.frameRateEncode;
     }
 
+    /* JADX INFO: renamed from: component16, reason: from getter */
     public final int getFrameRateInput() {
         return this.frameRateInput;
+    }
+
+    public final int getFrameRateInput() {
+        return this.frameRateInput;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final long getFramesEncoded() {
+        return this.framesEncoded;
     }
 
     public final long getFramesEncoded() {
         return this.framesEncoded;
     }
 
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final long getFramesSent() {
         return this.framesSent;
+    }
+
+    public final long getFramesSent() {
+        return this.framesSent;
+    }
+
+    /* JADX INFO: renamed from: component19, reason: from getter */
+    public final long getNackCount() {
+        return this.nackCount;
     }
 
     public final long getNackCount() {
         return this.nackCount;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getPacketsLost() {
         return this.packetsLost;
+    }
+
+    public final int getPacketsLost() {
+        return this.packetsLost;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getPacketsSent() {
+        return this.packetsSent;
     }
 
     public final long getPacketsSent() {
         return this.packetsSent;
     }
 
+    /* JADX INFO: renamed from: component20, reason: from getter */
     public final long getPliCount() {
         return this.pliCount;
+    }
+
+    public final long getPliCount() {
+        return this.pliCount;
+    }
+
+    /* JADX INFO: renamed from: component21, reason: from getter */
+    public final long getQpSum() {
+        return this.qpSum;
     }
 
     public final long getQpSum() {
         return this.qpSum;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final Resolution getResolution() {
         return this.resolution;
     }
 
+    public final Resolution getResolution() {
+        return this.resolution;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getSsrc() {
         return this.ssrc;
+    }
+
+    public final long getSsrc() {
+        return this.ssrc;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getType() {
+        return this.type;
     }
 
     public final String getType() {

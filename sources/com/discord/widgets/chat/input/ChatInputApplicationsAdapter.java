@@ -21,9 +21,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetChatInputCategoriesAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ChatInputApplicationsAdapter extends RecyclerView.Adapter<ApplicationCategoryViewHolder> {
-    private List<Application> data = C12147n.emptyList();
     public Function1<? super Application, Unit> onClickApplication;
     private long selectedApplication;
+    private List<Application> data = C12147n.emptyList();
 
     public ChatInputApplicationsAdapter() {
         setHasStableIds(true);

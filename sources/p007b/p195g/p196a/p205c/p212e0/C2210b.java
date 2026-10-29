@@ -19,11 +19,6 @@ public final class C2210b implements Serializable {
         this._name = (str == null || str.isEmpty()) ? null : str;
     }
 
-    /* JADX INFO: renamed from: a */
-    public boolean m1944a() {
-        return this._name != null;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -37,6 +32,11 @@ public final class C2210b implements Serializable {
 
     public int hashCode() {
         return this._hashCode;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m1944a() {
+        return this._name != null;
     }
 
     public String toString() {

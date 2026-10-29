@@ -28,9 +28,9 @@ public abstract class PatchScript {
 
     public abstract Collection<String> getClassesToReload();
 
-    public abstract boolean wouldPatch(String str);
-
     public abstract byte[] patch(String str, byte[] bArr, TransplantMapper transplantMapper);
+
+    public abstract boolean wouldPatch(String str);
 
     public String getPatchScriptName() {
         return getClass().getSimpleName();
@@ -46,7 +46,7 @@ public abstract class PatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/PatchScript$FixedClassWriter.SCL.lombok */
-    private static class FixedClassWriter extends ClassWriter {
+    class FixedClassWriter extends ClassWriter {
         FixedClassWriter(ClassReader classReader, int flags) {
             super(classReader, flags);
         }
@@ -118,7 +118,7 @@ public abstract class PatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/PatchScript$NoopClassVisitor.SCL.lombok */
-    private static abstract class NoopClassVisitor extends ClassVisitor {
+    abstract class NoopClassVisitor extends ClassVisitor {
         public NoopClassVisitor() {
             super(Opcodes.ASM7);
         }
@@ -194,7 +194,7 @@ public abstract class PatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/PatchScript$InsertBodyOfMethodIntoAnotherVisitor.SCL.lombok */
-    private static final class InsertBodyOfMethodIntoAnotherVisitor extends MethodVisitor {
+    final class InsertBodyOfMethodIntoAnotherVisitor extends MethodVisitor {
         /* synthetic */ InsertBodyOfMethodIntoAnotherVisitor(MethodVisitor methodVisitor, InsertBodyOfMethodIntoAnotherVisitor insertBodyOfMethodIntoAnotherVisitor) {
             this(methodVisitor);
         }
@@ -252,7 +252,7 @@ public abstract class PatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/PatchScript$MethodPatcher.SCL.lombok */
-    protected static class MethodPatcher extends ClassVisitor {
+    public class MethodPatcher extends ClassVisitor {
         private List<TargetMatcher> targets;
         private String ownClassSpec;
         private final MethodPatcherFactory factory;

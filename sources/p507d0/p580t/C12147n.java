@@ -22,6 +22,16 @@ public class C12147n extends C12145m {
         return new C12133g(tArr, false);
     }
 
+    public static /* synthetic */ int binarySearch$default(List list, Comparable comparable, int i, int i2, int i3, Object obj) {
+        if ((i3 & 2) != 0) {
+            i = 0;
+        }
+        if ((i3 & 4) != 0) {
+            i2 = list.size();
+        }
+        return binarySearch(list, comparable, i, i2);
+    }
+
     public static final <T extends Comparable<? super T>> int binarySearch(List<? extends T> list, T t, int i, int i2) {
         C12238m.checkNotNullParameter(list, "$this$binarySearch");
         int size = list.size();
@@ -48,16 +58,6 @@ public class C12147n extends C12145m {
             }
         }
         return -(i + 1);
-    }
-
-    public static /* synthetic */ int binarySearch$default(List list, Comparable comparable, int i, int i2, int i3, Object obj) {
-        if ((i3 & 2) != 0) {
-            i = 0;
-        }
-        if ((i3 & 4) != 0) {
-            i2 = list.size();
-        }
-        return binarySearch(list, comparable, i, i2);
     }
 
     public static final <T> List<T> emptyList() {

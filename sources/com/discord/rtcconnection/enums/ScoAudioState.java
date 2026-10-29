@@ -18,41 +18,9 @@ public enum ScoAudioState {
     public static final Companion INSTANCE = new Companion(null);
     private final int value;
 
-    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.ScoAudioState$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: ScoAudioState.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final ScoAudioState m8498a(int i) {
-            ScoAudioState[] scoAudioStateArrValues = ScoAudioState.values();
-            for (int i2 = 0; i2 < 4; i2++) {
-                ScoAudioState scoAudioState = scoAudioStateArrValues[i2];
-                if (scoAudioState.getValue() == i) {
-                    return scoAudioState;
-                }
-            }
-            return null;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final C5637b m8499b(Intent intent) {
-            C12238m.checkNotNullParameter(intent, "intent");
-            if (!C12238m.areEqual(intent.getAction(), "android.media.ACTION_SCO_AUDIO_STATE_UPDATED")) {
-                throw new IllegalArgumentException("Failed requirement.".toString());
-            }
-            ScoAudioState scoAudioStateM8498a = m8498a(intent.getIntExtra("android.media.extra.SCO_AUDIO_STATE", 0));
-            C12238m.checkNotNull(scoAudioStateM8498a);
-            ScoAudioState scoAudioStateM8498a2 = m8498a(intent.getIntExtra("android.media.extra.SCO_AUDIO_PREVIOUS_STATE", 0));
-            C12238m.checkNotNull(scoAudioStateM8498a2);
-            return new C5637b(scoAudioStateM8498a, scoAudioStateM8498a2);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.ScoAudioState$b */
     /* JADX INFO: compiled from: ScoAudioState.kt */
-    public static final class C5637b {
+    public final class C5637b {
 
         /* JADX INFO: renamed from: a */
         public final ScoAudioState f18874a;
@@ -95,6 +63,38 @@ public enum ScoAudioState {
             sbM833U.append(this.f18874a);
             sbM833U.append(')');
             return sbM833U.toString();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.ScoAudioState$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ScoAudioState.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final ScoAudioState m8498a(int i) {
+            ScoAudioState[] scoAudioStateArrValues = ScoAudioState.values();
+            for (int i2 = 0; i2 < 4; i2++) {
+                ScoAudioState scoAudioState = scoAudioStateArrValues[i2];
+                if (scoAudioState.getValue() == i) {
+                    return scoAudioState;
+                }
+            }
+            return null;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final C5637b m8499b(Intent intent) {
+            C12238m.checkNotNullParameter(intent, "intent");
+            if (!C12238m.areEqual(intent.getAction(), "android.media.ACTION_SCO_AUDIO_STATE_UPDATED")) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            ScoAudioState scoAudioStateM8498a = m8498a(intent.getIntExtra("android.media.extra.SCO_AUDIO_STATE", 0));
+            C12238m.checkNotNull(scoAudioStateM8498a);
+            ScoAudioState scoAudioStateM8498a2 = m8498a(intent.getIntExtra("android.media.extra.SCO_AUDIO_PREVIOUS_STATE", 0));
+            C12238m.checkNotNull(scoAudioStateM8498a2);
+            return new C5637b(scoAudioStateM8498a, scoAudioStateM8498a2);
         }
     }
 

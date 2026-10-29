@@ -40,7 +40,7 @@ public class KeyTrigger extends Key {
     private int mCurveFit = -1;
     private String mCross = null;
 
-    public static class Loader {
+    public class Loader {
         private static final int COLLISION = 9;
         private static final int CROSS = 4;
         private static final int FRAME_POS = 8;
@@ -156,16 +156,6 @@ public class KeyTrigger extends Key {
         this.mTargetRect = new RectF();
         this.mType = 5;
         this.mCustomConstraints = new HashMap<>();
-    }
-
-    private void setUpRect(RectF rectF, View view, boolean z2) {
-        rectF.top = view.getTop();
-        rectF.bottom = view.getBottom();
-        rectF.left = view.getLeft();
-        rectF.right = view.getRight();
-        if (z2) {
-            view.getMatrix().mapRect(rectF);
-        }
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
@@ -428,6 +418,16 @@ public class KeyTrigger extends Key {
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
         Loader.read(this, context.obtainStyledAttributes(attributeSet, C0201R.styleable.KeyTrigger), context);
+    }
+
+    private void setUpRect(RectF rectF, View view, boolean z2) {
+        rectF.top = view.getTop();
+        rectF.bottom = view.getBottom();
+        rectF.left = view.getLeft();
+        rectF.right = view.getRight();
+        if (z2) {
+            view.getMatrix().mapRect(rectF);
+        }
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key

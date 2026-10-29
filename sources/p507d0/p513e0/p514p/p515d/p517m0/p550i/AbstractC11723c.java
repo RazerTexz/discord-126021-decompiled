@@ -24,158 +24,9 @@ public abstract class AbstractC11723c implements Iterable<Byte> {
         byte nextByte();
     }
 
-    /* JADX INFO: renamed from: c */
-    public static AbstractC11723c m9823c(Iterator<AbstractC11723c> it, int i) {
-        if (i == 1) {
-            return it.next();
-        }
-        int i2 = i >>> 1;
-        return m9823c(it, i2).concat(m9823c(it, i - i2));
-    }
-
-    public static AbstractC11723c copyFrom(byte[] bArr, int i, int i2) {
-        byte[] bArr2 = new byte[i2];
-        System.arraycopy(bArr, i, bArr2, 0, i2);
-        return new C11733m(bArr2);
-    }
-
-    public static AbstractC11723c copyFromUtf8(String str) {
-        try {
-            return new C11733m(str.getBytes(Constants.ENCODING));
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("UTF-8 not supported?", e);
-        }
-    }
-
-    public static b newOutput() {
-        return new b(128);
-    }
-
-    public AbstractC11723c concat(AbstractC11723c abstractC11723c) {
-        int size = size();
-        int size2 = abstractC11723c.size();
-        if (((long) size) + ((long) size2) >= 2147483647L) {
-            throw new IllegalArgumentException(C1643a.m853h(53, "ByteString would be too long: ", size, BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX, size2));
-        }
-        int[] iArr = C11738r.f24154k;
-        C11738r c11738r = this instanceof C11738r ? (C11738r) this : null;
-        if (abstractC11723c.size() == 0) {
-            return this;
-        }
-        if (size() == 0) {
-            return abstractC11723c;
-        }
-        int size3 = abstractC11723c.size() + size();
-        if (size3 < 128) {
-            return C11738r.m9859l(this, abstractC11723c);
-        }
-        if (c11738r != null) {
-            if (abstractC11723c.size() + c11738r.f24157n.size() < 128) {
-                return new C11738r(c11738r.f24156m, C11738r.m9859l(c11738r.f24157n, abstractC11723c));
-            }
-        }
-        if (c11738r != null && c11738r.f24156m.mo9825e() > c11738r.f24157n.mo9825e() && c11738r.f24159p > abstractC11723c.mo9825e()) {
-            return new C11738r(c11738r.f24156m, new C11738r(c11738r.f24157n, abstractC11723c));
-        }
-        if (size3 >= C11738r.f24154k[Math.max(mo9825e(), abstractC11723c.mo9825e()) + 1]) {
-            return new C11738r(this, abstractC11723c);
-        }
-        C11738r.b bVar = new C11738r.b(null);
-        bVar.m9860a(this);
-        bVar.m9860a(abstractC11723c);
-        AbstractC11723c abstractC11723cPop = bVar.f24161a.pop();
-        while (!bVar.f24161a.isEmpty()) {
-            abstractC11723cPop = new C11738r(bVar.f24161a.pop(), abstractC11723cPop);
-        }
-        return abstractC11723cPop;
-    }
-
-    public void copyTo(byte[] bArr, int i, int i2, int i3) {
-        if (i < 0) {
-            throw new IndexOutOfBoundsException(C1643a.m851g(30, "Source offset < 0: ", i));
-        }
-        if (i2 < 0) {
-            throw new IndexOutOfBoundsException(C1643a.m851g(30, "Target offset < 0: ", i2));
-        }
-        if (i3 < 0) {
-            throw new IndexOutOfBoundsException(C1643a.m851g(23, "Length < 0: ", i3));
-        }
-        int i4 = i + i3;
-        if (i4 > size()) {
-            throw new IndexOutOfBoundsException(C1643a.m851g(34, "Source end offset < 0: ", i4));
-        }
-        int i5 = i2 + i3;
-        if (i5 > bArr.length) {
-            throw new IndexOutOfBoundsException(C1643a.m851g(34, "Target end offset < 0: ", i5));
-        }
-        if (i3 > 0) {
-            mo9824d(bArr, i, i2, i3);
-        }
-    }
-
-    /* JADX INFO: renamed from: d */
-    public abstract void mo9824d(byte[] bArr, int i, int i2, int i3);
-
-    /* JADX INFO: renamed from: e */
-    public abstract int mo9825e();
-
-    /* JADX INFO: renamed from: g */
-    public abstract boolean mo9826g();
-
-    /* JADX INFO: renamed from: h */
-    public abstract int mo9827h(int i, int i2, int i3);
-
-    /* JADX INFO: renamed from: i */
-    public abstract int mo9828i(int i, int i2, int i3);
-
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
-    public abstract boolean isValidUtf8();
-
-    @Override // java.lang.Iterable
-    /* JADX INFO: renamed from: iterator */
-    public abstract Iterator<Byte> iterator2();
-
-    /* JADX INFO: renamed from: j */
-    public abstract int mo9829j();
-
-    /* JADX INFO: renamed from: k */
-    public abstract void mo9830k(OutputStream outputStream, int i, int i2) throws IOException;
-
-    public abstract int size();
-
-    public byte[] toByteArray() {
-        int size = size();
-        if (size == 0) {
-            return C11728h.f24142a;
-        }
-        byte[] bArr = new byte[size];
-        mo9824d(bArr, 0, 0, size);
-        return bArr;
-    }
-
-    public String toString() {
-        return String.format("<ByteString@%s size=%d>", Integer.toHexString(System.identityHashCode(this)), Integer.valueOf(size()));
-    }
-
-    public abstract String toString(String str) throws UnsupportedEncodingException;
-
-    public String toStringUtf8() {
-        try {
-            return toString(Constants.ENCODING);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("UTF-8 not supported?", e);
-        }
-    }
-
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.c$b */
     /* JADX INFO: compiled from: ByteString.java */
-    public static final class b extends OutputStream {
-
-        /* JADX INFO: renamed from: j */
-        public static final byte[] f24101j = new byte[0];
+    public final class b extends OutputStream {
 
         /* JADX INFO: renamed from: k */
         public final int f24102k;
@@ -191,6 +42,9 @@ public abstract class AbstractC11723c implements Iterable<Byte> {
 
         /* JADX INFO: renamed from: o */
         public int f24106o;
+
+        /* JADX INFO: renamed from: j */
+        public static final byte[] f24101j = new byte[0];
 
         public b(int i) {
             if (i < 0) {
@@ -266,6 +120,152 @@ public abstract class AbstractC11723c implements Iterable<Byte> {
                 System.arraycopy(bArr, i + length2, this.f24105n, 0, i4);
                 this.f24106o = i4;
             }
+        }
+    }
+
+    public AbstractC11723c concat(AbstractC11723c abstractC11723c) {
+        int size = size();
+        int size2 = abstractC11723c.size();
+        if (((long) size) + ((long) size2) >= 2147483647L) {
+            throw new IllegalArgumentException(C1643a.m853h(53, "ByteString would be too long: ", size, BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX, size2));
+        }
+        int[] iArr = C11738r.f24154k;
+        C11738r c11738r = this instanceof C11738r ? (C11738r) this : null;
+        if (abstractC11723c.size() == 0) {
+            return this;
+        }
+        if (size() == 0) {
+            return abstractC11723c;
+        }
+        int size3 = abstractC11723c.size() + size();
+        if (size3 < 128) {
+            return C11738r.m9859l(this, abstractC11723c);
+        }
+        if (c11738r != null) {
+            if (abstractC11723c.size() + c11738r.f24157n.size() < 128) {
+                return new C11738r(c11738r.f24156m, C11738r.m9859l(c11738r.f24157n, abstractC11723c));
+            }
+        }
+        if (c11738r != null && c11738r.f24156m.mo9825e() > c11738r.f24157n.mo9825e() && c11738r.f24159p > abstractC11723c.mo9825e()) {
+            return new C11738r(c11738r.f24156m, new C11738r(c11738r.f24157n, abstractC11723c));
+        }
+        if (size3 >= C11738r.f24154k[Math.max(mo9825e(), abstractC11723c.mo9825e()) + 1]) {
+            return new C11738r(this, abstractC11723c);
+        }
+        C11738r.b bVar = new C11738r.b(null);
+        bVar.m9860a(this);
+        bVar.m9860a(abstractC11723c);
+        AbstractC11723c abstractC11723cPop = bVar.f24161a.pop();
+        while (!bVar.f24161a.isEmpty()) {
+            abstractC11723cPop = new C11738r(bVar.f24161a.pop(), abstractC11723cPop);
+        }
+        return abstractC11723cPop;
+    }
+
+    public static AbstractC11723c copyFrom(byte[] bArr, int i, int i2) {
+        byte[] bArr2 = new byte[i2];
+        System.arraycopy(bArr, i, bArr2, 0, i2);
+        return new C11733m(bArr2);
+    }
+
+    public static AbstractC11723c copyFromUtf8(String str) {
+        try {
+            return new C11733m(str.getBytes(Constants.ENCODING));
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 not supported?", e);
+        }
+    }
+
+    public void copyTo(byte[] bArr, int i, int i2, int i3) {
+        if (i < 0) {
+            throw new IndexOutOfBoundsException(C1643a.m851g(30, "Source offset < 0: ", i));
+        }
+        if (i2 < 0) {
+            throw new IndexOutOfBoundsException(C1643a.m851g(30, "Target offset < 0: ", i2));
+        }
+        if (i3 < 0) {
+            throw new IndexOutOfBoundsException(C1643a.m851g(23, "Length < 0: ", i3));
+        }
+        int i4 = i + i3;
+        if (i4 > size()) {
+            throw new IndexOutOfBoundsException(C1643a.m851g(34, "Source end offset < 0: ", i4));
+        }
+        int i5 = i2 + i3;
+        if (i5 > bArr.length) {
+            throw new IndexOutOfBoundsException(C1643a.m851g(34, "Target end offset < 0: ", i5));
+        }
+        if (i3 > 0) {
+            mo9824d(bArr, i, i2, i3);
+        }
+    }
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    public abstract boolean isValidUtf8();
+
+    @Override // java.lang.Iterable
+    /* JADX INFO: renamed from: iterator */
+    public abstract Iterator<Byte> iterator2();
+
+    /* JADX INFO: renamed from: c */
+    public static AbstractC11723c m9823c(Iterator<AbstractC11723c> it, int i) {
+        if (i == 1) {
+            return it.next();
+        }
+        int i2 = i >>> 1;
+        return m9823c(it, i2).concat(m9823c(it, i - i2));
+    }
+
+    /* JADX INFO: renamed from: d */
+    public abstract void mo9824d(byte[] bArr, int i, int i2, int i3);
+
+    /* JADX INFO: renamed from: e */
+    public abstract int mo9825e();
+
+    /* JADX INFO: renamed from: g */
+    public abstract boolean mo9826g();
+
+    /* JADX INFO: renamed from: h */
+    public abstract int mo9827h(int i, int i2, int i3);
+
+    /* JADX INFO: renamed from: i */
+    public abstract int mo9828i(int i, int i2, int i3);
+
+    /* JADX INFO: renamed from: j */
+    public abstract int mo9829j();
+
+    /* JADX INFO: renamed from: k */
+    public abstract void mo9830k(OutputStream outputStream, int i, int i2) throws IOException;
+
+    public static b newOutput() {
+        return new b(128);
+    }
+
+    public abstract int size();
+
+    public byte[] toByteArray() {
+        int size = size();
+        if (size == 0) {
+            return C11728h.f24142a;
+        }
+        byte[] bArr = new byte[size];
+        mo9824d(bArr, 0, 0, size);
+        return bArr;
+    }
+
+    public String toString() {
+        return String.format("<ByteString@%s size=%d>", Integer.toHexString(System.identityHashCode(this)), Integer.valueOf(size()));
+    }
+
+    public abstract String toString(String str) throws UnsupportedEncodingException;
+
+    public String toStringUtf8() {
+        try {
+            return toString(Constants.ENCODING);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 not supported?", e);
         }
     }
 

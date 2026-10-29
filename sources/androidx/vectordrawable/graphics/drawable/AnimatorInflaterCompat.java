@@ -44,7 +44,7 @@ public class AnimatorInflaterCompat {
     private static final int VALUE_TYPE_PATH = 2;
     private static final int VALUE_TYPE_UNDEFINED = 4;
 
-    public static class PathDataEvaluator implements TypeEvaluator<PathParser.PathDataNode[]> {
+    public class PathDataEvaluator implements TypeEvaluator<PathParser.PathDataNode[]> {
         private PathParser.PathDataNode[] mNodeArray;
 
         public PathDataEvaluator() {
@@ -138,13 +138,13 @@ public class AnimatorInflaterCompat {
             }
             if (pathDataNodeArrCreateNodesFromPathData == null) {
                 if (pathDataNodeArrCreateNodesFromPathData2 != null) {
-                    return PropertyValuesHolder.ofObject(str, new PathDataEvaluator(), pathDataNodeArrCreateNodesFromPathData2);
+                    return PropertyValuesHolder.ofObject(str, new PathDataEvaluator(), new Object[]{pathDataNodeArrCreateNodesFromPathData2});
                 }
                 return null;
             }
             PathDataEvaluator pathDataEvaluator = new PathDataEvaluator();
             if (pathDataNodeArrCreateNodesFromPathData2 == null) {
-                propertyValuesHolderOfObject = PropertyValuesHolder.ofObject(str, pathDataEvaluator, pathDataNodeArrCreateNodesFromPathData);
+                propertyValuesHolderOfObject = PropertyValuesHolder.ofObject(str, pathDataEvaluator, new Object[]{pathDataNodeArrCreateNodesFromPathData});
             } else {
                 if (!PathParser.canMorph(pathDataNodeArrCreateNodesFromPathData, pathDataNodeArrCreateNodesFromPathData2)) {
                     throw new InflateException(" Can't morph from " + string + " to " + string2);

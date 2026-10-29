@@ -17,7 +17,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$a */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class a implements InterfaceC4784c<AbstractC2418a> {
+    public final class a implements InterfaceC4784c<AbstractC2418a> {
 
         /* JADX INFO: renamed from: a */
         public static final a f5146a = new a();
@@ -44,7 +44,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$b */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class b implements InterfaceC4784c<AbstractC2427j> {
+    public final class b implements InterfaceC4784c<AbstractC2427j> {
 
         /* JADX INFO: renamed from: a */
         public static final b f5147a = new b();
@@ -58,7 +58,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$c */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class c implements InterfaceC4784c<AbstractC2428k> {
+    public final class c implements InterfaceC4784c<AbstractC2428k> {
 
         /* JADX INFO: renamed from: a */
         public static final c f5148a = new c();
@@ -75,7 +75,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$d */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class d implements InterfaceC4784c<AbstractC2429l> {
+    public final class d implements InterfaceC4784c<AbstractC2429l> {
 
         /* JADX INFO: renamed from: a */
         public static final d f5149a = new d();
@@ -97,7 +97,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$e */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class e implements InterfaceC4784c<AbstractC2430m> {
+    public final class e implements InterfaceC4784c<AbstractC2430m> {
 
         /* JADX INFO: renamed from: a */
         public static final e f5150a = new e();
@@ -119,7 +119,7 @@ public final class C2419b implements InterfaceC4788a {
 
     /* JADX INFO: renamed from: b.i.a.b.i.e.b$f */
     /* JADX INFO: compiled from: AutoBatchedLogRequestEncoder.java */
-    public static final class f implements InterfaceC4784c<AbstractC2432o> {
+    public final class f implements InterfaceC4784c<AbstractC2432o> {
 
         /* JADX INFO: renamed from: a */
         public static final f f5151a = new f();

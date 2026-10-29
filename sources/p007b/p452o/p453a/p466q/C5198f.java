@@ -11,9 +11,6 @@ import p007b.p452o.p453a.C5103b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5198f extends AbstractC5195c {
 
-    /* JADX INFO: renamed from: d */
-    public static final C5103b f14091d = new C5103b(C5198f.class.getSimpleName());
-
     /* JADX INFO: renamed from: e */
     public GestureDetector f14092e;
 
@@ -22,6 +19,9 @@ public class C5198f extends AbstractC5195c {
 
     /* JADX INFO: renamed from: g */
     public float f14094g;
+
+    /* JADX INFO: renamed from: d */
+    public static final C5103b f14091d = new C5103b(C5198f.class.getSimpleName());
 
     /* JADX INFO: renamed from: b.o.a.q.f$a */
     /* JADX INFO: compiled from: ScrollGestureFinder.java */
@@ -97,12 +97,6 @@ public class C5198f extends AbstractC5195c {
         gestureDetector.setIsLongpressEnabled(false);
     }
 
-    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
-    /* JADX INFO: renamed from: b */
-    public float mo7393b(float f, float f2, float f3) {
-        return ((f3 - f2) * this.f14094g * 2.0f) + f;
-    }
-
     /* JADX INFO: renamed from: c */
     public boolean m7395c(@NonNull MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
@@ -113,5 +107,11 @@ public class C5198f extends AbstractC5195c {
             f14091d.m7159a(1, "Notifying a gesture of type", this.f14082b.name());
         }
         return this.f14093f;
+    }
+
+    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
+    /* JADX INFO: renamed from: b */
+    public float mo7393b(float f, float f2, float f3) {
+        return ((f3 - f2) * this.f14094g * 2.0f) + f;
     }
 }

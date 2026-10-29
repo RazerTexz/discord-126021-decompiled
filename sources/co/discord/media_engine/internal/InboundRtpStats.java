@@ -22,36 +22,6 @@ public final /* data */ class InboundRtpStats {
         this.payloadBytes = j5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getPackets() {
-        return this.packets;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getJitter() {
-        return this.jitter;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getHeaderBytes() {
-        return this.headerBytes;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getPaddingBytes() {
-        return this.paddingBytes;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final long getPayloadBytes() {
-        return this.payloadBytes;
-    }
-
     public final InboundRtpStats copy(long packets, long jitter, int packetsLost, long headerBytes, long paddingBytes, long payloadBytes) {
         return new InboundRtpStats(packets, jitter, packetsLost, headerBytes, paddingBytes, payloadBytes);
     }
@@ -67,24 +37,54 @@ public final /* data */ class InboundRtpStats {
         return this.packets == inboundRtpStats.packets && this.jitter == inboundRtpStats.jitter && this.packetsLost == inboundRtpStats.packetsLost && this.headerBytes == inboundRtpStats.headerBytes && this.paddingBytes == inboundRtpStats.paddingBytes && this.payloadBytes == inboundRtpStats.payloadBytes;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getHeaderBytes() {
         return this.headerBytes;
+    }
+
+    public final long getHeaderBytes() {
+        return this.headerBytes;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getJitter() {
+        return this.jitter;
     }
 
     public final long getJitter() {
         return this.jitter;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getPackets() {
         return this.packets;
+    }
+
+    public final long getPackets() {
+        return this.packets;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getPacketsLost() {
+        return this.packetsLost;
     }
 
     public final int getPacketsLost() {
         return this.packetsLost;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getPaddingBytes() {
         return this.paddingBytes;
+    }
+
+    public final long getPaddingBytes() {
+        return this.paddingBytes;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final long getPayloadBytes() {
+        return this.payloadBytes;
     }
 
     public final long getPayloadBytes() {

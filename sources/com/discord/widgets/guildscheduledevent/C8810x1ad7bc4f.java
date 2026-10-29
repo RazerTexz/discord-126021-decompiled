@@ -36,7 +36,7 @@ public final class C8810x1ad7bc4f extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildScheduledEventDateView.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
         public AnonymousClass1() {
             super(1);
         }

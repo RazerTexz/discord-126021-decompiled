@@ -47,10 +47,10 @@ import p658rx.functions.Action1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsAccountEmailEdit extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAccountEmailEdit.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountEmailEditBinding;", 0)};
+    private static final String EXTRA_SHOULD_CONFIRM_EMAIL = "extra_should_confirm_email";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_SHOULD_CONFIRM_EMAIL = "extra_should_confirm_email";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -60,26 +60,9 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
-    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEdit.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, boolean shouldConfirmEmail) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetSettingsAccountEmailEdit.EXTRA_SHOULD_CONFIRM_EMAIL, shouldConfirmEmail);
-            C0870j.m156d(context, WidgetSettingsAccountEmailEdit.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEdit$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountEmailEdit.kt */
-    public static final class C97561 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C97561 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C97561() {
             super(1);
         }
@@ -99,7 +82,7 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEdit$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsAccountEmailEdit.kt */
-    public static final class C97583 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C97583 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C97583() {
             super(1);
         }
@@ -119,7 +102,7 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEdit$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountEmailEdit.kt */
-    public static final class C97601 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C97601 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public C97601() {
             super(1);
         }
@@ -135,6 +118,23 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
             C12238m.checkNotNullParameter(meUser, "it");
             WidgetSettingsAccountEmailEdit.this.configureUI(meUser);
             new GoogleSmartLockManager(WidgetSettingsAccountEmailEdit.this.requireContext(), null, 2, null).getSmartLockRepo().setPendingIdChange(meUser.getEmail());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEdit.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, boolean shouldConfirmEmail) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetSettingsAccountEmailEdit.EXTRA_SHOULD_CONFIRM_EMAIL, shouldConfirmEmail);
+            C0870j.m156d(context, WidgetSettingsAccountEmailEdit.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -161,33 +161,6 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
 
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
-    }
-
-    private final void showCodeVerification() {
-        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmail(), false, 1, null), this, null, 2, null), getBinding().f17835b, 0L, 2, null).m11108k(C0879o.m183j(new Action1<Void>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEdit.showCodeVerification.1
-                @Override // p658rx.functions.Action1
-                public final void call(Void r5) {
-                    WidgetSettingsAccountEmailEditConfirm.Companion companion = WidgetSettingsAccountEmailEditConfirm.INSTANCE;
-                    Context contextRequireContext = WidgetSettingsAccountEmailEdit.this.requireContext();
-                    ActivityResultLauncher<Intent> activityResultLauncher = WidgetSettingsAccountEmailEdit.this.nextScreenLauncher;
-                    TextInputLayout textInputLayout = WidgetSettingsAccountEmailEdit.this.getBinding().f17837d;
-                    C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountEmailWrap");
-                    companion.launch(contextRequireContext, activityResultLauncher, ViewExtensions.getTextOrEmpty(textInputLayout));
-                }
-            }, requireContext(), null, 4));
-        }
-    }
-
-    private final void showPasswordVerification() {
-        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            WidgetUserPasswordVerify.Companion companion = WidgetUserPasswordVerify.INSTANCE;
-            Context contextRequireContext = requireContext();
-            ActivityResultLauncher<Intent> activityResultLauncher = this.nextScreenLauncher;
-            TextInputLayout textInputLayout = getBinding().f17837d;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountEmailWrap");
-            companion.launchUpdateAccountSettings(contextRequireContext, activityResultLauncher, (56 & 4) != 0 ? null : ViewExtensions.getTextOrEmpty(textInputLayout), (56 & 8) != 0 ? null : null, (56 & 16) != 0 ? null : null, (56 & 32) != 0 ? null : null);
-        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -240,5 +213,32 @@ public final class WidgetSettingsAccountEmailEdit extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) WidgetSettingsAccountEmailEdit.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97601());
+    }
+
+    private final void showCodeVerification() {
+        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmail(), false, 1, null), this, null, 2, null), getBinding().f17835b, 0L, 2, null).m11108k(C0879o.m183j(new Action1<Void>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEdit.showCodeVerification.1
+                @Override // p658rx.functions.Action1
+                public final void call(Void r5) {
+                    WidgetSettingsAccountEmailEditConfirm.Companion companion = WidgetSettingsAccountEmailEditConfirm.INSTANCE;
+                    Context contextRequireContext = WidgetSettingsAccountEmailEdit.this.requireContext();
+                    ActivityResultLauncher<Intent> activityResultLauncher = WidgetSettingsAccountEmailEdit.this.nextScreenLauncher;
+                    TextInputLayout textInputLayout = WidgetSettingsAccountEmailEdit.this.getBinding().f17837d;
+                    C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountEmailWrap");
+                    companion.launch(contextRequireContext, activityResultLauncher, ViewExtensions.getTextOrEmpty(textInputLayout));
+                }
+            }, requireContext(), null, 4));
+        }
+    }
+
+    private final void showPasswordVerification() {
+        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            WidgetUserPasswordVerify.Companion companion = WidgetUserPasswordVerify.INSTANCE;
+            Context contextRequireContext = requireContext();
+            ActivityResultLauncher<Intent> activityResultLauncher = this.nextScreenLauncher;
+            TextInputLayout textInputLayout = getBinding().f17837d;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountEmailWrap");
+            companion.launchUpdateAccountSettings(contextRequireContext, activityResultLauncher, (56 & 4) != 0 ? null : ViewExtensions.getTextOrEmpty(textInputLayout), (56 & 8) != 0 ? null : null, (56 & 16) != 0 ? null : null, (56 & 32) != 0 ? null : null);
+        }
     }
 }

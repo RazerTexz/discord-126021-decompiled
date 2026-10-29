@@ -23,6 +23,10 @@ public final /* data */ class TotalPayoutsForPeriod {
         this.payoutGroups = map;
     }
 
+    public final Map<Long, PayoutGroup> component4() {
+        return this.payoutGroups;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ TotalPayoutsForPeriod copy$default(TotalPayoutsForPeriod totalPayoutsForPeriod, String str, long j, long j2, Map map, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -40,25 +44,6 @@ public final /* data */ class TotalPayoutsForPeriod {
             map = totalPayoutsForPeriod.payoutGroups;
         }
         return totalPayoutsForPeriod.copy(str, j3, j4, map);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getPeriodStartingAt() {
-        return this.periodStartingAt;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getSubscriberCount() {
-        return this.subscriberCount;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getRevenue() {
-        return this.revenue;
-    }
-
-    public final Map<Long, PayoutGroup> component4() {
-        return this.payoutGroups;
     }
 
     public final TotalPayoutsForPeriod copy(String periodStartingAt, long subscriberCount, long revenue, Map<Long, PayoutGroup> payoutGroups) {
@@ -81,12 +66,27 @@ public final /* data */ class TotalPayoutsForPeriod {
         return this.payoutGroups;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getPeriodStartingAt() {
         return this.periodStartingAt;
     }
 
+    public final String getPeriodStartingAt() {
+        return this.periodStartingAt;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getRevenue() {
         return this.revenue;
+    }
+
+    public final long getRevenue() {
+        return this.revenue;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getSubscriberCount() {
+        return this.subscriberCount;
     }
 
     public final long getSubscriberCount() {

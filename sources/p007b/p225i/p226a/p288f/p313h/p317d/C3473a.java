@@ -34,6 +34,28 @@ public final class C3473a extends AbstractC3349d<InterfaceC3474b> {
         return 12451000;
     }
 
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: r */
+    public final /* synthetic */ IInterface mo3983r(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.internal.IAuthService");
+        return iInterfaceQueryLocalInterface instanceof InterfaceC3474b ? (InterfaceC3474b) iInterfaceQueryLocalInterface : new C3475c(iBinder);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: x */
+    public final String mo3984x() {
+        return "com.google.android.gms.auth.api.internal.IAuthService";
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
+    /* JADX INFO: renamed from: y */
+    public final String mo3985y() {
+        return "com.google.android.gms.auth.service.START";
+    }
+
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b, p007b.p225i.p226a.p288f.p299e.p300h.C3266a.f
     /* JADX INFO: renamed from: o */
     public final boolean mo4042o() {
@@ -49,30 +71,8 @@ public final class C3473a extends AbstractC3349d<InterfaceC3474b> {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: r */
-    public final /* synthetic */ IInterface mo3983r(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.internal.IAuthService");
-        return iInterfaceQueryLocalInterface instanceof InterfaceC3474b ? (InterfaceC3474b) iInterfaceQueryLocalInterface : new C3475c(iBinder);
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
     /* JADX INFO: renamed from: u */
     public final Bundle mo4140u() {
         return this.f9645A;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: x */
-    public final String mo3984x() {
-        return "com.google.android.gms.auth.api.internal.IAuthService";
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b
-    /* JADX INFO: renamed from: y */
-    public final String mo3985y() {
-        return "com.google.android.gms.auth.service.START";
     }
 }

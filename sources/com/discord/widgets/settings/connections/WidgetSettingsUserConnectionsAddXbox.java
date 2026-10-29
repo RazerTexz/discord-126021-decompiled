@@ -47,24 +47,9 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsUserConnectionsAddXbox.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
-    public static final class C98372 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C98372 extends AbstractC12240o implements Function1<String, Unit> {
         public C98372() {
             super(1);
         }
@@ -101,7 +86,7 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$submitPinCode$2 */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
-    public static final class C98392 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C98392 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ Activity $activity;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -125,6 +110,21 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsUserConnectionsAddXbox.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsUserConnectionsAddXbox() {
         super(C5419R.layout.widget_connections_add_xbox);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsUserConnectionsAddXbox$binding$2.INSTANCE, null, 2, null);
@@ -136,23 +136,6 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
 
     public static final void launch(Context context) {
         INSTANCE.launch(context);
-    }
-
-    private final void showPinError() {
-        C0876m.m169g(getContext(), C5419R.string.connection_invalid_pin, 0, null, 12);
-        getBinding().f16406b.m8538b();
-    }
-
-    private final void trackXboxLinkFailed(Error error) {
-        AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
-        String bodyText = error.getBodyText();
-        Error.Response response = error.getResponse();
-        C12238m.checkNotNullExpressionValue(response, "error.response");
-        analyticsTracker.accountLinkFailed(bodyText, Integer.valueOf(response.getCode()), "pin", "PIN code entry", Platform.XBOX.getPlatformId());
-    }
-
-    private final void trackXboxLinkStep() {
-        AnalyticsTracker.accountLinkStep$default(AnalyticsTracker.INSTANCE, "mobile connections", "PIN code entry", null, Platform.XBOX.getPlatformId(), 4, null);
     }
 
     @Override // com.discord.app.AppFragment
@@ -177,6 +160,11 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
         getBinding().f16406b.setOnCodeEntered(new C98372());
     }
 
+    private final void showPinError() {
+        C0876m.m169g(getContext(), C5419R.string.connection_invalid_pin, 0, null, 12);
+        getBinding().f16406b.m8538b();
+    }
+
     public final void submitPinCode(String verificationCode, final Platform platform, DimmerView dimmer, AppComponent appComponent, Activity activity, Action1<Error> errorHandler) {
         C12238m.checkNotNullParameter(verificationCode, "verificationCode");
         C12238m.checkNotNullParameter(platform, "platform");
@@ -198,5 +186,17 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
         });
         C12238m.checkNotNullExpressionValue(observableM11082A, "RestAPI\n        .api\n   …              )\n        }");
         ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(observableM11082A, appComponent, null, 2, null), dimmer, 0L, 2, null).m11108k(C0879o.f566a.m184g(activity, new C98392(activity), errorHandler));
+    }
+
+    private final void trackXboxLinkFailed(Error error) {
+        AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+        String bodyText = error.getBodyText();
+        Error.Response response = error.getResponse();
+        C12238m.checkNotNullExpressionValue(response, "error.response");
+        analyticsTracker.accountLinkFailed(bodyText, Integer.valueOf(response.getCode()), "pin", "PIN code entry", Platform.XBOX.getPlatformId());
+    }
+
+    private final void trackXboxLinkStep() {
+        AnalyticsTracker.accountLinkStep$default(AnalyticsTracker.INSTANCE, "mobile connections", "PIN code entry", null, Platform.XBOX.getPlatformId(), 4, null);
     }
 }

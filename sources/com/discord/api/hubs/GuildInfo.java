@@ -11,6 +11,17 @@ public final /* data */ class GuildInfo {
     private final long id;
     private final String name;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildInfo)) {
+            return false;
+        }
+        GuildInfo guildInfo = (GuildInfo) other;
+        return C12238m.areEqual(this.icon, guildInfo.icon) && this.id == guildInfo.id && C12238m.areEqual(this.name, guildInfo.name);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getIcon() {
         return this.icon;
@@ -24,17 +35,6 @@ public final /* data */ class GuildInfo {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildInfo)) {
-            return false;
-        }
-        GuildInfo guildInfo = (GuildInfo) other;
-        return C12238m.areEqual(this.icon, guildInfo.icon) && this.id == guildInfo.id && C12238m.areEqual(this.name, guildInfo.name);
     }
 
     public int hashCode() {

@@ -16,7 +16,7 @@ public enum StickerFormatType {
     private final int apiValue;
 
     /* JADX INFO: compiled from: StickerFormatType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

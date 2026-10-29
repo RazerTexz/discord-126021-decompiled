@@ -15,12 +15,12 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkTimer {
-    private static final String TAG = Logger.tagWithPrefix("WorkTimer");
     private final ThreadFactory mBackgroundThreadFactory;
     private final ScheduledExecutorService mExecutorService;
     public final Map<String, TimeLimitExceededListener> mListeners;
     public final Object mLock;
     public final Map<String, WorkTimerRunnable> mTimerMap;
+    private static final String TAG = Logger.tagWithPrefix("WorkTimer");
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public interface TimeLimitExceededListener {
@@ -28,7 +28,7 @@ public class WorkTimer {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class WorkTimerRunnable implements Runnable {
+    public class WorkTimerRunnable implements Runnable {
         public static final String TAG = "WrkTimerRunnable";
         private final String mWorkSpecId;
         private final WorkTimer mWorkTimer;

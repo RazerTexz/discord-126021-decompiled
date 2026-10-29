@@ -9,26 +9,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGooglePlayOneTimeNotificationReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGooglePlayOneTimeNotificationReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentId = null;
-    private final Long skuId = null;
-    private final CharSequence oneTimePurchaseSkuId = null;
-    private final Long paymentGateway = null;
-    private final CharSequence messageId = null;
-    private final CharSequence version = null;
-    private final CharSequence packageName = null;
     private final Long eventTime = null;
-    private final CharSequence notificationVersion = null;
+    private final CharSequence messageId = null;
     private final Long notificationType = null;
-    private final CharSequence purchaseToken = null;
+    private final CharSequence notificationVersion = null;
+    private final CharSequence oneTimePurchaseSkuId = null;
     private final CharSequence orderId = null;
+    private final CharSequence packageName = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final CharSequence purchaseToken = null;
+    private final Long skuId = null;
+    private TrackBase trackBase;
+    private final CharSequence version = null;
     private final transient String analyticsSchemaTypeName = "google_play_one_time_notification_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackGooglePlayOneTimeNotificationReceived impleme
         }
         TrackGooglePlayOneTimeNotificationReceived trackGooglePlayOneTimeNotificationReceived = (TrackGooglePlayOneTimeNotificationReceived) other;
         return C12238m.areEqual(this.paymentId, trackGooglePlayOneTimeNotificationReceived.paymentId) && C12238m.areEqual(this.skuId, trackGooglePlayOneTimeNotificationReceived.skuId) && C12238m.areEqual(this.oneTimePurchaseSkuId, trackGooglePlayOneTimeNotificationReceived.oneTimePurchaseSkuId) && C12238m.areEqual(this.paymentGateway, trackGooglePlayOneTimeNotificationReceived.paymentGateway) && C12238m.areEqual(this.messageId, trackGooglePlayOneTimeNotificationReceived.messageId) && C12238m.areEqual(this.version, trackGooglePlayOneTimeNotificationReceived.version) && C12238m.areEqual(this.packageName, trackGooglePlayOneTimeNotificationReceived.packageName) && C12238m.areEqual(this.eventTime, trackGooglePlayOneTimeNotificationReceived.eventTime) && C12238m.areEqual(this.notificationVersion, trackGooglePlayOneTimeNotificationReceived.notificationVersion) && C12238m.areEqual(this.notificationType, trackGooglePlayOneTimeNotificationReceived.notificationType) && C12238m.areEqual(this.purchaseToken, trackGooglePlayOneTimeNotificationReceived.purchaseToken) && C12238m.areEqual(this.orderId, trackGooglePlayOneTimeNotificationReceived.orderId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

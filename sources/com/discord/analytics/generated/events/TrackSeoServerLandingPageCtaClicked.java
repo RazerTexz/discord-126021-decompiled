@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSeoServerLandingPageCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSeoServerLandingPageCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence cta = null;
     private final Long guildId = null;
     private final CharSequence guildName = null;
     private final CharSequence slug = null;
-    private final CharSequence cta = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "seo_server_landing_page_cta_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackSeoServerLandingPageCtaClicked implements Ana
         }
         TrackSeoServerLandingPageCtaClicked trackSeoServerLandingPageCtaClicked = (TrackSeoServerLandingPageCtaClicked) other;
         return C12238m.areEqual(this.guildId, trackSeoServerLandingPageCtaClicked.guildId) && C12238m.areEqual(this.guildName, trackSeoServerLandingPageCtaClicked.guildName) && C12238m.areEqual(this.slug, trackSeoServerLandingPageCtaClicked.slug) && C12238m.areEqual(this.cta, trackSeoServerLandingPageCtaClicked.cta);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

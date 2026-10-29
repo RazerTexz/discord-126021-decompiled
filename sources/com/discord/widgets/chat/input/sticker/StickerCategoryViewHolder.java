@@ -21,7 +21,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class StickerCategoryViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: StickerCategoryViewHolder.kt */
-    public static final class Guild extends StickerCategoryViewHolder {
+    public final class Guild extends StickerCategoryViewHolder {
         private final StickerCategoryItemGuildBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -53,7 +53,7 @@ public abstract class StickerCategoryViewHolder extends RecyclerView.ViewHolder 
     }
 
     /* JADX INFO: compiled from: StickerCategoryViewHolder.kt */
-    public static final class Pack extends StickerCategoryViewHolder {
+    public final class Pack extends StickerCategoryViewHolder {
         private final StickerCategoryItemPackBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */
@@ -95,7 +95,7 @@ public abstract class StickerCategoryViewHolder extends RecyclerView.ViewHolder 
     }
 
     /* JADX INFO: compiled from: StickerCategoryViewHolder.kt */
-    public static final class Recent extends StickerCategoryViewHolder {
+    public final class Recent extends StickerCategoryViewHolder {
         private final StickerCategoryItemRecentBinding binding;
 
         /* JADX WARN: Illegal instructions before constructor call */

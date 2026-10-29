@@ -15,13 +15,13 @@ public final class WidgetChannelsListAdapter$onCollapseCategory$1 extends Abstra
         super(2);
     }
 
+    public final void invoke(Channel channel, boolean z2) {
+        C12238m.checkNotNullParameter(channel, "<anonymous parameter 0>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Channel channel, Boolean bool) {
         invoke(channel, bool.booleanValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(Channel channel, boolean z2) {
-        C12238m.checkNotNullParameter(channel, "<anonymous parameter 0>");
     }
 }

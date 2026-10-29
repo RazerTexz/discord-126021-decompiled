@@ -77,19 +77,6 @@ public class C4721b {
             this.f12707l = f;
         }
 
-        @Override // p007b.p225i.p361c.p369m.p370d.p373k.AbstractRunnableC4616d
-        /* JADX INFO: renamed from: a */
-        public void mo6398a() {
-            try {
-                m6671b(this.f12705j, this.f12706k);
-            } catch (Exception e) {
-                if (C4592b.f12227a.m6370a(6)) {
-                    Log.e("FirebaseCrashlytics", "An unexpected error occurred while attempting to upload crash reports.", e);
-                }
-            }
-            C4721b.this.f12704h = null;
-        }
-
         /* JADX INFO: renamed from: b */
         public final void m6671b(List<InterfaceC4724c> list, boolean z2) {
             C4592b c4592b = C4592b.f12227a;
@@ -137,6 +124,19 @@ public class C4721b {
                 }
                 list = arrayList;
             }
+        }
+
+        @Override // p007b.p225i.p361c.p369m.p370d.p373k.AbstractRunnableC4616d
+        /* JADX INFO: renamed from: a */
+        public void mo6398a() {
+            try {
+                m6671b(this.f12705j, this.f12706k);
+            } catch (Exception e) {
+                if (C4592b.f12227a.m6370a(6)) {
+                    Log.e("FirebaseCrashlytics", "An unexpected error occurred while attempting to upload crash reports.", e);
+                }
+            }
+            C4721b.this.f12704h = null;
         }
     }
 

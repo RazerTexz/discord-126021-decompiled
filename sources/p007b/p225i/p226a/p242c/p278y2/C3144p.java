@@ -23,13 +23,6 @@ public final class C3144p extends DecoderInputBuffer {
         this.f9098t = 32;
     }
 
-    @Override // com.google.android.exoplayer2.decoder.DecoderInputBuffer
-    /* JADX INFO: renamed from: p */
-    public void mo3856p() {
-        super.mo3856p();
-        this.f9097s = 0;
-    }
-
     /* JADX INFO: renamed from: u */
     public boolean m3857u(DecoderInputBuffer decoderInputBuffer) {
         ByteBuffer byteBuffer;
@@ -76,5 +69,12 @@ public final class C3144p extends DecoderInputBuffer {
     /* JADX INFO: renamed from: v */
     public boolean m3858v() {
         return this.f9097s > 0;
+    }
+
+    @Override // com.google.android.exoplayer2.decoder.DecoderInputBuffer
+    /* JADX INFO: renamed from: p */
+    public void mo3856p() {
+        super.mo3856p();
+        this.f9097s = 0;
     }
 }

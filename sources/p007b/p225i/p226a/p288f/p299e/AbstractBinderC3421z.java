@@ -7,16 +7,19 @@ import java.lang.ref.WeakReference;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractBinderC3421z extends AbstractBinderC3419x {
 
-    /* JADX INFO: renamed from: c */
-    public static final WeakReference<byte[]> f9613c = new WeakReference<>(null);
-
     /* JADX INFO: renamed from: d */
     public WeakReference<byte[]> f9614d;
+
+    /* JADX INFO: renamed from: c */
+    public static final WeakReference<byte[]> f9613c = new WeakReference<>(null);
 
     public AbstractBinderC3421z(byte[] bArr) {
         super(bArr);
         this.f9614d = f9613c;
     }
+
+    /* JADX INFO: renamed from: t0 */
+    public abstract byte[] mo4377t0();
 
     @Override // p007b.p225i.p226a.p288f.p299e.AbstractBinderC3419x
     /* JADX INFO: renamed from: g */
@@ -31,7 +34,4 @@ public abstract class AbstractBinderC3421z extends AbstractBinderC3419x {
         }
         return bArrMo4377t0;
     }
-
-    /* JADX INFO: renamed from: t0 */
-    public abstract byte[] mo4377t0();
 }

@@ -20,6 +20,12 @@ public class ViewUtilsBase {
     private static boolean sViewFlagsFieldFetched;
     private float[] mMatrixValues;
 
+    public void clearNonTransitionAlpha(@NonNull View view) {
+        if (view.getVisibility() == 0) {
+            view.setTag(C0658R.id.save_non_transition_alpha, null);
+        }
+    }
+
     @SuppressLint({"PrivateApi"})
     private void fetchSetFrame() {
         if (sSetFrameFetched) {
@@ -34,12 +40,6 @@ public class ViewUtilsBase {
             Log.i(TAG, "Failed to retrieve setFrame method", e);
         }
         sSetFrameFetched = true;
-    }
-
-    public void clearNonTransitionAlpha(@NonNull View view) {
-        if (view.getVisibility() == 0) {
-            view.setTag(C0658R.id.save_non_transition_alpha, null);
-        }
     }
 
     public float getTransitionAlpha(@NonNull View view) {

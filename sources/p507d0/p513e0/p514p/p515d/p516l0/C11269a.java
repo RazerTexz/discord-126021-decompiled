@@ -127,12 +127,6 @@ public final class C11269a implements InterfaceC11272d {
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
-    /* JADX INFO: renamed from: getMember, reason: collision with other method in class */
-    public /* bridge */ /* synthetic */ Member mo11457getMember() {
-        return (Member) getMember();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public List<Type> getParameterTypes() {
         return this.f22404a;
     }
@@ -140,6 +134,12 @@ public final class C11269a implements InterfaceC11272d {
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public Type getReturnType() {
         return this.f22407d;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
+    /* JADX INFO: renamed from: getMember, reason: collision with other method in class */
+    public /* bridge */ /* synthetic */ Member mo11457getMember() {
+        return (Member) getMember();
     }
 
     public /* synthetic */ C11269a(Class cls, List list, a aVar, b bVar, List list2, int i, DefaultConstructorMarker defaultConstructorMarker) {

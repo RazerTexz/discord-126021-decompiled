@@ -7,11 +7,8 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3847u0 extends AbstractC3851u4<C3847u0, a> implements InterfaceC3626d6 {
-    private static final C3847u0 zzm;
-    private static volatile InterfaceC3710j6<C3847u0> zzn;
     private int zzc;
     private long zzd;
-    private String zze = "";
     private int zzf;
     private InterfaceC3597b5<C3860v0> zzg;
     private InterfaceC3597b5<C3834t0> zzh;
@@ -19,10 +16,13 @@ public final class C3847u0 extends AbstractC3851u4<C3847u0, a> implements Interf
     private String zzj;
     private boolean zzk;
     private InterfaceC3597b5<C3783p1> zzl;
+    private static final C3847u0 zzm;
+    private static volatile InterfaceC3710j6<C3847u0> zzn;
+    private String zze = "";
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.u0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3847u0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3847u0, a> implements InterfaceC3626d6 {
         public a() {
             super(C3847u0.zzm);
         }
@@ -98,6 +98,26 @@ public final class C3847u0 extends AbstractC3851u4<C3847u0, a> implements Interf
         return this.zzk;
     }
 
+    /* JADX INFO: renamed from: u */
+    public final C3834t0 m5304u(int i) {
+        return this.zzh.get(i);
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final boolean m5305x() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final long m5306y() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final boolean m5307z() {
+        return (this.zzc & 2) != 0;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -130,25 +150,5 @@ public final class C3847u0 extends AbstractC3851u4<C3847u0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final C3834t0 m5304u(int i) {
-        return this.zzh.get(i);
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final boolean m5305x() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final long m5306y() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final boolean m5307z() {
-        return (this.zzc & 2) != 0;
     }
 }

@@ -13,15 +13,15 @@ import org.objectweb.asm.Type;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/AdviceAdapter.SCL.lombok */
 public abstract class AdviceAdapter extends GeneratorAdapter implements Opcodes {
-    private static final Object UNINITIALIZED_THIS = new Object();
-    private static final Object OTHER = new Object();
     private static final String INVALID_OPCODE = "Invalid opcode ";
+    private Map<Label, List<Object>> forwardJumpStackFrames;
+    private final boolean isConstructor;
     protected int methodAccess;
     protected String methodDesc;
-    private final boolean isConstructor;
-    private boolean superClassConstructorCalled;
     private List<Object> stackFrame;
-    private Map<Label, List<Object>> forwardJumpStackFrames;
+    private boolean superClassConstructorCalled;
+    private static final Object UNINITIALIZED_THIS = new Object();
+    private static final Object OTHER = new Object();
 
     protected AdviceAdapter(int api, MethodVisitor methodVisitor, int access, String name, String descriptor) {
         super(api, methodVisitor, access, name, descriptor);

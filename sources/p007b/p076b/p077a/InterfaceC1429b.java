@@ -10,15 +10,15 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: FlexInputCoordinator.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC1429b<T> {
+    FileManager getFileManager();
+
+    boolean hasMediaPermissions();
+
     /* JADX INFO: renamed from: b */
     SelectionAggregator<Attachment<T>> mo396b();
 
     /* JADX INFO: renamed from: f */
     void mo397f(Attachment<? extends T> attachment);
-
-    FileManager getFileManager();
-
-    boolean hasMediaPermissions();
 
     void requestMediaPermissions(Function0<Unit> function0);
 }

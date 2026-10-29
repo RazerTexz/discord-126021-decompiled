@@ -94,6 +94,23 @@ public final class C3014c implements InterfaceC3031h {
         this.f8139n = true;
     }
 
+    /* JADX INFO: renamed from: c */
+    public final C2757x m3660c(InterfaceC3041i interfaceC3041i) throws IOException {
+        int i = this.f8137l;
+        C2757x c2757x = this.f8129d;
+        byte[] bArr = c2757x.f6793a;
+        if (i > bArr.length) {
+            c2757x.f6793a = new byte[Math.max(bArr.length * 2, i)];
+            c2757x.f6795c = 0;
+            c2757x.f6794b = 0;
+        } else {
+            c2757x.m3079E(0);
+        }
+        this.f8129d.m3078D(this.f8137l);
+        interfaceC3041i.readFully(this.f8129d.f6793a, 0, this.f8137l);
+        return this.f8129d;
+    }
+
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
     /* JADX INFO: renamed from: b */
     public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
@@ -115,23 +132,6 @@ public final class C3014c implements InterfaceC3031h {
         interfaceC3041i.mo3652o(this.f8126a.f6793a, 0, 4);
         this.f8126a.m3079E(0);
         return this.f8126a.m3086f() == 0;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C2757x m3660c(InterfaceC3041i interfaceC3041i) throws IOException {
-        int i = this.f8137l;
-        C2757x c2757x = this.f8129d;
-        byte[] bArr = c2757x.f6793a;
-        if (i > bArr.length) {
-            c2757x.f6793a = new byte[Math.max(bArr.length * 2, i)];
-            c2757x.f6795c = 0;
-            c2757x.f6794b = 0;
-        } else {
-            c2757x.m3079E(0);
-        }
-        this.f8129d.m3078D(this.f8137l);
-        interfaceC3041i.readFully(this.f8129d.f6793a, 0, this.f8137l);
-        return this.f8129d;
     }
 
     /* JADX WARN: Code duplicated, block: B:39:0x00a6  */

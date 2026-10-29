@@ -28,12 +28,6 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2391i;
 /* JADX INFO: compiled from: SerializerProvider.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2374x extends AbstractC2208e {
-
-    /* JADX INFO: renamed from: j */
-    public static final AbstractC2364n<Object> f5061j = new C2253c("Null key for a Map not allowed in JSON (use a converting NullKeySerializer?)");
-
-    /* JADX INFO: renamed from: k */
-    public static final AbstractC2364n<Object> f5062k = new C2267q();
     public final C2372v _config;
     public DateFormat _dateFormat;
     public AbstractC2364n<Object> _keySerializer;
@@ -49,6 +43,12 @@ public abstract class AbstractC2374x extends AbstractC2208e {
     /* JADX INFO: renamed from: l */
     public transient AbstractC2391i f5063l;
 
+    /* JADX INFO: renamed from: j */
+    public static final AbstractC2364n<Object> f5061j = new C2253c("Null key for a Map not allowed in JSON (use a converting NullKeySerializer?)");
+
+    /* JADX INFO: renamed from: k */
+    public static final AbstractC2364n<Object> f5062k = new C2267q();
+
     public AbstractC2374x() {
         this._unknownTypeSerializer = f5062k;
         this._nullValueSerializer = C2312u.f4867k;
@@ -61,12 +61,6 @@ public abstract class AbstractC2374x extends AbstractC2208e {
         this.f5063l = null;
         this._stdNullValueSerializer = true;
     }
-
-    /* JADX INFO: renamed from: A */
-    public abstract Object mo1998A(AbstractC2198s abstractC2198s, Class<?> cls) throws JsonMappingException;
-
-    /* JADX INFO: renamed from: B */
-    public abstract boolean mo1999B(Object obj) throws JsonMappingException;
 
     /* JADX INFO: renamed from: C */
     public final boolean m2239C(EnumC2366p enumC2366p) {
@@ -108,21 +102,6 @@ public abstract class AbstractC2374x extends AbstractC2208e {
     /* JADX INFO: renamed from: G */
     public void m2243G(String str, Object... objArr) throws JsonMappingException {
         throw new JsonMappingException(((AbstractC2241j) this).f4808o, m1937a(str, objArr), null);
-    }
-
-    /* JADX INFO: renamed from: H */
-    public abstract AbstractC2364n<Object> mo2000H(AbstractC2175b abstractC2175b, Object obj) throws JsonMappingException;
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2208e
-    /* JADX INFO: renamed from: d */
-    public final C2335n mo1940d() {
-        return this._config._base._typeFactory;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2208e
-    /* JADX INFO: renamed from: f */
-    public <T> T mo1942f(AbstractC2360j abstractC2360j, String str) throws JsonMappingException {
-        throw new InvalidDefinitionException(((AbstractC2241j) this).f4808o, str, abstractC2360j);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -219,9 +198,6 @@ public abstract class AbstractC2374x extends AbstractC2208e {
         return m2261z(abstractC2364nMo1971a, interfaceC2206d);
     }
 
-    /* JADX INFO: renamed from: p */
-    public abstract C2271u mo2005p(Object obj, AbstractC2082i0<?> abstractC2082i0);
-
     /* JADX INFO: renamed from: q */
     public AbstractC2364n<Object> m2252q(AbstractC2360j abstractC2360j, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
         AbstractC2364n<Object> abstractC2364nM2035a = this._knownSerializers.m2035a(abstractC2360j);
@@ -299,6 +275,30 @@ public abstract class AbstractC2374x extends AbstractC2208e {
     public AbstractC2364n<?> m2261z(AbstractC2364n<?> abstractC2364n, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
         return (abstractC2364n == 0 || !(abstractC2364n instanceof InterfaceC2240i)) ? abstractC2364n : ((InterfaceC2240i) abstractC2364n).mo1997a(this, interfaceC2206d);
     }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2208e
+    /* JADX INFO: renamed from: d */
+    public final C2335n mo1940d() {
+        return this._config._base._typeFactory;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2208e
+    /* JADX INFO: renamed from: f */
+    public <T> T mo1942f(AbstractC2360j abstractC2360j, String str) throws JsonMappingException {
+        throw new InvalidDefinitionException(((AbstractC2241j) this).f4808o, str, abstractC2360j);
+    }
+
+    /* JADX INFO: renamed from: A */
+    public abstract Object mo1998A(AbstractC2198s abstractC2198s, Class<?> cls) throws JsonMappingException;
+
+    /* JADX INFO: renamed from: B */
+    public abstract boolean mo1999B(Object obj) throws JsonMappingException;
+
+    /* JADX INFO: renamed from: H */
+    public abstract AbstractC2364n<Object> mo2000H(AbstractC2175b abstractC2175b, Object obj) throws JsonMappingException;
+
+    /* JADX INFO: renamed from: p */
+    public abstract C2271u mo2005p(Object obj, AbstractC2082i0<?> abstractC2082i0);
 
     public AbstractC2374x(AbstractC2374x abstractC2374x, C2372v c2372v, AbstractC2248q abstractC2248q) {
         this._unknownTypeSerializer = f5062k;

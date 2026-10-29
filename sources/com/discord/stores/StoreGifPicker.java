@@ -40,8 +40,6 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final List<ModelGif> searchResultsLoadingList = C12147n.emptyList();
-    private static final List<String> searchTermsLoadingList = C12147n.emptyList();
     private final Dispatcher dispatcher;
     private final List<ModelGifCategory> gifCategories;
     private List<ModelGifCategory> gifCategoriesSnapshot;
@@ -60,72 +58,12 @@ public final class StoreGifPicker extends StoreV2 {
     private final List<ModelGif> trendingCategoryGifs;
     private List<ModelGif> trendingCategoryGifsSnapshot;
     private String trendingGifCategoryPreviewUrl;
-
-    /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class CacheHistory<K, V> extends LinkedHashMap<K, V> {
-        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-        public final /* bridge */ Set<Map.Entry<K, V>> entrySet() {
-            return getEntries();
-        }
-
-        public /* bridge */ Set getEntries() {
-            return super.entrySet();
-        }
-
-        public /* bridge */ Set getKeys() {
-            return super.keySet();
-        }
-
-        public /* bridge */ int getSize() {
-            return super.size();
-        }
-
-        public /* bridge */ Collection getValues() {
-            return super.values();
-        }
-
-        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-        public final /* bridge */ Set<K> keySet() {
-            return getKeys();
-        }
-
-        @Override // java.util.LinkedHashMap
-        public boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-            return size() > 20;
-        }
-
-        @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
-        public final /* bridge */ int size() {
-            return getSize();
-        }
-
-        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-        public final /* bridge */ Collection<V> values() {
-            return getValues();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final List<ModelGif> getSearchResultsLoadingList() {
-            return StoreGifPicker.searchResultsLoadingList;
-        }
-
-        public final List<String> getSearchTermsLoadingList() {
-            return StoreGifPicker.searchTermsLoadingList;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final List<ModelGif> searchResultsLoadingList = C12147n.emptyList();
+    private static final List<String> searchTermsLoadingList = C12147n.emptyList();
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifCategories$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59561 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59561 extends AbstractC12240o implements Function1<Error, Unit> {
         public C59561() {
             super(1);
         }
@@ -145,7 +83,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifCategories$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final /* synthetic */ class C59572 extends C12236k implements Function1<TrendingGifCategoriesResponseDto, Unit> {
+    public final /* synthetic */ class C59572 extends C12236k implements Function1<TrendingGifCategoriesResponseDto, Unit> {
         public C59572(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchGifCategoriesOnNext", "handleFetchGifCategoriesOnNext(Lcom/discord/models/gifpicker/dto/TrendingGifCategoriesResponseDto;)V", 0);
         }
@@ -165,7 +103,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifTrendingSearchTerms$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59581 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59581 extends AbstractC12240o implements Function1<Error, Unit> {
         public C59581() {
             super(1);
         }
@@ -185,7 +123,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifTrendingSearchTerms$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final /* synthetic */ class C59592 extends C12236k implements Function1<List<? extends String>, Unit> {
+    public final /* synthetic */ class C59592 extends C12236k implements Function1<List<? extends String>, Unit> {
         public C59592(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchTrendingSearchTermsOnNext", "handleFetchTrendingSearchTermsOnNext(Ljava/util/List;)V", 0);
         }
@@ -205,12 +143,12 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59612 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59612 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -249,12 +187,12 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$3 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59623 extends AbstractC12240o implements Function1<List<? extends ModelGif>, Unit> {
+    public final class C59623 extends AbstractC12240o implements Function1<List<? extends ModelGif>, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $gifs;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -300,12 +238,12 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59631 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59631 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -344,12 +282,12 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59642 extends AbstractC12240o implements Function1<List<? extends String>, Unit> {
+    public final class C59642 extends AbstractC12240o implements Function1<List<? extends String>, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $suggestedSearchTerms;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -392,7 +330,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchTrendingCategoryGifs$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59662 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C59662 extends AbstractC12240o implements Function1<Error, Unit> {
         public C59662() {
             super(1);
         }
@@ -412,7 +350,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchTrendingCategoryGifs$3 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final /* synthetic */ class C59673 extends C12236k implements Function1<List<? extends ModelGif>, Unit> {
+    public final /* synthetic */ class C59673 extends C12236k implements Function1<List<? extends ModelGif>, Unit> {
         public C59673(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchTrendingGifsOnNext", "handleFetchTrendingGifsOnNext(Ljava/util/List;)V", 0);
         }
@@ -432,7 +370,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchGifCategoriesError$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59681 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59681 extends AbstractC12240o implements Function0<Unit> {
         public C59681() {
             super(0);
         }
@@ -451,7 +389,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchGifCategoriesOnNext$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59691 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59691 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ TrendingGifCategoriesResponseDto $trendingGifsResponseRaw;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -475,7 +413,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingGifsError$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59701 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59701 extends AbstractC12240o implements Function0<Unit> {
         public C59701() {
             super(0);
         }
@@ -494,7 +432,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingGifsOnNext$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59711 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59711 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $gifs;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -518,7 +456,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingSearchTermsError$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59721 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59721 extends AbstractC12240o implements Function0<Unit> {
         public C59721() {
             super(0);
         }
@@ -537,7 +475,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingSearchTermsOnNext$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59731 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59731 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $trendingSearchTerms;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -561,7 +499,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifCategories$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59741 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59741 extends AbstractC12240o implements Function0<Unit> {
         public C59741() {
             super(0);
         }
@@ -583,7 +521,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifCategories$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59752 extends AbstractC12240o implements Function0<List<? extends ModelGifCategory>> {
+    public final class C59752 extends AbstractC12240o implements Function0<List<? extends ModelGifCategory>> {
         public C59752() {
             super(0);
         }
@@ -596,7 +534,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifTrendingSearchTerms$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59761 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59761 extends AbstractC12240o implements Function0<Unit> {
         public C59761() {
             super(0);
         }
@@ -618,7 +556,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifTrendingSearchTerms$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59772 extends AbstractC12240o implements Function0<List<? extends String>> {
+    public final class C59772 extends AbstractC12240o implements Function0<List<? extends String>> {
         public C59772() {
             super(0);
         }
@@ -631,7 +569,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifsForSearchQuery$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59781 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59781 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -658,7 +596,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSearchHistory$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59801 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends ModelGif>>> {
+    public final class C59801 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends ModelGif>>> {
         public C59801() {
             super(0);
         }
@@ -671,7 +609,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSuggestedSearchTerms$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59811 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends String>>> {
+    public final class C59811 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends String>>> {
         public C59811() {
             super(0);
         }
@@ -684,7 +622,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSuggestedSearchTerms$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59822 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59822 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -711,7 +649,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingCategoryGifs$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59841 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59841 extends AbstractC12240o implements Function0<Unit> {
         public C59841() {
             super(0);
         }
@@ -733,7 +671,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingCategoryGifs$2 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59852 extends AbstractC12240o implements Function0<List<? extends ModelGif>> {
+    public final class C59852 extends AbstractC12240o implements Function0<List<? extends ModelGif>> {
         public C59852() {
             super(0);
         }
@@ -746,7 +684,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingGifCategoryPreviewUrl$1 */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public static final class C59861 extends AbstractC12240o implements Function0<String> {
+    public final class C59861 extends AbstractC12240o implements Function0<String> {
         public C59861() {
             super(0);
         }
@@ -757,8 +695,75 @@ public final class StoreGifPicker extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGifPicker.kt */
+    public final class CacheHistory<K, V> extends LinkedHashMap<K, V> {
+        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+        public final /* bridge */ Set<Map.Entry<K, V>> entrySet() {
+            return getEntries();
+        }
+
+        public /* bridge */ Set getEntries() {
+            return super.entrySet();
+        }
+
+        public /* bridge */ Set getKeys() {
+            return super.keySet();
+        }
+
+        public /* bridge */ int getSize() {
+            return super.size();
+        }
+
+        public /* bridge */ Collection getValues() {
+            return super.values();
+        }
+
+        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+        public final /* bridge */ Set<K> keySet() {
+            return getKeys();
+        }
+
+        @Override // java.util.LinkedHashMap
+        public boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+            return size() > 20;
+        }
+
+        @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
+        public final /* bridge */ int size() {
+            return getSize();
+        }
+
+        @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
+        public final /* bridge */ Collection<V> values() {
+            return getValues();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGifPicker.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final List<ModelGif> getSearchResultsLoadingList() {
+            return StoreGifPicker.searchResultsLoadingList;
+        }
+
+        public final List<String> getSearchTermsLoadingList() {
+            return StoreGifPicker.searchTermsLoadingList;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreGifPicker(Dispatcher dispatcher, StoreUserSettingsSystem storeUserSettingsSystem, RestAPI restAPI, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, storeUserSettingsSystem, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ObservationDeckProvider.get() : observationDeck);
+    }
+
+    public final void fetchGifCategories() {
+        this.isFetchingGifCategories = true;
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getTrendingGifCategories("tenor", this.storeUserSettingsSystem.getLocale(), "tinygif"), false, 1, null), (Class<?>) StoreGifPicker.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C59561()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C59572(this));
     }
 
     private final void fetchGifTrendingSearchTerms() {
@@ -888,40 +893,6 @@ public final class StoreGifPicker extends StoreV2 {
         markChanged();
     }
 
-    private final Observable<Map<String, List<ModelGif>>> observeSearchHistory() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59801(), 12, null);
-    }
-
-    private final Observable<Map<String, List<String>>> observeSuggestedSearchTerms() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59811(), 12, null);
-    }
-
-    @StoreThread
-    private final void updateGifCategories(List<ModelGifCategory> categories) {
-        this.gifCategories.clear();
-        this.gifCategories.addAll(categories);
-        markChanged();
-    }
-
-    @StoreThread
-    private final void updateTrendingCategoryGifs(List<ModelGif> gifs) {
-        this.trendingCategoryGifs.clear();
-        this.trendingCategoryGifs.addAll(gifs);
-        markChanged();
-    }
-
-    @StoreThread
-    private final void updateTrendingSearchTerms(List<String> trendingGifSearchTerms) {
-        this.gifTrendingSearchTerms.clear();
-        this.gifTrendingSearchTerms.addAll(trendingGifSearchTerms);
-        markChanged();
-    }
-
-    public final void fetchGifCategories() {
-        this.isFetchingGifCategories = true;
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getTrendingGifCategories("tenor", this.storeUserSettingsSystem.getLocale(), "tinygif"), false, 1, null), (Class<?>) StoreGifPicker.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C59561()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C59572(this));
-    }
-
     public final Observable<List<ModelGifCategory>> observeGifCategories() {
         this.dispatcher.schedule(new C59741());
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59752(), 12, null);
@@ -952,6 +923,14 @@ public final class StoreGifPicker extends StoreV2 {
         return observableM11083G2;
     }
 
+    private final Observable<Map<String, List<ModelGif>>> observeSearchHistory() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59801(), 12, null);
+    }
+
+    private final Observable<Map<String, List<String>>> observeSuggestedSearchTerms() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59811(), 12, null);
+    }
+
     public final Observable<List<ModelGif>> observeTrendingCategoryGifs() {
         this.dispatcher.schedule(new C59841());
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, true, null, null, new C59852(), 12, null);
@@ -969,6 +948,27 @@ public final class StoreGifPicker extends StoreV2 {
         this.gifSearchHistorySnapshot = new HashMap(this.gifSearchHistory);
         this.suggestedSearchTermsSnapshot = new HashMap(this.gifSuggestedSearchTermsHistory);
         this.trendingCategoryGifsSnapshot = new ArrayList(this.trendingCategoryGifs);
+    }
+
+    @StoreThread
+    private final void updateGifCategories(List<ModelGifCategory> categories) {
+        this.gifCategories.clear();
+        this.gifCategories.addAll(categories);
+        markChanged();
+    }
+
+    @StoreThread
+    private final void updateTrendingCategoryGifs(List<ModelGif> gifs) {
+        this.trendingCategoryGifs.clear();
+        this.trendingCategoryGifs.addAll(gifs);
+        markChanged();
+    }
+
+    @StoreThread
+    private final void updateTrendingSearchTerms(List<String> trendingGifSearchTerms) {
+        this.gifTrendingSearchTerms.clear();
+        this.gifTrendingSearchTerms.addAll(trendingGifSearchTerms);
+        markChanged();
     }
 
     public final Observable<List<String>> observeSuggestedSearchTerms(final String query) {

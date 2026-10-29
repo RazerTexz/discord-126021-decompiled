@@ -20,13 +20,13 @@ public final class C12176c implements CoroutineContext, Serializable {
 
     /* JADX INFO: renamed from: d0.w.c$a */
     /* JADX INFO: compiled from: CoroutineContextImpl.kt */
-    public static final class a implements Serializable {
+    public final class a implements Serializable {
         private static final long serialVersionUID = 0;
         private final CoroutineContext[] elements;
 
         /* JADX INFO: renamed from: d0.w.c$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: CoroutineContextImpl.kt */
-        public static final class C13343a {
+        public final class C13343a {
             public C13343a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -52,7 +52,7 @@ public final class C12176c implements CoroutineContext, Serializable {
 
     /* JADX INFO: renamed from: d0.w.c$b */
     /* JADX INFO: compiled from: CoroutineContextImpl.kt */
-    public static final class b extends AbstractC12240o implements Function2<String, CoroutineContext.Element, String> {
+    public final class b extends AbstractC12240o implements Function2<String, CoroutineContext.Element, String> {
 
         /* JADX INFO: renamed from: j */
         public static final b f25234j = new b();
@@ -74,7 +74,7 @@ public final class C12176c implements CoroutineContext, Serializable {
 
     /* JADX INFO: renamed from: d0.w.c$c */
     /* JADX INFO: compiled from: CoroutineContextImpl.kt */
-    public static final class c extends AbstractC12240o implements Function2<Unit, CoroutineContext.Element, Unit> {
+    public final class c extends AbstractC12240o implements Function2<Unit, CoroutineContext.Element, Unit> {
         public final /* synthetic */ CoroutineContext[] $elements;
         public final /* synthetic */ Ref$IntRef $index;
 
@@ -108,35 +108,6 @@ public final class C12176c implements CoroutineContext, Serializable {
         C12238m.checkNotNullParameter(element, "element");
         this.left = coroutineContext;
         this.element = element;
-    }
-
-    private final Object writeReplace() {
-        int iM10083c = m10083c();
-        CoroutineContext[] coroutineContextArr = new CoroutineContext[iM10083c];
-        Ref$IntRef ref$IntRef = new Ref$IntRef();
-        ref$IntRef.element = 0;
-        fold(Unit.f27425a, new c(coroutineContextArr, ref$IntRef));
-        if (ref$IntRef.element == iM10083c) {
-            return new a(coroutineContextArr);
-        }
-        throw new IllegalStateException("Check failed.".toString());
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final int m10083c() {
-        int i = 2;
-        C12176c c12176c = this;
-        while (true) {
-            CoroutineContext coroutineContext = c12176c.left;
-            if (!(coroutineContext instanceof C12176c)) {
-                coroutineContext = null;
-            }
-            c12176c = (C12176c) coroutineContext;
-            if (c12176c == null) {
-                return i;
-            }
-            i++;
-        }
     }
 
     public boolean equals(Object obj) {
@@ -200,6 +171,23 @@ public final class C12176c implements CoroutineContext, Serializable {
         return this.element.hashCode() + this.left.hashCode();
     }
 
+    /* JADX INFO: renamed from: c */
+    public final int m10083c() {
+        int i = 2;
+        C12176c c12176c = this;
+        while (true) {
+            CoroutineContext coroutineContext = c12176c.left;
+            if (!(coroutineContext instanceof C12176c)) {
+                coroutineContext = null;
+            }
+            c12176c = (C12176c) coroutineContext;
+            if (c12176c == null) {
+                return i;
+            }
+            i++;
+        }
+    }
+
     @Override // kotlin.coroutines.CoroutineContext
     public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
         C12238m.checkNotNullParameter(key, "key");
@@ -221,5 +209,17 @@ public final class C12176c implements CoroutineContext, Serializable {
 
     public String toString() {
         return C1643a.m822J(C1643a.m833U("["), (String) fold("", b.f25234j), "]");
+    }
+
+    private final Object writeReplace() {
+        int iM10083c = m10083c();
+        CoroutineContext[] coroutineContextArr = new CoroutineContext[iM10083c];
+        Ref$IntRef ref$IntRef = new Ref$IntRef();
+        ref$IntRef.element = 0;
+        fold(Unit.f27425a, new c(coroutineContextArr, ref$IntRef));
+        if (ref$IntRef.element == iM10083c) {
+            return new a(coroutineContextArr);
+        }
+        throw new IllegalStateException("Check failed.".toString());
     }
 }

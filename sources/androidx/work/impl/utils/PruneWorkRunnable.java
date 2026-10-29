@@ -8,8 +8,8 @@ import androidx.work.impl.WorkManagerImpl;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class PruneWorkRunnable implements Runnable {
-    private final OperationImpl mOperation = new OperationImpl();
     private final WorkManagerImpl mWorkManagerImpl;
+    private final OperationImpl mOperation = new OperationImpl();
 
     public PruneWorkRunnable(WorkManagerImpl workManagerImpl) {
         this.mWorkManagerImpl = workManagerImpl;

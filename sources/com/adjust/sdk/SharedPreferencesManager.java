@@ -26,72 +26,16 @@ public class SharedPreferencesManager {
         this.sharedPreferences = context.getSharedPreferences(PREFS_NAME, 0);
     }
 
+    public synchronized void clear() {
+        this.sharedPreferences.edit().clear().apply();
+    }
+
     private synchronized boolean getBoolean(String str, boolean z2) {
         try {
         } catch (ClassCastException unused) {
             return z2;
         }
         return this.sharedPreferences.getBoolean(str, z2);
-    }
-
-    private synchronized long getLong(String str, long j) {
-        try {
-        } catch (ClassCastException unused) {
-            return j;
-        }
-        return this.sharedPreferences.getLong(str, j);
-    }
-
-    private synchronized int getRawReferrerIndex(String str, long j) {
-        try {
-            JSONArray rawReferrerArray = getRawReferrerArray();
-            for (int i = 0; i < rawReferrerArray.length(); i++) {
-                JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
-                String strOptString = jSONArray.optString(0, null);
-                if (strOptString != null && strOptString.equals(str) && jSONArray.optLong(1, -1L) == j) {
-                    return i;
-                }
-            }
-        } catch (JSONException unused) {
-        }
-        return -1;
-    }
-
-    private synchronized String getString(String str) {
-        try {
-        } catch (ClassCastException unused) {
-            return null;
-        } catch (Throwable unused2) {
-            if (str.equals(PREFS_KEY_RAW_REFERRERS)) {
-                remove(PREFS_KEY_RAW_REFERRERS);
-            }
-            return null;
-        }
-        return this.sharedPreferences.getString(str, null);
-    }
-
-    private synchronized void remove(String str) {
-        this.sharedPreferences.edit().remove(str).apply();
-    }
-
-    private synchronized void saveBoolean(String str, boolean z2) {
-        this.sharedPreferences.edit().putBoolean(str, z2).apply();
-    }
-
-    private synchronized void saveInteger(String str, int i) {
-        this.sharedPreferences.edit().putInt(str, i).apply();
-    }
-
-    private synchronized void saveLong(String str, long j) {
-        this.sharedPreferences.edit().putLong(str, j).apply();
-    }
-
-    private synchronized void saveString(String str, String str2) {
-        this.sharedPreferences.edit().putString(str, str2).apply();
-    }
-
-    public synchronized void clear() {
-        this.sharedPreferences.edit().clear().apply();
     }
 
     public synchronized long getDeeplinkClickTime() {
@@ -112,6 +56,14 @@ public class SharedPreferencesManager {
 
     public synchronized boolean getInstallTracked() {
         return getBoolean(PREFS_KEY_INSTALL_TRACKED, false);
+    }
+
+    private synchronized long getLong(String str, long j) {
+        try {
+        } catch (ClassCastException unused) {
+            return j;
+        }
+        return this.sharedPreferences.getLong(str, j);
     }
 
     public synchronized String getPushToken() {
@@ -147,6 +99,38 @@ public class SharedPreferencesManager {
             }
         }
         return new JSONArray();
+    }
+
+    private synchronized int getRawReferrerIndex(String str, long j) {
+        try {
+            JSONArray rawReferrerArray = getRawReferrerArray();
+            for (int i = 0; i < rawReferrerArray.length(); i++) {
+                JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+                String strOptString = jSONArray.optString(0, null);
+                if (strOptString != null && strOptString.equals(str) && jSONArray.optLong(1, -1L) == j) {
+                    return i;
+                }
+            }
+        } catch (JSONException unused) {
+        }
+        return -1;
+    }
+
+    private synchronized String getString(String str) {
+        try {
+        } catch (ClassCastException unused) {
+            return null;
+        } catch (Throwable unused2) {
+            if (str.equals(PREFS_KEY_RAW_REFERRERS)) {
+                remove(PREFS_KEY_RAW_REFERRERS);
+            }
+            return null;
+        }
+        return this.sharedPreferences.getString(str, null);
+    }
+
+    private synchronized void remove(String str) {
+        this.sharedPreferences.edit().remove(str).apply();
     }
 
     public synchronized void removeDeeplink() {
@@ -188,12 +172,24 @@ public class SharedPreferencesManager {
         }
     }
 
+    private synchronized void saveBoolean(String str, boolean z2) {
+        this.sharedPreferences.edit().putBoolean(str, z2).apply();
+    }
+
     public synchronized void saveDeeplink(Uri uri, long j) {
         if (uri == null) {
             return;
         }
         saveString(PREFS_KEY_DEEPLINK_URL, uri.toString());
         saveLong(PREFS_KEY_DEEPLINK_CLICK_TIME, j);
+    }
+
+    private synchronized void saveInteger(String str, int i) {
+        this.sharedPreferences.edit().putInt(str, i).apply();
+    }
+
+    private synchronized void saveLong(String str, long j) {
+        this.sharedPreferences.edit().putLong(str, j).apply();
     }
 
     public synchronized void savePushToken(String str) {
@@ -225,6 +221,10 @@ public class SharedPreferencesManager {
         } catch (Throwable unused) {
             remove(PREFS_KEY_RAW_REFERRERS);
         }
+    }
+
+    private synchronized void saveString(String str, String str2) {
+        this.sharedPreferences.edit().putString(str, str2).apply();
     }
 
     public synchronized void setDisableThirdPartySharing() {

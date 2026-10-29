@@ -40,7 +40,7 @@ public class FontsContractCompat {
     @Deprecated
     public static final int RESULT_CODE_WRONG_CERTIFICATES = -2;
 
-    public static final class Columns implements BaseColumns {
+    public final class Columns implements BaseColumns {
         public static final String FILE_ID = "file_id";
         public static final String ITALIC = "font_italic";
         public static final String RESULT_CODE = "result_code";
@@ -53,7 +53,7 @@ public class FontsContractCompat {
         public static final String WEIGHT = "font_weight";
     }
 
-    public static class FontFamilyResult {
+    public class FontFamilyResult {
         public static final int STATUS_OK = 0;
         public static final int STATUS_UNEXPECTED_DATA_PROVIDED = 2;
         public static final int STATUS_WRONG_CERTIFICATES = 1;
@@ -80,7 +80,7 @@ public class FontsContractCompat {
         }
     }
 
-    public static class FontInfo {
+    public class FontInfo {
         private final boolean mItalic;
         private final int mResultCode;
         private final int mTtcIndex;
@@ -125,7 +125,7 @@ public class FontsContractCompat {
         }
     }
 
-    public static class FontRequestCallback {
+    public class FontRequestCallback {
         public static final int FAIL_REASON_FONT_LOAD_ERROR = -3;
         public static final int FAIL_REASON_FONT_NOT_FOUND = 1;
         public static final int FAIL_REASON_FONT_UNAVAILABLE = 2;

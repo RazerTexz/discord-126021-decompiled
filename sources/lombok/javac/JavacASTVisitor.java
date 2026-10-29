@@ -10,58 +10,58 @@ import java.lang.reflect.Field;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacASTVisitor.SCL.lombok */
 public interface JavacASTVisitor {
-    void setTrees(Trees trees);
-
-    void visitCompilationUnit(JavacNode javacNode, JCTree.JCCompilationUnit jCCompilationUnit);
-
     void endVisitCompilationUnit(JavacNode javacNode, JCTree.JCCompilationUnit jCCompilationUnit);
-
-    void visitType(JavacNode javacNode, JCTree.JCClassDecl jCClassDecl);
-
-    void visitAnnotationOnType(JCTree.JCClassDecl jCClassDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
-
-    void endVisitType(JavacNode javacNode, JCTree.JCClassDecl jCClassDecl);
-
-    void visitField(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
-
-    void visitAnnotationOnField(JCTree.JCVariableDecl jCVariableDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
 
     void endVisitField(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
 
-    void visitInitializer(JavacNode javacNode, JCTree.JCBlock jCBlock);
-
     void endVisitInitializer(JavacNode javacNode, JCTree.JCBlock jCBlock);
-
-    void visitMethod(JavacNode javacNode, JCTree.JCMethodDecl jCMethodDecl);
-
-    void visitAnnotationOnMethod(JCTree.JCMethodDecl jCMethodDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
-
-    void endVisitMethod(JavacNode javacNode, JCTree.JCMethodDecl jCMethodDecl);
-
-    void visitMethodArgument(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl);
-
-    void visitAnnotationOnMethodArgument(JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
-
-    void endVisitMethodArgument(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl);
-
-    void visitLocal(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
-
-    void visitAnnotationOnLocal(JCTree.JCVariableDecl jCVariableDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
 
     void endVisitLocal(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
 
-    void visitTypeUse(JavacNode javacNode, JCTree jCTree);
+    void endVisitMethod(JavacNode javacNode, JCTree.JCMethodDecl jCMethodDecl);
 
-    void visitAnnotationOnTypeUse(JCTree jCTree, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
-
-    void endVisitTypeUse(JavacNode javacNode, JCTree jCTree);
-
-    void visitStatement(JavacNode javacNode, JCTree jCTree);
+    void endVisitMethodArgument(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl);
 
     void endVisitStatement(JavacNode javacNode, JCTree jCTree);
 
+    void endVisitType(JavacNode javacNode, JCTree.JCClassDecl jCClassDecl);
+
+    void endVisitTypeUse(JavacNode javacNode, JCTree jCTree);
+
+    void setTrees(Trees trees);
+
+    void visitAnnotationOnField(JCTree.JCVariableDecl jCVariableDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitAnnotationOnLocal(JCTree.JCVariableDecl jCVariableDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitAnnotationOnMethod(JCTree.JCMethodDecl jCMethodDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitAnnotationOnMethodArgument(JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitAnnotationOnType(JCTree.JCClassDecl jCClassDecl, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitAnnotationOnTypeUse(JCTree jCTree, JavacNode javacNode, JCTree.JCAnnotation jCAnnotation);
+
+    void visitCompilationUnit(JavacNode javacNode, JCTree.JCCompilationUnit jCCompilationUnit);
+
+    void visitField(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
+
+    void visitInitializer(JavacNode javacNode, JCTree.JCBlock jCBlock);
+
+    void visitLocal(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl);
+
+    void visitMethod(JavacNode javacNode, JCTree.JCMethodDecl jCMethodDecl);
+
+    void visitMethodArgument(JavacNode javacNode, JCTree.JCVariableDecl jCVariableDecl, JCTree.JCMethodDecl jCMethodDecl);
+
+    void visitStatement(JavacNode javacNode, JCTree jCTree);
+
+    void visitType(JavacNode javacNode, JCTree.JCClassDecl jCClassDecl);
+
+    void visitTypeUse(JavacNode javacNode, JCTree jCTree);
+
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacASTVisitor$Printer.SCL.lombok */
-    public static class Printer implements JavacASTVisitor {
+    public class Printer implements JavacASTVisitor {
         private final PrintStream out;
         private final boolean printContent;
         private int disablePrinting;

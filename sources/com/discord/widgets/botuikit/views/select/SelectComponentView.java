@@ -38,7 +38,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: SelectComponentView.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

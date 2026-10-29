@@ -19,6 +19,17 @@ public final /* data */ class LocalAttachment {
         this.displayName = str2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof LocalAttachment)) {
+            return false;
+        }
+        LocalAttachment localAttachment = (LocalAttachment) other;
+        return this.id == localAttachment.id && C12238m.areEqual(this.uriString, localAttachment.uriString) && C12238m.areEqual(this.displayName, localAttachment.displayName);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getDisplayName() {
         return this.displayName;
@@ -32,17 +43,6 @@ public final /* data */ class LocalAttachment {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getUriString() {
         return this.uriString;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof LocalAttachment)) {
-            return false;
-        }
-        LocalAttachment localAttachment = (LocalAttachment) other;
-        return this.id == localAttachment.id && C12238m.areEqual(this.uriString, localAttachment.uriString) && C12238m.areEqual(this.displayName, localAttachment.displayName);
     }
 
     public int hashCode() {

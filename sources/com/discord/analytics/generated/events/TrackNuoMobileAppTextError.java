@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNuoMobileAppTextError.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNuoMobileAppTextError implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence error = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "nuo_mobile_app_text_error";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackNuoMobileAppTextError) && C12238m.areEqual(this.error, ((TrackNuoMobileAppTextError) other).error);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

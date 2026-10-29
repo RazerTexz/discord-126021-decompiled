@@ -33,13 +33,18 @@ public class C11920e1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.e1$a */
     /* JADX INFO: compiled from: TypeUtils.java */
-    public static class a extends AbstractC11967m {
+    public class a extends AbstractC11967m {
 
         /* JADX INFO: renamed from: k */
         public final String f24757k;
 
         public a(String str) {
             this.f24757k = str;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11967m
+        public AbstractC11934j0 getDelegate() {
+            throw new IllegalStateException(this.f24757k);
         }
 
         /* JADX WARN: Code duplicated, block: B:20:0x0030  */
@@ -79,11 +84,6 @@ public class C11920e1 {
                 throw new IllegalArgumentException(str2);
             }
             throw new IllegalStateException(str2);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11967m
-        public AbstractC11934j0 getDelegate() {
-            throw new IllegalStateException(this.f24757k);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11967m, p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11932i1, p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11913c0
@@ -127,6 +127,166 @@ public class C11920e1 {
             m10010a(0);
             throw null;
         }
+    }
+
+    public static boolean acceptsNullable(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(28);
+            throw null;
+        }
+        if (abstractC11913c0.isMarkedNullable()) {
+            return true;
+        }
+        return C12015y.isFlexible(abstractC11913c0) && acceptsNullable(C12015y.asFlexibleType(abstractC11913c0).getUpperBound());
+    }
+
+    public static boolean contains(AbstractC11913c0 abstractC11913c0, Function1<AbstractC11932i1, Boolean> function1) {
+        if (function1 != null) {
+            return m10009b(abstractC11913c0, function1, null);
+        }
+        m10008a(43);
+        throw null;
+    }
+
+    public static AbstractC11913c0 createSubstitutedSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1, C11914c1 c11914c1) {
+        if (abstractC11913c0 == null) {
+            m10008a(20);
+            throw null;
+        }
+        if (abstractC11913c1 == null) {
+            m10008a(21);
+            throw null;
+        }
+        if (c11914c1 == null) {
+            m10008a(22);
+            throw null;
+        }
+        AbstractC11913c0 abstractC11913c0Substitute = c11914c1.substitute(abstractC11913c1, EnumC11935j1.INVARIANT);
+        if (abstractC11913c0Substitute != null) {
+            return makeNullableIfNeeded(abstractC11913c0Substitute, abstractC11913c0.isMarkedNullable());
+        }
+        return null;
+    }
+
+    public static InterfaceC11330e getClassDescriptor(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(30);
+            throw null;
+        }
+        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
+        if (declarationDescriptor instanceof InterfaceC11330e) {
+            return (InterfaceC11330e) declarationDescriptor;
+        }
+        return null;
+    }
+
+    public static List<InterfaceC12012w0> getDefaultTypeProjections(List<InterfaceC11477z0> list) {
+        if (list == null) {
+            m10008a(16);
+            throw null;
+        }
+        ArrayList arrayList = new ArrayList(list.size());
+        Iterator<InterfaceC11477z0> it = list.iterator();
+        while (it.hasNext()) {
+            arrayList.add(new C12016y0(it.next().getDefaultType()));
+        }
+        List<InterfaceC12012w0> list2 = C12163u.toList(arrayList);
+        if (list2 != null) {
+            return list2;
+        }
+        m10008a(17);
+        throw null;
+    }
+
+    public static List<AbstractC11913c0> getImmediateSupertypes(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(18);
+            throw null;
+        }
+        C11914c1 c11914c1Create = C11914c1.create(abstractC11913c0);
+        Collection<AbstractC11913c0> supertypes = abstractC11913c0.getConstructor().getSupertypes();
+        ArrayList arrayList = new ArrayList(supertypes.size());
+        Iterator<AbstractC11913c0> it = supertypes.iterator();
+        while (it.hasNext()) {
+            AbstractC11913c0 abstractC11913c0CreateSubstitutedSupertype = createSubstitutedSupertype(abstractC11913c0, it.next(), c11914c1Create);
+            if (abstractC11913c0CreateSubstitutedSupertype != null) {
+                arrayList.add(abstractC11913c0CreateSubstitutedSupertype);
+            }
+        }
+        return arrayList;
+    }
+
+    public static InterfaceC11477z0 getTypeParameterDescriptorOrNull(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(62);
+            throw null;
+        }
+        if (abstractC11913c0.getConstructor().getDeclarationDescriptor() instanceof InterfaceC11477z0) {
+            return (InterfaceC11477z0) abstractC11913c0.getConstructor().getDeclarationDescriptor();
+        }
+        return null;
+    }
+
+    public static boolean hasNullableSuperType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(29);
+            throw null;
+        }
+        if (abstractC11913c0.getConstructor().getDeclarationDescriptor() instanceof InterfaceC11330e) {
+            return false;
+        }
+        Iterator<AbstractC11913c0> it = getImmediateSupertypes(abstractC11913c0).iterator();
+        while (it.hasNext()) {
+            if (isNullableType(it.next())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDontCarePlaceholder(AbstractC11913c0 abstractC11913c0) {
+        return abstractC11913c0 != null && abstractC11913c0.getConstructor() == f24753a.getConstructor();
+    }
+
+    public static boolean isNullableType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(27);
+            throw null;
+        }
+        if (abstractC11913c0.isMarkedNullable()) {
+            return true;
+        }
+        if (C12015y.isFlexible(abstractC11913c0) && isNullableType(C12015y.asFlexibleType(abstractC11913c0).getUpperBound())) {
+            return true;
+        }
+        if (C11968m0.isDefinitelyNotNullType(abstractC11913c0)) {
+            return false;
+        }
+        if (isTypeParameter(abstractC11913c0)) {
+            return hasNullableSuperType(abstractC11913c0);
+        }
+        InterfaceC12008u0 constructor = abstractC11913c0.getConstructor();
+        if (constructor instanceof C11907a0) {
+            Iterator<AbstractC11913c0> it = constructor.getSupertypes().iterator();
+            while (it.hasNext()) {
+                if (isNullableType(it.next())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean isTypeParameter(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m10008a(59);
+            throw null;
+        }
+        if (getTypeParameterDescriptorOrNull(abstractC11913c0) != null) {
+            return true;
+        }
+        abstractC11913c0.getConstructor();
+        return false;
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0035  */
@@ -450,17 +610,6 @@ public class C11920e1 {
         throw new IllegalStateException(str2);
     }
 
-    public static boolean acceptsNullable(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(28);
-            throw null;
-        }
-        if (abstractC11913c0.isMarkedNullable()) {
-            return true;
-        }
-        return C12015y.isFlexible(abstractC11913c0) && acceptsNullable(C12015y.asFlexibleType(abstractC11913c0).getUpperBound());
-    }
-
     /* JADX INFO: renamed from: b */
     public static boolean m10009b(AbstractC11913c0 abstractC11913c0, Function1<AbstractC11932i1, Boolean> function1, C12042j<AbstractC11913c0> c12042j) {
         if (function1 == null) {
@@ -508,155 +657,6 @@ public class C11920e1 {
                 }
             }
         }
-        return false;
-    }
-
-    public static boolean contains(AbstractC11913c0 abstractC11913c0, Function1<AbstractC11932i1, Boolean> function1) {
-        if (function1 != null) {
-            return m10009b(abstractC11913c0, function1, null);
-        }
-        m10008a(43);
-        throw null;
-    }
-
-    public static AbstractC11913c0 createSubstitutedSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1, C11914c1 c11914c1) {
-        if (abstractC11913c0 == null) {
-            m10008a(20);
-            throw null;
-        }
-        if (abstractC11913c1 == null) {
-            m10008a(21);
-            throw null;
-        }
-        if (c11914c1 == null) {
-            m10008a(22);
-            throw null;
-        }
-        AbstractC11913c0 abstractC11913c0Substitute = c11914c1.substitute(abstractC11913c1, EnumC11935j1.INVARIANT);
-        if (abstractC11913c0Substitute != null) {
-            return makeNullableIfNeeded(abstractC11913c0Substitute, abstractC11913c0.isMarkedNullable());
-        }
-        return null;
-    }
-
-    public static InterfaceC11330e getClassDescriptor(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(30);
-            throw null;
-        }
-        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
-        if (declarationDescriptor instanceof InterfaceC11330e) {
-            return (InterfaceC11330e) declarationDescriptor;
-        }
-        return null;
-    }
-
-    public static List<InterfaceC12012w0> getDefaultTypeProjections(List<InterfaceC11477z0> list) {
-        if (list == null) {
-            m10008a(16);
-            throw null;
-        }
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator<InterfaceC11477z0> it = list.iterator();
-        while (it.hasNext()) {
-            arrayList.add(new C12016y0(it.next().getDefaultType()));
-        }
-        List<InterfaceC12012w0> list2 = C12163u.toList(arrayList);
-        if (list2 != null) {
-            return list2;
-        }
-        m10008a(17);
-        throw null;
-    }
-
-    public static List<AbstractC11913c0> getImmediateSupertypes(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(18);
-            throw null;
-        }
-        C11914c1 c11914c1Create = C11914c1.create(abstractC11913c0);
-        Collection<AbstractC11913c0> supertypes = abstractC11913c0.getConstructor().getSupertypes();
-        ArrayList arrayList = new ArrayList(supertypes.size());
-        Iterator<AbstractC11913c0> it = supertypes.iterator();
-        while (it.hasNext()) {
-            AbstractC11913c0 abstractC11913c0CreateSubstitutedSupertype = createSubstitutedSupertype(abstractC11913c0, it.next(), c11914c1Create);
-            if (abstractC11913c0CreateSubstitutedSupertype != null) {
-                arrayList.add(abstractC11913c0CreateSubstitutedSupertype);
-            }
-        }
-        return arrayList;
-    }
-
-    public static InterfaceC11477z0 getTypeParameterDescriptorOrNull(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(62);
-            throw null;
-        }
-        if (abstractC11913c0.getConstructor().getDeclarationDescriptor() instanceof InterfaceC11477z0) {
-            return (InterfaceC11477z0) abstractC11913c0.getConstructor().getDeclarationDescriptor();
-        }
-        return null;
-    }
-
-    public static boolean hasNullableSuperType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(29);
-            throw null;
-        }
-        if (abstractC11913c0.getConstructor().getDeclarationDescriptor() instanceof InterfaceC11330e) {
-            return false;
-        }
-        Iterator<AbstractC11913c0> it = getImmediateSupertypes(abstractC11913c0).iterator();
-        while (it.hasNext()) {
-            if (isNullableType(it.next())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isDontCarePlaceholder(AbstractC11913c0 abstractC11913c0) {
-        return abstractC11913c0 != null && abstractC11913c0.getConstructor() == f24753a.getConstructor();
-    }
-
-    public static boolean isNullableType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(27);
-            throw null;
-        }
-        if (abstractC11913c0.isMarkedNullable()) {
-            return true;
-        }
-        if (C12015y.isFlexible(abstractC11913c0) && isNullableType(C12015y.asFlexibleType(abstractC11913c0).getUpperBound())) {
-            return true;
-        }
-        if (C11968m0.isDefinitelyNotNullType(abstractC11913c0)) {
-            return false;
-        }
-        if (isTypeParameter(abstractC11913c0)) {
-            return hasNullableSuperType(abstractC11913c0);
-        }
-        InterfaceC12008u0 constructor = abstractC11913c0.getConstructor();
-        if (constructor instanceof C11907a0) {
-            Iterator<AbstractC11913c0> it = constructor.getSupertypes().iterator();
-            while (it.hasNext()) {
-                if (isNullableType(it.next())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static boolean isTypeParameter(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m10008a(59);
-            throw null;
-        }
-        if (getTypeParameterDescriptorOrNull(abstractC11913c0) != null) {
-            return true;
-        }
-        abstractC11913c0.getConstructor();
         return false;
     }
 

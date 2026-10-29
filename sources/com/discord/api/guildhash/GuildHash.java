@@ -9,16 +9,6 @@ public final /* data */ class GuildHash {
     private final String hash;
     private final boolean omitted;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getHash() {
-        return this.hash;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getOmitted() {
-        return this.omitted;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +18,16 @@ public final /* data */ class GuildHash {
         }
         GuildHash guildHash = (GuildHash) other;
         return C12238m.areEqual(this.hash, guildHash.hash) && this.omitted == guildHash.omitted;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getHash() {
+        return this.hash;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getOmitted() {
+        return this.omitted;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

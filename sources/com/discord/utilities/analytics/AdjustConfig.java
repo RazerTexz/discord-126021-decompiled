@@ -21,7 +21,7 @@ public final class AdjustConfig {
     private static final String ADJUST_ENVIRONMENT = "production";
 
     /* JADX INFO: compiled from: AdjustConfig.kt */
-    public static final class AdjustLifecycleListener implements Application.ActivityLifecycleCallbacks {
+    public final class AdjustLifecycleListener implements Application.ActivityLifecycleCallbacks {
         @Override // android.app.Application.ActivityLifecycleCallbacks
         public void onActivityCreated(Activity activity, Bundle bundle) {
             C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
@@ -63,7 +63,7 @@ public final class AdjustConfig {
 
     /* JADX INFO: renamed from: com.discord.utilities.analytics.AdjustConfig$init$3 */
     /* JADX INFO: compiled from: AdjustConfig.kt */
-    public static final class C66673 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C66673 extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ Application $application;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

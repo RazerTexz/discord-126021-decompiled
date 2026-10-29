@@ -10,7 +10,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class MessageResult {
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class AutoModBlock extends MessageResult {
+    public final class AutoModBlock extends MessageResult {
         private final Error error;
         private final Message message;
 
@@ -32,7 +32,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class CaptchaRequired extends MessageResult {
+    public final class CaptchaRequired extends MessageResult {
         private final long channelId;
         private final Error error;
         private final String nonce;
@@ -60,7 +60,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class NetworkFailure extends MessageResult {
+    public final class NetworkFailure extends MessageResult {
         public static final NetworkFailure INSTANCE = new NetworkFailure();
 
         private NetworkFailure() {
@@ -69,7 +69,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class NoValidContent extends MessageResult {
+    public final class NoValidContent extends MessageResult {
         public static final NoValidContent INSTANCE = new NoValidContent();
 
         private NoValidContent() {
@@ -78,7 +78,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class RateLimited extends MessageResult {
+    public final class RateLimited extends MessageResult {
         private final long retryAfterMs;
 
         public RateLimited(long j) {
@@ -92,7 +92,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Slowmode extends MessageResult {
+    public final class Slowmode extends MessageResult {
         private final long cooldownMs;
 
         public Slowmode(long j) {
@@ -106,7 +106,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Success extends MessageResult {
+    public final class Success extends MessageResult {
         private final com.discord.api.message.Message message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -122,7 +122,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Timeout extends MessageResult {
+    public final class Timeout extends MessageResult {
         public static final Timeout INSTANCE = new Timeout();
 
         private Timeout() {
@@ -131,7 +131,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class UnknownFailure extends MessageResult {
+    public final class UnknownFailure extends MessageResult {
         private final Error error;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -147,7 +147,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class UserCancelled extends MessageResult {
+    public final class UserCancelled extends MessageResult {
         public static final UserCancelled INSTANCE = new UserCancelled();
 
         private UserCancelled() {
@@ -156,7 +156,7 @@ public abstract class MessageResult {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class ValidationError extends MessageResult {
+    public final class ValidationError extends MessageResult {
         private final String message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -46,11 +46,15 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetFeedbackSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFeedbackSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFeedbackSheetBinding;", 0)};
     public static final String ARG_CALL_FEEDBACK_CONFIG = "ARG_CONFIG";
     public static final String ARG_FEEDBACK_TYPE = "ARG_FEEDBACK_TYPE";
     public static final String ARG_GUILD_DELETE_FEEDBACK_GUILD_ID = "ARG_GUILD_DELETE_FEEDBACK_GUILD_ID";
     public static final String ARG_STREAM_FEEDBACK_MEDIA_SESSION_ID = "ARG_STREAM_FEEDBACK_MEDIA_SESSION_ID";
     public static final String ARG_STREAM_FEEDBACK_STREAM_KEY = "ARG_STREAM_FEEDBACK_STREAM_KEY ";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final long SHEET_DISMISS_DELAY_MS = 600;
     private static final long SHEET_EXPAND_DELAY_MS = 100;
 
@@ -67,13 +71,166 @@ public final class WidgetFeedbackSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModelStreamFeedbackSheet$delegate, reason: from kotlin metadata */
     private final Lazy viewModelStreamFeedbackSheet;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFeedbackSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFeedbackSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$bindSubscriptions$1 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final /* synthetic */ class C83121 extends C12236k implements Function1<FeedbackSheetViewModel.ViewState, Unit> {
+        public C83121(WidgetFeedbackSheet widgetFeedbackSheet) {
+            super(1, widgetFeedbackSheet, WidgetFeedbackSheet.class, "updateView", "updateView(Lcom/discord/widgets/feedback/FeedbackSheetViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FeedbackSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FeedbackSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetFeedbackSheet) this.receiver).updateView(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$bindSubscriptions$2 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final /* synthetic */ class C83132 extends C12236k implements Function1<FeedbackSheetViewModel.Event, Unit> {
+        public C83132(WidgetFeedbackSheet widgetFeedbackSheet) {
+            super(1, widgetFeedbackSheet, WidgetFeedbackSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/feedback/FeedbackSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FeedbackSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FeedbackSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetFeedbackSheet) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$handleEvent$1 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83141 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C83141() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            C0876m.m171i(WidgetFeedbackSheet.this, C5419R.string.call_feedback_confirmation, 0, 4);
+            WidgetFeedbackSheet.this.requireDialog().cancel();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$2 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83162 extends AbstractC12240o implements Function0<Unit> {
+        public C83162() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.BAD);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$3 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83173 extends AbstractC12240o implements Function0<Unit> {
+        public C83173() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.NEUTRAL);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$4 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83184 extends AbstractC12240o implements Function0<Unit> {
+        public C83184() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.GOOD);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$5 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83195 extends AbstractC12240o implements Function1<FeedbackIssue, Unit> {
+        public C83195() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FeedbackIssue feedbackIssue) {
+            invoke2(feedbackIssue);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FeedbackIssue feedbackIssue) {
+            C12238m.checkNotNullParameter(feedbackIssue, "issue");
+            WidgetFeedbackSheet.this.getViewModel().selectIssue(feedbackIssue, WidgetFeedbackSheet.this.getString(feedbackIssue.getReasonStringRes()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$6 */
+    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
+    public final class C83206 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C83206() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            WidgetFeedbackSheet.this.isShowingFeedbackIssues = true;
+            WidgetFeedbackSheet.this.setBottomSheetState(3);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -111,163 +268,6 @@ public final class WidgetFeedbackSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final /* synthetic */ class C83121 extends C12236k implements Function1<FeedbackSheetViewModel.ViewState, Unit> {
-        public C83121(WidgetFeedbackSheet widgetFeedbackSheet) {
-            super(1, widgetFeedbackSheet, WidgetFeedbackSheet.class, "updateView", "updateView(Lcom/discord/widgets/feedback/FeedbackSheetViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FeedbackSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FeedbackSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetFeedbackSheet) this.receiver).updateView(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$bindSubscriptions$2 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final /* synthetic */ class C83132 extends C12236k implements Function1<FeedbackSheetViewModel.Event, Unit> {
-        public C83132(WidgetFeedbackSheet widgetFeedbackSheet) {
-            super(1, widgetFeedbackSheet, WidgetFeedbackSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/feedback/FeedbackSheetViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FeedbackSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FeedbackSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetFeedbackSheet) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$handleEvent$1 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83141 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C83141() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            C0876m.m171i(WidgetFeedbackSheet.this, C5419R.string.call_feedback_confirmation, 0, 4);
-            WidgetFeedbackSheet.this.requireDialog().cancel();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$2 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83162 extends AbstractC12240o implements Function0<Unit> {
-        public C83162() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.BAD);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$3 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83173 extends AbstractC12240o implements Function0<Unit> {
-        public C83173() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.NEUTRAL);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$4 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83184 extends AbstractC12240o implements Function0<Unit> {
-        public C83184() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetFeedbackSheet.this.getViewModel().selectRating(FeedbackRating.GOOD);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$5 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83195 extends AbstractC12240o implements Function1<FeedbackIssue, Unit> {
-        public C83195() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FeedbackIssue feedbackIssue) {
-            invoke2(feedbackIssue);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FeedbackIssue feedbackIssue) {
-            C12238m.checkNotNullParameter(feedbackIssue, "issue");
-            WidgetFeedbackSheet.this.getViewModel().selectIssue(feedbackIssue, WidgetFeedbackSheet.this.getString(feedbackIssue.getReasonStringRes()));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.feedback.WidgetFeedbackSheet$updateView$6 */
-    /* JADX INFO: compiled from: WidgetFeedbackSheet.kt */
-    public static final class C83206 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C83206() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            WidgetFeedbackSheet.this.isShowingFeedbackIssues = true;
-            WidgetFeedbackSheet.this.setBottomSheetState(3);
-        }
-    }
-
     public WidgetFeedbackSheet() {
         super(false, 1, null);
         this.onDismissed = WidgetFeedbackSheet$onDismissed$1.INSTANCE;
@@ -283,8 +283,25 @@ public final class WidgetFeedbackSheet extends AppBottomSheet {
         this.viewModelGuildDeleteFeedbackSheet = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(GuildDeleteFeedbackSheetViewModel.class), new WidgetFeedbackSheet$appViewModels$$inlined$viewModels$3(c0865g2), new C0869i0(widgetFeedbackSheet$viewModelGuildDeleteFeedbackSheet$2));
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetFeedbackSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83121(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetFeedbackSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83132(this));
+    }
+
     private final WidgetFeedbackSheetBinding getBinding() {
         return (WidgetFeedbackSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_feedback_sheet;
+    }
+
+    public final Function0<Unit> getOnDismissed() {
+        return this.onDismissed;
     }
 
     private final FeedbackSheetViewModel getViewModel() {
@@ -336,6 +353,30 @@ public final class WidgetFeedbackSheet extends AppBottomSheet {
         }
     }
 
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
+    public void onCancel(DialogInterface dialog) {
+        C12238m.checkNotNullParameter(dialog, "dialog");
+        super.onCancel(dialog);
+        this.onDismissed.invoke();
+    }
+
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        requireDialog().setCanceledOnTouchOutside(true);
+        getBinding().f16624b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.feedback.WidgetFeedbackSheet.onResume.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                WidgetFeedbackSheet.this.getViewModel().submitForm();
+            }
+        });
+    }
+
+    public final void setOnDismissed(Function0<Unit> function0) {
+        C12238m.checkNotNullParameter(function0, "<set-?>");
+        this.onDismissed = function0;
+    }
+
     private final void updateView(FeedbackSheetViewModel.ViewState viewState) {
         boolean z2 = !this.isShowingFeedbackIssues && (viewState.getFeedbackIssues().isEmpty() ^ true);
         if (z2) {
@@ -362,46 +403,5 @@ public final class WidgetFeedbackSheet extends AppBottomSheet {
             C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n          .ti…S, TimeUnit.MILLISECONDS)");
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetFeedbackSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83206());
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetFeedbackSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83121(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetFeedbackSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83132(this));
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_feedback_sheet;
-    }
-
-    public final Function0<Unit> getOnDismissed() {
-        return this.onDismissed;
-    }
-
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
-    public void onCancel(DialogInterface dialog) {
-        C12238m.checkNotNullParameter(dialog, "dialog");
-        super.onCancel(dialog);
-        this.onDismissed.invoke();
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        requireDialog().setCanceledOnTouchOutside(true);
-        getBinding().f16624b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.feedback.WidgetFeedbackSheet.onResume.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetFeedbackSheet.this.getViewModel().submitForm();
-            }
-        });
-    }
-
-    public final void setOnDismissed(Function0<Unit> function0) {
-        C12238m.checkNotNullParameter(function0, "<set-?>");
-        this.onDismissed = function0;
     }
 }

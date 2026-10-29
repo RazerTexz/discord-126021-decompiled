@@ -17,32 +17,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImpressionSoundboardPopout.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImpressionSoundboardPopout implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackImpressionMetadataReceiver, TrackLocationMetadataReceiver, TrackChannelReceiver {
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence source = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence source = null;
     private final transient String analyticsSchemaTypeName = "impression_soundboard_popout";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,11 +37,29 @@ public final /* data */ class TrackImpressionSoundboardPopout implements Analyti
         return C12238m.areEqual(this.mediaSessionId, trackImpressionSoundboardPopout.mediaSessionId) && C12238m.areEqual(this.source, trackImpressionSoundboardPopout.source);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.mediaSessionId;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
         CharSequence charSequence2 = this.source;
         return iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

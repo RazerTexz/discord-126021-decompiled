@@ -37,7 +37,7 @@ public class PeerConnectionFactory {
     @Nullable
     private volatile ThreadInfo workerThread;
 
-    public static class Builder {
+    public class Builder {
         private AudioDecoderFactoryFactory audioDecoderFactoryFactory;
 
         @Nullable
@@ -160,7 +160,7 @@ public class PeerConnectionFactory {
         }
     }
 
-    public static class InitializationOptions {
+    public class InitializationOptions {
         public final Context applicationContext;
         public final boolean enableInternalTracer;
         public final String fieldTrials;
@@ -173,7 +173,11 @@ public class PeerConnectionFactory {
         public final NativeLibraryLoader nativeLibraryLoader;
         public final String nativeLibraryName;
 
-        public static class Builder {
+        public static Builder builder(Context context) {
+            return new Builder(context);
+        }
+
+        public class Builder {
             private final Context applicationContext;
             private boolean enableInternalTracer;
 
@@ -221,10 +225,6 @@ public class PeerConnectionFactory {
             }
         }
 
-        public static Builder builder(Context context) {
-            return new Builder(context);
-        }
-
         private InitializationOptions(Context context, String str, boolean z2, NativeLibraryLoader nativeLibraryLoader, String str2, @Nullable Loggable loggable, @Nullable Logging.Severity severity) {
             this.applicationContext = context;
             this.fieldTrials = str;
@@ -236,7 +236,7 @@ public class PeerConnectionFactory {
         }
     }
 
-    public static class Options {
+    public class Options {
         public static final int ADAPTER_TYPE_ANY = 32;
         public static final int ADAPTER_TYPE_CELLULAR = 4;
         public static final int ADAPTER_TYPE_ETHERNET = 1;
@@ -264,7 +264,7 @@ public class PeerConnectionFactory {
         }
     }
 
-    public static class ThreadInfo {
+    public class ThreadInfo {
         public final Thread thread;
         public final int tid;
 
@@ -303,8 +303,72 @@ public class PeerConnectionFactory {
         }
     }
 
+    public AudioSource createAudioSource(MediaConstraints mediaConstraints) {
+        checkPeerConnectionFactoryExists();
+        return new AudioSource(nativeCreateAudioSource(this.nativeFactory, mediaConstraints));
+    }
+
+    public AudioTrack createAudioTrack(String str, AudioSource audioSource) {
+        checkPeerConnectionFactoryExists();
+        return new AudioTrack(nativeCreateAudioTrack(this.nativeFactory, str, audioSource.getNativeAudioSource()));
+    }
+
+    public MediaStream createLocalMediaStream(String str) {
+        checkPeerConnectionFactoryExists();
+        return new MediaStream(nativeCreateLocalMediaStream(this.nativeFactory, str));
+    }
+
+    @Nullable
+    @Deprecated
+    public PeerConnection createPeerConnection(PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, PeerConnection.Observer observer) {
+        return createPeerConnectionInternal(rTCConfiguration, mediaConstraints, observer, null);
+    }
+
+    @Nullable
+    public PeerConnection createPeerConnectionInternal(PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, PeerConnection.Observer observer, SSLCertificateVerifier sSLCertificateVerifier) {
+        checkPeerConnectionFactoryExists();
+        long jCreateNativePeerConnectionObserver = PeerConnection.createNativePeerConnectionObserver(observer);
+        if (jCreateNativePeerConnectionObserver == 0) {
+            return null;
+        }
+        long jNativeCreatePeerConnection = nativeCreatePeerConnection(this.nativeFactory, rTCConfiguration, mediaConstraints, jCreateNativePeerConnectionObserver, sSLCertificateVerifier);
+        if (jNativeCreatePeerConnection == 0) {
+            return null;
+        }
+        return new PeerConnection(jNativeCreatePeerConnection);
+    }
+
+    public VideoSource createVideoSource(boolean z2, boolean z3) {
+        checkPeerConnectionFactoryExists();
+        return new VideoSource(nativeCreateVideoSource(this.nativeFactory, z2, z3));
+    }
+
+    public VideoTrack createVideoTrack(String str, VideoSource videoSource) {
+        checkPeerConnectionFactoryExists();
+        return new VideoTrack(nativeCreateVideoTrack(this.nativeFactory, str, videoSource.getNativeVideoTrackSource()));
+    }
+
+    public void dispose() {
+        checkPeerConnectionFactoryExists();
+        nativeFreeFactory(this.nativeFactory);
+        this.networkThread = null;
+        this.workerThread = null;
+        this.signalingThread = null;
+        this.nativeFactory = 0L;
+    }
+
     public static String fieldTrialsFindFullName(String str) {
         return NativeLibrary.isLoaded() ? nativeFindFieldTrialsFullName(str) : "";
+    }
+
+    public long getNativeOwnedFactoryAndThreads() {
+        checkPeerConnectionFactoryExists();
+        return this.nativeFactory;
+    }
+
+    public long getNativePeerConnectionFactory() {
+        checkPeerConnectionFactoryExists();
+        return nativeGetNativePeerConnectionFactory(this.nativeFactory);
     }
 
     public static void initialize(InitializationOptions initializationOptions) {
@@ -401,6 +465,15 @@ public class PeerConnectionFactory {
         Logging.m11027d(TAG, "onWorkerThreadReady");
     }
 
+    public void printInternalStackTraces(boolean z2) {
+        printStackTrace(this.signalingThread, z2);
+        printStackTrace(this.workerThread, z2);
+        printStackTrace(this.networkThread, z2);
+        if (z2) {
+            nativePrintStackTracesOfRegisteredThreads();
+        }
+    }
+
     private static void printStackTrace(@Nullable ThreadInfo threadInfo, boolean z2) {
         if (threadInfo == null) {
             return;
@@ -432,95 +505,22 @@ public class PeerConnectionFactory {
         nativeShutdownInternalTracer();
     }
 
-    public static boolean startInternalTracingCapture(String str) {
-        return nativeStartInternalTracingCapture(str);
-    }
-
-    public static void stopInternalTracingCapture() {
-        nativeStopInternalTracingCapture();
-    }
-
-    public AudioSource createAudioSource(MediaConstraints mediaConstraints) {
-        checkPeerConnectionFactoryExists();
-        return new AudioSource(nativeCreateAudioSource(this.nativeFactory, mediaConstraints));
-    }
-
-    public AudioTrack createAudioTrack(String str, AudioSource audioSource) {
-        checkPeerConnectionFactoryExists();
-        return new AudioTrack(nativeCreateAudioTrack(this.nativeFactory, str, audioSource.getNativeAudioSource()));
-    }
-
-    public MediaStream createLocalMediaStream(String str) {
-        checkPeerConnectionFactoryExists();
-        return new MediaStream(nativeCreateLocalMediaStream(this.nativeFactory, str));
-    }
-
-    @Nullable
-    @Deprecated
-    public PeerConnection createPeerConnection(PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, PeerConnection.Observer observer) {
-        return createPeerConnectionInternal(rTCConfiguration, mediaConstraints, observer, null);
-    }
-
-    @Nullable
-    public PeerConnection createPeerConnectionInternal(PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, PeerConnection.Observer observer, SSLCertificateVerifier sSLCertificateVerifier) {
-        checkPeerConnectionFactoryExists();
-        long jCreateNativePeerConnectionObserver = PeerConnection.createNativePeerConnectionObserver(observer);
-        if (jCreateNativePeerConnectionObserver == 0) {
-            return null;
-        }
-        long jNativeCreatePeerConnection = nativeCreatePeerConnection(this.nativeFactory, rTCConfiguration, mediaConstraints, jCreateNativePeerConnectionObserver, sSLCertificateVerifier);
-        if (jNativeCreatePeerConnection == 0) {
-            return null;
-        }
-        return new PeerConnection(jNativeCreatePeerConnection);
-    }
-
-    public VideoSource createVideoSource(boolean z2, boolean z3) {
-        checkPeerConnectionFactoryExists();
-        return new VideoSource(nativeCreateVideoSource(this.nativeFactory, z2, z3));
-    }
-
-    public VideoTrack createVideoTrack(String str, VideoSource videoSource) {
-        checkPeerConnectionFactoryExists();
-        return new VideoTrack(nativeCreateVideoTrack(this.nativeFactory, str, videoSource.getNativeVideoTrackSource()));
-    }
-
-    public void dispose() {
-        checkPeerConnectionFactoryExists();
-        nativeFreeFactory(this.nativeFactory);
-        this.networkThread = null;
-        this.workerThread = null;
-        this.signalingThread = null;
-        this.nativeFactory = 0L;
-    }
-
-    public long getNativeOwnedFactoryAndThreads() {
-        checkPeerConnectionFactoryExists();
-        return this.nativeFactory;
-    }
-
-    public long getNativePeerConnectionFactory() {
-        checkPeerConnectionFactoryExists();
-        return nativeGetNativePeerConnectionFactory(this.nativeFactory);
-    }
-
-    public void printInternalStackTraces(boolean z2) {
-        printStackTrace(this.signalingThread, z2);
-        printStackTrace(this.workerThread, z2);
-        printStackTrace(this.networkThread, z2);
-        if (z2) {
-            nativePrintStackTracesOfRegisteredThreads();
-        }
-    }
-
     public boolean startAecDump(int i, int i2) {
         checkPeerConnectionFactoryExists();
         return nativeStartAecDump(this.nativeFactory, i, i2);
     }
 
+    public static boolean startInternalTracingCapture(String str) {
+        return nativeStartInternalTracingCapture(str);
+    }
+
     public void stopAecDump() {
         checkPeerConnectionFactoryExists();
         nativeStopAecDump(this.nativeFactory);
+    }
+
+    public static void stopInternalTracingCapture() {
+        nativeStopInternalTracingCapture();
     }
 
     @Nullable

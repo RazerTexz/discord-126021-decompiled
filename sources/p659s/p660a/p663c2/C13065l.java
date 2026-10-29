@@ -25,7 +25,7 @@ public final class C13065l {
     /* JADX INFO: renamed from: s.a.c2.l$a */
     /* JADX INFO: compiled from: Produce.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.channels.ProduceKt", m10085f = "Produce.kt", m10086l = {157}, m10087m = "awaitClose")
-    public static final class a extends AbstractC12187d {
+    public final class a extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public int label;
@@ -45,7 +45,7 @@ public final class C13065l {
 
     /* JADX INFO: renamed from: s.a.c2.l$b */
     /* JADX INFO: compiled from: Produce.kt */
-    public static final class b extends AbstractC12240o implements Function1<Throwable, Unit> {
+    public final class b extends AbstractC12240o implements Function1<Throwable, Unit> {
         public final /* synthetic */ CancellableContinuation $cont;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -66,7 +66,7 @@ public final class C13065l {
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX INFO: renamed from: a */
-    public static final Object m11236a(ProducerScope<?> producerScope, Function0<Unit> function0, Continuation<? super Unit> continuation) {
+    public static final Object m11236a(ProducerScope<?> producerScope, Function0<Unit> function0, Continuation<? super Unit> continuation) throws Throwable {
         a aVar;
         if (continuation instanceof a) {
             aVar = (a) continuation;

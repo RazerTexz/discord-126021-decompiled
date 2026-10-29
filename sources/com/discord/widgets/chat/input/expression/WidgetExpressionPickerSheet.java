@@ -17,17 +17,6 @@ public abstract class WidgetExpressionPickerSheet extends AppBottomSheet {
         super(false, 1, null);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void setOnCancel$default(WidgetExpressionPickerSheet widgetExpressionPickerSheet, Function0 function0, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setOnCancel");
-        }
-        if ((i & 1) != 0) {
-            function0 = null;
-        }
-        widgetExpressionPickerSheet.setOnCancel(function0);
-    }
-
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialog) {
         C12238m.checkNotNullParameter(dialog, "dialog");
@@ -43,6 +32,17 @@ public abstract class WidgetExpressionPickerSheet extends AppBottomSheet {
         C12238m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         setBottomSheetCollapsedStateDisabled();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void setOnCancel$default(WidgetExpressionPickerSheet widgetExpressionPickerSheet, Function0 function0, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setOnCancel");
+        }
+        if ((i & 1) != 0) {
+            function0 = null;
+        }
+        widgetExpressionPickerSheet.setOnCancel(function0);
     }
 
     public final void setOnCancel(Function0<Unit> onCancel) {

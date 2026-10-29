@@ -43,26 +43,6 @@ public final /* data */ class ApplicationCommandAutocompletable extends Autocomp
         return applicationCommandAutocompletable.copy(application, applicationCommand, z2, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ApplicationCommand getCommand() {
-        return this.command;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getHasPermissionToUse() {
-        return this.hasPermissionToUse;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getShowAvatar() {
-        return this.showAvatar;
-    }
-
     public final ApplicationCommandAutocompletable copy(Application application, ApplicationCommand command, boolean hasPermissionToUse, boolean showAvatar) {
         C12238m.checkNotNullParameter(command, "command");
         return new ApplicationCommandAutocompletable(application, command, hasPermissionToUse, showAvatar);
@@ -79,12 +59,27 @@ public final /* data */ class ApplicationCommandAutocompletable extends Autocomp
         return C12238m.areEqual(this.application, applicationCommandAutocompletable.application) && C12238m.areEqual(this.command, applicationCommandAutocompletable.command) && this.hasPermissionToUse == applicationCommandAutocompletable.hasPermissionToUse && this.showAvatar == applicationCommandAutocompletable.showAvatar;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Application getApplication() {
         return this.application;
     }
 
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final ApplicationCommand getCommand() {
         return this.command;
+    }
+
+    public final ApplicationCommand getCommand() {
+        return this.command;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getHasPermissionToUse() {
+        return this.hasPermissionToUse;
     }
 
     public final boolean getHasPermissionToUse() {
@@ -99,6 +94,11 @@ public final /* data */ class ApplicationCommandAutocompletable extends Autocomp
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
         return this.textMatchers;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getShowAvatar() {
+        return this.showAvatar;
     }
 
     public final boolean getShowAvatar() {

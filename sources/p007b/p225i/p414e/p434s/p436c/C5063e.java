@@ -30,7 +30,7 @@ public class C5063e {
 
     /* JADX INFO: renamed from: b.i.e.s.c.e$b */
     /* JADX INFO: compiled from: FinderPatternFinder.java */
-    public static final class b implements Serializable, Comparator<C5062d> {
+    public final class b implements Serializable, Comparator<C5062d> {
         private final float average;
 
         public b(float f, a aVar) {
@@ -48,7 +48,7 @@ public class C5063e {
 
     /* JADX INFO: renamed from: b.i.e.s.c.e$c */
     /* JADX INFO: compiled from: FinderPatternFinder.java */
-    public static final class c implements Serializable, Comparator<C5062d> {
+    public final class c implements Serializable, Comparator<C5062d> {
         private final float average;
 
         public c(float f, a aVar) {

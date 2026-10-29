@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentSourceAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentSourceId = null;
-    private final Long paymentSourceType = null;
-    private final Long paymentGateway = null;
     private final CharSequence cardBrand = null;
     private final Long cardExpirationDate = null;
-    private final CharSequence paymentSourceCountry = null;
     private final Boolean isDefault = null;
+    private final Long paymentGateway = null;
+    private final CharSequence paymentSourceCountry = null;
+    private final Long paymentSourceId = null;
+    private final Long paymentSourceType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "payment_source_added";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
         }
         TrackPaymentSourceAdded trackPaymentSourceAdded = (TrackPaymentSourceAdded) other;
         return C12238m.areEqual(this.paymentSourceId, trackPaymentSourceAdded.paymentSourceId) && C12238m.areEqual(this.paymentSourceType, trackPaymentSourceAdded.paymentSourceType) && C12238m.areEqual(this.paymentGateway, trackPaymentSourceAdded.paymentGateway) && C12238m.areEqual(this.cardBrand, trackPaymentSourceAdded.cardBrand) && C12238m.areEqual(this.cardExpirationDate, trackPaymentSourceAdded.cardExpirationDate) && C12238m.areEqual(this.paymentSourceCountry, trackPaymentSourceAdded.paymentSourceCountry) && C12238m.areEqual(this.isDefault, trackPaymentSourceAdded.isDefault);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

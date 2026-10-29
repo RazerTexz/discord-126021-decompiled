@@ -17,6 +17,18 @@ public final /* data */ class ActionRowMessageComponent extends LayoutMessageCom
         this(componentType, (i2 & 2) != 0 ? 0 : i, list);
     }
 
+    public final ComponentType component1() {
+        return getType();
+    }
+
+    public final int component2() {
+        return getIndex();
+    }
+
+    public final List<MessageComponent> component3() {
+        return this.components;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ActionRowMessageComponent copy$default(ActionRowMessageComponent actionRowMessageComponent, ComponentType componentType, int i, List list, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -29,18 +41,6 @@ public final /* data */ class ActionRowMessageComponent extends LayoutMessageCom
             list = actionRowMessageComponent.components;
         }
         return actionRowMessageComponent.copy(componentType, i, list);
-    }
-
-    public final ComponentType component1() {
-        return getType();
-    }
-
-    public final int component2() {
-        return getIndex();
-    }
-
-    public final List<MessageComponent> component3() {
-        return this.components;
     }
 
     public final ActionRowMessageComponent copy(ComponentType type, int index, List<? extends MessageComponent> components) {

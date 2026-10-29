@@ -10,12 +10,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: DurationUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class MillisecondsFormatter {
-    public static final MillisecondsFormatter INSTANCE = new MillisecondsFormatter();
     private static final long MS_IN_DAY = 86400000;
     private static final long MS_IN_HOUR = 3600000;
     private static final long MS_IN_MINUTE = 60000;
     private static final long MS_IN_MONTH = 2592000000L;
     private static final long MS_IN_WEEK = 604800000;
+    public static final MillisecondsFormatter INSTANCE = new MillisecondsFormatter();
 
     private MillisecondsFormatter() {
     }

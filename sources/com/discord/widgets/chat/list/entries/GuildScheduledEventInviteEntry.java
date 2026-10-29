@@ -42,21 +42,6 @@ public final /* data */ class GuildScheduledEventInviteEntry extends ChatListEnt
         return guildScheduledEventInviteEntry.copy(modelInvite, str, guildScheduledEvent);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelInvite getInvite() {
-        return this.invite;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getInviteCode() {
-        return this.inviteCode;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final GuildScheduledEvent getGuildScheduledEvent() {
-        return this.guildScheduledEvent;
-    }
-
     public final GuildScheduledEventInviteEntry copy(ModelInvite invite, String inviteCode, GuildScheduledEvent guildScheduledEvent) {
         C12238m.checkNotNullParameter(invite, "invite");
         C12238m.checkNotNullParameter(inviteCode, "inviteCode");
@@ -75,12 +60,27 @@ public final /* data */ class GuildScheduledEventInviteEntry extends ChatListEnt
         return C12238m.areEqual(this.invite, guildScheduledEventInviteEntry.invite) && C12238m.areEqual(this.inviteCode, guildScheduledEventInviteEntry.inviteCode) && C12238m.areEqual(this.guildScheduledEvent, guildScheduledEventInviteEntry.guildScheduledEvent);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final GuildScheduledEvent getGuildScheduledEvent() {
         return this.guildScheduledEvent;
     }
 
+    public final GuildScheduledEvent getGuildScheduledEvent() {
+        return this.guildScheduledEvent;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final ModelInvite getInvite() {
         return this.invite;
+    }
+
+    public final ModelInvite getInvite() {
+        return this.invite;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getInviteCode() {
+        return this.inviteCode;
     }
 
     public final String getInviteCode() {

@@ -11,34 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRolePageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
-    private TrackBase trackBase;
-    private TrackGuild trackGuild;
-    private final CharSequence tabOpened = null;
     private final Boolean isEveryone = null;
+    private final Boolean roleHoist = null;
     private final Long roleId = null;
     private final Boolean roleMentionable = null;
-    private final Boolean roleHoist = null;
-    private final Long rolePermissions = null;
     private final Long roleNumMembers = null;
+    private final Long rolePermissions = null;
+    private final CharSequence tabOpened = null;
+    private TrackBase trackBase;
+    private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_page_viewed";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -49,6 +31,18 @@ public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, Tr
         }
         TrackRolePageViewed trackRolePageViewed = (TrackRolePageViewed) other;
         return C12238m.areEqual(this.tabOpened, trackRolePageViewed.tabOpened) && C12238m.areEqual(this.isEveryone, trackRolePageViewed.isEveryone) && C12238m.areEqual(this.roleId, trackRolePageViewed.roleId) && C12238m.areEqual(this.roleMentionable, trackRolePageViewed.roleMentionable) && C12238m.areEqual(this.roleHoist, trackRolePageViewed.roleHoist) && C12238m.areEqual(this.rolePermissions, trackRolePageViewed.rolePermissions) && C12238m.areEqual(this.roleNumMembers, trackRolePageViewed.roleNumMembers);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -66,6 +60,12 @@ public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, Tr
         int iHashCode6 = (iHashCode5 + (l2 != null ? l2.hashCode() : 0)) * 31;
         Long l3 = this.roleNumMembers;
         return iHashCode6 + (l3 != null ? l3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

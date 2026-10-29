@@ -22,12 +22,12 @@ public final class C4883u {
     /* JADX INFO: renamed from: c */
     public final String f13043c;
 
+    /* JADX INFO: renamed from: e */
+    public final Executor f13045e;
+
     /* JADX INFO: renamed from: d */
     @GuardedBy("internalQueue")
     public final ArrayDeque<String> f13044d = new ArrayDeque<>();
-
-    /* JADX INFO: renamed from: e */
-    public final Executor f13045e;
 
     public C4883u(SharedPreferences sharedPreferences, String str, String str2, Executor executor) {
         this.f13041a = sharedPreferences;

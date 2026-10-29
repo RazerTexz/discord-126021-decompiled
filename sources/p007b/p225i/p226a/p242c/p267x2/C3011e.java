@@ -45,6 +45,53 @@ public final class C3011e implements InterfaceC3041i {
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
+    public long getPosition() {
+        return this.f8117d;
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final void m3653p(int i) {
+        if (i != -1) {
+            this.f8117d += (long) i;
+        }
+    }
+
+    /* JADX INFO: renamed from: q */
+    public final void m3654q(int i) {
+        int i2 = this.f8119f + i;
+        byte[] bArr = this.f8118e;
+        if (i2 > bArr.length) {
+            this.f8118e = Arrays.copyOf(this.f8118e, C2738e0.m3000h(bArr.length * 2, 65536 + i2, i2 + 524288));
+        }
+    }
+
+    /* JADX INFO: renamed from: r */
+    public final int m3655r(byte[] bArr, int i, int i2, int i3, boolean z2) throws IOException {
+        if (Thread.interrupted()) {
+            throw new InterruptedIOException();
+        }
+        int i4 = this.f8115b.read(bArr, i + i3, i2 - i3);
+        if (i4 != -1) {
+            return i3 + i4;
+        }
+        if (i3 == 0 && z2) {
+            return -1;
+        }
+        throw new EOFException();
+    }
+
+    /* JADX INFO: renamed from: s */
+    public final void m3656s(int i) {
+        int i2 = this.f8120g - i;
+        this.f8120g = i2;
+        this.f8119f = 0;
+        byte[] bArr = this.f8118e;
+        byte[] bArr2 = i2 < bArr.length - 524288 ? new byte[65536 + i2] : bArr;
+        System.arraycopy(bArr, i, bArr2, 0, i2);
+        this.f8118e = bArr2;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
     /* JADX INFO: renamed from: b */
     public long mo3642b() {
         return this.f8116c;
@@ -90,11 +137,6 @@ public final class C3011e implements InterfaceC3041i {
     /* JADX INFO: renamed from: g */
     public void mo3646g(int i) throws IOException {
         mo3651m(i, false);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
-    public long getPosition() {
-        return this.f8117d;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
@@ -172,37 +214,6 @@ public final class C3011e implements InterfaceC3041i {
         mo3644e(bArr, i, i2, false);
     }
 
-    /* JADX INFO: renamed from: p */
-    public final void m3653p(int i) {
-        if (i != -1) {
-            this.f8117d += (long) i;
-        }
-    }
-
-    /* JADX INFO: renamed from: q */
-    public final void m3654q(int i) {
-        int i2 = this.f8119f + i;
-        byte[] bArr = this.f8118e;
-        if (i2 > bArr.length) {
-            this.f8118e = Arrays.copyOf(this.f8118e, C2738e0.m3000h(bArr.length * 2, 65536 + i2, i2 + 524288));
-        }
-    }
-
-    /* JADX INFO: renamed from: r */
-    public final int m3655r(byte[] bArr, int i, int i2, int i3, boolean z2) throws IOException {
-        if (Thread.interrupted()) {
-            throw new InterruptedIOException();
-        }
-        int i4 = this.f8115b.read(bArr, i + i3, i2 - i3);
-        if (i4 != -1) {
-            return i3 + i4;
-        }
-        if (i3 == 0 && z2) {
-            return -1;
-        }
-        throw new EOFException();
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i, p007b.p225i.p226a.p242c.p257e3.InterfaceC2706h
     public int read(byte[] bArr, int i, int i2) throws IOException {
         int i3 = this.f8120g;
@@ -223,16 +234,5 @@ public final class C3011e implements InterfaceC3041i {
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i
     public void readFully(byte[] bArr, int i, int i2) throws IOException {
         mo3643c(bArr, i, i2, false);
-    }
-
-    /* JADX INFO: renamed from: s */
-    public final void m3656s(int i) {
-        int i2 = this.f8120g - i;
-        this.f8120g = i2;
-        this.f8119f = 0;
-        byte[] bArr = this.f8118e;
-        byte[] bArr2 = i2 < bArr.length - 524288 ? new byte[65536 + i2] : bArr;
-        System.arraycopy(bArr, i, bArr2, 0, i2);
-        this.f8118e = bArr2;
     }
 }

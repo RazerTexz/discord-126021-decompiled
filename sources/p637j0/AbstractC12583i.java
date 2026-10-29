@@ -11,16 +11,16 @@ public abstract class AbstractC12583i<T> implements Subscription {
     /* JADX INFO: renamed from: j */
     public final SubscriptionList f26697j = new SubscriptionList();
 
+    @Override // p658rx.Subscription
+    public final boolean isUnsubscribed() {
+        return this.f26697j.f27645k;
+    }
+
     /* JADX INFO: renamed from: a */
     public abstract void m10735a(Throwable th);
 
     /* JADX INFO: renamed from: b */
     public abstract void m10736b(T t);
-
-    @Override // p658rx.Subscription
-    public final boolean isUnsubscribed() {
-        return this.f26697j.f27645k;
-    }
 
     @Override // p658rx.Subscription
     public final void unsubscribe() {

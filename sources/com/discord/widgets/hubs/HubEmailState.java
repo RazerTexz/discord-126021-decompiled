@@ -34,6 +34,10 @@ public final /* data */ class HubEmailState {
         this.hasMultipleDomains = C12083g.lazy(new HubEmailState$hasMultipleDomains$2(this));
     }
 
+    public final RestCallState<EmailVerification> component4() {
+        return this.verifyEmailAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubEmailState copy$default(HubEmailState hubEmailState, String str, Long l, HubWaitlistResult hubWaitlistResult, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -49,25 +53,6 @@ public final /* data */ class HubEmailState {
             restCallState = hubEmailState.verifyEmailAsync;
         }
         return hubEmailState.copy(str, l, hubWaitlistResult, restCallState);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getSelectedGuildId() {
-        return this.selectedGuildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final HubWaitlistResult getWaitlistResult() {
-        return this.waitlistResult;
-    }
-
-    public final RestCallState<EmailVerification> component4() {
-        return this.verifyEmailAsync;
     }
 
     public final HubEmailState copy(String email, Long selectedGuildId, HubWaitlistResult waitlistResult, RestCallState<EmailVerification> verifyEmailAsync) {
@@ -86,6 +71,11 @@ public final /* data */ class HubEmailState {
         return C12238m.areEqual(this.email, hubEmailState.email) && C12238m.areEqual(this.selectedGuildId, hubEmailState.selectedGuildId) && C12238m.areEqual(this.waitlistResult, hubEmailState.waitlistResult) && C12238m.areEqual(this.verifyEmailAsync, hubEmailState.verifyEmailAsync);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getEmail() {
+        return this.email;
+    }
+
     public final String getEmail() {
         return this.email;
     }
@@ -94,12 +84,22 @@ public final /* data */ class HubEmailState {
         return ((Boolean) this.hasMultipleDomains.getValue()).booleanValue();
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Long getSelectedGuildId() {
+        return this.selectedGuildId;
+    }
+
     public final Long getSelectedGuildId() {
         return this.selectedGuildId;
     }
 
     public final RestCallState<EmailVerification> getVerifyEmailAsync() {
         return this.verifyEmailAsync;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final HubWaitlistResult getWaitlistResult() {
+        return this.waitlistResult;
     }
 
     public final HubWaitlistResult getWaitlistResult() {

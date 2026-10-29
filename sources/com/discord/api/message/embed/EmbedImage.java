@@ -11,6 +11,17 @@ public final /* data */ class EmbedImage {
     private final String url;
     private final Integer width;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbedImage)) {
+            return false;
+        }
+        EmbedImage embedImage = (EmbedImage) other;
+        return C12238m.areEqual(this.url, embedImage.url) && C12238m.areEqual(this.proxyUrl, embedImage.proxyUrl) && C12238m.areEqual(this.width, embedImage.width) && C12238m.areEqual(this.height, embedImage.height);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Integer getHeight() {
         return this.height;
@@ -29,17 +40,6 @@ public final /* data */ class EmbedImage {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final Integer getWidth() {
         return this.width;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbedImage)) {
-            return false;
-        }
-        EmbedImage embedImage = (EmbedImage) other;
-        return C12238m.areEqual(this.url, embedImage.url) && C12238m.areEqual(this.proxyUrl, embedImage.proxyUrl) && C12238m.areEqual(this.width, embedImage.width) && C12238m.areEqual(this.height, embedImage.height);
     }
 
     public int hashCode() {

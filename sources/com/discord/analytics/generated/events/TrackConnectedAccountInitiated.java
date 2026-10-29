@@ -18,22 +18,17 @@ public final /* data */ class TrackConnectedAccountInitiated implements Analytic
         this.analyticsSchemaTypeName = "connected_account_initiated";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7510e(TrackBase trackBase) {
-        this.trackBase = trackBase;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackConnectedAccountInitiated) && C12238m.areEqual(this.platformType, ((TrackConnectedAccountInitiated) other).platformType);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {
@@ -42,6 +37,11 @@ public final /* data */ class TrackConnectedAccountInitiated implements Analytic
             return charSequence.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7510e(TrackBase trackBase) {
+        this.trackBase = trackBase;
     }
 
     public String toString() {

@@ -66,7 +66,7 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerificationViewModel$1 */
     /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static final class C95651 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C95651 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C95651() {
             super(1);
         }
@@ -84,8 +84,58 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerificationViewModel$applyToJoinGuild$3 */
     /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static final class Companion {
+    public final class C95663 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C95663() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetMemberVerificationViewModel.this.handleGuildUpdateError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerificationViewModel$applyToJoinGuild$4 */
+    /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
+    public final class C95674 extends AbstractC12240o implements Function1<ModelMemberVerificationFormResponse, Unit> {
+        public final /* synthetic */ ViewState.Loaded $currentViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C95674(ViewState.Loaded loaded) {
+            super(1);
+            this.$currentViewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelMemberVerificationFormResponse modelMemberVerificationFormResponse) {
+            invoke2(modelMemberVerificationFormResponse);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelMemberVerificationFormResponse modelMemberVerificationFormResponse) {
+            C12238m.checkNotNullParameter(modelMemberVerificationFormResponse, "it");
+            WidgetMemberVerificationViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, false, false, false, null, false, null, null, null, null, false, false, false, null, 8189, null));
+            PublishSubject publishSubject = WidgetMemberVerificationViewModel.this.eventSubject;
+            Guild guild = this.$currentViewState.getGuild();
+            Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
+            Guild guild2 = this.$currentViewState.getGuild();
+            publishSubject.f27650k.onNext((T) new Event.Success(lValueOf, guild2 != null ? guild2.getName() : null, modelMemberVerificationFormResponse.getApplicationStatus(), modelMemberVerificationFormResponse.getLastSeen()));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -119,10 +169,10 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-        public static final class Error extends Event {
+        public final class Error extends Event {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -131,7 +181,7 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-        public static final /* data */ class Success extends Event {
+        public final /* data */ class Success extends Event {
             private final ApplicationStatus applicationStatus;
             private final Long guildId;
             private final String guildName;
@@ -163,26 +213,6 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return success.copy(l, str, applicationStatus, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final ApplicationStatus getApplicationStatus() {
-                return this.applicationStatus;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getLastSeen() {
-                return this.lastSeen;
-            }
-
             public final Success copy(Long guildId, String guildName, ApplicationStatus applicationStatus, String lastSeen) {
                 C12238m.checkNotNullParameter(applicationStatus, "applicationStatus");
                 return new Success(guildId, guildName, applicationStatus, lastSeen);
@@ -199,16 +229,36 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return C12238m.areEqual(this.guildId, success.guildId) && C12238m.areEqual(this.guildName, success.guildName) && C12238m.areEqual(this.applicationStatus, success.applicationStatus) && C12238m.areEqual(this.lastSeen, success.lastSeen);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final ApplicationStatus getApplicationStatus() {
                 return this.applicationStatus;
+            }
+
+            public final ApplicationStatus getApplicationStatus() {
+                return this.applicationStatus;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Long getGuildId() {
+                return this.guildId;
             }
 
             public final Long getGuildId() {
                 return this.guildId;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getGuildName() {
                 return this.guildName;
+            }
+
+            public final String getGuildName() {
+                return this.guildName;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getLastSeen() {
+                return this.lastSeen;
             }
 
             public final String getLastSeen() {
@@ -247,7 +297,7 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean allowAnimatedEmojis;
         private final Map<Long, String> channels;
         private final Guild guild;
@@ -265,6 +315,14 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
             this.channels = map;
             this.roles = map2;
             this.allowAnimatedEmojis = z2;
+        }
+
+        public final Map<Long, String> component4() {
+            return this.channels;
+        }
+
+        public final Map<Long, GuildRole> component5() {
+            return this.roles;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -294,34 +352,6 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
             return storeState.copy(meUser, guild2, memberVerificationFormData2, map3, map4, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreGuildMemberVerificationForm.MemberVerificationFormData getMemberVerificationFormData() {
-            return this.memberVerificationFormData;
-        }
-
-        public final Map<Long, String> component4() {
-            return this.channels;
-        }
-
-        public final Map<Long, GuildRole> component5() {
-            return this.roles;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getAllowAnimatedEmojis() {
-            return this.allowAnimatedEmojis;
-        }
-
         public final StoreState copy(MeUser me2, Guild guild, StoreGuildMemberVerificationForm.MemberVerificationFormData memberVerificationFormData, Map<Long, String> channels, Map<Long, GuildRole> roles, boolean allowAnimatedEmojis) {
             C12238m.checkNotNullParameter(me2, "me");
             C12238m.checkNotNullParameter(channels, "channels");
@@ -340,6 +370,11 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
             return C12238m.areEqual(this.me, storeState.me) && C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.memberVerificationFormData, storeState.memberVerificationFormData) && C12238m.areEqual(this.channels, storeState.channels) && C12238m.areEqual(this.roles, storeState.roles) && this.allowAnimatedEmojis == storeState.allowAnimatedEmojis;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getAllowAnimatedEmojis() {
+            return this.allowAnimatedEmojis;
+        }
+
         public final boolean getAllowAnimatedEmojis() {
             return this.allowAnimatedEmojis;
         }
@@ -348,12 +383,27 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
             return this.channels;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
         }
 
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMe() {
             return this.me;
+        }
+
+        public final MeUser getMe() {
+            return this.me;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreGuildMemberVerificationForm.MemberVerificationFormData getMemberVerificationFormData() {
+            return this.memberVerificationFormData;
         }
 
         public final StoreGuildMemberVerificationForm.MemberVerificationFormData getMemberVerificationFormData() {
@@ -411,10 +461,10 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -423,7 +473,7 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean allowAnimatedEmojis;
             private final Map<Long, String> channelNames;
             private final boolean disabled;
@@ -460,63 +510,8 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 this.guild = guild;
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, boolean z2, boolean z3, boolean z4, VerificationType verificationType, boolean z5, List list, ModelMemberVerificationForm modelMemberVerificationForm, Map map, Map map2, boolean z6, boolean z7, boolean z8, Guild guild, int i, Object obj) {
-                return loaded.copy((i & 1) != 0 ? loaded.isRulesListVisible : z2, (i & 2) != 0 ? loaded.submitting : z3, (i & 4) != 0 ? loaded.disabled : z4, (i & 8) != 0 ? loaded.verificationType : verificationType, (i & 16) != 0 ? loaded.needsAdditionalVerification : z5, (i & 32) != 0 ? loaded.formItems : list, (i & 64) != 0 ? loaded.form : modelMemberVerificationForm, (i & 128) != 0 ? loaded.channelNames : map, (i & 256) != 0 ? loaded.roles : map2, (i & 512) != 0 ? loaded.allowAnimatedEmojis : z6, (i & 1024) != 0 ? loaded.isFormValid : z7, (i & 2048) != 0 ? loaded.isTermsApproved : z8, (i & 4096) != 0 ? loaded.guild : guild);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsRulesListVisible() {
-                return this.isRulesListVisible;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getAllowAnimatedEmojis() {
-                return this.allowAnimatedEmojis;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getIsFormValid() {
-                return this.isFormValid;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getIsTermsApproved() {
-                return this.isTermsApproved;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getSubmitting() {
-                return this.submitting;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getDisabled() {
-                return this.disabled;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final VerificationType getVerificationType() {
-                return this.verificationType;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getNeedsAdditionalVerification() {
-                return this.needsAdditionalVerification;
-            }
-
             public final List<MemberVerificationItem> component6() {
                 return this.formItems;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final ModelMemberVerificationForm getForm() {
-                return this.form;
             }
 
             public final Map<Long, String> component8() {
@@ -525,6 +520,11 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
 
             public final Map<Long, GuildRole> component9() {
                 return this.roles;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, boolean z2, boolean z3, boolean z4, VerificationType verificationType, boolean z5, List list, ModelMemberVerificationForm modelMemberVerificationForm, Map map, Map map2, boolean z6, boolean z7, boolean z8, Guild guild, int i, Object obj) {
+                return loaded.copy((i & 1) != 0 ? loaded.isRulesListVisible : z2, (i & 2) != 0 ? loaded.submitting : z3, (i & 4) != 0 ? loaded.disabled : z4, (i & 8) != 0 ? loaded.verificationType : verificationType, (i & 16) != 0 ? loaded.needsAdditionalVerification : z5, (i & 32) != 0 ? loaded.formItems : list, (i & 64) != 0 ? loaded.form : modelMemberVerificationForm, (i & 128) != 0 ? loaded.channelNames : map, (i & 256) != 0 ? loaded.roles : map2, (i & 512) != 0 ? loaded.allowAnimatedEmojis : z6, (i & 1024) != 0 ? loaded.isFormValid : z7, (i & 2048) != 0 ? loaded.isTermsApproved : z8, (i & 4096) != 0 ? loaded.guild : guild);
             }
 
             public final Loaded copy(boolean isRulesListVisible, boolean submitting, boolean disabled, VerificationType verificationType, boolean needsAdditionalVerification, List<? extends MemberVerificationItem> formItems, ModelMemberVerificationForm form, Map<Long, String> channelNames, Map<Long, GuildRole> roles, boolean allowAnimatedEmojis, boolean isFormValid, boolean isTermsApproved, Guild guild) {
@@ -545,6 +545,11 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return this.isRulesListVisible == loaded.isRulesListVisible && this.submitting == loaded.submitting && this.disabled == loaded.disabled && C12238m.areEqual(this.verificationType, loaded.verificationType) && this.needsAdditionalVerification == loaded.needsAdditionalVerification && C12238m.areEqual(this.formItems, loaded.formItems) && C12238m.areEqual(this.form, loaded.form) && C12238m.areEqual(this.channelNames, loaded.channelNames) && C12238m.areEqual(this.roles, loaded.roles) && this.allowAnimatedEmojis == loaded.allowAnimatedEmojis && this.isFormValid == loaded.isFormValid && this.isTermsApproved == loaded.isTermsApproved && C12238m.areEqual(this.guild, loaded.guild);
             }
 
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getAllowAnimatedEmojis() {
+                return this.allowAnimatedEmojis;
+            }
+
             public final boolean getAllowAnimatedEmojis() {
                 return this.allowAnimatedEmojis;
             }
@@ -553,8 +558,18 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return this.channelNames;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final boolean getDisabled() {
                 return this.disabled;
+            }
+
+            public final boolean getDisabled() {
+                return this.disabled;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final ModelMemberVerificationForm getForm() {
+                return this.form;
             }
 
             public final ModelMemberVerificationForm getForm() {
@@ -565,8 +580,33 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return this.formItems;
             }
 
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final Guild getGuild() {
                 return this.guild;
+            }
+
+            public final Guild getGuild() {
+                return this.guild;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final boolean getIsFormValid() {
+                return this.isFormValid;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsRulesListVisible() {
+                return this.isRulesListVisible;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final boolean getIsTermsApproved() {
+                return this.isTermsApproved;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getNeedsAdditionalVerification() {
+                return this.needsAdditionalVerification;
             }
 
             public final boolean getNeedsAdditionalVerification() {
@@ -577,8 +617,18 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
                 return this.roles;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getSubmitting() {
                 return this.submitting;
+            }
+
+            public final boolean getSubmitting() {
+                return this.submitting;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final VerificationType getVerificationType() {
+                return this.verificationType;
             }
 
             public final VerificationType getVerificationType() {
@@ -708,7 +758,7 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -745,60 +795,48 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerificationViewModel$applyToJoinGuild$3 */
-    /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static final class C95663 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C95663() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetMemberVerificationViewModel.this.handleGuildUpdateError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerificationViewModel$applyToJoinGuild$4 */
-    /* JADX INFO: compiled from: WidgetMemberVerificationViewModel.kt */
-    public static final class C95674 extends AbstractC12240o implements Function1<ModelMemberVerificationFormResponse, Unit> {
-        public final /* synthetic */ ViewState.Loaded $currentViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C95674(ViewState.Loaded loaded) {
-            super(1);
-            this.$currentViewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelMemberVerificationFormResponse modelMemberVerificationFormResponse) {
-            invoke2(modelMemberVerificationFormResponse);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelMemberVerificationFormResponse modelMemberVerificationFormResponse) {
-            C12238m.checkNotNullParameter(modelMemberVerificationFormResponse, "it");
-            WidgetMemberVerificationViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$currentViewState, false, false, false, null, false, null, null, null, null, false, false, false, null, 8189, null));
-            PublishSubject publishSubject = WidgetMemberVerificationViewModel.this.eventSubject;
-            Guild guild = this.$currentViewState.getGuild();
-            Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
-            Guild guild2 = this.$currentViewState.getGuild();
-            publishSubject.f27650k.onNext((T) new Event.Success(lValueOf, guild2 != null ? guild2.getName() : null, modelMemberVerificationFormResponse.getApplicationStatus(), modelMemberVerificationFormResponse.getLastSeen()));
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetMemberVerificationViewModel(long j, String str, Guild guild, StoreGuildMemberVerificationForm storeGuildMemberVerificationForm, RestAPI restAPI, Parser parser, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Guild guild2 = (i & 4) != 0 ? null : guild;
         this(j, str, guild2, (i & 8) != 0 ? StoreStream.INSTANCE.getMemberVerificationForms() : storeGuildMemberVerificationForm, (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 32) != 0 ? DiscordParser.createParser$default(false, true, false, false, false, 28, null) : parser, (i & 64) != 0 ? INSTANCE.observeStores(j, guild2) : observable);
+    }
+
+    public final void applyToJoinGuild() {
+        List<ModelMemberVerificationForm.FormField> listEmptyList;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateViewState(ViewState.Loaded.copy$default(loaded, false, true, false, null, false, null, null, null, null, false, false, false, null, 8189, null));
+            ModelMemberVerificationForm form = loaded.getForm();
+            if (form == null || (listEmptyList = form.getFormFields()) == null) {
+                listEmptyList = C12147n.emptyList();
+            }
+            for (Map.Entry<Integer, Object> entry : this.formUserInputDataMap.entrySet()) {
+                int iIntValue = entry.getKey().intValue();
+                Object value = entry.getValue();
+                if (value != null) {
+                    listEmptyList.get(iIntValue).setResponse(value);
+                }
+            }
+            int i = 0;
+            for (Object obj : listEmptyList) {
+                int i2 = i + 1;
+                if (i < 0) {
+                    C12147n.throwIndexOverflow();
+                }
+                if (((ModelMemberVerificationForm.FormField) obj).getMemberVerificationFieldType() == ModelMemberVerificationForm.MemberVerificationFieldType.TERMS) {
+                    listEmptyList.get(i).setResponse(Boolean.valueOf(loaded.isTermsApproved()));
+                }
+                i = i2;
+            }
+            RestAPI restAPI = this.restAPI;
+            long j = this.guildId;
+            ModelMemberVerificationForm form2 = loaded.getForm();
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(restAPI.createGuildJoinRequest(j, new RestAPIParams.MemberVerificationForm(listEmptyList, form2 != null ? form2.getVersion() : null)), false, 1, null), this, null, 2, null), (Class<?>) WidgetMemberVerificationViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C95663()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95674(loaded));
+        }
     }
 
     private final List<MemberVerificationItem> createFormItems(List<ModelMemberVerificationForm.FormField> formFields, boolean isTermsApproved, Map<Long, String> channelNames, Map<Long, GuildRole> roles, boolean allowAnimatedEmojis) {
@@ -974,44 +1012,6 @@ public final class WidgetMemberVerificationViewModel extends AbstractC0859d0<Vie
             }
         }
         return !z3;
-    }
-
-    public final void applyToJoinGuild() {
-        List<ModelMemberVerificationForm.FormField> listEmptyList;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            updateViewState(ViewState.Loaded.copy$default(loaded, false, true, false, null, false, null, null, null, null, false, false, false, null, 8189, null));
-            ModelMemberVerificationForm form = loaded.getForm();
-            if (form == null || (listEmptyList = form.getFormFields()) == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            for (Map.Entry<Integer, Object> entry : this.formUserInputDataMap.entrySet()) {
-                int iIntValue = entry.getKey().intValue();
-                Object value = entry.getValue();
-                if (value != null) {
-                    listEmptyList.get(iIntValue).setResponse(value);
-                }
-            }
-            int i = 0;
-            for (Object obj : listEmptyList) {
-                int i2 = i + 1;
-                if (i < 0) {
-                    C12147n.throwIndexOverflow();
-                }
-                if (((ModelMemberVerificationForm.FormField) obj).getMemberVerificationFieldType() == ModelMemberVerificationForm.MemberVerificationFieldType.TERMS) {
-                    listEmptyList.get(i).setResponse(Boolean.valueOf(loaded.isTermsApproved()));
-                }
-                i = i2;
-            }
-            RestAPI restAPI = this.restAPI;
-            long j = this.guildId;
-            ModelMemberVerificationForm form2 = loaded.getForm();
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(restAPI.createGuildJoinRequest(j, new RestAPIParams.MemberVerificationForm(listEmptyList, form2 != null ? form2.getVersion() : null)), false, 1, null), this, null, 2, null), (Class<?>) WidgetMemberVerificationViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C95663()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95674(loaded));
-        }
     }
 
     public final Observable<Event> observeEvents() {

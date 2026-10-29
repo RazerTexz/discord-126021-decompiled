@@ -44,6 +44,315 @@ public class C11787e {
         new C11713b("kotlin.jvm.JvmName");
     }
 
+    public static boolean areInSameModule(InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2) {
+        if (interfaceC11450m == null) {
+            m9923a(14);
+            throw null;
+        }
+        if (interfaceC11450m2 != null) {
+            return getContainingModule(interfaceC11450m).equals(getContainingModule(interfaceC11450m2));
+        }
+        m9923a(15);
+        throw null;
+    }
+
+    public static <D extends InterfaceC11318a> Set<D> getAllOverriddenDescriptors(D d) {
+        if (d == null) {
+            m9923a(66);
+            throw null;
+        }
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        m9924b(d.getOriginal(), linkedHashSet);
+        return linkedHashSet;
+    }
+
+    public static InterfaceC11330e getClassDescriptorForType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return getClassDescriptorForTypeConstructor(abstractC11913c0.getConstructor());
+        }
+        m9923a(43);
+        throw null;
+    }
+
+    public static InterfaceC11330e getClassDescriptorForTypeConstructor(InterfaceC12008u0 interfaceC12008u0) {
+        if (interfaceC12008u0 == null) {
+            m9923a(44);
+            throw null;
+        }
+        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) interfaceC12008u0.getDeclarationDescriptor();
+        if (interfaceC11330e != null) {
+            return interfaceC11330e;
+        }
+        m9923a(45);
+        throw null;
+    }
+
+    public static InterfaceC11325c0 getContainingModule(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9923a(19);
+            throw null;
+        }
+        InterfaceC11325c0 containingModuleOrNull = getContainingModuleOrNull(interfaceC11450m);
+        if (containingModuleOrNull != null) {
+            return containingModuleOrNull;
+        }
+        m9923a(20);
+        throw null;
+    }
+
+    public static InterfaceC11325c0 getContainingModuleOrNull(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m9923a(18);
+            throw null;
+        }
+        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
+        if (declarationDescriptor == null) {
+            return null;
+        }
+        return getContainingModuleOrNull(declarationDescriptor);
+    }
+
+    public static InterfaceC11469v0 getContainingSourceFile(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9923a(77);
+            throw null;
+        }
+        if (interfaceC11450m instanceof InterfaceC11457p0) {
+            interfaceC11450m = ((InterfaceC11457p0) interfaceC11450m).getCorrespondingProperty();
+        }
+        if (!(interfaceC11450m instanceof InterfaceC11456p)) {
+            return InterfaceC11469v0.f23100a;
+        }
+        InterfaceC11469v0 containingFile = ((InterfaceC11456p) interfaceC11450m).getSource().getContainingFile();
+        if (containingFile != null) {
+            return containingFile;
+        }
+        m9923a(78);
+        throw null;
+    }
+
+    public static AbstractC11466u getDefaultConstructorVisibility(InterfaceC11330e interfaceC11330e, boolean z2) {
+        if (interfaceC11330e == null) {
+            m9923a(46);
+            throw null;
+        }
+        EnumC11333f kind = interfaceC11330e.getKind();
+        if (kind == EnumC11333f.ENUM_CLASS || kind.isSingleton()) {
+            AbstractC11466u abstractC11466u = C11464t.f23083a;
+            if (abstractC11466u != null) {
+                return abstractC11466u;
+            }
+            m9923a(47);
+            throw null;
+        }
+        if (isSealedClass(interfaceC11330e)) {
+            if (z2) {
+                AbstractC11466u abstractC11466u2 = C11464t.f23086d;
+                if (abstractC11466u2 != null) {
+                    return abstractC11466u2;
+                }
+                m9923a(48);
+                throw null;
+            }
+            AbstractC11466u abstractC11466u3 = C11464t.f23083a;
+            if (abstractC11466u3 != null) {
+                return abstractC11466u3;
+            }
+            m9923a(49);
+            throw null;
+        }
+        if (isAnonymousObject(interfaceC11330e)) {
+            AbstractC11466u abstractC11466u4 = C11464t.f23093k;
+            if (abstractC11466u4 != null) {
+                return abstractC11466u4;
+            }
+            m9923a(50);
+            throw null;
+        }
+        AbstractC11466u abstractC11466u5 = C11464t.f23087e;
+        if (abstractC11466u5 != null) {
+            return abstractC11466u5;
+        }
+        m9923a(51);
+        throw null;
+    }
+
+    public static InterfaceC11459q0 getDispatchReceiverParameterIfNeeded(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9923a(0);
+            throw null;
+        }
+        if (interfaceC11450m instanceof InterfaceC11330e) {
+            return ((InterfaceC11330e) interfaceC11450m).getThisAsReceiverParameter();
+        }
+        return null;
+    }
+
+    public static C11714c getFqName(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m != null) {
+            C11713b c11713bM9925c = m9925c(interfaceC11450m);
+            return c11713bM9925c != null ? c11713bM9925c.toUnsafe() : m9926d(interfaceC11450m);
+        }
+        m9923a(2);
+        throw null;
+    }
+
+    public static C11713b getFqNameSafe(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9923a(3);
+            throw null;
+        }
+        C11713b c11713bM9925c = m9925c(interfaceC11450m);
+        if (c11713bM9925c == null) {
+            c11713bM9925c = m9926d(interfaceC11450m).toSafe();
+        }
+        if (c11713bM9925c != null) {
+            return c11713bM9925c;
+        }
+        m9923a(4);
+        throw null;
+    }
+
+    public static <D extends InterfaceC11450m> D getParentOfType(InterfaceC11450m interfaceC11450m, Class<D> cls) {
+        if (cls != null) {
+            return (D) getParentOfType(interfaceC11450m, cls, true);
+        }
+        m9923a(16);
+        throw null;
+    }
+
+    public static InterfaceC11330e getSuperClassDescriptor(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e == null) {
+            m9923a(42);
+            throw null;
+        }
+        Iterator<AbstractC11913c0> it = interfaceC11330e.getTypeConstructor().getSupertypes().iterator();
+        while (it.hasNext()) {
+            InterfaceC11330e classDescriptorForType = getClassDescriptorForType(it.next());
+            if (classDescriptorForType.getKind() != EnumC11333f.INTERFACE) {
+                return classDescriptorForType;
+            }
+        }
+        return null;
+    }
+
+    public static boolean isAnnotationClass(InterfaceC11450m interfaceC11450m) {
+        return m9927e(interfaceC11450m, EnumC11333f.ANNOTATION_CLASS);
+    }
+
+    public static boolean isAnonymousObject(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m != null) {
+            return isClass(interfaceC11450m) && interfaceC11450m.getName().equals(C11718g.f24092a);
+        }
+        m9923a(32);
+        throw null;
+    }
+
+    public static boolean isClass(InterfaceC11450m interfaceC11450m) {
+        return m9927e(interfaceC11450m, EnumC11333f.CLASS);
+    }
+
+    public static boolean isClassOrEnumClass(InterfaceC11450m interfaceC11450m) {
+        return isClass(interfaceC11450m) || isEnumClass(interfaceC11450m);
+    }
+
+    public static boolean isCompanionObject(InterfaceC11450m interfaceC11450m) {
+        return m9927e(interfaceC11450m, EnumC11333f.OBJECT) && ((InterfaceC11330e) interfaceC11450m).isCompanionObject();
+    }
+
+    public static boolean isDescriptorWithLocalVisibility(InterfaceC11450m interfaceC11450m) {
+        return (interfaceC11450m instanceof InterfaceC11458q) && ((InterfaceC11458q) interfaceC11450m).getVisibility() == C11464t.f23088f;
+    }
+
+    public static boolean isDirectSubclass(InterfaceC11330e interfaceC11330e, InterfaceC11330e interfaceC11330e2) {
+        if (interfaceC11330e == null) {
+            m9923a(24);
+            throw null;
+        }
+        if (interfaceC11330e2 == null) {
+            m9923a(25);
+            throw null;
+        }
+        Iterator<AbstractC11913c0> it = interfaceC11330e.getTypeConstructor().getSupertypes().iterator();
+        while (it.hasNext()) {
+            if (m9928f(it.next(), interfaceC11330e2.getOriginal())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isEnumClass(InterfaceC11450m interfaceC11450m) {
+        return m9927e(interfaceC11450m, EnumC11333f.ENUM_CLASS);
+    }
+
+    public static boolean isEnumEntry(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m != null) {
+            return m9927e(interfaceC11450m, EnumC11333f.ENUM_ENTRY);
+        }
+        m9923a(34);
+        throw null;
+    }
+
+    public static boolean isInterface(InterfaceC11450m interfaceC11450m) {
+        return m9927e(interfaceC11450m, EnumC11333f.INTERFACE);
+    }
+
+    public static boolean isLocal(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9923a(1);
+            throw null;
+        }
+        while (interfaceC11450m != null) {
+            if (isAnonymousObject(interfaceC11450m) || isDescriptorWithLocalVisibility(interfaceC11450m)) {
+                return true;
+            }
+            interfaceC11450m = interfaceC11450m.getContainingDeclaration();
+        }
+        return false;
+    }
+
+    public static boolean isSealedClass(InterfaceC11450m interfaceC11450m) {
+        return (m9927e(interfaceC11450m, EnumC11333f.CLASS) || m9927e(interfaceC11450m, EnumC11333f.INTERFACE)) && ((InterfaceC11330e) interfaceC11450m).getModality() == EnumC11476z.SEALED;
+    }
+
+    public static boolean isSubclass(InterfaceC11330e interfaceC11330e, InterfaceC11330e interfaceC11330e2) {
+        if (interfaceC11330e == null) {
+            m9923a(26);
+            throw null;
+        }
+        if (interfaceC11330e2 != null) {
+            return isSubtypeOfClass(interfaceC11330e.getDefaultType(), interfaceC11330e2.getOriginal());
+        }
+        m9923a(27);
+        throw null;
+    }
+
+    public static boolean isSubtypeOfClass(AbstractC11913c0 abstractC11913c0, InterfaceC11450m interfaceC11450m) {
+        if (abstractC11913c0 == null) {
+            m9923a(30);
+            throw null;
+        }
+        if (interfaceC11450m == null) {
+            m9923a(31);
+            throw null;
+        }
+        if (m9928f(abstractC11913c0, interfaceC11450m)) {
+            return true;
+        }
+        Iterator<AbstractC11913c0> it = abstractC11913c0.getConstructor().getSupertypes().iterator();
+        while (it.hasNext()) {
+            if (isSubtypeOfClass(it.next(), interfaceC11450m)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isTopLevelDeclaration(InterfaceC11450m interfaceC11450m) {
+        return interfaceC11450m != null && (interfaceC11450m.getContainingDeclaration() instanceof InterfaceC11331e0);
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9923a(int i) {
         String str;
@@ -557,18 +866,6 @@ public class C11787e {
         }
     }
 
-    public static boolean areInSameModule(InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2) {
-        if (interfaceC11450m == null) {
-            m9923a(14);
-            throw null;
-        }
-        if (interfaceC11450m2 != null) {
-            return getContainingModule(interfaceC11450m).equals(getContainingModule(interfaceC11450m2));
-        }
-        m9923a(15);
-        throw null;
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX INFO: renamed from: b */
     public static <D extends InterfaceC11318a> void m9924b(D d, Set<D> set) {
@@ -636,303 +933,6 @@ public class C11787e {
         }
         InterfaceC11450m original = declarationDescriptor.getOriginal();
         return (original instanceof InterfaceC11352h) && (interfaceC11450m instanceof InterfaceC11352h) && ((InterfaceC11352h) interfaceC11450m).getTypeConstructor().equals(((InterfaceC11352h) original).getTypeConstructor());
-    }
-
-    public static <D extends InterfaceC11318a> Set<D> getAllOverriddenDescriptors(D d) {
-        if (d == null) {
-            m9923a(66);
-            throw null;
-        }
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        m9924b(d.getOriginal(), linkedHashSet);
-        return linkedHashSet;
-    }
-
-    public static InterfaceC11330e getClassDescriptorForType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return getClassDescriptorForTypeConstructor(abstractC11913c0.getConstructor());
-        }
-        m9923a(43);
-        throw null;
-    }
-
-    public static InterfaceC11330e getClassDescriptorForTypeConstructor(InterfaceC12008u0 interfaceC12008u0) {
-        if (interfaceC12008u0 == null) {
-            m9923a(44);
-            throw null;
-        }
-        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) interfaceC12008u0.getDeclarationDescriptor();
-        if (interfaceC11330e != null) {
-            return interfaceC11330e;
-        }
-        m9923a(45);
-        throw null;
-    }
-
-    public static InterfaceC11325c0 getContainingModule(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9923a(19);
-            throw null;
-        }
-        InterfaceC11325c0 containingModuleOrNull = getContainingModuleOrNull(interfaceC11450m);
-        if (containingModuleOrNull != null) {
-            return containingModuleOrNull;
-        }
-        m9923a(20);
-        throw null;
-    }
-
-    public static InterfaceC11325c0 getContainingModuleOrNull(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m9923a(18);
-            throw null;
-        }
-        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
-        if (declarationDescriptor == null) {
-            return null;
-        }
-        return getContainingModuleOrNull(declarationDescriptor);
-    }
-
-    public static InterfaceC11469v0 getContainingSourceFile(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9923a(77);
-            throw null;
-        }
-        if (interfaceC11450m instanceof InterfaceC11457p0) {
-            interfaceC11450m = ((InterfaceC11457p0) interfaceC11450m).getCorrespondingProperty();
-        }
-        if (!(interfaceC11450m instanceof InterfaceC11456p)) {
-            return InterfaceC11469v0.f23100a;
-        }
-        InterfaceC11469v0 containingFile = ((InterfaceC11456p) interfaceC11450m).getSource().getContainingFile();
-        if (containingFile != null) {
-            return containingFile;
-        }
-        m9923a(78);
-        throw null;
-    }
-
-    public static AbstractC11466u getDefaultConstructorVisibility(InterfaceC11330e interfaceC11330e, boolean z2) {
-        if (interfaceC11330e == null) {
-            m9923a(46);
-            throw null;
-        }
-        EnumC11333f kind = interfaceC11330e.getKind();
-        if (kind == EnumC11333f.ENUM_CLASS || kind.isSingleton()) {
-            AbstractC11466u abstractC11466u = C11464t.f23083a;
-            if (abstractC11466u != null) {
-                return abstractC11466u;
-            }
-            m9923a(47);
-            throw null;
-        }
-        if (isSealedClass(interfaceC11330e)) {
-            if (z2) {
-                AbstractC11466u abstractC11466u2 = C11464t.f23086d;
-                if (abstractC11466u2 != null) {
-                    return abstractC11466u2;
-                }
-                m9923a(48);
-                throw null;
-            }
-            AbstractC11466u abstractC11466u3 = C11464t.f23083a;
-            if (abstractC11466u3 != null) {
-                return abstractC11466u3;
-            }
-            m9923a(49);
-            throw null;
-        }
-        if (isAnonymousObject(interfaceC11330e)) {
-            AbstractC11466u abstractC11466u4 = C11464t.f23093k;
-            if (abstractC11466u4 != null) {
-                return abstractC11466u4;
-            }
-            m9923a(50);
-            throw null;
-        }
-        AbstractC11466u abstractC11466u5 = C11464t.f23087e;
-        if (abstractC11466u5 != null) {
-            return abstractC11466u5;
-        }
-        m9923a(51);
-        throw null;
-    }
-
-    public static InterfaceC11459q0 getDispatchReceiverParameterIfNeeded(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9923a(0);
-            throw null;
-        }
-        if (interfaceC11450m instanceof InterfaceC11330e) {
-            return ((InterfaceC11330e) interfaceC11450m).getThisAsReceiverParameter();
-        }
-        return null;
-    }
-
-    public static C11714c getFqName(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m != null) {
-            C11713b c11713bM9925c = m9925c(interfaceC11450m);
-            return c11713bM9925c != null ? c11713bM9925c.toUnsafe() : m9926d(interfaceC11450m);
-        }
-        m9923a(2);
-        throw null;
-    }
-
-    public static C11713b getFqNameSafe(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9923a(3);
-            throw null;
-        }
-        C11713b c11713bM9925c = m9925c(interfaceC11450m);
-        if (c11713bM9925c == null) {
-            c11713bM9925c = m9926d(interfaceC11450m).toSafe();
-        }
-        if (c11713bM9925c != null) {
-            return c11713bM9925c;
-        }
-        m9923a(4);
-        throw null;
-    }
-
-    public static <D extends InterfaceC11450m> D getParentOfType(InterfaceC11450m interfaceC11450m, Class<D> cls) {
-        if (cls != null) {
-            return (D) getParentOfType(interfaceC11450m, cls, true);
-        }
-        m9923a(16);
-        throw null;
-    }
-
-    public static InterfaceC11330e getSuperClassDescriptor(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e == null) {
-            m9923a(42);
-            throw null;
-        }
-        Iterator<AbstractC11913c0> it = interfaceC11330e.getTypeConstructor().getSupertypes().iterator();
-        while (it.hasNext()) {
-            InterfaceC11330e classDescriptorForType = getClassDescriptorForType(it.next());
-            if (classDescriptorForType.getKind() != EnumC11333f.INTERFACE) {
-                return classDescriptorForType;
-            }
-        }
-        return null;
-    }
-
-    public static boolean isAnnotationClass(InterfaceC11450m interfaceC11450m) {
-        return m9927e(interfaceC11450m, EnumC11333f.ANNOTATION_CLASS);
-    }
-
-    public static boolean isAnonymousObject(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m != null) {
-            return isClass(interfaceC11450m) && interfaceC11450m.getName().equals(C11718g.f24092a);
-        }
-        m9923a(32);
-        throw null;
-    }
-
-    public static boolean isClass(InterfaceC11450m interfaceC11450m) {
-        return m9927e(interfaceC11450m, EnumC11333f.CLASS);
-    }
-
-    public static boolean isClassOrEnumClass(InterfaceC11450m interfaceC11450m) {
-        return isClass(interfaceC11450m) || isEnumClass(interfaceC11450m);
-    }
-
-    public static boolean isCompanionObject(InterfaceC11450m interfaceC11450m) {
-        return m9927e(interfaceC11450m, EnumC11333f.OBJECT) && ((InterfaceC11330e) interfaceC11450m).isCompanionObject();
-    }
-
-    public static boolean isDescriptorWithLocalVisibility(InterfaceC11450m interfaceC11450m) {
-        return (interfaceC11450m instanceof InterfaceC11458q) && ((InterfaceC11458q) interfaceC11450m).getVisibility() == C11464t.f23088f;
-    }
-
-    public static boolean isDirectSubclass(InterfaceC11330e interfaceC11330e, InterfaceC11330e interfaceC11330e2) {
-        if (interfaceC11330e == null) {
-            m9923a(24);
-            throw null;
-        }
-        if (interfaceC11330e2 == null) {
-            m9923a(25);
-            throw null;
-        }
-        Iterator<AbstractC11913c0> it = interfaceC11330e.getTypeConstructor().getSupertypes().iterator();
-        while (it.hasNext()) {
-            if (m9928f(it.next(), interfaceC11330e2.getOriginal())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isEnumClass(InterfaceC11450m interfaceC11450m) {
-        return m9927e(interfaceC11450m, EnumC11333f.ENUM_CLASS);
-    }
-
-    public static boolean isEnumEntry(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m != null) {
-            return m9927e(interfaceC11450m, EnumC11333f.ENUM_ENTRY);
-        }
-        m9923a(34);
-        throw null;
-    }
-
-    public static boolean isInterface(InterfaceC11450m interfaceC11450m) {
-        return m9927e(interfaceC11450m, EnumC11333f.INTERFACE);
-    }
-
-    public static boolean isLocal(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9923a(1);
-            throw null;
-        }
-        while (interfaceC11450m != null) {
-            if (isAnonymousObject(interfaceC11450m) || isDescriptorWithLocalVisibility(interfaceC11450m)) {
-                return true;
-            }
-            interfaceC11450m = interfaceC11450m.getContainingDeclaration();
-        }
-        return false;
-    }
-
-    public static boolean isSealedClass(InterfaceC11450m interfaceC11450m) {
-        return (m9927e(interfaceC11450m, EnumC11333f.CLASS) || m9927e(interfaceC11450m, EnumC11333f.INTERFACE)) && ((InterfaceC11330e) interfaceC11450m).getModality() == EnumC11476z.SEALED;
-    }
-
-    public static boolean isSubclass(InterfaceC11330e interfaceC11330e, InterfaceC11330e interfaceC11330e2) {
-        if (interfaceC11330e == null) {
-            m9923a(26);
-            throw null;
-        }
-        if (interfaceC11330e2 != null) {
-            return isSubtypeOfClass(interfaceC11330e.getDefaultType(), interfaceC11330e2.getOriginal());
-        }
-        m9923a(27);
-        throw null;
-    }
-
-    public static boolean isSubtypeOfClass(AbstractC11913c0 abstractC11913c0, InterfaceC11450m interfaceC11450m) {
-        if (abstractC11913c0 == null) {
-            m9923a(30);
-            throw null;
-        }
-        if (interfaceC11450m == null) {
-            m9923a(31);
-            throw null;
-        }
-        if (m9928f(abstractC11913c0, interfaceC11450m)) {
-            return true;
-        }
-        Iterator<AbstractC11913c0> it = abstractC11913c0.getConstructor().getSupertypes().iterator();
-        while (it.hasNext()) {
-            if (isSubtypeOfClass(it.next(), interfaceC11450m)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isTopLevelDeclaration(InterfaceC11450m interfaceC11450m) {
-        return interfaceC11450m != null && (interfaceC11450m.getContainingDeclaration() instanceof InterfaceC11331e0);
     }
 
     public static boolean shouldRecordInitializerForProperty(InterfaceC11329d1 interfaceC11329d1, AbstractC11913c0 abstractC11913c0) {

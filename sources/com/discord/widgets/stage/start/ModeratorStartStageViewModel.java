@@ -55,7 +55,7 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.start.ModeratorStartStageViewModel$1 */
     /* JADX INFO: compiled from: ModeratorStartStageViewModel.kt */
-    public static final /* synthetic */ class C100681 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C100681 extends C12236k implements Function1<StoreState, Unit> {
         public C100681(ModeratorStartStageViewModel moderatorStartStageViewModel) {
             super(1, moderatorStartStageViewModel, ModeratorStartStageViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/stage/start/ModeratorStartStageViewModel$StoreState;)V", 0);
         }
@@ -74,7 +74,7 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -137,7 +137,7 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean canStartEvent;
         private final List<GuildScheduledEvent> channelEvents;
         private final List<UserGuildMember> voiceParticipants;
@@ -148,6 +148,14 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
             this.channelEvents = list;
             this.voiceParticipants = list2;
             this.canStartEvent = z2;
+        }
+
+        public final List<GuildScheduledEvent> component1() {
+            return this.channelEvents;
+        }
+
+        public final List<UserGuildMember> component2() {
+            return this.voiceParticipants;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -162,19 +170,6 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
                 z2 = storeState.canStartEvent;
             }
             return storeState.copy(list, list2, z2);
-        }
-
-        public final List<GuildScheduledEvent> component1() {
-            return this.channelEvents;
-        }
-
-        public final List<UserGuildMember> component2() {
-            return this.voiceParticipants;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanStartEvent() {
-            return this.canStartEvent;
         }
 
         public final StoreState copy(List<GuildScheduledEvent> channelEvents, List<UserGuildMember> voiceParticipants, boolean canStartEvent) {
@@ -192,6 +187,11 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
             }
             StoreState storeState = (StoreState) other;
             return C12238m.areEqual(this.channelEvents, storeState.channelEvents) && C12238m.areEqual(this.voiceParticipants, storeState.voiceParticipants) && this.canStartEvent == storeState.canStartEvent;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getCanStartEvent() {
+            return this.canStartEvent;
         }
 
         public final boolean getCanStartEvent() {
@@ -235,7 +235,7 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean channelEventActive;
         private final List<GuildScheduledEvent> channelEvents;
         private final List<ModeratorStartStageItem> items;
@@ -247,6 +247,14 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
             this.channelEvents = list;
             this.items = list2;
             this.channelEventActive = z2;
+        }
+
+        public final List<GuildScheduledEvent> component1() {
+            return this.channelEvents;
+        }
+
+        public final List<ModeratorStartStageItem> component2() {
+            return this.items;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -261,19 +269,6 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
                 z2 = viewState.channelEventActive;
             }
             return viewState.copy(list, list2, z2);
-        }
-
-        public final List<GuildScheduledEvent> component1() {
-            return this.channelEvents;
-        }
-
-        public final List<ModeratorStartStageItem> component2() {
-            return this.items;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getChannelEventActive() {
-            return this.channelEventActive;
         }
 
         public final ViewState copy(List<GuildScheduledEvent> channelEvents, List<? extends ModeratorStartStageItem> items, boolean channelEventActive) {
@@ -291,6 +286,11 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
             }
             ViewState viewState = (ViewState) other;
             return C12238m.areEqual(this.channelEvents, viewState.channelEvents) && C12238m.areEqual(this.items, viewState.items) && this.channelEventActive == viewState.channelEventActive;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getChannelEventActive() {
+            return this.channelEventActive;
         }
 
         public final boolean getChannelEventActive() {
@@ -343,6 +343,10 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
         this(j, channels, guildScheduledEvents, voiceChannelSelected, permissions, voiceParticipants, (i & 64) != 0 ? INSTANCE.observeStores(j, channels, guildScheduledEvents, permissions, voiceParticipants) : observable);
     }
 
+    public final void disconnectFromStage() {
+        this.selectedVoiceChannelStore.clear();
+    }
+
     private final void handleStoreState(StoreState storeState) {
         Object next;
         Object obj = null;
@@ -377,10 +381,6 @@ public final class ModeratorStartStageViewModel extends AbstractC0859d0<ViewStat
             }
         }
         updateViewState(new ViewState(channelEvents, listMutableListOf, obj != null));
-    }
-
-    public final void disconnectFromStage() {
-        this.selectedVoiceChannelStore.clear();
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

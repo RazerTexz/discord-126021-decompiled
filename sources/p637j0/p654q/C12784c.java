@@ -24,7 +24,7 @@ public final class C12784c<T> extends AtomicReference<a<T>> implements Observabl
 
     /* JADX INFO: renamed from: j0.q.c$a */
     /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
-    public static final class a<T> {
+    public final class a<T> {
 
         /* JADX INFO: renamed from: a */
         public static final b[] f27409a;
@@ -54,63 +54,6 @@ public final class C12784c<T> extends AtomicReference<a<T>> implements Observabl
         }
     }
 
-    /* JADX INFO: renamed from: j0.q.c$b */
-    /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
-    public static final class b<T> implements InterfaceC12581g<T> {
-
-        /* JADX INFO: renamed from: j */
-        public final Subscriber<? super T> f27414j;
-
-        /* JADX INFO: renamed from: k */
-        public boolean f27415k = true;
-
-        /* JADX INFO: renamed from: l */
-        public boolean f27416l;
-
-        /* JADX INFO: renamed from: m */
-        public List<Object> f27417m;
-
-        /* JADX INFO: renamed from: n */
-        public boolean f27418n;
-
-        public b(Subscriber<? super T> subscriber) {
-            this.f27414j = subscriber;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m10880a(Object obj) {
-            if (!this.f27418n) {
-                synchronized (this) {
-                    this.f27415k = false;
-                    if (this.f27416l) {
-                        if (this.f27417m == null) {
-                            this.f27417m = new ArrayList();
-                        }
-                        this.f27417m.add(obj);
-                        return;
-                    }
-                    this.f27418n = true;
-                }
-            }
-            C12614e.m10744a(this.f27414j, obj);
-        }
-
-        @Override // p637j0.InterfaceC12581g
-        public void onCompleted() {
-            this.f27414j.onCompleted();
-        }
-
-        @Override // p637j0.InterfaceC12581g
-        public void onError(Throwable th) {
-            this.f27414j.onError(th);
-        }
-
-        @Override // p637j0.InterfaceC12581g
-        public void onNext(T t) {
-            this.f27414j.onNext(t);
-        }
-    }
-
     public C12784c() {
         super(a.f27411c);
         this.active = true;
@@ -118,6 +61,39 @@ public final class C12784c<T> extends AtomicReference<a<T>> implements Observabl
         this.onStart = aVar;
         this.onAdded = aVar;
         this.onTerminated = aVar;
+    }
+
+    @Override // p658rx.functions.Action1
+    public void call(Object obj) {
+        boolean z2;
+        Subscriber subscriber = (Subscriber) obj;
+        b<T> bVar = new b<>(subscriber);
+        subscriber.add(new C12785a(new C12783b(this, bVar)));
+        this.onStart.call(bVar);
+        if (subscriber.isUnsubscribed()) {
+            return;
+        }
+        while (true) {
+            a<T> aVar = get();
+            z2 = false;
+            if (aVar.f27412d) {
+                this.onTerminated.call(bVar);
+                break;
+            }
+            b[] bVarArr = aVar.f27413e;
+            int length = bVarArr.length;
+            b[] bVarArr2 = new b[length + 1];
+            System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
+            bVarArr2[length] = bVar;
+            if (compareAndSet(aVar, new a(aVar.f27412d, bVarArr2))) {
+                this.onAdded.call(bVar);
+                z2 = true;
+                break;
+            }
+        }
+        if (z2 && subscriber.isUnsubscribed()) {
+            m10878a(bVar);
+        }
     }
 
     /* JADX INFO: renamed from: a */
@@ -183,36 +159,60 @@ public final class C12784c<T> extends AtomicReference<a<T>> implements Observabl
         return get().f27412d ? a.f27409a : getAndSet(a.f27410b).f27413e;
     }
 
-    @Override // p658rx.functions.Action1
-    public void call(Object obj) {
-        boolean z2;
-        Subscriber subscriber = (Subscriber) obj;
-        b<T> bVar = new b<>(subscriber);
-        subscriber.add(new C12785a(new C12783b(this, bVar)));
-        this.onStart.call(bVar);
-        if (subscriber.isUnsubscribed()) {
-            return;
+    /* JADX INFO: renamed from: j0.q.c$b */
+    /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
+    public final class b<T> implements InterfaceC12581g<T> {
+
+        /* JADX INFO: renamed from: j */
+        public final Subscriber<? super T> f27414j;
+
+        /* JADX INFO: renamed from: l */
+        public boolean f27416l;
+
+        /* JADX INFO: renamed from: m */
+        public List<Object> f27417m;
+
+        /* JADX INFO: renamed from: n */
+        public boolean f27418n;
+
+        /* JADX INFO: renamed from: k */
+        public boolean f27415k = true;
+
+        public b(Subscriber<? super T> subscriber) {
+            this.f27414j = subscriber;
         }
-        while (true) {
-            a<T> aVar = get();
-            z2 = false;
-            if (aVar.f27412d) {
-                this.onTerminated.call(bVar);
-                break;
+
+        /* JADX INFO: renamed from: a */
+        public void m10880a(Object obj) {
+            if (!this.f27418n) {
+                synchronized (this) {
+                    this.f27415k = false;
+                    if (this.f27416l) {
+                        if (this.f27417m == null) {
+                            this.f27417m = new ArrayList();
+                        }
+                        this.f27417m.add(obj);
+                        return;
+                    }
+                    this.f27418n = true;
+                }
             }
-            b[] bVarArr = aVar.f27413e;
-            int length = bVarArr.length;
-            b[] bVarArr2 = new b[length + 1];
-            System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
-            bVarArr2[length] = bVar;
-            if (compareAndSet(aVar, new a(aVar.f27412d, bVarArr2))) {
-                this.onAdded.call(bVar);
-                z2 = true;
-                break;
-            }
+            C12614e.m10744a(this.f27414j, obj);
         }
-        if (z2 && subscriber.isUnsubscribed()) {
-            m10878a(bVar);
+
+        @Override // p637j0.InterfaceC12581g
+        public void onCompleted() {
+            this.f27414j.onCompleted();
+        }
+
+        @Override // p637j0.InterfaceC12581g
+        public void onError(Throwable th) {
+            this.f27414j.onError(th);
+        }
+
+        @Override // p637j0.InterfaceC12581g
+        public void onNext(T t) {
+            this.f27414j.onNext(t);
         }
     }
 }

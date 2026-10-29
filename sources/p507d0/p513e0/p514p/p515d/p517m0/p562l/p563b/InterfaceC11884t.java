@@ -9,7 +9,7 @@ public interface InterfaceC11884t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.t$a */
     /* JADX INFO: compiled from: LocalClassifierTypeSettings.kt */
-    public static final class a implements InterfaceC11884t {
+    public final class a implements InterfaceC11884t {
 
         /* JADX INFO: renamed from: a */
         public static final a f24682a = new a();

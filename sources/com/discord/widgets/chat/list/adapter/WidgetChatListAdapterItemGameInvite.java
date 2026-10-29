@@ -29,7 +29,7 @@ public final class WidgetChatListAdapterItemGameInvite extends WidgetChatListIte
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGameInvite$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGameInvite.kt */
-    public static final class C80621 extends AbstractC12240o implements Function2<View, ViewEmbedGameInvite.Model, Unit> {
+    public final class C80621 extends AbstractC12240o implements Function2<View, ViewEmbedGameInvite.Model, Unit> {
         public final /* synthetic */ GameInviteEntry $item;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -57,7 +57,7 @@ public final class WidgetChatListAdapterItemGameInvite extends WidgetChatListIte
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGameInvite$onConfigure$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGameInvite.kt */
-    public static final class C80632 extends AbstractC12240o implements Function1<ViewEmbedGameInvite.Model, Unit> {
+    public final class C80632 extends AbstractC12240o implements Function1<ViewEmbedGameInvite.Model, Unit> {
         public C80632() {
             super(1);
         }
@@ -77,7 +77,7 @@ public final class WidgetChatListAdapterItemGameInvite extends WidgetChatListIte
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGameInvite$onConfigure$3 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGameInvite.kt */
-    public static final class C80643 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C80643 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C80643() {
             super(1);
         }

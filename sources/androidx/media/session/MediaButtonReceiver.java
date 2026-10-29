@@ -29,7 +29,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public class MediaButtonReceiver extends BroadcastReceiver {
     private static final String TAG = "MediaButtonReceiver";
 
-    public static class MediaButtonConnectionCallback extends MediaBrowserCompat.C0006c {
+    public class MediaButtonConnectionCallback extends MediaBrowserCompat.C0006c {
         private final Context mContext;
         private final Intent mIntent;
         private MediaBrowserCompat mMediaBrowser;

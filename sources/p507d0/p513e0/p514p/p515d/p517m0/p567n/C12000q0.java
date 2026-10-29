@@ -35,7 +35,7 @@ public final class C12000q0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.q0$a */
     /* JADX INFO: compiled from: TypeAliasExpander.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -71,6 +71,12 @@ public final class C12000q0 {
         C12238m.checkNotNullParameter(interfaceC12004s0, "reportStrategy");
         this.f24864b = interfaceC12004s0;
         this.f24865c = z2;
+    }
+
+    public final AbstractC11934j0 expand(C12002r0 c12002r0, InterfaceC11344g interfaceC11344g) {
+        C12238m.checkNotNullParameter(c12002r0, "typeAliasExpansion");
+        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
+        return m10027d(c12002r0, interfaceC11344g, false, 0, true);
     }
 
     /* JADX INFO: renamed from: a */
@@ -243,12 +249,6 @@ public final class C12000q0 {
             i2 = i4;
         }
         return new C12016y0(interfaceC12012w0.getProjectionKind(), abstractC11934j0M10029f2);
-    }
-
-    public final AbstractC11934j0 expand(C12002r0 c12002r0, InterfaceC11344g interfaceC11344g) {
-        C12238m.checkNotNullParameter(c12002r0, "typeAliasExpansion");
-        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
-        return m10027d(c12002r0, interfaceC11344g, false, 0, true);
     }
 
     /* JADX INFO: renamed from: f */

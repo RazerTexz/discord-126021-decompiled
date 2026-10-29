@@ -40,12 +40,39 @@ public class C5148h extends AbstractC5145e {
         m7342m();
     }
 
+    /* JADX INFO: renamed from: m */
+    public final void m7342m() {
+        int i = this.f13944f;
+        boolean z2 = i == -1;
+        if (i == this.f13943e.size() - 1) {
+            m7341l(Integer.MAX_VALUE);
+            return;
+        }
+        int i2 = this.f13944f + 1;
+        this.f13944f = i2;
+        this.f13943e.get(i2).m7337f(new a());
+        if (z2) {
+            return;
+        }
+        this.f13943e.get(this.f13944f).mo7249j(this.f13939c);
+    }
+
     @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e, p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
     /* JADX INFO: renamed from: b */
     public void mo7248b(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
         int i = this.f13944f;
         if (i >= 0) {
             this.f13943e.get(i).mo7248b(interfaceC5143c, captureRequest, totalCaptureResult);
+        }
+    }
+
+    @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e
+    /* JADX INFO: renamed from: j */
+    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
+        this.f13939c = interfaceC5143c;
+        int i = this.f13944f;
+        if (i >= 0) {
+            this.f13943e.get(i).mo7249j(interfaceC5143c);
         }
     }
 
@@ -78,32 +105,5 @@ public class C5148h extends AbstractC5145e {
         if (i >= 0) {
             this.f13943e.get(i).mo7335h(interfaceC5143c);
         }
-    }
-
-    @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e
-    /* JADX INFO: renamed from: j */
-    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
-        this.f13939c = interfaceC5143c;
-        int i = this.f13944f;
-        if (i >= 0) {
-            this.f13943e.get(i).mo7249j(interfaceC5143c);
-        }
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m7342m() {
-        int i = this.f13944f;
-        boolean z2 = i == -1;
-        if (i == this.f13943e.size() - 1) {
-            m7341l(Integer.MAX_VALUE);
-            return;
-        }
-        int i2 = this.f13944f + 1;
-        this.f13944f = i2;
-        this.f13943e.get(i2).m7337f(new a());
-        if (z2) {
-            return;
-        }
-        this.f13943e.get(this.f13944f).mo7249j(this.f13939c);
     }
 }

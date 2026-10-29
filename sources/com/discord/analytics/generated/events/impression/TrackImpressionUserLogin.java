@@ -17,38 +17,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImpressionUserLogin.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImpressionUserLogin implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
+    private final Boolean passwordOnly = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
-    private final Boolean passwordOnly = null;
     private final transient String analyticsSchemaTypeName = "impression_user_login";
 
     public TrackImpressionUserLogin() {
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7527e(TrackImpressionMetadata trackImpressionMetadata) {
-        this.trackImpressionMetadata = trackImpressionMetadata;
     }
 
     public boolean equals(Object other) {
@@ -58,12 +35,35 @@ public final /* data */ class TrackImpressionUserLogin implements AnalyticsSchem
         return true;
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Boolean bool = this.passwordOnly;
         if (bool != null) {
             return bool.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7527e(TrackImpressionMetadata trackImpressionMetadata) {
+        this.trackImpressionMetadata = trackImpressionMetadata;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

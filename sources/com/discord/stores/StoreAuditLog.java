@@ -55,7 +55,7 @@ public final class StoreAuditLog extends StoreV2 {
     private AuditLogState stateSnapshot;
 
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final /* data */ class AuditLogFilter {
+    public final /* data */ class AuditLogFilter {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -63,7 +63,7 @@ public final class StoreAuditLog extends StoreV2 {
         private final long userFilter;
 
         /* JADX INFO: compiled from: StoreAuditLog.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -91,16 +91,6 @@ public final class StoreAuditLog extends StoreV2 {
             return auditLogFilter.copy(j, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserFilter() {
-            return this.userFilter;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getActionFilter() {
-            return this.actionFilter;
-        }
-
         public final AuditLogFilter copy(long userFilter, int actionFilter) {
             return new AuditLogFilter(userFilter, actionFilter);
         }
@@ -116,8 +106,18 @@ public final class StoreAuditLog extends StoreV2 {
             return this.userFilter == auditLogFilter.userFilter && this.actionFilter == auditLogFilter.actionFilter;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getActionFilter() {
             return this.actionFilter;
+        }
+
+        public final int getActionFilter() {
+            return this.actionFilter;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserFilter() {
+            return this.userFilter;
         }
 
         public final long getUserFilter() {
@@ -137,7 +137,7 @@ public final class StoreAuditLog extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final /* data */ class AuditLogState {
+    public final /* data */ class AuditLogState {
         private final Map<ModelAuditLogEntry.TargetType, Map<Long, CharSequence>> deletedTargets;
         private final List<ModelAuditLogEntry> entries;
         private final AuditLogFilter filter;
@@ -176,23 +176,8 @@ public final class StoreAuditLog extends StoreV2 {
             this.isLoading = z2;
         }
 
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ AuditLogState copy$default(AuditLogState auditLogState, long j, Map map, List list, List list2, List list3, List list4, List list5, Long l, AuditLogFilter auditLogFilter, Map map2, boolean z2, int i, Object obj) {
-            return auditLogState.copy((i & 1) != 0 ? auditLogState.guildId : j, (i & 2) != 0 ? auditLogState.users : map, (i & 4) != 0 ? auditLogState.entries : list, (i & 8) != 0 ? auditLogState.webhooks : list2, (i & 16) != 0 ? auditLogState.integrations : list3, (i & 32) != 0 ? auditLogState.guildScheduledEvents : list4, (i & 64) != 0 ? auditLogState.threads : list5, (i & 128) != 0 ? auditLogState.selectedItemId : l, (i & 256) != 0 ? auditLogState.filter : auditLogFilter, (i & 512) != 0 ? auditLogState.deletedTargets : map2, (i & 1024) != 0 ? auditLogState.isLoading : z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final Map<ModelAuditLogEntry.TargetType, Map<Long, CharSequence>> component10() {
             return this.deletedTargets;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getIsLoading() {
-            return this.isLoading;
         }
 
         public final Map<Long, User> component2() {
@@ -219,14 +204,9 @@ public final class StoreAuditLog extends StoreV2 {
             return this.threads;
         }
 
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Long getSelectedItemId() {
-            return this.selectedItemId;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final AuditLogFilter getFilter() {
-            return this.filter;
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ AuditLogState copy$default(AuditLogState auditLogState, long j, Map map, List list, List list2, List list3, List list4, List list5, Long l, AuditLogFilter auditLogFilter, Map map2, boolean z2, int i, Object obj) {
+            return auditLogState.copy((i & 1) != 0 ? auditLogState.guildId : j, (i & 2) != 0 ? auditLogState.users : map, (i & 4) != 0 ? auditLogState.entries : list, (i & 8) != 0 ? auditLogState.webhooks : list2, (i & 16) != 0 ? auditLogState.integrations : list3, (i & 32) != 0 ? auditLogState.guildScheduledEvents : list4, (i & 64) != 0 ? auditLogState.threads : list5, (i & 128) != 0 ? auditLogState.selectedItemId : l, (i & 256) != 0 ? auditLogState.filter : auditLogFilter, (i & 512) != 0 ? auditLogState.deletedTargets : map2, (i & 1024) != 0 ? auditLogState.isLoading : z2);
         }
 
         public final AuditLogState copy(long guildId, Map<Long, ? extends User> users, List<? extends ModelAuditLogEntry> entries, List<? extends ModelWebhook> webhooks, List<? extends ModelGuildIntegration> integrations, List<GuildScheduledEvent> guildScheduledEvents, List<Channel> threads, Long selectedItemId, AuditLogFilter filter, Map<ModelAuditLogEntry.TargetType, ? extends Map<Long, CharSequence>> deletedTargets, boolean isLoading) {
@@ -259,8 +239,18 @@ public final class StoreAuditLog extends StoreV2 {
             return this.entries;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final AuditLogFilter getFilter() {
             return this.filter;
+        }
+
+        public final AuditLogFilter getFilter() {
+            return this.filter;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
@@ -273,6 +263,16 @@ public final class StoreAuditLog extends StoreV2 {
 
         public final List<ModelGuildIntegration> getIntegrations() {
             return this.integrations;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getIsLoading() {
+            return this.isLoading;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Long getSelectedItemId() {
+            return this.selectedItemId;
         }
 
         public final Long getSelectedItemId() {
@@ -360,7 +360,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$clearState$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57591 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57591 extends AbstractC12240o implements Function0<Unit> {
         public C57591() {
             super(0);
         }
@@ -379,7 +379,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$fetchAuditLogIfNeeded$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57601 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57601 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -410,7 +410,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$fetchAuditLogs$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57611 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C57611 extends AbstractC12240o implements Function1<Error, Unit> {
         public C57611() {
             super(1);
         }
@@ -430,7 +430,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$fetchAuditLogs$2 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57622 extends AbstractC12240o implements Function1<ModelAuditLog, Unit> {
+    public final class C57622 extends AbstractC12240o implements Function1<ModelAuditLog, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -454,7 +454,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$fetchMoreAuditLogEntries$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57631 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57631 extends AbstractC12240o implements Function0<Unit> {
         public C57631() {
             super(0);
         }
@@ -474,7 +474,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$handleFetchFailure$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57641 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57641 extends AbstractC12240o implements Function0<Unit> {
         public C57641() {
             super(0);
         }
@@ -495,7 +495,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$handleFetchSuccess$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57651 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57651 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ ModelAuditLog $newAuditLog;
 
@@ -583,7 +583,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$observeAuditLogState$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57661 extends AbstractC12240o implements Function0<AuditLogState> {
+    public final class C57661 extends AbstractC12240o implements Function0<AuditLogState> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -601,7 +601,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$setAuditLogFilterActionId$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57681 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57681 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $actionId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -630,7 +630,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$setAuditLogFilterUserId$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57691 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57691 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -659,7 +659,7 @@ public final class StoreAuditLog extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuditLog$toggleSelectedState$1 */
     /* JADX INFO: compiled from: StoreAuditLog.kt */
-    public static final class C57701 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57701 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $selectedItemId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -696,11 +696,19 @@ public final class StoreAuditLog extends StoreV2 {
         this.stateSnapshot = auditLogState;
     }
 
+    public final void clearState() {
+        this.dispatcher.schedule(new C57591());
+    }
+
     @StoreThread
     private final void clearStateInternal() {
         this.cutoffTimestamp = null;
         this.state = new AuditLogState(0L, null, null, null, null, null, null, null, null, null, false, 2047, null);
         markChanged();
+    }
+
+    public final void fetchAuditLogIfNeeded(long guildId) {
+        this.dispatcher.schedule(new C57601(guildId));
     }
 
     @StoreThread
@@ -720,12 +728,49 @@ public final class StoreAuditLog extends StoreV2 {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getAuditLogs(guildId, lValueOf, Long.valueOf(filter.getUserFilter()), Integer.valueOf(filter.getActionFilter())), false, 1, null), (Class<?>) StoreAuditLog.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C57611()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57622(guildId));
     }
 
+    public final void fetchMoreAuditLogEntries() {
+        this.dispatcher.schedule(new C57631());
+    }
+
+    public final AuditLogState getAuditLogState(long guildId) {
+        AuditLogState auditLogState = this.stateSnapshot;
+        if (guildId == auditLogState.getGuildId()) {
+            return auditLogState;
+        }
+        return null;
+    }
+
     private final void handleFetchFailure() {
         this.dispatcher.schedule(new C57641());
     }
 
     private final void handleFetchSuccess(long guildId, ModelAuditLog newAuditLog) {
         this.dispatcher.schedule(new C57651(newAuditLog, guildId));
+    }
+
+    public final Observable<AuditLogState> observeAuditLogState(final long guildId) {
+        Observable observableM11115u = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C57661(guildId), 14, null).m11112r().m11115u(new Action1<AuditLogState>() { // from class: com.discord.stores.StoreAuditLog.observeAuditLogState.2
+            @Override // p658rx.functions.Action1
+            public final void call(AuditLogState auditLogState) {
+                StoreAuditLog.this.fetchAuditLogIfNeeded(guildId);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11115u, "observationDeck.connectR…ditLogIfNeeded(guildId) }");
+        Observable<AuditLogState> observableM11083G = observableM11115u.m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
+        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
+        return observableM11083G;
+    }
+
+    public final void setAuditLogFilterActionId(int actionId) {
+        this.dispatcher.schedule(new C57681(actionId));
+    }
+
+    public final void setAuditLogFilterUserId(long userId) {
+        this.dispatcher.schedule(new C57691(userId));
+    }
+
+    public static /* synthetic */ boolean shouldMergeEntries$default(StoreAuditLog storeAuditLog, ModelAuditLogEntry modelAuditLogEntry, ModelAuditLogEntry modelAuditLogEntry2, int i, int i2, int i3, int i4, Object obj) {
+        return storeAuditLog.shouldMergeEntries(modelAuditLogEntry, modelAuditLogEntry2, i, (i4 & 8) != 0 ? 30 : i2, (i4 & 16) != 0 ? 50 : i3);
     }
 
     private final boolean shouldMergeEntries(ModelAuditLogEntry prevEntry, ModelAuditLogEntry entry, int numMerges, int timeWindowMins, int maxMerges) {
@@ -738,8 +783,29 @@ public final class StoreAuditLog extends StoreV2 {
         return false;
     }
 
-    public static /* synthetic */ boolean shouldMergeEntries$default(StoreAuditLog storeAuditLog, ModelAuditLogEntry modelAuditLogEntry, ModelAuditLogEntry modelAuditLogEntry2, int i, int i2, int i3, int i4, Object obj) {
-        return storeAuditLog.shouldMergeEntries(modelAuditLogEntry, modelAuditLogEntry2, i, (i4 & 8) != 0 ? 30 : i2, (i4 & 16) != 0 ? 50 : i3);
+    @Override // com.discord.stores.StoreV2
+    public void snapshotData() {
+        super.snapshotData();
+        AuditLogState auditLogState = this.state;
+        HashMap map = new HashMap(this.state.getUsers());
+        List<ModelAuditLogEntry> entries = this.state.getEntries();
+        ArrayList arrayList = entries != null ? new ArrayList(entries) : null;
+        ArrayList arrayList2 = new ArrayList(this.state.getWebhooks());
+        ArrayList arrayList3 = new ArrayList(this.state.getIntegrations());
+        ArrayList arrayList4 = new ArrayList(this.state.getGuildScheduledEvents());
+        ArrayList arrayList5 = new ArrayList(this.state.getThreads());
+        Map<ModelAuditLogEntry.TargetType, Map<Long, CharSequence>> deletedTargets = this.state.getDeletedTargets();
+        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(deletedTargets.size()));
+        Iterator<T> it = deletedTargets.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            linkedHashMap.put(entry.getKey(), new HashMap((Map) entry.getValue()));
+        }
+        this.stateSnapshot = AuditLogState.copy$default(auditLogState, 0L, map, arrayList, arrayList2, arrayList3, arrayList4, arrayList5, null, null, linkedHashMap, false, 1409, null);
+    }
+
+    public final void toggleSelectedState(long selectedItemId) {
+        this.dispatcher.schedule(new C57701(selectedItemId));
     }
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
@@ -862,71 +928,5 @@ public final class StoreAuditLog extends StoreV2 {
             }
             return arrayList;
         }
-    }
-
-    public final void clearState() {
-        this.dispatcher.schedule(new C57591());
-    }
-
-    public final void fetchAuditLogIfNeeded(long guildId) {
-        this.dispatcher.schedule(new C57601(guildId));
-    }
-
-    public final void fetchMoreAuditLogEntries() {
-        this.dispatcher.schedule(new C57631());
-    }
-
-    public final AuditLogState getAuditLogState(long guildId) {
-        AuditLogState auditLogState = this.stateSnapshot;
-        if (guildId == auditLogState.getGuildId()) {
-            return auditLogState;
-        }
-        return null;
-    }
-
-    public final Observable<AuditLogState> observeAuditLogState(final long guildId) {
-        Observable observableM11115u = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C57661(guildId), 14, null).m11112r().m11115u(new Action1<AuditLogState>() { // from class: com.discord.stores.StoreAuditLog.observeAuditLogState.2
-            @Override // p658rx.functions.Action1
-            public final void call(AuditLogState auditLogState) {
-                StoreAuditLog.this.fetchAuditLogIfNeeded(guildId);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11115u, "observationDeck.connectR…ditLogIfNeeded(guildId) }");
-        Observable<AuditLogState> observableM11083G = observableM11115u.m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
-        return observableM11083G;
-    }
-
-    public final void setAuditLogFilterActionId(int actionId) {
-        this.dispatcher.schedule(new C57681(actionId));
-    }
-
-    public final void setAuditLogFilterUserId(long userId) {
-        this.dispatcher.schedule(new C57691(userId));
-    }
-
-    @Override // com.discord.stores.StoreV2
-    public void snapshotData() {
-        super.snapshotData();
-        AuditLogState auditLogState = this.state;
-        HashMap map = new HashMap(this.state.getUsers());
-        List<ModelAuditLogEntry> entries = this.state.getEntries();
-        ArrayList arrayList = entries != null ? new ArrayList(entries) : null;
-        ArrayList arrayList2 = new ArrayList(this.state.getWebhooks());
-        ArrayList arrayList3 = new ArrayList(this.state.getIntegrations());
-        ArrayList arrayList4 = new ArrayList(this.state.getGuildScheduledEvents());
-        ArrayList arrayList5 = new ArrayList(this.state.getThreads());
-        Map<ModelAuditLogEntry.TargetType, Map<Long, CharSequence>> deletedTargets = this.state.getDeletedTargets();
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(deletedTargets.size()));
-        Iterator<T> it = deletedTargets.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            linkedHashMap.put(entry.getKey(), new HashMap((Map) entry.getValue()));
-        }
-        this.stateSnapshot = AuditLogState.copy$default(auditLogState, 0L, map, arrayList, arrayList2, arrayList3, arrayList4, arrayList5, null, null, linkedHashMap, false, 1409, null);
-    }
-
-    public final void toggleSelectedState(long selectedItemId) {
-        this.dispatcher.schedule(new C57701(selectedItemId));
     }
 }

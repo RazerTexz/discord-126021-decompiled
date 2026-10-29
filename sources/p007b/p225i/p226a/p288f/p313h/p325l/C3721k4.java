@@ -5,11 +5,11 @@ package p007b.p225i.p226a.p288f.p313h.p325l;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3721k4 {
 
-    /* JADX INFO: renamed from: a */
-    public static final AbstractC3708j4<?> f10052a = new C3734l4();
-
     /* JADX INFO: renamed from: b */
     public static final AbstractC3708j4<?> f10053b;
+
+    /* JADX INFO: renamed from: a */
+    public static final AbstractC3708j4<?> f10052a = new C3734l4();
 
     static {
         AbstractC3708j4<?> abstractC3708j4;

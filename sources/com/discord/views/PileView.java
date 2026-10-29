@@ -77,7 +77,7 @@ public final class PileView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.PileView$a */
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public static final class C7087a extends AbstractC12240o implements Function1<Integer, String> {
+    public final class C7087a extends AbstractC12240o implements Function1<Integer, String> {
 
         /* JADX INFO: renamed from: j */
         public static final C7087a f19119j = new C7087a(0);
@@ -118,7 +118,7 @@ public final class PileView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.PileView$b */
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public static final class C7088b extends AbstractC12240o implements Function0<String> {
+    public final class C7088b extends AbstractC12240o implements Function0<String> {
 
         /* JADX INFO: renamed from: j */
         public static final C7088b f19123j = new C7088b(0);
@@ -150,7 +150,7 @@ public final class PileView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.PileView$c */
     /* JADX INFO: compiled from: PileView.kt */
-    public static final class C7089c {
+    public final class C7089c {
 
         /* JADX INFO: renamed from: a */
         public final Function1<Integer, String> f19127a;
@@ -304,11 +304,8 @@ public final class PileView extends FrameLayout {
             layoutParams2.setMarginStart(i11 - i12);
             cutoutView2.setLayoutParams(layoutParams2);
             C12238m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
-            StringBuilder sb = new StringBuilder();
-            sb.append('+');
-            sb.append(size);
-            textView2.setText(sb.toString());
-            textView2.setTextSize(0, this.overflowTextSizePx);
+            textView2.setText("" + '+' + size);
+            textView2.setTextSize(0, (float) this.overflowTextSizePx);
             C12238m.checkNotNullExpressionValue(cutoutView2, "overflowItemBinding.root");
             addView(cutoutView2, cutoutView2.getLayoutParams());
             C12238m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");

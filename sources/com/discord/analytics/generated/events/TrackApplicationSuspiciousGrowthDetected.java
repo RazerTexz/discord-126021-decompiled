@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationSuspiciousGrowthDetected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationSuspiciousGrowthDetected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final Long botId = null;
-    private final CharSequence name = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
+    private final CharSequence name = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_suspicious_growth_detected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackApplicationSuspiciousGrowthDetected implement
         }
         TrackApplicationSuspiciousGrowthDetected trackApplicationSuspiciousGrowthDetected = (TrackApplicationSuspiciousGrowthDetected) other;
         return C12238m.areEqual(this.applicationId, trackApplicationSuspiciousGrowthDetected.applicationId) && C12238m.areEqual(this.botId, trackApplicationSuspiciousGrowthDetected.botId) && C12238m.areEqual(this.name, trackApplicationSuspiciousGrowthDetected.name) && C12238m.areEqual(this.hasBot, trackApplicationSuspiciousGrowthDetected.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationSuspiciousGrowthDetected.hasRedirectUri);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -42,7 +42,7 @@ public final class StoreGuildStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildStickers$handleFetchedSticker$1 */
     /* JADX INFO: compiled from: StoreGuildStickers.kt */
-    public static final class C60771 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60771 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ Sticker $sticker;
 
@@ -75,7 +75,7 @@ public final class StoreGuildStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildStickers$observeGuildStickers$1 */
     /* JADX INFO: compiled from: StoreGuildStickers.kt */
-    public static final class C60781 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends Sticker>>> {
+    public final class C60781 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends Sticker>>> {
         public C60781() {
             super(0);
         }
@@ -88,21 +88,6 @@ public final class StoreGuildStickers extends StoreV2 {
 
     public /* synthetic */ StoreGuildStickers(Dispatcher dispatcher, ObservationDeck observationDeck, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, function1);
-    }
-
-    private final void updateStickers(long guildId, Collection<Sticker> stickers) {
-        if (stickers.isEmpty()) {
-            this.allGuildStickers.remove(Long.valueOf(guildId));
-        } else {
-            Map<Long, Map<Long, Sticker>> map = this.allGuildStickers;
-            Long lValueOf = Long.valueOf(guildId);
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(stickers, 10)), 16));
-            for (Object obj : stickers) {
-                linkedHashMap.put(Long.valueOf(((Sticker) obj).getId()), obj);
-            }
-            map.put(lValueOf, linkedHashMap);
-        }
-        markChanged();
     }
 
     public final Map<Long, Map<Long, Sticker>> getAllGuildStickers() {
@@ -250,6 +235,21 @@ public final class StoreGuildStickers extends StoreV2 {
         }
         this.allGuildStickersSnapshot = linkedHashMap;
         this.allGuildStickersFlattenedSnapshot = C12163u.toList(arrayList);
+    }
+
+    private final void updateStickers(long guildId, Collection<Sticker> stickers) {
+        if (stickers.isEmpty()) {
+            this.allGuildStickers.remove(Long.valueOf(guildId));
+        } else {
+            Map<Long, Map<Long, Sticker>> map = this.allGuildStickers;
+            Long lValueOf = Long.valueOf(guildId);
+            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(stickers, 10)), 16));
+            for (Object obj : stickers) {
+                linkedHashMap.put(Long.valueOf(((Sticker) obj).getId()), obj);
+            }
+            map.put(lValueOf, linkedHashMap);
+        }
+        markChanged();
     }
 
     /* JADX WARN: Multi-variable type inference failed */

@@ -37,21 +37,43 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0816c extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f307j = {C1643a.m846d0(C0816c.class, "binding", "getBinding()Lcom/discord/databinding/ImageUploadFailedDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f307j = {C1643a.m846d0(C0816c.class, "binding", "getBinding()Lcom/discord/databinding/ImageUploadFailedDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public Function0<Unit> onResendCompressed;
 
+    /* JADX INFO: renamed from: b.a.a.c$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ImageUploadFailedDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m123a(FragmentManager fragmentManager, boolean z2, int i, float f, float f2, Function0<Unit> function0, int i2, boolean z3, boolean z4, boolean z5) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            float f3 = 1048576;
+            StoreStream.INSTANCE.getAnalytics().trackFileUploadAlertViewed(z2 ? FileUploadAlertType.OVER_MAX_SIZE : FileUploadAlertType.NITRO_UPSELL, i2, (int) (f * f3), (int) (f3 * f2), z3, z4, z2);
+            C0816c c0816c = new C0816c();
+            c0816c.onResendCompressed = function0;
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("PARAM_IS_USER_PREMIUM", z2);
+            bundle.putBoolean("PARAM_CAN_COMPRESS", (z4 || z5) ? false : true);
+            bundle.putInt("PARAM_MAX_FILE_SIZE_MB", i);
+            c0816c.setArguments(bundle);
+            c0816c.show(fragmentManager, ImageUploadDialog.class.getName());
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.c$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f311j;
@@ -102,31 +124,9 @@ public final class C0816c extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.c$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: ImageUploadFailedDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m123a(FragmentManager fragmentManager, boolean z2, int i, float f, float f2, Function0<Unit> function0, int i2, boolean z3, boolean z4, boolean z5) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            float f3 = 1048576;
-            StoreStream.INSTANCE.getAnalytics().trackFileUploadAlertViewed(z2 ? FileUploadAlertType.OVER_MAX_SIZE : FileUploadAlertType.NITRO_UPSELL, i2, (int) (f * f3), (int) (f3 * f2), z3, z4, z2);
-            C0816c c0816c = new C0816c();
-            c0816c.onResendCompressed = function0;
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("PARAM_IS_USER_PREMIUM", z2);
-            bundle.putBoolean("PARAM_CAN_COMPRESS", (z4 || z5) ? false : true);
-            bundle.putInt("PARAM_MAX_FILE_SIZE_MB", i);
-            c0816c.setArguments(bundle);
-            c0816c.show(fragmentManager, ImageUploadDialog.class.getName());
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.c$c */
     /* JADX INFO: compiled from: ImageUploadFailedDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C0928c0> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C0928c0> {
 
         /* JADX INFO: renamed from: j */
         public static final c f313j = new c();
@@ -194,7 +194,7 @@ public final class C0816c extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.c$d */
     /* JADX INFO: compiled from: ImageUploadFailedDialog.kt */
-    public static final class d implements CompoundButton.OnCheckedChangeListener {
+    public final class d implements CompoundButton.OnCheckedChangeListener {
 
         /* JADX INFO: renamed from: a */
         public static final d f314a = new d();

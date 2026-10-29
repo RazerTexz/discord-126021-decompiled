@@ -14,8 +14,18 @@ import p007b.p109f.p161j.p170e.C1899n;
 /* JADX INFO: compiled from: BasePostprocessor.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2025a implements InterfaceC2026b {
-    public static final Bitmap.Config FALLBACK_BITMAP_CONFIGURATION = Bitmap.Config.ARGB_8888;
     private static Method sCopyBitmap;
+    public static final Bitmap.Config FALLBACK_BITMAP_CONFIGURATION = Bitmap.Config.ARGB_8888;
+
+    @Override // p007b.p109f.p161j.p182q.InterfaceC2026b
+    public String getName() {
+        return "Unknown postprocessor";
+    }
+
+    @Override // p007b.p109f.p161j.p182q.InterfaceC2026b
+    public CacheKey getPostprocessorCacheKey() {
+        return null;
+    }
 
     private static void internalCopyBitmap(Bitmap bitmap, Bitmap bitmap2) {
         if (!C1899n.f3808a || bitmap.getConfig() != bitmap2.getConfig()) {
@@ -38,14 +48,7 @@ public abstract class AbstractC2025a implements InterfaceC2026b {
         }
     }
 
-    @Override // p007b.p109f.p161j.p182q.InterfaceC2026b
-    public String getName() {
-        return "Unknown postprocessor";
-    }
-
-    @Override // p007b.p109f.p161j.p182q.InterfaceC2026b
-    public CacheKey getPostprocessorCacheKey() {
-        return null;
+    public void process(Bitmap bitmap) {
     }
 
     @Override // p007b.p109f.p161j.p182q.InterfaceC2026b
@@ -69,9 +72,6 @@ public abstract class AbstractC2025a implements InterfaceC2026b {
             }
             throw th;
         }
-    }
-
-    public void process(Bitmap bitmap) {
     }
 
     public void process(Bitmap bitmap, Bitmap bitmap2) {

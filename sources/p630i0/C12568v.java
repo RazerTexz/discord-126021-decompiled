@@ -25,9 +25,6 @@ public final class C12568v {
     /* JADX INFO: renamed from: a */
     public static final char[] f26618a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    /* JADX INFO: renamed from: b */
-    public static final Pattern f26619b = Pattern.compile("(.*/)?(\\.|%2e|%2E){1,2}(/.*)?");
-
     /* JADX INFO: renamed from: c */
     public final String f26620c;
 
@@ -39,9 +36,6 @@ public final class C12568v {
 
     /* JADX INFO: renamed from: f */
     public C12379w.a f26623f;
-
-    /* JADX INFO: renamed from: g */
-    public final Request.C12935a f26624g = new Request.C12935a();
 
     /* JADX INFO: renamed from: h */
     public final Headers.C12930a f26625h;
@@ -61,9 +55,15 @@ public final class C12568v {
     /* JADX INFO: renamed from: m */
     public RequestBody f26630m;
 
+    /* JADX INFO: renamed from: b */
+    public static final Pattern f26619b = Pattern.compile("(.*/)?(\\.|%2e|%2E){1,2}(/.*)?");
+
+    /* JADX INFO: renamed from: g */
+    public final Request.C12935a f26624g = new Request.C12935a();
+
     /* JADX INFO: renamed from: i0.v$a */
     /* JADX INFO: compiled from: RequestBuilder.java */
-    public static class a extends RequestBody {
+    public class a extends RequestBody {
 
         /* JADX INFO: renamed from: a */
         public final RequestBody f26631a;

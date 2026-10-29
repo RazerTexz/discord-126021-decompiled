@@ -18,9 +18,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class ExecutorServiceC1192c implements ExecutorService {
 
-    /* JADX INFO: renamed from: j */
-    public static final AtomicInteger f1607j = new AtomicInteger();
-
     /* JADX INFO: renamed from: k */
     public volatile int f1608k;
 
@@ -30,9 +27,12 @@ public final class ExecutorServiceC1192c implements ExecutorService {
     /* JADX INFO: renamed from: m */
     public final boolean f1610m;
 
+    /* JADX INFO: renamed from: j */
+    public static final AtomicInteger f1607j = new AtomicInteger();
+
     /* JADX INFO: renamed from: b.a.q.c$a */
     /* JADX INFO: compiled from: MediaEngineExecutorService.kt */
-    public static final class a implements Runnable {
+    public final class a implements Runnable {
         public a() {
         }
 
@@ -51,17 +51,6 @@ public final class ExecutorServiceC1192c implements ExecutorService {
         this.f1610m = z2;
         this.f1608k = -1;
         executorService.submit(new a());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m266a() {
-        if (Process.myTid() != this.f1608k) {
-            IllegalStateException illegalStateException = new IllegalStateException("oops! not called on the MediaEngineExecutor");
-            C1460d.m505c1("MediaEngineExecutor", "oops! not called on the MediaEngineExecutor", illegalStateException);
-            if (this.f1610m) {
-                new Handler(Looper.getMainLooper()).post(new RunnableC1194d(illegalStateException));
-            }
-        }
     }
 
     @Override // java.util.concurrent.ExecutorService
@@ -102,6 +91,17 @@ public final class ExecutorServiceC1192c implements ExecutorService {
     @Override // java.util.concurrent.ExecutorService
     public boolean isTerminated() {
         return this.f1609l.isTerminated();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m266a() {
+        if (Process.myTid() != this.f1608k) {
+            IllegalStateException illegalStateException = new IllegalStateException("oops! not called on the MediaEngineExecutor");
+            C1460d.m505c1("MediaEngineExecutor", "oops! not called on the MediaEngineExecutor", illegalStateException);
+            if (this.f1610m) {
+                new Handler(Looper.getMainLooper()).post(new RunnableC1194d(illegalStateException));
+            }
+        }
     }
 
     @Override // java.util.concurrent.ExecutorService

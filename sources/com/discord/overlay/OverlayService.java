@@ -25,35 +25,9 @@ public abstract class OverlayService extends Service {
     public static final int NOTIFICATION_ID = 5858;
     public OverlayManager overlayManager;
 
-    /* JADX INFO: compiled from: OverlayService.kt */
-    public static final class Companion {
-        public Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.overlay.OverlayService$a */
-    /* JADX INFO: compiled from: OverlayService.kt */
-    public static final class RunnableC5567a implements Runnable {
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ OverlayBubbleWrap f18616k;
-
-        public RunnableC5567a(OverlayBubbleWrap overlayBubbleWrap) {
-            this.f18616k = overlayBubbleWrap;
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            OverlayService.this.getOverlayManager().m8431b(this.f18616k);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.overlay.OverlayService$b */
     /* JADX INFO: compiled from: OverlayService.kt */
-    public static final class C5568b implements InterfaceC1171f {
+    public final class C5568b implements InterfaceC1171f {
         public C5568b() {
         }
 
@@ -72,7 +46,7 @@ public abstract class OverlayService extends Service {
 
     /* JADX INFO: renamed from: com.discord.overlay.OverlayService$c */
     /* JADX INFO: compiled from: OverlayService.kt */
-    public static final class C5569c extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C5569c extends AbstractC12240o implements Function1<View, Unit> {
         public C5569c() {
             super(1);
         }
@@ -84,6 +58,32 @@ public abstract class OverlayService extends Service {
                 throw new C12111j(C1643a.m883w("An operation is not implemented: ", "handle stop service"));
             }
             return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: OverlayService.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.overlay.OverlayService$a */
+    /* JADX INFO: compiled from: OverlayService.kt */
+    public final class RunnableC5567a implements Runnable {
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ OverlayBubbleWrap f18616k;
+
+        public RunnableC5567a(OverlayBubbleWrap overlayBubbleWrap) {
+            this.f18616k = overlayBubbleWrap;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            OverlayService.this.getOverlayManager().m8431b(this.f18616k);
         }
     }
 

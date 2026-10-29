@@ -11,6 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: expandedTypeUtils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12007u {
+    public static final InterfaceC11979h computeExpandedTypeForInlineClass(InterfaceC11917d1 interfaceC11917d1, InterfaceC11979h interfaceC11979h) {
+        C12238m.checkNotNullParameter(interfaceC11917d1, "<this>");
+        C12238m.checkNotNullParameter(interfaceC11979h, "inlineClassType");
+        return m10038a(interfaceC11917d1, interfaceC11979h, new HashSet());
+    }
+
     /* JADX INFO: renamed from: a */
     public static final InterfaceC11979h m10038a(InterfaceC11917d1 interfaceC11917d1, InterfaceC11979h interfaceC11979h, HashSet<InterfaceC11983l> hashSet) {
         InterfaceC11979h interfaceC11979hM10038a;
@@ -43,11 +49,5 @@ public final class C12007u {
             }
         }
         return interfaceC11979hM10038a;
-    }
-
-    public static final InterfaceC11979h computeExpandedTypeForInlineClass(InterfaceC11917d1 interfaceC11917d1, InterfaceC11979h interfaceC11979h) {
-        C12238m.checkNotNullParameter(interfaceC11917d1, "<this>");
-        C12238m.checkNotNullParameter(interfaceC11979h, "inlineClassType");
-        return m10038a(interfaceC11917d1, interfaceC11979h, new HashSet());
     }
 }

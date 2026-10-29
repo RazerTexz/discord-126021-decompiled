@@ -63,19 +63,6 @@ public final class C12362a implements Interceptor {
         this.f25896c = a.NONE;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final boolean m10366a(Headers headers) {
-        String strM10954c = headers.m10954c("Content-Encoding");
-        return (strM10954c == null || C12103t.equals(strM10954c, RegistrationSteps.IDENTITY, true) || C12103t.equals(strM10954c, "gzip", true)) ? false : true;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final void m10367b(Headers headers, int i) {
-        int i2 = i * 2;
-        String str = this.f25895b.contains(headers.namesAndValues[i2]) ? "██" : headers.namesAndValues[i2 + 1];
-        this.f25897d.log(headers.namesAndValues[i2] + ": " + str);
-    }
-
     @Override // okhttp3.Interceptor
     public Response intercept(Interceptor.Chain chain) throws Exception {
         String string;
@@ -276,5 +263,18 @@ public final class C12362a implements Interceptor {
             this.f25897d.log("<-- HTTP FAILED: " + e);
             throw e;
         }
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m10366a(Headers headers) {
+        String strM10954c = headers.m10954c("Content-Encoding");
+        return (strM10954c == null || C12103t.equals(strM10954c, RegistrationSteps.IDENTITY, true) || C12103t.equals(strM10954c, "gzip", true)) ? false : true;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final void m10367b(Headers headers, int i) {
+        int i2 = i * 2;
+        String str = this.f25895b.contains(headers.namesAndValues[i2]) ? "██" : headers.namesAndValues[i2 + 1];
+        this.f25897d.log(headers.namesAndValues[i2] + ": " + str);
     }
 }

@@ -28,16 +28,6 @@ public final /* data */ class RtcRegion {
         return rtcRegion.copy(str, strArr);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getRegion() {
-        return this.region;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String[] getIps() {
-        return this.ips;
-    }
-
     public final RtcRegion copy(String region, String[] ips) {
         C12238m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
         C12238m.checkNotNullParameter(ips, "ips");
@@ -55,8 +45,18 @@ public final /* data */ class RtcRegion {
         return C12238m.areEqual(this.region, rtcRegion.region) && C12238m.areEqual(this.ips, rtcRegion.ips);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String[] getIps() {
         return this.ips;
+    }
+
+    public final String[] getIps() {
+        return this.ips;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getRegion() {
+        return this.region;
     }
 
     public final String getRegion() {

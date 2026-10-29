@@ -53,24 +53,9 @@ public final class WidgetEnableMFASteps extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetEnableMFASteps.class, new Intent());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
-    public static final class C97961 extends AbstractC12240o implements Function0<Unit> {
+    public final class C97961 extends AbstractC12240o implements Function0<Unit> {
         public C97961() {
             super(0);
         }
@@ -92,7 +77,7 @@ public final class WidgetEnableMFASteps extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
-    public static final class C97972 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C97972 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C97972() {
             super(1);
         }
@@ -110,7 +95,7 @@ public final class WidgetEnableMFASteps extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
-    public static final class C97981 extends AbstractC12240o implements Function1<WidgetEnableMFAViewModel.ViewState, Unit> {
+    public final class C97981 extends AbstractC12240o implements Function1<WidgetEnableMFAViewModel.ViewState, Unit> {
         public C97981() {
             super(1);
         }
@@ -134,7 +119,7 @@ public final class WidgetEnableMFASteps extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$showPasswordModal$1 */
     /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
-    public static final class C97991 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C97991 extends AbstractC12240o implements Function1<String, Unit> {
         public C97991() {
             super(1);
         }
@@ -153,6 +138,21 @@ public final class WidgetEnableMFASteps extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m156d(context, WidgetEnableMFASteps.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetEnableMFASteps() {
         super(C5419R.layout.widget_enable_mfa_steps);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEnableMFASteps$binding$2.INSTANCE, null, 2, null);
@@ -165,19 +165,6 @@ public final class WidgetEnableMFASteps extends AppFragment {
 
     private final WidgetEnableMFAViewModel getViewModel() {
         return (WidgetEnableMFAViewModel) this.viewModel.getValue();
-    }
-
-    private final void showPasswordModal() {
-        C0842s.Companion aVar = C0842s.INSTANCE;
-        FragmentManager childFragmentManager = getChildFragmentManager();
-        C12238m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
-        C97991 c97991 = new C97991();
-        Objects.requireNonNull(aVar);
-        C12238m.checkNotNullParameter(childFragmentManager, "supportFragmentManager");
-        C12238m.checkNotNullParameter(c97991, "onValidPasswordEntered");
-        C0842s c0842s = new C0842s();
-        c0842s.onValidPasswordEntered = c97991;
-        c0842s.show(childFragmentManager, C0842s.class.getSimpleName());
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -216,5 +203,18 @@ public final class WidgetEnableMFASteps extends AppFragment {
         } else {
             showPasswordModal();
         }
+    }
+
+    private final void showPasswordModal() {
+        C0842s.Companion aVar = C0842s.INSTANCE;
+        FragmentManager childFragmentManager = getChildFragmentManager();
+        C12238m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+        C97991 c97991 = new C97991();
+        Objects.requireNonNull(aVar);
+        C12238m.checkNotNullParameter(childFragmentManager, "supportFragmentManager");
+        C12238m.checkNotNullParameter(c97991, "onValidPasswordEntered");
+        C0842s c0842s = new C0842s();
+        c0842s.onValidPasswordEntered = c97991;
+        c0842s.show(childFragmentManager, C0842s.class.getSimpleName());
     }
 }

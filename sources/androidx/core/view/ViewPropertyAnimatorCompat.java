@@ -16,7 +16,7 @@ public final class ViewPropertyAnimatorCompat {
     public Runnable mEndAction = null;
     public int mOldLayerType = -1;
 
-    public static class ViewPropertyAnimatorListenerApi14 implements ViewPropertyAnimatorListener {
+    public class ViewPropertyAnimatorListenerApi14 implements ViewPropertyAnimatorListener {
         public boolean mAnimEndCalled;
         public ViewPropertyAnimatorCompat mVpa;
 
@@ -79,29 +79,6 @@ public final class ViewPropertyAnimatorCompat {
         this.mView = new WeakReference<>(view);
     }
 
-    private void setListenerInternal(final View view, final ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
-        if (viewPropertyAnimatorListener != null) {
-            view.animate().setListener(new AnimatorListenerAdapter() { // from class: androidx.core.view.ViewPropertyAnimatorCompat.1
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationCancel(Animator animator) {
-                    viewPropertyAnimatorListener.onAnimationCancel(view);
-                }
-
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationEnd(Animator animator) {
-                    viewPropertyAnimatorListener.onAnimationEnd(view);
-                }
-
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationStart(Animator animator) {
-                    viewPropertyAnimatorListener.onAnimationStart(view);
-                }
-            });
-        } else {
-            view.animate().setListener(null);
-        }
-    }
-
     public ViewPropertyAnimatorCompat alpha(float f) {
         View view = this.mView.get();
         if (view != null) {
@@ -147,6 +124,33 @@ public final class ViewPropertyAnimatorCompat {
             return view.animate().getStartDelay();
         }
         return 0L;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public ViewPropertyAnimatorCompat m90x(float f) {
+        View view = this.mView.get();
+        if (view != null) {
+            view.animate().x(f);
+        }
+        return this;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public ViewPropertyAnimatorCompat m91y(float f) {
+        View view = this.mView.get();
+        if (view != null) {
+            view.animate().y(f);
+        }
+        return this;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public ViewPropertyAnimatorCompat m92z(float f) {
+        View view = this.mView.get();
+        if (view != null) {
+            view.animate().z(f);
+        }
+        return this;
     }
 
     public ViewPropertyAnimatorCompat rotation(float f) {
@@ -253,6 +257,29 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
+    private void setListenerInternal(final View view, final ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
+        if (viewPropertyAnimatorListener != null) {
+            view.animate().setListener(new AnimatorListenerAdapter() { // from class: androidx.core.view.ViewPropertyAnimatorCompat.1
+                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+                public void onAnimationCancel(Animator animator) {
+                    viewPropertyAnimatorListener.onAnimationCancel(view);
+                }
+
+                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+                public void onAnimationEnd(Animator animator) {
+                    viewPropertyAnimatorListener.onAnimationEnd(view);
+                }
+
+                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+                public void onAnimationStart(Animator animator) {
+                    viewPropertyAnimatorListener.onAnimationStart(view);
+                }
+            });
+        } else {
+            view.animate().setListener(null);
+        }
+    }
+
     public ViewPropertyAnimatorCompat setStartDelay(long j) {
         View view = this.mView.get();
         if (view != null) {
@@ -354,15 +381,6 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    /* JADX INFO: renamed from: x */
-    public ViewPropertyAnimatorCompat m90x(float f) {
-        View view = this.mView.get();
-        if (view != null) {
-            view.animate().x(f);
-        }
-        return this;
-    }
-
     public ViewPropertyAnimatorCompat xBy(float f) {
         View view = this.mView.get();
         if (view != null) {
@@ -371,28 +389,10 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    /* JADX INFO: renamed from: y */
-    public ViewPropertyAnimatorCompat m91y(float f) {
-        View view = this.mView.get();
-        if (view != null) {
-            view.animate().y(f);
-        }
-        return this;
-    }
-
     public ViewPropertyAnimatorCompat yBy(float f) {
         View view = this.mView.get();
         if (view != null) {
             view.animate().yBy(f);
-        }
-        return this;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public ViewPropertyAnimatorCompat m92z(float f) {
-        View view = this.mView.get();
-        if (view != null) {
-            view.animate().z(f);
         }
         return this;
     }

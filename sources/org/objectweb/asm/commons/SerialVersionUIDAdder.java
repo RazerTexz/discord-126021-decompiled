@@ -220,7 +220,7 @@ public class SerialVersionUIDAdder extends ClassVisitor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/SerialVersionUIDAdder$Item.SCL.lombok */
-    private static final class Item implements Comparable<Item> {
+    final class Item implements Comparable<Item> {
         final String name;
         final int access;
         final String descriptor;

@@ -10,24 +10,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStreamReportProblem.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStreamReportProblem implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence reason = null;
-    private final Long streamerUserId = null;
-    private final Long streamChannelId = null;
-    private final Long guildId = null;
-    private final CharSequence applicationName = null;
     private final Long applicationId = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence rtcConnectionId = null;
-    private final CharSequence rating = null;
+    private final CharSequence applicationName = null;
     private final CharSequence feedback = null;
+    private final Long guildId = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence rating = null;
+    private final CharSequence reason = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long streamChannelId = null;
+    private final Long streamerUserId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stream_report_problem";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackStreamReportProblem implements AnalyticsSchem
         }
         TrackStreamReportProblem trackStreamReportProblem = (TrackStreamReportProblem) other;
         return C12238m.areEqual(this.reason, trackStreamReportProblem.reason) && C12238m.areEqual(this.streamerUserId, trackStreamReportProblem.streamerUserId) && C12238m.areEqual(this.streamChannelId, trackStreamReportProblem.streamChannelId) && C12238m.areEqual(this.guildId, trackStreamReportProblem.guildId) && C12238m.areEqual(this.applicationName, trackStreamReportProblem.applicationName) && C12238m.areEqual(this.applicationId, trackStreamReportProblem.applicationId) && C12238m.areEqual(this.mediaSessionId, trackStreamReportProblem.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackStreamReportProblem.rtcConnectionId) && C12238m.areEqual(this.rating, trackStreamReportProblem.rating) && C12238m.areEqual(this.feedback, trackStreamReportProblem.feedback);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -21,19 +21,38 @@ import androidx.customview.view.AbsSavedState;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class CheckableImageButton extends AppCompatImageButton implements Checkable {
-    private static final int[] DRAWABLE_STATE_CHECKED = {R.attr.state_checked};
     private boolean checkable;
     private boolean checked;
     private boolean pressable;
+    private static final int[] DRAWABLE_STATE_CHECKED = {R.attr.state_checked};
 
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10923a();
+    /* JADX INFO: renamed from: com.google.android.material.internal.CheckableImageButton$a */
+    public class C10924a extends AccessibilityDelegateCompat {
+        public C10924a() {
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityEvent(View view, @NonNull AccessibilityEvent accessibilityEvent) {
+            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
+            accessibilityEvent.setChecked(CheckableImageButton.this.isChecked());
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            accessibilityNodeInfoCompat.setCheckable(CheckableImageButton.this.isCheckable());
+            accessibilityNodeInfoCompat.setChecked(CheckableImageButton.this.isChecked());
+        }
+    }
+
+    public class SavedState extends AbsSavedState {
 
         /* JADX INFO: renamed from: j */
         public boolean f21025j;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10923a();
 
         /* JADX INFO: renamed from: com.google.android.material.internal.CheckableImageButton$SavedState$a */
-        public static class C10923a implements Parcelable.ClassLoaderCreator<SavedState> {
+        public final class C10923a implements Parcelable.ClassLoaderCreator<SavedState> {
             @Override // android.os.Parcelable.ClassLoaderCreator
             @NonNull
             public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
@@ -66,25 +85,6 @@ public class CheckableImageButton extends AppCompatImageButton implements Checka
         public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
             super(parcel, classLoader);
             this.f21025j = parcel.readInt() == 1;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.CheckableImageButton$a */
-    public class C10924a extends AccessibilityDelegateCompat {
-        public C10924a() {
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityEvent(View view, @NonNull AccessibilityEvent accessibilityEvent) {
-            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-            accessibilityEvent.setChecked(CheckableImageButton.this.isChecked());
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            accessibilityNodeInfoCompat.setCheckable(CheckableImageButton.this.isCheckable());
-            accessibilityNodeInfoCompat.setChecked(CheckableImageButton.this.isChecked());
         }
     }
 

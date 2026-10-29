@@ -10,16 +10,6 @@ public final /* data */ class BulkFriendSuggestions {
     private final String bulkAddToken;
     private final List<FriendSuggestion> friendSuggestions;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getBulkAddToken() {
-        return this.bulkAddToken;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<FriendSuggestion> m7829b() {
-        return this.friendSuggestions;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,11 +21,21 @@ public final /* data */ class BulkFriendSuggestions {
         return C12238m.areEqual(this.bulkAddToken, bulkFriendSuggestions.bulkAddToken) && C12238m.areEqual(this.friendSuggestions, bulkFriendSuggestions.friendSuggestions);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getBulkAddToken() {
+        return this.bulkAddToken;
+    }
+
     public int hashCode() {
         String str = this.bulkAddToken;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         List<FriendSuggestion> list = this.friendSuggestions;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<FriendSuggestion> m7829b() {
+        return this.friendSuggestions;
     }
 
     public String toString() {

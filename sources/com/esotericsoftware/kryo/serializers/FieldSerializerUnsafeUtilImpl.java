@@ -15,22 +15,6 @@ public final class FieldSerializerUnsafeUtilImpl implements FieldSerializerUnsaf
         this.serializer = fieldSerializer;
     }
 
-    private int fieldSizeOf(Class<?> cls) {
-        if (cls == Integer.TYPE || cls == Float.TYPE) {
-            return 4;
-        }
-        if (cls == Long.TYPE || cls == Double.TYPE) {
-            return 8;
-        }
-        if (cls == Byte.TYPE || cls == Boolean.TYPE) {
-            return 1;
-        }
-        if (cls == Short.TYPE || cls == Character.TYPE) {
-            return 2;
-        }
-        return UnsafeUtil.unsafe().addressSize();
-    }
-
     /* JADX WARN: Code duplicated, block: B:21:0x0092  */
     /* JADX WARN: Code duplicated, block: B:23:0x009c  */
     /* JADX WARN: Code duplicated, block: B:24:0x00aa A[DONT_INVERT] */
@@ -120,6 +104,22 @@ public final class FieldSerializerUnsafeUtilImpl implements FieldSerializerUnsaf
                 list2.add(unsafeRegionField2);
             }
         }
+    }
+
+    private int fieldSizeOf(Class<?> cls) {
+        if (cls == Integer.TYPE || cls == Float.TYPE) {
+            return 4;
+        }
+        if (cls == Long.TYPE || cls == Double.TYPE) {
+            return 8;
+        }
+        if (cls == Byte.TYPE || cls == Boolean.TYPE) {
+            return 1;
+        }
+        if (cls == Short.TYPE || cls == Character.TYPE) {
+            return 2;
+        }
+        return UnsafeUtil.unsafe().addressSize();
     }
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializerUnsafeUtil

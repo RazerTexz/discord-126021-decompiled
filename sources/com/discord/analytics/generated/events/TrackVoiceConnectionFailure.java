@@ -9,28 +9,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVoiceConnectionFailure.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVoiceConnectionFailure implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence error = null;
-    private final CharSequence hostname = null;
+    private final Long channelId = null;
     private final CharSequence cloudflareBestRegion = null;
+    private final Long connectCount = null;
+    private final CharSequence context = null;
+    private final CharSequence error = null;
+    private final Long guildId = null;
+    private final CharSequence hostname = null;
+    private final CharSequence mediaSessionId = null;
     private final Long port = null;
     private final CharSequence protocol = null;
-    private final CharSequence sessionId = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence context = null;
     private final CharSequence rtcConnectionId = null;
-    private final Long channelId = null;
-    private final Long guildId = null;
-    private final Long connectCount = null;
-    private final CharSequence voiceBackendVersion = null;
     private final CharSequence rtcWorkerBackendVersion = null;
+    private final CharSequence sessionId = null;
+    private TrackBase trackBase;
+    private final CharSequence voiceBackendVersion = null;
     private final transient String analyticsSchemaTypeName = "voice_connection_failure";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -41,6 +35,12 @@ public final /* data */ class TrackVoiceConnectionFailure implements AnalyticsSc
         }
         TrackVoiceConnectionFailure trackVoiceConnectionFailure = (TrackVoiceConnectionFailure) other;
         return C12238m.areEqual(this.error, trackVoiceConnectionFailure.error) && C12238m.areEqual(this.hostname, trackVoiceConnectionFailure.hostname) && C12238m.areEqual(this.cloudflareBestRegion, trackVoiceConnectionFailure.cloudflareBestRegion) && C12238m.areEqual(this.port, trackVoiceConnectionFailure.port) && C12238m.areEqual(this.protocol, trackVoiceConnectionFailure.protocol) && C12238m.areEqual(this.sessionId, trackVoiceConnectionFailure.sessionId) && C12238m.areEqual(this.mediaSessionId, trackVoiceConnectionFailure.mediaSessionId) && C12238m.areEqual(this.context, trackVoiceConnectionFailure.context) && C12238m.areEqual(this.rtcConnectionId, trackVoiceConnectionFailure.rtcConnectionId) && C12238m.areEqual(this.channelId, trackVoiceConnectionFailure.channelId) && C12238m.areEqual(this.guildId, trackVoiceConnectionFailure.guildId) && C12238m.areEqual(this.connectCount, trackVoiceConnectionFailure.connectCount) && C12238m.areEqual(this.voiceBackendVersion, trackVoiceConnectionFailure.voiceBackendVersion) && C12238m.areEqual(this.rtcWorkerBackendVersion, trackVoiceConnectionFailure.rtcWorkerBackendVersion);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

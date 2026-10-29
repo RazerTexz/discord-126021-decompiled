@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideohookInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideohookInitialized implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long backend = null;
     private final Long format = null;
     private final Long framebufferFormat = null;
-    private final Long sampleCount = null;
-    private final Boolean success = null;
     private final Boolean reinitialization = null;
-    private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
+    private final Long sampleCount = null;
     private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
+    private final CharSequence soundshareSession = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "videohook_initialized";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackVideohookInitialized implements AnalyticsSche
         }
         TrackVideohookInitialized trackVideohookInitialized = (TrackVideohookInitialized) other;
         return C12238m.areEqual(this.backend, trackVideohookInitialized.backend) && C12238m.areEqual(this.format, trackVideohookInitialized.format) && C12238m.areEqual(this.framebufferFormat, trackVideohookInitialized.framebufferFormat) && C12238m.areEqual(this.sampleCount, trackVideohookInitialized.sampleCount) && C12238m.areEqual(this.success, trackVideohookInitialized.success) && C12238m.areEqual(this.reinitialization, trackVideohookInitialized.reinitialization) && C12238m.areEqual(this.soundshareSession, trackVideohookInitialized.soundshareSession) && C12238m.areEqual(this.shareGameName, trackVideohookInitialized.shareGameName) && C12238m.areEqual(this.shareGameId, trackVideohookInitialized.shareGameId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

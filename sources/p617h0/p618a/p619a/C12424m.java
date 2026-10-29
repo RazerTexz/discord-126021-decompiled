@@ -283,6 +283,290 @@ public class C12424m {
         }
     }
 
+    /* JADX WARN: Code duplicated, block: B:19:0x003b  */
+    /* JADX WARN: Code duplicated, block: B:22:0x0043  */
+    /* JADX WARN: Code duplicated, block: B:23:0x004f A[LOOP:0: B:7:0x000d->B:23:0x004f, LOOP_END] */
+    /* JADX WARN: Code duplicated, block: B:25:0x0037 A[SYNTHETIC] */
+    /* JADX INFO: renamed from: e */
+    public final int m10576e(C12433v c12433v, int i) {
+        int i2;
+        int iM10639n;
+        if (i == 16777222 || ((-16777216) & i) == 50331648) {
+            for (int i3 = 0; i3 < this.f26235h; i3++) {
+                int i4 = this.f26236i[i3];
+                int i5 = (-268435456) & i4;
+                int i6 = 251658240 & i4;
+                int i7 = i4 & 1048575;
+                if (i6 == 67108864) {
+                    i2 = this.f26229b[i7];
+                } else {
+                    if (i6 == 83886080) {
+                        int[] iArr = this.f26230c;
+                        i2 = iArr[iArr.length - i7];
+                    }
+                    if (i == i4) {
+                        if (i == 16777222) {
+                            iM10639n = c12433v.m10639n(c12433v.f26350d);
+                        } else {
+                            iM10639n = c12433v.m10639n(c12433v.f26358l[i & 1048575].f26344e);
+                        }
+                        return iM10639n | 33554432;
+                    }
+                }
+                i4 = i2 + i5;
+                if (i == i4) {
+                    if (i == 16777222) {
+                        iM10639n = c12433v.m10639n(c12433v.f26350d);
+                    } else {
+                        iM10639n = c12433v.m10639n(c12433v.f26358l[i & 1048575].f26344e);
+                    }
+                    return iM10639n | 33554432;
+                }
+            }
+        }
+        return i;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final int m10577f(int i) {
+        int[] iArr = this.f26231d;
+        if (iArr == null || i >= iArr.length) {
+            return i | 67108864;
+        }
+        int i2 = iArr[i];
+        if (i2 != 0) {
+            return i2;
+        }
+        int i3 = i | 67108864;
+        iArr[i] = i3;
+        return i3;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:22:0x0053  */
+    /* JADX WARN: Code duplicated, block: B:23:0x0056 A[PHI: r8
+      0x0056: PHI (r8v16 int) = (r8v15 int), (r8v15 int), (r8v17 int), (r8v17 int) binds: [B:26:0x0065, B:28:0x0069, B:19:0x004d, B:21:0x0051] A[DONT_GENERATE, DONT_INLINE]] */
+    /* JADX WARN: Code duplicated, block: B:64:0x00f8  */
+    /* JADX WARN: Code duplicated, block: B:65:0x00fb A[PHI: r6
+      0x00fb: PHI (r6v6 int) = (r6v5 int), (r6v5 int), (r6v9 int), (r6v9 int) binds: [B:68:0x010a, B:70:0x010e, B:61:0x00f2, B:63:0x00f6] A[DONT_GENERATE, DONT_INLINE]] */
+    /* JADX INFO: renamed from: h */
+    public final boolean m10578h(C12433v c12433v, C12424m c12424m, int i) {
+        boolean zM10574g;
+        boolean zM10574g2;
+        int i2;
+        boolean z2;
+        int iM10576e;
+        int i3;
+        int i4;
+        int length = this.f26229b.length;
+        int length2 = this.f26230c.length;
+        if (c12424m.f26229b == null) {
+            c12424m.f26229b = new int[length];
+            zM10574g = true;
+        } else {
+            zM10574g = false;
+        }
+        int i5 = 0;
+        while (i5 < length) {
+            int[] iArr = this.f26231d;
+            if (iArr == null || i5 >= iArr.length || (i3 = iArr[i5]) == 0) {
+                iM10576e = this.f26229b[i5];
+            } else {
+                int i6 = i3 & (-268435456);
+                int i7 = 251658240 & i3;
+                if (i7 == 67108864) {
+                    i4 = i6 + this.f26229b[i3 & 1048575];
+                    if ((i3 & 1048576) == 0 || !(i4 == 16777220 || i4 == 16777219)) {
+                        iM10576e = i4;
+                    } else {
+                        iM10576e = 16777216;
+                    }
+                } else if (i7 == 83886080) {
+                    i4 = i6 + this.f26230c[length2 - (i3 & 1048575)];
+                    if ((i3 & 1048576) == 0 || !(i4 == 16777220 || i4 == 16777219)) {
+                        iM10576e = i4;
+                    } else {
+                        iM10576e = 16777216;
+                    }
+                } else {
+                    iM10576e = i3;
+                }
+            }
+            if (this.f26236i != null) {
+                iM10576e = m10576e(c12433v, iM10576e);
+            }
+            zM10574g |= m10574g(c12433v, iM10576e, c12424m.f26229b, i5);
+            i5++;
+        }
+        if (i > 0) {
+            for (int i8 = 0; i8 < length; i8++) {
+                zM10574g |= m10574g(c12433v, this.f26229b[i8], c12424m.f26229b, i8);
+            }
+            if (c12424m.f26230c == null) {
+                c12424m.f26230c = new int[1];
+                z2 = true;
+            } else {
+                z2 = zM10574g;
+            }
+            return m10574g(c12433v, i, c12424m.f26230c, 0) | z2;
+        }
+        int length3 = this.f26230c.length + this.f26233f;
+        if (c12424m.f26230c == null) {
+            c12424m.f26230c = new int[this.f26234g + length3];
+            zM10574g2 = true;
+        } else {
+            zM10574g2 = zM10574g;
+        }
+        for (int i9 = 0; i9 < length3; i9++) {
+            int iM10576e2 = this.f26230c[i9];
+            if (this.f26236i != null) {
+                iM10576e2 = m10576e(c12433v, iM10576e2);
+            }
+            zM10574g2 |= m10574g(c12433v, iM10576e2, c12424m.f26230c, i9);
+        }
+        for (int i10 = 0; i10 < this.f26234g; i10++) {
+            int iM10576e3 = this.f26232e[i10];
+            int i11 = iM10576e3 & (-268435456);
+            int i12 = iM10576e3 & 251658240;
+            if (i12 == 67108864) {
+                i2 = i11 + this.f26229b[iM10576e3 & 1048575];
+                if ((iM10576e3 & 1048576) == 0 || !(i2 == 16777220 || i2 == 16777219)) {
+                    iM10576e3 = i2;
+                } else {
+                    iM10576e3 = 16777216;
+                }
+            } else if (i12 == 83886080) {
+                i2 = i11 + this.f26230c[length2 - (iM10576e3 & 1048575)];
+                if ((iM10576e3 & 1048576) == 0 || !(i2 == 16777220 || i2 == 16777219)) {
+                    iM10576e3 = i2;
+                } else {
+                    iM10576e3 = 16777216;
+                }
+            }
+            if (this.f26236i != null) {
+                iM10576e3 = m10576e(c12433v, iM10576e3);
+            }
+            zM10574g2 |= m10574g(c12433v, iM10576e3, c12424m.f26230c, length3 + i10);
+        }
+        return zM10574g2;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final int m10579i() {
+        short s2 = this.f26234g;
+        if (s2 <= 0) {
+            short s3 = (short) (this.f26233f - 1);
+            this.f26233f = s3;
+            return 83886080 | (-s3);
+        }
+        int[] iArr = this.f26232e;
+        short s4 = (short) (s2 - 1);
+        this.f26234g = s4;
+        return iArr[s4];
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final void m10580j(int i) {
+        short s2 = this.f26234g;
+        if (s2 >= i) {
+            this.f26234g = (short) (s2 - i);
+        } else {
+            this.f26233f = (short) (this.f26233f - (i - s2));
+            this.f26234g = (short) 0;
+        }
+    }
+
+    /* JADX INFO: renamed from: k */
+    public final void m10581k(String str) {
+        char cCharAt = str.charAt(0);
+        if (cCharAt == '(') {
+            m10580j((C12434w.m10645b(str) >> 2) - 1);
+        } else if (cCharAt == 'J' || cCharAt == 'D') {
+            m10580j(2);
+        } else {
+            m10580j(1);
+        }
+    }
+
+    /* JADX INFO: renamed from: l */
+    public final void m10582l(int i) {
+        if (this.f26232e == null) {
+            this.f26232e = new int[10];
+        }
+        int length = this.f26232e.length;
+        short s2 = this.f26234g;
+        if (s2 >= length) {
+            int[] iArr = new int[Math.max(s2 + 1, length * 2)];
+            System.arraycopy(this.f26232e, 0, iArr, 0, length);
+            this.f26232e = iArr;
+        }
+        int[] iArr2 = this.f26232e;
+        short s3 = this.f26234g;
+        short s4 = (short) (s3 + 1);
+        this.f26234g = s4;
+        iArr2[s3] = i;
+        short s5 = (short) (this.f26233f + s4);
+        C12427p c12427p = this.f26228a;
+        if (s5 > c12427p.f26256i) {
+            c12427p.f26256i = s5;
+        }
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final void m10583m(C12433v c12433v, String str) {
+        int iM10573d = m10573d(c12433v, str, str.charAt(0) == '(' ? str.indexOf(41) + 1 : 0);
+        if (iM10573d != 0) {
+            m10582l(iM10573d);
+            if (iM10573d == 16777220 || iM10573d == 16777219) {
+                m10582l(16777216);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: n */
+    public final void m10584n(C12433v c12433v, int i, String str, int i2) {
+        int[] iArr = new int[i2];
+        this.f26229b = iArr;
+        this.f26230c = new int[0];
+        int i3 = 1;
+        if ((i & 8) != 0) {
+            i3 = 0;
+        } else if ((i & 262144) == 0) {
+            iArr[0] = 33554432 | c12433v.m10639n(c12433v.f26350d);
+        } else {
+            iArr[0] = 16777222;
+        }
+        for (C12434w c12434w : C12434w.m10644a(str)) {
+            int iM10573d = m10573d(c12433v, c12434w.m10651d(), 0);
+            int[] iArr2 = this.f26229b;
+            int i4 = i3 + 1;
+            iArr2[i3] = iM10573d;
+            if (iM10573d == 16777220 || iM10573d == 16777219) {
+                i3 = i4 + 1;
+                iArr2[i4] = 16777216;
+            } else {
+                i3 = i4;
+            }
+        }
+        while (i3 < i2) {
+            this.f26229b[i3] = 16777216;
+            i3++;
+        }
+    }
+
+    /* JADX INFO: renamed from: o */
+    public final void m10585o(int i, int i2) {
+        if (this.f26231d == null) {
+            this.f26231d = new int[10];
+        }
+        int length = this.f26231d.length;
+        if (i >= length) {
+            int[] iArr = new int[Math.max(i + 1, length * 2)];
+            System.arraycopy(this.f26231d, 0, iArr, 0, length);
+            this.f26231d = iArr;
+        }
+        this.f26231d[i] = i2;
+    }
+
     /* JADX WARN: Code duplicated, block: B:102:0x02da  */
     /* JADX WARN: Code duplicated, block: B:103:0x02e5  */
     /* JADX WARN: Code duplicated, block: B:104:0x02ed  */
@@ -777,289 +1061,5 @@ public class C12424m {
                         }
                 }
         }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:19:0x003b  */
-    /* JADX WARN: Code duplicated, block: B:22:0x0043  */
-    /* JADX WARN: Code duplicated, block: B:23:0x004f A[LOOP:0: B:7:0x000d->B:23:0x004f, LOOP_END] */
-    /* JADX WARN: Code duplicated, block: B:25:0x0037 A[SYNTHETIC] */
-    /* JADX INFO: renamed from: e */
-    public final int m10576e(C12433v c12433v, int i) {
-        int i2;
-        int iM10639n;
-        if (i == 16777222 || ((-16777216) & i) == 50331648) {
-            for (int i3 = 0; i3 < this.f26235h; i3++) {
-                int i4 = this.f26236i[i3];
-                int i5 = (-268435456) & i4;
-                int i6 = 251658240 & i4;
-                int i7 = i4 & 1048575;
-                if (i6 == 67108864) {
-                    i2 = this.f26229b[i7];
-                } else {
-                    if (i6 == 83886080) {
-                        int[] iArr = this.f26230c;
-                        i2 = iArr[iArr.length - i7];
-                    }
-                    if (i == i4) {
-                        if (i == 16777222) {
-                            iM10639n = c12433v.m10639n(c12433v.f26350d);
-                        } else {
-                            iM10639n = c12433v.m10639n(c12433v.f26358l[i & 1048575].f26344e);
-                        }
-                        return iM10639n | 33554432;
-                    }
-                }
-                i4 = i2 + i5;
-                if (i == i4) {
-                    if (i == 16777222) {
-                        iM10639n = c12433v.m10639n(c12433v.f26350d);
-                    } else {
-                        iM10639n = c12433v.m10639n(c12433v.f26358l[i & 1048575].f26344e);
-                    }
-                    return iM10639n | 33554432;
-                }
-            }
-        }
-        return i;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final int m10577f(int i) {
-        int[] iArr = this.f26231d;
-        if (iArr == null || i >= iArr.length) {
-            return i | 67108864;
-        }
-        int i2 = iArr[i];
-        if (i2 != 0) {
-            return i2;
-        }
-        int i3 = i | 67108864;
-        iArr[i] = i3;
-        return i3;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:22:0x0053  */
-    /* JADX WARN: Code duplicated, block: B:23:0x0056 A[PHI: r8
-      0x0056: PHI (r8v16 int) = (r8v15 int), (r8v15 int), (r8v17 int), (r8v17 int) binds: [B:26:0x0065, B:28:0x0069, B:19:0x004d, B:21:0x0051] A[DONT_GENERATE, DONT_INLINE]] */
-    /* JADX WARN: Code duplicated, block: B:64:0x00f8  */
-    /* JADX WARN: Code duplicated, block: B:65:0x00fb A[PHI: r6
-      0x00fb: PHI (r6v6 int) = (r6v5 int), (r6v5 int), (r6v9 int), (r6v9 int) binds: [B:68:0x010a, B:70:0x010e, B:61:0x00f2, B:63:0x00f6] A[DONT_GENERATE, DONT_INLINE]] */
-    /* JADX INFO: renamed from: h */
-    public final boolean m10578h(C12433v c12433v, C12424m c12424m, int i) {
-        boolean zM10574g;
-        boolean zM10574g2;
-        int i2;
-        boolean z2;
-        int iM10576e;
-        int i3;
-        int i4;
-        int length = this.f26229b.length;
-        int length2 = this.f26230c.length;
-        if (c12424m.f26229b == null) {
-            c12424m.f26229b = new int[length];
-            zM10574g = true;
-        } else {
-            zM10574g = false;
-        }
-        int i5 = 0;
-        while (i5 < length) {
-            int[] iArr = this.f26231d;
-            if (iArr == null || i5 >= iArr.length || (i3 = iArr[i5]) == 0) {
-                iM10576e = this.f26229b[i5];
-            } else {
-                int i6 = i3 & (-268435456);
-                int i7 = 251658240 & i3;
-                if (i7 == 67108864) {
-                    i4 = i6 + this.f26229b[i3 & 1048575];
-                    if ((i3 & 1048576) == 0 || !(i4 == 16777220 || i4 == 16777219)) {
-                        iM10576e = i4;
-                    } else {
-                        iM10576e = 16777216;
-                    }
-                } else if (i7 == 83886080) {
-                    i4 = i6 + this.f26230c[length2 - (i3 & 1048575)];
-                    if ((i3 & 1048576) == 0 || !(i4 == 16777220 || i4 == 16777219)) {
-                        iM10576e = i4;
-                    } else {
-                        iM10576e = 16777216;
-                    }
-                } else {
-                    iM10576e = i3;
-                }
-            }
-            if (this.f26236i != null) {
-                iM10576e = m10576e(c12433v, iM10576e);
-            }
-            zM10574g |= m10574g(c12433v, iM10576e, c12424m.f26229b, i5);
-            i5++;
-        }
-        if (i > 0) {
-            for (int i8 = 0; i8 < length; i8++) {
-                zM10574g |= m10574g(c12433v, this.f26229b[i8], c12424m.f26229b, i8);
-            }
-            if (c12424m.f26230c == null) {
-                c12424m.f26230c = new int[1];
-                z2 = true;
-            } else {
-                z2 = zM10574g;
-            }
-            return m10574g(c12433v, i, c12424m.f26230c, 0) | z2;
-        }
-        int length3 = this.f26230c.length + this.f26233f;
-        if (c12424m.f26230c == null) {
-            c12424m.f26230c = new int[this.f26234g + length3];
-            zM10574g2 = true;
-        } else {
-            zM10574g2 = zM10574g;
-        }
-        for (int i9 = 0; i9 < length3; i9++) {
-            int iM10576e2 = this.f26230c[i9];
-            if (this.f26236i != null) {
-                iM10576e2 = m10576e(c12433v, iM10576e2);
-            }
-            zM10574g2 |= m10574g(c12433v, iM10576e2, c12424m.f26230c, i9);
-        }
-        for (int i10 = 0; i10 < this.f26234g; i10++) {
-            int iM10576e3 = this.f26232e[i10];
-            int i11 = iM10576e3 & (-268435456);
-            int i12 = iM10576e3 & 251658240;
-            if (i12 == 67108864) {
-                i2 = i11 + this.f26229b[iM10576e3 & 1048575];
-                if ((iM10576e3 & 1048576) == 0 || !(i2 == 16777220 || i2 == 16777219)) {
-                    iM10576e3 = i2;
-                } else {
-                    iM10576e3 = 16777216;
-                }
-            } else if (i12 == 83886080) {
-                i2 = i11 + this.f26230c[length2 - (iM10576e3 & 1048575)];
-                if ((iM10576e3 & 1048576) == 0 || !(i2 == 16777220 || i2 == 16777219)) {
-                    iM10576e3 = i2;
-                } else {
-                    iM10576e3 = 16777216;
-                }
-            }
-            if (this.f26236i != null) {
-                iM10576e3 = m10576e(c12433v, iM10576e3);
-            }
-            zM10574g2 |= m10574g(c12433v, iM10576e3, c12424m.f26230c, length3 + i10);
-        }
-        return zM10574g2;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final int m10579i() {
-        short s2 = this.f26234g;
-        if (s2 <= 0) {
-            short s3 = (short) (this.f26233f - 1);
-            this.f26233f = s3;
-            return 83886080 | (-s3);
-        }
-        int[] iArr = this.f26232e;
-        short s4 = (short) (s2 - 1);
-        this.f26234g = s4;
-        return iArr[s4];
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final void m10580j(int i) {
-        short s2 = this.f26234g;
-        if (s2 >= i) {
-            this.f26234g = (short) (s2 - i);
-        } else {
-            this.f26233f = (short) (this.f26233f - (i - s2));
-            this.f26234g = (short) 0;
-        }
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final void m10581k(String str) {
-        char cCharAt = str.charAt(0);
-        if (cCharAt == '(') {
-            m10580j((C12434w.m10645b(str) >> 2) - 1);
-        } else if (cCharAt == 'J' || cCharAt == 'D') {
-            m10580j(2);
-        } else {
-            m10580j(1);
-        }
-    }
-
-    /* JADX INFO: renamed from: l */
-    public final void m10582l(int i) {
-        if (this.f26232e == null) {
-            this.f26232e = new int[10];
-        }
-        int length = this.f26232e.length;
-        short s2 = this.f26234g;
-        if (s2 >= length) {
-            int[] iArr = new int[Math.max(s2 + 1, length * 2)];
-            System.arraycopy(this.f26232e, 0, iArr, 0, length);
-            this.f26232e = iArr;
-        }
-        int[] iArr2 = this.f26232e;
-        short s3 = this.f26234g;
-        short s4 = (short) (s3 + 1);
-        this.f26234g = s4;
-        iArr2[s3] = i;
-        short s5 = (short) (this.f26233f + s4);
-        C12427p c12427p = this.f26228a;
-        if (s5 > c12427p.f26256i) {
-            c12427p.f26256i = s5;
-        }
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m10583m(C12433v c12433v, String str) {
-        int iM10573d = m10573d(c12433v, str, str.charAt(0) == '(' ? str.indexOf(41) + 1 : 0);
-        if (iM10573d != 0) {
-            m10582l(iM10573d);
-            if (iM10573d == 16777220 || iM10573d == 16777219) {
-                m10582l(16777216);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: n */
-    public final void m10584n(C12433v c12433v, int i, String str, int i2) {
-        int[] iArr = new int[i2];
-        this.f26229b = iArr;
-        this.f26230c = new int[0];
-        int i3 = 1;
-        if ((i & 8) != 0) {
-            i3 = 0;
-        } else if ((i & 262144) == 0) {
-            iArr[0] = 33554432 | c12433v.m10639n(c12433v.f26350d);
-        } else {
-            iArr[0] = 16777222;
-        }
-        for (C12434w c12434w : C12434w.m10644a(str)) {
-            int iM10573d = m10573d(c12433v, c12434w.m10651d(), 0);
-            int[] iArr2 = this.f26229b;
-            int i4 = i3 + 1;
-            iArr2[i3] = iM10573d;
-            if (iM10573d == 16777220 || iM10573d == 16777219) {
-                i3 = i4 + 1;
-                iArr2[i4] = 16777216;
-            } else {
-                i3 = i4;
-            }
-        }
-        while (i3 < i2) {
-            this.f26229b[i3] = 16777216;
-            i3++;
-        }
-    }
-
-    /* JADX INFO: renamed from: o */
-    public final void m10585o(int i, int i2) {
-        if (this.f26231d == null) {
-            this.f26231d = new int[10];
-        }
-        int length = this.f26231d.length;
-        if (i >= length) {
-            int[] iArr = new int[Math.max(i + 1, length * 2)];
-            System.arraycopy(this.f26231d, 0, iArr, 0, length);
-            this.f26231d = iArr;
-        }
-        this.f26231d[i] = i2;
     }
 }

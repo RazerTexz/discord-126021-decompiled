@@ -11,14 +11,14 @@ public final class C12786b implements Subscription {
     /* JADX INFO: renamed from: j */
     public final C12709a f27421j = new C12709a();
 
-    /* JADX INFO: renamed from: a */
-    public void m10881a(Subscription subscription) {
-        this.f27421j.m10809a(subscription);
-    }
-
     @Override // p658rx.Subscription
     public boolean isUnsubscribed() {
         return this.f27421j.isUnsubscribed();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void m10881a(Subscription subscription) {
+        this.f27421j.m10809a(subscription);
     }
 
     @Override // p658rx.Subscription

@@ -51,6 +51,9 @@ public final class C5011c extends AbstractC5004a {
     /* JADX INFO: renamed from: l */
     public static final int[][] f13432l = {new int[]{0, 0}, new int[]{0, 1, 1}, new int[]{0, 2, 1, 3}, new int[]{0, 4, 1, 3, 2}, new int[]{0, 4, 1, 3, 3, 5}, new int[]{0, 4, 1, 3, 4, 5, 5}, new int[]{0, 0, 1, 1, 2, 2, 3, 3}, new int[]{0, 0, 1, 1, 2, 2, 3, 4, 4}, new int[]{0, 0, 1, 1, 2, 2, 3, 4, 5, 5}, new int[]{0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5}};
 
+    /* JADX INFO: renamed from: p */
+    public boolean f13436p;
+
     /* JADX INFO: renamed from: m */
     public final List<C5009a> f13433m = new ArrayList(11);
 
@@ -59,9 +62,6 @@ public final class C5011c extends AbstractC5004a {
 
     /* JADX INFO: renamed from: o */
     public final int[] f13435o = new int[2];
-
-    /* JADX INFO: renamed from: p */
-    public boolean f13436p;
 
     /* JADX INFO: renamed from: n */
     public static Result m7020n(List<C5009a> list) throws NotFoundException, FormatException {
@@ -161,20 +161,6 @@ public final class C5011c extends AbstractC5004a {
             int i3 = (length - i) - 1;
             iArr[i] = iArr[i3];
             iArr[i3] = i2;
-        }
-    }
-
-    @Override // p007b.p225i.p414e.p426q.AbstractC4997k
-    /* JADX INFO: renamed from: b */
-    public Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException, FormatException {
-        this.f13433m.clear();
-        this.f13436p = false;
-        try {
-            return m7020n(m7026p(i, c4962a));
-        } catch (NotFoundException unused) {
-            this.f13433m.clear();
-            this.f13436p = true;
-            return m7020n(m7026p(i, c4962a));
         }
     }
 
@@ -685,6 +671,20 @@ public final class C5011c extends AbstractC5004a {
             }
             i7 = 2;
             i8 = 0;
+        }
+    }
+
+    @Override // p007b.p225i.p414e.p426q.AbstractC4997k
+    /* JADX INFO: renamed from: b */
+    public Result mo6983b(int i, C4962a c4962a, Map<EnumC4949d, ?> map) throws NotFoundException, FormatException {
+        this.f13433m.clear();
+        this.f13436p = false;
+        try {
+            return m7020n(m7026p(i, c4962a));
+        } catch (NotFoundException unused) {
+            this.f13433m.clear();
+            this.f13436p = true;
+            return m7020n(m7026p(i, c4962a));
         }
     }
 

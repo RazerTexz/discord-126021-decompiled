@@ -22,7 +22,7 @@ public abstract class MessageRequest {
     private final String requestId;
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Edit extends MessageRequest {
+    public final class Edit extends MessageRequest {
         private final MessageAllowedMentions allowedMentions;
         private final long channelId;
         private final String content;
@@ -57,7 +57,7 @@ public abstract class MessageRequest {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class Send extends MessageRequest {
+    public final class Send extends MessageRequest {
         private final Activity activity;
         private final List<Attachment<?>> attachments;
         private final Message message;
@@ -113,7 +113,7 @@ public abstract class MessageRequest {
     }
 
     /* JADX INFO: compiled from: MessageQueue.kt */
-    public static final class SendApplicationCommand extends MessageRequest {
+    public final class SendApplicationCommand extends MessageRequest {
         private final ApplicationCommandLocalSendData applicationCommandSendData;
         private final List<Attachment<?>> attachments;
         private final com.discord.api.message.Message message;

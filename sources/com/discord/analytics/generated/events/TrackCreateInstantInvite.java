@@ -10,24 +10,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreateInstantInvite.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreateInstantInvite implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean temporary = null;
-    private final Long maxUses = null;
-    private final Long maxAge = null;
-    private final Boolean regenerate = null;
-    private final Boolean unique = null;
-    private final CharSequence code = null;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
+    private final CharSequence code = null;
+    private final Long guildId = null;
     private final Long inviteType = null;
+    private final Long maxAge = null;
+    private final Long maxUses = null;
+    private final Boolean regenerate = null;
+    private final Boolean temporary = null;
+    private TrackBase trackBase;
+    private final Boolean unique = null;
     private final transient String analyticsSchemaTypeName = "create_instant_invite";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackCreateInstantInvite implements AnalyticsSchem
         }
         TrackCreateInstantInvite trackCreateInstantInvite = (TrackCreateInstantInvite) other;
         return C12238m.areEqual(this.temporary, trackCreateInstantInvite.temporary) && C12238m.areEqual(this.maxUses, trackCreateInstantInvite.maxUses) && C12238m.areEqual(this.maxAge, trackCreateInstantInvite.maxAge) && C12238m.areEqual(this.regenerate, trackCreateInstantInvite.regenerate) && C12238m.areEqual(this.unique, trackCreateInstantInvite.unique) && C12238m.areEqual(this.code, trackCreateInstantInvite.code) && C12238m.areEqual(this.guildId, trackCreateInstantInvite.guildId) && C12238m.areEqual(this.channelId, trackCreateInstantInvite.channelId) && C12238m.areEqual(this.channelType, trackCreateInstantInvite.channelType) && C12238m.areEqual(this.inviteType, trackCreateInstantInvite.inviteType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

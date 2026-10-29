@@ -16,7 +16,7 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
     private final Long guildId;
     private final GuildScheduledEventDetailsSource source;
 
-    public static class Creator implements Parcelable.Creator<GuildScheduledEventDetailsArgs> {
+    public final class Creator implements Parcelable.Creator<GuildScheduledEventDetailsArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final GuildScheduledEventDetailsArgs createFromParcel(Parcel parcel) {
@@ -58,26 +58,6 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
         return guildScheduledEventDetailsArgs.copy(j2, l3, l4, guildScheduledEventDetailsSource);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getEventId() {
-        return this.eventId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final GuildScheduledEventDetailsSource getSource() {
-        return this.source;
-    }
-
     public final GuildScheduledEventDetailsArgs copy(long eventId, Long guildId, Long channelId, GuildScheduledEventDetailsSource source) {
         C12238m.checkNotNullParameter(source, "source");
         return new GuildScheduledEventDetailsArgs(eventId, guildId, channelId, source);
@@ -99,16 +79,36 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
         return this.eventId == guildScheduledEventDetailsArgs.eventId && C12238m.areEqual(this.guildId, guildScheduledEventDetailsArgs.guildId) && C12238m.areEqual(this.channelId, guildScheduledEventDetailsArgs.channelId) && C12238m.areEqual(this.source, guildScheduledEventDetailsArgs.source);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
+    }
+
+    public final Long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getEventId() {
+        return this.eventId;
     }
 
     public final long getEventId() {
         return this.eventId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final GuildScheduledEventDetailsSource getSource() {
+        return this.source;
     }
 
     public final GuildScheduledEventDetailsSource getSource() {

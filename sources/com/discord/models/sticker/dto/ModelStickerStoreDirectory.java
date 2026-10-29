@@ -17,6 +17,10 @@ public final /* data */ class ModelStickerStoreDirectory {
         this.storeDirectoryLayout = modelStoreDirectoryLayout;
     }
 
+    public final List<ModelStickerPack> component1() {
+        return this.stickerPacks;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelStickerStoreDirectory copy$default(ModelStickerStoreDirectory modelStickerStoreDirectory, List list, ModelStoreDirectoryLayout modelStoreDirectoryLayout, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,15 +30,6 @@ public final /* data */ class ModelStickerStoreDirectory {
             modelStoreDirectoryLayout = modelStickerStoreDirectory.storeDirectoryLayout;
         }
         return modelStickerStoreDirectory.copy(list, modelStoreDirectoryLayout);
-    }
-
-    public final List<ModelStickerPack> component1() {
-        return this.stickerPacks;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ModelStoreDirectoryLayout getStoreDirectoryLayout() {
-        return this.storeDirectoryLayout;
     }
 
     public final ModelStickerStoreDirectory copy(List<ModelStickerPack> stickerPacks, ModelStoreDirectoryLayout storeDirectoryLayout) {
@@ -55,6 +50,11 @@ public final /* data */ class ModelStickerStoreDirectory {
 
     public final List<ModelStickerPack> getStickerPacks() {
         return this.stickerPacks;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final ModelStoreDirectoryLayout getStoreDirectoryLayout() {
+        return this.storeDirectoryLayout;
     }
 
     public final ModelStoreDirectoryLayout getStoreDirectoryLayout() {

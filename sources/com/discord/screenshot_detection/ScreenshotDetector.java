@@ -40,8 +40,30 @@ public final class ScreenshotDetector {
     /* JADX INFO: renamed from: g, reason: from kotlin metadata */
     public final SharedPreferences cache;
 
+    /* JADX INFO: renamed from: com.discord.screenshot_detection.ScreenshotDetector$a */
     /* JADX INFO: compiled from: ScreenshotDetector.kt */
-    public static final /* data */ class Screenshot {
+    public final class C5652a extends AbstractC12240o implements Function2<Uri, String, Unit> {
+        public C5652a() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public Unit invoke(Uri uri, String str) {
+            Uri uri2 = uri;
+            String str2 = str;
+            C12238m.checkNotNullParameter(uri2, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+            C12238m.checkNotNullParameter(str2, "filename");
+            ScreenshotDetector screenshotDetector = ScreenshotDetector.this;
+            if (screenshotDetector.enabled) {
+                PublishSubject<Screenshot> publishSubject = screenshotDetector.publishSubject;
+                publishSubject.f27650k.onNext(new Screenshot(uri2, str2));
+            }
+            return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: ScreenshotDetector.kt */
+    public final /* data */ class Screenshot {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final Uri uri;
@@ -79,28 +101,6 @@ public final class ScreenshotDetector {
             sbM833U.append(this.uri);
             sbM833U.append(", filename=");
             return C1643a.m822J(sbM833U, this.filename, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.screenshot_detection.ScreenshotDetector$a */
-    /* JADX INFO: compiled from: ScreenshotDetector.kt */
-    public static final class C5652a extends AbstractC12240o implements Function2<Uri, String, Unit> {
-        public C5652a() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public Unit invoke(Uri uri, String str) {
-            Uri uri2 = uri;
-            String str2 = str;
-            C12238m.checkNotNullParameter(uri2, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-            C12238m.checkNotNullParameter(str2, "filename");
-            ScreenshotDetector screenshotDetector = ScreenshotDetector.this;
-            if (screenshotDetector.enabled) {
-                PublishSubject<Screenshot> publishSubject = screenshotDetector.publishSubject;
-                publishSubject.f27650k.onNext(new Screenshot(uri2, str2));
-            }
-            return Unit.f27425a;
         }
     }
 

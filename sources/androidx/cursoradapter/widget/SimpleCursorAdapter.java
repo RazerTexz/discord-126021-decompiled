@@ -38,21 +38,6 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         findColumns(cursor, strArr);
     }
 
-    private void findColumns(Cursor cursor, String[] strArr) {
-        if (cursor == null) {
-            this.mFrom = null;
-            return;
-        }
-        int length = strArr.length;
-        int[] iArr = this.mFrom;
-        if (iArr == null || iArr.length != length) {
-            this.mFrom = new int[length];
-        }
-        for (int i = 0; i < length; i++) {
-            this.mFrom[i] = cursor.getColumnIndexOrThrow(strArr[i]);
-        }
-    }
-
     @Override // androidx.cursoradapter.widget.CursorAdapter
     public void bindView(View view, Context context, Cursor cursor) {
         ViewBinder viewBinder = this.mViewBinder;
@@ -97,6 +82,21 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         }
         int i = this.mStringConversionColumn;
         return i > -1 ? cursor.getString(i) : super.convertToString(cursor);
+    }
+
+    private void findColumns(Cursor cursor, String[] strArr) {
+        if (cursor == null) {
+            this.mFrom = null;
+            return;
+        }
+        int length = strArr.length;
+        int[] iArr = this.mFrom;
+        if (iArr == null || iArr.length != length) {
+            this.mFrom = new int[length];
+        }
+        for (int i = 0; i < length; i++) {
+            this.mFrom[i] = cursor.getColumnIndexOrThrow(strArr[i]);
+        }
     }
 
     public CursorToStringConverter getCursorToStringConverter() {

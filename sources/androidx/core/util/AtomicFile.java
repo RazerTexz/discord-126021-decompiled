@@ -23,25 +23,6 @@ public class AtomicFile {
         this.mLegacyBackupName = new File(file.getPath() + ".bak");
     }
 
-    private static void rename(@NonNull File file, @NonNull File file2) {
-        if (file2.isDirectory() && !file2.delete()) {
-            Log.e(LOG_TAG, "Failed to delete file which is a directory " + file2);
-        }
-        if (file.renameTo(file2)) {
-            return;
-        }
-        Log.e(LOG_TAG, "Failed to rename " + file + " to " + file2);
-    }
-
-    private static boolean sync(@NonNull FileOutputStream fileOutputStream) {
-        try {
-            fileOutputStream.getFD().sync();
-            return true;
-        } catch (IOException unused) {
-            return false;
-        }
-    }
-
     public void delete() {
         this.mBaseName.delete();
         this.mNewName.delete();
@@ -127,6 +108,16 @@ public class AtomicFile {
         }
     }
 
+    private static void rename(@NonNull File file, @NonNull File file2) {
+        if (file2.isDirectory() && !file2.delete()) {
+            Log.e(LOG_TAG, "Failed to delete file which is a directory " + file2);
+        }
+        if (file.renameTo(file2)) {
+            return;
+        }
+        Log.e(LOG_TAG, "Failed to rename " + file + " to " + file2);
+    }
+
     @NonNull
     public FileOutputStream startWrite() throws IOException {
         if (this.mLegacyBackupName.exists()) {
@@ -147,6 +138,15 @@ public class AtomicFile {
                 sbM833U2.append(this.mNewName);
                 throw new IOException(sbM833U2.toString(), e);
             }
+        }
+    }
+
+    private static boolean sync(@NonNull FileOutputStream fileOutputStream) {
+        try {
+            fileOutputStream.getFD().sync();
+            return true;
+        } catch (IOException unused) {
+            return false;
         }
     }
 }

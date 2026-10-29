@@ -17,7 +17,7 @@ public final class WidgetChannelsListAdapter$ItemMFA$onConfigure$1 extends Abstr
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListAdapter$ItemMFA$onConfigure$1$1 */
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class C74481 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C74481 extends AbstractC12240o implements Function1<View, Unit> {
         public static final C74481 INSTANCE = new C74481();
 
         public C74481() {

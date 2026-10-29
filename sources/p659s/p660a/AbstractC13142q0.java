@@ -2,6 +2,7 @@ package p659s.p660a;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.api.permission.Permission;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlinx.coroutines.CoroutineDispatcher;
 import p507d0.p580t.C12139j;
@@ -82,16 +83,8 @@ public abstract class AbstractC13142q0 extends CoroutineDispatcher {
         return this.f27884k >= m11335I(true);
     }
 
-    /* JADX INFO: renamed from: O */
-    public long mo11339O() {
-        if (m11340R()) {
-            return 0L;
-        }
-        return RecyclerView.FOREVER_NS;
-    }
-
     /* JADX INFO: renamed from: R */
-    public final boolean m11340R() {
+    public final boolean m11340R() throws IllegalAccessException, InvocationTargetException {
         C13019b<AbstractC13121j0<?>> c13019b = this.f27886m;
         if (c13019b != null) {
             int i = c13019b.f27669b;
@@ -111,6 +104,14 @@ public abstract class AbstractC13142q0 extends CoroutineDispatcher {
             }
         }
         return false;
+    }
+
+    /* JADX INFO: renamed from: O */
+    public long mo11339O() {
+        if (m11340R()) {
+            return 0L;
+        }
+        return RecyclerView.FOREVER_NS;
     }
 
     public void shutdown() {

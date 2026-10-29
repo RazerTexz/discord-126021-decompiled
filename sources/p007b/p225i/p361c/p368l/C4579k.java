@@ -23,6 +23,9 @@ public class C4579k extends AbstractC4569a {
     /* JADX INFO: renamed from: a */
     public static final /* synthetic */ int f12191a = 0;
 
+    /* JADX INFO: renamed from: e */
+    public final C4585q f12195e;
+
     /* JADX INFO: renamed from: b */
     public final Map<C4572d<?>, C4586r<?>> f12192b = new HashMap();
 
@@ -31,9 +34,6 @@ public class C4579k extends AbstractC4569a {
 
     /* JADX INFO: renamed from: d */
     public final Map<Class<?>, C4586r<Set<?>>> f12194d = new HashMap();
-
-    /* JADX INFO: renamed from: e */
-    public final C4585q f12195e;
 
     public C4579k(Executor executor, Iterable<InterfaceC4575g> iterable, C4572d<?>... c4572dArr) {
         Set<C4581m> set;

@@ -42,21 +42,21 @@ import p007b.p225i.p226a.p242c.p259f3.C2757x;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2627h {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f6134a = Pattern.compile("^(\\S+)\\s+-->\\s+(\\S+)(.*)?$");
-
-    /* JADX INFO: renamed from: b */
-    public static final Pattern f6135b = Pattern.compile("(\\S+?):(\\S+)");
-
     /* JADX INFO: renamed from: c */
     public static final Map<String, Integer> f6136c;
 
     /* JADX INFO: renamed from: d */
     public static final Map<String, Integer> f6137d;
 
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f6134a = Pattern.compile("^(\\S+)\\s+-->\\s+(\\S+)(.*)?$");
+
+    /* JADX INFO: renamed from: b */
+    public static final Pattern f6135b = Pattern.compile("(\\S+?):(\\S+)");
+
     /* JADX INFO: renamed from: b.i.a.c.b3.v.h$b */
     /* JADX INFO: compiled from: WebvttCueParser.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int f6138a = 0;
@@ -75,7 +75,7 @@ public final class C2627h {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.v.h$c */
     /* JADX INFO: compiled from: WebvttCueParser.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final String f6141a;
@@ -99,7 +99,7 @@ public final class C2627h {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.v.h$d */
     /* JADX INFO: compiled from: WebvttCueParser.java */
-    public static final class d implements Comparable<d> {
+    public final class d implements Comparable<d> {
 
         /* JADX INFO: renamed from: j */
         public final int f6145j;
@@ -115,125 +115,6 @@ public final class C2627h {
         @Override // java.lang.Comparable
         public int compareTo(d dVar) {
             return Integer.compare(this.f6145j, dVar.f6145j);
-        }
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.b3.v.h$e */
-    /* JADX INFO: compiled from: WebvttCueParser.java */
-    public static final class e {
-
-        /* JADX INFO: renamed from: c */
-        public CharSequence f6149c;
-
-        /* JADX INFO: renamed from: a */
-        public long f6147a = 0;
-
-        /* JADX INFO: renamed from: b */
-        public long f6148b = 0;
-
-        /* JADX INFO: renamed from: d */
-        public int f6150d = 2;
-
-        /* JADX INFO: renamed from: e */
-        public float f6151e = -3.4028235E38f;
-
-        /* JADX INFO: renamed from: f */
-        public int f6152f = 1;
-
-        /* JADX INFO: renamed from: g */
-        public int f6153g = 0;
-
-        /* JADX INFO: renamed from: h */
-        public float f6154h = -3.4028235E38f;
-
-        /* JADX INFO: renamed from: i */
-        public int f6155i = Integer.MIN_VALUE;
-
-        /* JADX INFO: renamed from: j */
-        public float f6156j = 1.0f;
-
-        /* JADX INFO: renamed from: k */
-        public int f6157k = Integer.MIN_VALUE;
-
-        /* JADX WARN: Code duplicated, block: B:20:0x0034  */
-        /* JADX WARN: Code duplicated, block: B:21:0x0036  */
-        /* JADX WARN: Code duplicated, block: B:29:0x0053  */
-        /* JADX WARN: Code duplicated, block: B:31:0x0059  */
-        /* JADX WARN: Code duplicated, block: B:43:0x0076  */
-        /* JADX INFO: renamed from: a */
-        public C2578b.b m2718a() {
-            Layout.Alignment alignment;
-            float f = this.f6154h;
-            float f2 = -3.4028235E38f;
-            if (f == -3.4028235E38f) {
-                int i = this.f6150d;
-                if (i != 4) {
-                    f = i != 5 ? 0.5f : 1.0f;
-                } else {
-                    f = 0.0f;
-                }
-            }
-            int i2 = this.f6155i;
-            if (i2 == Integer.MIN_VALUE) {
-                int i3 = this.f6150d;
-                if (i3 == 1) {
-                    i2 = 0;
-                } else if (i3 == 3) {
-                    i2 = 2;
-                } else if (i3 == 4) {
-                    i2 = 0;
-                } else if (i3 != 5) {
-                    i2 = 1;
-                } else {
-                    i2 = 2;
-                }
-            }
-            C2578b.b bVar = new C2578b.b();
-            int i4 = this.f6150d;
-            if (i4 == 1) {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            } else if (i4 == 2) {
-                alignment = Layout.Alignment.ALIGN_CENTER;
-            } else if (i4 == 3) {
-                alignment = Layout.Alignment.ALIGN_OPPOSITE;
-            } else if (i4 == 4) {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            } else if (i4 != 5) {
-                C1643a.m852g0(34, "Unknown textAlignment: ", i4, "WebvttCueParser");
-                alignment = null;
-            } else {
-                alignment = Layout.Alignment.ALIGN_OPPOSITE;
-            }
-            bVar.f5775c = alignment;
-            float f3 = this.f6151e;
-            int i5 = this.f6152f;
-            if (f3 != -3.4028235E38f && i5 == 0 && (f3 < 0.0f || f3 > 1.0f)) {
-                f2 = 1.0f;
-            } else if (f3 != -3.4028235E38f) {
-                f2 = f3;
-            } else if (i5 == 0) {
-                f2 = 1.0f;
-            }
-            bVar.f5777e = f2;
-            bVar.f5778f = i5;
-            bVar.f5779g = this.f6153g;
-            bVar.f5780h = f;
-            bVar.f5781i = i2;
-            float f4 = this.f6156j;
-            if (i2 == 0) {
-                f = 1.0f - f;
-            } else if (i2 == 1) {
-                f = f <= 0.5f ? f * 2.0f : (1.0f - f) * 2.0f;
-            } else if (i2 != 2) {
-                throw new IllegalStateException(String.valueOf(i2));
-            }
-            bVar.f5784l = Math.min(f4, f);
-            bVar.f5788p = this.f6157k;
-            CharSequence charSequence = this.f6149c;
-            if (charSequence != null) {
-                bVar.f5773a = charSequence;
-            }
-            return bVar;
         }
     }
 
@@ -436,9 +317,7 @@ public final class C2627h {
     /* JADX WARN: Type inference failed for: r4v8 */
     /* JADX INFO: renamed from: b */
     public static List<d> m2711b(List<C2625f> list, @Nullable String str, c cVar) {
-        ?? r4;
-        int size;
-        boolean zIsEmpty;
+        ?? size;
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             C2625f c2625f = list.get(i);
@@ -446,22 +325,13 @@ public final class C2627h {
             Set<String> set = cVar.f6144d;
             String str3 = cVar.f6143c;
             if (c2625f.f6114a.isEmpty() && c2625f.f6115b.isEmpty() && c2625f.f6116c.isEmpty() && c2625f.f6117d.isEmpty()) {
-                zIsEmpty = TextUtils.isEmpty(str2);
+                size = TextUtils.isEmpty(str2);
             } else {
                 int iM2708b = C2625f.m2708b(C2625f.m2708b(C2625f.m2708b(0, c2625f.f6114a, str, BasicMeasure.EXACTLY), c2625f.f6115b, str2, 2), c2625f.f6117d, str3, 4);
-                if (iM2708b == -1 || !set.containsAll(c2625f.f6116c)) {
-                    r4 = 0;
-                } else {
-                    size = iM2708b + (c2625f.f6116c.size() * 4);
-                }
+                size = (iM2708b == -1 || !set.containsAll(c2625f.f6116c)) ? 0 : iM2708b + (c2625f.f6116c.size() * 4);
             }
-            if (r4 > 0) {
-                r4 = size;
-                r4 = zIsEmpty;
-                arrayList.add(new d(r4, c2625f));
-            } else {
-                r4 = size;
-                r4 = zIsEmpty;
+            if (size > 0) {
+                arrayList.add(new d(size, c2625f));
             }
         }
         Collections.sort(arrayList);
@@ -776,5 +646,124 @@ public final class C2627h {
             str = str.substring(0, iIndexOf);
         }
         eVar.f6154h = C2629j.m2719a(str);
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.v.h$e */
+    /* JADX INFO: compiled from: WebvttCueParser.java */
+    public final class e {
+
+        /* JADX INFO: renamed from: c */
+        public CharSequence f6149c;
+
+        /* JADX INFO: renamed from: a */
+        public long f6147a = 0;
+
+        /* JADX INFO: renamed from: b */
+        public long f6148b = 0;
+
+        /* JADX INFO: renamed from: d */
+        public int f6150d = 2;
+
+        /* JADX INFO: renamed from: e */
+        public float f6151e = -3.4028235E38f;
+
+        /* JADX INFO: renamed from: f */
+        public int f6152f = 1;
+
+        /* JADX INFO: renamed from: g */
+        public int f6153g = 0;
+
+        /* JADX INFO: renamed from: h */
+        public float f6154h = -3.4028235E38f;
+
+        /* JADX INFO: renamed from: i */
+        public int f6155i = Integer.MIN_VALUE;
+
+        /* JADX INFO: renamed from: j */
+        public float f6156j = 1.0f;
+
+        /* JADX INFO: renamed from: k */
+        public int f6157k = Integer.MIN_VALUE;
+
+        /* JADX WARN: Code duplicated, block: B:20:0x0034  */
+        /* JADX WARN: Code duplicated, block: B:21:0x0036  */
+        /* JADX WARN: Code duplicated, block: B:29:0x0053  */
+        /* JADX WARN: Code duplicated, block: B:31:0x0059  */
+        /* JADX WARN: Code duplicated, block: B:43:0x0076  */
+        /* JADX INFO: renamed from: a */
+        public C2578b.b m2718a() {
+            Layout.Alignment alignment;
+            float f = this.f6154h;
+            float f2 = -3.4028235E38f;
+            if (f == -3.4028235E38f) {
+                int i = this.f6150d;
+                if (i != 4) {
+                    f = i != 5 ? 0.5f : 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+            }
+            int i2 = this.f6155i;
+            if (i2 == Integer.MIN_VALUE) {
+                int i3 = this.f6150d;
+                if (i3 == 1) {
+                    i2 = 0;
+                } else if (i3 == 3) {
+                    i2 = 2;
+                } else if (i3 == 4) {
+                    i2 = 0;
+                } else if (i3 != 5) {
+                    i2 = 1;
+                } else {
+                    i2 = 2;
+                }
+            }
+            C2578b.b bVar = new C2578b.b();
+            int i4 = this.f6150d;
+            if (i4 == 1) {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            } else if (i4 == 2) {
+                alignment = Layout.Alignment.ALIGN_CENTER;
+            } else if (i4 == 3) {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
+            } else if (i4 == 4) {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            } else if (i4 != 5) {
+                C1643a.m852g0(34, "Unknown textAlignment: ", i4, "WebvttCueParser");
+                alignment = null;
+            } else {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
+            }
+            bVar.f5775c = alignment;
+            float f3 = this.f6151e;
+            int i5 = this.f6152f;
+            if (f3 != -3.4028235E38f && i5 == 0 && (f3 < 0.0f || f3 > 1.0f)) {
+                f2 = 1.0f;
+            } else if (f3 != -3.4028235E38f) {
+                f2 = f3;
+            } else if (i5 == 0) {
+                f2 = 1.0f;
+            }
+            bVar.f5777e = f2;
+            bVar.f5778f = i5;
+            bVar.f5779g = this.f6153g;
+            bVar.f5780h = f;
+            bVar.f5781i = i2;
+            float f4 = this.f6156j;
+            if (i2 == 0) {
+                f = 1.0f - f;
+            } else if (i2 == 1) {
+                f = f <= 0.5f ? f * 2.0f : (1.0f - f) * 2.0f;
+            } else if (i2 != 2) {
+                throw new IllegalStateException(String.valueOf(i2));
+            }
+            bVar.f5784l = Math.min(f4, f);
+            bVar.f5788p = this.f6157k;
+            CharSequence charSequence = this.f6149c;
+            if (charSequence != null) {
+                bVar.f5773a = charSequence;
+            }
+            return bVar;
+        }
     }
 }

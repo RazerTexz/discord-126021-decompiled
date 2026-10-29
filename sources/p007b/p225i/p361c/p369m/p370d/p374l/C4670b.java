@@ -12,14 +12,14 @@ import p007b.p225i.p361c.p369m.p370d.p373k.C4663x;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4670b {
 
-    /* JADX INFO: renamed from: a */
-    public static final c f12470a = new c(null);
-
     /* JADX INFO: renamed from: b */
     public final Context f12471b;
 
     /* JADX INFO: renamed from: c */
     public final b f12472c;
+
+    /* JADX INFO: renamed from: a */
+    public static final c f12470a = new c(null);
 
     /* JADX INFO: renamed from: d */
     public InterfaceC4669a f12473d = f12470a;
@@ -31,7 +31,7 @@ public class C4670b {
 
     /* JADX INFO: renamed from: b.i.c.m.d.l.b$c */
     /* JADX INFO: compiled from: LogFileManager.java */
-    public static final class c implements InterfaceC4669a {
+    public final class c implements InterfaceC4669a {
         public c(a aVar) {
         }
 

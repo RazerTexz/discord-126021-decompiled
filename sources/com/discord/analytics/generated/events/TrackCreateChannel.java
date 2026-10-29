@@ -16,29 +16,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreateChannel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreateChannel implements AnalyticsSchema, TrackBaseReceiver, TrackLfgGroupReceiver, TrackGuildLfgGroupReceiver, TrackThreadReceiver {
+    private final Long activeAnnouncementThreadCount = null;
+    private final Long activeThreadCount = null;
+    private final Long channelId = null;
+    private final CharSequence channelName = null;
+    private final Long channelType = null;
+    private final Long guildId = null;
+    private final CharSequence guildName = null;
+    private final Boolean isNsfw = null;
+    private final Long originChannelId = null;
+    private final Long parentId = null;
+    private final List<Long> recipientIds = null;
+    private final Long starterMessageAgeMinutes = null;
     private TrackBase trackBase;
     private TrackGuildLfgGroup trackGuildLfgGroup;
     private TrackLfgGroup trackLfgGroup;
     private TrackThread trackThread;
-    private final Long channelId = null;
-    private final Long channelType = null;
-    private final List<Long> recipientIds = null;
-    private final Long originChannelId = null;
-    private final Long guildId = null;
-    private final CharSequence guildName = null;
-    private final CharSequence channelName = null;
-    private final Boolean isNsfw = null;
-    private final Long parentId = null;
-    private final Long starterMessageAgeMinutes = null;
-    private final Long activeThreadCount = null;
-    private final Long activeAnnouncementThreadCount = null;
     private final transient String analyticsSchemaTypeName = "create_channel";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -49,6 +43,12 @@ public final /* data */ class TrackCreateChannel implements AnalyticsSchema, Tra
         }
         TrackCreateChannel trackCreateChannel = (TrackCreateChannel) other;
         return C12238m.areEqual(this.channelId, trackCreateChannel.channelId) && C12238m.areEqual(this.channelType, trackCreateChannel.channelType) && C12238m.areEqual(this.recipientIds, trackCreateChannel.recipientIds) && C12238m.areEqual(this.originChannelId, trackCreateChannel.originChannelId) && C12238m.areEqual(this.guildId, trackCreateChannel.guildId) && C12238m.areEqual(this.guildName, trackCreateChannel.guildName) && C12238m.areEqual(this.channelName, trackCreateChannel.channelName) && C12238m.areEqual(this.isNsfw, trackCreateChannel.isNsfw) && C12238m.areEqual(this.parentId, trackCreateChannel.parentId) && C12238m.areEqual(this.starterMessageAgeMinutes, trackCreateChannel.starterMessageAgeMinutes) && C12238m.areEqual(this.activeThreadCount, trackCreateChannel.activeThreadCount) && C12238m.areEqual(this.activeAnnouncementThreadCount, trackCreateChannel.activeAnnouncementThreadCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

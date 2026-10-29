@@ -25,15 +25,15 @@ import p659s.p660a.p661a.C13037t;
 /* JADX INFO: compiled from: CancellableContinuationImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContinuation<T>, CoroutineStackFrame {
+    public volatile int _decision;
+    public volatile Object _parentHandle;
+    public volatile Object _state;
 
     /* JADX INFO: renamed from: m */
     public static final AtomicIntegerFieldUpdater f27869m = AtomicIntegerFieldUpdater.newUpdater(C13126l.class, "_decision");
 
     /* JADX INFO: renamed from: n */
     public static final AtomicReferenceFieldUpdater f27870n = AtomicReferenceFieldUpdater.newUpdater(C13126l.class, Object.class, "_state");
-    public volatile int _decision;
-    public volatile Object _parentHandle;
-    public volatile Object _state;
 
     /* JADX INFO: renamed from: o */
     public final CoroutineContext f27871o;
@@ -49,6 +49,11 @@ public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContin
         this._decision = 0;
         this._state = C13051c.f27726j;
         this._parentHandle = null;
+    }
+
+    @Override // kotlin.coroutines.Continuation
+    public CoroutineContext getContext() {
+        return this.f27871o;
     }
 
     /* JADX INFO: renamed from: A */
@@ -117,194 +122,6 @@ public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContin
         return C13129m.f27874a;
     }
 
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: a */
-    public boolean mo10900a() {
-        return this._state instanceof InterfaceC13140p1;
-    }
-
-    @Override // p659s.p660a.AbstractC13121j0
-    /* JADX INFO: renamed from: b */
-    public void mo11145b(Object obj, Throwable th) {
-        while (true) {
-            Object obj2 = this._state;
-            if (obj2 instanceof InterfaceC13140p1) {
-                throw new IllegalStateException("Not completed".toString());
-            }
-            if (obj2 instanceof C13159w) {
-                return;
-            }
-            if (obj2 instanceof C13156v) {
-                C13156v c13156v = (C13156v) obj2;
-                if (!(!(c13156v.f27910e != null))) {
-                    throw new IllegalStateException("Must be called at most once".toString());
-                }
-                if (f27870n.compareAndSet(this, obj2, C13156v.m11349a(c13156v, null, null, null, null, th, 15))) {
-                    AbstractC13120j abstractC13120j = c13156v.f27907b;
-                    if (abstractC13120j != null) {
-                        m11321o(abstractC13120j, th);
-                    }
-                    Function1<Throwable, Unit> function1 = c13156v.f27908c;
-                    if (function1 != null) {
-                        m11322p(function1, th);
-                        return;
-                    }
-                    return;
-                }
-            } else if (f27870n.compareAndSet(this, obj2, new C13156v(obj2, null, null, null, th, 14))) {
-                return;
-            }
-        }
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: c */
-    public Object mo10901c(T t, Object obj) {
-        return m11319B(t, obj, null);
-    }
-
-    @Override // p659s.p660a.AbstractC13121j0
-    /* JADX INFO: renamed from: d */
-    public final Continuation<T> mo11146d() {
-        return this.f27872p;
-    }
-
-    @Override // p659s.p660a.AbstractC13121j0
-    /* JADX INFO: renamed from: e */
-    public Throwable mo11315e(Object obj) {
-        Throwable thMo11315e = super.mo11315e(obj);
-        if (thMo11315e != null) {
-            return thMo11315e;
-        }
-        return null;
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: f */
-    public void mo10902f(Function1<? super Throwable, Unit> function1) {
-        AbstractC13120j c13047b1 = function1 instanceof AbstractC13120j ? (AbstractC13120j) function1 : new C13047b1(function1);
-        while (true) {
-            Object obj = this._state;
-            if (!(obj instanceof C13051c)) {
-                if (obj instanceof AbstractC13120j) {
-                    m11329x(function1, obj);
-                    throw null;
-                }
-                boolean z2 = obj instanceof C13159w;
-                if (z2) {
-                    C13159w c13159w = (C13159w) obj;
-                    Objects.requireNonNull(c13159w);
-                    if (!C13159w.f27912a.compareAndSet(c13159w, 0, 1)) {
-                        m11329x(function1, obj);
-                        throw null;
-                    }
-                    if (obj instanceof C13132n) {
-                        if (!z2) {
-                            obj = null;
-                        }
-                        C13159w c13159w2 = (C13159w) obj;
-                        m11320n(function1, c13159w2 != null ? c13159w2.f27913b : null);
-                        return;
-                    }
-                    return;
-                }
-                if (obj instanceof C13156v) {
-                    C13156v c13156v = (C13156v) obj;
-                    if (c13156v.f27907b != null) {
-                        m11329x(function1, obj);
-                        throw null;
-                    }
-                    if (c13047b1 instanceof AbstractC13092e) {
-                        return;
-                    }
-                    Throwable th = c13156v.f27910e;
-                    if (th != null) {
-                        m11320n(function1, th);
-                        return;
-                    } else {
-                        if (f27870n.compareAndSet(this, obj, C13156v.m11349a(c13156v, null, c13047b1, null, null, null, 29))) {
-                            return;
-                        }
-                    }
-                } else {
-                    if (c13047b1 instanceof AbstractC13092e) {
-                        return;
-                    }
-                    if (f27870n.compareAndSet(this, obj, new C13156v(obj, c13047b1, null, null, null, 28))) {
-                        return;
-                    }
-                }
-            } else if (f27870n.compareAndSet(this, obj, c13047b1)) {
-                return;
-            }
-        }
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: g */
-    public Object mo10903g(Throwable th) {
-        return m11319B(new C13159w(th, false, 2), null, null);
-    }
-
-    @Override // kotlin.coroutines.Continuation
-    public CoroutineContext getContext() {
-        return this.f27871o;
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: h */
-    public Object mo10904h(T t, Object obj, Function1<? super Throwable, Unit> function1) {
-        return m11319B(t, null, function1);
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: i */
-    public void mo10905i(CoroutineDispatcher coroutineDispatcher, T t) {
-        Continuation<T> continuation = this.f27872p;
-        if (!(continuation instanceof C13024g)) {
-            continuation = null;
-        }
-        C13024g c13024g = (C13024g) continuation;
-        m11330y(t, (c13024g != null ? c13024g.f27679q : null) == coroutineDispatcher ? 4 : this.f27864l, null);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // p659s.p660a.AbstractC13121j0
-    /* JADX INFO: renamed from: j */
-    public <T> T mo11316j(Object obj) {
-        return obj instanceof C13156v ? (T) ((C13156v) obj).f27906a : obj;
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: k */
-    public boolean mo10906k(Throwable th) {
-        Object obj;
-        boolean z2;
-        do {
-            obj = this._state;
-            if (!(obj instanceof InterfaceC13140p1)) {
-                return false;
-            }
-            z2 = obj instanceof AbstractC13120j;
-        } while (!f27870n.compareAndSet(this, obj, new C13132n(this, th, z2)));
-        if (!z2) {
-            obj = null;
-        }
-        AbstractC13120j abstractC13120j = (AbstractC13120j) obj;
-        if (abstractC13120j != null) {
-            m11321o(abstractC13120j, th);
-        }
-        m11324s();
-        m11325t(this.f27864l);
-        return true;
-    }
-
-    @Override // p659s.p660a.AbstractC13121j0
-    /* JADX INFO: renamed from: m */
-    public Object mo11147m() {
-        return this._state;
-    }
-
     /* JADX INFO: renamed from: n */
     public final void m11320n(Function1<? super Throwable, Unit> function1, Throwable th) {
         try {
@@ -339,21 +156,6 @@ public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContin
             interfaceC13130m0.dispose();
         }
         this._parentHandle = C13137o1.f27880j;
-    }
-
-    @Override // kotlinx.coroutines.CancellableContinuation
-    /* JADX INFO: renamed from: r */
-    public void mo10907r(Object obj) {
-        m11325t(this.f27864l);
-    }
-
-    @Override // kotlin.coroutines.Continuation
-    public void resumeWith(Object obj) {
-        Throwable thM11476exceptionOrNullimpl = C12112k.m11476exceptionOrNullimpl(obj);
-        if (thM11476exceptionOrNullimpl != null) {
-            obj = new C13159w(thM11476exceptionOrNullimpl, false, 2);
-        }
-        m11330y(obj, this.f27864l, null);
     }
 
     /* JADX INFO: renamed from: s */
@@ -415,12 +217,8 @@ public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContin
         }
     }
 
-    public String toString() {
-        return "CancellableContinuation(" + C3404f.m4341s1(this.f27872p) + "){" + this._state + "}@" + C3404f.m4312l0(this);
-    }
-
     /* JADX INFO: renamed from: u */
-    public final Object m11326u() {
+    public final Object m11326u() throws Throwable {
         boolean z2;
         Job job;
         m11318A();
@@ -512,5 +310,207 @@ public class C13126l<T> extends AbstractC13121j0<T> implements CancellableContin
             interfaceC13140p1 = null;
         }
         return new C13156v(obj, (AbstractC13120j) interfaceC13140p1, function1, obj2, null, 16);
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: a */
+    public boolean mo10900a() {
+        return this._state instanceof InterfaceC13140p1;
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: c */
+    public Object mo10901c(T t, Object obj) {
+        return m11319B(t, obj, null);
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: f */
+    public void mo10902f(Function1<? super Throwable, Unit> function1) {
+        AbstractC13120j c13047b1 = function1 instanceof AbstractC13120j ? (AbstractC13120j) function1 : new C13047b1(function1);
+        while (true) {
+            Object obj = this._state;
+            if (!(obj instanceof C13051c)) {
+                if (obj instanceof AbstractC13120j) {
+                    m11329x(function1, obj);
+                    throw null;
+                }
+                boolean z2 = obj instanceof C13159w;
+                if (z2) {
+                    C13159w c13159w = (C13159w) obj;
+                    Objects.requireNonNull(c13159w);
+                    if (!C13159w.f27912a.compareAndSet(c13159w, 0, 1)) {
+                        m11329x(function1, obj);
+                        throw null;
+                    }
+                    if (obj instanceof C13132n) {
+                        if (!z2) {
+                            obj = null;
+                        }
+                        C13159w c13159w2 = (C13159w) obj;
+                        m11320n(function1, c13159w2 != null ? c13159w2.f27913b : null);
+                        return;
+                    }
+                    return;
+                }
+                if (obj instanceof C13156v) {
+                    C13156v c13156v = (C13156v) obj;
+                    if (c13156v.f27907b != null) {
+                        m11329x(function1, obj);
+                        throw null;
+                    }
+                    if (c13047b1 instanceof AbstractC13092e) {
+                        return;
+                    }
+                    Throwable th = c13156v.f27910e;
+                    if (th != null) {
+                        m11320n(function1, th);
+                        return;
+                    } else {
+                        if (f27870n.compareAndSet(this, obj, C13156v.m11349a(c13156v, null, c13047b1, null, null, null, 29))) {
+                            return;
+                        }
+                    }
+                } else {
+                    if (c13047b1 instanceof AbstractC13092e) {
+                        return;
+                    }
+                    if (f27870n.compareAndSet(this, obj, new C13156v(obj, c13047b1, null, null, null, 28))) {
+                        return;
+                    }
+                }
+            } else if (f27870n.compareAndSet(this, obj, c13047b1)) {
+                return;
+            }
+        }
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: g */
+    public Object mo10903g(Throwable th) {
+        return m11319B(new C13159w(th, false, 2), null, null);
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: h */
+    public Object mo10904h(T t, Object obj, Function1<? super Throwable, Unit> function1) {
+        return m11319B(t, null, function1);
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: i */
+    public void mo10905i(CoroutineDispatcher coroutineDispatcher, T t) {
+        Continuation<T> continuation = this.f27872p;
+        if (!(continuation instanceof C13024g)) {
+            continuation = null;
+        }
+        C13024g c13024g = (C13024g) continuation;
+        m11330y(t, (c13024g != null ? c13024g.f27679q : null) == coroutineDispatcher ? 4 : this.f27864l, null);
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: k */
+    public boolean mo10906k(Throwable th) {
+        Object obj;
+        boolean z2;
+        do {
+            obj = this._state;
+            if (!(obj instanceof InterfaceC13140p1)) {
+                return false;
+            }
+            z2 = obj instanceof AbstractC13120j;
+        } while (!f27870n.compareAndSet(this, obj, new C13132n(this, th, z2)));
+        if (!z2) {
+            obj = null;
+        }
+        AbstractC13120j abstractC13120j = (AbstractC13120j) obj;
+        if (abstractC13120j != null) {
+            m11321o(abstractC13120j, th);
+        }
+        m11324s();
+        m11325t(this.f27864l);
+        return true;
+    }
+
+    @Override // kotlinx.coroutines.CancellableContinuation
+    /* JADX INFO: renamed from: r */
+    public void mo10907r(Object obj) {
+        m11325t(this.f27864l);
+    }
+
+    @Override // p659s.p660a.AbstractC13121j0
+    /* JADX INFO: renamed from: b */
+    public void mo11145b(Object obj, Throwable th) {
+        while (true) {
+            Object obj2 = this._state;
+            if (obj2 instanceof InterfaceC13140p1) {
+                throw new IllegalStateException("Not completed".toString());
+            }
+            if (obj2 instanceof C13159w) {
+                return;
+            }
+            if (obj2 instanceof C13156v) {
+                C13156v c13156v = (C13156v) obj2;
+                if (!(!(c13156v.f27910e != null))) {
+                    throw new IllegalStateException("Must be called at most once".toString());
+                }
+                if (f27870n.compareAndSet(this, obj2, C13156v.m11349a(c13156v, null, null, null, null, th, 15))) {
+                    AbstractC13120j abstractC13120j = c13156v.f27907b;
+                    if (abstractC13120j != null) {
+                        m11321o(abstractC13120j, th);
+                    }
+                    Function1<Throwable, Unit> function1 = c13156v.f27908c;
+                    if (function1 != null) {
+                        m11322p(function1, th);
+                        return;
+                    }
+                    return;
+                }
+            } else if (f27870n.compareAndSet(this, obj2, new C13156v(obj2, null, null, null, th, 14))) {
+                return;
+            }
+        }
+    }
+
+    @Override // p659s.p660a.AbstractC13121j0
+    /* JADX INFO: renamed from: d */
+    public final Continuation<T> mo11146d() {
+        return this.f27872p;
+    }
+
+    @Override // p659s.p660a.AbstractC13121j0
+    /* JADX INFO: renamed from: m */
+    public Object mo11147m() {
+        return this._state;
+    }
+
+    @Override // p659s.p660a.AbstractC13121j0
+    /* JADX INFO: renamed from: e */
+    public Throwable mo11315e(Object obj) {
+        Throwable thMo11315e = super.mo11315e(obj);
+        if (thMo11315e != null) {
+            return thMo11315e;
+        }
+        return null;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // p659s.p660a.AbstractC13121j0
+    /* JADX INFO: renamed from: j */
+    public <T> T mo11316j(Object obj) {
+        return obj instanceof C13156v ? (T) ((C13156v) obj).f27906a : obj;
+    }
+
+    @Override // kotlin.coroutines.Continuation
+    public void resumeWith(Object obj) {
+        Throwable thM11476exceptionOrNullimpl = C12112k.m11476exceptionOrNullimpl(obj);
+        if (thM11476exceptionOrNullimpl != null) {
+            obj = new C13159w(thM11476exceptionOrNullimpl, false, 2);
+        }
+        m11330y(obj, this.f27864l, null);
+    }
+
+    public String toString() {
+        return "CancellableContinuation(" + C3404f.m4341s1(this.f27872p) + "){" + this._state + "}@" + C3404f.m4312l0(this);
     }
 }

@@ -20,9 +20,113 @@ public final class StoreGuildSubscriptions extends StoreV2 {
     private final StoreStream storeStream;
     private final GuildSubscriptionsManager subscriptionsManager;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeChannelRange$1 */
+    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
+    public final class C60791 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ IntRange $range;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60791(IntRange intRange, long j, long j2) {
+            super(0);
+            this.$range = intRange;
+            this.$guildId = j;
+            this.$channelId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildSubscriptions.this.subscriptionsManager.subscribeChannel(this.$guildId, this.$channelId, RangeComputer.computeRanges$default(RangeComputer.INSTANCE, this.$range, 0, 2, null));
+            StoreGuildSubscriptions.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeThread$1 */
+    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
+    public final class C60801 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60801(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$channelId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildSubscriptions.this.subscriptionsManager.subscribeThread(this.$guildId, this.$channelId);
+            StoreGuildSubscriptions.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeUser$1 */
+    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
+    public final class C60811 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60811(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildSubscriptions.this.handleSubscribeMember(this.$guildId, this.$userId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$unsubscribeUser$1 */
+    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
+    public final class C60821 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60821(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildSubscriptions.this.handleUnsubscribeMember(this.$guildId, this.$userId);
+        }
+    }
+
     /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
     @VisibleForTesting
-    public static final class RangeComputer {
+    public final class RangeComputer {
         private static final int DEFAULT_CHUNK_SIZE = 100;
         public static final RangeComputer INSTANCE = new RangeComputer();
 
@@ -57,110 +161,6 @@ public final class StoreGuildSubscriptions extends StoreV2 {
                 }
             }
             return arrayList;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeChannelRange$1 */
-    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
-    public static final class C60791 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ IntRange $range;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60791(IntRange intRange, long j, long j2) {
-            super(0);
-            this.$range = intRange;
-            this.$guildId = j;
-            this.$channelId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildSubscriptions.this.subscriptionsManager.subscribeChannel(this.$guildId, this.$channelId, RangeComputer.computeRanges$default(RangeComputer.INSTANCE, this.$range, 0, 2, null));
-            StoreGuildSubscriptions.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeThread$1 */
-    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
-    public static final class C60801 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60801(long j, long j2) {
-            super(0);
-            this.$guildId = j;
-            this.$channelId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildSubscriptions.this.subscriptionsManager.subscribeThread(this.$guildId, this.$channelId);
-            StoreGuildSubscriptions.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$subscribeUser$1 */
-    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
-    public static final class C60811 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ long $userId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60811(long j, long j2) {
-            super(0);
-            this.$guildId = j;
-            this.$userId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildSubscriptions.this.handleSubscribeMember(this.$guildId, this.$userId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildSubscriptions$unsubscribeUser$1 */
-    /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
-    public static final class C60821 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ long $userId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60821(long j, long j2) {
-            super(0);
-            this.$guildId = j;
-            this.$userId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildSubscriptions.this.handleUnsubscribeMember(this.$guildId, this.$userId);
         }
     }
 

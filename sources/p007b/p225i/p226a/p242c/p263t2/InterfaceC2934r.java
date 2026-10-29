@@ -15,7 +15,7 @@ public interface InterfaceC2934r {
 
     /* JADX INFO: renamed from: b.i.a.c.t2.r$a */
     /* JADX INFO: compiled from: AudioRendererEventListener.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         @Nullable

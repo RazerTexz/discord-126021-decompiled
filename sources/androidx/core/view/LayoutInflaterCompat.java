@@ -15,7 +15,7 @@ public final class LayoutInflaterCompat {
     private static boolean sCheckedField;
     private static Field sLayoutInflaterFactory2Field;
 
-    public static class Factory2Wrapper implements LayoutInflater.Factory2 {
+    public class Factory2Wrapper implements LayoutInflater.Factory2 {
         public final LayoutInflaterFactory mDelegateFactory;
 
         public Factory2Wrapper(LayoutInflaterFactory layoutInflaterFactory) {

@@ -29,12 +29,28 @@ public class BottomSheetDialogFragment extends AppCompatDialogFragment {
         }
     }
 
+    @Override // androidx.fragment.app.DialogFragment
+    public void dismiss() {
+        if (tryDismissWithAnimation(false)) {
+            return;
+        }
+        super.dismiss();
+    }
+
     private void dismissAfterAnimation() {
         if (this.waitingForDismissAllowingStateLoss) {
             super.dismissAllowingStateLoss();
         } else {
             super.dismiss();
         }
+    }
+
+    @Override // androidx.fragment.app.DialogFragment
+    public void dismissAllowingStateLoss() {
+        if (tryDismissWithAnimation(true)) {
+            return;
+        }
+        super.dismissAllowingStateLoss();
     }
 
     private void dismissWithAnimation(@NonNull BottomSheetBehavior<?> bottomSheetBehavior, boolean z2) {
@@ -50,6 +66,12 @@ public class BottomSheetDialogFragment extends AppCompatDialogFragment {
         bottomSheetBehavior.setState(5);
     }
 
+    @Override // androidx.appcompat.app.AppCompatDialogFragment, androidx.fragment.app.DialogFragment
+    @NonNull
+    public Dialog onCreateDialog(@Nullable Bundle bundle) {
+        return new BottomSheetDialog(getContext(), getTheme());
+    }
+
     private boolean tryDismissWithAnimation(boolean z2) {
         Dialog dialog = getDialog();
         if (!(dialog instanceof BottomSheetDialog)) {
@@ -62,27 +84,5 @@ public class BottomSheetDialogFragment extends AppCompatDialogFragment {
         }
         dismissWithAnimation(behavior, z2);
         return true;
-    }
-
-    @Override // androidx.fragment.app.DialogFragment
-    public void dismiss() {
-        if (tryDismissWithAnimation(false)) {
-            return;
-        }
-        super.dismiss();
-    }
-
-    @Override // androidx.fragment.app.DialogFragment
-    public void dismissAllowingStateLoss() {
-        if (tryDismissWithAnimation(true)) {
-            return;
-        }
-        super.dismissAllowingStateLoss();
-    }
-
-    @Override // androidx.appcompat.app.AppCompatDialogFragment, androidx.fragment.app.DialogFragment
-    @NonNull
-    public Dialog onCreateDialog(@Nullable Bundle bundle) {
-        return new BottomSheetDialog(getContext(), getTheme());
     }
 }

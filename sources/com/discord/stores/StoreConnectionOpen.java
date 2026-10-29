@@ -21,7 +21,7 @@ public final class StoreConnectionOpen extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreConnectionOpen$observeConnectionOpen$1 */
     /* JADX INFO: compiled from: StoreConnectionOpen.kt */
-    public static final class C58521 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C58521 extends AbstractC12240o implements Function0<Boolean> {
         public C58521() {
             super(0);
         }
@@ -37,21 +37,6 @@ public final class StoreConnectionOpen extends StoreV2 {
         }
     }
 
-    private final boolean isConnectionOpen() {
-        return ((Boolean) this.isConnectionOpen.getValue(this, $$delegatedProperties[0])).booleanValue();
-    }
-
-    public static /* synthetic */ Observable observeConnectionOpen$default(StoreConnectionOpen storeConnectionOpen, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return storeConnectionOpen.observeConnectionOpen(z2);
-    }
-
-    private final void setConnectionOpen(boolean z2) {
-        this.isConnectionOpen.setValue(this, $$delegatedProperties[0], Boolean.valueOf(z2));
-    }
-
     @StoreThread
     public final void handleConnected(boolean connected) {
         if (connected) {
@@ -65,6 +50,17 @@ public final class StoreConnectionOpen extends StoreV2 {
         setConnectionOpen(true);
     }
 
+    private final boolean isConnectionOpen() {
+        return ((Boolean) this.isConnectionOpen.getValue(this, $$delegatedProperties[0])).booleanValue();
+    }
+
+    public static /* synthetic */ Observable observeConnectionOpen$default(StoreConnectionOpen storeConnectionOpen, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return storeConnectionOpen.observeConnectionOpen(z2);
+    }
+
     public final Observable<Boolean> observeConnectionOpen(boolean delayForUI) {
         Observable<Boolean> observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58521(), 14, null);
         if (delayForUI) {
@@ -72,5 +68,9 @@ public final class StoreConnectionOpen extends StoreV2 {
         }
         C12238m.checkNotNullExpressionValue(observableConnectRx$default, "ObservationDeckProvider\n…            }\n          }");
         return observableConnectRx$default;
+    }
+
+    private final void setConnectionOpen(boolean z2) {
+        this.isConnectionOpen.setValue(this, $$delegatedProperties[0], Boolean.valueOf(z2));
     }
 }

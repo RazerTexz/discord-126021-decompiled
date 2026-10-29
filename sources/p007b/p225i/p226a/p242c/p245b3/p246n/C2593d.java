@@ -31,15 +31,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2757x;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2593d extends AbstractC2594e {
 
-    /* JADX INFO: renamed from: g */
-    public final C2757x f5857g = new C2757x();
-
-    /* JADX INFO: renamed from: h */
-    public final C2756w f5858h = new C2756w();
-
-    /* JADX INFO: renamed from: i */
-    public int f5859i = -1;
-
     /* JADX INFO: renamed from: j */
     public final int f5860j;
 
@@ -64,9 +55,18 @@ public final class C2593d extends AbstractC2594e {
     /* JADX INFO: renamed from: p */
     public int f5866p;
 
+    /* JADX INFO: renamed from: g */
+    public final C2757x f5857g = new C2757x();
+
+    /* JADX INFO: renamed from: h */
+    public final C2756w f5858h = new C2756w();
+
+    /* JADX INFO: renamed from: i */
+    public int f5859i = -1;
+
     /* JADX INFO: renamed from: b.i.a.c.b3.n.d$a */
     /* JADX INFO: compiled from: Cea708Decoder.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C2578b f5867a;
@@ -91,10 +91,7 @@ public final class C2593d extends AbstractC2594e {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.n.d$b */
     /* JADX INFO: compiled from: Cea708Decoder.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public static final int f5869a = m2651d(2, 2, 2, 0);
+    public final class b {
 
         /* JADX INFO: renamed from: b */
         public static final int f5870b;
@@ -147,12 +144,6 @@ public final class C2593d extends AbstractC2594e {
         /* JADX INFO: renamed from: G */
         public int f5886G;
 
-        /* JADX INFO: renamed from: l */
-        public final List<SpannableString> f5887l = new ArrayList();
-
-        /* JADX INFO: renamed from: m */
-        public final SpannableStringBuilder f5888m = new SpannableStringBuilder();
-
         /* JADX INFO: renamed from: n */
         public boolean f5889n;
 
@@ -191,6 +182,15 @@ public final class C2593d extends AbstractC2594e {
 
         /* JADX INFO: renamed from: z */
         public int f5901z;
+
+        /* JADX INFO: renamed from: a */
+        public static final int f5869a = m2651d(2, 2, 2, 0);
+
+        /* JADX INFO: renamed from: l */
+        public final List<SpannableString> f5887l = new ArrayList();
+
+        /* JADX INFO: renamed from: m */
+        public final SpannableStringBuilder f5888m = new SpannableStringBuilder();
 
         static {
             int iM2651d = m2651d(0, 0, 0, 0);
@@ -360,29 +360,6 @@ public final class C2593d extends AbstractC2594e {
         }
     }
 
-    /* JADX INFO: renamed from: b.i.a.c.b3.n.d$c */
-    /* JADX INFO: compiled from: Cea708Decoder.java */
-    public static final class c {
-
-        /* JADX INFO: renamed from: a */
-        public final int f5902a;
-
-        /* JADX INFO: renamed from: b */
-        public final int f5903b;
-
-        /* JADX INFO: renamed from: c */
-        public final byte[] f5904c;
-
-        /* JADX INFO: renamed from: d */
-        public int f5905d = 0;
-
-        public c(int i, int i2) {
-            this.f5902a = i;
-            this.f5903b = i2;
-            this.f5904c = new byte[(i2 * 2) - 1];
-        }
-    }
-
     public C2593d(int i, @Nullable List<byte[]> list) {
         this.f5860j = i == -1 ? 1 : i;
         if (list != null && (list.size() != 1 || list.get(0).length != 1 || list.get(0)[0] != 1)) {
@@ -394,72 +371,6 @@ public final class C2593d extends AbstractC2594e {
         this.f5862l = this.f5861k[0];
     }
 
-    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
-    /* JADX INFO: renamed from: e */
-    public InterfaceC2583g mo2634e() {
-        List<C2578b> list = this.f5863m;
-        this.f5864n = list;
-        Objects.requireNonNull(list);
-        return new C2595f(list);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
-    /* JADX INFO: renamed from: f */
-    public void mo2635f(C2586j c2586j) {
-        ByteBuffer byteBuffer = c2586j.f19778l;
-        Objects.requireNonNull(byteBuffer);
-        this.f5857g.m3077C(byteBuffer.array(), byteBuffer.limit());
-        while (this.f5857g.m3081a() >= 3) {
-            int iM3100t = this.f5857g.m3100t() & 7;
-            int i = iM3100t & 3;
-            boolean z2 = (iM3100t & 4) == 4;
-            byte bM3100t = (byte) this.f5857g.m3100t();
-            byte bM3100t2 = (byte) this.f5857g.m3100t();
-            if (i == 2 || i == 3) {
-                if (z2) {
-                    if (i == 3) {
-                        m2648j();
-                        int i2 = (bM3100t & 192) >> 6;
-                        int i3 = this.f5859i;
-                        if (i3 != -1 && i2 != (i3 + 1) % 4) {
-                            m2650l();
-                            Log.w("Cea708Decoder", C1643a.m853h(71, "Sequence number discontinuity. previous=", this.f5859i, " current=", i2));
-                        }
-                        this.f5859i = i2;
-                        int i4 = bM3100t & 63;
-                        if (i4 == 0) {
-                            i4 = 64;
-                        }
-                        c cVar = new c(i2, i4);
-                        this.f5865o = cVar;
-                        byte[] bArr = cVar.f5904c;
-                        int i5 = cVar.f5905d;
-                        cVar.f5905d = i5 + 1;
-                        bArr[i5] = bM3100t2;
-                    } else {
-                        C1460d.m531j(i == 2);
-                        c cVar2 = this.f5865o;
-                        if (cVar2 == null) {
-                            Log.e("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
-                        } else {
-                            byte[] bArr2 = cVar2.f5904c;
-                            int i6 = cVar2.f5905d;
-                            int i7 = i6 + 1;
-                            cVar2.f5905d = i7;
-                            bArr2[i6] = bM3100t;
-                            cVar2.f5905d = i7 + 1;
-                            bArr2[i7] = bM3100t2;
-                        }
-                    }
-                    c cVar3 = this.f5865o;
-                    if (cVar3.f5905d == (cVar3.f5903b * 2) - 1) {
-                        m2648j();
-                    }
-                }
-            }
-        }
-    }
-
     @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e, p007b.p225i.p226a.p242c.p265v2.InterfaceC2956d
     public void flush() {
         super.flush();
@@ -469,12 +380,6 @@ public final class C2593d extends AbstractC2594e {
         this.f5862l = this.f5861k[0];
         m2650l();
         this.f5865o = null;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
-    /* JADX INFO: renamed from: h */
-    public boolean mo2637h() {
-        return this.f5863m != this.f5864n;
     }
 
     /* JADX INFO: renamed from: j */
@@ -957,6 +862,101 @@ public final class C2593d extends AbstractC2594e {
     public final void m2650l() {
         for (int i = 0; i < 8; i++) {
             this.f5861k[i].m2656f();
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
+    /* JADX INFO: renamed from: e */
+    public InterfaceC2583g mo2634e() {
+        List<C2578b> list = this.f5863m;
+        this.f5864n = list;
+        Objects.requireNonNull(list);
+        return new C2595f(list);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
+    /* JADX INFO: renamed from: f */
+    public void mo2635f(C2586j c2586j) {
+        ByteBuffer byteBuffer = c2586j.f19778l;
+        Objects.requireNonNull(byteBuffer);
+        this.f5857g.m3077C(byteBuffer.array(), byteBuffer.limit());
+        while (this.f5857g.m3081a() >= 3) {
+            int iM3100t = this.f5857g.m3100t() & 7;
+            int i = iM3100t & 3;
+            boolean z2 = (iM3100t & 4) == 4;
+            byte bM3100t = (byte) this.f5857g.m3100t();
+            byte bM3100t2 = (byte) this.f5857g.m3100t();
+            if (i == 2 || i == 3) {
+                if (z2) {
+                    if (i == 3) {
+                        m2648j();
+                        int i2 = (bM3100t & 192) >> 6;
+                        int i3 = this.f5859i;
+                        if (i3 != -1 && i2 != (i3 + 1) % 4) {
+                            m2650l();
+                            Log.w("Cea708Decoder", C1643a.m853h(71, "Sequence number discontinuity. previous=", this.f5859i, " current=", i2));
+                        }
+                        this.f5859i = i2;
+                        int i4 = bM3100t & 63;
+                        if (i4 == 0) {
+                            i4 = 64;
+                        }
+                        c cVar = new c(i2, i4);
+                        this.f5865o = cVar;
+                        byte[] bArr = cVar.f5904c;
+                        int i5 = cVar.f5905d;
+                        cVar.f5905d = i5 + 1;
+                        bArr[i5] = bM3100t2;
+                    } else {
+                        C1460d.m531j(i == 2);
+                        c cVar2 = this.f5865o;
+                        if (cVar2 == null) {
+                            Log.e("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
+                        } else {
+                            byte[] bArr2 = cVar2.f5904c;
+                            int i6 = cVar2.f5905d;
+                            int i7 = i6 + 1;
+                            cVar2.f5905d = i7;
+                            bArr2[i6] = bM3100t;
+                            cVar2.f5905d = i7 + 1;
+                            bArr2[i7] = bM3100t2;
+                        }
+                    }
+                    c cVar3 = this.f5865o;
+                    if (cVar3.f5905d == (cVar3.f5903b * 2) - 1) {
+                        m2648j();
+                    }
+                }
+            }
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p245b3.p246n.AbstractC2594e
+    /* JADX INFO: renamed from: h */
+    public boolean mo2637h() {
+        return this.f5863m != this.f5864n;
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.n.d$c */
+    /* JADX INFO: compiled from: Cea708Decoder.java */
+    public final class c {
+
+        /* JADX INFO: renamed from: a */
+        public final int f5902a;
+
+        /* JADX INFO: renamed from: b */
+        public final int f5903b;
+
+        /* JADX INFO: renamed from: c */
+        public final byte[] f5904c;
+
+        /* JADX INFO: renamed from: d */
+        public int f5905d = 0;
+
+        public c(int i, int i2) {
+            this.f5902a = i;
+            this.f5903b = i2;
+            this.f5904c = new byte[(i2 * 2) - 1];
         }
     }
 }

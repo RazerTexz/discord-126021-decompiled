@@ -20,7 +20,7 @@ public interface InterfaceC13182a extends IInterface {
 
     /* JADX INFO: renamed from: x.a.b.b.a.a$a */
     /* JADX INFO: compiled from: IMediaControllerCallback.java */
-    public static abstract class a extends Binder implements InterfaceC13182a {
+    public abstract class a extends Binder implements InterfaceC13182a {
         public a() {
             attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
         }

@@ -7,11 +7,16 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface KryoPool {
+    Kryo borrow();
 
-    public static class Builder {
+    void release(Kryo kryo);
+
+    <T> T run(KryoCallback<T> kryoCallback);
+
+    public class Builder {
         private final KryoFactory factory;
-        private Queue<Kryo> queue = new ConcurrentLinkedQueue();
         private boolean softReferences;
+        private Queue<Kryo> queue = new ConcurrentLinkedQueue();
 
         public Builder(KryoFactory kryoFactory) {
             if (kryoFactory == null) {
@@ -46,10 +51,4 @@ public interface KryoPool {
             return C1643a.m827O(sb, this.softReferences, "]");
         }
     }
-
-    Kryo borrow();
-
-    void release(Kryo kryo);
-
-    <T> T run(KryoCallback<T> kryoCallback);
 }

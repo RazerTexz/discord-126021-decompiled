@@ -44,11 +44,11 @@ public class C1859f {
     /* JADX INFO: renamed from: e */
     public final Executor f3665e;
 
-    /* JADX INFO: renamed from: f */
-    public final C1853a0 f3666f = new C1853a0();
-
     /* JADX INFO: renamed from: g */
     public final InterfaceC1871r f3667g;
+
+    /* JADX INFO: renamed from: f */
+    public final C1853a0 f3666f = new C1853a0();
 
     /* JADX INFO: renamed from: b.f.j.c.f$a */
     /* JADX INFO: compiled from: BufferedDiskCache.java */
@@ -227,10 +227,8 @@ public class C1859f {
                     c1919eM1336a.close();
                 }
             }
+        } finally {
             C2030b.m1527b();
-        } catch (Throwable th) {
-            C2030b.m1527b();
-            throw th;
         }
     }
 }

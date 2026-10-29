@@ -133,13 +133,13 @@ public class EnumC3789p7 {
         this.zzt = i2;
     }
 
-    public static EnumC3789p7[] values() {
-        return (EnumC3789p7[]) f10200B.clone();
-    }
-
     /* JADX INFO: renamed from: f */
     public final EnumC3880w7 m5180f() {
         return this.zzs;
+    }
+
+    public static EnumC3789p7[] values() {
+        return (EnumC3789p7[]) f10200B.clone();
     }
 
     public EnumC3789p7(String str, int i, EnumC3880w7 enumC3880w7, int i2, C3802q7 c3802q7) {

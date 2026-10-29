@@ -17,6 +17,12 @@ import p007b.p225i.p408d.p410q.C4916a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class ArrayTypeAdapter<E> extends TypeAdapter<Object> {
 
+    /* JADX INFO: renamed from: b */
+    public final Class<E> f21511b;
+
+    /* JADX INFO: renamed from: c */
+    public final TypeAdapter<E> f21512c;
+
     /* JADX INFO: renamed from: a */
     public static final InterfaceC4911o f21510a = new InterfaceC4911o() { // from class: com.google.gson.internal.bind.ArrayTypeAdapter.1
         @Override // p007b.p225i.p408d.InterfaceC4911o
@@ -30,12 +36,6 @@ public final class ArrayTypeAdapter<E> extends TypeAdapter<Object> {
             return new ArrayTypeAdapter(gson, gson.m9204h(TypeToken.get(genericComponentType)), C4916a.m6864e(genericComponentType));
         }
     };
-
-    /* JADX INFO: renamed from: b */
-    public final Class<E> f21511b;
-
-    /* JADX INFO: renamed from: c */
-    public final TypeAdapter<E> f21512c;
 
     public ArrayTypeAdapter(Gson gson, TypeAdapter<E> typeAdapter, Class<E> cls) {
         this.f21512c = new TypeAdapterRuntimeTypeWrapper(gson, typeAdapter, cls);

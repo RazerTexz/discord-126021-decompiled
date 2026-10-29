@@ -1,5 +1,6 @@
 package p507d0.p579g0;
 
+import java.io.IOException;
 import kotlin.jvm.functions.Function1;
 import p507d0.p592z.p594d.C12238m;
 
@@ -8,7 +9,7 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12095l {
     /* JADX WARN: Multi-variable type inference failed */
-    public static final <T> void appendElement(Appendable appendable, T t, Function1<? super T, ? extends CharSequence> function1) {
+    public static final <T> void appendElement(Appendable appendable, T t, Function1<? super T, ? extends CharSequence> function1) throws IOException {
         C12238m.checkNotNullParameter(appendable, "$this$appendElement");
         if (function1 != null) {
             appendable.append(function1.invoke(t));

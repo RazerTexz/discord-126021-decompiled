@@ -17,7 +17,7 @@ public class C12108y extends C12107x {
 
     /* JADX INFO: renamed from: d0.g0.y$a */
     /* JADX INFO: compiled from: _Strings.kt */
-    public static final class a extends AbstractC12240o implements Function1<CharSequence, String> {
+    public final class a extends AbstractC12240o implements Function1<CharSequence, String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f25164j = new a();

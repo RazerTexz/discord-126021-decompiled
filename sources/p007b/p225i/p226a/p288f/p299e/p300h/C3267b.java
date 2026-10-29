@@ -72,25 +72,6 @@ public class C3267b<O extends C3266a.d> {
     /* JADX INFO: renamed from: i */
     public final C3293g f9334i;
 
-    /* JADX INFO: renamed from: b.i.a.f.e.h.b$a */
-    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class a {
-
-        /* JADX INFO: renamed from: a */
-        public static final a f9335a = new a(new C3275a(), null, Looper.getMainLooper());
-
-        /* JADX INFO: renamed from: b */
-        public final InterfaceC3307n f9336b;
-
-        /* JADX INFO: renamed from: c */
-        public final Looper f9337c;
-
-        public a(InterfaceC3307n interfaceC3307n, Account account, Looper looper) {
-            this.f9336b = interfaceC3307n;
-            this.f9337c = looper;
-        }
-    }
-
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     @Deprecated
     public C3267b(@NonNull Context context, C3266a<O> c3266a, O o, InterfaceC3307n interfaceC3307n) {
@@ -109,33 +90,6 @@ public class C3267b<O extends C3266a.d> {
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
             return null;
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public C3347c.a mo4044a() {
-        GoogleSignInAccount googleSignInAccountM4029L;
-        GoogleSignInAccount googleSignInAccountM4029L2;
-        C3347c.a aVar = new C3347c.a();
-        O o = this.f9328c;
-        Account accountM4028T = null;
-        if (!(o instanceof C3266a.d.b) || (googleSignInAccountM4029L2 = ((C3266a.d.b) o).m4029L()) == null) {
-            O o2 = this.f9328c;
-            if (o2 instanceof C3266a.d.a) {
-                accountM4028T = ((C3266a.d.a) o2).m4028T();
-            }
-        } else if (googleSignInAccountM4029L2.f20419m != null) {
-            accountM4028T = new Account(googleSignInAccountM4029L2.f20419m, "com.google");
-        }
-        aVar.f9509a = accountM4028T;
-        O o3 = this.f9328c;
-        Set<Scope> setEmptySet = (!(o3 instanceof C3266a.d.b) || (googleSignInAccountM4029L = ((C3266a.d.b) o3).m4029L()) == null) ? Collections.emptySet() : googleSignInAccountM4029L.m9011w0();
-        if (aVar.f9510b == null) {
-            aVar.f9510b = new ArraySet<>();
-        }
-        aVar.f9510b.addAll(setEmptySet);
-        aVar.f9512d = this.f9326a.getClass().getName();
-        aVar.f9511c = this.f9326a.getPackageName();
-        return aVar;
     }
 
     /* JADX INFO: renamed from: b */
@@ -171,6 +125,52 @@ public class C3267b<O extends C3266a.d> {
         Handler handler = c3293g.f9390x;
         handler.sendMessage(handler.obtainMessage(4, new C3282c0(c3310o0, c3293g.f9385s.get(), this)));
         return t;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public C3347c.a mo4044a() {
+        GoogleSignInAccount googleSignInAccountM4029L;
+        GoogleSignInAccount googleSignInAccountM4029L2;
+        C3347c.a aVar = new C3347c.a();
+        O o = this.f9328c;
+        Account accountM4028T = null;
+        if (!(o instanceof C3266a.d.b) || (googleSignInAccountM4029L2 = ((C3266a.d.b) o).m4029L()) == null) {
+            O o2 = this.f9328c;
+            if (o2 instanceof C3266a.d.a) {
+                accountM4028T = ((C3266a.d.a) o2).m4028T();
+            }
+        } else if (googleSignInAccountM4029L2.f20419m != null) {
+            accountM4028T = new Account(googleSignInAccountM4029L2.f20419m, "com.google");
+        }
+        aVar.f9509a = accountM4028T;
+        O o3 = this.f9328c;
+        Set<Scope> setEmptySet = (!(o3 instanceof C3266a.d.b) || (googleSignInAccountM4029L = ((C3266a.d.b) o3).m4029L()) == null) ? Collections.emptySet() : googleSignInAccountM4029L.m9011w0();
+        if (aVar.f9510b == null) {
+            aVar.f9510b = new ArraySet<>();
+        }
+        aVar.f9510b.addAll(setEmptySet);
+        aVar.f9512d = this.f9326a.getClass().getName();
+        aVar.f9511c = this.f9326a.getPackageName();
+        return aVar;
+    }
+
+    /* JADX INFO: renamed from: b.i.a.f.e.h.b$a */
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public class a {
+
+        /* JADX INFO: renamed from: b */
+        public final InterfaceC3307n f9336b;
+
+        /* JADX INFO: renamed from: c */
+        public final Looper f9337c;
+
+        /* JADX INFO: renamed from: a */
+        public static final a f9335a = new a(new C3275a(), null, Looper.getMainLooper());
+
+        public a(InterfaceC3307n interfaceC3307n, Account account, Looper looper) {
+            this.f9336b = interfaceC3307n;
+            this.f9337c = looper;
+        }
     }
 
     @MainThread

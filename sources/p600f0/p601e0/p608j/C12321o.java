@@ -17,9 +17,6 @@ import p615g0.C12388e;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12321o implements Closeable {
 
-    /* JADX INFO: renamed from: j */
-    public static final Logger f25737j = Logger.getLogger(C12310d.class.getName());
-
     /* JADX INFO: renamed from: k */
     public final C12388e f25738k;
 
@@ -38,6 +35,9 @@ public final class C12321o implements Closeable {
     /* JADX INFO: renamed from: p */
     public final boolean f25743p;
 
+    /* JADX INFO: renamed from: j */
+    public static final Logger f25737j = Logger.getLogger(C12310d.class.getName());
+
     public C12321o(BufferedSink bufferedSink, boolean z2) {
         C12238m.checkParameterIsNotNull(bufferedSink, "sink");
         this.f25742o = bufferedSink;
@@ -46,6 +46,19 @@ public final class C12321o implements Closeable {
         this.f25738k = c12388e;
         this.f25739l = 16384;
         this.f25741n = new C12309c.b(0, false, c12388e, 3);
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() throws IOException {
+        this.f25740m = true;
+        this.f25742o.close();
+    }
+
+    public final synchronized void flush() throws IOException {
+        if (this.f25740m) {
+            throw new IOException("closed");
+        }
+        this.f25742o.flush();
     }
 
     /* JADX INFO: renamed from: a */
@@ -129,12 +142,6 @@ public final class C12321o implements Closeable {
         this.f25742o.writeInt(i & Integer.MAX_VALUE);
     }
 
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public synchronized void close() throws IOException {
-        this.f25740m = true;
-        this.f25742o.close();
-    }
-
     /* JADX INFO: renamed from: d */
     public final synchronized void m10301d(int i, EnumC12307a enumC12307a, byte[] bArr) throws IOException {
         C12238m.checkParameterIsNotNull(enumC12307a, "errorCode");
@@ -182,13 +189,6 @@ public final class C12321o implements Closeable {
         m10300c(0, 8, 6, z2 ? 1 : 0);
         this.f25742o.writeInt(i);
         this.f25742o.writeInt(i2);
-        this.f25742o.flush();
-    }
-
-    public final synchronized void flush() throws IOException {
-        if (this.f25740m) {
-            throw new IOException("closed");
-        }
         this.f25742o.flush();
     }
 

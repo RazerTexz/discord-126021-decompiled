@@ -110,6 +110,11 @@ public final class CustomTabsIntent {
         return 5;
     }
 
+    public void launchUrl(@NonNull Context context, @NonNull Uri uri) {
+        this.intent.setData(uri);
+        ContextCompat.startActivity(context, this.intent, this.startAnimationBundle);
+    }
+
     @NonNull
     public static Intent setAlwaysUseBrowserUI(@Nullable Intent intent) {
         if (intent == null) {
@@ -124,12 +129,7 @@ public final class CustomTabsIntent {
         return intent.getBooleanExtra(EXTRA_USER_OPT_OUT_FROM_CUSTOM_TABS, false) && (intent.getFlags() & 268435456) != 0;
     }
 
-    public void launchUrl(@NonNull Context context, @NonNull Uri uri) {
-        this.intent.setData(uri);
-        ContextCompat.startActivity(context, this.intent, this.startAnimationBundle);
-    }
-
-    public static final class Builder {
+    public final class Builder {
 
         @Nullable
         private ArrayList<Bundle> mActionButtons;
@@ -151,15 +151,6 @@ public final class CustomTabsIntent {
         private boolean mInstantAppsEnabled = true;
 
         public Builder() {
-        }
-
-        private void setSessionParameters(@Nullable IBinder iBinder, @Nullable PendingIntent pendingIntent) {
-            Bundle bundle = new Bundle();
-            BundleCompat.putBinder(bundle, CustomTabsIntent.EXTRA_SESSION, iBinder);
-            if (pendingIntent != null) {
-                bundle.putParcelable(CustomTabsIntent.EXTRA_SESSION_ID, pendingIntent);
-            }
-            this.mIntent.putExtras(bundle);
         }
 
         @NonNull
@@ -343,6 +334,15 @@ public final class CustomTabsIntent {
             this.mIntent.setPackage(customTabsSession.getComponentName().getPackageName());
             setSessionParameters(customTabsSession.getBinder(), customTabsSession.getId());
             return this;
+        }
+
+        private void setSessionParameters(@Nullable IBinder iBinder, @Nullable PendingIntent pendingIntent) {
+            Bundle bundle = new Bundle();
+            BundleCompat.putBinder(bundle, CustomTabsIntent.EXTRA_SESSION, iBinder);
+            if (pendingIntent != null) {
+                bundle.putParcelable(CustomTabsIntent.EXTRA_SESSION_ID, pendingIntent);
+            }
+            this.mIntent.putExtras(bundle);
         }
 
         @NonNull

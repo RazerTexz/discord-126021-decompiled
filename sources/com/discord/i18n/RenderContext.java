@@ -16,18 +16,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class RenderContext {
 
-    /* JADX INFO: renamed from: a, reason: from kotlin metadata */
-    public final Map<String, String> args = new HashMap();
-
-    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
-    public final Map<String, Hook> hooks = new HashMap();
-
-    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
-    public List<? extends Object> orderedArguments;
-
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
     @ColorInt
     public Integer boldColor;
+
+    /* JADX INFO: renamed from: g, reason: from kotlin metadata */
+    public boolean hasClickables;
+
+    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+    public List<? extends Object> orderedArguments;
 
     /* JADX INFO: renamed from: e, reason: from kotlin metadata */
     @ColorInt
@@ -36,12 +33,15 @@ public final class RenderContext {
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public boolean uppercase;
 
-    /* JADX INFO: renamed from: g, reason: from kotlin metadata */
-    public boolean hasClickables;
+    /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+    public final Map<String, String> args = new HashMap();
+
+    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
+    public final Map<String, Hook> hooks = new HashMap();
 
     /* JADX INFO: renamed from: com.discord.i18n.RenderContext$a */
     /* JADX INFO: compiled from: RenderContext.kt */
-    public static final class C5526a extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class C5526a extends AbstractC12240o implements Function1<Hook, Unit> {
         public final /* synthetic */ Function1 $onClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

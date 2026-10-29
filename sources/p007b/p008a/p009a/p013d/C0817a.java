@@ -44,24 +44,31 @@ import p658rx.subjects.PublishSubject;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0817a extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f315j = {C1643a.m846d0(C0817a.class, "binding", "getBinding()Lcom/discord/databinding/UserActionsDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public final Lazy viewModel;
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f315j = {C1643a.m846d0(C0817a.class, "binding", "getBinding()Lcom/discord/databinding/UserActionsDialogBinding;", 0)};
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public final MGImages.DistinctChangeDetector imagesChangeDetector;
 
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public final Lazy viewModel;
+
+    /* JADX INFO: renamed from: b.a.a.d.a$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: UserActionsDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.d.a$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f320j;
@@ -99,16 +106,9 @@ public final class C0817a extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.d.a$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: UserActionsDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.d.a$c */
     /* JADX INFO: compiled from: UserActionsDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1060u1> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1060u1> {
 
         /* JADX INFO: renamed from: j */
         public static final c f322j = new c();
@@ -148,7 +148,7 @@ public final class C0817a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.d.a$d */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class d<T, R> implements InterfaceC12589b<Object, Boolean> {
+    public final class d<T, R> implements InterfaceC12589b<Object, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final d f323j = new d();
@@ -161,7 +161,7 @@ public final class C0817a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.d.a$e */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public static final class e<T, R> implements InterfaceC12589b<Object, T> {
+    public final class e<T, R> implements InterfaceC12589b<Object, T> {
 
         /* JADX INFO: renamed from: j */
         public static final e f324j = new e();
@@ -175,7 +175,7 @@ public final class C0817a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.d.a$f */
     /* JADX INFO: compiled from: UserActionsDialog.kt */
-    public static final /* synthetic */ class f extends C12236k implements Function1<C0822f.d.a, Unit> {
+    public final /* synthetic */ class f extends C12236k implements Function1<C0822f.d.a, Unit> {
         public f(C0817a c0817a) {
             super(1, c0817a, C0817a.class, "updateView", "updateView(Lcom/discord/dialogs/useractions/UserActionsDialogViewModel$ViewState$Loaded;)V", 0);
         }
@@ -211,7 +211,7 @@ public final class C0817a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.d.a$g */
     /* JADX INFO: compiled from: UserActionsDialog.kt */
-    public static final /* synthetic */ class g extends C12236k implements Function1<C0822f.b, Unit> {
+    public final /* synthetic */ class g extends C12236k implements Function1<C0822f.b, Unit> {
         public g(C0817a c0817a) {
             super(1, c0817a, C0817a.class, "handleEvent", "handleEvent(Lcom/discord/dialogs/useractions/UserActionsDialogViewModel$Event;)V", 0);
         }
@@ -236,7 +236,7 @@ public final class C0817a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.d.a$h */
     /* JADX INFO: compiled from: UserActionsDialog.kt */
-    public static final class h extends AbstractC12240o implements Function0<C0822f> {
+    public final class h extends AbstractC12240o implements Function0<C0822f> {
         public h() {
             super(0);
         }

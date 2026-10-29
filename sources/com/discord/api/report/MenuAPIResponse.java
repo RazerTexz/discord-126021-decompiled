@@ -17,6 +17,17 @@ public final /* data */ class MenuAPIResponse {
     private final String variant;
     private final String version;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MenuAPIResponse)) {
+            return false;
+        }
+        MenuAPIResponse menuAPIResponse = (MenuAPIResponse) other;
+        return C12238m.areEqual(this.name, menuAPIResponse.name) && C12238m.areEqual(this.variant, menuAPIResponse.variant) && C12238m.areEqual(this.version, menuAPIResponse.version) && C12238m.areEqual(this.language, menuAPIResponse.language) && this.success_node_id == menuAPIResponse.success_node_id && this.root_node_id == menuAPIResponse.root_node_id && C12238m.areEqual(this.postback_url, menuAPIResponse.postback_url) && C12238m.areEqual(this.nodes, menuAPIResponse.nodes);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getLanguage() {
         return this.language;
@@ -27,11 +38,6 @@ public final /* data */ class MenuAPIResponse {
         return this.name;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final Map<Integer, ReportNode> m8161c() {
-        return this.nodes;
-    }
-
     /* JADX INFO: renamed from: d, reason: from getter */
     public final int getRoot_node_id() {
         return this.root_node_id;
@@ -40,17 +46,6 @@ public final /* data */ class MenuAPIResponse {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final int getSuccess_node_id() {
         return this.success_node_id;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MenuAPIResponse)) {
-            return false;
-        }
-        MenuAPIResponse menuAPIResponse = (MenuAPIResponse) other;
-        return C12238m.areEqual(this.name, menuAPIResponse.name) && C12238m.areEqual(this.variant, menuAPIResponse.variant) && C12238m.areEqual(this.version, menuAPIResponse.version) && C12238m.areEqual(this.language, menuAPIResponse.language) && this.success_node_id == menuAPIResponse.success_node_id && this.root_node_id == menuAPIResponse.root_node_id && C12238m.areEqual(this.postback_url, menuAPIResponse.postback_url) && C12238m.areEqual(this.nodes, menuAPIResponse.nodes);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -76,6 +71,11 @@ public final /* data */ class MenuAPIResponse {
         int iHashCode5 = (iHashCode4 + (str5 != null ? str5.hashCode() : 0)) * 31;
         Map<Integer, ReportNode> map = this.nodes;
         return iHashCode5 + (map != null ? map.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final Map<Integer, ReportNode> m8161c() {
+        return this.nodes;
     }
 
     public String toString() {

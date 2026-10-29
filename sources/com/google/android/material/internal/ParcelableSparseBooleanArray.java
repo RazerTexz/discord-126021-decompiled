@@ -12,7 +12,7 @@ public class ParcelableSparseBooleanArray extends SparseBooleanArray implements 
     public static final Parcelable.Creator<ParcelableSparseBooleanArray> CREATOR = new C10941a();
 
     /* JADX INFO: renamed from: com.google.android.material.internal.ParcelableSparseBooleanArray$a */
-    public static class C10941a implements Parcelable.Creator<ParcelableSparseBooleanArray> {
+    public final class C10941a implements Parcelable.Creator<ParcelableSparseBooleanArray> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public ParcelableSparseBooleanArray createFromParcel(@NonNull Parcel parcel) {

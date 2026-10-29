@@ -160,7 +160,7 @@ public class C4097k9 implements InterfaceC4192t5 {
 
     /* JADX INFO: renamed from: b.i.a.f.i.b.k9$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public C3635e1 f10922a;
@@ -1784,18 +1784,6 @@ public class C4097k9 implements InterfaceC4192t5 {
         return m5722W();
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
-    /* JADX INFO: renamed from: f */
-    public final C4169r4 mo5725f() {
-        return this.f10906k.mo5725f();
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
-    /* JADX INFO: renamed from: g */
-    public final C4157q3 mo5726g() {
-        return this.f10906k.mo5726g();
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m5727h(C3635e1.a aVar, long j, boolean z2) throws Throwable {
         C4207u9 c4207u9;
@@ -1839,24 +1827,6 @@ public class C4097k9 implements InterfaceC4192t5 {
             m5710K().m5615M(c4207u9);
             this.f10906k.mo5726g().f11149n.m5862c("Updated engagement user property. scope, value", z2 ? "session-scoped" : "lifetime", c4207u9.f11294e);
         }
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
-    /* JADX INFO: renamed from: i */
-    public final InterfaceC3400b mo5728i() {
-        return this.f10906k.f11267o;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
-    /* JADX INFO: renamed from: j */
-    public final Context mo5729j() {
-        return this.f10906k.f11254b;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
-    /* JADX INFO: renamed from: k */
-    public final C4051ga mo5730k() {
-        return this.f10906k.f11259g;
     }
 
     @WorkerThread
@@ -2642,5 +2612,35 @@ public class C4097k9 implements InterfaceC4192t5 {
         } catch (PackageManager.NameNotFoundException unused) {
             return null;
         }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
+    /* JADX INFO: renamed from: f */
+    public final C4169r4 mo5725f() {
+        return this.f10906k.mo5725f();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
+    /* JADX INFO: renamed from: g */
+    public final C4157q3 mo5726g() {
+        return this.f10906k.mo5726g();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
+    /* JADX INFO: renamed from: i */
+    public final InterfaceC3400b mo5728i() {
+        return this.f10906k.f11267o;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
+    /* JADX INFO: renamed from: j */
+    public final Context mo5729j() {
+        return this.f10906k.f11254b;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4192t5
+    /* JADX INFO: renamed from: k */
+    public final C4051ga mo5730k() {
+        return this.f10906k.f11259g;
     }
 }

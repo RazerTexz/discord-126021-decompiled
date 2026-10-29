@@ -25,6 +25,12 @@ public class C4500d0<K, V> extends AbstractC4497c<K, V> {
         this.f11972o = interfaceC4492l;
     }
 
+    @Override // p007b.p225i.p355b.p357b.AbstractC4501e
+    /* JADX INFO: renamed from: e */
+    public Collection mo6217e() {
+        return this.f11972o.get();
+    }
+
     private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
         objectInputStream.defaultReadObject();
         this.f11972o = (InterfaceC4492l) objectInputStream.readObject();
@@ -41,11 +47,5 @@ public class C4500d0<K, V> extends AbstractC4497c<K, V> {
         objectOutputStream.defaultWriteObject();
         objectOutputStream.writeObject(this.f11972o);
         objectOutputStream.writeObject(this.f11973m);
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4501e
-    /* JADX INFO: renamed from: e */
-    public Collection mo6217e() {
-        return this.f11972o.get();
     }
 }

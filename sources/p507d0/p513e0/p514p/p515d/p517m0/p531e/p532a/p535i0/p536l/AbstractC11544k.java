@@ -124,7 +124,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$a */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11913c0 f23400a;
@@ -230,7 +230,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$b */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final List<InterfaceC11326c1> f23406a;
@@ -256,7 +256,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$c */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class c extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
+    public final class c extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
         public c() {
             super(0);
         }
@@ -298,7 +298,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$d */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class d extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class d extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public d() {
             super(0);
         }
@@ -311,7 +311,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$e */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class e extends AbstractC12240o implements Function1<C11716e, InterfaceC11453n0> {
+    public final class e extends AbstractC12240o implements Function1<C11716e, InterfaceC11453n0> {
         public e() {
             super(1);
         }
@@ -334,7 +334,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$f */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class f extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final class f extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public f() {
             super(1);
         }
@@ -361,7 +361,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$g */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class g extends AbstractC12240o implements Function0<InterfaceC11535b> {
+    public final class g extends AbstractC12240o implements Function0<InterfaceC11535b> {
         public g() {
             super(0);
         }
@@ -375,7 +375,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$h */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class h extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class h extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public h() {
             super(0);
         }
@@ -388,7 +388,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$i */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class i extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+    public final class i extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
         public i() {
             super(1);
         }
@@ -405,7 +405,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$j */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class j extends AbstractC12240o implements Function1<C11716e, List<? extends InterfaceC11453n0>> {
+    public final class j extends AbstractC12240o implements Function1<C11716e, List<? extends InterfaceC11453n0>> {
         public j() {
             super(1);
         }
@@ -422,7 +422,7 @@ public abstract class AbstractC11544k extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$k */
     /* JADX INFO: compiled from: LazyJavaScope.kt */
-    public static final class k extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class k extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public k() {
             super(0);
         }
@@ -481,34 +481,6 @@ public abstract class AbstractC11544k extends AbstractC11771j {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract Set<C11716e> mo9470a(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
-
-    /* JADX INFO: renamed from: b */
-    public abstract Set<C11716e> mo9471b(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
-
-    /* JADX INFO: renamed from: c */
-    public void mo9472c(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
-        C12238m.checkNotNullParameter(collection, "result");
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public abstract InterfaceC11535b mo9473d();
-
-    /* JADX INFO: renamed from: e */
-    public final AbstractC11913c0 m9494e(InterfaceC11585r interfaceC11585r, C11529g c11529g) {
-        C12238m.checkNotNullParameter(interfaceC11585r, "method");
-        C12238m.checkNotNullParameter(c11529g, "c");
-        return c11529g.getTypeResolver().transformJavaType(interfaceC11585r.getReturnType(), C11557e.toAttributes$default(EnumC11508k.COMMON, interfaceC11585r.getContainingClass().isAnnotationType(), null, 2, null));
-    }
-
-    /* JADX INFO: renamed from: f */
-    public abstract void mo9474f(Collection<InterfaceC11465t0> collection, C11716e c11716e);
-
-    /* JADX INFO: renamed from: g */
-    public abstract void mo9475g(C11716e c11716e, Collection<InterfaceC11453n0> collection);
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
     public Set<C11716e> getClassifierNames() {
         return (Set) C11904n.getValue(this.f23398l, this, (KProperty<?>) f23388b[2]);
@@ -545,23 +517,12 @@ public abstract class AbstractC11544k extends AbstractC11771j {
         return (Set) C11904n.getValue(this.f23397k, this, (KProperty<?>) f23388b[1]);
     }
 
-    /* JADX INFO: renamed from: h */
-    public abstract Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
-
-    /* JADX INFO: renamed from: i */
-    public abstract InterfaceC11459q0 mo9477i();
-
-    /* JADX INFO: renamed from: j */
-    public abstract InterfaceC11450m mo9478j();
-
-    /* JADX INFO: renamed from: k */
-    public boolean mo9479k(C11515f c11515f) {
-        C12238m.checkNotNullParameter(c11515f, "<this>");
-        return true;
+    /* JADX INFO: renamed from: e */
+    public final AbstractC11913c0 m9494e(InterfaceC11585r interfaceC11585r, C11529g c11529g) {
+        C12238m.checkNotNullParameter(interfaceC11585r, "method");
+        C12238m.checkNotNullParameter(c11529g, "c");
+        return c11529g.getTypeResolver().transformJavaType(interfaceC11585r.getReturnType(), C11557e.toAttributes$default(EnumC11508k.COMMON, interfaceC11585r.getContainingClass().isAnnotationType(), null, 2, null));
     }
-
-    /* JADX INFO: renamed from: l */
-    public abstract a mo9480l(InterfaceC11585r interfaceC11585r, List<? extends InterfaceC11477z0> list, AbstractC11913c0 abstractC11913c0, List<? extends InterfaceC11326c1> list2);
 
     /* JADX INFO: renamed from: m */
     public final C11515f m9495m(InterfaceC11585r interfaceC11585r) {
@@ -677,6 +638,45 @@ public abstract class AbstractC11544k extends AbstractC11771j {
         }
         return new b(C12163u.toList(arrayList), z3);
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract Set<C11716e> mo9470a(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
+
+    /* JADX INFO: renamed from: b */
+    public abstract Set<C11716e> mo9471b(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
+
+    /* JADX INFO: renamed from: c */
+    public void mo9472c(Collection<InterfaceC11465t0> collection, C11716e c11716e) {
+        C12238m.checkNotNullParameter(collection, "result");
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public abstract InterfaceC11535b mo9473d();
+
+    /* JADX INFO: renamed from: f */
+    public abstract void mo9474f(Collection<InterfaceC11465t0> collection, C11716e c11716e);
+
+    /* JADX INFO: renamed from: g */
+    public abstract void mo9475g(C11716e c11716e, Collection<InterfaceC11453n0> collection);
+
+    /* JADX INFO: renamed from: h */
+    public abstract Set<C11716e> mo9476h(C11765d c11765d, Function1<? super C11716e, Boolean> function1);
+
+    /* JADX INFO: renamed from: i */
+    public abstract InterfaceC11459q0 mo9477i();
+
+    /* JADX INFO: renamed from: j */
+    public abstract InterfaceC11450m mo9478j();
+
+    /* JADX INFO: renamed from: k */
+    public boolean mo9479k(C11515f c11515f) {
+        C12238m.checkNotNullParameter(c11515f, "<this>");
+        return true;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public abstract a mo9480l(InterfaceC11585r interfaceC11585r, List<? extends InterfaceC11477z0> list, AbstractC11913c0 abstractC11913c0, List<? extends InterfaceC11326c1> list2);
 
     public String toString() {
         return C12238m.stringPlus("Lazy scope for ", mo9478j());

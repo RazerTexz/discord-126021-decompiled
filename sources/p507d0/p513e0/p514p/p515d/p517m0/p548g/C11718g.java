@@ -7,20 +7,28 @@ import com.discord.models.domain.ModelAuditLogEntry;
 /* JADX INFO: loaded from: classes3.dex */
 public class C11718g {
 
-    /* JADX INFO: renamed from: a */
-    public static final C11716e f24092a = C11716e.special("<no name provided>");
-
     /* JADX INFO: renamed from: b */
     public static final C11716e f24093b;
 
     /* JADX INFO: renamed from: c */
     public static final C11716e f24094c;
 
+    /* JADX INFO: renamed from: a */
+    public static final C11716e f24092a = C11716e.special("<no name provided>");
+
     static {
         C11716e.special("<root package>");
         f24093b = C11716e.identifier("Companion");
         f24094c = C11716e.identifier("no_name_in_PSI_3d19d79d_1ba9_4cd0_b7f5_b46aa3cd5d40");
         C11716e.special("<anonymous>");
+    }
+
+    public static boolean isSafeIdentifier(C11716e c11716e) {
+        if (c11716e != null) {
+            return (c11716e.asString().isEmpty() || c11716e.isSpecial()) ? false : true;
+        }
+        m9821a(1);
+        throw null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -44,14 +52,6 @@ public class C11718g {
         if (i == 1) {
             throw new IllegalArgumentException(str2);
         }
-    }
-
-    public static boolean isSafeIdentifier(C11716e c11716e) {
-        if (c11716e != null) {
-            return (c11716e.asString().isEmpty() || c11716e.isSpecial()) ? false : true;
-        }
-        m9821a(1);
-        throw null;
     }
 
     public static C11716e safeIdentifier(C11716e c11716e) {

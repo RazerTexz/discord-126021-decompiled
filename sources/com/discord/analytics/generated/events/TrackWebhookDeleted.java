@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackWebhookDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackWebhookDeleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long webhookId = null;
-    private final CharSequence webhookName = null;
-    private final Long type = null;
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long guildId = null;
+    private TrackBase trackBase;
+    private final Long type = null;
+    private final Long webhookId = null;
+    private final CharSequence webhookName = null;
     private final Long webhookSourceChannelId = null;
-    private final Long webhookSourceGuildId = null;
     private final Long webhookSourceChannelType = null;
+    private final Long webhookSourceGuildId = null;
     private final transient String analyticsSchemaTypeName = "webhook_deleted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackWebhookDeleted implements AnalyticsSchema, Tr
         }
         TrackWebhookDeleted trackWebhookDeleted = (TrackWebhookDeleted) other;
         return C12238m.areEqual(this.webhookId, trackWebhookDeleted.webhookId) && C12238m.areEqual(this.webhookName, trackWebhookDeleted.webhookName) && C12238m.areEqual(this.type, trackWebhookDeleted.type) && C12238m.areEqual(this.channelId, trackWebhookDeleted.channelId) && C12238m.areEqual(this.channelType, trackWebhookDeleted.channelType) && C12238m.areEqual(this.guildId, trackWebhookDeleted.guildId) && C12238m.areEqual(this.webhookSourceChannelId, trackWebhookDeleted.webhookSourceChannelId) && C12238m.areEqual(this.webhookSourceGuildId, trackWebhookDeleted.webhookSourceGuildId) && C12238m.areEqual(this.webhookSourceChannelType, trackWebhookDeleted.webhookSourceChannelType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

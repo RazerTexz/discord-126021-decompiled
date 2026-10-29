@@ -24,97 +24,18 @@ public final class StoreGuildProfiles extends StoreV2 {
     private Map<Long, GuildProfileData> guildProfilesStateSnapshot;
     private final ObservationDeck observationDeck;
 
-    /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public enum FetchStates {
-        FETCHING,
-        FAILED,
-        SUCCEEDED
-    }
-
-    /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public static final /* data */ class GuildProfileData {
-        private final GuildPreview data;
-        private final FetchStates fetchState;
-
-        public GuildProfileData(FetchStates fetchStates, GuildPreview guildPreview) {
-            C12238m.checkNotNullParameter(fetchStates, "fetchState");
-            this.fetchState = fetchStates;
-            this.data = guildPreview;
-        }
-
-        public static /* synthetic */ GuildProfileData copy$default(GuildProfileData guildProfileData, FetchStates fetchStates, GuildPreview guildPreview, int i, Object obj) {
-            if ((i & 1) != 0) {
-                fetchStates = guildProfileData.fetchState;
-            }
-            if ((i & 2) != 0) {
-                guildPreview = guildProfileData.data;
-            }
-            return guildProfileData.copy(fetchStates, guildPreview);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final FetchStates getFetchState() {
-            return this.fetchState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GuildPreview getData() {
-            return this.data;
-        }
-
-        public final GuildProfileData copy(FetchStates fetchState, GuildPreview data) {
-            C12238m.checkNotNullParameter(fetchState, "fetchState");
-            return new GuildProfileData(fetchState, data);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof GuildProfileData)) {
-                return false;
-            }
-            GuildProfileData guildProfileData = (GuildProfileData) other;
-            return C12238m.areEqual(this.fetchState, guildProfileData.fetchState) && C12238m.areEqual(this.data, guildProfileData.data);
-        }
-
-        public final GuildPreview getData() {
-            return this.data;
-        }
-
-        public final FetchStates getFetchState() {
-            return this.fetchState;
-        }
-
-        public int hashCode() {
-            FetchStates fetchStates = this.fetchState;
-            int iHashCode = (fetchStates != null ? fetchStates.hashCode() : 0) * 31;
-            GuildPreview guildPreview = this.data;
-            return iHashCode + (guildPreview != null ? guildPreview.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("GuildProfileData(fetchState=");
-            sbM833U.append(this.fetchState);
-            sbM833U.append(", data=");
-            sbM833U.append(this.data);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1 */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public static final class C60371 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60371 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<GuildPreview, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<GuildPreview, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-            public static final class C132561 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132561 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ GuildPreview $guildPreview;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -154,11 +75,11 @@ public final class StoreGuildProfiles extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -218,7 +139,7 @@ public final class StoreGuildProfiles extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$observeGuildProfile$1 */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public static final class C60381 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60381 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -241,7 +162,7 @@ public final class StoreGuildProfiles extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$observeGuildProfile$2 */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public static final class C60392 extends AbstractC12240o implements Function0<GuildProfileData> {
+    public final class C60392 extends AbstractC12240o implements Function0<GuildProfileData> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -254,6 +175,85 @@ public final class StoreGuildProfiles extends StoreV2 {
         @Override // kotlin.jvm.functions.Function0
         public final GuildProfileData invoke() {
             return (GuildProfileData) StoreGuildProfiles.this.guildProfilesStateSnapshot.get(Long.valueOf(this.$guildId));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildProfiles.kt */
+    public enum FetchStates {
+        FETCHING,
+        FAILED,
+        SUCCEEDED
+    }
+
+    /* JADX INFO: compiled from: StoreGuildProfiles.kt */
+    public final /* data */ class GuildProfileData {
+        private final GuildPreview data;
+        private final FetchStates fetchState;
+
+        public GuildProfileData(FetchStates fetchStates, GuildPreview guildPreview) {
+            C12238m.checkNotNullParameter(fetchStates, "fetchState");
+            this.fetchState = fetchStates;
+            this.data = guildPreview;
+        }
+
+        public static /* synthetic */ GuildProfileData copy$default(GuildProfileData guildProfileData, FetchStates fetchStates, GuildPreview guildPreview, int i, Object obj) {
+            if ((i & 1) != 0) {
+                fetchStates = guildProfileData.fetchState;
+            }
+            if ((i & 2) != 0) {
+                guildPreview = guildProfileData.data;
+            }
+            return guildProfileData.copy(fetchStates, guildPreview);
+        }
+
+        public final GuildProfileData copy(FetchStates fetchState, GuildPreview data) {
+            C12238m.checkNotNullParameter(fetchState, "fetchState");
+            return new GuildProfileData(fetchState, data);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof GuildProfileData)) {
+                return false;
+            }
+            GuildProfileData guildProfileData = (GuildProfileData) other;
+            return C12238m.areEqual(this.fetchState, guildProfileData.fetchState) && C12238m.areEqual(this.data, guildProfileData.data);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final GuildPreview getData() {
+            return this.data;
+        }
+
+        public final GuildPreview getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final FetchStates getFetchState() {
+            return this.fetchState;
+        }
+
+        public final FetchStates getFetchState() {
+            return this.fetchState;
+        }
+
+        public int hashCode() {
+            FetchStates fetchStates = this.fetchState;
+            int iHashCode = (fetchStates != null ? fetchStates.hashCode() : 0) * 31;
+            GuildPreview guildPreview = this.data;
+            return iHashCode + (guildPreview != null ? guildPreview.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("GuildProfileData(fetchState=");
+            sbM833U.append(this.fetchState);
+            sbM833U.append(", data=");
+            sbM833U.append(this.data);
+            sbM833U.append(")");
+            return sbM833U.toString();
         }
     }
 

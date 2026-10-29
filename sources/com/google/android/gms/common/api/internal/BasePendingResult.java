@@ -29,9 +29,6 @@ import p007b.p225i.p226a.p288f.p313h.p318e.HandlerC3479c;
 @KeepName
 public abstract class BasePendingResult<R extends InterfaceC3273h> extends AbstractC3269d<R> {
 
-    /* JADX INFO: renamed from: a */
-    public static final ThreadLocal<Boolean> f20499a = new C3326w0();
-
     /* JADX INFO: renamed from: b */
     public final Object f20500b;
 
@@ -66,9 +63,24 @@ public abstract class BasePendingResult<R extends InterfaceC3273h> extends Abstr
     @KeepName
     public C10802b mResultGuardian;
 
+    /* JADX INFO: renamed from: a */
+    public static final ThreadLocal<Boolean> f20499a = new C3326w0();
+
+    /* JADX INFO: renamed from: com.google.android.gms.common.api.internal.BasePendingResult$b */
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public final class C10802b {
+        public C10802b(C3326w0 c3326w0) {
+        }
+
+        public final void finalize() throws Throwable {
+            BasePendingResult.m9032h(BasePendingResult.this.f20505g);
+            super.finalize();
+        }
+    }
+
     /* JADX INFO: renamed from: com.google.android.gms.common.api.internal.BasePendingResult$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class HandlerC10801a<R extends InterfaceC3273h> extends HandlerC3479c {
+    public class HandlerC10801a<R extends InterfaceC3273h> extends HandlerC3479c {
         public HandlerC10801a(Looper looper) {
             super(looper);
         }
@@ -98,18 +110,6 @@ public abstract class BasePendingResult<R extends InterfaceC3273h> extends Abstr
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.gms.common.api.internal.BasePendingResult$b */
-    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public final class C10802b {
-        public C10802b(C3326w0 c3326w0) {
-        }
-
-        public final void finalize() throws Throwable {
-            BasePendingResult.m9032h(BasePendingResult.this.f20505g);
-            super.finalize();
-        }
-    }
-
     @Deprecated
     public BasePendingResult() {
         this.f20500b = new Object();
@@ -136,23 +136,6 @@ public abstract class BasePendingResult<R extends InterfaceC3273h> extends Abstr
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.AbstractC3269d
-    /* JADX INFO: renamed from: c */
-    public final void mo4051c(AbstractC3269d.a aVar) {
-        C1460d.m551o(true, "Callback cannot be null.");
-        synchronized (this.f20500b) {
-            if (m9034f()) {
-                aVar.mo4052a(this.f20506h);
-            } else {
-                this.f20503e.add(aVar);
-            }
-        }
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: d */
-    public abstract R mo3987d(Status status);
-
     @Deprecated
     /* JADX INFO: renamed from: e */
     public final void m9033e(Status status) {
@@ -167,25 +150,6 @@ public abstract class BasePendingResult<R extends InterfaceC3273h> extends Abstr
     /* JADX INFO: renamed from: f */
     public final boolean m9034f() {
         return this.f20502d.getCount() == 0;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
-    /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
-    public final void mo3989b(R r) {
-        synchronized (this.f20500b) {
-            if (this.f20508j) {
-                m9032h(r);
-                return;
-            }
-            m9034f();
-            boolean z2 = true;
-            C1460d.m435G(!m9034f(), "Results have already been set");
-            if (this.f20507i) {
-                z2 = false;
-            }
-            C1460d.m435G(z2, "Result has already been consumed");
-            m9036i(r);
-        }
     }
 
     /* JADX INFO: renamed from: i */
@@ -223,6 +187,42 @@ public abstract class BasePendingResult<R extends InterfaceC3273h> extends Abstr
         }
         Objects.requireNonNull(r, "null reference");
         return r;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: d */
+    public abstract R mo3987d(Status status);
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
+    /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
+    public final void mo3989b(R r) {
+        synchronized (this.f20500b) {
+            if (this.f20508j) {
+                m9032h(r);
+                return;
+            }
+            m9034f();
+            boolean z2 = true;
+            C1460d.m435G(!m9034f(), "Results have already been set");
+            if (this.f20507i) {
+                z2 = false;
+            }
+            C1460d.m435G(z2, "Result has already been consumed");
+            m9036i(r);
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.AbstractC3269d
+    /* JADX INFO: renamed from: c */
+    public final void mo4051c(AbstractC3269d.a aVar) {
+        C1460d.m551o(true, "Callback cannot be null.");
+        synchronized (this.f20500b) {
+            if (m9034f()) {
+                aVar.mo4052a(this.f20506h);
+            } else {
+                this.f20503e.add(aVar);
+            }
+        }
     }
 
     public BasePendingResult(@Nullable AbstractC3268c abstractC3268c) {

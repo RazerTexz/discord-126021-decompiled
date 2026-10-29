@@ -30,73 +30,9 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
     /* JADX INFO: renamed from: k */
     public final Emitter.BackpressureMode f26846k;
 
-    /* JADX INFO: renamed from: j0.l.a.i$a */
-    /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static abstract class a<T> extends AtomicLong implements Emitter<T>, Producer, Subscription {
-        private static final long serialVersionUID = 7326289992464377023L;
-        public final Subscriber<? super T> actual;
-        public final SerialSubscription serial = new SerialSubscription();
-
-        public a(Subscriber<? super T> subscriber) {
-            this.actual = subscriber;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void mo10757a() {
-        }
-
-        /* JADX INFO: renamed from: b */
-        public void mo10758b() {
-        }
-
-        @Override // p658rx.Subscription
-        public final boolean isUnsubscribed() {
-            return this.serial.isUnsubscribed();
-        }
-
-        @Override // p658rx.Producer
-        /* JADX INFO: renamed from: j */
-        public final void mo10704j(long j) {
-            if (C3404f.m4191A1(j)) {
-                C3404f.m4276c0(this, j);
-                mo10757a();
-            }
-        }
-
-        @Override // p637j0.InterfaceC12581g
-        public void onCompleted() {
-            if (this.actual.isUnsubscribed()) {
-                return;
-            }
-            try {
-                this.actual.onCompleted();
-            } finally {
-                this.serial.unsubscribe();
-            }
-        }
-
-        @Override // p637j0.InterfaceC12581g
-        public void onError(Throwable th) {
-            if (this.actual.isUnsubscribed()) {
-                return;
-            }
-            try {
-                this.actual.onError(th);
-            } finally {
-                this.serial.unsubscribe();
-            }
-        }
-
-        @Override // p658rx.Subscription
-        public final void unsubscribe() {
-            this.serial.f27657j.unsubscribe();
-            mo10758b();
-        }
-    }
-
     /* JADX INFO: renamed from: j0.l.a.i$b */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static final class b<T> extends a<T> {
+    public final class b<T> extends a<T> {
         private static final long serialVersionUID = 2427151001689639875L;
         public volatile boolean done;
         public Throwable error;
@@ -107,20 +43,6 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
             super(subscriber);
             this.queue = C12755y.m10858b() ? new C12750t<>(i) : new C12730g<>(i);
             this.wip = new AtomicInteger();
-        }
-
-        @Override // p637j0.p642l.p643a.C12630i.a
-        /* JADX INFO: renamed from: a */
-        public void mo10757a() {
-            m10759c();
-        }
-
-        @Override // p637j0.p642l.p643a.C12630i.a
-        /* JADX INFO: renamed from: b */
-        public void mo10758b() {
-            if (this.wip.getAndIncrement() == 0) {
-                this.queue.clear();
-            }
         }
 
         /* JADX INFO: renamed from: c */
@@ -183,6 +105,20 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
             } while (iAddAndGet != 0);
         }
 
+        @Override // p637j0.p642l.p643a.C12630i.a
+        /* JADX INFO: renamed from: a */
+        public void mo10757a() {
+            m10759c();
+        }
+
+        @Override // p637j0.p642l.p643a.C12630i.a
+        /* JADX INFO: renamed from: b */
+        public void mo10758b() {
+            if (this.wip.getAndIncrement() == 0) {
+                this.queue.clear();
+            }
+        }
+
         @Override // p637j0.p642l.p643a.C12630i.a, p637j0.InterfaceC12581g
         public void onCompleted() {
             this.done = true;
@@ -211,7 +147,7 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.i$c */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static final class c<T> extends f<T> {
+    public final class c<T> extends f<T> {
         private static final long serialVersionUID = 8360058422307496563L;
 
         public c(Subscriber<? super T> subscriber) {
@@ -226,7 +162,7 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.i$d */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static final class d<T> extends f<T> {
+    public final class d<T> extends f<T> {
         private static final long serialVersionUID = 338953216916120960L;
         private boolean done;
 
@@ -270,7 +206,7 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.i$e */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static final class e<T> extends a<T> {
+    public final class e<T> extends a<T> {
         private static final long serialVersionUID = 4023437720691792495L;
         public volatile boolean done;
         public Throwable error;
@@ -281,20 +217,6 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
             super(subscriber);
             this.queue = new AtomicReference<>();
             this.wip = new AtomicInteger();
-        }
-
-        @Override // p637j0.p642l.p643a.C12630i.a
-        /* JADX INFO: renamed from: a */
-        public void mo10757a() {
-            m10761c();
-        }
-
-        @Override // p637j0.p642l.p643a.C12630i.a
-        /* JADX INFO: renamed from: b */
-        public void mo10758b() {
-            if (this.wip.getAndIncrement() == 0) {
-                this.queue.lazySet(null);
-            }
         }
 
         /* JADX INFO: renamed from: c */
@@ -360,6 +282,20 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
             } while (iAddAndGet != 0);
         }
 
+        @Override // p637j0.p642l.p643a.C12630i.a
+        /* JADX INFO: renamed from: a */
+        public void mo10757a() {
+            m10761c();
+        }
+
+        @Override // p637j0.p642l.p643a.C12630i.a
+        /* JADX INFO: renamed from: b */
+        public void mo10758b() {
+            if (this.wip.getAndIncrement() == 0) {
+                this.queue.lazySet(null);
+            }
+        }
+
         @Override // p637j0.p642l.p643a.C12630i.a, p637j0.InterfaceC12581g
         public void onCompleted() {
             this.done = true;
@@ -388,7 +324,7 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.i$f */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static abstract class f<T> extends a<T> {
+    public abstract class f<T> extends a<T> {
         private static final long serialVersionUID = 4127754106204442833L;
 
         public f(Subscriber<? super T> subscriber) {
@@ -413,7 +349,7 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.i$g */
     /* JADX INFO: compiled from: OnSubscribeCreate.java */
-    public static final class g<T> extends a<T> {
+    public final class g<T> extends a<T> {
         private static final long serialVersionUID = 3776720187248809713L;
 
         public g(Subscriber<? super T> subscriber) {
@@ -468,5 +404,69 @@ public final class C12630i<T> implements Observable.InterfaceC13005a<T> {
         subscriber.add(gVar);
         subscriber.setProducer(gVar);
         this.f26845j.call(gVar);
+    }
+
+    /* JADX INFO: renamed from: j0.l.a.i$a */
+    /* JADX INFO: compiled from: OnSubscribeCreate.java */
+    public abstract class a<T> extends AtomicLong implements Emitter<T>, Producer, Subscription {
+        public final Subscriber<? super T> actual;
+        private static final long serialVersionUID = 7326289992464377023L;
+        public final SerialSubscription serial = new SerialSubscription();
+
+        public a(Subscriber<? super T> subscriber) {
+            this.actual = subscriber;
+        }
+
+        @Override // p658rx.Subscription
+        public final boolean isUnsubscribed() {
+            return this.serial.isUnsubscribed();
+        }
+
+        @Override // p658rx.Producer
+        /* JADX INFO: renamed from: j */
+        public final void mo10704j(long j) {
+            if (C3404f.m4191A1(j)) {
+                C3404f.m4276c0(this, j);
+                mo10757a();
+            }
+        }
+
+        /* JADX INFO: renamed from: a */
+        public void mo10757a() {
+        }
+
+        /* JADX INFO: renamed from: b */
+        public void mo10758b() {
+        }
+
+        @Override // p637j0.InterfaceC12581g
+        public void onCompleted() {
+            if (this.actual.isUnsubscribed()) {
+                return;
+            }
+            try {
+                this.actual.onCompleted();
+            } finally {
+                this.serial.unsubscribe();
+            }
+        }
+
+        @Override // p637j0.InterfaceC12581g
+        public void onError(Throwable th) {
+            if (this.actual.isUnsubscribed()) {
+                return;
+            }
+            try {
+                this.actual.onError(th);
+            } finally {
+                this.serial.unsubscribe();
+            }
+        }
+
+        @Override // p658rx.Subscription
+        public final void unsubscribe() {
+            this.serial.f27657j.unsubscribe();
+            mo10758b();
+        }
     }
 }

@@ -36,7 +36,7 @@ public class KeyCycle extends Key {
     private float mTranslationY = Float.NaN;
     private float mTranslationZ = Float.NaN;
 
-    public static class Loader {
+    public class Loader {
         private static final int ANDROID_ALPHA = 9;
         private static final int ANDROID_ELEVATION = 10;
         private static final int ANDROID_ROTATION = 11;

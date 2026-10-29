@@ -59,7 +59,7 @@ class Java9Compiler implements LombokFileObjects.Compiler {
 
     /* JADX INFO: compiled from: Javac9Compiler.java */
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/apt/Java9Compiler$FileManagerWrapper.SCL.lombok */
-    static class FileManagerWrapper extends BaseFileManager {
+    class FileManagerWrapper extends BaseFileManager {
         JavaFileManager manager;
 
         public FileManagerWrapper(JavaFileManager manager) {

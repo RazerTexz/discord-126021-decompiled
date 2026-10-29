@@ -23,7 +23,7 @@ public enum EnumC12381y {
 
     /* JADX INFO: renamed from: f0.y$a */
     /* JADX INFO: compiled from: Protocol.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

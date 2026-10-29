@@ -10,12 +10,12 @@ public interface InterfaceC4573e {
     /* JADX INFO: renamed from: a */
     <T> T mo6346a(Class<T> cls);
 
+    /* JADX INFO: renamed from: d */
+    <T> Set<T> mo6347d(Class<T> cls);
+
     /* JADX INFO: renamed from: b */
     <T> InterfaceC4836a<T> mo6355b(Class<T> cls);
 
     /* JADX INFO: renamed from: c */
     <T> InterfaceC4836a<Set<T>> mo6356c(Class<T> cls);
-
-    /* JADX INFO: renamed from: d */
-    <T> Set<T> mo6347d(Class<T> cls);
 }

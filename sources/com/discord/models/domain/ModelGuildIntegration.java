@@ -7,7 +7,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelGuildIntegration implements Model {
-    public static final String[] SUPPORTED_TYPES = {"twitch", "youtube"};
     private static final String TWITCH_URL_PREFIX = "twitch.tv/";
     public static final String TYPE_TWITCH = "twitch";
     public static final String TYPE_YOUTUBE = "youtube";
@@ -26,8 +25,9 @@ public class ModelGuildIntegration implements Model {
     private boolean syncing;
     private String type;
     private User user;
+    public static final String[] SUPPORTED_TYPES = {"twitch", "youtube"};
 
-    public static class IntegrationAccount implements Model {
+    public class IntegrationAccount implements Model {
 
         /* JADX INFO: renamed from: id */
         private String f18569id;
@@ -96,7 +96,7 @@ public class ModelGuildIntegration implements Model {
         }
     }
 
-    public static class Update implements Model {
+    public class Update implements Model {
         private long guildId;
 
         @Override // com.discord.models.domain.Model

@@ -5,10 +5,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class RefCountDelegate implements RefCounted {
-    private final AtomicInteger refCount = new AtomicInteger(1);
 
     @Nullable
     private final Runnable releaseCallback;
+    private final AtomicInteger refCount = new AtomicInteger(1);
 
     public RefCountDelegate(@Nullable Runnable runnable) {
         this.releaseCallback = runnable;

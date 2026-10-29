@@ -9,16 +9,6 @@ public final /* data */ class GuildJoinRequestCreateOrUpdate {
     private final long guildId;
     private final GuildJoinRequest request;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final GuildJoinRequest getRequest() {
-        return this.request;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +18,16 @@ public final /* data */ class GuildJoinRequestCreateOrUpdate {
         }
         GuildJoinRequestCreateOrUpdate guildJoinRequestCreateOrUpdate = (GuildJoinRequestCreateOrUpdate) other;
         return this.guildId == guildJoinRequestCreateOrUpdate.guildId && C12238m.areEqual(this.request, guildJoinRequestCreateOrUpdate.request);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final GuildJoinRequest getRequest() {
+        return this.request;
     }
 
     public int hashCode() {

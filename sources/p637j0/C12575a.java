@@ -12,7 +12,7 @@ public final class C12575a {
 
     /* JADX INFO: renamed from: j0.a$a */
     /* JADX INFO: compiled from: BackpressureOverflow.java */
-    public static final class a implements b {
+    public final class a implements b {
 
         /* JADX INFO: renamed from: a */
         public static final a f26684a = new a();

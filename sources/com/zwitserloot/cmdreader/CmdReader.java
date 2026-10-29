@@ -13,11 +13,11 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: discord-126021.apk:com/zwitserloot/cmdreader/CmdReader.SCL.lombok */
 public class CmdReader<T> {
+    private static final int SCREEN_WIDTH = 72;
     private final Class<T> settingsDescriptor;
     private final List<ParseItem> items = Collections.unmodifiableList(init());
     private final Map<Character, ParseItem> shorthands = ParseItem.makeShortHandMap(this.items);
     private final List<ParseItem> seqList = makeSeqList(this.items);
-    private static final int SCREEN_WIDTH = 72;
 
     private CmdReader(Class<T> settingsDescriptor) {
         this.settingsDescriptor = settingsDescriptor;

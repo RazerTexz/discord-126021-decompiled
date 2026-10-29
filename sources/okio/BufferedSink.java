@@ -9,6 +9,9 @@ import p615g0.InterfaceC12407x;
 /* JADX INFO: compiled from: BufferedSink.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface BufferedSink extends InterfaceC12405v, WritableByteChannel {
+    @Override // p615g0.InterfaceC12405v, java.io.Flushable
+    void flush() throws IOException;
+
     /* JADX INFO: renamed from: F */
     BufferedSink mo10431F() throws IOException;
 
@@ -23,9 +26,6 @@ public interface BufferedSink extends InterfaceC12405v, WritableByteChannel {
 
     /* JADX INFO: renamed from: e0 */
     BufferedSink mo10455e0(ByteString byteString) throws IOException;
-
-    @Override // p615g0.InterfaceC12405v, java.io.Flushable
-    void flush() throws IOException;
 
     /* JADX INFO: renamed from: g */
     C12388e mo10457g();

@@ -20,13 +20,13 @@ public interface InterfaceC2671o {
         void mo2765m(InterfaceC2671o interfaceC2671o, long j);
     }
 
+    long getPreferredUpdateDelay();
+
     /* JADX INFO: renamed from: a */
     void mo2761a(@Nullable long[] jArr, @Nullable boolean[] zArr, int i);
 
     /* JADX INFO: renamed from: b */
     void mo2762b(a aVar);
-
-    long getPreferredUpdateDelay();
 
     void setBufferedPosition(long j);
 

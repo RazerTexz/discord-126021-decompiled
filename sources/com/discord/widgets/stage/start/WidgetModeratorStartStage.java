@@ -63,27 +63,9 @@ public final class WidgetModeratorStartStage extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetModeratorStartStage.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long channelId, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetModeratorStartStage.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.stage.start.WidgetModeratorStartStage$handleListItemClick$1 */
     /* JADX INFO: compiled from: WidgetModeratorStartStage.kt */
-    public static final class C100711 extends AbstractC12240o implements Function0<Unit> {
+    public final class C100711 extends AbstractC12240o implements Function0<Unit> {
         public C100711() {
             super(0);
         }
@@ -103,7 +85,7 @@ public final class WidgetModeratorStartStage extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.start.WidgetModeratorStartStage$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetModeratorStartStage.kt */
-    public static final /* synthetic */ class C100721 extends C12236k implements Function1<ModeratorStartStageItem, Unit> {
+    public final /* synthetic */ class C100721 extends C12236k implements Function1<ModeratorStartStageItem, Unit> {
         public C100721(WidgetModeratorStartStage widgetModeratorStartStage) {
             super(1, widgetModeratorStartStage, WidgetModeratorStartStage.class, "handleListItemClick", "handleListItemClick(Lcom/discord/widgets/stage/start/ModeratorStartStageItem;)V", 0);
         }
@@ -123,7 +105,7 @@ public final class WidgetModeratorStartStage extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.start.WidgetModeratorStartStage$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetModeratorStartStage.kt */
-    public static final /* synthetic */ class C100741 extends C12236k implements Function1<ModeratorStartStageViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C100741 extends C12236k implements Function1<ModeratorStartStageViewModel.ViewState, Unit> {
         public C100741(WidgetModeratorStartStage widgetModeratorStartStage) {
             super(1, widgetModeratorStartStage, WidgetModeratorStartStage.class, "configureUi", "configureUi(Lcom/discord/widgets/stage/start/ModeratorStartStageViewModel$ViewState;)V", 0);
         }
@@ -138,6 +120,24 @@ public final class WidgetModeratorStartStage extends AppFragment {
         public final void invoke2(ModeratorStartStageViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "p1");
             ((WidgetModeratorStartStage) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetModeratorStartStage.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long channelId, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetModeratorStartStage.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

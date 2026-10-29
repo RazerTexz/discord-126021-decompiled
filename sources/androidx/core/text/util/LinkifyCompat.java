@@ -47,7 +47,7 @@ public final class LinkifyCompat {
         }
     };
 
-    public static class LinkSpec {
+    public class LinkSpec {
         public int end;
         public URLSpan frameworkAddedSpan;
         public int start;

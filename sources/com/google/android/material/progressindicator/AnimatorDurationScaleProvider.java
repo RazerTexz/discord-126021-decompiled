@@ -11,12 +11,12 @@ import androidx.annotation.VisibleForTesting;
 public class AnimatorDurationScaleProvider {
     private static float defaultSystemAnimatorDurationScale = 1.0f;
 
+    public float getSystemAnimatorDurationScale(@NonNull ContentResolver contentResolver) {
+        return Settings.Global.getFloat(contentResolver, "animator_duration_scale", 1.0f);
+    }
+
     @VisibleForTesting
     public static void setDefaultSystemAnimatorDurationScale(float f) {
         defaultSystemAnimatorDurationScale = f;
-    }
-
-    public float getSystemAnimatorDurationScale(@NonNull ContentResolver contentResolver) {
-        return Settings.Global.getFloat(contentResolver, "animator_duration_scale", 1.0f);
     }
 }

@@ -9,6 +9,9 @@ import java.util.TreeSet;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2696o implements InterfaceC2685d {
 
+    /* JADX INFO: renamed from: b */
+    public long f6502b;
+
     /* JADX INFO: renamed from: a */
     public final TreeSet<C2689h> f6501a = new TreeSet<>(new Comparator() { // from class: b.i.a.c.e3.b0.b
         @Override // java.util.Comparator
@@ -24,10 +27,14 @@ public final class C2696o implements InterfaceC2685d {
         }
     });
 
-    /* JADX INFO: renamed from: b */
-    public long f6502b;
-
     public C2696o(long j) {
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final void m2821f(Cache cache, long j) {
+        while (this.f6502b + j > 104857600 && !this.f6501a.isEmpty()) {
+            cache.mo2829d(this.f6501a.first());
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.p258b0.InterfaceC2685d
@@ -36,6 +43,11 @@ public final class C2696o implements InterfaceC2685d {
         if (j2 != -1) {
             m2821f(cache, j2);
         }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.p258b0.InterfaceC2685d
+    /* JADX INFO: renamed from: e */
+    public void mo2786e() {
     }
 
     @Override // com.google.android.exoplayer2.upstream.cache.Cache.InterfaceC10774a
@@ -59,17 +71,5 @@ public final class C2696o implements InterfaceC2685d {
         this.f6501a.add(c2689h);
         this.f6502b += c2689h.f6467l;
         m2821f(cache, 0L);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.p258b0.InterfaceC2685d
-    /* JADX INFO: renamed from: e */
-    public void mo2786e() {
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m2821f(Cache cache, long j) {
-        while (this.f6502b + j > 104857600 && !this.f6501a.isEmpty()) {
-            cache.mo2829d(this.f6501a.first());
-        }
     }
 }

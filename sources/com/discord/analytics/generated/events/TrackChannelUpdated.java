@@ -12,41 +12,35 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
-    private TrackBase trackBase;
-    private TrackChannel trackChannel;
+    private final Long bitrate = null;
+    private final Long defaultAutoArchiveDurationMinutes = null;
     private final Long guildId = null;
     private final CharSequence guildName = null;
-    private final CharSequence oldName = null;
-    private final CharSequence newName = null;
-    private final Boolean oldNsfw = null;
-    private final Boolean newNsfw = null;
-    private final Long bitrate = null;
-    private final Long oldBitrate = null;
-    private final CharSequence rtcRegion = null;
-    private final CharSequence oldRtcRegion = null;
-    private final Long videoQualityMode = null;
-    private final Long oldVideoQualityMode = null;
-    private final Long defaultAutoArchiveDurationMinutes = null;
-    private final Long oldDefaultAutoArchiveDurationMinutes = null;
-    private final Boolean oldArchived = null;
     private final Boolean newArchived = null;
-    private final Boolean oldLocked = null;
-    private final Boolean newLocked = null;
-    private final Boolean oldInvitable = null;
-    private final Boolean newInvitable = null;
-    private final Long oldAutoArchiveDurationMinutes = null;
     private final Long newAutoArchiveDurationMinutes = null;
-    private final CharSequence oldBannerHash = null;
     private final CharSequence newBannerHash = null;
-    private final Long oldFlags = null;
     private final Long newFlags = null;
+    private final Boolean newInvitable = null;
+    private final Boolean newLocked = null;
+    private final CharSequence newName = null;
+    private final Boolean newNsfw = null;
+    private final Boolean oldArchived = null;
+    private final Long oldAutoArchiveDurationMinutes = null;
+    private final CharSequence oldBannerHash = null;
+    private final Long oldBitrate = null;
+    private final Long oldDefaultAutoArchiveDurationMinutes = null;
+    private final Long oldFlags = null;
+    private final Boolean oldInvitable = null;
+    private final Boolean oldLocked = null;
+    private final CharSequence oldName = null;
+    private final Boolean oldNsfw = null;
+    private final CharSequence oldRtcRegion = null;
+    private final Long oldVideoQualityMode = null;
+    private final CharSequence rtcRegion = null;
+    private TrackBase trackBase;
+    private TrackChannel trackChannel;
+    private final Long videoQualityMode = null;
     private final transient String analyticsSchemaTypeName = "channel_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -57,6 +51,12 @@ public final /* data */ class TrackChannelUpdated implements AnalyticsSchema, Tr
         }
         TrackChannelUpdated trackChannelUpdated = (TrackChannelUpdated) other;
         return C12238m.areEqual(this.guildId, trackChannelUpdated.guildId) && C12238m.areEqual(this.guildName, trackChannelUpdated.guildName) && C12238m.areEqual(this.oldName, trackChannelUpdated.oldName) && C12238m.areEqual(this.newName, trackChannelUpdated.newName) && C12238m.areEqual(this.oldNsfw, trackChannelUpdated.oldNsfw) && C12238m.areEqual(this.newNsfw, trackChannelUpdated.newNsfw) && C12238m.areEqual(this.bitrate, trackChannelUpdated.bitrate) && C12238m.areEqual(this.oldBitrate, trackChannelUpdated.oldBitrate) && C12238m.areEqual(this.rtcRegion, trackChannelUpdated.rtcRegion) && C12238m.areEqual(this.oldRtcRegion, trackChannelUpdated.oldRtcRegion) && C12238m.areEqual(this.videoQualityMode, trackChannelUpdated.videoQualityMode) && C12238m.areEqual(this.oldVideoQualityMode, trackChannelUpdated.oldVideoQualityMode) && C12238m.areEqual(this.defaultAutoArchiveDurationMinutes, trackChannelUpdated.defaultAutoArchiveDurationMinutes) && C12238m.areEqual(this.oldDefaultAutoArchiveDurationMinutes, trackChannelUpdated.oldDefaultAutoArchiveDurationMinutes) && C12238m.areEqual(this.oldArchived, trackChannelUpdated.oldArchived) && C12238m.areEqual(this.newArchived, trackChannelUpdated.newArchived) && C12238m.areEqual(this.oldLocked, trackChannelUpdated.oldLocked) && C12238m.areEqual(this.newLocked, trackChannelUpdated.newLocked) && C12238m.areEqual(this.oldInvitable, trackChannelUpdated.oldInvitable) && C12238m.areEqual(this.newInvitable, trackChannelUpdated.newInvitable) && C12238m.areEqual(this.oldAutoArchiveDurationMinutes, trackChannelUpdated.oldAutoArchiveDurationMinutes) && C12238m.areEqual(this.newAutoArchiveDurationMinutes, trackChannelUpdated.newAutoArchiveDurationMinutes) && C12238m.areEqual(this.oldBannerHash, trackChannelUpdated.oldBannerHash) && C12238m.areEqual(this.newBannerHash, trackChannelUpdated.newBannerHash) && C12238m.areEqual(this.oldFlags, trackChannelUpdated.oldFlags) && C12238m.areEqual(this.newFlags, trackChannelUpdated.newFlags);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

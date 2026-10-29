@@ -37,7 +37,7 @@ public class ConnectionHolder implements ServiceConnection {
     @NonNull
     private final WrapperFactory mWrapperFactory;
 
-    public static class WrapperFactory {
+    public class WrapperFactory {
         @NonNull
         public TrustedWebActivityServiceConnection create(ComponentName componentName, IBinder iBinder) {
             return new TrustedWebActivityServiceConnection(InterfaceC13180b.a.asInterface(iBinder), componentName);
@@ -47,6 +47,29 @@ public class ConnectionHolder implements ServiceConnection {
     @MainThread
     public ConnectionHolder(@NonNull Runnable runnable) {
         this(runnable, new WrapperFactory());
+    }
+
+    @MainThread
+    public void cancel(@NonNull Exception exc) {
+        Iterator<CallbackToFutureAdapter.Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
+        while (it.hasNext()) {
+            it.next().setException(exc);
+        }
+        this.mCompleters.clear();
+        this.mCloseRunnable.run();
+        this.mState = 3;
+        this.mCancellationException = exc;
+    }
+
+    @NonNull
+    @MainThread
+    public InterfaceFutureC4539a<TrustedWebActivityServiceConnection> getServiceWrapper() {
+        return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: y.a.b.a
+            @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
+            public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
+                return this.f27952a.m77a(completer);
+            }
+        });
     }
 
     /* JADX INFO: renamed from: a */
@@ -73,29 +96,6 @@ public class ConnectionHolder implements ServiceConnection {
         StringBuilder sbM833U = C1643a.m833U("ConnectionHolder, state = ");
         sbM833U.append(this.mState);
         return sbM833U.toString();
-    }
-
-    @MainThread
-    public void cancel(@NonNull Exception exc) {
-        Iterator<CallbackToFutureAdapter.Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
-        while (it.hasNext()) {
-            it.next().setException(exc);
-        }
-        this.mCompleters.clear();
-        this.mCloseRunnable.run();
-        this.mState = 3;
-        this.mCancellationException = exc;
-    }
-
-    @NonNull
-    @MainThread
-    public InterfaceFutureC4539a<TrustedWebActivityServiceConnection> getServiceWrapper() {
-        return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: y.a.b.a
-            @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
-            public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return this.f27952a.m77a(completer);
-            }
-        });
     }
 
     @Override // android.content.ServiceConnection

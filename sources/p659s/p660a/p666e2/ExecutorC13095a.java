@@ -28,6 +28,15 @@ public final class ExecutorC13095a implements Executor, Closeable {
     public volatile int _isTerminated;
     public volatile long controlState;
 
+    /* JADX INFO: renamed from: j */
+    public static final AtomicLongFieldUpdater f27794j = AtomicLongFieldUpdater.newUpdater(ExecutorC13095a.class, "parkedWorkersStack");
+
+    /* JADX INFO: renamed from: k */
+    public static final AtomicLongFieldUpdater f27795k = AtomicLongFieldUpdater.newUpdater(ExecutorC13095a.class, "controlState");
+
+    /* JADX INFO: renamed from: l */
+    public static final AtomicIntegerFieldUpdater f27796l = AtomicIntegerFieldUpdater.newUpdater(ExecutorC13095a.class, "_isTerminated");
+
     /* JADX INFO: renamed from: n */
     public final C13098d f27798n;
 
@@ -36,7 +45,6 @@ public final class ExecutorC13095a implements Executor, Closeable {
 
     /* JADX INFO: renamed from: p */
     public final AtomicReferenceArray<a> f27800p;
-    public volatile long parkedWorkersStack;
 
     /* JADX INFO: renamed from: q */
     public final int f27801q;
@@ -49,18 +57,10 @@ public final class ExecutorC13095a implements Executor, Closeable {
 
     /* JADX INFO: renamed from: t */
     public final String f27804t;
+    public volatile long parkedWorkersStack;
 
     /* JADX INFO: renamed from: m */
     public static final C13037t f27797m = new C13037t("NOT_IN_STACK");
-
-    /* JADX INFO: renamed from: j */
-    public static final AtomicLongFieldUpdater f27794j = AtomicLongFieldUpdater.newUpdater(ExecutorC13095a.class, "parkedWorkersStack");
-
-    /* JADX INFO: renamed from: k */
-    public static final AtomicLongFieldUpdater f27795k = AtomicLongFieldUpdater.newUpdater(ExecutorC13095a.class, "controlState");
-
-    /* JADX INFO: renamed from: l */
-    public static final AtomicIntegerFieldUpdater f27796l = AtomicIntegerFieldUpdater.newUpdater(ExecutorC13095a.class, "_isTerminated");
 
     /* JADX INFO: renamed from: s.a.e2.a$a */
     /* JADX INFO: compiled from: CoroutineScheduler.kt */
@@ -68,7 +68,6 @@ public final class ExecutorC13095a implements Executor, Closeable {
 
         /* JADX INFO: renamed from: j */
         public static final AtomicIntegerFieldUpdater f27805j = AtomicIntegerFieldUpdater.newUpdater(a.class, "workerCtl");
-        public volatile int indexInArray;
 
         /* JADX INFO: renamed from: k */
         public final C13107m f27806k;
@@ -81,13 +80,14 @@ public final class ExecutorC13095a implements Executor, Closeable {
 
         /* JADX INFO: renamed from: n */
         public long f27809n;
-        public volatile Object nextParkedWorker;
 
         /* JADX INFO: renamed from: o */
         public int f27810o;
 
         /* JADX INFO: renamed from: p */
         public boolean f27811p;
+        public volatile int indexInArray;
+        public volatile Object nextParkedWorker;
         public volatile int workerCtl;
 
         public a(int i) {
@@ -397,69 +397,6 @@ public final class ExecutorC13095a implements Executor, Closeable {
         this._isTerminated = 0;
     }
 
-    /* JADX INFO: renamed from: e */
-    public static /* synthetic */ void m11250e(ExecutorC13095a executorC13095a, Runnable runnable, InterfaceC13103i interfaceC13103i, boolean z2, int i) {
-        C13101g c13101g = (i & 2) != 0 ? C13101g.f27827j : null;
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        executorC13095a.m11254d(runnable, c13101g, z2);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final int m11251a() {
-        synchronized (this.f27800p) {
-            if (this._isTerminated != 0) {
-                return -1;
-            }
-            long j = this.controlState;
-            int i = (int) (j & 2097151);
-            int iCoerceAtLeast = C11226f.coerceAtLeast(i - ((int) ((j & 4398044413952L) >> 21)), 0);
-            if (iCoerceAtLeast >= this.f27801q) {
-                return 0;
-            }
-            if (i >= this.f27802r) {
-                return 0;
-            }
-            int i2 = ((int) (this.controlState & 2097151)) + 1;
-            if (!(i2 > 0 && this.f27800p.get(i2) == null)) {
-                throw new IllegalArgumentException("Failed requirement.".toString());
-            }
-            a aVar = new a(i2);
-            this.f27800p.set(i2, aVar);
-            if (!(i2 == ((int) (2097151 & f27795k.incrementAndGet(this))))) {
-                throw new IllegalArgumentException("Failed requirement.".toString());
-            }
-            aVar.start();
-            return iCoerceAtLeast + 1;
-        }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final AbstractRunnableC13102h m11252b(Runnable runnable, InterfaceC13103i interfaceC13103i) {
-        long jMo11270a = C13105k.f27835e.mo11270a();
-        if (!(runnable instanceof AbstractRunnableC13102h)) {
-            return new C13104j(runnable, jMo11270a, interfaceC13103i);
-        }
-        AbstractRunnableC13102h abstractRunnableC13102h = (AbstractRunnableC13102h) runnable;
-        abstractRunnableC13102h.f27828j = jMo11270a;
-        abstractRunnableC13102h.f27829k = interfaceC13103i;
-        return abstractRunnableC13102h;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final a m11253c() {
-        Thread threadCurrentThread = Thread.currentThread();
-        if (!(threadCurrentThread instanceof a)) {
-            threadCurrentThread = null;
-        }
-        a aVar = (a) threadCurrentThread;
-        if (aVar == null || !C12238m.areEqual(ExecutorC13095a.this, this)) {
-            return null;
-        }
-        return aVar;
-    }
-
     /* JADX WARN: Code duplicated, block: B:33:0x0076  */
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public void close() throws InterruptedException {
@@ -534,6 +471,74 @@ public final class ExecutorC13095a implements Executor, Closeable {
         }
     }
 
+    @Override // java.util.concurrent.Executor
+    public void execute(Runnable runnable) {
+        m11250e(this, runnable, null, false, 6);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public static /* synthetic */ void m11250e(ExecutorC13095a executorC13095a, Runnable runnable, InterfaceC13103i interfaceC13103i, boolean z2, int i) {
+        C13101g c13101g = (i & 2) != 0 ? C13101g.f27827j : null;
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        executorC13095a.m11254d(runnable, c13101g, z2);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final int m11251a() {
+        synchronized (this.f27800p) {
+            if (this._isTerminated != 0) {
+                return -1;
+            }
+            long j = this.controlState;
+            int i = (int) (j & 2097151);
+            int iCoerceAtLeast = C11226f.coerceAtLeast(i - ((int) ((j & 4398044413952L) >> 21)), 0);
+            if (iCoerceAtLeast >= this.f27801q) {
+                return 0;
+            }
+            if (i >= this.f27802r) {
+                return 0;
+            }
+            int i2 = ((int) (this.controlState & 2097151)) + 1;
+            if (!(i2 > 0 && this.f27800p.get(i2) == null)) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            a aVar = new a(i2);
+            this.f27800p.set(i2, aVar);
+            if (!(i2 == ((int) (2097151 & f27795k.incrementAndGet(this))))) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            aVar.start();
+            return iCoerceAtLeast + 1;
+        }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final AbstractRunnableC13102h m11252b(Runnable runnable, InterfaceC13103i interfaceC13103i) {
+        long jMo11270a = C13105k.f27835e.mo11270a();
+        if (!(runnable instanceof AbstractRunnableC13102h)) {
+            return new C13104j(runnable, jMo11270a, interfaceC13103i);
+        }
+        AbstractRunnableC13102h abstractRunnableC13102h = (AbstractRunnableC13102h) runnable;
+        abstractRunnableC13102h.f27828j = jMo11270a;
+        abstractRunnableC13102h.f27829k = interfaceC13103i;
+        return abstractRunnableC13102h;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final a m11253c() {
+        Thread threadCurrentThread = Thread.currentThread();
+        if (!(threadCurrentThread instanceof a)) {
+            threadCurrentThread = null;
+        }
+        a aVar = (a) threadCurrentThread;
+        if (aVar == null || !C12238m.areEqual(ExecutorC13095a.this, this)) {
+            return null;
+        }
+        return aVar;
+    }
+
     /* JADX INFO: renamed from: d */
     public final void m11254d(Runnable runnable, InterfaceC13103i interfaceC13103i, boolean z2) {
         AbstractRunnableC13102h abstractRunnableC13102hM11271a;
@@ -563,11 +568,6 @@ public final class ExecutorC13095a implements Executor, Closeable {
             }
             m11260u();
         }
-    }
-
-    @Override // java.util.concurrent.Executor
-    public void execute(Runnable runnable) {
-        m11250e(this, runnable, null, false, 6);
     }
 
     /* JADX INFO: renamed from: f */
@@ -634,6 +634,30 @@ public final class ExecutorC13095a implements Executor, Closeable {
         return false;
     }
 
+    /* JADX INFO: renamed from: u */
+    public final boolean m11260u() {
+        while (true) {
+            long j = this.parkedWorkersStack;
+            a aVar = this.f27800p.get((int) (2097151 & j));
+            if (aVar != null) {
+                long j2 = (Permission.SPEAK + j) & (-2097152);
+                int iM11255f = m11255f(aVar);
+                if (iM11255f >= 0 && f27794j.compareAndSet(this, j, ((long) iM11255f) | j2)) {
+                    aVar.nextParkedWorker = f27797m;
+                }
+            } else {
+                aVar = null;
+            }
+            if (aVar == null) {
+                return false;
+            }
+            if (a.f27805j.compareAndSet(aVar, -1, 0)) {
+                LockSupport.unpark(aVar);
+                return true;
+            }
+        }
+    }
+
     public String toString() {
         ArrayList arrayList = new ArrayList();
         int length = this.f27800p.length();
@@ -667,29 +691,5 @@ public final class ExecutorC13095a implements Executor, Closeable {
         }
         long j = this.controlState;
         return this.f27804t + MentionUtilsKt.MENTIONS_CHAR + C3404f.m4312l0(this) + "[Pool Size {core = " + this.f27801q + ", max = " + this.f27802r + "}, Worker States {CPU = " + i + ", blocking = " + i2 + ", parked = " + i3 + ", dormant = " + i4 + ", terminated = " + i5 + "}, running workers queues = " + arrayList + ", global CPU queue size = " + this.f27798n.m11163c() + ", global blocking queue size = " + this.f27799o.m11163c() + ", Control State {created workers= " + ((int) (2097151 & j)) + ", blocking tasks = " + ((int) ((4398044413952L & j) >> 21)) + ", CPUs acquired = " + (this.f27801q - ((int) ((9223367638808264704L & j) >> 42))) + "}]";
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final boolean m11260u() {
-        while (true) {
-            long j = this.parkedWorkersStack;
-            a aVar = this.f27800p.get((int) (2097151 & j));
-            if (aVar != null) {
-                long j2 = (Permission.SPEAK + j) & (-2097152);
-                int iM11255f = m11255f(aVar);
-                if (iM11255f >= 0 && f27794j.compareAndSet(this, j, ((long) iM11255f) | j2)) {
-                    aVar.nextParkedWorker = f27797m;
-                }
-            } else {
-                aVar = null;
-            }
-            if (aVar == null) {
-                return false;
-            }
-            if (a.f27805j.compareAndSet(aVar, -1, 0)) {
-                LockSupport.unpark(aVar);
-                return true;
-            }
-        }
     }
 }

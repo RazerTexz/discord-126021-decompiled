@@ -19,6 +19,18 @@ public final /* data */ class SingleTypePayload<T> implements MGRecyclerDataPayl
         this.type = i;
     }
 
+    public final T component1() {
+        return this.data;
+    }
+
+    public final String component2() {
+        return getKey();
+    }
+
+    public final int component3() {
+        return getType();
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ SingleTypePayload copy$default(SingleTypePayload singleTypePayload, Object obj, String str, int i, int i2, Object obj2) {
         if ((i2 & 1) != 0) {
@@ -31,18 +43,6 @@ public final /* data */ class SingleTypePayload<T> implements MGRecyclerDataPayl
             i = singleTypePayload.getType();
         }
         return singleTypePayload.copy(obj, str, i);
-    }
-
-    public final T component1() {
-        return this.data;
-    }
-
-    public final String component2() {
-        return getKey();
-    }
-
-    public final int component3() {
-        return getType();
     }
 
     public final SingleTypePayload<T> copy(T data, String key, int type) {

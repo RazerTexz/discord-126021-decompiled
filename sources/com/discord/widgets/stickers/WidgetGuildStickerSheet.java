@@ -64,32 +64,9 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, Sticker sticker) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(sticker, "sticker");
-            if (sticker.getType() != StickerType.GUILD) {
-                return;
-            }
-            WidgetGuildStickerSheet widgetGuildStickerSheet = new WidgetGuildStickerSheet();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("com.discord.intent.extra.EXTRA_STICKER", sticker);
-            widgetGuildStickerSheet.setArguments(bundle);
-            widgetGuildStickerSheet.show(fragmentManager, WidgetGuildStickerSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetGuildStickerSheet$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
-    public static final class C101331 extends AbstractC12240o implements Function1<GuildStickerSheetViewModel.ViewState, Unit> {
+    public final class C101331 extends AbstractC12240o implements Function1<GuildStickerSheetViewModel.ViewState, Unit> {
         public C101331() {
             super(1);
         }
@@ -112,12 +89,43 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Sticker sticker) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(sticker, "sticker");
+            if (sticker.getType() != StickerType.GUILD) {
+                return;
+            }
+            WidgetGuildStickerSheet widgetGuildStickerSheet = new WidgetGuildStickerSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("com.discord.intent.extra.EXTRA_STICKER", sticker);
+            widgetGuildStickerSheet.setArguments(bundle);
+            widgetGuildStickerSheet.show(fragmentManager, WidgetGuildStickerSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetGuildStickerSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildStickerSheet$binding$2.INSTANCE, null, 2, null);
         WidgetGuildStickerSheet$viewModel$2 widgetGuildStickerSheet$viewModel$2 = new WidgetGuildStickerSheet$viewModel$2(this);
         C0865g0 c0865g0 = new C0865g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(GuildStickerSheetViewModel.class), new WidgetGuildStickerSheet$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetGuildStickerSheet$viewModel$2));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Observable observableM11112r = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) WidgetGuildStickerSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101331());
     }
 
     private final void configureButtons(final boolean isUserPremium, final boolean isUserInGuild, final Guild guild) {
@@ -253,6 +261,11 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         return (WidgetGuildStickerSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_sticker_sheet;
+    }
+
     private final int getCustomStickerInfoText(boolean isCurrentGuild, boolean isUserInGuild, boolean isGuildPublic, boolean isUserPremium) {
         if (isCurrentGuild && !isUserPremium) {
             return C5419R.string.sticker_popout_current_guild_description;
@@ -284,18 +297,5 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         AppViewFlipper appViewFlipper = getBinding().f17060d;
         C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        Observable observableM11112r = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) WidgetGuildStickerSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101331());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_sticker_sheet;
     }
 }

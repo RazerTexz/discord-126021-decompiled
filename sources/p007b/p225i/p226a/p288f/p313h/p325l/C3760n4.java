@@ -15,9 +15,6 @@ import p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3786p4;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3760n4<T extends InterfaceC3786p4<T>> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C3760n4 f10110a = new C3760n4(true);
-
     /* JADX INFO: renamed from: b */
     public final C3814r6<T, Object> f10111b;
 
@@ -27,11 +24,44 @@ public final class C3760n4<T extends InterfaceC3786p4<T>> {
     /* JADX INFO: renamed from: d */
     public boolean f10113d;
 
+    /* JADX INFO: renamed from: a */
+    public static final C3760n4 f10110a = new C3760n4(true);
+
     public C3760n4(boolean z2) {
         int i = C3814r6.f10288j;
         this.f10111b = new C3840t6(0);
         m5132h();
         m5132h();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public final /* synthetic */ Object clone() throws CloneNotSupportedException {
+        C3760n4 c3760n4 = new C3760n4();
+        for (int i = 0; i < this.f10111b.m5207e(); i++) {
+            Map.Entry<K, Object> entryM5206d = this.f10111b.m5206d(i);
+            c3760n4.m5133i((InterfaceC3786p4) entryM5206d.getKey(), entryM5206d.getValue());
+        }
+        Iterator it = this.f10111b.m5209g().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            c3760n4.m5133i((InterfaceC3786p4) entry.getKey(), entry.getValue());
+        }
+        c3760n4.f10113d = this.f10113d;
+        return c3760n4;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof C3760n4) {
+            return this.f10111b.equals(((C3760n4) obj).f10111b);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f10111b.hashCode();
     }
 
     /* JADX INFO: renamed from: a */
@@ -273,32 +303,6 @@ public final class C3760n4<T extends InterfaceC3786p4<T>> {
         throw new NoSuchMethodError();
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public final /* synthetic */ Object clone() throws CloneNotSupportedException {
-        C3760n4 c3760n4 = new C3760n4();
-        for (int i = 0; i < this.f10111b.m5207e(); i++) {
-            Map.Entry<K, Object> entryM5206d = this.f10111b.m5206d(i);
-            c3760n4.m5133i((InterfaceC3786p4) entryM5206d.getKey(), entryM5206d.getValue());
-        }
-        Iterator it = this.f10111b.m5209g().iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            c3760n4.m5133i((InterfaceC3786p4) entry.getKey(), entry.getValue());
-        }
-        c3760n4.f10113d = this.f10113d;
-        return c3760n4;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof C3760n4) {
-            return this.f10111b.equals(((C3760n4) obj).f10111b);
-        }
-        return false;
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m5132h() {
         if (this.f10112c) {
@@ -306,10 +310,6 @@ public final class C3760n4<T extends InterfaceC3786p4<T>> {
         }
         this.f10111b.mo5205c();
         this.f10112c = true;
-    }
-
-    public final int hashCode() {
-        return this.f10111b.hashCode();
     }
 
     /* JADX INFO: renamed from: i */

@@ -18,30 +18,6 @@ public class C3915z3 extends AbstractC3596b4 {
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
-    /* JADX INFO: renamed from: c */
-    public byte mo5281c(int i) {
-        return this.zzb[i];
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
-    /* JADX INFO: renamed from: d */
-    public int mo5282d() {
-        return this.zzb.length;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
-    /* JADX INFO: renamed from: e */
-    public final int mo5283e(int i, int i2, int i3) {
-        byte[] bArr = this.zzb;
-        int iMo5379o = mo5379o();
-        Charset charset = C3877w4.f10379a;
-        for (int i4 = iMo5379o; i4 < iMo5379o + i3; i4++) {
-            i = (i * 31) + bArr[i4];
-        }
-        return i;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -86,6 +62,30 @@ public class C3915z3 extends AbstractC3596b4 {
             iMo5379o3++;
         }
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
+    /* JADX INFO: renamed from: c */
+    public byte mo5281c(int i) {
+        return this.zzb[i];
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
+    /* JADX INFO: renamed from: d */
+    public int mo5282d() {
+        return this.zzb.length;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3
+    /* JADX INFO: renamed from: e */
+    public final int mo5283e(int i, int i2, int i3) {
+        byte[] bArr = this.zzb;
+        int iMo5379o = mo5379o();
+        Charset charset = C3877w4.f10379a;
+        for (int i4 = iMo5379o; i4 < iMo5379o + i3; i4++) {
+            i = (i * 31) + bArr[i4];
+        }
+        return i;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3837t3

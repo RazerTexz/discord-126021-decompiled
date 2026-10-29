@@ -27,6 +27,45 @@ public final class NotificationTextUtils {
     private NotificationTextUtils() {
     }
 
+    public final Integer channelMessageNotificationLevel(ModelNotificationSettings modelNotificationSettings, Channel channel, Guild guild) {
+        Integer num = null;
+        Integer numValueOf = guild != null ? Integer.valueOf(guild.getDefaultMessageNotifications()) : null;
+        if (channel == null || modelNotificationSettings == null) {
+            return numValueOf;
+        }
+        Integer numMessageNotifications = messageNotifications(modelNotificationSettings, channel.getId());
+        if (numMessageNotifications == null) {
+            numMessageNotifications = messageNotifications(modelNotificationSettings, channel.getParentId());
+        }
+        if (numMessageNotifications != null) {
+            num = numMessageNotifications;
+        } else {
+            Integer numValueOf2 = Integer.valueOf(modelNotificationSettings.getMessageNotifications());
+            if (numValueOf2.intValue() != ModelNotificationSettings.FREQUENCY_UNSET) {
+                num = numValueOf2;
+            }
+        }
+        return num != null ? num : numValueOf;
+    }
+
+    public final boolean isGuildOrCategoryOrChannelMuted(ModelNotificationSettings modelNotificationSettings, Channel channel) {
+        if (modelNotificationSettings == null) {
+            return false;
+        }
+        if (modelNotificationSettings.isMuted()) {
+            return true;
+        }
+        if (channel == null) {
+            return false;
+        }
+        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getParentId());
+        if (channelOverride != null && channelOverride.isMuted()) {
+            return true;
+        }
+        ModelNotificationSettings.ChannelOverride channelOverride2 = modelNotificationSettings.getChannelOverride(channel.getId());
+        return channelOverride2 != null && channelOverride2.isMuted();
+    }
+
     private final boolean isNotificationAllowed(ModelNotificationSettings modelNotificationSettings, User user, Collection<Long> collection, Message message, Guild guild, Channel channel, Long l, long j) {
         if (modelNotificationSettings.isMobilePush() && !isGuildOrCategoryOrChannelMuted(modelNotificationSettings, channel)) {
             return shouldNotifyForLevel(channelMessageNotificationLevel(modelNotificationSettings, channel, guild), user, collection, message, channel, l, j, modelNotificationSettings.isSuppressEveryone(), modelNotificationSettings.isSuppressRoles());
@@ -179,6 +218,10 @@ public final class NotificationTextUtils {
         return numValueOf;
     }
 
+    public static /* synthetic */ boolean shouldNotifyForLevel$default(NotificationTextUtils notificationTextUtils, Integer num, User user, Collection collection, Message message, Channel channel, Long l, long j, boolean z2, boolean z3, int i, Object obj) {
+        return notificationTextUtils.shouldNotifyForLevel(num, user, collection, message, channel, l, j, (i & 128) != 0 ? false : z2, (i & 256) != 0 ? false : z3);
+    }
+
     private final boolean shouldNotifyForLevel(Integer msgNotifLevel, User me2, Collection<Long> myRoleIds, Message message, Channel channel, Long channelPermissions, long selectedVoiceChannelId, boolean isSuppressEveryone, boolean isSuppressRoles) {
         if (ChannelUtils.m7675J(channel) && !PermissionUtils.can(Permission.CONNECT, channelPermissions)) {
             return false;
@@ -197,49 +240,6 @@ public final class NotificationTextUtils {
             return false;
         }
         return true;
-    }
-
-    public static /* synthetic */ boolean shouldNotifyForLevel$default(NotificationTextUtils notificationTextUtils, Integer num, User user, Collection collection, Message message, Channel channel, Long l, long j, boolean z2, boolean z3, int i, Object obj) {
-        return notificationTextUtils.shouldNotifyForLevel(num, user, collection, message, channel, l, j, (i & 128) != 0 ? false : z2, (i & 256) != 0 ? false : z3);
-    }
-
-    public final Integer channelMessageNotificationLevel(ModelNotificationSettings modelNotificationSettings, Channel channel, Guild guild) {
-        Integer num = null;
-        Integer numValueOf = guild != null ? Integer.valueOf(guild.getDefaultMessageNotifications()) : null;
-        if (channel == null || modelNotificationSettings == null) {
-            return numValueOf;
-        }
-        Integer numMessageNotifications = messageNotifications(modelNotificationSettings, channel.getId());
-        if (numMessageNotifications == null) {
-            numMessageNotifications = messageNotifications(modelNotificationSettings, channel.getParentId());
-        }
-        if (numMessageNotifications != null) {
-            num = numMessageNotifications;
-        } else {
-            Integer numValueOf2 = Integer.valueOf(modelNotificationSettings.getMessageNotifications());
-            if (numValueOf2.intValue() != ModelNotificationSettings.FREQUENCY_UNSET) {
-                num = numValueOf2;
-            }
-        }
-        return num != null ? num : numValueOf;
-    }
-
-    public final boolean isGuildOrCategoryOrChannelMuted(ModelNotificationSettings modelNotificationSettings, Channel channel) {
-        if (modelNotificationSettings == null) {
-            return false;
-        }
-        if (modelNotificationSettings.isMuted()) {
-            return true;
-        }
-        if (channel == null) {
-            return false;
-        }
-        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getParentId());
-        if (channelOverride != null && channelOverride.isMuted()) {
-            return true;
-        }
-        ModelNotificationSettings.ChannelOverride channelOverride2 = modelNotificationSettings.getChannelOverride(channel.getId());
-        return channelOverride2 != null && channelOverride2.isMuted();
     }
 
     public final boolean shouldNotifyInAppPopup(User me2, Message msg, Channel channel, Map<Long, Integer> blockedRelationships, Channel parentChannel, Guild guild, Map<Long, ? extends Map<Long, GuildMember>> guildMembers, Map<Long, ? extends ModelNotificationSettings> guildSettings, Map<Long, StoreThreadsJoined.JoinedThread> joinedThreads, long selectedVoiceChannelId, Long channelPermissions) {

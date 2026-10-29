@@ -10,7 +10,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ExpressionDetailPage {
 
     /* JADX INFO: compiled from: ExpressionDetailPage.kt */
-    public static final /* data */ class GifCategoryPage extends ExpressionDetailPage {
+    public final /* data */ class GifCategoryPage extends ExpressionDetailPage {
         private final GifCategoryItem gifCategoryItem;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -27,11 +27,6 @@ public abstract class ExpressionDetailPage {
             return gifCategoryPage.copy(gifCategoryItem);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GifCategoryItem getGifCategoryItem() {
-            return this.gifCategoryItem;
-        }
-
         public final GifCategoryPage copy(GifCategoryItem gifCategoryItem) {
             C12238m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
             return new GifCategoryPage(gifCategoryItem);
@@ -42,6 +37,11 @@ public abstract class ExpressionDetailPage {
                 return (other instanceof GifCategoryPage) && C12238m.areEqual(this.gifCategoryItem, ((GifCategoryPage) other).gifCategoryItem);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GifCategoryItem getGifCategoryItem() {
+            return this.gifCategoryItem;
         }
 
         public final GifCategoryItem getGifCategoryItem() {

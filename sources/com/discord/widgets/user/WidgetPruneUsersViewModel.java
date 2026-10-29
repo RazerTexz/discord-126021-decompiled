@@ -36,7 +36,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final PruneDays DEFAULT_DAYS = PruneDays.Thirty;
     private final PublishSubject<Event> eventSubject;
     private final long guildId;
     private final String guildName;
@@ -45,10 +44,11 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
     private final StoreGuilds storeGuilds;
     private final StoreUser storeUsers;
     private PruneDays whichPruneDays;
+    private static final PruneDays DEFAULT_DAYS = PruneDays.Thirty;
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$2 */
     /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class C101972 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C101972 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C101972() {
             super(1);
         }
@@ -70,8 +70,115 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$5 */
     /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class Companion {
+    public final class C102025 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C102025() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "request");
+            Subscription subscription2 = WidgetPruneUsersViewModel.this.pruneCountRequest;
+            if (subscription2 != null) {
+                subscription2.unsubscribe();
+            }
+            WidgetPruneUsersViewModel.this.pruneCountRequest = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$6 */
+    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
+    public final /* synthetic */ class C102036 extends C12236k implements Function1<ViewState, Unit> {
+        public C102036(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
+            super(1, widgetPruneUsersViewModel, WidgetPruneUsersViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetPruneUsersViewModel) this.receiver).updateViewState(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$1 */
+    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
+    public final class C102041 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C102041() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetPruneUsersViewModel.this.eventSubject.f27650k.onNext((T) Event.Dismiss.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$2 */
+    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
+    public final class C102052 extends AbstractC12240o implements Function0<Unit> {
+        public C102052() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetPruneUsersViewModel.this.pruneInProgress(false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$3 */
+    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
+    public final class C102063 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C102063() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            PublishSubject publishSubject = WidgetPruneUsersViewModel.this.eventSubject;
+            Throwable throwable = error.getThrowable();
+            C12238m.checkNotNullExpressionValue(throwable, "it.throwable");
+            publishSubject.f27650k.onNext((T) new Event.RestClientFailed(throwable));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -89,10 +196,10 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
     }
 
     /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public static final class Dismiss extends Event {
+        public final class Dismiss extends Event {
             public static final Dismiss INSTANCE = new Dismiss();
 
             private Dismiss() {
@@ -101,7 +208,7 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public static final /* data */ class RestClientFailed extends Event {
+        public final /* data */ class RestClientFailed extends Event {
             private final Throwable throwable;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -118,11 +225,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                 return restClientFailed.copy(th);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Throwable getThrowable() {
-                return this.throwable;
-            }
-
             public final RestClientFailed copy(Throwable throwable) {
                 C12238m.checkNotNullParameter(throwable, "throwable");
                 return new RestClientFailed(throwable);
@@ -133,6 +235,11 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                     return (other instanceof RestClientFailed) && C12238m.areEqual(this.throwable, ((RestClientFailed) other).throwable);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Throwable getThrowable() {
+                return this.throwable;
             }
 
             public final Throwable getThrowable() {
@@ -180,7 +287,7 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
     }
 
     /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final /* data */ class StoreData {
+    public final /* data */ class StoreData {
         private final Guild guild;
         private final Long permission;
         private final MeUser user;
@@ -204,21 +311,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
             return storeData.copy(l, guild, meUser);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getPermission() {
-            return this.permission;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final MeUser getUser() {
-            return this.user;
-        }
-
         public final StoreData copy(Long permission, Guild guild, MeUser user) {
             return new StoreData(permission, guild, user);
         }
@@ -234,12 +326,27 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
             return C12238m.areEqual(this.permission, storeData.permission) && C12238m.areEqual(this.guild, storeData.guild) && C12238m.areEqual(this.user, storeData.user);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
         }
 
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Long getPermission() {
             return this.permission;
+        }
+
+        public final Long getPermission() {
+            return this.permission;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final MeUser getUser() {
+            return this.user;
         }
 
         public final MeUser getUser() {
@@ -268,10 +375,10 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
     }
 
     /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public static final /* data */ class LoadFailed extends ViewState {
+        public final /* data */ class LoadFailed extends ViewState {
             private final boolean dismiss;
 
             public LoadFailed(boolean z2) {
@@ -286,11 +393,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                 return loadFailed.copy(z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getDismiss() {
-                return this.dismiss;
-            }
-
             public final LoadFailed copy(boolean dismiss) {
                 return new LoadFailed(dismiss);
             }
@@ -300,6 +402,11 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                     return (other instanceof LoadFailed) && this.dismiss == ((LoadFailed) other).dismiss;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getDismiss() {
+                return this.dismiss;
             }
 
             public final boolean getDismiss() {
@@ -320,18 +427,13 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final int pruneCount;
             private final PruneDays pruneDays;
             private final boolean pruneInProgress;
 
             public /* synthetic */ Loaded(PruneDays pruneDays, int i, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
                 this(pruneDays, i, (i2 & 4) != 0 ? false : z2);
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            private final boolean getPruneInProgress() {
-                return this.pruneInProgress;
             }
 
             public static /* synthetic */ Loaded copy$default(Loaded loaded, PruneDays pruneDays, int i, boolean z2, int i2, Object obj) {
@@ -345,16 +447,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                     z2 = loaded.pruneInProgress;
                 }
                 return loaded.copy(pruneDays, i, z2);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PruneDays getPruneDays() {
-                return this.pruneDays;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getPruneCount() {
-                return this.pruneCount;
             }
 
             public final Loaded copy(PruneDays pruneDays, int pruneCount, boolean pruneInProgress) {
@@ -377,12 +469,27 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                 return this.pruneCount > 0 && !this.pruneInProgress;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final int getPruneCount() {
                 return this.pruneCount;
             }
 
+            public final int getPruneCount() {
+                return this.pruneCount;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final PruneDays getPruneDays() {
                 return this.pruneDays;
+            }
+
+            public final PruneDays getPruneDays() {
+                return this.pruneDays;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            private final boolean getPruneInProgress() {
+                return this.pruneInProgress;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -421,7 +528,7 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public static final /* data */ class Loading extends ViewState {
+        public final /* data */ class Loading extends ViewState {
             private final String guildName;
             private final PruneDays whichPruneDays;
 
@@ -444,16 +551,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                 return loading.copy(pruneDays, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PruneDays getWhichPruneDays() {
-                return this.whichPruneDays;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
             public final Loading copy(PruneDays whichPruneDays, String guildName) {
                 C12238m.checkNotNullParameter(whichPruneDays, "whichPruneDays");
                 C12238m.checkNotNullParameter(guildName, "guildName");
@@ -471,8 +568,18 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
                 return C12238m.areEqual(this.whichPruneDays, loading.whichPruneDays) && C12238m.areEqual(this.guildName, loading.guildName);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getGuildName() {
                 return this.guildName;
+            }
+
+            public final String getGuildName() {
+                return this.guildName;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final PruneDays getWhichPruneDays() {
+                return this.whichPruneDays;
             }
 
             public final PruneDays getWhichPruneDays() {
@@ -499,113 +606,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$5 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class C102025 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C102025() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "request");
-            Subscription subscription2 = WidgetPruneUsersViewModel.this.pruneCountRequest;
-            if (subscription2 != null) {
-                subscription2.unsubscribe();
-            }
-            WidgetPruneUsersViewModel.this.pruneCountRequest = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$6 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final /* synthetic */ class C102036 extends C12236k implements Function1<ViewState, Unit> {
-        public C102036(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
-            super(1, widgetPruneUsersViewModel, WidgetPruneUsersViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetPruneUsersViewModel) this.receiver).updateViewState(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$1 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class C102041 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C102041() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetPruneUsersViewModel.this.eventSubject.f27650k.onNext((T) Event.Dismiss.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$2 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class C102052 extends AbstractC12240o implements Function0<Unit> {
-        public C102052() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetPruneUsersViewModel.this.pruneInProgress(false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$3 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public static final class C102063 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C102063() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            PublishSubject publishSubject = WidgetPruneUsersViewModel.this.eventSubject;
-            Throwable throwable = error.getThrowable();
-            C12238m.checkNotNullExpressionValue(throwable, "it.throwable");
-            publishSubject.f27650k.onNext((T) new Event.RestClientFailed(throwable));
         }
     }
 
@@ -669,19 +669,6 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11087M, this, null, 2, null), (Class<?>) WidgetPruneUsersViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C102025()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102036(this));
     }
 
-    private final void pruneInProgress(boolean inProgress) {
-        ViewState.Loaded loadedCopy$default;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded == null || (loadedCopy$default = ViewState.Loaded.copy$default(loaded, null, 0, inProgress, 3, null)) == null) {
-            return;
-        }
-        updateViewState(loadedCopy$default);
-    }
-
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -697,6 +684,19 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         C12238m.checkNotNullParameter(days, "days");
         this.whichPruneDays = days;
         getUpdatedPruneCount();
+    }
+
+    private final void pruneInProgress(boolean inProgress) {
+        ViewState.Loaded loadedCopy$default;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded == null || (loadedCopy$default = ViewState.Loaded.copy$default(loaded, null, 0, inProgress, 3, null)) == null) {
+            return;
+        }
+        updateViewState(loadedCopy$default);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

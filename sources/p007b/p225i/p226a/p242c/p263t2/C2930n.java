@@ -14,7 +14,7 @@ public final class C2930n {
 
     /* JADX INFO: renamed from: b.i.a.c.t2.n$b */
     /* JADX INFO: compiled from: Ac4Util.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f7776a;

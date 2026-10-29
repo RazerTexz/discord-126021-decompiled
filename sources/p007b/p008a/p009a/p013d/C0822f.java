@@ -43,46 +43,18 @@ public final class C0822f extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.d.f$a */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.d.f$b */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static abstract class b {
-
-        /* JADX INFO: renamed from: b.a.a.d.f$b$a */
-        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-        public static final class a extends b {
-
-            /* JADX INFO: renamed from: a */
-            public final int f333a;
-
-            public a(int i) {
-                super(null);
-                this.f333a = i;
-            }
-
-            public boolean equals(Object obj) {
-                if (this != obj) {
-                    return (obj instanceof a) && this.f333a == ((a) obj).f333a;
-                }
-                return true;
-            }
-
-            public int hashCode() {
-                return this.f333a;
-            }
-
-            public String toString() {
-                return C1643a.m814B(C1643a.m833U("Failure(failureMessageStringRes="), this.f333a, ")");
-            }
-        }
+    public abstract class b {
 
         /* JADX INFO: renamed from: b.a.a.d.f$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-        public static final class C13207b extends b {
+        public final class C13207b extends b {
 
             /* JADX INFO: renamed from: a */
             public final int f334a;
@@ -108,6 +80,34 @@ public final class C0822f extends AbstractC0859d0<d> {
             }
         }
 
+        /* JADX INFO: renamed from: b.a.a.d.f$b$a */
+        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+        public final class a extends b {
+
+            /* JADX INFO: renamed from: a */
+            public final int f333a;
+
+            public a(int i) {
+                super(null);
+                this.f333a = i;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof a) && this.f333a == ((a) obj).f333a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return this.f333a;
+            }
+
+            public String toString() {
+                return C1643a.m814B(C1643a.m833U("Failure(failureMessageStringRes="), this.f333a, ")");
+            }
+        }
+
         public b() {
         }
 
@@ -117,7 +117,7 @@ public final class C0822f extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.d.f$c */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final User f335a;
@@ -137,11 +137,11 @@ public final class C0822f extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.d.f$d */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static abstract class d {
+    public abstract class d {
 
         /* JADX INFO: renamed from: b.a.a.d.f$d$a */
         /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-        public static final class a extends d {
+        public final class a extends d {
 
             /* JADX INFO: renamed from: a */
             public final User f338a;
@@ -230,7 +230,7 @@ public final class C0822f extends AbstractC0859d0<d> {
 
         /* JADX INFO: renamed from: b.a.a.d.f$d$b */
         /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-        public static final class b extends d {
+        public final class b extends d {
 
             /* JADX INFO: renamed from: a */
             public static final b f343a = new b();
@@ -246,7 +246,7 @@ public final class C0822f extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.d.f$e */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static final class e extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class e extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ int $successMessageStringRes;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -267,7 +267,7 @@ public final class C0822f extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.d.f$f */
     /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
-    public static final class f extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class f extends AbstractC12240o implements Function1<Error, Unit> {
         public f() {
             super(1);
         }

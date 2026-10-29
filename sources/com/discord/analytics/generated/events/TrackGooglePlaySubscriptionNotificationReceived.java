@@ -9,27 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGooglePlaySubscriptionNotificationReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGooglePlaySubscriptionNotificationReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
+    private final Long eventTime = null;
+    private final CharSequence messageId = null;
+    private final Long notificationType = null;
+    private final CharSequence notificationVersion = null;
+    private final CharSequence orderId = null;
+    private final CharSequence packageName = null;
     private final Long paymentGateway = null;
     private final CharSequence paymentGatewayPlanId = null;
-    private final CharSequence messageId = null;
-    private final CharSequence version = null;
-    private final CharSequence packageName = null;
-    private final Long eventTime = null;
-    private final CharSequence notificationVersion = null;
-    private final Long notificationType = null;
     private final CharSequence purchaseToken = null;
+    private final Long subscriptionId = null;
     private final CharSequence subscriptionSkuId = null;
-    private final CharSequence orderId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
+    private final CharSequence version = null;
     private final transient String analyticsSchemaTypeName = "google_play_subscription_notification_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackGooglePlaySubscriptionNotificationReceived im
         }
         TrackGooglePlaySubscriptionNotificationReceived trackGooglePlaySubscriptionNotificationReceived = (TrackGooglePlaySubscriptionNotificationReceived) other;
         return C12238m.areEqual(this.subscriptionId, trackGooglePlaySubscriptionNotificationReceived.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackGooglePlaySubscriptionNotificationReceived.subscriptionType) && C12238m.areEqual(this.paymentGateway, trackGooglePlaySubscriptionNotificationReceived.paymentGateway) && C12238m.areEqual(this.paymentGatewayPlanId, trackGooglePlaySubscriptionNotificationReceived.paymentGatewayPlanId) && C12238m.areEqual(this.messageId, trackGooglePlaySubscriptionNotificationReceived.messageId) && C12238m.areEqual(this.version, trackGooglePlaySubscriptionNotificationReceived.version) && C12238m.areEqual(this.packageName, trackGooglePlaySubscriptionNotificationReceived.packageName) && C12238m.areEqual(this.eventTime, trackGooglePlaySubscriptionNotificationReceived.eventTime) && C12238m.areEqual(this.notificationVersion, trackGooglePlaySubscriptionNotificationReceived.notificationVersion) && C12238m.areEqual(this.notificationType, trackGooglePlaySubscriptionNotificationReceived.notificationType) && C12238m.areEqual(this.purchaseToken, trackGooglePlaySubscriptionNotificationReceived.purchaseToken) && C12238m.areEqual(this.subscriptionSkuId, trackGooglePlaySubscriptionNotificationReceived.subscriptionSkuId) && C12238m.areEqual(this.orderId, trackGooglePlaySubscriptionNotificationReceived.orderId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

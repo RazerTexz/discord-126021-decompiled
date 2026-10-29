@@ -17,7 +17,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$a */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class a extends AbstractC2262l {
+    public final class a extends AbstractC2262l {
 
         /* JADX INFO: renamed from: b */
         public final Class<?> f4824b;
@@ -60,7 +60,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$b */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class b extends AbstractC2262l {
+    public final class b extends AbstractC2262l {
 
         /* JADX INFO: renamed from: b */
         public static final b f4828b = new b(false);
@@ -84,7 +84,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$c */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class c extends AbstractC2262l {
+    public final class c extends AbstractC2262l {
 
         /* JADX INFO: renamed from: b */
         public final f[] f4829b;
@@ -158,7 +158,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$d */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC2364n<Object> f4830a;
@@ -174,7 +174,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$e */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class e extends AbstractC2262l {
+    public final class e extends AbstractC2262l {
 
         /* JADX INFO: renamed from: b */
         public final Class<?> f4832b;
@@ -206,7 +206,7 @@ public abstract class AbstractC2262l {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.l$f */
     /* JADX INFO: compiled from: PropertySerializerMap.java */
-    public static final class f {
+    public final class f {
 
         /* JADX INFO: renamed from: a */
         public final Class<?> f4834a;

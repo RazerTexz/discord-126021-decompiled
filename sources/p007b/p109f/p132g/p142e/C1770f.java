@@ -151,6 +151,18 @@ public class C1770f extends C1762b {
         }
     }
 
+    @Override // android.graphics.drawable.Drawable
+    public int getAlpha() {
+        return this.f3344A;
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public void invalidateSelf() {
+        if (this.f3346C == 0) {
+            super.invalidateSelf();
+        }
+    }
+
     /* JADX INFO: renamed from: e */
     public void m1098e() {
         this.f3346C++;
@@ -169,11 +181,6 @@ public class C1770f extends C1762b {
             this.f3358z[i] = this.f3345B[i] ? 255 : 0;
         }
         invalidateSelf();
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getAlpha() {
-        return this.f3344A;
     }
 
     /* JADX INFO: renamed from: i */
@@ -198,13 +205,6 @@ public class C1770f extends C1762b {
             }
         }
         return z2;
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public void invalidateSelf() {
-        if (this.f3346C == 0) {
-            super.invalidateSelf();
-        }
     }
 
     @Override // p007b.p109f.p132g.p142e.C1762b, android.graphics.drawable.Drawable

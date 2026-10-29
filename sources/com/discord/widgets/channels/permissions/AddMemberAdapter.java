@@ -32,7 +32,7 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
     private Function2<? super Long, ? super PermissionOverwrite.Type, Unit> onClickListener;
 
     /* JADX INFO: compiled from: AddMemberAdapter.kt */
-    public static final class AddMemberAdapterCategoryItem extends MGRecyclerViewHolder<AddMemberAdapter, Item> {
+    public final class AddMemberAdapterCategoryItem extends MGRecyclerViewHolder<AddMemberAdapter, Item> {
         private final WidgetChannelSettingsAddMemberCategoryBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -82,7 +82,7 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: AddMemberAdapter.kt */
-    public static final class AddMemberAdapterItemItem extends MGRecyclerViewHolder<AddMemberAdapter, Item> {
+    public final class AddMemberAdapterItemItem extends MGRecyclerViewHolder<AddMemberAdapter, Item> {
         private final WidgetChannelSettingsAddMemberItemBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -171,12 +171,12 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: AddMemberAdapter.kt */
-    public static abstract class Item implements MGRecyclerDataPayload {
+    public abstract class Item implements MGRecyclerDataPayload {
         public static final int TYPE_CATEGORY = 0;
         public static final int TYPE_PERMISSION_OWNER = 1;
 
         /* JADX INFO: compiled from: AddMemberAdapter.kt */
-        public static final /* data */ class CategoryItem extends Item {
+        public final /* data */ class CategoryItem extends Item {
             private final Companion.CategoryType categoryType;
             private final String key;
             private final int type;
@@ -196,11 +196,6 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
                 return categoryItem.copy(categoryType);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Companion.CategoryType getCategoryType() {
-                return this.categoryType;
-            }
-
             public final CategoryItem copy(Companion.CategoryType categoryType) {
                 C12238m.checkNotNullParameter(categoryType, "categoryType");
                 return new CategoryItem(categoryType);
@@ -211,6 +206,11 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
                     return (other instanceof CategoryItem) && C12238m.areEqual(this.categoryType, ((CategoryItem) other).categoryType);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Companion.CategoryType getCategoryType() {
+                return this.categoryType;
             }
 
             public final Companion.CategoryType getCategoryType() {
@@ -244,7 +244,7 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         /* JADX INFO: compiled from: AddMemberAdapter.kt */
-        public static final /* data */ class PermissionOwnerItem extends Item {
+        public final /* data */ class PermissionOwnerItem extends Item {
             private final Companion.AddStatus addStatus;
             private final boolean checked;
             private final String key;
@@ -285,21 +285,6 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
                 return permissionOwnerItem.copy(permissionOwner, z2, addStatus);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PermissionOwner getPermissionOwner() {
-                return this.permissionOwner;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getChecked() {
-                return this.checked;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Companion.AddStatus getAddStatus() {
-                return this.addStatus;
-            }
-
             public final PermissionOwnerItem copy(PermissionOwner permissionOwner, boolean checked, Companion.AddStatus addStatus) {
                 C12238m.checkNotNullParameter(permissionOwner, "permissionOwner");
                 C12238m.checkNotNullParameter(addStatus, "addStatus");
@@ -317,8 +302,18 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
                 return C12238m.areEqual(this.permissionOwner, permissionOwnerItem.permissionOwner) && this.checked == permissionOwnerItem.checked && C12238m.areEqual(this.addStatus, permissionOwnerItem.addStatus);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final Companion.AddStatus getAddStatus() {
                 return this.addStatus;
+            }
+
+            public final Companion.AddStatus getAddStatus() {
+                return this.addStatus;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getChecked() {
+                return this.checked;
             }
 
             public final boolean getChecked() {
@@ -328,6 +323,11 @@ public final class AddMemberAdapter extends MGRecyclerAdapterSimple<Item> {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final PermissionOwner getPermissionOwner() {
+                return this.permissionOwner;
             }
 
             public final PermissionOwner getPermissionOwner() {

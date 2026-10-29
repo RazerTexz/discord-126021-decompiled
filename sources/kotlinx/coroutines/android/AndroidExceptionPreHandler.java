@@ -19,6 +19,21 @@ public final class AndroidExceptionPreHandler extends AbstractC12174a implements
         this._preHandler = this;
     }
 
+    @Override // kotlinx.coroutines.CoroutineExceptionHandler
+    public void handleException(CoroutineContext context, Throwable exception) {
+        Thread threadCurrentThread = Thread.currentThread();
+        if (Build.VERSION.SDK_INT >= 28) {
+            threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, exception);
+            return;
+        }
+        Method methodPreHandler = preHandler();
+        Object objInvoke = methodPreHandler != null ? methodPreHandler.invoke(null, new Object[0]) : null;
+        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = (Thread.UncaughtExceptionHandler) (objInvoke instanceof Thread.UncaughtExceptionHandler ? objInvoke : null);
+        if (uncaughtExceptionHandler != null) {
+            uncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
+        }
+    }
+
     private final Method preHandler() {
         Object obj = this._preHandler;
         if (obj != this) {
@@ -38,20 +53,5 @@ public final class AndroidExceptionPreHandler extends AbstractC12174a implements
         }
         this._preHandler = method;
         return method;
-    }
-
-    @Override // kotlinx.coroutines.CoroutineExceptionHandler
-    public void handleException(CoroutineContext context, Throwable exception) {
-        Thread threadCurrentThread = Thread.currentThread();
-        if (Build.VERSION.SDK_INT >= 28) {
-            threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, exception);
-            return;
-        }
-        Method methodPreHandler = preHandler();
-        Object objInvoke = methodPreHandler != null ? methodPreHandler.invoke(null, new Object[0]) : null;
-        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = (Thread.UncaughtExceptionHandler) (objInvoke instanceof Thread.UncaughtExceptionHandler ? objInvoke : null);
-        if (uncaughtExceptionHandler != null) {
-            uncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
-        }
     }
 }

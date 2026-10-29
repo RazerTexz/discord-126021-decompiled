@@ -18,15 +18,15 @@ public final class LocalBroadcastManager {
     private static final boolean DEBUG = false;
     public static final int MSG_EXEC_PENDING_BROADCASTS = 1;
     private static final String TAG = "LocalBroadcastManager";
-    private static LocalBroadcastManager mInstance;
-    private static final Object mLock = new Object();
     private final Context mAppContext;
     private final Handler mHandler;
+    private static LocalBroadcastManager mInstance;
+    private static final Object mLock = new Object();
     private final HashMap<BroadcastReceiver, ArrayList<ReceiverRecord>> mReceivers = new HashMap<>();
     private final HashMap<String, ArrayList<ReceiverRecord>> mActions = new HashMap<>();
     private final ArrayList<BroadcastRecord> mPendingBroadcasts = new ArrayList<>();
 
-    public static final class BroadcastRecord {
+    public final class BroadcastRecord {
         public final Intent intent;
         public final ArrayList<ReceiverRecord> receivers;
 
@@ -36,7 +36,7 @@ public final class LocalBroadcastManager {
         }
     }
 
-    public static final class ReceiverRecord {
+    public final class ReceiverRecord {
         public boolean broadcasting;
         public boolean dead;
         public final IntentFilter filter;
@@ -75,18 +75,6 @@ public final class LocalBroadcastManager {
         };
     }
 
-    @NonNull
-    public static LocalBroadcastManager getInstance(@NonNull Context context) {
-        LocalBroadcastManager localBroadcastManager;
-        synchronized (mLock) {
-            if (mInstance == null) {
-                mInstance = new LocalBroadcastManager(context.getApplicationContext());
-            }
-            localBroadcastManager = mInstance;
-        }
-        return localBroadcastManager;
-    }
-
     public void executePendingBroadcasts() {
         int size;
         BroadcastRecord[] broadcastRecordArr;
@@ -111,6 +99,18 @@ public final class LocalBroadcastManager {
                 }
             }
         }
+    }
+
+    @NonNull
+    public static LocalBroadcastManager getInstance(@NonNull Context context) {
+        LocalBroadcastManager localBroadcastManager;
+        synchronized (mLock) {
+            if (mInstance == null) {
+                mInstance = new LocalBroadcastManager(context.getApplicationContext());
+            }
+            localBroadcastManager = mInstance;
+        }
+        return localBroadcastManager;
     }
 
     public void registerReceiver(@NonNull BroadcastReceiver broadcastReceiver, @NonNull IntentFilter intentFilter) {

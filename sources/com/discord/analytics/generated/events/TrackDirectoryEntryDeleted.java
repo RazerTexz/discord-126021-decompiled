@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackDirectoryEntryDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackDirectoryEntryDeleted implements AnalyticsSchema, TrackBaseReceiver, TrackDirectoryEntryReceiver {
-    private final transient String analyticsSchemaTypeName = "directory_entry_deleted";
     private TrackBase trackBase;
     private TrackDirectoryEntry trackDirectoryEntry;
+    private final transient String analyticsSchemaTypeName = "directory_entry_deleted";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

@@ -42,16 +42,144 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDisableDeleteAccountDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetDisableDeleteAccountDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDisableDeleteAccountDialogBinding;", 0)};
+    private static final String EXTRA_MODE = "extra_mode";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_MODE = "extra_mode";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$1 */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final class Companion {
+    public final class C97061 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C97061() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetDisableDeleteAccountDialog.this.getBinding().f16471e.setIsLoading(false);
+            Error.Response response = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response, "it.response");
+            int code = response.getCode();
+            if (code == 50018) {
+                TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16473g;
+                C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+                Error.Response response2 = error.getResponse();
+                C12238m.checkNotNullExpressionValue(response2, "it.response");
+                textInputLayout.setError(response2.getMessage());
+                return;
+            }
+            if (code != 60008) {
+                Context context = WidgetDisableDeleteAccountDialog.this.getContext();
+                Error.Response response3 = error.getResponse();
+                C12238m.checkNotNullExpressionValue(response3, "it.response");
+                C0876m.m170h(context, response3.getMessage(), 0, null, 12);
+                return;
+            }
+            TextInputLayout textInputLayout2 = WidgetDisableDeleteAccountDialog.this.getBinding().f16470d;
+            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
+            Error.Response response4 = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response4, "it.response");
+            textInputLayout2.setError(response4.getMessage());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$2 */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class C97072 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C97072 INSTANCE = new C97072();
+
+        public C97072() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            StoreStream.INSTANCE.getAuthentication().logout();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onResume$1 */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final /* synthetic */ class C97081 extends C12236k implements Function1<MeUser, Unit> {
+        public C97081(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog) {
+            super(1, widgetDisableDeleteAccountDialog, WidgetDisableDeleteAccountDialog.class, "configureUI", "configureUI(Lcom/discord/models/user/MeUser;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            C12238m.checkNotNullParameter(meUser, "p1");
+            ((WidgetDisableDeleteAccountDialog) this.receiver).configureUI(meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class C97102 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C97102() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16470d;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class C97113 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C97113() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16473g;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -111,134 +239,6 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
             $EnumSwitchMapping$0 = iArr;
             iArr[Mode.DISABLE.ordinal()] = 1;
             iArr[Mode.DELETE.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$1 */
-    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final class C97061 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C97061() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetDisableDeleteAccountDialog.this.getBinding().f16471e.setIsLoading(false);
-            Error.Response response = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response, "it.response");
-            int code = response.getCode();
-            if (code == 50018) {
-                TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16473g;
-                C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
-                Error.Response response2 = error.getResponse();
-                C12238m.checkNotNullExpressionValue(response2, "it.response");
-                textInputLayout.setError(response2.getMessage());
-                return;
-            }
-            if (code != 60008) {
-                Context context = WidgetDisableDeleteAccountDialog.this.getContext();
-                Error.Response response3 = error.getResponse();
-                C12238m.checkNotNullExpressionValue(response3, "it.response");
-                C0876m.m170h(context, response3.getMessage(), 0, null, 12);
-                return;
-            }
-            TextInputLayout textInputLayout2 = WidgetDisableDeleteAccountDialog.this.getBinding().f16470d;
-            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
-            Error.Response response4 = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response4, "it.response");
-            textInputLayout2.setError(response4.getMessage());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$2 */
-    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final class C97072 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C97072 INSTANCE = new C97072();
-
-        public C97072() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            StoreStream.INSTANCE.getAuthentication().logout();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onResume$1 */
-    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final /* synthetic */ class C97081 extends C12236k implements Function1<MeUser, Unit> {
-        public C97081(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog) {
-            super(1, widgetDisableDeleteAccountDialog, WidgetDisableDeleteAccountDialog.class, "configureUI", "configureUI(Lcom/discord/models/user/MeUser;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
-            invoke2(meUser);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MeUser meUser) {
-            C12238m.checkNotNullParameter(meUser, "p1");
-            ((WidgetDisableDeleteAccountDialog) this.receiver).configureUI(meUser);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final class C97102 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C97102() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16470d;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
-            textInputLayout.setError(null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public static final class C97113 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C97113() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.this.getBinding().f16473g;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
-            textInputLayout.setError(null);
         }
     }
 

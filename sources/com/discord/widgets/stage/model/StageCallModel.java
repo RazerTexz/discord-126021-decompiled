@@ -57,7 +57,7 @@ public final /* data */ class StageCallModel {
     private final StageInstance stageInstance;
 
     /* JADX INFO: compiled from: StageCallModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,7 +67,6 @@ public final /* data */ class StageCallModel {
             VoiceState voiceState;
             int i3;
             boolean z2;
-            String string;
             Collection<StoreVoiceParticipants.VoiceUser> collectionValues = participants.values();
             ArrayList<StoreVoiceParticipants.VoiceUser> arrayList = new ArrayList();
             for (Object obj : collectionValues) {
@@ -157,16 +156,7 @@ public final /* data */ class StageCallModel {
                             i3 = 3;
                             z2 = true;
                         }
-                        if (i > i3) {
-                            string = String.valueOf(arrayList3.size() % i3);
-                        } else {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(arrayList3.size() % i3);
-                            sb.append('-');
-                            sb.append(i);
-                            string = sb.toString();
-                        }
-                        arrayList3.add(new StageCallItem.SpeakerItem(voiceUser2, channel, z2, string, iCoerceAtMost, zContains));
+                        arrayList3.add(new StageCallItem.SpeakerItem(voiceUser2, channel, z2, i > i3 ? String.valueOf(arrayList3.size() % i3) : "" + (arrayList3.size() % i3) + '-' + i, iCoerceAtMost, zContains));
                     }
                 }
                 i6 = i8;
@@ -230,21 +220,6 @@ public final /* data */ class StageCallModel {
         this.numSpeakers = i4;
     }
 
-    /* JADX INFO: renamed from: component1-1LxfuJo, reason: not valid java name and from getter */
-    public final int getMyStageRoles() {
-        return this.myStageRoles;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getIsLurking() {
-        return this.isLurking;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final int getNumSpeakers() {
-        return this.numSpeakers;
-    }
-
     public final List<StageCallItem.SpeakerItem> component2() {
         return this.speakerItems;
     }
@@ -259,35 +234,6 @@ public final /* data */ class StageCallModel {
 
     public final List<StoreVoiceParticipants.VoiceUser> component5() {
         return this.speakingVoiceUsers;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getRequestingToSpeakCount() {
-        return this.requestingToSpeakCount;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final StageInstance getStageInstance() {
-        return this.stageInstance;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getNumBlockedUsers() {
-        return this.numBlockedUsers;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: copy-YvLQhEs, reason: not valid java name */
-    public final StageCallModel m11418copyYvLQhEs(int myStageRoles, List<StageCallItem.SpeakerItem> speakerItems, List<StageMediaParticipant> mediaParticipants, List<StageCallItem.AudienceItem> audience, List<StoreVoiceParticipants.VoiceUser> speakingVoiceUsers, int requestingToSpeakCount, StageInstance stageInstance, int numBlockedUsers, Guild guild, boolean isLurking, int numSpeakers) {
-        C12238m.checkNotNullParameter(speakerItems, "speakerItems");
-        C12238m.checkNotNullParameter(mediaParticipants, "mediaParticipants");
-        C12238m.checkNotNullParameter(audience, "audience");
-        C12238m.checkNotNullParameter(speakingVoiceUsers, "speakingVoiceUsers");
-        return new StageCallModel(myStageRoles, speakerItems, mediaParticipants, audience, speakingVoiceUsers, requestingToSpeakCount, stageInstance, numBlockedUsers, guild, isLurking, numSpeakers);
     }
 
     public boolean equals(Object other) {
@@ -305,25 +251,50 @@ public final /* data */ class StageCallModel {
         return this.audience;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getIsLurking() {
+        return this.isLurking;
     }
 
     public final List<StageMediaParticipant> getMediaParticipants() {
         return this.mediaParticipants;
     }
 
-    /* JADX INFO: renamed from: getMyStageRoles-1LxfuJo, reason: not valid java name */
-    public final int m11419getMyStageRoles1LxfuJo() {
+    /* JADX INFO: renamed from: component1-1LxfuJo, reason: not valid java name and from getter */
+    public final int getMyStageRoles() {
         return this.myStageRoles;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final int getNumBlockedUsers() {
+        return this.numBlockedUsers;
     }
 
     public final int getNumBlockedUsers() {
         return this.numBlockedUsers;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final int getNumSpeakers() {
         return this.numSpeakers;
+    }
+
+    public final int getNumSpeakers() {
+        return this.numSpeakers;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getRequestingToSpeakCount() {
+        return this.requestingToSpeakCount;
     }
 
     public final int getRequestingToSpeakCount() {
@@ -336,6 +307,11 @@ public final /* data */ class StageCallModel {
 
     public final List<StoreVoiceParticipants.VoiceUser> getSpeakingVoiceUsers() {
         return this.speakingVoiceUsers;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final StageInstance getStageInstance() {
+        return this.stageInstance;
     }
 
     public final StageInstance getStageInstance() {
@@ -371,6 +347,20 @@ public final /* data */ class StageCallModel {
 
     public final boolean isLurking() {
         return this.isLurking;
+    }
+
+    /* JADX INFO: renamed from: copy-YvLQhEs, reason: not valid java name */
+    public final StageCallModel m11418copyYvLQhEs(int myStageRoles, List<StageCallItem.SpeakerItem> speakerItems, List<StageMediaParticipant> mediaParticipants, List<StageCallItem.AudienceItem> audience, List<StoreVoiceParticipants.VoiceUser> speakingVoiceUsers, int requestingToSpeakCount, StageInstance stageInstance, int numBlockedUsers, Guild guild, boolean isLurking, int numSpeakers) {
+        C12238m.checkNotNullParameter(speakerItems, "speakerItems");
+        C12238m.checkNotNullParameter(mediaParticipants, "mediaParticipants");
+        C12238m.checkNotNullParameter(audience, "audience");
+        C12238m.checkNotNullParameter(speakingVoiceUsers, "speakingVoiceUsers");
+        return new StageCallModel(myStageRoles, speakerItems, mediaParticipants, audience, speakingVoiceUsers, requestingToSpeakCount, stageInstance, numBlockedUsers, guild, isLurking, numSpeakers);
+    }
+
+    /* JADX INFO: renamed from: getMyStageRoles-1LxfuJo, reason: not valid java name */
+    public final int m11419getMyStageRoles1LxfuJo() {
+        return this.myStageRoles;
     }
 
     public String toString() {

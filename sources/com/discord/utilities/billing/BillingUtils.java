@@ -23,7 +23,7 @@ public final class BillingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.billing.BillingUtils$createPendingPurchaseMetadata$1 */
     /* JADX INFO: compiled from: BillingUtils.kt */
-    public static final class C67021 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C67021 extends AbstractC12240o implements Function1<Unit, Unit> {
         public final /* synthetic */ Function0 $onSuccess;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -46,7 +46,7 @@ public final class BillingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.billing.BillingUtils$createPendingPurchaseMetadata$2 */
     /* JADX INFO: compiled from: BillingUtils.kt */
-    public static final class C67032 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C67032 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Function0 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -70,7 +70,7 @@ public final class BillingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.billing.BillingUtils$verifyPurchase$1 */
     /* JADX INFO: compiled from: BillingUtils.kt */
-    public static final class C67041 extends AbstractC12240o implements Function1<RestAPIParams.VerifyPurchaseResponse, Unit> {
+    public final class C67041 extends AbstractC12240o implements Function1<RestAPIParams.VerifyPurchaseResponse, Unit> {
         public final /* synthetic */ Purchase $purchase;
         public final /* synthetic */ String $sku;
 
@@ -99,7 +99,7 @@ public final class BillingUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.billing.BillingUtils$verifyPurchase$2 */
     /* JADX INFO: compiled from: BillingUtils.kt */
-    public static final class C67052 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C67052 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Purchase $purchase;
         public final /* synthetic */ String $sku;
 
@@ -128,6 +128,17 @@ public final class BillingUtils {
     private BillingUtils() {
     }
 
+    public final void createPendingPurchaseMetadata(String paymentGatewaySkuId, long skuId, Function0<Unit> onSuccess, Function0<Unit> onFailure) {
+        C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
+        C12238m.checkNotNullParameter(onFailure, "onFailure");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().createPurchaseMetadata(new RestAPIParams.PurchaseMetadataBody(skuId, paymentGatewaySkuId)), false, 1, null), (Class<?>) BillingUtils.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C67032(onFailure)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67021(onSuccess));
+    }
+
+    public final long microToMinor(long amount) {
+        return amount / 10000;
+    }
+
     private final void verifyPurchase(Purchase purchase, String sku) {
         String str;
         String str2;
@@ -147,17 +158,6 @@ public final class BillingUtils {
         RestAPIParams.VerifyPurchaseTokenBody verifyPurchaseTokenBody = new RestAPIParams.VerifyPurchaseTokenBody(strM7497a, id2, strOptString, str, str2);
         companion.getGooglePlayPurchases().onVerificationStart();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().verifyPurchaseToken(verifyPurchaseTokenBody), false, 1, null), (Class<?>) BillingUtils.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C67052(purchase, sku)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67041(purchase, sku));
-    }
-
-    public final void createPendingPurchaseMetadata(String paymentGatewaySkuId, long skuId, Function0<Unit> onSuccess, Function0<Unit> onFailure) {
-        C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
-        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
-        C12238m.checkNotNullParameter(onFailure, "onFailure");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().createPurchaseMetadata(new RestAPIParams.PurchaseMetadataBody(skuId, paymentGatewaySkuId)), false, 1, null), (Class<?>) BillingUtils.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C67032(onFailure)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67021(onSuccess));
-    }
-
-    public final long microToMinor(long amount) {
-        return amount / 10000;
     }
 
     public final void verifyPurchases(List<? extends Purchase> purchases) {

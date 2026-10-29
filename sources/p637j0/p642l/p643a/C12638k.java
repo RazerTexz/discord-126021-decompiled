@@ -21,7 +21,7 @@ public class C12638k<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.k$a */
     /* JADX INFO: compiled from: OnSubscribeDoOnEach.java */
-    public static final class a<T> extends Subscriber<T> {
+    public final class a<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f26883j;

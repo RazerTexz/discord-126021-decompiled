@@ -39,6 +39,15 @@ public final class ForumGuidelinesManager {
         return C12163u.toMutableSet(arrayList);
     }
 
+    public final boolean hasSeenGuidelines(long channelId) {
+        return seenChannelIds.contains(Long.valueOf(channelId));
+    }
+
+    public final void markGuidelinesSeen(long channelId) {
+        seenChannelIds.add(Long.valueOf(channelId));
+        updateCache();
+    }
+
     private final void updateCache() {
         Set<Long> set = seenChannelIds;
         ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(set, 10));
@@ -51,14 +60,5 @@ public final class ForumGuidelinesManager {
         C12238m.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putStringSet("CACHE_KEY_USER_VIEWED_FORUM_GUIDELINES", set2);
         editorEdit.apply();
-    }
-
-    public final boolean hasSeenGuidelines(long channelId) {
-        return seenChannelIds.contains(Long.valueOf(channelId));
-    }
-
-    public final void markGuidelinesSeen(long channelId) {
-        seenChannelIds.add(Long.valueOf(channelId));
-        updateCache();
     }
 }

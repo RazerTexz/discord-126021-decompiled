@@ -23,6 +23,17 @@ public final /* data */ class VoiceState {
     private final boolean suppress;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof VoiceState)) {
+            return false;
+        }
+        VoiceState voiceState = (VoiceState) other;
+        return this.userId == voiceState.userId && this.suppress == voiceState.suppress && C12238m.areEqual(this.sessionId, voiceState.sessionId) && this.selfMute == voiceState.selfMute && this.selfDeaf == voiceState.selfDeaf && this.selfVideo == voiceState.selfVideo && this.selfStream == voiceState.selfStream && this.mute == voiceState.mute && this.guildId == voiceState.guildId && this.deaf == voiceState.deaf && C12238m.areEqual(this.member, voiceState.member) && C12238m.areEqual(this.requestToSpeakTimestamp, voiceState.requestToSpeakTimestamp) && C12238m.areEqual(this.channelId, voiceState.channelId);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
@@ -48,17 +59,6 @@ public final /* data */ class VoiceState {
         return this.mute;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof VoiceState)) {
-            return false;
-        }
-        VoiceState voiceState = (VoiceState) other;
-        return this.userId == voiceState.userId && this.suppress == voiceState.suppress && C12238m.areEqual(this.sessionId, voiceState.sessionId) && this.selfMute == voiceState.selfMute && this.selfDeaf == voiceState.selfDeaf && this.selfVideo == voiceState.selfVideo && this.selfStream == voiceState.selfStream && this.mute == voiceState.mute && this.guildId == voiceState.guildId && this.deaf == voiceState.deaf && C12238m.areEqual(this.member, voiceState.member) && C12238m.areEqual(this.requestToSpeakTimestamp, voiceState.requestToSpeakTimestamp) && C12238m.areEqual(this.channelId, voiceState.channelId);
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final UtcDateTime getRequestToSpeakTimestamp() {
         return this.requestToSpeakTimestamp;
@@ -72,6 +72,31 @@ public final /* data */ class VoiceState {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final boolean getSelfMute() {
         return this.selfMute;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final boolean getSelfStream() {
+        return this.selfStream;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final boolean getSelfVideo() {
+        return this.selfVideo;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final String getSessionId() {
+        return this.sessionId;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final boolean getSuppress() {
+        return this.suppress;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -148,31 +173,6 @@ public final /* data */ class VoiceState {
         int iHashCode3 = (iHashCode2 + (utcDateTime != null ? utcDateTime.hashCode() : 0)) * 31;
         Long l = this.channelId;
         return iHashCode3 + (l != null ? l.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final boolean getSelfStream() {
-        return this.selfStream;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final boolean getSelfVideo() {
-        return this.selfVideo;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final String getSessionId() {
-        return this.sessionId;
-    }
-
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final boolean getSuppress() {
-        return this.suppress;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
     }
 
     public String toString() {

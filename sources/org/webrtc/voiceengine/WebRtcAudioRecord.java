@@ -100,7 +100,7 @@ public class WebRtcAudioRecord {
         }
     }
 
-    public static class AudioSamples {
+    public class AudioSamples {
         private final int audioFormat;
         private final int channelCount;
         private final byte[] data;

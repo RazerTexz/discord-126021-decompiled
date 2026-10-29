@@ -44,7 +44,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         void onWebRtcAudioRecordStop();
     }
 
-    public static class AudioSamples {
+    public class AudioSamples {
         private final int audioFormat;
         private final int channelCount;
         private final byte[] data;
@@ -93,7 +93,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         void onWebRtcAudioTrackStop();
     }
 
-    public static class Builder {
+    public class Builder {
         private AudioAttributes audioAttributes;
         private int audioFormat;
         private final AudioManager audioManager;
@@ -260,16 +260,6 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         return new Builder(context);
     }
 
-    public static boolean isBuiltInAcousticEchoCancelerSupported() {
-        return WebRtcAudioEffects.isAcousticEchoCancelerSupported();
-    }
-
-    public static boolean isBuiltInNoiseSuppressorSupported() {
-        return WebRtcAudioEffects.isNoiseSuppressorSupported();
-    }
-
-    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i, int i2, boolean z2, boolean z3);
-
     @Override // org.webrtc.audio.AudioDeviceModule
     public long getNativeAudioDeviceModulePointer() {
         long j;
@@ -281,6 +271,16 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         }
         return j;
     }
+
+    public static boolean isBuiltInAcousticEchoCancelerSupported() {
+        return WebRtcAudioEffects.isAcousticEchoCancelerSupported();
+    }
+
+    public static boolean isBuiltInNoiseSuppressorSupported() {
+        return WebRtcAudioEffects.isNoiseSuppressorSupported();
+    }
+
+    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i, int i2, boolean z2, boolean z3);
 
     @Override // org.webrtc.audio.AudioDeviceModule
     public void release() {

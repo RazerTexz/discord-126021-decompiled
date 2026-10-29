@@ -17,15 +17,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1187l {
 
-    /* JADX INFO: renamed from: a */
-    public static final Lazy f1596a = C12083g.lazy(a.f1598j);
-
     /* JADX INFO: renamed from: b */
     public static final C1187l f1597b = null;
 
+    /* JADX INFO: renamed from: a */
+    public static final Lazy f1596a = C12083g.lazy(a.f1598j);
+
     /* JADX INFO: renamed from: b.a.p.l$a */
     /* JADX INFO: compiled from: SimpleCacheProvider.kt */
-    public static final class a extends AbstractC12240o implements Function0<C2699r> {
+    public final class a extends AbstractC12240o implements Function0<C2699r> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1598j = new a();

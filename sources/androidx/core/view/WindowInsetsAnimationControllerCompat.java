@@ -13,7 +13,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public final class WindowInsetsAnimationControllerCompat {
     private final Impl mImpl;
 
-    public static class Impl {
+    public class Impl {
         public void finish(boolean z2) {
         }
 
@@ -62,7 +62,7 @@ public final class WindowInsetsAnimationControllerCompat {
     }
 
     @RequiresApi(30)
-    public static class Impl30 extends Impl {
+    public class Impl30 extends Impl {
         private final WindowInsetsAnimationController mController;
 
         public Impl30(@NonNull WindowInsetsAnimationController windowInsetsAnimationController) {

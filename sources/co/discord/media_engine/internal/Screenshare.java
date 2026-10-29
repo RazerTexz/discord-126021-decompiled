@@ -33,26 +33,6 @@ public final /* data */ class Screenshare {
         return screenshare.copy(i, i2, i3, i4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getCapturedFramesDropped() {
-        return this.capturedFramesDropped;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getCapturedFramesCount() {
-        return this.capturedFramesCount;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getCapturedFramesMean() {
-        return this.capturedFramesMean;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getCapturedFramesStdev() {
-        return this.capturedFramesStdev;
-    }
-
     public final Screenshare copy(int capturedFramesDropped, int capturedFramesCount, int capturedFramesMean, int capturedFramesStdev) {
         return new Screenshare(capturedFramesDropped, capturedFramesCount, capturedFramesMean, capturedFramesStdev);
     }
@@ -68,16 +48,36 @@ public final /* data */ class Screenshare {
         return this.capturedFramesDropped == screenshare.capturedFramesDropped && this.capturedFramesCount == screenshare.capturedFramesCount && this.capturedFramesMean == screenshare.capturedFramesMean && this.capturedFramesStdev == screenshare.capturedFramesStdev;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getCapturedFramesCount() {
         return this.capturedFramesCount;
+    }
+
+    public final int getCapturedFramesCount() {
+        return this.capturedFramesCount;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getCapturedFramesDropped() {
+        return this.capturedFramesDropped;
     }
 
     public final int getCapturedFramesDropped() {
         return this.capturedFramesDropped;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getCapturedFramesMean() {
         return this.capturedFramesMean;
+    }
+
+    public final int getCapturedFramesMean() {
+        return this.capturedFramesMean;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getCapturedFramesStdev() {
+        return this.capturedFramesStdev;
     }
 
     public final int getCapturedFramesStdev() {

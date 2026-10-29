@@ -41,74 +41,6 @@ public class C3814r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
         this.f10289k = i;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final int m5203a(K k) {
-        int size = this.f10290l.size() - 1;
-        if (size >= 0) {
-            int iCompareTo = k.compareTo(this.f10290l.get(size).f10425j);
-            if (iCompareTo > 0) {
-                return -(size + 2);
-            }
-            if (iCompareTo == 0) {
-                return size;
-            }
-        }
-        int i = 0;
-        while (i <= size) {
-            int i2 = (i + size) / 2;
-            int iCompareTo2 = k.compareTo(this.f10290l.get(i2).f10425j);
-            if (iCompareTo2 < 0) {
-                size = i2 - 1;
-            } else {
-                if (iCompareTo2 <= 0) {
-                    return i2;
-                }
-                i = i2 + 1;
-            }
-        }
-        return -(i + 1);
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    /* JADX INFO: renamed from: b, reason: merged with bridge method [inline-methods] */
-    public final V put(K k, V v) {
-        m5210h();
-        int iM5203a = m5203a(k);
-        if (iM5203a >= 0) {
-            C3905y6 c3905y6 = this.f10290l.get(iM5203a);
-            c3905y6.f10427l.m5210h();
-            V v2 = c3905y6.f10426k;
-            c3905y6.f10426k = v;
-            return v2;
-        }
-        m5210h();
-        if (this.f10290l.isEmpty() && !(this.f10290l instanceof ArrayList)) {
-            this.f10290l = new ArrayList(this.f10289k);
-        }
-        int i = -(iM5203a + 1);
-        if (i >= this.f10289k) {
-            return m5211i().put(k, v);
-        }
-        int size = this.f10290l.size();
-        int i2 = this.f10289k;
-        if (size == i2) {
-            C3905y6 c3905y6Remove = this.f10290l.remove(i2 - 1);
-            m5211i().put(c3905y6Remove.f10425j, c3905y6Remove.f10426k);
-        }
-        this.f10290l.add(i, new C3905y6(this, k, v));
-        return null;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void mo5205c() {
-        if (this.f10292n) {
-            return;
-        }
-        this.f10291m = this.f10291m.isEmpty() ? Collections.emptyMap() : Collections.unmodifiableMap(this.f10291m);
-        this.f10294p = this.f10294p.isEmpty() ? Collections.emptyMap() : Collections.unmodifiableMap(this.f10294p);
-        this.f10292n = true;
-    }
-
     @Override // java.util.AbstractMap, java.util.Map
     public void clear() {
         m5210h();
@@ -125,16 +57,6 @@ public class C3814r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
     public boolean containsKey(Object obj) {
         Comparable comparable = (Comparable) obj;
         return m5203a(comparable) >= 0 || this.f10291m.containsKey(comparable);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final Map.Entry<K, V> m5206d(int i) {
-        return this.f10290l.get(i);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final int m5207e() {
-        return this.f10290l.size();
     }
 
     @Override // java.util.AbstractMap, java.util.Map
@@ -173,6 +95,61 @@ public class C3814r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
         return true;
     }
 
+    @Override // java.util.AbstractMap, java.util.Map
+    public V get(Object obj) {
+        Comparable comparable = (Comparable) obj;
+        int iM5203a = m5203a(comparable);
+        return iM5203a >= 0 ? this.f10290l.get(iM5203a).f10426k : this.f10291m.get(comparable);
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    public int hashCode() {
+        int iM5207e = m5207e();
+        int iHashCode = 0;
+        for (int i = 0; i < iM5207e; i++) {
+            iHashCode += this.f10290l.get(i).hashCode();
+        }
+        return this.f10291m.size() > 0 ? iHashCode + this.f10291m.hashCode() : iHashCode;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final int m5203a(K k) {
+        int size = this.f10290l.size() - 1;
+        if (size >= 0) {
+            int iCompareTo = k.compareTo(this.f10290l.get(size).f10425j);
+            if (iCompareTo > 0) {
+                return -(size + 2);
+            }
+            if (iCompareTo == 0) {
+                return size;
+            }
+        }
+        int i = 0;
+        while (i <= size) {
+            int i2 = (i + size) / 2;
+            int iCompareTo2 = k.compareTo(this.f10290l.get(i2).f10425j);
+            if (iCompareTo2 < 0) {
+                size = i2 - 1;
+            } else {
+                if (iCompareTo2 <= 0) {
+                    return i2;
+                }
+                i = i2 + 1;
+            }
+        }
+        return -(i + 1);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final Map.Entry<K, V> m5206d(int i) {
+        return this.f10290l.get(i);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final int m5207e() {
+        return this.f10290l.size();
+    }
+
     /* JADX INFO: renamed from: f */
     public final V m5208f(int i) {
         m5210h();
@@ -190,28 +167,11 @@ public class C3814r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
         return this.f10291m.isEmpty() ? (Iterable<Map.Entry<K, V>>) C3853u6.f10351b : this.f10291m.entrySet();
     }
 
-    @Override // java.util.AbstractMap, java.util.Map
-    public V get(Object obj) {
-        Comparable comparable = (Comparable) obj;
-        int iM5203a = m5203a(comparable);
-        return iM5203a >= 0 ? this.f10290l.get(iM5203a).f10426k : this.f10291m.get(comparable);
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m5210h() {
         if (this.f10292n) {
             throw new UnsupportedOperationException();
         }
-    }
-
-    @Override // java.util.AbstractMap, java.util.Map
-    public int hashCode() {
-        int iM5207e = m5207e();
-        int iHashCode = 0;
-        for (int i = 0; i < iM5207e; i++) {
-            iHashCode += this.f10290l.get(i).hashCode();
-        }
-        return this.f10291m.size() > 0 ? iHashCode + this.f10291m.hashCode() : iHashCode;
     }
 
     /* JADX INFO: renamed from: i */
@@ -223,6 +183,46 @@ public class C3814r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
             this.f10294p = treeMap.descendingMap();
         }
         return (SortedMap) this.f10291m;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public void mo5205c() {
+        if (this.f10292n) {
+            return;
+        }
+        this.f10291m = this.f10291m.isEmpty() ? Collections.emptyMap() : Collections.unmodifiableMap(this.f10291m);
+        this.f10294p = this.f10294p.isEmpty() ? Collections.emptyMap() : Collections.unmodifiableMap(this.f10294p);
+        this.f10292n = true;
+    }
+
+    @Override // java.util.AbstractMap, java.util.Map
+    /* JADX INFO: renamed from: b, reason: merged with bridge method [inline-methods] */
+    public final V put(K k, V v) {
+        m5210h();
+        int iM5203a = m5203a(k);
+        if (iM5203a >= 0) {
+            C3905y6 c3905y6 = this.f10290l.get(iM5203a);
+            c3905y6.f10427l.m5210h();
+            V v2 = c3905y6.f10426k;
+            c3905y6.f10426k = v;
+            return v2;
+        }
+        m5210h();
+        if (this.f10290l.isEmpty() && !(this.f10290l instanceof ArrayList)) {
+            this.f10290l = new ArrayList(this.f10289k);
+        }
+        int i = -(iM5203a + 1);
+        if (i >= this.f10289k) {
+            return m5211i().put(k, v);
+        }
+        int size = this.f10290l.size();
+        int i2 = this.f10289k;
+        if (size == i2) {
+            C3905y6 c3905y6Remove = this.f10290l.remove(i2 - 1);
+            m5211i().put(c3905y6Remove.f10425j, c3905y6Remove.f10426k);
+        }
+        this.f10290l.add(i, new C3905y6(this, k, v));
+        return null;
     }
 
     @Override // java.util.AbstractMap, java.util.Map

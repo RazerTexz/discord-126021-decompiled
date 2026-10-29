@@ -78,37 +78,37 @@ public final class WidgetChatListAdapterItemPrivateChannelStart extends WidgetCh
         C12238m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         StartOfPrivateChatEntry startOfPrivateChatEntry = (StartOfPrivateChatEntry) data;
-        String strComponent2 = startOfPrivateChatEntry.getChannelName();
-        int iComponent3 = startOfPrivateChatEntry.getChannelType();
-        String strComponent4 = startOfPrivateChatEntry.getChannelIcon();
-        boolean zComponent5 = startOfPrivateChatEntry.getIsSystemDM();
+        String channelName = startOfPrivateChatEntry.getChannelName();
+        int channelType = startOfPrivateChatEntry.getChannelType();
+        String channelIcon = startOfPrivateChatEntry.getChannelIcon();
+        boolean isSystemDM = startOfPrivateChatEntry.getIsSystemDM();
         List<Guild> listComponent6 = startOfPrivateChatEntry.component6();
-        if (!(!C12103t.isBlank(strComponent2))) {
+        if (!(!C12103t.isBlank(channelName))) {
             TextView textView = this.binding.f16262b;
             C12238m.checkNotNullExpressionValue(textView, "binding.chatListAdapterI…PrivateChannelStartHeader");
-            strComponent2 = textView.getContext().getString(C5419R.string.unnamed);
-            C12238m.checkNotNullExpressionValue(strComponent2, "binding.chatListAdapterI…tString(R.string.unnamed)");
+            channelName = textView.getContext().getString(C5419R.string.unnamed);
+            C12238m.checkNotNullExpressionValue(channelName, "binding.chatListAdapterI…tString(R.string.unnamed)");
         }
         TextView textView2 = this.binding.f16262b;
         C12238m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterI…PrivateChannelStartHeader");
-        textView2.setText(strComponent2);
-        if (strComponent4 != null) {
+        textView2.setText(channelName);
+        if (channelIcon != null) {
             SimpleDraweeView simpleDraweeView = this.binding.f16266f;
             C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.privateChannelStartImage");
-            IconUtils.setIcon$default(simpleDraweeView, strComponent4, C5419R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView, channelIcon, C5419R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         } else {
             SimpleDraweeView simpleDraweeView2 = this.binding.f16266f;
             C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.privateChannelStartImage");
             IconUtils.setIcon$default(simpleDraweeView2, IconUtils.DEFAULT_ICON, C5419R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         }
-        if (zComponent5) {
+        if (isSystemDM) {
             this.binding.f16267g.setText(C5419R.string.system_dm_empty_message);
         } else {
             TextView textView3 = this.binding.f16267g;
             C12238m.checkNotNullExpressionValue(textView3, "binding.privateChannelStartText");
-            C1107b.m221m(textView3, getStartResId(iComponent3), new Object[]{strComponent2}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+            C1107b.m221m(textView3, getStartResId(channelType), new Object[]{channelName}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
         }
-        boolean z2 = !zComponent5 && iComponent3 == 1;
+        boolean z2 = !isSystemDM && channelType == 1;
         LinearLayout linearLayout = this.binding.f16264d;
         C12238m.checkNotNullExpressionValue(linearLayout, "binding.mutualGuilds");
         linearLayout.setVisibility(z2 ? 0 : 8);

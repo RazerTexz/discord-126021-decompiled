@@ -7,19 +7,19 @@ import lombok.patcher.ClassRootFinder;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/IdeLocation.SCL.lombok */
 public abstract class IdeLocation {
-    boolean selected = true;
     private static final String LEGAL_PATH_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_/";
     private static final String LEGAL_PATH_CHARS_WINDOWS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,/;'[]{}!@#$^&()-_+= :\\";
+    boolean selected = true;
 
-    public abstract String install() throws InstallException;
-
-    public abstract void uninstall() throws UninstallException;
+    public abstract URL getIdeIcon();
 
     public abstract String getName();
 
     public abstract boolean hasLombok();
 
-    public abstract URL getIdeIcon();
+    public abstract String install() throws InstallException;
+
+    public abstract void uninstall() throws UninstallException;
 
     public static File findOurJar() {
         return new File(ClassRootFinder.findClassRootOfClass(OsUtils.class));

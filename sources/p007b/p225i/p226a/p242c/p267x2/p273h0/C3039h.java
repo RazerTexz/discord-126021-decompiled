@@ -28,22 +28,10 @@ public final class C3039h implements InterfaceC3038g {
         this.f8339d = j2;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: a */
-    public long mo3689a() {
-        return this.f8339d;
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
     /* JADX INFO: renamed from: c */
     public boolean mo3619c() {
         return true;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: d */
-    public long mo3690d(long j) {
-        return this.f8336a[C2738e0.m2997e(this.f8337b, j, true, true)];
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
@@ -65,5 +53,17 @@ public final class C3039h implements InterfaceC3038g {
     /* JADX INFO: renamed from: i */
     public long mo3621i() {
         return this.f8338c;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: a */
+    public long mo3689a() {
+        return this.f8339d;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: d */
+    public long mo3690d(long j) {
+        return this.f8336a[C2738e0.m2997e(this.f8337b, j, true, true)];
     }
 }

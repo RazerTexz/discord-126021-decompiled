@@ -8,11 +8,6 @@ import p007b.p225i.p408d.C4907k;
 
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class JsonElement {
-    /* JADX INFO: renamed from: c */
-    public int mo6854c() {
-        throw new UnsupportedOperationException(getClass().getSimpleName());
-    }
-
     /* JADX INFO: renamed from: d */
     public JsonObject m9212d() {
         if (this instanceof JsonObject) {
@@ -27,6 +22,11 @@ public abstract class JsonElement {
             return (C4907k) this;
         }
         throw new IllegalStateException("Not a JSON Primitive: " + this);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public int mo6854c() {
+        throw new UnsupportedOperationException(getClass().getSimpleName());
     }
 
     /* JADX INFO: renamed from: g */

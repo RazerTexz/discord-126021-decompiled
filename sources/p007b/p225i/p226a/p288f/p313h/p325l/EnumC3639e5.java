@@ -83,12 +83,12 @@ public final class EnumC3639e5 {
         this.zzm = obj;
     }
 
-    public static EnumC3639e5[] values() {
-        return (EnumC3639e5[]) f9912t.clone();
-    }
-
     /* JADX INFO: renamed from: f */
     public final Class<?> m4822f() {
         return this.zzl;
+    }
+
+    public static EnumC3639e5[] values() {
+        return (EnumC3639e5[]) f9912t.clone();
     }
 }

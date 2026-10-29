@@ -61,8 +61,38 @@ public final class NotificationClient {
     private static Function1<? super String, Unit> tokenCallback = NotificationClient$tokenCallback$1.INSTANCE;
     private static boolean isBackgrounded = true;
 
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$1 */
     /* JADX INFO: compiled from: NotificationClient.kt */
-    public static final class FCMMessagingService extends FirebaseMessagingService {
+    public final class C67451 extends AbstractC12240o implements Function0<String> {
+        public static final C67451 INSTANCE = new C67451();
+
+        public C67451() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final String invoke() {
+            return NotificationClient.INSTANCE.getSettings$app_productionGoogleRelease().getToken();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$2 */
+    /* JADX INFO: compiled from: NotificationClient.kt */
+    public final class C67462 extends AbstractC12240o implements Function0<String> {
+        public static final C67462 INSTANCE = new C67462();
+
+        public C67462() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final String invoke() {
+            return NotificationClient.INSTANCE.getSettings$app_productionGoogleRelease().getLocale();
+        }
+    }
+
+    /* JADX INFO: compiled from: NotificationClient.kt */
+    public final class FCMMessagingService extends FirebaseMessagingService {
         @Override // com.google.firebase.messaging.FirebaseMessagingService
         public void onMessageReceived(RemoteMessage remoteMessage) {
             C12238m.checkNotNullParameter(remoteMessage, "remoteMessage");
@@ -139,36 +169,6 @@ public final class NotificationClient {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$1 */
-    /* JADX INFO: compiled from: NotificationClient.kt */
-    public static final class C67451 extends AbstractC12240o implements Function0<String> {
-        public static final C67451 INSTANCE = new C67451();
-
-        public C67451() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final String invoke() {
-            return NotificationClient.INSTANCE.getSettings$app_productionGoogleRelease().getToken();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$2 */
-    /* JADX INFO: compiled from: NotificationClient.kt */
-    public static final class C67462 extends AbstractC12240o implements Function0<String> {
-        public static final C67462 INSTANCE = new C67462();
-
-        public C67462() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final String invoke() {
-            return NotificationClient.INSTANCE.getSettings$app_productionGoogleRelease().getLocale();
-        }
-    }
-
     private NotificationClient() {
     }
 
@@ -180,6 +180,10 @@ public final class NotificationClient {
         return isBackgrounded;
     }
 
+    public final Map<String, Object> buildTrackingData(Intent intent) {
+        return NotificationData.INSTANCE.buildTrackingData(intent);
+    }
+
     public static /* synthetic */ void clear$default(NotificationClient notificationClient, long j, Context context2, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             context2 = null;
@@ -188,10 +192,6 @@ public final class NotificationClient {
             z2 = false;
         }
         notificationClient.clear(j, context2, z2);
-    }
-
-    public final Map<String, Object> buildTrackingData(Intent intent) {
-        return NotificationData.INSTANCE.buildTrackingData(intent);
     }
 
     public final void clear(long channelId, Context context2, boolean isAckRequest) {
@@ -268,7 +268,7 @@ public final class NotificationClient {
     }
 
     /* JADX INFO: compiled from: NotificationClient.kt */
-    public static final /* data */ class SettingsV2 {
+    public final /* data */ class SettingsV2 {
         private final boolean isAuthed;
         private final boolean isDisableBlink;
         private final boolean isDisableSound;
@@ -299,46 +299,6 @@ public final class NotificationClient {
             this.isAuthed = str != null;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsEnabled() {
-            return this.isEnabled;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsEnabledInApp() {
-            return this.isEnabledInApp;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsWake() {
-            return this.isWake;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsDisableBlink() {
-            return this.isDisableBlink;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsDisableSound() {
-            return this.isDisableSound;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsDisableVibrate() {
-            return this.isDisableVibrate;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final String getToken() {
-            return this.token;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final String getLocale() {
-            return this.locale;
-        }
-
         public final Set<Long> component9() {
             return this.sendBlockedChannels;
         }
@@ -360,12 +320,57 @@ public final class NotificationClient {
             return this.isEnabled == settingsV2.isEnabled && this.isEnabledInApp == settingsV2.isEnabledInApp && this.isWake == settingsV2.isWake && this.isDisableBlink == settingsV2.isDisableBlink && this.isDisableSound == settingsV2.isDisableSound && this.isDisableVibrate == settingsV2.isDisableVibrate && C12238m.areEqual(this.token, settingsV2.token) && C12238m.areEqual(this.locale, settingsV2.locale) && C12238m.areEqual(this.sendBlockedChannels, settingsV2.sendBlockedChannels);
         }
 
+        /* JADX INFO: renamed from: isAuthed, reason: from getter */
+        public final boolean getIsAuthed() {
+            return this.isAuthed;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsDisableBlink() {
+            return this.isDisableBlink;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsDisableSound() {
+            return this.isDisableSound;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsDisableVibrate() {
+            return this.isDisableVibrate;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsEnabled() {
+            return this.isEnabled;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsEnabledInApp() {
+            return this.isEnabledInApp;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsWake() {
+            return this.isWake;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final String getLocale() {
+            return this.locale;
+        }
+
         public final String getLocale() {
             return this.locale;
         }
 
         public final Set<Long> getSendBlockedChannels() {
             return this.sendBlockedChannels;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final String getToken() {
+            return this.token;
         }
 
         public final String getToken() {
@@ -435,11 +440,6 @@ public final class NotificationClient {
             int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
             Set<Long> set = this.sendBlockedChannels;
             return iHashCode2 + (set != null ? set.hashCode() : 0);
-        }
-
-        /* JADX INFO: renamed from: isAuthed, reason: from getter */
-        public final boolean getIsAuthed() {
-            return this.isAuthed;
         }
 
         public final boolean isDisableBlink() {

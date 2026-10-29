@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackQuickswitcherOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence source = null;
-    private final Long currentGuildId = null;
     private final Long currentChannelId = null;
     private final Long currentChannelType = null;
+    private final Long currentGuildId = null;
+    private final CharSequence source = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "quickswitcher_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchem
         }
         TrackQuickswitcherOpened trackQuickswitcherOpened = (TrackQuickswitcherOpened) other;
         return C12238m.areEqual(this.source, trackQuickswitcherOpened.source) && C12238m.areEqual(this.currentGuildId, trackQuickswitcherOpened.currentGuildId) && C12238m.areEqual(this.currentChannelId, trackQuickswitcherOpened.currentChannelId) && C12238m.areEqual(this.currentChannelType, trackQuickswitcherOpened.currentChannelType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -10,6 +10,7 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2394l;
 /* JADX INFO: compiled from: PropertyNamingStrategy.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2371u implements Serializable {
+    private static final long serialVersionUID = 2;
 
     /* JADX INFO: renamed from: j */
     @Deprecated
@@ -18,12 +19,11 @@ public class C2371u implements Serializable {
     /* JADX INFO: renamed from: k */
     @Deprecated
     public static final C2371u f5032k = new b();
-    private static final long serialVersionUID = 2;
 
     /* JADX INFO: renamed from: b.g.a.c.u$a */
     /* JADX INFO: compiled from: PropertyNamingStrategy.java */
     @Deprecated
-    public static abstract class a extends C2371u {
+    public abstract class a extends C2371u {
         @Override // p007b.p195g.p196a.p205c.C2371u
         /* JADX INFO: renamed from: a */
         public String mo2231a(AbstractC2394l<?> abstractC2394l, C2192m c2192m, String str) {
@@ -55,7 +55,7 @@ public class C2371u implements Serializable {
     /* JADX INFO: renamed from: b.g.a.c.u$b */
     /* JADX INFO: compiled from: PropertyNamingStrategy.java */
     @Deprecated
-    public static class b extends a {
+    public class b extends a {
         @Override // p007b.p195g.p196a.p205c.C2371u.a
         /* JADX INFO: renamed from: e */
         public String mo2235e(String str) {
@@ -90,7 +90,7 @@ public class C2371u implements Serializable {
     /* JADX INFO: renamed from: b.g.a.c.u$c */
     /* JADX INFO: compiled from: PropertyNamingStrategy.java */
     @Deprecated
-    public static class c extends a {
+    public class c extends a {
         @Override // p007b.p195g.p196a.p205c.C2371u.a
         /* JADX INFO: renamed from: e */
         public String mo2235e(String str) {

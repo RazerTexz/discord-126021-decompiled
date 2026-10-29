@@ -48,170 +48,9 @@ public final class StoreLurking {
     private String sessionId;
     private final StoreStream stream;
 
-    /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final boolean isLurking(boolean isJoined, long guildId, Set<Long> lurkingGuildIds) {
-            return !isJoined && lurkingGuildIds.contains(Long.valueOf(guildId));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final /* data */ class LurkContext {
-        private final long guildId;
-        private final boolean shouldNavigate;
-
-        public LurkContext(long j, boolean z2) {
-            this.guildId = j;
-            this.shouldNavigate = z2;
-        }
-
-        public static /* synthetic */ LurkContext copy$default(LurkContext lurkContext, long j, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = lurkContext.guildId;
-            }
-            if ((i & 2) != 0) {
-                z2 = lurkContext.shouldNavigate;
-            }
-            return lurkContext.copy(j, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShouldNavigate() {
-            return this.shouldNavigate;
-        }
-
-        public final LurkContext copy(long guildId, boolean shouldNavigate) {
-            return new LurkContext(guildId, shouldNavigate);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof LurkContext)) {
-                return false;
-            }
-            LurkContext lurkContext = (LurkContext) other;
-            return this.guildId == lurkContext.guildId && this.shouldNavigate == lurkContext.shouldNavigate;
-        }
-
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public final boolean getShouldNavigate() {
-            return this.shouldNavigate;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v2 */
-        /* JADX WARN: Type inference failed for: r1v3 */
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.guildId) * 31;
-            boolean z2 = this.shouldNavigate;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            return iM3a + r1;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("LurkContext(guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", shouldNavigate=");
-            return C1643a.m827O(sbM833U, this.shouldNavigate, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final /* data */ class LurkRequest {
-        private final Long channelId;
-        private final long guildId;
-
-        public LurkRequest(long j, Long l) {
-            this.guildId = j;
-            this.channelId = l;
-        }
-
-        public static /* synthetic */ LurkRequest copy$default(LurkRequest lurkRequest, long j, Long l, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = lurkRequest.guildId;
-            }
-            if ((i & 2) != 0) {
-                l = lurkRequest.channelId;
-            }
-            return lurkRequest.copy(j, l);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
-        public final LurkRequest copy(long guildId, Long channelId) {
-            return new LurkRequest(guildId, channelId);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof LurkRequest)) {
-                return false;
-            }
-            LurkRequest lurkRequest = (LurkRequest) other;
-            return this.guildId == lurkRequest.guildId && C12238m.areEqual(this.channelId, lurkRequest.channelId);
-        }
-
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.guildId) * 31;
-            Long l = this.channelId;
-            return iM3a + (l != null ? l.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("LurkRequest(guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", channelId=");
-            return C1643a.m819G(sbM833U, this.channelId, ")");
-        }
-
-        public /* synthetic */ LurkRequest(long j, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(j, (i & 2) != 0 ? null : l);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$postJoinGuildAsMember$1 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61471 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C61471 extends AbstractC12240o implements Function1<Guild, Unit> {
         public static final C61471 INSTANCE = new C61471();
 
         public C61471() {
@@ -232,7 +71,7 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$postLeaveGuild$1 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61481 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61481 extends AbstractC12240o implements Function0<Unit> {
         public static final C61481 INSTANCE = new C61481();
 
         public C61481() {
@@ -252,7 +91,7 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$postLeaveGuild$2 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61492 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61492 extends AbstractC12240o implements Function0<Unit> {
         public static final C61492 INSTANCE = new C61492();
 
         public C61492() {
@@ -272,7 +111,7 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$postLeaveGuild$3 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61503 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C61503 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Function0 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -296,7 +135,7 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$postLeaveGuild$4 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61514 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C61514 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ Function0 $onSuccess;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -319,11 +158,15 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurking$1 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61521 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
+    public final class C61521 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
         public static final C61521 INSTANCE = new C61521();
 
         public C61521() {
             super(3);
+        }
+
+        public final void invoke(com.discord.models.guild.Guild guild, Long l, boolean z2) {
+            C12238m.checkNotNullParameter(guild, "<anonymous parameter 0>");
         }
 
         @Override // kotlin.jvm.functions.Function3
@@ -331,15 +174,11 @@ public final class StoreLurking {
             invoke(guild, l, bool.booleanValue());
             return Unit.f27425a;
         }
-
-        public final void invoke(com.discord.models.guild.Guild guild, Long l, boolean z2) {
-            C12238m.checkNotNullParameter(guild, "<anonymous parameter 0>");
-        }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurking$2 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61532 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61532 extends AbstractC12240o implements Function0<Unit> {
         public static final C61532 INSTANCE = new C61532();
 
         public C61532() {
@@ -359,7 +198,7 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurking$3 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61543 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61543 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ boolean $navigateToGuild;
@@ -390,18 +229,18 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingAndNavigate$1 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61551 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61551 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingAndNavigate$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreLurking.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingAndNavigate$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreLurking.kt */
-            public static final class C132601 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+            public final class C132601 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
                 public static final C132601 INSTANCE = new C132601();
 
                 public C132601() {
@@ -481,11 +320,15 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$1 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61561 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
+    public final class C61561 extends AbstractC12240o implements Function3<com.discord.models.guild.Guild, Long, Boolean, Unit> {
         public static final C61561 INSTANCE = new C61561();
 
         public C61561() {
             super(3);
+        }
+
+        public final void invoke(com.discord.models.guild.Guild guild, Long l, boolean z2) {
+            C12238m.checkNotNullParameter(guild, "<anonymous parameter 0>");
         }
 
         @Override // kotlin.jvm.functions.Function3
@@ -493,15 +336,11 @@ public final class StoreLurking {
             invoke(guild, l, bool.booleanValue());
             return Unit.f27425a;
         }
-
-        public final void invoke(com.discord.models.guild.Guild guild, Long l, boolean z2) {
-            C12238m.checkNotNullParameter(guild, "<anonymous parameter 0>");
-        }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$2 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61572 extends AbstractC12240o implements Function0<Unit> {
+    public final class C61572 extends AbstractC12240o implements Function0<Unit> {
         public static final C61572 INSTANCE = new C61572();
 
         public C61572() {
@@ -521,12 +360,12 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$3 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61583 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C61583 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreLurking.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -566,14 +405,14 @@ public final class StoreLurking {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$4 */
     /* JADX INFO: compiled from: StoreLurking.kt */
-    public static final class C61594 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C61594 extends AbstractC12240o implements Function1<Guild, Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ Function3 $onGuildLurked;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreLurking$startLurkingInternal$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreLurking.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Guild $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -619,6 +458,167 @@ public final class StoreLurking {
         }
     }
 
+    /* JADX INFO: compiled from: StoreLurking.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final boolean isLurking(boolean isJoined, long guildId, Set<Long> lurkingGuildIds) {
+            return !isJoined && lurkingGuildIds.contains(Long.valueOf(guildId));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreLurking.kt */
+    public final /* data */ class LurkContext {
+        private final long guildId;
+        private final boolean shouldNavigate;
+
+        public LurkContext(long j, boolean z2) {
+            this.guildId = j;
+            this.shouldNavigate = z2;
+        }
+
+        public static /* synthetic */ LurkContext copy$default(LurkContext lurkContext, long j, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = lurkContext.guildId;
+            }
+            if ((i & 2) != 0) {
+                z2 = lurkContext.shouldNavigate;
+            }
+            return lurkContext.copy(j, z2);
+        }
+
+        public final LurkContext copy(long guildId, boolean shouldNavigate) {
+            return new LurkContext(guildId, shouldNavigate);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof LurkContext)) {
+                return false;
+            }
+            LurkContext lurkContext = (LurkContext) other;
+            return this.guildId == lurkContext.guildId && this.shouldNavigate == lurkContext.shouldNavigate;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShouldNavigate() {
+            return this.shouldNavigate;
+        }
+
+        public final boolean getShouldNavigate() {
+            return this.shouldNavigate;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v2 */
+        /* JADX WARN: Type inference failed for: r1v3 */
+        public int hashCode() {
+            int iM3a = C0002b.m3a(this.guildId) * 31;
+            boolean z2 = this.shouldNavigate;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return iM3a + r1;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("LurkContext(guildId=");
+            sbM833U.append(this.guildId);
+            sbM833U.append(", shouldNavigate=");
+            return C1643a.m827O(sbM833U, this.shouldNavigate, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreLurking.kt */
+    public final /* data */ class LurkRequest {
+        private final Long channelId;
+        private final long guildId;
+
+        public LurkRequest(long j, Long l) {
+            this.guildId = j;
+            this.channelId = l;
+        }
+
+        public static /* synthetic */ LurkRequest copy$default(LurkRequest lurkRequest, long j, Long l, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = lurkRequest.guildId;
+            }
+            if ((i & 2) != 0) {
+                l = lurkRequest.channelId;
+            }
+            return lurkRequest.copy(j, l);
+        }
+
+        public final LurkRequest copy(long guildId, Long channelId) {
+            return new LurkRequest(guildId, channelId);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof LurkRequest)) {
+                return false;
+            }
+            LurkRequest lurkRequest = (LurkRequest) other;
+            return this.guildId == lurkRequest.guildId && C12238m.areEqual(this.channelId, lurkRequest.channelId);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getChannelId() {
+            return this.channelId;
+        }
+
+        public final Long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public int hashCode() {
+            int iM3a = C0002b.m3a(this.guildId) * 31;
+            Long l = this.channelId;
+            return iM3a + (l != null ? l.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("LurkRequest(guildId=");
+            sbM833U.append(this.guildId);
+            sbM833U.append(", channelId=");
+            return C1643a.m819G(sbM833U, this.channelId, ")");
+        }
+
+        public /* synthetic */ LurkRequest(long j, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(j, (i & 2) != 0 ? null : l);
+        }
+    }
+
     public StoreLurking(StoreStream storeStream, StoreGuilds storeGuilds, Dispatcher dispatcher) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(storeGuilds, "guildsStore");
@@ -628,75 +628,6 @@ public final class StoreLurking {
         this.dispatcher = dispatcher;
         this.lurkedGuilds = new LinkedHashMap();
         this.lurkedGuildsSubject = BehaviorSubject.m11130l0(new LinkedHashMap());
-    }
-
-    private final void postLeaveGuild(long guildId, Function0<Unit> onSuccess, Function0<Unit> onFailure) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().leaveGuild(guildId, new RestAPIParams.LeaveGuildBody(true)), false, 1, null), (Class<?>) StoreLurking.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C61503(onFailure)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61514(onSuccess));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void postLeaveGuild$default(StoreLurking storeLurking, long j, Function0 function0, Function0 function1, int i, Object obj) {
-        if ((i & 2) != 0) {
-            function0 = C61481.INSTANCE;
-        }
-        if ((i & 4) != 0) {
-            function1 = C61492.INSTANCE;
-        }
-        storeLurking.postLeaveGuild(j, function0, function1);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void startLurking$default(StoreLurking storeLurking, long j, Long l, boolean z2, Function3 function3, Function0 function0, int i, Object obj) {
-        boolean z3 = (i & 4) != 0 ? true : z2;
-        if ((i & 8) != 0) {
-            function3 = C61521.INSTANCE;
-        }
-        Function3 function4 = function3;
-        if ((i & 16) != 0) {
-            function0 = C61532.INSTANCE;
-        }
-        storeLurking.startLurking(j, l, z3, function4, function0);
-    }
-
-    public static /* synthetic */ void startLurkingAndNavigate$default(StoreLurking storeLurking, long j, Long l, Context context, int i, Object obj) {
-        if ((i & 4) != 0) {
-            context = null;
-        }
-        storeLurking.startLurkingAndNavigate(j, l, context);
-    }
-
-    @StoreThread
-    private final void startLurkingInternal(long guildId, Long channelId, boolean navigateToGuild, Function3<? super com.discord.models.guild.Guild, ? super Long, ? super Boolean, Unit> onGuildLurked, Function0<Unit> onErrorLurking, Context context) {
-        if (this.sessionId == null) {
-            Logger.w$default(AppLog.f14950g, "Cannot lurk " + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + channelId + " with no session", null, 2, null);
-            onErrorLurking.invoke();
-            return;
-        }
-        if (guildId == 0 && guildId != -1) {
-            Logger.w$default(AppLog.f14950g, "Invalid ids for lurking " + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + channelId, null, 2, null);
-            onErrorLurking.invoke();
-            return;
-        }
-        com.discord.models.guild.Guild guild = this.stream.getGuilds().getGuildsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
-        if (guild != null && !isLurking$app_productionGoogleRelease(guild)) {
-            onGuildLurked.invoke(guild, channelId, Boolean.TRUE);
-            return;
-        }
-        this.lurkedGuilds.put(Long.valueOf(guildId), new LurkContext(guildId, navigateToGuild));
-        this.lurkedGuildsSubject.onNext(this.lurkedGuilds);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPIInterface.DefaultImpls.joinGuild$default(RestAPI.INSTANCE.getApi(), guildId, true, this.sessionId, null, new RestAPIParams.InviteCode(null, null), null, 32, null), false, 1, null)), (Class<?>) StoreLurking.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C61583(guildId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61594(guildId, onGuildLurked, channelId));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void startLurkingInternal$default(StoreLurking storeLurking, long j, Long l, boolean z2, Function3 function3, Function0 function0, Context context, int i, Object obj) {
-        storeLurking.startLurkingInternal(j, l, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? C61561.INSTANCE : function3, (i & 16) != 0 ? C61572.INSTANCE : function0, (i & 32) != 0 ? null : context);
-    }
-
-    @StoreThread
-    private final void stopLurkingInternal(long guildId) {
-        if (this.lurkedGuilds.remove(Long.valueOf(guildId)) != null) {
-            this.lurkedGuildsSubject.onNext(this.lurkedGuilds);
-        }
     }
 
     public final Observable<Set<Long>> getLurkingGuildIds() {
@@ -808,6 +739,21 @@ public final class StoreLurking {
         GuildJoinHelperKt.joinGuild(context, guildId, false, (944 & 8) != 0 ? null : this.sessionId, (944 & 16) != 0 ? null : null, (944 & 32) != 0 ? null : null, StoreLurking.class, (944 & 128) != 0 ? null : null, (944 & 256) != 0 ? null : null, (944 & 512) != 0 ? null : null, C61471.INSTANCE);
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void postLeaveGuild$default(StoreLurking storeLurking, long j, Function0 function0, Function0 function1, int i, Object obj) {
+        if ((i & 2) != 0) {
+            function0 = C61481.INSTANCE;
+        }
+        if ((i & 4) != 0) {
+            function1 = C61492.INSTANCE;
+        }
+        storeLurking.postLeaveGuild(j, function0, function1);
+    }
+
+    private final void postLeaveGuild(long guildId, Function0<Unit> onSuccess, Function0<Unit> onFailure) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().leaveGuild(guildId, new RestAPIParams.LeaveGuildBody(true)), false, 1, null), (Class<?>) StoreLurking.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C61503(onFailure)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61514(onSuccess));
+    }
+
     public final void removeOldLurkingGuilds(long currentlyLurkedGuildId) {
         Channel channel = this.stream.getChannels().getChannel(this.stream.getVoiceChannelSelected().getSelectedVoiceChannelId());
         Long lValueOf = channel != null ? Long.valueOf(channel.getGuildId()) : null;
@@ -833,20 +779,74 @@ public final class StoreLurking {
         }
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void startLurking$default(StoreLurking storeLurking, long j, Long l, boolean z2, Function3 function3, Function0 function0, int i, Object obj) {
+        boolean z3 = (i & 4) != 0 ? true : z2;
+        if ((i & 8) != 0) {
+            function3 = C61521.INSTANCE;
+        }
+        Function3 function4 = function3;
+        if ((i & 16) != 0) {
+            function0 = C61532.INSTANCE;
+        }
+        storeLurking.startLurking(j, l, z3, function4, function0);
+    }
+
     public final void startLurking(long guildId, Long channelId, boolean navigateToGuild, Function3<? super com.discord.models.guild.Guild, ? super Long, ? super Boolean, Unit> onGuildLurked, Function0<Unit> onErrorLurking) {
         C12238m.checkNotNullParameter(onGuildLurked, "onGuildLurked");
         C12238m.checkNotNullParameter(onErrorLurking, "onErrorLurking");
         this.dispatcher.schedule(new C61543(guildId, channelId, navigateToGuild, onGuildLurked, onErrorLurking));
     }
 
+    public static /* synthetic */ void startLurkingAndNavigate$default(StoreLurking storeLurking, long j, Long l, Context context, int i, Object obj) {
+        if ((i & 4) != 0) {
+            context = null;
+        }
+        storeLurking.startLurkingAndNavigate(j, l, context);
+    }
+
     public final void startLurkingAndNavigate(long guildId, Long channelId, Context context) {
         this.dispatcher.schedule(new C61551(guildId, channelId, context));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void startLurkingInternal$default(StoreLurking storeLurking, long j, Long l, boolean z2, Function3 function3, Function0 function0, Context context, int i, Object obj) {
+        storeLurking.startLurkingInternal(j, l, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? C61561.INSTANCE : function3, (i & 16) != 0 ? C61572.INSTANCE : function0, (i & 32) != 0 ? null : context);
+    }
+
+    @StoreThread
+    private final void startLurkingInternal(long guildId, Long channelId, boolean navigateToGuild, Function3<? super com.discord.models.guild.Guild, ? super Long, ? super Boolean, Unit> onGuildLurked, Function0<Unit> onErrorLurking, Context context) {
+        if (this.sessionId == null) {
+            Logger.w$default(AppLog.f14950g, "Cannot lurk " + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + channelId + " with no session", null, 2, null);
+            onErrorLurking.invoke();
+            return;
+        }
+        if (guildId == 0 && guildId != -1) {
+            Logger.w$default(AppLog.f14950g, "Invalid ids for lurking " + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + channelId, null, 2, null);
+            onErrorLurking.invoke();
+            return;
+        }
+        com.discord.models.guild.Guild guild = this.stream.getGuilds().getGuildsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
+        if (guild != null && !isLurking$app_productionGoogleRelease(guild)) {
+            onGuildLurked.invoke(guild, channelId, Boolean.TRUE);
+            return;
+        }
+        this.lurkedGuilds.put(Long.valueOf(guildId), new LurkContext(guildId, navigateToGuild));
+        this.lurkedGuildsSubject.onNext(this.lurkedGuilds);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPIInterface.DefaultImpls.joinGuild$default(RestAPI.INSTANCE.getApi(), guildId, true, this.sessionId, null, new RestAPIParams.InviteCode(null, null), null, 32, null), false, 1, null)), (Class<?>) StoreLurking.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C61583(guildId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C61594(guildId, onGuildLurked, channelId));
     }
 
     public final void stopLurking(long guildId, Function0<Unit> onSuccess, Function0<Unit> onFailure) {
         C12238m.checkNotNullParameter(onSuccess, "onSuccess");
         C12238m.checkNotNullParameter(onFailure, "onFailure");
         postLeaveGuild(guildId, onSuccess, onFailure);
+    }
+
+    @StoreThread
+    private final void stopLurkingInternal(long guildId) {
+        if (this.lurkedGuilds.remove(Long.valueOf(guildId)) != null) {
+            this.lurkedGuildsSubject.onNext(this.lurkedGuilds);
+        }
     }
 
     @StoreThread

@@ -10,26 +10,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: capitalizeDecapitalize.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12031a {
-    /* JADX INFO: renamed from: a */
-    public static final boolean m10040a(String str, int i, boolean z2) {
-        char cCharAt = str.charAt(i);
-        if (z2) {
-            return 'A' <= cCharAt && cCharAt <= 'Z';
-        }
-        return Character.isUpperCase(cCharAt);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public static final String m10041b(String str, boolean z2) {
-        if (z2) {
-            return toLowerCaseAsciiOnly(str);
-        }
-        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
-        String lowerCase = str.toLowerCase();
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
-        return lowerCase;
-    }
-
     public static final String capitalizeAsciiOnly(String str) {
         C12238m.checkNotNullParameter(str, "<this>");
         boolean z2 = false;
@@ -96,6 +76,26 @@ public final class C12031a {
         String strSubstring2 = str.substring(iIntValue);
         C12238m.checkNotNullExpressionValue(strSubstring2, "(this as java.lang.String).substring(startIndex)");
         return C12238m.stringPlus(strM10041b, strSubstring2);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final boolean m10040a(String str, int i, boolean z2) {
+        char cCharAt = str.charAt(i);
+        if (z2) {
+            return 'A' <= cCharAt && cCharAt <= 'Z';
+        }
+        return Character.isUpperCase(cCharAt);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static final String m10041b(String str, boolean z2) {
+        if (z2) {
+            return toLowerCaseAsciiOnly(str);
+        }
+        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
+        String lowerCase = str.toLowerCase();
+        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
+        return lowerCase;
     }
 
     public static final String toLowerCaseAsciiOnly(String str) {

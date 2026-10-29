@@ -38,7 +38,7 @@ public final class ViewOnLayoutChangeListenerC1175b implements View.OnLayoutChan
 
     /* JADX INFO: renamed from: b.a.o.b$b */
     /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public static WeakReference<ViewOnLayoutChangeListenerC1175b> f1576a = new WeakReference<>(null);
@@ -58,7 +58,7 @@ public final class ViewOnLayoutChangeListenerC1175b implements View.OnLayoutChan
 
     /* JADX INFO: renamed from: b.a.o.b$c */
     /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
-    public static final class c implements ViewTreeObserver.OnScrollChangedListener {
+    public final class c implements ViewTreeObserver.OnScrollChangedListener {
 
         /* JADX INFO: renamed from: b */
         public final /* synthetic */ View f1578b;

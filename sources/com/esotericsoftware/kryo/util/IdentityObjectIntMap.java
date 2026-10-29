@@ -24,6 +24,35 @@ public class IdentityObjectIntMap<K> {
         this(32, 0.8f);
     }
 
+    public void clear(int i) {
+        if (this.capacity <= i) {
+            clear();
+        } else {
+            this.size = 0;
+            resize(i);
+        }
+    }
+
+    public boolean containsKey(K k) {
+        int iIdentityHashCode = System.identityHashCode(k);
+        if (k == this.keyTable[this.mask & iIdentityHashCode]) {
+            return true;
+        }
+        if (k == this.keyTable[hash2(iIdentityHashCode)]) {
+            return true;
+        }
+        if (k == this.keyTable[hash3(iIdentityHashCode)]) {
+            return true;
+        }
+        if (!this.isBigTable) {
+            return containsKeyStash(k);
+        }
+        if (k != this.keyTable[hash4(iIdentityHashCode)]) {
+            return containsKeyStash(k);
+        }
+        return true;
+    }
+
     private boolean containsKeyStash(K k) {
         K[] kArr = this.keyTable;
         int i = this.capacity;
@@ -35,6 +64,90 @@ public class IdentityObjectIntMap<K> {
             i++;
         }
         return false;
+    }
+
+    public boolean containsValue(int i) {
+        K[] kArr = this.keyTable;
+        int[] iArr = this.valueTable;
+        int i2 = this.capacity + this.stashSize;
+        while (true) {
+            int i3 = i2 - 1;
+            if (i2 <= 0) {
+                return false;
+            }
+            if (kArr[i3] != null && iArr[i3] == i) {
+                return true;
+            }
+            i2 = i3;
+        }
+    }
+
+    public void ensureCapacity(int i) {
+        int i2 = this.size + i;
+        if (i2 >= this.threshold) {
+            resize(ObjectMap.nextPowerOfTwo((int) (i2 / this.loadFactor)));
+        }
+    }
+
+    public K findKey(int i) {
+        K[] kArr = this.keyTable;
+        int[] iArr = this.valueTable;
+        int i2 = this.capacity + this.stashSize;
+        while (true) {
+            int i3 = i2 - 1;
+            if (i2 <= 0) {
+                return null;
+            }
+            if (kArr[i3] != null && iArr[i3] == i) {
+                return kArr[i3];
+            }
+            i2 = i3;
+        }
+    }
+
+    public int get(K k, int i) {
+        int iIdentityHashCode = System.identityHashCode(k);
+        int iHash2 = this.mask & iIdentityHashCode;
+        if (k != this.keyTable[iHash2]) {
+            iHash2 = hash2(iIdentityHashCode);
+            if (k != this.keyTable[iHash2]) {
+                iHash2 = hash3(iIdentityHashCode);
+                if (k != this.keyTable[iHash2]) {
+                    if (!this.isBigTable) {
+                        return getStash(k, i);
+                    }
+                    iHash2 = hash4(iIdentityHashCode);
+                    if (k != this.keyTable[iHash2]) {
+                        return getStash(k, i);
+                    }
+                }
+            }
+        }
+        return this.valueTable[iHash2];
+    }
+
+    public int getAndIncrement(K k, int i, int i2) {
+        int iIdentityHashCode = System.identityHashCode(k);
+        int iHash2 = this.mask & iIdentityHashCode;
+        if (k != this.keyTable[iHash2]) {
+            iHash2 = hash2(iIdentityHashCode);
+            if (k != this.keyTable[iHash2]) {
+                iHash2 = hash3(iIdentityHashCode);
+                if (k != this.keyTable[iHash2]) {
+                    if (!this.isBigTable) {
+                        return getAndIncrementStash(k, i, i2);
+                    }
+                    iHash2 = hash4(iIdentityHashCode);
+                    if (k != this.keyTable[iHash2]) {
+                        return getAndIncrementStash(k, i, i2);
+                    }
+                }
+            }
+        }
+        int[] iArr = this.valueTable;
+        int i3 = iArr[iHash2];
+        iArr[iHash2] = i2 + i3;
+        return i3;
     }
 
     private int getAndIncrementStash(K k, int i, int i2) {
@@ -201,231 +314,6 @@ public class IdentityObjectIntMap<K> {
         }
     }
 
-    private void putResize(K k, int i) {
-        K k2;
-        int i2;
-        int iIdentityHashCode = System.identityHashCode(k);
-        int i3 = iIdentityHashCode & this.mask;
-        K[] kArr = this.keyTable;
-        K k3 = kArr[i3];
-        if (k3 == null) {
-            kArr[i3] = k;
-            this.valueTable[i3] = i;
-            int i4 = this.size;
-            this.size = i4 + 1;
-            if (i4 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        int iHash2 = hash2(iIdentityHashCode);
-        K[] kArr2 = this.keyTable;
-        K k4 = kArr2[iHash2];
-        if (k4 == null) {
-            kArr2[iHash2] = k;
-            this.valueTable[iHash2] = i;
-            int i5 = this.size;
-            this.size = i5 + 1;
-            if (i5 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        int iHash3 = hash3(iIdentityHashCode);
-        K[] kArr3 = this.keyTable;
-        K k5 = kArr3[iHash3];
-        if (k5 == null) {
-            kArr3[iHash3] = k;
-            this.valueTable[iHash3] = i;
-            int i6 = this.size;
-            this.size = i6 + 1;
-            if (i6 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        if (this.isBigTable) {
-            int iHash4 = hash4(iIdentityHashCode);
-            K[] kArr4 = this.keyTable;
-            K k6 = kArr4[iHash4];
-            if (k6 == null) {
-                kArr4[iHash4] = k;
-                this.valueTable[iHash4] = i;
-                int i7 = this.size;
-                this.size = i7 + 1;
-                if (i7 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            i2 = iHash4;
-            k2 = k6;
-        } else {
-            k2 = null;
-            i2 = -1;
-        }
-        push(k, i, i3, k3, iHash2, k4, iHash3, k5, i2, k2);
-    }
-
-    private void putStash(K k, int i) {
-        int i2 = this.stashSize;
-        if (i2 == this.stashCapacity) {
-            resize(this.capacity << 1);
-            put(k, i);
-            return;
-        }
-        int i3 = this.capacity + i2;
-        this.keyTable[i3] = k;
-        this.valueTable[i3] = i;
-        this.stashSize = i2 + 1;
-        this.size++;
-    }
-
-    private void resize(int i) {
-        int i2 = this.capacity + this.stashSize;
-        this.capacity = i;
-        this.threshold = (int) (i * this.loadFactor);
-        this.mask = i - 1;
-        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
-        double d = i;
-        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
-        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
-        this.isBigTable = (this.capacity >>> 16) != 0;
-        K[] kArr = this.keyTable;
-        int[] iArr = this.valueTable;
-        int i3 = this.stashCapacity;
-        this.keyTable = (K[]) new Object[i + i3];
-        this.valueTable = new int[i + i3];
-        int i4 = this.size;
-        this.size = 0;
-        this.stashSize = 0;
-        if (i4 > 0) {
-            for (int i5 = 0; i5 < i2; i5++) {
-                K k = kArr[i5];
-                if (k != null) {
-                    putResize(k, iArr[i5]);
-                }
-            }
-        }
-    }
-
-    public void clear(int i) {
-        if (this.capacity <= i) {
-            clear();
-        } else {
-            this.size = 0;
-            resize(i);
-        }
-    }
-
-    public boolean containsKey(K k) {
-        int iIdentityHashCode = System.identityHashCode(k);
-        if (k == this.keyTable[this.mask & iIdentityHashCode]) {
-            return true;
-        }
-        if (k == this.keyTable[hash2(iIdentityHashCode)]) {
-            return true;
-        }
-        if (k == this.keyTable[hash3(iIdentityHashCode)]) {
-            return true;
-        }
-        if (!this.isBigTable) {
-            return containsKeyStash(k);
-        }
-        if (k != this.keyTable[hash4(iIdentityHashCode)]) {
-            return containsKeyStash(k);
-        }
-        return true;
-    }
-
-    public boolean containsValue(int i) {
-        K[] kArr = this.keyTable;
-        int[] iArr = this.valueTable;
-        int i2 = this.capacity + this.stashSize;
-        while (true) {
-            int i3 = i2 - 1;
-            if (i2 <= 0) {
-                return false;
-            }
-            if (kArr[i3] != null && iArr[i3] == i) {
-                return true;
-            }
-            i2 = i3;
-        }
-    }
-
-    public void ensureCapacity(int i) {
-        int i2 = this.size + i;
-        if (i2 >= this.threshold) {
-            resize(ObjectMap.nextPowerOfTwo((int) (i2 / this.loadFactor)));
-        }
-    }
-
-    public K findKey(int i) {
-        K[] kArr = this.keyTable;
-        int[] iArr = this.valueTable;
-        int i2 = this.capacity + this.stashSize;
-        while (true) {
-            int i3 = i2 - 1;
-            if (i2 <= 0) {
-                return null;
-            }
-            if (kArr[i3] != null && iArr[i3] == i) {
-                return kArr[i3];
-            }
-            i2 = i3;
-        }
-    }
-
-    public int get(K k, int i) {
-        int iIdentityHashCode = System.identityHashCode(k);
-        int iHash2 = this.mask & iIdentityHashCode;
-        if (k != this.keyTable[iHash2]) {
-            iHash2 = hash2(iIdentityHashCode);
-            if (k != this.keyTable[iHash2]) {
-                iHash2 = hash3(iIdentityHashCode);
-                if (k != this.keyTable[iHash2]) {
-                    if (!this.isBigTable) {
-                        return getStash(k, i);
-                    }
-                    iHash2 = hash4(iIdentityHashCode);
-                    if (k != this.keyTable[iHash2]) {
-                        return getStash(k, i);
-                    }
-                }
-            }
-        }
-        return this.valueTable[iHash2];
-    }
-
-    public int getAndIncrement(K k, int i, int i2) {
-        int iIdentityHashCode = System.identityHashCode(k);
-        int iHash2 = this.mask & iIdentityHashCode;
-        if (k != this.keyTable[iHash2]) {
-            iHash2 = hash2(iIdentityHashCode);
-            if (k != this.keyTable[iHash2]) {
-                iHash2 = hash3(iIdentityHashCode);
-                if (k != this.keyTable[iHash2]) {
-                    if (!this.isBigTable) {
-                        return getAndIncrementStash(k, i, i2);
-                    }
-                    iHash2 = hash4(iIdentityHashCode);
-                    if (k != this.keyTable[iHash2]) {
-                        return getAndIncrementStash(k, i, i2);
-                    }
-                }
-            }
-        }
-        int[] iArr = this.valueTable;
-        int i3 = iArr[iHash2];
-        iArr[iHash2] = i2 + i3;
-        return i3;
-    }
-
     public void put(K k, int i) {
         K k2;
         int i2;
@@ -523,6 +411,90 @@ public class IdentityObjectIntMap<K> {
         }
     }
 
+    private void putResize(K k, int i) {
+        K k2;
+        int i2;
+        int iIdentityHashCode = System.identityHashCode(k);
+        int i3 = iIdentityHashCode & this.mask;
+        K[] kArr = this.keyTable;
+        K k3 = kArr[i3];
+        if (k3 == null) {
+            kArr[i3] = k;
+            this.valueTable[i3] = i;
+            int i4 = this.size;
+            this.size = i4 + 1;
+            if (i4 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        int iHash2 = hash2(iIdentityHashCode);
+        K[] kArr2 = this.keyTable;
+        K k4 = kArr2[iHash2];
+        if (k4 == null) {
+            kArr2[iHash2] = k;
+            this.valueTable[iHash2] = i;
+            int i5 = this.size;
+            this.size = i5 + 1;
+            if (i5 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        int iHash3 = hash3(iIdentityHashCode);
+        K[] kArr3 = this.keyTable;
+        K k5 = kArr3[iHash3];
+        if (k5 == null) {
+            kArr3[iHash3] = k;
+            this.valueTable[iHash3] = i;
+            int i6 = this.size;
+            this.size = i6 + 1;
+            if (i6 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        if (this.isBigTable) {
+            int iHash4 = hash4(iIdentityHashCode);
+            K[] kArr4 = this.keyTable;
+            K k6 = kArr4[iHash4];
+            if (k6 == null) {
+                kArr4[iHash4] = k;
+                this.valueTable[iHash4] = i;
+                int i7 = this.size;
+                this.size = i7 + 1;
+                if (i7 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            i2 = iHash4;
+            k2 = k6;
+        } else {
+            k2 = null;
+            i2 = -1;
+        }
+        push(k, i, i3, k3, iHash2, k4, iHash3, k5, i2, k2);
+    }
+
+    private void putStash(K k, int i) {
+        int i2 = this.stashSize;
+        if (i2 == this.stashCapacity) {
+            resize(this.capacity << 1);
+            put(k, i);
+            return;
+        }
+        int i3 = this.capacity + i2;
+        this.keyTable[i3] = k;
+        this.valueTable[i3] = i;
+        this.stashSize = i2 + 1;
+        this.size++;
+    }
+
     public int remove(K k, int i) {
         int iIdentityHashCode = System.identityHashCode(k);
         int i2 = this.mask & iIdentityHashCode;
@@ -587,6 +559,34 @@ public class IdentityObjectIntMap<K> {
             kArr[i] = kArr[i3];
             int[] iArr = this.valueTable;
             iArr[i] = iArr[i3];
+        }
+    }
+
+    private void resize(int i) {
+        int i2 = this.capacity + this.stashSize;
+        this.capacity = i;
+        this.threshold = (int) (i * this.loadFactor);
+        this.mask = i - 1;
+        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
+        double d = i;
+        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
+        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
+        this.isBigTable = (this.capacity >>> 16) != 0;
+        K[] kArr = this.keyTable;
+        int[] iArr = this.valueTable;
+        int i3 = this.stashCapacity;
+        this.keyTable = (K[]) new Object[i + i3];
+        this.valueTable = new int[i + i3];
+        int i4 = this.size;
+        this.size = 0;
+        this.stashSize = 0;
+        if (i4 > 0) {
+            for (int i5 = 0; i5 < i2; i5++) {
+                K k = kArr[i5];
+                if (k != null) {
+                    putResize(k, iArr[i5]);
+                }
+            }
         }
     }
 

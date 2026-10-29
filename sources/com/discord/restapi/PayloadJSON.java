@@ -21,11 +21,11 @@ public final /* data */ class PayloadJSON<T> {
     private final T data;
 
     /* JADX INFO: compiled from: PayloadJSON.kt */
-    public static final class ConverterFactory extends InterfaceC12554h.a {
+    public final class ConverterFactory extends InterfaceC12554h.a {
         private final C12513a gsonConverterFactory;
 
         /* JADX INFO: compiled from: PayloadJSON.kt */
-        public static final class RequestBodyConverter<T> implements InterfaceC12554h<PayloadJSON<T>, RequestBody> {
+        public final class RequestBodyConverter<T> implements InterfaceC12554h<PayloadJSON<T>, RequestBody> {
             private final InterfaceC12554h<T, RequestBody> gsonRequestBodyConverter;
 
             public RequestBodyConverter(InterfaceC12554h<T, RequestBody> interfaceC12554h) {

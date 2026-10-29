@@ -24,6 +24,26 @@ public abstract class AbstractBinderC3419x extends AbstractBinderC3392y0 {
         this.f9611b = Arrays.hashCode(bArr);
     }
 
+    public final boolean equals(@Nullable Object obj) {
+        InterfaceC3422a interfaceC3422aMo4177d;
+        if (obj != null && (obj instanceof InterfaceC3394z0)) {
+            try {
+                InterfaceC3394z0 interfaceC3394z0 = (InterfaceC3394z0) obj;
+                if (interfaceC3394z0.mo4178e() == this.f9611b && (interfaceC3422aMo4177d = interfaceC3394z0.mo4177d()) != null) {
+                    return Arrays.equals(mo4379g(), (byte[]) BinderC3423b.m4381i(interfaceC3422aMo4177d));
+                }
+                return false;
+            } catch (RemoteException e) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f9611b;
+    }
+
     /* JADX INFO: renamed from: i */
     public static byte[] m4378i(String str) {
         try {
@@ -45,26 +65,6 @@ public abstract class AbstractBinderC3419x extends AbstractBinderC3392y0 {
         return this.f9611b;
     }
 
-    public final boolean equals(@Nullable Object obj) {
-        InterfaceC3422a interfaceC3422aMo4177d;
-        if (obj != null && (obj instanceof InterfaceC3394z0)) {
-            try {
-                InterfaceC3394z0 interfaceC3394z0 = (InterfaceC3394z0) obj;
-                if (interfaceC3394z0.mo4178e() == this.f9611b && (interfaceC3422aMo4177d = interfaceC3394z0.mo4177d()) != null) {
-                    return Arrays.equals(mo4379g(), (byte[]) BinderC3423b.m4381i(interfaceC3422aMo4177d));
-                }
-                return false;
-            } catch (RemoteException e) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-            }
-        }
-        return false;
-    }
-
     /* JADX INFO: renamed from: g */
     public abstract byte[] mo4379g();
-
-    public final int hashCode() {
-        return this.f9611b;
-    }
 }

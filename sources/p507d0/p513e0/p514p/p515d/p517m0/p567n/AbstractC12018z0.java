@@ -15,21 +15,21 @@ public abstract class AbstractC12018z0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.z0$a */
     /* JADX INFO: compiled from: TypeSubstitution.kt */
-    public static final class a extends AbstractC12018z0 {
+    public final class a extends AbstractC12018z0 {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
         public /* bridge */ /* synthetic */ InterfaceC12012w0 get(AbstractC11913c0 abstractC11913c0) {
             return (InterfaceC12012w0) m11473get(abstractC11913c0);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
+        public boolean isEmpty() {
+            return true;
         }
 
         /* JADX INFO: renamed from: get, reason: collision with other method in class */
         public Void m11473get(AbstractC11913c0 abstractC11913c0) {
             C12238m.checkNotNullParameter(abstractC11913c0, "key");
             return null;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
-        public boolean isEmpty() {
-            return true;
         }
 
         public String toString() {
@@ -39,7 +39,7 @@ public abstract class AbstractC12018z0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.z0$b */
     /* JADX INFO: compiled from: TypeSubstitution.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

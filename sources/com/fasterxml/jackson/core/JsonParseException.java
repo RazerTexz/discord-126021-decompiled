@@ -7,6 +7,11 @@ import p007b.p195g.p196a.p198b.AbstractC2110f;
 public class JsonParseException extends StreamReadException {
     private static final long serialVersionUID = 2;
 
+    @Override // com.fasterxml.jackson.core.exc.StreamReadException, com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
+    public String getMessage() {
+        return super.getMessage();
+    }
+
     @Override // com.fasterxml.jackson.core.exc.StreamReadException, com.fasterxml.jackson.core.JsonProcessingException
     /* JADX INFO: renamed from: c */
     public /* bridge */ /* synthetic */ Object mo8737c() {
@@ -17,10 +22,5 @@ public class JsonParseException extends StreamReadException {
     /* JADX INFO: renamed from: d */
     public AbstractC2110f mo8737c() {
         return null;
-    }
-
-    @Override // com.fasterxml.jackson.core.exc.StreamReadException, com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
-    public String getMessage() {
-        return super.getMessage();
     }
 }

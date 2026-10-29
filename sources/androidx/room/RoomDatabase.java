@@ -61,7 +61,330 @@ public abstract class RoomDatabase {
     private final Map<String, Object> mBackingFieldMap = new ConcurrentHashMap();
     private final InvalidationTracker mInvalidationTracker = createInvalidationTracker();
 
-    public static class Builder<T extends RoomDatabase> {
+    public abstract class Callback {
+        public void onCreate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+        }
+
+        public void onDestructiveMigration(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+        }
+
+        public void onOpen(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+        }
+    }
+
+    public enum JournalMode {
+        AUTOMATIC,
+        TRUNCATE,
+        WRITE_AHEAD_LOGGING;
+
+        private static boolean isLowRamDevice(@NonNull ActivityManager activityManager) {
+            return activityManager.isLowRamDevice();
+        }
+
+        @SuppressLint({"NewApi"})
+        public JournalMode resolve(Context context) {
+            if (this != AUTOMATIC) {
+                return this;
+            }
+            ActivityManager activityManager = (ActivityManager) context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            return (activityManager == null || isLowRamDevice(activityManager)) ? TRUNCATE : WRITE_AHEAD_LOGGING;
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void assertNotMainThread() {
+        if (!this.mAllowMainThreadQueries && isMainThread()) {
+            throw new IllegalStateException("Cannot access database on the main thread since it may potentially lock the UI for a long period of time.");
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public void assertNotSuspendingTransaction() {
+        if (!inTransaction() && this.mSuspendingTransactionId.get() != null) {
+            throw new IllegalStateException("Cannot access database on a different coroutine context inherited from a suspending transaction.");
+        }
+    }
+
+    @Deprecated
+    public void beginTransaction() {
+        assertNotMainThread();
+        SupportSQLiteDatabase writableDatabase = this.mOpenHelper.getWritableDatabase();
+        this.mInvalidationTracker.syncTriggers(writableDatabase);
+        writableDatabase.beginTransaction();
+    }
+
+    @WorkerThread
+    public abstract void clearAllTables();
+
+    public void close() {
+        if (isOpen()) {
+            ReentrantReadWriteLock.WriteLock writeLock = this.mCloseLock.writeLock();
+            try {
+                writeLock.lock();
+                this.mInvalidationTracker.stopMultiInstanceInvalidation();
+                this.mOpenHelper.close();
+            } finally {
+                writeLock.unlock();
+            }
+        }
+    }
+
+    public SupportSQLiteStatement compileStatement(@NonNull String str) {
+        assertNotMainThread();
+        assertNotSuspendingTransaction();
+        return this.mOpenHelper.getWritableDatabase().compileStatement(str);
+    }
+
+    @NonNull
+    public abstract InvalidationTracker createInvalidationTracker();
+
+    @NonNull
+    public abstract SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration databaseConfiguration);
+
+    @Deprecated
+    public void endTransaction() {
+        this.mOpenHelper.getWritableDatabase().endTransaction();
+        if (inTransaction()) {
+            return;
+        }
+        this.mInvalidationTracker.refreshVersionsAsync();
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public Map<String, Object> getBackingFieldMap() {
+        return this.mBackingFieldMap;
+    }
+
+    public Lock getCloseLock() {
+        return this.mCloseLock.readLock();
+    }
+
+    @NonNull
+    public InvalidationTracker getInvalidationTracker() {
+        return this.mInvalidationTracker;
+    }
+
+    @NonNull
+    public SupportSQLiteOpenHelper getOpenHelper() {
+        return this.mOpenHelper;
+    }
+
+    @NonNull
+    public Executor getQueryExecutor() {
+        return this.mQueryExecutor;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public ThreadLocal<Integer> getSuspendingTransactionId() {
+        return this.mSuspendingTransactionId;
+    }
+
+    @NonNull
+    public Executor getTransactionExecutor() {
+        return this.mTransactionExecutor;
+    }
+
+    public boolean inTransaction() {
+        return this.mOpenHelper.getWritableDatabase().inTransaction();
+    }
+
+    @CallSuper
+    public void init(@NonNull DatabaseConfiguration databaseConfiguration) {
+        SupportSQLiteOpenHelper supportSQLiteOpenHelperCreateOpenHelper = createOpenHelper(databaseConfiguration);
+        this.mOpenHelper = supportSQLiteOpenHelperCreateOpenHelper;
+        if (supportSQLiteOpenHelperCreateOpenHelper instanceof SQLiteCopyOpenHelper) {
+            ((SQLiteCopyOpenHelper) supportSQLiteOpenHelperCreateOpenHelper).setDatabaseConfiguration(databaseConfiguration);
+        }
+        boolean z2 = databaseConfiguration.journalMode == JournalMode.WRITE_AHEAD_LOGGING;
+        this.mOpenHelper.setWriteAheadLoggingEnabled(z2);
+        this.mCallbacks = databaseConfiguration.callbacks;
+        this.mQueryExecutor = databaseConfiguration.queryExecutor;
+        this.mTransactionExecutor = new TransactionExecutor(databaseConfiguration.transactionExecutor);
+        this.mAllowMainThreadQueries = databaseConfiguration.allowMainThreadQueries;
+        this.mWriteAheadLoggingEnabled = z2;
+        if (databaseConfiguration.multiInstanceInvalidation) {
+            this.mInvalidationTracker.startMultiInstanceInvalidation(databaseConfiguration.context, databaseConfiguration.name);
+        }
+    }
+
+    public void internalInitInvalidationTracker(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+        this.mInvalidationTracker.internalInit(supportSQLiteDatabase);
+    }
+
+    private static boolean isMainThread() {
+        return Looper.getMainLooper().getThread() == Thread.currentThread();
+    }
+
+    public boolean isOpen() {
+        SupportSQLiteDatabase supportSQLiteDatabase = this.mDatabase;
+        return supportSQLiteDatabase != null && supportSQLiteDatabase.isOpen();
+    }
+
+    @NonNull
+    public Cursor query(@NonNull String str, @Nullable Object[] objArr) {
+        return this.mOpenHelper.getWritableDatabase().query(new SimpleSQLiteQuery(str, objArr));
+    }
+
+    public void runInTransaction(@NonNull Runnable runnable) {
+        beginTransaction();
+        try {
+            runnable.run();
+            setTransactionSuccessful();
+        } finally {
+            endTransaction();
+        }
+    }
+
+    @Deprecated
+    public void setTransactionSuccessful() {
+        this.mOpenHelper.getWritableDatabase().setTransactionSuccessful();
+    }
+
+    public class MigrationContainer {
+        private HashMap<Integer, TreeMap<Integer, Migration>> mMigrations = new HashMap<>();
+
+        private void addMigration(Migration migration) {
+            int i = migration.startVersion;
+            int i2 = migration.endVersion;
+            TreeMap<Integer, Migration> treeMap = this.mMigrations.get(Integer.valueOf(i));
+            if (treeMap == null) {
+                treeMap = new TreeMap<>();
+                this.mMigrations.put(Integer.valueOf(i), treeMap);
+            }
+            Migration migration2 = treeMap.get(Integer.valueOf(i2));
+            if (migration2 != null) {
+                Log.w(Room.LOG_TAG, "Overriding migration " + migration2 + " with " + migration);
+            }
+            treeMap.put(Integer.valueOf(i2), migration);
+        }
+
+        public void addMigrations(@NonNull Migration... migrationArr) {
+            for (Migration migration : migrationArr) {
+                addMigration(migration);
+            }
+        }
+
+        @Nullable
+        public List<Migration> findMigrationPath(int i, int i2) {
+            if (i == i2) {
+                return Collections.emptyList();
+            }
+            return findUpMigrationPath(new ArrayList(), i2 > i, i, i2);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:10:0x0019  */
+        /* JADX WARN: Code duplicated, block: B:11:0x001e  */
+        /* JADX WARN: Code duplicated, block: B:15:0x002e  */
+        /* JADX WARN: Code duplicated, block: B:17:0x003a  */
+        /* JADX WARN: Code duplicated, block: B:19:0x003e  */
+        /* JADX WARN: Code duplicated, block: B:20:0x0040  */
+        /* JADX WARN: Code duplicated, block: B:31:0x0016 A[SYNTHETIC] */
+        /* JADX WARN: Code duplicated, block: B:36:0x0047 A[SYNTHETIC] */
+        /* JADX WARN: Code duplicated, block: B:37:0x0054 A[SYNTHETIC] */
+        /* JADX WARN: Code duplicated, block: B:43:? A[LOOP:1: B:13:0x0026->B:43:?, LOOP_END, SYNTHETIC] */
+        /* JADX WARN: Code duplicated, block: B:9:0x0017 A[DONT_INVERT] */
+        private List<Migration> findUpMigrationPath(List<Migration> list, boolean z2, int i, int i2) {
+            TreeMap<Integer, Migration> treeMap;
+            Set<Integer> setKeySet;
+            Iterator<Integer> it;
+            boolean z3;
+            boolean z4;
+            int iIntValue;
+            do {
+                if (!z2) {
+                    if (i <= i2) {
+                        return list;
+                    }
+                    treeMap = this.mMigrations.get(Integer.valueOf(i));
+                    if (treeMap == null) {
+                        if (z2) {
+                            setKeySet = treeMap.descendingKeySet();
+                        } else {
+                            setKeySet = treeMap.keySet();
+                        }
+                        it = setKeySet.iterator();
+                        while (true) {
+                            z3 = true;
+                            z4 = false;
+                            if (it.hasNext()) {
+                                z3 = false;
+                                break;
+                                break;
+                            }
+                            iIntValue = it.next().intValue();
+                            if (z2) {
+                                if (iIntValue > i2) {
+                                }
+                            } else if (iIntValue < i2) {
+                            }
+                            if (z4) {
+                                list.add(treeMap.get(Integer.valueOf(iIntValue)));
+                                i = iIntValue;
+                                break;
+                                break;
+                            }
+                        }
+                    } else {
+                        return null;
+                    }
+                } else {
+                    if (i >= i2) {
+                        return list;
+                    }
+                    treeMap = this.mMigrations.get(Integer.valueOf(i));
+                    if (treeMap == null) {
+                        if (z2) {
+                            setKeySet = treeMap.descendingKeySet();
+                        } else {
+                            setKeySet = treeMap.keySet();
+                        }
+                        it = setKeySet.iterator();
+                        while (true) {
+                            z3 = true;
+                            z4 = false;
+                            if (it.hasNext()) {
+                                z3 = false;
+                                break;
+                            }
+                            iIntValue = it.next().intValue();
+                            if (z2) {
+                                if (iIntValue > i2 && iIntValue > i) {
+                                    z4 = true;
+                                }
+                            } else if (iIntValue < i2 && iIntValue < i) {
+                                z4 = true;
+                            }
+                            if (z4) {
+                                list.add(treeMap.get(Integer.valueOf(iIntValue)));
+                                i = iIntValue;
+                                break;
+                            }
+                        }
+                    } else {
+                        return null;
+                    }
+                }
+            } while (z3);
+            return null;
+        }
+    }
+
+    @NonNull
+    public Cursor query(@NonNull SupportSQLiteQuery supportSQLiteQuery) {
+        return query(supportSQLiteQuery, (CancellationSignal) null);
+    }
+
+    @NonNull
+    public Cursor query(@NonNull SupportSQLiteQuery supportSQLiteQuery, @Nullable CancellationSignal cancellationSignal) {
+        assertNotMainThread();
+        assertNotSuspendingTransaction();
+        if (cancellationSignal != null) {
+            return this.mOpenHelper.getWritableDatabase().query(supportSQLiteQuery, cancellationSignal);
+        }
+        return this.mOpenHelper.getWritableDatabase().query(supportSQLiteQuery);
+    }
+
+    public class Builder<T extends RoomDatabase> {
         private boolean mAllowDestructiveMigrationOnDowngrade;
         private boolean mAllowMainThreadQueries;
         private ArrayList<Callback> mCallbacks;
@@ -228,329 +551,6 @@ public abstract class RoomDatabase {
             this.mTransactionExecutor = executor;
             return this;
         }
-    }
-
-    public static abstract class Callback {
-        public void onCreate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
-        }
-
-        public void onDestructiveMigration(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
-        }
-
-        public void onOpen(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
-        }
-    }
-
-    public enum JournalMode {
-        AUTOMATIC,
-        TRUNCATE,
-        WRITE_AHEAD_LOGGING;
-
-        private static boolean isLowRamDevice(@NonNull ActivityManager activityManager) {
-            return activityManager.isLowRamDevice();
-        }
-
-        @SuppressLint({"NewApi"})
-        public JournalMode resolve(Context context) {
-            if (this != AUTOMATIC) {
-                return this;
-            }
-            ActivityManager activityManager = (ActivityManager) context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-            return (activityManager == null || isLowRamDevice(activityManager)) ? TRUNCATE : WRITE_AHEAD_LOGGING;
-        }
-    }
-
-    public static class MigrationContainer {
-        private HashMap<Integer, TreeMap<Integer, Migration>> mMigrations = new HashMap<>();
-
-        private void addMigration(Migration migration) {
-            int i = migration.startVersion;
-            int i2 = migration.endVersion;
-            TreeMap<Integer, Migration> treeMap = this.mMigrations.get(Integer.valueOf(i));
-            if (treeMap == null) {
-                treeMap = new TreeMap<>();
-                this.mMigrations.put(Integer.valueOf(i), treeMap);
-            }
-            Migration migration2 = treeMap.get(Integer.valueOf(i2));
-            if (migration2 != null) {
-                Log.w(Room.LOG_TAG, "Overriding migration " + migration2 + " with " + migration);
-            }
-            treeMap.put(Integer.valueOf(i2), migration);
-        }
-
-        /* JADX WARN: Code duplicated, block: B:10:0x0019  */
-        /* JADX WARN: Code duplicated, block: B:11:0x001e  */
-        /* JADX WARN: Code duplicated, block: B:15:0x002e  */
-        /* JADX WARN: Code duplicated, block: B:17:0x003a  */
-        /* JADX WARN: Code duplicated, block: B:19:0x003e  */
-        /* JADX WARN: Code duplicated, block: B:20:0x0040  */
-        /* JADX WARN: Code duplicated, block: B:31:0x0016 A[SYNTHETIC] */
-        /* JADX WARN: Code duplicated, block: B:36:0x0047 A[SYNTHETIC] */
-        /* JADX WARN: Code duplicated, block: B:37:0x0054 A[SYNTHETIC] */
-        /* JADX WARN: Code duplicated, block: B:43:? A[LOOP:1: B:13:0x0026->B:43:?, LOOP_END, SYNTHETIC] */
-        /* JADX WARN: Code duplicated, block: B:9:0x0017 A[DONT_INVERT] */
-        private List<Migration> findUpMigrationPath(List<Migration> list, boolean z2, int i, int i2) {
-            TreeMap<Integer, Migration> treeMap;
-            Set<Integer> setKeySet;
-            Iterator<Integer> it;
-            boolean z3;
-            boolean z4;
-            int iIntValue;
-            do {
-                if (!z2) {
-                    if (i <= i2) {
-                        return list;
-                    }
-                    treeMap = this.mMigrations.get(Integer.valueOf(i));
-                    if (treeMap == null) {
-                        if (z2) {
-                            setKeySet = treeMap.descendingKeySet();
-                        } else {
-                            setKeySet = treeMap.keySet();
-                        }
-                        it = setKeySet.iterator();
-                        while (true) {
-                            z3 = true;
-                            z4 = false;
-                            if (it.hasNext()) {
-                                z3 = false;
-                                break;
-                                break;
-                            }
-                            iIntValue = it.next().intValue();
-                            if (z2) {
-                                if (iIntValue > i2) {
-                                }
-                            } else if (iIntValue < i2) {
-                            }
-                            if (z4) {
-                                list.add(treeMap.get(Integer.valueOf(iIntValue)));
-                                i = iIntValue;
-                                break;
-                                break;
-                            }
-                        }
-                    } else {
-                        return null;
-                    }
-                } else {
-                    if (i >= i2) {
-                        return list;
-                    }
-                    treeMap = this.mMigrations.get(Integer.valueOf(i));
-                    if (treeMap == null) {
-                        if (z2) {
-                            setKeySet = treeMap.descendingKeySet();
-                        } else {
-                            setKeySet = treeMap.keySet();
-                        }
-                        it = setKeySet.iterator();
-                        while (true) {
-                            z3 = true;
-                            z4 = false;
-                            if (it.hasNext()) {
-                                z3 = false;
-                                break;
-                            }
-                            iIntValue = it.next().intValue();
-                            if (z2) {
-                                if (iIntValue > i2 && iIntValue > i) {
-                                    z4 = true;
-                                }
-                            } else if (iIntValue < i2 && iIntValue < i) {
-                                z4 = true;
-                            }
-                            if (z4) {
-                                list.add(treeMap.get(Integer.valueOf(iIntValue)));
-                                i = iIntValue;
-                                break;
-                            }
-                        }
-                    } else {
-                        return null;
-                    }
-                }
-            } while (z3);
-            return null;
-        }
-
-        public void addMigrations(@NonNull Migration... migrationArr) {
-            for (Migration migration : migrationArr) {
-                addMigration(migration);
-            }
-        }
-
-        @Nullable
-        public List<Migration> findMigrationPath(int i, int i2) {
-            if (i == i2) {
-                return Collections.emptyList();
-            }
-            return findUpMigrationPath(new ArrayList(), i2 > i, i, i2);
-        }
-    }
-
-    private static boolean isMainThread() {
-        return Looper.getMainLooper().getThread() == Thread.currentThread();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void assertNotMainThread() {
-        if (!this.mAllowMainThreadQueries && isMainThread()) {
-            throw new IllegalStateException("Cannot access database on the main thread since it may potentially lock the UI for a long period of time.");
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public void assertNotSuspendingTransaction() {
-        if (!inTransaction() && this.mSuspendingTransactionId.get() != null) {
-            throw new IllegalStateException("Cannot access database on a different coroutine context inherited from a suspending transaction.");
-        }
-    }
-
-    @Deprecated
-    public void beginTransaction() {
-        assertNotMainThread();
-        SupportSQLiteDatabase writableDatabase = this.mOpenHelper.getWritableDatabase();
-        this.mInvalidationTracker.syncTriggers(writableDatabase);
-        writableDatabase.beginTransaction();
-    }
-
-    @WorkerThread
-    public abstract void clearAllTables();
-
-    public void close() {
-        if (isOpen()) {
-            ReentrantReadWriteLock.WriteLock writeLock = this.mCloseLock.writeLock();
-            try {
-                writeLock.lock();
-                this.mInvalidationTracker.stopMultiInstanceInvalidation();
-                this.mOpenHelper.close();
-            } finally {
-                writeLock.unlock();
-            }
-        }
-    }
-
-    public SupportSQLiteStatement compileStatement(@NonNull String str) {
-        assertNotMainThread();
-        assertNotSuspendingTransaction();
-        return this.mOpenHelper.getWritableDatabase().compileStatement(str);
-    }
-
-    @NonNull
-    public abstract InvalidationTracker createInvalidationTracker();
-
-    @NonNull
-    public abstract SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration databaseConfiguration);
-
-    @Deprecated
-    public void endTransaction() {
-        this.mOpenHelper.getWritableDatabase().endTransaction();
-        if (inTransaction()) {
-            return;
-        }
-        this.mInvalidationTracker.refreshVersionsAsync();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public Map<String, Object> getBackingFieldMap() {
-        return this.mBackingFieldMap;
-    }
-
-    public Lock getCloseLock() {
-        return this.mCloseLock.readLock();
-    }
-
-    @NonNull
-    public InvalidationTracker getInvalidationTracker() {
-        return this.mInvalidationTracker;
-    }
-
-    @NonNull
-    public SupportSQLiteOpenHelper getOpenHelper() {
-        return this.mOpenHelper;
-    }
-
-    @NonNull
-    public Executor getQueryExecutor() {
-        return this.mQueryExecutor;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public ThreadLocal<Integer> getSuspendingTransactionId() {
-        return this.mSuspendingTransactionId;
-    }
-
-    @NonNull
-    public Executor getTransactionExecutor() {
-        return this.mTransactionExecutor;
-    }
-
-    public boolean inTransaction() {
-        return this.mOpenHelper.getWritableDatabase().inTransaction();
-    }
-
-    @CallSuper
-    public void init(@NonNull DatabaseConfiguration databaseConfiguration) {
-        SupportSQLiteOpenHelper supportSQLiteOpenHelperCreateOpenHelper = createOpenHelper(databaseConfiguration);
-        this.mOpenHelper = supportSQLiteOpenHelperCreateOpenHelper;
-        if (supportSQLiteOpenHelperCreateOpenHelper instanceof SQLiteCopyOpenHelper) {
-            ((SQLiteCopyOpenHelper) supportSQLiteOpenHelperCreateOpenHelper).setDatabaseConfiguration(databaseConfiguration);
-        }
-        boolean z2 = databaseConfiguration.journalMode == JournalMode.WRITE_AHEAD_LOGGING;
-        this.mOpenHelper.setWriteAheadLoggingEnabled(z2);
-        this.mCallbacks = databaseConfiguration.callbacks;
-        this.mQueryExecutor = databaseConfiguration.queryExecutor;
-        this.mTransactionExecutor = new TransactionExecutor(databaseConfiguration.transactionExecutor);
-        this.mAllowMainThreadQueries = databaseConfiguration.allowMainThreadQueries;
-        this.mWriteAheadLoggingEnabled = z2;
-        if (databaseConfiguration.multiInstanceInvalidation) {
-            this.mInvalidationTracker.startMultiInstanceInvalidation(databaseConfiguration.context, databaseConfiguration.name);
-        }
-    }
-
-    public void internalInitInvalidationTracker(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
-        this.mInvalidationTracker.internalInit(supportSQLiteDatabase);
-    }
-
-    public boolean isOpen() {
-        SupportSQLiteDatabase supportSQLiteDatabase = this.mDatabase;
-        return supportSQLiteDatabase != null && supportSQLiteDatabase.isOpen();
-    }
-
-    @NonNull
-    public Cursor query(@NonNull String str, @Nullable Object[] objArr) {
-        return this.mOpenHelper.getWritableDatabase().query(new SimpleSQLiteQuery(str, objArr));
-    }
-
-    public void runInTransaction(@NonNull Runnable runnable) {
-        beginTransaction();
-        try {
-            runnable.run();
-            setTransactionSuccessful();
-        } finally {
-            endTransaction();
-        }
-    }
-
-    @Deprecated
-    public void setTransactionSuccessful() {
-        this.mOpenHelper.getWritableDatabase().setTransactionSuccessful();
-    }
-
-    @NonNull
-    public Cursor query(@NonNull SupportSQLiteQuery supportSQLiteQuery) {
-        return query(supportSQLiteQuery, (CancellationSignal) null);
-    }
-
-    @NonNull
-    public Cursor query(@NonNull SupportSQLiteQuery supportSQLiteQuery, @Nullable CancellationSignal cancellationSignal) {
-        assertNotMainThread();
-        assertNotSuspendingTransaction();
-        if (cancellationSignal != null) {
-            return this.mOpenHelper.getWritableDatabase().query(supportSQLiteQuery, cancellationSignal);
-        }
-        return this.mOpenHelper.getWritableDatabase().query(supportSQLiteQuery);
     }
 
     public <V> V runInTransaction(@NonNull Callable<V> callable) {

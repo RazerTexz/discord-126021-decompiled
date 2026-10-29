@@ -31,7 +31,7 @@ public final class C7348x2d9fcf21<T, R> implements InterfaceC12589b<PanelState, 
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActionsViewModel$Companion$observeStoreState$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public static final class AnonymousClass1<T, R> implements InterfaceC12589b<Channel, Observable<? extends WidgetChannelSidebarActionsViewModel.StoreState>> {
+    public final class AnonymousClass1<T, R> implements InterfaceC12589b<Channel, Observable<? extends WidgetChannelSidebarActionsViewModel.StoreState>> {
         public final /* synthetic */ PanelState $panelState;
 
         public AnonymousClass1(PanelState panelState) {

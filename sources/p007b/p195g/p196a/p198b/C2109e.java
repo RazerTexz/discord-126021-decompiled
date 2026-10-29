@@ -9,14 +9,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: compiled from: JsonLocation.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2109e implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final C2109e f4478j = new C2109e(null, -1, -1, -1, -1);
-    private static final long serialVersionUID = 1;
     public final int _columnNr;
     public final int _lineNr;
     public final long _totalBytes;
     public final long _totalChars;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2109e f4478j = new C2109e(null, -1, -1, -1, -1);
 
     /* JADX INFO: renamed from: k */
     public final transient Object f4479k = null;
@@ -26,14 +26,6 @@ public class C2109e implements Serializable {
         this._totalChars = j2;
         this._lineNr = i;
         this._columnNr = i2;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final int m1670a(StringBuilder sb, String str) {
-        sb.append('\"');
-        sb.append(str);
-        sb.append('\"');
-        return str.length();
     }
 
     public boolean equals(Object obj) {
@@ -58,6 +50,14 @@ public class C2109e implements Serializable {
     public int hashCode() {
         Object obj = this.f4479k;
         return ((((obj == null ? 1 : obj.hashCode()) ^ this._lineNr) + this._columnNr) ^ ((int) this._totalChars)) + ((int) this._totalBytes);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final int m1670a(StringBuilder sb, String str) {
+        sb.append('\"');
+        sb.append(str);
+        sb.append('\"');
+        return str.length();
     }
 
     /* JADX WARN: Code duplicated, block: B:29:0x00bb  */

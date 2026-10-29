@@ -10,6 +10,15 @@ public class NativeAndroidVideoTrackSource {
         this.nativeAndroidVideoTrackSource = j;
     }
 
+    @Nullable
+    public VideoProcessor.FrameAdaptationParameters adaptFrame(VideoFrame videoFrame) {
+        return nativeAdaptFrame(this.nativeAndroidVideoTrackSource, videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation(), videoFrame.getTimestampNs());
+    }
+
+    public void adaptOutputFormat(VideoSource.AspectRatio aspectRatio, @Nullable Integer num, VideoSource.AspectRatio aspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
+        nativeAdaptOutputFormat(this.nativeAndroidVideoTrackSource, aspectRatio.width, aspectRatio.height, num, aspectRatio2.width, aspectRatio2.height, num2, num3);
+    }
+
     @CalledByNative
     public static VideoProcessor.FrameAdaptationParameters createFrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z2) {
         return new VideoProcessor.FrameAdaptationParameters(i, i2, i3, i4, i5, i6, j, z2);
@@ -25,15 +34,6 @@ public class NativeAndroidVideoTrackSource {
     private static native void nativeSetIsScreencast(long j, boolean z2);
 
     private static native void nativeSetState(long j, boolean z2);
-
-    @Nullable
-    public VideoProcessor.FrameAdaptationParameters adaptFrame(VideoFrame videoFrame) {
-        return nativeAdaptFrame(this.nativeAndroidVideoTrackSource, videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation(), videoFrame.getTimestampNs());
-    }
-
-    public void adaptOutputFormat(VideoSource.AspectRatio aspectRatio, @Nullable Integer num, VideoSource.AspectRatio aspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
-        nativeAdaptOutputFormat(this.nativeAndroidVideoTrackSource, aspectRatio.width, aspectRatio.height, num, aspectRatio2.width, aspectRatio2.height, num2, num3);
-    }
 
     public void onFrameCaptured(VideoFrame videoFrame) {
         nativeOnFrameCaptured(this.nativeAndroidVideoTrackSource, videoFrame.getRotation(), videoFrame.getTimestampNs(), videoFrame.getBuffer());

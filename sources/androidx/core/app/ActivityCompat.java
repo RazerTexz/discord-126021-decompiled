@@ -35,7 +35,7 @@ public class ActivityCompat extends ContextCompat {
     private static PermissionCompatDelegate sDelegate;
 
     @RequiresApi(30)
-    public static class Api30Impl {
+    public class Api30Impl {
         private Api30Impl() {
         }
 
@@ -60,7 +60,7 @@ public class ActivityCompat extends ContextCompat {
     }
 
     @RequiresApi(21)
-    public static class SharedElementCallback21Impl extends android.app.SharedElementCallback {
+    public class SharedElementCallback21Impl extends android.app.SharedElementCallback {
         private final SharedElementCallback mCallback;
 
         public SharedElementCallback21Impl(SharedElementCallback sharedElementCallback) {

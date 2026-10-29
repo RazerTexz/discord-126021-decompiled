@@ -29,7 +29,7 @@ public final class C11622p implements InterfaceC11788f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.p$a */
     /* JADX INFO: compiled from: ErasedOverridabilityCondition.kt */
-    public /* synthetic */ class a {
+    public final /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f23514a;
@@ -42,7 +42,7 @@ public final class C11622p implements InterfaceC11788f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.p$b */
     /* JADX INFO: compiled from: ErasedOverridabilityCondition.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11326c1, AbstractC11913c0> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11326c1, AbstractC11913c0> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23515j = new b();

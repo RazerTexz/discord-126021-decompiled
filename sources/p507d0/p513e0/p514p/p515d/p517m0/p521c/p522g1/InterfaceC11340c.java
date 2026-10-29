@@ -18,7 +18,7 @@ public interface InterfaceC11340c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g1.c$a */
     /* JADX INFO: compiled from: AnnotationDescriptor.kt */
-    public static final class a {
+    public final class a {
         public static C11713b getFqName(InterfaceC11340c interfaceC11340c) {
             C12238m.checkNotNullParameter(interfaceC11340c, "this");
             InterfaceC11330e annotationClass = C11836a.getAnnotationClass(interfaceC11340c);

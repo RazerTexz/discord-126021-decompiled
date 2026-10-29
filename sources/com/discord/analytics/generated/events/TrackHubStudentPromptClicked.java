@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackHubStudentPromptClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackHubStudentPromptClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "hub_student_prompt_clicked";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "hub_student_prompt_clicked";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

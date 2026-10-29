@@ -36,71 +36,15 @@ public class C11738r extends AbstractC11723c {
     /* JADX INFO: renamed from: q */
     public int f24160q = 0;
 
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.i.r$b */
-    /* JADX INFO: compiled from: RopeByteString.java */
-    public static class b {
-
-        /* JADX INFO: renamed from: a */
-        public final Stack<AbstractC11723c> f24161a = new Stack<>();
-
-        public b(a aVar) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m9860a(AbstractC11723c abstractC11723c) {
-            if (!abstractC11723c.mo9826g()) {
-                if (!(abstractC11723c instanceof C11738r)) {
-                    String strValueOf = String.valueOf(abstractC11723c.getClass());
-                    throw new IllegalArgumentException(C1643a.m822J(new StringBuilder(strValueOf.length() + 49), "Has a new type of ByteString been created? Found ", strValueOf));
-                }
-                C11738r c11738r = (C11738r) abstractC11723c;
-                m9860a(c11738r.f24156m);
-                m9860a(c11738r.f24157n);
-                return;
-            }
-            int size = abstractC11723c.size();
-            int[] iArr = C11738r.f24154k;
-            int iBinarySearch = Arrays.binarySearch(iArr, size);
-            if (iBinarySearch < 0) {
-                iBinarySearch = (-(iBinarySearch + 1)) - 1;
-            }
-            int i = iArr[iBinarySearch + 1];
-            if (this.f24161a.isEmpty() || this.f24161a.peek().size() >= i) {
-                this.f24161a.push(abstractC11723c);
-                return;
-            }
-            int i2 = iArr[iBinarySearch];
-            AbstractC11723c abstractC11723cPop = this.f24161a.pop();
-            while (!this.f24161a.isEmpty() && this.f24161a.peek().size() < i2) {
-                abstractC11723cPop = new C11738r(this.f24161a.pop(), abstractC11723cPop);
-            }
-            C11738r c11738r2 = new C11738r(abstractC11723cPop, abstractC11723c);
-            while (!this.f24161a.isEmpty()) {
-                int size2 = c11738r2.size();
-                int[] iArr2 = C11738r.f24154k;
-                int iBinarySearch2 = Arrays.binarySearch(iArr2, size2);
-                if (iBinarySearch2 < 0) {
-                    iBinarySearch2 = (-(iBinarySearch2 + 1)) - 1;
-                }
-                if (this.f24161a.peek().size() >= iArr2[iBinarySearch2 + 1]) {
-                    break;
-                } else {
-                    c11738r2 = new C11738r(this.f24161a.pop(), c11738r2);
-                }
-            }
-            this.f24161a.push(c11738r2);
-        }
-    }
-
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.r$c */
     /* JADX INFO: compiled from: RopeByteString.java */
-    public static class c implements Iterator<C11733m> {
-
-        /* JADX INFO: renamed from: j */
-        public final Stack<C11738r> f24162j = new Stack<>();
+    public class c implements Iterator<C11733m> {
 
         /* JADX INFO: renamed from: k */
         public C11733m f24163k;
+
+        /* JADX INFO: renamed from: j */
+        public final Stack<C11738r> f24162j = new Stack<>();
 
         public c(AbstractC11723c abstractC11723c, a aVar) {
             while (abstractC11723c instanceof C11738r) {
@@ -228,40 +172,6 @@ public class C11738r extends AbstractC11723c {
         this.f24159p = Math.max(abstractC11723c.mo9825e(), abstractC11723c2.mo9825e()) + 1;
     }
 
-    /* JADX INFO: renamed from: l */
-    public static C11733m m9859l(AbstractC11723c abstractC11723c, AbstractC11723c abstractC11723c2) {
-        int size = abstractC11723c.size();
-        int size2 = abstractC11723c2.size();
-        byte[] bArr = new byte[size + size2];
-        abstractC11723c.copyTo(bArr, 0, 0, size);
-        abstractC11723c2.copyTo(bArr, 0, size, size2);
-        return new C11733m(bArr);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
-    /* JADX INFO: renamed from: d */
-    public void mo9824d(byte[] bArr, int i, int i2, int i3) {
-        int i4 = i + i3;
-        int i5 = this.f24158o;
-        if (i4 <= i5) {
-            this.f24156m.mo9824d(bArr, i, i2, i3);
-        } else {
-            if (i >= i5) {
-                this.f24157n.mo9824d(bArr, i - i5, i2, i3);
-                return;
-            }
-            int i6 = i5 - i;
-            this.f24156m.mo9824d(bArr, i, i2, i6);
-            this.f24157n.mo9824d(bArr, 0, i2 + i6, i3 - i6);
-        }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
-    /* JADX INFO: renamed from: e */
-    public int mo9825e() {
-        return this.f24159p;
-    }
-
     public boolean equals(Object obj) {
         int iMo9829j;
         if (obj == this) {
@@ -317,6 +227,60 @@ public class C11738r extends AbstractC11723c {
         }
     }
 
+    public int hashCode() {
+        int iMo9827h = this.f24160q;
+        if (iMo9827h == 0) {
+            int i = this.f24155l;
+            iMo9827h = mo9827h(i, 0, i);
+            if (iMo9827h == 0) {
+                iMo9827h = 1;
+            }
+            this.f24160q = iMo9827h;
+        }
+        return iMo9827h;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
+    public boolean isValidUtf8() {
+        int iMo9828i = this.f24156m.mo9828i(0, 0, this.f24158o);
+        AbstractC11723c abstractC11723c = this.f24157n;
+        return abstractC11723c.mo9828i(iMo9828i, 0, abstractC11723c.size()) == 0;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public static C11733m m9859l(AbstractC11723c abstractC11723c, AbstractC11723c abstractC11723c2) {
+        int size = abstractC11723c.size();
+        int size2 = abstractC11723c2.size();
+        byte[] bArr = new byte[size + size2];
+        abstractC11723c.copyTo(bArr, 0, 0, size);
+        abstractC11723c2.copyTo(bArr, 0, size, size2);
+        return new C11733m(bArr);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
+    /* JADX INFO: renamed from: d */
+    public void mo9824d(byte[] bArr, int i, int i2, int i3) {
+        int i4 = i + i3;
+        int i5 = this.f24158o;
+        if (i4 <= i5) {
+            this.f24156m.mo9824d(bArr, i, i2, i3);
+        } else {
+            if (i >= i5) {
+                this.f24157n.mo9824d(bArr, i - i5, i2, i3);
+                return;
+            }
+            int i6 = i5 - i;
+            this.f24156m.mo9824d(bArr, i, i2, i6);
+            this.f24157n.mo9824d(bArr, 0, i2 + i6, i3 - i6);
+        }
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
+    /* JADX INFO: renamed from: e */
+    public int mo9825e() {
+        return this.f24159p;
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
     /* JADX INFO: renamed from: g */
     public boolean mo9826g() {
@@ -338,19 +302,6 @@ public class C11738r extends AbstractC11723c {
         return this.f24157n.mo9827h(this.f24156m.mo9827h(i, i2, i6), 0, i3 - i6);
     }
 
-    public int hashCode() {
-        int iMo9827h = this.f24160q;
-        if (iMo9827h == 0) {
-            int i = this.f24155l;
-            iMo9827h = mo9827h(i, 0, i);
-            if (iMo9827h == 0) {
-                iMo9827h = 1;
-            }
-            this.f24160q = iMo9827h;
-        }
-        return iMo9827h;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
     /* JADX INFO: renamed from: i */
     public int mo9828i(int i, int i2, int i3) {
@@ -364,13 +315,6 @@ public class C11738r extends AbstractC11723c {
         }
         int i6 = i5 - i2;
         return this.f24157n.mo9828i(this.f24156m.mo9828i(i, i2, i6), 0, i3 - i6);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
-    public boolean isValidUtf8() {
-        int iMo9828i = this.f24156m.mo9828i(0, 0, this.f24158o);
-        AbstractC11723c abstractC11723c = this.f24157n;
-        return abstractC11723c.mo9828i(iMo9828i, 0, abstractC11723c.size()) == 0;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
@@ -405,6 +349,62 @@ public class C11738r extends AbstractC11723c {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c
     public String toString(String str) throws UnsupportedEncodingException {
         return new String(toByteArray(), str);
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.i.r$b */
+    /* JADX INFO: compiled from: RopeByteString.java */
+    public class b {
+
+        /* JADX INFO: renamed from: a */
+        public final Stack<AbstractC11723c> f24161a = new Stack<>();
+
+        public b(a aVar) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m9860a(AbstractC11723c abstractC11723c) {
+            if (!abstractC11723c.mo9826g()) {
+                if (!(abstractC11723c instanceof C11738r)) {
+                    String strValueOf = String.valueOf(abstractC11723c.getClass());
+                    throw new IllegalArgumentException(C1643a.m822J(new StringBuilder(strValueOf.length() + 49), "Has a new type of ByteString been created? Found ", strValueOf));
+                }
+                C11738r c11738r = (C11738r) abstractC11723c;
+                m9860a(c11738r.f24156m);
+                m9860a(c11738r.f24157n);
+                return;
+            }
+            int size = abstractC11723c.size();
+            int[] iArr = C11738r.f24154k;
+            int iBinarySearch = Arrays.binarySearch(iArr, size);
+            if (iBinarySearch < 0) {
+                iBinarySearch = (-(iBinarySearch + 1)) - 1;
+            }
+            int i = iArr[iBinarySearch + 1];
+            if (this.f24161a.isEmpty() || this.f24161a.peek().size() >= i) {
+                this.f24161a.push(abstractC11723c);
+                return;
+            }
+            int i2 = iArr[iBinarySearch];
+            AbstractC11723c abstractC11723cPop = this.f24161a.pop();
+            while (!this.f24161a.isEmpty() && this.f24161a.peek().size() < i2) {
+                abstractC11723cPop = new C11738r(this.f24161a.pop(), abstractC11723cPop);
+            }
+            C11738r c11738r2 = new C11738r(abstractC11723cPop, abstractC11723c);
+            while (!this.f24161a.isEmpty()) {
+                int size2 = c11738r2.size();
+                int[] iArr2 = C11738r.f24154k;
+                int iBinarySearch2 = Arrays.binarySearch(iArr2, size2);
+                if (iBinarySearch2 < 0) {
+                    iBinarySearch2 = (-(iBinarySearch2 + 1)) - 1;
+                }
+                if (this.f24161a.peek().size() >= iArr2[iBinarySearch2 + 1]) {
+                    break;
+                } else {
+                    c11738r2 = new C11738r(this.f24161a.pop(), c11738r2);
+                }
+            }
+            this.f24161a.push(c11738r2);
+        }
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.AbstractC11723c, java.lang.Iterable

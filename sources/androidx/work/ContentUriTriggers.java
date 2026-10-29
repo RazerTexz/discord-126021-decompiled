@@ -11,7 +11,7 @@ import java.util.Set;
 public final class ContentUriTriggers {
     private final Set<Trigger> mTriggers = new HashSet();
 
-    public static final class Trigger {
+    public final class Trigger {
         private final boolean mTriggerForDescendants;
 
         @NonNull

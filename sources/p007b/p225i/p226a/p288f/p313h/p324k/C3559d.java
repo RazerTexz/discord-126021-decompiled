@@ -21,6 +21,11 @@ public final class C3559d implements InterfaceC3557b, IInterface {
         this.f9830a = iBinder;
     }
 
+    @Override // android.os.IInterface
+    public IBinder asBinder() {
+        return this.f9830a;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     @Override // p007b.p225i.p226a.p288f.p313h.p324k.InterfaceC3557b
     /* JADX INFO: renamed from: S */
@@ -38,10 +43,5 @@ public final class C3559d implements InterfaceC3557b, IInterface {
             parcelObtain.recycle();
             parcelObtain2.recycle();
         }
-    }
-
-    @Override // android.os.IInterface
-    public IBinder asBinder() {
-        return this.f9830a;
     }
 }

@@ -56,169 +56,6 @@ public final class C12303i implements Interceptor {
         this.f25543b = c12380x;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final Request m10231a(Response response, C12283c c12283c) throws IOException {
-        String strM10989a;
-        C12290j c12290j;
-        C12266c0 c12266c0 = (c12283c == null || (c12290j = c12283c.f25438b) == null) ? null : c12290j.f25506q;
-        int i = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
-        Request request = response.request;
-        String str = request.method;
-        if (i != 307 && i != 308) {
-            if (i == 401) {
-                return this.f25543b.f26018s.mo10102a(c12266c0, response);
-            }
-            if (i == 421) {
-                RequestBody requestBody = request.body;
-                if ((requestBody != null && requestBody.isOneShot()) || c12283c == null || !(!C12238m.areEqual(c12283c.f25441e.f25461h.f25353a.f25979g, c12283c.f25438b.f25506q.f25370a.f25353a.f25979g))) {
-                    return null;
-                }
-                C12290j c12290j2 = c12283c.f25438b;
-                synchronized (c12290j2) {
-                    c12290j2.f25499j = true;
-                }
-                return response.request;
-            }
-            if (i == 503) {
-                Response response2 = response.priorResponse;
-                if ((response2 == null || response2.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String != 503) && m10233c(response, Integer.MAX_VALUE) == 0) {
-                    return response.request;
-                }
-                return null;
-            }
-            if (i == 407) {
-                if (c12266c0 == null) {
-                    C12238m.throwNpe();
-                }
-                if (c12266c0.f25371b.type() == Proxy.Type.HTTP) {
-                    return this.f25543b.f26025z.mo10102a(c12266c0, response);
-                }
-                throw new ProtocolException("Received HTTP_PROXY_AUTH (407) code while not using proxy");
-            }
-            if (i == 408) {
-                if (!this.f25543b.f26017r) {
-                    return null;
-                }
-                RequestBody requestBody2 = request.body;
-                if (requestBody2 != null && requestBody2.isOneShot()) {
-                    return null;
-                }
-                Response response3 = response.priorResponse;
-                if ((response3 == null || response3.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String != 408) && m10233c(response, 0) <= 0) {
-                    return response.request;
-                }
-                return null;
-            }
-            switch (i) {
-                case 300:
-                case 301:
-                case 302:
-                case 303:
-                    break;
-                default:
-                    return null;
-            }
-        }
-        if (!this.f25543b.f26019t || (strM10989a = Response.m10989a(response, "Location", null, 2)) == null) {
-            return null;
-        }
-        C12379w c12379w = response.request.url;
-        Objects.requireNonNull(c12379w);
-        C12238m.checkParameterIsNotNull(strM10989a, "link");
-        C12379w.a aVarM10405g = c12379w.m10405g(strM10989a);
-        C12379w c12379wM10409b = aVarM10405g != null ? aVarM10405g.m10409b() : null;
-        if (c12379wM10409b == null) {
-            return null;
-        }
-        if (!C12238m.areEqual(c12379wM10409b.f25976d, response.request.url.f25976d) && !this.f25543b.f26020u) {
-            return null;
-        }
-        Request.C12935a c12935a = new Request.C12935a(response.request);
-        if (C12300f.m10226a(str)) {
-            int i2 = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
-            C12238m.checkParameterIsNotNull(str, "method");
-            boolean z2 = C12238m.areEqual(str, "PROPFIND") || i2 == 308 || i2 == 307;
-            C12238m.checkParameterIsNotNull(str, "method");
-            if (!(!C12238m.areEqual(str, "PROPFIND")) || i2 == 308 || i2 == 307) {
-                c12935a.m10980c(str, z2 ? response.request.body : null);
-            } else {
-                c12935a.m10980c(ShareTarget.METHOD_GET, null);
-            }
-            if (!z2) {
-                c12935a.m10981d("Transfer-Encoding");
-                c12935a.m10981d("Content-Length");
-                c12935a.m10981d("Content-Type");
-            }
-        }
-        if (!C12272c.m10120a(response.request.url, c12379wM10409b)) {
-            c12935a.m10981d("Authorization");
-        }
-        c12935a.m10984g(c12379wM10409b);
-        return c12935a.m10978a();
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m10232b(IOException iOException, C12285e c12285e, Request request, boolean z2) {
-        boolean zM10209a;
-        C12293m c12293m;
-        C12290j c12290j;
-        if (!this.f25543b.f26017r) {
-            return false;
-        }
-        if (z2) {
-            RequestBody requestBody = request.body;
-            if ((requestBody != null && requestBody.isOneShot()) || (iOException instanceof FileNotFoundException)) {
-                return false;
-            }
-        }
-        if (!(!(iOException instanceof ProtocolException) && (!(iOException instanceof InterruptedIOException) ? ((iOException instanceof SSLHandshakeException) && (iOException.getCause() instanceof CertificateException)) || (iOException instanceof SSLPeerUnverifiedException) : !((iOException instanceof SocketTimeoutException) && !z2)))) {
-            return false;
-        }
-        C12284d c12284d = c12285e.f25470o;
-        if (c12284d == null) {
-            C12238m.throwNpe();
-        }
-        int i = c12284d.f25456c;
-        if (i == 0 && c12284d.f25457d == 0 && c12284d.f25458e == 0) {
-            zM10209a = false;
-        } else if (c12284d.f25459f != null) {
-            zM10209a = true;
-        } else {
-            C12266c0 c12266c0 = null;
-            if (i <= 1 && c12284d.f25457d <= 1 && c12284d.f25458e <= 0 && (c12290j = c12284d.f25462i.f25471p) != null) {
-                synchronized (c12290j) {
-                    if (c12290j.f25500k == 0 && C12272c.m10120a(c12290j.f25506q.f25370a.f25353a, c12284d.f25461h.f25353a)) {
-                        c12266c0 = c12290j.f25506q;
-                    }
-                }
-            }
-            if (c12266c0 != null) {
-                c12284d.f25459f = c12266c0;
-            } else {
-                C12293m.a aVar = c12284d.f25454a;
-                if ((aVar == null || !aVar.m10211a()) && (c12293m = c12284d.f25455b) != null) {
-                    zM10209a = c12293m.m10209a();
-                }
-            }
-            zM10209a = true;
-        }
-        return zM10209a;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final int m10233c(Response response, int i) {
-        String strM10989a = Response.m10989a(response, "Retry-After", null, 2);
-        if (strM10989a == null) {
-            return i;
-        }
-        if (!new Regex("\\d+").matches(strM10989a)) {
-            return Integer.MAX_VALUE;
-        }
-        Integer numValueOf = Integer.valueOf(strM10989a);
-        C12238m.checkExpressionValueIsNotNull(numValueOf, "Integer.valueOf(header)");
-        return numValueOf.intValue();
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r1v0 */
     /* JADX WARN: Type inference failed for: r1v1 */
@@ -507,5 +344,168 @@ public final class C12303i implements Interceptor {
             r1.m10184i(true);
             throw th;
         }
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final Request m10231a(Response response, C12283c c12283c) throws IOException {
+        String strM10989a;
+        C12290j c12290j;
+        C12266c0 c12266c0 = (c12283c == null || (c12290j = c12283c.f25438b) == null) ? null : c12290j.f25506q;
+        int i = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
+        Request request = response.request;
+        String str = request.method;
+        if (i != 307 && i != 308) {
+            if (i == 401) {
+                return this.f25543b.f26018s.mo10102a(c12266c0, response);
+            }
+            if (i == 421) {
+                RequestBody requestBody = request.body;
+                if ((requestBody != null && requestBody.isOneShot()) || c12283c == null || !(!C12238m.areEqual(c12283c.f25441e.f25461h.f25353a.f25979g, c12283c.f25438b.f25506q.f25370a.f25353a.f25979g))) {
+                    return null;
+                }
+                C12290j c12290j2 = c12283c.f25438b;
+                synchronized (c12290j2) {
+                    c12290j2.f25499j = true;
+                }
+                return response.request;
+            }
+            if (i == 503) {
+                Response response2 = response.priorResponse;
+                if ((response2 == null || response2.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String != 503) && m10233c(response, Integer.MAX_VALUE) == 0) {
+                    return response.request;
+                }
+                return null;
+            }
+            if (i == 407) {
+                if (c12266c0 == null) {
+                    C12238m.throwNpe();
+                }
+                if (c12266c0.f25371b.type() == Proxy.Type.HTTP) {
+                    return this.f25543b.f26025z.mo10102a(c12266c0, response);
+                }
+                throw new ProtocolException("Received HTTP_PROXY_AUTH (407) code while not using proxy");
+            }
+            if (i == 408) {
+                if (!this.f25543b.f26017r) {
+                    return null;
+                }
+                RequestBody requestBody2 = request.body;
+                if (requestBody2 != null && requestBody2.isOneShot()) {
+                    return null;
+                }
+                Response response3 = response.priorResponse;
+                if ((response3 == null || response3.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String != 408) && m10233c(response, 0) <= 0) {
+                    return response.request;
+                }
+                return null;
+            }
+            switch (i) {
+                case 300:
+                case 301:
+                case 302:
+                case 303:
+                    break;
+                default:
+                    return null;
+            }
+        }
+        if (!this.f25543b.f26019t || (strM10989a = Response.m10989a(response, "Location", null, 2)) == null) {
+            return null;
+        }
+        C12379w c12379w = response.request.url;
+        Objects.requireNonNull(c12379w);
+        C12238m.checkParameterIsNotNull(strM10989a, "link");
+        C12379w.a aVarM10405g = c12379w.m10405g(strM10989a);
+        C12379w c12379wM10409b = aVarM10405g != null ? aVarM10405g.m10409b() : null;
+        if (c12379wM10409b == null) {
+            return null;
+        }
+        if (!C12238m.areEqual(c12379wM10409b.f25976d, response.request.url.f25976d) && !this.f25543b.f26020u) {
+            return null;
+        }
+        Request.C12935a c12935a = new Request.C12935a(response.request);
+        if (C12300f.m10226a(str)) {
+            int i2 = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
+            C12238m.checkParameterIsNotNull(str, "method");
+            boolean z2 = C12238m.areEqual(str, "PROPFIND") || i2 == 308 || i2 == 307;
+            C12238m.checkParameterIsNotNull(str, "method");
+            if (!(!C12238m.areEqual(str, "PROPFIND")) || i2 == 308 || i2 == 307) {
+                c12935a.m10980c(str, z2 ? response.request.body : null);
+            } else {
+                c12935a.m10980c(ShareTarget.METHOD_GET, null);
+            }
+            if (!z2) {
+                c12935a.m10981d("Transfer-Encoding");
+                c12935a.m10981d("Content-Length");
+                c12935a.m10981d("Content-Type");
+            }
+        }
+        if (!C12272c.m10120a(response.request.url, c12379wM10409b)) {
+            c12935a.m10981d("Authorization");
+        }
+        c12935a.m10984g(c12379wM10409b);
+        return c12935a.m10978a();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m10232b(IOException iOException, C12285e c12285e, Request request, boolean z2) {
+        boolean zM10209a;
+        C12293m c12293m;
+        C12290j c12290j;
+        if (!this.f25543b.f26017r) {
+            return false;
+        }
+        if (z2) {
+            RequestBody requestBody = request.body;
+            if ((requestBody != null && requestBody.isOneShot()) || (iOException instanceof FileNotFoundException)) {
+                return false;
+            }
+        }
+        if (!(!(iOException instanceof ProtocolException) && (!(iOException instanceof InterruptedIOException) ? ((iOException instanceof SSLHandshakeException) && (iOException.getCause() instanceof CertificateException)) || (iOException instanceof SSLPeerUnverifiedException) : !((iOException instanceof SocketTimeoutException) && !z2)))) {
+            return false;
+        }
+        C12284d c12284d = c12285e.f25470o;
+        if (c12284d == null) {
+            C12238m.throwNpe();
+        }
+        int i = c12284d.f25456c;
+        if (i == 0 && c12284d.f25457d == 0 && c12284d.f25458e == 0) {
+            zM10209a = false;
+        } else if (c12284d.f25459f != null) {
+            zM10209a = true;
+        } else {
+            C12266c0 c12266c0 = null;
+            if (i <= 1 && c12284d.f25457d <= 1 && c12284d.f25458e <= 0 && (c12290j = c12284d.f25462i.f25471p) != null) {
+                synchronized (c12290j) {
+                    if (c12290j.f25500k == 0 && C12272c.m10120a(c12290j.f25506q.f25370a.f25353a, c12284d.f25461h.f25353a)) {
+                        c12266c0 = c12290j.f25506q;
+                    }
+                }
+            }
+            if (c12266c0 != null) {
+                c12284d.f25459f = c12266c0;
+            } else {
+                C12293m.a aVar = c12284d.f25454a;
+                if ((aVar == null || !aVar.m10211a()) && (c12293m = c12284d.f25455b) != null) {
+                    zM10209a = c12293m.m10209a();
+                }
+            }
+            zM10209a = true;
+        }
+        return zM10209a;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final int m10233c(Response response, int i) {
+        String strM10989a = Response.m10989a(response, "Retry-After", null, 2);
+        if (strM10989a == null) {
+            return i;
+        }
+        if (!new Regex("\\d+").matches(strM10989a)) {
+            return Integer.MAX_VALUE;
+        }
+        Integer numValueOf = Integer.valueOf(strM10989a);
+        C12238m.checkExpressionValueIsNotNull(numValueOf, "Integer.valueOf(header)");
+        return numValueOf.intValue();
     }
 }

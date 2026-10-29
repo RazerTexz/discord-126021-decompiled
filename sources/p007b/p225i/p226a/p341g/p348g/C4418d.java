@@ -25,12 +25,6 @@ public final class C4418d extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: f */
     public static final int[] f11721f = {1000, 2350, 3700, 5050};
 
-    /* JADX INFO: renamed from: g */
-    public static final Property<C4418d, Float> f11722g = new a(Float.class, "animationFraction");
-
-    /* JADX INFO: renamed from: h */
-    public static final Property<C4418d, Float> f11723h = new b(Float.class, "completeEndFraction");
-
     /* JADX INFO: renamed from: i */
     public ObjectAnimator f11724i;
 
@@ -55,9 +49,15 @@ public final class C4418d extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: p */
     public Animatable2Compat.AnimationCallback f11731p;
 
+    /* JADX INFO: renamed from: g */
+    public static final Property<C4418d, Float> f11722g = new a(Float.class, "animationFraction");
+
+    /* JADX INFO: renamed from: h */
+    public static final Property<C4418d, Float> f11723h = new b(Float.class, "completeEndFraction");
+
     /* JADX INFO: renamed from: b.i.a.g.g.d$a */
     /* JADX INFO: compiled from: CircularIndeterminateAnimatorDelegate.java */
-    public static class a extends Property<C4418d, Float> {
+    public final class a extends Property<C4418d, Float> {
         public a(Class cls, String str) {
             super(cls, str);
         }
@@ -108,7 +108,7 @@ public final class C4418d extends AbstractC4421g<ObjectAnimator> {
 
     /* JADX INFO: renamed from: b.i.a.g.g.d$b */
     /* JADX INFO: compiled from: CircularIndeterminateAnimatorDelegate.java */
-    public static class b extends Property<C4418d, Float> {
+    public final class b extends Property<C4418d, Float> {
         public b(Class cls, String str) {
             super(cls, str);
         }
@@ -130,6 +130,14 @@ public final class C4418d extends AbstractC4421g<ObjectAnimator> {
         this.f11731p = null;
         this.f11727l = circularProgressIndicatorSpec;
         this.f11726k = new FastOutSlowInInterpolator();
+    }
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: h */
+    public void m6129h() {
+        this.f11728m = 0;
+        this.f11738c[0] = MaterialColors.compositeARGBWithAlpha(this.f11727l.indicatorColors[0], this.f11736a.getAlpha());
+        this.f11730o = 0.0f;
     }
 
     @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4421g
@@ -192,13 +200,5 @@ public final class C4418d extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: g */
     public void mo6128g() {
         this.f11731p = null;
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: h */
-    public void m6129h() {
-        this.f11728m = 0;
-        this.f11738c[0] = MaterialColors.compositeARGBWithAlpha(this.f11727l.indicatorColors[0], this.f11736a.getAlpha());
-        this.f11730o = 0.0f;
     }
 }

@@ -33,16 +33,6 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
         return storeHeaderItem.copy(modelStickerPack, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelStickerPack getPack() {
-        return this.pack;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsNewPack() {
-        return this.isNewPack;
-    }
-
     public final StoreHeaderItem copy(ModelStickerPack pack, boolean isNewPack) {
         C12238m.checkNotNullParameter(pack, "pack");
         return new StoreHeaderItem(pack, isNewPack);
@@ -59,9 +49,19 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
         return C12238m.areEqual(this.pack, storeHeaderItem.pack) && this.isNewPack == storeHeaderItem.isNewPack;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsNewPack() {
+        return this.isNewPack;
+    }
+
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ModelStickerPack getPack() {
+        return this.pack;
     }
 
     public final ModelStickerPack getPack() {

@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentException.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentException implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence errorMessage = null;
     private final Long requestStatus = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "payment_exception";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackPaymentException implements AnalyticsSchema, 
         }
         TrackPaymentException trackPaymentException = (TrackPaymentException) other;
         return C12238m.areEqual(this.errorMessage, trackPaymentException.errorMessage) && C12238m.areEqual(this.requestStatus, trackPaymentException.requestStatus);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

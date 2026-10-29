@@ -33,7 +33,7 @@ public final class C12628h1<T> extends AbstractC12757b<T> {
 
     /* JADX INFO: renamed from: j0.l.a.h1$a */
     /* JADX INFO: compiled from: OperatorPublish.java */
-    public static final class a<T> extends AtomicLong implements Producer, Subscription {
+    public final class a<T> extends AtomicLong implements Producer, Subscription {
         private static final long serialVersionUID = -4453897557930727610L;
         public final Subscriber<? super T> child;
         public final b<T> parent;
@@ -42,6 +42,11 @@ public final class C12628h1<T> extends AbstractC12757b<T> {
             this.parent = bVar;
             this.child = subscriber;
             lazySet(-4611686018427387904L);
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return get() == Long.MIN_VALUE;
         }
 
         /* JADX INFO: renamed from: a */
@@ -69,11 +74,6 @@ public final class C12628h1<T> extends AbstractC12757b<T> {
                 }
             } while (!compareAndSet(j2, j3));
             return j3;
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return get() == Long.MIN_VALUE;
         }
 
         @Override // p658rx.Producer
@@ -148,13 +148,7 @@ public final class C12628h1<T> extends AbstractC12757b<T> {
 
     /* JADX INFO: renamed from: j0.l.a.h1$b */
     /* JADX INFO: compiled from: OperatorPublish.java */
-    public static final class b<T> extends Subscriber<T> implements Subscription {
-
-        /* JADX INFO: renamed from: j */
-        public static final a[] f26832j = new a[0];
-
-        /* JADX INFO: renamed from: k */
-        public static final a[] f26833k = new a[0];
+    public final class b<T> extends Subscriber<T> implements Subscription {
 
         /* JADX INFO: renamed from: l */
         public final Queue<Object> f26834l;
@@ -176,6 +170,12 @@ public final class C12628h1<T> extends AbstractC12757b<T> {
 
         /* JADX INFO: renamed from: r */
         public boolean f26840r;
+
+        /* JADX INFO: renamed from: j */
+        public static final a[] f26832j = new a[0];
+
+        /* JADX INFO: renamed from: k */
+        public static final a[] f26833k = new a[0];
 
         public b(AtomicReference<b<T>> atomicReference) {
             this.f26834l = C12755y.m10858b() ? new C12744n<>(C12719i.f27283j) : new C12726c<>(C12719i.f27283j);

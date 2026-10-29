@@ -25,27 +25,9 @@ public class SelectionCoordinator<I, T extends I> {
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
     public ItemSelectionListener<? super I> itemSelectionListener;
 
-    /* JADX INFO: compiled from: SelectionCoordinator.kt */
-    public interface ItemSelectionListener<I> {
-        void onItemSelected(I item);
-
-        void onItemUnselected(I item);
-
-        void unregister();
-    }
-
-    /* JADX INFO: compiled from: SelectionCoordinator.kt */
-    public static final class RestorationException extends Exception {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public RestorationException(String str) {
-            super(str);
-            C12238m.checkNotNullParameter(str, NotificationCompat.CATEGORY_MESSAGE);
-        }
-    }
-
     /* JADX INFO: renamed from: com.lytefast.flexinput.utils.SelectionCoordinator$a */
     /* JADX INFO: compiled from: SelectionCoordinator.kt */
-    public static final class C11192a<T> {
+    public final class C11192a<T> {
 
         /* JADX INFO: renamed from: a */
         public final T f22089a;
@@ -90,6 +72,24 @@ public class SelectionCoordinator<I, T extends I> {
             sbM833U.append(this.f22089a);
             sbM833U.append(", isSelected=");
             return C1643a.m827O(sbM833U, this.f22090b, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: SelectionCoordinator.kt */
+    public interface ItemSelectionListener<I> {
+        void onItemSelected(I item);
+
+        void onItemUnselected(I item);
+
+        void unregister();
+    }
+
+    /* JADX INFO: compiled from: SelectionCoordinator.kt */
+    public final class RestorationException extends Exception {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public RestorationException(String str) {
+            super(str);
+            C12238m.checkNotNullParameter(str, NotificationCompat.CATEGORY_MESSAGE);
         }
     }
 

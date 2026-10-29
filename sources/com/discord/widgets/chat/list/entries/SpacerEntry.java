@@ -12,15 +12,7 @@ public final /* data */ class SpacerEntry extends ChatListEntry {
 
     public SpacerEntry(long j) {
         this.channelId = j;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    private final long getChannelId() {
-        return this.channelId;
+        this.key = "" + getType() + j;
     }
 
     public static /* synthetic */ SpacerEntry copy$default(SpacerEntry spacerEntry, long j, int i, Object obj) {
@@ -39,6 +31,11 @@ public final /* data */ class SpacerEntry extends ChatListEntry {
             return (other instanceof SpacerEntry) && this.channelId == ((SpacerEntry) other).channelId;
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    private final long getChannelId() {
+        return this.channelId;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

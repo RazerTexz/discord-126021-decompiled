@@ -17,7 +17,7 @@ public abstract class AbstractC11395u implements InterfaceC11330e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.u$a */
     /* JADX INFO: compiled from: ModuleAwareClassDescriptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

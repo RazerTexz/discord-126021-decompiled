@@ -43,7 +43,7 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$1 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final class C97801 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C97801 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C97801() {
             super(1);
         }
@@ -61,8 +61,68 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$getItems$1 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final class Companion {
+    public final class C97821 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends User>, Item> {
+        public static final C97821 INSTANCE = new C97821();
+
+        public C97821() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Item invoke(Map.Entry<? extends Long, ? extends User> entry) {
+            return invoke2((Map.Entry<Long, ? extends User>) entry);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Item invoke2(Map.Entry<Long, ? extends User> entry) {
+            C12238m.checkNotNullParameter(entry, "userEntry");
+            return new Item(entry.getValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$onClickUnblock$1 */
+    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
+    public final class C97841 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C97841() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetSettingsBlockedUsersViewModel.this.emitShowToastEvent(C5419R.string.user_has_been_unblocked);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$onClickUnblock$2 */
+    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
+    public final class C97852 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C97852() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetSettingsBlockedUsersViewModel.this.emitShowToastEvent(C5419R.string.default_failure_to_perform_action_message);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -103,10 +163,10 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-        public static final /* data */ class ShowToast extends Event {
+        public final /* data */ class ShowToast extends Event {
             private final int stringRes;
 
             public ShowToast(int i) {
@@ -121,11 +181,6 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
                 return showToast.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getStringRes() {
-                return this.stringRes;
-            }
-
             public final ShowToast copy(int stringRes) {
                 return new ShowToast(stringRes);
             }
@@ -135,6 +190,11 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
                     return (other instanceof ShowToast) && this.stringRes == ((ShowToast) other).stringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getStringRes() {
+                return this.stringRes;
             }
 
             public final int getStringRes() {
@@ -159,7 +219,7 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final /* data */ class Item implements MGRecyclerDataPayload {
+    public final /* data */ class Item implements MGRecyclerDataPayload {
         private final String key;
         private final int type;
         private final User user;
@@ -175,11 +235,6 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
                 user = item.user;
             }
             return item.copy(user);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
         }
 
         public final Item copy(User user) {
@@ -204,6 +259,11 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
             return this.type;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
+        }
+
         public final User getUser() {
             return this.user;
         }
@@ -225,7 +285,7 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, User> users;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -234,16 +294,16 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
             this.users = map;
         }
 
+        public final Map<Long, User> component1() {
+            return this.users;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ StoreState copy$default(StoreState storeState, Map map, int i, Object obj) {
             if ((i & 1) != 0) {
                 map = storeState.users;
             }
             return storeState.copy(map);
-        }
-
-        public final Map<Long, User> component1() {
-            return this.users;
         }
 
         public final StoreState copy(Map<Long, ? extends User> users) {
@@ -276,10 +336,10 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-        public static final class Empty extends ViewState {
+        public final class Empty extends ViewState {
             public static final Empty INSTANCE = new Empty();
 
             private Empty() {
@@ -288,7 +348,7 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
         }
 
         /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<Item> items;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -298,16 +358,16 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
                 this.items = list;
             }
 
+            public final List<Item> component1() {
+                return this.items;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.items;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<Item> component1() {
-                return this.items;
             }
 
             public final Loaded copy(List<Item> items) {
@@ -340,7 +400,7 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
         }
 
         /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -353,66 +413,6 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$getItems$1 */
-    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final class C97821 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends User>, Item> {
-        public static final C97821 INSTANCE = new C97821();
-
-        public C97821() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Item invoke(Map.Entry<? extends Long, ? extends User> entry) {
-            return invoke2((Map.Entry<Long, ? extends User>) entry);
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final Item invoke2(Map.Entry<Long, ? extends User> entry) {
-            C12238m.checkNotNullParameter(entry, "userEntry");
-            return new Item(entry.getValue());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$onClickUnblock$1 */
-    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final class C97841 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C97841() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetSettingsBlockedUsersViewModel.this.emitShowToastEvent(C5419R.string.user_has_been_unblocked);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsersViewModel$onClickUnblock$2 */
-    /* JADX INFO: compiled from: WidgetSettingsBlockedUsersViewModel.kt */
-    public static final class C97852 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C97852() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetSettingsBlockedUsersViewModel.this.emitShowToastEvent(C5419R.string.default_failure_to_perform_action_message);
         }
     }
 
@@ -445,6 +445,10 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
         }));
     }
 
+    public final RestAPI getRestAPI() {
+        return this.restAPI;
+    }
+
     private final void handleStoreState(StoreState storeState) {
         List<Item> items = getItems(storeState.getUsers());
         if (items.isEmpty()) {
@@ -452,10 +456,6 @@ public final class WidgetSettingsBlockedUsersViewModel extends AbstractC0859d0<V
         } else {
             updateViewState(new ViewState.Loaded(items));
         }
-    }
-
-    public final RestAPI getRestAPI() {
-        return this.restAPI;
     }
 
     public final Observable<Event> observeEvents() {

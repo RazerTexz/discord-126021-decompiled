@@ -37,18 +37,8 @@ public final /* data */ class StageChannel {
         this.containsMe = z3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
     public final List<User> component2() {
         return this.participants;
-    }
-
-    /* JADX INFO: renamed from: component3-twRsX-0, reason: not valid java name and from getter */
-    public final StageRoles getMyRoles() {
-        return this.myRoles;
     }
 
     public final Set<Long> component4() {
@@ -57,35 +47,6 @@ public final /* data */ class StageChannel {
 
     public final List<UserGuildMember> component5() {
         return this.speakers;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getAudienceSize() {
-        return this.audienceSize;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final StageInstance getStageInstance() {
-        return this.stageInstance;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getCanAccess() {
-        return this.canAccess;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getContainsMe() {
-        return this.containsMe;
-    }
-
-    /* JADX INFO: renamed from: copy-LcZnYPc, reason: not valid java name */
-    public final StageChannel m11422copyLcZnYPc(Channel channel, List<? extends User> participants, StageRoles myRoles, Set<Long> speakerIds, List<UserGuildMember> speakers, int audienceSize, StageInstance stageInstance, boolean canAccess, boolean containsMe) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(participants, "participants");
-        C12238m.checkNotNullParameter(speakerIds, "speakerIds");
-        C12238m.checkNotNullParameter(speakers, "speakers");
-        return new StageChannel(channel, participants, myRoles, speakerIds, speakers, audienceSize, stageInstance, canAccess, containsMe);
     }
 
     public boolean equals(Object other) {
@@ -99,16 +60,36 @@ public final /* data */ class StageChannel {
         return C12238m.areEqual(this.channel, stageChannel.channel) && C12238m.areEqual(this.participants, stageChannel.participants) && C12238m.areEqual(this.myRoles, stageChannel.myRoles) && C12238m.areEqual(this.speakerIds, stageChannel.speakerIds) && C12238m.areEqual(this.speakers, stageChannel.speakers) && this.audienceSize == stageChannel.audienceSize && C12238m.areEqual(this.stageInstance, stageChannel.stageInstance) && this.canAccess == stageChannel.canAccess && this.containsMe == stageChannel.containsMe;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getAudienceSize() {
         return this.audienceSize;
+    }
+
+    public final int getAudienceSize() {
+        return this.audienceSize;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getCanAccess() {
+        return this.canAccess;
     }
 
     public final boolean getCanAccess() {
         return this.canAccess;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getContainsMe() {
+        return this.containsMe;
     }
 
     public final boolean getContainsMe() {
@@ -119,8 +100,8 @@ public final /* data */ class StageChannel {
         return this.stageInstance != null;
     }
 
-    /* JADX INFO: renamed from: getMyRoles-twRsX-0, reason: not valid java name */
-    public final StageRoles m11423getMyRolestwRsX0() {
+    /* JADX INFO: renamed from: component3-twRsX-0, reason: not valid java name and from getter */
+    public final StageRoles getMyRoles() {
         return this.myRoles;
     }
 
@@ -134,6 +115,11 @@ public final /* data */ class StageChannel {
 
     public final List<UserGuildMember> getSpeakers() {
         return this.speakers;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final StageInstance getStageInstance() {
+        return this.stageInstance;
     }
 
     public final StageInstance getStageInstance() {
@@ -170,6 +156,20 @@ public final /* data */ class StageChannel {
         int i = (iHashCode6 + r1) * 31;
         boolean z3 = this.containsMe;
         return i + (z3 ? 1 : z3);
+    }
+
+    /* JADX INFO: renamed from: copy-LcZnYPc, reason: not valid java name */
+    public final StageChannel m11422copyLcZnYPc(Channel channel, List<? extends User> participants, StageRoles myRoles, Set<Long> speakerIds, List<UserGuildMember> speakers, int audienceSize, StageInstance stageInstance, boolean canAccess, boolean containsMe) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        C12238m.checkNotNullParameter(participants, "participants");
+        C12238m.checkNotNullParameter(speakerIds, "speakerIds");
+        C12238m.checkNotNullParameter(speakers, "speakers");
+        return new StageChannel(channel, participants, myRoles, speakerIds, speakers, audienceSize, stageInstance, canAccess, containsMe);
+    }
+
+    /* JADX INFO: renamed from: getMyRoles-twRsX-0, reason: not valid java name */
+    public final StageRoles m11423getMyRolestwRsX0() {
+        return this.myRoles;
     }
 
     public String toString() {

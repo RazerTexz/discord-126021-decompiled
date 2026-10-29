@@ -12,6 +12,10 @@ import p007b.p100d.p104b.p105a.C1643a;
 @SuppressLint({"BanParcelableUsage"})
 public final class ActivityResult implements Parcelable {
 
+    @Nullable
+    private final Intent mData;
+    private final int mResultCode;
+
     @NonNull
     public static final Parcelable.Creator<ActivityResult> CREATOR = new Parcelable.Creator<ActivityResult>() { // from class: androidx.activity.result.ActivityResult.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -27,21 +31,9 @@ public final class ActivityResult implements Parcelable {
         }
     };
 
-    @Nullable
-    private final Intent mData;
-    private final int mResultCode;
-
     public ActivityResult(int i, @Nullable Intent intent) {
         this.mResultCode = i;
         this.mData = intent;
-    }
-
-    @NonNull
-    public static String resultCodeToString(int i) {
-        if (i != -1) {
-            return i != 0 ? String.valueOf(i) : "RESULT_CANCELED";
-        }
-        return "RESULT_OK";
     }
 
     @Override // android.os.Parcelable
@@ -56,6 +48,14 @@ public final class ActivityResult implements Parcelable {
 
     public int getResultCode() {
         return this.mResultCode;
+    }
+
+    @NonNull
+    public static String resultCodeToString(int i) {
+        if (i != -1) {
+            return i != 0 ? String.valueOf(i) : "RESULT_CANCELED";
+        }
+        return "RESULT_OK";
     }
 
     public String toString() {

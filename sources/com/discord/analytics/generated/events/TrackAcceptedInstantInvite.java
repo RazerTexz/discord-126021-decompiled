@@ -9,37 +9,31 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAcceptedInstantInvite.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAcceptedInstantInvite implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channel = null;
     private final Long channelType = null;
     private final Boolean custom = null;
+    private final Long destinationUserId = null;
     private final Long guild = null;
     private final Long guildOwner = null;
-    private final Long ownerId = null;
-    private final CharSequence invite = null;
-    private final Long inviter = null;
-    private final Long userDay = null;
-    private final Long userGuilds = null;
-    private final Long locationGuildId = null;
-    private final Long locationChannelId = null;
-    private final Long locationChannelType = null;
-    private final Long locationMessageId = null;
-    private final Long guildSizeTotal = null;
     private final Long guildSizeOnline = null;
-    private final Long sizeTotal = null;
-    private final Long sizeOnline = null;
-    private final CharSequence inviteType = null;
-    private final Long destinationUserId = null;
+    private final Long guildSizeTotal = null;
     private final Long guildVerificationLevel = null;
     private final Boolean hasMutualGuild = null;
+    private final CharSequence invite = null;
     private final Long inviteGuildScheduledEventId = null;
+    private final CharSequence inviteType = null;
+    private final Long inviter = null;
+    private final Long locationChannelId = null;
+    private final Long locationChannelType = null;
+    private final Long locationGuildId = null;
+    private final Long locationMessageId = null;
+    private final Long ownerId = null;
+    private final Long sizeOnline = null;
+    private final Long sizeTotal = null;
+    private TrackBase trackBase;
+    private final Long userDay = null;
+    private final Long userGuilds = null;
     private final transient String analyticsSchemaTypeName = "accepted_instant_invite";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +44,12 @@ public final /* data */ class TrackAcceptedInstantInvite implements AnalyticsSch
         }
         TrackAcceptedInstantInvite trackAcceptedInstantInvite = (TrackAcceptedInstantInvite) other;
         return C12238m.areEqual(this.channel, trackAcceptedInstantInvite.channel) && C12238m.areEqual(this.channelType, trackAcceptedInstantInvite.channelType) && C12238m.areEqual(this.custom, trackAcceptedInstantInvite.custom) && C12238m.areEqual(this.guild, trackAcceptedInstantInvite.guild) && C12238m.areEqual(this.guildOwner, trackAcceptedInstantInvite.guildOwner) && C12238m.areEqual(this.ownerId, trackAcceptedInstantInvite.ownerId) && C12238m.areEqual(this.invite, trackAcceptedInstantInvite.invite) && C12238m.areEqual(this.inviter, trackAcceptedInstantInvite.inviter) && C12238m.areEqual(this.userDay, trackAcceptedInstantInvite.userDay) && C12238m.areEqual(this.userGuilds, trackAcceptedInstantInvite.userGuilds) && C12238m.areEqual(this.locationGuildId, trackAcceptedInstantInvite.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackAcceptedInstantInvite.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackAcceptedInstantInvite.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackAcceptedInstantInvite.locationMessageId) && C12238m.areEqual(this.guildSizeTotal, trackAcceptedInstantInvite.guildSizeTotal) && C12238m.areEqual(this.guildSizeOnline, trackAcceptedInstantInvite.guildSizeOnline) && C12238m.areEqual(this.sizeTotal, trackAcceptedInstantInvite.sizeTotal) && C12238m.areEqual(this.sizeOnline, trackAcceptedInstantInvite.sizeOnline) && C12238m.areEqual(this.inviteType, trackAcceptedInstantInvite.inviteType) && C12238m.areEqual(this.destinationUserId, trackAcceptedInstantInvite.destinationUserId) && C12238m.areEqual(this.guildVerificationLevel, trackAcceptedInstantInvite.guildVerificationLevel) && C12238m.areEqual(this.hasMutualGuild, trackAcceptedInstantInvite.hasMutualGuild) && C12238m.areEqual(this.inviteGuildScheduledEventId, trackAcceptedInstantInvite.inviteGuildScheduledEventId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -12,7 +12,7 @@ public final class ModelApplicationComparator {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: ModelApplicationComparator.kt */
-    public static final class Companion implements Comparator<Application> {
+    public final class Companion implements Comparator<Application> {
         private Companion() {
         }
 

@@ -15,7 +15,7 @@ public final class WidgetContactSync$viewModel$2 extends AbstractC12240o impleme
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$viewModel$2$1 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82441 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C82441 extends AbstractC12240o implements Function1<Error, Unit> {
         public C82441() {
             super(1);
         }

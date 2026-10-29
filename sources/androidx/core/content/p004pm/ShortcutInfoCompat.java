@@ -53,7 +53,6 @@ public class ShortcutInfoCompat {
     public boolean mIsCached;
     public boolean mIsDeclaredInManifest;
     public boolean mIsDynamic;
-    public boolean mIsEnabled = true;
     public boolean mIsImmutable;
     public boolean mIsLongLived;
     public boolean mIsPinned;
@@ -67,8 +66,9 @@ public class ShortcutInfoCompat {
     public Person[] mPersons;
     public int mRank;
     public UserHandle mUser;
+    public boolean mIsEnabled = true;
 
-    public static class Builder {
+    public class Builder {
         private Map<String, Map<String, List<String>>> mCapabilityBindingParams;
         private Set<String> mCapabilityBindings;
         private final ShortcutInfoCompat mInfo;
@@ -344,6 +344,29 @@ public class ShortcutInfoCompat {
         }
     }
 
+    public Intent addToIntent(Intent intent) {
+        Intent[] intentArr = this.mIntents;
+        intent.putExtra("android.intent.extra.shortcut.INTENT", intentArr[intentArr.length - 1]).putExtra("android.intent.extra.shortcut.NAME", this.mLabel.toString());
+        if (this.mIcon != null) {
+            Drawable activityIcon = null;
+            if (this.mIsAlwaysBadged) {
+                PackageManager packageManager = this.mContext.getPackageManager();
+                ComponentName componentName = this.mActivity;
+                if (componentName != null) {
+                    try {
+                        activityIcon = packageManager.getActivityIcon(componentName);
+                    } catch (PackageManager.NameNotFoundException unused) {
+                    }
+                }
+                if (activityIcon == null) {
+                    activityIcon = this.mContext.getApplicationInfo().loadIcon(packageManager);
+                }
+            }
+            this.mIcon.addToShortcutIntent(intent, activityIcon, this.mContext);
+        }
+        return intent;
+    }
+
     @RequiresApi(22)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     private PersistableBundle buildLegacyExtrasBundle() {
@@ -380,71 +403,6 @@ public class ShortcutInfoCompat {
             arrayList.add(new Builder(context, it.next()).build());
         }
         return arrayList;
-    }
-
-    @Nullable
-    @RequiresApi(25)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    private static LocusIdCompat getLocusIdFromExtra(@Nullable PersistableBundle persistableBundle) {
-        String string;
-        if (persistableBundle == null || (string = persistableBundle.getString(EXTRA_LOCUS_ID)) == null) {
-            return null;
-        }
-        return new LocusIdCompat(string);
-    }
-
-    @RequiresApi(25)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    @VisibleForTesting
-    public static boolean getLongLivedFromExtra(@Nullable PersistableBundle persistableBundle) {
-        if (persistableBundle == null || !persistableBundle.containsKey(EXTRA_LONG_LIVED)) {
-            return false;
-        }
-        return persistableBundle.getBoolean(EXTRA_LONG_LIVED);
-    }
-
-    @VisibleForTesting
-    @Nullable
-    @RequiresApi(25)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static Person[] getPersonsFromExtra(@NonNull PersistableBundle persistableBundle) {
-        if (persistableBundle == null || !persistableBundle.containsKey(EXTRA_PERSON_COUNT)) {
-            return null;
-        }
-        int i = persistableBundle.getInt(EXTRA_PERSON_COUNT);
-        Person[] personArr = new Person[i];
-        int i2 = 0;
-        while (i2 < i) {
-            StringBuilder sbM833U = C1643a.m833U(EXTRA_PERSON_);
-            int i3 = i2 + 1;
-            sbM833U.append(i3);
-            personArr[i2] = Person.fromPersistableBundle(persistableBundle.getPersistableBundle(sbM833U.toString()));
-            i2 = i3;
-        }
-        return personArr;
-    }
-
-    public Intent addToIntent(Intent intent) {
-        Intent[] intentArr = this.mIntents;
-        intent.putExtra("android.intent.extra.shortcut.INTENT", intentArr[intentArr.length - 1]).putExtra("android.intent.extra.shortcut.NAME", this.mLabel.toString());
-        if (this.mIcon != null) {
-            Drawable activityIcon = null;
-            if (this.mIsAlwaysBadged) {
-                PackageManager packageManager = this.mContext.getPackageManager();
-                ComponentName componentName = this.mActivity;
-                if (componentName != null) {
-                    try {
-                        activityIcon = packageManager.getActivityIcon(componentName);
-                    } catch (PackageManager.NameNotFoundException unused) {
-                    }
-                }
-                if (activityIcon == null) {
-                    activityIcon = this.mContext.getApplicationInfo().loadIcon(packageManager);
-                }
-            }
-            this.mIcon.addToShortcutIntent(intent, activityIcon, this.mContext);
-        }
-        return intent;
     }
 
     @Nullable
@@ -503,13 +461,55 @@ public class ShortcutInfoCompat {
     }
 
     @Nullable
+    @RequiresApi(25)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    private static LocusIdCompat getLocusIdFromExtra(@Nullable PersistableBundle persistableBundle) {
+        String string;
+        if (persistableBundle == null || (string = persistableBundle.getString(EXTRA_LOCUS_ID)) == null) {
+            return null;
+        }
+        return new LocusIdCompat(string);
+    }
+
+    @Nullable
     public CharSequence getLongLabel() {
         return this.mLongLabel;
+    }
+
+    @RequiresApi(25)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @VisibleForTesting
+    public static boolean getLongLivedFromExtra(@Nullable PersistableBundle persistableBundle) {
+        if (persistableBundle == null || !persistableBundle.containsKey(EXTRA_LONG_LIVED)) {
+            return false;
+        }
+        return persistableBundle.getBoolean(EXTRA_LONG_LIVED);
     }
 
     @NonNull
     public String getPackage() {
         return this.mPackageName;
+    }
+
+    @VisibleForTesting
+    @Nullable
+    @RequiresApi(25)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public static Person[] getPersonsFromExtra(@NonNull PersistableBundle persistableBundle) {
+        if (persistableBundle == null || !persistableBundle.containsKey(EXTRA_PERSON_COUNT)) {
+            return null;
+        }
+        int i = persistableBundle.getInt(EXTRA_PERSON_COUNT);
+        Person[] personArr = new Person[i];
+        int i2 = 0;
+        while (i2 < i) {
+            StringBuilder sbM833U = C1643a.m833U(EXTRA_PERSON_);
+            int i3 = i2 + 1;
+            sbM833U.append(i3);
+            personArr[i2] = Person.fromPersistableBundle(persistableBundle.getPersistableBundle(sbM833U.toString()));
+            i2 = i3;
+        }
+        return personArr;
     }
 
     public int getRank() {

@@ -10,23 +10,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityReportProblem.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityReportProblem implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long channelId = null;
-    private final Long guildId = null;
-    private final CharSequence reason = null;
-    private final CharSequence rtcConnectionId = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence rating = null;
-    private final CharSequence feedback = null;
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
+    private final Long channelId = null;
+    private final CharSequence feedback = null;
+    private final Long guildId = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence rating = null;
+    private final CharSequence reason = null;
+    private final CharSequence rtcConnectionId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_report_problem";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackActivityReportProblem implements AnalyticsSch
         }
         TrackActivityReportProblem trackActivityReportProblem = (TrackActivityReportProblem) other;
         return C12238m.areEqual(this.channelId, trackActivityReportProblem.channelId) && C12238m.areEqual(this.guildId, trackActivityReportProblem.guildId) && C12238m.areEqual(this.reason, trackActivityReportProblem.reason) && C12238m.areEqual(this.rtcConnectionId, trackActivityReportProblem.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackActivityReportProblem.mediaSessionId) && C12238m.areEqual(this.rating, trackActivityReportProblem.rating) && C12238m.areEqual(this.feedback, trackActivityReportProblem.feedback) && C12238m.areEqual(this.applicationId, trackActivityReportProblem.applicationId) && C12238m.areEqual(this.applicationName, trackActivityReportProblem.applicationName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

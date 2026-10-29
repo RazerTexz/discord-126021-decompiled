@@ -40,12 +40,6 @@ public final class C3095p implements InterfaceC3094o {
     @Nullable
     public final C3102w f8745f;
 
-    /* JADX INFO: renamed from: g */
-    public final boolean[] f8746g = new boolean[4];
-
-    /* JADX INFO: renamed from: h */
-    public final a f8747h = new a(128);
-
     /* JADX INFO: renamed from: i */
     public long f8748i;
 
@@ -73,9 +67,15 @@ public final class C3095p implements InterfaceC3094o {
     /* JADX INFO: renamed from: q */
     public boolean f8756q;
 
+    /* JADX INFO: renamed from: g */
+    public final boolean[] f8746g = new boolean[4];
+
+    /* JADX INFO: renamed from: h */
+    public final a f8747h = new a(128);
+
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.p$a */
     /* JADX INFO: compiled from: H262Reader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final byte[] f8757a = {0, 0, 1};

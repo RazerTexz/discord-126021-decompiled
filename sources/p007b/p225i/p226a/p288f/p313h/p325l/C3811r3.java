@@ -83,29 +83,6 @@ public final class C3811r3 extends AbstractC3772o3<Boolean> implements Interface
         return indexOf(obj) != -1;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final void m5198d(boolean z2) {
-        m5153c();
-        int i = this.f10284l;
-        boolean[] zArr = this.f10283k;
-        if (i == zArr.length) {
-            boolean[] zArr2 = new boolean[((i * 3) / 2) + 1];
-            System.arraycopy(zArr, 0, zArr2, 0, i);
-            this.f10283k = zArr2;
-        }
-        boolean[] zArr3 = this.f10283k;
-        int i2 = this.f10284l;
-        this.f10284l = i2 + 1;
-        zArr3[i2] = z2;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m5199e(int i) {
-        if (i < 0 || i >= this.f10284l) {
-            throw new IndexOutOfBoundsException(m5200g(i));
-        }
-    }
-
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.Collection, java.util.List
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -125,20 +102,6 @@ public final class C3811r3 extends AbstractC3772o3<Boolean> implements Interface
             }
         }
         return true;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
-    /* JADX INFO: renamed from: f */
-    public final /* synthetic */ InterfaceC3597b5<Boolean> mo4569f(int i) {
-        if (i >= this.f10284l) {
-            return new C3811r3(Arrays.copyOf(this.f10283k, i), this.f10284l);
-        }
-        throw new IllegalArgumentException();
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final String m5200g(int i) {
-        return C1643a.m853h(35, "Index:", i, ", Size:", this.f10284l);
     }
 
     @Override // java.util.AbstractList, java.util.List
@@ -169,6 +132,43 @@ public final class C3811r3 extends AbstractC3772o3<Boolean> implements Interface
             }
         }
         return -1;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final void m5198d(boolean z2) {
+        m5153c();
+        int i = this.f10284l;
+        boolean[] zArr = this.f10283k;
+        if (i == zArr.length) {
+            boolean[] zArr2 = new boolean[((i * 3) / 2) + 1];
+            System.arraycopy(zArr, 0, zArr2, 0, i);
+            this.f10283k = zArr2;
+        }
+        boolean[] zArr3 = this.f10283k;
+        int i2 = this.f10284l;
+        this.f10284l = i2 + 1;
+        zArr3[i2] = z2;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m5199e(int i) {
+        if (i < 0 || i >= this.f10284l) {
+            throw new IndexOutOfBoundsException(m5200g(i));
+        }
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final String m5200g(int i) {
+        return C1643a.m853h(35, "Index:", i, ", Size:", this.f10284l);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
+    /* JADX INFO: renamed from: f */
+    public final /* synthetic */ InterfaceC3597b5<Boolean> mo4569f(int i) {
+        if (i >= this.f10284l) {
+            return new C3811r3(Arrays.copyOf(this.f10283k, i), this.f10284l);
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List

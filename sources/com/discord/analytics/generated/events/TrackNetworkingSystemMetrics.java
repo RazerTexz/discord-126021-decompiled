@@ -9,44 +9,38 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkingSystemMetrics.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkingSystemMetrics implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
-    private final Long peerId = null;
-    private final Long intervalNs = null;
-    private final Long messagesSent = null;
-    private final Long messagesDropped = null;
-    private final Long messagesReceived = null;
+    private final Long dataReceived = null;
     private final Long dataReceivedBytesAvg = null;
     private final Long dataReceivedBytesMax = null;
     private final Long dataReceivedBytesP95 = null;
+    private final Long dataReceivedPerPollAvg = null;
+    private final Long dataReceivedPerPollMax = null;
+    private final Long dataReceivedPerPollP95 = null;
+    private final Long dataSent = null;
     private final Long dataSentBytesAvg = null;
     private final Long dataSentBytesMax = null;
     private final Long dataSentBytesP95 = null;
     private final Long dataSentPerPollAvg = null;
     private final Long dataSentPerPollMax = null;
     private final Long dataSentPerPollP95 = null;
-    private final Long dataReceivedPerPollAvg = null;
-    private final Long dataReceivedPerPollMax = null;
-    private final Long dataReceivedPerPollP95 = null;
-    private final Long pingsSent = null;
-    private final Long pongsReceived = null;
-    private final Long dataSent = null;
-    private final Long dataReceived = null;
-    private final Long routeChanges = null;
+    private final Long flushCalls = null;
+    private final Long intervalNs = null;
+    private final Long messagesDropped = null;
+    private final Long messagesReceived = null;
+    private final Long messagesSent = null;
+    private final Long peerCount = null;
+    private final Long peerId = null;
     private final Long pingRttAvg = null;
     private final Long pingRttMax = null;
     private final Long pingRttP95 = null;
     private final Long pingRttStddev = null;
+    private final Long pingsSent = null;
     private final Long pollCalls = null;
-    private final Long flushCalls = null;
-    private final Long peerCount = null;
+    private final Long pongsReceived = null;
+    private final Long routeChanges = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "networking_system_metrics";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -57,6 +51,12 @@ public final /* data */ class TrackNetworkingSystemMetrics implements AnalyticsS
         }
         TrackNetworkingSystemMetrics trackNetworkingSystemMetrics = (TrackNetworkingSystemMetrics) other;
         return C12238m.areEqual(this.applicationId, trackNetworkingSystemMetrics.applicationId) && C12238m.areEqual(this.peerId, trackNetworkingSystemMetrics.peerId) && C12238m.areEqual(this.intervalNs, trackNetworkingSystemMetrics.intervalNs) && C12238m.areEqual(this.messagesSent, trackNetworkingSystemMetrics.messagesSent) && C12238m.areEqual(this.messagesDropped, trackNetworkingSystemMetrics.messagesDropped) && C12238m.areEqual(this.messagesReceived, trackNetworkingSystemMetrics.messagesReceived) && C12238m.areEqual(this.dataReceivedBytesAvg, trackNetworkingSystemMetrics.dataReceivedBytesAvg) && C12238m.areEqual(this.dataReceivedBytesMax, trackNetworkingSystemMetrics.dataReceivedBytesMax) && C12238m.areEqual(this.dataReceivedBytesP95, trackNetworkingSystemMetrics.dataReceivedBytesP95) && C12238m.areEqual(this.dataSentBytesAvg, trackNetworkingSystemMetrics.dataSentBytesAvg) && C12238m.areEqual(this.dataSentBytesMax, trackNetworkingSystemMetrics.dataSentBytesMax) && C12238m.areEqual(this.dataSentBytesP95, trackNetworkingSystemMetrics.dataSentBytesP95) && C12238m.areEqual(this.dataSentPerPollAvg, trackNetworkingSystemMetrics.dataSentPerPollAvg) && C12238m.areEqual(this.dataSentPerPollMax, trackNetworkingSystemMetrics.dataSentPerPollMax) && C12238m.areEqual(this.dataSentPerPollP95, trackNetworkingSystemMetrics.dataSentPerPollP95) && C12238m.areEqual(this.dataReceivedPerPollAvg, trackNetworkingSystemMetrics.dataReceivedPerPollAvg) && C12238m.areEqual(this.dataReceivedPerPollMax, trackNetworkingSystemMetrics.dataReceivedPerPollMax) && C12238m.areEqual(this.dataReceivedPerPollP95, trackNetworkingSystemMetrics.dataReceivedPerPollP95) && C12238m.areEqual(this.pingsSent, trackNetworkingSystemMetrics.pingsSent) && C12238m.areEqual(this.pongsReceived, trackNetworkingSystemMetrics.pongsReceived) && C12238m.areEqual(this.dataSent, trackNetworkingSystemMetrics.dataSent) && C12238m.areEqual(this.dataReceived, trackNetworkingSystemMetrics.dataReceived) && C12238m.areEqual(this.routeChanges, trackNetworkingSystemMetrics.routeChanges) && C12238m.areEqual(this.pingRttAvg, trackNetworkingSystemMetrics.pingRttAvg) && C12238m.areEqual(this.pingRttMax, trackNetworkingSystemMetrics.pingRttMax) && C12238m.areEqual(this.pingRttP95, trackNetworkingSystemMetrics.pingRttP95) && C12238m.areEqual(this.pingRttStddev, trackNetworkingSystemMetrics.pingRttStddev) && C12238m.areEqual(this.pollCalls, trackNetworkingSystemMetrics.pollCalls) && C12238m.areEqual(this.flushCalls, trackNetworkingSystemMetrics.flushCalls) && C12238m.areEqual(this.peerCount, trackNetworkingSystemMetrics.peerCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

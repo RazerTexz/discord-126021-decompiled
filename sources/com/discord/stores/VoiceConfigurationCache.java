@@ -17,7 +17,7 @@ public final class VoiceConfigurationCache {
 
     /* JADX INFO: renamed from: com.discord.stores.VoiceConfigurationCache$read$1 */
     /* JADX INFO: compiled from: VoiceConfigurationCache.kt */
-    public static final class C66301 extends AbstractC12240o implements Function2<String, String, Pair<? extends Long, ? extends Boolean>> {
+    public final class C66301 extends AbstractC12240o implements Function2<String, String, Pair<? extends Long, ? extends Boolean>> {
         public static final C66301 INSTANCE = new C66301();
 
         public C66301() {
@@ -34,7 +34,7 @@ public final class VoiceConfigurationCache {
 
     /* JADX INFO: renamed from: com.discord.stores.VoiceConfigurationCache$read$2 */
     /* JADX INFO: compiled from: VoiceConfigurationCache.kt */
-    public static final class C66312 extends AbstractC12240o implements Function2<String, String, Pair<? extends Long, ? extends Float>> {
+    public final class C66312 extends AbstractC12240o implements Function2<String, String, Pair<? extends Long, ? extends Float>> {
         public static final C66312 INSTANCE = new C66312();
 
         public C66312() {
@@ -62,21 +62,6 @@ public final class VoiceConfigurationCache {
         return value == StoreMediaSettings.NoiseProcessing.CancellationTemporarilyDisabled ? StoreMediaSettings.NoiseProcessing.Cancellation.ordinal() : value.ordinal();
     }
 
-    private final StoreMediaSettings.NoiseProcessing readNoiseProcessing() {
-        try {
-            return StoreMediaSettings.NoiseProcessing.values()[this.sharedPreferences.getInt("CACHE_KEY_VOICE_SETTINGS_NOISE_PROCESSING", StoreMediaSettings.VoiceConfiguration.INSTANCE.getDEFAULT_NOISE_PROCESSING())];
-        } catch (Exception unused) {
-            return StoreMediaSettings.NoiseProcessing.Cancellation;
-        }
-    }
-
-    private final StoreMediaSettings.VadUseKrisp readVadUseKrisp() {
-        SharedPreferences sharedPreferences = this.sharedPreferences;
-        StoreMediaSettings.VadUseKrisp vadUseKrisp = StoreMediaSettings.VoiceConfiguration.INSTANCE.getDEFAULT_VOICE_CONFIG().getVadUseKrisp();
-        StoreMediaSettings.VadUseKrisp vadUseKrisp2 = StoreMediaSettings.VadUseKrisp.Enabled;
-        return sharedPreferences.getBoolean("CACHE_KEY_VOICE_SETTINGS_VAD_USE_KRISP", vadUseKrisp == vadUseKrisp2) ? vadUseKrisp2 : StoreMediaSettings.VadUseKrisp.Disabled;
-    }
-
     public final StoreMediaSettings.VoiceConfiguration read() {
         SharedPreferences sharedPreferences = this.sharedPreferences;
         StoreMediaSettings.VoiceConfiguration.Companion companion = StoreMediaSettings.VoiceConfiguration.INSTANCE;
@@ -94,6 +79,21 @@ public final class VoiceConfigurationCache {
         int i = sharedPreferences2.getInt("CACHE_KEY_VOICE_SETTINGS_INPUT_MODE", inputMode.getNumeral());
         Objects.requireNonNull(companion2);
         return new StoreMediaSettings.VoiceConfiguration(z2, z3, z4, vadUseKrisp, z5, z6, noiseProcessing, f, (i == 1 || i != 2) ? inputMode : MediaEngineConnection.InputMode.PUSH_TO_TALK, this.sharedPreferences.getFloat("CACHE_KEY_VOICE_SETTINGS_OUTPUT_VOLUME", companion.getDEFAULT_VOICE_CONFIG().getOutputVolume()), SharedPreferenceExtensionsKt.getStringEntrySetAsMap$default(this.sharedPreferences, "MUTED_USERS_V2", null, C66301.INSTANCE, 2, null), SharedPreferenceExtensionsKt.getStringEntrySetAsMap$default(this.sharedPreferences, "USER_OUTPUT_VOLUMES_V2", null, C66312.INSTANCE, 2, null), null, this.sharedPreferences.getBoolean("VIDEO_ENABLE_HARDWARE_SCALING", companion.getDEFAULT_VOICE_CONFIG().getEnableVideoHardwareScaling()), this.sharedPreferences.getBoolean("CACHE_KEY_HIDE_VOICE_PARTICIPANTS", companion.getDEFAULT_VOICE_CONFIG().getVoiceParticipantsHidden()), 4096, null);
+    }
+
+    private final StoreMediaSettings.NoiseProcessing readNoiseProcessing() {
+        try {
+            return StoreMediaSettings.NoiseProcessing.values()[this.sharedPreferences.getInt("CACHE_KEY_VOICE_SETTINGS_NOISE_PROCESSING", StoreMediaSettings.VoiceConfiguration.INSTANCE.getDEFAULT_NOISE_PROCESSING())];
+        } catch (Exception unused) {
+            return StoreMediaSettings.NoiseProcessing.Cancellation;
+        }
+    }
+
+    private final StoreMediaSettings.VadUseKrisp readVadUseKrisp() {
+        SharedPreferences sharedPreferences = this.sharedPreferences;
+        StoreMediaSettings.VadUseKrisp vadUseKrisp = StoreMediaSettings.VoiceConfiguration.INSTANCE.getDEFAULT_VOICE_CONFIG().getVadUseKrisp();
+        StoreMediaSettings.VadUseKrisp vadUseKrisp2 = StoreMediaSettings.VadUseKrisp.Enabled;
+        return sharedPreferences.getBoolean("CACHE_KEY_VOICE_SETTINGS_VAD_USE_KRISP", vadUseKrisp == vadUseKrisp2) ? vadUseKrisp2 : StoreMediaSettings.VadUseKrisp.Disabled;
     }
 
     public final void write(StoreMediaSettings.VoiceConfiguration voiceConfiguration) {

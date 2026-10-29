@@ -18,11 +18,6 @@ public class ChangeScroll extends Transition {
     public ChangeScroll() {
     }
 
-    private void captureValues(TransitionValues transitionValues) {
-        transitionValues.values.put(PROPNAME_SCROLL_X, Integer.valueOf(transitionValues.view.getScrollX()));
-        transitionValues.values.put(PROPNAME_SCROLL_Y, Integer.valueOf(transitionValues.view.getScrollY()));
-    }
-
     @Override // androidx.transition.Transition
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
         captureValues(transitionValues);
@@ -31,6 +26,11 @@ public class ChangeScroll extends Transition {
     @Override // androidx.transition.Transition
     public void captureStartValues(@NonNull TransitionValues transitionValues) {
         captureValues(transitionValues);
+    }
+
+    private void captureValues(TransitionValues transitionValues) {
+        transitionValues.values.put(PROPNAME_SCROLL_X, Integer.valueOf(transitionValues.view.getScrollX()));
+        transitionValues.values.put(PROPNAME_SCROLL_Y, Integer.valueOf(transitionValues.view.getScrollY()));
     }
 
     @Override // androidx.transition.Transition

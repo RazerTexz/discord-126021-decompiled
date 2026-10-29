@@ -11,7 +11,7 @@ public class StatsReport {
     public final String type;
     public final Value[] values;
 
-    public static class Value {
+    public class Value {
         public final String name;
         public final String value;
 

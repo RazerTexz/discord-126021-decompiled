@@ -14,14 +14,14 @@ import p007b.p225i.p226a.p288f.p299e.p305l.C3395a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class RunnableC3202e implements Runnable {
 
-    /* JADX INFO: renamed from: j */
-    public static final C3395a f9231j = new C3395a("RevokeAccessOperation", new String[0]);
-
     /* JADX INFO: renamed from: k */
     public final String f9232k;
 
     /* JADX INFO: renamed from: l */
     public final C3309o f9233l;
+
+    /* JADX INFO: renamed from: j */
+    public static final C3395a f9231j = new C3395a("RevokeAccessOperation", new String[0]);
 
     public RunnableC3202e(String str) {
         C1460d.m583w(str);

@@ -12,6 +12,10 @@ public class InvalidProtocolBufferException extends IOException {
         this.unfinishedMessage = null;
     }
 
+    public InterfaceC11734n getUnfinishedMessage() {
+        return this.unfinishedMessage;
+    }
+
     /* JADX INFO: renamed from: a */
     public static InvalidProtocolBufferException m10895a() {
         return new InvalidProtocolBufferException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
@@ -25,10 +29,6 @@ public class InvalidProtocolBufferException extends IOException {
     /* JADX INFO: renamed from: c */
     public static InvalidProtocolBufferException m10897c() {
         return new InvalidProtocolBufferException("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either than the input has been truncated or that an embedded message misreported its own length.");
-    }
-
-    public InterfaceC11734n getUnfinishedMessage() {
-        return this.unfinishedMessage;
     }
 
     public InvalidProtocolBufferException setUnfinishedMessage(InterfaceC11734n interfaceC11734n) {

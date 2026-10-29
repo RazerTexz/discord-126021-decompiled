@@ -48,7 +48,11 @@ import p658rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetSettingsAccountChangePassword extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAccountChangePassword.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountChangePasswordBinding;", 0)};
     public static final String CURRENT_PASSWORD_FIELD = "password";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final String MFA_FIELD = "mfa";
     public static final String NEW_PASSWORD_FIELD = "new_password";
 
@@ -59,29 +63,10 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
 
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAccountChangePassword.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountChangePasswordBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsAccountChangePassword.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
-    public static final class C97431 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C97431 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C97431() {
             super(1);
         }
@@ -103,7 +88,7 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
-    public static final class C97442 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C97442 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C97442() {
             super(1);
         }
@@ -125,7 +110,7 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
-    public static final class C97453 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C97453 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C97453() {
             super(1);
         }
@@ -147,7 +132,7 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
-    public static final class C97461 extends AbstractC12240o implements Function1<MeUser, Unit> {
+    public final class C97461 extends AbstractC12240o implements Function1<MeUser, Unit> {
         public C97461() {
             super(1);
         }
@@ -162,6 +147,21 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
         public final void invoke2(MeUser meUser) {
             C12238m.checkNotNullParameter(meUser, "it");
             WidgetSettingsAccountChangePassword.this.configureUI(meUser);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsAccountChangePassword.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -195,6 +195,10 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
         });
     }
 
+    public final WidgetSettingsAccountChangePasswordBinding getBinding() {
+        return (WidgetSettingsAccountChangePasswordBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
     }
@@ -209,6 +213,42 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
         Error.Response response2 = error.getResponse();
         C12238m.checkNotNullExpressionValue(response2, "error.response");
         error.setShowErrorToasts(!(size < response2.getMessages().size()));
+    }
+
+    public void onChangePasswordSuccess() {
+        C0876m.m171i(this, C5419R.string.saved_settings, 0, 4);
+        FragmentActivity fragmentActivityM95e = m95e();
+        if (fragmentActivityM95e != null) {
+            fragmentActivityM95e.finish();
+        }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        Context context = view.getContext();
+        C12238m.checkNotNullExpressionValue(context, "view.context");
+        this.googleSmartLockManager = new GoogleSmartLockManager(context, null, 2, null);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        this.state.setupUnsavedChangesConfirmation(this);
+        getBinding().f17822e.setIsLoading(false);
+        getBinding().f17822e.setText(getText(C5419R.string.change_password));
+        TextInputLayout textInputLayout = getBinding().f17820c;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordCurrentPasswordInput");
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new C97431());
+        TextInputLayout textInputLayout2 = getBinding().f17821d;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.changePasswordNewPasswordInput");
+        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new C97442());
+        TextInputLayout textInputLayout3 = getBinding().f17823f;
+        C12238m.checkNotNullExpressionValue(textInputLayout3, "binding.changePasswordTwoFactor");
+        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new C97453());
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97461());
     }
 
     private final void saveNewPassword(MeUser meUser) {
@@ -251,45 +291,5 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
                 }
             }));
         }
-    }
-
-    public final WidgetSettingsAccountChangePasswordBinding getBinding() {
-        return (WidgetSettingsAccountChangePasswordBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public void onChangePasswordSuccess() {
-        C0876m.m171i(this, C5419R.string.saved_settings, 0, 4);
-        FragmentActivity fragmentActivityM95e = m95e();
-        if (fragmentActivityM95e != null) {
-            fragmentActivityM95e.finish();
-        }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        Context context = view.getContext();
-        C12238m.checkNotNullExpressionValue(context, "view.context");
-        this.googleSmartLockManager = new GoogleSmartLockManager(context, null, 2, null);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        this.state.setupUnsavedChangesConfirmation(this);
-        getBinding().f17822e.setIsLoading(false);
-        getBinding().f17822e.setText(getText(C5419R.string.change_password));
-        TextInputLayout textInputLayout = getBinding().f17820c;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordCurrentPasswordInput");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new C97431());
-        TextInputLayout textInputLayout2 = getBinding().f17821d;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.changePasswordNewPasswordInput");
-        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new C97442());
-        TextInputLayout textInputLayout3 = getBinding().f17823f;
-        C12238m.checkNotNullExpressionValue(textInputLayout3, "binding.changePasswordTwoFactor");
-        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new C97453());
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97461());
     }
 }

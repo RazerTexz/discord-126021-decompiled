@@ -32,6 +32,12 @@ public final class WidgetChatInputCommandApplicationHeaderItemBinding implements
         this.f16116c = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16114a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChatInputCommandApplicationHeaderItemBinding m8407a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -49,11 +55,5 @@ public final class WidgetChatInputCommandApplicationHeaderItemBinding implements
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16114a;
     }
 }

@@ -31,20 +31,7 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
         this.hasActiveThreads = z6;
         this.isGuildRoleSubscriptionLockedChannel = z7;
         this.isGuildRoleSubscriptionChannel = z8;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(channel.getId());
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
+        this.key = "" + getType() + channel.getId();
     }
 
     public final int component3() {
@@ -53,31 +40,6 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
 
     public final boolean component4() {
         return getIsUnread();
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getMuted() {
-        return this.muted;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsLocked() {
-        return this.isLocked;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getHasActiveThreads() {
-        return this.hasActiveThreads;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
-        return this.isGuildRoleSubscriptionLockedChannel;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionChannel() {
-        return this.isGuildRoleSubscriptionChannel;
     }
 
     public final ChannelListItemTextChannel copy(Channel channel, boolean selected, int mentionCount, boolean isUnread, boolean muted, boolean isLocked, boolean hasActiveThreads, boolean isGuildRoleSubscriptionLockedChannel, boolean isGuildRoleSubscriptionChannel) {
@@ -96,12 +58,43 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
         return C12238m.areEqual(this.channel, channelListItemTextChannel.channel) && this.selected == channelListItemTextChannel.selected && getMentionCount() == channelListItemTextChannel.getMentionCount() && getIsUnread() == channelListItemTextChannel.getIsUnread() && this.muted == channelListItemTextChannel.muted && this.isLocked == channelListItemTextChannel.isLocked && this.hasActiveThreads == channelListItemTextChannel.hasActiveThreads && this.isGuildRoleSubscriptionLockedChannel == channelListItemTextChannel.isGuildRoleSubscriptionLockedChannel && this.isGuildRoleSubscriptionChannel == channelListItemTextChannel.isGuildRoleSubscriptionChannel;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
     }
 
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getHasActiveThreads() {
         return this.hasActiveThreads;
+    }
+
+    public final boolean getHasActiveThreads() {
+        return this.hasActiveThreads;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionChannel() {
+        return this.isGuildRoleSubscriptionChannel;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
+        return this.isGuildRoleSubscriptionLockedChannel;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsLocked() {
+        return this.isLocked;
+    }
+
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    /* JADX INFO: renamed from: isUnread, reason: from getter */
+    public boolean getIsUnread() {
+        return this.isUnread;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -114,8 +107,18 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
         return this.mentionCount;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getMuted() {
         return this.muted;
+    }
+
+    public final boolean getMuted() {
+        return this.muted;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getSelected() {
+        return this.selected;
     }
 
     public final boolean getSelected() {
@@ -208,12 +211,6 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
 
     public final boolean isLocked() {
         return this.isLocked;
-    }
-
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-    /* JADX INFO: renamed from: isUnread, reason: from getter */
-    public boolean getIsUnread() {
-        return this.isUnread;
     }
 
     public String toString() {

@@ -27,16 +27,6 @@ public final /* data */ class ModelSpotifyArtist {
         return modelSpotifyArtist.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
     public final ModelSpotifyArtist copy(String id2, String name) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
@@ -54,8 +44,18 @@ public final /* data */ class ModelSpotifyArtist {
         return C12238m.areEqual(this.id, modelSpotifyArtist.id) && C12238m.areEqual(this.name, modelSpotifyArtist.name);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getId() {
         return this.id;
+    }
+
+    public final String getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

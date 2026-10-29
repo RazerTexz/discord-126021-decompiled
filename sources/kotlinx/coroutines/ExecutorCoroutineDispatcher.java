@@ -12,7 +12,7 @@ public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher im
 
     /* JADX INFO: renamed from: kotlinx.coroutines.ExecutorCoroutineDispatcher$a */
     /* JADX INFO: compiled from: Executors.kt */
-    public static final class C12805a extends AbstractC12175b<CoroutineDispatcher, ExecutorCoroutineDispatcher> {
+    public final class C12805a extends AbstractC12175b<CoroutineDispatcher, ExecutorCoroutineDispatcher> {
         public C12805a(DefaultConstructorMarker defaultConstructorMarker) {
             super(CoroutineDispatcher.INSTANCE, C13154u0.f27905j);
         }

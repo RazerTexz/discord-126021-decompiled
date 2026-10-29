@@ -24,18 +24,6 @@ public final class C2474b extends AbstractC2478f {
         this.f5354b = map;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f
-    /* JADX INFO: renamed from: a */
-    public InterfaceC2519a mo2374a() {
-        return this.f5353a;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f
-    /* JADX INFO: renamed from: c */
-    public Map<EnumC2409d, AbstractC2478f.a> mo2375c() {
-        return this.f5354b;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -49,6 +37,18 @@ public final class C2474b extends AbstractC2478f {
 
     public int hashCode() {
         return ((this.f5353a.hashCode() ^ 1000003) * 1000003) ^ this.f5354b.hashCode();
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f
+    /* JADX INFO: renamed from: a */
+    public InterfaceC2519a mo2374a() {
+        return this.f5353a;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p236t.p237h.AbstractC2478f
+    /* JADX INFO: renamed from: c */
+    public Map<EnumC2409d, AbstractC2478f.a> mo2375c() {
+        return this.f5354b;
     }
 
     public String toString() {

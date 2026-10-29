@@ -18,9 +18,6 @@ import p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2557o<T> extends AbstractC2551l {
 
-    /* JADX INFO: renamed from: g */
-    public final HashMap<T, b<T>> f5664g = new HashMap<>();
-
     /* JADX INFO: renamed from: h */
     @Nullable
     public Handler f5665h;
@@ -28,6 +25,9 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
     /* JADX INFO: renamed from: i */
     @Nullable
     public InterfaceC2680a0 f5666i;
+
+    /* JADX INFO: renamed from: g */
+    public final HashMap<T, b<T>> f5664g = new HashMap<>();
 
     /* JADX INFO: renamed from: b.i.a.c.a3.o$a */
     /* JADX INFO: compiled from: CompositeMediaSource.java */
@@ -46,27 +46,6 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
             this.f5668k = AbstractC2557o.this.f5635c.m2472g(0, null, 0L);
             this.f5669l = AbstractC2557o.this.f5636d.m3593g(0, null);
             this.f5667j = t;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: J */
-        public void mo2567J(int i, @Nullable InterfaceC2530a0.a aVar) {
-            m2569a(i, aVar);
-            this.f5669l.m3588b();
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: S */
-        public void mo2568S(int i, @Nullable InterfaceC2530a0.a aVar) {
-            m2569a(i, aVar);
-            this.f5669l.m3587a();
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2532b0
-        /* JADX INFO: renamed from: X */
-        public void mo2461X(int i, @Nullable InterfaceC2530a0.a aVar, C2566t c2566t, C2569w c2569w) {
-            m2569a(i, aVar);
-            this.f5668k.m2469d(c2566t, m2570b(c2569w));
         }
 
         /* JADX INFO: renamed from: a */
@@ -110,18 +89,11 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
             return (j == c2569w.f5730f && j2 == c2569w.f5731g) ? c2569w : new C2569w(c2569w.f5725a, c2569w.f5726b, c2569w.f5727c, c2569w.f5728d, c2569w.f5729e, j, j2);
         }
 
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: c0 */
-        public void mo2571c0(int i, @Nullable InterfaceC2530a0.a aVar, int i2) {
+        @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2532b0
+        /* JADX INFO: renamed from: X */
+        public void mo2461X(int i, @Nullable InterfaceC2530a0.a aVar, C2566t c2566t, C2569w c2569w) {
             m2569a(i, aVar);
-            this.f5669l.m3590d(i2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: d0 */
-        public void mo2572d0(int i, @Nullable InterfaceC2530a0.a aVar) {
-            m2569a(i, aVar);
-            this.f5669l.m3592f();
+            this.f5668k.m2469d(c2566t, m2570b(c2569w));
         }
 
         @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2532b0
@@ -129,13 +101,6 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
         public void mo2462g0(int i, @Nullable InterfaceC2530a0.a aVar, C2566t c2566t, C2569w c2569w, IOException iOException, boolean z2) {
             m2569a(i, aVar);
             this.f5668k.m2470e(c2566t, m2570b(c2569w), iOException, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: i0 */
-        public void mo2573i0(int i, @Nullable InterfaceC2530a0.a aVar) {
-            m2569a(i, aVar);
-            this.f5669l.m3589c();
         }
 
         @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2532b0
@@ -152,24 +117,59 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
             this.f5668k.m2468c(c2566t, m2570b(c2569w));
         }
 
-        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
-        /* JADX INFO: renamed from: u */
-        public void mo2574u(int i, @Nullable InterfaceC2530a0.a aVar, Exception exc) {
-            m2569a(i, aVar);
-            this.f5669l.m3591e(exc);
-        }
-
         @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2532b0
         /* JADX INFO: renamed from: x */
         public void mo2465x(int i, @Nullable InterfaceC2530a0.a aVar, C2566t c2566t, C2569w c2569w) {
             m2569a(i, aVar);
             this.f5668k.m2471f(c2566t, m2570b(c2569w));
         }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: J */
+        public void mo2567J(int i, @Nullable InterfaceC2530a0.a aVar) {
+            m2569a(i, aVar);
+            this.f5669l.m3588b();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: S */
+        public void mo2568S(int i, @Nullable InterfaceC2530a0.a aVar) {
+            m2569a(i, aVar);
+            this.f5669l.m3587a();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: c0 */
+        public void mo2571c0(int i, @Nullable InterfaceC2530a0.a aVar, int i2) {
+            m2569a(i, aVar);
+            this.f5669l.m3590d(i2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: d0 */
+        public void mo2572d0(int i, @Nullable InterfaceC2530a0.a aVar) {
+            m2569a(i, aVar);
+            this.f5669l.m3592f();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: i0 */
+        public void mo2573i0(int i, @Nullable InterfaceC2530a0.a aVar) {
+            m2569a(i, aVar);
+            this.f5669l.m3589c();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s
+        /* JADX INFO: renamed from: u */
+        public void mo2574u(int i, @Nullable InterfaceC2530a0.a aVar, Exception exc) {
+            m2569a(i, aVar);
+            this.f5669l.m3591e(exc);
+        }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.a3.o$b */
     /* JADX INFO: compiled from: CompositeMediaSource.java */
-    public static final class b<T> {
+    public final class b<T> {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC2530a0 f5671a;
@@ -184,24 +184,6 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
             this.f5671a = interfaceC2530a0;
             this.f5672b = bVar;
             this.f5673c = aVar;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
-    @CallSuper
-    /* JADX INFO: renamed from: o */
-    public void mo2551o() {
-        for (b<T> bVar : this.f5664g.values()) {
-            bVar.f5671a.mo2449d(bVar.f5672b);
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
-    @CallSuper
-    /* JADX INFO: renamed from: p */
-    public void mo2552p() {
-        for (b<T> bVar : this.f5664g.values()) {
-            bVar.f5671a.mo2458m(bVar.f5672b);
         }
     }
 
@@ -311,5 +293,23 @@ public abstract class AbstractC2557o<T> extends AbstractC2551l {
             return;
         }
         interfaceC2530a0.mo2449d(bVar);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
+    @CallSuper
+    /* JADX INFO: renamed from: o */
+    public void mo2551o() {
+        for (b<T> bVar : this.f5664g.values()) {
+            bVar.f5671a.mo2449d(bVar.f5672b);
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
+    @CallSuper
+    /* JADX INFO: renamed from: p */
+    public void mo2552p() {
+        for (b<T> bVar : this.f5664g.values()) {
+            bVar.f5671a.mo2458m(bVar.f5672b);
+        }
     }
 }

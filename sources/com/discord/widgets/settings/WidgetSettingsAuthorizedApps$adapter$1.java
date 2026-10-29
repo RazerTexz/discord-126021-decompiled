@@ -24,7 +24,7 @@ public final class WidgetSettingsAuthorizedApps$adapter$1 extends AbstractC12240
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAuthorizedApps$adapter$1$1 */
     /* JADX INFO: compiled from: WidgetSettingsAuthorizedApps.kt */
-    public static final class C96381 extends AbstractC12240o implements Function1<ModelOAuth2Token, Unit> {
+    public final class C96381 extends AbstractC12240o implements Function1<ModelOAuth2Token, Unit> {
         public C96381() {
             super(1);
         }

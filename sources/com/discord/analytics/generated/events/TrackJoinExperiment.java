@@ -10,18 +10,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackJoinExperiment.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackJoinExperiment implements AnalyticsSchema, TrackBaseReceiver {
+    private final Long bucket = null;
+    private final CharSequence name = null;
+    private final Long revision = null;
     private TrackBase trackBase;
     private final CharSequence type = null;
-    private final CharSequence name = null;
-    private final Long bucket = null;
-    private final Long revision = null;
     private final transient String analyticsSchemaTypeName = "join_experiment";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackJoinExperiment implements AnalyticsSchema, Tr
         }
         TrackJoinExperiment trackJoinExperiment = (TrackJoinExperiment) other;
         return C12238m.areEqual(this.type, trackJoinExperiment.type) && C12238m.areEqual(this.name, trackJoinExperiment.name) && C12238m.areEqual(this.bucket, trackJoinExperiment.bucket) && C12238m.areEqual(this.revision, trackJoinExperiment.revision);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

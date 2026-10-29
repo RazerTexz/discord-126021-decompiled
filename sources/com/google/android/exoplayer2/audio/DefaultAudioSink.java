@@ -218,9 +218,6 @@ public final class DefaultAudioSink implements AudioSink {
     /* JADX INFO: renamed from: z */
     public long f19751z;
 
-    public static final class InvalidAudioTrackTimestampException extends RuntimeException {
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$a */
     public class C10687a extends Thread {
 
@@ -244,23 +241,8 @@ public final class DefaultAudioSink implements AudioSink {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$b */
-    public interface InterfaceC10688b {
-        /* JADX INFO: renamed from: a */
-        C2998x1 mo8800a(C2998x1 c2998x1);
-
-        /* JADX INFO: renamed from: b */
-        long mo8801b(long j);
-
-        /* JADX INFO: renamed from: c */
-        long mo8802c();
-
-        /* JADX INFO: renamed from: d */
-        boolean mo8803d(boolean z2);
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$c */
-    public static final class C10689c {
+    public final class C10689c {
 
         /* JADX INFO: renamed from: a */
         public final C2811j1 f19754a;
@@ -422,7 +404,7 @@ public final class DefaultAudioSink implements AudioSink {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$d */
-    public static class C10690d implements InterfaceC10688b {
+    public class C10690d implements InterfaceC10688b {
 
         /* JADX INFO: renamed from: a */
         public final AudioProcessor[] f19763a;
@@ -493,7 +475,7 @@ public final class DefaultAudioSink implements AudioSink {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$e */
-    public static final class C10691e {
+    public final class C10691e {
 
         /* JADX INFO: renamed from: a */
         public final C2998x1 f19766a;
@@ -516,7 +498,7 @@ public final class DefaultAudioSink implements AudioSink {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$f */
-    public static final class C10692f<T extends Exception> {
+    public final class C10692f<T extends Exception> {
 
         /* JADX INFO: renamed from: a */
         @Nullable
@@ -650,49 +632,22 @@ public final class DefaultAudioSink implements AudioSink {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$h */
-    @RequiresApi(29)
-    public final class C10694h {
-
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$b */
+    public interface InterfaceC10688b {
         /* JADX INFO: renamed from: a */
-        public final Handler f19773a = new Handler();
+        C2998x1 mo8800a(C2998x1 c2998x1);
 
         /* JADX INFO: renamed from: b */
-        public final AudioTrack.StreamEventCallback f19774b;
+        long mo8801b(long j);
 
-        /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$h$a */
-        public class a extends AudioTrack.StreamEventCallback {
-            public a(DefaultAudioSink defaultAudioSink) {
-            }
+        /* JADX INFO: renamed from: c */
+        long mo8802c();
 
-            @Override // android.media.AudioTrack.StreamEventCallback
-            public void onDataRequest(AudioTrack audioTrack, int i) {
-                InterfaceC2728f2.a aVar;
-                C1460d.m426D(audioTrack == DefaultAudioSink.this.f19744s);
-                DefaultAudioSink defaultAudioSink = DefaultAudioSink.this;
-                AudioSink.InterfaceC10686a interfaceC10686a = defaultAudioSink.f19741p;
-                if (interfaceC10686a == null || !defaultAudioSink.f19718S || (aVar = C2942z.this.f7860X0) == null) {
-                    return;
-                }
-                aVar.mo2947a();
-            }
+        /* JADX INFO: renamed from: d */
+        boolean mo8803d(boolean z2);
+    }
 
-            @Override // android.media.AudioTrack.StreamEventCallback
-            public void onTearDown(AudioTrack audioTrack) {
-                InterfaceC2728f2.a aVar;
-                C1460d.m426D(audioTrack == DefaultAudioSink.this.f19744s);
-                DefaultAudioSink defaultAudioSink = DefaultAudioSink.this;
-                AudioSink.InterfaceC10686a interfaceC10686a = defaultAudioSink.f19741p;
-                if (interfaceC10686a == null || !defaultAudioSink.f19718S || (aVar = C2942z.this.f7860X0) == null) {
-                    return;
-                }
-                aVar.mo2947a();
-            }
-        }
-
-        public C10694h() {
-            this.f19774b = new a(DefaultAudioSink.this);
-        }
+    public final class InvalidAudioTrackTimestampException extends RuntimeException {
     }
 
     public DefaultAudioSink(@Nullable C2932p c2932p, InterfaceC10688b interfaceC10688b, boolean z2, boolean z3, int i) {
@@ -726,6 +681,39 @@ public final class DefaultAudioSink implements AudioSink {
         this.f19735j = new ArrayDeque<>();
         this.f19739n = new C10692f<>(100L);
         this.f19740o = new C10692f<>(100L);
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    public void flush() {
+        if (m8786G()) {
+            m8789K();
+            AudioTrack audioTrack = this.f19734i.f7811c;
+            Objects.requireNonNull(audioTrack);
+            if (audioTrack.getPlayState() == 3) {
+                this.f19744s.pause();
+            }
+            if (m8779H(this.f19744s)) {
+                C10694h c10694h = this.f19738m;
+                Objects.requireNonNull(c10694h);
+                this.f19744s.unregisterStreamEventCallback(c10694h.f19774b);
+                c10694h.f19773a.removeCallbacksAndMessages(null);
+            }
+            AudioTrack audioTrack2 = this.f19744s;
+            this.f19744s = null;
+            if (C2738e0.f6708a < 21 && !this.f19719T) {
+                this.f19720U = 0;
+            }
+            C10689c c10689c = this.f19742q;
+            if (c10689c != null) {
+                this.f19743r = c10689c;
+                this.f19742q = null;
+            }
+            this.f19734i.m3504d();
+            this.f19733h.close();
+            new C10687a("ExoPlayer:AudioTrackReleaseThread", audioTrack2).start();
+        }
+        this.f19740o.f19770a = null;
+        this.f19739n.f19770a = null;
     }
 
     /* JADX WARN: Code duplicated, block: B:57:0x00b5  */
@@ -1174,62 +1162,6 @@ public final class DefaultAudioSink implements AudioSink {
         }
     }
 
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    /* JADX INFO: renamed from: a */
-    public boolean mo8757a(C2811j1 c2811j1) {
-        return mo8774u(c2811j1) != 0;
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    /* JADX INFO: renamed from: b */
-    public boolean mo8758b() {
-        return !m8786G() || (this.f19716Q && !mo8764k());
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    /* JADX INFO: renamed from: c */
-    public C2998x1 mo8759c() {
-        return this.f19736k ? this.f19748w : m8799z();
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    /* JADX INFO: renamed from: d */
-    public void mo8760d() {
-        boolean z2 = false;
-        this.f19718S = false;
-        if (m8786G()) {
-            C2936t c2936t = this.f19734i;
-            c2936t.f7820l = 0L;
-            c2936t.f7831w = 0;
-            c2936t.f7830v = 0;
-            c2936t.f7821m = 0L;
-            c2936t.f7805C = 0L;
-            c2936t.f7808F = 0L;
-            c2936t.f7819k = false;
-            if (c2936t.f7832x == -9223372036854775807L) {
-                C2935s c2935s = c2936t.f7814f;
-                Objects.requireNonNull(c2935s);
-                c2935s.m3499a();
-                z2 = true;
-            }
-            if (z2) {
-                this.f19744s.pause();
-            }
-        }
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    /* JADX INFO: renamed from: e */
-    public void mo8761e() {
-        this.f19718S = true;
-        if (m8786G()) {
-            C2935s c2935s = this.f19734i.f7814f;
-            Objects.requireNonNull(c2935s);
-            c2935s.m3499a();
-            this.f19744s.play();
-        }
-    }
-
     /* JADX INFO: renamed from: f */
     public final void m8796f(long j) {
         final InterfaceC2934r.a aVar;
@@ -1264,39 +1196,6 @@ public final class DefaultAudioSink implements AudioSink {
                 interfaceC2934r.mo3299d(z2);
             }
         });
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    public void flush() {
-        if (m8786G()) {
-            m8789K();
-            AudioTrack audioTrack = this.f19734i.f7811c;
-            Objects.requireNonNull(audioTrack);
-            if (audioTrack.getPlayState() == 3) {
-                this.f19744s.pause();
-            }
-            if (m8779H(this.f19744s)) {
-                C10694h c10694h = this.f19738m;
-                Objects.requireNonNull(c10694h);
-                this.f19744s.unregisterStreamEventCallback(c10694h.f19774b);
-                c10694h.f19773a.removeCallbacksAndMessages(null);
-            }
-            AudioTrack audioTrack2 = this.f19744s;
-            this.f19744s = null;
-            if (C2738e0.f6708a < 21 && !this.f19719T) {
-                this.f19720U = 0;
-            }
-            C10689c c10689c = this.f19742q;
-            if (c10689c != null) {
-                this.f19743r = c10689c;
-                this.f19742q = null;
-            }
-            this.f19734i.m3504d();
-            this.f19733h.close();
-            new C10687a("ExoPlayer:AudioTrackReleaseThread", audioTrack2).start();
-        }
-        this.f19740o.f19770a = null;
-        this.f19739n.f19770a = null;
     }
 
     /* JADX WARN: Code duplicated, block: B:11:0x001c  */
@@ -1370,6 +1269,67 @@ public final class DefaultAudioSink implements AudioSink {
             audioProcessor.flush();
             this.f19709J[i] = audioProcessor.getOutput();
             i++;
+        }
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final C2998x1 m8799z() {
+        return m8781B().f19766a;
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    /* JADX INFO: renamed from: a */
+    public boolean mo8757a(C2811j1 c2811j1) {
+        return mo8774u(c2811j1) != 0;
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    /* JADX INFO: renamed from: b */
+    public boolean mo8758b() {
+        return !m8786G() || (this.f19716Q && !mo8764k());
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    /* JADX INFO: renamed from: c */
+    public C2998x1 mo8759c() {
+        return this.f19736k ? this.f19748w : m8799z();
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    /* JADX INFO: renamed from: d */
+    public void mo8760d() {
+        boolean z2 = false;
+        this.f19718S = false;
+        if (m8786G()) {
+            C2936t c2936t = this.f19734i;
+            c2936t.f7820l = 0L;
+            c2936t.f7831w = 0;
+            c2936t.f7830v = 0;
+            c2936t.f7821m = 0L;
+            c2936t.f7805C = 0L;
+            c2936t.f7808F = 0L;
+            c2936t.f7819k = false;
+            if (c2936t.f7832x == -9223372036854775807L) {
+                C2935s c2935s = c2936t.f7814f;
+                Objects.requireNonNull(c2935s);
+                c2935s.m3499a();
+                z2 = true;
+            }
+            if (z2) {
+                this.f19744s.pause();
+            }
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    /* JADX INFO: renamed from: e */
+    public void mo8761e() {
+        this.f19718S = true;
+        if (m8786G()) {
+            C2935s c2935s = this.f19734i.f7814f;
+            Objects.requireNonNull(c2935s);
+            c2935s.m3499a();
+            this.f19744s.play();
         }
     }
 
@@ -1636,19 +1596,6 @@ public final class DefaultAudioSink implements AudioSink {
         }
         this.f19722W = true;
         flush();
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioSink
-    public void reset() {
-        flush();
-        for (AudioProcessor audioProcessor : this.f19731f) {
-            audioProcessor.reset();
-        }
-        for (AudioProcessor audioProcessor2 : this.f19732g) {
-            audioProcessor2.reset();
-        }
-        this.f19718S = false;
-        this.f19724Y = false;
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -2092,8 +2039,61 @@ public final class DefaultAudioSink implements AudioSink {
         this.f19721V = c2937u;
     }
 
-    /* JADX INFO: renamed from: z */
-    public final C2998x1 m8799z() {
-        return m8781B().f19766a;
+    @Override // com.google.android.exoplayer2.audio.AudioSink
+    public void reset() {
+        flush();
+        for (AudioProcessor audioProcessor : this.f19731f) {
+            audioProcessor.reset();
+        }
+        for (AudioProcessor audioProcessor2 : this.f19732g) {
+            audioProcessor2.reset();
+        }
+        this.f19718S = false;
+        this.f19724Y = false;
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$h */
+    @RequiresApi(29)
+    public final class C10694h {
+
+        /* JADX INFO: renamed from: b */
+        public final AudioTrack.StreamEventCallback f19774b;
+
+        /* JADX INFO: renamed from: a */
+        public final Handler f19773a = new Handler();
+
+        /* JADX INFO: renamed from: com.google.android.exoplayer2.audio.DefaultAudioSink$h$a */
+        public class a extends AudioTrack.StreamEventCallback {
+            public a(DefaultAudioSink defaultAudioSink) {
+            }
+
+            @Override // android.media.AudioTrack.StreamEventCallback
+            public void onDataRequest(AudioTrack audioTrack, int i) {
+                InterfaceC2728f2.a aVar;
+                C1460d.m426D(audioTrack == DefaultAudioSink.this.f19744s);
+                DefaultAudioSink defaultAudioSink = DefaultAudioSink.this;
+                AudioSink.InterfaceC10686a interfaceC10686a = defaultAudioSink.f19741p;
+                if (interfaceC10686a == null || !defaultAudioSink.f19718S || (aVar = C2942z.this.f7860X0) == null) {
+                    return;
+                }
+                aVar.mo2947a();
+            }
+
+            @Override // android.media.AudioTrack.StreamEventCallback
+            public void onTearDown(AudioTrack audioTrack) {
+                InterfaceC2728f2.a aVar;
+                C1460d.m426D(audioTrack == DefaultAudioSink.this.f19744s);
+                DefaultAudioSink defaultAudioSink = DefaultAudioSink.this;
+                AudioSink.InterfaceC10686a interfaceC10686a = defaultAudioSink.f19741p;
+                if (interfaceC10686a == null || !defaultAudioSink.f19718S || (aVar = C2942z.this.f7860X0) == null) {
+                    return;
+                }
+                aVar.mo2947a();
+            }
+        }
+
+        public C10694h() {
+            this.f19774b = new a(DefaultAudioSink.this);
+        }
     }
 }

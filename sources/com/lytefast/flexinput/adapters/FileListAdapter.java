@@ -25,6 +25,7 @@ import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -64,7 +65,7 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
 
     /* JADX INFO: renamed from: com.lytefast.flexinput.adapters.FileListAdapter$a */
     /* JADX INFO: compiled from: FileListAdapter.kt */
-    public static final class AsyncTaskC11173a extends AsyncTask<File, Boolean, List<? extends Attachment<? extends File>>> {
+    public final class AsyncTaskC11173a extends AsyncTask<File, Boolean, List<? extends Attachment<? extends File>>> {
 
         /* JADX INFO: renamed from: a */
         public final FileListAdapter f22025a;
@@ -138,7 +139,7 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
 
         /* JADX INFO: renamed from: com.lytefast.flexinput.adapters.FileListAdapter$b$a */
         /* JADX INFO: compiled from: FileListAdapter.kt */
-        public static final class a implements View.OnClickListener {
+        public final class a implements View.OnClickListener {
             public a() {
             }
 
@@ -162,13 +163,19 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
 
         /* JADX INFO: renamed from: com.lytefast.flexinput.adapters.FileListAdapter$b$b */
         /* JADX INFO: compiled from: FileListAdapter.kt */
-        public static final class b extends AbstractC12240o implements Function1<AnimatorSet, Unit> {
+        public final class b extends AbstractC12240o implements Function1<AnimatorSet, Unit> {
             public final /* synthetic */ boolean $isAnimationRequested;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public b(boolean z2) {
                 super(1);
                 this.$isAnimationRequested = z2;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(AnimatorSet animatorSet) {
+                m9281a(animatorSet);
+                return Unit.f27425a;
             }
 
             /* JADX INFO: renamed from: a */
@@ -179,12 +186,6 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
                     return;
                 }
                 animatorSet.end();
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(AnimatorSet animatorSet) {
-                m9281a(animatorSet);
-                return Unit.f27425a;
             }
         }
 
@@ -222,7 +223,7 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
         }
 
         /* JADX INFO: renamed from: a */
-        public final void m9279a(File file) throws IOException {
+        public final void m9279a(File file) throws IllegalAccessException, IOException, InvocationTargetException {
             Bitmap thumbnail;
             Cursor cursorQuery = this.f22033h.contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"_id", "mini_thumb_magic"}, "_data=?", new String[]{file.getPath()}, null);
             if (cursorQuery != null) {
@@ -307,7 +308,7 @@ public final class FileListAdapter extends RecyclerView.Adapter<C11174b> {
 
     /* JADX WARN: Code duplicated, block: B:18:0x00e1  */
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, IOException, InvocationTargetException {
         String mimeTypeFromExtension;
         String str;
         C11174b c11174b = (C11174b) viewHolder;

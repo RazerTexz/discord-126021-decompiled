@@ -11,7 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class GapWorker implements Runnable {
+    public long mFrameIntervalNs;
+    public long mPostTimeNs;
     public static final ThreadLocal<GapWorker> sGapWorker = new ThreadLocal<>();
+    public ArrayList<RecyclerView> mRecyclerViews = new ArrayList<>();
     public static Comparator<Task> sTaskComparator = new Comparator<Task>() { // from class: androidx.recyclerview.widget.GapWorker.1
         @Override // java.util.Comparator
         public int compare(Task task, Task task2) {
@@ -34,13 +37,10 @@ public final class GapWorker implements Runnable {
             return 0;
         }
     };
-    public long mFrameIntervalNs;
-    public long mPostTimeNs;
-    public ArrayList<RecyclerView> mRecyclerViews = new ArrayList<>();
     private ArrayList<Task> mTasks = new ArrayList<>();
 
     @SuppressLint({"VisibleForTests"})
-    public static class LayoutPrefetchRegistryImpl implements RecyclerView.LayoutManager.LayoutPrefetchRegistry {
+    public class LayoutPrefetchRegistryImpl implements RecyclerView.LayoutManager.LayoutPrefetchRegistry {
         public int mCount;
         public int[] mPrefetchArray;
         public int mPrefetchDx;
@@ -122,7 +122,7 @@ public final class GapWorker implements Runnable {
         }
     }
 
-    public static class Task {
+    public class Task {
         public int distanceToItem;
         public boolean immediate;
         public int position;
@@ -136,6 +136,10 @@ public final class GapWorker implements Runnable {
             this.view = null;
             this.position = 0;
         }
+    }
+
+    public void add(RecyclerView recyclerView) {
+        this.mRecyclerViews.add(recyclerView);
     }
 
     private void buildTaskList() {
@@ -207,6 +211,19 @@ public final class GapWorker implements Runnable {
         return false;
     }
 
+    public void postFromTraversal(RecyclerView recyclerView, int i, int i2) {
+        if (recyclerView.isAttachedToWindow() && this.mPostTimeNs == 0) {
+            this.mPostTimeNs = recyclerView.getNanoTime();
+            recyclerView.post(this);
+        }
+        recyclerView.mPrefetchRegistry.setPrefetchVector(i, i2);
+    }
+
+    public void prefetch(long j) {
+        buildTaskList();
+        flushTasksWithDeadline(j);
+    }
+
     private void prefetchInnerRecyclerViewWithDeadline(@Nullable RecyclerView recyclerView, long j) {
         if (recyclerView == null) {
             return;
@@ -250,23 +267,6 @@ public final class GapWorker implements Runnable {
         } finally {
             recyclerView.onExitLayoutOrScroll(false);
         }
-    }
-
-    public void add(RecyclerView recyclerView) {
-        this.mRecyclerViews.add(recyclerView);
-    }
-
-    public void postFromTraversal(RecyclerView recyclerView, int i, int i2) {
-        if (recyclerView.isAttachedToWindow() && this.mPostTimeNs == 0) {
-            this.mPostTimeNs = recyclerView.getNanoTime();
-            recyclerView.post(this);
-        }
-        recyclerView.mPrefetchRegistry.setPrefetchVector(i, i2);
-    }
-
-    public void prefetch(long j) {
-        buildTaskList();
-        flushTasksWithDeadline(j);
     }
 
     public void remove(RecyclerView recyclerView) {

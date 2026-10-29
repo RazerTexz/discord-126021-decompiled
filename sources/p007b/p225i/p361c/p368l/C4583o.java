@@ -24,11 +24,6 @@ public final class C4583o {
         this.f12203c = i2;
     }
 
-    /* JADX INFO: renamed from: a */
-    public boolean m6358a() {
-        return this.f12202b == 2;
-    }
-
     public boolean equals(Object obj) {
         if (!(obj instanceof C4583o)) {
             return false;
@@ -39,6 +34,11 @@ public final class C4583o {
 
     public int hashCode() {
         return ((((this.f12201a.hashCode() ^ 1000003) * 1000003) ^ this.f12202b) * 1000003) ^ this.f12203c;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m6358a() {
+        return this.f12202b == 2;
     }
 
     public String toString() {

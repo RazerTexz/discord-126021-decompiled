@@ -42,6 +42,21 @@ public final class ServiceConnectionC4096k8 implements ServiceConnection, Abstra
         this.f10894l.mo5725f().m5852v(new RunnableC4140o8(this));
     }
 
+    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b.a
+    @MainThread
+    /* JADX INFO: renamed from: i */
+    public final void mo4145i(@Nullable Bundle bundle) {
+        C1460d.m575u("MeasurementServiceConnection.onConnected");
+        synchronized (this) {
+            try {
+                this.f10894l.mo5725f().m5852v(new RunnableC4107l8(this, this.f10893k.m4142w()));
+            } catch (DeadObjectException | IllegalStateException unused) {
+                this.f10893k = null;
+                this.f10892j = false;
+            }
+        }
+    }
+
     @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b.b
     @MainThread
     /* JADX INFO: renamed from: g */
@@ -58,21 +73,6 @@ public final class ServiceConnectionC4096k8 implements ServiceConnection, Abstra
             this.f10893k = null;
         }
         this.f10894l.mo5725f().m5852v(new RunnableC4129n8(this));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p304k.AbstractC3345b.a
-    @MainThread
-    /* JADX INFO: renamed from: i */
-    public final void mo4145i(@Nullable Bundle bundle) {
-        C1460d.m575u("MeasurementServiceConnection.onConnected");
-        synchronized (this) {
-            try {
-                this.f10894l.mo5725f().m5852v(new RunnableC4107l8(this, this.f10893k.m4142w()));
-            } catch (DeadObjectException | IllegalStateException unused) {
-                this.f10893k = null;
-                this.f10892j = false;
-            }
-        }
     }
 
     @Override // android.content.ServiceConnection

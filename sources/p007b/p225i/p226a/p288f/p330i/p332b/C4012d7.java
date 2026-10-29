@@ -40,12 +40,6 @@ public final class C4012d7 extends AbstractC4170r5 {
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    /* JADX INFO: renamed from: r */
-    public final boolean mo5574r() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: s */
     public final HttpURLConnection m5583s(URL url) throws IOException {
@@ -60,5 +54,11 @@ public final class C4012d7 extends AbstractC4170r5 {
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setDoInput(true);
         return httpURLConnection;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    /* JADX INFO: renamed from: r */
+    public final boolean mo5574r() {
+        return false;
     }
 }

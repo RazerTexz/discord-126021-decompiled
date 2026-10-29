@@ -92,7 +92,7 @@ public final class ActiveSubscriptionView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.views.ActiveSubscriptionView$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class ViewOnClickListenerC7064a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7064a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f19005j;

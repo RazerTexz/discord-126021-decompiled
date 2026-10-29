@@ -29,7 +29,7 @@ public final class CommunityGetStartedInformationView extends CardView {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.CommunityGetStartedInformationView$initAttrs$1 */
     /* JADX INFO: compiled from: CommunityGetStartedInformationView.kt */
-    public static final class C93461 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C93461 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C93461() {
             super(1);
         }

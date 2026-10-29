@@ -28,7 +28,7 @@ public final class WidgetServerSettingsMembersAdapter extends MGRecyclerAdapterS
     private Function2<? super Long, ? super List<Long>, Unit> memberSelectedListener;
 
     /* JADX INFO: compiled from: WidgetServerSettingsMembersAdapter.kt */
-    public static final class MemberListItem extends MGRecyclerViewHolder<WidgetServerSettingsMembersAdapter, WidgetServerSettingsMembersModel.MemberItem> {
+    public final class MemberListItem extends MGRecyclerViewHolder<WidgetServerSettingsMembersAdapter, WidgetServerSettingsMembersModel.MemberItem> {
         private final WidgetServerSettingsMemberListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

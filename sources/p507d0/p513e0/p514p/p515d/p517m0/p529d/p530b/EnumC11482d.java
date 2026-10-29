@@ -28,16 +28,16 @@ public enum EnumC11482d implements InterfaceC11480b {
     WHEN_GET_COMPANION_OBJECT,
     FOR_DEFAULT_IMPORTS;
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p529d.p530b.InterfaceC11480b
+    public InterfaceC11479a getLocation() {
+        return null;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11482d[] valuesCustom() {
         EnumC11482d[] enumC11482dArrValuesCustom = values();
         EnumC11482d[] enumC11482dArr = new EnumC11482d[enumC11482dArrValuesCustom.length];
         System.arraycopy(enumC11482dArrValuesCustom, 0, enumC11482dArr, 0, enumC11482dArrValuesCustom.length);
         return enumC11482dArr;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p529d.p530b.InterfaceC11480b
-    public InterfaceC11479a getLocation() {
-        return null;
     }
 }

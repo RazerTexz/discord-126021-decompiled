@@ -36,7 +36,7 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.GuildRoleSubscriptionReviewViewModel$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionReviewViewModel.kt */
-    public static final class C84801 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C84801 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C84801() {
             super(1);
         }
@@ -56,7 +56,7 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionReviewViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -70,7 +70,7 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionReviewViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final int guildChannelCount;
 
         public StoreState(int i) {
@@ -84,11 +84,6 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
             return storeState.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getGuildChannelCount() {
-            return this.guildChannelCount;
-        }
-
         public final StoreState copy(int guildChannelCount) {
             return new StoreState(guildChannelCount);
         }
@@ -98,6 +93,11 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
                 return (other instanceof StoreState) && this.guildChannelCount == ((StoreState) other).guildChannelCount;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getGuildChannelCount() {
+            return this.guildChannelCount;
         }
 
         public final int getGuildChannelCount() {
@@ -114,7 +114,7 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionReviewViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<GuildRoleSubscriptionTierAdapterItem> items;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -123,16 +123,16 @@ public final class GuildRoleSubscriptionReviewViewModel extends AbstractC0859d0<
             this.items = list;
         }
 
+        public final List<GuildRoleSubscriptionTierAdapterItem> component1() {
+            return this.items;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ViewState copy$default(ViewState viewState, List list, int i, Object obj) {
             if ((i & 1) != 0) {
                 list = viewState.items;
             }
             return viewState.copy(list);
-        }
-
-        public final List<GuildRoleSubscriptionTierAdapterItem> component1() {
-            return this.items;
         }
 
         public final ViewState copy(List<? extends GuildRoleSubscriptionTierAdapterItem> items) {

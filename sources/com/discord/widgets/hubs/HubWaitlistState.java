@@ -22,16 +22,16 @@ public final /* data */ class HubWaitlistState {
         this.waitlistAsync = restCallState;
     }
 
+    public final RestCallState<WaitlistSignup> component1() {
+        return this.waitlistAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubWaitlistState copy$default(HubWaitlistState hubWaitlistState, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
             restCallState = hubWaitlistState.waitlistAsync;
         }
         return hubWaitlistState.copy(restCallState);
-    }
-
-    public final RestCallState<WaitlistSignup> component1() {
-        return this.waitlistAsync;
     }
 
     public final HubWaitlistState copy(RestCallState<WaitlistSignup> waitlistAsync) {

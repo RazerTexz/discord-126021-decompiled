@@ -37,7 +37,7 @@ public final class GuildTemplateChannelsView extends LinearLayout {
     private final ChannelsAdapter channelsAdapter;
 
     /* JADX INFO: compiled from: GuildTemplateChannelsView.kt */
-    public static final /* data */ class ChannelDataPayload implements MGRecyclerDataPayload {
+    public final /* data */ class ChannelDataPayload implements MGRecyclerDataPayload {
         private final Channel channel;
         private final String key;
         private final int type;
@@ -55,11 +55,6 @@ public final class GuildTemplateChannelsView extends LinearLayout {
             return channelDataPayload.copy(channel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
         public final ChannelDataPayload copy(Channel channel) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new ChannelDataPayload(channel);
@@ -70,6 +65,11 @@ public final class GuildTemplateChannelsView extends LinearLayout {
                 return (other instanceof ChannelDataPayload) && C12238m.areEqual(this.channel, ((ChannelDataPayload) other).channel);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -103,7 +103,7 @@ public final class GuildTemplateChannelsView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: GuildTemplateChannelsView.kt */
-    public static final class ChannelViewHolder extends MGRecyclerViewHolder<ChannelsAdapter, ChannelDataPayload> {
+    public final class ChannelViewHolder extends MGRecyclerViewHolder<ChannelsAdapter, ChannelDataPayload> {
         private final GuildTemplateChannelsItemViewBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -153,7 +153,7 @@ public final class GuildTemplateChannelsView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: GuildTemplateChannelsView.kt */
-    public static final class ChannelsAdapter extends MGRecyclerAdapterSimple<ChannelDataPayload> {
+    public final class ChannelsAdapter extends MGRecyclerAdapterSimple<ChannelDataPayload> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ChannelsAdapter(RecyclerView recyclerView) {
             super(recyclerView, false, 2, null);

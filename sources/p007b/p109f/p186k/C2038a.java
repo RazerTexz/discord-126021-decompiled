@@ -19,7 +19,7 @@ public final class C2038a {
 
     /* JADX INFO: renamed from: b.f.k.a$a */
     /* JADX INFO: compiled from: BitmapUtil.java */
-    public static /* synthetic */ class a {
+    public /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f4276a;

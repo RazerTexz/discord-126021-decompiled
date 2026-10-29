@@ -23,12 +23,6 @@ import p507d0.p592z.p594d.InterfaceC12234i;
 /* JADX INFO: compiled from: ReflectionFactoryImpl.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C11253d0 extends C12218b0 {
-    /* JADX INFO: renamed from: a */
-    public static AbstractC11262i m9333a(AbstractC12221d abstractC12221d) {
-        KDeclarationContainer owner = abstractC12221d.getOwner();
-        return owner instanceof AbstractC11262i ? (AbstractC11262i) owner : C11248b.f22320m;
-    }
-
     @Override // p507d0.p592z.p594d.C12218b0
     public KFunction function(C12235j c12235j) {
         return new C11264j(m9333a(c12235j), c12235j.getName(), c12235j.getSignature(), c12235j.getBoundReceiver());
@@ -42,6 +36,12 @@ public class C11253d0 extends C12218b0 {
     @Override // p507d0.p592z.p594d.C12218b0
     public KDeclarationContainer getOrCreateKotlinPackage(Class cls, String str) {
         return new C12043n(cls, str);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static AbstractC11262i m9333a(AbstractC12221d abstractC12221d) {
+        KDeclarationContainer owner = abstractC12221d.getOwner();
+        return owner instanceof AbstractC11262i ? (AbstractC11262i) owner : C11248b.f22320m;
     }
 
     @Override // p507d0.p592z.p594d.C12218b0

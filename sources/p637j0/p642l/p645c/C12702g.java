@@ -50,7 +50,7 @@ public class C12702g extends Scheduler.Worker implements Subscription {
 
     /* JADX INFO: renamed from: j0.l.c.g$a */
     /* JADX INFO: compiled from: NewThreadWorker.java */
-    public static class a implements Runnable {
+    public final class a implements Runnable {
         @Override // java.lang.Runnable
         public void run() {
             try {
@@ -82,6 +82,11 @@ public class C12702g extends Scheduler.Worker implements Subscription {
             m10803e((ScheduledThreadPoolExecutor) scheduledExecutorServiceNewScheduledThreadPool);
         }
         this.f27229p = scheduledExecutorServiceNewScheduledThreadPool;
+    }
+
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.f27230q;
     }
 
     /* JADX INFO: renamed from: d */
@@ -154,6 +159,13 @@ public class C12702g extends Scheduler.Worker implements Subscription {
         return false;
     }
 
+    /* JADX INFO: renamed from: f */
+    public RunnableC12705j m10805f(Action0 action0, long j, TimeUnit timeUnit) {
+        RunnableC12705j runnableC12705j = new RunnableC12705j(C12774l.m10865d(action0));
+        runnableC12705j.m10807a(j <= 0 ? this.f27229p.submit(runnableC12705j) : this.f27229p.schedule(runnableC12705j, j, timeUnit));
+        return runnableC12705j;
+    }
+
     @Override // rx.Scheduler.Worker
     /* JADX INFO: renamed from: a */
     public Subscription mo10740a(Action0 action0) {
@@ -164,18 +176,6 @@ public class C12702g extends Scheduler.Worker implements Subscription {
     /* JADX INFO: renamed from: b */
     public Subscription mo10741b(Action0 action0, long j, TimeUnit timeUnit) {
         return this.f27230q ? C12787c.f27422a : m10805f(action0, j, timeUnit);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public RunnableC12705j m10805f(Action0 action0, long j, TimeUnit timeUnit) {
-        RunnableC12705j runnableC12705j = new RunnableC12705j(C12774l.m10865d(action0));
-        runnableC12705j.m10807a(j <= 0 ? this.f27229p.submit(runnableC12705j) : this.f27229p.schedule(runnableC12705j, j, timeUnit));
-        return runnableC12705j;
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.f27230q;
     }
 
     @Override // p658rx.Subscription

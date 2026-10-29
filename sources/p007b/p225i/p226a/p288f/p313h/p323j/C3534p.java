@@ -26,6 +26,29 @@ public final class C3534p extends SQLiteOpenHelper {
         this.f9776j = c3532o;
     }
 
+    @Override // android.database.sqlite.SQLiteOpenHelper
+    public final SQLiteDatabase getWritableDatabase() {
+        if (!this.f9776j.f9772p.m4507b(3600000L)) {
+            throw new SQLiteException("Database open failed");
+        }
+        try {
+            return super.getWritableDatabase();
+        } catch (SQLiteException unused) {
+            this.f9776j.f9772p.m4506a();
+            this.f9776j.m4429H("Opening the database failed, dropping the table and recreating it");
+            String str = C3532o.f9768l;
+            this.f9776j.f9684j.f9722b.getDatabasePath("google_analytics_v4.db").delete();
+            try {
+                SQLiteDatabase writableDatabase = super.getWritableDatabase();
+                this.f9776j.f9772p.f9825b = 0L;
+                return writableDatabase;
+            } catch (SQLiteException e) {
+                this.f9776j.m4426A("Failed to open freshly created database", e);
+                throw e;
+            }
+        }
+    }
+
     /* JADX INFO: renamed from: b */
     public static Set<String> m4483b(SQLiteDatabase sQLiteDatabase, String str) {
         HashSet hashSet = new HashSet();
@@ -63,29 +86,6 @@ public final class C3534p extends SQLiteOpenHelper {
                 cursorQuery.close();
             }
             throw th;
-        }
-    }
-
-    @Override // android.database.sqlite.SQLiteOpenHelper
-    public final SQLiteDatabase getWritableDatabase() {
-        if (!this.f9776j.f9772p.m4507b(3600000L)) {
-            throw new SQLiteException("Database open failed");
-        }
-        try {
-            return super.getWritableDatabase();
-        } catch (SQLiteException unused) {
-            this.f9776j.f9772p.m4506a();
-            this.f9776j.m4429H("Opening the database failed, dropping the table and recreating it");
-            String str = C3532o.f9768l;
-            this.f9776j.f9684j.f9722b.getDatabasePath("google_analytics_v4.db").delete();
-            try {
-                SQLiteDatabase writableDatabase = super.getWritableDatabase();
-                this.f9776j.f9772p.f9825b = 0L;
-                return writableDatabase;
-            } catch (SQLiteException e) {
-                this.f9776j.m4426A("Failed to open freshly created database", e);
-                throw e;
-            }
         }
     }
 

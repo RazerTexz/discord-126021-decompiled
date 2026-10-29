@@ -48,13 +48,13 @@ public class PreferenceManager {
         boolean onPreferenceTreeClick(Preference preference);
     }
 
-    public static abstract class PreferenceComparisonCallback {
+    public abstract class PreferenceComparisonCallback {
         public abstract boolean arePreferenceContentsTheSame(Preference preference, Preference preference2);
 
         public abstract boolean arePreferenceItemsTheSame(Preference preference, Preference preference2);
     }
 
-    public static class SimplePreferenceComparisonCallback extends PreferenceComparisonCallback {
+    public class SimplePreferenceComparisonCallback extends PreferenceComparisonCallback {
         @Override // androidx.preference.PreferenceManager.PreferenceComparisonCallback
         public boolean arePreferenceContentsTheSame(Preference preference, Preference preference2) {
             if (preference.getClass() != preference2.getClass()) {
@@ -86,30 +86,6 @@ public class PreferenceManager {
         setSharedPreferencesName(getDefaultSharedPreferencesName(context));
     }
 
-    public static SharedPreferences getDefaultSharedPreferences(Context context) {
-        return context.getSharedPreferences(getDefaultSharedPreferencesName(context), getDefaultSharedPreferencesMode());
-    }
-
-    private static int getDefaultSharedPreferencesMode() {
-        return 0;
-    }
-
-    private static String getDefaultSharedPreferencesName(Context context) {
-        return context.getPackageName() + "_preferences";
-    }
-
-    public static void setDefaultValues(Context context, int i, boolean z2) {
-        setDefaultValues(context, getDefaultSharedPreferencesName(context), getDefaultSharedPreferencesMode(), i, z2);
-    }
-
-    private void setNoCommit(boolean z2) {
-        SharedPreferences.Editor editor;
-        if (!z2 && (editor = this.mEditor) != null) {
-            editor.apply();
-        }
-        this.mNoCommit = z2;
-    }
-
     public PreferenceScreen createPreferenceScreen(Context context) {
         PreferenceScreen preferenceScreen = new PreferenceScreen(context, null);
         preferenceScreen.onAttachedToHierarchy(this);
@@ -127,6 +103,18 @@ public class PreferenceManager {
 
     public Context getContext() {
         return this.mContext;
+    }
+
+    public static SharedPreferences getDefaultSharedPreferences(Context context) {
+        return context.getSharedPreferences(getDefaultSharedPreferencesName(context), getDefaultSharedPreferencesMode());
+    }
+
+    private static int getDefaultSharedPreferencesMode() {
+        return 0;
+    }
+
+    private static String getDefaultSharedPreferencesName(Context context) {
+        return context.getPackageName() + "_preferences";
     }
 
     public SharedPreferences.Editor getEditor() {
@@ -209,6 +197,18 @@ public class PreferenceManager {
 
     public boolean isStorageDeviceProtected() {
         return Build.VERSION.SDK_INT >= 24 && this.mStorage == 1;
+    }
+
+    public static void setDefaultValues(Context context, int i, boolean z2) {
+        setDefaultValues(context, getDefaultSharedPreferencesName(context), getDefaultSharedPreferencesMode(), i, z2);
+    }
+
+    private void setNoCommit(boolean z2) {
+        SharedPreferences.Editor editor;
+        if (!z2 && (editor = this.mEditor) != null) {
+            editor.apply();
+        }
+        this.mNoCommit = z2;
     }
 
     public void setOnDisplayPreferenceDialogListener(OnDisplayPreferenceDialogListener onDisplayPreferenceDialogListener) {

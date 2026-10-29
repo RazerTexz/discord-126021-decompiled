@@ -22,7 +22,7 @@ public interface InterfaceC11625s {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.s$a */
     /* JADX INFO: compiled from: JavaClassFinder.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C11712a f23518a;

@@ -12,9 +12,15 @@ public final /* data */ class GuildEmojisUpdate {
     private final GuildHashes guildHashes;
     private final long guildId;
 
-    /* JADX INFO: renamed from: a */
-    public final List<GuildEmoji> m7816a() {
-        return this.emojis;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildEmojisUpdate)) {
+            return false;
+        }
+        GuildEmojisUpdate guildEmojisUpdate = (GuildEmojisUpdate) other;
+        return this.guildId == guildEmojisUpdate.guildId && C12238m.areEqual(this.emojis, guildEmojisUpdate.emojis) && C12238m.areEqual(this.guildHashes, guildEmojisUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -27,17 +33,6 @@ public final /* data */ class GuildEmojisUpdate {
         return this.guildId;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildEmojisUpdate)) {
-            return false;
-        }
-        GuildEmojisUpdate guildEmojisUpdate = (GuildEmojisUpdate) other;
-        return this.guildId == guildEmojisUpdate.guildId && C12238m.areEqual(this.emojis, guildEmojisUpdate.emojis) && C12238m.areEqual(this.guildHashes, guildEmojisUpdate.guildHashes);
-    }
-
     public int hashCode() {
         long j = this.guildId;
         int i = ((int) (j ^ (j >>> 32))) * 31;
@@ -45,6 +40,11 @@ public final /* data */ class GuildEmojisUpdate {
         int iHashCode = (i + (list != null ? list.hashCode() : 0)) * 31;
         GuildHashes guildHashes = this.guildHashes;
         return iHashCode + (guildHashes != null ? guildHashes.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<GuildEmoji> m7816a() {
+        return this.emojis;
     }
 
     public String toString() {

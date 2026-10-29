@@ -15,7 +15,7 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
     private final List<RadioSelectorItem> items;
     private final String title;
 
-    public static class Creator implements Parcelable.Creator<RadioSelectorItems> {
+    public final class Creator implements Parcelable.Creator<RadioSelectorItems> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final RadioSelectorItems createFromParcel(Parcel parcel) {
@@ -44,6 +44,10 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
         this.items = list;
     }
 
+    public final List<RadioSelectorItem> component2() {
+        return this.items;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ RadioSelectorItems copy$default(RadioSelectorItems radioSelectorItems, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -53,15 +57,6 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
             list = radioSelectorItems.items;
         }
         return radioSelectorItems.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTitle() {
-        return this.title;
-    }
-
-    public final List<RadioSelectorItem> component2() {
-        return this.items;
     }
 
     public final RadioSelectorItems copy(String title, List<RadioSelectorItem> items) {
@@ -88,6 +83,11 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
 
     public final List<RadioSelectorItem> getItems() {
         return this.items;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTitle() {
+        return this.title;
     }
 
     public final String getTitle() {

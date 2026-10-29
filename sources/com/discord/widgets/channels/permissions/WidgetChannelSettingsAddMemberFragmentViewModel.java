@@ -65,7 +65,7 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragmentViewModel$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragmentViewModel.kt */
-    public static final class C75291 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C75291 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C75291() {
             super(1);
         }
@@ -84,7 +84,7 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragmentViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -132,7 +132,7 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragmentViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final Map<Long, PermissionOverwrite> channelPermissionOverwritesMap;
         private final Guild guild;
@@ -153,6 +153,22 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             this.roles = map2;
             this.members = map3;
             this.users = map4;
+        }
+
+        public final Map<Long, PermissionOverwrite> component3() {
+            return this.channelPermissionOverwritesMap;
+        }
+
+        public final Map<Long, GuildRole> component4() {
+            return this.roles;
+        }
+
+        public final Map<Long, GuildMember> component5() {
+            return this.members;
+        }
+
+        public final Map<Long, User> component6() {
+            return this.users;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -182,32 +198,6 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             return storeState.copy(guild, channel2, map5, map6, map7, map4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        public final Map<Long, PermissionOverwrite> component3() {
-            return this.channelPermissionOverwritesMap;
-        }
-
-        public final Map<Long, GuildRole> component4() {
-            return this.roles;
-        }
-
-        public final Map<Long, GuildMember> component5() {
-            return this.members;
-        }
-
-        public final Map<Long, User> component6() {
-            return this.users;
-        }
-
         public final StoreState copy(Guild guild, Channel channel, Map<Long, PermissionOverwrite> channelPermissionOverwritesMap, Map<Long, GuildRole> roles, Map<Long, GuildMember> members, Map<Long, ? extends User> users) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(channelPermissionOverwritesMap, "channelPermissionOverwritesMap");
@@ -228,12 +218,22 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.channelPermissionOverwritesMap, storeState.channelPermissionOverwritesMap) && C12238m.areEqual(this.roles, storeState.roles) && C12238m.areEqual(this.members, storeState.members) && C12238m.areEqual(this.users, storeState.users);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
         public final Channel getChannel() {
             return this.channel;
         }
 
         public final Map<Long, PermissionOverwrite> getChannelPermissionOverwritesMap() {
             return this.channelPermissionOverwritesMap;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -284,7 +284,7 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
     }
 
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragmentViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final Channel channel;
         private final Guild guild;
         private final List<AddMemberAdapter.Item> items;
@@ -302,6 +302,14 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             this.query = str;
             this.items = list;
             this.selected = map;
+        }
+
+        public final List<AddMemberAdapter.Item> component4() {
+            return this.items;
+        }
+
+        public final Map<Long, PermissionOverwrite.Type> component5() {
+            return this.selected;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -327,29 +335,6 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             return viewState.copy(guild, channel2, str2, list2, map);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getQuery() {
-            return this.query;
-        }
-
-        public final List<AddMemberAdapter.Item> component4() {
-            return this.items;
-        }
-
-        public final Map<Long, PermissionOverwrite.Type> component5() {
-            return this.selected;
-        }
-
         public final ViewState copy(Guild guild, Channel channel, String query, List<? extends AddMemberAdapter.Item> items, Map<Long, ? extends PermissionOverwrite.Type> selected) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(query, "query");
@@ -369,8 +354,18 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
             return C12238m.areEqual(this.guild, viewState.guild) && C12238m.areEqual(this.channel, viewState.channel) && C12238m.areEqual(this.query, viewState.query) && C12238m.areEqual(this.items, viewState.items) && C12238m.areEqual(this.selected, viewState.selected);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -379,6 +374,11 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
 
         public final List<AddMemberAdapter.Item> getItems() {
             return this.items;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getQuery() {
+            return this.query;
         }
 
         public final String getQuery() {
@@ -426,6 +426,10 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
 
     private final ViewState generateViewState(StoreState storeState) {
         return new ViewState(storeState.getGuild(), storeState.getChannel(), this.query, makeAdapterItems(storeState), this.selected);
+    }
+
+    public final String getQuery() {
+        return this.query;
     }
 
     @MainThread
@@ -519,10 +523,6 @@ public final class WidgetChannelSettingsAddMemberFragmentViewModel extends Abstr
         StoreGatewayConnection storeGatewayConnection = this.gatewaySocket;
         Objects.requireNonNull(query, "null cannot be cast to non-null type kotlin.CharSequence");
         storeGatewayConnection.requestGuildMembers(id2, C12106w.trim(query).toString(), null, 20);
-    }
-
-    public final String getQuery() {
-        return this.query;
     }
 
     public final void setQuery(String str) {

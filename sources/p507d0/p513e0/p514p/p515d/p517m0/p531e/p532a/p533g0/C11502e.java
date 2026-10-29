@@ -31,7 +31,7 @@ public final class C11502e extends C11499b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.e$a */
     /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
-    public static final class a extends AbstractC12240o implements Function0<Map<C11716e, ? extends C11831w>> {
+    public final class a extends AbstractC12240o implements Function0<Map<C11716e, ? extends C11831w>> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23242j = new a();

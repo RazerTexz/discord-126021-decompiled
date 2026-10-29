@@ -17,7 +17,6 @@ public final class RestAPIAbortCodes {
     public static final int GIFTING_CANT_REDEEM_SKU_MISMATCH = 100024;
     public static final int GIFTING_CANT_REDEEM_SUBSCRIPTION_MANAGED = 100022;
     public static final int GIFTING_CANT_REDEEM_SUBSCRIPTION_PAST_DUE = 100023;
-    public static final RestAPIAbortCodes INSTANCE = new RestAPIAbortCodes();
     public static final int INVALID_ACCESS = 50001;
     public static final int INVALID_ACCOUNT_TYPE = 50002;
     public static final int INVALID_ACTION_DM = 50003;
@@ -95,6 +94,7 @@ public final class RestAPIAbortCodes {
     public static final int UNKNOWN_USER = 10013;
     public static final int UNKNOWN_WEBHOOK = 10015;
     public static final int USER_BANNED = 40007;
+    public static final RestAPIAbortCodes INSTANCE = new RestAPIAbortCodes();
 
     private RestAPIAbortCodes() {
     }

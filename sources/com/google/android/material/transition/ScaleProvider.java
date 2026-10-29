@@ -20,7 +20,7 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
     private boolean scaleOnDisappear;
 
     /* JADX INFO: renamed from: com.google.android.material.transition.ScaleProvider$a */
-    public static class C11048a extends AnimatorListenerAdapter {
+    public final class C11048a extends AnimatorListenerAdapter {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f21319a;
@@ -48,14 +48,6 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
         this(true);
     }
 
-    private static Animator createScaleAnimator(View view, float f, float f2) {
-        float scaleX = view.getScaleX();
-        float scaleY = view.getScaleY();
-        ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_X, scaleX * f, scaleX * f2), PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_Y, f * scaleY, f2 * scaleY));
-        objectAnimatorOfPropertyValuesHolder.addListener(new C11048a(view, scaleX, scaleY));
-        return objectAnimatorOfPropertyValuesHolder;
-    }
-
     @Override // com.google.android.material.transition.VisibilityAnimatorProvider
     @Nullable
     public Animator createAppear(@NonNull ViewGroup viewGroup, @NonNull View view) {
@@ -69,6 +61,14 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
             return this.growing ? createScaleAnimator(view, this.outgoingStartScale, this.outgoingEndScale) : createScaleAnimator(view, this.incomingEndScale, this.incomingStartScale);
         }
         return null;
+    }
+
+    private static Animator createScaleAnimator(View view, float f, float f2) {
+        float scaleX = view.getScaleX();
+        float scaleY = view.getScaleY();
+        ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_X, scaleX * f, scaleX * f2), PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_Y, f * scaleY, f2 * scaleY));
+        objectAnimatorOfPropertyValuesHolder.addListener(new C11048a(view, scaleX, scaleY));
+        return objectAnimatorOfPropertyValuesHolder;
     }
 
     public float getIncomingEndScale() {

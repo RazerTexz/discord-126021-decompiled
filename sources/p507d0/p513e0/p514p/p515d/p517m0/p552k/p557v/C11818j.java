@@ -65,10 +65,6 @@ public final class C11818j extends AbstractC11815g<Pair<? extends C11712a, ? ext
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p557v.AbstractC11815g
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.f24440b.getShortClassName());
-        sb.append('.');
-        sb.append(this.f24441c);
-        return sb.toString();
+        return "" + this.f24440b.getShortClassName() + '.' + this.f24441c;
     }
 }

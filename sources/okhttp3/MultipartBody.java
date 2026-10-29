@@ -52,8 +52,84 @@ public final class MultipartBody extends RequestBody {
     /* JADX INFO: renamed from: k */
     public final List<Part> f27531k;
 
+    /* JADX INFO: renamed from: okhttp3.MultipartBody$a */
     /* JADX INFO: compiled from: MultipartBody.kt */
-    public static final class Part {
+    public final class C12933a {
+
+        /* JADX INFO: renamed from: a */
+        public final ByteString f27534a;
+
+        /* JADX INFO: renamed from: b */
+        public MediaType f27535b;
+
+        /* JADX INFO: renamed from: c */
+        public final List<Part> f27536c;
+
+        public C12933a() {
+            String string = UUID.randomUUID().toString();
+            C12238m.checkExpressionValueIsNotNull(string, "UUID.randomUUID().toString()");
+            C12238m.checkParameterIsNotNull(string, "boundary");
+            this.f27534a = ByteString.INSTANCE.m11012c(string);
+            this.f27535b = MultipartBody.f27521a;
+            this.f27536c = new ArrayList();
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final C12933a m10972a(Part part) {
+            C12238m.checkParameterIsNotNull(part, "part");
+            this.f27536c.add(part);
+            return this;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final MultipartBody m10973b() {
+            if (!this.f27536c.isEmpty()) {
+                return new MultipartBody(this.f27534a, this.f27535b, C12272c.m10145z(this.f27536c));
+            }
+            throw new IllegalStateException("Multipart body must have at least one part.".toString());
+        }
+
+        /* JADX INFO: renamed from: c */
+        public final C12933a m10974c(MediaType mediaType) {
+            C12238m.checkParameterIsNotNull(mediaType, "type");
+            if (C12238m.areEqual(mediaType.type, "multipart")) {
+                this.f27535b = mediaType;
+                return this;
+            }
+            throw new IllegalArgumentException(("multipart != " + mediaType).toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: okhttp3.MultipartBody$b */
+    /* JADX INFO: compiled from: MultipartBody.kt */
+    public final class C12934b {
+        public C12934b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m10975a(StringBuilder sb, String str) {
+            C12238m.checkParameterIsNotNull(sb, "$this$appendQuotedString");
+            C12238m.checkParameterIsNotNull(str, "key");
+            sb.append('\"');
+            int length = str.length();
+            for (int i = 0; i < length; i++) {
+                char cCharAt = str.charAt(i);
+                if (cCharAt == '\n') {
+                    sb.append("%0A");
+                } else if (cCharAt == '\r') {
+                    sb.append("%0D");
+                } else if (cCharAt == '\"') {
+                    sb.append("%22");
+                } else {
+                    sb.append(cCharAt);
+                }
+            }
+            sb.append('\"');
+        }
+    }
+
+    /* JADX INFO: compiled from: MultipartBody.kt */
+    public final class Part {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final Headers headers;
@@ -116,82 +192,6 @@ public final class MultipartBody extends RequestBody {
         }
     }
 
-    /* JADX INFO: renamed from: okhttp3.MultipartBody$a */
-    /* JADX INFO: compiled from: MultipartBody.kt */
-    public static final class C12933a {
-
-        /* JADX INFO: renamed from: a */
-        public final ByteString f27534a;
-
-        /* JADX INFO: renamed from: b */
-        public MediaType f27535b;
-
-        /* JADX INFO: renamed from: c */
-        public final List<Part> f27536c;
-
-        public C12933a() {
-            String string = UUID.randomUUID().toString();
-            C12238m.checkExpressionValueIsNotNull(string, "UUID.randomUUID().toString()");
-            C12238m.checkParameterIsNotNull(string, "boundary");
-            this.f27534a = ByteString.INSTANCE.m11012c(string);
-            this.f27535b = MultipartBody.f27521a;
-            this.f27536c = new ArrayList();
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final C12933a m10972a(Part part) {
-            C12238m.checkParameterIsNotNull(part, "part");
-            this.f27536c.add(part);
-            return this;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final MultipartBody m10973b() {
-            if (!this.f27536c.isEmpty()) {
-                return new MultipartBody(this.f27534a, this.f27535b, C12272c.m10145z(this.f27536c));
-            }
-            throw new IllegalStateException("Multipart body must have at least one part.".toString());
-        }
-
-        /* JADX INFO: renamed from: c */
-        public final C12933a m10974c(MediaType mediaType) {
-            C12238m.checkParameterIsNotNull(mediaType, "type");
-            if (C12238m.areEqual(mediaType.type, "multipart")) {
-                this.f27535b = mediaType;
-                return this;
-            }
-            throw new IllegalArgumentException(("multipart != " + mediaType).toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: okhttp3.MultipartBody$b */
-    /* JADX INFO: compiled from: MultipartBody.kt */
-    public static final class C12934b {
-        public C12934b(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m10975a(StringBuilder sb, String str) {
-            C12238m.checkParameterIsNotNull(sb, "$this$appendQuotedString");
-            C12238m.checkParameterIsNotNull(str, "key");
-            sb.append('\"');
-            int length = str.length();
-            for (int i = 0; i < length; i++) {
-                char cCharAt = str.charAt(i);
-                if (cCharAt == '\n') {
-                    sb.append("%0A");
-                } else if (cCharAt == '\r') {
-                    sb.append("%0D");
-                } else if (cCharAt == '\"') {
-                    sb.append("%22");
-                } else {
-                    sb.append(cCharAt);
-                }
-            }
-            sb.append('\"');
-        }
-    }
-
     static {
         MediaType.Companion companion = MediaType.INSTANCE;
         f27521a = MediaType.Companion.m10967a("multipart/mixed");
@@ -215,6 +215,22 @@ public final class MultipartBody extends RequestBody {
         MediaType.Companion companion = MediaType.INSTANCE;
         this.f27527g = MediaType.Companion.m10967a(mediaType + "; boundary=" + byteString.m11008q());
         this.f27528h = -1L;
+    }
+
+    @Override // okhttp3.RequestBody
+    public long contentLength() throws IOException {
+        long j = this.f27528h;
+        if (j != -1) {
+            return j;
+        }
+        long jM10969a = m10969a(null, true);
+        this.f27528h = jM10969a;
+        return jM10969a;
+    }
+
+    @Override // okhttp3.RequestBody
+    public MediaType contentType() {
+        return this.f27527g;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -286,22 +302,6 @@ public final class MultipartBody extends RequestBody {
         long j3 = j + j2;
         c12388e.skip(j2);
         return j3;
-    }
-
-    @Override // okhttp3.RequestBody
-    public long contentLength() throws IOException {
-        long j = this.f27528h;
-        if (j != -1) {
-            return j;
-        }
-        long jM10969a = m10969a(null, true);
-        this.f27528h = jM10969a;
-        return jM10969a;
-    }
-
-    @Override // okhttp3.RequestBody
-    public MediaType contentType() {
-        return this.f27527g;
     }
 
     @Override // okhttp3.RequestBody

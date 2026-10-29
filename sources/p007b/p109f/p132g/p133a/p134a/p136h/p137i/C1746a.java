@@ -41,7 +41,7 @@ public class C1746a extends C1826a<ImageInfo> implements Closeable {
 
     /* JADX INFO: renamed from: b.f.g.a.a.h.i.a$a */
     /* JADX INFO: compiled from: ImagePerfControllerListener2.java */
-    public static class a extends Handler {
+    public class a extends Handler {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC1744g f3248a;
@@ -76,70 +76,9 @@ public class C1746a extends C1826a<ImageInfo> implements Closeable {
         this.f3247o = supplier2;
     }
 
-    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
-    /* JADX INFO: renamed from: a */
-    public void mo1071a(String str, Object obj, InterfaceC1827b.a aVar) {
-        long jNow = this.f3243k.now();
-        C1745h c1745hM1075e = m1075e();
-        c1745hM1075e.m1069b();
-        c1745hM1075e.f3224i = jNow;
-        c1745hM1075e.f3216a = str;
-        c1745hM1075e.f3219d = obj;
-        c1745hM1075e.f3215A = aVar;
-        m1077n(c1745hM1075e, 0);
-        c1745hM1075e.f3238w = 1;
-        c1745hM1075e.f3239x = jNow;
-        m1078q(c1745hM1075e, 1);
-    }
-
-    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
-    /* JADX INFO: renamed from: b */
-    public void mo1072b(String str, Throwable th, InterfaceC1827b.a aVar) {
-        long jNow = this.f3243k.now();
-        C1745h c1745hM1075e = m1075e();
-        c1745hM1075e.f3215A = aVar;
-        c1745hM1075e.f3227l = jNow;
-        c1745hM1075e.f3216a = str;
-        c1745hM1075e.f3236u = th;
-        m1077n(c1745hM1075e, 5);
-        c1745hM1075e.f3238w = 2;
-        c1745hM1075e.f3240y = jNow;
-        m1078q(c1745hM1075e, 2);
-    }
-
-    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
-    /* JADX INFO: renamed from: c */
-    public void mo1073c(String str, InterfaceC1827b.a aVar) {
-        long jNow = this.f3243k.now();
-        C1745h c1745hM1075e = m1075e();
-        c1745hM1075e.f3215A = aVar;
-        c1745hM1075e.f3216a = str;
-        int i = c1745hM1075e.f3237v;
-        if (i != 3 && i != 5 && i != 6) {
-            c1745hM1075e.f3228m = jNow;
-            m1077n(c1745hM1075e, 4);
-        }
-        c1745hM1075e.f3238w = 2;
-        c1745hM1075e.f3240y = jNow;
-        m1078q(c1745hM1075e, 2);
-    }
-
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public void close() {
         m1075e().m1068a();
-    }
-
-    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
-    /* JADX INFO: renamed from: d */
-    public void mo1074d(String str, Object obj, InterfaceC1827b.a aVar) {
-        long jNow = this.f3243k.now();
-        C1745h c1745hM1075e = m1075e();
-        c1745hM1075e.f3215A = aVar;
-        c1745hM1075e.f3226k = jNow;
-        c1745hM1075e.f3230o = jNow;
-        c1745hM1075e.f3216a = str;
-        c1745hM1075e.f3220e = (ImageInfo) obj;
-        m1077n(c1745hM1075e, 3);
     }
 
     /* JADX INFO: renamed from: e */
@@ -192,5 +131,66 @@ public class C1746a extends C1826a<ImageInfo> implements Closeable {
         messageObtainMessage.arg1 = i;
         messageObtainMessage.obj = c1745h;
         f3242j.sendMessage(messageObtainMessage);
+    }
+
+    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
+    /* JADX INFO: renamed from: a */
+    public void mo1071a(String str, Object obj, InterfaceC1827b.a aVar) {
+        long jNow = this.f3243k.now();
+        C1745h c1745hM1075e = m1075e();
+        c1745hM1075e.m1069b();
+        c1745hM1075e.f3224i = jNow;
+        c1745hM1075e.f3216a = str;
+        c1745hM1075e.f3219d = obj;
+        c1745hM1075e.f3215A = aVar;
+        m1077n(c1745hM1075e, 0);
+        c1745hM1075e.f3238w = 1;
+        c1745hM1075e.f3239x = jNow;
+        m1078q(c1745hM1075e, 1);
+    }
+
+    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
+    /* JADX INFO: renamed from: b */
+    public void mo1072b(String str, Throwable th, InterfaceC1827b.a aVar) {
+        long jNow = this.f3243k.now();
+        C1745h c1745hM1075e = m1075e();
+        c1745hM1075e.f3215A = aVar;
+        c1745hM1075e.f3227l = jNow;
+        c1745hM1075e.f3216a = str;
+        c1745hM1075e.f3236u = th;
+        m1077n(c1745hM1075e, 5);
+        c1745hM1075e.f3238w = 2;
+        c1745hM1075e.f3240y = jNow;
+        m1078q(c1745hM1075e, 2);
+    }
+
+    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
+    /* JADX INFO: renamed from: c */
+    public void mo1073c(String str, InterfaceC1827b.a aVar) {
+        long jNow = this.f3243k.now();
+        C1745h c1745hM1075e = m1075e();
+        c1745hM1075e.f3215A = aVar;
+        c1745hM1075e.f3216a = str;
+        int i = c1745hM1075e.f3237v;
+        if (i != 3 && i != 5 && i != 6) {
+            c1745hM1075e.f3228m = jNow;
+            m1077n(c1745hM1075e, 4);
+        }
+        c1745hM1075e.f3238w = 2;
+        c1745hM1075e.f3240y = jNow;
+        m1078q(c1745hM1075e, 2);
+    }
+
+    @Override // p007b.p109f.p148h.p158b.p159a.InterfaceC1827b
+    /* JADX INFO: renamed from: d */
+    public void mo1074d(String str, Object obj, InterfaceC1827b.a aVar) {
+        long jNow = this.f3243k.now();
+        C1745h c1745hM1075e = m1075e();
+        c1745hM1075e.f3215A = aVar;
+        c1745hM1075e.f3226k = jNow;
+        c1745hM1075e.f3230o = jNow;
+        c1745hM1075e.f3216a = str;
+        c1745hM1075e.f3220e = (ImageInfo) obj;
+        m1077n(c1745hM1075e, 3);
     }
 }

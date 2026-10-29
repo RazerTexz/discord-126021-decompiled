@@ -12,7 +12,7 @@ public final class C3912z0 extends AbstractC3851u4<C3912z0, a> implements Interf
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.z0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3912z0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3912z0, a> implements InterfaceC3626d6 {
         public a() {
             super(C3912z0.zzf);
         }
@@ -43,6 +43,26 @@ public final class C3912z0 extends AbstractC3851u4<C3912z0, a> implements Interf
     public static void m5392v(C3912z0 c3912z0, long j) {
         c3912z0.zzc |= 2;
         c3912z0.zze = j;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final boolean m5393w() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final int m5394x() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final boolean m5395y() {
+        return (this.zzc & 2) != 0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final long m5396z() {
+        return this.zze;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
@@ -77,25 +97,5 @@ public final class C3912z0 extends AbstractC3851u4<C3912z0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final boolean m5393w() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final int m5394x() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final boolean m5395y() {
-        return (this.zzc & 2) != 0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final long m5396z() {
-        return this.zze;
     }
 }

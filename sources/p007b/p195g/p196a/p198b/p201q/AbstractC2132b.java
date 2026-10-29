@@ -16,9 +16,6 @@ import p007b.p195g.p196a.p198b.p204t.C2142d;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2132b extends AbstractC2119a {
 
-    /* JADX INFO: renamed from: r */
-    public static final int[] f4564r = C2121a.f4541f;
-
     /* JADX INFO: renamed from: s */
     public final C2123c f4565s;
 
@@ -34,6 +31,9 @@ public abstract class AbstractC2132b extends AbstractC2119a {
     /* JADX INFO: renamed from: w */
     public boolean f4569w;
 
+    /* JADX INFO: renamed from: r */
+    public static final int[] f4564r = C2121a.f4541f;
+
     public AbstractC2132b(C2123c c2123c, int i, AbstractC2113i abstractC2113i) {
         super(i, abstractC2113i);
         this.f4566t = f4564r;
@@ -43,6 +43,20 @@ public abstract class AbstractC2132b extends AbstractC2119a {
             this.f4567u = Opcodes.LAND;
         }
         this.f4569w = !AbstractC2108d.a.QUOTE_FIELD_NAMES.m1668g(i);
+    }
+
+    /* JADX INFO: renamed from: x0 */
+    public void m1704x0(String str) throws IOException {
+        throw new JsonGenerationException(String.format("Can not %s, expecting field name (context: %s)", str, this.f4531q.m1677e()), this);
+    }
+
+    /* JADX INFO: renamed from: y0 */
+    public AbstractC2108d m1705y0(int i) {
+        if (i < 0) {
+            i = 0;
+        }
+        this.f4567u = i;
+        return this;
     }
 
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
@@ -96,19 +110,5 @@ public abstract class AbstractC2132b extends AbstractC2119a {
             }
         }
         this.f4569w = !AbstractC2108d.a.QUOTE_FIELD_NAMES.m1668g(i);
-    }
-
-    /* JADX INFO: renamed from: x0 */
-    public void m1704x0(String str) throws IOException {
-        throw new JsonGenerationException(String.format("Can not %s, expecting field name (context: %s)", str, this.f4531q.m1677e()), this);
-    }
-
-    /* JADX INFO: renamed from: y0 */
-    public AbstractC2108d m1705y0(int i) {
-        if (i < 0) {
-            i = 0;
-        }
-        this.f4567u = i;
-        return this;
     }
 }

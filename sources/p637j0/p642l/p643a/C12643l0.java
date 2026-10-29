@@ -28,7 +28,7 @@ public final class C12643l0<T, K, V> implements Observable.InterfaceC13005a<Map<
 
     /* JADX INFO: renamed from: j0.l.a.l0$a */
     /* JADX INFO: compiled from: OnSubscribeToMap.java */
-    public static final class a<T, K, V> extends AbstractC12602b<T, Map<K, V>> {
+    public final class a<T, K, V> extends AbstractC12602b<T, Map<K, V>> {
 
         /* JADX INFO: renamed from: o */
         public final InterfaceC12589b<? super T, ? extends K> f26903o;

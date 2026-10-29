@@ -35,23 +35,59 @@ public class NativeMemoryChunk implements InterfaceC1946r, Closeable {
         this.f19565l = false;
     }
 
-    @InterfaceC1680c
-    private static native long nativeAllocate(int i);
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r, java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() {
+        if (!this.f19565l) {
+            this.f19565l = true;
+            nativeFree(this.f19563j);
+        }
+    }
 
-    @InterfaceC1680c
-    private static native void nativeCopyFromByteArray(long j, byte[] bArr, int i, int i2);
+    public void finalize() throws Throwable {
+        if (isClosed()) {
+            return;
+        }
+        StringBuilder sbM833U = C1643a.m833U("finalize: Chunk ");
+        sbM833U.append(Integer.toHexString(System.identityHashCode(this)));
+        sbM833U.append(" still active. ");
+        Log.w("NativeMemoryChunk", sbM833U.toString());
+        try {
+            close();
+        } finally {
+            super.finalize();
+        }
+    }
 
-    @InterfaceC1680c
-    private static native void nativeCopyToByteArray(long j, byte[] bArr, int i, int i2);
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public ByteBuffer getByteBuffer() {
+        return null;
+    }
 
-    @InterfaceC1680c
-    private static native void nativeFree(long j);
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public int getSize() {
+        return this.f19564k;
+    }
 
-    @InterfaceC1680c
-    private static native void nativeMemcpy(long j, long j2, int i);
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public long getUniqueId() {
+        return this.f19563j;
+    }
 
-    @InterfaceC1680c
-    private static native byte nativeReadByte(long j);
+    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
+    public synchronized boolean isClosed() {
+        return this.f19565l;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m8708c(int i, InterfaceC1946r interfaceC1946r, int i2, int i3) {
+        if (!(interfaceC1946r instanceof NativeMemoryChunk)) {
+            throw new IllegalArgumentException("Cannot copy two incompatible MemoryChunks");
+        }
+        C1460d.m419B(!isClosed());
+        C1460d.m419B(!interfaceC1946r.isClosed());
+        C1460d.m555p(i, interfaceC1946r.getSize(), i2, i3, this.f19564k);
+        nativeMemcpy(interfaceC1946r.mo1370k() + ((long) i2), this.f19563j + ((long) i), i3);
+    }
 
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
     /* JADX INFO: renamed from: a */
@@ -93,55 +129,6 @@ public class NativeMemoryChunk implements InterfaceC1946r, Closeable {
         return iM507d;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final void m8708c(int i, InterfaceC1946r interfaceC1946r, int i2, int i3) {
-        if (!(interfaceC1946r instanceof NativeMemoryChunk)) {
-            throw new IllegalArgumentException("Cannot copy two incompatible MemoryChunks");
-        }
-        C1460d.m419B(!isClosed());
-        C1460d.m419B(!interfaceC1946r.isClosed());
-        C1460d.m555p(i, interfaceC1946r.getSize(), i2, i3, this.f19564k);
-        nativeMemcpy(interfaceC1946r.mo1370k() + ((long) i2), this.f19563j + ((long) i), i3);
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r, java.io.Closeable, java.lang.AutoCloseable
-    public synchronized void close() {
-        if (!this.f19565l) {
-            this.f19565l = true;
-            nativeFree(this.f19563j);
-        }
-    }
-
-    public void finalize() throws Throwable {
-        if (isClosed()) {
-            return;
-        }
-        StringBuilder sbM833U = C1643a.m833U("finalize: Chunk ");
-        sbM833U.append(Integer.toHexString(System.identityHashCode(this)));
-        sbM833U.append(" still active. ");
-        Log.w("NativeMemoryChunk", sbM833U.toString());
-        try {
-            close();
-        } finally {
-            super.finalize();
-        }
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public ByteBuffer getByteBuffer() {
-        return null;
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public int getSize() {
-        return this.f19564k;
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public long getUniqueId() {
-        return this.f19563j;
-    }
-
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
     /* JADX INFO: renamed from: h */
     public synchronized byte mo1368h(int i) {
@@ -168,15 +155,28 @@ public class NativeMemoryChunk implements InterfaceC1946r, Closeable {
     }
 
     @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
-    public synchronized boolean isClosed() {
-        return this.f19565l;
-    }
-
-    @Override // p007b.p109f.p161j.p177l.InterfaceC1946r
     /* JADX INFO: renamed from: k */
     public long mo1370k() {
         return this.f19563j;
     }
+
+    @InterfaceC1680c
+    private static native long nativeAllocate(int i);
+
+    @InterfaceC1680c
+    private static native void nativeCopyFromByteArray(long j, byte[] bArr, int i, int i2);
+
+    @InterfaceC1680c
+    private static native void nativeCopyToByteArray(long j, byte[] bArr, int i, int i2);
+
+    @InterfaceC1680c
+    private static native void nativeFree(long j);
+
+    @InterfaceC1680c
+    private static native void nativeMemcpy(long j, long j2, int i);
+
+    @InterfaceC1680c
+    private static native byte nativeReadByte(long j);
 
     @VisibleForTesting
     public NativeMemoryChunk() {

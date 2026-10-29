@@ -53,7 +53,7 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
     private Function1<? super ModelGift, Unit> onRevokeClickListener;
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
-    public static final class EntitlementListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
+    public final class EntitlementListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
         private static final int VIEW_INDEX_CODE = 0;
         private static final int VIEW_INDEX_GENERATE = 1;
         private final ViewGiftEntitlementListItemBinding binding;
@@ -198,7 +198,7 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
     }
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
-    public static final class NoGiftsListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
+    public final class NoGiftsListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public NoGiftsListItem(WidgetSettingsGiftingAdapter widgetSettingsGiftingAdapter) {
             super(C5419R.layout.view_no_gifts_list_item, widgetSettingsGiftingAdapter);
@@ -207,7 +207,7 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
     }
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
-    public static final class SkuListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
+    public final class SkuListItem extends MGRecyclerViewHolder<WidgetSettingsGiftingAdapter, GiftItem> {
         private final ViewGiftSkuListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -331,7 +331,7 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
     }
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
-    public static final /* data */ class GiftItem implements MGRecyclerDataPayload {
+    public final /* data */ class GiftItem implements MGRecyclerDataPayload {
         public static final int TYPE_GIFT = 2;
         public static final int TYPE_NO_GIFTS = 0;
         public static final int TYPE_SKU = 1;
@@ -370,51 +370,6 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
             this.key = strValueOf;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getTypeInt() {
-            return this.typeInt;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelGift getGift() {
-            return this.gift;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final ModelEntitlement getEntitlement() {
-            return this.entitlement;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Boolean getExpanded() {
-            return this.expanded;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final ModelSku getSku() {
-            return this.sku;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getCopies() {
-            return this.copies;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Long getPlanId() {
-            return this.planId;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Boolean getIsLastItem() {
-            return this.isLastItem;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final Boolean getWasCopied() {
-            return this.wasCopied;
-        }
-
         public final GiftItem copy(int typeInt, ModelGift gift, ModelEntitlement entitlement, Boolean expanded, ModelSku sku, Integer copies, Long planId, Boolean isLastItem, Boolean wasCopied) {
             return new GiftItem(typeInt, gift, entitlement, expanded, sku, copies, planId, isLastItem, wasCopied);
         }
@@ -430,20 +385,45 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
             return this.typeInt == giftItem.typeInt && C12238m.areEqual(this.gift, giftItem.gift) && C12238m.areEqual(this.entitlement, giftItem.entitlement) && C12238m.areEqual(this.expanded, giftItem.expanded) && C12238m.areEqual(this.sku, giftItem.sku) && C12238m.areEqual(this.copies, giftItem.copies) && C12238m.areEqual(this.planId, giftItem.planId) && C12238m.areEqual(this.isLastItem, giftItem.isLastItem) && C12238m.areEqual(this.wasCopied, giftItem.wasCopied);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Integer getCopies() {
             return this.copies;
+        }
+
+        public final Integer getCopies() {
+            return this.copies;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final ModelEntitlement getEntitlement() {
+            return this.entitlement;
         }
 
         public final ModelEntitlement getEntitlement() {
             return this.entitlement;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Boolean getExpanded() {
             return this.expanded;
         }
 
+        public final Boolean getExpanded() {
+            return this.expanded;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ModelGift getGift() {
             return this.gift;
+        }
+
+        public final ModelGift getGift() {
+            return this.gift;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Boolean getIsLastItem() {
+            return this.isLastItem;
         }
 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -451,8 +431,18 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final Long getPlanId() {
             return this.planId;
+        }
+
+        public final Long getPlanId() {
+            return this.planId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final ModelSku getSku() {
+            return this.sku;
         }
 
         public final ModelSku getSku() {
@@ -464,8 +454,18 @@ public final class WidgetSettingsGiftingAdapter extends MGRecyclerAdapterSimple<
             return this.type;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getTypeInt() {
             return this.typeInt;
+        }
+
+        public final int getTypeInt() {
+            return this.typeInt;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final Boolean getWasCopied() {
+            return this.wasCopied;
         }
 
         public final Boolean getWasCopied() {

@@ -16,10 +16,6 @@ public class CardViewBaseImpl implements CardViewImpl {
         return new RoundRectDrawableWithShadow(context.getResources(), colorStateList, f, f2, f3);
     }
 
-    private RoundRectDrawableWithShadow getShadowBackground(CardViewDelegate cardViewDelegate) {
-        return (RoundRectDrawableWithShadow) cardViewDelegate.getCardBackground();
-    }
-
     @Override // androidx.cardview.widget.CardViewImpl
     public ColorStateList getBackgroundColor(CardViewDelegate cardViewDelegate) {
         return getShadowBackground(cardViewDelegate).getColor();
@@ -48,6 +44,10 @@ public class CardViewBaseImpl implements CardViewImpl {
     @Override // androidx.cardview.widget.CardViewImpl
     public float getRadius(CardViewDelegate cardViewDelegate) {
         return getShadowBackground(cardViewDelegate).getCornerRadius();
+    }
+
+    private RoundRectDrawableWithShadow getShadowBackground(CardViewDelegate cardViewDelegate) {
+        return (RoundRectDrawableWithShadow) cardViewDelegate.getCardBackground();
     }
 
     @Override // androidx.cardview.widget.CardViewImpl

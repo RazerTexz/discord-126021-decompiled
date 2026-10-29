@@ -39,26 +39,6 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
         return stickerPackStoreSheetAnalytics.copy(sticker, stickerPackStoreSheetViewType, str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Sticker getSticker() {
-        return this.sticker;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final StickerPackStoreSheetViewType getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getLocation() {
-        return this.location;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getSection() {
-        return this.section;
-    }
-
     public final StickerPackStoreSheetAnalytics copy(Sticker sticker, StickerPackStoreSheetViewType type, String location, String section) {
         C12238m.checkNotNullParameter(sticker, "sticker");
         C12238m.checkNotNullParameter(type, "type");
@@ -77,16 +57,36 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
         return C12238m.areEqual(this.sticker, stickerPackStoreSheetAnalytics.sticker) && C12238m.areEqual(this.type, stickerPackStoreSheetAnalytics.type) && C12238m.areEqual(this.location, stickerPackStoreSheetAnalytics.location) && C12238m.areEqual(this.section, stickerPackStoreSheetAnalytics.section);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getLocation() {
         return this.location;
+    }
+
+    public final String getLocation() {
+        return this.location;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getSection() {
+        return this.section;
     }
 
     public final String getSection() {
         return this.section;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Sticker getSticker() {
         return this.sticker;
+    }
+
+    public final Sticker getSticker() {
+        return this.sticker;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final StickerPackStoreSheetViewType getType() {
+        return this.type;
     }
 
     public final StickerPackStoreSheetViewType getType() {

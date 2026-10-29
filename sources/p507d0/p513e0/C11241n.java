@@ -21,6 +21,28 @@ import p507d0.p592z.p594d.InterfaceC12239n;
 /* JADX INFO: compiled from: TypesJVM.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11241n {
+    public static final String access$typeToString(Type type) {
+        String name;
+        if (!(type instanceof Class)) {
+            return type.toString();
+        }
+        Class cls = (Class) type;
+        if (cls.isArray()) {
+            Sequence sequenceGenerateSequence = C12075n.generateSequence(type, C11240m.f22313j);
+            name = ((Class) C12078q.last(sequenceGenerateSequence)).getName() + C12103t.repeat("[]", C12078q.count(sequenceGenerateSequence));
+        } else {
+            name = cls.getName();
+        }
+        C12238m.checkNotNullExpressionValue(name, "if (type.isArray) {\n    …\n        } else type.name");
+        return name;
+    }
+
+    public static final Type getJavaType(KType kType) {
+        Type javaType;
+        C12238m.checkNotNullParameter(kType, "$this$javaType");
+        return (!(kType instanceof InterfaceC12239n) || (javaType = ((InterfaceC12239n) kType).getJavaType()) == null) ? m9328a(kType, false) : javaType;
+    }
+
     /* JADX INFO: renamed from: a */
     public static final Type m9328a(KType kType, boolean z2) {
         InterfaceC11231d classifier = kType.getClassifier();
@@ -65,22 +87,6 @@ public final class C11241n {
         C12238m.checkNotNull(kTypeComponent2);
         Type typeM9328a = m9328a(kTypeComponent2, false);
         return typeM9328a instanceof Class ? javaObjectType : new C11228a(typeM9328a);
-    }
-
-    public static final String access$typeToString(Type type) {
-        String name;
-        if (!(type instanceof Class)) {
-            return type.toString();
-        }
-        Class cls = (Class) type;
-        if (cls.isArray()) {
-            Sequence sequenceGenerateSequence = C12075n.generateSequence(type, C11240m.f22313j);
-            name = ((Class) C12078q.last(sequenceGenerateSequence)).getName() + C12103t.repeat("[]", C12078q.count(sequenceGenerateSequence));
-        } else {
-            name = cls.getName();
-        }
-        C12238m.checkNotNullExpressionValue(name, "if (type.isArray) {\n    …\n        } else type.name");
-        return name;
     }
 
     /* JADX INFO: renamed from: b */
@@ -132,11 +138,5 @@ public final class C11241n {
             return new C11242o(m9328a(type, true), null);
         }
         throw new NoWhenBranchMatchedException();
-    }
-
-    public static final Type getJavaType(KType kType) {
-        Type javaType;
-        C12238m.checkNotNullParameter(kType, "$this$javaType");
-        return (!(kType instanceof InterfaceC12239n) || (javaType = ((InterfaceC12239n) kType).getJavaType()) == null) ? m9328a(kType, false) : javaType;
     }
 }

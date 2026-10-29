@@ -62,7 +62,7 @@ public final class C12322p {
 
     /* JADX INFO: renamed from: f0.e0.j.p$a */
     /* JADX INFO: compiled from: Huffman.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final a[] f25748a;

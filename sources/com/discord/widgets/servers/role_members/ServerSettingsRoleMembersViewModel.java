@@ -51,7 +51,7 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$1 */
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final class C95701 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C95701 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C95701() {
             super(1);
         }
@@ -72,7 +72,7 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$2 */
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final class C95712 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C95712 extends AbstractC12240o implements Function1<String, Unit> {
         public C95712() {
             super(1);
         }
@@ -89,8 +89,51 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$1 */
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final class Companion {
+    public final class C95741 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C95741(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            ServerSettingsRoleMembersViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, null, null, 6, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$2 */
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class C95752 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C95752() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            ServerSettingsRoleMembersViewModel.this.emitEvent(new Event.RemoveMemberFailure(error));
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -136,10 +179,10 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-        public static final /* data */ class RemoveMemberFailure extends Event {
+        public final /* data */ class RemoveMemberFailure extends Event {
             private final Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -156,11 +199,6 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
                 return removeMemberFailure.copy(error);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Error getError() {
-                return this.error;
-            }
-
             public final RemoveMemberFailure copy(Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new RemoveMemberFailure(error);
@@ -171,6 +209,11 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
                     return (other instanceof RemoveMemberFailure) && C12238m.areEqual(this.error, ((RemoveMemberFailure) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Error getError() {
+                return this.error;
             }
 
             public final Error getError() {
@@ -202,7 +245,7 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final List<GuildMember> guildMembers;
         private final GuildRole role;
         private final Map<Long, User> users;
@@ -214,6 +257,14 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
             this.guildMembers = list;
             this.users = map;
             this.role = guildRole;
+        }
+
+        public final List<GuildMember> component1() {
+            return this.guildMembers;
+        }
+
+        public final Map<Long, User> component2() {
+            return this.users;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -228,19 +279,6 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
                 guildRole = storeState.role;
             }
             return storeState.copy(list, map, guildRole);
-        }
-
-        public final List<GuildMember> component1() {
-            return this.guildMembers;
-        }
-
-        public final Map<Long, User> component2() {
-            return this.users;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
         }
 
         public final StoreState copy(List<GuildMember> guildMembers, Map<Long, ? extends User> users, GuildRole role) {
@@ -262,6 +300,11 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
 
         public final List<GuildMember> getGuildMembers() {
             return this.guildMembers;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
         }
 
         public final GuildRole getRole() {
@@ -294,16 +337,20 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean isUpdating;
             private final List<ServerSettingsRoleMemberAdapterItem> memberList;
             private final GuildRole role;
 
             public /* synthetic */ Loaded(boolean z2, List list, GuildRole guildRole, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this((i & 1) != 0 ? false : z2, list, guildRole);
+            }
+
+            public final List<ServerSettingsRoleMemberAdapterItem> component2() {
+                return this.memberList;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -318,20 +365,6 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
                     guildRole = loaded.role;
                 }
                 return loaded.copy(z2, list, guildRole);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsUpdating() {
-                return this.isUpdating;
-            }
-
-            public final List<ServerSettingsRoleMemberAdapterItem> component2() {
-                return this.memberList;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GuildRole getRole() {
-                return this.role;
             }
 
             public final Loaded copy(boolean isUpdating, List<ServerSettingsRoleMemberAdapterItem> memberList, GuildRole role) {
@@ -351,8 +384,18 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
                 return this.isUpdating == loaded.isUpdating && C12238m.areEqual(this.memberList, loaded.memberList) && C12238m.areEqual(this.role, loaded.role);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsUpdating() {
+                return this.isUpdating;
+            }
+
             public final List<ServerSettingsRoleMemberAdapterItem> getMemberList() {
                 return this.memberList;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final GuildRole getRole() {
+                return this.role;
             }
 
             public final GuildRole getRole() {
@@ -403,7 +446,7 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
         }
 
         /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -416,49 +459,6 @@ public final class ServerSettingsRoleMembersViewModel extends AbstractC0859d0<Vi
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$1 */
-    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final class C95741 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C95741(ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r7) {
-            ServerSettingsRoleMembersViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, null, null, 6, null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$2 */
-    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
-    public static final class C95752 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C95752() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            ServerSettingsRoleMembersViewModel.this.emitEvent(new Event.RemoveMemberFailure(error));
         }
     }
 

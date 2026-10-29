@@ -12,7 +12,7 @@ public interface InterfaceC11881q {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.q$a */
     /* JADX INFO: compiled from: FlexibleTypeDeserializer.kt */
-    public static final class a implements InterfaceC11881q {
+    public final class a implements InterfaceC11881q {
 
         /* JADX INFO: renamed from: a */
         public static final a f24677a = new a();

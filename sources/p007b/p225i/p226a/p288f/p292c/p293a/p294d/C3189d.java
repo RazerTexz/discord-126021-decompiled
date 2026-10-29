@@ -9,7 +9,7 @@ public final class C3189d extends C3183a.a {
 
     /* JADX INFO: renamed from: b.i.a.f.c.a.d.d$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
-    public static final class a extends C3183a.a.C13228a {
+    public final class a extends C3183a.a.C13228a {
         /* JADX INFO: renamed from: a */
         public final C3189d m3970a() {
             return new C3189d(this, null);

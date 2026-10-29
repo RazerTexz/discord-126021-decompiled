@@ -33,6 +33,69 @@ public final class C12401r implements InterfaceC12390g {
         this.f26114j = new C12388e();
     }
 
+    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        if (this.f26115k) {
+            return;
+        }
+        this.f26115k = true;
+        this.f26116l.close();
+        C12388e c12388e = this.f26114j;
+        c12388e.skip(c12388e.f26080k);
+    }
+
+    @Override // java.nio.channels.Channel
+    public boolean isOpen() {
+        return !this.f26115k;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public long m10492a(byte b2, long j, long j2) {
+        if (!(!this.f26115k)) {
+            throw new IllegalStateException("closed".toString());
+        }
+        if (!(0 <= j && j2 >= j)) {
+            throw new IllegalArgumentException(("fromIndex=" + j + " toIndex=" + j2).toString());
+        }
+        while (j < j2) {
+            long jM10466s = this.f26114j.m10466s(b2, j, j2);
+            if (jM10466s != -1) {
+                return jM10466s;
+            }
+            C12388e c12388e = this.f26114j;
+            long j3 = c12388e.f26080k;
+            if (j3 >= j2 || this.f26116l.mo10176i0(c12388e, 8192) == -1) {
+                return -1L;
+            }
+            j = Math.max(j, j3);
+        }
+        return -1L;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public int m10493b() throws EOFException {
+        mo10463p0(4L);
+        int i = this.f26114j.readInt();
+        return ((i & 255) << 24) | (((-16777216) & i) >>> 24) | ((16711680 & i) >>> 8) | ((65280 & i) << 8);
+    }
+
+    @Override // p615g0.InterfaceC12407x
+    /* JADX INFO: renamed from: i0 */
+    public long mo10176i0(C12388e c12388e, long j) {
+        C12238m.checkParameterIsNotNull(c12388e, "sink");
+        if (!(j >= 0)) {
+            throw new IllegalArgumentException(C1643a.m877t("byteCount < 0: ", j).toString());
+        }
+        if (!(!this.f26115k)) {
+            throw new IllegalStateException("closed".toString());
+        }
+        C12388e c12388e2 = this.f26114j;
+        if (c12388e2.f26080k == 0 && this.f26116l.mo10176i0(c12388e2, 8192) == -1) {
+            return -1L;
+        }
+        return this.f26114j.mo10176i0(c12388e, Math.min(j, this.f26114j.f26080k));
+    }
+
     @Override // p615g0.InterfaceC12390g
     /* JADX INFO: renamed from: B */
     public void mo10428B(C12388e c12388e, long j) throws IOException {
@@ -115,73 +178,10 @@ public final class C12401r implements InterfaceC12390g {
         throw new EOFException();
     }
 
-    /* JADX INFO: renamed from: a */
-    public long m10492a(byte b2, long j, long j2) {
-        if (!(!this.f26115k)) {
-            throw new IllegalStateException("closed".toString());
-        }
-        if (!(0 <= j && j2 >= j)) {
-            throw new IllegalArgumentException(("fromIndex=" + j + " toIndex=" + j2).toString());
-        }
-        while (j < j2) {
-            long jM10466s = this.f26114j.m10466s(b2, j, j2);
-            if (jM10466s != -1) {
-                return jM10466s;
-            }
-            C12388e c12388e = this.f26114j;
-            long j3 = c12388e.f26080k;
-            if (j3 >= j2 || this.f26116l.mo10176i0(c12388e, 8192) == -1) {
-                return -1L;
-            }
-            j = Math.max(j, j3);
-        }
-        return -1L;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public int m10493b() throws EOFException {
-        mo10463p0(4L);
-        int i = this.f26114j.readInt();
-        return ((i & 255) << 24) | (((-16777216) & i) >>> 24) | ((16711680 & i) >>> 8) | ((65280 & i) << 8);
-    }
-
-    @Override // p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        if (this.f26115k) {
-            return;
-        }
-        this.f26115k = true;
-        this.f26116l.close();
-        C12388e c12388e = this.f26114j;
-        c12388e.skip(c12388e.f26080k);
-    }
-
     @Override // p615g0.InterfaceC12390g, okio.BufferedSink
     /* JADX INFO: renamed from: g */
     public C12388e mo10457g() {
         return this.f26114j;
-    }
-
-    @Override // p615g0.InterfaceC12407x
-    /* JADX INFO: renamed from: i0 */
-    public long mo10176i0(C12388e c12388e, long j) {
-        C12238m.checkParameterIsNotNull(c12388e, "sink");
-        if (!(j >= 0)) {
-            throw new IllegalArgumentException(C1643a.m877t("byteCount < 0: ", j).toString());
-        }
-        if (!(!this.f26115k)) {
-            throw new IllegalStateException("closed".toString());
-        }
-        C12388e c12388e2 = this.f26114j;
-        if (c12388e2.f26080k == 0 && this.f26116l.mo10176i0(c12388e2, 8192) == -1) {
-            return -1L;
-        }
-        return this.f26114j.mo10176i0(c12388e, Math.min(j, this.f26114j.f26080k));
-    }
-
-    @Override // java.nio.channels.Channel
-    public boolean isOpen() {
-        return !this.f26115k;
     }
 
     @Override // p615g0.InterfaceC12390g
@@ -242,6 +242,67 @@ public final class C12401r implements InterfaceC12390g {
         }
     }
 
+    @Override // p615g0.InterfaceC12390g
+    /* JADX INFO: renamed from: s0 */
+    public long mo10467s0() throws EOFException {
+        mo10463p0(1L);
+        int i = 0;
+        while (true) {
+            int i2 = i + 1;
+            if (!mo10458j(i2)) {
+                break;
+            }
+            byte bM10464q = this.f26114j.m10464q(i);
+            if ((bM10464q < ((byte) 48) || bM10464q > ((byte) 57)) && ((bM10464q < ((byte) 97) || bM10464q > ((byte) 102)) && (bM10464q < ((byte) 65) || bM10464q > ((byte) 70)))) {
+                if (i != 0) {
+                    break;
+                }
+                StringBuilder sbM833U = C1643a.m833U("Expected leading [0-9a-fA-F] character but was 0x");
+                String string = Integer.toString(bM10464q, C12084a.checkRadix(C12084a.checkRadix(16)));
+                C12238m.checkExpressionValueIsNotNull(string, "java.lang.Integer.toStri…(this, checkRadix(radix))");
+                sbM833U.append(string);
+                throw new NumberFormatException(sbM833U.toString());
+            }
+            i = i2;
+        }
+        return this.f26114j.mo10467s0();
+    }
+
+    @Override // p615g0.InterfaceC12390g
+    /* JADX INFO: renamed from: u0 */
+    public InputStream mo10470u0() {
+        return new a();
+    }
+
+    @Override // p615g0.InterfaceC12390g
+    /* JADX INFO: renamed from: v0 */
+    public int mo10471v0(C12398o c12398o) throws EOFException {
+        C12238m.checkParameterIsNotNull(c12398o, "options");
+        if (!(!this.f26115k)) {
+            throw new IllegalStateException("closed".toString());
+        }
+        do {
+            int iM10514b = C12409a.m10514b(this.f26114j, c12398o, true);
+            if (iM10514b != -2) {
+                if (iM10514b == -1) {
+                    break;
+                }
+                this.f26114j.skip(c12398o.f26107l[iM10514b].mo10502j());
+                return iM10514b;
+            }
+        } while (this.f26116l.mo10176i0(this.f26114j, 8192) != -1);
+        return -1;
+    }
+
+    @Override // p615g0.InterfaceC12390g
+    /* JADX INFO: renamed from: w */
+    public boolean mo10472w() {
+        if (!this.f26115k) {
+            return this.f26114j.mo10472w() && this.f26116l.mo10176i0(this.f26114j, (long) 8192) == -1;
+        }
+        throw new IllegalStateException("closed".toString());
+    }
+
     @Override // java.nio.channels.ReadableByteChannel
     public int read(ByteBuffer byteBuffer) {
         C12238m.checkParameterIsNotNull(byteBuffer, "sink");
@@ -300,32 +361,6 @@ public final class C12401r implements InterfaceC12390g {
     }
 
     @Override // p615g0.InterfaceC12390g
-    /* JADX INFO: renamed from: s0 */
-    public long mo10467s0() throws EOFException {
-        mo10463p0(1L);
-        int i = 0;
-        while (true) {
-            int i2 = i + 1;
-            if (!mo10458j(i2)) {
-                break;
-            }
-            byte bM10464q = this.f26114j.m10464q(i);
-            if ((bM10464q < ((byte) 48) || bM10464q > ((byte) 57)) && ((bM10464q < ((byte) 97) || bM10464q > ((byte) 102)) && (bM10464q < ((byte) 65) || bM10464q > ((byte) 70)))) {
-                if (i != 0) {
-                    break;
-                }
-                StringBuilder sbM833U = C1643a.m833U("Expected leading [0-9a-fA-F] character but was 0x");
-                String string = Integer.toString(bM10464q, C12084a.checkRadix(C12084a.checkRadix(16)));
-                C12238m.checkExpressionValueIsNotNull(string, "java.lang.Integer.toStri…(this, checkRadix(radix))");
-                sbM833U.append(string);
-                throw new NumberFormatException(sbM833U.toString());
-            }
-            i = i2;
-        }
-        return this.f26114j.mo10467s0();
-    }
-
-    @Override // p615g0.InterfaceC12390g
     public void skip(long j) throws EOFException {
         if (!(!this.f26115k)) {
             throw new IllegalStateException("closed".toString());
@@ -353,44 +388,9 @@ public final class C12401r implements InterfaceC12390g {
         return sbM833U.toString();
     }
 
-    @Override // p615g0.InterfaceC12390g
-    /* JADX INFO: renamed from: u0 */
-    public InputStream mo10470u0() {
-        return new a();
-    }
-
-    @Override // p615g0.InterfaceC12390g
-    /* JADX INFO: renamed from: v0 */
-    public int mo10471v0(C12398o c12398o) throws EOFException {
-        C12238m.checkParameterIsNotNull(c12398o, "options");
-        if (!(!this.f26115k)) {
-            throw new IllegalStateException("closed".toString());
-        }
-        do {
-            int iM10514b = C12409a.m10514b(this.f26114j, c12398o, true);
-            if (iM10514b != -2) {
-                if (iM10514b == -1) {
-                    break;
-                }
-                this.f26114j.skip(c12398o.f26107l[iM10514b].mo10502j());
-                return iM10514b;
-            }
-        } while (this.f26116l.mo10176i0(this.f26114j, 8192) != -1);
-        return -1;
-    }
-
-    @Override // p615g0.InterfaceC12390g
-    /* JADX INFO: renamed from: w */
-    public boolean mo10472w() {
-        if (!this.f26115k) {
-            return this.f26114j.mo10472w() && this.f26116l.mo10176i0(this.f26114j, (long) 8192) == -1;
-        }
-        throw new IllegalStateException("closed".toString());
-    }
-
     /* JADX INFO: renamed from: g0.r$a */
     /* JADX INFO: compiled from: RealBufferedSource.kt */
-    public static final class a extends InputStream {
+    public final class a extends InputStream {
         public a() {
         }
 

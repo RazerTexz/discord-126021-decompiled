@@ -51,11 +51,6 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         });
     }
 
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ VideoFrame.I420Buffer m11048a() {
-        return this.yuvConverter.convert(this);
-    }
-
     public TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2) {
         return applyTransformMatrix(matrix, i, i2, i, i2);
     }
@@ -108,6 +103,11 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
 
     public YuvConverter getYuvConverter() {
         return this.yuvConverter;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ VideoFrame.I420Buffer m11048a() {
+        return this.yuvConverter.convert(this);
     }
 
     @Override // org.webrtc.VideoFrame.Buffer, org.webrtc.RefCounted

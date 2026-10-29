@@ -25,6 +25,12 @@ public final class ViewAddPermissionOwnerBinding implements ViewBinding {
         this.f15366b = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15365a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewAddPermissionOwnerBinding m8391a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -43,11 +49,5 @@ public final class ViewAddPermissionOwnerBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15365a;
     }
 }

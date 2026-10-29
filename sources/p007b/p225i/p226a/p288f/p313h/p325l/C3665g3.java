@@ -13,7 +13,7 @@ public final class C3665g3 {
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.g3$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static final class a extends AbstractC3651f3 {
+    public final class a extends AbstractC3651f3 {
         @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3651f3
         /* JADX INFO: renamed from: a */
         public final void mo4876a(Throwable th, Throwable th2) {

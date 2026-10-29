@@ -16,16 +16,6 @@ public final /* data */ class ReportNodeChild {
         this.ref = i;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final int getRef() {
-        return this.ref;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,6 +25,16 @@ public final /* data */ class ReportNodeChild {
         }
         ReportNodeChild reportNodeChild = (ReportNodeChild) other;
         return C12238m.areEqual(this.name, reportNodeChild.name) && this.ref == reportNodeChild.ref;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final int getRef() {
+        return this.ref;
     }
 
     public int hashCode() {

@@ -30,6 +30,11 @@ public class ButtonBarLayout extends LinearLayout {
         typedArrayObtainStyledAttributes.recycle();
     }
 
+    @Override // android.view.View
+    public int getMinimumHeight() {
+        return Math.max(this.mMinimumHeight, super.getMinimumHeight());
+    }
+
     private int getNextVisibleChildIndex(int i) {
         int childCount = getChildCount();
         while (i < childCount) {
@@ -43,23 +48,6 @@ public class ButtonBarLayout extends LinearLayout {
 
     private boolean isStacked() {
         return getOrientation() == 1;
-    }
-
-    private void setStacked(boolean z2) {
-        setOrientation(z2 ? 1 : 0);
-        setGravity(z2 ? 5 : 80);
-        View viewFindViewById = findViewById(C0051R.id.spacer);
-        if (viewFindViewById != null) {
-            viewFindViewById.setVisibility(z2 ? 8 : 4);
-        }
-        for (int childCount = getChildCount() - 2; childCount >= 0; childCount--) {
-            bringChildToFront(getChildAt(childCount));
-        }
-    }
-
-    @Override // android.view.View
-    public int getMinimumHeight() {
-        return Math.max(this.mMinimumHeight, super.getMinimumHeight());
     }
 
     @Override // android.widget.LinearLayout, android.view.View
@@ -115,6 +103,18 @@ public class ButtonBarLayout extends LinearLayout {
                 setStacked(false);
             }
             requestLayout();
+        }
+    }
+
+    private void setStacked(boolean z2) {
+        setOrientation(z2 ? 1 : 0);
+        setGravity(z2 ? 5 : 80);
+        View viewFindViewById = findViewById(C0051R.id.spacer);
+        if (viewFindViewById != null) {
+            viewFindViewById.setVisibility(z2 ? 8 : 4);
+        }
+        for (int childCount = getChildCount() - 2; childCount >= 0; childCount--) {
+            bringChildToFront(getChildAt(childCount));
         }
     }
 }

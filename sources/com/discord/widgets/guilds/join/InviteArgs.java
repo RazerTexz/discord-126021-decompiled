@@ -37,6 +37,22 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
         this.onInviteFlowFinished = function4;
     }
 
+    public final Class<?> component2() {
+        return this.javaClass;
+    }
+
+    public final Function2<Error, Continuation<? super Unit>, Object> component4() {
+        return this.onInvitePostError;
+    }
+
+    public final Function2<ModelInvite, Continuation<? super Unit>, Object> component5() {
+        return this.onInvitePostSuccess;
+    }
+
+    public final Function2<ModelInvite, Continuation<? super Unit>, Object> component6() {
+        return this.onInviteFlowFinished;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ InviteArgs copy$default(InviteArgs inviteArgs, ModelInvite modelInvite, Class cls, String str, Function2 function2, Function2 function3, Function2 function4, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -64,32 +80,6 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
         return inviteArgs.copy(modelInvite, cls2, str2, function5, function6, function4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelInvite getInvite() {
-        return this.invite;
-    }
-
-    public final Class<?> component2() {
-        return this.javaClass;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getLocation() {
-        return this.location;
-    }
-
-    public final Function2<Error, Continuation<? super Unit>, Object> component4() {
-        return this.onInvitePostError;
-    }
-
-    public final Function2<ModelInvite, Continuation<? super Unit>, Object> component5() {
-        return this.onInvitePostSuccess;
-    }
-
-    public final Function2<ModelInvite, Continuation<? super Unit>, Object> component6() {
-        return this.onInviteFlowFinished;
-    }
-
     public final InviteArgs copy(ModelInvite invite, Class<?> javaClass, String location, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> onInvitePostError, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished) {
         C12238m.checkNotNullParameter(invite, "invite");
         C12238m.checkNotNullParameter(javaClass, "javaClass");
@@ -111,12 +101,22 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
         return C12238m.areEqual(this.invite, inviteArgs.invite) && C12238m.areEqual(this.javaClass, inviteArgs.javaClass) && C12238m.areEqual(this.location, inviteArgs.location) && C12238m.areEqual(this.onInvitePostError, inviteArgs.onInvitePostError) && C12238m.areEqual(this.onInvitePostSuccess, inviteArgs.onInvitePostSuccess) && C12238m.areEqual(this.onInviteFlowFinished, inviteArgs.onInviteFlowFinished);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ModelInvite getInvite() {
+        return this.invite;
+    }
+
     public final ModelInvite getInvite() {
         return this.invite;
     }
 
     public final Class<?> getJavaClass() {
         return this.javaClass;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getLocation() {
+        return this.location;
     }
 
     public final String getLocation() {

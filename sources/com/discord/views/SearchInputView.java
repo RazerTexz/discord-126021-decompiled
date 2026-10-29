@@ -41,7 +41,7 @@ public final class SearchInputView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.views.SearchInputView$a */
     /* JADX INFO: compiled from: SearchInputView.kt */
-    public static final class C7090a<T> implements Action1<String> {
+    public final class C7090a<T> implements Action1<String> {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ Function1 f19142k;
@@ -64,7 +64,7 @@ public final class SearchInputView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.views.SearchInputView$b */
     /* JADX INFO: compiled from: SearchInputView.kt */
-    public static final class ViewOnClickListenerC7091b implements View.OnClickListener {
+    public final class ViewOnClickListenerC7091b implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ String f19144k;
@@ -119,6 +119,16 @@ public final class SearchInputView extends ConstraintLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
+    public final View getEditText() {
+        TextInputEditText textInputEditText = this.binding.f971c;
+        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchInputEditText");
+        return textInputEditText;
+    }
+
+    public final Function0<Unit> getOnClearClicked() {
+        return this.onClearClicked;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m8553a(Fragment fragment, Function1<? super String, Unit> onAfterTextChanged) {
         C12238m.checkNotNullParameter(fragment, "fragment");
@@ -144,16 +154,6 @@ public final class SearchInputView extends ConstraintLayout {
         C12238m.checkNotNullExpressionValue(imageView3, "searchClear");
         imageView3.setImportantForAccessibility(z2 ? 2 : 0);
         c0983j1.f970b.setOnClickListener(new ViewOnClickListenerC7091b(z2, searchQuery));
-    }
-
-    public final View getEditText() {
-        TextInputEditText textInputEditText = this.binding.f971c;
-        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchInputEditText");
-        return textInputEditText;
-    }
-
-    public final Function0<Unit> getOnClearClicked() {
-        return this.onClearClicked;
     }
 
     public final void setHint(CharSequence hint) {

@@ -7,34 +7,34 @@ import org.objectweb.asm.MethodVisitor;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/AbstractInsnNode.SCL.lombok */
 public abstract class AbstractInsnNode {
+    public static final int FIELD_INSN = 4;
+    public static final int FRAME = 14;
+    public static final int IINC_INSN = 10;
     public static final int INSN = 0;
     public static final int INT_INSN = 1;
-    public static final int VAR_INSN = 2;
-    public static final int TYPE_INSN = 3;
-    public static final int FIELD_INSN = 4;
-    public static final int METHOD_INSN = 5;
     public static final int INVOKE_DYNAMIC_INSN = 6;
     public static final int JUMP_INSN = 7;
     public static final int LABEL = 8;
     public static final int LDC_INSN = 9;
-    public static final int IINC_INSN = 10;
-    public static final int TABLESWITCH_INSN = 11;
-    public static final int LOOKUPSWITCH_INSN = 12;
-    public static final int MULTIANEWARRAY_INSN = 13;
-    public static final int FRAME = 14;
     public static final int LINE = 15;
-    protected int opcode;
-    public List<TypeAnnotationNode> visibleTypeAnnotations;
+    public static final int LOOKUPSWITCH_INSN = 12;
+    public static final int METHOD_INSN = 5;
+    public static final int MULTIANEWARRAY_INSN = 13;
+    public static final int TABLESWITCH_INSN = 11;
+    public static final int TYPE_INSN = 3;
+    public static final int VAR_INSN = 2;
     public List<TypeAnnotationNode> invisibleTypeAnnotations;
-    AbstractInsnNode previousInsn;
     AbstractInsnNode nextInsn;
+    protected int opcode;
+    AbstractInsnNode previousInsn;
+    public List<TypeAnnotationNode> visibleTypeAnnotations;
     int index = -1;
-
-    public abstract int getType();
 
     public abstract void accept(MethodVisitor methodVisitor);
 
     public abstract AbstractInsnNode clone(Map<LabelNode, LabelNode> map);
+
+    public abstract int getType();
 
     protected AbstractInsnNode(int opcode) {
         this.opcode = opcode;

@@ -17,9 +17,6 @@ public class C1710a {
     /* JADX INFO: renamed from: a */
     public static C1710a f3119a;
 
-    /* JADX INFO: renamed from: b */
-    public static final long f3120b = TimeUnit.MINUTES.toMillis(2);
-
     /* JADX INFO: renamed from: d */
     public volatile File f3122d;
 
@@ -28,6 +25,9 @@ public class C1710a {
 
     /* JADX INFO: renamed from: g */
     public long f3125g;
+
+    /* JADX INFO: renamed from: b */
+    public static final long f3120b = TimeUnit.MINUTES.toMillis(2);
 
     /* JADX INFO: renamed from: c */
     public volatile StatFs f3121c = null;

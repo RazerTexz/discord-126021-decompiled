@@ -14,40 +14,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStartListening.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStartListening implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Boolean anyonePriority = null;
+    private final Long channel = null;
+    private final CharSequence gameExeName = null;
+    private final Long gameId = null;
+    private final CharSequence gameName = null;
+    private final CharSequence gamePlatform = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence mode = null;
+    private final Boolean mute = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long server = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final Long channel = null;
-    private final CharSequence mode = null;
-    private final Boolean mute = null;
-    private final Boolean anyonePriority = null;
-    private final Long server = null;
-    private final CharSequence gamePlatform = null;
-    private final CharSequence gameName = null;
-    private final CharSequence gameExeName = null;
-    private final Long gameId = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence rtcConnectionId = null;
     private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "start_listening";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -58,6 +40,18 @@ public final /* data */ class TrackStartListening implements AnalyticsSchema, Tr
         }
         TrackStartListening trackStartListening = (TrackStartListening) other;
         return C12238m.areEqual(this.channel, trackStartListening.channel) && C12238m.areEqual(this.mode, trackStartListening.mode) && C12238m.areEqual(this.mute, trackStartListening.mute) && C12238m.areEqual(this.anyonePriority, trackStartListening.anyonePriority) && C12238m.areEqual(this.server, trackStartListening.server) && C12238m.areEqual(this.gamePlatform, trackStartListening.gamePlatform) && C12238m.areEqual(this.gameName, trackStartListening.gameName) && C12238m.areEqual(this.gameExeName, trackStartListening.gameExeName) && C12238m.areEqual(this.gameId, trackStartListening.gameId) && C12238m.areEqual(this.mediaSessionId, trackStartListening.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackStartListening.rtcConnectionId) && C12238m.areEqual(this.voiceStateCount, trackStartListening.voiceStateCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -85,6 +79,12 @@ public final /* data */ class TrackStartListening implements AnalyticsSchema, Tr
         int iHashCode11 = (iHashCode10 + (charSequence6 != null ? charSequence6.hashCode() : 0)) * 31;
         Long l4 = this.voiceStateCount;
         return iHashCode11 + (l4 != null ? l4.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

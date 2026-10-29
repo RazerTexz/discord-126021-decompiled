@@ -13,6 +13,7 @@ import lombok.core.configuration.FileSystemSourceCache;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokConfiguration.SCL.lombok */
 public class LombokConfiguration {
+    private static ConfigurationResolverFactory configurationResolverFactory;
     private static final ConfigurationResolver NULL_RESOLVER = new ConfigurationResolver() { // from class: lombok.core.LombokConfiguration.1
         @Override // lombok.core.configuration.ConfigurationResolver
         public <T> T resolve(ConfigurationKey<T> configurationKey) {
@@ -23,7 +24,6 @@ public class LombokConfiguration {
         }
     };
     private static FileSystemSourceCache cache = new FileSystemSourceCache();
-    private static ConfigurationResolverFactory configurationResolverFactory;
 
     static {
         if (System.getProperty("lombok.disableConfig") != null) {

@@ -12,6 +12,17 @@ public final /* data */ class ConnectedAccountIntegration {
     private final String id;
     private final String type;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ConnectedAccountIntegration)) {
+            return false;
+        }
+        ConnectedAccountIntegration connectedAccountIntegration = (ConnectedAccountIntegration) other;
+        return C12238m.areEqual(this.id, connectedAccountIntegration.id) && C12238m.areEqual(this.type, connectedAccountIntegration.type) && C12238m.areEqual(this.account, connectedAccountIntegration.account) && C12238m.areEqual(this.guild, connectedAccountIntegration.guild);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final ConnectedIntegrationAccount getAccount() {
         return this.account;
@@ -30,17 +41,6 @@ public final /* data */ class ConnectedAccountIntegration {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getType() {
         return this.type;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ConnectedAccountIntegration)) {
-            return false;
-        }
-        ConnectedAccountIntegration connectedAccountIntegration = (ConnectedAccountIntegration) other;
-        return C12238m.areEqual(this.id, connectedAccountIntegration.id) && C12238m.areEqual(this.type, connectedAccountIntegration.type) && C12238m.areEqual(this.account, connectedAccountIntegration.account) && C12238m.areEqual(this.guild, connectedAccountIntegration.guild);
     }
 
     public int hashCode() {

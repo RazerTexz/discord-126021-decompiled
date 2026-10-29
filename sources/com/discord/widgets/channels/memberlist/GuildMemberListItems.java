@@ -25,6 +25,14 @@ public final /* data */ class GuildMemberListItems implements WidgetChannelMembe
         this.groupIndices = sortedMap;
     }
 
+    public final String component1() {
+        return getListId();
+    }
+
+    public final int component2() {
+        return getSize();
+    }
+
     private final SparseMutableList<ChannelMembersListAdapter.Item> component3() {
         return this.listItems;
     }
@@ -48,14 +56,6 @@ public final /* data */ class GuildMemberListItems implements WidgetChannelMembe
             sortedMap = guildMemberListItems.groupIndices;
         }
         return guildMemberListItems.copy(str, i, sparseMutableList, sortedMap);
-    }
-
-    public final String component1() {
-        return getListId();
-    }
-
-    public final int component2() {
-        return getSize();
     }
 
     public final GuildMemberListItems copy(String listId, int size, SparseMutableList<ChannelMembersListAdapter.Item> listItems, SortedMap<Integer, String> groupIndices) {

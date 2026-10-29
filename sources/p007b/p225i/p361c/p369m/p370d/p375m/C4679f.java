@@ -44,7 +44,7 @@ public final class C4679f extends AbstractC4695v.d {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.f$b */
     /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session.java */
-    public static final class b extends AbstractC4695v.d.b {
+    public final class b extends AbstractC4695v.d.b {
 
         /* JADX INFO: renamed from: a */
         public String f12551a;
@@ -82,6 +82,12 @@ public final class C4679f extends AbstractC4695v.d {
         public b() {
         }
 
+        /* JADX INFO: renamed from: b */
+        public AbstractC4695v.d.b m6544b(boolean z2) {
+            this.f12555e = Boolean.valueOf(z2);
+            return this;
+        }
+
         @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.b
         /* JADX INFO: renamed from: a */
         public AbstractC4695v.d mo6543a() {
@@ -105,12 +111,6 @@ public final class C4679f extends AbstractC4695v.d {
                 return new C4679f(this.f12551a, this.f12552b, this.f12553c.longValue(), this.f12554d, this.f12555e.booleanValue(), this.f12556f, this.f12557g, this.f12558h, this.f12559i, this.f12560j, this.f12561k.intValue(), null);
             }
             throw new IllegalStateException(C1643a.m883w("Missing required properties:", strM883w));
-        }
-
-        /* JADX INFO: renamed from: b */
-        public AbstractC4695v.d.b m6544b(boolean z2) {
-            this.f12555e = Boolean.valueOf(z2);
-            return this;
         }
 
         public b(AbstractC4695v.d dVar, a aVar) {
@@ -141,6 +141,38 @@ public final class C4679f extends AbstractC4695v.d {
         this.f12548i = cVar;
         this.f12549j = c4696w;
         this.f12550k = i;
+    }
+
+    public boolean equals(Object obj) {
+        Long l;
+        AbstractC4695v.d.f fVar;
+        AbstractC4695v.d.e eVar;
+        AbstractC4695v.d.c cVar;
+        C4696w<AbstractC4695v.d.AbstractC13233d> c4696w;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d)) {
+            return false;
+        }
+        AbstractC4695v.d dVar = (AbstractC4695v.d) obj;
+        return this.f12540a.equals(dVar.mo6535e()) && this.f12541b.equals(dVar.mo6537g()) && this.f12542c == dVar.mo6539i() && ((l = this.f12543d) != null ? l.equals(dVar.mo6533c()) : dVar.mo6533c() == null) && this.f12544e == dVar.mo6541k() && this.f12545f.equals(dVar.mo6531a()) && ((fVar = this.f12546g) != null ? fVar.equals(dVar.mo6540j()) : dVar.mo6540j() == null) && ((eVar = this.f12547h) != null ? eVar.equals(dVar.mo6538h()) : dVar.mo6538h() == null) && ((cVar = this.f12548i) != null ? cVar.equals(dVar.mo6532b()) : dVar.mo6532b() == null) && ((c4696w = this.f12549j) != null ? c4696w.equals(dVar.mo6534d()) : dVar.mo6534d() == null) && this.f12550k == dVar.mo6536f();
+    }
+
+    public int hashCode() {
+        int iHashCode = (((this.f12540a.hashCode() ^ 1000003) * 1000003) ^ this.f12541b.hashCode()) * 1000003;
+        long j = this.f12542c;
+        int i = (iHashCode ^ ((int) (j ^ (j >>> 32)))) * 1000003;
+        Long l = this.f12543d;
+        int iHashCode2 = (((((i ^ (l == null ? 0 : l.hashCode())) * 1000003) ^ (this.f12544e ? 1231 : 1237)) * 1000003) ^ this.f12545f.hashCode()) * 1000003;
+        AbstractC4695v.d.f fVar = this.f12546g;
+        int iHashCode3 = (iHashCode2 ^ (fVar == null ? 0 : fVar.hashCode())) * 1000003;
+        AbstractC4695v.d.e eVar = this.f12547h;
+        int iHashCode4 = (iHashCode3 ^ (eVar == null ? 0 : eVar.hashCode())) * 1000003;
+        AbstractC4695v.d.c cVar = this.f12548i;
+        int iHashCode5 = (iHashCode4 ^ (cVar == null ? 0 : cVar.hashCode())) * 1000003;
+        C4696w<AbstractC4695v.d.AbstractC13233d> c4696w = this.f12549j;
+        return ((iHashCode5 ^ (c4696w != null ? c4696w.hashCode() : 0)) * 1000003) ^ this.f12550k;
     }
 
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d
@@ -178,22 +210,6 @@ public final class C4679f extends AbstractC4695v.d {
         return this.f12540a;
     }
 
-    public boolean equals(Object obj) {
-        Long l;
-        AbstractC4695v.d.f fVar;
-        AbstractC4695v.d.e eVar;
-        AbstractC4695v.d.c cVar;
-        C4696w<AbstractC4695v.d.AbstractC13233d> c4696w;
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d)) {
-            return false;
-        }
-        AbstractC4695v.d dVar = (AbstractC4695v.d) obj;
-        return this.f12540a.equals(dVar.mo6535e()) && this.f12541b.equals(dVar.mo6537g()) && this.f12542c == dVar.mo6539i() && ((l = this.f12543d) != null ? l.equals(dVar.mo6533c()) : dVar.mo6533c() == null) && this.f12544e == dVar.mo6541k() && this.f12545f.equals(dVar.mo6531a()) && ((fVar = this.f12546g) != null ? fVar.equals(dVar.mo6540j()) : dVar.mo6540j() == null) && ((eVar = this.f12547h) != null ? eVar.equals(dVar.mo6538h()) : dVar.mo6538h() == null) && ((cVar = this.f12548i) != null ? cVar.equals(dVar.mo6532b()) : dVar.mo6532b() == null) && ((c4696w = this.f12549j) != null ? c4696w.equals(dVar.mo6534d()) : dVar.mo6534d() == null) && this.f12550k == dVar.mo6536f();
-    }
-
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d
     /* JADX INFO: renamed from: f */
     public int mo6536f() {
@@ -212,22 +228,6 @@ public final class C4679f extends AbstractC4695v.d {
     /* JADX INFO: renamed from: h */
     public AbstractC4695v.d.e mo6538h() {
         return this.f12547h;
-    }
-
-    public int hashCode() {
-        int iHashCode = (((this.f12540a.hashCode() ^ 1000003) * 1000003) ^ this.f12541b.hashCode()) * 1000003;
-        long j = this.f12542c;
-        int i = (iHashCode ^ ((int) (j ^ (j >>> 32)))) * 1000003;
-        Long l = this.f12543d;
-        int iHashCode2 = (((((i ^ (l == null ? 0 : l.hashCode())) * 1000003) ^ (this.f12544e ? 1231 : 1237)) * 1000003) ^ this.f12545f.hashCode()) * 1000003;
-        AbstractC4695v.d.f fVar = this.f12546g;
-        int iHashCode3 = (iHashCode2 ^ (fVar == null ? 0 : fVar.hashCode())) * 1000003;
-        AbstractC4695v.d.e eVar = this.f12547h;
-        int iHashCode4 = (iHashCode3 ^ (eVar == null ? 0 : eVar.hashCode())) * 1000003;
-        AbstractC4695v.d.c cVar = this.f12548i;
-        int iHashCode5 = (iHashCode4 ^ (cVar == null ? 0 : cVar.hashCode())) * 1000003;
-        C4696w<AbstractC4695v.d.AbstractC13233d> c4696w = this.f12549j;
-        return ((iHashCode5 ^ (c4696w != null ? c4696w.hashCode() : 0)) * 1000003) ^ this.f12550k;
     }
 
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d

@@ -69,8 +69,12 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsAuditLogFilter.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuditLogFilterBinding;", 0)};
     private static final String ARG_FILTER_TYPE = "ARG_FILTER_TYPE";
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private WidgetServerSettingsAuditLogFilterAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -79,13 +83,72 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
     private Integer filterType;
     private Long guildId;
     private final Function0<Unit> onFilterSelectedCallback;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsAuditLogFilter.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuditLogFilterBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
+    public final class C93381 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C93381() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            FragmentActivity fragmentActivityM95e = WidgetServerSettingsAuditLogFilter.this.m95e();
+            if (fragmentActivityM95e != null) {
+                fragmentActivityM95e.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
+    public final /* synthetic */ class C93392 extends C12236k implements Function1<Model, Unit> {
+        public C93392(WidgetServerSettingsAuditLogFilter widgetServerSettingsAuditLogFilter) {
+            super(1, widgetServerSettingsAuditLogFilter, WidgetServerSettingsAuditLogFilter.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/auditlog/WidgetServerSettingsAuditLogFilter$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetServerSettingsAuditLogFilter) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewCreated$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
+    public final class C93412 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C93412() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetServerSettingsAuditLogFilter.this.filterPublisher.onNext(editable.toString());
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -102,100 +165,15 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
         private final List<MGRecyclerDataPayload> listItems;
 
         /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
-            }
-
-            private final Observable<Set<Long>> getPermissionUserIds(long guildId) {
-                StoreGuilds guilds = StoreStream.INSTANCE.getGuilds();
-                Observable<Set<Long>> observableM11112r = Observable.m11075i(guilds.observeGuild(guildId), guilds.observeRoles(guildId), guilds.observeComputed(guildId), new Func3<Guild, Map<Long, ? extends GuildRole>, Map<Long, ? extends GuildMember>, Set<? extends Long>>() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1
-
-                    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1$1, reason: invalid class name */
-                    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-                    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends GuildMember>, Boolean> {
-                        public final /* synthetic */ Guild $guild;
-                        public final /* synthetic */ Map $roles;
-
-                        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                        public AnonymousClass1(Guild guild, Map map) {
-                            super(1);
-                            this.$guild = guild;
-                            this.$roles = map;
-                        }
-
-                        @Override // kotlin.jvm.functions.Function1
-                        public /* bridge */ /* synthetic */ Boolean invoke(Map.Entry<? extends Long, ? extends GuildMember> entry) {
-                            return Boolean.valueOf(invoke2((Map.Entry<Long, GuildMember>) entry));
-                        }
-
-                        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                        public final boolean invoke2(Map.Entry<Long, GuildMember> entry) {
-                            boolean z2;
-                            C12238m.checkNotNullParameter(entry, "<name for destructuring parameter 0>");
-                            long jLongValue = entry.getKey().longValue();
-                            GuildMember value = entry.getValue();
-                            Guild guild = this.$guild;
-                            if (guild != null && jLongValue == guild.getOwnerId()) {
-                                return true;
-                            }
-                            List<Long> roles = value.getRoles();
-                            if ((roles instanceof Collection) && roles.isEmpty()) {
-                                z2 = false;
-                            } else {
-                                Iterator<T> it = roles.iterator();
-                                while (it.hasNext()) {
-                                    GuildRole guildRole = (GuildRole) this.$roles.get(Long.valueOf(((Number) it.next()).longValue()));
-                                    if (((guildRole != null ? guildRole.getPermissions() : 0L) & Permission.MANAGEMENT_PERMISSIONS) > 0) {
-                                        z2 = true;
-                                    }
-                                }
-                                z2 = false;
-                            }
-                            return z2;
-                        }
-                    }
-
-                    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1$2, reason: invalid class name */
-                    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-                    public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends GuildMember>, Long> {
-                        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
-
-                        public AnonymousClass2() {
-                            super(1);
-                        }
-
-                        @Override // kotlin.jvm.functions.Function1
-                        public /* bridge */ /* synthetic */ Long invoke(Map.Entry<? extends Long, ? extends GuildMember> entry) {
-                            return Long.valueOf(invoke2((Map.Entry<Long, GuildMember>) entry));
-                        }
-
-                        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                        public final long invoke2(Map.Entry<Long, GuildMember> entry) {
-                            C12238m.checkNotNullParameter(entry, "it");
-                            return entry.getKey().longValue();
-                        }
-                    }
-
-                    @Override // p658rx.functions.Func3
-                    public /* bridge */ /* synthetic */ Set<? extends Long> call(Guild guild, Map<Long, ? extends GuildRole> map, Map<Long, ? extends GuildMember> map2) {
-                        return call2(guild, (Map<Long, GuildRole>) map, (Map<Long, GuildMember>) map2);
-                    }
-
-                    /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                    public final Set<Long> call2(Guild guild, Map<Long, GuildRole> map, Map<Long, GuildMember> map2) {
-                        C12238m.checkNotNullExpressionValue(map2, "members");
-                        return C12078q.toSet(C12078q.map(C12078q.filter(C12138i0.asSequence(map2), new AnonymousClass1(guild, map)), AnonymousClass2.INSTANCE));
-                    }
-                }).m11112r();
-                C12238m.checkNotNullExpressionValue(observableM11112r, "Observable\n            .…  .distinctUntilChanged()");
-                return observableM11112r;
             }
 
             @SuppressLint({"DefaultLocale"})
@@ -219,7 +197,7 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$get$2$1 */
                     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-                    public static final class C93331 extends AbstractC12240o implements Function1<Integer, Boolean> {
+                    public final class C93331 extends AbstractC12240o implements Function1<Integer, Boolean> {
                         public final /* synthetic */ String $filterText;
 
                         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -251,7 +229,7 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$get$2$2 */
                     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-                    public static final class C93342 extends AbstractC12240o implements Function1<Integer, WidgetServerSettingsAuditLogFilterAdapter.AuditLogActionFilterItem> {
+                    public final class C93342 extends AbstractC12240o implements Function1<Integer, WidgetServerSettingsAuditLogFilterAdapter.AuditLogActionFilterItem> {
                         public final /* synthetic */ StoreAuditLog.AuditLogState $auditLogState;
 
                         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -309,6 +287,91 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
                 return observableM11112r;
             }
 
+            private final Observable<Set<Long>> getPermissionUserIds(long guildId) {
+                StoreGuilds guilds = StoreStream.INSTANCE.getGuilds();
+                Observable<Set<Long>> observableM11112r = Observable.m11075i(guilds.observeGuild(guildId), guilds.observeRoles(guildId), guilds.observeComputed(guildId), new Func3<Guild, Map<Long, ? extends GuildRole>, Map<Long, ? extends GuildMember>, Set<? extends Long>>() { // from class: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1
+
+                    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1$1, reason: invalid class name */
+                    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
+                    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends GuildMember>, Boolean> {
+                        public final /* synthetic */ Guild $guild;
+                        public final /* synthetic */ Map $roles;
+
+                        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                        public AnonymousClass1(Guild guild, Map map) {
+                            super(1);
+                            this.$guild = guild;
+                            this.$roles = map;
+                        }
+
+                        @Override // kotlin.jvm.functions.Function1
+                        public /* bridge */ /* synthetic */ Boolean invoke(Map.Entry<? extends Long, ? extends GuildMember> entry) {
+                            return Boolean.valueOf(invoke2((Map.Entry<Long, GuildMember>) entry));
+                        }
+
+                        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                        public final boolean invoke2(Map.Entry<Long, GuildMember> entry) {
+                            boolean z2;
+                            C12238m.checkNotNullParameter(entry, "<name for destructuring parameter 0>");
+                            long jLongValue = entry.getKey().longValue();
+                            GuildMember value = entry.getValue();
+                            Guild guild = this.$guild;
+                            if (guild != null && jLongValue == guild.getOwnerId()) {
+                                return true;
+                            }
+                            List<Long> roles = value.getRoles();
+                            if ((roles instanceof Collection) && roles.isEmpty()) {
+                                z2 = false;
+                            } else {
+                                Iterator<T> it = roles.iterator();
+                                while (it.hasNext()) {
+                                    GuildRole guildRole = (GuildRole) this.$roles.get(Long.valueOf(((Number) it.next()).longValue()));
+                                    if (((guildRole != null ? guildRole.getPermissions() : 0L) & Permission.MANAGEMENT_PERMISSIONS) > 0) {
+                                        z2 = true;
+                                    }
+                                }
+                                z2 = false;
+                            }
+                            return z2;
+                        }
+                    }
+
+                    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$Model$Companion$getPermissionUserIds$1$2, reason: invalid class name */
+                    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
+                    public final class AnonymousClass2 extends AbstractC12240o implements Function1<Map.Entry<? extends Long, ? extends GuildMember>, Long> {
+                        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+                        public AnonymousClass2() {
+                            super(1);
+                        }
+
+                        @Override // kotlin.jvm.functions.Function1
+                        public /* bridge */ /* synthetic */ Long invoke(Map.Entry<? extends Long, ? extends GuildMember> entry) {
+                            return Long.valueOf(invoke2((Map.Entry<Long, GuildMember>) entry));
+                        }
+
+                        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                        public final long invoke2(Map.Entry<Long, GuildMember> entry) {
+                            C12238m.checkNotNullParameter(entry, "it");
+                            return entry.getKey().longValue();
+                        }
+                    }
+
+                    @Override // p658rx.functions.Func3
+                    public /* bridge */ /* synthetic */ Set<? extends Long> call(Guild guild, Map<Long, ? extends GuildRole> map, Map<Long, ? extends GuildMember> map2) {
+                        return call2(guild, (Map<Long, GuildRole>) map, (Map<Long, GuildMember>) map2);
+                    }
+
+                    /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                    public final Set<Long> call2(Guild guild, Map<Long, GuildRole> map, Map<Long, GuildMember> map2) {
+                        C12238m.checkNotNullExpressionValue(map2, "members");
+                        return C12078q.toSet(C12078q.map(C12078q.filter(C12138i0.asSequence(map2), new AnonymousClass1(guild, map)), AnonymousClass2.INSTANCE));
+                    }
+                }).m11112r();
+                C12238m.checkNotNullExpressionValue(observableM11112r, "Observable\n            .…  .distinctUntilChanged()");
+                return observableM11112r;
+            }
+
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
                 this();
             }
@@ -322,69 +385,6 @@ public final class WidgetServerSettingsAuditLogFilter extends AppFragment {
 
         public final List<MGRecyclerDataPayload> getListItems() {
             return this.listItems;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-    public static final class C93381 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C93381() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            FragmentActivity fragmentActivityM95e = WidgetServerSettingsAuditLogFilter.this.m95e();
-            if (fragmentActivityM95e != null) {
-                fragmentActivityM95e.finish();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-    public static final /* synthetic */ class C93392 extends C12236k implements Function1<Model, Unit> {
-        public C93392(WidgetServerSettingsAuditLogFilter widgetServerSettingsAuditLogFilter) {
-            super(1, widgetServerSettingsAuditLogFilter, WidgetServerSettingsAuditLogFilter.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/auditlog/WidgetServerSettingsAuditLogFilter$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetServerSettingsAuditLogFilter) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogFilter$onViewCreated$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
-    public static final class C93412 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C93412() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetServerSettingsAuditLogFilter.this.filterPublisher.onNext(editable.toString());
         }
     }
 

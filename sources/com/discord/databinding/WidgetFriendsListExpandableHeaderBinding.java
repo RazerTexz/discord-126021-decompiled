@@ -28,6 +28,12 @@ public final class WidgetFriendsListExpandableHeaderBinding implements ViewBindi
         this.f16685c = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16683a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetFriendsListExpandableHeaderBinding m8415a(@NonNull View view) {
@@ -41,11 +47,5 @@ public final class WidgetFriendsListExpandableHeaderBinding implements ViewBindi
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16683a;
     }
 }

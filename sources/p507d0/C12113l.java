@@ -11,7 +11,7 @@ public final class C12113l {
         return new C12112k.b(th);
     }
 
-    public static final void throwOnFailure(Object obj) {
+    public static final void throwOnFailure(Object obj) throws Throwable {
         if (obj instanceof C12112k.b) {
             throw ((C12112k.b) obj).exception;
         }

@@ -44,6 +44,12 @@ import p600f0.p601e0.p613n.C12356e;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12380x implements Cloneable, InterfaceC12269e.a {
 
+    /* JADX INFO: renamed from: j */
+    public static final List<EnumC12381y> f25994j = C12272c.m10132m(EnumC12381y.HTTP_2, EnumC12381y.HTTP_1_1);
+
+    /* JADX INFO: renamed from: l */
+    public static final b f25996l = new b(null);
+
     /* JADX INFO: renamed from: A */
     public final SocketFactory f25997A;
 
@@ -131,158 +137,12 @@ public class C12380x implements Cloneable, InterfaceC12269e.a {
     /* JADX INFO: renamed from: z */
     public final InterfaceC12265c f26025z;
 
-    /* JADX INFO: renamed from: l */
-    public static final b f25996l = new b(null);
-
-    /* JADX INFO: renamed from: j */
-    public static final List<EnumC12381y> f25994j = C12272c.m10132m(EnumC12381y.HTTP_2, EnumC12381y.HTTP_1_1);
-
     /* JADX INFO: renamed from: k */
     public static final List<C12369m> f25995k = C12272c.m10132m(C12369m.f25932c, C12369m.f25933d);
 
-    /* JADX INFO: renamed from: f0.x$a */
-    /* JADX INFO: compiled from: OkHttpClient.kt */
-    public static final class a {
-
-        /* JADX INFO: renamed from: A */
-        public int f26026A;
-
-        /* JADX INFO: renamed from: B */
-        public long f26027B;
-
-        /* JADX INFO: renamed from: C */
-        public C12292l f26028C;
-
-        /* JADX INFO: renamed from: a */
-        public C12373q f26029a = new C12373q();
-
-        /* JADX INFO: renamed from: b */
-        public C12368l f26030b = new C12368l();
-
-        /* JADX INFO: renamed from: c */
-        public final List<Interceptor> f26031c = new ArrayList();
-
-        /* JADX INFO: renamed from: d */
-        public final List<Interceptor> f26032d = new ArrayList();
-
-        /* JADX INFO: renamed from: e */
-        public AbstractC12376t.b f26033e;
-
-        /* JADX INFO: renamed from: f */
-        public boolean f26034f;
-
-        /* JADX INFO: renamed from: g */
-        public InterfaceC12265c f26035g;
-
-        /* JADX INFO: renamed from: h */
-        public boolean f26036h;
-
-        /* JADX INFO: renamed from: i */
-        public boolean f26037i;
-
-        /* JADX INFO: renamed from: j */
-        public InterfaceC12372p f26038j;
-
-        /* JADX INFO: renamed from: k */
-        public InterfaceC12375s f26039k;
-
-        /* JADX INFO: renamed from: l */
-        public Proxy f26040l;
-
-        /* JADX INFO: renamed from: m */
-        public ProxySelector f26041m;
-
-        /* JADX INFO: renamed from: n */
-        public InterfaceC12265c f26042n;
-
-        /* JADX INFO: renamed from: o */
-        public SocketFactory f26043o;
-
-        /* JADX INFO: renamed from: p */
-        public SSLSocketFactory f26044p;
-
-        /* JADX INFO: renamed from: q */
-        public X509TrustManager f26045q;
-
-        /* JADX INFO: renamed from: r */
-        public List<C12369m> f26046r;
-
-        /* JADX INFO: renamed from: s */
-        public List<? extends EnumC12381y> f26047s;
-
-        /* JADX INFO: renamed from: t */
-        public HostnameVerifier f26048t;
-
-        /* JADX INFO: renamed from: u */
-        public C12363g f26049u;
-
-        /* JADX INFO: renamed from: v */
-        public AbstractC12349c f26050v;
-
-        /* JADX INFO: renamed from: w */
-        public int f26051w;
-
-        /* JADX INFO: renamed from: x */
-        public int f26052x;
-
-        /* JADX INFO: renamed from: y */
-        public int f26053y;
-
-        /* JADX INFO: renamed from: z */
-        public int f26054z;
-
-        public a() {
-            AbstractC12376t abstractC12376t = AbstractC12376t.f25962a;
-            C12238m.checkParameterIsNotNull(abstractC12376t, "$this$asFactory");
-            this.f26033e = new C12270a(abstractC12376t);
-            this.f26034f = true;
-            InterfaceC12265c interfaceC12265c = InterfaceC12265c.f25369a;
-            this.f26035g = interfaceC12265c;
-            this.f26036h = true;
-            this.f26037i = true;
-            this.f26038j = InterfaceC12372p.f25956a;
-            this.f26039k = InterfaceC12375s.f25961a;
-            this.f26042n = interfaceC12265c;
-            SocketFactory socketFactory = SocketFactory.getDefault();
-            C12238m.checkExpressionValueIsNotNull(socketFactory, "SocketFactory.getDefault()");
-            this.f26043o = socketFactory;
-            b bVar = C12380x.f25996l;
-            this.f26046r = C12380x.f25995k;
-            this.f26047s = C12380x.f25994j;
-            this.f26048t = C12350d.f25811a;
-            this.f26049u = C12363g.f25903a;
-            this.f26052x = 10000;
-            this.f26053y = 10000;
-            this.f26054z = 10000;
-            this.f26027B = Permission.VIEW_CHANNEL;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final a m10420a(long j, TimeUnit timeUnit) {
-            C12238m.checkParameterIsNotNull(timeUnit, "unit");
-            this.f26053y = C12272c.m10121b("timeout", j, timeUnit);
-            return this;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final a m10421b(SSLSocketFactory sSLSocketFactory, X509TrustManager x509TrustManager) {
-            C12238m.checkParameterIsNotNull(sSLSocketFactory, "sslSocketFactory");
-            C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
-            if ((!C12238m.areEqual(sSLSocketFactory, this.f26044p)) || (!C12238m.areEqual(x509TrustManager, this.f26045q))) {
-                this.f26028C = null;
-            }
-            this.f26044p = sSLSocketFactory;
-            C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
-            C12333h.a aVar = C12333h.f25785c;
-            this.f26050v = C12333h.f25783a.mo10315b(x509TrustManager);
-            this.f26045q = x509TrustManager;
-            return this;
-        }
-    }
-
     /* JADX INFO: renamed from: f0.x$b */
     /* JADX INFO: compiled from: OkHttpClient.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -450,13 +310,6 @@ public class C12380x implements Cloneable, InterfaceC12269e.a {
         }
     }
 
-    @Override // p600f0.InterfaceC12269e.a
-    /* JADX INFO: renamed from: b */
-    public InterfaceC12269e mo10114b(Request request) {
-        C12238m.checkParameterIsNotNull(request, "request");
-        return new C12285e(this, request, false);
-    }
-
     public Object clone() {
         return super.clone();
     }
@@ -548,6 +401,153 @@ public class C12380x implements Cloneable, InterfaceC12269e.a {
             c12285e.mo10113e(new C12356e(c12355d, requestM10978a));
         }
         return c12355d;
+    }
+
+    @Override // p600f0.InterfaceC12269e.a
+    /* JADX INFO: renamed from: b */
+    public InterfaceC12269e mo10114b(Request request) {
+        C12238m.checkParameterIsNotNull(request, "request");
+        return new C12285e(this, request, false);
+    }
+
+    /* JADX INFO: renamed from: f0.x$a */
+    /* JADX INFO: compiled from: OkHttpClient.kt */
+    public final class a {
+
+        /* JADX INFO: renamed from: A */
+        public int f26026A;
+
+        /* JADX INFO: renamed from: B */
+        public long f26027B;
+
+        /* JADX INFO: renamed from: C */
+        public C12292l f26028C;
+
+        /* JADX INFO: renamed from: e */
+        public AbstractC12376t.b f26033e;
+
+        /* JADX INFO: renamed from: f */
+        public boolean f26034f;
+
+        /* JADX INFO: renamed from: g */
+        public InterfaceC12265c f26035g;
+
+        /* JADX INFO: renamed from: h */
+        public boolean f26036h;
+
+        /* JADX INFO: renamed from: i */
+        public boolean f26037i;
+
+        /* JADX INFO: renamed from: j */
+        public InterfaceC12372p f26038j;
+
+        /* JADX INFO: renamed from: k */
+        public InterfaceC12375s f26039k;
+
+        /* JADX INFO: renamed from: l */
+        public Proxy f26040l;
+
+        /* JADX INFO: renamed from: m */
+        public ProxySelector f26041m;
+
+        /* JADX INFO: renamed from: n */
+        public InterfaceC12265c f26042n;
+
+        /* JADX INFO: renamed from: o */
+        public SocketFactory f26043o;
+
+        /* JADX INFO: renamed from: p */
+        public SSLSocketFactory f26044p;
+
+        /* JADX INFO: renamed from: q */
+        public X509TrustManager f26045q;
+
+        /* JADX INFO: renamed from: r */
+        public List<C12369m> f26046r;
+
+        /* JADX INFO: renamed from: s */
+        public List<? extends EnumC12381y> f26047s;
+
+        /* JADX INFO: renamed from: t */
+        public HostnameVerifier f26048t;
+
+        /* JADX INFO: renamed from: u */
+        public C12363g f26049u;
+
+        /* JADX INFO: renamed from: v */
+        public AbstractC12349c f26050v;
+
+        /* JADX INFO: renamed from: w */
+        public int f26051w;
+
+        /* JADX INFO: renamed from: x */
+        public int f26052x;
+
+        /* JADX INFO: renamed from: y */
+        public int f26053y;
+
+        /* JADX INFO: renamed from: z */
+        public int f26054z;
+
+        /* JADX INFO: renamed from: a */
+        public C12373q f26029a = new C12373q();
+
+        /* JADX INFO: renamed from: b */
+        public C12368l f26030b = new C12368l();
+
+        /* JADX INFO: renamed from: c */
+        public final List<Interceptor> f26031c = new ArrayList();
+
+        /* JADX INFO: renamed from: d */
+        public final List<Interceptor> f26032d = new ArrayList();
+
+        public a() {
+            AbstractC12376t abstractC12376t = AbstractC12376t.f25962a;
+            C12238m.checkParameterIsNotNull(abstractC12376t, "$this$asFactory");
+            this.f26033e = new C12270a(abstractC12376t);
+            this.f26034f = true;
+            InterfaceC12265c interfaceC12265c = InterfaceC12265c.f25369a;
+            this.f26035g = interfaceC12265c;
+            this.f26036h = true;
+            this.f26037i = true;
+            this.f26038j = InterfaceC12372p.f25956a;
+            this.f26039k = InterfaceC12375s.f25961a;
+            this.f26042n = interfaceC12265c;
+            SocketFactory socketFactory = SocketFactory.getDefault();
+            C12238m.checkExpressionValueIsNotNull(socketFactory, "SocketFactory.getDefault()");
+            this.f26043o = socketFactory;
+            b bVar = C12380x.f25996l;
+            this.f26046r = C12380x.f25995k;
+            this.f26047s = C12380x.f25994j;
+            this.f26048t = C12350d.f25811a;
+            this.f26049u = C12363g.f25903a;
+            this.f26052x = 10000;
+            this.f26053y = 10000;
+            this.f26054z = 10000;
+            this.f26027B = Permission.VIEW_CHANNEL;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final a m10420a(long j, TimeUnit timeUnit) {
+            C12238m.checkParameterIsNotNull(timeUnit, "unit");
+            this.f26053y = C12272c.m10121b("timeout", j, timeUnit);
+            return this;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final a m10421b(SSLSocketFactory sSLSocketFactory, X509TrustManager x509TrustManager) {
+            C12238m.checkParameterIsNotNull(sSLSocketFactory, "sslSocketFactory");
+            C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+            if ((!C12238m.areEqual(sSLSocketFactory, this.f26044p)) || (!C12238m.areEqual(x509TrustManager, this.f26045q))) {
+                this.f26028C = null;
+            }
+            this.f26044p = sSLSocketFactory;
+            C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+            C12333h.a aVar = C12333h.f25785c;
+            this.f26050v = C12333h.f25783a.mo10315b(x509TrustManager);
+            this.f26045q = x509TrustManager;
+            return this;
+        }
     }
 
     public C12380x() {

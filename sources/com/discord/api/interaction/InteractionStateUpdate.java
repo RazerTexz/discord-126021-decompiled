@@ -16,16 +16,6 @@ public final /* data */ class InteractionStateUpdate {
         this.nonce = str;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final Long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,6 +25,16 @@ public final /* data */ class InteractionStateUpdate {
         }
         InteractionStateUpdate interactionStateUpdate = (InteractionStateUpdate) other;
         return C12238m.areEqual(this.id, interactionStateUpdate.id) && C12238m.areEqual(this.nonce, interactionStateUpdate.nonce);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final Long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
     }
 
     public int hashCode() {

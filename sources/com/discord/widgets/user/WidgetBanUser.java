@@ -47,7 +47,7 @@ public final class WidgetBanUser extends AppDialog {
     private RadioManager deleteHistoryRadioManager;
 
     /* JADX INFO: compiled from: WidgetBanUser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -128,7 +128,7 @@ public final class WidgetBanUser extends AppDialog {
 
             /* JADX INFO: renamed from: com.discord.widgets.user.WidgetBanUser$onViewBound$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetBanUser.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }

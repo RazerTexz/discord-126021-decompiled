@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p294d.C3191f;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class CredentialPickerConfig extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<CredentialPickerConfig> CREATOR = new C3191f();
 
     /* JADX INFO: renamed from: j */
     public final int f20401j;
@@ -23,6 +22,7 @@ public final class CredentialPickerConfig extends AbstractSafeParcelable impleme
 
     /* JADX INFO: renamed from: m */
     public final int f20404m;
+    public static final Parcelable.Creator<CredentialPickerConfig> CREATOR = new C3191f();
 
     public CredentialPickerConfig(int i, boolean z2, boolean z3, boolean z4, int i2) {
         this.f20401j = i;

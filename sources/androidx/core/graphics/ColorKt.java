@@ -10,14 +10,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Color.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ColorKt {
+    public static final int component1(@ColorInt int i) {
+        return (i >> 24) & 255;
+    }
+
     @RequiresApi(26)
     public static final float component1(Color color) {
         C12238m.checkNotNullParameter(color, "<this>");
         return color.getComponent(0);
     }
 
-    public static final int component1(@ColorInt int i) {
-        return (i >> 24) & 255;
+    public static final int component2(@ColorInt int i) {
+        return (i >> 16) & 255;
     }
 
     @RequiresApi(26)
@@ -26,8 +30,8 @@ public final class ColorKt {
         return color.getComponent(1);
     }
 
-    public static final int component2(@ColorInt int i) {
-        return (i >> 16) & 255;
+    public static final int component3(@ColorInt int i) {
+        return (i >> 8) & 255;
     }
 
     @RequiresApi(26)
@@ -36,8 +40,8 @@ public final class ColorKt {
         return color.getComponent(2);
     }
 
-    public static final int component3(@ColorInt int i) {
-        return (i >> 8) & 255;
+    public static final int component4(@ColorInt int i) {
+        return i & 255;
     }
 
     @RequiresApi(26)
@@ -46,19 +50,10 @@ public final class ColorKt {
         return color.getComponent(3);
     }
 
-    public static final int component4(@ColorInt int i) {
-        return i & 255;
-    }
-
     @RequiresApi(26)
     public static final long convertTo(@ColorInt int i, ColorSpace.Named named) {
         C12238m.checkNotNullParameter(named, "colorSpace");
         return Color.convert(i, ColorSpace.get(named));
-    }
-
-    @RequiresApi(26)
-    public static final float getAlpha(long j) {
-        return Color.alpha(j);
     }
 
     public static final int getAlpha(@ColorInt int i) {
@@ -66,12 +61,17 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final float getBlue(long j) {
-        return Color.blue(j);
+    public static final float getAlpha(long j) {
+        return Color.alpha(j);
     }
 
     public static final int getBlue(@ColorInt int i) {
         return i & 255;
+    }
+
+    @RequiresApi(26)
+    public static final float getBlue(long j) {
+        return Color.blue(j);
     }
 
     @RequiresApi(26)
@@ -81,13 +81,13 @@ public final class ColorKt {
         return colorSpace;
     }
 
+    public static final int getGreen(@ColorInt int i) {
+        return (i >> 8) & 255;
+    }
+
     @RequiresApi(26)
     public static final float getGreen(long j) {
         return Color.green(j);
-    }
-
-    public static final int getGreen(@ColorInt int i) {
-        return (i >> 8) & 255;
     }
 
     @RequiresApi(26)
@@ -95,13 +95,13 @@ public final class ColorKt {
         return Color.luminance(i);
     }
 
+    public static final int getRed(@ColorInt int i) {
+        return (i >> 16) & 255;
+    }
+
     @RequiresApi(26)
     public static final float getRed(long j) {
         return Color.red(j);
-    }
-
-    public static final int getRed(@ColorInt int i) {
-        return (i >> 16) & 255;
     }
 
     @RequiresApi(26)

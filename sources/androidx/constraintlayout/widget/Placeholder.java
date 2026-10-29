@@ -24,6 +24,14 @@ public class Placeholder extends View {
         init(null);
     }
 
+    public View getContent() {
+        return this.mContent;
+    }
+
+    public int getEmptyVisibility() {
+        return this.mEmptyVisibility;
+    }
+
     private void init(AttributeSet attributeSet) {
         super.setVisibility(this.mEmptyVisibility);
         this.mContentId = -1;
@@ -40,14 +48,6 @@ public class Placeholder extends View {
             }
             typedArrayObtainStyledAttributes.recycle();
         }
-    }
-
-    public View getContent() {
-        return this.mContent;
-    }
-
-    public int getEmptyVisibility() {
-        return this.mEmptyVisibility;
     }
 
     @Override // android.view.View

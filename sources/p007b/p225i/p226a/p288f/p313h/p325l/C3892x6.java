@@ -9,9 +9,6 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3892x6<K, V> implements Iterator<Map.Entry<K, V>> {
 
-    /* JADX INFO: renamed from: j */
-    public int f10405j = -1;
-
     /* JADX INFO: renamed from: k */
     public boolean f10406k;
 
@@ -21,8 +18,16 @@ public final class C3892x6<K, V> implements Iterator<Map.Entry<K, V>> {
     /* JADX INFO: renamed from: m */
     public final /* synthetic */ C3814r6 f10408m;
 
+    /* JADX INFO: renamed from: j */
+    public int f10405j = -1;
+
     public C3892x6(C3814r6 c3814r6, C3840t6 c3840t6) {
         this.f10408m = c3814r6;
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.f10405j + 1 < this.f10408m.f10290l.size() || (!this.f10408m.f10291m.isEmpty() && m5361a().hasNext());
     }
 
     /* JADX INFO: renamed from: a */
@@ -31,11 +36,6 @@ public final class C3892x6<K, V> implements Iterator<Map.Entry<K, V>> {
             this.f10407l = this.f10408m.f10291m.entrySet().iterator();
         }
         return this.f10407l;
-    }
-
-    @Override // java.util.Iterator
-    public final boolean hasNext() {
-        return this.f10405j + 1 < this.f10408m.f10290l.size() || (!this.f10408m.f10291m.isEmpty() && m5361a().hasNext());
     }
 
     @Override // java.util.Iterator

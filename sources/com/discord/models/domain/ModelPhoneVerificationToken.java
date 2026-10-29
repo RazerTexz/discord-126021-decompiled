@@ -12,11 +12,11 @@ public final /* data */ class ModelPhoneVerificationToken {
     private final String token;
 
     /* JADX INFO: compiled from: ModelPhoneVerificationToken.kt */
-    public static final /* data */ class Update {
+    public final /* data */ class Update {
         private final String token;
 
         /* JADX INFO: compiled from: ModelPhoneVerificationToken.kt */
-        public static final class Parser implements Model.Parser<Update> {
+        public final class Parser implements Model.Parser<Update> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -57,11 +57,6 @@ public final /* data */ class ModelPhoneVerificationToken {
             return update.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getToken() {
-            return this.token;
-        }
-
         public final Update copy(String token) {
             C12238m.checkNotNullParameter(token, "token");
             return new Update(token);
@@ -72,6 +67,11 @@ public final /* data */ class ModelPhoneVerificationToken {
                 return (other instanceof Update) && C12238m.areEqual(this.token, ((Update) other).token);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getToken() {
+            return this.token;
         }
 
         public final String getToken() {
@@ -103,11 +103,6 @@ public final /* data */ class ModelPhoneVerificationToken {
         return modelPhoneVerificationToken.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public final ModelPhoneVerificationToken copy(String token) {
         C12238m.checkNotNullParameter(token, "token");
         return new ModelPhoneVerificationToken(token);
@@ -118,6 +113,11 @@ public final /* data */ class ModelPhoneVerificationToken {
             return (other instanceof ModelPhoneVerificationToken) && C12238m.areEqual(this.token, ((ModelPhoneVerificationToken) other).token);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {

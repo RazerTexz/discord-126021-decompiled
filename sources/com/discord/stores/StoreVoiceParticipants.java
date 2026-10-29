@@ -54,332 +54,14 @@ public final class StoreVoiceParticipants extends Store {
     private final BehaviorSubject<Long> selectedParticipantSubject;
     private final StoreStream stream;
 
-    /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
-    public static final /* data */ class VoiceUser {
-        private final boolean _isSpeaking;
-        private final ModelApplicationStream applicationStream;
-        private final Integer applicationStreamId;
-        private final Integer callStreamId;
-        private final GuildMember guildMember;
-        private final boolean isBooster;
-        private final boolean isDeafened;
-        private final boolean isInvitedToSpeak;
-        private final boolean isMe;
-        private final boolean isMuted;
-        private final boolean isRequestingToSpeak;
-        private final boolean isRinging;
-        private final boolean isSelfDeafened;
-        private final boolean isSelfMuted;
-        private final boolean isServerDeafened;
-        private final boolean isServerMuted;
-        private final boolean isSpeaking;
-        private final String nickname;
-        private final StreamContext streamContext;
-        private final StoreVideoStreams.UserStreams streams;
-        private final User user;
-        private final StoreMediaSettings.VoiceConfiguration voiceConfiguration;
-        private final VoiceState voiceState;
-        private final String watchingStream;
-
-        /* JADX WARN: Code duplicated, block: B:36:0x0077  */
-        /* JADX WARN: Code duplicated, block: B:53:0x009e  */
-        public VoiceUser(User user, VoiceState voiceState, boolean z2, StoreVideoStreams.UserStreams userStreams, boolean z3, GuildMember guildMember, String str, StreamContext streamContext, boolean z4, StoreMediaSettings.VoiceConfiguration voiceConfiguration, boolean z5) {
-            boolean selfMute;
-            boolean selfDeaf;
-            C12238m.checkNotNullParameter(user, "user");
-            this.user = user;
-            this.voiceState = voiceState;
-            this.isRinging = z2;
-            this.streams = userStreams;
-            this.isMe = z3;
-            this.guildMember = guildMember;
-            this.watchingStream = str;
-            this.streamContext = streamContext;
-            this.isBooster = z4;
-            this.voiceConfiguration = voiceConfiguration;
-            this._isSpeaking = z5;
-            this.isSpeaking = (voiceState == null || !z5 || voiceState.getMute() || voiceState.getDeaf()) ? false : true;
-            this.nickname = guildMember != null ? guildMember.getNick() : null;
-            this.callStreamId = userStreams != null ? userStreams.getCallStreamId() : null;
-            this.applicationStreamId = userStreams != null ? userStreams.getApplicationStreamId() : null;
-            this.applicationStream = streamContext != null ? streamContext.getStream() : null;
-            boolean mute = voiceState != null ? voiceState.getMute() : false;
-            this.isServerMuted = mute;
-            if (z3) {
-                if (voiceConfiguration != null) {
-                    selfMute = voiceConfiguration.isSelfMuted();
-                } else {
-                    selfMute = false;
-                }
-            } else if (voiceState != null) {
-                selfMute = voiceState.getSelfMute();
-            } else {
-                selfMute = false;
-            }
-            this.isSelfMuted = selfMute;
-            this.isMuted = mute || selfMute;
-            boolean deaf = voiceState != null ? voiceState.getDeaf() : false;
-            this.isServerDeafened = deaf;
-            if (z3) {
-                if (voiceConfiguration != null) {
-                    selfDeaf = voiceConfiguration.isSelfDeafened();
-                } else {
-                    selfDeaf = false;
-                }
-            } else if (voiceState != null) {
-                selfDeaf = voiceState.getSelfDeaf();
-            } else {
-                selfDeaf = false;
-            }
-            this.isSelfDeafened = selfDeaf;
-            this.isDeafened = deaf || selfDeaf;
-            this.isRequestingToSpeak = C1460d.m592y0(voiceState).getIsRequestingToSpeak();
-            this.isInvitedToSpeak = C1460d.m592y0(voiceState) == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        private final StoreMediaSettings.VoiceConfiguration getVoiceConfiguration() {
-            return this.voiceConfiguration;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        private final boolean get_isSpeaking() {
-            return this._isSpeaking;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final VoiceState getVoiceState() {
-            return this.voiceState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsRinging() {
-            return this.isRinging;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StoreVideoStreams.UserStreams getStreams() {
-            return this.streams;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsMe() {
-            return this.isMe;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final String getWatchingStream() {
-            return this.watchingStream;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final StreamContext getStreamContext() {
-            return this.streamContext;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsBooster() {
-            return this.isBooster;
-        }
-
-        public final VoiceUser copy(User user, VoiceState voiceState, boolean isRinging, StoreVideoStreams.UserStreams streams, boolean isMe, GuildMember guildMember, String watchingStream, StreamContext streamContext, boolean isBooster, StoreMediaSettings.VoiceConfiguration voiceConfiguration, boolean _isSpeaking) {
-            C12238m.checkNotNullParameter(user, "user");
-            return new VoiceUser(user, voiceState, isRinging, streams, isMe, guildMember, watchingStream, streamContext, isBooster, voiceConfiguration, _isSpeaking);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof VoiceUser)) {
-                return false;
-            }
-            VoiceUser voiceUser = (VoiceUser) other;
-            return C12238m.areEqual(this.user, voiceUser.user) && C12238m.areEqual(this.voiceState, voiceUser.voiceState) && this.isRinging == voiceUser.isRinging && C12238m.areEqual(this.streams, voiceUser.streams) && this.isMe == voiceUser.isMe && C12238m.areEqual(this.guildMember, voiceUser.guildMember) && C12238m.areEqual(this.watchingStream, voiceUser.watchingStream) && C12238m.areEqual(this.streamContext, voiceUser.streamContext) && this.isBooster == voiceUser.isBooster && C12238m.areEqual(this.voiceConfiguration, voiceUser.voiceConfiguration) && this._isSpeaking == voiceUser._isSpeaking;
-        }
-
-        public final ModelApplicationStream getApplicationStream() {
-            return this.applicationStream;
-        }
-
-        public final Integer getApplicationStreamId() {
-            return this.applicationStreamId;
-        }
-
-        public final Integer getCallStreamId() {
-            return this.callStreamId;
-        }
-
-        public final String getDisplayName() {
-            String str = this.nickname;
-            return str != null ? str : this.user.getUsername();
-        }
-
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
-        public final String getNickname() {
-            return this.nickname;
-        }
-
-        public final StreamContext getStreamContext() {
-            return this.streamContext;
-        }
-
-        public final StoreVideoStreams.UserStreams getStreams() {
-            return this.streams;
-        }
-
-        public final User getUser() {
-            return this.user;
-        }
-
-        public final VoiceState getVoiceState() {
-            return this.voiceState;
-        }
-
-        public final String getWatchingStream() {
-            return this.watchingStream;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v22, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v20, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v22 */
-        /* JADX WARN: Type inference failed for: r2v26 */
-        /* JADX WARN: Type inference failed for: r2v28 */
-        /* JADX WARN: Type inference failed for: r2v30 */
-        /* JADX WARN: Type inference failed for: r2v31 */
-        /* JADX WARN: Type inference failed for: r2v32 */
-        /* JADX WARN: Type inference failed for: r2v4, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v9, types: [int] */
-        /* JADX WARN: Type inference failed for: r3v0 */
-        /* JADX WARN: Type inference failed for: r3v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r3v2 */
-        public int hashCode() {
-            User user = this.user;
-            int iHashCode = (user != null ? user.hashCode() : 0) * 31;
-            VoiceState voiceState = this.voiceState;
-            int iHashCode2 = (iHashCode + (voiceState != null ? voiceState.hashCode() : 0)) * 31;
-            boolean z2 = this.isRinging;
-            ?? r2 = z2;
-            if (z2) {
-                r2 = 1;
-            }
-            int i = (iHashCode2 + r2) * 31;
-            StoreVideoStreams.UserStreams userStreams = this.streams;
-            int iHashCode3 = (i + (userStreams != null ? userStreams.hashCode() : 0)) * 31;
-            boolean z3 = this.isMe;
-            ?? r3 = z3;
-            if (z3) {
-                r3 = 1;
-            }
-            int i2 = (iHashCode3 + r3) * 31;
-            GuildMember guildMember = this.guildMember;
-            int iHashCode4 = (i2 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
-            String str = this.watchingStream;
-            int iHashCode5 = (iHashCode4 + (str != null ? str.hashCode() : 0)) * 31;
-            StreamContext streamContext = this.streamContext;
-            int iHashCode6 = (iHashCode5 + (streamContext != null ? streamContext.hashCode() : 0)) * 31;
-            boolean z4 = this.isBooster;
-            ?? r4 = z4;
-            if (z4) {
-                r4 = 1;
-            }
-            int i3 = (iHashCode6 + r4) * 31;
-            StoreMediaSettings.VoiceConfiguration voiceConfiguration = this.voiceConfiguration;
-            int iHashCode7 = (i3 + (voiceConfiguration != null ? voiceConfiguration.hashCode() : 0)) * 31;
-            boolean z5 = this._isSpeaking;
-            return iHashCode7 + (z5 ? 1 : z5);
-        }
-
-        public final boolean isBooster() {
-            return this.isBooster;
-        }
-
-        public final boolean isConnected() {
-            return this.voiceState != null;
-        }
-
-        /* JADX INFO: renamed from: isDeafened, reason: from getter */
-        public final boolean getIsDeafened() {
-            return this.isDeafened;
-        }
-
-        /* JADX INFO: renamed from: isInvitedToSpeak, reason: from getter */
-        public final boolean getIsInvitedToSpeak() {
-            return this.isInvitedToSpeak;
-        }
-
-        public final boolean isMe() {
-            return this.isMe;
-        }
-
-        /* JADX INFO: renamed from: isMuted, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
-        /* JADX INFO: renamed from: isRequestingToSpeak, reason: from getter */
-        public final boolean getIsRequestingToSpeak() {
-            return this.isRequestingToSpeak;
-        }
-
-        public final boolean isRinging() {
-            return this.isRinging;
-        }
-
-        /* JADX INFO: renamed from: isSpeaking, reason: from getter */
-        public final boolean getIsSpeaking() {
-            return this.isSpeaking;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("VoiceUser(user=");
-            sbM833U.append(this.user);
-            sbM833U.append(", voiceState=");
-            sbM833U.append(this.voiceState);
-            sbM833U.append(", isRinging=");
-            sbM833U.append(this.isRinging);
-            sbM833U.append(", streams=");
-            sbM833U.append(this.streams);
-            sbM833U.append(", isMe=");
-            sbM833U.append(this.isMe);
-            sbM833U.append(", guildMember=");
-            sbM833U.append(this.guildMember);
-            sbM833U.append(", watchingStream=");
-            sbM833U.append(this.watchingStream);
-            sbM833U.append(", streamContext=");
-            sbM833U.append(this.streamContext);
-            sbM833U.append(", isBooster=");
-            sbM833U.append(this.isBooster);
-            sbM833U.append(", voiceConfiguration=");
-            sbM833U.append(this.voiceConfiguration);
-            sbM833U.append(", _isSpeaking=");
-            return C1643a.m827O(sbM833U, this._isSpeaking, ")");
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreVoiceParticipants$get$1 */
     /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
-    public static final class C66231<T, R> implements InterfaceC12589b<Channel, Observable<? extends Map<Long, ? extends VoiceUser>>> {
+    public final class C66231<T, R> implements InterfaceC12589b<Channel, Observable<? extends Map<Long, ? extends VoiceUser>>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreVoiceParticipants$get$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
-        public static final class AnonymousClass1<T, R> implements InterfaceC12589b<Map<Long, ? extends VoiceState>, Observable<? extends Map<Long, ? extends VoiceUser>>> {
+        public final class AnonymousClass1<T, R> implements InterfaceC12589b<Map<Long, ? extends VoiceState>, Observable<? extends Map<Long, ? extends VoiceUser>>> {
             public final /* synthetic */ Channel $channel;
             public final /* synthetic */ long $guildId;
 
@@ -472,7 +154,7 @@ public final class StoreVoiceParticipants extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreVoiceParticipants$getOtherVoiceUsers$1 */
     /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
-    public static final class C66241<T, R> implements InterfaceC12589b<Long, Observable<? extends Collection<? extends User>>> {
+    public final class C66241<T, R> implements InterfaceC12589b<Long, Observable<? extends Collection<? extends User>>> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Map $voiceStates;
 
@@ -553,7 +235,7 @@ public final class StoreVoiceParticipants extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreVoiceParticipants$init$1 */
     /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
-    public static final class C66261 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C66261 extends AbstractC12240o implements Function1<Long, Unit> {
         public C66261() {
             super(1);
         }
@@ -566,6 +248,324 @@ public final class StoreVoiceParticipants extends Store {
 
         public final void invoke(long j) {
             StoreVoiceParticipants.this.selectParticipant(null);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreVoiceParticipants.kt */
+    public final /* data */ class VoiceUser {
+        private final boolean _isSpeaking;
+        private final ModelApplicationStream applicationStream;
+        private final Integer applicationStreamId;
+        private final Integer callStreamId;
+        private final GuildMember guildMember;
+        private final boolean isBooster;
+        private final boolean isDeafened;
+        private final boolean isInvitedToSpeak;
+        private final boolean isMe;
+        private final boolean isMuted;
+        private final boolean isRequestingToSpeak;
+        private final boolean isRinging;
+        private final boolean isSelfDeafened;
+        private final boolean isSelfMuted;
+        private final boolean isServerDeafened;
+        private final boolean isServerMuted;
+        private final boolean isSpeaking;
+        private final String nickname;
+        private final StreamContext streamContext;
+        private final StoreVideoStreams.UserStreams streams;
+        private final User user;
+        private final StoreMediaSettings.VoiceConfiguration voiceConfiguration;
+        private final VoiceState voiceState;
+        private final String watchingStream;
+
+        /* JADX WARN: Code duplicated, block: B:36:0x0077  */
+        /* JADX WARN: Code duplicated, block: B:53:0x009e  */
+        public VoiceUser(User user, VoiceState voiceState, boolean z2, StoreVideoStreams.UserStreams userStreams, boolean z3, GuildMember guildMember, String str, StreamContext streamContext, boolean z4, StoreMediaSettings.VoiceConfiguration voiceConfiguration, boolean z5) {
+            boolean selfMute;
+            boolean selfDeaf;
+            C12238m.checkNotNullParameter(user, "user");
+            this.user = user;
+            this.voiceState = voiceState;
+            this.isRinging = z2;
+            this.streams = userStreams;
+            this.isMe = z3;
+            this.guildMember = guildMember;
+            this.watchingStream = str;
+            this.streamContext = streamContext;
+            this.isBooster = z4;
+            this.voiceConfiguration = voiceConfiguration;
+            this._isSpeaking = z5;
+            this.isSpeaking = (voiceState == null || !z5 || voiceState.getMute() || voiceState.getDeaf()) ? false : true;
+            this.nickname = guildMember != null ? guildMember.getNick() : null;
+            this.callStreamId = userStreams != null ? userStreams.getCallStreamId() : null;
+            this.applicationStreamId = userStreams != null ? userStreams.getApplicationStreamId() : null;
+            this.applicationStream = streamContext != null ? streamContext.getStream() : null;
+            boolean mute = voiceState != null ? voiceState.getMute() : false;
+            this.isServerMuted = mute;
+            if (z3) {
+                if (voiceConfiguration != null) {
+                    selfMute = voiceConfiguration.isSelfMuted();
+                } else {
+                    selfMute = false;
+                }
+            } else if (voiceState != null) {
+                selfMute = voiceState.getSelfMute();
+            } else {
+                selfMute = false;
+            }
+            this.isSelfMuted = selfMute;
+            this.isMuted = mute || selfMute;
+            boolean deaf = voiceState != null ? voiceState.getDeaf() : false;
+            this.isServerDeafened = deaf;
+            if (z3) {
+                if (voiceConfiguration != null) {
+                    selfDeaf = voiceConfiguration.isSelfDeafened();
+                } else {
+                    selfDeaf = false;
+                }
+            } else if (voiceState != null) {
+                selfDeaf = voiceState.getSelfDeaf();
+            } else {
+                selfDeaf = false;
+            }
+            this.isSelfDeafened = selfDeaf;
+            this.isDeafened = deaf || selfDeaf;
+            this.isRequestingToSpeak = C1460d.m592y0(voiceState).getIsRequestingToSpeak();
+            this.isInvitedToSpeak = C1460d.m592y0(voiceState) == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK;
+        }
+
+        public final VoiceUser copy(User user, VoiceState voiceState, boolean isRinging, StoreVideoStreams.UserStreams streams, boolean isMe, GuildMember guildMember, String watchingStream, StreamContext streamContext, boolean isBooster, StoreMediaSettings.VoiceConfiguration voiceConfiguration, boolean _isSpeaking) {
+            C12238m.checkNotNullParameter(user, "user");
+            return new VoiceUser(user, voiceState, isRinging, streams, isMe, guildMember, watchingStream, streamContext, isBooster, voiceConfiguration, _isSpeaking);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof VoiceUser)) {
+                return false;
+            }
+            VoiceUser voiceUser = (VoiceUser) other;
+            return C12238m.areEqual(this.user, voiceUser.user) && C12238m.areEqual(this.voiceState, voiceUser.voiceState) && this.isRinging == voiceUser.isRinging && C12238m.areEqual(this.streams, voiceUser.streams) && this.isMe == voiceUser.isMe && C12238m.areEqual(this.guildMember, voiceUser.guildMember) && C12238m.areEqual(this.watchingStream, voiceUser.watchingStream) && C12238m.areEqual(this.streamContext, voiceUser.streamContext) && this.isBooster == voiceUser.isBooster && C12238m.areEqual(this.voiceConfiguration, voiceUser.voiceConfiguration) && this._isSpeaking == voiceUser._isSpeaking;
+        }
+
+        public final ModelApplicationStream getApplicationStream() {
+            return this.applicationStream;
+        }
+
+        public final Integer getApplicationStreamId() {
+            return this.applicationStreamId;
+        }
+
+        public final Integer getCallStreamId() {
+            return this.callStreamId;
+        }
+
+        public final String getDisplayName() {
+            String str = this.nickname;
+            return str != null ? str : this.user.getUsername();
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
+        }
+
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getIsBooster() {
+            return this.isBooster;
+        }
+
+        /* JADX INFO: renamed from: isDeafened, reason: from getter */
+        public final boolean getIsDeafened() {
+            return this.isDeafened;
+        }
+
+        /* JADX INFO: renamed from: isInvitedToSpeak, reason: from getter */
+        public final boolean getIsInvitedToSpeak() {
+            return this.isInvitedToSpeak;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: isMuted, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
+        }
+
+        /* JADX INFO: renamed from: isRequestingToSpeak, reason: from getter */
+        public final boolean getIsRequestingToSpeak() {
+            return this.isRequestingToSpeak;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsRinging() {
+            return this.isRinging;
+        }
+
+        /* JADX INFO: renamed from: isSpeaking, reason: from getter */
+        public final boolean getIsSpeaking() {
+            return this.isSpeaking;
+        }
+
+        public final String getNickname() {
+            return this.nickname;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final StreamContext getStreamContext() {
+            return this.streamContext;
+        }
+
+        public final StreamContext getStreamContext() {
+            return this.streamContext;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final StoreVideoStreams.UserStreams getStreams() {
+            return this.streams;
+        }
+
+        public final StoreVideoStreams.UserStreams getStreams() {
+            return this.streams;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        private final StoreMediaSettings.VoiceConfiguration getVoiceConfiguration() {
+            return this.voiceConfiguration;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final VoiceState getVoiceState() {
+            return this.voiceState;
+        }
+
+        public final VoiceState getVoiceState() {
+            return this.voiceState;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final String getWatchingStream() {
+            return this.watchingStream;
+        }
+
+        public final String getWatchingStream() {
+            return this.watchingStream;
+        }
+
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        private final boolean get_isSpeaking() {
+            return this._isSpeaking;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v22, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v20, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v22 */
+        /* JADX WARN: Type inference failed for: r2v26 */
+        /* JADX WARN: Type inference failed for: r2v28 */
+        /* JADX WARN: Type inference failed for: r2v30 */
+        /* JADX WARN: Type inference failed for: r2v31 */
+        /* JADX WARN: Type inference failed for: r2v32 */
+        /* JADX WARN: Type inference failed for: r2v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v9, types: [int] */
+        /* JADX WARN: Type inference failed for: r3v0 */
+        /* JADX WARN: Type inference failed for: r3v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r3v2 */
+        public int hashCode() {
+            User user = this.user;
+            int iHashCode = (user != null ? user.hashCode() : 0) * 31;
+            VoiceState voiceState = this.voiceState;
+            int iHashCode2 = (iHashCode + (voiceState != null ? voiceState.hashCode() : 0)) * 31;
+            boolean z2 = this.isRinging;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode2 + r2) * 31;
+            StoreVideoStreams.UserStreams userStreams = this.streams;
+            int iHashCode3 = (i + (userStreams != null ? userStreams.hashCode() : 0)) * 31;
+            boolean z3 = this.isMe;
+            ?? r3 = z3;
+            if (z3) {
+                r3 = 1;
+            }
+            int i2 = (iHashCode3 + r3) * 31;
+            GuildMember guildMember = this.guildMember;
+            int iHashCode4 = (i2 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
+            String str = this.watchingStream;
+            int iHashCode5 = (iHashCode4 + (str != null ? str.hashCode() : 0)) * 31;
+            StreamContext streamContext = this.streamContext;
+            int iHashCode6 = (iHashCode5 + (streamContext != null ? streamContext.hashCode() : 0)) * 31;
+            boolean z4 = this.isBooster;
+            ?? r4 = z4;
+            if (z4) {
+                r4 = 1;
+            }
+            int i3 = (iHashCode6 + r4) * 31;
+            StoreMediaSettings.VoiceConfiguration voiceConfiguration = this.voiceConfiguration;
+            int iHashCode7 = (i3 + (voiceConfiguration != null ? voiceConfiguration.hashCode() : 0)) * 31;
+            boolean z5 = this._isSpeaking;
+            return iHashCode7 + (z5 ? 1 : z5);
+        }
+
+        public final boolean isBooster() {
+            return this.isBooster;
+        }
+
+        public final boolean isConnected() {
+            return this.voiceState != null;
+        }
+
+        public final boolean isMe() {
+            return this.isMe;
+        }
+
+        public final boolean isRinging() {
+            return this.isRinging;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("VoiceUser(user=");
+            sbM833U.append(this.user);
+            sbM833U.append(", voiceState=");
+            sbM833U.append(this.voiceState);
+            sbM833U.append(", isRinging=");
+            sbM833U.append(this.isRinging);
+            sbM833U.append(", streams=");
+            sbM833U.append(this.streams);
+            sbM833U.append(", isMe=");
+            sbM833U.append(this.isMe);
+            sbM833U.append(", guildMember=");
+            sbM833U.append(this.guildMember);
+            sbM833U.append(", watchingStream=");
+            sbM833U.append(this.watchingStream);
+            sbM833U.append(", streamContext=");
+            sbM833U.append(this.streamContext);
+            sbM833U.append(", isBooster=");
+            sbM833U.append(this.isBooster);
+            sbM833U.append(", voiceConfiguration=");
+            sbM833U.append(this.voiceConfiguration);
+            sbM833U.append(", _isSpeaking=");
+            return C1643a.m827O(sbM833U, this._isSpeaking, ")");
         }
     }
 
@@ -623,6 +623,14 @@ public final class StoreVoiceParticipants extends Store {
         return linkedHashMap;
     }
 
+    public final Observable<Map<Long, VoiceUser>> get(long channelId) {
+        Observable<R> observableM11099Y = StoreStream.INSTANCE.getChannels().observeChannel(channelId).m11099Y(new C66231(channelId));
+        C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n        .get…  }\n          }\n        }");
+        Observable<Map<Long, VoiceUser>> observableM11112r = ObservableExtensionsKt.computationLatest(observableM11099Y).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n        .get…  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
     private final Observable<Collection<User>> getOtherVoiceUsers(Channel channel, Map<Long, VoiceState> voiceStates) {
         if (ChannelUtils.m7667B(channel)) {
             C12721k c12721k = new C12721k(ChannelUtils.m7683g(channel));
@@ -637,6 +645,10 @@ public final class StoreVoiceParticipants extends Store {
         C12721k c12721k2 = new C12721k(C12147n.emptyList());
         C12238m.checkNotNullExpressionValue(c12721k2, "Observable.just(emptyList())");
         return c12721k2;
+    }
+
+    public final StoreStream getStream() {
+        return this.stream;
     }
 
     private final Observable<Map<Long, StreamContext>> getStreamContextsForUsers(final List<Long> userIds) {
@@ -662,18 +674,6 @@ public final class StoreVoiceParticipants extends Store {
         });
         C12238m.checkNotNullExpressionValue(observableM11065b, "Observable\n        .comb…}\n          map\n        }");
         return observableM11065b;
-    }
-
-    public final Observable<Map<Long, VoiceUser>> get(long channelId) {
-        Observable<R> observableM11099Y = StoreStream.INSTANCE.getChannels().observeChannel(channelId).m11099Y(new C66231(channelId));
-        C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n        .get…  }\n          }\n        }");
-        Observable<Map<Long, VoiceUser>> observableM11112r = ObservableExtensionsKt.computationLatest(observableM11099Y).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n        .get…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final StoreStream getStream() {
-        return this.stream;
     }
 
     @Override // com.discord.stores.Store

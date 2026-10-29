@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMobileOverlayToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMobileOverlayToggled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean enabled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "mobile_overlay_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackMobileOverlayToggled) && C12238m.areEqual(this.enabled, ((TrackMobileOverlayToggled) other).enabled);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

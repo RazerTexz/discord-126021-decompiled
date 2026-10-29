@@ -46,12 +46,6 @@ public class C12103t extends C12102s {
         return sb.toString();
     }
 
-    public static final boolean endsWith(String str, String str2, boolean z2) {
-        C12238m.checkNotNullParameter(str, "$this$endsWith");
-        C12238m.checkNotNullParameter(str2, "suffix");
-        return !z2 ? str.endsWith(str2) : regionMatches(str, str.length() - str2.length(), str2, 0, str2.length(), true);
-    }
-
     public static /* synthetic */ boolean endsWith$default(String str, String str2, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = false;
@@ -59,11 +53,10 @@ public class C12103t extends C12102s {
         return endsWith(str, str2, z2);
     }
 
-    public static final boolean equals(String str, String str2, boolean z2) {
-        if (str == null) {
-            return str2 == null;
-        }
-        return !z2 ? str.equals(str2) : str.equalsIgnoreCase(str2);
+    public static final boolean endsWith(String str, String str2, boolean z2) {
+        C12238m.checkNotNullParameter(str, "$this$endsWith");
+        C12238m.checkNotNullParameter(str2, "suffix");
+        return !z2 ? str.endsWith(str2) : regionMatches(str, str.length() - str2.length(), str2, 0, str2.length(), true);
     }
 
     public static /* synthetic */ boolean equals$default(String str, String str2, boolean z2, int i, Object obj) {
@@ -71,6 +64,13 @@ public class C12103t extends C12102s {
             z2 = false;
         }
         return equals(str, str2, z2);
+    }
+
+    public static final boolean equals(String str, String str2, boolean z2) {
+        if (str == null) {
+            return str2 == null;
+        }
+        return !z2 ? str.equals(str2) : str.equalsIgnoreCase(str2);
     }
 
     public static final Comparator<String> getCASE_INSENSITIVE_ORDER(C12222d0 c12222d0) {
@@ -148,6 +148,13 @@ public class C12103t extends C12102s {
         return string;
     }
 
+    public static /* synthetic */ String replace$default(String str, char c, char c2, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        return replace(str, c, c2, z2);
+    }
+
     public static final String replace(String str, char c, char c2, boolean z2) {
         C12238m.checkNotNullParameter(str, "$this$replace");
         if (!z2) {
@@ -168,11 +175,11 @@ public class C12103t extends C12102s {
         return string;
     }
 
-    public static /* synthetic */ String replace$default(String str, char c, char c2, boolean z2, int i, Object obj) {
+    public static /* synthetic */ String replaceFirst$default(String str, String str2, String str3, boolean z2, int i, Object obj) {
         if ((i & 4) != 0) {
             z2 = false;
         }
-        return replace(str, c, c2, z2);
+        return replaceFirst(str, str2, str3, z2);
     }
 
     public static final String replaceFirst(String str, String str2, String str3, boolean z2) {
@@ -181,24 +188,17 @@ public class C12103t extends C12102s {
         return iIndexOf$default < 0 ? str : C12106w.replaceRange(str, iIndexOf$default, str2.length() + iIndexOf$default, str3).toString();
     }
 
-    public static /* synthetic */ String replaceFirst$default(String str, String str2, String str3, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
+    public static /* synthetic */ boolean startsWith$default(String str, String str2, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
             z2 = false;
         }
-        return replaceFirst(str, str2, str3, z2);
+        return startsWith(str, str2, z2);
     }
 
     public static final boolean startsWith(String str, String str2, boolean z2) {
         C12238m.checkNotNullParameter(str, "$this$startsWith");
         C12238m.checkNotNullParameter(str2, "prefix");
         return !z2 ? str.startsWith(str2) : regionMatches(str, 0, str2, 0, str2.length(), z2);
-    }
-
-    public static /* synthetic */ boolean startsWith$default(String str, String str2, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return startsWith(str, str2, z2);
     }
 
     public static final String capitalize(String str, Locale locale) {

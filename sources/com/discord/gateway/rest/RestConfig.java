@@ -25,6 +25,10 @@ public final /* data */ class RestConfig {
         this.optionalInterceptors = list;
     }
 
+    public final List<Interceptor> component3() {
+        return this.optionalInterceptors;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ RestConfig copy$default(RestConfig restConfig, String str, RequiredHeadersInterceptor.HeadersProvider headersProvider, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -37,20 +41,6 @@ public final /* data */ class RestConfig {
             list = restConfig.optionalInterceptors;
         }
         return restConfig.copy(str, headersProvider, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getBaseUrl() {
-        return this.baseUrl;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final RequiredHeadersInterceptor.HeadersProvider getHeadersProvider() {
-        return this.headersProvider;
-    }
-
-    public final List<Interceptor> component3() {
-        return this.optionalInterceptors;
     }
 
     public final RestConfig copy(String baseUrl, RequiredHeadersInterceptor.HeadersProvider headersProvider, List<? extends Interceptor> optionalInterceptors) {
@@ -71,8 +61,18 @@ public final /* data */ class RestConfig {
         return C12238m.areEqual(this.baseUrl, restConfig.baseUrl) && C12238m.areEqual(this.headersProvider, restConfig.headersProvider) && C12238m.areEqual(this.optionalInterceptors, restConfig.optionalInterceptors);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getBaseUrl() {
         return this.baseUrl;
+    }
+
+    public final String getBaseUrl() {
+        return this.baseUrl;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final RequiredHeadersInterceptor.HeadersProvider getHeadersProvider() {
+        return this.headersProvider;
     }
 
     public final RequiredHeadersInterceptor.HeadersProvider getHeadersProvider() {

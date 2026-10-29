@@ -27,14 +27,323 @@ public abstract class KeyCycleOscillator {
     public int mVariesBy = 0;
     public ArrayList<WavePoint> mWavePoints = new ArrayList<>();
 
-    public static class AlphaSet extends KeyCycleOscillator {
+    public class AlphaSet extends KeyCycleOscillator {
         @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
         public void setProperty(View view, float f) {
             view.setAlpha(get(f));
         }
     }
 
-    public static class CustomSet extends KeyCycleOscillator {
+    public class ElevationSet extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setElevation(get(f));
+        }
+    }
+
+    public class IntDoubleSort {
+        private IntDoubleSort() {
+        }
+
+        private static int partition(int[] iArr, float[] fArr, int i, int i2) {
+            int i3 = iArr[i2];
+            int i4 = i;
+            while (i < i2) {
+                if (iArr[i] <= i3) {
+                    swap(iArr, fArr, i4, i);
+                    i4++;
+                }
+                i++;
+            }
+            swap(iArr, fArr, i4, i2);
+            return i4;
+        }
+
+        public static void sort(int[] iArr, float[] fArr, int i, int i2) {
+            int[] iArr2 = new int[iArr.length + 10];
+            iArr2[0] = i2;
+            iArr2[1] = i;
+            int i3 = 2;
+            while (i3 > 0) {
+                int i4 = i3 - 1;
+                int i5 = iArr2[i4];
+                i3 = i4 - 1;
+                int i6 = iArr2[i3];
+                if (i5 < i6) {
+                    int iPartition = partition(iArr, fArr, i5, i6);
+                    int i7 = i3 + 1;
+                    iArr2[i3] = iPartition - 1;
+                    int i8 = i7 + 1;
+                    iArr2[i7] = i5;
+                    int i9 = i8 + 1;
+                    iArr2[i8] = i6;
+                    i3 = i9 + 1;
+                    iArr2[i9] = iPartition + 1;
+                }
+            }
+        }
+
+        private static void swap(int[] iArr, float[] fArr, int i, int i2) {
+            int i3 = iArr[i];
+            iArr[i] = iArr[i2];
+            iArr[i2] = i3;
+            float f = fArr[i];
+            fArr[i] = fArr[i2];
+            fArr[i2] = f;
+        }
+    }
+
+    public class IntFloatFloatSort {
+        private IntFloatFloatSort() {
+        }
+
+        private static int partition(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
+            int i3 = iArr[i2];
+            int i4 = i;
+            while (i < i2) {
+                if (iArr[i] <= i3) {
+                    swap(iArr, fArr, fArr2, i4, i);
+                    i4++;
+                }
+                i++;
+            }
+            swap(iArr, fArr, fArr2, i4, i2);
+            return i4;
+        }
+
+        public static void sort(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
+            int[] iArr2 = new int[iArr.length + 10];
+            iArr2[0] = i2;
+            iArr2[1] = i;
+            int i3 = 2;
+            while (i3 > 0) {
+                int i4 = i3 - 1;
+                int i5 = iArr2[i4];
+                i3 = i4 - 1;
+                int i6 = iArr2[i3];
+                if (i5 < i6) {
+                    int iPartition = partition(iArr, fArr, fArr2, i5, i6);
+                    int i7 = i3 + 1;
+                    iArr2[i3] = iPartition - 1;
+                    int i8 = i7 + 1;
+                    iArr2[i7] = i5;
+                    int i9 = i8 + 1;
+                    iArr2[i8] = i6;
+                    i3 = i9 + 1;
+                    iArr2[i9] = iPartition + 1;
+                }
+            }
+        }
+
+        private static void swap(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
+            int i3 = iArr[i];
+            iArr[i] = iArr[i2];
+            iArr[i2] = i3;
+            float f = fArr[i];
+            fArr[i] = fArr[i2];
+            fArr[i2] = f;
+            float f2 = fArr2[i];
+            fArr2[i] = fArr2[i2];
+            fArr2[i2] = f2;
+        }
+    }
+
+    public class PathRotateSet extends KeyCycleOscillator {
+        public void setPathRotate(View view, float f, double d, double d2) {
+            view.setRotation(get(f) + ((float) Math.toDegrees(Math.atan2(d2, d))));
+        }
+
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+        }
+    }
+
+    public class RotationSet extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setRotation(get(f));
+        }
+    }
+
+    public class RotationXset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setRotationX(get(f));
+        }
+    }
+
+    public class RotationYset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setRotationY(get(f));
+        }
+    }
+
+    public class ScaleXset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setScaleX(get(f));
+        }
+    }
+
+    public class ScaleYset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setScaleY(get(f));
+        }
+    }
+
+    public class TranslationXset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setTranslationX(get(f));
+        }
+    }
+
+    public class TranslationYset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setTranslationY(get(f));
+        }
+    }
+
+    public class TranslationZset extends KeyCycleOscillator {
+        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
+        public void setProperty(View view, float f) {
+            view.setTranslationZ(get(f));
+        }
+    }
+
+    public class WavePoint {
+        public float mOffset;
+        public float mPeriod;
+        public int mPosition;
+        public float mValue;
+
+        public WavePoint(int i, float f, float f2, float f3) {
+            this.mPosition = i;
+            this.mValue = f3;
+            this.mOffset = f2;
+            this.mPeriod = f;
+        }
+    }
+
+    public float get(float f) {
+        return (float) this.mCycleOscillator.getValues(f);
+    }
+
+    public CurveFit getCurveFit() {
+        return this.mCurveFit;
+    }
+
+    public float getSlope(float f) {
+        return (float) this.mCycleOscillator.getSlope(f);
+    }
+
+    public static KeyCycleOscillator makeSpline(String str) {
+        if (str.startsWith(Key.CUSTOM)) {
+            return new CustomSet();
+        }
+        switch (str) {
+            case "rotationX":
+                return new RotationXset();
+            case "rotationY":
+                return new RotationYset();
+            case "translationX":
+                return new TranslationXset();
+            case "translationY":
+                return new TranslationYset();
+            case "translationZ":
+                return new TranslationZset();
+            case "progress":
+                return new ProgressSet();
+            case "scaleX":
+                return new ScaleXset();
+            case "scaleY":
+                return new ScaleYset();
+            case "waveVariesBy":
+                return new AlphaSet();
+            case "rotation":
+                return new RotationSet();
+            case "elevation":
+                return new ElevationSet();
+            case "transitionPathRotate":
+                return new PathRotateSet();
+            case "alpha":
+                return new AlphaSet();
+            case "waveOffset":
+                return new AlphaSet();
+            default:
+                return null;
+        }
+    }
+
+    public void setPoint(int i, int i2, int i3, float f, float f2, float f3, ConstraintAttribute constraintAttribute) {
+        this.mWavePoints.add(new WavePoint(i, f, f2, f3));
+        if (i3 != -1) {
+            this.mVariesBy = i3;
+        }
+        this.mWaveShape = i2;
+        this.mCustom = constraintAttribute;
+    }
+
+    public abstract void setProperty(View view, float f);
+
+    public void setType(String str) {
+        this.mType = str;
+    }
+
+    @TargetApi(19)
+    public void setup(float f) {
+        int size = this.mWavePoints.size();
+        if (size == 0) {
+            return;
+        }
+        Collections.sort(this.mWavePoints, new Comparator<WavePoint>() { // from class: androidx.constraintlayout.motion.widget.KeyCycleOscillator.1
+            @Override // java.util.Comparator
+            public int compare(WavePoint wavePoint, WavePoint wavePoint2) {
+                return Integer.compare(wavePoint.mPosition, wavePoint2.mPosition);
+            }
+        });
+        double[] dArr = new double[size];
+        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, 2);
+        this.mCycleOscillator = new CycleOscillator(this.mWaveShape, this.mVariesBy, size);
+        int i = 0;
+        for (WavePoint wavePoint : this.mWavePoints) {
+            float f2 = wavePoint.mPeriod;
+            dArr[i] = ((double) f2) * 0.01d;
+            double[] dArr3 = dArr2[i];
+            float f3 = wavePoint.mValue;
+            dArr3[0] = f3;
+            double[] dArr4 = dArr2[i];
+            float f4 = wavePoint.mOffset;
+            dArr4[1] = f4;
+            this.mCycleOscillator.setPoint(i, wavePoint.mPosition, f2, f4, f3);
+            i++;
+        }
+        this.mCycleOscillator.setup(f);
+        this.mCurveFit = CurveFit.get(0, dArr, dArr2);
+    }
+
+    public String toString() {
+        String string = this.mType;
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        for (WavePoint wavePoint : this.mWavePoints) {
+            StringBuilder sbM836X = C1643a.m836X(string, "[");
+            sbM836X.append(wavePoint.mPosition);
+            sbM836X.append(" , ");
+            sbM836X.append(decimalFormat.format(wavePoint.mValue));
+            sbM836X.append("] ");
+            string = sbM836X.toString();
+        }
+        return string;
+    }
+
+    public boolean variesByPath() {
+        return this.mVariesBy == 1;
+    }
+
+    public class CustomSet extends KeyCycleOscillator {
         public float[] value = new float[1];
 
         @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
@@ -44,7 +353,7 @@ public abstract class KeyCycleOscillator {
         }
     }
 
-    public static class CycleOscillator {
+    public class CycleOscillator {
         private static final String TAG = "CycleOscillator";
         public static final int UNSET = -1;
         public CurveFit mCurveFit;
@@ -160,131 +469,7 @@ public abstract class KeyCycleOscillator {
         }
     }
 
-    public static class ElevationSet extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setElevation(get(f));
-        }
-    }
-
-    public static class IntDoubleSort {
-        private IntDoubleSort() {
-        }
-
-        private static int partition(int[] iArr, float[] fArr, int i, int i2) {
-            int i3 = iArr[i2];
-            int i4 = i;
-            while (i < i2) {
-                if (iArr[i] <= i3) {
-                    swap(iArr, fArr, i4, i);
-                    i4++;
-                }
-                i++;
-            }
-            swap(iArr, fArr, i4, i2);
-            return i4;
-        }
-
-        public static void sort(int[] iArr, float[] fArr, int i, int i2) {
-            int[] iArr2 = new int[iArr.length + 10];
-            iArr2[0] = i2;
-            iArr2[1] = i;
-            int i3 = 2;
-            while (i3 > 0) {
-                int i4 = i3 - 1;
-                int i5 = iArr2[i4];
-                i3 = i4 - 1;
-                int i6 = iArr2[i3];
-                if (i5 < i6) {
-                    int iPartition = partition(iArr, fArr, i5, i6);
-                    int i7 = i3 + 1;
-                    iArr2[i3] = iPartition - 1;
-                    int i8 = i7 + 1;
-                    iArr2[i7] = i5;
-                    int i9 = i8 + 1;
-                    iArr2[i8] = i6;
-                    i3 = i9 + 1;
-                    iArr2[i9] = iPartition + 1;
-                }
-            }
-        }
-
-        private static void swap(int[] iArr, float[] fArr, int i, int i2) {
-            int i3 = iArr[i];
-            iArr[i] = iArr[i2];
-            iArr[i2] = i3;
-            float f = fArr[i];
-            fArr[i] = fArr[i2];
-            fArr[i2] = f;
-        }
-    }
-
-    public static class IntFloatFloatSort {
-        private IntFloatFloatSort() {
-        }
-
-        private static int partition(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
-            int i3 = iArr[i2];
-            int i4 = i;
-            while (i < i2) {
-                if (iArr[i] <= i3) {
-                    swap(iArr, fArr, fArr2, i4, i);
-                    i4++;
-                }
-                i++;
-            }
-            swap(iArr, fArr, fArr2, i4, i2);
-            return i4;
-        }
-
-        public static void sort(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
-            int[] iArr2 = new int[iArr.length + 10];
-            iArr2[0] = i2;
-            iArr2[1] = i;
-            int i3 = 2;
-            while (i3 > 0) {
-                int i4 = i3 - 1;
-                int i5 = iArr2[i4];
-                i3 = i4 - 1;
-                int i6 = iArr2[i3];
-                if (i5 < i6) {
-                    int iPartition = partition(iArr, fArr, fArr2, i5, i6);
-                    int i7 = i3 + 1;
-                    iArr2[i3] = iPartition - 1;
-                    int i8 = i7 + 1;
-                    iArr2[i7] = i5;
-                    int i9 = i8 + 1;
-                    iArr2[i8] = i6;
-                    i3 = i9 + 1;
-                    iArr2[i9] = iPartition + 1;
-                }
-            }
-        }
-
-        private static void swap(int[] iArr, float[] fArr, float[] fArr2, int i, int i2) {
-            int i3 = iArr[i];
-            iArr[i] = iArr[i2];
-            iArr[i2] = i3;
-            float f = fArr[i];
-            fArr[i] = fArr[i2];
-            fArr[i2] = f;
-            float f2 = fArr2[i];
-            fArr2[i] = fArr2[i2];
-            fArr2[i2] = f2;
-        }
-    }
-
-    public static class PathRotateSet extends KeyCycleOscillator {
-        public void setPathRotate(View view, float f, double d, double d2) {
-            view.setRotation(get(f) + ((float) Math.toDegrees(Math.atan2(d2, d))));
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-        }
-    }
-
-    public static class ProgressSet extends KeyCycleOscillator {
+    public class ProgressSet extends KeyCycleOscillator {
         public boolean mNoMethod = false;
 
         @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
@@ -312,191 +497,6 @@ public abstract class KeyCycleOscillator {
                 }
             }
         }
-    }
-
-    public static class RotationSet extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setRotation(get(f));
-        }
-    }
-
-    public static class RotationXset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setRotationX(get(f));
-        }
-    }
-
-    public static class RotationYset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setRotationY(get(f));
-        }
-    }
-
-    public static class ScaleXset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setScaleX(get(f));
-        }
-    }
-
-    public static class ScaleYset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setScaleY(get(f));
-        }
-    }
-
-    public static class TranslationXset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setTranslationX(get(f));
-        }
-    }
-
-    public static class TranslationYset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setTranslationY(get(f));
-        }
-    }
-
-    public static class TranslationZset extends KeyCycleOscillator {
-        @Override // androidx.constraintlayout.motion.widget.KeyCycleOscillator
-        public void setProperty(View view, float f) {
-            view.setTranslationZ(get(f));
-        }
-    }
-
-    public static class WavePoint {
-        public float mOffset;
-        public float mPeriod;
-        public int mPosition;
-        public float mValue;
-
-        public WavePoint(int i, float f, float f2, float f3) {
-            this.mPosition = i;
-            this.mValue = f3;
-            this.mOffset = f2;
-            this.mPeriod = f;
-        }
-    }
-
-    public static KeyCycleOscillator makeSpline(String str) {
-        if (str.startsWith(Key.CUSTOM)) {
-            return new CustomSet();
-        }
-        switch (str) {
-            case "rotationX":
-                return new RotationXset();
-            case "rotationY":
-                return new RotationYset();
-            case "translationX":
-                return new TranslationXset();
-            case "translationY":
-                return new TranslationYset();
-            case "translationZ":
-                return new TranslationZset();
-            case "progress":
-                return new ProgressSet();
-            case "scaleX":
-                return new ScaleXset();
-            case "scaleY":
-                return new ScaleYset();
-            case "waveVariesBy":
-                return new AlphaSet();
-            case "rotation":
-                return new RotationSet();
-            case "elevation":
-                return new ElevationSet();
-            case "transitionPathRotate":
-                return new PathRotateSet();
-            case "alpha":
-                return new AlphaSet();
-            case "waveOffset":
-                return new AlphaSet();
-            default:
-                return null;
-        }
-    }
-
-    public float get(float f) {
-        return (float) this.mCycleOscillator.getValues(f);
-    }
-
-    public CurveFit getCurveFit() {
-        return this.mCurveFit;
-    }
-
-    public float getSlope(float f) {
-        return (float) this.mCycleOscillator.getSlope(f);
-    }
-
-    public void setPoint(int i, int i2, int i3, float f, float f2, float f3, ConstraintAttribute constraintAttribute) {
-        this.mWavePoints.add(new WavePoint(i, f, f2, f3));
-        if (i3 != -1) {
-            this.mVariesBy = i3;
-        }
-        this.mWaveShape = i2;
-        this.mCustom = constraintAttribute;
-    }
-
-    public abstract void setProperty(View view, float f);
-
-    public void setType(String str) {
-        this.mType = str;
-    }
-
-    @TargetApi(19)
-    public void setup(float f) {
-        int size = this.mWavePoints.size();
-        if (size == 0) {
-            return;
-        }
-        Collections.sort(this.mWavePoints, new Comparator<WavePoint>() { // from class: androidx.constraintlayout.motion.widget.KeyCycleOscillator.1
-            @Override // java.util.Comparator
-            public int compare(WavePoint wavePoint, WavePoint wavePoint2) {
-                return Integer.compare(wavePoint.mPosition, wavePoint2.mPosition);
-            }
-        });
-        double[] dArr = new double[size];
-        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, 2);
-        this.mCycleOscillator = new CycleOscillator(this.mWaveShape, this.mVariesBy, size);
-        int i = 0;
-        for (WavePoint wavePoint : this.mWavePoints) {
-            float f2 = wavePoint.mPeriod;
-            dArr[i] = ((double) f2) * 0.01d;
-            double[] dArr3 = dArr2[i];
-            float f3 = wavePoint.mValue;
-            dArr3[0] = f3;
-            double[] dArr4 = dArr2[i];
-            float f4 = wavePoint.mOffset;
-            dArr4[1] = f4;
-            this.mCycleOscillator.setPoint(i, wavePoint.mPosition, f2, f4, f3);
-            i++;
-        }
-        this.mCycleOscillator.setup(f);
-        this.mCurveFit = CurveFit.get(0, dArr, dArr2);
-    }
-
-    public String toString() {
-        String string = this.mType;
-        DecimalFormat decimalFormat = new DecimalFormat("##.##");
-        for (WavePoint wavePoint : this.mWavePoints) {
-            StringBuilder sbM836X = C1643a.m836X(string, "[");
-            sbM836X.append(wavePoint.mPosition);
-            sbM836X.append(" , ");
-            sbM836X.append(decimalFormat.format(wavePoint.mValue));
-            sbM836X.append("] ");
-            string = sbM836X.toString();
-        }
-        return string;
-    }
-
-    public boolean variesByPath() {
-        return this.mVariesBy == 1;
     }
 
     public void setPoint(int i, int i2, int i3, float f, float f2, float f3) {

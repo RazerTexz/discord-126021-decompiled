@@ -59,6 +59,21 @@ public final class C2105a implements Serializable {
         this._paddingReadBehaviour = z2 ? a.PADDING_REQUIRED : a.PADDING_FORBIDDEN;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != C2105a.class) {
+            return false;
+        }
+        C2105a c2105a = (C2105a) obj;
+        return c2105a._paddingChar == this._paddingChar && c2105a._maxLineLength == this._maxLineLength && c2105a._writePadding == this._writePadding && c2105a._paddingReadBehaviour == this._paddingReadBehaviour && this._name.equals(c2105a._name);
+    }
+
+    public int hashCode() {
+        return this._name.hashCode();
+    }
+
     /* JADX INFO: renamed from: a */
     public String m1622a(byte[] bArr) {
         int length = bArr.length;
@@ -142,21 +157,6 @@ public final class C2105a implements Serializable {
     /* JADX INFO: renamed from: d */
     public int m1625d() {
         return this._maxLineLength;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != C2105a.class) {
-            return false;
-        }
-        C2105a c2105a = (C2105a) obj;
-        return c2105a._paddingChar == this._paddingChar && c2105a._maxLineLength == this._maxLineLength && c2105a._writePadding == this._writePadding && c2105a._paddingReadBehaviour == this._paddingReadBehaviour && this._name.equals(c2105a._name);
-    }
-
-    public int hashCode() {
-        return this._name.hashCode();
     }
 
     public Object readResolve() {

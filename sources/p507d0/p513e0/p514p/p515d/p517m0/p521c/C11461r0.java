@@ -41,7 +41,7 @@ public final class C11461r0<T extends InterfaceC11770i> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.r0$a */
     /* JADX INFO: compiled from: ScopesHolderForClass.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -56,7 +56,7 @@ public final class C11461r0<T extends InterfaceC11770i> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.r0$b */
     /* JADX INFO: compiled from: ScopesHolderForClass.kt */
-    public static final class b extends AbstractC12240o implements Function0<T> {
+    public final class b extends AbstractC12240o implements Function0<T> {
         public final /* synthetic */ AbstractC11947g $kotlinTypeRefiner;
         public final /* synthetic */ C11461r0<T> this$0;
 

@@ -33,7 +33,7 @@ public abstract class AbstractC13184c implements IBinder.DeathRecipient {
     /* JADX INFO: renamed from: x.a.b.b.a.c$a */
     /* JADX INFO: compiled from: MediaControllerCompat.java */
     @RequiresApi(21)
-    public static class a extends MediaController.Callback {
+    public class a extends MediaController.Callback {
 
         /* JADX INFO: renamed from: a */
         public final WeakReference<AbstractC13184c> f27946a;
@@ -151,7 +151,7 @@ public abstract class AbstractC13184c implements IBinder.DeathRecipient {
 
     /* JADX INFO: renamed from: x.a.b.b.a.c$b */
     /* JADX INFO: compiled from: MediaControllerCompat.java */
-    public static class b extends InterfaceC13182a.a {
+    public class b extends InterfaceC13182a.a {
 
         /* JADX INFO: renamed from: a */
         public final WeakReference<AbstractC13184c> f27947a;

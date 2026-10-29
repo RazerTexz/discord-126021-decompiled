@@ -20,6 +20,10 @@ public class DropDownPreference extends ListPreference {
         this(context, null);
     }
 
+    public ArrayAdapter createAdapter() {
+        return new ArrayAdapter(this.mContext, android.R.layout.simple_spinner_dropdown_item);
+    }
+
     private int findSpinnerIndexOfValue(String str) {
         CharSequence[] entryValues = getEntryValues();
         if (str == null || entryValues == null) {
@@ -31,19 +35,6 @@ public class DropDownPreference extends ListPreference {
             }
         }
         return -1;
-    }
-
-    private void updateEntries() {
-        this.mAdapter.clear();
-        if (getEntries() != null) {
-            for (CharSequence charSequence : getEntries()) {
-                this.mAdapter.add(charSequence.toString());
-            }
-        }
-    }
-
-    public ArrayAdapter createAdapter() {
-        return new ArrayAdapter(this.mContext, android.R.layout.simple_spinner_dropdown_item);
     }
 
     @Override // androidx.preference.Preference
@@ -79,6 +70,15 @@ public class DropDownPreference extends ListPreference {
     @Override // androidx.preference.ListPreference
     public void setValueIndex(int i) {
         setValue(getEntryValues()[i].toString());
+    }
+
+    private void updateEntries() {
+        this.mAdapter.clear();
+        if (getEntries() != null) {
+            for (CharSequence charSequence : getEntries()) {
+                this.mAdapter.add(charSequence.toString());
+            }
+        }
     }
 
     public DropDownPreference(Context context, AttributeSet attributeSet) {

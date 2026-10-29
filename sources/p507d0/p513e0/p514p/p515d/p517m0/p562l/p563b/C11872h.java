@@ -35,18 +35,18 @@ public final class C11872h {
     /* JADX INFO: renamed from: a */
     public static final b f24629a = new b(null);
 
-    /* JADX INFO: renamed from: b */
-    public static final Set<C11712a> f24630b = C12146m0.setOf(C11712a.topLevel(C11291k.a.f22536d.toSafe()));
-
     /* JADX INFO: renamed from: c */
     public final C11874j f24631c;
 
     /* JADX INFO: renamed from: d */
     public final Function1<a, InterfaceC11330e> f24632d;
 
+    /* JADX INFO: renamed from: b */
+    public static final Set<C11712a> f24630b = C12146m0.setOf(C11712a.topLevel(C11291k.a.f22536d.toSafe()));
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.h$a */
     /* JADX INFO: compiled from: ClassDeserializer.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C11712a f24633a;
@@ -79,7 +79,7 @@ public final class C11872h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.h$b */
     /* JADX INFO: compiled from: ClassDeserializer.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -90,7 +90,7 @@ public final class C11872h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.h$c */
     /* JADX INFO: compiled from: ClassDeserializer.kt */
-    public static final class c extends AbstractC12240o implements Function1<a, InterfaceC11330e> {
+    public final class c extends AbstractC12240o implements Function1<a, InterfaceC11330e> {
         public c() {
             super(1);
         }

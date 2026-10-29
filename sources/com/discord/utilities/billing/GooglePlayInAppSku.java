@@ -38,26 +38,6 @@ public final /* data */ class GooglePlayInAppSku {
         return googlePlayInAppSku.copy(str, inAppSkuType, skuDetails, l);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getPaymentGatewaySkuId() {
-        return this.paymentGatewaySkuId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final InAppSkuType getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final SkuDetails getSkuDetails() {
-        return this.skuDetails;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getSkuId() {
-        return this.skuId;
-    }
-
     public final GooglePlayInAppSku copy(String paymentGatewaySkuId, InAppSkuType type, SkuDetails skuDetails, Long skuId) {
         C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
         C12238m.checkNotNullParameter(type, "type");
@@ -75,16 +55,36 @@ public final /* data */ class GooglePlayInAppSku {
         return C12238m.areEqual(this.paymentGatewaySkuId, googlePlayInAppSku.paymentGatewaySkuId) && C12238m.areEqual(this.type, googlePlayInAppSku.type) && C12238m.areEqual(this.skuDetails, googlePlayInAppSku.skuDetails) && C12238m.areEqual(this.skuId, googlePlayInAppSku.skuId);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getPaymentGatewaySkuId() {
         return this.paymentGatewaySkuId;
+    }
+
+    public final String getPaymentGatewaySkuId() {
+        return this.paymentGatewaySkuId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final SkuDetails getSkuDetails() {
+        return this.skuDetails;
     }
 
     public final SkuDetails getSkuDetails() {
         return this.skuDetails;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getSkuId() {
         return this.skuId;
+    }
+
+    public final Long getSkuId() {
+        return this.skuId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final InAppSkuType getType() {
+        return this.type;
     }
 
     public final InAppSkuType getType() {

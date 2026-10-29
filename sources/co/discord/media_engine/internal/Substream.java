@@ -38,24 +38,31 @@ public final /* data */ class Substream {
         this.width = i6;
     }
 
+    public final Substream copy(int avgDelay, FrameCounts frameCounts, int height, boolean isFlexFEC, boolean isRTX, int maxDelay, int retransmitBitrate, RtcpStats rtcpStats, RtpStats rtpStats, long ssrc, int totalBitrate, int width) {
+        C12238m.checkNotNullParameter(frameCounts, "frameCounts");
+        C12238m.checkNotNullParameter(rtcpStats, "rtcpStats");
+        C12238m.checkNotNullParameter(rtpStats, "rtpStats");
+        return new Substream(avgDelay, frameCounts, height, isFlexFEC, isRTX, maxDelay, retransmitBitrate, rtcpStats, rtpStats, ssrc, totalBitrate, width);
+    }
+
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Substream)) {
+            return false;
+        }
+        Substream substream = (Substream) other;
+        return this.avgDelay == substream.avgDelay && C12238m.areEqual(this.frameCounts, substream.frameCounts) && this.height == substream.height && this.isFlexFEC == substream.isFlexFEC && this.isRTX == substream.isRTX && this.maxDelay == substream.maxDelay && this.retransmitBitrate == substream.retransmitBitrate && C12238m.areEqual(this.rtcpStats, substream.rtcpStats) && C12238m.areEqual(this.rtpStats, substream.rtpStats) && this.ssrc == substream.ssrc && this.totalBitrate == substream.totalBitrate && this.width == substream.width;
+    }
+
     /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getAvgDelay() {
         return this.avgDelay;
     }
 
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final long getSsrc() {
-        return this.ssrc;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final int getTotalBitrate() {
-        return this.totalBitrate;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final int getWidth() {
-        return this.width;
+    public final int getAvgDelay() {
+        return this.avgDelay;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -63,7 +70,15 @@ public final /* data */ class Substream {
         return this.frameCounts;
     }
 
+    public final FrameCounts getFrameCounts() {
+        return this.frameCounts;
+    }
+
     /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getHeight() {
+        return this.height;
+    }
+
     public final int getHeight() {
         return this.height;
     }
@@ -83,7 +98,15 @@ public final /* data */ class Substream {
         return this.maxDelay;
     }
 
+    public final int getMaxDelay() {
+        return this.maxDelay;
+    }
+
     /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getRetransmitBitrate() {
+        return this.retransmitBitrate;
+    }
+
     public final int getRetransmitBitrate() {
         return this.retransmitBitrate;
     }
@@ -93,63 +116,40 @@ public final /* data */ class Substream {
         return this.rtcpStats;
     }
 
+    public final RtcpStats getRtcpStats() {
+        return this.rtcpStats;
+    }
+
     /* JADX INFO: renamed from: component9, reason: from getter */
     public final RtpStats getRtpStats() {
         return this.rtpStats;
     }
 
-    public final Substream copy(int avgDelay, FrameCounts frameCounts, int height, boolean isFlexFEC, boolean isRTX, int maxDelay, int retransmitBitrate, RtcpStats rtcpStats, RtpStats rtpStats, long ssrc, int totalBitrate, int width) {
-        C12238m.checkNotNullParameter(frameCounts, "frameCounts");
-        C12238m.checkNotNullParameter(rtcpStats, "rtcpStats");
-        C12238m.checkNotNullParameter(rtpStats, "rtpStats");
-        return new Substream(avgDelay, frameCounts, height, isFlexFEC, isRTX, maxDelay, retransmitBitrate, rtcpStats, rtpStats, ssrc, totalBitrate, width);
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Substream)) {
-            return false;
-        }
-        Substream substream = (Substream) other;
-        return this.avgDelay == substream.avgDelay && C12238m.areEqual(this.frameCounts, substream.frameCounts) && this.height == substream.height && this.isFlexFEC == substream.isFlexFEC && this.isRTX == substream.isRTX && this.maxDelay == substream.maxDelay && this.retransmitBitrate == substream.retransmitBitrate && C12238m.areEqual(this.rtcpStats, substream.rtcpStats) && C12238m.areEqual(this.rtpStats, substream.rtpStats) && this.ssrc == substream.ssrc && this.totalBitrate == substream.totalBitrate && this.width == substream.width;
-    }
-
-    public final int getAvgDelay() {
-        return this.avgDelay;
-    }
-
-    public final FrameCounts getFrameCounts() {
-        return this.frameCounts;
-    }
-
-    public final int getHeight() {
-        return this.height;
-    }
-
-    public final int getMaxDelay() {
-        return this.maxDelay;
-    }
-
-    public final int getRetransmitBitrate() {
-        return this.retransmitBitrate;
-    }
-
-    public final RtcpStats getRtcpStats() {
-        return this.rtcpStats;
-    }
-
     public final RtpStats getRtpStats() {
         return this.rtpStats;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final long getSsrc() {
+        return this.ssrc;
     }
 
     public final long getSsrc() {
         return this.ssrc;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final int getTotalBitrate() {
         return this.totalBitrate;
+    }
+
+    public final int getTotalBitrate() {
+        return this.totalBitrate;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final int getWidth() {
+        return this.width;
     }
 
     public final int getWidth() {

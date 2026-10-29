@@ -8,18 +8,18 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: compiled from: LookupLocation.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11483e implements Serializable {
+    private final int column;
 
     /* JADX INFO: renamed from: j */
     public static final a f23135j = new a(null);
+    private final int line;
 
     /* JADX INFO: renamed from: k */
     public static final C11483e f23136k = new C11483e(-1, -1);
-    private final int column;
-    private final int line;
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.d.b.e$a */
     /* JADX INFO: compiled from: LookupLocation.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

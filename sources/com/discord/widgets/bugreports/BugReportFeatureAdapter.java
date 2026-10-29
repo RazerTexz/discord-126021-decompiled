@@ -30,10 +30,10 @@ public final class BugReportFeatureAdapter extends RecyclerView.Adapter<Recycler
     private final Function1<Feature, Unit> onClickListener;
 
     /* JADX INFO: compiled from: WidgetBugReport.kt */
-    public static abstract class BugReportFeatureItem {
+    public abstract class BugReportFeatureItem {
 
         /* JADX INFO: compiled from: WidgetBugReport.kt */
-        public static final class FeatureItem extends BugReportFeatureItem {
+        public final class FeatureItem extends BugReportFeatureItem {
             private final Feature feature;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -49,7 +49,7 @@ public final class BugReportFeatureAdapter extends RecyclerView.Adapter<Recycler
         }
 
         /* JADX INFO: compiled from: WidgetBugReport.kt */
-        public static final class HeaderItem extends BugReportFeatureItem {
+        public final class HeaderItem extends BugReportFeatureItem {
             private final Feature header;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

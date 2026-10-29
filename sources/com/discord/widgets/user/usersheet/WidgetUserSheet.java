@@ -117,12 +117,16 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetUserSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetUserSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserSheetBinding;", 0)};
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
     private static final String ARG_FRIEND_TOKEN = "ARG_FRIEND_TOKEN";
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
     private static final String ARG_IS_VOICE_CONTEXT = "ARG_IS_VOICE_CONTEXT";
     private static final String ARG_STREAM_PREVIEW_CLICK_BEHAVIOR = "ARG_STREAM_PREVIEW_CLICK_BEHAVIOR";
     private static final String ARG_USER_ID = "ARG_USER_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String REQUEST_KEY_MOVE_USER = "REQUEST_KEY_MOVE_USER";
     private ViewHolderUserRichPresence activityViewHolder;
 
@@ -135,13 +139,475 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModelUserProfileHeader$delegate, reason: from kotlin metadata */
     private final Lazy viewModelUserProfileHeader;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetUserSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$bindSubscriptions$1 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final /* synthetic */ class C103411 extends C12236k implements Function1<WidgetUserSheetViewModel.ViewState, Unit> {
+        public C103411(WidgetUserSheet widgetUserSheet) {
+            super(1, widgetUserSheet, WidgetUserSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/user/usersheet/WidgetUserSheetViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetUserSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetUserSheet) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$bindSubscriptions$2 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final /* synthetic */ class C103422 extends C12236k implements Function1<WidgetUserSheetViewModel.Event, Unit> {
+        public C103422(WidgetUserSheet widgetUserSheet) {
+            super(1, widgetUserSheet, WidgetUserSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/usersheet/WidgetUserSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetUserSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetUserSheet) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$1 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103581 extends AbstractC12240o implements Function0<Unit> {
+        public C103581() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModelUserProfileHeader().toggleAllowAnimationInReducedMotion();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$3 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103593 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ WidgetUserSheetViewModel.ViewState $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C103593(WidgetUserSheetViewModel.ViewState viewState) {
+            super(0);
+            this.$model = viewState;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.onStreamPreviewClicked(((WidgetUserSheetViewModel.ViewState.Loaded) this.$model).getStreamContext());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$4 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final /* synthetic */ class C103604 extends C12236k implements Function5<Context, Long, String, Long, Integer, Unit> {
+        public C103604(WidgetUserSheetViewModel widgetUserSheetViewModel) {
+            super(5, widgetUserSheetViewModel, WidgetUserSheetViewModel.class, "onActivityCustomButtonClicked", "onActivityCustomButtonClicked(Landroid/content/Context;JLjava/lang/String;JI)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function5
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, Long l, String str, Long l2, Integer num) {
+            invoke(context, l.longValue(), str, l2.longValue(), num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(Context context, long j, String str, long j2, int i) {
+            C12238m.checkNotNullParameter(context, "p1");
+            C12238m.checkNotNullParameter(str, "p3");
+            ((WidgetUserSheetViewModel) this.receiver).onActivityCustomButtonClicked(context, j, str, j2, i);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$handleRequestPermissionsForSpectateStream$1 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103611 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ WidgetUserSheetViewModel.Event.RequestPermissionsForSpectateStream $event;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C103611(WidgetUserSheetViewModel.Event.RequestPermissionsForSpectateStream requestPermissionsForSpectateStream) {
+            super(0);
+            this.$event = requestPermissionsForSpectateStream;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().onSpectatePermissionsGranted(this.$event.getStream());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$10 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036310 extends AbstractC12240o implements Function0<Unit> {
+        public C1036310() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().disableCommunication();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$11 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036411 extends AbstractC12240o implements Function0<Unit> {
+        public C1036411() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().guildMuteUser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$12 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036512 extends AbstractC12240o implements Function0<Unit> {
+        public C1036512() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().guildDeafenUser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$13 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036613 extends AbstractC12240o implements Function0<Unit> {
+        public C1036613() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().guildMoveForUser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$14 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036714 extends AbstractC12240o implements Function0<Unit> {
+        public C1036714() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheetViewModel.disconnectUser$default(WidgetUserSheet.this.getViewModel(), null, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$16 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1036916 extends AbstractC12240o implements Function1<TextView, Unit> {
+        public final /* synthetic */ View $view;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C1036916(View view) {
+            super(1);
+            this.$view = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            C12238m.checkNotNullParameter(textView, "it");
+            WidgetUserSheetViewModel viewModel = WidgetUserSheet.this.getViewModel();
+            Context context = WidgetUserSheet.this.getContext();
+            TextInputLayout textInputLayout = WidgetUserSheet.this.getBinding().f18388B;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.userSheetNoteTextFieldWrap");
+            viewModel.saveUserNote(context, ViewExtensions.getTextOrEmpty(textInputLayout));
+            WidgetUserSheet.this.getBinding().f18388B.clearFocus();
+            WidgetUserSheet.this.hideKeyboard(this.$view);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$18 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C1037118 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C1037118() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            WidgetUserSheet.this.getViewModel().moveUserToChannel(j);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103722 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ boolean $isMe;
+
+        /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetUserSheet.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                C0876m.m169g(WidgetUserSheet.this.getContext(), C5419R.string.stage_channel_permission_microphone_denied, 0, null, 12);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetUserSheet.kt */
+        public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass2() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                WidgetUserSheet.this.getViewModel().setUserSuppressedInChannel(false);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C103722(boolean z2) {
+            super(0);
+            this.$isMe = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (this.$isMe) {
+                WidgetUserSheet.this.requestMicrophone(new AnonymousClass1(), new AnonymousClass2());
+            } else {
+                WidgetUserSheet.this.getViewModel().inviteUserToSpeak();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$3 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103733 extends AbstractC12240o implements Function0<Unit> {
+        public C103733() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().setUserSuppressedInChannel(true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$4 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103744 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C103744() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetUserSheet.this.getViewModel().toggleMute(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$5 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103755 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C103755() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetUserSheet.this.getViewModel().toggleDeafen(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$6 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103766 extends AbstractC12240o implements Function2<Float, Boolean, Unit> {
+        public C103766() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Float f, Boolean bool) {
+            invoke(f.floatValue(), bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(float f, boolean z2) {
+            if (z2) {
+                WidgetUserSheet.this.getViewModel().setUserOutputVolume(f);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$7 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103777 extends AbstractC12240o implements Function0<Unit> {
+        public C103777() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().editMember();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$8 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103788 extends AbstractC12240o implements Function0<Unit> {
+        public C103788() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().kickUser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$9 */
+    /* JADX INFO: compiled from: WidgetUserSheet.kt */
+    public final class C103799 extends AbstractC12240o implements Function0<Unit> {
+        public C103799() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserSheet.this.getViewModel().banUser();
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -152,6 +618,12 @@ public final class WidgetUserSheet extends AppBottomSheet {
             companion.enqueueNotice(j, str);
         }
 
+        public final void enqueueNotice(long userId, String friendToken) {
+            StoreNotices notices = StoreStream.INSTANCE.getNotices();
+            String noticeName = getNoticeName(userId);
+            notices.requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1(userId, friendToken, notices, noticeName), Opcodes.INVOKEVIRTUAL, null));
+        }
+
         private final String getNoticeName(long userId) {
             String str = "User Sheet Notice for user ID: " + userId;
             C12238m.checkNotNullExpressionValue(str, "StringBuilder(\"User Shee…)\n            .toString()");
@@ -160,12 +632,6 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
         public static /* synthetic */ void show$default(Companion companion, long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool, StreamPreviewClickBehavior streamPreviewClickBehavior, String str, int i, Object obj) {
             companion.show(j, (i & 2) != 0 ? null : l, fragmentManager, (i & 8) != 0 ? null : l2, (i & 16) != 0 ? null : bool, (i & 32) != 0 ? StreamPreviewClickBehavior.TARGET_AND_LAUNCH_SPECTATE : streamPreviewClickBehavior, (i & 64) != 0 ? null : str);
-        }
-
-        public final void enqueueNotice(long userId, String friendToken) {
-            StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            String noticeName = getNoticeName(userId);
-            notices.requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1(userId, friendToken, notices, noticeName), Opcodes.INVOKEVIRTUAL, null));
         }
 
         public final void show(long j, FragmentManager fragmentManager) {
@@ -219,472 +685,6 @@ public final class WidgetUserSheet extends AppBottomSheet {
         TARGET_AND_DISMISS
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final /* synthetic */ class C103411 extends C12236k implements Function1<WidgetUserSheetViewModel.ViewState, Unit> {
-        public C103411(WidgetUserSheet widgetUserSheet) {
-            super(1, widgetUserSheet, WidgetUserSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/user/usersheet/WidgetUserSheetViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetUserSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetUserSheet) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$bindSubscriptions$2 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final /* synthetic */ class C103422 extends C12236k implements Function1<WidgetUserSheetViewModel.Event, Unit> {
-        public C103422(WidgetUserSheet widgetUserSheet) {
-            super(1, widgetUserSheet, WidgetUserSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/usersheet/WidgetUserSheetViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetUserSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetUserSheet) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103581 extends AbstractC12240o implements Function0<Unit> {
-        public C103581() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModelUserProfileHeader().toggleAllowAnimationInReducedMotion();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$3 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103593 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ WidgetUserSheetViewModel.ViewState $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C103593(WidgetUserSheetViewModel.ViewState viewState) {
-            super(0);
-            this.$model = viewState;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.onStreamPreviewClicked(((WidgetUserSheetViewModel.ViewState.Loaded) this.$model).getStreamContext());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureUI$4 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final /* synthetic */ class C103604 extends C12236k implements Function5<Context, Long, String, Long, Integer, Unit> {
-        public C103604(WidgetUserSheetViewModel widgetUserSheetViewModel) {
-            super(5, widgetUserSheetViewModel, WidgetUserSheetViewModel.class, "onActivityCustomButtonClicked", "onActivityCustomButtonClicked(Landroid/content/Context;JLjava/lang/String;JI)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function5
-        public /* bridge */ /* synthetic */ Unit invoke(Context context, Long l, String str, Long l2, Integer num) {
-            invoke(context, l.longValue(), str, l2.longValue(), num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(Context context, long j, String str, long j2, int i) {
-            C12238m.checkNotNullParameter(context, "p1");
-            C12238m.checkNotNullParameter(str, "p3");
-            ((WidgetUserSheetViewModel) this.receiver).onActivityCustomButtonClicked(context, j, str, j2, i);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$handleRequestPermissionsForSpectateStream$1 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103611 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ WidgetUserSheetViewModel.Event.RequestPermissionsForSpectateStream $event;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C103611(WidgetUserSheetViewModel.Event.RequestPermissionsForSpectateStream requestPermissionsForSpectateStream) {
-            super(0);
-            this.$event = requestPermissionsForSpectateStream;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().onSpectatePermissionsGranted(this.$event.getStream());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$10 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036310 extends AbstractC12240o implements Function0<Unit> {
-        public C1036310() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().disableCommunication();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$11 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036411 extends AbstractC12240o implements Function0<Unit> {
-        public C1036411() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().guildMuteUser();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$12 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036512 extends AbstractC12240o implements Function0<Unit> {
-        public C1036512() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().guildDeafenUser();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$13 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036613 extends AbstractC12240o implements Function0<Unit> {
-        public C1036613() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().guildMoveForUser();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$14 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036714 extends AbstractC12240o implements Function0<Unit> {
-        public C1036714() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheetViewModel.disconnectUser$default(WidgetUserSheet.this.getViewModel(), null, 1, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$16 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1036916 extends AbstractC12240o implements Function1<TextView, Unit> {
-        public final /* synthetic */ View $view;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C1036916(View view) {
-            super(1);
-            this.$view = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
-            invoke2(textView);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(TextView textView) {
-            C12238m.checkNotNullParameter(textView, "it");
-            WidgetUserSheetViewModel viewModel = WidgetUserSheet.this.getViewModel();
-            Context context = WidgetUserSheet.this.getContext();
-            TextInputLayout textInputLayout = WidgetUserSheet.this.getBinding().f18388B;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.userSheetNoteTextFieldWrap");
-            viewModel.saveUserNote(context, ViewExtensions.getTextOrEmpty(textInputLayout));
-            WidgetUserSheet.this.getBinding().f18388B.clearFocus();
-            WidgetUserSheet.this.hideKeyboard(this.$view);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$18 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C1037118 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C1037118() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            WidgetUserSheet.this.getViewModel().moveUserToChannel(j);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103722 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $isMe;
-
-        /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetUserSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                C0876m.m169g(WidgetUserSheet.this.getContext(), C5419R.string.stage_channel_permission_microphone_denied, 0, null, 12);
-            }
-        }
-
-        /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$2$2, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetUserSheet.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass2() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                WidgetUserSheet.this.getViewModel().setUserSuppressedInChannel(false);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C103722(boolean z2) {
-            super(0);
-            this.$isMe = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (this.$isMe) {
-                WidgetUserSheet.this.requestMicrophone(new AnonymousClass1(), new AnonymousClass2());
-            } else {
-                WidgetUserSheet.this.getViewModel().inviteUserToSpeak();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$3 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103733 extends AbstractC12240o implements Function0<Unit> {
-        public C103733() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().setUserSuppressedInChannel(true);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$4 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103744 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C103744() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            WidgetUserSheet.this.getViewModel().toggleMute(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$5 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103755 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C103755() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            WidgetUserSheet.this.getViewModel().toggleDeafen(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$6 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103766 extends AbstractC12240o implements Function2<Float, Boolean, Unit> {
-        public C103766() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Float f, Boolean bool) {
-            invoke(f.floatValue(), bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(float f, boolean z2) {
-            if (z2) {
-                WidgetUserSheet.this.getViewModel().setUserOutputVolume(f);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$7 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103777 extends AbstractC12240o implements Function0<Unit> {
-        public C103777() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().editMember();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$8 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103788 extends AbstractC12240o implements Function0<Unit> {
-        public C103788() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().kickUser();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$onViewCreated$9 */
-    /* JADX INFO: compiled from: WidgetUserSheet.kt */
-    public static final class C103799 extends AbstractC12240o implements Function0<Unit> {
-        public C103799() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserSheet.this.getViewModel().banUser();
-        }
-    }
-
     public WidgetUserSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserSheet$binding$2.INSTANCE, null, 2, null);
@@ -702,6 +702,17 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
     private final void addFriend(String username) {
         WidgetUserSheetViewModel.addRelationship$default(getViewModel(), null, username, C5419R.string.friend_request_sent, null, 8, null);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetUserSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C103411(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetUserSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C103422(this));
+        UserProfileHeaderView.Companion companion = UserProfileHeaderView.INSTANCE;
+        UserProfileHeaderView userProfileHeaderView = getBinding().f18396J;
+        C12238m.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSheetProfileHeaderView");
+        companion.bind(userProfileHeaderView, this, getViewModelUserProfileHeader().observeViewState());
     }
 
     private final void configureAboutMe(final WidgetUserSheetViewModel.ViewState.Loaded viewState) {
@@ -1026,7 +1037,7 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
                 /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureProfileActionButtons$8$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetUserSheet.kt */
-                public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<Integer, Unit> {
+                public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<Integer, Unit> {
                     public AnonymousClass1(WidgetUserSheetViewModel widgetUserSheetViewModel) {
                         super(1, widgetUserSheetViewModel, WidgetUserSheetViewModel.class, "removeRelationship", "removeRelationship(I)V", 0);
                     }
@@ -1044,7 +1055,7 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
                 /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureProfileActionButtons$8$2, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetUserSheet.kt */
-                public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass2() {
                         super(0);
                     }
@@ -1064,7 +1075,7 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
                 /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheet$configureProfileActionButtons$8$3, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetUserSheet.kt */
-                public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass3() {
                         super(0);
                     }
@@ -1203,6 +1214,11 @@ public final class WidgetUserSheet extends AppBottomSheet {
 
     private final WidgetUserSheetBinding getBinding() {
         return (WidgetUserSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_user_sheet;
     }
 
     private final WidgetUserSheetViewModel getViewModel() {
@@ -1370,50 +1386,6 @@ public final class WidgetUserSheet extends AppBottomSheet {
         getViewModel().removeRelationship(C5419R.string.friend_request_ignored);
     }
 
-    private final void onStreamPreviewClicked(StreamContext streamContext) {
-        getViewModel().onStreamPreviewClicked(streamContext);
-    }
-
-    public static final void show(long j, FragmentManager fragmentManager) {
-        Companion.show$default(INSTANCE, j, null, fragmentManager, null, null, null, null, 122, null);
-    }
-
-    public static final void show(long j, Long l, FragmentManager fragmentManager) {
-        Companion.show$default(INSTANCE, j, l, fragmentManager, null, null, null, null, 120, null);
-    }
-
-    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2) {
-        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, null, null, null, 112, null);
-    }
-
-    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool) {
-        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, bool, null, null, 96, null);
-    }
-
-    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool, StreamPreviewClickBehavior streamPreviewClickBehavior) {
-        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, bool, streamPreviewClickBehavior, null, 64, null);
-    }
-
-    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool, StreamPreviewClickBehavior streamPreviewClickBehavior, String str) {
-        INSTANCE.show(j, l, fragmentManager, l2, bool, streamPreviewClickBehavior, str);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetUserSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C103411(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetUserSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C103422(this));
-        UserProfileHeaderView.Companion companion = UserProfileHeaderView.INSTANCE;
-        UserProfileHeaderView userProfileHeaderView = getBinding().f18396J;
-        C12238m.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSheetProfileHeaderView");
-        companion.bind(userProfileHeaderView, this, getViewModelUserProfileHeader().observeViewState());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_user_sheet;
-    }
-
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         C12238m.checkNotNullParameter(inflater, "inflater");
@@ -1455,6 +1427,10 @@ public final class WidgetUserSheet extends AppBottomSheet {
             return;
         }
         StoreStream.INSTANCE.getGuildSubscriptions().subscribeUser(j2, j);
+    }
+
+    private final void onStreamPreviewClicked(StreamContext streamContext) {
+        getViewModel().onStreamPreviewClicked(streamContext);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -1533,5 +1509,29 @@ public final class WidgetUserSheet extends AppBottomSheet {
             accessibilityUtils.setViewIsHeading(textView);
         }
         WidgetChannelSelector.Companion.registerForResult$default(WidgetChannelSelector.INSTANCE, this, REQUEST_KEY_MOVE_USER, false, new C1037118(), 4, null);
+    }
+
+    public static final void show(long j, FragmentManager fragmentManager) {
+        Companion.show$default(INSTANCE, j, null, fragmentManager, null, null, null, null, 122, null);
+    }
+
+    public static final void show(long j, Long l, FragmentManager fragmentManager) {
+        Companion.show$default(INSTANCE, j, l, fragmentManager, null, null, null, null, 120, null);
+    }
+
+    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2) {
+        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, null, null, null, 112, null);
+    }
+
+    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool) {
+        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, bool, null, null, 96, null);
+    }
+
+    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool, StreamPreviewClickBehavior streamPreviewClickBehavior) {
+        Companion.show$default(INSTANCE, j, l, fragmentManager, l2, bool, streamPreviewClickBehavior, null, 64, null);
+    }
+
+    public static final void show(long j, Long l, FragmentManager fragmentManager, Long l2, Boolean bool, StreamPreviewClickBehavior streamPreviewClickBehavior, String str) {
+        INSTANCE.show(j, l, fragmentManager, l2, bool, streamPreviewClickBehavior, str);
     }
 }

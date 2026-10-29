@@ -50,6 +50,16 @@ public final class MaterialTextInputPicker<S> extends AbstractC4398i<S> {
         }
     }
 
+    @Override // p007b.p225i.p226a.p341g.p345d.AbstractC4398i
+    @NonNull
+    public DateSelector<S> getDateSelector() {
+        DateSelector<S> dateSelector = this.dateSelector;
+        if (dateSelector != null) {
+            return dateSelector;
+        }
+        throw new IllegalStateException("dateSelector should not be null. Use MaterialTextInputPicker#newInstance() to create this fragment with a DateSelector, and call this method after the fragment has been created.");
+    }
+
     @NonNull
     public static <T> MaterialTextInputPicker<T> newInstance(DateSelector<T> dateSelector, @StyleRes int i, @NonNull CalendarConstraints calendarConstraints) {
         MaterialTextInputPicker<T> materialTextInputPicker = new MaterialTextInputPicker<>();
@@ -59,16 +69,6 @@ public final class MaterialTextInputPicker<S> extends AbstractC4398i<S> {
         bundle.putParcelable(CALENDAR_CONSTRAINTS_KEY, calendarConstraints);
         materialTextInputPicker.setArguments(bundle);
         return materialTextInputPicker;
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p345d.AbstractC4398i
-    @NonNull
-    public DateSelector<S> getDateSelector() {
-        DateSelector<S> dateSelector = this.dateSelector;
-        if (dateSelector != null) {
-            return dateSelector;
-        }
-        throw new IllegalStateException("dateSelector should not be null. Use MaterialTextInputPicker#newInstance() to create this fragment with a DateSelector, and call this method after the fragment has been created.");
     }
 
     @Override // androidx.fragment.app.Fragment

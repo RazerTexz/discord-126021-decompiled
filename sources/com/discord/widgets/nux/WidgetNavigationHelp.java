@@ -37,7 +37,7 @@ public final class WidgetNavigationHelp extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetNavigationHelp.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -53,28 +53,28 @@ public final class WidgetNavigationHelp extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetNavigationHelp.kt */
-    public static final class NuxChannelsPageFragment extends AppFragment {
+    public final class NuxChannelsPageFragment extends AppFragment {
         public NuxChannelsPageFragment() {
             super(C5419R.layout.widget_navigation_help_nux_channels);
         }
     }
 
     /* JADX INFO: compiled from: WidgetNavigationHelp.kt */
-    public static final class NuxDmsPageFragment extends AppFragment {
+    public final class NuxDmsPageFragment extends AppFragment {
         public NuxDmsPageFragment() {
             super(C5419R.layout.widget_navigation_help_nux_dms);
         }
     }
 
     /* JADX INFO: compiled from: WidgetNavigationHelp.kt */
-    public static final class NuxGuildsPageFragment extends AppFragment {
+    public final class NuxGuildsPageFragment extends AppFragment {
         public NuxGuildsPageFragment() {
             super(C5419R.layout.widget_navigation_help_nux_guilds);
         }
     }
 
     /* JADX INFO: compiled from: WidgetNavigationHelp.kt */
-    public static final class NuxPagerAdapter extends FragmentStateAdapter {
+    public final class NuxPagerAdapter extends FragmentStateAdapter {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public NuxPagerAdapter(Fragment fragment) {
             super(fragment);

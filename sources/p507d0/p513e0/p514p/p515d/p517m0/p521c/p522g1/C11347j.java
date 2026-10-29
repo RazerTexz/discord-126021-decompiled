@@ -34,7 +34,7 @@ public final class C11347j implements InterfaceC11340c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g1.j$a */
     /* JADX INFO: compiled from: BuiltInAnnotationDescriptor.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11934j0> {
         public a() {
             super(0);
         }

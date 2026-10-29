@@ -13,7 +13,7 @@ public class SubscriptionManagerCompat {
     private static Method sGetSlotIndexMethod;
 
     @RequiresApi(29)
-    public static class Api29Impl {
+    public class Api29Impl {
         private Api29Impl() {
         }
 

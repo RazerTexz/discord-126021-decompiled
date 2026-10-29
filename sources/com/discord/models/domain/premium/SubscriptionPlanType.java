@@ -65,7 +65,7 @@ public final class SubscriptionPlanType {
     private final int price;
 
     /* JADX INFO: compiled from: SubscriptionPlanType.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -80,20 +80,6 @@ public final class SubscriptionPlanType {
         }
 
         private Companion() {
-        }
-
-        private final SubscriptionPlanType getNonePlanForIntervalType(SubscriptionInterval interval, int intervalCount) {
-            int iOrdinal = interval.ordinal();
-            if (iOrdinal == 0) {
-                if (intervalCount != 3) {
-                    return intervalCount != 6 ? SubscriptionPlanType.NONE_MONTH : SubscriptionPlanType.NONE_6_MONTH;
-                }
-                return SubscriptionPlanType.NONE_3_MONTH;
-            }
-            if (iOrdinal == 1) {
-                return SubscriptionPlanType.NONE_YEAR;
-            }
-            throw new IllegalArgumentException("unsupported plan interval: " + interval);
         }
 
         /* JADX WARN: Code duplicated, block: B:14:0x001f A[RETURN] */
@@ -145,6 +131,20 @@ public final class SubscriptionPlanType {
 
         public final Set<SubscriptionPlanType> getLEGACY_PLANS() {
             return SubscriptionPlanType.LEGACY_PLANS;
+        }
+
+        private final SubscriptionPlanType getNonePlanForIntervalType(SubscriptionInterval interval, int intervalCount) {
+            int iOrdinal = interval.ordinal();
+            if (iOrdinal == 0) {
+                if (intervalCount != 3) {
+                    return intervalCount != 6 ? SubscriptionPlanType.NONE_MONTH : SubscriptionPlanType.NONE_6_MONTH;
+                }
+                return SubscriptionPlanType.NONE_3_MONTH;
+            }
+            if (iOrdinal == 1) {
+                return SubscriptionPlanType.NONE_YEAR;
+            }
+            throw new IllegalArgumentException("unsupported plan interval: " + interval);
         }
 
         public final Set<SubscriptionPlanType> getPREMIUM_GUILD_PLANS() {
@@ -246,14 +246,6 @@ public final class SubscriptionPlanType {
         this.premiumTier = premiumTier;
     }
 
-    public static SubscriptionPlanType valueOf(String str) {
-        return (SubscriptionPlanType) Enum.valueOf(SubscriptionPlanType.class, str);
-    }
-
-    public static SubscriptionPlanType[] values() {
-        return (SubscriptionPlanType[]) $VALUES.clone();
-    }
-
     public final SubscriptionInterval getInterval() {
         return this.interval;
     }
@@ -288,5 +280,13 @@ public final class SubscriptionPlanType {
 
     public final boolean isPremiumSubscription() {
         return PREMIUM_PLANS.contains(this);
+    }
+
+    public static SubscriptionPlanType valueOf(String str) {
+        return (SubscriptionPlanType) Enum.valueOf(SubscriptionPlanType.class, str);
+    }
+
+    public static SubscriptionPlanType[] values() {
+        return (SubscriptionPlanType[]) $VALUES.clone();
     }
 }

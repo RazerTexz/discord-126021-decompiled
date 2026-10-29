@@ -51,10 +51,10 @@ public final class NearbyManager {
     private final BehaviorSubject<NearbyState> nearbyStateSubject = BehaviorSubject.m11130l0(NearbyState.Uninitialized.INSTANCE);
 
     /* JADX INFO: compiled from: NearbyManager.kt */
-    public static abstract class NearbyState {
+    public abstract class NearbyState {
 
         /* JADX INFO: compiled from: NearbyManager.kt */
-        public static final /* data */ class Connected extends NearbyState {
+        public final /* data */ class Connected extends NearbyState {
             private final Set<Long> nearbyUserIds;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -64,16 +64,16 @@ public final class NearbyManager {
                 this.nearbyUserIds = set;
             }
 
+            public final Set<Long> component1() {
+                return this.nearbyUserIds;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Connected copy$default(Connected connected, Set set, int i, Object obj) {
                 if ((i & 1) != 0) {
                     set = connected.nearbyUserIds;
                 }
                 return connected.copy(set);
-            }
-
-            public final Set<Long> component1() {
-                return this.nearbyUserIds;
             }
 
             public final Connected copy(Set<Long> nearbyUserIds) {
@@ -106,7 +106,7 @@ public final class NearbyManager {
         }
 
         /* JADX INFO: compiled from: NearbyManager.kt */
-        public static final /* data */ class Disconnected extends NearbyState {
+        public final /* data */ class Disconnected extends NearbyState {
             private final int code;
 
             public Disconnected(int i) {
@@ -121,11 +121,6 @@ public final class NearbyManager {
                 return disconnected.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getCode() {
-                return this.code;
-            }
-
             public final Disconnected copy(int code) {
                 return new Disconnected(code);
             }
@@ -135,6 +130,11 @@ public final class NearbyManager {
                     return (other instanceof Disconnected) && this.code == ((Disconnected) other).code;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getCode() {
+                return this.code;
             }
 
             public final int getCode() {
@@ -151,7 +151,7 @@ public final class NearbyManager {
         }
 
         /* JADX INFO: compiled from: NearbyManager.kt */
-        public static final class Uninitialized extends NearbyState {
+        public final class Uninitialized extends NearbyState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -165,6 +165,20 @@ public final class NearbyManager {
         public /* synthetic */ NearbyState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
+    }
+
+    public final void activateNearby() {
+        Message message;
+        PublishOptions publishOptions;
+        MessageListener messageListener;
+        SubscribeOptions subscribeOptions;
+        MessagesClient messagesClient = this.messagesClient;
+        if (messagesClient == null || (message = this.outboundMessage) == null || (publishOptions = this.messagePublishOptions) == null || (messageListener = this.messageListener) == null || (subscribeOptions = this.subscribeOptions) == null) {
+            return;
+        }
+        this.nearbyStateSubject.onNext(new NearbyState.Connected(new HashSet(this.nearbyUserIds)));
+        messagesClient.mo5984f(message, publishOptions);
+        messagesClient.mo5985g(messageListener, subscribeOptions);
     }
 
     private final void buildClient(FragmentActivity fragmentActivity) {
@@ -234,12 +248,45 @@ public final class NearbyManager {
         this.messagesClient = c4286i;
     }
 
+    public final void buildClientAndPublish(FragmentActivity fragmentActivity) {
+        C12238m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
+        if (this.messagesClient == null) {
+            buildClient(fragmentActivity);
+        }
+        activateNearby();
+    }
+
+    public final void disableNearby() {
+        Message message;
+        MessageListener messageListener;
+        MessagesClient messagesClient = this.messagesClient;
+        if (messagesClient == null || (message = this.outboundMessage) == null || (messageListener = this.messageListener) == null) {
+            return;
+        }
+        messagesClient.mo5986h(message);
+        messagesClient.mo5987i(messageListener);
+        this.nearbyUserIds.clear();
+        this.nearbyStateSubject.onNext(NearbyState.Uninitialized.INSTANCE);
+    }
+
     private final synchronized void foundUserId(long userId) {
         Long l = this.meUserId;
         if (l == null || userId != l.longValue()) {
             this.nearbyUserIds.add(Long.valueOf(userId));
             this.nearbyStateSubject.onNext(new NearbyState.Connected(new HashSet(this.nearbyUserIds)));
         }
+    }
+
+    public final Observable<NearbyState> getState() {
+        BehaviorSubject<NearbyState> behaviorSubject = this.nearbyStateSubject;
+        C12238m.checkNotNullExpressionValue(behaviorSubject, "nearbyStateSubject");
+        return behaviorSubject;
+    }
+
+    public final void initialize(long userId) {
+        this.meUserId = Long.valueOf(userId);
+        setupBroadcaster(userId);
+        setupListener();
     }
 
     private final synchronized void lostUserId(long userId) {
@@ -302,52 +349,5 @@ public final class NearbyManager {
         };
         Strategy strategy = Strategy.f20727j;
         this.subscribeOptions = new SubscribeOptions(Strategy.f20728k, MessageFilter.f20718j, null);
-    }
-
-    public final void activateNearby() {
-        Message message;
-        PublishOptions publishOptions;
-        MessageListener messageListener;
-        SubscribeOptions subscribeOptions;
-        MessagesClient messagesClient = this.messagesClient;
-        if (messagesClient == null || (message = this.outboundMessage) == null || (publishOptions = this.messagePublishOptions) == null || (messageListener = this.messageListener) == null || (subscribeOptions = this.subscribeOptions) == null) {
-            return;
-        }
-        this.nearbyStateSubject.onNext(new NearbyState.Connected(new HashSet(this.nearbyUserIds)));
-        messagesClient.mo5984f(message, publishOptions);
-        messagesClient.mo5985g(messageListener, subscribeOptions);
-    }
-
-    public final void buildClientAndPublish(FragmentActivity fragmentActivity) {
-        C12238m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
-        if (this.messagesClient == null) {
-            buildClient(fragmentActivity);
-        }
-        activateNearby();
-    }
-
-    public final void disableNearby() {
-        Message message;
-        MessageListener messageListener;
-        MessagesClient messagesClient = this.messagesClient;
-        if (messagesClient == null || (message = this.outboundMessage) == null || (messageListener = this.messageListener) == null) {
-            return;
-        }
-        messagesClient.mo5986h(message);
-        messagesClient.mo5987i(messageListener);
-        this.nearbyUserIds.clear();
-        this.nearbyStateSubject.onNext(NearbyState.Uninitialized.INSTANCE);
-    }
-
-    public final Observable<NearbyState> getState() {
-        BehaviorSubject<NearbyState> behaviorSubject = this.nearbyStateSubject;
-        C12238m.checkNotNullExpressionValue(behaviorSubject, "nearbyStateSubject");
-        return behaviorSubject;
-    }
-
-    public final void initialize(long userId) {
-        this.meUserId = Long.valueOf(userId);
-        setupBroadcaster(userId);
-        setupListener();
     }
 }

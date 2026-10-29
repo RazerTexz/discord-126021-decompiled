@@ -18,9 +18,9 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkProgressUpdater implements ProgressUpdater {
-    public static final String TAG = Logger.tagWithPrefix("WorkProgressUpdater");
     public final TaskExecutor mTaskExecutor;
     public final WorkDatabase mWorkDatabase;
+    public static final String TAG = Logger.tagWithPrefix("WorkProgressUpdater");
 
     public WorkProgressUpdater(@NonNull WorkDatabase workDatabase, @NonNull TaskExecutor taskExecutor) {
         this.mWorkDatabase = workDatabase;

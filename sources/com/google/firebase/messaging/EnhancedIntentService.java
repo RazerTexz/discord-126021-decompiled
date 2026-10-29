@@ -69,37 +69,6 @@ public abstract class EnhancedIntentService extends Service {
         }
     }
 
-    @MainThread
-    private Task<Void> processIntent(final Intent intent) {
-        if (handleIntentOnMainThread(intent)) {
-            return C3404f.m4264Z(null);
-        }
-        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.executor.execute(new Runnable(this, intent, taskCompletionSource) { // from class: b.i.c.w.d
-
-            /* JADX INFO: renamed from: j */
-            public final EnhancedIntentService f13017j;
-
-            /* JADX INFO: renamed from: k */
-            public final Intent f13018k;
-
-            /* JADX INFO: renamed from: l */
-            public final TaskCompletionSource f13019l;
-
-            {
-                this.f13017j = this;
-                this.f13018k = intent;
-                this.f13019l = taskCompletionSource;
-            }
-
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f13017j.lambda$processIntent$0$EnhancedIntentService(this.f13018k, this.f13019l);
-            }
-        });
-        return taskCompletionSource.f20845a;
-    }
-
     public Intent getStartCommandIntent(Intent intent) {
         return intent;
     }
@@ -185,6 +154,37 @@ public abstract class EnhancedIntentService extends Service {
             }
         });
         return 3;
+    }
+
+    @MainThread
+    private Task<Void> processIntent(final Intent intent) {
+        if (handleIntentOnMainThread(intent)) {
+            return C3404f.m4264Z(null);
+        }
+        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        this.executor.execute(new Runnable(this, intent, taskCompletionSource) { // from class: b.i.c.w.d
+
+            /* JADX INFO: renamed from: j */
+            public final EnhancedIntentService f13017j;
+
+            /* JADX INFO: renamed from: k */
+            public final Intent f13018k;
+
+            /* JADX INFO: renamed from: l */
+            public final TaskCompletionSource f13019l;
+
+            {
+                this.f13017j = this;
+                this.f13018k = intent;
+                this.f13019l = taskCompletionSource;
+            }
+
+            @Override // java.lang.Runnable
+            public final void run() {
+                this.f13017j.lambda$processIntent$0$EnhancedIntentService(this.f13018k, this.f13019l);
+            }
+        });
+        return taskCompletionSource.f20845a;
     }
 
     public boolean stopSelfResultHook(int i) {

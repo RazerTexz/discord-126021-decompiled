@@ -10,16 +10,6 @@ public final /* data */ class VanityUrlResponse {
     private final String code;
     private final int uses;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getCode() {
-        return this.code;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final int getUses() {
-        return this.uses;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,16 @@ public final /* data */ class VanityUrlResponse {
         }
         VanityUrlResponse vanityUrlResponse = (VanityUrlResponse) other;
         return C12238m.areEqual(this.code, vanityUrlResponse.code) && this.uses == vanityUrlResponse.uses;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getCode() {
+        return this.code;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final int getUses() {
+        return this.uses;
     }
 
     public int hashCode() {

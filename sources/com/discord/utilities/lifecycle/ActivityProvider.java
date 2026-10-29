@@ -21,7 +21,7 @@ public final class ActivityProvider implements Application.ActivityLifecycleCall
     private Activity currentActivity;
 
     /* JADX INFO: compiled from: ActivityProvider.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

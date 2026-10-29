@@ -31,7 +31,7 @@ public class FileVideoCapturer implements VideoCapturer {
         VideoFrame getNextFrame();
     }
 
-    public static class VideoReaderY4M implements VideoReader {
+    public class VideoReaderY4M implements VideoReader {
         private static final int FRAME_DELIMETER_LENGTH = 6;
         private static final String TAG = "VideoReaderY4M";
         private static final String Y4M_FRAME_DELIMETER = "FRAME";

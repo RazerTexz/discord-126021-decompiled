@@ -32,7 +32,6 @@ public class TextAppearance {
 
     @FontRes
     private final int fontFamilyResourceId;
-    private boolean fontResolved = false;
     public final boolean hasLetterSpacing;
     public final float letterSpacing;
 
@@ -54,6 +53,7 @@ public class TextAppearance {
     public float textSize;
     public final int textStyle;
     public final int typeface;
+    private boolean fontResolved = false;
 
     /* JADX INFO: renamed from: com.google.android.material.resources.TextAppearance$a */
     public class C10960a extends ResourcesCompat.FontCallback {
@@ -150,10 +150,6 @@ public class TextAppearance {
         }
     }
 
-    private boolean shouldLoadFontSynchronously(Context context) {
-        return TextAppearanceConfig.shouldLoadFontSynchronously();
-    }
-
     public Typeface getFallbackFont() {
         createFallbackFont();
         return this.font;
@@ -210,6 +206,10 @@ public class TextAppearance {
             this.fontResolved = true;
             textAppearanceFontCallback.onFontRetrievalFailed(-3);
         }
+    }
+
+    private boolean shouldLoadFontSynchronously(Context context) {
+        return TextAppearanceConfig.shouldLoadFontSynchronously();
     }
 
     public void updateDrawState(@NonNull Context context, @NonNull TextPaint textPaint, @NonNull TextAppearanceFontCallback textAppearanceFontCallback) {

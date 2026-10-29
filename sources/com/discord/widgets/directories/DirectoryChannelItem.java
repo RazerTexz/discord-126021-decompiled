@@ -11,7 +11,7 @@ public abstract class DirectoryChannelItem {
     private final ViewType viewType;
 
     /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public static final class AddServer extends DirectoryChannelItem {
+    public final class AddServer extends DirectoryChannelItem {
         public static final AddServer INSTANCE = new AddServer();
 
         private AddServer() {
@@ -20,7 +20,7 @@ public abstract class DirectoryChannelItem {
     }
 
     /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public static final /* data */ class DirectoryItem extends DirectoryChannelItem {
+    public final /* data */ class DirectoryItem extends DirectoryChannelItem {
         private final DirectoryEntryData directoryEntryData;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -37,11 +37,6 @@ public abstract class DirectoryChannelItem {
             return directoryItem.copy(directoryEntryData);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final DirectoryEntryData getDirectoryEntryData() {
-            return this.directoryEntryData;
-        }
-
         public final DirectoryItem copy(DirectoryEntryData directoryEntryData) {
             C12238m.checkNotNullParameter(directoryEntryData, "directoryEntryData");
             return new DirectoryItem(directoryEntryData);
@@ -52,6 +47,11 @@ public abstract class DirectoryChannelItem {
                 return (other instanceof DirectoryItem) && C12238m.areEqual(this.directoryEntryData, ((DirectoryItem) other).directoryEntryData);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final DirectoryEntryData getDirectoryEntryData() {
+            return this.directoryEntryData;
         }
 
         public final DirectoryEntryData getDirectoryEntryData() {
@@ -75,7 +75,7 @@ public abstract class DirectoryChannelItem {
     }
 
     /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public static final /* data */ class SectionHeader extends DirectoryChannelItem {
+    public final /* data */ class SectionHeader extends DirectoryChannelItem {
         private final int textRes;
 
         public SectionHeader(@StringRes int i) {
@@ -90,11 +90,6 @@ public abstract class DirectoryChannelItem {
             return sectionHeader.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getTextRes() {
-            return this.textRes;
-        }
-
         public final SectionHeader copy(@StringRes int textRes) {
             return new SectionHeader(textRes);
         }
@@ -104,6 +99,11 @@ public abstract class DirectoryChannelItem {
                 return (other instanceof SectionHeader) && this.textRes == ((SectionHeader) other).textRes;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getTextRes() {
+            return this.textRes;
         }
 
         public final int getTextRes() {
@@ -130,7 +130,7 @@ public abstract class DirectoryChannelItem {
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 

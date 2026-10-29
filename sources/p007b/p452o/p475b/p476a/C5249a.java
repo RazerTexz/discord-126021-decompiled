@@ -17,6 +17,10 @@ public final class C5249a extends C5251c {
         super(new C5257b(eGLContext), i);
     }
 
+    public final void finalize() {
+        m7453b();
+    }
+
     /* JADX INFO: renamed from: b */
     public void m7453b() {
         C5258c c5258c = this.f14260a;
@@ -34,9 +38,5 @@ public final class C5249a extends C5251c {
         this.f14260a = c5258c2;
         this.f14261b = C5259d.f14271a;
         this.f14262c = null;
-    }
-
-    public final void finalize() {
-        m7453b();
     }
 }

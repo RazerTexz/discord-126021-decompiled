@@ -32,7 +32,7 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$1 */
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static final class C95541 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C95541 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C95541() {
             super(1);
         }
@@ -50,8 +50,49 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$1 */
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static final class Companion {
+    public final class C95551 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C95551() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            MemberVerificationSuccessViewModel.this.eventSubject.f27650k.onNext((T) Event.Error.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$2 */
+    /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
+    public final class C95562 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C95562() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            MemberVerificationSuccessViewModel.this.eventSubject.f27650k.onNext((T) Event.Success.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,10 +114,10 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-        public static final class Error extends Event {
+        public final class Error extends Event {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -85,7 +126,7 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
         }
 
         /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-        public static final class Success extends Event {
+        public final class Success extends Event {
             public static final Success INSTANCE = new Success();
 
             private Success() {
@@ -102,7 +143,7 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final String guildName;
         private final String lastSeen;
 
@@ -121,16 +162,6 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
             return storeState.copy(str, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getLastSeen() {
-            return this.lastSeen;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getGuildName() {
-            return this.guildName;
-        }
-
         public final StoreState copy(String lastSeen, String guildName) {
             return new StoreState(lastSeen, guildName);
         }
@@ -146,8 +177,18 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
             return C12238m.areEqual(this.lastSeen, storeState.lastSeen) && C12238m.areEqual(this.guildName, storeState.guildName);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getGuildName() {
             return this.guildName;
+        }
+
+        public final String getGuildName() {
+            return this.guildName;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getLastSeen() {
+            return this.lastSeen;
         }
 
         public final String getLastSeen() {
@@ -170,10 +211,10 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-        public static final class Acked extends ViewState {
+        public final class Acked extends ViewState {
             public static final Acked INSTANCE = new Acked();
 
             private Acked() {
@@ -182,7 +223,7 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
         }
 
         /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final String guildName;
 
             public Loaded(String str) {
@@ -197,11 +238,6 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
                 return loaded.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
             public final Loaded copy(String guildName) {
                 return new Loaded(guildName);
             }
@@ -211,6 +247,11 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
                     return (other instanceof Loaded) && C12238m.areEqual(this.guildName, ((Loaded) other).guildName);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getGuildName() {
+                return this.guildName;
             }
 
             public final String getGuildName() {
@@ -238,49 +279,16 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$1 */
-    /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static final class C95551 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C95551() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            MemberVerificationSuccessViewModel.this.eventSubject.f27650k.onNext((T) Event.Error.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$2 */
-    /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public static final class C95562 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C95562() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            MemberVerificationSuccessViewModel.this.eventSubject.f27650k.onNext((T) Event.Success.INSTANCE);
-        }
-    }
-
     public /* synthetic */ MemberVerificationSuccessViewModel(long j, RestAPI restAPI, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(j, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 4) != 0 ? INSTANCE.observeStores(j) : observable);
+    }
+
+    public final void ackGuildJoinRequest() {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.ackGuildJoinRequest(this.guildId), false, 1, null), this, null, 2, null), (Class<?>) MemberVerificationSuccessViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C95551()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95562());
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     @MainThread
@@ -290,14 +298,6 @@ public final class MemberVerificationSuccessViewModel extends AbstractC0859d0<Vi
         } else {
             updateViewState(new ViewState.Loaded(storeState.getGuildName()));
         }
-    }
-
-    public final void ackGuildJoinRequest() {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.ackGuildJoinRequest(this.guildId), false, 1, null), this, null, 2, null), (Class<?>) MemberVerificationSuccessViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C95551()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95562());
-    }
-
-    public final long getGuildId() {
-        return this.guildId;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

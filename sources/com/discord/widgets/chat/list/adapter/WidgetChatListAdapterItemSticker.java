@@ -28,7 +28,7 @@ public final class WidgetChatListAdapterItemSticker extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSticker$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSticker.kt */
-    public static final class C81271 extends AbstractC12240o implements Function1<Sticker, Unit> {
+    public final class C81271 extends AbstractC12240o implements Function1<Sticker, Unit> {
         public final /* synthetic */ ChatListEntry $data;
         public final /* synthetic */ StickerEntry $stickerEntry;
 

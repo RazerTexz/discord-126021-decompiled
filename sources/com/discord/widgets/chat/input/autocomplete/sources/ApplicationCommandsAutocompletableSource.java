@@ -47,7 +47,7 @@ public final class ApplicationCommandsAutocompletableSource {
     private final StoreUser storeUsers;
 
     /* JADX INFO: compiled from: ApplicationCommandsAutocompletableSource.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

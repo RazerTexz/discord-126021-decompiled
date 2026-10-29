@@ -45,12 +45,12 @@ public class PatchExtensionMethod {
     private static final FieldAugment<MessageSend, PostponedError> MessageSend_postponedErrors = FieldAugment.augment(MessageSend.class, PostponedError.class, "lombok$postponedErrors");
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedError.SCL.lombok */
-    private interface PostponedError {
+    interface PostponedError {
         void fire();
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$Extension.SCL.lombok */
-    static class Extension {
+    class Extension {
         List<MethodBinding> extensionMethods;
         boolean suppressBaseMethods;
 
@@ -59,7 +59,7 @@ public class PatchExtensionMethod {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedNoMethodError.SCL.lombok */
-    private static class PostponedNoMethodError implements PostponedError {
+    class PostponedNoMethodError implements PostponedError {
         private final ProblemReporter problemReporter;
         private final WeakReference<MessageSend> messageSendRef;
         private final TypeBinding recType;
@@ -82,10 +82,10 @@ public class PatchExtensionMethod {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedInvalidMethodError.SCL.lombok */
-    private static class PostponedInvalidMethodError implements PostponedError {
-        private final ProblemReporter problemReporter;
+    class PostponedInvalidMethodError implements PostponedError {
         private final WeakReference<MessageSend> messageSendRef;
         private final MethodBinding method;
+        private final ProblemReporter problemReporter;
         private final Scope scope;
         private static final Method shortMethod = getMethod("invalidMethod", MessageSend.class, MethodBinding.class);
         private static final Method longMethod = getMethod("invalidMethod", MessageSend.class, MethodBinding.class, Scope.class);
@@ -138,7 +138,7 @@ public class PatchExtensionMethod {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedNonStaticAccessToStaticMethodError.SCL.lombok */
-    private static class PostponedNonStaticAccessToStaticMethodError implements PostponedError {
+    class PostponedNonStaticAccessToStaticMethodError implements PostponedError {
         private final ProblemReporter problemReporter;
         private ASTNode location;
         private MethodBinding method;
@@ -403,11 +403,11 @@ public class PatchExtensionMethod {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$Reflection.SCL.lombok */
-    private static final class Reflection {
-        public static final Field argumentTypes = Permit.permissiveGetField(MessageSend.class, "argumentTypes");
-        public static final Field argumentsHaveErrors = Permit.permissiveGetField(MessageSend.class, "argumentsHaveErrors");
+    final class Reflection {
         private static final Class<?> functionalExpression;
         private static final Constructor<?> polyTypeBindingConstructor;
+        public static final Field argumentTypes = Permit.permissiveGetField(MessageSend.class, "argumentTypes");
+        public static final Field argumentsHaveErrors = Permit.permissiveGetField(MessageSend.class, "argumentsHaveErrors");
 
         private Reflection() {
         }

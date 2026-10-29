@@ -44,8 +44,28 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.WidgetThreadDraftArchiveSheet$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetThreadDraftArchiveSheet.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C76261 extends C12236k implements Function1<Model, Unit> {
+        public C76261(WidgetThreadDraftArchiveSheet widgetThreadDraftArchiveSheet) {
+            super(1, widgetThreadDraftArchiveSheet, WidgetThreadDraftArchiveSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/threads/WidgetThreadDraftArchiveSheet$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetThreadDraftArchiveSheet) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadDraftArchiveSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -64,7 +84,7 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetThreadDraftArchiveSheet.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -73,7 +93,7 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
         private final Guild guild;
 
         /* JADX INFO: compiled from: WidgetThreadDraftArchiveSheet.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -117,21 +137,6 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
             return model.copy(threadDraftState, guild, channel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreThreadDraft.ThreadDraftState getDraftState() {
-            return this.draftState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
         public final Model copy(StoreThreadDraft.ThreadDraftState draftState, Guild guild, Channel channel) {
             C12238m.checkNotNullParameter(draftState, "draftState");
             return new Model(draftState, guild, channel);
@@ -148,12 +153,27 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
             return C12238m.areEqual(this.draftState, model.draftState) && C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.channel, model.channel);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final StoreThreadDraft.ThreadDraftState getDraftState() {
             return this.draftState;
+        }
+
+        public final StoreThreadDraft.ThreadDraftState getDraftState() {
+            return this.draftState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -181,29 +201,16 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.WidgetThreadDraftArchiveSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetThreadDraftArchiveSheet.kt */
-    public static final /* synthetic */ class C76261 extends C12236k implements Function1<Model, Unit> {
-        public C76261(WidgetThreadDraftArchiveSheet widgetThreadDraftArchiveSheet) {
-            super(1, widgetThreadDraftArchiveSheet, WidgetThreadDraftArchiveSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/threads/WidgetThreadDraftArchiveSheet$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetThreadDraftArchiveSheet) this.receiver).configureUI(model);
-        }
-    }
-
     public WidgetThreadDraftArchiveSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadDraftArchiveSheet$binding$2.INSTANCE, null, 2, null);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), (Class<?>) WidgetThreadDraftArchiveSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76261(this));
     }
 
     private final void configureUI(Model model) {
@@ -255,22 +262,6 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
         return (WidgetThreadArchiveActionsSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void setAutoArchiveDuration(StoreThreadDraft.ThreadDraftState draftState, int minutes) {
-        StoreStream.INSTANCE.getThreadDraft().setDraftState(StoreThreadDraft.ThreadDraftState.copy$default(draftState, false, Integer.valueOf(minutes), null, false, false, 29, null));
-        dismiss();
-    }
-
-    public static final void show(FragmentManager fragmentManager, long j) {
-        INSTANCE.show(fragmentManager, j);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), (Class<?>) WidgetThreadDraftArchiveSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76261(this));
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_thread_archive_actions_sheet;
@@ -280,5 +271,14 @@ public final class WidgetThreadDraftArchiveSheet extends AppBottomSheet {
     public void onPause() {
         super.onPause();
         dismiss();
+    }
+
+    private final void setAutoArchiveDuration(StoreThreadDraft.ThreadDraftState draftState, int minutes) {
+        StoreStream.INSTANCE.getThreadDraft().setDraftState(StoreThreadDraft.ThreadDraftState.copy$default(draftState, false, Integer.valueOf(minutes), null, false, false, 29, null));
+        dismiss();
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j) {
+        INSTANCE.show(fragmentManager, j);
     }
 }

@@ -36,7 +36,7 @@ public final class GuildMemberSubscriptionsManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.lazy.subscriptions.GuildMemberSubscriptionsManager$triggerUnsubscribe$1 */
     /* JADX INFO: compiled from: GuildMemberSubscriptionsManager.kt */
-    public static final class C67911 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C67911 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C67911() {
             super(1);
         }
@@ -56,11 +56,11 @@ public final class GuildMemberSubscriptionsManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.lazy.subscriptions.GuildMemberSubscriptionsManager$triggerUnsubscribe$2 */
     /* JADX INFO: compiled from: GuildMemberSubscriptionsManager.kt */
-    public static final class C67922 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C67922 extends AbstractC12240o implements Function1<Long, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.lazy.subscriptions.GuildMemberSubscriptionsManager$triggerUnsubscribe$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: GuildMemberSubscriptionsManager.kt */
-        public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function0<Unit> {
+        public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function0<Unit> {
             public AnonymousClass1(GuildMemberSubscriptionsManager guildMemberSubscriptionsManager) {
                 super(0, guildMemberSubscriptionsManager, GuildMemberSubscriptionsManager.class, "flushUnsubscriptions", "flushUnsubscriptions()V", 0);
             }
@@ -142,14 +142,6 @@ public final class GuildMemberSubscriptionsManager {
         this.pendingUnsubscriptions.clear();
     }
 
-    private final void triggerUnsubscribe() {
-        if (this.delayedFlushSubscription == null) {
-            Observable<Long> observableM11070e0 = Observable.m11070e0(20L, TimeUnit.SECONDS, this.delayScheduler);
-            C12238m.checkNotNullExpressionValue(observableM11070e0, "Observable\n          .ti….SECONDS, delayScheduler)");
-            ObservableExtensionsKt.appSubscribe(observableM11070e0, (Class<?>) GuildMemberSubscriptionsManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C67911()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67922());
-        }
-    }
-
     public final Set<Long> get(long guildId) {
         Set<Long> setKeySet;
         Map<Long, Integer> map = this.subscriptions.get(Long.valueOf(guildId));
@@ -193,6 +185,14 @@ public final class GuildMemberSubscriptionsManager {
         Integer num2 = map.get(Long.valueOf(userId));
         if (num2 != null && num2.intValue() == 1) {
             this.onChange.invoke(Long.valueOf(guildId), map.keySet(), Boolean.FALSE);
+        }
+    }
+
+    private final void triggerUnsubscribe() {
+        if (this.delayedFlushSubscription == null) {
+            Observable<Long> observableM11070e0 = Observable.m11070e0(20L, TimeUnit.SECONDS, this.delayScheduler);
+            C12238m.checkNotNullExpressionValue(observableM11070e0, "Observable\n          .ti….SECONDS, delayScheduler)");
+            ObservableExtensionsKt.appSubscribe(observableM11070e0, (Class<?>) GuildMemberSubscriptionsManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C67911()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C67922());
         }
     }
 

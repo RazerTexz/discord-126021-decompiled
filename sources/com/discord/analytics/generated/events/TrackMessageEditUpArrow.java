@@ -11,10 +11,16 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackMessageEditUpArrow.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackMessageEditUpArrow implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
-    private final transient String analyticsSchemaTypeName = "message_edit_up_arrow";
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
+    private final transient String analyticsSchemaTypeName = "message_edit_up_arrow";
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
 
     @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -26,11 +32,5 @@ public final class TrackMessageEditUpArrow implements AnalyticsSchema, TrackBase
     /* JADX INFO: renamed from: c */
     public void mo7508c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
     }
 }

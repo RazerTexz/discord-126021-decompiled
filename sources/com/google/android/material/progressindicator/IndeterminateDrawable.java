@@ -31,6 +31,11 @@ public final class IndeterminateDrawable<S extends BaseProgressIndicatorSpec> ex
         setAnimatorDelegate(abstractC4421g);
     }
 
+    @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4419e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
+    public /* bridge */ /* synthetic */ void clearAnimationCallbacks() {
+        super.clearAnimationCallbacks();
+    }
+
     @NonNull
     public static IndeterminateDrawable<CircularProgressIndicatorSpec> createCircularDrawable(@NonNull Context context, @NonNull CircularProgressIndicatorSpec circularProgressIndicatorSpec) {
         return new IndeterminateDrawable<>(context, circularProgressIndicatorSpec, new C4415a(circularProgressIndicatorSpec), new C4418d(circularProgressIndicatorSpec));
@@ -39,11 +44,6 @@ public final class IndeterminateDrawable<S extends BaseProgressIndicatorSpec> ex
     @NonNull
     public static IndeterminateDrawable<LinearProgressIndicatorSpec> createLinearDrawable(@NonNull Context context, @NonNull LinearProgressIndicatorSpec linearProgressIndicatorSpec) {
         return new IndeterminateDrawable<>(context, linearProgressIndicatorSpec, new C4422h(linearProgressIndicatorSpec), linearProgressIndicatorSpec.indeterminateAnimationType == 0 ? new C4424j(linearProgressIndicatorSpec) : new C4426l(context, linearProgressIndicatorSpec));
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4419e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ void clearAnimationCallbacks() {
-        super.clearAnimationCallbacks();
     }
 
     @Override // android.graphics.drawable.Drawable

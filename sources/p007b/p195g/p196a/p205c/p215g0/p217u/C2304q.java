@@ -19,23 +19,6 @@ public class C2304q extends AbstractC2303p0<InetSocketAddress> {
         super(InetSocketAddress.class);
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public /* bridge */ /* synthetic */ void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        m2071p((InetSocketAddress) obj, abstractC2108d);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2303p0, p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        InetSocketAddress inetSocketAddress = (InetSocketAddress) obj;
-        C2138b c2138bM1958d = abstractC2215g.m1958d(inetSocketAddress, EnumC2112h.VALUE_STRING);
-        c2138bM1958d.f4585b = InetSocketAddress.class;
-        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, c2138bM1958d);
-        m2071p(inetSocketAddress, abstractC2108d);
-        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
-    }
-
     /* JADX INFO: renamed from: p */
     public void m2071p(InetSocketAddress inetSocketAddress, AbstractC2108d abstractC2108d) throws IOException {
         String strSubstring;
@@ -60,5 +43,22 @@ public class C2304q extends AbstractC2303p0<InetSocketAddress> {
         StringBuilder sbM836X = C1643a.m836X(hostName, ":");
         sbM836X.append(inetSocketAddress.getPort());
         abstractC2108d.mo1658j0(sbM836X.toString());
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public /* bridge */ /* synthetic */ void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        m2071p((InetSocketAddress) obj, abstractC2108d);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2303p0, p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        InetSocketAddress inetSocketAddress = (InetSocketAddress) obj;
+        C2138b c2138bM1958d = abstractC2215g.m1958d(inetSocketAddress, EnumC2112h.VALUE_STRING);
+        c2138bM1958d.f4585b = InetSocketAddress.class;
+        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, c2138bM1958d);
+        m2071p(inetSocketAddress, abstractC2108d);
+        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
     }
 }

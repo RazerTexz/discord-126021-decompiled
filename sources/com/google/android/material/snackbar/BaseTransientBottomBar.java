@@ -75,6 +75,7 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
     public static final int LENGTH_SHORT = -1;
     public static final int MSG_DISMISS = 1;
     public static final int MSG_SHOW = 0;
+    private static final int[] SNACKBAR_STYLE_ATTR = {C10817R.attr.snackbarStyle};
 
     @Nullable
     private final AccessibilityManager accessibilityManager;
@@ -112,7 +113,6 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
     @NonNull
     public final SnackbarBaseLayout view;
     private static final boolean USE_OFFSET_API = false;
-    private static final int[] SNACKBAR_STYLE_ATTR = {C10817R.attr.snackbarStyle};
     private static final String TAG = BaseTransientBottomBar.class.getSimpleName();
 
     @NonNull
@@ -123,7 +123,7 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
     public @interface AnimationMode {
     }
 
-    public static abstract class BaseCallback<B> {
+    public abstract class BaseCallback<B> {
         public static final int DISMISS_EVENT_ACTION = 1;
         public static final int DISMISS_EVENT_CONSECUTIVE = 4;
         public static final int DISMISS_EVENT_MANUAL = 3;
@@ -142,29 +142,8 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
     }
 
-    public static class Behavior extends SwipeDismissBehavior<View> {
-
-        @NonNull
-        private final BehaviorDelegate delegate = new BehaviorDelegate(this);
-
-        private void setBaseTransientBottomBar(@NonNull BaseTransientBottomBar<?> baseTransientBottomBar) {
-            this.delegate.setBaseTransientBottomBar(baseTransientBottomBar);
-        }
-
-        @Override // com.google.android.material.behavior.SwipeDismissBehavior
-        public boolean canSwipeDismissView(View view) {
-            return this.delegate.canSwipeDismissView(view);
-        }
-
-        @Override // com.google.android.material.behavior.SwipeDismissBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull MotionEvent motionEvent) {
-            this.delegate.onInterceptTouchEvent(coordinatorLayout, view, motionEvent);
-            return super.onInterceptTouchEvent(coordinatorLayout, view, motionEvent);
-        }
-    }
-
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class BehaviorDelegate {
+    public class BehaviorDelegate {
         private C4427a.b managerCallback;
 
         public BehaviorDelegate(@NonNull SwipeDismissBehavior<?> swipeDismissBehavior) {
@@ -193,6 +172,264 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$b */
+    public class C10986b extends AnimatorListenerAdapter {
+        public C10986b() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            BaseTransientBottomBar.this.onViewShown();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$c */
+    public class C10987c extends AnimatorListenerAdapter {
+
+        /* JADX INFO: renamed from: a */
+        public final /* synthetic */ int f21125a;
+
+        public C10987c(int i) {
+            this.f21125a = i;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            BaseTransientBottomBar.this.onViewHidden(this.f21125a);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$d */
+    public class C10988d implements ValueAnimator.AnimatorUpdateListener {
+        public C10988d() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            BaseTransientBottomBar.this.view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$e */
+    public class C10989e implements ValueAnimator.AnimatorUpdateListener {
+        public C10989e() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            BaseTransientBottomBar.this.view.setScaleX(fFloatValue);
+            BaseTransientBottomBar.this.view.setScaleY(fFloatValue);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$f */
+    public class C10990f extends AnimatorListenerAdapter {
+        public C10990f() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            BaseTransientBottomBar.this.onViewShown();
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            BaseTransientBottomBar.this.contentViewCallback.animateContentIn(70, 180);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$g */
+    public class C10991g implements ValueAnimator.AnimatorUpdateListener {
+
+        /* JADX INFO: renamed from: a */
+        public int f21130a;
+
+        /* JADX INFO: renamed from: b */
+        public final /* synthetic */ int f21131b;
+
+        public C10991g(int i) {
+            this.f21131b = i;
+            this.f21130a = i;
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            if (BaseTransientBottomBar.USE_OFFSET_API) {
+                ViewCompat.offsetTopAndBottom(BaseTransientBottomBar.this.view, iIntValue - this.f21130a);
+            } else {
+                BaseTransientBottomBar.this.view.setTranslationY(iIntValue);
+            }
+            this.f21130a = iIntValue;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$h */
+    public class C10992h extends AnimatorListenerAdapter {
+
+        /* JADX INFO: renamed from: a */
+        public final /* synthetic */ int f21133a;
+
+        public C10992h(int i) {
+            this.f21133a = i;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            BaseTransientBottomBar.this.onViewHidden(this.f21133a);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            BaseTransientBottomBar.this.contentViewCallback.animateContentOut(0, 180);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$j */
+    public final class C10994j implements Handler.Callback {
+        @Override // android.os.Handler.Callback
+        public boolean handleMessage(@NonNull Message message) {
+            int i = message.what;
+            if (i == 0) {
+                ((BaseTransientBottomBar) message.obj).showView();
+                return true;
+            }
+            if (i != 1) {
+                return false;
+            }
+            ((BaseTransientBottomBar) message.obj).hideView(message.arg1);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$m */
+    public class C10997m implements OnApplyWindowInsetsListener {
+        public C10997m() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        @NonNull
+        public WindowInsetsCompat onApplyWindowInsets(View view, @NonNull WindowInsetsCompat windowInsetsCompat) {
+            BaseTransientBottomBar.this.extraBottomMarginWindowInset = windowInsetsCompat.getSystemWindowInsetBottom();
+            BaseTransientBottomBar.this.extraLeftMarginWindowInset = windowInsetsCompat.getSystemWindowInsetLeft();
+            BaseTransientBottomBar.this.extraRightMarginWindowInset = windowInsetsCompat.getSystemWindowInsetRight();
+            BaseTransientBottomBar.this.updateMargins();
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$n */
+    public class C10998n extends AccessibilityDelegateCompat {
+        public C10998n() {
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            accessibilityNodeInfoCompat.addAction(1048576);
+            accessibilityNodeInfoCompat.setDismissable(true);
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public boolean performAccessibilityAction(View view, int i, Bundle bundle) {
+            if (i != 1048576) {
+                return super.performAccessibilityAction(view, i, bundle);
+            }
+            BaseTransientBottomBar.this.dismiss();
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$o */
+    public class C10999o implements C4427a.b {
+        public C10999o() {
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p349h.C4427a.b
+        /* JADX INFO: renamed from: a */
+        public void mo6142a(int i) {
+            Handler handler = BaseTransientBottomBar.handler;
+            handler.sendMessage(handler.obtainMessage(1, i, 0, BaseTransientBottomBar.this));
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p349h.C4427a.b
+        public void show() {
+            Handler handler = BaseTransientBottomBar.handler;
+            handler.sendMessage(handler.obtainMessage(0, BaseTransientBottomBar.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$p */
+    public class C11000p implements OnAttachStateChangeListener {
+
+        /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$p$a */
+        public class a implements Runnable {
+            public a() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                BaseTransientBottomBar.this.onViewHidden(3);
+            }
+        }
+
+        public C11000p() {
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+            WindowInsets rootWindowInsets;
+            if (Build.VERSION.SDK_INT < 29 || (rootWindowInsets = BaseTransientBottomBar.this.view.getRootWindowInsets()) == null) {
+                return;
+            }
+            BaseTransientBottomBar.this.extraBottomMarginGestureInset = rootWindowInsets.getMandatorySystemGestureInsets().bottom;
+            BaseTransientBottomBar.this.updateMargins();
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+            if (BaseTransientBottomBar.this.isShownOrQueued()) {
+                BaseTransientBottomBar.handler.post(new a());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$q */
+    public class C11001q implements OnLayoutChangeListener {
+        public C11001q() {
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnLayoutChangeListener
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4) {
+            BaseTransientBottomBar.this.view.setOnLayoutChangeListener(null);
+            BaseTransientBottomBar.this.showViewImpl();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$r */
+    public class C11002r implements SwipeDismissBehavior.OnDismissListener {
+        public C11002r() {
+        }
+
+        @Override // com.google.android.material.behavior.SwipeDismissBehavior.OnDismissListener
+        public void onDismiss(@NonNull View view) {
+            if (view.getParent() != null) {
+                view.setVisibility(8);
+            }
+            BaseTransientBottomBar.this.dispatchDismiss(0);
+        }
+
+        @Override // com.google.android.material.behavior.SwipeDismissBehavior.OnDismissListener
+        public void onDragStateChanged(int i) {
+            if (i == 0) {
+                C4427a.m6134b().m6139f(BaseTransientBottomBar.this.managerCallback);
+            } else if (i == 1 || i == 2) {
+                C4427a.m6134b().m6138e(BaseTransientBottomBar.this.managerCallback);
+            }
+        }
+    }
+
     @Deprecated
     public interface ContentViewCallback extends com.google.android.material.snackbar.ContentViewCallback {
     }
@@ -215,9 +452,53 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         void onLayoutChange(View view, int i, int i2, int i3, int i4);
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$a */
+    public class RunnableC10985a implements Runnable {
+        public RunnableC10985a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SnackbarBaseLayout snackbarBaseLayout = BaseTransientBottomBar.this.view;
+            if (snackbarBaseLayout == null) {
+                return;
+            }
+            if (snackbarBaseLayout.getParent() != null) {
+                BaseTransientBottomBar.this.view.setVisibility(0);
+            }
+            if (BaseTransientBottomBar.this.view.getAnimationMode() == 1) {
+                BaseTransientBottomBar.this.startFadeInAnimation();
+            } else {
+                BaseTransientBottomBar.this.startSlideInAnimation();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$l */
+    public class RunnableC10996l implements Runnable {
+        public RunnableC10996l() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            int screenHeight;
+            BaseTransientBottomBar baseTransientBottomBar = BaseTransientBottomBar.this;
+            if (baseTransientBottomBar.view == null || baseTransientBottomBar.context == null || (screenHeight = (BaseTransientBottomBar.this.getScreenHeight() - BaseTransientBottomBar.this.getViewAbsoluteBottom()) + ((int) BaseTransientBottomBar.this.view.getTranslationY())) >= BaseTransientBottomBar.this.extraBottomMarginGestureInset) {
+                return;
+            }
+            ViewGroup.LayoutParams layoutParams = BaseTransientBottomBar.this.view.getLayoutParams();
+            if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
+                Log.w(BaseTransientBottomBar.TAG, "Unable to apply gesture inset because layout params are not MarginLayoutParams");
+                return;
+            }
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            marginLayoutParams.bottomMargin = (BaseTransientBottomBar.this.extraBottomMarginGestureInset - screenHeight) + marginLayoutParams.bottomMargin;
+            BaseTransientBottomBar.this.view.requestLayout();
+        }
+    }
+
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class SnackbarBaseLayout extends FrameLayout {
-        private static final View.OnTouchListener consumeAllTouchListener = new ViewOnTouchListenerC10984a();
+    public class SnackbarBaseLayout extends FrameLayout {
         private final float actionTextColorAlpha;
         private int animationMode;
         private final float backgroundOverlayColorAlpha;
@@ -225,9 +506,10 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         private PorterDuff.Mode backgroundTintMode;
         private OnAttachStateChangeListener onAttachStateChangeListener;
         private OnLayoutChangeListener onLayoutChangeListener;
+        private static final View.OnTouchListener consumeAllTouchListener = new ViewOnTouchListenerC10984a();
 
         /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$SnackbarBaseLayout$a */
-        public static class ViewOnTouchListenerC10984a implements View.OnTouchListener {
+        public final class ViewOnTouchListenerC10984a implements View.OnTouchListener {
             @Override // android.view.View.OnTouchListener
             @SuppressLint({"ClickableViewAccessibility"})
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -374,180 +656,6 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$a */
-    public class RunnableC10985a implements Runnable {
-        public RunnableC10985a() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            SnackbarBaseLayout snackbarBaseLayout = BaseTransientBottomBar.this.view;
-            if (snackbarBaseLayout == null) {
-                return;
-            }
-            if (snackbarBaseLayout.getParent() != null) {
-                BaseTransientBottomBar.this.view.setVisibility(0);
-            }
-            if (BaseTransientBottomBar.this.view.getAnimationMode() == 1) {
-                BaseTransientBottomBar.this.startFadeInAnimation();
-            } else {
-                BaseTransientBottomBar.this.startSlideInAnimation();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$b */
-    public class C10986b extends AnimatorListenerAdapter {
-        public C10986b() {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            BaseTransientBottomBar.this.onViewShown();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$c */
-    public class C10987c extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ int f21125a;
-
-        public C10987c(int i) {
-            this.f21125a = i;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            BaseTransientBottomBar.this.onViewHidden(this.f21125a);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$d */
-    public class C10988d implements ValueAnimator.AnimatorUpdateListener {
-        public C10988d() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            BaseTransientBottomBar.this.view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$e */
-    public class C10989e implements ValueAnimator.AnimatorUpdateListener {
-        public C10989e() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            BaseTransientBottomBar.this.view.setScaleX(fFloatValue);
-            BaseTransientBottomBar.this.view.setScaleY(fFloatValue);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$f */
-    public class C10990f extends AnimatorListenerAdapter {
-        public C10990f() {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            BaseTransientBottomBar.this.onViewShown();
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-            BaseTransientBottomBar.this.contentViewCallback.animateContentIn(70, 180);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$g */
-    public class C10991g implements ValueAnimator.AnimatorUpdateListener {
-
-        /* JADX INFO: renamed from: a */
-        public int f21130a;
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ int f21131b;
-
-        public C10991g(int i) {
-            this.f21131b = i;
-            this.f21130a = i;
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            if (BaseTransientBottomBar.USE_OFFSET_API) {
-                ViewCompat.offsetTopAndBottom(BaseTransientBottomBar.this.view, iIntValue - this.f21130a);
-            } else {
-                BaseTransientBottomBar.this.view.setTranslationY(iIntValue);
-            }
-            this.f21130a = iIntValue;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$h */
-    public class C10992h extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ int f21133a;
-
-        public C10992h(int i) {
-            this.f21133a = i;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            BaseTransientBottomBar.this.onViewHidden(this.f21133a);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-            BaseTransientBottomBar.this.contentViewCallback.animateContentOut(0, 180);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$i */
-    public class C10993i implements ValueAnimator.AnimatorUpdateListener {
-
-        /* JADX INFO: renamed from: a */
-        public int f21135a = 0;
-
-        public C10993i() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            if (BaseTransientBottomBar.USE_OFFSET_API) {
-                ViewCompat.offsetTopAndBottom(BaseTransientBottomBar.this.view, iIntValue - this.f21135a);
-            } else {
-                BaseTransientBottomBar.this.view.setTranslationY(iIntValue);
-            }
-            this.f21135a = iIntValue;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$j */
-    public static class C10994j implements Handler.Callback {
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(@NonNull Message message) {
-            int i = message.what;
-            if (i == 0) {
-                ((BaseTransientBottomBar) message.obj).showView();
-                return true;
-            }
-            if (i != 1) {
-                return false;
-            }
-            ((BaseTransientBottomBar) message.obj).hideView(message.arg1);
-            return true;
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$k */
     public class ViewTreeObserverOnGlobalLayoutListenerC10995k implements ViewTreeObserver.OnGlobalLayoutListener {
         public ViewTreeObserverOnGlobalLayoutListenerC10995k() {
@@ -563,158 +671,24 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$l */
-    public class RunnableC10996l implements Runnable {
-        public RunnableC10996l() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            int screenHeight;
-            BaseTransientBottomBar baseTransientBottomBar = BaseTransientBottomBar.this;
-            if (baseTransientBottomBar.view == null || baseTransientBottomBar.context == null || (screenHeight = (BaseTransientBottomBar.this.getScreenHeight() - BaseTransientBottomBar.this.getViewAbsoluteBottom()) + ((int) BaseTransientBottomBar.this.view.getTranslationY())) >= BaseTransientBottomBar.this.extraBottomMarginGestureInset) {
-                return;
-            }
-            ViewGroup.LayoutParams layoutParams = BaseTransientBottomBar.this.view.getLayoutParams();
-            if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
-                Log.w(BaseTransientBottomBar.TAG, "Unable to apply gesture inset because layout params are not MarginLayoutParams");
-                return;
-            }
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-            marginLayoutParams.bottomMargin = (BaseTransientBottomBar.this.extraBottomMarginGestureInset - screenHeight) + marginLayoutParams.bottomMargin;
-            BaseTransientBottomBar.this.view.requestLayout();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$m */
-    public class C10997m implements OnApplyWindowInsetsListener {
-        public C10997m() {
-        }
-
-        @Override // androidx.core.view.OnApplyWindowInsetsListener
-        @NonNull
-        public WindowInsetsCompat onApplyWindowInsets(View view, @NonNull WindowInsetsCompat windowInsetsCompat) {
-            BaseTransientBottomBar.this.extraBottomMarginWindowInset = windowInsetsCompat.getSystemWindowInsetBottom();
-            BaseTransientBottomBar.this.extraLeftMarginWindowInset = windowInsetsCompat.getSystemWindowInsetLeft();
-            BaseTransientBottomBar.this.extraRightMarginWindowInset = windowInsetsCompat.getSystemWindowInsetRight();
-            BaseTransientBottomBar.this.updateMargins();
-            return windowInsetsCompat;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$n */
-    public class C10998n extends AccessibilityDelegateCompat {
-        public C10998n() {
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            accessibilityNodeInfoCompat.addAction(1048576);
-            accessibilityNodeInfoCompat.setDismissable(true);
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public boolean performAccessibilityAction(View view, int i, Bundle bundle) {
-            if (i != 1048576) {
-                return super.performAccessibilityAction(view, i, bundle);
-            }
-            BaseTransientBottomBar.this.dismiss();
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$o */
-    public class C10999o implements C4427a.b {
-        public C10999o() {
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p349h.C4427a.b
-        /* JADX INFO: renamed from: a */
-        public void mo6142a(int i) {
-            Handler handler = BaseTransientBottomBar.handler;
-            handler.sendMessage(handler.obtainMessage(1, i, 0, BaseTransientBottomBar.this));
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p349h.C4427a.b
-        public void show() {
-            Handler handler = BaseTransientBottomBar.handler;
-            handler.sendMessage(handler.obtainMessage(0, BaseTransientBottomBar.this));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$p */
-    public class C11000p implements OnAttachStateChangeListener {
-
-        /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$p$a */
-        public class a implements Runnable {
-            public a() {
-            }
-
-            @Override // java.lang.Runnable
-            public void run() {
-                BaseTransientBottomBar.this.onViewHidden(3);
-            }
-        }
-
-        public C11000p() {
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnAttachStateChangeListener
-        public void onViewAttachedToWindow(View view) {
-            WindowInsets rootWindowInsets;
-            if (Build.VERSION.SDK_INT < 29 || (rootWindowInsets = BaseTransientBottomBar.this.view.getRootWindowInsets()) == null) {
-                return;
-            }
-            BaseTransientBottomBar.this.extraBottomMarginGestureInset = rootWindowInsets.getMandatorySystemGestureInsets().bottom;
-            BaseTransientBottomBar.this.updateMargins();
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnAttachStateChangeListener
-        public void onViewDetachedFromWindow(View view) {
-            if (BaseTransientBottomBar.this.isShownOrQueued()) {
-                BaseTransientBottomBar.handler.post(new a());
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$q */
-    public class C11001q implements OnLayoutChangeListener {
-        public C11001q() {
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.OnLayoutChangeListener
-        public void onLayoutChange(View view, int i, int i2, int i3, int i4) {
-            BaseTransientBottomBar.this.view.setOnLayoutChangeListener(null);
-            BaseTransientBottomBar.this.showViewImpl();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$r */
-    public class C11002r implements SwipeDismissBehavior.OnDismissListener {
-        public C11002r() {
-        }
-
-        @Override // com.google.android.material.behavior.SwipeDismissBehavior.OnDismissListener
-        public void onDismiss(@NonNull View view) {
-            if (view.getParent() != null) {
-                view.setVisibility(8);
-            }
-            BaseTransientBottomBar.this.dispatchDismiss(0);
-        }
-
-        @Override // com.google.android.material.behavior.SwipeDismissBehavior.OnDismissListener
-        public void onDragStateChanged(int i) {
-            if (i == 0) {
-                C4427a.m6134b().m6139f(BaseTransientBottomBar.this.managerCallback);
-            } else if (i == 1 || i == 2) {
-                C4427a.m6134b().m6138e(BaseTransientBottomBar.this.managerCallback);
-            }
-        }
-    }
-
     public BaseTransientBottomBar(@NonNull ViewGroup viewGroup, @NonNull View view, @NonNull com.google.android.material.snackbar.ContentViewCallback contentViewCallback) {
         this(viewGroup.getContext(), viewGroup, view, contentViewCallback);
+    }
+
+    @NonNull
+    public B addCallback(@Nullable BaseCallback<B> baseCallback) {
+        if (baseCallback == null) {
+            return this;
+        }
+        if (this.callbacks == null) {
+            this.callbacks = new ArrayList();
+        }
+        this.callbacks.add(baseCallback);
+        return this;
+    }
+
+    public void animateViewIn() {
+        this.view.post(new RunnableC10985a());
     }
 
     private void animateViewOut(int i) {
@@ -738,153 +712,6 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         return (this.targetParent.getHeight() + iArr2[1]) - i;
     }
 
-    private ValueAnimator getAlphaAnimator(float... fArr) {
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fArr);
-        valueAnimatorOfFloat.setInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
-        valueAnimatorOfFloat.addUpdateListener(new C10988d());
-        return valueAnimatorOfFloat;
-    }
-
-    private ValueAnimator getScaleAnimator(float... fArr) {
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fArr);
-        valueAnimatorOfFloat.setInterpolator(AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR);
-        valueAnimatorOfFloat.addUpdateListener(new C10989e());
-        return valueAnimatorOfFloat;
-    }
-
-    @RequiresApi(17)
-    private int getScreenHeight() {
-        WindowManager windowManager = (WindowManager) this.context.getSystemService("window");
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
-        return displayMetrics.heightPixels;
-    }
-
-    private int getTranslationYBottom() {
-        int height = this.view.getHeight();
-        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
-        return layoutParams instanceof ViewGroup.MarginLayoutParams ? height + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin : height;
-    }
-
-    private int getViewAbsoluteBottom() {
-        int[] iArr = new int[2];
-        this.view.getLocationOnScreen(iArr);
-        return this.view.getHeight() + iArr[1];
-    }
-
-    private boolean isSwipeDismissable() {
-        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
-        return (layoutParams instanceof CoordinatorLayout.LayoutParams) && (((CoordinatorLayout.LayoutParams) layoutParams).getBehavior() instanceof SwipeDismissBehavior);
-    }
-
-    private void setUpBehavior(CoordinatorLayout.LayoutParams layoutParams) {
-        SwipeDismissBehavior<? extends View> newBehavior = this.behavior;
-        if (newBehavior == null) {
-            newBehavior = getNewBehavior();
-        }
-        if (newBehavior instanceof Behavior) {
-            ((Behavior) newBehavior).setBaseTransientBottomBar(this);
-        }
-        newBehavior.setListener(new C11002r());
-        layoutParams.setBehavior(newBehavior);
-        if (this.anchorView == null) {
-            layoutParams.insetEdge = 80;
-        }
-    }
-
-    private boolean shouldUpdateGestureInset() {
-        return this.extraBottomMarginGestureInset > 0 && !this.gestureInsetBottomIgnored && isSwipeDismissable();
-    }
-
-    private void showViewImpl() {
-        if (shouldAnimate()) {
-            animateViewIn();
-            return;
-        }
-        if (this.view.getParent() != null) {
-            this.view.setVisibility(0);
-        }
-        onViewShown();
-    }
-
-    private void startFadeInAnimation() {
-        ValueAnimator alphaAnimator = getAlphaAnimator(0.0f, 1.0f);
-        ValueAnimator scaleAnimator = getScaleAnimator(ANIMATION_SCALE_FROM_VALUE, 1.0f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(alphaAnimator, scaleAnimator);
-        animatorSet.setDuration(150L);
-        animatorSet.addListener(new C10986b());
-        animatorSet.start();
-    }
-
-    private void startFadeOutAnimation(int i) {
-        ValueAnimator alphaAnimator = getAlphaAnimator(1.0f, 0.0f);
-        alphaAnimator.setDuration(75L);
-        alphaAnimator.addListener(new C10987c(i));
-        alphaAnimator.start();
-    }
-
-    private void startSlideInAnimation() {
-        int translationYBottom = getTranslationYBottom();
-        if (USE_OFFSET_API) {
-            ViewCompat.offsetTopAndBottom(this.view, translationYBottom);
-        } else {
-            this.view.setTranslationY(translationYBottom);
-        }
-        ValueAnimator valueAnimator = new ValueAnimator();
-        valueAnimator.setIntValues(translationYBottom, 0);
-        valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-        valueAnimator.setDuration(250L);
-        valueAnimator.addListener(new C10990f());
-        valueAnimator.addUpdateListener(new C10991g(translationYBottom));
-        valueAnimator.start();
-    }
-
-    private void startSlideOutAnimation(int i) {
-        ValueAnimator valueAnimator = new ValueAnimator();
-        valueAnimator.setIntValues(0, getTranslationYBottom());
-        valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-        valueAnimator.setDuration(250L);
-        valueAnimator.addListener(new C10992h(i));
-        valueAnimator.addUpdateListener(new C10993i());
-        valueAnimator.start();
-    }
-
-    private void updateMargins() {
-        Rect rect;
-        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
-        if (!(layoutParams instanceof ViewGroup.MarginLayoutParams) || (rect = this.originalMargins) == null) {
-            Log.w(TAG, "Unable to update margins because layout params are not MarginLayoutParams");
-            return;
-        }
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-        marginLayoutParams.bottomMargin = rect.bottom + (this.anchorView != null ? this.extraBottomMarginAnchorView : this.extraBottomMarginWindowInset);
-        marginLayoutParams.leftMargin = rect.left + this.extraLeftMarginWindowInset;
-        marginLayoutParams.rightMargin = rect.right + this.extraRightMarginWindowInset;
-        this.view.requestLayout();
-        if (Build.VERSION.SDK_INT < 29 || !shouldUpdateGestureInset()) {
-            return;
-        }
-        this.view.removeCallbacks(this.bottomMarginGestureInsetRunnable);
-        this.view.post(this.bottomMarginGestureInsetRunnable);
-    }
-
-    @NonNull
-    public B addCallback(@Nullable BaseCallback<B> baseCallback) {
-        if (baseCallback == null) {
-            return this;
-        }
-        if (this.callbacks == null) {
-            this.callbacks = new ArrayList();
-        }
-        this.callbacks.add(baseCallback);
-        return this;
-    }
-
-    public void animateViewIn() {
-        this.view.post(new RunnableC10985a());
-    }
-
     public void dismiss() {
         dispatchDismiss(3);
     }
@@ -899,6 +726,13 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
                 c4427aM6134b.m6135a(c4427aM6134b.f11766e, i);
             }
         }
+    }
+
+    private ValueAnimator getAlphaAnimator(float... fArr) {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fArr);
+        valueAnimatorOfFloat.setInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
+        valueAnimatorOfFloat.addUpdateListener(new C10988d());
+        return valueAnimatorOfFloat;
     }
 
     @Nullable
@@ -928,14 +762,41 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         return new Behavior();
     }
 
+    private ValueAnimator getScaleAnimator(float... fArr) {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fArr);
+        valueAnimatorOfFloat.setInterpolator(AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR);
+        valueAnimatorOfFloat.addUpdateListener(new C10989e());
+        return valueAnimatorOfFloat;
+    }
+
+    @RequiresApi(17)
+    private int getScreenHeight() {
+        WindowManager windowManager = (WindowManager) this.context.getSystemService("window");
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
     @LayoutRes
     public int getSnackbarBaseLayoutResId() {
         return hasSnackbarStyleAttr() ? C10817R.layout.mtrl_layout_snackbar : C10817R.layout.design_layout_snackbar;
     }
 
+    private int getTranslationYBottom() {
+        int height = this.view.getHeight();
+        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
+        return layoutParams instanceof ViewGroup.MarginLayoutParams ? height + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin : height;
+    }
+
     @NonNull
     public View getView() {
         return this.view;
+    }
+
+    private int getViewAbsoluteBottom() {
+        int[] iArr = new int[2];
+        this.view.getLocationOnScreen(iArr);
+        return this.view.getHeight() + iArr[1];
     }
 
     public boolean hasSnackbarStyleAttr() {
@@ -979,6 +840,11 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
             z2 = c4427aM6134b.m6136c(bVar) || c4427aM6134b.m6137d(bVar);
         }
         return z2;
+    }
+
+    private boolean isSwipeDismissable() {
+        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
+        return (layoutParams instanceof CoordinatorLayout.LayoutParams) && (((CoordinatorLayout.LayoutParams) layoutParams).getBehavior() instanceof SwipeDismissBehavior);
     }
 
     public void onViewHidden(int i) {
@@ -1066,6 +932,21 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         return this;
     }
 
+    private void setUpBehavior(CoordinatorLayout.LayoutParams layoutParams) {
+        SwipeDismissBehavior<? extends View> newBehavior = this.behavior;
+        if (newBehavior == null) {
+            newBehavior = getNewBehavior();
+        }
+        if (newBehavior instanceof Behavior) {
+            ((Behavior) newBehavior).setBaseTransientBottomBar(this);
+        }
+        newBehavior.setListener(new C11002r());
+        layoutParams.setBehavior(newBehavior);
+        if (this.anchorView == null) {
+            layoutParams.insetEdge = 80;
+        }
+    }
+
     public boolean shouldAnimate() {
         AccessibilityManager accessibilityManager = this.accessibilityManager;
         if (accessibilityManager == null) {
@@ -1073,6 +954,10 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
         List<AccessibilityServiceInfo> enabledAccessibilityServiceList = accessibilityManager.getEnabledAccessibilityServiceList(1);
         return enabledAccessibilityServiceList != null && enabledAccessibilityServiceList.isEmpty();
+    }
+
+    private boolean shouldUpdateGestureInset() {
+        return this.extraBottomMarginGestureInset > 0 && !this.gestureInsetBottomIgnored && isSwipeDismissable();
     }
 
     public void show() {
@@ -1116,6 +1001,121 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
             showViewImpl();
         } else {
             this.view.setOnLayoutChangeListener(new C11001q());
+        }
+    }
+
+    private void showViewImpl() {
+        if (shouldAnimate()) {
+            animateViewIn();
+            return;
+        }
+        if (this.view.getParent() != null) {
+            this.view.setVisibility(0);
+        }
+        onViewShown();
+    }
+
+    private void startFadeInAnimation() {
+        ValueAnimator alphaAnimator = getAlphaAnimator(0.0f, 1.0f);
+        ValueAnimator scaleAnimator = getScaleAnimator(ANIMATION_SCALE_FROM_VALUE, 1.0f);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(alphaAnimator, scaleAnimator);
+        animatorSet.setDuration(150L);
+        animatorSet.addListener(new C10986b());
+        animatorSet.start();
+    }
+
+    private void startFadeOutAnimation(int i) {
+        ValueAnimator alphaAnimator = getAlphaAnimator(1.0f, 0.0f);
+        alphaAnimator.setDuration(75L);
+        alphaAnimator.addListener(new C10987c(i));
+        alphaAnimator.start();
+    }
+
+    private void startSlideInAnimation() {
+        int translationYBottom = getTranslationYBottom();
+        if (USE_OFFSET_API) {
+            ViewCompat.offsetTopAndBottom(this.view, translationYBottom);
+        } else {
+            this.view.setTranslationY(translationYBottom);
+        }
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setIntValues(translationYBottom, 0);
+        valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+        valueAnimator.setDuration(250L);
+        valueAnimator.addListener(new C10990f());
+        valueAnimator.addUpdateListener(new C10991g(translationYBottom));
+        valueAnimator.start();
+    }
+
+    private void startSlideOutAnimation(int i) {
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setIntValues(0, getTranslationYBottom());
+        valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+        valueAnimator.setDuration(250L);
+        valueAnimator.addListener(new C10992h(i));
+        valueAnimator.addUpdateListener(new C10993i());
+        valueAnimator.start();
+    }
+
+    private void updateMargins() {
+        Rect rect;
+        ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
+        if (!(layoutParams instanceof ViewGroup.MarginLayoutParams) || (rect = this.originalMargins) == null) {
+            Log.w(TAG, "Unable to update margins because layout params are not MarginLayoutParams");
+            return;
+        }
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.bottomMargin = rect.bottom + (this.anchorView != null ? this.extraBottomMarginAnchorView : this.extraBottomMarginWindowInset);
+        marginLayoutParams.leftMargin = rect.left + this.extraLeftMarginWindowInset;
+        marginLayoutParams.rightMargin = rect.right + this.extraRightMarginWindowInset;
+        this.view.requestLayout();
+        if (Build.VERSION.SDK_INT < 29 || !shouldUpdateGestureInset()) {
+            return;
+        }
+        this.view.removeCallbacks(this.bottomMarginGestureInsetRunnable);
+        this.view.post(this.bottomMarginGestureInsetRunnable);
+    }
+
+    public class Behavior extends SwipeDismissBehavior<View> {
+
+        @NonNull
+        private final BehaviorDelegate delegate = new BehaviorDelegate(this);
+
+        @Override // com.google.android.material.behavior.SwipeDismissBehavior
+        public boolean canSwipeDismissView(View view) {
+            return this.delegate.canSwipeDismissView(view);
+        }
+
+        @Override // com.google.android.material.behavior.SwipeDismissBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull MotionEvent motionEvent) {
+            this.delegate.onInterceptTouchEvent(coordinatorLayout, view, motionEvent);
+            return super.onInterceptTouchEvent(coordinatorLayout, view, motionEvent);
+        }
+
+        private void setBaseTransientBottomBar(@NonNull BaseTransientBottomBar<?> baseTransientBottomBar) {
+            this.delegate.setBaseTransientBottomBar(baseTransientBottomBar);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.snackbar.BaseTransientBottomBar$i */
+    public class C10993i implements ValueAnimator.AnimatorUpdateListener {
+
+        /* JADX INFO: renamed from: a */
+        public int f21135a = 0;
+
+        public C10993i() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            if (BaseTransientBottomBar.USE_OFFSET_API) {
+                ViewCompat.offsetTopAndBottom(BaseTransientBottomBar.this.view, iIntValue - this.f21135a);
+            } else {
+                BaseTransientBottomBar.this.view.setTranslationY(iIntValue);
+            }
+            this.f21135a = iIntValue;
         }
     }
 

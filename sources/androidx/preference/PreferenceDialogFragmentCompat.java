@@ -40,10 +40,6 @@ public abstract class PreferenceDialogFragmentCompat extends DialogFragment impl
     private DialogPreference mPreference;
     private int mWhichButtonClicked;
 
-    private void requestInputMethod(Dialog dialog) {
-        dialog.getWindow().setSoftInputMode(5);
-    }
-
     public DialogPreference getPreference() {
         if (this.mPreference == null) {
             this.mPreference = (DialogPreference) ((DialogPreference.TargetFragment) getTargetFragment()).findPreference(getArguments().getString("key"));
@@ -171,5 +167,9 @@ public abstract class PreferenceDialogFragmentCompat extends DialogFragment impl
         if (bitmapDrawable != null) {
             bundle.putParcelable(SAVE_STATE_ICON, bitmapDrawable.getBitmap());
         }
+    }
+
+    private void requestInputMethod(Dialog dialog) {
+        dialog.getWindow().setSoftInputMode(5);
     }
 }

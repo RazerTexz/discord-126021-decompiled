@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public interface IdeLocationProvider {
     IdeLocation create(String str) throws CorruptedIdeLocationException;
 
-    Pattern getLocationSelectors();
-
     void findIdes(List<IdeLocation> list, List<CorruptedIdeLocationException> list2);
+
+    Pattern getLocationSelectors();
 }

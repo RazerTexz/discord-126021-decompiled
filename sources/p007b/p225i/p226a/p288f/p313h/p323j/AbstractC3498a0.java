@@ -47,9 +47,6 @@ public abstract class AbstractC3498a0 {
         return handler;
     }
 
-    /* JADX INFO: renamed from: c */
-    public abstract void mo4418c();
-
     /* JADX INFO: renamed from: d */
     public final boolean m4419d() {
         return this.f9665d != 0;
@@ -67,4 +64,7 @@ public abstract class AbstractC3498a0 {
             this.f9663b.m4451c().m4426A("Failed to schedule delayed post. time", Long.valueOf(j));
         }
     }
+
+    /* JADX INFO: renamed from: c */
+    public abstract void mo4418c();
 }

@@ -17,34 +17,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImpressionChannelCallVideoGridView.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImpressionChannelCallVideoGridView implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
+    private final Boolean canInvite = null;
+    private final Long channelUserLimit = null;
+    private final Boolean isAfkChannel = null;
+    private final Long totalParticipants = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackImpressionMetadata trackImpressionMetadata;
     private TrackLocationMetadata trackLocationMetadata;
-    private final Long totalParticipants = null;
-    private final Boolean canInvite = null;
-    private final Boolean isAfkChannel = null;
-    private final Long channelUserLimit = null;
     private final transient String analyticsSchemaTypeName = "impression_channel_call_video_grid_view";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -57,6 +39,18 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
         return C12238m.areEqual(this.totalParticipants, trackImpressionChannelCallVideoGridView.totalParticipants) && C12238m.areEqual(this.canInvite, trackImpressionChannelCallVideoGridView.canInvite) && C12238m.areEqual(this.isAfkChannel, trackImpressionChannelCallVideoGridView.isAfkChannel) && C12238m.areEqual(this.channelUserLimit, trackImpressionChannelCallVideoGridView.channelUserLimit);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.totalParticipants;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -66,6 +60,12 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
         int iHashCode3 = (iHashCode2 + (bool2 != null ? bool2.hashCode() : 0)) * 31;
         Long l2 = this.channelUserLimit;
         return iHashCode3 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

@@ -24,11 +24,6 @@ public final /* data */ class ContentNode extends QueryNode {
         return contentNode.copy(charSequence);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CharSequence getContent() {
-        return this.content;
-    }
-
     public final ContentNode copy(CharSequence content) {
         C12238m.checkNotNullParameter(content, "content");
         return new ContentNode(content);
@@ -39,6 +34,11 @@ public final /* data */ class ContentNode extends QueryNode {
             return (other instanceof ContentNode) && C12238m.areEqual(this.content, ((ContentNode) other).content);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CharSequence getContent() {
+        return this.content;
     }
 
     public final CharSequence getContent() {
@@ -57,14 +57,11 @@ public final /* data */ class ContentNode extends QueryNode {
         return C1643a.m817E(C1643a.m833U("ContentNode(content="), this.content, ")");
     }
 
+    /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public ContentNode(ContentNode contentNode, ContentNode contentNode2) {
+        this("" + contentNode.content + ' ' + contentNode2.content);
         C12238m.checkNotNullParameter(contentNode, "node1");
         C12238m.checkNotNullParameter(contentNode2, "node2");
-        StringBuilder sb = new StringBuilder();
-        sb.append(contentNode.content);
-        sb.append(' ');
-        sb.append(contentNode2.content);
-        this(sb.toString());
     }
 
     @Override // com.discord.utilities.search.query.node.QueryNode

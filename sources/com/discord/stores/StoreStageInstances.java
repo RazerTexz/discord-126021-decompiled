@@ -31,7 +31,7 @@ public final class StoreStageInstances extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageInstances$observeStageInstanceForChannel$1 */
     /* JADX INFO: compiled from: StoreStageInstances.kt */
-    public static final class C64201 extends AbstractC12240o implements Function0<StageInstance> {
+    public final class C64201 extends AbstractC12240o implements Function0<StageInstance> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -49,7 +49,7 @@ public final class StoreStageInstances extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageInstances$observeStageInstances$1 */
     /* JADX INFO: compiled from: StoreStageInstances.kt */
-    public static final class C64211 extends AbstractC12240o implements Function0<Map<Long, ? extends StageInstance>> {
+    public final class C64211 extends AbstractC12240o implements Function0<Map<Long, ? extends StageInstance>> {
         public C64211() {
             super(0);
         }
@@ -62,7 +62,7 @@ public final class StoreStageInstances extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageInstances$observeStageInstancesForGuild$1 */
     /* JADX INFO: compiled from: StoreStageInstances.kt */
-    public static final class C64221 extends AbstractC12240o implements Function0<Map<Long, ? extends StageInstance>> {
+    public final class C64221 extends AbstractC12240o implements Function0<Map<Long, ? extends StageInstance>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -84,28 +84,6 @@ public final class StoreStageInstances extends StoreV2 {
 
     public /* synthetic */ StoreStageInstances(ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this((i & 1) != 0 ? ObservationDeckProvider.get() : observationDeck);
-    }
-
-    private final void handleDelete(Long guildId, long channelId) {
-        this.stageInstancesByChannel.remove(Long.valueOf(channelId));
-        Map<Long, StageInstance> map = this.stageInstancesByGuild.get(guildId);
-        if (map != null) {
-            map.remove(Long.valueOf(channelId));
-        }
-        markChanged();
-    }
-
-    private final void handleStageInstanceCreateOrUpdate(StageInstance stageInstance) {
-        this.stageInstancesByChannel.put(Long.valueOf(stageInstance.getChannelId()), stageInstance);
-        Map<Long, Map<Long, StageInstance>> map = this.stageInstancesByGuild;
-        Long lValueOf = Long.valueOf(stageInstance.getGuildId());
-        Map<Long, StageInstance> linkedHashMap = map.get(lValueOf);
-        if (linkedHashMap == null) {
-            linkedHashMap = new LinkedHashMap<>();
-            map.put(lValueOf, linkedHashMap);
-        }
-        linkedHashMap.put(Long.valueOf(stageInstance.getChannelId()), stageInstance);
-        markChanged();
     }
 
     public final StageInstance getStageInstanceForChannel(long channelId) {
@@ -154,6 +132,15 @@ public final class StoreStageInstances extends StoreV2 {
         }
     }
 
+    private final void handleDelete(Long guildId, long channelId) {
+        this.stageInstancesByChannel.remove(Long.valueOf(channelId));
+        Map<Long, StageInstance> map = this.stageInstancesByGuild.get(guildId);
+        if (map != null) {
+            map.remove(Long.valueOf(channelId));
+        }
+        markChanged();
+    }
+
     @StoreThread
     public final void handleGuildAdd(Guild guild) {
         C12238m.checkNotNullParameter(guild, "guild");
@@ -185,6 +172,19 @@ public final class StoreStageInstances extends StoreV2 {
     public final void handleStageInstanceCreate(StageInstance stageInstance) {
         C12238m.checkNotNullParameter(stageInstance, "stageInstance");
         handleStageInstanceCreateOrUpdate(stageInstance);
+    }
+
+    private final void handleStageInstanceCreateOrUpdate(StageInstance stageInstance) {
+        this.stageInstancesByChannel.put(Long.valueOf(stageInstance.getChannelId()), stageInstance);
+        Map<Long, Map<Long, StageInstance>> map = this.stageInstancesByGuild;
+        Long lValueOf = Long.valueOf(stageInstance.getGuildId());
+        Map<Long, StageInstance> linkedHashMap = map.get(lValueOf);
+        if (linkedHashMap == null) {
+            linkedHashMap = new LinkedHashMap<>();
+            map.put(lValueOf, linkedHashMap);
+        }
+        linkedHashMap.put(Long.valueOf(stageInstance.getChannelId()), stageInstance);
+        markChanged();
     }
 
     @StoreThread

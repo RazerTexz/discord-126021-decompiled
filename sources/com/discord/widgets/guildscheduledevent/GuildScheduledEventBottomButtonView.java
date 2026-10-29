@@ -26,6 +26,32 @@ public final class GuildScheduledEventBottomButtonView extends ConstraintLayout 
         this.binding = guildScheduledEventBottomButtonViewBindingM8386a;
     }
 
+    public final void configure(ButtonConfiguration buttonConfiguration) {
+        C12238m.checkNotNullParameter(buttonConfiguration, "buttonConfiguration");
+        configureStartEventButton(buttonConfiguration);
+        configureInterestedButton(buttonConfiguration);
+        configureShareButton(buttonConfiguration);
+    }
+
+    public final void configureForDetails(ButtonConfiguration buttonConfiguration) {
+        C12238m.checkNotNullParameter(buttonConfiguration, "buttonConfiguration");
+        configureStartEventButton(buttonConfiguration);
+        if (buttonConfiguration.getPrimaryButtonVisible()) {
+            ImageView imageView = this.binding.f15130e;
+            C12238m.checkNotNullExpressionValue(imageView, "binding.secondaryButton");
+            imageView.setVisibility(8);
+            TextView textView = this.binding.f15131f;
+            C12238m.checkNotNullExpressionValue(textView, "binding.secondaryButtonText");
+            textView.setVisibility(8);
+        } else {
+            configureInterestedButton(buttonConfiguration);
+        }
+        configureShareButton(buttonConfiguration);
+        ImageView imageView2 = this.binding.f15127b;
+        imageView2.setVisibility(buttonConfiguration.getExtrasButtonOnClickListener() != null && buttonConfiguration.getIsExtrasVisible() ? 0 : 8);
+        imageView2.setOnClickListener(buttonConfiguration.getExtrasButtonOnClickListener());
+    }
+
     private final void configureInterestedButton(ButtonConfiguration buttonConfiguration) {
         ImageView imageView = this.binding.f15130e;
         imageView.setVisibility(buttonConfiguration.getSecondaryButtonVisible() ? 0 : 8);
@@ -59,32 +85,6 @@ public final class GuildScheduledEventBottomButtonView extends ConstraintLayout 
         ImageView imageView = this.binding.f15128c;
         imageView.setVisibility(buttonConfiguration.getPrimaryButtonVisible() ? 0 : 8);
         imageView.setOnClickListener(buttonConfiguration.getPrimaryButtonOnClickListener());
-    }
-
-    public final void configure(ButtonConfiguration buttonConfiguration) {
-        C12238m.checkNotNullParameter(buttonConfiguration, "buttonConfiguration");
-        configureStartEventButton(buttonConfiguration);
-        configureInterestedButton(buttonConfiguration);
-        configureShareButton(buttonConfiguration);
-    }
-
-    public final void configureForDetails(ButtonConfiguration buttonConfiguration) {
-        C12238m.checkNotNullParameter(buttonConfiguration, "buttonConfiguration");
-        configureStartEventButton(buttonConfiguration);
-        if (buttonConfiguration.getPrimaryButtonVisible()) {
-            ImageView imageView = this.binding.f15130e;
-            C12238m.checkNotNullExpressionValue(imageView, "binding.secondaryButton");
-            imageView.setVisibility(8);
-            TextView textView = this.binding.f15131f;
-            C12238m.checkNotNullExpressionValue(textView, "binding.secondaryButtonText");
-            textView.setVisibility(8);
-        } else {
-            configureInterestedButton(buttonConfiguration);
-        }
-        configureShareButton(buttonConfiguration);
-        ImageView imageView2 = this.binding.f15127b;
-        imageView2.setVisibility(buttonConfiguration.getExtrasButtonOnClickListener() != null && buttonConfiguration.getIsExtrasVisible() ? 0 : 8);
-        imageView2.setOnClickListener(buttonConfiguration.getExtrasButtonOnClickListener());
     }
 
     public final GuildScheduledEventBottomButtonViewBinding getBinding() {

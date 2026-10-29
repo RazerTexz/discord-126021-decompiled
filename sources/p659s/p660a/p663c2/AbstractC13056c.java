@@ -1,6 +1,7 @@
 package p659s.p660a.p663c2;
 
 import com.discord.widgets.chat.input.MentionUtilsKt;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
@@ -45,7 +46,7 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
 
     /* JADX INFO: renamed from: s.a.c2.c$a */
     /* JADX INFO: compiled from: AbstractChannel.kt */
-    public static final class a<E> extends AbstractC13071r {
+    public final class a<E> extends AbstractC13071r {
 
         /* JADX INFO: renamed from: m */
         public final E f27748m;
@@ -89,7 +90,7 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
 
     /* JADX INFO: renamed from: s.a.c2.c$b */
     /* JADX INFO: compiled from: LockFreeLinkedList.kt */
-    public static final class b extends C13028k.a {
+    public final class b extends C13028k.a {
 
         /* JADX INFO: renamed from: d */
         public final /* synthetic */ AbstractC13056c f27749d;
@@ -116,7 +117,7 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
     }
 
     /* JADX INFO: renamed from: a */
-    public static final void m11213a(AbstractC13056c abstractC13056c, Continuation continuation, Object obj, C13062i c13062i) {
+    public static final void m11213a(AbstractC13056c abstractC13056c, Continuation continuation, Object obj, C13062i c13062i) throws IllegalAccessException, InvocationTargetException {
         UndeliveredElementException undeliveredElementExceptionM4331q;
         abstractC13056c.m11217f(c13062i);
         Throwable thM11234w = c13062i.m11234w();
@@ -129,51 +130,6 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
             C12112k.a aVar2 = C12112k.f25169j;
             ((C13126l) continuation).resumeWith(C12112k.m11474constructorimpl(C12113l.createFailure(undeliveredElementExceptionM4331q)));
         }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:22:0x0036  */
-    /* JADX WARN: Code duplicated, block: B:24:0x0039 A[ORIG_RETURN, RETURN] */
-    /* JADX INFO: renamed from: c */
-    public Object mo11214c(AbstractC13071r abstractC13071r) {
-        int iM11160p;
-        boolean z2;
-        C13028k c13028kM11157k;
-        if (mo11219h()) {
-            C13028k c13028k = this.f27746k;
-            do {
-                c13028kM11157k = c13028k.m11157k();
-                if (c13028kM11157k instanceof InterfaceC13069p) {
-                    return c13028kM11157k;
-                }
-            } while (!c13028kM11157k.m11152e(abstractC13071r, c13028k));
-            return null;
-        }
-        C13028k c13028k2 = this.f27746k;
-        b bVar = new b(abstractC13071r, abstractC13071r, this);
-        do {
-            C13028k c13028kM11157k2 = c13028k2.m11157k();
-            if (c13028kM11157k2 instanceof InterfaceC13069p) {
-                return c13028kM11157k2;
-            }
-            iM11160p = c13028kM11157k2.m11160p(abstractC13071r, c13028k2, bVar);
-            z2 = true;
-            if (iM11160p != 1) {
-            }
-            if (z2) {
-                return null;
-            }
-            return C13055b.f27743e;
-        } while (iM11160p != 2);
-        z2 = false;
-        if (z2) {
-            return C13055b.f27743e;
-        }
-        return null;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public String mo11215d() {
-        return "";
     }
 
     /* JADX INFO: renamed from: e */
@@ -230,7 +186,7 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
     }
 
     /* JADX INFO: renamed from: g */
-    public final Throwable m11218g(E e, C13062i<?> c13062i) {
+    public final Throwable m11218g(E e, C13062i<?> c13062i) throws IllegalAccessException, InvocationTargetException {
         UndeliveredElementException undeliveredElementExceptionM4331q;
         m11217f(c13062i);
         Function1<E, Unit> function1 = this.f27747l;
@@ -239,6 +195,97 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
         }
         C11211b.addSuppressed(undeliveredElementExceptionM4331q, c13062i.m11234w());
         throw undeliveredElementExceptionM4331q;
+    }
+
+    /* JADX INFO: renamed from: q */
+    public final AbstractC13071r m11226q() {
+        C13028k c13028k;
+        C13028k c13028kM11159o;
+        C13026i c13026i = this.f27746k;
+        while (true) {
+            Object objM11155i = c13026i.m11155i();
+            Objects.requireNonNull(objM11155i, "null cannot be cast to non-null type kotlinx.coroutines.internal.Node /* = kotlinx.coroutines.internal.LockFreeLinkedListNode */");
+            c13028k = (C13028k) objM11155i;
+            if (c13028k == c13026i || !(c13028k instanceof AbstractC13071r)) {
+                break;
+            }
+            if ((!(((AbstractC13071r) c13028k) instanceof C13062i) || c13028k.mo11150m()) && (c13028kM11159o = c13028k.m11159o()) != null) {
+                c13028kM11159o.m11158l();
+            }
+            return (AbstractC13071r) c13028k;
+        }
+        c13028k = null;
+        return (AbstractC13071r) c13028k;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r1v1, types: [s.a.a.k] */
+    /* JADX WARN: Type inference failed for: r1v2 */
+    /* JADX WARN: Type inference failed for: r1v3 */
+    /* JADX INFO: renamed from: n */
+    public InterfaceC13069p<E> mo11201n() {
+        ?? r1;
+        C13028k c13028kM11159o;
+        C13026i c13026i = this.f27746k;
+        while (true) {
+            Object objM11155i = c13026i.m11155i();
+            Objects.requireNonNull(objM11155i, "null cannot be cast to non-null type kotlinx.coroutines.internal.Node /* = kotlinx.coroutines.internal.LockFreeLinkedListNode */");
+            r1 = (C13028k) objM11155i;
+            if (r1 == c13026i || !(r1 instanceof InterfaceC13069p)) {
+                break;
+            }
+            if ((!(((InterfaceC13069p) r1) instanceof C13062i) || r1.mo11150m()) && (c13028kM11159o = r1.m11159o()) != null) {
+                c13028kM11159o.m11158l();
+            }
+            return (InterfaceC13069p) r1;
+        }
+        r1 = 0;
+        return (InterfaceC13069p) r1;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:22:0x0036  */
+    /* JADX WARN: Code duplicated, block: B:24:0x0039 A[ORIG_RETURN, RETURN] */
+    /* JADX INFO: renamed from: c */
+    public Object mo11214c(AbstractC13071r abstractC13071r) {
+        int iM11160p;
+        boolean z2;
+        C13028k c13028kM11157k;
+        if (mo11219h()) {
+            C13028k c13028k = this.f27746k;
+            do {
+                c13028kM11157k = c13028k.m11157k();
+                if (c13028kM11157k instanceof InterfaceC13069p) {
+                    return c13028kM11157k;
+                }
+            } while (!c13028kM11157k.m11152e(abstractC13071r, c13028k));
+            return null;
+        }
+        C13028k c13028k2 = this.f27746k;
+        b bVar = new b(abstractC13071r, abstractC13071r, this);
+        do {
+            C13028k c13028kM11157k2 = c13028k2.m11157k();
+            if (c13028kM11157k2 instanceof InterfaceC13069p) {
+                return c13028kM11157k2;
+            }
+            iM11160p = c13028kM11157k2.m11160p(abstractC13071r, c13028k2, bVar);
+            z2 = true;
+            if (iM11160p != 1) {
+            }
+            if (z2) {
+                return null;
+            }
+            return C13055b.f27743e;
+        } while (iM11160p != 2);
+        z2 = false;
+        if (z2) {
+            return C13055b.f27743e;
+        }
+        return null;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public String mo11215d() {
+        return "";
     }
 
     /* JADX INFO: renamed from: h */
@@ -307,31 +354,6 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
         function1.invoke(c13062iM11216e.f27763m);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r1v1, types: [s.a.a.k] */
-    /* JADX WARN: Type inference failed for: r1v2 */
-    /* JADX WARN: Type inference failed for: r1v3 */
-    /* JADX INFO: renamed from: n */
-    public InterfaceC13069p<E> mo11201n() {
-        ?? r1;
-        C13028k c13028kM11159o;
-        C13026i c13026i = this.f27746k;
-        while (true) {
-            Object objM11155i = c13026i.m11155i();
-            Objects.requireNonNull(objM11155i, "null cannot be cast to non-null type kotlinx.coroutines.internal.Node /* = kotlinx.coroutines.internal.LockFreeLinkedListNode */");
-            r1 = (C13028k) objM11155i;
-            if (r1 == c13026i || !(r1 instanceof InterfaceC13069p)) {
-                break;
-            }
-            if ((!(((InterfaceC13069p) r1) instanceof C13062i) || r1.mo11150m()) && (c13028kM11159o = r1.m11159o()) != null) {
-                c13028kM11159o.m11158l();
-            }
-            return (InterfaceC13069p) r1;
-        }
-        r1 = 0;
-        return (InterfaceC13069p) r1;
-    }
-
     /* JADX WARN: Code duplicated, block: B:35:0x0080  */
     /* JADX WARN: Code duplicated, block: B:40:0x0089 A[EDGE_INSN: B:40:0x0089->B:41:0x008e BREAK  A[LOOP:0: B:7:0x0013->B:56:?]] */
     /* JADX WARN: Code duplicated, block: B:49:0x00a5  */
@@ -340,7 +362,7 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
     /* JADX WARN: Code duplicated, block: B:56:? A[LOOP:0: B:7:0x0013->B:56:?, LOOP_END, SYNTHETIC] */
     @Override // p659s.p660a.p663c2.InterfaceC13072s
     /* JADX INFO: renamed from: o */
-    public final Object mo11224o(E e, Continuation<? super Unit> continuation) {
+    public final Object mo11224o(E e, Continuation<? super Unit> continuation) throws Throwable {
         Object objMo11222k;
         if (mo11222k(e) == C13055b.f27740b) {
             return Unit.f27425a;
@@ -400,6 +422,12 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
     }
 
     @Override // p659s.p660a.p663c2.InterfaceC13072s
+    /* JADX INFO: renamed from: p */
+    public final boolean mo11225p() {
+        return m11216e() != null;
+    }
+
+    @Override // p659s.p660a.p663c2.InterfaceC13072s
     public final boolean offer(E e) throws Throwable {
         Object objMo11222k = mo11222k(e);
         if (objMo11222k == C13055b.f27740b) {
@@ -420,33 +448,6 @@ public abstract class AbstractC13056c<E> implements InterfaceC13072s<E> {
         Throwable thM11218g2 = m11218g(e, c13062iM11216e);
         String str2 = C13036s.f27703a;
         throw thM11218g2;
-    }
-
-    @Override // p659s.p660a.p663c2.InterfaceC13072s
-    /* JADX INFO: renamed from: p */
-    public final boolean mo11225p() {
-        return m11216e() != null;
-    }
-
-    /* JADX INFO: renamed from: q */
-    public final AbstractC13071r m11226q() {
-        C13028k c13028k;
-        C13028k c13028kM11159o;
-        C13026i c13026i = this.f27746k;
-        while (true) {
-            Object objM11155i = c13026i.m11155i();
-            Objects.requireNonNull(objM11155i, "null cannot be cast to non-null type kotlinx.coroutines.internal.Node /* = kotlinx.coroutines.internal.LockFreeLinkedListNode */");
-            c13028k = (C13028k) objM11155i;
-            if (c13028k == c13026i || !(c13028k instanceof AbstractC13071r)) {
-                break;
-            }
-            if ((!(((AbstractC13071r) c13028k) instanceof C13062i) || c13028k.mo11150m()) && (c13028kM11159o = c13028k.m11159o()) != null) {
-                c13028kM11159o.m11158l();
-            }
-            return (AbstractC13071r) c13028k;
-        }
-        c13028k = null;
-        return (AbstractC13071r) c13028k;
     }
 
     public String toString() {

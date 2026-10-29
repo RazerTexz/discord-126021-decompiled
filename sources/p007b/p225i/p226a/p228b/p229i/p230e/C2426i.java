@@ -19,20 +19,6 @@ public final class C2426i extends AbstractC2432o {
         this.f5190b = aVar;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2432o
-    @Nullable
-    /* JADX INFO: renamed from: a */
-    public AbstractC2432o.a mo2331a() {
-        return this.f5190b;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2432o
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public AbstractC2432o.b mo2332b() {
-        return this.f5189a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -60,6 +46,20 @@ public final class C2426i extends AbstractC2432o {
         int iHashCode = ((bVar == null ? 0 : bVar.hashCode()) ^ 1000003) * 1000003;
         AbstractC2432o.a aVar = this.f5190b;
         return iHashCode ^ (aVar != null ? aVar.hashCode() : 0);
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2432o
+    @Nullable
+    /* JADX INFO: renamed from: a */
+    public AbstractC2432o.a mo2331a() {
+        return this.f5190b;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2432o
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public AbstractC2432o.b mo2332b() {
+        return this.f5189a;
     }
 
     public String toString() {

@@ -12,11 +12,11 @@ import java.util.concurrent.atomic.AtomicLong;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4625g {
 
-    /* JADX INFO: renamed from: a */
-    public static final AtomicLong f12292a = new AtomicLong(0);
-
     /* JADX INFO: renamed from: b */
     public static String f12293b;
+
+    /* JADX INFO: renamed from: a */
+    public static final AtomicLong f12292a = new AtomicLong(0);
 
     public C4625g(C4660v0 c4660v0) {
         long time = new Date().getTime();

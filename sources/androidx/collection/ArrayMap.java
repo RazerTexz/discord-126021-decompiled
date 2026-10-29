@@ -15,6 +15,15 @@ public class ArrayMap<K, V> extends SimpleArrayMap<K, V> implements Map<K, V> {
     public ArrayMap() {
     }
 
+    public boolean containsAll(@NonNull Collection<?> collection) {
+        return MapCollections.containsAllHelper(this, collection);
+    }
+
+    @Override // java.util.Map
+    public Set<Map.Entry<K, V>> entrySet() {
+        return getCollection().getEntrySet();
+    }
+
     private MapCollections<K, V> getCollection() {
         if (this.mCollections == null) {
             this.mCollections = new MapCollections<K, V>() { // from class: androidx.collection.ArrayMap.1
@@ -65,15 +74,6 @@ public class ArrayMap<K, V> extends SimpleArrayMap<K, V> implements Map<K, V> {
             };
         }
         return this.mCollections;
-    }
-
-    public boolean containsAll(@NonNull Collection<?> collection) {
-        return MapCollections.containsAllHelper(this, collection);
-    }
-
-    @Override // java.util.Map
-    public Set<Map.Entry<K, V>> entrySet() {
-        return getCollection().getEntrySet();
     }
 
     @Override // java.util.Map

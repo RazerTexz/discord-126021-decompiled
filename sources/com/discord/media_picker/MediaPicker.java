@@ -21,15 +21,6 @@ public final class MediaPicker {
     /* JADX INFO: renamed from: a */
     public static final MediaPicker f18555a = new MediaPicker();
 
-    /* JADX INFO: compiled from: MediaPicker.kt */
-    public interface Provider {
-        File getImageFile();
-
-        Context requireContext();
-
-        void startActivityForResult(Intent intent, int requestCode);
-    }
-
     /* JADX INFO: renamed from: com.discord.media_picker.MediaPicker$a */
     /* JADX INFO: compiled from: MediaPicker.kt */
     public interface InterfaceC5527a {
@@ -38,6 +29,15 @@ public final class MediaPicker {
 
         /* JADX INFO: renamed from: b */
         void mo8355b(Uri uri, RequestType requestType);
+    }
+
+    /* JADX INFO: compiled from: MediaPicker.kt */
+    public interface Provider {
+        File getImageFile();
+
+        Context requireContext();
+
+        void startActivityForResult(Intent intent, int requestCode);
     }
 
     /* JADX INFO: renamed from: a */

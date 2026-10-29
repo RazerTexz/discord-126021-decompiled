@@ -17,17 +17,17 @@ import p507d0.p592z.C12210b;
 /* JADX INFO: compiled from: CallableReference.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC12221d implements KCallable, Serializable {
-    public static final Object NO_RECEIVER = a.f25280j;
     private final boolean isTopLevel;
     private final String name;
     private final Class owner;
     public final Object receiver;
     private transient KCallable reflected;
     private final String signature;
+    public static final Object NO_RECEIVER = a.f25280j;
 
     /* JADX INFO: renamed from: d0.z.d.d$a */
     /* JADX INFO: compiled from: CallableReference.java */
-    public static class a implements Serializable {
+    public class a implements Serializable {
 
         /* JADX INFO: renamed from: j */
         public static final a f25280j = new a();

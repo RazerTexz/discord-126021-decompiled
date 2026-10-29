@@ -9,16 +9,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppModulesUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long numFailed = null;
-    private final Long numDeltaInstalled = null;
-    private final Long numFullInstalled = null;
-    private final Long foregroundBytesTotal = null;
-    private final Long backgroundBytesTotal = null;
-    private final Long foregroundDownloadMsTotal = null;
-    private final Long backgroundDownloadMsTotal = null;
-    private final Long foregroundInstallMsTotal = null;
-    private final Long backgroundInstallMsTotal = null;
     private final Long backgroundBytesDiscordCloudsync = null;
     private final Long backgroundBytesDiscordDesktopCore = null;
     private final Long backgroundBytesDiscordDispatch = null;
@@ -36,23 +26,7 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
     private final Long backgroundBytesDiscordVigilante = null;
     private final Long backgroundBytesDiscordVoice = null;
     private final Long backgroundBytesDiscordZstd = null;
-    private final Long foregroundBytesDiscordCloudsync = null;
-    private final Long foregroundBytesDiscordDesktopCore = null;
-    private final Long foregroundBytesDiscordDispatch = null;
-    private final Long foregroundBytesDiscordErlpack = null;
-    private final Long foregroundBytesDiscordGameUtils = null;
-    private final Long foregroundBytesDiscordHook = null;
-    private final Long foregroundBytesDiscordKrisp = null;
-    private final Long foregroundBytesDiscordMedia = null;
-    private final Long foregroundBytesDiscordModules = null;
-    private final Long foregroundBytesDiscordOverlay2 = null;
-    private final Long foregroundBytesDiscordRpc = null;
-    private final Long foregroundBytesDiscordSpellcheck = null;
-    private final Long foregroundBytesDiscordUpdaterBootstrap = null;
-    private final Long foregroundBytesDiscordUtils = null;
-    private final Long foregroundBytesDiscordVigilante = null;
-    private final Long foregroundBytesDiscordVoice = null;
-    private final Long foregroundBytesDiscordZstd = null;
+    private final Long backgroundBytesTotal = null;
     private final Long backgroundDownloadMsDiscordCloudsync = null;
     private final Long backgroundDownloadMsDiscordDesktopCore = null;
     private final Long backgroundDownloadMsDiscordDispatch = null;
@@ -70,23 +44,7 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
     private final Long backgroundDownloadMsDiscordVigilante = null;
     private final Long backgroundDownloadMsDiscordVoice = null;
     private final Long backgroundDownloadMsDiscordZstd = null;
-    private final Long foregroundDownloadMsDiscordCloudsync = null;
-    private final Long foregroundDownloadMsDiscordDesktopCore = null;
-    private final Long foregroundDownloadMsDiscordDispatch = null;
-    private final Long foregroundDownloadMsDiscordErlpack = null;
-    private final Long foregroundDownloadMsDiscordGameUtils = null;
-    private final Long foregroundDownloadMsDiscordHook = null;
-    private final Long foregroundDownloadMsDiscordKrisp = null;
-    private final Long foregroundDownloadMsDiscordMedia = null;
-    private final Long foregroundDownloadMsDiscordModules = null;
-    private final Long foregroundDownloadMsDiscordOverlay2 = null;
-    private final Long foregroundDownloadMsDiscordRpc = null;
-    private final Long foregroundDownloadMsDiscordSpellcheck = null;
-    private final Long foregroundDownloadMsDiscordUpdaterBootstrap = null;
-    private final Long foregroundDownloadMsDiscordUtils = null;
-    private final Long foregroundDownloadMsDiscordVigilante = null;
-    private final Long foregroundDownloadMsDiscordVoice = null;
-    private final Long foregroundDownloadMsDiscordZstd = null;
+    private final Long backgroundDownloadMsTotal = null;
     private final Long backgroundInstallMsDiscordCloudsync = null;
     private final Long backgroundInstallMsDiscordDesktopCore = null;
     private final Long backgroundInstallMsDiscordDispatch = null;
@@ -104,6 +62,43 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
     private final Long backgroundInstallMsDiscordVigilante = null;
     private final Long backgroundInstallMsDiscordVoice = null;
     private final Long backgroundInstallMsDiscordZstd = null;
+    private final Long backgroundInstallMsTotal = null;
+    private final Long foregroundBytesDiscordCloudsync = null;
+    private final Long foregroundBytesDiscordDesktopCore = null;
+    private final Long foregroundBytesDiscordDispatch = null;
+    private final Long foregroundBytesDiscordErlpack = null;
+    private final Long foregroundBytesDiscordGameUtils = null;
+    private final Long foregroundBytesDiscordHook = null;
+    private final Long foregroundBytesDiscordKrisp = null;
+    private final Long foregroundBytesDiscordMedia = null;
+    private final Long foregroundBytesDiscordModules = null;
+    private final Long foregroundBytesDiscordOverlay2 = null;
+    private final Long foregroundBytesDiscordRpc = null;
+    private final Long foregroundBytesDiscordSpellcheck = null;
+    private final Long foregroundBytesDiscordUpdaterBootstrap = null;
+    private final Long foregroundBytesDiscordUtils = null;
+    private final Long foregroundBytesDiscordVigilante = null;
+    private final Long foregroundBytesDiscordVoice = null;
+    private final Long foregroundBytesDiscordZstd = null;
+    private final Long foregroundBytesTotal = null;
+    private final Long foregroundDownloadMsDiscordCloudsync = null;
+    private final Long foregroundDownloadMsDiscordDesktopCore = null;
+    private final Long foregroundDownloadMsDiscordDispatch = null;
+    private final Long foregroundDownloadMsDiscordErlpack = null;
+    private final Long foregroundDownloadMsDiscordGameUtils = null;
+    private final Long foregroundDownloadMsDiscordHook = null;
+    private final Long foregroundDownloadMsDiscordKrisp = null;
+    private final Long foregroundDownloadMsDiscordMedia = null;
+    private final Long foregroundDownloadMsDiscordModules = null;
+    private final Long foregroundDownloadMsDiscordOverlay2 = null;
+    private final Long foregroundDownloadMsDiscordRpc = null;
+    private final Long foregroundDownloadMsDiscordSpellcheck = null;
+    private final Long foregroundDownloadMsDiscordUpdaterBootstrap = null;
+    private final Long foregroundDownloadMsDiscordUtils = null;
+    private final Long foregroundDownloadMsDiscordVigilante = null;
+    private final Long foregroundDownloadMsDiscordVoice = null;
+    private final Long foregroundDownloadMsDiscordZstd = null;
+    private final Long foregroundDownloadMsTotal = null;
     private final Long foregroundInstallMsDiscordCloudsync = null;
     private final Long foregroundInstallMsDiscordDesktopCore = null;
     private final Long foregroundInstallMsDiscordDispatch = null;
@@ -121,23 +116,7 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
     private final Long foregroundInstallMsDiscordVigilante = null;
     private final Long foregroundInstallMsDiscordVoice = null;
     private final Long foregroundInstallMsDiscordZstd = null;
-    private final Long minVersionDiscordCloudsync = null;
-    private final Long minVersionDiscordDesktopCore = null;
-    private final Long minVersionDiscordDispatch = null;
-    private final Long minVersionDiscordErlpack = null;
-    private final Long minVersionDiscordGameUtils = null;
-    private final Long minVersionDiscordHook = null;
-    private final Long minVersionDiscordKrisp = null;
-    private final Long minVersionDiscordMedia = null;
-    private final Long minVersionDiscordModules = null;
-    private final Long minVersionDiscordOverlay2 = null;
-    private final Long minVersionDiscordRpc = null;
-    private final Long minVersionDiscordSpellcheck = null;
-    private final Long minVersionDiscordUpdaterBootstrap = null;
-    private final Long minVersionDiscordUtils = null;
-    private final Long minVersionDiscordVigilante = null;
-    private final Long minVersionDiscordVoice = null;
-    private final Long minVersionDiscordZstd = null;
+    private final Long foregroundInstallMsTotal = null;
     private final Long maxVersionDiscordCloudsync = null;
     private final Long maxVersionDiscordDesktopCore = null;
     private final Long maxVersionDiscordDispatch = null;
@@ -155,13 +134,28 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
     private final Long maxVersionDiscordVigilante = null;
     private final Long maxVersionDiscordVoice = null;
     private final Long maxVersionDiscordZstd = null;
+    private final Long minVersionDiscordCloudsync = null;
+    private final Long minVersionDiscordDesktopCore = null;
+    private final Long minVersionDiscordDispatch = null;
+    private final Long minVersionDiscordErlpack = null;
+    private final Long minVersionDiscordGameUtils = null;
+    private final Long minVersionDiscordHook = null;
+    private final Long minVersionDiscordKrisp = null;
+    private final Long minVersionDiscordMedia = null;
+    private final Long minVersionDiscordModules = null;
+    private final Long minVersionDiscordOverlay2 = null;
+    private final Long minVersionDiscordRpc = null;
+    private final Long minVersionDiscordSpellcheck = null;
+    private final Long minVersionDiscordUpdaterBootstrap = null;
+    private final Long minVersionDiscordUtils = null;
+    private final Long minVersionDiscordVigilante = null;
+    private final Long minVersionDiscordVoice = null;
+    private final Long minVersionDiscordZstd = null;
+    private final Long numDeltaInstalled = null;
+    private final Long numFailed = null;
+    private final Long numFullInstalled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_modules_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -172,6 +166,12 @@ public final /* data */ class TrackAppModulesUpdated implements AnalyticsSchema,
         }
         TrackAppModulesUpdated trackAppModulesUpdated = (TrackAppModulesUpdated) other;
         return C12238m.areEqual(this.numFailed, trackAppModulesUpdated.numFailed) && C12238m.areEqual(this.numDeltaInstalled, trackAppModulesUpdated.numDeltaInstalled) && C12238m.areEqual(this.numFullInstalled, trackAppModulesUpdated.numFullInstalled) && C12238m.areEqual(this.foregroundBytesTotal, trackAppModulesUpdated.foregroundBytesTotal) && C12238m.areEqual(this.backgroundBytesTotal, trackAppModulesUpdated.backgroundBytesTotal) && C12238m.areEqual(this.foregroundDownloadMsTotal, trackAppModulesUpdated.foregroundDownloadMsTotal) && C12238m.areEqual(this.backgroundDownloadMsTotal, trackAppModulesUpdated.backgroundDownloadMsTotal) && C12238m.areEqual(this.foregroundInstallMsTotal, trackAppModulesUpdated.foregroundInstallMsTotal) && C12238m.areEqual(this.backgroundInstallMsTotal, trackAppModulesUpdated.backgroundInstallMsTotal) && C12238m.areEqual(this.backgroundBytesDiscordCloudsync, trackAppModulesUpdated.backgroundBytesDiscordCloudsync) && C12238m.areEqual(this.backgroundBytesDiscordDesktopCore, trackAppModulesUpdated.backgroundBytesDiscordDesktopCore) && C12238m.areEqual(this.backgroundBytesDiscordDispatch, trackAppModulesUpdated.backgroundBytesDiscordDispatch) && C12238m.areEqual(this.backgroundBytesDiscordErlpack, trackAppModulesUpdated.backgroundBytesDiscordErlpack) && C12238m.areEqual(this.backgroundBytesDiscordGameUtils, trackAppModulesUpdated.backgroundBytesDiscordGameUtils) && C12238m.areEqual(this.backgroundBytesDiscordHook, trackAppModulesUpdated.backgroundBytesDiscordHook) && C12238m.areEqual(this.backgroundBytesDiscordKrisp, trackAppModulesUpdated.backgroundBytesDiscordKrisp) && C12238m.areEqual(this.backgroundBytesDiscordMedia, trackAppModulesUpdated.backgroundBytesDiscordMedia) && C12238m.areEqual(this.backgroundBytesDiscordModules, trackAppModulesUpdated.backgroundBytesDiscordModules) && C12238m.areEqual(this.backgroundBytesDiscordOverlay2, trackAppModulesUpdated.backgroundBytesDiscordOverlay2) && C12238m.areEqual(this.backgroundBytesDiscordRpc, trackAppModulesUpdated.backgroundBytesDiscordRpc) && C12238m.areEqual(this.backgroundBytesDiscordSpellcheck, trackAppModulesUpdated.backgroundBytesDiscordSpellcheck) && C12238m.areEqual(this.backgroundBytesDiscordUpdaterBootstrap, trackAppModulesUpdated.backgroundBytesDiscordUpdaterBootstrap) && C12238m.areEqual(this.backgroundBytesDiscordUtils, trackAppModulesUpdated.backgroundBytesDiscordUtils) && C12238m.areEqual(this.backgroundBytesDiscordVigilante, trackAppModulesUpdated.backgroundBytesDiscordVigilante) && C12238m.areEqual(this.backgroundBytesDiscordVoice, trackAppModulesUpdated.backgroundBytesDiscordVoice) && C12238m.areEqual(this.backgroundBytesDiscordZstd, trackAppModulesUpdated.backgroundBytesDiscordZstd) && C12238m.areEqual(this.foregroundBytesDiscordCloudsync, trackAppModulesUpdated.foregroundBytesDiscordCloudsync) && C12238m.areEqual(this.foregroundBytesDiscordDesktopCore, trackAppModulesUpdated.foregroundBytesDiscordDesktopCore) && C12238m.areEqual(this.foregroundBytesDiscordDispatch, trackAppModulesUpdated.foregroundBytesDiscordDispatch) && C12238m.areEqual(this.foregroundBytesDiscordErlpack, trackAppModulesUpdated.foregroundBytesDiscordErlpack) && C12238m.areEqual(this.foregroundBytesDiscordGameUtils, trackAppModulesUpdated.foregroundBytesDiscordGameUtils) && C12238m.areEqual(this.foregroundBytesDiscordHook, trackAppModulesUpdated.foregroundBytesDiscordHook) && C12238m.areEqual(this.foregroundBytesDiscordKrisp, trackAppModulesUpdated.foregroundBytesDiscordKrisp) && C12238m.areEqual(this.foregroundBytesDiscordMedia, trackAppModulesUpdated.foregroundBytesDiscordMedia) && C12238m.areEqual(this.foregroundBytesDiscordModules, trackAppModulesUpdated.foregroundBytesDiscordModules) && C12238m.areEqual(this.foregroundBytesDiscordOverlay2, trackAppModulesUpdated.foregroundBytesDiscordOverlay2) && C12238m.areEqual(this.foregroundBytesDiscordRpc, trackAppModulesUpdated.foregroundBytesDiscordRpc) && C12238m.areEqual(this.foregroundBytesDiscordSpellcheck, trackAppModulesUpdated.foregroundBytesDiscordSpellcheck) && C12238m.areEqual(this.foregroundBytesDiscordUpdaterBootstrap, trackAppModulesUpdated.foregroundBytesDiscordUpdaterBootstrap) && C12238m.areEqual(this.foregroundBytesDiscordUtils, trackAppModulesUpdated.foregroundBytesDiscordUtils) && C12238m.areEqual(this.foregroundBytesDiscordVigilante, trackAppModulesUpdated.foregroundBytesDiscordVigilante) && C12238m.areEqual(this.foregroundBytesDiscordVoice, trackAppModulesUpdated.foregroundBytesDiscordVoice) && C12238m.areEqual(this.foregroundBytesDiscordZstd, trackAppModulesUpdated.foregroundBytesDiscordZstd) && C12238m.areEqual(this.backgroundDownloadMsDiscordCloudsync, trackAppModulesUpdated.backgroundDownloadMsDiscordCloudsync) && C12238m.areEqual(this.backgroundDownloadMsDiscordDesktopCore, trackAppModulesUpdated.backgroundDownloadMsDiscordDesktopCore) && C12238m.areEqual(this.backgroundDownloadMsDiscordDispatch, trackAppModulesUpdated.backgroundDownloadMsDiscordDispatch) && C12238m.areEqual(this.backgroundDownloadMsDiscordErlpack, trackAppModulesUpdated.backgroundDownloadMsDiscordErlpack) && C12238m.areEqual(this.backgroundDownloadMsDiscordGameUtils, trackAppModulesUpdated.backgroundDownloadMsDiscordGameUtils) && C12238m.areEqual(this.backgroundDownloadMsDiscordHook, trackAppModulesUpdated.backgroundDownloadMsDiscordHook) && C12238m.areEqual(this.backgroundDownloadMsDiscordKrisp, trackAppModulesUpdated.backgroundDownloadMsDiscordKrisp) && C12238m.areEqual(this.backgroundDownloadMsDiscordMedia, trackAppModulesUpdated.backgroundDownloadMsDiscordMedia) && C12238m.areEqual(this.backgroundDownloadMsDiscordModules, trackAppModulesUpdated.backgroundDownloadMsDiscordModules) && C12238m.areEqual(this.backgroundDownloadMsDiscordOverlay2, trackAppModulesUpdated.backgroundDownloadMsDiscordOverlay2) && C12238m.areEqual(this.backgroundDownloadMsDiscordRpc, trackAppModulesUpdated.backgroundDownloadMsDiscordRpc) && C12238m.areEqual(this.backgroundDownloadMsDiscordSpellcheck, trackAppModulesUpdated.backgroundDownloadMsDiscordSpellcheck) && C12238m.areEqual(this.backgroundDownloadMsDiscordUpdaterBootstrap, trackAppModulesUpdated.backgroundDownloadMsDiscordUpdaterBootstrap) && C12238m.areEqual(this.backgroundDownloadMsDiscordUtils, trackAppModulesUpdated.backgroundDownloadMsDiscordUtils) && C12238m.areEqual(this.backgroundDownloadMsDiscordVigilante, trackAppModulesUpdated.backgroundDownloadMsDiscordVigilante) && C12238m.areEqual(this.backgroundDownloadMsDiscordVoice, trackAppModulesUpdated.backgroundDownloadMsDiscordVoice) && C12238m.areEqual(this.backgroundDownloadMsDiscordZstd, trackAppModulesUpdated.backgroundDownloadMsDiscordZstd) && C12238m.areEqual(this.foregroundDownloadMsDiscordCloudsync, trackAppModulesUpdated.foregroundDownloadMsDiscordCloudsync) && C12238m.areEqual(this.foregroundDownloadMsDiscordDesktopCore, trackAppModulesUpdated.foregroundDownloadMsDiscordDesktopCore) && C12238m.areEqual(this.foregroundDownloadMsDiscordDispatch, trackAppModulesUpdated.foregroundDownloadMsDiscordDispatch) && C12238m.areEqual(this.foregroundDownloadMsDiscordErlpack, trackAppModulesUpdated.foregroundDownloadMsDiscordErlpack) && C12238m.areEqual(this.foregroundDownloadMsDiscordGameUtils, trackAppModulesUpdated.foregroundDownloadMsDiscordGameUtils) && C12238m.areEqual(this.foregroundDownloadMsDiscordHook, trackAppModulesUpdated.foregroundDownloadMsDiscordHook) && C12238m.areEqual(this.foregroundDownloadMsDiscordKrisp, trackAppModulesUpdated.foregroundDownloadMsDiscordKrisp) && C12238m.areEqual(this.foregroundDownloadMsDiscordMedia, trackAppModulesUpdated.foregroundDownloadMsDiscordMedia) && C12238m.areEqual(this.foregroundDownloadMsDiscordModules, trackAppModulesUpdated.foregroundDownloadMsDiscordModules) && C12238m.areEqual(this.foregroundDownloadMsDiscordOverlay2, trackAppModulesUpdated.foregroundDownloadMsDiscordOverlay2) && C12238m.areEqual(this.foregroundDownloadMsDiscordRpc, trackAppModulesUpdated.foregroundDownloadMsDiscordRpc) && C12238m.areEqual(this.foregroundDownloadMsDiscordSpellcheck, trackAppModulesUpdated.foregroundDownloadMsDiscordSpellcheck) && C12238m.areEqual(this.foregroundDownloadMsDiscordUpdaterBootstrap, trackAppModulesUpdated.foregroundDownloadMsDiscordUpdaterBootstrap) && C12238m.areEqual(this.foregroundDownloadMsDiscordUtils, trackAppModulesUpdated.foregroundDownloadMsDiscordUtils) && C12238m.areEqual(this.foregroundDownloadMsDiscordVigilante, trackAppModulesUpdated.foregroundDownloadMsDiscordVigilante) && C12238m.areEqual(this.foregroundDownloadMsDiscordVoice, trackAppModulesUpdated.foregroundDownloadMsDiscordVoice) && C12238m.areEqual(this.foregroundDownloadMsDiscordZstd, trackAppModulesUpdated.foregroundDownloadMsDiscordZstd) && C12238m.areEqual(this.backgroundInstallMsDiscordCloudsync, trackAppModulesUpdated.backgroundInstallMsDiscordCloudsync) && C12238m.areEqual(this.backgroundInstallMsDiscordDesktopCore, trackAppModulesUpdated.backgroundInstallMsDiscordDesktopCore) && C12238m.areEqual(this.backgroundInstallMsDiscordDispatch, trackAppModulesUpdated.backgroundInstallMsDiscordDispatch) && C12238m.areEqual(this.backgroundInstallMsDiscordErlpack, trackAppModulesUpdated.backgroundInstallMsDiscordErlpack) && C12238m.areEqual(this.backgroundInstallMsDiscordGameUtils, trackAppModulesUpdated.backgroundInstallMsDiscordGameUtils) && C12238m.areEqual(this.backgroundInstallMsDiscordHook, trackAppModulesUpdated.backgroundInstallMsDiscordHook) && C12238m.areEqual(this.backgroundInstallMsDiscordKrisp, trackAppModulesUpdated.backgroundInstallMsDiscordKrisp) && C12238m.areEqual(this.backgroundInstallMsDiscordMedia, trackAppModulesUpdated.backgroundInstallMsDiscordMedia) && C12238m.areEqual(this.backgroundInstallMsDiscordModules, trackAppModulesUpdated.backgroundInstallMsDiscordModules) && C12238m.areEqual(this.backgroundInstallMsDiscordOverlay2, trackAppModulesUpdated.backgroundInstallMsDiscordOverlay2) && C12238m.areEqual(this.backgroundInstallMsDiscordRpc, trackAppModulesUpdated.backgroundInstallMsDiscordRpc) && C12238m.areEqual(this.backgroundInstallMsDiscordSpellcheck, trackAppModulesUpdated.backgroundInstallMsDiscordSpellcheck) && C12238m.areEqual(this.backgroundInstallMsDiscordUpdaterBootstrap, trackAppModulesUpdated.backgroundInstallMsDiscordUpdaterBootstrap) && C12238m.areEqual(this.backgroundInstallMsDiscordUtils, trackAppModulesUpdated.backgroundInstallMsDiscordUtils) && C12238m.areEqual(this.backgroundInstallMsDiscordVigilante, trackAppModulesUpdated.backgroundInstallMsDiscordVigilante) && C12238m.areEqual(this.backgroundInstallMsDiscordVoice, trackAppModulesUpdated.backgroundInstallMsDiscordVoice) && C12238m.areEqual(this.backgroundInstallMsDiscordZstd, trackAppModulesUpdated.backgroundInstallMsDiscordZstd) && C12238m.areEqual(this.foregroundInstallMsDiscordCloudsync, trackAppModulesUpdated.foregroundInstallMsDiscordCloudsync) && C12238m.areEqual(this.foregroundInstallMsDiscordDesktopCore, trackAppModulesUpdated.foregroundInstallMsDiscordDesktopCore) && C12238m.areEqual(this.foregroundInstallMsDiscordDispatch, trackAppModulesUpdated.foregroundInstallMsDiscordDispatch) && C12238m.areEqual(this.foregroundInstallMsDiscordErlpack, trackAppModulesUpdated.foregroundInstallMsDiscordErlpack) && C12238m.areEqual(this.foregroundInstallMsDiscordGameUtils, trackAppModulesUpdated.foregroundInstallMsDiscordGameUtils) && C12238m.areEqual(this.foregroundInstallMsDiscordHook, trackAppModulesUpdated.foregroundInstallMsDiscordHook) && C12238m.areEqual(this.foregroundInstallMsDiscordKrisp, trackAppModulesUpdated.foregroundInstallMsDiscordKrisp) && C12238m.areEqual(this.foregroundInstallMsDiscordMedia, trackAppModulesUpdated.foregroundInstallMsDiscordMedia) && C12238m.areEqual(this.foregroundInstallMsDiscordModules, trackAppModulesUpdated.foregroundInstallMsDiscordModules) && C12238m.areEqual(this.foregroundInstallMsDiscordOverlay2, trackAppModulesUpdated.foregroundInstallMsDiscordOverlay2) && C12238m.areEqual(this.foregroundInstallMsDiscordRpc, trackAppModulesUpdated.foregroundInstallMsDiscordRpc) && C12238m.areEqual(this.foregroundInstallMsDiscordSpellcheck, trackAppModulesUpdated.foregroundInstallMsDiscordSpellcheck) && C12238m.areEqual(this.foregroundInstallMsDiscordUpdaterBootstrap, trackAppModulesUpdated.foregroundInstallMsDiscordUpdaterBootstrap) && C12238m.areEqual(this.foregroundInstallMsDiscordUtils, trackAppModulesUpdated.foregroundInstallMsDiscordUtils) && C12238m.areEqual(this.foregroundInstallMsDiscordVigilante, trackAppModulesUpdated.foregroundInstallMsDiscordVigilante) && C12238m.areEqual(this.foregroundInstallMsDiscordVoice, trackAppModulesUpdated.foregroundInstallMsDiscordVoice) && C12238m.areEqual(this.foregroundInstallMsDiscordZstd, trackAppModulesUpdated.foregroundInstallMsDiscordZstd) && C12238m.areEqual(this.minVersionDiscordCloudsync, trackAppModulesUpdated.minVersionDiscordCloudsync) && C12238m.areEqual(this.minVersionDiscordDesktopCore, trackAppModulesUpdated.minVersionDiscordDesktopCore) && C12238m.areEqual(this.minVersionDiscordDispatch, trackAppModulesUpdated.minVersionDiscordDispatch) && C12238m.areEqual(this.minVersionDiscordErlpack, trackAppModulesUpdated.minVersionDiscordErlpack) && C12238m.areEqual(this.minVersionDiscordGameUtils, trackAppModulesUpdated.minVersionDiscordGameUtils) && C12238m.areEqual(this.minVersionDiscordHook, trackAppModulesUpdated.minVersionDiscordHook) && C12238m.areEqual(this.minVersionDiscordKrisp, trackAppModulesUpdated.minVersionDiscordKrisp) && C12238m.areEqual(this.minVersionDiscordMedia, trackAppModulesUpdated.minVersionDiscordMedia) && C12238m.areEqual(this.minVersionDiscordModules, trackAppModulesUpdated.minVersionDiscordModules) && C12238m.areEqual(this.minVersionDiscordOverlay2, trackAppModulesUpdated.minVersionDiscordOverlay2) && C12238m.areEqual(this.minVersionDiscordRpc, trackAppModulesUpdated.minVersionDiscordRpc) && C12238m.areEqual(this.minVersionDiscordSpellcheck, trackAppModulesUpdated.minVersionDiscordSpellcheck) && C12238m.areEqual(this.minVersionDiscordUpdaterBootstrap, trackAppModulesUpdated.minVersionDiscordUpdaterBootstrap) && C12238m.areEqual(this.minVersionDiscordUtils, trackAppModulesUpdated.minVersionDiscordUtils) && C12238m.areEqual(this.minVersionDiscordVigilante, trackAppModulesUpdated.minVersionDiscordVigilante) && C12238m.areEqual(this.minVersionDiscordVoice, trackAppModulesUpdated.minVersionDiscordVoice) && C12238m.areEqual(this.minVersionDiscordZstd, trackAppModulesUpdated.minVersionDiscordZstd) && C12238m.areEqual(this.maxVersionDiscordCloudsync, trackAppModulesUpdated.maxVersionDiscordCloudsync) && C12238m.areEqual(this.maxVersionDiscordDesktopCore, trackAppModulesUpdated.maxVersionDiscordDesktopCore) && C12238m.areEqual(this.maxVersionDiscordDispatch, trackAppModulesUpdated.maxVersionDiscordDispatch) && C12238m.areEqual(this.maxVersionDiscordErlpack, trackAppModulesUpdated.maxVersionDiscordErlpack) && C12238m.areEqual(this.maxVersionDiscordGameUtils, trackAppModulesUpdated.maxVersionDiscordGameUtils) && C12238m.areEqual(this.maxVersionDiscordHook, trackAppModulesUpdated.maxVersionDiscordHook) && C12238m.areEqual(this.maxVersionDiscordKrisp, trackAppModulesUpdated.maxVersionDiscordKrisp) && C12238m.areEqual(this.maxVersionDiscordMedia, trackAppModulesUpdated.maxVersionDiscordMedia) && C12238m.areEqual(this.maxVersionDiscordModules, trackAppModulesUpdated.maxVersionDiscordModules) && C12238m.areEqual(this.maxVersionDiscordOverlay2, trackAppModulesUpdated.maxVersionDiscordOverlay2) && C12238m.areEqual(this.maxVersionDiscordRpc, trackAppModulesUpdated.maxVersionDiscordRpc) && C12238m.areEqual(this.maxVersionDiscordSpellcheck, trackAppModulesUpdated.maxVersionDiscordSpellcheck) && C12238m.areEqual(this.maxVersionDiscordUpdaterBootstrap, trackAppModulesUpdated.maxVersionDiscordUpdaterBootstrap) && C12238m.areEqual(this.maxVersionDiscordUtils, trackAppModulesUpdated.maxVersionDiscordUtils) && C12238m.areEqual(this.maxVersionDiscordVigilante, trackAppModulesUpdated.maxVersionDiscordVigilante) && C12238m.areEqual(this.maxVersionDiscordVoice, trackAppModulesUpdated.maxVersionDiscordVoice) && C12238m.areEqual(this.maxVersionDiscordZstd, trackAppModulesUpdated.maxVersionDiscordZstd);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

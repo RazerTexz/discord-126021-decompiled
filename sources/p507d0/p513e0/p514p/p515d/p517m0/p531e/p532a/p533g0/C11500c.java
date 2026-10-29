@@ -60,13 +60,6 @@ public final class C11500c {
         f23235f = C12136h0.mapOf(C12116o.m10073to(c11713b2, c11713b), C12116o.m10073to(c11713b4, c11713b3), C12116o.m10073to(C11486a0.f23151e, C11291k.a.f22566u), C12116o.m10073to(c11713b6, c11713b5), C12116o.m10073to(c11713b8, c11713b7));
     }
 
-    public static /* synthetic */ InterfaceC11340c mapOrResolveJavaAnnotation$default(C11500c c11500c, InterfaceC11564a interfaceC11564a, C11529g c11529g, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        return c11500c.mapOrResolveJavaAnnotation(interfaceC11564a, c11529g, z2);
-    }
-
     public final InterfaceC11340c findMappedJavaAnnotation(C11713b c11713b, InterfaceC11570d interfaceC11570d, C11529g c11529g) {
         InterfaceC11564a interfaceC11564aFindAnnotation;
         C12238m.checkNotNullParameter(c11713b, "kotlinName");
@@ -97,6 +90,13 @@ public final class C11500c {
 
     public final C11716e getTARGET_ANNOTATION_ALLOWED_TARGETS$descriptors_jvm() {
         return f23232c;
+    }
+
+    public static /* synthetic */ InterfaceC11340c mapOrResolveJavaAnnotation$default(C11500c c11500c, InterfaceC11564a interfaceC11564a, C11529g c11529g, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        return c11500c.mapOrResolveJavaAnnotation(interfaceC11564a, c11529g, z2);
     }
 
     public final InterfaceC11340c mapOrResolveJavaAnnotation(InterfaceC11564a interfaceC11564a, C11529g c11529g, boolean z2) {

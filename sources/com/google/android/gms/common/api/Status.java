@@ -21,6 +21,24 @@ public final class Status extends AbstractSafeParcelable implements InterfaceC32
     @RecentlyNonNull
     public static final Parcelable.Creator<Status> CREATOR;
 
+    /* JADX INFO: renamed from: o */
+    public final int f20494o;
+
+    /* JADX INFO: renamed from: p */
+    public final int f20495p;
+
+    /* JADX INFO: renamed from: q */
+    @Nullable
+    public final String f20496q;
+
+    /* JADX INFO: renamed from: r */
+    @Nullable
+    public final PendingIntent f20497r;
+
+    /* JADX INFO: renamed from: s */
+    @Nullable
+    public final ConnectionResult f20498s;
+
     /* JADX INFO: renamed from: j */
     @RecentlyNonNull
     public static final Status f20489j = new Status(0, null);
@@ -40,24 +58,6 @@ public final class Status extends AbstractSafeParcelable implements InterfaceC32
     /* JADX INFO: renamed from: n */
     @RecentlyNonNull
     public static final Status f20493n = new Status(16, null);
-
-    /* JADX INFO: renamed from: o */
-    public final int f20494o;
-
-    /* JADX INFO: renamed from: p */
-    public final int f20495p;
-
-    /* JADX INFO: renamed from: q */
-    @Nullable
-    public final String f20496q;
-
-    /* JADX INFO: renamed from: r */
-    @Nullable
-    public final PendingIntent f20497r;
-
-    /* JADX INFO: renamed from: s */
-    @Nullable
-    public final ConnectionResult f20498s;
 
     static {
         new Status(17, null);
@@ -81,13 +81,6 @@ public final class Status extends AbstractSafeParcelable implements InterfaceC32
         this.f20498s = null;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.InterfaceC3273h
-    @RecentlyNonNull
-    /* JADX INFO: renamed from: b0 */
-    public Status mo4053b0() {
-        return this;
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof Status)) {
             return false;
@@ -100,17 +93,31 @@ public final class Status extends AbstractSafeParcelable implements InterfaceC32
         return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20494o), Integer.valueOf(this.f20495p), this.f20496q, this.f20497r, this.f20498s});
     }
 
+    /* JADX INFO: renamed from: w0 */
+    public boolean m9030w0() {
+        return this.f20495p <= 0;
+    }
+
+    @RecentlyNonNull
+    /* JADX INFO: renamed from: x0 */
+    public final String m9031x0() {
+        String str = this.f20496q;
+        return str != null ? str : C1460d.m420B0(this.f20495p);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.InterfaceC3273h
+    @RecentlyNonNull
+    /* JADX INFO: renamed from: b0 */
+    public Status mo4053b0() {
+        return this;
+    }
+
     @RecentlyNonNull
     public String toString() {
         C3361j c3361j = new C3361j(this);
         c3361j.m4162a("statusCode", m9031x0());
         c3361j.m4162a("resolution", this.f20497r);
         return c3361j.toString();
-    }
-
-    /* JADX INFO: renamed from: w0 */
-    public boolean m9030w0() {
-        return this.f20495p <= 0;
     }
 
     @Override // android.os.Parcelable
@@ -126,13 +133,6 @@ public final class Status extends AbstractSafeParcelable implements InterfaceC32
         parcel.writeInt(263144);
         parcel.writeInt(i3);
         C1460d.m418A2(parcel, iM594y2);
-    }
-
-    @RecentlyNonNull
-    /* JADX INFO: renamed from: x0 */
-    public final String m9031x0() {
-        String str = this.f20496q;
-        return str != null ? str : C1460d.m420B0(this.f20495p);
     }
 
     public Status(int i, @Nullable String str, @Nullable PendingIntent pendingIntent) {

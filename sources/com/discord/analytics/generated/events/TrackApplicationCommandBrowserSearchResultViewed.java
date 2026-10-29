@@ -10,16 +10,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationCommandBrowserSearchResultViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationCommandBrowserSearchResultViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence query = null;
     private final List<Long> commandIds = null;
+    private final CharSequence query = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_command_browser_search_result_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackApplicationCommandBrowserSearchResultViewed i
         }
         TrackApplicationCommandBrowserSearchResultViewed trackApplicationCommandBrowserSearchResultViewed = (TrackApplicationCommandBrowserSearchResultViewed) other;
         return C12238m.areEqual(this.query, trackApplicationCommandBrowserSearchResultViewed.query) && C12238m.areEqual(this.commandIds, trackApplicationCommandBrowserSearchResultViewed.commandIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

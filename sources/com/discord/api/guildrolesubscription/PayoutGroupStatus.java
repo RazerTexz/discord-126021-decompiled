@@ -16,7 +16,7 @@ public enum PayoutGroupStatus {
     private final int apiValue;
 
     /* JADX INFO: compiled from: PayoutGroupStatus.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

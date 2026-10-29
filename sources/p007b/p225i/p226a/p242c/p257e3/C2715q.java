@@ -68,7 +68,7 @@ public final class C2715q implements InterfaceC2710l {
 
     /* JADX INFO: renamed from: b.i.a.c.e3.q$a */
     /* JADX INFO: compiled from: DefaultDataSource.java */
-    public static final class a implements InterfaceC2710l.a {
+    public final class a implements InterfaceC2710l.a {
 
         /* JADX INFO: renamed from: a */
         public final Context f6605a;
@@ -94,6 +94,25 @@ public final class C2715q implements InterfaceC2710l {
         Objects.requireNonNull(interfaceC2710l);
         this.f6596c = interfaceC2710l;
         this.f6595b = new ArrayList();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    public void close() throws IOException {
+        InterfaceC2710l interfaceC2710l = this.f6604k;
+        if (interfaceC2710l != null) {
+            try {
+                interfaceC2710l.close();
+            } finally {
+                this.f6604k = null;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final void m2864p(InterfaceC2710l interfaceC2710l) {
+        for (int i = 0; i < this.f6595b.size(); i++) {
+            interfaceC2710l.mo2587d(this.f6595b.get(i));
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
@@ -183,18 +202,6 @@ public final class C2715q implements InterfaceC2710l {
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() throws IOException {
-        InterfaceC2710l interfaceC2710l = this.f6604k;
-        if (interfaceC2710l != null) {
-            try {
-                interfaceC2710l.close();
-            } finally {
-                this.f6604k = null;
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
     /* JADX INFO: renamed from: d */
     public void mo2587d(InterfaceC2680a0 interfaceC2680a0) {
         Objects.requireNonNull(interfaceC2680a0);
@@ -246,13 +253,6 @@ public final class C2715q implements InterfaceC2710l {
             return null;
         }
         return interfaceC2710l.mo2589n();
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final void m2864p(InterfaceC2710l interfaceC2710l) {
-        for (int i = 0; i < this.f6595b.size(); i++) {
-            interfaceC2710l.mo2587d(this.f6595b.get(i));
-        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2706h

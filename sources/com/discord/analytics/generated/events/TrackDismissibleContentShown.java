@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDismissibleContentShown.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDismissibleContentShown implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence type = null;
+    private final Boolean bypassFatigue = null;
     private final Long contentCount = null;
     private final CharSequence groupName = null;
-    private final Boolean bypassFatigue = null;
+    private TrackBase trackBase;
+    private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "dismissible_content_shown";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackDismissibleContentShown implements AnalyticsS
         }
         TrackDismissibleContentShown trackDismissibleContentShown = (TrackDismissibleContentShown) other;
         return C12238m.areEqual(this.type, trackDismissibleContentShown.type) && C12238m.areEqual(this.contentCount, trackDismissibleContentShown.contentCount) && C12238m.areEqual(this.groupName, trackDismissibleContentShown.groupName) && C12238m.areEqual(this.bypassFatigue, trackDismissibleContentShown.bypassFatigue);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -27,10 +27,6 @@ public class TintTypedArray {
         this.mWrapped = typedArray;
     }
 
-    public static TintTypedArray obtainStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr) {
-        return new TintTypedArray(context, context.obtainStyledAttributes(attributeSet, iArr));
-    }
-
     public boolean getBoolean(int i, boolean z2) {
         return this.mWrapped.getBoolean(i, z2);
     }
@@ -163,6 +159,10 @@ public class TintTypedArray {
         return this.mWrapped.length();
     }
 
+    public static TintTypedArray obtainStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr) {
+        return new TintTypedArray(context, context.obtainStyledAttributes(attributeSet, iArr));
+    }
+
     public TypedValue peekValue(int i) {
         return this.mWrapped.peekValue(i);
     }
@@ -171,12 +171,12 @@ public class TintTypedArray {
         this.mWrapped.recycle();
     }
 
-    public static TintTypedArray obtainStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr, int i, int i2) {
-        return new TintTypedArray(context, context.obtainStyledAttributes(attributeSet, iArr, i, i2));
-    }
-
     public int getLayoutDimension(int i, int i2) {
         return this.mWrapped.getLayoutDimension(i, i2);
+    }
+
+    public static TintTypedArray obtainStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr, int i, int i2) {
+        return new TintTypedArray(context, context.obtainStyledAttributes(attributeSet, iArr, i, i2));
     }
 
     public static TintTypedArray obtainStyledAttributes(Context context, int i, int[] iArr) {

@@ -33,7 +33,7 @@ public final class WindowInsetsAnimationCompat {
     private static final String TAG = "WindowInsetsAnimCompat";
     private Impl mImpl;
 
-    public static abstract class Callback {
+    public abstract class Callback {
         public static final int DISPATCH_MODE_CONTINUE_ON_SUBTREE = 1;
         public static final int DISPATCH_MODE_STOP = 0;
         public WindowInsets mDispachedInsets;
@@ -67,7 +67,7 @@ public final class WindowInsetsAnimationCompat {
         }
     }
 
-    public static class Impl {
+    public class Impl {
         private float mAlpha;
         private final long mDurationMillis;
         private float mFraction;
@@ -118,10 +118,10 @@ public final class WindowInsetsAnimationCompat {
     }
 
     @RequiresApi(21)
-    public static class Impl21 extends Impl {
+    public class Impl21 extends Impl {
 
         @RequiresApi(21)
-        public static class Impl21OnApplyWindowInsetsListener implements View.OnApplyWindowInsetsListener {
+        public class Impl21OnApplyWindowInsetsListener implements View.OnApplyWindowInsetsListener {
             private static final int COMPAT_ANIMATION_DURATION = 160;
             public final Callback mCallback;
             private WindowInsetsCompat mLastInsets;
@@ -334,19 +334,6 @@ public final class WindowInsetsAnimationCompat {
         }
     }
 
-    public static void setCallback(@NonNull View view, @Nullable Callback callback) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            Impl30.setCallback(view, callback);
-        } else {
-            Impl21.setCallback(view, callback);
-        }
-    }
-
-    @RequiresApi(30)
-    public static WindowInsetsAnimationCompat toWindowInsetsAnimationCompat(WindowInsetsAnimation windowInsetsAnimation) {
-        return new WindowInsetsAnimationCompat(windowInsetsAnimation);
-    }
-
     @FloatRange(from = 0.0d, m75to = 1.0d)
     public float getAlpha() {
         return this.mImpl.getAlpha();
@@ -378,18 +365,31 @@ public final class WindowInsetsAnimationCompat {
         this.mImpl.setAlpha(f);
     }
 
+    public static void setCallback(@NonNull View view, @Nullable Callback callback) {
+        if (Build.VERSION.SDK_INT >= 30) {
+            Impl30.setCallback(view, callback);
+        } else {
+            Impl21.setCallback(view, callback);
+        }
+    }
+
     public void setFraction(@FloatRange(from = 0.0d, m75to = 1.0d) float f) {
         this.mImpl.setFraction(f);
     }
 
     @RequiresApi(30)
-    public static class Impl30 extends Impl {
+    public static WindowInsetsAnimationCompat toWindowInsetsAnimationCompat(WindowInsetsAnimation windowInsetsAnimation) {
+        return new WindowInsetsAnimationCompat(windowInsetsAnimation);
+    }
+
+    @RequiresApi(30)
+    public class Impl30 extends Impl {
 
         @NonNull
         private final WindowInsetsAnimation mWrapped;
 
         @RequiresApi(30)
-        public static class ProxyCallback extends WindowInsetsAnimation.Callback {
+        public class ProxyCallback extends WindowInsetsAnimation.Callback {
             private final HashMap<WindowInsetsAnimation, WindowInsetsAnimationCompat> mAnimations;
             private final Callback mCompat;
             private List<WindowInsetsAnimationCompat> mRORunningAnimations;
@@ -460,20 +460,6 @@ public final class WindowInsetsAnimationCompat {
             return new WindowInsetsAnimation.Bounds(boundsCompat.getLowerBound().toPlatformInsets(), boundsCompat.getUpperBound().toPlatformInsets());
         }
 
-        @NonNull
-        public static Insets getHigherBounds(@NonNull WindowInsetsAnimation.Bounds bounds) {
-            return Insets.toCompatInsets(bounds.getUpperBound());
-        }
-
-        @NonNull
-        public static Insets getLowerBounds(@NonNull WindowInsetsAnimation.Bounds bounds) {
-            return Insets.toCompatInsets(bounds.getLowerBound());
-        }
-
-        public static void setCallback(@NonNull View view, @Nullable Callback callback) {
-            view.setWindowInsetsAnimationCallback(callback != null ? new ProxyCallback(callback) : null);
-        }
-
         @Override // androidx.core.view.WindowInsetsAnimationCompat.Impl
         public long getDurationMillis() {
             return this.mWrapped.getDurationMillis();
@@ -482,6 +468,11 @@ public final class WindowInsetsAnimationCompat {
         @Override // androidx.core.view.WindowInsetsAnimationCompat.Impl
         public float getFraction() {
             return this.mWrapped.getFraction();
+        }
+
+        @NonNull
+        public static Insets getHigherBounds(@NonNull WindowInsetsAnimation.Bounds bounds) {
+            return Insets.toCompatInsets(bounds.getUpperBound());
         }
 
         @Override // androidx.core.view.WindowInsetsAnimationCompat.Impl
@@ -495,9 +486,18 @@ public final class WindowInsetsAnimationCompat {
             return this.mWrapped.getInterpolator();
         }
 
+        @NonNull
+        public static Insets getLowerBounds(@NonNull WindowInsetsAnimation.Bounds bounds) {
+            return Insets.toCompatInsets(bounds.getLowerBound());
+        }
+
         @Override // androidx.core.view.WindowInsetsAnimationCompat.Impl
         public int getTypeMask() {
             return this.mWrapped.getTypeMask();
+        }
+
+        public static void setCallback(@NonNull View view, @Nullable Callback callback) {
+            view.setWindowInsetsAnimationCallback(callback != null ? new ProxyCallback(callback) : null);
         }
 
         @Override // androidx.core.view.WindowInsetsAnimationCompat.Impl
@@ -510,19 +510,13 @@ public final class WindowInsetsAnimationCompat {
         }
     }
 
-    public static final class BoundsCompat {
+    public final class BoundsCompat {
         private final Insets mLowerBound;
         private final Insets mUpperBound;
 
         public BoundsCompat(@NonNull Insets insets, @NonNull Insets insets2) {
             this.mLowerBound = insets;
             this.mUpperBound = insets2;
-        }
-
-        @NonNull
-        @RequiresApi(30)
-        public static BoundsCompat toBoundsCompat(@NonNull WindowInsetsAnimation.Bounds bounds) {
-            return new BoundsCompat(bounds);
         }
 
         @NonNull
@@ -544,6 +538,12 @@ public final class WindowInsetsAnimationCompat {
         @RequiresApi(30)
         public WindowInsetsAnimation.Bounds toBounds() {
             return Impl30.createPlatformBounds(this);
+        }
+
+        @NonNull
+        @RequiresApi(30)
+        public static BoundsCompat toBoundsCompat(@NonNull WindowInsetsAnimation.Bounds bounds) {
+            return new BoundsCompat(bounds);
         }
 
         public String toString() {

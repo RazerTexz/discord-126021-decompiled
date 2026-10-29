@@ -6,9 +6,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfCard.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfCard {
-    private final CharSequence loadId = null;
     private final Long cardIndex = null;
     private final CharSequence cardType = null;
+    private final CharSequence loadId = null;
 
     public boolean equals(Object other) {
         if (this == other) {

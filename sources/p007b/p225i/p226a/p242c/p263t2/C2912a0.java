@@ -9,9 +9,6 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2912a0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final String[] f7670a = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
-
     /* JADX INFO: renamed from: b */
     public static final int[] f7671b = {44100, 48000, 32000};
 
@@ -30,9 +27,12 @@ public final class C2912a0 {
     /* JADX INFO: renamed from: g */
     public static final int[] f7676g = {8000, 16000, 24000, 32000, 40000, 48000, 56000, 64000, RestAPIAbortCodes.RELATIONSHIP_INCOMING_DISABLED, 96000, 112000, 128000, 144000, 160000};
 
+    /* JADX INFO: renamed from: a */
+    public static final String[] f7670a = {"audio/mpeg-L1", "audio/mpeg-L2", "audio/mpeg"};
+
     /* JADX INFO: renamed from: b.i.a.c.t2.a0$a */
     /* JADX INFO: compiled from: MpegAudioUtil.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public int f7677a;

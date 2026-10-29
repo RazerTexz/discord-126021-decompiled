@@ -37,11 +37,11 @@ public final class C2909t0 {
     /* JADX INFO: renamed from: f */
     public int f7663f;
 
-    /* JADX INFO: renamed from: g */
-    public float f7664g = 1.0f;
-
     /* JADX INFO: renamed from: h */
     public AudioFocusRequest f7665h;
+
+    /* JADX INFO: renamed from: g */
+    public float f7664g = 1.0f;
 
     /* JADX INFO: renamed from: b.i.a.c.t0$a */
     /* JADX INFO: compiled from: AudioFocusManager.java */

@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumPurchaseCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumPurchaseCompleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean success = null;
     private final CharSequence errorCode = null;
-    private final CharSequence plan = null;
     private final CharSequence paymentGateway = null;
+    private final CharSequence plan = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "premium_purchase_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackPremiumPurchaseCompleted implements Analytics
         }
         TrackPremiumPurchaseCompleted trackPremiumPurchaseCompleted = (TrackPremiumPurchaseCompleted) other;
         return C12238m.areEqual(this.success, trackPremiumPurchaseCompleted.success) && C12238m.areEqual(this.errorCode, trackPremiumPurchaseCompleted.errorCode) && C12238m.areEqual(this.plan, trackPremiumPurchaseCompleted.plan) && C12238m.areEqual(this.paymentGateway, trackPremiumPurchaseCompleted.paymentGateway);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

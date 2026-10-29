@@ -54,26 +54,9 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT_EXTRA_GUILD_ID, guildId)");
-            C0870j.m156d(context, WidgetServerSettingsEnableCommunitySteps.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final class C93971 extends AbstractC12240o implements Function0<Unit> {
+    public final class C93971 extends AbstractC12240o implements Function0<Unit> {
         public C93971() {
             super(0);
         }
@@ -95,7 +78,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final class C93982 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C93982 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C93982() {
             super(1);
         }
@@ -113,7 +96,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final /* synthetic */ class C94021 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C94021 extends C12236k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState, Unit> {
         public C94021(WidgetServerSettingsEnableCommunitySteps widgetServerSettingsEnableCommunitySteps) {
             super(1, widgetServerSettingsEnableCommunitySteps, WidgetServerSettingsEnableCommunitySteps.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$ViewState;)V", 0);
         }
@@ -133,7 +116,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final class C94032 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
+    public final class C94032 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
         public C94032() {
             super(1);
         }
@@ -161,7 +144,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public static final class C94043 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.Event, Unit> {
+    public final class C94043 extends AbstractC12240o implements Function1<WidgetServerSettingsEnableCommunityViewModel.Event, Unit> {
         public C94043() {
             super(1);
         }
@@ -189,6 +172,23 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
         }
     }
 
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT_EXTRA_GUILD_ID, guildId)");
+            C0870j.m156d(context, WidgetServerSettingsEnableCommunitySteps.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetServerSettingsEnableCommunitySteps() {
         super(C5419R.layout.widget_enable_community_steps);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsEnableCommunitySteps$binding$2.INSTANCE, null, 2, null);
@@ -206,12 +206,12 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
         return (WidgetEnableCommunityStepsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetServerSettingsEnableCommunityViewModel getViewModel() {
-        return (WidgetServerSettingsEnableCommunityViewModel) this.viewModel.getValue();
-    }
-
     public final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
+    }
+
+    private final WidgetServerSettingsEnableCommunityViewModel getViewModel() {
+        return (WidgetServerSettingsEnableCommunityViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment

@@ -13,7 +13,7 @@ public final class Pools {
         boolean release(@NonNull T t);
     }
 
-    public static class SimplePool<T> implements Pool<T> {
+    public class SimplePool<T> implements Pool<T> {
         private final Object[] mPool;
         private int mPoolSize;
 
@@ -22,15 +22,6 @@ public final class Pools {
                 throw new IllegalArgumentException("The max pool size must be > 0");
             }
             this.mPool = new Object[i];
-        }
-
-        private boolean isInPool(@NonNull T t) {
-            for (int i = 0; i < this.mPoolSize; i++) {
-                if (this.mPool[i] == t) {
-                    return true;
-                }
-            }
-            return false;
         }
 
         @Override // androidx.core.util.Pools.Pool
@@ -45,6 +36,15 @@ public final class Pools {
             objArr[i2] = null;
             this.mPoolSize = i - 1;
             return t;
+        }
+
+        private boolean isInPool(@NonNull T t) {
+            for (int i = 0; i < this.mPoolSize; i++) {
+                if (this.mPool[i] == t) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override // androidx.core.util.Pools.Pool
@@ -63,7 +63,7 @@ public final class Pools {
         }
     }
 
-    public static class SynchronizedPool<T> extends SimplePool<T> {
+    public class SynchronizedPool<T> extends SimplePool<T> {
         private final Object mLock;
 
         public SynchronizedPool(int i) {

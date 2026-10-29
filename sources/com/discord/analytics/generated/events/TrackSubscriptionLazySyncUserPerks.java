@@ -9,26 +9,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionLazySyncUserPerks.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionLazySyncUserPerks implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionPlanId = null;
-    private final Long paymentGateway = null;
-    private final CharSequence paymentGatewayPlanId = null;
-    private final Long currentPeriodStart = null;
     private final Long currentPeriodEnd = null;
-    private final Boolean premiumTypeMismatch = null;
-    private final Boolean premiumUntilMismatch = null;
-    private final Long originalPremiumType = null;
-    private final Long originalPremiumUntil = null;
+    private final Long currentPeriodStart = null;
     private final Long newPremiumType = null;
     private final Long newPremiumUntil = null;
+    private final Long originalPremiumType = null;
+    private final Long originalPremiumUntil = null;
+    private final Long paymentGateway = null;
+    private final CharSequence paymentGatewayPlanId = null;
+    private final Boolean premiumTypeMismatch = null;
+    private final Boolean premiumUntilMismatch = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionPlanId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_lazy_sync_user_perks";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackSubscriptionLazySyncUserPerks implements Anal
         }
         TrackSubscriptionLazySyncUserPerks trackSubscriptionLazySyncUserPerks = (TrackSubscriptionLazySyncUserPerks) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionLazySyncUserPerks.subscriptionId) && C12238m.areEqual(this.subscriptionPlanId, trackSubscriptionLazySyncUserPerks.subscriptionPlanId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionLazySyncUserPerks.paymentGateway) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionLazySyncUserPerks.paymentGatewayPlanId) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionLazySyncUserPerks.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionLazySyncUserPerks.currentPeriodEnd) && C12238m.areEqual(this.premiumTypeMismatch, trackSubscriptionLazySyncUserPerks.premiumTypeMismatch) && C12238m.areEqual(this.premiumUntilMismatch, trackSubscriptionLazySyncUserPerks.premiumUntilMismatch) && C12238m.areEqual(this.originalPremiumType, trackSubscriptionLazySyncUserPerks.originalPremiumType) && C12238m.areEqual(this.originalPremiumUntil, trackSubscriptionLazySyncUserPerks.originalPremiumUntil) && C12238m.areEqual(this.newPremiumType, trackSubscriptionLazySyncUserPerks.newPremiumType) && C12238m.areEqual(this.newPremiumUntil, trackSubscriptionLazySyncUserPerks.newPremiumUntil);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

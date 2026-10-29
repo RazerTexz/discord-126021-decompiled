@@ -28,7 +28,7 @@ public final class ManageReactionsEmojisAdapter extends MGRecyclerAdapterSimple<
     private Function1<? super String, Unit> onEmojiSelectedListener;
 
     /* JADX INFO: compiled from: ManageReactionsEmojisAdapter.kt */
-    public static final /* data */ class ReactionEmojiItem implements MGRecyclerDataPayload {
+    public final /* data */ class ReactionEmojiItem implements MGRecyclerDataPayload {
         private final boolean isSelected;
         private final String key;
         private final MessageReaction reaction;
@@ -51,16 +51,6 @@ public final class ManageReactionsEmojisAdapter extends MGRecyclerAdapterSimple<
             return reactionEmojiItem.copy(messageReaction, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MessageReaction getReaction() {
-            return this.reaction;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public final ReactionEmojiItem copy(MessageReaction reaction, boolean isSelected) {
             C12238m.checkNotNullParameter(reaction, "reaction");
             return new ReactionEmojiItem(reaction, isSelected);
@@ -77,9 +67,19 @@ public final class ManageReactionsEmojisAdapter extends MGRecyclerAdapterSimple<
             return C12238m.areEqual(this.reaction, reactionEmojiItem.reaction) && this.isSelected == reactionEmojiItem.isSelected;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MessageReaction getReaction() {
+            return this.reaction;
         }
 
         public final MessageReaction getReaction() {
@@ -120,9 +120,9 @@ public final class ManageReactionsEmojisAdapter extends MGRecyclerAdapterSimple<
     }
 
     /* JADX INFO: compiled from: ManageReactionsEmojisAdapter.kt */
-    public static final class ReactionEmojiViewHolder extends MGRecyclerViewHolder<ManageReactionsEmojisAdapter, ReactionEmojiItem> {
-        private static final int emojiSizePx = DimenUtils.dpToPixels(20);
+    public final class ReactionEmojiViewHolder extends MGRecyclerViewHolder<ManageReactionsEmojisAdapter, ReactionEmojiItem> {
         private final WidgetManageReactionsEmojiBinding binding;
+        private static final int emojiSizePx = DimenUtils.dpToPixels(20);
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ReactionEmojiViewHolder(ManageReactionsEmojisAdapter manageReactionsEmojisAdapter) {

@@ -29,6 +29,11 @@ public final class C11623q {
         c11623q.m9519b(new C11713b("java.util.function.BiFunction"), c11623q.m9518a("java.util.function.BinaryOperator"));
     }
 
+    public final C11713b getPurelyImplementedInterface(C11713b c11713b) {
+        C12238m.checkNotNullParameter(c11713b, "classFqName");
+        return f23517b.get(c11713b);
+    }
+
     /* JADX INFO: renamed from: a */
     public final List<C11713b> m9518a(String... strArr) {
         ArrayList arrayList = new ArrayList(strArr.length);
@@ -44,10 +49,5 @@ public final class C11623q {
         for (Object obj : list) {
             map.put((C11713b) obj, c11713b);
         }
-    }
-
-    public final C11713b getPurelyImplementedInterface(C11713b c11713b) {
-        C12238m.checkNotNullParameter(c11713b, "classFqName");
-        return f23517b.get(c11713b);
     }
 }

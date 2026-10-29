@@ -27,7 +27,7 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.PriceTierPickerBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-    public static final class C84381 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C84381 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C84381() {
             super(1);
         }
@@ -46,12 +46,8 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Observable<StoreState> observeStoreState(ObservationDeck observationDeck, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions) {
-            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeGuildRoleSubscriptions}, false, null, null, new C8439xe1dc6f86(storeGuildRoleSubscriptions), 14, null);
         }
 
         public static /* synthetic */ Observable observeStoreState$default(Companion companion, ObservationDeck observationDeck, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, int i, Object obj) {
@@ -64,13 +60,17 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
             return companion.observeStoreState(observationDeck, storeGuildRoleSubscriptions);
         }
 
+        private final Observable<StoreState> observeStoreState(ObservationDeck observationDeck, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions) {
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeGuildRoleSubscriptions}, false, null, null, new C8439xe1dc6f86(storeGuildRoleSubscriptions), 14, null);
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreGuildRoleSubscriptions.PriceTierState priceTierState;
 
         public StoreState(StoreGuildRoleSubscriptions.PriceTierState priceTierState) {
@@ -85,11 +85,6 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
             return storeState.copy(priceTierState);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreGuildRoleSubscriptions.PriceTierState getPriceTierState() {
-            return this.priceTierState;
-        }
-
         public final StoreState copy(StoreGuildRoleSubscriptions.PriceTierState priceTierState) {
             C12238m.checkNotNullParameter(priceTierState, "priceTierState");
             return new StoreState(priceTierState);
@@ -100,6 +95,11 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
                 return (other instanceof StoreState) && C12238m.areEqual(this.priceTierState, ((StoreState) other).priceTierState);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreGuildRoleSubscriptions.PriceTierState getPriceTierState() {
+            return this.priceTierState;
         }
 
         public final StoreGuildRoleSubscriptions.PriceTierState getPriceTierState() {
@@ -123,10 +123,10 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-        public static final class Failed extends ViewState {
+        public final class Failed extends ViewState {
             public static final Failed INSTANCE = new Failed();
 
             private Failed() {
@@ -135,7 +135,7 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
         }
 
         /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<Integer> priceTiers;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -145,16 +145,16 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
                 this.priceTiers = list;
             }
 
+            public final List<Integer> component1() {
+                return this.priceTiers;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.priceTiers;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<Integer> component1() {
-                return this.priceTiers;
             }
 
             public final Loaded copy(List<Integer> priceTiers) {
@@ -187,7 +187,7 @@ public final class PriceTierPickerBottomSheetViewModel extends AbstractC0859d0<V
         }
 
         /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {

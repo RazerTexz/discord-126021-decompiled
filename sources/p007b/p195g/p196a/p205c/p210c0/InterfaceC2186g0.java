@@ -11,7 +11,7 @@ public interface InterfaceC2186g0<T extends InterfaceC2186g0<T>> {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.g0$a */
     /* JADX INFO: compiled from: VisibilityChecker.java */
-    public static class a implements InterfaceC2186g0<a>, Serializable {
+    public class a implements InterfaceC2186g0<a>, Serializable {
 
         /* JADX INFO: renamed from: j */
         public static final a f4709j;

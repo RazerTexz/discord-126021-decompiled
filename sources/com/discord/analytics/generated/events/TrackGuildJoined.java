@@ -9,33 +9,27 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildJoined implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence joinMethod = null;
+    private final Long accessibleStageChannels = null;
+    private final Long accessibleTextChannels = null;
+    private final Long accessibleVoiceChannels = null;
     private final Long applicationId = null;
     private final Long botId = null;
     private final Long guildId = null;
     private final CharSequence guildName = null;
     private final Long guildOwnerId = null;
-    private final Long userGuilds = null;
+    private final Long inviteGuildScheduledEventId = null;
+    private final CharSequence joinMethod = null;
     private final CharSequence joinType = null;
-    private final CharSequence source = null;
-    private final Long locationGuildId = null;
     private final Long locationChannelId = null;
     private final Long locationChannelType = null;
+    private final Long locationGuildId = null;
     private final Long locationMessageId = null;
-    private final Long inviteGuildScheduledEventId = null;
     private final Long postableChannels = null;
     private final CharSequence recommendationLoadId = null;
-    private final Long accessibleTextChannels = null;
-    private final Long accessibleVoiceChannels = null;
-    private final Long accessibleStageChannels = null;
+    private final CharSequence source = null;
+    private TrackBase trackBase;
+    private final Long userGuilds = null;
     private final transient String analyticsSchemaTypeName = "guild_joined";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -46,6 +40,12 @@ public final /* data */ class TrackGuildJoined implements AnalyticsSchema, Track
         }
         TrackGuildJoined trackGuildJoined = (TrackGuildJoined) other;
         return C12238m.areEqual(this.joinMethod, trackGuildJoined.joinMethod) && C12238m.areEqual(this.applicationId, trackGuildJoined.applicationId) && C12238m.areEqual(this.botId, trackGuildJoined.botId) && C12238m.areEqual(this.guildId, trackGuildJoined.guildId) && C12238m.areEqual(this.guildName, trackGuildJoined.guildName) && C12238m.areEqual(this.guildOwnerId, trackGuildJoined.guildOwnerId) && C12238m.areEqual(this.userGuilds, trackGuildJoined.userGuilds) && C12238m.areEqual(this.joinType, trackGuildJoined.joinType) && C12238m.areEqual(this.source, trackGuildJoined.source) && C12238m.areEqual(this.locationGuildId, trackGuildJoined.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackGuildJoined.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackGuildJoined.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackGuildJoined.locationMessageId) && C12238m.areEqual(this.inviteGuildScheduledEventId, trackGuildJoined.inviteGuildScheduledEventId) && C12238m.areEqual(this.postableChannels, trackGuildJoined.postableChannels) && C12238m.areEqual(this.recommendationLoadId, trackGuildJoined.recommendationLoadId) && C12238m.areEqual(this.accessibleTextChannels, trackGuildJoined.accessibleTextChannels) && C12238m.areEqual(this.accessibleVoiceChannels, trackGuildJoined.accessibleVoiceChannels) && C12238m.areEqual(this.accessibleStageChannels, trackGuildJoined.accessibleStageChannels);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

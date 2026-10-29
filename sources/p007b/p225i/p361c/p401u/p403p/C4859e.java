@@ -10,15 +10,6 @@ import p007b.p225i.p361c.p401u.C4850n;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4859e {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f12998a = TimeUnit.HOURS.toMillis(24);
-
-    /* JADX INFO: renamed from: b */
-    public static final long f12999b = TimeUnit.MINUTES.toMillis(30);
-
-    /* JADX INFO: renamed from: c */
-    public final C4850n f13000c = C4850n.m6770c();
-
     /* JADX INFO: renamed from: d */
     @GuardedBy("this")
     public long f13001d;
@@ -26,6 +17,15 @@ public class C4859e {
     /* JADX INFO: renamed from: e */
     @GuardedBy("this")
     public int f13002e;
+
+    /* JADX INFO: renamed from: a */
+    public static final long f12998a = TimeUnit.HOURS.toMillis(24);
+
+    /* JADX INFO: renamed from: c */
+    public final C4850n f13000c = C4850n.m6770c();
+
+    /* JADX INFO: renamed from: b */
+    public static final long f12999b = TimeUnit.MINUTES.toMillis(30);
 
     /* JADX INFO: renamed from: a */
     public synchronized boolean m6811a() {
@@ -60,7 +60,5 @@ public class C4859e {
                 throw th;
             }
         }
-        return;
-        throw th;
     }
 }

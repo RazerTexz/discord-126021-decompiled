@@ -42,7 +42,6 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int EMOJI_SIZE = DimenUtils.dpToPixels(16);
     private static final int JUMBOIFY_SCALE_FACTOR = 3;
     private final EmojiIdAndType emojiIdAndType;
     private final int height;
@@ -50,9 +49,10 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
     private boolean isRevealed;
     private final Function3<Boolean, Integer, Context, String> urlProvider;
     private final int width;
+    private static final int EMOJI_SIZE = DimenUtils.dpToPixels(16);
 
     /* JADX INFO: compiled from: EmojiNode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -61,13 +61,6 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
                 i = EmojiNode.EMOJI_SIZE;
             }
             return companion.from(modelEmojiCustom, i);
-        }
-
-        public static /* synthetic */ void renderEmoji$default(Companion companion, SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2, int i, int i2, Object obj) {
-            if ((i2 & 4) != 0) {
-                i = EmojiNode.EMOJI_SIZE;
-            }
-            companion.renderEmoji(simpleDraweeSpanTextView, messageReactionEmoji, z2, i);
         }
 
         public final <T extends RenderContext> EmojiNode<T> from(ModelEmojiCustom customEmoji, int sizePx) {
@@ -84,6 +77,13 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
             String name = modelEmojiCustom.getName();
             C12238m.checkNotNullExpressionValue(name, "this.name");
             return new EmojiIdAndType.Custom(id2, zIsAnimated, name);
+        }
+
+        public static /* synthetic */ void renderEmoji$default(Companion companion, SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2, int i, int i2, Object obj) {
+            if ((i2 & 4) != 0) {
+                i = EmojiNode.EMOJI_SIZE;
+            }
+            companion.renderEmoji(simpleDraweeSpanTextView, messageReactionEmoji, z2, i);
         }
 
         public final void renderEmoji(SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2) {
@@ -233,10 +233,10 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
     }
 
     /* JADX INFO: compiled from: EmojiNode.kt */
-    public static abstract class EmojiIdAndType implements Serializable {
+    public abstract class EmojiIdAndType implements Serializable {
 
         /* JADX INFO: compiled from: EmojiNode.kt */
-        public static final /* data */ class Custom extends EmojiIdAndType {
+        public final /* data */ class Custom extends EmojiIdAndType {
             private final long id;
             private final boolean isAnimated;
             private final String name;
@@ -263,21 +263,6 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
                 return custom.copy(j, z2, str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getId() {
-                return this.id;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsAnimated() {
-                return this.isAnimated;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getName() {
-                return this.name;
-            }
-
             public final Custom copy(long id2, boolean isAnimated, String name) {
                 C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
                 return new Custom(id2, isAnimated, name);
@@ -294,8 +279,23 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
                 return this.id == custom.id && this.isAnimated == custom.isAnimated && C12238m.areEqual(this.name, custom.name);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getId() {
                 return this.id;
+            }
+
+            public final long getId() {
+                return this.id;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsAnimated() {
+                return this.isAnimated;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getName() {
+                return this.name;
             }
 
             public final String getName() {
@@ -334,7 +334,7 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
         }
 
         /* JADX INFO: compiled from: EmojiNode.kt */
-        public static final /* data */ class Unicode extends EmojiIdAndType {
+        public final /* data */ class Unicode extends EmojiIdAndType {
             private final String name;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -351,11 +351,6 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
                 return unicode.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getName() {
-                return this.name;
-            }
-
             public final Unicode copy(String name) {
                 C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
                 return new Unicode(name);
@@ -366,6 +361,11 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
                     return (other instanceof Unicode) && C12238m.areEqual(this.name, ((Unicode) other).name);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getName() {
+                return this.name;
             }
 
             public final String getName() {
@@ -397,7 +397,7 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
     public interface RenderContext {
 
         /* JADX INFO: compiled from: EmojiNode.kt */
-        public static final class DefaultImpls {
+        public final class DefaultImpls {
             public static void onEmojiClicked(RenderContext renderContext, EmojiIdAndType emojiIdAndType) {
                 C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
             }
@@ -423,14 +423,6 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
         this(str, function3, emojiIdAndType, (i3 & 8) != 0 ? EMOJI_SIZE : i, (i3 & 16) != 0 ? EMOJI_SIZE : i2);
     }
 
-    public static final void renderEmoji(SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2) {
-        Companion.renderEmoji$default(INSTANCE, simpleDraweeSpanTextView, messageReactionEmoji, z2, 0, 4, null);
-    }
-
-    public static final void renderEmoji(SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2, int i) {
-        INSTANCE.renderEmoji(simpleDraweeSpanTextView, messageReactionEmoji, z2, i);
-    }
-
     public boolean equals(Object other) {
         if (other instanceof EmojiNode) {
             EmojiNode emojiNode = (EmojiNode) other;
@@ -450,6 +442,14 @@ public final class EmojiNode<T extends RenderContext> extends C1298a<T> implemen
     /* JADX INFO: renamed from: isRevealed, reason: from getter */
     public boolean getIsRevealed() {
         return this.isRevealed;
+    }
+
+    public static final void renderEmoji(SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2) {
+        Companion.renderEmoji$default(INSTANCE, simpleDraweeSpanTextView, messageReactionEmoji, z2, 0, 4, null);
+    }
+
+    public static final void renderEmoji(SimpleDraweeSpanTextView simpleDraweeSpanTextView, MessageReactionEmoji messageReactionEmoji, boolean z2, int i) {
+        INSTANCE.renderEmoji(simpleDraweeSpanTextView, messageReactionEmoji, z2, i);
     }
 
     public final void setJumbo(boolean z2) {

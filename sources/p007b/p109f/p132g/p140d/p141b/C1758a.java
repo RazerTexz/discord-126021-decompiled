@@ -9,14 +9,14 @@ import p007b.p109f.p132g.p140d.C1757a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1758a extends C1755c {
 
+    /* JADX INFO: renamed from: c */
+    public InterfaceC1759b f3322c;
+
     /* JADX INFO: renamed from: a */
     public long f3320a = -1;
 
     /* JADX INFO: renamed from: b */
     public long f3321b = -1;
-
-    /* JADX INFO: renamed from: c */
-    public InterfaceC1759b f3322c;
 
     public C1758a(InterfaceC1759b interfaceC1759b) {
         this.f3322c = interfaceC1759b;

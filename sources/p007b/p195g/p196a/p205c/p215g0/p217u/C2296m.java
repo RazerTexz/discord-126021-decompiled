@@ -50,19 +50,6 @@ public class C2296m extends AbstractC2303p0<Enum<?>> implements InterfaceC2240i 
         throw new IllegalArgumentException(String.format("Unsupported serialization shape (%s) for Enum %s, not supported as %s annotation", objArr));
     }
 
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
-        if (dVarM2074l != null) {
-            Boolean boolM2068p = m2068p(this._handledType, dVarM2074l, false, this._serializeAsIndex);
-            if (!Objects.equals(boolM2068p, this._serializeAsIndex)) {
-                return new C2296m(this._values, boolM2068p);
-            }
-        }
-        return this;
-    }
-
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
@@ -75,5 +62,18 @@ public class C2296m extends AbstractC2303p0<Enum<?>> implements InterfaceC2240i 
         } else {
             abstractC2108d.mo1657g0(this._values.m2200c(r2));
         }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
+        if (dVarM2074l != null) {
+            Boolean boolM2068p = m2068p(this._handledType, dVarM2074l, false, this._serializeAsIndex);
+            if (!Objects.equals(boolM2068p, this._serializeAsIndex)) {
+                return new C2296m(this._values, boolM2068p);
+            }
+        }
+        return this;
     }
 }

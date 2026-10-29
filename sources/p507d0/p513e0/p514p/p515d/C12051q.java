@@ -24,7 +24,7 @@ public class C12051q<T, V> extends AbstractC12053s<V> implements InterfaceC11234
 
     /* JADX INFO: renamed from: d0.e0.p.d.q$a */
     /* JADX INFO: compiled from: KProperty1Impl.kt */
-    public static final class a<T, V> extends AbstractC12053s.c<V> implements InterfaceC11234g.a<T, V> {
+    public final class a<T, V> extends AbstractC12053s.c<V> implements InterfaceC11234g.a<T, V> {
 
         /* JADX INFO: renamed from: q */
         public final C12051q<T, V> f25044q;
@@ -48,7 +48,7 @@ public class C12051q<T, V> extends AbstractC12053s<V> implements InterfaceC11234
 
     /* JADX INFO: renamed from: d0.e0.p.d.q$b */
     /* JADX INFO: compiled from: KProperty1Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<T, ? extends V>> {
+    public final class b extends AbstractC12240o implements Function0<a<T, ? extends V>> {
         public b() {
             super(0);
         }
@@ -61,7 +61,7 @@ public class C12051q<T, V> extends AbstractC12053s<V> implements InterfaceC11234
 
     /* JADX INFO: renamed from: d0.e0.p.d.q$c */
     /* JADX INFO: compiled from: KProperty1Impl.kt */
-    public static final class c extends AbstractC12240o implements Function0<Field> {
+    public final class c extends AbstractC12240o implements Function0<Field> {
         public c() {
             super(0);
         }

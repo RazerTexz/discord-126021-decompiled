@@ -44,10 +44,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildInvite extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildInvite.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInvitePageBinding;", 0)};
+    private static final String EXTRA_CODE = "EXTRA_CODE";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_CODE = "EXTRA_CODE";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -56,27 +56,9 @@ public final class WidgetGuildInvite extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildInvite.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, StoreInviteSettings.InviteCode inviteCode) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(inviteCode, "inviteCode");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetGuildInvite.EXTRA_CODE, inviteCode);
-            C0870j.m156d(context, WidgetGuildInvite.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInvite$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildInvite.kt */
-    public static final class C86491 extends AbstractC12240o implements Function1<GuildInviteViewModel.ViewState, Unit> {
+    public final class C86491 extends AbstractC12240o implements Function1<GuildInviteViewModel.ViewState, Unit> {
         public C86491() {
             super(1);
         }
@@ -91,6 +73,24 @@ public final class WidgetGuildInvite extends AppFragment {
         public final void invoke2(GuildInviteViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "viewState");
             WidgetGuildInvite.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildInvite.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, StoreInviteSettings.InviteCode inviteCode) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(inviteCode, "inviteCode");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetGuildInvite.EXTRA_CODE, inviteCode);
+            C0870j.m156d(context, WidgetGuildInvite.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -123,6 +123,17 @@ public final class WidgetGuildInvite extends AppFragment {
         materialButton.setVisibility(8);
     }
 
+    public final void configureUI(GuildInviteViewModel.ViewState viewState) {
+        C12238m.checkNotNullParameter(viewState, "viewState");
+        if (viewState instanceof GuildInviteViewModel.ViewState.Invalid) {
+            configureUIFailure(null);
+        } else if (viewState instanceof GuildInviteViewModel.ViewState.Loaded) {
+            GuildInviteViewModel.ViewState.Loaded loaded = (GuildInviteViewModel.ViewState.Loaded) viewState;
+            trackAndConsumeDynamicLinkCache(loaded.getInvite());
+            configureLoadedUI(loaded);
+        }
+    }
+
     private final void configureUIFailure(Error e) {
         MaterialButton materialButton = getBinding().f16795b;
         C12238m.checkNotNullExpressionValue(materialButton, "binding.guildInviteCancel");
@@ -137,42 +148,6 @@ public final class WidgetGuildInvite extends AppFragment {
 
     private final GuildInviteViewModel getViewModel() {
         return (GuildInviteViewModel) this.viewModel.getValue();
-    }
-
-    private final void trackAndConsumeDynamicLinkCache(ModelInvite invite) {
-        String source;
-        String inviteCode;
-        String source2;
-        StoreStream.INSTANCE.getInviteSettings().clearInviteCode();
-        if (getViewModel().getInviteResolved()) {
-            return;
-        }
-        getViewModel().setInviteResolved(true);
-        String str = "";
-        if (invite == null) {
-            StoreInviteSettings.InviteCode inviteCode2 = this.inviteCode;
-            String str2 = (inviteCode2 == null || (inviteCode = inviteCode2.getInviteCode()) == null) ? "" : inviteCode;
-            StoreInviteSettings.InviteCode inviteCode3 = this.inviteCode;
-            AnalyticsTracker.inviteResolveFailed$default(str2, (inviteCode3 == null || (source = inviteCode3.getSource()) == null) ? "" : source, null, null, 12, null);
-            return;
-        }
-        AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
-        StoreInviteSettings.InviteCode inviteCode4 = this.inviteCode;
-        if (inviteCode4 != null && (source2 = inviteCode4.getSource()) != null) {
-            str = source2;
-        }
-        analyticsTracker.inviteResolved(invite, str);
-    }
-
-    public final void configureUI(GuildInviteViewModel.ViewState viewState) {
-        C12238m.checkNotNullParameter(viewState, "viewState");
-        if (viewState instanceof GuildInviteViewModel.ViewState.Invalid) {
-            configureUIFailure(null);
-        } else if (viewState instanceof GuildInviteViewModel.ViewState.Loaded) {
-            GuildInviteViewModel.ViewState.Loaded loaded = (GuildInviteViewModel.ViewState.Loaded) viewState;
-            trackAndConsumeDynamicLinkCache(loaded.getInvite());
-            configureLoadedUI(loaded);
-        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -199,5 +174,30 @@ public final class WidgetGuildInvite extends AppFragment {
         super.onViewBoundOrOnResume();
         getViewModel().fetchInviteIfNotLoaded();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildInvite.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86491());
+    }
+
+    private final void trackAndConsumeDynamicLinkCache(ModelInvite invite) {
+        String source;
+        String inviteCode;
+        String source2;
+        StoreStream.INSTANCE.getInviteSettings().clearInviteCode();
+        if (getViewModel().getInviteResolved()) {
+            return;
+        }
+        getViewModel().setInviteResolved(true);
+        String str = "";
+        if (invite == null) {
+            StoreInviteSettings.InviteCode inviteCode2 = this.inviteCode;
+            String str2 = (inviteCode2 == null || (inviteCode = inviteCode2.getInviteCode()) == null) ? "" : inviteCode;
+            StoreInviteSettings.InviteCode inviteCode3 = this.inviteCode;
+            AnalyticsTracker.inviteResolveFailed$default(str2, (inviteCode3 == null || (source = inviteCode3.getSource()) == null) ? "" : source, null, null, 12, null);
+            return;
+        }
+        AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+        StoreInviteSettings.InviteCode inviteCode4 = this.inviteCode;
+        if (inviteCode4 != null && (source2 = inviteCode4.getSource()) != null) {
+            str = source2;
+        }
+        analyticsTracker.inviteResolved(invite, str);
     }
 }

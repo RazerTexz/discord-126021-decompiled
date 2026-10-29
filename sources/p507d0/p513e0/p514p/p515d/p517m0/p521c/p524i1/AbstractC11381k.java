@@ -29,6 +29,20 @@ public abstract class AbstractC11381k extends C11339b implements InterfaceC11450
         this.f22892k = c11716e;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public C11716e getName() {
+        C11716e c11716e = this.f22892k;
+        if (c11716e != null) {
+            return c11716e;
+        }
+        m9412a(2);
+        throw null;
+    }
+
+    public InterfaceC11450m getOriginal() {
+        return this;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9412a(int i) {
         String str = (i == 2 || i == 3 || i == 5 || i == 6) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -71,20 +85,6 @@ public abstract class AbstractC11381k extends C11339b implements InterfaceC11450
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public C11716e getName() {
-        C11716e c11716e = this.f22892k;
-        if (c11716e != null) {
-            return c11716e;
-        }
-        m9412a(2);
-        throw null;
-    }
-
-    public InterfaceC11450m getOriginal() {
-        return this;
     }
 
     public String toString() {

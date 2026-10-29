@@ -51,7 +51,7 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventDetailsViewModel$1 */
     /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-    public static final /* synthetic */ class C88141 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C88141 extends C12236k implements Function1<StoreState, Unit> {
         public C88141(GuildScheduledEventDetailsViewModel guildScheduledEventDetailsViewModel) {
             super(1, guildScheduledEventDetailsViewModel, GuildScheduledEventDetailsViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventDetailsViewModel$StoreState;)V", 0);
         }
@@ -70,7 +70,7 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -105,7 +105,7 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean canConnect;
         private final boolean canShare;
         private final boolean canStartEvent;
@@ -143,73 +143,8 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
             this.isRsvpUsersError = z9;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildScheduledEvent getGuildScheduledEvent() {
-            return this.guildScheduledEvent;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final Long getSelectedVoiceChannelId() {
-            return this.selectedVoiceChannelId;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getCanConnect() {
-            return this.canConnect;
-        }
-
         public final List<GuildScheduledEventRsvpUserListItem.RsvpUser> component12() {
             return this.rsvpUsers;
-        }
-
-        /* JADX INFO: renamed from: component13, reason: from getter */
-        public final boolean getIsRsvpUsersFetching() {
-            return this.isRsvpUsersFetching;
-        }
-
-        /* JADX INFO: renamed from: component14, reason: from getter */
-        public final boolean getIsRsvpUsersError() {
-            return this.isRsvpUsersError;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final UserGuildMember getCreator() {
-            return this.creator;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsInGuild() {
-            return this.isInGuild;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsRsvped() {
-            return this.isRsvped;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getCanShare() {
-            return this.canShare;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getCanStartEvent() {
-            return this.canStartEvent;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsDeveloperMode() {
-            return this.isDeveloperMode;
         }
 
         public final StoreState copy(GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, boolean isInGuild, boolean isRsvped, boolean canShare, boolean canStartEvent, boolean isDeveloperMode, Long selectedVoiceChannelId, boolean canConnect, List<GuildScheduledEventRsvpUserListItem.RsvpUser> rsvpUsers, boolean isRsvpUsersFetching, boolean isRsvpUsersError) {
@@ -228,36 +163,101 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
             return C12238m.areEqual(this.guildScheduledEvent, storeState.guildScheduledEvent) && C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.creator, storeState.creator) && this.isInGuild == storeState.isInGuild && this.isRsvped == storeState.isRsvped && this.canShare == storeState.canShare && this.canStartEvent == storeState.canStartEvent && this.isDeveloperMode == storeState.isDeveloperMode && C12238m.areEqual(this.selectedVoiceChannelId, storeState.selectedVoiceChannelId) && this.canConnect == storeState.canConnect && C12238m.areEqual(this.rsvpUsers, storeState.rsvpUsers) && this.isRsvpUsersFetching == storeState.isRsvpUsersFetching && this.isRsvpUsersError == storeState.isRsvpUsersError;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
         public final boolean getCanConnect() {
             return this.canConnect;
+        }
+
+        public final boolean getCanConnect() {
+            return this.canConnect;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getCanShare() {
+            return this.canShare;
         }
 
         public final boolean getCanShare() {
             return this.canShare;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final boolean getCanStartEvent() {
             return this.canStartEvent;
+        }
+
+        public final boolean getCanStartEvent() {
+            return this.canStartEvent;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final UserGuildMember getCreator() {
             return this.creator;
+        }
+
+        public final UserGuildMember getCreator() {
+            return this.creator;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
             return this.guild;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final GuildScheduledEvent getGuildScheduledEvent() {
             return this.guildScheduledEvent;
         }
 
+        public final GuildScheduledEvent getGuildScheduledEvent() {
+            return this.guildScheduledEvent;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getIsDeveloperMode() {
+            return this.isDeveloperMode;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsInGuild() {
+            return this.isInGuild;
+        }
+
+        /* JADX INFO: renamed from: component14, reason: from getter */
+        public final boolean getIsRsvpUsersError() {
+            return this.isRsvpUsersError;
+        }
+
+        /* JADX INFO: renamed from: component13, reason: from getter */
+        public final boolean getIsRsvpUsersFetching() {
+            return this.isRsvpUsersFetching;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsRsvped() {
+            return this.isRsvped;
+        }
+
         public final List<GuildScheduledEventRsvpUserListItem.RsvpUser> getRsvpUsers() {
             return this.rsvpUsers;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final Long getSelectedVoiceChannelId() {
+            return this.selectedVoiceChannelId;
         }
 
         public final Long getSelectedVoiceChannelId() {
@@ -408,10 +408,10 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-        public static final /* data */ class Initialized extends ViewState {
+        public final /* data */ class Initialized extends ViewState {
             private final boolean canConnect;
             private final boolean canShare;
             private final boolean canStartEvent;
@@ -455,88 +455,13 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
                 this.creator = userGuildMember;
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Initialized copy$default(Initialized initialized, GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, Guild guild, Channel channel, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, List list, EventDetailsSection eventDetailsSection, EventDetailsRsvpUsersFetchState eventDetailsRsvpUsersFetchState, int i, UserGuildMember userGuildMember, int i2, Object obj) {
-                return initialized.copy((i2 & 1) != 0 ? initialized.guildScheduledEvent : guildScheduledEvent, (i2 & 2) != 0 ? initialized.locationInfo : guildScheduledEventLocationInfo, (i2 & 4) != 0 ? initialized.guild : guild, (i2 & 8) != 0 ? initialized.channel : channel, (i2 & 16) != 0 ? initialized.isInGuild : z2, (i2 & 32) != 0 ? initialized.isRsvped : z3, (i2 & 64) != 0 ? initialized.canShare : z4, (i2 & 128) != 0 ? initialized.isConnected : z5, (i2 & 256) != 0 ? initialized.canStartEvent : z6, (i2 & 512) != 0 ? initialized.isDeveloperMode : z7, (i2 & 1024) != 0 ? initialized.canConnect : z8, (i2 & 2048) != 0 ? initialized.rsvpUsers : list, (i2 & 4096) != 0 ? initialized.section : eventDetailsSection, (i2 & 8192) != 0 ? initialized.rsvpUsersFetchState : eventDetailsRsvpUsersFetchState, (i2 & 16384) != 0 ? initialized.segmentedControlIndex : i, (i2 & 32768) != 0 ? initialized.creator : userGuildMember);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildScheduledEvent getGuildScheduledEvent() {
-                return this.guildScheduledEvent;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getIsDeveloperMode() {
-                return this.isDeveloperMode;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getCanConnect() {
-                return this.canConnect;
-            }
-
             public final List<GuildScheduledEventRsvpUserListItem.RsvpUser> component12() {
                 return this.rsvpUsers;
             }
 
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final EventDetailsSection getSection() {
-                return this.section;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final EventDetailsRsvpUsersFetchState getRsvpUsersFetchState() {
-                return this.rsvpUsersFetchState;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final int getSegmentedControlIndex() {
-                return this.segmentedControlIndex;
-            }
-
-            /* JADX INFO: renamed from: component16, reason: from getter */
-            public final UserGuildMember getCreator() {
-                return this.creator;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final GuildScheduledEventLocationInfo getLocationInfo() {
-                return this.locationInfo;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsInGuild() {
-                return this.isInGuild;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsRsvped() {
-                return this.isRsvped;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getCanShare() {
-                return this.canShare;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsConnected() {
-                return this.isConnected;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getCanStartEvent() {
-                return this.canStartEvent;
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Initialized copy$default(Initialized initialized, GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, Guild guild, Channel channel, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, List list, EventDetailsSection eventDetailsSection, EventDetailsRsvpUsersFetchState eventDetailsRsvpUsersFetchState, int i, UserGuildMember userGuildMember, int i2, Object obj) {
+                return initialized.copy((i2 & 1) != 0 ? initialized.guildScheduledEvent : guildScheduledEvent, (i2 & 2) != 0 ? initialized.locationInfo : guildScheduledEventLocationInfo, (i2 & 4) != 0 ? initialized.guild : guild, (i2 & 8) != 0 ? initialized.channel : channel, (i2 & 16) != 0 ? initialized.isInGuild : z2, (i2 & 32) != 0 ? initialized.isRsvped : z3, (i2 & 64) != 0 ? initialized.canShare : z4, (i2 & 128) != 0 ? initialized.isConnected : z5, (i2 & 256) != 0 ? initialized.canStartEvent : z6, (i2 & 512) != 0 ? initialized.isDeveloperMode : z7, (i2 & 1024) != 0 ? initialized.canConnect : z8, (i2 & 2048) != 0 ? initialized.rsvpUsers : list, (i2 & 4096) != 0 ? initialized.section : eventDetailsSection, (i2 & 8192) != 0 ? initialized.rsvpUsersFetchState : eventDetailsRsvpUsersFetchState, (i2 & 16384) != 0 ? initialized.segmentedControlIndex : i, (i2 & 32768) != 0 ? initialized.creator : userGuildMember);
             }
 
             public final Initialized copy(GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo locationInfo, Guild guild, Channel channel, boolean isInGuild, boolean isRsvped, boolean canShare, boolean isConnected, boolean canStartEvent, boolean isDeveloperMode, boolean canConnect, List<GuildScheduledEventRsvpUserListItem.RsvpUser> rsvpUsers, EventDetailsSection section, EventDetailsRsvpUsersFetchState rsvpUsersFetchState, int segmentedControlIndex, UserGuildMember creator) {
@@ -559,32 +484,92 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
                 return C12238m.areEqual(this.guildScheduledEvent, initialized.guildScheduledEvent) && C12238m.areEqual(this.locationInfo, initialized.locationInfo) && C12238m.areEqual(this.guild, initialized.guild) && C12238m.areEqual(this.channel, initialized.channel) && this.isInGuild == initialized.isInGuild && this.isRsvped == initialized.isRsvped && this.canShare == initialized.canShare && this.isConnected == initialized.isConnected && this.canStartEvent == initialized.canStartEvent && this.isDeveloperMode == initialized.isDeveloperMode && this.canConnect == initialized.canConnect && C12238m.areEqual(this.rsvpUsers, initialized.rsvpUsers) && C12238m.areEqual(this.section, initialized.section) && C12238m.areEqual(this.rsvpUsersFetchState, initialized.rsvpUsersFetchState) && this.segmentedControlIndex == initialized.segmentedControlIndex && C12238m.areEqual(this.creator, initialized.creator);
             }
 
+            /* JADX INFO: renamed from: component11, reason: from getter */
             public final boolean getCanConnect() {
                 return this.canConnect;
+            }
+
+            public final boolean getCanConnect() {
+                return this.canConnect;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getCanShare() {
+                return this.canShare;
             }
 
             public final boolean getCanShare() {
                 return this.canShare;
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final boolean getCanStartEvent() {
                 return this.canStartEvent;
+            }
+
+            public final boolean getCanStartEvent() {
+                return this.canStartEvent;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
                 return this.channel;
             }
 
+            /* JADX INFO: renamed from: component16, reason: from getter */
             public final UserGuildMember getCreator() {
                 return this.creator;
+            }
+
+            public final UserGuildMember getCreator() {
+                return this.creator;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
                 return this.guild;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final GuildScheduledEvent getGuildScheduledEvent() {
                 return this.guildScheduledEvent;
+            }
+
+            public final GuildScheduledEvent getGuildScheduledEvent() {
+                return this.guildScheduledEvent;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsConnected() {
+                return this.isConnected;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getIsDeveloperMode() {
+                return this.isDeveloperMode;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIsInGuild() {
+                return this.isInGuild;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsRsvped() {
+                return this.isRsvped;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final GuildScheduledEventLocationInfo getLocationInfo() {
+                return this.locationInfo;
             }
 
             public final GuildScheduledEventLocationInfo getLocationInfo() {
@@ -595,12 +580,27 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
                 return this.rsvpUsers;
             }
 
+            /* JADX INFO: renamed from: component14, reason: from getter */
             public final EventDetailsRsvpUsersFetchState getRsvpUsersFetchState() {
                 return this.rsvpUsersFetchState;
             }
 
+            public final EventDetailsRsvpUsersFetchState getRsvpUsersFetchState() {
+                return this.rsvpUsersFetchState;
+            }
+
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final EventDetailsSection getSection() {
                 return this.section;
+            }
+
+            public final EventDetailsSection getSection() {
+                return this.section;
+            }
+
+            /* JADX INFO: renamed from: component15, reason: from getter */
+            public final int getSegmentedControlIndex() {
+                return this.segmentedControlIndex;
             }
 
             public final int getSegmentedControlIndex() {
@@ -742,7 +742,7 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
         }
 
         /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -770,6 +770,19 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
         StoreVoiceChannelSelected voiceChannelSelected = (i2 & 256) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : storeVoiceChannelSelected;
         StoreDirectories directories = (i2 & 512) != 0 ? StoreStream.INSTANCE.getDirectories() : storeDirectories;
         this(guildScheduledEventDetailsArgs, observationDeck2, guildScheduledEvents, guilds, users, channels, permissions, userSettings, voiceChannelSelected, directories, (i2 & 1024) != 0 ? INSTANCE.observeStores(guildScheduledEventDetailsArgs, observationDeck2, guildScheduledEvents, guilds, users, channels, permissions, userSettings, voiceChannelSelected, directories) : observable, (i2 & 2048) != 0 ? EventDetailsSection.EVENT_INFO : eventDetailsSection, (i2 & 4096) != 0 ? EventDetailsRsvpUsersFetchState.LOADING : eventDetailsRsvpUsersFetchState, (i2 & 8192) != 0 ? 0 : i);
+    }
+
+    public final void endEventClicked(Context context, Function0<Unit> onSuccess) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Initialized)) {
+            viewState = null;
+        }
+        ViewState.Initialized initialized = (ViewState.Initialized) viewState;
+        if (initialized != null) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(GuildScheduledEventAPI.INSTANCE.endEvent(initialized.getGuildScheduledEvent().getGuildId(), initialized.getGuildScheduledEvent().getId()), false, 1, null), (Class<?>) GuildScheduledEventDetailsViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C8816x6abdea3c(this, context, onSuccess));
+        }
     }
 
     private final EventDetailsRsvpUsersFetchState getRsvpUsersFetchState(StoreState storeState) {
@@ -813,19 +826,6 @@ public final class GuildScheduledEventDetailsViewModel extends AbstractC0859d0<V
             initialized = new ViewState.Initialized(guildScheduledEvent, guildScheduledEventLocationInfoBuildLocationInfo, guild, channel, zIsInGuild, zIsRsvped, storeState.getCanShare(), z2, storeState.getCanStartEvent(), storeState.isDeveloperMode(), storeState.getCanConnect(), storeState.getRsvpUsers(), this.section, this.rsvpUsersFetchState, this.segmentControlIndex, storeState.getCreator());
         }
         updateViewState(initialized);
-    }
-
-    public final void endEventClicked(Context context, Function0<Unit> onSuccess) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Initialized)) {
-            viewState = null;
-        }
-        ViewState.Initialized initialized = (ViewState.Initialized) viewState;
-        if (initialized != null) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(GuildScheduledEventAPI.INSTANCE.endEvent(initialized.getGuildScheduledEvent().getGuildId(), initialized.getGuildScheduledEvent().getId()), false, 1, null), (Class<?>) GuildScheduledEventDetailsViewModel.class, (58 & 2) != 0 ? null : context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C8816x6abdea3c(this, context, onSuccess));
-        }
     }
 
     public final void onDeleteButtonClicked(Context context, Function0<Unit> onSuccess) {

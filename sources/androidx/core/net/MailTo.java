@@ -13,18 +13,48 @@ import p007b.p100d.p104b.p105a.C1643a;
 public final class MailTo {
     private static final String BCC = "bcc";
     private static final String BODY = "body";
-
-    /* JADX INFO: renamed from: CC */
-    private static final String f132CC = "cc";
     private static final String MAILTO = "mailto";
     public static final String MAILTO_SCHEME = "mailto:";
     private static final String SUBJECT = "subject";
+
+    /* JADX INFO: renamed from: CC */
+    private static final String f132CC = "cc";
 
     /* JADX INFO: renamed from: TO */
     private static final String f133TO = "to";
     private HashMap<String, String> mHeaders = new HashMap<>();
 
     private MailTo() {
+    }
+
+    @Nullable
+    public String getBcc() {
+        return this.mHeaders.get(BCC);
+    }
+
+    @Nullable
+    public String getBody() {
+        return this.mHeaders.get(BODY);
+    }
+
+    @Nullable
+    public String getCc() {
+        return this.mHeaders.get(f132CC);
+    }
+
+    @Nullable
+    public Map<String, String> getHeaders() {
+        return this.mHeaders;
+    }
+
+    @Nullable
+    public String getSubject() {
+        return this.mHeaders.get(SUBJECT);
+    }
+
+    @Nullable
+    public String getTo() {
+        return this.mHeaders.get(f133TO);
     }
 
     public static boolean isMailTo(@Nullable String str) {
@@ -66,36 +96,6 @@ public final class MailTo {
         }
         mailTo.mHeaders.put(f133TO, strDecode);
         return mailTo;
-    }
-
-    @Nullable
-    public String getBcc() {
-        return this.mHeaders.get(BCC);
-    }
-
-    @Nullable
-    public String getBody() {
-        return this.mHeaders.get(BODY);
-    }
-
-    @Nullable
-    public String getCc() {
-        return this.mHeaders.get(f132CC);
-    }
-
-    @Nullable
-    public Map<String, String> getHeaders() {
-        return this.mHeaders;
-    }
-
-    @Nullable
-    public String getSubject() {
-        return this.mHeaders.get(SUBJECT);
-    }
-
-    @Nullable
-    public String getTo() {
-        return this.mHeaders.get(f133TO);
     }
 
     @NonNull

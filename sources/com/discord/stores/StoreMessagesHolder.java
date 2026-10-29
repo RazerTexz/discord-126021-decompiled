@@ -60,6 +60,39 @@ public class StoreMessagesHolder {
         this.detachedChannelsSubject = new SerializedSubject(BehaviorSubject.m11130l0(new HashSet(hashSet)));
     }
 
+    public synchronized void addMessages(@NonNull List<Message> list) {
+        boolean z2;
+        for (Message message : list) {
+            long channelId = message.getChannelId();
+            TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
+            if (isChannelActive(channelId) && !isChannelDetached(channelId)) {
+                String nonce = message.getNonce();
+                if (message.isLocal()) {
+                    this.messageNonceIds.put(nonce, Long.valueOf(message.getId()));
+                } else {
+                    Long l = this.messageNonceIds.get(nonce);
+                    if (l != null) {
+                        this.messageNonceIds.remove(nonce);
+                        if (treeMap.containsKey(l)) {
+                            treeMap.remove(l);
+                            z2 = true;
+                        }
+                    }
+                    treeMap.put(Long.valueOf(message.getId()), message);
+                    if (!updateDetachedState(channelId, treeMap, false, true, false) || !z2) {
+                        this.updatedChannels.add(Long.valueOf(channelId));
+                    }
+                }
+                z2 = false;
+                treeMap.put(Long.valueOf(message.getId()), message);
+                if (!updateDetachedState(channelId, treeMap, false, true, false)) {
+                }
+                this.updatedChannels.add(Long.valueOf(channelId));
+            }
+        }
+        publishIfUpdated();
+    }
+
     private static Message addReaction(Message message, MessageReactionEmoji messageReactionEmoji, boolean z2) {
         MessageReaction messageReaction;
         Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
@@ -102,153 +135,6 @@ public class StoreMessagesHolder {
 
     private List<Message> computeMessagesCacheSubList(long j, @NonNull Map<?, Message> map) {
         return new ArrayList(new ArrayList(map.values()).subList(Math.max(0, map.size() - (j == this.selectedChannelId ? 20 : 10)), map.size()));
-    }
-
-    private boolean isChannelActive(long j) {
-        return this.activeChannels.contains(Long.valueOf(j));
-    }
-
-    private boolean isChannelDetached(long j) {
-        return this.detachedChannels.contains(Long.valueOf(j));
-    }
-
-    private synchronized void messageCacheTryPersist() {
-        if (this.cacheEnabled) {
-            long jCurrentTimeMillis = ClockFactory.get().currentTimeMillis();
-            long j = this.cachePersistedAt + 60000;
-            if (j < jCurrentTimeMillis) {
-                this.cachePersistedAt = jCurrentTimeMillis;
-                Map<Long, List<Message>> mapComputeMessagesCache = computeMessagesCache();
-                if (!this.cacheSnapshot.equals(mapComputeMessagesCache)) {
-                    this.cacheSnapshot = mapComputeMessagesCache;
-                    this.cache.set(mapComputeMessagesCache);
-                }
-            } else {
-                long j2 = (j - jCurrentTimeMillis) + 1000;
-                Subscription subscription = this.cachePersistSubscription;
-                if (subscription != null) {
-                    subscription.unsubscribe();
-                }
-                this.cachePersistSubscription = new C12721k(null).m11111q(j2, TimeUnit.MILLISECONDS).m11097W(new Action1() { // from class: b.a.u.b
-                    @Override // p658rx.functions.Action1
-                    public final void call(Object obj) {
-                        this.f1998j.m8508a(obj);
-                    }
-                }, new Action1() { // from class: b.a.u.a
-                    @Override // p658rx.functions.Action1
-                    public final void call(Object obj) {
-                    }
-                });
-            }
-        }
-    }
-
-    private void publishIfUpdated(boolean z2) {
-        if (!this.updatedChannels.isEmpty() || z2) {
-            HashMap map = new HashMap();
-            Iterator<Long> it = this.updatedChannels.iterator();
-            while (it.hasNext()) {
-                long jLongValue = it.next().longValue();
-                map.put(Long.valueOf(jLongValue), new ArrayList(this.messages.get(Long.valueOf(jLongValue)).values()));
-            }
-            for (Map.Entry<Long, List<Message>> entry : this.messagesSnapshot.entrySet()) {
-                long jLongValue2 = entry.getKey().longValue();
-                if (!this.updatedChannels.contains(Long.valueOf(jLongValue2))) {
-                    map.put(Long.valueOf(jLongValue2), entry.getValue());
-                }
-            }
-            this.updatedChannels.clear();
-            this.messagesSnapshot = map;
-            this.messagesPublisher.onNext(map);
-            messageCacheTryPersist();
-        }
-    }
-
-    private static Message removeReaction(Message message, MessageReactionEmoji messageReactionEmoji, boolean z2) {
-        Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
-        String strM8116c = messageReactionEmoji.m8116c();
-        if (!reactionsMap.containsKey(strM8116c)) {
-            return message;
-        }
-        if (z2 && !reactionsMap.get(strM8116c).getMe()) {
-            return message;
-        }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(reactionsMap);
-        MessageReaction messageReaction = (MessageReaction) linkedHashMap.get(strM8116c);
-        if (messageReaction.getCount() == 1) {
-            linkedHashMap.remove(strM8116c);
-        } else {
-            linkedHashMap.put(strM8116c, new MessageReaction(messageReaction.getCount() - 1, messageReaction.getEmoji(), messageReaction.getMe() && !z2));
-        }
-        if (linkedHashMap.isEmpty()) {
-            linkedHashMap = null;
-        }
-        return LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap);
-    }
-
-    private boolean updateDetachedState(long j, Map<Long, Message> map, boolean z2, boolean z3, boolean z4) {
-        int size = map.size();
-        boolean z5 = size >= 200;
-        if (z5) {
-            int i = z2 ? 100 : size - 100;
-            Iterator<Map.Entry<Long, Message>> it = map.entrySet().iterator();
-            int i2 = 0;
-            while (it.hasNext()) {
-                it.next();
-                if ((z2 && i2 >= i) || (!z2 && i2 < i)) {
-                    it.remove();
-                }
-                i2++;
-            }
-        }
-        boolean zIsChannelDetached = isChannelDetached(j);
-        boolean z6 = z5 && z2 && !z3;
-        if (!zIsChannelDetached && (z6 || z4)) {
-            this.detachedChannels.add(Long.valueOf(j));
-            this.detachedChannelsSubject.onNext(new HashSet(this.detachedChannels));
-        } else if (zIsChannelDetached && z3) {
-            this.detachedChannels.remove(Long.valueOf(j));
-            this.detachedChannelsSubject.onNext(new HashSet(this.detachedChannels));
-        }
-        return z5;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m8508a(Object obj) {
-        messageCacheTryPersist();
-    }
-
-    public synchronized void addMessages(@NonNull List<Message> list) {
-        boolean z2;
-        for (Message message : list) {
-            long channelId = message.getChannelId();
-            TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
-            if (isChannelActive(channelId) && !isChannelDetached(channelId)) {
-                String nonce = message.getNonce();
-                if (message.isLocal()) {
-                    this.messageNonceIds.put(nonce, Long.valueOf(message.getId()));
-                } else {
-                    Long l = this.messageNonceIds.get(nonce);
-                    if (l != null) {
-                        this.messageNonceIds.remove(nonce);
-                        if (treeMap.containsKey(l)) {
-                            treeMap.remove(l);
-                            z2 = true;
-                        }
-                    }
-                    treeMap.put(Long.valueOf(message.getId()), message);
-                    if (!updateDetachedState(channelId, treeMap, false, true, false) || !z2) {
-                        this.updatedChannels.add(Long.valueOf(channelId));
-                    }
-                }
-                z2 = false;
-                treeMap.put(Long.valueOf(message.getId()), message);
-                if (!updateDetachedState(channelId, treeMap, false, true, false)) {
-                }
-                this.updatedChannels.add(Long.valueOf(channelId));
-            }
-        }
-        publishIfUpdated();
     }
 
     public synchronized void deleteMessages(long j, @Nullable List<Long> list) {
@@ -310,6 +196,14 @@ public class StoreMessagesHolder {
         this.activeChannels.add(Long.valueOf(this.selectedChannelId));
     }
 
+    private boolean isChannelActive(long j) {
+        return this.activeChannels.contains(Long.valueOf(j));
+    }
+
+    private boolean isChannelDetached(long j) {
+        return this.detachedChannels.contains(Long.valueOf(j));
+    }
+
     public synchronized void loadMessageChunks(@NonNull List<StoreMessagesLoader.ChannelChunk> list) {
         for (StoreMessagesLoader.ChannelChunk channelChunk : list) {
             List<Message> messages = channelChunk.getMessages();
@@ -338,6 +232,63 @@ public class StoreMessagesHolder {
             }
         }
         publishIfUpdated();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ void m8508a(Object obj) {
+        messageCacheTryPersist();
+    }
+
+    private synchronized void messageCacheTryPersist() {
+        if (this.cacheEnabled) {
+            long jCurrentTimeMillis = ClockFactory.get().currentTimeMillis();
+            long j = this.cachePersistedAt + 60000;
+            if (j < jCurrentTimeMillis) {
+                this.cachePersistedAt = jCurrentTimeMillis;
+                Map<Long, List<Message>> mapComputeMessagesCache = computeMessagesCache();
+                if (!this.cacheSnapshot.equals(mapComputeMessagesCache)) {
+                    this.cacheSnapshot = mapComputeMessagesCache;
+                    this.cache.set(mapComputeMessagesCache);
+                }
+            } else {
+                long j2 = (j - jCurrentTimeMillis) + 1000;
+                Subscription subscription = this.cachePersistSubscription;
+                if (subscription != null) {
+                    subscription.unsubscribe();
+                }
+                this.cachePersistSubscription = new C12721k(null).m11111q(j2, TimeUnit.MILLISECONDS).m11097W(new Action1() { // from class: b.a.u.b
+                    @Override // p658rx.functions.Action1
+                    public final void call(Object obj) {
+                        this.f1998j.m8508a(obj);
+                    }
+                }, new Action1() { // from class: b.a.u.a
+                    @Override // p658rx.functions.Action1
+                    public final void call(Object obj) {
+                    }
+                });
+            }
+        }
+    }
+
+    private void publishIfUpdated(boolean z2) {
+        if (!this.updatedChannels.isEmpty() || z2) {
+            HashMap map = new HashMap();
+            Iterator<Long> it = this.updatedChannels.iterator();
+            while (it.hasNext()) {
+                long jLongValue = it.next().longValue();
+                map.put(Long.valueOf(jLongValue), new ArrayList(this.messages.get(Long.valueOf(jLongValue)).values()));
+            }
+            for (Map.Entry<Long, List<Message>> entry : this.messagesSnapshot.entrySet()) {
+                long jLongValue2 = entry.getKey().longValue();
+                if (!this.updatedChannels.contains(Long.valueOf(jLongValue2))) {
+                    map.put(Long.valueOf(jLongValue2), entry.getValue());
+                }
+            }
+            this.updatedChannels.clear();
+            this.messagesSnapshot = map;
+            this.messagesPublisher.onNext(map);
+            messageCacheTryPersist();
+        }
     }
 
     public synchronized void removeAllReactions(@NonNull MessageReactionUpdate messageReactionUpdate) {
@@ -381,6 +332,28 @@ public class StoreMessagesHolder {
         }
     }
 
+    private static Message removeReaction(Message message, MessageReactionEmoji messageReactionEmoji, boolean z2) {
+        Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
+        String strM8116c = messageReactionEmoji.m8116c();
+        if (!reactionsMap.containsKey(strM8116c)) {
+            return message;
+        }
+        if (z2 && !reactionsMap.get(strM8116c).getMe()) {
+            return message;
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap(reactionsMap);
+        MessageReaction messageReaction = (MessageReaction) linkedHashMap.get(strM8116c);
+        if (messageReaction.getCount() == 1) {
+            linkedHashMap.remove(strM8116c);
+        } else {
+            linkedHashMap.put(strM8116c, new MessageReaction(messageReaction.getCount() - 1, messageReaction.getEmoji(), messageReaction.getMe() && !z2));
+        }
+        if (linkedHashMap.isEmpty()) {
+            linkedHashMap = null;
+        }
+        return LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap);
+    }
+
     public void setMyUserId(long j) {
         this.myUserId = j;
     }
@@ -395,6 +368,33 @@ public class StoreMessagesHolder {
             this.messages.put(Long.valueOf(j), new TreeMap<>(MessageUtils.getSORT_BY_IDS_COMPARATOR()));
         }
         this.activeChannels.add(Long.valueOf(j));
+    }
+
+    private boolean updateDetachedState(long j, Map<Long, Message> map, boolean z2, boolean z3, boolean z4) {
+        int size = map.size();
+        boolean z5 = size >= 200;
+        if (z5) {
+            int i = z2 ? 100 : size - 100;
+            Iterator<Map.Entry<Long, Message>> it = map.entrySet().iterator();
+            int i2 = 0;
+            while (it.hasNext()) {
+                it.next();
+                if ((z2 && i2 >= i) || (!z2 && i2 < i)) {
+                    it.remove();
+                }
+                i2++;
+            }
+        }
+        boolean zIsChannelDetached = isChannelDetached(j);
+        boolean z6 = z5 && z2 && !z3;
+        if (!zIsChannelDetached && (z6 || z4)) {
+            this.detachedChannels.add(Long.valueOf(j));
+            this.detachedChannelsSubject.onNext(new HashSet(this.detachedChannels));
+        } else if (zIsChannelDetached && z3) {
+            this.detachedChannels.remove(Long.valueOf(j));
+            this.detachedChannelsSubject.onNext(new HashSet(this.detachedChannels));
+        }
+        return z5;
     }
 
     public synchronized void updateMessages(@NonNull com.discord.api.message.Message message) {

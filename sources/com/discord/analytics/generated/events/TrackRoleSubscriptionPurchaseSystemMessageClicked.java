@@ -26,29 +26,6 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
         this.analyticsSchemaTypeName = "role_subscription_purchase_system_message_clicked";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7512e(TrackBase trackBase) {
-        this.trackBase = trackBase;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -60,9 +37,16 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
         return C12238m.areEqual(this.messageId, trackRoleSubscriptionPurchaseSystemMessageClicked.messageId) && C12238m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionPurchaseSystemMessageClicked.roleSubscriptionListingId);
     }
 
-    /* JADX INFO: renamed from: f */
-    public void m7513f(TrackChannel trackChannel) {
-        this.trackChannel = trackChannel;
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -70,6 +54,22 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
         Long l2 = this.roleSubscriptionListingId;
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7512e(TrackBase trackBase) {
+        this.trackBase = trackBase;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public void m7513f(TrackChannel trackChannel) {
+        this.trackChannel = trackChannel;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

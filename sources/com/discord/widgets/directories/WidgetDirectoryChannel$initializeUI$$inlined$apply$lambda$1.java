@@ -27,7 +27,7 @@ public final class WidgetDirectoryChannel$initializeUI$$inlined$apply$lambda$1 e
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$initializeUI$$inlined$apply$lambda$1$1 */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public static final class C82931 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class C82931 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public final /* synthetic */ int $position;
         public final /* synthetic */ TabLayout.Tab $tab;
 

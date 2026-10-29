@@ -34,7 +34,7 @@ public final class MessageSendWorker extends Worker {
 
     /* JADX INFO: renamed from: com.discord.workers.MessageSendWorker$b */
     /* JADX INFO: compiled from: MessageSendWorker.kt */
-    public static final class C10619b extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C10619b extends AbstractC12240o implements Function1<Integer, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ String $channelName;
 

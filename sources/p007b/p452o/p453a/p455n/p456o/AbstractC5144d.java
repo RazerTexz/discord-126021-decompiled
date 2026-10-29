@@ -34,6 +34,14 @@ public abstract class AbstractC5144d extends AbstractC5145e {
         mo7336m().mo7248b(interfaceC5143c, captureRequest, totalCaptureResult);
     }
 
+    @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e
+    /* JADX INFO: renamed from: j */
+    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
+        this.f13939c = interfaceC5143c;
+        mo7336m().m7337f(new a());
+        mo7336m().mo7249j(interfaceC5143c);
+    }
+
     @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e, p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
     /* JADX INFO: renamed from: c */
     public void mo7331c(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest) {
@@ -54,14 +62,6 @@ public abstract class AbstractC5144d extends AbstractC5145e {
     /* JADX INFO: renamed from: h */
     public void mo7335h(@NonNull InterfaceC5143c interfaceC5143c) {
         mo7336m().mo7335h(interfaceC5143c);
-    }
-
-    @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e
-    /* JADX INFO: renamed from: j */
-    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
-        this.f13939c = interfaceC5143c;
-        mo7336m().m7337f(new a());
-        mo7336m().mo7249j(interfaceC5143c);
     }
 
     @NonNull

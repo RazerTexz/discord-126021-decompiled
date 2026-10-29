@@ -12,16 +12,6 @@ public final /* data */ class SubscriptionTrial {
     private final int intervalCount;
     private final long skuId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final GuildRoleSubscriptionFreeTrialIntervalTypes getInterval() {
-        return this.interval;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final int getIntervalCount() {
-        return this.intervalCount;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,6 +21,16 @@ public final /* data */ class SubscriptionTrial {
         }
         SubscriptionTrial subscriptionTrial = (SubscriptionTrial) other;
         return this.id == subscriptionTrial.id && C12238m.areEqual(this.interval, subscriptionTrial.interval) && this.intervalCount == subscriptionTrial.intervalCount && this.skuId == subscriptionTrial.skuId;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final GuildRoleSubscriptionFreeTrialIntervalTypes getInterval() {
+        return this.interval;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final int getIntervalCount() {
+        return this.intervalCount;
     }
 
     public int hashCode() {

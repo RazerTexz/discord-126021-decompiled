@@ -15,7 +15,7 @@ public final class FragmentExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.fragment.FragmentExtensionsKt$booleanExtra$1 */
     /* JADX INFO: compiled from: FragmentExtensions.kt */
-    public static final class C67561 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C67561 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ boolean $defaultValue;
         public final /* synthetic */ String $name;
         public final /* synthetic */ Fragment $this_booleanExtra;
@@ -40,16 +40,16 @@ public final class FragmentExtensionsKt {
         }
     }
 
-    public static final Lazy<Boolean> booleanExtra(Fragment fragment, String str, boolean z2) {
-        C12238m.checkNotNullParameter(fragment, "$this$booleanExtra");
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        return C12083g.lazy(new C67561(fragment, str, z2));
-    }
-
     public static /* synthetic */ Lazy booleanExtra$default(Fragment fragment, String str, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = false;
         }
         return booleanExtra(fragment, str, z2);
+    }
+
+    public static final Lazy<Boolean> booleanExtra(Fragment fragment, String str, boolean z2) {
+        C12238m.checkNotNullParameter(fragment, "$this$booleanExtra");
+        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        return C12083g.lazy(new C67561(fragment, str, z2));
     }
 }

@@ -28,6 +28,29 @@ public final class C11705d implements InterfaceC11704c {
         this.f24060b = c11690o;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
+    public String getQualifiedClassName(int i) {
+        Triple<List<String>, List<String>, Boolean> tripleM9815a = m9815a(i);
+        List<String> listComponent1 = tripleM9815a.component1();
+        String strJoinToString$default = C12163u.joinToString$default(tripleM9815a.component2(), ".", null, null, 0, null, null, 62, null);
+        if (listComponent1.isEmpty()) {
+            return strJoinToString$default;
+        }
+        return C12163u.joinToString$default(listComponent1, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN, null, null, 0, null, null, 62, null) + MentionUtilsKt.SLASH_CHAR + strJoinToString$default;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
+    public String getString(int i) {
+        String string = this.f24059a.getString(i);
+        C12238m.checkNotNullExpressionValue(string, "strings.getString(index)");
+        return string;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
+    public boolean isLocalClassName(int i) {
+        return m9815a(i).getThird().booleanValue();
+    }
+
     /* JADX INFO: renamed from: a */
     public final Triple<List<String>, List<String>, Boolean> m9815a(int i) {
         LinkedList linkedList = new LinkedList();
@@ -50,28 +73,5 @@ public final class C11705d implements InterfaceC11704c {
             i = qualifiedName.getParentQualifiedName();
         }
         return new Triple<>(linkedList, linkedList2, Boolean.valueOf(z2));
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
-    public String getQualifiedClassName(int i) {
-        Triple<List<String>, List<String>, Boolean> tripleM9815a = m9815a(i);
-        List<String> listComponent1 = tripleM9815a.component1();
-        String strJoinToString$default = C12163u.joinToString$default(tripleM9815a.component2(), ".", null, null, 0, null, null, 62, null);
-        if (listComponent1.isEmpty()) {
-            return strJoinToString$default;
-        }
-        return C12163u.joinToString$default(listComponent1, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN, null, null, 0, null, null, 62, null) + MentionUtilsKt.SLASH_CHAR + strJoinToString$default;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
-    public String getString(int i) {
-        String string = this.f24059a.getString(i);
-        C12238m.checkNotNullExpressionValue(string, "strings.getString(index)");
-        return string;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p543f.p547z.InterfaceC11704c
-    public boolean isLocalClassName(int i) {
-        return m9815a(i).getThird().booleanValue();
     }
 }

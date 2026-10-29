@@ -48,7 +48,7 @@ public final class C11393s extends AbstractC11381k implements InterfaceC11402j0 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.s$a */
     /* JADX INFO: compiled from: LazyPackageViewDescriptorImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11331e0>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11331e0>> {
         public a() {
             super(0);
         }
@@ -61,7 +61,7 @@ public final class C11393s extends AbstractC11381k implements InterfaceC11402j0 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.s$b */
     /* JADX INFO: compiled from: LazyPackageViewDescriptorImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<InterfaceC11770i> {
+    public final class b extends AbstractC12240o implements Function0<InterfaceC11770i> {
         public b() {
             super(0);
         }

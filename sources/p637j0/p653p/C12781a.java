@@ -15,9 +15,6 @@ import p658rx.Scheduler;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12781a {
 
-    /* JADX INFO: renamed from: a */
-    public static final AtomicReference<C12781a> f27393a = new AtomicReference<>();
-
     /* JADX INFO: renamed from: b */
     public final Scheduler f27394b;
 
@@ -26,6 +23,9 @@ public final class C12781a {
 
     /* JADX INFO: renamed from: d */
     public final Scheduler f27396d;
+
+    /* JADX INFO: renamed from: a */
+    public static final AtomicReference<C12781a> f27393a = new AtomicReference<>();
 
     public C12781a() {
         Objects.requireNonNull(C12777o.f27384a.m10871e());

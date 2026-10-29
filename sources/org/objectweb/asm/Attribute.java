@@ -117,7 +117,7 @@ public class Attribute {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/Attribute$Set.SCL.lombok */
-    static final class Set {
+    final class Set {
         private static final int SIZE_INCREMENT = 6;
         private int size;
         private Attribute[] data = new Attribute[6];

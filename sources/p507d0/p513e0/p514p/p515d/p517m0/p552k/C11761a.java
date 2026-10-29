@@ -22,24 +22,6 @@ public final class C11761a extends AbstractC11801s {
     /* JADX INFO: renamed from: a */
     public static final C11761a f24332a = new C11761a();
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: a */
-    public static final void m9909a(InterfaceC11330e interfaceC11330e, LinkedHashSet<InterfaceC11330e> linkedHashSet, InterfaceC11770i interfaceC11770i, boolean z2) {
-        for (InterfaceC11450m interfaceC11450m : InterfaceC11773l.a.getContributedDescriptors$default(interfaceC11770i, C11765d.f24353o, null, 2, null)) {
-            if (interfaceC11450m instanceof InterfaceC11330e) {
-                InterfaceC11330e interfaceC11330e2 = (InterfaceC11330e) interfaceC11450m;
-                if (C11787e.isDirectSubclass(interfaceC11330e2, interfaceC11330e)) {
-                    linkedHashSet.add(interfaceC11450m);
-                }
-                if (z2) {
-                    InterfaceC11770i unsubstitutedInnerClassesScope = interfaceC11330e2.getUnsubstitutedInnerClassesScope();
-                    C12238m.checkNotNullExpressionValue(unsubstitutedInnerClassesScope, "descriptor.unsubstitutedInnerClassesScope");
-                    m9909a(interfaceC11330e, linkedHashSet, unsubstitutedInnerClassesScope, z2);
-                }
-            }
-        }
-    }
-
     public Collection<InterfaceC11330e> computeSealedSubclasses(InterfaceC11330e interfaceC11330e, boolean z2) {
         InterfaceC11450m next;
         InterfaceC11450m containingDeclaration;
@@ -68,5 +50,23 @@ public final class C11761a extends AbstractC11801s {
         C12238m.checkNotNullExpressionValue(unsubstitutedInnerClassesScope, "sealedClass.unsubstitutedInnerClassesScope");
         m9909a(interfaceC11330e, linkedHashSet, unsubstitutedInnerClassesScope, true);
         return linkedHashSet;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: a */
+    public static final void m9909a(InterfaceC11330e interfaceC11330e, LinkedHashSet<InterfaceC11330e> linkedHashSet, InterfaceC11770i interfaceC11770i, boolean z2) {
+        for (InterfaceC11450m interfaceC11450m : InterfaceC11773l.a.getContributedDescriptors$default(interfaceC11770i, C11765d.f24353o, null, 2, null)) {
+            if (interfaceC11450m instanceof InterfaceC11330e) {
+                InterfaceC11330e interfaceC11330e2 = (InterfaceC11330e) interfaceC11450m;
+                if (C11787e.isDirectSubclass(interfaceC11330e2, interfaceC11330e)) {
+                    linkedHashSet.add(interfaceC11450m);
+                }
+                if (z2) {
+                    InterfaceC11770i unsubstitutedInnerClassesScope = interfaceC11330e2.getUnsubstitutedInnerClassesScope();
+                    C12238m.checkNotNullExpressionValue(unsubstitutedInnerClassesScope, "descriptor.unsubstitutedInnerClassesScope");
+                    m9909a(interfaceC11330e, linkedHashSet, unsubstitutedInnerClassesScope, z2);
+                }
+            }
+        }
     }
 }

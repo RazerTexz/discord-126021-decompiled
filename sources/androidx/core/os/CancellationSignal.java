@@ -13,15 +13,6 @@ public final class CancellationSignal {
         void onCancel();
     }
 
-    private void waitForCancelFinishedLocked() {
-        while (this.mCancelInProgress) {
-            try {
-                wait();
-            } catch (InterruptedException unused) {
-            }
-        }
-    }
-
     public void cancel() {
         synchronized (this) {
             if (this.mIsCanceled) {
@@ -92,6 +83,15 @@ public final class CancellationSignal {
     public void throwIfCanceled() {
         if (isCanceled()) {
             throw new OperationCanceledException();
+        }
+    }
+
+    private void waitForCancelFinishedLocked() {
+        while (this.mCancelInProgress) {
+            try {
+                wait();
+            } catch (InterruptedException unused) {
+            }
         }
     }
 }

@@ -63,6 +63,12 @@ public final class ViewChatEmbedGameInviteBinding implements ViewBinding {
         this.f15394i = textView3;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15386a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewChatEmbedGameInviteBinding m8392a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -105,11 +111,5 @@ public final class ViewChatEmbedGameInviteBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15386a;
     }
 }

@@ -60,6 +60,9 @@ public abstract class WorkDatabase extends RoomDatabase {
         return (WorkDatabase) builderDatabaseBuilder.setQueryExecutor(executor).addCallback(generateCleanupCallback()).addMigrations(WorkDatabaseMigrations.MIGRATION_1_2).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 2, 3)).addMigrations(WorkDatabaseMigrations.MIGRATION_3_4).addMigrations(WorkDatabaseMigrations.MIGRATION_4_5).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 5, 6)).addMigrations(WorkDatabaseMigrations.MIGRATION_6_7).addMigrations(WorkDatabaseMigrations.MIGRATION_7_8).addMigrations(WorkDatabaseMigrations.MIGRATION_8_9).addMigrations(new WorkDatabaseMigrations.WorkMigration9To10(context)).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 10, 11)).fallbackToDestructiveMigration().build();
     }
 
+    @NonNull
+    public abstract DependencyDao dependencyDao();
+
     public static RoomDatabase.Callback generateCleanupCallback() {
         return new RoomDatabase.Callback() { // from class: androidx.work.impl.WorkDatabase.2
             @Override // androidx.room.RoomDatabase.Callback
@@ -87,9 +90,6 @@ public abstract class WorkDatabase extends RoomDatabase {
         sbM833U.append(PRUNE_SQL_FORMAT_SUFFIX);
         return sbM833U.toString();
     }
-
-    @NonNull
-    public abstract DependencyDao dependencyDao();
 
     @NonNull
     public abstract PreferenceDao preferenceDao();

@@ -21,7 +21,7 @@ public class HCaptchaConfig implements Serializable {
     private HCaptchaTheme theme;
 
     /* JADX INFO: renamed from: com.hcaptcha.sdk.HCaptchaConfig$a */
-    public static class C11151a {
+    public class C11151a {
 
         /* JADX INFO: renamed from: a */
         public String f21674a;

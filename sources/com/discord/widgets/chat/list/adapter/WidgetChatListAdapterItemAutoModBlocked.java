@@ -46,7 +46,7 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$getMessageRenderContext$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80201 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+    public final class C80201 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
         public static final C80201 INSTANCE = new C80201();
 
         public C80201() {
@@ -69,7 +69,7 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$getMessageRenderContext$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80212 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C80212 extends AbstractC12240o implements Function1<String, Unit> {
         public C80212() {
             super(1);
         }
@@ -89,7 +89,7 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$getMessageRenderContext$3 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80223 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+    public final class C80223 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
         public static final C80223 INSTANCE = new C80223();
 
         public C80223() {
@@ -110,7 +110,7 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$getMessageRenderContext$4 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80234 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C80234 extends AbstractC12240o implements Function1<Long, Unit> {
         public C80234() {
             super(1);
         }
@@ -129,7 +129,7 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$getMessageRenderContext$5 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80245 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C80245 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -151,12 +151,12 @@ public final class WidgetChatListAdapterItemAutoModBlocked extends WidgetChatLis
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-    public static final class C80251 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C80251 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ MessageEntry $messageEntry;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModBlocked$onConfigure$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModBlocked.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

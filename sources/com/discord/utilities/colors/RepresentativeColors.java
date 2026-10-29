@@ -42,129 +42,14 @@ import p659s.p660a.p661a.C13031n;
 /* JADX INFO: compiled from: RepresentativeColors.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class RepresentativeColors<T> {
+    private static final int BLURPLE = Color.parseColor("#5865f2");
     private final HashMap<T, Integer> representativeColors = new HashMap<>();
     private final BehaviorSubject<Map<T, Integer>> representativeColorsSubject = BehaviorSubject.m11129k0();
-    private static final int BLURPLE = Color.parseColor("#5865f2");
-
-    /* JADX INFO: compiled from: RepresentativeColors.kt */
-    public static final class NoSwatchesFoundException extends RuntimeException {
-    }
-
-    /* JADX INFO: compiled from: RepresentativeColors.kt */
-    public static abstract class RepresentativeColorResult {
-
-        /* JADX INFO: compiled from: RepresentativeColors.kt */
-        public static final /* data */ class Failure extends RepresentativeColorResult {
-            private final Exception exception;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Failure(Exception exc) {
-                super(null);
-                C12238m.checkNotNullParameter(exc, "exception");
-                this.exception = exc;
-            }
-
-            public static /* synthetic */ Failure copy$default(Failure failure, Exception exc, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    exc = failure.exception;
-                }
-                return failure.copy(exc);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Exception getException() {
-                return this.exception;
-            }
-
-            public final Failure copy(Exception exception) {
-                C12238m.checkNotNullParameter(exception, "exception");
-                return new Failure(exception);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Failure) && C12238m.areEqual(this.exception, ((Failure) other).exception);
-                }
-                return true;
-            }
-
-            public final Exception getException() {
-                return this.exception;
-            }
-
-            public int hashCode() {
-                Exception exc = this.exception;
-                if (exc != null) {
-                    return exc.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Failure(exception=");
-                sbM833U.append(this.exception);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: RepresentativeColors.kt */
-        public static final /* data */ class Success extends RepresentativeColorResult {
-            private final int color;
-
-            public Success(@ColorInt int i) {
-                super(null);
-                this.color = i;
-            }
-
-            public static /* synthetic */ Success copy$default(Success success, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    i = success.color;
-                }
-                return success.copy(i);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getColor() {
-                return this.color;
-            }
-
-            public final Success copy(@ColorInt int color) {
-                return new Success(color);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Success) && this.color == ((Success) other).color;
-                }
-                return true;
-            }
-
-            public final int getColor() {
-                return this.color;
-            }
-
-            public int hashCode() {
-                return this.color;
-            }
-
-            public String toString() {
-                return C1643a.m814B(C1643a.m833U("Success(color="), this.color, ")");
-            }
-        }
-
-        private RepresentativeColorResult() {
-        }
-
-        public /* synthetic */ RepresentativeColorResult(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.utilities.colors.RepresentativeColors$getRepresentativeColorAsync$2 */
     /* JADX INFO: compiled from: RepresentativeColors.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.colors.RepresentativeColors$getRepresentativeColorAsync$2", m10085f = "RepresentativeColors.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C67342 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super RepresentativeColorResult>, Object> {
+    public final class C67342 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super RepresentativeColorResult>, Object> {
         public final /* synthetic */ Bitmap $bitmap;
         public int label;
 
@@ -186,7 +71,7 @@ public final class RepresentativeColors<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -199,7 +84,7 @@ public final class RepresentativeColors<T> {
     /* JADX INFO: renamed from: com.discord.utilities.colors.RepresentativeColors$handleBitmap$1 */
     /* JADX INFO: compiled from: RepresentativeColors.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.colors.RepresentativeColors$handleBitmap$1", m10085f = "RepresentativeColors.kt", m10086l = {59}, m10087m = "invokeSuspend")
-    public static final class C67351 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C67351 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Bitmap $bitmap;
         public final /* synthetic */ Object $id;
         public final /* synthetic */ String $url;
@@ -225,7 +110,7 @@ public final class RepresentativeColors<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             int i;
             int color;
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
@@ -285,6 +170,121 @@ public final class RepresentativeColors<T> {
         }
     }
 
+    /* JADX INFO: compiled from: RepresentativeColors.kt */
+    public final class NoSwatchesFoundException extends RuntimeException {
+    }
+
+    /* JADX INFO: compiled from: RepresentativeColors.kt */
+    public abstract class RepresentativeColorResult {
+
+        /* JADX INFO: compiled from: RepresentativeColors.kt */
+        public final /* data */ class Failure extends RepresentativeColorResult {
+            private final Exception exception;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Failure(Exception exc) {
+                super(null);
+                C12238m.checkNotNullParameter(exc, "exception");
+                this.exception = exc;
+            }
+
+            public static /* synthetic */ Failure copy$default(Failure failure, Exception exc, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    exc = failure.exception;
+                }
+                return failure.copy(exc);
+            }
+
+            public final Failure copy(Exception exception) {
+                C12238m.checkNotNullParameter(exception, "exception");
+                return new Failure(exception);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Failure) && C12238m.areEqual(this.exception, ((Failure) other).exception);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Exception getException() {
+                return this.exception;
+            }
+
+            public final Exception getException() {
+                return this.exception;
+            }
+
+            public int hashCode() {
+                Exception exc = this.exception;
+                if (exc != null) {
+                    return exc.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Failure(exception=");
+                sbM833U.append(this.exception);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: RepresentativeColors.kt */
+        public final /* data */ class Success extends RepresentativeColorResult {
+            private final int color;
+
+            public Success(@ColorInt int i) {
+                super(null);
+                this.color = i;
+            }
+
+            public static /* synthetic */ Success copy$default(Success success, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    i = success.color;
+                }
+                return success.copy(i);
+            }
+
+            public final Success copy(@ColorInt int color) {
+                return new Success(color);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Success) && this.color == ((Success) other).color;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getColor() {
+                return this.color;
+            }
+
+            public final int getColor() {
+                return this.color;
+            }
+
+            public int hashCode() {
+                return this.color;
+            }
+
+            public String toString() {
+                return C1643a.m814B(C1643a.m833U("Success(color="), this.color, ")");
+            }
+        }
+
+        private RepresentativeColorResult() {
+        }
+
+        public /* synthetic */ RepresentativeColorResult(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     private final int getColorDistance(int c1, int c2) {
         int i = ((c1 >> 16) & 255) - ((c2 >> 16) & 255);
         int i2 = ((c1 >> 8) & 255) - ((c2 >> 8) & 255);
@@ -329,15 +329,15 @@ public final class RepresentativeColors<T> {
         }
     }
 
+    public final Object getRepresentativeColorAsync(Bitmap bitmap, Continuation<? super RepresentativeColorResult> continuation) {
+        return C3404f.m4197C1(C13124k0.f27866a, new C67342(bitmap, null), continuation);
+    }
+
     public static /* synthetic */ void handleBitmap$default(RepresentativeColors representativeColors, Object obj, Bitmap bitmap, String str, int i, Object obj2) {
         if ((i & 4) != 0) {
             str = null;
         }
         representativeColors.handleBitmap(obj, bitmap, str);
-    }
-
-    public final Object getRepresentativeColorAsync(Bitmap bitmap, Continuation<? super RepresentativeColorResult> continuation) {
-        return C3404f.m4197C1(C13124k0.f27866a, new C67342(bitmap, null), continuation);
     }
 
     public final void handleBitmap(T id2, Bitmap bitmap, String url) {

@@ -57,6 +57,12 @@ public final class ToolbarTitleLayout extends ConstraintLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
+    public final TextView getTitle() {
+        TextView textView = this.binding.f710d;
+        C12238m.checkNotNullExpressionValue(textView, "binding.toolbarTitle");
+        return textView;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m8564a(CharSequence title, @DrawableRes Integer leftDrawableRes, @DrawableRes Integer trailingDrawableRes) {
         TextView textView = this.binding.f710d;
@@ -92,12 +98,6 @@ public final class ToolbarTitleLayout extends ConstraintLayout {
         ImageView imageView6 = this.binding.f712f;
         C12238m.checkNotNullExpressionValue(imageView6, "binding.toolbarTitleTrailingIcon");
         imageView6.setVisibility(0);
-    }
-
-    public final TextView getTitle() {
-        TextView textView = this.binding.f710d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.toolbarTitle");
-        return textView;
     }
 
     public final void setSubtitle(CharSequence subtitle) {

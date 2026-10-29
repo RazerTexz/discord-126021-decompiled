@@ -46,16 +46,9 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public CharSequence phone;
 
-    /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public enum Mode {
-        ADAPTIVE,
-        EMAIL,
-        PHONE
-    }
-
     /* JADX INFO: renamed from: com.discord.views.phone.PhoneOrEmailInputView$a */
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public static final class C7116a extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C7116a extends AbstractC12240o implements Function1<Editable, Unit> {
         public final /* synthetic */ Function0 $onAfterTextChanged;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -74,7 +67,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.phone.PhoneOrEmailInputView$b */
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public static final class C7117b extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C7117b extends AbstractC12240o implements Function1<Editable, Unit> {
         public final /* synthetic */ Function0 $onAfterTextChanged;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -96,7 +89,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.phone.PhoneOrEmailInputView$c */
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public static final class C7118c extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C7118c extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Fragment $fragment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -118,7 +111,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.phone.PhoneOrEmailInputView$d */
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public static final class C7119d extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C7119d extends AbstractC12240o implements Function1<Editable, Unit> {
         public C7119d() {
             super(1);
         }
@@ -132,6 +125,13 @@ public final class PhoneOrEmailInputView extends LinearLayout {
             PhoneOrEmailInputView.this.m8601c();
             return Unit.f27425a;
         }
+    }
+
+    /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
+    public enum Mode {
+        ADAPTIVE,
+        EMAIL,
+        PHONE
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -178,10 +178,32 @@ public final class PhoneOrEmailInputView extends LinearLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
-    private final void setMainInputNextFocusForwardId(int id2) {
+    public final TextInputEditText getMainEditText() {
+        TextInputEditText textInputEditText = this.binding.f1288c;
+        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
+        return textInputEditText;
+    }
+
+    public final TextInputLayout getMainTextInputLayout() {
         TextInputLayout textInputLayout = this.binding.f1289d;
         C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
-        textInputLayout.setNextFocusForwardId(id2);
+        return textInputLayout;
+    }
+
+    public final String getTextOrEmpty() {
+        if (!m8603e()) {
+            TextInputLayout textInputLayout = this.binding.f1289d;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+            return ViewExtensions.getTextOrEmpty(textInputLayout);
+        }
+        StringBuilder sb = new StringBuilder();
+        TextInputLayout textInputLayout2 = this.binding.f1287b;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailCountryCodeWrap");
+        sb.append(ViewExtensions.getTextOrEmpty(textInputLayout2));
+        TextInputLayout textInputLayout3 = this.binding.f1289d;
+        C12238m.checkNotNullExpressionValue(textInputLayout3, "binding.phoneOrEmailMainInputWrap");
+        sb.append(ViewExtensions.getTextOrEmpty(textInputLayout3));
+        return sb.toString();
     }
 
     /* JADX INFO: renamed from: a */
@@ -270,34 +292,6 @@ public final class PhoneOrEmailInputView extends LinearLayout {
         }
     }
 
-    public final TextInputEditText getMainEditText() {
-        TextInputEditText textInputEditText = this.binding.f1288c;
-        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
-        return textInputEditText;
-    }
-
-    public final TextInputLayout getMainTextInputLayout() {
-        TextInputLayout textInputLayout = this.binding.f1289d;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
-        return textInputLayout;
-    }
-
-    public final String getTextOrEmpty() {
-        if (!m8603e()) {
-            TextInputLayout textInputLayout = this.binding.f1289d;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
-            return ViewExtensions.getTextOrEmpty(textInputLayout);
-        }
-        StringBuilder sb = new StringBuilder();
-        TextInputLayout textInputLayout2 = this.binding.f1287b;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailCountryCodeWrap");
-        sb.append(ViewExtensions.getTextOrEmpty(textInputLayout2));
-        TextInputLayout textInputLayout3 = this.binding.f1289d;
-        C12238m.checkNotNullExpressionValue(textInputLayout3, "binding.phoneOrEmailMainInputWrap");
-        sb.append(ViewExtensions.getTextOrEmpty(textInputLayout3));
-        return sb.toString();
-    }
-
     public final void setCountryCode(PhoneCountryCode countryCode) {
         C12238m.checkNotNullParameter(countryCode, "countryCode");
         TextInputLayout textInputLayout = this.binding.f1287b;
@@ -309,6 +303,12 @@ public final class PhoneOrEmailInputView extends LinearLayout {
         TextInputLayout textInputLayout = this.binding.f1289d;
         C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         textInputLayout.setHint(hint);
+    }
+
+    private final void setMainInputNextFocusForwardId(int id2) {
+        TextInputLayout textInputLayout = this.binding.f1289d;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        textInputLayout.setNextFocusForwardId(id2);
     }
 
     public final void setMode(Mode mode) {

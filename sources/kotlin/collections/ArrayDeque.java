@@ -20,24 +20,24 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class ArrayDeque<E> extends AbstractC12129e<E> {
 
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public int head;
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public Object[] elementData;
 
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public int head;
+
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public int size;
-
-    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: j */
     public static final Object[] f27426j = new Object[0];
 
     /* JADX INFO: renamed from: kotlin.collections.ArrayDeque$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: ArrayDeque.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -101,21 +101,6 @@ public final class ArrayDeque<E> extends AbstractC12129e<E> {
         this.size = size() + 1;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final void m10890c(int internalIndex, Collection<? extends E> elements) {
-        Iterator<? extends E> it = elements.iterator();
-        int length = this.elementData.length;
-        while (internalIndex < length && it.hasNext()) {
-            this.elementData[internalIndex] = it.next();
-            internalIndex++;
-        }
-        int i = this.head;
-        for (int i2 = 0; i2 < i && it.hasNext(); i2++) {
-            this.elementData[i2] = it.next();
-        }
-        this.size = elements.size() + size();
-    }
-
     @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
     public void clear() {
         int iAccess$positiveMod = access$positiveMod(this, this.head + size());
@@ -134,43 +119,6 @@ public final class ArrayDeque<E> extends AbstractC12129e<E> {
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
     public boolean contains(Object element) {
         return indexOf(element) != -1;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final int m10891d(int index) {
-        return index == 0 ? C12141k.getLastIndex(this.elementData) : index - 1;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m10892e(int minCapacity) {
-        if (minCapacity < 0) {
-            throw new IllegalStateException("Deque is too big.");
-        }
-        Object[] objArr = this.elementData;
-        if (minCapacity <= objArr.length) {
-            return;
-        }
-        if (objArr == f27426j) {
-            this.elementData = new Object[C11226f.coerceAtLeast(minCapacity, 10)];
-            return;
-        }
-        Object[] objArr2 = new Object[INSTANCE.newCapacity$kotlin_stdlib(objArr.length, minCapacity)];
-        Object[] objArr3 = this.elementData;
-        C12139j.copyInto(objArr3, objArr2, 0, this.head, objArr3.length);
-        Object[] objArr4 = this.elementData;
-        int length = objArr4.length;
-        int i = this.head;
-        C12139j.copyInto(objArr4, objArr2, length - i, 0, i);
-        this.head = 0;
-        this.elementData = objArr2;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final int m10893g(int index) {
-        if (index == C12141k.getLastIndex(this.elementData)) {
-            return 0;
-        }
-        return index + 1;
     }
 
     @Override // java.util.AbstractList, java.util.List
@@ -267,6 +215,58 @@ public final class ArrayDeque<E> extends AbstractC12129e<E> {
             i = this.head;
         }
         return lastIndex - i;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m10890c(int internalIndex, Collection<? extends E> elements) {
+        Iterator<? extends E> it = elements.iterator();
+        int length = this.elementData.length;
+        while (internalIndex < length && it.hasNext()) {
+            this.elementData[internalIndex] = it.next();
+            internalIndex++;
+        }
+        int i = this.head;
+        for (int i2 = 0; i2 < i && it.hasNext(); i2++) {
+            this.elementData[i2] = it.next();
+        }
+        this.size = elements.size() + size();
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final int m10891d(int index) {
+        return index == 0 ? C12141k.getLastIndex(this.elementData) : index - 1;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m10892e(int minCapacity) {
+        if (minCapacity < 0) {
+            throw new IllegalStateException("Deque is too big.");
+        }
+        Object[] objArr = this.elementData;
+        if (minCapacity <= objArr.length) {
+            return;
+        }
+        if (objArr == f27426j) {
+            this.elementData = new Object[C11226f.coerceAtLeast(minCapacity, 10)];
+            return;
+        }
+        Object[] objArr2 = new Object[INSTANCE.newCapacity$kotlin_stdlib(objArr.length, minCapacity)];
+        Object[] objArr3 = this.elementData;
+        C12139j.copyInto(objArr3, objArr2, 0, this.head, objArr3.length);
+        Object[] objArr4 = this.elementData;
+        int length = objArr4.length;
+        int i = this.head;
+        C12139j.copyInto(objArr4, objArr2, length - i, 0, i);
+        this.head = 0;
+        this.elementData = objArr2;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final int m10893g(int index) {
+        if (index == C12141k.getLastIndex(this.elementData)) {
+            return 0;
+        }
+        return index + 1;
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List

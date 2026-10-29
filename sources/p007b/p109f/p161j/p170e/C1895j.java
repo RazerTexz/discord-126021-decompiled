@@ -47,9 +47,6 @@ import p007b.p109f.p161j.p184s.InterfaceC2033c;
 /* JADX INFO: loaded from: classes.dex */
 public class C1895j implements InterfaceC1896k {
 
-    /* JADX INFO: renamed from: a */
-    public static b f3745a = new b(null);
-
     /* JADX INFO: renamed from: b */
     public final Supplier<MemoryCacheParams> f3746b;
 
@@ -122,43 +119,12 @@ public class C1895j implements InterfaceC1896k {
     /* JADX INFO: renamed from: y */
     public final InterfaceC1852a f3769y;
 
-    /* JADX INFO: renamed from: b.f.j.e.j$a */
-    /* JADX INFO: compiled from: ImagePipelineConfig.java */
-    public static class a {
-
-        /* JADX INFO: renamed from: a */
-        public Supplier<MemoryCacheParams> f3770a;
-
-        /* JADX INFO: renamed from: b */
-        public final Context f3771b;
-
-        /* JADX INFO: renamed from: d */
-        public DiskCacheConfig f3773d;
-
-        /* JADX INFO: renamed from: e */
-        public DiskCacheConfig f3774e;
-
-        /* JADX INFO: renamed from: c */
-        public boolean f3772c = false;
-
-        /* JADX INFO: renamed from: f */
-        public final C1897l.b f3775f = new C1897l.b(this);
-
-        /* JADX INFO: renamed from: g */
-        public boolean f3776g = true;
-
-        /* JADX INFO: renamed from: h */
-        public C1907a f3777h = new C1907a();
-
-        public a(Context context, C1894i c1894i) {
-            Objects.requireNonNull(context);
-            this.f3771b = context;
-        }
-    }
+    /* JADX INFO: renamed from: a */
+    public static b f3745a = new b(null);
 
     /* JADX INFO: renamed from: b.f.j.e.j$b */
     /* JADX INFO: compiled from: ImagePipelineConfig.java */
-    public static class b {
+    public class b {
         public b(C1894i c1894i) {
         }
     }
@@ -230,6 +196,16 @@ public class C1895j implements InterfaceC1896k {
     }
 
     @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
+    public Context getContext() {
+        return this.f3749e;
+    }
+
+    @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
+    public C1897l getExperiments() {
+        return this.f3766v;
+    }
+
+    @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
     /* JADX INFO: renamed from: A */
     public Supplier<MemoryCacheParams> mo1264A() {
         return this.f3746b;
@@ -293,16 +269,6 @@ public class C1895j implements InterfaceC1896k {
     /* JADX INFO: renamed from: g */
     public InterfaceC1852a mo1274g() {
         return this.f3769y;
-    }
-
-    @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
-    public Context getContext() {
-        return this.f3749e;
-    }
-
-    @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
-    public C1897l getExperiments() {
-        return this.f3766v;
     }
 
     @Override // p007b.p109f.p161j.p170e.InterfaceC1896k
@@ -417,5 +383,39 @@ public class C1895j implements InterfaceC1896k {
     /* JADX INFO: renamed from: z */
     public InterfaceC1667a mo1293z() {
         return null;
+    }
+
+    /* JADX INFO: renamed from: b.f.j.e.j$a */
+    /* JADX INFO: compiled from: ImagePipelineConfig.java */
+    public class a {
+
+        /* JADX INFO: renamed from: a */
+        public Supplier<MemoryCacheParams> f3770a;
+
+        /* JADX INFO: renamed from: b */
+        public final Context f3771b;
+
+        /* JADX INFO: renamed from: d */
+        public DiskCacheConfig f3773d;
+
+        /* JADX INFO: renamed from: e */
+        public DiskCacheConfig f3774e;
+
+        /* JADX INFO: renamed from: c */
+        public boolean f3772c = false;
+
+        /* JADX INFO: renamed from: f */
+        public final C1897l.b f3775f = new C1897l.b(this);
+
+        /* JADX INFO: renamed from: g */
+        public boolean f3776g = true;
+
+        /* JADX INFO: renamed from: h */
+        public C1907a f3777h = new C1907a();
+
+        public a(Context context, C1894i c1894i) {
+            Objects.requireNonNull(context);
+            this.f3771b = context;
+        }
     }
 }

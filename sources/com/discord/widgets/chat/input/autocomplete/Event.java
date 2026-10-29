@@ -12,7 +12,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class Event {
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class PickAttachment extends Event {
+    public final /* data */ class PickAttachment extends Event {
         private final ApplicationCommandOption commandOption;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -29,11 +29,6 @@ public abstract class Event {
             return pickAttachment.copy(applicationCommandOption);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ApplicationCommandOption getCommandOption() {
-            return this.commandOption;
-        }
-
         public final PickAttachment copy(ApplicationCommandOption commandOption) {
             C12238m.checkNotNullParameter(commandOption, "commandOption");
             return new PickAttachment(commandOption);
@@ -44,6 +39,11 @@ public abstract class Event {
                 return (other instanceof PickAttachment) && C12238m.areEqual(this.commandOption, ((PickAttachment) other).commandOption);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ApplicationCommandOption getCommandOption() {
+            return this.commandOption;
         }
 
         public final ApplicationCommandOption getCommandOption() {
@@ -67,7 +67,7 @@ public abstract class Event {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class PreviewAttachment extends Event {
+    public final /* data */ class PreviewAttachment extends Event {
         private final Attachment<?> attachment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,16 +77,16 @@ public abstract class Event {
             this.attachment = attachment;
         }
 
+        public final Attachment<?> component1() {
+            return this.attachment;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ PreviewAttachment copy$default(PreviewAttachment previewAttachment, Attachment attachment, int i, Object obj) {
             if ((i & 1) != 0) {
                 attachment = previewAttachment.attachment;
             }
             return previewAttachment.copy(attachment);
-        }
-
-        public final Attachment<?> component1() {
-            return this.attachment;
         }
 
         public final PreviewAttachment copy(Attachment<?> attachment) {
@@ -122,7 +122,7 @@ public abstract class Event {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class RequestAutocompleteData extends Event {
+    public final /* data */ class RequestAutocompleteData extends Event {
         private final ApplicationCommandOption option;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -139,11 +139,6 @@ public abstract class Event {
             return requestAutocompleteData.copy(applicationCommandOption);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ApplicationCommandOption getOption() {
-            return this.option;
-        }
-
         public final RequestAutocompleteData copy(ApplicationCommandOption option) {
             C12238m.checkNotNullParameter(option, "option");
             return new RequestAutocompleteData(option);
@@ -154,6 +149,11 @@ public abstract class Event {
                 return (other instanceof RequestAutocompleteData) && C12238m.areEqual(this.option, ((RequestAutocompleteData) other).option);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ApplicationCommandOption getOption() {
+            return this.option;
         }
 
         public final ApplicationCommandOption getOption() {
@@ -177,7 +177,7 @@ public abstract class Event {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class ScrollAutocompletablesToApplication extends Event {
+    public final /* data */ class ScrollAutocompletablesToApplication extends Event {
         private final long applicationId;
         private final int targetPosition;
 
@@ -197,16 +197,6 @@ public abstract class Event {
             return scrollAutocompletablesToApplication.copy(j, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getTargetPosition() {
-            return this.targetPosition;
-        }
-
         public final ScrollAutocompletablesToApplication copy(long applicationId, int targetPosition) {
             return new ScrollAutocompletablesToApplication(applicationId, targetPosition);
         }
@@ -222,8 +212,18 @@ public abstract class Event {
             return this.applicationId == scrollAutocompletablesToApplication.applicationId && this.targetPosition == scrollAutocompletablesToApplication.targetPosition;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getTargetPosition() {
+            return this.targetPosition;
         }
 
         public final int getTargetPosition() {

@@ -77,6 +77,15 @@ public class C1919e implements Closeable {
         this.f3892k = null;
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        CloseableReference<PooledByteBuffer> closeableReference = this.f3891j;
+        Class<CloseableReference> cls = CloseableReference.f19438j;
+        if (closeableReference != null) {
+            closeableReference.close();
+        }
+    }
+
     /* JADX INFO: renamed from: a */
     public static C1919e m1336a(C1919e c1919e) {
         C1919e c1919e2 = null;
@@ -138,15 +147,6 @@ public class C1919e implements Closeable {
     /* JADX INFO: renamed from: c */
     public CloseableReference<PooledByteBuffer> m1340c() {
         return CloseableReference.m8636n(this.f3891j);
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        CloseableReference<PooledByteBuffer> closeableReference = this.f3891j;
-        Class<CloseableReference> cls = CloseableReference.f19438j;
-        if (closeableReference != null) {
-            closeableReference.close();
-        }
     }
 
     /* JADX INFO: renamed from: d */

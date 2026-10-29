@@ -42,7 +42,7 @@ public final class C11300e extends C11374g0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.p.e$a */
     /* JADX INFO: compiled from: FunctionInvokeDescriptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -101,6 +101,21 @@ public final class C11300e extends C11374g0 {
 
     public /* synthetic */ C11300e(InterfaceC11450m interfaceC11450m, C11300e c11300e, InterfaceC11321b.a aVar, boolean z2, DefaultConstructorMarker defaultConstructorMarker) {
         this(interfaceC11450m, c11300e, aVar, z2);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isExternal() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isInline() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isTailrec() {
+        return false;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
@@ -186,20 +201,5 @@ public final class C11300e extends C11374g0 {
         InterfaceC11472x interfaceC11472xMo9374c = super.mo9374c(original);
         C12238m.checkNotNull(interfaceC11472xMo9374c);
         return interfaceC11472xMo9374c;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isExternal() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isInline() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isTailrec() {
-        return false;
     }
 }

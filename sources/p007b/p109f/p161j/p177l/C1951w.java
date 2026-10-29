@@ -42,7 +42,7 @@ public class C1951w {
 
     /* JADX INFO: renamed from: b.f.j.l.w$b */
     /* JADX INFO: compiled from: PoolConfig.java */
-    public static class b {
+    public class b {
         public b(a aVar) {
         }
     }

@@ -127,7 +127,7 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         boolean onSuggestionSelect(int i);
     }
 
-    public static class PreQAutoCompleteTextViewReflector {
+    public class PreQAutoCompleteTextViewReflector {
         private Method mDoAfterTextChanged;
         private Method mDoBeforeTextChanged;
         private Method mEnsureImeVisible;
@@ -155,12 +155,6 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
                 this.mEnsureImeVisible = method;
                 method.setAccessible(true);
             } catch (NoSuchMethodException unused3) {
-            }
-        }
-
-        private static void preApi29Check() {
-            if (Build.VERSION.SDK_INT >= 29) {
-                throw new UnsupportedClassVersionError("This function can only be used for API Level < 29.");
             }
         }
 
@@ -196,9 +190,16 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
                 }
             }
         }
+
+        private static void preApi29Check() {
+            if (Build.VERSION.SDK_INT >= 29) {
+                throw new UnsupportedClassVersionError("This function can only be used for API Level < 29.");
+            }
+        }
     }
 
-    public static class SavedState extends AbsSavedState {
+    public class SavedState extends AbsSavedState {
+        public boolean isIconified;
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.appcompat.widget.SearchView.SavedState.1
             @Override // android.os.Parcelable.Creator
             public SavedState[] newArray(int i) {
@@ -216,7 +217,6 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
                 return new SavedState(parcel, null);
             }
         };
-        public boolean isIconified;
 
         public SavedState(Parcelable parcelable) {
             super(parcelable);
@@ -242,7 +242,7 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class SearchAutoComplete extends AppCompatAutoCompleteTextView {
+    public class SearchAutoComplete extends AppCompatAutoCompleteTextView {
         private boolean mHasPendingShowSoftInputRequest;
         public final Runnable mRunShowSoftInputIfNecessary;
         private SearchView mSearchView;
@@ -250,19 +250,6 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
 
         public SearchAutoComplete(Context context) {
             this(context, null);
-        }
-
-        private int getSearchViewTextMinWidthDp() {
-            Configuration configuration = getResources().getConfiguration();
-            int i = configuration.screenWidthDp;
-            int i2 = configuration.screenHeightDp;
-            if (i >= 960 && i2 >= 720 && configuration.orientation == 2) {
-                return 256;
-            }
-            if (i < 600) {
-                return (i < 640 || i2 < 480) ? Opcodes.IF_ICMPNE : Opcodes.CHECKCAST;
-            }
-            return Opcodes.CHECKCAST;
         }
 
         @Override // android.widget.AutoCompleteTextView
@@ -279,6 +266,19 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
             if (enoughToFilter()) {
                 showDropDown();
             }
+        }
+
+        private int getSearchViewTextMinWidthDp() {
+            Configuration configuration = getResources().getConfiguration();
+            int i = configuration.screenWidthDp;
+            int i2 = configuration.screenHeightDp;
+            if (i >= 960 && i2 >= 720 && configuration.orientation == 2) {
+                return 256;
+            }
+            if (i < 600) {
+                return (i < 640 || i2 < 480) ? Opcodes.IF_ICMPNE : Opcodes.CHECKCAST;
+            }
+            return Opcodes.CHECKCAST;
         }
 
         public boolean isEmpty() {
@@ -401,7 +401,7 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         }
     }
 
-    public static class UpdatableTouchDelegate extends TouchDelegate {
+    public class UpdatableTouchDelegate extends TouchDelegate {
         private final Rect mActualBounds;
         private boolean mDelegateTargeted;
         private final View mDelegateView;
@@ -479,6 +479,33 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
 
     public SearchView(@NonNull Context context) {
         this(context, null);
+    }
+
+    public void adjustDropDownSizeAndPosition() {
+        int dimensionPixelSize;
+        if (this.mDropDownAnchor.getWidth() > 1) {
+            Resources resources = getContext().getResources();
+            int paddingLeft = this.mSearchPlate.getPaddingLeft();
+            Rect rect = new Rect();
+            boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
+            if (this.mIconifiedByDefault) {
+                dimensionPixelSize = resources.getDimensionPixelSize(C0051R.dimen.abc_dropdownitem_text_padding_left) + resources.getDimensionPixelSize(C0051R.dimen.abc_dropdownitem_icon_width);
+            } else {
+                dimensionPixelSize = 0;
+            }
+            this.mSearchSrcTextView.getDropDownBackground().getPadding(rect);
+            this.mSearchSrcTextView.setDropDownHorizontalOffset(zIsLayoutRtl ? -rect.left : paddingLeft - (rect.left + dimensionPixelSize));
+            this.mSearchSrcTextView.setDropDownWidth((((this.mDropDownAnchor.getWidth() + rect.left) + rect.right) + dimensionPixelSize) - paddingLeft);
+        }
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void clearFocus() {
+        this.mClearingFocus = true;
+        super.clearFocus();
+        this.mSearchSrcTextView.clearFocus();
+        this.mSearchSrcTextView.setImeVisibility(false);
+        this.mClearingFocus = false;
     }
 
     private Intent createIntent(String str, Uri uri, String str2, String str3, int i, String str4) {
@@ -574,6 +601,16 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         this.mSearchSrcTextView.dismissDropDown();
     }
 
+    public void forceSuggestionQuery() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.mSearchSrcTextView.refreshAutoCompleteResults();
+            return;
+        }
+        PreQAutoCompleteTextViewReflector preQAutoCompleteTextViewReflector = PRE_API_29_HIDDEN_METHOD_INVOKER;
+        preQAutoCompleteTextViewReflector.doBeforeTextChanged(this.mSearchSrcTextView);
+        preQAutoCompleteTextViewReflector.doAfterTextChanged(this.mSearchSrcTextView);
+    }
+
     private void getChildBoundsWithinSearchView(View view, Rect rect) {
         view.getLocationInWindow(this.mTemp);
         getLocationInWindow(this.mTemp2);
@@ -597,190 +634,6 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         return spannableStringBuilder;
     }
 
-    private int getPreferredHeight() {
-        return getContext().getResources().getDimensionPixelSize(C0051R.dimen.abc_search_view_preferred_height);
-    }
-
-    private int getPreferredWidth() {
-        return getContext().getResources().getDimensionPixelSize(C0051R.dimen.abc_search_view_preferred_width);
-    }
-
-    private boolean hasVoiceSearch() {
-        SearchableInfo searchableInfo = this.mSearchable;
-        if (searchableInfo == null || !searchableInfo.getVoiceSearchEnabled()) {
-            return false;
-        }
-        Intent intent = null;
-        if (this.mSearchable.getVoiceSearchLaunchWebSearch()) {
-            intent = this.mVoiceWebSearchIntent;
-        } else if (this.mSearchable.getVoiceSearchLaunchRecognizer()) {
-            intent = this.mVoiceAppSearchIntent;
-        }
-        return (intent == null || getContext().getPackageManager().resolveActivity(intent, 65536) == null) ? false : true;
-    }
-
-    public static boolean isLandscapeMode(Context context) {
-        return context.getResources().getConfiguration().orientation == 2;
-    }
-
-    private boolean isSubmitAreaEnabled() {
-        return (this.mSubmitButtonEnabled || this.mVoiceButtonEnabled) && !isIconified();
-    }
-
-    private void launchIntent(Intent intent) {
-        if (intent == null) {
-            return;
-        }
-        try {
-            getContext().startActivity(intent);
-        } catch (RuntimeException e) {
-            Log.e(LOG_TAG, "Failed launch activity: " + intent, e);
-        }
-    }
-
-    private boolean launchSuggestion(int i, int i2, String str) {
-        Cursor cursor = this.mSuggestionsAdapter.getCursor();
-        if (cursor == null || !cursor.moveToPosition(i)) {
-            return false;
-        }
-        launchIntent(createIntentFromSuggestion(cursor, i2, str));
-        return true;
-    }
-
-    private void postUpdateFocusedState() {
-        post(this.mUpdateDrawableStateRunnable);
-    }
-
-    private void rewriteQueryFromSuggestion(int i) {
-        Editable text = this.mSearchSrcTextView.getText();
-        Cursor cursor = this.mSuggestionsAdapter.getCursor();
-        if (cursor == null) {
-            return;
-        }
-        if (!cursor.moveToPosition(i)) {
-            setQuery(text);
-            return;
-        }
-        CharSequence charSequenceConvertToString = this.mSuggestionsAdapter.convertToString(cursor);
-        if (charSequenceConvertToString != null) {
-            setQuery(charSequenceConvertToString);
-        } else {
-            setQuery(text);
-        }
-    }
-
-    private void updateCloseButton() {
-        boolean z2 = true;
-        boolean z3 = !TextUtils.isEmpty(this.mSearchSrcTextView.getText());
-        if (!z3 && (!this.mIconifiedByDefault || this.mExpandedInActionView)) {
-            z2 = false;
-        }
-        this.mCloseButton.setVisibility(z2 ? 0 : 8);
-        Drawable drawable = this.mCloseButton.getDrawable();
-        if (drawable != null) {
-            drawable.setState(z3 ? ViewGroup.ENABLED_STATE_SET : ViewGroup.EMPTY_STATE_SET);
-        }
-    }
-
-    private void updateQueryHint() {
-        CharSequence queryHint = getQueryHint();
-        SearchAutoComplete searchAutoComplete = this.mSearchSrcTextView;
-        if (queryHint == null) {
-            queryHint = "";
-        }
-        searchAutoComplete.setHint(getDecoratedHint(queryHint));
-    }
-
-    private void updateSearchAutoComplete() {
-        this.mSearchSrcTextView.setThreshold(this.mSearchable.getSuggestThreshold());
-        this.mSearchSrcTextView.setImeOptions(this.mSearchable.getImeOptions());
-        int inputType = this.mSearchable.getInputType();
-        if ((inputType & 15) == 1) {
-            inputType &= -65537;
-            if (this.mSearchable.getSuggestAuthority() != null) {
-                inputType = inputType | 65536 | 524288;
-            }
-        }
-        this.mSearchSrcTextView.setInputType(inputType);
-        CursorAdapter cursorAdapter = this.mSuggestionsAdapter;
-        if (cursorAdapter != null) {
-            cursorAdapter.changeCursor(null);
-        }
-        if (this.mSearchable.getSuggestAuthority() != null) {
-            SuggestionsAdapter suggestionsAdapter = new SuggestionsAdapter(getContext(), this, this.mSearchable, this.mOutsideDrawablesCache);
-            this.mSuggestionsAdapter = suggestionsAdapter;
-            this.mSearchSrcTextView.setAdapter(suggestionsAdapter);
-            ((SuggestionsAdapter) this.mSuggestionsAdapter).setQueryRefinement(this.mQueryRefinement ? 2 : 1);
-        }
-    }
-
-    private void updateSubmitArea() {
-        this.mSubmitArea.setVisibility((isSubmitAreaEnabled() && (this.mGoButton.getVisibility() == 0 || this.mVoiceButton.getVisibility() == 0)) ? 0 : 8);
-    }
-
-    private void updateSubmitButton(boolean z2) {
-        this.mGoButton.setVisibility((this.mSubmitButtonEnabled && isSubmitAreaEnabled() && hasFocus() && (z2 || !this.mVoiceButtonEnabled)) ? 0 : 8);
-    }
-
-    private void updateViewsVisibility(boolean z2) {
-        this.mIconified = z2;
-        int i = z2 ? 0 : 8;
-        boolean z3 = !TextUtils.isEmpty(this.mSearchSrcTextView.getText());
-        this.mSearchButton.setVisibility(i);
-        updateSubmitButton(z3);
-        this.mSearchEditFrame.setVisibility(z2 ? 8 : 0);
-        this.mCollapsedIcon.setVisibility((this.mCollapsedIcon.getDrawable() == null || this.mIconifiedByDefault) ? 8 : 0);
-        updateCloseButton();
-        updateVoiceButton(!z3);
-        updateSubmitArea();
-    }
-
-    private void updateVoiceButton(boolean z2) {
-        int i = 8;
-        if (this.mVoiceButtonEnabled && !isIconified() && z2) {
-            this.mGoButton.setVisibility(8);
-            i = 0;
-        }
-        this.mVoiceButton.setVisibility(i);
-    }
-
-    public void adjustDropDownSizeAndPosition() {
-        int dimensionPixelSize;
-        if (this.mDropDownAnchor.getWidth() > 1) {
-            Resources resources = getContext().getResources();
-            int paddingLeft = this.mSearchPlate.getPaddingLeft();
-            Rect rect = new Rect();
-            boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
-            if (this.mIconifiedByDefault) {
-                dimensionPixelSize = resources.getDimensionPixelSize(C0051R.dimen.abc_dropdownitem_text_padding_left) + resources.getDimensionPixelSize(C0051R.dimen.abc_dropdownitem_icon_width);
-            } else {
-                dimensionPixelSize = 0;
-            }
-            this.mSearchSrcTextView.getDropDownBackground().getPadding(rect);
-            this.mSearchSrcTextView.setDropDownHorizontalOffset(zIsLayoutRtl ? -rect.left : paddingLeft - (rect.left + dimensionPixelSize));
-            this.mSearchSrcTextView.setDropDownWidth((((this.mDropDownAnchor.getWidth() + rect.left) + rect.right) + dimensionPixelSize) - paddingLeft);
-        }
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void clearFocus() {
-        this.mClearingFocus = true;
-        super.clearFocus();
-        this.mSearchSrcTextView.clearFocus();
-        this.mSearchSrcTextView.setImeVisibility(false);
-        this.mClearingFocus = false;
-    }
-
-    public void forceSuggestionQuery() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.mSearchSrcTextView.refreshAutoCompleteResults();
-            return;
-        }
-        PreQAutoCompleteTextViewReflector preQAutoCompleteTextViewReflector = PRE_API_29_HIDDEN_METHOD_INVOKER;
-        preQAutoCompleteTextViewReflector.doBeforeTextChanged(this.mSearchSrcTextView);
-        preQAutoCompleteTextViewReflector.doAfterTextChanged(this.mSearchSrcTextView);
-    }
-
     public int getImeOptions() {
         return this.mSearchSrcTextView.getImeOptions();
     }
@@ -791,6 +644,14 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
 
     public int getMaxWidth() {
         return this.mMaxWidth;
+    }
+
+    private int getPreferredHeight() {
+        return getContext().getResources().getDimensionPixelSize(C0051R.dimen.abc_search_view_preferred_height);
+    }
+
+    private int getPreferredWidth() {
+        return getContext().getResources().getDimensionPixelSize(C0051R.dimen.abc_search_view_preferred_width);
     }
 
     public CharSequence getQuery() {
@@ -819,6 +680,20 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         return this.mSuggestionsAdapter;
     }
 
+    private boolean hasVoiceSearch() {
+        SearchableInfo searchableInfo = this.mSearchable;
+        if (searchableInfo == null || !searchableInfo.getVoiceSearchEnabled()) {
+            return false;
+        }
+        Intent intent = null;
+        if (this.mSearchable.getVoiceSearchLaunchWebSearch()) {
+            intent = this.mVoiceWebSearchIntent;
+        } else if (this.mSearchable.getVoiceSearchLaunchRecognizer()) {
+            intent = this.mVoiceAppSearchIntent;
+        }
+        return (intent == null || getContext().getPackageManager().resolveActivity(intent, 65536) == null) ? false : true;
+    }
+
     public boolean isIconfiedByDefault() {
         return this.mIconifiedByDefault;
     }
@@ -827,16 +702,44 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         return this.mIconified;
     }
 
+    public static boolean isLandscapeMode(Context context) {
+        return context.getResources().getConfiguration().orientation == 2;
+    }
+
     public boolean isQueryRefinementEnabled() {
         return this.mQueryRefinement;
+    }
+
+    private boolean isSubmitAreaEnabled() {
+        return (this.mSubmitButtonEnabled || this.mVoiceButtonEnabled) && !isIconified();
     }
 
     public boolean isSubmitButtonEnabled() {
         return this.mSubmitButtonEnabled;
     }
 
+    private void launchIntent(Intent intent) {
+        if (intent == null) {
+            return;
+        }
+        try {
+            getContext().startActivity(intent);
+        } catch (RuntimeException e) {
+            Log.e(LOG_TAG, "Failed launch activity: " + intent, e);
+        }
+    }
+
     public void launchQuerySearch(int i, String str, String str2) {
         getContext().startActivity(createIntent("android.intent.action.SEARCH", null, null, str2, i, str));
+    }
+
+    private boolean launchSuggestion(int i, int i2, String str) {
+        Cursor cursor = this.mSuggestionsAdapter.getCursor();
+        if (cursor == null || !cursor.moveToPosition(i)) {
+            return false;
+        }
+        launchIntent(createIntentFromSuggestion(cursor, i2, str));
+        return true;
     }
 
     @Override // androidx.appcompat.view.CollapsibleActionView
@@ -1062,6 +965,10 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         postUpdateFocusedState();
     }
 
+    private void postUpdateFocusedState() {
+        post(this.mUpdateDrawableStateRunnable);
+    }
+
     @Override // android.view.ViewGroup, android.view.View
     public boolean requestFocus(int i, Rect rect) {
         if (this.mClearingFocus || !isFocusable()) {
@@ -1075,6 +982,24 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
             updateViewsVisibility(false);
         }
         return zRequestFocus;
+    }
+
+    private void rewriteQueryFromSuggestion(int i) {
+        Editable text = this.mSearchSrcTextView.getText();
+        Cursor cursor = this.mSuggestionsAdapter.getCursor();
+        if (cursor == null) {
+            return;
+        }
+        if (!cursor.moveToPosition(i)) {
+            setQuery(text);
+            return;
+        }
+        CharSequence charSequenceConvertToString = this.mSuggestionsAdapter.convertToString(cursor);
+        if (charSequenceConvertToString != null) {
+            setQuery(charSequenceConvertToString);
+        } else {
+            setQuery(text);
+        }
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -1182,6 +1107,19 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         this.mSearchSrcTextView.setAdapter(cursorAdapter);
     }
 
+    private void updateCloseButton() {
+        boolean z2 = true;
+        boolean z3 = !TextUtils.isEmpty(this.mSearchSrcTextView.getText());
+        if (!z3 && (!this.mIconifiedByDefault || this.mExpandedInActionView)) {
+            z2 = false;
+        }
+        this.mCloseButton.setVisibility(z2 ? 0 : 8);
+        Drawable drawable = this.mCloseButton.getDrawable();
+        if (drawable != null) {
+            drawable.setState(z3 ? ViewGroup.ENABLED_STATE_SET : ViewGroup.EMPTY_STATE_SET);
+        }
+    }
+
     public void updateFocusedState() {
         int[] iArr = this.mSearchSrcTextView.hasFocus() ? ViewGroup.FOCUSED_STATE_SET : ViewGroup.EMPTY_STATE_SET;
         Drawable background = this.mSearchPlate.getBackground();
@@ -1193,6 +1131,68 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
             background2.setState(iArr);
         }
         invalidate();
+    }
+
+    private void updateQueryHint() {
+        CharSequence queryHint = getQueryHint();
+        SearchAutoComplete searchAutoComplete = this.mSearchSrcTextView;
+        if (queryHint == null) {
+            queryHint = "";
+        }
+        searchAutoComplete.setHint(getDecoratedHint(queryHint));
+    }
+
+    private void updateSearchAutoComplete() {
+        this.mSearchSrcTextView.setThreshold(this.mSearchable.getSuggestThreshold());
+        this.mSearchSrcTextView.setImeOptions(this.mSearchable.getImeOptions());
+        int inputType = this.mSearchable.getInputType();
+        if ((inputType & 15) == 1) {
+            inputType &= -65537;
+            if (this.mSearchable.getSuggestAuthority() != null) {
+                inputType = inputType | 65536 | 524288;
+            }
+        }
+        this.mSearchSrcTextView.setInputType(inputType);
+        CursorAdapter cursorAdapter = this.mSuggestionsAdapter;
+        if (cursorAdapter != null) {
+            cursorAdapter.changeCursor(null);
+        }
+        if (this.mSearchable.getSuggestAuthority() != null) {
+            SuggestionsAdapter suggestionsAdapter = new SuggestionsAdapter(getContext(), this, this.mSearchable, this.mOutsideDrawablesCache);
+            this.mSuggestionsAdapter = suggestionsAdapter;
+            this.mSearchSrcTextView.setAdapter(suggestionsAdapter);
+            ((SuggestionsAdapter) this.mSuggestionsAdapter).setQueryRefinement(this.mQueryRefinement ? 2 : 1);
+        }
+    }
+
+    private void updateSubmitArea() {
+        this.mSubmitArea.setVisibility((isSubmitAreaEnabled() && (this.mGoButton.getVisibility() == 0 || this.mVoiceButton.getVisibility() == 0)) ? 0 : 8);
+    }
+
+    private void updateSubmitButton(boolean z2) {
+        this.mGoButton.setVisibility((this.mSubmitButtonEnabled && isSubmitAreaEnabled() && hasFocus() && (z2 || !this.mVoiceButtonEnabled)) ? 0 : 8);
+    }
+
+    private void updateViewsVisibility(boolean z2) {
+        this.mIconified = z2;
+        int i = z2 ? 0 : 8;
+        boolean z3 = !TextUtils.isEmpty(this.mSearchSrcTextView.getText());
+        this.mSearchButton.setVisibility(i);
+        updateSubmitButton(z3);
+        this.mSearchEditFrame.setVisibility(z2 ? 8 : 0);
+        this.mCollapsedIcon.setVisibility((this.mCollapsedIcon.getDrawable() == null || this.mIconifiedByDefault) ? 8 : 0);
+        updateCloseButton();
+        updateVoiceButton(!z3);
+        updateSubmitArea();
+    }
+
+    private void updateVoiceButton(boolean z2) {
+        int i = 8;
+        if (this.mVoiceButtonEnabled && !isIconified() && z2) {
+            this.mGoButton.setVisibility(8);
+            i = 0;
+        }
+        this.mVoiceButton.setVisibility(i);
     }
 
     public SearchView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

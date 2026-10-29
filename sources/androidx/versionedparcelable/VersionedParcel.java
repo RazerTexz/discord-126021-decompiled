@@ -55,7 +55,7 @@ public abstract class VersionedParcel {
     public final ArrayMap<String, Method> mReadCache;
     public final ArrayMap<String, Method> mWriteCache;
 
-    public static class ParcelException extends RuntimeException {
+    public class ParcelException extends RuntimeException {
         public ParcelException(Throwable th) {
             super(th);
         }
@@ -66,6 +66,8 @@ public abstract class VersionedParcel {
         this.mWriteCache = arrayMap2;
         this.mParcelizerCache = arrayMap3;
     }
+
+    public abstract void closeField();
 
     private Exception createException(int i, String str) {
         switch (i) {
@@ -90,6 +92,8 @@ public abstract class VersionedParcel {
                 return new SecurityException(str);
         }
     }
+
+    public abstract VersionedParcel createSubParcel();
 
     private Class findParcelClass(Class<? extends VersionedParcelable> cls) throws ClassNotFoundException {
         Class cls2 = this.mParcelizerCache.get(cls.getName());
@@ -158,68 +162,6 @@ public abstract class VersionedParcel {
         return declaredMethod;
     }
 
-    private <T, S extends Collection<T>> S readCollection(S s2) {
-        int i = readInt();
-        if (i < 0) {
-            return null;
-        }
-        if (i != 0) {
-            int i2 = readInt();
-            if (i < 0) {
-                return null;
-            }
-            if (i2 == 1) {
-                while (i > 0) {
-                    s2.add(readVersionedParcelable());
-                    i--;
-                }
-            } else if (i2 == 2) {
-                while (i > 0) {
-                    s2.add(readParcelable());
-                    i--;
-                }
-            } else if (i2 == 3) {
-                while (i > 0) {
-                    s2.add(readSerializable());
-                    i--;
-                }
-            } else if (i2 == 4) {
-                while (i > 0) {
-                    s2.add(readString());
-                    i--;
-                }
-            } else if (i2 == 5) {
-                while (i > 0) {
-                    s2.add(readStrongBinder());
-                    i--;
-                }
-            }
-        }
-        return s2;
-    }
-
-    private int readExceptionCode() {
-        return readInt();
-    }
-
-    private <T> void writeCollection(Collection<T> collection, int i) {
-        setOutputField(i);
-        writeCollection(collection);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private void writeVersionedParcelableCreator(VersionedParcelable versionedParcelable) {
-        try {
-            writeString(findParcelClass(versionedParcelable.getClass()).getName());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(versionedParcelable.getClass().getSimpleName() + " does not have a Parcelizer", e);
-        }
-    }
-
-    public abstract void closeField();
-
-    public abstract VersionedParcel createSubParcel();
-
     public boolean isStream() {
         return false;
     }
@@ -275,6 +217,46 @@ public abstract class VersionedParcel {
         return !readField(i) ? charSequence : readCharSequence();
     }
 
+    private <T, S extends Collection<T>> S readCollection(S s2) {
+        int i = readInt();
+        if (i < 0) {
+            return null;
+        }
+        if (i != 0) {
+            int i2 = readInt();
+            if (i < 0) {
+                return null;
+            }
+            if (i2 == 1) {
+                while (i > 0) {
+                    s2.add(readVersionedParcelable());
+                    i--;
+                }
+            } else if (i2 == 2) {
+                while (i > 0) {
+                    s2.add(readParcelable());
+                    i--;
+                }
+            } else if (i2 == 3) {
+                while (i > 0) {
+                    s2.add(readSerializable());
+                    i--;
+                }
+            } else if (i2 == 4) {
+                while (i > 0) {
+                    s2.add(readString());
+                    i--;
+                }
+            } else if (i2 == 5) {
+                while (i > 0) {
+                    s2.add(readStrongBinder());
+                    i--;
+                }
+            }
+        }
+        return s2;
+    }
+
     public abstract double readDouble();
 
     public double readDouble(double d, int i) {
@@ -288,6 +270,10 @@ public abstract class VersionedParcel {
     public Exception readException(Exception exc, int i) {
         int exceptionCode;
         return (readField(i) && (exceptionCode = readExceptionCode()) != 0) ? readException(exceptionCode, readString()) : exc;
+    }
+
+    private int readExceptionCode() {
+        return readInt();
     }
 
     public abstract boolean readField(int i);
@@ -511,6 +497,11 @@ public abstract class VersionedParcel {
         writeCharSequence(charSequence);
     }
 
+    private <T> void writeCollection(Collection<T> collection, int i) {
+        setOutputField(i);
+        writeCollection(collection);
+    }
+
     public abstract void writeDouble(double d);
 
     public void writeDouble(double d, int i) {
@@ -720,77 +711,12 @@ public abstract class VersionedParcel {
         writeVersionedParcelable(versionedParcelable);
     }
 
-    private <T> void writeCollection(Collection<T> collection) {
-        if (collection == null) {
-            writeInt(-1);
-        }
-        int size = collection.size();
-        writeInt(size);
-        if (size > 0) {
-            int type = getType(collection.iterator().next());
-            writeInt(type);
-            switch (type) {
-                case 1:
-                    Iterator<T> it = collection.iterator();
-                    while (it.hasNext()) {
-                        writeVersionedParcelable((VersionedParcelable) it.next());
-                    }
-                    break;
-                case 2:
-                    Iterator<T> it2 = collection.iterator();
-                    while (it2.hasNext()) {
-                        writeParcelable((Parcelable) it2.next());
-                    }
-                    break;
-                case 3:
-                    Iterator<T> it3 = collection.iterator();
-                    while (it3.hasNext()) {
-                        writeSerializable((Serializable) it3.next());
-                    }
-                    break;
-                case 4:
-                    Iterator<T> it4 = collection.iterator();
-                    while (it4.hasNext()) {
-                        writeString((String) it4.next());
-                    }
-                    break;
-                case 5:
-                    Iterator<T> it5 = collection.iterator();
-                    while (it5.hasNext()) {
-                        writeStrongBinder((IBinder) it5.next());
-                    }
-                    break;
-                case 7:
-                    Iterator<T> it6 = collection.iterator();
-                    while (it6.hasNext()) {
-                        writeInt(((Integer) it6.next()).intValue());
-                    }
-                    break;
-                case 8:
-                    Iterator<T> it7 = collection.iterator();
-                    while (it7.hasNext()) {
-                        writeFloat(((Float) it7.next()).floatValue());
-                    }
-                    break;
-            }
-        }
-    }
-
-    private void writeSerializable(Serializable serializable) {
-        if (serializable == null) {
-            writeString(null);
-            return;
-        }
-        String name = serializable.getClass().getName();
-        writeString(name);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    /* JADX WARN: Multi-variable type inference failed */
+    private void writeVersionedParcelableCreator(VersionedParcelable versionedParcelable) {
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject(serializable);
-            objectOutputStream.close();
-            writeByteArray(byteArrayOutputStream.toByteArray());
-        } catch (IOException e) {
-            throw new RuntimeException(C1643a.m886y("VersionedParcelable encountered IOException writing serializable object (name = ", name, ")"), e);
+            writeString(findParcelClass(versionedParcelable.getClass()).getName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(versionedParcelable.getClass().getSimpleName() + " does not have a Parcelizer", e);
         }
     }
 
@@ -967,6 +893,62 @@ public abstract class VersionedParcel {
         writeByteArray(bArr, i, i2);
     }
 
+    private <T> void writeCollection(Collection<T> collection) {
+        if (collection == null) {
+            writeInt(-1);
+        }
+        int size = collection.size();
+        writeInt(size);
+        if (size > 0) {
+            int type = getType(collection.iterator().next());
+            writeInt(type);
+            switch (type) {
+                case 1:
+                    Iterator<T> it = collection.iterator();
+                    while (it.hasNext()) {
+                        writeVersionedParcelable((VersionedParcelable) it.next());
+                    }
+                    break;
+                case 2:
+                    Iterator<T> it2 = collection.iterator();
+                    while (it2.hasNext()) {
+                        writeParcelable((Parcelable) it2.next());
+                    }
+                    break;
+                case 3:
+                    Iterator<T> it3 = collection.iterator();
+                    while (it3.hasNext()) {
+                        writeSerializable((Serializable) it3.next());
+                    }
+                    break;
+                case 4:
+                    Iterator<T> it4 = collection.iterator();
+                    while (it4.hasNext()) {
+                        writeString((String) it4.next());
+                    }
+                    break;
+                case 5:
+                    Iterator<T> it5 = collection.iterator();
+                    while (it5.hasNext()) {
+                        writeStrongBinder((IBinder) it5.next());
+                    }
+                    break;
+                case 7:
+                    Iterator<T> it6 = collection.iterator();
+                    while (it6.hasNext()) {
+                        writeInt(((Integer) it6.next()).intValue());
+                    }
+                    break;
+                case 8:
+                    Iterator<T> it7 = collection.iterator();
+                    while (it7.hasNext()) {
+                        writeFloat(((Float) it7.next()).floatValue());
+                    }
+                    break;
+            }
+        }
+    }
+
     public void writeDoubleArray(double[] dArr) {
         if (dArr != null) {
             writeInt(dArr.length);
@@ -1009,6 +991,24 @@ public abstract class VersionedParcel {
             return;
         }
         writeInt(-1);
+    }
+
+    private void writeSerializable(Serializable serializable) {
+        if (serializable == null) {
+            writeString(null);
+            return;
+        }
+        String name = serializable.getClass().getName();
+        writeString(name);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(serializable);
+            objectOutputStream.close();
+            writeByteArray(byteArrayOutputStream.toByteArray());
+        } catch (IOException e) {
+            throw new RuntimeException(C1643a.m886y("VersionedParcelable encountered IOException writing serializable object (name = ", name, ")"), e);
+        }
     }
 
     public void writeVersionedParcelable(VersionedParcelable versionedParcelable) {

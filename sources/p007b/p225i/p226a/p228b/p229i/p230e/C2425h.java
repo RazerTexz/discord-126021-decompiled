@@ -14,12 +14,6 @@ public final class C2425h extends AbstractC2431n {
         this.f5188a = j;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2431n
-    /* JADX INFO: renamed from: b */
-    public long mo2330b() {
-        return this.f5188a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -30,6 +24,12 @@ public final class C2425h extends AbstractC2431n {
     public int hashCode() {
         long j = this.f5188a;
         return 1000003 ^ ((int) (j ^ (j >>> 32)));
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2431n
+    /* JADX INFO: renamed from: b */
+    public long mo2330b() {
+        return this.f5188a;
     }
 
     public String toString() {

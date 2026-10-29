@@ -13,12 +13,12 @@ public final class OnErrorThrowable extends RuntimeException {
     private final boolean hasValue;
     private final Object value;
 
-    public static class OnNextValue extends RuntimeException {
+    public class OnNextValue extends RuntimeException {
         private static final long serialVersionUID = -3454462756050397899L;
         private final Object value;
 
         /* JADX INFO: renamed from: rx.exceptions.OnErrorThrowable$OnNextValue$a */
-        public static final class C13013a {
+        public final class C13013a {
 
             /* JADX INFO: renamed from: a */
             public static final Set<Class<?>> f27643a;

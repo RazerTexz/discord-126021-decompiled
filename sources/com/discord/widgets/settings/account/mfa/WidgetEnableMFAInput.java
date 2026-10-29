@@ -35,7 +35,7 @@ public final class WidgetEnableMFAInput extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAInput$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetEnableMFAInput.kt */
-    public static final class C97881 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C97881 extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ View $view;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

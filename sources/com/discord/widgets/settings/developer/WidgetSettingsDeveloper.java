@@ -68,74 +68,9 @@ public final class WidgetSettingsDeveloper extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private ExperimentOverridesAdapter experimentOverridesAdapter;
 
-    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsDeveloper.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class NoticeViewHolder extends SimpleRecyclerAdapter.ViewHolder<Pair<? extends String, ? extends Long>> {
-        private final IconListItemTextViewBinding binding;
-        public String noticeName;
-
-        /* JADX WARN: Illegal instructions before constructor call */
-        public NoticeViewHolder(IconListItemTextViewBinding iconListItemTextViewBinding) {
-            C12238m.checkNotNullParameter(iconListItemTextViewBinding, "binding");
-            TextView textView = iconListItemTextViewBinding.f15165a;
-            C12238m.checkNotNullExpressionValue(textView, "binding.root");
-            super(textView);
-            this.binding = iconListItemTextViewBinding;
-        }
-
-        @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
-        public /* bridge */ /* synthetic */ void bind(Pair<? extends String, ? extends Long> pair) {
-            bind2((Pair<String, Long>) pair);
-        }
-
-        public final String getNoticeName() {
-            String str = this.noticeName;
-            if (str == null) {
-                C12238m.throwUninitializedPropertyAccessException("noticeName");
-            }
-            return str;
-        }
-
-        public final void setNoticeName(String str) {
-            C12238m.checkNotNullParameter(str, "<set-?>");
-            this.noticeName = str;
-        }
-
-        @SuppressLint({"SetTextI18n"})
-        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
-        public void bind2(Pair<String, Long> data) {
-            C12238m.checkNotNullParameter(data, "data");
-            String strComponent1 = data.component1();
-            long jLongValue = data.component2().longValue();
-            this.noticeName = strComponent1;
-            TextView textView = this.binding.f15165a;
-            C12238m.checkNotNullExpressionValue(textView, "binding.root");
-            Context context = textView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
-            CharSequence readableTimeString$default = TimeUtils.toReadableTimeString$default(context, jLongValue, null, 4, null);
-            TextView textView2 = this.binding.f15165a;
-            C12238m.checkNotNullExpressionValue(textView2, "binding.root");
-            textView2.setText(strComponent1 + " @ " + readableTimeString$default);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$1 */
     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class C98481<T, R> implements InterfaceC12589b<Map<String, ? extends Integer>, List<? extends 1.1>> {
+    public final class C98481<T, R> implements InterfaceC12589b<Map<String, ? extends Integer>, List<? extends 1.1>> {
         public final /* synthetic */ StoreExperiments $experimentStore;
 
         public C98481(StoreExperiments storeExperiments) {
@@ -165,7 +100,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$1$$special$$inlined$map$lambda$1$1, reason: invalid class name */
                     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-                    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+                    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
                         public AnonymousClass1() {
                             super(1);
                         }
@@ -184,7 +119,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
                     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$1$$special$$inlined$map$lambda$1$2, reason: invalid class name */
                     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-                    public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+                    public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                         public AnonymousClass2() {
                             super(0);
                         }
@@ -248,7 +183,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$2 */
     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class C98502 extends AbstractC12240o implements Function1<List<? extends C98481.1.1>, Unit> {
+    public final class C98502 extends AbstractC12240o implements Function1<List<? extends C98481.1.1>, Unit> {
         public C98502() {
             super(1);
         }
@@ -269,7 +204,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$1 */
     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class C98511 extends AbstractC12240o implements Function0<ItemTouchHelper> {
+    public final class C98511 extends AbstractC12240o implements Function0<ItemTouchHelper> {
         public C98511() {
             super(0);
         }
@@ -292,7 +227,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$3 */
     /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
-    public static final class C98533 extends AbstractC12240o implements Function1<List<? extends Pair<? extends String, ? extends Long>>, Unit> {
+    public final class C98533 extends AbstractC12240o implements Function1<List<? extends Pair<? extends String, ? extends Long>>, Unit> {
         public final /* synthetic */ SimpleRecyclerAdapter $noticesAdapter;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -315,6 +250,71 @@ public final class WidgetSettingsDeveloper extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsDeveloper.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class NoticeViewHolder extends SimpleRecyclerAdapter.ViewHolder<Pair<? extends String, ? extends Long>> {
+        private final IconListItemTextViewBinding binding;
+        public String noticeName;
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public NoticeViewHolder(IconListItemTextViewBinding iconListItemTextViewBinding) {
+            C12238m.checkNotNullParameter(iconListItemTextViewBinding, "binding");
+            TextView textView = iconListItemTextViewBinding.f15165a;
+            C12238m.checkNotNullExpressionValue(textView, "binding.root");
+            super(textView);
+            this.binding = iconListItemTextViewBinding;
+        }
+
+        @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
+        public /* bridge */ /* synthetic */ void bind(Pair<? extends String, ? extends Long> pair) {
+            bind2((Pair<String, Long>) pair);
+        }
+
+        public final String getNoticeName() {
+            String str = this.noticeName;
+            if (str == null) {
+                C12238m.throwUninitializedPropertyAccessException("noticeName");
+            }
+            return str;
+        }
+
+        public final void setNoticeName(String str) {
+            C12238m.checkNotNullParameter(str, "<set-?>");
+            this.noticeName = str;
+        }
+
+        @SuppressLint({"SetTextI18n"})
+        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
+        public void bind2(Pair<String, Long> data) {
+            C12238m.checkNotNullParameter(data, "data");
+            String strComponent1 = data.component1();
+            long jLongValue = data.component2().longValue();
+            this.noticeName = strComponent1;
+            TextView textView = this.binding.f15165a;
+            C12238m.checkNotNullExpressionValue(textView, "binding.root");
+            Context context = textView.getContext();
+            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
+            CharSequence readableTimeString$default = TimeUtils.toReadableTimeString$default(context, jLongValue, null, 4, null);
+            TextView textView2 = this.binding.f15165a;
+            C12238m.checkNotNullExpressionValue(textView2, "binding.root");
+            textView2.setText(strComponent1 + " @ " + readableTimeString$default);
+        }
+    }
+
     public WidgetSettingsDeveloper() {
         super(C5419R.layout.widget_settings_developer);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsDeveloper$binding$2.INSTANCE, null, 2, null);
@@ -334,6 +334,23 @@ public final class WidgetSettingsDeveloper extends AppFragment {
 
     public static final void launch(Context context) {
         INSTANCE.launch(context);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setActionBarDisplayHomeAsUpEnabled(true);
+        setActionBarTitle(C5419R.string.developer_options);
+        setupCrashes();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        setupScreenshotDetector();
+        setupExperimentSection();
+        setupNoticesSection();
     }
 
     private final void setupCrashes() {
@@ -416,22 +433,5 @@ public final class WidgetSettingsDeveloper extends AppFragment {
                 bugReportManager2.setBugReportingSettingEnabled(bool.booleanValue());
             }
         });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setActionBarDisplayHomeAsUpEnabled(true);
-        setActionBarTitle(C5419R.string.developer_options);
-        setupCrashes();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        setupScreenshotDetector();
-        setupExperimentSection();
-        setupNoticesSection();
     }
 }

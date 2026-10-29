@@ -13,10 +13,6 @@ public abstract class AbstractC4170r5 extends C4181s5 {
         this.f11202a.f11251F++;
     }
 
-    /* JADX INFO: renamed from: m */
-    public void mo5573m() {
-    }
-
     /* JADX INFO: renamed from: n */
     public final boolean m5856n() {
         return this.f11176b;
@@ -49,6 +45,10 @@ public abstract class AbstractC4170r5 extends C4181s5 {
         mo5573m();
         this.f11202a.f11252G.incrementAndGet();
         this.f11176b = true;
+    }
+
+    /* JADX INFO: renamed from: m */
+    public void mo5573m() {
     }
 
     /* JADX INFO: renamed from: r */

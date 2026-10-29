@@ -11,16 +11,6 @@ public final /* data */ class ThirdPartySku {
     private final String id;
     private final String sku;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getDistributor() {
-        return this.distributor;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getSku() {
-        return this.sku;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class ThirdPartySku {
         }
         ThirdPartySku thirdPartySku = (ThirdPartySku) other;
         return C12238m.areEqual(this.id, thirdPartySku.id) && C12238m.areEqual(this.sku, thirdPartySku.sku) && C12238m.areEqual(this.distributor, thirdPartySku.distributor);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getDistributor() {
+        return this.distributor;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getSku() {
+        return this.sku;
     }
 
     public int hashCode() {

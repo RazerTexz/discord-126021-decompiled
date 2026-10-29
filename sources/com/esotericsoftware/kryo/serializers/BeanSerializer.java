@@ -19,9 +19,9 @@ import p007b.p106e.p108b.AbstractC1648d;
 
 /* JADX INFO: loaded from: classes.dex */
 public class BeanSerializer<T> extends Serializer<T> {
-    public static final Object[] noArgs = new Object[0];
     public Object access;
     private CachedProperty[] properties;
+    public static final Object[] noArgs = new Object[0];
 
     public class CachedProperty<X> {
         public Method getMethod;

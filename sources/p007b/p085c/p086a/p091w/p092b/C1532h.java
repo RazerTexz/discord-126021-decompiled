@@ -43,12 +43,6 @@ public class C1532h implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
     /* JADX INFO: renamed from: c */
     public final AbstractC1603b f2513c;
 
-    /* JADX INFO: renamed from: d */
-    public final LongSparseArray<LinearGradient> f2514d = new LongSparseArray<>();
-
-    /* JADX INFO: renamed from: e */
-    public final LongSparseArray<RadialGradient> f2515e = new LongSparseArray<>();
-
     /* JADX INFO: renamed from: f */
     public final Path f2516f;
 
@@ -90,6 +84,12 @@ public class C1532h implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
     /* JADX INFO: renamed from: r */
     public final int f2528r;
 
+    /* JADX INFO: renamed from: d */
+    public final LongSparseArray<LinearGradient> f2514d = new LongSparseArray<>();
+
+    /* JADX INFO: renamed from: e */
+    public final LongSparseArray<RadialGradient> f2515e = new LongSparseArray<>();
+
     public C1532h(C1511j c1511j, AbstractC1603b abstractC1603b, C1589d c1589d) {
         Path path = new Path();
         this.f2516f = path;
@@ -119,6 +119,45 @@ public class C1532h implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
         this.f2524n = abstractC1544aMo773a4;
         abstractC1544aMo773a4.f2596a.add(this);
         abstractC1603b.m777e(abstractC1544aMo773a4);
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2511a;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final int[] m717e(int[] iArr) {
+        C1559p c1559p = this.f2526p;
+        if (c1559p != null) {
+            Integer[] numArr = (Integer[]) c1559p.mo727e();
+            int i = 0;
+            if (iArr.length == numArr.length) {
+                while (i < iArr.length) {
+                    iArr[i] = numArr[i].intValue();
+                    i++;
+                }
+            } else {
+                iArr = new int[numArr.length];
+                while (i < numArr.length) {
+                    iArr[i] = numArr[i].intValue();
+                    i++;
+                }
+            }
+        }
+        return iArr;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final int m718h() {
+        int iRound = Math.round(this.f2523m.f2599d * this.f2528r);
+        int iRound2 = Math.round(this.f2524n.f2599d * this.f2528r);
+        int iRound3 = Math.round(this.f2521k.f2599d * this.f2528r);
+        int i = iRound != 0 ? 527 * iRound : 17;
+        if (iRound2 != 0) {
+            i = i * 31 * iRound2;
+        }
+        return iRound3 != 0 ? i * 31 * iRound3 : i;
     }
 
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
@@ -153,28 +192,6 @@ public class C1532h implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
         }
         this.f2516f.computeBounds(rectF, false);
         rectF.set(rectF.left - 1.0f, rectF.top - 1.0f, rectF.right + 1.0f, rectF.bottom + 1.0f);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final int[] m717e(int[] iArr) {
-        C1559p c1559p = this.f2526p;
-        if (c1559p != null) {
-            Integer[] numArr = (Integer[]) c1559p.mo727e();
-            int i = 0;
-            if (iArr.length == numArr.length) {
-                while (i < iArr.length) {
-                    iArr[i] = numArr[i].intValue();
-                    i++;
-                }
-            } else {
-                iArr = new int[numArr.length];
-                while (i < numArr.length) {
-                    iArr[i] = numArr[i].intValue();
-                    i++;
-                }
-            }
-        }
-        return iArr;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -277,22 +294,5 @@ public class C1532h implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1535
             c1559p3.f2596a.add(this);
             this.f2513c.m777e(this.f2526p);
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2511a;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final int m718h() {
-        int iRound = Math.round(this.f2523m.f2599d * this.f2528r);
-        int iRound2 = Math.round(this.f2524n.f2599d * this.f2528r);
-        int iRound3 = Math.round(this.f2521k.f2599d * this.f2528r);
-        int i = iRound != 0 ? 527 * iRound : 17;
-        if (iRound2 != 0) {
-            i = i * 31 * iRound2;
-        }
-        return iRound3 != 0 ? i * 31 * iRound3 : i;
     }
 }

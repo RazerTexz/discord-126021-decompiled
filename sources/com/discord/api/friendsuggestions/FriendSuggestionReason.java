@@ -11,16 +11,6 @@ public final /* data */ class FriendSuggestionReason {
     private final String platformType;
     private final FriendSuggestionReasonType type;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getPlatformType() {
-        return this.platformType;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class FriendSuggestionReason {
         }
         FriendSuggestionReason friendSuggestionReason = (FriendSuggestionReason) other;
         return C12238m.areEqual(this.type, friendSuggestionReason.type) && C12238m.areEqual(this.platformType, friendSuggestionReason.platformType) && C12238m.areEqual(this.name, friendSuggestionReason.name);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getPlatformType() {
+        return this.platformType;
     }
 
     public int hashCode() {

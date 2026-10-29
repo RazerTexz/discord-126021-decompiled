@@ -17,7 +17,7 @@ public final class BotComponentExperiments implements ComponentExperiments {
     private final StoreExperiments storeExperiments;
 
     /* JADX INFO: compiled from: ComponentExperiments.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -8,18 +8,6 @@ public class C4254z1 extends C4181s5 implements InterfaceC4192t5 {
         super(c4202u4);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
-    /* JADX INFO: renamed from: a */
-    public void mo5847a() {
-        this.f11202a.mo5725f().mo5847a();
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
-    /* JADX INFO: renamed from: b */
-    public void mo5848b() {
-        this.f11202a.mo5725f().mo5848b();
-    }
-
     /* JADX INFO: renamed from: m */
     public C3968a m5968m() {
         return this.f11202a.m5937A();
@@ -55,5 +43,17 @@ public class C4254z1 extends C4181s5 implements InterfaceC4192t5 {
     /* JADX INFO: renamed from: s */
     public C4228w8 m5974s() {
         return this.f11202a.m5947r();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
+    /* JADX INFO: renamed from: a */
+    public void mo5847a() {
+        this.f11202a.mo5725f().mo5847a();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
+    /* JADX INFO: renamed from: b */
+    public void mo5848b() {
+        this.f11202a.mo5725f().mo5848b();
     }
 }

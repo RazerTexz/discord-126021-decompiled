@@ -29,7 +29,6 @@ public class SystemAlarmDispatcher implements ExecutionListener {
     private static final int DEFAULT_START_ID = 0;
     private static final String KEY_START_ID = "KEY_START_ID";
     private static final String PROCESS_COMMAND_TAG = "ProcessCommand";
-    public static final String TAG = Logger.tagWithPrefix("SystemAlarmDispatcher");
     public final CommandHandler mCommandHandler;
 
     @Nullable
@@ -42,8 +41,9 @@ public class SystemAlarmDispatcher implements ExecutionListener {
     private final TaskExecutor mTaskExecutor;
     private final WorkManagerImpl mWorkManager;
     private final WorkTimer mWorkTimer;
+    public static final String TAG = Logger.tagWithPrefix("SystemAlarmDispatcher");
 
-    public static class AddRunnable implements Runnable {
+    public class AddRunnable implements Runnable {
         private final SystemAlarmDispatcher mDispatcher;
         private final Intent mIntent;
         private final int mStartId;
@@ -64,7 +64,7 @@ public class SystemAlarmDispatcher implements ExecutionListener {
         void onAllCommandsCompleted();
     }
 
-    public static class DequeueAndCheckForCompletion implements Runnable {
+    public class DequeueAndCheckForCompletion implements Runnable {
         private final SystemAlarmDispatcher mDispatcher;
 
         public DequeueAndCheckForCompletion(@NonNull SystemAlarmDispatcher systemAlarmDispatcher) {
@@ -81,10 +81,78 @@ public class SystemAlarmDispatcher implements ExecutionListener {
         this(context, null, null);
     }
 
+    @MainThread
+    public boolean add(@NonNull Intent intent, int i) {
+        Logger logger = Logger.get();
+        String str = TAG;
+        logger.debug(str, String.format("Adding command %s (%s)", intent, Integer.valueOf(i)), new Throwable[0]);
+        assertMainThread();
+        String action = intent.getAction();
+        if (TextUtils.isEmpty(action)) {
+            Logger.get().warning(str, "Unknown command. Ignoring", new Throwable[0]);
+            return false;
+        }
+        if (CommandHandler.ACTION_CONSTRAINTS_CHANGED.equals(action) && hasIntentWithAction(CommandHandler.ACTION_CONSTRAINTS_CHANGED)) {
+            return false;
+        }
+        intent.putExtra(KEY_START_ID, i);
+        synchronized (this.mIntents) {
+            boolean z2 = this.mIntents.isEmpty() ? false : true;
+            this.mIntents.add(intent);
+            if (!z2) {
+                processCommand();
+            }
+        }
+        return true;
+    }
+
     private void assertMainThread() {
         if (this.mMainHandler.getLooper().getThread() != Thread.currentThread()) {
             throw new IllegalStateException("Needs to be invoked on the main thread.");
         }
+    }
+
+    @MainThread
+    public void dequeueAndCheckForCompletion() {
+        Logger logger = Logger.get();
+        String str = TAG;
+        logger.debug(str, "Checking if commands are complete.", new Throwable[0]);
+        assertMainThread();
+        synchronized (this.mIntents) {
+            if (this.mCurrentIntent != null) {
+                Logger.get().debug(str, String.format("Removing command %s", this.mCurrentIntent), new Throwable[0]);
+                if (!this.mIntents.remove(0).equals(this.mCurrentIntent)) {
+                    throw new IllegalStateException("Dequeue-d command is not the first.");
+                }
+                this.mCurrentIntent = null;
+            }
+            SerialExecutor backgroundExecutor = this.mTaskExecutor.getBackgroundExecutor();
+            if (!this.mCommandHandler.hasPendingCommands() && this.mIntents.isEmpty() && !backgroundExecutor.hasPendingTasks()) {
+                Logger.get().debug(str, "No more commands & intents.", new Throwable[0]);
+                CommandsCompletedListener commandsCompletedListener = this.mCompletedListener;
+                if (commandsCompletedListener != null) {
+                    commandsCompletedListener.onAllCommandsCompleted();
+                }
+            } else if (!this.mIntents.isEmpty()) {
+                processCommand();
+            }
+        }
+    }
+
+    public Processor getProcessor() {
+        return this.mProcessor;
+    }
+
+    public TaskExecutor getTaskExecutor() {
+        return this.mTaskExecutor;
+    }
+
+    public WorkManagerImpl getWorkManager() {
+        return this.mWorkManager;
+    }
+
+    public WorkTimer getWorkTimer() {
+        return this.mWorkTimer;
     }
 
     @MainThread
@@ -99,6 +167,22 @@ public class SystemAlarmDispatcher implements ExecutionListener {
             }
             return false;
         }
+    }
+
+    public void onDestroy() {
+        Logger.get().debug(TAG, "Destroying SystemAlarmDispatcher", new Throwable[0]);
+        this.mProcessor.removeExecutionListener(this);
+        this.mWorkTimer.onDestroy();
+        this.mCompletedListener = null;
+    }
+
+    @Override // androidx.work.impl.ExecutionListener
+    public void onExecuted(@NonNull String str, boolean z2) {
+        postOnMainThread(new AddRunnable(this, CommandHandler.createExecutionCompletedIntent(this.mContext, str, z2), 0));
+    }
+
+    public void postOnMainThread(@NonNull Runnable runnable) {
+        this.mMainHandler.post(runnable);
     }
 
     @MainThread
@@ -157,90 +241,6 @@ public class SystemAlarmDispatcher implements ExecutionListener {
         } finally {
             wakeLockNewWakeLock.release();
         }
-    }
-
-    @MainThread
-    public boolean add(@NonNull Intent intent, int i) {
-        Logger logger = Logger.get();
-        String str = TAG;
-        logger.debug(str, String.format("Adding command %s (%s)", intent, Integer.valueOf(i)), new Throwable[0]);
-        assertMainThread();
-        String action = intent.getAction();
-        if (TextUtils.isEmpty(action)) {
-            Logger.get().warning(str, "Unknown command. Ignoring", new Throwable[0]);
-            return false;
-        }
-        if (CommandHandler.ACTION_CONSTRAINTS_CHANGED.equals(action) && hasIntentWithAction(CommandHandler.ACTION_CONSTRAINTS_CHANGED)) {
-            return false;
-        }
-        intent.putExtra(KEY_START_ID, i);
-        synchronized (this.mIntents) {
-            boolean z2 = this.mIntents.isEmpty() ? false : true;
-            this.mIntents.add(intent);
-            if (!z2) {
-                processCommand();
-            }
-        }
-        return true;
-    }
-
-    @MainThread
-    public void dequeueAndCheckForCompletion() {
-        Logger logger = Logger.get();
-        String str = TAG;
-        logger.debug(str, "Checking if commands are complete.", new Throwable[0]);
-        assertMainThread();
-        synchronized (this.mIntents) {
-            if (this.mCurrentIntent != null) {
-                Logger.get().debug(str, String.format("Removing command %s", this.mCurrentIntent), new Throwable[0]);
-                if (!this.mIntents.remove(0).equals(this.mCurrentIntent)) {
-                    throw new IllegalStateException("Dequeue-d command is not the first.");
-                }
-                this.mCurrentIntent = null;
-            }
-            SerialExecutor backgroundExecutor = this.mTaskExecutor.getBackgroundExecutor();
-            if (!this.mCommandHandler.hasPendingCommands() && this.mIntents.isEmpty() && !backgroundExecutor.hasPendingTasks()) {
-                Logger.get().debug(str, "No more commands & intents.", new Throwable[0]);
-                CommandsCompletedListener commandsCompletedListener = this.mCompletedListener;
-                if (commandsCompletedListener != null) {
-                    commandsCompletedListener.onAllCommandsCompleted();
-                }
-            } else if (!this.mIntents.isEmpty()) {
-                processCommand();
-            }
-        }
-    }
-
-    public Processor getProcessor() {
-        return this.mProcessor;
-    }
-
-    public TaskExecutor getTaskExecutor() {
-        return this.mTaskExecutor;
-    }
-
-    public WorkManagerImpl getWorkManager() {
-        return this.mWorkManager;
-    }
-
-    public WorkTimer getWorkTimer() {
-        return this.mWorkTimer;
-    }
-
-    public void onDestroy() {
-        Logger.get().debug(TAG, "Destroying SystemAlarmDispatcher", new Throwable[0]);
-        this.mProcessor.removeExecutionListener(this);
-        this.mWorkTimer.onDestroy();
-        this.mCompletedListener = null;
-    }
-
-    @Override // androidx.work.impl.ExecutionListener
-    public void onExecuted(@NonNull String str, boolean z2) {
-        postOnMainThread(new AddRunnable(this, CommandHandler.createExecutionCompletedIntent(this.mContext, str, z2), 0));
-    }
-
-    public void postOnMainThread(@NonNull Runnable runnable) {
-        this.mMainHandler.post(runnable);
     }
 
     public void setCompletedListener(@NonNull CommandsCompletedListener commandsCompletedListener) {

@@ -6,10 +6,10 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C13029l<E> {
+    public volatile Object _cur;
 
     /* JADX INFO: renamed from: a */
     public static final AtomicReferenceFieldUpdater f27689a = AtomicReferenceFieldUpdater.newUpdater(C13029l.class, Object.class, "_cur");
-    public volatile Object _cur;
 
     public C13029l(boolean z2) {
         this._cur = new C13030m(8, z2);

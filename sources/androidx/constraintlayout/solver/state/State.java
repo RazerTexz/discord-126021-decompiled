@@ -18,15 +18,15 @@ public class State {
     public static final int CONSTRAINT_RATIO = 2;
     public static final int CONSTRAINT_SPREAD = 0;
     public static final int CONSTRAINT_WRAP = 1;
-    public static final Integer PARENT = 0;
     public static final int UNKNOWN = -1;
     public final ConstraintReference mParent;
     private int numHelpers;
+    public static final Integer PARENT = 0;
     public HashMap<Object, Reference> mReferences = new HashMap<>();
     public HashMap<Object, HelperReference> mHelperReferences = new HashMap<>();
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.State$1 */
-    public static /* synthetic */ class C01851 {
+    public /* synthetic */ class C01851 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Helper;
 
         static {
@@ -104,13 +104,6 @@ public class State {
         this.mParent = constraintReference;
         this.numHelpers = 0;
         this.mReferences.put(PARENT, constraintReference);
-    }
-
-    private String createHelperKey() {
-        StringBuilder sbM833U = C1643a.m833U("__HELPER_KEY_");
-        int i = this.numHelpers;
-        this.numHelpers = i + 1;
-        return C1643a.m814B(sbM833U, i, "__");
     }
 
     public void apply(ConstraintWidgetContainer constraintWidgetContainer) {
@@ -201,6 +194,13 @@ public class State {
 
     public ConstraintReference createConstraintReference(Object obj) {
         return new ConstraintReference(this);
+    }
+
+    private String createHelperKey() {
+        StringBuilder sbM833U = C1643a.m833U("__HELPER_KEY_");
+        int i = this.numHelpers;
+        this.numHelpers = i + 1;
+        return C1643a.m814B(sbM833U, i, "__");
     }
 
     public void directMapping() {

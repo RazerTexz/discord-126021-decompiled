@@ -17,7 +17,7 @@ public final class C12614e {
 
     /* JADX INFO: renamed from: j0.l.a.e$a */
     /* JADX INFO: compiled from: NotificationLite.java */
-    public static class a implements Serializable {
+    public final class a implements Serializable {
         private static final long serialVersionUID = 1;
 
         public String toString() {
@@ -27,7 +27,7 @@ public final class C12614e {
 
     /* JADX INFO: renamed from: j0.l.a.e$b */
     /* JADX INFO: compiled from: NotificationLite.java */
-    public static class b implements Serializable {
+    public final class b implements Serializable {
         private static final long serialVersionUID = 2;
 
         public String toString() {
@@ -37,7 +37,7 @@ public final class C12614e {
 
     /* JADX INFO: renamed from: j0.l.a.e$c */
     /* JADX INFO: compiled from: NotificationLite.java */
-    public static final class c implements Serializable {
+    public final class c implements Serializable {
         private static final long serialVersionUID = 3;
 
         /* JADX INFO: renamed from: e */

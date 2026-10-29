@@ -65,134 +65,6 @@ public final class C3097r implements InterfaceC3094o {
     /* JADX INFO: renamed from: o */
     public final C2757x f8802o = new C2757x();
 
-    /* JADX INFO: renamed from: b.i.a.c.x2.k0.r$b */
-    /* JADX INFO: compiled from: H264Reader.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC3122w f8803a;
-
-        /* JADX INFO: renamed from: b */
-        public final boolean f8804b;
-
-        /* JADX INFO: renamed from: c */
-        public final boolean f8805c;
-
-        /* JADX INFO: renamed from: f */
-        public final C2758y f8808f;
-
-        /* JADX INFO: renamed from: g */
-        public byte[] f8809g;
-
-        /* JADX INFO: renamed from: h */
-        public int f8810h;
-
-        /* JADX INFO: renamed from: i */
-        public int f8811i;
-
-        /* JADX INFO: renamed from: j */
-        public long f8812j;
-
-        /* JADX INFO: renamed from: l */
-        public long f8814l;
-
-        /* JADX INFO: renamed from: p */
-        public long f8818p;
-
-        /* JADX INFO: renamed from: q */
-        public long f8819q;
-
-        /* JADX INFO: renamed from: r */
-        public boolean f8820r;
-
-        /* JADX INFO: renamed from: d */
-        public final SparseArray<C2754u.c> f8806d = new SparseArray<>();
-
-        /* JADX INFO: renamed from: e */
-        public final SparseArray<C2754u.b> f8807e = new SparseArray<>();
-
-        /* JADX INFO: renamed from: m */
-        public a f8815m = new a(null);
-
-        /* JADX INFO: renamed from: n */
-        public a f8816n = new a(null);
-
-        /* JADX INFO: renamed from: k */
-        public boolean f8813k = false;
-
-        /* JADX INFO: renamed from: o */
-        public boolean f8817o = false;
-
-        /* JADX INFO: renamed from: b.i.a.c.x2.k0.r$b$a */
-        /* JADX INFO: compiled from: H264Reader.java */
-        public static final class a {
-
-            /* JADX INFO: renamed from: a */
-            public boolean f8821a;
-
-            /* JADX INFO: renamed from: b */
-            public boolean f8822b;
-
-            /* JADX INFO: renamed from: c */
-            @Nullable
-            public C2754u.c f8823c;
-
-            /* JADX INFO: renamed from: d */
-            public int f8824d;
-
-            /* JADX INFO: renamed from: e */
-            public int f8825e;
-
-            /* JADX INFO: renamed from: f */
-            public int f8826f;
-
-            /* JADX INFO: renamed from: g */
-            public int f8827g;
-
-            /* JADX INFO: renamed from: h */
-            public boolean f8828h;
-
-            /* JADX INFO: renamed from: i */
-            public boolean f8829i;
-
-            /* JADX INFO: renamed from: j */
-            public boolean f8830j;
-
-            /* JADX INFO: renamed from: k */
-            public boolean f8831k;
-
-            /* JADX INFO: renamed from: l */
-            public int f8832l;
-
-            /* JADX INFO: renamed from: m */
-            public int f8833m;
-
-            /* JADX INFO: renamed from: n */
-            public int f8834n;
-
-            /* JADX INFO: renamed from: o */
-            public int f8835o;
-
-            /* JADX INFO: renamed from: p */
-            public int f8836p;
-
-            public a(a aVar) {
-            }
-        }
-
-        public b(InterfaceC3122w interfaceC3122w, boolean z2, boolean z3) {
-            this.f8803a = interfaceC3122w;
-            this.f8804b = z2;
-            this.f8805c = z3;
-            byte[] bArr = new byte[128];
-            this.f8809g = bArr;
-            this.f8808f = new C2758y(bArr, 0, 0);
-            a aVar = this.f8816n;
-            aVar.f8822b = false;
-            aVar.f8821a = false;
-        }
-    }
-
     public C3097r(C3079e0 c3079e0, boolean z2, boolean z3) {
         this.f8788a = c3079e0;
         this.f8789b = z2;
@@ -689,5 +561,133 @@ public final class C3097r implements InterfaceC3094o {
             this.f8800m = j;
         }
         this.f8801n |= (i & 2) != 0;
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.k0.r$b */
+    /* JADX INFO: compiled from: H264Reader.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC3122w f8803a;
+
+        /* JADX INFO: renamed from: b */
+        public final boolean f8804b;
+
+        /* JADX INFO: renamed from: c */
+        public final boolean f8805c;
+
+        /* JADX INFO: renamed from: f */
+        public final C2758y f8808f;
+
+        /* JADX INFO: renamed from: g */
+        public byte[] f8809g;
+
+        /* JADX INFO: renamed from: h */
+        public int f8810h;
+
+        /* JADX INFO: renamed from: i */
+        public int f8811i;
+
+        /* JADX INFO: renamed from: j */
+        public long f8812j;
+
+        /* JADX INFO: renamed from: l */
+        public long f8814l;
+
+        /* JADX INFO: renamed from: p */
+        public long f8818p;
+
+        /* JADX INFO: renamed from: q */
+        public long f8819q;
+
+        /* JADX INFO: renamed from: r */
+        public boolean f8820r;
+
+        /* JADX INFO: renamed from: d */
+        public final SparseArray<C2754u.c> f8806d = new SparseArray<>();
+
+        /* JADX INFO: renamed from: e */
+        public final SparseArray<C2754u.b> f8807e = new SparseArray<>();
+
+        /* JADX INFO: renamed from: m */
+        public a f8815m = new a(null);
+
+        /* JADX INFO: renamed from: n */
+        public a f8816n = new a(null);
+
+        /* JADX INFO: renamed from: k */
+        public boolean f8813k = false;
+
+        /* JADX INFO: renamed from: o */
+        public boolean f8817o = false;
+
+        /* JADX INFO: renamed from: b.i.a.c.x2.k0.r$b$a */
+        /* JADX INFO: compiled from: H264Reader.java */
+        public final class a {
+
+            /* JADX INFO: renamed from: a */
+            public boolean f8821a;
+
+            /* JADX INFO: renamed from: b */
+            public boolean f8822b;
+
+            /* JADX INFO: renamed from: c */
+            @Nullable
+            public C2754u.c f8823c;
+
+            /* JADX INFO: renamed from: d */
+            public int f8824d;
+
+            /* JADX INFO: renamed from: e */
+            public int f8825e;
+
+            /* JADX INFO: renamed from: f */
+            public int f8826f;
+
+            /* JADX INFO: renamed from: g */
+            public int f8827g;
+
+            /* JADX INFO: renamed from: h */
+            public boolean f8828h;
+
+            /* JADX INFO: renamed from: i */
+            public boolean f8829i;
+
+            /* JADX INFO: renamed from: j */
+            public boolean f8830j;
+
+            /* JADX INFO: renamed from: k */
+            public boolean f8831k;
+
+            /* JADX INFO: renamed from: l */
+            public int f8832l;
+
+            /* JADX INFO: renamed from: m */
+            public int f8833m;
+
+            /* JADX INFO: renamed from: n */
+            public int f8834n;
+
+            /* JADX INFO: renamed from: o */
+            public int f8835o;
+
+            /* JADX INFO: renamed from: p */
+            public int f8836p;
+
+            public a(a aVar) {
+            }
+        }
+
+        public b(InterfaceC3122w interfaceC3122w, boolean z2, boolean z3) {
+            this.f8803a = interfaceC3122w;
+            this.f8804b = z2;
+            this.f8805c = z3;
+            byte[] bArr = new byte[128];
+            this.f8809g = bArr;
+            this.f8808f = new C2758y(bArr, 0, 0);
+            a aVar = this.f8816n;
+            aVar.f8822b = false;
+            aVar.f8821a = false;
+        }
     }
 }

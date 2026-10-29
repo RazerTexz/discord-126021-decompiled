@@ -7,6 +7,8 @@ import com.google.android.exoplayer2.decoder.DecoderException;
 /* JADX INFO: compiled from: Decoder.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC2956d<I, O, E extends DecoderException> {
+    void flush();
+
     @Nullable
     /* JADX INFO: renamed from: b */
     O mo2608b() throws DecoderException;
@@ -17,8 +19,6 @@ public interface InterfaceC2956d<I, O, E extends DecoderException> {
 
     /* JADX INFO: renamed from: d */
     void mo2610d(I i) throws DecoderException;
-
-    void flush();
 
     void release();
 }

@@ -68,6 +68,73 @@ public class C11382k0 extends AbstractC11371f {
         this.f22893t = function1;
     }
 
+    public void addUpperBound(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            m9413a(26);
+            throw null;
+        }
+        m9414e();
+        if (C11919e0.isError(abstractC11913c0)) {
+            return;
+        }
+        this.f22894u.add(abstractC11913c0);
+    }
+
+    public static C11382k0 createForFurtherModification(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, boolean z2, EnumC11935j1 enumC11935j1, C11716e c11716e, int i, InterfaceC11467u0 interfaceC11467u0, InterfaceC11905o interfaceC11905o) {
+        if (interfaceC11450m == null) {
+            m9413a(6);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9413a(7);
+            throw null;
+        }
+        if (enumC11935j1 == null) {
+            m9413a(8);
+            throw null;
+        }
+        if (c11716e == null) {
+            m9413a(9);
+            throw null;
+        }
+        if (interfaceC11467u0 == null) {
+            m9413a(10);
+            throw null;
+        }
+        if (interfaceC11905o != null) {
+            return createForFurtherModification(interfaceC11450m, interfaceC11344g, z2, enumC11935j1, c11716e, i, interfaceC11467u0, null, InterfaceC11473x0.a.f23103a, interfaceC11905o);
+        }
+        m9413a(11);
+        throw null;
+    }
+
+    public static InterfaceC11477z0 createWithDefaultBound(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, boolean z2, EnumC11935j1 enumC11935j1, C11716e c11716e, int i, InterfaceC11905o interfaceC11905o) {
+        if (interfaceC11450m == null) {
+            m9413a(0);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9413a(1);
+            throw null;
+        }
+        if (enumC11935j1 == null) {
+            m9413a(2);
+            throw null;
+        }
+        if (c11716e == null) {
+            m9413a(3);
+            throw null;
+        }
+        if (interfaceC11905o == null) {
+            m9413a(4);
+            throw null;
+        }
+        C11382k0 c11382k0CreateForFurtherModification = createForFurtherModification(interfaceC11450m, interfaceC11344g, z2, enumC11935j1, c11716e, i, InterfaceC11467u0.f23099a, interfaceC11905o);
+        c11382k0CreateForFurtherModification.addUpperBound(C11836a.getBuiltIns(interfaceC11450m).getDefaultBound());
+        c11382k0CreateForFurtherModification.setInitialized();
+        return c11382k0CreateForFurtherModification;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9413a(int i) {
         String str = (i == 5 || i == 28) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -177,71 +244,18 @@ public class C11382k0 extends AbstractC11371f {
         throw new IllegalStateException(str2);
     }
 
-    public static C11382k0 createForFurtherModification(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, boolean z2, EnumC11935j1 enumC11935j1, C11716e c11716e, int i, InterfaceC11467u0 interfaceC11467u0, InterfaceC11905o interfaceC11905o) {
-        if (interfaceC11450m == null) {
-            m9413a(6);
-            throw null;
+    /* JADX INFO: renamed from: e */
+    public final void m9414e() {
+        if (this.f22895v) {
+            StringBuilder sbM833U = C1643a.m833U("Type parameter descriptor is already initialized: ");
+            sbM833U.append(m9415f());
+            throw new IllegalStateException(sbM833U.toString());
         }
-        if (interfaceC11344g == null) {
-            m9413a(7);
-            throw null;
-        }
-        if (enumC11935j1 == null) {
-            m9413a(8);
-            throw null;
-        }
-        if (c11716e == null) {
-            m9413a(9);
-            throw null;
-        }
-        if (interfaceC11467u0 == null) {
-            m9413a(10);
-            throw null;
-        }
-        if (interfaceC11905o != null) {
-            return createForFurtherModification(interfaceC11450m, interfaceC11344g, z2, enumC11935j1, c11716e, i, interfaceC11467u0, null, InterfaceC11473x0.a.f23103a, interfaceC11905o);
-        }
-        m9413a(11);
-        throw null;
     }
 
-    public static InterfaceC11477z0 createWithDefaultBound(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, boolean z2, EnumC11935j1 enumC11935j1, C11716e c11716e, int i, InterfaceC11905o interfaceC11905o) {
-        if (interfaceC11450m == null) {
-            m9413a(0);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9413a(1);
-            throw null;
-        }
-        if (enumC11935j1 == null) {
-            m9413a(2);
-            throw null;
-        }
-        if (c11716e == null) {
-            m9413a(3);
-            throw null;
-        }
-        if (interfaceC11905o == null) {
-            m9413a(4);
-            throw null;
-        }
-        C11382k0 c11382k0CreateForFurtherModification = createForFurtherModification(interfaceC11450m, interfaceC11344g, z2, enumC11935j1, c11716e, i, InterfaceC11467u0.f23099a, interfaceC11905o);
-        c11382k0CreateForFurtherModification.addUpperBound(C11836a.getBuiltIns(interfaceC11450m).getDefaultBound());
-        c11382k0CreateForFurtherModification.setInitialized();
-        return c11382k0CreateForFurtherModification;
-    }
-
-    public void addUpperBound(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            m9413a(26);
-            throw null;
-        }
-        m9414e();
-        if (C11919e0.isError(abstractC11913c0)) {
-            return;
-        }
-        this.f22894u.add(abstractC11913c0);
+    /* JADX INFO: renamed from: f */
+    public final String m9415f() {
+        return getName() + " declared in " + C11787e.getFqName(getContainingDeclaration());
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11371f
@@ -272,20 +286,6 @@ public class C11382k0 extends AbstractC11371f {
         }
         m9413a(28);
         throw null;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m9414e() {
-        if (this.f22895v) {
-            StringBuilder sbM833U = C1643a.m833U("Type parameter descriptor is already initialized: ");
-            sbM833U.append(m9415f());
-            throw new IllegalStateException(sbM833U.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final String m9415f() {
-        return getName() + " declared in " + C11787e.getFqName(getContainingDeclaration());
     }
 
     public void setInitialized() {

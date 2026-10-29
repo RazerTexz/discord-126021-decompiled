@@ -13,7 +13,7 @@ public abstract class Rule<R, T extends Node<R>, S> {
     private final Matcher matcher;
 
     /* JADX INFO: compiled from: Rule.kt */
-    public static abstract class BlockRule<R, T extends Node<R>, S> extends Rule<R, T, S> {
+    public abstract class BlockRule<R, T extends Node<R>, S> extends Rule<R, T, S> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public BlockRule(Pattern pattern) {
             super(pattern);

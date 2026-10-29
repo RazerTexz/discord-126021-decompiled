@@ -10,10 +10,10 @@ import p659s.p660a.p661a.InterfaceC13040w;
 /* JADX INFO: compiled from: ThreadSafeHeap.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class C13039v<T extends InterfaceC13040w & Comparable<? super T>> {
-    public volatile int _size = 0;
 
     /* JADX INFO: renamed from: a */
     public T[] f27707a;
+    public volatile int _size = 0;
 
     /* JADX INFO: renamed from: a */
     public final void m11174a(T t) {

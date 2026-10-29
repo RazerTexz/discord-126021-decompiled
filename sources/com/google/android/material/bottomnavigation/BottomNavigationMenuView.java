@@ -42,8 +42,6 @@ import java.util.HashSet;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     private static final long ACTIVE_ANIMATION_DURATION_MS = 115;
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-    private static final int[] DISABLED_STATE_SET = {-16842910};
     private static final int ITEM_POOL_SIZE = 5;
     private final int activeItemMaxWidth;
     private final int activeItemMinWidth;
@@ -89,6 +87,8 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     @NonNull
     private final TransitionSet set;
     private int[] tempChildWidths;
+    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    private static final int[] DISABLED_STATE_SET = {-16842910};
 
     /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationMenuView$a */
     public class ViewOnClickListenerC10847a implements View.OnClickListener {
@@ -107,54 +107,6 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
 
     public BottomNavigationMenuView(Context context) {
         this(context, null);
-    }
-
-    private BottomNavigationItemView getNewItem() {
-        BottomNavigationItemView bottomNavigationItemViewAcquire = this.itemPool.acquire();
-        return bottomNavigationItemViewAcquire == null ? new BottomNavigationItemView(getContext()) : bottomNavigationItemViewAcquire;
-    }
-
-    private boolean isShifting(int i, int i2) {
-        if (i == -1) {
-            if (i2 > 3) {
-                return true;
-            }
-        } else if (i == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isValidId(int i) {
-        return i != -1;
-    }
-
-    private void removeUnusedBadges() {
-        HashSet hashSet = new HashSet();
-        for (int i = 0; i < this.menu.size(); i++) {
-            hashSet.add(Integer.valueOf(this.menu.getItem(i).getItemId()));
-        }
-        for (int i2 = 0; i2 < this.badgeDrawables.size(); i2++) {
-            int iKeyAt = this.badgeDrawables.keyAt(i2);
-            if (!hashSet.contains(Integer.valueOf(iKeyAt))) {
-                this.badgeDrawables.delete(iKeyAt);
-            }
-        }
-    }
-
-    private void setBadgeIfNeeded(@NonNull BottomNavigationItemView bottomNavigationItemView) {
-        BadgeDrawable badgeDrawable;
-        int id2 = bottomNavigationItemView.getId();
-        if (isValidId(id2) && (badgeDrawable = this.badgeDrawables.get(id2)) != null) {
-            bottomNavigationItemView.setBadge(badgeDrawable);
-        }
-    }
-
-    private void validateMenuItemId(int i) {
-        if (isValidId(i)) {
-            return;
-        }
-        throw new IllegalArgumentException(i + " is not a valid view id");
     }
 
     @SuppressLint({"ClickableViewAccessibility"})
@@ -296,6 +248,11 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
         return this.labelVisibilityMode;
     }
 
+    private BottomNavigationItemView getNewItem() {
+        BottomNavigationItemView bottomNavigationItemViewAcquire = this.itemPool.acquire();
+        return bottomNavigationItemViewAcquire == null ? new BottomNavigationItemView(getContext()) : bottomNavigationItemViewAcquire;
+    }
+
     public BadgeDrawable getOrCreateBadge(int i) {
         validateMenuItemId(i);
         BadgeDrawable badgeDrawableCreate = this.badgeDrawables.get(i);
@@ -326,6 +283,21 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
 
     public boolean isItemHorizontalTranslationEnabled() {
         return this.itemHorizontalTranslationEnabled;
+    }
+
+    private boolean isShifting(int i, int i2) {
+        if (i == -1) {
+            if (i2 > 3) {
+                return true;
+            }
+        } else if (i == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidId(int i) {
+        return i != -1;
     }
 
     @Override // android.view.View
@@ -426,6 +398,19 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
         }
     }
 
+    private void removeUnusedBadges() {
+        HashSet hashSet = new HashSet();
+        for (int i = 0; i < this.menu.size(); i++) {
+            hashSet.add(Integer.valueOf(this.menu.getItem(i).getItemId()));
+        }
+        for (int i2 = 0; i2 < this.badgeDrawables.size(); i2++) {
+            int iKeyAt = this.badgeDrawables.keyAt(i2);
+            if (!hashSet.contains(Integer.valueOf(iKeyAt))) {
+                this.badgeDrawables.delete(iKeyAt);
+            }
+        }
+    }
+
     public void setBadgeDrawables(SparseArray<BadgeDrawable> sparseArray) {
         this.badgeDrawables = sparseArray;
         BottomNavigationItemView[] bottomNavigationItemViewArr = this.buttons;
@@ -433,6 +418,14 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
             for (BottomNavigationItemView bottomNavigationItemView : bottomNavigationItemViewArr) {
                 bottomNavigationItemView.setBadge(sparseArray.get(bottomNavigationItemView.getId()));
             }
+        }
+    }
+
+    private void setBadgeIfNeeded(@NonNull BottomNavigationItemView bottomNavigationItemView) {
+        BadgeDrawable badgeDrawable;
+        int id2 = bottomNavigationItemView.getId();
+        if (isValidId(id2) && (badgeDrawable = this.badgeDrawables.get(id2)) != null) {
+            bottomNavigationItemView.setBadge(badgeDrawable);
         }
     }
 
@@ -585,6 +578,13 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
             this.buttons[i3].initialize((MenuItemImpl) this.menu.getItem(i3), 0);
             this.presenter.setUpdateSuspended(false);
         }
+    }
+
+    private void validateMenuItemId(int i) {
+        if (isValidId(i)) {
+            return;
+        }
+        throw new IllegalArgumentException(i + " is not a valid view id");
     }
 
     public BottomNavigationMenuView(Context context, AttributeSet attributeSet) {

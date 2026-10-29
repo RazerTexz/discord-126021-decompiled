@@ -71,16 +71,6 @@ public class ShareActionProvider extends ActionProvider {
         this.mContext = context;
     }
 
-    private void setActivityChooserPolicyIfNeeded() {
-        if (this.mOnShareTargetSelectedListener == null) {
-            return;
-        }
-        if (this.mOnChooseActivityListener == null) {
-            this.mOnChooseActivityListener = new ShareActivityChooserModelPolicy();
-        }
-        ActivityChooserModel.get(this.mContext, this.mShareHistoryFileName).setOnChooseActivityListener(this.mOnChooseActivityListener);
-    }
-
     @Override // androidx.core.view.ActionProvider
     public boolean hasSubMenu() {
         return true;
@@ -119,6 +109,16 @@ public class ShareActionProvider extends ActionProvider {
                 subMenuAddSubMenu.add(0, i2, i2, activity2.loadLabel(packageManager)).setIcon(activity2.loadIcon(packageManager)).setOnMenuItemClickListener(this.mOnMenuItemClickListener);
             }
         }
+    }
+
+    private void setActivityChooserPolicyIfNeeded() {
+        if (this.mOnShareTargetSelectedListener == null) {
+            return;
+        }
+        if (this.mOnChooseActivityListener == null) {
+            this.mOnChooseActivityListener = new ShareActivityChooserModelPolicy();
+        }
+        ActivityChooserModel.get(this.mContext, this.mShareHistoryFileName).setOnChooseActivityListener(this.mOnChooseActivityListener);
     }
 
     public void setOnShareTargetSelectedListener(OnShareTargetSelectedListener onShareTargetSelectedListener) {

@@ -11,7 +11,6 @@ public class ObjectMap<K, V> {
     private static final int PRIME2 = -1105259343;
     private static final int PRIME3 = -1262997959;
     private static final int PRIME4 = -825114047;
-    public static Random random = new Random();
     public int capacity;
     private int hashShift;
     private boolean isBigTable;
@@ -24,8 +23,9 @@ public class ObjectMap<K, V> {
     public int stashSize;
     private int threshold;
     public V[] valueTable;
+    public static Random random = new Random();
 
-    public static class Entries<K, V> extends MapIterator<K, V> implements Iterable<Entry<K, V>>, Iterator<Entry<K, V>> {
+    public class Entries<K, V> extends MapIterator<K, V> implements Iterable<Entry<K, V>>, Iterator<Entry<K, V>> {
         public Entry<K, V> entry;
 
         public Entries(ObjectMap<K, V> objectMap) {
@@ -70,7 +70,7 @@ public class ObjectMap<K, V> {
         }
     }
 
-    public static class Entry<K, V> {
+    public class Entry<K, V> {
         public K key;
         public V value;
 
@@ -79,7 +79,7 @@ public class ObjectMap<K, V> {
         }
     }
 
-    public static class Keys<K> extends MapIterator<K, Object> implements Iterable<K>, Iterator<K> {
+    public class Keys<K> extends MapIterator<K, Object> implements Iterable<K>, Iterator<K> {
         public Keys(ObjectMap<K, ?> objectMap) {
             super(objectMap);
         }
@@ -126,7 +126,7 @@ public class ObjectMap<K, V> {
         }
     }
 
-    public static class MapIterator<K, V> {
+    public class MapIterator<K, V> {
         public int currentIndex;
         public boolean hasNext;
         public final ObjectMap<K, V> map;
@@ -182,6 +182,35 @@ public class ObjectMap<K, V> {
         this(32, 0.8f);
     }
 
+    public void clear(int i) {
+        if (this.capacity <= i) {
+            clear();
+        } else {
+            this.size = 0;
+            resize(i);
+        }
+    }
+
+    public boolean containsKey(K k) {
+        int iHashCode = k.hashCode();
+        if (k.equals(this.keyTable[this.mask & iHashCode])) {
+            return true;
+        }
+        if (k.equals(this.keyTable[hash2(iHashCode)])) {
+            return true;
+        }
+        if (k.equals(this.keyTable[hash3(iHashCode)])) {
+            return true;
+        }
+        if (!this.isBigTable) {
+            return containsKeyStash(k);
+        }
+        if (k.equals(this.keyTable[hash4(iHashCode)])) {
+            return true;
+        }
+        return containsKeyStash(k);
+    }
+
     private boolean containsKeyStash(K k) {
         K[] kArr = this.keyTable;
         int i = this.capacity;
@@ -193,6 +222,122 @@ public class ObjectMap<K, V> {
             i++;
         }
         return false;
+    }
+
+    public boolean containsValue(Object obj, boolean z2) {
+        V[] vArr = this.valueTable;
+        if (obj == null) {
+            K[] kArr = this.keyTable;
+            int i = this.capacity + this.stashSize;
+            while (true) {
+                int i2 = i - 1;
+                if (i <= 0) {
+                    return false;
+                }
+                if (kArr[i2] != null && vArr[i2] == null) {
+                    return true;
+                }
+                i = i2;
+            }
+        } else if (z2) {
+            int i3 = this.capacity + this.stashSize;
+            while (true) {
+                int i4 = i3 - 1;
+                if (i3 <= 0) {
+                    return false;
+                }
+                if (vArr[i4] == obj) {
+                    return true;
+                }
+                i3 = i4;
+            }
+        } else {
+            int i5 = this.capacity + this.stashSize;
+            while (true) {
+                int i6 = i5 - 1;
+                if (i5 <= 0) {
+                    return false;
+                }
+                if (obj.equals(vArr[i6])) {
+                    return true;
+                }
+                i5 = i6;
+            }
+        }
+    }
+
+    public void ensureCapacity(int i) {
+        int i2 = this.size + i;
+        if (i2 >= this.threshold) {
+            resize(nextPowerOfTwo((int) (i2 / this.loadFactor)));
+        }
+    }
+
+    public Entries<K, V> entries() {
+        return new Entries<>(this);
+    }
+
+    public K findKey(Object obj, boolean z2) {
+        V[] vArr = this.valueTable;
+        if (obj == null) {
+            K[] kArr = this.keyTable;
+            int i = this.capacity + this.stashSize;
+            while (true) {
+                int i2 = i - 1;
+                if (i <= 0) {
+                    return null;
+                }
+                if (kArr[i2] != null && vArr[i2] == null) {
+                    return kArr[i2];
+                }
+                i = i2;
+            }
+        } else if (z2) {
+            int i3 = this.capacity + this.stashSize;
+            while (true) {
+                int i4 = i3 - 1;
+                if (i3 <= 0) {
+                    return null;
+                }
+                if (vArr[i4] == obj) {
+                    return this.keyTable[i4];
+                }
+                i3 = i4;
+            }
+        } else {
+            int i5 = this.capacity + this.stashSize;
+            while (true) {
+                int i6 = i5 - 1;
+                if (i5 <= 0) {
+                    return null;
+                }
+                if (obj.equals(vArr[i6])) {
+                    return this.keyTable[i6];
+                }
+                i5 = i6;
+            }
+        }
+    }
+
+    public V get(K k) {
+        int iHashCode = k.hashCode();
+        int iHash2 = this.mask & iHashCode;
+        if (!k.equals(this.keyTable[iHash2])) {
+            iHash2 = hash2(iHashCode);
+            if (!k.equals(this.keyTable[iHash2])) {
+                iHash2 = hash3(iHashCode);
+                if (!k.equals(this.keyTable[iHash2])) {
+                    if (!this.isBigTable) {
+                        return getStash(k);
+                    }
+                    iHash2 = hash4(iHashCode);
+                    if (!k.equals(this.keyTable[iHash2])) {
+                        return getStash(k);
+                    }
+                }
+            }
+        }
+        return this.valueTable[iHash2];
     }
 
     private V getStash(K k) {
@@ -221,6 +366,10 @@ public class ObjectMap<K, V> {
     private int hash4(int i) {
         int i2 = i * PRIME4;
         return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
+    }
+
+    public Keys<K> keys() {
+        return new Keys<>(this);
     }
 
     public static int nextPowerOfTwo(int i) {
@@ -351,6 +500,20 @@ public class ObjectMap<K, V> {
             i10 = iHash3;
             i7 = i13;
             k9 = k13;
+        }
+    }
+
+    public V put(K k, V v) {
+        if (k != null) {
+            return put_internal(k, v);
+        }
+        throw new IllegalArgumentException("key cannot be null.");
+    }
+
+    public void putAll(ObjectMap<K, V> objectMap) {
+        ensureCapacity(objectMap.size);
+        for (Entry<K, V> entry : objectMap.entries()) {
+            put(entry.key, entry.value);
         }
     }
 
@@ -539,197 +702,6 @@ public class ObjectMap<K, V> {
         return null;
     }
 
-    private void resize(int i) {
-        int i2 = this.capacity + this.stashSize;
-        this.capacity = i;
-        this.threshold = (int) (i * this.loadFactor);
-        this.mask = i - 1;
-        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
-        double d = i;
-        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
-        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
-        this.isBigTable = (this.capacity >>> 16) != 0;
-        K[] kArr = this.keyTable;
-        V[] vArr = this.valueTable;
-        int i3 = this.stashCapacity;
-        this.keyTable = (K[]) new Object[i + i3];
-        this.valueTable = (V[]) new Object[i + i3];
-        int i4 = this.size;
-        this.size = 0;
-        this.stashSize = 0;
-        if (i4 > 0) {
-            for (int i5 = 0; i5 < i2; i5++) {
-                K k = kArr[i5];
-                if (k != null) {
-                    putResize(k, vArr[i5]);
-                }
-            }
-        }
-    }
-
-    public void clear(int i) {
-        if (this.capacity <= i) {
-            clear();
-        } else {
-            this.size = 0;
-            resize(i);
-        }
-    }
-
-    public boolean containsKey(K k) {
-        int iHashCode = k.hashCode();
-        if (k.equals(this.keyTable[this.mask & iHashCode])) {
-            return true;
-        }
-        if (k.equals(this.keyTable[hash2(iHashCode)])) {
-            return true;
-        }
-        if (k.equals(this.keyTable[hash3(iHashCode)])) {
-            return true;
-        }
-        if (!this.isBigTable) {
-            return containsKeyStash(k);
-        }
-        if (k.equals(this.keyTable[hash4(iHashCode)])) {
-            return true;
-        }
-        return containsKeyStash(k);
-    }
-
-    public boolean containsValue(Object obj, boolean z2) {
-        V[] vArr = this.valueTable;
-        if (obj == null) {
-            K[] kArr = this.keyTable;
-            int i = this.capacity + this.stashSize;
-            while (true) {
-                int i2 = i - 1;
-                if (i <= 0) {
-                    return false;
-                }
-                if (kArr[i2] != null && vArr[i2] == null) {
-                    return true;
-                }
-                i = i2;
-            }
-        } else if (z2) {
-            int i3 = this.capacity + this.stashSize;
-            while (true) {
-                int i4 = i3 - 1;
-                if (i3 <= 0) {
-                    return false;
-                }
-                if (vArr[i4] == obj) {
-                    return true;
-                }
-                i3 = i4;
-            }
-        } else {
-            int i5 = this.capacity + this.stashSize;
-            while (true) {
-                int i6 = i5 - 1;
-                if (i5 <= 0) {
-                    return false;
-                }
-                if (obj.equals(vArr[i6])) {
-                    return true;
-                }
-                i5 = i6;
-            }
-        }
-    }
-
-    public void ensureCapacity(int i) {
-        int i2 = this.size + i;
-        if (i2 >= this.threshold) {
-            resize(nextPowerOfTwo((int) (i2 / this.loadFactor)));
-        }
-    }
-
-    public Entries<K, V> entries() {
-        return new Entries<>(this);
-    }
-
-    public K findKey(Object obj, boolean z2) {
-        V[] vArr = this.valueTable;
-        if (obj == null) {
-            K[] kArr = this.keyTable;
-            int i = this.capacity + this.stashSize;
-            while (true) {
-                int i2 = i - 1;
-                if (i <= 0) {
-                    return null;
-                }
-                if (kArr[i2] != null && vArr[i2] == null) {
-                    return kArr[i2];
-                }
-                i = i2;
-            }
-        } else if (z2) {
-            int i3 = this.capacity + this.stashSize;
-            while (true) {
-                int i4 = i3 - 1;
-                if (i3 <= 0) {
-                    return null;
-                }
-                if (vArr[i4] == obj) {
-                    return this.keyTable[i4];
-                }
-                i3 = i4;
-            }
-        } else {
-            int i5 = this.capacity + this.stashSize;
-            while (true) {
-                int i6 = i5 - 1;
-                if (i5 <= 0) {
-                    return null;
-                }
-                if (obj.equals(vArr[i6])) {
-                    return this.keyTable[i6];
-                }
-                i5 = i6;
-            }
-        }
-    }
-
-    public V get(K k) {
-        int iHashCode = k.hashCode();
-        int iHash2 = this.mask & iHashCode;
-        if (!k.equals(this.keyTable[iHash2])) {
-            iHash2 = hash2(iHashCode);
-            if (!k.equals(this.keyTable[iHash2])) {
-                iHash2 = hash3(iHashCode);
-                if (!k.equals(this.keyTable[iHash2])) {
-                    if (!this.isBigTable) {
-                        return getStash(k);
-                    }
-                    iHash2 = hash4(iHashCode);
-                    if (!k.equals(this.keyTable[iHash2])) {
-                        return getStash(k);
-                    }
-                }
-            }
-        }
-        return this.valueTable[iHash2];
-    }
-
-    public Keys<K> keys() {
-        return new Keys<>(this);
-    }
-
-    public V put(K k, V v) {
-        if (k != null) {
-            return put_internal(k, v);
-        }
-        throw new IllegalArgumentException("key cannot be null.");
-    }
-
-    public void putAll(ObjectMap<K, V> objectMap) {
-        ensureCapacity(objectMap.size);
-        for (Entry<K, V> entry : objectMap.entries()) {
-            put(entry.key, entry.value);
-        }
-    }
-
     public V remove(K k) {
         int iHashCode = k.hashCode();
         int i = this.mask & iHashCode;
@@ -804,6 +776,34 @@ public class ObjectMap<K, V> {
         vArr[i3] = null;
     }
 
+    private void resize(int i) {
+        int i2 = this.capacity + this.stashSize;
+        this.capacity = i;
+        this.threshold = (int) (i * this.loadFactor);
+        this.mask = i - 1;
+        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
+        double d = i;
+        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
+        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
+        this.isBigTable = (this.capacity >>> 16) != 0;
+        K[] kArr = this.keyTable;
+        V[] vArr = this.valueTable;
+        int i3 = this.stashCapacity;
+        this.keyTable = (K[]) new Object[i + i3];
+        this.valueTable = (V[]) new Object[i + i3];
+        int i4 = this.size;
+        this.size = 0;
+        this.stashSize = 0;
+        if (i4 > 0) {
+            for (int i5 = 0; i5 < i2; i5++) {
+                K k = kArr[i5];
+                if (k != null) {
+                    putResize(k, vArr[i5]);
+                }
+            }
+        }
+    }
+
     public void shrink(int i) {
         if (i < 0) {
             throw new IllegalArgumentException(C1643a.m871q("maximumCapacity must be >= 0: ", i));
@@ -868,7 +868,7 @@ public class ObjectMap<K, V> {
         this(i, 0.8f);
     }
 
-    public static class Values<V> extends MapIterator<Object, V> implements Iterable<V>, Iterator<V> {
+    public class Values<V> extends MapIterator<Object, V> implements Iterable<V>, Iterator<V> {
         public Values(ObjectMap<?, V> objectMap) {
             super(objectMap);
         }

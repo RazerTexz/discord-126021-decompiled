@@ -41,7 +41,7 @@ public class AdjustFactory {
     private static long timerStart = -1;
     private static boolean tryInstallReferrer = true;
 
-    public static class URLGetConnection {
+    public class URLGetConnection {
         public HttpsURLConnection httpsURLConnection;
         public URL url;
 

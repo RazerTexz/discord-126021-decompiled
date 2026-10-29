@@ -74,11 +74,11 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsAppearance extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAppearance.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAppearanceBinding;", 0)};
+    private static final int EASTER_EGG_UNLOCK_TIMEOUT = 5;
+    private static final int HOLY_LIGHT_UNLOCK_COUNT = 5;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int EASTER_EGG_UNLOCK_TIMEOUT = 5;
-    private static final int HOLY_LIGHT_UNLOCK_COUNT = 5;
     private static final int PURE_EVIL_HINT_COUNT = 3;
     private static final int PURE_EVIL_UNLOCK_COUNT = 8;
 
@@ -92,8 +92,120 @@ public final class WidgetSettingsAppearance extends AppFragment {
     private final Lazy pureEvilEasterEggSubject;
     private ToastManager toastManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C96331 extends C12236k implements Function1<Model, Unit> {
+        public C96331(WidgetSettingsAppearance widgetSettingsAppearance) {
+            super(1, widgetSettingsAppearance, WidgetSettingsAppearance.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsAppearance$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetSettingsAppearance) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
+    public final class C96342 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public static final C96342 INSTANCE = new C96342();
+
+        public C96342() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke2(num);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Integer num) {
+            StoreUserSettingsSystem userSettingsSystem = StoreStream.INSTANCE.getUserSettingsSystem();
+            C12238m.checkNotNullExpressionValue(num, "fontScale");
+            userSettingsSystem.setFontScale(num.intValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$showHolyLight$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
+    public final class C96361 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C96361() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            View view = WidgetSettingsAppearance.this.getBinding().f17854g;
+            C12238m.checkNotNullExpressionValue(view, "binding.settingsAppearanceHolyLight");
+            view.setVisibility(8);
+            WidgetSettingsAppearance.this.tryEnableTorchMode(false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$updateTheme$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
+    public final class C96371 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $theme;
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$updateTheme$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+                invoke2(modelUserSettings);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(ModelUserSettings modelUserSettings) {
+                C12238m.checkNotNullParameter(modelUserSettings, "it");
+                if (C12238m.areEqual(C96371.this.$theme, ModelUserSettings.THEME_PURE_EVIL)) {
+                    C0876m.m169g(WidgetSettingsAppearance.this.m95e(), C5419R.string.theme_pure_evil_updated, 0, null, 12);
+                } else {
+                    C0876m.m169g(WidgetSettingsAppearance.this.m95e(), C5419R.string.theme_updated, 0, null, 12);
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96371(String str) {
+            super(0);
+            this.$theme = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithTheme(C12238m.areEqual(this.$theme, ModelUserSettings.THEME_PURE_EVIL) ? ModelUserSettings.THEME_DARK : this.$theme)), false, 1, null), WidgetSettingsAppearance.this, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : WidgetSettingsAppearance.this.m95e(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -108,7 +220,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -118,7 +230,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
         private final MeUser meUser;
 
         /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -182,26 +294,6 @@ public final class WidgetSettingsAppearance extends AppFragment {
             return model.copy(str, z2, i, meUser);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getCurrentTheme() {
-            return this.currentTheme;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanSeePureEvil() {
-            return this.canSeePureEvil;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getFontScale() {
-            return this.fontScale;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
         public final Model copy(String currentTheme, boolean canSeePureEvil, int fontScale, MeUser meUser) {
             C12238m.checkNotNullParameter(currentTheme, "currentTheme");
             C12238m.checkNotNullParameter(meUser, "meUser");
@@ -219,16 +311,36 @@ public final class WidgetSettingsAppearance extends AppFragment {
             return C12238m.areEqual(this.currentTheme, model.currentTheme) && this.canSeePureEvil == model.canSeePureEvil && this.fontScale == model.fontScale && C12238m.areEqual(this.meUser, model.meUser);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getCanSeePureEvil() {
             return this.canSeePureEvil;
+        }
+
+        public final boolean getCanSeePureEvil() {
+            return this.canSeePureEvil;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getCurrentTheme() {
+            return this.currentTheme;
         }
 
         public final String getCurrentTheme() {
             return this.currentTheme;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getFontScale() {
             return this.fontScale;
+        }
+
+        public final int getFontScale() {
+            return this.fontScale;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final MeUser getMeUser() {
+            return this.meUser;
         }
 
         public final MeUser getMeUser() {
@@ -264,118 +376,6 @@ public final class WidgetSettingsAppearance extends AppFragment {
             sbM833U.append(this.meUser);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final /* synthetic */ class C96331 extends C12236k implements Function1<Model, Unit> {
-        public C96331(WidgetSettingsAppearance widgetSettingsAppearance) {
-            super(1, widgetSettingsAppearance, WidgetSettingsAppearance.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsAppearance$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetSettingsAppearance) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final class C96342 extends AbstractC12240o implements Function1<Integer, Unit> {
-        public static final C96342 INSTANCE = new C96342();
-
-        public C96342() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
-            invoke2(num);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Integer num) {
-            StoreUserSettingsSystem userSettingsSystem = StoreStream.INSTANCE.getUserSettingsSystem();
-            C12238m.checkNotNullExpressionValue(num, "fontScale");
-            userSettingsSystem.setFontScale(num.intValue());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$showHolyLight$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final class C96361 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C96361() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            View view = WidgetSettingsAppearance.this.getBinding().f17854g;
-            C12238m.checkNotNullExpressionValue(view, "binding.settingsAppearanceHolyLight");
-            view.setVisibility(8);
-            WidgetSettingsAppearance.this.tryEnableTorchMode(false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$updateTheme$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-    public static final class C96371 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $theme;
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$updateTheme$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-                invoke2(modelUserSettings);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(ModelUserSettings modelUserSettings) {
-                C12238m.checkNotNullParameter(modelUserSettings, "it");
-                if (C12238m.areEqual(C96371.this.$theme, ModelUserSettings.THEME_PURE_EVIL)) {
-                    C0876m.m169g(WidgetSettingsAppearance.this.m95e(), C5419R.string.theme_pure_evil_updated, 0, null, 12);
-                } else {
-                    C0876m.m169g(WidgetSettingsAppearance.this.m95e(), C5419R.string.theme_updated, 0, null, 12);
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96371(String str) {
-            super(0);
-            this.$theme = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithTheme(C12238m.areEqual(this.$theme, ModelUserSettings.THEME_PURE_EVIL) ? ModelUserSettings.THEME_DARK : this.$theme)), false, 1, null), WidgetSettingsAppearance.this, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : WidgetSettingsAppearance.this.m95e(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
         }
     }
 
@@ -424,7 +424,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$configureUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
             @InterfaceC12188e(m10084c = "com.discord.widgets.settings.WidgetSettingsAppearance$configureUI$1$1", m10085f = "WidgetSettingsAppearance.kt", m10086l = {122}, m10087m = "invokeSuspend")
-            public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+            public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
                 public int label;
 
                 public AnonymousClass1(Continuation continuation) {
@@ -443,7 +443,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
                 }
 
                 @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-                public final Object invokeSuspend(Object obj) {
+                public final Object invokeSuspend(Object obj) throws Throwable {
                     Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                     int i = this.label;
                     if (i == 0) {
@@ -490,7 +490,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAppearance$configureUI$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetSettingsAppearance.kt */
             @InterfaceC12188e(m10084c = "com.discord.widgets.settings.WidgetSettingsAppearance$configureUI$2$1", m10085f = "WidgetSettingsAppearance.kt", m10086l = {Opcodes.F2I}, m10087m = "invokeSuspend")
-            public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+            public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
                 public int label;
 
                 public AnonymousClass1(Continuation continuation) {
@@ -509,7 +509,7 @@ public final class WidgetSettingsAppearance extends AppFragment {
                 }
 
                 @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-                public final Object invokeSuspend(Object obj) {
+                public final Object invokeSuspend(Object obj) throws Throwable {
                     Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                     int i = this.label;
                     if (i == 0) {
@@ -614,13 +614,6 @@ public final class WidgetSettingsAppearance extends AppFragment {
         return (WidgetSettingsAppearanceBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final String getFontScaleString(int fontScale, boolean useSystemFontScale) {
-        if (useSystemFontScale) {
-            return fontScale + "% (" + getString(C5419R.string.accessibility_font_scaling_use_os) + ')';
-        }
-        return fontScale + "% (" + getString(C5419R.string.accessibility_font_scaling_use_app) + ')';
-    }
-
     public static /* synthetic */ String getFontScaleString$default(WidgetSettingsAppearance widgetSettingsAppearance, int i, boolean z2, int i2, Object obj) {
         if ((i2 & 2) != 0) {
             z2 = true;
@@ -628,8 +621,56 @@ public final class WidgetSettingsAppearance extends AppFragment {
         return widgetSettingsAppearance.getFontScaleString(i, z2);
     }
 
+    private final String getFontScaleString(int fontScale, boolean useSystemFontScale) {
+        if (useSystemFontScale) {
+            return fontScale + "% (" + getString(C5419R.string.accessibility_font_scaling_use_os) + ')';
+        }
+        return fontScale + "% (" + getString(C5419R.string.accessibility_font_scaling_use_app) + ')';
+    }
+
     private final BehaviorSubject<Boolean> getPureEvilEasterEggSubject() {
         return (BehaviorSubject) this.pureEvilEasterEggSubject.getValue();
+    }
+
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onDestroyView() {
+        this.toastManager.close();
+        super.onDestroyView();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setActionBarTitle(C5419R.string.appearance);
+        setActionBarSubtitle(C5419R.string.user_settings);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        SeekBar seekBar = getBinding().f17853f;
+        C12238m.checkNotNullExpressionValue(seekBar, "binding.settingsAppearanceFontScalingSeekbar");
+        seekBar.setMax(70);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Model.Companion companion = Model.INSTANCE;
+        BehaviorSubject<Boolean> pureEvilEasterEggSubject = getPureEvilEasterEggSubject();
+        C12238m.checkNotNullExpressionValue(pureEvilEasterEggSubject, "pureEvilEasterEggSubject");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(companion.get(pureEvilEasterEggSubject), this, null, 2, null), (Class<?>) WidgetSettingsAppearance.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96331(this));
+        Observable<Integer> observableM11110p = this.newFontScaleSubject.m11110p(400L, TimeUnit.MILLISECONDS);
+        C12238m.checkNotNullExpressionValue(observableM11110p, "newFontScaleSubject\n    …0, TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11110p, this, null, 2, null), (Class<?>) WidgetSettingsAppearance.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C96342.INSTANCE);
+        CheckedSetting checkedSetting = getBinding().f17856i;
+        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsAppearanceSyncSwitch");
+        checkedSetting.setChecked(StoreStream.INSTANCE.getUserSettingsSystem().getIsThemeSyncEnabled());
+        getBinding().f17856i.setOnCheckedListener(new Action1<Boolean>() { // from class: com.discord.widgets.settings.WidgetSettingsAppearance.onViewBoundOrOnResume.3
+            @Override // p658rx.functions.Action1
+            public final void call(Boolean bool) {
+                StoreUserSettingsSystem userSettingsSystem = StoreStream.INSTANCE.getUserSettingsSystem();
+                C12238m.checkNotNullExpressionValue(bool, "it");
+                userSettingsSystem.setIsSyncThemeEnabled(bool.booleanValue());
+            }
+        });
     }
 
     private final void setupMessage(Model model) {
@@ -682,46 +723,5 @@ public final class WidgetSettingsAppearance extends AppFragment {
 
     private final void updateTheme(String theme) {
         StoreStream.INSTANCE.getUserSettingsSystem().setTheme(theme, true, new C96371(theme));
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onDestroyView() {
-        this.toastManager.close();
-        super.onDestroyView();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setActionBarTitle(C5419R.string.appearance);
-        setActionBarSubtitle(C5419R.string.user_settings);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        SeekBar seekBar = getBinding().f17853f;
-        C12238m.checkNotNullExpressionValue(seekBar, "binding.settingsAppearanceFontScalingSeekbar");
-        seekBar.setMax(70);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Model.Companion companion = Model.INSTANCE;
-        BehaviorSubject<Boolean> pureEvilEasterEggSubject = getPureEvilEasterEggSubject();
-        C12238m.checkNotNullExpressionValue(pureEvilEasterEggSubject, "pureEvilEasterEggSubject");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(companion.get(pureEvilEasterEggSubject), this, null, 2, null), (Class<?>) WidgetSettingsAppearance.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96331(this));
-        Observable<Integer> observableM11110p = this.newFontScaleSubject.m11110p(400L, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11110p, "newFontScaleSubject\n    …0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11110p, this, null, 2, null), (Class<?>) WidgetSettingsAppearance.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C96342.INSTANCE);
-        CheckedSetting checkedSetting = getBinding().f17856i;
-        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsAppearanceSyncSwitch");
-        checkedSetting.setChecked(StoreStream.INSTANCE.getUserSettingsSystem().getIsThemeSyncEnabled());
-        getBinding().f17856i.setOnCheckedListener(new Action1<Boolean>() { // from class: com.discord.widgets.settings.WidgetSettingsAppearance.onViewBoundOrOnResume.3
-            @Override // p658rx.functions.Action1
-            public final void call(Boolean bool) {
-                StoreUserSettingsSystem userSettingsSystem = StoreStream.INSTANCE.getUserSettingsSystem();
-                C12238m.checkNotNullExpressionValue(bool, "it");
-                userSettingsSystem.setIsSyncThemeEnabled(bool.booleanValue());
-            }
-        });
     }
 }

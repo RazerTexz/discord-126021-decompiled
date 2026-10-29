@@ -63,7 +63,6 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String[] DEFAULT_FREQUENT_EMOJIS = {"bread", "fork_and_knife", "yum", "weary", "tired_face", "poop", "thumbsup", "100"};
     private static final int MAX_FREQUENTLY_USED_EMOJIS = 40;
     private final StoreEmojiCustom customEmojiStore;
     private final MediaFrecencyTracker frecency;
@@ -76,200 +75,11 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
     private Map<String, ? extends ModelEmojiUnicode> unicodeEmojisNamesMap;
     private Pattern unicodeEmojisPattern;
     private final StoreUser userStore;
-
-    /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final String[] getDEFAULT_FREQUENT_EMOJIS() {
-            return StoreEmoji.DEFAULT_FREQUENT_EMOJIS;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static abstract class EmojiContext {
-
-        /* JADX INFO: compiled from: StoreEmoji.kt */
-        public static final /* data */ class Chat extends EmojiContext {
-            private final long channelId;
-            private final long guildId;
-
-            public Chat(long j, long j2) {
-                super(null);
-                this.guildId = j;
-                this.channelId = j2;
-            }
-
-            public static /* synthetic */ Chat copy$default(Chat chat, long j, long j2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = chat.guildId;
-                }
-                if ((i & 2) != 0) {
-                    j2 = chat.channelId;
-                }
-                return chat.copy(j, j2);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final Chat copy(long guildId, long channelId) {
-                return new Chat(guildId, channelId);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Chat)) {
-                    return false;
-                }
-                Chat chat = (Chat) other;
-                return this.guildId == chat.guildId && this.channelId == chat.channelId;
-            }
-
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.channelId) + (C0002b.m3a(this.guildId) * 31);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Chat(guildId=");
-                sbM833U.append(this.guildId);
-                sbM833U.append(", channelId=");
-                return C1643a.m815C(sbM833U, this.channelId, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreEmoji.kt */
-        public static final class Global extends EmojiContext {
-            public static final Global INSTANCE = new Global();
-
-            private Global() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreEmoji.kt */
-        public static final /* data */ class Guild extends EmojiContext {
-            private final long guildId;
-
-            public Guild(long j) {
-                super(null);
-                this.guildId = j;
-            }
-
-            public static /* synthetic */ Guild copy$default(Guild guild, long j, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = guild.guildId;
-                }
-                return guild.copy(j);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public final Guild copy(long guildId) {
-                return new Guild(guildId);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Guild) && this.guildId == ((Guild) other).guildId;
-                }
-                return true;
-            }
-
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.guildId);
-            }
-
-            public String toString() {
-                return C1643a.m815C(C1643a.m833U("Guild(guildId="), this.guildId, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreEmoji.kt */
-        public static final /* data */ class GuildProfile extends EmojiContext {
-            private final long guildId;
-
-            public GuildProfile(long j) {
-                super(null);
-                this.guildId = j;
-            }
-
-            public static /* synthetic */ GuildProfile copy$default(GuildProfile guildProfile, long j, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = guildProfile.guildId;
-                }
-                return guildProfile.copy(j);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public final GuildProfile copy(long guildId) {
-                return new GuildProfile(guildId);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof GuildProfile) && this.guildId == ((GuildProfile) other).guildId;
-                }
-                return true;
-            }
-
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.guildId);
-            }
-
-            public String toString() {
-                return C1643a.m815C(C1643a.m833U("GuildProfile(guildId="), this.guildId, ")");
-            }
-        }
-
-        private EmojiContext() {
-        }
-
-        public /* synthetic */ EmojiContext(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final String[] DEFAULT_FREQUENT_EMOJIS = {"bread", "fork_and_knife", "yum", "weary", "tired_face", "poop", "thumbsup", "100"};
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$1 */
     /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class C58881 extends AbstractC12240o implements Function1<Long, Boolean> {
+    public final class C58881 extends AbstractC12240o implements Function1<Long, Boolean> {
         public final /* synthetic */ EmojiContext $emojiContext;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -309,7 +119,7 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$2 */
     /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class C58892 extends AbstractC12240o implements Function1<Boolean, Boolean> {
+    public final class C58892 extends AbstractC12240o implements Function1<Boolean, Boolean> {
         public final /* synthetic */ EmojiContext $emojiContext;
         public final /* synthetic */ boolean $hasExternalEmojiPermission;
 
@@ -334,7 +144,7 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$4 */
     /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class C58904<T> extends AbstractC12240o implements Function2<Map<T, Integer>, T, Unit> {
+    public final class C58904<T> extends AbstractC12240o implements Function2<Map<T, Integer>, T, Unit> {
         public static final C58904 INSTANCE = new C58904();
 
         public C58904() {
@@ -357,7 +167,7 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$5 */
     /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class C58915 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C58915 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Map $allCustomEmojis;
         public final /* synthetic */ EmojiContext $emojiContext;
         public final /* synthetic */ ShallowPartitionMap $emojiIdsMap;
@@ -460,7 +270,7 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$handleLoadedUnicodeEmojis$1 */
     /* JADX INFO: compiled from: StoreEmoji.kt */
-    public static final class C58971 extends AbstractC12240o implements Function1<ModelEmojiUnicode, Unit> {
+    public final class C58971 extends AbstractC12240o implements Function1<ModelEmojiUnicode, Unit> {
         public final /* synthetic */ HashMap $unicodeEmojiSurrogateMap;
         public final /* synthetic */ HashMap $unicodeEmojisNamesMap;
 
@@ -501,6 +311,196 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
                     this.$unicodeEmojiSurrogateMap.put(strReplace$default, modelEmojiUnicode);
                 }
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final String[] getDEFAULT_FREQUENT_EMOJIS() {
+            return StoreEmoji.DEFAULT_FREQUENT_EMOJIS;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public abstract class EmojiContext {
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class Chat extends EmojiContext {
+            private final long channelId;
+            private final long guildId;
+
+            public Chat(long j, long j2) {
+                super(null);
+                this.guildId = j;
+                this.channelId = j2;
+            }
+
+            public static /* synthetic */ Chat copy$default(Chat chat, long j, long j2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = chat.guildId;
+                }
+                if ((i & 2) != 0) {
+                    j2 = chat.channelId;
+                }
+                return chat.copy(j, j2);
+            }
+
+            public final Chat copy(long guildId, long channelId) {
+                return new Chat(guildId, channelId);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Chat)) {
+                    return false;
+                }
+                Chat chat = (Chat) other;
+                return this.guildId == chat.guildId && this.channelId == chat.channelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return C0002b.m3a(this.channelId) + (C0002b.m3a(this.guildId) * 31);
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Chat(guildId=");
+                sbM833U.append(this.guildId);
+                sbM833U.append(", channelId=");
+                return C1643a.m815C(sbM833U, this.channelId, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final class Global extends EmojiContext {
+            public static final Global INSTANCE = new Global();
+
+            private Global() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class Guild extends EmojiContext {
+            private final long guildId;
+
+            public Guild(long j) {
+                super(null);
+                this.guildId = j;
+            }
+
+            public static /* synthetic */ Guild copy$default(Guild guild, long j, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = guild.guildId;
+                }
+                return guild.copy(j);
+            }
+
+            public final Guild copy(long guildId) {
+                return new Guild(guildId);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Guild) && this.guildId == ((Guild) other).guildId;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return C0002b.m3a(this.guildId);
+            }
+
+            public String toString() {
+                return C1643a.m815C(C1643a.m833U("Guild(guildId="), this.guildId, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class GuildProfile extends EmojiContext {
+            private final long guildId;
+
+            public GuildProfile(long j) {
+                super(null);
+                this.guildId = j;
+            }
+
+            public static /* synthetic */ GuildProfile copy$default(GuildProfile guildProfile, long j, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = guildProfile.guildId;
+                }
+                return guildProfile.copy(j);
+            }
+
+            public final GuildProfile copy(long guildId) {
+                return new GuildProfile(guildId);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof GuildProfile) && this.guildId == ((GuildProfile) other).guildId;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return C0002b.m3a(this.guildId);
+            }
+
+            public String toString() {
+                return C1643a.m815C(C1643a.m833U("GuildProfile(guildId="), this.guildId, ")");
+            }
+        }
+
+        private EmojiContext() {
+        }
+
+        public /* synthetic */ EmojiContext(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -643,6 +643,22 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
         return patternCompile;
     }
 
+    @StoreThread
+    public final ModelEmojiCustom getCustomEmojiInternal(long emojiId) {
+        Iterator<Map.Entry<Long, Map<Long, ModelEmojiCustom>>> it = this.customEmojiStore.getAllGuildEmojiInternal().entrySet().iterator();
+        while (it.hasNext()) {
+            ModelEmojiCustom modelEmojiCustom = it.next().getValue().get(Long.valueOf(emojiId));
+            if (modelEmojiCustom != null) {
+                return modelEmojiCustom;
+            }
+        }
+        return null;
+    }
+
+    public final Observable<EmojiSet> getEmojiSet(long guildId, long channelId, boolean includeUnusableEmojis, boolean includeUnavailableEmojis) {
+        return getEmojiSet(new EmojiContext.Chat(guildId, channelId), includeUnusableEmojis, includeUnavailableEmojis);
+    }
+
     private final List<Emoji> getFrequentlyUsedEmojis(Map<String, ? extends Emoji> emojiIdsMap) {
         Collection sortedKeys$default = FrecencyTracker.getSortedKeys$default(this.frecency, 0L, 1, null);
         ArrayList arrayList = new ArrayList();
@@ -670,6 +686,33 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
             }
         }
         return C12163u.distinct(C12078q.toList(C12075n.flattenSequenceOfIterable(C12075n.sequenceOf(listTake, C12163u.take(arrayList2, 40 - listTake.size())))));
+    }
+
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
+    public Map<String, ModelEmojiUnicode> getUnicodeEmojiSurrogateMap() {
+        Map map = this.unicodeEmojiSurrogateMap;
+        if (map == null) {
+            C12238m.throwUninitializedPropertyAccessException("unicodeEmojiSurrogateMap");
+        }
+        return map;
+    }
+
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
+    public Map<String, ModelEmojiUnicode> getUnicodeEmojisNamesMap() {
+        Map map = this.unicodeEmojisNamesMap;
+        if (map == null) {
+            C12238m.throwUninitializedPropertyAccessException("unicodeEmojisNamesMap");
+        }
+        return map;
+    }
+
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
+    public Pattern getUnicodeEmojisPattern() {
+        Pattern pattern = this.unicodeEmojisPattern;
+        if (pattern == null) {
+            C12238m.throwUninitializedPropertyAccessException("unicodeEmojisPattern");
+        }
+        return pattern;
     }
 
     private final void handleLoadedUnicodeEmojis(ModelEmojiUnicode.Bundle unicodeEmojisBundle) {
@@ -702,55 +745,6 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
         this.unicodeEmojisPattern = compileSurrogatesPattern();
     }
 
-    private final ModelEmojiUnicode.Bundle loadUnicodeEmojisFromDisk(Context context) throws IOException {
-        Model model = new Model.JsonReader(new InputStreamReader(context.getAssets().open("data/emojis.json"), Constants.ENCODING)).parse(new ModelEmojiUnicode.Bundle());
-        C12238m.checkNotNullExpressionValue(model, "jsonReader.parse(ModelEmojiUnicode.Bundle())");
-        return (ModelEmojiUnicode.Bundle) model;
-    }
-
-    @StoreThread
-    public final ModelEmojiCustom getCustomEmojiInternal(long emojiId) {
-        Iterator<Map.Entry<Long, Map<Long, ModelEmojiCustom>>> it = this.customEmojiStore.getAllGuildEmojiInternal().entrySet().iterator();
-        while (it.hasNext()) {
-            ModelEmojiCustom modelEmojiCustom = it.next().getValue().get(Long.valueOf(emojiId));
-            if (modelEmojiCustom != null) {
-                return modelEmojiCustom;
-            }
-        }
-        return null;
-    }
-
-    public final Observable<EmojiSet> getEmojiSet(long guildId, long channelId, boolean includeUnusableEmojis, boolean includeUnavailableEmojis) {
-        return getEmojiSet(new EmojiContext.Chat(guildId, channelId), includeUnusableEmojis, includeUnavailableEmojis);
-    }
-
-    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
-    public Map<String, ModelEmojiUnicode> getUnicodeEmojiSurrogateMap() {
-        Map map = this.unicodeEmojiSurrogateMap;
-        if (map == null) {
-            C12238m.throwUninitializedPropertyAccessException("unicodeEmojiSurrogateMap");
-        }
-        return map;
-    }
-
-    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
-    public Map<String, ModelEmojiUnicode> getUnicodeEmojisNamesMap() {
-        Map map = this.unicodeEmojisNamesMap;
-        if (map == null) {
-            C12238m.throwUninitializedPropertyAccessException("unicodeEmojisNamesMap");
-        }
-        return map;
-    }
-
-    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
-    public Pattern getUnicodeEmojisPattern() {
-        Pattern pattern = this.unicodeEmojisPattern;
-        if (pattern == null) {
-            C12238m.throwUninitializedPropertyAccessException("unicodeEmojisPattern");
-        }
-        return pattern;
-    }
-
     @StoreThread
     public final void handlePreLogout() {
         Persister.clear$default(this.frecencyCache, false, 1, null);
@@ -759,6 +753,12 @@ public final class StoreEmoji implements Rules.EmojiDataProvider {
     public final void initBlocking(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         handleLoadedUnicodeEmojis(loadUnicodeEmojisFromDisk(context));
+    }
+
+    private final ModelEmojiUnicode.Bundle loadUnicodeEmojisFromDisk(Context context) throws IOException {
+        Model model = new Model.JsonReader(new InputStreamReader(context.getAssets().open("data/emojis.json"), Constants.ENCODING)).parse(new ModelEmojiUnicode.Bundle());
+        C12238m.checkNotNullExpressionValue(model, "jsonReader.parse(ModelEmojiUnicode.Bundle())");
+        return (ModelEmojiUnicode.Bundle) model;
     }
 
     public final void onEmojiUsed(Emoji emoji) {

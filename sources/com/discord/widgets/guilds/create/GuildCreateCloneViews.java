@@ -22,7 +22,7 @@ public interface GuildCreateCloneViews {
     public static final Companion INSTANCE = Companion.$$INSTANCE;
 
     /* JADX INFO: compiled from: GuildCreateCloneViews.kt */
-    public static final class Companion {
+    public final class Companion {
         public static final /* synthetic */ Companion $$INSTANCE = new Companion();
 
         private Companion() {
@@ -40,7 +40,7 @@ public interface GuildCreateCloneViews {
     }
 
     /* JADX INFO: compiled from: GuildCreateCloneViews.kt */
-    public static final class GuildCloneViews implements GuildCreateCloneViews {
+    public final class GuildCloneViews implements GuildCreateCloneViews {
         private final TextView guidelinesTextView;
         private final LoadingButton guildCreateButton;
         private final ViewGroup guildCreateIconUploader;
@@ -110,7 +110,7 @@ public interface GuildCreateCloneViews {
     }
 
     /* JADX INFO: compiled from: GuildCreateCloneViews.kt */
-    public static final class GuildCreateViews implements GuildCreateCloneViews {
+    public final class GuildCreateViews implements GuildCreateCloneViews {
         private final TextView guidelinesTextView;
         private final LoadingButton guildCreateButton;
         private final ViewGroup guildCreateIconUploader;

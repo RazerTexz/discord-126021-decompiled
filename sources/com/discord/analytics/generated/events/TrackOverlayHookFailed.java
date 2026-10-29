@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackOverlayHookFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackOverlayHookFailed implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayReceiver {
-    private final transient String analyticsSchemaTypeName = "overlay_hook_failed";
     private TrackBase trackBase;
     private TrackOverlay trackOverlay;
+    private final transient String analyticsSchemaTypeName = "overlay_hook_failed";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

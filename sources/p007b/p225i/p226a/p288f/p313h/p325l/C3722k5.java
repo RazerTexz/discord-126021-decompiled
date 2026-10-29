@@ -30,26 +30,6 @@ public final class C3722k5 extends AbstractC3772o3<String> implements InterfaceC
         this.f10055l = new ArrayList(i);
     }
 
-    /* JADX INFO: renamed from: d */
-    public static String m5020d(Object obj) {
-        if (obj instanceof String) {
-            return (String) obj;
-        }
-        if (!(obj instanceof AbstractC3837t3)) {
-            Charset charset = C3877w4.f10379a;
-            return new String((byte[]) obj, C3877w4.f10379a);
-        }
-        AbstractC3837t3 abstractC3837t3 = (AbstractC3837t3) obj;
-        Objects.requireNonNull(abstractC3837t3);
-        return abstractC3837t3.mo5282d() == 0 ? "" : abstractC3837t3.mo5285i(C3877w4.f10379a);
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
-    /* JADX INFO: renamed from: A */
-    public final Object mo4863A(int i) {
-        return this.f10055l.get(i);
-    }
-
     @Override // java.util.AbstractList, java.util.List
     public final /* synthetic */ void add(int i, Object obj) {
         m5153c();
@@ -62,28 +42,11 @@ public final class C3722k5 extends AbstractC3772o3<String> implements InterfaceC
         return addAll(size(), collection);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
-    /* JADX INFO: renamed from: b */
-    public final List<?> mo4864b() {
-        return Collections.unmodifiableList(this.f10055l);
-    }
-
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
     public final void clear() {
         m5153c();
         this.f10055l.clear();
         ((AbstractList) this).modCount++;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
-    /* JADX INFO: renamed from: f */
-    public final /* synthetic */ InterfaceC3597b5 mo4569f(int i) {
-        if (i < size()) {
-            throw new IllegalArgumentException();
-        }
-        ArrayList arrayList = new ArrayList(i);
-        arrayList.addAll(this.f10055l);
-        return new C3722k5((ArrayList<Object>) arrayList);
     }
 
     @Override // java.util.AbstractList, java.util.List
@@ -110,18 +73,63 @@ public final class C3722k5 extends AbstractC3772o3<String> implements InterfaceC
         return str;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List
-    public final /* synthetic */ Object remove(int i) {
-        m5153c();
-        Object objRemove = this.f10055l.remove(i);
-        ((AbstractList) this).modCount++;
-        return m5020d(objRemove);
+    /* JADX INFO: renamed from: d */
+    public static String m5020d(Object obj) {
+        if (obj instanceof String) {
+            return (String) obj;
+        }
+        if (!(obj instanceof AbstractC3837t3)) {
+            Charset charset = C3877w4.f10379a;
+            return new String((byte[]) obj, C3877w4.f10379a);
+        }
+        AbstractC3837t3 abstractC3837t3 = (AbstractC3837t3) obj;
+        Objects.requireNonNull(abstractC3837t3);
+        return abstractC3837t3.mo5282d() == 0 ? "" : abstractC3837t3.mo5285i(C3877w4.f10379a);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3597b5
+    /* JADX INFO: renamed from: f */
+    public final /* synthetic */ InterfaceC3597b5 mo4569f(int i) {
+        if (i < size()) {
+            throw new IllegalArgumentException();
+        }
+        ArrayList arrayList = new ArrayList(i);
+        arrayList.addAll(this.f10055l);
+        return new C3722k5((ArrayList<Object>) arrayList);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
+    /* JADX INFO: renamed from: A */
+    public final Object mo4863A(int i) {
+        return this.f10055l.get(i);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
+    /* JADX INFO: renamed from: b */
+    public final List<?> mo4864b() {
+        return Collections.unmodifiableList(this.f10055l);
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
     /* JADX INFO: renamed from: s */
     public final InterfaceC3709j5 mo4865s() {
         return this.f10123j ? new C3641e7(this) : this;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
+    /* JADX INFO: renamed from: t */
+    public final void mo4866t(AbstractC3837t3 abstractC3837t3) {
+        m5153c();
+        this.f10055l.add(abstractC3837t3);
+        ((AbstractList) this).modCount++;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List
+    public final /* synthetic */ Object remove(int i) {
+        m5153c();
+        Object objRemove = this.f10055l.remove(i);
+        ((AbstractList) this).modCount++;
+        return m5020d(objRemove);
     }
 
     @Override // java.util.AbstractList, java.util.List
@@ -133,14 +141,6 @@ public final class C3722k5 extends AbstractC3772o3<String> implements InterfaceC
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
     public final int size() {
         return this.f10055l.size();
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3709j5
-    /* JADX INFO: renamed from: t */
-    public final void mo4866t(AbstractC3837t3 abstractC3837t3) {
-        m5153c();
-        this.f10055l.add(abstractC3837t3);
-        ((AbstractList) this).modCount++;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List

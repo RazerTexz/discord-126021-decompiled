@@ -34,12 +34,6 @@ import p615g0.InterfaceC12407x;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12318l implements InterfaceC12298d {
 
-    /* JADX INFO: renamed from: a */
-    public static final List<String> f25692a = C12272c.m10132m("connection", "host", "keep-alive", "proxy-connection", "te", "transfer-encoding", "encoding", "upgrade", ":method", ":path", ":scheme", ":authority");
-
-    /* JADX INFO: renamed from: b */
-    public static final List<String> f25693b = C12272c.m10132m("connection", "host", "keep-alive", "proxy-connection", "te", "transfer-encoding", "encoding", "upgrade");
-
     /* JADX INFO: renamed from: c */
     public volatile C12320n f25694c;
 
@@ -58,6 +52,12 @@ public final class C12318l implements InterfaceC12298d {
     /* JADX INFO: renamed from: h */
     public final C12311e f25699h;
 
+    /* JADX INFO: renamed from: a */
+    public static final List<String> f25692a = C12272c.m10132m("connection", "host", "keep-alive", "proxy-connection", "te", "transfer-encoding", "encoding", "upgrade", ":method", ":path", ":scheme", ":authority");
+
+    /* JADX INFO: renamed from: b */
+    public static final List<String> f25693b = C12272c.m10132m("connection", "host", "keep-alive", "proxy-connection", "te", "transfer-encoding", "encoding", "upgrade");
+
     public C12318l(C12380x c12380x, C12290j c12290j, C12301g c12301g, C12311e c12311e) {
         C12238m.checkParameterIsNotNull(c12380x, "client");
         C12238m.checkParameterIsNotNull(c12290j, "connection");
@@ -69,6 +69,15 @@ public final class C12318l implements InterfaceC12298d {
         List<EnumC12381y> list = c12380x.f26001E;
         EnumC12381y enumC12381y = EnumC12381y.H2_PRIOR_KNOWLEDGE;
         this.f25695d = list.contains(enumC12381y) ? enumC12381y : EnumC12381y.HTTP_2;
+    }
+
+    @Override // p600f0.p601e0.p606h.InterfaceC12298d
+    public void cancel() {
+        this.f25696e = true;
+        C12320n c12320n = this.f25694c;
+        if (c12320n != null) {
+            c12320n.m10286e(EnumC12307a.CANCEL);
+        }
     }
 
     @Override // p600f0.p601e0.p606h.InterfaceC12298d
@@ -182,15 +191,6 @@ public final class C12318l implements InterfaceC12298d {
             C12238m.throwNpe();
         }
         return c12320n.f25718g;
-    }
-
-    @Override // p600f0.p601e0.p606h.InterfaceC12298d
-    public void cancel() {
-        this.f25696e = true;
-        C12320n c12320n = this.f25694c;
-        if (c12320n != null) {
-            c12320n.m10286e(EnumC12307a.CANCEL);
-        }
     }
 
     @Override // p600f0.p601e0.p606h.InterfaceC12298d

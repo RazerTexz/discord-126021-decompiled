@@ -55,14 +55,6 @@ public abstract class RoundedBitmapDrawable extends Drawable {
         this.mBitmapHeight = this.mBitmap.getScaledHeight(this.mTargetDensity);
     }
 
-    private static boolean isGreaterThanZero(float f) {
-        return f > 0.05f;
-    }
-
-    private void updateCircularCornerRadius() {
-        this.mCornerRadius = Math.min(this.mBitmapHeight, this.mBitmapWidth) / 2;
-    }
-
     @Override // android.graphics.drawable.Drawable
     public void draw(@NonNull Canvas canvas) {
         Bitmap bitmap = this.mBitmap;
@@ -137,6 +129,10 @@ public abstract class RoundedBitmapDrawable extends Drawable {
 
     public boolean isCircular() {
         return this.mIsCircular;
+    }
+
+    private static boolean isGreaterThanZero(float f) {
+        return f > 0.05f;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -219,6 +215,10 @@ public abstract class RoundedBitmapDrawable extends Drawable {
 
     public void setTargetDensity(@NonNull Canvas canvas) {
         setTargetDensity(canvas.getDensity());
+    }
+
+    private void updateCircularCornerRadius() {
+        this.mCornerRadius = Math.min(this.mBitmapHeight, this.mBitmapWidth) / 2;
     }
 
     public void updateDstRect() {

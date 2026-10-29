@@ -85,7 +85,7 @@ public class Preference implements Comparable<Preference> {
     private boolean mWasDetached;
     private int mWidgetLayoutResId;
 
-    public static class BaseSavedState extends AbsSavedState {
+    public class BaseSavedState extends AbsSavedState {
         public static final Parcelable.Creator<BaseSavedState> CREATOR = new Parcelable.Creator<BaseSavedState>() { // from class: androidx.preference.Preference.BaseSavedState.1
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
@@ -125,7 +125,7 @@ public class Preference implements Comparable<Preference> {
         boolean onPreferenceClick(Preference preference);
     }
 
-    public static class OnPreferenceCopyListener implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+    public class OnPreferenceCopyListener implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         private final Preference mPreference;
 
         public OnPreferenceCopyListener(Preference preference) {
@@ -219,80 +219,6 @@ public class Preference implements Comparable<Preference> {
         typedArrayObtainStyledAttributes.recycle();
     }
 
-    private void dispatchSetInitialValue() {
-        if (getPreferenceDataStore() != null) {
-            onSetInitialValue(true, this.mDefaultValue);
-            return;
-        }
-        if (shouldPersist() && getSharedPreferences().contains(this.mKey)) {
-            onSetInitialValue(true, null);
-            return;
-        }
-        Object obj = this.mDefaultValue;
-        if (obj != null) {
-            onSetInitialValue(false, obj);
-        }
-    }
-
-    private void registerDependency() {
-        if (TextUtils.isEmpty(this.mDependencyKey)) {
-            return;
-        }
-        Preference preferenceFindPreferenceInHierarchy = findPreferenceInHierarchy(this.mDependencyKey);
-        if (preferenceFindPreferenceInHierarchy != null) {
-            preferenceFindPreferenceInHierarchy.registerDependent(this);
-            return;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Dependency \"");
-        sbM833U.append(this.mDependencyKey);
-        sbM833U.append("\" not found for preference \"");
-        sbM833U.append(this.mKey);
-        sbM833U.append("\" (title: \"");
-        sbM833U.append((Object) this.mTitle);
-        sbM833U.append("\"");
-        throw new IllegalStateException(sbM833U.toString());
-    }
-
-    private void registerDependent(Preference preference) {
-        if (this.mDependents == null) {
-            this.mDependents = new ArrayList();
-        }
-        this.mDependents.add(preference);
-        preference.onDependencyChanged(this, shouldDisableDependents());
-    }
-
-    private void setEnabledStateOnViews(View view, boolean z2) {
-        view.setEnabled(z2);
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
-                setEnabledStateOnViews(viewGroup.getChildAt(childCount), z2);
-            }
-        }
-    }
-
-    private void tryCommit(@NonNull SharedPreferences.Editor editor) {
-        if (this.mPreferenceManager.shouldCommit()) {
-            editor.apply();
-        }
-    }
-
-    private void unregisterDependency() {
-        Preference preferenceFindPreferenceInHierarchy;
-        String str = this.mDependencyKey;
-        if (str == null || (preferenceFindPreferenceInHierarchy = findPreferenceInHierarchy(str)) == null) {
-            return;
-        }
-        preferenceFindPreferenceInHierarchy.unregisterDependent(this);
-    }
-
-    private void unregisterDependent(Preference preference) {
-        List<Preference> list = this.mDependents;
-        if (list != null) {
-            list.remove(preference);
-        }
-    }
-
     public void assignParent(@Nullable PreferenceGroup preferenceGroup) {
         if (preferenceGroup != null && this.mParentGroup != null) {
             throw new IllegalStateException("This preference already has a parent. You must remove the existing parent before assigning a new one.");
@@ -331,6 +257,21 @@ public class Preference implements Comparable<Preference> {
             if (parcelableOnSaveInstanceState != null) {
                 bundle.putParcelable(this.mKey, parcelableOnSaveInstanceState);
             }
+        }
+    }
+
+    private void dispatchSetInitialValue() {
+        if (getPreferenceDataStore() != null) {
+            onSetInitialValue(true, this.mDefaultValue);
+            return;
+        }
+        if (shouldPersist() && getSharedPreferences().contains(this.mKey)) {
+            onSetInitialValue(true, null);
+            return;
+        }
+        Object obj = this.mDefaultValue;
+        if (obj != null) {
+            onSetInitialValue(false, obj);
         }
     }
 
@@ -857,6 +798,33 @@ public class Preference implements Comparable<Preference> {
         return true;
     }
 
+    private void registerDependency() {
+        if (TextUtils.isEmpty(this.mDependencyKey)) {
+            return;
+        }
+        Preference preferenceFindPreferenceInHierarchy = findPreferenceInHierarchy(this.mDependencyKey);
+        if (preferenceFindPreferenceInHierarchy != null) {
+            preferenceFindPreferenceInHierarchy.registerDependent(this);
+            return;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Dependency \"");
+        sbM833U.append(this.mDependencyKey);
+        sbM833U.append("\" not found for preference \"");
+        sbM833U.append(this.mKey);
+        sbM833U.append("\" (title: \"");
+        sbM833U.append((Object) this.mTitle);
+        sbM833U.append("\"");
+        throw new IllegalStateException(sbM833U.toString());
+    }
+
+    private void registerDependent(Preference preference) {
+        if (this.mDependents == null) {
+            this.mDependents = new ArrayList();
+        }
+        this.mDependents.add(preference);
+        preference.onDependencyChanged(this, shouldDisableDependents());
+    }
+
     public void requireKey() {
         if (TextUtils.isEmpty(this.mKey)) {
             throw new IllegalStateException("Preference does not have a key assigned.");
@@ -894,6 +862,16 @@ public class Preference implements Comparable<Preference> {
             this.mEnabled = z2;
             notifyDependencyChange(shouldDisableDependents());
             notifyChanged();
+        }
+    }
+
+    private void setEnabledStateOnViews(View view, boolean z2) {
+        view.setEnabled(z2);
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+                setEnabledStateOnViews(viewGroup.getChildAt(childCount), z2);
+            }
         }
     }
 
@@ -1030,6 +1008,28 @@ public class Preference implements Comparable<Preference> {
 
     public String toString() {
         return getFilterableStringBuilder().toString();
+    }
+
+    private void tryCommit(@NonNull SharedPreferences.Editor editor) {
+        if (this.mPreferenceManager.shouldCommit()) {
+            editor.apply();
+        }
+    }
+
+    private void unregisterDependency() {
+        Preference preferenceFindPreferenceInHierarchy;
+        String str = this.mDependencyKey;
+        if (str == null || (preferenceFindPreferenceInHierarchy = findPreferenceInHierarchy(str)) == null) {
+            return;
+        }
+        preferenceFindPreferenceInHierarchy.unregisterDependent(this);
+    }
+
+    private void unregisterDependent(Preference preference) {
+        List<Preference> list = this.mDependents;
+        if (list != null) {
+            list.remove(preference);
+        }
     }
 
     public final boolean wasDetached() {

@@ -65,28 +65,9 @@ public final class WidgetDisableGuildCommunication extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetDisableGuildCommunication.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(long userId, long guildId, Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            intent.putExtra(WidgetDisableGuildCommunication.INTENT_EXTRA_USER_ID, userId);
-            C0870j.m156d(context, WidgetDisableGuildCommunication.class, intent);
-            AnalyticsTracker.INSTANCE.viewedDisableCommunicationModal(guildId, userId);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetDisableGuildCommunication$onResume$1 */
     /* JADX INFO: compiled from: WidgetDisableGuildCommunication.kt */
-    public static final /* synthetic */ class C85641 extends C12236k implements Function1<DisableGuildCommunicationViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C85641 extends C12236k implements Function1<DisableGuildCommunicationViewModel.ViewState, Unit> {
         public C85641(WidgetDisableGuildCommunication widgetDisableGuildCommunication) {
             super(1, widgetDisableGuildCommunication, WidgetDisableGuildCommunication.class, "configureUI", "configureUI(Lcom/discord/widgets/guildcommunicationdisabled/start/DisableGuildCommunicationViewModel$ViewState;)V", 0);
         }
@@ -101,6 +82,25 @@ public final class WidgetDisableGuildCommunication extends AppFragment {
         public final void invoke2(DisableGuildCommunicationViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "p1");
             ((WidgetDisableGuildCommunication) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDisableGuildCommunication.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(long userId, long guildId, Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
+            intent.putExtra(WidgetDisableGuildCommunication.INTENT_EXTRA_USER_ID, userId);
+            C0870j.m156d(context, WidgetDisableGuildCommunication.class, intent);
+            AnalyticsTracker.INSTANCE.viewedDisableCommunicationModal(guildId, userId);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -167,7 +167,7 @@ public final class WidgetDisableGuildCommunication extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetDisableGuildCommunication$configureUI$2$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetDisableGuildCommunication.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }

@@ -14,9 +14,6 @@ import p007b.p195g.p196a.p198b.p201q.C2133c;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2119a extends AbstractC2108d {
 
-    /* JADX INFO: renamed from: m */
-    public static final int f4527m = (AbstractC2108d.a.WRITE_NUMBERS_AS_STRINGS.m1669h() | AbstractC2108d.a.ESCAPE_NON_ASCII.m1669h()) | AbstractC2108d.a.STRICT_DUPLICATE_DETECTION.m1669h();
-
     /* JADX INFO: renamed from: n */
     public AbstractC2113i f4528n;
 
@@ -29,11 +26,38 @@ public abstract class AbstractC2119a extends AbstractC2108d {
     /* JADX INFO: renamed from: q */
     public C2133c f4531q;
 
+    /* JADX INFO: renamed from: m */
+    public static final int f4527m = (AbstractC2108d.a.WRITE_NUMBERS_AS_STRINGS.m1669h() | AbstractC2108d.a.ESCAPE_NON_ASCII.m1669h()) | AbstractC2108d.a.STRICT_DUPLICATE_DETECTION.m1669h();
+
     public AbstractC2119a(int i, AbstractC2113i abstractC2113i) {
         this.f4529o = i;
         this.f4528n = abstractC2113i;
         this.f4531q = new C2133c(0, null, AbstractC2108d.a.STRICT_DUPLICATE_DETECTION.m1668g(i) ? new C2131a(this) : null);
         this.f4530p = AbstractC2108d.a.WRITE_NUMBERS_AS_STRINGS.m1668g(i);
+    }
+
+    /* JADX INFO: renamed from: o0 */
+    public String m1691o0(BigDecimal bigDecimal) throws IOException {
+        if (!AbstractC2108d.a.WRITE_BIGDECIMAL_AS_PLAIN.m1668g(this.f4529o)) {
+            return bigDecimal.toString();
+        }
+        int iScale = bigDecimal.scale();
+        if (iScale < -9999 || iScale > 9999) {
+            throw new JsonGenerationException(String.format("Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, %d]", Integer.valueOf(iScale), 9999, 9999), this);
+        }
+        return bigDecimal.toPlainString();
+    }
+
+    /* JADX INFO: renamed from: w0 */
+    public AbstractC2108d m1694w0(int i, int i2) {
+        int i3 = this.f4529o;
+        int i4 = (i & i2) | ((~i2) & i3);
+        int i5 = i3 ^ i4;
+        if (i5 != 0) {
+            this.f4529o = i4;
+            mo1692r0(i4, i5);
+        }
+        return this;
     }
 
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
@@ -64,33 +88,9 @@ public abstract class AbstractC2119a extends AbstractC2108d {
         }
     }
 
-    /* JADX INFO: renamed from: o0 */
-    public String m1691o0(BigDecimal bigDecimal) throws IOException {
-        if (!AbstractC2108d.a.WRITE_BIGDECIMAL_AS_PLAIN.m1668g(this.f4529o)) {
-            return bigDecimal.toString();
-        }
-        int iScale = bigDecimal.scale();
-        if (iScale < -9999 || iScale > 9999) {
-            throw new JsonGenerationException(String.format("Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, %d]", Integer.valueOf(iScale), 9999, 9999), this);
-        }
-        return bigDecimal.toPlainString();
-    }
-
     /* JADX INFO: renamed from: r0 */
     public abstract void mo1692r0(int i, int i2);
 
     /* JADX INFO: renamed from: t0 */
     public abstract void mo1693t0(String str) throws IOException;
-
-    /* JADX INFO: renamed from: w0 */
-    public AbstractC2108d m1694w0(int i, int i2) {
-        int i3 = this.f4529o;
-        int i4 = (i & i2) | ((~i2) & i3);
-        int i5 = i3 ^ i4;
-        if (i5 != 0) {
-            this.f4529o = i4;
-            mo1692r0(i4, i5);
-        }
-        return this;
-    }
 }

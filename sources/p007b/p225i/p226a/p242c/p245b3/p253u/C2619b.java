@@ -11,11 +11,11 @@ import p007b.p225i.p226a.p242c.p245b3.InterfaceC2583g;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2619b implements InterfaceC2583g {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2619b f6104j = new C2619b();
-
     /* JADX INFO: renamed from: k */
     public final List<C2578b> f6105k;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2619b f6104j = new C2619b();
 
     public C2619b(C2578b c2578b) {
         this.f6105k = Collections.singletonList(c2578b);

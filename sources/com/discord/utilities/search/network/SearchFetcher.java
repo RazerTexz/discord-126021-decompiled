@@ -31,21 +31,9 @@ import p658rx.functions.Func0;
 public class SearchFetcher {
     private AtomicInteger indexingRetryCount = new AtomicInteger(0);
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StoreSearch.SearchTarget.Type.values();
-            int[] iArr = new int[2];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StoreSearch.SearchTarget.Type.GUILD.ordinal()] = 1;
-            iArr[StoreSearch.SearchTarget.Type.CHANNEL.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.search.network.SearchFetcher$getRestObservable$1 */
     /* JADX INFO: compiled from: SearchFetcher.kt */
-    public static final class C69041 extends AbstractC12240o implements Function1<AtomicInteger, Integer> {
+    public final class C69041 extends AbstractC12240o implements Function1<AtomicInteger, Integer> {
         public static final C69041 INSTANCE = new C69041();
 
         public C69041() {
@@ -60,6 +48,18 @@ public class SearchFetcher {
                 return Integer.valueOf(i);
             }
             return null;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            StoreSearch.SearchTarget.Type.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StoreSearch.SearchTarget.Type.GUILD.ordinal()] = 1;
+            iArr[StoreSearch.SearchTarget.Type.CHANNEL.ordinal()] = 2;
         }
     }
 

@@ -61,102 +61,15 @@ public final class WidgetFriendsAddById extends AppFragment {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Regex PATTERN_USERNAME = new Regex("^(.*)#(\\d{4})$");
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final ActivityResultLauncher<Intent> captchaLauncher;
-
-    /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
-    public static final class Companion {
-
-        /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
-        public static final /* data */ class UserNameDiscriminator {
-            private final Integer discriminator;
-            private final String username;
-
-            public UserNameDiscriminator(String str, Integer num) {
-                C12238m.checkNotNullParameter(str, "username");
-                this.username = str;
-                this.discriminator = num;
-            }
-
-            public static /* synthetic */ UserNameDiscriminator copy$default(UserNameDiscriminator userNameDiscriminator, String str, Integer num, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    str = userNameDiscriminator.username;
-                }
-                if ((i & 2) != 0) {
-                    num = userNameDiscriminator.discriminator;
-                }
-                return userNameDiscriminator.copy(str, num);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getUsername() {
-                return this.username;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Integer getDiscriminator() {
-                return this.discriminator;
-            }
-
-            public final UserNameDiscriminator copy(String username, Integer discriminator) {
-                C12238m.checkNotNullParameter(username, "username");
-                return new UserNameDiscriminator(username, discriminator);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof UserNameDiscriminator)) {
-                    return false;
-                }
-                UserNameDiscriminator userNameDiscriminator = (UserNameDiscriminator) other;
-                return C12238m.areEqual(this.username, userNameDiscriminator.username) && C12238m.areEqual(this.discriminator, userNameDiscriminator.discriminator);
-            }
-
-            public final Integer getDiscriminator() {
-                return this.discriminator;
-            }
-
-            public final String getUsername() {
-                return this.username;
-            }
-
-            public int hashCode() {
-                String str = this.username;
-                int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-                Integer num = this.discriminator;
-                return iHashCode + (num != null ? num.hashCode() : 0);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("UserNameDiscriminator(username=");
-                sbM833U.append(this.username);
-                sbM833U.append(", discriminator=");
-                return C1643a.m818F(sbM833U, this.discriminator, ")");
-            }
-        }
-
-        private Companion() {
-        }
-
-        private final UserNameDiscriminator extractUsernameAndDiscriminator(CharSequence source) {
-            List<String> groupValues;
-            MatchResult matchResultMatchEntire = WidgetFriendsAddById.PATTERN_USERNAME.matchEntire(source);
-            return (matchResultMatchEntire == null || (groupValues = matchResultMatchEntire.getGroupValues()) == null || !(groupValues.isEmpty() ^ true)) ? new UserNameDiscriminator(source.toString(), null) : new UserNameDiscriminator(matchResultMatchEntire.getGroupValues().get(1), C12102s.toIntOrNull(matchResultMatchEntire.getGroupValues().get(2)));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Regex PATTERN_USERNAME = new Regex("^(.*)#(\\d{4})$");
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAddById$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
-    public static final class C83812 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C83812 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C83812() {
             super(1);
         }
@@ -194,7 +107,7 @@ public final class WidgetFriendsAddById extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAddById$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
-    public static final class C83823 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C83823 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C83823() {
             super(1);
         }
@@ -213,10 +126,104 @@ public final class WidgetFriendsAddById extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
+    public final class Companion {
+
+        /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
+        public final /* data */ class UserNameDiscriminator {
+            private final Integer discriminator;
+            private final String username;
+
+            public UserNameDiscriminator(String str, Integer num) {
+                C12238m.checkNotNullParameter(str, "username");
+                this.username = str;
+                this.discriminator = num;
+            }
+
+            public static /* synthetic */ UserNameDiscriminator copy$default(UserNameDiscriminator userNameDiscriminator, String str, Integer num, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    str = userNameDiscriminator.username;
+                }
+                if ((i & 2) != 0) {
+                    num = userNameDiscriminator.discriminator;
+                }
+                return userNameDiscriminator.copy(str, num);
+            }
+
+            public final UserNameDiscriminator copy(String username, Integer discriminator) {
+                C12238m.checkNotNullParameter(username, "username");
+                return new UserNameDiscriminator(username, discriminator);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof UserNameDiscriminator)) {
+                    return false;
+                }
+                UserNameDiscriminator userNameDiscriminator = (UserNameDiscriminator) other;
+                return C12238m.areEqual(this.username, userNameDiscriminator.username) && C12238m.areEqual(this.discriminator, userNameDiscriminator.discriminator);
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Integer getDiscriminator() {
+                return this.discriminator;
+            }
+
+            public final Integer getDiscriminator() {
+                return this.discriminator;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getUsername() {
+                return this.username;
+            }
+
+            public final String getUsername() {
+                return this.username;
+            }
+
+            public int hashCode() {
+                String str = this.username;
+                int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+                Integer num = this.discriminator;
+                return iHashCode + (num != null ? num.hashCode() : 0);
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("UserNameDiscriminator(username=");
+                sbM833U.append(this.username);
+                sbM833U.append(", discriminator=");
+                return C1643a.m818F(sbM833U, this.discriminator, ")");
+            }
+        }
+
+        private Companion() {
+        }
+
+        private final UserNameDiscriminator extractUsernameAndDiscriminator(CharSequence source) {
+            List<String> groupValues;
+            MatchResult matchResultMatchEntire = WidgetFriendsAddById.PATTERN_USERNAME.matchEntire(source);
+            return (matchResultMatchEntire == null || (groupValues = matchResultMatchEntire.getGroupValues()) == null || !(groupValues.isEmpty() ^ true)) ? new UserNameDiscriminator(source.toString(), null) : new UserNameDiscriminator(matchResultMatchEntire.getGroupValues().get(1), C12102s.toIntOrNull(matchResultMatchEntire.getGroupValues().get(2)));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetFriendsAddById() {
         super(C5419R.layout.widget_friends_add_by_id);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetFriendsAddById$binding$2.INSTANCE, null, 2, null);
         this.captchaLauncher = WidgetCaptcha.INSTANCE.registerForResult(this, new WidgetFriendsAddById$captchaLauncher$1(this));
+    }
+
+    public static /* synthetic */ void extractTargetAndSendFriendRequest$default(WidgetFriendsAddById widgetFriendsAddById, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetFriendsAddById.extractTargetAndSendFriendRequest(captchaPayload);
     }
 
     private final void extractTargetAndSendFriendRequest(CaptchaHelper.CaptchaPayload captchaPayload) {
@@ -231,13 +238,6 @@ public final class WidgetFriendsAddById extends AppFragment {
         Context context = getContext();
         setInputEditError(context != null ? C1107b.m216h(context, C5419R.string.add_friend_error_username_only, new Object[]{userNameDiscriminatorExtractUsernameAndDiscriminator.getUsername()}, null, 4) : null);
         AnalyticsTracker.INSTANCE.friendRequestFailed(textOrEmpty, userNameDiscriminatorExtractUsernameAndDiscriminator.getUsername(), userNameDiscriminatorExtractUsernameAndDiscriminator.getDiscriminator(), "Invalid Username");
-    }
-
-    public static /* synthetic */ void extractTargetAndSendFriendRequest$default(WidgetFriendsAddById widgetFriendsAddById, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetFriendsAddById.extractTargetAndSendFriendRequest(captchaPayload);
     }
 
     private final WidgetFriendsAddByIdBinding getBinding() {
@@ -255,104 +255,14 @@ public final class WidgetFriendsAddById extends AppFragment {
         return spannableStringBuilder;
     }
 
-    private final void launchCaptchaFlow(Error error) {
-        WidgetCaptcha.INSTANCE.launch(requireContext(), this.captchaLauncher, CaptchaErrorBody.INSTANCE.createFromError(error));
-    }
-
-    private final void sendFriendRequest(final String username, final int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
-        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().sendRelationshipRequest("Search - Add Friend Search", username, discriminator, captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.friends.WidgetFriendsAddById.sendFriendRequest.1
-            @Override // p658rx.functions.Action1
-            public final void call(Void r8) {
-                Context context = WidgetFriendsAddById.this.getContext();
-                Context context2 = WidgetFriendsAddById.this.getContext();
-                C0876m.m170h(context, context2 != null ? C1107b.m216h(context2, C5419R.string.add_friend_confirmation, new Object[]{username}, null, 4) : null, 0, null, 12);
-                TextInputLayout textInputLayout = WidgetFriendsAddById.this.getBinding().f16656e;
-                C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
-                ViewExtensions.clear(textInputLayout);
-                AppFragment.hideKeyboard$default(WidgetFriendsAddById.this, null, 1, null);
-            }
-        }, getAppActivity(), new Action1<Error>() { // from class: com.discord.widgets.friends.WidgetFriendsAddById.sendFriendRequest.2
-
-            /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAddById$sendFriendRequest$2$1, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-                public final /* synthetic */ Error $error;
-
-                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                public AnonymousClass1(Error error) {
-                    super(0);
-                    this.$error = error;
-                }
-
-                @Override // kotlin.jvm.functions.Function0
-                public /* bridge */ /* synthetic */ Unit invoke() {
-                    invoke2();
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2() {
-                    Error error = this.$error;
-                    C12238m.checkNotNullExpressionValue(error, "error");
-                    if (WidgetCaptchaKt.isCaptchaError(error)) {
-                        WidgetFriendsAddById widgetFriendsAddById = WidgetFriendsAddById.this;
-                        Error error2 = this.$error;
-                        C12238m.checkNotNullExpressionValue(error2, "error");
-                        widgetFriendsAddById.launchCaptchaFlow(error2);
-                        return;
-                    }
-                    WidgetFriendsAddById.this.getBinding().f16656e.setErrorTextAppearance(2131952238);
-                    RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
-                    Context context = WidgetFriendsAddById.this.getContext();
-                    Error error3 = this.$error;
-                    C12238m.checkNotNullExpressionValue(error3, "error");
-                    Error.Response response = error3.getResponse();
-                    C12238m.checkNotNullExpressionValue(response, "error.response");
-                    WidgetFriendsAddById.this.setInputEditError(String.valueOf(responseResolver.getRelationshipResponse(context, response.getCode(), username + UserUtils.INSTANCE.padDiscriminator(discriminator))));
-                }
-            }
-
-            @Override // p658rx.functions.Action1
-            public final void call(Error error) {
-                RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
-                C12238m.checkNotNullExpressionValue(error, "error");
-                RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
-            }
-        }));
-    }
-
-    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsAddById widgetFriendsAddById, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            captchaPayload = null;
-        }
-        widgetFriendsAddById.sendFriendRequest(str, i, captchaPayload);
-    }
-
-    private final void setInputEditError(CharSequence error) {
-        TextInputLayout textInputLayout = getBinding().f16656e;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
-        textInputLayout.setError(error);
-        TextInputLayout textInputLayout2 = getBinding().f16656e;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.friendsAddTextEditWrap");
-        textInputLayout2.setErrorEnabled(!(error == null || C12103t.isBlank(error)));
-    }
-
-    private final void setInputText(String text) {
-        if (text == null || C12103t.isBlank(text)) {
-            return;
-        }
-        TextInputLayout textInputLayout = getBinding().f16656e;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
-        ViewExtensions.setText(textInputLayout, text);
-        TextInputLayout textInputLayout2 = getBinding().f16656e;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.friendsAddTextEditWrap");
-        ViewExtensions.setSelectionEnd(textInputLayout2);
-    }
-
     @Override // com.discord.app.AppFragment
     public void hideKeyboard(View view) {
         super.hideKeyboard(view);
         getBinding().f16656e.clearFocus();
+    }
+
+    private final void launchCaptchaFlow(Error error) {
+        WidgetCaptcha.INSTANCE.launch(requireContext(), this.captchaLauncher, CaptchaErrorBody.INSTANCE.createFromError(error));
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
@@ -398,5 +308,95 @@ public final class WidgetFriendsAddById extends AppFragment {
         TextView textView2 = getBinding().f16653b;
         C12238m.checkNotNullExpressionValue(textView2, "binding.friendAddUsernameIndicator");
         textView2.setText(getUsernameIndicatorText(meSnapshot));
+    }
+
+    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsAddById widgetFriendsAddById, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            captchaPayload = null;
+        }
+        widgetFriendsAddById.sendFriendRequest(str, i, captchaPayload);
+    }
+
+    private final void sendFriendRequest(final String username, final int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().sendRelationshipRequest("Search - Add Friend Search", username, discriminator, captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.friends.WidgetFriendsAddById.sendFriendRequest.1
+            @Override // p658rx.functions.Action1
+            public final void call(Void r8) {
+                Context context = WidgetFriendsAddById.this.getContext();
+                Context context2 = WidgetFriendsAddById.this.getContext();
+                C0876m.m170h(context, context2 != null ? C1107b.m216h(context2, C5419R.string.add_friend_confirmation, new Object[]{username}, null, 4) : null, 0, null, 12);
+                TextInputLayout textInputLayout = WidgetFriendsAddById.this.getBinding().f16656e;
+                C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
+                ViewExtensions.clear(textInputLayout);
+                AppFragment.hideKeyboard$default(WidgetFriendsAddById.this, null, 1, null);
+            }
+        }, getAppActivity(), new Action1<Error>() { // from class: com.discord.widgets.friends.WidgetFriendsAddById.sendFriendRequest.2
+
+            /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAddById$sendFriendRequest$2$1, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetFriendsAddById.kt */
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final /* synthetic */ Error $error;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public AnonymousClass1(Error error) {
+                    super(0);
+                    this.$error = error;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    Error error = this.$error;
+                    C12238m.checkNotNullExpressionValue(error, "error");
+                    if (WidgetCaptchaKt.isCaptchaError(error)) {
+                        WidgetFriendsAddById widgetFriendsAddById = WidgetFriendsAddById.this;
+                        Error error2 = this.$error;
+                        C12238m.checkNotNullExpressionValue(error2, "error");
+                        widgetFriendsAddById.launchCaptchaFlow(error2);
+                        return;
+                    }
+                    WidgetFriendsAddById.this.getBinding().f16656e.setErrorTextAppearance(2131952238);
+                    RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
+                    Context context = WidgetFriendsAddById.this.getContext();
+                    Error error3 = this.$error;
+                    C12238m.checkNotNullExpressionValue(error3, "error");
+                    Error.Response response = error3.getResponse();
+                    C12238m.checkNotNullExpressionValue(response, "error.response");
+                    WidgetFriendsAddById.this.setInputEditError(String.valueOf(responseResolver.getRelationshipResponse(context, response.getCode(), username + UserUtils.INSTANCE.padDiscriminator(discriminator))));
+                }
+            }
+
+            @Override // p658rx.functions.Action1
+            public final void call(Error error) {
+                RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
+                C12238m.checkNotNullExpressionValue(error, "error");
+                RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
+            }
+        }));
+    }
+
+    private final void setInputEditError(CharSequence error) {
+        TextInputLayout textInputLayout = getBinding().f16656e;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
+        textInputLayout.setError(error);
+        TextInputLayout textInputLayout2 = getBinding().f16656e;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.friendsAddTextEditWrap");
+        textInputLayout2.setErrorEnabled(!(error == null || C12103t.isBlank(error)));
+    }
+
+    private final void setInputText(String text) {
+        if (text == null || C12103t.isBlank(text)) {
+            return;
+        }
+        TextInputLayout textInputLayout = getBinding().f16656e;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.friendsAddTextEditWrap");
+        ViewExtensions.setText(textInputLayout, text);
+        TextInputLayout textInputLayout2 = getBinding().f16656e;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.friendsAddTextEditWrap");
+        ViewExtensions.setSelectionEnd(textInputLayout2);
     }
 }

@@ -63,8 +63,91 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onCreate$1 */
     /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final /* data */ class ChannelFollowChannelFilterFunction implements WidgetChannelSelector.FilterFunction {
+    public final class C71411 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C71411() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            WidgetChannelFollowSheet.this.getViewModel().selectChannel(j);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onCreate$2 */
+    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
+    public final class C71422 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C71422() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            WidgetChannelFollowSheet.this.getViewModel().selectGuild(j);
+            WidgetChannelFollowSheet.this.getViewModel().selectChannel(0L);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onResume$1 */
+    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
+    public final /* synthetic */ class C71431 extends C12236k implements Function1<WidgetChannelFollowSheetViewModel.ViewState.Loaded, Unit> {
+        public C71431(WidgetChannelFollowSheet widgetChannelFollowSheet) {
+            super(1, widgetChannelFollowSheet, WidgetChannelFollowSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/announcements/WidgetChannelFollowSheetViewModel$ViewState$Loaded;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelFollowSheetViewModel.ViewState.Loaded loaded) {
+            invoke2(loaded);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelFollowSheetViewModel.ViewState.Loaded loaded) {
+            C12238m.checkNotNullParameter(loaded, "p1");
+            ((WidgetChannelFollowSheet) this.receiver).configureUI(loaded);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onResume$2 */
+    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
+    public final class C71442 extends AbstractC12240o implements Function1<WidgetChannelFollowSheetViewModel.Event, Unit> {
+        public C71442() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelFollowSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelFollowSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "it");
+            WidgetChannelFollowSheet.this.dismiss();
+            WidgetChannelFollowSuccessDialog.Companion companion = WidgetChannelFollowSuccessDialog.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetChannelFollowSheet.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.show(parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
+    public final /* data */ class ChannelFollowChannelFilterFunction implements WidgetChannelSelector.FilterFunction {
         private final Set<Long> channelIds;
         private final long selectedGuildId;
 
@@ -72,11 +155,6 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
             C12238m.checkNotNullParameter(set, "channelIds");
             this.selectedGuildId = j;
             this.channelIds = set;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final long getSelectedGuildId() {
-            return this.selectedGuildId;
         }
 
         private final Set<Long> component2() {
@@ -110,6 +188,11 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
             return this.selectedGuildId == channelFollowChannelFilterFunction.selectedGuildId && C12238m.areEqual(this.channelIds, channelFollowChannelFilterFunction.channelIds);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final long getSelectedGuildId() {
+            return this.selectedGuildId;
+        }
+
         public int hashCode() {
             int iM3a = C0002b.m3a(this.selectedGuildId) * 31;
             Set<Long> set = this.channelIds;
@@ -131,7 +214,7 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -146,89 +229,6 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onCreate$1 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final class C71411 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C71411() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            WidgetChannelFollowSheet.this.getViewModel().selectChannel(j);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onCreate$2 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final class C71422 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C71422() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            WidgetChannelFollowSheet.this.getViewModel().selectGuild(j);
-            WidgetChannelFollowSheet.this.getViewModel().selectChannel(0L);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final /* synthetic */ class C71431 extends C12236k implements Function1<WidgetChannelFollowSheetViewModel.ViewState.Loaded, Unit> {
-        public C71431(WidgetChannelFollowSheet widgetChannelFollowSheet) {
-            super(1, widgetChannelFollowSheet, WidgetChannelFollowSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/announcements/WidgetChannelFollowSheetViewModel$ViewState$Loaded;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelFollowSheetViewModel.ViewState.Loaded loaded) {
-            invoke2(loaded);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelFollowSheetViewModel.ViewState.Loaded loaded) {
-            C12238m.checkNotNullParameter(loaded, "p1");
-            ((WidgetChannelFollowSheet) this.receiver).configureUI(loaded);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheet$onResume$2 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheet.kt */
-    public static final class C71442 extends AbstractC12240o implements Function1<WidgetChannelFollowSheetViewModel.Event, Unit> {
-        public C71442() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelFollowSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelFollowSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "it");
-            WidgetChannelFollowSheet.this.dismiss();
-            WidgetChannelFollowSuccessDialog.Companion companion = WidgetChannelFollowSuccessDialog.INSTANCE;
-            FragmentManager parentFragmentManager = WidgetChannelFollowSheet.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            companion.show(parentFragmentManager);
         }
     }
 
@@ -344,17 +344,13 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
         return (WidgetChannelFollowSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetChannelFollowSheetViewModel getViewModel() {
-        return (WidgetChannelFollowSheetViewModel) this.viewModel.getValue();
-    }
-
-    public static final void show(FragmentManager fragmentManager, long j, long j2) {
-        INSTANCE.show(fragmentManager, j, j2);
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_channel_follow_sheet;
+    }
+
+    private final WidgetChannelFollowSheetViewModel getViewModel() {
+        return (WidgetChannelFollowSheetViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment
@@ -385,5 +381,9 @@ public final class WidgetChannelFollowSheet extends AppBottomSheet {
         C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11083G, this, null, 2, null), (Class<?>) WidgetChannelFollowSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71431(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChannelFollowSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71442());
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j, long j2) {
+        INSTANCE.show(fragmentManager, j, j2);
     }
 }

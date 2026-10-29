@@ -3,6 +3,7 @@ package com.discord.utilities.ssl;
 import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -22,6 +23,13 @@ public final class SecureSocketsLayerUtils {
     public static final SecureSocketsLayerUtils INSTANCE = new SecureSocketsLayerUtils();
 
     private SecureSocketsLayerUtils() {
+    }
+
+    public static /* synthetic */ SSLSocketFactory createSocketFactory$default(TrustManagerFactory trustManagerFactory, int i, Object obj) {
+        if ((i & 1) != 0) {
+            trustManagerFactory = null;
+        }
+        return createSocketFactory(trustManagerFactory);
     }
 
     public static final SSLSocketFactory createSocketFactory() {
@@ -46,11 +54,11 @@ public final class SecureSocketsLayerUtils {
         return socketFactory;
     }
 
-    public static /* synthetic */ SSLSocketFactory createSocketFactory$default(TrustManagerFactory trustManagerFactory, int i, Object obj) {
+    public static /* synthetic */ SSLContext getContext$default(SecureSocketsLayerUtils secureSocketsLayerUtils, String str, int i, Object obj) {
         if ((i & 1) != 0) {
-            trustManagerFactory = null;
+            str = "TLS";
         }
-        return createSocketFactory(trustManagerFactory);
+        return secureSocketsLayerUtils.getContext(str);
     }
 
     private final SSLContext getContext(String protocol) throws NoSuchAlgorithmException {
@@ -63,14 +71,7 @@ public final class SecureSocketsLayerUtils {
         }
     }
 
-    public static /* synthetic */ SSLContext getContext$default(SecureSocketsLayerUtils secureSocketsLayerUtils, String str, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = "TLS";
-        }
-        return secureSocketsLayerUtils.getContext(str);
-    }
-
-    public static final TrustManagerFactory getTrustManagerFactory(AssetManager assetManager, String certificatePath) throws NoSuchAlgorithmException, IOException {
+    public static final TrustManagerFactory getTrustManagerFactory(AssetManager assetManager, String certificatePath) throws IllegalAccessException, NoSuchAlgorithmException, IOException, InvocationTargetException {
         C12238m.checkNotNullParameter(assetManager, "assetManager");
         C12238m.checkNotNullParameter(certificatePath, "certificatePath");
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());

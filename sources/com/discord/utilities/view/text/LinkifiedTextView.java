@@ -43,11 +43,11 @@ public final class LinkifiedTextView extends SimpleDraweeSpanTextView {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy logger$delegate = C12083g.lazy(LinkifiedTextView$Companion$logger$2.INSTANCE);
     private static Function2<? super View, ? super String, Unit> onURLSpanClicked;
+    private static final Lazy logger$delegate = C12083g.lazy(LinkifiedTextView$Companion$logger$2.INSTANCE);
 
     /* JADX INFO: compiled from: LinkifiedTextView.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -121,7 +121,7 @@ public final class LinkifiedTextView extends SimpleDraweeSpanTextView {
     }
 
     /* JADX INFO: compiled from: LinkifiedTextView.kt */
-    public static final class ClickableSpanOnTouchListener implements View.OnTouchListener {
+    public final class ClickableSpanOnTouchListener implements View.OnTouchListener {
         private AtomicBoolean isClickHandled;
         private AtomicReference<Job> job;
         private final long longPressDelayInMs;

@@ -11,6 +11,17 @@ public final /* data */ class ReportReason {
     private final String label;
     private final int reason;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ReportReason)) {
+            return false;
+        }
+        ReportReason reportReason = (ReportReason) other;
+        return this.reason == reportReason.reason && C12238m.areEqual(this.label, reportReason.label) && C12238m.areEqual(this.description, reportReason.description);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getDescription() {
         return this.description;
@@ -24,17 +35,6 @@ public final /* data */ class ReportReason {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final int getReason() {
         return this.reason;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ReportReason)) {
-            return false;
-        }
-        ReportReason reportReason = (ReportReason) other;
-        return this.reason == reportReason.reason && C12238m.areEqual(this.label, reportReason.label) && C12238m.areEqual(this.description, reportReason.description);
     }
 
     public int hashCode() {

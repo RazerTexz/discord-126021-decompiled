@@ -60,8 +60,27 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemChannelActions$bindSubscriptions$1 */
     /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
-    public static final class Companion {
+    public final class C74521 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C74521() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetChannelsListItemChannelActions.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -80,7 +99,7 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -93,7 +112,7 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
         private final Long permissions;
 
         /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -153,26 +172,6 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
             return model.copy(channel, guild, l, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getPermissions() {
-            return this.permissions;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
         public final Model copy(Channel channel, Guild guild, Long permissions, boolean isMuted) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new Model(channel, guild, permissions, isMuted);
@@ -197,12 +196,32 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
             return this.canManageChannel;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: isDeveloper, reason: from getter */
+        public final boolean getIsDeveloper() {
+            return this.isDeveloper;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
         }
 
         public final CharSequence getMuteChannelText(Context context, Channel channel) {
@@ -220,6 +239,11 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
         public final int getMuteIconResId(Context context) {
             C12238m.checkNotNullParameter(context, "context");
             return DrawableCompat.getThemedDrawableRes$default(context, this.isMuted ? C5419R.attr.ic_channel_muted : C5419R.attr.ic_channel_mute, 0, 2, (Object) null);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getPermissions() {
+            return this.permissions;
         }
 
         public final Long getPermissions() {
@@ -246,11 +270,6 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
             return iHashCode3 + r1;
         }
 
-        /* JADX INFO: renamed from: isDeveloper, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
         public final boolean isMuted() {
             return this.isMuted;
         }
@@ -267,28 +286,16 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListItemChannelActions$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
-    public static final class C74521 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C74521() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetChannelsListItemChannelActions.this.configureUI(model);
-        }
-    }
-
     public WidgetChannelsListItemChannelActions() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelsListItemChannelActions$binding$2.INSTANCE, null, 2, null);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L)), this, null, 2, null), (Class<?>) WidgetChannelsListItemChannelActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74521());
     }
 
     private final void configureUI(final Model model) {
@@ -374,6 +381,11 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
         return (WidgetChannelsListItemActionsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_channels_list_item_actions;
+    }
+
     private final String getSettingsText(Channel channel, boolean z2) {
         int i;
         if (ChannelUtils.m7687k(channel)) {
@@ -388,25 +400,13 @@ public final class WidgetChannelsListItemChannelActions extends AppBottomSheet {
         return string;
     }
 
-    public static final void show(FragmentManager fragmentManager, long j) {
-        INSTANCE.show(fragmentManager, j);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L)), this, null, 2, null), (Class<?>) WidgetChannelsListItemChannelActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74521());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_channels_list_item_actions;
-    }
-
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onPause() {
         super.onPause();
         dismiss();
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j) {
+        INSTANCE.show(fragmentManager, j);
     }
 }

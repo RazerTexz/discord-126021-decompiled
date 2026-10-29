@@ -32,9 +32,9 @@ import p507d0.p592z.p594d.C12238m;
 public final class MGImagesConfig {
     private static final String CACHE_DIR = "app_images_cache";
     private static final String CACHE_DIR_SMALL = "app_images_cache_small";
-    public static final MGImagesConfig INSTANCE = new MGImagesConfig();
     private static final int MAX_BITMAP_MEM_CACHE_SIZE_RATIO = 3;
     private static final long MAX_DISK_CACHE_SIZE = 41943040;
+    public static final MGImagesConfig INSTANCE = new MGImagesConfig();
 
     private MGImagesConfig() {
     }
@@ -52,16 +52,6 @@ public final class MGImagesConfig {
                 return new MemoryCacheParams(i, memoryCacheParams.f19543b, memoryCacheParams.f19544c, memoryCacheParams.f19545d, i / 3, TimeUnit.MINUTES.toMillis(5L));
             }
         };
-    }
-
-    private final DiskCacheConfig newDiskCacheConfig(Context context, String str) {
-        DiskCacheConfig.C10634b c10634b = new DiskCacheConfig.C10634b(context, null);
-        c10634b.f19434b = new C1688k(context.getCacheDir());
-        c10634b.f19433a = str;
-        c10634b.f19435c = MAX_DISK_CACHE_SIZE;
-        DiskCacheConfig diskCacheConfig = new DiskCacheConfig(c10634b);
-        C12238m.checkNotNullExpressionValue(diskCacheConfig, "DiskCacheConfig\n        …HE_SIZE)\n        .build()");
-        return diskCacheConfig;
     }
 
     public final void init(Application context) {
@@ -113,6 +103,16 @@ public final class MGImagesConfig {
         C1731b.f3168a = c1734e;
         SimpleDraweeView.initialize(c1734e);
         C2030b.m1527b();
+    }
+
+    private final DiskCacheConfig newDiskCacheConfig(Context context, String str) {
+        DiskCacheConfig.C10634b c10634b = new DiskCacheConfig.C10634b(context, null);
+        c10634b.f19434b = new C1688k(context.getCacheDir());
+        c10634b.f19433a = str;
+        c10634b.f19435c = MAX_DISK_CACHE_SIZE;
+        DiskCacheConfig diskCacheConfig = new DiskCacheConfig(c10634b);
+        C12238m.checkNotNullExpressionValue(diskCacheConfig, "DiskCacheConfig\n        …HE_SIZE)\n        .build()");
+        return diskCacheConfig;
     }
 
     public final void onTrimMemory(int level) {

@@ -11,7 +11,7 @@ public final /* data */ class HubWaitlistResult implements MultipleDomainResult 
     public static final Parcelable.Creator<HubWaitlistResult> CREATOR = new Creator();
     private final String school;
 
-    public static class Creator implements Parcelable.Creator<HubWaitlistResult> {
+    public final class Creator implements Parcelable.Creator<HubWaitlistResult> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubWaitlistResult createFromParcel(Parcel parcel) {
@@ -38,11 +38,6 @@ public final /* data */ class HubWaitlistResult implements MultipleDomainResult 
         return hubWaitlistResult.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getSchool() {
-        return this.school;
-    }
-
     public final HubWaitlistResult copy(String school) {
         C12238m.checkNotNullParameter(school, "school");
         return new HubWaitlistResult(school);
@@ -58,6 +53,11 @@ public final /* data */ class HubWaitlistResult implements MultipleDomainResult 
             return (other instanceof HubWaitlistResult) && C12238m.areEqual(this.school, ((HubWaitlistResult) other).school);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getSchool() {
+        return this.school;
     }
 
     public final String getSchool() {

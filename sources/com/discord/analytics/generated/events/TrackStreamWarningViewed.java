@@ -9,24 +9,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStreamWarningViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long applicationId = null;
+    private final CharSequence applicationName = null;
+    private final CharSequence guildRegion = null;
+    private final CharSequence mediaSessionId = null;
     private final CharSequence noticeType = null;
-    private final Long streamerUserId = null;
     private final Long streamChannelId = null;
     private final CharSequence streamRegion = null;
-    private final CharSequence guildRegion = null;
+    private final Long streamerUserId = null;
+    private TrackBase trackBase;
     private final Boolean videoEnabled = null;
-    private final CharSequence applicationName = null;
-    private final Long applicationId = null;
     private final CharSequence videoLayout = null;
-    private final CharSequence mediaSessionId = null;
     private final transient String analyticsSchemaTypeName = "stream_warning_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchem
         }
         TrackStreamWarningViewed trackStreamWarningViewed = (TrackStreamWarningViewed) other;
         return C12238m.areEqual(this.noticeType, trackStreamWarningViewed.noticeType) && C12238m.areEqual(this.streamerUserId, trackStreamWarningViewed.streamerUserId) && C12238m.areEqual(this.streamChannelId, trackStreamWarningViewed.streamChannelId) && C12238m.areEqual(this.streamRegion, trackStreamWarningViewed.streamRegion) && C12238m.areEqual(this.guildRegion, trackStreamWarningViewed.guildRegion) && C12238m.areEqual(this.videoEnabled, trackStreamWarningViewed.videoEnabled) && C12238m.areEqual(this.applicationName, trackStreamWarningViewed.applicationName) && C12238m.areEqual(this.applicationId, trackStreamWarningViewed.applicationId) && C12238m.areEqual(this.videoLayout, trackStreamWarningViewed.videoLayout) && C12238m.areEqual(this.mediaSessionId, trackStreamWarningViewed.mediaSessionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

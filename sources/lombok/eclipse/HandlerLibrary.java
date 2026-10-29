@@ -24,17 +24,17 @@ import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/HandlerLibrary.SCL.lombok */
 public class HandlerLibrary {
+    private SortedSet<Long> priorities;
     private TypeLibrary typeLibrary = new TypeLibrary();
     private Map<String, AnnotationHandlerContainer<?>> annotationHandlers = new HashMap();
     private Collection<VisitorContainer> visitorHandlers = new ArrayList();
-    private SortedSet<Long> priorities;
 
     public HandlerLibrary() {
         ConfigurationKeysLoader.LoaderLoader.loadAllConfigurationKeys();
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/HandlerLibrary$VisitorContainer.SCL.lombok */
-    private static class VisitorContainer {
+    class VisitorContainer {
         private final EclipseASTVisitor visitor;
         private final long priority;
         private final boolean deferUntilPostDiet;
@@ -56,7 +56,7 @@ public class HandlerLibrary {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/HandlerLibrary$AnnotationHandlerContainer.SCL.lombok */
-    private static class AnnotationHandlerContainer<T extends Annotation> {
+    class AnnotationHandlerContainer<T extends Annotation> {
         private final EclipseAnnotationHandler<T> handler;
         private final Class<T> annotationClass;
         private final long priority;

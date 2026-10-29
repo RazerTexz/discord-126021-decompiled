@@ -17,7 +17,7 @@ public interface InterfaceC11354a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.h1.a$a */
     /* JADX INFO: compiled from: AdditionalClassPartsProvider.kt */
-    public static final class a implements InterfaceC11354a {
+    public final class a implements InterfaceC11354a {
 
         /* JADX INFO: renamed from: a */
         public static final a f22796a = new a();

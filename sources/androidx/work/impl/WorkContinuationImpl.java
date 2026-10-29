@@ -27,7 +27,6 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkContinuationImpl extends WorkContinuation {
-    private static final String TAG = Logger.tagWithPrefix("WorkContinuationImpl");
     private final List<String> mAllIds;
     private boolean mEnqueued;
     private final ExistingWorkPolicy mExistingWorkPolicy;
@@ -37,22 +36,10 @@ public class WorkContinuationImpl extends WorkContinuation {
     private final List<WorkContinuationImpl> mParents;
     private final List<? extends WorkRequest> mWork;
     private final WorkManagerImpl mWorkManagerImpl;
+    private static final String TAG = Logger.tagWithPrefix("WorkContinuationImpl");
 
     public WorkContinuationImpl(@NonNull WorkManagerImpl workManagerImpl, @NonNull List<? extends WorkRequest> list) {
         this(workManagerImpl, null, ExistingWorkPolicy.KEEP, list, null);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static Set<String> prerequisitesFor(WorkContinuationImpl workContinuationImpl) {
-        HashSet hashSet = new HashSet();
-        List<WorkContinuationImpl> parents = workContinuationImpl.getParents();
-        if (parents != null && !parents.isEmpty()) {
-            Iterator<WorkContinuationImpl> it = parents.iterator();
-            while (it.hasNext()) {
-                hashSet.addAll(it.next().getIds());
-            }
-        }
-        return hashSet;
     }
 
     @Override // androidx.work.WorkContinuation
@@ -137,6 +124,19 @@ public class WorkContinuationImpl extends WorkContinuation {
 
     public void markEnqueued() {
         this.mEnqueued = true;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static Set<String> prerequisitesFor(WorkContinuationImpl workContinuationImpl) {
+        HashSet hashSet = new HashSet();
+        List<WorkContinuationImpl> parents = workContinuationImpl.getParents();
+        if (parents != null && !parents.isEmpty()) {
+            Iterator<WorkContinuationImpl> it = parents.iterator();
+            while (it.hasNext()) {
+                hashSet.addAll(it.next().getIds());
+            }
+        }
+        return hashSet;
     }
 
     @Override // androidx.work.WorkContinuation

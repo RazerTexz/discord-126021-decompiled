@@ -42,13 +42,10 @@ public final class C11709h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.h$b */
     /* JADX INFO: compiled from: VersionRequirement.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public static final a f24068a = new a(null);
-
-        /* JADX INFO: renamed from: b */
-        public static final b f24069b = new b(256, 256, 256);
 
         /* JADX INFO: renamed from: c */
         public final int f24070c;
@@ -59,9 +56,12 @@ public final class C11709h {
         /* JADX INFO: renamed from: e */
         public final int f24072e;
 
+        /* JADX INFO: renamed from: b */
+        public static final b f24069b = new b(256, 256, 256);
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.h$b$a */
         /* JADX INFO: compiled from: VersionRequirement.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
 
@@ -156,7 +156,7 @@ public final class C11709h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.h$a */
     /* JADX INFO: compiled from: VersionRequirement.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

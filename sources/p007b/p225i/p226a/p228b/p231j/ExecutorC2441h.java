@@ -13,7 +13,7 @@ public class ExecutorC2441h implements Executor {
 
     /* JADX INFO: renamed from: b.i.a.b.j.h$a */
     /* JADX INFO: compiled from: SafeLoggingExecutor.java */
-    public static class a implements Runnable {
+    public class a implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final Runnable f5280j;

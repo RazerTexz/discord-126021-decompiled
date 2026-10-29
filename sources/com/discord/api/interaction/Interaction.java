@@ -24,6 +24,17 @@ public final /* data */ class Interaction {
         this.member = null;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Interaction)) {
+            return false;
+        }
+        Interaction interaction = (Interaction) other;
+        return C12238m.areEqual(this.id, interaction.id) && C12238m.areEqual(this.type, interaction.type) && C12238m.areEqual(this.name, interaction.name) && C12238m.areEqual(this.user, interaction.user) && C12238m.areEqual(this.member, interaction.member);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getId() {
         return this.id;
@@ -37,17 +48,6 @@ public final /* data */ class Interaction {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final User getUser() {
         return this.user;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Interaction)) {
-            return false;
-        }
-        Interaction interaction = (Interaction) other;
-        return C12238m.areEqual(this.id, interaction.id) && C12238m.areEqual(this.type, interaction.type) && C12238m.areEqual(this.name, interaction.name) && C12238m.areEqual(this.user, interaction.user) && C12238m.areEqual(this.member, interaction.member);
     }
 
     public int hashCode() {

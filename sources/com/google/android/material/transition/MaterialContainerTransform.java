@@ -70,6 +70,8 @@ public final class MaterialContainerTransform extends Transition {
     public static final int FIT_MODE_AUTO = 0;
     public static final int FIT_MODE_HEIGHT = 2;
     public static final int FIT_MODE_WIDTH = 1;
+    private static final String PROP_BOUNDS = "materialContainerTransition:bounds";
+    private static final String PROP_SHAPE_APPEARANCE = "materialContainerTransition:shapeAppearance";
     public static final int TRANSITION_DIRECTION_AUTO = 0;
     public static final int TRANSITION_DIRECTION_ENTER = 1;
     public static final int TRANSITION_DIRECTION_RETURN = 2;
@@ -101,21 +103,19 @@ public final class MaterialContainerTransform extends Transition {
     @Nullable
     private View startView;
     private static final String TAG = MaterialContainerTransform.class.getSimpleName();
-    private static final String PROP_BOUNDS = "materialContainerTransition:bounds";
-    private static final String PROP_SHAPE_APPEARANCE = "materialContainerTransition:shapeAppearance";
     private static final String[] TRANSITION_PROPS = {PROP_BOUNDS, PROP_SHAPE_APPEARANCE};
-    private static final C11046c DEFAULT_ENTER_THRESHOLDS = new C11046c(new ProgressThresholds(0.0f, 0.25f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.75f), null);
-    private static final C11046c DEFAULT_RETURN_THRESHOLDS = new C11046c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.3f, 0.9f), null);
-    private static final C11046c DEFAULT_ENTER_THRESHOLDS_ARC = new C11046c(new ProgressThresholds(0.1f, 0.4f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 0.9f), null);
-    private static final C11046c DEFAULT_RETURN_THRESHOLDS_ARC = new C11046c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.2f, 0.9f), null);
     private boolean drawDebugEnabled = false;
+    private static final C11046c DEFAULT_ENTER_THRESHOLDS = new C11046c(new ProgressThresholds(0.0f, 0.25f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.75f), null);
     private boolean holdAtEndEnabled = false;
+    private static final C11046c DEFAULT_RETURN_THRESHOLDS = new C11046c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.3f, 0.9f), null);
 
     @IdRes
     private int drawingViewId = R.id.content;
+    private static final C11046c DEFAULT_ENTER_THRESHOLDS_ARC = new C11046c(new ProgressThresholds(0.1f, 0.4f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 0.9f), null);
 
     @IdRes
     private int startViewId = -1;
+    private static final C11046c DEFAULT_RETURN_THRESHOLDS_ARC = new C11046c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.2f, 0.9f), null);
 
     @IdRes
     private int endViewId = -1;
@@ -134,45 +134,6 @@ public final class MaterialContainerTransform extends Transition {
     private int transitionDirection = 0;
     private int fadeMode = 0;
     private int fitMode = 0;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface FadeMode {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface FitMode {
-    }
-
-    public static class ProgressThresholds {
-
-        @FloatRange(from = 0.0d, m75to = 1.0d)
-        private final float end;
-
-        @FloatRange(from = 0.0d, m75to = 1.0d)
-        private final float start;
-
-        public ProgressThresholds(@FloatRange(from = 0.0d, m75to = 1.0d) float f, @FloatRange(from = 0.0d, m75to = 1.0d) float f2) {
-            this.start = f;
-            this.end = f2;
-        }
-
-        @FloatRange(from = 0.0d, m75to = 1.0d)
-        public float getEnd() {
-            return this.end;
-        }
-
-        @FloatRange(from = 0.0d, m75to = 1.0d)
-        public float getStart() {
-            return this.start;
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface TransitionDirection {
-    }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.MaterialContainerTransform$a */
     public class C11044a implements ValueAnimator.AnimatorUpdateListener {
@@ -236,7 +197,7 @@ public final class MaterialContainerTransform extends Transition {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.MaterialContainerTransform$c */
-    public static class C11046c {
+    public class C11046c {
 
         /* JADX INFO: renamed from: a */
         @NonNull
@@ -263,7 +224,7 @@ public final class MaterialContainerTransform extends Transition {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.MaterialContainerTransform$d */
-    public static final class C11047d extends Drawable {
+    public final class C11047d extends Drawable {
 
         /* JADX INFO: renamed from: A */
         public final C11046c f21276A;
@@ -465,35 +426,6 @@ public final class MaterialContainerTransform extends Transition {
             m9169e(0.0f);
         }
 
-        /* JADX INFO: renamed from: c */
-        public static PointF m9165c(RectF rectF) {
-            return new PointF(rectF.centerX(), rectF.top);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m9166a(Canvas canvas) {
-            m9168d(canvas, this.f21298k);
-            Rect bounds = getBounds();
-            RectF rectF = this.f21312y;
-            C4469k.m6193h(canvas, bounds, rectF.left, rectF.top, this.f21283H.f11904b, this.f21282G.f11899b, new b());
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final void m9167b(Canvas canvas) {
-            m9168d(canvas, this.f21297j);
-            Rect bounds = getBounds();
-            RectF rectF = this.f21310w;
-            C4469k.m6193h(canvas, bounds, rectF.left, rectF.top, this.f21283H.f11903a, this.f21282G.f11898a, new a());
-        }
-
-        /* JADX INFO: renamed from: d */
-        public final void m9168d(Canvas canvas, Paint paint) {
-            if (paint.getColor() == 0 || paint.getAlpha() <= 0) {
-                return;
-            }
-            canvas.drawRect(getBounds(), paint);
-        }
-
         @Override // android.graphics.drawable.Drawable
         public void draw(@NonNull Canvas canvas) {
             if (this.f21300m.getAlpha() > 0) {
@@ -563,6 +495,40 @@ public final class MaterialContainerTransform extends Transition {
                 this.f21280E.setColor(-16776961);
                 canvas.drawRect(rectF6, this.f21280E);
             }
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public int getOpacity() {
+            return -3;
+        }
+
+        /* JADX INFO: renamed from: c */
+        public static PointF m9165c(RectF rectF) {
+            return new PointF(rectF.centerX(), rectF.top);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m9166a(Canvas canvas) {
+            m9168d(canvas, this.f21298k);
+            Rect bounds = getBounds();
+            RectF rectF = this.f21312y;
+            C4469k.m6193h(canvas, bounds, rectF.left, rectF.top, this.f21283H.f11904b, this.f21282G.f11899b, new b());
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final void m9167b(Canvas canvas) {
+            m9168d(canvas, this.f21297j);
+            Rect bounds = getBounds();
+            RectF rectF = this.f21310w;
+            C4469k.m6193h(canvas, bounds, rectF.left, rectF.top, this.f21283H.f11903a, this.f21282G.f11898a, new a());
+        }
+
+        /* JADX INFO: renamed from: d */
+        public final void m9168d(Canvas canvas, Paint paint) {
+            if (paint.getColor() == 0 || paint.getAlpha() <= 0) {
+                return;
+            }
+            canvas.drawRect(getBounds(), paint);
         }
 
         /* JADX INFO: renamed from: e */
@@ -655,11 +621,6 @@ public final class MaterialContainerTransform extends Transition {
         }
 
         @Override // android.graphics.drawable.Drawable
-        public int getOpacity() {
-            return -3;
-        }
-
-        @Override // android.graphics.drawable.Drawable
         public void setAlpha(int i) {
             throw new UnsupportedOperationException("Setting alpha on is not supported");
         }
@@ -668,6 +629,45 @@ public final class MaterialContainerTransform extends Transition {
         public void setColorFilter(@Nullable ColorFilter colorFilter) {
             throw new UnsupportedOperationException("Setting a color filter is not supported");
         }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface FadeMode {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface FitMode {
+    }
+
+    public class ProgressThresholds {
+
+        @FloatRange(from = 0.0d, m75to = 1.0d)
+        private final float end;
+
+        @FloatRange(from = 0.0d, m75to = 1.0d)
+        private final float start;
+
+        public ProgressThresholds(@FloatRange(from = 0.0d, m75to = 1.0d) float f, @FloatRange(from = 0.0d, m75to = 1.0d) float f2) {
+            this.start = f;
+            this.end = f2;
+        }
+
+        @FloatRange(from = 0.0d, m75to = 1.0d)
+        public float getEnd() {
+            return this.end;
+        }
+
+        @FloatRange(from = 0.0d, m75to = 1.0d)
+        public float getStart() {
+            return this.start;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface TransitionDirection {
     }
 
     public MaterialContainerTransform() {
@@ -691,10 +691,20 @@ public final class MaterialContainerTransform extends Transition {
         return rectFM6188c;
     }
 
+    @Override // androidx.transition.Transition
+    public void captureEndValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues, this.endView, this.endViewId, this.endShapeAppearanceModel);
+    }
+
     private static ShapeAppearanceModel captureShapeAppearance(@NonNull View view, @NonNull RectF rectF, @Nullable ShapeAppearanceModel shapeAppearanceModel) {
         ShapeAppearanceModel shapeAppearance = getShapeAppearance(view, shapeAppearanceModel);
         RectF rectF2 = C4469k.f11915a;
         return shapeAppearance.withTransformedCornerSizes(new C4468j(rectF));
+    }
+
+    @Override // androidx.transition.Transition
+    public void captureStartValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues, this.startView, this.startViewId, this.startShapeAppearanceModel);
     }
 
     private static void captureValues(@NonNull TransitionValues transitionValues, @Nullable View view, @IdRes int i, @Nullable ShapeAppearanceModel shapeAppearanceModel) {
@@ -730,69 +740,6 @@ public final class MaterialContainerTransform extends Transition {
         }
         transitionValues.values.put(PROP_BOUNDS, rectFM6188c);
         transitionValues.values.put(PROP_SHAPE_APPEARANCE, captureShapeAppearance(view5, rectFM6188c, shapeAppearanceModel));
-    }
-
-    private static float getElevationOrDefault(float f, View view) {
-        return f != -1.0f ? f : ViewCompat.getElevation(view);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private static ShapeAppearanceModel getShapeAppearance(@NonNull View view, @Nullable ShapeAppearanceModel shapeAppearanceModel) {
-        if (shapeAppearanceModel != null) {
-            return shapeAppearanceModel;
-        }
-        int i = C10817R.id.mtrl_motion_snapshot_view;
-        if (view.getTag(i) instanceof ShapeAppearanceModel) {
-            return (ShapeAppearanceModel) view.getTag(i);
-        }
-        Context context = view.getContext();
-        int transitionShapeAppearanceResId = getTransitionShapeAppearanceResId(context);
-        if (transitionShapeAppearanceResId != -1) {
-            return ShapeAppearanceModel.builder(context, transitionShapeAppearanceResId, 0).build();
-        }
-        return view instanceof Shapeable ? ((Shapeable) view).getShapeAppearanceModel() : ShapeAppearanceModel.builder().build();
-    }
-
-    private C11046c getThresholdsOrDefault(boolean z2, C11046c c11046c, C11046c c11046c2) {
-        if (!z2) {
-            c11046c = c11046c2;
-        }
-        return new C11046c((ProgressThresholds) C4469k.m6186a(this.fadeProgressThresholds, c11046c.f21272a), (ProgressThresholds) C4469k.m6186a(this.scaleProgressThresholds, c11046c.f21273b), (ProgressThresholds) C4469k.m6186a(this.scaleMaskProgressThresholds, c11046c.f21274c), (ProgressThresholds) C4469k.m6186a(this.shapeMaskProgressThresholds, c11046c.f21275d), null);
-    }
-
-    @StyleRes
-    private static int getTransitionShapeAppearanceResId(Context context) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new int[]{C10817R.attr.transitionShapeAppearance});
-        int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
-        typedArrayObtainStyledAttributes.recycle();
-        return resourceId;
-    }
-
-    private boolean isEntering(@NonNull RectF rectF, @NonNull RectF rectF2) {
-        int i = this.transitionDirection;
-        if (i == 0) {
-            RectF rectF3 = C4469k.f11915a;
-            return rectF2.height() * rectF2.width() > rectF.height() * rectF.width();
-        }
-        if (i == 1) {
-            return true;
-        }
-        if (i == 2) {
-            return false;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Invalid transition direction: ");
-        sbM833U.append(this.transitionDirection);
-        throw new IllegalArgumentException(sbM833U.toString());
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureEndValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues, this.endView, this.endViewId, this.endShapeAppearanceModel);
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureStartValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues, this.startView, this.startViewId, this.startShapeAppearanceModel);
     }
 
     @Override // androidx.transition.Transition
@@ -893,6 +840,10 @@ public final class MaterialContainerTransform extends Transition {
         return this.drawingViewId;
     }
 
+    private static float getElevationOrDefault(float f, View view) {
+        return f != -1.0f ? f : ViewCompat.getElevation(view);
+    }
+
     @ColorInt
     public int getEndContainerColor() {
         return this.endContainerColor;
@@ -945,6 +896,23 @@ public final class MaterialContainerTransform extends Transition {
         return this.scrimColor;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    private static ShapeAppearanceModel getShapeAppearance(@NonNull View view, @Nullable ShapeAppearanceModel shapeAppearanceModel) {
+        if (shapeAppearanceModel != null) {
+            return shapeAppearanceModel;
+        }
+        int i = C10817R.id.mtrl_motion_snapshot_view;
+        if (view.getTag(i) instanceof ShapeAppearanceModel) {
+            return (ShapeAppearanceModel) view.getTag(i);
+        }
+        Context context = view.getContext();
+        int transitionShapeAppearanceResId = getTransitionShapeAppearanceResId(context);
+        if (transitionShapeAppearanceResId != -1) {
+            return ShapeAppearanceModel.builder(context, transitionShapeAppearanceResId, 0).build();
+        }
+        return view instanceof Shapeable ? ((Shapeable) view).getShapeAppearanceModel() : ShapeAppearanceModel.builder().build();
+    }
+
     @Nullable
     public ProgressThresholds getShapeMaskProgressThresholds() {
         return this.shapeMaskProgressThresholds;
@@ -974,6 +942,13 @@ public final class MaterialContainerTransform extends Transition {
         return this.startViewId;
     }
 
+    private C11046c getThresholdsOrDefault(boolean z2, C11046c c11046c, C11046c c11046c2) {
+        if (!z2) {
+            c11046c = c11046c2;
+        }
+        return new C11046c((ProgressThresholds) C4469k.m6186a(this.fadeProgressThresholds, c11046c.f21272a), (ProgressThresholds) C4469k.m6186a(this.scaleProgressThresholds, c11046c.f21273b), (ProgressThresholds) C4469k.m6186a(this.scaleMaskProgressThresholds, c11046c.f21274c), (ProgressThresholds) C4469k.m6186a(this.shapeMaskProgressThresholds, c11046c.f21275d), null);
+    }
+
     public int getTransitionDirection() {
         return this.transitionDirection;
     }
@@ -984,12 +959,37 @@ public final class MaterialContainerTransform extends Transition {
         return TRANSITION_PROPS;
     }
 
+    @StyleRes
+    private static int getTransitionShapeAppearanceResId(Context context) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new int[]{C10817R.attr.transitionShapeAppearance});
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
+        typedArrayObtainStyledAttributes.recycle();
+        return resourceId;
+    }
+
     public boolean isDrawDebugEnabled() {
         return this.drawDebugEnabled;
     }
 
     public boolean isElevationShadowEnabled() {
         return this.elevationShadowEnabled;
+    }
+
+    private boolean isEntering(@NonNull RectF rectF, @NonNull RectF rectF2) {
+        int i = this.transitionDirection;
+        if (i == 0) {
+            RectF rectF3 = C4469k.f11915a;
+            return rectF2.height() * rectF2.width() > rectF.height() * rectF.width();
+        }
+        if (i == 1) {
+            return true;
+        }
+        if (i == 2) {
+            return false;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Invalid transition direction: ");
+        sbM833U.append(this.transitionDirection);
+        throw new IllegalArgumentException(sbM833U.toString());
     }
 
     public boolean isHoldAtEndEnabled() {

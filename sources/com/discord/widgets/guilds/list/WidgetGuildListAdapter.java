@@ -33,6 +33,216 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
     private int selectedCenterY;
     private int targetCenterY;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$1 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87371 extends AbstractC12240o implements Function1<Integer, View> {
+        public final /* synthetic */ ViewGroup $parent;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87371(ViewGroup viewGroup) {
+            super(1);
+            this.$parent = viewGroup;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ View invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final View invoke(int i) {
+            return LayoutInflater.from(this.$parent.getContext()).inflate(i, this.$parent, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$2 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87382 extends AbstractC12240o implements Function1<GuildListItem.GuildItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87382(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.GuildItem guildItem) {
+            invoke2(guildItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.GuildItem guildItem) {
+            C12238m.checkNotNullParameter(guildItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemClicked(view, guildItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$3 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87393 extends AbstractC12240o implements Function1<GuildListItem.GuildItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87393(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.GuildItem guildItem) {
+            invoke2(guildItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.GuildItem guildItem) {
+            C12238m.checkNotNullParameter(guildItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemLongPressed(view, guildItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$4 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87404 extends AbstractC12240o implements Function1<GuildListItem.FolderItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87404(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FolderItem folderItem) {
+            invoke2(folderItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.FolderItem folderItem) {
+            C12238m.checkNotNullParameter(folderItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemClicked(view, folderItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$5 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87415 extends AbstractC12240o implements Function1<GuildListItem.FolderItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87415(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FolderItem folderItem) {
+            invoke2(folderItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.FolderItem folderItem) {
+            C12238m.checkNotNullParameter(folderItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemLongPressed(view, folderItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$6 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87426 extends AbstractC12240o implements Function1<GuildListItem.PrivateChannelItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87426(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.PrivateChannelItem privateChannelItem) {
+            invoke2(privateChannelItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.PrivateChannelItem privateChannelItem) {
+            C12238m.checkNotNullParameter(privateChannelItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemClicked(view, privateChannelItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$7 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87437 extends AbstractC12240o implements Function1<GuildListItem.PrivateChannelItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87437(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.PrivateChannelItem privateChannelItem) {
+            invoke2(privateChannelItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.PrivateChannelItem privateChannelItem) {
+            C12238m.checkNotNullParameter(privateChannelItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemLongPressed(view, privateChannelItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$8 */
+    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
+    public final class C87448 extends AbstractC12240o implements Function1<GuildListItem.FriendsItem, Unit> {
+        public final /* synthetic */ View $itemView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C87448(View view) {
+            super(1);
+            this.$itemView = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FriendsItem friendsItem) {
+            invoke2(friendsItem);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildListItem.FriendsItem friendsItem) {
+            C12238m.checkNotNullParameter(friendsItem, "item");
+            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
+            View view = this.$itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            interactionListener.onItemClicked(view, friendsItem);
+        }
+    }
+
     /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
     public interface InteractionListener {
         boolean onDrop();
@@ -47,10 +257,10 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
     }
 
     /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static abstract class Operation {
+    public abstract class Operation {
 
         /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-        public static final /* data */ class MoveAbove extends Operation {
+        public final /* data */ class MoveAbove extends Operation {
             private final int fromPosition;
             private final int targetPosition;
 
@@ -70,16 +280,6 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return moveAbove.copy(i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFromPosition() {
-                return this.fromPosition;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getTargetPosition() {
-                return this.targetPosition;
-            }
-
             public final MoveAbove copy(int fromPosition, int targetPosition) {
                 return new MoveAbove(fromPosition, targetPosition);
             }
@@ -95,8 +295,18 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return this.fromPosition == moveAbove.fromPosition && this.targetPosition == moveAbove.targetPosition;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getFromPosition() {
                 return this.fromPosition;
+            }
+
+            public final int getFromPosition() {
+                return this.fromPosition;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getTargetPosition() {
+                return this.targetPosition;
             }
 
             public final int getTargetPosition() {
@@ -116,7 +326,7 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
         }
 
         /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-        public static final /* data */ class MoveBelow extends Operation {
+        public final /* data */ class MoveBelow extends Operation {
             private final int fromPosition;
             private final int targetPosition;
 
@@ -136,16 +346,6 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return moveBelow.copy(i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFromPosition() {
-                return this.fromPosition;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getTargetPosition() {
-                return this.targetPosition;
-            }
-
             public final MoveBelow copy(int fromPosition, int targetPosition) {
                 return new MoveBelow(fromPosition, targetPosition);
             }
@@ -161,8 +361,18 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return this.fromPosition == moveBelow.fromPosition && this.targetPosition == moveBelow.targetPosition;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getFromPosition() {
                 return this.fromPosition;
+            }
+
+            public final int getFromPosition() {
+                return this.fromPosition;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getTargetPosition() {
+                return this.targetPosition;
             }
 
             public final int getTargetPosition() {
@@ -182,7 +392,7 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
         }
 
         /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-        public static final /* data */ class TargetOperation extends Operation {
+        public final /* data */ class TargetOperation extends Operation {
             private final int fromPosition;
             private final int targetPosition;
 
@@ -202,16 +412,6 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return targetOperation.copy(i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFromPosition() {
-                return this.fromPosition;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getTargetPosition() {
-                return this.targetPosition;
-            }
-
             public final TargetOperation copy(int fromPosition, int targetPosition) {
                 return new TargetOperation(fromPosition, targetPosition);
             }
@@ -227,8 +427,18 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return this.fromPosition == targetOperation.fromPosition && this.targetPosition == targetOperation.targetPosition;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getFromPosition() {
                 return this.fromPosition;
+            }
+
+            public final int getFromPosition() {
+                return this.fromPosition;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getTargetPosition() {
+                return this.targetPosition;
             }
 
             public final int getTargetPosition() {
@@ -275,216 +485,6 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$1 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87371 extends AbstractC12240o implements Function1<Integer, View> {
-        public final /* synthetic */ ViewGroup $parent;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87371(ViewGroup viewGroup) {
-            super(1);
-            this.$parent = viewGroup;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ View invoke(Integer num) {
-            return invoke(num.intValue());
-        }
-
-        public final View invoke(int i) {
-            return LayoutInflater.from(this.$parent.getContext()).inflate(i, this.$parent, false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$2 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87382 extends AbstractC12240o implements Function1<GuildListItem.GuildItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87382(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.GuildItem guildItem) {
-            invoke2(guildItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.GuildItem guildItem) {
-            C12238m.checkNotNullParameter(guildItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemClicked(view, guildItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$3 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87393 extends AbstractC12240o implements Function1<GuildListItem.GuildItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87393(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.GuildItem guildItem) {
-            invoke2(guildItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.GuildItem guildItem) {
-            C12238m.checkNotNullParameter(guildItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemLongPressed(view, guildItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$4 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87404 extends AbstractC12240o implements Function1<GuildListItem.FolderItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87404(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FolderItem folderItem) {
-            invoke2(folderItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.FolderItem folderItem) {
-            C12238m.checkNotNullParameter(folderItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemClicked(view, folderItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$5 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87415 extends AbstractC12240o implements Function1<GuildListItem.FolderItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87415(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FolderItem folderItem) {
-            invoke2(folderItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.FolderItem folderItem) {
-            C12238m.checkNotNullParameter(folderItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemLongPressed(view, folderItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$6 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87426 extends AbstractC12240o implements Function1<GuildListItem.PrivateChannelItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87426(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.PrivateChannelItem privateChannelItem) {
-            invoke2(privateChannelItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.PrivateChannelItem privateChannelItem) {
-            C12238m.checkNotNullParameter(privateChannelItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemClicked(view, privateChannelItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$7 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87437 extends AbstractC12240o implements Function1<GuildListItem.PrivateChannelItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87437(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.PrivateChannelItem privateChannelItem) {
-            invoke2(privateChannelItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.PrivateChannelItem privateChannelItem) {
-            C12238m.checkNotNullParameter(privateChannelItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemLongPressed(view, privateChannelItem);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildListAdapter$onCreateViewHolder$8 */
-    /* JADX INFO: compiled from: WidgetGuildListAdapter.kt */
-    public static final class C87448 extends AbstractC12240o implements Function1<GuildListItem.FriendsItem, Unit> {
-        public final /* synthetic */ View $itemView;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C87448(View view) {
-            super(1);
-            this.$itemView = view;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildListItem.FriendsItem friendsItem) {
-            invoke2(friendsItem);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildListItem.FriendsItem friendsItem) {
-            C12238m.checkNotNullParameter(friendsItem, "item");
-            InteractionListener interactionListener = WidgetGuildListAdapter.this.interactionListener;
-            View view = this.$itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            interactionListener.onItemClicked(view, friendsItem);
-        }
-    }
-
     public WidgetGuildListAdapter(LinearLayoutManager linearLayoutManager, InteractionListener interactionListener) {
         C12238m.checkNotNullParameter(linearLayoutManager, "layoutManager");
         C12238m.checkNotNullParameter(interactionListener, "interactionListener");
@@ -492,6 +492,27 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
         this.interactionListener = interactionListener;
         this.items = C12147n.emptyList();
         this.boundingBoxRect = new Rect();
+    }
+
+    @Override // com.discord.widgets.guilds.list.GuildsDragAndDropCallback.Controller
+    public RecyclerView.ViewHolder chooseDropTarget(RecyclerView.ViewHolder selected, List<RecyclerView.ViewHolder> dropTargets, int curX, int curY) {
+        C12238m.checkNotNullParameter(selected, "selected");
+        C12238m.checkNotNullParameter(dropTargets, "dropTargets");
+        this.layoutManager.getTransformedBoundingBox(selected.itemView, false, this.boundingBoxRect);
+        this.selectedCenterY = this.boundingBoxRect.centerY();
+        int i = Integer.MAX_VALUE;
+        RecyclerView.ViewHolder viewHolder = null;
+        for (RecyclerView.ViewHolder viewHolder2 : dropTargets) {
+            this.layoutManager.getTransformedBoundingBox(viewHolder2.itemView, false, this.boundingBoxRect);
+            int iCenterY = this.boundingBoxRect.centerY();
+            int iAbs = Math.abs(this.selectedCenterY - iCenterY);
+            if (iAbs < i) {
+                this.targetCenterY = iCenterY;
+                viewHolder = viewHolder2;
+                i = iAbs;
+            }
+        }
+        return viewHolder;
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [com.discord.widgets.guilds.list.WidgetGuildListAdapter$createDiffUtilCallback$1] */
@@ -517,37 +538,6 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
                 return oldItems.size();
             }
         };
-    }
-
-    private final boolean isPendingGuildOperation(GuildListItem sourceItem, GuildListItem targetItem) {
-        return ((sourceItem instanceof GuildListItem.GuildItem) && ((GuildListItem.GuildItem) sourceItem).isPendingGuild()) || ((sourceItem instanceof GuildListItem.FolderItem) && ((GuildListItem.FolderItem) sourceItem).getIsPendingGuildsFolder()) || (((targetItem instanceof GuildListItem.GuildItem) && ((GuildListItem.GuildItem) targetItem).isPendingGuild()) || ((targetItem instanceof GuildListItem.FolderItem) && ((GuildListItem.FolderItem) targetItem).getIsPendingGuildsFolder()));
-    }
-
-    @Override // com.discord.widgets.guilds.list.GuildsDragAndDropCallback.Controller
-    public RecyclerView.ViewHolder chooseDropTarget(RecyclerView.ViewHolder selected, List<RecyclerView.ViewHolder> dropTargets, int curX, int curY) {
-        C12238m.checkNotNullParameter(selected, "selected");
-        C12238m.checkNotNullParameter(dropTargets, "dropTargets");
-        this.layoutManager.getTransformedBoundingBox(selected.itemView, false, this.boundingBoxRect);
-        this.selectedCenterY = this.boundingBoxRect.centerY();
-        int i = Integer.MAX_VALUE;
-        RecyclerView.ViewHolder viewHolder = null;
-        for (RecyclerView.ViewHolder viewHolder2 : dropTargets) {
-            this.layoutManager.getTransformedBoundingBox(viewHolder2.itemView, false, this.boundingBoxRect);
-            int iCenterY = this.boundingBoxRect.centerY();
-            int iAbs = Math.abs(this.selectedCenterY - iCenterY);
-            if (iAbs < i) {
-                this.targetCenterY = iCenterY;
-                viewHolder = viewHolder2;
-                i = iAbs;
-            }
-        }
-        return viewHolder;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -591,9 +581,19 @@ public final class WidgetGuildListAdapter extends RecyclerView.Adapter<GuildList
         throw new NoWhenBranchMatchedException();
     }
 
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
+    }
+
     public final void handleBottomNavHeight(int height) {
         this.bottomNavHeight = height;
         notifyItemChanged(this.items.lastIndexOf(GuildListItem.SpaceItem.INSTANCE));
+    }
+
+    private final boolean isPendingGuildOperation(GuildListItem sourceItem, GuildListItem targetItem) {
+        return ((sourceItem instanceof GuildListItem.GuildItem) && ((GuildListItem.GuildItem) sourceItem).isPendingGuild()) || ((sourceItem instanceof GuildListItem.FolderItem) && ((GuildListItem.FolderItem) sourceItem).getIsPendingGuildsFolder()) || (((targetItem instanceof GuildListItem.GuildItem) && ((GuildListItem.GuildItem) targetItem).isPendingGuild()) || ((targetItem instanceof GuildListItem.FolderItem) && ((GuildListItem.FolderItem) targetItem).getIsPendingGuildsFolder()));
     }
 
     @Override // com.discord.widgets.guilds.list.GuildsDragAndDropCallback.Controller

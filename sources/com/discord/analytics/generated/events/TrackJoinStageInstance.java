@@ -11,29 +11,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackJoinStageInstance.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackJoinStageInstance implements AnalyticsSchema, TrackBaseReceiver, TrackNetworkInformationReceiver {
-    private TrackBase trackBase;
-    private TrackNetworkInformation trackNetworkInformation;
+    private final Long channelBitrate = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long channelBitrate = null;
+    private final Long customStatusCount = null;
+    private final Long gameId = null;
+    private final CharSequence gameName = null;
+    private final CharSequence gamePlatform = null;
     private final Long guildId = null;
     private final CharSequence nonce = null;
     private final CharSequence rtcConnectionId = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
-    private final CharSequence gameName = null;
-    private final CharSequence gamePlatform = null;
-    private final Long gameId = null;
-    private final Long customStatusCount = null;
     private final Long stageInstanceId = null;
+    private TrackBase trackBase;
+    private TrackNetworkInformation trackNetworkInformation;
+    private final Boolean videoEnabled = null;
+    private final Long videoStreamCount = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "join_stage_instance";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackJoinStageInstance implements AnalyticsSchema,
         }
         TrackJoinStageInstance trackJoinStageInstance = (TrackJoinStageInstance) other;
         return C12238m.areEqual(this.channelId, trackJoinStageInstance.channelId) && C12238m.areEqual(this.channelType, trackJoinStageInstance.channelType) && C12238m.areEqual(this.channelBitrate, trackJoinStageInstance.channelBitrate) && C12238m.areEqual(this.guildId, trackJoinStageInstance.guildId) && C12238m.areEqual(this.nonce, trackJoinStageInstance.nonce) && C12238m.areEqual(this.rtcConnectionId, trackJoinStageInstance.rtcConnectionId) && C12238m.areEqual(this.voiceStateCount, trackJoinStageInstance.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackJoinStageInstance.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackJoinStageInstance.videoEnabled) && C12238m.areEqual(this.gameName, trackJoinStageInstance.gameName) && C12238m.areEqual(this.gamePlatform, trackJoinStageInstance.gamePlatform) && C12238m.areEqual(this.gameId, trackJoinStageInstance.gameId) && C12238m.areEqual(this.customStatusCount, trackJoinStageInstance.customStatusCount) && C12238m.areEqual(this.stageInstanceId, trackJoinStageInstance.stageInstanceId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

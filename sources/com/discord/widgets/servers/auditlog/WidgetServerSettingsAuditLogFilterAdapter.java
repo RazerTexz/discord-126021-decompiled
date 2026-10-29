@@ -39,7 +39,7 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
     private Function0<Unit> onFilterSelectedCallback;
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilterAdapter.kt */
-    public static final class AuditLogActionFilterItem implements MGRecyclerDataPayload {
+    public final class AuditLogActionFilterItem implements MGRecyclerDataPayload {
         private final int actionId;
         private final boolean isChecked;
         private final String key;
@@ -59,6 +59,11 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
             return this.actionId;
         }
 
+        /* JADX INFO: renamed from: isChecked, reason: from getter */
+        public final boolean getIsChecked() {
+            return this.isChecked;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -72,15 +77,10 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
         public int getType() {
             return this.type;
         }
-
-        /* JADX INFO: renamed from: isChecked, reason: from getter */
-        public final boolean getIsChecked() {
-            return this.isChecked;
-        }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilterAdapter.kt */
-    public static final class AuditLogFilterActionViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogFilterAdapter, MGRecyclerDataPayload> {
+    public final class AuditLogFilterActionViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogFilterAdapter, MGRecyclerDataPayload> {
         private final WidgetServerSettingsAuditLogFilterActionListitemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -143,7 +143,7 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilterAdapter.kt */
-    public static final class AuditLogFilterUserViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogFilterAdapter, MGRecyclerDataPayload> {
+    public final class AuditLogFilterUserViewHolder extends MGRecyclerViewHolder<WidgetServerSettingsAuditLogFilterAdapter, MGRecyclerDataPayload> {
         private final WidgetServerSettingsAuditLogFilterUserListitemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -233,7 +233,7 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilterAdapter.kt */
-    public static final class AuditLogUserFilterItem implements MGRecyclerDataPayload {
+    public final class AuditLogUserFilterItem implements MGRecyclerDataPayload {
         private final Integer discriminator;
         private final GuildMember guildMember;
         private final long id;
@@ -265,6 +265,11 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
             return this.id;
         }
 
+        /* JADX INFO: renamed from: isChecked, reason: from getter */
+        public final boolean getIsChecked() {
+            return this.isChecked;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -281,11 +286,6 @@ public final class WidgetServerSettingsAuditLogFilterAdapter extends MGRecyclerA
 
         public final User getUser() {
             return this.user;
-        }
-
-        /* JADX INFO: renamed from: isChecked, reason: from getter */
-        public final boolean getIsChecked() {
-            return this.isChecked;
         }
     }
 

@@ -11,20 +11,20 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackNetworkActionUserPasswordlessInfoFetch.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackNetworkActionUserPasswordlessInfoFetch implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "network_action_user_passwordless_info_fetch";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackNetworkMetadata trackNetworkMetadata;
-
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
+    private final transient String analyticsSchemaTypeName = "network_action_user_passwordless_info_fetch";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */
     public String getAnalyticsSchemaTypeName() {
         return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 }

@@ -12,11 +12,11 @@ public class TimerCycle {
     private Runnable command;
     private long cycleDelay;
     private long initialDelay;
-    private boolean isPaused = true;
-    private ILogger logger = AdjustFactory.getLogger();
     private String name;
     private FutureScheduler scheduler;
     private ScheduledFuture waitingTask;
+    private boolean isPaused = true;
+    private ILogger logger = AdjustFactory.getLogger();
 
     public TimerCycle(Runnable runnable, long j, long j2, String str) {
         this.scheduler = new SingleThreadFutureScheduler(str, true);

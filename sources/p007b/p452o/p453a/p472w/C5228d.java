@@ -207,35 +207,6 @@ public class C5228d extends AbstractC5225a<GLSurfaceView, SurfaceTexture> implem
         this.f14226o = 1.0f;
     }
 
-    @Override // p007b.p452o.p453a.p472w.InterfaceC5226b
-    /* JADX INFO: renamed from: a */
-    public void mo7443a(@NonNull InterfaceC5184b interfaceC5184b) {
-        this.f14228q = interfaceC5184b;
-        if (m7433m()) {
-            interfaceC5184b.mo7374k(this.f14210e, this.f14211f);
-        }
-        ((GLSurfaceView) this.f14208c).queueEvent(new b(interfaceC5184b));
-    }
-
-    @Override // p007b.p452o.p453a.p472w.InterfaceC5229e
-    /* JADX INFO: renamed from: b */
-    public void mo7445b(@NonNull InterfaceC5230f interfaceC5230f) {
-        ((GLSurfaceView) this.f14208c).queueEvent(new a(interfaceC5230f));
-    }
-
-    @Override // p007b.p452o.p453a.p472w.InterfaceC5226b
-    @NonNull
-    /* JADX INFO: renamed from: c */
-    public InterfaceC5184b mo7444c() {
-        return this.f14228q;
-    }
-
-    @Override // p007b.p452o.p453a.p472w.InterfaceC5229e
-    /* JADX INFO: renamed from: d */
-    public void mo7446d(@NonNull InterfaceC5230f interfaceC5230f) {
-        this.f14224m.remove(interfaceC5230f);
-    }
-
     @Override // p007b.p452o.p453a.p472w.AbstractC5225a
     /* JADX INFO: renamed from: e */
     public void mo7425e(@Nullable AbstractC5225a.b bVar) {
@@ -315,5 +286,34 @@ public class C5228d extends AbstractC5225a<GLSurfaceView, SurfaceTexture> implem
     /* JADX INFO: renamed from: q */
     public void mo7437q() {
         ((GLSurfaceView) this.f14208c).onResume();
+    }
+
+    @Override // p007b.p452o.p453a.p472w.InterfaceC5226b
+    /* JADX INFO: renamed from: a */
+    public void mo7443a(@NonNull InterfaceC5184b interfaceC5184b) {
+        this.f14228q = interfaceC5184b;
+        if (m7433m()) {
+            interfaceC5184b.mo7374k(this.f14210e, this.f14211f);
+        }
+        ((GLSurfaceView) this.f14208c).queueEvent(new b(interfaceC5184b));
+    }
+
+    @Override // p007b.p452o.p453a.p472w.InterfaceC5226b
+    @NonNull
+    /* JADX INFO: renamed from: c */
+    public InterfaceC5184b mo7444c() {
+        return this.f14228q;
+    }
+
+    @Override // p007b.p452o.p453a.p472w.InterfaceC5229e
+    /* JADX INFO: renamed from: b */
+    public void mo7445b(@NonNull InterfaceC5230f interfaceC5230f) {
+        ((GLSurfaceView) this.f14208c).queueEvent(new a(interfaceC5230f));
+    }
+
+    @Override // p007b.p452o.p453a.p472w.InterfaceC5229e
+    /* JADX INFO: renamed from: d */
+    public void mo7446d(@NonNull InterfaceC5230f interfaceC5230f) {
+        this.f14224m.remove(interfaceC5230f);
     }
 }

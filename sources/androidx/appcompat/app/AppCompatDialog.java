@@ -25,15 +25,6 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
         this(context, 0);
     }
 
-    private static int getThemeResId(Context context, int i) {
-        if (i != 0) {
-            return i;
-        }
-        TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(C0051R.attr.dialogTheme, typedValue, true);
-        return typedValue.resourceId;
-    }
-
     @Override // android.app.Dialog
     public void addContentView(View view, ViewGroup.LayoutParams layoutParams) {
         getDelegate().addContentView(view, layoutParams);
@@ -65,6 +56,15 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
 
     public ActionBar getSupportActionBar() {
         return getDelegate().getSupportActionBar();
+    }
+
+    private static int getThemeResId(Context context, int i) {
+        if (i != 0) {
+            return i;
+        }
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(C0051R.attr.dialogTheme, typedValue, true);
+        return typedValue.resourceId;
     }
 
     @Override // android.app.Dialog

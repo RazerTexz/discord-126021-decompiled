@@ -44,7 +44,11 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetPruneUsers.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetPruneUsers extends AppDialog {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetPruneUsers.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPruneUsersBinding;", 0)};
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -54,13 +58,69 @@ public final class WidgetPruneUsers extends AppDialog {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetPruneUsers.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPruneUsersBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
+    public final class C101911 extends AbstractC12240o implements Function2<Context, Integer, CharSequence> {
+        public static final C101911 INSTANCE = new C101911();
+
+        public C101911() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ CharSequence invoke(Context context, Integer num) {
+            return invoke(context, num.intValue());
+        }
+
+        public final CharSequence invoke(Context context, int i) {
+            C12238m.checkNotNullParameter(context, "$this$formatLastSeenDays");
+            return C1107b.m216h(context, C5419R.string.last_seen, new Object[]{StringResourceUtilsKt.getI18nPluralString(context, C5419R.plurals.last_seen_days, i, Integer.valueOf(i))}, null, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
+    public final /* synthetic */ class C101941 extends C12236k implements Function1<WidgetPruneUsersViewModel.ViewState, Unit> {
+        public C101941(WidgetPruneUsers widgetPruneUsers) {
+            super(1, widgetPruneUsers, WidgetPruneUsers.class, "updateUI", "updateUI(Lcom/discord/widgets/user/WidgetPruneUsersViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetPruneUsersViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetPruneUsersViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetPruneUsers) this.receiver).updateUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
+    public final /* synthetic */ class C101952 extends C12236k implements Function1<WidgetPruneUsersViewModel.Event, Unit> {
+        public C101952(WidgetPruneUsers widgetPruneUsers) {
+            super(1, widgetPruneUsers, WidgetPruneUsers.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/WidgetPruneUsersViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetPruneUsersViewModel.Event event) throws Throwable {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetPruneUsersViewModel.Event event) throws Throwable {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetPruneUsers) this.receiver).handleEvent(event);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetPruneUsers.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -87,66 +147,6 @@ public final class WidgetPruneUsers extends AppDialog {
             $EnumSwitchMapping$0 = iArr;
             iArr[WidgetPruneUsersViewModel.PruneDays.Seven.ordinal()] = 1;
             iArr[WidgetPruneUsersViewModel.PruneDays.Thirty.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
-    public static final class C101911 extends AbstractC12240o implements Function2<Context, Integer, CharSequence> {
-        public static final C101911 INSTANCE = new C101911();
-
-        public C101911() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ CharSequence invoke(Context context, Integer num) {
-            return invoke(context, num.intValue());
-        }
-
-        public final CharSequence invoke(Context context, int i) {
-            C12238m.checkNotNullParameter(context, "$this$formatLastSeenDays");
-            return C1107b.m216h(context, C5419R.string.last_seen, new Object[]{StringResourceUtilsKt.getI18nPluralString(context, C5419R.plurals.last_seen_days, i, Integer.valueOf(i))}, null, 4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
-    public static final /* synthetic */ class C101941 extends C12236k implements Function1<WidgetPruneUsersViewModel.ViewState, Unit> {
-        public C101941(WidgetPruneUsers widgetPruneUsers) {
-            super(1, widgetPruneUsers, WidgetPruneUsers.class, "updateUI", "updateUI(Lcom/discord/widgets/user/WidgetPruneUsersViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetPruneUsersViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetPruneUsersViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetPruneUsers) this.receiver).updateUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsers$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetPruneUsers.kt */
-    public static final /* synthetic */ class C101952 extends C12236k implements Function1<WidgetPruneUsersViewModel.Event, Unit> {
-        public C101952(WidgetPruneUsers widgetPruneUsers) {
-            super(1, widgetPruneUsers, WidgetPruneUsers.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/WidgetPruneUsersViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetPruneUsersViewModel.Event event) throws Throwable {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetPruneUsersViewModel.Event event) throws Throwable {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetPruneUsers) this.receiver).handleEvent(event);
         }
     }
 
@@ -188,6 +188,54 @@ public final class WidgetPruneUsers extends AppDialog {
             unit = Unit.f27425a;
         }
         KotlinExtensionsKt.getExhaustive(unit);
+    }
+
+    @Override // com.discord.app.AppDialog
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        C101911 c101911 = C101911.INSTANCE;
+        CheckedSetting checkedSetting = getBinding().f17392f;
+        Context context = checkedSetting.getContext();
+        C12238m.checkNotNullExpressionValue(context, "context");
+        checkedSetting.setText(c101911.invoke(context, 7));
+        checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers$onViewBound$$inlined$apply$lambda$1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                this.this$0.getViewModel().pruneDaysSelected(WidgetPruneUsersViewModel.PruneDays.Seven);
+            }
+        });
+        CheckedSetting checkedSetting2 = getBinding().f17393g;
+        Context context2 = checkedSetting2.getContext();
+        C12238m.checkNotNullExpressionValue(context2, "context");
+        checkedSetting2.setText(c101911.invoke(context2, 30));
+        checkedSetting2.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers$onViewBound$$inlined$apply$lambda$2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                this.this$0.getViewModel().pruneDaysSelected(WidgetPruneUsersViewModel.PruneDays.Thirty);
+            }
+        });
+        getBinding().f17388b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers.onViewBound.4
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetPruneUsers.this.dismiss();
+            }
+        });
+        getBinding().f17390d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers.onViewBound.5
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetPruneUsers.this.getViewModel().pruneClicked();
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppDialog
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<WidgetPruneUsersViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetPruneUsers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101941(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetPruneUsers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101952(this));
     }
 
     private final void updateUI(WidgetPruneUsersViewModel.ViewState state) {
@@ -264,53 +312,5 @@ public final class WidgetPruneUsers extends AppDialog {
             }
         }
         KotlinExtensionsKt.getExhaustive(unit);
-    }
-
-    @Override // com.discord.app.AppDialog
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        C101911 c101911 = C101911.INSTANCE;
-        CheckedSetting checkedSetting = getBinding().f17392f;
-        Context context = checkedSetting.getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        checkedSetting.setText(c101911.invoke(context, 7));
-        checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers$onViewBound$$inlined$apply$lambda$1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                this.this$0.getViewModel().pruneDaysSelected(WidgetPruneUsersViewModel.PruneDays.Seven);
-            }
-        });
-        CheckedSetting checkedSetting2 = getBinding().f17393g;
-        Context context2 = checkedSetting2.getContext();
-        C12238m.checkNotNullExpressionValue(context2, "context");
-        checkedSetting2.setText(c101911.invoke(context2, 30));
-        checkedSetting2.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers$onViewBound$$inlined$apply$lambda$2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                this.this$0.getViewModel().pruneDaysSelected(WidgetPruneUsersViewModel.PruneDays.Thirty);
-            }
-        });
-        getBinding().f17388b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers.onViewBound.4
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetPruneUsers.this.dismiss();
-            }
-        });
-        getBinding().f17390d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetPruneUsers.onViewBound.5
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetPruneUsers.this.getViewModel().pruneClicked();
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppDialog
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<WidgetPruneUsersViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetPruneUsers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101941(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetPruneUsers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101952(this));
     }
 }

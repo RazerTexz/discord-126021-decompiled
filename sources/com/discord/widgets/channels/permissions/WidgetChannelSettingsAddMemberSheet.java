@@ -56,26 +56,9 @@ public final class WidgetChannelSettingsAddMemberSheet extends AppBottomSheet {
     private final Lazy channelId;
     private WidgetChannelSettingsAddMemberFragment fragment;
 
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetChannelSettingsAddMemberSheet widgetChannelSettingsAddMemberSheet = new WidgetChannelSettingsAddMemberSheet();
-            widgetChannelSettingsAddMemberSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
-            widgetChannelSettingsAddMemberSheet.show(fragmentManager, WidgetChannelSettingsAddMemberSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberSheet$addPermissionOverwrites$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberSheet.kt */
-    public static final class C75311 extends AbstractC12240o implements Function1<List<? extends Void>, Unit> {
+    public final class C75311 extends AbstractC12240o implements Function1<List<? extends Void>, Unit> {
         public C75311() {
             super(1);
         }
@@ -95,7 +78,7 @@ public final class WidgetChannelSettingsAddMemberSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberSheet.kt */
-    public static final class C75331 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C75331 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C75331() {
             super(1);
         }
@@ -118,7 +101,7 @@ public final class WidgetChannelSettingsAddMemberSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberSheet$onResume$2 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberSheet.kt */
-    public static final class C75342 extends AbstractC12240o implements Function1<Map<Long, ? extends PermissionOverwrite.Type>, Unit> {
+    public final class C75342 extends AbstractC12240o implements Function1<Map<Long, ? extends PermissionOverwrite.Type>, Unit> {
         public C75342() {
             super(1);
         }
@@ -135,6 +118,23 @@ public final class WidgetChannelSettingsAddMemberSheet extends AppBottomSheet {
             C12238m.checkNotNullExpressionValue(textView, "binding.addButton");
             C12238m.checkNotNullExpressionValue(map, "selected");
             ViewExtensions.setEnabledAndAlpha$default(textView, !map.isEmpty(), 0.0f, 2, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetChannelSettingsAddMemberSheet widgetChannelSettingsAddMemberSheet = new WidgetChannelSettingsAddMemberSheet();
+            widgetChannelSettingsAddMemberSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
+            widgetChannelSettingsAddMemberSheet.show(fragmentManager, WidgetChannelSettingsAddMemberSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

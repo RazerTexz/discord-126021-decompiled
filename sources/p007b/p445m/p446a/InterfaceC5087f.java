@@ -4,6 +4,8 @@ package p007b.p445m.p446a;
 /* JADX INFO: compiled from: SyncResponseCache.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC5087f {
+    void clear();
+
     /* JADX INFO: renamed from: a */
     void mo7133a(long j);
 
@@ -12,8 +14,6 @@ public interface InterfaceC5087f {
 
     /* JADX INFO: renamed from: c */
     long mo7135c();
-
-    void clear();
 
     /* JADX INFO: renamed from: d */
     long mo7136d();

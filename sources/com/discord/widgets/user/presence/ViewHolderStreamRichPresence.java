@@ -45,6 +45,12 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
         this.streamPreview = streamPreviewView;
     }
 
+    @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
+    public void configureAssetUi(Activity model, StreamContext streamContext) {
+        super.configureAssetUi(model, streamContext);
+        getRichPresenceImageLarge().setVisibility(8);
+    }
+
     private final void configureStreamPreview(StreamContext streamContext) {
         StoreApplicationStreamPreviews.StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
         if (preview == null) {
@@ -53,32 +59,6 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
             this.streamPreview.m8557a(preview, streamContext.getJoinability(), streamContext.isCurrentUserParticipating());
             this.streamPreview.setVisibility(0);
         }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:12:0x003b  */
-    private final String getRichPresenceStateText(String state, ActivityParty party) {
-        CharSequence charSequenceM212d;
-        if (state == null) {
-            return null;
-        }
-        if (party != null) {
-            PresenceUtils presenceUtils = PresenceUtils.INSTANCE;
-            charSequenceM212d = presenceUtils.getMaxSize(party) != 0 ? C1107b.m212d(getRoot(), C5419R.string.user_activity_state_size, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, (4 & 4) != 0 ? C1107b.c.f1492j : null) : null;
-            if (charSequenceM212d == null) {
-                charSequenceM212d = "";
-            }
-        } else {
-            charSequenceM212d = "";
-        }
-        String str = state + ' ' + charSequenceM212d;
-        Objects.requireNonNull(str, "null cannot be cast to non-null type kotlin.CharSequence");
-        return C12106w.trim(str).toString();
-    }
-
-    @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
-    public void configureAssetUi(Activity model, StreamContext streamContext) {
-        super.configureAssetUi(model, streamContext);
-        getRichPresenceImageLarge().setVisibility(8);
     }
 
     @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
@@ -125,6 +105,26 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
         configureTextUi(playingActivity, streamContext);
         configureAssetUi(playingActivity, streamContext);
         configureStreamPreview(streamContext);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:12:0x003b  */
+    private final String getRichPresenceStateText(String state, ActivityParty party) {
+        CharSequence charSequenceM212d;
+        if (state == null) {
+            return null;
+        }
+        if (party != null) {
+            PresenceUtils presenceUtils = PresenceUtils.INSTANCE;
+            charSequenceM212d = presenceUtils.getMaxSize(party) != 0 ? C1107b.m212d(getRoot(), C5419R.string.user_activity_state_size, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, (4 & 4) != 0 ? C1107b.c.f1492j : null) : null;
+            if (charSequenceM212d == null) {
+                charSequenceM212d = "";
+            }
+        } else {
+            charSequenceM212d = "";
+        }
+        String str = state + ' ' + charSequenceM212d;
+        Objects.requireNonNull(str, "null cannot be cast to non-null type kotlin.CharSequence");
+        return C12106w.trim(str).toString();
     }
 
     public final void setOnStreamPreviewClicked(final Function0<Unit> onStreamPreviewClicked) {

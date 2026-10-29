@@ -126,7 +126,7 @@ public final class ViewOnClickListenerC5272b extends FrameLayout implements View
 
     /* JADX INFO: renamed from: b.p.a.b$a */
     /* JADX INFO: compiled from: Alert.kt */
-    public static final class a implements Animation.AnimationListener {
+    public final class a implements Animation.AnimationListener {
         public a() {
         }
 
@@ -194,56 +194,6 @@ public final class ViewOnClickListenerC5272b extends FrameLayout implements View
         ((LinearLayout) m7465c(C11198R.d.llAlertBackground)).setOnClickListener(this);
     }
 
-    private final int getNavigationBarHeight() {
-        return ((Number) this.f14342D.getValue()).intValue();
-    }
-
-    @Override // p007b.p483p.p484a.ViewOnTouchListenerC5282l.a
-    /* JADX INFO: renamed from: a */
-    public void mo7463a(View view, boolean z2) {
-        C12238m.checkNotNullParameter(view, "view");
-        if (z2) {
-            removeCallbacks(this.f14355u);
-        } else {
-            if (this.f14351q) {
-                return;
-            }
-            RunnableC5276f runnableC5276f = new RunnableC5276f(this);
-            this.f14355u = runnableC5276f;
-            postDelayed(runnableC5276f, this.f14348n);
-        }
-    }
-
-    @Override // p007b.p483p.p484a.ViewOnTouchListenerC5282l.a
-    /* JADX INFO: renamed from: b */
-    public boolean mo7464b() {
-        return this.f14356v;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public View m7465c(int i) {
-        if (this.f14343E == null) {
-            this.f14343E = new HashMap();
-        }
-        View view = (View) this.f14343E.get(Integer.valueOf(i));
-        if (view != null) {
-            return view;
-        }
-        View viewFindViewById = findViewById(i);
-        this.f14343E.put(Integer.valueOf(i), viewFindViewById);
-        return viewFindViewById;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final void m7466d() {
-        try {
-            this.f14347m.setAnimationListener(new a());
-            startAnimation(this.f14347m);
-        } catch (Exception e) {
-            Log.e(ViewOnClickListenerC5272b.class.getSimpleName(), Log.getStackTraceString(e));
-        }
-    }
-
     public final Typeface getButtonTypeFace() {
         return this.f14358x;
     }
@@ -275,6 +225,10 @@ public final class ViewOnClickListenerC5272b extends FrameLayout implements View
         return this.f14340B;
     }
 
+    private final int getNavigationBarHeight() {
+        return ((Number) this.f14342D.getValue()).intValue();
+    }
+
     public final InterfaceC5280j getOnHideListener$alerter_release() {
         return this.f14345k;
     }
@@ -289,6 +243,52 @@ public final class ViewOnClickListenerC5272b extends FrameLayout implements View
         AppCompatTextView appCompatTextView = (AppCompatTextView) m7465c(C11198R.d.tvTitle);
         C12238m.checkNotNullExpressionValue(appCompatTextView, "tvTitle");
         return appCompatTextView;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public View m7465c(int i) {
+        if (this.f14343E == null) {
+            this.f14343E = new HashMap();
+        }
+        View view = (View) this.f14343E.get(Integer.valueOf(i));
+        if (view != null) {
+            return view;
+        }
+        View viewFindViewById = findViewById(i);
+        this.f14343E.put(Integer.valueOf(i), viewFindViewById);
+        return viewFindViewById;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final void m7466d() {
+        try {
+            this.f14347m.setAnimationListener(new a());
+            startAnimation(this.f14347m);
+        } catch (Exception e) {
+            Log.e(ViewOnClickListenerC5272b.class.getSimpleName(), Log.getStackTraceString(e));
+        }
+    }
+
+    @Override // p007b.p483p.p484a.ViewOnTouchListenerC5282l.a
+    /* JADX INFO: renamed from: a */
+    public void mo7463a(View view, boolean z2) {
+        C12238m.checkNotNullParameter(view, "view");
+        if (z2) {
+            removeCallbacks(this.f14355u);
+        } else {
+            if (this.f14351q) {
+                return;
+            }
+            RunnableC5276f runnableC5276f = new RunnableC5276f(this);
+            this.f14355u = runnableC5276f;
+            postDelayed(runnableC5276f, this.f14348n);
+        }
+    }
+
+    @Override // p007b.p483p.p484a.ViewOnTouchListenerC5282l.a
+    /* JADX INFO: renamed from: b */
+    public boolean mo7464b() {
+        return this.f14356v;
     }
 
     @Override // android.view.animation.Animation.AnimationListener

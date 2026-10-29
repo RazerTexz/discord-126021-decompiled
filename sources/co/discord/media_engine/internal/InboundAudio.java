@@ -60,126 +60,6 @@ public final /* data */ class InboundAudio {
         this.ssrc = j16;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getAudioLevel() {
-        return this.audioLevel;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final int getDecodingPLCCNG() {
-        return this.decodingPLCCNG;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final long getJitter() {
-        return this.jitter;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final long getJitterBuffer() {
-        return this.jitterBuffer;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final long getJitterBufferPreferred() {
-        return this.jitterBufferPreferred;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final long getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final long getPacketsReceived() {
-        return this.packetsReceived;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final long getOpSilence() {
-        return this.opSilence;
-    }
-
-    /* JADX INFO: renamed from: component17, reason: from getter */
-    public final long getOpNormal() {
-        return this.opNormal;
-    }
-
-    /* JADX INFO: renamed from: component18, reason: from getter */
-    public final long getOpMerge() {
-        return this.opMerge;
-    }
-
-    /* JADX INFO: renamed from: component19, reason: from getter */
-    public final long getOpExpand() {
-        return this.opExpand;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getBytesReceived() {
-        return this.bytesReceived;
-    }
-
-    /* JADX INFO: renamed from: component20, reason: from getter */
-    public final long getOpAccelerate() {
-        return this.opAccelerate;
-    }
-
-    /* JADX INFO: renamed from: component21, reason: from getter */
-    public final long getOpPreemptiveExpand() {
-        return this.opPreemptiveExpand;
-    }
-
-    /* JADX INFO: renamed from: component22, reason: from getter */
-    public final long getOpCNG() {
-        return this.opCNG;
-    }
-
-    /* JADX INFO: renamed from: component23, reason: from getter */
-    public final long getSpeaking() {
-        return this.speaking;
-    }
-
-    /* JADX INFO: renamed from: component24, reason: from getter */
-    public final long getSsrc() {
-        return this.ssrc;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getCodecName() {
-        return this.codecName;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getCodecPayloadType() {
-        return this.codecPayloadType;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getDelayEstimate() {
-        return this.delayEstimate;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getDecodingCNG() {
-        return this.decodingCNG;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getDecodingMutedOutput() {
-        return this.decodingMutedOutput;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getDecodingNormal() {
-        return this.decodingNormal;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getDecodingPLC() {
-        return this.decodingPLC;
-    }
-
     public final InboundAudio copy(int audioLevel, long bytesReceived, String codecName, int codecPayloadType, long delayEstimate, int decodingCNG, int decodingMutedOutput, int decodingNormal, int decodingPLC, int decodingPLCCNG, long jitter, long jitterBuffer, long jitterBufferPreferred, long packetsLost, long packetsReceived, long opSilence, long opNormal, long opMerge, long opExpand, long opAccelerate, long opPreemptiveExpand, long opCNG, long speaking, long ssrc) {
         C12238m.checkNotNullParameter(codecName, "codecName");
         return new InboundAudio(audioLevel, bytesReceived, codecName, codecPayloadType, delayEstimate, decodingCNG, decodingMutedOutput, decodingNormal, decodingPLC, decodingPLCCNG, jitter, jitterBuffer, jitterBufferPreferred, packetsLost, packetsReceived, opSilence, opNormal, opMerge, opExpand, opAccelerate, opPreemptiveExpand, opCNG, speaking, ssrc);
@@ -196,96 +76,216 @@ public final /* data */ class InboundAudio {
         return this.audioLevel == inboundAudio.audioLevel && this.bytesReceived == inboundAudio.bytesReceived && C12238m.areEqual(this.codecName, inboundAudio.codecName) && this.codecPayloadType == inboundAudio.codecPayloadType && this.delayEstimate == inboundAudio.delayEstimate && this.decodingCNG == inboundAudio.decodingCNG && this.decodingMutedOutput == inboundAudio.decodingMutedOutput && this.decodingNormal == inboundAudio.decodingNormal && this.decodingPLC == inboundAudio.decodingPLC && this.decodingPLCCNG == inboundAudio.decodingPLCCNG && this.jitter == inboundAudio.jitter && this.jitterBuffer == inboundAudio.jitterBuffer && this.jitterBufferPreferred == inboundAudio.jitterBufferPreferred && this.packetsLost == inboundAudio.packetsLost && this.packetsReceived == inboundAudio.packetsReceived && this.opSilence == inboundAudio.opSilence && this.opNormal == inboundAudio.opNormal && this.opMerge == inboundAudio.opMerge && this.opExpand == inboundAudio.opExpand && this.opAccelerate == inboundAudio.opAccelerate && this.opPreemptiveExpand == inboundAudio.opPreemptiveExpand && this.opCNG == inboundAudio.opCNG && this.speaking == inboundAudio.speaking && this.ssrc == inboundAudio.ssrc;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getAudioLevel() {
         return this.audioLevel;
+    }
+
+    public final int getAudioLevel() {
+        return this.audioLevel;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getBytesReceived() {
+        return this.bytesReceived;
     }
 
     public final long getBytesReceived() {
         return this.bytesReceived;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getCodecName() {
         return this.codecName;
+    }
+
+    public final String getCodecName() {
+        return this.codecName;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getCodecPayloadType() {
+        return this.codecPayloadType;
     }
 
     public final int getCodecPayloadType() {
         return this.codecPayloadType;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getDecodingCNG() {
         return this.decodingCNG;
+    }
+
+    public final int getDecodingCNG() {
+        return this.decodingCNG;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getDecodingMutedOutput() {
+        return this.decodingMutedOutput;
     }
 
     public final int getDecodingMutedOutput() {
         return this.decodingMutedOutput;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final int getDecodingNormal() {
         return this.decodingNormal;
+    }
+
+    public final int getDecodingNormal() {
+        return this.decodingNormal;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final int getDecodingPLC() {
+        return this.decodingPLC;
     }
 
     public final int getDecodingPLC() {
         return this.decodingPLC;
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
     public final int getDecodingPLCCNG() {
         return this.decodingPLCCNG;
+    }
+
+    public final int getDecodingPLCCNG() {
+        return this.decodingPLCCNG;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final long getDelayEstimate() {
+        return this.delayEstimate;
     }
 
     public final long getDelayEstimate() {
         return this.delayEstimate;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final long getJitter() {
         return this.jitter;
+    }
+
+    public final long getJitter() {
+        return this.jitter;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final long getJitterBuffer() {
+        return this.jitterBuffer;
     }
 
     public final long getJitterBuffer() {
         return this.jitterBuffer;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final long getJitterBufferPreferred() {
         return this.jitterBufferPreferred;
+    }
+
+    public final long getJitterBufferPreferred() {
+        return this.jitterBufferPreferred;
+    }
+
+    /* JADX INFO: renamed from: component20, reason: from getter */
+    public final long getOpAccelerate() {
+        return this.opAccelerate;
     }
 
     public final long getOpAccelerate() {
         return this.opAccelerate;
     }
 
+    /* JADX INFO: renamed from: component22, reason: from getter */
     public final long getOpCNG() {
         return this.opCNG;
+    }
+
+    public final long getOpCNG() {
+        return this.opCNG;
+    }
+
+    /* JADX INFO: renamed from: component19, reason: from getter */
+    public final long getOpExpand() {
+        return this.opExpand;
     }
 
     public final long getOpExpand() {
         return this.opExpand;
     }
 
+    /* JADX INFO: renamed from: component18, reason: from getter */
     public final long getOpMerge() {
         return this.opMerge;
+    }
+
+    public final long getOpMerge() {
+        return this.opMerge;
+    }
+
+    /* JADX INFO: renamed from: component17, reason: from getter */
+    public final long getOpNormal() {
+        return this.opNormal;
     }
 
     public final long getOpNormal() {
         return this.opNormal;
     }
 
+    /* JADX INFO: renamed from: component21, reason: from getter */
     public final long getOpPreemptiveExpand() {
         return this.opPreemptiveExpand;
+    }
+
+    public final long getOpPreemptiveExpand() {
+        return this.opPreemptiveExpand;
+    }
+
+    /* JADX INFO: renamed from: component16, reason: from getter */
+    public final long getOpSilence() {
+        return this.opSilence;
     }
 
     public final long getOpSilence() {
         return this.opSilence;
     }
 
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final long getPacketsLost() {
         return this.packetsLost;
+    }
+
+    public final long getPacketsLost() {
+        return this.packetsLost;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final long getPacketsReceived() {
+        return this.packetsReceived;
     }
 
     public final long getPacketsReceived() {
         return this.packetsReceived;
     }
 
+    /* JADX INFO: renamed from: component23, reason: from getter */
     public final long getSpeaking() {
         return this.speaking;
+    }
+
+    public final long getSpeaking() {
+        return this.speaking;
+    }
+
+    /* JADX INFO: renamed from: component24, reason: from getter */
+    public final long getSsrc() {
+        return this.ssrc;
     }
 
     public final long getSsrc() {

@@ -48,6 +48,20 @@ public final class GuildSubscriptionRoleImageUploadView extends ConstraintLayout
         initialize$default(this, null, 1, null);
     }
 
+    public final void configureUI(Function0<Unit> onImageRemoved, Function0<Unit> onImageChooserClicked) {
+        C12238m.checkNotNullParameter(onImageRemoved, "onImageRemoved");
+        C12238m.checkNotNullParameter(onImageChooserClicked, "onImageChooserClicked");
+        this.onImageRemovedListener = onImageRemoved;
+        this.onImageChooserClickListener = onImageChooserClicked;
+    }
+
+    public static /* synthetic */ void initialize$default(GuildSubscriptionRoleImageUploadView guildSubscriptionRoleImageUploadView, AttributeSet attributeSet, int i, Object obj) {
+        if ((i & 1) != 0) {
+            attributeSet = null;
+        }
+        guildSubscriptionRoleImageUploadView.initialize(attributeSet);
+    }
+
     private final void initialize(AttributeSet attrs) {
         ScalingUtils$ScaleType scalingUtils$ScaleType;
         Context context = getContext();
@@ -125,31 +139,6 @@ public final class GuildSubscriptionRoleImageUploadView extends ConstraintLayout
         });
     }
 
-    public static /* synthetic */ void initialize$default(GuildSubscriptionRoleImageUploadView guildSubscriptionRoleImageUploadView, AttributeSet attributeSet, int i, Object obj) {
-        if ((i & 1) != 0) {
-            attributeSet = null;
-        }
-        guildSubscriptionRoleImageUploadView.initialize(attributeSet);
-    }
-
-    private final void updateImageVisibility(boolean hasImage) {
-        ImageView imageView = this.binding.f15479c;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.guildSubscriptionEditImage");
-        imageView.setVisibility(hasImage ? 0 : 8);
-        if (hasImage) {
-            this.binding.f15481e.setText(C5419R.string.avatar_upload_edit_media);
-        } else {
-            this.binding.f15481e.setText(C5419R.string.guild_role_subscription_tier_detail_custom_image_button);
-        }
-    }
-
-    public final void configureUI(Function0<Unit> onImageRemoved, Function0<Unit> onImageChooserClicked) {
-        C12238m.checkNotNullParameter(onImageRemoved, "onImageRemoved");
-        C12238m.checkNotNullParameter(onImageChooserClicked, "onImageChooserClicked");
-        this.onImageRemovedListener = onImageRemoved;
-        this.onImageChooserClickListener = onImageChooserClicked;
-    }
-
     public final void updateImage(String memberIcon, GuildRole guildRole) {
         if (!(memberIcon == null || C12103t.isBlank(memberIcon))) {
             updateImage(memberIcon);
@@ -166,6 +155,17 @@ public final class GuildSubscriptionRoleImageUploadView extends ConstraintLayout
             }
         }
         updateImage((String) null);
+    }
+
+    private final void updateImageVisibility(boolean hasImage) {
+        ImageView imageView = this.binding.f15479c;
+        C12238m.checkNotNullExpressionValue(imageView, "binding.guildSubscriptionEditImage");
+        imageView.setVisibility(hasImage ? 0 : 8);
+        if (hasImage) {
+            this.binding.f15481e.setText(C5419R.string.avatar_upload_edit_media);
+        } else {
+            this.binding.f15481e.setText(C5419R.string.guild_role_subscription_tier_detail_custom_image_button);
+        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

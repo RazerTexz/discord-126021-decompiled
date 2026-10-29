@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelPermissionsOverwriteUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelPermissionsOverwriteUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
     private final Long channelId = null;
-    private final Long targetRoleId = null;
-    private final Long targetUserId = null;
+    private final Long guildId = null;
     private final Long permissionsAllow = null;
     private final Long permissionsDeny = null;
+    private final Long targetRoleId = null;
+    private final Long targetUserId = null;
+    private TrackBase trackBase;
     private final CharSequence updateType = null;
     private final transient String analyticsSchemaTypeName = "channel_permissions_overwrite_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackChannelPermissionsOverwriteUpdated implements
         }
         TrackChannelPermissionsOverwriteUpdated trackChannelPermissionsOverwriteUpdated = (TrackChannelPermissionsOverwriteUpdated) other;
         return C12238m.areEqual(this.guildId, trackChannelPermissionsOverwriteUpdated.guildId) && C12238m.areEqual(this.channelId, trackChannelPermissionsOverwriteUpdated.channelId) && C12238m.areEqual(this.targetRoleId, trackChannelPermissionsOverwriteUpdated.targetRoleId) && C12238m.areEqual(this.targetUserId, trackChannelPermissionsOverwriteUpdated.targetUserId) && C12238m.areEqual(this.permissionsAllow, trackChannelPermissionsOverwriteUpdated.permissionsAllow) && C12238m.areEqual(this.permissionsDeny, trackChannelPermissionsOverwriteUpdated.permissionsDeny) && C12238m.areEqual(this.updateType, trackChannelPermissionsOverwriteUpdated.updateType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

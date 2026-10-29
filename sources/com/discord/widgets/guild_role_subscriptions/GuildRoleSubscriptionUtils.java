@@ -30,42 +30,6 @@ public final class GuildRoleSubscriptionUtils {
     private GuildRoleSubscriptionUtils() {
     }
 
-    private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionDesign(RestAPI restApi, long guildId, Integer memberColor, String memberIcon, final GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
-        Observable observableM11083G = restApi.updateRole(guildId, guildRoleSubscriptionTierListing.getRoleId(), new RestAPIParams.Role(null, null, null, memberColor, null, null, guildRoleSubscriptionTierListing.getRoleId(), memberIcon, 55, null)).m11083G(new InterfaceC12589b<Void, GuildRoleSubscriptionTierListing>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionDesign.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final GuildRoleSubscriptionTierListing call(Void r1) {
-                return guildRoleSubscriptionTierListing;
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "restApi\n          .updat…onTierListing\n          }");
-        return observableM11083G;
-    }
-
-    private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTrial(RestAPI restApi, final StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, final long guildId, final GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing, NullSerializable<SubscriptionTrialInterval> trialInterval, NullSerializable<Integer> activeTrialUserLimit) {
-        if (trialInterval == null && activeTrialUserLimit == null) {
-            C12721k c12721k = new C12721k(guildRoleSubscriptionTierListing);
-            C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(guildRoleSubscriptionTierListing)");
-            return c12721k;
-        }
-        Observable observableM11083G = restApi.updateGuildRoleSubscriptionTierFreeTrial(guildId, guildRoleSubscriptionTierListing.getId(), new RestAPIParams.UpdateGuildRoleSubscriptionTierFreeTrial(trialInterval, activeTrialUserLimit)).m11115u(new Action1<GuildRoleSubscriptionTierFreeTrial>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionTrial.1
-            @Override // p658rx.functions.Action1
-            public final void call(GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial) {
-                StoreGuildRoleSubscriptions storeGuildRoleSubscriptions2 = storeGuildRoleSubscriptions;
-                long j = guildId;
-                long id2 = guildRoleSubscriptionTierListing.getId();
-                C12238m.checkNotNullExpressionValue(guildRoleSubscriptionTierFreeTrial, "it");
-                storeGuildRoleSubscriptions2.handleGuildRoleSubscriptionTierTrialUpdate(j, id2, guildRoleSubscriptionTierFreeTrial);
-            }
-        }).m11083G(new InterfaceC12589b<GuildRoleSubscriptionTierFreeTrial, GuildRoleSubscriptionTierListing>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionTrial.2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final GuildRoleSubscriptionTierListing call(GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial) {
-                return guildRoleSubscriptionTierListing;
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "restApi\n          .updat…SubscriptionTierListing }");
-        return observableM11083G;
-    }
-
     public final Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionGroupListing(final RestAPI restApi, final StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, final long guildId, String coverImage, String planDescription, Boolean isFullServerGating, final String tierName, final String tierDescription, final int priceTier, final String tierImage, final int memberColor, final String memberBadge, final boolean canAccessAllChannels, final List<? extends Benefit> channelBenefits, final List<? extends Benefit> intangibleBenefits) {
         C12238m.checkNotNullParameter(restApi, "restApi");
         C12238m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
@@ -138,6 +102,17 @@ public final class GuildRoleSubscriptionUtils {
         return observableM11115u;
     }
 
+    private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionDesign(RestAPI restApi, long guildId, Integer memberColor, String memberIcon, final GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
+        Observable observableM11083G = restApi.updateRole(guildId, guildRoleSubscriptionTierListing.getRoleId(), new RestAPIParams.Role(null, null, null, memberColor, null, null, guildRoleSubscriptionTierListing.getRoleId(), memberIcon, 55, null)).m11083G(new InterfaceC12589b<Void, GuildRoleSubscriptionTierListing>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionDesign.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final GuildRoleSubscriptionTierListing call(Void r1) {
+                return guildRoleSubscriptionTierListing;
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "restApi\n          .updat…onTierListing\n          }");
+        return observableM11083G;
+    }
+
     public final Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(RestAPI restApi, final StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, final long guildId, long groupListingId, String coverImage, String planDescription, Boolean isFullServerGating) {
         C12238m.checkNotNullParameter(restApi, "restApi");
         C12238m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
@@ -208,5 +183,30 @@ public final class GuildRoleSubscriptionUtils {
         });
         C12238m.checkNotNullExpressionValue(observableM11115u, "restApi\n        .updateG…te(guildId, it)\n        }");
         return observableM11115u;
+    }
+
+    private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTrial(RestAPI restApi, final StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, final long guildId, final GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing, NullSerializable<SubscriptionTrialInterval> trialInterval, NullSerializable<Integer> activeTrialUserLimit) {
+        if (trialInterval == null && activeTrialUserLimit == null) {
+            C12721k c12721k = new C12721k(guildRoleSubscriptionTierListing);
+            C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(guildRoleSubscriptionTierListing)");
+            return c12721k;
+        }
+        Observable observableM11083G = restApi.updateGuildRoleSubscriptionTierFreeTrial(guildId, guildRoleSubscriptionTierListing.getId(), new RestAPIParams.UpdateGuildRoleSubscriptionTierFreeTrial(trialInterval, activeTrialUserLimit)).m11115u(new Action1<GuildRoleSubscriptionTierFreeTrial>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionTrial.1
+            @Override // p658rx.functions.Action1
+            public final void call(GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial) {
+                StoreGuildRoleSubscriptions storeGuildRoleSubscriptions2 = storeGuildRoleSubscriptions;
+                long j = guildId;
+                long id2 = guildRoleSubscriptionTierListing.getId();
+                C12238m.checkNotNullExpressionValue(guildRoleSubscriptionTierFreeTrial, "it");
+                storeGuildRoleSubscriptions2.handleGuildRoleSubscriptionTierTrialUpdate(j, id2, guildRoleSubscriptionTierFreeTrial);
+            }
+        }).m11083G(new InterfaceC12589b<GuildRoleSubscriptionTierFreeTrial, GuildRoleSubscriptionTierListing>() { // from class: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils.updateGuildRoleSubscriptionTrial.2
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final GuildRoleSubscriptionTierListing call(GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial) {
+                return guildRoleSubscriptionTierListing;
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "restApi\n          .updat…SubscriptionTierListing }");
+        return observableM11083G;
     }
 }

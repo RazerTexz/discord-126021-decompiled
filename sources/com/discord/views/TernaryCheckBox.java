@@ -33,18 +33,18 @@ public final class TernaryCheckBox extends RelativeLayout {
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public String labelText;
 
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public CharSequence subtextText;
-
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public InterfaceC7094b onSwitchStatusChangedListener;
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public CharSequence subtextText;
 
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
     public int switchStatus;
 
     /* JADX INFO: renamed from: com.discord.views.TernaryCheckBox$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: TernaryCheckBox.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -57,7 +57,7 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.TernaryCheckBox$c */
     /* JADX INFO: compiled from: TernaryCheckBox.kt */
-    public static final class ViewOnClickListenerC7095c implements View.OnClickListener {
+    public final class ViewOnClickListenerC7095c implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ String f19162k;
@@ -74,7 +74,7 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.TernaryCheckBox$d */
     /* JADX INFO: compiled from: TernaryCheckBox.kt */
-    public static final class ViewOnClickListenerC7096d implements View.OnClickListener {
+    public final class ViewOnClickListenerC7096d implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ String f19164k;
@@ -163,47 +163,12 @@ public final class TernaryCheckBox extends RelativeLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }
 
-    private final void setDisabled(String message) {
-        FrameLayout frameLayout = this.binding.f671b;
-        C12238m.checkNotNullExpressionValue(frameLayout, "binding.checkableOffContainer");
-        frameLayout.setEnabled(true);
-        View view = this.binding.f672c;
-        C12238m.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
-        view.setVisibility(8);
-        this.binding.f673d.setOnClickListener(new ViewOnClickListenerC7095c(message));
-        View view2 = this.binding.f673d;
-        C12238m.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
-        view2.setVisibility(0);
+    public final InterfaceC7094b getOnSwitchStatusChangedListener() {
+        return this.onSwitchStatusChangedListener;
     }
 
-    private final void setOffDisabled(String message) {
-        CheckableImageView checkableImageView = this.binding.f677h;
-        C12238m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
-        checkableImageView.setEnabled(false);
-        View view = this.binding.f673d;
-        C12238m.checkNotNullExpressionValue(view, "binding.settingDisabledOverlay");
-        view.setVisibility(8);
-        this.binding.f672c.setOnClickListener(new ViewOnClickListenerC7096d(message));
-        View view2 = this.binding.f672c;
-        C12238m.checkNotNullExpressionValue(view2, "binding.offDisabledOverlay");
-        view2.setVisibility(0);
-    }
-
-    private final void setSwitchStatus(int i) {
-        this.switchStatus = i;
-        CheckableImageView checkableImageView = this.binding.f678i;
-        C12238m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOn");
-        checkableImageView.setChecked(i == 1);
-        CheckableImageView checkableImageView2 = this.binding.f677h;
-        C12238m.checkNotNullExpressionValue(checkableImageView2, "binding.ternaryCheckOff");
-        checkableImageView2.setChecked(i == -1);
-        CheckableImageView checkableImageView3 = this.binding.f676g;
-        C12238m.checkNotNullExpressionValue(checkableImageView3, "binding.ternaryCheckNeutral");
-        checkableImageView3.setChecked(i == 0);
-        InterfaceC7094b interfaceC7094b = this.onSwitchStatusChangedListener;
-        if (interfaceC7094b != null) {
-            interfaceC7094b.onSwitchStatusChanged(i);
-        }
+    public final int getSwitchStatus() {
+        return this.switchStatus;
     }
 
     /* JADX INFO: renamed from: b */
@@ -239,18 +204,36 @@ public final class TernaryCheckBox extends RelativeLayout {
         setSwitchStatus(1);
     }
 
-    public final InterfaceC7094b getOnSwitchStatusChangedListener() {
-        return this.onSwitchStatusChangedListener;
-    }
-
-    public final int getSwitchStatus() {
-        return this.switchStatus;
+    private final void setDisabled(String message) {
+        FrameLayout frameLayout = this.binding.f671b;
+        C12238m.checkNotNullExpressionValue(frameLayout, "binding.checkableOffContainer");
+        frameLayout.setEnabled(true);
+        View view = this.binding.f672c;
+        C12238m.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
+        view.setVisibility(8);
+        this.binding.f673d.setOnClickListener(new ViewOnClickListenerC7095c(message));
+        View view2 = this.binding.f673d;
+        C12238m.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
+        view2.setVisibility(0);
     }
 
     public final void setLabel(CharSequence text) {
         TextView textView = this.binding.f674e;
         C12238m.checkNotNullExpressionValue(textView, "binding.settingLabel");
         textView.setText(text);
+    }
+
+    private final void setOffDisabled(String message) {
+        CheckableImageView checkableImageView = this.binding.f677h;
+        C12238m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
+        checkableImageView.setEnabled(false);
+        View view = this.binding.f673d;
+        C12238m.checkNotNullExpressionValue(view, "binding.settingDisabledOverlay");
+        view.setVisibility(8);
+        this.binding.f672c.setOnClickListener(new ViewOnClickListenerC7096d(message));
+        View view2 = this.binding.f672c;
+        C12238m.checkNotNullExpressionValue(view2, "binding.offDisabledOverlay");
+        view2.setVisibility(0);
     }
 
     public final void setOnSwitchStatusChangedListener(InterfaceC7094b interfaceC7094b) {
@@ -261,6 +244,23 @@ public final class TernaryCheckBox extends RelativeLayout {
         LinkifiedTextView linkifiedTextView = this.binding.f675f;
         C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
         linkifiedTextView.setText(text);
+    }
+
+    private final void setSwitchStatus(int i) {
+        this.switchStatus = i;
+        CheckableImageView checkableImageView = this.binding.f678i;
+        C12238m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOn");
+        checkableImageView.setChecked(i == 1);
+        CheckableImageView checkableImageView2 = this.binding.f677h;
+        C12238m.checkNotNullExpressionValue(checkableImageView2, "binding.ternaryCheckOff");
+        checkableImageView2.setChecked(i == -1);
+        CheckableImageView checkableImageView3 = this.binding.f676g;
+        C12238m.checkNotNullExpressionValue(checkableImageView3, "binding.ternaryCheckNeutral");
+        checkableImageView3.setChecked(i == 0);
+        InterfaceC7094b interfaceC7094b = this.onSwitchStatusChangedListener;
+        if (interfaceC7094b != null) {
+            interfaceC7094b.onSwitchStatusChanged(i);
+        }
     }
 
     public final void setDisabled(int messageRes) {

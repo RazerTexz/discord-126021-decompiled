@@ -12,6 +12,11 @@ public final class C12709a extends AtomicReference<Subscription> implements Subs
     public C12709a() {
     }
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return get() == EnumC12710b.INSTANCE;
+    }
+
     /* JADX INFO: renamed from: a */
     public boolean m10809a(Subscription subscription) {
         Subscription subscription2;
@@ -26,11 +31,6 @@ public final class C12709a extends AtomicReference<Subscription> implements Subs
             }
         } while (!compareAndSet(subscription2, subscription));
         return true;
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return get() == EnumC12710b.INSTANCE;
     }
 
     @Override // p658rx.Subscription

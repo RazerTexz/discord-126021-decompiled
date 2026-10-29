@@ -196,6 +196,38 @@ public class ColorPickerView extends View {
         setFocusableInTouchMode(true);
     }
 
+    public String getAlphaSliderText() {
+        return this.f21778F;
+    }
+
+    public int getBorderColor() {
+        return this.f21780H;
+    }
+
+    public int getColor() {
+        return Color.HSVToColor(this.f21773A, new float[]{this.f21774B, this.f21775C, this.f21776D});
+    }
+
+    @Override // android.view.View
+    public int getPaddingBottom() {
+        return Math.max(super.getPaddingBottom(), 0);
+    }
+
+    @Override // android.view.View
+    public int getPaddingLeft() {
+        return Math.max(super.getPaddingLeft(), 0);
+    }
+
+    @Override // android.view.View
+    public int getPaddingRight() {
+        return Math.max(super.getPaddingRight(), 0);
+    }
+
+    @Override // android.view.View
+    public int getPaddingTop() {
+        return Math.max(super.getPaddingTop(), 0);
+    }
+
     private int getPreferredHeight() {
         int iM4243S = C3404f.m4243S(getContext(), 200.0f);
         return this.f21777E ? iM4243S + this.f21790l + this.f21789k : iM4243S;
@@ -203,6 +235,10 @@ public class ColorPickerView extends View {
 
     private int getPreferredWidth() {
         return C3404f.m4243S(getContext(), 200.0f) + this.f21788j + this.f21790l;
+    }
+
+    public int getSliderTrackerColor() {
+        return this.f21779G;
     }
 
     /* JADX INFO: renamed from: a */
@@ -280,42 +316,6 @@ public class ColorPickerView extends View {
             ((ColorPickerDialog) interfaceC11166c).m9271k(Color.HSVToColor(iAlpha, new float[]{f, f2, f3}));
         }
         invalidate();
-    }
-
-    public String getAlphaSliderText() {
-        return this.f21778F;
-    }
-
-    public int getBorderColor() {
-        return this.f21780H;
-    }
-
-    public int getColor() {
-        return Color.HSVToColor(this.f21773A, new float[]{this.f21774B, this.f21775C, this.f21776D});
-    }
-
-    @Override // android.view.View
-    public int getPaddingBottom() {
-        return Math.max(super.getPaddingBottom(), 0);
-    }
-
-    @Override // android.view.View
-    public int getPaddingLeft() {
-        return Math.max(super.getPaddingLeft(), 0);
-    }
-
-    @Override // android.view.View
-    public int getPaddingRight() {
-        return Math.max(super.getPaddingRight(), 0);
-    }
-
-    @Override // android.view.View
-    public int getPaddingTop() {
-        return Math.max(super.getPaddingTop(), 0);
-    }
-
-    public int getSliderTrackerColor() {
-        return this.f21779G;
     }
 
     @Override // android.view.View

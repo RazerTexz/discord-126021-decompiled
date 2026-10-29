@@ -34,6 +34,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1256e {
 
+    /* JADX INFO: renamed from: b */
+    public static final List<Integer> f1817b = C12147n.listOf((Object[]) new Integer[]{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60});
+
+    /* JADX INFO: renamed from: c */
+    public static final List<Integer> f1818c = C12147n.listOf((Object[]) new Integer[]{720, 480, 360});
+
+    /* JADX INFO: renamed from: d */
+    public static final b f1819d = new b(null);
+
     /* JADX INFO: renamed from: e */
     public final ListenerCollectionSubject<?> f1820e;
 
@@ -73,21 +82,12 @@ public final class C1256e {
     /* JADX INFO: renamed from: q */
     public final Clock f1832q;
 
-    /* JADX INFO: renamed from: d */
-    public static final b f1819d = new b(null);
-
     /* JADX INFO: renamed from: a */
     public static final List<Integer> f1816a = C12147n.listOf((Object[]) new Integer[]{0, 500000, 1000000, 1500000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000});
 
-    /* JADX INFO: renamed from: b */
-    public static final List<Integer> f1817b = C12147n.listOf((Object[]) new Integer[]{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60});
-
-    /* JADX INFO: renamed from: c */
-    public static final List<Integer> f1818c = C12147n.listOf((Object[]) new Integer[]{720, 480, 360});
-
     /* JADX INFO: renamed from: b.a.q.o0.e$a */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public long f1833a;
@@ -205,7 +205,7 @@ public final class C1256e {
 
     /* JADX INFO: renamed from: b.a.q.o0.e$b */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -220,12 +220,12 @@ public final class C1256e {
 
     /* JADX INFO: renamed from: b.a.q.o0.e$c */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static abstract class c {
+    public abstract class c {
     }
 
     /* JADX INFO: renamed from: b.a.q.o0.e$d */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public Long f1847a;
@@ -269,84 +269,9 @@ public final class C1256e {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.q.o0.e$e */
-    /* JADX INFO: compiled from: VideoQuality.kt */
-    public static class e {
-
-        /* JADX INFO: renamed from: b */
-        public final Histogram f1850b;
-
-        /* JADX INFO: renamed from: c */
-        public final Histogram f1851c;
-
-        /* JADX INFO: renamed from: d */
-        public Long f1852d;
-
-        /* JADX INFO: renamed from: f */
-        public long f1854f;
-
-        /* JADX INFO: renamed from: i */
-        public float f1857i;
-
-        /* JADX INFO: renamed from: a */
-        public List<g> f1849a = new ArrayList();
-
-        /* JADX INFO: renamed from: e */
-        public a f1853e = new a(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16383);
-
-        /* JADX INFO: renamed from: g */
-        public Map<Integer, Float> f1855g = new LinkedHashMap();
-
-        /* JADX INFO: renamed from: h */
-        public Map<Integer, Float> f1856h = new LinkedHashMap();
-
-        /* JADX INFO: renamed from: j */
-        public Map<Integer, Float> f1858j = new LinkedHashMap();
-
-        public e() {
-            int i = 0;
-            int i2 = 2;
-            DefaultConstructorMarker defaultConstructorMarker = null;
-            this.f1850b = new Histogram(5, i, i2, defaultConstructorMarker);
-            this.f1851c = new Histogram(25600, i, i2, defaultConstructorMarker);
-            Iterator<T> it = C1256e.f1816a.iterator();
-            while (it.hasNext()) {
-                this.f1855g.put(Integer.valueOf(((Number) it.next()).intValue()), Float.valueOf(0.0f));
-            }
-            Iterator<T> it2 = C1256e.f1817b.iterator();
-            while (it2.hasNext()) {
-                this.f1856h.put(Integer.valueOf(((Number) it2.next()).intValue()), Float.valueOf(0.0f));
-            }
-            Iterator<T> it3 = C1256e.f1818c.iterator();
-            while (it3.hasNext()) {
-                this.f1858j.put(Integer.valueOf(((Number) it3.next()).intValue()), Float.valueOf(0.0f));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: b.a.q.o0.e$f */
-    /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class f extends e {
-
-        /* JADX INFO: renamed from: k */
-        public int f1859k = 2500000;
-
-        /* JADX INFO: renamed from: l */
-        public int f1860l = 30;
-
-        /* JADX INFO: renamed from: m */
-        public long f1861m;
-
-        /* JADX INFO: renamed from: n */
-        public long f1862n;
-
-        /* JADX INFO: renamed from: o */
-        public long f1863o;
-    }
-
     /* JADX INFO: renamed from: b.a.q.o0.e$g */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class g {
+    public final class g {
 
         /* JADX INFO: renamed from: a */
         public final long f1864a;
@@ -399,7 +324,7 @@ public final class C1256e {
 
     /* JADX INFO: renamed from: b.a.q.o0.e$h */
     /* JADX INFO: compiled from: VideoQuality.kt */
-    public static final class h extends AbstractC12240o implements Function1<DeviceResourceUsageMonitor.ResourceUsage, Unit> {
+    public final class h extends AbstractC12240o implements Function1<DeviceResourceUsageMonitor.ResourceUsage, Unit> {
         public h() {
             super(1);
         }
@@ -633,5 +558,80 @@ public final class C1256e {
             this.f1826k.m361b(z2, j);
             this.f1827l.f1849a.clear();
         }
+    }
+
+    /* JADX INFO: renamed from: b.a.q.o0.e$e */
+    /* JADX INFO: compiled from: VideoQuality.kt */
+    public class e {
+
+        /* JADX INFO: renamed from: b */
+        public final Histogram f1850b;
+
+        /* JADX INFO: renamed from: c */
+        public final Histogram f1851c;
+
+        /* JADX INFO: renamed from: d */
+        public Long f1852d;
+
+        /* JADX INFO: renamed from: f */
+        public long f1854f;
+
+        /* JADX INFO: renamed from: i */
+        public float f1857i;
+
+        /* JADX INFO: renamed from: a */
+        public List<g> f1849a = new ArrayList();
+
+        /* JADX INFO: renamed from: e */
+        public a f1853e = new a(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16383);
+
+        /* JADX INFO: renamed from: g */
+        public Map<Integer, Float> f1855g = new LinkedHashMap();
+
+        /* JADX INFO: renamed from: h */
+        public Map<Integer, Float> f1856h = new LinkedHashMap();
+
+        /* JADX INFO: renamed from: j */
+        public Map<Integer, Float> f1858j = new LinkedHashMap();
+
+        public e() {
+            int i = 0;
+            int i2 = 2;
+            DefaultConstructorMarker defaultConstructorMarker = null;
+            this.f1850b = new Histogram(5, i, i2, defaultConstructorMarker);
+            this.f1851c = new Histogram(25600, i, i2, defaultConstructorMarker);
+            Iterator<T> it = C1256e.f1816a.iterator();
+            while (it.hasNext()) {
+                this.f1855g.put(Integer.valueOf(((Number) it.next()).intValue()), Float.valueOf(0.0f));
+            }
+            Iterator<T> it2 = C1256e.f1817b.iterator();
+            while (it2.hasNext()) {
+                this.f1856h.put(Integer.valueOf(((Number) it2.next()).intValue()), Float.valueOf(0.0f));
+            }
+            Iterator<T> it3 = C1256e.f1818c.iterator();
+            while (it3.hasNext()) {
+                this.f1858j.put(Integer.valueOf(((Number) it3.next()).intValue()), Float.valueOf(0.0f));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: b.a.q.o0.e$f */
+    /* JADX INFO: compiled from: VideoQuality.kt */
+    public final class f extends e {
+
+        /* JADX INFO: renamed from: m */
+        public long f1861m;
+
+        /* JADX INFO: renamed from: n */
+        public long f1862n;
+
+        /* JADX INFO: renamed from: o */
+        public long f1863o;
+
+        /* JADX INFO: renamed from: k */
+        public int f1859k = 2500000;
+
+        /* JADX INFO: renamed from: l */
+        public int f1860l = 30;
     }
 }

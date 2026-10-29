@@ -56,17 +56,17 @@ public final class C13134n1 extends AbstractC12174a implements Job {
     }
 
     @Override // kotlinx.coroutines.Job
+    /* JADX INFO: renamed from: u */
+    public InterfaceC13130m0 mo10915u(Function1<? super Throwable, Unit> function1) {
+        return C13137o1.f27880j;
+    }
+
+    @Override // kotlinx.coroutines.Job
     public boolean start() {
         return false;
     }
 
     public String toString() {
         return "NonCancellable";
-    }
-
-    @Override // kotlinx.coroutines.Job
-    /* JADX INFO: renamed from: u */
-    public InterfaceC13130m0 mo10915u(Function1<? super Throwable, Unit> function1) {
-        return C13137o1.f27880j;
     }
 }

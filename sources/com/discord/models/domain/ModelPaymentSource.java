@@ -20,7 +20,7 @@ public abstract class ModelPaymentSource {
     private final boolean invalid;
 
     /* JADX INFO: compiled from: ModelPaymentSource.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -52,7 +52,7 @@ public abstract class ModelPaymentSource {
     }
 
     /* JADX INFO: compiled from: ModelPaymentSource.kt */
-    public static final /* data */ class ModelPaymentSourceCard extends ModelPaymentSource {
+    public final /* data */ class ModelPaymentSourceCard extends ModelPaymentSource {
         private final ModelBillingAddress billingAddress;
         private final String brand;
         private final boolean default;
@@ -77,26 +77,6 @@ public abstract class ModelPaymentSource {
             this.invalid = z2;
             this.billingAddress = modelBillingAddress;
             this.default = z3;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getBrand() {
-            return this.brand;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getLast4() {
-            return this.last4;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getExpiresMonth() {
-            return this.expiresMonth;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getExpiresYear() {
-            return this.expiresYear;
         }
 
         public final String component5() {
@@ -139,6 +119,11 @@ public abstract class ModelPaymentSource {
             return this.billingAddress;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getBrand() {
+            return this.brand;
+        }
+
         public final String getBrand() {
             return this.brand;
         }
@@ -148,8 +133,18 @@ public abstract class ModelPaymentSource {
             return this.default;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getExpiresMonth() {
             return this.expiresMonth;
+        }
+
+        public final int getExpiresMonth() {
+            return this.expiresMonth;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getExpiresYear() {
+            return this.expiresYear;
         }
 
         public final int getExpiresYear() {
@@ -164,6 +159,11 @@ public abstract class ModelPaymentSource {
         @Override // com.discord.models.domain.ModelPaymentSource
         public boolean getInvalid() {
             return this.invalid;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getLast4() {
+            return this.last4;
         }
 
         public final String getLast4() {
@@ -217,7 +217,7 @@ public abstract class ModelPaymentSource {
     }
 
     /* JADX INFO: compiled from: ModelPaymentSource.kt */
-    public static final /* data */ class ModelPaymentSourcePaypal extends ModelPaymentSource {
+    public final /* data */ class ModelPaymentSourcePaypal extends ModelPaymentSource {
         private final ModelBillingAddress billingAddress;
         private final boolean default;
         private final String email;
@@ -235,6 +235,22 @@ public abstract class ModelPaymentSource {
             this.invalid = z2;
             this.billingAddress = modelBillingAddress;
             this.default = z3;
+        }
+
+        public final String component2() {
+            return getId();
+        }
+
+        public final boolean component3() {
+            return getInvalid();
+        }
+
+        public final ModelBillingAddress component4() {
+            return getBillingAddress();
+        }
+
+        public final boolean component5() {
+            return getDefault();
         }
 
         public static /* synthetic */ ModelPaymentSourcePaypal copy$default(ModelPaymentSourcePaypal modelPaymentSourcePaypal, String str, String str2, boolean z2, ModelBillingAddress modelBillingAddress, boolean z3, int i, Object obj) {
@@ -257,27 +273,6 @@ public abstract class ModelPaymentSource {
                 z3 = modelPaymentSourcePaypal.getDefault();
             }
             return modelPaymentSourcePaypal.copy(str, str3, z4, modelBillingAddress2, z3);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getEmail() {
-            return this.email;
-        }
-
-        public final String component2() {
-            return getId();
-        }
-
-        public final boolean component3() {
-            return getInvalid();
-        }
-
-        public final ModelBillingAddress component4() {
-            return getBillingAddress();
-        }
-
-        public final boolean component5() {
-            return getDefault();
         }
 
         public final ModelPaymentSourcePaypal copy(String email, String id2, boolean invalid, ModelBillingAddress billingAddress, boolean z2) {
@@ -306,6 +301,11 @@ public abstract class ModelPaymentSource {
         @Override // com.discord.models.domain.ModelPaymentSource
         public boolean getDefault() {
             return this.default;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getEmail() {
+            return this.email;
         }
 
         public final String getEmail() {
@@ -361,7 +361,7 @@ public abstract class ModelPaymentSource {
     }
 
     /* JADX INFO: compiled from: ModelPaymentSource.kt */
-    public static final class UnableToWrapException extends Exception {
+    public final class UnableToWrapException extends Exception {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public UnableToWrapException(Throwable th) {
             super(th);

@@ -6,19 +6,23 @@ import java.lang.reflect.Method;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/Type.SCL.lombok */
 public final class Type {
-    public static final int VOID = 0;
-    public static final int BOOLEAN = 1;
-    public static final int CHAR = 2;
-    public static final int BYTE = 3;
-    public static final int SHORT = 4;
-    public static final int INT = 5;
-    public static final int FLOAT = 6;
-    public static final int LONG = 7;
-    public static final int DOUBLE = 8;
     public static final int ARRAY = 9;
-    public static final int OBJECT = 10;
-    public static final int METHOD = 11;
+    public static final int BOOLEAN = 1;
+    public static final int BYTE = 3;
+    public static final int CHAR = 2;
+    public static final int DOUBLE = 8;
+    public static final int FLOAT = 6;
+    public static final int INT = 5;
     private static final int INTERNAL = 12;
+    public static final int LONG = 7;
+    public static final int METHOD = 11;
+    public static final int OBJECT = 10;
+    public static final int SHORT = 4;
+    public static final int VOID = 0;
+    private final int sort;
+    private final int valueBegin;
+    private final String valueBuffer;
+    private final int valueEnd;
     private static final String PRIMITIVE_DESCRIPTORS = "VZCBSIFJD";
     public static final Type VOID_TYPE = new Type(0, PRIMITIVE_DESCRIPTORS, 0, 1);
     public static final Type BOOLEAN_TYPE = new Type(1, PRIMITIVE_DESCRIPTORS, 1, 2);
@@ -29,10 +33,6 @@ public final class Type {
     public static final Type FLOAT_TYPE = new Type(6, PRIMITIVE_DESCRIPTORS, 6, 7);
     public static final Type LONG_TYPE = new Type(7, PRIMITIVE_DESCRIPTORS, 7, 8);
     public static final Type DOUBLE_TYPE = new Type(8, PRIMITIVE_DESCRIPTORS, 8, 9);
-    private final int sort;
-    private final String valueBuffer;
-    private final int valueBegin;
-    private final int valueEnd;
 
     private Type(int sort, String valueBuffer, int valueBegin, int valueEnd) {
         this.sort = sort;

@@ -71,27 +71,18 @@ public final class C3160f extends AbstractC2951v0 implements Handler.Callback {
         this.f9140C = -9223372036854775807L;
     }
 
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: B */
-    public void mo2621B() {
-        this.f9141D = null;
-        this.f9140C = -9223372036854775807L;
-        this.f9146y = null;
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    public String getName() {
+        return "MetadataRenderer";
     }
 
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: D */
-    public void mo2622D(long j, boolean z2) {
-        this.f9141D = null;
-        this.f9140C = -9223372036854775807L;
-        this.f9147z = false;
-        this.f9138A = false;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: H */
-    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) {
-        this.f9146y = this.f9142u.mo3897b(c2811j1Arr[0]);
+    @Override // android.os.Handler.Callback
+    public boolean handleMessage(Message message) {
+        if (message.what != 0) {
+            throw new IllegalStateException();
+        }
+        this.f9143v.mo3298b((Metadata) message.obj);
+        return true;
     }
 
     /* JADX INFO: renamed from: J */
@@ -124,6 +115,29 @@ public final class C3160f extends AbstractC2951v0 implements Handler.Callback {
         }
     }
 
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: B */
+    public void mo2621B() {
+        this.f9141D = null;
+        this.f9140C = -9223372036854775807L;
+        this.f9146y = null;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: D */
+    public void mo2622D(long j, boolean z2) {
+        this.f9141D = null;
+        this.f9140C = -9223372036854775807L;
+        this.f9147z = false;
+        this.f9138A = false;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: H */
+    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) {
+        this.f9146y = this.f9142u.mo3897b(c2811j1Arr[0]);
+    }
+
     @Override // p007b.p225i.p226a.p242c.InterfaceC2763g2
     /* JADX INFO: renamed from: a */
     public int mo2630a(C2811j1 c2811j1) {
@@ -142,20 +156,6 @@ public final class C3160f extends AbstractC2951v0 implements Handler.Callback {
     @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
     /* JADX INFO: renamed from: d */
     public boolean mo2632d() {
-        return true;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    public String getName() {
-        return "MetadataRenderer";
-    }
-
-    @Override // android.os.Handler.Callback
-    public boolean handleMessage(Message message) {
-        if (message.what != 0) {
-            throw new IllegalStateException();
-        }
-        this.f9143v.mo3298b((Metadata) message.obj);
         return true;
     }
 

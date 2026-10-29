@@ -49,15 +49,55 @@ public final class WidgetVoiceCallInline extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final ViewVisibilityObserver inlineVoiceVisibilityObserver;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallInline$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-    public static final /* data */ class Model {
+    public final class C104242 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public static final C104242 INSTANCE = new C104242();
+
+        public C104242() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            StoreStream.INSTANCE.getMediaEngine().setPttActive(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallInline$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
+    public final class C104251 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C104251() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "it");
+            WidgetVoiceCallInline.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
         private final VoiceConnected voiceConnected;
 
         /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -78,7 +118,7 @@ public final class WidgetVoiceCallInline extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-        public static final /* data */ class VoiceConnected {
+        public final /* data */ class VoiceConnected {
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = new Companion(null);
@@ -87,7 +127,7 @@ public final class WidgetVoiceCallInline extends AppFragment {
             private final StreamContext streamContext;
 
             /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-            public static final class Companion {
+            public final class Companion {
                 private Companion() {
                 }
 
@@ -96,7 +136,7 @@ public final class WidgetVoiceCallInline extends AppFragment {
 
                         /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallInline$Model$VoiceConnected$Companion$get$1$1 */
                         /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-                        public static final /* synthetic */ class C104221 extends C12236k implements Function3<Channel, MediaEngineConnection.InputMode, StreamContext, WidgetVoiceCallInline.Model.VoiceConnected> {
+                        public final /* synthetic */ class C104221 extends C12236k implements Function3<Channel, MediaEngineConnection.InputMode, StreamContext, WidgetVoiceCallInline.Model.VoiceConnected> {
                             public static final C104221 INSTANCE = new C104221();
 
                             public C104221() {
@@ -113,7 +153,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
 
                         @Override // p637j0.p641k.InterfaceC12589b
                         public final Observable<? extends WidgetVoiceCallInline.Model.VoiceConnected> call(Channel channel) {
-                            Object obj;
                             if (channel == null) {
                                 return new C12721k(null);
                             }
@@ -121,8 +160,8 @@ public final class WidgetVoiceCallInline extends AppFragment {
                             Observable<MediaEngineConnection.InputMode> inputMode = StoreStream.INSTANCE.getMediaSettings().getInputMode();
                             Observable<StreamContext> forActiveStream = new StreamContextService(null, null, null, null, null, null, null, null, 255, null).getForActiveStream();
                             final C104221 c104221 = C104221.INSTANCE;
+                            Object obj = c104221;
                             if (c104221 != null) {
-                                obj = c104221;
                                 obj = new Func3() { // from class: com.discord.widgets.voice.call.WidgetVoiceCallInline$sam$rx_functions_Func3$0
                                     @Override // p658rx.functions.Func3
                                     public final /* synthetic */ Object call(Object obj2, Object obj3, Object obj4) {
@@ -130,7 +169,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
                                     }
                                 };
                             }
-                            obj = c104221;
                             return Observable.m11075i(c12721k, inputMode, forActiveStream, (Func3) obj);
                         }
                     });
@@ -164,21 +202,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
                 return voiceConnected.copy(channel, inputMode, streamContext);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final MediaEngineConnection.InputMode getInputMode() {
-                return this.inputMode;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
             public final VoiceConnected copy(Channel selectedVoiceChannel, MediaEngineConnection.InputMode inputMode, StreamContext streamContext) {
                 C12238m.checkNotNullParameter(selectedVoiceChannel, "selectedVoiceChannel");
                 C12238m.checkNotNullParameter(inputMode, "inputMode");
@@ -196,12 +219,27 @@ public final class WidgetVoiceCallInline extends AppFragment {
                 return C12238m.areEqual(this.selectedVoiceChannel, voiceConnected.selectedVoiceChannel) && C12238m.areEqual(this.inputMode, voiceConnected.inputMode) && C12238m.areEqual(this.streamContext, voiceConnected.streamContext);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final MediaEngineConnection.InputMode getInputMode() {
                 return this.inputMode;
             }
 
+            public final MediaEngineConnection.InputMode getInputMode() {
+                return this.inputMode;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getSelectedVoiceChannel() {
                 return this.selectedVoiceChannel;
+            }
+
+            public final Channel getSelectedVoiceChannel() {
+                return this.selectedVoiceChannel;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final StreamContext getStreamContext() {
+                return this.streamContext;
             }
 
             public final StreamContext getStreamContext() {
@@ -240,11 +278,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
             return model.copy(voiceConnected);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final VoiceConnected getVoiceConnected() {
-            return this.voiceConnected;
-        }
-
         public final Model copy(VoiceConnected voiceConnected) {
             return new Model(voiceConnected);
         }
@@ -254,6 +287,11 @@ public final class WidgetVoiceCallInline extends AppFragment {
                 return (other instanceof Model) && C12238m.areEqual(this.voiceConnected, ((Model) other).voiceConnected);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final VoiceConnected getVoiceConnected() {
+            return this.voiceConnected;
         }
 
         public final VoiceConnected getVoiceConnected() {
@@ -273,46 +311,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
             sbM833U.append(this.voiceConnected);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallInline$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-    public static final class C104242 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public static final C104242 INSTANCE = new C104242();
-
-        public C104242() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            StoreStream.INSTANCE.getMediaEngine().setPttActive(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetVoiceCallInline$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetVoiceCallInline.kt */
-    public static final class C104251 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C104251() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "it");
-            WidgetVoiceCallInline.this.configureUI(model);
         }
     }
 
@@ -345,18 +343,6 @@ public final class WidgetVoiceCallInline extends AppFragment {
         viewOnLayoutChangeListenerC1175bM232a.m231c(materialButton);
     }
 
-    private final void setWindowInsetsListeners() {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f18456b, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.voice.call.WidgetVoiceCallInline.setWindowInsetsListeners.1
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullParameter(view, "v");
-                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
-                view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -378,5 +364,17 @@ public final class WidgetVoiceCallInline extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(), this, null, 2, null), (Class<?>) WidgetVoiceCallInline.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C104251());
+    }
+
+    private final void setWindowInsetsListeners() {
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f18456b, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.voice.call.WidgetVoiceCallInline.setWindowInsetsListeners.1
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullParameter(view, "v");
+                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
+                view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
     }
 }

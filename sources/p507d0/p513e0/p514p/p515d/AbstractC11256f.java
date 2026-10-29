@@ -62,7 +62,7 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
 
     /* JADX INFO: renamed from: d0.e0.p.d.f$a */
     /* JADX INFO: compiled from: KCallableImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends Annotation>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends Annotation>> {
         public a() {
             super(0);
         }
@@ -75,20 +75,11 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
 
     /* JADX INFO: renamed from: d0.e0.p.d.f$b */
     /* JADX INFO: compiled from: KCallableImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<ArrayList<InterfaceC11233f>> {
-
-        /* JADX INFO: renamed from: d0.e0.p.d.f$b$a */
-        /* JADX INFO: compiled from: Comparisons.kt */
-        public static final class a<T> implements Comparator<T> {
-            @Override // java.util.Comparator
-            public final int compare(T t, T t2) {
-                return C12169a.compareValues(((InterfaceC11233f) t).getName(), ((InterfaceC11233f) t2).getName());
-            }
-        }
+    public final class b extends AbstractC12240o implements Function0<ArrayList<InterfaceC11233f>> {
 
         /* JADX INFO: renamed from: d0.e0.p.d.f$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: KCallableImpl.kt */
-        public static final class C13301b extends AbstractC12240o implements Function0<InterfaceC11407k0> {
+        public final class C13301b extends AbstractC12240o implements Function0<InterfaceC11407k0> {
             public final /* synthetic */ InterfaceC11459q0 $instanceReceiver;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -104,9 +95,18 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
             }
         }
 
+        /* JADX INFO: renamed from: d0.e0.p.d.f$b$a */
+        /* JADX INFO: compiled from: Comparisons.kt */
+        public final class a<T> implements Comparator<T> {
+            @Override // java.util.Comparator
+            public final int compare(T t, T t2) {
+                return C12169a.compareValues(((InterfaceC11233f) t).getName(), ((InterfaceC11233f) t2).getName());
+            }
+        }
+
         /* JADX INFO: renamed from: d0.e0.p.d.f$b$c */
         /* JADX INFO: compiled from: KCallableImpl.kt */
-        public static final class c extends AbstractC12240o implements Function0<InterfaceC11407k0> {
+        public final class c extends AbstractC12240o implements Function0<InterfaceC11407k0> {
             public final /* synthetic */ InterfaceC11459q0 $extensionReceiver;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -124,7 +124,7 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
 
         /* JADX INFO: renamed from: d0.e0.p.d.f$b$d */
         /* JADX INFO: compiled from: KCallableImpl.kt */
-        public static final class d extends AbstractC12240o implements Function0<InterfaceC11407k0> {
+        public final class d extends AbstractC12240o implements Function0<InterfaceC11407k0> {
             public final /* synthetic */ InterfaceC11321b $descriptor;
 
             /* JADX INFO: renamed from: $i */
@@ -190,11 +190,11 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
 
     /* JADX INFO: renamed from: d0.e0.p.d.f$c */
     /* JADX INFO: compiled from: KCallableImpl.kt */
-    public static final class c extends AbstractC12240o implements Function0<C12058x> {
+    public final class c extends AbstractC12240o implements Function0<C12058x> {
 
         /* JADX INFO: renamed from: d0.e0.p.d.f$c$a */
         /* JADX INFO: compiled from: KCallableImpl.kt */
-        public static final class a extends AbstractC12240o implements Function0<Type> {
+        public final class a extends AbstractC12240o implements Function0<Type> {
             public a() {
                 super(0);
             }
@@ -222,7 +222,7 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
 
     /* JADX INFO: renamed from: d0.e0.p.d.f$d */
     /* JADX INFO: compiled from: KCallableImpl.kt */
-    public static final class d extends AbstractC12240o implements Function0<List<? extends C12059y>> {
+    public final class d extends AbstractC12240o implements Function0<List<? extends C12059y>> {
         public d() {
             super(0);
         }
@@ -285,25 +285,6 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
             return null;
         }
         return (Type) C12141k.first(lowerBounds);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final Object m9336a(KType kType) {
-        Class javaClass = C12209a.getJavaClass(C11243a.getJvmErasure(kType));
-        if (javaClass.isArray()) {
-            Object objNewInstance = Array.newInstance(javaClass.getComponentType(), 0);
-            C12238m.checkNotNullExpressionValue(objNewInstance, "type.jvmErasure.java.run…\"\n            )\n        }");
-            return objNewInstance;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Cannot instantiate the default empty array of type ");
-        sbM833U.append(javaClass.getSimpleName());
-        sbM833U.append(", because it is not an array type");
-        throw new C11247a0(sbM833U.toString());
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m9337b() {
-        return C12238m.areEqual(getName(), "<init>") && getContainer().getJClass().isAnnotation();
     }
 
     @Override // kotlin.reflect.KCallable
@@ -477,5 +458,24 @@ public abstract class AbstractC11256f<R> implements KCallable<R>, InterfaceC1206
     @Override // kotlin.reflect.KCallable
     public boolean isOpen() {
         return getDescriptor().getModality() == EnumC11476z.OPEN;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final Object m9336a(KType kType) {
+        Class javaClass = C12209a.getJavaClass(C11243a.getJvmErasure(kType));
+        if (javaClass.isArray()) {
+            Object objNewInstance = Array.newInstance(javaClass.getComponentType(), 0);
+            C12238m.checkNotNullExpressionValue(objNewInstance, "type.jvmErasure.java.run…\"\n            )\n        }");
+            return objNewInstance;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Cannot instantiate the default empty array of type ");
+        sbM833U.append(javaClass.getSimpleName());
+        sbM833U.append(", because it is not an array type");
+        throw new C11247a0(sbM833U.toString());
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m9337b() {
+        return C12238m.areEqual(getName(), "<init>") && getContainer().getJClass().isAnnotation();
     }
 }

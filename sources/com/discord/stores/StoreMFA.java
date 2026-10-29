@@ -17,6 +17,66 @@ public final class StoreMFA extends StoreV2 {
     private State state;
     private final StoreStream stream;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$observeState$1 */
+    /* JADX INFO: compiled from: StoreMFA.kt */
+    public final class C61601 extends AbstractC12240o implements Function0<State> {
+        public C61601() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreMFA.this.state;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$togglingSMSBackup$1 */
+    /* JADX INFO: compiled from: StoreMFA.kt */
+    public final class C61611 extends AbstractC12240o implements Function0<Unit> {
+        public C61611() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMFA storeMFA = StoreMFA.this;
+            storeMFA.state = State.copy$default(storeMFA.state, null, true, 1, null);
+            StoreMFA.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$updatePendingMFAState$1 */
+    /* JADX INFO: compiled from: StoreMFA.kt */
+    public final class C61621 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ MFAActivationState $newActivationState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C61621(MFAActivationState mFAActivationState) {
+            super(0);
+            this.$newActivationState = mFAActivationState;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMFA storeMFA = StoreMFA.this;
+            storeMFA.state = State.copy$default(storeMFA.state, this.$newActivationState, false, 2, null);
+            StoreMFA.this.markChanged();
+        }
+    }
+
     /* JADX INFO: compiled from: StoreMFA.kt */
     public enum MFAActivationState {
         PENDING_ENABLED,
@@ -25,7 +85,7 @@ public final class StoreMFA extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreMFA.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final MFAActivationState activationState;
         private final boolean isTogglingSMSBackup;
 
@@ -45,16 +105,6 @@ public final class StoreMFA extends StoreV2 {
             return state.copy(mFAActivationState, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MFAActivationState getActivationState() {
-            return this.activationState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsTogglingSMSBackup() {
-            return this.isTogglingSMSBackup;
-        }
-
         public final State copy(MFAActivationState activationState, boolean isTogglingSMSBackup) {
             C12238m.checkNotNullParameter(activationState, "activationState");
             return new State(activationState, isTogglingSMSBackup);
@@ -71,8 +121,18 @@ public final class StoreMFA extends StoreV2 {
             return C12238m.areEqual(this.activationState, state.activationState) && this.isTogglingSMSBackup == state.isTogglingSMSBackup;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MFAActivationState getActivationState() {
             return this.activationState;
+        }
+
+        public final MFAActivationState getActivationState() {
+            return this.activationState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsTogglingSMSBackup() {
+            return this.isTogglingSMSBackup;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -100,66 +160,6 @@ public final class StoreMFA extends StoreV2 {
             sbM833U.append(this.activationState);
             sbM833U.append(", isTogglingSMSBackup=");
             return C1643a.m827O(sbM833U, this.isTogglingSMSBackup, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$observeState$1 */
-    /* JADX INFO: compiled from: StoreMFA.kt */
-    public static final class C61601 extends AbstractC12240o implements Function0<State> {
-        public C61601() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final State invoke() {
-            return StoreMFA.this.state;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$togglingSMSBackup$1 */
-    /* JADX INFO: compiled from: StoreMFA.kt */
-    public static final class C61611 extends AbstractC12240o implements Function0<Unit> {
-        public C61611() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMFA storeMFA = StoreMFA.this;
-            storeMFA.state = State.copy$default(storeMFA.state, null, true, 1, null);
-            StoreMFA.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMFA$updatePendingMFAState$1 */
-    /* JADX INFO: compiled from: StoreMFA.kt */
-    public static final class C61621 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ MFAActivationState $newActivationState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C61621(MFAActivationState mFAActivationState) {
-            super(0);
-            this.$newActivationState = mFAActivationState;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMFA storeMFA = StoreMFA.this;
-            storeMFA.state = State.copy$default(storeMFA.state, this.$newActivationState, false, 2, null);
-            StoreMFA.this.markChanged();
         }
     }
 

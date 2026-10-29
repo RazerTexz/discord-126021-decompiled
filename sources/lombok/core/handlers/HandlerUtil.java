@@ -192,7 +192,7 @@ public class HandlerUtil {
                         if (Character.isLetter(prefix.charAt(prefix.length() - 1)) && Character.isLowerCase(followupChar)) {
                             break;
                         }
-                        return new StringBuilder().append(Character.toLowerCase(followupChar)).append((Object) fieldName2.subSequence(prefix.length() + 1, fieldName2.length())).toString();
+                        return "" + Character.toLowerCase(followupChar) + ((Object) fieldName2.subSequence(prefix.length() + 1, fieldName2.length()));
                     }
                 }
             }

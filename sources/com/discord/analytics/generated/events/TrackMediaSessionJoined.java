@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMediaSessionJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
-    private final Long guildId = null;
-    private final CharSequence rtcConnectionId = null;
+    private final Long channelType = null;
     private final CharSequence context = null;
+    private final Long guildId = null;
     private final CharSequence mediaSessionId = null;
     private final CharSequence parentMediaSessionId = null;
-    private final Long channelType = null;
-    private final CharSequence voiceBackendVersion = null;
+    private final CharSequence rtcConnectionId = null;
     private final CharSequence rtcWorkerBackendVersion = null;
+    private TrackBase trackBase;
+    private final CharSequence voiceBackendVersion = null;
     private final transient String analyticsSchemaTypeName = "media_session_joined";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
         }
         TrackMediaSessionJoined trackMediaSessionJoined = (TrackMediaSessionJoined) other;
         return C12238m.areEqual(this.channelId, trackMediaSessionJoined.channelId) && C12238m.areEqual(this.guildId, trackMediaSessionJoined.guildId) && C12238m.areEqual(this.rtcConnectionId, trackMediaSessionJoined.rtcConnectionId) && C12238m.areEqual(this.context, trackMediaSessionJoined.context) && C12238m.areEqual(this.mediaSessionId, trackMediaSessionJoined.mediaSessionId) && C12238m.areEqual(this.parentMediaSessionId, trackMediaSessionJoined.parentMediaSessionId) && C12238m.areEqual(this.channelType, trackMediaSessionJoined.channelType) && C12238m.areEqual(this.voiceBackendVersion, trackMediaSessionJoined.voiceBackendVersion) && C12238m.areEqual(this.rtcWorkerBackendVersion, trackMediaSessionJoined.rtcWorkerBackendVersion);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -83,169 +83,6 @@ public class C11377i extends AbstractC11375h {
         this.f22882t = new C11930i(this, Collections.emptyList(), collection, interfaceC11905o);
     }
 
-    /* JADX INFO: renamed from: a */
-    public static /* synthetic */ void m9411a(int i) {
-        String str;
-        int i2;
-        switch (i) {
-            case 9:
-            case 10:
-            case 11:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-                str = "@NotNull method %s.%s must not return null";
-                break;
-            case 12:
-            default:
-                str = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-                break;
-        }
-        switch (i) {
-            case 9:
-            case 10:
-            case 11:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-                i2 = 2;
-                break;
-            case 12:
-            default:
-                i2 = 3;
-                break;
-        }
-        Object[] objArr = new Object[i2];
-        switch (i) {
-            case 1:
-                objArr[0] = ModelAuditLogEntry.CHANGE_KEY_NAME;
-                break;
-            case 2:
-                objArr[0] = "modality";
-                break;
-            case 3:
-                objArr[0] = "kind";
-                break;
-            case 4:
-                objArr[0] = "supertypes";
-                break;
-            case 5:
-                objArr[0] = "source";
-                break;
-            case 6:
-                objArr[0] = "storageManager";
-                break;
-            case 7:
-                objArr[0] = "unsubstitutedMemberScope";
-                break;
-            case 8:
-                objArr[0] = "constructors";
-                break;
-            case 9:
-            case 10:
-            case 11:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-                objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/ClassDescriptorImpl";
-                break;
-            case 12:
-                objArr[0] = "kotlinTypeRefiner";
-                break;
-            default:
-                objArr[0] = "containingDeclaration";
-                break;
-        }
-        switch (i) {
-            case 9:
-                objArr[1] = "getAnnotations";
-                break;
-            case 10:
-                objArr[1] = "getTypeConstructor";
-                break;
-            case 11:
-                objArr[1] = "getConstructors";
-                break;
-            case 12:
-            default:
-                objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/ClassDescriptorImpl";
-                break;
-            case 13:
-                objArr[1] = "getUnsubstitutedMemberScope";
-                break;
-            case 14:
-                objArr[1] = "getStaticScope";
-                break;
-            case 15:
-                objArr[1] = "getKind";
-                break;
-            case 16:
-                objArr[1] = "getModality";
-                break;
-            case 17:
-                objArr[1] = "getVisibility";
-                break;
-            case 18:
-                objArr[1] = "getDeclaredTypeParameters";
-                break;
-            case 19:
-                objArr[1] = "getSealedSubclasses";
-                break;
-        }
-        switch (i) {
-            case 7:
-            case 8:
-                objArr[2] = "initialize";
-                break;
-            case 9:
-            case 10:
-            case 11:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-                break;
-            case 12:
-                objArr[2] = "getUnsubstitutedMemberScope";
-                break;
-            default:
-                objArr[2] = "<init>";
-                break;
-        }
-        String str2 = String.format(str, objArr);
-        switch (i) {
-            case 9:
-            case 10:
-            case 11:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-                throw new IllegalStateException(str2);
-            case 12:
-            default:
-                throw new IllegalArgumentException(str2);
-        }
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
     public InterfaceC11344g getAnnotations() {
         InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
@@ -412,6 +249,169 @@ public class C11377i extends AbstractC11375h {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
     public boolean isValue() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static /* synthetic */ void m9411a(int i) {
+        String str;
+        int i2;
+        switch (i) {
+            case 9:
+            case 10:
+            case 11:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                str = "@NotNull method %s.%s must not return null";
+                break;
+            case 12:
+            default:
+                str = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                break;
+        }
+        switch (i) {
+            case 9:
+            case 10:
+            case 11:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                i2 = 2;
+                break;
+            case 12:
+            default:
+                i2 = 3;
+                break;
+        }
+        Object[] objArr = new Object[i2];
+        switch (i) {
+            case 1:
+                objArr[0] = ModelAuditLogEntry.CHANGE_KEY_NAME;
+                break;
+            case 2:
+                objArr[0] = "modality";
+                break;
+            case 3:
+                objArr[0] = "kind";
+                break;
+            case 4:
+                objArr[0] = "supertypes";
+                break;
+            case 5:
+                objArr[0] = "source";
+                break;
+            case 6:
+                objArr[0] = "storageManager";
+                break;
+            case 7:
+                objArr[0] = "unsubstitutedMemberScope";
+                break;
+            case 8:
+                objArr[0] = "constructors";
+                break;
+            case 9:
+            case 10:
+            case 11:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/ClassDescriptorImpl";
+                break;
+            case 12:
+                objArr[0] = "kotlinTypeRefiner";
+                break;
+            default:
+                objArr[0] = "containingDeclaration";
+                break;
+        }
+        switch (i) {
+            case 9:
+                objArr[1] = "getAnnotations";
+                break;
+            case 10:
+                objArr[1] = "getTypeConstructor";
+                break;
+            case 11:
+                objArr[1] = "getConstructors";
+                break;
+            case 12:
+            default:
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/ClassDescriptorImpl";
+                break;
+            case 13:
+                objArr[1] = "getUnsubstitutedMemberScope";
+                break;
+            case 14:
+                objArr[1] = "getStaticScope";
+                break;
+            case 15:
+                objArr[1] = "getKind";
+                break;
+            case 16:
+                objArr[1] = "getModality";
+                break;
+            case 17:
+                objArr[1] = "getVisibility";
+                break;
+            case 18:
+                objArr[1] = "getDeclaredTypeParameters";
+                break;
+            case 19:
+                objArr[1] = "getSealedSubclasses";
+                break;
+        }
+        switch (i) {
+            case 7:
+            case 8:
+                objArr[2] = "initialize";
+                break;
+            case 9:
+            case 10:
+            case 11:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                break;
+            case 12:
+                objArr[2] = "getUnsubstitutedMemberScope";
+                break;
+            default:
+                objArr[2] = "<init>";
+                break;
+        }
+        String str2 = String.format(str, objArr);
+        switch (i) {
+            case 9:
+            case 10:
+            case 11:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                throw new IllegalStateException(str2);
+            case 12:
+            default:
+                throw new IllegalArgumentException(str2);
+        }
     }
 
     public String toString() {

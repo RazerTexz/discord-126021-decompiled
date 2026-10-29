@@ -324,16 +324,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: B */
-    public void mo2621B() {
-        this.f19876J = null;
-        this.f19879K0 = -9223372036854775807L;
-        this.f19881L0 = -9223372036854775807L;
-        this.f19883M0 = 0;
-        m8847S();
-    }
-
     /* JADX INFO: renamed from: B0 */
     public final void m8839B0(long j) throws ExoPlaybackException {
         boolean z2;
@@ -356,63 +346,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
             mo3167h0(this.f19878K, this.f19891U);
             this.f19892V = false;
         }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: D */
-    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
-        int i;
-        this.f19867E0 = false;
-        this.f19869F0 = false;
-        this.f19873H0 = false;
-        if (this.f19915s0) {
-            this.f19862C.mo3856p();
-            this.f19860B.mo3856p();
-            this.f19916t0 = false;
-        } else if (m8847S()) {
-            m8851b0();
-        }
-        C2734c0<C2811j1> c2734c0 = this.f19864D;
-        synchronized (c2734c0) {
-            i = c2734c0.f6698d;
-        }
-        if (i > 0) {
-            this.f19871G0 = true;
-        }
-        this.f19864D.m2967b();
-        int i2 = this.f19883M0;
-        if (i2 != 0) {
-            this.f19881L0 = this.f19872H[i2 - 1];
-            this.f19879K0 = this.f19870G[i2 - 1];
-            this.f19883M0 = 0;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: H */
-    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) throws ExoPlaybackException {
-        if (this.f19881L0 == -9223372036854775807L) {
-            C1460d.m426D(this.f19879K0 == -9223372036854775807L);
-            this.f19879K0 = j;
-            this.f19881L0 = j2;
-            return;
-        }
-        int i = this.f19883M0;
-        long[] jArr = this.f19872H;
-        if (i == jArr.length) {
-            long j3 = jArr[i - 1];
-            StringBuilder sb = new StringBuilder(65);
-            sb.append("Too many stream changes, so dropping offset: ");
-            sb.append(j3);
-            Log.w("MediaCodecRenderer", sb.toString());
-        } else {
-            this.f19883M0 = i + 1;
-        }
-        long[] jArr2 = this.f19870G;
-        int i2 = this.f19883M0;
-        jArr2[i2 - 1] = j;
-        this.f19872H[i2 - 1] = j2;
-        this.f19874I[i2 - 1] = this.f19863C0;
     }
 
     /* JADX INFO: renamed from: J */
@@ -482,14 +415,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
             this.f19862C.m8813s();
         }
         return this.f19862C.m3858v() || this.f19867E0 || this.f19917u0;
-    }
-
-    /* JADX INFO: renamed from: K */
-    public abstract C2959g mo3144K(C3149u c3149u, C2811j1 c2811j1, C2811j1 c2811j2);
-
-    /* JADX INFO: renamed from: L */
-    public MediaCodecDecoderException mo3146L(Throwable th, @Nullable C3149u c3149u) {
-        return new MediaCodecDecoderException(th, c3149u);
     }
 
     /* JADX INFO: renamed from: M */
@@ -907,17 +832,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         return listMo3160W;
     }
 
-    /* JADX INFO: renamed from: U */
-    public boolean mo3156U() {
-        return false;
-    }
-
-    /* JADX INFO: renamed from: V */
-    public abstract float mo3158V(float f, C2811j1 c2811j1, C2811j1[] c2811j1Arr);
-
-    /* JADX INFO: renamed from: W */
-    public abstract List<C3149u> mo3160W(InterfaceC3150v interfaceC3150v, C2811j1 c2811j1, boolean z2) throws MediaCodecUtil.DecoderQueryException;
-
     @Nullable
     /* JADX INFO: renamed from: X */
     public final C2968b0 m8849X(DrmSession drmSession) throws ExoPlaybackException {
@@ -927,23 +841,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         }
         String strValueOf = String.valueOf(interfaceC2954bMo3612g);
         throw m3550z(new IllegalArgumentException(C1643a.m857j(strValueOf.length() + 43, "Expecting FrameworkCryptoConfig but found: ", strValueOf)), this.f19876J, false, 6001);
-    }
-
-    /* JADX INFO: renamed from: Y */
-    public abstract InterfaceC3148t.a mo3161Y(C3149u c3149u, C2811j1 c2811j1, @Nullable MediaCrypto mediaCrypto, float f);
-
-    /* JADX INFO: renamed from: Z */
-    public void mo3162Z(DecoderInputBuffer decoderInputBuffer) throws ExoPlaybackException {
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2763g2
-    /* JADX INFO: renamed from: a */
-    public final int mo2630a(C2811j1 c2811j1) throws ExoPlaybackException {
-        try {
-            return mo3174y0(this.f19920w, c2811j1);
-        } catch (MediaCodecUtil.DecoderQueryException e) {
-            throw m3549y(e, c2811j1, 4002);
-        }
     }
 
     /* JADX WARN: Code duplicated, block: B:114:0x01ba  */
@@ -1034,12 +931,6 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         }
         this.f19877J0.f7914a++;
         mo3164e0(str, jElapsedRealtime2, jElapsedRealtime2 - jElapsedRealtime);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: b */
-    public boolean mo2631b() {
-        return this.f19869F0;
     }
 
     /* JADX INFO: renamed from: b0 */
@@ -1156,6 +1047,255 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         this.f19894X = null;
     }
 
+    @TargetApi(23)
+    /* JADX INFO: renamed from: l0 */
+    public final void m8853l0() throws ExoPlaybackException {
+        int i = this.f19925y0;
+        if (i == 1) {
+            m8846R();
+            return;
+        }
+        if (i == 2) {
+            m8846R();
+            m8838A0();
+        } else if (i != 3) {
+            this.f19869F0 = true;
+            mo3515p0();
+        } else {
+            m8855o0();
+            m8851b0();
+        }
+    }
+
+    /* JADX INFO: renamed from: n0 */
+    public final boolean m8854n0(int i) throws ExoPlaybackException {
+        C2815k1 c2815k1M3547A = m3547A();
+        this.f19926z.mo3856p();
+        int iM3548I = m3548I(c2815k1M3547A, this.f19926z, i | 4);
+        if (iM3548I == -5) {
+            mo3166g0(c2815k1M3547A);
+            return true;
+        }
+        if (iM3548I != -4 || !this.f19926z.m3555n()) {
+            return false;
+        }
+        this.f19867E0 = true;
+        m8853l0();
+        return false;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: o0 */
+    public void m8855o0() {
+        try {
+            InterfaceC3148t interfaceC3148t = this.f19889S;
+            if (interfaceC3148t != null) {
+                interfaceC3148t.release();
+                this.f19877J0.f7915b++;
+                mo3165f0(this.f19896Z.f9112a);
+            }
+            this.f19889S = null;
+            try {
+                MediaCrypto mediaCrypto = this.f19884N;
+                if (mediaCrypto != null) {
+                    mediaCrypto.release();
+                }
+            } finally {
+                this.f19884N = null;
+                m8858t0(null);
+                m8856r0();
+            }
+        } catch (Throwable th) {
+            this.f19889S = null;
+            try {
+                MediaCrypto mediaCrypto2 = this.f19884N;
+                if (mediaCrypto2 != null) {
+                    mediaCrypto2.release();
+                }
+                throw th;
+            } finally {
+                this.f19884N = null;
+                m8858t0(null);
+                m8856r0();
+            }
+        }
+    }
+
+    @CallSuper
+    /* JADX INFO: renamed from: r0 */
+    public void m8856r0() {
+        mo3172q0();
+        this.f19875I0 = null;
+        this.f19908l0 = null;
+        this.f19894X = null;
+        this.f19896Z = null;
+        this.f19890T = null;
+        this.f19891U = null;
+        this.f19892V = false;
+        this.f19861B0 = false;
+        this.f19893W = -1.0f;
+        this.f19897a0 = 0;
+        this.f19898b0 = false;
+        this.f19899c0 = false;
+        this.f19900d0 = false;
+        this.f19901e0 = false;
+        this.f19902f0 = false;
+        this.f19903g0 = false;
+        this.f19904h0 = false;
+        this.f19907k0 = false;
+        this.f19919v0 = false;
+        this.f19921w0 = 0;
+        this.f19885O = false;
+    }
+
+    /* JADX INFO: renamed from: s0 */
+    public final void m8857s0() {
+        this.f19910n0 = -1;
+        this.f19858A.f19778l = null;
+    }
+
+    /* JADX INFO: renamed from: t0 */
+    public final void m8858t0(@Nullable DrmSession drmSession) {
+        DrmSession drmSession2 = this.f19880L;
+        if (drmSession2 != drmSession) {
+            if (drmSession != null) {
+                drmSession.mo3606a(null);
+            }
+            if (drmSession2 != null) {
+                drmSession2.mo3607b(null);
+            }
+        }
+        this.f19880L = drmSession;
+    }
+
+    /* JADX INFO: renamed from: u0 */
+    public final void m8859u0(@Nullable DrmSession drmSession) {
+        DrmSession drmSession2 = this.f19882M;
+        if (drmSession2 != drmSession) {
+            if (drmSession != null) {
+                drmSession.mo3606a(null);
+            }
+            if (drmSession2 != null) {
+                drmSession2.mo3607b(null);
+            }
+        }
+        this.f19882M = drmSession;
+    }
+
+    /* JADX INFO: renamed from: v0 */
+    public final boolean m8860v0(long j) {
+        return this.f19886P == -9223372036854775807L || SystemClock.elapsedRealtime() - j < this.f19886P;
+    }
+
+    /* JADX INFO: renamed from: z0 */
+    public final boolean m8861z0(C2811j1 c2811j1) throws ExoPlaybackException {
+        if (C2738e0.f6708a >= 23 && this.f19889S != null && this.f19925y0 != 3 && this.f7893n != 0) {
+            float f = this.f19888R;
+            C2811j1[] c2811j1Arr = this.f7895p;
+            Objects.requireNonNull(c2811j1Arr);
+            float fMo3158V = mo3158V(f, c2811j1, c2811j1Arr);
+            float f2 = this.f19893W;
+            if (f2 == fMo3158V) {
+                return true;
+            }
+            if (fMo3158V == -1.0f) {
+                m8842N();
+                return false;
+            }
+            if (f2 == -1.0f && fMo3158V <= this.f19924y) {
+                return true;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putFloat("operating-rate", fMo3158V);
+            this.f19889S.setParameters(bundle);
+            this.f19893W = fMo3158V;
+        }
+        return true;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: B */
+    public void mo2621B() {
+        this.f19876J = null;
+        this.f19879K0 = -9223372036854775807L;
+        this.f19881L0 = -9223372036854775807L;
+        this.f19883M0 = 0;
+        m8847S();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: D */
+    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
+        int i;
+        this.f19867E0 = false;
+        this.f19869F0 = false;
+        this.f19873H0 = false;
+        if (this.f19915s0) {
+            this.f19862C.mo3856p();
+            this.f19860B.mo3856p();
+            this.f19916t0 = false;
+        } else if (m8847S()) {
+            m8851b0();
+        }
+        C2734c0<C2811j1> c2734c0 = this.f19864D;
+        synchronized (c2734c0) {
+            i = c2734c0.f6698d;
+        }
+        if (i > 0) {
+            this.f19871G0 = true;
+        }
+        this.f19864D.m2967b();
+        int i2 = this.f19883M0;
+        if (i2 != 0) {
+            this.f19881L0 = this.f19872H[i2 - 1];
+            this.f19879K0 = this.f19870G[i2 - 1];
+            this.f19883M0 = 0;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: H */
+    public void mo2623H(C2811j1[] c2811j1Arr, long j, long j2) throws ExoPlaybackException {
+        if (this.f19881L0 == -9223372036854775807L) {
+            C1460d.m426D(this.f19879K0 == -9223372036854775807L);
+            this.f19879K0 = j;
+            this.f19881L0 = j2;
+            return;
+        }
+        int i = this.f19883M0;
+        long[] jArr = this.f19872H;
+        if (i == jArr.length) {
+            long j3 = jArr[i - 1];
+            StringBuilder sb = new StringBuilder(65);
+            sb.append("Too many stream changes, so dropping offset: ");
+            sb.append(j3);
+            Log.w("MediaCodecRenderer", sb.toString());
+        } else {
+            this.f19883M0 = i + 1;
+        }
+        long[] jArr2 = this.f19870G;
+        int i2 = this.f19883M0;
+        jArr2[i2 - 1] = j;
+        this.f19872H[i2 - 1] = j2;
+        this.f19874I[i2 - 1] = this.f19863C0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2763g2
+    /* JADX INFO: renamed from: a */
+    public final int mo2630a(C2811j1 c2811j1) throws ExoPlaybackException {
+        try {
+            return mo3174y0(this.f19920w, c2811j1);
+        } catch (MediaCodecUtil.DecoderQueryException e) {
+            throw m3549y(e, c2811j1, 4002);
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: b */
+    public boolean mo2631b() {
+        return this.f19869F0;
+    }
+
     @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
     /* JADX INFO: renamed from: d */
     public boolean mo2632d() {
@@ -1176,6 +1316,120 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
             }
         }
         return true;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:53:0x00a1  */
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: q */
+    public void mo2633q(long j, long j2) throws ExoPlaybackException {
+        boolean z2;
+        boolean z3 = false;
+        if (this.f19873H0) {
+            this.f19873H0 = false;
+            m8853l0();
+        }
+        ExoPlaybackException exoPlaybackException = this.f19875I0;
+        if (exoPlaybackException != null) {
+            this.f19875I0 = null;
+            throw exoPlaybackException;
+        }
+        try {
+            if (this.f19869F0) {
+                mo3515p0();
+                return;
+            }
+            if (this.f19876J != null || m8854n0(2)) {
+                m8851b0();
+                if (this.f19915s0) {
+                    C1460d.m515f("bypassRender");
+                    while (m8840J(j, j2)) {
+                    }
+                    C1460d.m508d0();
+                } else if (this.f19889S != null) {
+                    long jElapsedRealtime = SystemClock.elapsedRealtime();
+                    C1460d.m515f("drainAndFeed");
+                    while (m8844P(j, j2) && m8860v0(jElapsedRealtime)) {
+                    }
+                    while (m8845Q() && m8860v0(jElapsedRealtime)) {
+                    }
+                    C1460d.m508d0();
+                } else {
+                    C2957e c2957e = this.f19877J0;
+                    int i = c2957e.f7917d;
+                    InterfaceC2546i0 interfaceC2546i0 = this.f7894o;
+                    Objects.requireNonNull(interfaceC2546i0);
+                    c2957e.f7917d = i + interfaceC2546i0.mo2507c(j - this.f7896q);
+                    m8854n0(1);
+                }
+                synchronized (this.f19877J0) {
+                }
+            }
+        } catch (IllegalStateException e) {
+            int i2 = C2738e0.f6708a;
+            if (i2 < 21 || !(e instanceof MediaCodec.CodecException)) {
+                StackTraceElement[] stackTrace = e.getStackTrace();
+                if (stackTrace.length <= 0 || !stackTrace[0].getClassName().equals("android.media.MediaCodec")) {
+                    z2 = false;
+                } else {
+                    z2 = true;
+                }
+            } else {
+                z2 = true;
+            }
+            if (!z2) {
+                throw e;
+            }
+            mo3163d0(e);
+            if (i2 >= 21) {
+                if (e instanceof MediaCodec.CodecException ? ((MediaCodec.CodecException) e).isRecoverable() : false) {
+                    z3 = true;
+                }
+            }
+            if (z3) {
+                m8855o0();
+            }
+            throw m3550z(mo3146L(e, this.f19896Z), this.f19876J, z3, 4003);
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: n */
+    public void mo2939n(float f, float f2) throws ExoPlaybackException {
+        this.f19887Q = f;
+        this.f19888R = f2;
+        m8861z0(this.f19890T);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    /* JADX INFO: renamed from: p */
+    public final int mo3119p() {
+        return 8;
+    }
+
+    /* JADX INFO: renamed from: K */
+    public abstract C2959g mo3144K(C3149u c3149u, C2811j1 c2811j1, C2811j1 c2811j2);
+
+    /* JADX INFO: renamed from: L */
+    public MediaCodecDecoderException mo3146L(Throwable th, @Nullable C3149u c3149u) {
+        return new MediaCodecDecoderException(th, c3149u);
+    }
+
+    /* JADX INFO: renamed from: U */
+    public boolean mo3156U() {
+        return false;
+    }
+
+    /* JADX INFO: renamed from: V */
+    public abstract float mo3158V(float f, C2811j1 c2811j1, C2811j1[] c2811j1Arr);
+
+    /* JADX INFO: renamed from: W */
+    public abstract List<C3149u> mo3160W(InterfaceC3150v interfaceC3150v, C2811j1 c2811j1, boolean z2) throws MediaCodecUtil.DecoderQueryException;
+
+    /* JADX INFO: renamed from: Y */
+    public abstract InterfaceC3148t.a mo3161Y(C3149u c3149u, C2811j1 c2811j1, @Nullable MediaCrypto mediaCrypto, float f);
+
+    /* JADX INFO: renamed from: Z */
+    public void mo3162Z(DecoderInputBuffer decoderInputBuffer) throws ExoPlaybackException {
     }
 
     /* JADX INFO: renamed from: d0 */
@@ -1320,174 +1574,8 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
     /* JADX INFO: renamed from: k0 */
     public abstract void mo3170k0(DecoderInputBuffer decoderInputBuffer) throws ExoPlaybackException;
 
-    @TargetApi(23)
-    /* JADX INFO: renamed from: l0 */
-    public final void m8853l0() throws ExoPlaybackException {
-        int i = this.f19925y0;
-        if (i == 1) {
-            m8846R();
-            return;
-        }
-        if (i == 2) {
-            m8846R();
-            m8838A0();
-        } else if (i != 3) {
-            this.f19869F0 = true;
-            mo3515p0();
-        } else {
-            m8855o0();
-            m8851b0();
-        }
-    }
-
     /* JADX INFO: renamed from: m0 */
     public abstract boolean mo3171m0(long j, long j2, @Nullable InterfaceC3148t interfaceC3148t, @Nullable ByteBuffer byteBuffer, int i, int i2, int i3, long j3, boolean z2, boolean z3, C2811j1 c2811j1) throws ExoPlaybackException;
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: n */
-    public void mo2939n(float f, float f2) throws ExoPlaybackException {
-        this.f19887Q = f;
-        this.f19888R = f2;
-        m8861z0(this.f19890T);
-    }
-
-    /* JADX INFO: renamed from: n0 */
-    public final boolean m8854n0(int i) throws ExoPlaybackException {
-        C2815k1 c2815k1M3547A = m3547A();
-        this.f19926z.mo3856p();
-        int iM3548I = m3548I(c2815k1M3547A, this.f19926z, i | 4);
-        if (iM3548I == -5) {
-            mo3166g0(c2815k1M3547A);
-            return true;
-        }
-        if (iM3548I != -4 || !this.f19926z.m3555n()) {
-            return false;
-        }
-        this.f19867E0 = true;
-        m8853l0();
-        return false;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: o0 */
-    public void m8855o0() {
-        try {
-            InterfaceC3148t interfaceC3148t = this.f19889S;
-            if (interfaceC3148t != null) {
-                interfaceC3148t.release();
-                this.f19877J0.f7915b++;
-                mo3165f0(this.f19896Z.f9112a);
-            }
-            this.f19889S = null;
-            try {
-                MediaCrypto mediaCrypto = this.f19884N;
-                if (mediaCrypto != null) {
-                    mediaCrypto.release();
-                }
-            } finally {
-                this.f19884N = null;
-                m8858t0(null);
-                m8856r0();
-            }
-        } catch (Throwable th) {
-            this.f19889S = null;
-            try {
-                MediaCrypto mediaCrypto2 = this.f19884N;
-                if (mediaCrypto2 != null) {
-                    mediaCrypto2.release();
-                }
-                throw th;
-            } finally {
-                this.f19884N = null;
-                m8858t0(null);
-                m8856r0();
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    /* JADX INFO: renamed from: p */
-    public final int mo3119p() {
-        return 8;
-    }
-
-    /* JADX INFO: renamed from: p0 */
-    public void mo3515p0() throws ExoPlaybackException {
-    }
-
-    /* JADX WARN: Code duplicated, block: B:53:0x00a1  */
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: q */
-    public void mo2633q(long j, long j2) throws ExoPlaybackException {
-        boolean z2;
-        boolean z3 = false;
-        if (this.f19873H0) {
-            this.f19873H0 = false;
-            m8853l0();
-        }
-        ExoPlaybackException exoPlaybackException = this.f19875I0;
-        if (exoPlaybackException != null) {
-            this.f19875I0 = null;
-            throw exoPlaybackException;
-        }
-        try {
-            if (this.f19869F0) {
-                mo3515p0();
-                return;
-            }
-            if (this.f19876J != null || m8854n0(2)) {
-                m8851b0();
-                if (this.f19915s0) {
-                    C1460d.m515f("bypassRender");
-                    while (m8840J(j, j2)) {
-                    }
-                    C1460d.m508d0();
-                } else if (this.f19889S != null) {
-                    long jElapsedRealtime = SystemClock.elapsedRealtime();
-                    C1460d.m515f("drainAndFeed");
-                    while (m8844P(j, j2) && m8860v0(jElapsedRealtime)) {
-                    }
-                    while (m8845Q() && m8860v0(jElapsedRealtime)) {
-                    }
-                    C1460d.m508d0();
-                } else {
-                    C2957e c2957e = this.f19877J0;
-                    int i = c2957e.f7917d;
-                    InterfaceC2546i0 interfaceC2546i0 = this.f7894o;
-                    Objects.requireNonNull(interfaceC2546i0);
-                    c2957e.f7917d = i + interfaceC2546i0.mo2507c(j - this.f7896q);
-                    m8854n0(1);
-                }
-                synchronized (this.f19877J0) {
-                }
-            }
-        } catch (IllegalStateException e) {
-            int i2 = C2738e0.f6708a;
-            if (i2 < 21 || !(e instanceof MediaCodec.CodecException)) {
-                StackTraceElement[] stackTrace = e.getStackTrace();
-                if (stackTrace.length <= 0 || !stackTrace[0].getClassName().equals("android.media.MediaCodec")) {
-                    z2 = false;
-                } else {
-                    z2 = true;
-                }
-            } else {
-                z2 = true;
-            }
-            if (!z2) {
-                throw e;
-            }
-            mo3163d0(e);
-            if (i2 >= 21) {
-                if (e instanceof MediaCodec.CodecException ? ((MediaCodec.CodecException) e).isRecoverable() : false) {
-                    z3 = true;
-                }
-            }
-            if (z3) {
-                m8855o0();
-            }
-            throw m3550z(mo3146L(e, this.f19896Z), this.f19876J, z3, 4003);
-        }
-    }
 
     @CallSuper
     /* JADX INFO: renamed from: q0 */
@@ -1516,75 +1604,16 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         this.f19921w0 = this.f19919v0 ? 1 : 0;
     }
 
-    @CallSuper
-    /* JADX INFO: renamed from: r0 */
-    public void m8856r0() {
-        mo3172q0();
-        this.f19875I0 = null;
-        this.f19908l0 = null;
-        this.f19894X = null;
-        this.f19896Z = null;
-        this.f19890T = null;
-        this.f19891U = null;
-        this.f19892V = false;
-        this.f19861B0 = false;
-        this.f19893W = -1.0f;
-        this.f19897a0 = 0;
-        this.f19898b0 = false;
-        this.f19899c0 = false;
-        this.f19900d0 = false;
-        this.f19901e0 = false;
-        this.f19902f0 = false;
-        this.f19903g0 = false;
-        this.f19904h0 = false;
-        this.f19907k0 = false;
-        this.f19919v0 = false;
-        this.f19921w0 = 0;
-        this.f19885O = false;
-    }
-
-    /* JADX INFO: renamed from: s0 */
-    public final void m8857s0() {
-        this.f19910n0 = -1;
-        this.f19858A.f19778l = null;
-    }
-
-    /* JADX INFO: renamed from: t0 */
-    public final void m8858t0(@Nullable DrmSession drmSession) {
-        DrmSession drmSession2 = this.f19880L;
-        if (drmSession2 != drmSession) {
-            if (drmSession != null) {
-                drmSession.mo3606a(null);
-            }
-            if (drmSession2 != null) {
-                drmSession2.mo3607b(null);
-            }
-        }
-        this.f19880L = drmSession;
-    }
-
-    /* JADX INFO: renamed from: u0 */
-    public final void m8859u0(@Nullable DrmSession drmSession) {
-        DrmSession drmSession2 = this.f19882M;
-        if (drmSession2 != drmSession) {
-            if (drmSession != null) {
-                drmSession.mo3606a(null);
-            }
-            if (drmSession2 != null) {
-                drmSession2.mo3607b(null);
-            }
-        }
-        this.f19882M = drmSession;
-    }
-
-    /* JADX INFO: renamed from: v0 */
-    public final boolean m8860v0(long j) {
-        return this.f19886P == -9223372036854775807L || SystemClock.elapsedRealtime() - j < this.f19886P;
-    }
-
     /* JADX INFO: renamed from: w0 */
     public boolean mo3173w0(C3149u c3149u) {
         return true;
+    }
+
+    /* JADX INFO: renamed from: y0 */
+    public abstract int mo3174y0(InterfaceC3150v interfaceC3150v, C2811j1 c2811j1) throws MediaCodecUtil.DecoderQueryException;
+
+    /* JADX INFO: renamed from: p0 */
+    public void mo3515p0() throws ExoPlaybackException {
     }
 
     /* JADX INFO: renamed from: x0 */
@@ -1592,36 +1621,7 @@ public abstract class MediaCodecRenderer extends AbstractC2951v0 {
         return false;
     }
 
-    /* JADX INFO: renamed from: y0 */
-    public abstract int mo3174y0(InterfaceC3150v interfaceC3150v, C2811j1 c2811j1) throws MediaCodecUtil.DecoderQueryException;
-
-    /* JADX INFO: renamed from: z0 */
-    public final boolean m8861z0(C2811j1 c2811j1) throws ExoPlaybackException {
-        if (C2738e0.f6708a >= 23 && this.f19889S != null && this.f19925y0 != 3 && this.f7893n != 0) {
-            float f = this.f19888R;
-            C2811j1[] c2811j1Arr = this.f7895p;
-            Objects.requireNonNull(c2811j1Arr);
-            float fMo3158V = mo3158V(f, c2811j1, c2811j1Arr);
-            float f2 = this.f19893W;
-            if (f2 == fMo3158V) {
-                return true;
-            }
-            if (fMo3158V == -1.0f) {
-                m8842N();
-                return false;
-            }
-            if (f2 == -1.0f && fMo3158V <= this.f19924y) {
-                return true;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putFloat("operating-rate", fMo3158V);
-            this.f19889S.setParameters(bundle);
-            this.f19893W = fMo3158V;
-        }
-        return true;
-    }
-
-    public static class DecoderInitializationException extends Exception {
+    public class DecoderInitializationException extends Exception {
 
         @Nullable
         public final C3149u codecInfo;

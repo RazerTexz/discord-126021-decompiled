@@ -29,7 +29,7 @@ public final class OperatorBufferedDelay<T> implements Observable.InterfaceC1300
     private final TimeUnit timeUnit;
 
     /* JADX INFO: compiled from: OperatorBufferedDelay.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,38 +90,6 @@ public final class OperatorBufferedDelay<T> implements Observable.InterfaceC1300
             return list;
         }
 
-        private final void publish(List<? extends T> bufferedValues) {
-            try {
-                if (!bufferedValues.isEmpty()) {
-                    this.child.onNext(bufferedValues);
-                }
-            } catch (Throwable th) {
-                C3404f.m4325o1(th);
-                onError(th);
-            }
-        }
-
-        private final void tryEmit(List<T> newBufferValue) {
-            synchronized (this) {
-                cancelBufferTimer();
-                if (this.buffer == null) {
-                    return;
-                }
-                List<T> andSetBuffer = getAndSetBuffer(newBufferValue);
-                if (andSetBuffer != null) {
-                    publish(andSetBuffer);
-                }
-            }
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ void tryEmit$default(ExactSubscriber exactSubscriber, List list, int i, Object obj) {
-            if ((i & 1) != 0) {
-                list = new ArrayList();
-            }
-            exactSubscriber.tryEmit(list);
-        }
-
         public final Subscriber<List<T>> getChild() {
             return this.child;
         }
@@ -167,6 +135,38 @@ public final class OperatorBufferedDelay<T> implements Observable.InterfaceC1300
                             publish(andSetBuffer);
                         }
                     }
+                }
+            }
+        }
+
+        private final void publish(List<? extends T> bufferedValues) {
+            try {
+                if (!bufferedValues.isEmpty()) {
+                    this.child.onNext(bufferedValues);
+                }
+            } catch (Throwable th) {
+                C3404f.m4325o1(th);
+                onError(th);
+            }
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void tryEmit$default(ExactSubscriber exactSubscriber, List list, int i, Object obj) {
+            if ((i & 1) != 0) {
+                list = new ArrayList();
+            }
+            exactSubscriber.tryEmit(list);
+        }
+
+        private final void tryEmit(List<T> newBufferValue) {
+            synchronized (this) {
+                cancelBufferTimer();
+                if (this.buffer == null) {
+                    return;
+                }
+                List<T> andSetBuffer = getAndSetBuffer(newBufferValue);
+                if (andSetBuffer != null) {
+                    publish(andSetBuffer);
                 }
             }
         }

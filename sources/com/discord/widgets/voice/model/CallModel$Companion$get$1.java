@@ -45,7 +45,7 @@ public final class CallModel$Companion$get$1<T, R> implements InterfaceC12589b<C
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.model.CallModel$Companion$get$1$1$3, reason: invalid class name */
             /* JADX INFO: compiled from: CallModel.kt */
-            public static final class AnonymousClass3 extends AbstractC12240o implements Function10<CallModel.Companion.Chunk, StoreApplicationStreaming.ActiveApplicationStream, RtcConnection.Metadata, Integer, Integer, VoiceChannelJoinability, Guild, Long, List<? extends GuildScheduledEvent>, Map<Long, ? extends Application>, CallModel> {
+            public final class AnonymousClass3 extends AbstractC12240o implements Function10<CallModel.Companion.Chunk, StoreApplicationStreaming.ActiveApplicationStream, RtcConnection.Metadata, Integer, Integer, VoiceChannelJoinability, Guild, Long, List<? extends GuildScheduledEvent>, Map<Long, ? extends Application>, CallModel> {
                 public final /* synthetic */ Map $embeddedActivities;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

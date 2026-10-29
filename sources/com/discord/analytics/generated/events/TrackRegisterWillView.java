@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackRegisterWillView.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackRegisterWillView implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "register_will_view";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "register_will_view";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

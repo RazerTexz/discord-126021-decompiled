@@ -28,35 +28,7 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
         this.isSystemDM = z2;
         this.mutualGuilds = list;
         this.type = 29;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getChannelName() {
-        return this.channelName;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getChannelType() {
-        return this.channelType;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getChannelIcon() {
-        return this.channelIcon;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsSystemDM() {
-        return this.isSystemDM;
+        this.key = "" + getType() + j;
     }
 
     public final List<Guild> component6() {
@@ -80,20 +52,45 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
         return this.channelId == startOfPrivateChatEntry.channelId && C12238m.areEqual(this.channelName, startOfPrivateChatEntry.channelName) && this.channelType == startOfPrivateChatEntry.channelType && C12238m.areEqual(this.channelIcon, startOfPrivateChatEntry.channelIcon) && this.isSystemDM == startOfPrivateChatEntry.isSystemDM && C12238m.areEqual(this.mutualGuilds, startOfPrivateChatEntry.mutualGuilds);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getChannelIcon() {
         return this.channelIcon;
+    }
+
+    public final String getChannelIcon() {
+        return this.channelIcon;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {
         return this.channelId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getChannelName() {
         return this.channelName;
     }
 
+    public final String getChannelName() {
+        return this.channelName;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getChannelType() {
         return this.channelType;
+    }
+
+    public final int getChannelType() {
+        return this.channelType;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsSystemDM() {
+        return this.isSystemDM;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

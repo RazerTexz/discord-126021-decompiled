@@ -17,6 +17,17 @@ public final /* data */ class NodeResult {
         this.elementResult = nodeElementResult;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof NodeResult)) {
+            return false;
+        }
+        NodeResult nodeResult = (NodeResult) other;
+        return C12238m.areEqual(this.node, nodeResult.node) && C12238m.areEqual(this.destination, nodeResult.destination) && C12238m.areEqual(this.elementResult, nodeResult.elementResult);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final ReportNodeChild getDestination() {
         return this.destination;
@@ -30,17 +41,6 @@ public final /* data */ class NodeResult {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final ReportNode getNode() {
         return this.node;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof NodeResult)) {
-            return false;
-        }
-        NodeResult nodeResult = (NodeResult) other;
-        return C12238m.areEqual(this.node, nodeResult.node) && C12238m.areEqual(this.destination, nodeResult.destination) && C12238m.areEqual(this.elementResult, nodeResult.elementResult);
     }
 
     public int hashCode() {

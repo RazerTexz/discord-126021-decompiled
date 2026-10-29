@@ -41,7 +41,7 @@ public final class WidgetFatalCrash extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetFatalCrash.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

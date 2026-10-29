@@ -21,7 +21,7 @@ public class C11223c implements Iterable<Long>, InterfaceC12228a {
 
     /* JADX INFO: renamed from: d0.d0.c$a */
     /* JADX INFO: compiled from: Progressions.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

@@ -26,6 +26,24 @@ public class C2265o extends AbstractC2287h0<Collection<String>> {
         super(Collection.class);
     }
 
+    /* JADX INFO: renamed from: r */
+    public final void m2040r(Collection<String> collection, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        int i = 0;
+        try {
+            for (String str : collection) {
+                if (str == null) {
+                    abstractC2374x.m2248l(abstractC2108d);
+                } else {
+                    abstractC2108d.mo1658j0(str);
+                }
+                i++;
+            }
+        } catch (Exception e) {
+            m2076n(abstractC2374x, e, collection, i);
+            throw null;
+        }
+    }
+
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
@@ -51,12 +69,6 @@ public class C2265o extends AbstractC2287h0<Collection<String>> {
     }
 
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2287h0
-    /* JADX INFO: renamed from: p */
-    public AbstractC2364n<?> mo2025p(InterfaceC2206d interfaceC2206d, Boolean bool) {
-        return new C2265o(this, bool);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2287h0
     /* JADX INFO: renamed from: q */
     public void mo1808g(Collection<String> collection, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
         C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(collection, EnumC2112h.START_ARRAY));
@@ -65,22 +77,10 @@ public class C2265o extends AbstractC2287h0<Collection<String>> {
         abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
     }
 
-    /* JADX INFO: renamed from: r */
-    public final void m2040r(Collection<String> collection, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        int i = 0;
-        try {
-            for (String str : collection) {
-                if (str == null) {
-                    abstractC2374x.m2248l(abstractC2108d);
-                } else {
-                    abstractC2108d.mo1658j0(str);
-                }
-                i++;
-            }
-        } catch (Exception e) {
-            m2076n(abstractC2374x, e, collection, i);
-            throw null;
-        }
+    @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2287h0
+    /* JADX INFO: renamed from: p */
+    public AbstractC2364n<?> mo2025p(InterfaceC2206d interfaceC2206d, Boolean bool) {
+        return new C2265o(this, bool);
     }
 
     public C2265o(C2265o c2265o, Boolean bool) {

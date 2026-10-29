@@ -14,7 +14,7 @@ public abstract class Lifecycle {
     public AtomicReference<Object> mInternalScopeRef = new AtomicReference<>();
 
     /* JADX INFO: renamed from: androidx.lifecycle.Lifecycle$1 */
-    public static /* synthetic */ class C04371 {
+    public /* synthetic */ class C04371 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$Event;
         public static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$State;
 
@@ -115,6 +115,28 @@ public abstract class Lifecycle {
             return ON_PAUSE;
         }
 
+        @NonNull
+        public State getTargetState() {
+            int iOrdinal = ordinal();
+            if (iOrdinal != 0) {
+                if (iOrdinal != 1) {
+                    if (iOrdinal == 2) {
+                        return State.RESUMED;
+                    }
+                    if (iOrdinal != 3) {
+                        if (iOrdinal != 4) {
+                            if (iOrdinal == 5) {
+                                return State.DESTROYED;
+                            }
+                            throw new IllegalArgumentException(this + " has no target state");
+                        }
+                    }
+                }
+                return State.STARTED;
+            }
+            return State.CREATED;
+        }
+
         @Nullable
         public static Event upFrom(@NonNull State state) {
             int iOrdinal = state.ordinal();
@@ -143,28 +165,6 @@ public abstract class Lifecycle {
                 return null;
             }
             return ON_RESUME;
-        }
-
-        @NonNull
-        public State getTargetState() {
-            int iOrdinal = ordinal();
-            if (iOrdinal != 0) {
-                if (iOrdinal != 1) {
-                    if (iOrdinal == 2) {
-                        return State.RESUMED;
-                    }
-                    if (iOrdinal != 3) {
-                        if (iOrdinal != 4) {
-                            if (iOrdinal == 5) {
-                                return State.DESTROYED;
-                            }
-                            throw new IllegalArgumentException(this + " has no target state");
-                        }
-                    }
-                }
-                return State.STARTED;
-            }
-            return State.CREATED;
         }
     }
 

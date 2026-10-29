@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ActivityResultContract<I, O> {
 
-    public static final class SynchronousResult<T> {
+    public final class SynchronousResult<T> {
 
         @SuppressLint({"UnknownNullness"})
         private final T mValue;

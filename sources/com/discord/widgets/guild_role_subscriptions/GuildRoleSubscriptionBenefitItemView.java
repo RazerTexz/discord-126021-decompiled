@@ -62,6 +62,20 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
         ViewExtensions.setTextAndVisibilityBy(textView2, description);
     }
 
+    public final void configureUI(String title, Emoji emoji, String description) {
+        C12238m.checkNotNullParameter(title, "title");
+        C12238m.checkNotNullParameter(emoji, "emoji");
+        configureTitleAndDescription(title, description);
+        configureEmoji(emoji);
+    }
+
+    public static /* synthetic */ void initialize$default(GuildRoleSubscriptionBenefitItemView guildRoleSubscriptionBenefitItemView, AttributeSet attributeSet, int i, Object obj) {
+        if ((i & 1) != 0) {
+            attributeSet = null;
+        }
+        guildRoleSubscriptionBenefitItemView.initialize(attributeSet);
+    }
+
     private final void initialize(AttributeSet attrs) {
         int dimensionPixelSize = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_setup_default_padding);
         setPadding(dimensionPixelSize, dimensionPixelSize, dimensionPixelSize, dimensionPixelSize);
@@ -80,20 +94,6 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
             configureUI(string, resourceId, string2);
         }
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    public static /* synthetic */ void initialize$default(GuildRoleSubscriptionBenefitItemView guildRoleSubscriptionBenefitItemView, AttributeSet attributeSet, int i, Object obj) {
-        if ((i & 1) != 0) {
-            attributeSet = null;
-        }
-        guildRoleSubscriptionBenefitItemView.initialize(attributeSet);
-    }
-
-    public final void configureUI(String title, Emoji emoji, String description) {
-        C12238m.checkNotNullParameter(title, "title");
-        C12238m.checkNotNullParameter(emoji, "emoji");
-        configureTitleAndDescription(title, description);
-        configureEmoji(emoji);
     }
 
     public final void configureUI(Benefit benefit) {

@@ -17,9 +17,9 @@ import p507d0.p592z.p594d.C12238m;
 public final class QuoteSpan implements LeadingMarginSpan {
     private final int gapWidth;
     private final float radius;
-    private final RectF rect = new RectF();
     private final int stripeColor;
     private final int stripeWidth;
+    private final RectF rect = new RectF();
 
     public QuoteSpan(@ColorInt int i, @IntRange(from = 0) @Px int i2, @IntRange(from = 0) @Px int i3) {
         this.stripeColor = i;

@@ -23,7 +23,7 @@ public class BrowserActionsFallbackMenuAdapter extends BaseAdapter {
     private final Context mContext;
     private final List<BrowserActionItem> mMenuItems;
 
-    public static class ViewHolderItem {
+    public class ViewHolderItem {
         public final ImageView mIcon;
         public final TextView mText;
 

@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExternalFingerprintDropped.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExternalFingerprintDropped implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long fingerprint = null;
     private final Long droppedFingerprint = null;
+    private final Long fingerprint = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "external_fingerprint_dropped";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackExternalFingerprintDropped implements Analyti
         }
         TrackExternalFingerprintDropped trackExternalFingerprintDropped = (TrackExternalFingerprintDropped) other;
         return C12238m.areEqual(this.fingerprint, trackExternalFingerprintDropped.fingerprint) && C12238m.areEqual(this.droppedFingerprint, trackExternalFingerprintDropped.droppedFingerprint);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

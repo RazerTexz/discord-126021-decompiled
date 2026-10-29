@@ -1,7 +1,6 @@
 package com.discord.widgets.guilds.create;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import com.discord.app.AppFragment;
 import kotlin.jvm.functions.Function0;
 import p007b.p100d.p104b.p105a.C1643a;
@@ -24,19 +23,16 @@ public final class WidgetGuildCreate$$special$$inlined$args$1 extends AbstractC1
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
     public final WidgetGuildCreate.Options invoke() {
-        Parcelable parcelableExtra;
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
         WidgetGuildCreate.Options options = (WidgetGuildCreate.Options) (obj instanceof WidgetGuildCreate.Options ? obj : null);
-        WidgetGuildCreate.Options options2 = options;
+        WidgetGuildCreate.Options parcelableExtra = options;
         if (options == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
-        if (options2 != 0) {
-            options2 = parcelableExtra;
-            return options2;
+        if (parcelableExtra != 0) {
+            return parcelableExtra;
         }
-        options2 = parcelableExtra;
         StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
         C1643a.m862l0(WidgetGuildCreate.Options.class, sbM833U, " + key ");
         throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));

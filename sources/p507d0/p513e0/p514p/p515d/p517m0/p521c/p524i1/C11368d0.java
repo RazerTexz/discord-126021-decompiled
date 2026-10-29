@@ -70,6 +70,38 @@ public class C11368d0 extends AbstractC11364b0 implements InterfaceC11455o0 {
         c11368d0.f22850w = interfaceC11455o1;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+        return interfaceC11454o.visitPropertyGetterDescriptor(this, d);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public Collection<? extends InterfaceC11455o0> getOverriddenDescriptors() {
+        return m9390b(true);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public AbstractC11913c0 getReturnType() {
+        return this.f22849v;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11326c1> getValueParameters() {
+        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9396a(7);
+        throw null;
+    }
+
+    public void initialize(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 == null) {
+            abstractC11913c0 = getCorrespondingProperty().getType();
+        }
+        this.f22849v = abstractC11913c0;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9396a(int i) {
         String str = (i == 6 || i == 7 || i == 8) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -116,38 +148,6 @@ public class C11368d0 extends AbstractC11364b0 implements InterfaceC11455o0 {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-        return interfaceC11454o.visitPropertyGetterDescriptor(this, d);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public Collection<? extends InterfaceC11455o0> getOverriddenDescriptors() {
-        return m9390b(true);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public AbstractC11913c0 getReturnType() {
-        return this.f22849v;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11326c1> getValueParameters() {
-        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9396a(7);
-        throw null;
-    }
-
-    public void initialize(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 == null) {
-            abstractC11913c0 = getCorrespondingProperty().getType();
-        }
-        this.f22849v = abstractC11913c0;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11364b0, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11383l, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m

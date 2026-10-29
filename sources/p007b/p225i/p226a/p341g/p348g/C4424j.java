@@ -17,9 +17,6 @@ import java.util.Arrays;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4424j extends AbstractC4421g<ObjectAnimator> {
 
-    /* JADX INFO: renamed from: d */
-    public static final Property<C4424j, Float> f11743d = new a(Float.class, "animationFraction");
-
     /* JADX INFO: renamed from: e */
     public ObjectAnimator f11744e;
 
@@ -38,9 +35,12 @@ public final class C4424j extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: j */
     public float f11749j;
 
+    /* JADX INFO: renamed from: d */
+    public static final Property<C4424j, Float> f11743d = new a(Float.class, "animationFraction");
+
     /* JADX INFO: renamed from: b.i.a.g.g.j$a */
     /* JADX INFO: compiled from: LinearIndeterminateContiguousAnimatorDelegate.java */
-    public static class a extends Property<C4424j, Float> {
+    public final class a extends Property<C4424j, Float> {
         public a(Class cls, String str) {
             super(cls, str);
         }
@@ -83,6 +83,14 @@ public final class C4424j extends AbstractC4421g<ObjectAnimator> {
         this.f11747h = 1;
         this.f11746g = linearProgressIndicatorSpec;
         this.f11745f = new FastOutSlowInInterpolator();
+    }
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: h */
+    public void m6132h() {
+        this.f11748i = true;
+        this.f11747h = 1;
+        Arrays.fill(this.f11738c, MaterialColors.compositeARGBWithAlpha(this.f11746g.indicatorColors[0], this.f11736a.getAlpha()));
     }
 
     @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4421g
@@ -128,13 +136,5 @@ public final class C4424j extends AbstractC4421g<ObjectAnimator> {
     @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4421g
     /* JADX INFO: renamed from: g */
     public void mo6128g() {
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: h */
-    public void m6132h() {
-        this.f11748i = true;
-        this.f11747h = 1;
-        Arrays.fill(this.f11738c, MaterialColors.compositeARGBWithAlpha(this.f11746g.indicatorColors[0], this.f11736a.getAlpha()));
     }
 }

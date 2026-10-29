@@ -31,7 +31,7 @@ public final class C11962v {
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a */
     /* JADX INFO: compiled from: IntersectionType.kt */
-    public static final class a {
+    public abstract class a {
 
         /* JADX INFO: renamed from: j */
         public static final a f24832j;
@@ -50,7 +50,7 @@ public final class C11962v {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: IntersectionType.kt */
-        public static final class C13338a extends a {
+        public final class C13338a extends a {
             public C13338a(String str, int i) {
                 super(str, i, null);
             }
@@ -64,7 +64,7 @@ public final class C11962v {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a$b */
         /* JADX INFO: compiled from: IntersectionType.kt */
-        public static final class b extends a {
+        public final class b extends a {
             public b(String str, int i) {
                 super(str, i, null);
             }
@@ -78,7 +78,7 @@ public final class C11962v {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a$c */
         /* JADX INFO: compiled from: IntersectionType.kt */
-        public static final class c extends a {
+        public final class c extends a {
             public c(String str, int i) {
                 super(str, i, null);
             }
@@ -92,7 +92,7 @@ public final class C11962v {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a$d */
         /* JADX INFO: compiled from: IntersectionType.kt */
-        public static final class d extends a {
+        public final class d extends a {
             public d(String str, int i) {
                 super(str, i, null);
             }
@@ -121,6 +121,17 @@ public final class C11962v {
             super(str, i);
         }
 
+        public abstract a combine(AbstractC11932i1 abstractC11932i1);
+
+        /* JADX INFO: renamed from: f */
+        public final a m10016f(AbstractC11932i1 abstractC11932i1) {
+            C12238m.checkNotNullParameter(abstractC11932i1, "<this>");
+            if (abstractC11932i1.isMarkedNullable()) {
+                return f24833k;
+            }
+            return C11954n.f24825a.isSubtypeOfAny(abstractC11932i1) ? f24835m : f24834l;
+        }
+
         public static a valueOf(String str) {
             C12238m.checkNotNullParameter(str, "value");
             return (a) Enum.valueOf(a.class, str);
@@ -132,59 +143,12 @@ public final class C11962v {
             System.arraycopy(aVarArr, 0, aVarArr2, 0, aVarArr.length);
             return aVarArr2;
         }
-
-        public abstract a combine(AbstractC11932i1 abstractC11932i1);
-
-        /* JADX INFO: renamed from: f */
-        public final a m10016f(AbstractC11932i1 abstractC11932i1) {
-            C12238m.checkNotNullParameter(abstractC11932i1, "<this>");
-            if (abstractC11932i1.isMarkedNullable()) {
-                return f24833k;
-            }
-            return C11954n.f24825a.isSubtypeOfAny(abstractC11932i1) ? f24835m : f24834l;
-        }
     }
 
     public static final boolean access$isStrictSupertype(C11962v c11962v, AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1) {
         Objects.requireNonNull(c11962v);
         C11953m c11953m = InterfaceC11952l.f24820b.getDefault();
         return c11953m.isSubtypeOf(abstractC11913c0, abstractC11913c1) && !c11953m.isSubtypeOf(abstractC11913c1, abstractC11913c0);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:16:0x004d  */
-    /* JADX INFO: renamed from: a */
-    public final Collection<AbstractC11934j0> m10015a(Collection<? extends AbstractC11934j0> collection, Function2<? super AbstractC11934j0, ? super AbstractC11934j0, Boolean> function2) {
-        boolean z2;
-        ArrayList<AbstractC11934j0> arrayList = new ArrayList(collection);
-        Iterator it = arrayList.iterator();
-        C12238m.checkNotNullExpressionValue(it, "filteredTypes.iterator()");
-        while (it.hasNext()) {
-            AbstractC11934j0 abstractC11934j0 = (AbstractC11934j0) it.next();
-            boolean z3 = false;
-            if (!arrayList.isEmpty()) {
-                for (AbstractC11934j0 abstractC11934j1 : arrayList) {
-                    if (abstractC11934j1 != abstractC11934j0) {
-                        C12238m.checkNotNullExpressionValue(abstractC11934j1, "lower");
-                        C12238m.checkNotNullExpressionValue(abstractC11934j0, "upper");
-                        if (function2.invoke(abstractC11934j1, abstractC11934j0).booleanValue()) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                    } else {
-                        z2 = false;
-                    }
-                    if (z2) {
-                        z3 = true;
-                        break;
-                    }
-                }
-            }
-            if (z3) {
-                it.remove();
-            }
-        }
-        return arrayList;
     }
 
     public final AbstractC11934j0 intersectTypes$descriptors(List<? extends AbstractC11934j0> list) {
@@ -238,5 +202,41 @@ public final class C11962v {
         ArrayList arrayList3 = (ArrayList) collectionM10015a2;
         arrayList3.isEmpty();
         return arrayList3.size() < 2 ? (AbstractC11934j0) C12163u.single(collectionM10015a2) : new C11907a0(linkedHashSet).createType();
+    }
+
+    /* JADX WARN: Code duplicated, block: B:16:0x004d  */
+    /* JADX INFO: renamed from: a */
+    public final Collection<AbstractC11934j0> m10015a(Collection<? extends AbstractC11934j0> collection, Function2<? super AbstractC11934j0, ? super AbstractC11934j0, Boolean> function2) {
+        boolean z2;
+        ArrayList<AbstractC11934j0> arrayList = new ArrayList(collection);
+        Iterator it = arrayList.iterator();
+        C12238m.checkNotNullExpressionValue(it, "filteredTypes.iterator()");
+        while (it.hasNext()) {
+            AbstractC11934j0 abstractC11934j0 = (AbstractC11934j0) it.next();
+            boolean z3 = false;
+            if (!arrayList.isEmpty()) {
+                for (AbstractC11934j0 abstractC11934j1 : arrayList) {
+                    if (abstractC11934j1 != abstractC11934j0) {
+                        C12238m.checkNotNullExpressionValue(abstractC11934j1, "lower");
+                        C12238m.checkNotNullExpressionValue(abstractC11934j0, "upper");
+                        if (function2.invoke(abstractC11934j1, abstractC11934j0).booleanValue()) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                    } else {
+                        z2 = false;
+                    }
+                    if (z2) {
+                        z3 = true;
+                        break;
+                    }
+                }
+            }
+            if (z3) {
+                it.remove();
+            }
+        }
+        return arrayList;
     }
 }

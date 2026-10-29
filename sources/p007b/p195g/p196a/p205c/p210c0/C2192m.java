@@ -22,6 +22,23 @@ public final class C2192m extends AbstractC2188i {
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!C2342d.m2183o(obj, C2192m.class)) {
+            return false;
+        }
+        C2192m c2192m = (C2192m) obj;
+        return c2192m._owner.equals(this._owner) && c2192m._index == this._index;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this._owner.hashCode() + this._index;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
     /* JADX INFO: renamed from: c */
     public String mo1819c() {
         return "";
@@ -39,27 +56,10 @@ public final class C2192m extends AbstractC2188i {
         return this._type;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!C2342d.m2183o(obj, C2192m.class)) {
-            return false;
-        }
-        C2192m c2192m = (C2192m) obj;
-        return c2192m._owner.equals(this._owner) && c2192m._index == this._index;
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
     /* JADX INFO: renamed from: g */
     public Class<?> mo1887g() {
         return this._owner.mo1887g();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this._owner.hashCode() + this._index;
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i

@@ -7,7 +7,7 @@ import com.discord.C5419R;
 public final class C11199R {
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$a */
-    public static final class a {
+    public final class a {
         public static final int abc_background_cache_hint_selector_material_dark = 2131099648;
         public static final int abc_background_cache_hint_selector_material_light = 2131099649;
         public static final int abc_btn_colored_borderless_text_material = 2131099650;
@@ -122,7 +122,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$b */
-    public static final class b {
+    public final class b {
         public static final int abc_action_bar_content_inset_material = 2131165184;
         public static final int abc_action_bar_content_inset_with_nav = 2131165185;
         public static final int abc_action_bar_default_height_material = 2131165186;
@@ -268,7 +268,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$c */
-    public static final class c {
+    public final class c {
         public static final int abc_ab_share_pack_mtrl_alpha = 2131230859;
         public static final int abc_action_bar_item_background_material = 2131230860;
         public static final int abc_btn_borderless_material = 2131230861;
@@ -402,7 +402,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$d */
-    public static final class d {
+    public final class d {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -595,7 +595,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$e */
-    public static final class e {
+    public final class e {
         public static final int abc_action_bar_title_item = 2131558400;
         public static final int abc_action_bar_up_container = 2131558401;
         public static final int abc_action_menu_item_layout = 2131558402;
@@ -648,7 +648,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$f */
-    public static final class f {
+    public final class f {
         public static final int ucrop_menu_activity = 2131623971;
 
         private f() {
@@ -656,7 +656,7 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$g */
-    public static final class g {
+    public final class g {
         public static final int abc_action_bar_home_description = 2131886099;
         public static final int abc_action_bar_up_description = 2131886100;
         public static final int abc_action_menu_overflow_description = 2131886101;
@@ -700,7 +700,9 @@ public final class C11199R {
     }
 
     /* JADX INFO: renamed from: com.yalantis.ucrop.R$h */
-    public static final class h {
+    public final class h {
+        public static final int[] ActionBar = {C5419R.attr.background, C5419R.attr.backgroundSplit, C5419R.attr.backgroundStacked, C5419R.attr.contentInsetEnd, C5419R.attr.contentInsetEndWithActions, C5419R.attr.contentInsetLeft, C5419R.attr.contentInsetRight, C5419R.attr.contentInsetStart, C5419R.attr.contentInsetStartWithNavigation, C5419R.attr.customNavigationLayout, C5419R.attr.displayOptions, C5419R.attr.divider, C5419R.attr.elevation, C5419R.attr.height, C5419R.attr.hideOnContentScroll, C5419R.attr.homeAsUpIndicator, C5419R.attr.homeLayout, C5419R.attr.icon, C5419R.attr.indeterminateProgressStyle, C5419R.attr.itemPadding, C5419R.attr.logo, C5419R.attr.navigationMode, C5419R.attr.popupTheme, C5419R.attr.progressBarPadding, C5419R.attr.progressBarStyle, C5419R.attr.subtitle, C5419R.attr.subtitleTextStyle, C5419R.attr.title, C5419R.attr.titleTextStyle};
+        public static final int[] ActionBarLayout = {android.R.attr.layout_gravity};
         public static final int ActionBarLayout_android_layout_gravity = 0;
         public static final int ActionBar_background = 0;
         public static final int ActionBar_backgroundSplit = 1;
@@ -731,15 +733,20 @@ public final class C11199R {
         public static final int ActionBar_subtitleTextStyle = 26;
         public static final int ActionBar_title = 27;
         public static final int ActionBar_titleTextStyle = 28;
+        public static final int[] ActionMenuItemView = {android.R.attr.minWidth};
         public static final int ActionMenuItemView_android_minWidth = 0;
+        public static final int[] ActionMenuView = new int[0];
+        public static final int[] ActionMode = {C5419R.attr.background, C5419R.attr.backgroundSplit, C5419R.attr.closeItemLayout, C5419R.attr.height, C5419R.attr.subtitleTextStyle, C5419R.attr.titleTextStyle};
         public static final int ActionMode_background = 0;
         public static final int ActionMode_backgroundSplit = 1;
         public static final int ActionMode_closeItemLayout = 2;
         public static final int ActionMode_height = 3;
         public static final int ActionMode_subtitleTextStyle = 4;
         public static final int ActionMode_titleTextStyle = 5;
+        public static final int[] ActivityChooserView = {C5419R.attr.expandActivityOverflowButtonDrawable, C5419R.attr.initialActivityCount};
         public static final int ActivityChooserView_expandActivityOverflowButtonDrawable = 0;
         public static final int ActivityChooserView_initialActivityCount = 1;
+        public static final int[] AlertDialog = {android.R.attr.layout, C5419R.attr.buttonIconDimen, C5419R.attr.buttonPanelSideLayout, C5419R.attr.listItemLayout, C5419R.attr.listLayout, C5419R.attr.multiChoiceItemLayout, C5419R.attr.showTitle, C5419R.attr.singleChoiceItemLayout};
         public static final int AlertDialog_android_layout = 0;
         public static final int AlertDialog_buttonIconDimen = 1;
         public static final int AlertDialog_buttonPanelSideLayout = 2;
@@ -748,26 +755,32 @@ public final class C11199R {
         public static final int AlertDialog_multiChoiceItemLayout = 5;
         public static final int AlertDialog_showTitle = 6;
         public static final int AlertDialog_singleChoiceItemLayout = 7;
+        public static final int[] AnimatedStateListDrawableCompat = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
         public static final int AnimatedStateListDrawableCompat_android_constantSize = 3;
         public static final int AnimatedStateListDrawableCompat_android_dither = 0;
         public static final int AnimatedStateListDrawableCompat_android_enterFadeDuration = 4;
         public static final int AnimatedStateListDrawableCompat_android_exitFadeDuration = 5;
         public static final int AnimatedStateListDrawableCompat_android_variablePadding = 2;
         public static final int AnimatedStateListDrawableCompat_android_visible = 1;
+        public static final int[] AnimatedStateListDrawableItem = {android.R.attr.id, android.R.attr.drawable};
         public static final int AnimatedStateListDrawableItem_android_drawable = 1;
         public static final int AnimatedStateListDrawableItem_android_id = 0;
+        public static final int[] AnimatedStateListDrawableTransition = {android.R.attr.drawable, android.R.attr.toId, android.R.attr.fromId, android.R.attr.reversible};
         public static final int AnimatedStateListDrawableTransition_android_drawable = 0;
         public static final int AnimatedStateListDrawableTransition_android_fromId = 2;
         public static final int AnimatedStateListDrawableTransition_android_reversible = 3;
         public static final int AnimatedStateListDrawableTransition_android_toId = 1;
+        public static final int[] AppCompatImageView = {android.R.attr.src, C5419R.attr.srcCompat, C5419R.attr.tint, C5419R.attr.tintMode};
         public static final int AppCompatImageView_android_src = 0;
         public static final int AppCompatImageView_srcCompat = 1;
         public static final int AppCompatImageView_tint = 2;
         public static final int AppCompatImageView_tintMode = 3;
+        public static final int[] AppCompatSeekBar = {android.R.attr.thumb, C5419R.attr.tickMark, C5419R.attr.tickMarkTint, C5419R.attr.tickMarkTintMode};
         public static final int AppCompatSeekBar_android_thumb = 0;
         public static final int AppCompatSeekBar_tickMark = 1;
         public static final int AppCompatSeekBar_tickMarkTint = 2;
         public static final int AppCompatSeekBar_tickMarkTintMode = 3;
+        public static final int[] AppCompatTextHelper = {android.R.attr.textAppearance, android.R.attr.drawableTop, android.R.attr.drawableBottom, android.R.attr.drawableLeft, android.R.attr.drawableRight, android.R.attr.drawableStart, android.R.attr.drawableEnd};
         public static final int AppCompatTextHelper_android_drawableBottom = 2;
         public static final int AppCompatTextHelper_android_drawableEnd = 6;
         public static final int AppCompatTextHelper_android_drawableLeft = 3;
@@ -775,6 +788,7 @@ public final class C11199R {
         public static final int AppCompatTextHelper_android_drawableStart = 5;
         public static final int AppCompatTextHelper_android_drawableTop = 1;
         public static final int AppCompatTextHelper_android_textAppearance = 0;
+        public static final int[] AppCompatTextView = {android.R.attr.textAppearance, C5419R.attr.autoSizeMaxTextSize, C5419R.attr.autoSizeMinTextSize, C5419R.attr.autoSizePresetSizes, C5419R.attr.autoSizeStepGranularity, C5419R.attr.autoSizeTextType, C5419R.attr.drawableBottomCompat, C5419R.attr.drawableEndCompat, C5419R.attr.drawableLeftCompat, C5419R.attr.drawableRightCompat, C5419R.attr.drawableStartCompat, C5419R.attr.drawableTint, C5419R.attr.drawableTintMode, C5419R.attr.drawableTopCompat, C5419R.attr.firstBaselineToTopHeight, C5419R.attr.fontFamily, C5419R.attr.fontVariationSettings, C5419R.attr.lastBaselineToBottomHeight, C5419R.attr.lineHeight, C5419R.attr.textAllCaps, C5419R.attr.textLocale};
         public static final int AppCompatTextView_android_textAppearance = 0;
         public static final int AppCompatTextView_autoSizeMaxTextSize = 1;
         public static final int AppCompatTextView_autoSizeMinTextSize = 2;
@@ -796,6 +810,7 @@ public final class C11199R {
         public static final int AppCompatTextView_lineHeight = 18;
         public static final int AppCompatTextView_textAllCaps = 19;
         public static final int AppCompatTextView_textLocale = 20;
+        public static final int[] AppCompatTheme = {android.R.attr.windowIsFloating, android.R.attr.windowAnimationStyle, C5419R.attr.actionBarDivider, C5419R.attr.actionBarItemBackground, C5419R.attr.actionBarPopupTheme, C5419R.attr.actionBarSize, C5419R.attr.actionBarSplitStyle, C5419R.attr.actionBarStyle, C5419R.attr.actionBarTabBarStyle, C5419R.attr.actionBarTabStyle, C5419R.attr.actionBarTabTextStyle, C5419R.attr.actionBarTheme, C5419R.attr.actionBarWidgetTheme, C5419R.attr.actionButtonStyle, C5419R.attr.actionDropDownStyle, C5419R.attr.actionMenuTextAppearance, C5419R.attr.actionMenuTextColor, C5419R.attr.actionModeBackground, C5419R.attr.actionModeCloseButtonStyle, C5419R.attr.actionModeCloseDrawable, C5419R.attr.actionModeCopyDrawable, C5419R.attr.actionModeCutDrawable, C5419R.attr.actionModeFindDrawable, C5419R.attr.actionModePasteDrawable, C5419R.attr.actionModePopupWindowStyle, C5419R.attr.actionModeSelectAllDrawable, C5419R.attr.actionModeShareDrawable, C5419R.attr.actionModeSplitBackground, C5419R.attr.actionModeStyle, C5419R.attr.actionModeWebSearchDrawable, C5419R.attr.actionOverflowButtonStyle, C5419R.attr.actionOverflowMenuStyle, C5419R.attr.activityChooserViewStyle, C5419R.attr.alertDialogButtonGroupStyle, C5419R.attr.alertDialogCenterButtons, C5419R.attr.alertDialogStyle, C5419R.attr.alertDialogTheme, C5419R.attr.autoCompleteTextViewStyle, C5419R.attr.borderlessButtonStyle, C5419R.attr.buttonBarButtonStyle, C5419R.attr.buttonBarNegativeButtonStyle, C5419R.attr.buttonBarNeutralButtonStyle, C5419R.attr.buttonBarPositiveButtonStyle, C5419R.attr.buttonBarStyle, C5419R.attr.buttonStyle, C5419R.attr.buttonStyleSmall, C5419R.attr.checkboxStyle, C5419R.attr.checkedTextViewStyle, C5419R.attr.colorAccent, C5419R.attr.colorBackgroundFloating, C5419R.attr.colorButtonNormal, C5419R.attr.colorControlActivated, C5419R.attr.colorControlHighlight, C5419R.attr.colorControlNormal, C5419R.attr.colorError, C5419R.attr.colorPrimary, C5419R.attr.colorPrimaryDark, C5419R.attr.colorSwitchThumbNormal, C5419R.attr.controlBackground, C5419R.attr.dialogCornerRadius, C5419R.attr.dialogPreferredPadding, C5419R.attr.dialogTheme, C5419R.attr.dividerHorizontal, C5419R.attr.dividerVertical, C5419R.attr.dropDownListViewStyle, C5419R.attr.dropdownListPreferredItemHeight, C5419R.attr.editTextBackground, C5419R.attr.editTextColor, C5419R.attr.editTextStyle, C5419R.attr.homeAsUpIndicator, C5419R.attr.imageButtonStyle, C5419R.attr.listChoiceBackgroundIndicator, C5419R.attr.listChoiceIndicatorMultipleAnimated, C5419R.attr.listChoiceIndicatorSingleAnimated, C5419R.attr.listDividerAlertDialog, C5419R.attr.listMenuViewStyle, C5419R.attr.listPopupWindowStyle, C5419R.attr.listPreferredItemHeight, C5419R.attr.listPreferredItemHeightLarge, C5419R.attr.listPreferredItemHeightSmall, C5419R.attr.listPreferredItemPaddingEnd, C5419R.attr.listPreferredItemPaddingLeft, C5419R.attr.listPreferredItemPaddingRight, C5419R.attr.listPreferredItemPaddingStart, C5419R.attr.panelBackground, C5419R.attr.panelMenuListTheme, C5419R.attr.panelMenuListWidth, C5419R.attr.popupMenuStyle, C5419R.attr.popupWindowStyle, C5419R.attr.radioButtonStyle, C5419R.attr.ratingBarStyle, C5419R.attr.ratingBarStyleIndicator, C5419R.attr.ratingBarStyleSmall, C5419R.attr.searchViewStyle, C5419R.attr.seekBarStyle, C5419R.attr.selectableItemBackground, C5419R.attr.selectableItemBackgroundBorderless, C5419R.attr.spinnerDropDownItemStyle, C5419R.attr.spinnerStyle, C5419R.attr.switchStyle, C5419R.attr.textAppearanceLargePopupMenu, C5419R.attr.textAppearanceListItem, C5419R.attr.textAppearanceListItemSecondary, C5419R.attr.textAppearanceListItemSmall, C5419R.attr.textAppearancePopupMenuHeader, C5419R.attr.textAppearanceSearchResultSubtitle, C5419R.attr.textAppearanceSearchResultTitle, C5419R.attr.textAppearanceSmallPopupMenu, C5419R.attr.textColorAlertDialogListItem, C5419R.attr.textColorSearchUrl, C5419R.attr.toolbarNavigationButtonStyle, C5419R.attr.toolbarStyle, C5419R.attr.tooltipForegroundColor, C5419R.attr.tooltipFrameBackground, C5419R.attr.viewInflaterClass, C5419R.attr.windowActionBar, C5419R.attr.windowActionBarOverlay, C5419R.attr.windowActionModeOverlay, C5419R.attr.windowFixedHeightMajor, C5419R.attr.windowFixedHeightMinor, C5419R.attr.windowFixedWidthMajor, C5419R.attr.windowFixedWidthMinor, C5419R.attr.windowMinWidthMajor, C5419R.attr.windowMinWidthMinor, C5419R.attr.windowNoTitle};
         public static final int AppCompatTheme_actionBarDivider = 2;
         public static final int AppCompatTheme_actionBarItemBackground = 3;
         public static final int AppCompatTheme_actionBarPopupTheme = 4;
@@ -921,14 +936,18 @@ public final class C11199R {
         public static final int AppCompatTheme_windowMinWidthMajor = 122;
         public static final int AppCompatTheme_windowMinWidthMinor = 123;
         public static final int AppCompatTheme_windowNoTitle = 124;
+        public static final int[] ButtonBarLayout = {C5419R.attr.allowStacking};
         public static final int ButtonBarLayout_allowStacking = 0;
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] CompoundButton = {android.R.attr.button, C5419R.attr.buttonCompat, C5419R.attr.buttonTint, C5419R.attr.buttonTintMode};
         public static final int CompoundButton_android_button = 0;
         public static final int CompoundButton_buttonCompat = 1;
         public static final int CompoundButton_buttonTint = 2;
         public static final int CompoundButton_buttonTintMode = 3;
+        public static final int[] DrawerArrowToggle = {C5419R.attr.arrowHeadLength, C5419R.attr.arrowShaftLength, C5419R.attr.barLength, C5419R.attr.color, C5419R.attr.drawableSize, C5419R.attr.gapBetweenBars, C5419R.attr.spinBars, C5419R.attr.thickness};
         public static final int DrawerArrowToggle_arrowHeadLength = 0;
         public static final int DrawerArrowToggle_arrowShaftLength = 1;
         public static final int DrawerArrowToggle_barLength = 2;
@@ -937,6 +956,8 @@ public final class C11199R {
         public static final int DrawerArrowToggle_gapBetweenBars = 5;
         public static final int DrawerArrowToggle_spinBars = 6;
         public static final int DrawerArrowToggle_thickness = 7;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -954,6 +975,8 @@ public final class C11199R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -968,6 +991,8 @@ public final class C11199R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
+        public static final int[] LinearLayoutCompat = {android.R.attr.gravity, android.R.attr.orientation, android.R.attr.baselineAligned, android.R.attr.baselineAlignedChildIndex, android.R.attr.weightSum, C5419R.attr.divider, C5419R.attr.dividerPadding, C5419R.attr.measureWithLargestChild, C5419R.attr.showDividers};
+        public static final int[] LinearLayoutCompat_Layout = {android.R.attr.layout_gravity, android.R.attr.layout_width, android.R.attr.layout_height, android.R.attr.layout_weight};
         public static final int LinearLayoutCompat_Layout_android_layout_gravity = 0;
         public static final int LinearLayoutCompat_Layout_android_layout_height = 2;
         public static final int LinearLayoutCompat_Layout_android_layout_weight = 3;
@@ -981,14 +1006,17 @@ public final class C11199R {
         public static final int LinearLayoutCompat_dividerPadding = 6;
         public static final int LinearLayoutCompat_measureWithLargestChild = 7;
         public static final int LinearLayoutCompat_showDividers = 8;
+        public static final int[] ListPopupWindow = {android.R.attr.dropDownHorizontalOffset, android.R.attr.dropDownVerticalOffset};
         public static final int ListPopupWindow_android_dropDownHorizontalOffset = 0;
         public static final int ListPopupWindow_android_dropDownVerticalOffset = 1;
+        public static final int[] MenuGroup = {android.R.attr.enabled, android.R.attr.id, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.checkableBehavior};
         public static final int MenuGroup_android_checkableBehavior = 5;
         public static final int MenuGroup_android_enabled = 0;
         public static final int MenuGroup_android_id = 1;
         public static final int MenuGroup_android_menuCategory = 3;
         public static final int MenuGroup_android_orderInCategory = 4;
         public static final int MenuGroup_android_visible = 2;
+        public static final int[] MenuItem = {android.R.attr.icon, android.R.attr.enabled, android.R.attr.id, android.R.attr.checked, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.title, android.R.attr.titleCondensed, android.R.attr.alphabeticShortcut, android.R.attr.numericShortcut, android.R.attr.checkable, android.R.attr.onClick, C5419R.attr.actionLayout, C5419R.attr.actionProviderClass, C5419R.attr.actionViewClass, C5419R.attr.alphabeticModifiers, C5419R.attr.contentDescription, C5419R.attr.iconTint, C5419R.attr.iconTintMode, C5419R.attr.numericModifiers, C5419R.attr.showAsAction, C5419R.attr.tooltipText};
         public static final int MenuItem_actionLayout = 13;
         public static final int MenuItem_actionProviderClass = 14;
         public static final int MenuItem_actionViewClass = 15;
@@ -1012,6 +1040,7 @@ public final class C11199R {
         public static final int MenuItem_numericModifiers = 20;
         public static final int MenuItem_showAsAction = 21;
         public static final int MenuItem_tooltipText = 22;
+        public static final int[] MenuView = {android.R.attr.windowAnimationStyle, android.R.attr.itemTextAppearance, android.R.attr.horizontalDivider, android.R.attr.verticalDivider, android.R.attr.headerBackground, android.R.attr.itemBackground, android.R.attr.itemIconDisabledAlpha, C5419R.attr.preserveIconSpacing, C5419R.attr.subMenuArrow};
         public static final int MenuView_android_headerBackground = 4;
         public static final int MenuView_android_horizontalDivider = 2;
         public static final int MenuView_android_itemBackground = 5;
@@ -1021,12 +1050,16 @@ public final class C11199R {
         public static final int MenuView_android_windowAnimationStyle = 0;
         public static final int MenuView_preserveIconSpacing = 7;
         public static final int MenuView_subMenuArrow = 8;
+        public static final int[] PopupWindow = {android.R.attr.popupBackground, android.R.attr.popupAnimationStyle, C5419R.attr.overlapAnchor};
+        public static final int[] PopupWindowBackgroundState = {C5419R.attr.state_above_anchor};
         public static final int PopupWindowBackgroundState_state_above_anchor = 0;
         public static final int PopupWindow_android_popupAnimationStyle = 1;
         public static final int PopupWindow_android_popupBackground = 0;
         public static final int PopupWindow_overlapAnchor = 2;
+        public static final int[] RecycleListView = {C5419R.attr.paddingBottomNoButtons, C5419R.attr.paddingTopNoTitle};
         public static final int RecycleListView_paddingBottomNoButtons = 0;
         public static final int RecycleListView_paddingTopNoTitle = 1;
+        public static final int[] SearchView = {android.R.attr.focusable, android.R.attr.maxWidth, android.R.attr.inputType, android.R.attr.imeOptions, C5419R.attr.closeIcon, C5419R.attr.commitIcon, C5419R.attr.defaultQueryHint, C5419R.attr.goIcon, C5419R.attr.iconifiedByDefault, C5419R.attr.layout, C5419R.attr.queryBackground, C5419R.attr.queryHint, C5419R.attr.searchHintIcon, C5419R.attr.searchIcon, C5419R.attr.submitBackground, C5419R.attr.suggestionRowLayout, C5419R.attr.voiceIcon};
         public static final int SearchView_android_focusable = 0;
         public static final int SearchView_android_imeOptions = 3;
         public static final int SearchView_android_inputType = 2;
@@ -1044,11 +1077,14 @@ public final class C11199R {
         public static final int SearchView_submitBackground = 14;
         public static final int SearchView_suggestionRowLayout = 15;
         public static final int SearchView_voiceIcon = 16;
+        public static final int[] Spinner = {android.R.attr.entries, android.R.attr.popupBackground, android.R.attr.prompt, android.R.attr.dropDownWidth, C5419R.attr.popupTheme};
         public static final int Spinner_android_dropDownWidth = 3;
         public static final int Spinner_android_entries = 0;
         public static final int Spinner_android_popupBackground = 1;
         public static final int Spinner_android_prompt = 2;
         public static final int Spinner_popupTheme = 4;
+        public static final int[] StateListDrawable = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
+        public static final int[] StateListDrawableItem = {android.R.attr.drawable};
         public static final int StateListDrawableItem_android_drawable = 0;
         public static final int StateListDrawable_android_constantSize = 3;
         public static final int StateListDrawable_android_dither = 0;
@@ -1056,6 +1092,7 @@ public final class C11199R {
         public static final int StateListDrawable_android_exitFadeDuration = 5;
         public static final int StateListDrawable_android_variablePadding = 2;
         public static final int StateListDrawable_android_visible = 1;
+        public static final int[] SwitchCompat = {android.R.attr.textOn, android.R.attr.textOff, android.R.attr.thumb, C5419R.attr.showText, C5419R.attr.splitTrack, C5419R.attr.switchMinWidth, C5419R.attr.switchPadding, C5419R.attr.switchTextAppearance, C5419R.attr.thumbTextPadding, C5419R.attr.thumbTint, C5419R.attr.thumbTintMode, C5419R.attr.track, C5419R.attr.trackTint, C5419R.attr.trackTintMode};
         public static final int SwitchCompat_android_textOff = 1;
         public static final int SwitchCompat_android_textOn = 0;
         public static final int SwitchCompat_android_thumb = 2;
@@ -1070,6 +1107,7 @@ public final class C11199R {
         public static final int SwitchCompat_track = 11;
         public static final int SwitchCompat_trackTint = 12;
         public static final int SwitchCompat_trackTintMode = 13;
+        public static final int[] TextAppearance = {android.R.attr.textSize, android.R.attr.typeface, android.R.attr.textStyle, android.R.attr.textColor, android.R.attr.textColorHint, android.R.attr.textColorLink, android.R.attr.shadowColor, android.R.attr.shadowDx, android.R.attr.shadowDy, android.R.attr.shadowRadius, android.R.attr.fontFamily, android.R.attr.textFontWeight, C5419R.attr.fontFamily, C5419R.attr.fontVariationSettings, C5419R.attr.textAllCaps, C5419R.attr.textLocale};
         public static final int TextAppearance_android_fontFamily = 10;
         public static final int TextAppearance_android_shadowColor = 6;
         public static final int TextAppearance_android_shadowDx = 7;
@@ -1086,6 +1124,7 @@ public final class C11199R {
         public static final int TextAppearance_fontVariationSettings = 13;
         public static final int TextAppearance_textAllCaps = 14;
         public static final int TextAppearance_textLocale = 15;
+        public static final int[] Toolbar = {android.R.attr.gravity, android.R.attr.minHeight, C5419R.attr.buttonGravity, C5419R.attr.collapseContentDescription, C5419R.attr.collapseIcon, C5419R.attr.contentInsetEnd, C5419R.attr.contentInsetEndWithActions, C5419R.attr.contentInsetLeft, C5419R.attr.contentInsetRight, C5419R.attr.contentInsetStart, C5419R.attr.contentInsetStartWithNavigation, C5419R.attr.logo, C5419R.attr.logoDescription, C5419R.attr.maxButtonHeight, C5419R.attr.menu, C5419R.attr.navigationContentDescription, C5419R.attr.navigationIcon, C5419R.attr.popupTheme, C5419R.attr.subtitle, C5419R.attr.subtitleTextAppearance, C5419R.attr.subtitleTextColor, C5419R.attr.title, C5419R.attr.titleMargin, C5419R.attr.titleMarginBottom, C5419R.attr.titleMarginEnd, C5419R.attr.titleMarginStart, C5419R.attr.titleMarginTop, C5419R.attr.titleMargins, C5419R.attr.titleTextAppearance, C5419R.attr.titleTextColor};
         public static final int Toolbar_android_gravity = 0;
         public static final int Toolbar_android_minHeight = 1;
         public static final int Toolbar_buttonGravity = 2;
@@ -1116,9 +1155,12 @@ public final class C11199R {
         public static final int Toolbar_titleMargins = 27;
         public static final int Toolbar_titleTextAppearance = 28;
         public static final int Toolbar_titleTextColor = 29;
+        public static final int[] View = {android.R.attr.theme, android.R.attr.focusable, C5419R.attr.paddingEnd, C5419R.attr.paddingStart, C5419R.attr.theme};
+        public static final int[] ViewBackgroundHelper = {android.R.attr.background, C5419R.attr.backgroundTint, C5419R.attr.backgroundTintMode};
         public static final int ViewBackgroundHelper_android_background = 0;
         public static final int ViewBackgroundHelper_backgroundTint = 1;
         public static final int ViewBackgroundHelper_backgroundTintMode = 2;
+        public static final int[] ViewStubCompat = {android.R.attr.id, android.R.attr.layout, android.R.attr.inflatedId};
         public static final int ViewStubCompat_android_id = 0;
         public static final int ViewStubCompat_android_inflatedId = 2;
         public static final int ViewStubCompat_android_layout = 1;
@@ -1127,9 +1169,11 @@ public final class C11199R {
         public static final int View_paddingEnd = 2;
         public static final int View_paddingStart = 3;
         public static final int View_theme = 4;
+        public static final int[] ucrop_AspectRatioTextView = {C5419R.attr.ucrop_artv_ratio_title, C5419R.attr.ucrop_artv_ratio_x, C5419R.attr.ucrop_artv_ratio_y};
         public static final int ucrop_AspectRatioTextView_ucrop_artv_ratio_title = 0;
         public static final int ucrop_AspectRatioTextView_ucrop_artv_ratio_x = 1;
         public static final int ucrop_AspectRatioTextView_ucrop_artv_ratio_y = 2;
+        public static final int[] ucrop_UCropView = {C5419R.attr.ucrop_aspect_ratio_x, C5419R.attr.ucrop_aspect_ratio_y, C5419R.attr.ucrop_circle_dimmed_layer, C5419R.attr.ucrop_dimmed_color, C5419R.attr.ucrop_frame_color, C5419R.attr.ucrop_frame_stroke_size, C5419R.attr.ucrop_grid_color, C5419R.attr.ucrop_grid_column_count, C5419R.attr.ucrop_grid_row_count, C5419R.attr.ucrop_grid_stroke_size, C5419R.attr.ucrop_show_frame, C5419R.attr.ucrop_show_grid, C5419R.attr.ucrop_show_oval_crop_frame};
         public static final int ucrop_UCropView_ucrop_aspect_ratio_x = 0;
         public static final int ucrop_UCropView_ucrop_aspect_ratio_y = 1;
         public static final int ucrop_UCropView_ucrop_circle_dimmed_layer = 2;
@@ -1143,50 +1187,6 @@ public final class C11199R {
         public static final int ucrop_UCropView_ucrop_show_frame = 10;
         public static final int ucrop_UCropView_ucrop_show_grid = 11;
         public static final int ucrop_UCropView_ucrop_show_oval_crop_frame = 12;
-        public static final int[] ActionBar = {C5419R.attr.background, C5419R.attr.backgroundSplit, C5419R.attr.backgroundStacked, C5419R.attr.contentInsetEnd, C5419R.attr.contentInsetEndWithActions, C5419R.attr.contentInsetLeft, C5419R.attr.contentInsetRight, C5419R.attr.contentInsetStart, C5419R.attr.contentInsetStartWithNavigation, C5419R.attr.customNavigationLayout, C5419R.attr.displayOptions, C5419R.attr.divider, C5419R.attr.elevation, C5419R.attr.height, C5419R.attr.hideOnContentScroll, C5419R.attr.homeAsUpIndicator, C5419R.attr.homeLayout, C5419R.attr.icon, C5419R.attr.indeterminateProgressStyle, C5419R.attr.itemPadding, C5419R.attr.logo, C5419R.attr.navigationMode, C5419R.attr.popupTheme, C5419R.attr.progressBarPadding, C5419R.attr.progressBarStyle, C5419R.attr.subtitle, C5419R.attr.subtitleTextStyle, C5419R.attr.title, C5419R.attr.titleTextStyle};
-        public static final int[] ActionBarLayout = {android.R.attr.layout_gravity};
-        public static final int[] ActionMenuItemView = {android.R.attr.minWidth};
-        public static final int[] ActionMenuView = new int[0];
-        public static final int[] ActionMode = {C5419R.attr.background, C5419R.attr.backgroundSplit, C5419R.attr.closeItemLayout, C5419R.attr.height, C5419R.attr.subtitleTextStyle, C5419R.attr.titleTextStyle};
-        public static final int[] ActivityChooserView = {C5419R.attr.expandActivityOverflowButtonDrawable, C5419R.attr.initialActivityCount};
-        public static final int[] AlertDialog = {android.R.attr.layout, C5419R.attr.buttonIconDimen, C5419R.attr.buttonPanelSideLayout, C5419R.attr.listItemLayout, C5419R.attr.listLayout, C5419R.attr.multiChoiceItemLayout, C5419R.attr.showTitle, C5419R.attr.singleChoiceItemLayout};
-        public static final int[] AnimatedStateListDrawableCompat = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
-        public static final int[] AnimatedStateListDrawableItem = {android.R.attr.id, android.R.attr.drawable};
-        public static final int[] AnimatedStateListDrawableTransition = {android.R.attr.drawable, android.R.attr.toId, android.R.attr.fromId, android.R.attr.reversible};
-        public static final int[] AppCompatImageView = {android.R.attr.src, C5419R.attr.srcCompat, C5419R.attr.tint, C5419R.attr.tintMode};
-        public static final int[] AppCompatSeekBar = {android.R.attr.thumb, C5419R.attr.tickMark, C5419R.attr.tickMarkTint, C5419R.attr.tickMarkTintMode};
-        public static final int[] AppCompatTextHelper = {android.R.attr.textAppearance, android.R.attr.drawableTop, android.R.attr.drawableBottom, android.R.attr.drawableLeft, android.R.attr.drawableRight, android.R.attr.drawableStart, android.R.attr.drawableEnd};
-        public static final int[] AppCompatTextView = {android.R.attr.textAppearance, C5419R.attr.autoSizeMaxTextSize, C5419R.attr.autoSizeMinTextSize, C5419R.attr.autoSizePresetSizes, C5419R.attr.autoSizeStepGranularity, C5419R.attr.autoSizeTextType, C5419R.attr.drawableBottomCompat, C5419R.attr.drawableEndCompat, C5419R.attr.drawableLeftCompat, C5419R.attr.drawableRightCompat, C5419R.attr.drawableStartCompat, C5419R.attr.drawableTint, C5419R.attr.drawableTintMode, C5419R.attr.drawableTopCompat, C5419R.attr.firstBaselineToTopHeight, C5419R.attr.fontFamily, C5419R.attr.fontVariationSettings, C5419R.attr.lastBaselineToBottomHeight, C5419R.attr.lineHeight, C5419R.attr.textAllCaps, C5419R.attr.textLocale};
-        public static final int[] AppCompatTheme = {android.R.attr.windowIsFloating, android.R.attr.windowAnimationStyle, C5419R.attr.actionBarDivider, C5419R.attr.actionBarItemBackground, C5419R.attr.actionBarPopupTheme, C5419R.attr.actionBarSize, C5419R.attr.actionBarSplitStyle, C5419R.attr.actionBarStyle, C5419R.attr.actionBarTabBarStyle, C5419R.attr.actionBarTabStyle, C5419R.attr.actionBarTabTextStyle, C5419R.attr.actionBarTheme, C5419R.attr.actionBarWidgetTheme, C5419R.attr.actionButtonStyle, C5419R.attr.actionDropDownStyle, C5419R.attr.actionMenuTextAppearance, C5419R.attr.actionMenuTextColor, C5419R.attr.actionModeBackground, C5419R.attr.actionModeCloseButtonStyle, C5419R.attr.actionModeCloseDrawable, C5419R.attr.actionModeCopyDrawable, C5419R.attr.actionModeCutDrawable, C5419R.attr.actionModeFindDrawable, C5419R.attr.actionModePasteDrawable, C5419R.attr.actionModePopupWindowStyle, C5419R.attr.actionModeSelectAllDrawable, C5419R.attr.actionModeShareDrawable, C5419R.attr.actionModeSplitBackground, C5419R.attr.actionModeStyle, C5419R.attr.actionModeWebSearchDrawable, C5419R.attr.actionOverflowButtonStyle, C5419R.attr.actionOverflowMenuStyle, C5419R.attr.activityChooserViewStyle, C5419R.attr.alertDialogButtonGroupStyle, C5419R.attr.alertDialogCenterButtons, C5419R.attr.alertDialogStyle, C5419R.attr.alertDialogTheme, C5419R.attr.autoCompleteTextViewStyle, C5419R.attr.borderlessButtonStyle, C5419R.attr.buttonBarButtonStyle, C5419R.attr.buttonBarNegativeButtonStyle, C5419R.attr.buttonBarNeutralButtonStyle, C5419R.attr.buttonBarPositiveButtonStyle, C5419R.attr.buttonBarStyle, C5419R.attr.buttonStyle, C5419R.attr.buttonStyleSmall, C5419R.attr.checkboxStyle, C5419R.attr.checkedTextViewStyle, C5419R.attr.colorAccent, C5419R.attr.colorBackgroundFloating, C5419R.attr.colorButtonNormal, C5419R.attr.colorControlActivated, C5419R.attr.colorControlHighlight, C5419R.attr.colorControlNormal, C5419R.attr.colorError, C5419R.attr.colorPrimary, C5419R.attr.colorPrimaryDark, C5419R.attr.colorSwitchThumbNormal, C5419R.attr.controlBackground, C5419R.attr.dialogCornerRadius, C5419R.attr.dialogPreferredPadding, C5419R.attr.dialogTheme, C5419R.attr.dividerHorizontal, C5419R.attr.dividerVertical, C5419R.attr.dropDownListViewStyle, C5419R.attr.dropdownListPreferredItemHeight, C5419R.attr.editTextBackground, C5419R.attr.editTextColor, C5419R.attr.editTextStyle, C5419R.attr.homeAsUpIndicator, C5419R.attr.imageButtonStyle, C5419R.attr.listChoiceBackgroundIndicator, C5419R.attr.listChoiceIndicatorMultipleAnimated, C5419R.attr.listChoiceIndicatorSingleAnimated, C5419R.attr.listDividerAlertDialog, C5419R.attr.listMenuViewStyle, C5419R.attr.listPopupWindowStyle, C5419R.attr.listPreferredItemHeight, C5419R.attr.listPreferredItemHeightLarge, C5419R.attr.listPreferredItemHeightSmall, C5419R.attr.listPreferredItemPaddingEnd, C5419R.attr.listPreferredItemPaddingLeft, C5419R.attr.listPreferredItemPaddingRight, C5419R.attr.listPreferredItemPaddingStart, C5419R.attr.panelBackground, C5419R.attr.panelMenuListTheme, C5419R.attr.panelMenuListWidth, C5419R.attr.popupMenuStyle, C5419R.attr.popupWindowStyle, C5419R.attr.radioButtonStyle, C5419R.attr.ratingBarStyle, C5419R.attr.ratingBarStyleIndicator, C5419R.attr.ratingBarStyleSmall, C5419R.attr.searchViewStyle, C5419R.attr.seekBarStyle, C5419R.attr.selectableItemBackground, C5419R.attr.selectableItemBackgroundBorderless, C5419R.attr.spinnerDropDownItemStyle, C5419R.attr.spinnerStyle, C5419R.attr.switchStyle, C5419R.attr.textAppearanceLargePopupMenu, C5419R.attr.textAppearanceListItem, C5419R.attr.textAppearanceListItemSecondary, C5419R.attr.textAppearanceListItemSmall, C5419R.attr.textAppearancePopupMenuHeader, C5419R.attr.textAppearanceSearchResultSubtitle, C5419R.attr.textAppearanceSearchResultTitle, C5419R.attr.textAppearanceSmallPopupMenu, C5419R.attr.textColorAlertDialogListItem, C5419R.attr.textColorSearchUrl, C5419R.attr.toolbarNavigationButtonStyle, C5419R.attr.toolbarStyle, C5419R.attr.tooltipForegroundColor, C5419R.attr.tooltipFrameBackground, C5419R.attr.viewInflaterClass, C5419R.attr.windowActionBar, C5419R.attr.windowActionBarOverlay, C5419R.attr.windowActionModeOverlay, C5419R.attr.windowFixedHeightMajor, C5419R.attr.windowFixedHeightMinor, C5419R.attr.windowFixedWidthMajor, C5419R.attr.windowFixedWidthMinor, C5419R.attr.windowMinWidthMajor, C5419R.attr.windowMinWidthMinor, C5419R.attr.windowNoTitle};
-        public static final int[] ButtonBarLayout = {C5419R.attr.allowStacking};
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] CompoundButton = {android.R.attr.button, C5419R.attr.buttonCompat, C5419R.attr.buttonTint, C5419R.attr.buttonTintMode};
-        public static final int[] DrawerArrowToggle = {C5419R.attr.arrowHeadLength, C5419R.attr.arrowShaftLength, C5419R.attr.barLength, C5419R.attr.color, C5419R.attr.drawableSize, C5419R.attr.gapBetweenBars, C5419R.attr.spinBars, C5419R.attr.thickness};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
-        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
-        public static final int[] LinearLayoutCompat = {android.R.attr.gravity, android.R.attr.orientation, android.R.attr.baselineAligned, android.R.attr.baselineAlignedChildIndex, android.R.attr.weightSum, C5419R.attr.divider, C5419R.attr.dividerPadding, C5419R.attr.measureWithLargestChild, C5419R.attr.showDividers};
-        public static final int[] LinearLayoutCompat_Layout = {android.R.attr.layout_gravity, android.R.attr.layout_width, android.R.attr.layout_height, android.R.attr.layout_weight};
-        public static final int[] ListPopupWindow = {android.R.attr.dropDownHorizontalOffset, android.R.attr.dropDownVerticalOffset};
-        public static final int[] MenuGroup = {android.R.attr.enabled, android.R.attr.id, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.checkableBehavior};
-        public static final int[] MenuItem = {android.R.attr.icon, android.R.attr.enabled, android.R.attr.id, android.R.attr.checked, android.R.attr.visible, android.R.attr.menuCategory, android.R.attr.orderInCategory, android.R.attr.title, android.R.attr.titleCondensed, android.R.attr.alphabeticShortcut, android.R.attr.numericShortcut, android.R.attr.checkable, android.R.attr.onClick, C5419R.attr.actionLayout, C5419R.attr.actionProviderClass, C5419R.attr.actionViewClass, C5419R.attr.alphabeticModifiers, C5419R.attr.contentDescription, C5419R.attr.iconTint, C5419R.attr.iconTintMode, C5419R.attr.numericModifiers, C5419R.attr.showAsAction, C5419R.attr.tooltipText};
-        public static final int[] MenuView = {android.R.attr.windowAnimationStyle, android.R.attr.itemTextAppearance, android.R.attr.horizontalDivider, android.R.attr.verticalDivider, android.R.attr.headerBackground, android.R.attr.itemBackground, android.R.attr.itemIconDisabledAlpha, C5419R.attr.preserveIconSpacing, C5419R.attr.subMenuArrow};
-        public static final int[] PopupWindow = {android.R.attr.popupBackground, android.R.attr.popupAnimationStyle, C5419R.attr.overlapAnchor};
-        public static final int[] PopupWindowBackgroundState = {C5419R.attr.state_above_anchor};
-        public static final int[] RecycleListView = {C5419R.attr.paddingBottomNoButtons, C5419R.attr.paddingTopNoTitle};
-        public static final int[] SearchView = {android.R.attr.focusable, android.R.attr.maxWidth, android.R.attr.inputType, android.R.attr.imeOptions, C5419R.attr.closeIcon, C5419R.attr.commitIcon, C5419R.attr.defaultQueryHint, C5419R.attr.goIcon, C5419R.attr.iconifiedByDefault, C5419R.attr.layout, C5419R.attr.queryBackground, C5419R.attr.queryHint, C5419R.attr.searchHintIcon, C5419R.attr.searchIcon, C5419R.attr.submitBackground, C5419R.attr.suggestionRowLayout, C5419R.attr.voiceIcon};
-        public static final int[] Spinner = {android.R.attr.entries, android.R.attr.popupBackground, android.R.attr.prompt, android.R.attr.dropDownWidth, C5419R.attr.popupTheme};
-        public static final int[] StateListDrawable = {android.R.attr.dither, android.R.attr.visible, android.R.attr.variablePadding, android.R.attr.constantSize, android.R.attr.enterFadeDuration, android.R.attr.exitFadeDuration};
-        public static final int[] StateListDrawableItem = {android.R.attr.drawable};
-        public static final int[] SwitchCompat = {android.R.attr.textOn, android.R.attr.textOff, android.R.attr.thumb, C5419R.attr.showText, C5419R.attr.splitTrack, C5419R.attr.switchMinWidth, C5419R.attr.switchPadding, C5419R.attr.switchTextAppearance, C5419R.attr.thumbTextPadding, C5419R.attr.thumbTint, C5419R.attr.thumbTintMode, C5419R.attr.track, C5419R.attr.trackTint, C5419R.attr.trackTintMode};
-        public static final int[] TextAppearance = {android.R.attr.textSize, android.R.attr.typeface, android.R.attr.textStyle, android.R.attr.textColor, android.R.attr.textColorHint, android.R.attr.textColorLink, android.R.attr.shadowColor, android.R.attr.shadowDx, android.R.attr.shadowDy, android.R.attr.shadowRadius, android.R.attr.fontFamily, android.R.attr.textFontWeight, C5419R.attr.fontFamily, C5419R.attr.fontVariationSettings, C5419R.attr.textAllCaps, C5419R.attr.textLocale};
-        public static final int[] Toolbar = {android.R.attr.gravity, android.R.attr.minHeight, C5419R.attr.buttonGravity, C5419R.attr.collapseContentDescription, C5419R.attr.collapseIcon, C5419R.attr.contentInsetEnd, C5419R.attr.contentInsetEndWithActions, C5419R.attr.contentInsetLeft, C5419R.attr.contentInsetRight, C5419R.attr.contentInsetStart, C5419R.attr.contentInsetStartWithNavigation, C5419R.attr.logo, C5419R.attr.logoDescription, C5419R.attr.maxButtonHeight, C5419R.attr.menu, C5419R.attr.navigationContentDescription, C5419R.attr.navigationIcon, C5419R.attr.popupTheme, C5419R.attr.subtitle, C5419R.attr.subtitleTextAppearance, C5419R.attr.subtitleTextColor, C5419R.attr.title, C5419R.attr.titleMargin, C5419R.attr.titleMarginBottom, C5419R.attr.titleMarginEnd, C5419R.attr.titleMarginStart, C5419R.attr.titleMarginTop, C5419R.attr.titleMargins, C5419R.attr.titleTextAppearance, C5419R.attr.titleTextColor};
-        public static final int[] View = {android.R.attr.theme, android.R.attr.focusable, C5419R.attr.paddingEnd, C5419R.attr.paddingStart, C5419R.attr.theme};
-        public static final int[] ViewBackgroundHelper = {android.R.attr.background, C5419R.attr.backgroundTint, C5419R.attr.backgroundTintMode};
-        public static final int[] ViewStubCompat = {android.R.attr.id, android.R.attr.layout, android.R.attr.inflatedId};
-        public static final int[] ucrop_AspectRatioTextView = {C5419R.attr.ucrop_artv_ratio_title, C5419R.attr.ucrop_artv_ratio_x, C5419R.attr.ucrop_artv_ratio_y};
-        public static final int[] ucrop_UCropView = {C5419R.attr.ucrop_aspect_ratio_x, C5419R.attr.ucrop_aspect_ratio_y, C5419R.attr.ucrop_circle_dimmed_layer, C5419R.attr.ucrop_dimmed_color, C5419R.attr.ucrop_frame_color, C5419R.attr.ucrop_frame_stroke_size, C5419R.attr.ucrop_grid_color, C5419R.attr.ucrop_grid_column_count, C5419R.attr.ucrop_grid_row_count, C5419R.attr.ucrop_grid_stroke_size, C5419R.attr.ucrop_show_frame, C5419R.attr.ucrop_show_grid, C5419R.attr.ucrop_show_oval_crop_frame};
 
         private h() {
         }

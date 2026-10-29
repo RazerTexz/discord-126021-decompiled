@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildDirectoryChannelViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildDirectoryChannelViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long directoryChannelId = null;
     private final Long directoryGuildId = null;
     private final Long primaryCategoryId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "guild_directory_channel_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackGuildDirectoryChannelViewed implements Analyt
         }
         TrackGuildDirectoryChannelViewed trackGuildDirectoryChannelViewed = (TrackGuildDirectoryChannelViewed) other;
         return C12238m.areEqual(this.directoryChannelId, trackGuildDirectoryChannelViewed.directoryChannelId) && C12238m.areEqual(this.directoryGuildId, trackGuildDirectoryChannelViewed.directoryGuildId) && C12238m.areEqual(this.primaryCategoryId, trackGuildDirectoryChannelViewed.primaryCategoryId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -47,30 +47,8 @@ public final /* data */ class WidgetServerSettingsMembersModel {
     private final Map<Long, GuildRole> roles;
 
     /* JADX INFO: compiled from: WidgetServerSettingsMembersModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final Comparator<MemberItem> sortMembersComparator() {
-            return new Comparator<MemberItem>() { // from class: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembersModel$Companion$sortMembersComparator$1
-                @Override // java.util.Comparator
-                public final int compare(WidgetServerSettingsMembersModel.MemberItem memberItem, WidgetServerSettingsMembersModel.MemberItem memberItem2) {
-                    C12238m.checkNotNullParameter(memberItem, "member1");
-                    C12238m.checkNotNullParameter(memberItem2, "member2");
-                    int iCompareTo = C12103t.compareTo(memberItem.getUserDisplayName(), memberItem2.getUserDisplayName(), true);
-                    return iCompareTo != 0 ? iCompareTo : (memberItem.getUser().getId() > memberItem2.getUser().getId() ? 1 : (memberItem.getUser().getId() == memberItem2.getUser().getId() ? 0 : -1));
-                }
-            };
-        }
-
-        private final Map<Long, GuildRole> sortRoles(Map<Long, GuildRole> guildRoles) {
-            LinkedHashMap linkedHashMap = new LinkedHashMap(guildRoles.size());
-            ArrayList arrayList = new ArrayList(guildRoles.values());
-            Collections.sort(arrayList, RoleUtils.getROLE_COMPARATOR());
-            for (Object obj : arrayList) {
-                linkedHashMap.put(Long.valueOf(((GuildRole) obj).getId()), obj);
-            }
-            return linkedHashMap;
         }
 
         public final Observable<WidgetServerSettingsMembersModel> get(final long guildId, final Observable<String> filterPublisher, final Observable<Long> roleFilterPublisher) {
@@ -158,13 +136,35 @@ public final /* data */ class WidgetServerSettingsMembersModel {
             return observableM11112r;
         }
 
+        private final Comparator<MemberItem> sortMembersComparator() {
+            return new Comparator<MemberItem>() { // from class: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembersModel$Companion$sortMembersComparator$1
+                @Override // java.util.Comparator
+                public final int compare(WidgetServerSettingsMembersModel.MemberItem memberItem, WidgetServerSettingsMembersModel.MemberItem memberItem2) {
+                    C12238m.checkNotNullParameter(memberItem, "member1");
+                    C12238m.checkNotNullParameter(memberItem2, "member2");
+                    int iCompareTo = C12103t.compareTo(memberItem.getUserDisplayName(), memberItem2.getUserDisplayName(), true);
+                    return iCompareTo != 0 ? iCompareTo : (memberItem.getUser().getId() > memberItem2.getUser().getId() ? 1 : (memberItem.getUser().getId() == memberItem2.getUser().getId() ? 0 : -1));
+                }
+            };
+        }
+
+        private final Map<Long, GuildRole> sortRoles(Map<Long, GuildRole> guildRoles) {
+            LinkedHashMap linkedHashMap = new LinkedHashMap(guildRoles.size());
+            ArrayList arrayList = new ArrayList(guildRoles.values());
+            Collections.sort(arrayList, RoleUtils.getROLE_COMPARATOR());
+            for (Object obj : arrayList) {
+                linkedHashMap.put(Long.valueOf(((GuildRole) obj).getId()), obj);
+            }
+            return linkedHashMap;
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsMembersModel.kt */
-    public static final /* data */ class MemberItem implements MGRecyclerDataPayload {
+    public final /* data */ class MemberItem implements MGRecyclerDataPayload {
         private final GuildMember guildMember;
         private final boolean isManagable;
         private final String key;
@@ -185,6 +185,10 @@ public final /* data */ class WidgetServerSettingsMembersModel {
             this.guildMember = guildMember;
             this.key = String.valueOf(user.getId());
             this.type = 1;
+        }
+
+        public final List<GuildRole> component3() {
+            return this.roles;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -210,30 +214,6 @@ public final /* data */ class WidgetServerSettingsMembersModel {
             return memberItem.copy(user, str2, list2, z3, guildMember);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getUserDisplayName() {
-            return this.userDisplayName;
-        }
-
-        public final List<GuildRole> component3() {
-            return this.roles;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsManagable() {
-            return this.isManagable;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
         public final MemberItem copy(User user, String userDisplayName, List<GuildRole> roles, boolean isManagable, GuildMember guildMember) {
             C12238m.checkNotNullParameter(user, "user");
             C12238m.checkNotNullParameter(userDisplayName, "userDisplayName");
@@ -253,8 +233,18 @@ public final /* data */ class WidgetServerSettingsMembersModel {
             return C12238m.areEqual(this.user, memberItem.user) && C12238m.areEqual(this.userDisplayName, memberItem.userDisplayName) && C12238m.areEqual(this.roles, memberItem.roles) && this.isManagable == memberItem.isManagable && C12238m.areEqual(this.guildMember, memberItem.guildMember);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final GuildMember getGuildMember() {
             return this.guildMember;
+        }
+
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsManagable() {
+            return this.isManagable;
         }
 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -271,8 +261,18 @@ public final /* data */ class WidgetServerSettingsMembersModel {
             return this.type;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final User getUser() {
             return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getUserDisplayName() {
+            return this.userDisplayName;
         }
 
         public final String getUserDisplayName() {
@@ -335,6 +335,14 @@ public final /* data */ class WidgetServerSettingsMembersModel {
         this.canManageMembers = z3;
     }
 
+    public final Map<Long, GuildRole> component2() {
+        return this.roles;
+    }
+
+    public final List<MemberItem> component3() {
+        return this.memberItems;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetServerSettingsMembersModel copy$default(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel, Guild guild, Map map, List list, GuildRole guildRole, MeUser meUser, boolean z2, boolean z3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -366,39 +374,6 @@ public final /* data */ class WidgetServerSettingsMembersModel {
         return widgetServerSettingsMembersModel.copy(guild, map2, list2, guildRole2, meUser2, z4, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    public final Map<Long, GuildRole> component2() {
-        return this.roles;
-    }
-
-    public final List<MemberItem> component3() {
-        return this.memberItems;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final GuildRole getMyHighestRole() {
-        return this.myHighestRole;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final MeUser getMeUser() {
-        return this.meUser;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getCanKick() {
-        return this.canKick;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getCanManageMembers() {
-        return this.canManageMembers;
-    }
-
     public final WidgetServerSettingsMembersModel copy(Guild guild, Map<Long, GuildRole> roles, List<MemberItem> memberItems, GuildRole myHighestRole, MeUser meUser, boolean canKick, boolean canManageMembers) {
         C12238m.checkNotNullParameter(guild, "guild");
         C12238m.checkNotNullParameter(roles, "roles");
@@ -418,16 +393,36 @@ public final /* data */ class WidgetServerSettingsMembersModel {
         return C12238m.areEqual(this.guild, widgetServerSettingsMembersModel.guild) && C12238m.areEqual(this.roles, widgetServerSettingsMembersModel.roles) && C12238m.areEqual(this.memberItems, widgetServerSettingsMembersModel.memberItems) && C12238m.areEqual(this.myHighestRole, widgetServerSettingsMembersModel.myHighestRole) && C12238m.areEqual(this.meUser, widgetServerSettingsMembersModel.meUser) && this.canKick == widgetServerSettingsMembersModel.canKick && this.canManageMembers == widgetServerSettingsMembersModel.canManageMembers;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getCanKick() {
         return this.canKick;
+    }
+
+    public final boolean getCanKick() {
+        return this.canKick;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getCanManageMembers() {
+        return this.canManageMembers;
     }
 
     public final boolean getCanManageMembers() {
         return this.canManageMembers;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final MeUser getMeUser() {
+        return this.meUser;
     }
 
     public final MeUser getMeUser() {
@@ -436,6 +431,11 @@ public final /* data */ class WidgetServerSettingsMembersModel {
 
     public final List<MemberItem> getMemberItems() {
         return this.memberItems;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final GuildRole getMyHighestRole() {
+        return this.myHighestRole;
     }
 
     public final GuildRole getMyHighestRole() {

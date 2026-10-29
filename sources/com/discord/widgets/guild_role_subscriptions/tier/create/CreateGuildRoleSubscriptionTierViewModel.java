@@ -31,11 +31,11 @@ import p658rx.subjects.PublishSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC0859d0<ViewState> {
     private static final int CHANNEL_BENEFITS_STEP = 1;
+    private static final int DESIGN_STEP = 3;
+    private static final int DETAILS_STEP = 0;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int DESIGN_STEP = 3;
-    private static final int DETAILS_STEP = 0;
     private static final int INTANGIBLE_BENEFITS_STEP = 2;
     private final PublishSubject<Event> eventSubject;
     private final long groupListingId;
@@ -46,7 +46,7 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.CreateGuildRoleSubscriptionTierViewModel$1 */
     /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final class C84761 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C84761 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C84761() {
             super(1);
         }
@@ -65,8 +65,52 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.CreateGuildRoleSubscriptionTierViewModel$submit$1 */
     /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final class Companion {
+    public final class C84781 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierListing, Unit> {
+        public C84781() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
+            invoke2(guildRoleSubscriptionTierListing);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
+            C12238m.checkNotNullParameter(guildRoleSubscriptionTierListing, "it");
+            CreateGuildRoleSubscriptionTierViewModel createGuildRoleSubscriptionTierViewModel = CreateGuildRoleSubscriptionTierViewModel.this;
+            createGuildRoleSubscriptionTierViewModel.updateViewState(ViewState.copy$default(CreateGuildRoleSubscriptionTierViewModel.access$requireViewState(createGuildRoleSubscriptionTierViewModel), 0, false, false, null, 11, null));
+            CreateGuildRoleSubscriptionTierViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.CreateGuildRoleSubscriptionTierViewModel$submit$2 */
+    /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
+    public final class C84792 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C84792() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            CreateGuildRoleSubscriptionTierViewModel createGuildRoleSubscriptionTierViewModel = CreateGuildRoleSubscriptionTierViewModel.this;
+            createGuildRoleSubscriptionTierViewModel.updateViewState(ViewState.copy$default(CreateGuildRoleSubscriptionTierViewModel.access$requireViewState(createGuildRoleSubscriptionTierViewModel), 0, false, false, null, 11, null));
+            CreateGuildRoleSubscriptionTierViewModel.this.emitEvent(new Event.SubmitFailure(error));
+        }
+    }
+
+    /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -80,10 +124,10 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-        public static final /* data */ class ServerGatingUpdate extends Event {
+        public final /* data */ class ServerGatingUpdate extends Event {
             private final boolean isFullServerGating;
 
             public ServerGatingUpdate(boolean z2) {
@@ -98,11 +142,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
                 return serverGatingUpdate.copy(z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsFullServerGating() {
-                return this.isFullServerGating;
-            }
-
             public final ServerGatingUpdate copy(boolean isFullServerGating) {
                 return new ServerGatingUpdate(isFullServerGating);
             }
@@ -112,6 +151,11 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
                     return (other instanceof ServerGatingUpdate) && this.isFullServerGating == ((ServerGatingUpdate) other).isFullServerGating;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsFullServerGating() {
+                return this.isFullServerGating;
             }
 
             public int hashCode() {
@@ -132,7 +176,7 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
         }
 
         /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-        public static final /* data */ class SubmitFailure extends Event {
+        public final /* data */ class SubmitFailure extends Event {
             private final Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -149,11 +193,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
                 return submitFailure.copy(error);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Error getError() {
-                return this.error;
-            }
-
             public final SubmitFailure copy(Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new SubmitFailure(error);
@@ -164,6 +203,11 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
                     return (other instanceof SubmitFailure) && C12238m.areEqual(this.error, ((SubmitFailure) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Error getError() {
+                return this.error;
             }
 
             public final Error getError() {
@@ -187,7 +231,7 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
         }
 
         /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-        public static final class SubmitSuccess extends Event {
+        public final class SubmitSuccess extends Event {
             public static final SubmitSuccess INSTANCE = new SubmitSuccess();
 
             private SubmitSuccess() {
@@ -204,7 +248,7 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Boolean fullServerGatingOverwrite;
         private final GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing;
 
@@ -228,16 +272,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
             return storeState.copy(guildRoleSubscriptionGroupListing, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
-            return this.guildRoleSubscriptionGroupListing;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getFullServerGatingOverwrite() {
-            return this.fullServerGatingOverwrite;
-        }
-
         public final StoreState copy(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, Boolean fullServerGatingOverwrite) {
             return new StoreState(guildRoleSubscriptionGroupListing, fullServerGatingOverwrite);
         }
@@ -253,8 +287,18 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
             return C12238m.areEqual(this.guildRoleSubscriptionGroupListing, storeState.guildRoleSubscriptionGroupListing) && C12238m.areEqual(this.fullServerGatingOverwrite, storeState.fullServerGatingOverwrite);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Boolean getFullServerGatingOverwrite() {
             return this.fullServerGatingOverwrite;
+        }
+
+        public final Boolean getFullServerGatingOverwrite() {
+            return this.fullServerGatingOverwrite;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
+            return this.guildRoleSubscriptionGroupListing;
         }
 
         public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
@@ -281,7 +325,7 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
     }
 
     /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canProceed;
         private final int currentStep;
         private final GuildRoleSubscriptionTier guildRoleSubscriptionTier;
@@ -314,26 +358,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
             return viewState.copy(i, z2, z3, guildRoleSubscriptionTier);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getCurrentStep() {
-            return this.currentStep;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanProceed() {
-            return this.canProceed;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsSubmitting() {
-            return this.isSubmitting;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
-            return this.guildRoleSubscriptionTier;
-        }
-
         public final ViewState copy(int currentStep, boolean canProceed, boolean isSubmitting, GuildRoleSubscriptionTier guildRoleSubscriptionTier) {
             return new ViewState(currentStep, canProceed, isSubmitting, guildRoleSubscriptionTier);
         }
@@ -349,16 +373,36 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
             return this.currentStep == viewState.currentStep && this.canProceed == viewState.canProceed && this.isSubmitting == viewState.isSubmitting && C12238m.areEqual(this.guildRoleSubscriptionTier, viewState.guildRoleSubscriptionTier);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getCanProceed() {
             return this.canProceed;
+        }
+
+        public final boolean getCanProceed() {
+            return this.canProceed;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getCurrentStep() {
+            return this.currentStep;
         }
 
         public final int getCurrentStep() {
             return this.currentStep;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
             return this.guildRoleSubscriptionTier;
+        }
+
+        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
+            return this.guildRoleSubscriptionTier;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsSubmitting() {
+            return this.isSubmitting;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -403,50 +447,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
 
         public /* synthetic */ ViewState(int i, boolean z2, boolean z3, GuildRoleSubscriptionTier guildRoleSubscriptionTier, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this((i2 & 1) != 0 ? 0 : i, (i2 & 2) != 0 ? false : z2, (i2 & 4) != 0 ? false : z3, (i2 & 8) != 0 ? null : guildRoleSubscriptionTier);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.CreateGuildRoleSubscriptionTierViewModel$submit$1 */
-    /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final class C84781 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierListing, Unit> {
-        public C84781() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
-            invoke2(guildRoleSubscriptionTierListing);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
-            C12238m.checkNotNullParameter(guildRoleSubscriptionTierListing, "it");
-            CreateGuildRoleSubscriptionTierViewModel createGuildRoleSubscriptionTierViewModel = CreateGuildRoleSubscriptionTierViewModel.this;
-            createGuildRoleSubscriptionTierViewModel.updateViewState(ViewState.copy$default(CreateGuildRoleSubscriptionTierViewModel.access$requireViewState(createGuildRoleSubscriptionTierViewModel), 0, false, false, null, 11, null));
-            CreateGuildRoleSubscriptionTierViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.CreateGuildRoleSubscriptionTierViewModel$submit$2 */
-    /* JADX INFO: compiled from: CreateGuildRoleSubscriptionTierViewModel.kt */
-    public static final class C84792 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C84792() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            CreateGuildRoleSubscriptionTierViewModel createGuildRoleSubscriptionTierViewModel = CreateGuildRoleSubscriptionTierViewModel.this;
-            createGuildRoleSubscriptionTierViewModel.updateViewState(ViewState.copy$default(CreateGuildRoleSubscriptionTierViewModel.access$requireViewState(createGuildRoleSubscriptionTierViewModel), 0, false, false, null, 11, null));
-            CreateGuildRoleSubscriptionTierViewModel.this.emitEvent(new Event.SubmitFailure(error));
         }
     }
 
@@ -498,15 +498,6 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
         this.eventSubject.f27650k.onNext(event);
     }
 
-    private final void handleStoreState(StoreState storeState) {
-        if (storeState.getGuildRoleSubscriptionGroupListing() != null) {
-            Boolean fullServerGatingOverwrite = storeState.getFullServerGatingOverwrite();
-            boolean zBooleanValue = fullServerGatingOverwrite != null ? fullServerGatingOverwrite.booleanValue() : storeState.getGuildRoleSubscriptionGroupListing().getFullServerGate();
-            this.isFullServerGating = Boolean.valueOf(zBooleanValue);
-            emitEvent(new Event.ServerGatingUpdate(zBooleanValue));
-        }
-    }
-
     public final void goToNextStep() {
         ViewState viewStateRequireViewState = requireViewState();
         updateViewState(ViewState.copy$default(viewStateRequireViewState, viewStateRequireViewState.getCurrentStep() + 1, false, false, null, 14, null));
@@ -515,6 +506,15 @@ public final class CreateGuildRoleSubscriptionTierViewModel extends AbstractC085
     public final void goToPreviousStep() {
         ViewState viewStateRequireViewState = requireViewState();
         updateViewState(ViewState.copy$default(viewStateRequireViewState, viewStateRequireViewState.getCurrentStep() - 1, false, false, null, 14, null));
+    }
+
+    private final void handleStoreState(StoreState storeState) {
+        if (storeState.getGuildRoleSubscriptionGroupListing() != null) {
+            Boolean fullServerGatingOverwrite = storeState.getFullServerGatingOverwrite();
+            boolean zBooleanValue = fullServerGatingOverwrite != null ? fullServerGatingOverwrite.booleanValue() : storeState.getGuildRoleSubscriptionGroupListing().getFullServerGate();
+            this.isFullServerGating = Boolean.valueOf(zBooleanValue);
+            emitEvent(new Event.ServerGatingUpdate(zBooleanValue));
+        }
     }
 
     public final Observable<Event> observeEvents() {

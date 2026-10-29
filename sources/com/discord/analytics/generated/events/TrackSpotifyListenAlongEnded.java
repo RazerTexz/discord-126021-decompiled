@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSpotifyListenAlongEnded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSpotifyListenAlongEnded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence partyId = null;
     private final Long otherUserId = null;
+    private final CharSequence partyId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "spotify_listen_along_ended";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackSpotifyListenAlongEnded implements AnalyticsS
         }
         TrackSpotifyListenAlongEnded trackSpotifyListenAlongEnded = (TrackSpotifyListenAlongEnded) other;
         return C12238m.areEqual(this.partyId, trackSpotifyListenAlongEnded.partyId) && C12238m.areEqual(this.otherUserId, trackSpotifyListenAlongEnded.otherUserId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

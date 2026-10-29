@@ -45,7 +45,7 @@ public class ShortcutsInfoSerialization {
     private static final String TAG_ROOT = "share_targets";
     private static final String TAG_TARGET = "target";
 
-    public static class ShortcutContainer {
+    public class ShortcutContainer {
         public final String mBitmapPath;
         public final String mResourceName;
         public final ShortcutInfoCompat mShortcutInfo;

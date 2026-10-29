@@ -11,7 +11,7 @@ public interface InterfaceC11751h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.h$a */
     /* JADX INFO: compiled from: DescriptorRenderer.kt */
-    public static final class a {
+    public final class a {
         public static boolean getIncludeAnnotationArguments(InterfaceC11751h interfaceC11751h) {
             C12238m.checkNotNullParameter(interfaceC11751h, "this");
             return interfaceC11751h.getAnnotationArgumentsRenderingPolicy().getIncludeAnnotationArguments();

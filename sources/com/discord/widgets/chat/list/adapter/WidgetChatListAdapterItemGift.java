@@ -69,13 +69,95 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final GrayscalePostprocessor SPLASH_IMAGE_POSTPROCESSOR = new GrayscalePostprocessor();
     private final WidgetChatListAdapterItemGiftBinding binding;
     private GiftEntry item;
     private Subscription subscription;
+    private static final GrayscalePostprocessor SPLASH_IMAGE_POSTPROCESSOR = new GrayscalePostprocessor();
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$configureResolvedUI$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
+    public final class C80671 extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
+        public static final C80671 INSTANCE = new C80671();
+
+        public C80671() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ImageRequestBuilder imageRequestBuilder) {
+            invoke2(imageRequestBuilder);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ImageRequestBuilder imageRequestBuilder) {
+            C12238m.checkNotNullParameter(imageRequestBuilder, "it");
+            imageRequestBuilder.f19623l = WidgetChatListAdapterItemGift.SPLASH_IMAGE_POSTPROCESSOR;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
+    public final /* synthetic */ class C80711 extends C12236k implements Function1<Model, Unit> {
+        public C80711(WidgetChatListAdapterItemGift widgetChatListAdapterItemGift) {
+            super(1, widgetChatListAdapterItemGift, WidgetChatListAdapterItemGift.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGift$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetChatListAdapterItemGift) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
+    public final class C80722 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C80722() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetChatListAdapterItemGift.this.configureInvalidUI(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$3 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
+    public final class C80733 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80733() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemGift.this.subscription = subscription;
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -89,10 +171,10 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static abstract class Model {
+    public abstract class Model {
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-        public static final /* data */ class Invalid extends Model {
+        public final /* data */ class Invalid extends Model {
             private final Long gifterUserId;
             private final long meId;
 
@@ -112,16 +194,6 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
                 return invalid.copy(l, j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Long getGifterUserId() {
-                return this.gifterUserId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getMeId() {
-                return this.meId;
-            }
-
             public final Invalid copy(Long gifterUserId, long meId) {
                 return new Invalid(gifterUserId, meId);
             }
@@ -137,8 +209,18 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
                 return C12238m.areEqual(this.gifterUserId, invalid.gifterUserId) && this.meId == invalid.meId;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Long getGifterUserId() {
                 return this.gifterUserId;
+            }
+
+            public final Long getGifterUserId() {
+                return this.gifterUserId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getMeId() {
+                return this.meId;
             }
 
             public final long getMeId() {
@@ -159,7 +241,7 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-        public static final class Loading extends Model {
+        public final class Loading extends Model {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -168,7 +250,7 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
         }
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-        public static final /* data */ class Resolved extends Model {
+        public final /* data */ class Resolved extends Model {
             private final ModelGift gift;
             private final boolean inLibrary;
             private final MeUser meUser;
@@ -201,26 +283,6 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
                 return resolved.copy(modelGift, meUser, z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGift getGift() {
-                return this.gift;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getInLibrary() {
-                return this.inLibrary;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getRedeeming() {
-                return this.redeeming;
-            }
-
             public final Resolved copy(ModelGift gift, MeUser meUser, boolean inLibrary, boolean redeeming) {
                 C12238m.checkNotNullParameter(gift, "gift");
                 C12238m.checkNotNullParameter(meUser, "meUser");
@@ -238,16 +300,36 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
                 return C12238m.areEqual(this.gift, resolved.gift) && C12238m.areEqual(this.meUser, resolved.meUser) && this.inLibrary == resolved.inLibrary && this.redeeming == resolved.redeeming;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ModelGift getGift() {
                 return this.gift;
+            }
+
+            public final ModelGift getGift() {
+                return this.gift;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getInLibrary() {
+                return this.inLibrary;
             }
 
             public final boolean getInLibrary() {
                 return this.inLibrary;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final MeUser getMeUser() {
                 return this.meUser;
+            }
+
+            public final MeUser getMeUser() {
+                return this.meUser;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getRedeeming() {
+                return this.redeeming;
             }
 
             public final boolean getRedeeming() {
@@ -299,55 +381,10 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final class ModelProvider {
+    public final class ModelProvider {
         public static final ModelProvider INSTANCE = new ModelProvider();
 
         private ModelProvider() {
-        }
-
-        private final Observable<Model> getInvalidGift(GiftEntry item) {
-            Observable<Model> observableM11076j = Observable.m11076j(new C12721k(Long.valueOf(item.getUserId())), StoreStream.INSTANCE.getUsers().observeMeId(), new Func2<Long, Long, Model>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$ModelProvider$getInvalidGift$1
-                @Override // p658rx.functions.Func2
-                public final WidgetChatListAdapterItemGift.Model call(Long l, Long l2) {
-                    C12238m.checkNotNullExpressionValue(l2, "meId");
-                    return new WidgetChatListAdapterItemGift.Model.Invalid(l, l2.longValue());
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…lid(authorUserId, meId) }");
-            return observableM11076j;
-        }
-
-        private final Observable<Model> getResolvedGiftModel(final ModelGift gift, final boolean redeeming) {
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<Model> observableM11076j = Observable.m11076j(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getLibrary().observeApplications(), new Func2<MeUser, Map<Long, ? extends ModelLibraryApplication>, Model>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$ModelProvider$getResolvedGiftModel$1
-                @Override // p658rx.functions.Func2
-                public /* bridge */ /* synthetic */ WidgetChatListAdapterItemGift.Model call(MeUser meUser, Map<Long, ? extends ModelLibraryApplication> map) {
-                    return call2(meUser, (Map<Long, ModelLibraryApplication>) map);
-                }
-
-                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                public final WidgetChatListAdapterItemGift.Model call2(MeUser meUser, Map<Long, ModelLibraryApplication> map) {
-                    WidgetChatListAdapterItemGift.Model invalid;
-                    if (gift.isExpired(ClockFactory.get().currentTimeMillis())) {
-                        User user = gift.getUser();
-                        invalid = new WidgetChatListAdapterItemGift.Model.Invalid(user != null ? Long.valueOf(user.getId()) : null, meUser.getId());
-                    } else {
-                        ModelGift modelGift = gift;
-                        C12238m.checkNotNullExpressionValue(meUser, "me");
-                        invalid = new WidgetChatListAdapterItemGift.Model.Resolved(modelGift, meUser, map != null && map.containsKey(Long.valueOf(gift.getSkuId())), redeeming);
-                    }
-                    return invalid;
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest… me.id)\n        }\n      }");
-            return observableM11076j;
-        }
-
-        public static /* synthetic */ Observable getResolvedGiftModel$default(ModelProvider modelProvider, ModelGift modelGift, boolean z2, int i, Object obj) {
-            if ((i & 2) != 0) {
-                z2 = false;
-            }
-            return modelProvider.getResolvedGiftModel(modelGift, z2);
         }
 
         public final Observable<Model> get(final GiftEntry item) {
@@ -379,87 +416,50 @@ public final class WidgetChatListAdapterItemGift extends WidgetChatListItem {
             C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n            …          }\n            }");
             return observableM11099Y;
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$configureResolvedUI$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final class C80671 extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
-        public static final C80671 INSTANCE = new C80671();
-
-        public C80671() {
-            super(1);
+        private final Observable<Model> getInvalidGift(GiftEntry item) {
+            Observable<Model> observableM11076j = Observable.m11076j(new C12721k(Long.valueOf(item.getUserId())), StoreStream.INSTANCE.getUsers().observeMeId(), new Func2<Long, Long, Model>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$ModelProvider$getInvalidGift$1
+                @Override // p658rx.functions.Func2
+                public final WidgetChatListAdapterItemGift.Model call(Long l, Long l2) {
+                    C12238m.checkNotNullExpressionValue(l2, "meId");
+                    return new WidgetChatListAdapterItemGift.Model.Invalid(l, l2.longValue());
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest…lid(authorUserId, meId) }");
+            return observableM11076j;
         }
 
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ImageRequestBuilder imageRequestBuilder) {
-            invoke2(imageRequestBuilder);
-            return Unit.f27425a;
+        public static /* synthetic */ Observable getResolvedGiftModel$default(ModelProvider modelProvider, ModelGift modelGift, boolean z2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            return modelProvider.getResolvedGiftModel(modelGift, z2);
         }
 
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ImageRequestBuilder imageRequestBuilder) {
-            C12238m.checkNotNullParameter(imageRequestBuilder, "it");
-            imageRequestBuilder.f19623l = WidgetChatListAdapterItemGift.SPLASH_IMAGE_POSTPROCESSOR;
-        }
-    }
+        private final Observable<Model> getResolvedGiftModel(final ModelGift gift, final boolean redeeming) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Model> observableM11076j = Observable.m11076j(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getLibrary().observeApplications(), new Func2<MeUser, Map<Long, ? extends ModelLibraryApplication>, Model>() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$ModelProvider$getResolvedGiftModel$1
+                @Override // p658rx.functions.Func2
+                public /* bridge */ /* synthetic */ WidgetChatListAdapterItemGift.Model call(MeUser meUser, Map<Long, ? extends ModelLibraryApplication> map) {
+                    return call2(meUser, (Map<Long, ModelLibraryApplication>) map);
+                }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final /* synthetic */ class C80711 extends C12236k implements Function1<Model, Unit> {
-        public C80711(WidgetChatListAdapterItemGift widgetChatListAdapterItemGift) {
-            super(1, widgetChatListAdapterItemGift, WidgetChatListAdapterItemGift.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGift$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetChatListAdapterItemGift) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final class C80722 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C80722() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetChatListAdapterItemGift.this.configureInvalidUI(null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGift$onConfigure$3 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemGift.kt */
-    public static final class C80733 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80733() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemGift.this.subscription = subscription;
+                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                public final WidgetChatListAdapterItemGift.Model call2(MeUser meUser, Map<Long, ModelLibraryApplication> map) {
+                    WidgetChatListAdapterItemGift.Model invalid;
+                    if (gift.isExpired(ClockFactory.get().currentTimeMillis())) {
+                        User user = gift.getUser();
+                        invalid = new WidgetChatListAdapterItemGift.Model.Invalid(user != null ? Long.valueOf(user.getId()) : null, meUser.getId());
+                    } else {
+                        ModelGift modelGift = gift;
+                        C12238m.checkNotNullExpressionValue(meUser, "me");
+                        invalid = new WidgetChatListAdapterItemGift.Model.Resolved(modelGift, meUser, map != null && map.containsKey(Long.valueOf(gift.getSkuId())), redeeming);
+                    }
+                    return invalid;
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11076j, "Observable.combineLatest… me.id)\n        }\n      }");
+            return observableM11076j;
         }
     }
 

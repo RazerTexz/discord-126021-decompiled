@@ -9,16 +9,16 @@ import p007b.p195g.p196a.p205c.p219i0.C2340b;
 /* JADX INFO: compiled from: SerializerFactoryConfig.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2397o implements Serializable {
+    public final InterfaceC2249r[] _additionalKeySerializers;
+    public final InterfaceC2249r[] _additionalSerializers;
+    public final AbstractC2238g[] _modifiers;
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: j */
     public static final InterfaceC2249r[] f5097j = new InterfaceC2249r[0];
 
     /* JADX INFO: renamed from: k */
     public static final AbstractC2238g[] f5098k = new AbstractC2238g[0];
-    private static final long serialVersionUID = 1;
-    public final InterfaceC2249r[] _additionalKeySerializers;
-    public final InterfaceC2249r[] _additionalSerializers;
-    public final AbstractC2238g[] _modifiers;
 
     public C2397o() {
         InterfaceC2249r[] interfaceC2249rArr = f5097j;

@@ -17,6 +17,17 @@ public final /* data */ class DirectoryEntryGuild {
     private final GuildPreview guild;
     private final int primaryCategoryId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof DirectoryEntryGuild)) {
+            return false;
+        }
+        DirectoryEntryGuild directoryEntryGuild = (DirectoryEntryGuild) other;
+        return this.directoryChannelId == directoryEntryGuild.directoryChannelId && this.entityId == directoryEntryGuild.entityId && this.authorId == directoryEntryGuild.authorId && C12238m.areEqual(this.description, directoryEntryGuild.description) && this.primaryCategoryId == directoryEntryGuild.primaryCategoryId && C12238m.areEqual(this.guild, directoryEntryGuild.guild) && C12238m.areEqual(this.createdAt, directoryEntryGuild.createdAt);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final UtcDateTime getCreatedAt() {
         return this.createdAt;
@@ -40,17 +51,6 @@ public final /* data */ class DirectoryEntryGuild {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final GuildPreview getGuild() {
         return this.guild;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof DirectoryEntryGuild)) {
-            return false;
-        }
-        DirectoryEntryGuild directoryEntryGuild = (DirectoryEntryGuild) other;
-        return this.directoryChannelId == directoryEntryGuild.directoryChannelId && this.entityId == directoryEntryGuild.entityId && this.authorId == directoryEntryGuild.authorId && C12238m.areEqual(this.description, directoryEntryGuild.description) && this.primaryCategoryId == directoryEntryGuild.primaryCategoryId && C12238m.areEqual(this.guild, directoryEntryGuild.guild) && C12238m.areEqual(this.createdAt, directoryEntryGuild.createdAt);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

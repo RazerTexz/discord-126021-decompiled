@@ -17,7 +17,7 @@ public class TelephonyManagerCompat {
     private static Method sGetSubIdMethod;
 
     @RequiresApi(23)
-    public static class Api23Impl {
+    public class Api23Impl {
         private Api23Impl() {
         }
 
@@ -31,7 +31,7 @@ public class TelephonyManagerCompat {
     }
 
     @RequiresApi(26)
-    public static class Api26Impl {
+    public class Api26Impl {
         private Api26Impl() {
         }
 
@@ -45,7 +45,7 @@ public class TelephonyManagerCompat {
     }
 
     @RequiresApi(30)
-    public static class Api30Impl {
+    public class Api30Impl {
         private Api30Impl() {
         }
 

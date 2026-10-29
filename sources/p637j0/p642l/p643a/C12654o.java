@@ -19,7 +19,7 @@ public final class C12654o<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.o$a */
     /* JADX INFO: compiled from: OnSubscribeFromArray.java */
-    public static final class a<T> extends AtomicLong implements Producer {
+    public final class a<T> extends AtomicLong implements Producer {
         private static final long serialVersionUID = 3534218984725836979L;
         public final T[] array;
         public final Subscriber<? super T> child;

@@ -32,6 +32,12 @@ public final class WidgetChannelMembersListItemAddOrLeaveBinding implements View
         this.f15855c = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15853a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChannelMembersListItemAddOrLeaveBinding m8403a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -49,11 +55,5 @@ public final class WidgetChannelMembersListItemAddOrLeaveBinding implements View
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15853a;
     }
 }

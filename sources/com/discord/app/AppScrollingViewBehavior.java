@@ -21,7 +21,7 @@ public final class AppScrollingViewBehavior extends AppBarLayout.ScrollingViewBe
 
     /* JADX INFO: renamed from: com.discord.app.AppScrollingViewBehavior$a */
     /* JADX INFO: compiled from: AppScrollingViewBehavior.kt */
-    public static final class C5456a implements OnApplyWindowInsetsListener {
+    public final class C5456a implements OnApplyWindowInsetsListener {
 
         /* JADX INFO: renamed from: a */
         public Rect f14962a;

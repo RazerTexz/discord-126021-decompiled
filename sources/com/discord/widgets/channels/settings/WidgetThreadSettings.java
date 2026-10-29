@@ -65,26 +65,9 @@ public final class WidgetThreadSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetThreadSettings.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(long channelId, Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…RA_CHANNEL_ID, channelId)");
-            C0870j.m156d(context, WidgetThreadSettings.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetThreadSettings$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetThreadSettings.kt */
-    public static final class C76161 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C76161 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C76161() {
             super(1);
         }
@@ -104,7 +87,7 @@ public final class WidgetThreadSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetThreadSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetThreadSettings.kt */
-    public static final /* synthetic */ class C76181 extends C12236k implements Function1<WidgetThreadSettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C76181 extends C12236k implements Function1<WidgetThreadSettingsViewModel.ViewState, Unit> {
         public C76181(WidgetThreadSettings widgetThreadSettings) {
             super(1, widgetThreadSettings, WidgetThreadSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/settings/WidgetThreadSettingsViewModel$ViewState;)V", 0);
         }
@@ -124,7 +107,7 @@ public final class WidgetThreadSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetThreadSettings$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetThreadSettings.kt */
-    public static final /* synthetic */ class C76192 extends C12236k implements Function1<WidgetThreadSettingsViewModel.Event, Unit> {
+    public final /* synthetic */ class C76192 extends C12236k implements Function1<WidgetThreadSettingsViewModel.Event, Unit> {
         public C76192(WidgetThreadSettings widgetThreadSettings) {
             super(1, widgetThreadSettings, WidgetThreadSettings.class, "handleEvent", "handleEvent(Lcom/discord/widgets/channels/settings/WidgetThreadSettingsViewModel$Event;)V", 0);
         }
@@ -139,6 +122,23 @@ public final class WidgetThreadSettings extends AppFragment {
         public final void invoke2(WidgetThreadSettingsViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "p1");
             ((WidgetThreadSettings) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(long channelId, Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…RA_CHANNEL_ID, channelId)");
+            C0870j.m156d(context, WidgetThreadSettings.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -287,13 +287,6 @@ public final class WidgetThreadSettings extends AppFragment {
         }
     }
 
-    private final void setSlowmodeLabel(int cooldownSecs) {
-        WidgetTextChannelSettings.Companion companion = WidgetTextChannelSettings.INSTANCE;
-        TextView textView = getBinding().f18287h;
-        C12238m.checkNotNullExpressionValue(textView, "binding.threadSettingsSlowModeCooldownLabel");
-        companion.setDurationSecondsLabel(textView, cooldownSecs, requireContext(), C5419R.string.form_label_slowmode_off);
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -328,5 +321,12 @@ public final class WidgetThreadSettings extends AppFragment {
         C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetThreadSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76181(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetThreadSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76192(this));
+    }
+
+    private final void setSlowmodeLabel(int cooldownSecs) {
+        WidgetTextChannelSettings.Companion companion = WidgetTextChannelSettings.INSTANCE;
+        TextView textView = getBinding().f18287h;
+        C12238m.checkNotNullExpressionValue(textView, "binding.threadSettingsSlowModeCooldownLabel");
+        companion.setDurationSecondsLabel(textView, cooldownSecs, requireContext(), C5419R.string.form_label_slowmode_off);
     }
 }

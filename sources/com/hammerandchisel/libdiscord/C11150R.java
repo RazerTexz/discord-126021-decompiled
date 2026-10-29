@@ -5,7 +5,7 @@ package com.hammerandchisel.libdiscord;
 public final class C11150R {
 
     /* JADX INFO: renamed from: com.hammerandchisel.libdiscord.R$string */
-    public static final class string {
+    public final class string {
         public static final int krisp_model_version = 2131892506;
 
         private string() {

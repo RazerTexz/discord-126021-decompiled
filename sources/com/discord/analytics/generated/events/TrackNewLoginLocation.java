@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackNewLoginLocation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackNewLoginLocation implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "new_login_location";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "new_login_location";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

@@ -13,7 +13,6 @@ import p617h0.p628c.C12487s0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
-    private static final List<String> H264_HW_EXCEPTION_MODELS = Arrays.asList("SAMSUNG-SGH-I337", "Nexus 7", "Nexus 4");
     private static final int QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_L_MS = 15000;
     private static final int QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_M_MS = 20000;
     private static final int QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_N_MS = 15000;
@@ -26,9 +25,10 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Nullable
     private final EglBase14.Context sharedContext;
+    private static final List<String> H264_HW_EXCEPTION_MODELS = Arrays.asList("SAMSUNG-SGH-I337", "Nexus 7", "Nexus 4");
 
     /* JADX INFO: renamed from: org.webrtc.HardwareVideoEncoderFactory$1 */
-    public static /* synthetic */ class C129701 {
+    public /* synthetic */ class C129701 {
         public static final /* synthetic */ int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -61,6 +61,31 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return new BaseBitrateAdjuster();
     }
 
+    @Override // org.webrtc.VideoEncoderFactory
+    @Nullable
+    public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
+        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.name);
+        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
+        if (mediaCodecInfoFindCodecForType == null) {
+            return null;
+        }
+        String name = mediaCodecInfoFindCodecForType.getName();
+        String strMimeType = videoCodecMimeTypeValueOf.mimeType();
+        Integer numSelectColorFormat = MediaCodecUtils.selectColorFormat(MediaCodecUtils.TEXTURE_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(strMimeType));
+        Integer numSelectColorFormat2 = MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(strMimeType));
+        if (videoCodecMimeTypeValueOf == VideoCodecMimeType.H264) {
+            boolean zIsSameH264Profile = H264Utils.isSameH264Profile(videoCodecInfo.params, MediaCodecUtils.getCodecProperties(videoCodecMimeTypeValueOf, true));
+            boolean zIsSameH264Profile2 = H264Utils.isSameH264Profile(videoCodecInfo.params, MediaCodecUtils.getCodecProperties(videoCodecMimeTypeValueOf, false));
+            if (!zIsSameH264Profile && !zIsSameH264Profile2) {
+                return null;
+            }
+            if (zIsSameH264Profile && !isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
+                return null;
+            }
+        }
+        return new HardwareVideoEncoder(new MediaCodecWrapperFactoryImpl(), name, videoCodecMimeTypeValueOf, numSelectColorFormat, numSelectColorFormat2, videoCodecInfo.params, getKeyFrameIntervalSec(videoCodecMimeTypeValueOf), getForcedKeyFrameIntervalMs(videoCodecMimeTypeValueOf, name), createBitrateAdjuster(videoCodecMimeTypeValueOf, name), this.sharedContext);
+    }
+
     @Nullable
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
         int i = 0;
@@ -81,6 +106,11 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         }
     }
 
+    @Override // org.webrtc.VideoEncoderFactory
+    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
+        return C12487s0.m10677a(this);
+    }
+
     private int getForcedKeyFrameIntervalMs(VideoCodecMimeType videoCodecMimeType, String str) {
         if (videoCodecMimeType != VideoCodecMimeType.VP8 || !str.startsWith(MediaCodecUtils.QCOM_PREFIX)) {
             return 0;
@@ -97,6 +127,11 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return 15000;
     }
 
+    @Override // org.webrtc.VideoEncoderFactory
+    public /* synthetic */ VideoCodecInfo[] getImplementations() {
+        return C12487s0.m10678b(this);
+    }
+
     private int getKeyFrameIntervalSec(VideoCodecMimeType videoCodecMimeType) {
         int iOrdinal = videoCodecMimeType.ordinal();
         if (iOrdinal == 0 || iOrdinal == 1) {
@@ -106,6 +141,24 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             return 20;
         }
         throw new IllegalArgumentException("Unsupported VideoCodecMimeType " + videoCodecMimeType);
+    }
+
+    @Override // org.webrtc.VideoEncoderFactory
+    public VideoCodecInfo[] getSupportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264};
+        for (int i = 0; i < 3; i++) {
+            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
+            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
+            if (mediaCodecInfoFindCodecForType != null) {
+                String strName = videoCodecMimeType.name();
+                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
+                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
+                }
+                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
+            }
+        }
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
     private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
@@ -164,59 +217,6 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
         return MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null && isHardwareSupportedInCurrentSdk(mediaCodecInfo, videoCodecMimeType) && isMediaCodecAllowed(mediaCodecInfo);
-    }
-
-    @Override // org.webrtc.VideoEncoderFactory
-    @Nullable
-    public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.name);
-        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
-        if (mediaCodecInfoFindCodecForType == null) {
-            return null;
-        }
-        String name = mediaCodecInfoFindCodecForType.getName();
-        String strMimeType = videoCodecMimeTypeValueOf.mimeType();
-        Integer numSelectColorFormat = MediaCodecUtils.selectColorFormat(MediaCodecUtils.TEXTURE_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(strMimeType));
-        Integer numSelectColorFormat2 = MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(strMimeType));
-        if (videoCodecMimeTypeValueOf == VideoCodecMimeType.H264) {
-            boolean zIsSameH264Profile = H264Utils.isSameH264Profile(videoCodecInfo.params, MediaCodecUtils.getCodecProperties(videoCodecMimeTypeValueOf, true));
-            boolean zIsSameH264Profile2 = H264Utils.isSameH264Profile(videoCodecInfo.params, MediaCodecUtils.getCodecProperties(videoCodecMimeTypeValueOf, false));
-            if (!zIsSameH264Profile && !zIsSameH264Profile2) {
-                return null;
-            }
-            if (zIsSameH264Profile && !isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
-                return null;
-            }
-        }
-        return new HardwareVideoEncoder(new MediaCodecWrapperFactoryImpl(), name, videoCodecMimeTypeValueOf, numSelectColorFormat, numSelectColorFormat2, videoCodecInfo.params, getKeyFrameIntervalSec(videoCodecMimeTypeValueOf), getForcedKeyFrameIntervalMs(videoCodecMimeTypeValueOf, name), createBitrateAdjuster(videoCodecMimeTypeValueOf, name), this.sharedContext);
-    }
-
-    @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return C12487s0.m10677a(this);
-    }
-
-    @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoCodecInfo[] getImplementations() {
-        return C12487s0.m10678b(this);
-    }
-
-    @Override // org.webrtc.VideoEncoderFactory
-    public VideoCodecInfo[] getSupportedCodecs() {
-        ArrayList arrayList = new ArrayList();
-        VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264};
-        for (int i = 0; i < 3; i++) {
-            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
-            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
-            if (mediaCodecInfoFindCodecForType != null) {
-                String strName = videoCodecMimeType.name();
-                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
-                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
-                }
-                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
-            }
-        }
-        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
     public HardwareVideoEncoderFactory(EglBase.Context context, boolean z2, boolean z3, @Nullable Predicate<MediaCodecInfo> predicate) {

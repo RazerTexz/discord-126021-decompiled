@@ -53,8 +53,27 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
     private Function1<? super Integer, Unit> onScrollPositionListener;
     public StickyHeadersManager stickyHeaderManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$setupScrollObservables$2 */
     /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
-    public static final class Companion {
+    public final class C78452 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public C78452() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            WidgetExpressionPickerAdapter.this.getOnScrollPositionListener().invoke(Integer.valueOf(WidgetExpressionPickerAdapter.this.getLayoutManager().findFirstVisibleItemPosition()));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -101,7 +120,7 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
     }
 
     /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
-    public static final class StickyHeadersManager {
+    public final class StickyHeadersManager {
         private final View currentStickyHeaderView;
         private final StickyHeaderViewHolder stickyHeaderHolder;
 
@@ -129,51 +148,8 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$setupScrollObservables$2 */
-    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
-    public static final class C78452 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C78452() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            WidgetExpressionPickerAdapter.this.getOnScrollPositionListener().invoke(Integer.valueOf(WidgetExpressionPickerAdapter.this.getLayoutManager().findFirstVisibleItemPosition()));
-        }
-    }
-
     public /* synthetic */ WidgetExpressionPickerAdapter(RecyclerView recyclerView, Set set, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(recyclerView, (i & 2) != 0 ? C12146m0.setOf(0) : set);
-    }
-
-    private final void setupScrollObservables() {
-        Observable observableM11080o = Observable.m11080o(new Action1<Emitter<Unit>>() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.setupScrollObservables.1
-            @Override // p658rx.functions.Action1
-            public final void call(final Emitter<Unit> emitter) {
-                C12238m.checkNotNullParameter(emitter, "emitter");
-                WidgetExpressionPickerAdapter.this.setOnScrollListener(new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.setupScrollObservables.1.1
-                    @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
-                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                        C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-                        super.onScrolled(recyclerView, dx, dy);
-                        emitter.onNext(Unit.f27425a);
-                    }
-                });
-            }
-        }, Emitter.BackpressureMode.LATEST);
-        Observable observableM11074h0 = Observable.m11074h0(new C12666r(observableM11080o.f27640j, new LeadingEdgeThrottle(250L, TimeUnit.MILLISECONDS)));
-        C12238m.checkNotNullExpressionValue(observableM11074h0, "Observable\n        .crea…, TimeUnit.MILLISECONDS))");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(observableM11074h0), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78452());
-        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
-        if (onScrollListener != null) {
-            getRecycler().addOnScrollListener(onScrollListener);
-        }
     }
 
     public abstract StickyHeaderViewHolder createStickyHeaderViewHolder(WidgetExpressionPickerAdapter adapter);
@@ -332,6 +308,30 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
     public final void setStickyHeaderManager(StickyHeadersManager stickyHeadersManager) {
         C12238m.checkNotNullParameter(stickyHeadersManager, "<set-?>");
         this.stickyHeaderManager = stickyHeadersManager;
+    }
+
+    private final void setupScrollObservables() {
+        Observable observableM11080o = Observable.m11080o(new Action1<Emitter<Unit>>() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.setupScrollObservables.1
+            @Override // p658rx.functions.Action1
+            public final void call(final Emitter<Unit> emitter) {
+                C12238m.checkNotNullParameter(emitter, "emitter");
+                WidgetExpressionPickerAdapter.this.setOnScrollListener(new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.setupScrollObservables.1.1
+                    @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                        C12238m.checkNotNullParameter(recyclerView, "recyclerView");
+                        super.onScrolled(recyclerView, dx, dy);
+                        emitter.onNext(Unit.f27425a);
+                    }
+                });
+            }
+        }, Emitter.BackpressureMode.LATEST);
+        Observable observableM11074h0 = Observable.m11074h0(new C12666r(observableM11080o.f27640j, new LeadingEdgeThrottle(250L, TimeUnit.MILLISECONDS)));
+        C12238m.checkNotNullExpressionValue(observableM11074h0, "Observable\n        .crea…, TimeUnit.MILLISECONDS))");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(observableM11074h0), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78452());
+        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
+        if (onScrollListener != null) {
+            getRecycler().addOnScrollListener(onScrollListener);
+        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

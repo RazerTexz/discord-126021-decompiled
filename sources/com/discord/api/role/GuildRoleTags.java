@@ -15,16 +15,6 @@ public final /* data */ class GuildRoleTags implements Serializable {
     private final String skuId;
     private final String subscriptionListingId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getSubscriptionListingId() {
-        return this.subscriptionListingId;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m8210b() {
-        return this.purchasableOrHasSubscribers != null;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,6 +24,11 @@ public final /* data */ class GuildRoleTags implements Serializable {
         }
         GuildRoleTags guildRoleTags = (GuildRoleTags) other;
         return C12238m.areEqual(this.premiumSubscriber, guildRoleTags.premiumSubscriber) && C12238m.areEqual(this.botId, guildRoleTags.botId) && C12238m.areEqual(this.integrationId, guildRoleTags.integrationId) && C12238m.areEqual(this.skuId, guildRoleTags.skuId) && C12238m.areEqual(this.subscriptionListingId, guildRoleTags.subscriptionListingId) && C12238m.areEqual(this.purchasableOrHasSubscribers, guildRoleTags.purchasableOrHasSubscribers);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getSubscriptionListingId() {
+        return this.subscriptionListingId;
     }
 
     public int hashCode() {
@@ -49,6 +44,11 @@ public final /* data */ class GuildRoleTags implements Serializable {
         int iHashCode5 = (iHashCode4 + (str4 != null ? str4.hashCode() : 0)) * 31;
         NullSerializable<Object> nullSerializable2 = this.purchasableOrHasSubscribers;
         return iHashCode5 + (nullSerializable2 != null ? nullSerializable2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m8210b() {
+        return this.purchasableOrHasSubscribers != null;
     }
 
     public String toString() {

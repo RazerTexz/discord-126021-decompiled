@@ -24,7 +24,7 @@ public final class StoreExpressionSuggestions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpressionSuggestions$observeSuggestionsEnabled$1 */
     /* JADX INFO: compiled from: StoreExpressionSuggestions.kt */
-    public static final class C59291 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C59291 extends AbstractC12240o implements Function0<Boolean> {
         public C59291() {
             super(0);
         }
@@ -42,7 +42,7 @@ public final class StoreExpressionSuggestions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreExpressionSuggestions$setExpressionSuggestionsEnabled$1 */
     /* JADX INFO: compiled from: StoreExpressionSuggestions.kt */
-    public static final class C59301 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59301 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $enable;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

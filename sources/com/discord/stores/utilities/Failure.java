@@ -24,11 +24,6 @@ public final /* data */ class Failure<T> extends RestCallState<T> {
         return failure.copy(error);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Error getError() {
-        return this.error;
-    }
-
     public final Failure<T> copy(Error error) {
         C12238m.checkNotNullParameter(error, "error");
         return new Failure<>(error);
@@ -39,6 +34,11 @@ public final /* data */ class Failure<T> extends RestCallState<T> {
             return (other instanceof Failure) && C12238m.areEqual(this.error, ((Failure) other).error);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Error getError() {
+        return this.error;
     }
 
     public final Error getError() {

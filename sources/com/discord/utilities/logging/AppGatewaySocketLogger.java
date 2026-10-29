@@ -14,7 +14,7 @@ public final class AppGatewaySocketLogger implements GatewaySocketLogger {
     private final GatewaySocketLogger.LogLevel logLevel = GatewaySocketLogger.LogLevel.NONE;
 
     /* JADX INFO: compiled from: AppGatewaySocketLogger.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

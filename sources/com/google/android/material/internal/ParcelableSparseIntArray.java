@@ -12,7 +12,7 @@ public class ParcelableSparseIntArray extends SparseIntArray implements Parcelab
     public static final Parcelable.Creator<ParcelableSparseIntArray> CREATOR = new C10942a();
 
     /* JADX INFO: renamed from: com.google.android.material.internal.ParcelableSparseIntArray$a */
-    public static class C10942a implements Parcelable.Creator<ParcelableSparseIntArray> {
+    public final class C10942a implements Parcelable.Creator<ParcelableSparseIntArray> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public ParcelableSparseIntArray createFromParcel(@NonNull Parcel parcel) {

@@ -73,6 +73,11 @@ public class ChipTextInputComboView extends FrameLayout implements Checkable {
         editText.setSaveEnabled(false);
     }
 
+    @Override // android.widget.Checkable
+    public boolean isChecked() {
+        return this.f21181j.isChecked();
+    }
+
     /* JADX INFO: renamed from: a */
     public void m9152a(InputFilter inputFilter) {
         InputFilter[] filters = this.f21183l.getFilters();
@@ -97,11 +102,6 @@ public class ChipTextInputComboView extends FrameLayout implements Checkable {
         if (Build.VERSION.SDK_INT >= 24) {
             this.f21183l.setImeHintLocales(getContext().getResources().getConfiguration().getLocales());
         }
-    }
-
-    @Override // android.widget.Checkable
-    public boolean isChecked() {
-        return this.f21181j.isChecked();
     }
 
     @Override // android.view.View

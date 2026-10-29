@@ -17,7 +17,7 @@ public abstract class WidgetRun implements Dependency {
     public RunType mRunType = RunType.NONE;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1 */
-    public static /* synthetic */ class C01941 {
+    public /* synthetic */ class C01941 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
         public static final /* synthetic */ int[] f124x4c44d048;
@@ -58,51 +58,6 @@ public abstract class WidgetRun implements Dependency {
 
     public WidgetRun(ConstraintWidget constraintWidget) {
         this.widget = constraintWidget;
-    }
-
-    private void resolveDimension(int i, int i2) {
-        int i3 = this.matchConstraintsType;
-        if (i3 == 0) {
-            this.dimension.resolve(getLimitedDimension(i2, i));
-            return;
-        }
-        if (i3 == 1) {
-            this.dimension.resolve(Math.min(getLimitedDimension(this.dimension.wrapValue, i), i2));
-            return;
-        }
-        if (i3 == 2) {
-            ConstraintWidget parent = this.widget.getParent();
-            if (parent != null) {
-                DimensionDependency dimensionDependency = (i == 0 ? parent.horizontalRun : parent.verticalRun).dimension;
-                if (dimensionDependency.resolved) {
-                    ConstraintWidget constraintWidget = this.widget;
-                    this.dimension.resolve(getLimitedDimension((int) ((dimensionDependency.value * (i == 0 ? constraintWidget.mMatchConstraintPercentWidth : constraintWidget.mMatchConstraintPercentHeight)) + 0.5f), i));
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        if (i3 != 3) {
-            return;
-        }
-        ConstraintWidget constraintWidget2 = this.widget;
-        WidgetRun widgetRun = constraintWidget2.horizontalRun;
-        ConstraintWidget.DimensionBehaviour dimensionBehaviour = widgetRun.dimensionBehavior;
-        ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
-        if (dimensionBehaviour == dimensionBehaviour2 && widgetRun.matchConstraintsType == 3) {
-            VerticalWidgetRun verticalWidgetRun = constraintWidget2.verticalRun;
-            if (verticalWidgetRun.dimensionBehavior == dimensionBehaviour2 && verticalWidgetRun.matchConstraintsType == 3) {
-                return;
-            }
-        }
-        if (i == 0) {
-            widgetRun = constraintWidget2.verticalRun;
-        }
-        if (widgetRun.dimension.resolved) {
-            float dimensionRatio = constraintWidget2.getDimensionRatio();
-            this.dimension.resolve(i == 1 ? (int) ((widgetRun.dimension.value / dimensionRatio) + 0.5f) : (int) ((dimensionRatio * widgetRun.dimension.value) + 0.5f));
-        }
     }
 
     public final void addTarget(DependencyNode dependencyNode, DependencyNode dependencyNode2, int i) {
@@ -202,6 +157,51 @@ public abstract class WidgetRun implements Dependency {
     }
 
     public abstract void reset();
+
+    private void resolveDimension(int i, int i2) {
+        int i3 = this.matchConstraintsType;
+        if (i3 == 0) {
+            this.dimension.resolve(getLimitedDimension(i2, i));
+            return;
+        }
+        if (i3 == 1) {
+            this.dimension.resolve(Math.min(getLimitedDimension(this.dimension.wrapValue, i), i2));
+            return;
+        }
+        if (i3 == 2) {
+            ConstraintWidget parent = this.widget.getParent();
+            if (parent != null) {
+                DimensionDependency dimensionDependency = (i == 0 ? parent.horizontalRun : parent.verticalRun).dimension;
+                if (dimensionDependency.resolved) {
+                    ConstraintWidget constraintWidget = this.widget;
+                    this.dimension.resolve(getLimitedDimension((int) ((dimensionDependency.value * (i == 0 ? constraintWidget.mMatchConstraintPercentWidth : constraintWidget.mMatchConstraintPercentHeight)) + 0.5f), i));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        if (i3 != 3) {
+            return;
+        }
+        ConstraintWidget constraintWidget2 = this.widget;
+        WidgetRun widgetRun = constraintWidget2.horizontalRun;
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour = widgetRun.dimensionBehavior;
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
+        if (dimensionBehaviour == dimensionBehaviour2 && widgetRun.matchConstraintsType == 3) {
+            VerticalWidgetRun verticalWidgetRun = constraintWidget2.verticalRun;
+            if (verticalWidgetRun.dimensionBehavior == dimensionBehaviour2 && verticalWidgetRun.matchConstraintsType == 3) {
+                return;
+            }
+        }
+        if (i == 0) {
+            widgetRun = constraintWidget2.verticalRun;
+        }
+        if (widgetRun.dimension.resolved) {
+            float dimensionRatio = constraintWidget2.getDimensionRatio();
+            this.dimension.resolve(i == 1 ? (int) ((widgetRun.dimension.value / dimensionRatio) + 0.5f) : (int) ((dimensionRatio * widgetRun.dimension.value) + 0.5f));
+        }
+    }
 
     public abstract boolean supportsWrapComputation();
 

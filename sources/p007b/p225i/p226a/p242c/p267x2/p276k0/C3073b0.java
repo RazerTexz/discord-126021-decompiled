@@ -60,40 +60,6 @@ public final class C3073b0 implements InterfaceC3031h {
     /* JADX INFO: renamed from: d */
     public final C3071a0 f8577d = new C3071a0();
 
-    /* JADX INFO: renamed from: b.i.a.c.x2.k0.b0$a */
-    /* JADX INFO: compiled from: PsExtractor.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC3094o f8585a;
-
-        /* JADX INFO: renamed from: b */
-        public final C2736d0 f8586b;
-
-        /* JADX INFO: renamed from: c */
-        public final C2756w f8587c = new C2756w(new byte[64]);
-
-        /* JADX INFO: renamed from: d */
-        public boolean f8588d;
-
-        /* JADX INFO: renamed from: e */
-        public boolean f8589e;
-
-        /* JADX INFO: renamed from: f */
-        public boolean f8590f;
-
-        /* JADX INFO: renamed from: g */
-        public int f8591g;
-
-        /* JADX INFO: renamed from: h */
-        public long f8592h;
-
-        public a(InterfaceC3094o interfaceC3094o, C2736d0 c2736d0) {
-            this.f8585a = interfaceC3094o;
-            this.f8586b = c2736d0;
-        }
-    }
-
     static {
         C3076d c3076d = new InterfaceC3106l() { // from class: b.i.a.c.x2.k0.d
             @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3106l
@@ -371,5 +337,39 @@ public final class C3073b0 implements InterfaceC3031h {
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
     public void release() {
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.k0.b0$a */
+    /* JADX INFO: compiled from: PsExtractor.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC3094o f8585a;
+
+        /* JADX INFO: renamed from: b */
+        public final C2736d0 f8586b;
+
+        /* JADX INFO: renamed from: d */
+        public boolean f8588d;
+
+        /* JADX INFO: renamed from: e */
+        public boolean f8589e;
+
+        /* JADX INFO: renamed from: f */
+        public boolean f8590f;
+
+        /* JADX INFO: renamed from: g */
+        public int f8591g;
+
+        /* JADX INFO: renamed from: h */
+        public long f8592h;
+
+        /* JADX INFO: renamed from: c */
+        public final C2756w f8587c = new C2756w(new byte[64]);
+
+        public a(InterfaceC3094o interfaceC3094o, C2736d0 c2736d0) {
+            this.f8585a = interfaceC3094o;
+            this.f8586b = c2736d0;
+        }
     }
 }

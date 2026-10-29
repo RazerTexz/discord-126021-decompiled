@@ -26,9 +26,6 @@ import p007b.p195g.p196a.p198b.p204t.C2151m;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2134d extends AbstractC2132b {
 
-    /* JADX INFO: renamed from: x */
-    public static final char[] f4576x = (char[]) C2121a.f4536a.clone();
-
     /* JADX INFO: renamed from: A */
     public char[] f4577A;
 
@@ -49,6 +46,9 @@ public class C2134d extends AbstractC2132b {
 
     /* JADX INFO: renamed from: z */
     public char f4583z;
+
+    /* JADX INFO: renamed from: x */
+    public static final char[] f4576x = (char[]) C2121a.f4536a.clone();
 
     public C2134d(C2123c c2123c, int i, AbstractC2113i abstractC2113i, Writer writer, char c) {
         int[] iArr;
@@ -81,11 +81,53 @@ public class C2134d extends AbstractC2132b {
         }
     }
 
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: A */
-    public void mo1631A() throws IOException {
-        mo1693t0("write a null");
-        m1721H0();
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        if (this.f4577A != null && mo1652d(AbstractC2108d.a.AUTO_CLOSE_JSON_CONTENT)) {
+            while (true) {
+                C2133c c2133c = this.f4531q;
+                if (!c2133c.m1674b()) {
+                    if (!c2133c.m1675c()) {
+                        break;
+                    } else {
+                        mo1664u();
+                    }
+                } else {
+                    mo1663t();
+                }
+            }
+        }
+        m1715B0();
+        this.f4578B = 0;
+        this.f4579C = 0;
+        if (this.f4582y != null) {
+            if (this.f4565s.f4546b || mo1652d(AbstractC2108d.a.AUTO_CLOSE_TARGET)) {
+                this.f4582y.close();
+            } else if (mo1652d(AbstractC2108d.a.FLUSH_PASSED_TO_STREAM)) {
+                this.f4582y.flush();
+            }
+        }
+        char[] cArr = this.f4577A;
+        if (cArr != null) {
+            this.f4577A = null;
+            C2123c c2123c = this.f4565s;
+            Objects.requireNonNull(c2123c);
+            char[] cArr2 = c2123c.f4549e;
+            if (cArr != cArr2 && cArr.length < cArr2.length) {
+                throw new IllegalArgumentException("Trying to release buffer smaller than original");
+            }
+            c2123c.f4549e = null;
+            c2123c.f4547c.f4594d.set(1, cArr);
+        }
+    }
+
+    @Override // java.io.Flushable
+    public void flush() throws IOException {
+        m1715B0();
+        if (this.f4582y == null || !mo1652d(AbstractC2108d.a.FLUSH_PASSED_TO_STREAM)) {
+            return;
+        }
+        this.f4582y.flush();
     }
 
     /* JADX INFO: renamed from: A0 */
@@ -148,20 +190,6 @@ public class C2134d extends AbstractC2132b {
             this.f4579C = 0;
             this.f4582y.write(this.f4577A, i2, i3);
         }
-    }
-
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: C */
-    public void mo1632C(double d) throws IOException {
-        if (!this.f4530p) {
-            String str = C2127g.f4554a;
-            if (!(Double.isNaN(d) || Double.isInfinite(d)) || !mo1652d(AbstractC2108d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
-                mo1693t0("write a number");
-                mo1642T(String.valueOf(d));
-                return;
-            }
-        }
-        mo1658j0(String.valueOf(d));
     }
 
     /* JADX INFO: renamed from: C0 */
@@ -233,20 +261,6 @@ public class C2134d extends AbstractC2132b {
         cArr[i4] = cArr5[c >> 4];
         cArr[i14] = cArr5[c & 15];
         return i14 - 5;
-    }
-
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: D */
-    public void mo1633D(float f) throws IOException {
-        if (!this.f4530p) {
-            String str = C2127g.f4554a;
-            if (!(Float.isNaN(f) || Float.isInfinite(f)) || !mo1652d(AbstractC2108d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
-                mo1693t0("write a number");
-                mo1642T(String.valueOf(f));
-                return;
-            }
-        }
-        mo1658j0(String.valueOf(f));
     }
 
     /* JADX INFO: renamed from: D0 */
@@ -460,32 +474,6 @@ public class C2134d extends AbstractC2132b {
         return i - i3;
     }
 
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: H */
-    public void mo1634H(int i) throws IOException {
-        mo1693t0("write a number");
-        if (!this.f4530p) {
-            if (this.f4579C + 11 >= this.f4580D) {
-                m1715B0();
-            }
-            this.f4579C = C2127g.m1701d(i, this.f4577A, this.f4579C);
-            return;
-        }
-        if (this.f4579C + 13 >= this.f4580D) {
-            m1715B0();
-        }
-        char[] cArr = this.f4577A;
-        int i2 = this.f4579C;
-        int i3 = i2 + 1;
-        this.f4579C = i3;
-        cArr[i2] = this.f4583z;
-        int iM1701d = C2127g.m1701d(i, cArr, i3);
-        this.f4579C = iM1701d;
-        char[] cArr2 = this.f4577A;
-        this.f4579C = iM1701d + 1;
-        cArr2[iM1701d] = this.f4583z;
-    }
-
     /* JADX INFO: renamed from: H0 */
     public final void m1721H0() throws IOException {
         if (this.f4579C + 4 >= this.f4580D) {
@@ -501,32 +489,6 @@ public class C2134d extends AbstractC2132b {
         int i4 = i3 + 1;
         cArr[i4] = 'l';
         this.f4579C = i4 + 1;
-    }
-
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: I */
-    public void mo1635I(long j) throws IOException {
-        mo1693t0("write a number");
-        if (!this.f4530p) {
-            if (this.f4579C + 21 >= this.f4580D) {
-                m1715B0();
-            }
-            this.f4579C = C2127g.m1702e(j, this.f4577A, this.f4579C);
-            return;
-        }
-        if (this.f4579C + 23 >= this.f4580D) {
-            m1715B0();
-        }
-        char[] cArr = this.f4577A;
-        int i = this.f4579C;
-        int i2 = i + 1;
-        this.f4579C = i2;
-        cArr[i] = this.f4583z;
-        int iM1702e = C2127g.m1702e(j, cArr, i2);
-        this.f4579C = iM1702e;
-        char[] cArr2 = this.f4577A;
-        this.f4579C = iM1702e + 1;
-        cArr2[iM1702e] = this.f4583z;
     }
 
     /* JADX INFO: renamed from: I0 */
@@ -546,19 +508,6 @@ public class C2134d extends AbstractC2132b {
         int i2 = this.f4579C;
         this.f4579C = i2 + 1;
         cArr2[i2] = this.f4583z;
-    }
-
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
-    /* JADX INFO: renamed from: J */
-    public void mo1636J(String str) throws IOException {
-        mo1693t0("write a number");
-        if (str == null) {
-            m1721H0();
-        } else if (this.f4530p) {
-            m1722I0(str);
-        } else {
-            mo1642T(str);
-        }
     }
 
     /* JADX WARN: Code duplicated, block: B:101:0x00e3 A[SYNTHETIC] */
@@ -736,6 +685,113 @@ public class C2134d extends AbstractC2132b {
             } else {
                 i16 = i19;
             }
+        }
+    }
+
+    /* JADX INFO: renamed from: z0 */
+    public final char[] m1724z0() {
+        char[] cArr = {'\\', 0, '\\', 'u', '0', '0', 0, 0, '\\', 'u', 0, 0, 0, 0};
+        this.f4581E = cArr;
+        return cArr;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: A */
+    public void mo1631A() throws IOException {
+        mo1693t0("write a null");
+        m1721H0();
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: C */
+    public void mo1632C(double d) throws IOException {
+        if (!this.f4530p) {
+            String str = C2127g.f4554a;
+            if (!(Double.isNaN(d) || Double.isInfinite(d)) || !mo1652d(AbstractC2108d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
+                mo1693t0("write a number");
+                mo1642T(String.valueOf(d));
+                return;
+            }
+        }
+        mo1658j0(String.valueOf(d));
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: D */
+    public void mo1633D(float f) throws IOException {
+        if (!this.f4530p) {
+            String str = C2127g.f4554a;
+            if (!(Float.isNaN(f) || Float.isInfinite(f)) || !mo1652d(AbstractC2108d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
+                mo1693t0("write a number");
+                mo1642T(String.valueOf(f));
+                return;
+            }
+        }
+        mo1658j0(String.valueOf(f));
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: H */
+    public void mo1634H(int i) throws IOException {
+        mo1693t0("write a number");
+        if (!this.f4530p) {
+            if (this.f4579C + 11 >= this.f4580D) {
+                m1715B0();
+            }
+            this.f4579C = C2127g.m1701d(i, this.f4577A, this.f4579C);
+            return;
+        }
+        if (this.f4579C + 13 >= this.f4580D) {
+            m1715B0();
+        }
+        char[] cArr = this.f4577A;
+        int i2 = this.f4579C;
+        int i3 = i2 + 1;
+        this.f4579C = i3;
+        cArr[i2] = this.f4583z;
+        int iM1701d = C2127g.m1701d(i, cArr, i3);
+        this.f4579C = iM1701d;
+        char[] cArr2 = this.f4577A;
+        this.f4579C = iM1701d + 1;
+        cArr2[iM1701d] = this.f4583z;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: I */
+    public void mo1635I(long j) throws IOException {
+        mo1693t0("write a number");
+        if (!this.f4530p) {
+            if (this.f4579C + 21 >= this.f4580D) {
+                m1715B0();
+            }
+            this.f4579C = C2127g.m1702e(j, this.f4577A, this.f4579C);
+            return;
+        }
+        if (this.f4579C + 23 >= this.f4580D) {
+            m1715B0();
+        }
+        char[] cArr = this.f4577A;
+        int i = this.f4579C;
+        int i2 = i + 1;
+        this.f4579C = i2;
+        cArr[i] = this.f4583z;
+        int iM1702e = C2127g.m1702e(j, cArr, i2);
+        this.f4579C = iM1702e;
+        char[] cArr2 = this.f4577A;
+        this.f4579C = iM1702e + 1;
+        cArr2[iM1702e] = this.f4583z;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2108d
+    /* JADX INFO: renamed from: J */
+    public void mo1636J(String str) throws IOException {
+        mo1693t0("write a number");
+        if (str == null) {
+            m1721H0();
+        } else if (this.f4530p) {
+            m1722I0(str);
+        } else {
+            mo1642T(str);
         }
     }
 
@@ -945,46 +1001,6 @@ public class C2134d extends AbstractC2132b {
         cArr[i] = '{';
     }
 
-    @Override // p007b.p195g.p196a.p198b.AbstractC2108d, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        if (this.f4577A != null && mo1652d(AbstractC2108d.a.AUTO_CLOSE_JSON_CONTENT)) {
-            while (true) {
-                C2133c c2133c = this.f4531q;
-                if (!c2133c.m1674b()) {
-                    if (!c2133c.m1675c()) {
-                        break;
-                    } else {
-                        mo1664u();
-                    }
-                } else {
-                    mo1663t();
-                }
-            }
-        }
-        m1715B0();
-        this.f4578B = 0;
-        this.f4579C = 0;
-        if (this.f4582y != null) {
-            if (this.f4565s.f4546b || mo1652d(AbstractC2108d.a.AUTO_CLOSE_TARGET)) {
-                this.f4582y.close();
-            } else if (mo1652d(AbstractC2108d.a.FLUSH_PASSED_TO_STREAM)) {
-                this.f4582y.flush();
-            }
-        }
-        char[] cArr = this.f4577A;
-        if (cArr != null) {
-            this.f4577A = null;
-            C2123c c2123c = this.f4565s;
-            Objects.requireNonNull(c2123c);
-            char[] cArr2 = c2123c.f4549e;
-            if (cArr != cArr2 && cArr.length < cArr2.length) {
-                throw new IllegalArgumentException("Trying to release buffer smaller than original");
-            }
-            c2123c.f4549e = null;
-            c2123c.f4547c.f4594d.set(1, cArr);
-        }
-    }
-
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: d0 */
     public void mo1653d0(Object obj) throws IOException {
@@ -1052,15 +1068,6 @@ public class C2134d extends AbstractC2132b {
             this.f4565s.m1695a(andSet);
             throw th;
         }
-    }
-
-    @Override // java.io.Flushable
-    public void flush() throws IOException {
-        m1715B0();
-        if (this.f4582y == null || !mo1652d(AbstractC2108d.a.FLUSH_PASSED_TO_STREAM)) {
-            return;
-        }
-        this.f4582y.flush();
     }
 
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
@@ -1351,74 +1358,6 @@ public class C2134d extends AbstractC2132b {
         this.f4531q = c2133c.f4570c;
     }
 
-    @Override // p007b.p195g.p196a.p198b.p199o.AbstractC2119a
-    /* JADX INFO: renamed from: t0 */
-    public final void mo1693t0(String str) throws IOException {
-        char c;
-        int iM1713m = this.f4531q.m1713m();
-        InterfaceC2114j interfaceC2114j = this.f4466l;
-        if (interfaceC2114j == null) {
-            if (iM1713m == 1) {
-                c = ',';
-            } else {
-                if (iM1713m != 2) {
-                    if (iM1713m != 3) {
-                        if (iM1713m != 5) {
-                            return;
-                        }
-                        m1704x0(str);
-                        throw null;
-                    }
-                    InterfaceC2115k interfaceC2115k = this.f4568v;
-                    if (interfaceC2115k != null) {
-                        mo1642T(interfaceC2115k.getValue());
-                        return;
-                    }
-                    return;
-                }
-                c = MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR;
-            }
-            if (this.f4579C >= this.f4580D) {
-                m1715B0();
-            }
-            char[] cArr = this.f4577A;
-            int i = this.f4579C;
-            this.f4579C = i + 1;
-            cArr[i] = c;
-            return;
-        }
-        if (iM1713m == 0) {
-            if (this.f4531q.m1674b()) {
-                this.f4466l.mo1684h(this);
-                return;
-            } else {
-                if (this.f4531q.m1675c()) {
-                    this.f4466l.mo1681d(this);
-                    return;
-                }
-                return;
-            }
-        }
-        if (iM1713m == 1) {
-            interfaceC2114j.mo1680c(this);
-            return;
-        }
-        if (iM1713m == 2) {
-            interfaceC2114j.mo1687k(this);
-            return;
-        }
-        if (iM1713m == 3) {
-            interfaceC2114j.mo1679b(this);
-        } else {
-            if (iM1713m != 5) {
-                int i2 = C2151m.f4617a;
-                throw new RuntimeException("Internal error: this code path should never get executed");
-            }
-            m1704x0(str);
-            throw null;
-        }
-    }
-
     @Override // p007b.p195g.p196a.p198b.AbstractC2108d
     /* JADX INFO: renamed from: u */
     public void mo1664u() throws IOException {
@@ -1587,10 +1526,71 @@ public class C2134d extends AbstractC2132b {
         cArr5[i5] = this.f4583z;
     }
 
-    /* JADX INFO: renamed from: z0 */
-    public final char[] m1724z0() {
-        char[] cArr = {'\\', 0, '\\', 'u', '0', '0', 0, 0, '\\', 'u', 0, 0, 0, 0};
-        this.f4581E = cArr;
-        return cArr;
+    @Override // p007b.p195g.p196a.p198b.p199o.AbstractC2119a
+    /* JADX INFO: renamed from: t0 */
+    public final void mo1693t0(String str) throws IOException {
+        char c;
+        int iM1713m = this.f4531q.m1713m();
+        InterfaceC2114j interfaceC2114j = this.f4466l;
+        if (interfaceC2114j == null) {
+            if (iM1713m == 1) {
+                c = ',';
+            } else {
+                if (iM1713m != 2) {
+                    if (iM1713m != 3) {
+                        if (iM1713m != 5) {
+                            return;
+                        }
+                        m1704x0(str);
+                        throw null;
+                    }
+                    InterfaceC2115k interfaceC2115k = this.f4568v;
+                    if (interfaceC2115k != null) {
+                        mo1642T(interfaceC2115k.getValue());
+                        return;
+                    }
+                    return;
+                }
+                c = MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR;
+            }
+            if (this.f4579C >= this.f4580D) {
+                m1715B0();
+            }
+            char[] cArr = this.f4577A;
+            int i = this.f4579C;
+            this.f4579C = i + 1;
+            cArr[i] = c;
+            return;
+        }
+        if (iM1713m == 0) {
+            if (this.f4531q.m1674b()) {
+                this.f4466l.mo1684h(this);
+                return;
+            } else {
+                if (this.f4531q.m1675c()) {
+                    this.f4466l.mo1681d(this);
+                    return;
+                }
+                return;
+            }
+        }
+        if (iM1713m == 1) {
+            interfaceC2114j.mo1680c(this);
+            return;
+        }
+        if (iM1713m == 2) {
+            interfaceC2114j.mo1687k(this);
+            return;
+        }
+        if (iM1713m == 3) {
+            interfaceC2114j.mo1679b(this);
+        } else {
+            if (iM1713m != 5) {
+                int i2 = C2151m.f4617a;
+                throw new RuntimeException("Internal error: this code path should never get executed");
+            }
+            m1704x0(str);
+            throw null;
+        }
     }
 }

@@ -13,23 +13,23 @@ import lombok.installer.OsUtils;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/StandardProductDescriptor.SCL.lombok */
 public class StandardProductDescriptor implements EclipseProductDescriptor {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS;
+    private final String directoryName;
+    private final List<String> executableNames;
+    private final URL ideIcon;
+    private final String iniFileName;
+    private final Pattern locationSelectors;
+    private final String macAppName;
+    private final String productName;
+    private final List<String> sourceDirsOnMac;
+    private final List<String> sourceDirsOnUnix;
+    private final List<String> sourceDirsOnWindows;
+    private final String unixName;
+    private final String windowsName;
     private static final String USER_HOME = System.getProperty("user.home", ".");
     private static final String[] WINDOWS_ROOTS = windowsRoots();
     private static final String[] MAC_ROOTS = {"/Applications", USER_HOME};
     private static final String[] UNIX_ROOTS = {USER_HOME};
-    private final String productName;
-    private final String windowsName;
-    private final String unixName;
-    private final String macAppName;
-    private final List<String> executableNames;
-    private final List<String> sourceDirsOnWindows;
-    private final List<String> sourceDirsOnMac;
-    private final List<String> sourceDirsOnUnix;
-    private final String iniFileName;
-    private final Pattern locationSelectors;
-    private final String directoryName;
-    private final URL ideIcon;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS() {
         int[] iArr = $SWITCH_TABLE$lombok$installer$OsUtils$OS;

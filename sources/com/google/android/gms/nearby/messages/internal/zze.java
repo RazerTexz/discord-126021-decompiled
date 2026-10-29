@@ -35,6 +35,15 @@ public final class zze extends AbstractSafeParcelable implements Distance {
         this.f20814l = d;
     }
 
+    @Override // java.lang.Comparable
+    /* JADX INFO: renamed from: w0, reason: merged with bridge method [inline-methods] */
+    public final int compareTo(@NonNull Distance distance) {
+        if (Double.isNaN(this.f20814l) && Double.isNaN(distance.mo9120r0())) {
+            return 0;
+        }
+        return Double.compare(this.f20814l, distance.mo9120r0());
+    }
+
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -62,15 +71,6 @@ public final class zze extends AbstractSafeParcelable implements Distance {
         objArr[0] = Double.valueOf(this.f20814l);
         objArr[1] = this.f20813k != 1 ? "UNKNOWN" : "LOW";
         return String.format(locale, "(%.1fm, %s)", objArr);
-    }
-
-    @Override // java.lang.Comparable
-    /* JADX INFO: renamed from: w0, reason: merged with bridge method [inline-methods] */
-    public final int compareTo(@NonNull Distance distance) {
-        if (Double.isNaN(this.f20814l) && Double.isNaN(distance.mo9120r0())) {
-            return 0;
-        }
-        return Double.compare(this.f20814l, distance.mo9120r0());
     }
 
     @Override // android.os.Parcelable

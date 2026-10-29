@@ -18,25 +18,6 @@ public abstract class DocumentFile {
         this.mParent = documentFile;
     }
 
-    @NonNull
-    public static DocumentFile fromFile(@NonNull File file) {
-        return new RawDocumentFile(null, file);
-    }
-
-    @Nullable
-    public static DocumentFile fromSingleUri(@NonNull Context context, @NonNull Uri uri) {
-        return new SingleDocumentFile(null, context, uri);
-    }
-
-    @Nullable
-    public static DocumentFile fromTreeUri(@NonNull Context context, @NonNull Uri uri) {
-        return new TreeDocumentFile(null, context, DocumentsContract.buildDocumentUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri)));
-    }
-
-    public static boolean isDocumentUri(@NonNull Context context, @Nullable Uri uri) {
-        return DocumentsContract.isDocumentUri(context, uri);
-    }
-
     public abstract boolean canRead();
 
     public abstract boolean canWrite();
@@ -61,6 +42,21 @@ public abstract class DocumentFile {
         return null;
     }
 
+    @NonNull
+    public static DocumentFile fromFile(@NonNull File file) {
+        return new RawDocumentFile(null, file);
+    }
+
+    @Nullable
+    public static DocumentFile fromSingleUri(@NonNull Context context, @NonNull Uri uri) {
+        return new SingleDocumentFile(null, context, uri);
+    }
+
+    @Nullable
+    public static DocumentFile fromTreeUri(@NonNull Context context, @NonNull Uri uri) {
+        return new TreeDocumentFile(null, context, DocumentsContract.buildDocumentUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri)));
+    }
+
     @Nullable
     public abstract String getName();
 
@@ -76,6 +72,10 @@ public abstract class DocumentFile {
     public abstract Uri getUri();
 
     public abstract boolean isDirectory();
+
+    public static boolean isDocumentUri(@NonNull Context context, @Nullable Uri uri) {
+        return DocumentsContract.isDocumentUri(context, uri);
+    }
 
     public abstract boolean isFile();
 

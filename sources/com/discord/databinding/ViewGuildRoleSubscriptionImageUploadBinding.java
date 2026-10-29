@@ -47,6 +47,12 @@ public final class ViewGuildRoleSubscriptionImageUploadBinding implements ViewBi
         this.f15482f = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15477a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewGuildRoleSubscriptionImageUploadBinding m8397a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -73,11 +79,5 @@ public final class ViewGuildRoleSubscriptionImageUploadBinding implements ViewBi
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15477a;
     }
 }

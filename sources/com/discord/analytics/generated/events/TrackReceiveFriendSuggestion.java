@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackReceiveFriendSuggestion.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackReceiveFriendSuggestion implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long suggestedUserId = null;
-    private final CharSequence platformType = null;
+    private final Boolean dispatched = null;
     private final Boolean isNonMutual = null;
     private final Boolean isReverseSuggestion = null;
-    private final Boolean dispatched = null;
-    private final Boolean pushNotificationSent = null;
     private final Boolean namePresent = null;
+    private final CharSequence platformType = null;
+    private final Boolean pushNotificationSent = null;
+    private final Long suggestedUserId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "receive_friend_suggestion";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackReceiveFriendSuggestion implements AnalyticsS
         }
         TrackReceiveFriendSuggestion trackReceiveFriendSuggestion = (TrackReceiveFriendSuggestion) other;
         return C12238m.areEqual(this.suggestedUserId, trackReceiveFriendSuggestion.suggestedUserId) && C12238m.areEqual(this.platformType, trackReceiveFriendSuggestion.platformType) && C12238m.areEqual(this.isNonMutual, trackReceiveFriendSuggestion.isNonMutual) && C12238m.areEqual(this.isReverseSuggestion, trackReceiveFriendSuggestion.isReverseSuggestion) && C12238m.areEqual(this.dispatched, trackReceiveFriendSuggestion.dispatched) && C12238m.areEqual(this.pushNotificationSent, trackReceiveFriendSuggestion.pushNotificationSent) && C12238m.areEqual(this.namePresent, trackReceiveFriendSuggestion.namePresent);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

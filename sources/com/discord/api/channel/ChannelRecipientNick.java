@@ -16,21 +16,6 @@ public final /* data */ class ChannelRecipientNick {
         this.nick = str;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final long m7664b() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final String getNick() {
-        return this.nick;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -42,11 +27,26 @@ public final /* data */ class ChannelRecipientNick {
         return this.id == channelRecipientNick.id && C12238m.areEqual(this.nick, channelRecipientNick.nick);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final String getNick() {
+        return this.nick;
+    }
+
     public int hashCode() {
         long j = this.id;
         int i = ((int) (j ^ (j >>> 32))) * 31;
         String str = this.nick;
         return i + (str != null ? str.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final long m7664b() {
+        return this.id;
     }
 
     public String toString() {

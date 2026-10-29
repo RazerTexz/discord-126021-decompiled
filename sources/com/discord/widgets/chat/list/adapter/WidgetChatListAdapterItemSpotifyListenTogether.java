@@ -66,8 +66,48 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     /* JADX INFO: renamed from: userAdapter$delegate, reason: from kotlin metadata */
     private final Lazy userAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-    public static final /* data */ class Model {
+    public final class C81181 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C81181() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemSpotifyListenTogether.this.subscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final class C81192 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C81192() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "it");
+            WidgetChatListAdapterItemSpotifyListenTogether.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -77,7 +117,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         private final List<CollapsedUser> users;
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -135,6 +175,10 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
             this.isMe = z2;
         }
 
+        public final List<CollapsedUser> component2() {
+            return this.users;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, Presence presence, List list, SpotifyListenTogetherEntry spotifyListenTogetherEntry, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -150,25 +194,6 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
                 z2 = model.isMe;
             }
             return model.copy(presence, list, spotifyListenTogetherEntry, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
-        }
-
-        public final List<CollapsedUser> component2() {
-            return this.users;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final SpotifyListenTogetherEntry getItem() {
-            return this.item;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsMe() {
-            return this.isMe;
         }
 
         public final Model copy(Presence presence, List<CollapsedUser> users, SpotifyListenTogetherEntry item, boolean isMe) {
@@ -188,8 +213,23 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
             return C12238m.areEqual(this.presence, model.presence) && C12238m.areEqual(this.users, model.users) && C12238m.areEqual(this.item, model.item) && this.isMe == model.isMe;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final SpotifyListenTogetherEntry getItem() {
             return this.item;
+        }
+
+        public final SpotifyListenTogetherEntry getItem() {
+            return this.item;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
         }
 
         public final Presence getPresence() {
@@ -233,46 +273,6 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
             sbM833U.append(this.item);
             sbM833U.append(", isMe=");
             return C1643a.m827O(sbM833U, this.isMe, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-    public static final class C81181 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C81181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemSpotifyListenTogether.this.subscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-    public static final class C81192 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C81192() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "it");
-            WidgetChatListAdapterItemSpotifyListenTogether.this.configureUI(model);
         }
     }
 
@@ -394,6 +394,11 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         return string;
     }
 
+    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+    public Subscription getSubscription() {
+        return this.subscription;
+    }
+
     private final WidgetCollapsedUsersListAdapter getUserAdapter() {
         return (WidgetCollapsedUsersListAdapter) this.userAdapter.getValue();
     }
@@ -403,11 +408,6 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         String id2;
         Activity spotifyListeningActivity = presence != null ? PresenceUtils.INSTANCE.getSpotifyListeningActivity(presence) : null;
         return !((spotifyListeningActivity == null || (party = spotifyListeningActivity.getParty()) == null || (id2 = party.getId()) == null) ? false : id2.equals(item.getActivity().getPartyId())) || TimeUtils.parseSnowflake(Long.valueOf(item.getMessageId())) + EMBED_LIFETIME_MILLIS < ClockFactory.get().currentTimeMillis();
-    }
-
-    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public Subscription getSubscription() {
-        return this.subscription;
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

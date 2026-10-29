@@ -11,14 +11,10 @@ import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
 /* JADX INFO: compiled from: Maps.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12166x implements Map, Serializable, InterfaceC12228a {
+    private static final long serialVersionUID = 8246714829545688274L;
 
     /* JADX INFO: renamed from: j */
     public static final C12166x f25222j = new C12166x();
-    private static final long serialVersionUID = 8246714829545688274L;
-
-    private final Object readResolve() {
-        return f25222j;
-    }
 
     @Override // java.util.Map
     public void clear() {
@@ -102,6 +98,10 @@ public final class C12166x implements Map, Serializable, InterfaceC12228a {
     @Override // java.util.Map
     public void putAll(Map map) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    private final Object readResolve() {
+        return f25222j;
     }
 
     @Override // java.util.Map

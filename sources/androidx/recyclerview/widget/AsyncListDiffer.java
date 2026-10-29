@@ -12,7 +12,6 @@ import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AsyncListDiffer<T> {
-    private static final Executor sMainThreadExecutor = new MainThreadExecutor();
     public final AsyncDifferConfig<T> mConfig;
 
     @Nullable
@@ -24,32 +23,14 @@ public class AsyncListDiffer<T> {
     @NonNull
     private List<T> mReadOnlyList;
     private final ListUpdateCallback mUpdateCallback;
+    private static final Executor sMainThreadExecutor = new MainThreadExecutor();
 
     public interface ListListener<T> {
         void onCurrentListChanged(@NonNull List<T> list, @NonNull List<T> list2);
     }
 
-    public static class MainThreadExecutor implements Executor {
-        public final Handler mHandler = new Handler(Looper.getMainLooper());
-
-        @Override // java.util.concurrent.Executor
-        public void execute(@NonNull Runnable runnable) {
-            this.mHandler.post(runnable);
-        }
-    }
-
     public AsyncListDiffer(@NonNull RecyclerView.Adapter adapter, @NonNull DiffUtil.ItemCallback<T> itemCallback) {
         this(new AdapterListUpdateCallback(adapter), new AsyncDifferConfig.Builder(itemCallback).build());
-    }
-
-    private void onCurrentListChanged(@NonNull List<T> list, @Nullable Runnable runnable) {
-        Iterator<ListListener<T>> it = this.mListeners.iterator();
-        while (it.hasNext()) {
-            it.next().onCurrentListChanged(list, this.mReadOnlyList);
-        }
-        if (runnable != null) {
-            runnable.run();
-        }
     }
 
     public void addListListener(@NonNull ListListener<T> listListener) {
@@ -69,12 +50,31 @@ public class AsyncListDiffer<T> {
         onCurrentListChanged(list2, runnable);
     }
 
+    private void onCurrentListChanged(@NonNull List<T> list, @Nullable Runnable runnable) {
+        Iterator<ListListener<T>> it = this.mListeners.iterator();
+        while (it.hasNext()) {
+            it.next().onCurrentListChanged(list, this.mReadOnlyList);
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
     public void removeListListener(@NonNull ListListener<T> listListener) {
         this.mListeners.remove(listListener);
     }
 
     public void submitList(@Nullable List<T> list) {
         submitList(list, null);
+    }
+
+    public class MainThreadExecutor implements Executor {
+        public final Handler mHandler = new Handler(Looper.getMainLooper());
+
+        @Override // java.util.concurrent.Executor
+        public void execute(@NonNull Runnable runnable) {
+            this.mHandler.post(runnable);
+        }
     }
 
     public void submitList(@Nullable final List<T> list, @Nullable final Runnable runnable) {

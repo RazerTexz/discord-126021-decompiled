@@ -58,7 +58,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$1 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69921 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C69921 extends AbstractC12240o implements Function1<View, Unit> {
         public static final C69921 INSTANCE = new C69921();
 
         public C69921() {
@@ -79,7 +79,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$2 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69932 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C69932 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C69932 INSTANCE = new C69932();
 
         public C69932() {
@@ -100,7 +100,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$3 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69943 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69943 extends AbstractC12240o implements Function0<Unit> {
         public static final C69943 INSTANCE = new C69943();
 
         public C69943() {
@@ -120,7 +120,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeOut$1 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69951 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C69951 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C69951 INSTANCE = new C69951();
 
         public C69951() {
@@ -141,7 +141,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeOut$2 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69962 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69962 extends AbstractC12240o implements Function0<Unit> {
         public static final C69962 INSTANCE = new C69962();
 
         public C69962() {
@@ -161,7 +161,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$i18nSetText$1 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C69981 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C69981 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C69981 INSTANCE = new C69981();
 
         public C69981() {
@@ -182,7 +182,7 @@ public final class ViewExtensions {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$setOnImeActionDone$1 */
     /* JADX INFO: compiled from: ViewExtensions.kt */
-    public static final class C70021 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
+    public final class C70021 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
         public final /* synthetic */ boolean $isEventConsumed;
         public final /* synthetic */ Function1 $onImeActionDone;
         public final /* synthetic */ TextInputLayout $this_setOnImeActionDone;
@@ -195,11 +195,6 @@ public final class ViewExtensions {
             this.$isEventConsumed = z2;
         }
 
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
-            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
-        }
-
         public final boolean invoke(TextView textView, int i, KeyEvent keyEvent) {
             C12238m.checkNotNullParameter(textView, "textView");
             if (i == 6) {
@@ -208,6 +203,11 @@ public final class ViewExtensions {
                 }
             }
             return this.$isEventConsumed;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
+            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
         }
     }
 
@@ -302,6 +302,13 @@ public final class ViewExtensions {
         view.setEnabled(true);
     }
 
+    public static /* synthetic */ void fadeBy$default(View view, boolean z2, long j, int i, Object obj) {
+        if ((i & 2) != 0) {
+            j = DEFAULT_FADE_MILLIS_RES;
+        }
+        fadeBy(view, z2, j);
+    }
+
     public static final void fadeBy(View view, boolean z2) {
         fadeBy$default(view, z2, 0L, 2, null);
     }
@@ -314,11 +321,23 @@ public final class ViewExtensions {
         }
     }
 
-    public static /* synthetic */ void fadeBy$default(View view, boolean z2, long j, int i, Object obj) {
-        if ((i & 2) != 0) {
+    public static /* synthetic */ void fadeIn$default(View view, long j, Function1 function1, Function1 function2, Function0 function0, int i, Object obj) {
+        if ((i & 1) != 0) {
             j = DEFAULT_FADE_MILLIS_RES;
         }
-        fadeBy(view, z2, j);
+        long j2 = j;
+        if ((i & 2) != 0) {
+            function1 = C69921.INSTANCE;
+        }
+        Function1 function3 = function1;
+        if ((i & 4) != 0) {
+            function2 = C69932.INSTANCE;
+        }
+        Function1 function4 = function2;
+        if ((i & 8) != 0) {
+            function0 = C69943.INSTANCE;
+        }
+        fadeIn(view, j2, function3, function4, function0);
     }
 
     @MainThread
@@ -379,23 +398,17 @@ public final class ViewExtensions {
         }
     }
 
-    public static /* synthetic */ void fadeIn$default(View view, long j, Function1 function1, Function1 function2, Function0 function0, int i, Object obj) {
+    public static /* synthetic */ void fadeOut$default(View view, long j, Function1 function1, Function0 function0, int i, Object obj) {
         if ((i & 1) != 0) {
             j = DEFAULT_FADE_MILLIS_RES;
         }
-        long j2 = j;
         if ((i & 2) != 0) {
-            function1 = C69921.INSTANCE;
+            function1 = C69951.INSTANCE;
         }
-        Function1 function3 = function1;
         if ((i & 4) != 0) {
-            function2 = C69932.INSTANCE;
+            function0 = C69962.INSTANCE;
         }
-        Function1 function4 = function2;
-        if ((i & 8) != 0) {
-            function0 = C69943.INSTANCE;
-        }
-        fadeIn(view, j2, function3, function4, function0);
+        fadeOut(view, j, function1, function0);
     }
 
     @MainThread
@@ -446,19 +459,6 @@ public final class ViewExtensions {
         }
     }
 
-    public static /* synthetic */ void fadeOut$default(View view, long j, Function1 function1, Function0 function0, int i, Object obj) {
-        if ((i & 1) != 0) {
-            j = DEFAULT_FADE_MILLIS_RES;
-        }
-        if ((i & 2) != 0) {
-            function1 = C69951.INSTANCE;
-        }
-        if ((i & 4) != 0) {
-            function0 = C69962.INSTANCE;
-        }
-        fadeOut(view, j, function1, function0);
-    }
-
     public static final /* synthetic */ <T extends ViewParent> T findParent(View view) {
         C12238m.checkNotNullParameter(view, "$this$findParent");
         T t = (T) view.getParent();
@@ -484,6 +484,13 @@ public final class ViewExtensions {
         return string != null ? string : "";
     }
 
+    public static /* synthetic */ void hintWithRipple$default(View view, long j, int i, Object obj) {
+        if ((i & 1) != 0) {
+            j = HINT_DELAY_MILLIS;
+        }
+        hintWithRipple(view, j);
+    }
+
     public static final void hintWithRipple(final View view, long j) {
         C12238m.checkNotNullParameter(view, "$this$hintWithRipple");
         view.setPressed(true);
@@ -497,11 +504,11 @@ public final class ViewExtensions {
         }, j);
     }
 
-    public static /* synthetic */ void hintWithRipple$default(View view, long j, int i, Object obj) {
-        if ((i & 1) != 0) {
-            j = HINT_DELAY_MILLIS;
+    public static /* synthetic */ void i18nSetText$default(TextInputLayout textInputLayout, int i, Object[] objArr, Function1 function1, int i2, Object obj) {
+        if ((i2 & 4) != 0) {
+            function1 = C69981.INSTANCE;
         }
-        hintWithRipple(view, j);
+        i18nSetText(textInputLayout, i, objArr, function1);
     }
 
     public static final void i18nSetText(TextInputLayout textInputLayout, @StringRes int i, Object[] objArr, Function1<? super RenderContext, Unit> function1) {
@@ -512,13 +519,6 @@ public final class ViewExtensions {
         if (editText != null) {
             C1107b.m221m(editText, i, Arrays.copyOf(objArr, objArr.length), function1);
         }
-    }
-
-    public static /* synthetic */ void i18nSetText$default(TextInputLayout textInputLayout, int i, Object[] objArr, Function1 function1, int i2, Object obj) {
-        if ((i2 & 4) != 0) {
-            function1 = C69981.INSTANCE;
-        }
-        i18nSetText(textInputLayout, i, objArr, function1);
     }
 
     public static final void interceptScrollWhenInsideScrollable(TextInputLayout textInputLayout) {
@@ -552,11 +552,6 @@ public final class ViewExtensions {
         view.setBackground(drawable);
     }
 
-    public static final void setCompoundDrawableWithIntrinsicBounds(TextView textView, @DrawableRes int i, @DrawableRes int i2, @DrawableRes int i3, @DrawableRes int i4) {
-        C12238m.checkNotNullParameter(textView, "$this$setCompoundDrawableWithIntrinsicBounds");
-        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(i, i2, i3, i4);
-    }
-
     public static /* synthetic */ void setCompoundDrawableWithIntrinsicBounds$default(TextView textView, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
             i = 0;
@@ -573,12 +568,9 @@ public final class ViewExtensions {
         setCompoundDrawableWithIntrinsicBounds(textView, i, i2, i3, i4);
     }
 
-    public static final void setEnabledAlpha(View view, boolean z2, float f) {
-        C12238m.checkNotNullParameter(view, "$this$setEnabledAlpha");
-        if (z2) {
-            f = 1.0f;
-        }
-        view.setAlpha(f);
+    public static final void setCompoundDrawableWithIntrinsicBounds(TextView textView, @DrawableRes int i, @DrawableRes int i2, @DrawableRes int i3, @DrawableRes int i4) {
+        C12238m.checkNotNullParameter(textView, "$this$setCompoundDrawableWithIntrinsicBounds");
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(i, i2, i3, i4);
     }
 
     public static /* synthetic */ void setEnabledAlpha$default(View view, boolean z2, float f, int i, Object obj) {
@@ -588,10 +580,12 @@ public final class ViewExtensions {
         setEnabledAlpha(view, z2, f);
     }
 
-    public static final void setEnabledAndAlpha(View view, boolean z2, float f) {
-        C12238m.checkNotNullParameter(view, "$this$setEnabledAndAlpha");
-        view.setEnabled(z2);
-        setEnabledAlpha(view, z2, f);
+    public static final void setEnabledAlpha(View view, boolean z2, float f) {
+        C12238m.checkNotNullParameter(view, "$this$setEnabledAlpha");
+        if (z2) {
+            f = 1.0f;
+        }
+        view.setAlpha(f);
     }
 
     public static /* synthetic */ void setEnabledAndAlpha$default(View view, boolean z2, float f, int i, Object obj) {
@@ -599,6 +593,12 @@ public final class ViewExtensions {
             f = 0.3f;
         }
         setEnabledAndAlpha(view, z2, f);
+    }
+
+    public static final void setEnabledAndAlpha(View view, boolean z2, float f) {
+        C12238m.checkNotNullParameter(view, "$this$setEnabledAndAlpha");
+        view.setEnabled(z2);
+        setEnabledAlpha(view, z2, f);
     }
 
     public static final void setForwardingWindowInsetsListener(ViewGroup viewGroup) {
@@ -667,17 +667,17 @@ public final class ViewExtensions {
         return Unit.f27425a;
     }
 
-    public static final Unit setOnImeActionDone(TextInputLayout textInputLayout, boolean z2, Function1<? super TextView, Unit> function1) {
-        C12238m.checkNotNullParameter(textInputLayout, "$this$setOnImeActionDone");
-        C12238m.checkNotNullParameter(function1, "onImeActionDone");
-        return setOnEditorActionListener(textInputLayout, new C70021(textInputLayout, function1, z2));
-    }
-
     public static /* synthetic */ Unit setOnImeActionDone$default(TextInputLayout textInputLayout, boolean z2, Function1 function1, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
         }
         return setOnImeActionDone(textInputLayout, z2, function1);
+    }
+
+    public static final Unit setOnImeActionDone(TextInputLayout textInputLayout, boolean z2, Function1<? super TextView, Unit> function1) {
+        C12238m.checkNotNullParameter(textInputLayout, "$this$setOnImeActionDone");
+        C12238m.checkNotNullParameter(function1, "onImeActionDone");
+        return setOnEditorActionListener(textInputLayout, new C70021(textInputLayout, function1, z2));
     }
 
     public static final void setOnLongClickListenerConsumeClick(View view, final Function1<? super View, Unit> function1) {

@@ -134,7 +134,7 @@ public final class Configuration {
         return this.mIsUsingDefaultTaskExecutor;
     }
 
-    public static final class Builder {
+    public final class Builder {
         public Executor mExecutor;
         public InputMergerFactory mInputMergerFactory;
         public int mLoggingLevel;

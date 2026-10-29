@@ -30,21 +30,6 @@ public final /* data */ class ModelAppliedGuildBoost {
         return modelAppliedGuildBoost.copy(j4, j5, j3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
     public final ModelAppliedGuildBoost copy(long id2, long guildId, long userId) {
         return new ModelAppliedGuildBoost(id2, guildId, userId);
     }
@@ -60,12 +45,27 @@ public final /* data */ class ModelAppliedGuildBoost {
         return this.id == modelAppliedGuildBoost.id && this.guildId == modelAppliedGuildBoost.guildId && this.userId == modelAppliedGuildBoost.userId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
     }
 
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

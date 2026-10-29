@@ -57,23 +57,23 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: WidgetDebugging.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDebugging extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetDebugging.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDebuggingBinding;", 0)};
     private static final int COLLAPSED_MAX_LINES = 2;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final BehaviorSubject<Boolean> filterSubject;
     private Adapter logsAdapter;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetDebugging.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDebuggingBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: WidgetDebugging.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<AppLog.LoggedItem> {
+    public final class Adapter extends MGRecyclerAdapterSimple<AppLog.LoggedItem> {
 
         /* JADX INFO: renamed from: com.discord.widgets.debugging.WidgetDebugging$Adapter$1 */
         /* JADX INFO: compiled from: WidgetDebugging.kt */
-        public static final class C82631 extends AbstractC12240o implements Function2<List<? extends AppLog.LoggedItem>, List<? extends AppLog.LoggedItem>, Unit> {
+        public final class C82631 extends AbstractC12240o implements Function2<List<? extends AppLog.LoggedItem>, List<? extends AppLog.LoggedItem>, Unit> {
             public final /* synthetic */ RecyclerView $recycler;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -101,7 +101,7 @@ public final class WidgetDebugging extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetDebugging.kt */
-        public static final class Item extends MGRecyclerViewHolder<Adapter, AppLog.LoggedItem> {
+        public final class Item extends MGRecyclerViewHolder<Adapter, AppLog.LoggedItem> {
             private final WidgetDebuggingAdapterItemBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -136,7 +136,7 @@ public final class WidgetDebugging extends AppFragment {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
             @SuppressLint({"SetTextI18n"})
             public void onConfigure(int position, AppLog.LoggedItem data) {
-                String string;
+                String str;
                 C12238m.checkNotNullParameter(data, "data");
                 super.onConfigure(position, data);
                 TextView textView = this.binding.f16448b;
@@ -147,17 +147,14 @@ public final class WidgetDebugging extends AppFragment {
                 sb.append(data.message);
                 Throwable th = data.throwable;
                 if (th != null) {
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append('\n');
-                    sb2.append(th);
-                    string = sb2.toString();
-                    if (string == null) {
-                        string = "";
+                    str = "" + '\n' + th;
+                    if (str == null) {
+                        str = "";
                     }
                 } else {
-                    string = "";
+                    str = "";
                 }
-                sb.append(string);
+                sb.append(str);
                 textView2.setText(sb.toString());
                 TextView textView3 = this.binding.f16448b;
                 C12238m.checkNotNullExpressionValue(textView3, "binding.logMessage");
@@ -201,8 +198,28 @@ public final class WidgetDebugging extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.debugging.WidgetDebugging$onViewBoundOrOnResume$4 */
     /* JADX INFO: compiled from: WidgetDebugging.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C82694 extends C12236k implements Function1<Model, Unit> {
+        public C82694(WidgetDebugging widgetDebugging) {
+            super(1, widgetDebugging, WidgetDebugging.class, "configureUI", "configureUI(Lcom/discord/widgets/debugging/WidgetDebugging$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetDebugging) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDebugging.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -217,7 +234,7 @@ public final class WidgetDebugging extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetDebugging.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
         private final boolean isFiltered;
         private final List<AppLog.LoggedItem> logs;
 
@@ -225,6 +242,10 @@ public final class WidgetDebugging extends AppFragment {
             C12238m.checkNotNullParameter(list, "logs");
             this.logs = list;
             this.isFiltered = z2;
+        }
+
+        public final List<AppLog.LoggedItem> component1() {
+            return this.logs;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -236,15 +257,6 @@ public final class WidgetDebugging extends AppFragment {
                 z2 = model.isFiltered;
             }
             return model.copy(list, z2);
-        }
-
-        public final List<AppLog.LoggedItem> component1() {
-            return this.logs;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsFiltered() {
-            return this.isFiltered;
         }
 
         public final Model copy(List<AppLog.LoggedItem> logs, boolean isFiltered) {
@@ -261,6 +273,11 @@ public final class WidgetDebugging extends AppFragment {
             }
             Model model = (Model) other;
             return C12238m.areEqual(this.logs, model.logs) && this.isFiltered == model.isFiltered;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsFiltered() {
+            return this.isFiltered;
         }
 
         public final List<AppLog.LoggedItem> getLogs() {
@@ -292,26 +309,6 @@ public final class WidgetDebugging extends AppFragment {
             sbM833U.append(this.logs);
             sbM833U.append(", isFiltered=");
             return C1643a.m827O(sbM833U, this.isFiltered, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.debugging.WidgetDebugging$onViewBoundOrOnResume$4 */
-    /* JADX INFO: compiled from: WidgetDebugging.kt */
-    public static final /* synthetic */ class C82694 extends C12236k implements Function1<Model, Unit> {
-        public C82694(WidgetDebugging widgetDebugging) {
-            super(1, widgetDebugging, WidgetDebugging.class, "configureUI", "configureUI(Lcom/discord/widgets/debugging/WidgetDebugging$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetDebugging) this.receiver).configureUI(model);
         }
     }
 

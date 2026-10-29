@@ -25,24 +25,9 @@ public final class SystemLogCapture {
     private final FixedSizeLineBuffer buffer = new FixedSizeLineBuffer(524288);
     private final FixedSizeLineBuffer tombstoneBuffer = new FixedSizeLineBuffer(102400);
 
-    /* JADX INFO: compiled from: SystemLogCapture.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final boolean shouldIncludeLogLine$app_productionGoogleRelease(String line) {
-            C12238m.checkNotNullParameter(line, "line");
-            return !C12106w.contains$default((CharSequence) line, (CharSequence) "chatty  : uid=", false, 2, (Object) null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogCapture$startThread$1 */
     /* JADX INFO: compiled from: SystemLogCapture.kt */
-    public static final class C69331 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69331 extends AbstractC12240o implements Function0<Unit> {
         public C69331() {
             super(0);
         }
@@ -57,6 +42,31 @@ public final class SystemLogCapture {
         public final void invoke2() throws InterruptedException {
             SystemLogCapture.this.start();
         }
+    }
+
+    /* JADX INFO: compiled from: SystemLogCapture.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean shouldIncludeLogLine$app_productionGoogleRelease(String line) {
+            C12238m.checkNotNullParameter(line, "line");
+            return !C12106w.contains$default((CharSequence) line, (CharSequence) "chatty  : uid=", false, 2, (Object) null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final void appendOutput(StringBuilder sb) {
+        C12238m.checkNotNullParameter(sb, "sb");
+        this.tombstoneBuffer.appendString(sb);
+        this.buffer.appendString(sb);
+    }
+
+    public final String getOutput() {
+        return this.tombstoneBuffer.getString() + '\n' + this.buffer.getString();
     }
 
     /* JADX WARN: Bottom block not found for handler: all -> 0x0078 */
@@ -108,16 +118,6 @@ public final class SystemLogCapture {
             processStart.destroy();
             Thread.sleep(1000L);
         }
-    }
-
-    public final void appendOutput(StringBuilder sb) {
-        C12238m.checkNotNullParameter(sb, "sb");
-        this.tombstoneBuffer.appendString(sb);
-        this.buffer.appendString(sb);
-    }
-
-    public final String getOutput() {
-        return this.tombstoneBuffer.getString() + '\n' + this.buffer.getString();
     }
 
     public final Thread startThread() {

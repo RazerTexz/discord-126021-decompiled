@@ -7,9 +7,6 @@ import java.util.ArrayList;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2149k {
 
-    /* JADX INFO: renamed from: a */
-    public static final char[] f4604a = new char[0];
-
     /* JADX INFO: renamed from: b */
     public final C2139a f4605b;
 
@@ -36,6 +33,9 @@ public final class C2149k {
 
     /* JADX INFO: renamed from: j */
     public char[] f4613j;
+
+    /* JADX INFO: renamed from: a */
+    public static final char[] f4604a = new char[0];
 
     public C2149k(C2139a c2139a) {
         this.f4605b = c2139a;

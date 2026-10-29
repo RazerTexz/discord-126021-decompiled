@@ -21,7 +21,7 @@ public final class C11279m<D, E, V> extends C12052r<D, E, V> implements KPropert
 
     /* JADX INFO: renamed from: d0.e0.p.d.m$a */
     /* JADX INFO: compiled from: KProperty2Impl.kt */
-    public static final class a<D, E, V> extends AbstractC12053s.d<V> implements KMutableProperty$Setter, Function3 {
+    public final class a<D, E, V> extends AbstractC12053s.d<V> implements KMutableProperty$Setter, Function3 {
 
         /* JADX INFO: renamed from: q */
         public final C11279m<D, E, V> f22448q;
@@ -51,7 +51,7 @@ public final class C11279m<D, E, V> extends C12052r<D, E, V> implements KPropert
 
     /* JADX INFO: renamed from: d0.e0.p.d.m$b */
     /* JADX INFO: compiled from: KProperty2Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<D, E, V>> {
+    public final class b extends AbstractC12240o implements Function0<a<D, E, V>> {
         public b() {
             super(0);
         }

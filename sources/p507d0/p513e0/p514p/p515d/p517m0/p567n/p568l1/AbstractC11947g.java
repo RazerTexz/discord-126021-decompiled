@@ -19,7 +19,7 @@ public abstract class AbstractC11947g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.g$a */
     /* JADX INFO: compiled from: KotlinTypeRefiner.kt */
-    public static final class a extends AbstractC11947g {
+    public final class a extends AbstractC11947g {
 
         /* JADX INFO: renamed from: a */
         public static final a f24807a = new a();

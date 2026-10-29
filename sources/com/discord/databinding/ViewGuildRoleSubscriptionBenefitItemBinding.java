@@ -35,6 +35,12 @@ public final class ViewGuildRoleSubscriptionBenefitItemBinding implements ViewBi
         this.f15463d = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15460a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewGuildRoleSubscriptionBenefitItemBinding m8396a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -53,11 +59,5 @@ public final class ViewGuildRoleSubscriptionBenefitItemBinding implements ViewBi
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15460a;
     }
 }

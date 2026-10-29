@@ -26,11 +26,7 @@ public class ReportFragment extends Fragment {
     }
 
     @RequiresApi(29)
-    public static class LifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
-        public static void registerIn(Activity activity) {
-            activity.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
-        }
-
+    public class LifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
         @Override // android.app.Application.ActivityLifecycleCallbacks
         public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle bundle) {
         }
@@ -87,6 +83,10 @@ public class ReportFragment extends Fragment {
 
         @Override // android.app.Application.ActivityLifecycleCallbacks
         public void onActivityStopped(@NonNull Activity activity) {
+        }
+
+        public static void registerIn(Activity activity) {
+            activity.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         }
     }
 

@@ -9,16 +9,6 @@ public final /* data */ class GuildScheduledEventBroadcast {
     private final boolean canBroadcast;
     private final Boolean hasBroadcast;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final boolean getCanBroadcast() {
-        return this.canBroadcast;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final Boolean getHasBroadcast() {
-        return this.hasBroadcast;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +18,16 @@ public final /* data */ class GuildScheduledEventBroadcast {
         }
         GuildScheduledEventBroadcast guildScheduledEventBroadcast = (GuildScheduledEventBroadcast) other;
         return this.canBroadcast == guildScheduledEventBroadcast.canBroadcast && C12238m.areEqual(this.hasBroadcast, guildScheduledEventBroadcast.hasBroadcast);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final boolean getCanBroadcast() {
+        return this.canBroadcast;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final Boolean getHasBroadcast() {
+        return this.hasBroadcast;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

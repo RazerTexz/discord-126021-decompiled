@@ -13,7 +13,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class PendingFeedback implements Serializable {
 
     /* JADX INFO: compiled from: PendingFeedback.kt */
-    public static final /* data */ class GuildDeleteFeedback extends PendingFeedback {
+    public final /* data */ class GuildDeleteFeedback extends PendingFeedback {
         private final long guildId;
         private final String issueDetails;
         private final FeedbackIssue reason;
@@ -35,21 +35,6 @@ public abstract class PendingFeedback implements Serializable {
             return guildDeleteFeedback.copy(j, feedbackIssue, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final FeedbackIssue getReason() {
-            return this.reason;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getIssueDetails() {
-            return this.issueDetails;
-        }
-
         public final GuildDeleteFeedback copy(long guildId, FeedbackIssue reason, String issueDetails) {
             return new GuildDeleteFeedback(guildId, reason, issueDetails);
         }
@@ -65,12 +50,27 @@ public abstract class PendingFeedback implements Serializable {
             return this.guildId == guildDeleteFeedback.guildId && C12238m.areEqual(this.reason, guildDeleteFeedback.reason) && C12238m.areEqual(this.issueDetails, guildDeleteFeedback.issueDetails);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
         }
 
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getIssueDetails() {
             return this.issueDetails;
+        }
+
+        public final String getIssueDetails() {
+            return this.issueDetails;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final FeedbackIssue getReason() {
+            return this.reason;
         }
 
         public final FeedbackIssue getReason() {
@@ -106,7 +106,7 @@ public abstract class PendingFeedback implements Serializable {
     }
 
     /* JADX INFO: compiled from: PendingFeedback.kt */
-    public static final /* data */ class CallFeedback extends PendingFeedback {
+    public final /* data */ class CallFeedback extends PendingFeedback {
         private final long channelId;
         private final Long durationMs;
         private final FeedbackRating feedbackRating;
@@ -118,46 +118,6 @@ public abstract class PendingFeedback implements Serializable {
 
         public /* synthetic */ CallFeedback(long j, String str, Long l, String str2, FeedbackRating feedbackRating, Integer num, String str3, String str4, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this(j, (i & 2) != 0 ? null : str, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? FeedbackRating.NO_RESPONSE : feedbackRating, (i & 32) != 0 ? null : num, (i & 64) != 0 ? null : str3, (i & 128) != 0 ? null : str4);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getRtcConnectionId() {
-            return this.rtcConnectionId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getDurationMs() {
-            return this.durationMs;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final FeedbackRating getFeedbackRating() {
-            return this.feedbackRating;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getReasonCode() {
-            return this.reasonCode;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final String getReasonDescription() {
-            return this.reasonDescription;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final String getIssueDetails() {
-            return this.issueDetails;
         }
 
         public final CallFeedback copy(long channelId, String rtcConnectionId, Long durationMs, String mediaSessionId, FeedbackRating feedbackRating, Integer reasonCode, String reasonDescription, String issueDetails) {
@@ -176,32 +136,72 @@ public abstract class PendingFeedback implements Serializable {
             return this.channelId == callFeedback.channelId && C12238m.areEqual(this.rtcConnectionId, callFeedback.rtcConnectionId) && C12238m.areEqual(this.durationMs, callFeedback.durationMs) && C12238m.areEqual(this.mediaSessionId, callFeedback.mediaSessionId) && C12238m.areEqual(this.feedbackRating, callFeedback.feedbackRating) && C12238m.areEqual(this.reasonCode, callFeedback.reasonCode) && C12238m.areEqual(this.reasonDescription, callFeedback.reasonDescription) && C12238m.areEqual(this.issueDetails, callFeedback.issueDetails);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getDurationMs() {
+            return this.durationMs;
         }
 
         public final Long getDurationMs() {
             return this.durationMs;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final FeedbackRating getFeedbackRating() {
             return this.feedbackRating;
+        }
+
+        public final FeedbackRating getFeedbackRating() {
+            return this.feedbackRating;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final String getIssueDetails() {
+            return this.issueDetails;
         }
 
         public final String getIssueDetails() {
             return this.issueDetails;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getMediaSessionId() {
             return this.mediaSessionId;
+        }
+
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Integer getReasonCode() {
+            return this.reasonCode;
         }
 
         public final Integer getReasonCode() {
             return this.reasonCode;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final String getReasonDescription() {
             return this.reasonDescription;
+        }
+
+        public final String getReasonDescription() {
+            return this.reasonDescription;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getRtcConnectionId() {
+            return this.rtcConnectionId;
         }
 
         public final String getRtcConnectionId() {
@@ -261,7 +261,7 @@ public abstract class PendingFeedback implements Serializable {
     }
 
     /* JADX INFO: compiled from: PendingFeedback.kt */
-    public static final /* data */ class StreamFeedback extends PendingFeedback {
+    public final /* data */ class StreamFeedback extends PendingFeedback {
         private final FeedbackRating feedbackRating;
         private final FeedbackIssue issue;
         private final String issueDetails;
@@ -294,31 +294,6 @@ public abstract class PendingFeedback implements Serializable {
             return streamFeedback.copy(modelApplicationStream, feedbackRating2, feedbackIssue2, str3, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelApplicationStream getStream() {
-            return this.stream;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final FeedbackRating getFeedbackRating() {
-            return this.feedbackRating;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final FeedbackIssue getIssue() {
-            return this.issue;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getIssueDetails() {
-            return this.issueDetails;
-        }
-
         public final StreamFeedback copy(ModelApplicationStream stream, FeedbackRating feedbackRating, FeedbackIssue issue, String mediaSessionId, String issueDetails) {
             C12238m.checkNotNullParameter(stream, "stream");
             C12238m.checkNotNullParameter(feedbackRating, "feedbackRating");
@@ -336,20 +311,45 @@ public abstract class PendingFeedback implements Serializable {
             return C12238m.areEqual(this.stream, streamFeedback.stream) && C12238m.areEqual(this.feedbackRating, streamFeedback.feedbackRating) && C12238m.areEqual(this.issue, streamFeedback.issue) && C12238m.areEqual(this.mediaSessionId, streamFeedback.mediaSessionId) && C12238m.areEqual(this.issueDetails, streamFeedback.issueDetails);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final FeedbackRating getFeedbackRating() {
             return this.feedbackRating;
+        }
+
+        public final FeedbackRating getFeedbackRating() {
+            return this.feedbackRating;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final FeedbackIssue getIssue() {
+            return this.issue;
         }
 
         public final FeedbackIssue getIssue() {
             return this.issue;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final String getIssueDetails() {
             return this.issueDetails;
         }
 
+        public final String getIssueDetails() {
+            return this.issueDetails;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getMediaSessionId() {
             return this.mediaSessionId;
+        }
+
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelApplicationStream getStream() {
+            return this.stream;
         }
 
         public final ModelApplicationStream getStream() {

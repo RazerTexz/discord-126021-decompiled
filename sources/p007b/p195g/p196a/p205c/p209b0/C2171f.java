@@ -17,9 +17,8 @@ import p007b.p195g.p196a.p205c.p219i0.C2342d;
 /* JADX INFO: compiled from: OptionalHandlerFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2171f implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final Class<?> f4623j = Node.class;
+    private final Map<String, String> _sqlDeserializers;
+    private final Map<String, Object> _sqlSerializers;
 
     /* JADX INFO: renamed from: k */
     public static final AbstractC2166a f4624k;
@@ -27,8 +26,9 @@ public class C2171f implements Serializable {
     /* JADX INFO: renamed from: l */
     public static final C2171f f4625l;
     private static final long serialVersionUID = 1;
-    private final Map<String, String> _sqlDeserializers;
-    private final Map<String, Object> _sqlSerializers;
+
+    /* JADX INFO: renamed from: j */
+    public static final Class<?> f4623j = Node.class;
 
     /* JADX WARN: Unreachable blocks removed: 1, instructions: 1 */
     static {

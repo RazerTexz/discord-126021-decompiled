@@ -87,6 +87,139 @@ public abstract class AbstractC11364b0 extends AbstractC11383l implements Interf
         this.f22815s = aVar;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11451m0
+    public InterfaceC11453n0 getCorrespondingProperty() {
+        InterfaceC11453n0 interfaceC11453n0 = this.f22813q;
+        if (interfaceC11453n0 != null) {
+            return interfaceC11453n0;
+        }
+        m9389a(12);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getDispatchReceiverParameter() {
+        return getCorrespondingProperty().getDispatchReceiverParameter();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getExtensionReceiverParameter() {
+        return getCorrespondingProperty().getExtensionReceiverParameter();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public InterfaceC11472x getInitialSignatureDescriptor() {
+        return this.f22817u;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b
+    public InterfaceC11321b.a getKind() {
+        InterfaceC11321b.a aVar = this.f22815s;
+        if (aVar != null) {
+            return aVar;
+        }
+        m9389a(6);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public EnumC11476z getModality() {
+        EnumC11476z enumC11476z = this.f22812p;
+        if (enumC11476z != null) {
+            return enumC11476z;
+        }
+        m9389a(9);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11383l, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public abstract InterfaceC11451m0 getOriginal();
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11477z0> getTypeParameters() {
+        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9389a(8);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public <V> V getUserData(InterfaceC11318a.a<V> aVar) {
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public AbstractC11466u getVisibility() {
+        AbstractC11466u abstractC11466u = this.f22816t;
+        if (abstractC11466u != null) {
+            return abstractC11466u;
+        }
+        m9389a(10);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isActual() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11451m0
+    public boolean isDefault() {
+        return this.f22810n;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isExpect() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isExternal() {
+        return this.f22811o;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isHiddenForResolutionEverywhereBesideSupercalls() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isHiddenToOvercomeSignatureClash() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isInfix() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isInline() {
+        return this.f22814r;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isOperator() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isSuspend() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isTailrec() {
+        return false;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9389a(int i) {
         String str;
@@ -229,139 +362,6 @@ public abstract class AbstractC11364b0 extends AbstractC11383l implements Interf
             }
         }
         return arrayList;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11451m0
-    public InterfaceC11453n0 getCorrespondingProperty() {
-        InterfaceC11453n0 interfaceC11453n0 = this.f22813q;
-        if (interfaceC11453n0 != null) {
-            return interfaceC11453n0;
-        }
-        m9389a(12);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getDispatchReceiverParameter() {
-        return getCorrespondingProperty().getDispatchReceiverParameter();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getExtensionReceiverParameter() {
-        return getCorrespondingProperty().getExtensionReceiverParameter();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public InterfaceC11472x getInitialSignatureDescriptor() {
-        return this.f22817u;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b
-    public InterfaceC11321b.a getKind() {
-        InterfaceC11321b.a aVar = this.f22815s;
-        if (aVar != null) {
-            return aVar;
-        }
-        m9389a(6);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public EnumC11476z getModality() {
-        EnumC11476z enumC11476z = this.f22812p;
-        if (enumC11476z != null) {
-            return enumC11476z;
-        }
-        m9389a(9);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11383l, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public abstract InterfaceC11451m0 getOriginal();
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11477z0> getTypeParameters() {
-        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9389a(8);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public <V> V getUserData(InterfaceC11318a.a<V> aVar) {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public AbstractC11466u getVisibility() {
-        AbstractC11466u abstractC11466u = this.f22816t;
-        if (abstractC11466u != null) {
-            return abstractC11466u;
-        }
-        m9389a(10);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isActual() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11451m0
-    public boolean isDefault() {
-        return this.f22810n;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isExpect() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isExternal() {
-        return this.f22811o;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isHiddenForResolutionEverywhereBesideSupercalls() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isHiddenToOvercomeSignatureClash() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isInfix() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isInline() {
-        return this.f22814r;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isOperator() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isSuspend() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isTailrec() {
-        return false;
     }
 
     public void setDefault(boolean z2) {

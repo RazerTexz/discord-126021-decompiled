@@ -36,7 +36,7 @@ public class C2334m implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.h0.m$a */
     /* JADX INFO: compiled from: TypeBindings.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final Class<?> f4909a;
@@ -87,7 +87,7 @@ public class C2334m implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.h0.m$b */
     /* JADX INFO: compiled from: TypeBindings.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public static final TypeVariable<?>[] f4912a = AbstractList.class.getTypeParameters();
@@ -140,6 +140,30 @@ public class C2334m implements Serializable {
         }
         this._unboundVariables = strArr2;
         this._hashCode = i;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!C2342d.m2183o(obj, C2334m.class)) {
+            return false;
+        }
+        int length = this._types.length;
+        AbstractC2360j[] abstractC2360jArr = ((C2334m) obj)._types;
+        if (length != abstractC2360jArr.length) {
+            return false;
+        }
+        for (int i = 0; i < length; i++) {
+            if (!abstractC2360jArr[i].equals(this._types[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        return this._hashCode;
     }
 
     /* JADX INFO: renamed from: b */
@@ -241,26 +265,6 @@ public class C2334m implements Serializable {
         return null;
     }
 
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!C2342d.m2183o(obj, C2334m.class)) {
-            return false;
-        }
-        int length = this._types.length;
-        AbstractC2360j[] abstractC2360jArr = ((C2334m) obj)._types;
-        if (length != abstractC2360jArr.length) {
-            return false;
-        }
-        for (int i = 0; i < length; i++) {
-            if (!abstractC2360jArr[i].equals(this._types[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     /* JADX INFO: renamed from: f */
     public AbstractC2360j m2151f(int i) {
         if (i < 0) {
@@ -293,10 +297,6 @@ public class C2334m implements Serializable {
             }
         } while (!str.equals(this._unboundVariables[length]));
         return true;
-    }
-
-    public int hashCode() {
-        return this._hashCode;
     }
 
     /* JADX INFO: renamed from: i */

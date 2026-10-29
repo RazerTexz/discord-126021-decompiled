@@ -15,7 +15,7 @@ import p659s.p660a.C13126l;
 /* JADX INFO: compiled from: AnimationCoroutineUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AnimationCoroutineUtilsKt {
-    public static final Object await(final ViewPropertyAnimator viewPropertyAnimator, Continuation<? super Unit> continuation) {
+    public static final Object await(final ViewPropertyAnimator viewPropertyAnimator, Continuation<? super Unit> continuation) throws Throwable {
         final C13126l c13126l = new C13126l(C12182b.intercepted(continuation), 1);
         c13126l.m11318A();
         c13126l.mo10902f(new C6685x9d347c01(viewPropertyAnimator));

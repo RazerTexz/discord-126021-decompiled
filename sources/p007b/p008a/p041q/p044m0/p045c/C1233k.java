@@ -43,12 +43,6 @@ import p658rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1233k implements MediaEngine {
 
-    /* JADX INFO: renamed from: a */
-    public static final Set<String> f1721a = C12148n0.setOf((Object[]) new String[]{"Pixel", "Pixel XL", "Pixel 3a XL", "Pixel 4", "Pixel 4 XL", "Pixel 5"});
-
-    /* JADX INFO: renamed from: b */
-    public static final Set<String> f1722b = C12148n0.setOf((Object[]) new String[]{"Pixel 3a", "Redmi Note 8 Pro", "Redmi Note 8 pro"});
-
     /* JADX INFO: renamed from: c */
     public final C1243u f1723c;
 
@@ -97,9 +91,15 @@ public final class C1233k implements MediaEngine {
     /* JADX INFO: renamed from: r */
     public final Set<String> f1738r;
 
+    /* JADX INFO: renamed from: a */
+    public static final Set<String> f1721a = C12148n0.setOf((Object[]) new String[]{"Pixel", "Pixel XL", "Pixel 3a XL", "Pixel 4", "Pixel 4 XL", "Pixel 5"});
+
+    /* JADX INFO: renamed from: b */
+    public static final Set<String> f1722b = C12148n0.setOf((Object[]) new String[]{"Pixel 3a", "Redmi Note 8 Pro", "Redmi Note 8 pro"});
+
     /* JADX INFO: renamed from: b.a.q.m0.c.k$a */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class a extends AbstractC12240o implements Function0<Unit> {
+    public final class a extends AbstractC12240o implements Function0<Unit> {
         public a() {
             super(0);
         }
@@ -116,7 +116,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$b */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class b extends AbstractC12240o implements Function1<MediaEngine.InterfaceC5642c, Unit> {
+    public final class b extends AbstractC12240o implements Function1<MediaEngine.InterfaceC5642c, Unit> {
         public final /* synthetic */ C1227e $connection;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -136,11 +136,29 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$c */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class c extends MediaEngineConnection.AbstractC5645a {
+    public final class c extends MediaEngineConnection.AbstractC5645a {
+
+        /* JADX INFO: renamed from: b.a.q.m0.c.k$c$c, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class C13212c extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ MediaEngineConnection $connection;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C13212c(MediaEngineConnection mediaEngineConnection) {
+                super(0);
+                this.$connection = mediaEngineConnection;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                C1233k.m320m(C1233k.this, this.$connection);
+                return Unit.f27425a;
+            }
+        }
 
         /* JADX INFO: renamed from: b.a.q.m0.c.k$c$a */
         /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-        public static final class a extends AbstractC12240o implements Function0<Unit> {
+        public final class a extends AbstractC12240o implements Function0<Unit> {
             public a() {
                 super(0);
             }
@@ -157,7 +175,7 @@ public final class C1233k implements MediaEngine {
 
         /* JADX INFO: renamed from: b.a.q.m0.c.k$c$b */
         /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-        public static final class b extends AbstractC12240o implements Function0<Unit> {
+        public final class b extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ MediaEngineConnection $connection;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -173,27 +191,9 @@ public final class C1233k implements MediaEngine {
             }
         }
 
-        /* JADX INFO: renamed from: b.a.q.m0.c.k$c$c, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-        public static final class C13212c extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ MediaEngineConnection $connection;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C13212c(MediaEngineConnection mediaEngineConnection) {
-                super(0);
-                this.$connection = mediaEngineConnection;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public Unit invoke() {
-                C1233k.m320m(C1233k.this, this.$connection);
-                return Unit.f27425a;
-            }
-        }
-
         /* JADX INFO: renamed from: b.a.q.m0.c.k$c$d */
         /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-        public static final class d extends AbstractC12240o implements Function0<Unit> {
+        public final class d extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ MediaEngineConnection $connection;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -245,7 +245,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$d */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class d<T> implements Action1<Emitter<MediaEngine.AudioInfo>> {
+    public final class d<T> implements Action1<Emitter<MediaEngine.AudioInfo>> {
         public d() {
         }
 
@@ -261,7 +261,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$e */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class e<T> implements Action1<List<? extends C1221a>> {
+    public final class e<T> implements Action1<List<? extends C1221a>> {
         public e() {
         }
 
@@ -277,7 +277,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$f */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class f<T, R> implements InterfaceC12589b<List<? extends C1221a>, Unit> {
+    public final class f<T, R> implements InterfaceC12589b<List<? extends C1221a>, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final f f1742j = new f();
@@ -290,7 +290,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$g */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class g implements Discord.LocalVoiceLevelChangedCallback {
+    public final class g implements Discord.LocalVoiceLevelChangedCallback {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Function1 f1743a;
@@ -307,7 +307,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$h */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class h implements Discord.BuiltinAECCallback {
+    public final class h implements Discord.BuiltinAECCallback {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ C1215g f1744a;
@@ -317,7 +317,7 @@ public final class C1233k implements MediaEngine {
 
         /* JADX INFO: renamed from: b.a.q.m0.c.k$h$a */
         /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-        public static final class a extends AbstractC12240o implements Function0<Unit> {
+        public final class a extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ boolean $available;
             public final /* synthetic */ boolean $enabled;
             public final /* synthetic */ boolean $requestEnabled;
@@ -355,7 +355,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$i */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class i implements Logging.ExternalReporter {
+    public final class i implements Logging.ExternalReporter {
         public i() {
         }
 
@@ -371,7 +371,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$j */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final /* synthetic */ class j extends C12236k implements Function1<MediaEngine.InterfaceC5642c, Unit> {
+    public final /* synthetic */ class j extends C12236k implements Function1<MediaEngine.InterfaceC5642c, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final j f1747j = new j();
@@ -391,7 +391,7 @@ public final class C1233k implements MediaEngine {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.k$k */
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public static final class k extends AbstractC12240o implements Function0<Unit> {
+    public final class k extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ MediaEngine.VoiceConfig $voiceConfig;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -485,6 +485,11 @@ public final class C1233k implements MediaEngine {
         this.f1728h = MediaEngine.OpenSLUsageMode.ALLOW_LIST;
     }
 
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngine
+    public synchronized List<MediaEngineConnection> getConnections() {
+        return C12163u.toList(this.f1724d);
+    }
+
     /* JADX INFO: renamed from: m */
     public static final void m320m(C1233k c1233k, MediaEngineConnection mediaEngineConnection) {
         synchronized (c1233k) {
@@ -493,6 +498,78 @@ public final class C1233k implements MediaEngine {
                 discord.setLocalVoiceLevelChangedCallback(null);
             }
             c1233k.f1724d.remove(mediaEngineConnection);
+        }
+    }
+
+    /* JADX INFO: renamed from: n */
+    public final void m333n(Function1<? super MediaEngine.InterfaceC5642c, Unit> function1) {
+        try {
+            function1.invoke(this.f1731k);
+        } catch (Exception e2) {
+            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Error in listener", e2, null, 8, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: o */
+    public final Future<?> m334o(Function0<Unit> function0) {
+        ExecutorServiceC1192c executorServiceC1192c = this.f1732l;
+        Object runnableC1242t = function0;
+        if (function0 != null) {
+            runnableC1242t = new RunnableC1242t(function0);
+        }
+        return executorServiceC1192c.submit((Runnable) runnableC1242t);
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final void m335p() {
+        if (this.f1726f != null) {
+            return;
+        }
+        Logger logger = this.f1734n;
+        StringBuilder sbM833U = C1643a.m833U("initializing voice engine. OpenSL ES: ");
+        sbM833U.append(this.f1733m);
+        sbM833U.append(", OpenSL usage mode: ");
+        sbM833U.append(this.f1728h);
+        Logger.i$default(logger, "MediaEngineLegacy", sbM833U.toString(), null, 4, null);
+        int iOrdinal = this.f1733m.ordinal();
+        boolean zContains = false;
+        if (iOrdinal == 0) {
+            if (this.f1728h == MediaEngine.OpenSLUsageMode.ALLOW_LIST) {
+                zContains = this.f1737q.contains(Build.MODEL);
+            } else if (!this.f1738r.contains(Build.MODEL)) {
+                zContains = true;
+            }
+            Logger logger2 = this.f1734n;
+            StringBuilder sbM833U2 = C1643a.m833U("OpenSL ES default. mode: ");
+            sbM833U2.append(this.f1728h);
+            sbM833U2.append(", enableOpenSL: ");
+            sbM833U2.append(zContains);
+            sbM833U2.append(", model: '");
+            Logger.i$default(logger2, "MediaEngineLegacy", C1643a.m820H(sbM833U2, Build.MODEL, '\''), null, 4, null);
+            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(!zContains);
+        } else if (iOrdinal == 1) {
+            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(false);
+        } else if (iOrdinal == 2) {
+            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
+        }
+        Logging.externalReporter = new i();
+        try {
+            Discord discord = new Discord(this.f1730j, 2);
+            C1215g c1215g = this.f1735o;
+            if (c1215g.f1664e) {
+                discord.enableBuiltInAEC(true, new h(c1215g, discord, this));
+            }
+            discord.setAudioInputEnabled(this.f1725e);
+            this.f1726f = discord;
+        } catch (ExceptionInInitializerError e2) {
+            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine.", e2, null, 8, null);
+        } catch (UnsatisfiedLinkError e3) {
+            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine.", e3, null, 8, null);
+        } catch (Throwable th) {
+            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine, new error discovered", th, null, 8, null);
+        }
+        if (this.f1726f != null) {
+            m333n(j.f1747j);
         }
     }
 
@@ -592,11 +669,6 @@ public final class C1233k implements MediaEngine {
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public synchronized List<MediaEngineConnection> getConnections() {
-        return C12163u.toList(this.f1724d);
-    }
-
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngine
     /* JADX INFO: renamed from: h */
     public void mo328h(MediaEngine.OpenSLUsageMode openSLUsageMode) {
         C12238m.checkNotNullParameter(openSLUsageMode, "openSLUsageMode");
@@ -648,78 +720,6 @@ public final class C1233k implements MediaEngine {
         Discord discord2 = this.f1726f;
         if (discord2 != null) {
             discord2.setLocalVoiceLevelChangedCallback(new g(function1));
-        }
-    }
-
-    /* JADX INFO: renamed from: n */
-    public final void m333n(Function1<? super MediaEngine.InterfaceC5642c, Unit> function1) {
-        try {
-            function1.invoke(this.f1731k);
-        } catch (Exception e2) {
-            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Error in listener", e2, null, 8, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: o */
-    public final Future<?> m334o(Function0<Unit> function0) {
-        ExecutorServiceC1192c executorServiceC1192c = this.f1732l;
-        Object runnableC1242t = function0;
-        if (function0 != null) {
-            runnableC1242t = new RunnableC1242t(function0);
-        }
-        return executorServiceC1192c.submit((Runnable) runnableC1242t);
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final void m335p() {
-        if (this.f1726f != null) {
-            return;
-        }
-        Logger logger = this.f1734n;
-        StringBuilder sbM833U = C1643a.m833U("initializing voice engine. OpenSL ES: ");
-        sbM833U.append(this.f1733m);
-        sbM833U.append(", OpenSL usage mode: ");
-        sbM833U.append(this.f1728h);
-        Logger.i$default(logger, "MediaEngineLegacy", sbM833U.toString(), null, 4, null);
-        int iOrdinal = this.f1733m.ordinal();
-        boolean zContains = false;
-        if (iOrdinal == 0) {
-            if (this.f1728h == MediaEngine.OpenSLUsageMode.ALLOW_LIST) {
-                zContains = this.f1737q.contains(Build.MODEL);
-            } else if (!this.f1738r.contains(Build.MODEL)) {
-                zContains = true;
-            }
-            Logger logger2 = this.f1734n;
-            StringBuilder sbM833U2 = C1643a.m833U("OpenSL ES default. mode: ");
-            sbM833U2.append(this.f1728h);
-            sbM833U2.append(", enableOpenSL: ");
-            sbM833U2.append(zContains);
-            sbM833U2.append(", model: '");
-            Logger.i$default(logger2, "MediaEngineLegacy", C1643a.m820H(sbM833U2, Build.MODEL, '\''), null, 4, null);
-            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(!zContains);
-        } else if (iOrdinal == 1) {
-            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(false);
-        } else if (iOrdinal == 2) {
-            WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-        }
-        Logging.externalReporter = new i();
-        try {
-            Discord discord = new Discord(this.f1730j, 2);
-            C1215g c1215g = this.f1735o;
-            if (c1215g.f1664e) {
-                discord.enableBuiltInAEC(true, new h(c1215g, discord, this));
-            }
-            discord.setAudioInputEnabled(this.f1725e);
-            this.f1726f = discord;
-        } catch (ExceptionInInitializerError e2) {
-            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine.", e2, null, 8, null);
-        } catch (UnsatisfiedLinkError e3) {
-            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine.", e3, null, 8, null);
-        } catch (Throwable th) {
-            Logger.e$default(this.f1734n, "MediaEngineLegacy", "Unable to initialize voice engine, new error discovered", th, null, 8, null);
-        }
-        if (this.f1726f != null) {
-            m333n(j.f1747j);
         }
     }
 }

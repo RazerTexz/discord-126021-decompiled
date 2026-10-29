@@ -30,14 +30,14 @@ public final class C11550q extends C12034b.b<InterfaceC11330e, Unit> {
         this.f23417c = function1;
     }
 
+    /* JADX INFO: renamed from: result, reason: collision with other method in class */
+    public void m11464result() {
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p576p.C12034b.d
     public /* bridge */ /* synthetic */ Object result() {
         m11464result();
         return Unit.f27425a;
-    }
-
-    /* JADX INFO: renamed from: result, reason: collision with other method in class */
-    public void m11464result() {
     }
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */

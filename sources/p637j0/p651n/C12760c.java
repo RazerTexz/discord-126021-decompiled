@@ -24,7 +24,7 @@ public class C12760c<T> implements InterfaceC12581g<T> {
 
     /* JADX INFO: renamed from: j0.n.c$a */
     /* JADX INFO: compiled from: SerializedObserver.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public Object[] f27370a;

@@ -9,7 +9,7 @@ public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     /* JADX INFO: renamed from: org.webrtc.RendererCommon$1 */
-    public static /* synthetic */ class C129831 {
+    public /* synthetic */ class C129831 {
         public static final /* synthetic */ int[] $SwitchMap$org$webrtc$RendererCommon$ScalingType;
 
         static {
@@ -53,7 +53,7 @@ public class RendererCommon {
         SCALE_ASPECT_BALANCED
     }
 
-    public static class VideoLayoutMeasure {
+    public class VideoLayoutMeasure {
         private float visibleFractionMatchOrientation;
         private float visibleFractionMismatchOrientation;
 

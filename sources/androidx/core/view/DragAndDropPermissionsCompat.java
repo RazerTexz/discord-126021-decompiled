@@ -15,6 +15,12 @@ public final class DragAndDropPermissionsCompat {
         this.mDragAndDropPermissions = obj;
     }
 
+    public void release() {
+        if (Build.VERSION.SDK_INT >= 24) {
+            ((DragAndDropPermissions) this.mDragAndDropPermissions).release();
+        }
+    }
+
     @Nullable
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static DragAndDropPermissionsCompat request(Activity activity, DragEvent dragEvent) {
@@ -23,11 +29,5 @@ public final class DragAndDropPermissionsCompat {
             return null;
         }
         return new DragAndDropPermissionsCompat(dragAndDropPermissionsRequestDragAndDropPermissions);
-    }
-
-    public void release() {
-        if (Build.VERSION.SDK_INT >= 24) {
-            ((DragAndDropPermissions) this.mDragAndDropPermissions).release();
-        }
     }
 }

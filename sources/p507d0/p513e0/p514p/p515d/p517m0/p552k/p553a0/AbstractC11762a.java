@@ -16,9 +16,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: AbstractScopeAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC11762a implements InterfaceC11770i {
-    /* JADX INFO: renamed from: a */
-    public abstract InterfaceC11770i mo9910a();
-
     public final InterfaceC11770i getActualScope() {
         return mo9910a() instanceof AbstractC11762a ? ((AbstractC11762a) mo9910a()).getActualScope() : mo9910a();
     }
@@ -65,4 +62,7 @@ public abstract class AbstractC11762a implements InterfaceC11770i {
     public Set<C11716e> getVariableNames() {
         return mo9910a().getVariableNames();
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract InterfaceC11770i mo9910a();
 }

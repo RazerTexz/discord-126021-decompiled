@@ -43,26 +43,9 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: channelId$delegate, reason: from kotlin metadata */
     private final Lazy channelId;
 
-    /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetStageModeratorJoinBottomSheet widgetStageModeratorJoinBottomSheet = new WidgetStageModeratorJoinBottomSheet();
-            widgetStageModeratorJoinBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
-            widgetStageModeratorJoinBottomSheet.show(fragmentManager, WidgetStageModeratorJoinBottomSheet.class.getSimpleName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageModeratorJoinBottomSheet$setSelfSpeaker$1 */
     /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
-    public static final class C100291 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C100291 extends AbstractC12240o implements Function1<Void, Unit> {
         public C100291() {
             super(1);
         }
@@ -76,6 +59,23 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Void r1) {
             WidgetStageModeratorJoinBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetStageModeratorJoinBottomSheet widgetStageModeratorJoinBottomSheet = new WidgetStageModeratorJoinBottomSheet();
+            widgetStageModeratorJoinBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
+            widgetStageModeratorJoinBottomSheet.show(fragmentManager, WidgetStageModeratorJoinBottomSheet.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -93,13 +93,6 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
-    private final void setSelfSpeaker() {
-        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(getChannelId());
-        if (channel != null) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, false), false, 1, null), this, null, 2, null), (Class<?>) WidgetStageModeratorJoinBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C100291());
-        }
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_stage_moderator_join_bottom_sheet;
@@ -113,7 +106,7 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageModeratorJoinBottomSheet$onViewCreated$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -132,7 +125,7 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageModeratorJoinBottomSheet$onViewCreated$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -160,5 +153,12 @@ public final class WidgetStageModeratorJoinBottomSheet extends AppBottomSheet {
                 WidgetStageModeratorJoinBottomSheet.this.dismiss();
             }
         });
+    }
+
+    private final void setSelfSpeaker() {
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(getChannelId());
+        if (channel != null) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, false), false, 1, null), this, null, 2, null), (Class<?>) WidgetStageModeratorJoinBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C100291());
+        }
     }
 }

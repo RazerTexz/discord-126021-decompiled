@@ -55,8 +55,71 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-    public static final class Companion {
+    public final class C100551 extends AbstractC12240o implements Function1<WidgetStageStartEventBottomSheetViewModel.Event, Unit> {
+        public C100551() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetStageStartEventBottomSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetStageStartEventBottomSheetViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "event");
+            WidgetStageStartEventBottomSheet.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onResume$2 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
+    public final class C100562 extends AbstractC12240o implements Function1<WidgetStageStartEventBottomSheetViewModel.ViewState, Unit> {
+        public C100562() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetStageStartEventBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetStageStartEventBottomSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetStageStartEventBottomSheet.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onViewCreated$1 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
+    public final class C100571 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C100571() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "editable");
+            TextInputLayout textInputLayout = WidgetStageStartEventBottomSheet.this.getBinding().f18179g;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.topicLayout");
+            textInputLayout.setError(null);
+            WidgetStageStartEventBottomSheet.this.getViewModel().setTopic(editable.toString());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -79,69 +142,6 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-    public static final class C100551 extends AbstractC12240o implements Function1<WidgetStageStartEventBottomSheetViewModel.Event, Unit> {
-        public C100551() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetStageStartEventBottomSheetViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetStageStartEventBottomSheetViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            WidgetStageStartEventBottomSheet.this.handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onResume$2 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-    public static final class C100562 extends AbstractC12240o implements Function1<WidgetStageStartEventBottomSheetViewModel.ViewState, Unit> {
-        public C100562() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetStageStartEventBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetStageStartEventBottomSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetStageStartEventBottomSheet.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-    public static final class C100571 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C100571() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "editable");
-            TextInputLayout textInputLayout = WidgetStageStartEventBottomSheet.this.getBinding().f18179g;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.topicLayout");
-            textInputLayout.setError(null);
-            WidgetStageStartEventBottomSheet.this.getViewModel().setTopic(editable.toString());
         }
     }
 
@@ -189,6 +189,15 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_stage_start_event_bottom_sheet;
+    }
+
+    public final Function0<Unit> getOnDismiss() {
+        return this.onDismiss;
+    }
+
     private final WidgetStageStartEventBottomSheetViewModel getViewModel() {
         return (WidgetStageStartEventBottomSheetViewModel) this.viewModel.getValue();
     }
@@ -204,15 +213,6 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
             C12238m.checkNotNullExpressionValue(textInputLayout, "binding.topicLayout");
             textInputLayout.setError(getString(((WidgetStageStartEventBottomSheetViewModel.Event.InvalidTopic) event).getFailureMessageStringRes()));
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_stage_start_event_bottom_sheet;
-    }
-
-    public final Function0<Unit> getOnDismiss() {
-        return this.onDismiss;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -233,7 +233,7 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onViewCreated$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -256,7 +256,7 @@ public final class WidgetStageStartEventBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$onViewCreated$2$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageStartEventBottomSheet.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }

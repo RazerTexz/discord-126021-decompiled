@@ -6,49 +6,6 @@ import androidx.annotation.FloatRange;
 public final class FlingAnimation extends DynamicAnimation<FlingAnimation> {
     private final DragForce mFlingForce;
 
-    public static final class DragForce implements Force {
-        private static final float DEFAULT_FRICTION = -4.2f;
-        private static final float VELOCITY_THRESHOLD_MULTIPLIER = 62.5f;
-        private float mFriction = DEFAULT_FRICTION;
-        private final DynamicAnimation.MassState mMassState = new DynamicAnimation.MassState();
-        private float mVelocityThreshold;
-
-        @Override // androidx.dynamicanimation.animation.Force
-        public float getAcceleration(float f, float f2) {
-            return f2 * this.mFriction;
-        }
-
-        public float getFrictionScalar() {
-            return this.mFriction / DEFAULT_FRICTION;
-        }
-
-        @Override // androidx.dynamicanimation.animation.Force
-        public boolean isAtEquilibrium(float f, float f2) {
-            return Math.abs(f2) < this.mVelocityThreshold;
-        }
-
-        public void setFrictionScalar(float f) {
-            this.mFriction = f * DEFAULT_FRICTION;
-        }
-
-        public void setValueThreshold(float f) {
-            this.mVelocityThreshold = f * VELOCITY_THRESHOLD_MULTIPLIER;
-        }
-
-        public DynamicAnimation.MassState updateValueAndVelocity(float f, float f2, long j) {
-            float f3 = j;
-            this.mMassState.mVelocity = (float) (Math.exp((f3 / 1000.0f) * this.mFriction) * ((double) f2));
-            DynamicAnimation.MassState massState = this.mMassState;
-            float f4 = this.mFriction;
-            massState.mValue = (float) ((Math.exp((f4 * f3) / 1000.0f) * ((double) (f2 / f4))) + ((double) (f - (f2 / f4))));
-            DynamicAnimation.MassState massState2 = this.mMassState;
-            if (isAtEquilibrium(massState2.mValue, massState2.mVelocity)) {
-                this.mMassState.mVelocity = 0.0f;
-            }
-            return this.mMassState;
-        }
-    }
-
     public FlingAnimation(FloatValueHolder floatValueHolder) {
         super(floatValueHolder);
         DragForce dragForce = new DragForce();
@@ -101,6 +58,49 @@ public final class FlingAnimation extends DynamicAnimation<FlingAnimation> {
         }
         this.mValue = f4;
         return true;
+    }
+
+    public final class DragForce implements Force {
+        private static final float DEFAULT_FRICTION = -4.2f;
+        private static final float VELOCITY_THRESHOLD_MULTIPLIER = 62.5f;
+        private float mVelocityThreshold;
+        private float mFriction = DEFAULT_FRICTION;
+        private final DynamicAnimation.MassState mMassState = new DynamicAnimation.MassState();
+
+        @Override // androidx.dynamicanimation.animation.Force
+        public float getAcceleration(float f, float f2) {
+            return f2 * this.mFriction;
+        }
+
+        public float getFrictionScalar() {
+            return this.mFriction / DEFAULT_FRICTION;
+        }
+
+        @Override // androidx.dynamicanimation.animation.Force
+        public boolean isAtEquilibrium(float f, float f2) {
+            return Math.abs(f2) < this.mVelocityThreshold;
+        }
+
+        public void setFrictionScalar(float f) {
+            this.mFriction = f * DEFAULT_FRICTION;
+        }
+
+        public void setValueThreshold(float f) {
+            this.mVelocityThreshold = f * VELOCITY_THRESHOLD_MULTIPLIER;
+        }
+
+        public DynamicAnimation.MassState updateValueAndVelocity(float f, float f2, long j) {
+            float f3 = j;
+            this.mMassState.mVelocity = (float) (Math.exp((f3 / 1000.0f) * this.mFriction) * ((double) f2));
+            DynamicAnimation.MassState massState = this.mMassState;
+            float f4 = this.mFriction;
+            massState.mValue = (float) ((Math.exp((f4 * f3) / 1000.0f) * ((double) (f2 / f4))) + ((double) (f - (f2 / f4))));
+            DynamicAnimation.MassState massState2 = this.mMassState;
+            if (isAtEquilibrium(massState2.mValue, massState2.mVelocity)) {
+                this.mMassState.mVelocity = 0.0f;
+            }
+            return this.mMassState;
+        }
     }
 
     @Override // androidx.dynamicanimation.animation.DynamicAnimation

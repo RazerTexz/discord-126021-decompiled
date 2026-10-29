@@ -17,10 +17,6 @@ public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChange
         this.mCallbacks = new ArrayList(i);
     }
 
-    private void throwCallbackListModifiedWhileInUse(ConcurrentModificationException concurrentModificationException) {
-        throw new IllegalStateException("Adding and removing callbacks during dispatch to callbacks is not supported", concurrentModificationException);
-    }
-
     public void addOnPageChangeCallback(ViewPager2.OnPageChangeCallback onPageChangeCallback) {
         this.mCallbacks.add(onPageChangeCallback);
     }
@@ -63,5 +59,9 @@ public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChange
 
     public void removeOnPageChangeCallback(ViewPager2.OnPageChangeCallback onPageChangeCallback) {
         this.mCallbacks.remove(onPageChangeCallback);
+    }
+
+    private void throwCallbackListModifiedWhileInUse(ConcurrentModificationException concurrentModificationException) {
+        throw new IllegalStateException("Adding and removing callbacks during dispatch to callbacks is not supported", concurrentModificationException);
     }
 }

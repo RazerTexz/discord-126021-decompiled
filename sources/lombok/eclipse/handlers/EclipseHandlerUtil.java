@@ -102,14 +102,14 @@ import org.eclipse.jdt.internal.core.CompilationUnit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseHandlerUtil.SCL.lombok */
 public class EclipseHandlerUtil {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$AccessLevel;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
     private static final int MODIFIERS_INDICATING_STATIC = 16904;
     private static final Constructor<CastExpression> castExpressionConstructor;
     private static final boolean castExpressionConstructorIsTypeRefBased;
+    private static Boolean eclipseMode;
     private static final Constructor<IntLiteral> intLiteralConstructor;
     private static final Method intLiteralFactoryMethod;
-    private static Boolean eclipseMode;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$AccessLevel;
     private static final Annotation[] EMPTY_ANNOTATIONS_ARRAY = new Annotation[0];
     private static final char[] OBJECT_SIG = "Ljava/lang/Object;".toCharArray();
     static final char[] ALL = "all".toCharArray();
@@ -135,6 +135,40 @@ public class EclipseHandlerUtil {
             System.arraycopy(memberExistsResultArrValuesCustom, 0, memberExistsResultArr, 0, length);
             return memberExistsResultArr;
         }
+    }
+
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$AccessLevel() {
+        int[] iArr = $SWITCH_TABLE$lombok$AccessLevel;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[AccessLevel.values().length];
+        try {
+            iArr2[AccessLevel.MODULE.ordinal()] = 2;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[AccessLevel.NONE.ordinal()] = 6;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[AccessLevel.PACKAGE.ordinal()] = 4;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            iArr2[AccessLevel.PRIVATE.ordinal()] = 5;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            iArr2[AccessLevel.PROTECTED.ordinal()] = 3;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            iArr2[AccessLevel.PUBLIC.ordinal()] = 1;
+        } catch (NoSuchFieldError unused6) {
+        }
+        $SWITCH_TABLE$lombok$AccessLevel = iArr2;
+        return iArr2;
     }
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
@@ -184,40 +218,6 @@ public class EclipseHandlerUtil {
         } catch (NoSuchFieldError unused10) {
         }
         $SWITCH_TABLE$lombok$core$AST$Kind = iArr2;
-        return iArr2;
-    }
-
-    static /* synthetic */ int[] $SWITCH_TABLE$lombok$AccessLevel() {
-        int[] iArr = $SWITCH_TABLE$lombok$AccessLevel;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[AccessLevel.values().length];
-        try {
-            iArr2[AccessLevel.MODULE.ordinal()] = 2;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[AccessLevel.NONE.ordinal()] = 6;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[AccessLevel.PACKAGE.ordinal()] = 4;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            iArr2[AccessLevel.PRIVATE.ordinal()] = 5;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            iArr2[AccessLevel.PROTECTED.ordinal()] = 3;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            iArr2[AccessLevel.PUBLIC.ordinal()] = 1;
-        } catch (NoSuchFieldError unused6) {
-        }
-        $SWITCH_TABLE$lombok$AccessLevel = iArr2;
         return iArr2;
     }
 
@@ -399,14 +399,14 @@ public class EclipseHandlerUtil {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseHandlerUtil$EclipseReflectiveMembers.SCL.lombok */
-    static class EclipseReflectiveMembers {
+    class EclipseReflectiveMembers {
+        public static final Field INTERSECTION_BINDING_TYPES1;
+        public static final Field INTERSECTION_BINDING_TYPES2;
         public static final Field STRING_LITERAL__LINE_NUMBER = getField(StringLiteral.class, "lineNumber");
         public static final Field ANNOTATION__MEMBER_VALUE_PAIR_NAME = getField(Annotation.class, "memberValuePairName");
         public static final Field TYPE_REFERENCE__ANNOTATIONS = getField(TypeReference.class, "annotations");
         public static final Class<?> INTERSECTION_BINDING1 = getClass("org.eclipse.jdt.internal.compiler.lookup.IntersectionTypeBinding18");
         public static final Class<?> INTERSECTION_BINDING2 = getClass("org.eclipse.jdt.internal.compiler.lookup.IntersectionCastTypeBinding");
-        public static final Field INTERSECTION_BINDING_TYPES1;
-        public static final Field INTERSECTION_BINDING_TYPES2;
 
         EclipseReflectiveMembers() {
         }
@@ -1629,7 +1629,7 @@ public class EclipseHandlerUtil {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseHandlerUtil$GetterMethod.SCL.lombok */
-    private static class GetterMethod {
+    class GetterMethod {
         private final char[] name;
         private final TypeReference type;
 
@@ -2744,7 +2744,7 @@ public class EclipseHandlerUtil {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/EclipseHandlerUtil$EclipseOnlyUtil.SCL.lombok */
-    private static class EclipseOnlyUtil {
+    class EclipseOnlyUtil {
         private EclipseOnlyUtil() {
         }
 

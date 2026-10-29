@@ -8,10 +8,10 @@ import java.util.concurrent.Executor;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4363g {
 
+    /* JADX INFO: renamed from: b */
+    public static final Executor f11480b = new ExecutorC4354a0();
+
     /* JADX INFO: renamed from: a */
     @RecentlyNonNull
     public static final Executor f11479a = new ExecutorC4356b0();
-
-    /* JADX INFO: renamed from: b */
-    public static final Executor f11480b = new ExecutorC4354a0();
 }

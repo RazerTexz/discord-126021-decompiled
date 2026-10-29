@@ -19,7 +19,7 @@ public final class C11266k<V> extends C12050p<V> implements KMutableProperty0<V>
 
     /* JADX INFO: renamed from: d0.e0.p.d.k$a */
     /* JADX INFO: compiled from: KProperty0Impl.kt */
-    public static final class a<R> extends AbstractC12053s.d<R> implements KMutableProperty0.Setter<R> {
+    public final class a<R> extends AbstractC12053s.d<R> implements KMutableProperty0.Setter<R> {
 
         /* JADX INFO: renamed from: q */
         public final C11266k<R> f22399q;
@@ -49,7 +49,7 @@ public final class C11266k<V> extends C12050p<V> implements KMutableProperty0<V>
 
     /* JADX INFO: renamed from: d0.e0.p.d.k$b */
     /* JADX INFO: compiled from: KProperty0Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<V>> {
+    public final class b extends AbstractC12240o implements Function0<a<V>> {
         public b() {
             super(0);
         }

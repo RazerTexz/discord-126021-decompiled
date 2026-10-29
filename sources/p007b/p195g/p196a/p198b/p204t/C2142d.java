@@ -12,10 +12,6 @@ import p007b.p195g.p196a.p198b.p200p.C2130j;
 /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2142d implements InterfaceC2114j, InterfaceC2143e<C2142d>, Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final C2130j f4599j = new C2130j(" ");
-    private static final long serialVersionUID = 1;
     public b _arrayIndenter;
     public String _objectFieldValueSeparatorWithSpaces;
     public b _objectIndenter;
@@ -25,38 +21,42 @@ public class C2142d implements InterfaceC2114j, InterfaceC2143e<C2142d>, Seriali
 
     /* JADX INFO: renamed from: k */
     public transient int f4600k;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2130j f4599j = new C2130j(" ");
 
     /* JADX INFO: renamed from: b.g.a.b.t.d$a */
     /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
-    public static class a extends c {
+    public class a extends c {
 
         /* JADX INFO: renamed from: j */
         public static final a f4601j = new a();
+
+        @Override // p007b.p195g.p196a.p198b.p204t.C2142d.c, p007b.p195g.p196a.p198b.p204t.C2142d.b
+        public boolean isInline() {
+            return true;
+        }
 
         @Override // p007b.p195g.p196a.p198b.p204t.C2142d.b
         /* JADX INFO: renamed from: a */
         public void mo1731a(AbstractC2108d abstractC2108d, int i) throws IOException {
             abstractC2108d.mo1640R(' ');
         }
-
-        @Override // p007b.p195g.p196a.p198b.p204t.C2142d.c, p007b.p195g.p196a.p198b.p204t.C2142d.b
-        public boolean isInline() {
-            return true;
-        }
     }
 
     /* JADX INFO: renamed from: b.g.a.b.t.d$b */
     /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
     public interface b {
+        boolean isInline();
+
         /* JADX INFO: renamed from: a */
         void mo1731a(AbstractC2108d abstractC2108d, int i) throws IOException;
-
-        boolean isInline();
     }
 
     /* JADX INFO: renamed from: b.g.a.b.t.d$c */
     /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
-    public static class c implements b, Serializable {
+    public class c implements b, Serializable {
         @Override // p007b.p195g.p196a.p198b.p204t.C2142d.b
         public boolean isInline() {
             return !(this instanceof C2141c);
@@ -107,15 +107,6 @@ public class C2142d implements InterfaceC2114j, InterfaceC2143e<C2142d>, Seriali
     /* JADX INFO: renamed from: d */
     public void mo1681d(AbstractC2108d abstractC2108d) throws IOException {
         this._objectIndenter.mo1731a(abstractC2108d, this.f4600k);
-    }
-
-    @Override // p007b.p195g.p196a.p198b.p204t.InterfaceC2143e
-    /* JADX INFO: renamed from: e */
-    public C2142d mo1732e() {
-        if (C2142d.class == C2142d.class) {
-            return new C2142d(this);
-        }
-        throw new IllegalStateException(C1643a.m867o(C2142d.class, C1643a.m833U("Failed `createInstance()`: "), " does not override method; it has to"));
     }
 
     @Override // p007b.p195g.p196a.p198b.InterfaceC2114j
@@ -176,6 +167,15 @@ public class C2142d implements InterfaceC2114j, InterfaceC2143e<C2142d>, Seriali
         } else {
             abstractC2108d.mo1640R(this._separators.m1738c());
         }
+    }
+
+    @Override // p007b.p195g.p196a.p198b.p204t.InterfaceC2143e
+    /* JADX INFO: renamed from: e */
+    public C2142d mo1732e() {
+        if (C2142d.class == C2142d.class) {
+            return new C2142d(this);
+        }
+        throw new IllegalStateException(C1643a.m867o(C2142d.class, C1643a.m833U("Failed `createInstance()`: "), " does not override method; it has to"));
     }
 
     public C2142d(C2142d c2142d) {

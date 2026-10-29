@@ -65,33 +65,9 @@ public final class WidgetChangeLog extends AppFragment {
     private final WidgetChangeLog$thumbnailControllerListener$1 thumbnailControllerListener;
     private AbstractDraweeController<Object, Object> thumbnailDraweeController;
 
-    /* JADX INFO: compiled from: WidgetChangeLog.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, String version, String revision, String video, String body) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(version, "version");
-            C12238m.checkNotNullParameter(revision, "revision");
-            C12238m.checkNotNullParameter(video, MediaStreamTrack.VIDEO_TRACK_KIND);
-            C12238m.checkNotNullParameter(body, "body");
-            Bundle bundle = new Bundle();
-            bundle.putString(WidgetChangeLog.INTENT_EXTRA_VERSION, version);
-            bundle.putString(WidgetChangeLog.INTENT_EXTRA_REVISION, revision);
-            bundle.putString(WidgetChangeLog.INTENT_EXTRA_VIDEO, video);
-            bundle.putString(WidgetChangeLog.INTENT_EXTRA_BODY, body);
-            C0870j.m156d(context, WidgetChangeLog.class, new Intent().putExtras(bundle));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLog$hideVideoOverlay$1 */
     /* JADX INFO: compiled from: WidgetChangeLog.kt */
-    public static final class C73111 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C73111 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C73111 INSTANCE = new C73111();
 
         public C73111() {
@@ -114,7 +90,7 @@ public final class WidgetChangeLog extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLog$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetChangeLog.kt */
-    public static final class C73121 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+    public final class C73121 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
         public C73121() {
             super(3);
         }
@@ -136,7 +112,7 @@ public final class WidgetChangeLog extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLog$showVideoOverlay$1 */
     /* JADX INFO: compiled from: WidgetChangeLog.kt */
-    public static final class C73141 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73141 extends AbstractC12240o implements Function1<View, Unit> {
         public static final C73141 INSTANCE = new C73141();
 
         public C73141() {
@@ -159,7 +135,7 @@ public final class WidgetChangeLog extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLog$showVideoOverlay$2 */
     /* JADX INFO: compiled from: WidgetChangeLog.kt */
-    public static final class C73152 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+    public final class C73152 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
         public static final C73152 INSTANCE = new C73152();
 
         public C73152() {
@@ -177,6 +153,30 @@ public final class WidgetChangeLog extends AppFragment {
             C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
             viewPropertyAnimator.scaleX(1.0f);
             viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChangeLog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, String version, String revision, String video, String body) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(version, "version");
+            C12238m.checkNotNullParameter(revision, "revision");
+            C12238m.checkNotNullParameter(video, MediaStreamTrack.VIDEO_TRACK_KIND);
+            C12238m.checkNotNullParameter(body, "body");
+            Bundle bundle = new Bundle();
+            bundle.putString(WidgetChangeLog.INTENT_EXTRA_VERSION, version);
+            bundle.putString(WidgetChangeLog.INTENT_EXTRA_REVISION, revision);
+            bundle.putString(WidgetChangeLog.INTENT_EXTRA_VIDEO, video);
+            bundle.putString(WidgetChangeLog.INTENT_EXTRA_BODY, body);
+            C0870j.m156d(context, WidgetChangeLog.class, new Intent().putExtras(bundle));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -300,49 +300,6 @@ public final class WidgetChangeLog extends AppFragment {
         INSTANCE.launch(context, str, str2, str3, str4);
     }
 
-    private final void onViewBindingDestroy(WidgetChangeLogBinding binding) {
-        binding.f15818h.setOnPreparedListener(null);
-        binding.f15818h.setOnCompletionListener(null);
-        AbstractDraweeController<Object, Object> abstractDraweeController = this.thumbnailDraweeController;
-        if (abstractDraweeController != null) {
-            abstractDraweeController.m8647A(this.thumbnailControllerListener);
-        }
-    }
-
-    private final void showVideoOverlay() {
-        ViewExtensions.fadeIn$default(getBinding().f15819i, 200L, C73141.INSTANCE, C73152.INSTANCE, null, 8, null);
-    }
-
-    private final void track(String event, Map<String, ? extends Object> properties, boolean includeStats) {
-        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
-        if (stringExtra == null) {
-            stringExtra = getString(C5419R.string.change_log_md_date);
-        }
-        C12238m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
-        String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_REVISION);
-        if (stringExtra2 == null) {
-            stringExtra2 = getString(C5419R.string.change_log_md_revision);
-        }
-        C12238m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…g.change_log_md_revision)");
-        HashMap map = new HashMap();
-        if (includeStats) {
-            map.put("seconds_open", Long.valueOf((ClockFactory.get().currentTimeMillis() - this.openedTimestamp) / ((long) 1000)));
-            map.put("max_scrolled_percentage", Integer.valueOf(this.maxScrolledPercent));
-        }
-        AnalyticsTracker.INSTANCE.changeLogEvent(event, stringExtra, stringExtra2, C12136h0.plus(properties, map));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void track$default(WidgetChangeLog widgetChangeLog, String str, Map map, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            map = new HashMap();
-        }
-        if ((i & 4) != 0) {
-            z2 = true;
-        }
-        widgetChangeLog.track(str, map, z2);
-    }
-
     @Override // androidx.fragment.app.Fragment
     public void onDestroy() {
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
@@ -363,6 +320,15 @@ public final class WidgetChangeLog extends AppFragment {
             getBinding().f15818h.pause();
         }
         super.onPause();
+    }
+
+    private final void onViewBindingDestroy(WidgetChangeLogBinding binding) {
+        binding.f15818h.setOnPreparedListener(null);
+        binding.f15818h.setOnCompletionListener(null);
+        AbstractDraweeController<Object, Object> abstractDraweeController = this.thumbnailDraweeController;
+        if (abstractDraweeController != null) {
+            abstractDraweeController.m8647A(this.thumbnailControllerListener);
+        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -401,5 +367,39 @@ public final class WidgetChangeLog extends AppFragment {
                 widgetChangeLog.maxScrolledPercent = C11226f.coerceAtLeast(i5, (i2 * 100) / C11226f.coerceAtLeast(height - nestedScrollView3.getHeight(), 1));
             }
         });
+    }
+
+    private final void showVideoOverlay() {
+        ViewExtensions.fadeIn$default(getBinding().f15819i, 200L, C73141.INSTANCE, C73152.INSTANCE, null, 8, null);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void track$default(WidgetChangeLog widgetChangeLog, String str, Map map, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            map = new HashMap();
+        }
+        if ((i & 4) != 0) {
+            z2 = true;
+        }
+        widgetChangeLog.track(str, map, z2);
+    }
+
+    private final void track(String event, Map<String, ? extends Object> properties, boolean includeStats) {
+        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
+        if (stringExtra == null) {
+            stringExtra = getString(C5419R.string.change_log_md_date);
+        }
+        C12238m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
+        String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_REVISION);
+        if (stringExtra2 == null) {
+            stringExtra2 = getString(C5419R.string.change_log_md_revision);
+        }
+        C12238m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…g.change_log_md_revision)");
+        HashMap map = new HashMap();
+        if (includeStats) {
+            map.put("seconds_open", Long.valueOf((ClockFactory.get().currentTimeMillis() - this.openedTimestamp) / ((long) 1000)));
+            map.put("max_scrolled_percentage", Integer.valueOf(this.maxScrolledPercent));
+        }
+        AnalyticsTracker.INSTANCE.changeLogEvent(event, stringExtra, stringExtra2, C12136h0.plus(properties, map));
     }
 }

@@ -25,7 +25,7 @@ public final class C12399p implements InterfaceC12405v {
     }
 
     @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
+    public void close() throws IOException {
         this.f26109j.close();
     }
 

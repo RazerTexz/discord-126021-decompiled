@@ -21,7 +21,7 @@ public final class OAuthScopeTypeAdapter extends TypeAdapter<OAuthScope> {
     private static final HashMap<String, OAuthScope> nameToScopeMap;
 
     /* JADX INFO: compiled from: OAuthScopeTypeAdapter.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

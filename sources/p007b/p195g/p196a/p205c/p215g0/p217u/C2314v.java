@@ -17,26 +17,20 @@ import p007b.p195g.p196a.p205c.p220y.InterfaceC2375a;
 /* JADX INFO: loaded from: classes3.dex */
 @InterfaceC2375a
 public class C2314v extends AbstractC2303p0<Number> implements InterfaceC2240i {
+    public final boolean _isInt;
 
     /* JADX INFO: renamed from: k */
     public static final C2314v f4868k = new C2314v(Number.class);
-    public final boolean _isInt;
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.v$a */
     /* JADX INFO: compiled from: NumberSerializer.java */
-    public static final class a extends AbstractC2313u0 {
+    public final class a extends AbstractC2313u0 {
 
         /* JADX INFO: renamed from: k */
         public static final a f4869k = new a();
 
         public a() {
             super(BigDecimal.class);
-        }
-
-        @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2313u0, p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return false;
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2313u0, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -57,6 +51,12 @@ public class C2314v extends AbstractC2303p0<Number> implements InterfaceC2240i {
             abstractC2108d.mo1658j0(string);
         }
 
+        @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2313u0, p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return false;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2313u0
         /* JADX INFO: renamed from: p */
         public String mo2087p(Object obj) {
@@ -67,16 +67,6 @@ public class C2314v extends AbstractC2303p0<Number> implements InterfaceC2240i {
     public C2314v(Class<? extends Number> cls) {
         super(cls, false);
         this._isInt = cls == BigInteger.class;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
-        if (dVarM2074l == null || dVarM2074l.m1601e().ordinal() != 8) {
-            return this;
-        }
-        return this._handledType == BigDecimal.class ? a.f4869k : C2311t0.f4866k;
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -106,5 +96,15 @@ public class C2314v extends AbstractC2303p0<Number> implements InterfaceC2240i {
         } else {
             abstractC2108d.mo1636J(number.toString());
         }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, this._handledType);
+        if (dVarM2074l == null || dVarM2074l.m1601e().ordinal() != 8) {
+            return this;
+        }
+        return this._handledType == BigDecimal.class ? a.f4869k : C2311t0.f4866k;
     }
 }

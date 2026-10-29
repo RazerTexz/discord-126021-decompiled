@@ -42,7 +42,7 @@ public final class C3068j extends AbstractC3067i {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.j0.j$a */
     /* JADX INFO: compiled from: VorbisReader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C3002b0 f8560a;
@@ -62,15 +62,6 @@ public final class C3068j extends AbstractC3067i {
             this.f8562c = c3000a0Arr;
             this.f8563d = i;
         }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.AbstractC3067i
-    /* JADX INFO: renamed from: b */
-    public void mo3747b(long j) {
-        this.f8546g = j;
-        this.f8557p = j != 0;
-        C3002b0 c3002b0 = this.f8558q;
-        this.f8556o = c3002b0 != null ? c3002b0.f8058e : 0;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.AbstractC3067i
@@ -431,5 +422,14 @@ public final class C3068j extends AbstractC3067i {
         }
         this.f8556o = 0;
         this.f8557p = false;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.AbstractC3067i
+    /* JADX INFO: renamed from: b */
+    public void mo3747b(long j) {
+        this.f8546g = j;
+        this.f8557p = j != 0;
+        C3002b0 c3002b0 = this.f8558q;
+        this.f8556o = c3002b0 != null ? c3002b0.f8058e : 0;
     }
 }

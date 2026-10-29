@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAutoSuggestExpressionSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAutoSuggestExpressionSelected implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+    private final Long emojiId = null;
+    private final Long stickerId = null;
+    private final CharSequence suggestionTrigger = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
-    private final Long stickerId = null;
-    private final Long emojiId = null;
-    private final CharSequence suggestionTrigger = null;
     private final transient String analyticsSchemaTypeName = "auto_suggest_expression_selected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackAutoSuggestExpressionSelected implements Anal
         }
         TrackAutoSuggestExpressionSelected trackAutoSuggestExpressionSelected = (TrackAutoSuggestExpressionSelected) other;
         return C12238m.areEqual(this.stickerId, trackAutoSuggestExpressionSelected.stickerId) && C12238m.areEqual(this.emojiId, trackAutoSuggestExpressionSelected.emojiId) && C12238m.areEqual(this.suggestionTrigger, trackAutoSuggestExpressionSelected.suggestionTrigger);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

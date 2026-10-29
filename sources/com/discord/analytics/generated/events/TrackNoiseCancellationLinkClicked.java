@@ -12,17 +12,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNoiseCancellationLinkClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNoiseCancellationLinkClicked implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+    private final CharSequence href = null;
+    private final CharSequence text = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence text = null;
-    private final CharSequence href = null;
     private final transient String analyticsSchemaTypeName = "noise_cancellation_link_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackNoiseCancellationLinkClicked implements Analy
         }
         TrackNoiseCancellationLinkClicked trackNoiseCancellationLinkClicked = (TrackNoiseCancellationLinkClicked) other;
         return C12238m.areEqual(this.text, trackNoiseCancellationLinkClicked.text) && C12238m.areEqual(this.href, trackNoiseCancellationLinkClicked.href);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

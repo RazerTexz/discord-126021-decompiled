@@ -83,6 +83,7 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetChannelsList.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelsList extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelsListBinding;", 0)};
     public static final String ANALYTICS_SOURCE = "Channels List";
     public static final float BANNER_TEXT_SHADOW_DX = 0.0f;
     public static final float BANNER_TEXT_SHADOW_DY = 4.0f;
@@ -99,11 +100,10 @@ public final class WidgetChannelsList extends AppFragment {
     private boolean isCollapsed;
     private Long selectedGuildId;
     private final StoreNavigation storeNavigation;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelsListBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$configureBottomNavSpace$1 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74241 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C74241 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C74241() {
             super(1);
         }
@@ -130,7 +130,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$configureUI$5 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74265 extends AbstractC12240o implements Function1<Float, Unit> {
+    public final class C74265 extends AbstractC12240o implements Function1<Float, Unit> {
         public final /* synthetic */ Guild $guild;
         public final /* synthetic */ boolean $hasBanner;
         public final /* synthetic */ WidgetChannelListModel $list;
@@ -165,7 +165,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74271 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C74271 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C74271() {
             super(1);
         }
@@ -193,7 +193,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$10 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C742810 extends AbstractC12240o implements Function0<Unit> {
+    public final class C742810 extends AbstractC12240o implements Function0<Unit> {
         public C742810() {
             super(0);
         }
@@ -212,7 +212,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$12 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C743012 extends AbstractC12240o implements Function0<Integer> {
+    public final class C743012 extends AbstractC12240o implements Function0<Integer> {
         public C743012() {
             super(0);
         }
@@ -230,7 +230,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$13 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C743113 extends AbstractC12240o implements Function2<List<? extends ChannelListItem>, List<? extends ChannelListItem>, Unit> {
+    public final class C743113 extends AbstractC12240o implements Function2<List<? extends ChannelListItem>, List<? extends ChannelListItem>, Unit> {
         public C743113() {
             super(2);
         }
@@ -254,7 +254,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74342 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C74342 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C74342() {
             super(1);
         }
@@ -296,7 +296,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74353 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C74353 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C74353() {
             super(1);
         }
@@ -316,7 +316,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74364 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C74364 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C74364() {
             super(1);
         }
@@ -338,7 +338,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74375 extends AbstractC12240o implements Function2<Channel, Boolean, Unit> {
+    public final class C74375 extends AbstractC12240o implements Function2<Channel, Boolean, Unit> {
         public C74375() {
             super(2);
         }
@@ -371,7 +371,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$6 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74386 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C74386 extends AbstractC12240o implements Function1<View, Unit> {
         public C74386() {
             super(1);
         }
@@ -395,7 +395,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$7 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74397 extends AbstractC12240o implements Function2<User, Channel, Unit> {
+    public final class C74397 extends AbstractC12240o implements Function2<User, Channel, Unit> {
         public C74397() {
             super(2);
         }
@@ -421,7 +421,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$8 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74408 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C74408 extends AbstractC12240o implements Function1<Guild, Unit> {
         public C74408() {
             super(1);
         }
@@ -463,7 +463,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBound$9 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final class C74419 extends AbstractC12240o implements Function0<Unit> {
+    public final class C74419 extends AbstractC12240o implements Function0<Unit> {
         public C74419() {
             super(0);
         }
@@ -485,7 +485,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final /* synthetic */ class C74421 extends C12236k implements Function1<WidgetChannelListModel, Unit> {
+    public final /* synthetic */ class C74421 extends C12236k implements Function1<WidgetChannelListModel, Unit> {
         public C74421(WidgetChannelsList widgetChannelsList) {
             super(1, widgetChannelsList, WidgetChannelsList.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/list/WidgetChannelListModel;)V", 0);
         }
@@ -505,7 +505,7 @@ public final class WidgetChannelsList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsList$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChannelsList.kt */
-    public static final /* synthetic */ class C74432 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
+    public final /* synthetic */ class C74432 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
         public C74432(WidgetChannelsList widgetChannelsList) {
             super(1, widgetChannelsList, WidgetChannelsList.class, "handleGlobalStatusIndicatorState", "handleGlobalStatusIndicatorState(Lcom/discord/widgets/status/WidgetGlobalStatusIndicatorState$State;)V", 0);
         }
@@ -692,17 +692,6 @@ public final class WidgetChannelsList extends AppFragment {
         }
     }
 
-    private final void roundPanelCorners() {
-        float fDpToPixels = DimenUtils.dpToPixels(8);
-        getBinding().f15982o.updateTopLeftRadius(fDpToPixels);
-        getBinding().f15982o.updateTopRightRadius(fDpToPixels);
-    }
-
-    private final void unroundPanelCorners() {
-        getBinding().f15982o.updateTopLeftRadius(0.0f);
-        getBinding().f15982o.updateTopRightRadius(0.0f);
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -825,5 +814,16 @@ public final class WidgetChannelsList extends AppFragment {
         }
         configureBottomNavSpace();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.globalStatusIndicatorStateObserver.observeState(), this, null, 2, null), (Class<?>) WidgetChannelsList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74432(this));
+    }
+
+    private final void roundPanelCorners() {
+        float fDpToPixels = DimenUtils.dpToPixels(8);
+        getBinding().f15982o.updateTopLeftRadius(fDpToPixels);
+        getBinding().f15982o.updateTopRightRadius(fDpToPixels);
+    }
+
+    private final void unroundPanelCorners() {
+        getBinding().f15982o.updateTopLeftRadius(0.0f);
+        getBinding().f15982o.updateTopRightRadius(0.0f);
     }
 }

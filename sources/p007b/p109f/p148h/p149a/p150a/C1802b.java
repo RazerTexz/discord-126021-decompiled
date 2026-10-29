@@ -19,26 +19,6 @@ public class C1802b<T extends InterfaceC1801a> implements InterfaceC1801a {
         this.f3488a = t;
     }
 
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: a */
-    public int mo1142a() {
-        T t = this.f3488a;
-        if (t == null) {
-            return 0;
-        }
-        return t.mo1142a();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: b */
-    public int mo1143b() {
-        T t = this.f3488a;
-        if (t == null) {
-            return 0;
-        }
-        return t.mo1143b();
-    }
-
     @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
     public void clear() {
         T t = this.f3488a;
@@ -54,16 +34,6 @@ public class C1802b<T extends InterfaceC1801a> implements InterfaceC1801a {
         if (t != null) {
             t.mo1136d(colorFilter);
         }
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: e */
-    public int mo1144e(int i) {
-        T t = this.f3488a;
-        if (t == null) {
-            return 0;
-        }
-        return t.mo1144e(i);
     }
 
     @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
@@ -109,5 +79,35 @@ public class C1802b<T extends InterfaceC1801a> implements InterfaceC1801a {
     public boolean mo1141j(Drawable drawable, Canvas canvas, int i) {
         T t = this.f3488a;
         return t != null && t.mo1141j(drawable, canvas, i);
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: a */
+    public int mo1142a() {
+        T t = this.f3488a;
+        if (t == null) {
+            return 0;
+        }
+        return t.mo1142a();
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: b */
+    public int mo1143b() {
+        T t = this.f3488a;
+        if (t == null) {
+            return 0;
+        }
+        return t.mo1143b();
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: e */
+    public int mo1144e(int i) {
+        T t = this.f3488a;
+        if (t == null) {
+            return 0;
+        }
+        return t.mo1144e(i);
     }
 }

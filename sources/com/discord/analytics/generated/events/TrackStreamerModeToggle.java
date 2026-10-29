@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStreamerModeToggle.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStreamerModeToggle implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean automatic = null;
     private final Boolean enabled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "streamer_mode_toggle";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackStreamerModeToggle implements AnalyticsSchema
         }
         TrackStreamerModeToggle trackStreamerModeToggle = (TrackStreamerModeToggle) other;
         return C12238m.areEqual(this.automatic, trackStreamerModeToggle.automatic) && C12238m.areEqual(this.enabled, trackStreamerModeToggle.enabled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

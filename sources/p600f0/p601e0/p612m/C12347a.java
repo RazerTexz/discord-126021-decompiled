@@ -24,6 +24,30 @@ public final class C12347a extends AbstractC12349c {
         this.f25809a = interfaceC12351e;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return (obj instanceof C12347a) && C12238m.areEqual(((C12347a) obj).f25809a, this.f25809a);
+    }
+
+    public int hashCode() {
+        return this.f25809a.hashCode();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m10342b(X509Certificate x509Certificate, X509Certificate x509Certificate2) {
+        if (!C12238m.areEqual(x509Certificate.getIssuerDN(), x509Certificate2.getSubjectDN())) {
+            return false;
+        }
+        try {
+            x509Certificate.verify(x509Certificate2.getPublicKey());
+            return true;
+        } catch (GeneralSecurityException unused) {
+            return false;
+        }
+    }
+
     @Override // p600f0.p601e0.p612m.AbstractC12349c
     /* JADX INFO: renamed from: a */
     public List<Certificate> mo10338a(List<? extends Certificate> list, String str) throws SSLPeerUnverifiedException {
@@ -72,29 +96,5 @@ public final class C12347a extends AbstractC12349c {
             }
         }
         throw new SSLPeerUnverifiedException("Certificate chain too long: " + arrayList);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m10342b(X509Certificate x509Certificate, X509Certificate x509Certificate2) {
-        if (!C12238m.areEqual(x509Certificate.getIssuerDN(), x509Certificate2.getSubjectDN())) {
-            return false;
-        }
-        try {
-            x509Certificate.verify(x509Certificate2.getPublicKey());
-            return true;
-        } catch (GeneralSecurityException unused) {
-            return false;
-        }
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        return (obj instanceof C12347a) && C12238m.areEqual(((C12347a) obj).f25809a, this.f25809a);
-    }
-
-    public int hashCode() {
-        return this.f25809a.hashCode();
     }
 }

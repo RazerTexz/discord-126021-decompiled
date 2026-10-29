@@ -32,7 +32,7 @@ public final class C12275a implements Interceptor {
 
     /* JADX INFO: renamed from: f0.e0.e.a$a */
     /* JADX INFO: compiled from: CacheInterceptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

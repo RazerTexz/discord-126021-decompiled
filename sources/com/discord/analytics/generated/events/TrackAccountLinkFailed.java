@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAccountLinkFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence errorMessage = null;
-    private final CharSequence statusCode = null;
-    private final CharSequence linkMethod = null;
-    private final CharSequence sessionId = null;
     private final CharSequence currentStep = null;
+    private final CharSequence errorMessage = null;
+    private final CharSequence linkMethod = null;
     private final CharSequence platformType = null;
+    private final CharSequence sessionId = null;
+    private final CharSequence statusCode = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "account_link_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
         }
         TrackAccountLinkFailed trackAccountLinkFailed = (TrackAccountLinkFailed) other;
         return C12238m.areEqual(this.errorMessage, trackAccountLinkFailed.errorMessage) && C12238m.areEqual(this.statusCode, trackAccountLinkFailed.statusCode) && C12238m.areEqual(this.linkMethod, trackAccountLinkFailed.linkMethod) && C12238m.areEqual(this.sessionId, trackAccountLinkFailed.sessionId) && C12238m.areEqual(this.currentStep, trackAccountLinkFailed.currentStep) && C12238m.areEqual(this.platformType, trackAccountLinkFailed.platformType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

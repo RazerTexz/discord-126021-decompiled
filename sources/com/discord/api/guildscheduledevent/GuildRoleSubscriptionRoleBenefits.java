@@ -11,11 +11,6 @@ public final /* data */ class GuildRoleSubscriptionRoleBenefits {
     private final List<GuildRoleSubscriptionBenefit> benefits;
     private final long skuId;
 
-    /* JADX INFO: renamed from: a */
-    public final List<GuildRoleSubscriptionBenefit> m7971a() {
-        return this.benefits;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,6 +27,11 @@ public final /* data */ class GuildRoleSubscriptionRoleBenefits {
         int i = ((int) (j ^ (j >>> 32))) * 31;
         List<GuildRoleSubscriptionBenefit> list = this.benefits;
         return i + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<GuildRoleSubscriptionBenefit> m7971a() {
+        return this.benefits;
     }
 
     public String toString() {

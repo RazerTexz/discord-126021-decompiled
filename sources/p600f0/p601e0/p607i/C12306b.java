@@ -431,6 +431,14 @@ public final class C12306b implements InterfaceC12298d {
         this.f25550b = new C12305a(interfaceC12390g);
     }
 
+    @Override // p600f0.p601e0.p606h.InterfaceC12298d
+    public void cancel() {
+        Socket socket = this.f25553e.f25491b;
+        if (socket != null) {
+            C12272c.m10124e(socket);
+        }
+    }
+
     /* JADX INFO: renamed from: i */
     public static final void m10237i(C12306b c12306b, C12394k c12394k) {
         Objects.requireNonNull(c12306b);
@@ -442,6 +450,35 @@ public final class C12306b implements InterfaceC12298d {
         c12408y.mo10479b();
     }
 
+    /* JADX INFO: renamed from: j */
+    public final InterfaceC12407x m10238j(long j) {
+        if (this.f25549a == 4) {
+            this.f25549a = 5;
+            return new d(j);
+        }
+        StringBuilder sbM833U = C1643a.m833U("state: ");
+        sbM833U.append(this.f25549a);
+        throw new IllegalStateException(sbM833U.toString().toString());
+    }
+
+    /* JADX INFO: renamed from: k */
+    public final void m10239k(Headers headers, String str) throws IOException {
+        C12238m.checkParameterIsNotNull(headers, "headers");
+        C12238m.checkParameterIsNotNull(str, "requestLine");
+        if (!(this.f25549a == 0)) {
+            StringBuilder sbM833U = C1643a.m833U("state: ");
+            sbM833U.append(this.f25549a);
+            throw new IllegalStateException(sbM833U.toString().toString());
+        }
+        this.f25555g.mo10436K(str).mo10436K("\r\n");
+        int size = headers.size();
+        for (int i = 0; i < size; i++) {
+            this.f25555g.mo10436K(headers.m10955d(i)).mo10436K(": ").mo10436K(headers.m10957g(i)).mo10436K("\r\n");
+        }
+        this.f25555g.mo10436K("\r\n");
+        this.f25549a = 1;
+    }
+
     @Override // p600f0.p601e0.p606h.InterfaceC12298d
     /* JADX INFO: renamed from: a */
     public void mo10213a() throws IOException {
@@ -450,7 +487,7 @@ public final class C12306b implements InterfaceC12298d {
 
     @Override // p600f0.p601e0.p606h.InterfaceC12298d
     /* JADX INFO: renamed from: b */
-    public void mo10214b(Request request) {
+    public void mo10214b(Request request) throws IOException {
         C12238m.checkParameterIsNotNull(request, "request");
         Proxy.Type type = this.f25553e.f25506q.f25371b.type();
         C12238m.checkExpressionValueIsNotNull(type, "connection.route().proxy.type()");
@@ -509,16 +546,8 @@ public final class C12306b implements InterfaceC12298d {
     }
 
     @Override // p600f0.p601e0.p606h.InterfaceC12298d
-    public void cancel() {
-        Socket socket = this.f25553e.f25491b;
-        if (socket != null) {
-            C12272c.m10124e(socket);
-        }
-    }
-
-    @Override // p600f0.p601e0.p606h.InterfaceC12298d
     /* JADX INFO: renamed from: d */
-    public Response.C12937a mo10216d(boolean z2) {
+    public Response.C12937a mo10216d(boolean z2) throws IOException {
         int i = this.f25549a;
         boolean z3 = true;
         if (i != 1 && i != 3) {
@@ -602,34 +631,5 @@ public final class C12306b implements InterfaceC12298d {
         StringBuilder sbM833U2 = C1643a.m833U("state: ");
         sbM833U2.append(this.f25549a);
         throw new IllegalStateException(sbM833U2.toString().toString());
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final InterfaceC12407x m10238j(long j) {
-        if (this.f25549a == 4) {
-            this.f25549a = 5;
-            return new d(j);
-        }
-        StringBuilder sbM833U = C1643a.m833U("state: ");
-        sbM833U.append(this.f25549a);
-        throw new IllegalStateException(sbM833U.toString().toString());
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final void m10239k(Headers headers, String str) {
-        C12238m.checkParameterIsNotNull(headers, "headers");
-        C12238m.checkParameterIsNotNull(str, "requestLine");
-        if (!(this.f25549a == 0)) {
-            StringBuilder sbM833U = C1643a.m833U("state: ");
-            sbM833U.append(this.f25549a);
-            throw new IllegalStateException(sbM833U.toString().toString());
-        }
-        this.f25555g.mo10436K(str).mo10436K("\r\n");
-        int size = headers.size();
-        for (int i = 0; i < size; i++) {
-            this.f25555g.mo10436K(headers.m10955d(i)).mo10436K(": ").mo10436K(headers.m10957g(i)).mo10436K("\r\n");
-        }
-        this.f25555g.mo10436K("\r\n");
-        this.f25549a = 1;
     }
 }

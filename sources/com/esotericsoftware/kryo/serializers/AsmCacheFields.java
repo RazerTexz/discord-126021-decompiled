@@ -9,7 +9,7 @@ import p007b.p106e.p108b.AbstractC1647c;
 /* JADX INFO: loaded from: classes.dex */
 public class AsmCacheFields {
 
-    public static final class AsmBooleanField extends AsmCachedField {
+    public final class AsmBooleanField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -28,7 +28,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmByteField extends AsmCachedField {
+    public final class AsmByteField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -47,10 +47,10 @@ public class AsmCacheFields {
         }
     }
 
-    public static abstract class AsmCachedField extends FieldSerializer.CachedField {
+    public abstract class AsmCachedField extends FieldSerializer.CachedField {
     }
 
-    public static final class AsmCharField extends AsmCachedField {
+    public final class AsmCharField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -69,7 +69,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmDoubleField extends AsmCachedField {
+    public final class AsmDoubleField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -88,7 +88,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmFloatField extends AsmCachedField {
+    public final class AsmFloatField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -107,7 +107,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmIntField extends AsmCachedField {
+    public final class AsmIntField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -134,7 +134,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmLongField extends AsmCachedField {
+    public final class AsmLongField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -161,7 +161,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmObjectField extends ObjectField {
+    public final class AsmObjectField extends ObjectField {
         public AsmObjectField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -210,7 +210,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmShortField extends AsmCachedField {
+    public final class AsmShortField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;
@@ -229,7 +229,7 @@ public class AsmCacheFields {
         }
     }
 
-    public static final class AsmStringField extends AsmCachedField {
+    public final class AsmStringField extends AsmCachedField {
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
         public void copy(Object obj, Object obj2) {
             AbstractC1647c abstractC1647c = this.access;

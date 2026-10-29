@@ -107,6 +107,80 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
         audioSink.mo8773t(new b(null));
     }
 
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    public String getName() {
+        return "MediaCodecAudioRenderer";
+    }
+
+    /* JADX INFO: renamed from: C0 */
+    public final int m3513C0(C3149u c3149u, C2811j1 c2811j1) {
+        int i;
+        if (!"OMX.google.raw.decoder".equals(c3149u.f9112a) || (i = C2738e0.f6708a) >= 24 || (i == 23 && C2738e0.m2980A(this.f7850N0))) {
+            return c2811j1.f7156x;
+        }
+        return -1;
+    }
+
+    /* JADX INFO: renamed from: D0 */
+    public final void m3514D0() {
+        long jMo8766m = this.f7852P0.mo8766m(mo2631b());
+        if (jMo8766m != Long.MIN_VALUE) {
+            if (!this.f7858V0) {
+                jMo8766m = Math.max(this.f7856T0, jMo8766m);
+            }
+            this.f7856T0 = jMo8766m;
+            this.f7858V0 = false;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
+    /* JADX INFO: renamed from: c */
+    public C2998x1 mo2416c() {
+        return this.f7852P0.mo8759c();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
+    /* JADX INFO: renamed from: e */
+    public long mo2417e() {
+        if (this.f7893n == 2) {
+            m3514D0();
+        }
+        return this.f7856T0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
+    /* JADX INFO: renamed from: i */
+    public void mo2418i(C2998x1 c2998x1) {
+        this.f7852P0.mo8762i(c2998x1);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
+    /* JADX INFO: renamed from: r */
+    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
+        if (i == 2) {
+            this.f7852P0.mo8770q(((Float) obj).floatValue());
+        }
+        if (i == 3) {
+            this.f7852P0.mo8768o((C2931o) obj);
+            return;
+        }
+        if (i == 6) {
+            this.f7852P0.mo8777x((C2937u) obj);
+            return;
+        }
+        switch (i) {
+            case 9:
+                this.f7852P0.mo8776w(((Boolean) obj).booleanValue());
+                break;
+            case 10:
+                this.f7852P0.mo8765l(((Integer) obj).intValue());
+                break;
+            case 11:
+                this.f7860X0 = (InterfaceC2728f2.a) obj;
+                break;
+        }
+    }
+
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
     /* JADX INFO: renamed from: B */
     public void mo2621B() {
@@ -126,6 +200,35 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
                 this.f7851O0.m3498a(this.f19877J0);
             }
         }
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: D */
+    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
+        super.mo2622D(j, z2);
+        this.f7852P0.flush();
+        this.f7856T0 = j;
+        this.f7857U0 = true;
+        this.f7858V0 = true;
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: b */
+    public boolean mo2631b() {
+        return this.f19869F0 && this.f7852P0.mo8758b();
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: d */
+    public boolean mo2632d() {
+        return this.f7852P0.mo8764k() || super.mo2632d();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    @Nullable
+    /* JADX INFO: renamed from: w */
+    public InterfaceC2752s mo2945w() {
+        return this;
     }
 
     @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
@@ -153,37 +256,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
             this.f7852P0.mo8771r();
         } else {
             this.f7852P0.mo8767n();
-        }
-    }
-
-    /* JADX INFO: renamed from: C0 */
-    public final int m3513C0(C3149u c3149u, C2811j1 c2811j1) {
-        int i;
-        if (!"OMX.google.raw.decoder".equals(c3149u.f9112a) || (i = C2738e0.f6708a) >= 24 || (i == 23 && C2738e0.m2980A(this.f7850N0))) {
-            return c2811j1.f7156x;
-        }
-        return -1;
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: D */
-    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
-        super.mo2622D(j, z2);
-        this.f7852P0.flush();
-        this.f7856T0 = j;
-        this.f7857U0 = true;
-        this.f7858V0 = true;
-    }
-
-    /* JADX INFO: renamed from: D0 */
-    public final void m3514D0() {
-        long jMo8766m = this.f7852P0.mo8766m(mo2631b());
-        if (jMo8766m != Long.MIN_VALUE) {
-            if (!this.f7858V0) {
-                jMo8766m = Math.max(this.f7856T0, jMo8766m);
-            }
-            this.f7856T0 = jMo8766m;
-            this.f7858V0 = false;
         }
     }
 
@@ -357,24 +429,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
         return new InterfaceC3148t.a(c3149u, mediaFormat, c2811j1, null, mediaCrypto, 0, false);
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: b */
-    public boolean mo2631b() {
-        return this.f19869F0 && this.f7852P0.mo8758b();
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
-    /* JADX INFO: renamed from: c */
-    public C2998x1 mo2416c() {
-        return this.f7852P0.mo8759c();
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: d */
-    public boolean mo2632d() {
-        return this.f7852P0.mo8764k() || super.mo2632d();
-    }
-
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     /* JADX INFO: renamed from: d0 */
     public void mo3163d0(final Exception exc) {
@@ -393,15 +447,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
                 }
             });
         }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
-    /* JADX INFO: renamed from: e */
-    public long mo2417e() {
-        if (this.f7893n == 2) {
-            m3514D0();
-        }
-        return this.f7856T0;
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -469,11 +514,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
         return c2959gMo3166g0;
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    public String getName() {
-        return "MediaCodecAudioRenderer";
-    }
-
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     /* JADX INFO: renamed from: h0 */
     public void mo3167h0(C2811j1 c2811j1, @Nullable MediaFormat mediaFormat) throws ExoPlaybackException {
@@ -514,12 +554,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
         } catch (AudioSink.ConfigurationException e) {
             throw m3550z(e, e.format, false, 5001);
         }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p259f3.InterfaceC2752s
-    /* JADX INFO: renamed from: i */
-    public void mo2418i(C2998x1 c2998x1) {
-        this.f7852P0.mo8762i(c2998x1);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -574,56 +608,6 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    /* JADX INFO: renamed from: p0 */
-    public void mo3515p0() throws ExoPlaybackException {
-        try {
-            this.f7852P0.mo8763j();
-        } catch (AudioSink.WriteException e) {
-            throw m3550z(e, e.format, e.isRecoverable, 5002);
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
-    /* JADX INFO: renamed from: r */
-    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
-        if (i == 2) {
-            this.f7852P0.mo8770q(((Float) obj).floatValue());
-        }
-        if (i == 3) {
-            this.f7852P0.mo8768o((C2931o) obj);
-            return;
-        }
-        if (i == 6) {
-            this.f7852P0.mo8777x((C2937u) obj);
-            return;
-        }
-        switch (i) {
-            case 9:
-                this.f7852P0.mo8776w(((Boolean) obj).booleanValue());
-                break;
-            case 10:
-                this.f7852P0.mo8765l(((Integer) obj).intValue());
-                break;
-            case 11:
-                this.f7860X0 = (InterfaceC2728f2.a) obj;
-                break;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    @Nullable
-    /* JADX INFO: renamed from: w */
-    public InterfaceC2752s mo2945w() {
-        return this;
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    /* JADX INFO: renamed from: x0 */
-    public boolean mo3516x0(C2811j1 c2811j1) {
-        return this.f7852P0.mo8757a(c2811j1);
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     /* JADX INFO: renamed from: y0 */
     public int mo3174y0(InterfaceC3150v interfaceC3150v, C2811j1 c2811j1) throws MediaCodecUtil.DecoderQueryException {
         if (!C2753t.m3050h(c2811j1.f7155w)) {
@@ -660,5 +644,21 @@ public class C2942z extends MediaCodecRenderer implements InterfaceC2752s {
         C3149u c3149u = listMo3160W.get(0);
         boolean zM3867e = c3149u.m3867e(c2811j1);
         return ((zM3867e && c3149u.m3868f(c2811j1)) ? 16 : 8) | (zM3867e ? 4 : 3) | i;
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
+    /* JADX INFO: renamed from: p0 */
+    public void mo3515p0() throws ExoPlaybackException {
+        try {
+            this.f7852P0.mo8763j();
+        } catch (AudioSink.WriteException e) {
+            throw m3550z(e, e.format, e.isRecoverable, 5002);
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
+    /* JADX INFO: renamed from: x0 */
+    public boolean mo3516x0(C2811j1 c2811j1) {
+        return this.f7852P0.mo8757a(c2811j1);
     }
 }

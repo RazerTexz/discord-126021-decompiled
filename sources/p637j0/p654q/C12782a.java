@@ -20,58 +20,20 @@ import p658rx.subjects.Subject;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12782a<T> extends Subject<T, T> {
 
-    /* JADX INFO: renamed from: k */
-    public static final Object[] f27397k = new Object[0];
-
     /* JADX INFO: renamed from: l */
     public final d<T> f27398l;
+
+    /* JADX INFO: renamed from: k */
+    public static final Object[] f27397k = new Object[0];
 
     /* JADX INFO: renamed from: j0.q.a$a */
     /* JADX INFO: compiled from: ReplaySubject.java */
     public interface a<T> {
     }
 
-    /* JADX INFO: renamed from: j0.q.a$b */
-    /* JADX INFO: compiled from: ReplaySubject.java */
-    public static final class b<T> extends AtomicInteger implements Producer, Subscription {
-        private static final long serialVersionUID = -5006209596735204567L;
-        public final Subscriber<? super T> actual;
-        public int index;
-        public Object node;
-        public final AtomicLong requested = new AtomicLong();
-        public final d<T> state;
-        public int tailIndex;
-
-        public b(Subscriber<? super T> subscriber, d<T> dVar) {
-            this.actual = subscriber;
-            this.state = dVar;
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.actual.isUnsubscribed();
-        }
-
-        @Override // p658rx.Producer
-        /* JADX INFO: renamed from: j */
-        public void mo10704j(long j) {
-            if (j > 0) {
-                C3404f.m4276c0(this.requested, j);
-                ((c) this.state.buffer).m10876a(this);
-            } else if (j < 0) {
-                throw new IllegalArgumentException(C1643a.m877t("n >= required but it was ", j));
-            }
-        }
-
-        @Override // p658rx.Subscription
-        public void unsubscribe() {
-            this.state.m10877a(this);
-        }
-    }
-
     /* JADX INFO: renamed from: j0.q.a$c */
     /* JADX INFO: compiled from: ReplaySubject.java */
-    public static final class c<T> implements a<T> {
+    public final class c<T> implements a<T> {
 
         /* JADX INFO: renamed from: a */
         public final int f27399a;
@@ -93,7 +55,7 @@ public final class C12782a<T> extends Subject<T, T> {
 
         /* JADX INFO: renamed from: j0.q.a$c$a */
         /* JADX INFO: compiled from: ReplaySubject.java */
-        public static final class a<T> extends AtomicReference<a<T>> {
+        public final class a<T> extends AtomicReference<a<T>> {
             private static final long serialVersionUID = 3713592843205853725L;
             public final T value;
 
@@ -182,19 +144,48 @@ public final class C12782a<T> extends Subject<T, T> {
 
     /* JADX INFO: renamed from: j0.q.a$d */
     /* JADX INFO: compiled from: ReplaySubject.java */
-    public static final class d<T> extends AtomicReference<b<T>[]> implements Observable.InterfaceC13005a<T>, InterfaceC12581g<T> {
+    public final class d<T> extends AtomicReference<b<T>[]> implements Observable.InterfaceC13005a<T>, InterfaceC12581g<T> {
+        public final a<T> buffer;
+        private static final long serialVersionUID = 5952362471246910544L;
 
         /* JADX INFO: renamed from: j */
         public static final b[] f27405j = new b[0];
 
         /* JADX INFO: renamed from: k */
         public static final b[] f27406k = new b[0];
-        private static final long serialVersionUID = 5952362471246910544L;
-        public final a<T> buffer;
 
         public d(a<T> aVar) {
             this.buffer = aVar;
             lazySet(f27405j);
+        }
+
+        @Override // p658rx.functions.Action1
+        public void call(Object obj) {
+            boolean z2;
+            Subscriber subscriber = (Subscriber) obj;
+            b<T> bVar = new b<>(subscriber, this);
+            subscriber.add(bVar);
+            subscriber.setProducer(bVar);
+            while (true) {
+                b<T>[] bVarArr = get();
+                z2 = false;
+                if (bVarArr == f27406k) {
+                    break;
+                }
+                int length = bVarArr.length;
+                b[] bVarArr2 = new b[length + 1];
+                System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
+                bVarArr2[length] = bVar;
+                if (compareAndSet(bVarArr, bVarArr2)) {
+                    z2 = true;
+                    break;
+                }
+            }
+            if (z2 && bVar.isUnsubscribed()) {
+                m10877a(bVar);
+            } else {
+                ((c) this.buffer).m10876a(bVar);
+            }
         }
 
         /* JADX INFO: renamed from: a */
@@ -230,35 +221,6 @@ public final class C12782a<T> extends Subject<T, T> {
                     bVarArr2 = bVarArr3;
                 }
             } while (!compareAndSet(bVarArr, bVarArr2));
-        }
-
-        @Override // p658rx.functions.Action1
-        public void call(Object obj) {
-            boolean z2;
-            Subscriber subscriber = (Subscriber) obj;
-            b<T> bVar = new b<>(subscriber, this);
-            subscriber.add(bVar);
-            subscriber.setProducer(bVar);
-            while (true) {
-                b<T>[] bVarArr = get();
-                z2 = false;
-                if (bVarArr == f27406k) {
-                    break;
-                }
-                int length = bVarArr.length;
-                b[] bVarArr2 = new b[length + 1];
-                System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
-                bVarArr2[length] = bVar;
-                if (compareAndSet(bVarArr, bVarArr2)) {
-                    z2 = true;
-                    break;
-                }
-            }
-            if (z2 && bVar.isUnsubscribed()) {
-                m10877a(bVar);
-            } else {
-                ((c) this.buffer).m10876a(bVar);
-            }
         }
 
         @Override // p637j0.InterfaceC12581g
@@ -328,5 +290,43 @@ public final class C12782a<T> extends Subject<T, T> {
     @Override // p637j0.InterfaceC12581g
     public void onNext(T t) {
         this.f27398l.onNext(t);
+    }
+
+    /* JADX INFO: renamed from: j0.q.a$b */
+    /* JADX INFO: compiled from: ReplaySubject.java */
+    public final class b<T> extends AtomicInteger implements Producer, Subscription {
+        public final Subscriber<? super T> actual;
+        public int index;
+        public Object node;
+        private static final long serialVersionUID = -5006209596735204567L;
+        public final d<T> state;
+        public int tailIndex;
+        public final AtomicLong requested = new AtomicLong();
+
+        public b(Subscriber<? super T> subscriber, d<T> dVar) {
+            this.actual = subscriber;
+            this.state = dVar;
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.actual.isUnsubscribed();
+        }
+
+        @Override // p658rx.Producer
+        /* JADX INFO: renamed from: j */
+        public void mo10704j(long j) {
+            if (j > 0) {
+                C3404f.m4276c0(this.requested, j);
+                ((c) this.state.buffer).m10876a(this);
+            } else if (j < 0) {
+                throw new IllegalArgumentException(C1643a.m877t("n >= required but it was ", j));
+            }
+        }
+
+        @Override // p658rx.Subscription
+        public void unsubscribe() {
+            this.state.m10877a(this);
+        }
     }
 }

@@ -12,14 +12,14 @@ import p007b.p225i.p226a.p288f.p339m.C4351a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4834y {
 
+    /* JADX INFO: renamed from: c */
+    public static C4351a f12916c;
+
     /* JADX INFO: renamed from: a */
     public static final long f12914a = TimeUnit.MINUTES.toMillis(1);
 
     /* JADX INFO: renamed from: b */
     public static final Object f12915b = new Object();
-
-    /* JADX INFO: renamed from: c */
-    public static C4351a f12916c;
 
     /* JADX INFO: renamed from: a */
     public static ComponentName m6749a(@NonNull Context context, @NonNull Intent intent) {

@@ -175,7 +175,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class C13330a extends AbstractC12240o implements Function0<List<? extends C11716e>> {
+        public final class C13330a extends AbstractC12240o implements Function0<List<? extends C11716e>> {
             public final /* synthetic */ List<C11716e> $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -192,7 +192,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$a$b */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class b extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
+        public final class b extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
             public b() {
                 super(0);
             }
@@ -205,7 +205,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$a$c */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class c extends AbstractC11791i {
+        public final class c extends AbstractC11791i {
 
             /* JADX INFO: renamed from: a */
             public final /* synthetic */ List<D> f24552a;
@@ -231,7 +231,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$a$d */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class d extends AbstractC12240o implements Function0<Collection<? extends AbstractC11913c0>> {
+        public final class d extends AbstractC12240o implements Function0<Collection<? extends AbstractC11913c0>> {
             public d() {
                 super(0);
             }
@@ -265,6 +265,44 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
             this.f24548g = abstractC11947g;
             this.f24549h = this.f24568c.getStorageManager().createLazyValue(new b());
             this.f24550i = this.f24568c.getStorageManager().createLazyValue(new d());
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            InterfaceC11330e interfaceC11330eFindEnumEntry;
+            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+            recordLookup(c11716e, interfaceC11480b);
+            c cVar = this.f24551j.f24547z;
+            return (cVar == null || (interfaceC11330eFindEnumEntry = cVar.findEnumEntry(c11716e)) == null) ? super.getContributedClassifier(c11716e, interfaceC11480b) : interfaceC11330eFindEnumEntry;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
+        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
+            C12238m.checkNotNullParameter(c11765d, "kindFilter");
+            C12238m.checkNotNullParameter(function1, "nameFilter");
+            return this.f24549h.invoke();
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Collection<InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+            recordLookup(c11716e, interfaceC11480b);
+            return super.getContributedFunctions(c11716e, interfaceC11480b);
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
+        public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
+            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+            recordLookup(c11716e, interfaceC11480b);
+            return super.getContributedVariables(c11716e, interfaceC11480b);
+        }
+
+        /* JADX INFO: renamed from: k */
+        public final <D extends InterfaceC11321b> void m9963k(C11716e c11716e, Collection<? extends D> collection, List<D> list) {
+            this.f24568c.getComponents().getKotlinTypeChecker().getOverridingUtil().generateOverridesInFunctionGroup(c11716e, collection, new ArrayList(list), this.f24551j, new c(list));
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h
@@ -345,39 +383,6 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
             return linkedHashSet;
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public InterfaceC11352h getContributedClassifier(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            InterfaceC11330e interfaceC11330eFindEnumEntry;
-            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-            recordLookup(c11716e, interfaceC11480b);
-            c cVar = this.f24551j.f24547z;
-            return (cVar == null || (interfaceC11330eFindEnumEntry = cVar.findEnumEntry(c11716e)) == null) ? super.getContributedClassifier(c11716e, interfaceC11480b) : interfaceC11330eFindEnumEntry;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
-        public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
-            C12238m.checkNotNullParameter(c11765d, "kindFilter");
-            C12238m.checkNotNullParameter(function1, "nameFilter");
-            return this.f24549h.invoke();
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Collection<InterfaceC11465t0> getContributedFunctions(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-            recordLookup(c11716e, interfaceC11480b);
-            return super.getContributedFunctions(c11716e, interfaceC11480b);
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
-        public Collection<InterfaceC11453n0> getContributedVariables(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
-            C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-            recordLookup(c11716e, interfaceC11480b);
-            return super.getContributedVariables(c11716e, interfaceC11480b);
-        }
-
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h
         /* JADX INFO: renamed from: h */
         public Set<C11716e> mo9961h() {
@@ -395,11 +400,6 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
         public boolean mo9962j(InterfaceC11465t0 interfaceC11465t0) {
             C12238m.checkNotNullParameter(interfaceC11465t0, "function");
             return this.f24568c.getComponents().getPlatformDependentDeclarationFilter().isFunctionAvailable(this.f24551j, interfaceC11465t0);
-        }
-
-        /* JADX INFO: renamed from: k */
-        public final <D extends InterfaceC11321b> void m9963k(C11716e c11716e, Collection<? extends D> collection, List<D> list) {
-            this.f24568c.getComponents().getKotlinTypeChecker().getOverridingUtil().generateOverridesInFunctionGroup(c11716e, collection, new ArrayList(list), this.f24551j, new c(list));
         }
 
         public void recordLookup(C11716e c11716e, InterfaceC11480b interfaceC11480b) {
@@ -427,12 +427,12 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$c$a */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class a extends AbstractC12240o implements Function1<C11716e, InterfaceC11330e> {
+        public final class a extends AbstractC12240o implements Function1<C11716e, InterfaceC11330e> {
             public final /* synthetic */ C11859d this$1;
 
             /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$c$a$a, reason: collision with other inner class name */
             /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-            public static final class C13331a extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+            public final class C13331a extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
                 public final /* synthetic */ C11682g $proto;
                 public final /* synthetic */ C11859d this$0;
 
@@ -469,7 +469,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$c$b */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class b extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class b extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public b() {
                 super(0);
             }
@@ -543,7 +543,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$d */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public static final class d extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class d extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public d() {
             super(0);
         }
@@ -556,7 +556,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$e */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public static final class e extends AbstractC12240o implements Function0<InterfaceC11330e> {
+    public final class e extends AbstractC12240o implements Function0<InterfaceC11330e> {
         public e() {
             super(0);
         }
@@ -570,7 +570,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$f */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public static final class f extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11327d>> {
+    public final class f extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11327d>> {
         public f() {
             super(0);
         }
@@ -583,7 +583,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$g */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public /* synthetic */ class g extends C12235j implements Function1<AbstractC11947g, a> {
+    public final /* synthetic */ class g extends C12235j implements Function1<AbstractC11947g, a> {
         public g(C11859d c11859d) {
             super(1, c11859d);
         }
@@ -612,7 +612,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$h */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public static final class h extends AbstractC12240o implements Function0<InterfaceC11327d> {
+    public final class h extends AbstractC12240o implements Function0<InterfaceC11327d> {
         public h() {
             super(0);
         }
@@ -626,7 +626,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$i */
     /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-    public static final class i extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11330e>> {
+    public final class i extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11330e>> {
         public i() {
             super(0);
         }
@@ -756,11 +756,6 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
             }
         }
         return arrayList;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final a m9954b() {
-        return (a) this.f24546y.getScope(this.f24543v.getComponents().getKotlinTypeChecker().getKotlinTypeRefiner());
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
@@ -909,6 +904,11 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
         return bool.booleanValue() && this.f24537p.isAtLeast(1, 4, 2);
     }
 
+    /* JADX INFO: renamed from: b */
+    public final a m9954b() {
+        return (a) this.f24546y.getScope(this.f24543v.getComponents().getKotlinTypeChecker().getKotlinTypeRefiner());
+    }
+
     public String toString() {
         StringBuilder sbM833U = C1643a.m833U("deserialized ");
         sbM833U.append(isExpect() ? "expect " : "");
@@ -929,7 +929,7 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.d$b$a */
         /* JADX INFO: compiled from: DeserializedClassDescriptor.kt */
-        public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
+        public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11477z0>> {
             public final /* synthetic */ C11859d this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -950,6 +950,16 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
             C12238m.checkNotNullParameter(c11859d, "this$0");
             this.f24554d = c11859d;
             this.f24553c = c11859d.getC().getStorageManager().createLazyValue(new a(c11859d));
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public List<InterfaceC11477z0> getParameters() {
+            return this.f24553c.invoke();
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public boolean isDenotable() {
+            return true;
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11924g
@@ -997,16 +1007,6 @@ public final class C11859d extends AbstractC11361a implements InterfaceC11450m {
         /* JADX INFO: renamed from: d */
         public InterfaceC11473x0 mo9371d() {
             return InterfaceC11473x0.a.f23103a;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public List<InterfaceC11477z0> getParameters() {
-            return this.f24553c.invoke();
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public boolean isDenotable() {
-            return true;
         }
 
         public String toString() {

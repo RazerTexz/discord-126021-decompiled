@@ -6,15 +6,6 @@ import java.util.HashMap;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
-    public static VideoCodecInfo[] supportedCodecs() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
-        if (LibvpxVp9Decoder.nativeIsSupported()) {
-            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
-        }
-        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
-    }
-
     @Override // org.webrtc.VideoDecoderFactory
     @Nullable
     @Deprecated
@@ -25,6 +16,15 @@ public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
     @Override // org.webrtc.VideoDecoderFactory
     public VideoCodecInfo[] getSupportedCodecs() {
         return supportedCodecs();
+    }
+
+    public static VideoCodecInfo[] supportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
+        if (LibvpxVp9Decoder.nativeIsSupported()) {
+            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
+        }
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
     @Override // org.webrtc.VideoDecoderFactory

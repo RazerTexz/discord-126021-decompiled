@@ -27,7 +27,7 @@ public final class C4764g {
 
     /* JADX INFO: renamed from: b.i.c.m.e.g$b */
     /* JADX INFO: compiled from: SessionFiles.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public File f12797a;

@@ -32,7 +32,7 @@ public class SimpleRecyclerAdapter<T, VH extends ViewHolder<T>> extends Recycler
     private List<? extends T> data;
 
     /* JADX INFO: compiled from: SimpleRecyclerAdapter.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -60,7 +60,7 @@ public class SimpleRecyclerAdapter<T, VH extends ViewHolder<T>> extends Recycler
     }
 
     /* JADX INFO: compiled from: SimpleRecyclerAdapter.kt */
-    public static abstract class ViewHolder<T> extends RecyclerView.ViewHolder {
+    public abstract class ViewHolder<T> extends RecyclerView.ViewHolder {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ViewHolder(View view) {
             super(view);

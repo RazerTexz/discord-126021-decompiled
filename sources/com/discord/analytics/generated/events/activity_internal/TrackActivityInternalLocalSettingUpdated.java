@@ -11,25 +11,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalLocalSettingUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalLocalSettingUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+    private final CharSequence phase = null;
+    private final Boolean prevValueBool = null;
+    private final Float prevValueFloat = null;
+    private final Long prevValueInt = null;
+    private final CharSequence prevValueStr = null;
+    private final CharSequence settingName = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
-    private final CharSequence settingName = null;
-    private final CharSequence phase = null;
-    private final CharSequence valueStr = null;
-    private final CharSequence prevValueStr = null;
     private final Boolean valueBool = null;
-    private final Boolean prevValueBool = null;
-    private final Long valueInt = null;
-    private final Long prevValueInt = null;
     private final Float valueFloat = null;
-    private final Float prevValueFloat = null;
+    private final Long valueInt = null;
+    private final CharSequence valueStr = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_local_setting_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackActivityInternalLocalSettingUpdated implement
         }
         TrackActivityInternalLocalSettingUpdated trackActivityInternalLocalSettingUpdated = (TrackActivityInternalLocalSettingUpdated) other;
         return C12238m.areEqual(this.settingName, trackActivityInternalLocalSettingUpdated.settingName) && C12238m.areEqual(this.phase, trackActivityInternalLocalSettingUpdated.phase) && C12238m.areEqual(this.valueStr, trackActivityInternalLocalSettingUpdated.valueStr) && C12238m.areEqual(this.prevValueStr, trackActivityInternalLocalSettingUpdated.prevValueStr) && C12238m.areEqual(this.valueBool, trackActivityInternalLocalSettingUpdated.valueBool) && C12238m.areEqual(this.prevValueBool, trackActivityInternalLocalSettingUpdated.prevValueBool) && C12238m.areEqual(this.valueInt, trackActivityInternalLocalSettingUpdated.valueInt) && C12238m.areEqual(this.prevValueInt, trackActivityInternalLocalSettingUpdated.prevValueInt) && C12238m.areEqual(this.valueFloat, trackActivityInternalLocalSettingUpdated.valueFloat) && C12238m.areEqual(this.prevValueFloat, trackActivityInternalLocalSettingUpdated.prevValueFloat);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

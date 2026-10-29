@@ -13,12 +13,12 @@ public final class WidgetSettingsGuildBoostSubscriptionAdapter$cancelListener$1 
         super(2);
     }
 
+    public final void invoke(long j, boolean z2) {
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Long l, Boolean bool) {
         invoke(l.longValue(), bool.booleanValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(long j, boolean z2) {
     }
 }

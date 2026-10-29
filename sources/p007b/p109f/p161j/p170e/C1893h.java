@@ -56,17 +56,17 @@ public class C1893h {
     /* JADX INFO: renamed from: h */
     public final Supplier<Boolean> f3740h;
 
-    /* JADX INFO: renamed from: i */
-    public AtomicLong f3741i = new AtomicLong();
-
-    /* JADX INFO: renamed from: j */
-    public final Supplier<Boolean> f3742j = null;
-
     /* JADX INFO: renamed from: k */
     public final InterfaceC1667a f3743k;
 
     /* JADX INFO: renamed from: l */
     public final InterfaceC1896k f3744l;
+
+    /* JADX INFO: renamed from: i */
+    public AtomicLong f3741i = new AtomicLong();
+
+    /* JADX INFO: renamed from: j */
+    public final Supplier<Boolean> f3742j = null;
 
     static {
         new CancellationException("Prefetching is not enabled");

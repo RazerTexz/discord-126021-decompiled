@@ -16,11 +16,11 @@ public final class BlockRussianPurchasesUtils {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(BlockRussianPurchasesUtils$Companion$INSTANCE$2.INSTANCE);
     private Boolean isBlockedFromPurchases;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(BlockRussianPurchasesUtils$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: compiled from: BlockRussianPurchasesUtils.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

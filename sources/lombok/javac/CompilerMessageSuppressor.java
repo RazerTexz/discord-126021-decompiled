@@ -19,12 +19,12 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor.SCL.lombok */
 public final class CompilerMessageSuppressor {
-    private final Log log;
-    private Boolean dumpOnError;
-    private Boolean promptOnError;
-    private DiagnosticListener<?> contextDiagnosticListener;
-    private DiagnosticListener<?> logDiagnosticListener;
     private final Context context;
+    private DiagnosticListener<?> contextDiagnosticListener;
+    private Boolean dumpOnError;
+    private final Log log;
+    private DiagnosticListener<?> logDiagnosticListener;
+    private Boolean promptOnError;
     private static final ConcurrentMap<Class<?>, Field> handlerDeferredFields = new ConcurrentHashMap();
     private static final ThreadLocal<Queue<?>> queueCache = new ThreadLocal<>();
     private static final WriterField errWriterField = createWriterField(Writers.ERROR);
@@ -37,28 +37,6 @@ public final class CompilerMessageSuppressor {
     private static final Field deferredDiagnosticsField = getDeclaredField(Log.class, "deferredDiagnostics");
     private static final Field diagnosticHandlerField = getDeclaredField(Log.class, "diagnosticHandler");
     private static final Field NULL_FIELD = getDeclaredField(JavacResolution.class, "NULL_FIELD");
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$WriterField.SCL.lombok */
-    interface WriterField {
-        public static final PrintWriter NO_WRITER = new PrintWriter(new OutputStream() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.1
-            @Override // java.io.OutputStream
-            public void write(int b2) throws IOException {
-            }
-        });
-        public static final WriterField NONE = new WriterField() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.2
-            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-            public void pauze(Log log) {
-            }
-
-            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-            public void resume(Log log) {
-            }
-        };
-
-        void pauze(Log log);
-
-        void resume(Log log);
-    }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Writers.SCL.lombok */
     enum Writers {
@@ -275,8 +253,30 @@ public final class CompilerMessageSuppressor {
         return writerField != null ? new Java8WriterField(writerField) : WriterField.NONE;
     }
 
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$WriterField.SCL.lombok */
+    interface WriterField {
+        public static final PrintWriter NO_WRITER = new PrintWriter(new OutputStream() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.1
+            @Override // java.io.OutputStream
+            public void write(int b2) throws IOException {
+            }
+        });
+        public static final WriterField NONE = new WriterField() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.2
+            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
+            public void pauze(Log log) {
+            }
+
+            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
+            public void resume(Log log) {
+            }
+        };
+
+        void pauze(Log log);
+
+        void resume(Log log);
+    }
+
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Java8WriterField.SCL.lombok */
-    static class Java8WriterField implements WriterField {
+    class Java8WriterField implements WriterField {
         private final Field field;
         private PrintWriter writer;
 
@@ -306,7 +306,7 @@ public final class CompilerMessageSuppressor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Java9WriterField.SCL.lombok */
-    static class Java9WriterField implements WriterField {
+    class Java9WriterField implements WriterField {
         private final Field field;
         private final Object key;
         private PrintWriter writer;

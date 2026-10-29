@@ -12,6 +12,12 @@ import p007b.p225i.p226a.p288f.p330i.p332b.C4236x5;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4553c {
 
+    /* JADX INFO: renamed from: e */
+    public static final List<String> f12153e;
+
+    /* JADX INFO: renamed from: f */
+    public static final List<String> f12154f;
+
     /* JADX INFO: renamed from: a */
     public static final Set<String> f12149a = new HashSet(Arrays.asList("_in", "_xa", "_xu", "_aq", "_aa", "_ai", "_ac", "campaign_details", "_ug", "_iapx", "_exp_set", "_exp_clear", "_exp_activate", "_exp_timeout", "_exp_expire"));
 
@@ -23,12 +29,6 @@ public final class C4553c {
 
     /* JADX INFO: renamed from: d */
     public static final List<String> f12152d = Arrays.asList("_r", "_dbg");
-
-    /* JADX INFO: renamed from: e */
-    public static final List<String> f12153e;
-
-    /* JADX INFO: renamed from: f */
-    public static final List<String> f12154f;
 
     static {
         String[][] strArr = {C4236x5.f11341a, C4236x5.f11342b};

@@ -20,7 +20,7 @@ public final class C11563k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.k$a */
     /* JADX INFO: compiled from: ClassicBuiltinSpecialProperties.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
         public a() {
             super(1);
         }

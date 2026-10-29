@@ -56,6 +56,66 @@ public final class BinderC4257z4 extends AbstractBinderC4102l3 {
         this.f11392c = null;
     }
 
+    @BinderThread
+    /* JADX INFO: renamed from: g */
+    public final void m5975g(zzz zzzVar) {
+        Objects.requireNonNull(zzzVar, "null reference");
+        Objects.requireNonNull(zzzVar.f20702l, "null reference");
+        m5977t0(zzzVar.f20700j, true);
+        m5976i(new RunnableC4022e5(this, new zzz(zzzVar)));
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final void m5976i(Runnable runnable) {
+        if (this.f11390a.mo5725f().m5855y()) {
+            runnable.run();
+        } else {
+            this.f11390a.mo5725f().m5852v(runnable);
+        }
+    }
+
+    @BinderThread
+    /* JADX INFO: renamed from: t0 */
+    public final void m5977t0(String str, boolean z2) {
+        if (TextUtils.isEmpty(str)) {
+            this.f11390a.mo5726g().f11141f.m5860a("Measurement Service called without app package");
+            throw new SecurityException("Measurement Service called without app package");
+        }
+        if (z2) {
+            try {
+                if (this.f11391b == null) {
+                    this.f11391b = Boolean.valueOf("com.google.android.gms".equals(this.f11392c) || C3404f.m4199D0(this.f11390a.f10906k.f11254b, Binder.getCallingUid()) || C3262f.m4021a(this.f11390a.f10906k.f11254b).m4024b(Binder.getCallingUid()));
+                }
+                if (this.f11391b.booleanValue()) {
+                    return;
+                }
+            } catch (SecurityException e) {
+                this.f11390a.mo5726g().f11141f.m5861b("Measurement Service called with invalid calling package. appId", C4157q3.m5788s(str));
+                throw e;
+            }
+        }
+        if (this.f11392c == null) {
+            Context context = this.f11390a.f10906k.f11254b;
+            int callingUid = Binder.getCallingUid();
+            AtomicBoolean atomicBoolean = C3260e.f9309a;
+            if (C3404f.m4368z1(context, callingUid, str)) {
+                this.f11392c = str;
+            }
+        }
+        if (str.equals(this.f11392c)) {
+        } else {
+            throw new SecurityException(String.format("Unknown calling package name '%s'.", str));
+        }
+    }
+
+    @BinderThread
+    /* JADX INFO: renamed from: u0 */
+    public final void m5978u0(zzn zznVar) {
+        Objects.requireNonNull(zznVar, "null reference");
+        m5977t0(zznVar.f20683j, false);
+        this.f11390a.f10906k.m5949t().m5911c0(zznVar.f20684k, zznVar.f20677A, zznVar.f20681E);
+    }
+
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4068i3
     @BinderThread
     /* JADX INFO: renamed from: A */
@@ -147,24 +207,6 @@ public final class BinderC4257z4 extends AbstractBinderC4102l3 {
         m5976i(new RunnableC3998c5(this, zznVar));
     }
 
-    @BinderThread
-    /* JADX INFO: renamed from: g */
-    public final void m5975g(zzz zzzVar) {
-        Objects.requireNonNull(zzzVar, "null reference");
-        Objects.requireNonNull(zzzVar.f20702l, "null reference");
-        m5977t0(zzzVar.f20700j, true);
-        m5976i(new RunnableC4022e5(this, new zzz(zzzVar)));
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final void m5976i(Runnable runnable) {
-        if (this.f11390a.mo5725f().m5855y()) {
-            runnable.run();
-        } else {
-            this.f11390a.mo5725f().m5852v(runnable);
-        }
-    }
-
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4068i3
     @BinderThread
     /* JADX INFO: renamed from: j */
@@ -211,7 +253,7 @@ public final class BinderC4257z4 extends AbstractBinderC4102l3 {
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4068i3
     @BinderThread
     /* JADX INFO: renamed from: m */
-    public final void mo5676m(zzn zznVar) {
+    public final void mo5676m(zzn zznVar) throws Throwable {
         if (C3842t8.m5293b() && this.f11390a.f10906k.f11260h.m5526o(C4142p.f11039J0)) {
             C1460d.m583w(zznVar.f20683j);
             Objects.requireNonNull(zznVar.f20682F, "null reference");
@@ -334,40 +376,6 @@ public final class BinderC4257z4 extends AbstractBinderC4102l3 {
         m5976i(new RunnableC3986b5(this, zzzVar2, zznVar));
     }
 
-    @BinderThread
-    /* JADX INFO: renamed from: t0 */
-    public final void m5977t0(String str, boolean z2) {
-        if (TextUtils.isEmpty(str)) {
-            this.f11390a.mo5726g().f11141f.m5860a("Measurement Service called without app package");
-            throw new SecurityException("Measurement Service called without app package");
-        }
-        if (z2) {
-            try {
-                if (this.f11391b == null) {
-                    this.f11391b = Boolean.valueOf("com.google.android.gms".equals(this.f11392c) || C3404f.m4199D0(this.f11390a.f10906k.f11254b, Binder.getCallingUid()) || C3262f.m4021a(this.f11390a.f10906k.f11254b).m4024b(Binder.getCallingUid()));
-                }
-                if (this.f11391b.booleanValue()) {
-                    return;
-                }
-            } catch (SecurityException e) {
-                this.f11390a.mo5726g().f11141f.m5861b("Measurement Service called with invalid calling package. appId", C4157q3.m5788s(str));
-                throw e;
-            }
-        }
-        if (this.f11392c == null) {
-            Context context = this.f11390a.f10906k.f11254b;
-            int callingUid = Binder.getCallingUid();
-            AtomicBoolean atomicBoolean = C3260e.f9309a;
-            if (C3404f.m4368z1(context, callingUid, str)) {
-                this.f11392c = str;
-            }
-        }
-        if (str.equals(this.f11392c)) {
-        } else {
-            throw new SecurityException(String.format("Unknown calling package name '%s'.", str));
-        }
-    }
-
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4068i3
     @BinderThread
     /* JADX INFO: renamed from: u */
@@ -386,13 +394,5 @@ public final class BinderC4257z4 extends AbstractBinderC4102l3 {
             this.f11390a.mo5726g().f11141f.m5862c("Failed to get user properties as. appId", C4157q3.m5788s(str), e);
             return Collections.emptyList();
         }
-    }
-
-    @BinderThread
-    /* JADX INFO: renamed from: u0 */
-    public final void m5978u0(zzn zznVar) {
-        Objects.requireNonNull(zznVar, "null reference");
-        m5977t0(zznVar.f20683j, false);
-        this.f11390a.f10906k.m5949t().m5911c0(zznVar.f20684k, zznVar.f20677A, zznVar.f20681E);
     }
 }

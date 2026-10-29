@@ -27,9 +27,6 @@ import p007b.p225i.p226a.p288f.p340n.InterfaceC4357c;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4815f {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f12861a = new Object();
-
     /* JADX INFO: renamed from: b */
     public static ServiceConnectionC4812d0 f12862b;
 
@@ -38,6 +35,9 @@ public class C4815f {
 
     /* JADX INFO: renamed from: d */
     public final Executor f12864d;
+
+    /* JADX INFO: renamed from: a */
+    public static final Object f12861a = new Object();
 
     public C4815f(Context context) {
         this.f12863c = context;

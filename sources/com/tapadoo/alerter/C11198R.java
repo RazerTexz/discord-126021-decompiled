@@ -5,7 +5,7 @@ package com.tapadoo.alerter;
 public final class C11198R {
 
     /* JADX INFO: renamed from: com.tapadoo.alerter.R$a */
-    public static final class a {
+    public final class a {
         public static final int abc_fade_in = 2130771968;
         public static final int abc_fade_out = 2130771969;
         public static final int abc_grow_fade_in_from_bottom = 2130771970;
@@ -45,7 +45,7 @@ public final class C11198R {
     }
 
     /* JADX INFO: renamed from: com.tapadoo.alerter.R$b */
-    public static final class b {
+    public final class b {
         public static final int actionBarDivider = 2130968576;
         public static final int actionBarItemBackground = 2130968577;
         public static final int actionBarPopupTheme = 2130968578;
@@ -335,7 +335,7 @@ public final class C11198R {
     }
 
     /* JADX INFO: renamed from: com.tapadoo.alerter.R$c */
-    public static final class c {
+    public final class c {
         public static final int abc_action_bar_content_inset_material = 2131165184;
         public static final int abc_action_bar_content_inset_with_nav = 2131165185;
         public static final int abc_action_bar_default_height_material = 2131165186;
@@ -474,7 +474,7 @@ public final class C11198R {
     }
 
     /* JADX INFO: renamed from: com.tapadoo.alerter.R$d */
-    public static final class d {
+    public final class d {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -639,7 +639,7 @@ public final class C11198R {
     }
 
     /* JADX INFO: renamed from: com.tapadoo.alerter.R$e */
-    public static final class e {
+    public final class e {
         public static final int abc_action_bar_title_item = 2131558400;
         public static final int abc_action_bar_up_container = 2131558401;
         public static final int abc_action_menu_item_layout = 2131558402;

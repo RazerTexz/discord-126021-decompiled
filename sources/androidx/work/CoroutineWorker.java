@@ -36,7 +36,7 @@ public abstract class CoroutineWorker extends ListenableWorker {
     /* JADX INFO: renamed from: androidx.work.CoroutineWorker$startWork$1 */
     /* JADX INFO: compiled from: CoroutineWorker.kt */
     @InterfaceC12188e(m10084c = "androidx.work.CoroutineWorker$startWork$1", m10085f = "CoroutineWorker.kt", m10086l = {68}, m10087m = "invokeSuspend")
-    public static final class C07141 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C07141 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public Object L$0;
         public int label;
 
@@ -61,7 +61,7 @@ public abstract class CoroutineWorker extends ListenableWorker {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             try {

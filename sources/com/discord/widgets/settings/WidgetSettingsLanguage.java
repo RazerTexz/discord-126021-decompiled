@@ -47,8 +47,96 @@ public final class WidgetSettingsLanguage extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
-    public static final class Companion {
+    public final class C96411 extends AbstractC12240o implements Function1<String, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ String $locale;
+
+            /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
+            public final class C132891 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+                public C132891() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+                    invoke2(modelUserSettings);
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2(ModelUserSettings modelUserSettings) {
+                    C12238m.checkNotNullParameter(modelUserSettings, "it");
+                    C0876m.m169g(WidgetSettingsLanguage.this.requireContext(), C5419R.string.language_updated, 0, null, 12);
+                }
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(String str) {
+                super(0);
+                this.$locale = str;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithLocale(this.$locale)), false, 1, null), WidgetSettingsLanguage.this, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : WidgetSettingsLanguage.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C132891());
+            }
+        }
+
+        public C96411() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "locale");
+            StoreStream.INSTANCE.getUserSettingsSystem().setLocale(str, true, new AnonymousClass1(str));
+            AppActivity appActivity = WidgetSettingsLanguage.this.getAppActivity();
+            if (appActivity != null) {
+                appActivity.recreate();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
+    public final class C96421 extends AbstractC12240o implements Function1<StoreUserSettingsSystem.Settings, Unit> {
+        public C96421() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreUserSettingsSystem.Settings settings) {
+            invoke2(settings);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreUserSettingsSystem.Settings settings) {
+            C12238m.checkNotNullParameter(settings, "settings");
+            WidgetSettingsLanguage.this.configureUI(settings.getLocale());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -274,94 +362,6 @@ public final class WidgetSettingsLanguage extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
-    public static final class C96411 extends AbstractC12240o implements Function1<String, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ String $locale;
-
-            /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBound$1$1$1, reason: invalid class name and collision with other inner class name */
-            /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
-            public static final class C132891 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-                public C132891() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-                    invoke2(modelUserSettings);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(ModelUserSettings modelUserSettings) {
-                    C12238m.checkNotNullParameter(modelUserSettings, "it");
-                    C0876m.m169g(WidgetSettingsLanguage.this.requireContext(), C5419R.string.language_updated, 0, null, 12);
-                }
-            }
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(String str) {
-                super(0);
-                this.$locale = str;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithLocale(this.$locale)), false, 1, null), WidgetSettingsLanguage.this, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : WidgetSettingsLanguage.this.requireContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C132891());
-            }
-        }
-
-        public C96411() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "locale");
-            StoreStream.INSTANCE.getUserSettingsSystem().setLocale(str, true, new AnonymousClass1(str));
-            AppActivity appActivity = WidgetSettingsLanguage.this.getAppActivity();
-            if (appActivity != null) {
-                appActivity.recreate();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsLanguage$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsLanguage.kt */
-    public static final class C96421 extends AbstractC12240o implements Function1<StoreUserSettingsSystem.Settings, Unit> {
-        public C96421() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreUserSettingsSystem.Settings settings) {
-            invoke2(settings);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreUserSettingsSystem.Settings settings) {
-            C12238m.checkNotNullParameter(settings, "settings");
-            WidgetSettingsLanguage.this.configureUI(settings.getLocale());
         }
     }
 

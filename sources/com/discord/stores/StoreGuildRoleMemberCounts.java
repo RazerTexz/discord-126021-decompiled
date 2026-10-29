@@ -28,7 +28,7 @@ public final class StoreGuildRoleMemberCounts extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleMemberCounts$fetchGuildRoleMemberCounts$1 */
     /* JADX INFO: compiled from: StoreGuildRoleMemberCounts.kt */
-    public static final class C60401 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60401 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -51,7 +51,7 @@ public final class StoreGuildRoleMemberCounts extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1 */
     /* JADX INFO: compiled from: StoreGuildRoleMemberCounts.kt */
-    public static final class C60411 extends AbstractC12240o implements Function1<Map<Long, ? extends Integer>, Unit> {
+    public final class C60411 extends AbstractC12240o implements Function1<Map<Long, ? extends Integer>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -76,12 +76,12 @@ public final class StoreGuildRoleMemberCounts extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$2 */
     /* JADX INFO: compiled from: StoreGuildRoleMemberCounts.kt */
-    public static final class C60432 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C60432 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildRoleMemberCounts.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -121,6 +121,10 @@ public final class StoreGuildRoleMemberCounts extends StoreV2 {
         this(dispatcher, clock, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
+    public final void fetchGuildRoleMemberCounts(long guildId) {
+        this.dispatcher.schedule(new C60401(guildId));
+    }
+
     @StoreThread
     private final void fetchGuildRoleMemberCountsIfNecessary(long guildId) {
         Long l = this.guildRoleMemberCountFetchTimes.get(Long.valueOf(guildId));
@@ -128,10 +132,6 @@ public final class StoreGuildRoleMemberCounts extends StoreV2 {
             this.guildRoleMemberCountFetchTimes.put(Long.valueOf(guildId), Long.valueOf(this.clock.currentTimeMillis()));
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.getGuildRoleMemberCounts(guildId), false, 1, null), (Class<?>) StoreGuildRoleMemberCounts.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C60432(guildId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60411(guildId));
         }
-    }
-
-    public final void fetchGuildRoleMemberCounts(long guildId) {
-        this.dispatcher.schedule(new C60401(guildId));
     }
 
     public final Map<Long, Integer> getGuildRoleMemberCounts(long guildId) {

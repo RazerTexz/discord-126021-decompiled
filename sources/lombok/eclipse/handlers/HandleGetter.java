@@ -50,18 +50,18 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleGetter.SCL.lombok */
 public class HandleGetter extends EclipseAnnotationHandler<Getter> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+    private static final int PARENTHESIZED = 2097152;
+    public static final Map<String, char[][]> TYPE_MAP;
+    private static char[] actualValueName;
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27471xb87c1847;
+    private static char[] valueName;
     private static final Annotation[] EMPTY_ANNOTATIONS_ARRAY = new Annotation[0];
 
     /* JADX INFO: renamed from: AR */
     private static final char[][] f27470AR = Eclipse.fromQualifiedName("java.util.concurrent.atomic.AtomicReference");
-    public static final Map<String, char[][]> TYPE_MAP;
-    private static char[] valueName;
-    private static char[] actualValueName;
-    private static final int PARENTHESIZED = 2097152;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27471xb87c1847;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

@@ -9,40 +9,34 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackTemporaryPaymentAuthAttempted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackTemporaryPaymentAuthAttempted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long paymentId = null;
-    private final Long createdAt = null;
-    private final CharSequence paymentType = null;
-    private final Long paymentGateway = null;
-    private final Long price = null;
-    private final CharSequence currency = null;
     private final Long amount = null;
     private final Long amountRefunded = null;
-    private final Long tax = null;
-    private final Boolean taxInclusive = null;
+    private final Boolean captured = null;
+    private final Long createdAt = null;
+    private final CharSequence currency = null;
+    private final CharSequence failureMessage = null;
+    private final Boolean isGift = null;
+    private final CharSequence loadId = null;
+    private final Long paymentGateway = null;
+    private final Long paymentId = null;
+    private final CharSequence paymentSourceCountry = null;
+    private final Long paymentSourceId = null;
+    private final CharSequence paymentType = null;
+    private final Long price = null;
     private final Long skuId = null;
-    private final Long skuType = null;
     private final Long skuSubscriptionPlanId = null;
+    private final Long skuType = null;
+    private final Long subscriptionCreatedAt = null;
+    private final Long subscriptionCurrentPeriodEnd = null;
+    private final Long subscriptionCurrentPeriodStart = null;
     private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
     private final CharSequence subscriptionPaymentGatewayPlanId = null;
     private final Long subscriptionPlanId = null;
-    private final Long subscriptionCreatedAt = null;
-    private final Long subscriptionCurrentPeriodStart = null;
-    private final Long subscriptionCurrentPeriodEnd = null;
-    private final Long paymentSourceId = null;
-    private final CharSequence paymentSourceCountry = null;
-    private final CharSequence failureMessage = null;
-    private final CharSequence loadId = null;
-    private final Boolean isGift = null;
-    private final Boolean captured = null;
+    private final Long subscriptionType = null;
+    private final Long tax = null;
+    private final Boolean taxInclusive = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "temporary_payment_auth_attempted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -53,6 +47,12 @@ public final /* data */ class TrackTemporaryPaymentAuthAttempted implements Anal
         }
         TrackTemporaryPaymentAuthAttempted trackTemporaryPaymentAuthAttempted = (TrackTemporaryPaymentAuthAttempted) other;
         return C12238m.areEqual(this.paymentId, trackTemporaryPaymentAuthAttempted.paymentId) && C12238m.areEqual(this.createdAt, trackTemporaryPaymentAuthAttempted.createdAt) && C12238m.areEqual(this.paymentType, trackTemporaryPaymentAuthAttempted.paymentType) && C12238m.areEqual(this.paymentGateway, trackTemporaryPaymentAuthAttempted.paymentGateway) && C12238m.areEqual(this.price, trackTemporaryPaymentAuthAttempted.price) && C12238m.areEqual(this.currency, trackTemporaryPaymentAuthAttempted.currency) && C12238m.areEqual(this.amount, trackTemporaryPaymentAuthAttempted.amount) && C12238m.areEqual(this.amountRefunded, trackTemporaryPaymentAuthAttempted.amountRefunded) && C12238m.areEqual(this.tax, trackTemporaryPaymentAuthAttempted.tax) && C12238m.areEqual(this.taxInclusive, trackTemporaryPaymentAuthAttempted.taxInclusive) && C12238m.areEqual(this.skuId, trackTemporaryPaymentAuthAttempted.skuId) && C12238m.areEqual(this.skuType, trackTemporaryPaymentAuthAttempted.skuType) && C12238m.areEqual(this.skuSubscriptionPlanId, trackTemporaryPaymentAuthAttempted.skuSubscriptionPlanId) && C12238m.areEqual(this.subscriptionId, trackTemporaryPaymentAuthAttempted.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackTemporaryPaymentAuthAttempted.subscriptionType) && C12238m.areEqual(this.subscriptionPaymentGatewayPlanId, trackTemporaryPaymentAuthAttempted.subscriptionPaymentGatewayPlanId) && C12238m.areEqual(this.subscriptionPlanId, trackTemporaryPaymentAuthAttempted.subscriptionPlanId) && C12238m.areEqual(this.subscriptionCreatedAt, trackTemporaryPaymentAuthAttempted.subscriptionCreatedAt) && C12238m.areEqual(this.subscriptionCurrentPeriodStart, trackTemporaryPaymentAuthAttempted.subscriptionCurrentPeriodStart) && C12238m.areEqual(this.subscriptionCurrentPeriodEnd, trackTemporaryPaymentAuthAttempted.subscriptionCurrentPeriodEnd) && C12238m.areEqual(this.paymentSourceId, trackTemporaryPaymentAuthAttempted.paymentSourceId) && C12238m.areEqual(this.paymentSourceCountry, trackTemporaryPaymentAuthAttempted.paymentSourceCountry) && C12238m.areEqual(this.failureMessage, trackTemporaryPaymentAuthAttempted.failureMessage) && C12238m.areEqual(this.loadId, trackTemporaryPaymentAuthAttempted.loadId) && C12238m.areEqual(this.isGift, trackTemporaryPaymentAuthAttempted.isGift) && C12238m.areEqual(this.captured, trackTemporaryPaymentAuthAttempted.captured);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -70,6 +70,88 @@ public class C11516g extends C11366c0 implements InterfaceC11511b {
         this.f23271K = pair;
     }
 
+    public static C11516g create(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, boolean z2, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0, boolean z3) {
+        if (interfaceC11450m == null) {
+            m9459a(7);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9459a(8);
+            throw null;
+        }
+        if (enumC11476z == null) {
+            m9459a(9);
+            throw null;
+        }
+        if (abstractC11466u == null) {
+            m9459a(10);
+            throw null;
+        }
+        if (c11716e == null) {
+            m9459a(11);
+            throw null;
+        }
+        if (interfaceC11467u0 != null) {
+            return new C11516g(interfaceC11450m, interfaceC11344g, enumC11476z, abstractC11466u, z2, c11716e, interfaceC11467u0, null, InterfaceC11321b.a.DECLARATION, z3, null);
+        }
+        m9459a(12);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
+    public InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List<C11521l> list, AbstractC11913c0 abstractC11913c1, Pair<InterfaceC11318a.a<?>, ?> pair) {
+        C11368d0 c11368d0;
+        C11370e0 c11370e0;
+        if (list == null) {
+            m9459a(19);
+            throw null;
+        }
+        if (abstractC11913c1 == null) {
+            m9459a(20);
+            throw null;
+        }
+        InterfaceC11453n0 original = getOriginal() == this ? null : getOriginal();
+        C11516g c11516g = new C11516g(getContainingDeclaration(), getAnnotations(), getModality(), getVisibility(), isVar(), getName(), getSource(), original, getKind(), this.f23270J, pair);
+        C11368d0 getter = getGetter();
+        if (getter != null) {
+            c11368d0 = c11368d0;
+            C11368d0 c11368d1 = new C11368d0(c11516g, getter.getAnnotations(), getter.getModality(), getter.getVisibility(), getter.isDefault(), getter.isExternal(), getter.isInline(), getKind(), original == null ? null : original.getGetter(), getter.getSource());
+            c11368d0.setInitialSignatureDescriptor(getter.getInitialSignatureDescriptor());
+            c11368d0.initialize(abstractC11913c1);
+        } else {
+            c11368d0 = null;
+        }
+        InterfaceC11457p0 setter = getSetter();
+        if (setter != null) {
+            C11370e0 c11370e1 = new C11370e0(c11516g, setter.getAnnotations(), setter.getModality(), setter.getVisibility(), setter.isDefault(), setter.isExternal(), setter.isInline(), getKind(), original == null ? null : original.getSetter(), setter.getSource());
+            c11370e1.setInitialSignatureDescriptor(c11370e1.getInitialSignatureDescriptor());
+            c11370e1.initialize(setter.getValueParameters().get(0));
+            c11370e0 = c11370e1;
+        } else {
+            c11370e0 = null;
+        }
+        c11516g.initialize(c11368d0, c11370e0, getBackingField(), getDelegateField());
+        c11516g.setSetterProjectedOut(isSetterProjectedOut());
+        InterfaceC11901k<AbstractC11815g<?>> interfaceC11901k = this.f22908p;
+        if (interfaceC11901k != null) {
+            c11516g.setCompileTimeInitializer(interfaceC11901k);
+        }
+        c11516g.setOverriddenDescriptors(getOverriddenDescriptors());
+        c11516g.setType(abstractC11913c1, getTypeParameters(), getDispatchReceiverParameter(), abstractC11913c0 == null ? null : C11786d.createExtensionReceiverParameterForCallable(this, abstractC11913c0, InterfaceC11344g.f22735f.getEMPTY()));
+        return c11516g;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11386m0, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11366c0, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
+    public boolean isConst() {
+        AbstractC11913c0 type = getType();
+        return this.f23270J && C11401j.canBeUsedForConstVal(type) && (!C11618x.hasEnhancedNullability(type) || AbstractC11288h.isString(type));
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9459a(int i) {
         String str = i != 21 ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
@@ -164,34 +246,6 @@ public class C11516g extends C11366c0 implements InterfaceC11511b {
         }
     }
 
-    public static C11516g create(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, boolean z2, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0, boolean z3) {
-        if (interfaceC11450m == null) {
-            m9459a(7);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9459a(8);
-            throw null;
-        }
-        if (enumC11476z == null) {
-            m9459a(9);
-            throw null;
-        }
-        if (abstractC11466u == null) {
-            m9459a(10);
-            throw null;
-        }
-        if (c11716e == null) {
-            m9459a(11);
-            throw null;
-        }
-        if (interfaceC11467u0 != null) {
-            return new C11516g(interfaceC11450m, interfaceC11344g, enumC11476z, abstractC11466u, z2, c11716e, interfaceC11467u0, null, InterfaceC11321b.a.DECLARATION, z3, null);
-        }
-        m9459a(12);
-        throw null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11366c0
     /* JADX INFO: renamed from: b */
     public C11366c0 mo9394b(InterfaceC11450m interfaceC11450m, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u, InterfaceC11453n0 interfaceC11453n0, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11467u0 interfaceC11467u0) {
@@ -216,59 +270,5 @@ public class C11516g extends C11366c0 implements InterfaceC11511b {
         }
         m9459a(17);
         throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11511b
-    public InterfaceC11511b enhance(AbstractC11913c0 abstractC11913c0, List<C11521l> list, AbstractC11913c0 abstractC11913c1, Pair<InterfaceC11318a.a<?>, ?> pair) {
-        C11368d0 c11368d0;
-        C11370e0 c11370e0;
-        if (list == null) {
-            m9459a(19);
-            throw null;
-        }
-        if (abstractC11913c1 == null) {
-            m9459a(20);
-            throw null;
-        }
-        InterfaceC11453n0 original = getOriginal() == this ? null : getOriginal();
-        C11516g c11516g = new C11516g(getContainingDeclaration(), getAnnotations(), getModality(), getVisibility(), isVar(), getName(), getSource(), original, getKind(), this.f23270J, pair);
-        C11368d0 getter = getGetter();
-        if (getter != null) {
-            c11368d0 = c11368d0;
-            C11368d0 c11368d1 = new C11368d0(c11516g, getter.getAnnotations(), getter.getModality(), getter.getVisibility(), getter.isDefault(), getter.isExternal(), getter.isInline(), getKind(), original == null ? null : original.getGetter(), getter.getSource());
-            c11368d0.setInitialSignatureDescriptor(getter.getInitialSignatureDescriptor());
-            c11368d0.initialize(abstractC11913c1);
-        } else {
-            c11368d0 = null;
-        }
-        InterfaceC11457p0 setter = getSetter();
-        if (setter != null) {
-            C11370e0 c11370e1 = new C11370e0(c11516g, setter.getAnnotations(), setter.getModality(), setter.getVisibility(), setter.isDefault(), setter.isExternal(), setter.isInline(), getKind(), original == null ? null : original.getSetter(), setter.getSource());
-            c11370e1.setInitialSignatureDescriptor(c11370e1.getInitialSignatureDescriptor());
-            c11370e1.initialize(setter.getValueParameters().get(0));
-            c11370e0 = c11370e1;
-        } else {
-            c11370e0 = null;
-        }
-        c11516g.initialize(c11368d0, c11370e0, getBackingField(), getDelegateField());
-        c11516g.setSetterProjectedOut(isSetterProjectedOut());
-        InterfaceC11901k<AbstractC11815g<?>> interfaceC11901k = this.f22908p;
-        if (interfaceC11901k != null) {
-            c11516g.setCompileTimeInitializer(interfaceC11901k);
-        }
-        c11516g.setOverriddenDescriptors(getOverriddenDescriptors());
-        c11516g.setType(abstractC11913c1, getTypeParameters(), getDispatchReceiverParameter(), abstractC11913c0 == null ? null : C11786d.createExtensionReceiverParameterForCallable(this, abstractC11913c0, InterfaceC11344g.f22735f.getEMPTY()));
-        return c11516g;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11386m0, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11366c0, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
-    public boolean isConst() {
-        AbstractC11913c0 type = getType();
-        return this.f23270J && C11401j.canBeUsedForConstVal(type) && (!C11618x.hasEnhancedNullability(type) || AbstractC11288h.isString(type));
     }
 }

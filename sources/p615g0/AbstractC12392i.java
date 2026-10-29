@@ -14,11 +14,6 @@ public abstract class AbstractC12392i implements InterfaceC12405v {
         this.delegate = interfaceC12405v;
     }
 
-    /* JADX INFO: renamed from: -deprecated_delegate, reason: not valid java name */
-    public final InterfaceC12405v m11491deprecated_delegate() {
-        return this.delegate;
-    }
-
     @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
     public void close() throws IOException {
         this.delegate.close();
@@ -31,6 +26,11 @@ public abstract class AbstractC12392i implements InterfaceC12405v {
     @Override // p615g0.InterfaceC12405v, java.io.Flushable
     public void flush() throws IOException {
         this.delegate.flush();
+    }
+
+    /* JADX INFO: renamed from: -deprecated_delegate, reason: not valid java name */
+    public final InterfaceC12405v m11491deprecated_delegate() {
+        return this.delegate;
     }
 
     @Override // p615g0.InterfaceC12405v

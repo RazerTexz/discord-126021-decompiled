@@ -10,12 +10,12 @@ import p007b.p085c.p086a.p095y.C1563b;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC4495b<T> extends AbstractC4530s0<T> {
 
-    /* JADX INFO: renamed from: j */
-    public int f11970j = 2;
-
     /* JADX INFO: renamed from: k */
     @NullableDecl
     public T f11971k;
+
+    /* JADX INFO: renamed from: j */
+    public int f11970j = 2;
 
     @Override // java.util.Iterator
     @CanIgnoreReturnValue

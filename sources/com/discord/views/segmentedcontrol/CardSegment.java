@@ -55,6 +55,12 @@ public final class CardSegment extends CardView implements InterfaceC1362a {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
+    public final View getCardText() {
+        TextView textView = this.binding.f829c;
+        C12238m.checkNotNullExpressionValue(textView, "binding.cardSegmentText");
+        return textView;
+    }
+
     @Override // p007b.p008a.p062y.p067n0.InterfaceC1362a
     /* JADX INFO: renamed from: a */
     public void mo388a(boolean selected) {
@@ -62,12 +68,6 @@ public final class CardSegment extends CardView implements InterfaceC1362a {
         int color = selected ? ColorCompat.getColor(this, C5419R.color.white) : ColorCompat.getThemedColor(this, C5419R.attr.colorInteractiveMuted);
         setCardBackgroundColor(themedColor);
         this.binding.f829c.setTextColor(color);
-    }
-
-    public final View getCardText() {
-        TextView textView = this.binding.f829c;
-        C12238m.checkNotNullExpressionValue(textView, "binding.cardSegmentText");
-        return textView;
     }
 
     public final void setBadgeText(CharSequence text) {

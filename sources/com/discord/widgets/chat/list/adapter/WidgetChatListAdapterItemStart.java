@@ -44,14 +44,14 @@ public final class WidgetChatListAdapterItemStart extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStart$configureThread$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemStart.kt */
-    public static final class C81241 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C81241 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ GuildMember $threadCreatorMember;
         public final /* synthetic */ String $threadCreatorName;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStart$configureThread$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemStart.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -103,13 +103,13 @@ public final class WidgetChatListAdapterItemStart extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStart$configureThread$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemStart.kt */
-    public static final class C81252 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C81252 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ String $autoArchiveString;
         public final /* synthetic */ Context $context;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStart$configureThread$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemStart.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

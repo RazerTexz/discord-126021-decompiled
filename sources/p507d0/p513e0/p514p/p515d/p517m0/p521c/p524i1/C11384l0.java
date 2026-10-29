@@ -54,7 +54,7 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.l0$a */
     /* JADX INFO: compiled from: ValueParameterDescriptorImpl.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -70,14 +70,14 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.l0$b */
     /* JADX INFO: compiled from: ValueParameterDescriptorImpl.kt */
-    public static final class b extends C11384l0 {
+    public final class b extends C11384l0 {
 
         /* JADX INFO: renamed from: v */
         public final Lazy f22905v;
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.l0$b$a */
         /* JADX INFO: compiled from: ValueParameterDescriptorImpl.kt */
-        public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11329d1>> {
+        public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11329d1>> {
             public a() {
                 super(0);
             }
@@ -138,10 +138,6 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
         this.f22904u = interfaceC11326c1 == null ? this : interfaceC11326c1;
     }
 
-    public static final C11384l0 createWithDestructuringDeclarations(InterfaceC11318a interfaceC11318a, InterfaceC11326c1 interfaceC11326c1, int i, InterfaceC11344g interfaceC11344g, C11716e c11716e, AbstractC11913c0 abstractC11913c0, boolean z2, boolean z3, boolean z4, AbstractC11913c0 abstractC11913c1, InterfaceC11467u0 interfaceC11467u0, Function0<? extends List<? extends InterfaceC11329d1>> function0) {
-        return f22898o.createWithDestructuringDeclarations(interfaceC11318a, interfaceC11326c1, i, interfaceC11344g, c11716e, abstractC11913c0, z2, z3, z4, abstractC11913c1, interfaceC11467u0, function0);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
     public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
         C12238m.checkNotNullParameter(interfaceC11454o, "visitor");
@@ -165,6 +161,10 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
         return new C11384l0(interfaceC11318a, null, i, annotations, c11716e, type, zDeclaresDefaultValue, zIsCrossinline, zIsNoinline, varargElementType, interfaceC11467u0);
     }
 
+    public static final C11384l0 createWithDestructuringDeclarations(InterfaceC11318a interfaceC11318a, InterfaceC11326c1 interfaceC11326c1, int i, InterfaceC11344g interfaceC11344g, C11716e c11716e, AbstractC11913c0 abstractC11913c0, boolean z2, boolean z3, boolean z4, AbstractC11913c0 abstractC11913c1, InterfaceC11467u0 interfaceC11467u0, Function0<? extends List<? extends InterfaceC11329d1>> function0) {
+        return f22898o.createWithDestructuringDeclarations(interfaceC11318a, interfaceC11326c1, i, interfaceC11344g, c11716e, abstractC11913c0, z2, z3, z4, abstractC11913c1, interfaceC11467u0, function0);
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11326c1
     public boolean declaresDefaultValue() {
         return this.f22900q && ((InterfaceC11321b) getContainingDeclaration()).getKind().isReal();
@@ -173,11 +173,6 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
     public /* bridge */ /* synthetic */ AbstractC11815g getCompileTimeInitializer() {
         return (AbstractC11815g) m11462getCompileTimeInitializer();
-    }
-
-    /* JADX INFO: renamed from: getCompileTimeInitializer, reason: collision with other method in class */
-    public Void m11462getCompileTimeInitializer() {
-        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11326c1
@@ -222,6 +217,11 @@ public class C11384l0 extends AbstractC11386m0 implements InterfaceC11326c1 {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11329d1
     public boolean isVar() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: getCompileTimeInitializer, reason: collision with other method in class */
+    public Void m11462getCompileTimeInitializer() {
+        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11383l, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m

@@ -37,7 +37,7 @@ public final class CommandHeaderViewHolder extends RecyclerView.ViewHolder imple
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.CommandHeaderViewHolder$bind$1 */
     /* JADX INFO: compiled from: CommandHeaderViewHolder.kt */
-    public static final class C77981 extends AbstractC12240o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
+    public final class C77981 extends AbstractC12240o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
         public final /* synthetic */ String $iconUrl;
         public final /* synthetic */ ApplicationPlaceholder $item;
 
@@ -67,7 +67,7 @@ public final class CommandHeaderViewHolder extends RecyclerView.ViewHolder imple
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.CommandHeaderViewHolder$bind$2 */
     /* JADX INFO: compiled from: CommandHeaderViewHolder.kt */
-    public static final class C77992 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C77992 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ int $tint;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

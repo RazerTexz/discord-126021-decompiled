@@ -44,83 +44,18 @@ public final class WebSocket {
     private final SSLSocketFactory socketFactory;
     private State state;
 
-    /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class Closed {
-        private final int code;
-        private final String reason;
-
-        public Closed(int i, String str) {
-            this.code = i;
-            this.reason = str;
-        }
-
-        public final int getCode() {
-            return this.code;
-        }
-
-        public final String getReason() {
-            return this.reason;
-        }
-    }
-
-    /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class Error {
-        private final Response response;
-        private final Throwable throwable;
-
-        public Error(Throwable th, Response response) {
-            C12238m.checkNotNullParameter(th, "throwable");
-            this.throwable = th;
-            this.response = response;
-        }
-
-        public final Response getResponse() {
-            return this.response;
-        }
-
-        public final Throwable getThrowable() {
-            return this.throwable;
-        }
-    }
-
-    /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class Opened {
-        private final Response response;
-
-        public Opened(Response response) {
-            this.response = response;
-        }
-
-        public final Response getResponse() {
-            return this.response;
-        }
-    }
-
-    /* JADX INFO: compiled from: WebSocket.kt */
-    public enum State {
-        NOT_YET_CONNECTED,
-        CONNECTING,
-        CONNECTED,
-        CLOSING,
-        CLOSED
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$connect$1 */
     /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class C70581 extends ZLibWebSocketListener.Listener {
+    public final class C70581 extends ZLibWebSocketListener.Listener {
         private final RawMessageHandler rawMessageHandler;
 
         public C70581() {
             this.rawMessageHandler = WebSocket.this.getRawMessageHandler();
         }
 
-        private final void handleError(Exception exception, String errorMessage, String rawData) {
-            Map mapEmptyMap;
-            if (rawData == null || (mapEmptyMap = C12134g0.mapOf(C12116o.m10073to("raw_data_string", rawData))) == null) {
-                mapEmptyMap = C12136h0.emptyMap();
-            }
-            WebSocket.this.errorLogger.invoke(errorMessage, exception, mapEmptyMap);
-            WebSocket.this.handleOnFailure(exception, null, false);
+        @Override // com.discord.utilities.websocket.ZLibWebSocketListener.Listener
+        public RawMessageHandler getRawMessageHandler() {
+            return this.rawMessageHandler;
         }
 
         public static /* synthetic */ void handleError$default(C70581 c70581, Exception exc, String str, String str2, int i, Object obj) {
@@ -130,9 +65,13 @@ public final class WebSocket {
             c70581.handleError(exc, str, str2);
         }
 
-        @Override // com.discord.utilities.websocket.ZLibWebSocketListener.Listener
-        public RawMessageHandler getRawMessageHandler() {
-            return this.rawMessageHandler;
+        private final void handleError(Exception exception, String errorMessage, String rawData) {
+            Map mapEmptyMap;
+            if (rawData == null || (mapEmptyMap = C12134g0.mapOf(C12116o.m10073to("raw_data_string", rawData))) == null) {
+                mapEmptyMap = C12136h0.emptyMap();
+            }
+            WebSocket.this.errorLogger.invoke(errorMessage, exception, mapEmptyMap);
+            WebSocket.this.handleOnFailure(exception, null, false);
         }
 
         @Override // okhttp3.WebSocketListener
@@ -184,7 +123,7 @@ public final class WebSocket {
 
     /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$1 */
     /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class C70591 extends AbstractC12240o implements Function1<Opened, Unit> {
+    public final class C70591 extends AbstractC12240o implements Function1<Opened, Unit> {
         public static final C70591 INSTANCE = new C70591();
 
         public C70591() {
@@ -205,7 +144,7 @@ public final class WebSocket {
 
     /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$2 */
     /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class C70602 extends AbstractC12240o implements Function1<Closed, Unit> {
+    public final class C70602 extends AbstractC12240o implements Function1<Closed, Unit> {
         public static final C70602 INSTANCE = new C70602();
 
         public C70602() {
@@ -226,11 +165,15 @@ public final class WebSocket {
 
     /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$3 */
     /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class C70613 extends AbstractC12240o implements Function2<InputStreamReader, Integer, Unit> {
+    public final class C70613 extends AbstractC12240o implements Function2<InputStreamReader, Integer, Unit> {
         public static final C70613 INSTANCE = new C70613();
 
         public C70613() {
             super(2);
+        }
+
+        public final void invoke(InputStreamReader inputStreamReader, int i) {
+            C12238m.checkNotNullParameter(inputStreamReader, "<anonymous parameter 0>");
         }
 
         @Override // kotlin.jvm.functions.Function2
@@ -238,15 +181,11 @@ public final class WebSocket {
             invoke(inputStreamReader, num.intValue());
             return Unit.f27425a;
         }
-
-        public final void invoke(InputStreamReader inputStreamReader, int i) {
-            C12238m.checkNotNullParameter(inputStreamReader, "<anonymous parameter 0>");
-        }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$4 */
     /* JADX INFO: compiled from: WebSocket.kt */
-    public static final class C70624 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C70624 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C70624 INSTANCE = new C70624();
 
         public C70624() {
@@ -263,6 +202,67 @@ public final class WebSocket {
         public final void invoke2(Error error) {
             C12238m.checkNotNullParameter(error, "it");
         }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Closed {
+        private final int code;
+        private final String reason;
+
+        public Closed(int i, String str) {
+            this.code = i;
+            this.reason = str;
+        }
+
+        public final int getCode() {
+            return this.code;
+        }
+
+        public final String getReason() {
+            return this.reason;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Error {
+        private final Response response;
+        private final Throwable throwable;
+
+        public Error(Throwable th, Response response) {
+            C12238m.checkNotNullParameter(th, "throwable");
+            this.throwable = th;
+            this.response = response;
+        }
+
+        public final Response getResponse() {
+            return this.response;
+        }
+
+        public final Throwable getThrowable() {
+            return this.throwable;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Opened {
+        private final Response response;
+
+        public Opened(Response response) {
+            this.response = response;
+        }
+
+        public final Response getResponse() {
+            return this.response;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public enum State {
+        NOT_YET_CONNECTED,
+        CONNECTING,
+        CONNECTED,
+        CLOSING,
+        CLOSED
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -302,6 +302,13 @@ public final class WebSocket {
         });
     }
 
+    public final void connect(String url) {
+        C12238m.checkNotNullParameter(url, "url");
+        disconnect(1000, "Closing existing connection.");
+        this.state = State.CONNECTING;
+        this.client = createWebSocket(url, this.socketFactory, new ZLibWebSocketListener(new C70581()));
+    }
+
     private final okhttp3.WebSocket createWebSocket(String url, SSLSocketFactory socketFactory, WebSocketListener listener) {
         C12380x.a aVar = new C12380x.a();
         if (socketFactory != null) {
@@ -323,26 +330,6 @@ public final class WebSocket {
             str = null;
         }
         webSocket.disconnect(i, str);
-    }
-
-    private final void handleOnFailure(Throwable throwable, Response response, boolean closed) {
-        if (closed) {
-            this.state = State.CLOSED;
-        } else {
-            disconnect(PointerIconCompat.TYPE_COPY, "Closing due to failure " + throwable + ", " + response);
-        }
-        this.onError.invoke(new Error(throwable, response));
-    }
-
-    private final void schedule(Function0<Unit> callback) {
-        this.schedulerSubject.f27650k.onNext(callback);
-    }
-
-    public final void connect(String url) {
-        C12238m.checkNotNullParameter(url, "url");
-        disconnect(1000, "Closing existing connection.");
-        this.state = State.CONNECTING;
-        this.client = createWebSocket(url, this.socketFactory, new ZLibWebSocketListener(new C70581()));
     }
 
     public final void disconnect() {
@@ -393,6 +380,15 @@ public final class WebSocket {
         return this.state;
     }
 
+    private final void handleOnFailure(Throwable throwable, Response response, boolean closed) {
+        if (closed) {
+            this.state = State.CLOSED;
+        } else {
+            disconnect(PointerIconCompat.TYPE_COPY, "Closing due to failure " + throwable + ", " + response);
+        }
+        this.onError.invoke(new Error(throwable, response));
+    }
+
     public final void message(String message) {
         C12238m.checkNotNullParameter(message, "message");
         okhttp3.WebSocket webSocket = this.client;
@@ -412,6 +408,10 @@ public final class WebSocket {
         this.onMessage = C70613.INSTANCE;
         this.rawMessageHandler = null;
         this.onError = C70624.INSTANCE;
+    }
+
+    private final void schedule(Function0<Unit> callback) {
+        this.schedulerSubject.f27650k.onNext(callback);
     }
 
     public final void setOnClosed(Function1<? super Closed, Unit> function1) {

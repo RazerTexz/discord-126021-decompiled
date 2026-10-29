@@ -37,7 +37,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class VideoCallGridViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: VideoCallGridViewHolder.kt */
-    public static final class EmbeddedActivity extends VideoCallGridViewHolder {
+    public final class EmbeddedActivity extends VideoCallGridViewHolder {
         private final VideoCallGridItemEmbeddedActivityBinding binding;
         private final MGImages.DistinctChangeDetector distinctChangeDetector;
 
@@ -108,7 +108,7 @@ public abstract class VideoCallGridViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: VideoCallGridViewHolder.kt */
-    public static final class UserOrStream extends VideoCallGridViewHolder {
+    public final class UserOrStream extends VideoCallGridViewHolder {
         private final VideoCallParticipantView videoCallParticipantView;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

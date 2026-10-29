@@ -22,7 +22,7 @@ public final class C0899e extends LinearLayout {
 
     /* JADX INFO: renamed from: b.a.f.e$a */
     /* JADX INFO: compiled from: ChipsVerticalLinearLayout.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public int f620a;

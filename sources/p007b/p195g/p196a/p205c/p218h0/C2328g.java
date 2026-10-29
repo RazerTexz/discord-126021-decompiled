@@ -31,12 +31,6 @@ public final class C2328g extends C2327f {
     }
 
     @Override // p007b.p195g.p196a.p205c.p218h0.C2327f
-    /* JADX INFO: renamed from: M */
-    public C2327f mo2117M(AbstractC2360j abstractC2360j) {
-        return abstractC2360j == this._keyType ? this : new C2328g(this._class, this._bindings, this._superClass, this._superInterfaces, abstractC2360j, this._valueType, this._valueHandler, this._typeHandler, this._asStatic);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p218h0.C2327f
     /* JADX INFO: renamed from: R, reason: merged with bridge method [inline-methods] */
     public C2328g mo2095E(Object obj) {
         return new C2328g(this._class, this._bindings, this._superClass, this._superInterfaces, this._keyType, this._valueType.mo2130N(obj), this._valueHandler, this._typeHandler, this._asStatic);
@@ -58,6 +52,12 @@ public final class C2328g extends C2327f {
     /* JADX INFO: renamed from: U, reason: merged with bridge method [inline-methods] */
     public C2328g mo2098I(Object obj) {
         return new C2328g(this._class, this._bindings, this._superClass, this._superInterfaces, this._keyType, this._valueType, obj, this._typeHandler, this._asStatic);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p218h0.C2327f
+    /* JADX INFO: renamed from: M */
+    public C2327f mo2117M(AbstractC2360j abstractC2360j) {
+        return abstractC2360j == this._keyType ? this : new C2328g(this._class, this._bindings, this._superClass, this._superInterfaces, abstractC2360j, this._valueType, this._valueHandler, this._typeHandler, this._asStatic);
     }
 
     @Override // p007b.p195g.p196a.p205c.p218h0.C2327f

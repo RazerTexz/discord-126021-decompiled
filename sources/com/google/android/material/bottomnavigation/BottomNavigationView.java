@@ -43,7 +43,6 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class BottomNavigationView extends FrameLayout {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_BottomNavigationView;
     private static final int MENU_PRESENTER_ID = 1;
 
     @Nullable
@@ -59,58 +58,7 @@ public class BottomNavigationView extends FrameLayout {
     private final BottomNavigationPresenter presenter;
     private OnNavigationItemReselectedListener reselectedListener;
     private OnNavigationItemSelectedListener selectedListener;
-
-    public interface OnNavigationItemReselectedListener {
-        void onNavigationItemReselected(@NonNull MenuItem menuItem);
-    }
-
-    public interface OnNavigationItemSelectedListener {
-        boolean onNavigationItemSelected(@NonNull MenuItem menuItem);
-    }
-
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10849a();
-
-        /* JADX INFO: renamed from: j */
-        @Nullable
-        public Bundle f20922j;
-
-        /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationView$SavedState$a */
-        public static class C10849a implements Parcelable.ClassLoaderCreator<SavedState> {
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            @NonNull
-            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @Nullable
-            public Object createFromParcel(@NonNull Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeBundle(this.f20922j);
-        }
-
-        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            this.f20922j = parcel.readBundle(classLoader == null ? SavedState.class.getClassLoader() : classLoader);
-        }
-    }
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_BottomNavigationView;
 
     /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationView$a */
     public class C10850a implements MenuBuilder.Callback {
@@ -154,6 +102,58 @@ public class BottomNavigationView extends FrameLayout {
         }
     }
 
+    public interface OnNavigationItemReselectedListener {
+        void onNavigationItemReselected(@NonNull MenuItem menuItem);
+    }
+
+    public interface OnNavigationItemSelectedListener {
+        boolean onNavigationItemSelected(@NonNull MenuItem menuItem);
+    }
+
+    public class SavedState extends AbsSavedState {
+
+        /* JADX INFO: renamed from: j */
+        @Nullable
+        public Bundle f20922j;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10849a();
+
+        /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationView$SavedState$a */
+        public final class C10849a implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public Object[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @Nullable
+            public Object createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeBundle(this.f20922j);
+        }
+
+        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.f20922j = parcel.readBundle(classLoader == null ? SavedState.class.getClassLoader() : classLoader);
+        }
+    }
+
     public BottomNavigationView(@NonNull Context context) {
         this(context, null);
     }
@@ -178,17 +178,6 @@ public class BottomNavigationView extends FrameLayout {
         }
         materialShapeDrawable.initializeElevationOverlay(context);
         return materialShapeDrawable;
-    }
-
-    private MenuInflater getMenuInflater() {
-        if (this.menuInflater == null) {
-            this.menuInflater = new SupportMenuInflater(getContext());
-        }
-        return this.menuInflater;
-    }
-
-    private boolean shouldDrawCompatibilityTopDivider() {
-        return false;
     }
 
     @Nullable
@@ -248,6 +237,13 @@ public class BottomNavigationView extends FrameLayout {
     @NonNull
     public Menu getMenu() {
         return this.menu;
+    }
+
+    private MenuInflater getMenuInflater() {
+        if (this.menuInflater == null) {
+            this.menuInflater = new SupportMenuInflater(getContext());
+        }
+        return this.menuInflater;
     }
 
     public BadgeDrawable getOrCreateBadge(int i) {
@@ -388,6 +384,10 @@ public class BottomNavigationView extends FrameLayout {
             return;
         }
         menuItemFindItem.setChecked(true);
+    }
+
+    private boolean shouldDrawCompatibilityTopDivider() {
+        return false;
     }
 
     public BottomNavigationView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

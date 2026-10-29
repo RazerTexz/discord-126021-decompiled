@@ -16,10 +16,7 @@ public final class ChannelListBottomNavSpaceItem implements ChannelListItem {
     public ChannelListBottomNavSpaceItem(long j) {
         this.guildId = j;
         this.type = 11;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
+        this.key = "" + getType() + j;
     }
 
     public final long getGuildId() {

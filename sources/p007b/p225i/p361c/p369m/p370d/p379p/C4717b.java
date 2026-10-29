@@ -12,9 +12,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4717b extends FileOutputStream {
 
-    /* JADX INFO: renamed from: j */
-    public static final FilenameFilter f12686j = new a();
-
     /* JADX INFO: renamed from: k */
     public final String f12687k;
 
@@ -23,6 +20,9 @@ public class C4717b extends FileOutputStream {
 
     /* JADX INFO: renamed from: m */
     public boolean f12689m;
+
+    /* JADX INFO: renamed from: j */
+    public static final FilenameFilter f12686j = new a();
 
     /* JADX INFO: renamed from: b.i.c.m.d.p.b$a */
     /* JADX INFO: compiled from: ClsFileOutputStream.java */
@@ -41,16 +41,6 @@ public class C4717b extends FileOutputStream {
         String strM822J = C1643a.m822J(sb, File.separator, str);
         this.f12687k = strM822J;
         this.f12688l = new File(C1643a.m883w(strM822J, ".cls_temp"));
-    }
-
-    /* JADX INFO: renamed from: a */
-    public void m6638a() throws IOException {
-        if (this.f12689m) {
-            return;
-        }
-        this.f12689m = true;
-        flush();
-        super.close();
     }
 
     @Override // java.io.FileOutputStream, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
@@ -73,5 +63,15 @@ public class C4717b extends FileOutputStream {
             str = " (source does not exist)";
         }
         throw new IOException("Could not rename temp file: " + this.f12688l + " -> " + file + str);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void m6638a() throws IOException {
+        if (this.f12689m) {
+            return;
+        }
+        this.f12689m = true;
+        flush();
+        super.close();
     }
 }

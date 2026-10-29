@@ -48,6 +48,19 @@ public class C4450e extends ConstraintLayout {
         this(context, attributeSet, 0);
     }
 
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i, layoutParams);
+        if (view.getId() == -1) {
+            view.setId(ViewCompat.generateViewId());
+        }
+        Handler handler = getHandler();
+        if (handler != null) {
+            handler.removeCallbacks(this.f11861j);
+            handler.post(this.f11861j);
+        }
+    }
+
     /* JADX INFO: renamed from: a */
     public void m6170a() {
         int childCount = getChildCount();
@@ -70,19 +83,6 @@ public class C4450e extends ConstraintLayout {
             }
         }
         constraintSet.applyTo(this);
-    }
-
-    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
-        super.addView(view, i, layoutParams);
-        if (view.getId() == -1) {
-            view.setId(ViewCompat.generateViewId());
-        }
-        Handler handler = getHandler();
-        if (handler != null) {
-            handler.removeCallbacks(this.f11861j);
-            handler.post(this.f11861j);
-        }
     }
 
     @Override // android.view.View

@@ -9,9 +9,9 @@ public final class AutocompleteTypes {
     public static final String COMMANDS = "COMMANDS";
     public static final String EMOJIS_AND_STICKERS = "EMOJIS_AND_STICKERS";
     public static final String GIFS = "GIFS";
-    public static final AutocompleteTypes INSTANCE = new AutocompleteTypes();
     public static final String MENTIONS = "MENTIONS";
     public static final String REACTIONS = "REACTIONS";
+    public static final AutocompleteTypes INSTANCE = new AutocompleteTypes();
 
     private AutocompleteTypes() {
     }

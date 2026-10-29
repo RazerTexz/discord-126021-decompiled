@@ -32,6 +32,10 @@ public abstract class AbstractC1947s extends BasePool<InterfaceC1946r> {
     }
 
     @Override // com.facebook.imagepipeline.memory.BasePool
+    /* JADX INFO: renamed from: s, reason: merged with bridge method [inline-methods] */
+    public abstract InterfaceC1946r mo1382e(int i);
+
+    @Override // com.facebook.imagepipeline.memory.BasePool
     /* JADX INFO: renamed from: g */
     public void mo1383g(InterfaceC1946r interfaceC1946r) {
         interfaceC1946r.close();
@@ -68,8 +72,4 @@ public abstract class AbstractC1947s extends BasePool<InterfaceC1946r> {
     public boolean mo1388o(InterfaceC1946r interfaceC1946r) {
         return !interfaceC1946r.isClosed();
     }
-
-    @Override // com.facebook.imagepipeline.memory.BasePool
-    /* JADX INFO: renamed from: s, reason: merged with bridge method [inline-methods] */
-    public abstract InterfaceC1946r mo1382e(int i);
 }

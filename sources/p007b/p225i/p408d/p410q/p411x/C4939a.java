@@ -61,11 +61,84 @@ public final class C4939a extends JsonReader {
         m6885c0(jsonElement);
     }
 
+    @Override // com.google.gson.stream.JsonReader, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        this.f13132B = new Object[]{f13130A};
+        this.f13133C = 1;
+    }
+
+    @Override // com.google.gson.stream.JsonReader
+    public String getPath() {
+        StringBuilder sbM829Q = C1643a.m829Q('$');
+        int i = 0;
+        while (i < this.f13133C) {
+            Object[] objArr = this.f13132B;
+            if (objArr[i] instanceof C4903g) {
+                i++;
+                if (objArr[i] instanceof Iterator) {
+                    sbM829Q.append('[');
+                    sbM829Q.append(this.f13135E[i]);
+                    sbM829Q.append(']');
+                }
+            } else if (objArr[i] instanceof JsonObject) {
+                i++;
+                if (objArr[i] instanceof Iterator) {
+                    sbM829Q.append('.');
+                    String[] strArr = this.f13134D;
+                    if (strArr[i] != null) {
+                        sbM829Q.append(strArr[i]);
+                    }
+                }
+            }
+            i++;
+        }
+        return sbM829Q.toString();
+    }
+
     /* JADX INFO: renamed from: t */
     private String m6873t() {
         StringBuilder sbM833U = C1643a.m833U(" at path ");
         sbM833U.append(getPath());
         return sbM833U.toString();
+    }
+
+    /* JADX INFO: renamed from: W */
+    public final void m6880W(JsonToken jsonToken) throws IOException {
+        if (mo6878N() == jsonToken) {
+            return;
+        }
+        throw new IllegalStateException("Expected " + jsonToken + " but was " + mo6878N() + m6873t());
+    }
+
+    /* JADX INFO: renamed from: X */
+    public final Object m6881X() {
+        return this.f13132B[this.f13133C - 1];
+    }
+
+    /* JADX INFO: renamed from: b0 */
+    public final Object m6884b0() {
+        Object[] objArr = this.f13132B;
+        int i = this.f13133C - 1;
+        this.f13133C = i;
+        Object obj = objArr[i];
+        objArr[i] = null;
+        return obj;
+    }
+
+    /* JADX INFO: renamed from: c0 */
+    public final void m6885c0(Object obj) {
+        int i = this.f13133C;
+        Object[] objArr = this.f13132B;
+        if (i == objArr.length) {
+            int i2 = i * 2;
+            this.f13132B = Arrays.copyOf(objArr, i2);
+            this.f13135E = Arrays.copyOf(this.f13135E, i2);
+            this.f13134D = (String[]) Arrays.copyOf(this.f13134D, i2);
+        }
+        Object[] objArr2 = this.f13132B;
+        int i3 = this.f13133C;
+        this.f13133C = i3 + 1;
+        objArr2[i3] = obj;
     }
 
     @Override // com.google.gson.stream.JsonReader
@@ -198,19 +271,6 @@ public final class C4939a extends JsonReader {
         }
     }
 
-    /* JADX INFO: renamed from: W */
-    public final void m6880W(JsonToken jsonToken) throws IOException {
-        if (mo6878N() == jsonToken) {
-            return;
-        }
-        throw new IllegalStateException("Expected " + jsonToken + " but was " + mo6878N() + m6873t());
-    }
-
-    /* JADX INFO: renamed from: X */
-    public final Object m6881X() {
-        return this.f13132B[this.f13133C - 1];
-    }
-
     @Override // com.google.gson.stream.JsonReader
     /* JADX INFO: renamed from: a */
     public void mo6882a() throws IOException {
@@ -224,38 +284,6 @@ public final class C4939a extends JsonReader {
     public void mo6883b() throws IOException {
         m6880W(JsonToken.BEGIN_OBJECT);
         m6885c0(new LinkedTreeMap.C11102b.a((LinkedTreeMap.C11102b) ((JsonObject) m6881X()).m9216j()));
-    }
-
-    /* JADX INFO: renamed from: b0 */
-    public final Object m6884b0() {
-        Object[] objArr = this.f13132B;
-        int i = this.f13133C - 1;
-        this.f13133C = i;
-        Object obj = objArr[i];
-        objArr[i] = null;
-        return obj;
-    }
-
-    /* JADX INFO: renamed from: c0 */
-    public final void m6885c0(Object obj) {
-        int i = this.f13133C;
-        Object[] objArr = this.f13132B;
-        if (i == objArr.length) {
-            int i2 = i * 2;
-            this.f13132B = Arrays.copyOf(objArr, i2);
-            this.f13135E = Arrays.copyOf(this.f13135E, i2);
-            this.f13134D = (String[]) Arrays.copyOf(this.f13134D, i2);
-        }
-        Object[] objArr2 = this.f13132B;
-        int i3 = this.f13133C;
-        this.f13133C = i3 + 1;
-        objArr2[i3] = obj;
-    }
-
-    @Override // com.google.gson.stream.JsonReader, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        this.f13132B = new Object[]{f13130A};
-        this.f13133C = 1;
     }
 
     @Override // com.google.gson.stream.JsonReader
@@ -287,43 +315,10 @@ public final class C4939a extends JsonReader {
     }
 
     @Override // com.google.gson.stream.JsonReader
-    public String getPath() {
-        StringBuilder sbM829Q = C1643a.m829Q('$');
-        int i = 0;
-        while (i < this.f13133C) {
-            Object[] objArr = this.f13132B;
-            if (objArr[i] instanceof C4903g) {
-                i++;
-                if (objArr[i] instanceof Iterator) {
-                    sbM829Q.append('[');
-                    sbM829Q.append(this.f13135E[i]);
-                    sbM829Q.append(']');
-                }
-            } else if (objArr[i] instanceof JsonObject) {
-                i++;
-                if (objArr[i] instanceof Iterator) {
-                    sbM829Q.append('.');
-                    String[] strArr = this.f13134D;
-                    if (strArr[i] != null) {
-                        sbM829Q.append(strArr[i]);
-                    }
-                }
-            }
-            i++;
-        }
-        return sbM829Q.toString();
-    }
-
-    @Override // com.google.gson.stream.JsonReader
     /* JADX INFO: renamed from: q */
     public boolean mo6888q() throws IOException {
         JsonToken jsonTokenMo6878N = mo6878N();
         return (jsonTokenMo6878N == JsonToken.END_OBJECT || jsonTokenMo6878N == JsonToken.END_ARRAY) ? false : true;
-    }
-
-    @Override // com.google.gson.stream.JsonReader
-    public String toString() {
-        return C4939a.class.getSimpleName();
     }
 
     @Override // com.google.gson.stream.JsonReader
@@ -380,5 +375,10 @@ public final class C4939a extends JsonReader {
             iArr[i2] = iArr[i2] + 1;
         }
         return iMo6854c;
+    }
+
+    @Override // com.google.gson.stream.JsonReader
+    public String toString() {
+        return C4939a.class.getSimpleName();
     }
 }

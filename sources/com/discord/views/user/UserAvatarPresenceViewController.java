@@ -31,7 +31,7 @@ public final class UserAvatarPresenceViewController extends RxViewController<Use
 
     /* JADX INFO: renamed from: com.discord.views.user.UserAvatarPresenceViewController$a */
     /* JADX INFO: compiled from: UserAvatarPresenceViewController.kt */
-    public static final class C7135a<T1, T2, T3, R> implements Func3<User, ModelRichPresence, StreamContext, UserAvatarPresenceView.C7131a> {
+    public final class C7135a<T1, T2, T3, R> implements Func3<User, ModelRichPresence, StreamContext, UserAvatarPresenceView.C7131a> {
 
         /* JADX INFO: renamed from: a */
         public static final C7135a f19365a = new C7135a();

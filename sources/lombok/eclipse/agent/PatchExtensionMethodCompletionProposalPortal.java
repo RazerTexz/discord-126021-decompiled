@@ -29,7 +29,7 @@ public class PatchExtensionMethodCompletionProposalPortal {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethodCompletionProposalPortal$ReflectionForUi.SCL.lombok */
-    private static final class ReflectionForUi {
+    final class ReflectionForUi {
         public static final Method getJavaCompletionProposals;
         public static final Throwable problem;
 

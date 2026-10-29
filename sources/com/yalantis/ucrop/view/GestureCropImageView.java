@@ -93,6 +93,14 @@ public class GestureCropImageView extends C5305a {
         this.f22210R = 5;
     }
 
+    public int getDoubleTapScaleSteps() {
+        return this.f22210R;
+    }
+
+    public float getDoubleTapTargetScale() {
+        return getCurrentScale() * ((float) Math.pow(getMaxScale() / getMinScale(), 1.0f / this.f22210R));
+    }
+
     @Override // p007b.p485q.p486a.p491l.C5307c
     /* JADX INFO: renamed from: c */
     public void mo7486c() {
@@ -100,14 +108,6 @@ public class GestureCropImageView extends C5305a {
         this.f22205M = new GestureDetector(getContext(), new C11204b(null), null, true);
         this.f22203K = new ScaleGestureDetector(getContext(), new C11206d(null));
         this.f22204L = new C5303c(new C11205c(null));
-    }
-
-    public int getDoubleTapScaleSteps() {
-        return this.f22210R;
-    }
-
-    public float getDoubleTapTargetScale() {
-        return getCurrentScale() * ((float) Math.pow(getMaxScale() / getMinScale(), 1.0f / this.f22210R));
     }
 
     @Override // android.view.View

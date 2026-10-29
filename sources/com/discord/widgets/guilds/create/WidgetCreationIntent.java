@@ -45,30 +45,13 @@ public final class WidgetCreationIntent extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final LoggingConfig loggingConfig;
 
-    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(AppFragment fragment, CreateGuildTrigger trigger, WidgetGuildCreate.Options createGuildOptions) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            C12238m.checkNotNullParameter(trigger, "trigger");
-            C12238m.checkNotNullParameter(createGuildOptions, "createGuildOptions");
-            C0870j.m158g(C0870j.f524g, fragment.getParentFragmentManager(), fragment.requireContext(), WidgetCreationIntent.class, 0, true, null, new CreationIntentArgs(trigger, createGuildOptions), 40);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetCreationIntent.kt */
-    public static final class C86031 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C86031 extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$onViewBound$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetCreationIntent.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -100,6 +83,23 @@ public final class WidgetCreationIntent extends AppFragment {
         public final void invoke2(RenderContext renderContext) {
             C12238m.checkNotNullParameter(renderContext, "$receiver");
             renderContext.m8423b("onSkip", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(AppFragment fragment, CreateGuildTrigger trigger, WidgetGuildCreate.Options createGuildOptions) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            C12238m.checkNotNullParameter(trigger, "trigger");
+            C12238m.checkNotNullParameter(createGuildOptions, "createGuildOptions");
+            C0870j.m158g(C0870j.f524g, fragment.getParentFragmentManager(), fragment.requireContext(), WidgetCreationIntent.class, 0, true, null, new CreationIntentArgs(trigger, createGuildOptions), 40);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -140,8 +140,17 @@ public final class WidgetCreationIntent extends AppFragment {
         });
     }
 
+    public final CreationIntentArgs getArgs() {
+        return (CreationIntentArgs) this.args.getValue();
+    }
+
     private final WidgetCreationIntentBinding getBinding() {
         return (WidgetCreationIntentBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
     }
 
     private final void onSelectionPressed(Boolean isCommunity) {
@@ -152,15 +161,6 @@ public final class WidgetCreationIntent extends AppFragment {
             AnalyticsTracker.openModal$default("Create Guild Step 2", getArgs().getCreateGuildOptions().getAnalyticsLocation(), null, 4, null);
         }
         WidgetGuildCreate.INSTANCE.showFragment(this, getArgs().getCreateGuildOptions());
-    }
-
-    public final CreationIntentArgs getArgs() {
-        return (CreationIntentArgs) this.args.getValue();
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment

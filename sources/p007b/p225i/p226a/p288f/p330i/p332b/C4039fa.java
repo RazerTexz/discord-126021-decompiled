@@ -30,24 +30,6 @@ public final class C4039fa extends AbstractC4027ea {
         this.f10733g = c3730l0;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: a */
-    public final int mo5593a() {
-        return this.f10733g.m5045y();
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: g */
-    public final boolean mo5594g() {
-        return false;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
-    /* JADX INFO: renamed from: h */
-    public final boolean mo5595h() {
-        return this.f10733g.m5037C();
-    }
-
     /* JADX WARN: Code duplicated, block: B:103:0x028e  */
     /* JADX WARN: Code duplicated, block: B:107:0x02b2  */
     /* JADX WARN: Code duplicated, block: B:112:0x02e3  */
@@ -489,5 +471,23 @@ public final class C4039fa extends AbstractC4027ea {
             }
         }
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: a */
+    public final int mo5593a() {
+        return this.f10733g.m5045y();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: g */
+    public final boolean mo5594g() {
+        return false;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4027ea
+    /* JADX INFO: renamed from: h */
+    public final boolean mo5595h() {
+        return this.f10733g.m5037C();
     }
 }

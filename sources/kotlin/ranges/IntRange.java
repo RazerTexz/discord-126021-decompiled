@@ -15,7 +15,7 @@ public final class IntRange extends IntProgression implements InterfaceC11221a<I
 
     /* JADX INFO: renamed from: kotlin.ranges.IntRange$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: Ranges.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

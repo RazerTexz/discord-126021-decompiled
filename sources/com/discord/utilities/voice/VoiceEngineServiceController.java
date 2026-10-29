@@ -42,16 +42,113 @@ public final class VoiceEngineServiceController {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(VoiceEngineServiceController$Companion$INSTANCE$2.INSTANCE);
-    private static final NotificationData NOTIFICATION_DATA_DISCONNECTED = new NotificationData(new RtcConnection.State.C5610d(false), "", false, false, false, false, -1, null, false, false);
     private final StoreAudioManagerV2 audioManagerStore;
     private final StoreMediaSettings mediaSettingsStore;
     private final Observable<NotificationData> notificationDataObservable;
     private VoiceEngineForegroundService.Connection serviceBinding;
     private final StoreVoiceChannelSelected voiceChannelSelectedStore;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(VoiceEngineServiceController$Companion$INSTANCE$2.INSTANCE);
+    private static final NotificationData NOTIFICATION_DATA_DISCONNECTED = new NotificationData(new RtcConnection.State.C5610d(false), "", false, false, false, false, -1, null, false, false);
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$1 */
+    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
+    public final class C70511 extends AbstractC12240o implements Function0<Unit> {
+        public C70511() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            VoiceEngineServiceController.this.voiceChannelSelectedStore.clear();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$2 */
+    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
+    public final class C70522 extends AbstractC12240o implements Function0<Unit> {
+        public C70522() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            VoiceEngineServiceController.this.mediaSettingsStore.toggleSelfDeafened();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$3 */
+    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
+    public final class C70533 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70533(Context context) {
+            super(0);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMediaSettings.SelfMuteFailure selfMuteFailure = VoiceEngineServiceController.this.mediaSettingsStore.toggleSelfMuted();
+            if (selfMuteFailure == null || selfMuteFailure.ordinal() != 0) {
+                return;
+            }
+            C0876m.m169g(this.$context, C5419R.string.vad_permission_small, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$4 */
+    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
+    public final class C70544 extends AbstractC12240o implements Function1<NotificationData, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70544(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(NotificationData notificationData) {
+            invoke2(notificationData);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(NotificationData notificationData) {
+            if (notificationData.getRtcConnectionState() instanceof RtcConnection.State.C5610d) {
+                DiscordOverlayService.INSTANCE.launchForClose(this.$context);
+                VoiceEngineForegroundService.INSTANCE.stopForegroundAndUnbind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this));
+                return;
+            }
+            Context context = this.$context;
+            VoiceEngineForegroundService.INSTANCE.startForegroundAndBind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this), C1107b.m216h(context, C5419R.string.call_mobile_tap_to_return, new Object[]{C1107b.m216h(context, notificationData.getStateString(), new Object[0], null, 4)}, null, 4), notificationData.getChannelName(), notificationData.isSelfMuted(), notificationData.isSelfDeafened(), notificationData.isSelfStreaming(), notificationData.getChannelId(), notificationData.getGuildId(), notificationData.getProximityLockEnabled(), notificationData.getCanSpeak());
+            if (C12238m.areEqual(notificationData.getRtcConnectionState(), RtcConnection.State.C5612f.f18814a)) {
+                DiscordOverlayService.INSTANCE.launchForVoice(this.$context);
+            }
+        }
+    }
 
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,7 +164,7 @@ public final class VoiceEngineServiceController {
     }
 
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final /* data */ class NotificationData {
+    public final /* data */ class NotificationData {
         private final boolean canSpeak;
         private final long channelId;
         private final String channelName;
@@ -119,56 +216,6 @@ public final class VoiceEngineServiceController {
             this.stateString = i;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final RtcConnection.State getRtcConnectionState() {
-            return this.rtcConnectionState;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getCanSpeak() {
-            return this.canSpeak;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getChannelName() {
-            return this.channelName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsSelfMuted() {
-            return this.isSelfMuted;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsSelfDeafened() {
-            return this.isSelfDeafened;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsSelfStreaming() {
-            return this.isSelfStreaming;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsVideo() {
-            return this.isVideo;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getProximityLockEnabled() {
-            return this.proximityLockEnabled;
-        }
-
         public final NotificationData copy(RtcConnection.State rtcConnectionState, String channelName, boolean isSelfMuted, boolean isSelfDeafened, boolean isSelfStreaming, boolean isVideo, long channelId, Long guildId, boolean proximityLockEnabled, boolean canSpeak) {
             C12238m.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
             C12238m.checkNotNullParameter(channelName, "channelName");
@@ -186,24 +233,74 @@ public final class VoiceEngineServiceController {
             return C12238m.areEqual(this.rtcConnectionState, notificationData.rtcConnectionState) && C12238m.areEqual(this.channelName, notificationData.channelName) && this.isSelfMuted == notificationData.isSelfMuted && this.isSelfDeafened == notificationData.isSelfDeafened && this.isSelfStreaming == notificationData.isSelfStreaming && this.isVideo == notificationData.isVideo && this.channelId == notificationData.channelId && C12238m.areEqual(this.guildId, notificationData.guildId) && this.proximityLockEnabled == notificationData.proximityLockEnabled && this.canSpeak == notificationData.canSpeak;
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final boolean getCanSpeak() {
             return this.canSpeak;
+        }
+
+        public final boolean getCanSpeak() {
+            return this.canSpeak;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getChannelName() {
             return this.channelName;
+        }
+
+        public final String getChannelName() {
+            return this.channelName;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsSelfDeafened() {
+            return this.isSelfDeafened;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsSelfMuted() {
+            return this.isSelfMuted;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsSelfStreaming() {
+            return this.isSelfStreaming;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsVideo() {
+            return this.isVideo;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final boolean getProximityLockEnabled() {
             return this.proximityLockEnabled;
+        }
+
+        public final boolean getProximityLockEnabled() {
+            return this.proximityLockEnabled;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final RtcConnection.State getRtcConnectionState() {
+            return this.rtcConnectionState;
         }
 
         public final RtcConnection.State getRtcConnectionState() {
@@ -325,103 +422,6 @@ public final class VoiceEngineServiceController {
             int[] iArr = new int[1];
             $EnumSwitchMapping$0 = iArr;
             iArr[StoreMediaSettings.SelfMuteFailure.CANNOT_USE_VAD.ordinal()] = 1;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$1 */
-    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final class C70511 extends AbstractC12240o implements Function0<Unit> {
-        public C70511() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            VoiceEngineServiceController.this.voiceChannelSelectedStore.clear();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$2 */
-    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final class C70522 extends AbstractC12240o implements Function0<Unit> {
-        public C70522() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            VoiceEngineServiceController.this.mediaSettingsStore.toggleSelfDeafened();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$3 */
-    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final class C70533 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70533(Context context) {
-            super(0);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMediaSettings.SelfMuteFailure selfMuteFailure = VoiceEngineServiceController.this.mediaSettingsStore.toggleSelfMuted();
-            if (selfMuteFailure == null || selfMuteFailure.ordinal() != 0) {
-                return;
-            }
-            C0876m.m169g(this.$context, C5419R.string.vad_permission_small, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$4 */
-    /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public static final class C70544 extends AbstractC12240o implements Function1<NotificationData, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70544(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(NotificationData notificationData) {
-            invoke2(notificationData);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(NotificationData notificationData) {
-            if (notificationData.getRtcConnectionState() instanceof RtcConnection.State.C5610d) {
-                DiscordOverlayService.INSTANCE.launchForClose(this.$context);
-                VoiceEngineForegroundService.INSTANCE.stopForegroundAndUnbind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this));
-                return;
-            }
-            Context context = this.$context;
-            VoiceEngineForegroundService.INSTANCE.startForegroundAndBind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this), C1107b.m216h(context, C5419R.string.call_mobile_tap_to_return, new Object[]{C1107b.m216h(context, notificationData.getStateString(), new Object[0], null, 4)}, null, 4), notificationData.getChannelName(), notificationData.isSelfMuted(), notificationData.isSelfDeafened(), notificationData.isSelfStreaming(), notificationData.getChannelId(), notificationData.getGuildId(), notificationData.getProximityLockEnabled(), notificationData.getCanSpeak());
-            if (C12238m.areEqual(notificationData.getRtcConnectionState(), RtcConnection.State.C5612f.f18814a)) {
-                DiscordOverlayService.INSTANCE.launchForVoice(this.$context);
-            }
         }
     }
 

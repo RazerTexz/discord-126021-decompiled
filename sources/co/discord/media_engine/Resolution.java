@@ -23,16 +23,6 @@ public final /* data */ class Resolution {
         return resolution.copy(i, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getWidth() {
-        return this.width;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getHeight() {
-        return this.height;
-    }
-
     public final Resolution copy(int width, int height) {
         return new Resolution(width, height);
     }
@@ -48,8 +38,18 @@ public final /* data */ class Resolution {
         return this.width == resolution.width && this.height == resolution.height;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getHeight() {
         return this.height;
+    }
+
+    public final int getHeight() {
+        return this.height;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getWidth() {
+        return this.width;
     }
 
     public final int getWidth() {

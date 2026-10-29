@@ -113,7 +113,7 @@ public class RippleDrawableCompat extends Drawable implements Shapeable, TintAwa
     }
 
     /* JADX INFO: renamed from: com.google.android.material.ripple.RippleDrawableCompat$b */
-    public static final class C10963b extends Drawable.ConstantState {
+    public final class C10963b extends Drawable.ConstantState {
 
         /* JADX INFO: renamed from: a */
         @NonNull

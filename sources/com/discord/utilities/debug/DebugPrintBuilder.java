@@ -5,8 +5,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: DebugPrintable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DebugPrintBuilder {
-    private static final int maxDepth = 10;
     private int indentation;
+    private static final int maxDepth = 10;
     private final StringBuilder sb;
 
     public DebugPrintBuilder(StringBuilder sb) {

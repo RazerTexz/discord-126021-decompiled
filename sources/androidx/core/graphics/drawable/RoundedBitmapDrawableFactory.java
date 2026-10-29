@@ -15,7 +15,7 @@ import java.io.InputStream;
 public final class RoundedBitmapDrawableFactory {
     private static final String TAG = "RoundedBitmapDrawableFa";
 
-    public static class DefaultRoundedBitmapDrawable extends RoundedBitmapDrawable {
+    public class DefaultRoundedBitmapDrawable extends RoundedBitmapDrawable {
         public DefaultRoundedBitmapDrawable(Resources resources, Bitmap bitmap) {
             super(resources, bitmap);
         }

@@ -8,11 +8,11 @@ import p007b.p085c.p086a.p091w.p093c.AbstractC1544a;
 /* JADX INFO: compiled from: AnimatableValue.java */
 /* JADX INFO: loaded from: classes.dex */
 public interface InterfaceC1584m<K, A> {
+    boolean isStatic();
+
     /* JADX INFO: renamed from: a */
     AbstractC1544a<K, A> mo773a();
 
     /* JADX INFO: renamed from: b */
     List<C1501a<K>> mo774b();
-
-    boolean isStatic();
 }

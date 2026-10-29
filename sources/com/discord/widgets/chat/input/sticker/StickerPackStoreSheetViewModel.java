@@ -47,7 +47,7 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerPackStoreSheetViewModel$1 */
     /* JADX INFO: compiled from: StickerPackStoreSheetViewModel.kt */
-    public static final class C78931 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78931 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78931() {
             super(1);
         }
@@ -66,7 +66,7 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: StickerPackStoreSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -105,7 +105,7 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: StickerPackStoreSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final User meUser;
         private final int stickerAnimationSettings;
         private final StoreStickers.StickerPackState stickerPack;
@@ -131,21 +131,6 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
             return storeState.copy(stickerPackState, i, user);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreStickers.StickerPackState getStickerPack() {
-            return this.stickerPack;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getStickerAnimationSettings() {
-            return this.stickerAnimationSettings;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final User getMeUser() {
-            return this.meUser;
-        }
-
         public final StoreState copy(StoreStickers.StickerPackState stickerPack, int stickerAnimationSettings, User meUser) {
             C12238m.checkNotNullParameter(stickerPack, "stickerPack");
             C12238m.checkNotNullParameter(meUser, "meUser");
@@ -163,12 +148,27 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
             return C12238m.areEqual(this.stickerPack, storeState.stickerPack) && this.stickerAnimationSettings == storeState.stickerAnimationSettings && C12238m.areEqual(this.meUser, storeState.meUser);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final User getMeUser() {
             return this.meUser;
         }
 
+        public final User getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getStickerAnimationSettings() {
             return this.stickerAnimationSettings;
+        }
+
+        public final int getStickerAnimationSettings() {
+            return this.stickerAnimationSettings;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreStickers.StickerPackState getStickerPack() {
+            return this.stickerPack;
         }
 
         public final StoreStickers.StickerPackState getStickerPack() {
@@ -195,7 +195,7 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: StickerPackStoreSheetViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isPackEnabled;
         private final PremiumTier meUserPremiumTier;
         private final List<MGRecyclerDataPayload> stickerItems;
@@ -210,6 +210,14 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
             this.stickerItems = list;
             this.meUserPremiumTier = premiumTier;
             this.isPackEnabled = z2;
+        }
+
+        public final boolean canUserAccessToPremiumStickers() {
+            return PremiumUtilsKt.grantsAccessToPremiumStickers(this.meUserPremiumTier);
+        }
+
+        public final List<MGRecyclerDataPayload> component2() {
+            return this.stickerItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -227,29 +235,6 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
                 z2 = viewState.isPackEnabled;
             }
             return viewState.copy(modelStickerPack, list, premiumTier, z2);
-        }
-
-        public final boolean canUserAccessToPremiumStickers() {
-            return PremiumUtilsKt.grantsAccessToPremiumStickers(this.meUserPremiumTier);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelStickerPack getStickerPack() {
-            return this.stickerPack;
-        }
-
-        public final List<MGRecyclerDataPayload> component2() {
-            return this.stickerItems;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final PremiumTier getMeUserPremiumTier() {
-            return this.meUserPremiumTier;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsPackEnabled() {
-            return this.isPackEnabled;
         }
 
         public final ViewState copy(ModelStickerPack stickerPack, List<? extends MGRecyclerDataPayload> stickerItems, PremiumTier meUserPremiumTier, boolean isPackEnabled) {
@@ -270,12 +255,27 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
             return C12238m.areEqual(this.stickerPack, viewState.stickerPack) && C12238m.areEqual(this.stickerItems, viewState.stickerItems) && C12238m.areEqual(this.meUserPremiumTier, viewState.meUserPremiumTier) && this.isPackEnabled == viewState.isPackEnabled;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsPackEnabled() {
+            return this.isPackEnabled;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final PremiumTier getMeUserPremiumTier() {
+            return this.meUserPremiumTier;
+        }
+
         public final PremiumTier getMeUserPremiumTier() {
             return this.meUserPremiumTier;
         }
 
         public final List<MGRecyclerDataPayload> getStickerItems() {
             return this.stickerItems;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelStickerPack getStickerPack() {
+            return this.stickerPack;
         }
 
         public final ModelStickerPack getStickerPack() {
@@ -340,6 +340,11 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
         this(j, storeStickers, stickerPackStoreSheetAnalytics, observable);
     }
 
+    public final void fetchStickersData() {
+        this.stickersStore.fetchStickerPack(this.stickerPackId);
+        this.stickersStore.fetchEnabledStickerDirectory();
+    }
+
     private final void handleLoadedStoreState(StoreState storeState) {
         int stickerAnimationSettings = storeState.getStickerAnimationSettings();
         User meUser = storeState.getMeUser();
@@ -373,11 +378,6 @@ public final class StickerPackStoreSheetViewModel extends AbstractC0859d0<ViewSt
 
     private final void trackStickerPackStoreSheetViewed() {
         AnalyticsTracker.INSTANCE.stickerPackViewAllViewed(this.analytics.getSticker(), this.analytics.getType().ordinal() != 0 ? "Sticker Pack Detail Sheet" : "Sticker Pack Detail Sheet (Sticker Upsell Popout)", this.analytics.getLocation(), new Traits.Location(null, this.analytics.getLocation(), null, null, null, 29, null));
-    }
-
-    public final void fetchStickersData() {
-        this.stickersStore.fetchStickerPack(this.stickerPackId);
-        this.stickersStore.fetchEnabledStickerDirectory();
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

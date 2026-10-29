@@ -12,11 +12,11 @@ import p007b.p225i.p226a.p242c.p257e3.C2712n;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2566t {
 
-    /* JADX INFO: renamed from: a */
-    public static final AtomicLong f5703a = new AtomicLong();
-
     /* JADX INFO: renamed from: b */
     public final Map<String, List<String>> f5704b;
+
+    /* JADX INFO: renamed from: a */
+    public static final AtomicLong f5703a = new AtomicLong();
 
     public C2566t(long j, C2712n c2712n, long j2) {
         Uri uri = c2712n.f6542a;

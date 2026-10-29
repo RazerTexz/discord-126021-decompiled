@@ -15,14 +15,14 @@ public final class C13139p0 implements InterfaceC13169z0 {
     }
 
     @Override // p659s.p660a.InterfaceC13169z0
-    /* JADX INFO: renamed from: a */
-    public boolean mo11281a() {
-        return this.f27881j;
+    public C13131m1 getList() {
+        return null;
     }
 
     @Override // p659s.p660a.InterfaceC13169z0
-    public C13131m1 getList() {
-        return null;
+    /* JADX INFO: renamed from: a */
+    public boolean mo11281a() {
+        return this.f27881j;
     }
 
     public String toString() {

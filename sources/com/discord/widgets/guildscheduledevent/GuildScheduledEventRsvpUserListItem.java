@@ -12,7 +12,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
     public static final int TYPE_EVENT_RSVP_USER = 0;
 
     /* JADX INFO: compiled from: GuildScheduledEventRsvpUserListItem.kt */
-    public static final /* data */ class RsvpUser extends GuildScheduledEventRsvpUserListItem {
+    public final /* data */ class RsvpUser extends GuildScheduledEventRsvpUserListItem {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -28,7 +28,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
         private final String username;
 
         /* JADX INFO: compiled from: GuildScheduledEventRsvpUserListItem.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -57,41 +57,6 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             this.displayName = str3 != null ? str3 : str;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getUsername() {
-            return this.username;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getUserAvatar() {
-            return this.userAvatar;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getDiscriminator() {
-            return this.discriminator;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getNickname() {
-            return this.nickname;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getGuildAvatar() {
-            return this.guildAvatar;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final RsvpUser copy(long userId, String username, String userAvatar, int discriminator, String nickname, String guildAvatar, long guildId) {
             C12238m.checkNotNullParameter(username, "username");
             return new RsvpUser(userId, username, userAvatar, discriminator, nickname, guildAvatar, guildId);
@@ -108,6 +73,11 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             return this.userId == rsvpUser.userId && C12238m.areEqual(this.username, rsvpUser.username) && C12238m.areEqual(this.userAvatar, rsvpUser.userAvatar) && this.discriminator == rsvpUser.discriminator && C12238m.areEqual(this.nickname, rsvpUser.nickname) && C12238m.areEqual(this.guildAvatar, rsvpUser.guildAvatar) && this.guildId == rsvpUser.guildId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getDiscriminator() {
+            return this.discriminator;
+        }
+
         public final int getDiscriminator() {
             return this.discriminator;
         }
@@ -116,8 +86,18 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             return this.displayName;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getGuildAvatar() {
             return this.guildAvatar;
+        }
+
+        public final String getGuildAvatar() {
+            return this.guildAvatar;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
@@ -129,6 +109,11 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getNickname() {
+            return this.nickname;
+        }
+
         public final String getNickname() {
             return this.nickname;
         }
@@ -138,12 +123,27 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             return this.type;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getUserAvatar() {
             return this.userAvatar;
         }
 
+        public final String getUserAvatar() {
+            return this.userAvatar;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getUserId() {
             return this.userId;
+        }
+
+        public final long getUserId() {
+            return this.userId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getUsername() {
+            return this.username;
         }
 
         public final String getUsername() {

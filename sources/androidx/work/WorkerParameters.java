@@ -48,19 +48,6 @@ public final class WorkerParameters {
     private WorkerFactory mWorkerFactory;
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class RuntimeExtras {
-
-        @RequiresApi(28)
-        public Network network;
-
-        @NonNull
-        public List<String> triggeredContentAuthorities = Collections.emptyList();
-
-        @NonNull
-        public List<Uri> triggeredContentUris = Collections.emptyList();
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public WorkerParameters(@NonNull UUID uuid, @NonNull Data data, @NonNull Collection<String> collection, @NonNull RuntimeExtras runtimeExtras, @IntRange(from = 0) int i, @NonNull Executor executor, @NonNull TaskExecutor taskExecutor, @NonNull WorkerFactory workerFactory, @NonNull ProgressUpdater progressUpdater, @NonNull ForegroundUpdater foregroundUpdater) {
         this.mId = uuid;
         this.mInputData = data;
@@ -140,5 +127,18 @@ public final class WorkerParameters {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public WorkerFactory getWorkerFactory() {
         return this.mWorkerFactory;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public class RuntimeExtras {
+
+        @RequiresApi(28)
+        public Network network;
+
+        @NonNull
+        public List<String> triggeredContentAuthorities = Collections.emptyList();
+
+        @NonNull
+        public List<Uri> triggeredContentUris = Collections.emptyList();
     }
 }

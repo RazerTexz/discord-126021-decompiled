@@ -42,28 +42,9 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long guildId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            Bundle bundle = new Bundle();
-            bundle.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            WidgetLeaveGuildDialog widgetLeaveGuildDialog = new WidgetLeaveGuildDialog();
-            widgetLeaveGuildDialog.setArguments(bundle);
-            widgetLeaveGuildDialog.show(fragmentManager, WidgetLeaveGuildDialog.class.getSimpleName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$3 */
     /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
-    public static final class C87323 extends AbstractC12240o implements Function1<LeaveGuildDialogViewModel.ViewState, Unit> {
+    public final class C87323 extends AbstractC12240o implements Function1<LeaveGuildDialogViewModel.ViewState, Unit> {
         public C87323() {
             super(1);
         }
@@ -83,7 +64,7 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$4 */
     /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
-    public static final class C87334 extends AbstractC12240o implements Function1<LeaveGuildDialogViewModel.Event, Unit> {
+    public final class C87334 extends AbstractC12240o implements Function1<LeaveGuildDialogViewModel.Event, Unit> {
         public C87334() {
             super(1);
         }
@@ -98,6 +79,25 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
         public final void invoke2(LeaveGuildDialogViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetLeaveGuildDialog.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long guildId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Bundle bundle = new Bundle();
+            bundle.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            WidgetLeaveGuildDialog widgetLeaveGuildDialog = new WidgetLeaveGuildDialog();
+            widgetLeaveGuildDialog.setArguments(bundle);
+            widgetLeaveGuildDialog.show(fragmentManager, WidgetLeaveGuildDialog.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

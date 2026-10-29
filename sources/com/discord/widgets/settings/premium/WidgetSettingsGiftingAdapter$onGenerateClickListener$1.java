@@ -13,12 +13,12 @@ public final class WidgetSettingsGiftingAdapter$onGenerateClickListener$1 extend
         super(2);
     }
 
+    public final void invoke(long j, Long l) {
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Long l, Long l2) {
         invoke(l.longValue(), l2);
         return Unit.f27425a;
-    }
-
-    public final void invoke(long j, Long l) {
     }
 }

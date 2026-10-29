@@ -10,6 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ReadWrite.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12208i {
+    public static /* synthetic */ long copyTo$default(Reader reader, Writer writer, int i, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 8192;
+        }
+        return copyTo(reader, writer, i);
+    }
+
     public static final long copyTo(Reader reader, Writer writer, int i) throws IOException {
         C12238m.checkNotNullParameter(reader, "$this$copyTo");
         C12238m.checkNotNullParameter(writer, "out");
@@ -22,13 +29,6 @@ public final class C12208i {
             i2 = reader.read(cArr);
         }
         return j;
-    }
-
-    public static /* synthetic */ long copyTo$default(Reader reader, Writer writer, int i, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 8192;
-        }
-        return copyTo(reader, writer, i);
     }
 
     public static final String readText(Reader reader) {

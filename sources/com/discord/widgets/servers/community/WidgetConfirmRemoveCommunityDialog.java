@@ -34,7 +34,7 @@ public final class WidgetConfirmRemoveCommunityDialog extends AppDialog {
     private final Lazy viewModel;
 
     /* JADX INFO: compiled from: WidgetConfirmRemoveCommunityDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -40,46 +40,6 @@ public final /* data */ class StreamContext {
         this.isSelfStream = z3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelApplicationStream getStream() {
-        return this.stream;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StoreApplicationStreamPreviews.StreamPreview getPreview() {
-        return this.preview;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Joinability getJoinability() {
-        return this.joinability;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getUserNickname() {
-        return this.userNickname;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getIsCurrentUserParticipating() {
-        return this.isCurrentUserParticipating;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsSelfStream() {
-        return this.isSelfStream;
-    }
-
     public final StreamContext copy(ModelApplicationStream stream, Guild guild, StoreApplicationStreamPreviews.StreamPreview preview, Joinability joinability, User user, String userNickname, boolean isCurrentUserParticipating, boolean isSelfStream) {
         C12238m.checkNotNullParameter(stream, "stream");
         C12238m.checkNotNullParameter(joinability, "joinability");
@@ -98,24 +58,64 @@ public final /* data */ class StreamContext {
         return C12238m.areEqual(this.stream, streamContext.stream) && C12238m.areEqual(this.guild, streamContext.guild) && C12238m.areEqual(this.preview, streamContext.preview) && C12238m.areEqual(this.joinability, streamContext.joinability) && C12238m.areEqual(this.user, streamContext.user) && C12238m.areEqual(this.userNickname, streamContext.userNickname) && this.isCurrentUserParticipating == streamContext.isCurrentUserParticipating && this.isSelfStream == streamContext.isSelfStream;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getIsCurrentUserParticipating() {
+        return this.isCurrentUserParticipating;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsSelfStream() {
+        return this.isSelfStream;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Joinability getJoinability() {
+        return this.joinability;
     }
 
     public final Joinability getJoinability() {
         return this.joinability;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final StoreApplicationStreamPreviews.StreamPreview getPreview() {
         return this.preview;
+    }
+
+    public final StoreApplicationStreamPreviews.StreamPreview getPreview() {
+        return this.preview;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ModelApplicationStream getStream() {
+        return this.stream;
     }
 
     public final ModelApplicationStream getStream() {
         return this.stream;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final User getUser() {
         return this.user;
+    }
+
+    public final User getUser() {
+        return this.user;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getUserNickname() {
+        return this.userNickname;
     }
 
     public final String getUserNickname() {

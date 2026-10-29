@@ -32,16 +32,6 @@ public final /* data */ class RoleAutocompletable extends Autocompletable {
         return roleAutocompletable.copy(guildRole, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final GuildRole getRole() {
-        return this.role;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanMention() {
-        return this.canMention;
-    }
-
     public final RoleAutocompletable copy(GuildRole role, boolean canMention) {
         C12238m.checkNotNullParameter(role, "role");
         return new RoleAutocompletable(role, canMention);
@@ -56,6 +46,11 @@ public final /* data */ class RoleAutocompletable extends Autocompletable {
         }
         RoleAutocompletable roleAutocompletable = (RoleAutocompletable) other;
         return C12238m.areEqual(this.role, roleAutocompletable.role) && this.canMention == roleAutocompletable.canMention;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getCanMention() {
+        return this.canMention;
     }
 
     public final boolean getCanMention() {
@@ -75,6 +70,11 @@ public final /* data */ class RoleAutocompletable extends Autocompletable {
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
         return this.textMatchers;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final GuildRole getRole() {
+        return this.role;
     }
 
     public final GuildRole getRole() {

@@ -13,7 +13,7 @@ public abstract class AbstractC12021c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.c$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a extends AbstractC12021c {
+    public final class a extends AbstractC12021c {
 
         /* JADX INFO: renamed from: b */
         public static final a f24901b = new a();
@@ -25,7 +25,7 @@ public abstract class AbstractC12021c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.c$b */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class b extends AbstractC12021c {
+    public final class b extends AbstractC12021c {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(String str) {
             super(false, null);
@@ -35,7 +35,7 @@ public abstract class AbstractC12021c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.c$c */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class c extends AbstractC12021c {
+    public final class c extends AbstractC12021c {
 
         /* JADX INFO: renamed from: b */
         public static final c f24902b = new c();

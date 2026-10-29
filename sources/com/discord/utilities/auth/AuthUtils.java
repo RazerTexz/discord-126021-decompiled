@@ -34,16 +34,16 @@ import p507d0.p592z.p594d.C12238m;
 public final class AuthUtils {
     public static final String AUTHY_PACKAGE = "com.authy.authy";
     public static final String GOOGLE_AUTHENTICATOR_PACKAGE = "com.google.android.apps.authenticator2";
-    public static final AuthUtils INSTANCE = new AuthUtils();
     private static final int MAX_PASSWORD_LENGTH = 128;
     private static final int MIN_PASSWORD_LENGTH = 6;
     public static final String URL_AUTHY = "https://play.google.com/store/apps/details?id=com.authy.authy";
     public static final String URL_GOOGLE_AUTHENTICATOR = "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2";
     private static final String URL_PLAY_STORE = "https://play.google.com/store/apps/details";
+    public static final AuthUtils INSTANCE = new AuthUtils();
 
     /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createEmailInputValidator$1 */
     /* JADX INFO: compiled from: AuthUtils.kt */
-    public static final class C66961 extends AbstractC12240o implements Function1<String, Boolean> {
+    public final class C66961 extends AbstractC12240o implements Function1<String, Boolean> {
         public static final C66961 INSTANCE = new C66961();
 
         public C66961() {
@@ -64,7 +64,7 @@ public final class AuthUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createPasswordInputValidator$1 */
     /* JADX INFO: compiled from: AuthUtils.kt */
-    public static final class C66971 extends AbstractC12240o implements Function1<String, Boolean> {
+    public final class C66971 extends AbstractC12240o implements Function1<String, Boolean> {
         public static final C66971 INSTANCE = new C66971();
 
         public C66971() {
@@ -85,7 +85,7 @@ public final class AuthUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createPhoneInputValidator$1 */
     /* JADX INFO: compiled from: AuthUtils.kt */
-    public static final class C66981 extends AbstractC12240o implements Function1<String, Boolean> {
+    public final class C66981 extends AbstractC12240o implements Function1<String, Boolean> {
         public static final C66981 INSTANCE = new C66981();
 
         public C66981() {
@@ -105,10 +105,6 @@ public final class AuthUtils {
     }
 
     private AuthUtils() {
-    }
-
-    private final boolean isValidEmail(String email) {
-        return (email.length() > 0) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public final InputValidator<TextInputLayout> createDiscriminatorInputValidator(@StringRes final int invalidFormatResId, @StringRes final int invalidValueResId) {
@@ -174,6 +170,10 @@ public final class AuthUtils {
         String string = sb.toString();
         C12238m.checkNotNullExpressionValue(string, "builder.toString()");
         return string;
+    }
+
+    private final boolean isValidEmail(String email) {
+        return (email.length() > 0) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public final boolean isValidPasswordLength(String password) {

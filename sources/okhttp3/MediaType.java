@@ -19,30 +19,30 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class MediaType {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f27514a = Pattern.compile("([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)/([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)");
-
-    /* JADX INFO: renamed from: b */
-    public static final Pattern f27515b = Pattern.compile(";\\s*(?:([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)=(?:([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)|\"([^\"]*)\"))?");
-
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
     public static final Companion INSTANCE = null;
 
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
     public final String mediaType;
 
-    /* JADX INFO: renamed from: e, reason: from kotlin metadata */
-    public final String type;
+    /* JADX INFO: renamed from: g, reason: from kotlin metadata */
+    public final String[] parameterNamesAndValues;
 
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public final String subtype;
 
-    /* JADX INFO: renamed from: g, reason: from kotlin metadata */
-    public final String[] parameterNamesAndValues;
+    /* JADX INFO: renamed from: e, reason: from kotlin metadata */
+    public final String type;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f27514a = Pattern.compile("([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)/([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)");
+
+    /* JADX INFO: renamed from: b */
+    public static final Pattern f27515b = Pattern.compile(";\\s*(?:([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)=(?:([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)|\"([^\"]*)\"))?");
 
     /* JADX INFO: renamed from: okhttp3.MediaType$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: MediaType.kt */
-    public static final class Companion {
+    public final class Companion {
         /* JADX INFO: renamed from: a */
         public static final MediaType m10967a(String str) {
             C12238m.checkParameterIsNotNull(str, "$this$toMediaType");
@@ -123,6 +123,19 @@ public final class MediaType {
         this.parameterNamesAndValues = strArr;
     }
 
+    public boolean equals(Object other) {
+        return (other instanceof MediaType) && C12238m.areEqual(((MediaType) other).mediaType, this.mediaType);
+    }
+
+    /* JADX INFO: renamed from: toString, reason: from getter */
+    public String getMediaType() {
+        return this.mediaType;
+    }
+
+    public int hashCode() {
+        return this.mediaType.hashCode();
+    }
+
     /* JADX INFO: renamed from: b */
     public static final MediaType m10965b(String str) {
         return Companion.m10967a(str);
@@ -161,18 +174,5 @@ public final class MediaType {
         } catch (IllegalArgumentException unused) {
             return defaultValue;
         }
-    }
-
-    public boolean equals(Object other) {
-        return (other instanceof MediaType) && C12238m.areEqual(((MediaType) other).mediaType, this.mediaType);
-    }
-
-    public int hashCode() {
-        return this.mediaType.hashCode();
-    }
-
-    /* JADX INFO: renamed from: toString, reason: from getter */
-    public String getMediaType() {
-        return this.mediaType;
     }
 }

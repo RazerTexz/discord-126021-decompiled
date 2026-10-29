@@ -18,6 +18,11 @@ public final class C5090c implements InterfaceC5087f {
     }
 
     @Override // p007b.p445m.p446a.InterfaceC5087f
+    public void clear() {
+        this.f13648a.edit().clear().apply();
+    }
+
+    @Override // p007b.p445m.p446a.InterfaceC5087f
     /* JADX INFO: renamed from: a */
     public void mo7133a(long j) {
         this.f13648a.edit().putLong("com.lyft.kronos.cached_elapsed_time", j).apply();
@@ -33,11 +38,6 @@ public final class C5090c implements InterfaceC5087f {
     /* JADX INFO: renamed from: c */
     public long mo7135c() {
         return this.f13648a.getLong("com.lyft.kronos.cached_elapsed_time", 0L);
-    }
-
-    @Override // p007b.p445m.p446a.InterfaceC5087f
-    public void clear() {
-        this.f13648a.edit().clear().apply();
     }
 
     @Override // p007b.p445m.p446a.InterfaceC5087f

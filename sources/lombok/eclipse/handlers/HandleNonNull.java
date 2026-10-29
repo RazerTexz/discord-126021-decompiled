@@ -35,10 +35,10 @@ import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 @DeferUntilPostDiet
 @HandlerPriority(512)
 public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
     private static final char[] REQUIRE_NON_NULL = "requireNonNull".toCharArray();
     private static final char[] CHECK_NOT_NULL = "checkNotNull".toCharArray();
     public static final HandleNonNull INSTANCE = new HandleNonNull();
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

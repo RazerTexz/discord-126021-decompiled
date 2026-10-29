@@ -20,10 +20,16 @@ public final class C13062i<E> extends AbstractC13071r implements InterfaceC13069
         this.f27763m = th;
     }
 
-    @Override // p659s.p660a.p663c2.InterfaceC13069p
-    /* JADX INFO: renamed from: b */
-    public Object mo11232b() {
-        return this;
+    /* JADX INFO: renamed from: v */
+    public final Throwable m11233v() {
+        Throwable th = this.f27763m;
+        return th != null ? th : new ClosedReceiveChannelException("Channel was closed");
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final Throwable m11234w() {
+        Throwable th = this.f27763m;
+        return th != null ? th : new ClosedSendChannelException("Channel was closed");
     }
 
     @Override // p659s.p660a.p663c2.InterfaceC13069p
@@ -59,6 +65,12 @@ public final class C13062i<E> extends AbstractC13071r implements InterfaceC13069
         return C13129m.f27874a;
     }
 
+    @Override // p659s.p660a.p663c2.InterfaceC13069p
+    /* JADX INFO: renamed from: b */
+    public Object mo11232b() {
+        return this;
+    }
+
     @Override // p659s.p660a.p661a.C13028k
     public String toString() {
         StringBuilder sbM833U = C1643a.m833U("Closed@");
@@ -67,17 +79,5 @@ public final class C13062i<E> extends AbstractC13071r implements InterfaceC13069
         sbM833U.append(this.f27763m);
         sbM833U.append(']');
         return sbM833U.toString();
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final Throwable m11233v() {
-        Throwable th = this.f27763m;
-        return th != null ? th : new ClosedReceiveChannelException("Channel was closed");
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final Throwable m11234w() {
-        Throwable th = this.f27763m;
-        return th != null ? th : new ClosedSendChannelException("Channel was closed");
     }
 }

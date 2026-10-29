@@ -27,7 +27,7 @@ public final class C1277c<R, S> extends Rule<R, Node<R>, S> {
 
     /* JADX INFO: renamed from: b.a.t.a.c$a */
     /* JADX INFO: compiled from: CodeRules.kt */
-    public static final class a extends Node.C5655a<R> {
+    public final class a extends Node.C5655a<R> {
         public a(CodeNode codeNode, Node[] nodeArr) {
             super(nodeArr);
         }

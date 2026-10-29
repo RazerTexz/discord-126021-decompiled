@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackChangeLanguageModalYesClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackChangeLanguageModalYesClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "change_language_modal_yes_clicked";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "change_language_modal_yes_clicked";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

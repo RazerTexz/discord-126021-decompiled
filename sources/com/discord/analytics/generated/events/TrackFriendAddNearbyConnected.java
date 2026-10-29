@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackFriendAddNearbyConnected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackFriendAddNearbyConnected implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "friend_add_nearby_connected";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "friend_add_nearby_connected";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

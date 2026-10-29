@@ -38,7 +38,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$dispatchSampleGuildIdSelected$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60711 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60711 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -61,7 +61,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$handleConnectionOpen$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60721 extends AbstractC12240o implements Function1<Long, Boolean> {
+    public final class C60721 extends AbstractC12240o implements Function1<Long, Boolean> {
         public final /* synthetic */ ModelPayload $payload;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -101,7 +101,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$observeRecentSelectedGuildIds$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60731 extends AbstractC12240o implements Function0<List<? extends Long>> {
+    public final class C60731 extends AbstractC12240o implements Function0<List<? extends Long>> {
         public C60731() {
             super(0);
         }
@@ -114,7 +114,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$observeSelectedGuild$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60741 extends AbstractC12240o implements Function0<com.discord.models.guild.Guild> {
+    public final class C60741 extends AbstractC12240o implements Function0<com.discord.models.guild.Guild> {
         public C60741() {
             super(0);
         }
@@ -128,7 +128,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$observeSelectedGuildId$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60751 extends AbstractC12240o implements Function0<Long> {
+    public final class C60751 extends AbstractC12240o implements Function0<Long> {
         public C60751() {
             super(0);
         }
@@ -146,7 +146,7 @@ public final class StoreGuildSelected extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildSelected$set$1 */
     /* JADX INFO: compiled from: StoreGuildSelected.kt */
-    public static final class C60761 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60761 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

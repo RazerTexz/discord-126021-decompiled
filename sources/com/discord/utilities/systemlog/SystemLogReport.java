@@ -26,7 +26,7 @@ public final class SystemLogReport {
 
     /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogReport$reportLastCrash$1 */
     /* JADX INFO: compiled from: SystemLogReport.kt */
-    public static final class C69341 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C69341 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C69341 INSTANCE = new C69341();
 
         public C69341() {
@@ -51,7 +51,7 @@ public final class SystemLogReport {
 
     /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogReport$reportLastCrash$2 */
     /* JADX INFO: compiled from: SystemLogReport.kt */
-    public static final class C69352 extends AbstractC12240o implements Function1<SystemLogUtils.Tombstone, Unit> {
+    public final class C69352 extends AbstractC12240o implements Function1<SystemLogUtils.Tombstone, Unit> {
         public static final C69352 INSTANCE = new C69352();
 
         public C69352() {
@@ -103,13 +103,13 @@ public final class SystemLogReport {
         return SharedPreferencesProvider.INSTANCE.getPrefsSessionDurable();
     }
 
+    public final void reportLastCrash() {
+        ObservableExtensionsKt.appSubscribe(SystemLogUtils.INSTANCE.fetchLastTombstone(), (Class<?>) SystemLogReport.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C69341.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C69352.INSTANCE);
+    }
+
     private final void sendReport(SystemLogUtils.Tombstone tombstone) {
         boolean zDidCrashOnPreviousExecution = FirebaseCrashlytics.getInstance().didCrashOnPreviousExecution();
         HistoricalProcessExitReason.Reason lastReason = HistoricalProcessExitReason.INSTANCE.getLastReason();
         AnalyticsTracker.INSTANCE.appNativeCrash(zDidCrashOnPreviousExecution, lastReason != null ? lastReason.getReason() : null, lastReason != null ? lastReason.getReason() : null, tombstone != null ? tombstone.getGroupHash() : null, tombstone != null ? tombstone.getCause() : null);
-    }
-
-    public final void reportLastCrash() {
-        ObservableExtensionsKt.appSubscribe(SystemLogUtils.INSTANCE.fetchLastTombstone(), (Class<?>) SystemLogReport.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C69341.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C69352.INSTANCE);
     }
 }

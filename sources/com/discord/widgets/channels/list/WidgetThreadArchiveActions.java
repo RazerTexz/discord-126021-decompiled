@@ -53,8 +53,67 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$archiveThread$1 */
     /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-    public static final class Companion {
+    public final class C74751 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C74751() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "it");
+            WidgetThreadArchiveActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$bindSubscriptions$1 */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final /* synthetic */ class C74761 extends C12236k implements Function1<Model, Unit> {
+        public C74761(WidgetThreadArchiveActions widgetThreadArchiveActions) {
+            super(1, widgetThreadArchiveActions, WidgetThreadArchiveActions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/list/WidgetThreadArchiveActions$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetThreadArchiveActions) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$setAutoArchiveDuration$1 */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class C74821 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C74821() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "it");
+            WidgetThreadArchiveActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,7 +132,7 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -82,7 +141,7 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         private final boolean isModerator;
 
         /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -128,21 +187,6 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
             return model.copy(channel, guild, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
         public final Model copy(Channel channel, Guild guild, boolean isModerator) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new Model(channel, guild, isModerator);
@@ -159,12 +203,27 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
             return C12238m.areEqual(this.channel, model.channel) && C12238m.areEqual(this.guild, model.guild) && this.isModerator == model.isModerator;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -199,65 +258,6 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$archiveThread$1 */
-    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-    public static final class C74751 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C74751() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "it");
-            WidgetThreadArchiveActions.this.dismiss();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-    public static final /* synthetic */ class C74761 extends C12236k implements Function1<Model, Unit> {
-        public C74761(WidgetThreadArchiveActions widgetThreadArchiveActions) {
-            super(1, widgetThreadArchiveActions, WidgetThreadArchiveActions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/list/WidgetThreadArchiveActions$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetThreadArchiveActions) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$setAutoArchiveDuration$1 */
-    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
-    public static final class C74821 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C74821() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "it");
-            WidgetThreadArchiveActions.this.dismiss();
-        }
-    }
-
     public WidgetThreadArchiveActions() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadArchiveActions$binding$2.INSTANCE, null, 2, null);
@@ -268,6 +268,13 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         long id2 = channel.getId();
         Boolean bool = Boolean.TRUE;
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.editThread(id2, new RestAPIParams.ThreadSettings(bool, lockThread ? bool : null, null, 4, null)), false, 1, null), this, null, 2, null), (117 & 1) != 0 ? null : getContext(), "REST: archiveThread", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C74751(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L), getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), (Class<?>) WidgetThreadArchiveActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74761(this));
     }
 
     private final void configureUI(final Model model) {
@@ -344,21 +351,6 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         return (WidgetThreadArchiveActionsSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void setAutoArchiveDuration(Channel channel, int minutes) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().editThread(channel.getId(), new RestAPIParams.ThreadSettings(null, null, Integer.valueOf(minutes), 3, null)), false, 1, null), this, null, 2, null), (117 & 1) != 0 ? null : getContext(), "REST: setAutoArchiveDuration", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C74821(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
-    }
-
-    public static final void show(FragmentManager fragmentManager, long j, long j2) {
-        INSTANCE.show(fragmentManager, j, j2);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L), getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), (Class<?>) WidgetThreadArchiveActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74761(this));
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_thread_archive_actions_sheet;
@@ -368,5 +360,13 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
     public void onPause() {
         super.onPause();
         dismiss();
+    }
+
+    private final void setAutoArchiveDuration(Channel channel, int minutes) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().editThread(channel.getId(), new RestAPIParams.ThreadSettings(null, null, Integer.valueOf(minutes), 3, null)), false, 1, null), this, null, 2, null), (117 & 1) != 0 ? null : getContext(), "REST: setAutoArchiveDuration", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C74821(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j, long j2) {
+        INSTANCE.show(fragmentManager, j, j2);
     }
 }

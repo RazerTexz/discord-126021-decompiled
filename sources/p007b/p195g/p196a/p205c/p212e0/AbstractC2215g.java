@@ -12,15 +12,6 @@ import p007b.p195g.p196a.p205c.InterfaceC2206d;
 /* JADX INFO: compiled from: TypeSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2215g {
-    /* JADX INFO: renamed from: a */
-    public abstract AbstractC2215g mo1955a(InterfaceC2206d interfaceC2206d);
-
-    /* JADX INFO: renamed from: b */
-    public abstract String mo1956b();
-
-    /* JADX INFO: renamed from: c */
-    public abstract InterfaceC2070c0.a mo1957c();
-
     /* JADX INFO: renamed from: d */
     public C2138b m1958d(Object obj, EnumC2112h enumC2112h) {
         C2138b c2138b = new C2138b(obj, enumC2112h);
@@ -45,6 +36,15 @@ public abstract class AbstractC2215g {
         }
         return c2138b;
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract AbstractC2215g mo1955a(InterfaceC2206d interfaceC2206d);
+
+    /* JADX INFO: renamed from: b */
+    public abstract String mo1956b();
+
+    /* JADX INFO: renamed from: c */
+    public abstract InterfaceC2070c0.a mo1957c();
 
     /* JADX INFO: renamed from: e */
     public abstract C2138b mo1959e(AbstractC2108d abstractC2108d, C2138b c2138b) throws IOException;

@@ -13,6 +13,12 @@ public interface InterfaceC4412j {
     /* JADX INFO: renamed from: a */
     void mo6078a();
 
+    /* JADX INFO: renamed from: e */
+    void mo6079e();
+
+    /* JADX INFO: renamed from: f */
+    AnimatorSet mo6080f();
+
     @AnimatorRes
     /* JADX INFO: renamed from: b */
     int mo6112b();
@@ -22,12 +28,6 @@ public interface InterfaceC4412j {
 
     /* JADX INFO: renamed from: d */
     boolean mo6114d();
-
-    /* JADX INFO: renamed from: e */
-    void mo6079e();
-
-    /* JADX INFO: renamed from: f */
-    AnimatorSet mo6080f();
 
     /* JADX INFO: renamed from: g */
     void mo6115g(@Nullable ExtendedFloatingActionButton.OnChangedCallback onChangedCallback);

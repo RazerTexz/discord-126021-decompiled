@@ -42,26 +42,6 @@ public class RoundRectDrawable extends Drawable {
         return new PorterDuffColorFilter(colorStateList.getColorForState(getState(), 0), mode);
     }
 
-    private void setBackground(ColorStateList colorStateList) {
-        if (colorStateList == null) {
-            colorStateList = ColorStateList.valueOf(0);
-        }
-        this.mBackground = colorStateList;
-        this.mPaint.setColor(colorStateList.getColorForState(getState(), this.mBackground.getDefaultColor()));
-    }
-
-    private void updateBounds(Rect rect) {
-        if (rect == null) {
-            rect = getBounds();
-        }
-        this.mBoundsF.set(rect.left, rect.top, rect.right, rect.bottom);
-        this.mBoundsI.set(rect);
-        if (this.mInsetForPadding) {
-            this.mBoundsI.inset((int) Math.ceil(RoundRectDrawableWithShadow.calculateHorizontalPadding(this.mPadding, this.mRadius, this.mInsetForRadius)), (int) Math.ceil(RoundRectDrawableWithShadow.calculateVerticalPadding(this.mPadding, this.mRadius, this.mInsetForRadius)));
-            this.mBoundsF.set(this.mBoundsI);
-        }
-    }
-
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         boolean z2;
@@ -137,6 +117,14 @@ public class RoundRectDrawable extends Drawable {
         this.mPaint.setAlpha(i);
     }
 
+    private void setBackground(ColorStateList colorStateList) {
+        if (colorStateList == null) {
+            colorStateList = ColorStateList.valueOf(0);
+        }
+        this.mBackground = colorStateList;
+        this.mPaint.setColor(colorStateList.getColorForState(getState(), this.mBackground.getDefaultColor()));
+    }
+
     public void setColor(@Nullable ColorStateList colorStateList) {
         setBackground(colorStateList);
         invalidateSelf();
@@ -179,5 +167,17 @@ public class RoundRectDrawable extends Drawable {
         this.mTintMode = mode;
         this.mTintFilter = createTintFilter(this.mTint, mode);
         invalidateSelf();
+    }
+
+    private void updateBounds(Rect rect) {
+        if (rect == null) {
+            rect = getBounds();
+        }
+        this.mBoundsF.set(rect.left, rect.top, rect.right, rect.bottom);
+        this.mBoundsI.set(rect);
+        if (this.mInsetForPadding) {
+            this.mBoundsI.inset((int) Math.ceil(RoundRectDrawableWithShadow.calculateHorizontalPadding(this.mPadding, this.mRadius, this.mInsetForRadius)), (int) Math.ceil(RoundRectDrawableWithShadow.calculateVerticalPadding(this.mPadding, this.mRadius, this.mInsetForRadius)));
+            this.mBoundsF.set(this.mBoundsI);
+        }
     }
 }

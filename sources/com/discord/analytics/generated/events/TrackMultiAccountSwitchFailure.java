@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackMultiAccountSwitchFailure.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackMultiAccountSwitchFailure implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "multi_account_switch_failure";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "multi_account_switch_failure";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

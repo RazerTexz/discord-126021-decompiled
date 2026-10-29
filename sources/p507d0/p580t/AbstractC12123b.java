@@ -10,20 +10,11 @@ import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC12123b<T> implements Iterator<T>, InterfaceC12228a {
 
-    /* JADX INFO: renamed from: j */
-    public int f25173j = 2;
-
     /* JADX INFO: renamed from: k */
     public T f25174k;
 
-    /* JADX INFO: renamed from: a */
-    public abstract void mo10059a();
-
-    /* JADX INFO: renamed from: b */
-    public final void m10074b(T t) {
-        this.f25174k = t;
-        this.f25173j = 1;
-    }
+    /* JADX INFO: renamed from: j */
+    public int f25173j = 2;
 
     @Override // java.util.Iterator
     public boolean hasNext() {
@@ -44,6 +35,15 @@ public abstract class AbstractC12123b<T> implements Iterator<T>, InterfaceC12228
         }
         return true;
     }
+
+    /* JADX INFO: renamed from: b */
+    public final void m10074b(T t) {
+        this.f25174k = t;
+        this.f25173j = 1;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo10059a();
 
     @Override // java.util.Iterator
     public T next() {

@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationDeleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final Long botId = null;
-    private final CharSequence name = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
+    private final CharSequence name = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_deleted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackApplicationDeleted implements AnalyticsSchema
         }
         TrackApplicationDeleted trackApplicationDeleted = (TrackApplicationDeleted) other;
         return C12238m.areEqual(this.applicationId, trackApplicationDeleted.applicationId) && C12238m.areEqual(this.botId, trackApplicationDeleted.botId) && C12238m.areEqual(this.name, trackApplicationDeleted.name) && C12238m.areEqual(this.hasBot, trackApplicationDeleted.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationDeleted.hasRedirectUri);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

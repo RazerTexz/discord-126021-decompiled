@@ -52,7 +52,11 @@ import p658rx.functions.Func4;
 /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsVanityUrl extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsVanityUrl.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsVanityUrlBinding;", 0)};
     private static final long ANIMATION_DURATION = 250;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -62,22 +66,82 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
     private final Lazy guildId;
     private final LoggingConfig loggingConfig;
     private final StatefulViews state;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsVanityUrl.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsVanityUrlBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$onResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
+    public final /* synthetic */ class C93181 extends C12236k implements Function1<Model, Unit> {
+        public C93181(WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl) {
+            super(1, widgetServerSettingsVanityUrl, WidgetServerSettingsVanityUrl.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsVanityUrl$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsVanityUrl) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
+    public final class C93211 extends AbstractC12240o implements Function1<VanityUrlResponse, Unit> {
+        public C93211() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(VanityUrlResponse vanityUrlResponse) {
+            invoke2(vanityUrlResponse);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VanityUrlResponse vanityUrlResponse) {
+            C12238m.checkNotNullParameter(vanityUrlResponse, "<name for destructuring parameter 0>");
+            String code = vanityUrlResponse.getCode();
+            int uses = vanityUrlResponse.getUses();
+            WidgetServerSettingsVanityUrl.this.showLoadingUI(false);
+            AppFragment.hideKeyboard$default(WidgetServerSettingsVanityUrl.this, null, 1, null);
+            WidgetServerSettingsVanityUrl.this.configureInviteCode(code, uses);
+            StatefulViews.clear$default(WidgetServerSettingsVanityUrl.this.state, false, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
+    public final class C93222 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C93222() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            WidgetServerSettingsVanityUrl.this.showLoadingUI(false);
+            Error.Response response = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response, "error.response");
+            if (response.getCode() == 50020) {
+                error.setShowErrorToasts(false);
+                TextView textView = WidgetServerSettingsVanityUrl.this.getBinding().f17762d;
+                C12238m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
+                textView.setVisibility(0);
+            }
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final void translateLeft(View view, int i) {
-            view.animate().translationXBy(-i).setDuration(WidgetServerSettingsVanityUrl.ANIMATION_DURATION).setInterpolator(new AccelerateDecelerateInterpolator()).start();
-        }
-
-        private final void translateToOriginX(View view) {
-            view.animate().translationX(0.0f).setDuration(WidgetServerSettingsVanityUrl.ANIMATION_DURATION).setInterpolator(new AccelerateDecelerateInterpolator()).start();
         }
 
         public final void create(Context context, long guildId) {
@@ -88,13 +152,21 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             C0870j.m156d(context, WidgetServerSettingsVanityUrl.class, intentPutExtra);
         }
 
+        private final void translateLeft(View view, int i) {
+            view.animate().translationXBy(-i).setDuration(WidgetServerSettingsVanityUrl.ANIMATION_DURATION).setInterpolator(new AccelerateDecelerateInterpolator()).start();
+        }
+
+        private final void translateToOriginX(View view) {
+            view.animate().translationX(0.0f).setDuration(WidgetServerSettingsVanityUrl.ANIMATION_DURATION).setInterpolator(new AccelerateDecelerateInterpolator()).start();
+        }
+
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -104,7 +176,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         private final int vanityUrlUses;
 
         /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -159,26 +231,6 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             return model.copy(j2, str3, str4, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getGuildName() {
-            return this.guildName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getVanityUrl() {
-            return this.vanityUrl;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getVanityUrlUses() {
-            return this.vanityUrlUses;
-        }
-
         public final Model copy(long guildId, String guildName, String vanityUrl, int vanityUrlUses) {
             return new Model(guildId, guildName, vanityUrl, vanityUrlUses);
         }
@@ -194,16 +246,36 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             return this.guildId == model.guildId && C12238m.areEqual(this.guildName, model.guildName) && C12238m.areEqual(this.vanityUrl, model.vanityUrl) && this.vanityUrlUses == model.vanityUrlUses;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getGuildName() {
+            return this.guildName;
         }
 
         public final String getGuildName() {
             return this.guildName;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getVanityUrl() {
             return this.vanityUrl;
+        }
+
+        public final String getVanityUrl() {
+            return this.vanityUrl;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getVanityUrlUses() {
+            return this.vanityUrlUses;
         }
 
         public final int getVanityUrlUses() {
@@ -227,78 +299,6 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             sbM833U.append(this.vanityUrl);
             sbM833U.append(", vanityUrlUses=");
             return C1643a.m814B(sbM833U, this.vanityUrlUses, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$onResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public static final /* synthetic */ class C93181 extends C12236k implements Function1<Model, Unit> {
-        public C93181(WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl) {
-            super(1, widgetServerSettingsVanityUrl, WidgetServerSettingsVanityUrl.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsVanityUrl$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsVanityUrl) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public static final class C93211 extends AbstractC12240o implements Function1<VanityUrlResponse, Unit> {
-        public C93211() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(VanityUrlResponse vanityUrlResponse) {
-            invoke2(vanityUrlResponse);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(VanityUrlResponse vanityUrlResponse) {
-            C12238m.checkNotNullParameter(vanityUrlResponse, "<name for destructuring parameter 0>");
-            String code = vanityUrlResponse.getCode();
-            int uses = vanityUrlResponse.getUses();
-            WidgetServerSettingsVanityUrl.this.showLoadingUI(false);
-            AppFragment.hideKeyboard$default(WidgetServerSettingsVanityUrl.this, null, 1, null);
-            WidgetServerSettingsVanityUrl.this.configureInviteCode(code, uses);
-            StatefulViews.clear$default(WidgetServerSettingsVanityUrl.this.state, false, 1, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public static final class C93222 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C93222() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            WidgetServerSettingsVanityUrl.this.showLoadingUI(false);
-            Error.Response response = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response, "error.response");
-            if (response.getCode() == 50020) {
-                error.setShowErrorToasts(false);
-                TextView textView = WidgetServerSettingsVanityUrl.this.getBinding().f17762d;
-                C12238m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
-                textView.setVisibility(0);
-            }
         }
     }
 
@@ -422,23 +422,6 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
-    private final void showLoadingUI(boolean loading) {
-        ProgressBar progressBar = getBinding().f17765g;
-        C12238m.checkNotNullExpressionValue(progressBar, "binding.serverSettingsVanityUrlLoadingIndicator");
-        progressBar.setVisibility(loading ? 0 : 8);
-        TextView textView = getBinding().f17762d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
-        textView.setVisibility(8);
-        TextView textView2 = getBinding().f17767i;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlRemove");
-        textView2.setEnabled(!loading);
-    }
-
-    private final void updateVanityUrl(long guildId, String code) {
-        showLoadingUI(true);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateVanityUrl(guildId, new RestAPIParams.VanityUrl(code)), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsVanityUrl.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C93222()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C93211());
-    }
-
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
@@ -498,5 +481,22 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         TextInputLayout textInputLayout2 = getBinding().f17760b;
         C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
         statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout2);
+    }
+
+    private final void showLoadingUI(boolean loading) {
+        ProgressBar progressBar = getBinding().f17765g;
+        C12238m.checkNotNullExpressionValue(progressBar, "binding.serverSettingsVanityUrlLoadingIndicator");
+        progressBar.setVisibility(loading ? 0 : 8);
+        TextView textView = getBinding().f17762d;
+        C12238m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
+        textView.setVisibility(8);
+        TextView textView2 = getBinding().f17767i;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlRemove");
+        textView2.setEnabled(!loading);
+    }
+
+    private final void updateVanityUrl(long guildId, String code) {
+        showLoadingUI(true);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateVanityUrl(guildId, new RestAPIParams.VanityUrl(code)), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsVanityUrl.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C93222()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C93211());
     }
 }

@@ -24,7 +24,7 @@ public final class StoreGuildMemberCounts extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberCounts$observeApproximateMemberCount$1 */
     /* JADX INFO: compiled from: StoreGuildMemberCounts.kt */
-    public static final class C60321 extends AbstractC12240o implements Function0<Integer> {
+    public final class C60321 extends AbstractC12240o implements Function0<Integer> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

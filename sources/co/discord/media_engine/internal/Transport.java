@@ -28,41 +28,6 @@ public final /* data */ class Transport {
         this.receiverReports = receiverReportArr;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getDecryptionFailures() {
-        return this.decryptionFailures;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getMaxPaddingBitrate() {
-        return this.maxPaddingBitrate;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getPacerDelay() {
-        return this.pacerDelay;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getRtt() {
-        return this.rtt;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getSendBandwidth() {
-        return this.sendBandwidth;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getLocalAddress() {
-        return this.localAddress;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final ReceiverReport[] getReceiverReports() {
-        return this.receiverReports;
-    }
-
     public final Transport copy(long decryptionFailures, int maxPaddingBitrate, long pacerDelay, int rtt, int sendBandwidth, String localAddress, ReceiverReport[] receiverReports) {
         C12238m.checkNotNullParameter(localAddress, "localAddress");
         return new Transport(decryptionFailures, maxPaddingBitrate, pacerDelay, rtt, sendBandwidth, localAddress, receiverReports);
@@ -79,28 +44,63 @@ public final /* data */ class Transport {
         return this.decryptionFailures == transport.decryptionFailures && this.maxPaddingBitrate == transport.maxPaddingBitrate && this.pacerDelay == transport.pacerDelay && this.rtt == transport.rtt && this.sendBandwidth == transport.sendBandwidth && C12238m.areEqual(this.localAddress, transport.localAddress) && C12238m.areEqual(this.receiverReports, transport.receiverReports);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getDecryptionFailures() {
         return this.decryptionFailures;
+    }
+
+    public final long getDecryptionFailures() {
+        return this.decryptionFailures;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getLocalAddress() {
+        return this.localAddress;
     }
 
     public final String getLocalAddress() {
         return this.localAddress;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getMaxPaddingBitrate() {
         return this.maxPaddingBitrate;
+    }
+
+    public final int getMaxPaddingBitrate() {
+        return this.maxPaddingBitrate;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getPacerDelay() {
+        return this.pacerDelay;
     }
 
     public final long getPacerDelay() {
         return this.pacerDelay;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final ReceiverReport[] getReceiverReports() {
         return this.receiverReports;
     }
 
+    public final ReceiverReport[] getReceiverReports() {
+        return this.receiverReports;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getRtt() {
         return this.rtt;
+    }
+
+    public final int getRtt() {
+        return this.rtt;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final int getSendBandwidth() {
+        return this.sendBandwidth;
     }
 
     public final int getSendBandwidth() {

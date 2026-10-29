@@ -15,7 +15,7 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
     private final String location;
 
     /* JADX INFO: compiled from: GuildScheduledEventEntityMetadata.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -45,21 +45,16 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
         this.location = null;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getLocation() {
-        return this.location;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m7991b() {
-        return this.location == null;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof GuildScheduledEventEntityMetadata) && C12238m.areEqual(this.location, ((GuildScheduledEventEntityMetadata) other).location);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getLocation() {
+        return this.location;
     }
 
     public int hashCode() {
@@ -68,6 +63,11 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
             return str.hashCode();
         }
         return 0;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m7991b() {
+        return this.location == null;
     }
 
     public String toString() {

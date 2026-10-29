@@ -23,7 +23,7 @@ public final class C1226d implements Discord.ConnectToServerCallback {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.d$a */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class a extends AbstractC12240o implements Function0<Unit> {
+    public final class a extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Discord.ConnectionInfo $connectionInfo;
         public final /* synthetic */ String $errorMessage;
 

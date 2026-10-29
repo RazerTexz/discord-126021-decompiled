@@ -117,43 +117,9 @@ public class DefaultDrmSessionManager implements InterfaceC2990u {
     @Nullable
     public volatile HandlerC10706c f19837x;
 
-    public static final class MissingSchemeDataException extends Exception {
-        /* JADX WARN: Illegal instructions before constructor call */
-        public MissingSchemeDataException(UUID uuid, C10704a c10704a) {
-            String strValueOf = String.valueOf(uuid);
-            super(C1643a.m857j(strValueOf.length() + 29, "Media does not support uuid: ", strValueOf));
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$b */
     public class C10705b implements InterfaceC2966a0.b {
         public C10705b(C10704a c10704a) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$c */
-    @SuppressLint({"HandlerLeak"})
-    public class HandlerC10706c extends Handler {
-        public HandlerC10706c(Looper looper) {
-            super(looper);
-        }
-
-        @Override // android.os.Handler
-        public void handleMessage(Message message) {
-            byte[] bArr = (byte[]) message.obj;
-            if (bArr == null) {
-                return;
-            }
-            for (DefaultDrmSession defaultDrmSession : DefaultDrmSessionManager.this.f19826m) {
-                if (Arrays.equals(defaultDrmSession.f19803t, bArr)) {
-                    if (message.what == 2 && defaultDrmSession.f19788e == 0 && defaultDrmSession.f19797n == 4) {
-                        int i = C2738e0.f6708a;
-                        defaultDrmSession.m8816i(false);
-                        return;
-                    }
-                    return;
-                }
-            }
         }
     }
 
@@ -183,31 +149,43 @@ public class DefaultDrmSessionManager implements InterfaceC2990u {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$e */
-    public class C10708e implements DefaultDrmSession.InterfaceC10699a {
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$f */
+    public class C10709f implements DefaultDrmSession.InterfaceC10700b {
+        public C10709f(C10704a c10704a) {
+        }
+    }
 
-        /* JADX INFO: renamed from: a */
-        public final Set<DefaultDrmSession> f19844a = new HashSet();
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$c */
+    @SuppressLint({"HandlerLeak"})
+    public class HandlerC10706c extends Handler {
+        public HandlerC10706c(Looper looper) {
+            super(looper);
+        }
 
-        /* JADX INFO: renamed from: b */
-        @Nullable
-        public DefaultDrmSession f19845b;
-
-        /* JADX INFO: renamed from: a */
-        public void m8834a(Exception exc, boolean z2) {
-            this.f19845b = null;
-            AbstractC4523p abstractC4523pM6264n = AbstractC4523p.m6264n(this.f19844a);
-            this.f19844a.clear();
-            AbstractC4493a abstractC4493aListIterator = abstractC4523pM6264n.listIterator();
-            while (abstractC4493aListIterator.hasNext()) {
-                ((DefaultDrmSession) abstractC4493aListIterator.next()).m8818k(exc, z2 ? 1 : 3);
+        @Override // android.os.Handler
+        public void handleMessage(Message message) {
+            byte[] bArr = (byte[]) message.obj;
+            if (bArr == null) {
+                return;
+            }
+            for (DefaultDrmSession defaultDrmSession : DefaultDrmSessionManager.this.f19826m) {
+                if (Arrays.equals(defaultDrmSession.f19803t, bArr)) {
+                    if (message.what == 2 && defaultDrmSession.f19788e == 0 && defaultDrmSession.f19797n == 4) {
+                        int i = C2738e0.f6708a;
+                        defaultDrmSession.m8816i(false);
+                        return;
+                    }
+                    return;
+                }
             }
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$f */
-    public class C10709f implements DefaultDrmSession.InterfaceC10700b {
-        public C10709f(C10704a c10704a) {
+    public final class MissingSchemeDataException extends Exception {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public MissingSchemeDataException(UUID uuid, C10704a c10704a) {
+            String strValueOf = String.valueOf(uuid);
+            super(C1643a.m857j(strValueOf.length() + 29, "Media does not support uuid: ", strValueOf));
         }
     }
 
@@ -257,115 +235,6 @@ public class DefaultDrmSessionManager implements InterfaceC2990u {
             }
         }
         return arrayList;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
-    /* JADX INFO: renamed from: a */
-    public final void mo3597a() {
-        int i = this.f19829p;
-        this.f19829p = i + 1;
-        if (i != 0) {
-            return;
-        }
-        if (this.f19830q == null) {
-            InterfaceC2966a0 interfaceC2966a0Mo3581a = this.f19816c.mo3581a(this.f19815b);
-            this.f19830q = interfaceC2966a0Mo3581a;
-            interfaceC2966a0Mo3581a.mo3576h(new C10705b(null));
-        } else if (this.f19825l != -9223372036854775807L) {
-            for (int i2 = 0; i2 < this.f19826m.size(); i2++) {
-                this.f19826m.get(i2).mo3606a(null);
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
-    /* JADX INFO: renamed from: b */
-    public InterfaceC2990u.b mo3598b(Looper looper, @Nullable InterfaceC2988s.a aVar, final C2811j1 c2811j1) {
-        C1460d.m426D(this.f19829p > 0);
-        m8830j(looper);
-        final C10707d c10707d = new C10707d(aVar);
-        Handler handler = this.f19834u;
-        Objects.requireNonNull(handler);
-        handler.post(new Runnable() { // from class: b.i.a.c.w2.e
-            @Override // java.lang.Runnable
-            public final void run() {
-                DefaultDrmSessionManager.C10707d c10707d2 = c10707d;
-                C2811j1 c2811j2 = c2811j1;
-                DefaultDrmSessionManager defaultDrmSessionManager = DefaultDrmSessionManager.this;
-                if (defaultDrmSessionManager.f19829p == 0 || c10707d2.f19842d) {
-                    return;
-                }
-                Looper looper2 = defaultDrmSessionManager.f19833t;
-                Objects.requireNonNull(looper2);
-                c10707d2.f19841c = defaultDrmSessionManager.m8827e(looper2, c10707d2.f19840b, c2811j2, false);
-                DefaultDrmSessionManager.this.f19827n.add(c10707d2);
-            }
-        });
-        return c10707d;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
-    @Nullable
-    /* JADX INFO: renamed from: c */
-    public DrmSession mo3599c(Looper looper, @Nullable InterfaceC2988s.a aVar, C2811j1 c2811j1) {
-        C1460d.m426D(this.f19829p > 0);
-        m8830j(looper);
-        return m8827e(looper, aVar, c2811j1, true);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:14:0x0029 A[ORIG_RETURN, RETURN] */
-    /* JADX WARN: Code duplicated, block: B:41:0x008f  */
-    /* JADX WARN: Code duplicated, block: B:48:? A[RETURN, SYNTHETIC] */
-    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
-    /* JADX INFO: renamed from: d */
-    public int mo3600d(C2811j1 c2811j1) {
-        String str;
-        InterfaceC2966a0 interfaceC2966a0 = this.f19830q;
-        Objects.requireNonNull(interfaceC2966a0);
-        int iMo3580l = interfaceC2966a0.mo3580l();
-        DrmInitData drmInitData = c2811j1.f7158z;
-        boolean z2 = false;
-        if (drmInitData == null) {
-            int iM3049g = C2753t.m3049g(c2811j1.f7155w);
-            int[] iArr = this.f19820g;
-            int i = C2738e0.f6708a;
-            int i2 = 0;
-            while (i2 < iArr.length) {
-                if (iArr[i2] == iM3049g) {
-                    if (i2 != -1) {
-                        return iMo3580l;
-                    }
-                    return 0;
-                }
-                i2++;
-            }
-            i2 = -1;
-            if (i2 != -1) {
-                return iMo3580l;
-            }
-            return 0;
-        }
-        if (this.f19836w != null) {
-            z2 = true;
-        } else if (!((ArrayList) m8826i(drmInitData, this.f19815b, true)).isEmpty()) {
-            str = drmInitData.f19849l;
-            if (str != null || "cenc".equals(str) || (!"cbcs".equals(str) ? !("cbc1".equals(str) || "cens".equals(str)) : C2738e0.f6708a >= 25)) {
-                z2 = true;
-            }
-        } else if (drmInitData.f19850m == 1 && drmInitData.f19847j[0].m8836a(C2997x0.f8022b)) {
-            String strValueOf = String.valueOf(this.f19815b);
-            C1643a.m854h0(strValueOf.length() + 72, "DrmInitData only contains common PSSH SchemeData. Assuming support for: ", strValueOf, "DefaultDrmSessionMgr");
-            str = drmInitData.f19849l;
-            if (str != null) {
-                z2 = true;
-            } else {
-                z2 = true;
-            }
-        }
-        if (z2) {
-            return iMo3580l;
-        }
-        return 1;
     }
 
     @Nullable
@@ -536,6 +405,115 @@ public class DefaultDrmSessionManager implements InterfaceC2990u {
     }
 
     @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
+    /* JADX INFO: renamed from: a */
+    public final void mo3597a() {
+        int i = this.f19829p;
+        this.f19829p = i + 1;
+        if (i != 0) {
+            return;
+        }
+        if (this.f19830q == null) {
+            InterfaceC2966a0 interfaceC2966a0Mo3581a = this.f19816c.mo3581a(this.f19815b);
+            this.f19830q = interfaceC2966a0Mo3581a;
+            interfaceC2966a0Mo3581a.mo3576h(new C10705b(null));
+        } else if (this.f19825l != -9223372036854775807L) {
+            for (int i2 = 0; i2 < this.f19826m.size(); i2++) {
+                this.f19826m.get(i2).mo3606a(null);
+            }
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
+    /* JADX INFO: renamed from: b */
+    public InterfaceC2990u.b mo3598b(Looper looper, @Nullable InterfaceC2988s.a aVar, final C2811j1 c2811j1) {
+        C1460d.m426D(this.f19829p > 0);
+        m8830j(looper);
+        final C10707d c10707d = new C10707d(aVar);
+        Handler handler = this.f19834u;
+        Objects.requireNonNull(handler);
+        handler.post(new Runnable() { // from class: b.i.a.c.w2.e
+            @Override // java.lang.Runnable
+            public final void run() {
+                DefaultDrmSessionManager.C10707d c10707d2 = c10707d;
+                C2811j1 c2811j2 = c2811j1;
+                DefaultDrmSessionManager defaultDrmSessionManager = DefaultDrmSessionManager.this;
+                if (defaultDrmSessionManager.f19829p == 0 || c10707d2.f19842d) {
+                    return;
+                }
+                Looper looper2 = defaultDrmSessionManager.f19833t;
+                Objects.requireNonNull(looper2);
+                c10707d2.f19841c = defaultDrmSessionManager.m8827e(looper2, c10707d2.f19840b, c2811j2, false);
+                DefaultDrmSessionManager.this.f19827n.add(c10707d2);
+            }
+        });
+        return c10707d;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
+    @Nullable
+    /* JADX INFO: renamed from: c */
+    public DrmSession mo3599c(Looper looper, @Nullable InterfaceC2988s.a aVar, C2811j1 c2811j1) {
+        C1460d.m426D(this.f19829p > 0);
+        m8830j(looper);
+        return m8827e(looper, aVar, c2811j1, true);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:14:0x0029 A[ORIG_RETURN, RETURN] */
+    /* JADX WARN: Code duplicated, block: B:41:0x008f  */
+    /* JADX WARN: Code duplicated, block: B:48:? A[RETURN, SYNTHETIC] */
+    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
+    /* JADX INFO: renamed from: d */
+    public int mo3600d(C2811j1 c2811j1) {
+        String str;
+        InterfaceC2966a0 interfaceC2966a0 = this.f19830q;
+        Objects.requireNonNull(interfaceC2966a0);
+        int iMo3580l = interfaceC2966a0.mo3580l();
+        DrmInitData drmInitData = c2811j1.f7158z;
+        boolean z2 = false;
+        if (drmInitData == null) {
+            int iM3049g = C2753t.m3049g(c2811j1.f7155w);
+            int[] iArr = this.f19820g;
+            int i = C2738e0.f6708a;
+            int i2 = 0;
+            while (i2 < iArr.length) {
+                if (iArr[i2] == iM3049g) {
+                    if (i2 != -1) {
+                        return iMo3580l;
+                    }
+                    return 0;
+                }
+                i2++;
+            }
+            i2 = -1;
+            if (i2 != -1) {
+                return iMo3580l;
+            }
+            return 0;
+        }
+        if (this.f19836w != null) {
+            z2 = true;
+        } else if (!((ArrayList) m8826i(drmInitData, this.f19815b, true)).isEmpty()) {
+            str = drmInitData.f19849l;
+            if (str != null || "cenc".equals(str) || (!"cbcs".equals(str) ? !("cbc1".equals(str) || "cens".equals(str)) : C2738e0.f6708a >= 25)) {
+                z2 = true;
+            }
+        } else if (drmInitData.f19850m == 1 && drmInitData.f19847j[0].m8836a(C2997x0.f8022b)) {
+            String strValueOf = String.valueOf(this.f19815b);
+            C1643a.m854h0(strValueOf.length() + 72, "DrmInitData only contains common PSSH SchemeData. Assuming support for: ", strValueOf, "DefaultDrmSessionMgr");
+            str = drmInitData.f19849l;
+            if (str != null) {
+                z2 = true;
+            } else {
+                z2 = true;
+            }
+        }
+        if (z2) {
+            return iMo3580l;
+        }
+        return 1;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p266w2.InterfaceC2990u
     public final void release() {
         int i = this.f19829p - 1;
         this.f19829p = i;
@@ -550,5 +528,27 @@ public class DefaultDrmSessionManager implements InterfaceC2990u {
         }
         m8833m();
         m8831k();
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSessionManager$e */
+    public class C10708e implements DefaultDrmSession.InterfaceC10699a {
+
+        /* JADX INFO: renamed from: b */
+        @Nullable
+        public DefaultDrmSession f19845b;
+
+        /* JADX INFO: renamed from: a */
+        public final Set<DefaultDrmSession> f19844a = new HashSet();
+
+        /* JADX INFO: renamed from: a */
+        public void m8834a(Exception exc, boolean z2) {
+            this.f19845b = null;
+            AbstractC4523p abstractC4523pM6264n = AbstractC4523p.m6264n(this.f19844a);
+            this.f19844a.clear();
+            AbstractC4493a abstractC4493aListIterator = abstractC4523pM6264n.listIterator();
+            while (abstractC4493aListIterator.hasNext()) {
+                ((DefaultDrmSession) abstractC4493aListIterator.next()).m8818k(exc, z2 ? 1 : 3);
+            }
+        }
     }
 }

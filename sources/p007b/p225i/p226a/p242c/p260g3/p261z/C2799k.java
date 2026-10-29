@@ -70,6 +70,118 @@ public final class C2799k extends GLSurfaceView {
     /* JADX INFO: renamed from: u */
     public boolean f7032u;
 
+    /* JADX INFO: renamed from: b.i.a.c.g3.z.k$b */
+    /* JADX INFO: compiled from: SphericalGLSurfaceView.java */
+    public interface b {
+        /* JADX INFO: renamed from: q */
+        void mo3204q(Surface surface);
+
+        /* JADX INFO: renamed from: u */
+        void mo3205u(Surface surface);
+    }
+
+    public C2799k(Context context) {
+        super(context, null);
+        this.f7021j = new CopyOnWriteArrayList<>();
+        this.f7025n = new Handler(Looper.getMainLooper());
+        Object systemService = context.getSystemService("sensor");
+        Objects.requireNonNull(systemService);
+        SensorManager sensorManager = (SensorManager) systemService;
+        this.f7022k = sensorManager;
+        Sensor defaultSensor = C2738e0.f6708a >= 18 ? sensorManager.getDefaultSensor(15) : null;
+        this.f7023l = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
+        C2798j c2798j = new C2798j();
+        this.f7027p = c2798j;
+        a aVar = new a(c2798j);
+        ViewOnTouchListenerC2800l viewOnTouchListenerC2800l = new ViewOnTouchListenerC2800l(context, aVar, 25.0f);
+        this.f7026o = viewOnTouchListenerC2800l;
+        WindowManager windowManager = (WindowManager) context.getSystemService("window");
+        Objects.requireNonNull(windowManager);
+        this.f7024m = new C2795g(windowManager.getDefaultDisplay(), viewOnTouchListenerC2800l, aVar);
+        this.f7030s = true;
+        setEGLContextClientVersion(2);
+        setRenderer(aVar);
+        setOnTouchListener(viewOnTouchListenerC2800l);
+    }
+
+    public InterfaceC2792d getCameraMotionListener() {
+        return this.f7027p;
+    }
+
+    public InterfaceC2784u getVideoFrameMetadataListener() {
+        return this.f7027p;
+    }
+
+    @Nullable
+    public Surface getVideoSurface() {
+        return this.f7029r;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m3202a() {
+        boolean z2 = this.f7030s && this.f7031t;
+        Sensor sensor = this.f7023l;
+        if (sensor == null || z2 == this.f7032u) {
+            return;
+        }
+        if (z2) {
+            this.f7022k.registerListener(this.f7024m, sensor, 0);
+        } else {
+            this.f7022k.unregisterListener(this.f7024m);
+        }
+        this.f7032u = z2;
+    }
+
+    @Override // android.opengl.GLSurfaceView, android.view.SurfaceView, android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f7025n.post(new Runnable() { // from class: b.i.a.c.g3.z.c
+            @Override // java.lang.Runnable
+            public final void run() {
+                C2799k c2799k = this.f6962j;
+                Surface surface = c2799k.f7029r;
+                if (surface != null) {
+                    Iterator<C2799k.b> it = c2799k.f7021j.iterator();
+                    while (it.hasNext()) {
+                        it.next().mo3204q(surface);
+                    }
+                }
+                SurfaceTexture surfaceTexture = c2799k.f7028q;
+                if (surfaceTexture != null) {
+                    surfaceTexture.release();
+                }
+                if (surface != null) {
+                    surface.release();
+                }
+                c2799k.f7028q = null;
+                c2799k.f7029r = null;
+            }
+        });
+    }
+
+    @Override // android.opengl.GLSurfaceView
+    public void onPause() {
+        this.f7031t = false;
+        m3202a();
+        super.onPause();
+    }
+
+    @Override // android.opengl.GLSurfaceView
+    public void onResume() {
+        super.onResume();
+        this.f7031t = true;
+        m3202a();
+    }
+
+    public void setDefaultStereoMode(int i) {
+        this.f7027p.f7018t = i;
+    }
+
+    public void setUseSensorRotation(boolean z2) {
+        this.f7030s = z2;
+        m3202a();
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.g3.z.k$a */
     /* JADX INFO: compiled from: SphericalGLSurfaceView.java */
     @VisibleForTesting
@@ -119,6 +231,12 @@ public final class C2799k extends GLSurfaceView {
             this.f7040q = 3.1415927f;
         }
 
+        @AnyThread
+        /* JADX INFO: renamed from: b */
+        public final void m3203b() {
+            Matrix.setRotateM(this.f7037n, 0, -this.f7039p, (float) Math.cos(this.f7040q), (float) Math.sin(this.f7040q), 0.0f);
+        }
+
         @Override // p007b.p225i.p226a.p242c.p260g3.p261z.C2795g.a
         @BinderThread
         /* JADX INFO: renamed from: a */
@@ -127,12 +245,6 @@ public final class C2799k extends GLSurfaceView {
             System.arraycopy(fArr, 0, fArr2, 0, fArr2.length);
             this.f7040q = -f;
             m3203b();
-        }
-
-        @AnyThread
-        /* JADX INFO: renamed from: b */
-        public final void m3203b() {
-            Matrix.setRotateM(this.f7037n, 0, -this.f7039p, (float) Math.cos(this.f7040q), (float) Math.sin(this.f7040q), 0.0f);
         }
 
         @Override // android.opengl.GLSurfaceView.Renderer
@@ -271,117 +383,5 @@ public final class C2799k extends GLSurfaceView {
                 }
             });
         }
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.g3.z.k$b */
-    /* JADX INFO: compiled from: SphericalGLSurfaceView.java */
-    public interface b {
-        /* JADX INFO: renamed from: q */
-        void mo3204q(Surface surface);
-
-        /* JADX INFO: renamed from: u */
-        void mo3205u(Surface surface);
-    }
-
-    public C2799k(Context context) {
-        super(context, null);
-        this.f7021j = new CopyOnWriteArrayList<>();
-        this.f7025n = new Handler(Looper.getMainLooper());
-        Object systemService = context.getSystemService("sensor");
-        Objects.requireNonNull(systemService);
-        SensorManager sensorManager = (SensorManager) systemService;
-        this.f7022k = sensorManager;
-        Sensor defaultSensor = C2738e0.f6708a >= 18 ? sensorManager.getDefaultSensor(15) : null;
-        this.f7023l = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
-        C2798j c2798j = new C2798j();
-        this.f7027p = c2798j;
-        a aVar = new a(c2798j);
-        ViewOnTouchListenerC2800l viewOnTouchListenerC2800l = new ViewOnTouchListenerC2800l(context, aVar, 25.0f);
-        this.f7026o = viewOnTouchListenerC2800l;
-        WindowManager windowManager = (WindowManager) context.getSystemService("window");
-        Objects.requireNonNull(windowManager);
-        this.f7024m = new C2795g(windowManager.getDefaultDisplay(), viewOnTouchListenerC2800l, aVar);
-        this.f7030s = true;
-        setEGLContextClientVersion(2);
-        setRenderer(aVar);
-        setOnTouchListener(viewOnTouchListenerC2800l);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m3202a() {
-        boolean z2 = this.f7030s && this.f7031t;
-        Sensor sensor = this.f7023l;
-        if (sensor == null || z2 == this.f7032u) {
-            return;
-        }
-        if (z2) {
-            this.f7022k.registerListener(this.f7024m, sensor, 0);
-        } else {
-            this.f7022k.unregisterListener(this.f7024m);
-        }
-        this.f7032u = z2;
-    }
-
-    public InterfaceC2792d getCameraMotionListener() {
-        return this.f7027p;
-    }
-
-    public InterfaceC2784u getVideoFrameMetadataListener() {
-        return this.f7027p;
-    }
-
-    @Nullable
-    public Surface getVideoSurface() {
-        return this.f7029r;
-    }
-
-    @Override // android.opengl.GLSurfaceView, android.view.SurfaceView, android.view.View
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f7025n.post(new Runnable() { // from class: b.i.a.c.g3.z.c
-            @Override // java.lang.Runnable
-            public final void run() {
-                C2799k c2799k = this.f6962j;
-                Surface surface = c2799k.f7029r;
-                if (surface != null) {
-                    Iterator<C2799k.b> it = c2799k.f7021j.iterator();
-                    while (it.hasNext()) {
-                        it.next().mo3204q(surface);
-                    }
-                }
-                SurfaceTexture surfaceTexture = c2799k.f7028q;
-                if (surfaceTexture != null) {
-                    surfaceTexture.release();
-                }
-                if (surface != null) {
-                    surface.release();
-                }
-                c2799k.f7028q = null;
-                c2799k.f7029r = null;
-            }
-        });
-    }
-
-    @Override // android.opengl.GLSurfaceView
-    public void onPause() {
-        this.f7031t = false;
-        m3202a();
-        super.onPause();
-    }
-
-    @Override // android.opengl.GLSurfaceView
-    public void onResume() {
-        super.onResume();
-        this.f7031t = true;
-        m3202a();
-    }
-
-    public void setDefaultStereoMode(int i) {
-        this.f7027p.f7018t = i;
-    }
-
-    public void setUseSensorRotation(boolean z2) {
-        this.f7030s = z2;
-        m3202a();
     }
 }

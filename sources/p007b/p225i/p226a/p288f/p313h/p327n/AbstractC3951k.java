@@ -28,16 +28,6 @@ public abstract class AbstractC3951k<E> extends AbstractC3948h<E> implements Lis
         throw new UnsupportedOperationException();
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3948h
-    /* JADX INFO: renamed from: c */
-    public int mo5430c(Object[] objArr, int i) {
-        int size = size();
-        for (int i2 = 0; i2 < size; i2++) {
-            objArr[i2] = get(i2);
-        }
-        return size;
-    }
-
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
     public final boolean contains(@NullableDecl Object obj) {
         return indexOf(obj) >= 0;
@@ -73,17 +63,6 @@ public abstract class AbstractC3951k<E> extends AbstractC3948h<E> implements Lis
         return false;
     }
 
-    @Override // java.util.List
-    /* JADX INFO: renamed from: h, reason: merged with bridge method [inline-methods] */
-    public AbstractC3951k<E> subList(int i, int i2) {
-        C3404f.m4342s2(i, i2, size());
-        int i3 = i2 - i;
-        if (i3 == size()) {
-            return this;
-        }
-        return i3 == 0 ? (AbstractC3951k<E>) C3952l.f10490l : new C3950j(this, i, i3);
-    }
-
     @Override // java.util.Collection, java.util.List
     public final int hashCode() {
         int size = size();
@@ -92,16 +71,6 @@ public abstract class AbstractC3951k<E> extends AbstractC3948h<E> implements Lis
             iHashCode = (iHashCode * 31) + get(i).hashCode();
         }
         return iHashCode;
-    }
-
-    @Override // java.util.List
-    /* JADX INFO: renamed from: i, reason: merged with bridge method [inline-methods] */
-    public final AbstractC3953m<E> listIterator(int i) {
-        int size = size();
-        if (i < 0 || i > size) {
-            throw new IndexOutOfBoundsException(C3404f.m4350u2(i, size, "index"));
-        }
-        return isEmpty() ? (AbstractC3953m<E>) f10489k : new C3949i(this, i);
     }
 
     @Override // java.util.List
@@ -142,6 +111,26 @@ public abstract class AbstractC3951k<E> extends AbstractC3948h<E> implements Lis
     }
 
     @Override // java.util.List
+    /* JADX INFO: renamed from: i, reason: merged with bridge method [inline-methods] */
+    public final AbstractC3953m<E> listIterator(int i) {
+        int size = size();
+        if (i < 0 || i > size) {
+            throw new IndexOutOfBoundsException(C3404f.m4350u2(i, size, "index"));
+        }
+        return isEmpty() ? (AbstractC3953m<E>) f10489k : new C3949i(this, i);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3948h
+    /* JADX INFO: renamed from: c */
+    public int mo5430c(Object[] objArr, int i) {
+        int size = size();
+        for (int i2 = 0; i2 < size; i2++) {
+            objArr[i2] = get(i2);
+        }
+        return size;
+    }
+
+    @Override // java.util.List
     @Deprecated
     public final E remove(int i) {
         throw new UnsupportedOperationException();
@@ -151,5 +140,16 @@ public abstract class AbstractC3951k<E> extends AbstractC3948h<E> implements Lis
     @Deprecated
     public final E set(int i, E e) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.List
+    /* JADX INFO: renamed from: h, reason: merged with bridge method [inline-methods] */
+    public AbstractC3951k<E> subList(int i, int i2) {
+        C3404f.m4342s2(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
+        }
+        return i3 == 0 ? (AbstractC3951k<E>) C3952l.f10490l : new C3950j(this, i, i3);
     }
 }

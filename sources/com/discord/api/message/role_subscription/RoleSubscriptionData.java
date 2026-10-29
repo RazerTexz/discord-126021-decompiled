@@ -11,6 +11,22 @@ public final /* data */ class RoleSubscriptionData {
     private final String tierName;
     private final int totalMonthsSubscribed;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof RoleSubscriptionData)) {
+            return false;
+        }
+        RoleSubscriptionData roleSubscriptionData = (RoleSubscriptionData) other;
+        return this.roleSubscriptionListingId == roleSubscriptionData.roleSubscriptionListingId && C12238m.areEqual(this.tierName, roleSubscriptionData.tierName) && this.totalMonthsSubscribed == roleSubscriptionData.totalMonthsSubscribed && this.isRenewal == roleSubscriptionData.isRenewal;
+    }
+
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public final boolean getIsRenewal() {
+        return this.isRenewal;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getRoleSubscriptionListingId() {
         return this.roleSubscriptionListingId;
@@ -24,22 +40,6 @@ public final /* data */ class RoleSubscriptionData {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final int getTotalMonthsSubscribed() {
         return this.totalMonthsSubscribed;
-    }
-
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public final boolean getIsRenewal() {
-        return this.isRenewal;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof RoleSubscriptionData)) {
-            return false;
-        }
-        RoleSubscriptionData roleSubscriptionData = (RoleSubscriptionData) other;
-        return this.roleSubscriptionListingId == roleSubscriptionData.roleSubscriptionListingId && C12238m.areEqual(this.tierName, roleSubscriptionData.tierName) && this.totalMonthsSubscribed == roleSubscriptionData.totalMonthsSubscribed && this.isRenewal == roleSubscriptionData.isRenewal;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

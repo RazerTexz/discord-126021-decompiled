@@ -21,6 +21,12 @@ public class EditTextPreferenceDialogFragment extends PreferenceDialogFragment {
         return (EditTextPreference) getPreference();
     }
 
+    @Override // androidx.preference.PreferenceDialogFragment
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public boolean needInputMethod() {
+        return true;
+    }
+
     @Deprecated
     public static EditTextPreferenceDialogFragment newInstance(String str) {
         EditTextPreferenceDialogFragment editTextPreferenceDialogFragment = new EditTextPreferenceDialogFragment();
@@ -28,12 +34,6 @@ public class EditTextPreferenceDialogFragment extends PreferenceDialogFragment {
         bundle.putString("key", str);
         editTextPreferenceDialogFragment.setArguments(bundle);
         return editTextPreferenceDialogFragment;
-    }
-
-    @Override // androidx.preference.PreferenceDialogFragment
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public boolean needInputMethod() {
-        return true;
     }
 
     @Override // androidx.preference.PreferenceDialogFragment

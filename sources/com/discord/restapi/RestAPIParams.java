@@ -62,7 +62,7 @@ import p507d0.p592z.p594d.C12238m;
 public final class RestAPIParams {
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ActivateMfaSMS {
+    public final class ActivateMfaSMS {
         private final String password;
 
         public ActivateMfaSMS(String str) {
@@ -72,7 +72,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class AddServerBody {
+    public final /* data */ class AddServerBody {
         private final String description;
         private final int primaryCategoryId;
 
@@ -92,16 +92,6 @@ public final class RestAPIParams {
             return addServerBody.copy(str, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getPrimaryCategoryId() {
-            return this.primaryCategoryId;
-        }
-
         public final AddServerBody copy(String description, int primaryCategoryId) {
             C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
             return new AddServerBody(description, primaryCategoryId);
@@ -118,8 +108,18 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.description, addServerBody.description) && this.primaryCategoryId == addServerBody.primaryCategoryId;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getDescription() {
             return this.description;
+        }
+
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getPrimaryCategoryId() {
+            return this.primaryCategoryId;
         }
 
         public final int getPrimaryCategoryId() {
@@ -140,7 +140,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ApplicationCommand {
+    public final /* data */ class ApplicationCommand {
         private final String applicationId;
         private final String channelId;
         private final ApplicationCommandData data;
@@ -163,41 +163,6 @@ public final class RestAPIParams {
             this.nonce = str5;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final ApplicationCommandData getData() {
-            return this.data;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getSessionId() {
-            return this.sessionId;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final String getNonce() {
-            return this.nonce;
-        }
-
         public final ApplicationCommand copy(long type, String channelId, String applicationId, String guildId, ApplicationCommandData data, String sessionId, String nonce) {
             C12238m.checkNotNullParameter(channelId, "channelId");
             C12238m.checkNotNullParameter(applicationId, "applicationId");
@@ -217,28 +182,63 @@ public final class RestAPIParams {
             return this.type == applicationCommand.type && C12238m.areEqual(this.channelId, applicationCommand.channelId) && C12238m.areEqual(this.applicationId, applicationCommand.applicationId) && C12238m.areEqual(this.guildId, applicationCommand.guildId) && C12238m.areEqual(this.data, applicationCommand.data) && C12238m.areEqual(this.sessionId, applicationCommand.sessionId) && C12238m.areEqual(this.nonce, applicationCommand.nonce);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getApplicationId() {
             return this.applicationId;
+        }
+
+        public final String getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getChannelId() {
+            return this.channelId;
         }
 
         public final String getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final ApplicationCommandData getData() {
             return this.data;
+        }
+
+        public final ApplicationCommandData getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getGuildId() {
+            return this.guildId;
         }
 
         public final String getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final String getNonce() {
             return this.nonce;
         }
 
+        public final String getNonce() {
+            return this.nonce;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getSessionId() {
             return this.sessionId;
+        }
+
+        public final String getSessionId() {
+            return this.sessionId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getType() {
+            return this.type;
         }
 
         public final long getType() {
@@ -281,7 +281,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class AuthLogin {
+    public final class AuthLogin {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final String login;
@@ -290,9 +290,9 @@ public final class RestAPIParams {
         private final Boolean undelete;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class LoginSource {
-            public static final LoginSource INSTANCE = new LoginSource();
+        public final class LoginSource {
             public static final String LOGIN_SOURCE_KEYCHAIN_AUTO = "keychain_auto_login";
+            public static final LoginSource INSTANCE = new LoginSource();
 
             private LoginSource() {
             }
@@ -309,7 +309,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class AuthRegister {
+    public final class AuthRegister {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final boolean consent;
@@ -342,7 +342,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class AuthRegisterPhone {
+    public final class AuthRegisterPhone {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final String phone;
@@ -356,7 +356,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class AuthorizeIP {
+    public final class AuthorizeIP {
         private final String token;
 
         public AuthorizeIP(String str) {
@@ -365,7 +365,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class BanGuildMember {
+    public final class BanGuildMember {
         private final Integer deleteMessageDays;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -383,7 +383,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class CaptchaCode {
+    public final class CaptchaCode {
         private final String captchaKey;
         private final String captchaRqtoken;
 
@@ -394,7 +394,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ChannelFollowerPost {
+    public final class ChannelFollowerPost {
         private final long webhookChannelId;
 
         public ChannelFollowerPost(long j) {
@@ -407,7 +407,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ChannelMessagesAck {
+    public final class ChannelMessagesAck {
         private final Boolean manual;
         private final Integer mentionCount;
 
@@ -418,7 +418,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ChannelPermissionOverwrites {
+    public final class ChannelPermissionOverwrites {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -428,7 +428,7 @@ public final class RestAPIParams {
         private final Integer type;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
 
             public final /* synthetic */ class WhenMappings {
                 public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -491,14 +491,14 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ChannelPosition {
+    public final class ChannelPosition {
         public static final long PARENT_ID_NONE = -1;
         private final long id;
         private final Long parentId;
         private final int position;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Serializer implements InterfaceC4909m<ChannelPosition> {
+        public final class Serializer implements InterfaceC4909m<ChannelPosition> {
             @Override // p007b.p225i.p408d.InterfaceC4909m
             public JsonElement serialize(ChannelPosition src, Type typeOfSrc, InterfaceC4908l context) {
                 if (src == null || (!C12238m.areEqual(typeOfSrc, ChannelPosition.class))) {
@@ -540,7 +540,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ChannelVoiceStateUpdate {
+    public final /* data */ class ChannelVoiceStateUpdate {
         private final long channelId;
         private final UtcDateTime requestToSpeakTimestamp;
         private final Boolean suppress;
@@ -564,21 +564,6 @@ public final class RestAPIParams {
             return channelVoiceStateUpdate.copy(j, bool, utcDateTime);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getSuppress() {
-            return this.suppress;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final UtcDateTime getRequestToSpeakTimestamp() {
-            return this.requestToSpeakTimestamp;
-        }
-
         public final ChannelVoiceStateUpdate copy(long channelId, Boolean suppress, UtcDateTime requestToSpeakTimestamp) {
             return new ChannelVoiceStateUpdate(channelId, suppress, requestToSpeakTimestamp);
         }
@@ -594,12 +579,27 @@ public final class RestAPIParams {
             return this.channelId == channelVoiceStateUpdate.channelId && C12238m.areEqual(this.suppress, channelVoiceStateUpdate.suppress) && C12238m.areEqual(this.requestToSpeakTimestamp, channelVoiceStateUpdate.requestToSpeakTimestamp);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
         }
 
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final UtcDateTime getRequestToSpeakTimestamp() {
             return this.requestToSpeakTimestamp;
+        }
+
+        public final UtcDateTime getRequestToSpeakTimestamp() {
+            return this.requestToSpeakTimestamp;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Boolean getSuppress() {
+            return this.suppress;
         }
 
         public final Boolean getSuppress() {
@@ -632,7 +632,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ComponentInteraction {
+    public final /* data */ class ComponentInteraction {
         private final long applicationId;
         private final long channelId;
         private final ComponentInteractionData data;
@@ -657,51 +657,6 @@ public final class RestAPIParams {
             this.nonce = str2;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getMessageFlags() {
-            return this.messageFlags;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final ComponentInteractionData getData() {
-            return this.data;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final String getSessionId() {
-            return this.sessionId;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final String getNonce() {
-            return this.nonce;
-        }
-
         public final ComponentInteraction copy(long type, long channelId, long applicationId, Long guildId, long messageId, Long messageFlags, ComponentInteractionData data, String sessionId, String nonce) {
             C12238m.checkNotNullParameter(data, "data");
             C12238m.checkNotNullParameter(nonce, "nonce");
@@ -719,36 +674,81 @@ public final class RestAPIParams {
             return this.type == componentInteraction.type && this.channelId == componentInteraction.channelId && this.applicationId == componentInteraction.applicationId && C12238m.areEqual(this.guildId, componentInteraction.guildId) && this.messageId == componentInteraction.messageId && C12238m.areEqual(this.messageFlags, componentInteraction.messageFlags) && C12238m.areEqual(this.data, componentInteraction.data) && C12238m.areEqual(this.sessionId, componentInteraction.sessionId) && C12238m.areEqual(this.nonce, componentInteraction.nonce);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final ComponentInteractionData getData() {
             return this.data;
+        }
+
+        public final ComponentInteractionData getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Long getMessageFlags() {
             return this.messageFlags;
+        }
+
+        public final Long getMessageFlags() {
+            return this.messageFlags;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getMessageId() {
+            return this.messageId;
         }
 
         public final long getMessageId() {
             return this.messageId;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final String getNonce() {
             return this.nonce;
         }
 
+        public final String getNonce() {
+            return this.nonce;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final String getSessionId() {
             return this.sessionId;
+        }
+
+        public final String getSessionId() {
+            return this.sessionId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getType() {
+            return this.type;
         }
 
         public final long getType() {
@@ -798,10 +798,10 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static abstract class ComponentInteractionData {
+    public abstract class ComponentInteractionData {
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final /* data */ class ButtonComponentInteractionData extends ComponentInteractionData {
+        public final /* data */ class ButtonComponentInteractionData extends ComponentInteractionData {
             private final ComponentType componentType;
             private final String customId;
 
@@ -817,16 +817,6 @@ public final class RestAPIParams {
                     str = buttonComponentInteractionData.customId;
                 }
                 return buttonComponentInteractionData.copy(componentType, str);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ComponentType getComponentType() {
-                return this.componentType;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getCustomId() {
-                return this.customId;
             }
 
             public final ButtonComponentInteractionData copy(ComponentType componentType, String customId) {
@@ -846,8 +836,18 @@ public final class RestAPIParams {
                 return C12238m.areEqual(this.componentType, buttonComponentInteractionData.componentType) && C12238m.areEqual(this.customId, buttonComponentInteractionData.customId);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ComponentType getComponentType() {
                 return this.componentType;
+            }
+
+            public final ComponentType getComponentType() {
+                return this.componentType;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getCustomId() {
+                return this.customId;
             }
 
             public final String getCustomId() {
@@ -879,13 +879,17 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final /* data */ class SelectComponentInteractionData extends ComponentInteractionData {
+        public final /* data */ class SelectComponentInteractionData extends ComponentInteractionData {
             private final ComponentType componentType;
             private final String customId;
             private final List<String> values;
 
             public /* synthetic */ SelectComponentInteractionData(ComponentType componentType, String str, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this((i & 1) != 0 ? ComponentType.SELECT : componentType, str, list);
+            }
+
+            public final List<String> component3() {
+                return this.values;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -900,20 +904,6 @@ public final class RestAPIParams {
                     list = selectComponentInteractionData.values;
                 }
                 return selectComponentInteractionData.copy(componentType, str, list);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ComponentType getComponentType() {
-                return this.componentType;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getCustomId() {
-                return this.customId;
-            }
-
-            public final List<String> component3() {
-                return this.values;
             }
 
             public final SelectComponentInteractionData copy(ComponentType componentType, String customId, List<String> values) {
@@ -934,8 +924,18 @@ public final class RestAPIParams {
                 return C12238m.areEqual(this.componentType, selectComponentInteractionData.componentType) && C12238m.areEqual(this.customId, selectComponentInteractionData.customId) && C12238m.areEqual(this.values, selectComponentInteractionData.values);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ComponentType getComponentType() {
                 return this.componentType;
+            }
+
+            public final ComponentType getComponentType() {
+                return this.componentType;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getCustomId() {
+                return this.customId;
             }
 
             public final String getCustomId() {
@@ -985,7 +985,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ConnectedAccount {
+    public final class ConnectedAccount {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -999,7 +999,7 @@ public final class RestAPIParams {
         private final int visibility;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -1028,23 +1028,13 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ConnectedAccountContacts {
+    public final /* data */ class ConnectedAccountContacts {
         private final boolean friend_sync;
         private final String name;
 
         public ConnectedAccountContacts(String str, boolean z2) {
             this.name = str;
             this.friend_sync = z2;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final boolean getFriend_sync() {
-            return this.friend_sync;
         }
 
         public static /* synthetic */ ConnectedAccountContacts copy$default(ConnectedAccountContacts connectedAccountContacts, String str, boolean z2, int i, Object obj) {
@@ -1072,6 +1062,16 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.name, connectedAccountContacts.name) && this.friend_sync == connectedAccountContacts.friend_sync;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final boolean getFriend_sync() {
+            return this.friend_sync;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final String getName() {
+            return this.name;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         /* JADX WARN: Type inference failed for: r0v4, types: [int] */
         /* JADX WARN: Type inference failed for: r1v1, types: [int] */
@@ -1097,7 +1097,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ConnectedAccountNameOnly {
+    public final /* data */ class ConnectedAccountNameOnly {
         private final String name;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1107,11 +1107,6 @@ public final class RestAPIParams {
 
         public ConnectedAccountNameOnly(String str) {
             this.name = str;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final String getName() {
-            return this.name;
         }
 
         public static /* synthetic */ ConnectedAccountNameOnly copy$default(ConnectedAccountNameOnly connectedAccountNameOnly, String str, int i, Object obj) {
@@ -1132,6 +1127,11 @@ public final class RestAPIParams {
             return true;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final String getName() {
+            return this.name;
+        }
+
         public int hashCode() {
             String str = this.name;
             if (str != null) {
@@ -1150,7 +1150,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ConnectionState {
+    public final class ConnectionState {
         private final String code;
         private final Boolean fromContinuation;
         private final Boolean insecure;
@@ -1165,15 +1165,15 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Consents {
+    public final class Consents {
         private final List<String> grant;
         private final List<String> revoke;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Type {
-            public static final Type INSTANCE = new Type();
+        public final class Type {
             public static final String PERSONALIZATION = "personalization";
             public static final String USAGE_STATS = "usage_statistics";
+            public static final Type INSTANCE = new Type();
 
             private Type() {
             }
@@ -1197,7 +1197,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ContactEntry {
+    public final class ContactEntry {
         private final String friend_id;
         private final Map<String, String> metadata;
         private final String mutual_id_hash;
@@ -1213,7 +1213,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class CreateGuild {
+    public final class CreateGuild {
         private final List<CreateGuildChannel> channels;
         private final String icon;
         private final String name;
@@ -1233,7 +1233,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class CreateGuildChannel {
+    public final class CreateGuildChannel {
         private final Long id;
         private final String name;
         private final Long parentId;
@@ -1252,7 +1252,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class CreateGuildFromTemplate {
+    public final class CreateGuildFromTemplate {
         private final String icon;
         private final String name;
 
@@ -1264,7 +1264,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class CreateGuildRoleSubscriptionGroupListing {
+    public final /* data */ class CreateGuildRoleSubscriptionGroupListing {
         private final String description;
         private final Boolean fullServerGate;
         private final String image;
@@ -1288,21 +1288,6 @@ public final class RestAPIParams {
             return createGuildRoleSubscriptionGroupListing.copy(str, str2, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getImage() {
-            return this.image;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Boolean getFullServerGate() {
-            return this.fullServerGate;
-        }
-
         public final CreateGuildRoleSubscriptionGroupListing copy(String image, String description, Boolean fullServerGate) {
             return new CreateGuildRoleSubscriptionGroupListing(image, description, fullServerGate);
         }
@@ -1318,12 +1303,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.image, createGuildRoleSubscriptionGroupListing.image) && C12238m.areEqual(this.description, createGuildRoleSubscriptionGroupListing.description) && C12238m.areEqual(this.fullServerGate, createGuildRoleSubscriptionGroupListing.fullServerGate);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getDescription() {
             return this.description;
         }
 
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Boolean getFullServerGate() {
             return this.fullServerGate;
+        }
+
+        public final Boolean getFullServerGate() {
+            return this.fullServerGate;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getImage() {
+            return this.image;
         }
 
         public final String getImage() {
@@ -1350,7 +1350,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class CreateGuildRoleSubscriptionTierListing {
+    public final /* data */ class CreateGuildRoleSubscriptionTierListing {
         private final List<GuildRoleSubscriptionBenefit> benefits;
         private final boolean canAccessAllChannels;
         private final String description;
@@ -1367,6 +1367,10 @@ public final class RestAPIParams {
             this.benefits = list;
             this.priceTier = i;
             this.canAccessAllChannels = z2;
+        }
+
+        public final List<GuildRoleSubscriptionBenefit> component4() {
+            return this.benefits;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1396,35 +1400,6 @@ public final class RestAPIParams {
             return createGuildRoleSubscriptionTierListing.copy(str, str4, str5, list2, i3, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getImage() {
-            return this.image;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        public final List<GuildRoleSubscriptionBenefit> component4() {
-            return this.benefits;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getPriceTier() {
-            return this.priceTier;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanAccessAllChannels() {
-            return this.canAccessAllChannels;
-        }
-
         public final CreateGuildRoleSubscriptionTierListing copy(String name, String image, String description, List<GuildRoleSubscriptionBenefit> benefits, int priceTier, boolean canAccessAllChannels) {
             C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             C12238m.checkNotNullParameter(benefits, "benefits");
@@ -1446,20 +1421,45 @@ public final class RestAPIParams {
             return this.benefits;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getCanAccessAllChannels() {
             return this.canAccessAllChannels;
+        }
+
+        public final boolean getCanAccessAllChannels() {
+            return this.canAccessAllChannels;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getDescription() {
+            return this.description;
         }
 
         public final String getDescription() {
             return this.description;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getImage() {
             return this.image;
         }
 
+        public final String getImage() {
+            return this.image;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getName() {
             return this.name;
+        }
+
+        public final String getName() {
+            return this.name;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getPriceTier() {
+            return this.priceTier;
         }
 
         public final int getPriceTier() {
@@ -1505,7 +1505,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class CreateGuildScheduledEventBody {
+    public final /* data */ class CreateGuildScheduledEventBody {
         private final Boolean broadcastToDirectoryChannels;
         private final Long channelId;
         private final String description;
@@ -1532,51 +1532,6 @@ public final class RestAPIParams {
             this.broadcastToDirectoryChannels = bool;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StageInstancePrivacyLevel getPrivacyLevel() {
-            return this.privacyLevel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getScheduledStartTime() {
-            return this.scheduledStartTime;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getScheduledEndTime() {
-            return this.scheduledEndTime;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final GuildScheduledEventEntityType getEntityType() {
-            return this.entityType;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final GuildScheduledEventEntityMetadata getEntityMetadata() {
-            return this.entityMetadata;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final Boolean getBroadcastToDirectoryChannels() {
-            return this.broadcastToDirectoryChannels;
-        }
-
         public final CreateGuildScheduledEventBody copy(String name, String description, StageInstancePrivacyLevel privacyLevel, String scheduledStartTime, String scheduledEndTime, Long channelId, GuildScheduledEventEntityType entityType, GuildScheduledEventEntityMetadata entityMetadata, Boolean broadcastToDirectoryChannels) {
             C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             C12238m.checkNotNullParameter(privacyLevel, "privacyLevel");
@@ -1596,36 +1551,81 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.name, createGuildScheduledEventBody.name) && C12238m.areEqual(this.description, createGuildScheduledEventBody.description) && C12238m.areEqual(this.privacyLevel, createGuildScheduledEventBody.privacyLevel) && C12238m.areEqual(this.scheduledStartTime, createGuildScheduledEventBody.scheduledStartTime) && C12238m.areEqual(this.scheduledEndTime, createGuildScheduledEventBody.scheduledEndTime) && C12238m.areEqual(this.channelId, createGuildScheduledEventBody.channelId) && C12238m.areEqual(this.entityType, createGuildScheduledEventBody.entityType) && C12238m.areEqual(this.entityMetadata, createGuildScheduledEventBody.entityMetadata) && C12238m.areEqual(this.broadcastToDirectoryChannels, createGuildScheduledEventBody.broadcastToDirectoryChannels);
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final Boolean getBroadcastToDirectoryChannels() {
             return this.broadcastToDirectoryChannels;
+        }
+
+        public final Boolean getBroadcastToDirectoryChannels() {
+            return this.broadcastToDirectoryChannels;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Long getChannelId() {
+            return this.channelId;
         }
 
         public final Long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getDescription() {
             return this.description;
+        }
+
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final GuildScheduledEventEntityMetadata getEntityMetadata() {
+            return this.entityMetadata;
         }
 
         public final GuildScheduledEventEntityMetadata getEntityMetadata() {
             return this.entityMetadata;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final GuildScheduledEventEntityType getEntityType() {
             return this.entityType;
+        }
+
+        public final GuildScheduledEventEntityType getEntityType() {
+            return this.entityType;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
             return this.name;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StageInstancePrivacyLevel getPrivacyLevel() {
             return this.privacyLevel;
         }
 
+        public final StageInstancePrivacyLevel getPrivacyLevel() {
+            return this.privacyLevel;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final String getScheduledEndTime() {
             return this.scheduledEndTime;
+        }
+
+        public final String getScheduledEndTime() {
+            return this.scheduledEndTime;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getScheduledStartTime() {
+            return this.scheduledStartTime;
         }
 
         public final String getScheduledStartTime() {
@@ -1676,7 +1676,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class DeleteGuild {
+    public final class DeleteGuild {
         private final String code;
 
         public DeleteGuild(String str) {
@@ -1685,7 +1685,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class DeletePhone {
+    public final class DeletePhone {
         private final String password;
 
         public DeletePhone(String str) {
@@ -1695,7 +1695,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class DisableAccount {
+    public final class DisableAccount {
         private final String code;
         private final String password;
 
@@ -1711,7 +1711,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class DisableGuildCommunication {
+    public final class DisableGuildCommunication {
         private final String communicationDisabledUntil;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1729,7 +1729,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class DowngradeSubscriptionBody {
+    public final /* data */ class DowngradeSubscriptionBody {
         private final String purchaseToken;
         private final String subscriptionId;
         private final String subscriptionSkuId;
@@ -1754,21 +1754,6 @@ public final class RestAPIParams {
             return downgradeSubscriptionBody.copy(str, str2, str3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getSubscriptionId() {
-            return this.subscriptionId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getPurchaseToken() {
-            return this.purchaseToken;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getSubscriptionSkuId() {
-            return this.subscriptionSkuId;
-        }
-
         public final DowngradeSubscriptionBody copy(String subscriptionId, String purchaseToken, String subscriptionSkuId) {
             C12238m.checkNotNullParameter(subscriptionId, "subscriptionId");
             C12238m.checkNotNullParameter(purchaseToken, "purchaseToken");
@@ -1787,12 +1772,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.subscriptionId, downgradeSubscriptionBody.subscriptionId) && C12238m.areEqual(this.purchaseToken, downgradeSubscriptionBody.purchaseToken) && C12238m.areEqual(this.subscriptionSkuId, downgradeSubscriptionBody.subscriptionSkuId);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getPurchaseToken() {
             return this.purchaseToken;
         }
 
+        public final String getPurchaseToken() {
+            return this.purchaseToken;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getSubscriptionId() {
             return this.subscriptionId;
+        }
+
+        public final String getSubscriptionId() {
+            return this.subscriptionId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getSubscriptionSkuId() {
+            return this.subscriptionSkuId;
         }
 
         public final String getSubscriptionSkuId() {
@@ -1819,11 +1819,11 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class EmptyBody {
+    public final class EmptyBody {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class EnableIntegration {
+    public final class EnableIntegration {
         private final String id;
         private final String type;
 
@@ -1834,7 +1834,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class EnableMFA {
+    public final class EnableMFA {
         private final String code;
         private final String password;
         private final String secret;
@@ -1848,7 +1848,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class ForgotPassword {
+    public final class ForgotPassword {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final String login;
@@ -1861,7 +1861,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GenerateGiftCode {
+    public final class GenerateGiftCode {
         private final long skuId;
         private final Long subscriptionPlanId;
 
@@ -1880,12 +1880,16 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class GetForumPostData {
+    public final /* data */ class GetForumPostData {
         private final List<Long> threadIds;
 
         public GetForumPostData(List<Long> list) {
             C12238m.checkNotNullParameter(list, "threadIds");
             this.threadIds = list;
+        }
+
+        public final List<Long> component1() {
+            return this.threadIds;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1894,10 +1898,6 @@ public final class RestAPIParams {
                 list = getForumPostData.threadIds;
             }
             return getForumPostData.copy(list);
-        }
-
-        public final List<Long> component1() {
-            return this.threadIds;
         }
 
         public final GetForumPostData copy(List<Long> threadIds) {
@@ -1930,7 +1930,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GreetMessage {
+    public final class GreetMessage {
         private final List<Long> sticker_ids;
 
         public GreetMessage(List<Long> list) {
@@ -1940,7 +1940,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GroupDM {
+    public final class GroupDM {
         private final String icon;
         private final String name;
 
@@ -1951,7 +1951,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildBoosting {
+    public final class GuildBoosting {
         private final List<Long> userPremiumGuildSubscriptionSlotIds;
 
         public GuildBoosting(List<Long> list) {
@@ -1965,7 +1965,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildFeatureAck {
+    public final class GuildFeatureAck {
         private final Boolean manual;
         private final Integer mentionCount;
 
@@ -1976,7 +1976,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildIntegration {
+    public final class GuildIntegration {
         private final boolean enableEmoticons;
         private final int expireBehavior;
         private final int expireGracePeriod;
@@ -1989,7 +1989,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildMFA {
+    public final class GuildMFA {
         private final String code;
         private final int level;
 
@@ -2000,7 +2000,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildMember {
+    public final class GuildMember {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -2011,7 +2011,7 @@ public final class RestAPIParams {
         private final List<Long> roles;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -2078,7 +2078,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class GuildMemberDisconnect {
+    public final class GuildMemberDisconnect {
         private final Long channelId;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -2096,7 +2096,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class HubWaitlist {
+    public final /* data */ class HubWaitlist {
         private final String email;
         private final String school;
 
@@ -2117,16 +2117,6 @@ public final class RestAPIParams {
             return hubWaitlist.copy(str, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getEmail() {
-            return this.email;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSchool() {
-            return this.school;
-        }
-
         public final HubWaitlist copy(String email, String school) {
             C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
             C12238m.checkNotNullParameter(school, "school");
@@ -2144,8 +2134,18 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.email, hubWaitlist.email) && C12238m.areEqual(this.school, hubWaitlist.school);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getEmail() {
             return this.email;
+        }
+
+        public final String getEmail() {
+            return this.email;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getSchool() {
+            return this.school;
         }
 
         public final String getSchool() {
@@ -2168,7 +2168,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Invite {
+    public final class Invite {
         private final int maxAge;
         private final int maxUses;
         private final String regenerate;
@@ -2183,7 +2183,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class InviteCode {
+    public final class InviteCode {
         private final String captchaKey;
         private final String captchaRqtoken;
 
@@ -2194,7 +2194,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class InvoicePreviewBody {
+    public final /* data */ class InvoicePreviewBody {
         private final boolean applyEntitlements;
         private final boolean renewal;
         private final String subscriptionId;
@@ -2219,21 +2219,6 @@ public final class RestAPIParams {
             return invoicePreviewBody.copy(str, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getSubscriptionId() {
-            return this.subscriptionId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getRenewal() {
-            return this.renewal;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getApplyEntitlements() {
-            return this.applyEntitlements;
-        }
-
         public final InvoicePreviewBody copy(String subscriptionId, boolean renewal, boolean applyEntitlements) {
             C12238m.checkNotNullParameter(subscriptionId, "subscriptionId");
             return new InvoicePreviewBody(subscriptionId, renewal, applyEntitlements);
@@ -2250,12 +2235,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.subscriptionId, invoicePreviewBody.subscriptionId) && this.renewal == invoicePreviewBody.renewal && this.applyEntitlements == invoicePreviewBody.applyEntitlements;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getApplyEntitlements() {
             return this.applyEntitlements;
         }
 
+        public final boolean getApplyEntitlements() {
+            return this.applyEntitlements;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getRenewal() {
             return this.renewal;
+        }
+
+        public final boolean getRenewal() {
+            return this.renewal;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getSubscriptionId() {
+            return this.subscriptionId;
         }
 
         public final String getSubscriptionId() {
@@ -2295,7 +2295,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class LeaveGuildBody {
+    public final /* data */ class LeaveGuildBody {
         private final boolean lurking;
 
         public LeaveGuildBody() {
@@ -2313,11 +2313,6 @@ public final class RestAPIParams {
             return leaveGuildBody.copy(z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getLurking() {
-            return this.lurking;
-        }
-
         public final LeaveGuildBody copy(boolean lurking) {
             return new LeaveGuildBody(lurking);
         }
@@ -2327,6 +2322,11 @@ public final class RestAPIParams {
                 return (other instanceof LeaveGuildBody) && this.lurking == ((LeaveGuildBody) other).lurking;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getLurking() {
+            return this.lurking;
         }
 
         public final boolean getLurking() {
@@ -2351,7 +2351,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class MFALogin {
+    public final class MFALogin {
         private final String code;
         private final String ticket;
 
@@ -2362,7 +2362,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class MemberVerificationForm {
+    public final class MemberVerificationForm {
         private final List<ModelMemberVerificationForm.FormField> formFields;
         private final String version;
 
@@ -2382,7 +2382,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class Message {
+    public final /* data */ class Message {
         private final Activity activity;
         private final AllowedMentions allowedMentions;
         private final Long applicationId;
@@ -2394,7 +2394,7 @@ public final class RestAPIParams {
         private final List<Long> stickerIds;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Activity {
+        public final class Activity {
             private final String partyId;
             private final String sessionId;
             private final MessageActivityType type;
@@ -2422,7 +2422,7 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class AllowedMentions {
+        public final class AllowedMentions {
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = new Companion(null);
@@ -2432,7 +2432,7 @@ public final class RestAPIParams {
             private final List<Long> users;
 
             /* JADX INFO: compiled from: RestAPIParams.kt */
-            public static final class Companion {
+            public final class Companion {
                 private Companion() {
                 }
 
@@ -2482,7 +2482,7 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class MessageReference {
+        public final class MessageReference {
             private final long channelId;
             private final Long guildId;
             private final Long messageId;
@@ -2518,48 +2518,8 @@ public final class RestAPIParams {
             this.captchaRqtoken = str4;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getContent() {
-            return this.content;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getNonce() {
-            return this.nonce;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Activity getActivity() {
-            return this.activity;
-        }
-
         public final List<Long> component5() {
             return this.stickerIds;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final MessageReference getMessageReference() {
-            return this.messageReference;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final AllowedMentions getAllowedMentions() {
-            return this.allowedMentions;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final String getCaptchaKey() {
-            return this.captchaKey;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final String getCaptchaRqtoken() {
-            return this.captchaRqtoken;
         }
 
         public final Message copy(String content, String nonce, Long applicationId, Activity activity, List<Long> stickerIds, MessageReference messageReference, AllowedMentions allowedMentions, String captchaKey, String captchaRqtoken) {
@@ -2577,32 +2537,72 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.content, message.content) && C12238m.areEqual(this.nonce, message.nonce) && C12238m.areEqual(this.applicationId, message.applicationId) && C12238m.areEqual(this.activity, message.activity) && C12238m.areEqual(this.stickerIds, message.stickerIds) && C12238m.areEqual(this.messageReference, message.messageReference) && C12238m.areEqual(this.allowedMentions, message.allowedMentions) && C12238m.areEqual(this.captchaKey, message.captchaKey) && C12238m.areEqual(this.captchaRqtoken, message.captchaRqtoken);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Activity getActivity() {
             return this.activity;
+        }
+
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final AllowedMentions getAllowedMentions() {
+            return this.allowedMentions;
         }
 
         public final AllowedMentions getAllowedMentions() {
             return this.allowedMentions;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final Long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final String getCaptchaKey() {
+            return this.captchaKey;
         }
 
         public final String getCaptchaKey() {
             return this.captchaKey;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final String getCaptchaRqtoken() {
             return this.captchaRqtoken;
+        }
+
+        public final String getCaptchaRqtoken() {
+            return this.captchaRqtoken;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getContent() {
+            return this.content;
         }
 
         public final String getContent() {
             return this.content;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final MessageReference getMessageReference() {
             return this.messageReference;
+        }
+
+        public final MessageReference getMessageReference() {
+            return this.messageReference;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getNonce() {
+            return this.nonce;
         }
 
         public final String getNonce() {
@@ -2661,7 +2661,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ModalInteraction {
+    public final /* data */ class ModalInteraction {
         private final long applicationId;
         private final long channelId;
         private final ModalInteractionData data;
@@ -2683,46 +2683,6 @@ public final class RestAPIParams {
             this.data = modalInteractionData;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getSessionId() {
-            return this.sessionId;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final long getNonce() {
-            return this.nonce;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final ModalInteractionData getData() {
-            return this.data;
-        }
-
         public final ModalInteraction copy(long type, long applicationId, Long messageId, long channelId, Long guildId, String sessionId, long nonce, ModalInteractionData data) {
             C12238m.checkNotNullParameter(data, "data");
             return new ModalInteraction(type, applicationId, messageId, channelId, guildId, sessionId, nonce, data);
@@ -2739,32 +2699,72 @@ public final class RestAPIParams {
             return this.type == modalInteraction.type && this.applicationId == modalInteraction.applicationId && C12238m.areEqual(this.messageId, modalInteraction.messageId) && this.channelId == modalInteraction.channelId && C12238m.areEqual(this.guildId, modalInteraction.guildId) && C12238m.areEqual(this.sessionId, modalInteraction.sessionId) && this.nonce == modalInteraction.nonce && C12238m.areEqual(this.data, modalInteraction.data);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final ModalInteractionData getData() {
             return this.data;
+        }
+
+        public final ModalInteractionData getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getMessageId() {
             return this.messageId;
+        }
+
+        public final Long getMessageId() {
+            return this.messageId;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final long getNonce() {
+            return this.nonce;
         }
 
         public final long getNonce() {
             return this.nonce;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getSessionId() {
             return this.sessionId;
+        }
+
+        public final String getSessionId() {
+            return this.sessionId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getType() {
+            return this.type;
         }
 
         public final long getType() {
@@ -2812,7 +2812,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ModalInteractionData {
+    public final /* data */ class ModalInteractionData {
         private final List<ModalInteractionDataComponent> components;
         private final String customId;
         private final long id;
@@ -2823,6 +2823,10 @@ public final class RestAPIParams {
             this.id = j;
             this.customId = str;
             this.components = list;
+        }
+
+        public final List<ModalInteractionDataComponent> component3() {
+            return this.components;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -2837,20 +2841,6 @@ public final class RestAPIParams {
                 list = modalInteractionData.components;
             }
             return modalInteractionData.copy(j, str, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCustomId() {
-            return this.customId;
-        }
-
-        public final List<ModalInteractionDataComponent> component3() {
-            return this.components;
         }
 
         public final ModalInteractionData copy(long id2, String customId, List<ModalInteractionDataComponent> components) {
@@ -2874,8 +2864,18 @@ public final class RestAPIParams {
             return this.components;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getCustomId() {
             return this.customId;
+        }
+
+        public final String getCustomId() {
+            return this.customId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getId() {
+            return this.id;
         }
 
         public final long getId() {
@@ -2902,7 +2902,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ModalInteractionDataComponent {
+    public final /* data */ class ModalInteractionDataComponent {
         private final List<ModalInteractionDataComponent> components;
         private final String customId;
         private final ComponentType type;
@@ -2914,6 +2914,10 @@ public final class RestAPIParams {
             this.components = list;
             this.customId = str;
             this.value = str2;
+        }
+
+        public final List<ModalInteractionDataComponent> component2() {
+            return this.components;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -2931,25 +2935,6 @@ public final class RestAPIParams {
                 str2 = modalInteractionDataComponent.value;
             }
             return modalInteractionDataComponent.copy(componentType, list, str, str2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ComponentType getType() {
-            return this.type;
-        }
-
-        public final List<ModalInteractionDataComponent> component2() {
-            return this.components;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getCustomId() {
-            return this.customId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getValue() {
-            return this.value;
         }
 
         public final ModalInteractionDataComponent copy(ComponentType type, List<ModalInteractionDataComponent> components, String customId, String value) {
@@ -2972,12 +2957,27 @@ public final class RestAPIParams {
             return this.components;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getCustomId() {
             return this.customId;
         }
 
+        public final String getCustomId() {
+            return this.customId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final ComponentType getType() {
             return this.type;
+        }
+
+        public final ComponentType getType() {
+            return this.type;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getValue() {
+            return this.value;
         }
 
         public final String getValue() {
@@ -3008,7 +3008,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Nick {
+    public final class Nick {
         private final String nick;
 
         public Nick(String str) {
@@ -3017,11 +3017,11 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class OAuth2Authorize {
+    public final class OAuth2Authorize {
         public static final OAuth2Authorize INSTANCE = new OAuth2Authorize();
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class ResponseGet {
+        public final class ResponseGet {
             private final Application application;
             private final List<ConnectedAccount> connections;
             private final List<Guild> guilds;
@@ -3056,7 +3056,7 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class ResponsePost {
+        public final class ResponsePost {
             private final String location;
 
             public ResponsePost(String str) {
@@ -3074,7 +3074,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class PatchGuildEmoji {
+    public final class PatchGuildEmoji {
         private final String name;
 
         public PatchGuildEmoji(String str) {
@@ -3084,7 +3084,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Phone {
+    public final class Phone {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final String phone;
@@ -3099,7 +3099,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class PostGuildEmoji {
+    public final class PostGuildEmoji {
         private final String image;
         private final String name;
 
@@ -3112,7 +3112,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class PruneGuild {
+    public final class PruneGuild {
         private final Boolean computePruneCount;
         private final Integer days;
 
@@ -3132,7 +3132,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class PurchaseMetadataBody {
+    public final /* data */ class PurchaseMetadataBody {
         private final String paymentGatewaySkuId;
         private final long skuId;
 
@@ -3152,16 +3152,6 @@ public final class RestAPIParams {
             return purchaseMetadataBody.copy(j, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getSkuId() {
-            return this.skuId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getPaymentGatewaySkuId() {
-            return this.paymentGatewaySkuId;
-        }
-
         public final PurchaseMetadataBody copy(long skuId, String paymentGatewaySkuId) {
             C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
             return new PurchaseMetadataBody(skuId, paymentGatewaySkuId);
@@ -3178,8 +3168,18 @@ public final class RestAPIParams {
             return this.skuId == purchaseMetadataBody.skuId && C12238m.areEqual(this.paymentGatewaySkuId, purchaseMetadataBody.paymentGatewaySkuId);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getPaymentGatewaySkuId() {
             return this.paymentGatewaySkuId;
+        }
+
+        public final String getPaymentGatewaySkuId() {
+            return this.paymentGatewaySkuId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getSkuId() {
+            return this.skuId;
         }
 
         public final long getSkuId() {
@@ -3202,7 +3202,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class RemoteAuthCancel {
+    public final class RemoteAuthCancel {
         private final String handshakeToken;
 
         public RemoteAuthCancel(String str) {
@@ -3212,7 +3212,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class RemoteAuthFinish {
+    public final class RemoteAuthFinish {
         private final String handshakeToken;
         private final boolean temporary;
 
@@ -3224,7 +3224,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class RemoteAuthInitialize {
+    public final class RemoteAuthInitialize {
         private final String fingerprint;
 
         public RemoteAuthInitialize(String str) {
@@ -3234,7 +3234,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Report {
+    public final class Report {
         private final Long channelId;
         private final Long messageId;
         private final int reason;
@@ -3251,7 +3251,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Ring {
+    public final class Ring {
         private final List<Long> recipients;
 
         public Ring(List<Long> list) {
@@ -3260,7 +3260,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Role {
+    public final class Role {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -3274,7 +3274,7 @@ public final class RestAPIParams {
         private Integer position;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -3385,7 +3385,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class StartStageInstanceBody {
+    public final /* data */ class StartStageInstanceBody {
         private final long channelId;
         private final String guildScheduledEventId;
         private final StageInstancePrivacyLevel privacyLevel;
@@ -3425,31 +3425,6 @@ public final class RestAPIParams {
             return startStageInstanceBody.copy(j2, str3, stageInstancePrivacyLevel2, z3, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getTopic() {
-            return this.topic;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StageInstancePrivacyLevel getPrivacyLevel() {
-            return this.privacyLevel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getSendStartNotification() {
-            return this.sendStartNotification;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getGuildScheduledEventId() {
-            return this.guildScheduledEventId;
-        }
-
         public final StartStageInstanceBody copy(long channelId, String topic, StageInstancePrivacyLevel privacyLevel, boolean sendStartNotification, String guildScheduledEventId) {
             C12238m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
             C12238m.checkNotNullParameter(privacyLevel, "privacyLevel");
@@ -3467,20 +3442,45 @@ public final class RestAPIParams {
             return this.channelId == startStageInstanceBody.channelId && C12238m.areEqual(this.topic, startStageInstanceBody.topic) && C12238m.areEqual(this.privacyLevel, startStageInstanceBody.privacyLevel) && this.sendStartNotification == startStageInstanceBody.sendStartNotification && C12238m.areEqual(this.guildScheduledEventId, startStageInstanceBody.guildScheduledEventId);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getChannelId() {
             return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getGuildScheduledEventId() {
+            return this.guildScheduledEventId;
         }
 
         public final String getGuildScheduledEventId() {
             return this.guildScheduledEventId;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StageInstancePrivacyLevel getPrivacyLevel() {
             return this.privacyLevel;
         }
 
+        public final StageInstancePrivacyLevel getPrivacyLevel() {
+            return this.privacyLevel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getSendStartNotification() {
             return this.sendStartNotification;
+        }
+
+        public final boolean getSendStartNotification() {
+            return this.sendStartNotification;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getTopic() {
+            return this.topic;
         }
 
         public final String getTopic() {
@@ -3528,7 +3528,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class TextChannel {
+    public final class TextChannel {
         private final Integer defaultAutoArchiveDuration;
         private final String name;
         private final Boolean nsfw;
@@ -3547,7 +3547,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ThreadCreationSettings {
+    public final /* data */ class ThreadCreationSettings {
         private final Integer autoArchiveDuration;
         private final String name;
         private final int type;
@@ -3557,21 +3557,6 @@ public final class RestAPIParams {
             this.name = str;
             this.type = i;
             this.autoArchiveDuration = num;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final int getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        private final Integer getAutoArchiveDuration() {
-            return this.autoArchiveDuration;
         }
 
         public static /* synthetic */ ThreadCreationSettings copy$default(ThreadCreationSettings threadCreationSettings, String str, int i, Integer num, int i2, Object obj) {
@@ -3603,6 +3588,21 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.name, threadCreationSettings.name) && this.type == threadCreationSettings.type && C12238m.areEqual(this.autoArchiveDuration, threadCreationSettings.autoArchiveDuration);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        private final Integer getAutoArchiveDuration() {
+            return this.autoArchiveDuration;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final String getName() {
+            return this.name;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final int getType() {
+            return this.type;
+        }
+
         public int hashCode() {
             String str = this.name;
             int iHashCode = (((str != null ? str.hashCode() : 0) * 31) + this.type) * 31;
@@ -3625,7 +3625,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ThreadMemberSettings {
+    public final /* data */ class ThreadMemberSettings {
         private final Integer flags;
         private final ModelMuteConfig muteConfig;
         private final Boolean muted;
@@ -3653,21 +3653,6 @@ public final class RestAPIParams {
             return threadMemberSettings.copy(num, bool, modelMuteConfig);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Integer getFlags() {
-            return this.flags;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getMuted() {
-            return this.muted;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final ModelMuteConfig getMuteConfig() {
-            return this.muteConfig;
-        }
-
         public final ThreadMemberSettings copy(Integer flags, Boolean muted, ModelMuteConfig muteConfig) {
             return new ThreadMemberSettings(flags, muted, muteConfig);
         }
@@ -3683,12 +3668,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.flags, threadMemberSettings.flags) && C12238m.areEqual(this.muted, threadMemberSettings.muted) && C12238m.areEqual(this.muteConfig, threadMemberSettings.muteConfig);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Integer getFlags() {
             return this.flags;
         }
 
+        public final Integer getFlags() {
+            return this.flags;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final ModelMuteConfig getMuteConfig() {
             return this.muteConfig;
+        }
+
+        public final ModelMuteConfig getMuteConfig() {
+            return this.muteConfig;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Boolean getMuted() {
+            return this.muted;
         }
 
         public final Boolean getMuted() {
@@ -3721,7 +3721,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class ThreadSettings {
+    public final /* data */ class ThreadSettings {
         private final Boolean archived;
         private final Integer autoArchiveDuration;
         private final Boolean locked;
@@ -3734,21 +3734,6 @@ public final class RestAPIParams {
             this.archived = bool;
             this.locked = bool2;
             this.autoArchiveDuration = num;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final Boolean getArchived() {
-            return this.archived;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final Boolean getLocked() {
-            return this.locked;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        private final Integer getAutoArchiveDuration() {
-            return this.autoArchiveDuration;
         }
 
         public static /* synthetic */ ThreadSettings copy$default(ThreadSettings threadSettings, Boolean bool, Boolean bool2, Integer num, int i, Object obj) {
@@ -3779,6 +3764,21 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.archived, threadSettings.archived) && C12238m.areEqual(this.locked, threadSettings.locked) && C12238m.areEqual(this.autoArchiveDuration, threadSettings.autoArchiveDuration);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final Boolean getArchived() {
+            return this.archived;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        private final Integer getAutoArchiveDuration() {
+            return this.autoArchiveDuration;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final Boolean getLocked() {
+            return this.locked;
+        }
+
         public int hashCode() {
             Boolean bool = this.archived;
             int iHashCode = (bool != null ? bool.hashCode() : 0) * 31;
@@ -3803,7 +3803,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class Thumbnail {
+    public final class Thumbnail {
         private final String thumbnail;
 
         public Thumbnail(String str) {
@@ -3813,7 +3813,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class TopicalChannel {
+    public final class TopicalChannel {
         private final String name;
         private final String topic;
         private final Integer type;
@@ -3826,7 +3826,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class TransferGuildOwnership {
+    public final class TransferGuildOwnership {
         private final String code;
         private final long ownerId;
 
@@ -3837,7 +3837,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UpdateGuild {
+    public final class UpdateGuild {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -3858,7 +3858,7 @@ public final class RestAPIParams {
         private final GuildVerificationLevel verificationLevel;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -3930,7 +3930,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UpdateGuildRoleSubscriptionGroupListing {
+    public final /* data */ class UpdateGuildRoleSubscriptionGroupListing {
         private final String description;
         private final Boolean fullServerGate;
         private final String image;
@@ -3954,21 +3954,6 @@ public final class RestAPIParams {
             return updateGuildRoleSubscriptionGroupListing.copy(str, str2, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getImage() {
-            return this.image;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Boolean getFullServerGate() {
-            return this.fullServerGate;
-        }
-
         public final UpdateGuildRoleSubscriptionGroupListing copy(String image, String description, Boolean fullServerGate) {
             return new UpdateGuildRoleSubscriptionGroupListing(image, description, fullServerGate);
         }
@@ -3984,12 +3969,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.image, updateGuildRoleSubscriptionGroupListing.image) && C12238m.areEqual(this.description, updateGuildRoleSubscriptionGroupListing.description) && C12238m.areEqual(this.fullServerGate, updateGuildRoleSubscriptionGroupListing.fullServerGate);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getDescription() {
             return this.description;
         }
 
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Boolean getFullServerGate() {
             return this.fullServerGate;
+        }
+
+        public final Boolean getFullServerGate() {
+            return this.fullServerGate;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getImage() {
+            return this.image;
         }
 
         public final String getImage() {
@@ -4016,13 +4016,21 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UpdateGuildRoleSubscriptionTierFreeTrial {
+    public final /* data */ class UpdateGuildRoleSubscriptionTierFreeTrial {
         private final NullSerializable<Integer> maxNumActiveTrialUsers;
         private final NullSerializable<SubscriptionTrialInterval> trial;
 
         public UpdateGuildRoleSubscriptionTierFreeTrial(NullSerializable<SubscriptionTrialInterval> nullSerializable, NullSerializable<Integer> nullSerializable2) {
             this.trial = nullSerializable;
             this.maxNumActiveTrialUsers = nullSerializable2;
+        }
+
+        public final NullSerializable<SubscriptionTrialInterval> component1() {
+            return this.trial;
+        }
+
+        public final NullSerializable<Integer> component2() {
+            return this.maxNumActiveTrialUsers;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -4034,14 +4042,6 @@ public final class RestAPIParams {
                 nullSerializable2 = updateGuildRoleSubscriptionTierFreeTrial.maxNumActiveTrialUsers;
             }
             return updateGuildRoleSubscriptionTierFreeTrial.copy(nullSerializable, nullSerializable2);
-        }
-
-        public final NullSerializable<SubscriptionTrialInterval> component1() {
-            return this.trial;
-        }
-
-        public final NullSerializable<Integer> component2() {
-            return this.maxNumActiveTrialUsers;
         }
 
         public final UpdateGuildRoleSubscriptionTierFreeTrial copy(NullSerializable<SubscriptionTrialInterval> trial, NullSerializable<Integer> maxNumActiveTrialUsers) {
@@ -4085,7 +4085,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UpdateGuildRoleSubscriptionTierListing {
+    public final /* data */ class UpdateGuildRoleSubscriptionTierListing {
         private final List<GuildRoleSubscriptionBenefit> benefits;
         private final Boolean canAccessAllChannels;
         private final String description;
@@ -4102,6 +4102,10 @@ public final class RestAPIParams {
             this.benefits = list;
             this.published = bool;
             this.canAccessAllChannels = bool2;
+        }
+
+        public final List<GuildRoleSubscriptionBenefit> component5() {
+            return this.benefits;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -4135,40 +4139,6 @@ public final class RestAPIParams {
             return updateGuildRoleSubscriptionTierListing.copy(str, str4, str5, num2, list2, bool3, bool2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getImage() {
-            return this.image;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getPriceTier() {
-            return this.priceTier;
-        }
-
-        public final List<GuildRoleSubscriptionBenefit> component5() {
-            return this.benefits;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Boolean getPublished() {
-            return this.published;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Boolean getCanAccessAllChannels() {
-            return this.canAccessAllChannels;
-        }
-
         public final UpdateGuildRoleSubscriptionTierListing copy(String name, String image, String description, Integer priceTier, List<GuildRoleSubscriptionBenefit> benefits, Boolean published, Boolean canAccessAllChannels) {
             return new UpdateGuildRoleSubscriptionTierListing(name, image, description, priceTier, benefits, published, canAccessAllChannels);
         }
@@ -4188,24 +4158,54 @@ public final class RestAPIParams {
             return this.benefits;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final Boolean getCanAccessAllChannels() {
             return this.canAccessAllChannels;
+        }
+
+        public final Boolean getCanAccessAllChannels() {
+            return this.canAccessAllChannels;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getDescription() {
+            return this.description;
         }
 
         public final String getDescription() {
             return this.description;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getImage() {
             return this.image;
+        }
+
+        public final String getImage() {
+            return this.image;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
             return this.name;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getPriceTier() {
             return this.priceTier;
+        }
+
+        public final Integer getPriceTier() {
+            return this.priceTier;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Boolean getPublished() {
+            return this.published;
         }
 
         public final Boolean getPublished() {
@@ -4248,7 +4248,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UpdateGuildScheduledEventBody {
+    public final /* data */ class UpdateGuildScheduledEventBody {
         private final Boolean broadcastToDirectoryChannels;
         private final NullSerializable<Long> channelId;
         private final String description;
@@ -4277,52 +4277,12 @@ public final class RestAPIParams {
             this.broadcastToDirectoryChannels = bool;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final Boolean getBroadcastToDirectoryChannels() {
-            return this.broadcastToDirectoryChannels;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StageInstancePrivacyLevel getPrivacyLevel() {
-            return this.privacyLevel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getScheduledStartTime() {
-            return this.scheduledStartTime;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getScheduledEndTime() {
-            return this.scheduledEndTime;
-        }
-
         public final NullSerializable<Long> component6() {
             return this.channelId;
         }
 
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final GuildScheduledEventEntityType getEntityType() {
-            return this.entityType;
-        }
-
         public final NullSerializable<GuildScheduledEventEntityMetadata> component8() {
             return this.entityMetadata;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final GuildScheduledEventStatus getStatus() {
-            return this.status;
         }
 
         public final UpdateGuildScheduledEventBody copy(String name, String description, StageInstancePrivacyLevel privacyLevel, String scheduledStartTime, String scheduledEndTime, NullSerializable<Long> channelId, GuildScheduledEventEntityType entityType, NullSerializable<GuildScheduledEventEntityMetadata> entityMetadata, GuildScheduledEventStatus status, Boolean broadcastToDirectoryChannels) {
@@ -4340,12 +4300,22 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.name, updateGuildScheduledEventBody.name) && C12238m.areEqual(this.description, updateGuildScheduledEventBody.description) && C12238m.areEqual(this.privacyLevel, updateGuildScheduledEventBody.privacyLevel) && C12238m.areEqual(this.scheduledStartTime, updateGuildScheduledEventBody.scheduledStartTime) && C12238m.areEqual(this.scheduledEndTime, updateGuildScheduledEventBody.scheduledEndTime) && C12238m.areEqual(this.channelId, updateGuildScheduledEventBody.channelId) && C12238m.areEqual(this.entityType, updateGuildScheduledEventBody.entityType) && C12238m.areEqual(this.entityMetadata, updateGuildScheduledEventBody.entityMetadata) && C12238m.areEqual(this.status, updateGuildScheduledEventBody.status) && C12238m.areEqual(this.broadcastToDirectoryChannels, updateGuildScheduledEventBody.broadcastToDirectoryChannels);
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final Boolean getBroadcastToDirectoryChannels() {
+            return this.broadcastToDirectoryChannels;
+        }
+
         public final Boolean getBroadcastToDirectoryChannels() {
             return this.broadcastToDirectoryChannels;
         }
 
         public final NullSerializable<Long> getChannelId() {
             return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getDescription() {
+            return this.description;
         }
 
         public final String getDescription() {
@@ -4356,24 +4326,54 @@ public final class RestAPIParams {
             return this.entityMetadata;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final GuildScheduledEventEntityType getEntityType() {
             return this.entityType;
+        }
+
+        public final GuildScheduledEventEntityType getEntityType() {
+            return this.entityType;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
             return this.name;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StageInstancePrivacyLevel getPrivacyLevel() {
             return this.privacyLevel;
+        }
+
+        public final StageInstancePrivacyLevel getPrivacyLevel() {
+            return this.privacyLevel;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getScheduledEndTime() {
+            return this.scheduledEndTime;
         }
 
         public final String getScheduledEndTime() {
             return this.scheduledEndTime;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getScheduledStartTime() {
             return this.scheduledStartTime;
+        }
+
+        public final String getScheduledStartTime() {
+            return this.scheduledStartTime;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final GuildScheduledEventStatus getStatus() {
+            return this.status;
         }
 
         public final GuildScheduledEventStatus getStatus() {
@@ -4432,7 +4432,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UpdateStageInstanceBody {
+    public final /* data */ class UpdateStageInstanceBody {
         private final StageInstancePrivacyLevel privacyLevel;
         private final String topic;
 
@@ -4456,16 +4456,6 @@ public final class RestAPIParams {
             return updateStageInstanceBody.copy(str, stageInstancePrivacyLevel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getTopic() {
-            return this.topic;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StageInstancePrivacyLevel getPrivacyLevel() {
-            return this.privacyLevel;
-        }
-
         public final UpdateStageInstanceBody copy(String topic, StageInstancePrivacyLevel privacyLevel) {
             return new UpdateStageInstanceBody(topic, privacyLevel);
         }
@@ -4481,8 +4471,18 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.topic, updateStageInstanceBody.topic) && C12238m.areEqual(this.privacyLevel, updateStageInstanceBody.privacyLevel);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final StageInstancePrivacyLevel getPrivacyLevel() {
             return this.privacyLevel;
+        }
+
+        public final StageInstancePrivacyLevel getPrivacyLevel() {
+            return this.privacyLevel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getTopic() {
+            return this.topic;
         }
 
         public final String getTopic() {
@@ -4511,7 +4511,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UpdateSubscription {
+    public final class UpdateSubscription {
         private final List<ModelSubscription.SubscriptionAdditionalPlan> additionalPlans;
         private final String paymentSourceId;
         private final Long planId;
@@ -4534,7 +4534,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UploadContacts {
+    public final class UploadContacts {
         private final boolean background;
         private final List<ContactEntry> friend_list_entries;
         private final AllowedInSuggestionsType set_use_for_suggestions;
@@ -4552,7 +4552,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserAgreements {
+    public final class UserAgreements {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -4561,7 +4561,7 @@ public final class RestAPIParams {
         private final Boolean terms;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -4595,7 +4595,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UserBulkRelationship {
+    public final /* data */ class UserBulkRelationship {
         private final String token;
         private final List<Long> user_ids;
 
@@ -4608,11 +4608,6 @@ public final class RestAPIParams {
 
         private final List<Long> component1() {
             return this.user_ids;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final String getToken() {
-            return this.token;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -4643,6 +4638,11 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.user_ids, userBulkRelationship.user_ids) && C12238m.areEqual(this.token, userBulkRelationship.token);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final String getToken() {
+            return this.token;
+        }
+
         public int hashCode() {
             List<Long> list = this.user_ids;
             int iHashCode = (list != null ? list.hashCode() : 0) * 31;
@@ -4659,17 +4659,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserDevices {
-        private final String provider = "gcm";
-        private final String token;
-
-        public UserDevices(String str) {
-            this.token = str;
-        }
-    }
-
-    /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UserEmailConfirmCode {
+    public final /* data */ class UserEmailConfirmCode {
         private final String code;
 
         public UserEmailConfirmCode(String str) {
@@ -4684,11 +4674,6 @@ public final class RestAPIParams {
             return userEmailConfirmCode.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getCode() {
-            return this.code;
-        }
-
         public final UserEmailConfirmCode copy(String code) {
             C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
             return new UserEmailConfirmCode(code);
@@ -4699,6 +4684,11 @@ public final class RestAPIParams {
                 return (other instanceof UserEmailConfirmCode) && C12238m.areEqual(this.code, ((UserEmailConfirmCode) other).code);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getCode() {
+            return this.code;
         }
 
         public final String getCode() {
@@ -4719,7 +4709,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserGuildSettings {
+    public final class UserGuildSettings {
         private final Map<Long, ChannelOverride> channelOverrides;
         private final Integer messageNotifications;
         private final Boolean mobilePush;
@@ -4730,7 +4720,7 @@ public final class RestAPIParams {
         private final Boolean suppressRoles;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class ChannelOverride {
+        public final class ChannelOverride {
             private final Integer flags;
             private final Integer messageNotifications;
             private final ModelMuteConfig muteConfig;
@@ -4827,16 +4817,11 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class UserNoteUpdate {
+    public final /* data */ class UserNoteUpdate {
         private final String note;
 
         public UserNoteUpdate(String str) {
             this.note = str;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final String getNote() {
-            return this.note;
         }
 
         public static /* synthetic */ UserNoteUpdate copy$default(UserNoteUpdate userNoteUpdate, String str, int i, Object obj) {
@@ -4857,6 +4842,11 @@ public final class RestAPIParams {
             return true;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final String getNote() {
+            return this.note;
+        }
+
         public int hashCode() {
             String str = this.note;
             if (str != null) {
@@ -4871,14 +4861,14 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserRelationship {
+    public final class UserRelationship {
         private final String captchaKey;
         private final String captchaRqtoken;
         private final String friendToken;
         private final Integer type;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Add {
+        public final class Add {
             private final String captchaKey;
             private final String captchaRqtoken;
             private final int discriminator;
@@ -4902,7 +4892,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserSettings {
+    public final class UserSettings {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -4927,7 +4917,7 @@ public final class RestAPIParams {
         private final String theme;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -5019,7 +5009,7 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class FriendSourceFlags {
+        public final class FriendSourceFlags {
             private final Boolean all;
             private final Boolean mutualFriends;
             private final Boolean mutualGuilds;
@@ -5131,7 +5121,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserSettingsCustomStatus {
+    public final class UserSettingsCustomStatus {
         private final ModelCustomStatusSetting customStatus;
 
         public UserSettingsCustomStatus(ModelCustomStatusSetting modelCustomStatusSetting) {
@@ -5140,7 +5130,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VanityUrl {
+    public final class VanityUrl {
         private final String code;
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -5158,7 +5148,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VerificationCode {
+    public final class VerificationCode {
         private final String code;
         private final String phone;
 
@@ -5171,7 +5161,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VerificationCodeOnly {
+    public final class VerificationCodeOnly {
         private final String code;
 
         public VerificationCodeOnly(String str) {
@@ -5181,7 +5171,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VerificationCodeResend {
+    public final class VerificationCodeResend {
         private final String phone;
 
         public VerificationCodeResend(String str) {
@@ -5191,7 +5181,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VerificationPhoneCode {
+    public final class VerificationPhoneCode {
         private final String password;
         private final String phoneToken;
         private final String source;
@@ -5205,7 +5195,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class VerifyEmail {
+    public final /* data */ class VerifyEmail {
         private final boolean allowMultipleGuilds;
         private final String email;
         private final Long guildId;
@@ -5235,26 +5225,6 @@ public final class RestAPIParams {
             return verifyEmail.copy(str, l, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getEmail() {
-            return this.email;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getAllowMultipleGuilds() {
-            return this.allowMultipleGuilds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getUseVerificationCode() {
-            return this.useVerificationCode;
-        }
-
         public final VerifyEmail copy(String email, Long guildId, boolean allowMultipleGuilds, boolean useVerificationCode) {
             C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
             return new VerifyEmail(email, guildId, allowMultipleGuilds, useVerificationCode);
@@ -5271,16 +5241,36 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.email, verifyEmail.email) && C12238m.areEqual(this.guildId, verifyEmail.guildId) && this.allowMultipleGuilds == verifyEmail.allowMultipleGuilds && this.useVerificationCode == verifyEmail.useVerificationCode;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getAllowMultipleGuilds() {
             return this.allowMultipleGuilds;
+        }
+
+        public final boolean getAllowMultipleGuilds() {
+            return this.allowMultipleGuilds;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getEmail() {
+            return this.email;
         }
 
         public final String getEmail() {
             return this.email;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getGuildId() {
             return this.guildId;
+        }
+
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getUseVerificationCode() {
+            return this.useVerificationCode;
         }
 
         public final boolean getUseVerificationCode() {
@@ -5328,7 +5318,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class VerifyEmailCode {
+    public final /* data */ class VerifyEmailCode {
         private final String code;
         private final String email;
         private final Long guildId;
@@ -5354,21 +5344,6 @@ public final class RestAPIParams {
             return verifyEmailCode.copy(str, str2, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getEmail() {
-            return this.email;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCode() {
-            return this.code;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
         public final VerifyEmailCode copy(String email, String code, Long guildId) {
             C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
             C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
@@ -5386,12 +5361,27 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.email, verifyEmailCode.email) && C12238m.areEqual(this.code, verifyEmailCode.code) && C12238m.areEqual(this.guildId, verifyEmailCode.guildId);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getCode() {
             return this.code;
         }
 
+        public final String getCode() {
+            return this.code;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getEmail() {
             return this.email;
+        }
+
+        public final String getEmail() {
+            return this.email;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
@@ -5418,7 +5408,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class VerifyPurchaseResponse {
+    public final /* data */ class VerifyPurchaseResponse {
         private final String giftCode;
         private final Long subscriptionPlanId;
         private final long verifiedSkuId;
@@ -5442,21 +5432,6 @@ public final class RestAPIParams {
             return verifyPurchaseResponse.copy(j, l, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getVerifiedSkuId() {
-            return this.verifiedSkuId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getSubscriptionPlanId() {
-            return this.subscriptionPlanId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getGiftCode() {
-            return this.giftCode;
-        }
-
         public final VerifyPurchaseResponse copy(long verifiedSkuId, Long subscriptionPlanId, String giftCode) {
             return new VerifyPurchaseResponse(verifiedSkuId, subscriptionPlanId, giftCode);
         }
@@ -5472,12 +5447,27 @@ public final class RestAPIParams {
             return this.verifiedSkuId == verifyPurchaseResponse.verifiedSkuId && C12238m.areEqual(this.subscriptionPlanId, verifyPurchaseResponse.subscriptionPlanId) && C12238m.areEqual(this.giftCode, verifyPurchaseResponse.giftCode);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getGiftCode() {
             return this.giftCode;
         }
 
+        public final String getGiftCode() {
+            return this.giftCode;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getSubscriptionPlanId() {
             return this.subscriptionPlanId;
+        }
+
+        public final Long getSubscriptionPlanId() {
+            return this.subscriptionPlanId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getVerifiedSkuId() {
+            return this.verifiedSkuId;
         }
 
         public final long getVerifiedSkuId() {
@@ -5504,7 +5494,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final /* data */ class VerifyPurchaseTokenBody {
+    public final /* data */ class VerifyPurchaseTokenBody {
         private final String oneTimePurchaseSkuId;
         private final String packageName;
         private final String purchaseToken;
@@ -5543,31 +5533,6 @@ public final class RestAPIParams {
             return verifyPurchaseTokenBody.copy(str, j2, str5, str6, str4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getPurchaseToken() {
-            return this.purchaseToken;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getPackageName() {
-            return this.packageName;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getSubscriptionSkuId() {
-            return this.subscriptionSkuId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getOneTimePurchaseSkuId() {
-            return this.oneTimePurchaseSkuId;
-        }
-
         public final VerifyPurchaseTokenBody copy(String purchaseToken, long userId, String packageName, String subscriptionSkuId, String oneTimePurchaseSkuId) {
             C12238m.checkNotNullParameter(purchaseToken, "purchaseToken");
             C12238m.checkNotNullParameter(packageName, "packageName");
@@ -5585,20 +5550,45 @@ public final class RestAPIParams {
             return C12238m.areEqual(this.purchaseToken, verifyPurchaseTokenBody.purchaseToken) && this.userId == verifyPurchaseTokenBody.userId && C12238m.areEqual(this.packageName, verifyPurchaseTokenBody.packageName) && C12238m.areEqual(this.subscriptionSkuId, verifyPurchaseTokenBody.subscriptionSkuId) && C12238m.areEqual(this.oneTimePurchaseSkuId, verifyPurchaseTokenBody.oneTimePurchaseSkuId);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final String getOneTimePurchaseSkuId() {
             return this.oneTimePurchaseSkuId;
+        }
+
+        public final String getOneTimePurchaseSkuId() {
+            return this.oneTimePurchaseSkuId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getPackageName() {
+            return this.packageName;
         }
 
         public final String getPackageName() {
             return this.packageName;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getPurchaseToken() {
             return this.purchaseToken;
         }
 
+        public final String getPurchaseToken() {
+            return this.purchaseToken;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getSubscriptionSkuId() {
             return this.subscriptionSkuId;
+        }
+
+        public final String getSubscriptionSkuId() {
+            return this.subscriptionSkuId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getUserId() {
+            return this.userId;
         }
 
         public final long getUserId() {
@@ -5633,7 +5623,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class VoiceChannel {
+    public final class VoiceChannel {
         private final Integer bitrate;
         private final String name;
         private final Boolean nsfw;
@@ -5654,7 +5644,7 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class CreateChannel {
+    public final class CreateChannel {
         private final List<Long> recipients;
 
         public CreateChannel(List<Long> list) {
@@ -5667,7 +5657,17 @@ public final class RestAPIParams {
     }
 
     /* JADX INFO: compiled from: RestAPIParams.kt */
-    public static final class UserInfo {
+    public final class UserDevices {
+        private final String token;
+        private final String provider = "gcm";
+
+        public UserDevices(String str) {
+            this.token = str;
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPIParams.kt */
+    public final class UserInfo {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -5685,7 +5685,7 @@ public final class RestAPIParams {
         private final String username;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 

@@ -18,13 +18,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 public class ModelEmojiCustom implements Emoji {
     public static final int DISABLED_ALPHA = 100;
     public static final int NORMAL_ALPHA = 255;
-    public static String emojiUriFormat;
     private final Boolean available;
     private transient int disambiguationIndex;
-    private long guildId;
+    public static String emojiUriFormat;
 
     /* JADX INFO: renamed from: id */
     private long f18590id;
+    private long guildId;
     private String idStr;
     private boolean isAnimated;
     private transient boolean isUsable;
@@ -58,23 +58,6 @@ public class ModelEmojiCustom implements Emoji {
         this.roles = new ArrayList();
         this.isUsable = true;
         this.available = Boolean.TRUE;
-    }
-
-    private String getColonRegex() {
-        return C1643a.m820H(C1643a.m833U("((?<!\\\\)):"), getNameDisambiguated(), MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
-    }
-
-    private String getNameDisambiguated() {
-        String str = this.nameDisambiguated;
-        return str != null ? str : this.name;
-    }
-
-    private String getNoColonRegex() {
-        return C1643a.m822J(C1643a.m833U("([^\\\\:]|^)"), getNameDisambiguated(), "\\b");
-    }
-
-    public static void setCdnUri(String str) {
-        emojiUriFormat = C1643a.m883w(str, "/emojis/%s.%s?size=%s&quality=lossless");
     }
 
     public boolean canEqual(Object obj) {
@@ -124,6 +107,10 @@ public class ModelEmojiCustom implements Emoji {
     @Override // com.discord.models.domain.emoji.Emoji
     public String getChatInputText() {
         return getCommand(getNameDisambiguated());
+    }
+
+    private String getColonRegex() {
+        return C1643a.m820H(C1643a.m833U("((?<!\\\\)):"), getNameDisambiguated(), MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
@@ -180,9 +167,18 @@ public class ModelEmojiCustom implements Emoji {
         return this.name;
     }
 
+    private String getNameDisambiguated() {
+        String str = this.nameDisambiguated;
+        return str != null ? str : this.name;
+    }
+
     @Override // com.discord.models.domain.emoji.Emoji
     public List<String> getNames() {
         return Collections.singletonList(getNameDisambiguated());
+    }
+
+    private String getNoColonRegex() {
+        return C1643a.m822J(C1643a.m833U("([^\\\\:]|^)"), getNameDisambiguated(), "\\b");
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
@@ -261,6 +257,10 @@ public class ModelEmojiCustom implements Emoji {
     @Override // com.discord.models.domain.emoji.Emoji
     public boolean requiresColons() {
         return true;
+    }
+
+    public static void setCdnUri(String str) {
+        emojiUriFormat = C1643a.m883w(str, "/emojis/%s.%s?size=%s&quality=lossless");
     }
 
     public GuildEmoji toApiEmoji() {

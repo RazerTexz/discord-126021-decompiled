@@ -26,7 +26,7 @@ public final class SimpleRolesAdapter extends MGRecyclerAdapterSimple<RoleItem> 
     private Function1<? super GuildRole, Unit> onRoleClickedListener;
 
     /* JADX INFO: compiled from: SimpleRolesAdapter.kt */
-    public static final class RoleAdapterItem extends MGRecyclerViewHolder<SimpleRolesAdapter, RoleItem> {
+    public final class RoleAdapterItem extends MGRecyclerViewHolder<SimpleRolesAdapter, RoleItem> {
         private final SimpleRoleListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -71,7 +71,7 @@ public final class SimpleRolesAdapter extends MGRecyclerAdapterSimple<RoleItem> 
     }
 
     /* JADX INFO: compiled from: SimpleRolesAdapter.kt */
-    public static final /* data */ class RoleItem implements MGRecyclerDataPayload, Comparable<RoleItem> {
+    public final /* data */ class RoleItem implements MGRecyclerDataPayload, Comparable<RoleItem> {
         public static final int TYPE_ROLE = 0;
         private final String key;
         private final GuildRole role;
@@ -90,11 +90,6 @@ public final class SimpleRolesAdapter extends MGRecyclerAdapterSimple<RoleItem> 
             return roleItem.copy(guildRole);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
         public final RoleItem copy(GuildRole role) {
             C12238m.checkNotNullParameter(role, "role");
             return new RoleItem(role);
@@ -110,6 +105,11 @@ public final class SimpleRolesAdapter extends MGRecyclerAdapterSimple<RoleItem> 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
         }
 
         public final GuildRole getRole() {

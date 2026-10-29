@@ -12,7 +12,7 @@ public interface InterfaceC2182e0 {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.e0$a */
     /* JADX INFO: compiled from: TypeResolutionContext.java */
-    public static class a implements InterfaceC2182e0 {
+    public class a implements InterfaceC2182e0 {
 
         /* JADX INFO: renamed from: j */
         public final C2335n f4702j;
@@ -34,7 +34,7 @@ public interface InterfaceC2182e0 {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.e0$b */
     /* JADX INFO: compiled from: TypeResolutionContext.java */
-    public static class b implements InterfaceC2182e0 {
+    public class b implements InterfaceC2182e0 {
 
         /* JADX INFO: renamed from: j */
         public final C2335n f4704j;

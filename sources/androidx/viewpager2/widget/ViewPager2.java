@@ -177,7 +177,7 @@ public final class ViewPager2 extends ViewGroup {
         }
     }
 
-    public static abstract class DataSetChangeObserver extends RecyclerView.AdapterDataObserver {
+    public abstract class DataSetChangeObserver extends RecyclerView.AdapterDataObserver {
         private DataSetChangeObserver() {
         }
 
@@ -250,7 +250,7 @@ public final class ViewPager2 extends ViewGroup {
     public @interface OffscreenPageLimit {
     }
 
-    public static abstract class OnPageChangeCallback {
+    public abstract class OnPageChangeCallback {
         public void onPageScrollStateChanged(int i) {
         }
 
@@ -504,12 +504,64 @@ public final class ViewPager2 extends ViewGroup {
         }
     }
 
+    public class SavedState extends View.BaseSavedState {
+        public Parcelable mAdapterState;
+        public int mCurrentItem;
+        public int mRecyclerViewId;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.viewpager2.widget.ViewPager2.SavedState.1
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return Build.VERSION.SDK_INT >= 24 ? new SavedState(parcel, classLoader) : new SavedState(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return createFromParcel(parcel, (ClassLoader) null);
+            }
+        };
+
+        @RequiresApi(24)
+        public SavedState(Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            readValues(parcel, classLoader);
+        }
+
+        private void readValues(Parcel parcel, ClassLoader classLoader) {
+            this.mRecyclerViewId = parcel.readInt();
+            this.mCurrentItem = parcel.readInt();
+            this.mAdapterState = parcel.readParcelable(classLoader);
+        }
+
+        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.mRecyclerViewId);
+            parcel.writeInt(this.mCurrentItem);
+            parcel.writeParcelable(this.mAdapterState, i);
+        }
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            readValues(parcel, null);
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public @interface ScrollState {
     }
 
-    public static class SmoothScrollToPosition implements Runnable {
+    public class SmoothScrollToPosition implements Runnable {
         private final int mPosition;
         private final RecyclerView mRecyclerView;
 
@@ -546,6 +598,40 @@ public final class ViewPager2 extends ViewGroup {
         initialize(context, null);
     }
 
+    public void addItemDecoration(@NonNull RecyclerView.ItemDecoration itemDecoration) {
+        this.mRecyclerView.addItemDecoration(itemDecoration);
+    }
+
+    public boolean beginFakeDrag() {
+        return this.mFakeDragger.beginFakeDrag();
+    }
+
+    @Override // android.view.View
+    public boolean canScrollHorizontally(int i) {
+        return this.mRecyclerView.canScrollHorizontally(i);
+    }
+
+    @Override // android.view.View
+    public boolean canScrollVertically(int i) {
+        return this.mRecyclerView.canScrollVertically(i);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void dispatchRestoreInstanceState(SparseArray<Parcelable> sparseArray) {
+        Parcelable parcelable = sparseArray.get(getId());
+        if (parcelable instanceof SavedState) {
+            int i = ((SavedState) parcelable).mRecyclerViewId;
+            sparseArray.put(this.mRecyclerView.getId(), sparseArray.get(i));
+            sparseArray.remove(i);
+        }
+        super.dispatchRestoreInstanceState(sparseArray);
+        restorePendingState();
+    }
+
+    public boolean endFakeDrag() {
+        return this.mFakeDragger.endFakeDrag();
+    }
+
     private RecyclerView.OnChildAttachStateChangeListener enforceChildFillListener() {
         return new RecyclerView.OnChildAttachStateChangeListener() { // from class: androidx.viewpager2.widget.ViewPager2.4
             @Override // androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
@@ -560,6 +646,60 @@ public final class ViewPager2 extends ViewGroup {
             public void onChildViewDetachedFromWindow(@NonNull View view) {
             }
         };
+    }
+
+    public boolean fakeDragBy(@Px @SuppressLint({"SupportAnnotationUsage"}) float f) {
+        return this.mFakeDragger.fakeDragBy(f);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    @RequiresApi(23)
+    public CharSequence getAccessibilityClassName() {
+        return this.mAccessibilityProvider.handlesGetAccessibilityClassName() ? this.mAccessibilityProvider.onGetAccessibilityClassName() : super.getAccessibilityClassName();
+    }
+
+    @Nullable
+    public RecyclerView.Adapter getAdapter() {
+        return this.mRecyclerView.getAdapter();
+    }
+
+    public int getCurrentItem() {
+        return this.mCurrentItem;
+    }
+
+    @NonNull
+    public RecyclerView.ItemDecoration getItemDecorationAt(int i) {
+        return this.mRecyclerView.getItemDecorationAt(i);
+    }
+
+    public int getItemDecorationCount() {
+        return this.mRecyclerView.getItemDecorationCount();
+    }
+
+    public int getOffscreenPageLimit() {
+        return this.mOffscreenPageLimit;
+    }
+
+    public int getOrientation() {
+        return this.mLayoutManager.getOrientation();
+    }
+
+    public int getPageSize() {
+        int height;
+        int paddingBottom;
+        RecyclerView recyclerView = this.mRecyclerView;
+        if (getOrientation() == 0) {
+            height = recyclerView.getWidth() - recyclerView.getPaddingLeft();
+            paddingBottom = recyclerView.getPaddingRight();
+        } else {
+            height = recyclerView.getHeight() - recyclerView.getPaddingTop();
+            paddingBottom = recyclerView.getPaddingBottom();
+        }
+        return height - paddingBottom;
+    }
+
+    public int getScrollState() {
+        return this.mScrollEventAdapter.getScrollState();
     }
 
     private void initialize(Context context, AttributeSet attributeSet) {
@@ -620,139 +760,6 @@ public final class ViewPager2 extends ViewGroup {
         this.mPageChangeEventDispatcher.addOnPageChangeCallback(pageTransformerAdapter);
         RecyclerView recyclerView = this.mRecyclerView;
         attachViewToParent(recyclerView, 0, recyclerView.getLayoutParams());
-    }
-
-    private void registerCurrentItemDataSetTracker(@Nullable RecyclerView.Adapter<?> adapter) {
-        if (adapter != null) {
-            adapter.registerAdapterDataObserver(this.mCurrentItemDataSetChangeObserver);
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private void restorePendingState() {
-        RecyclerView.Adapter adapter;
-        if (this.mPendingCurrentItem == -1 || (adapter = getAdapter()) == 0) {
-            return;
-        }
-        Parcelable parcelable = this.mPendingAdapterState;
-        if (parcelable != null) {
-            if (adapter instanceof StatefulAdapter) {
-                ((StatefulAdapter) adapter).restoreState(parcelable);
-            }
-            this.mPendingAdapterState = null;
-        }
-        int iMax = Math.max(0, Math.min(this.mPendingCurrentItem, adapter.getItemCount() - 1));
-        this.mCurrentItem = iMax;
-        this.mPendingCurrentItem = -1;
-        this.mRecyclerView.scrollToPosition(iMax);
-        this.mAccessibilityProvider.onRestorePendingState();
-    }
-
-    private void setOrientation(Context context, AttributeSet attributeSet) {
-        int[] iArr = C0693R.styleable.ViewPager2;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr);
-        if (Build.VERSION.SDK_INT >= 29) {
-            saveAttributeDataForStyleable(context, iArr, attributeSet, typedArrayObtainStyledAttributes, 0, 0);
-        }
-        try {
-            setOrientation(typedArrayObtainStyledAttributes.getInt(C0693R.styleable.ViewPager2_android_orientation, 0));
-        } finally {
-            typedArrayObtainStyledAttributes.recycle();
-        }
-    }
-
-    private void unregisterCurrentItemDataSetTracker(@Nullable RecyclerView.Adapter<?> adapter) {
-        if (adapter != null) {
-            adapter.unregisterAdapterDataObserver(this.mCurrentItemDataSetChangeObserver);
-        }
-    }
-
-    public void addItemDecoration(@NonNull RecyclerView.ItemDecoration itemDecoration) {
-        this.mRecyclerView.addItemDecoration(itemDecoration);
-    }
-
-    public boolean beginFakeDrag() {
-        return this.mFakeDragger.beginFakeDrag();
-    }
-
-    @Override // android.view.View
-    public boolean canScrollHorizontally(int i) {
-        return this.mRecyclerView.canScrollHorizontally(i);
-    }
-
-    @Override // android.view.View
-    public boolean canScrollVertically(int i) {
-        return this.mRecyclerView.canScrollVertically(i);
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void dispatchRestoreInstanceState(SparseArray<Parcelable> sparseArray) {
-        Parcelable parcelable = sparseArray.get(getId());
-        if (parcelable instanceof SavedState) {
-            int i = ((SavedState) parcelable).mRecyclerViewId;
-            sparseArray.put(this.mRecyclerView.getId(), sparseArray.get(i));
-            sparseArray.remove(i);
-        }
-        super.dispatchRestoreInstanceState(sparseArray);
-        restorePendingState();
-    }
-
-    public boolean endFakeDrag() {
-        return this.mFakeDragger.endFakeDrag();
-    }
-
-    public boolean fakeDragBy(@Px @SuppressLint({"SupportAnnotationUsage"}) float f) {
-        return this.mFakeDragger.fakeDragBy(f);
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    @RequiresApi(23)
-    public CharSequence getAccessibilityClassName() {
-        return this.mAccessibilityProvider.handlesGetAccessibilityClassName() ? this.mAccessibilityProvider.onGetAccessibilityClassName() : super.getAccessibilityClassName();
-    }
-
-    @Nullable
-    public RecyclerView.Adapter getAdapter() {
-        return this.mRecyclerView.getAdapter();
-    }
-
-    public int getCurrentItem() {
-        return this.mCurrentItem;
-    }
-
-    @NonNull
-    public RecyclerView.ItemDecoration getItemDecorationAt(int i) {
-        return this.mRecyclerView.getItemDecorationAt(i);
-    }
-
-    public int getItemDecorationCount() {
-        return this.mRecyclerView.getItemDecorationCount();
-    }
-
-    public int getOffscreenPageLimit() {
-        return this.mOffscreenPageLimit;
-    }
-
-    public int getOrientation() {
-        return this.mLayoutManager.getOrientation();
-    }
-
-    public int getPageSize() {
-        int height;
-        int paddingBottom;
-        RecyclerView recyclerView = this.mRecyclerView;
-        if (getOrientation() == 0) {
-            height = recyclerView.getWidth() - recyclerView.getPaddingLeft();
-            paddingBottom = recyclerView.getPaddingRight();
-        } else {
-            height = recyclerView.getHeight() - recyclerView.getPaddingTop();
-            paddingBottom = recyclerView.getPaddingBottom();
-        }
-        return height - paddingBottom;
-    }
-
-    public int getScrollState() {
-        return this.mScrollEventAdapter.getScrollState();
     }
 
     public void invalidateItemDecorations() {
@@ -850,6 +857,12 @@ public final class ViewPager2 extends ViewGroup {
         return this.mAccessibilityProvider.handlesPerformAccessibilityAction(i, bundle) ? this.mAccessibilityProvider.onPerformAccessibilityAction(i, bundle) : super.performAccessibilityAction(i, bundle);
     }
 
+    private void registerCurrentItemDataSetTracker(@Nullable RecyclerView.Adapter<?> adapter) {
+        if (adapter != null) {
+            adapter.registerAdapterDataObserver(this.mCurrentItemDataSetChangeObserver);
+        }
+    }
+
     public void registerOnPageChangeCallback(@NonNull OnPageChangeCallback onPageChangeCallback) {
         this.mExternalPageChangeCallbacks.addOnPageChangeCallback(onPageChangeCallback);
     }
@@ -870,6 +883,26 @@ public final class ViewPager2 extends ViewGroup {
         int i = (int) relativeScrollPosition;
         float f = (float) (relativeScrollPosition - ((double) i));
         this.mPageTransformerAdapter.onPageScrolled(i, f, Math.round(getPageSize() * f));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private void restorePendingState() {
+        RecyclerView.Adapter adapter;
+        if (this.mPendingCurrentItem == -1 || (adapter = getAdapter()) == 0) {
+            return;
+        }
+        Parcelable parcelable = this.mPendingAdapterState;
+        if (parcelable != null) {
+            if (adapter instanceof StatefulAdapter) {
+                ((StatefulAdapter) adapter).restoreState(parcelable);
+            }
+            this.mPendingAdapterState = null;
+        }
+        int iMax = Math.max(0, Math.min(this.mPendingCurrentItem, adapter.getItemCount() - 1));
+        this.mCurrentItem = iMax;
+        this.mPendingCurrentItem = -1;
+        this.mRecyclerView.scrollToPosition(iMax);
+        this.mAccessibilityProvider.onRestorePendingState();
     }
 
     public void setAdapter(@Nullable RecyclerView.Adapter adapter) {
@@ -943,6 +976,19 @@ public final class ViewPager2 extends ViewGroup {
         this.mRecyclerView.requestLayout();
     }
 
+    private void setOrientation(Context context, AttributeSet attributeSet) {
+        int[] iArr = C0693R.styleable.ViewPager2;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr);
+        if (Build.VERSION.SDK_INT >= 29) {
+            saveAttributeDataForStyleable(context, iArr, attributeSet, typedArrayObtainStyledAttributes, 0, 0);
+        }
+        try {
+            setOrientation(typedArrayObtainStyledAttributes.getInt(C0693R.styleable.ViewPager2_android_orientation, 0));
+        } finally {
+            typedArrayObtainStyledAttributes.recycle();
+        }
+    }
+
     public void setPageTransformer(@Nullable PageTransformer pageTransformer) {
         if (pageTransformer != null) {
             if (!this.mSavedItemAnimatorPresent) {
@@ -979,6 +1025,12 @@ public final class ViewPager2 extends ViewGroup {
         this.mRecyclerView.smoothScrollBy(iArrCalculateDistanceToFinalSnap[0], iArrCalculateDistanceToFinalSnap[1]);
     }
 
+    private void unregisterCurrentItemDataSetTracker(@Nullable RecyclerView.Adapter<?> adapter) {
+        if (adapter != null) {
+            adapter.unregisterAdapterDataObserver(this.mCurrentItemDataSetChangeObserver);
+        }
+    }
+
     public void unregisterOnPageChangeCallback(@NonNull OnPageChangeCallback onPageChangeCallback) {
         this.mExternalPageChangeCallbacks.removeOnPageChangeCallback(onPageChangeCallback);
     }
@@ -997,58 +1049,6 @@ public final class ViewPager2 extends ViewGroup {
             this.mPageChangeEventDispatcher.onPageSelected(position);
         }
         this.mCurrentItemDirty = false;
-    }
-
-    public static class SavedState extends View.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.viewpager2.widget.ViewPager2.SavedState.1
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-                return Build.VERSION.SDK_INT >= 24 ? new SavedState(parcel, classLoader) : new SavedState(parcel);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return createFromParcel(parcel, (ClassLoader) null);
-            }
-        };
-        public Parcelable mAdapterState;
-        public int mCurrentItem;
-        public int mRecyclerViewId;
-
-        @RequiresApi(24)
-        public SavedState(Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            readValues(parcel, classLoader);
-        }
-
-        private void readValues(Parcel parcel, ClassLoader classLoader) {
-            this.mRecyclerViewId = parcel.readInt();
-            this.mCurrentItem = parcel.readInt();
-            this.mAdapterState = parcel.readParcelable(classLoader);
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mRecyclerViewId);
-            parcel.writeInt(this.mCurrentItem);
-            parcel.writeParcelable(this.mAdapterState, i);
-        }
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            readValues(parcel, null);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
     }
 
     public void addItemDecoration(@NonNull RecyclerView.ItemDecoration itemDecoration, int i) {

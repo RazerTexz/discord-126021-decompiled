@@ -18,7 +18,7 @@ public final class WidgetAuthLogin$phoneVerifyLoginLauncher$1 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$phoneVerifyLoginLauncher$1$1 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final /* synthetic */ class C71941 extends C12215a implements Function1<Error, Unit> {
+    public final /* synthetic */ class C71941 extends C12215a implements Function1<Error, Unit> {
         public C71941(WidgetAuthLogin widgetAuthLogin) {
             super(1, widgetAuthLogin, WidgetAuthLogin.class, "handleError", "handleError(Lcom/discord/utilities/error/Error;Ljava/lang/String;)V", 0);
         }
@@ -38,7 +38,7 @@ public final class WidgetAuthLogin$phoneVerifyLoginLauncher$1 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$phoneVerifyLoginLauncher$1$2 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71952 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C71952 extends AbstractC12240o implements Function1<Void, Unit> {
         public C71952() {
             super(1);
         }

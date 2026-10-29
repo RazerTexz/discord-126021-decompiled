@@ -51,17 +51,17 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
     public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ID = "INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ID";
     private static final String INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_TIER_LISTING_ID = "INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_TIER_LISTING_ID";
+    private static final int TIER_PAGE_SIZE = 3;
+    private ServerSettingsGuildRoleSubscriptionEditTierAdapter adapter;
+
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTIONS_EDIT_TIER_VIEW_FLIPPER_LOADED_STATE */
     private static final int f19397xde0fc452 = 1;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_GUILD_ROLE_SUBSCRIPTION_EDIT_TIER_VIEW_FLIPPER_LOADING_STATE */
     private static final int f19398x15e1b612 = 0;
-    private static final int TIER_PAGE_SIZE = 3;
-    private ServerSettingsGuildRoleSubscriptionEditTierAdapter adapter;
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
@@ -78,28 +78,9 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId, long guildRoleSubscriptionGroupListingId, long guildRoleSubscriptionTierListingId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptionEditTier.INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ID, guildRoleSubscriptionGroupListingId);
-            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptionEditTier.INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_TIER_LISTING_ID, guildRoleSubscriptionTierListingId);
-            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptionEditTier.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-    public static final class C94841 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionEditTierViewModel.ViewState, Unit> {
+    public final class C94841 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionEditTierViewModel.ViewState, Unit> {
         public C94841() {
             super(1);
         }
@@ -120,7 +101,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-    public static final class C94852 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C94852 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C94852() {
             super(1);
         }
@@ -139,7 +120,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-    public static final class C94863 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionEditTierViewModel.Event, Unit> {
+    public final class C94863 extends AbstractC12240o implements Function1<ServerSettingsGuildRoleSubscriptionEditTierViewModel.Event, Unit> {
         public C94863() {
             super(1);
         }
@@ -159,7 +140,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$setupAdapter$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-    public static final class C94871 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
+    public final class C94871 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
         public C94871() {
             super(2);
         }
@@ -173,6 +154,25 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
         public final void invoke(TabLayout.Tab tab, int i) {
             C12238m.checkNotNullParameter(tab, "tab");
             tab.setText(WidgetServerSettingsGuildRoleSubscriptionEditTier.access$getAdapter$p(WidgetServerSettingsGuildRoleSubscriptionEditTier.this).getTabStringResId(i));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId, long guildRoleSubscriptionGroupListingId, long guildRoleSubscriptionTierListingId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptionEditTier.INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ID, guildRoleSubscriptionGroupListingId);
+            intent.putExtra(WidgetServerSettingsGuildRoleSubscriptionEditTier.INTENT_EXTRA_GUILD_ROLE_SUBSCRIPTION_TIER_LISTING_ID, guildRoleSubscriptionTierListingId);
+            C0870j.m156d(context, WidgetServerSettingsGuildRoleSubscriptionEditTier.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -276,46 +276,6 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
         }
     }
 
-    private final void setupAdapter() {
-        ServerSettingsGuildRoleSubscriptionEditTierAdapter serverSettingsGuildRoleSubscriptionEditTierAdapter = new ServerSettingsGuildRoleSubscriptionEditTierAdapter(this, getGuildId());
-        this.adapter = serverSettingsGuildRoleSubscriptionEditTierAdapter;
-        if (serverSettingsGuildRoleSubscriptionEditTierAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        serverSettingsGuildRoleSubscriptionEditTierAdapter.setPageSize(3);
-        ViewPager2 viewPager2 = getBinding().f17664e;
-        C12238m.checkNotNullExpressionValue(viewPager2, "binding.guildRoleSubscriptionEditTierViewPager");
-        ServerSettingsGuildRoleSubscriptionEditTierAdapter serverSettingsGuildRoleSubscriptionEditTierAdapter2 = this.adapter;
-        if (serverSettingsGuildRoleSubscriptionEditTierAdapter2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        viewPager2.setAdapter(serverSettingsGuildRoleSubscriptionEditTierAdapter2);
-        TabLayout tabLayout = getBinding().f17663d;
-        C12238m.checkNotNullExpressionValue(tabLayout, "binding.guildRoleSubscriptionEditTierTabs");
-        ViewPager2 viewPager3 = getBinding().f17664e;
-        C12238m.checkNotNullExpressionValue(viewPager3, "binding.guildRoleSubscriptionEditTierViewPager");
-        ViewPager2ExtensionsKt.setUpWithViewPager2(tabLayout, viewPager3, new C94871());
-        getBinding().f17663d.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() { // from class: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier.setupAdapter.2
-            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-
-            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
-            public void onTabSelected(TabLayout.Tab tab) {
-                if (tab != null) {
-                    int position = tab.getPosition();
-                    MaterialButton materialButton = WidgetServerSettingsGuildRoleSubscriptionEditTier.this.getBinding().f17665f;
-                    C12238m.checkNotNullExpressionValue(materialButton, "binding.serverSettingsGu…ubscriptionEditTierDelete");
-                    materialButton.setVisibility(WidgetServerSettingsGuildRoleSubscriptionEditTier.access$getAdapter$p(WidgetServerSettingsGuildRoleSubscriptionEditTier.this).isDetailsTab(position) ? 0 : 8);
-                }
-            }
-
-            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-        });
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -332,7 +292,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$onViewBound$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -367,7 +327,7 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier$onViewBound$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -411,5 +371,45 @@ public final class WidgetServerSettingsGuildRoleSubscriptionEditTier extends App
         C12238m.checkNotNullExpressionValue(observableM11112r2, "tierViewModel\n        .o…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r2, this, null, 2, null), (Class<?>) WidgetServerSettingsGuildRoleSubscriptionEditTier.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94852());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetServerSettingsGuildRoleSubscriptionEditTier.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94863());
+    }
+
+    private final void setupAdapter() {
+        ServerSettingsGuildRoleSubscriptionEditTierAdapter serverSettingsGuildRoleSubscriptionEditTierAdapter = new ServerSettingsGuildRoleSubscriptionEditTierAdapter(this, getGuildId());
+        this.adapter = serverSettingsGuildRoleSubscriptionEditTierAdapter;
+        if (serverSettingsGuildRoleSubscriptionEditTierAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        serverSettingsGuildRoleSubscriptionEditTierAdapter.setPageSize(3);
+        ViewPager2 viewPager2 = getBinding().f17664e;
+        C12238m.checkNotNullExpressionValue(viewPager2, "binding.guildRoleSubscriptionEditTierViewPager");
+        ServerSettingsGuildRoleSubscriptionEditTierAdapter serverSettingsGuildRoleSubscriptionEditTierAdapter2 = this.adapter;
+        if (serverSettingsGuildRoleSubscriptionEditTierAdapter2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        viewPager2.setAdapter(serverSettingsGuildRoleSubscriptionEditTierAdapter2);
+        TabLayout tabLayout = getBinding().f17663d;
+        C12238m.checkNotNullExpressionValue(tabLayout, "binding.guildRoleSubscriptionEditTierTabs");
+        ViewPager2 viewPager3 = getBinding().f17664e;
+        C12238m.checkNotNullExpressionValue(viewPager3, "binding.guildRoleSubscriptionEditTierViewPager");
+        ViewPager2ExtensionsKt.setUpWithViewPager2(tabLayout, viewPager3, new C94871());
+        getBinding().f17663d.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() { // from class: com.discord.widgets.servers.guild_role_subscription.edit_tier.WidgetServerSettingsGuildRoleSubscriptionEditTier.setupAdapter.2
+            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+
+            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab != null) {
+                    int position = tab.getPosition();
+                    MaterialButton materialButton = WidgetServerSettingsGuildRoleSubscriptionEditTier.this.getBinding().f17665f;
+                    C12238m.checkNotNullExpressionValue(materialButton, "binding.serverSettingsGu…ubscriptionEditTierDelete");
+                    materialButton.setVisibility(WidgetServerSettingsGuildRoleSubscriptionEditTier.access$getAdapter$p(WidgetServerSettingsGuildRoleSubscriptionEditTier.this).isDetailsTab(position) ? 0 : 8);
+                }
+            }
+
+            @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+        });
     }
 }

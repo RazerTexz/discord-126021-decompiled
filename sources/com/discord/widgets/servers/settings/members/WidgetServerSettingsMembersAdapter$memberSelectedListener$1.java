@@ -15,13 +15,13 @@ public final class WidgetServerSettingsMembersAdapter$memberSelectedListener$1 e
         super(2);
     }
 
+    public final void invoke(long j, List<Long> list) {
+        C12238m.checkNotNullParameter(list, "<anonymous parameter 1>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Long l, List<? extends Long> list) {
         invoke(l.longValue(), (List<Long>) list);
         return Unit.f27425a;
-    }
-
-    public final void invoke(long j, List<Long> list) {
-        C12238m.checkNotNullParameter(list, "<anonymous parameter 1>");
     }
 }

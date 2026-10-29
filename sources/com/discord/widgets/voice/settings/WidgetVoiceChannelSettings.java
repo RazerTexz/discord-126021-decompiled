@@ -84,8 +84,86 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final StatefulViews state;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-    public static final class Companion {
+    public final class C105691 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C105691() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetVoiceChannelSettings.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$saveChannel$1 */
+    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
+    public final class C105701 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C105701() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C0876m.m169g(WidgetVoiceChannelSettings.this.getContext(), C5419R.string.channel_settings_have_been_updated, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$showRegionDialog$2 */
+    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
+    public final class C105712 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public final /* synthetic */ List $regions;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C105712(List list) {
+            super(1);
+            this.$regions = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i) {
+            if (i == 0) {
+                StatefulViews statefulViews = WidgetVoiceChannelSettings.this.state;
+                TextView textView = WidgetVoiceChannelSettings.this.getBinding().f18464g;
+                C12238m.checkNotNullExpressionValue(textView, "binding.channelSettingsRegionOverride");
+                statefulViews.put(textView.getId(), null);
+                TextView textView2 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
+                C12238m.checkNotNullExpressionValue(textView2, "binding.channelSettingsRegionOverride");
+                textView2.setText(C1107b.m213e(WidgetVoiceChannelSettings.this, C5419R.string.automatic_region, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null));
+            } else {
+                StatefulViews statefulViews2 = WidgetVoiceChannelSettings.this.state;
+                TextView textView3 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
+                C12238m.checkNotNullExpressionValue(textView3, "binding.channelSettingsRegionOverride");
+                int i2 = i - 1;
+                statefulViews2.put(textView3.getId(), ((ModelVoiceRegion) this.$regions.get(i2)).getId());
+                TextView textView4 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
+                C12238m.checkNotNullExpressionValue(textView4, "binding.channelSettingsRegionOverride");
+                textView4.setText(((ModelVoiceRegion) this.$regions.get(i2)).getName());
+            }
+            WidgetVoiceChannelSettings.this.state.configureSaveActionView(WidgetVoiceChannelSettings.this.getBinding().f18467j);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -102,7 +180,7 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -114,7 +192,7 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
         private final List<ModelVoiceRegion> regions;
 
         /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -147,6 +225,10 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
             this.guildID = j;
         }
 
+        public final List<ModelVoiceRegion> component5() {
+            return this.regions;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, Channel channel, boolean z2, boolean z3, int i, List list, long j, int i2, Object obj) {
             if ((i2 & 1) != 0) {
@@ -174,35 +256,6 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
             return model.copy(channel, z4, z5, i3, list2, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanManageChannel() {
-            return this.canManageChannel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanManagePermissions() {
-            return this.canManagePermissions;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getMaxBitrate() {
-            return this.maxBitrate;
-        }
-
-        public final List<ModelVoiceRegion> component5() {
-            return this.regions;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final long getGuildID() {
-            return this.guildID;
-        }
-
         public final Model copy(Channel channel, boolean canManageChannel, boolean canManagePermissions, int maxBitrate, List<? extends ModelVoiceRegion> regions, long guildID) {
             C12238m.checkNotNullParameter(channel, "channel");
             C12238m.checkNotNullParameter(regions, "regions");
@@ -220,20 +273,45 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
             return C12238m.areEqual(this.channel, model.channel) && this.canManageChannel == model.canManageChannel && this.canManagePermissions == model.canManagePermissions && this.maxBitrate == model.maxBitrate && C12238m.areEqual(this.regions, model.regions) && this.guildID == model.guildID;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getCanManageChannel() {
             return this.canManageChannel;
+        }
+
+        public final boolean getCanManageChannel() {
+            return this.canManageChannel;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getCanManagePermissions() {
+            return this.canManagePermissions;
         }
 
         public final boolean getCanManagePermissions() {
             return this.canManagePermissions;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
         }
 
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final long getGuildID() {
             return this.guildID;
+        }
+
+        public final long getGuildID() {
+            return this.guildID;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getMaxBitrate() {
+            return this.maxBitrate;
         }
 
         public final int getMaxBitrate() {
@@ -280,84 +358,6 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
             sbM833U.append(this.regions);
             sbM833U.append(", guildID=");
             return C1643a.m815C(sbM833U, this.guildID, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-    public static final class C105691 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C105691() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetVoiceChannelSettings.this.configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$saveChannel$1 */
-    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-    public static final class C105701 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C105701() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C0876m.m169g(WidgetVoiceChannelSettings.this.getContext(), C5419R.string.channel_settings_have_been_updated, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$showRegionDialog$2 */
-    /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-    public static final class C105712 extends AbstractC12240o implements Function1<Integer, Unit> {
-        public final /* synthetic */ List $regions;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C105712(List list) {
-            super(1);
-            this.$regions = list;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
-            invoke(num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i) {
-            if (i == 0) {
-                StatefulViews statefulViews = WidgetVoiceChannelSettings.this.state;
-                TextView textView = WidgetVoiceChannelSettings.this.getBinding().f18464g;
-                C12238m.checkNotNullExpressionValue(textView, "binding.channelSettingsRegionOverride");
-                statefulViews.put(textView.getId(), null);
-                TextView textView2 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
-                C12238m.checkNotNullExpressionValue(textView2, "binding.channelSettingsRegionOverride");
-                textView2.setText(C1107b.m213e(WidgetVoiceChannelSettings.this, C5419R.string.automatic_region, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null));
-            } else {
-                StatefulViews statefulViews2 = WidgetVoiceChannelSettings.this.state;
-                TextView textView3 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
-                C12238m.checkNotNullExpressionValue(textView3, "binding.channelSettingsRegionOverride");
-                int i2 = i - 1;
-                statefulViews2.put(textView3.getId(), ((ModelVoiceRegion) this.$regions.get(i2)).getId());
-                TextView textView4 = WidgetVoiceChannelSettings.this.getBinding().f18464g;
-                C12238m.checkNotNullExpressionValue(textView4, "binding.channelSettingsRegionOverride");
-                textView4.setText(((ModelVoiceRegion) this.$regions.get(i2)).getName());
-            }
-            WidgetVoiceChannelSettings.this.state.configureSaveActionView(WidgetVoiceChannelSettings.this.getBinding().f18467j);
         }
     }
 
@@ -591,7 +591,7 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.settings.WidgetVoiceChannelSettings$confirmDelete$2$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
                 public AnonymousClass2() {
                     super(1);
                 }
@@ -652,26 +652,6 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
         INSTANCE.launch(j, context);
     }
 
-    private final void saveChannel(long channelId, String channelName, int channelType, String channelTopic, Boolean nsfw, int userLimit, int bitrate, String rtcRegion) {
-        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApiSerializeNulls().editVoiceChannel(channelId, channelName, channelTopic, nsfw, Integer.valueOf(channelType), Integer.valueOf(bitrate), Integer.valueOf(userLimit), rtcRegion), this, null, 2, null).m11108k(C0879o.f566a.m184g(getContext(), new C105701(), null));
-    }
-
-    private final void showRegionDialog(List<? extends ModelVoiceRegion> regions) {
-        C0837n.Companion companion = C0837n.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        CharSequence charSequenceM213e = C1107b.m213e(this, C5419R.string.form_label_region_override, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null);
-        List listListOf = C12145m.listOf(C1107b.m213e(this, C5419R.string.automatic_region, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null));
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(regions, 10));
-        Iterator<T> it = regions.iterator();
-        while (it.hasNext()) {
-            arrayList.add(((ModelVoiceRegion) it.next()).getName());
-        }
-        Object[] array = C12163u.plus((Collection) listListOf, (Iterable) arrayList).toArray(new CharSequence[0]);
-        Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-        companion.m142a(parentFragmentManager, charSequenceM213e, (CharSequence[]) array, new C105712(regions));
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -708,5 +688,25 @@ public final class WidgetVoiceChannelSettings extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getMostRecentIntent().getLongExtra(INTENT_EXTRA_CHANNEL_ID, -1L)), this, null, 2, null), (Class<?>) WidgetVoiceChannelSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105691());
+    }
+
+    private final void saveChannel(long channelId, String channelName, int channelType, String channelTopic, Boolean nsfw, int userLimit, int bitrate, String rtcRegion) {
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApiSerializeNulls().editVoiceChannel(channelId, channelName, channelTopic, nsfw, Integer.valueOf(channelType), Integer.valueOf(bitrate), Integer.valueOf(userLimit), rtcRegion), this, null, 2, null).m11108k(C0879o.f566a.m184g(getContext(), new C105701(), null));
+    }
+
+    private final void showRegionDialog(List<? extends ModelVoiceRegion> regions) {
+        C0837n.Companion companion = C0837n.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        CharSequence charSequenceM213e = C1107b.m213e(this, C5419R.string.form_label_region_override, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null);
+        List listListOf = C12145m.listOf(C1107b.m213e(this, C5419R.string.automatic_region, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null));
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(regions, 10));
+        Iterator<T> it = regions.iterator();
+        while (it.hasNext()) {
+            arrayList.add(((ModelVoiceRegion) it.next()).getName());
+        }
+        Object[] array = C12163u.plus((Collection) listListOf, (Iterable) arrayList).toArray(new CharSequence[0]);
+        Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
+        companion.m142a(parentFragmentManager, charSequenceM213e, (CharSequence[]) array, new C105712(regions));
     }
 }

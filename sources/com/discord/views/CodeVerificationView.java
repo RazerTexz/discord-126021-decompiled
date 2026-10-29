@@ -43,32 +43,32 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class CodeVerificationView extends LinearLayout {
 
-    /* JADX INFO: renamed from: j */
-    public static final EnumC7072a f19031j = EnumC7072a.NUMERIC;
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final C0946e2 binding;
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public final List<TextView> characterViews;
-
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public final Drawable charBackgroundDrawableUnfocused;
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public final Drawable charBackgroundDrawableFocused;
 
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public EnumC7072a inputType;
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public final Drawable charBackgroundDrawableUnfocused;
 
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public String inputFormat;
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public final List<TextView> characterViews;
 
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public String code;
 
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public String inputFormat;
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public EnumC7072a inputType;
+
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
     public Function1<? super String, Unit> onCodeEntered;
+
+    /* JADX INFO: renamed from: j */
+    public static final EnumC7072a f19031j = EnumC7072a.NUMERIC;
 
     /* JADX INFO: renamed from: com.discord.views.CodeVerificationView$a */
     /* JADX INFO: compiled from: CodeVerificationView.kt */
@@ -85,7 +85,7 @@ public final class CodeVerificationView extends LinearLayout {
 
         /* JADX INFO: renamed from: com.discord.views.CodeVerificationView$a$a */
         /* JADX INFO: compiled from: CodeVerificationView.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -183,11 +183,8 @@ public final class CodeVerificationView extends LinearLayout {
         m8541e();
     }
 
-    /* JADX INFO: renamed from: a */
-    public static final void m8537a(CodeVerificationView codeVerificationView) {
-        Object systemService = codeVerificationView.getContext().getSystemService("input_method");
-        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.view.inputmethod.InputMethodManager");
-        ((InputMethodManager) systemService).showSoftInput(codeVerificationView, 2);
+    public final String getCode() {
+        return this.code;
     }
 
     private final int getInputLength() {
@@ -202,6 +199,17 @@ public final class CodeVerificationView extends LinearLayout {
             }
         }
         return i;
+    }
+
+    public final Function1<String, Unit> getOnCodeEntered() {
+        return this.onCodeEntered;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final void m8537a(CodeVerificationView codeVerificationView) {
+        Object systemService = codeVerificationView.getContext().getSystemService("input_method");
+        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.view.inputmethod.InputMethodManager");
+        ((InputMethodManager) systemService).showSoftInput(codeVerificationView, 2);
     }
 
     /* JADX INFO: renamed from: b */
@@ -254,14 +262,6 @@ public final class CodeVerificationView extends LinearLayout {
             ((TextView) obj).setBackground(i == iMin ? this.charBackgroundDrawableFocused : this.charBackgroundDrawableUnfocused);
             i = i2;
         }
-    }
-
-    public final String getCode() {
-        return this.code;
-    }
-
-    public final Function1<String, Unit> getOnCodeEntered() {
-        return this.onCodeEntered;
     }
 
     @Override // android.view.View

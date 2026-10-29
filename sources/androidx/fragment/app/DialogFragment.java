@@ -110,64 +110,6 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
         this.mDialogCreated = false;
     }
 
-    private void dismissInternal(boolean z2, boolean z3) {
-        if (this.mDismissed) {
-            return;
-        }
-        this.mDismissed = true;
-        this.mShownByMe = false;
-        Dialog dialog = this.mDialog;
-        if (dialog != null) {
-            dialog.setOnDismissListener(null);
-            this.mDialog.dismiss();
-            if (!z3) {
-                if (Looper.myLooper() == this.mHandler.getLooper()) {
-                    onDismiss(this.mDialog);
-                } else {
-                    this.mHandler.post(this.mDismissRunnable);
-                }
-            }
-        }
-        this.mViewDestroyed = true;
-        if (this.mBackStackId >= 0) {
-            getParentFragmentManager().popBackStack(this.mBackStackId, 1);
-            this.mBackStackId = -1;
-            return;
-        }
-        FragmentTransaction fragmentTransactionBeginTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransactionBeginTransaction.remove(this);
-        if (z2) {
-            fragmentTransactionBeginTransaction.commitAllowingStateLoss();
-        } else {
-            fragmentTransactionBeginTransaction.commit();
-        }
-    }
-
-    private void prepareDialog(@Nullable Bundle bundle) {
-        if (this.mShowsDialog && !this.mDialogCreated) {
-            try {
-                this.mCreatingDialog = true;
-                Dialog dialogOnCreateDialog = onCreateDialog(bundle);
-                this.mDialog = dialogOnCreateDialog;
-                if (this.mShowsDialog) {
-                    setupDialog(dialogOnCreateDialog, this.mStyle);
-                    Context context = getContext();
-                    if (context instanceof Activity) {
-                        this.mDialog.setOwnerActivity((Activity) context);
-                    }
-                    this.mDialog.setCancelable(this.mCancelable);
-                    this.mDialog.setOnCancelListener(this.mOnCancelListener);
-                    this.mDialog.setOnDismissListener(this.mOnDismissListener);
-                    this.mDialogCreated = true;
-                } else {
-                    this.mDialog = null;
-                }
-            } finally {
-                this.mCreatingDialog = false;
-            }
-        }
-    }
-
     @Override // androidx.fragment.app.Fragment
     @NonNull
     public FragmentContainer createFragmentContainer() {
@@ -199,6 +141,39 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
 
     public void dismissAllowingStateLoss() {
         dismissInternal(true, false);
+    }
+
+    private void dismissInternal(boolean z2, boolean z3) {
+        if (this.mDismissed) {
+            return;
+        }
+        this.mDismissed = true;
+        this.mShownByMe = false;
+        Dialog dialog = this.mDialog;
+        if (dialog != null) {
+            dialog.setOnDismissListener(null);
+            this.mDialog.dismiss();
+            if (!z3) {
+                if (Looper.myLooper() == this.mHandler.getLooper()) {
+                    onDismiss(this.mDialog);
+                } else {
+                    this.mHandler.post(this.mDismissRunnable);
+                }
+            }
+        }
+        this.mViewDestroyed = true;
+        if (this.mBackStackId >= 0) {
+            getParentFragmentManager().popBackStack(this.mBackStackId, 1);
+            this.mBackStackId = -1;
+            return;
+        }
+        FragmentTransaction fragmentTransactionBeginTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransactionBeginTransaction.remove(this);
+        if (z2) {
+            fragmentTransactionBeginTransaction.commitAllowingStateLoss();
+        } else {
+            fragmentTransactionBeginTransaction.commit();
+        }
     }
 
     @Nullable
@@ -404,6 +379,31 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
             return;
         }
         this.mDialog.onRestoreInstanceState(bundle2);
+    }
+
+    private void prepareDialog(@Nullable Bundle bundle) {
+        if (this.mShowsDialog && !this.mDialogCreated) {
+            try {
+                this.mCreatingDialog = true;
+                Dialog dialogOnCreateDialog = onCreateDialog(bundle);
+                this.mDialog = dialogOnCreateDialog;
+                if (this.mShowsDialog) {
+                    setupDialog(dialogOnCreateDialog, this.mStyle);
+                    Context context = getContext();
+                    if (context instanceof Activity) {
+                        this.mDialog.setOwnerActivity((Activity) context);
+                    }
+                    this.mDialog.setCancelable(this.mCancelable);
+                    this.mDialog.setOnCancelListener(this.mOnCancelListener);
+                    this.mDialog.setOnDismissListener(this.mOnDismissListener);
+                    this.mDialogCreated = true;
+                } else {
+                    this.mDialog = null;
+                }
+            } finally {
+                this.mCreatingDialog = false;
+            }
+        }
     }
 
     @NonNull

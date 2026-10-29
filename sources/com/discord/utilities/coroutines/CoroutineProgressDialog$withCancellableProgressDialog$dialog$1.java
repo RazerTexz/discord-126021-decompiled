@@ -49,7 +49,7 @@ public final class CoroutineProgressDialog$withCancellableProgressDialog$dialog$
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         C12183c.getCOROUTINE_SUSPENDED();
         if (this.label != 0) {
             throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");

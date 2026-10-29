@@ -37,7 +37,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
     public static final boolean GENERATE_CANCELLATION_CAUSES = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
     private static final Logger log = Logger.getLogger(AbstractResolvableFuture.class.getName());
 
-    public static abstract class AtomicHelper {
+    public abstract class AtomicHelper {
         private AtomicHelper() {
         }
 
@@ -52,7 +52,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         public abstract void putThread(Waiter waiter, Thread thread);
     }
 
-    public static final class Cancellation {
+    public final class Cancellation {
         public static final Cancellation CAUSELESS_CANCELLED;
         public static final Cancellation CAUSELESS_INTERRUPTED;
 
@@ -76,27 +76,27 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
     }
 
-    public static final class Failure {
+    public final class Failure {
+        public final Throwable exception;
         public static final Failure FALLBACK_INSTANCE = new Failure(new Throwable("Failure occurred while trying to finish a future.") { // from class: androidx.concurrent.futures.AbstractResolvableFuture.Failure.1
             @Override // java.lang.Throwable
             public synchronized Throwable fillInStackTrace() {
                 return this;
             }
         });
-        public final Throwable exception;
 
         public Failure(Throwable th) {
             this.exception = (Throwable) AbstractResolvableFuture.checkNotNull(th);
         }
     }
 
-    public static final class Listener {
-        public static final Listener TOMBSTONE = new Listener(null, null);
+    public final class Listener {
         public final Executor executor;
 
         @Nullable
         public Listener next;
         public final Runnable task;
+        public static final Listener TOMBSTONE = new Listener(null, null);
 
         public Listener(Runnable runnable, Executor executor) {
             this.task = runnable;
@@ -104,7 +104,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
     }
 
-    public static final class SafeAtomicHelper extends AtomicHelper {
+    public final class SafeAtomicHelper extends AtomicHelper {
         public final AtomicReferenceFieldUpdater<AbstractResolvableFuture, Listener> listenersUpdater;
         public final AtomicReferenceFieldUpdater<AbstractResolvableFuture, Object> valueUpdater;
         public final AtomicReferenceFieldUpdater<Waiter, Waiter> waiterNextUpdater;
@@ -146,7 +146,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
     }
 
-    public static final class SetFuture<V> implements Runnable {
+    public final class SetFuture<V> implements Runnable {
         public final InterfaceFutureC4539a<? extends V> future;
         public final AbstractResolvableFuture<V> owner;
 
@@ -166,7 +166,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
     }
 
-    public static final class SynchronizedHelper extends AtomicHelper {
+    public final class SynchronizedHelper extends AtomicHelper {
         public SynchronizedHelper() {
             super();
         }
@@ -215,14 +215,14 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
     }
 
-    public static final class Waiter {
-        public static final Waiter TOMBSTONE = new Waiter(false);
+    public final class Waiter {
 
         @Nullable
         public volatile Waiter next;
 
         @Nullable
         public volatile Thread thread;
+        public static final Waiter TOMBSTONE = new Waiter(false);
 
         public Waiter(boolean z2) {
         }
@@ -276,6 +276,71 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
             sb.append("FAILURE, cause=[");
             sb.append(e2.getCause());
             sb.append("]");
+        }
+    }
+
+    @Override // p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a
+    public final void addListener(Runnable runnable, Executor executor) {
+        checkNotNull(runnable);
+        checkNotNull(executor);
+        Listener listener = this.listeners;
+        if (listener != Listener.TOMBSTONE) {
+            Listener listener2 = new Listener(runnable, executor);
+            do {
+                listener2.next = listener;
+                if (ATOMIC_HELPER.casListeners(this, listener, listener2)) {
+                    return;
+                } else {
+                    listener = this.listeners;
+                }
+            } while (listener != Listener.TOMBSTONE);
+        }
+        executeListener(runnable, executor);
+    }
+
+    public void afterDone() {
+    }
+
+    @Override // java.util.concurrent.Future
+    public final boolean cancel(boolean z2) {
+        Cancellation cancellation;
+        Object obj = this.value;
+        if (!(obj == null) && !(obj instanceof SetFuture)) {
+            return false;
+        }
+        if (GENERATE_CANCELLATION_CAUSES) {
+            cancellation = new Cancellation(z2, new CancellationException("Future.cancel() was called."));
+        } else {
+            cancellation = z2 ? Cancellation.CAUSELESS_INTERRUPTED : Cancellation.CAUSELESS_CANCELLED;
+        }
+        boolean z3 = false;
+        AbstractResolvableFuture<V> abstractResolvableFuture = this;
+        while (true) {
+            if (ATOMIC_HELPER.casValue(abstractResolvableFuture, obj, cancellation)) {
+                if (z2) {
+                    abstractResolvableFuture.interruptTask();
+                }
+                complete(abstractResolvableFuture);
+                if (!(obj instanceof SetFuture)) {
+                    return true;
+                }
+                InterfaceFutureC4539a<? extends V> interfaceFutureC4539a = ((SetFuture) obj).future;
+                if (!(interfaceFutureC4539a instanceof AbstractResolvableFuture)) {
+                    interfaceFutureC4539a.cancel(z2);
+                    return true;
+                }
+                abstractResolvableFuture = (AbstractResolvableFuture) interfaceFutureC4539a;
+                obj = abstractResolvableFuture.value;
+                if (!(obj == null) && !(obj instanceof SetFuture)) {
+                    return true;
+                }
+                z3 = true;
+            } else {
+                obj = abstractResolvableFuture.value;
+                if (!(obj instanceof SetFuture)) {
+                    return z3;
+                }
+            }
         }
     }
 
@@ -349,177 +414,6 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
             executor.execute(runnable);
         } catch (RuntimeException e) {
             log.log(Level.SEVERE, "RuntimeException while executing runnable " + runnable + " with executor " + executor, (Throwable) e);
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private V getDoneValue(Object obj) throws ExecutionException {
-        if (obj instanceof Cancellation) {
-            throw cancellationExceptionWithCause("Task was cancelled.", ((Cancellation) obj).cause);
-        }
-        if (obj instanceof Failure) {
-            throw new ExecutionException(((Failure) obj).exception);
-        }
-        if (obj == NULL) {
-            return null;
-        }
-        return obj;
-    }
-
-    public static Object getFutureValue(InterfaceFutureC4539a<?> interfaceFutureC4539a) {
-        if (interfaceFutureC4539a instanceof AbstractResolvableFuture) {
-            Object obj = ((AbstractResolvableFuture) interfaceFutureC4539a).value;
-            if (!(obj instanceof Cancellation)) {
-                return obj;
-            }
-            Cancellation cancellation = (Cancellation) obj;
-            if (cancellation.wasInterrupted) {
-                return cancellation.cause != null ? new Cancellation(false, cancellation.cause) : Cancellation.CAUSELESS_CANCELLED;
-            }
-            return obj;
-        }
-        boolean zIsCancelled = interfaceFutureC4539a.isCancelled();
-        if ((!GENERATE_CANCELLATION_CAUSES) && zIsCancelled) {
-            return Cancellation.CAUSELESS_CANCELLED;
-        }
-        try {
-            Object uninterruptibly = getUninterruptibly(interfaceFutureC4539a);
-            return uninterruptibly == null ? NULL : uninterruptibly;
-        } catch (CancellationException e) {
-            if (zIsCancelled) {
-                return new Cancellation(false, e);
-            }
-            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + interfaceFutureC4539a, e));
-        } catch (ExecutionException e2) {
-            return new Failure(e2.getCause());
-        } catch (Throwable th) {
-            return new Failure(th);
-        }
-    }
-
-    private static <V> V getUninterruptibly(Future<V> future) throws ExecutionException {
-        V v;
-        boolean z2 = false;
-        while (true) {
-            try {
-                v = future.get();
-                break;
-            } catch (InterruptedException unused) {
-                z2 = true;
-            } catch (Throwable th) {
-                if (z2) {
-                    Thread.currentThread().interrupt();
-                }
-                throw th;
-            }
-        }
-        if (z2) {
-            Thread.currentThread().interrupt();
-        }
-        return v;
-    }
-
-    private void releaseWaiters() {
-        Waiter waiter;
-        do {
-            waiter = this.waiters;
-        } while (!ATOMIC_HELPER.casWaiters(this, waiter, Waiter.TOMBSTONE));
-        while (waiter != null) {
-            waiter.unpark();
-            waiter = waiter.next;
-        }
-    }
-
-    private void removeWaiter(Waiter waiter) {
-        waiter.thread = null;
-        while (true) {
-            Waiter waiter2 = this.waiters;
-            if (waiter2 == Waiter.TOMBSTONE) {
-                return;
-            }
-            Waiter waiter3 = null;
-            while (waiter2 != null) {
-                Waiter waiter4 = waiter2.next;
-                if (waiter2.thread != null) {
-                    waiter3 = waiter2;
-                } else if (waiter3 != null) {
-                    waiter3.next = waiter4;
-                    if (waiter3.thread == null) {
-                    }
-                } else if (!ATOMIC_HELPER.casWaiters(this, waiter2, waiter4)) {
-                }
-                waiter2 = waiter4;
-            }
-            return;
-        }
-    }
-
-    private String userObjectToString(Object obj) {
-        return obj == this ? "this future" : String.valueOf(obj);
-    }
-
-    @Override // p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a
-    public final void addListener(Runnable runnable, Executor executor) {
-        checkNotNull(runnable);
-        checkNotNull(executor);
-        Listener listener = this.listeners;
-        if (listener != Listener.TOMBSTONE) {
-            Listener listener2 = new Listener(runnable, executor);
-            do {
-                listener2.next = listener;
-                if (ATOMIC_HELPER.casListeners(this, listener, listener2)) {
-                    return;
-                } else {
-                    listener = this.listeners;
-                }
-            } while (listener != Listener.TOMBSTONE);
-        }
-        executeListener(runnable, executor);
-    }
-
-    public void afterDone() {
-    }
-
-    @Override // java.util.concurrent.Future
-    public final boolean cancel(boolean z2) {
-        Cancellation cancellation;
-        Object obj = this.value;
-        if (!(obj == null) && !(obj instanceof SetFuture)) {
-            return false;
-        }
-        if (GENERATE_CANCELLATION_CAUSES) {
-            cancellation = new Cancellation(z2, new CancellationException("Future.cancel() was called."));
-        } else {
-            cancellation = z2 ? Cancellation.CAUSELESS_INTERRUPTED : Cancellation.CAUSELESS_CANCELLED;
-        }
-        boolean z3 = false;
-        AbstractResolvableFuture<V> abstractResolvableFuture = this;
-        while (true) {
-            if (ATOMIC_HELPER.casValue(abstractResolvableFuture, obj, cancellation)) {
-                if (z2) {
-                    abstractResolvableFuture.interruptTask();
-                }
-                complete(abstractResolvableFuture);
-                if (!(obj instanceof SetFuture)) {
-                    return true;
-                }
-                InterfaceFutureC4539a<? extends V> interfaceFutureC4539a = ((SetFuture) obj).future;
-                if (!(interfaceFutureC4539a instanceof AbstractResolvableFuture)) {
-                    interfaceFutureC4539a.cancel(z2);
-                    return true;
-                }
-                abstractResolvableFuture = (AbstractResolvableFuture) interfaceFutureC4539a;
-                obj = abstractResolvableFuture.value;
-                if (!(obj == null) && !(obj instanceof SetFuture)) {
-                    return true;
-                }
-                z3 = true;
-            } else {
-                obj = abstractResolvableFuture.value;
-                if (!(obj instanceof SetFuture)) {
-                    return z3;
-                }
-            }
         }
     }
 
@@ -602,6 +496,73 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         throw new TimeoutException(C1643a.m886y(strM883w, " for ", string));
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    private V getDoneValue(Object obj) throws ExecutionException {
+        if (obj instanceof Cancellation) {
+            throw cancellationExceptionWithCause("Task was cancelled.", ((Cancellation) obj).cause);
+        }
+        if (obj instanceof Failure) {
+            throw new ExecutionException(((Failure) obj).exception);
+        }
+        if (obj == NULL) {
+            return null;
+        }
+        return obj;
+    }
+
+    public static Object getFutureValue(InterfaceFutureC4539a<?> interfaceFutureC4539a) {
+        if (interfaceFutureC4539a instanceof AbstractResolvableFuture) {
+            Object obj = ((AbstractResolvableFuture) interfaceFutureC4539a).value;
+            if (!(obj instanceof Cancellation)) {
+                return obj;
+            }
+            Cancellation cancellation = (Cancellation) obj;
+            if (cancellation.wasInterrupted) {
+                return cancellation.cause != null ? new Cancellation(false, cancellation.cause) : Cancellation.CAUSELESS_CANCELLED;
+            }
+            return obj;
+        }
+        boolean zIsCancelled = interfaceFutureC4539a.isCancelled();
+        if ((!GENERATE_CANCELLATION_CAUSES) && zIsCancelled) {
+            return Cancellation.CAUSELESS_CANCELLED;
+        }
+        try {
+            Object uninterruptibly = getUninterruptibly(interfaceFutureC4539a);
+            return uninterruptibly == null ? NULL : uninterruptibly;
+        } catch (CancellationException e) {
+            if (zIsCancelled) {
+                return new Cancellation(false, e);
+            }
+            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + interfaceFutureC4539a, e));
+        } catch (ExecutionException e2) {
+            return new Failure(e2.getCause());
+        } catch (Throwable th) {
+            return new Failure(th);
+        }
+    }
+
+    private static <V> V getUninterruptibly(Future<V> future) throws ExecutionException {
+        V v;
+        boolean z2 = false;
+        while (true) {
+            try {
+                v = future.get();
+                break;
+            } catch (InterruptedException unused) {
+                z2 = true;
+            } catch (Throwable th) {
+                if (z2) {
+                    Thread.currentThread().interrupt();
+                }
+                throw th;
+            }
+        }
+        if (z2) {
+            Thread.currentThread().interrupt();
+        }
+        return v;
+    }
+
     public void interruptTask() {
     }
 
@@ -636,6 +597,41 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         sbM833U.append(((ScheduledFuture) this).getDelay(TimeUnit.MILLISECONDS));
         sbM833U.append(" ms]");
         return sbM833U.toString();
+    }
+
+    private void releaseWaiters() {
+        Waiter waiter;
+        do {
+            waiter = this.waiters;
+        } while (!ATOMIC_HELPER.casWaiters(this, waiter, Waiter.TOMBSTONE));
+        while (waiter != null) {
+            waiter.unpark();
+            waiter = waiter.next;
+        }
+    }
+
+    private void removeWaiter(Waiter waiter) {
+        waiter.thread = null;
+        while (true) {
+            Waiter waiter2 = this.waiters;
+            if (waiter2 == Waiter.TOMBSTONE) {
+                return;
+            }
+            Waiter waiter3 = null;
+            while (waiter2 != null) {
+                Waiter waiter4 = waiter2.next;
+                if (waiter2.thread != null) {
+                    waiter3 = waiter2;
+                } else if (waiter3 != null) {
+                    waiter3.next = waiter4;
+                    if (waiter3.thread == null) {
+                    }
+                } else if (!ATOMIC_HELPER.casWaiters(this, waiter2, waiter4)) {
+                }
+                waiter2 = waiter4;
+            }
+            return;
+        }
     }
 
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
@@ -730,6 +726,10 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC453
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    private String userObjectToString(Object obj) {
+        return obj == this ? "this future" : String.valueOf(obj);
     }
 
     public final boolean wasInterrupted() {

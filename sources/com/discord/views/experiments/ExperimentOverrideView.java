@@ -28,7 +28,7 @@ public final class ExperimentOverrideView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.views.experiments.ExperimentOverrideView$a */
     /* JADX INFO: compiled from: ExperimentOverrideView.kt */
-    public static final class C7112a extends ArrayAdapter<C7113b> {
+    public final class C7112a extends ArrayAdapter<C7113b> {
 
         /* JADX INFO: renamed from: j */
         public final List<C7113b> f19266j;
@@ -39,21 +39,6 @@ public final class ExperimentOverrideView extends ConstraintLayout {
             C12238m.checkNotNullParameter(context, "context");
             C12238m.checkNotNullParameter(list, "items");
             this.f19266j = list;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final View m8591a(int i, View view) {
-            View view2 = view;
-            if (view == null) {
-                View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.view_simple_spinner_dropdown_item, (ViewGroup) null, false);
-                Objects.requireNonNull(viewInflate, "rootView");
-                TextView textView = (TextView) viewInflate;
-                C12238m.checkNotNullExpressionValue(new C1062u3(textView), "ViewSimpleSpinnerDropdow…om(context), null, false)");
-                C12238m.checkNotNullExpressionValue(textView, "ViewSimpleSpinnerDropdow…ntext), null, false).root");
-                view2 = textView;
-            }
-            ((TextView) view2).setText(this.f19266j.get(i).f19268b);
-            return view2;
         }
 
         @Override // android.widget.ArrayAdapter, android.widget.Adapter
@@ -86,11 +71,26 @@ public final class ExperimentOverrideView extends ConstraintLayout {
             C12238m.checkNotNullParameter(viewGroup, "parent");
             return m8591a(i, view);
         }
+
+        /* JADX INFO: renamed from: a */
+        public final View m8591a(int i, View view) {
+            View view2 = view;
+            if (view == null) {
+                View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.view_simple_spinner_dropdown_item, (ViewGroup) null, false);
+                Objects.requireNonNull(viewInflate, "rootView");
+                TextView textView = (TextView) viewInflate;
+                C12238m.checkNotNullExpressionValue(new C1062u3(textView), "ViewSimpleSpinnerDropdow…om(context), null, false)");
+                C12238m.checkNotNullExpressionValue(textView, "ViewSimpleSpinnerDropdow…ntext), null, false).root");
+                view2 = textView;
+            }
+            ((TextView) view2).setText(this.f19266j.get(i).f19268b);
+            return view2;
+        }
     }
 
     /* JADX INFO: renamed from: com.discord.views.experiments.ExperimentOverrideView$b */
     /* JADX INFO: compiled from: ExperimentOverrideView.kt */
-    public static final class C7113b {
+    public final class C7113b {
 
         /* JADX INFO: renamed from: a */
         public final Integer f19267a;

@@ -17,6 +17,10 @@ public final /* data */ class ModelRtcLatencyRegion {
         this.ips = list;
     }
 
+    public final List<String> component2() {
+        return this.ips;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelRtcLatencyRegion copy$default(ModelRtcLatencyRegion modelRtcLatencyRegion, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,15 +30,6 @@ public final /* data */ class ModelRtcLatencyRegion {
             list = modelRtcLatencyRegion.ips;
         }
         return modelRtcLatencyRegion.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getRegion() {
-        return this.region;
-    }
-
-    public final List<String> component2() {
-        return this.ips;
     }
 
     public final ModelRtcLatencyRegion copy(String region, List<String> ips) {
@@ -56,6 +51,11 @@ public final /* data */ class ModelRtcLatencyRegion {
 
     public final List<String> getIps() {
         return this.ips;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getRegion() {
+        return this.region;
     }
 
     public final String getRegion() {

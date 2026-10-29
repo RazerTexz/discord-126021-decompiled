@@ -26,7 +26,7 @@ public class TextWatcher implements android.text.TextWatcher {
     private final Function4<CharSequence, Integer, Integer, Integer, Unit> onTextChanged;
 
     /* JADX INFO: compiled from: TextWatcher.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

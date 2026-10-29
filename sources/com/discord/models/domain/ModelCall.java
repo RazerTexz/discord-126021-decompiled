@@ -13,11 +13,10 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelCall implements Model {
-    private static final List<Long> EMPTY_RINGING = new ArrayList();
+    private long channelId;
 
     /* JADX INFO: renamed from: j */
     public static final /* synthetic */ int f18564j = 0;
-    private long channelId;
     private long messageId;
     private String region;
     private List<Long> ringing;
@@ -25,8 +24,9 @@ public class ModelCall implements Model {
 
     @Nullable
     private List<VoiceState> voiceStates;
+    private static final List<Long> EMPTY_RINGING = new ArrayList();
 
-    public static class Ringable implements Model {
+    public class Ringable implements Model {
         private boolean ringable;
 
         @Override // com.discord.models.domain.Model

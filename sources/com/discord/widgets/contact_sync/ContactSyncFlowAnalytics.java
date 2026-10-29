@@ -22,7 +22,7 @@ public final class ContactSyncFlowAnalytics {
     private long lastStepTimestamp;
 
     /* JADX INFO: compiled from: ContactSyncFlowAnalytics.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -65,22 +65,6 @@ public final class ContactSyncFlowAnalytics {
         this.lastStep = "Landing";
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void trackEnd$default(ContactSyncFlowAnalytics contactSyncFlowAnalytics, boolean z2, Map map, int i, Object obj) {
-        if ((i & 2) != 0) {
-            map = null;
-        }
-        contactSyncFlowAnalytics.trackEnd(z2, map);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void trackFlowStep$default(ContactSyncFlowAnalytics contactSyncFlowAnalytics, String str, boolean z2, boolean z3, Map map, int i, Object obj) {
-        if ((i & 8) != 0) {
-            map = null;
-        }
-        contactSyncFlowAnalytics.trackFlowStep(str, z2, z3, map);
-    }
-
     public final Clock getClock() {
         return this.clock;
     }
@@ -90,6 +74,14 @@ public final class ContactSyncFlowAnalytics {
         return this.isOnboarding;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void trackEnd$default(ContactSyncFlowAnalytics contactSyncFlowAnalytics, boolean z2, Map map, int i, Object obj) {
+        if ((i & 2) != 0) {
+            map = null;
+        }
+        contactSyncFlowAnalytics.trackEnd(z2, map);
+    }
+
     public final void trackEnd(boolean skip, Map<String, ? extends Object> additionalProps) {
         long jCurrentTimeMillis = this.clock.currentTimeMillis();
         AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
@@ -97,6 +89,14 @@ public final class ContactSyncFlowAnalytics {
         if (this.isOnboarding) {
             analyticsTracker.newUserOnboarding(CONTACT_SYNC_FLOW_KEY, this.lastStep, "Complete", Long.valueOf(this.lastStepTimestamp), skip);
         }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void trackFlowStep$default(ContactSyncFlowAnalytics contactSyncFlowAnalytics, String str, boolean z2, boolean z3, Map map, int i, Object obj) {
+        if ((i & 8) != 0) {
+            map = null;
+        }
+        contactSyncFlowAnalytics.trackFlowStep(str, z2, z3, map);
     }
 
     public final void trackFlowStep(String toStep, boolean skip, boolean back, Map<String, ? extends Object> additionalProps) {

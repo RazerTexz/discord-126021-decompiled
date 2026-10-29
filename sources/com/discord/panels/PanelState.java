@@ -8,7 +8,7 @@ public abstract class PanelState {
 
     /* JADX INFO: renamed from: com.discord.panels.PanelState$a */
     /* JADX INFO: compiled from: PanelState.kt */
-    public static final class C5578a extends PanelState {
+    public final class C5578a extends PanelState {
 
         /* JADX INFO: renamed from: a */
         public static final C5578a f18640a = new C5578a();
@@ -20,7 +20,7 @@ public abstract class PanelState {
 
     /* JADX INFO: renamed from: com.discord.panels.PanelState$b */
     /* JADX INFO: compiled from: PanelState.kt */
-    public static final class C5579b extends PanelState {
+    public final class C5579b extends PanelState {
 
         /* JADX INFO: renamed from: a */
         public static final C5579b f18641a = new C5579b();
@@ -32,7 +32,7 @@ public abstract class PanelState {
 
     /* JADX INFO: renamed from: com.discord.panels.PanelState$c */
     /* JADX INFO: compiled from: PanelState.kt */
-    public static final class C5580c extends PanelState {
+    public final class C5580c extends PanelState {
 
         /* JADX INFO: renamed from: a */
         public static final C5580c f18642a = new C5580c();
@@ -44,7 +44,7 @@ public abstract class PanelState {
 
     /* JADX INFO: renamed from: com.discord.panels.PanelState$d */
     /* JADX INFO: compiled from: PanelState.kt */
-    public static final class C5581d extends PanelState {
+    public final class C5581d extends PanelState {
 
         /* JADX INFO: renamed from: a */
         public static final C5581d f18643a = new C5581d();

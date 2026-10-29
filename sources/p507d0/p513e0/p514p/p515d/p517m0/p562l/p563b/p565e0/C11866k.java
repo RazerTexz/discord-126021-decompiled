@@ -54,28 +54,6 @@ public final class C11866k extends C11374g0 implements InterfaceC11857b {
         this(interfaceC11450m, interfaceC11465t0, interfaceC11344g, c11716e, aVar, c11684i, interfaceC11704c, c11708g, c11710i, interfaceC11861f, (i & 1024) != 0 ? null : interfaceC11467u0);
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    /* JADX INFO: renamed from: b */
-    public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
-        C11716e c11716e2;
-        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
-        C12238m.checkNotNullParameter(aVar, "kind");
-        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
-        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
-        InterfaceC11465t0 interfaceC11465t0 = (InterfaceC11465t0) interfaceC11472x;
-        if (c11716e == null) {
-            C11716e name = getName();
-            C12238m.checkNotNullExpressionValue(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            c11716e2 = name;
-        } else {
-            c11716e2 = c11716e;
-        }
-        C11866k c11866k = new C11866k(interfaceC11450m, interfaceC11465t0, interfaceC11344g, c11716e2, aVar, getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource(), interfaceC11467u0);
-        c11866k.setHasStableParameterNames(hasStableParameterNames());
-        c11866k.f24609R = getCoroutinesExperimentalCompatibilityMode();
-        return c11866k;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.InterfaceC11862g
     public InterfaceC11861f getContainerSource() {
         return this.f24608Q;
@@ -115,6 +93,28 @@ public final class C11866k extends C11374g0 implements InterfaceC11857b {
         C12238m.checkNotNullExpressionValue(c11374g0Initialize, "super.initialize(\n            extensionReceiverParameter,\n            dispatchReceiverParameter,\n            typeParameters,\n            unsubstitutedValueParameters,\n            unsubstitutedReturnType,\n            modality,\n            visibility,\n            userDataMap\n        )");
         this.f24609R = aVar;
         return c11374g0Initialize;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.C11374g0, p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    /* JADX INFO: renamed from: b */
+    public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
+        C11716e c11716e2;
+        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
+        C12238m.checkNotNullParameter(aVar, "kind");
+        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
+        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
+        InterfaceC11465t0 interfaceC11465t0 = (InterfaceC11465t0) interfaceC11472x;
+        if (c11716e == null) {
+            C11716e name = getName();
+            C12238m.checkNotNullExpressionValue(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            c11716e2 = name;
+        } else {
+            c11716e2 = c11716e;
+        }
+        C11866k c11866k = new C11866k(interfaceC11450m, interfaceC11465t0, interfaceC11344g, c11716e2, aVar, getProto(), getNameResolver(), getTypeTable(), getVersionRequirementTable(), getContainerSource(), interfaceC11467u0);
+        c11866k.setHasStableParameterNames(hasStableParameterNames());
+        c11866k.f24609R = getCoroutinesExperimentalCompatibilityMode();
+        return c11866k;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

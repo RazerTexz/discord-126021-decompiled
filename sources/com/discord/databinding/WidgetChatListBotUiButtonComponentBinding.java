@@ -47,6 +47,12 @@ public final class WidgetChatListBotUiButtonComponentBinding implements ViewBind
         this.f16361f = typingDots;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16356a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChatListBotUiButtonComponentBinding m8411a(@NonNull View view) {
@@ -72,11 +78,5 @@ public final class WidgetChatListBotUiButtonComponentBinding implements ViewBind
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16356a;
     }
 }

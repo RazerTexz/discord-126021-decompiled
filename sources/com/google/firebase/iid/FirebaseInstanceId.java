@@ -105,6 +105,16 @@ public class FirebaseInstanceId {
         this.f21441j = interfaceC4843g;
     }
 
+    @NonNull
+    @Keep
+    public static FirebaseInstanceId getInstance(@NonNull C4542c c4542c) {
+        m9178c(c4542c);
+        c4542c.m6330a();
+        FirebaseInstanceId firebaseInstanceId = (FirebaseInstanceId) c4542c.f12121g.mo6346a(FirebaseInstanceId.class);
+        C1460d.m595z(firebaseInstanceId, "Firebase Instance ID component is not present");
+        return firebaseInstanceId;
+    }
+
     /* JADX INFO: renamed from: a */
     public static <T> T m9177a(@NonNull Task<T> task) throws InterruptedException {
         C1460d.m595z(task, "Task must not be null");
@@ -150,16 +160,6 @@ public class FirebaseInstanceId {
         C1460d.m551o(c4542c.f12120f.f12135b.contains(":"), "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
         c4542c.m6330a();
         C1460d.m551o(f21434c.matcher(c4542c.f12120f.f12134a).matches(), "Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.");
-    }
-
-    @NonNull
-    @Keep
-    public static FirebaseInstanceId getInstance(@NonNull C4542c c4542c) {
-        m9178c(c4542c);
-        c4542c.m6330a();
-        FirebaseInstanceId firebaseInstanceId = (FirebaseInstanceId) c4542c.f12121g.mo6346a(FirebaseInstanceId.class);
-        C1460d.m595z(firebaseInstanceId, "Firebase Instance ID component is not present");
-        return firebaseInstanceId;
     }
 
     /* JADX INFO: renamed from: l */

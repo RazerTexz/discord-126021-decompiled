@@ -21,14 +21,14 @@ import p007b.p225i.p226a.p242c.p279z2.C3158d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3168a extends AbstractC3161g {
 
+    /* JADX INFO: renamed from: c */
+    public C2736d0 f9161c;
+
     /* JADX INFO: renamed from: a */
     public final C2757x f9159a = new C2757x();
 
     /* JADX INFO: renamed from: b */
     public final C2756w f9160b = new C2756w();
-
-    /* JADX INFO: renamed from: c */
-    public C2736d0 f9161c;
 
     @Override // p007b.p225i.p226a.p242c.p279z2.AbstractC3161g
     /* JADX INFO: renamed from: b */

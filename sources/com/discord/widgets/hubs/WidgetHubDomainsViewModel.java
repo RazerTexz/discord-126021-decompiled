@@ -27,7 +27,7 @@ public final class WidgetHubDomainsViewModel extends AbstractC0859d0<DomainsStat
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainsViewModel$onGuildClicked$1 */
     /* JADX INFO: compiled from: WidgetHubDomainsViewModel.kt */
-    public static final class C90321 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
+    public final class C90321 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
         public static final C90321 INSTANCE = new C90321();
 
         public C90321() {
@@ -42,7 +42,7 @@ public final class WidgetHubDomainsViewModel extends AbstractC0859d0<DomainsStat
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainsViewModel$onGuildClicked$2 */
     /* JADX INFO: compiled from: WidgetHubDomainsViewModel.kt */
-    public static final class C90332 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
+    public final class C90332 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

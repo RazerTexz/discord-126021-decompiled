@@ -33,13 +33,13 @@ public class ForceStopRunnable implements Runnable {
     @VisibleForTesting
     public static final String ACTION_FORCE_STOP_RESCHEDULE = "ACTION_FORCE_STOP_RESCHEDULE";
     private static final int ALARM_ID = -1;
-    private static final String TAG = Logger.tagWithPrefix("ForceStopRunnable");
-    private static final long TEN_YEARS = TimeUnit.DAYS.toMillis(3650);
     private final Context mContext;
     private final WorkManagerImpl mWorkManager;
+    private static final String TAG = Logger.tagWithPrefix("ForceStopRunnable");
+    private static final long TEN_YEARS = TimeUnit.DAYS.toMillis(3650);
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static class BroadcastReceiver extends android.content.BroadcastReceiver {
+    public class BroadcastReceiver extends android.content.BroadcastReceiver {
         private static final String TAG = Logger.tagWithPrefix("ForceStopRunnable$Rcvr");
 
         @Override // android.content.BroadcastReceiver
@@ -55,27 +55,6 @@ public class ForceStopRunnable implements Runnable {
     public ForceStopRunnable(@NonNull Context context, @NonNull WorkManagerImpl workManagerImpl) {
         this.mContext = context.getApplicationContext();
         this.mWorkManager = workManagerImpl;
-    }
-
-    @VisibleForTesting
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent();
-        intent.setComponent(new ComponentName(context, (Class<?>) BroadcastReceiver.class));
-        intent.setAction(ACTION_FORCE_STOP_RESCHEDULE);
-        return intent;
-    }
-
-    private static PendingIntent getPendingIntent(Context context, int i) {
-        return PendingIntent.getBroadcast(context, -1, getIntent(context), i);
-    }
-
-    public static void setAlarm(Context context) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(NotificationCompat.CATEGORY_ALARM);
-        PendingIntent pendingIntent = getPendingIntent(context, 134217728);
-        long jCurrentTimeMillis = System.currentTimeMillis() + TEN_YEARS;
-        if (alarmManager != null) {
-            alarmManager.setExact(0, jCurrentTimeMillis, pendingIntent);
-        }
     }
 
     @VisibleForTesting
@@ -102,6 +81,18 @@ public class ForceStopRunnable implements Runnable {
         } finally {
             workDatabase.endTransaction();
         }
+    }
+
+    @VisibleForTesting
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName(context, (Class<?>) BroadcastReceiver.class));
+        intent.setAction(ACTION_FORCE_STOP_RESCHEDULE);
+        return intent;
+    }
+
+    private static PendingIntent getPendingIntent(Context context, int i) {
+        return PendingIntent.getBroadcast(context, -1, getIntent(context), i);
     }
 
     @VisibleForTesting
@@ -136,6 +127,15 @@ public class ForceStopRunnable implements Runnable {
         } catch (SQLiteAccessPermException | SQLiteCantOpenDatabaseException | SQLiteDatabaseCorruptException e) {
             Logger.get().error(TAG, "The file system on the device is in a bad state. WorkManager cannot access the app's internal data store.", e);
             throw new IllegalStateException("The file system on the device is in a bad state. WorkManager cannot access the app's internal data store.", e);
+        }
+    }
+
+    public static void setAlarm(Context context) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(NotificationCompat.CATEGORY_ALARM);
+        PendingIntent pendingIntent = getPendingIntent(context, 134217728);
+        long jCurrentTimeMillis = System.currentTimeMillis() + TEN_YEARS;
+        if (alarmManager != null) {
+            alarmManager.setExact(0, jCurrentTimeMillis, pendingIntent);
         }
     }
 

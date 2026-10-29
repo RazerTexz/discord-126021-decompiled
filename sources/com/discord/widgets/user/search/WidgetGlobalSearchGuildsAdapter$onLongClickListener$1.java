@@ -14,13 +14,13 @@ public final class WidgetGlobalSearchGuildsAdapter$onLongClickListener$1 extends
         super(3);
     }
 
+    public final void invoke(int i, int i2, WidgetGlobalSearchGuildsModel.Item item) {
+        C12238m.checkNotNullParameter(item, "<anonymous parameter 2>");
+    }
+
     @Override // kotlin.jvm.functions.Function3
     public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2, WidgetGlobalSearchGuildsModel.Item item) {
         invoke(num.intValue(), num2.intValue(), item);
         return Unit.f27425a;
-    }
-
-    public final void invoke(int i, int i2, WidgetGlobalSearchGuildsModel.Item item) {
-        C12238m.checkNotNullParameter(item, "<anonymous parameter 2>");
     }
 }

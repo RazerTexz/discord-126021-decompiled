@@ -52,24 +52,9 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsAccountContactsNameEdit.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class C97501 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C97501 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C97501() {
             super(1);
         }
@@ -94,7 +79,7 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class C97521 extends AbstractC12240o implements Function1<StoreUserConnections.State, Unit> {
+    public final class C97521 extends AbstractC12240o implements Function1<StoreUserConnections.State, Unit> {
         public C97521() {
             super(1);
         }
@@ -114,7 +99,7 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class C97531 extends AbstractC12240o implements Function1<ConnectedAccount, TrackNetworkMetadataReceiver> {
+    public final class C97531 extends AbstractC12240o implements Function1<ConnectedAccount, TrackNetworkMetadataReceiver> {
         public final /* synthetic */ String $name;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -131,7 +116,7 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$2 */
     /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class C97542 extends AbstractC12240o implements Function1<ConnectedAccount, Unit> {
+    public final class C97542 extends AbstractC12240o implements Function1<ConnectedAccount, Unit> {
         public C97542() {
             super(1);
         }
@@ -154,7 +139,7 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$3 */
     /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
-    public static final class C97553 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C97553 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C97553 INSTANCE = new C97553();
 
         public C97553() {
@@ -170,6 +155,21 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
             C12238m.checkNotNullParameter(error, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsAccountContactsNameEdit.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -208,23 +208,6 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
         return (WidgetSettingsAccountContactsNameEditBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void submitName(String name) {
-        String string;
-        AppFragment.hideKeyboard$default(this, null, 1, null);
-        boolean z2 = name == null || C12103t.isBlank(name);
-        if (z2) {
-            string = null;
-        } else {
-            if (z2) {
-                throw new NoWhenBranchMatchedException();
-            }
-            Objects.requireNonNull(name, "null cannot be cast to non-null type kotlin.CharSequence");
-            string = C12106w.trim(name).toString();
-        }
-        AnalyticsTracker.INSTANCE.nameSubmitted(C12106w.split$default((CharSequence) name, new String[]{" "}, false, 0, 6, (Object) null).size(), name.length());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().updateConnectionName("contacts", "@me", new RestAPIParams.ConnectedAccountNameOnly(string)), false, 1, null), new C97531(name)), this, null, 2, null), (Class<?>) WidgetSettingsAccountContactsNameEdit.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C97553.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97542());
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -252,5 +235,22 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getUserConnections().observeConnectedAccounts(), this, null, 2, null), (Class<?>) WidgetSettingsAccountContactsNameEdit.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97521());
+    }
+
+    private final void submitName(String name) {
+        String string;
+        AppFragment.hideKeyboard$default(this, null, 1, null);
+        boolean z2 = name == null || C12103t.isBlank(name);
+        if (z2) {
+            string = null;
+        } else {
+            if (z2) {
+                throw new NoWhenBranchMatchedException();
+            }
+            Objects.requireNonNull(name, "null cannot be cast to non-null type kotlin.CharSequence");
+            string = C12106w.trim(name).toString();
+        }
+        AnalyticsTracker.INSTANCE.nameSubmitted(C12106w.split$default((CharSequence) name, new String[]{" "}, false, 0, 6, (Object) null).size(), name.length());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().updateConnectionName("contacts", "@me", new RestAPIParams.ConnectedAccountNameOnly(string)), false, 1, null), new C97531(name)), this, null, 2, null), (Class<?>) WidgetSettingsAccountContactsNameEdit.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C97553.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97542());
     }
 }

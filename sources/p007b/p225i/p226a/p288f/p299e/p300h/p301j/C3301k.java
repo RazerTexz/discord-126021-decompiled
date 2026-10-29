@@ -25,7 +25,7 @@ public final class C3301k<L> {
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.j.k$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static final class a<L> {
+    public final class a<L> {
 
         /* JADX INFO: renamed from: a */
         public final L f9431a;

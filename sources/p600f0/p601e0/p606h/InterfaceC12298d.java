@@ -11,6 +11,8 @@ import p615g0.InterfaceC12407x;
 /* JADX INFO: compiled from: ExchangeCodec.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC12298d {
+    void cancel();
+
     /* JADX INFO: renamed from: a */
     void mo10213a() throws IOException;
 
@@ -19,8 +21,6 @@ public interface InterfaceC12298d {
 
     /* JADX INFO: renamed from: c */
     InterfaceC12407x mo10215c(Response response) throws IOException;
-
-    void cancel();
 
     /* JADX INFO: renamed from: d */
     Response.C12937a mo10216d(boolean z2) throws IOException;

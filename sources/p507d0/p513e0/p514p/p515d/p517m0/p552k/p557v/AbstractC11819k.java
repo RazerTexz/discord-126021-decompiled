@@ -17,7 +17,7 @@ public abstract class AbstractC11819k extends AbstractC11815g<Unit> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.k$a */
     /* JADX INFO: compiled from: constantValues.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -29,7 +29,7 @@ public abstract class AbstractC11819k extends AbstractC11815g<Unit> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.k$b */
     /* JADX INFO: compiled from: constantValues.kt */
-    public static final class b extends AbstractC11819k {
+    public final class b extends AbstractC11819k {
 
         /* JADX INFO: renamed from: c */
         public final String f24443c;

@@ -62,7 +62,7 @@ public final class C3098s implements InterfaceC3094o {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.s$a */
     /* JADX INFO: compiled from: H265Reader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC3122w f8851a;

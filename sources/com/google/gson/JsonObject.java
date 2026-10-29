@@ -16,6 +16,10 @@ public final class JsonObject extends JsonElement {
         return obj == this || ((obj instanceof JsonObject) && ((JsonObject) obj).f21481a.equals(this.f21481a));
     }
 
+    public int hashCode() {
+        return this.f21481a.hashCode();
+    }
+
     /* JADX INFO: renamed from: h */
     public void m9214h(String str, JsonElement jsonElement) {
         LinkedTreeMap<String, JsonElement> linkedTreeMap = this.f21481a;
@@ -23,10 +27,6 @@ public final class JsonObject extends JsonElement {
             jsonElement = C4906j.f13106a;
         }
         linkedTreeMap.put(str, jsonElement);
-    }
-
-    public int hashCode() {
-        return this.f21481a.hashCode();
     }
 
     /* JADX INFO: renamed from: i */

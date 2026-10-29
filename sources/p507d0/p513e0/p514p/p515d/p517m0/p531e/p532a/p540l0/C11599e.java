@@ -10,9 +10,6 @@ public final class C11599e {
     /* JADX INFO: renamed from: a */
     public static final a f23450a = new a(null);
 
-    /* JADX INFO: renamed from: b */
-    public static final C11599e f23451b = new C11599e(null, null, false, false, 8, null);
-
     /* JADX INFO: renamed from: c */
     public final EnumC11602h f23452c;
 
@@ -25,9 +22,12 @@ public final class C11599e {
     /* JADX INFO: renamed from: f */
     public final boolean f23455f;
 
+    /* JADX INFO: renamed from: b */
+    public static final C11599e f23451b = new C11599e(null, null, false, false, 8, null);
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.e$a */
     /* JADX INFO: compiled from: typeQualifiers.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

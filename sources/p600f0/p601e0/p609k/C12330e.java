@@ -36,7 +36,7 @@ public final class C12330e extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.e$a */
     /* JADX INFO: compiled from: Jdk8WithJettyBootPlatform.kt */
-    public static final class a implements InvocationHandler {
+    public final class a implements InvocationHandler {
 
         /* JADX INFO: renamed from: a */
         public boolean f25775a;
@@ -129,19 +129,6 @@ public final class C12330e extends C12333h {
     }
 
     @Override // p600f0.p601e0.p609k.C12333h
-    /* JADX INFO: renamed from: a */
-    public void mo10328a(SSLSocket sSLSocket) {
-        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
-        try {
-            this.f25772f.invoke(null, sSLSocket);
-        } catch (IllegalAccessException e) {
-            throw new AssertionError("failed to remove ALPN", e);
-        } catch (InvocationTargetException e2) {
-            throw new AssertionError("failed to remove ALPN", e2);
-        }
-    }
-
-    @Override // p600f0.p601e0.p609k.C12333h
     /* JADX INFO: renamed from: d */
     public void mo10316d(SSLSocket sSLSocket, String str, List<? extends EnumC12381y> list) {
         C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
@@ -195,6 +182,19 @@ public final class C12330e extends C12333h {
             throw new AssertionError("failed to get ALPN selected protocol", e);
         } catch (InvocationTargetException e2) {
             throw new AssertionError("failed to get ALPN selected protocol", e2);
+        }
+    }
+
+    @Override // p600f0.p601e0.p609k.C12333h
+    /* JADX INFO: renamed from: a */
+    public void mo10328a(SSLSocket sSLSocket) {
+        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+        try {
+            this.f25772f.invoke(null, sSLSocket);
+        } catch (IllegalAccessException e) {
+            throw new AssertionError("failed to remove ALPN", e);
+        } catch (InvocationTargetException e2) {
+            throw new AssertionError("failed to remove ALPN", e2);
         }
     }
 }

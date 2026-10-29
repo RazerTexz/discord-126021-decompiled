@@ -65,10 +65,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public class ViewHolderUserRichPresence {
     public static final int BASE_RICH_PRESENCE_TYPE = 0;
+    public static final int GAME_RICH_PRESENCE_TYPE = 1;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    public static final int GAME_RICH_PRESENCE_TYPE = 1;
     public static final int MUSIC_RICH_PRESENCE_TYPE = 2;
     public static final int PLATFORM_RICH_PRESENCE_TYPE = 3;
     public static final int STAGE_CHANNEL_RICH_PRESENCE_TYPE = 5;
@@ -88,8 +88,51 @@ public class ViewHolderUserRichPresence {
     private final int richPresenceType;
     private final View root;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderUserRichPresence$configureUiTimestamp$1 */
     /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
-    public static final class Companion {
+    public final class C102821 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C102821() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            ViewHolderUserRichPresence.this.perSecondTimerSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderUserRichPresence$configureUiTimestamp$2 */
+    /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
+    public final class C102832 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ Activity $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C102832(Activity activity) {
+            super(1);
+            this.$model = activity;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            ViewHolderUserRichPresence.this.setTimeTextViews(this.$model.getTimestamps());
+        }
+    }
+
+    /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -474,49 +517,6 @@ public class ViewHolderUserRichPresence {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderUserRichPresence$configureUiTimestamp$1 */
-    /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
-    public static final class C102821 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C102821() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            ViewHolderUserRichPresence.this.perSecondTimerSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderUserRichPresence$configureUiTimestamp$2 */
-    /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
-    public static final class C102832 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ Activity $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C102832(Activity activity) {
-            super(1);
-            this.$model = activity;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            ViewHolderUserRichPresence.this.setTimeTextViews(this.$model.getTimestamps());
-        }
-    }
-
     public ViewHolderUserRichPresence(View view, SimpleDraweeView simpleDraweeView, SimpleDraweeView simpleDraweeView2, TextView textView, TextView textView2, TextView textView3, TextView textView4, TextView textView5, View view2, Button button, Button button2, int i) {
         C12238m.checkNotNullParameter(view, "root");
         C12238m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
@@ -536,36 +536,6 @@ public class ViewHolderUserRichPresence {
         this.richPresencePrimaryButton = button;
         this.richPresenceSecondaryButton = button2;
         this.richPresenceType = i;
-    }
-
-    private final void handleActivityCustomButtonClick(Context applicationContext, User user, Activity activity, int buttonIndex) {
-        String sessionId;
-        Long applicationId;
-        if (user != null) {
-            long id2 = user.getId();
-            if (activity == null || (sessionId = activity.getSessionId()) == null || (applicationId = activity.getApplicationId()) == null) {
-                return;
-            }
-            long jLongValue = applicationId.longValue();
-            Function5<? super Context, ? super Long, ? super String, ? super Long, ? super Integer, Unit> function5 = this.onActivityCustomButtonClicked;
-            if (function5 != null) {
-                function5.invoke(applicationContext, Long.valueOf(id2), sessionId, Long.valueOf(jLongValue), Integer.valueOf(buttonIndex));
-            }
-        }
-    }
-
-    public static /* synthetic */ void setImageAndVisibilityBy$default(ViewHolderUserRichPresence viewHolderUserRichPresence, ImageView imageView, String str, boolean z2, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setImageAndVisibilityBy");
-        }
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        viewHolderUserRichPresence.setImageAndVisibilityBy(imageView, str, z2);
-    }
-
-    public static final ViewHolderUserRichPresence setRichPresence(ViewGroup viewGroup, Activity activity, StreamContext streamContext, ViewHolderUserRichPresence viewHolderUserRichPresence) {
-        return INSTANCE.setRichPresence(viewGroup, activity, streamContext, viewHolderUserRichPresence);
     }
 
     @MainThread
@@ -804,6 +774,32 @@ public class ViewHolderUserRichPresence {
         return null;
     }
 
+    private final void handleActivityCustomButtonClick(Context applicationContext, User user, Activity activity, int buttonIndex) {
+        String sessionId;
+        Long applicationId;
+        if (user != null) {
+            long id2 = user.getId();
+            if (activity == null || (sessionId = activity.getSessionId()) == null || (applicationId = activity.getApplicationId()) == null) {
+                return;
+            }
+            long jLongValue = applicationId.longValue();
+            Function5<? super Context, ? super Long, ? super String, ? super Long, ? super Integer, Unit> function5 = this.onActivityCustomButtonClicked;
+            if (function5 != null) {
+                function5.invoke(applicationContext, Long.valueOf(id2), sessionId, Long.valueOf(jLongValue), Integer.valueOf(buttonIndex));
+            }
+        }
+    }
+
+    public static /* synthetic */ void setImageAndVisibilityBy$default(ViewHolderUserRichPresence viewHolderUserRichPresence, ImageView imageView, String str, boolean z2, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setImageAndVisibilityBy");
+        }
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        viewHolderUserRichPresence.setImageAndVisibilityBy(imageView, str, z2);
+    }
+
     public final void setImageAndVisibilityBy(ImageView imageView, String str, boolean z2) {
         C12238m.checkNotNullParameter(imageView, "$this$setImageAndVisibilityBy");
         MGImages.setImage$default(imageView, str, 0, 0, z2, null, null, 108, null);
@@ -813,6 +809,10 @@ public class ViewHolderUserRichPresence {
     public final void setOnActivityCustomButtonClicked(Function5<? super Context, ? super Long, ? super String, ? super Long, ? super Integer, Unit> newOnActivityCustomButtonClicked) {
         C12238m.checkNotNullParameter(newOnActivityCustomButtonClicked, "newOnActivityCustomButtonClicked");
         this.onActivityCustomButtonClicked = newOnActivityCustomButtonClicked;
+    }
+
+    public static final ViewHolderUserRichPresence setRichPresence(ViewGroup viewGroup, Activity activity, StreamContext streamContext, ViewHolderUserRichPresence viewHolderUserRichPresence) {
+        return INSTANCE.setRichPresence(viewGroup, activity, streamContext, viewHolderUserRichPresence);
     }
 
     public void setTimeTextViews(ActivityTimestamps timestamps) {

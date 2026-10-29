@@ -198,16 +198,16 @@ public final class RestAPI implements RestAPIInterface {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final RestAPIInterface _api;
     public static RestAPI api;
     public static RestAPIInterface.Dynamic apiClientVersions;
     public static RestAPIInterface.Files apiFiles;
     public static RestAPIInterface.RtcLatency apiRtcLatency;
     public static RestAPI apiSerializeNulls;
     public static RestAPI apiSpotify;
-    private final RestAPIInterface _api;
 
     /* JADX INFO: compiled from: RestAPI.kt */
-    public static final class AppHeadersProvider implements RequiredHeadersInterceptor.HeadersProvider {
+    public final class AppHeadersProvider implements RequiredHeadersInterceptor.HeadersProvider {
         public static final AppHeadersProvider INSTANCE = new AppHeadersProvider();
         public static Function0<String> authTokenProvider = RestAPI$AppHeadersProvider$authTokenProvider$1.INSTANCE;
         public static Function0<String> fingerprintProvider = RestAPI$AppHeadersProvider$fingerprintProvider$1.INSTANCE;
@@ -250,17 +250,8 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     /* JADX INFO: compiled from: RestAPI.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        public static /* synthetic */ void getApi$annotations() {
-        }
-
-        public static /* synthetic */ void getApiSerializeNulls$annotations() {
-        }
-
-        public static /* synthetic */ void getApiSpotify$annotations() {
         }
 
         public final Interceptor buildAnalyticsInterceptor() {
@@ -303,6 +294,9 @@ public final class RestAPI implements RestAPIInterface {
             return c12362a;
         }
 
+        public static /* synthetic */ void getApi$annotations() {
+        }
+
         public final RestAPI getApi() {
             RestAPI restAPI = RestAPI.api;
             if (restAPI == null) {
@@ -335,12 +329,18 @@ public final class RestAPI implements RestAPIInterface {
             return rtcLatency;
         }
 
+        public static /* synthetic */ void getApiSerializeNulls$annotations() {
+        }
+
         public final RestAPI getApiSerializeNulls() {
             RestAPI restAPI = RestAPI.apiSerializeNulls;
             if (restAPI == null) {
                 C12238m.throwUninitializedPropertyAccessException("apiSerializeNulls");
             }
             return restAPI;
+        }
+
+        public static /* synthetic */ void getApiSpotify$annotations() {
         }
 
         public final RestAPI getApiSpotify() {
@@ -410,10 +410,10 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     /* JADX INFO: compiled from: RestAPI.kt */
-    public static abstract class HarvestState {
+    public abstract class HarvestState {
 
         /* JADX INFO: compiled from: RestAPI.kt */
-        public static final class LastRequested extends HarvestState {
+        public final class LastRequested extends HarvestState {
             private final Harvest data;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -429,7 +429,7 @@ public final class RestAPI implements RestAPIInterface {
         }
 
         /* JADX INFO: compiled from: RestAPI.kt */
-        public static final class NeverRequested extends HarvestState {
+        public final class NeverRequested extends HarvestState {
             public NeverRequested() {
                 super(null);
             }
@@ -446,97 +446,6 @@ public final class RestAPI implements RestAPIInterface {
     public RestAPI(RestAPIInterface restAPIInterface) {
         C12238m.checkNotNullParameter(restAPIInterface, "_api");
         this._api = restAPIInterface;
-    }
-
-    public static final Interceptor buildAnalyticsInterceptor() {
-        return INSTANCE.buildAnalyticsInterceptor();
-    }
-
-    public static final Interceptor buildLoggingInterceptor() {
-        return INSTANCE.buildLoggingInterceptor();
-    }
-
-    public static final RestAPI getApi() {
-        RestAPI restAPI = api;
-        if (restAPI == null) {
-            C12238m.throwUninitializedPropertyAccessException("api");
-        }
-        return restAPI;
-    }
-
-    public static final RestAPI getApiSerializeNulls() {
-        RestAPI restAPI = apiSerializeNulls;
-        if (restAPI == null) {
-            C12238m.throwUninitializedPropertyAccessException("apiSerializeNulls");
-        }
-        return restAPI;
-    }
-
-    public static final RestAPI getApiSpotify() {
-        RestAPI restAPI = apiSpotify;
-        if (restAPI == null) {
-            C12238m.throwUninitializedPropertyAccessException("apiSpotify");
-        }
-        return restAPI;
-    }
-
-    public static /* synthetic */ Observable inviteUserToSpeak$default(RestAPI restAPI, Channel channel, long j, Clock clock, int i, Object obj) {
-        if ((i & 4) != 0) {
-            clock = ClockFactory.get();
-        }
-        return restAPI.inviteUserToSpeak(channel, j, clock);
-    }
-
-    public static /* synthetic */ Observable postInviteCode$default(RestAPI restAPI, ModelInvite modelInvite, String str, RestAPIParams.InviteCode inviteCode, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str = "mobile";
-        }
-        return restAPI.postInviteCode(modelInvite, str, inviteCode);
-    }
-
-    public static /* synthetic */ Observable requestToSpeak$default(RestAPI restAPI, Channel channel, Clock clock, int i, Object obj) {
-        if ((i & 2) != 0) {
-            clock = ClockFactory.get();
-        }
-        return restAPI.requestToSpeak(channel, clock);
-    }
-
-    public static final void setApi(RestAPI restAPI) {
-        api = restAPI;
-    }
-
-    public static final void setApiSerializeNulls(RestAPI restAPI) {
-        apiSerializeNulls = restAPI;
-    }
-
-    public static final void setApiSpotify(RestAPI restAPI) {
-        apiSpotify = restAPI;
-    }
-
-    private final Observable<Void> setConsent(String grant, String revoke) {
-        List listEmptyList;
-        List listEmptyList2;
-        if (grant == null || (listEmptyList = C12145m.listOf(grant)) == null) {
-            listEmptyList = C12147n.emptyList();
-        }
-        if (revoke == null || (listEmptyList2 = C12145m.listOf(revoke)) == null) {
-            listEmptyList2 = C12147n.emptyList();
-        }
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.setConsents(new RestAPIParams.Consents(listEmptyList, listEmptyList2)), false, 1, null);
-    }
-
-    public static /* synthetic */ Observable setConsent$default(RestAPI restAPI, String str, String str2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            str = null;
-        }
-        if ((i & 2) != 0) {
-            str2 = null;
-        }
-        return restAPI.setConsent(str, str2);
-    }
-
-    public static /* synthetic */ Observable userActivityActionJoin$default(RestAPI restAPI, long j, long j2, String str, Long l, Long l2, int i, Object obj) {
-        return restAPI.userActivityActionJoin(j, j2, str, (i & 8) != 0 ? null : l, (i & 16) != 0 ? null : l2);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -682,6 +591,14 @@ public final class RestAPI implements RestAPIInterface {
     public Observable<Void> batchUpdateRole(@InterfaceC12546s("guildId") long guildId, @InterfaceC12528a List<RestAPIParams.Role> body) {
         C12238m.checkNotNullParameter(body, "body");
         return this._api.batchUpdateRole(guildId, body);
+    }
+
+    public static final Interceptor buildAnalyticsInterceptor() {
+        return INSTANCE.buildAnalyticsInterceptor();
+    }
+
+    public static final Interceptor buildLoggingInterceptor() {
+        return INSTANCE.buildLoggingInterceptor();
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -1186,6 +1103,30 @@ public final class RestAPI implements RestAPIInterface {
     @InterfaceC12533f("channels/{channelId}/threads/archived/public")
     public Observable<ThreadListing> getAllPublicArchivedThreads(@InterfaceC12546s("channelId") long channelId, @InterfaceC12547t("before") String before) {
         return this._api.getAllPublicArchivedThreads(channelId, before);
+    }
+
+    public static final RestAPI getApi() {
+        RestAPI restAPI = api;
+        if (restAPI == null) {
+            C12238m.throwUninitializedPropertyAccessException("api");
+        }
+        return restAPI;
+    }
+
+    public static final RestAPI getApiSerializeNulls() {
+        RestAPI restAPI = apiSerializeNulls;
+        if (restAPI == null) {
+            C12238m.throwUninitializedPropertyAccessException("apiSerializeNulls");
+        }
+        return restAPI;
+    }
+
+    public static final RestAPI getApiSpotify() {
+        RestAPI restAPI = apiSpotify;
+        if (restAPI == null) {
+            C12238m.throwUninitializedPropertyAccessException("apiSpotify");
+        }
+        return restAPI;
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -1788,6 +1729,13 @@ public final class RestAPI implements RestAPIInterface {
         return this._api.ignoreFriendSuggestion(userId);
     }
 
+    public static /* synthetic */ Observable inviteUserToSpeak$default(RestAPI restAPI, Channel channel, long j, Clock clock, int i, Object obj) {
+        if ((i & 4) != 0) {
+            clock = ClockFactory.get();
+        }
+        return restAPI.inviteUserToSpeak(channel, j, clock);
+    }
+
     public final Observable<Void> inviteUserToSpeak(Channel channel, long userId, Clock clock) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(clock, "clock");
@@ -1979,6 +1927,13 @@ public final class RestAPI implements RestAPIInterface {
         return this._api.postGuildFeatureAck(channelId, ackType, ackedId, body);
     }
 
+    public static /* synthetic */ Observable postInviteCode$default(RestAPI restAPI, ModelInvite modelInvite, String str, RestAPIParams.InviteCode inviteCode, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str = "mobile";
+        }
+        return restAPI.postInviteCode(modelInvite, str, inviteCode);
+    }
+
     public final Observable<ModelInvite> postInviteCode(ModelInvite invite, String location, RestAPIParams.InviteCode body) {
         C12238m.checkNotNullParameter(invite, "invite");
         C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
@@ -2137,6 +2092,13 @@ public final class RestAPI implements RestAPIInterface {
         return this._api.requestHarvest();
     }
 
+    public static /* synthetic */ Observable requestToSpeak$default(RestAPI restAPI, Channel channel, Clock clock, int i, Object obj) {
+        if ((i & 2) != 0) {
+            clock = ClockFactory.get();
+        }
+        return restAPI.requestToSpeak(channel, clock);
+    }
+
     public final Observable<Void> requestToSpeak(Channel channel, Clock clock) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(clock, "clock");
@@ -2287,6 +2249,40 @@ public final class RestAPI implements RestAPIInterface {
         C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         C12238m.checkNotNullParameter(username, "username");
         return ObservableExtensionsKt.restSubscribeOn$default(this._api.sendRelationshipRequest(new RestAPIParams.UserRelationship.Add(username, discriminator, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), jsonObjectOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location))), false, 1, null);
+    }
+
+    public static final void setApi(RestAPI restAPI) {
+        api = restAPI;
+    }
+
+    public static final void setApiSerializeNulls(RestAPI restAPI) {
+        apiSerializeNulls = restAPI;
+    }
+
+    public static final void setApiSpotify(RestAPI restAPI) {
+        apiSpotify = restAPI;
+    }
+
+    public static /* synthetic */ Observable setConsent$default(RestAPI restAPI, String str, String str2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            str = null;
+        }
+        if ((i & 2) != 0) {
+            str2 = null;
+        }
+        return restAPI.setConsent(str, str2);
+    }
+
+    private final Observable<Void> setConsent(String grant, String revoke) {
+        List listEmptyList;
+        List listEmptyList2;
+        if (grant == null || (listEmptyList = C12145m.listOf(grant)) == null) {
+            listEmptyList = C12147n.emptyList();
+        }
+        if (revoke == null || (listEmptyList2 = C12145m.listOf(revoke)) == null) {
+            listEmptyList2 = C12147n.emptyList();
+        }
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.setConsents(new RestAPIParams.Consents(listEmptyList, listEmptyList2)), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -2587,6 +2583,10 @@ public final class RestAPI implements RestAPIInterface {
     public Observable<ActivityActionConfirmation> userActivityAction(@InterfaceC12546s("userId") long userId, @InterfaceC12546s("applicationId") long application, @InterfaceC12546s("sessionId") String sessionId, @InterfaceC12546s("actionType") Integer actionType, @InterfaceC12547t(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) Long channelId, @InterfaceC12547t("message_id") Long messageId) {
         C12238m.checkNotNullParameter(sessionId, "sessionId");
         return this._api.userActivityAction(userId, application, sessionId, actionType, channelId, messageId);
+    }
+
+    public static /* synthetic */ Observable userActivityActionJoin$default(RestAPI restAPI, long j, long j2, String str, Long l, Long l2, int i, Object obj) {
+        return restAPI.userActivityActionJoin(j, j2, str, (i & 8) != 0 ? null : l, (i & 16) != 0 ? null : l2);
     }
 
     public final Observable<ActivityActionConfirmation> userActivityActionJoin(long j, long j2, String str) {

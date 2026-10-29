@@ -40,7 +40,7 @@ public abstract class AbstractC13085a<T> implements InterfaceC13082d {
     /* JADX INFO: renamed from: s.a.d2.g.a$a */
     /* JADX INFO: compiled from: ChannelFlow.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.flow.internal.ChannelFlow$collect$2", m10085f = "ChannelFlow.kt", m10086l = {Opcodes.I2D}, m10087m = "invokeSuspend")
-    public static final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ InterfaceC13083e $collector;
         public Object L$0;
         public int label;
@@ -69,7 +69,7 @@ public abstract class AbstractC13085a<T> implements InterfaceC13082d {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

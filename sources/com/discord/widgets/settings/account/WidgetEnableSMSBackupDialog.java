@@ -34,40 +34,17 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEnableSMSBackupDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetEnableSMSBackupDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableSmsBackupDialogBinding;", 0)};
+    private static final String EXTRA_ENABLE = "extra_enable";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_ENABLE = "extra_enable";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetEnableSMSBackupDialog.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, boolean enable) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetEnableSMSBackupDialog widgetEnableSMSBackupDialog = new WidgetEnableSMSBackupDialog();
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(WidgetEnableSMSBackupDialog.EXTRA_ENABLE, enable);
-            widgetEnableSMSBackupDialog.setArguments(bundle);
-            String tag = widgetEnableSMSBackupDialog.getTag();
-            if (tag == null) {
-                tag = "";
-            }
-            widgetEnableSMSBackupDialog.show(fragmentManager, tag);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetEnableSMSBackupDialog$enableSMSBackup$1 */
     /* JADX INFO: compiled from: WidgetEnableSMSBackupDialog.kt */
-    public static final class C97131 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C97131 extends AbstractC12240o implements Function1<Error, Unit> {
         public C97131() {
             super(1);
         }
@@ -92,7 +69,7 @@ public final class WidgetEnableSMSBackupDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetEnableSMSBackupDialog$enableSMSBackup$2 */
     /* JADX INFO: compiled from: WidgetEnableSMSBackupDialog.kt */
-    public static final class C97142 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C97142 extends AbstractC12240o implements Function1<Void, Unit> {
         public C97142() {
             super(1);
         }
@@ -108,6 +85,29 @@ public final class WidgetEnableSMSBackupDialog extends AppDialog {
             StoreStream.INSTANCE.getMFA().togglingSMSBackup();
             WidgetEnableSMSBackupDialog.this.getBinding().f16595d.setIsLoading(false);
             WidgetEnableSMSBackupDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEnableSMSBackupDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, boolean enable) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetEnableSMSBackupDialog widgetEnableSMSBackupDialog = new WidgetEnableSMSBackupDialog();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(WidgetEnableSMSBackupDialog.EXTRA_ENABLE, enable);
+            widgetEnableSMSBackupDialog.setArguments(bundle);
+            String tag = widgetEnableSMSBackupDialog.getTag();
+            if (tag == null) {
+                tag = "";
+            }
+            widgetEnableSMSBackupDialog.show(fragmentManager, tag);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

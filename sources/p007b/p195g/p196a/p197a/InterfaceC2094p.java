@@ -28,7 +28,7 @@ public @interface InterfaceC2094p {
 
     /* JADX INFO: renamed from: b.g.a.a.p$b */
     /* JADX INFO: compiled from: JsonInclude.java */
-    public static class b implements Serializable {
+    public class b implements Serializable {
 
         /* JADX INFO: renamed from: j */
         public static final b f4436j;
@@ -49,6 +49,21 @@ public @interface InterfaceC2094p {
             this._contentInclusion = aVar2 == null ? aVar3 : aVar2;
             this._valueFilter = cls == Void.class ? null : cls;
             this._contentFilter = cls2 == Void.class ? null : cls2;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || obj.getClass() != b.class) {
+                return false;
+            }
+            b bVar = (b) obj;
+            return bVar._valueInclusion == this._valueInclusion && bVar._contentInclusion == this._contentInclusion && bVar._valueFilter == this._valueFilter && bVar._contentFilter == this._contentFilter;
+        }
+
+        public int hashCode() {
+            return this._contentInclusion.hashCode() + (this._valueInclusion.hashCode() << 2);
         }
 
         /* JADX INFO: renamed from: a */
@@ -84,21 +99,6 @@ public @interface InterfaceC2094p {
         /* JADX INFO: renamed from: b */
         public b m1619b(a aVar) {
             return aVar == this._valueInclusion ? this : new b(aVar, this._contentInclusion, this._valueFilter, this._contentFilter);
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (obj == null || obj.getClass() != b.class) {
-                return false;
-            }
-            b bVar = (b) obj;
-            return bVar._valueInclusion == this._valueInclusion && bVar._contentInclusion == this._contentInclusion && bVar._valueFilter == this._valueFilter && bVar._contentFilter == this._contentFilter;
-        }
-
-        public int hashCode() {
-            return this._contentInclusion.hashCode() + (this._valueInclusion.hashCode() << 2);
         }
 
         public Object readResolve() {

@@ -13,10 +13,6 @@ public final class UnsafeMemoryInput extends ByteBufferInput {
         this.varIntsEnabled = false;
     }
 
-    private void updateBufferAddress() {
-        this.bufaddress = this.niobuffer.address();
-    }
-
     @Override // com.esotericsoftware.kryo.p502io.ByteBufferInput, com.esotericsoftware.kryo.p502io.Input
     public boolean readBoolean() throws KryoException {
         this.niobuffer.position(this.position);
@@ -142,6 +138,10 @@ public final class UnsafeMemoryInput extends ByteBufferInput {
     public void setBuffer(ByteBuffer byteBuffer) {
         super.setBuffer(byteBuffer);
         updateBufferAddress();
+    }
+
+    private void updateBufferAddress() {
+        this.bufaddress = this.niobuffer.address();
     }
 
     public UnsafeMemoryInput(int i) {

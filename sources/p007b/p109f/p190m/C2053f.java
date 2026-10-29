@@ -30,7 +30,7 @@ public class C2053f extends AbstractC2060m {
 
     /* JADX INFO: renamed from: b.f.m.f$b */
     /* JADX INFO: compiled from: ExtractFromZipSoSource.java */
-    public static final class b extends AbstractC2060m.b implements Comparable {
+    public final class b extends AbstractC2060m.b implements Comparable {
 
         /* JADX INFO: renamed from: l */
         public final ZipEntry f4327l;
@@ -106,16 +106,9 @@ public class C2053f extends AbstractC2060m {
             this.f4331l = abstractC2060m;
         }
 
-        @Override // p007b.p109f.p190m.AbstractC2060m.f
-        /* JADX INFO: renamed from: a */
-        public final AbstractC2060m.c mo1573a() throws IOException {
-            return new AbstractC2060m.c(m1577c());
-        }
-
-        @Override // p007b.p109f.p190m.AbstractC2060m.f
-        /* JADX INFO: renamed from: b */
-        public final AbstractC2060m.e mo1574b() throws IOException {
-            return new a(null);
+        @Override // p007b.p109f.p190m.AbstractC2060m.f, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            this.f4330k.close();
         }
 
         /* JADX WARN: Code duplicated, block: B:44:0x0120  */
@@ -220,9 +213,16 @@ public class C2053f extends AbstractC2060m {
             return this.f4329j;
         }
 
-        @Override // p007b.p109f.p190m.AbstractC2060m.f, java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-            this.f4330k.close();
+        @Override // p007b.p109f.p190m.AbstractC2060m.f
+        /* JADX INFO: renamed from: a */
+        public final AbstractC2060m.c mo1573a() throws IOException {
+            return new AbstractC2060m.c(m1577c());
+        }
+
+        @Override // p007b.p109f.p190m.AbstractC2060m.f
+        /* JADX INFO: renamed from: b */
+        public final AbstractC2060m.e mo1574b() throws IOException {
+            return new a(null);
         }
     }
 

@@ -13,16 +13,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GlobalRoleAutocompletable extends Autocompletable {
-    private final String text;
-    private final List<String> textMatchers;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final String text;
+    private final List<String> textMatchers;
     private static final Lazy here$delegate = C12083g.lazy(GlobalRoleAutocompletable$Companion$here$2.INSTANCE);
     private static final Lazy everyone$delegate = C12083g.lazy(GlobalRoleAutocompletable$Companion$everyone$2.INSTANCE);
 
     /* JADX INFO: compiled from: Autocompletable.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -58,11 +58,6 @@ public final /* data */ class GlobalRoleAutocompletable extends Autocompletable 
         return globalRoleAutocompletable.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
     public final GlobalRoleAutocompletable copy(String text) {
         C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new GlobalRoleAutocompletable(text);
@@ -83,6 +78,11 @@ public final /* data */ class GlobalRoleAutocompletable extends Autocompletable 
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
         return this.textMatchers;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public final String getText() {

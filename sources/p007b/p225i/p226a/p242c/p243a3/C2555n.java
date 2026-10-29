@@ -25,9 +25,6 @@ public final class C2555n implements InterfaceC2570x, InterfaceC2570x.a {
     @Nullable
     public InterfaceC2570x.a f5652k;
 
-    /* JADX INFO: renamed from: l */
-    public a[] f5653l = new a[0];
-
     /* JADX INFO: renamed from: m */
     public long f5654m;
 
@@ -36,6 +33,9 @@ public final class C2555n implements InterfaceC2570x, InterfaceC2570x.a {
 
     /* JADX INFO: renamed from: o */
     public long f5656o;
+
+    /* JADX INFO: renamed from: l */
+    public a[] f5653l = new a[0];
 
     /* JADX INFO: renamed from: b.i.a.c.a3.n$a */
     /* JADX INFO: compiled from: ClippingMediaPeriod.java */
@@ -119,20 +119,9 @@ public final class C2555n implements InterfaceC2570x, InterfaceC2570x.a {
         this.f5656o = j2;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2548j0.a
-    /* JADX INFO: renamed from: a */
-    public void mo2542a(InterfaceC2548j0 interfaceC2548j0) {
-        InterfaceC2570x.a aVar = this.f5652k;
-        Objects.requireNonNull(aVar);
-        aVar.mo2542a(this);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x.a
-    /* JADX INFO: renamed from: b */
-    public void mo2563b(InterfaceC2570x interfaceC2570x) {
-        InterfaceC2570x.a aVar = this.f5652k;
-        Objects.requireNonNull(aVar);
-        aVar.mo2563b(this);
+    /* JADX INFO: renamed from: d */
+    public boolean m2564d() {
+        return this.f5654m != -9223372036854775807L;
     }
 
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x
@@ -146,11 +135,6 @@ public final class C2555n implements InterfaceC2570x, InterfaceC2570x.a {
             }
         }
         return Long.MIN_VALUE;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public boolean m2564d() {
-        return this.f5654m != -9223372036854775807L;
     }
 
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x
@@ -357,5 +341,21 @@ public final class C2555n implements InterfaceC2570x, InterfaceC2570x.a {
     /* JADX INFO: renamed from: s */
     public void mo2495s(long j) {
         this.f5651j.mo2495s(j);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2548j0.a
+    /* JADX INFO: renamed from: a */
+    public void mo2542a(InterfaceC2548j0 interfaceC2548j0) {
+        InterfaceC2570x.a aVar = this.f5652k;
+        Objects.requireNonNull(aVar);
+        aVar.mo2542a(this);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x.a
+    /* JADX INFO: renamed from: b */
+    public void mo2563b(InterfaceC2570x interfaceC2570x) {
+        InterfaceC2570x.a aVar = this.f5652k;
+        Objects.requireNonNull(aVar);
+        aVar.mo2563b(this);
     }
 }

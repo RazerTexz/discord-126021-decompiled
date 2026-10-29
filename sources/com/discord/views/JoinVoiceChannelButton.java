@@ -15,7 +15,7 @@ public final class JoinVoiceChannelButton extends MaterialButton {
 
     /* JADX INFO: renamed from: com.discord.views.JoinVoiceChannelButton$a */
     /* JADX INFO: compiled from: JoinVoiceChannelButton.kt */
-    public static final class ViewOnClickListenerC7078a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7078a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ MaterialButton f19076j;

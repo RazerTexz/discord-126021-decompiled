@@ -63,6 +63,20 @@ public abstract class AbstractC4505g<K, V> implements InterfaceC4496b0<K, V> {
         }
     }
 
+    public boolean equals(@NullableDecl Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof InterfaceC4496b0) {
+            return ((AbstractC4497c) this).mo6216a().equals(((InterfaceC4496b0) obj).mo6216a());
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        return mo6216a().hashCode();
+    }
+
     @Override // p007b.p225i.p355b.p357b.InterfaceC4496b0
     /* JADX INFO: renamed from: a */
     public Map<K, Collection<V>> mo6216a() {
@@ -80,20 +94,6 @@ public abstract class AbstractC4505g<K, V> implements InterfaceC4496b0<K, V> {
             this.f12008l = map;
         }
         return map;
-    }
-
-    public boolean equals(@NullableDecl Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof InterfaceC4496b0) {
-            return ((AbstractC4497c) this).mo6216a().equals(((InterfaceC4496b0) obj).mo6216a());
-        }
-        return false;
-    }
-
-    public int hashCode() {
-        return mo6216a().hashCode();
     }
 
     public String toString() {

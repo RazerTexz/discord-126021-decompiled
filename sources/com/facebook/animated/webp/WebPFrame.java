@@ -15,25 +15,34 @@ public class WebPFrame implements InterfaceC1837d {
         this.mNativeContext = j;
     }
 
-    private native void nativeDispose();
+    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    public void dispose() {
+        nativeDispose();
+    }
 
-    private native void nativeFinalize();
+    public void finalize() {
+        nativeFinalize();
+    }
 
-    private native int nativeGetDurationMs();
+    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    public int getHeight() {
+        return nativeGetHeight();
+    }
 
-    private native int nativeGetHeight();
+    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    public int getWidth() {
+        return nativeGetWidth();
+    }
 
-    private native int nativeGetWidth();
+    /* JADX INFO: renamed from: d */
+    public boolean m8630d() {
+        return nativeIsBlendWithPreviousFrame();
+    }
 
-    private native int nativeGetXOffset();
-
-    private native int nativeGetYOffset();
-
-    private native boolean nativeIsBlendWithPreviousFrame();
-
-    private native void nativeRenderFrame(int i, int i2, Bitmap bitmap);
-
-    private native boolean nativeShouldDisposeToBackgroundColor();
+    /* JADX INFO: renamed from: e */
+    public boolean m8631e() {
+        return nativeShouldDisposeToBackgroundColor();
+    }
 
     @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
     /* JADX INFO: renamed from: a */
@@ -53,32 +62,23 @@ public class WebPFrame implements InterfaceC1837d {
         return nativeGetYOffset();
     }
 
-    /* JADX INFO: renamed from: d */
-    public boolean m8630d() {
-        return nativeIsBlendWithPreviousFrame();
-    }
+    private native void nativeDispose();
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    public void dispose() {
-        nativeDispose();
-    }
+    private native void nativeFinalize();
 
-    /* JADX INFO: renamed from: e */
-    public boolean m8631e() {
-        return nativeShouldDisposeToBackgroundColor();
-    }
+    private native int nativeGetDurationMs();
 
-    public void finalize() {
-        nativeFinalize();
-    }
+    private native int nativeGetHeight();
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    public int getHeight() {
-        return nativeGetHeight();
-    }
+    private native int nativeGetWidth();
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    public int getWidth() {
-        return nativeGetWidth();
-    }
+    private native int nativeGetXOffset();
+
+    private native int nativeGetYOffset();
+
+    private native boolean nativeIsBlendWithPreviousFrame();
+
+    private native void nativeRenderFrame(int i, int i2, Bitmap bitmap);
+
+    private native boolean nativeShouldDisposeToBackgroundColor();
 }

@@ -25,6 +25,10 @@ public enum EnumC11840d {
     LONG(EnumC11289i.LONG, Constants.LONG, "J", "java.lang.Long"),
     DOUBLE(EnumC11289i.DOUBLE, "double", "D", "java.lang.Double");
 
+    private final String desc;
+    private final String name;
+    private final EnumC11289i primitiveType;
+    private final C11713b wrapperFqName;
 
     /* JADX INFO: renamed from: r */
     public static final Set<C11713b> f24472r = new HashSet();
@@ -37,10 +41,6 @@ public enum EnumC11840d {
 
     /* JADX INFO: renamed from: u */
     public static final Map<String, EnumC11840d> f24475u = new HashMap();
-    private final String desc;
-    private final String name;
-    private final EnumC11289i primitiveType;
-    private final C11713b wrapperFqName;
 
     static {
         EnumC11840d[] enumC11840dArrValues = values();
@@ -62,6 +62,54 @@ public enum EnumC11840d {
         this.name = str;
         this.desc = str2;
         this.wrapperFqName = new C11713b(str3);
+    }
+
+    public static EnumC11840d get(String str) {
+        if (str == null) {
+            m9946f(1);
+            throw null;
+        }
+        EnumC11840d enumC11840d = f24473s.get(str);
+        if (enumC11840d != null) {
+            return enumC11840d;
+        }
+        throw new AssertionError(C1643a.m883w("Non-primitive type name passed: ", str));
+    }
+
+    public String getDesc() {
+        String str = this.desc;
+        if (str != null) {
+            return str;
+        }
+        m9946f(12);
+        throw null;
+    }
+
+    public String getJavaKeywordName() {
+        String str = this.name;
+        if (str != null) {
+            return str;
+        }
+        m9946f(11);
+        throw null;
+    }
+
+    public EnumC11289i getPrimitiveType() {
+        EnumC11289i enumC11289i = this.primitiveType;
+        if (enumC11289i != null) {
+            return enumC11289i;
+        }
+        m9946f(10);
+        throw null;
+    }
+
+    public C11713b getWrapperFqName() {
+        C11713b c11713b = this.wrapperFqName;
+        if (c11713b != null) {
+            return c11713b;
+        }
+        m9946f(13);
+        throw null;
     }
 
     /* JADX WARN: Code duplicated, block: B:12:0x0017  */
@@ -190,54 +238,6 @@ public enum EnumC11840d {
             }
         }
         throw new IllegalStateException(str2);
-    }
-
-    public static EnumC11840d get(String str) {
-        if (str == null) {
-            m9946f(1);
-            throw null;
-        }
-        EnumC11840d enumC11840d = f24473s.get(str);
-        if (enumC11840d != null) {
-            return enumC11840d;
-        }
-        throw new AssertionError(C1643a.m883w("Non-primitive type name passed: ", str));
-    }
-
-    public String getDesc() {
-        String str = this.desc;
-        if (str != null) {
-            return str;
-        }
-        m9946f(12);
-        throw null;
-    }
-
-    public String getJavaKeywordName() {
-        String str = this.name;
-        if (str != null) {
-            return str;
-        }
-        m9946f(11);
-        throw null;
-    }
-
-    public EnumC11289i getPrimitiveType() {
-        EnumC11289i enumC11289i = this.primitiveType;
-        if (enumC11289i != null) {
-            return enumC11289i;
-        }
-        m9946f(10);
-        throw null;
-    }
-
-    public C11713b getWrapperFqName() {
-        C11713b c11713b = this.wrapperFqName;
-        if (c11713b != null) {
-            return c11713b;
-        }
-        m9946f(13);
-        throw null;
     }
 
     public static EnumC11840d get(EnumC11289i enumC11289i) {

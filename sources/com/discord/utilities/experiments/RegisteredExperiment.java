@@ -32,6 +32,10 @@ public final /* data */ class RegisteredExperiment {
         this.cacheExperiment = z2;
     }
 
+    public final List<String> component4() {
+        return this.buckets;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ RegisteredExperiment copy$default(RegisteredExperiment registeredExperiment, String str, String str2, Type type, List list, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -53,30 +57,6 @@ public final /* data */ class RegisteredExperiment {
             z2 = registeredExperiment.cacheExperiment;
         }
         return registeredExperiment.copy(str, str3, type2, list2, z2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getReadableName() {
-        return this.readableName;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Type getType() {
-        return this.type;
-    }
-
-    public final List<String> component4() {
-        return this.buckets;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCacheExperiment() {
-        return this.cacheExperiment;
     }
 
     public final RegisteredExperiment copy(String readableName, String name, Type type, List<String> buckets, boolean cacheExperiment) {
@@ -102,16 +82,36 @@ public final /* data */ class RegisteredExperiment {
         return this.buckets;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCacheExperiment() {
         return this.cacheExperiment;
+    }
+
+    public final boolean getCacheExperiment() {
+        return this.cacheExperiment;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {
         return this.name;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getReadableName() {
         return this.readableName;
+    }
+
+    public final String getReadableName() {
+        return this.readableName;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Type getType() {
+        return this.type;
     }
 
     public final Type getType() {

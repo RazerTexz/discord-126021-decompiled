@@ -328,6 +328,21 @@ public class C4437h extends AbstractC4442m {
         }
     }
 
+    /* JADX INFO: renamed from: h */
+    public final MaterialShapeDrawable m6155h(float f2, float f3, float f4, int i) {
+        ShapeAppearanceModel shapeAppearanceModelBuild = ShapeAppearanceModel.builder().setTopLeftCornerSize(f2).setTopRightCornerSize(f2).setBottomLeftCornerSize(f3).setBottomRightCornerSize(f3).build();
+        MaterialShapeDrawable materialShapeDrawableCreateWithElevationOverlay = MaterialShapeDrawable.createWithElevationOverlay(this.f11820b, f4);
+        materialShapeDrawableCreateWithElevationOverlay.setShapeAppearanceModel(shapeAppearanceModelBuild);
+        materialShapeDrawableCreateWithElevationOverlay.setPadding(0, i, 0, i);
+        return materialShapeDrawableCreateWithElevationOverlay;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final boolean m6156i() {
+        long jCurrentTimeMillis = System.currentTimeMillis() - this.f11798k;
+        return jCurrentTimeMillis < 0 || jCurrentTimeMillis > 300;
+    }
+
     @Override // p007b.p225i.p226a.p341g.p351j.AbstractC4442m
     /* JADX INFO: renamed from: a */
     public void mo6146a() {
@@ -366,20 +381,5 @@ public class C4437h extends AbstractC4442m {
     /* JADX INFO: renamed from: b */
     public boolean mo6154b(int i) {
         return i != 0;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final MaterialShapeDrawable m6155h(float f2, float f3, float f4, int i) {
-        ShapeAppearanceModel shapeAppearanceModelBuild = ShapeAppearanceModel.builder().setTopLeftCornerSize(f2).setTopRightCornerSize(f2).setBottomLeftCornerSize(f3).setBottomRightCornerSize(f3).build();
-        MaterialShapeDrawable materialShapeDrawableCreateWithElevationOverlay = MaterialShapeDrawable.createWithElevationOverlay(this.f11820b, f4);
-        materialShapeDrawableCreateWithElevationOverlay.setShapeAppearanceModel(shapeAppearanceModelBuild);
-        materialShapeDrawableCreateWithElevationOverlay.setPadding(0, i, 0, i);
-        return materialShapeDrawableCreateWithElevationOverlay;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final boolean m6156i() {
-        long jCurrentTimeMillis = System.currentTimeMillis() - this.f11798k;
-        return jCurrentTimeMillis < 0 || jCurrentTimeMillis > 300;
     }
 }

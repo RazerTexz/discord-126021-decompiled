@@ -10,18 +10,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreDirectoryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreDirectoryExited implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence loadId = null;
     private final List<Long> applicationIdsViewed = null;
-    private final List<Long> skuIdsViewed = null;
     private final Long durationMs = null;
+    private final CharSequence loadId = null;
+    private final List<Long> skuIdsViewed = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "store_directory_exited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackStoreDirectoryExited implements AnalyticsSche
         }
         TrackStoreDirectoryExited trackStoreDirectoryExited = (TrackStoreDirectoryExited) other;
         return C12238m.areEqual(this.loadId, trackStoreDirectoryExited.loadId) && C12238m.areEqual(this.applicationIdsViewed, trackStoreDirectoryExited.applicationIdsViewed) && C12238m.areEqual(this.skuIdsViewed, trackStoreDirectoryExited.skuIdsViewed) && C12238m.areEqual(this.durationMs, trackStoreDirectoryExited.durationMs);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

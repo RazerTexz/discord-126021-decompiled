@@ -86,7 +86,7 @@ public class JavacSingularsRecipes {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/JavacSingularsRecipes$SingularData.SCL.lombok */
-    public static final class SingularData {
+    public final class SingularData {
         private final JavacNode annotation;
         private final Name singularName;
         private final Name pluralName;
@@ -150,32 +150,32 @@ public class JavacSingularsRecipes {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/JavacSingularsRecipes$JavacSingularizer.SCL.lombok */
-    public static abstract class JavacSingularizer {
+    public abstract class JavacSingularizer {
         private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
-        public abstract LombokImmutableList<String> getSupportedTypes();
+        public abstract void appendBuildCode(SingularData singularData, JavacNode javacNode, JCTree jCTree, ListBuffer<JCTree.JCStatement> listBuffer, Name name, String str);
+
+        protected abstract JCTree.JCStatement createConstructBuilderVarIfNeeded(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode, JCTree jCTree);
+
+        protected abstract JCTree.JCStatement generateClearStatements(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode);
 
         public abstract List<JavacNode> generateFields(SingularData singularData, JavacNode javacNode, JCTree jCTree);
 
         public abstract void generateMethods(CheckerFrameworkVersion checkerFrameworkVersion, SingularData singularData, boolean z2, JavacNode javacNode, JCTree jCTree, boolean z3, ExpressionMaker expressionMaker, StatementMaker statementMaker, AccessLevel accessLevel);
 
-        protected abstract JCTree.JCStatement generateClearStatements(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode);
+        protected abstract com.sun.tools.javac.util.List<JCTree.JCVariableDecl> generateSingularMethodParameters(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode, JCTree jCTree);
 
         protected abstract ListBuffer<JCTree.JCStatement> generateSingularMethodStatements(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode, JCTree jCTree);
 
-        protected abstract com.sun.tools.javac.util.List<JCTree.JCVariableDecl> generateSingularMethodParameters(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode, JCTree jCTree);
+        protected abstract String getAddMethodName();
+
+        protected abstract String getEmptyMaker(String str);
 
         protected abstract JCTree.JCExpression getPluralMethodParamType(JavacNode javacNode);
 
-        protected abstract JCTree.JCStatement createConstructBuilderVarIfNeeded(JavacTreeMaker javacTreeMaker, SingularData singularData, JavacNode javacNode, JCTree jCTree);
-
-        public abstract void appendBuildCode(SingularData singularData, JavacNode javacNode, JCTree jCTree, ListBuffer<JCTree.JCStatement> listBuffer, Name name, String str);
-
-        protected abstract String getAddMethodName();
+        public abstract LombokImmutableList<String> getSupportedTypes();
 
         protected abstract int getTypeArgumentsCount();
-
-        protected abstract String getEmptyMaker(String str);
 
         static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
             int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

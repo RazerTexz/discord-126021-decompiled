@@ -24,26 +24,6 @@ public final /* data */ class GiftEntry extends ChatListEntry {
         this.key = "26 -- " + j2 + " -- " + str;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getGiftCode() {
-        return this.giftCode;
-    }
-
     public final GiftEntry copy(long userId, long messageId, long channelId, String giftCode) {
         C12238m.checkNotNullParameter(giftCode, "giftCode");
         return new GiftEntry(userId, messageId, channelId, giftCode);
@@ -60,8 +40,18 @@ public final /* data */ class GiftEntry extends ChatListEntry {
         return this.userId == giftEntry.userId && this.messageId == giftEntry.messageId && this.channelId == giftEntry.channelId && C12238m.areEqual(this.giftCode, giftEntry.giftCode);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getGiftCode() {
+        return this.giftCode;
     }
 
     public final String getGiftCode() {
@@ -73,6 +63,11 @@ public final /* data */ class GiftEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
     public final long getMessageId() {
         return this.messageId;
     }
@@ -80,6 +75,11 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

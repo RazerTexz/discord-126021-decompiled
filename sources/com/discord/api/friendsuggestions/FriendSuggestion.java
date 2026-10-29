@@ -11,16 +11,6 @@ public final /* data */ class FriendSuggestion {
     private final List<FriendSuggestionReason> reasons;
     private final User suggestedUser;
 
-    /* JADX INFO: renamed from: a */
-    public final List<FriendSuggestionReason> m7830a() {
-        return this.reasons;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final User getSuggestedUser() {
-        return this.suggestedUser;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,11 +22,21 @@ public final /* data */ class FriendSuggestion {
         return C12238m.areEqual(this.suggestedUser, friendSuggestion.suggestedUser) && C12238m.areEqual(this.reasons, friendSuggestion.reasons);
     }
 
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final User getSuggestedUser() {
+        return this.suggestedUser;
+    }
+
     public int hashCode() {
         User user = this.suggestedUser;
         int iHashCode = (user != null ? user.hashCode() : 0) * 31;
         List<FriendSuggestionReason> list = this.reasons;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<FriendSuggestionReason> m7830a() {
+        return this.reasons;
     }
 
     public String toString() {

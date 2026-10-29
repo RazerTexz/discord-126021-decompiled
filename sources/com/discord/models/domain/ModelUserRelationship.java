@@ -23,10 +23,6 @@ public class ModelUserRelationship implements Model {
     public ModelUserRelationship() {
     }
 
-    public static boolean isType(Integer num, int i) {
-        return num != null && num.intValue() == i;
-    }
-
     @Override // com.discord.models.domain.Model
     public void assignField(Model.JsonReader jsonReader) throws IOException {
         String strNextName = jsonReader.nextName();
@@ -108,6 +104,10 @@ public class ModelUserRelationship implements Model {
         modelUserRelationship.user = map.get(modelUserRelationship.userId);
         modelUserRelationship.userId = null;
         return modelUserRelationship;
+    }
+
+    public static boolean isType(Integer num, int i) {
+        return num != null && num.intValue() == i;
     }
 
     public String toString() {

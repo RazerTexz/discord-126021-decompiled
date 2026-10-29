@@ -21,7 +21,7 @@ public class WidgetChatListItem extends MGRecyclerViewHolder<WidgetChatListAdapt
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListItem$1 */
     /* JADX INFO: compiled from: WidgetChatListItem.kt */
-    public static final class ViewOnTouchListenerC81581 implements View.OnTouchListener {
+    public final class ViewOnTouchListenerC81581 implements View.OnTouchListener {
         public final /* synthetic */ WidgetChatListAdapter $adapter;
         private final GestureDetector tapGestureDetector;
 

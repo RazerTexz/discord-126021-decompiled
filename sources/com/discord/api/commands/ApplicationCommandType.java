@@ -25,7 +25,7 @@ public enum ApplicationCommandType {
     private final int type;
 
     /* JADX INFO: compiled from: ApplicationCommandType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

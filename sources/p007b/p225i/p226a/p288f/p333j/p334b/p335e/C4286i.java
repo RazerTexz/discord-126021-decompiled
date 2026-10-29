@@ -78,6 +78,48 @@ public final class C4286i extends MessagesClient {
         return new C3301k(looper, c4308t, name);
     }
 
+    /* JADX INFO: renamed from: k */
+    public final <T> Task<Void> m5988k(C3301k<T> c3301k, InterfaceC4269a0 interfaceC4269a0, InterfaceC4269a0 interfaceC4269a1) {
+        C4312v c4312v = new C4312v(this, c3301k, interfaceC4269a0);
+        C3301k.a<T> aVar = c3301k.f9430c;
+        C4316x c4316x = new C4316x(this, aVar, interfaceC4269a1);
+        C1460d.m595z(c3301k.f9430c, "Listener has already been released.");
+        C1460d.m595z(aVar, "Listener has already been released.");
+        C1460d.m551o(C1460d.m524h0(c3301k.f9430c, aVar), "Listener registration and unregistration methods must be constructed with the same ListenerHolder.");
+        C3293g c3293g = this.f9334i;
+        Runnable runnable = RunnableC3333k.f9473j;
+        Objects.requireNonNull(c3293g);
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        C3308n0 c3308n0 = new C3308n0(new C3285d0(c4312v, c4316x, runnable), taskCompletionSource);
+        Handler handler = c3293g.f9390x;
+        handler.sendMessage(handler.obtainMessage(8, new C3282c0(c3308n0, c3293g.f9385s.get(), this)));
+        return taskCompletionSource.f20845a;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public final <T> Task<Void> m5989l(T t) {
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        String name = t.getClass().getName();
+        C1460d.m595z(t, "Listener must not be null");
+        C1460d.m595z(name, "Listener type must not be null");
+        C1460d.m579v(name, "Listener type must not be empty");
+        m4045b(new C3301k.a<>(t, name)).mo6007b(new C4310u(taskCompletionSource));
+        return taskCompletionSource.f20845a;
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final <T> C3301k<T> m5990m(T t) {
+        if (t == null) {
+            return null;
+        }
+        String name = t.getClass().getName();
+        Looper looper = this.f9330e;
+        C1460d.m595z(t, "Listener must not be null");
+        C1460d.m595z(looper, "Looper must not be null");
+        C1460d.m595z(name, "Listener type must not be null");
+        return new C3301k<>(looper, t, name);
+    }
+
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.C3267b
     /* JADX INFO: renamed from: a */
     public final C3347c.a mo4044a() {
@@ -219,47 +261,5 @@ public final class C4286i extends MessagesClient {
     /* JADX INFO: renamed from: i */
     public final Task<Void> mo5987i(MessageListener messageListener) {
         return m5989l(messageListener);
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final <T> Task<Void> m5988k(C3301k<T> c3301k, InterfaceC4269a0 interfaceC4269a0, InterfaceC4269a0 interfaceC4269a1) {
-        C4312v c4312v = new C4312v(this, c3301k, interfaceC4269a0);
-        C3301k.a<T> aVar = c3301k.f9430c;
-        C4316x c4316x = new C4316x(this, aVar, interfaceC4269a1);
-        C1460d.m595z(c3301k.f9430c, "Listener has already been released.");
-        C1460d.m595z(aVar, "Listener has already been released.");
-        C1460d.m551o(C1460d.m524h0(c3301k.f9430c, aVar), "Listener registration and unregistration methods must be constructed with the same ListenerHolder.");
-        C3293g c3293g = this.f9334i;
-        Runnable runnable = RunnableC3333k.f9473j;
-        Objects.requireNonNull(c3293g);
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        C3308n0 c3308n0 = new C3308n0(new C3285d0(c4312v, c4316x, runnable), taskCompletionSource);
-        Handler handler = c3293g.f9390x;
-        handler.sendMessage(handler.obtainMessage(8, new C3282c0(c3308n0, c3293g.f9385s.get(), this)));
-        return taskCompletionSource.f20845a;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public final <T> Task<Void> m5989l(T t) {
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        String name = t.getClass().getName();
-        C1460d.m595z(t, "Listener must not be null");
-        C1460d.m595z(name, "Listener type must not be null");
-        C1460d.m579v(name, "Listener type must not be empty");
-        m4045b(new C3301k.a<>(t, name)).mo6007b(new C4310u(taskCompletionSource));
-        return taskCompletionSource.f20845a;
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final <T> C3301k<T> m5990m(T t) {
-        if (t == null) {
-            return null;
-        }
-        String name = t.getClass().getName();
-        Looper looper = this.f9330e;
-        C1460d.m595z(t, "Listener must not be null");
-        C1460d.m595z(looper, "Looper must not be null");
-        C1460d.m595z(name, "Listener type must not be null");
-        return new C3301k<>(looper, t, name);
     }
 }

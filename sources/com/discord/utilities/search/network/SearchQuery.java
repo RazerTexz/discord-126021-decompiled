@@ -23,8 +23,27 @@ public final class SearchQuery {
     private final boolean includeNsfw;
     private final Map<String, List<String>> params;
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public SearchQuery(Map<String, ? extends List<String>> map, boolean z2) {
+        C12238m.checkNotNullParameter(map, "params");
+        this.params = map;
+        this.includeNsfw = z2;
+    }
+
+    public final boolean getIncludeNsfw() {
+        return this.includeNsfw;
+    }
+
+    public final Map<String, List<String>> getParams() {
+        return this.params;
+    }
+
+    public final boolean isValid() {
+        return !this.params.isEmpty();
+    }
+
     /* JADX INFO: compiled from: SearchQuery.kt */
-    public static final class Builder {
+    public final class Builder {
         private boolean includeNsfw;
         private final StringBuilder contentBuilder = new StringBuilder();
         private final HashMap<String, List<String>> paramsMap = new HashMap<>();
@@ -90,24 +109,5 @@ public final class SearchQuery {
             this.includeNsfw = includeNsfw;
             return this;
         }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public SearchQuery(Map<String, ? extends List<String>> map, boolean z2) {
-        C12238m.checkNotNullParameter(map, "params");
-        this.params = map;
-        this.includeNsfw = z2;
-    }
-
-    public final boolean getIncludeNsfw() {
-        return this.includeNsfw;
-    }
-
-    public final Map<String, List<String>> getParams() {
-        return this.params;
-    }
-
-    public final boolean isValid() {
-        return !this.params.isEmpty();
     }
 }

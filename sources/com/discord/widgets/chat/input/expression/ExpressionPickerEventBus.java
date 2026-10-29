@@ -17,7 +17,7 @@ public final class ExpressionPickerEventBus {
     private final PublishSubject<ExpressionPickerEvent> expressionPickerEventSubject = PublishSubject.m11133k0();
 
     /* JADX INFO: compiled from: ExpressionPickerEventBus.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

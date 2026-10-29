@@ -15,7 +15,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class PlaybackStateCompat implements Parcelable {
-    public static final Parcelable.Creator<PlaybackStateCompat> CREATOR = new C0027a();
 
     /* JADX INFO: renamed from: j */
     public final int f59j;
@@ -49,6 +48,7 @@ public final class PlaybackStateCompat implements Parcelable {
 
     /* JADX INFO: renamed from: t */
     public final Bundle f69t;
+    public static final Parcelable.Creator<PlaybackStateCompat> CREATOR = new C0027a();
 
     /* JADX INFO: renamed from: android.support.v4.media.session.PlaybackStateCompat$a */
     public class C0027a implements Parcelable.Creator<PlaybackStateCompat> {
@@ -65,7 +65,7 @@ public final class PlaybackStateCompat implements Parcelable {
 
     /* JADX INFO: renamed from: android.support.v4.media.session.PlaybackStateCompat$b */
     @RequiresApi(21)
-    public static class C0028b {
+    public class C0028b {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static void m47a(PlaybackState.Builder builder, PlaybackState.CustomAction customAction) {
@@ -213,7 +213,7 @@ public final class PlaybackStateCompat implements Parcelable {
 
     /* JADX INFO: renamed from: android.support.v4.media.session.PlaybackStateCompat$c */
     @RequiresApi(22)
-    public static class C0029c {
+    public class C0029c {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static Bundle m71a(PlaybackState playbackState) {
@@ -224,6 +224,72 @@ public final class PlaybackStateCompat implements Parcelable {
         /* JADX INFO: renamed from: b */
         public static void m72b(PlaybackState.Builder builder, Bundle bundle) {
             builder.setExtras(bundle);
+        }
+    }
+
+    public final class CustomAction implements Parcelable {
+
+        /* JADX INFO: renamed from: j */
+        public final String f70j;
+
+        /* JADX INFO: renamed from: k */
+        public final CharSequence f71k;
+
+        /* JADX INFO: renamed from: l */
+        public final int f72l;
+
+        /* JADX INFO: renamed from: m */
+        public final Bundle f73m;
+        public static final Parcelable.Creator<CustomAction> CREATOR = new C0026a();
+
+        /* JADX INFO: renamed from: android.support.v4.media.session.PlaybackStateCompat$CustomAction$a */
+        public class C0026a implements Parcelable.Creator<CustomAction> {
+            @Override // android.os.Parcelable.Creator
+            public CustomAction createFromParcel(Parcel parcel) {
+                return new CustomAction(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public CustomAction[] newArray(int i) {
+                return new CustomAction[i];
+            }
+        }
+
+        public CustomAction(String str, CharSequence charSequence, int i, Bundle bundle) {
+            this.f70j = str;
+            this.f71k = charSequence;
+            this.f72l = i;
+            this.f73m = bundle;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("Action:mName='");
+            sbM833U.append((Object) this.f71k);
+            sbM833U.append(", mIcon=");
+            sbM833U.append(this.f72l);
+            sbM833U.append(", mExtras=");
+            sbM833U.append(this.f73m);
+            return sbM833U.toString();
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(this.f70j);
+            TextUtils.writeToParcel(this.f71k, parcel, i);
+            parcel.writeInt(this.f72l);
+            parcel.writeBundle(this.f73m);
+        }
+
+        public CustomAction(Parcel parcel) {
+            this.f70j = parcel.readString();
+            this.f71k = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+            this.f72l = parcel.readInt();
+            this.f73m = parcel.readBundle(MediaSessionCompat.class.getClassLoader());
         }
     }
 
@@ -283,72 +349,6 @@ public final class PlaybackStateCompat implements Parcelable {
         parcel.writeLong(this.f68s);
         parcel.writeBundle(this.f69t);
         parcel.writeInt(this.f64o);
-    }
-
-    public static final class CustomAction implements Parcelable {
-        public static final Parcelable.Creator<CustomAction> CREATOR = new C0026a();
-
-        /* JADX INFO: renamed from: j */
-        public final String f70j;
-
-        /* JADX INFO: renamed from: k */
-        public final CharSequence f71k;
-
-        /* JADX INFO: renamed from: l */
-        public final int f72l;
-
-        /* JADX INFO: renamed from: m */
-        public final Bundle f73m;
-
-        /* JADX INFO: renamed from: android.support.v4.media.session.PlaybackStateCompat$CustomAction$a */
-        public class C0026a implements Parcelable.Creator<CustomAction> {
-            @Override // android.os.Parcelable.Creator
-            public CustomAction createFromParcel(Parcel parcel) {
-                return new CustomAction(parcel);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public CustomAction[] newArray(int i) {
-                return new CustomAction[i];
-            }
-        }
-
-        public CustomAction(String str, CharSequence charSequence, int i, Bundle bundle) {
-            this.f70j = str;
-            this.f71k = charSequence;
-            this.f72l = i;
-            this.f73m = bundle;
-        }
-
-        @Override // android.os.Parcelable
-        public int describeContents() {
-            return 0;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Action:mName='");
-            sbM833U.append((Object) this.f71k);
-            sbM833U.append(", mIcon=");
-            sbM833U.append(this.f72l);
-            sbM833U.append(", mExtras=");
-            sbM833U.append(this.f73m);
-            return sbM833U.toString();
-        }
-
-        @Override // android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeString(this.f70j);
-            TextUtils.writeToParcel(this.f71k, parcel, i);
-            parcel.writeInt(this.f72l);
-            parcel.writeBundle(this.f73m);
-        }
-
-        public CustomAction(Parcel parcel) {
-            this.f70j = parcel.readString();
-            this.f71k = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
-            this.f72l = parcel.readInt();
-            this.f73m = parcel.readBundle(MediaSessionCompat.class.getClassLoader());
-        }
     }
 
     public PlaybackStateCompat(Parcel parcel) {

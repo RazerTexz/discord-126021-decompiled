@@ -9,13 +9,13 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class PrivFrame extends Id3Frame {
-    public static final Parcelable.Creator<PrivFrame> CREATOR = new C10734a();
 
     /* JADX INFO: renamed from: k */
     public final String f19998k;
 
     /* JADX INFO: renamed from: l */
     public final byte[] f19999l;
+    public static final Parcelable.Creator<PrivFrame> CREATOR = new C10734a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.PrivFrame$a */
     public class C10734a implements Parcelable.Creator<PrivFrame> {

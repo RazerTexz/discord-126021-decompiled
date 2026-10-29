@@ -27,12 +27,12 @@ public final class StoreBans extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$1 */
     /* JADX INFO: compiled from: StoreBans.kt */
-    public static final class C57941 extends AbstractC12240o implements Function1<List<? extends ModelBan>, Unit> {
+    public final class C57941 extends AbstractC12240o implements Function1<List<? extends ModelBan>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreBans.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $bans;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -85,7 +85,7 @@ public final class StoreBans extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$2 */
     /* JADX INFO: compiled from: StoreBans.kt */
-    public static final class C57952 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelBan>> {
+    public final class C57952 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelBan>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

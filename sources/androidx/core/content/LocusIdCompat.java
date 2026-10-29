@@ -14,7 +14,7 @@ public final class LocusIdCompat {
     private final LocusId mWrapped;
 
     @RequiresApi(29)
-    public static class Api29Impl {
+    public class Api29Impl {
         private Api29Impl() {
         }
 
@@ -38,18 +38,6 @@ public final class LocusIdCompat {
         }
     }
 
-    @NonNull
-    private String getSanitizedId() {
-        return this.mId.length() + "_chars";
-    }
-
-    @NonNull
-    @RequiresApi(29)
-    public static LocusIdCompat toLocusIdCompat(@NonNull LocusId locusId) {
-        Preconditions.checkNotNull(locusId, "locusId cannot be null");
-        return new LocusIdCompat((String) Preconditions.checkStringNotEmpty(Api29Impl.getId(locusId), "id cannot be empty"));
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -70,6 +58,11 @@ public final class LocusIdCompat {
         return this.mId;
     }
 
+    @NonNull
+    private String getSanitizedId() {
+        return this.mId.length() + "_chars";
+    }
+
     public int hashCode() {
         String str = this.mId;
         return 31 + (str == null ? 0 : str.hashCode());
@@ -79,6 +72,13 @@ public final class LocusIdCompat {
     @RequiresApi(29)
     public LocusId toLocusId() {
         return this.mWrapped;
+    }
+
+    @NonNull
+    @RequiresApi(29)
+    public static LocusIdCompat toLocusIdCompat(@NonNull LocusId locusId) {
+        Preconditions.checkNotNull(locusId, "locusId cannot be null");
+        return new LocusIdCompat((String) Preconditions.checkStringNotEmpty(Api29Impl.getId(locusId), "id cannot be empty"));
     }
 
     @NonNull

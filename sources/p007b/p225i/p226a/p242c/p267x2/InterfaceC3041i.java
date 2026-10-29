@@ -7,6 +7,8 @@ import p007b.p225i.p226a.p242c.p257e3.InterfaceC2706h;
 /* JADX INFO: compiled from: ExtractorInput.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC3041i extends InterfaceC2706h {
+    long getPosition();
+
     /* JADX INFO: renamed from: b */
     long mo3642b();
 
@@ -21,8 +23,6 @@ public interface InterfaceC3041i extends InterfaceC2706h {
 
     /* JADX INFO: renamed from: g */
     void mo3646g(int i) throws IOException;
-
-    long getPosition();
 
     /* JADX INFO: renamed from: h */
     int mo3647h(int i) throws IOException;

@@ -52,7 +52,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final /* synthetic */ class C81691 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C81691 extends C12236k implements Function1<StoreState, Unit> {
         public C81691(WidgetApplicationCommandBottomSheetViewModel widgetApplicationCommandBottomSheetViewModel) {
             super(1, widgetApplicationCommandBottomSheetViewModel, WidgetApplicationCommandBottomSheetViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/list/sheet/WidgetApplicationCommandBottomSheetViewModel$StoreState;)V", 0);
         }
@@ -72,7 +72,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheetViewModel$3 */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final class C81713 extends AbstractC12240o implements Function1<UserData, Unit> {
+    public final class C81713 extends AbstractC12240o implements Function1<UserData, Unit> {
         public C81713() {
             super(1);
         }
@@ -95,7 +95,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -109,7 +109,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final /* data */ class SlashCommandParam {
+    public final /* data */ class SlashCommandParam {
         private final String copyText;
         private final String name;
         private final String value;
@@ -139,26 +139,6 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             return slashCommandParam.copy(str, str2, num, str3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getValue() {
-            return this.value;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getValueColor() {
-            return this.valueColor;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getCopyText() {
-            return this.copyText;
-        }
-
         public final SlashCommandParam copy(String name, String value, Integer valueColor, String copyText) {
             C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             C12238m.checkNotNullParameter(value, "value");
@@ -177,16 +157,36 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             return C12238m.areEqual(this.name, slashCommandParam.name) && C12238m.areEqual(this.value, slashCommandParam.value) && C12238m.areEqual(this.valueColor, slashCommandParam.valueColor) && C12238m.areEqual(this.copyText, slashCommandParam.copyText);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getCopyText() {
             return this.copyText;
+        }
+
+        public final String getCopyText() {
+            return this.copyText;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
         }
 
         public final String getName() {
             return this.name;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getValue() {
             return this.value;
+        }
+
+        public final String getValue() {
+            return this.value;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Integer getValueColor() {
+            return this.valueColor;
         }
 
         public final Integer getValueColor() {
@@ -217,7 +217,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Application application;
         private final Map<Long, Channel> channels;
         private final Map<String, SlashCommandParam> commandValues;
@@ -247,28 +247,8 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             this.commandValues = map5;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
         public final Map<String, SlashCommandParam> component10() {
             return this.commandValues;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GuildMember getInteractionUser() {
-            return this.interactionUser;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreApplicationInteractions.State getInteractionState() {
-            return this.interactionState;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Application getApplication() {
-            return this.application;
         }
 
         public final Set<Long> component5() {
@@ -310,6 +290,11 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             return C12238m.areEqual(this.user, storeState.user) && C12238m.areEqual(this.interactionUser, storeState.interactionUser) && C12238m.areEqual(this.interactionState, storeState.interactionState) && C12238m.areEqual(this.application, storeState.application) && C12238m.areEqual(this.mentionedUsers, storeState.mentionedUsers) && C12238m.areEqual(this.guildMembers, storeState.guildMembers) && C12238m.areEqual(this.guildRoles, storeState.guildRoles) && C12238m.areEqual(this.users, storeState.users) && C12238m.areEqual(this.channels, storeState.channels) && C12238m.areEqual(this.commandValues, storeState.commandValues);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Application getApplication() {
+            return this.application;
+        }
+
         public final Application getApplication() {
             return this.application;
         }
@@ -330,8 +315,18 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             return this.guildRoles;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StoreApplicationInteractions.State getInteractionState() {
             return this.interactionState;
+        }
+
+        public final StoreApplicationInteractions.State getInteractionState() {
+            return this.interactionState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final GuildMember getInteractionUser() {
+            return this.interactionUser;
         }
 
         public final GuildMember getInteractionUser() {
@@ -340,6 +335,11 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
 
         public final Set<Long> getMentionedUsers() {
             return this.mentionedUsers;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -402,7 +402,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static final /* data */ class UserData {
+    public final /* data */ class UserData {
         private final Set<Long> mentionedUserIds;
         private final Map<Long, User> users;
 
@@ -414,6 +414,14 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             this.users = map;
         }
 
+        public final Set<Long> component1() {
+            return this.mentionedUserIds;
+        }
+
+        public final Map<Long, User> component2() {
+            return this.users;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ UserData copy$default(UserData userData, Set set, Map map, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -423,14 +431,6 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
                 map = userData.users;
             }
             return userData.copy(set, map);
-        }
-
-        public final Set<Long> component1() {
-            return this.mentionedUserIds;
-        }
-
-        public final Map<Long, User> component2() {
-            return this.users;
         }
 
         public final UserData copy(Set<Long> mentionedUserIds, Map<Long, ? extends User> users) {
@@ -474,10 +474,10 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-        public static final class Failed extends ViewState {
+        public final class Failed extends ViewState {
             public static final Failed INSTANCE = new Failed();
 
             private Failed() {
@@ -486,7 +486,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-        public static final class Loaded extends ViewState {
+        public final class Loaded extends ViewState {
             private final Application application;
             private final ApplicationCommandData applicationCommandData;
             private final Long channelId;
@@ -570,7 +570,7 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheetViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -598,6 +598,34 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
             observableObserveStores = observable;
         }
         this(j, j2, j3, l, j4, j5, str, observableObserveStores);
+    }
+
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    public final long getInteractionId() {
+        return this.interactionId;
+    }
+
+    public final long getInteractionUserId() {
+        return this.interactionUserId;
+    }
+
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
+    public final String getMessageNonce() {
+        return this.messageNonce;
     }
 
     private final void handleStoreState(StoreState storeState) {
@@ -640,34 +668,6 @@ public final class WidgetApplicationCommandBottomSheetViewModel extends Abstract
 
     private final void requestInteractionData() {
         StoreStream.INSTANCE.getInteractions().fetchInteractionDataIfNonExisting(this.interactionId, this.channelId, this.messageId, this.messageNonce);
-    }
-
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    public final long getInteractionId() {
-        return this.interactionId;
-    }
-
-    public final long getInteractionUserId() {
-        return this.interactionUserId;
-    }
-
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    public final String getMessageNonce() {
-        return this.messageNonce;
     }
 
     public final void retry() {

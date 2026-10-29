@@ -29,103 +29,18 @@ public final class StoreChannelFollowerStats extends StoreV2 {
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
 
-    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-    public static final /* data */ class ChannelFollowerStatData {
-        private final ModelChannelFollowerStats data;
-        private final FetchState fetchState;
-
-        public ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats) {
-            C12238m.checkNotNullParameter(fetchState, "fetchState");
-            C12238m.checkNotNullParameter(modelChannelFollowerStats, "data");
-            this.fetchState = fetchState;
-            this.data = modelChannelFollowerStats;
-        }
-
-        public static /* synthetic */ ChannelFollowerStatData copy$default(ChannelFollowerStatData channelFollowerStatData, FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, Object obj) {
-            if ((i & 1) != 0) {
-                fetchState = channelFollowerStatData.fetchState;
-            }
-            if ((i & 2) != 0) {
-                modelChannelFollowerStats = channelFollowerStatData.data;
-            }
-            return channelFollowerStatData.copy(fetchState, modelChannelFollowerStats);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final FetchState getFetchState() {
-            return this.fetchState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelChannelFollowerStats getData() {
-            return this.data;
-        }
-
-        public final ChannelFollowerStatData copy(FetchState fetchState, ModelChannelFollowerStats data) {
-            C12238m.checkNotNullParameter(fetchState, "fetchState");
-            C12238m.checkNotNullParameter(data, "data");
-            return new ChannelFollowerStatData(fetchState, data);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ChannelFollowerStatData)) {
-                return false;
-            }
-            ChannelFollowerStatData channelFollowerStatData = (ChannelFollowerStatData) other;
-            return C12238m.areEqual(this.fetchState, channelFollowerStatData.fetchState) && C12238m.areEqual(this.data, channelFollowerStatData.data);
-        }
-
-        public final ModelChannelFollowerStats getData() {
-            return this.data;
-        }
-
-        public final FetchState getFetchState() {
-            return this.fetchState;
-        }
-
-        public int hashCode() {
-            FetchState fetchState = this.fetchState;
-            int iHashCode = (fetchState != null ? fetchState.hashCode() : 0) * 31;
-            ModelChannelFollowerStats modelChannelFollowerStats = this.data;
-            return iHashCode + (modelChannelFollowerStats != null ? modelChannelFollowerStats.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ChannelFollowerStatData(fetchState=");
-            sbM833U.append(this.fetchState);
-            sbM833U.append(", data=");
-            sbM833U.append(this.data);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-
-        public /* synthetic */ ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(fetchState, (i & 2) != 0 ? new ModelChannelFollowerStats(0L, null, null, null, null, null, null, Opcodes.LAND, null) : modelChannelFollowerStats);
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-    public enum FetchState {
-        FETCHING,
-        FAILED,
-        SUCCEEDED
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1 */
     /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-    public static final class C58101 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58101 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelChannelFollowerStatsDto, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelChannelFollowerStatsDto, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-            public static final class C132511 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132511 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ModelChannelFollowerStatsDto $channelFollowerStats;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -165,11 +80,11 @@ public final class StoreChannelFollowerStats extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -231,7 +146,7 @@ public final class StoreChannelFollowerStats extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$observeChannelFollowerStats$1 */
     /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
-    public static final class C58111 extends AbstractC12240o implements Function0<ModelChannelFollowerStats> {
+    public final class C58111 extends AbstractC12240o implements Function0<ModelChannelFollowerStats> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -251,6 +166,91 @@ public final class StoreChannelFollowerStats extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public final /* data */ class ChannelFollowerStatData {
+        private final ModelChannelFollowerStats data;
+        private final FetchState fetchState;
+
+        public ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats) {
+            C12238m.checkNotNullParameter(fetchState, "fetchState");
+            C12238m.checkNotNullParameter(modelChannelFollowerStats, "data");
+            this.fetchState = fetchState;
+            this.data = modelChannelFollowerStats;
+        }
+
+        public static /* synthetic */ ChannelFollowerStatData copy$default(ChannelFollowerStatData channelFollowerStatData, FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, Object obj) {
+            if ((i & 1) != 0) {
+                fetchState = channelFollowerStatData.fetchState;
+            }
+            if ((i & 2) != 0) {
+                modelChannelFollowerStats = channelFollowerStatData.data;
+            }
+            return channelFollowerStatData.copy(fetchState, modelChannelFollowerStats);
+        }
+
+        public final ChannelFollowerStatData copy(FetchState fetchState, ModelChannelFollowerStats data) {
+            C12238m.checkNotNullParameter(fetchState, "fetchState");
+            C12238m.checkNotNullParameter(data, "data");
+            return new ChannelFollowerStatData(fetchState, data);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ChannelFollowerStatData)) {
+                return false;
+            }
+            ChannelFollowerStatData channelFollowerStatData = (ChannelFollowerStatData) other;
+            return C12238m.areEqual(this.fetchState, channelFollowerStatData.fetchState) && C12238m.areEqual(this.data, channelFollowerStatData.data);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ModelChannelFollowerStats getData() {
+            return this.data;
+        }
+
+        public final ModelChannelFollowerStats getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final FetchState getFetchState() {
+            return this.fetchState;
+        }
+
+        public final FetchState getFetchState() {
+            return this.fetchState;
+        }
+
+        public int hashCode() {
+            FetchState fetchState = this.fetchState;
+            int iHashCode = (fetchState != null ? fetchState.hashCode() : 0) * 31;
+            ModelChannelFollowerStats modelChannelFollowerStats = this.data;
+            return iHashCode + (modelChannelFollowerStats != null ? modelChannelFollowerStats.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ChannelFollowerStatData(fetchState=");
+            sbM833U.append(this.fetchState);
+            sbM833U.append(", data=");
+            sbM833U.append(this.data);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+
+        public /* synthetic */ ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(fetchState, (i & 2) != 0 ? new ModelChannelFollowerStats(0L, null, null, null, null, null, null, Opcodes.LAND, null) : modelChannelFollowerStats);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public enum FetchState {
+        FETCHING,
+        FAILED,
+        SUCCEEDED
+    }
+
     public StoreChannelFollowerStats(Dispatcher dispatcher, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         C12238m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -258,6 +258,10 @@ public final class StoreChannelFollowerStats extends StoreV2 {
         this.observationDeck = observationDeck;
         this.channelFollowerStatsState = new HashMap();
         this.channelFollowerStatsStateSnapshot = new HashMap();
+    }
+
+    public final void fetchChannelFollowerStats(long channelId) {
+        fetchIfNonexistingOrStale(channelId);
     }
 
     @StoreThread
@@ -296,10 +300,6 @@ public final class StoreChannelFollowerStats extends StoreV2 {
         ModelChannelFollowerStats data;
         ChannelFollowerStatData channelFollowerStatData = this.channelFollowerStatsState.get(Long.valueOf(channelId));
         return ((channelFollowerStatData == null || (data = channelFollowerStatData.getData()) == null) ? 0L : data.getLastFetched() + ((long) 3600000)) <= ClockFactory.get().currentTimeMillis();
-    }
-
-    public final void fetchChannelFollowerStats(long channelId) {
-        fetchIfNonexistingOrStale(channelId);
     }
 
     public final Observable<ModelChannelFollowerStats> observeChannelFollowerStats(long channelId) {

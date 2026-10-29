@@ -28,36 +28,6 @@ public final /* data */ class CurrentMonthEarningMetrics {
         this.revenueSinceDate = str2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getRevenue() {
-        return this.revenue;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getMonthOverMonthRevenueChangePercent() {
-        return this.monthOverMonthRevenueChangePercent;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getSubscriberCount() {
-        return this.subscriberCount;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getMonthOverMonthSubscriberCountChange() {
-        return this.monthOverMonthSubscriberCountChange;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getNextPaymentDate() {
-        return this.nextPaymentDate;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getRevenueSinceDate() {
-        return this.revenueSinceDate;
-    }
-
     public final CurrentMonthEarningMetrics copy(long revenue, Long monthOverMonthRevenueChangePercent, long subscriberCount, Long monthOverMonthSubscriberCountChange, String nextPaymentDate, String revenueSinceDate) {
         return new CurrentMonthEarningMetrics(revenue, monthOverMonthRevenueChangePercent, subscriberCount, monthOverMonthSubscriberCountChange, nextPaymentDate, revenueSinceDate);
     }
@@ -73,24 +43,54 @@ public final /* data */ class CurrentMonthEarningMetrics {
         return this.revenue == currentMonthEarningMetrics.revenue && C12238m.areEqual(this.monthOverMonthRevenueChangePercent, currentMonthEarningMetrics.monthOverMonthRevenueChangePercent) && this.subscriberCount == currentMonthEarningMetrics.subscriberCount && C12238m.areEqual(this.monthOverMonthSubscriberCountChange, currentMonthEarningMetrics.monthOverMonthSubscriberCountChange) && C12238m.areEqual(this.nextPaymentDate, currentMonthEarningMetrics.nextPaymentDate) && C12238m.areEqual(this.revenueSinceDate, currentMonthEarningMetrics.revenueSinceDate);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getMonthOverMonthRevenueChangePercent() {
         return this.monthOverMonthRevenueChangePercent;
+    }
+
+    public final Long getMonthOverMonthRevenueChangePercent() {
+        return this.monthOverMonthRevenueChangePercent;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Long getMonthOverMonthSubscriberCountChange() {
+        return this.monthOverMonthSubscriberCountChange;
     }
 
     public final Long getMonthOverMonthSubscriberCountChange() {
         return this.monthOverMonthSubscriberCountChange;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final String getNextPaymentDate() {
         return this.nextPaymentDate;
+    }
+
+    public final String getNextPaymentDate() {
+        return this.nextPaymentDate;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getRevenue() {
+        return this.revenue;
     }
 
     public final long getRevenue() {
         return this.revenue;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final String getRevenueSinceDate() {
         return this.revenueSinceDate;
+    }
+
+    public final String getRevenueSinceDate() {
+        return this.revenueSinceDate;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getSubscriberCount() {
+        return this.subscriberCount;
     }
 
     public final long getSubscriberCount() {

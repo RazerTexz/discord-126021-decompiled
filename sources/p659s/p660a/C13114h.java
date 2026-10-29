@@ -21,7 +21,7 @@ public final /* synthetic */ class C13114h {
     /* JADX INFO: renamed from: s.a.h$a */
     /* JADX INFO: compiled from: Timeout.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.TimeoutKt", m10085f = "Timeout.kt", m10086l = {101}, m10087m = "withTimeoutOrNull")
-    public static final class a extends AbstractC12187d {
+    public final class a extends AbstractC12187d {
         public long J$0;
         public Object L$0;
         public Object L$1;
@@ -73,7 +73,7 @@ public final /* synthetic */ class C13114h {
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX WARN: Type inference failed for: r2v1, types: [T, s.a.x1] */
     /* JADX INFO: renamed from: b */
-    public static final <T> Object m11283b(long j, Function2<? super CoroutineScope, ? super Continuation<? super T>, ? extends Object> function2, Continuation<? super T> continuation) {
+    public static final <T> Object m11283b(long j, Function2<? super CoroutineScope, ? super Continuation<? super T>, ? extends Object> function2, Continuation<? super T> continuation) throws Throwable {
         a aVar;
         TimeoutCancellationException e;
         Ref$ObjectRef ref$ObjectRef;

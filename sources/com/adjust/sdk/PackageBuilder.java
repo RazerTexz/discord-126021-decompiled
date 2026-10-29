@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 /* JADX INFO: loaded from: classes.dex */
 public class PackageBuilder {
-    private static ILogger logger = AdjustFactory.getLogger();
     private ActivityStateCopy activityStateCopy;
     private AdjustConfig adjustConfig;
     public AdjustAttribution attribution;
@@ -22,6 +21,7 @@ public class PackageBuilder {
     public String referrerApi;
     public String reftag;
     private SessionParameters sessionParameters;
+    private static ILogger logger = AdjustFactory.getLogger();
     public long clickTimeInSeconds = -1;
     public long clickTimeInMilliseconds = -1;
     public long installBeginTimeInSeconds = -1;
@@ -135,6 +135,139 @@ public class PackageBuilder {
             return;
         }
         map.put(str, str2);
+    }
+
+    public ActivityPackage buildAdRevenuePackage(String str, JSONObject jSONObject) {
+        Map<String, String> adRevenueParameters = getAdRevenueParameters(str, jSONObject);
+        ActivityKind activityKind = ActivityKind.AD_REVENUE;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/ad_revenue");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(adRevenueParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(adRevenueParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildAttributionPackage(String str) {
+        Map<String, String> attributionParameters = getAttributionParameters(str);
+        ActivityKind activityKind = ActivityKind.ATTRIBUTION;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("attribution");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(attributionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(attributionParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildClickPackage(String str) {
+        Map<String, String> clickParameters = getClickParameters(str);
+        ActivityKind activityKind = ActivityKind.CLICK;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/sdk_click");
+        defaultActivityPackage.setSuffix("");
+        defaultActivityPackage.setClickTimeInMilliseconds(this.clickTimeInMilliseconds);
+        defaultActivityPackage.setClickTimeInSeconds(this.clickTimeInSeconds);
+        defaultActivityPackage.setInstallBeginTimeInSeconds(this.installBeginTimeInSeconds);
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(clickParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(clickParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildDisableThirdPartySharingPackage() {
+        Map<String, String> disableThirdPartySharingParameters = getDisableThirdPartySharingParameters();
+        ActivityKind activityKind = ActivityKind.DISABLE_THIRD_PARTY_SHARING;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/disable_third_party_sharing");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(disableThirdPartySharingParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(disableThirdPartySharingParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildEventPackage(AdjustEvent adjustEvent, boolean z2) {
+        Map<String, String> eventParameters = getEventParameters(adjustEvent, z2);
+        ActivityKind activityKind = ActivityKind.EVENT;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/event");
+        defaultActivityPackage.setSuffix(getEventSuffix(adjustEvent));
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(eventParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(eventParameters);
+        if (z2) {
+            defaultActivityPackage.setCallbackParameters(adjustEvent.callbackParameters);
+            defaultActivityPackage.setPartnerParameters(adjustEvent.partnerParameters);
+        }
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildGdprPackage() {
+        Map<String, String> gdprParameters = getGdprParameters();
+        ActivityKind activityKind = ActivityKind.GDPR;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/gdpr_forget_device");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(gdprParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(gdprParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildInfoPackage(String str) {
+        Map<String, String> infoParameters = getInfoParameters(str);
+        ActivityKind activityKind = ActivityKind.INFO;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/sdk_info");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(infoParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(infoParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildSessionPackage(boolean z2) {
+        Map<String, String> sessionParameters = getSessionParameters(z2);
+        ActivityKind activityKind = ActivityKind.SESSION;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/session");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(sessionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(sessionParameters);
+        return defaultActivityPackage;
+    }
+
+    public ActivityPackage buildSubscriptionPackage(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z2) {
+        Map<String, String> subscriptionParameters = getSubscriptionParameters(adjustPlayStoreSubscription, z2);
+        ActivityKind activityKind = ActivityKind.SUBSCRIPTION;
+        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
+        defaultActivityPackage.setPath("/v2/purchase");
+        defaultActivityPackage.setSuffix("");
+        String string = activityKind.toString();
+        String clientSdk = defaultActivityPackage.getClientSdk();
+        AdjustConfig adjustConfig = this.adjustConfig;
+        AdjustSigner.sign(subscriptionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
+        defaultActivityPackage.setParameters(subscriptionParameters);
+        return defaultActivityPackage;
     }
 
     private void checkDeviceIds(Map<String, String> map) {
@@ -422,6 +555,84 @@ public class PackageBuilder {
         return map;
     }
 
+    public Map<String, String> getEventParameters(AdjustEvent adjustEvent, boolean z2) {
+        ContentResolver contentResolver = this.adjustConfig.context.getContentResolver();
+        HashMap map = new HashMap();
+        Map<String, String> imeiParameters = Reflection.getImeiParameters(this.adjustConfig.context, logger);
+        if (imeiParameters != null) {
+            map.putAll(imeiParameters);
+        }
+        Map<String, String> oaidParameters = Reflection.getOaidParameters(this.adjustConfig.context, logger);
+        if (oaidParameters != null) {
+            map.putAll(oaidParameters);
+        }
+        if (!z2) {
+            addMapJson(map, Constants.CALLBACK_PARAMETERS, Util.mergeParameters(this.sessionParameters.callbackParameters, adjustEvent.callbackParameters, "Callback"));
+            addMapJson(map, Constants.PARTNER_PARAMETERS, Util.mergeParameters(this.sessionParameters.partnerParameters, adjustEvent.partnerParameters, "Partner"));
+        }
+        this.deviceInfo.reloadPlayIds(this.adjustConfig.context);
+        addString(map, "android_uuid", this.activityStateCopy.uuid);
+        addBoolean(map, "tracking_enabled", this.deviceInfo.isTrackingEnabled);
+        addString(map, "gps_adid", this.deviceInfo.playAdId);
+        addString(map, "gps_adid_src", this.deviceInfo.playAdIdSource);
+        addLong(map, "gps_adid_attempt", this.deviceInfo.playAdIdAttempt);
+        if (!containsPlayIds(map)) {
+            logger.warn("Google Advertising ID not detected, fallback to non Google Play identifiers will take place", new Object[0]);
+            this.deviceInfo.reloadNonPlayIds(this.adjustConfig.context);
+            addString(map, "mac_sha1", this.deviceInfo.macSha1);
+            addString(map, "mac_md5", this.deviceInfo.macShortMd5);
+            addString(map, "android_id", this.deviceInfo.androidId);
+        }
+        addString(map, "api_level", this.deviceInfo.apiLevel);
+        addString(map, "app_secret", this.adjustConfig.appSecret);
+        addString(map, "app_token", this.adjustConfig.appToken);
+        addString(map, "app_version", this.deviceInfo.appVersion);
+        Boolean bool = Boolean.TRUE;
+        addBoolean(map, "attribution_deeplink", bool);
+        addLong(map, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
+        addString(map, "country", this.deviceInfo.country);
+        addString(map, "cpu_type", this.deviceInfo.abi);
+        addDateInMilliseconds(map, "created_at", this.createdAt);
+        addString(map, "currency", adjustEvent.currency);
+        addBoolean(map, "device_known", this.adjustConfig.deviceKnown);
+        addString(map, "device_manufacturer", this.deviceInfo.deviceManufacturer);
+        addString(map, "device_name", this.deviceInfo.deviceName);
+        addString(map, "device_type", this.deviceInfo.deviceType);
+        addString(map, "display_height", this.deviceInfo.displayHeight);
+        addString(map, "display_width", this.deviceInfo.displayWidth);
+        addString(map, "environment", this.adjustConfig.environment);
+        addString(map, "event_callback_id", adjustEvent.callbackId);
+        addLong(map, "event_count", this.activityStateCopy.eventCount);
+        addBoolean(map, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
+        addString(map, "event_token", adjustEvent.eventToken);
+        addString(map, "external_device_id", this.adjustConfig.externalDeviceId);
+        addString(map, "fb_id", this.deviceInfo.fbAttributionId);
+        addString(map, "fire_adid", Util.getFireAdvertisingId(contentResolver));
+        addBoolean(map, "fire_tracking_enabled", Util.getFireTrackingEnabled(contentResolver));
+        addString(map, "hardware_name", this.deviceInfo.hardwareName);
+        addString(map, "language", this.deviceInfo.language);
+        addString(map, "mcc", Util.getMcc(this.adjustConfig.context));
+        addString(map, "mnc", Util.getMnc(this.adjustConfig.context));
+        addBoolean(map, "needs_response_details", bool);
+        addLong(map, "network_type", Util.getNetworkType(this.adjustConfig.context));
+        addString(map, "os_build", this.deviceInfo.buildName);
+        addString(map, "os_name", this.deviceInfo.osName);
+        addString(map, "os_version", this.deviceInfo.osVersion);
+        addString(map, "package_name", this.deviceInfo.packageName);
+        addString(map, "push_token", this.activityStateCopy.pushToken);
+        addDouble(map, "revenue", adjustEvent.revenue);
+        addString(map, "screen_density", this.deviceInfo.screenDensity);
+        addString(map, "screen_format", this.deviceInfo.screenFormat);
+        addString(map, "screen_size", this.deviceInfo.screenSize);
+        addString(map, "secret_id", this.adjustConfig.secretId);
+        addLong(map, "session_count", this.activityStateCopy.sessionCount);
+        addDuration(map, "session_length", this.activityStateCopy.sessionLength);
+        addLong(map, "subsession_count", this.activityStateCopy.subsessionCount);
+        addDuration(map, "time_spent", this.activityStateCopy.timeSpent);
+        checkDeviceIds(map);
+        return map;
+    }
+
     private String getEventSuffix(AdjustEvent adjustEvent) {
         Double d = adjustEvent.revenue;
         return d == null ? Util.formatString("'%s'", adjustEvent.eventToken) : Util.formatString("(%.5f %s, '%s')", d, adjustEvent.currency, adjustEvent.eventToken);
@@ -677,217 +888,6 @@ public class PackageBuilder {
         addString(map, "purchase_token", adjustPlayStoreSubscription.getPurchaseToken());
         addString(map, "billing_store", adjustPlayStoreSubscription.getBillingStore());
         addString(map, "transaction_id", adjustPlayStoreSubscription.getOrderId());
-        checkDeviceIds(map);
-        return map;
-    }
-
-    public ActivityPackage buildAdRevenuePackage(String str, JSONObject jSONObject) {
-        Map<String, String> adRevenueParameters = getAdRevenueParameters(str, jSONObject);
-        ActivityKind activityKind = ActivityKind.AD_REVENUE;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/ad_revenue");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(adRevenueParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(adRevenueParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildAttributionPackage(String str) {
-        Map<String, String> attributionParameters = getAttributionParameters(str);
-        ActivityKind activityKind = ActivityKind.ATTRIBUTION;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("attribution");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(attributionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(attributionParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildClickPackage(String str) {
-        Map<String, String> clickParameters = getClickParameters(str);
-        ActivityKind activityKind = ActivityKind.CLICK;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/sdk_click");
-        defaultActivityPackage.setSuffix("");
-        defaultActivityPackage.setClickTimeInMilliseconds(this.clickTimeInMilliseconds);
-        defaultActivityPackage.setClickTimeInSeconds(this.clickTimeInSeconds);
-        defaultActivityPackage.setInstallBeginTimeInSeconds(this.installBeginTimeInSeconds);
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(clickParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(clickParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildDisableThirdPartySharingPackage() {
-        Map<String, String> disableThirdPartySharingParameters = getDisableThirdPartySharingParameters();
-        ActivityKind activityKind = ActivityKind.DISABLE_THIRD_PARTY_SHARING;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/disable_third_party_sharing");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(disableThirdPartySharingParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(disableThirdPartySharingParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildEventPackage(AdjustEvent adjustEvent, boolean z2) {
-        Map<String, String> eventParameters = getEventParameters(adjustEvent, z2);
-        ActivityKind activityKind = ActivityKind.EVENT;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/event");
-        defaultActivityPackage.setSuffix(getEventSuffix(adjustEvent));
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(eventParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(eventParameters);
-        if (z2) {
-            defaultActivityPackage.setCallbackParameters(adjustEvent.callbackParameters);
-            defaultActivityPackage.setPartnerParameters(adjustEvent.partnerParameters);
-        }
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildGdprPackage() {
-        Map<String, String> gdprParameters = getGdprParameters();
-        ActivityKind activityKind = ActivityKind.GDPR;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/gdpr_forget_device");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(gdprParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(gdprParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildInfoPackage(String str) {
-        Map<String, String> infoParameters = getInfoParameters(str);
-        ActivityKind activityKind = ActivityKind.INFO;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/sdk_info");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(infoParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(infoParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildSessionPackage(boolean z2) {
-        Map<String, String> sessionParameters = getSessionParameters(z2);
-        ActivityKind activityKind = ActivityKind.SESSION;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/session");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(sessionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(sessionParameters);
-        return defaultActivityPackage;
-    }
-
-    public ActivityPackage buildSubscriptionPackage(AdjustPlayStoreSubscription adjustPlayStoreSubscription, boolean z2) {
-        Map<String, String> subscriptionParameters = getSubscriptionParameters(adjustPlayStoreSubscription, z2);
-        ActivityKind activityKind = ActivityKind.SUBSCRIPTION;
-        ActivityPackage defaultActivityPackage = getDefaultActivityPackage(activityKind);
-        defaultActivityPackage.setPath("/v2/purchase");
-        defaultActivityPackage.setSuffix("");
-        String string = activityKind.toString();
-        String clientSdk = defaultActivityPackage.getClientSdk();
-        AdjustConfig adjustConfig = this.adjustConfig;
-        AdjustSigner.sign(subscriptionParameters, string, clientSdk, adjustConfig.context, adjustConfig.logger);
-        defaultActivityPackage.setParameters(subscriptionParameters);
-        return defaultActivityPackage;
-    }
-
-    public Map<String, String> getEventParameters(AdjustEvent adjustEvent, boolean z2) {
-        ContentResolver contentResolver = this.adjustConfig.context.getContentResolver();
-        HashMap map = new HashMap();
-        Map<String, String> imeiParameters = Reflection.getImeiParameters(this.adjustConfig.context, logger);
-        if (imeiParameters != null) {
-            map.putAll(imeiParameters);
-        }
-        Map<String, String> oaidParameters = Reflection.getOaidParameters(this.adjustConfig.context, logger);
-        if (oaidParameters != null) {
-            map.putAll(oaidParameters);
-        }
-        if (!z2) {
-            addMapJson(map, Constants.CALLBACK_PARAMETERS, Util.mergeParameters(this.sessionParameters.callbackParameters, adjustEvent.callbackParameters, "Callback"));
-            addMapJson(map, Constants.PARTNER_PARAMETERS, Util.mergeParameters(this.sessionParameters.partnerParameters, adjustEvent.partnerParameters, "Partner"));
-        }
-        this.deviceInfo.reloadPlayIds(this.adjustConfig.context);
-        addString(map, "android_uuid", this.activityStateCopy.uuid);
-        addBoolean(map, "tracking_enabled", this.deviceInfo.isTrackingEnabled);
-        addString(map, "gps_adid", this.deviceInfo.playAdId);
-        addString(map, "gps_adid_src", this.deviceInfo.playAdIdSource);
-        addLong(map, "gps_adid_attempt", this.deviceInfo.playAdIdAttempt);
-        if (!containsPlayIds(map)) {
-            logger.warn("Google Advertising ID not detected, fallback to non Google Play identifiers will take place", new Object[0]);
-            this.deviceInfo.reloadNonPlayIds(this.adjustConfig.context);
-            addString(map, "mac_sha1", this.deviceInfo.macSha1);
-            addString(map, "mac_md5", this.deviceInfo.macShortMd5);
-            addString(map, "android_id", this.deviceInfo.androidId);
-        }
-        addString(map, "api_level", this.deviceInfo.apiLevel);
-        addString(map, "app_secret", this.adjustConfig.appSecret);
-        addString(map, "app_token", this.adjustConfig.appToken);
-        addString(map, "app_version", this.deviceInfo.appVersion);
-        Boolean bool = Boolean.TRUE;
-        addBoolean(map, "attribution_deeplink", bool);
-        addLong(map, "connectivity_type", Util.getConnectivityType(this.adjustConfig.context));
-        addString(map, "country", this.deviceInfo.country);
-        addString(map, "cpu_type", this.deviceInfo.abi);
-        addDateInMilliseconds(map, "created_at", this.createdAt);
-        addString(map, "currency", adjustEvent.currency);
-        addBoolean(map, "device_known", this.adjustConfig.deviceKnown);
-        addString(map, "device_manufacturer", this.deviceInfo.deviceManufacturer);
-        addString(map, "device_name", this.deviceInfo.deviceName);
-        addString(map, "device_type", this.deviceInfo.deviceType);
-        addString(map, "display_height", this.deviceInfo.displayHeight);
-        addString(map, "display_width", this.deviceInfo.displayWidth);
-        addString(map, "environment", this.adjustConfig.environment);
-        addString(map, "event_callback_id", adjustEvent.callbackId);
-        addLong(map, "event_count", this.activityStateCopy.eventCount);
-        addBoolean(map, "event_buffering_enabled", Boolean.valueOf(this.adjustConfig.eventBufferingEnabled));
-        addString(map, "event_token", adjustEvent.eventToken);
-        addString(map, "external_device_id", this.adjustConfig.externalDeviceId);
-        addString(map, "fb_id", this.deviceInfo.fbAttributionId);
-        addString(map, "fire_adid", Util.getFireAdvertisingId(contentResolver));
-        addBoolean(map, "fire_tracking_enabled", Util.getFireTrackingEnabled(contentResolver));
-        addString(map, "hardware_name", this.deviceInfo.hardwareName);
-        addString(map, "language", this.deviceInfo.language);
-        addString(map, "mcc", Util.getMcc(this.adjustConfig.context));
-        addString(map, "mnc", Util.getMnc(this.adjustConfig.context));
-        addBoolean(map, "needs_response_details", bool);
-        addLong(map, "network_type", Util.getNetworkType(this.adjustConfig.context));
-        addString(map, "os_build", this.deviceInfo.buildName);
-        addString(map, "os_name", this.deviceInfo.osName);
-        addString(map, "os_version", this.deviceInfo.osVersion);
-        addString(map, "package_name", this.deviceInfo.packageName);
-        addString(map, "push_token", this.activityStateCopy.pushToken);
-        addDouble(map, "revenue", adjustEvent.revenue);
-        addString(map, "screen_density", this.deviceInfo.screenDensity);
-        addString(map, "screen_format", this.deviceInfo.screenFormat);
-        addString(map, "screen_size", this.deviceInfo.screenSize);
-        addString(map, "secret_id", this.adjustConfig.secretId);
-        addLong(map, "session_count", this.activityStateCopy.sessionCount);
-        addDuration(map, "session_length", this.activityStateCopy.sessionLength);
-        addLong(map, "subsession_count", this.activityStateCopy.subsessionCount);
-        addDuration(map, "time_spent", this.activityStateCopy.timeSpent);
         checkDeviceIds(map);
         return map;
     }

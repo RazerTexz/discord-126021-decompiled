@@ -24,7 +24,6 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class ConstraintTrackingWorker extends ListenableWorker implements WorkConstraintsCallback {
     public static final String ARGUMENT_CLASS_NAME = "androidx.work.impl.workers.ConstraintTrackingWorker.ARGUMENT_CLASS_NAME";
-    private static final String TAG = Logger.tagWithPrefix("ConstraintTrkngWrkr");
     public volatile boolean mAreConstraintsUnmet;
 
     @Nullable
@@ -32,6 +31,7 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
     public SettableFuture<ListenableWorker.Result> mFuture;
     public final Object mLock;
     private WorkerParameters mWorkerParameters;
+    private static final String TAG = Logger.tagWithPrefix("ConstraintTrkngWrkr");
 
     public ConstraintTrackingWorker(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
         super(context, workerParameters);

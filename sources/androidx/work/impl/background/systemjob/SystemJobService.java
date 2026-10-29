@@ -22,9 +22,9 @@ import java.util.Map;
 @RequiresApi(23)
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemJobService extends JobService implements ExecutionListener {
+    private WorkManagerImpl mWorkManagerImpl;
     private static final String TAG = Logger.tagWithPrefix("SystemJobService");
     private final Map<String, JobParameters> mJobParameters = new HashMap();
-    private WorkManagerImpl mWorkManagerImpl;
 
     @Nullable
     private static String getWorkSpecIdFromJobParameters(@NonNull JobParameters jobParameters) {

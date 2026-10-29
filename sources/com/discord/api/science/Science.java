@@ -13,10 +13,10 @@ public final class Science {
     private final String token;
 
     /* JADX INFO: compiled from: Science.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: Science.kt */
-        public static final /* data */ class MapObject extends Event {
+        public final /* data */ class MapObject extends Event {
             private final Map<String, Object> properties;
             private final String type;
 
@@ -29,12 +29,6 @@ public final class Science {
                 this.properties = map;
             }
 
-            @Override // com.discord.api.science.Science.Event
-            /* JADX INFO: renamed from: a, reason: from getter */
-            public String getType() {
-                return this.type;
-            }
-
             public boolean equals(Object other) {
                 if (this == other) {
                     return true;
@@ -44,6 +38,12 @@ public final class Science {
                 }
                 MapObject mapObject = (MapObject) other;
                 return C12238m.areEqual(this.type, mapObject.type) && C12238m.areEqual(this.properties, mapObject.properties);
+            }
+
+            @Override // com.discord.api.science.Science.Event
+            /* JADX INFO: renamed from: a, reason: from getter */
+            public String getType() {
+                return this.type;
             }
 
             public int hashCode() {
@@ -62,7 +62,7 @@ public final class Science {
         }
 
         /* JADX INFO: compiled from: Science.kt */
-        public static final /* data */ class SchemaObject extends Event {
+        public final /* data */ class SchemaObject extends Event {
             private final AnalyticsSchema schema;
             private final String type;
 
@@ -74,10 +74,11 @@ public final class Science {
                 this.type = analyticsSchema.getAnalyticsSchemaTypeName();
             }
 
-            @Override // com.discord.api.science.Science.Event
-            /* JADX INFO: renamed from: a, reason: from getter */
-            public String getType() {
-                return this.type;
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof SchemaObject) && C12238m.areEqual(this.schema, ((SchemaObject) other).schema);
+                }
+                return true;
             }
 
             /* JADX INFO: renamed from: b, reason: from getter */
@@ -85,11 +86,10 @@ public final class Science {
                 return this.schema;
             }
 
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof SchemaObject) && C12238m.areEqual(this.schema, ((SchemaObject) other).schema);
-                }
-                return true;
+            @Override // com.discord.api.science.Science.Event
+            /* JADX INFO: renamed from: a, reason: from getter */
+            public String getType() {
+                return this.type;
             }
 
             public int hashCode() {

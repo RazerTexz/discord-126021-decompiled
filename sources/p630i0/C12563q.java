@@ -20,7 +20,7 @@ public final class C12563q extends InterfaceC12554h.a {
     /* JADX INFO: renamed from: i0.q$a */
     /* JADX INFO: compiled from: OptionalConverterFactory.java */
     @IgnoreJRERequirement
-    public static final class a<T> implements InterfaceC12554h<ResponseBody, Optional<T>> {
+    public final class a<T> implements InterfaceC12554h<ResponseBody, Optional<T>> {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC12554h<ResponseBody, T> f26568a;

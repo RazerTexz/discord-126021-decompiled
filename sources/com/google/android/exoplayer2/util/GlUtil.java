@@ -12,10 +12,10 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class GlUtil {
 
-    public static final class GlException extends RuntimeException {
+    public final class GlException extends RuntimeException {
     }
 
-    public static final class UnsupportedEglVersionException extends Exception {
+    public final class UnsupportedEglVersionException extends Exception {
     }
 
     /* JADX INFO: renamed from: a */
@@ -42,7 +42,7 @@ public final class GlUtil {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.util.GlUtil$a */
-    public static final class C10776a {
+    public final class C10776a {
 
         /* JADX INFO: renamed from: a */
         public final int f20280a;

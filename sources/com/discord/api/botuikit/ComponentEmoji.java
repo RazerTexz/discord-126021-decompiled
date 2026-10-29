@@ -12,6 +12,17 @@ public final /* data */ class ComponentEmoji implements Serializable {
     private final String id;
     private final String name;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ComponentEmoji)) {
+            return false;
+        }
+        ComponentEmoji componentEmoji = (ComponentEmoji) other;
+        return C12238m.areEqual(this.id, componentEmoji.id) && C12238m.areEqual(this.name, componentEmoji.name) && C12238m.areEqual(this.animated, componentEmoji.animated);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Boolean getAnimated() {
         return this.animated;
@@ -25,17 +36,6 @@ public final /* data */ class ComponentEmoji implements Serializable {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ComponentEmoji)) {
-            return false;
-        }
-        ComponentEmoji componentEmoji = (ComponentEmoji) other;
-        return C12238m.areEqual(this.id, componentEmoji.id) && C12238m.areEqual(this.name, componentEmoji.name) && C12238m.areEqual(this.animated, componentEmoji.animated);
     }
 
     public int hashCode() {

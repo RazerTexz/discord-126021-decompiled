@@ -42,14 +42,9 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
     private Map<ImageView, ? extends NavigationTab> tintableIconToNavigationTabMap;
     private UserAvatarPresenceViewController userAvatarPresenceViewController;
 
-    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
-    public interface HeightChangedListener {
-        void onHeightChanged(int height);
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$9 */
     /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
-    public static final class C101539 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C101539 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Function0 $onSettingsLongPress;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -71,6 +66,11 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
     }
 
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public interface HeightChangedListener {
+        void onHeightChanged(int height);
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TabsHostBottomNavigationView(Context context) {
         super(context);
@@ -79,6 +79,11 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         C12238m.checkNotNullExpressionValue(tabsHostBottomNavigationViewBindingM8390a, "TabsHostBottomNavigation…rom(context), this, true)");
         this.binding = tabsHostBottomNavigationViewBindingM8390a;
         this.heightChangedListeners = new LinkedHashSet();
+    }
+
+    public final void addHeightChangedListener(HeightChangedListener heightChangedListener) {
+        C12238m.checkNotNullParameter(heightChangedListener, "heightChangedListener");
+        this.heightChangedListeners.add(heightChangedListener);
     }
 
     private final void initialize() {
@@ -119,6 +124,15 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         this.userAvatarPresenceViewController = new UserAvatarPresenceViewController(userAvatarPresenceView2, null, null, null, 14);
     }
 
+    @Override // android.view.View
+    public void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Iterator<T> it = this.heightChangedListeners.iterator();
+        while (it.hasNext()) {
+            ((HeightChangedListener) it.next()).onHeightChanged(h);
+        }
+    }
+
     private final void updateNotificationBadges(int homeNotificationsCount, int friendsNotificationsCount) {
         TextView textView = this.binding.f15300g;
         C12238m.checkNotNullExpressionValue(textView, "binding.tabsHostBottomNavHomeNotificationsBadge");
@@ -142,20 +156,6 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         Resources resources2 = getResources();
         C12238m.checkNotNullExpressionValue(resources2, "resources");
         textView6.setContentDescription(C1107b.m211c(resources2, C5419R.string.incoming_friend_requests_count, new Object[]{String.valueOf(friendsNotificationsCount)}, (4 & 4) != 0 ? C1107b.d.f1493j : null));
-    }
-
-    public final void addHeightChangedListener(HeightChangedListener heightChangedListener) {
-        C12238m.checkNotNullParameter(heightChangedListener, "heightChangedListener");
-        this.heightChangedListeners.add(heightChangedListener);
-    }
-
-    @Override // android.view.View
-    public void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        Iterator<T> it = this.heightChangedListeners.iterator();
-        while (it.hasNext()) {
-            ((HeightChangedListener) it.next()).onHeightChanged(h);
-        }
     }
 
     public final void updateView(NavigationTab selectedTab, final Function1<? super NavigationTab, Unit> onTabSelected, boolean buttonsEnabled, long myUserId, Set<? extends NavigationTab> visibleTabs, int homeNotificationsCount, int friendsNotificationsCount, final Function0<Unit> onSearchClick, Function0<Unit> onSettingsLongPress, Function0<Unit> onMentionsLongPress) {

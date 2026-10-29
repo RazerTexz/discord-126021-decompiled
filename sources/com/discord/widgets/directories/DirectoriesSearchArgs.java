@@ -12,7 +12,7 @@ public final /* data */ class DirectoriesSearchArgs implements Parcelable {
     public static final Parcelable.Creator<DirectoriesSearchArgs> CREATOR = new Creator();
     private final long channelId;
 
-    public static class Creator implements Parcelable.Creator<DirectoriesSearchArgs> {
+    public final class Creator implements Parcelable.Creator<DirectoriesSearchArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final DirectoriesSearchArgs createFromParcel(Parcel parcel) {
@@ -38,11 +38,6 @@ public final /* data */ class DirectoriesSearchArgs implements Parcelable {
         return directoriesSearchArgs.copy(j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
     public final DirectoriesSearchArgs copy(long channelId) {
         return new DirectoriesSearchArgs(channelId);
     }
@@ -57,6 +52,11 @@ public final /* data */ class DirectoriesSearchArgs implements Parcelable {
             return (other instanceof DirectoriesSearchArgs) && this.channelId == ((DirectoriesSearchArgs) other).channelId;
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {

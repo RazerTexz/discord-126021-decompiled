@@ -21,11 +21,11 @@ public abstract class AbstractC12010v0 extends AbstractC12018z0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.v0$a */
     /* JADX INFO: compiled from: TypeSubstitution.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.v0$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: TypeSubstitution.kt */
-        public static final class C13339a extends AbstractC12010v0 {
+        public final class C13339a extends AbstractC12010v0 {
 
             /* JADX INFO: renamed from: c */
             public final /* synthetic */ Map<InterfaceC12008u0, InterfaceC12012w0> f24890c;
@@ -59,16 +59,16 @@ public abstract class AbstractC12010v0 extends AbstractC12018z0 {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
+        public final AbstractC12018z0 create(AbstractC11913c0 abstractC11913c0) {
+            C12238m.checkNotNullParameter(abstractC11913c0, "kotlinType");
+            return create(abstractC11913c0.getConstructor(), abstractC11913c0.getArguments());
+        }
+
         public static /* synthetic */ AbstractC12010v0 createByConstructorsMap$default(a aVar, Map map, boolean z2, int i, Object obj) {
             if ((i & 2) != 0) {
                 z2 = false;
             }
             return aVar.createByConstructorsMap(map, z2);
-        }
-
-        public final AbstractC12018z0 create(AbstractC11913c0 abstractC11913c0) {
-            C12238m.checkNotNullParameter(abstractC11913c0, "kotlinType");
-            return create(abstractC11913c0.getConstructor(), abstractC11913c0.getArguments());
         }
 
         public final AbstractC12010v0 createByConstructorsMap(Map<InterfaceC12008u0, ? extends InterfaceC12012w0> map) {

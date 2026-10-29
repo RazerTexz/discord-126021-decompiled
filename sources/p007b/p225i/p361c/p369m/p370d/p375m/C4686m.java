@@ -28,33 +28,6 @@ public final class C4686m extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
         this.f12607d = str2;
     }
 
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public long mo6578a() {
-        return this.f12604a;
-    }
-
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
-    @NonNull
-    /* JADX INFO: renamed from: b */
-    public String mo6579b() {
-        return this.f12606c;
-    }
-
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
-    /* JADX INFO: renamed from: c */
-    public long mo6580c() {
-        return this.f12605b;
-    }
-
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
-    @Nullable
-    /* JADX INFO: renamed from: d */
-    public String mo6581d() {
-        return this.f12607d;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -82,6 +55,33 @@ public final class C4686m extends AbstractC4695v.d.AbstractC13233d.a.b.AbstractC
         int iHashCode = (((((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ this.f12606c.hashCode()) * 1000003;
         String str = this.f12607d;
         return (str == null ? 0 : str.hashCode()) ^ iHashCode;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public long mo6578a() {
+        return this.f12604a;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
+    @NonNull
+    /* JADX INFO: renamed from: b */
+    public String mo6579b() {
+        return this.f12606c;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
+    /* JADX INFO: renamed from: c */
+    public long mo6580c() {
+        return this.f12605b;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13235a
+    @Nullable
+    /* JADX INFO: renamed from: d */
+    public String mo6581d() {
+        return this.f12607d;
     }
 
     public String toString() {

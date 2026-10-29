@@ -18,9 +18,6 @@ import p007b.p225i.p226a.p228b.p231j.p239u.InterfaceC2518a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2468c implements InterfaceC2470e {
 
-    /* JADX INFO: renamed from: a */
-    public static final Logger f5336a = Logger.getLogger(C2447n.class.getName());
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC2490r f5337b;
 
@@ -35,6 +32,9 @@ public class C2468c implements InterfaceC2470e {
 
     /* JADX INFO: renamed from: f */
     public final InterfaceC2518a f5341f;
+
+    /* JADX INFO: renamed from: a */
+    public static final Logger f5336a = Logger.getLogger(C2447n.class.getName());
 
     public C2468c(Executor executor, InterfaceC2454e interfaceC2454e, InterfaceC2490r interfaceC2490r, InterfaceC2494c interfaceC2494c, InterfaceC2518a interfaceC2518a) {
         this.f5338c = executor;

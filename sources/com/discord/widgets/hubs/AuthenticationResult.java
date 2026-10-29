@@ -12,7 +12,7 @@ public final /* data */ class AuthenticationResult implements MultipleDomainResu
     public static final Parcelable.Creator<AuthenticationResult> CREATOR = new Creator();
     private final long guildId;
 
-    public static class Creator implements Parcelable.Creator<AuthenticationResult> {
+    public final class Creator implements Parcelable.Creator<AuthenticationResult> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final AuthenticationResult createFromParcel(Parcel parcel) {
@@ -38,11 +38,6 @@ public final /* data */ class AuthenticationResult implements MultipleDomainResu
         return authenticationResult.copy(j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
     public final AuthenticationResult copy(long guildId) {
         return new AuthenticationResult(guildId);
     }
@@ -57,6 +52,11 @@ public final /* data */ class AuthenticationResult implements MultipleDomainResu
             return (other instanceof AuthenticationResult) && this.guildId == ((AuthenticationResult) other).guildId;
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {

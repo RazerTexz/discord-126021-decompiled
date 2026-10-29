@@ -30,9 +30,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: methodSignatureMapping.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11660u {
-    /* JADX INFO: renamed from: a */
-    public static final void m9549a(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
-        sb.append(mapToJvmType(abstractC11913c0));
+    public static /* synthetic */ String computeJvmDescriptor$default(InterfaceC11472x interfaceC11472x, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        if ((i & 2) != 0) {
+            z3 = true;
+        }
+        return computeJvmDescriptor(interfaceC11472x, z2, z3);
     }
 
     public static final String computeJvmDescriptor(InterfaceC11472x interfaceC11472x, boolean z2, boolean z3) {
@@ -74,16 +79,6 @@ public final class C11660u {
         String string = sb.toString();
         C12238m.checkNotNullExpressionValue(string, "StringBuilder().apply(builderAction).toString()");
         return string;
-    }
-
-    public static /* synthetic */ String computeJvmDescriptor$default(InterfaceC11472x interfaceC11472x, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        if ((i & 2) != 0) {
-            z3 = true;
-        }
-        return computeJvmDescriptor(interfaceC11472x, z2, z3);
     }
 
     public static final String computeJvmSignature(InterfaceC11318a interfaceC11318a) {
@@ -150,6 +145,11 @@ public final class C11660u {
         String internalName = C11839c.byClassId(c11712aMapKotlinToJava).getInternalName();
         C12238m.checkNotNullExpressionValue(internalName, "byClassId(it).internalName");
         return internalName;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final void m9549a(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
+        sb.append(mapToJvmType(abstractC11913c0));
     }
 
     public static final AbstractC11650k mapToJvmType(AbstractC11913c0 abstractC11913c0) {

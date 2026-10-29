@@ -47,7 +47,7 @@ public final class C1173a extends FrameLayout implements InterfaceC1171f {
 
     /* JADX INFO: renamed from: b.a.n.h.a$a */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class a implements Animator.AnimatorListener {
+    public final class a implements Animator.AnimatorListener {
         public a() {
         }
 
@@ -75,7 +75,7 @@ public final class C1173a extends FrameLayout implements InterfaceC1171f {
 
     /* JADX INFO: renamed from: b.a.n.h.a$b */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class b implements Animator.AnimatorListener {
+    public final class b implements Animator.AnimatorListener {
         public b() {
         }
 
@@ -151,6 +151,10 @@ public final class C1173a extends FrameLayout implements InterfaceC1171f {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
+    public final WindowManager.LayoutParams getWindowLayoutParams() {
+        return this.f1562k;
+    }
+
     @Override // p007b.p008a.p036n.InterfaceC1171f
     /* JADX INFO: renamed from: a */
     public void mo227a(OverlayBubbleWrap overlayBubbleWrap) {
@@ -218,10 +222,6 @@ public final class C1173a extends FrameLayout implements InterfaceC1171f {
     public void mo228b(OverlayBubbleWrap overlayBubbleWrap) {
         C12238m.checkNotNullParameter(overlayBubbleWrap, "bubble");
         C12238m.checkNotNullParameter(overlayBubbleWrap, "bubble");
-    }
-
-    public final WindowManager.LayoutParams getWindowLayoutParams() {
-        return this.f1562k;
     }
 
     @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View

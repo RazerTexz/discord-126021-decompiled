@@ -55,7 +55,7 @@ public class ShortcutManagerCompat {
     private static volatile ShortcutInfoCompatSaver<?> sShortcutInfoCompatSaver;
 
     @RequiresApi(25)
-    public static class Api25Impl {
+    public class Api25Impl {
         private Api25Impl() {
         }
 

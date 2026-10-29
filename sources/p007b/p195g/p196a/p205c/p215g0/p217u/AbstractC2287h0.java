@@ -26,6 +26,10 @@ public abstract class AbstractC2287h0<T extends Collection<?>> extends AbstractC
         this._unwrapSingle = null;
     }
 
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: q, reason: merged with bridge method [inline-methods] */
+    public abstract void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException;
+
     /* JADX WARN: Code duplicated, block: B:9:0x001a  */
     @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
@@ -64,10 +68,6 @@ public abstract class AbstractC2287h0<T extends Collection<?>> extends AbstractC
 
     /* JADX INFO: renamed from: p */
     public abstract AbstractC2364n<?> mo2025p(InterfaceC2206d interfaceC2206d, Boolean bool);
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: q, reason: merged with bridge method [inline-methods] */
-    public abstract void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException;
 
     public AbstractC2287h0(AbstractC2287h0<?> abstractC2287h0, Boolean bool) {
         super(abstractC2287h0);

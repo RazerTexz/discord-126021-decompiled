@@ -107,6 +107,13 @@ public final class ViewKt {
         return oneShotPreDrawListenerAdd;
     }
 
+    public static /* synthetic */ Bitmap drawToBitmap$default(View view, Bitmap.Config config, int i, Object obj) {
+        if ((i & 1) != 0) {
+            config = Bitmap.Config.ARGB_8888;
+        }
+        return drawToBitmap(view, config);
+    }
+
     public static final Bitmap drawToBitmap(View view, Bitmap.Config config) {
         C12238m.checkNotNullParameter(view, "<this>");
         C12238m.checkNotNullParameter(config, "config");
@@ -119,13 +126,6 @@ public final class ViewKt {
         canvas.translate(-view.getScrollX(), -view.getScrollY());
         view.draw(canvas);
         return bitmapCreateBitmap;
-    }
-
-    public static /* synthetic */ Bitmap drawToBitmap$default(View view, Bitmap.Config config, int i, Object obj) {
-        if ((i & 1) != 0) {
-            config = Bitmap.Config.ARGB_8888;
-        }
-        return drawToBitmap(view, config);
     }
 
     public static final Sequence<View> getAllViews(View view) {
@@ -276,11 +276,6 @@ public final class ViewKt {
         view.setLayoutParams(layoutParams);
     }
 
-    public static final void updatePadding(View view, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
-        C12238m.checkNotNullParameter(view, "<this>");
-        view.setPadding(i, i2, i3, i4);
-    }
-
     public static /* synthetic */ void updatePadding$default(View view, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
             i = view.getPaddingLeft();
@@ -298,10 +293,9 @@ public final class ViewKt {
         view.setPadding(i, i2, i3, i4);
     }
 
-    @RequiresApi(17)
-    public static final void updatePaddingRelative(View view, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
+    public static final void updatePadding(View view, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
         C12238m.checkNotNullParameter(view, "<this>");
-        view.setPaddingRelative(i, i2, i3, i4);
+        view.setPadding(i, i2, i3, i4);
     }
 
     public static /* synthetic */ void updatePaddingRelative$default(View view, int i, int i2, int i3, int i4, int i5, Object obj) {
@@ -317,6 +311,12 @@ public final class ViewKt {
         if ((i5 & 8) != 0) {
             i4 = view.getPaddingBottom();
         }
+        C12238m.checkNotNullParameter(view, "<this>");
+        view.setPaddingRelative(i, i2, i3, i4);
+    }
+
+    @RequiresApi(17)
+    public static final void updatePaddingRelative(View view, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
         C12238m.checkNotNullParameter(view, "<this>");
         view.setPaddingRelative(i, i2, i3, i4);
     }

@@ -29,7 +29,7 @@ public enum EnumC12715e {
 
     /* JADX INFO: renamed from: j0.l.e.e$b */
     /* JADX INFO: compiled from: InternalObservableUtils.java */
-    public static final class b implements InterfaceC12589b<C12580f<?>, Throwable> {
+    public final class b implements InterfaceC12589b<C12580f<?>, Throwable> {
         @Override // p637j0.p641k.InterfaceC12589b
         public Throwable call(C12580f<?> c12580f) {
             return c12580f.f26690c;
@@ -38,7 +38,7 @@ public enum EnumC12715e {
 
     /* JADX INFO: renamed from: j0.l.e.e$c */
     /* JADX INFO: compiled from: InternalObservableUtils.java */
-    public static final class c implements InterfaceC12589b<Observable<? extends C12580f<?>>, Observable<?>> {
+    public final class c implements InterfaceC12589b<Observable<? extends C12580f<?>>, Observable<?>> {
 
         /* JADX INFO: renamed from: j */
         public final InterfaceC12589b<? super Observable<? extends Void>, ? extends Observable<?>> f27274j;
@@ -55,7 +55,7 @@ public enum EnumC12715e {
 
     /* JADX INFO: renamed from: j0.l.e.e$d */
     /* JADX INFO: compiled from: InternalObservableUtils.java */
-    public static final class d implements InterfaceC12589b<Observable<? extends C12580f<?>>, Observable<?>> {
+    public final class d implements InterfaceC12589b<Observable<? extends C12580f<?>>, Observable<?>> {
 
         /* JADX INFO: renamed from: j */
         public final InterfaceC12589b<? super Observable<? extends Throwable>, ? extends Observable<?>> f27275j;
@@ -72,7 +72,7 @@ public enum EnumC12715e {
 
     /* JADX INFO: renamed from: j0.l.e.e$e */
     /* JADX INFO: compiled from: InternalObservableUtils.java */
-    public static final class e implements InterfaceC12589b<Object, Void> {
+    public final class e implements InterfaceC12589b<Object, Void> {
         @Override // p637j0.p641k.InterfaceC12589b
         public /* bridge */ /* synthetic */ Void call(Object obj) {
             return null;

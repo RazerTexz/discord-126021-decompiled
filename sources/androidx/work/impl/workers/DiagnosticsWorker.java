@@ -30,26 +30,6 @@ public class DiagnosticsWorker extends Worker {
         super(context, workerParameters);
     }
 
-    @NonNull
-    private static String workSpecRow(@NonNull WorkSpec workSpec, @Nullable String str, @Nullable Integer num, @NonNull String str2) {
-        return String.format("\n%s\t %s\t %s\t %s\t %s\t %s\t", workSpec.f163id, workSpec.workerClassName, num, workSpec.state.name(), str, str2);
-    }
-
-    @NonNull
-    private static String workSpecRows(@NonNull WorkNameDao workNameDao, @NonNull WorkTagDao workTagDao, @NonNull SystemIdInfoDao systemIdInfoDao, @NonNull List<WorkSpec> list) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("\n Id \t Class Name\t %s\t State\t Unique Name\t Tags\t", Build.VERSION.SDK_INT >= 23 ? "Job Id" : "Alarm Id"));
-        for (WorkSpec workSpec : list) {
-            Integer numValueOf = null;
-            SystemIdInfo systemIdInfo = systemIdInfoDao.getSystemIdInfo(workSpec.f163id);
-            if (systemIdInfo != null) {
-                numValueOf = Integer.valueOf(systemIdInfo.systemId);
-            }
-            sb.append(workSpecRow(workSpec, TextUtils.join(",", workNameDao.getNamesForWorkSpecId(workSpec.f163id)), numValueOf, TextUtils.join(",", workTagDao.getTagsForWorkSpecId(workSpec.f163id))));
-        }
-        return sb.toString();
-    }
-
     @Override // androidx.work.Worker
     @NonNull
     public ListenableWorker.Result doWork() {
@@ -80,5 +60,25 @@ public class DiagnosticsWorker extends Worker {
             Logger.get().info(str3, workSpecRows(workNameDao, workTagDao, systemIdInfoDao, allEligibleWorkSpecsForScheduling), new Throwable[0]);
         }
         return ListenableWorker.Result.success();
+    }
+
+    @NonNull
+    private static String workSpecRow(@NonNull WorkSpec workSpec, @Nullable String str, @Nullable Integer num, @NonNull String str2) {
+        return String.format("\n%s\t %s\t %s\t %s\t %s\t %s\t", workSpec.f163id, workSpec.workerClassName, num, workSpec.state.name(), str, str2);
+    }
+
+    @NonNull
+    private static String workSpecRows(@NonNull WorkNameDao workNameDao, @NonNull WorkTagDao workTagDao, @NonNull SystemIdInfoDao systemIdInfoDao, @NonNull List<WorkSpec> list) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("\n Id \t Class Name\t %s\t State\t Unique Name\t Tags\t", Build.VERSION.SDK_INT >= 23 ? "Job Id" : "Alarm Id"));
+        for (WorkSpec workSpec : list) {
+            Integer numValueOf = null;
+            SystemIdInfo systemIdInfo = systemIdInfoDao.getSystemIdInfo(workSpec.f163id);
+            if (systemIdInfo != null) {
+                numValueOf = Integer.valueOf(systemIdInfo.systemId);
+            }
+            sb.append(workSpecRow(workSpec, TextUtils.join(",", workNameDao.getNamesForWorkSpecId(workSpec.f163id)), numValueOf, TextUtils.join(",", workTagDao.getTagsForWorkSpecId(workSpec.f163id))));
+        }
+        return sb.toString();
     }
 }

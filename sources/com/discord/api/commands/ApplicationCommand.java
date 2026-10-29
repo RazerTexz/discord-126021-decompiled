@@ -18,6 +18,17 @@ public final /* data */ class ApplicationCommand {
     private final List<ApplicationCommandPermission> permissions;
     private final String version;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ApplicationCommand)) {
+            return false;
+        }
+        ApplicationCommand applicationCommand = (ApplicationCommand) other;
+        return this.id == applicationCommand.id && this.applicationId == applicationCommand.applicationId && C12238m.areEqual(this.name, applicationCommand.name) && C12238m.areEqual(this.description, applicationCommand.description) && C12238m.areEqual(this.options, applicationCommand.options) && C12238m.areEqual(this.version, applicationCommand.version) && C12238m.areEqual(this.guildId, applicationCommand.guildId) && C12238m.areEqual(this.defaultPermissions, applicationCommand.defaultPermissions) && C12238m.areEqual(this.permissions, applicationCommand.permissions);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
@@ -43,30 +54,14 @@ public final /* data */ class ApplicationCommand {
         return this.id;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ApplicationCommand)) {
-            return false;
-        }
-        ApplicationCommand applicationCommand = (ApplicationCommand) other;
-        return this.id == applicationCommand.id && this.applicationId == applicationCommand.applicationId && C12238m.areEqual(this.name, applicationCommand.name) && C12238m.areEqual(this.description, applicationCommand.description) && C12238m.areEqual(this.options, applicationCommand.options) && C12238m.areEqual(this.version, applicationCommand.version) && C12238m.areEqual(this.guildId, applicationCommand.guildId) && C12238m.areEqual(this.defaultPermissions, applicationCommand.defaultPermissions) && C12238m.areEqual(this.permissions, applicationCommand.permissions);
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final String getName() {
         return this.name;
     }
 
-    /* JADX INFO: renamed from: g */
-    public final List<ApplicationCommandOption> m7717g() {
-        return this.options;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final List<ApplicationCommandPermission> m7718h() {
-        return this.permissions;
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final String getVersion() {
+        return this.version;
     }
 
     public int hashCode() {
@@ -89,9 +84,14 @@ public final /* data */ class ApplicationCommand {
         return iHashCode6 + (list2 != null ? list2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final String getVersion() {
-        return this.version;
+    /* JADX INFO: renamed from: g */
+    public final List<ApplicationCommandOption> m7717g() {
+        return this.options;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final List<ApplicationCommandPermission> m7718h() {
+        return this.permissions;
     }
 
     public String toString() {

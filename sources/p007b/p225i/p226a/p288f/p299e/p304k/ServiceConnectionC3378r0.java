@@ -19,9 +19,6 @@ import p007b.p225i.p226a.p288f.p299e.p307n.C3398a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class ServiceConnectionC3378r0 implements ServiceConnection {
 
-    /* JADX INFO: renamed from: j */
-    public final Map<ServiceConnection, ServiceConnection> f9553j = new HashMap();
-
     /* JADX INFO: renamed from: k */
     public int f9554k = 2;
 
@@ -40,6 +37,9 @@ public final class ServiceConnectionC3378r0 implements ServiceConnection {
 
     /* JADX INFO: renamed from: p */
     public final /* synthetic */ C3382t0 f9559p;
+
+    /* JADX INFO: renamed from: j */
+    public final Map<ServiceConnection, ServiceConnection> f9553j = new HashMap();
 
     public ServiceConnectionC3378r0(C3382t0 c3382t0, C3376q0 c3376q0) {
         this.f9559p = c3382t0;

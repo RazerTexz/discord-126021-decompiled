@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMobileOverlayClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchema, TrackBaseReceiver {
+    private final CharSequence rtcConnectionId = null;
     private TrackBase trackBase;
     private final CharSequence type = null;
-    private final CharSequence rtcConnectionId = null;
     private final transient String analyticsSchemaTypeName = "mobile_overlay_closed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchem
         }
         TrackMobileOverlayClosed trackMobileOverlayClosed = (TrackMobileOverlayClosed) other;
         return C12238m.areEqual(this.type, trackMobileOverlayClosed.type) && C12238m.areEqual(this.rtcConnectionId, trackMobileOverlayClosed.rtcConnectionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

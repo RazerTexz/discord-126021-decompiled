@@ -12,7 +12,6 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class IcyInfo implements Metadata.Entry {
-    public static final Parcelable.Creator<IcyInfo> CREATOR = new C10725a();
 
     /* JADX INFO: renamed from: j */
     public final byte[] f19963j;
@@ -24,6 +23,7 @@ public final class IcyInfo implements Metadata.Entry {
     /* JADX INFO: renamed from: l */
     @Nullable
     public final String f19965l;
+    public static final Parcelable.Creator<IcyInfo> CREATOR = new C10725a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.icy.IcyInfo$a */
     public class C10725a implements Parcelable.Creator<IcyInfo> {
@@ -78,6 +78,12 @@ public final class IcyInfo implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         return String.format("ICY: title=\"%s\", url=\"%s\", rawMetadata.length=\"%s\"", this.f19964k, this.f19965l, Integer.valueOf(this.f19963j.length));
     }
@@ -87,12 +93,6 @@ public final class IcyInfo implements Metadata.Entry {
         parcel.writeByteArray(this.f19963j);
         parcel.writeString(this.f19964k);
         parcel.writeString(this.f19965l);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 
     public IcyInfo(Parcel parcel) {

@@ -38,8 +38,6 @@ public final class NativeConnection {
         void onVideo(String userId, long ssrc, String streamId, String videoStreamParametersJson);
     }
 
-    private final native void nativeDestroyInstance();
-
     public final native void configureConnectionRetries(int baseDelayMs, int maxDelayMs, int maxAttempts);
 
     public final native void destroyUser(String userId);
@@ -55,6 +53,8 @@ public final class NativeConnection {
     public final native void getStats(GetStatsCallback callback);
 
     public final native void mergeUsers(String usersJSON);
+
+    private final native void nativeDestroyInstance();
 
     public final native void setDesktopSource(String stringId, boolean useVideoHook, String type);
 

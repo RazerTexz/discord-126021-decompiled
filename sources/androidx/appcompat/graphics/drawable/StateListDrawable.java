@@ -27,7 +27,7 @@ public class StateListDrawable extends DrawableContainer {
     private boolean mMutated;
     private StateListState mStateListState;
 
-    public static class StateListState extends DrawableContainer.DrawableContainerState {
+    public class StateListState extends DrawableContainer.DrawableContainerState {
         public int[][] mStateSets;
 
         public StateListState(StateListState stateListState, StateListDrawable stateListDrawable, Resources resources) {
@@ -90,49 +90,6 @@ public class StateListDrawable extends DrawableContainer {
 
     public StateListDrawable() {
         this(null, null);
-    }
-
-    private void inflateChildElements(Context context, Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet, Resources.Theme theme) throws XmlPullParserException, IOException {
-        int next;
-        StateListState stateListState = this.mStateListState;
-        int depth = xmlPullParser.getDepth() + 1;
-        while (true) {
-            int next2 = xmlPullParser.next();
-            if (next2 == 1) {
-                return;
-            }
-            int depth2 = xmlPullParser.getDepth();
-            if (depth2 < depth && next2 == 3) {
-                return;
-            }
-            if (next2 == 2 && depth2 <= depth && xmlPullParser.getName().equals("item")) {
-                TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, C0080R.styleable.StateListDrawableItem);
-                int resourceId = typedArrayObtainAttributes.getResourceId(C0080R.styleable.StateListDrawableItem_android_drawable, -1);
-                Drawable drawable = resourceId > 0 ? ResourceManagerInternal.get().getDrawable(context, resourceId) : null;
-                typedArrayObtainAttributes.recycle();
-                int[] iArrExtractStateSet = extractStateSet(attributeSet);
-                if (drawable == null) {
-                    do {
-                        next = xmlPullParser.next();
-                    } while (next == 4);
-                    if (next != 2) {
-                        throw new XmlPullParserException(xmlPullParser.getPositionDescription() + ": <item> tag requires a 'drawable' attribute or child tag defining a drawable");
-                    }
-                    drawable = Drawable.createFromXmlInner(resources, xmlPullParser, attributeSet, theme);
-                }
-                stateListState.addStateSet(iArrExtractStateSet, drawable);
-            }
-        }
-    }
-
-    private void updateStateFromTypedArray(TypedArray typedArray) {
-        StateListState stateListState = this.mStateListState;
-        stateListState.mChangingConfigurations |= typedArray.getChangingConfigurations();
-        stateListState.mVariablePadding = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_variablePadding, stateListState.mVariablePadding);
-        stateListState.mConstantSize = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_constantSize, stateListState.mConstantSize);
-        stateListState.mEnterFadeDuration = typedArray.getInt(C0080R.styleable.StateListDrawable_android_enterFadeDuration, stateListState.mEnterFadeDuration);
-        stateListState.mExitFadeDuration = typedArray.getInt(C0080R.styleable.StateListDrawable_android_exitFadeDuration, stateListState.mExitFadeDuration);
-        stateListState.mDither = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_dither, stateListState.mDither);
     }
 
     public void addState(int[] iArr, Drawable drawable) {
@@ -203,6 +160,39 @@ public class StateListDrawable extends DrawableContainer {
         onStateChange(getState());
     }
 
+    private void inflateChildElements(Context context, Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet, Resources.Theme theme) throws XmlPullParserException, IOException {
+        int next;
+        StateListState stateListState = this.mStateListState;
+        int depth = xmlPullParser.getDepth() + 1;
+        while (true) {
+            int next2 = xmlPullParser.next();
+            if (next2 == 1) {
+                return;
+            }
+            int depth2 = xmlPullParser.getDepth();
+            if (depth2 < depth && next2 == 3) {
+                return;
+            }
+            if (next2 == 2 && depth2 <= depth && xmlPullParser.getName().equals("item")) {
+                TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, C0080R.styleable.StateListDrawableItem);
+                int resourceId = typedArrayObtainAttributes.getResourceId(C0080R.styleable.StateListDrawableItem_android_drawable, -1);
+                Drawable drawable = resourceId > 0 ? ResourceManagerInternal.get().getDrawable(context, resourceId) : null;
+                typedArrayObtainAttributes.recycle();
+                int[] iArrExtractStateSet = extractStateSet(attributeSet);
+                if (drawable == null) {
+                    do {
+                        next = xmlPullParser.next();
+                    } while (next == 4);
+                    if (next != 2) {
+                        throw new XmlPullParserException(xmlPullParser.getPositionDescription() + ": <item> tag requires a 'drawable' attribute or child tag defining a drawable");
+                    }
+                    drawable = Drawable.createFromXmlInner(resources, xmlPullParser, attributeSet, theme);
+                }
+                stateListState.addStateSet(iArrExtractStateSet, drawable);
+            }
+        }
+    }
+
     @Override // androidx.appcompat.graphics.drawable.DrawableContainer, android.graphics.drawable.Drawable
     public boolean isStateful() {
         return true;
@@ -234,6 +224,16 @@ public class StateListDrawable extends DrawableContainer {
         if (drawableContainerState instanceof StateListState) {
             this.mStateListState = (StateListState) drawableContainerState;
         }
+    }
+
+    private void updateStateFromTypedArray(TypedArray typedArray) {
+        StateListState stateListState = this.mStateListState;
+        stateListState.mChangingConfigurations |= typedArray.getChangingConfigurations();
+        stateListState.mVariablePadding = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_variablePadding, stateListState.mVariablePadding);
+        stateListState.mConstantSize = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_constantSize, stateListState.mConstantSize);
+        stateListState.mEnterFadeDuration = typedArray.getInt(C0080R.styleable.StateListDrawable_android_enterFadeDuration, stateListState.mEnterFadeDuration);
+        stateListState.mExitFadeDuration = typedArray.getInt(C0080R.styleable.StateListDrawable_android_exitFadeDuration, stateListState.mExitFadeDuration);
+        stateListState.mDither = typedArray.getBoolean(C0080R.styleable.StateListDrawable_android_dither, stateListState.mDither);
     }
 
     public StateListDrawable(StateListState stateListState, Resources resources) {

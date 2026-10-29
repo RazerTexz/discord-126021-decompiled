@@ -79,7 +79,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$forgotPassword$1 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71821 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C71821 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ String $login;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -102,7 +102,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$forgotPassword$2 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71832 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C71832 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $login;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -148,7 +148,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$login$1 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71841 extends AbstractC12240o implements Function1<ModelLoginResult, Unit> {
+    public final class C71841 extends AbstractC12240o implements Function1<ModelLoginResult, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ String $id;
         public final /* synthetic */ String $password;
@@ -185,7 +185,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$login$2 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71852 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C71852 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $id;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -210,7 +210,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71861 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+    public final class C71861 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
         public static final C71861 INSTANCE = new C71861();
 
         public C71861() {
@@ -231,7 +231,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71883 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C71883 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C71883() {
             super(1);
         }
@@ -251,7 +251,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$onViewBound$8 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71928 extends AbstractC12240o implements Function0<PhoneCountryCode> {
+    public final class C71928 extends AbstractC12240o implements Function0<PhoneCountryCode> {
         public final /* synthetic */ StorePhone $phoneStore;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -269,7 +269,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$onViewBound$9 */
     /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-    public static final class C71939 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
+    public final class C71939 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
         public C71939() {
             super(1);
         }
@@ -301,6 +301,13 @@ public final class WidgetAuthLogin extends AppFragment {
         this.validationManager = C12083g.lazy(new WidgetAuthLogin$validationManager$2(this));
     }
 
+    public static /* synthetic */ void forgotPassword$default(WidgetAuthLogin widgetAuthLogin, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetAuthLogin.forgotPassword(captchaPayload);
+    }
+
     private final void forgotPassword(CaptchaHelper.CaptchaPayload captchaPayload) {
         String textOrEmpty = getBinding().f15684e.getTextOrEmpty();
         if (textOrEmpty.length() == 0) {
@@ -310,19 +317,36 @@ public final class WidgetAuthLogin extends AppFragment {
         }
     }
 
-    public static /* synthetic */ void forgotPassword$default(WidgetAuthLogin widgetAuthLogin, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetAuthLogin.forgotPassword(captchaPayload);
-    }
-
     private final WidgetAuthLoginBinding getBinding() {
         return (WidgetAuthLoginBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    public final GoogleSmartLockManager getGoogleSmartLockManager() {
+        GoogleSmartLockManager googleSmartLockManager = this.googleSmartLockManager;
+        if (googleSmartLockManager == null) {
+            C12238m.throwUninitializedPropertyAccessException("googleSmartLockManager");
+        }
+        return googleSmartLockManager;
+    }
+
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
+    public final GoogleSmartLockManager.SmartLockCredentials getSmartLockCredentials() {
+        return this.smartLockCredentials;
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
+    }
+
+    public static /* synthetic */ void handleError$default(WidgetAuthLogin widgetAuthLogin, Error error, String str, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str = null;
+        }
+        widgetAuthLogin.handleError(error, str);
     }
 
     private final void handleError(Error error, String login) {
@@ -382,13 +406,6 @@ public final class WidgetAuthLogin extends AppFragment {
         error.setShowErrorToasts(!mutableList.isEmpty());
     }
 
-    public static /* synthetic */ void handleError$default(WidgetAuthLogin widgetAuthLogin, Error error, String str, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str = null;
-        }
-        widgetAuthLogin.handleError(error, str);
-    }
-
     private final void loadCachedLogin() {
         String savedLogin = StoreStream.INSTANCE.getAuthentication().getSavedLogin();
         if (savedLogin == null || !(!C12103t.isBlank(savedLogin))) {
@@ -396,15 +413,6 @@ public final class WidgetAuthLogin extends AppFragment {
         } else {
             getBinding().f15684e.setText(savedLogin);
             getBinding().f15686g.requestFocus();
-        }
-    }
-
-    private final void login(CaptchaHelper.CaptchaPayload captchaPayload, boolean undelete) {
-        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            String textOrEmpty = getBinding().f15684e.getTextOrEmpty();
-            TextInputLayout textInputLayout = getBinding().f15686g;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authLoginPasswordWrap");
-            login(textOrEmpty, ViewExtensions.getTextOrEmpty(textInputLayout), captchaPayload, undelete);
         }
     }
 
@@ -416,6 +424,25 @@ public final class WidgetAuthLogin extends AppFragment {
             z2 = false;
         }
         widgetAuthLogin.login(captchaPayload, z2);
+    }
+
+    private final void login(CaptchaHelper.CaptchaPayload captchaPayload, boolean undelete) {
+        if (ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            String textOrEmpty = getBinding().f15684e.getTextOrEmpty();
+            TextInputLayout textInputLayout = getBinding().f15686g;
+            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authLoginPasswordWrap");
+            login(textOrEmpty, ViewExtensions.getTextOrEmpty(textInputLayout), captchaPayload, undelete);
+        }
+    }
+
+    @Override // androidx.fragment.app.Fragment
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        RegistrationFlowRepo.INSTANCE.getINSTANCE().setRegistering(false);
+        FragmentActivity fragmentActivityRequireActivity = requireActivity();
+        C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+        this.googleSmartLockManager = new GoogleSmartLockManager(fragmentActivityRequireActivity, null, 2, null);
+        this.smartLockCredentials = GoogleSmartLockManagerKt.toSmartLockCredentials(getMostRecentIntent());
     }
 
     private final void onLoginSuccess(String id2, String password) {
@@ -431,37 +458,6 @@ public final class WidgetAuthLogin extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("googleSmartLockManager");
         }
         googleSmartLockManager2.saveCredentials(id2, password);
-    }
-
-    private final void showEmailSentToast(String email) {
-        C0876m.m170h(getContext(), C1107b.m216h(requireContext(), C5419R.string.email_verification_instructions_body, new Object[]{email}, null, 4), 0, null, 12);
-    }
-
-    public final GoogleSmartLockManager getGoogleSmartLockManager() {
-        GoogleSmartLockManager googleSmartLockManager = this.googleSmartLockManager;
-        if (googleSmartLockManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("googleSmartLockManager");
-        }
-        return googleSmartLockManager;
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
-    }
-
-    public final GoogleSmartLockManager.SmartLockCredentials getSmartLockCredentials() {
-        return this.smartLockCredentials;
-    }
-
-    @Override // androidx.fragment.app.Fragment
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        RegistrationFlowRepo.INSTANCE.getINSTANCE().setRegistering(false);
-        FragmentActivity fragmentActivityRequireActivity = requireActivity();
-        C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-        this.googleSmartLockManager = new GoogleSmartLockManager(fragmentActivityRequireActivity, null, 2, null);
-        this.smartLockCredentials = GoogleSmartLockManagerKt.toSmartLockCredentials(getMostRecentIntent());
     }
 
     @Override // com.discord.app.AppFragment
@@ -490,7 +486,7 @@ public final class WidgetAuthLogin extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLogin$onViewBound$5$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetAuthLogin.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {
@@ -548,6 +544,10 @@ public final class WidgetAuthLogin extends AppFragment {
 
     public final void setSmartLockCredentials(GoogleSmartLockManager.SmartLockCredentials smartLockCredentials) {
         this.smartLockCredentials = smartLockCredentials;
+    }
+
+    private final void showEmailSentToast(String email) {
+        C0876m.m170h(getContext(), C1107b.m216h(requireContext(), C5419R.string.email_verification_instructions_body, new Object[]{email}, null, 4), 0, null, 12);
     }
 
     public static /* synthetic */ void login$default(WidgetAuthLogin widgetAuthLogin, String str, String str2, CaptchaHelper.CaptchaPayload captchaPayload, boolean z2, int i, Object obj) {

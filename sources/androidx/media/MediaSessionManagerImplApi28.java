@@ -19,7 +19,7 @@ public class MediaSessionManagerImplApi28 extends MediaSessionManagerImplApi21 {
     }
 
     @RequiresApi(28)
-    public static final class RemoteUserInfoImplApi28 extends MediaSessionManagerImplBase.RemoteUserInfoImplBase {
+    public final class RemoteUserInfoImplApi28 extends MediaSessionManagerImplBase.RemoteUserInfoImplBase {
         public final android.media.session.MediaSessionManager.RemoteUserInfo mObject;
 
         public RemoteUserInfoImplApi28(String str, int i, int i2) {

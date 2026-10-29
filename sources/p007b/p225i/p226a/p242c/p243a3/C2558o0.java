@@ -9,9 +9,6 @@ import p007b.p225i.p226a.p242c.InterfaceC2963w0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2558o0 implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2558o0 f5674j = new C2558o0(new C2556n0[0]);
-
     /* JADX INFO: renamed from: k */
     public final int f5675k;
 
@@ -21,19 +18,12 @@ public final class C2558o0 implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: m */
     public int f5677m;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2558o0 f5674j = new C2558o0(new C2556n0[0]);
+
     public C2558o0(C2556n0... c2556n0Arr) {
         this.f5676l = c2556n0Arr;
         this.f5675k = c2556n0Arr.length;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public int m2575a(C2556n0 c2556n0) {
-        for (int i = 0; i < this.f5675k; i++) {
-            if (this.f5676l[i] == c2556n0) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public boolean equals(@Nullable Object obj) {
@@ -52,5 +42,15 @@ public final class C2558o0 implements InterfaceC2963w0 {
             this.f5677m = Arrays.hashCode(this.f5676l);
         }
         return this.f5677m;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public int m2575a(C2556n0 c2556n0) {
+        for (int i = 0; i < this.f5675k; i++) {
+            if (this.f5676l[i] == c2556n0) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

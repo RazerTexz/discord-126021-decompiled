@@ -28,6 +28,8 @@ public abstract class FrecencyTracker<T> {
         this.maxSamples = i2;
     }
 
+    public abstract int computeScore(List<Long> list, long j);
+
     private final void computeScores(long currentTime) {
         final HashMap map = new HashMap(this.history.size());
         Iterator<Map.Entry<T, List<Long>>> it = this.history.entrySet().iterator();
@@ -63,6 +65,14 @@ public abstract class FrecencyTracker<T> {
         this.dirty = false;
     }
 
+    public final int getMaxSamples() {
+        return this.maxSamples;
+    }
+
+    public final int getMinScoreThreshold() {
+        return this.minScoreThreshold;
+    }
+
     public static /* synthetic */ Collection getSortedKeys$default(FrecencyTracker frecencyTracker, long j, int i, Object obj) {
         if (obj != null) {
             throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getSortedKeys");
@@ -71,26 +81,6 @@ public abstract class FrecencyTracker<T> {
             j = ClockFactory.get().currentTimeMillis();
         }
         return frecencyTracker.getSortedKeys(j);
-    }
-
-    public static /* synthetic */ void track$default(FrecencyTracker frecencyTracker, Object obj, long j, int i, Object obj2) {
-        if (obj2 != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: track");
-        }
-        if ((i & 2) != 0) {
-            j = ClockFactory.get().currentTimeMillis();
-        }
-        frecencyTracker.track(obj, j);
-    }
-
-    public abstract int computeScore(List<Long> list, long j);
-
-    public final int getMaxSamples() {
-        return this.maxSamples;
-    }
-
-    public final int getMinScoreThreshold() {
-        return this.minScoreThreshold;
     }
 
     public final synchronized Collection<T> getSortedKeys(long now) {
@@ -103,6 +93,16 @@ public abstract class FrecencyTracker<T> {
     public final synchronized void removeEntry(T key) {
         this.history.remove(key);
         this.dirty = true;
+    }
+
+    public static /* synthetic */ void track$default(FrecencyTracker frecencyTracker, Object obj, long j, int i, Object obj2) {
+        if (obj2 != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: track");
+        }
+        if ((i & 2) != 0) {
+            j = ClockFactory.get().currentTimeMillis();
+        }
+        frecencyTracker.track(obj, j);
     }
 
     public final synchronized void track(T key, long now) {

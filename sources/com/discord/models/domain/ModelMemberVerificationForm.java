@@ -17,7 +17,7 @@ public final /* data */ class ModelMemberVerificationForm {
     private final String version;
 
     /* JADX INFO: compiled from: ModelMemberVerificationForm.kt */
-    public static final /* data */ class FormField {
+    public final /* data */ class FormField {
         private final List<String> choices;
         private final String fieldType;
         private final String label;
@@ -26,7 +26,7 @@ public final /* data */ class ModelMemberVerificationForm {
         private final List<String> values;
 
         /* JADX INFO: compiled from: ModelMemberVerificationForm.kt */
-        public static final class Parser implements Model.Parser<FormField> {
+        public final class Parser implements Model.Parser<FormField> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -173,6 +173,14 @@ public final /* data */ class ModelMemberVerificationForm {
             this.response = obj;
         }
 
+        public final List<String> component4() {
+            return this.values;
+        }
+
+        public final List<String> component5() {
+            return this.choices;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ FormField copy$default(FormField formField, String str, String str2, boolean z2, List list, List list2, Object obj, int i, Object obj2) {
             if ((i & 1) != 0) {
@@ -200,34 +208,6 @@ public final /* data */ class ModelMemberVerificationForm {
             return formField.copy(str, str3, z3, list3, list4, obj);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getFieldType() {
-            return this.fieldType;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getLabel() {
-            return this.label;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getRequired() {
-            return this.required;
-        }
-
-        public final List<String> component4() {
-            return this.values;
-        }
-
-        public final List<String> component5() {
-            return this.choices;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Object getResponse() {
-            return this.response;
-        }
-
         public final FormField copy(String fieldType, String label, boolean required, List<String> values, List<String> choices, Object response) {
             C12238m.checkNotNullParameter(fieldType, "fieldType");
             C12238m.checkNotNullParameter(label, "label");
@@ -252,8 +232,18 @@ public final /* data */ class ModelMemberVerificationForm {
             return this.choices;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getFieldType() {
             return this.fieldType;
+        }
+
+        public final String getFieldType() {
+            return this.fieldType;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getLabel() {
+            return this.label;
         }
 
         public final String getLabel() {
@@ -288,8 +278,18 @@ public final /* data */ class ModelMemberVerificationForm {
             return MemberVerificationFieldType.UNKNOWN;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getRequired() {
             return this.required;
+        }
+
+        public final boolean getRequired() {
+            return this.required;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Object getResponse() {
+            return this.response;
         }
 
         public final Object getResponse() {
@@ -357,7 +357,7 @@ public final /* data */ class ModelMemberVerificationForm {
     }
 
     /* JADX INFO: compiled from: ModelMemberVerificationForm.kt */
-    public static final class Parser implements Model.Parser<ModelMemberVerificationForm> {
+    public final class Parser implements Model.Parser<ModelMemberVerificationForm> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -421,6 +421,10 @@ public final /* data */ class ModelMemberVerificationForm {
         this.formFields = list;
     }
 
+    public final List<FormField> component2() {
+        return this.formFields;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelMemberVerificationForm copy$default(ModelMemberVerificationForm modelMemberVerificationForm, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -430,15 +434,6 @@ public final /* data */ class ModelMemberVerificationForm {
             list = modelMemberVerificationForm.formFields;
         }
         return modelMemberVerificationForm.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getVersion() {
-        return this.version;
-    }
-
-    public final List<FormField> component2() {
-        return this.formFields;
     }
 
     public final ModelMemberVerificationForm copy(String version, List<FormField> formFields) {
@@ -460,6 +455,11 @@ public final /* data */ class ModelMemberVerificationForm {
 
     public final List<FormField> getFormFields() {
         return this.formFields;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getVersion() {
+        return this.version;
     }
 
     public final String getVersion() {

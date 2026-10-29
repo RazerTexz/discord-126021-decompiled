@@ -40,74 +40,6 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
         return sb.toString();
     }
 
-    @Override // com.franmontiel.persistentcookiejar.persistence.CookiePersistor
-    /* JADX INFO: renamed from: a */
-    public void mo8747a(Collection<C12370n> collection) throws Throwable {
-        ObjectOutputStream objectOutputStream;
-        SharedPreferences.Editor editorEdit = this.f19672a.edit();
-        for (C12370n c12370n : collection) {
-            String strM8748b = m8748b(c12370n);
-            SerializableCookie serializableCookie = new SerializableCookie();
-            serializableCookie.f19671k = c12370n;
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream2 = null;
-            string = null;
-            string = null;
-            String string = null;
-            try {
-                objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-                try {
-                    try {
-                        objectOutputStream.writeObject(serializableCookie);
-                        try {
-                            objectOutputStream.close();
-                        } catch (IOException e) {
-                            Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e);
-                        }
-                        byte[] byteArray = byteArrayOutputStream.toByteArray();
-                        StringBuilder sb = new StringBuilder(byteArray.length * 2);
-                        for (byte b2 : byteArray) {
-                            int i = b2 & 255;
-                            if (i < 16) {
-                                sb.append('0');
-                            }
-                            sb.append(Integer.toHexString(i));
-                        }
-                        string = sb.toString();
-                    } catch (IOException e2) {
-                        e = e2;
-                        Log.d(SerializableCookie.f19670j, "IOException in encodeCookie", e);
-                        if (objectOutputStream != null) {
-                            try {
-                                objectOutputStream.close();
-                            } catch (IOException e3) {
-                                Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e3);
-                            }
-                        }
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    objectOutputStream2 = objectOutputStream;
-                    if (objectOutputStream2 != null) {
-                        try {
-                            objectOutputStream2.close();
-                        } catch (IOException e4) {
-                            Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e4);
-                        }
-                    }
-                    throw th;
-                }
-            } catch (IOException e5) {
-                e = e5;
-                objectOutputStream = null;
-            } catch (Throwable th2) {
-                th = th2;
-            }
-            editorEdit.putString(strM8748b, string);
-        }
-        editorEdit.commit();
-    }
-
     /* JADX WARN: Code duplicated, block: B:52:0x00a1 A[SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:54:0x001d A[SYNTHETIC] */
     /* JADX INFO: renamed from: c */
@@ -181,6 +113,74 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
             }
         }
         return arrayList;
+    }
+
+    @Override // com.franmontiel.persistentcookiejar.persistence.CookiePersistor
+    /* JADX INFO: renamed from: a */
+    public void mo8747a(Collection<C12370n> collection) throws Throwable {
+        ObjectOutputStream objectOutputStream;
+        SharedPreferences.Editor editorEdit = this.f19672a.edit();
+        for (C12370n c12370n : collection) {
+            String strM8748b = m8748b(c12370n);
+            SerializableCookie serializableCookie = new SerializableCookie();
+            serializableCookie.f19671k = c12370n;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream2 = null;
+            string = null;
+            string = null;
+            String string = null;
+            try {
+                objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+                try {
+                    try {
+                        objectOutputStream.writeObject(serializableCookie);
+                        try {
+                            objectOutputStream.close();
+                        } catch (IOException e) {
+                            Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e);
+                        }
+                        byte[] byteArray = byteArrayOutputStream.toByteArray();
+                        StringBuilder sb = new StringBuilder(byteArray.length * 2);
+                        for (byte b2 : byteArray) {
+                            int i = b2 & 255;
+                            if (i < 16) {
+                                sb.append('0');
+                            }
+                            sb.append(Integer.toHexString(i));
+                        }
+                        string = sb.toString();
+                    } catch (IOException e2) {
+                        e = e2;
+                        Log.d(SerializableCookie.f19670j, "IOException in encodeCookie", e);
+                        if (objectOutputStream != null) {
+                            try {
+                                objectOutputStream.close();
+                            } catch (IOException e3) {
+                                Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e3);
+                            }
+                        }
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    objectOutputStream2 = objectOutputStream;
+                    if (objectOutputStream2 != null) {
+                        try {
+                            objectOutputStream2.close();
+                        } catch (IOException e4) {
+                            Log.d(SerializableCookie.f19670j, "Stream not closed in encodeCookie", e4);
+                        }
+                    }
+                    throw th;
+                }
+            } catch (IOException e5) {
+                e = e5;
+                objectOutputStream = null;
+            } catch (Throwable th2) {
+                th = th2;
+            }
+            editorEdit.putString(strM8748b, string);
+        }
+        editorEdit.commit();
     }
 
     @Override // com.franmontiel.persistentcookiejar.persistence.CookiePersistor

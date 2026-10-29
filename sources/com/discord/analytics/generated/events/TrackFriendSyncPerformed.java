@@ -9,25 +9,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFriendSyncPerformed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFriendSyncPerformed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean isBackgroundSync = null;
-    private final CharSequence platformType = null;
-    private final Long numExternalFriendsAdded = null;
-    private final Long numExternalFriendsRemoved = null;
-    private final Long numSuggestionsMutual = null;
-    private final Long numReverseSuggestionsMutual = null;
-    private final Long numSuggestionsNonmutual = null;
-    private final Long numReverseSuggestionsNonmutual = null;
-    private final Long uploadedContactsLength = null;
     private final Long externalFriendListLength = null;
     private final Boolean friendSyncEnabled = null;
+    private final Boolean isBackgroundSync = null;
+    private final Long numExternalFriendsAdded = null;
+    private final Long numExternalFriendsRemoved = null;
+    private final Long numReverseSuggestionsMutual = null;
+    private final Long numReverseSuggestionsNonmutual = null;
+    private final Long numSuggestionsMutual = null;
+    private final Long numSuggestionsNonmutual = null;
+    private final CharSequence platformType = null;
+    private TrackBase trackBase;
+    private final Long uploadedContactsLength = null;
     private final transient String analyticsSchemaTypeName = "friend_sync_performed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackFriendSyncPerformed implements AnalyticsSchem
         }
         TrackFriendSyncPerformed trackFriendSyncPerformed = (TrackFriendSyncPerformed) other;
         return C12238m.areEqual(this.isBackgroundSync, trackFriendSyncPerformed.isBackgroundSync) && C12238m.areEqual(this.platformType, trackFriendSyncPerformed.platformType) && C12238m.areEqual(this.numExternalFriendsAdded, trackFriendSyncPerformed.numExternalFriendsAdded) && C12238m.areEqual(this.numExternalFriendsRemoved, trackFriendSyncPerformed.numExternalFriendsRemoved) && C12238m.areEqual(this.numSuggestionsMutual, trackFriendSyncPerformed.numSuggestionsMutual) && C12238m.areEqual(this.numReverseSuggestionsMutual, trackFriendSyncPerformed.numReverseSuggestionsMutual) && C12238m.areEqual(this.numSuggestionsNonmutual, trackFriendSyncPerformed.numSuggestionsNonmutual) && C12238m.areEqual(this.numReverseSuggestionsNonmutual, trackFriendSyncPerformed.numReverseSuggestionsNonmutual) && C12238m.areEqual(this.uploadedContactsLength, trackFriendSyncPerformed.uploadedContactsLength) && C12238m.areEqual(this.externalFriendListLength, trackFriendSyncPerformed.externalFriendListLength) && C12238m.areEqual(this.friendSyncEnabled, trackFriendSyncPerformed.friendSyncEnabled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

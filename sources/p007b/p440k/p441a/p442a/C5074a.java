@@ -15,15 +15,6 @@ public class C5074a extends Drawable {
     /* JADX INFO: renamed from: a */
     public int f13598a;
 
-    /* JADX INFO: renamed from: b */
-    public Paint f13599b = new Paint();
-
-    /* JADX INFO: renamed from: c */
-    public Paint f13600c = new Paint();
-
-    /* JADX INFO: renamed from: d */
-    public Paint f13601d = new Paint();
-
     /* JADX INFO: renamed from: e */
     public int f13602e;
 
@@ -32,6 +23,15 @@ public class C5074a extends Drawable {
 
     /* JADX INFO: renamed from: g */
     public Bitmap f13604g;
+
+    /* JADX INFO: renamed from: b */
+    public Paint f13599b = new Paint();
+
+    /* JADX INFO: renamed from: c */
+    public Paint f13600c = new Paint();
+
+    /* JADX INFO: renamed from: d */
+    public Paint f13601d = new Paint();
 
     public C5074a(int i) {
         this.f13598a = 10;

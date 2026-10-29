@@ -61,7 +61,7 @@ public class GoogleApiAvailability extends C3256c {
     /* JADX INFO: renamed from: com.google.android.gms.common.GoogleApiAvailability$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
     @SuppressLint({"HandlerLeak"})
-    public class HandlerC10799a extends HandlerC3479c {
+    public final class HandlerC10799a extends HandlerC3479c {
 
         /* JADX INFO: renamed from: a */
         public final Context f20483a;
@@ -148,19 +148,6 @@ public class GoogleApiAvailability extends C3256c {
             dialogFragmentC3254b.f9300k = onCancelListener;
         }
         dialogFragmentC3254b.show(fragmentManager, str);
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.C3256c
-    @Nullable
-    /* JADX INFO: renamed from: a */
-    public Intent mo4017a(Context context, int i, @Nullable String str) {
-        return super.mo4017a(context, i, str);
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.C3256c
-    /* JADX INFO: renamed from: b */
-    public int mo4018b(Context context, int i) {
-        return super.mo4018b(context, i);
     }
 
     /* JADX INFO: renamed from: c */
@@ -273,5 +260,18 @@ public class GoogleApiAvailability extends C3256c {
         }
         m9023h(activity, dialogM9022g, "GooglePlayServicesErrorDialog", onCancelListener);
         return true;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.C3256c
+    @Nullable
+    /* JADX INFO: renamed from: a */
+    public Intent mo4017a(Context context, int i, @Nullable String str) {
+        return super.mo4017a(context, i, str);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.C3256c
+    /* JADX INFO: renamed from: b */
+    public int mo4018b(Context context, int i) {
+        return super.mo4018b(context, i);
     }
 }

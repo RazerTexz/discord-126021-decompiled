@@ -49,15 +49,11 @@ public final class WidgetOauth2Authorize$validationManager$2 extends AbstractC12
                     return false;
                 }
                 Integer intOrNull = C12102s.toIntOrNull(errorMessage.toString());
-                String string = (String) C12163u.getOrNull(C12106w.split$default((CharSequence) WidgetOauth2Authorize$validationManager$2.this.this$0.getOauth2ViewModel().getOauthAuthorize().getScope(), new char[]{' '}, false, 0, 6, (Object) null), intOrNull != null ? intOrNull.intValue() : -1);
-                if (string == null) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append('[');
-                    sb.append(errorMessage);
-                    sb.append(']');
-                    string = sb.toString();
+                String str = (String) C12163u.getOrNull(C12106w.split$default((CharSequence) WidgetOauth2Authorize$validationManager$2.this.this$0.getOauth2ViewModel().getOauthAuthorize().getScope(), new char[]{' '}, false, 0, 6, (Object) null), intOrNull != null ? intOrNull.intValue() : -1);
+                if (str == null) {
+                    str = "" + '[' + errorMessage + ']';
                 }
-                C0876m.m170h(getView().getContext(), C1107b.m212d(getView(), C5419R.string.oauth2_request_invalid_scope, new Object[]{string}, (4 & 4) != 0 ? C1107b.c.f1492j : null), 1, null, 8);
+                C0876m.m170h(getView().getContext(), C1107b.m212d(getView(), C5419R.string.oauth2_request_invalid_scope, new Object[]{str}, (4 & 4) != 0 ? C1107b.c.f1492j : null), 1, null, 8);
                 return true;
             }
         });

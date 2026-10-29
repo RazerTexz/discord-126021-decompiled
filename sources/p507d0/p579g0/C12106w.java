@@ -28,7 +28,7 @@ public class C12106w extends C12103t {
 
     /* JADX INFO: renamed from: d0.g0.w$a */
     /* JADX INFO: compiled from: Strings.kt */
-    public static final class a extends AbstractC12240o implements Function1<IntRange, String> {
+    public final class a extends AbstractC12240o implements Function1<IntRange, String> {
         public final /* synthetic */ CharSequence $this_splitToSequence;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -121,6 +121,147 @@ public class C12106w extends C12103t {
         }
     }
 
+    public static /* synthetic */ boolean contains$default(CharSequence charSequence, CharSequence charSequence2, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return contains(charSequence, charSequence2, z2);
+    }
+
+    public static final boolean contains(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$contains");
+        C12238m.checkNotNullParameter(charSequence2, "other");
+        if (charSequence2 instanceof String) {
+            if (indexOf$default(charSequence, (String) charSequence2, 0, z2, 2, (Object) null) >= 0) {
+                return true;
+            }
+        } else if (m10070c(charSequence, charSequence2, 0, charSequence.length(), z2, false, 16) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static /* synthetic */ boolean endsWith$default(CharSequence charSequence, char c, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return endsWith(charSequence, c, z2);
+    }
+
+    public static final boolean endsWith(CharSequence charSequence, char c, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$endsWith");
+        return charSequence.length() > 0 && C12085b.equals(charSequence.charAt(getLastIndex(charSequence)), c, z2);
+    }
+
+    public static final IntRange getIndices(CharSequence charSequence) {
+        C12238m.checkNotNullParameter(charSequence, "$this$indices");
+        return new IntRange(0, charSequence.length() - 1);
+    }
+
+    public static final int getLastIndex(CharSequence charSequence) {
+        C12238m.checkNotNullParameter(charSequence, "$this$lastIndex");
+        return charSequence.length() - 1;
+    }
+
+    public static /* synthetic */ int indexOf$default(CharSequence charSequence, char c, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 0;
+        }
+        if ((i2 & 4) != 0) {
+            z2 = false;
+        }
+        return indexOf(charSequence, c, i, z2);
+    }
+
+    public static final int indexOf(CharSequence charSequence, char c, int i, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$indexOf");
+        return (z2 || !(charSequence instanceof String)) ? indexOfAny(charSequence, new char[]{c}, i, z2) : ((String) charSequence).indexOf(c, i);
+    }
+
+    public static final int indexOfAny(CharSequence charSequence, char[] cArr, int i, boolean z2) {
+        boolean z3;
+        C12238m.checkNotNullParameter(charSequence, "$this$indexOfAny");
+        C12238m.checkNotNullParameter(cArr, "chars");
+        if (!z2 && cArr.length == 1 && (charSequence instanceof String)) {
+            return ((String) charSequence).indexOf(C12141k.single(cArr), i);
+        }
+        int iCoerceAtLeast = C11226f.coerceAtLeast(i, 0);
+        int lastIndex = getLastIndex(charSequence);
+        if (iCoerceAtLeast > lastIndex) {
+            return -1;
+        }
+        while (true) {
+            char cCharAt = charSequence.charAt(iCoerceAtLeast);
+            int length = cArr.length;
+            int i2 = 0;
+            while (true) {
+                if (i2 >= length) {
+                    z3 = false;
+                    break;
+                }
+                if (C12085b.equals(cArr[i2], cCharAt, z2)) {
+                    z3 = true;
+                    break;
+                }
+                i2++;
+            }
+            if (z3) {
+                return iCoerceAtLeast;
+            }
+            if (iCoerceAtLeast == lastIndex) {
+                return -1;
+            }
+            iCoerceAtLeast++;
+        }
+    }
+
+    public static /* synthetic */ int lastIndexOf$default(CharSequence charSequence, char c, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = getLastIndex(charSequence);
+        }
+        if ((i2 & 4) != 0) {
+            z2 = false;
+        }
+        return lastIndexOf(charSequence, c, i, z2);
+    }
+
+    public static final int lastIndexOf(CharSequence charSequence, char c, int i, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$lastIndexOf");
+        return (z2 || !(charSequence instanceof String)) ? lastIndexOfAny(charSequence, new char[]{c}, i, z2) : ((String) charSequence).lastIndexOf(c, i);
+    }
+
+    public static final int lastIndexOfAny(CharSequence charSequence, char[] cArr, int i, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$lastIndexOfAny");
+        C12238m.checkNotNullParameter(cArr, "chars");
+        if (!z2 && cArr.length == 1 && (charSequence instanceof String)) {
+            return ((String) charSequence).lastIndexOf(C12141k.single(cArr), i);
+        }
+        for (int iCoerceAtMost = C11226f.coerceAtMost(i, getLastIndex(charSequence)); iCoerceAtMost >= 0; iCoerceAtMost--) {
+            char cCharAt = charSequence.charAt(iCoerceAtMost);
+            boolean z3 = false;
+            for (char c : cArr) {
+                if (C12085b.equals(c, cCharAt, z2)) {
+                    z3 = true;
+                    break;
+                }
+            }
+            if (z3) {
+                return iCoerceAtMost;
+            }
+        }
+        return -1;
+    }
+
+    public static final Sequence<String> lineSequence(CharSequence charSequence) {
+        C12238m.checkNotNullParameter(charSequence, "$this$lineSequence");
+        return splitToSequence$default(charSequence, new String[]{"\r\n", "\n", "\r"}, false, 0, 6, null);
+    }
+
+    public static final List<String> lines(CharSequence charSequence) {
+        C12238m.checkNotNullParameter(charSequence, "$this$lines");
+        return C12078q.toList(lineSequence(charSequence));
+    }
+
     /* JADX INFO: renamed from: b */
     public static final int m10069b(CharSequence charSequence, CharSequence charSequence2, int i, int i2, boolean z2, boolean z3) {
         IntProgression intRange = !z3 ? new IntRange(C11226f.coerceAtLeast(i, 0), C11226f.coerceAtMost(i2, charSequence.length())) : C11226f.downTo(C11226f.coerceAtMost(i, getLastIndex(charSequence)), C11226f.coerceAtLeast(i2, 0));
@@ -167,26 +308,6 @@ public class C12106w extends C12103t {
         return m10069b(charSequence, charSequence2, i, i2, z2, (i3 & 16) != 0 ? false : z3);
     }
 
-    public static final boolean contains(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$contains");
-        C12238m.checkNotNullParameter(charSequence2, "other");
-        if (charSequence2 instanceof String) {
-            if (indexOf$default(charSequence, (String) charSequence2, 0, z2, 2, (Object) null) >= 0) {
-                return true;
-            }
-        } else if (m10070c(charSequence, charSequence2, 0, charSequence.length(), z2, false, 16) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static /* synthetic */ boolean contains$default(CharSequence charSequence, CharSequence charSequence2, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return contains(charSequence, charSequence2, z2);
-    }
-
     /* JADX INFO: renamed from: d */
     public static Sequence m10071d(CharSequence charSequence, String[] strArr, int i, boolean z2, int i2, int i3) {
         if ((i3 & 2) != 0) {
@@ -222,127 +343,6 @@ public class C12106w extends C12103t {
         } while (iIndexOf != -1);
         arrayList.add(charSequence.subSequence(length, charSequence.length()).toString());
         return arrayList;
-    }
-
-    public static final boolean endsWith(CharSequence charSequence, char c, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$endsWith");
-        return charSequence.length() > 0 && C12085b.equals(charSequence.charAt(getLastIndex(charSequence)), c, z2);
-    }
-
-    public static /* synthetic */ boolean endsWith$default(CharSequence charSequence, char c, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return endsWith(charSequence, c, z2);
-    }
-
-    public static final IntRange getIndices(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "$this$indices");
-        return new IntRange(0, charSequence.length() - 1);
-    }
-
-    public static final int getLastIndex(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "$this$lastIndex");
-        return charSequence.length() - 1;
-    }
-
-    public static final int indexOf(CharSequence charSequence, char c, int i, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$indexOf");
-        return (z2 || !(charSequence instanceof String)) ? indexOfAny(charSequence, new char[]{c}, i, z2) : ((String) charSequence).indexOf(c, i);
-    }
-
-    public static /* synthetic */ int indexOf$default(CharSequence charSequence, char c, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 0;
-        }
-        if ((i2 & 4) != 0) {
-            z2 = false;
-        }
-        return indexOf(charSequence, c, i, z2);
-    }
-
-    public static final int indexOfAny(CharSequence charSequence, char[] cArr, int i, boolean z2) {
-        boolean z3;
-        C12238m.checkNotNullParameter(charSequence, "$this$indexOfAny");
-        C12238m.checkNotNullParameter(cArr, "chars");
-        if (!z2 && cArr.length == 1 && (charSequence instanceof String)) {
-            return ((String) charSequence).indexOf(C12141k.single(cArr), i);
-        }
-        int iCoerceAtLeast = C11226f.coerceAtLeast(i, 0);
-        int lastIndex = getLastIndex(charSequence);
-        if (iCoerceAtLeast > lastIndex) {
-            return -1;
-        }
-        while (true) {
-            char cCharAt = charSequence.charAt(iCoerceAtLeast);
-            int length = cArr.length;
-            int i2 = 0;
-            while (true) {
-                if (i2 >= length) {
-                    z3 = false;
-                    break;
-                }
-                if (C12085b.equals(cArr[i2], cCharAt, z2)) {
-                    z3 = true;
-                    break;
-                }
-                i2++;
-            }
-            if (z3) {
-                return iCoerceAtLeast;
-            }
-            if (iCoerceAtLeast == lastIndex) {
-                return -1;
-            }
-            iCoerceAtLeast++;
-        }
-    }
-
-    public static final int lastIndexOf(CharSequence charSequence, char c, int i, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$lastIndexOf");
-        return (z2 || !(charSequence instanceof String)) ? lastIndexOfAny(charSequence, new char[]{c}, i, z2) : ((String) charSequence).lastIndexOf(c, i);
-    }
-
-    public static /* synthetic */ int lastIndexOf$default(CharSequence charSequence, char c, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = getLastIndex(charSequence);
-        }
-        if ((i2 & 4) != 0) {
-            z2 = false;
-        }
-        return lastIndexOf(charSequence, c, i, z2);
-    }
-
-    public static final int lastIndexOfAny(CharSequence charSequence, char[] cArr, int i, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$lastIndexOfAny");
-        C12238m.checkNotNullParameter(cArr, "chars");
-        if (!z2 && cArr.length == 1 && (charSequence instanceof String)) {
-            return ((String) charSequence).lastIndexOf(C12141k.single(cArr), i);
-        }
-        for (int iCoerceAtMost = C11226f.coerceAtMost(i, getLastIndex(charSequence)); iCoerceAtMost >= 0; iCoerceAtMost--) {
-            char cCharAt = charSequence.charAt(iCoerceAtMost);
-            boolean z3 = false;
-            for (char c : cArr) {
-                if (C12085b.equals(c, cCharAt, z2)) {
-                    z3 = true;
-                    break;
-                }
-            }
-            if (z3) {
-                return iCoerceAtMost;
-            }
-        }
-        return -1;
-    }
-
-    public static final Sequence<String> lineSequence(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "$this$lineSequence");
-        return splitToSequence$default(charSequence, new String[]{"\r\n", "\n", "\r"}, false, 0, 6, null);
-    }
-
-    public static final List<String> lines(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "$this$lines");
-        return C12078q.toList(lineSequence(charSequence));
     }
 
     public static final boolean regionMatchesImpl(CharSequence charSequence, int i, CharSequence charSequence2, int i2, int i3, boolean z2) {
@@ -393,17 +393,17 @@ public class C12106w extends C12103t {
         return strSubstring;
     }
 
-    public static final String replaceAfterLast(String str, char c, String str2, String str3) {
-        C1643a.m872q0(str, "$this$replaceAfterLast", str2, "replacement", str3, "missingDelimiterValue");
-        int iLastIndexOf$default = lastIndexOf$default((CharSequence) str, c, 0, false, 6, (Object) null);
-        return iLastIndexOf$default == -1 ? str3 : replaceRange(str, iLastIndexOf$default + 1, str.length(), str2).toString();
-    }
-
     public static /* synthetic */ String replaceAfterLast$default(String str, char c, String str2, String str3, int i, Object obj) {
         if ((i & 4) != 0) {
             str3 = str;
         }
         return replaceAfterLast(str, c, str2, str3);
+    }
+
+    public static final String replaceAfterLast(String str, char c, String str2, String str3) {
+        C1643a.m872q0(str, "$this$replaceAfterLast", str2, "replacement", str3, "missingDelimiterValue");
+        int iLastIndexOf$default = lastIndexOf$default((CharSequence) str, c, 0, false, 6, (Object) null);
+        return iLastIndexOf$default == -1 ? str3 : replaceRange(str, iLastIndexOf$default + 1, str.length(), str2).toString();
     }
 
     public static final CharSequence replaceRange(CharSequence charSequence, int i, int i2, CharSequence charSequence2) {
@@ -427,6 +427,16 @@ public class C12106w extends C12103t {
         }
     }
 
+    public static /* synthetic */ List split$default(CharSequence charSequence, String[] strArr, boolean z2, int i, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            z2 = false;
+        }
+        if ((i2 & 4) != 0) {
+            i = 0;
+        }
+        return split(charSequence, strArr, z2, i);
+    }
+
     public static final List<String> split(CharSequence charSequence, String[] strArr, boolean z2, int i) {
         C12238m.checkNotNullParameter(charSequence, "$this$split");
         C12238m.checkNotNullParameter(strArr, "delimiters");
@@ -445,22 +455,6 @@ public class C12106w extends C12103t {
         return arrayList;
     }
 
-    public static /* synthetic */ List split$default(CharSequence charSequence, String[] strArr, boolean z2, int i, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            z2 = false;
-        }
-        if ((i2 & 4) != 0) {
-            i = 0;
-        }
-        return split(charSequence, strArr, z2, i);
-    }
-
-    public static final Sequence<String> splitToSequence(CharSequence charSequence, String[] strArr, boolean z2, int i) {
-        C12238m.checkNotNullParameter(charSequence, "$this$splitToSequence");
-        C12238m.checkNotNullParameter(strArr, "delimiters");
-        return C12078q.map(m10071d(charSequence, strArr, 0, z2, i, 2), new a(charSequence));
-    }
-
     public static /* synthetic */ Sequence splitToSequence$default(CharSequence charSequence, String[] strArr, boolean z2, int i, int i2, Object obj) {
         if ((i2 & 2) != 0) {
             z2 = false;
@@ -471,9 +465,10 @@ public class C12106w extends C12103t {
         return splitToSequence(charSequence, strArr, z2, i);
     }
 
-    public static final boolean startsWith(CharSequence charSequence, char c, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$startsWith");
-        return charSequence.length() > 0 && C12085b.equals(charSequence.charAt(0), c, z2);
+    public static final Sequence<String> splitToSequence(CharSequence charSequence, String[] strArr, boolean z2, int i) {
+        C12238m.checkNotNullParameter(charSequence, "$this$splitToSequence");
+        C12238m.checkNotNullParameter(strArr, "delimiters");
+        return C12078q.map(m10071d(charSequence, strArr, 0, z2, i, 2), new a(charSequence));
     }
 
     public static /* synthetic */ boolean startsWith$default(CharSequence charSequence, char c, boolean z2, int i, Object obj) {
@@ -483,10 +478,22 @@ public class C12106w extends C12103t {
         return startsWith(charSequence, c, z2);
     }
 
+    public static final boolean startsWith(CharSequence charSequence, char c, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$startsWith");
+        return charSequence.length() > 0 && C12085b.equals(charSequence.charAt(0), c, z2);
+    }
+
     public static final String substring(CharSequence charSequence, IntRange intRange) {
         C12238m.checkNotNullParameter(charSequence, "$this$substring");
         C12238m.checkNotNullParameter(intRange, "range");
         return charSequence.subSequence(intRange.getStart().intValue(), intRange.getEndInclusive().intValue() + 1).toString();
+    }
+
+    public static /* synthetic */ String substringAfter$default(String str, char c, String str2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str2 = str;
+        }
+        return substringAfter(str, c, str2);
     }
 
     public static final String substringAfter(String str, char c, String str2) {
@@ -501,11 +508,11 @@ public class C12106w extends C12103t {
         return strSubstring;
     }
 
-    public static /* synthetic */ String substringAfter$default(String str, char c, String str2, int i, Object obj) {
+    public static /* synthetic */ String substringAfterLast$default(String str, char c, String str2, int i, Object obj) {
         if ((i & 2) != 0) {
             str2 = str;
         }
-        return substringAfter(str, c, str2);
+        return substringAfterLast(str, c, str2);
     }
 
     public static final String substringAfterLast(String str, char c, String str2) {
@@ -520,11 +527,11 @@ public class C12106w extends C12103t {
         return strSubstring;
     }
 
-    public static /* synthetic */ String substringAfterLast$default(String str, char c, String str2, int i, Object obj) {
+    public static /* synthetic */ String substringBefore$default(String str, char c, String str2, int i, Object obj) {
         if ((i & 2) != 0) {
             str2 = str;
         }
-        return substringAfterLast(str, c, str2);
+        return substringBefore(str, c, str2);
     }
 
     public static final String substringBefore(String str, char c, String str2) {
@@ -539,11 +546,11 @@ public class C12106w extends C12103t {
         return strSubstring;
     }
 
-    public static /* synthetic */ String substringBefore$default(String str, char c, String str2, int i, Object obj) {
+    public static /* synthetic */ String substringBeforeLast$default(String str, char c, String str2, int i, Object obj) {
         if ((i & 2) != 0) {
             str2 = str;
         }
-        return substringBefore(str, c, str2);
+        return substringBeforeLast(str, c, str2);
     }
 
     public static final String substringBeforeLast(String str, char c, String str2) {
@@ -556,13 +563,6 @@ public class C12106w extends C12103t {
         String strSubstring = str.substring(0, iLastIndexOf$default);
         C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
         return strSubstring;
-    }
-
-    public static /* synthetic */ String substringBeforeLast$default(String str, char c, String str2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str2 = str;
-        }
-        return substringBeforeLast(str, c, str2);
     }
 
     public static final CharSequence trim(CharSequence charSequence) {
@@ -608,17 +608,17 @@ public class C12106w extends C12103t {
         return contains(charSequence, c, z2);
     }
 
-    public static final boolean endsWith(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$endsWith");
-        C12238m.checkNotNullParameter(charSequence2, "suffix");
-        return (!z2 && (charSequence instanceof String) && (charSequence2 instanceof String)) ? C12103t.endsWith$default((String) charSequence, (String) charSequence2, false, 2, null) : regionMatchesImpl(charSequence, charSequence.length() - charSequence2.length(), charSequence2, 0, charSequence2.length(), z2);
-    }
-
     public static /* synthetic */ boolean endsWith$default(CharSequence charSequence, CharSequence charSequence2, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = false;
         }
         return endsWith(charSequence, charSequence2, z2);
+    }
+
+    public static final boolean endsWith(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$endsWith");
+        C12238m.checkNotNullParameter(charSequence2, "suffix");
+        return (!z2 && (charSequence instanceof String) && (charSequence2 instanceof String)) ? C12103t.endsWith$default((String) charSequence, (String) charSequence2, false, 2, null) : regionMatchesImpl(charSequence, charSequence.length() - charSequence2.length(), charSequence2, 0, charSequence2.length(), z2);
     }
 
     public static /* synthetic */ int indexOf$default(CharSequence charSequence, String str, int i, boolean z2, int i2, Object obj) {
@@ -651,17 +651,17 @@ public class C12106w extends C12103t {
         return split(charSequence, cArr, z2, i);
     }
 
-    public static final boolean startsWith(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
-        C12238m.checkNotNullParameter(charSequence, "$this$startsWith");
-        C12238m.checkNotNullParameter(charSequence2, "prefix");
-        return (!z2 && (charSequence instanceof String) && (charSequence2 instanceof String)) ? C12103t.startsWith$default((String) charSequence, (String) charSequence2, false, 2, null) : regionMatchesImpl(charSequence, 0, charSequence2, 0, charSequence2.length(), z2);
-    }
-
     public static /* synthetic */ boolean startsWith$default(CharSequence charSequence, CharSequence charSequence2, boolean z2, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = false;
         }
         return startsWith(charSequence, charSequence2, z2);
+    }
+
+    public static final boolean startsWith(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
+        C12238m.checkNotNullParameter(charSequence, "$this$startsWith");
+        C12238m.checkNotNullParameter(charSequence2, "prefix");
+        return (!z2 && (charSequence instanceof String) && (charSequence2 instanceof String)) ? C12103t.startsWith$default((String) charSequence, (String) charSequence2, false, 2, null) : regionMatchesImpl(charSequence, 0, charSequence2, 0, charSequence2.length(), z2);
     }
 
     public static /* synthetic */ String substringAfter$default(String str, String str2, String str3, int i, Object obj) {

@@ -32,6 +32,12 @@ public final class GuildScheduledEventDateViewBinding implements ViewBinding {
         this.f15135c = textView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15133a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static GuildScheduledEventDateViewBinding m8387a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -49,11 +55,5 @@ public final class GuildScheduledEventDateViewBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15133a;
     }
 }

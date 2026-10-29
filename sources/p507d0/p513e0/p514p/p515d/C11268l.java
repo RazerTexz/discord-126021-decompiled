@@ -21,7 +21,7 @@ public final class C11268l<T, V> extends C12051q<T, V> implements InterfaceC1123
 
     /* JADX INFO: renamed from: d0.e0.p.d.l$a */
     /* JADX INFO: compiled from: KProperty1Impl.kt */
-    public static final class a<T, V> extends AbstractC12053s.d<V> implements KMutableProperty$Setter, Function2 {
+    public final class a<T, V> extends AbstractC12053s.d<V> implements KMutableProperty$Setter, Function2 {
 
         /* JADX INFO: renamed from: q */
         public final C11268l<T, V> f22403q;
@@ -51,7 +51,7 @@ public final class C11268l<T, V> extends C12051q<T, V> implements InterfaceC1123
 
     /* JADX INFO: renamed from: d0.e0.p.d.l$b */
     /* JADX INFO: compiled from: KProperty1Impl.kt */
-    public static final class b extends AbstractC12240o implements Function0<a<T, V>> {
+    public final class b extends AbstractC12240o implements Function0<a<T, V>> {
         public b() {
             super(0);
         }

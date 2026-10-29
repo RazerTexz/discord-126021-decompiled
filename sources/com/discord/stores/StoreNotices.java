@@ -68,8 +68,69 @@ public final class StoreNotices extends Store {
     private final BehaviorSubject<Unit> processTrigger;
     private final StoreStream stream;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$clearSeen$1 */
     /* JADX INFO: compiled from: StoreNotices.kt */
-    public static final /* data */ class Dialog {
+    public final class C62871 extends AbstractC12240o implements Function1<HashMap<String, Long>, HashMap<String, Long>> {
+        public final /* synthetic */ String $noticeName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C62871(String str) {
+            super(1);
+            this.$noticeName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final HashMap<String, Long> invoke(HashMap<String, Long> map) {
+            C12238m.checkNotNullParameter(map, "cache");
+            map.remove(this.$noticeName);
+            return map;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$init$2 */
+    /* JADX INFO: compiled from: StoreNotices.kt */
+    public final class C62892 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C62892() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            StoreNotices.this.processNextNotice();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$init$3 */
+    /* JADX INFO: compiled from: StoreNotices.kt */
+    public final class C62903 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C62903() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            AppLog appLog = AppLog.f14950g;
+            StringBuilder sbM833U = C1643a.m833U("Could not process next notice: ");
+            sbM833U.append(StoreNotices.this.noticeQueue);
+            Logger.e$default(appLog, sbM833U.toString(), error.getThrowable(), null, 4, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreNotices.kt */
+    public final /* data */ class Dialog {
         private final Map<String, Object> metadata;
         private final Type type;
 
@@ -103,6 +164,10 @@ public final class StoreNotices extends Store {
             this.metadata = map;
         }
 
+        public final Map<String, Object> component2() {
+            return this.metadata;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Dialog copy$default(Dialog dialog, Type type, Map map, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -112,15 +177,6 @@ public final class StoreNotices extends Store {
                 map = dialog.metadata;
             }
             return dialog.copy(type, map);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
-        public final Map<String, Object> component2() {
-            return this.metadata;
         }
 
         public final Dialog copy(Type type, Map<String, ? extends Object> metadata) {
@@ -141,6 +197,11 @@ public final class StoreNotices extends Store {
 
         public final Map<String, Object> getMetadata() {
             return this.metadata;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Type getType() {
+            return this.type;
         }
 
         public final Type getType() {
@@ -167,7 +228,7 @@ public final class StoreNotices extends Store {
     }
 
     /* JADX INFO: compiled from: StoreNotices.kt */
-    public static final /* data */ class InputDialog {
+    public final /* data */ class InputDialog {
         private final Type type;
 
         /* JADX INFO: compiled from: StoreNotices.kt */
@@ -188,11 +249,6 @@ public final class StoreNotices extends Store {
             return inputDialog.copy(type);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
         public final InputDialog copy(Type type) {
             C12238m.checkNotNullParameter(type, "type");
             return new InputDialog(type);
@@ -203,6 +259,11 @@ public final class StoreNotices extends Store {
                 return (other instanceof InputDialog) && C12238m.areEqual(this.type, ((InputDialog) other).type);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Type getType() {
+            return this.type;
         }
 
         public final Type getType() {
@@ -226,7 +287,7 @@ public final class StoreNotices extends Store {
     }
 
     /* JADX INFO: compiled from: StoreNotices.kt */
-    public static class Notice {
+    public class Notice {
         private final boolean autoMarkSeen;
         private final Clock clock;
         private final long delayPeriodMs;
@@ -256,9 +317,6 @@ public final class StoreNotices extends Store {
             this.show = function1;
         }
 
-        public static /* synthetic */ void getHasShown$annotations() {
-        }
-
         public boolean canShow(Long lastSeenMs) {
             return lastSeenMs == null || this.clock.currentTimeMillis() - lastSeenMs.longValue() > this.sinceLastPeriodMs;
         }
@@ -273,6 +331,9 @@ public final class StoreNotices extends Store {
 
         public final long getDelayPeriodMs() {
             return this.delayPeriodMs;
+        }
+
+        public static /* synthetic */ void getHasShown$annotations() {
         }
 
         public final boolean getHasShown() {
@@ -355,7 +416,7 @@ public final class StoreNotices extends Store {
     }
 
     /* JADX INFO: compiled from: StoreNotices.kt */
-    public static class PassiveNotice extends Notice {
+    public class PassiveNotice extends Notice {
         public /* synthetic */ PassiveNotice(String str, int i, boolean z2, long j, long j2, Function1 function1, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this(str, i, (i2 & 4) != 0 ? false : z2, (i2 & 8) != 0 ? 31536000000L : j, (i2 & 16) != 0 ? 21600000L : j2, function1);
         }
@@ -386,67 +447,6 @@ public final class StoreNotices extends Store {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$clearSeen$1 */
-    /* JADX INFO: compiled from: StoreNotices.kt */
-    public static final class C62871 extends AbstractC12240o implements Function1<HashMap<String, Long>, HashMap<String, Long>> {
-        public final /* synthetic */ String $noticeName;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C62871(String str) {
-            super(1);
-            this.$noticeName = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final HashMap<String, Long> invoke(HashMap<String, Long> map) {
-            C12238m.checkNotNullParameter(map, "cache");
-            map.remove(this.$noticeName);
-            return map;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$init$2 */
-    /* JADX INFO: compiled from: StoreNotices.kt */
-    public static final class C62892 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C62892() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            StoreNotices.this.processNextNotice();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNotices$init$3 */
-    /* JADX INFO: compiled from: StoreNotices.kt */
-    public static final class C62903 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C62903() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            AppLog appLog = AppLog.f14950g;
-            StringBuilder sbM833U = C1643a.m833U("Could not process next notice: ");
-            sbM833U.append(StoreNotices.this.noticeQueue);
-            Logger.e$default(appLog, sbM833U.toString(), error.getThrowable(), null, 4, null);
-        }
-    }
-
     public StoreNotices(Clock clock, StoreStream storeStream) {
         C12238m.checkNotNullParameter(clock, "clock");
         C12238m.checkNotNullParameter(storeStream, "stream");
@@ -463,30 +463,6 @@ public final class StoreNotices extends Store {
         C12238m.checkNotNullExpressionValue(behaviorSubjectM11130l0, "BehaviorSubject.create(null as Notice?)");
         this.noticePublisher = behaviorSubjectM11130l0;
         this.firstUseTimestamp = C12083g.lazy(new StoreNotices$firstUseTimestamp$2(this));
-    }
-
-    public static /* synthetic */ void markSeen$default(StoreNotices storeNotices, String str, long j, int i, Object obj) {
-        if ((i & 2) != 0) {
-            j = storeNotices.clock.currentTimeMillis();
-        }
-        storeNotices.markSeen(str, j);
-    }
-
-    private final synchronized void processNextNotice() {
-        Object next;
-        Iterator<T> it = this.noticeQueue.iterator();
-        do {
-            if (!it.hasNext()) {
-                next = null;
-                break;
-            }
-            next = it.next();
-        } while (!((Notice) next).shouldShow(this.lastShownTimes));
-        this.noticePublisher.onNext((Notice) next);
-    }
-
-    private final void setPollRateMs(long j) {
-        this.pollRateMs = Math.max(500L, j);
     }
 
     public final synchronized void clearSeen(String noticeName) {
@@ -558,6 +534,13 @@ public final class StoreNotices extends Store {
         }
     }
 
+    public static /* synthetic */ void markSeen$default(StoreNotices storeNotices, String str, long j, int i, Object obj) {
+        if ((i & 2) != 0) {
+            j = storeNotices.clock.currentTimeMillis();
+        }
+        storeNotices.markSeen(str, j);
+    }
+
     public final synchronized void markSeen(String noticeName, long seenAtMs) {
         Object next;
         Object next2;
@@ -611,6 +594,19 @@ public final class StoreNotices extends Store {
         return this.noticesSeenCache.getObservable();
     }
 
+    private final synchronized void processNextNotice() {
+        Object next;
+        Iterator<T> it = this.noticeQueue.iterator();
+        do {
+            if (!it.hasNext()) {
+                next = null;
+                break;
+            }
+            next = it.next();
+        } while (!((Notice) next).shouldShow(this.lastShownTimes));
+        this.noticePublisher.onNext((Notice) next);
+    }
+
     public final synchronized void requestToShow(Notice notice) {
         C12238m.checkNotNullParameter(notice, "notice");
         if (notice.canShow(this.noticesSeenCache.get().get(notice.getName()))) {
@@ -636,6 +632,10 @@ public final class StoreNotices extends Store {
                 this.processTrigger.onNext(Unit.f27425a);
             }
         }
+    }
+
+    private final void setPollRateMs(long j) {
+        this.pollRateMs = Math.max(500L, j);
     }
 
     public final void markSeen(Dialog.Type type) {

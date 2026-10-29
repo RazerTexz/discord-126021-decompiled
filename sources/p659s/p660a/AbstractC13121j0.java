@@ -1,5 +1,6 @@
 package p659s.p660a;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CancellationException;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -27,12 +28,30 @@ public abstract class AbstractC13121j0<T> extends AbstractRunnableC13102h {
         this.f27864l = i;
     }
 
+    /* JADX INFO: renamed from: l */
+    public final void m11317l(Throwable th, Throwable th2) throws IllegalAccessException, InvocationTargetException {
+        if (th == null && th2 == null) {
+            return;
+        }
+        if (th != null && th2 != null) {
+            C11211b.addSuppressed(th, th2);
+        }
+        if (th == null) {
+            th = th2;
+        }
+        C12238m.checkNotNull(th);
+        C3404f.m4348u0(mo11146d().getContext(), new C13052c0("Fatal exception in coroutines machinery for " + this + ". Please read KDoc to 'handleFatalException' method and report this incident to maintainers", th));
+    }
+
     /* JADX INFO: renamed from: b */
     public void mo11145b(Object obj, Throwable th) {
     }
 
     /* JADX INFO: renamed from: d */
     public abstract Continuation<T> mo11146d();
+
+    /* JADX INFO: renamed from: m */
+    public abstract Object mo11147m();
 
     /* JADX INFO: renamed from: e */
     public Throwable mo11315e(Object obj) {
@@ -52,26 +71,8 @@ public abstract class AbstractC13121j0<T> extends AbstractRunnableC13102h {
         return obj;
     }
 
-    /* JADX INFO: renamed from: l */
-    public final void m11317l(Throwable th, Throwable th2) {
-        if (th == null && th2 == null) {
-            return;
-        }
-        if (th != null && th2 != null) {
-            C11211b.addSuppressed(th, th2);
-        }
-        if (th == null) {
-            th = th2;
-        }
-        C12238m.checkNotNull(th);
-        C3404f.m4348u0(mo11146d().getContext(), new C13052c0("Fatal exception in coroutines machinery for " + this + ". Please read KDoc to 'handleFatalException' method and report this incident to maintainers", th));
-    }
-
-    /* JADX INFO: renamed from: m */
-    public abstract Object mo11147m();
-
     @Override // java.lang.Runnable
-    public final void run() {
+    public final void run() throws IllegalAccessException, InvocationTargetException {
         Object objM11474constructorimpl;
         Object objM11474constructorimpl2;
         InterfaceC13103i interfaceC13103i = this.f27829k;

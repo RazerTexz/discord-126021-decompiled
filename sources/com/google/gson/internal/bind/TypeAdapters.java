@@ -272,49 +272,6 @@ public final class TypeAdapters {
         }
     }
 
-    public static final class EnumTypeAdapter<T extends Enum<T>> extends TypeAdapter<T> {
-
-        /* JADX INFO: renamed from: a */
-        public final Map<String, T> f21623a = new HashMap();
-
-        /* JADX INFO: renamed from: b */
-        public final Map<T, String> f21624b = new HashMap();
-
-        public EnumTypeAdapter(Class<T> cls) {
-            try {
-                for (T t : cls.getEnumConstants()) {
-                    String strName = t.name();
-                    InterfaceC4913b interfaceC4913b = (InterfaceC4913b) cls.getField(strName).getAnnotation(InterfaceC4913b.class);
-                    if (interfaceC4913b != null) {
-                        strName = interfaceC4913b.value();
-                        for (String str : interfaceC4913b.alternate()) {
-                            this.f21623a.put(str, t);
-                        }
-                    }
-                    this.f21623a.put(strName, t);
-                    this.f21624b.put(t, strName);
-                }
-            } catch (NoSuchFieldException e) {
-                throw new AssertionError(e);
-            }
-        }
-
-        @Override // com.google.gson.TypeAdapter
-        public Object read(JsonReader jsonReader) throws IOException {
-            if (jsonReader.mo6878N() != JsonToken.NULL) {
-                return this.f21623a.get(jsonReader.mo6877J());
-            }
-            jsonReader.mo6876H();
-            return null;
-        }
-
-        @Override // com.google.gson.TypeAdapter
-        public void write(JsonWriter jsonWriter, Object obj) throws IOException {
-            Enum r3 = (Enum) obj;
-            jsonWriter.mo6895H(r3 == null ? null : this.f21624b.get(r3));
-        }
-    }
-
     static {
         TypeAdapter<Class> typeAdapterNullSafe = new TypeAdapter<Class>() { // from class: com.google.gson.internal.bind.TypeAdapters.1
             /* JADX INFO: renamed from: a */
@@ -1155,5 +1112,48 @@ public final class TypeAdapters {
                 return new EnumTypeAdapter(rawType);
             }
         };
+    }
+
+    public final class EnumTypeAdapter<T extends Enum<T>> extends TypeAdapter<T> {
+
+        /* JADX INFO: renamed from: a */
+        public final Map<String, T> f21623a = new HashMap();
+
+        /* JADX INFO: renamed from: b */
+        public final Map<T, String> f21624b = new HashMap();
+
+        public EnumTypeAdapter(Class<T> cls) {
+            try {
+                for (T t : cls.getEnumConstants()) {
+                    String strName = t.name();
+                    InterfaceC4913b interfaceC4913b = (InterfaceC4913b) cls.getField(strName).getAnnotation(InterfaceC4913b.class);
+                    if (interfaceC4913b != null) {
+                        strName = interfaceC4913b.value();
+                        for (String str : interfaceC4913b.alternate()) {
+                            this.f21623a.put(str, t);
+                        }
+                    }
+                    this.f21623a.put(strName, t);
+                    this.f21624b.put(t, strName);
+                }
+            } catch (NoSuchFieldException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public Object read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.mo6878N() != JsonToken.NULL) {
+                return this.f21623a.get(jsonReader.mo6877J());
+            }
+            jsonReader.mo6876H();
+            return null;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, Object obj) throws IOException {
+            Enum r3 = (Enum) obj;
+            jsonWriter.mo6895H(r3 == null ? null : this.f21624b.get(r3));
+        }
     }
 }

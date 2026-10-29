@@ -76,39 +76,6 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         this.mMeasure = new BasicMeasure.Measure();
     }
 
-    private void addHorizontalChain(ConstraintWidget constraintWidget) {
-        int i = this.mHorizontalChainsSize + 1;
-        ChainHead[] chainHeadArr = this.mHorizontalChainsArray;
-        if (i >= chainHeadArr.length) {
-            this.mHorizontalChainsArray = (ChainHead[]) Arrays.copyOf(chainHeadArr, chainHeadArr.length * 2);
-        }
-        this.mHorizontalChainsArray[this.mHorizontalChainsSize] = new ChainHead(constraintWidget, 0, isRtl());
-        this.mHorizontalChainsSize++;
-    }
-
-    private void addMaxWrap(ConstraintAnchor constraintAnchor, SolverVariable solverVariable) {
-        this.mSystem.addGreaterThan(solverVariable, this.mSystem.createObjectVariable(constraintAnchor), 0, 5);
-    }
-
-    private void addMinWrap(ConstraintAnchor constraintAnchor, SolverVariable solverVariable) {
-        this.mSystem.addGreaterThan(this.mSystem.createObjectVariable(constraintAnchor), solverVariable, 0, 5);
-    }
-
-    private void addVerticalChain(ConstraintWidget constraintWidget) {
-        int i = this.mVerticalChainsSize + 1;
-        ChainHead[] chainHeadArr = this.mVerticalChainsArray;
-        if (i >= chainHeadArr.length) {
-            this.mVerticalChainsArray = (ChainHead[]) Arrays.copyOf(chainHeadArr, chainHeadArr.length * 2);
-        }
-        this.mVerticalChainsArray[this.mVerticalChainsSize] = new ChainHead(constraintWidget, 1, isRtl());
-        this.mVerticalChainsSize++;
-    }
-
-    private void resetChains() {
-        this.mHorizontalChainsSize = 0;
-        this.mVerticalChainsSize = 0;
-    }
-
     public void addChain(ConstraintWidget constraintWidget, int i) {
         if (i == 0) {
             addHorizontalChain(constraintWidget);
@@ -195,6 +162,16 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         return true;
     }
 
+    private void addHorizontalChain(ConstraintWidget constraintWidget) {
+        int i = this.mHorizontalChainsSize + 1;
+        ChainHead[] chainHeadArr = this.mHorizontalChainsArray;
+        if (i >= chainHeadArr.length) {
+            this.mHorizontalChainsArray = (ChainHead[]) Arrays.copyOf(chainHeadArr, chainHeadArr.length * 2);
+        }
+        this.mHorizontalChainsArray[this.mHorizontalChainsSize] = new ChainHead(constraintWidget, 0, isRtl());
+        this.mHorizontalChainsSize++;
+    }
+
     public void addHorizontalWrapMaxVariable(ConstraintAnchor constraintAnchor) {
         WeakReference<ConstraintAnchor> weakReference = this.horizontalWrapMax;
         if (weakReference == null || weakReference.get() == null || constraintAnchor.getFinalValue() > this.horizontalWrapMax.get().getFinalValue()) {
@@ -207,6 +184,24 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         if (weakReference == null || weakReference.get() == null || constraintAnchor.getFinalValue() > this.horizontalWrapMin.get().getFinalValue()) {
             this.horizontalWrapMin = new WeakReference<>(constraintAnchor);
         }
+    }
+
+    private void addMaxWrap(ConstraintAnchor constraintAnchor, SolverVariable solverVariable) {
+        this.mSystem.addGreaterThan(solverVariable, this.mSystem.createObjectVariable(constraintAnchor), 0, 5);
+    }
+
+    private void addMinWrap(ConstraintAnchor constraintAnchor, SolverVariable solverVariable) {
+        this.mSystem.addGreaterThan(this.mSystem.createObjectVariable(constraintAnchor), solverVariable, 0, 5);
+    }
+
+    private void addVerticalChain(ConstraintWidget constraintWidget) {
+        int i = this.mVerticalChainsSize + 1;
+        ChainHead[] chainHeadArr = this.mVerticalChainsArray;
+        if (i >= chainHeadArr.length) {
+            this.mVerticalChainsArray = (ChainHead[]) Arrays.copyOf(chainHeadArr, chainHeadArr.length * 2);
+        }
+        this.mVerticalChainsArray[this.mVerticalChainsSize] = new ChainHead(constraintWidget, 1, isRtl());
+        this.mVerticalChainsSize++;
     }
 
     public void addVerticalWrapMaxVariable(ConstraintAnchor constraintAnchor) {
@@ -550,6 +545,11 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         this.mPaddingBottom = 0;
         this.mSkipSolver = false;
         super.reset();
+    }
+
+    private void resetChains() {
+        this.mHorizontalChainsSize = 0;
+        this.mVerticalChainsSize = 0;
     }
 
     public void setMeasurer(BasicMeasure.Measurer measurer) {

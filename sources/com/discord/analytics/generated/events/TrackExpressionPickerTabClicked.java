@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExpressionPickerTabClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExpressionPickerTabClicked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence tab = null;
     private final Boolean badged = null;
+    private final CharSequence tab = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "expression_picker_tab_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackExpressionPickerTabClicked implements Analyti
         }
         TrackExpressionPickerTabClicked trackExpressionPickerTabClicked = (TrackExpressionPickerTabClicked) other;
         return C12238m.areEqual(this.tab, trackExpressionPickerTabClicked.tab) && C12238m.areEqual(this.badged, trackExpressionPickerTabClicked.badged);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

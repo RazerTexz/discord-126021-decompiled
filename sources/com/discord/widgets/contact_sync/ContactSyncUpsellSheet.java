@@ -49,26 +49,9 @@ public final class ContactSyncUpsellSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final ContactSyncUpsellSheet show(FragmentManager fragmentManager) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            ContactSyncUpsellSheet contactSyncUpsellSheet = new ContactSyncUpsellSheet();
-            contactSyncUpsellSheet.show(fragmentManager, ContactSyncUpsellSheet.class.getSimpleName());
-            return contactSyncUpsellSheet;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncUpsellSheet$configureUI$2 */
     /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-    public static final class C82182 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C82182 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C82182() {
             super(1);
         }
@@ -81,11 +64,11 @@ public final class ContactSyncUpsellSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncUpsellSheet$configureUI$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncUpsellSheet$configureUI$2$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-            public static final class C132841 extends AbstractC12240o implements Function1<View, Unit> {
+            public final class C132841 extends AbstractC12240o implements Function1<View, Unit> {
                 public C132841() {
                     super(1);
                 }
@@ -133,7 +116,7 @@ public final class ContactSyncUpsellSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncUpsellSheet$onResume$1 */
     /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-    public static final class C82211 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
+    public final class C82211 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
         public C82211() {
             super(1);
         }
@@ -148,6 +131,23 @@ public final class ContactSyncUpsellSheet extends AppBottomSheet {
         public final void invoke2(WidgetContactSyncViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "it");
             ContactSyncUpsellSheet.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ContactSyncUpsellSheet show(FragmentManager fragmentManager) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            ContactSyncUpsellSheet contactSyncUpsellSheet = new ContactSyncUpsellSheet();
+            contactSyncUpsellSheet.show(fragmentManager, ContactSyncUpsellSheet.class.getSimpleName());
+            return contactSyncUpsellSheet;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -193,13 +193,13 @@ public final class ContactSyncUpsellSheet extends AppBottomSheet {
         return (ContactSyncUpsellSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetContactSyncViewModel getViewModel() {
-        return (WidgetContactSyncViewModel) this.viewModel.getValue();
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.contact_sync_upsell_sheet;
+    }
+
+    private final WidgetContactSyncViewModel getViewModel() {
+        return (WidgetContactSyncViewModel) this.viewModel.getValue();
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener

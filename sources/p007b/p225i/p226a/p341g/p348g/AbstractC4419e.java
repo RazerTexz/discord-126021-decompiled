@@ -27,7 +27,6 @@ import java.util.List;
 public abstract class AbstractC4419e extends Drawable implements Animatable2Compat {
     private static final boolean DEFAULT_DRAWABLE_RESTART = false;
     private static final int GROW_DURATION = 500;
-    private static final Property<AbstractC4419e, Float> GROW_FRACTION = new c(Float.class, "growFraction");
     private List<Animatable2Compat.AnimationCallback> animationCallbacks;
     public final BaseProgressIndicatorSpec baseSpec;
     public final Context context;
@@ -40,6 +39,7 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
     private boolean mockShowAnimationRunning;
     private ValueAnimator showAnimator;
     private int totalAlpha;
+    private static final Property<AbstractC4419e, Float> GROW_FRACTION = new c(Float.class, "growFraction");
     public final Paint paint = new Paint();
     public AnimatorDurationScaleProvider animatorDurationScaleProvider = new AnimatorDurationScaleProvider();
 
@@ -72,7 +72,7 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
 
     /* JADX INFO: renamed from: b.i.a.g.g.e$c */
     /* JADX INFO: compiled from: DrawableWithAnimatedVisibilityChange.java */
-    public static class c extends Property<AbstractC4419e, Float> {
+    public final class c extends Property<AbstractC4419e, Float> {
         public c(Class cls, String str) {
             super(cls, str);
         }
@@ -92,6 +92,12 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
         this.context = context;
         this.baseSpec = baseProgressIndicatorSpec;
         setAlpha(255);
+    }
+
+    @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
+    public void clearAnimationCallbacks() {
+        this.animationCallbacks.clear();
+        this.animationCallbacks = null;
     }
 
     private void dispatchAnimationEnd() {
@@ -131,47 +137,6 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
             valueAnimator.end();
         }
         this.ignoreCallbacks = z2;
-    }
-
-    private void maybeInitializeAnimators() {
-        if (this.showAnimator == null) {
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, GROW_FRACTION, 0.0f, 1.0f);
-            this.showAnimator = objectAnimatorOfFloat;
-            objectAnimatorOfFloat.setDuration(500L);
-            this.showAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-            setShowAnimator(this.showAnimator);
-        }
-        if (this.hideAnimator == null) {
-            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this, GROW_FRACTION, 1.0f, 0.0f);
-            this.hideAnimator = objectAnimatorOfFloat2;
-            objectAnimatorOfFloat2.setDuration(500L);
-            this.hideAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-            setHideAnimator(this.hideAnimator);
-        }
-    }
-
-    private void setHideAnimator(@NonNull ValueAnimator valueAnimator) {
-        ValueAnimator valueAnimator2 = this.hideAnimator;
-        if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-            throw new IllegalArgumentException("Cannot set hideAnimator while the current hideAnimator is running.");
-        }
-        this.hideAnimator = valueAnimator;
-        valueAnimator.addListener(new b());
-    }
-
-    private void setShowAnimator(@NonNull ValueAnimator valueAnimator) {
-        ValueAnimator valueAnimator2 = this.showAnimator;
-        if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-            throw new IllegalArgumentException("Cannot set showAnimator while the current showAnimator is running.");
-        }
-        this.showAnimator = valueAnimator;
-        valueAnimator.addListener(new a());
-    }
-
-    @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public void clearAnimationCallbacks() {
-        this.animationCallbacks.clear();
-        this.animationCallbacks = null;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -215,6 +180,23 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
         return (valueAnimator != null && valueAnimator.isRunning()) || this.mockShowAnimationRunning;
     }
 
+    private void maybeInitializeAnimators() {
+        if (this.showAnimator == null) {
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, GROW_FRACTION, 0.0f, 1.0f);
+            this.showAnimator = objectAnimatorOfFloat;
+            objectAnimatorOfFloat.setDuration(500L);
+            this.showAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+            setShowAnimator(this.showAnimator);
+        }
+        if (this.hideAnimator == null) {
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this, GROW_FRACTION, 1.0f, 0.0f);
+            this.hideAnimator = objectAnimatorOfFloat2;
+            objectAnimatorOfFloat2.setDuration(500L);
+            this.hideAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+            setHideAnimator(this.hideAnimator);
+        }
+    }
+
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
     public void registerAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
         if (this.animationCallbacks == null) {
@@ -245,6 +227,15 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
         }
     }
 
+    private void setHideAnimator(@NonNull ValueAnimator valueAnimator) {
+        ValueAnimator valueAnimator2 = this.hideAnimator;
+        if (valueAnimator2 != null && valueAnimator2.isRunning()) {
+            throw new IllegalArgumentException("Cannot set hideAnimator while the current hideAnimator is running.");
+        }
+        this.hideAnimator = valueAnimator;
+        valueAnimator.addListener(new b());
+    }
+
     public void setInternalAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
         this.internalAnimationCallback = animationCallback;
     }
@@ -259,6 +250,15 @@ public abstract class AbstractC4419e extends Drawable implements Animatable2Comp
     public void setMockShowAnimationRunning(boolean z2, @FloatRange(from = 0.0d, m75to = 1.0d) float f) {
         this.mockShowAnimationRunning = z2;
         this.mockGrowFraction = f;
+    }
+
+    private void setShowAnimator(@NonNull ValueAnimator valueAnimator) {
+        ValueAnimator valueAnimator2 = this.showAnimator;
+        if (valueAnimator2 != null && valueAnimator2.isRunning()) {
+            throw new IllegalArgumentException("Cannot set showAnimator while the current showAnimator is running.");
+        }
+        this.showAnimator = valueAnimator;
+        valueAnimator.addListener(new a());
     }
 
     @Override // android.graphics.drawable.Drawable

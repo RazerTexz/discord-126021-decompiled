@@ -11,19 +11,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackClickLandingCta.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private TrackBase trackBase;
-    private TrackMarketingSite trackMarketingSite;
     private final CharSequence buttonstate = null;
     private final CharSequence buttontype = null;
     private final CharSequence pageName = null;
     private final CharSequence staticExperimentUuid = null;
+    private TrackBase trackBase;
+    private TrackMarketingSite trackMarketingSite;
     private final transient String analyticsSchemaTypeName = "click_landing_cta";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, T
         }
         TrackClickLandingCta trackClickLandingCta = (TrackClickLandingCta) other;
         return C12238m.areEqual(this.buttonstate, trackClickLandingCta.buttonstate) && C12238m.areEqual(this.buttontype, trackClickLandingCta.buttontype) && C12238m.areEqual(this.pageName, trackClickLandingCta.pageName) && C12238m.areEqual(this.staticExperimentUuid, trackClickLandingCta.staticExperimentUuid);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

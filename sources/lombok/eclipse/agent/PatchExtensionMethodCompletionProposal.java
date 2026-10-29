@@ -156,7 +156,7 @@ public class PatchExtensionMethodCompletionProposal {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethodCompletionProposal$Reflection.SCL.lombok */
-    static class Reflection {
+    class Reflection {
         public static final Field replacementOffsetField = accessField(AbstractJavaCompletionProposal.class, "fReplacementOffset");
         public static final Field contextField = accessField(CompletionProposalCollector.class, "fContext");
         public static final Field extendedContextField = accessField(InternalCompletionContext.class, "extendedContext");

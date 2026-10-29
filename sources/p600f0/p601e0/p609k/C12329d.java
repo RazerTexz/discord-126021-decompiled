@@ -40,7 +40,7 @@ public final class C12329d extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.d$a */
     /* JADX INFO: compiled from: ConscryptPlatform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -59,7 +59,7 @@ public final class C12329d extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.d$b */
     /* JADX INFO: compiled from: ConscryptPlatform.kt */
-    public static final class b implements ConscryptHostnameVerifier {
+    public final class b implements ConscryptHostnameVerifier {
 
         /* JADX INFO: renamed from: a */
         public static final b f25769a = new b();
@@ -140,19 +140,6 @@ public final class C12329d extends C12333h {
     }
 
     @Override // p600f0.p601e0.p609k.C12333h
-    /* JADX INFO: renamed from: m */
-    public SSLSocketFactory mo10326m(X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, KeyManagementException {
-        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
-        SSLContext sSLContext = SSLContext.getInstance("TLS", this.f25768f);
-        C12238m.checkExpressionValueIsNotNull(sSLContext, "SSLContext.getInstance(\"TLS\", provider)");
-        sSLContext.init(null, new TrustManager[]{x509TrustManager}, null);
-        SSLSocketFactory socketFactory = sSLContext.getSocketFactory();
-        Conscrypt.setUseEngineSocket(socketFactory, true);
-        C12238m.checkExpressionValueIsNotNull(socketFactory, "newSSLContext().apply {\n…ineSocket(it, true)\n    }");
-        return socketFactory;
-    }
-
-    @Override // p600f0.p601e0.p609k.C12333h
     /* JADX INFO: renamed from: n */
     public X509TrustManager mo10325n() throws NoSuchAlgorithmException, KeyStoreException {
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
@@ -176,5 +163,18 @@ public final class C12329d extends C12333h {
         X509TrustManager x509TrustManager = (X509TrustManager) trustManager;
         Conscrypt.setHostnameVerifier(x509TrustManager, b.f25769a);
         return x509TrustManager;
+    }
+
+    @Override // p600f0.p601e0.p609k.C12333h
+    /* JADX INFO: renamed from: m */
+    public SSLSocketFactory mo10326m(X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, KeyManagementException {
+        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+        SSLContext sSLContext = SSLContext.getInstance("TLS", this.f25768f);
+        C12238m.checkExpressionValueIsNotNull(sSLContext, "SSLContext.getInstance(\"TLS\", provider)");
+        sSLContext.init(null, new TrustManager[]{x509TrustManager}, null);
+        SSLSocketFactory socketFactory = sSLContext.getSocketFactory();
+        Conscrypt.setUseEngineSocket(socketFactory, true);
+        C12238m.checkExpressionValueIsNotNull(socketFactory, "newSSLContext().apply {\n…ineSocket(it, true)\n    }");
+        return socketFactory;
     }
 }

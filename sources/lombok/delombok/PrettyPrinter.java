@@ -28,85 +28,37 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/PrettyPrinter.SCL.lombok */
 public class PrettyPrinter extends JCTree.Visitor {
-    private static final String LINE_SEP = System.getProperty("line.separator");
+    private static /* synthetic */ int[] $SWITCH_TABLE$com$sun$source$tree$Tree$Kind;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection;
+    private static final long DEFAULT = 8796093022208L;
     private static final Map<JavacTreeMaker.TreeTag, String> OPERATORS;
-    private final Writer out;
-    private final JCTree.JCCompilationUnit compilationUnit;
+    private static final int PREFIX = 14;
+    private Name __INIT__;
+    private Name __VALUE__;
+    private boolean aligned;
     private List<CommentInfo> comments;
-    private final int[] textBlockStarts;
-    private final FormatPreferences formatPreferences;
+    private final JCTree.JCCompilationUnit compilationUnit;
+    private Name currentTypeName;
     private final Map<JCTree, String> docComments;
     private final DocCommentTable docTable;
+    private final FormatPreferences formatPreferences;
+    private static final Method getEndPosition;
+    private static final Method getExtendsClause;
     private boolean needsAlign;
     private boolean needsNewLine;
     private boolean needsSpace;
-    private boolean aligned;
-    private Name __INIT__;
-    private Name __VALUE__;
-    private Name currentTypeName;
-    private static final long DEFAULT = 8796093022208L;
-    private static final int PREFIX = 14;
-    private static final Method getExtendsClause;
-    private static final Method getEndPosition;
-    private static final Method storeEnd;
+    private final Writer out;
     private static final Map<Class<?>, Map<String, Field>> reflectionCache;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection;
-    private static /* synthetic */ int[] $SWITCH_TABLE$com$sun$source$tree$Tree$Kind;
+    private static final Method storeEnd;
+    private final int[] textBlockStarts;
+    private static final String LINE_SEP = System.getProperty("line.separator");
     private int indent = 0;
     private boolean onNewLine = true;
     private boolean innermostArrayBracketsAreVarargs = false;
     private long flagMod = -1;
     private boolean jcAnnotatedTypeInit = false;
     private Class<?> jcAnnotatedTypeClass = null;
-
-    static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection() {
-        int[] iArr = $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[CommentInfo.StartConnection.valuesCustom().length];
-        try {
-            iArr2[CommentInfo.StartConnection.AFTER_PREVIOUS.ordinal()] = 4;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[CommentInfo.StartConnection.DIRECT_AFTER_PREVIOUS.ordinal()] = 3;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[CommentInfo.StartConnection.ON_NEXT_LINE.ordinal()] = 2;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            iArr2[CommentInfo.StartConnection.START_OF_LINE.ordinal()] = 1;
-        } catch (NoSuchFieldError unused4) {
-        }
-        $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection = iArr2;
-        return iArr2;
-    }
-
-    static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection() {
-        int[] iArr = $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[CommentInfo.EndConnection.valuesCustom().length];
-        try {
-            iArr2[CommentInfo.EndConnection.AFTER_COMMENT.ordinal()] = 2;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[CommentInfo.EndConnection.DIRECT_AFTER_COMMENT.ordinal()] = 1;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[CommentInfo.EndConnection.ON_NEXT_LINE.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection = iArr2;
-        return iArr2;
-    }
 
     static /* synthetic */ int[] $SWITCH_TABLE$com$sun$source$tree$Tree$Kind() {
         int[] iArr = $SWITCH_TABLE$com$sun$source$tree$Tree$Kind;
@@ -486,6 +438,54 @@ public class PrettyPrinter extends JCTree.Visitor {
         return iArr2;
     }
 
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection() {
+        int[] iArr = $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[CommentInfo.EndConnection.valuesCustom().length];
+        try {
+            iArr2[CommentInfo.EndConnection.AFTER_COMMENT.ordinal()] = 2;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[CommentInfo.EndConnection.DIRECT_AFTER_COMMENT.ordinal()] = 1;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[CommentInfo.EndConnection.ON_NEXT_LINE.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection = iArr2;
+        return iArr2;
+    }
+
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection() {
+        int[] iArr = $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[CommentInfo.StartConnection.valuesCustom().length];
+        try {
+            iArr2[CommentInfo.StartConnection.AFTER_PREVIOUS.ordinal()] = 4;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[CommentInfo.StartConnection.DIRECT_AFTER_PREVIOUS.ordinal()] = 3;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[CommentInfo.StartConnection.ON_NEXT_LINE.ordinal()] = 2;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            iArr2[CommentInfo.StartConnection.START_OF_LINE.ordinal()] = 1;
+        } catch (NoSuchFieldError unused4) {
+        }
+        $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection = iArr2;
+        return iArr2;
+    }
+
     static {
         Method storeEndMethodTemp;
         Map<JavacTreeMaker.TreeTag, String> map = new HashMap<>();
@@ -583,7 +583,7 @@ public class PrettyPrinter extends JCTree.Visitor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/PrettyPrinter$UncheckedIOException.SCL.lombok */
-    public static final class UncheckedIOException extends RuntimeException {
+    public final class UncheckedIOException extends RuntimeException {
         UncheckedIOException(IOException source) {
             super(toMsg(source));
             setStackTrace(source.getStackTrace());
@@ -1157,7 +1157,7 @@ public class PrettyPrinter extends JCTree.Visitor {
                         print(((Number) tree.value).intValue() == 1 ? "true" : "false");
                         return;
                     }
-                    print(new StringBuilder().append(tree.value).toString());
+                    print(tree.value);
                     return;
                 }
                 print(tree.value + "F");
@@ -1166,7 +1166,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             print(tree.value + "L");
             return;
         }
-        print(new StringBuilder().append(tree.value).toString());
+        print(tree.value);
     }
 
     private void printTextBlock(String s2) {

@@ -22,19 +22,9 @@ public final /* data */ class UserProfile {
     private final User user;
 
     /* JADX INFO: compiled from: UserProfile.kt */
-    public static final /* data */ class GuildReference {
+    public final /* data */ class GuildReference {
         private final long id;
         private final String nick;
-
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: b, reason: from getter */
-        public final String getNick() {
-            return this.nick;
-        }
 
         public boolean equals(Object other) {
             if (this == other) {
@@ -45,6 +35,16 @@ public final /* data */ class UserProfile {
             }
             GuildReference guildReference = (GuildReference) other;
             return this.id == guildReference.id && C12238m.areEqual(this.nick, guildReference.nick);
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: b, reason: from getter */
+        public final String getNick() {
+            return this.nick;
         }
 
         public int hashCode() {
@@ -79,31 +79,6 @@ public final /* data */ class UserProfile {
         this.application = profileApplication;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final ProfileApplication getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<ConnectedAccount> m8306b() {
-        return this.connectedAccounts;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<GuildReference> m8308d() {
-        return this.mutualGuilds;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final String getPremiumGuildSince() {
-        return this.premiumGuildSince;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -113,6 +88,21 @@ public final /* data */ class UserProfile {
         }
         UserProfile userProfile = (UserProfile) other;
         return C12238m.areEqual(this.connectedAccounts, userProfile.connectedAccounts) && C12238m.areEqual(this.mutualGuilds, userProfile.mutualGuilds) && C12238m.areEqual(this.user, userProfile.user) && C12238m.areEqual(this.premiumSince, userProfile.premiumSince) && C12238m.areEqual(this.premiumGuildSince, userProfile.premiumGuildSince) && C12238m.areEqual(this.guildMember, userProfile.guildMember) && C12238m.areEqual(this.application, userProfile.application);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final ProfileApplication getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final String getPremiumGuildSince() {
+        return this.premiumGuildSince;
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -140,6 +130,16 @@ public final /* data */ class UserProfile {
         int iHashCode6 = (iHashCode5 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
         ProfileApplication profileApplication = this.application;
         return iHashCode6 + (profileApplication != null ? profileApplication.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<ConnectedAccount> m8306b() {
+        return this.connectedAccounts;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<GuildReference> m8308d() {
+        return this.mutualGuilds;
     }
 
     public String toString() {

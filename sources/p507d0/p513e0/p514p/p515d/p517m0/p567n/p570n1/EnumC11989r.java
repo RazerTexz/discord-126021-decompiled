@@ -14,16 +14,16 @@ public enum EnumC11989r {
         this.presentation = str;
     }
 
+    @Override // java.lang.Enum
+    public String toString() {
+        return this.presentation;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11989r[] valuesCustom() {
         EnumC11989r[] enumC11989rArrValuesCustom = values();
         EnumC11989r[] enumC11989rArr = new EnumC11989r[enumC11989rArrValuesCustom.length];
         System.arraycopy(enumC11989rArrValuesCustom, 0, enumC11989rArr, 0, enumC11989rArrValuesCustom.length);
         return enumC11989rArr;
-    }
-
-    @Override // java.lang.Enum
-    public String toString() {
-        return this.presentation;
     }
 }

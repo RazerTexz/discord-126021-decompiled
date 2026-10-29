@@ -67,331 +67,9 @@ public final class StoreMessagesLoader extends Store {
     private long selectedChannelId;
     private final StoreStream stream;
 
-    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final /* data */ class ChannelChunk {
-        private final long channelId;
-        private final boolean isAppendingTop;
-        private final boolean isInitial;
-        private final boolean isJump;
-        private final boolean isPresent;
-        private final List<Message> messages;
-
-        public ChannelChunk(long j, List<Message> list, boolean z2, boolean z3, boolean z4, boolean z5) {
-            C12238m.checkNotNullParameter(list, "messages");
-            this.channelId = j;
-            this.messages = list;
-            this.isInitial = z2;
-            this.isPresent = z3;
-            this.isAppendingTop = z4;
-            this.isJump = z5;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        public final List<Message> component2() {
-            return this.messages;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsInitial() {
-            return this.isInitial;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsPresent() {
-            return this.isPresent;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsAppendingTop() {
-            return this.isAppendingTop;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsJump() {
-            return this.isJump;
-        }
-
-        public final ChannelChunk copy(long channelId, List<Message> messages, boolean isInitial, boolean isPresent, boolean isAppendingTop, boolean isJump) {
-            C12238m.checkNotNullParameter(messages, "messages");
-            return new ChannelChunk(channelId, messages, isInitial, isPresent, isAppendingTop, isJump);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ChannelChunk)) {
-                return false;
-            }
-            ChannelChunk channelChunk = (ChannelChunk) other;
-            return this.channelId == channelChunk.channelId && C12238m.areEqual(this.messages, channelChunk.messages) && this.isInitial == channelChunk.isInitial && this.isPresent == channelChunk.isPresent && this.isAppendingTop == channelChunk.isAppendingTop && this.isJump == channelChunk.isJump;
-        }
-
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        public final List<Message> getMessages() {
-            return this.messages;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v11, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v7, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v9, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v10 */
-        /* JADX WARN: Type inference failed for: r1v11 */
-        /* JADX WARN: Type inference failed for: r1v12 */
-        /* JADX WARN: Type inference failed for: r1v14 */
-        /* JADX WARN: Type inference failed for: r1v15 */
-        /* JADX WARN: Type inference failed for: r1v16 */
-        /* JADX WARN: Type inference failed for: r1v4, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v8, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v0 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v2 */
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.channelId) * 31;
-            List<Message> list = this.messages;
-            int iHashCode = (iM3a + (list != null ? list.hashCode() : 0)) * 31;
-            boolean z2 = this.isInitial;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            int i = (iHashCode + r1) * 31;
-            boolean z3 = this.isPresent;
-            ?? r2 = z3;
-            if (z3) {
-                r2 = 1;
-            }
-            int i2 = (i + r2) * 31;
-            boolean z4 = this.isAppendingTop;
-            ?? r3 = z4;
-            if (z4) {
-                r3 = 1;
-            }
-            int i3 = (i2 + r3) * 31;
-            boolean z5 = this.isJump;
-            return i3 + (z5 ? 1 : z5);
-        }
-
-        public final boolean isAppendingTop() {
-            return this.isAppendingTop;
-        }
-
-        public final boolean isInitial() {
-            return this.isInitial;
-        }
-
-        public final boolean isJump() {
-            return this.isJump;
-        }
-
-        public final boolean isPresent() {
-            return this.isPresent;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ChannelChunk(channelId=");
-            sbM833U.append(this.channelId);
-            sbM833U.append(", messages=");
-            sbM833U.append(this.messages);
-            sbM833U.append(", isInitial=");
-            sbM833U.append(this.isInitial);
-            sbM833U.append(", isPresent=");
-            sbM833U.append(this.isPresent);
-            sbM833U.append(", isAppendingTop=");
-            sbM833U.append(this.isAppendingTop);
-            sbM833U.append(", isJump=");
-            return C1643a.m827O(sbM833U, this.isJump, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final /* data */ class ChannelLoadedState {
-        private final boolean isInitialMessagesLoaded;
-        private final boolean isLoadingMessages;
-        private final boolean isOldestMessagesLoaded;
-        private final boolean isTouchedSinceLastJump;
-        private final Long newestSentByUserMessageId;
-
-        public ChannelLoadedState() {
-            this(false, false, false, false, null, 31, null);
-        }
-
-        public ChannelLoadedState(boolean z2, boolean z3, boolean z4, boolean z5, Long l) {
-            this.isInitialMessagesLoaded = z2;
-            this.isOldestMessagesLoaded = z3;
-            this.isLoadingMessages = z4;
-            this.isTouchedSinceLastJump = z5;
-            this.newestSentByUserMessageId = l;
-        }
-
-        public static /* synthetic */ ChannelLoadedState copy$default(ChannelLoadedState channelLoadedState, boolean z2, boolean z3, boolean z4, boolean z5, Long l, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = channelLoadedState.isInitialMessagesLoaded;
-            }
-            if ((i & 2) != 0) {
-                z3 = channelLoadedState.isOldestMessagesLoaded;
-            }
-            boolean z6 = z3;
-            if ((i & 4) != 0) {
-                z4 = channelLoadedState.isLoadingMessages;
-            }
-            boolean z7 = z4;
-            if ((i & 8) != 0) {
-                z5 = channelLoadedState.isTouchedSinceLastJump;
-            }
-            boolean z8 = z5;
-            if ((i & 16) != 0) {
-                l = channelLoadedState.newestSentByUserMessageId;
-            }
-            return channelLoadedState.copy(z2, z6, z7, z8, l);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsInitialMessagesLoaded() {
-            return this.isInitialMessagesLoaded;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsOldestMessagesLoaded() {
-            return this.isOldestMessagesLoaded;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsLoadingMessages() {
-            return this.isLoadingMessages;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsTouchedSinceLastJump() {
-            return this.isTouchedSinceLastJump;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Long getNewestSentByUserMessageId() {
-            return this.newestSentByUserMessageId;
-        }
-
-        public final ChannelLoadedState copy(boolean isInitialMessagesLoaded, boolean isOldestMessagesLoaded, boolean isLoadingMessages, boolean isTouchedSinceLastJump, Long newestSentByUserMessageId) {
-            return new ChannelLoadedState(isInitialMessagesLoaded, isOldestMessagesLoaded, isLoadingMessages, isTouchedSinceLastJump, newestSentByUserMessageId);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ChannelLoadedState)) {
-                return false;
-            }
-            ChannelLoadedState channelLoadedState = (ChannelLoadedState) other;
-            return this.isInitialMessagesLoaded == channelLoadedState.isInitialMessagesLoaded && this.isOldestMessagesLoaded == channelLoadedState.isOldestMessagesLoaded && this.isLoadingMessages == channelLoadedState.isLoadingMessages && this.isTouchedSinceLastJump == channelLoadedState.isTouchedSinceLastJump && C12238m.areEqual(this.newestSentByUserMessageId, channelLoadedState.newestSentByUserMessageId);
-        }
-
-        public final Long getNewestSentByUserMessageId() {
-            return this.newestSentByUserMessageId;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v10 */
-        /* JADX WARN: Type inference failed for: r0v11 */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v7, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v6 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v5 */
-        /* JADX WARN: Type inference failed for: r2v6 */
-        /* JADX WARN: Type inference failed for: r2v7 */
-        /* JADX WARN: Type inference failed for: r2v8 */
-        public int hashCode() {
-            boolean z2 = this.isInitialMessagesLoaded;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.isOldestMessagesLoaded;
-            ?? r2 = z3;
-            if (z3) {
-                r2 = 1;
-            }
-            int i2 = (i + r2) * 31;
-            boolean z4 = this.isLoadingMessages;
-            ?? r3 = z4;
-            if (z4) {
-                r3 = 1;
-            }
-            int i3 = (i2 + r3) * 31;
-            boolean z5 = this.isTouchedSinceLastJump;
-            int i4 = (i3 + (z5 ? 1 : z5)) * 31;
-            Long l = this.newestSentByUserMessageId;
-            return i4 + (l != null ? l.hashCode() : 0);
-        }
-
-        public final boolean isInitialMessagesLoaded() {
-            return this.isInitialMessagesLoaded;
-        }
-
-        public final boolean isLoadingMessages() {
-            return this.isLoadingMessages;
-        }
-
-        public final boolean isOldestMessagesLoaded() {
-            return this.isOldestMessagesLoaded;
-        }
-
-        public final boolean isTouchedSinceLastJump() {
-            return this.isTouchedSinceLastJump;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ChannelLoadedState(isInitialMessagesLoaded=");
-            sbM833U.append(this.isInitialMessagesLoaded);
-            sbM833U.append(", isOldestMessagesLoaded=");
-            sbM833U.append(this.isOldestMessagesLoaded);
-            sbM833U.append(", isLoadingMessages=");
-            sbM833U.append(this.isLoadingMessages);
-            sbM833U.append(", isTouchedSinceLastJump=");
-            sbM833U.append(this.isTouchedSinceLastJump);
-            sbM833U.append(", newestSentByUserMessageId=");
-            return C1643a.m819G(sbM833U, this.newestSentByUserMessageId, ")");
-        }
-
-        public /* synthetic */ ChannelLoadedState(boolean z2, boolean z3, boolean z4, boolean z5, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? false : z3, (i & 4) != 0 ? false : z4, (i & 8) == 0 ? z5 : false, (i & 16) != 0 ? null : l);
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final boolean isScrollToAction(long targetMessageId) {
-            return targetMessageId == 0 || targetMessageId == 1;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$handleChannelSelected$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62521 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+    public final class C62521 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
         public static final C62521 INSTANCE = new C62521();
 
         public C62521() {
@@ -407,7 +85,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$handleLoadMessagesError$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62531 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+    public final class C62531 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
         public static final C62531 INSTANCE = new C62531();
 
         public C62531() {
@@ -423,7 +101,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$handleLoadedMessages$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62541 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+    public final class C62541 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
         public final /* synthetic */ boolean $isAllLoaded;
         public final /* synthetic */ boolean $isAppendingTop;
         public final /* synthetic */ boolean $isInitial;
@@ -461,7 +139,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$init$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final /* synthetic */ class C62551 extends C12236k implements Function1<StoreChat.InteractionState, Unit> {
+    public final /* synthetic */ class C62551 extends C12236k implements Function1<StoreChat.InteractionState, Unit> {
         public C62551(StoreMessagesLoader storeMessagesLoader) {
             super(1, storeMessagesLoader, StoreMessagesLoader.class, "handleChatInteraction", "handleChatInteraction(Lcom/discord/stores/StoreChat$InteractionState;)V", 0);
         }
@@ -481,7 +159,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$init$2 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final /* synthetic */ class C62562 extends C12236k implements Function1<Set<? extends Long>, Unit> {
+    public final /* synthetic */ class C62562 extends C12236k implements Function1<Set<? extends Long>, Unit> {
         public C62562(StoreMessagesLoader storeMessagesLoader) {
             super(1, storeMessagesLoader, StoreMessagesLoader.class, "handleChatDetached", "handleChatDetached(Ljava/util/Set;)V", 0);
         }
@@ -501,13 +179,13 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62571 extends AbstractC12240o implements Function1<Message, Unit> {
+    public final class C62571 extends AbstractC12240o implements Function1<Message, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $messageId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -552,12 +230,12 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$2 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62582 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C62582 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -595,7 +273,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$3 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62593 extends AbstractC12240o implements Function1<Long, Boolean> {
+    public final class C62593 extends AbstractC12240o implements Function1<Long, Boolean> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -617,12 +295,12 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$5 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62615 extends AbstractC12240o implements Function1<Message, Unit> {
+    public final class C62615 extends AbstractC12240o implements Function1<Message, Unit> {
         public final /* synthetic */ C62571 $handleTargetChannelSelected$1;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$5$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Message $message;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -663,7 +341,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$7 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62637 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C62637 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C62637 INSTANCE = new C62637();
 
         public C62637() {
@@ -685,7 +363,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$jumpToMessage$8 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final /* synthetic */ class C62648 extends C12236k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class C62648 extends C12236k implements Function1<Channel, Unit> {
         public final /* synthetic */ C62582 $handleTargetChannelResolved$2;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -709,7 +387,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$requestNewestMessages$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62651 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+    public final class C62651 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
         public static final C62651 INSTANCE = new C62651();
 
         public C62651() {
@@ -725,7 +403,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$1 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62661 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C62661 extends AbstractC12240o implements Function1<Long, Unit> {
         public C62661() {
             super(1);
         }
@@ -744,7 +422,7 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$2 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62672 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C62672 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C62672() {
             super(1);
         }
@@ -764,11 +442,11 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$3 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62683 extends AbstractC12240o implements Function4<Long, Long, Long, Long, Unit> {
+    public final class C62683 extends AbstractC12240o implements Function4<Long, Long, Long, Long, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -784,7 +462,7 @@ public final class StoreMessagesLoader extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$3$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<List<? extends Message>, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<List<? extends Message>, Unit> {
             public final /* synthetic */ Long $after;
             public final /* synthetic */ Long $before;
             public final /* synthetic */ long $channelId;
@@ -817,7 +495,7 @@ public final class StoreMessagesLoader extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$3$4, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<Error, Unit> {
             public final /* synthetic */ long $channelId;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -841,7 +519,7 @@ public final class StoreMessagesLoader extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$3$5, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass5 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public final class AnonymousClass5 extends AbstractC12240o implements Function1<Subscription, Unit> {
             public AnonymousClass5() {
                 super(1);
             }
@@ -934,12 +612,12 @@ public final class StoreMessagesLoader extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$4 */
     /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-    public static final class C62694 extends AbstractC12240o implements Function4<Long, List<? extends Message>, Boolean, Boolean, Unit> {
+    public final class C62694 extends AbstractC12240o implements Function4<Long, List<? extends Message>, Boolean, Boolean, Unit> {
         public final /* synthetic */ C62683 $loadMessages$3;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreMessagesLoader$tryLoadMessages$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreMessagesLoader.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ChannelLoadedState, ChannelLoadedState> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -976,6 +654,328 @@ public final class StoreMessagesLoader extends Store {
             } else if (z3) {
                 C62683.invoke$default(this.$loadMessages$3, j, null, null, Long.valueOf(list.get(list.size() - 1).getId()), 6, null);
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
+    public final /* data */ class ChannelChunk {
+        private final long channelId;
+        private final boolean isAppendingTop;
+        private final boolean isInitial;
+        private final boolean isJump;
+        private final boolean isPresent;
+        private final List<Message> messages;
+
+        public ChannelChunk(long j, List<Message> list, boolean z2, boolean z3, boolean z4, boolean z5) {
+            C12238m.checkNotNullParameter(list, "messages");
+            this.channelId = j;
+            this.messages = list;
+            this.isInitial = z2;
+            this.isPresent = z3;
+            this.isAppendingTop = z4;
+            this.isJump = z5;
+        }
+
+        public final List<Message> component2() {
+            return this.messages;
+        }
+
+        public final ChannelChunk copy(long channelId, List<Message> messages, boolean isInitial, boolean isPresent, boolean isAppendingTop, boolean isJump) {
+            C12238m.checkNotNullParameter(messages, "messages");
+            return new ChannelChunk(channelId, messages, isInitial, isPresent, isAppendingTop, isJump);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ChannelChunk)) {
+                return false;
+            }
+            ChannelChunk channelChunk = (ChannelChunk) other;
+            return this.channelId == channelChunk.channelId && C12238m.areEqual(this.messages, channelChunk.messages) && this.isInitial == channelChunk.isInitial && this.isPresent == channelChunk.isPresent && this.isAppendingTop == channelChunk.isAppendingTop && this.isJump == channelChunk.isJump;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsAppendingTop() {
+            return this.isAppendingTop;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsInitial() {
+            return this.isInitial;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsJump() {
+            return this.isJump;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsPresent() {
+            return this.isPresent;
+        }
+
+        public final List<Message> getMessages() {
+            return this.messages;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v11, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v7, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v9, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v10 */
+        /* JADX WARN: Type inference failed for: r1v11 */
+        /* JADX WARN: Type inference failed for: r1v12 */
+        /* JADX WARN: Type inference failed for: r1v14 */
+        /* JADX WARN: Type inference failed for: r1v15 */
+        /* JADX WARN: Type inference failed for: r1v16 */
+        /* JADX WARN: Type inference failed for: r1v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v8, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v0 */
+        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v2 */
+        public int hashCode() {
+            int iM3a = C0002b.m3a(this.channelId) * 31;
+            List<Message> list = this.messages;
+            int iHashCode = (iM3a + (list != null ? list.hashCode() : 0)) * 31;
+            boolean z2 = this.isInitial;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            int i = (iHashCode + r1) * 31;
+            boolean z3 = this.isPresent;
+            ?? r2 = z3;
+            if (z3) {
+                r2 = 1;
+            }
+            int i2 = (i + r2) * 31;
+            boolean z4 = this.isAppendingTop;
+            ?? r3 = z4;
+            if (z4) {
+                r3 = 1;
+            }
+            int i3 = (i2 + r3) * 31;
+            boolean z5 = this.isJump;
+            return i3 + (z5 ? 1 : z5);
+        }
+
+        public final boolean isAppendingTop() {
+            return this.isAppendingTop;
+        }
+
+        public final boolean isInitial() {
+            return this.isInitial;
+        }
+
+        public final boolean isJump() {
+            return this.isJump;
+        }
+
+        public final boolean isPresent() {
+            return this.isPresent;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ChannelChunk(channelId=");
+            sbM833U.append(this.channelId);
+            sbM833U.append(", messages=");
+            sbM833U.append(this.messages);
+            sbM833U.append(", isInitial=");
+            sbM833U.append(this.isInitial);
+            sbM833U.append(", isPresent=");
+            sbM833U.append(this.isPresent);
+            sbM833U.append(", isAppendingTop=");
+            sbM833U.append(this.isAppendingTop);
+            sbM833U.append(", isJump=");
+            return C1643a.m827O(sbM833U, this.isJump, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
+    public final /* data */ class ChannelLoadedState {
+        private final boolean isInitialMessagesLoaded;
+        private final boolean isLoadingMessages;
+        private final boolean isOldestMessagesLoaded;
+        private final boolean isTouchedSinceLastJump;
+        private final Long newestSentByUserMessageId;
+
+        public ChannelLoadedState() {
+            this(false, false, false, false, null, 31, null);
+        }
+
+        public ChannelLoadedState(boolean z2, boolean z3, boolean z4, boolean z5, Long l) {
+            this.isInitialMessagesLoaded = z2;
+            this.isOldestMessagesLoaded = z3;
+            this.isLoadingMessages = z4;
+            this.isTouchedSinceLastJump = z5;
+            this.newestSentByUserMessageId = l;
+        }
+
+        public static /* synthetic */ ChannelLoadedState copy$default(ChannelLoadedState channelLoadedState, boolean z2, boolean z3, boolean z4, boolean z5, Long l, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = channelLoadedState.isInitialMessagesLoaded;
+            }
+            if ((i & 2) != 0) {
+                z3 = channelLoadedState.isOldestMessagesLoaded;
+            }
+            boolean z6 = z3;
+            if ((i & 4) != 0) {
+                z4 = channelLoadedState.isLoadingMessages;
+            }
+            boolean z7 = z4;
+            if ((i & 8) != 0) {
+                z5 = channelLoadedState.isTouchedSinceLastJump;
+            }
+            boolean z8 = z5;
+            if ((i & 16) != 0) {
+                l = channelLoadedState.newestSentByUserMessageId;
+            }
+            return channelLoadedState.copy(z2, z6, z7, z8, l);
+        }
+
+        public final ChannelLoadedState copy(boolean isInitialMessagesLoaded, boolean isOldestMessagesLoaded, boolean isLoadingMessages, boolean isTouchedSinceLastJump, Long newestSentByUserMessageId) {
+            return new ChannelLoadedState(isInitialMessagesLoaded, isOldestMessagesLoaded, isLoadingMessages, isTouchedSinceLastJump, newestSentByUserMessageId);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ChannelLoadedState)) {
+                return false;
+            }
+            ChannelLoadedState channelLoadedState = (ChannelLoadedState) other;
+            return this.isInitialMessagesLoaded == channelLoadedState.isInitialMessagesLoaded && this.isOldestMessagesLoaded == channelLoadedState.isOldestMessagesLoaded && this.isLoadingMessages == channelLoadedState.isLoadingMessages && this.isTouchedSinceLastJump == channelLoadedState.isTouchedSinceLastJump && C12238m.areEqual(this.newestSentByUserMessageId, channelLoadedState.newestSentByUserMessageId);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsInitialMessagesLoaded() {
+            return this.isInitialMessagesLoaded;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsLoadingMessages() {
+            return this.isLoadingMessages;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsOldestMessagesLoaded() {
+            return this.isOldestMessagesLoaded;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsTouchedSinceLastJump() {
+            return this.isTouchedSinceLastJump;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Long getNewestSentByUserMessageId() {
+            return this.newestSentByUserMessageId;
+        }
+
+        public final Long getNewestSentByUserMessageId() {
+            return this.newestSentByUserMessageId;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v10 */
+        /* JADX WARN: Type inference failed for: r0v11 */
+        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v7, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v0 */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v5 */
+        /* JADX WARN: Type inference failed for: r2v6 */
+        /* JADX WARN: Type inference failed for: r2v7 */
+        /* JADX WARN: Type inference failed for: r2v8 */
+        public int hashCode() {
+            boolean z2 = this.isInitialMessagesLoaded;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = r0 * 31;
+            boolean z3 = this.isOldestMessagesLoaded;
+            ?? r2 = z3;
+            if (z3) {
+                r2 = 1;
+            }
+            int i2 = (i + r2) * 31;
+            boolean z4 = this.isLoadingMessages;
+            ?? r3 = z4;
+            if (z4) {
+                r3 = 1;
+            }
+            int i3 = (i2 + r3) * 31;
+            boolean z5 = this.isTouchedSinceLastJump;
+            int i4 = (i3 + (z5 ? 1 : z5)) * 31;
+            Long l = this.newestSentByUserMessageId;
+            return i4 + (l != null ? l.hashCode() : 0);
+        }
+
+        public final boolean isInitialMessagesLoaded() {
+            return this.isInitialMessagesLoaded;
+        }
+
+        public final boolean isLoadingMessages() {
+            return this.isLoadingMessages;
+        }
+
+        public final boolean isOldestMessagesLoaded() {
+            return this.isOldestMessagesLoaded;
+        }
+
+        public final boolean isTouchedSinceLastJump() {
+            return this.isTouchedSinceLastJump;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ChannelLoadedState(isInitialMessagesLoaded=");
+            sbM833U.append(this.isInitialMessagesLoaded);
+            sbM833U.append(", isOldestMessagesLoaded=");
+            sbM833U.append(this.isOldestMessagesLoaded);
+            sbM833U.append(", isLoadingMessages=");
+            sbM833U.append(this.isLoadingMessages);
+            sbM833U.append(", isTouchedSinceLastJump=");
+            sbM833U.append(this.isTouchedSinceLastJump);
+            sbM833U.append(", newestSentByUserMessageId=");
+            return C1643a.m819G(sbM833U, this.newestSentByUserMessageId, ")");
+        }
+
+        public /* synthetic */ ChannelLoadedState(boolean z2, boolean z3, boolean z4, boolean z5, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? false : z3, (i & 4) != 0 ? false : z4, (i & 8) == 0 ? z5 : false, (i & 16) != 0 ? null : l);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessagesLoader.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean isScrollToAction(long targetMessageId) {
+            return targetMessageId == 0 || targetMessageId == 1;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -1022,6 +1022,56 @@ public final class StoreMessagesLoader extends Store {
         log("Disconnected, resetting all message loaded states.");
     }
 
+    public final void clearScrollTo() {
+        this.scrollToSubject.f27653k.onNext(null);
+    }
+
+    public final Observable<ChannelChunk> get() {
+        return ObservableExtensionsKt.computationBuffered(this.channelMessageChunksSubject);
+    }
+
+    public final Observable<ChannelLoadedState> getMessagesLoadedState(final long channelId) {
+        Observable<R> observableM11083G = this.channelLoadedStateSubject.m11083G(new InterfaceC12589b<Map<Long, ? extends ChannelLoadedState>, ChannelLoadedState>() { // from class: com.discord.stores.StoreMessagesLoader.getMessagesLoadedState.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public /* bridge */ /* synthetic */ ChannelLoadedState call(Map<Long, ? extends ChannelLoadedState> map) {
+                return call2((Map<Long, ChannelLoadedState>) map);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final ChannelLoadedState call2(Map<Long, ChannelLoadedState> map) {
+                ChannelLoadedState channelLoadedState = map.get(Long.valueOf(channelId));
+                return channelLoadedState != null ? channelLoadedState : new ChannelLoadedState(false, false, false, false, null, 31, null);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "channelLoadedStateSubjec…?: ChannelLoadedState() }");
+        Observable<ChannelLoadedState> observableM11112r = ObservableExtensionsKt.computationLatest(observableM11083G).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "channelLoadedStateSubjec…  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public final Observable<Long> getScrollTo() {
+        Observable<R> observableM11083G = this.scrollToSubject.m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
+        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
+        return ObservableExtensionsKt.computationLatest(observableM11083G);
+    }
+
+    public final synchronized void handleAuthToken(String authToken) {
+        this.authed = authToken != null;
+        tryLoadMessages$default(this, 0L, false, true, false, null, null, 59, null);
+    }
+
+    public final synchronized void handleBackgrounded(boolean backgrounded) {
+        this.backgrounded = backgrounded;
+        tryLoadMessages$default(this, 0L, false, true, false, null, null, 59, null);
+    }
+
+    @StoreThread
+    public final synchronized void handleChannelSelected(long selectedChannelId) {
+        channelLoadedStateUpdate(this.selectedChannelId, C62521.INSTANCE);
+        this.selectedChannelId = selectedChannelId;
+        tryLoadMessages$default(this, 0L, true, true, false, null, null, 57, null);
+    }
+
     private final synchronized void handleChatDetached(Set<Long> detachedChannels) {
         this.detachedChannels = detachedChannels;
         log("Loaded detached channel state: " + detachedChannels);
@@ -1032,6 +1082,19 @@ public final class StoreMessagesLoader extends Store {
         channelLoadedStateUpdate(interactionState.getChannelId(), new StoreMessagesLoader$handleChatInteraction$1$1(interactionState));
         this.interactionState = interactionState;
         tryLoadMessages$default(this, 0L, false, true, false, null, null, 59, null);
+    }
+
+    public final synchronized void handleConnected(boolean connected) {
+        try {
+            if (connected) {
+                this.hasConnected = true;
+            } else if (this.hasConnected) {
+                channelLoadedStatesReset();
+            }
+            tryLoadMessages$default(this, 0L, false, true, this.hasConnected, null, null, 51, null);
+        } catch (Throwable th) {
+            throw th;
+        }
     }
 
     private final synchronized void handleLoadMessagesError(long channelId) {
@@ -1089,8 +1152,69 @@ public final class StoreMessagesLoader extends Store {
         tryLoadMessages$default(this, this.loadingMessagesRetryDelayDefault, false, false, false, null, null, 58, null);
     }
 
+    @StoreThread
+    public final synchronized void handleVoiceChannelJoined(long selectedVoiceChannelId) {
+        tryLoadMessages$default(this, 0L, true, true, false, Long.valueOf(selectedVoiceChannelId), null, 41, null);
+    }
+
+    @Override // com.discord.stores.Store
+    public void init(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        super.init(context);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(this.stream.getChat().observeInteractionState()), (Class<?>) StoreMessagesLoader.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62551(this));
+        ObservableExtensionsKt.appSubscribe(this.stream.getMessages().getAllDetached(), (Class<?>) StoreMessagesLoader.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62562(this));
+    }
+
+    public final synchronized void jumpToMessage(final long channelId, final long messageId) {
+        if (messageId <= 0) {
+            return;
+        }
+        C62571 c62571 = new C62571(channelId, messageId);
+        C62582 c62582 = new C62582(channelId);
+        Observable observableM11099Y = this.stream.getChannelsSelected().observeId().m11108k(C0879o.m177c(new C62593(channelId), -1L, 1000L, TimeUnit.MILLISECONDS)).m11099Y(new InterfaceC12589b<Long, Observable<? extends Message>>() { // from class: com.discord.stores.StoreMessagesLoader.jumpToMessage.4
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Message> call(Long l) {
+                return StoreMessagesLoader.this.stream.getMessages().observeMessagesForChannel(channelId, messageId);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11099Y, "stream\n        .channels…lId, messageId)\n        }");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11099Y, 0L, false, 3, null)), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62615(c62571));
+        Observable observableM11082A = StoreConnectionOpen.observeConnectionOpen$default(this.stream.getConnectionOpen(), false, 1, null).m11100Z(1).m11082A(new InterfaceC12589b<Boolean, Observable<? extends Channel>>() { // from class: com.discord.stores.StoreMessagesLoader.jumpToMessage.6
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Channel> call(Boolean bool) {
+                C12238m.checkNotNullExpressionValue(bool, "isConnected");
+                int i = bool.booleanValue() ? 1 : 3;
+                Observable<R> observableM11083G = StoreMessagesLoader.this.stream.getChannels().observeChannel(channelId).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
+                C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
+                return ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11083G, 1000 * ((long) i), false, 2, null);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11082A, "stream\n        .connecti…mes.ONE_SECOND)\n        }");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(observableM11082A), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C62637.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62648(c62582));
+    }
+
     private final void log(String message) {
         AppLog.m8358i("[MessageLoader] " + message);
+    }
+
+    public final Observable<Boolean> observeChannelMessagesLoading() {
+        Observable<Boolean> observableM11112r = ObservableExtensionsKt.computationBuffered(this.channelMessagesLoadingSubject).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "channelMessagesLoadingSu…  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public final synchronized void requestNewestMessages() {
+        ChannelLoadedState channelLoadedState;
+        if (!this.detachedChannels.contains(Long.valueOf(this.selectedChannelId)) && (channelLoadedState = this.channelLoadedStates.get(Long.valueOf(this.selectedChannelId))) != null && channelLoadedState.isInitialMessagesLoaded()) {
+            this.scrollToSubject.f27653k.onNext(1L);
+        } else {
+            channelLoadedStateUpdate(this.selectedChannelId, C62651.INSTANCE);
+            tryLoadMessages$default(this, 0L, true, false, false, null, 1L, 25, null);
+        }
+    }
+
+    public static /* synthetic */ void tryLoadMessages$default(StoreMessagesLoader storeMessagesLoader, long j, boolean z2, boolean z3, boolean z4, Long l, Long l2, int i, Object obj) {
+        storeMessagesLoader.tryLoadMessages((i & 1) != 0 ? 0L : j, (i & 2) != 0 ? false : z2, (i & 4) != 0 ? false : z3, (i & 8) == 0 ? z4 : false, (i & 16) != 0 ? null : l, (i & 32) == 0 ? l2 : null);
     }
 
     private final synchronized void tryLoadMessages(long delay, boolean force, boolean resetRetry, boolean resetDelay, Long targetChannelId, Long targetMessageId) {
@@ -1146,130 +1270,6 @@ public final class StoreMessagesLoader extends Store {
             }
         } catch (Throwable th) {
             throw th;
-        }
-    }
-
-    public static /* synthetic */ void tryLoadMessages$default(StoreMessagesLoader storeMessagesLoader, long j, boolean z2, boolean z3, boolean z4, Long l, Long l2, int i, Object obj) {
-        storeMessagesLoader.tryLoadMessages((i & 1) != 0 ? 0L : j, (i & 2) != 0 ? false : z2, (i & 4) != 0 ? false : z3, (i & 8) == 0 ? z4 : false, (i & 16) != 0 ? null : l, (i & 32) == 0 ? l2 : null);
-    }
-
-    public final void clearScrollTo() {
-        this.scrollToSubject.f27653k.onNext(null);
-    }
-
-    public final Observable<ChannelChunk> get() {
-        return ObservableExtensionsKt.computationBuffered(this.channelMessageChunksSubject);
-    }
-
-    public final Observable<ChannelLoadedState> getMessagesLoadedState(final long channelId) {
-        Observable<R> observableM11083G = this.channelLoadedStateSubject.m11083G(new InterfaceC12589b<Map<Long, ? extends ChannelLoadedState>, ChannelLoadedState>() { // from class: com.discord.stores.StoreMessagesLoader.getMessagesLoadedState.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public /* bridge */ /* synthetic */ ChannelLoadedState call(Map<Long, ? extends ChannelLoadedState> map) {
-                return call2((Map<Long, ChannelLoadedState>) map);
-            }
-
-            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-            public final ChannelLoadedState call2(Map<Long, ChannelLoadedState> map) {
-                ChannelLoadedState channelLoadedState = map.get(Long.valueOf(channelId));
-                return channelLoadedState != null ? channelLoadedState : new ChannelLoadedState(false, false, false, false, null, 31, null);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "channelLoadedStateSubjec…?: ChannelLoadedState() }");
-        Observable<ChannelLoadedState> observableM11112r = ObservableExtensionsKt.computationLatest(observableM11083G).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "channelLoadedStateSubjec…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final Observable<Long> getScrollTo() {
-        Observable<R> observableM11083G = this.scrollToSubject.m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
-        return ObservableExtensionsKt.computationLatest(observableM11083G);
-    }
-
-    public final synchronized void handleAuthToken(String authToken) {
-        this.authed = authToken != null;
-        tryLoadMessages$default(this, 0L, false, true, false, null, null, 59, null);
-    }
-
-    public final synchronized void handleBackgrounded(boolean backgrounded) {
-        this.backgrounded = backgrounded;
-        tryLoadMessages$default(this, 0L, false, true, false, null, null, 59, null);
-    }
-
-    @StoreThread
-    public final synchronized void handleChannelSelected(long selectedChannelId) {
-        channelLoadedStateUpdate(this.selectedChannelId, C62521.INSTANCE);
-        this.selectedChannelId = selectedChannelId;
-        tryLoadMessages$default(this, 0L, true, true, false, null, null, 57, null);
-    }
-
-    public final synchronized void handleConnected(boolean connected) {
-        try {
-            if (connected) {
-                this.hasConnected = true;
-            } else if (this.hasConnected) {
-                channelLoadedStatesReset();
-            }
-            tryLoadMessages$default(this, 0L, false, true, this.hasConnected, null, null, 51, null);
-        } catch (Throwable th) {
-            throw th;
-        }
-    }
-
-    @StoreThread
-    public final synchronized void handleVoiceChannelJoined(long selectedVoiceChannelId) {
-        tryLoadMessages$default(this, 0L, true, true, false, Long.valueOf(selectedVoiceChannelId), null, 41, null);
-    }
-
-    @Override // com.discord.stores.Store
-    public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        super.init(context);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(this.stream.getChat().observeInteractionState()), (Class<?>) StoreMessagesLoader.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62551(this));
-        ObservableExtensionsKt.appSubscribe(this.stream.getMessages().getAllDetached(), (Class<?>) StoreMessagesLoader.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62562(this));
-    }
-
-    public final synchronized void jumpToMessage(final long channelId, final long messageId) {
-        if (messageId <= 0) {
-            return;
-        }
-        C62571 c62571 = new C62571(channelId, messageId);
-        C62582 c62582 = new C62582(channelId);
-        Observable observableM11099Y = this.stream.getChannelsSelected().observeId().m11108k(C0879o.m177c(new C62593(channelId), -1L, 1000L, TimeUnit.MILLISECONDS)).m11099Y(new InterfaceC12589b<Long, Observable<? extends Message>>() { // from class: com.discord.stores.StoreMessagesLoader.jumpToMessage.4
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Message> call(Long l) {
-                return StoreMessagesLoader.this.stream.getMessages().observeMessagesForChannel(channelId, messageId);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11099Y, "stream\n        .channels…lId, messageId)\n        }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11099Y, 0L, false, 3, null)), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62615(c62571));
-        Observable observableM11082A = StoreConnectionOpen.observeConnectionOpen$default(this.stream.getConnectionOpen(), false, 1, null).m11100Z(1).m11082A(new InterfaceC12589b<Boolean, Observable<? extends Channel>>() { // from class: com.discord.stores.StoreMessagesLoader.jumpToMessage.6
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Channel> call(Boolean bool) {
-                C12238m.checkNotNullExpressionValue(bool, "isConnected");
-                int i = bool.booleanValue() ? 1 : 3;
-                Observable<R> observableM11083G = StoreMessagesLoader.this.stream.getChannels().observeChannel(channelId).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
-                C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
-                return ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11083G, 1000 * ((long) i), false, 2, null);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11082A, "stream\n        .connecti…mes.ONE_SECOND)\n        }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationLatest(observableM11082A), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C62637.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C62648(c62582));
-    }
-
-    public final Observable<Boolean> observeChannelMessagesLoading() {
-        Observable<Boolean> observableM11112r = ObservableExtensionsKt.computationBuffered(this.channelMessagesLoadingSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "channelMessagesLoadingSu…  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final synchronized void requestNewestMessages() {
-        ChannelLoadedState channelLoadedState;
-        if (!this.detachedChannels.contains(Long.valueOf(this.selectedChannelId)) && (channelLoadedState = this.channelLoadedStates.get(Long.valueOf(this.selectedChannelId))) != null && channelLoadedState.isInitialMessagesLoaded()) {
-            this.scrollToSubject.f27653k.onNext(1L);
-        } else {
-            channelLoadedStateUpdate(this.selectedChannelId, C62651.INSTANCE);
-            tryLoadMessages$default(this, 0L, true, false, false, null, 1L, 25, null);
         }
     }
 }

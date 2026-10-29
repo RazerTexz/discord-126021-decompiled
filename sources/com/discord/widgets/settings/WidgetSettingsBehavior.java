@@ -28,17 +28,17 @@ import p658rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetSettingsBehavior.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsBehavior extends AppFragment {
-    private static final String API_LINK = "https://discord.com/developers/docs/intro";
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsBehavior.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsBehaviorBinding;", 0)};
+    private static final String API_LINK = "https://discord.com/developers/docs/intro";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+
     /* JADX INFO: compiled from: WidgetSettingsBehavior.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

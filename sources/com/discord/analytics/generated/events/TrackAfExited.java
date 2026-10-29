@@ -12,28 +12,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfExited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence loadId = null;
+    private final CharSequence feedLayout = null;
     private final List<Long> gameIdsViewed = null;
+    private final CharSequence loadId = null;
+    private final List<Long> newsIdsViewed = null;
+    private final Long numCardsTotal = null;
+    private final Long numCardsViewed = null;
+    private final Long numGamesViewed = null;
+    private final Long secondsSpent = null;
     private final List<Long> storeApplicationIdsViewed = null;
     private final List<Long> storeSkuIdsViewed = null;
-    private final Long numGamesViewed = null;
-    private final Long numCardsViewed = null;
-    private final Long secondsSpent = null;
-    private final CharSequence feedLayout = null;
-    private final Long windowWidth = null;
-    private final Long windowHeight = null;
     private final List<Long> subscribedGames = null;
-    private final Long numCardsTotal = null;
-    private final List<Long> newsIdsViewed = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
+    private final Long windowHeight = null;
+    private final Long windowWidth = null;
     private final transient String analyticsSchemaTypeName = "af_exited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBas
         }
         TrackAfExited trackAfExited = (TrackAfExited) other;
         return C12238m.areEqual(this.loadId, trackAfExited.loadId) && C12238m.areEqual(this.gameIdsViewed, trackAfExited.gameIdsViewed) && C12238m.areEqual(this.storeApplicationIdsViewed, trackAfExited.storeApplicationIdsViewed) && C12238m.areEqual(this.storeSkuIdsViewed, trackAfExited.storeSkuIdsViewed) && C12238m.areEqual(this.numGamesViewed, trackAfExited.numGamesViewed) && C12238m.areEqual(this.numCardsViewed, trackAfExited.numCardsViewed) && C12238m.areEqual(this.secondsSpent, trackAfExited.secondsSpent) && C12238m.areEqual(this.feedLayout, trackAfExited.feedLayout) && C12238m.areEqual(this.windowWidth, trackAfExited.windowWidth) && C12238m.areEqual(this.windowHeight, trackAfExited.windowHeight) && C12238m.areEqual(this.subscribedGames, trackAfExited.subscribedGames) && C12238m.areEqual(this.numCardsTotal, trackAfExited.numCardsTotal) && C12238m.areEqual(this.newsIdsViewed, trackAfExited.newsIdsViewed);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

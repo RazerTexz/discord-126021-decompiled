@@ -54,133 +54,61 @@ public class C5305a extends C5307c {
     /* JADX INFO: renamed from: z */
     public final Matrix f14465z;
 
-    /* JADX INFO: renamed from: b.q.a.l.a$a */
-    /* JADX INFO: compiled from: CropImageView.java */
-    public static class a implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final WeakReference<C5305a> f14466j;
-
-        /* JADX INFO: renamed from: k */
-        public final long f14467k;
-
-        /* JADX INFO: renamed from: l */
-        public final long f14468l = System.currentTimeMillis();
-
-        /* JADX INFO: renamed from: m */
-        public final float f14469m;
-
-        /* JADX INFO: renamed from: n */
-        public final float f14470n;
-
-        /* JADX INFO: renamed from: o */
-        public final float f14471o;
-
-        /* JADX INFO: renamed from: p */
-        public final float f14472p;
-
-        /* JADX INFO: renamed from: q */
-        public final float f14473q;
-
-        /* JADX INFO: renamed from: r */
-        public final float f14474r;
-
-        /* JADX INFO: renamed from: s */
-        public final boolean f14475s;
-
-        public a(C5305a c5305a, long j, float f, float f2, float f3, float f4, float f5, float f6, boolean z2) {
-            this.f14466j = new WeakReference<>(c5305a);
-            this.f14467k = j;
-            this.f14469m = f;
-            this.f14470n = f2;
-            this.f14471o = f3;
-            this.f14472p = f4;
-            this.f14473q = f5;
-            this.f14474r = f6;
-            this.f14475s = z2;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            C5305a c5305a = this.f14466j.get();
-            if (c5305a == null) {
-                return;
-            }
-            float fMin = Math.min(this.f14467k, System.currentTimeMillis() - this.f14468l);
-            float f = this.f14471o;
-            float f2 = this.f14467k;
-            float f3 = (fMin / f2) - 1.0f;
-            float f4 = (f3 * f3 * f3) + 1.0f;
-            float f5 = (f * f4) + 0.0f;
-            float f6 = (f4 * this.f14472p) + 0.0f;
-            float fM4246T = C3404f.m4246T(fMin, 0.0f, this.f14474r, f2);
-            if (fMin < this.f14467k) {
-                float[] fArr = c5305a.f14485k;
-                c5305a.m7488g(f5 - (fArr[0] - this.f14469m), f6 - (fArr[1] - this.f14470n));
-                if (!this.f14475s) {
-                    c5305a.m7483l(this.f14473q + fM4246T, c5305a.f14464y.centerX(), c5305a.f14464y.centerY());
-                }
-                if (c5305a.m7481j(c5305a.f14484j)) {
-                    return;
-                }
-                c5305a.post(this);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: b.q.a.l.a$b */
-    /* JADX INFO: compiled from: CropImageView.java */
-    public static class b implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final WeakReference<C5305a> f14476j;
-
-        /* JADX INFO: renamed from: k */
-        public final long f14477k;
-
-        /* JADX INFO: renamed from: l */
-        public final long f14478l = System.currentTimeMillis();
-
-        /* JADX INFO: renamed from: m */
-        public final float f14479m;
-
-        /* JADX INFO: renamed from: n */
-        public final float f14480n;
-
-        /* JADX INFO: renamed from: o */
-        public final float f14481o;
-
-        /* JADX INFO: renamed from: p */
-        public final float f14482p;
-
-        public b(C5305a c5305a, long j, float f, float f2, float f3, float f4) {
-            this.f14476j = new WeakReference<>(c5305a);
-            this.f14477k = j;
-            this.f14479m = f;
-            this.f14480n = f2;
-            this.f14481o = f3;
-            this.f14482p = f4;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            C5305a c5305a = this.f14476j.get();
-            if (c5305a == null) {
-                return;
-            }
-            float fMin = Math.min(this.f14477k, System.currentTimeMillis() - this.f14478l);
-            float fM4246T = C3404f.m4246T(fMin, 0.0f, this.f14480n, this.f14477k);
-            if (fMin >= this.f14477k) {
-                c5305a.setImageToWrapCropBounds(true);
-            } else {
-                c5305a.m7483l(this.f14479m + fM4246T, this.f14481o, this.f14482p);
-                c5305a.post(this);
-            }
-        }
-    }
-
     public C5305a(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
+    }
+
+    @Nullable
+    public InterfaceC5294c getCropBoundsChangeListener() {
+        return this.f14456C;
+    }
+
+    public float getMaxScale() {
+        return this.f14459F;
+    }
+
+    public float getMinScale() {
+        return this.f14460G;
+    }
+
+    public float getTargetAspectRatio() {
+        return this.f14454A;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m7479h(float f, float f2) {
+        float fMin = Math.min(Math.min(this.f14464y.width() / f, this.f14464y.width() / f2), Math.min(this.f14464y.height() / f2, this.f14464y.height() / f));
+        this.f14460G = fMin;
+        this.f14459F = fMin * this.f14455B;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public void m7480i() {
+        removeCallbacks(this.f14457D);
+        removeCallbacks(this.f14458E);
+    }
+
+    /* JADX INFO: renamed from: j */
+    public boolean m7481j(float[] fArr) {
+        this.f14465z.reset();
+        this.f14465z.setRotate(-getCurrentAngle());
+        float[] fArrCopyOf = Arrays.copyOf(fArr, fArr.length);
+        this.f14465z.mapPoints(fArrCopyOf);
+        float[] fArrM4288f0 = C3404f.m4288f0(this.f14464y);
+        this.f14465z.mapPoints(fArrM4288f0);
+        return C3404f.m4365y1(fArrCopyOf).contains(C3404f.m4365y1(fArrM4288f0));
+    }
+
+    /* JADX INFO: renamed from: k */
+    public void m7482k(float f) {
+        m7487e(f, this.f14464y.centerX(), this.f14464y.centerY());
+    }
+
+    /* JADX INFO: renamed from: l */
+    public void m7483l(float f, float f2, float f3) {
+        if (f <= getMaxScale()) {
+            mo7478f(f / getCurrentScale(), f2, f3);
+        }
     }
 
     @Override // p007b.p485q.p486a.p491l.C5307c
@@ -242,59 +170,6 @@ public class C5305a extends C5307c {
                 return;
             }
             super.mo7478f(f, f2, f3);
-        }
-    }
-
-    @Nullable
-    public InterfaceC5294c getCropBoundsChangeListener() {
-        return this.f14456C;
-    }
-
-    public float getMaxScale() {
-        return this.f14459F;
-    }
-
-    public float getMinScale() {
-        return this.f14460G;
-    }
-
-    public float getTargetAspectRatio() {
-        return this.f14454A;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m7479h(float f, float f2) {
-        float fMin = Math.min(Math.min(this.f14464y.width() / f, this.f14464y.width() / f2), Math.min(this.f14464y.height() / f2, this.f14464y.height() / f));
-        this.f14460G = fMin;
-        this.f14459F = fMin * this.f14455B;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public void m7480i() {
-        removeCallbacks(this.f14457D);
-        removeCallbacks(this.f14458E);
-    }
-
-    /* JADX INFO: renamed from: j */
-    public boolean m7481j(float[] fArr) {
-        this.f14465z.reset();
-        this.f14465z.setRotate(-getCurrentAngle());
-        float[] fArrCopyOf = Arrays.copyOf(fArr, fArr.length);
-        this.f14465z.mapPoints(fArrCopyOf);
-        float[] fArrM4288f0 = C3404f.m4288f0(this.f14464y);
-        this.f14465z.mapPoints(fArrM4288f0);
-        return C3404f.m4365y1(fArrCopyOf).contains(C3404f.m4365y1(fArrM4288f0));
-    }
-
-    /* JADX INFO: renamed from: k */
-    public void m7482k(float f) {
-        m7487e(f, this.f14464y.centerX(), this.f14464y.centerY());
-    }
-
-    /* JADX INFO: renamed from: l */
-    public void m7483l(float f, float f2, float f3) {
-        if (f <= getMaxScale()) {
-            mo7478f(f / getCurrentScale(), f2, f3);
         }
     }
 
@@ -440,5 +315,130 @@ public class C5305a extends C5307c {
         this.f14461H = 0;
         this.f14462I = 0;
         this.f14463J = 500L;
+    }
+
+    /* JADX INFO: renamed from: b.q.a.l.a$b */
+    /* JADX INFO: compiled from: CropImageView.java */
+    public class b implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final WeakReference<C5305a> f14476j;
+
+        /* JADX INFO: renamed from: k */
+        public final long f14477k;
+
+        /* JADX INFO: renamed from: m */
+        public final float f14479m;
+
+        /* JADX INFO: renamed from: n */
+        public final float f14480n;
+
+        /* JADX INFO: renamed from: o */
+        public final float f14481o;
+
+        /* JADX INFO: renamed from: p */
+        public final float f14482p;
+
+        /* JADX INFO: renamed from: l */
+        public final long f14478l = System.currentTimeMillis();
+
+        public b(C5305a c5305a, long j, float f, float f2, float f3, float f4) {
+            this.f14476j = new WeakReference<>(c5305a);
+            this.f14477k = j;
+            this.f14479m = f;
+            this.f14480n = f2;
+            this.f14481o = f3;
+            this.f14482p = f4;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            C5305a c5305a = this.f14476j.get();
+            if (c5305a == null) {
+                return;
+            }
+            float fMin = Math.min(this.f14477k, System.currentTimeMillis() - this.f14478l);
+            float fM4246T = C3404f.m4246T(fMin, 0.0f, this.f14480n, this.f14477k);
+            if (fMin >= this.f14477k) {
+                c5305a.setImageToWrapCropBounds(true);
+            } else {
+                c5305a.m7483l(this.f14479m + fM4246T, this.f14481o, this.f14482p);
+                c5305a.post(this);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: b.q.a.l.a$a */
+    /* JADX INFO: compiled from: CropImageView.java */
+    public class a implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final WeakReference<C5305a> f14466j;
+
+        /* JADX INFO: renamed from: k */
+        public final long f14467k;
+
+        /* JADX INFO: renamed from: m */
+        public final float f14469m;
+
+        /* JADX INFO: renamed from: n */
+        public final float f14470n;
+
+        /* JADX INFO: renamed from: o */
+        public final float f14471o;
+
+        /* JADX INFO: renamed from: p */
+        public final float f14472p;
+
+        /* JADX INFO: renamed from: q */
+        public final float f14473q;
+
+        /* JADX INFO: renamed from: r */
+        public final float f14474r;
+
+        /* JADX INFO: renamed from: s */
+        public final boolean f14475s;
+
+        /* JADX INFO: renamed from: l */
+        public final long f14468l = System.currentTimeMillis();
+
+        public a(C5305a c5305a, long j, float f, float f2, float f3, float f4, float f5, float f6, boolean z2) {
+            this.f14466j = new WeakReference<>(c5305a);
+            this.f14467k = j;
+            this.f14469m = f;
+            this.f14470n = f2;
+            this.f14471o = f3;
+            this.f14472p = f4;
+            this.f14473q = f5;
+            this.f14474r = f6;
+            this.f14475s = z2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            C5305a c5305a = this.f14466j.get();
+            if (c5305a == null) {
+                return;
+            }
+            float fMin = Math.min(this.f14467k, System.currentTimeMillis() - this.f14468l);
+            float f = this.f14471o;
+            float f2 = this.f14467k;
+            float f3 = (fMin / f2) - 1.0f;
+            float f4 = (f3 * f3 * f3) + 1.0f;
+            float f5 = (f * f4) + 0.0f;
+            float f6 = (f4 * this.f14472p) + 0.0f;
+            float fM4246T = C3404f.m4246T(fMin, 0.0f, this.f14474r, f2);
+            if (fMin < this.f14467k) {
+                float[] fArr = c5305a.f14485k;
+                c5305a.m7488g(f5 - (fArr[0] - this.f14469m), f6 - (fArr[1] - this.f14470n));
+                if (!this.f14475s) {
+                    c5305a.m7483l(this.f14473q + fM4246T, c5305a.f14464y.centerX(), c5305a.f14464y.centerY());
+                }
+                if (c5305a.m7481j(c5305a.f14484j)) {
+                    return;
+                }
+                c5305a.post(this);
+            }
+        }
     }
 }

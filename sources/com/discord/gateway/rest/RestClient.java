@@ -21,8 +21,8 @@ import p658rx.Observable;
 /* JADX INFO: compiled from: RestClient.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class RestClient {
-    public static final RestClient INSTANCE = new RestClient();
     private static RestApi restApi;
+    public static final RestClient INSTANCE = new RestClient();
 
     private RestClient() {
     }

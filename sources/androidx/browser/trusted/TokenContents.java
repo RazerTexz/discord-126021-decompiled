@@ -111,24 +111,6 @@ public final class TokenContents {
         return new TokenContents(bArr);
     }
 
-    private void parseIfNeeded() throws IOException {
-        if (this.mPackageName != null) {
-            return;
-        }
-        DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(this.mContents));
-        this.mPackageName = dataInputStream.readUTF();
-        int i = dataInputStream.readInt();
-        this.mFingerprints = new ArrayList(i);
-        for (int i2 = 0; i2 < i; i2++) {
-            int i3 = dataInputStream.readInt();
-            byte[] bArr = new byte[i3];
-            if (dataInputStream.read(bArr) != i3) {
-                throw new IllegalStateException("Could not read fingerprint");
-            }
-            this.mFingerprints.add(bArr);
-        }
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -170,6 +152,24 @@ public final class TokenContents {
 
     public int hashCode() {
         return Arrays.hashCode(this.mContents);
+    }
+
+    private void parseIfNeeded() throws IOException {
+        if (this.mPackageName != null) {
+            return;
+        }
+        DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(this.mContents));
+        this.mPackageName = dataInputStream.readUTF();
+        int i = dataInputStream.readInt();
+        this.mFingerprints = new ArrayList(i);
+        for (int i2 = 0; i2 < i; i2++) {
+            int i3 = dataInputStream.readInt();
+            byte[] bArr = new byte[i3];
+            if (dataInputStream.read(bArr) != i3) {
+                throw new IllegalStateException("Could not read fingerprint");
+            }
+            this.mFingerprints.add(bArr);
+        }
     }
 
     @NonNull

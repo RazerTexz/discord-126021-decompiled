@@ -13,7 +13,7 @@ public abstract class AbstractC2156d extends AbstractC2231g implements Serializa
 
     /* JADX INFO: renamed from: b.g.a.c.a0.d$a */
     /* JADX INFO: compiled from: DefaultDeserializationContext.java */
-    public static final class a extends AbstractC2156d {
+    public final class a extends AbstractC2156d {
         private static final long serialVersionUID = 1;
 
         public a(AbstractC2158f abstractC2158f) {

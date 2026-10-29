@@ -29,9 +29,6 @@ public abstract class AbstractC4404b implements InterfaceC4412j {
     @NonNull
     public final ExtendedFloatingActionButton f11622b;
 
-    /* JADX INFO: renamed from: c */
-    public final ArrayList<Animator.AnimatorListener> f11623c = new ArrayList<>();
-
     /* JADX INFO: renamed from: d */
     public final C4403a f11624d;
 
@@ -42,6 +39,9 @@ public abstract class AbstractC4404b implements InterfaceC4412j {
     /* JADX INFO: renamed from: f */
     @Nullable
     public MotionSpec f11626f;
+
+    /* JADX INFO: renamed from: c */
+    public final ArrayList<Animator.AnimatorListener> f11623c = new ArrayList<>();
 
     /* JADX INFO: renamed from: b.i.a.g.e.b$a */
     /* JADX INFO: compiled from: BaseMotionStrategy.java */
@@ -74,26 +74,6 @@ public abstract class AbstractC4404b implements InterfaceC4412j {
         this.f11622b = extendedFloatingActionButton;
         this.f11621a = extendedFloatingActionButton.getContext();
         this.f11624d = c4403a;
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-    @CallSuper
-    /* JADX INFO: renamed from: a */
-    public void mo6078a() {
-        this.f11624d.f11620a = null;
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-    @CallSuper
-    /* JADX INFO: renamed from: e */
-    public void mo6079e() {
-        this.f11624d.f11620a = null;
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-    /* JADX INFO: renamed from: f */
-    public AnimatorSet mo6080f() {
-        return m6081h(m6082i());
     }
 
     @NonNull
@@ -137,6 +117,26 @@ public abstract class AbstractC4404b implements InterfaceC4412j {
             this.f11625e = MotionSpec.createFromResource(this.f11621a, mo6112b());
         }
         return (MotionSpec) Preconditions.checkNotNull(this.f11625e);
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+    @CallSuper
+    /* JADX INFO: renamed from: a */
+    public void mo6078a() {
+        this.f11624d.f11620a = null;
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+    @CallSuper
+    /* JADX INFO: renamed from: e */
+    public void mo6079e() {
+        this.f11624d.f11620a = null;
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+    /* JADX INFO: renamed from: f */
+    public AnimatorSet mo6080f() {
+        return m6081h(m6082i());
     }
 
     @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j

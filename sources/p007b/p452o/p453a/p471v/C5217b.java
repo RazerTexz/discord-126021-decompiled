@@ -84,20 +84,6 @@ public class C5217b extends AbstractC5218c implements ImageReader.OnImageAvailab
             }
         }
 
-        @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e, p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
-        /* JADX INFO: renamed from: c */
-        public void mo7331c(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest) {
-            if (this.f13940d) {
-                mo7249j(interfaceC5143c);
-                this.f13940d = false;
-            }
-            if (captureRequest.getTag() == 2) {
-                AbstractC5218c.f14171m.m7159a(1, "onCaptureStarted:", "Dispatching picture shutter.");
-                C5217b.this.m7420a(false);
-                m7341l(Integer.MAX_VALUE);
-            }
-        }
-
         @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e
         /* JADX INFO: renamed from: j */
         public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
@@ -120,6 +106,21 @@ public class C5217b extends AbstractC5218c implements ImageReader.OnImageAvailab
                 m7341l(Integer.MAX_VALUE);
             }
         }
+
+        @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e, p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
+        /* JADX INFO: renamed from: c */
+        public void mo7331c(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest) {
+            if (this.f13940d) {
+                mo7249j(interfaceC5143c);
+                this.f13940d = false;
+            }
+            Integer num = 2;
+            if (captureRequest.getTag() == num) {
+                AbstractC5218c.f14171m.m7159a(1, "onCaptureStarted:", "Dispatching picture shutter.");
+                C5217b.this.m7420a(false);
+                m7341l(Integer.MAX_VALUE);
+            }
+        }
     }
 
     public C5217b(@NonNull C5113l.a aVar, @NonNull C5130d c5130d, @NonNull CaptureRequest.Builder builder, @NonNull ImageReader imageReader) {
@@ -131,12 +132,6 @@ public class C5217b extends AbstractC5218c implements ImageReader.OnImageAvailab
         C5206g.f14129c = c5206gM7403b;
         imageReader.setOnImageAvailableListener(this, c5206gM7403b.f14132f);
         this.f14166o = new a();
-    }
-
-    @Override // p007b.p452o.p453a.p471v.AbstractC5219d
-    /* JADX INFO: renamed from: c */
-    public void mo7417c() {
-        this.f14166o.mo7333e(this.f14165n);
     }
 
     /* JADX INFO: renamed from: d */
@@ -186,6 +181,12 @@ public class C5217b extends AbstractC5218c implements ImageReader.OnImageAvailab
             }
             throw new RuntimeException(e);
         }
+    }
+
+    @Override // p007b.p452o.p453a.p471v.AbstractC5219d
+    /* JADX INFO: renamed from: c */
+    public void mo7417c() {
+        this.f14166o.mo7333e(this.f14165n);
     }
 
     /* JADX WARN: Code duplicated, block: B:28:0x0069  */

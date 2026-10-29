@@ -21,7 +21,7 @@ public class Guideline extends ConstraintWidget {
     private int mMinimumPosition = 0;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.Guideline$1 */
-    public static /* synthetic */ class C01911 {
+    public /* synthetic */ class C01911 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
         public static final /* synthetic */ int[] f118x4c44d048;

@@ -26,7 +26,7 @@ public final class LiveDataScopeImpl<T> implements LiveDataScope<T> {
     /* JADX INFO: renamed from: androidx.lifecycle.LiveDataScopeImpl$emit$2 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.LiveDataScopeImpl$emit$2", m10085f = "CoroutineLiveData.kt", m10086l = {98}, m10087m = "invokeSuspend")
-    public static final class C04442 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04442 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Object $value;
         public int label;
 
@@ -49,7 +49,7 @@ public final class LiveDataScopeImpl<T> implements LiveDataScope<T> {
 
         /* JADX WARN: Multi-variable type inference failed */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -73,7 +73,7 @@ public final class LiveDataScopeImpl<T> implements LiveDataScope<T> {
     /* JADX INFO: renamed from: androidx.lifecycle.LiveDataScopeImpl$emitSource$2 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.LiveDataScopeImpl$emitSource$2", m10085f = "CoroutineLiveData.kt", m10086l = {94}, m10087m = "invokeSuspend")
-    public static final class C04452 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super InterfaceC13130m0>, Object> {
+    public final class C04452 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super InterfaceC13130m0>, Object> {
         public final /* synthetic */ LiveData $source;
         public int label;
 
@@ -95,7 +95,7 @@ public final class LiveDataScopeImpl<T> implements LiveDataScope<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

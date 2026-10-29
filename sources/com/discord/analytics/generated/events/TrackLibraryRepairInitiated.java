@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackLibraryRepairInitiated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackLibraryRepairInitiated implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "library_repair_initiated";
     private TrackBase trackBase;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
+    private final transient String analyticsSchemaTypeName = "library_repair_initiated";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

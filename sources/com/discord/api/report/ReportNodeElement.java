@@ -18,27 +18,12 @@ public final /* data */ class ReportNodeElement {
     private final String type;
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final List<ReportNodeElementData> m8182a() {
-        return this.data;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final String getType() {
-        return this.type;
     }
 
     public boolean equals(Object other) {
@@ -50,6 +35,16 @@ public final /* data */ class ReportNodeElement {
         }
         ReportNodeElement reportNodeElement = (ReportNodeElement) other;
         return C12238m.areEqual(this.type, reportNodeElement.type) && C12238m.areEqual(this.name, reportNodeElement.name) && C12238m.areEqual(this.data, reportNodeElement.data) && this.should_submit_data == reportNodeElement.should_submit_data;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final String getType() {
+        return this.type;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -70,6 +65,11 @@ public final /* data */ class ReportNodeElement {
             r1 = 1;
         }
         return iHashCode3 + r1;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<ReportNodeElementData> m8182a() {
+        return this.data;
     }
 
     public String toString() {

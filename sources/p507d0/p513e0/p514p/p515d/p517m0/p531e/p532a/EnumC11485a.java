@@ -17,15 +17,15 @@ public enum EnumC11485a {
         this.javaTarget = str;
     }
 
+    public final String getJavaTarget() {
+        return this.javaTarget;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11485a[] valuesCustom() {
         EnumC11485a[] enumC11485aArrValuesCustom = values();
         EnumC11485a[] enumC11485aArr = new EnumC11485a[enumC11485aArrValuesCustom.length];
         System.arraycopy(enumC11485aArrValuesCustom, 0, enumC11485aArr, 0, enumC11485aArrValuesCustom.length);
         return enumC11485aArr;
-    }
-
-    public final String getJavaTarget() {
-        return this.javaTarget;
     }
 }

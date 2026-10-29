@@ -40,13 +40,67 @@ public class FrameMetricsAggregator {
     public static final int TOTAL_INDEX = 0;
     private FrameMetricsBaseImpl mInstance;
 
+    public class FrameMetricsBaseImpl {
+        public void add(Activity activity) {
+        }
+
+        public SparseIntArray[] getMetrics() {
+            return null;
+        }
+
+        public SparseIntArray[] remove(Activity activity) {
+            return null;
+        }
+
+        public SparseIntArray[] reset() {
+            return null;
+        }
+
+        public SparseIntArray[] stop() {
+            return null;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface MetricType {
+    }
+
+    public FrameMetricsAggregator() {
+        this(1);
+    }
+
+    public void add(@NonNull Activity activity) {
+        this.mInstance.add(activity);
+    }
+
+    @Nullable
+    public SparseIntArray[] getMetrics() {
+        return this.mInstance.getMetrics();
+    }
+
+    @Nullable
+    public SparseIntArray[] remove(@NonNull Activity activity) {
+        return this.mInstance.remove(activity);
+    }
+
+    @Nullable
+    public SparseIntArray[] reset() {
+        return this.mInstance.reset();
+    }
+
+    @Nullable
+    public SparseIntArray[] stop() {
+        return this.mInstance.stop();
+    }
+
     @RequiresApi(24)
-    public static class FrameMetricsApi24Impl extends FrameMetricsBaseImpl {
+    public class FrameMetricsApi24Impl extends FrameMetricsBaseImpl {
         private static final int NANOS_PER_MS = 1000000;
         private static final int NANOS_ROUNDING_VALUE = 500000;
+        public int mTrackingFlags;
         private static Handler sHandler;
         private static HandlerThread sHandlerThread;
-        public int mTrackingFlags;
         public SparseIntArray[] mMetrics = new SparseIntArray[9];
         private ArrayList<WeakReference<Activity>> mActivities = new ArrayList<>();
         public Window.OnFrameMetricsAvailableListener mListener = new Window.OnFrameMetricsAvailableListener() { // from class: androidx.core.app.FrameMetricsAggregator.FrameMetricsApi24Impl.1
@@ -158,60 +212,6 @@ public class FrameMetricsAggregator {
             }
             return this.mMetrics;
         }
-    }
-
-    public static class FrameMetricsBaseImpl {
-        public void add(Activity activity) {
-        }
-
-        public SparseIntArray[] getMetrics() {
-            return null;
-        }
-
-        public SparseIntArray[] remove(Activity activity) {
-            return null;
-        }
-
-        public SparseIntArray[] reset() {
-            return null;
-        }
-
-        public SparseIntArray[] stop() {
-            return null;
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface MetricType {
-    }
-
-    public FrameMetricsAggregator() {
-        this(1);
-    }
-
-    public void add(@NonNull Activity activity) {
-        this.mInstance.add(activity);
-    }
-
-    @Nullable
-    public SparseIntArray[] getMetrics() {
-        return this.mInstance.getMetrics();
-    }
-
-    @Nullable
-    public SparseIntArray[] remove(@NonNull Activity activity) {
-        return this.mInstance.remove(activity);
-    }
-
-    @Nullable
-    public SparseIntArray[] reset() {
-        return this.mInstance.reset();
-    }
-
-    @Nullable
-    public SparseIntArray[] stop() {
-        return this.mInstance.stop();
     }
 
     public FrameMetricsAggregator(int i) {

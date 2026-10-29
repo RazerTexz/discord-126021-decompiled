@@ -22,6 +22,22 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
         this.codecAllowedPredicate = predicate;
     }
 
+    @Override // org.webrtc.VideoDecoderFactory
+    public /* synthetic */ VideoDecoder createDecoder(String str) {
+        return C12483q0.m10671a(this, str);
+    }
+
+    @Override // org.webrtc.VideoDecoderFactory
+    @Nullable
+    public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
+        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
+        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
+        if (mediaCodecInfoFindCodecForType == null) {
+            return null;
+        }
+        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), mediaCodecInfoFindCodecForType.getName(), videoCodecMimeTypeValueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(videoCodecMimeTypeValueOf.mimeType())).intValue(), this.sharedContext);
+    }
+
     @Nullable
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
         int i = 0;
@@ -40,6 +56,24 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             }
             i++;
         }
+    }
+
+    @Override // org.webrtc.VideoDecoderFactory
+    public VideoCodecInfo[] getSupportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264};
+        for (int i = 0; i < 3; i++) {
+            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
+            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
+            if (mediaCodecInfoFindCodecForType != null) {
+                String strName = videoCodecMimeType.name();
+                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
+                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
+                }
+                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
+            }
+        }
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
     private boolean isCodecAllowed(MediaCodecInfo mediaCodecInfo) {
@@ -65,39 +99,5 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             return isCodecAllowed(mediaCodecInfo);
         }
         return false;
-    }
-
-    @Override // org.webrtc.VideoDecoderFactory
-    public /* synthetic */ VideoDecoder createDecoder(String str) {
-        return C12483q0.m10671a(this, str);
-    }
-
-    @Override // org.webrtc.VideoDecoderFactory
-    @Nullable
-    public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
-        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
-        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
-        if (mediaCodecInfoFindCodecForType == null) {
-            return null;
-        }
-        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), mediaCodecInfoFindCodecForType.getName(), videoCodecMimeTypeValueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(videoCodecMimeTypeValueOf.mimeType())).intValue(), this.sharedContext);
-    }
-
-    @Override // org.webrtc.VideoDecoderFactory
-    public VideoCodecInfo[] getSupportedCodecs() {
-        ArrayList arrayList = new ArrayList();
-        VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264};
-        for (int i = 0; i < 3; i++) {
-            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
-            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
-            if (mediaCodecInfoFindCodecForType != null) {
-                String strName = videoCodecMimeType.name();
-                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
-                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
-                }
-                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
-            }
-        }
-        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 }

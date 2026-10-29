@@ -16,7 +16,7 @@ public interface InterfaceC2530a0 {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.a0$a */
     /* JADX INFO: compiled from: MediaSource.java */
-    public static final class a extends C2571y {
+    public final class a extends C2571y {
         public a(Object obj) {
             super(obj);
         }

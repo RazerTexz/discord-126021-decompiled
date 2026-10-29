@@ -52,12 +52,12 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetTosReportViolation extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetTosReportViolation.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTosReportViolationBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String EXTRA_CHANNEL_ID = "EXTRA_CHANNEL_ID";
     private static final String EXTRA_MESSAGE_ID = "EXTRA_MESSAGE_ID";
     private static final String EXTRA_TARGET = "EXTRA_TARGET";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
     private final Lazy args;
@@ -68,11 +68,50 @@ public final class WidgetTosReportViolation extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolation$handleReportSubmissionError$1 */
     /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
-    public static final class Companion {
+    public final class C101751 extends AbstractC12240o implements Function0<Unit> {
+        public C101751() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetTosReportViolation.this.getViewModel().handleDismissError();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolation$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
+    public final /* synthetic */ class C101761 extends C12236k implements Function1<WidgetTosReportViolationViewModel.ViewState, Unit> {
+        public C101761(WidgetTosReportViolation widgetTosReportViolation) {
+            super(1, widgetTosReportViolation, WidgetTosReportViolation.class, "configureUI", "configureUI(Lcom/discord/widgets/tos/WidgetTosReportViolationViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetTosReportViolationViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetTosReportViolationViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetTosReportViolation) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
-        public static final /* data */ class Arguments {
+        public final /* data */ class Arguments {
             private final long channelId;
             private final long messageId;
             private final String target;
@@ -98,21 +137,6 @@ public final class WidgetTosReportViolation extends AppFragment {
                 return arguments.copy(str, j3, j2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getTarget() {
-                return this.target;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getMessageId() {
-                return this.messageId;
-            }
-
             public final Arguments copy(String target, long channelId, long messageId) {
                 C12238m.checkNotNullParameter(target, "target");
                 return new Arguments(target, channelId, messageId);
@@ -129,12 +153,27 @@ public final class WidgetTosReportViolation extends AppFragment {
                 return C12238m.areEqual(this.target, arguments.target) && this.channelId == arguments.channelId && this.messageId == arguments.messageId;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
             }
 
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final long getMessageId() {
                 return this.messageId;
+            }
+
+            public final long getMessageId() {
+                return this.messageId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getTarget() {
+                return this.target;
             }
 
             public final String getTarget() {
@@ -181,45 +220,6 @@ public final class WidgetTosReportViolation extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolation$handleReportSubmissionError$1 */
-    /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
-    public static final class C101751 extends AbstractC12240o implements Function0<Unit> {
-        public C101751() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetTosReportViolation.this.getViewModel().handleDismissError();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolation$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
-    public static final /* synthetic */ class C101761 extends C12236k implements Function1<WidgetTosReportViolationViewModel.ViewState, Unit> {
-        public C101761(WidgetTosReportViolation widgetTosReportViolation) {
-            super(1, widgetTosReportViolation, WidgetTosReportViolation.class, "configureUI", "configureUI(Lcom/discord/widgets/tos/WidgetTosReportViolationViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetTosReportViolationViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetTosReportViolationViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetTosReportViolation) this.receiver).configureUI(viewState);
         }
     }
 

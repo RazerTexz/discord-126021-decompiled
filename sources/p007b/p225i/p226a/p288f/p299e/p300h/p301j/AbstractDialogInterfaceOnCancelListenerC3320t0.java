@@ -36,6 +36,38 @@ public abstract class AbstractDialogInterfaceOnCancelListenerC3320t0 extends Lif
         this.f9454n = googleApiAvailability;
     }
 
+    /* JADX INFO: renamed from: m */
+    public final void m4118m() {
+        this.f9452l.set(null);
+        mo4061k();
+    }
+
+    /* JADX INFO: renamed from: n */
+    public final void m4119n(ConnectionResult connectionResult, int i) {
+        C3318s0 c3318s0 = new C3318s0(connectionResult, i);
+        if (this.f9452l.compareAndSet(null, c3318s0)) {
+            this.f9453m.post(new RunnableC3324v0(this, c3318s0));
+        }
+    }
+
+    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
+    /* JADX INFO: renamed from: i */
+    public void mo4059i() {
+        this.f9451k = true;
+    }
+
+    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
+    /* JADX INFO: renamed from: j */
+    public void mo4060j() {
+        this.f9451k = false;
+    }
+
+    /* JADX INFO: renamed from: k */
+    public abstract void mo4061k();
+
+    /* JADX INFO: renamed from: l */
+    public abstract void mo4062l(ConnectionResult connectionResult, int i);
+
     @Override // com.google.android.gms.common.api.internal.LifecycleCallback
     /* JADX INFO: renamed from: d */
     public void mo4115d(int i, int i2, Intent intent) {
@@ -86,38 +118,6 @@ public abstract class AbstractDialogInterfaceOnCancelListenerC3320t0 extends Lif
             bundle.putInt("failed_client_id", c3318s0.f9448a);
             bundle.putInt("failed_status", c3318s0.f9449b.f20474l);
             bundle.putParcelable("failed_resolution", c3318s0.f9449b.f20475m);
-        }
-    }
-
-    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
-    /* JADX INFO: renamed from: i */
-    public void mo4059i() {
-        this.f9451k = true;
-    }
-
-    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
-    /* JADX INFO: renamed from: j */
-    public void mo4060j() {
-        this.f9451k = false;
-    }
-
-    /* JADX INFO: renamed from: k */
-    public abstract void mo4061k();
-
-    /* JADX INFO: renamed from: l */
-    public abstract void mo4062l(ConnectionResult connectionResult, int i);
-
-    /* JADX INFO: renamed from: m */
-    public final void m4118m() {
-        this.f9452l.set(null);
-        mo4061k();
-    }
-
-    /* JADX INFO: renamed from: n */
-    public final void m4119n(ConnectionResult connectionResult, int i) {
-        C3318s0 c3318s0 = new C3318s0(connectionResult, i);
-        if (this.f9452l.compareAndSet(null, c3318s0)) {
-            this.f9453m.post(new RunnableC3324v0(this, c3318s0));
         }
     }
 

@@ -22,6 +22,17 @@ public final class StreamFeedbackSheetNavigator {
     private StreamFeedbackSheetNavigator() {
     }
 
+    public final void enqueueNotice(String streamKey, String mediaSessionId, int triggerRateDenominator) {
+        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        if (triggerRateDenominator < 1 || random.nextInt(triggerRateDenominator) != 0) {
+            return;
+        }
+        StoreNotices notices = StoreStream.INSTANCE.getNotices();
+        String noticeName = getNoticeName(streamKey);
+        long jCurrentTimeMillis = clock.currentTimeMillis();
+        notices.requestToShow(new StoreNotices.Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new C10455xe6873bd7(jCurrentTimeMillis, streamKey, mediaSessionId, notices, noticeName), Opcodes.GETSTATIC, null));
+    }
+
     private final String getNoticeName(String streamKey) {
         return C1643a.m883w("Stream feedback notice for streamKey: ", streamKey);
     }
@@ -33,16 +44,5 @@ public final class StreamFeedbackSheetNavigator {
         arguments.putString(WidgetFeedbackSheet.ARG_STREAM_FEEDBACK_STREAM_KEY, streamKey);
         arguments.putString(WidgetFeedbackSheet.ARG_STREAM_FEEDBACK_MEDIA_SESSION_ID, mediaSessionId);
         widgetFeedbackSheetNewInstance.show(fragmentManager, WidgetFeedbackSheet.class.getName());
-    }
-
-    public final void enqueueNotice(String streamKey, String mediaSessionId, int triggerRateDenominator) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
-        if (triggerRateDenominator < 1 || random.nextInt(triggerRateDenominator) != 0) {
-            return;
-        }
-        StoreNotices notices = StoreStream.INSTANCE.getNotices();
-        String noticeName = getNoticeName(streamKey);
-        long jCurrentTimeMillis = clock.currentTimeMillis();
-        notices.requestToShow(new StoreNotices.Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new C10455xe6873bd7(jCurrentTimeMillis, streamKey, mediaSessionId, notices, noticeName), Opcodes.GETSTATIC, null));
     }
 }

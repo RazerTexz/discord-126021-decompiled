@@ -26,36 +26,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: InlineClassAwareCaller.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11276h {
-    /* JADX INFO: renamed from: a */
-    public static final AbstractC11913c0 m9354a(InterfaceC11321b interfaceC11321b) {
-        InterfaceC11459q0 extensionReceiverParameter = interfaceC11321b.getExtensionReceiverParameter();
-        InterfaceC11459q0 dispatchReceiverParameter = interfaceC11321b.getDispatchReceiverParameter();
-        if (extensionReceiverParameter != null) {
-            return extensionReceiverParameter.getType();
-        }
-        if (dispatchReceiverParameter == null) {
-            return null;
-        }
-        if (interfaceC11321b instanceof InterfaceC11448l) {
-            return dispatchReceiverParameter.getType();
-        }
-        InterfaceC11450m containingDeclaration = interfaceC11321b.getContainingDeclaration();
-        if (!(containingDeclaration instanceof InterfaceC11330e)) {
-            containingDeclaration = null;
-        }
-        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) containingDeclaration;
-        if (interfaceC11330e != null) {
-            return interfaceC11330e.getDefaultType();
-        }
-        return null;
-    }
-
     public static final Object coerceToExpectedReceiverType(Object obj, InterfaceC11321b interfaceC11321b) {
         AbstractC11913c0 abstractC11913c0M9354a;
         Class<?> inlineClass;
         Method unboxMethod;
         C12238m.checkNotNullParameter(interfaceC11321b, "descriptor");
         return (((interfaceC11321b instanceof InterfaceC11453n0) && C11789g.isUnderlyingPropertyOfInlineClass((InterfaceC11329d1) interfaceC11321b)) || (abstractC11913c0M9354a = m9354a(interfaceC11321b)) == null || (inlineClass = toInlineClass(abstractC11913c0M9354a)) == null || (unboxMethod = getUnboxMethod(inlineClass, interfaceC11321b)) == null) ? obj : unboxMethod.invoke(obj, new Object[0]);
+    }
+
+    public static /* synthetic */ InterfaceC11272d createInlineClassAwareCallerIfNeeded$default(InterfaceC11272d interfaceC11272d, InterfaceC11321b interfaceC11321b, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return createInlineClassAwareCallerIfNeeded(interfaceC11272d, interfaceC11321b, z2);
     }
 
     /* JADX WARN: Code duplicated, block: B:29:0x006f  */
@@ -103,13 +86,6 @@ public final class C11276h {
         return z4 ? new C11275g(interfaceC11321b, interfaceC11272d, z2) : interfaceC11272d;
     }
 
-    public static /* synthetic */ InterfaceC11272d createInlineClassAwareCallerIfNeeded$default(InterfaceC11272d interfaceC11272d, InterfaceC11321b interfaceC11321b, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return createInlineClassAwareCallerIfNeeded(interfaceC11272d, interfaceC11321b, z2);
-    }
-
     public static final Method getBoxMethod(Class<?> cls, InterfaceC11321b interfaceC11321b) {
         C12238m.checkNotNullParameter(cls, "$this$getBoxMethod");
         C12238m.checkNotNullParameter(interfaceC11321b, "descriptor");
@@ -132,6 +108,30 @@ public final class C11276h {
         } catch (NoSuchMethodException unused) {
             throw new C11247a0("No unbox method found in inline class: " + cls + " (calling " + interfaceC11321b + ')');
         }
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final AbstractC11913c0 m9354a(InterfaceC11321b interfaceC11321b) {
+        InterfaceC11459q0 extensionReceiverParameter = interfaceC11321b.getExtensionReceiverParameter();
+        InterfaceC11459q0 dispatchReceiverParameter = interfaceC11321b.getDispatchReceiverParameter();
+        if (extensionReceiverParameter != null) {
+            return extensionReceiverParameter.getType();
+        }
+        if (dispatchReceiverParameter == null) {
+            return null;
+        }
+        if (interfaceC11321b instanceof InterfaceC11448l) {
+            return dispatchReceiverParameter.getType();
+        }
+        InterfaceC11450m containingDeclaration = interfaceC11321b.getContainingDeclaration();
+        if (!(containingDeclaration instanceof InterfaceC11330e)) {
+            containingDeclaration = null;
+        }
+        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) containingDeclaration;
+        if (interfaceC11330e != null) {
+            return interfaceC11330e.getDefaultType();
+        }
+        return null;
     }
 
     public static final Class<?> toInlineClass(AbstractC11913c0 abstractC11913c0) {

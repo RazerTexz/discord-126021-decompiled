@@ -28,11 +28,6 @@ public final class C12266c0 {
         this.f25372c = inetSocketAddress;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final boolean m10106a() {
-        return this.f25370a.f25358f != null && this.f25371b.type() == Proxy.Type.HTTP;
-    }
-
     public boolean equals(Object obj) {
         if (obj instanceof C12266c0) {
             C12266c0 c12266c0 = (C12266c0) obj;
@@ -45,6 +40,11 @@ public final class C12266c0 {
 
     public int hashCode() {
         return this.f25372c.hashCode() + ((this.f25371b.hashCode() + ((this.f25370a.hashCode() + 527) * 31)) * 31);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m10106a() {
+        return this.f25370a.f25358f != null && this.f25371b.type() == Proxy.Type.HTTP;
     }
 
     public String toString() {

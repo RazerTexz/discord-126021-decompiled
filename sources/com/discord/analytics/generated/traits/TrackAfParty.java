@@ -6,10 +6,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfParty.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfParty {
-    private final Boolean afVoiceChat = null;
     private final Long afPeopleCount = null;
     private final Boolean afRecentlyPlayed = null;
     private final Boolean afRichPresence = null;
+    private final Boolean afVoiceChat = null;
 
     public boolean equals(Object other) {
         if (this == other) {

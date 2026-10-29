@@ -17,7 +17,7 @@ public abstract class AbstractC4854d {
     /* JADX INFO: renamed from: b.i.c.u.o.d$a */
     /* JADX INFO: compiled from: PersistedInstallationEntry.java */
     @AutoValue.Builder
-    public static abstract class a {
+    public abstract class a {
         @NonNull
         /* JADX INFO: renamed from: a */
         public abstract AbstractC4854d mo6782a();
@@ -38,6 +38,22 @@ public abstract class AbstractC4854d {
         }
         l.longValue();
         l.longValue();
+    }
+
+    /* JADX INFO: renamed from: h */
+    public boolean m6789h() {
+        return mo6779f() == C4853c.a.REGISTER_ERROR;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public boolean m6790i() {
+        C4853c.a aVar = ((C4851a) this).f12953c;
+        return aVar == C4853c.a.NOT_GENERATED || aVar == C4853c.a.ATTEMPT_MIGRATION;
+    }
+
+    /* JADX INFO: renamed from: j */
+    public boolean m6791j() {
+        return mo6779f() == C4853c.a.REGISTERED;
     }
 
     @Nullable
@@ -65,22 +81,6 @@ public abstract class AbstractC4854d {
 
     /* JADX INFO: renamed from: g */
     public abstract long mo6780g();
-
-    /* JADX INFO: renamed from: h */
-    public boolean m6789h() {
-        return mo6779f() == C4853c.a.REGISTER_ERROR;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public boolean m6790i() {
-        C4853c.a aVar = ((C4851a) this).f12953c;
-        return aVar == C4853c.a.NOT_GENERATED || aVar == C4853c.a.ATTEMPT_MIGRATION;
-    }
-
-    /* JADX INFO: renamed from: j */
-    public boolean m6791j() {
-        return mo6779f() == C4853c.a.REGISTERED;
-    }
 
     @NonNull
     /* JADX INFO: renamed from: k */

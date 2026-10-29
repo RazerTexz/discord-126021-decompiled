@@ -1,6 +1,7 @@
 package p007b.p225i.p226a.p288f.p299e.p304k;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.util.SparseIntArray;
 import androidx.annotation.NonNull;
 import java.util.Objects;
@@ -12,11 +13,11 @@ import p007b.p225i.p226a.p288f.p299e.p300h.C3266a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3377r {
 
-    /* JADX INFO: renamed from: a */
-    public final SparseIntArray f9551a = new SparseIntArray();
-
     /* JADX INFO: renamed from: b */
     public C3256c f9552b;
+
+    /* JADX INFO: renamed from: a */
+    public final SparseIntArray f9551a = new SparseIntArray();
 
     public C3377r(@NonNull C3256c c3256c) {
         Objects.requireNonNull(c3256c, "null reference");
@@ -24,7 +25,7 @@ public final class C3377r {
     }
 
     /* JADX INFO: renamed from: a */
-    public final int m4175a(@NonNull Context context, @NonNull C3266a.f fVar) {
+    public final int m4175a(@NonNull Context context, @NonNull C3266a.f fVar) throws PackageManager.NameNotFoundException {
         Objects.requireNonNull(context, "null reference");
         Objects.requireNonNull(fVar, "null reference");
         int iMo4018b = 0;

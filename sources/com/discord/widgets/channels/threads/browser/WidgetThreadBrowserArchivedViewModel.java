@@ -63,7 +63,7 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserArchivedViewModel$1 */
     /* JADX INFO: compiled from: WidgetThreadBrowserArchivedViewModel.kt */
-    public static final class C76601 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C76601 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C76601() {
             super(1);
         }
@@ -82,7 +82,7 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserArchivedViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -162,7 +162,7 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserArchivedViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final Guild guild;
         private final Map<Long, GuildMember> guildMembers;
@@ -189,42 +189,12 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             this.permissions = l;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ViewMode getViewMode() {
-            return this.viewMode;
-        }
-
         public final Map<Long, GuildMember> component2() {
             return this.guildMembers;
         }
 
         public final Map<Long, User> component3() {
             return this.users;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ArchivedThreadsStore.ThreadListingState getListingState() {
-            return this.listingState;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Long getPermissions() {
-            return this.permissions;
         }
 
         public final StoreState copy(ViewMode viewMode, Map<Long, GuildMember> guildMembers, Map<Long, ? extends User> users, ArchivedThreadsStore.ThreadListingState listingState, boolean isModerator, Channel channel, Guild guild, Long permissions) {
@@ -247,8 +217,18 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return C12238m.areEqual(this.viewMode, storeState.viewMode) && C12238m.areEqual(this.guildMembers, storeState.guildMembers) && C12238m.areEqual(this.users, storeState.users) && C12238m.areEqual(this.listingState, storeState.listingState) && this.isModerator == storeState.isModerator && C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.permissions, storeState.permissions);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -259,8 +239,23 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return this.guildMembers;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ArchivedThreadsStore.ThreadListingState getListingState() {
             return this.listingState;
+        }
+
+        public final ArchivedThreadsStore.ThreadListingState getListingState() {
+            return this.listingState;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Long getPermissions() {
+            return this.permissions;
         }
 
         public final Long getPermissions() {
@@ -269,6 +264,11 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
 
         public final Map<Long, User> getUsers() {
             return this.users;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ViewMode getViewMode() {
+            return this.viewMode;
         }
 
         public final ViewMode getViewMode() {
@@ -328,7 +328,7 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserArchivedViewModel.kt */
-    public static final /* data */ class ViewMode {
+    public final /* data */ class ViewMode {
         private final boolean isModeratorMode;
         private final ArchivedThreadsStore.ThreadListingType threadListingType;
         private final VisibilityMode visibility;
@@ -372,16 +372,6 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return viewMode.copy(visibilityMode, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final VisibilityMode getVisibility() {
-            return this.visibility;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsModeratorMode() {
-            return this.isModeratorMode;
-        }
-
         public final ViewMode copy(VisibilityMode visibility, boolean isModeratorMode) {
             C12238m.checkNotNullParameter(visibility, "visibility");
             return new ViewMode(visibility, isModeratorMode);
@@ -398,8 +388,18 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return C12238m.areEqual(this.visibility, viewMode.visibility) && this.isModeratorMode == viewMode.isModeratorMode;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsModeratorMode() {
+            return this.isModeratorMode;
+        }
+
         public final ArchivedThreadsStore.ThreadListingType getThreadListingType() {
             return this.threadListingType;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final VisibilityMode getVisibility() {
+            return this.visibility;
         }
 
         public final VisibilityMode getVisibility() {
@@ -435,7 +435,7 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: WidgetThreadBrowserArchivedViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canCreateThread;
         private final boolean isError;
         private final boolean isModerator;
@@ -451,6 +451,10 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             this.isModerator = z2;
             this.isError = z3;
             this.canCreateThread = z4;
+        }
+
+        public final List<WidgetThreadBrowserAdapter.Item> component2() {
+            return this.listItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -476,30 +480,6 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return viewState.copy(viewMode, list2, z5, z6, z4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ViewMode getViewMode() {
-            return this.viewMode;
-        }
-
-        public final List<WidgetThreadBrowserAdapter.Item> component2() {
-            return this.listItems;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsError() {
-            return this.isError;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getCanCreateThread() {
-            return this.canCreateThread;
-        }
-
         public final ViewState copy(ViewMode viewMode, List<? extends WidgetThreadBrowserAdapter.Item> listItems, boolean isModerator, boolean isError, boolean canCreateThread) {
             C12238m.checkNotNullParameter(viewMode, "viewMode");
             C12238m.checkNotNullParameter(listItems, "listItems");
@@ -517,12 +497,32 @@ public final class WidgetThreadBrowserArchivedViewModel extends AbstractC0859d0<
             return C12238m.areEqual(this.viewMode, viewState.viewMode) && C12238m.areEqual(this.listItems, viewState.listItems) && this.isModerator == viewState.isModerator && this.isError == viewState.isError && this.canCreateThread == viewState.canCreateThread;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getCanCreateThread() {
             return this.canCreateThread;
         }
 
+        public final boolean getCanCreateThread() {
+            return this.canCreateThread;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsError() {
+            return this.isError;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
         public final List<WidgetThreadBrowserAdapter.Item> getListItems() {
             return this.listItems;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ViewMode getViewMode() {
+            return this.viewMode;
         }
 
         public final ViewMode getViewMode() {

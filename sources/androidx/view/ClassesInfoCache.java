@@ -18,38 +18,7 @@ public final class ClassesInfoCache {
     private final Map<Class<?>, CallbackInfo> mCallbackMap = new HashMap();
     private final Map<Class<?>, Boolean> mHasLifecycleMethods = new HashMap();
 
-    public static class CallbackInfo {
-        public final Map<Lifecycle.Event, List<MethodReference>> mEventToHandlers = new HashMap();
-        public final Map<MethodReference, Lifecycle.Event> mHandlerToEvent;
-
-        public CallbackInfo(Map<MethodReference, Lifecycle.Event> map) {
-            this.mHandlerToEvent = map;
-            for (Map.Entry<MethodReference, Lifecycle.Event> entry : map.entrySet()) {
-                Lifecycle.Event value = entry.getValue();
-                List<MethodReference> arrayList = this.mEventToHandlers.get(value);
-                if (arrayList == null) {
-                    arrayList = new ArrayList<>();
-                    this.mEventToHandlers.put(value, arrayList);
-                }
-                arrayList.add(entry.getKey());
-            }
-        }
-
-        private static void invokeMethodsForEvent(List<MethodReference> list, LifecycleOwner lifecycleOwner, Lifecycle.Event event, Object obj) {
-            if (list != null) {
-                for (int size = list.size() - 1; size >= 0; size--) {
-                    list.get(size).invokeCallback(lifecycleOwner, event, obj);
-                }
-            }
-        }
-
-        public void invokeCallbacks(LifecycleOwner lifecycleOwner, Lifecycle.Event event, Object obj) {
-            invokeMethodsForEvent(this.mEventToHandlers.get(event), lifecycleOwner, event, obj);
-            invokeMethodsForEvent(this.mEventToHandlers.get(Lifecycle.Event.ON_ANY), lifecycleOwner, event, obj);
-        }
-    }
-
-    public static final class MethodReference {
+    public final class MethodReference {
         public final int mCallType;
         public final Method mMethod;
 
@@ -155,6 +124,27 @@ public final class ClassesInfoCache {
         }
     }
 
+    public CallbackInfo getInfo(Class<?> cls) {
+        CallbackInfo callbackInfo = this.mCallbackMap.get(cls);
+        return callbackInfo != null ? callbackInfo : createInfo(cls, null);
+    }
+
+    public boolean hasLifecycleMethods(Class<?> cls) {
+        Boolean bool = this.mHasLifecycleMethods.get(cls);
+        if (bool != null) {
+            return bool.booleanValue();
+        }
+        Method[] declaredMethods = getDeclaredMethods(cls);
+        for (Method method : declaredMethods) {
+            if (((OnLifecycleEvent) method.getAnnotation(OnLifecycleEvent.class)) != null) {
+                createInfo(cls, declaredMethods);
+                return true;
+            }
+        }
+        this.mHasLifecycleMethods.put(cls, Boolean.FALSE);
+        return false;
+    }
+
     private void verifyAndPutHandler(Map<MethodReference, Lifecycle.Event> map, MethodReference methodReference, Lifecycle.Event event, Class<?> cls) {
         Lifecycle.Event event2 = map.get(methodReference);
         if (event2 == null || event == event2) {
@@ -176,24 +166,34 @@ public final class ClassesInfoCache {
         throw new IllegalArgumentException(sbM833U.toString());
     }
 
-    public CallbackInfo getInfo(Class<?> cls) {
-        CallbackInfo callbackInfo = this.mCallbackMap.get(cls);
-        return callbackInfo != null ? callbackInfo : createInfo(cls, null);
-    }
+    public class CallbackInfo {
+        public final Map<MethodReference, Lifecycle.Event> mHandlerToEvent;
+        public final Map<Lifecycle.Event, List<MethodReference>> mEventToHandlers = new HashMap();
 
-    public boolean hasLifecycleMethods(Class<?> cls) {
-        Boolean bool = this.mHasLifecycleMethods.get(cls);
-        if (bool != null) {
-            return bool.booleanValue();
-        }
-        Method[] declaredMethods = getDeclaredMethods(cls);
-        for (Method method : declaredMethods) {
-            if (((OnLifecycleEvent) method.getAnnotation(OnLifecycleEvent.class)) != null) {
-                createInfo(cls, declaredMethods);
-                return true;
+        public CallbackInfo(Map<MethodReference, Lifecycle.Event> map) {
+            this.mHandlerToEvent = map;
+            for (Map.Entry<MethodReference, Lifecycle.Event> entry : map.entrySet()) {
+                Lifecycle.Event value = entry.getValue();
+                List<MethodReference> arrayList = this.mEventToHandlers.get(value);
+                if (arrayList == null) {
+                    arrayList = new ArrayList<>();
+                    this.mEventToHandlers.put(value, arrayList);
+                }
+                arrayList.add(entry.getKey());
             }
         }
-        this.mHasLifecycleMethods.put(cls, Boolean.FALSE);
-        return false;
+
+        public void invokeCallbacks(LifecycleOwner lifecycleOwner, Lifecycle.Event event, Object obj) {
+            invokeMethodsForEvent(this.mEventToHandlers.get(event), lifecycleOwner, event, obj);
+            invokeMethodsForEvent(this.mEventToHandlers.get(Lifecycle.Event.ON_ANY), lifecycleOwner, event, obj);
+        }
+
+        private static void invokeMethodsForEvent(List<MethodReference> list, LifecycleOwner lifecycleOwner, Lifecycle.Event event, Object obj) {
+            if (list != null) {
+                for (int size = list.size() - 1; size >= 0; size--) {
+                    list.get(size).invokeCallback(lifecycleOwner, event, obj);
+                }
+            }
+        }
     }
 }

@@ -129,17 +129,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             this.f11975l = map;
         }
 
-        /* JADX INFO: renamed from: a */
-        public Map.Entry<K, Collection<V>> m6221a(Map.Entry<K, Collection<V>> entry) {
-            K key = entry.getKey();
-            AbstractC4501e abstractC4501e = AbstractC4501e.this;
-            Collection<V> value = entry.getValue();
-            AbstractC4497c abstractC4497c = (AbstractC4497c) abstractC4501e;
-            Objects.requireNonNull(abstractC4497c);
-            List list = (List) value;
-            return new C4521o(key, list instanceof RandomAccess ? new f(abstractC4497c, key, list, null) : new j(key, list, null));
-        }
-
         @Override // java.util.AbstractMap, java.util.Map
         public void clear() {
             Map<K, Collection<V>> map = this.f11975l;
@@ -215,6 +204,17 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             return set;
         }
 
+        /* JADX INFO: renamed from: a */
+        public Map.Entry<K, Collection<V>> m6221a(Map.Entry<K, Collection<V>> entry) {
+            K key = entry.getKey();
+            AbstractC4501e abstractC4501e = AbstractC4501e.this;
+            Collection<V> value = entry.getValue();
+            AbstractC4497c abstractC4497c = (AbstractC4497c) abstractC4501e;
+            Objects.requireNonNull(abstractC4497c);
+            List list = (List) value;
+            return new C4521o(key, list instanceof RandomAccess ? new f(abstractC4497c, key, list, null) : new j(key, list, null));
+        }
+
         @Override // java.util.AbstractMap, java.util.Map
         public Object remove(Object obj) {
             Collection<V> collectionRemove = this.f11975l.remove(obj);
@@ -236,55 +236,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         @Override // java.util.AbstractMap
         public String toString() {
             return this.f11975l.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: b.i.b.b.e$b */
-    /* JADX INFO: compiled from: AbstractMapBasedMultimap.java */
-    public abstract class b<T> implements Iterator<T> {
-
-        /* JADX INFO: renamed from: j */
-        public final Iterator<Map.Entry<K, Collection<V>>> f11981j;
-
-        /* JADX INFO: renamed from: k */
-        @NullableDecl
-        public K f11982k = null;
-
-        /* JADX INFO: renamed from: l */
-        @MonotonicNonNullDecl
-        public Collection<V> f11983l = null;
-
-        /* JADX INFO: renamed from: m */
-        public Iterator<V> f11984m = EnumC4531t.INSTANCE;
-
-        public b() {
-            this.f11981j = AbstractC4501e.this.f11973m.entrySet().iterator();
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return this.f11981j.hasNext() || this.f11984m.hasNext();
-        }
-
-        @Override // java.util.Iterator
-        public T next() {
-            if (!this.f11984m.hasNext()) {
-                Map.Entry<K, Collection<V>> next = this.f11981j.next();
-                this.f11982k = next.getKey();
-                Collection<V> value = next.getValue();
-                this.f11983l = value;
-                this.f11984m = value.iterator();
-            }
-            return this.f11984m.next();
-        }
-
-        @Override // java.util.Iterator
-        public void remove() {
-            this.f11984m.remove();
-            if (this.f11983l.isEmpty()) {
-                this.f11981j.remove();
-            }
-            AbstractC4501e.m6219c(AbstractC4501e.this);
         }
     }
 
@@ -389,12 +340,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             super(navigableMap);
         }
 
-        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g
-        /* JADX INFO: renamed from: b */
-        public SortedSet mo6222b() {
-            return new e(mo6224d());
-        }
-
         @Override // java.util.NavigableMap
         public Map.Entry<K, Collection<V>> ceilingEntry(K k) {
             Map.Entry<K, Collection<V>> entryCeilingEntry = mo6224d().ceilingEntry(k);
@@ -419,31 +364,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             return new d(mo6224d().descendingMap());
         }
 
-        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g, p007b.p225i.p355b.p357b.AbstractC4501e.a, java.util.AbstractMap, java.util.Map
-        /* JADX INFO: renamed from: e, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
-        public NavigableSet<K> keySet() {
-            SortedSet<K> sortedSetMo6222b = this.f11992n;
-            if (sortedSetMo6222b == null) {
-                sortedSetMo6222b = mo6222b();
-                this.f11992n = sortedSetMo6222b;
-            }
-            return (NavigableSet) sortedSetMo6222b;
-        }
-
-        /* JADX INFO: renamed from: f */
-        public Map.Entry<K, Collection<V>> m6226f(Iterator<Map.Entry<K, Collection<V>>> it) {
-            if (!it.hasNext()) {
-                return null;
-            }
-            Map.Entry<K, Collection<V>> next = it.next();
-            Collection<V> collectionMo6217e = AbstractC4501e.this.mo6217e();
-            collectionMo6217e.addAll(next.getValue());
-            it.remove();
-            K key = next.getKey();
-            Objects.requireNonNull((AbstractC4497c) AbstractC4501e.this);
-            return new C4521o(key, Collections.unmodifiableList((List) collectionMo6217e));
-        }
-
         @Override // java.util.NavigableMap
         public Map.Entry<K, Collection<V>> firstEntry() {
             Map.Entry<K, Collection<V>> entryFirstEntry = mo6224d().firstEntry();
@@ -465,12 +385,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         @Override // java.util.NavigableMap
         public K floorKey(K k) {
             return mo6224d().floorKey(k);
-        }
-
-        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g
-        /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
-        public NavigableMap<K, Collection<V>> mo6224d() {
-            return (NavigableMap) ((SortedMap) this.f11975l);
         }
 
         @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g, java.util.SortedMap, java.util.NavigableMap
@@ -513,6 +427,43 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         @Override // java.util.NavigableMap
         public K lowerKey(K k) {
             return mo6224d().lowerKey(k);
+        }
+
+        /* JADX INFO: renamed from: f */
+        public Map.Entry<K, Collection<V>> m6226f(Iterator<Map.Entry<K, Collection<V>>> it) {
+            if (!it.hasNext()) {
+                return null;
+            }
+            Map.Entry<K, Collection<V>> next = it.next();
+            Collection<V> collectionMo6217e = AbstractC4501e.this.mo6217e();
+            collectionMo6217e.addAll(next.getValue());
+            it.remove();
+            K key = next.getKey();
+            Objects.requireNonNull((AbstractC4497c) AbstractC4501e.this);
+            return new C4521o(key, Collections.unmodifiableList((List) collectionMo6217e));
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g
+        /* JADX INFO: renamed from: b */
+        public SortedSet mo6222b() {
+            return new e(mo6224d());
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g, p007b.p225i.p355b.p357b.AbstractC4501e.a, java.util.AbstractMap, java.util.Map
+        /* JADX INFO: renamed from: e, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
+        public NavigableSet<K> keySet() {
+            SortedSet<K> sortedSetMo6222b = this.f11992n;
+            if (sortedSetMo6222b == null) {
+                sortedSetMo6222b = mo6222b();
+                this.f11992n = sortedSetMo6222b;
+            }
+            return (NavigableSet) sortedSetMo6222b;
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.g
+        /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
+        public NavigableMap<K, Collection<V>> mo6224d() {
+            return (NavigableMap) ((SortedMap) this.f11975l);
         }
 
         @Override // java.util.NavigableMap
@@ -568,12 +519,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             return mo6228c().ceilingKey(k);
         }
 
-        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.h
-        /* JADX INFO: renamed from: d, reason: merged with bridge method [inline-methods] */
-        public NavigableMap<K, Collection<V>> mo6228c() {
-            return (NavigableMap) ((SortedMap) this.f12111j);
-        }
-
         @Override // java.util.NavigableSet
         public Iterator<K> descendingIterator() {
             return ((c) descendingSet()).iterator();
@@ -602,6 +547,12 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         @Override // java.util.NavigableSet
         public K lower(K k) {
             return mo6228c().lowerKey(k);
+        }
+
+        @Override // p007b.p225i.p355b.p357b.AbstractC4501e.h
+        /* JADX INFO: renamed from: d, reason: merged with bridge method [inline-methods] */
+        public NavigableMap<K, Collection<V>> mo6228c() {
+            return (NavigableMap) ((SortedMap) this.f12111j);
         }
 
         @Override // java.util.NavigableSet
@@ -672,9 +623,18 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             super(sortedMap);
         }
 
-        /* JADX INFO: renamed from: b */
-        public SortedSet<K> mo6222b() {
-            return new h(mo6224d());
+        @Override // java.util.SortedMap
+        public Comparator<? super K> comparator() {
+            return mo6224d().comparator();
+        }
+
+        @Override // java.util.SortedMap
+        public K firstKey() {
+            return mo6224d().firstKey();
+        }
+
+        public SortedMap<K, Collection<V>> headMap(K k) {
+            return new g(mo6224d().headMap(k));
         }
 
         @Override // p007b.p225i.p355b.p357b.AbstractC4501e.a, java.util.AbstractMap, java.util.Map
@@ -690,27 +650,18 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         }
 
         @Override // java.util.SortedMap
-        public Comparator<? super K> comparator() {
-            return mo6224d().comparator();
+        public K lastKey() {
+            return mo6224d().lastKey();
+        }
+
+        /* JADX INFO: renamed from: b */
+        public SortedSet<K> mo6222b() {
+            return new h(mo6224d());
         }
 
         /* JADX INFO: renamed from: d */
         public SortedMap<K, Collection<V>> mo6224d() {
             return (SortedMap) this.f11975l;
-        }
-
-        @Override // java.util.SortedMap
-        public K firstKey() {
-            return mo6224d().firstKey();
-        }
-
-        public SortedMap<K, Collection<V>> headMap(K k) {
-            return new g(mo6224d().headMap(k));
-        }
-
-        @Override // java.util.SortedMap
-        public K lastKey() {
-            return mo6224d().lastKey();
         }
 
         public SortedMap<K, Collection<V>> subMap(K k, K k2) {
@@ -727,11 +678,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
     public class h extends AbstractC4501e<K, V>.c implements SortedSet<K> {
         public h(SortedMap<K, Collection<V>> sortedMap) {
             super(sortedMap);
-        }
-
-        /* JADX INFO: renamed from: c */
-        public SortedMap<K, Collection<V>> mo6228c() {
-            return (SortedMap) this.f12111j;
         }
 
         @Override // java.util.SortedSet
@@ -751,6 +697,11 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         @Override // java.util.SortedSet
         public K last() {
             return mo6228c().lastKey();
+        }
+
+        /* JADX INFO: renamed from: c */
+        public SortedMap<K, Collection<V>> mo6228c() {
+            return (SortedMap) this.f12111j;
         }
 
         public SortedSet<K> subSet(K k, K k2) {
@@ -815,15 +766,15 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
                 }
             }
 
+            @Override // java.util.ListIterator
+            public boolean hasPrevious() {
+                return m6234b().hasPrevious();
+            }
+
             /* JADX INFO: renamed from: b */
             public final ListIterator<V> m6234b() {
                 m6233a();
                 return (ListIterator) this.f12000j;
-            }
-
-            @Override // java.util.ListIterator
-            public boolean hasPrevious() {
-                return m6234b().hasPrevious();
             }
 
             @Override // java.util.ListIterator
@@ -944,6 +895,55 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         }
     }
 
+    /* JADX INFO: renamed from: b.i.b.b.e$b */
+    /* JADX INFO: compiled from: AbstractMapBasedMultimap.java */
+    public abstract class b<T> implements Iterator<T> {
+
+        /* JADX INFO: renamed from: j */
+        public final Iterator<Map.Entry<K, Collection<V>>> f11981j;
+
+        /* JADX INFO: renamed from: k */
+        @NullableDecl
+        public K f11982k = null;
+
+        /* JADX INFO: renamed from: l */
+        @MonotonicNonNullDecl
+        public Collection<V> f11983l = null;
+
+        /* JADX INFO: renamed from: m */
+        public Iterator<V> f11984m = EnumC4531t.INSTANCE;
+
+        public b() {
+            this.f11981j = AbstractC4501e.this.f11973m.entrySet().iterator();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.f11981j.hasNext() || this.f11984m.hasNext();
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            if (!this.f11984m.hasNext()) {
+                Map.Entry<K, Collection<V>> next = this.f11981j.next();
+                this.f11982k = next.getKey();
+                Collection<V> value = next.getValue();
+                this.f11983l = value;
+                this.f11984m = value.iterator();
+            }
+            return this.f11984m.next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            this.f11984m.remove();
+            if (this.f11983l.isEmpty()) {
+                this.f11981j.remove();
+            }
+            AbstractC4501e.m6219c(AbstractC4501e.this);
+        }
+    }
+
     /* JADX INFO: renamed from: b.i.b.b.e$i */
     /* JADX INFO: compiled from: AbstractMapBasedMultimap.java */
     public class i extends AbstractCollection<V> {
@@ -1002,16 +1002,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             return zAddAll;
         }
 
-        /* JADX INFO: renamed from: c */
-        public void m6230c() {
-            AbstractC4501e<K, V>.i iVar = this.f11997l;
-            if (iVar != null) {
-                iVar.m6230c();
-            } else {
-                AbstractC4501e.this.f11973m.put(this.f11995j, this.f11996k);
-            }
-        }
-
         @Override // java.util.AbstractCollection, java.util.Collection
         public void clear() {
             int size = size();
@@ -1033,6 +1023,37 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
         public boolean containsAll(Collection<?> collection) {
             m6231d();
             return this.f11996k.containsAll(collection);
+        }
+
+        @Override // java.util.Collection
+        public boolean equals(@NullableDecl Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            m6231d();
+            return this.f11996k.equals(obj);
+        }
+
+        @Override // java.util.Collection
+        public int hashCode() {
+            m6231d();
+            return this.f11996k.hashCode();
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable
+        public Iterator<V> iterator() {
+            m6231d();
+            return new a();
+        }
+
+        /* JADX INFO: renamed from: c */
+        public void m6230c() {
+            AbstractC4501e<K, V>.i iVar = this.f11997l;
+            if (iVar != null) {
+                iVar.m6230c();
+            } else {
+                AbstractC4501e.this.f11973m.put(this.f11995j, this.f11996k);
+            }
         }
 
         /* JADX INFO: renamed from: d */
@@ -1060,27 +1081,6 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
             } else if (this.f11996k.isEmpty()) {
                 AbstractC4501e.this.f11973m.remove(this.f11995j);
             }
-        }
-
-        @Override // java.util.Collection
-        public boolean equals(@NullableDecl Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            m6231d();
-            return this.f11996k.equals(obj);
-        }
-
-        @Override // java.util.Collection
-        public int hashCode() {
-            m6231d();
-            return this.f11996k.hashCode();
-        }
-
-        @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable
-        public Iterator<V> iterator() {
-            m6231d();
-            return new a();
         }
 
         @Override // java.util.AbstractCollection, java.util.Collection
@@ -1152,18 +1152,18 @@ public abstract class AbstractC4501e<K, V> extends AbstractC4505g<K, V> implemen
                 this.f12000j = collection instanceof List ? ((List) collection).listIterator() : collection.iterator();
             }
 
+            @Override // java.util.Iterator
+            public boolean hasNext() {
+                m6233a();
+                return this.f12000j.hasNext();
+            }
+
             /* JADX INFO: renamed from: a */
             public void m6233a() {
                 i.this.m6231d();
                 if (i.this.f11996k != this.f12001k) {
                     throw new ConcurrentModificationException();
                 }
-            }
-
-            @Override // java.util.Iterator
-            public boolean hasNext() {
-                m6233a();
-                return this.f12000j.hasNext();
             }
 
             @Override // java.util.Iterator

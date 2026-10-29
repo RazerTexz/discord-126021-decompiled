@@ -13,23 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGiftCodeResolved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGiftCodeResolved implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackGiftCodeMetadataReceiver {
+    private final Boolean resolved = null;
     private TrackBase trackBase;
     private TrackGiftCodeMetadata trackGiftCodeMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final Boolean resolved = null;
     private final transient String analyticsSchemaTypeName = "gift_code_resolved";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGiftCodeResolved) && C12238m.areEqual(this.resolved, ((TrackGiftCodeResolved) other).resolved);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

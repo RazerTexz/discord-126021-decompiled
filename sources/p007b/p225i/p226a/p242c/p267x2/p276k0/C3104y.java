@@ -18,12 +18,6 @@ public final class C3104y implements InterfaceC3087i0 {
     /* JADX INFO: renamed from: a */
     public final InterfaceC3094o f8911a;
 
-    /* JADX INFO: renamed from: b */
-    public final C2756w f8912b = new C2756w(new byte[10]);
-
-    /* JADX INFO: renamed from: c */
-    public int f8913c = 0;
-
     /* JADX INFO: renamed from: d */
     public int f8914d;
 
@@ -51,8 +45,37 @@ public final class C3104y implements InterfaceC3087i0 {
     /* JADX INFO: renamed from: l */
     public long f8922l;
 
+    /* JADX INFO: renamed from: b */
+    public final C2756w f8912b = new C2756w(new byte[10]);
+
+    /* JADX INFO: renamed from: c */
+    public int f8913c = 0;
+
     public C3104y(InterfaceC3094o interfaceC3094o) {
         this.f8911a = interfaceC3094o;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final boolean m3792d(C2757x c2757x, @Nullable byte[] bArr, int i) {
+        int iMin = Math.min(c2757x.m3081a(), i - this.f8914d);
+        if (iMin <= 0) {
+            return true;
+        }
+        if (bArr == null) {
+            c2757x.m3080F(iMin);
+        } else {
+            System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr, this.f8914d, iMin);
+            c2757x.f6794b += iMin;
+        }
+        int i2 = this.f8914d + iMin;
+        this.f8914d = i2;
+        return i2 == i;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m3793e(int i) {
+        this.f8913c = i;
+        this.f8914d = 0;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.p276k0.InterfaceC3087i0
@@ -193,28 +216,5 @@ public final class C3104y implements InterfaceC3087i0 {
         this.f8914d = 0;
         this.f8918h = false;
         this.f8911a.mo3759c();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final boolean m3792d(C2757x c2757x, @Nullable byte[] bArr, int i) {
-        int iMin = Math.min(c2757x.m3081a(), i - this.f8914d);
-        if (iMin <= 0) {
-            return true;
-        }
-        if (bArr == null) {
-            c2757x.m3080F(iMin);
-        } else {
-            System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr, this.f8914d, iMin);
-            c2757x.f6794b += iMin;
-        }
-        int i2 = this.f8914d + iMin;
-        this.f8914d = i2;
-        return i2 == i;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m3793e(int i) {
-        this.f8913c = i;
-        this.f8914d = 0;
     }
 }

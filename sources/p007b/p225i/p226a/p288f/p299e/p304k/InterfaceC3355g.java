@@ -14,7 +14,7 @@ public interface InterfaceC3355g extends IInterface {
 
     /* JADX INFO: renamed from: b.i.a.f.e.k.g$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
-    public static abstract class a extends BinderC3482b implements InterfaceC3355g {
+    public abstract class a extends BinderC3482b implements InterfaceC3355g {
         @RecentlyNonNull
         /* JADX INFO: renamed from: g */
         public static InterfaceC3355g m4157g(@RecentlyNonNull IBinder iBinder) {

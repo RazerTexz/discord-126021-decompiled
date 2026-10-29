@@ -39,15 +39,6 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
         return new float[]{f, f, f2, f2, f2, f2, f, f};
     }
 
-    private final boolean isAtEndEdge(int end, CharSequence text) {
-        Character orNull;
-        int i = this.endIndex;
-        if (end != i) {
-            return this.isTrimEnabled && i - end == 1 && text != null && (orNull = C12108y.getOrNull(text, end)) != null && C12084a.isWhitespace(orNull.charValue());
-        }
-        return true;
-    }
-
     /* JADX WARN: Code duplicated, block: B:21:0x0070  */
     @Override // android.text.style.ReplacementSpan
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x2, int top, int y2, int bottom, Paint paint) {
@@ -108,6 +99,15 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
             iRoundToInt += this.edgeHorizontalMargin;
         }
         return iRoundToInt + this.edgeHorizontalPadding;
+    }
+
+    private final boolean isAtEndEdge(int end, CharSequence text) {
+        Character orNull;
+        int i = this.endIndex;
+        if (end != i) {
+            return this.isTrimEnabled && i - end == 1 && text != null && (orNull = C12108y.getOrNull(text, end)) != null && C12084a.isWhitespace(orNull.charValue());
+        }
+        return true;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

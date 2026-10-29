@@ -9,8 +9,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ComponentRuntimeTypeAdapter.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ComponentRuntimeTypeAdapter {
-    public static final ComponentRuntimeTypeAdapter INSTANCE = new ComponentRuntimeTypeAdapter();
     private static final RuntimeTypeAdapterFactory<Component> componentRuntimeTypeAdapterFactory;
+    public static final ComponentRuntimeTypeAdapter INSTANCE = new ComponentRuntimeTypeAdapter();
 
     static {
         RuntimeTypeAdapterFactory<Component> runtimeTypeAdapterFactory = new RuntimeTypeAdapterFactory<>(Component.class, "type", true, UnknownComponent.class);

@@ -12,49 +12,8 @@ public final class C2747n {
     /* JADX INFO: renamed from: a */
     public final SparseBooleanArray f6733a;
 
-    /* JADX INFO: renamed from: b.i.a.c.f3.n$b */
-    /* JADX INFO: compiled from: FlagSet.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public final SparseBooleanArray f6734a = new SparseBooleanArray();
-
-        /* JADX INFO: renamed from: b */
-        public boolean f6735b;
-
-        /* JADX INFO: renamed from: a */
-        public b m3032a(int i) {
-            C1460d.m426D(!this.f6735b);
-            this.f6734a.append(i, true);
-            return this;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public C2747n m3033b() {
-            C1460d.m426D(!this.f6735b);
-            this.f6735b = true;
-            return new C2747n(this.f6734a, null);
-        }
-    }
-
     public C2747n(SparseBooleanArray sparseBooleanArray, a aVar) {
         this.f6733a = sparseBooleanArray;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public boolean m3029a(int i) {
-        return this.f6733a.get(i);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public int m3030b(int i) {
-        C1460d.m571t(i, 0, m3031c());
-        return this.f6733a.keyAt(i);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public int m3031c() {
-        return this.f6733a.size();
     }
 
     public boolean equals(@Nullable Object obj) {
@@ -88,5 +47,46 @@ public final class C2747n {
             iM3031c = (iM3031c * 31) + m3030b(i);
         }
         return iM3031c;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public boolean m3029a(int i) {
+        return this.f6733a.get(i);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public int m3030b(int i) {
+        C1460d.m571t(i, 0, m3031c());
+        return this.f6733a.keyAt(i);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public int m3031c() {
+        return this.f6733a.size();
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.f3.n$b */
+    /* JADX INFO: compiled from: FlagSet.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: b */
+        public boolean f6735b;
+
+        /* JADX INFO: renamed from: a */
+        public final SparseBooleanArray f6734a = new SparseBooleanArray();
+
+        /* JADX INFO: renamed from: a */
+        public b m3032a(int i) {
+            C1460d.m426D(!this.f6735b);
+            this.f6734a.append(i, true);
+            return this;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public C2747n m3033b() {
+            C1460d.m426D(!this.f6735b);
+            this.f6735b = true;
+            return new C2747n(this.f6734a, null);
+        }
     }
 }

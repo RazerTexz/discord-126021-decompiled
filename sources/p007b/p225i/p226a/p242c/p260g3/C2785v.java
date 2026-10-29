@@ -21,9 +21,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2750q;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2785v {
 
-    /* JADX INFO: renamed from: a */
-    public final C2779p f6926a = new C2779p();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public final b f6927b;
@@ -75,10 +72,13 @@ public final class C2785v {
     /* JADX INFO: renamed from: q */
     public long f6942q;
 
+    /* JADX INFO: renamed from: a */
+    public final C2779p f6926a = new C2779p();
+
     /* JADX INFO: renamed from: b.i.a.c.g3.v$a */
     /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
     @RequiresApi(30)
-    public static final class a {
+    public final class a {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static void m3182a(Surface surface, float f) {
@@ -107,7 +107,7 @@ public final class C2785v {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.v$c */
     /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
-    public static final class c implements b {
+    public final class c implements b {
 
         /* JADX INFO: renamed from: a */
         public final WindowManager f6943a;
@@ -130,7 +130,7 @@ public final class C2785v {
     /* JADX INFO: renamed from: b.i.a.c.g3.v$d */
     /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
     @RequiresApi(17)
-    public static final class d implements b, DisplayManager.DisplayListener {
+    public final class d implements b, DisplayManager.DisplayListener {
 
         /* JADX INFO: renamed from: a */
         public final DisplayManager f6944a;
@@ -177,13 +177,7 @@ public final class C2785v {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.v$e */
     /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
-    public static final class e implements Choreographer.FrameCallback, Handler.Callback {
-
-        /* JADX INFO: renamed from: j */
-        public static final e f6946j = new e();
-
-        /* JADX INFO: renamed from: k */
-        public volatile long f6947k = -9223372036854775807L;
+    public final class e implements Choreographer.FrameCallback, Handler.Callback {
 
         /* JADX INFO: renamed from: l */
         public final Handler f6948l;
@@ -196,6 +190,12 @@ public final class C2785v {
 
         /* JADX INFO: renamed from: o */
         public int f6951o;
+
+        /* JADX INFO: renamed from: j */
+        public static final e f6946j = new e();
+
+        /* JADX INFO: renamed from: k */
+        public volatile long f6947k = -9223372036854775807L;
 
         public e() {
             HandlerThread handlerThread = new HandlerThread("ExoPlayer:FrameReleaseChoreographer");

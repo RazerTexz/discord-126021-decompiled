@@ -15,7 +15,7 @@ public enum NotificationType {
     private final String value;
 
     /* JADX INFO: compiled from: NotificationData.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

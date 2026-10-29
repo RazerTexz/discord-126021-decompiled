@@ -36,17 +36,37 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStickerPackDetailsDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStickerPackDetailsDialog.class, "binding", "getBinding()Lcom/discord/databinding/StickerPackDetailsDialogBinding;", 0)};
+    private static final String EXTRA_Y_POSITION = "EXTRA_Y_POSITION";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_Y_POSITION = "EXTRA_Y_POSITION";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private Long stickerPackId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetStickerPackDetailsDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetStickerPackDetailsDialog.kt */
-    public static final class Companion {
+    public final class C101351 extends AbstractC12240o implements Function1<StoreStickers.StickerPackState, Unit> {
+        public C101351() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreStickers.StickerPackState stickerPackState) {
+            invoke2(stickerPackState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreStickers.StickerPackState stickerPackState) {
+            C12238m.checkNotNullParameter(stickerPackState, "it");
+            WidgetStickerPackDetailsDialog.this.configureUI(stickerPackState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStickerPackDetailsDialog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -72,26 +92,6 @@ public final class WidgetStickerPackDetailsDialog extends AppDialog {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetStickerPackDetailsDialog$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetStickerPackDetailsDialog.kt */
-    public static final class C101351 extends AbstractC12240o implements Function1<StoreStickers.StickerPackState, Unit> {
-        public C101351() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreStickers.StickerPackState stickerPackState) {
-            invoke2(stickerPackState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreStickers.StickerPackState stickerPackState) {
-            C12238m.checkNotNullParameter(stickerPackState, "it");
-            WidgetStickerPackDetailsDialog.this.configureUI(stickerPackState);
         }
     }
 

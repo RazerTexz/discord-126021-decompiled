@@ -28,11 +28,11 @@ public final class SimplePager extends ViewPager {
     private boolean wrapHeight;
 
     /* JADX INFO: compiled from: SimplePager.kt */
-    public static final class Adapter extends FragmentPagerAdapter {
+    public final class Adapter extends FragmentPagerAdapter {
         private final List<Item> items;
 
         /* JADX INFO: compiled from: SimplePager.kt */
-        public static final class Item {
+        public final class Item {
             private final Function0<Fragment> creator;
             private final String title;
 
@@ -95,14 +95,19 @@ public final class SimplePager extends ViewPager {
         this(context, (i & 2) != 0 ? null : attributeSet);
     }
 
-    public static /* synthetic */ void getKeepAllPagesLoaded$annotations() {
+    /* JADX INFO: renamed from: isScrollingEnabled, reason: from getter */
+    public final boolean getIsScrollingEnabled() {
+        return this.isScrollingEnabled;
     }
 
-    public static /* synthetic */ void getPreserveSelectedPage$annotations() {
+    public static /* synthetic */ void getKeepAllPagesLoaded$annotations() {
     }
 
     public final boolean getKeepAllPagesLoaded() {
         return this.keepAllPagesLoaded;
+    }
+
+    public static /* synthetic */ void getPreserveSelectedPage$annotations() {
     }
 
     public final boolean getPreserveSelectedPage() {
@@ -111,11 +116,6 @@ public final class SimplePager extends ViewPager {
 
     public final boolean getWrapHeight() {
         return this.wrapHeight;
-    }
-
-    /* JADX INFO: renamed from: isScrollingEnabled, reason: from getter */
-    public final boolean getIsScrollingEnabled() {
-        return this.isScrollingEnabled;
     }
 
     @Override // androidx.viewpager.widget.ViewPager, android.view.ViewGroup

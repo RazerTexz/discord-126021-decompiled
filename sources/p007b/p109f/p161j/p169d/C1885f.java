@@ -8,21 +8,36 @@ import p007b.p085c.p086a.p087a0.C1460d;
 /* JADX INFO: loaded from: classes.dex */
 public class C1885f {
 
-    /* JADX INFO: renamed from: a */
-    public static final C1885f f3721a = new C1885f(-1, false);
-
-    /* JADX INFO: renamed from: b */
-    public static final C1885f f3722b = new C1885f(-1, true);
-
     /* JADX INFO: renamed from: c */
     public final int f3723c;
 
     /* JADX INFO: renamed from: d */
     public final boolean f3724d;
 
+    /* JADX INFO: renamed from: a */
+    public static final C1885f f3721a = new C1885f(-1, false);
+
+    /* JADX INFO: renamed from: b */
+    public static final C1885f f3722b = new C1885f(-1, true);
+
     public C1885f(int i, boolean z2) {
         this.f3723c = i;
         this.f3724d = z2;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof C1885f)) {
+            return false;
+        }
+        C1885f c1885f = (C1885f) obj;
+        return this.f3723c == c1885f.f3723c && this.f3724d == c1885f.f3724d;
+    }
+
+    public int hashCode() {
+        return C1460d.m448K0(Integer.valueOf(this.f3723c), Boolean.valueOf(this.f3724d));
     }
 
     /* JADX INFO: renamed from: a */
@@ -41,21 +56,6 @@ public class C1885f {
     /* JADX INFO: renamed from: c */
     public boolean m1251c() {
         return this.f3723c == -1;
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof C1885f)) {
-            return false;
-        }
-        C1885f c1885f = (C1885f) obj;
-        return this.f3723c == c1885f.f3723c && this.f3724d == c1885f.f3724d;
-    }
-
-    public int hashCode() {
-        return C1460d.m448K0(Integer.valueOf(this.f3723c), Boolean.valueOf(this.f3724d));
     }
 
     public String toString() {

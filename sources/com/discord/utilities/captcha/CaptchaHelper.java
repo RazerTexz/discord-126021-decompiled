@@ -61,13 +61,13 @@ public final class CaptchaHelper {
     private static final String FAILED_CAPTCHA_EXPIRED = "expired";
     private static final String FAILED_DEVICE_UNSUPPORTED = "unsupported_device";
     private static final String FAILED_MISSING_DEPS = "missing_dependencies";
-    public static final CaptchaHelper INSTANCE = new CaptchaHelper();
     private static final String RECAPTCHA_SITE_KEY = "6Lff5jIUAAAAAImNXvYYPv2VW2En3Dexy4oX2o4s";
     private static String captchaRqtoken;
     private static String captchaToken;
+    public static final CaptchaHelper INSTANCE = new CaptchaHelper();
 
     /* JADX INFO: compiled from: CaptchaHelper.kt */
-    public static final /* data */ class CaptchaPayload {
+    public final /* data */ class CaptchaPayload {
         private final String captchaKey;
         private final String captchaRqtoken;
 
@@ -87,16 +87,6 @@ public final class CaptchaHelper {
             return captchaPayload.copy(str, str2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getCaptchaKey() {
-            return this.captchaKey;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getCaptchaRqtoken() {
-            return this.captchaRqtoken;
-        }
-
         public final CaptchaPayload copy(String captchaKey, String captchaRqtoken) {
             C12238m.checkNotNullParameter(captchaKey, "captchaKey");
             return new CaptchaPayload(captchaKey, captchaRqtoken);
@@ -113,8 +103,18 @@ public final class CaptchaHelper {
             return C12238m.areEqual(this.captchaKey, captchaPayload.captchaKey) && C12238m.areEqual(this.captchaRqtoken, captchaPayload.captchaRqtoken);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getCaptchaKey() {
             return this.captchaKey;
+        }
+
+        public final String getCaptchaKey() {
+            return this.captchaKey;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getCaptchaRqtoken() {
+            return this.captchaRqtoken;
         }
 
         public final String getCaptchaRqtoken() {
@@ -141,10 +141,10 @@ public final class CaptchaHelper {
     }
 
     /* JADX INFO: compiled from: CaptchaHelper.kt */
-    public static abstract class CaptchaRequest {
+    public abstract class CaptchaRequest {
 
         /* JADX INFO: compiled from: CaptchaHelper.kt */
-        public static final /* data */ class HCaptcha extends CaptchaRequest {
+        public final /* data */ class HCaptcha extends CaptchaRequest {
             private final Activity activity;
             private final String rqdata;
             private final String siteKey;
@@ -166,21 +166,6 @@ public final class CaptchaHelper {
                 return hCaptcha.copy(str, activity, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getSiteKey() {
-                return this.siteKey;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Activity getActivity() {
-                return this.activity;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getRqdata() {
-                return this.rqdata;
-            }
-
             public final HCaptcha copy(String siteKey, Activity activity, String rqdata) {
                 C12238m.checkNotNullParameter(siteKey, "siteKey");
                 C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
@@ -198,12 +183,27 @@ public final class CaptchaHelper {
                 return C12238m.areEqual(this.siteKey, hCaptcha.siteKey) && C12238m.areEqual(this.activity, hCaptcha.activity) && C12238m.areEqual(this.rqdata, hCaptcha.rqdata);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final Activity getActivity() {
                 return this.activity;
             }
 
+            public final Activity getActivity() {
+                return this.activity;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getRqdata() {
                 return this.rqdata;
+            }
+
+            public final String getRqdata() {
+                return this.rqdata;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getSiteKey() {
+                return this.siteKey;
             }
 
             public final String getSiteKey() {
@@ -240,7 +240,7 @@ public final class CaptchaHelper {
         }
 
         /* JADX INFO: compiled from: CaptchaHelper.kt */
-        public static final /* data */ class ReCaptcha extends CaptchaRequest {
+        public final /* data */ class ReCaptcha extends CaptchaRequest {
             private final Activity activity;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -257,11 +257,6 @@ public final class CaptchaHelper {
                 return reCaptcha.copy(activity);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Activity getActivity() {
-                return this.activity;
-            }
-
             public final ReCaptcha copy(Activity activity) {
                 C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
                 return new ReCaptcha(activity);
@@ -272,6 +267,11 @@ public final class CaptchaHelper {
                     return (other instanceof ReCaptcha) && C12238m.areEqual(this.activity, ((ReCaptcha) other).activity);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Activity getActivity() {
+                return this.activity;
             }
 
             public final Activity getActivity() {
@@ -303,7 +303,7 @@ public final class CaptchaHelper {
     }
 
     /* JADX INFO: compiled from: CaptchaHelper.kt */
-    public static final /* data */ class Failure extends Throwable {
+    public final /* data */ class Failure extends Throwable {
         private final int errorStringId;
         private final String reasonCode;
 
@@ -323,16 +323,6 @@ public final class CaptchaHelper {
             return failure.copy(i, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getErrorStringId() {
-            return this.errorStringId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getReasonCode() {
-            return this.reasonCode;
-        }
-
         public final Failure copy(int errorStringId, String reasonCode) {
             C12238m.checkNotNullParameter(reasonCode, "reasonCode");
             return new Failure(errorStringId, reasonCode);
@@ -349,8 +339,18 @@ public final class CaptchaHelper {
             return this.errorStringId == failure.errorStringId && C12238m.areEqual(this.reasonCode, failure.reasonCode);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getErrorStringId() {
             return this.errorStringId;
+        }
+
+        public final int getErrorStringId() {
+            return this.errorStringId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getReasonCode() {
+            return this.reasonCode;
         }
 
         public final String getReasonCode() {
@@ -406,6 +406,22 @@ public final class CaptchaHelper {
         C12238m.checkNotNullExpressionValue(c4358c0, "makeGooglePlayServicesAv…ISSING_DEPS))\n          }");
     }
 
+    public final String getCaptchaRqtoken() {
+        return captchaRqtoken;
+    }
+
+    public final String getCaptchaToken() {
+        return captchaToken;
+    }
+
+    public final void setCaptchaRqtoken(String str) {
+        captchaRqtoken = str;
+    }
+
+    public final void setCaptchaToken(String str) {
+        captchaToken = str;
+    }
+
     /* JADX WARN: Type inference incomplete: some casts might be missing */
     private final void showCaptcha(SafetyNetClient safetyNetClient, final Function1<? super String, Unit> function1, final Function1<? super Failure, Unit> function2) {
         Objects.requireNonNull(safetyNetClient);
@@ -452,22 +468,6 @@ public final class CaptchaHelper {
         captchaHelper.showCaptchaHelpDialog(appActivity, function0);
     }
 
-    public final String getCaptchaRqtoken() {
-        return captchaRqtoken;
-    }
-
-    public final String getCaptchaToken() {
-        return captchaToken;
-    }
-
-    public final void setCaptchaRqtoken(String str) {
-        captchaRqtoken = str;
-    }
-
-    public final void setCaptchaToken(String str) {
-        captchaToken = str;
-    }
-
     public final void showCaptchaHelpDialog(AppActivity activity, Function0<Unit> onOpenBrowser) {
         FragmentManager supportFragmentManager;
         if (activity == null || (supportFragmentManager = activity.getSupportFragmentManager()) == null) {
@@ -484,14 +484,14 @@ public final class CaptchaHelper {
 
             /* JADX INFO: renamed from: com.discord.utilities.captcha.CaptchaHelper$tryShowCaptcha$1$3, reason: invalid class name */
             /* JADX INFO: compiled from: CaptchaHelper.kt */
-            public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ Activity $activity;
                 public final /* synthetic */ Emitter $emitter;
                 public final /* synthetic */ Function1 $errorHandler;
 
                 /* JADX INFO: renamed from: com.discord.utilities.captcha.CaptchaHelper$tryShowCaptcha$1$3$1, reason: invalid class name */
                 /* JADX INFO: compiled from: CaptchaHelper.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
                     public AnonymousClass1() {
                         super(1);
                     }

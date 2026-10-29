@@ -52,28 +52,9 @@ public final class WidgetGuildRoleSubscriptionEntryPoint extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionEntryPoint.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId, String trackingSourceLocation) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(trackingSourceLocation, "trackingSourceLocation");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            intent.putExtra(WidgetGuildRoleSubscriptionEntryPoint.INTENT_EXTRA_TRACKING_SOURCE_LOCATION, trackingSourceLocation);
-            C0870j.m156d(context, WidgetGuildRoleSubscriptionEntryPoint.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.entrypoint.WidgetGuildRoleSubscriptionEntryPoint$configureUI$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionEntryPoint.kt */
-    public static final class C84441 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C84441 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ WidgetGuildRoleSubscriptionEntryPointViewModel.ViewState $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -91,7 +72,7 @@ public final class WidgetGuildRoleSubscriptionEntryPoint extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.entrypoint.WidgetGuildRoleSubscriptionEntryPoint$configureUI$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionEntryPoint.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -118,7 +99,7 @@ public final class WidgetGuildRoleSubscriptionEntryPoint extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.entrypoint.WidgetGuildRoleSubscriptionEntryPoint$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionEntryPoint.kt */
-    public static final /* synthetic */ class C84451 extends C12236k implements Function1<WidgetGuildRoleSubscriptionEntryPointViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C84451 extends C12236k implements Function1<WidgetGuildRoleSubscriptionEntryPointViewModel.ViewState, Unit> {
         public C84451(WidgetGuildRoleSubscriptionEntryPoint widgetGuildRoleSubscriptionEntryPoint) {
             super(1, widgetGuildRoleSubscriptionEntryPoint, WidgetGuildRoleSubscriptionEntryPoint.class, "configureUI", "configureUI(Lcom/discord/widgets/guild_role_subscriptions/entrypoint/WidgetGuildRoleSubscriptionEntryPointViewModel$ViewState;)V", 0);
         }
@@ -133,6 +114,25 @@ public final class WidgetGuildRoleSubscriptionEntryPoint extends AppFragment {
         public final void invoke2(WidgetGuildRoleSubscriptionEntryPointViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "p1");
             ((WidgetGuildRoleSubscriptionEntryPoint) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionEntryPoint.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId, String trackingSourceLocation) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(trackingSourceLocation, "trackingSourceLocation");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            intent.putExtra(WidgetGuildRoleSubscriptionEntryPoint.INTENT_EXTRA_TRACKING_SOURCE_LOCATION, trackingSourceLocation);
+            C0870j.m156d(context, WidgetGuildRoleSubscriptionEntryPoint.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

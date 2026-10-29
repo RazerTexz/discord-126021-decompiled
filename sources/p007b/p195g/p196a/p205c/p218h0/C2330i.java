@@ -18,6 +18,39 @@ public class C2330i extends C2332k {
     }
 
     @Override // p007b.p195g.p196a.p205c.p218h0.C2332k, p007b.p195g.p196a.p205c.AbstractC2360j
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != C2330i.class) {
+            return false;
+        }
+        C2330i c2330i = (C2330i) obj;
+        if (c2330i._class != this._class) {
+            return false;
+        }
+        return this._referencedType.equals(c2330i._referencedType);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j, p007b.p195g.p196a.p198b.p203s.AbstractC2137a
+    /* JADX INFO: renamed from: a */
+    public AbstractC2137a mo1727a() {
+        return this._referencedType;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: p */
+    public AbstractC2360j mo1727a() {
+        return this._referencedType;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.p203s.AbstractC2137a
+    /* JADX INFO: renamed from: b */
+    public boolean mo1728b() {
+        return true;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p218h0.C2332k, p007b.p195g.p196a.p205c.AbstractC2360j
     /* JADX INFO: renamed from: C */
     public AbstractC2360j mo2093C(Class<?> cls, C2334m c2334m, AbstractC2360j abstractC2360j, AbstractC2360j[] abstractC2360jArr) {
         return new C2330i(cls, this._bindings, abstractC2360j, abstractC2360jArr, this._referencedType, this._anchorType, this._valueHandler, this._typeHandler, this._asStatic);
@@ -36,12 +69,6 @@ public class C2330i extends C2332k {
         return obj == abstractC2360j._typeHandler ? this : new C2330i(this._class, this._bindings, this._superClass, this._superInterfaces, abstractC2360j.mo2130N(obj), this._anchorType, this._valueHandler, this._typeHandler, this._asStatic);
     }
 
-    @Override // p007b.p195g.p196a.p205c.p218h0.C2332k, p007b.p195g.p196a.p205c.p218h0.AbstractC2333l
-    /* JADX INFO: renamed from: K */
-    public String mo2106K() {
-        return this._class.getName() + '<' + this._referencedType.mo1729e() + '>';
-    }
-
     @Override // p007b.p195g.p196a.p205c.p218h0.C2332k
     /* JADX INFO: renamed from: P, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
     public C2330i mo2129M() {
@@ -58,33 +85,6 @@ public class C2330i extends C2332k {
     /* JADX INFO: renamed from: R, reason: merged with bridge method [inline-methods] and merged with bridge method [inline-methods] */
     public C2330i mo2131O(Object obj) {
         return obj == this._valueHandler ? this : new C2330i(this._class, this._bindings, this._superClass, this._superInterfaces, this._referencedType, this._anchorType, obj, this._typeHandler, this._asStatic);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j, p007b.p195g.p196a.p198b.p203s.AbstractC2137a
-    /* JADX INFO: renamed from: a */
-    public AbstractC2137a mo1727a() {
-        return this._referencedType;
-    }
-
-    @Override // p007b.p195g.p196a.p198b.p203s.AbstractC2137a
-    /* JADX INFO: renamed from: b */
-    public boolean mo1728b() {
-        return true;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p218h0.C2332k, p007b.p195g.p196a.p205c.AbstractC2360j
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != C2330i.class) {
-            return false;
-        }
-        C2330i c2330i = (C2330i) obj;
-        if (c2330i._class != this._class) {
-            return false;
-        }
-        return this._referencedType.equals(c2330i._referencedType);
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
@@ -110,10 +110,10 @@ public class C2330i extends C2332k {
         return sbMo2101m;
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: p */
-    public AbstractC2360j mo1727a() {
-        return this._referencedType;
+    @Override // p007b.p195g.p196a.p205c.p218h0.C2332k, p007b.p195g.p196a.p205c.p218h0.AbstractC2333l
+    /* JADX INFO: renamed from: K */
+    public String mo2106K() {
+        return this._class.getName() + '<' + this._referencedType.mo1729e() + '>';
     }
 
     @Override // p007b.p195g.p196a.p205c.p218h0.C2332k

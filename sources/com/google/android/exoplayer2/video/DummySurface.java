@@ -41,7 +41,7 @@ public final class DummySurface extends Surface {
     public boolean f20285n;
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.video.DummySurface$b */
-    public static class HandlerThreadC10778b extends HandlerThread implements Handler.Callback {
+    public class HandlerThreadC10778b extends HandlerThread implements Handler.Callback {
 
         /* JADX INFO: renamed from: j */
         public EGLSurfaceTexture f20286j;
@@ -63,6 +63,52 @@ public final class DummySurface extends Surface {
 
         public HandlerThreadC10778b() {
             super("ExoPlayer:DummySurface");
+        }
+
+        @Override // android.os.Handler.Callback
+        public boolean handleMessage(Message message) {
+            int i = message.what;
+            try {
+                if (i != 1) {
+                    if (i != 2) {
+                        return true;
+                    }
+                    try {
+                        m8954b();
+                    } catch (Throwable th) {
+                        try {
+                            C2750q.m3039b("DummySurface", "Failed to release dummy surface", th);
+                        } finally {
+                            quit();
+                        }
+                    }
+                    return true;
+                }
+                try {
+                    m8953a(message.arg1);
+                    synchronized (this) {
+                        notify();
+                    }
+                } catch (Error e) {
+                    C2750q.m3039b("DummySurface", "Failed to initialize dummy surface", e);
+                    this.f20288l = e;
+                    synchronized (this) {
+                        notify();
+                    }
+                } catch (RuntimeException e2) {
+                    C2750q.m3039b("DummySurface", "Failed to initialize dummy surface", e2);
+                    this.f20289m = e2;
+                    synchronized (this) {
+                        notify();
+                    }
+                }
+                return true;
+            } catch (Throwable th2) {
+                synchronized (this) {
+                    notify();
+                    throw th2;
+                }
+            }
         }
 
         /* JADX INFO: renamed from: a */
@@ -153,52 +199,6 @@ public final class DummySurface extends Surface {
                 eGLSurfaceTexture.f20277n = null;
                 eGLSurfaceTexture.f20278o = null;
                 eGLSurfaceTexture.f20279p = null;
-            }
-        }
-
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(Message message) {
-            int i = message.what;
-            try {
-                if (i != 1) {
-                    if (i != 2) {
-                        return true;
-                    }
-                    try {
-                        m8954b();
-                    } catch (Throwable th) {
-                        try {
-                            C2750q.m3039b("DummySurface", "Failed to release dummy surface", th);
-                        } finally {
-                            quit();
-                        }
-                    }
-                    return true;
-                }
-                try {
-                    m8953a(message.arg1);
-                    synchronized (this) {
-                        notify();
-                    }
-                } catch (Error e) {
-                    C2750q.m3039b("DummySurface", "Failed to initialize dummy surface", e);
-                    this.f20288l = e;
-                    synchronized (this) {
-                        notify();
-                    }
-                } catch (RuntimeException e2) {
-                    C2750q.m3039b("DummySurface", "Failed to initialize dummy surface", e2);
-                    this.f20289m = e2;
-                    synchronized (this) {
-                        notify();
-                    }
-                }
-                return true;
-            } catch (Throwable th2) {
-                synchronized (this) {
-                    notify();
-                    throw th2;
-                }
             }
         }
     }

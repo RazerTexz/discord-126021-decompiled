@@ -11,16 +11,6 @@ public final /* data */ class EmbedField {
     private final String name;
     private final String value;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getValue() {
-        return this.value;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,6 +20,16 @@ public final /* data */ class EmbedField {
         }
         EmbedField embedField = (EmbedField) other;
         return C12238m.areEqual(this.name, embedField.name) && C12238m.areEqual(this.value, embedField.value) && C12238m.areEqual(this.inline, embedField.inline);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getValue() {
+        return this.value;
     }
 
     public int hashCode() {

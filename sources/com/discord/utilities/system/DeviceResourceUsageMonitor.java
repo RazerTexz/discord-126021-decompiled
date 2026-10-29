@@ -20,16 +20,16 @@ import p507d0.p592z.p594d.C12238m;
 public final class DeviceResourceUsageMonitor {
     private static final long SC_CLK_TCK;
     private static final long SC_PAGE_SIZE;
-    private static final int cpuCoreCount;
     private Long activeThreadId;
     private final Function1<ResourceUsage, Unit> callback;
     private final Clock clock;
+    private static final int cpuCoreCount;
     private Thread thread;
     private final Object threadSync;
     private final TimeSpan timeSpan;
 
     /* JADX INFO: compiled from: DeviceResourceUsageMonitor.kt */
-    public static final /* data */ class ResourceUsage {
+    public final /* data */ class ResourceUsage {
         private final int cpuCoreCount;
         private final int cpuUsagePercent;
         private final long memoryRssBytes;
@@ -53,21 +53,6 @@ public final class DeviceResourceUsageMonitor {
             return resourceUsage.copy(i, j, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getCpuUsagePercent() {
-            return this.cpuUsagePercent;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getMemoryRssBytes() {
-            return this.memoryRssBytes;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getCpuCoreCount() {
-            return this.cpuCoreCount;
-        }
-
         public final ResourceUsage copy(int cpuUsagePercent, long memoryRssBytes, int cpuCoreCount) {
             return new ResourceUsage(cpuUsagePercent, memoryRssBytes, cpuCoreCount);
         }
@@ -83,12 +68,27 @@ public final class DeviceResourceUsageMonitor {
             return this.cpuUsagePercent == resourceUsage.cpuUsagePercent && this.memoryRssBytes == resourceUsage.memoryRssBytes && this.cpuCoreCount == resourceUsage.cpuCoreCount;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getCpuCoreCount() {
             return this.cpuCoreCount;
         }
 
+        public final int getCpuCoreCount() {
+            return this.cpuCoreCount;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getCpuUsagePercent() {
             return this.cpuUsagePercent;
+        }
+
+        public final int getCpuUsagePercent() {
+            return this.cpuUsagePercent;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getMemoryRssBytes() {
+            return this.memoryRssBytes;
         }
 
         public final long getMemoryRssBytes() {
@@ -160,6 +160,11 @@ public final class DeviceResourceUsageMonitor {
         this.threadSync = new Object();
     }
 
+    @AnyThread
+    public final void finalize() {
+        stop();
+    }
+
     private final void monitor() throws InterruptedException {
         ProcfsReader.Stat stat = null;
         Long lValueOf = null;
@@ -191,11 +196,6 @@ public final class DeviceResourceUsageMonitor {
                 stat = statFile;
             }
         }
-    }
-
-    @AnyThread
-    public final void finalize() {
-        stop();
     }
 
     @AnyThread

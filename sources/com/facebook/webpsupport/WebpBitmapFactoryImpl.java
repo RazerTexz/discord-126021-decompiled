@@ -28,30 +28,6 @@ public class WebpBitmapFactoryImpl implements InterfaceC1719b {
     /* JADX INFO: renamed from: b */
     public static InterfaceC1718a f19659b;
 
-    /* JADX INFO: renamed from: b */
-    public static byte[] m8735b(InputStream inputStream, BitmapFactory.Options options) {
-        byte[] bArr;
-        inputStream.mark(20);
-        if (options == null || (bArr = options.inTempStorage) == null || bArr.length < 20) {
-            bArr = new byte[20];
-        }
-        try {
-            inputStream.read(bArr, 0, 20);
-            inputStream.reset();
-            return bArr;
-        } catch (IOException unused) {
-            return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public static void m8736c(String str) {
-        InterfaceC1719b.a aVar = f19658a;
-        if (aVar != null) {
-            aVar.m1012a(str, "decoding_failure");
-        }
-    }
-
     @InterfaceC1680c
     private static Bitmap createBitmap(int i, int i2, BitmapFactory.Options options) {
         Bitmap bitmap;
@@ -216,6 +192,36 @@ public class WebpBitmapFactoryImpl implements InterfaceC1719b {
         return bitmapOriginalDecodeStream;
     }
 
+    /* JADX INFO: renamed from: b */
+    public static byte[] m8735b(InputStream inputStream, BitmapFactory.Options options) {
+        byte[] bArr;
+        inputStream.mark(20);
+        if (options == null || (bArr = options.inTempStorage) == null || bArr.length < 20) {
+            bArr = new byte[20];
+        }
+        try {
+            inputStream.read(bArr, 0, 20);
+            inputStream.reset();
+            return bArr;
+        } catch (IOException unused) {
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public static void m8736c(String str) {
+        InterfaceC1719b.a aVar = f19658a;
+        if (aVar != null) {
+            aVar.m1012a(str, "decoding_failure");
+        }
+    }
+
+    @Override // p007b.p109f.p115d.p128m.InterfaceC1719b
+    /* JADX INFO: renamed from: a */
+    public Bitmap mo1011a(FileDescriptor fileDescriptor, Rect rect, BitmapFactory.Options options) {
+        return hookDecodeFileDescriptor(fileDescriptor, null, options);
+    }
+
     @InterfaceC1680c
     private static native Bitmap nativeDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory.Options options, float f, byte[] bArr2);
 
@@ -290,12 +296,6 @@ public class WebpBitmapFactoryImpl implements InterfaceC1719b {
             return options.inPremultiplied;
         }
         return true;
-    }
-
-    @Override // p007b.p109f.p115d.p128m.InterfaceC1719b
-    /* JADX INFO: renamed from: a */
-    public Bitmap mo1011a(FileDescriptor fileDescriptor, Rect rect, BitmapFactory.Options options) {
-        return hookDecodeFileDescriptor(fileDescriptor, null, options);
     }
 
     @InterfaceC1680c

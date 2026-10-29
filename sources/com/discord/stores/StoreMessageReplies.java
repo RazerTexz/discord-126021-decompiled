@@ -31,7 +31,6 @@ import p658rx.Observable;
 /* JADX INFO: compiled from: StoreMessageReplies.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreMessageReplies extends StoreV2 {
-    private static final Map<Long, MessageState> NO_RESULTS = C12136h0.emptyMap();
     private final HashMap<Long, Set<Long>> channelMap;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
@@ -39,9 +38,27 @@ public final class StoreMessageReplies extends StoreV2 {
     private final MessageCache<Long, MessageState> repliedMessagesCache;
     private Map<Long, ? extends MessageState> repliedMessagesCacheSnapshot;
     private final StoreMessages storeMessages;
+    private static final Map<Long, MessageState> NO_RESULTS = C12136h0.emptyMap();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessageReplies$observeMessageReferencesForChannel$1 */
+    /* JADX INFO: compiled from: StoreMessageReplies.kt */
+    public final class C62201 extends AbstractC12240o implements Function0<Map<Long, ? extends MessageState>> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C62201(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends MessageState> invoke() {
+            return StoreMessageReplies.this.getCachedChannelMessages(this.$channelId);
+        }
+    }
 
     /* JADX INFO: compiled from: StoreMessageReplies.kt */
-    public static final class MessageCache<K, V> extends LinkedHashMap<K, V> {
+    public final class MessageCache<K, V> extends LinkedHashMap<K, V> {
         @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
         public final /* bridge */ Set<Map.Entry<K, V>> entrySet() {
             return getEntries();
@@ -85,10 +102,10 @@ public final class StoreMessageReplies extends StoreV2 {
     }
 
     /* JADX INFO: compiled from: StoreMessageReplies.kt */
-    public static abstract class MessageState {
+    public abstract class MessageState {
 
         /* JADX INFO: compiled from: StoreMessageReplies.kt */
-        public static final class Deleted extends MessageState {
+        public final class Deleted extends MessageState {
             public static final Deleted INSTANCE = new Deleted();
 
             private Deleted() {
@@ -97,7 +114,7 @@ public final class StoreMessageReplies extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMessageReplies.kt */
-        public static final /* data */ class Loaded extends MessageState {
+        public final /* data */ class Loaded extends MessageState {
             private final Message message;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -114,11 +131,6 @@ public final class StoreMessageReplies extends StoreV2 {
                 return loaded.copy(message);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Message getMessage() {
-                return this.message;
-            }
-
             public final Loaded copy(Message message) {
                 C12238m.checkNotNullParameter(message, "message");
                 return new Loaded(message);
@@ -129,6 +141,11 @@ public final class StoreMessageReplies extends StoreV2 {
                     return (other instanceof Loaded) && C12238m.areEqual(this.message, ((Loaded) other).message);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Message getMessage() {
+                return this.message;
             }
 
             public final Message getMessage() {
@@ -152,7 +169,7 @@ public final class StoreMessageReplies extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreMessageReplies.kt */
-        public static final class Unloaded extends MessageState {
+        public final class Unloaded extends MessageState {
             public static final Unloaded INSTANCE = new Unloaded();
 
             private Unloaded() {
@@ -165,23 +182,6 @@ public final class StoreMessageReplies extends StoreV2 {
 
         public /* synthetic */ MessageState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMessageReplies$observeMessageReferencesForChannel$1 */
-    /* JADX INFO: compiled from: StoreMessageReplies.kt */
-    public static final class C62201 extends AbstractC12240o implements Function0<Map<Long, ? extends MessageState>> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C62201(long j) {
-            super(0);
-            this.$channelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends MessageState> invoke() {
-            return StoreMessageReplies.this.getCachedChannelMessages(this.$channelId);
         }
     }
 
@@ -198,65 +198,13 @@ public final class StoreMessageReplies extends StoreV2 {
         return true;
     }
 
+    public final Map<Long, MessageState> getAllMessageReferences() {
+        return this.repliedMessagesCacheSnapshot;
+    }
+
     private final Map<Long, MessageState> getCachedChannelMessages(long channelId) {
         Map<Long, MessageState> map = (Map) this.repliedChannelMessagesCacheSnapshot.get(Long.valueOf(channelId));
         return map != null ? map : NO_RESULTS;
-    }
-
-    @StoreThread
-    private final boolean processMessage(com.discord.api.message.Message message) {
-        return processMessage(new Message(message));
-    }
-
-    private final void processReferencedMessage(Message referencedMessage) {
-        updateCache(referencedMessage.getId(), referencedMessage.getChannelId(), new MessageState.Loaded(referencedMessage));
-        Integer type = referencedMessage.getType();
-        if (type != null && type.intValue() == 19) {
-            processMessage(referencedMessage);
-        }
-    }
-
-    private final void snapShotAllMessages() {
-        this.repliedMessagesCacheSnapshot = new HashMap(this.repliedMessagesCache);
-    }
-
-    @StoreThread
-    private final void snapShotChannelMessages() {
-        HashMap<Long, Set<Long>> map = this.channelMap;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
-        Iterator<T> it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            Object key = entry.getKey();
-            Set set = (Set) entry.getValue();
-            LinkedHashMap linkedHashMap2 = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(set, 10)), 16));
-            for (Object obj : set) {
-                Object obj2 = (MessageState) this.repliedMessagesCache.get(Long.valueOf(((Number) obj).longValue()));
-                if (obj2 == null) {
-                    obj2 = MessageState.Unloaded.INSTANCE;
-                }
-                linkedHashMap2.put(obj, obj2);
-            }
-            linkedHashMap.put(key, linkedHashMap2);
-        }
-        this.repliedChannelMessagesCacheSnapshot = linkedHashMap;
-    }
-
-    @StoreThread
-    private final void updateCache(long messageId, long channelId, MessageState messageState) {
-        this.repliedMessagesCache.put(Long.valueOf(messageId), messageState);
-        HashMap<Long, Set<Long>> map = this.channelMap;
-        Long lValueOf = Long.valueOf(channelId);
-        Set of = C12146m0.setOf(Long.valueOf(messageId));
-        Set<Long> setEmptySet = this.channelMap.get(Long.valueOf(channelId));
-        if (setEmptySet == null) {
-            setEmptySet = C12148n0.emptySet();
-        }
-        map.put(lValueOf, C12163u.union(of, setEmptySet));
-    }
-
-    public final Map<Long, MessageState> getAllMessageReferences() {
-        return this.repliedMessagesCacheSnapshot;
     }
 
     @StoreThread
@@ -319,11 +267,63 @@ public final class StoreMessageReplies extends StoreV2 {
         return observableM11112r;
     }
 
+    @StoreThread
+    private final boolean processMessage(com.discord.api.message.Message message) {
+        return processMessage(new Message(message));
+    }
+
+    private final void processReferencedMessage(Message referencedMessage) {
+        updateCache(referencedMessage.getId(), referencedMessage.getChannelId(), new MessageState.Loaded(referencedMessage));
+        Integer type = referencedMessage.getType();
+        if (type != null && type.intValue() == 19) {
+            processMessage(referencedMessage);
+        }
+    }
+
+    private final void snapShotAllMessages() {
+        this.repliedMessagesCacheSnapshot = new HashMap(this.repliedMessagesCache);
+    }
+
+    @StoreThread
+    private final void snapShotChannelMessages() {
+        HashMap<Long, Set<Long>> map = this.channelMap;
+        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
+        Iterator<T> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            Set set = (Set) entry.getValue();
+            LinkedHashMap linkedHashMap2 = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(set, 10)), 16));
+            for (Object obj : set) {
+                Object obj2 = (MessageState) this.repliedMessagesCache.get(Long.valueOf(((Number) obj).longValue()));
+                if (obj2 == null) {
+                    obj2 = MessageState.Unloaded.INSTANCE;
+                }
+                linkedHashMap2.put(obj, obj2);
+            }
+            linkedHashMap.put(key, linkedHashMap2);
+        }
+        this.repliedChannelMessagesCacheSnapshot = linkedHashMap;
+    }
+
     @Override // com.discord.stores.StoreV2
     public void snapshotData() {
         super.snapshotData();
         snapShotChannelMessages();
         snapShotAllMessages();
+    }
+
+    @StoreThread
+    private final void updateCache(long messageId, long channelId, MessageState messageState) {
+        this.repliedMessagesCache.put(Long.valueOf(messageId), messageState);
+        HashMap<Long, Set<Long>> map = this.channelMap;
+        Long lValueOf = Long.valueOf(channelId);
+        Set of = C12146m0.setOf(Long.valueOf(messageId));
+        Set<Long> setEmptySet = this.channelMap.get(Long.valueOf(channelId));
+        if (setEmptySet == null) {
+            setEmptySet = C12148n0.emptySet();
+        }
+        map.put(lValueOf, C12163u.union(of, setEmptySet));
     }
 
     public StoreMessageReplies(Dispatcher dispatcher, StoreMessages storeMessages, ObservationDeck observationDeck) {

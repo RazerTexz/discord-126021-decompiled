@@ -39,7 +39,7 @@ public class ChangeImageTransform extends Transition {
     };
 
     /* JADX INFO: renamed from: androidx.transition.ChangeImageTransform$3 */
-    public static /* synthetic */ class C06473 {
+    public /* synthetic */ class C06473 {
         public static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType;
 
         static {
@@ -57,6 +57,16 @@ public class ChangeImageTransform extends Transition {
     }
 
     public ChangeImageTransform() {
+    }
+
+    @Override // androidx.transition.Transition
+    public void captureEndValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
+    @Override // androidx.transition.Transition
+    public void captureStartValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
     }
 
     private void captureValues(TransitionValues transitionValues) {
@@ -104,35 +114,6 @@ public class ChangeImageTransform extends Transition {
         return new Matrix(imageView.getImageMatrix());
     }
 
-    private ObjectAnimator createMatrixAnimator(ImageView imageView, Matrix matrix, Matrix matrix2) {
-        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils.MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
-    }
-
-    @NonNull
-    private ObjectAnimator createNullAnimator(@NonNull ImageView imageView) {
-        Property<ImageView, Matrix> property = ANIMATED_TRANSFORM_PROPERTY;
-        TypeEvaluator<Matrix> typeEvaluator = NULL_MATRIX_EVALUATOR;
-        Matrix matrix = MatrixUtils.IDENTITY_MATRIX;
-        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) property, (TypeEvaluator) typeEvaluator, (Object[]) new Matrix[]{matrix, matrix});
-    }
-
-    private static Matrix fitXYMatrix(ImageView imageView) {
-        Drawable drawable = imageView.getDrawable();
-        Matrix matrix = new Matrix();
-        matrix.postScale(imageView.getWidth() / drawable.getIntrinsicWidth(), imageView.getHeight() / drawable.getIntrinsicHeight());
-        return matrix;
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureEndValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
-    }
-
-    @Override // androidx.transition.Transition
-    public void captureStartValues(@NonNull TransitionValues transitionValues) {
-        captureValues(transitionValues);
-    }
-
     @Override // androidx.transition.Transition
     public Animator createAnimator(@NonNull ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
         if (transitionValues == null || transitionValues2 == null) {
@@ -164,6 +145,25 @@ public class ChangeImageTransform extends Transition {
         }
         ANIMATED_TRANSFORM_PROPERTY.set(imageView, matrix);
         return createMatrixAnimator(imageView, matrix, matrix2);
+    }
+
+    private ObjectAnimator createMatrixAnimator(ImageView imageView, Matrix matrix, Matrix matrix2) {
+        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils.MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
+    }
+
+    @NonNull
+    private ObjectAnimator createNullAnimator(@NonNull ImageView imageView) {
+        Property<ImageView, Matrix> property = ANIMATED_TRANSFORM_PROPERTY;
+        TypeEvaluator<Matrix> typeEvaluator = NULL_MATRIX_EVALUATOR;
+        Matrix matrix = MatrixUtils.IDENTITY_MATRIX;
+        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) property, (TypeEvaluator) typeEvaluator, (Object[]) new Matrix[]{matrix, matrix});
+    }
+
+    private static Matrix fitXYMatrix(ImageView imageView) {
+        Drawable drawable = imageView.getDrawable();
+        Matrix matrix = new Matrix();
+        matrix.postScale(imageView.getWidth() / drawable.getIntrinsicWidth(), imageView.getHeight() / drawable.getIntrinsicHeight());
+        return matrix;
     }
 
     @Override // androidx.transition.Transition

@@ -38,6 +38,18 @@ public final /* data */ class GuildSubscriptions {
         this.serializedRanges = C12083g.lazy(new GuildSubscriptions$serializedRanges$2(this));
     }
 
+    public final Map<Long, List<IntRange>> component1() {
+        return this.channels;
+    }
+
+    public final Set<Long> component4() {
+        return this.members;
+    }
+
+    public final List<Long> component6() {
+        return this.threadMemberLists;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildSubscriptions copy$default(GuildSubscriptions guildSubscriptions, Map map, Boolean bool, Boolean bool2, Set set, Boolean bool3, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -65,33 +77,6 @@ public final /* data */ class GuildSubscriptions {
         return guildSubscriptions.copy(map, bool4, bool5, set2, bool6, list);
     }
 
-    public final Map<Long, List<IntRange>> component1() {
-        return this.channels;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Boolean getTyping() {
-        return this.typing;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Boolean getActivities() {
-        return this.activities;
-    }
-
-    public final Set<Long> component4() {
-        return this.members;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Boolean getThreads() {
-        return this.threads;
-    }
-
-    public final List<Long> component6() {
-        return this.threadMemberLists;
-    }
-
     public final GuildSubscriptions copy(Map<Long, ? extends List<IntRange>> channels, Boolean typing, Boolean activities, Set<Long> members, Boolean threads, List<Long> threadMemberLists) {
         return new GuildSubscriptions(channels, typing, activities, members, threads, threadMemberLists);
     }
@@ -105,6 +90,11 @@ public final /* data */ class GuildSubscriptions {
         }
         GuildSubscriptions guildSubscriptions = (GuildSubscriptions) other;
         return C12238m.areEqual(this.channels, guildSubscriptions.channels) && C12238m.areEqual(this.typing, guildSubscriptions.typing) && C12238m.areEqual(this.activities, guildSubscriptions.activities) && C12238m.areEqual(this.members, guildSubscriptions.members) && C12238m.areEqual(this.threads, guildSubscriptions.threads) && C12238m.areEqual(this.threadMemberLists, guildSubscriptions.threadMemberLists);
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Boolean getActivities() {
+        return this.activities;
     }
 
     public final Boolean getActivities() {
@@ -127,8 +117,18 @@ public final /* data */ class GuildSubscriptions {
         return this.threadMemberLists;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final Boolean getThreads() {
         return this.threads;
+    }
+
+    public final Boolean getThreads() {
+        return this.threads;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Boolean getTyping() {
+        return this.typing;
     }
 
     public final Boolean getTyping() {

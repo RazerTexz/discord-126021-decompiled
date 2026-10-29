@@ -13,12 +13,6 @@ public class C1546c extends AbstractC1549f<Float> {
         super(list);
     }
 
-    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a
-    /* JADX INFO: renamed from: f */
-    public Object mo728f(C1501a c1501a, float f) {
-        return Float.valueOf(m740k(c1501a, f));
-    }
-
     /* JADX INFO: renamed from: j */
     public float m739j() {
         return m740k(m723a(), m725c());
@@ -52,5 +46,11 @@ public class C1546c extends AbstractC1549f<Float> {
             c1501a.f2323h = c1501a.f2318c.floatValue();
         }
         return C1498f.m655e(f3, c1501a.f2323h, f);
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a
+    /* JADX INFO: renamed from: f */
+    public Object mo728f(C1501a c1501a, float f) {
+        return Float.valueOf(m740k(c1501a, f));
     }
 }

@@ -35,10 +35,170 @@ public class SwipeDismissBehavior<V extends View> extends CoordinatorLayout.Beha
     public float alphaEndSwipeDistance = 0.5f;
     private final ViewDragHelper.Callback dragCallback = new C10831a();
 
+    /* JADX INFO: renamed from: com.google.android.material.behavior.SwipeDismissBehavior$b */
+    public class C10832b implements AccessibilityViewCommand {
+        public C10832b() {
+        }
+
+        @Override // androidx.core.view.accessibility.AccessibilityViewCommand
+        public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
+            boolean z2 = false;
+            if (!SwipeDismissBehavior.this.canSwipeDismissView(view)) {
+                return false;
+            }
+            boolean z3 = ViewCompat.getLayoutDirection(view) == 1;
+            int i = SwipeDismissBehavior.this.swipeDirection;
+            if ((i == 0 && z3) || (i == 1 && !z3)) {
+                z2 = true;
+            }
+            int width = view.getWidth();
+            if (z2) {
+                width = -width;
+            }
+            ViewCompat.offsetLeftAndRight(view, width);
+            view.setAlpha(0.0f);
+            OnDismissListener onDismissListener = SwipeDismissBehavior.this.listener;
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(view);
+            }
+            return true;
+        }
+    }
+
     public interface OnDismissListener {
         void onDismiss(View view);
 
         void onDragStateChanged(int i);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.behavior.SwipeDismissBehavior$c */
+    public class RunnableC10833c implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final View f20893j;
+
+        /* JADX INFO: renamed from: k */
+        public final boolean f20894k;
+
+        public RunnableC10833c(View view, boolean z2) {
+            this.f20893j = view;
+            this.f20894k = z2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            OnDismissListener onDismissListener;
+            ViewDragHelper viewDragHelper = SwipeDismissBehavior.this.viewDragHelper;
+            if (viewDragHelper != null && viewDragHelper.continueSettling(true)) {
+                ViewCompat.postOnAnimation(this.f20893j, this);
+            } else {
+                if (!this.f20894k || (onDismissListener = SwipeDismissBehavior.this.listener) == null) {
+                    return;
+                }
+                onDismissListener.onDismiss(this.f20893j);
+            }
+        }
+    }
+
+    public boolean canSwipeDismissView(@NonNull View view) {
+        return true;
+    }
+
+    public static float clamp(float f, float f2, float f3) {
+        return Math.min(Math.max(f, f2), f3);
+    }
+
+    private void ensureViewDragHelper(ViewGroup viewGroup) {
+        if (this.viewDragHelper == null) {
+            this.viewDragHelper = this.sensitivitySet ? ViewDragHelper.create(viewGroup, this.sensitivity, this.dragCallback) : ViewDragHelper.create(viewGroup, this.dragCallback);
+        }
+    }
+
+    public static float fraction(float f, float f2, float f3) {
+        return (f3 - f) / (f2 - f);
+    }
+
+    public int getDragState() {
+        ViewDragHelper viewDragHelper = this.viewDragHelper;
+        if (viewDragHelper != null) {
+            return viewDragHelper.getViewDragState();
+        }
+        return 0;
+    }
+
+    @Nullable
+    @VisibleForTesting
+    public OnDismissListener getListener() {
+        return this.listener;
+    }
+
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
+        boolean zIsPointInChildBounds = this.interceptingEvents;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            zIsPointInChildBounds = coordinatorLayout.isPointInChildBounds(v, (int) motionEvent.getX(), (int) motionEvent.getY());
+            this.interceptingEvents = zIsPointInChildBounds;
+        } else if (actionMasked == 1 || actionMasked == 3) {
+            this.interceptingEvents = false;
+        }
+        if (!zIsPointInChildBounds) {
+            return false;
+        }
+        ensureViewDragHelper(coordinatorLayout);
+        return this.viewDragHelper.shouldInterceptTouchEvent(motionEvent);
+    }
+
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+    public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, int i) {
+        boolean zOnLayoutChild = super.onLayoutChild(coordinatorLayout, v, i);
+        if (ViewCompat.getImportantForAccessibility(v) == 0) {
+            ViewCompat.setImportantForAccessibility(v, 1);
+            updateAccessibilityActions(v);
+        }
+        return zOnLayoutChild;
+    }
+
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+    public boolean onTouchEvent(CoordinatorLayout coordinatorLayout, V v, MotionEvent motionEvent) {
+        ViewDragHelper viewDragHelper = this.viewDragHelper;
+        if (viewDragHelper == null) {
+            return false;
+        }
+        viewDragHelper.processTouchEvent(motionEvent);
+        return true;
+    }
+
+    public void setDragDismissDistance(float f) {
+        this.dragDismissThreshold = clamp(0.0f, f, 1.0f);
+    }
+
+    public void setEndAlphaSwipeDistance(float f) {
+        this.alphaEndSwipeDistance = clamp(0.0f, f, 1.0f);
+    }
+
+    public void setListener(@Nullable OnDismissListener onDismissListener) {
+        this.listener = onDismissListener;
+    }
+
+    public void setSensitivity(float f) {
+        this.sensitivity = f;
+        this.sensitivitySet = true;
+    }
+
+    public void setStartAlphaSwipeDistance(float f) {
+        this.alphaStartSwipeDistance = clamp(0.0f, f, 1.0f);
+    }
+
+    public void setSwipeDirection(int i) {
+        this.swipeDirection = i;
+    }
+
+    private void updateAccessibilityActions(View view) {
+        ViewCompat.removeAccessibilityAction(view, 1048576);
+        if (canSwipeDismissView(view)) {
+            ViewCompat.replaceAccessibilityAction(view, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_DISMISS, null, new C10832b());
+        }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.behavior.SwipeDismissBehavior$a */
@@ -173,166 +333,6 @@ public class SwipeDismissBehavior<V extends View> extends CoordinatorLayout.Beha
             int i2 = this.f20890b;
             return (i2 == -1 || i2 == i) && SwipeDismissBehavior.this.canSwipeDismissView(view);
         }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.behavior.SwipeDismissBehavior$b */
-    public class C10832b implements AccessibilityViewCommand {
-        public C10832b() {
-        }
-
-        @Override // androidx.core.view.accessibility.AccessibilityViewCommand
-        public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
-            boolean z2 = false;
-            if (!SwipeDismissBehavior.this.canSwipeDismissView(view)) {
-                return false;
-            }
-            boolean z3 = ViewCompat.getLayoutDirection(view) == 1;
-            int i = SwipeDismissBehavior.this.swipeDirection;
-            if ((i == 0 && z3) || (i == 1 && !z3)) {
-                z2 = true;
-            }
-            int width = view.getWidth();
-            if (z2) {
-                width = -width;
-            }
-            ViewCompat.offsetLeftAndRight(view, width);
-            view.setAlpha(0.0f);
-            OnDismissListener onDismissListener = SwipeDismissBehavior.this.listener;
-            if (onDismissListener != null) {
-                onDismissListener.onDismiss(view);
-            }
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.behavior.SwipeDismissBehavior$c */
-    public class RunnableC10833c implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final View f20893j;
-
-        /* JADX INFO: renamed from: k */
-        public final boolean f20894k;
-
-        public RunnableC10833c(View view, boolean z2) {
-            this.f20893j = view;
-            this.f20894k = z2;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            OnDismissListener onDismissListener;
-            ViewDragHelper viewDragHelper = SwipeDismissBehavior.this.viewDragHelper;
-            if (viewDragHelper != null && viewDragHelper.continueSettling(true)) {
-                ViewCompat.postOnAnimation(this.f20893j, this);
-            } else {
-                if (!this.f20894k || (onDismissListener = SwipeDismissBehavior.this.listener) == null) {
-                    return;
-                }
-                onDismissListener.onDismiss(this.f20893j);
-            }
-        }
-    }
-
-    public static float clamp(float f, float f2, float f3) {
-        return Math.min(Math.max(f, f2), f3);
-    }
-
-    private void ensureViewDragHelper(ViewGroup viewGroup) {
-        if (this.viewDragHelper == null) {
-            this.viewDragHelper = this.sensitivitySet ? ViewDragHelper.create(viewGroup, this.sensitivity, this.dragCallback) : ViewDragHelper.create(viewGroup, this.dragCallback);
-        }
-    }
-
-    public static float fraction(float f, float f2, float f3) {
-        return (f3 - f) / (f2 - f);
-    }
-
-    private void updateAccessibilityActions(View view) {
-        ViewCompat.removeAccessibilityAction(view, 1048576);
-        if (canSwipeDismissView(view)) {
-            ViewCompat.replaceAccessibilityAction(view, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_DISMISS, null, new C10832b());
-        }
-    }
-
-    public boolean canSwipeDismissView(@NonNull View view) {
-        return true;
-    }
-
-    public int getDragState() {
-        ViewDragHelper viewDragHelper = this.viewDragHelper;
-        if (viewDragHelper != null) {
-            return viewDragHelper.getViewDragState();
-        }
-        return 0;
-    }
-
-    @Nullable
-    @VisibleForTesting
-    public OnDismissListener getListener() {
-        return this.listener;
-    }
-
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
-        boolean zIsPointInChildBounds = this.interceptingEvents;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            zIsPointInChildBounds = coordinatorLayout.isPointInChildBounds(v, (int) motionEvent.getX(), (int) motionEvent.getY());
-            this.interceptingEvents = zIsPointInChildBounds;
-        } else if (actionMasked == 1 || actionMasked == 3) {
-            this.interceptingEvents = false;
-        }
-        if (!zIsPointInChildBounds) {
-            return false;
-        }
-        ensureViewDragHelper(coordinatorLayout);
-        return this.viewDragHelper.shouldInterceptTouchEvent(motionEvent);
-    }
-
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-    public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, int i) {
-        boolean zOnLayoutChild = super.onLayoutChild(coordinatorLayout, v, i);
-        if (ViewCompat.getImportantForAccessibility(v) == 0) {
-            ViewCompat.setImportantForAccessibility(v, 1);
-            updateAccessibilityActions(v);
-        }
-        return zOnLayoutChild;
-    }
-
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-    public boolean onTouchEvent(CoordinatorLayout coordinatorLayout, V v, MotionEvent motionEvent) {
-        ViewDragHelper viewDragHelper = this.viewDragHelper;
-        if (viewDragHelper == null) {
-            return false;
-        }
-        viewDragHelper.processTouchEvent(motionEvent);
-        return true;
-    }
-
-    public void setDragDismissDistance(float f) {
-        this.dragDismissThreshold = clamp(0.0f, f, 1.0f);
-    }
-
-    public void setEndAlphaSwipeDistance(float f) {
-        this.alphaEndSwipeDistance = clamp(0.0f, f, 1.0f);
-    }
-
-    public void setListener(@Nullable OnDismissListener onDismissListener) {
-        this.listener = onDismissListener;
-    }
-
-    public void setSensitivity(float f) {
-        this.sensitivity = f;
-        this.sensitivitySet = true;
-    }
-
-    public void setStartAlphaSwipeDistance(float f) {
-        this.alphaStartSwipeDistance = clamp(0.0f, f, 1.0f);
-    }
-
-    public void setSwipeDirection(int i) {
-        this.swipeDirection = i;
     }
 
     public static int clamp(int i, int i2, int i3) {

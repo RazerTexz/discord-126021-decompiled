@@ -15,7 +15,7 @@ public class RtpParameters {
     private final Rtcp rtcp;
     public final String transactionId;
 
-    public static class Codec {
+    public class Codec {
         public Integer clockRate;
         public MediaStreamTrack.MediaType kind;
         public String name;
@@ -76,7 +76,7 @@ public class RtpParameters {
         }
     }
 
-    public static class HeaderExtension {
+    public class HeaderExtension {
         private final boolean encrypted;
 
         /* JADX INFO: renamed from: id */
@@ -106,7 +106,7 @@ public class RtpParameters {
         }
     }
 
-    public static class Rtcp {
+    public class Rtcp {
         private final String cname;
         private final boolean reducedSize;
 
@@ -167,7 +167,7 @@ public class RtpParameters {
         return this.transactionId;
     }
 
-    public static class Encoding {
+    public class Encoding {
         public boolean active;
         public double bitratePriority;
 

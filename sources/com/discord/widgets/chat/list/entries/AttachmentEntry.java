@@ -35,55 +35,7 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
         this.autoPlayGifs = z4;
         this.isThreadStarterMessage = z5;
         this.type = 28;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(message.getId());
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getEmbedIndex() {
-        return this.embedIndex;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StoreMessageState.State getMessageState() {
-        return this.messageState;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final MessageAttachment getAttachment() {
-        return this.attachment;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getIsBlockedExpanded() {
-        return this.isBlockedExpanded;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getAllowAnimatedEmojis() {
-        return this.allowAnimatedEmojis;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getAutoPlayGifs() {
-        return this.autoPlayGifs;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsThreadStarterMessage() {
-        return this.isThreadStarterMessage;
+        this.key = "" + getType() + message.getId();
     }
 
     public final AttachmentEntry copy(int embedIndex, long guildId, Message message, StoreMessageState.State messageState, MessageAttachment attachment, boolean isBlockedExpanded, boolean allowAnimatedEmojis, boolean autoPlayGifs, boolean isThreadStarterMessage) {
@@ -103,24 +55,59 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
         return this.embedIndex == attachmentEntry.embedIndex && this.guildId == attachmentEntry.guildId && C12238m.areEqual(this.message, attachmentEntry.message) && C12238m.areEqual(this.messageState, attachmentEntry.messageState) && C12238m.areEqual(this.attachment, attachmentEntry.attachment) && this.isBlockedExpanded == attachmentEntry.isBlockedExpanded && this.allowAnimatedEmojis == attachmentEntry.allowAnimatedEmojis && this.autoPlayGifs == attachmentEntry.autoPlayGifs && this.isThreadStarterMessage == attachmentEntry.isThreadStarterMessage;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getAllowAnimatedEmojis() {
         return this.allowAnimatedEmojis;
+    }
+
+    public final boolean getAllowAnimatedEmojis() {
+        return this.allowAnimatedEmojis;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final MessageAttachment getAttachment() {
+        return this.attachment;
     }
 
     public final MessageAttachment getAttachment() {
         return this.attachment;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final boolean getAutoPlayGifs() {
         return this.autoPlayGifs;
+    }
+
+    public final boolean getAutoPlayGifs() {
+        return this.autoPlayGifs;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getEmbedIndex() {
+        return this.embedIndex;
     }
 
     public final int getEmbedIndex() {
         return this.embedIndex;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final boolean getIsBlockedExpanded() {
+        return this.isBlockedExpanded;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsThreadStarterMessage() {
+        return this.isThreadStarterMessage;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -128,8 +115,18 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Message getMessage() {
         return this.message;
+    }
+
+    public final Message getMessage() {
+        return this.message;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final StoreMessageState.State getMessageState() {
+        return this.messageState;
     }
 
     public final StoreMessageState.State getMessageState() {

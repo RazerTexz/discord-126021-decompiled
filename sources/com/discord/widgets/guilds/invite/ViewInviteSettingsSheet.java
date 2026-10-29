@@ -53,7 +53,7 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.ViewInviteSettingsSheet$1 */
     /* JADX INFO: compiled from: ViewInviteSettingsSheet.kt */
-    public static final class C86391 extends AbstractC12240o implements Function1<Integer, CharSequence> {
+    public final class C86391 extends AbstractC12240o implements Function1<Integer, CharSequence> {
         public C86391() {
             super(1);
         }
@@ -72,7 +72,7 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.ViewInviteSettingsSheet$2 */
     /* JADX INFO: compiled from: ViewInviteSettingsSheet.kt */
-    public static final /* synthetic */ class C86402 extends C12236k implements Function1<Integer, String> {
+    public final /* synthetic */ class C86402 extends C12236k implements Function1<Integer, String> {
         public C86402(ViewInviteSettingsSheet viewInviteSettingsSheet) {
             super(1, viewInviteSettingsSheet, ViewInviteSettingsSheet.class, "getMaxUsesString", "getMaxUsesString(I)Ljava/lang/String;", 0);
         }
@@ -88,28 +88,11 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
     }
 
     /* JADX INFO: compiled from: ViewInviteSettingsSheet.kt */
-    public static final class ChannelsSpinnerAdapter extends ArrayAdapter<Channel> {
+    public final class ChannelsSpinnerAdapter extends ArrayAdapter<Channel> {
         private Channel[] channels;
 
         public /* synthetic */ ChannelsSpinnerAdapter(Context context, int i, Channel[] channelArr, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this(context, i, (i2 & 4) != 0 ? new Channel[0] : channelArr);
-        }
-
-        private final View getItemView(int position, int layoutId, View convertView, boolean dropDownMode) {
-            if (convertView == null) {
-                convertView = View.inflate(getContext(), layoutId, null);
-            }
-            C12238m.checkNotNullExpressionValue(convertView, "view");
-            setupViews(convertView, position, dropDownMode);
-            return convertView;
-        }
-
-        private final void setupViews(View convertView, int position, boolean dropDownMode) {
-            TextView textView = (TextView) convertView.findViewById(new ViewInviteSettingsSheet$ChannelsSpinnerAdapter$setupViews$1(dropDownMode).invoke2());
-            C12238m.checkNotNullExpressionValue(textView, "label");
-            String str = String.format("#%s", Arrays.copyOf(new Object[]{ChannelUtils.m7679c(this.channels[position])}, 1));
-            C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
-            textView.setText(str);
         }
 
         @Override // android.widget.ArrayAdapter, android.widget.Adapter
@@ -123,6 +106,15 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
             return getItemView(position, C5419R.layout.view_invite_settngs_channel_spinner_item_open, convertView, true);
         }
 
+        private final View getItemView(int position, int layoutId, View convertView, boolean dropDownMode) {
+            if (convertView == null) {
+                convertView = View.inflate(getContext(), layoutId, null);
+            }
+            C12238m.checkNotNullExpressionValue(convertView, "view");
+            setupViews(convertView, position, dropDownMode);
+            return convertView;
+        }
+
         @Override // android.widget.ArrayAdapter, android.widget.Adapter
         public View getView(int position, View convertView, ViewGroup parent) {
             C12238m.checkNotNullParameter(parent, "parent");
@@ -133,6 +125,14 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
             C12238m.checkNotNullParameter(newData, "newData");
             this.channels = newData;
             notifyDataSetChanged();
+        }
+
+        private final void setupViews(View convertView, int position, boolean dropDownMode) {
+            TextView textView = (TextView) convertView.findViewById(new ViewInviteSettingsSheet$ChannelsSpinnerAdapter$setupViews$1(dropDownMode).invoke2());
+            C12238m.checkNotNullExpressionValue(textView, "label");
+            String str = String.format("#%s", Arrays.copyOf(new Object[]{ChannelUtils.m7679c(this.channels[position])}, 1));
+            C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
+            textView.setText(str);
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -178,57 +178,6 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
         C12238m.checkNotNullExpressionValue(iArr2, "ModelInvite.Settings.MAX_USES_ARRAY");
         createHorizontalCheckableButtons(radioGroup2, iArr2, new C86402(this));
         setOnItemSelected();
-    }
-
-    @MainThread
-    private final void createHorizontalCheckableButtons(RadioGroup radioGroup, int[] valueSet, Function1<? super Integer, ? extends CharSequence> textFactory) {
-        if (radioGroup.getChildCount() > 0) {
-            return;
-        }
-        boolean z2 = false;
-        for (int i : valueSet) {
-            View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.view_radio_button, (ViewGroup) radioGroup, false);
-            Objects.requireNonNull(viewInflate, "rootView");
-            RadioButton radioButton = (RadioButton) viewInflate;
-            C12238m.checkNotNullExpressionValue(new C0939d3(radioButton), "ViewRadioButtonBinding.i…text), radioGroup, false)");
-            C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
-            radioButton.setId(i);
-            C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
-            radioButton.setText(textFactory.invoke(Integer.valueOf(i)));
-            if (!z2) {
-                C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
-                ViewGroup.LayoutParams layoutParams = radioButton.getLayoutParams();
-                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.RadioGroup.LayoutParams");
-                RadioGroup.LayoutParams layoutParams2 = (RadioGroup.LayoutParams) layoutParams;
-                layoutParams2.leftMargin = DimenUtils.dpToPixels(16);
-                C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
-                radioButton.setLayoutParams(layoutParams2);
-                z2 = true;
-            }
-            radioGroup.addView(radioButton);
-        }
-    }
-
-    private final String getMaxUsesString(int numUses) {
-        return numUses != 0 ? String.valueOf(numUses) : "∞";
-    }
-
-    private final void setOnItemSelected() {
-        Spinner spinner = this.binding.f15453b;
-        C12238m.checkNotNullExpressionValue(spinner, "binding.guildInviteChannelSpinner");
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.guilds.invite.ViewInviteSettingsSheet.setOnItemSelected.1
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
-                C12238m.checkNotNullParameter(parent, "parent");
-                C12238m.checkNotNullParameter(view, "view");
-                ViewInviteSettingsSheet.this.getViewModel().selectChannel(ViewInviteSettingsSheet.this.channelsSpinnerAdapter.getItem(position).getId());
-            }
-
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onNothingSelected(AdapterView<?> parent) {
-                C12238m.checkNotNullParameter(parent, "parent");
-            }
-        });
     }
 
     public final void configureUi(final WidgetInviteModel data) {
@@ -362,6 +311,39 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
         }
     }
 
+    @MainThread
+    private final void createHorizontalCheckableButtons(RadioGroup radioGroup, int[] valueSet, Function1<? super Integer, ? extends CharSequence> textFactory) {
+        if (radioGroup.getChildCount() > 0) {
+            return;
+        }
+        boolean z2 = false;
+        for (int i : valueSet) {
+            View viewInflate = LayoutInflater.from(getContext()).inflate(C5419R.layout.view_radio_button, (ViewGroup) radioGroup, false);
+            Objects.requireNonNull(viewInflate, "rootView");
+            RadioButton radioButton = (RadioButton) viewInflate;
+            C12238m.checkNotNullExpressionValue(new C0939d3(radioButton), "ViewRadioButtonBinding.i…text), radioGroup, false)");
+            C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
+            radioButton.setId(i);
+            C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
+            radioButton.setText(textFactory.invoke(Integer.valueOf(i)));
+            if (!z2) {
+                C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
+                ViewGroup.LayoutParams layoutParams = radioButton.getLayoutParams();
+                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.RadioGroup.LayoutParams");
+                RadioGroup.LayoutParams layoutParams2 = (RadioGroup.LayoutParams) layoutParams;
+                layoutParams2.leftMargin = DimenUtils.dpToPixels(16);
+                C12238m.checkNotNullExpressionValue(radioButton, "binding.root");
+                radioButton.setLayoutParams(layoutParams2);
+                z2 = true;
+            }
+            radioGroup.addView(radioButton);
+        }
+    }
+
+    private final String getMaxUsesString(int numUses) {
+        return numUses != 0 ? String.valueOf(numUses) : "∞";
+    }
+
     public final Function0<Unit> getOnGenerateLinkListener() {
         return this.onGenerateLinkListener;
     }
@@ -377,6 +359,24 @@ public final class ViewInviteSettingsSheet extends NestedScrollView {
     public final void setOnGenerateLinkListener(Function0<Unit> function0) {
         C12238m.checkNotNullParameter(function0, "<set-?>");
         this.onGenerateLinkListener = function0;
+    }
+
+    private final void setOnItemSelected() {
+        Spinner spinner = this.binding.f15453b;
+        C12238m.checkNotNullExpressionValue(spinner, "binding.guildInviteChannelSpinner");
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.guilds.invite.ViewInviteSettingsSheet.setOnItemSelected.1
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
+                C12238m.checkNotNullParameter(parent, "parent");
+                C12238m.checkNotNullParameter(view, "view");
+                ViewInviteSettingsSheet.this.getViewModel().selectChannel(ViewInviteSettingsSheet.this.channelsSpinnerAdapter.getItem(position).getId());
+            }
+
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onNothingSelected(AdapterView<?> parent) {
+                C12238m.checkNotNullParameter(parent, "parent");
+            }
+        });
     }
 
     public final void setViewModel(WidgetGuildInviteShareViewModel widgetGuildInviteShareViewModel) {

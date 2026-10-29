@@ -12,11 +12,6 @@ public final /* data */ class GuildScheduledEventMeUser {
     private final User user;
     private final long userId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildScheduledEventId() {
-        return this.guildScheduledEventId;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,6 +21,11 @@ public final /* data */ class GuildScheduledEventMeUser {
         }
         GuildScheduledEventMeUser guildScheduledEventMeUser = (GuildScheduledEventMeUser) other;
         return this.userId == guildScheduledEventMeUser.userId && this.guildScheduledEventId == guildScheduledEventMeUser.guildScheduledEventId && C12238m.areEqual(this.user, guildScheduledEventMeUser.user) && C12238m.areEqual(this.guildScheduledEvent, guildScheduledEventMeUser.guildScheduledEvent);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildScheduledEventId() {
+        return this.guildScheduledEventId;
     }
 
     public int hashCode() {

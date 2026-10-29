@@ -101,24 +101,6 @@ public final /* data */ class TrackOpenModal implements AnalyticsSchema, TrackBa
         this.analyticsSchemaTypeName = "open_modal";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -128,6 +110,18 @@ public final /* data */ class TrackOpenModal implements AnalyticsSchema, TrackBa
         }
         TrackOpenModal trackOpenModal = (TrackOpenModal) other;
         return C12238m.areEqual(this.source, trackOpenModal.source) && C12238m.areEqual(this.type, trackOpenModal.type) && C12238m.areEqual(this.otherUserId, trackOpenModal.otherUserId) && C12238m.areEqual(this.applicationId, trackOpenModal.applicationId) && C12238m.areEqual(this.applicationName, trackOpenModal.applicationName) && C12238m.areEqual(this.isFriend, trackOpenModal.isFriend) && C12238m.areEqual(this.hasImages, trackOpenModal.hasImages) && C12238m.areEqual(this.partyMax, trackOpenModal.partyMax) && C12238m.areEqual(this.partyId, trackOpenModal.partyId) && C12238m.areEqual(this.partyPlatform, trackOpenModal.partyPlatform) && C12238m.areEqual(this.gameId, trackOpenModal.gameId) && C12238m.areEqual(this.gameName, trackOpenModal.gameName) && C12238m.areEqual(this.gamePlatform, trackOpenModal.gamePlatform) && C12238m.areEqual(this.skuId, trackOpenModal.skuId) && C12238m.areEqual(this.deviceName, trackOpenModal.deviceName) && C12238m.areEqual(this.profileUserStatus, trackOpenModal.profileUserStatus) && C12238m.areEqual(this.loadId, trackOpenModal.loadId) && C12238m.areEqual(this.numGuildPermissions, trackOpenModal.numGuildPermissions) && C12238m.areEqual(this.messageContentLength, trackOpenModal.messageContentLength) && C12238m.areEqual(this.promotionId, trackOpenModal.promotionId) && C12238m.areEqual(this.profileHasNitroCustomization, trackOpenModal.profileHasNitroCustomization) && C12238m.areEqual(this.guildEventsCount, trackOpenModal.guildEventsCount) && C12238m.areEqual(this.isAdminUser, trackOpenModal.isAdminUser);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -177,6 +171,12 @@ public final /* data */ class TrackOpenModal implements AnalyticsSchema, TrackBa
         int iHashCode22 = (iHashCode21 + (l8 != null ? l8.hashCode() : 0)) * 31;
         Boolean bool4 = this.isAdminUser;
         return iHashCode22 + (bool4 != null ? bool4.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

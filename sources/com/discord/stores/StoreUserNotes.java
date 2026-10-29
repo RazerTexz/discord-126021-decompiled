@@ -31,102 +31,18 @@ public final class StoreUserNotes extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: StoreUserNotes.kt */
-    public static abstract class UserNoteState {
-
-        /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final class Empty extends UserNoteState {
-            public static final Empty INSTANCE = new Empty();
-
-            private Empty() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final /* data */ class Loaded extends UserNoteState {
-            private final ModelUserNote note;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(ModelUserNote modelUserNote) {
-                super(null);
-                C12238m.checkNotNullParameter(modelUserNote, "note");
-                this.note = modelUserNote;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelUserNote modelUserNote, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    modelUserNote = loaded.note;
-                }
-                return loaded.copy(modelUserNote);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelUserNote getNote() {
-                return this.note;
-            }
-
-            public final Loaded copy(ModelUserNote note) {
-                C12238m.checkNotNullParameter(note, "note");
-                return new Loaded(note);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.note, ((Loaded) other).note);
-                }
-                return true;
-            }
-
-            public final ModelUserNote getNote() {
-                return this.note;
-            }
-
-            public int hashCode() {
-                ModelUserNote modelUserNote = this.note;
-                if (modelUserNote != null) {
-                    return modelUserNote.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(note=");
-                sbM833U.append(this.note);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final class Loading extends UserNoteState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        private UserNoteState() {
-        }
-
-        public /* synthetic */ UserNoteState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$loadNote$1 */
     /* JADX INFO: compiled from: StoreUserNotes.kt */
-    public static final class C65801 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65801 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $userId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$loadNote$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelUserNote, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelUserNote, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$loadNote$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreUserNotes.kt */
-            public static final class C132651 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132651 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ModelUserNote $note;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -166,11 +82,11 @@ public final class StoreUserNotes extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$loadNote$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$loadNote$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreUserNotes.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -229,7 +145,7 @@ public final class StoreUserNotes extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$observeUserNote$1 */
     /* JADX INFO: compiled from: StoreUserNotes.kt */
-    public static final class C65811 extends AbstractC12240o implements Function0<UserNoteState> {
+    public final class C65811 extends AbstractC12240o implements Function0<UserNoteState> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -248,13 +164,13 @@ public final class StoreUserNotes extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$saveNote$1 */
     /* JADX INFO: compiled from: StoreUserNotes.kt */
-    public static final class C65821 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C65821 extends AbstractC12240o implements Function1<Void, Unit> {
         public final /* synthetic */ String $note;
         public final /* synthetic */ long $userId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserNotes$saveNote$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserNotes.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -291,34 +207,92 @@ public final class StoreUserNotes extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreUserNotes.kt */
+    public abstract class UserNoteState {
+
+        /* JADX INFO: compiled from: StoreUserNotes.kt */
+        public final class Empty extends UserNoteState {
+            public static final Empty INSTANCE = new Empty();
+
+            private Empty() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreUserNotes.kt */
+        public final /* data */ class Loaded extends UserNoteState {
+            private final ModelUserNote note;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(ModelUserNote modelUserNote) {
+                super(null);
+                C12238m.checkNotNullParameter(modelUserNote, "note");
+                this.note = modelUserNote;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelUserNote modelUserNote, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelUserNote = loaded.note;
+                }
+                return loaded.copy(modelUserNote);
+            }
+
+            public final Loaded copy(ModelUserNote note) {
+                C12238m.checkNotNullParameter(note, "note");
+                return new Loaded(note);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.note, ((Loaded) other).note);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelUserNote getNote() {
+                return this.note;
+            }
+
+            public final ModelUserNote getNote() {
+                return this.note;
+            }
+
+            public int hashCode() {
+                ModelUserNote modelUserNote = this.note;
+                if (modelUserNote != null) {
+                    return modelUserNote.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(note=");
+                sbM833U.append(this.note);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreUserNotes.kt */
+        public final class Loading extends UserNoteState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private UserNoteState() {
+        }
+
+        public /* synthetic */ UserNoteState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreUserNotes(Dispatcher dispatcher, RestAPI restAPI, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
-    }
-
-    @StoreThread
-    private final void handleRequestUserNoteError(long userId) {
-        this.notesByUserId.put(Long.valueOf(userId), UserNoteState.Empty.INSTANCE);
-        markChanged();
-    }
-
-    @StoreThread
-    private final void handleRequestUserNoteSuccess(ModelUserNote note) {
-        long noteUserId = note.getNoteUserId();
-        String note2 = note.getNote();
-        if (note2 == null) {
-            note2 = "";
-        }
-        updateNoteInternal(noteUserId, note2);
-    }
-
-    @StoreThread
-    private final void updateNoteInternal(long userId, String note) {
-        if (C12103t.isBlank(note)) {
-            this.notesByUserId.put(Long.valueOf(userId), UserNoteState.Empty.INSTANCE);
-        } else {
-            this.notesByUserId.put(Long.valueOf(userId), new UserNoteState.Loaded(new ModelUserNote(userId, note)));
-        }
-        markChanged();
     }
 
     public final Map<Long, UserNoteState> getNotesByUserId() {
@@ -335,6 +309,22 @@ public final class StoreUserNotes extends StoreV2 {
     public final void handleNoteUpdate(ModelUserNote.Update update) {
         C12238m.checkNotNullParameter(update, "update");
         updateNoteInternal(update.getId(), update.getNote());
+    }
+
+    @StoreThread
+    private final void handleRequestUserNoteError(long userId) {
+        this.notesByUserId.put(Long.valueOf(userId), UserNoteState.Empty.INSTANCE);
+        markChanged();
+    }
+
+    @StoreThread
+    private final void handleRequestUserNoteSuccess(ModelUserNote note) {
+        long noteUserId = note.getNoteUserId();
+        String note2 = note.getNote();
+        if (note2 == null) {
+            note2 = "";
+        }
+        updateNoteInternal(noteUserId, note2);
     }
 
     public final void loadNote(long userId) {
@@ -356,6 +346,16 @@ public final class StoreUserNotes extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         this.notesByUserIdSnapshot = new HashMap(this.notesByUserId);
+    }
+
+    @StoreThread
+    private final void updateNoteInternal(long userId, String note) {
+        if (C12103t.isBlank(note)) {
+            this.notesByUserId.put(Long.valueOf(userId), UserNoteState.Empty.INSTANCE);
+        } else {
+            this.notesByUserId.put(Long.valueOf(userId), new UserNoteState.Loaded(new ModelUserNote(userId, note)));
+        }
+        markChanged();
     }
 
     public StoreUserNotes(Dispatcher dispatcher, RestAPI restAPI, ObservationDeck observationDeck) {

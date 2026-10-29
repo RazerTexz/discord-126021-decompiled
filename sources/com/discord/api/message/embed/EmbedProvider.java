@@ -10,16 +10,6 @@ public final /* data */ class EmbedProvider {
     private final String name;
     private final String url;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,16 @@ public final /* data */ class EmbedProvider {
         }
         EmbedProvider embedProvider = (EmbedProvider) other;
         return C12238m.areEqual(this.name, embedProvider.name) && C12238m.areEqual(this.url, embedProvider.url);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getUrl() {
+        return this.url;
     }
 
     public int hashCode() {

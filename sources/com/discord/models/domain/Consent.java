@@ -30,16 +30,6 @@ public final /* data */ class Consent {
         return consent.copy(z2, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getConsented() {
-        return this.consented;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getChangedAt() {
-        return this.changedAt;
-    }
-
     public final Consent copy(boolean consented, String changedAt) {
         return new Consent(consented, changedAt);
     }
@@ -55,8 +45,18 @@ public final /* data */ class Consent {
         return this.consented == consent.consented && C12238m.areEqual(this.changedAt, consent.changedAt);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getChangedAt() {
         return this.changedAt;
+    }
+
+    public final String getChangedAt() {
+        return this.changedAt;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final boolean getConsented() {
+        return this.consented;
     }
 
     public final boolean getConsented() {

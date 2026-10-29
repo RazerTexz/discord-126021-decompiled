@@ -40,51 +40,6 @@ public abstract class AbstractC2043a extends C2045c {
         this.f4294r = new Matrix();
     }
 
-    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p189b.InterfaceC2047e
-    /* JADX INFO: renamed from: a */
-    public boolean mo1551a() {
-        return !this.f4289m && super.mo1551a();
-    }
-
-    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p188a.C2042b.a
-    /* JADX INFO: renamed from: b */
-    public void mo1549b(C2042b c2042b) {
-        mo1553m();
-        boolean z2 = this.f4289m;
-        int i = C1691a.f3102a;
-        if (z2) {
-            return;
-        }
-        super.mo1549b(c2042b);
-    }
-
-    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p188a.C2042b.a
-    /* JADX INFO: renamed from: c */
-    public void mo1550c(C2042b c2042b) {
-        C1691a.m981i(mo1553m(), "onGestureBegin");
-        mo1555o();
-        super.mo1550c(c2042b);
-    }
-
-    @Override // p007b.p109f.p187l.p189b.C2045c
-    /* JADX INFO: renamed from: j */
-    public void mo1552j() {
-        C1691a.m981i(mo1553m(), ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS_RESET);
-        mo1555o();
-        this.f4294r.reset();
-        this.f4293q.reset();
-        super.mo1552j();
-    }
-
-    /* JADX INFO: renamed from: m */
-    public abstract Class<?> mo1553m();
-
-    /* JADX INFO: renamed from: n */
-    public abstract void mo1554n(Matrix matrix, long j, @Nullable Runnable runnable);
-
-    /* JADX INFO: renamed from: o */
-    public abstract void mo1555o();
-
     /* JADX INFO: renamed from: p */
     public void m1556p(float f, PointF pointF, PointF pointF2, int i, long j, @Nullable Runnable runnable) {
         mo1553m();
@@ -123,4 +78,49 @@ public abstract class AbstractC2043a extends C2045c {
         m1563i();
         this.f4299a.m1548d();
     }
+
+    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p188a.C2042b.a
+    /* JADX INFO: renamed from: b */
+    public void mo1549b(C2042b c2042b) {
+        mo1553m();
+        boolean z2 = this.f4289m;
+        int i = C1691a.f3102a;
+        if (z2) {
+            return;
+        }
+        super.mo1549b(c2042b);
+    }
+
+    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p188a.C2042b.a
+    /* JADX INFO: renamed from: c */
+    public void mo1550c(C2042b c2042b) {
+        C1691a.m981i(mo1553m(), "onGestureBegin");
+        mo1555o();
+        super.mo1550c(c2042b);
+    }
+
+    @Override // p007b.p109f.p187l.p189b.C2045c, p007b.p109f.p187l.p189b.InterfaceC2047e
+    /* JADX INFO: renamed from: a */
+    public boolean mo1551a() {
+        return !this.f4289m && super.mo1551a();
+    }
+
+    @Override // p007b.p109f.p187l.p189b.C2045c
+    /* JADX INFO: renamed from: j */
+    public void mo1552j() {
+        C1691a.m981i(mo1553m(), ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS_RESET);
+        mo1555o();
+        this.f4294r.reset();
+        this.f4293q.reset();
+        super.mo1552j();
+    }
+
+    /* JADX INFO: renamed from: m */
+    public abstract Class<?> mo1553m();
+
+    /* JADX INFO: renamed from: n */
+    public abstract void mo1554n(Matrix matrix, long j, @Nullable Runnable runnable);
+
+    /* JADX INFO: renamed from: o */
+    public abstract void mo1555o();
 }

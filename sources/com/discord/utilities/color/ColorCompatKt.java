@@ -34,19 +34,19 @@ public final class ColorCompatKt {
         }
     }
 
+    public static /* synthetic */ void setTint$default(Drawable drawable, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            z2 = false;
+        }
+        setTint(drawable, i, z2);
+    }
+
     public static final void setTint(Drawable drawable, @ColorInt int i, boolean z2) {
         C12238m.checkNotNullParameter(drawable, "$this$setTint");
         if (!z2) {
             drawable.mutate();
         }
         DrawableCompat.setTint(drawable, i);
-    }
-
-    public static /* synthetic */ void setTint$default(Drawable drawable, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            z2 = false;
-        }
-        setTint(drawable, i, z2);
     }
 
     public static final void tintWithColor(ImageView imageView, int i) {

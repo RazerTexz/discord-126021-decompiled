@@ -60,8 +60,66 @@ public final class WidgetUserPhoneVerify extends WidgetUserAccountVerifyBase {
     private final LoggingConfig loggingConfig;
     private final ActivityResultLauncher<Intent> passwordVerifyLauncher;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$autofillCode$2 */
     /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
-    public static final class Companion {
+    public final class C102682 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ String $verificationCode;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C102682(String str) {
+            super(1);
+            this.$verificationCode = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            WidgetUserPhoneVerify.this.handleCodeEntered(this.$verificationCode);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$handleCodeEntered$1 */
+    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
+    public final class C102691 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, TrackNetworkMetadataReceiver> {
+        public static final C102691 INSTANCE = new C102691();
+
+        public C102691() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final TrackNetworkMetadataReceiver invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
+            return new TrackNetworkActionUserVerifyPhone();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
+    public final /* synthetic */ class C102722 extends C12236k implements Function1<String, Unit> {
+        public C102722(WidgetUserPhoneVerify widgetUserPhoneVerify) {
+            super(1, widgetUserPhoneVerify, WidgetUserPhoneVerify.class, "autofillCode", "autofillCode(Ljava/lang/String;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "p1");
+            ((WidgetUserPhoneVerify) this.receiver).autofillCode(str);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -100,64 +158,6 @@ public final class WidgetUserPhoneVerify extends WidgetUserAccountVerifyBase {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$autofillCode$2 */
-    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
-    public static final class C102682 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ String $verificationCode;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C102682(String str) {
-            super(1);
-            this.$verificationCode = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            WidgetUserPhoneVerify.this.handleCodeEntered(this.$verificationCode);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$handleCodeEntered$1 */
-    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
-    public static final class C102691 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, TrackNetworkMetadataReceiver> {
-        public static final C102691 INSTANCE = new C102691();
-
-        public C102691() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final TrackNetworkMetadataReceiver invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
-            return new TrackNetworkActionUserVerifyPhone();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneVerify$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetUserPhoneVerify.kt */
-    public static final /* synthetic */ class C102722 extends C12236k implements Function1<String, Unit> {
-        public C102722(WidgetUserPhoneVerify widgetUserPhoneVerify) {
-            super(1, widgetUserPhoneVerify, WidgetUserPhoneVerify.class, "autofillCode", "autofillCode(Ljava/lang/String;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "p1");
-            ((WidgetUserPhoneVerify) this.receiver).autofillCode(str);
-        }
-    }
-
     public WidgetUserPhoneVerify() {
         super(C5419R.layout.widget_user_phone_verify);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserPhoneVerify$binding$2.INSTANCE, null, 2, null);
@@ -179,6 +179,11 @@ public final class WidgetUserPhoneVerify extends WidgetUserAccountVerifyBase {
 
     private final WidgetUserPhoneVerifyBinding getBinding() {
         return (WidgetUserPhoneVerifyBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
     }
 
     private final void handleCodeEntered(String verificationCode) {
@@ -205,11 +210,6 @@ public final class WidgetUserPhoneVerify extends WidgetUserAccountVerifyBase {
             C12238m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…RA_SOURCE_TYPE) ?: return");
             WidgetUserPasswordVerify.INSTANCE.launchUpdatePhoneNumber(requireContext(), this.passwordVerifyLauncher, phoneToken, stringExtra);
         }
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.widgets.user.account.WidgetUserAccountVerifyBase, com.discord.app.AppFragment

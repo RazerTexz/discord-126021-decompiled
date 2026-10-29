@@ -30,7 +30,7 @@ public final class CoroutineProgressDialog {
     /* JADX INFO: renamed from: com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$1 */
     /* JADX INFO: compiled from: CoroutineProgressDialog.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.coroutines.CoroutineProgressDialog", m10085f = "CoroutineProgressDialog.kt", m10086l = {22, 32, 34, 34}, m10087m = "withCancellableProgressDialog")
-    public static final class C67371 extends AbstractC12187d {
+    public final class C67371 extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public Object L$2;
@@ -52,7 +52,7 @@ public final class CoroutineProgressDialog {
     /* JADX INFO: renamed from: com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$2 */
     /* JADX INFO: compiled from: CoroutineProgressDialog.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$2", m10085f = "CoroutineProgressDialog.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C67382 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C67382 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ Ref$ObjectRef $dialog;
         public int label;
 
@@ -75,7 +75,7 @@ public final class CoroutineProgressDialog {
 
         /* JADX WARN: Multi-variable type inference failed */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -95,7 +95,7 @@ public final class CoroutineProgressDialog {
     /* JADX WARN: Code duplicated, block: B:48:? A[RETURN, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX WARN: Type inference failed for: r14v5, types: [T, androidx.appcompat.app.AlertDialog] */
-    public final <Result> Object withCancellableProgressDialog(Context context, Function1<? super Continuation<? super Result>, ? extends Object> function1, Continuation<? super Result> continuation) {
+    public final <Result> Object withCancellableProgressDialog(Context context, Function1<? super Continuation<? super Result>, ? extends Object> function1, Continuation<? super Result> continuation) throws Throwable {
         C67371 c67371;
         Ref$ObjectRef ref$ObjectRef;
         Function1<? super Continuation<? super Result>, ? extends Object> function2;

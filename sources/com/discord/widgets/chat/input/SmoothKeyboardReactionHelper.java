@@ -15,7 +15,7 @@ public final class SmoothKeyboardReactionHelper {
     public static final SmoothKeyboardReactionHelper INSTANCE = new SmoothKeyboardReactionHelper();
 
     /* JADX INFO: compiled from: SmoothKeyboardReactionHelper.kt */
-    public static final class Callback extends WindowInsetsAnimation.Callback {
+    public final class Callback extends WindowInsetsAnimation.Callback {
         private final View view;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

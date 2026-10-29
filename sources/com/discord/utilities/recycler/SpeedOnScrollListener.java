@@ -21,7 +21,7 @@ public final class SpeedOnScrollListener extends RecyclerView.OnScrollListener {
 
     /* JADX INFO: renamed from: com.discord.utilities.recycler.SpeedOnScrollListener$1 */
     /* JADX INFO: compiled from: SpeedOnScrollListener.kt */
-    public static final class C68511 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C68511 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public static final C68511 INSTANCE = new C68511();
 
         public C68511() {

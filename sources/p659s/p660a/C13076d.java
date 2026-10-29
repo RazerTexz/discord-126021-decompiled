@@ -86,10 +86,10 @@ public final class C13076d<T> {
             this.f27777j = aVarArr;
         }
 
-        @Override // p659s.p660a.AbstractC13123k
-        /* JADX INFO: renamed from: a */
-        public void mo11193a(Throwable th) {
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(Throwable th) {
             m11242b();
+            return Unit.f27425a;
         }
 
         /* JADX INFO: renamed from: b */
@@ -103,10 +103,10 @@ public final class C13076d<T> {
             }
         }
 
-        @Override // kotlin.jvm.functions.Function1
-        public Unit invoke(Throwable th) {
+        @Override // p659s.p660a.AbstractC13123k
+        /* JADX INFO: renamed from: a */
+        public void mo11193a(Throwable th) {
             m11242b();
-            return Unit.f27425a;
         }
 
         public String toString() {

@@ -3,6 +3,7 @@ package p600f0;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.BufferedSink;
@@ -38,7 +39,7 @@ public final class C12382z extends RequestBody {
     }
 
     @Override // okhttp3.RequestBody
-    public void writeTo(BufferedSink bufferedSink) throws IOException {
+    public void writeTo(BufferedSink bufferedSink) throws IllegalAccessException, IOException, InvocationTargetException {
         C12238m.checkParameterIsNotNull(bufferedSink, "sink");
         File file = this.f26063a;
         C12238m.checkParameterIsNotNull(file, "$this$source");

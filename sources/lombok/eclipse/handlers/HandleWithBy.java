@@ -35,6 +35,10 @@ import org.eclipse.jdt.internal.compiler.ast.Wildcard;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleWithBy.SCL.lombok */
 public class HandleWithBy extends EclipseAnnotationHandler<WithBy> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27477xb87c1847;
     private static final char[][] NAME_JUF_FUNCTION = Eclipse.fromQualifiedName("java.util.function.Function");
     private static final char[][] NAME_JUF_OP = Eclipse.fromQualifiedName("java.util.function.UnaryOperator");
     private static final char[][] NAME_JUF_DOUBLEOP = Eclipse.fromQualifiedName("java.util.function.DoubleUnaryOperator");
@@ -54,10 +58,6 @@ public class HandleWithBy extends EclipseAnnotationHandler<WithBy> {
     private static final char[] NAME_APPLY_AS_LONG = {'a', 'p', 'p', 'l', 'y', 'A', 's', 'L', 'o', 'n', 'g'};
     private static final char[] NAME_APPLY_AS_DOUBLE = {'a', 'p', 'p', 'l', 'y', 'A', 's', 'D', 'o', 'u', 'b', 'l', 'e'};
     private static final char[] NAME_TRANSFORMER = {'t', 'r', 'a', 'n', 's', 'f', 'o', 'r', 'm', 'e', 'r'};
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27477xb87c1847;
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

@@ -28,7 +28,7 @@ public final /* data */ class GuildInvite implements Serializable {
     private final boolean isStaticInvite;
 
     /* JADX INFO: compiled from: GuildInvite.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -82,41 +82,6 @@ public final /* data */ class GuildInvite implements Serializable {
         this.guildScheduledEventId = l4;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getInviteCode() {
-        return this.inviteCode;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getInviterId() {
-        return this.inviterId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsStaticInvite() {
-        return this.isStaticInvite;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final long getExpirationTimeMs() {
-        return this.expirationTimeMs;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Long getGuildScheduledEventId() {
-        return this.guildScheduledEventId;
-    }
-
     public final GuildInvite copy(String inviteCode, Long guildId, Long channelId, Long inviterId, boolean isStaticInvite, long expirationTimeMs, Long guildScheduledEventId) {
         C12238m.checkNotNullParameter(inviteCode, "inviteCode");
         return new GuildInvite(inviteCode, guildId, channelId, inviterId, isStaticInvite, expirationTimeMs, guildScheduledEventId);
@@ -133,28 +98,63 @@ public final /* data */ class GuildInvite implements Serializable {
         return C12238m.areEqual(this.inviteCode, guildInvite.inviteCode) && C12238m.areEqual(this.guildId, guildInvite.guildId) && C12238m.areEqual(this.channelId, guildInvite.channelId) && C12238m.areEqual(this.inviterId, guildInvite.inviterId) && this.isStaticInvite == guildInvite.isStaticInvite && this.expirationTimeMs == guildInvite.expirationTimeMs && C12238m.areEqual(this.guildScheduledEventId, guildInvite.guildScheduledEventId);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
+    }
+
+    public final Long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final long getExpirationTimeMs() {
+        return this.expirationTimeMs;
     }
 
     public final long getExpirationTimeMs() {
         return this.expirationTimeMs;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Long getGuildScheduledEventId() {
+        return this.guildScheduledEventId;
     }
 
     public final Long getGuildScheduledEventId() {
         return this.guildScheduledEventId;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getInviteCode() {
         return this.inviteCode;
     }
 
+    public final String getInviteCode() {
+        return this.inviteCode;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getInviterId() {
         return this.inviterId;
+    }
+
+    public final Long getInviterId() {
+        return this.inviterId;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsStaticInvite() {
+        return this.isStaticInvite;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

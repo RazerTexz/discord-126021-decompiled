@@ -38,10 +38,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetStageAudienceBlockedBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetStageAudienceBlockedBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStageAudienceBlockedBottomSheetBinding;", 0)};
+    private static final String EXTRA_LAUNCH_FULL_SCREEN = "LAUNCH_FULL_SCREEN";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_LAUNCH_FULL_SCREEN = "LAUNCH_FULL_SCREEN";
     private StageAudienceBlockedBottomSheetAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -56,26 +56,9 @@ public final class WidgetStageAudienceBlockedBottomSheet extends AppBottomSheet 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetStageAudienceBlockedBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long channelId, boolean launchStageFullScreen) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetStageAudienceBlockedBottomSheet widgetStageAudienceBlockedBottomSheet = new WidgetStageAudienceBlockedBottomSheet();
-            widgetStageAudienceBlockedBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), C12116o.m10073to(WidgetStageAudienceBlockedBottomSheet.EXTRA_LAUNCH_FULL_SCREEN, Boolean.valueOf(launchStageFullScreen))));
-            widgetStageAudienceBlockedBottomSheet.show(fragmentManager, WidgetStageAudienceBlockedBottomSheet.class.getSimpleName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceBlockedBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetStageAudienceBlockedBottomSheet.kt */
-    public static final /* synthetic */ class C100241 extends C12236k implements Function1<StageAudienceBlockedBottomSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C100241 extends C12236k implements Function1<StageAudienceBlockedBottomSheetViewModel.ViewState, Unit> {
         public C100241(WidgetStageAudienceBlockedBottomSheet widgetStageAudienceBlockedBottomSheet) {
             super(1, widgetStageAudienceBlockedBottomSheet, WidgetStageAudienceBlockedBottomSheet.class, "configureUI", "configureUI(Lcom/discord/widgets/stage/sheet/StageAudienceBlockedBottomSheetViewModel$ViewState;)V", 0);
         }
@@ -90,6 +73,23 @@ public final class WidgetStageAudienceBlockedBottomSheet extends AppBottomSheet 
         public final void invoke2(StageAudienceBlockedBottomSheetViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "p1");
             ((WidgetStageAudienceBlockedBottomSheet) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageAudienceBlockedBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId, boolean launchStageFullScreen) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetStageAudienceBlockedBottomSheet widgetStageAudienceBlockedBottomSheet = new WidgetStageAudienceBlockedBottomSheet();
+            widgetStageAudienceBlockedBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), C12116o.m10073to(WidgetStageAudienceBlockedBottomSheet.EXTRA_LAUNCH_FULL_SCREEN, Boolean.valueOf(launchStageFullScreen))));
+            widgetStageAudienceBlockedBottomSheet.show(fragmentManager, WidgetStageAudienceBlockedBottomSheet.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -115,7 +115,7 @@ public final class WidgetStageAudienceBlockedBottomSheet extends AppBottomSheet 
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceBlockedBottomSheet$configureUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageAudienceBlockedBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -163,17 +163,17 @@ public final class WidgetStageAudienceBlockedBottomSheet extends AppBottomSheet 
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_stage_audience_blocked_bottom_sheet;
+    }
+
     private final boolean getLaunchStageFullScreen() {
         return ((Boolean) this.launchStageFullScreen.getValue()).booleanValue();
     }
 
     private final StageAudienceBlockedBottomSheetViewModel getViewModel() {
         return (StageAudienceBlockedBottomSheetViewModel) this.viewModel.getValue();
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_stage_audience_blocked_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

@@ -10,6 +10,12 @@ public class TimestampAligner {
         }
     }
 
+    public void dispose() {
+        checkNativeAlignerExists();
+        nativeReleaseTimestampAligner(this.nativeTimestampAligner);
+        this.nativeTimestampAligner = 0L;
+    }
+
     public static long getRtcTimeNanos() {
         return nativeRtcTimeNanos();
     }
@@ -21,12 +27,6 @@ public class TimestampAligner {
     private static native long nativeRtcTimeNanos();
 
     private static native long nativeTranslateTimestamp(long j, long j2);
-
-    public void dispose() {
-        checkNativeAlignerExists();
-        nativeReleaseTimestampAligner(this.nativeTimestampAligner);
-        this.nativeTimestampAligner = 0L;
-    }
 
     public long translateTimestamp(long j) {
         checkNativeAlignerExists();

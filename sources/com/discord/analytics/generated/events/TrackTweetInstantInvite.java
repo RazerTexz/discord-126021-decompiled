@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackTweetInstantInvite.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackTweetInstantInvite implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channel = null;
     private final Long server = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "tweet_instant_invite";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackTweetInstantInvite implements AnalyticsSchema
         }
         TrackTweetInstantInvite trackTweetInstantInvite = (TrackTweetInstantInvite) other;
         return C12238m.areEqual(this.channel, trackTweetInstantInvite.channel) && C12238m.areEqual(this.server, trackTweetInstantInvite.server);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

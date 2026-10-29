@@ -29,7 +29,7 @@ public final class WidgetHubAuthenticationViewModel extends AbstractC0859d0<HubA
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthenticationViewModel$resendEmail$1 */
     /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
-    public static final class C90051 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
+    public final class C90051 extends AbstractC12240o implements Function1<EmailVerification, TrackNetworkMetadataReceiver> {
         public static final C90051 INSTANCE = new C90051();
 
         public C90051() {
@@ -44,7 +44,7 @@ public final class WidgetHubAuthenticationViewModel extends AbstractC0859d0<HubA
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthenticationViewModel$resendEmail$2 */
     /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
-    public static final class C90062 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
+    public final class C90062 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerification>, Unit> {
         public C90062() {
             super(1);
         }
@@ -65,7 +65,7 @@ public final class WidgetHubAuthenticationViewModel extends AbstractC0859d0<HubA
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthenticationViewModel$verifyCode$1 */
     /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
-    public static final class C90071 extends AbstractC12240o implements Function1<EmailVerificationCode, TrackNetworkMetadataReceiver> {
+    public final class C90071 extends AbstractC12240o implements Function1<EmailVerificationCode, TrackNetworkMetadataReceiver> {
         public static final C90071 INSTANCE = new C90071();
 
         public C90071() {
@@ -80,7 +80,7 @@ public final class WidgetHubAuthenticationViewModel extends AbstractC0859d0<HubA
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthenticationViewModel$verifyCode$2 */
     /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
-    public static final class C90082 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerificationCode>, Unit> {
+    public final class C90082 extends AbstractC12240o implements Function1<RestCallState<? extends EmailVerificationCode>, Unit> {
         public C90082() {
             super(1);
         }

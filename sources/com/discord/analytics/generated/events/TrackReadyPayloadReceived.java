@@ -9,59 +9,53 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackReadyPayloadReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackReadyPayloadReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long durationMsSinceConnectionStart = null;
-    private final Long durationMsSinceIdentifyStart = null;
-    private final Long durationMsSinceEmitStart = null;
-    private final Long identifyTotalServerDurationMs = null;
-    private final Long identifyApiDurationMs = null;
-    private final Long identifyGuildsDurationMs = null;
     private final Long compressedByteSize = null;
-    private final Long uncompressedByteSize = null;
-    private final Long identifyCompressedByteSize = null;
-    private final Long identifyUncompressedByteSize = null;
     private final CharSequence compressionAlgorithm = null;
-    private final CharSequence packingAlgorithm = null;
-    private final Long unpackDurationMs = null;
-    private final Boolean isReconnect = null;
-    private final Boolean isFastConnect = null;
     private final Boolean didForceClearGuildHashes = null;
-    private final Long presencesSize = null;
-    private final Long usersSize = null;
-    private final Long readStatesSize = null;
-    private final Long privateChannelsSize = null;
-    private final Long userGuildSettingsSize = null;
-    private final Long relationshipsSize = null;
-    private final Long guildVoiceStatesSize = null;
-    private final Long guildChannelsSize = null;
-    private final Long guildMembersSize = null;
-    private final Long guildPresencesSize = null;
-    private final Long guildRolesSize = null;
-    private final Long guildEmojisSize = null;
-    private final Long guildRemainingDataSize = null;
-    private final Long numGuilds = null;
-    private final Long numGuildChannels = null;
-    private final Long numGuildCategoryChannels = null;
-    private final Long numGuildsWithMetadataOmitted = null;
-    private final Long numGuildsWithChannelsOmitted = null;
-    private final Long numGuildsWithRolesOmitted = null;
-    private final Long numGuildsWithChangedMetadata = null;
-    private final Long numGuildsWithChangedChannels = null;
-    private final Long numGuildsWithChangedRoles = null;
-    private final Long numGuildsWithChangedEmojis = null;
-    private final Long numChangedChannels = null;
-    private final Long numChangedRoles = null;
-    private final Long numChangedEmojis = null;
-    private final Boolean hadAnyGuildInStore = null;
+    private final Long durationMsSinceConnectionStart = null;
+    private final Long durationMsSinceEmitStart = null;
+    private final Long durationMsSinceIdentifyStart = null;
     private final Long durationMsSinceReadyPrimer = null;
     private final Long durationMsSinceReadyPrimerStart = null;
+    private final Long guildChannelsSize = null;
+    private final Long guildEmojisSize = null;
+    private final Long guildMembersSize = null;
+    private final Long guildPresencesSize = null;
+    private final Long guildRemainingDataSize = null;
+    private final Long guildRolesSize = null;
+    private final Long guildVoiceStatesSize = null;
+    private final Boolean hadAnyGuildInStore = null;
+    private final Long identifyApiDurationMs = null;
+    private final Long identifyCompressedByteSize = null;
+    private final Long identifyGuildsDurationMs = null;
+    private final Long identifyTotalServerDurationMs = null;
+    private final Long identifyUncompressedByteSize = null;
+    private final Boolean isFastConnect = null;
+    private final Boolean isReconnect = null;
+    private final Long numChangedChannels = null;
+    private final Long numChangedEmojis = null;
+    private final Long numChangedRoles = null;
+    private final Long numGuildCategoryChannels = null;
+    private final Long numGuildChannels = null;
+    private final Long numGuilds = null;
+    private final Long numGuildsWithChangedChannels = null;
+    private final Long numGuildsWithChangedEmojis = null;
+    private final Long numGuildsWithChangedMetadata = null;
+    private final Long numGuildsWithChangedRoles = null;
+    private final Long numGuildsWithChannelsOmitted = null;
+    private final Long numGuildsWithMetadataOmitted = null;
+    private final Long numGuildsWithRolesOmitted = null;
+    private final CharSequence packingAlgorithm = null;
+    private final Long presencesSize = null;
+    private final Long privateChannelsSize = null;
+    private final Long readStatesSize = null;
+    private final Long relationshipsSize = null;
+    private TrackBase trackBase;
+    private final Long uncompressedByteSize = null;
+    private final Long unpackDurationMs = null;
+    private final Long userGuildSettingsSize = null;
+    private final Long usersSize = null;
     private final transient String analyticsSchemaTypeName = "ready_payload_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -72,6 +66,12 @@ public final /* data */ class TrackReadyPayloadReceived implements AnalyticsSche
         }
         TrackReadyPayloadReceived trackReadyPayloadReceived = (TrackReadyPayloadReceived) other;
         return C12238m.areEqual(this.durationMsSinceConnectionStart, trackReadyPayloadReceived.durationMsSinceConnectionStart) && C12238m.areEqual(this.durationMsSinceIdentifyStart, trackReadyPayloadReceived.durationMsSinceIdentifyStart) && C12238m.areEqual(this.durationMsSinceEmitStart, trackReadyPayloadReceived.durationMsSinceEmitStart) && C12238m.areEqual(this.identifyTotalServerDurationMs, trackReadyPayloadReceived.identifyTotalServerDurationMs) && C12238m.areEqual(this.identifyApiDurationMs, trackReadyPayloadReceived.identifyApiDurationMs) && C12238m.areEqual(this.identifyGuildsDurationMs, trackReadyPayloadReceived.identifyGuildsDurationMs) && C12238m.areEqual(this.compressedByteSize, trackReadyPayloadReceived.compressedByteSize) && C12238m.areEqual(this.uncompressedByteSize, trackReadyPayloadReceived.uncompressedByteSize) && C12238m.areEqual(this.identifyCompressedByteSize, trackReadyPayloadReceived.identifyCompressedByteSize) && C12238m.areEqual(this.identifyUncompressedByteSize, trackReadyPayloadReceived.identifyUncompressedByteSize) && C12238m.areEqual(this.compressionAlgorithm, trackReadyPayloadReceived.compressionAlgorithm) && C12238m.areEqual(this.packingAlgorithm, trackReadyPayloadReceived.packingAlgorithm) && C12238m.areEqual(this.unpackDurationMs, trackReadyPayloadReceived.unpackDurationMs) && C12238m.areEqual(this.isReconnect, trackReadyPayloadReceived.isReconnect) && C12238m.areEqual(this.isFastConnect, trackReadyPayloadReceived.isFastConnect) && C12238m.areEqual(this.didForceClearGuildHashes, trackReadyPayloadReceived.didForceClearGuildHashes) && C12238m.areEqual(this.presencesSize, trackReadyPayloadReceived.presencesSize) && C12238m.areEqual(this.usersSize, trackReadyPayloadReceived.usersSize) && C12238m.areEqual(this.readStatesSize, trackReadyPayloadReceived.readStatesSize) && C12238m.areEqual(this.privateChannelsSize, trackReadyPayloadReceived.privateChannelsSize) && C12238m.areEqual(this.userGuildSettingsSize, trackReadyPayloadReceived.userGuildSettingsSize) && C12238m.areEqual(this.relationshipsSize, trackReadyPayloadReceived.relationshipsSize) && C12238m.areEqual(this.guildVoiceStatesSize, trackReadyPayloadReceived.guildVoiceStatesSize) && C12238m.areEqual(this.guildChannelsSize, trackReadyPayloadReceived.guildChannelsSize) && C12238m.areEqual(this.guildMembersSize, trackReadyPayloadReceived.guildMembersSize) && C12238m.areEqual(this.guildPresencesSize, trackReadyPayloadReceived.guildPresencesSize) && C12238m.areEqual(this.guildRolesSize, trackReadyPayloadReceived.guildRolesSize) && C12238m.areEqual(this.guildEmojisSize, trackReadyPayloadReceived.guildEmojisSize) && C12238m.areEqual(this.guildRemainingDataSize, trackReadyPayloadReceived.guildRemainingDataSize) && C12238m.areEqual(this.numGuilds, trackReadyPayloadReceived.numGuilds) && C12238m.areEqual(this.numGuildChannels, trackReadyPayloadReceived.numGuildChannels) && C12238m.areEqual(this.numGuildCategoryChannels, trackReadyPayloadReceived.numGuildCategoryChannels) && C12238m.areEqual(this.numGuildsWithMetadataOmitted, trackReadyPayloadReceived.numGuildsWithMetadataOmitted) && C12238m.areEqual(this.numGuildsWithChannelsOmitted, trackReadyPayloadReceived.numGuildsWithChannelsOmitted) && C12238m.areEqual(this.numGuildsWithRolesOmitted, trackReadyPayloadReceived.numGuildsWithRolesOmitted) && C12238m.areEqual(this.numGuildsWithChangedMetadata, trackReadyPayloadReceived.numGuildsWithChangedMetadata) && C12238m.areEqual(this.numGuildsWithChangedChannels, trackReadyPayloadReceived.numGuildsWithChangedChannels) && C12238m.areEqual(this.numGuildsWithChangedRoles, trackReadyPayloadReceived.numGuildsWithChangedRoles) && C12238m.areEqual(this.numGuildsWithChangedEmojis, trackReadyPayloadReceived.numGuildsWithChangedEmojis) && C12238m.areEqual(this.numChangedChannels, trackReadyPayloadReceived.numChangedChannels) && C12238m.areEqual(this.numChangedRoles, trackReadyPayloadReceived.numChangedRoles) && C12238m.areEqual(this.numChangedEmojis, trackReadyPayloadReceived.numChangedEmojis) && C12238m.areEqual(this.hadAnyGuildInStore, trackReadyPayloadReceived.hadAnyGuildInStore) && C12238m.areEqual(this.durationMsSinceReadyPrimer, trackReadyPayloadReceived.durationMsSinceReadyPrimer) && C12238m.areEqual(this.durationMsSinceReadyPrimerStart, trackReadyPayloadReceived.durationMsSinceReadyPrimerStart);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

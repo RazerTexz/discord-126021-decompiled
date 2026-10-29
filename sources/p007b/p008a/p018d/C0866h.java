@@ -52,14 +52,14 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$a */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.d.h$b */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class b<O> implements ActivityResultCallback<Map<String, Boolean>> {
+    public final class b<O> implements ActivityResultCallback<Map<String, Boolean>> {
         public b() {
         }
 
@@ -87,7 +87,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$c */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class c extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class c extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public final /* synthetic */ Function0 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -109,7 +109,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$d */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class d extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class d extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public final /* synthetic */ Function0 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -128,7 +128,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$e */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class e extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class e extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public e() {
             super(1);
         }
@@ -143,7 +143,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$f */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class f extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class f extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public f() {
             super(1);
         }
@@ -158,7 +158,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$g */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class g extends AbstractC12240o implements Function0<Unit> {
+    public final class g extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $hadPermissions;
         public final /* synthetic */ Function0 $onSuccess;
 
@@ -182,7 +182,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$h */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class h extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class h extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public final /* synthetic */ Function0 $onFailure;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -204,7 +204,7 @@ public final class C0866h implements AppPermissionsRequests {
 
     /* JADX INFO: renamed from: b.a.d.h$i */
     /* JADX INFO: compiled from: AppPermissions.kt */
-    public static final class i extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
+    public final class i extends AbstractC12240o implements Function1<Map<String, ? extends Boolean>, Unit> {
         public i() {
             super(1);
         }
@@ -251,6 +251,12 @@ public final class C0866h implements AppPermissionsRequests {
         ActivityResultLauncher<String[]> activityResultLauncherRegisterForActivityResult = componentActivity.registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), new b());
         C12238m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "activity.registerForActi…rtTimeMillis = 0L\n      }");
         this.f513o = activityResultLauncherRegisterForActivityResult;
+    }
+
+    @Override // com.discord.app.AppPermissionsRequests
+    @MainThread
+    public boolean hasMedia() {
+        return m152b(222);
     }
 
     /* JADX INFO: renamed from: a */
@@ -317,12 +323,6 @@ public final class C0866h implements AppPermissionsRequests {
             this.f512n = ClockFactory.get().currentTimeMillis();
             this.f513o.launch(strArr);
         }
-    }
-
-    @Override // com.discord.app.AppPermissionsRequests
-    @MainThread
-    public boolean hasMedia() {
-        return m152b(222);
     }
 
     @Override // com.discord.app.AppPermissionsRequests

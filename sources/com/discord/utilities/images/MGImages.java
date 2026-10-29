@@ -36,6 +36,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yalantis.ucrop.UCropActivity;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -72,7 +73,7 @@ public final class MGImages {
     private static final ImageEncoder imageEncoder = new ImageEncoder();
 
     /* JADX INFO: compiled from: MGImages.kt */
-    public static final class AlwaysUpdateChangeDetector implements ChangeDetector {
+    public final class AlwaysUpdateChangeDetector implements ChangeDetector {
         public static final AlwaysUpdateChangeDetector INSTANCE = new AlwaysUpdateChangeDetector();
 
         private AlwaysUpdateChangeDetector() {
@@ -85,29 +86,9 @@ public final class MGImages {
         }
     }
 
-    /* JADX INFO: compiled from: MGImages.kt */
-    public interface ChangeDetector {
-        boolean track(Object key, Object value);
-    }
-
-    /* JADX INFO: compiled from: MGImages.kt */
-    public static final class DistinctChangeDetector implements ChangeDetector {
-        private final HashMap<Object, Object> dataMap = new HashMap<>();
-
-        @Override // com.discord.utilities.images.MGImages.ChangeDetector
-        public boolean track(Object key, Object value) {
-            C12238m.checkNotNullParameter(key, "key");
-            if (this.dataMap.containsKey(key) && C12238m.areEqual(this.dataMap.get(key), value)) {
-                return false;
-            }
-            this.dataMap.put(key, value);
-            return true;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.images.MGImages$requestImageCrop$1 */
     /* JADX INFO: compiled from: MGImages.kt */
-    public static final class C67741 extends AbstractC12240o implements Function1<Exception, Unit> {
+    public final class C67741 extends AbstractC12240o implements Function1<Exception, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -130,7 +111,48 @@ public final class MGImages {
         }
     }
 
+    /* JADX INFO: compiled from: MGImages.kt */
+    public interface ChangeDetector {
+        boolean track(Object key, Object value);
+    }
+
     private MGImages() {
+    }
+
+    public final void cancelImageRequests(ImageView view) {
+        C12238m.checkNotNullParameter(view, "view");
+        getDrawee(view).setController(null);
+    }
+
+    public final Bitmap centerBitmapInTransparentBitmap(Bitmap src, int innerHeight, int innerWidth, int outerHeight, int outerWidth, int fillMargins, @ColorInt int fillColor) {
+        C12238m.checkNotNullParameter(src, "src");
+        if (outerWidth <= innerWidth || outerHeight <= innerHeight) {
+            StringBuilder sbM835W = C1643a.m835W("Cannot fit bitmap of size ", innerWidth, " x ", innerHeight, " inside ");
+            sbM835W.append("bitmap of size ");
+            sbM835W.append(outerWidth);
+            sbM835W.append(" x ");
+            sbM835W.append(outerHeight);
+            throw new IllegalArgumentException(sbM835W.toString());
+        }
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(outerWidth, outerHeight, src.getConfig());
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
+        float f = (outerWidth - innerWidth) / 2.0f;
+        float f2 = (outerHeight - innerHeight) / 2.0f;
+        RectF rectF = new RectF(f, f2, innerWidth + f, innerHeight + f2);
+        if (fillColor != 0) {
+            int iSave = canvas.save();
+            try {
+                canvas.clipRect(fillMargins, fillMargins, outerWidth - fillMargins, outerHeight - fillMargins);
+                canvas.drawColor(fillColor);
+                canvas.restoreToCount(iSave);
+            } catch (Throwable th) {
+                canvas.restoreToCount(iSave);
+                throw th;
+            }
+        }
+        canvas.drawBitmap(src, (Rect) null, rectF, (Paint) null);
+        C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "dest");
+        return bitmapCreateBitmap;
     }
 
     private final DraweeView<?> getDrawee(ImageView imageView) {
@@ -187,7 +209,7 @@ public final class MGImages {
         imageUploadDialog.show(fragmentManager, ImageUploadDialog.class.getName());
     }
 
-    public static final void requestDataUrl(Context context, Uri uri, String mimeType, Action1<String> resultCallback) {
+    public static final void requestDataUrl(Context context, Uri uri, String mimeType, Action1<String> resultCallback) throws IllegalAccessException, InvocationTargetException {
         InputStream inputStreamOpenInputStream;
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
@@ -278,6 +300,31 @@ public final class MGImages {
         }
     }
 
+    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Uri uri, ChangeDetector changeDetector, int i, Object obj) {
+        if ((i & 4) != 0) {
+            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
+        }
+        mGImages.setImage(imageView, uri, changeDetector);
+    }
+
+    public final void setImage(ImageView view, Uri uri, ChangeDetector changeDetector) {
+        Integer intOrNull;
+        C12238m.checkNotNullParameter(view, "view");
+        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
+        if (C12238m.areEqual(uri.getScheme(), "android.resource")) {
+            String host = uri.getHost();
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "view.context");
+            if (C12238m.areEqual(host, context.getPackageName())) {
+                String lastPathSegment = uri.getLastPathSegment();
+                setImage(view, (lastPathSegment == null || (intOrNull = C12102s.toIntOrNull(lastPathSegment)) == null) ? 0 : intOrNull.intValue(), changeDetector);
+                return;
+            }
+        }
+        setImage$default(view, uri.toString(), 0, 0, false, null, changeDetector, 60, null);
+    }
+
     public static final void setImage(ImageView imageView, String str) {
         setImage$default(imageView, str, 0, 0, false, null, null, 124, null);
     }
@@ -322,13 +369,6 @@ public final class MGImages {
         setImage$default(imageView, list, i, i2, z2, function1, changeDetector, null, 128, null);
     }
 
-    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Uri uri, ChangeDetector changeDetector, int i, Object obj) {
-        if ((i & 4) != 0) {
-            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
-        }
-        mGImages.setImage(imageView, uri, changeDetector);
-    }
-
     public static final void setRoundingParams(ImageView view, float cornerRadius, boolean circle, @ColorInt Integer overlayColor, @ColorInt Integer borderColor, Float borderWidth) {
         C1795c c1795cM1124a;
         C12238m.checkNotNullParameter(view, "view");
@@ -369,58 +409,19 @@ public final class MGImages {
         INSTANCE.getHierarchy(view).m8678n(scaleType);
     }
 
-    public final void cancelImageRequests(ImageView view) {
-        C12238m.checkNotNullParameter(view, "view");
-        getDrawee(view).setController(null);
-    }
+    /* JADX INFO: compiled from: MGImages.kt */
+    public final class DistinctChangeDetector implements ChangeDetector {
+        private final HashMap<Object, Object> dataMap = new HashMap<>();
 
-    public final Bitmap centerBitmapInTransparentBitmap(Bitmap src, int innerHeight, int innerWidth, int outerHeight, int outerWidth, int fillMargins, @ColorInt int fillColor) {
-        C12238m.checkNotNullParameter(src, "src");
-        if (outerWidth <= innerWidth || outerHeight <= innerHeight) {
-            StringBuilder sbM835W = C1643a.m835W("Cannot fit bitmap of size ", innerWidth, " x ", innerHeight, " inside ");
-            sbM835W.append("bitmap of size ");
-            sbM835W.append(outerWidth);
-            sbM835W.append(" x ");
-            sbM835W.append(outerHeight);
-            throw new IllegalArgumentException(sbM835W.toString());
-        }
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(outerWidth, outerHeight, src.getConfig());
-        Canvas canvas = new Canvas(bitmapCreateBitmap);
-        float f = (outerWidth - innerWidth) / 2.0f;
-        float f2 = (outerHeight - innerHeight) / 2.0f;
-        RectF rectF = new RectF(f, f2, innerWidth + f, innerHeight + f2);
-        if (fillColor != 0) {
-            int iSave = canvas.save();
-            try {
-                canvas.clipRect(fillMargins, fillMargins, outerWidth - fillMargins, outerHeight - fillMargins);
-                canvas.drawColor(fillColor);
-                canvas.restoreToCount(iSave);
-            } catch (Throwable th) {
-                canvas.restoreToCount(iSave);
-                throw th;
+        @Override // com.discord.utilities.images.MGImages.ChangeDetector
+        public boolean track(Object key, Object value) {
+            C12238m.checkNotNullParameter(key, "key");
+            if (this.dataMap.containsKey(key) && C12238m.areEqual(this.dataMap.get(key), value)) {
+                return false;
             }
+            this.dataMap.put(key, value);
+            return true;
         }
-        canvas.drawBitmap(src, (Rect) null, rectF, (Paint) null);
-        C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "dest");
-        return bitmapCreateBitmap;
-    }
-
-    public final void setImage(ImageView view, Uri uri, ChangeDetector changeDetector) {
-        Integer intOrNull;
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
-        if (C12238m.areEqual(uri.getScheme(), "android.resource")) {
-            String host = uri.getHost();
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "view.context");
-            if (C12238m.areEqual(host, context.getPackageName())) {
-                String lastPathSegment = uri.getLastPathSegment();
-                setImage(view, (lastPathSegment == null || (intOrNull = C12102s.toIntOrNull(lastPathSegment)) == null) ? 0 : intOrNull.intValue(), changeDetector);
-                return;
-            }
-        }
-        setImage$default(view, uri.toString(), 0, 0, false, null, changeDetector, 60, null);
     }
 
     public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, int i, ChangeDetector changeDetector, int i2, Object obj) {

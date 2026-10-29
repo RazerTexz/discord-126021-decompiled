@@ -46,6 +46,12 @@ public final class C3749m6<E> extends AbstractC3772o3<E> implements RandomAccess
         return true;
     }
 
+    @Override // java.util.AbstractList, java.util.List
+    public final E get(int i) {
+        m5072d(i);
+        return this.f10095l[i];
+    }
+
     /* JADX INFO: renamed from: d */
     public final void m5072d(int i) {
         if (i < 0 || i >= this.f10096m) {
@@ -65,12 +71,6 @@ public final class C3749m6<E> extends AbstractC3772o3<E> implements RandomAccess
             return new C3749m6(Arrays.copyOf(this.f10095l, i), this.f10096m);
         }
         throw new IllegalArgumentException();
-    }
-
-    @Override // java.util.AbstractList, java.util.List
-    public final E get(int i) {
-        m5072d(i);
-        return this.f10095l[i];
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3772o3, java.util.AbstractList, java.util.List

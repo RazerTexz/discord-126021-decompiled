@@ -7,8 +7,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class OnBackPressedCallback {
-    private CopyOnWriteArrayList<Cancellable> mCancellables = new CopyOnWriteArrayList<>();
     private boolean mEnabled;
+    private CopyOnWriteArrayList<Cancellable> mCancellables = new CopyOnWriteArrayList<>();
 
     public OnBackPressedCallback(boolean z2) {
         this.mEnabled = z2;

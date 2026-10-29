@@ -38,7 +38,7 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.GuildRoleSubscriptionTierBenefitsViewModel$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitsViewModel.kt */
-    public static final class C85241 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C85241 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C85241() {
             super(1);
         }
@@ -57,8 +57,26 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.GuildRoleSubscriptionTierBenefitsViewModel$observeStoreState$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitsViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final class C85251 extends AbstractC12240o implements Function0<StoreState> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C85251(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final StoreState invoke() {
+            return new StoreState(GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().isGuildEligibleForGuildRoleSubscriptionTrials(this.$guildId), GuildRoleSubscriptionTierBenefitsViewModel.this.guildRoleSubscriptionsStore.getGuildRoleSubscriptionFreeTrialActiveUserLimitOptions(), GuildRoleSubscriptionTierBenefitsViewModel.this.guildRoleSubscriptionsStore.getGuildRoleSubscriptionFreeTrialIntervalOptions());
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitsViewModel.kt */
+    public final /* data */ class StoreState {
         private final List<Integer> activeTrialUserLimitOptions;
         private final boolean isGuildEligibleForTrials;
         private final List<SubscriptionTrialInterval> trialIntervalOptions;
@@ -69,6 +87,14 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
             this.isGuildEligibleForTrials = z2;
             this.activeTrialUserLimitOptions = list;
             this.trialIntervalOptions = list2;
+        }
+
+        public final List<Integer> component2() {
+            return this.activeTrialUserLimitOptions;
+        }
+
+        public final List<SubscriptionTrialInterval> component3() {
+            return this.trialIntervalOptions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -83,19 +109,6 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
                 list2 = storeState.trialIntervalOptions;
             }
             return storeState.copy(z2, list, list2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsGuildEligibleForTrials() {
-            return this.isGuildEligibleForTrials;
-        }
-
-        public final List<Integer> component2() {
-            return this.activeTrialUserLimitOptions;
-        }
-
-        public final List<SubscriptionTrialInterval> component3() {
-            return this.trialIntervalOptions;
         }
 
         public final StoreState copy(boolean isGuildEligibleForTrials, List<Integer> activeTrialUserLimitOptions, List<SubscriptionTrialInterval> trialIntervalOptions) {
@@ -117,6 +130,11 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
 
         public final List<Integer> getActiveTrialUserLimitOptions() {
             return this.activeTrialUserLimitOptions;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsGuildEligibleForTrials() {
+            return this.isGuildEligibleForTrials;
         }
 
         public final List<SubscriptionTrialInterval> getTrialIntervalOptions() {
@@ -155,7 +173,7 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitsViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<Integer> activeTrialUserLimitOptions;
         private final Boolean canAccessAllChannels;
         private final boolean canChangeChannelSettings;
@@ -176,6 +194,18 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
             this.canAccessAllChannels = bool;
             this.activeTrialUserLimitOptions = list2;
             this.trialIntervalOptions = list3;
+        }
+
+        public final List<GuildRoleSubscriptionBenefitAdapterItem> component2() {
+            return this.items;
+        }
+
+        public final List<Integer> component4() {
+            return this.activeTrialUserLimitOptions;
+        }
+
+        public final List<SubscriptionTrialInterval> component5() {
+            return this.trialIntervalOptions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -201,28 +231,6 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
             return viewState.copy(z2, list4, bool2, list5, list3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getCanChangeChannelSettings() {
-            return this.canChangeChannelSettings;
-        }
-
-        public final List<GuildRoleSubscriptionBenefitAdapterItem> component2() {
-            return this.items;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Boolean getCanAccessAllChannels() {
-            return this.canAccessAllChannels;
-        }
-
-        public final List<Integer> component4() {
-            return this.activeTrialUserLimitOptions;
-        }
-
-        public final List<SubscriptionTrialInterval> component5() {
-            return this.trialIntervalOptions;
-        }
-
         public final ViewState copy(boolean canChangeChannelSettings, List<? extends GuildRoleSubscriptionBenefitAdapterItem> items, Boolean canAccessAllChannels, List<Integer> activeTrialUserLimitOptions, List<SubscriptionTrialInterval> trialIntervalOptions) {
             C12238m.checkNotNullParameter(items, "items");
             C12238m.checkNotNullParameter(activeTrialUserLimitOptions, "activeTrialUserLimitOptions");
@@ -245,8 +253,18 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
             return this.activeTrialUserLimitOptions;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Boolean getCanAccessAllChannels() {
             return this.canAccessAllChannels;
+        }
+
+        public final Boolean getCanAccessAllChannels() {
+            return this.canAccessAllChannels;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getCanChangeChannelSettings() {
+            return this.canChangeChannelSettings;
         }
 
         public final boolean getCanChangeChannelSettings() {
@@ -300,24 +318,6 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.GuildRoleSubscriptionTierBenefitsViewModel$observeStoreState$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitsViewModel.kt */
-    public static final class C85251 extends AbstractC12240o implements Function0<StoreState> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C85251(long j) {
-            super(0);
-            this.$guildId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final StoreState invoke() {
-            return new StoreState(GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().isGuildEligibleForGuildRoleSubscriptionTrials(this.$guildId), GuildRoleSubscriptionTierBenefitsViewModel.this.guildRoleSubscriptionsStore.getGuildRoleSubscriptionFreeTrialActiveUserLimitOptions(), GuildRoleSubscriptionTierBenefitsViewModel.this.guildRoleSubscriptionsStore.getGuildRoleSubscriptionFreeTrialIntervalOptions());
-        }
-    }
-
     public /* synthetic */ GuildRoleSubscriptionTierBenefitsViewModel(long j, GuildRoleSubscriptionTierBenefitListType guildRoleSubscriptionTierBenefitListType, StoreExperiments storeExperiments, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(j, guildRoleSubscriptionTierBenefitListType, (i & 4) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 8) != 0 ? StoreStream.INSTANCE.getGuildRoleSubscriptions() : storeGuildRoleSubscriptions, (i & 16) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
@@ -329,6 +329,13 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
 
     private final Observable<StoreState> observeStoreState(long guildId) {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.experimentsStore, this.guildRoleSubscriptionsStore}, false, null, null, new C85251(guildId), 14, null);
+    }
+
+    public final void updateBenefits(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean isFullServerGating) {
+        C12238m.checkNotNullParameter(guildRoleSubscriptionTier, "guildRoleSubscriptionTier");
+        this.guildRoleSubscriptionTier = guildRoleSubscriptionTier;
+        this.isFullServerGating = isFullServerGating;
+        updateList();
     }
 
     /* JADX WARN: Code duplicated, block: B:15:0x003e  */
@@ -368,13 +375,6 @@ public final class GuildRoleSubscriptionTierBenefitsViewModel extends AbstractC0
             listEmptyList2 = C12147n.emptyList();
         }
         updateViewState(new ViewState(z3, listGenerateGuildRoleSubscriptionBenefitListItems, boolValueOf2, listEmptyList, listEmptyList2));
-    }
-
-    public final void updateBenefits(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean isFullServerGating) {
-        C12238m.checkNotNullParameter(guildRoleSubscriptionTier, "guildRoleSubscriptionTier");
-        this.guildRoleSubscriptionTier = guildRoleSubscriptionTier;
-        this.isFullServerGating = isFullServerGating;
-        updateList();
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

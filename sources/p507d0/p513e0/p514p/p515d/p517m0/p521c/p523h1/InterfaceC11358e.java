@@ -11,7 +11,7 @@ public interface InterfaceC11358e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.h1.e$a */
     /* JADX INFO: compiled from: PlatformDependentTypeTransformer.kt */
-    public static final class a implements InterfaceC11358e {
+    public final class a implements InterfaceC11358e {
 
         /* JADX INFO: renamed from: a */
         public static final a f22800a = new a();

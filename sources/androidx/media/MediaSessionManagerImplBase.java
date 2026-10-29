@@ -13,15 +13,15 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediaSessionManagerImplBase implements MediaSessionManager.MediaSessionManagerImpl {
-    private static final boolean DEBUG = MediaSessionManager.DEBUG;
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
     private static final String PERMISSION_MEDIA_CONTENT_CONTROL = "android.permission.MEDIA_CONTENT_CONTROL";
     private static final String PERMISSION_STATUS_BAR_SERVICE = "android.permission.STATUS_BAR_SERVICE";
     private static final String TAG = "MediaSessionManager";
     public ContentResolver mContentResolver;
     public Context mContext;
+    private static final boolean DEBUG = MediaSessionManager.DEBUG;
 
-    public static class RemoteUserInfoImplBase implements MediaSessionManager.RemoteUserInfoImpl {
+    public class RemoteUserInfoImplBase implements MediaSessionManager.RemoteUserInfoImpl {
         private String mPackageName;
         private int mPid;
         private int mUid;
@@ -71,13 +71,6 @@ public class MediaSessionManagerImplBase implements MediaSessionManager.MediaSes
         this.mContentResolver = context.getContentResolver();
     }
 
-    private boolean isPermissionGranted(MediaSessionManager.RemoteUserInfoImpl remoteUserInfoImpl, String str) {
-        if (remoteUserInfoImpl.getPid() < 0) {
-            return this.mContext.getPackageManager().checkPermission(str, remoteUserInfoImpl.getPackageName()) == 0;
-        }
-        return this.mContext.checkPermission(str, remoteUserInfoImpl.getPid(), remoteUserInfoImpl.getUid()) == 0;
-    }
-
     @Override // androidx.media.MediaSessionManager.MediaSessionManagerImpl
     public Context getContext() {
         return this.mContext;
@@ -94,6 +87,13 @@ public class MediaSessionManagerImplBase implements MediaSessionManager.MediaSes
             }
         }
         return false;
+    }
+
+    private boolean isPermissionGranted(MediaSessionManager.RemoteUserInfoImpl remoteUserInfoImpl, String str) {
+        if (remoteUserInfoImpl.getPid() < 0) {
+            return this.mContext.getPackageManager().checkPermission(str, remoteUserInfoImpl.getPackageName()) == 0;
+        }
+        return this.mContext.checkPermission(str, remoteUserInfoImpl.getPid(), remoteUserInfoImpl.getUid()) == 0;
     }
 
     @Override // androidx.media.MediaSessionManager.MediaSessionManagerImpl

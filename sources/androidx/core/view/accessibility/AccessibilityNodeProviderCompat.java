@@ -16,7 +16,7 @@ public class AccessibilityNodeProviderCompat {
     private final Object mProvider;
 
     @RequiresApi(16)
-    public static class AccessibilityNodeProviderApi16 extends AccessibilityNodeProvider {
+    public class AccessibilityNodeProviderApi16 extends AccessibilityNodeProvider {
         public final AccessibilityNodeProviderCompat mCompat;
 
         public AccessibilityNodeProviderApi16(AccessibilityNodeProviderCompat accessibilityNodeProviderCompat) {
@@ -53,7 +53,7 @@ public class AccessibilityNodeProviderCompat {
     }
 
     @RequiresApi(19)
-    public static class AccessibilityNodeProviderApi19 extends AccessibilityNodeProviderApi16 {
+    public class AccessibilityNodeProviderApi19 extends AccessibilityNodeProviderApi16 {
         public AccessibilityNodeProviderApi19(AccessibilityNodeProviderCompat accessibilityNodeProviderCompat) {
             super(accessibilityNodeProviderCompat);
         }
@@ -69,7 +69,7 @@ public class AccessibilityNodeProviderCompat {
     }
 
     @RequiresApi(26)
-    public static class AccessibilityNodeProviderApi26 extends AccessibilityNodeProviderApi19 {
+    public class AccessibilityNodeProviderApi26 extends AccessibilityNodeProviderApi19 {
         public AccessibilityNodeProviderApi26(AccessibilityNodeProviderCompat accessibilityNodeProviderCompat) {
             super(accessibilityNodeProviderCompat);
         }

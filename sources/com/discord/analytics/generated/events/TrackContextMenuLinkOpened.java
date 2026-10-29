@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackContextMenuLinkOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackContextMenuLinkOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final CharSequence href = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "context_menu_link_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackContextMenuLinkOpened implements AnalyticsSch
         }
         TrackContextMenuLinkOpened trackContextMenuLinkOpened = (TrackContextMenuLinkOpened) other;
         return C12238m.areEqual(this.channelId, trackContextMenuLinkOpened.channelId) && C12238m.areEqual(this.href, trackContextMenuLinkOpened.href);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

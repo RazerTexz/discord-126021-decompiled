@@ -53,7 +53,7 @@ public final class C11822n implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.n$a */
     /* JADX INFO: compiled from: IntegerLiteralTypeConstructor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -103,7 +103,7 @@ public final class C11822n implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.n$b */
     /* JADX INFO: compiled from: IntegerLiteralTypeConstructor.kt */
-    public static final class b extends AbstractC12240o implements Function0<List<AbstractC11934j0>> {
+    public final class b extends AbstractC12240o implements Function0<List<AbstractC11934j0>> {
         public b() {
             super(0);
         }

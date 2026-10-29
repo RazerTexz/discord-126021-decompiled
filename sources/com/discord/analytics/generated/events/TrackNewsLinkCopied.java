@@ -11,19 +11,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNewsLinkCopied.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence newsUrl = null;
-    private final Long newsId = null;
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
+    private final Long newsId = null;
+    private final CharSequence newsUrl = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "news_link_copied";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, Tr
         }
         TrackNewsLinkCopied trackNewsLinkCopied = (TrackNewsLinkCopied) other;
         return C12238m.areEqual(this.newsUrl, trackNewsLinkCopied.newsUrl) && C12238m.areEqual(this.newsId, trackNewsLinkCopied.newsId) && C12238m.areEqual(this.applicationId, trackNewsLinkCopied.applicationId) && C12238m.areEqual(this.applicationName, trackNewsLinkCopied.applicationName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -36,14 +36,6 @@ public final class Excluder implements InterfaceC4911o, Cloneable {
     /* JADX INFO: renamed from: o */
     public List<InterfaceC4897a> f21488o = Collections.emptyList();
 
-    /* JADX INFO: renamed from: b */
-    public final boolean m9217b(Class<?> cls) {
-        if (this.f21484k == -1.0d || m9221i((InterfaceC4914c) cls.getAnnotation(InterfaceC4914c.class), (InterfaceC4915d) cls.getAnnotation(InterfaceC4915d.class))) {
-            return (!this.f21486m && m9220h(cls)) || m9219g(cls);
-        }
-        return true;
-    }
-
     public Object clone() throws CloneNotSupportedException {
         try {
             return (Excluder) super.clone();
@@ -94,6 +86,14 @@ public final class Excluder implements InterfaceC4911o, Cloneable {
             };
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m9217b(Class<?> cls) {
+        if (this.f21484k == -1.0d || m9221i((InterfaceC4914c) cls.getAnnotation(InterfaceC4914c.class), (InterfaceC4915d) cls.getAnnotation(InterfaceC4915d.class))) {
+            return (!this.f21486m && m9220h(cls)) || m9219g(cls);
+        }
+        return true;
     }
 
     /* JADX INFO: renamed from: f */

@@ -50,7 +50,6 @@ import java.util.List;
 /* JADX INFO: loaded from: classes3.dex */
 public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedBehavior {
     private static final long ANIMATION_DURATION = 300;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_BottomAppBar;
     public static final int FAB_ALIGNMENT_MODE_CENTER = 0;
     public static final int FAB_ALIGNMENT_MODE_END = 1;
     public static final int FAB_ANIMATION_MODE_SCALE = 0;
@@ -87,8 +86,9 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
     @MenuRes
     private int pendingMenuResId;
     private int rightInset;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_BottomAppBar;
 
-    public static class Behavior extends HideBottomViewOnScrollBehavior<BottomAppBar> {
+    public class Behavior extends HideBottomViewOnScrollBehavior<BottomAppBar> {
 
         @NonNull
         private final Rect fabContentRect;
@@ -159,62 +159,6 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
             super(context, attributeSet);
             this.fabLayoutListener = new ViewOnLayoutChangeListenerC10834a();
             this.fabContentRect = new Rect();
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface FabAlignmentMode {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface FabAnimationMode {
-    }
-
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10835a();
-
-        /* JADX INFO: renamed from: j */
-        public int f20897j;
-
-        /* JADX INFO: renamed from: k */
-        public boolean f20898k;
-
-        /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$SavedState$a */
-        public static class C10835a implements Parcelable.ClassLoaderCreator<SavedState> {
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            @NonNull
-            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @Nullable
-            public Object createFromParcel(@NonNull Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.f20897j);
-            parcel.writeInt(this.f20898k ? 1 : 0);
-        }
-
-        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            this.f20897j = parcel.readInt();
-            this.f20898k = parcel.readInt() != 0;
         }
     }
 
@@ -395,6 +339,38 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         }
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$i */
+    public class C10844i extends AnimatorListenerAdapter {
+        public C10844i() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            BottomAppBar.this.fabAnimationListener.onAnimationStart(animator);
+            FloatingActionButton floatingActionButtonFindDependentFab = BottomAppBar.this.findDependentFab();
+            if (floatingActionButtonFindDependentFab != null) {
+                floatingActionButtonFindDependentFab.setTranslationX(BottomAppBar.this.getFabTranslationX());
+            }
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface FabAlignmentMode {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface FabAnimationMode {
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$j */
+    public interface InterfaceC10845j {
+        /* JADX INFO: renamed from: a */
+        void m9127a(BottomAppBar bottomAppBar);
+
+        /* JADX INFO: renamed from: b */
+        void m9128b(BottomAppBar bottomAppBar);
+    }
+
     /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$h */
     public class RunnableC10843h implements Runnable {
 
@@ -420,32 +396,63 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$i */
-    public class C10844i extends AnimatorListenerAdapter {
-        public C10844i() {
-        }
+    public class SavedState extends AbsSavedState {
 
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-            BottomAppBar.this.fabAnimationListener.onAnimationStart(animator);
-            FloatingActionButton floatingActionButtonFindDependentFab = BottomAppBar.this.findDependentFab();
-            if (floatingActionButtonFindDependentFab != null) {
-                floatingActionButtonFindDependentFab.setTranslationX(BottomAppBar.this.getFabTranslationX());
+        /* JADX INFO: renamed from: j */
+        public int f20897j;
+
+        /* JADX INFO: renamed from: k */
+        public boolean f20898k;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10835a();
+
+        /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$SavedState$a */
+        public final class C10835a implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public Object[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @Nullable
+            public Object createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel, null);
             }
         }
-    }
 
-    /* JADX INFO: renamed from: com.google.android.material.bottomappbar.BottomAppBar$j */
-    public interface InterfaceC10845j {
-        /* JADX INFO: renamed from: a */
-        void m9127a(BottomAppBar bottomAppBar);
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
 
-        /* JADX INFO: renamed from: b */
-        void m9128b(BottomAppBar bottomAppBar);
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.f20897j);
+            parcel.writeInt(this.f20898k ? 1 : 0);
+        }
+
+        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.f20897j = parcel.readInt();
+            this.f20898k = parcel.readInt() != 0;
+        }
     }
 
     public BottomAppBar(@NonNull Context context) {
         this(context, null, 0);
+    }
+
+    public void addAnimationListener(@NonNull InterfaceC10845j interfaceC10845j) {
+        if (this.animationListeners == null) {
+            this.animationListeners = new ArrayList<>();
+        }
+        this.animationListeners.add(interfaceC10845j);
     }
 
     private void addFabAnimationListeners(@NonNull FloatingActionButton floatingActionButton) {
@@ -463,6 +470,15 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         if (animator2 != null) {
             animator2.cancel();
         }
+    }
+
+    public void createFabDefaultXAnimation(int i, List<Animator> list) {
+        FloatingActionButton floatingActionButtonFindDependentFab = findDependentFab();
+        if (floatingActionButtonFindDependentFab == null || floatingActionButtonFindDependentFab.isOrWillBeHidden()) {
+            return;
+        }
+        dispatchAnimationStart();
+        floatingActionButtonFindDependentFab.hide(new C10840e(i));
     }
 
     private void createFabTranslationXAnimation(int i, @NonNull List<Animator> list) {
@@ -550,8 +566,50 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         return null;
     }
 
+    public int getActionMenuViewTranslationX(@NonNull ActionMenuView actionMenuView, int i, boolean z2) {
+        if (i != 1 || !z2) {
+            return 0;
+        }
+        boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
+        int measuredWidth = zIsLayoutRtl ? getMeasuredWidth() : 0;
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            View childAt = getChildAt(i2);
+            if ((childAt.getLayoutParams() instanceof Toolbar.LayoutParams) && (((Toolbar.LayoutParams) childAt.getLayoutParams()).gravity & GravityCompat.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 8388611) {
+                measuredWidth = zIsLayoutRtl ? Math.min(measuredWidth, childAt.getLeft()) : Math.max(measuredWidth, childAt.getRight());
+            }
+        }
+        return measuredWidth - ((zIsLayoutRtl ? actionMenuView.getRight() : actionMenuView.getLeft()) + (zIsLayoutRtl ? this.rightInset : -this.leftInset));
+    }
+
+    @Nullable
+    public ColorStateList getBackgroundTint() {
+        return this.materialShapeDrawable.getTintList();
+    }
+
     private int getBottomInset() {
         return this.bottomInset;
+    }
+
+    @Dimension
+    public float getCradleVerticalOffset() {
+        return getTopEdgeTreatment().getCradleVerticalOffset();
+    }
+
+    public int getFabAlignmentMode() {
+        return this.fabAlignmentMode;
+    }
+
+    public int getFabAnimationMode() {
+        return this.fabAnimationMode;
+    }
+
+    public float getFabCradleMargin() {
+        return getTopEdgeTreatment().getFabCradleMargin();
+    }
+
+    @Dimension
+    public float getFabCradleRoundedCornerRadius() {
+        return getTopEdgeTreatment().getFabCradleRoundedCornerRadius();
     }
 
     private float getFabTranslationX(int i) {
@@ -564,6 +622,10 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
 
     private float getFabTranslationY() {
         return -getTopEdgeTreatment().getCradleVerticalOffset();
+    }
+
+    public boolean getHideOnScroll() {
+        return this.hideOnScroll;
     }
 
     private int getLeftInset() {
@@ -626,95 +688,6 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         this.modeAnimator = animatorSet;
         animatorSet.addListener(new C10839d());
         this.modeAnimator.start();
-    }
-
-    private void setActionMenuViewPosition() {
-        ActionMenuView actionMenuView = getActionMenuView();
-        if (actionMenuView == null || this.menuAnimator != null) {
-            return;
-        }
-        actionMenuView.setAlpha(1.0f);
-        if (isFabVisibleOrWillBeShown()) {
-            translateActionMenuView(actionMenuView, this.fabAlignmentMode, this.fabAttached);
-        } else {
-            translateActionMenuView(actionMenuView, 0, false);
-        }
-    }
-
-    private void setCutoutState() {
-        getTopEdgeTreatment().setHorizontalOffset(getFabTranslationX());
-        View viewFindDependentView = findDependentView();
-        this.materialShapeDrawable.setInterpolation((this.fabAttached && isFabVisibleOrWillBeShown()) ? 1.0f : 0.0f);
-        if (viewFindDependentView != null) {
-            viewFindDependentView.setTranslationY(getFabTranslationY());
-            viewFindDependentView.setTranslationX(getFabTranslationX());
-        }
-    }
-
-    private void translateActionMenuView(@NonNull ActionMenuView actionMenuView, int i, boolean z2) {
-        translateActionMenuView(actionMenuView, i, z2, false);
-    }
-
-    public void addAnimationListener(@NonNull InterfaceC10845j interfaceC10845j) {
-        if (this.animationListeners == null) {
-            this.animationListeners = new ArrayList<>();
-        }
-        this.animationListeners.add(interfaceC10845j);
-    }
-
-    public void createFabDefaultXAnimation(int i, List<Animator> list) {
-        FloatingActionButton floatingActionButtonFindDependentFab = findDependentFab();
-        if (floatingActionButtonFindDependentFab == null || floatingActionButtonFindDependentFab.isOrWillBeHidden()) {
-            return;
-        }
-        dispatchAnimationStart();
-        floatingActionButtonFindDependentFab.hide(new C10840e(i));
-    }
-
-    public int getActionMenuViewTranslationX(@NonNull ActionMenuView actionMenuView, int i, boolean z2) {
-        if (i != 1 || !z2) {
-            return 0;
-        }
-        boolean zIsLayoutRtl = ViewUtils.isLayoutRtl(this);
-        int measuredWidth = zIsLayoutRtl ? getMeasuredWidth() : 0;
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            View childAt = getChildAt(i2);
-            if ((childAt.getLayoutParams() instanceof Toolbar.LayoutParams) && (((Toolbar.LayoutParams) childAt.getLayoutParams()).gravity & GravityCompat.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 8388611) {
-                measuredWidth = zIsLayoutRtl ? Math.min(measuredWidth, childAt.getLeft()) : Math.max(measuredWidth, childAt.getRight());
-            }
-        }
-        return measuredWidth - ((zIsLayoutRtl ? actionMenuView.getRight() : actionMenuView.getLeft()) + (zIsLayoutRtl ? this.rightInset : -this.leftInset));
-    }
-
-    @Nullable
-    public ColorStateList getBackgroundTint() {
-        return this.materialShapeDrawable.getTintList();
-    }
-
-    @Dimension
-    public float getCradleVerticalOffset() {
-        return getTopEdgeTreatment().getCradleVerticalOffset();
-    }
-
-    public int getFabAlignmentMode() {
-        return this.fabAlignmentMode;
-    }
-
-    public int getFabAnimationMode() {
-        return this.fabAnimationMode;
-    }
-
-    public float getFabCradleMargin() {
-        return getTopEdgeTreatment().getFabCradleMargin();
-    }
-
-    @Dimension
-    public float getFabCradleRoundedCornerRadius() {
-        return getTopEdgeTreatment().getFabCradleRoundedCornerRadius();
-    }
-
-    public boolean getHideOnScroll() {
-        return this.hideOnScroll;
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -781,6 +754,19 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
         }
     }
 
+    private void setActionMenuViewPosition() {
+        ActionMenuView actionMenuView = getActionMenuView();
+        if (actionMenuView == null || this.menuAnimator != null) {
+            return;
+        }
+        actionMenuView.setAlpha(1.0f);
+        if (isFabVisibleOrWillBeShown()) {
+            translateActionMenuView(actionMenuView, this.fabAlignmentMode, this.fabAttached);
+        } else {
+            translateActionMenuView(actionMenuView, 0, false);
+        }
+    }
+
     public void setBackgroundTint(@Nullable ColorStateList colorStateList) {
         DrawableCompat.setTintList(this.materialShapeDrawable, colorStateList);
     }
@@ -790,6 +776,16 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
             getTopEdgeTreatment().setCradleVerticalOffset(f);
             this.materialShapeDrawable.invalidateSelf();
             setCutoutState();
+        }
+    }
+
+    private void setCutoutState() {
+        getTopEdgeTreatment().setHorizontalOffset(getFabTranslationX());
+        View viewFindDependentView = findDependentView();
+        this.materialShapeDrawable.setInterpolation((this.fabAttached && isFabVisibleOrWillBeShown()) ? 1.0f : 0.0f);
+        if (viewFindDependentView != null) {
+            viewFindDependentView.setTranslationY(getFabTranslationY());
+            viewFindDependentView.setTranslationX(getFabTranslationX());
         }
     }
 
@@ -851,17 +847,12 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
     public void setTitle(CharSequence charSequence) {
     }
 
-    public BottomAppBar(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.bottomAppBarStyle);
+    private void translateActionMenuView(@NonNull ActionMenuView actionMenuView, int i, boolean z2) {
+        translateActionMenuView(actionMenuView, i, z2, false);
     }
 
-    private void translateActionMenuView(@NonNull ActionMenuView actionMenuView, int i, boolean z2, boolean z3) {
-        RunnableC10843h runnableC10843h = new RunnableC10843h(actionMenuView, i, z2);
-        if (z3) {
-            actionMenuView.post(runnableC10843h);
-        } else {
-            runnableC10843h.run();
-        }
+    public BottomAppBar(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        this(context, attributeSet, C10817R.attr.bottomAppBarStyle);
     }
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.AttachedBehavior
@@ -871,6 +862,15 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
             this.behavior = new Behavior();
         }
         return this.behavior;
+    }
+
+    private void translateActionMenuView(@NonNull ActionMenuView actionMenuView, int i, boolean z2, boolean z3) {
+        RunnableC10843h runnableC10843h = new RunnableC10843h(actionMenuView, i, z2);
+        if (z3) {
+            actionMenuView.post(runnableC10843h);
+        } else {
+            runnableC10843h.run();
+        }
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

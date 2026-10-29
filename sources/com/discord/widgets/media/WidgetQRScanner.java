@@ -43,42 +43,18 @@ import p596e0.p597a.p598a.p599a.RunnableC12254b;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetQRScanner extends AppFragment implements ZXingScannerView.InterfaceC12927b {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetQRScanner.class, "binding", "getBinding()Lcom/discord/databinding/WidgetQrScannerBinding;", 0)};
+    private static final String EXTRA_SHOW_HELP_CHIP = "SHOW_HELP_CHIP";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_SHOW_HELP_CHIP = "SHOW_HELP_CHIP";
     private static final int MAIN_BACK_CAMERA = 0;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetQRScanner.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void launch$default(Companion companion, Context context, boolean z2, int i, Object obj) {
-            if ((i & 2) != 0) {
-                z2 = false;
-            }
-            companion.launch(context, z2);
-        }
-
-        public final void launch(Context context, boolean showHelpChip) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent("android.intent.action.VIEW").putExtra(WidgetQRScanner.EXTRA_SHOW_HELP_CHIP, showHelpChip);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent(Intent.ACTION_VIE…_HELP_CHIP, showHelpChip)");
-            C0870j.m156d(context, WidgetQRScanner.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.media.WidgetQRScanner$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetQRScanner.kt */
-    public static final class C90681 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90681 extends AbstractC12240o implements Function0<Unit> {
         public C90681() {
             super(0);
         }
@@ -103,7 +79,7 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
 
     /* JADX INFO: renamed from: com.discord.widgets.media.WidgetQRScanner$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetQRScanner.kt */
-    public static final class C90692 extends AbstractC12240o implements Function0<Unit> {
+    public final class C90692 extends AbstractC12240o implements Function0<Unit> {
         public C90692() {
             super(0);
         }
@@ -123,6 +99,30 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
         }
     }
 
+    /* JADX INFO: compiled from: WidgetQRScanner.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, boolean z2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            companion.launch(context, z2);
+        }
+
+        public final void launch(Context context, boolean showHelpChip) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent("android.intent.action.VIEW").putExtra(WidgetQRScanner.EXTRA_SHOW_HELP_CHIP, showHelpChip);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent(Intent.ACTION_VIE…_HELP_CHIP, showHelpChip)");
+            C0870j.m156d(context, WidgetQRScanner.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetQRScanner() {
         super(C5419R.layout.widget_qr_scanner);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetQRScanner$binding$2.INSTANCE, new WidgetQRScanner$binding$3(this));
@@ -130,10 +130,6 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
 
     private final WidgetQrScannerBinding getBinding() {
         return (WidgetQrScannerBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final void onViewBindingDestroy(WidgetQrScannerBinding binding) {
-        binding.f17396b.m10094a();
     }
 
     /* JADX WARN: Code duplicated, block: B:11:0x002d  */
@@ -222,6 +218,10 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
     public void onPause() {
         super.onPause();
         getBinding().f17396b.m10094a();
+    }
+
+    private final void onViewBindingDestroy(WidgetQrScannerBinding binding) {
+        binding.f17396b.m10094a();
     }
 
     @Override // com.discord.app.AppFragment

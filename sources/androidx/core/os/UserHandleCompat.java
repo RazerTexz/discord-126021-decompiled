@@ -20,7 +20,7 @@ public class UserHandleCompat {
     private static Constructor<UserHandle> sUserHandleConstructor;
 
     @RequiresApi(24)
-    public static class Api24Impl {
+    public class Api24Impl {
         private Api24Impl() {
         }
 

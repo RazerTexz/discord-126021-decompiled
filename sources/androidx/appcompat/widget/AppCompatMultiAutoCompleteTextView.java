@@ -19,9 +19,9 @@ import androidx.core.view.TintableBackgroundView;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatMultiAutoCompleteTextView extends MultiAutoCompleteTextView implements TintableBackgroundView {
-    private static final int[] TINT_ATTRS = {R.attr.popupBackground};
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
     private final AppCompatTextHelper mTextHelper;
+    private static final int[] TINT_ATTRS = {R.attr.popupBackground};
 
     public AppCompatMultiAutoCompleteTextView(@NonNull Context context) {
         this(context, null);

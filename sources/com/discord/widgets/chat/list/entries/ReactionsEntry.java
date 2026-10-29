@@ -44,26 +44,6 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
         return reactionsEntry.copy(message, z2, z3, z4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanAddReactions() {
-        return this.canAddReactions;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanCreateReactions() {
-        return this.canCreateReactions;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getAnimateEmojis() {
-        return this.animateEmojis;
-    }
-
     public final ReactionsEntry copy(Message message, boolean canAddReactions, boolean canCreateReactions, boolean animateEmojis) {
         C12238m.checkNotNullParameter(message, "message");
         return new ReactionsEntry(message, canAddReactions, canCreateReactions, animateEmojis);
@@ -80,12 +60,27 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
         return C12238m.areEqual(this.message, reactionsEntry.message) && this.canAddReactions == reactionsEntry.canAddReactions && this.canCreateReactions == reactionsEntry.canCreateReactions && this.animateEmojis == reactionsEntry.animateEmojis;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getAnimateEmojis() {
         return this.animateEmojis;
     }
 
+    public final boolean getAnimateEmojis() {
+        return this.animateEmojis;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getCanAddReactions() {
         return this.canAddReactions;
+    }
+
+    public final boolean getCanAddReactions() {
+        return this.canAddReactions;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getCanCreateReactions() {
+        return this.canCreateReactions;
     }
 
     public final boolean getCanCreateReactions() {
@@ -95,6 +90,11 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Message getMessage() {
+        return this.message;
     }
 
     public final Message getMessage() {

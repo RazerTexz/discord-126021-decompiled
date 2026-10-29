@@ -10,7 +10,7 @@ public abstract class AbstractC2211c implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.e0.c$a */
     /* JADX INFO: compiled from: PolymorphicTypeValidator.java */
-    public static abstract class a extends AbstractC2211c implements Serializable {
+    public abstract class a extends AbstractC2211c implements Serializable {
         private static final long serialVersionUID = 1;
     }
 }

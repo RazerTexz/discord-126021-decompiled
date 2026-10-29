@@ -14,12 +14,12 @@ public final /* data */ class ModelUserNote {
     private final long noteUserId;
 
     /* JADX INFO: compiled from: ModelUserNote.kt */
-    public static final /* data */ class Update {
+    public final /* data */ class Update {
         private final long id;
         private final String note;
 
         /* JADX INFO: compiled from: ModelUserNote.kt */
-        public static final class Parser implements Model.Parser<Update> {
+        public final class Parser implements Model.Parser<Update> {
             public static final Parser INSTANCE = new Parser();
 
             private Parser() {
@@ -75,16 +75,6 @@ public final /* data */ class ModelUserNote {
             return update.copy(j, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getNote() {
-            return this.note;
-        }
-
         public final Update copy(long id2, String note) {
             C12238m.checkNotNullParameter(note, "note");
             return new Update(id2, note);
@@ -101,8 +91,18 @@ public final /* data */ class ModelUserNote {
             return this.id == update.id && C12238m.areEqual(this.note, update.note);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getId() {
             return this.id;
+        }
+
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getNote() {
+            return this.note;
         }
 
         public final String getNote() {
@@ -139,16 +139,6 @@ public final /* data */ class ModelUserNote {
         return modelUserNote.copy(j, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getNoteUserId() {
-        return this.noteUserId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getNote() {
-        return this.note;
-    }
-
     public final ModelUserNote copy(long noteUserId, String note) {
         return new ModelUserNote(noteUserId, note);
     }
@@ -164,8 +154,18 @@ public final /* data */ class ModelUserNote {
         return this.noteUserId == modelUserNote.noteUserId && C12238m.areEqual(this.note, modelUserNote.note);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getNote() {
         return this.note;
+    }
+
+    public final String getNote() {
+        return this.note;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getNoteUserId() {
+        return this.noteUserId;
     }
 
     public final long getNoteUserId() {

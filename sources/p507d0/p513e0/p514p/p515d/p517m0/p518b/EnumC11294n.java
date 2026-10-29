@@ -66,18 +66,6 @@ public final class EnumC11294n {
         this.arrayClassId = new C11712a(c11712a.getPackageFqName(), C11716e.identifier(C12238m.stringPlus(shortClassName.asString(), "Array")));
     }
 
-    public static EnumC11294n valueOf(String str) {
-        C12238m.checkNotNullParameter(str, "value");
-        return (EnumC11294n) Enum.valueOf(EnumC11294n.class, str);
-    }
-
-    public static EnumC11294n[] values() {
-        EnumC11294n[] enumC11294nArr = f22583n;
-        EnumC11294n[] enumC11294nArr2 = new EnumC11294n[enumC11294nArr.length];
-        System.arraycopy(enumC11294nArr, 0, enumC11294nArr2, 0, enumC11294nArr.length);
-        return enumC11294nArr2;
-    }
-
     public final C11712a getArrayClassId() {
         return this.arrayClassId;
     }
@@ -88,5 +76,17 @@ public final class EnumC11294n {
 
     public final C11716e getTypeName() {
         return this.typeName;
+    }
+
+    public static EnumC11294n valueOf(String str) {
+        C12238m.checkNotNullParameter(str, "value");
+        return (EnumC11294n) Enum.valueOf(EnumC11294n.class, str);
+    }
+
+    public static EnumC11294n[] values() {
+        EnumC11294n[] enumC11294nArr = f22583n;
+        EnumC11294n[] enumC11294nArr2 = new EnumC11294n[enumC11294nArr.length];
+        System.arraycopy(enumC11294nArr, 0, enumC11294nArr2, 0, enumC11294nArr.length);
+        return enumC11294nArr2;
     }
 }

@@ -19,7 +19,7 @@ public final class C2185g extends AbstractC2188i implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.g$a */
     /* JADX INFO: compiled from: AnnotatedField.java */
-    public static final class a implements Serializable {
+    public final class a implements Serializable {
         private static final long serialVersionUID = 1;
         public Class<?> clazz;
         public String name;
@@ -33,6 +33,19 @@ public final class C2185g extends AbstractC2188i implements Serializable {
     public C2185g(InterfaceC2182e0 interfaceC2182e0, Field field, C2195p c2195p) {
         super(interfaceC2182e0, c2195p);
         this.f4708l = field;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return C2342d.m2183o(obj, C2185g.class) && ((C2185g) obj).f4708l == this.f4708l;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
+    public int hashCode() {
+        return this.f4708l.getName().hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
@@ -53,23 +66,10 @@ public final class C2185g extends AbstractC2188i implements Serializable {
         return this.f4716j.mo1831a(this.f4708l.getGenericType());
     }
 
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        return C2342d.m2183o(obj, C2185g.class) && ((C2185g) obj).f4708l == this.f4708l;
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i
     /* JADX INFO: renamed from: g */
     public Class<?> mo1887g() {
         return this.f4708l.getDeclaringClass();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2175b
-    public int hashCode() {
-        return this.f4708l.getName().hashCode();
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2188i

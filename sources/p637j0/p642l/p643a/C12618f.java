@@ -36,7 +36,7 @@ public final class C12618f<T, R> implements Observable.InterfaceC13005a<R> {
 
     /* JADX INFO: renamed from: j0.l.a.f$a */
     /* JADX INFO: compiled from: OnSubscribeCombineLatest.java */
-    public static final class a<T, R> extends Subscriber<T> {
+    public final class a<T, R> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final b<T, R> f26783j;
@@ -102,11 +102,7 @@ public final class C12618f<T, R> implements Observable.InterfaceC13005a<R> {
 
     /* JADX INFO: renamed from: j0.l.a.f$b */
     /* JADX INFO: compiled from: OnSubscribeCombineLatest.java */
-    public static final class b<T, R> extends AtomicInteger implements Producer, Subscription {
-
-        /* JADX INFO: renamed from: j */
-        public static final Object f26786j = new Object();
-        private static final long serialVersionUID = 8567835998786448817L;
+    public final class b<T, R> extends AtomicInteger implements Producer, Subscription {
         public int active;
         public final Subscriber<? super R> actual;
         public final int bufferSize;
@@ -119,7 +115,11 @@ public final class C12618f<T, R> implements Observable.InterfaceC13005a<R> {
         public final Object[] latest;
         public final C12728e<Object> queue;
         public final AtomicLong requested;
+        private static final long serialVersionUID = 8567835998786448817L;
         public final a<T, R>[] subscribers;
+
+        /* JADX INFO: renamed from: j */
+        public static final Object f26786j = new Object();
 
         public b(Subscriber<? super R> subscriber, FuncN<? extends R> funcN, int i, int i2, boolean z2) {
             this.actual = subscriber;
@@ -133,6 +133,11 @@ public final class C12618f<T, R> implements Observable.InterfaceC13005a<R> {
             this.queue = new C12728e<>(i2);
             this.requested = new AtomicLong();
             this.error = new AtomicReference<>();
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.cancelled;
         }
 
         /* JADX INFO: renamed from: a */
@@ -275,11 +280,6 @@ public final class C12618f<T, R> implements Observable.InterfaceC13005a<R> {
                     return;
                 }
             }
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.cancelled;
         }
 
         @Override // p658rx.Producer

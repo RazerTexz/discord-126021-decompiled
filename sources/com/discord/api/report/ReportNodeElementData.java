@@ -16,16 +16,6 @@ public final /* data */ class ReportNodeElementData {
         this.elementValue = str2;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getElementKey() {
-        return this.elementKey;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getElementValue() {
-        return this.elementValue;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,6 +25,16 @@ public final /* data */ class ReportNodeElementData {
         }
         ReportNodeElementData reportNodeElementData = (ReportNodeElementData) other;
         return C12238m.areEqual(this.elementKey, reportNodeElementData.elementKey) && C12238m.areEqual(this.elementValue, reportNodeElementData.elementValue);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getElementKey() {
+        return this.elementKey;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getElementValue() {
+        return this.elementValue;
     }
 
     public int hashCode() {

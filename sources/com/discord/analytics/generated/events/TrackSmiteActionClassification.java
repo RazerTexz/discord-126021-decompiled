@@ -10,28 +10,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSmiteActionClassification.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSmiteActionClassification implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence actionName = null;
     private final CharSequence actionId = null;
-    private final CharSequence rulesGitSha = null;
-    private final CharSequence rulesSourceSha = null;
-    private final List<CharSequence> labels = null;
-    private final List<CharSequence> labelStatuses = null;
+    private final CharSequence actionName = null;
+    private final Long channelId = null;
+    private final Long guildId = null;
     private final List<CharSequence> labelReasons = null;
     private final List<CharSequence> labelReasonsShas = null;
-    private final Long guildId = null;
-    private final Long channelId = null;
-    private final Long locationGuildId = null;
+    private final List<CharSequence> labelStatuses = null;
+    private final List<CharSequence> labels = null;
     private final Long locationChannelId = null;
     private final Long locationChannelType = null;
+    private final Long locationGuildId = null;
     private final Long locationMessageId = null;
+    private final CharSequence rulesGitSha = null;
+    private final CharSequence rulesSourceSha = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "smite_action_classification";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -42,6 +36,12 @@ public final /* data */ class TrackSmiteActionClassification implements Analytic
         }
         TrackSmiteActionClassification trackSmiteActionClassification = (TrackSmiteActionClassification) other;
         return C12238m.areEqual(this.actionName, trackSmiteActionClassification.actionName) && C12238m.areEqual(this.actionId, trackSmiteActionClassification.actionId) && C12238m.areEqual(this.rulesGitSha, trackSmiteActionClassification.rulesGitSha) && C12238m.areEqual(this.rulesSourceSha, trackSmiteActionClassification.rulesSourceSha) && C12238m.areEqual(this.labels, trackSmiteActionClassification.labels) && C12238m.areEqual(this.labelStatuses, trackSmiteActionClassification.labelStatuses) && C12238m.areEqual(this.labelReasons, trackSmiteActionClassification.labelReasons) && C12238m.areEqual(this.labelReasonsShas, trackSmiteActionClassification.labelReasonsShas) && C12238m.areEqual(this.guildId, trackSmiteActionClassification.guildId) && C12238m.areEqual(this.channelId, trackSmiteActionClassification.channelId) && C12238m.areEqual(this.locationGuildId, trackSmiteActionClassification.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackSmiteActionClassification.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackSmiteActionClassification.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackSmiteActionClassification.locationMessageId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

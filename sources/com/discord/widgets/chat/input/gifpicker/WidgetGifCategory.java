@@ -41,6 +41,7 @@ import p658rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetGifCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGifCategory extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGifCategory.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGifCategoryBinding;", 0)};
     public static final String ARG_GIF_CATEGORY_ITEM = "GIF_CATEGORY_ITEM";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -53,11 +54,10 @@ public final class WidgetGifCategory extends AppFragment {
     /* JADX INFO: renamed from: gifCategoryViewModel$delegate, reason: from kotlin metadata */
     private final Lazy gifCategoryViewModel;
     private Function0<Unit> onGifSelected;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGifCategory.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGifCategoryBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGifCategory.kt */
-    public static final class C78761 extends AbstractC12240o implements Function1<GifCategoryViewModel.ViewState, Unit> {
+    public final class C78761 extends AbstractC12240o implements Function1<GifCategoryViewModel.ViewState, Unit> {
         public C78761() {
             super(1);
         }
@@ -77,7 +77,7 @@ public final class WidgetGifCategory extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setUpGifRecycler$1 */
     /* JADX INFO: compiled from: WidgetGifCategory.kt */
-    public static final /* synthetic */ class C78791 extends C12236k implements Function1<GifAdapterItem.GifItem, Unit> {
+    public final /* synthetic */ class C78791 extends C12236k implements Function1<GifAdapterItem.GifItem, Unit> {
         public C78791(WidgetGifCategory widgetGifCategory) {
             super(1, widgetGifCategory, WidgetGifCategory.class, "selectGif", "selectGif(Lcom/discord/widgets/chat/input/gifpicker/GifAdapterItem$GifItem;)V", 0);
         }
@@ -140,12 +140,38 @@ public final class WidgetGifCategory extends AppFragment {
         gifAdapter.setItems(viewState.getGifItems());
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
+        RecyclerView recyclerView = getBinding().f16695c;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.gifCategoryGifRecycler");
+        int iCalculateColumnCount = companion.calculateColumnCount(recyclerView);
+        setUpTitle();
+        setUpBackBehavior();
+        setUpGifRecycler(iCalculateColumnCount);
+        GifLoadingView.updateView$default(getBinding().f16696d, iCalculateColumnCount, 0, 2, null);
+        setWindowInsetsListeners();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getGifCategoryViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGifCategory.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78761());
+    }
+
     private final void selectGif(GifAdapterItem.GifItem gifItem) {
         getGifCategoryViewModel().selectGif(gifItem);
         Function0<Unit> function0 = this.onGifSelected;
         if (function0 != null) {
             function0.invoke();
         }
+    }
+
+    public final void setOnGifSelected(Function0<Unit> onSelected) {
+        C12238m.checkNotNullParameter(onSelected, "onSelected");
+        this.onGifSelected = onSelected;
     }
 
     private final void setUpBackBehavior() {
@@ -220,31 +246,5 @@ public final class WidgetGifCategory extends AppFragment {
                 return windowInsetsCompat.consumeSystemWindowInsets();
             }
         });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        GifAdapter.Companion companion = GifAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f16695c;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.gifCategoryGifRecycler");
-        int iCalculateColumnCount = companion.calculateColumnCount(recyclerView);
-        setUpTitle();
-        setUpBackBehavior();
-        setUpGifRecycler(iCalculateColumnCount);
-        GifLoadingView.updateView$default(getBinding().f16696d, iCalculateColumnCount, 0, 2, null);
-        setWindowInsetsListeners();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getGifCategoryViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGifCategory.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78761());
-    }
-
-    public final void setOnGifSelected(Function0<Unit> onSelected) {
-        C12238m.checkNotNullParameter(onSelected, "onSelected");
-        this.onGifSelected = onSelected;
     }
 }

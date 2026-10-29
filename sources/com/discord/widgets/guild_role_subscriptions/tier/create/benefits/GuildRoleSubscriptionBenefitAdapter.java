@@ -47,6 +47,26 @@ public final class GuildRoleSubscriptionBenefitAdapter extends RecyclerView.Adap
     private final Listener listener;
     private StickyHeadersManager stickyHeaderManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.GuildRoleSubscriptionBenefitAdapter$setItems$1 */
+    /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapter.kt */
+    public final class C85181 extends AbstractC12240o implements Function1<List<? extends GuildRoleSubscriptionBenefitAdapterItem>, Unit> {
+        public C85181() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends GuildRoleSubscriptionBenefitAdapterItem> list) {
+            invoke2(list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends GuildRoleSubscriptionBenefitAdapterItem> list) {
+            C12238m.checkNotNullParameter(list, "itemsToDispatch");
+            GuildRoleSubscriptionBenefitAdapter.this.items = list;
+        }
+    }
+
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapter.kt */
     public interface Listener {
         void onActiveTrialUserLimitClick();
@@ -61,7 +81,7 @@ public final class GuildRoleSubscriptionBenefitAdapter extends RecyclerView.Adap
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapter.kt */
-    public static final class StickyHeadersManager {
+    public final class StickyHeadersManager {
         private final View currentStickyHeaderView;
         private final GuildRoleSubscriptionBenefitViewHolder.HeaderViewHolder stickyHeaderHolder;
 
@@ -87,26 +107,6 @@ public final class GuildRoleSubscriptionBenefitAdapter extends RecyclerView.Adap
         public final void layoutViews(RecyclerView recyclerView) {
             C12238m.checkNotNullParameter(recyclerView, "recyclerView");
             StickyHeaderItemDecoration.LayoutManager.layoutHeaderView(recyclerView, this.currentStickyHeaderView);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.GuildRoleSubscriptionBenefitAdapter$setItems$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitAdapter.kt */
-    public static final class C85181 extends AbstractC12240o implements Function1<List<? extends GuildRoleSubscriptionBenefitAdapterItem>, Unit> {
-        public C85181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends GuildRoleSubscriptionBenefitAdapterItem> list) {
-            invoke2(list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends GuildRoleSubscriptionBenefitAdapterItem> list) {
-            C12238m.checkNotNullParameter(list, "itemsToDispatch");
-            GuildRoleSubscriptionBenefitAdapter.this.items = list;
         }
     }
 
@@ -157,12 +157,6 @@ public final class GuildRoleSubscriptionBenefitAdapter extends RecyclerView.Adap
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         GuildRoleSubscriptionBenefitAdapterItem guildRoleSubscriptionBenefitAdapterItem = this.items.get(position);
         if (guildRoleSubscriptionBenefitAdapterItem instanceof GuildRoleSubscriptionBenefitAdapterItem.AddBenefitItem) {
@@ -178,6 +172,12 @@ public final class GuildRoleSubscriptionBenefitAdapter extends RecyclerView.Adap
             return 4;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     @Override // com.discord.utilities.views.StickyHeaderItemDecoration.StickyHeaderAdapter

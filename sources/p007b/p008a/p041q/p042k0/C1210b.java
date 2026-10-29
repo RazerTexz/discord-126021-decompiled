@@ -26,7 +26,7 @@ public final class C1210b {
 
     /* JADX INFO: renamed from: b.a.q.k0.b$a */
     /* JADX INFO: compiled from: AudioPermissions.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

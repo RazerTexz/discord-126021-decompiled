@@ -22,17 +22,17 @@ public final class C11698w extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: j */
     public static final C11698w f23987j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11698w> f23988k = new a();
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
     private List<C11697v> requirement_;
     private final AbstractC11723c unknownFields;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11698w> f23988k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.w$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11698w> {
+    public final class a extends AbstractC11722b<C11698w> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11698w parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11698w(c11724d, c11725e, null);
@@ -41,7 +41,7 @@ public final class C11698w extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.w$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.b<C11698w, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.b<C11698w, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: k */
         public int f23989k;
@@ -146,10 +146,6 @@ public final class C11698w extends AbstractC11727g implements InterfaceC11735o {
         return f23987j;
     }
 
-    public static b newBuilder(C11698w c11698w) {
-        return newBuilder().mergeFrom(c11698w);
-    }
-
     public int getRequirementCount() {
         return this.requirement_.size();
     }
@@ -184,6 +180,10 @@ public final class C11698w extends AbstractC11727g implements InterfaceC11735o {
         }
         this.memoizedIsInitialized = (byte) 1;
         return true;
+    }
+
+    public static b newBuilder(C11698w c11698w) {
+        return newBuilder().mergeFrom(c11698w);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

@@ -13,23 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCancellationFlowStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCancellationFlowStarted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSubscriptionMetadataReceiver {
+    private final Long subscriptionId = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final Long subscriptionId = null;
     private final transient String analyticsSchemaTypeName = "cancellation_flow_started";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackCancellationFlowStarted) && C12238m.areEqual(this.subscriptionId, ((TrackCancellationFlowStarted) other).subscriptionId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -23,39 +23,6 @@ public class C12605b2<T> extends Subscriber<T> {
     /* JADX INFO: renamed from: m */
     public final /* synthetic */ C12609c2 f26746m;
 
-    /* JADX INFO: renamed from: j0.l.a.b2$a */
-    /* JADX INFO: compiled from: OperatorTake.java */
-    public class a implements Producer {
-
-        /* JADX INFO: renamed from: j */
-        public final AtomicLong f26747j = new AtomicLong(0);
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ Producer f26748k;
-
-        public a(Producer producer) {
-            this.f26748k = producer;
-        }
-
-        @Override // p658rx.Producer
-        /* JADX INFO: renamed from: j */
-        public void mo10704j(long j) {
-            long j2;
-            long jMin;
-            if (j <= 0 || C12605b2.this.f26744k) {
-                return;
-            }
-            do {
-                j2 = this.f26747j.get();
-                jMin = Math.min(j, ((long) C12605b2.this.f26746m.f26758j) - j2);
-                if (jMin == 0) {
-                    return;
-                }
-            } while (!this.f26747j.compareAndSet(j2, j2 + jMin));
-            this.f26748k.mo10704j(jMin);
-        }
-    }
-
     public C12605b2(C12609c2 c12609c2, Subscriber subscriber) {
         this.f26746m = c12609c2;
         this.f26745l = subscriber;
@@ -111,5 +78,38 @@ public class C12605b2<T> extends Subscriber<T> {
     @Override // p658rx.Subscriber
     public void setProducer(Producer producer) {
         this.f26745l.setProducer(new a(producer));
+    }
+
+    /* JADX INFO: renamed from: j0.l.a.b2$a */
+    /* JADX INFO: compiled from: OperatorTake.java */
+    public class a implements Producer {
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ Producer f26748k;
+
+        /* JADX INFO: renamed from: j */
+        public final AtomicLong f26747j = new AtomicLong(0);
+
+        public a(Producer producer) {
+            this.f26748k = producer;
+        }
+
+        @Override // p658rx.Producer
+        /* JADX INFO: renamed from: j */
+        public void mo10704j(long j) {
+            long j2;
+            long jMin;
+            if (j <= 0 || C12605b2.this.f26744k) {
+                return;
+            }
+            do {
+                j2 = this.f26747j.get();
+                jMin = Math.min(j, ((long) C12605b2.this.f26746m.f26758j) - j2);
+                if (jMin == 0) {
+                    return;
+                }
+            } while (!this.f26747j.compareAndSet(j2, j2 + jMin));
+            this.f26748k.mo10704j(jMin);
+        }
     }
 }

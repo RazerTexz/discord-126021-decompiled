@@ -29,7 +29,7 @@ public final class OnDelayedEmissionHandler<T> implements Observable.InterfaceC1
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.OnDelayedEmissionHandler$call$1 */
     /* JADX INFO: compiled from: OnDelayedEmissionHandler.kt */
-    public static final class C68941 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C68941 extends AbstractC12240o implements Function1<Long, Unit> {
         public C68941() {
             super(1);
         }
@@ -51,7 +51,7 @@ public final class OnDelayedEmissionHandler<T> implements Observable.InterfaceC1
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.OnDelayedEmissionHandler$call$2 */
     /* JADX INFO: compiled from: OnDelayedEmissionHandler.kt */
-    public static final class C68952 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C68952 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ OnDelayedEmissionHandler$call$wrappedSubscriber$1 $wrappedSubscriber;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -78,7 +78,7 @@ public final class OnDelayedEmissionHandler<T> implements Observable.InterfaceC1
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.OnDelayedEmissionHandler$call$3 */
     /* JADX INFO: compiled from: OnDelayedEmissionHandler.kt */
-    public static final class C68963 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C68963 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C68963() {
             super(1);
         }

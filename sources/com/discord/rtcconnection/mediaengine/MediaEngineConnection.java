@@ -17,143 +17,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public interface MediaEngineConnection {
 
-    /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public enum ConnectionState {
-        DISCONNECTED,
-        CONNECTING,
-        CONNECTED,
-        NO_ROUTE
-    }
-
-    /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public static final class FailedConnectionException extends Exception {
-        private final FailureType type;
-
-        /* JADX INFO: compiled from: MediaEngineConnection.kt */
-        public enum FailureType {
-            DISCONNECTED_BEFORE_CONNECTION_ESTABLISHED,
-            TIMEOUT,
-            ADDRESS_IP_RESOLVED,
-            NO_CONNECTION_INFO,
-            CODEC_NEGOTIATION_FAILED,
-            UNKNOWN;
-
-
-            /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-            public static final Companion INSTANCE = new Companion(null);
-
-            /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$FailedConnectionException$FailureType$a, reason: from kotlin metadata */
-            /* JADX INFO: compiled from: MediaEngineConnection.kt */
-            public static final class Companion {
-                public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public FailedConnectionException(String str, FailureType failureType) {
-            super(str);
-            C12238m.checkNotNullParameter(failureType, "type");
-            this.type = failureType;
-        }
-
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final FailureType getType() {
-            return this.type;
-        }
-    }
-
-    /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public enum InputMode {
-        VOICE_ACTIVITY(1),
-        PUSH_TO_TALK(2);
-
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private final int numeral;
-
-        /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$InputMode$a, reason: from kotlin metadata */
-        /* JADX INFO: compiled from: MediaEngineConnection.kt */
-        public static final class Companion {
-            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            }
-        }
-
-        InputMode(int i) {
-            this.numeral = i;
-        }
-
-        public final int getNumeral() {
-            return this.numeral;
-        }
-    }
-
-    /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public static final /* data */ class TransportInfo {
-
-        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
-        public final String address;
-
-        /* JADX INFO: renamed from: b, reason: from kotlin metadata */
-        public final int port;
-
-        /* JADX INFO: renamed from: c, reason: from kotlin metadata */
-        public final Protocol protocol;
-
-        /* JADX INFO: compiled from: MediaEngineConnection.kt */
-        public enum Protocol {
-            UDP,
-            TCP
-        }
-
-        public TransportInfo(String str, int i, Protocol protocol) {
-            C12238m.checkNotNullParameter(str, "address");
-            C12238m.checkNotNullParameter(protocol, "protocol");
-            this.address = str;
-            this.port = i;
-            this.protocol = protocol;
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof TransportInfo)) {
-                return false;
-            }
-            TransportInfo transportInfo = (TransportInfo) other;
-            return C12238m.areEqual(this.address, transportInfo.address) && this.port == transportInfo.port && C12238m.areEqual(this.protocol, transportInfo.protocol);
-        }
-
-        public int hashCode() {
-            String str = this.address;
-            int iHashCode = (((str != null ? str.hashCode() : 0) * 31) + this.port) * 31;
-            Protocol protocol = this.protocol;
-            return iHashCode + (protocol != null ? protocol.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("TransportInfo(address=");
-            sbM833U.append(this.address);
-            sbM833U.append(", port=");
-            sbM833U.append(this.port);
-            sbM833U.append(", protocol=");
-            sbM833U.append(this.protocol);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public enum Type {
-        DEFAULT,
-        STREAM
-    }
-
     /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$a */
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public static abstract class AbstractC5645a implements InterfaceC5648d {
+    public abstract class AbstractC5645a implements InterfaceC5648d {
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.InterfaceC5648d
         public void onConnected(MediaEngineConnection mediaEngineConnection, TransportInfo transportInfo, List<C1221a> list) {
             C12238m.checkNotNullParameter(mediaEngineConnection, "connection");
@@ -213,7 +79,7 @@ public interface MediaEngineConnection {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$b */
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public static final class C5646b {
+    public final class C5646b {
 
         /* JADX INFO: renamed from: a */
         public final int f18905a;
@@ -275,7 +141,7 @@ public interface MediaEngineConnection {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$c */
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
-    public static final class C5647c {
+    public final class C5647c {
 
         /* JADX INFO: renamed from: a */
         public final int f18911a;
@@ -371,6 +237,78 @@ public interface MediaEngineConnection {
         }
     }
 
+    /* JADX INFO: compiled from: MediaEngineConnection.kt */
+    public enum ConnectionState {
+        DISCONNECTED,
+        CONNECTING,
+        CONNECTED,
+        NO_ROUTE
+    }
+
+    /* JADX INFO: compiled from: MediaEngineConnection.kt */
+    public final class FailedConnectionException extends Exception {
+        private final FailureType type;
+
+        /* JADX INFO: compiled from: MediaEngineConnection.kt */
+        public enum FailureType {
+            DISCONNECTED_BEFORE_CONNECTION_ESTABLISHED,
+            TIMEOUT,
+            ADDRESS_IP_RESOLVED,
+            NO_CONNECTION_INFO,
+            CODEC_NEGOTIATION_FAILED,
+            UNKNOWN;
+
+
+            /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+            public static final Companion INSTANCE = new Companion(null);
+
+            /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$FailedConnectionException$FailureType$a, reason: from kotlin metadata */
+            /* JADX INFO: compiled from: MediaEngineConnection.kt */
+            public final class Companion {
+                public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public FailedConnectionException(String str, FailureType failureType) {
+            super(str);
+            C12238m.checkNotNullParameter(failureType, "type");
+            this.type = failureType;
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final FailureType getType() {
+            return this.type;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineConnection.kt */
+    public enum InputMode {
+        VOICE_ACTIVITY(1),
+        PUSH_TO_TALK(2);
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final int numeral;
+
+        /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$InputMode$a, reason: from kotlin metadata */
+        /* JADX INFO: compiled from: MediaEngineConnection.kt */
+        public final class Companion {
+            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            }
+        }
+
+        InputMode(int i) {
+            this.numeral = i;
+        }
+
+        public final int getNumeral() {
+            return this.numeral;
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.rtcconnection.mediaengine.MediaEngineConnection$d */
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
     public interface InterfaceC5648d {
@@ -397,6 +335,72 @@ public interface MediaEngineConnection {
         void onVideo(long j, Integer num, int i, int i2, int i3, StreamParameters[] streamParametersArr);
     }
 
+    /* JADX INFO: compiled from: MediaEngineConnection.kt */
+    public final /* data */ class TransportInfo {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final String address;
+
+        /* JADX INFO: renamed from: b, reason: from kotlin metadata */
+        public final int port;
+
+        /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+        public final Protocol protocol;
+
+        /* JADX INFO: compiled from: MediaEngineConnection.kt */
+        public enum Protocol {
+            UDP,
+            TCP
+        }
+
+        public TransportInfo(String str, int i, Protocol protocol) {
+            C12238m.checkNotNullParameter(str, "address");
+            C12238m.checkNotNullParameter(protocol, "protocol");
+            this.address = str;
+            this.port = i;
+            this.protocol = protocol;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof TransportInfo)) {
+                return false;
+            }
+            TransportInfo transportInfo = (TransportInfo) other;
+            return C12238m.areEqual(this.address, transportInfo.address) && this.port == transportInfo.port && C12238m.areEqual(this.protocol, transportInfo.protocol);
+        }
+
+        public int hashCode() {
+            String str = this.address;
+            int iHashCode = (((str != null ? str.hashCode() : 0) * 31) + this.port) * 31;
+            Protocol protocol = this.protocol;
+            return iHashCode + (protocol != null ? protocol.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("TransportInfo(address=");
+            sbM833U.append(this.address);
+            sbM833U.append(", port=");
+            sbM833U.append(this.port);
+            sbM833U.append(", protocol=");
+            sbM833U.append(this.protocol);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineConnection.kt */
+    public enum Type {
+        DEFAULT,
+        STREAM
+    }
+
+    void destroy();
+
+    Type getType();
+
     /* JADX INFO: renamed from: a */
     void mo295a(Intent permission, ThumbnailEmitter thumbnailEmitter);
 
@@ -409,8 +413,6 @@ public interface MediaEngineConnection {
     /* JADX INFO: renamed from: d */
     void mo298d(long userId, boolean offScreen);
 
-    void destroy();
-
     /* JADX INFO: renamed from: e */
     void mo299e(long userId, float volume);
 
@@ -419,8 +421,6 @@ public interface MediaEngineConnection {
 
     /* JADX INFO: renamed from: g */
     boolean mo301g(long userId);
-
-    Type getType();
 
     /* JADX INFO: renamed from: h */
     void mo302h();

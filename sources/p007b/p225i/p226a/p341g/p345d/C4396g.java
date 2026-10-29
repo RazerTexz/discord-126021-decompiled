@@ -27,9 +27,6 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4396g extends BaseAdapter {
 
-    /* JADX INFO: renamed from: j */
-    public static final int f11606j = C4401l.m6076i().getMaximum(4);
-
     /* JADX INFO: renamed from: k */
     public final Month f11607k;
 
@@ -45,6 +42,9 @@ public class C4396g extends BaseAdapter {
     /* JADX INFO: renamed from: o */
     public final CalendarConstraints f11611o;
 
+    /* JADX INFO: renamed from: j */
+    public static final int f11606j = C4401l.m6076i().getMaximum(4);
+
     public C4396g(Month month, DateSelector<?> dateSelector, CalendarConstraints calendarConstraints) {
         this.f11607k = month;
         this.f11608l = dateSelector;
@@ -52,14 +52,9 @@ public class C4396g extends BaseAdapter {
         this.f11609m = dateSelector.getSelectedDays();
     }
 
-    /* JADX INFO: renamed from: a */
-    public int m6062a(int i) {
-        return m6063b() + (i - 1);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public int m6063b() {
-        return this.f11607k.m9135j();
+    @Override // android.widget.Adapter
+    public int getCount() {
+        return m6063b() + this.f11607k.f20988n;
     }
 
     @Override // android.widget.Adapter
@@ -71,53 +66,6 @@ public class C4396g extends BaseAdapter {
         }
         Month month = this.f11607k;
         return Long.valueOf(month.m9136k((i - month.m9135j()) + 1));
-    }
-
-    /* JADX INFO: renamed from: d */
-    public int m6065d() {
-        return (this.f11607k.m9135j() + this.f11607k.f20988n) - 1;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final void m6066e(@Nullable TextView textView, long j) {
-        C4390a c4390a;
-        if (textView == null) {
-            return;
-        }
-        boolean z2 = false;
-        if (this.f11611o.getDateValidator().isValid(j)) {
-            textView.setEnabled(true);
-            Iterator<Long> it = this.f11608l.getSelectedDays().iterator();
-            while (it.hasNext()) {
-                if (C4401l.m6068a(j) == C4401l.m6068a(it.next().longValue())) {
-                    z2 = true;
-                    break;
-                }
-            }
-            if (z2) {
-                c4390a = this.f11610n.f11585b;
-            } else {
-                c4390a = C4401l.m6075h().getTimeInMillis() == j ? this.f11610n.f11586c : this.f11610n.f11584a;
-            }
-        } else {
-            textView.setEnabled(false);
-            c4390a = this.f11610n.f11590g;
-        }
-        c4390a.m6059b(textView);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m6067f(MaterialCalendarGridView materialCalendarGridView, long j) {
-        if (Month.m9132h(j).equals(this.f11607k)) {
-            Calendar calendarM6071d = C4401l.m6071d(this.f11607k.f20984j);
-            calendarM6071d.setTimeInMillis(j);
-            m6066e((TextView) materialCalendarGridView.getChildAt(materialCalendarGridView.getAdapter().m6062a(calendarM6071d.get(5)) - materialCalendarGridView.getFirstVisiblePosition()), j);
-        }
-    }
-
-    @Override // android.widget.Adapter
-    public int getCount() {
-        return m6063b() + this.f11607k.f20988n;
     }
 
     @Override // android.widget.Adapter
@@ -190,5 +138,57 @@ public class C4396g extends BaseAdapter {
     @Override // android.widget.BaseAdapter, android.widget.Adapter
     public boolean hasStableIds() {
         return true;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public int m6062a(int i) {
+        return m6063b() + (i - 1);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public int m6063b() {
+        return this.f11607k.m9135j();
+    }
+
+    /* JADX INFO: renamed from: d */
+    public int m6065d() {
+        return (this.f11607k.m9135j() + this.f11607k.f20988n) - 1;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m6066e(@Nullable TextView textView, long j) {
+        C4390a c4390a;
+        if (textView == null) {
+            return;
+        }
+        boolean z2 = false;
+        if (this.f11611o.getDateValidator().isValid(j)) {
+            textView.setEnabled(true);
+            Iterator<Long> it = this.f11608l.getSelectedDays().iterator();
+            while (it.hasNext()) {
+                if (C4401l.m6068a(j) == C4401l.m6068a(it.next().longValue())) {
+                    z2 = true;
+                    break;
+                }
+            }
+            if (z2) {
+                c4390a = this.f11610n.f11585b;
+            } else {
+                c4390a = C4401l.m6075h().getTimeInMillis() == j ? this.f11610n.f11586c : this.f11610n.f11584a;
+            }
+        } else {
+            textView.setEnabled(false);
+            c4390a = this.f11610n.f11590g;
+        }
+        c4390a.m6059b(textView);
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final void m6067f(MaterialCalendarGridView materialCalendarGridView, long j) {
+        if (Month.m9132h(j).equals(this.f11607k)) {
+            Calendar calendarM6071d = C4401l.m6071d(this.f11607k.f20984j);
+            calendarM6071d.setTimeInMillis(j);
+            m6066e((TextView) materialCalendarGridView.getChildAt(materialCalendarGridView.getAdapter().m6062a(calendarM6071d.get(5)) - materialCalendarGridView.getFirstVisiblePosition()), j);
+        }
     }
 }

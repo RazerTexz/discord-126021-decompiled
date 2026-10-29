@@ -25,26 +25,19 @@ public class FlowLayout extends ViewGroup {
         this(context, null);
     }
 
-    private static int getMeasuredDimension(int i, int i2, int i3) {
-        if (i2 != Integer.MIN_VALUE) {
-            return i2 != 1073741824 ? i3 : i;
-        }
-        return Math.min(i3, i);
-    }
-
-    private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, C10817R.styleable.FlowLayout, 0, 0);
-        this.lineSpacing = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.FlowLayout_lineSpacing, 0);
-        this.itemSpacing = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.FlowLayout_itemSpacing, 0);
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
     public int getItemSpacing() {
         return this.itemSpacing;
     }
 
     public int getLineSpacing() {
         return this.lineSpacing;
+    }
+
+    private static int getMeasuredDimension(int i, int i2, int i3) {
+        if (i2 != Integer.MIN_VALUE) {
+            return i2 != 1073741824 ? i3 : i;
+        }
+        return Math.min(i3, i);
     }
 
     public int getRowCount() {
@@ -61,6 +54,13 @@ public class FlowLayout extends ViewGroup {
 
     public boolean isSingleLine() {
         return this.singleLine;
+    }
+
+    private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, C10817R.styleable.FlowLayout, 0, 0);
+        this.lineSpacing = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.FlowLayout_lineSpacing, 0);
+        this.itemSpacing = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.FlowLayout_itemSpacing, 0);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     @Override // android.view.ViewGroup, android.view.View

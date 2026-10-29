@@ -62,12 +62,6 @@ public final class C2798j implements InterfaceC2784u, InterfaceC2792d {
     /* JADX INFO: renamed from: u */
     public int f7019u = -1;
 
-    @Override // p007b.p225i.p226a.p242c.p260g3.p261z.InterfaceC2792d
-    /* JADX INFO: renamed from: a */
-    public void mo3196a(long j, float[] fArr) {
-        this.f7011m.f6970c.m2966a(j, fArr);
-    }
-
     /* JADX INFO: renamed from: b */
     public SurfaceTexture m3201b() {
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -100,16 +94,6 @@ public final class C2798j implements InterfaceC2784u, InterfaceC2792d {
             }
         });
         return this.f7017s;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p260g3.p261z.InterfaceC2792d
-    /* JADX INFO: renamed from: c */
-    public void mo3197c() {
-        this.f7012n.m2967b();
-        C2794f c2794f = this.f7011m;
-        c2794f.f6970c.m2967b();
-        c2794f.f6971d = false;
-        this.f7009k.set(true);
     }
 
     @Override // p007b.p225i.p226a.p242c.p260g3.InterfaceC2784u
@@ -273,5 +257,21 @@ public final class C2798j implements InterfaceC2784u, InterfaceC2792d {
             c2796h = new C2796h(new C2796h.a(new C2796h.b(0, fArr, fArr2, 1)), i8);
         }
         this.f7013o.m2966a(j2, c2796h);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p260g3.p261z.InterfaceC2792d
+    /* JADX INFO: renamed from: a */
+    public void mo3196a(long j, float[] fArr) {
+        this.f7011m.f6970c.m2966a(j, fArr);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p260g3.p261z.InterfaceC2792d
+    /* JADX INFO: renamed from: c */
+    public void mo3197c() {
+        this.f7012n.m2967b();
+        C2794f c2794f = this.f7011m;
+        c2794f.f6970c.m2967b();
+        c2794f.f6971d = false;
+        this.f7009k.set(true);
     }
 }

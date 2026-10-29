@@ -25,9 +25,6 @@ public final class C4426l extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: e */
     public static final int[] f11752e = {1267, 1000, 333, 0};
 
-    /* JADX INFO: renamed from: f */
-    public static final Property<C4426l, Float> f11753f = new a(Float.class, "animationFraction");
-
     /* JADX INFO: renamed from: g */
     public ObjectAnimator f11754g;
 
@@ -52,9 +49,12 @@ public final class C4426l extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: n */
     public Animatable2Compat.AnimationCallback f11761n;
 
+    /* JADX INFO: renamed from: f */
+    public static final Property<C4426l, Float> f11753f = new a(Float.class, "animationFraction");
+
     /* JADX INFO: renamed from: b.i.a.g.g.l$a */
     /* JADX INFO: compiled from: LinearIndeterminateDisjointAnimatorDelegate.java */
-    public static class a extends Property<C4426l, Float> {
+    public final class a extends Property<C4426l, Float> {
         public a(Class cls, String str) {
             super(cls, str);
         }
@@ -87,6 +87,16 @@ public final class C4426l extends AbstractC4421g<ObjectAnimator> {
         this.f11761n = null;
         this.f11756i = linearProgressIndicatorSpec;
         this.f11755h = new Interpolator[]{AnimationUtilsCompat.loadInterpolator(context, C10817R.animator.linear_indeterminate_line1_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, C10817R.animator.linear_indeterminate_line1_tail_interpolator), AnimationUtilsCompat.loadInterpolator(context, C10817R.animator.linear_indeterminate_line2_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, C10817R.animator.linear_indeterminate_line2_tail_interpolator)};
+    }
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: h */
+    public void m6133h() {
+        this.f11757j = 0;
+        int iCompositeARGBWithAlpha = MaterialColors.compositeARGBWithAlpha(this.f11756i.indicatorColors[0], this.f11736a.getAlpha());
+        int[] iArr = this.f11738c;
+        iArr[0] = iCompositeARGBWithAlpha;
+        iArr[1] = iCompositeARGBWithAlpha;
     }
 
     @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4421g
@@ -143,15 +153,5 @@ public final class C4426l extends AbstractC4421g<ObjectAnimator> {
     /* JADX INFO: renamed from: g */
     public void mo6128g() {
         this.f11761n = null;
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: h */
-    public void m6133h() {
-        this.f11757j = 0;
-        int iCompositeARGBWithAlpha = MaterialColors.compositeARGBWithAlpha(this.f11756i.indicatorColors[0], this.f11736a.getAlpha());
-        int[] iArr = this.f11738c;
-        iArr[0] = iCompositeARGBWithAlpha;
-        iArr[1] = iCompositeARGBWithAlpha;
     }
 }

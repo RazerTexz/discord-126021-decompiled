@@ -74,18 +74,32 @@ public class C1778l extends Drawable implements InterfaceC1776j {
         }
     }
 
-    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
-    /* JADX INFO: renamed from: a */
-    public void mo1106a(int i, float f) {
-        if (this.f3381q != i) {
-            this.f3381q = i;
-            invalidateSelf();
+    @Override // android.graphics.drawable.Drawable
+    public void draw(Canvas canvas) {
+        this.f3377m.setColor(C1460d.m545m1(this.f3386v, this.f3388x));
+        this.f3377m.setStyle(Paint.Style.FILL);
+        this.f3377m.setFilterBitmap(this.f3383s);
+        canvas.drawPath(this.f3384t, this.f3377m);
+        if (this.f3379o != 0.0f) {
+            this.f3377m.setColor(C1460d.m545m1(this.f3381q, this.f3388x));
+            this.f3377m.setStyle(Paint.Style.STROKE);
+            this.f3377m.setStrokeWidth(this.f3379o);
+            canvas.drawPath(this.f3385u, this.f3377m);
         }
-        if (this.f3379o != f) {
-            this.f3379o = f;
-            m1114b();
-            invalidateSelf();
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getAlpha() {
+        return this.f3388x;
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getOpacity() {
+        int iM545m1 = C1460d.m545m1(this.f3386v, this.f3388x) >>> 24;
+        if (iM545m1 == 255) {
+            return -1;
         }
+        return iM545m1 == 0 ? -2 : -3;
     }
 
     /* JADX INFO: renamed from: b */
@@ -141,25 +155,25 @@ public class C1778l extends Drawable implements InterfaceC1776j {
     }
 
     @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
+    /* JADX INFO: renamed from: a */
+    public void mo1106a(int i, float f) {
+        if (this.f3381q != i) {
+            this.f3381q = i;
+            invalidateSelf();
+        }
+        if (this.f3379o != f) {
+            this.f3379o = f;
+            m1114b();
+            invalidateSelf();
+        }
+    }
+
+    @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
     /* JADX INFO: renamed from: c */
     public void mo1107c(boolean z2) {
         this.f3378n = z2;
         m1114b();
         invalidateSelf();
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public void draw(Canvas canvas) {
-        this.f3377m.setColor(C1460d.m545m1(this.f3386v, this.f3388x));
-        this.f3377m.setStyle(Paint.Style.FILL);
-        this.f3377m.setFilterBitmap(this.f3383s);
-        canvas.drawPath(this.f3384t, this.f3377m);
-        if (this.f3379o != 0.0f) {
-            this.f3377m.setColor(C1460d.m545m1(this.f3381q, this.f3388x));
-            this.f3377m.setStyle(Paint.Style.STROKE);
-            this.f3377m.setStrokeWidth(this.f3379o);
-            canvas.drawPath(this.f3385u, this.f3377m);
-        }
     }
 
     @Override // p007b.p109f.p132g.p142e.InterfaceC1776j
@@ -179,20 +193,6 @@ public class C1778l extends Drawable implements InterfaceC1776j {
             m1114b();
             invalidateSelf();
         }
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getAlpha() {
-        return this.f3388x;
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getOpacity() {
-        int iM545m1 = C1460d.m545m1(this.f3386v, this.f3388x) >>> 24;
-        if (iM545m1 == 255) {
-            return -1;
-        }
-        return iM545m1 == 0 ? -2 : -3;
     }
 
     @Override // p007b.p109f.p132g.p142e.InterfaceC1776j

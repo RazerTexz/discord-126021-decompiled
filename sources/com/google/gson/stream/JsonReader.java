@@ -12,32 +12,8 @@ import p007b.p225i.p408d.p410q.AbstractC4931p;
 /* JADX INFO: loaded from: classes3.dex */
 public class JsonReader implements Closeable {
 
-    /* JADX INFO: renamed from: j */
-    public static final char[] f21625j = ")]}'\n".toCharArray();
-
     /* JADX INFO: renamed from: k */
     public final Reader f21626k;
-
-    /* JADX INFO: renamed from: l */
-    public boolean f21627l = false;
-
-    /* JADX INFO: renamed from: m */
-    public final char[] f21628m = new char[1024];
-
-    /* JADX INFO: renamed from: n */
-    public int f21629n = 0;
-
-    /* JADX INFO: renamed from: o */
-    public int f21630o = 0;
-
-    /* JADX INFO: renamed from: p */
-    public int f21631p = 0;
-
-    /* JADX INFO: renamed from: q */
-    public int f21632q = 0;
-
-    /* JADX INFO: renamed from: r */
-    public int f21633r = 0;
 
     /* JADX INFO: renamed from: s */
     public long f21634s;
@@ -60,6 +36,30 @@ public class JsonReader implements Closeable {
     /* JADX INFO: renamed from: y */
     public int[] f21640y;
 
+    /* JADX INFO: renamed from: j */
+    public static final char[] f21625j = ")]}'\n".toCharArray();
+
+    /* JADX INFO: renamed from: l */
+    public boolean f21627l = false;
+
+    /* JADX INFO: renamed from: m */
+    public final char[] f21628m = new char[1024];
+
+    /* JADX INFO: renamed from: n */
+    public int f21629n = 0;
+
+    /* JADX INFO: renamed from: o */
+    public int f21630o = 0;
+
+    /* JADX INFO: renamed from: p */
+    public int f21631p = 0;
+
+    /* JADX INFO: renamed from: q */
+    public int f21632q = 0;
+
+    /* JADX INFO: renamed from: r */
+    public int f21633r = 0;
+
     /* JADX INFO: renamed from: com.google.gson.stream.JsonReader$a */
     public class C11149a extends AbstractC4931p {
     }
@@ -80,84 +80,32 @@ public class JsonReader implements Closeable {
         this.f21626k = reader;
     }
 
-    /* JADX INFO: renamed from: A */
-    public long mo6874A() throws IOException {
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d == 15) {
-            this.f21633r = 0;
-            int[] iArr = this.f21640y;
-            int i = this.f21638w - 1;
-            iArr[i] = iArr[i] + 1;
-            return this.f21634s;
-        }
-        if (iM9247d == 16) {
-            this.f21636u = new String(this.f21628m, this.f21629n, this.f21635t);
-            this.f21629n += this.f21635t;
-        } else {
-            if (iM9247d != 8 && iM9247d != 9 && iM9247d != 10) {
-                StringBuilder sbM833U = C1643a.m833U("Expected a long but was ");
-                sbM833U.append(mo6878N());
-                sbM833U.append(m9250t());
-                throw new IllegalStateException(sbM833U.toString());
-            }
-            if (iM9247d == 10) {
-                this.f21636u = m9240L();
-            } else {
-                this.f21636u = m9239I(iM9247d == 8 ? '\'' : '\"');
-            }
-            try {
-                long j = Long.parseLong(this.f21636u);
-                this.f21633r = 0;
-                int[] iArr2 = this.f21640y;
-                int i2 = this.f21638w - 1;
-                iArr2[i2] = iArr2[i2] + 1;
-                return j;
-            } catch (NumberFormatException unused) {
-            }
-        }
-        this.f21633r = 11;
-        double d = Double.parseDouble(this.f21636u);
-        long j2 = (long) d;
-        if (j2 != d) {
-            StringBuilder sbM833U2 = C1643a.m833U("Expected a long but was ");
-            sbM833U2.append(this.f21636u);
-            sbM833U2.append(m9250t());
-            throw new NumberFormatException(sbM833U2.toString());
-        }
-        this.f21636u = null;
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
         this.f21633r = 0;
-        int[] iArr3 = this.f21640y;
-        int i3 = this.f21638w - 1;
-        iArr3[i3] = iArr3[i3] + 1;
-        return j2;
+        this.f21637v[0] = 8;
+        this.f21638w = 1;
+        this.f21626k.close();
     }
 
-    /* JADX INFO: renamed from: C */
-    public String mo6875C() throws IOException {
-        String strM9239I;
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d == 14) {
-            strM9239I = m9240L();
-        } else if (iM9247d == 12) {
-            strM9239I = m9239I('\'');
-        } else {
-            if (iM9247d != 13) {
-                StringBuilder sbM833U = C1643a.m833U("Expected a name but was ");
-                sbM833U.append(mo6878N());
-                sbM833U.append(m9250t());
-                throw new IllegalStateException(sbM833U.toString());
+    public String getPath() {
+        StringBuilder sbM829Q = C1643a.m829Q('$');
+        int i = this.f21638w;
+        for (int i2 = 0; i2 < i; i2++) {
+            int i3 = this.f21637v[i2];
+            if (i3 == 1 || i3 == 2) {
+                sbM829Q.append('[');
+                sbM829Q.append(this.f21640y[i2]);
+                sbM829Q.append(']');
+            } else if (i3 == 3 || i3 == 4 || i3 == 5) {
+                sbM829Q.append('.');
+                String[] strArr = this.f21639x;
+                if (strArr[i2] != null) {
+                    sbM829Q.append(strArr[i2]);
+                }
             }
-            strM9239I = m9239I('\"');
         }
-        this.f21633r = 0;
-        this.f21639x[this.f21638w - 1] = strM9239I;
-        return strM9239I;
+        return sbM829Q.toString();
     }
 
     /* JADX INFO: renamed from: D */
@@ -256,24 +204,6 @@ public class JsonReader implements Closeable {
         }
     }
 
-    /* JADX INFO: renamed from: H */
-    public void mo6876H() throws IOException {
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d != 7) {
-            StringBuilder sbM833U = C1643a.m833U("Expected null but was ");
-            sbM833U.append(mo6878N());
-            sbM833U.append(m9250t());
-            throw new IllegalStateException(sbM833U.toString());
-        }
-        this.f21633r = 0;
-        int[] iArr = this.f21640y;
-        int i = this.f21638w - 1;
-        iArr[i] = iArr[i] + 1;
-    }
-
     /* JADX INFO: renamed from: I */
     public final String m9239I(char c) throws IOException {
         int i;
@@ -326,41 +256,6 @@ public class JsonReader implements Closeable {
         } while (m9248n(1));
         m9245V("Unterminated string");
         throw null;
-    }
-
-    /* JADX INFO: renamed from: J */
-    public String mo6877J() throws IOException {
-        String str;
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d == 10) {
-            str = m9240L();
-        } else if (iM9247d == 8) {
-            str = m9239I('\'');
-        } else if (iM9247d == 9) {
-            str = m9239I('\"');
-        } else if (iM9247d == 11) {
-            str = this.f21636u;
-            this.f21636u = null;
-        } else if (iM9247d == 15) {
-            str = Long.toString(this.f21634s);
-        } else {
-            if (iM9247d != 16) {
-                StringBuilder sbM833U = C1643a.m833U("Expected a string but was ");
-                sbM833U.append(mo6878N());
-                sbM833U.append(m9250t());
-                throw new IllegalStateException(sbM833U.toString());
-            }
-            str = new String(this.f21628m, this.f21629n, this.f21635t);
-            this.f21629n += this.f21635t;
-        }
-        this.f21633r = 0;
-        int[] iArr = this.f21640y;
-        int i = this.f21638w - 1;
-        iArr[i] = iArr[i] + 1;
-        return str;
     }
 
     /* JADX WARN: Failed to find 'out' block for switch in B:32:0x0044. Please report as an issue. */
@@ -419,45 +314,6 @@ public class JsonReader implements Closeable {
                 this.f21629n += i;
                 return string;
             }
-        }
-    }
-
-    /* JADX INFO: renamed from: N */
-    public JsonToken mo6878N() throws IOException {
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        switch (iM9247d) {
-            case 1:
-                return JsonToken.BEGIN_OBJECT;
-            case 2:
-                return JsonToken.END_OBJECT;
-            case 3:
-                return JsonToken.BEGIN_ARRAY;
-            case 4:
-                return JsonToken.END_ARRAY;
-            case 5:
-            case 6:
-                return JsonToken.BOOLEAN;
-            case 7:
-                return JsonToken.NULL;
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-                return JsonToken.STRING;
-            case 12:
-            case 13:
-            case 14:
-                return JsonToken.NAME;
-            case 15:
-            case 16:
-                return JsonToken.NUMBER;
-            case 17:
-                return JsonToken.END_DOCUMENT;
-            default:
-                throw new AssertionError();
         }
     }
 
@@ -599,120 +455,11 @@ public class JsonReader implements Closeable {
         } while (c != '\r');
     }
 
-    /* JADX WARN: Failed to find 'out' block for switch in B:61:0x009b. Please report as an issue. */
-    /* JADX INFO: renamed from: U */
-    public void mo6879U() throws IOException {
-        int i = 0;
-        do {
-            int iM9247d = this.f21633r;
-            if (iM9247d == 0) {
-                iM9247d = m9247d();
-            }
-            if (iM9247d == 3) {
-                m9241O(1);
-            } else {
-                if (iM9247d == 1) {
-                    m9241O(3);
-                } else if (iM9247d == 4 || iM9247d == 2) {
-                    this.f21638w--;
-                    i--;
-                } else if (iM9247d == 14 || iM9247d == 10) {
-                    while (true) {
-                        int i2 = 0;
-                        while (true) {
-                            int i3 = this.f21629n + i2;
-                            if (i3 < this.f21630o) {
-                                char c = this.f21628m[i3];
-                                if (c != '\t' && c != '\n' && c != '\f' && c != '\r' && c != ' ') {
-                                    if (c != '#') {
-                                        if (c != ',') {
-                                            if (c != '/' && c != '=') {
-                                                if (c != '{' && c != '}' && c != ':') {
-                                                    if (c != ';') {
-                                                        switch (c) {
-                                                            case '[':
-                                                            case ']':
-                                                                break;
-                                                            case '\\':
-                                                                break;
-                                                            default:
-                                                                i2++;
-                                                                break;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    m9246c();
-                                }
-                                this.f21629n += i2;
-                            } else {
-                                this.f21629n = i3;
-                                if (!m9248n(1)) {
-                                }
-                            }
-                        }
-                    }
-                } else if (iM9247d == 8 || iM9247d == 12) {
-                    m9243S('\'');
-                } else if (iM9247d == 9 || iM9247d == 13) {
-                    m9243S('\"');
-                } else if (iM9247d == 16) {
-                    this.f21629n += this.f21635t;
-                }
-                this.f21633r = 0;
-            }
-            i++;
-            this.f21633r = 0;
-        } while (i != 0);
-        int[] iArr = this.f21640y;
-        int i4 = this.f21638w;
-        int i5 = i4 - 1;
-        iArr[i5] = iArr[i5] + 1;
-        this.f21639x[i4 - 1] = "null";
-    }
-
     /* JADX INFO: renamed from: V */
     public final IOException m9245V(String str) throws IOException {
         StringBuilder sbM833U = C1643a.m833U(str);
         sbM833U.append(m9250t());
         throw new MalformedJsonException(sbM833U.toString());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public void mo6882a() throws IOException {
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d == 3) {
-            m9241O(1);
-            this.f21640y[this.f21638w - 1] = 0;
-            this.f21633r = 0;
-        } else {
-            StringBuilder sbM833U = C1643a.m833U("Expected BEGIN_ARRAY but was ");
-            sbM833U.append(mo6878N());
-            sbM833U.append(m9250t());
-            throw new IllegalStateException(sbM833U.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void mo6883b() throws IOException {
-        int iM9247d = this.f21633r;
-        if (iM9247d == 0) {
-            iM9247d = m9247d();
-        }
-        if (iM9247d == 1) {
-            m9241O(3);
-            this.f21633r = 0;
-        } else {
-            StringBuilder sbM833U = C1643a.m833U("Expected BEGIN_OBJECT but was ");
-            sbM833U.append(mo6878N());
-            sbM833U.append(m9250t());
-            throw new IllegalStateException(sbM833U.toString());
-        }
     }
 
     /* JADX INFO: renamed from: c */
@@ -722,14 +469,6 @@ public class JsonReader implements Closeable {
         }
         m9245V("Use JsonReader.setLenient(true) to accept malformed JSON");
         throw null;
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        this.f21633r = 0;
-        this.f21637v[0] = 8;
-        this.f21638w = 1;
-        this.f21626k.close();
     }
 
     /* JADX WARN: Code duplicated, block: B:107:0x0174 A[RETURN] */
@@ -1244,6 +983,359 @@ public class JsonReader implements Closeable {
         return 7;
     }
 
+    /* JADX INFO: renamed from: n */
+    public final boolean m9248n(int i) throws IOException {
+        int i2;
+        int i3;
+        char[] cArr = this.f21628m;
+        int i4 = this.f21632q;
+        int i5 = this.f21629n;
+        this.f21632q = i4 - i5;
+        int i6 = this.f21630o;
+        if (i6 != i5) {
+            int i7 = i6 - i5;
+            this.f21630o = i7;
+            System.arraycopy(cArr, i5, cArr, 0, i7);
+        } else {
+            this.f21630o = 0;
+        }
+        this.f21629n = 0;
+        do {
+            Reader reader = this.f21626k;
+            int i8 = this.f21630o;
+            int i9 = reader.read(cArr, i8, cArr.length - i8);
+            if (i9 == -1) {
+                return false;
+            }
+            i2 = this.f21630o + i9;
+            this.f21630o = i2;
+            if (this.f21631p == 0 && (i3 = this.f21632q) == 0 && i2 > 0 && cArr[0] == 65279) {
+                this.f21629n++;
+                this.f21632q = i3 + 1;
+                i++;
+            }
+        } while (i2 < i);
+        return true;
+    }
+
+    /* JADX INFO: renamed from: s */
+    public final boolean m9249s(char c) throws IOException {
+        if (c == '\t' || c == '\n' || c == '\f' || c == '\r' || c == ' ') {
+            return false;
+        }
+        if (c != '#') {
+            if (c == ',') {
+                return false;
+            }
+            if (c != '/' && c != '=') {
+                if (c == '{' || c == '}' || c == ':') {
+                    return false;
+                }
+                if (c != ';') {
+                    switch (c) {
+                        case '[':
+                        case ']':
+                            return false;
+                        case '\\':
+                            break;
+                        default:
+                            return true;
+                    }
+                }
+            }
+        }
+        m9246c();
+        return false;
+    }
+
+    /* JADX INFO: renamed from: t */
+    public String m9250t() {
+        StringBuilder sbM835W = C1643a.m835W(" at line ", this.f21631p + 1, " column ", (this.f21629n - this.f21632q) + 1, " path ");
+        sbM835W.append(getPath());
+        return sbM835W.toString();
+    }
+
+    /* JADX INFO: renamed from: A */
+    public long mo6874A() throws IOException {
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d == 15) {
+            this.f21633r = 0;
+            int[] iArr = this.f21640y;
+            int i = this.f21638w - 1;
+            iArr[i] = iArr[i] + 1;
+            return this.f21634s;
+        }
+        if (iM9247d == 16) {
+            this.f21636u = new String(this.f21628m, this.f21629n, this.f21635t);
+            this.f21629n += this.f21635t;
+        } else {
+            if (iM9247d != 8 && iM9247d != 9 && iM9247d != 10) {
+                StringBuilder sbM833U = C1643a.m833U("Expected a long but was ");
+                sbM833U.append(mo6878N());
+                sbM833U.append(m9250t());
+                throw new IllegalStateException(sbM833U.toString());
+            }
+            if (iM9247d == 10) {
+                this.f21636u = m9240L();
+            } else {
+                this.f21636u = m9239I(iM9247d == 8 ? '\'' : '\"');
+            }
+            try {
+                long j = Long.parseLong(this.f21636u);
+                this.f21633r = 0;
+                int[] iArr2 = this.f21640y;
+                int i2 = this.f21638w - 1;
+                iArr2[i2] = iArr2[i2] + 1;
+                return j;
+            } catch (NumberFormatException unused) {
+            }
+        }
+        this.f21633r = 11;
+        double d = Double.parseDouble(this.f21636u);
+        long j2 = (long) d;
+        if (j2 != d) {
+            StringBuilder sbM833U2 = C1643a.m833U("Expected a long but was ");
+            sbM833U2.append(this.f21636u);
+            sbM833U2.append(m9250t());
+            throw new NumberFormatException(sbM833U2.toString());
+        }
+        this.f21636u = null;
+        this.f21633r = 0;
+        int[] iArr3 = this.f21640y;
+        int i3 = this.f21638w - 1;
+        iArr3[i3] = iArr3[i3] + 1;
+        return j2;
+    }
+
+    /* JADX INFO: renamed from: C */
+    public String mo6875C() throws IOException {
+        String strM9239I;
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d == 14) {
+            strM9239I = m9240L();
+        } else if (iM9247d == 12) {
+            strM9239I = m9239I('\'');
+        } else {
+            if (iM9247d != 13) {
+                StringBuilder sbM833U = C1643a.m833U("Expected a name but was ");
+                sbM833U.append(mo6878N());
+                sbM833U.append(m9250t());
+                throw new IllegalStateException(sbM833U.toString());
+            }
+            strM9239I = m9239I('\"');
+        }
+        this.f21633r = 0;
+        this.f21639x[this.f21638w - 1] = strM9239I;
+        return strM9239I;
+    }
+
+    /* JADX INFO: renamed from: H */
+    public void mo6876H() throws IOException {
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d != 7) {
+            StringBuilder sbM833U = C1643a.m833U("Expected null but was ");
+            sbM833U.append(mo6878N());
+            sbM833U.append(m9250t());
+            throw new IllegalStateException(sbM833U.toString());
+        }
+        this.f21633r = 0;
+        int[] iArr = this.f21640y;
+        int i = this.f21638w - 1;
+        iArr[i] = iArr[i] + 1;
+    }
+
+    /* JADX INFO: renamed from: J */
+    public String mo6877J() throws IOException {
+        String str;
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d == 10) {
+            str = m9240L();
+        } else if (iM9247d == 8) {
+            str = m9239I('\'');
+        } else if (iM9247d == 9) {
+            str = m9239I('\"');
+        } else if (iM9247d == 11) {
+            str = this.f21636u;
+            this.f21636u = null;
+        } else if (iM9247d == 15) {
+            str = Long.toString(this.f21634s);
+        } else {
+            if (iM9247d != 16) {
+                StringBuilder sbM833U = C1643a.m833U("Expected a string but was ");
+                sbM833U.append(mo6878N());
+                sbM833U.append(m9250t());
+                throw new IllegalStateException(sbM833U.toString());
+            }
+            str = new String(this.f21628m, this.f21629n, this.f21635t);
+            this.f21629n += this.f21635t;
+        }
+        this.f21633r = 0;
+        int[] iArr = this.f21640y;
+        int i = this.f21638w - 1;
+        iArr[i] = iArr[i] + 1;
+        return str;
+    }
+
+    /* JADX INFO: renamed from: N */
+    public JsonToken mo6878N() throws IOException {
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        switch (iM9247d) {
+            case 1:
+                return JsonToken.BEGIN_OBJECT;
+            case 2:
+                return JsonToken.END_OBJECT;
+            case 3:
+                return JsonToken.BEGIN_ARRAY;
+            case 4:
+                return JsonToken.END_ARRAY;
+            case 5:
+            case 6:
+                return JsonToken.BOOLEAN;
+            case 7:
+                return JsonToken.NULL;
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+                return JsonToken.STRING;
+            case 12:
+            case 13:
+            case 14:
+                return JsonToken.NAME;
+            case 15:
+            case 16:
+                return JsonToken.NUMBER;
+            case 17:
+                return JsonToken.END_DOCUMENT;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    /* JADX WARN: Failed to find 'out' block for switch in B:61:0x009b. Please report as an issue. */
+    /* JADX INFO: renamed from: U */
+    public void mo6879U() throws IOException {
+        int i = 0;
+        do {
+            int iM9247d = this.f21633r;
+            if (iM9247d == 0) {
+                iM9247d = m9247d();
+            }
+            if (iM9247d == 3) {
+                m9241O(1);
+            } else {
+                if (iM9247d == 1) {
+                    m9241O(3);
+                } else if (iM9247d == 4 || iM9247d == 2) {
+                    this.f21638w--;
+                    i--;
+                } else if (iM9247d == 14 || iM9247d == 10) {
+                    while (true) {
+                        int i2 = 0;
+                        while (true) {
+                            int i3 = this.f21629n + i2;
+                            if (i3 < this.f21630o) {
+                                char c = this.f21628m[i3];
+                                if (c != '\t' && c != '\n' && c != '\f' && c != '\r' && c != ' ') {
+                                    if (c != '#') {
+                                        if (c != ',') {
+                                            if (c != '/' && c != '=') {
+                                                if (c != '{' && c != '}' && c != ':') {
+                                                    if (c != ';') {
+                                                        switch (c) {
+                                                            case '[':
+                                                            case ']':
+                                                                break;
+                                                            case '\\':
+                                                                break;
+                                                            default:
+                                                                i2++;
+                                                                break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    m9246c();
+                                }
+                                this.f21629n += i2;
+                            } else {
+                                this.f21629n = i3;
+                                if (!m9248n(1)) {
+                                }
+                            }
+                        }
+                    }
+                } else if (iM9247d == 8 || iM9247d == 12) {
+                    m9243S('\'');
+                } else if (iM9247d == 9 || iM9247d == 13) {
+                    m9243S('\"');
+                } else if (iM9247d == 16) {
+                    this.f21629n += this.f21635t;
+                }
+                this.f21633r = 0;
+            }
+            i++;
+            this.f21633r = 0;
+        } while (i != 0);
+        int[] iArr = this.f21640y;
+        int i4 = this.f21638w;
+        int i5 = i4 - 1;
+        iArr[i5] = iArr[i5] + 1;
+        this.f21639x[i4 - 1] = "null";
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void mo6882a() throws IOException {
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d == 3) {
+            m9241O(1);
+            this.f21640y[this.f21638w - 1] = 0;
+            this.f21633r = 0;
+        } else {
+            StringBuilder sbM833U = C1643a.m833U("Expected BEGIN_ARRAY but was ");
+            sbM833U.append(mo6878N());
+            sbM833U.append(m9250t());
+            throw new IllegalStateException(sbM833U.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void mo6883b() throws IOException {
+        int iM9247d = this.f21633r;
+        if (iM9247d == 0) {
+            iM9247d = m9247d();
+        }
+        if (iM9247d == 1) {
+            m9241O(3);
+            this.f21633r = 0;
+        } else {
+            StringBuilder sbM833U = C1643a.m833U("Expected BEGIN_OBJECT but was ");
+            sbM833U.append(mo6878N());
+            sbM833U.append(m9250t());
+            throw new IllegalStateException(sbM833U.toString());
+        }
+    }
+
     /* JADX INFO: renamed from: e */
     public void mo6886e() throws IOException {
         int iM9247d = this.f21633r;
@@ -1285,61 +1377,6 @@ public class JsonReader implements Closeable {
         this.f21633r = 0;
     }
 
-    public String getPath() {
-        StringBuilder sbM829Q = C1643a.m829Q('$');
-        int i = this.f21638w;
-        for (int i2 = 0; i2 < i; i2++) {
-            int i3 = this.f21637v[i2];
-            if (i3 == 1 || i3 == 2) {
-                sbM829Q.append('[');
-                sbM829Q.append(this.f21640y[i2]);
-                sbM829Q.append(']');
-            } else if (i3 == 3 || i3 == 4 || i3 == 5) {
-                sbM829Q.append('.');
-                String[] strArr = this.f21639x;
-                if (strArr[i2] != null) {
-                    sbM829Q.append(strArr[i2]);
-                }
-            }
-        }
-        return sbM829Q.toString();
-    }
-
-    /* JADX INFO: renamed from: n */
-    public final boolean m9248n(int i) throws IOException {
-        int i2;
-        int i3;
-        char[] cArr = this.f21628m;
-        int i4 = this.f21632q;
-        int i5 = this.f21629n;
-        this.f21632q = i4 - i5;
-        int i6 = this.f21630o;
-        if (i6 != i5) {
-            int i7 = i6 - i5;
-            this.f21630o = i7;
-            System.arraycopy(cArr, i5, cArr, 0, i7);
-        } else {
-            this.f21630o = 0;
-        }
-        this.f21629n = 0;
-        do {
-            Reader reader = this.f21626k;
-            int i8 = this.f21630o;
-            int i9 = reader.read(cArr, i8, cArr.length - i8);
-            if (i9 == -1) {
-                return false;
-            }
-            i2 = this.f21630o + i9;
-            this.f21630o = i2;
-            if (this.f21631p == 0 && (i3 = this.f21632q) == 0 && i2 > 0 && cArr[0] == 65279) {
-                this.f21629n++;
-                this.f21632q = i3 + 1;
-                i++;
-            }
-        } while (i2 < i);
-        return true;
-    }
-
     /* JADX INFO: renamed from: q */
     public boolean mo6888q() throws IOException {
         int iM9247d = this.f21633r;
@@ -1347,47 +1384,6 @@ public class JsonReader implements Closeable {
             iM9247d = m9247d();
         }
         return (iM9247d == 2 || iM9247d == 4) ? false : true;
-    }
-
-    /* JADX INFO: renamed from: s */
-    public final boolean m9249s(char c) throws IOException {
-        if (c == '\t' || c == '\n' || c == '\f' || c == '\r' || c == ' ') {
-            return false;
-        }
-        if (c != '#') {
-            if (c == ',') {
-                return false;
-            }
-            if (c != '/' && c != '=') {
-                if (c == '{' || c == '}' || c == ':') {
-                    return false;
-                }
-                if (c != ';') {
-                    switch (c) {
-                        case '[':
-                        case ']':
-                            return false;
-                        case '\\':
-                            break;
-                        default:
-                            return true;
-                    }
-                }
-            }
-        }
-        m9246c();
-        return false;
-    }
-
-    /* JADX INFO: renamed from: t */
-    public String m9250t() {
-        StringBuilder sbM835W = C1643a.m835W(" at line ", this.f21631p + 1, " column ", (this.f21629n - this.f21632q) + 1, " path ");
-        sbM835W.append(getPath());
-        return sbM835W.toString();
-    }
-
-    public String toString() {
-        return getClass().getSimpleName() + m9250t();
     }
 
     /* JADX INFO: renamed from: u */
@@ -1516,5 +1512,9 @@ public class JsonReader implements Closeable {
         int i6 = this.f21638w - 1;
         iArr3[i6] = iArr3[i6] + 1;
         return i5;
+    }
+
+    public String toString() {
+        return getClass().getSimpleName() + m9250t();
     }
 }

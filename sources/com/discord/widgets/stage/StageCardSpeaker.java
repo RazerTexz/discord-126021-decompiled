@@ -30,16 +30,6 @@ public final /* data */ class StageCardSpeaker {
         return stageCardSpeaker.copy(user, guildMember);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
     public final StageCardSpeaker copy(User user, GuildMember guildMember) {
         C12238m.checkNotNullParameter(user, "user");
         return new StageCardSpeaker(user, guildMember);
@@ -60,8 +50,18 @@ public final /* data */ class StageCardSpeaker {
         return this.displayName;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final GuildMember getGuildMember() {
         return this.guildMember;
+    }
+
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

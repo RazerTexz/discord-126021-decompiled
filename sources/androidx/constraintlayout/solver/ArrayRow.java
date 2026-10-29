@@ -49,28 +49,6 @@ public class ArrayRow implements LinearSystem.Row {
     public ArrayRow() {
     }
 
-    private boolean isNew(SolverVariable solverVariable, LinearSystem linearSystem) {
-        return solverVariable.usageInRowCount <= 1;
-    }
-
-    private SolverVariable pickPivotInVariables(boolean[] zArr, SolverVariable solverVariable) {
-        SolverVariable.Type type;
-        int currentSize = this.variables.getCurrentSize();
-        SolverVariable solverVariable2 = null;
-        float f = 0.0f;
-        for (int i = 0; i < currentSize; i++) {
-            float variableValue = this.variables.getVariableValue(i);
-            if (variableValue < 0.0f) {
-                SolverVariable variable = this.variables.getVariable(i);
-                if ((zArr == null || !zArr[variable.f110id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f)) {
-                    f = variableValue;
-                    solverVariable2 = variable;
-                }
-            }
-        }
-        return solverVariable2;
-    }
-
     public ArrayRow addError(LinearSystem linearSystem, int i) {
         this.variables.put(linearSystem.createErrorVariable(i, "ep"), 1.0f);
         this.variables.put(linearSystem.createErrorVariable(i, "em"), -1.0f);
@@ -348,8 +326,30 @@ public class ArrayRow implements LinearSystem.Row {
         return this.variable == null && this.constantValue == 0.0f && this.variables.getCurrentSize() == 0;
     }
 
+    private boolean isNew(SolverVariable solverVariable, LinearSystem linearSystem) {
+        return solverVariable.usageInRowCount <= 1;
+    }
+
     public SolverVariable pickPivot(SolverVariable solverVariable) {
         return pickPivotInVariables(null, solverVariable);
+    }
+
+    private SolverVariable pickPivotInVariables(boolean[] zArr, SolverVariable solverVariable) {
+        SolverVariable.Type type;
+        int currentSize = this.variables.getCurrentSize();
+        SolverVariable solverVariable2 = null;
+        float f = 0.0f;
+        for (int i = 0; i < currentSize; i++) {
+            float variableValue = this.variables.getVariableValue(i);
+            if (variableValue < 0.0f) {
+                SolverVariable variable = this.variables.getVariable(i);
+                if ((zArr == null || !zArr[variable.f110id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f)) {
+                    f = variableValue;
+                    solverVariable2 = variable;
+                }
+            }
+        }
+        return solverVariable2;
     }
 
     public void pivot(SolverVariable solverVariable) {

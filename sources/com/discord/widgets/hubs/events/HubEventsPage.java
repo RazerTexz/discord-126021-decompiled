@@ -17,7 +17,7 @@ public abstract class HubEventsPage {
     private final int viewType;
 
     /* JADX INFO: compiled from: WidgetHubEventsPageAdapter.kt */
-    public static final /* data */ class Event extends HubEventsPage {
+    public final /* data */ class Event extends HubEventsPage {
         private final HubGuildScheduledEventData guildScheduledEventData;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -34,11 +34,6 @@ public abstract class HubEventsPage {
             return event.copy(hubGuildScheduledEventData);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final HubGuildScheduledEventData getGuildScheduledEventData() {
-            return this.guildScheduledEventData;
-        }
-
         public final Event copy(HubGuildScheduledEventData guildScheduledEventData) {
             C12238m.checkNotNullParameter(guildScheduledEventData, "guildScheduledEventData");
             return new Event(guildScheduledEventData);
@@ -49,6 +44,11 @@ public abstract class HubEventsPage {
                 return (other instanceof Event) && C12238m.areEqual(this.guildScheduledEventData, ((Event) other).guildScheduledEventData);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final HubGuildScheduledEventData getGuildScheduledEventData() {
+            return this.guildScheduledEventData;
         }
 
         public final HubGuildScheduledEventData getGuildScheduledEventData() {
@@ -72,7 +72,7 @@ public abstract class HubEventsPage {
     }
 
     /* JADX INFO: compiled from: WidgetHubEventsPageAdapter.kt */
-    public static final /* data */ class Footer extends HubEventsPage {
+    public final /* data */ class Footer extends HubEventsPage {
         private final RestCallState<List<DirectoryEntryEvent>> eventsAsync;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -83,16 +83,16 @@ public abstract class HubEventsPage {
             this.eventsAsync = restCallState;
         }
 
+        public final RestCallState<List<DirectoryEntryEvent>> component1() {
+            return this.eventsAsync;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Footer copy$default(Footer footer, RestCallState restCallState, int i, Object obj) {
             if ((i & 1) != 0) {
                 restCallState = footer.eventsAsync;
             }
             return footer.copy(restCallState);
-        }
-
-        public final RestCallState<List<DirectoryEntryEvent>> component1() {
-            return this.eventsAsync;
         }
 
         public final Footer copy(RestCallState<? extends List<DirectoryEntryEvent>> eventsAsync) {
@@ -128,7 +128,7 @@ public abstract class HubEventsPage {
     }
 
     /* JADX INFO: compiled from: WidgetHubEventsPageAdapter.kt */
-    public static final class Header extends HubEventsPage {
+    public final class Header extends HubEventsPage {
         public static final Header INSTANCE = new Header();
 
         private Header() {

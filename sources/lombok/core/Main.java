@@ -11,9 +11,9 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/Main.SCL.lombok */
 public class Main {
-    private static final Collection<?> HELP_SWITCHES = Collections.unmodifiableList(Arrays.asList("/?", "/h", "/help", "-h", "-help", "--help", "help", "h"));
     private final List<LombokApp> apps;
     private final List<String> args;
+    private static final Collection<?> HELP_SWITCHES = Collections.unmodifiableList(Arrays.asList("/?", "/h", "/help", "-h", "-help", "--help", "help", "h"));
 
     public static void main(String[] args) throws IOException {
         Thread.currentThread().setContextClassLoader(Main.class.getClassLoader());
@@ -24,7 +24,7 @@ public class Main {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/Main$VersionApp.SCL.lombok */
-    public static class VersionApp extends LombokApp {
+    public class VersionApp extends LombokApp {
         @Override // lombok.core.LombokApp
         public String getAppName() {
             return "version";
@@ -48,7 +48,7 @@ public class Main {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/Main$LicenseApp.SCL.lombok */
-    public static class LicenseApp extends LombokApp {
+    public class LicenseApp extends LombokApp {
         @Override // lombok.core.LombokApp
         public String getAppName() {
             return "license";

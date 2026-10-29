@@ -39,6 +39,11 @@ public enum EnumC2373w implements InterfaceC2387e {
         this._defaultState = z2;
     }
 
+    /* JADX INFO: renamed from: h */
+    public boolean m2238h(int i) {
+        return (i & this._mask) != 0;
+    }
+
     @Override // p007b.p195g.p196a.p205c.p221z.InterfaceC2387e
     /* JADX INFO: renamed from: f */
     public boolean mo2090f() {
@@ -49,10 +54,5 @@ public enum EnumC2373w implements InterfaceC2387e {
     /* JADX INFO: renamed from: g */
     public int mo2091g() {
         return this._mask;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public boolean m2238h(int i) {
-        return (i & this._mask) != 0;
     }
 }

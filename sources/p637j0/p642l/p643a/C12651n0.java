@@ -32,6 +32,40 @@ public final class C12651n0<T> implements Observable.InterfaceC13006b<List<T>, T
     /* JADX INFO: renamed from: n */
     public final Scheduler f26935n;
 
+    public C12651n0(long j, long j2, TimeUnit timeUnit, int i, Scheduler scheduler) {
+        this.f26931j = j;
+        this.f26932k = j2;
+        this.f26933l = timeUnit;
+        this.f26934m = i;
+        this.f26935n = scheduler;
+    }
+
+    @Override // p637j0.p641k.InterfaceC12589b
+    public Object call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        Scheduler.Worker workerMo10739a = this.f26935n.mo10739a();
+        SerializedSubscriber serializedSubscriber = new SerializedSubscriber(subscriber);
+        if (this.f26931j == this.f26932k) {
+            a aVar = new a(serializedSubscriber, workerMo10739a);
+            aVar.add(workerMo10739a);
+            subscriber.add(aVar);
+            Scheduler.Worker worker = aVar.f26937k;
+            C12647m0 c12647m0 = new C12647m0(aVar);
+            long j = this.f26931j;
+            worker.m11120c(c12647m0, j, j, this.f26933l);
+            return aVar;
+        }
+        b bVar = new b(serializedSubscriber, workerMo10739a);
+        bVar.add(workerMo10739a);
+        subscriber.add(bVar);
+        bVar.m10774a();
+        Scheduler.Worker worker2 = bVar.f26942k;
+        C12655o0 c12655o0 = new C12655o0(bVar);
+        long j2 = this.f26932k;
+        worker2.m11120c(c12655o0, j2, j2, this.f26933l);
+        return bVar;
+    }
+
     /* JADX INFO: renamed from: j0.l.a.n0$a */
     /* JADX INFO: compiled from: OperatorBufferWithTime.java */
     public final class a extends Subscriber<T> {
@@ -42,11 +76,11 @@ public final class C12651n0<T> implements Observable.InterfaceC13006b<List<T>, T
         /* JADX INFO: renamed from: k */
         public final Scheduler.Worker f26937k;
 
-        /* JADX INFO: renamed from: l */
-        public List<T> f26938l = new ArrayList();
-
         /* JADX INFO: renamed from: m */
         public boolean f26939m;
+
+        /* JADX INFO: renamed from: l */
+        public List<T> f26938l = new ArrayList();
 
         public a(Subscriber<? super List<T>> subscriber, Scheduler.Worker worker) {
             this.f26936j = subscriber;
@@ -119,11 +153,11 @@ public final class C12651n0<T> implements Observable.InterfaceC13006b<List<T>, T
         /* JADX INFO: renamed from: k */
         public final Scheduler.Worker f26942k;
 
-        /* JADX INFO: renamed from: l */
-        public final List<List<T>> f26943l = new LinkedList();
-
         /* JADX INFO: renamed from: m */
         public boolean f26944m;
+
+        /* JADX INFO: renamed from: l */
+        public final List<List<T>> f26943l = new LinkedList();
 
         /* JADX INFO: renamed from: j0.l.a.n0$b$a */
         /* JADX INFO: compiled from: OperatorBufferWithTime.java */
@@ -252,39 +286,5 @@ public final class C12651n0<T> implements Observable.InterfaceC13006b<List<T>, T
                 }
             }
         }
-    }
-
-    public C12651n0(long j, long j2, TimeUnit timeUnit, int i, Scheduler scheduler) {
-        this.f26931j = j;
-        this.f26932k = j2;
-        this.f26933l = timeUnit;
-        this.f26934m = i;
-        this.f26935n = scheduler;
-    }
-
-    @Override // p637j0.p641k.InterfaceC12589b
-    public Object call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        Scheduler.Worker workerMo10739a = this.f26935n.mo10739a();
-        SerializedSubscriber serializedSubscriber = new SerializedSubscriber(subscriber);
-        if (this.f26931j == this.f26932k) {
-            a aVar = new a(serializedSubscriber, workerMo10739a);
-            aVar.add(workerMo10739a);
-            subscriber.add(aVar);
-            Scheduler.Worker worker = aVar.f26937k;
-            C12647m0 c12647m0 = new C12647m0(aVar);
-            long j = this.f26931j;
-            worker.m11120c(c12647m0, j, j, this.f26933l);
-            return aVar;
-        }
-        b bVar = new b(serializedSubscriber, workerMo10739a);
-        bVar.add(workerMo10739a);
-        subscriber.add(bVar);
-        bVar.m10774a();
-        Scheduler.Worker worker2 = bVar.f26942k;
-        C12655o0 c12655o0 = new C12655o0(bVar);
-        long j2 = this.f26932k;
-        worker2.m11120c(c12655o0, j2, j2, this.f26933l);
-        return bVar;
     }
 }

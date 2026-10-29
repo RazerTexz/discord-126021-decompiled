@@ -35,6 +35,19 @@ public final class FirebaseAnalytics {
         this.f21404b = c3661g;
     }
 
+    @Keep
+    public final String getFirebaseInstanceId() {
+        try {
+            return (String) C3404f.m4307k(C4842f.m6755f().getId(), 30000L, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        } catch (ExecutionException e2) {
+            throw new IllegalStateException(e2.getCause());
+        } catch (TimeoutException unused) {
+            throw new IllegalThreadStateException("Firebase Installations getId Task has timed out.");
+        }
+    }
+
     @NonNull
     @RequiresPermission(allOf = {"android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"})
     @Keep
@@ -56,19 +69,6 @@ public final class FirebaseAnalytics {
             return null;
         }
         return new C4559b(c3661gM4882a);
-    }
-
-    @Keep
-    public final String getFirebaseInstanceId() {
-        try {
-            return (String) C3404f.m4307k(C4842f.m6755f().getId(), 30000L, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        } catch (ExecutionException e2) {
-            throw new IllegalStateException(e2.getCause());
-        } catch (TimeoutException unused) {
-            throw new IllegalThreadStateException("Firebase Installations getId Task has timed out.");
-        }
     }
 
     @Keep

@@ -13,7 +13,7 @@ public final class C3491e {
 
     /* JADX INFO: renamed from: b.i.a.f.h.i.e$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public static final class a extends AbstractC3493g {
+    public final class a extends AbstractC3493g {
         @Override // p007b.p225i.p226a.p288f.p313h.p322i.AbstractC3493g
         /* JADX INFO: renamed from: a */
         public final void mo4413a(Throwable th, Throwable th2) {

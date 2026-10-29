@@ -11,7 +11,7 @@ public interface InterfaceC11533k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.k$a */
     /* JADX INFO: compiled from: resolvers.kt */
-    public static final class a implements InterfaceC11533k {
+    public final class a implements InterfaceC11533k {
 
         /* JADX INFO: renamed from: a */
         public static final a f23321a = new a();

@@ -8,7 +8,7 @@ import com.discord.C5419R;
 public final class C0423R {
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$attr */
-    public static final class attr {
+    public final class attr {
         public static final int alpha = 2130968635;
         public static final int coordinatorLayoutStyle = 2130969117;
         public static final int font = 2130969378;
@@ -36,7 +36,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$color */
-    public static final class color {
+    public final class color {
         public static final int notification_action_color_filter = 2131100115;
         public static final int notification_icon_bg_color = 2131100116;
         public static final int notification_material_background_media_default_color = 2131100117;
@@ -50,7 +50,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$dimen */
-    public static final class dimen {
+    public final class dimen {
         public static final int compat_button_inset_horizontal_material = 2131165325;
         public static final int compat_button_inset_vertical_material = 2131165326;
         public static final int compat_button_padding_horizontal_material = 2131165327;
@@ -79,7 +79,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$drawable */
-    public static final class drawable {
+    public final class drawable {
         public static final int notification_action_background = 2131232491;
         public static final int notification_bg = 2131232492;
         public static final int notification_bg_low = 2131232493;
@@ -98,7 +98,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$id */
-    public static final class id {
+    public final class id {
         public static final int action0 = 2131361869;
         public static final int action_container = 2131361885;
         public static final int action_divider = 2131361888;
@@ -145,7 +145,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$integer */
-    public static final class integer {
+    public final class integer {
         public static final int cancel_button_image_alpha = 2131427335;
         public static final int status_bar_notification_info_maxnum = 2131427355;
 
@@ -154,7 +154,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$layout */
-    public static final class layout {
+    public final class layout {
         public static final int notification_action = 2131558626;
         public static final int notification_action_tombstone = 2131558627;
         public static final int notification_media_action = 2131558629;
@@ -176,7 +176,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$string */
-    public static final class string {
+    public final class string {
         public static final int status_bar_notification_info_overflow = 2131895909;
 
         private string() {
@@ -184,7 +184,7 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$style */
-    public static final class style {
+    public final class style {
         public static final int TextAppearance_Compat_Notification = 2131952217;
         public static final int TextAppearance_Compat_Notification_Info = 2131952218;
         public static final int TextAppearance_Compat_Notification_Info_Media = 2131952219;
@@ -204,10 +204,13 @@ public final class C0423R {
     }
 
     /* JADX INFO: renamed from: androidx.legacy.v4.R$styleable */
-    public static final class styleable {
+    public final class styleable {
+        public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
+        public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
         public static final int CoordinatorLayout_Layout_android_layout_gravity = 0;
         public static final int CoordinatorLayout_Layout_layout_anchor = 1;
         public static final int CoordinatorLayout_Layout_layout_anchorGravity = 2;
@@ -217,6 +220,8 @@ public final class C0423R {
         public static final int CoordinatorLayout_Layout_layout_keyline = 6;
         public static final int CoordinatorLayout_keylines = 0;
         public static final int CoordinatorLayout_statusBarBackground = 1;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -234,6 +239,8 @@ public final class C0423R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
+        public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -248,13 +255,6 @@ public final class C0423R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
-        public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
-        public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
-        public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
 
         private styleable() {
         }

@@ -16,7 +16,7 @@ public abstract class AbstractC12121a<E> implements Collection<E>, InterfaceC122
 
     /* JADX INFO: renamed from: d0.t.a$a */
     /* JADX INFO: compiled from: AbstractCollection.kt */
-    public static final class a extends AbstractC12240o implements Function1<E, CharSequence> {
+    public final class a extends AbstractC12240o implements Function1<E, CharSequence> {
         public a() {
             super(1);
         }

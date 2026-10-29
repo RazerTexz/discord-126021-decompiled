@@ -16,12 +16,6 @@ public abstract class AbstractC2313u0 extends AbstractC2305q0<Object> {
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        return mo2087p(obj).isEmpty();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
         abstractC2108d.mo1658j0(mo2087p(obj));
@@ -33,6 +27,12 @@ public abstract class AbstractC2313u0 extends AbstractC2305q0<Object> {
         C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(obj, EnumC2112h.VALUE_STRING));
         mo1807f(obj, abstractC2108d, abstractC2374x);
         abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        return mo2087p(obj).isEmpty();
     }
 
     /* JADX INFO: renamed from: p */

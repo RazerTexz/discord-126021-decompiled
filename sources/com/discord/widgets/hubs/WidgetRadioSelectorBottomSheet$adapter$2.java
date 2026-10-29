@@ -22,11 +22,11 @@ public final class WidgetRadioSelectorBottomSheet$adapter$2 extends AbstractC122
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetRadioSelectorBottomSheet$adapter$2$1 */
     /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
-    public static final class C90481 extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, RadioSelectorViewHolder> {
+    public final class C90481 extends AbstractC12240o implements Function2<LayoutInflater, ViewGroup, RadioSelectorViewHolder> {
 
         /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetRadioSelectorBottomSheet$adapter$2$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

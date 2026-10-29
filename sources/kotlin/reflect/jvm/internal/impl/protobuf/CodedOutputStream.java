@@ -28,7 +28,7 @@ public final class CodedOutputStream {
     /* JADX INFO: renamed from: c */
     public int f27447c = 0;
 
-    public static class OutOfSpaceException extends IOException {
+    public class OutOfSpaceException extends IOException {
         public OutOfSpaceException() {
             super("CodedOutputStream was writing to a flat byte array and ran out of space.");
         }
@@ -215,8 +215,10 @@ public final class CodedOutputStream {
         return (j >> 63) ^ (j << 1);
     }
 
-    public static CodedOutputStream newInstance(OutputStream outputStream, int i) {
-        return new CodedOutputStream(outputStream, new byte[i]);
+    public void flush() throws IOException {
+        if (this.f27449e != null) {
+            m10894a();
+        }
     }
 
     /* JADX INFO: renamed from: a */
@@ -229,10 +231,8 @@ public final class CodedOutputStream {
         this.f27447c = 0;
     }
 
-    public void flush() throws IOException {
-        if (this.f27449e != null) {
-            m10894a();
-        }
+    public static CodedOutputStream newInstance(OutputStream outputStream, int i) {
+        return new CodedOutputStream(outputStream, new byte[i]);
     }
 
     public void writeBool(int i, boolean z2) throws IOException {

@@ -28,7 +28,7 @@ public final class WidgetNoticeNuxOverlay extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetNoticeNuxOverlay.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

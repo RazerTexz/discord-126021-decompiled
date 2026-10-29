@@ -10,7 +10,7 @@ public interface InterfaceC11467u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.u0$a */
     /* JADX INFO: compiled from: SourceElement.java */
-    public static class a implements InterfaceC11467u0 {
+    public final class a implements InterfaceC11467u0 {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11467u0
         public InterfaceC11469v0 getContainingFile() {
             return InterfaceC11469v0.f23100a;

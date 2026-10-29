@@ -8,16 +8,6 @@ public final /* data */ class GuildJoinRequestDelete {
     private final long guildId;
     private final long userId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -27,6 +17,16 @@ public final /* data */ class GuildJoinRequestDelete {
         }
         GuildJoinRequestDelete guildJoinRequestDelete = (GuildJoinRequestDelete) other;
         return this.userId == guildJoinRequestDelete.userId && this.guildId == guildJoinRequestDelete.guildId;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public int hashCode() {

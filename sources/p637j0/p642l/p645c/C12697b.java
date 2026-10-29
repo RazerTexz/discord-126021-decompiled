@@ -35,7 +35,7 @@ public final class C12697b extends Scheduler implements InterfaceC12706k {
 
     /* JADX INFO: renamed from: j0.l.c.b$a */
     /* JADX INFO: compiled from: EventLoopsScheduler.java */
-    public static final class a extends Scheduler.Worker {
+    public final class a extends Scheduler.Worker {
 
         /* JADX INFO: renamed from: j */
         public final SubscriptionList f27192j;
@@ -98,6 +98,11 @@ public final class C12697b extends Scheduler implements InterfaceC12706k {
             this.f27195m = cVar;
         }
 
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f27194l.f27645k;
+        }
+
         @Override // rx.Scheduler.Worker
         /* JADX INFO: renamed from: a */
         public Subscription mo10740a(Action0 action0) {
@@ -131,11 +136,6 @@ public final class C12697b extends Scheduler implements InterfaceC12706k {
         }
 
         @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.f27194l.f27645k;
-        }
-
-        @Override // p658rx.Subscription
         public void unsubscribe() {
             this.f27194l.unsubscribe();
         }
@@ -143,7 +143,7 @@ public final class C12697b extends Scheduler implements InterfaceC12706k {
 
     /* JADX INFO: renamed from: j0.l.c.b$b */
     /* JADX INFO: compiled from: EventLoopsScheduler.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f27200a;
@@ -177,7 +177,7 @@ public final class C12697b extends Scheduler implements InterfaceC12706k {
 
     /* JADX INFO: renamed from: j0.l.c.b$c */
     /* JADX INFO: compiled from: EventLoopsScheduler.java */
-    public static final class c extends C12702g {
+    public final class c extends C12702g {
         public c(ThreadFactory threadFactory) {
             super(threadFactory);
         }

@@ -116,8 +116,197 @@ public final class WidgetMedia extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class Companion {
+    public final class C90633 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+        public C90633() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2) {
+            invoke(num.intValue(), num2.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i, int i2) {
+            WidgetMedia.this.toolbarHeight = i;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetMedia.kt */
+    public final class C90644 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+        public C90644() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2) {
+            invoke(num.intValue(), num2.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i, int i2) {
+            WidgetMedia.this.playerControlsHeight = i;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetMedia.kt */
+    public final class C90651<T1, T2> implements Action2<MenuItem, Context> {
+        public final /* synthetic */ Uri $downloadUri;
+        public final /* synthetic */ Uri $sourceUri;
+        public final /* synthetic */ String $title;
+        public final /* synthetic */ String $titleSubtext;
+
+        /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetMedia.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ Context $context;
+
+            /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1$2, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetMedia.kt */
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Throwable, Unit> {
+                public AnonymousClass2() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
+                    invoke2(th);
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2(Throwable th) {
+                    C12238m.checkNotNullParameter(th, "it");
+                    if (WidgetMedia.this.isAdded()) {
+                        WidgetMedia widgetMedia = WidgetMedia.this;
+                        C0876m.m172j(widgetMedia, widgetMedia.getString(C5419R.string.download_failed), 0, 4);
+                    }
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetMedia.kt */
+            public final class C132871 extends AbstractC12240o implements Function1<String, Unit> {
+                public C132871() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Unit invoke(String str) {
+                    invoke2(str);
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2(String str) {
+                    C12238m.checkNotNullParameter(str, "it");
+                    if (WidgetMedia.this.isAdded()) {
+                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                        WidgetMedia widgetMedia = WidgetMedia.this;
+                        Context context = anonymousClass1.$context;
+                        C12238m.checkNotNullExpressionValue(context, "context");
+                        C0876m.m172j(widgetMedia, C1107b.m216h(context, C5419R.string.download_file_complete, new Object[]{str}, null, 4), 0, 4);
+                    }
+                }
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Context context) {
+                super(0);
+                this.$context = context;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                Context context = this.$context;
+                Uri uri = C90651.this.$downloadUri;
+                C12238m.checkNotNullExpressionValue(uri, "downloadUri");
+                C90651 c90651 = C90651.this;
+                NetworkUtils.downloadFile(context, uri, c90651.$title, c90651.$titleSubtext, new C132871(), new AnonymousClass2());
+            }
+        }
+
+        public C90651(Uri uri, Uri uri2, String str, String str2) {
+            this.$sourceUri = uri;
+            this.$downloadUri = uri2;
+            this.$title = str;
+            this.$titleSubtext = str2;
+        }
+
+        @Override // p658rx.functions.Action2
+        public final void call(MenuItem menuItem, Context context) {
+            C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
+            switch (menuItem.getItemId()) {
+                case C5419R.id.menu_media_browser /* 2131364395 */:
+                    C12238m.checkNotNullExpressionValue(context, "context");
+                    String string = this.$sourceUri.toString();
+                    C12238m.checkNotNullExpressionValue(string, "sourceUri.toString()");
+                    UriHandler.handleOrUntrusted$default(context, string, null, 4, null);
+                    break;
+                case C5419R.id.menu_media_download /* 2131364396 */:
+                    WidgetMedia.this.requestMediaDownload(new AnonymousClass1(context));
+                    break;
+                case C5419R.id.menu_media_share /* 2131364397 */:
+                    C12238m.checkNotNullExpressionValue(context, "context");
+                    String string2 = this.$sourceUri.toString();
+                    C12238m.checkNotNullExpressionValue(string2, "sourceUri.toString()");
+                    IntentUtils.performChooserSendIntent$default(context, string2, null, 4, null);
+                    break;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$showControls$1 */
+    /* JADX INFO: compiled from: WidgetMedia.kt */
+    public final class C90661 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C90661() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetMedia.this.controlsVisibilitySubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$showControls$2 */
+    /* JADX INFO: compiled from: WidgetMedia.kt */
+    public final class C90672 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C90672() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            WidgetMedia.this.hideControls();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetMedia.kt */
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -194,195 +383,6 @@ public final class WidgetMedia extends AppFragment {
         HIDE
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class C90633 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
-        public C90633() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2) {
-            invoke(num.intValue(), num2.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i, int i2) {
-            WidgetMedia.this.toolbarHeight = i;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class C90644 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
-        public C90644() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2) {
-            invoke(num.intValue(), num2.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i, int i2) {
-            WidgetMedia.this.playerControlsHeight = i;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class C90651<T1, T2> implements Action2<MenuItem, Context> {
-        public final /* synthetic */ Uri $downloadUri;
-        public final /* synthetic */ Uri $sourceUri;
-        public final /* synthetic */ String $title;
-        public final /* synthetic */ String $titleSubtext;
-
-        /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetMedia.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ Context $context;
-
-            /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1$1, reason: invalid class name and collision with other inner class name */
-            /* JADX INFO: compiled from: WidgetMedia.kt */
-            public static final class C132871 extends AbstractC12240o implements Function1<String, Unit> {
-                public C132871() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(String str) {
-                    invoke2(str);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(String str) {
-                    C12238m.checkNotNullParameter(str, "it");
-                    if (WidgetMedia.this.isAdded()) {
-                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                        WidgetMedia widgetMedia = WidgetMedia.this;
-                        Context context = anonymousClass1.$context;
-                        C12238m.checkNotNullExpressionValue(context, "context");
-                        C0876m.m172j(widgetMedia, C1107b.m216h(context, C5419R.string.download_file_complete, new Object[]{str}, null, 4), 0, 4);
-                    }
-                }
-            }
-
-            /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$onViewBoundOrOnResume$1$1$2, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetMedia.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Throwable, Unit> {
-                public AnonymousClass2() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(Throwable th) {
-                    invoke2(th);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(Throwable th) {
-                    C12238m.checkNotNullParameter(th, "it");
-                    if (WidgetMedia.this.isAdded()) {
-                        WidgetMedia widgetMedia = WidgetMedia.this;
-                        C0876m.m172j(widgetMedia, widgetMedia.getString(C5419R.string.download_failed), 0, 4);
-                    }
-                }
-            }
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(Context context) {
-                super(0);
-                this.$context = context;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                Context context = this.$context;
-                Uri uri = C90651.this.$downloadUri;
-                C12238m.checkNotNullExpressionValue(uri, "downloadUri");
-                C90651 c90651 = C90651.this;
-                NetworkUtils.downloadFile(context, uri, c90651.$title, c90651.$titleSubtext, new C132871(), new AnonymousClass2());
-            }
-        }
-
-        public C90651(Uri uri, Uri uri2, String str, String str2) {
-            this.$sourceUri = uri;
-            this.$downloadUri = uri2;
-            this.$title = str;
-            this.$titleSubtext = str2;
-        }
-
-        @Override // p658rx.functions.Action2
-        public final void call(MenuItem menuItem, Context context) {
-            C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
-            switch (menuItem.getItemId()) {
-                case C5419R.id.menu_media_browser /* 2131364395 */:
-                    C12238m.checkNotNullExpressionValue(context, "context");
-                    String string = this.$sourceUri.toString();
-                    C12238m.checkNotNullExpressionValue(string, "sourceUri.toString()");
-                    UriHandler.handleOrUntrusted$default(context, string, null, 4, null);
-                    break;
-                case C5419R.id.menu_media_download /* 2131364396 */:
-                    WidgetMedia.this.requestMediaDownload(new AnonymousClass1(context));
-                    break;
-                case C5419R.id.menu_media_share /* 2131364397 */:
-                    C12238m.checkNotNullExpressionValue(context, "context");
-                    String string2 = this.$sourceUri.toString();
-                    C12238m.checkNotNullExpressionValue(string2, "sourceUri.toString()");
-                    IntentUtils.performChooserSendIntent$default(context, string2, null, 4, null);
-                    break;
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$showControls$1 */
-    /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class C90661 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C90661() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            WidgetMedia.this.controlsVisibilitySubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetMedia$showControls$2 */
-    /* JADX INFO: compiled from: WidgetMedia.kt */
-    public static final class C90672 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C90672() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            WidgetMedia.this.hideControls();
-        }
-    }
-
     public WidgetMedia() {
         super(C5419R.layout.widget_media);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetMedia$binding$2.INSTANCE, new WidgetMedia$binding$3(this));
@@ -437,12 +437,6 @@ public final class WidgetMedia extends AppFragment {
                 float f = currentViewPoint.y - this.mDoubleTapViewPoint.y;
                 float fAbs = (Math.abs(f) * 0.001f) + 1;
                 return f < ((float) 0) ? this.mDoubleTapScale / fAbs : this.mDoubleTapScale * fAbs;
-            }
-
-            private final boolean shouldStartDoubleTapScroll(PointF viewPoint) {
-                float f = viewPoint.x;
-                PointF pointF = this.mDoubleTapViewPoint;
-                return ((float) Math.hypot((double) (f - pointF.x), (double) (viewPoint.y - pointF.y))) > ((float) this.DOUBLE_TAP_SCROLL_THRESHOLD);
             }
 
             public final PointF getMDoubleTapImagePoint() {
@@ -524,6 +518,12 @@ public final class WidgetMedia extends AppFragment {
 
             public final void setMDoubleTapScroll(boolean z2) {
                 this.mDoubleTapScroll = z2;
+            }
+
+            private final boolean shouldStartDoubleTapScroll(PointF viewPoint) {
+                float f = viewPoint.x;
+                PointF pointF = this.mDoubleTapViewPoint;
+                return ((float) Math.hypot((double) (f - pointF.x), (double) (viewPoint.y - pointF.y))) > ((float) this.DOUBLE_TAP_SCROLL_THRESHOLD);
             }
         });
         ZoomableDraweeView zoomableDraweeView = getBinding().f17231d;
@@ -648,63 +648,8 @@ public final class WidgetMedia extends AppFragment {
         return (mediaSource != null ? mediaSource.mediaType : null) == MediaType.VIDEO;
     }
 
-    private final void onMediaClick() {
-        if (getToolbarTranslationY() < 0.0f) {
-            showControls();
-        } else {
-            hideControls();
-        }
-    }
-
-    private final void onViewBindingDestroy(WidgetMediaBinding binding) {
-        ValueAnimator valueAnimator = this.controlsAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        binding.f17231d.setTapListener(null);
-        MGImages mGImages = MGImages.INSTANCE;
-        ZoomableDraweeView zoomableDraweeView = binding.f17231d;
-        C12238m.checkNotNullExpressionValue(zoomableDraweeView, "binding.mediaImage");
-        mGImages.cancelImageRequests(zoomableDraweeView);
-    }
-
-    private final void showControls() {
-        if (isVideo()) {
-            getBinding().f17233f.m8901i();
-            Subscription subscription = this.controlsVisibilitySubscription;
-            if (subscription != null) {
-                subscription.unsubscribe();
-            }
-            Observable<Long> observableM11068d0 = Observable.m11068d0(SHOW_CONTROLS_TIMEOUT_MS, TimeUnit.MILLISECONDS);
-            C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable.timer(SHOW_CO…S, TimeUnit.MILLISECONDS)");
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetMedia.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C90661()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90672());
-        } else {
-            getBinding().f17233f.m8895c();
-        }
-        ControlsAnimationAction controlsAnimationAction = this.controlsAnimationAction;
-        ControlsAnimationAction controlsAnimationAction2 = ControlsAnimationAction.SHOW;
-        if (controlsAnimationAction == controlsAnimationAction2) {
-            return;
-        }
-        this.controlsAnimationAction = controlsAnimationAction2;
-        ValueAnimator valueAnimator = this.controlsAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getToolbarTranslationY(), 0.0f);
-        C12238m.checkNotNullExpressionValue(valueAnimatorOfFloat, "this");
-        configureAndStartControlsAnimation(valueAnimatorOfFloat);
-        this.controlsAnimator = valueAnimatorOfFloat;
-    }
-
-    private final void showLoadingIndicator() {
-        ProgressBar progressBar = getBinding().f17232e;
-        C12238m.checkNotNullExpressionValue(progressBar, "binding.mediaLoadingIndicator");
-        progressBar.setVisibility(0);
-    }
-
     @Override // androidx.fragment.app.Fragment
-    public void onDestroy() {
+    public void onDestroy() throws CloneNotSupportedException {
         AppMediaPlayer appMediaPlayer = this.appMediaPlayer;
         if (appMediaPlayer == null) {
             C12238m.throwUninitializedPropertyAccessException("appMediaPlayer");
@@ -713,8 +658,16 @@ public final class WidgetMedia extends AppFragment {
         super.onDestroy();
     }
 
+    private final void onMediaClick() {
+        if (getToolbarTranslationY() < 0.0f) {
+            showControls();
+        } else {
+            hideControls();
+        }
+    }
+
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onPause() {
+    public void onPause() throws CloneNotSupportedException {
         super.onPause();
         AppMediaPlayer appMediaPlayer = this.appMediaPlayer;
         if (appMediaPlayer == null) {
@@ -728,6 +681,18 @@ public final class WidgetMedia extends AppFragment {
             }
             ((C2816k2) appMediaPlayer2.exoPlayer).mo2926u(false);
         }
+    }
+
+    private final void onViewBindingDestroy(WidgetMediaBinding binding) {
+        ValueAnimator valueAnimator = this.controlsAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        binding.f17231d.setTapListener(null);
+        MGImages mGImages = MGImages.INSTANCE;
+        ZoomableDraweeView zoomableDraweeView = binding.f17231d;
+        C12238m.checkNotNullExpressionValue(zoomableDraweeView, "binding.mediaImage");
+        mGImages.cancelImageRequests(zoomableDraweeView);
     }
 
     @Override // com.discord.app.AppFragment
@@ -763,7 +728,7 @@ public final class WidgetMedia extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
+    public void onViewBoundOrOnResume() throws CloneNotSupportedException {
         Uri uri;
         String str;
         Uri uri2;
@@ -843,5 +808,40 @@ public final class WidgetMedia extends AppFragment {
             C12238m.checkNotNullExpressionValue(observableM11085K, "eventSubject.onBackpressureBuffer()");
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11085K, this, null, 2, null), (Class<?>) WidgetMedia.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new WidgetMedia$onViewBoundOrOnResume$$inlined$let$lambda$1(this));
         }
+    }
+
+    private final void showControls() {
+        if (isVideo()) {
+            getBinding().f17233f.m8901i();
+            Subscription subscription = this.controlsVisibilitySubscription;
+            if (subscription != null) {
+                subscription.unsubscribe();
+            }
+            Observable<Long> observableM11068d0 = Observable.m11068d0(SHOW_CONTROLS_TIMEOUT_MS, TimeUnit.MILLISECONDS);
+            C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable.timer(SHOW_CO…S, TimeUnit.MILLISECONDS)");
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetMedia.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C90661()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90672());
+        } else {
+            getBinding().f17233f.m8895c();
+        }
+        ControlsAnimationAction controlsAnimationAction = this.controlsAnimationAction;
+        ControlsAnimationAction controlsAnimationAction2 = ControlsAnimationAction.SHOW;
+        if (controlsAnimationAction == controlsAnimationAction2) {
+            return;
+        }
+        this.controlsAnimationAction = controlsAnimationAction2;
+        ValueAnimator valueAnimator = this.controlsAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getToolbarTranslationY(), 0.0f);
+        C12238m.checkNotNullExpressionValue(valueAnimatorOfFloat, "this");
+        configureAndStartControlsAnimation(valueAnimatorOfFloat);
+        this.controlsAnimator = valueAnimatorOfFloat;
+    }
+
+    private final void showLoadingIndicator() {
+        ProgressBar progressBar = getBinding().f17232e;
+        C12238m.checkNotNullExpressionValue(progressBar, "binding.mediaLoadingIndicator");
+        progressBar.setVisibility(0);
     }
 }

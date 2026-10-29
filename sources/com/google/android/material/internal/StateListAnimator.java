@@ -36,7 +36,7 @@ public final class StateListAnimator {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.StateListAnimator$b */
-    public static class C10945b {
+    public class C10945b {
 
         /* JADX INFO: renamed from: a */
         public final int[] f21043a;
@@ -50,24 +50,18 @@ public final class StateListAnimator {
         }
     }
 
+    public void addState(int[] iArr, ValueAnimator valueAnimator) {
+        C10945b c10945b = new C10945b(iArr, valueAnimator);
+        valueAnimator.addListener(this.animationListener);
+        this.tuples.add(c10945b);
+    }
+
     private void cancel() {
         ValueAnimator valueAnimator = this.runningAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.runningAnimator = null;
         }
-    }
-
-    private void start(@NonNull C10945b c10945b) {
-        ValueAnimator valueAnimator = c10945b.f21044b;
-        this.runningAnimator = valueAnimator;
-        valueAnimator.start();
-    }
-
-    public void addState(int[] iArr, ValueAnimator valueAnimator) {
-        C10945b c10945b = new C10945b(iArr, valueAnimator);
-        valueAnimator.addListener(this.animationListener);
-        this.tuples.add(c10945b);
     }
 
     public void jumpToCurrentState() {
@@ -105,5 +99,11 @@ public final class StateListAnimator {
         if (c10945b != null) {
             start(c10945b);
         }
+    }
+
+    private void start(@NonNull C10945b c10945b) {
+        ValueAnimator valueAnimator = c10945b.f21044b;
+        this.runningAnimator = valueAnimator;
+        valueAnimator.start();
     }
 }

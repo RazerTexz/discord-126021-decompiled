@@ -10,7 +10,7 @@ public abstract class AbstractC4482b implements InterfaceC4488h<Character> {
 
     /* JADX INFO: renamed from: b.i.b.a.b$a */
     /* JADX INFO: compiled from: CharMatcher.java */
-    public static abstract class a extends AbstractC4482b {
+    public abstract class a extends AbstractC4482b {
         @Override // p007b.p225i.p355b.p356a.InterfaceC4488h
         @Deprecated
         public boolean apply(Character ch) {
@@ -20,7 +20,7 @@ public abstract class AbstractC4482b implements InterfaceC4488h<Character> {
 
     /* JADX INFO: renamed from: b.i.b.a.b$b */
     /* JADX INFO: compiled from: CharMatcher.java */
-    public static final class b extends a {
+    public final class b extends a {
 
         /* JADX INFO: renamed from: a */
         public final char f11940a;
@@ -51,7 +51,7 @@ public abstract class AbstractC4482b implements InterfaceC4488h<Character> {
 
     /* JADX INFO: renamed from: b.i.b.a.b$c */
     /* JADX INFO: compiled from: CharMatcher.java */
-    public static abstract class c extends a {
+    public abstract class c extends a {
 
         /* JADX INFO: renamed from: a */
         public final String f11941a;
@@ -67,7 +67,7 @@ public abstract class AbstractC4482b implements InterfaceC4488h<Character> {
 
     /* JADX INFO: renamed from: b.i.b.a.b$d */
     /* JADX INFO: compiled from: CharMatcher.java */
-    public static final class d extends c {
+    public final class d extends c {
 
         /* JADX INFO: renamed from: b */
         public static final d f11942b = new d();

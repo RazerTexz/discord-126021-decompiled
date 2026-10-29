@@ -22,7 +22,7 @@ public class AudioAttributesImplBase implements AudioAttributesImpl {
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public int mUsage;
 
-    public static class Builder implements AudioAttributesImpl.Builder {
+    public class Builder implements AudioAttributesImpl.Builder {
         private int mContentType;
         private int mFlags;
         private int mLegacyStream;
@@ -33,6 +33,12 @@ public class AudioAttributesImplBase implements AudioAttributesImpl {
             this.mContentType = 0;
             this.mFlags = 0;
             this.mLegacyStream = -1;
+        }
+
+        @Override // androidx.media.AudioAttributesImpl.Builder
+        @NonNull
+        public AudioAttributesImpl build() {
+            return new AudioAttributesImplBase(this.mContentType, this.mFlags, this.mUsage, this.mLegacyStream);
         }
 
         /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -79,12 +85,6 @@ public class AudioAttributesImplBase implements AudioAttributesImpl {
             }
             this.mUsage = AudioAttributesImplBase.usageForStreamType(i);
             return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public AudioAttributesImpl build() {
-            return new AudioAttributesImplBase(this.mContentType, this.mFlags, this.mUsage, this.mLegacyStream);
         }
 
         @Override // androidx.media.AudioAttributesImpl.Builder
@@ -166,33 +166,6 @@ public class AudioAttributesImplBase implements AudioAttributesImpl {
         this.mLegacyStream = -1;
     }
 
-    public static int usageForStreamType(int i) {
-        switch (i) {
-            case 0:
-                return 2;
-            case 1:
-            case 7:
-                return 13;
-            case 2:
-                return 6;
-            case 3:
-                return 1;
-            case 4:
-                return 4;
-            case 5:
-                return 5;
-            case 6:
-                return 2;
-            case 8:
-                return 3;
-            case 9:
-            default:
-                return 0;
-            case 10:
-                return 11;
-        }
-    }
-
     public boolean equals(Object obj) {
         if (!(obj instanceof AudioAttributesImplBase)) {
             return false;
@@ -264,6 +237,33 @@ public class AudioAttributesImplBase implements AudioAttributesImpl {
         sb.append(" flags=0x");
         sb.append(Integer.toHexString(this.mFlags).toUpperCase());
         return sb.toString();
+    }
+
+    public static int usageForStreamType(int i) {
+        switch (i) {
+            case 0:
+                return 2;
+            case 1:
+            case 7:
+                return 13;
+            case 2:
+                return 6;
+            case 3:
+                return 1;
+            case 4:
+                return 4;
+            case 5:
+                return 5;
+            case 6:
+                return 2;
+            case 8:
+                return 3;
+            case 9:
+            default:
+                return 0;
+            case 10:
+                return 11;
+        }
     }
 
     public AudioAttributesImplBase(int i, int i2, int i3, int i4) {

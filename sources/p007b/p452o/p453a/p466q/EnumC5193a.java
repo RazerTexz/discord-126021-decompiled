@@ -57,16 +57,16 @@ public final class EnumC5193a {
         this.type = enumC5196d;
     }
 
+    /* JADX INFO: renamed from: f */
+    public boolean m7388f(@NonNull EnumC5194b enumC5194b) {
+        return enumC5194b == EnumC5194b.f14072j || enumC5194b.m7390g() == this.type;
+    }
+
     public static EnumC5193a valueOf(String str) {
         return (EnumC5193a) Enum.valueOf(EnumC5193a.class, str);
     }
 
     public static EnumC5193a[] values() {
         return (EnumC5193a[]) f14071o.clone();
-    }
-
-    /* JADX INFO: renamed from: f */
-    public boolean m7388f(@NonNull EnumC5194b enumC5194b) {
-        return enumC5194b == EnumC5194b.f14072j || enumC5194b.m7390g() == this.type;
     }
 }

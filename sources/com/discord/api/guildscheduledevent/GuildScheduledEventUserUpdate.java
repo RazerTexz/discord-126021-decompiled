@@ -9,16 +9,6 @@ public final /* data */ class GuildScheduledEventUserUpdate {
     private final long guildScheduledEventId;
     private final long userId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildScheduledEventId() {
-        return this.guildScheduledEventId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,6 +18,16 @@ public final /* data */ class GuildScheduledEventUserUpdate {
         }
         GuildScheduledEventUserUpdate guildScheduledEventUserUpdate = (GuildScheduledEventUserUpdate) other;
         return this.guildScheduledEventId == guildScheduledEventUserUpdate.guildScheduledEventId && this.guildId == guildScheduledEventUserUpdate.guildId && this.userId == guildScheduledEventUserUpdate.userId;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildScheduledEventId() {
+        return this.guildScheduledEventId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public int hashCode() {

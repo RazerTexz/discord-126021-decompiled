@@ -9,7 +9,7 @@ public abstract class ReportNodeBottomButton {
     private final String type;
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final class Cancel extends ReportNodeBottomButton {
+    public final class Cancel extends ReportNodeBottomButton {
         public static final Cancel INSTANCE = new Cancel();
 
         public Cancel() {
@@ -18,7 +18,7 @@ public abstract class ReportNodeBottomButton {
     }
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final class Done extends ReportNodeBottomButton {
+    public final class Done extends ReportNodeBottomButton {
         public static final Done INSTANCE = new Done();
 
         public Done() {
@@ -27,7 +27,7 @@ public abstract class ReportNodeBottomButton {
     }
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final /* data */ class Next extends ReportNodeBottomButton {
+    public final /* data */ class Next extends ReportNodeBottomButton {
         private final int target;
 
         public Next(int i) {
@@ -35,16 +35,16 @@ public abstract class ReportNodeBottomButton {
             this.target = i;
         }
 
-        /* JADX INFO: renamed from: b, reason: from getter */
-        public final int getTarget() {
-            return this.target;
-        }
-
         public boolean equals(Object other) {
             if (this != other) {
                 return (other instanceof Next) && this.target == ((Next) other).target;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: b, reason: from getter */
+        public final int getTarget() {
+            return this.target;
         }
 
         public int hashCode() {
@@ -57,7 +57,7 @@ public abstract class ReportNodeBottomButton {
     }
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final class Submit extends ReportNodeBottomButton {
+    public final class Submit extends ReportNodeBottomButton {
         public static final Submit INSTANCE = new Submit();
 
         public Submit() {

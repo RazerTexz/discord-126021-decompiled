@@ -264,7 +264,7 @@ public class PatchValEclipse {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchValEclipse$Reflection.SCL.lombok */
-    public static final class Reflection {
+    public final class Reflection {
         private static final Field initCopyField;
         private static final Field iterableCopyField;
         private static final Field astStackField;

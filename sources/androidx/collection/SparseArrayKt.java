@@ -16,7 +16,7 @@ public final class SparseArrayKt {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: androidx.collection.SparseArrayKt$valueIterator$1 */
     /* JADX INFO: compiled from: SparseArray.kt */
-    public static final class C01721<T> implements Iterator<T>, InterfaceC12228a {
+    public final class C01721<T> implements Iterator<T>, InterfaceC12228a {
         public final /* synthetic */ SparseArrayCompat $this_valueIterator;
         private int index;
 

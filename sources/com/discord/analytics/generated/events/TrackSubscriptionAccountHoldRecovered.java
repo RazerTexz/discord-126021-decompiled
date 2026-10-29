@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionAccountHoldRecovered.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionAccountHoldRecovered implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
+    private final Long createdAt = null;
+    private final Long currentPeriodEnd = null;
+    private final Long currentPeriodStart = null;
+    private final Long paymentGateway = null;
     private final CharSequence paymentGatewayPlanId = null;
     private final Long planId = null;
-    private final Long paymentGateway = null;
-    private final Long createdAt = null;
-    private final Long currentPeriodStart = null;
-    private final Long currentPeriodEnd = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_account_hold_recovered";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackSubscriptionAccountHoldRecovered implements A
         }
         TrackSubscriptionAccountHoldRecovered trackSubscriptionAccountHoldRecovered = (TrackSubscriptionAccountHoldRecovered) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionAccountHoldRecovered.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionAccountHoldRecovered.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionAccountHoldRecovered.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionAccountHoldRecovered.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionAccountHoldRecovered.paymentGateway) && C12238m.areEqual(this.createdAt, trackSubscriptionAccountHoldRecovered.createdAt) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionAccountHoldRecovered.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionAccountHoldRecovered.currentPeriodEnd);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackActivityInternalVideoImpression.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackActivityInternalVideoImpression implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "activity_internal_video_impression";
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "activity_internal_video_impression";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

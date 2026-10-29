@@ -11,24 +11,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionWatchTogether.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionWatchTogether implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
-    private final Boolean isHost = null;
-    private final CharSequence remoteType = null;
     private final CharSequence hostType = null;
-    private final CharSequence searchType = null;
-    private final CharSequence via = null;
+    private final Boolean isHost = null;
     private final Long orderCurrent = null;
     private final Long orderSelected = null;
+    private final CharSequence remoteType = null;
+    private final CharSequence searchType = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final CharSequence trackingId = null;
+    private final CharSequence via = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_watch_together";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
         }
         TrackActivityInternalActionWatchTogether trackActivityInternalActionWatchTogether = (TrackActivityInternalActionWatchTogether) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionWatchTogether.actionName) && C12238m.areEqual(this.isHost, trackActivityInternalActionWatchTogether.isHost) && C12238m.areEqual(this.remoteType, trackActivityInternalActionWatchTogether.remoteType) && C12238m.areEqual(this.hostType, trackActivityInternalActionWatchTogether.hostType) && C12238m.areEqual(this.searchType, trackActivityInternalActionWatchTogether.searchType) && C12238m.areEqual(this.via, trackActivityInternalActionWatchTogether.via) && C12238m.areEqual(this.orderCurrent, trackActivityInternalActionWatchTogether.orderCurrent) && C12238m.areEqual(this.orderSelected, trackActivityInternalActionWatchTogether.orderSelected) && C12238m.areEqual(this.trackingId, trackActivityInternalActionWatchTogether.trackingId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -17,7 +17,7 @@ public final class C1224b implements Connection.OnVideoCallback {
 
     /* JADX INFO: renamed from: b.a.q.m0.c.b$a */
     /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
-    public static final class a extends AbstractC12240o implements Function0<Unit> {
+    public final class a extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ int $ssrc;
         public final /* synthetic */ String $streamIdentifier;
         public final /* synthetic */ StreamParameters[] $streams;

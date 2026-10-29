@@ -13,7 +13,7 @@ public final /* data */ class HubEventsArgs implements Parcelable {
     private final long directoryChannelId;
     private final long guildId;
 
-    public static class Creator implements Parcelable.Creator<HubEventsArgs> {
+    public final class Creator implements Parcelable.Creator<HubEventsArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubEventsArgs createFromParcel(Parcel parcel) {
@@ -43,16 +43,6 @@ public final /* data */ class HubEventsArgs implements Parcelable {
         return hubEventsArgs.copy(j, j2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getDirectoryChannelId() {
-        return this.directoryChannelId;
-    }
-
     public final HubEventsArgs copy(long guildId, long directoryChannelId) {
         return new HubEventsArgs(guildId, directoryChannelId);
     }
@@ -73,8 +63,18 @@ public final /* data */ class HubEventsArgs implements Parcelable {
         return this.guildId == hubEventsArgs.guildId && this.directoryChannelId == hubEventsArgs.directoryChannelId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getDirectoryChannelId() {
         return this.directoryChannelId;
+    }
+
+    public final long getDirectoryChannelId() {
+        return this.directoryChannelId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {

@@ -25,22 +25,15 @@ public class ShapeAppearancePathProvider {
     private final Path cornerPath = new Path();
     private boolean edgeIntersectionCheckEnabled = true;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public interface PathListener {
-        void onCornerPathCreated(ShapePath shapePath, Matrix matrix, int i);
-
-        void onEdgePathCreated(ShapePath shapePath, Matrix matrix, int i);
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.shape.ShapeAppearancePathProvider$a */
-    public static class C10969a {
+    public class C10969a {
 
         /* JADX INFO: renamed from: a */
         public static final ShapeAppearancePathProvider f21092a = new ShapeAppearancePathProvider();
     }
 
     /* JADX INFO: renamed from: com.google.android.material.shape.ShapeAppearancePathProvider$b */
-    public static final class C10970b {
+    public final class C10970b {
 
         /* JADX INFO: renamed from: a */
         @NonNull
@@ -68,6 +61,13 @@ public class ShapeAppearancePathProvider {
             this.f21095c = rectF;
             this.f21094b = path;
         }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public interface PathListener {
+        void onCornerPathCreated(ShapePath shapePath, Matrix matrix, int i);
+
+        void onEdgePathCreated(ShapePath shapePath, Matrix matrix, int i);
     }
 
     public ShapeAppearancePathProvider() {
@@ -137,6 +137,10 @@ public class ShapeAppearancePathProvider {
         if (pathListener != null) {
             pathListener.onEdgePathCreated(this.shapePath, this.edgeTransforms[i], i);
         }
+    }
+
+    public void calculatePath(ShapeAppearanceModel shapeAppearanceModel, float f, RectF rectF, @NonNull Path path) {
+        calculatePath(shapeAppearanceModel, f, rectF, null, path);
     }
 
     private void getCoordinatesOfCorner(int i, @NonNull RectF rectF, @NonNull PointF pointF) {
@@ -225,6 +229,10 @@ public class ShapeAppearancePathProvider {
         this.cornerTransforms[i].preRotate(fAngleOfEdge);
     }
 
+    public void setEdgeIntersectionCheckEnable(boolean z2) {
+        this.edgeIntersectionCheckEnabled = z2;
+    }
+
     private void setEdgePathAndTransform(int i) {
         this.scratch[0] = this.cornerPaths[i].getEndX();
         this.scratch[1] = this.cornerPaths[i].getEndY();
@@ -235,14 +243,6 @@ public class ShapeAppearancePathProvider {
         float[] fArr = this.scratch;
         matrix.setTranslate(fArr[0], fArr[1]);
         this.edgeTransforms[i].preRotate(fAngleOfEdge);
-    }
-
-    public void calculatePath(ShapeAppearanceModel shapeAppearanceModel, float f, RectF rectF, @NonNull Path path) {
-        calculatePath(shapeAppearanceModel, f, rectF, null, path);
-    }
-
-    public void setEdgeIntersectionCheckEnable(boolean z2) {
-        this.edgeIntersectionCheckEnabled = z2;
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

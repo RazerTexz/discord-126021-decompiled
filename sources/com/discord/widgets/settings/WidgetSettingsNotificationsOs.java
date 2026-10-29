@@ -41,24 +41,9 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetSettingsNotificationsOs.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            new WidgetSettingsNotificationsOs().show(fragmentManager, "javaClass");
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsNotificationsOs$onResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsNotificationsOs.kt */
-    public static final class C96541 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, Unit> {
+    public final class C96541 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, Unit> {
         public C96541() {
             super(1);
         }
@@ -81,6 +66,21 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetSettingsNotificationsOs.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            new WidgetSettingsNotificationsOs().show(fragmentManager, "javaClass");
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsNotificationsOs() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsNotificationsOs$binding$2.INSTANCE, null, 2, null);
@@ -88,10 +88,6 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
 
     private final WidgetSettingsNotificationOsBinding getBinding() {
         return (WidgetSettingsNotificationOsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public static final void show(FragmentManager fragmentManager) {
-        INSTANCE.show(fragmentManager);
     }
 
     @Override // com.discord.app.AppBottomSheet
@@ -136,5 +132,9 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
                 WidgetSettingsNotificationsOs.this.dismiss();
             }
         });
+    }
+
+    public static final void show(FragmentManager fragmentManager) {
+        INSTANCE.show(fragmentManager);
     }
 }

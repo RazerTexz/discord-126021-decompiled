@@ -27,7 +27,7 @@ public final class CoroutineLiveDataKt {
     /* JADX INFO: renamed from: androidx.lifecycle.CoroutineLiveDataKt$addDisposableSource$2 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.CoroutineLiveDataKt$addDisposableSource$2", m10085f = "CoroutineLiveData.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C04302 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super EmittedSource>, Object> {
+    public final class C04302 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super EmittedSource>, Object> {
         public final /* synthetic */ LiveData $source;
         public final /* synthetic */ MediatorLiveData $this_addDisposableSource;
         public int label;
@@ -51,7 +51,7 @@ public final class CoroutineLiveDataKt {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -72,12 +72,6 @@ public final class CoroutineLiveDataKt {
         return C3404f.m4197C1(C13031n.f27700b.mo11194H(), new C04302(mediatorLiveData, liveData, null), continuation);
     }
 
-    public static final <T> LiveData<T> liveData(CoroutineContext coroutineContext, long j, Function2<? super LiveDataScope<T>, ? super Continuation<? super Unit>, ? extends Object> function2) {
-        C12238m.checkNotNullParameter(coroutineContext, "context");
-        C12238m.checkNotNullParameter(function2, "block");
-        return new CoroutineLiveData(coroutineContext, j, function2);
-    }
-
     public static /* synthetic */ LiveData liveData$default(CoroutineContext coroutineContext, long j, Function2 function2, int i, Object obj) {
         if ((i & 1) != 0) {
             coroutineContext = C12179f.f25237j;
@@ -86,6 +80,12 @@ public final class CoroutineLiveDataKt {
             j = 5000;
         }
         return liveData(coroutineContext, j, function2);
+    }
+
+    public static final <T> LiveData<T> liveData(CoroutineContext coroutineContext, long j, Function2<? super LiveDataScope<T>, ? super Continuation<? super Unit>, ? extends Object> function2) {
+        C12238m.checkNotNullParameter(coroutineContext, "context");
+        C12238m.checkNotNullParameter(function2, "block");
+        return new CoroutineLiveData(coroutineContext, j, function2);
     }
 
     @RequiresApi(26)

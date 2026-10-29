@@ -12,10 +12,10 @@ import p659s.p660a.p661a.C13035r;
 /* JADX INFO: compiled from: Builders.common.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C13118i0<T> extends C13035r<T> {
+    public volatile int _decision;
 
     /* JADX INFO: renamed from: n */
     public static final AtomicIntegerFieldUpdater f27856n = AtomicIntegerFieldUpdater.newUpdater(C13118i0.class, "_decision");
-    public volatile int _decision;
 
     public C13118i0(CoroutineContext coroutineContext, Continuation<? super T> continuation) {
         super(coroutineContext, continuation);

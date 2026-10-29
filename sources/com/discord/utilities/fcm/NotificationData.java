@@ -78,10 +78,10 @@ public final class NotificationData {
     private static final String ANALYTICS_NOTIF_TYPE = "notif_type";
     private static final String ANALYTICS_NOTIF_USER_ID = "notif_user_id";
     private static final String ANALYTICS_REL_TYPE = "rel_type";
+    private static final String GROUP_KEY_PREFIX = "GROUP_";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String GROUP_KEY_PREFIX = "GROUP_";
     private static final int MSG_MUTE_MIN_COUNT = 2;
     public static final String REPLYING_TO_UNTRANSLATED = "replying to";
     public static final String TYPE_ACTIVITY_START = "ACTIVITY_START";
@@ -135,8 +135,27 @@ public final class NotificationData {
     private final String userUsername;
 
     /* JADX INFO: compiled from: NotificationData.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Map<String, Object> buildTrackingData(Intent intent) {
+            String stringExtra;
+            HashMap map = new HashMap();
+            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_TYPE);
+            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_USER_ID);
+            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_ID);
+            copyLongIntoMap(intent, map, "guild_id");
+            copyLongIntoMap(intent, map, "channel_id");
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_CHANNEL_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_REL_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_TYPE);
+            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_NAME);
+            if (intent != null && (stringExtra = intent.getStringExtra("com.discord.intent.ORIGIN_SOURCE")) != null) {
+                map.put(NotificationData.ANALYTICS_NOTIF_IN_APP, Boolean.valueOf(C12103t.equals(stringExtra, "com.discord.intent.ORIGIN_NOTIF_INAPP", true)));
+            }
+            return map;
         }
 
         private final void copyIntIntoMap(Intent intent, Map<String, Object> map, String str) {
@@ -192,25 +211,6 @@ public final class NotificationData {
                 }
             }
             return arrayList2;
-        }
-
-        public final Map<String, Object> buildTrackingData(Intent intent) {
-            String stringExtra;
-            HashMap map = new HashMap();
-            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_TYPE);
-            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_USER_ID);
-            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_ID);
-            copyLongIntoMap(intent, map, "guild_id");
-            copyLongIntoMap(intent, map, "channel_id");
-            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_TYPE);
-            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_CHANNEL_TYPE);
-            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_REL_TYPE);
-            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_TYPE);
-            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_NAME);
-            if (intent != null && (stringExtra = intent.getStringExtra("com.discord.intent.ORIGIN_SOURCE")) != null) {
-                map.put(NotificationData.ANALYTICS_NOTIF_IN_APP, Boolean.valueOf(C12103t.equals(stringExtra, "com.discord.intent.ORIGIN_NOTIF_INAPP", true)));
-            }
-            return map;
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -341,109 +341,6 @@ public final class NotificationData {
         Intent intentPutExtra = intent.putExtra(ANALYTICS_NOTIF_TYPE, str).putExtra(ANALYTICS_NOTIF_USER_ID, this.userId).putExtra(ANALYTICS_MESSAGE_ID, this.messageId).putExtra(ANALYTICS_MESSAGE_TYPE, this.messageType).putExtra("guild_id", this.guildId).putExtra("channel_id", this.channel.getId()).putExtra(ANALYTICS_CHANNEL_TYPE, this.channel.getType()).putExtra(ANALYTICS_REL_TYPE, this.relationshipType).putExtra(ANALYTICS_ACTIVITY_TYPE, this.activityType).putExtra(ANALYTICS_ACTIVITY_NAME, this.activityName);
         C12238m.checkNotNullExpressionValue(intentPutExtra, "intent\n        .putExtra…IVITY_NAME, activityName)");
         return intentPutExtra;
-    }
-
-    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code restructure failed: missing block: B:12:0x002f, code lost:
-    
-        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_FORUM_THREAD_CREATED) != false) goto L19;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:18:0x004e, code lost:
-    
-        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_RELATIONSHIP_ADD) != false) goto L19;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:6:0x0014, code lost:
-    
-        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_MESSAGE_CREATE) != false) goto L19;
-     */
-    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    private final Intent getContentIntentInternal() {
-        String str = this.type;
-        switch (str.hashCode()) {
-            case -1502317553:
-                if (str.equals(TYPE_GENERIC_PUSH_NOTIFICATION_SENT)) {
-                    String str2 = this.deeplink;
-                    if (str2 == null) {
-                        str2 = "";
-                    }
-                    return new Intent("android.intent.action.VIEW", Uri.parse(str2));
-                }
-                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
-            case -1489275252:
-                if (str.equals(TYPE_GUILD_SCHEDULED_EVENT_UPDATE)) {
-                    GuildScheduledEventEntityType guildScheduledEventEntityType = this.guildScheduledEventEntityType;
-                    if (guildScheduledEventEntityType != null) {
-                        int iOrdinal = guildScheduledEventEntityType.ordinal();
-                        if (iOrdinal == 1 || iOrdinal == 2) {
-                            return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
-                        }
-                        if (iOrdinal == 3) {
-                            return IntentUtils.RouteBuilders.selectExternalEvent(this.guildId, this.guildScheduledEventId);
-                        }
-                    }
-                    return new Intent("android.intent.action.VIEW", IntentUtils.RouteBuilders.Uris.INSTANCE.getApp());
-                }
-                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
-            case -1327124998:
-                break;
-            case -1263316859:
-                if (str.equals(TYPE_STAGE_INSTANCE_CREATE)) {
-                    return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
-                }
-                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
-            case -437641071:
-                break;
-            case 974015250:
-                if (str.equals(TYPE_ACTIVITY_START)) {
-                    return IntentUtils.RouteBuilders.INSTANCE.selectDirectMessage(this.userId);
-                }
-                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
-            case 998188116:
-                break;
-            default:
-                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
-        }
-        return this.channel.getType() != 1 ? IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null) : IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), 0L, null, 4, null);
-    }
-
-    private final String getIconUrlForChannel() {
-        int type = this.channel.getType();
-        if (type != 0) {
-            if (type == 1) {
-                return getIconUrlForUser();
-            }
-            if (type != 2 && type != 5) {
-                switch (type) {
-                    case 10:
-                    case 11:
-                    case 12:
-                        break;
-                    default:
-                        return IconUtils.getForChannel$default(this.channel.getId(), this.channel.getIcon(), this.channel.getType(), true, null, 16, null);
-                }
-            }
-        }
-        return IconUtils.getForGuild$default(Long.valueOf(this.guildId), this.guildIcon, "", false, null, 24, null);
-    }
-
-    private final String getIconUrlForGuildMember() {
-        return IconUtils.INSTANCE.getForGuildMember(this.guildMemberAvatar, this.guildId, this.userId, (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? false : false);
-    }
-
-    private final CharSequence resNameToString(Context context, String resourceName, String fallback) {
-        Resources resources = context.getResources();
-        int identifier = resources != null ? resources.getIdentifier(resourceName, "string", context.getPackageName()) : 0;
-        return identifier == 0 ? fallback : C1107b.m216h(context, identifier, new Object[0], null, 4);
-    }
-
-    public static /* synthetic */ CharSequence resNameToString$default(NotificationData notificationData, Context context, String str, String str2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            str2 = "";
-        }
-        return notificationData.resNameToString(context, str, str2);
     }
 
     public final boolean canDisplayInApp() {
@@ -647,6 +544,72 @@ public final class NotificationData {
         return activity;
     }
 
+    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Code restructure failed: missing block: B:12:0x002f, code lost:
+    
+        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_FORUM_THREAD_CREATED) != false) goto L19;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:18:0x004e, code lost:
+    
+        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_RELATIONSHIP_ADD) != false) goto L19;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:6:0x0014, code lost:
+    
+        if (r0.equals(com.discord.utilities.fcm.NotificationData.TYPE_MESSAGE_CREATE) != false) goto L19;
+     */
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    private final Intent getContentIntentInternal() {
+        String str = this.type;
+        switch (str.hashCode()) {
+            case -1502317553:
+                if (str.equals(TYPE_GENERIC_PUSH_NOTIFICATION_SENT)) {
+                    String str2 = this.deeplink;
+                    if (str2 == null) {
+                        str2 = "";
+                    }
+                    return new Intent("android.intent.action.VIEW", Uri.parse(str2));
+                }
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+            case -1489275252:
+                if (str.equals(TYPE_GUILD_SCHEDULED_EVENT_UPDATE)) {
+                    GuildScheduledEventEntityType guildScheduledEventEntityType = this.guildScheduledEventEntityType;
+                    if (guildScheduledEventEntityType != null) {
+                        int iOrdinal = guildScheduledEventEntityType.ordinal();
+                        if (iOrdinal == 1 || iOrdinal == 2) {
+                            return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
+                        }
+                        if (iOrdinal == 3) {
+                            return IntentUtils.RouteBuilders.selectExternalEvent(this.guildId, this.guildScheduledEventId);
+                        }
+                    }
+                    return new Intent("android.intent.action.VIEW", IntentUtils.RouteBuilders.Uris.INSTANCE.getApp());
+                }
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+            case -1327124998:
+                break;
+            case -1263316859:
+                if (str.equals(TYPE_STAGE_INSTANCE_CREATE)) {
+                    return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
+                }
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+            case -437641071:
+                break;
+            case 974015250:
+                if (str.equals(TYPE_ACTIVITY_START)) {
+                    return IntentUtils.RouteBuilders.INSTANCE.selectDirectMessage(this.userId);
+                }
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+            case 998188116:
+                break;
+            default:
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+        }
+        return this.channel.getType() != 1 ? IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null) : IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), 0L, null, 4, null);
+    }
+
     public final CharSequence getConversationTitle(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         String str = this.type;
@@ -794,8 +757,37 @@ public final class NotificationData {
         return iconUrlForGuildMember != null ? iconUrlForGuildMember : getIconUrlForUser();
     }
 
+    private final String getIconUrlForChannel() {
+        int type = this.channel.getType();
+        if (type != 0) {
+            if (type == 1) {
+                return getIconUrlForUser();
+            }
+            if (type != 2 && type != 5) {
+                switch (type) {
+                    case 10:
+                    case 11:
+                    case 12:
+                        break;
+                    default:
+                        return IconUtils.getForChannel$default(this.channel.getId(), this.channel.getIcon(), this.channel.getType(), true, null, 16, null);
+                }
+            }
+        }
+        return IconUtils.getForGuild$default(Long.valueOf(this.guildId), this.guildIcon, "", false, null, 24, null);
+    }
+
+    private final String getIconUrlForGuildMember() {
+        return IconUtils.INSTANCE.getForGuildMember(this.guildMemberAvatar, this.guildId, this.userId, (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? false : false);
+    }
+
     public final String getIconUrlForUser() {
         return IconUtils.getForUser$default(Long.valueOf(this.userId), this.userAvatar, this.userDiscriminator, false, null, 24, null);
+    }
+
+    /* JADX INFO: renamed from: isGroupConversation, reason: from getter */
+    public final boolean getIsGroupConversation() {
+        return this.isGroupConversation;
     }
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
@@ -1225,11 +1217,6 @@ public final class NotificationData {
         return this.userId;
     }
 
-    /* JADX INFO: renamed from: isGroupConversation, reason: from getter */
-    public final boolean getIsGroupConversation() {
-        return this.isGroupConversation;
-    }
-
     /* JADX WARN: Code duplicated, block: B:42:0x007e A[ORIG_RETURN, RETURN] */
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     public final boolean isValid() {
@@ -1290,8 +1277,21 @@ public final class NotificationData {
         }
     }
 
+    public static /* synthetic */ CharSequence resNameToString$default(NotificationData notificationData, Context context, String str, String str2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            str2 = "";
+        }
+        return notificationData.resNameToString(context, str, str2);
+    }
+
+    private final CharSequence resNameToString(Context context, String resourceName, String fallback) {
+        Resources resources = context.getResources();
+        int identifier = resources != null ? resources.getIdentifier(resourceName, "string", context.getPackageName()) : 0;
+        return identifier == 0 ? fallback : C1107b.m216h(context, identifier, new Object[0], null, 4);
+    }
+
     /* JADX INFO: compiled from: NotificationData.kt */
-    public static final class DisplayPayload {
+    public final class DisplayPayload {
         private NotificationData data;
         private final LinkedHashMap<Long, NotificationData> extras;
         private final int id;
@@ -1302,28 +1302,6 @@ public final class NotificationData {
             this.data = notificationData;
             this.id = new Random().nextInt(Integer.MAX_VALUE);
             this.extras = new LinkedHashMap<>();
-        }
-
-        private final void trimExtrasWhenOversized(int maxExtras) {
-            if (this.extras.size() < maxExtras) {
-                return;
-            }
-            Set<Map.Entry<Long, NotificationData>> setEntrySet = this.extras.entrySet();
-            C12238m.checkNotNullExpressionValue(setEntrySet, "extras\n          .entries");
-            List<Map.Entry> listDrop = C12163u.drop(setEntrySet, this.extras.size() - (maxExtras / 2));
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(listDrop, 10)), 16));
-            for (Map.Entry entry : listDrop) {
-                linkedHashMap.put((Long) entry.getKey(), (NotificationData) entry.getValue());
-            }
-            this.extras.clear();
-            this.extras.putAll(linkedHashMap);
-        }
-
-        public static /* synthetic */ void update$default(DisplayPayload displayPayload, NotificationData notificationData, int i, int i2, Object obj) {
-            if ((i2 & 2) != 0) {
-                i = 20;
-            }
-            displayPayload.update(notificationData, i);
         }
 
         public final NotificationData getData() {
@@ -1352,6 +1330,28 @@ public final class NotificationData {
 
         public final void setIgnoreNextClearForAck(boolean z2) {
             this.ignoreNextClearForAck = z2;
+        }
+
+        private final void trimExtrasWhenOversized(int maxExtras) {
+            if (this.extras.size() < maxExtras) {
+                return;
+            }
+            Set<Map.Entry<Long, NotificationData>> setEntrySet = this.extras.entrySet();
+            C12238m.checkNotNullExpressionValue(setEntrySet, "extras\n          .entries");
+            List<Map.Entry> listDrop = C12163u.drop(setEntrySet, this.extras.size() - (maxExtras / 2));
+            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(listDrop, 10)), 16));
+            for (Map.Entry entry : listDrop) {
+                linkedHashMap.put((Long) entry.getKey(), (NotificationData) entry.getValue());
+            }
+            this.extras.clear();
+            this.extras.putAll(linkedHashMap);
+        }
+
+        public static /* synthetic */ void update$default(DisplayPayload displayPayload, NotificationData notificationData, int i, int i2, Object obj) {
+            if ((i2 & 2) != 0) {
+                i = 20;
+            }
+            displayPayload.update(notificationData, i);
         }
 
         public final synchronized void update(NotificationData data, int maxExtras) {

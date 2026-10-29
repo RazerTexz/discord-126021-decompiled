@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionPaymentSourceAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionPaymentSourceAdded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
-    private final CharSequence paymentGatewayPlanId = null;
-    private final Long planId = null;
+    private final Long currentPeriodEnd = null;
+    private final Long currentPeriodStart = null;
     private final Long paymentGateway = null;
+    private final CharSequence paymentGatewayPlanId = null;
     private final Long paymentSourceGateway = null;
     private final Long paymentSourceId = null;
-    private final Long currentPeriodStart = null;
-    private final Long currentPeriodEnd = null;
+    private final Long planId = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_payment_source_added";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackSubscriptionPaymentSourceAdded implements Ana
         }
         TrackSubscriptionPaymentSourceAdded trackSubscriptionPaymentSourceAdded = (TrackSubscriptionPaymentSourceAdded) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionPaymentSourceAdded.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionPaymentSourceAdded.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionPaymentSourceAdded.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionPaymentSourceAdded.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionPaymentSourceAdded.paymentGateway) && C12238m.areEqual(this.paymentSourceGateway, trackSubscriptionPaymentSourceAdded.paymentSourceGateway) && C12238m.areEqual(this.paymentSourceId, trackSubscriptionPaymentSourceAdded.paymentSourceId) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionPaymentSourceAdded.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionPaymentSourceAdded.currentPeriodEnd);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

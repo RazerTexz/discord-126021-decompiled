@@ -21,7 +21,7 @@ public final /* data */ class ModelChannelFollowerStats {
     private final Integer usersSeenEver;
 
     /* JADX INFO: compiled from: ModelChannelFollowerStats.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -48,41 +48,6 @@ public final /* data */ class ModelChannelFollowerStats {
         this.subscribersLostSinceLastPost = num6;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getLastFetched() {
-        return this.lastFetched;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Integer getChannelsFollowing() {
-        return this.channelsFollowing;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Integer getGuildMembers() {
-        return this.guildMembers;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Integer getGuildsFollowing() {
-        return this.guildsFollowing;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Integer getUsersSeenEver() {
-        return this.usersSeenEver;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Integer getSubscribersGainedSinceLastPost() {
-        return this.subscribersGainedSinceLastPost;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Integer getSubscribersLostSinceLastPost() {
-        return this.subscribersLostSinceLastPost;
-    }
-
     public final ModelChannelFollowerStats copy(long lastFetched, Integer channelsFollowing, Integer guildMembers, Integer guildsFollowing, Integer usersSeenEver, Integer subscribersGainedSinceLastPost, Integer subscribersLostSinceLastPost) {
         return new ModelChannelFollowerStats(lastFetched, channelsFollowing, guildMembers, guildsFollowing, usersSeenEver, subscribersGainedSinceLastPost, subscribersLostSinceLastPost);
     }
@@ -98,28 +63,63 @@ public final /* data */ class ModelChannelFollowerStats {
         return this.lastFetched == modelChannelFollowerStats.lastFetched && C12238m.areEqual(this.channelsFollowing, modelChannelFollowerStats.channelsFollowing) && C12238m.areEqual(this.guildMembers, modelChannelFollowerStats.guildMembers) && C12238m.areEqual(this.guildsFollowing, modelChannelFollowerStats.guildsFollowing) && C12238m.areEqual(this.usersSeenEver, modelChannelFollowerStats.usersSeenEver) && C12238m.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStats.subscribersGainedSinceLastPost) && C12238m.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStats.subscribersLostSinceLastPost);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Integer getChannelsFollowing() {
         return this.channelsFollowing;
+    }
+
+    public final Integer getChannelsFollowing() {
+        return this.channelsFollowing;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Integer getGuildMembers() {
+        return this.guildMembers;
     }
 
     public final Integer getGuildMembers() {
         return this.guildMembers;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Integer getGuildsFollowing() {
         return this.guildsFollowing;
+    }
+
+    public final Integer getGuildsFollowing() {
+        return this.guildsFollowing;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getLastFetched() {
+        return this.lastFetched;
     }
 
     public final long getLastFetched() {
         return this.lastFetched;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final Integer getSubscribersGainedSinceLastPost() {
         return this.subscribersGainedSinceLastPost;
     }
 
+    public final Integer getSubscribersGainedSinceLastPost() {
+        return this.subscribersGainedSinceLastPost;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final Integer getSubscribersLostSinceLastPost() {
         return this.subscribersLostSinceLastPost;
+    }
+
+    public final Integer getSubscribersLostSinceLastPost() {
+        return this.subscribersLostSinceLastPost;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final Integer getUsersSeenEver() {
+        return this.usersSeenEver;
     }
 
     public final Integer getUsersSeenEver() {

@@ -19,16 +19,6 @@ public final class ContextKt {
         return (T) ContextCompat.getSystemService(context, Object.class);
     }
 
-    public static final void withStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr, @AttrRes int i, @StyleRes int i2, Function1<? super TypedArray, Unit> function1) {
-        C12238m.checkNotNullParameter(context, "<this>");
-        C12238m.checkNotNullParameter(iArr, "attrs");
-        C12238m.checkNotNullParameter(function1, "block");
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr, i, i2);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
-        function1.invoke(typedArrayObtainStyledAttributes);
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
     public static /* synthetic */ void withStyledAttributes$default(Context context, AttributeSet attributeSet, int[] iArr, int i, int i2, Function1 function1, int i3, Object obj) {
         if ((i3 & 1) != 0) {
             attributeSet = null;
@@ -39,6 +29,16 @@ public final class ContextKt {
         if ((i3 & 8) != 0) {
             i2 = 0;
         }
+        C12238m.checkNotNullParameter(context, "<this>");
+        C12238m.checkNotNullParameter(iArr, "attrs");
+        C12238m.checkNotNullParameter(function1, "block");
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr, i, i2);
+        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
+        function1.invoke(typedArrayObtainStyledAttributes);
+        typedArrayObtainStyledAttributes.recycle();
+    }
+
+    public static final void withStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr, @AttrRes int i, @StyleRes int i2, Function1<? super TypedArray, Unit> function1) {
         C12238m.checkNotNullParameter(context, "<this>");
         C12238m.checkNotNullParameter(iArr, "attrs");
         C12238m.checkNotNullParameter(function1, "block");

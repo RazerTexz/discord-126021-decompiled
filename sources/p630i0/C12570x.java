@@ -8,17 +8,17 @@ import java.lang.reflect.Method;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12570x implements InvocationHandler {
 
-    /* JADX INFO: renamed from: a */
-    public final C12567u f26669a = C12567u.f26614a;
-
-    /* JADX INFO: renamed from: b */
-    public final Object[] f26670b = new Object[0];
-
     /* JADX INFO: renamed from: c */
     public final /* synthetic */ Class f26671c;
 
     /* JADX INFO: renamed from: d */
     public final /* synthetic */ C12571y f26672d;
+
+    /* JADX INFO: renamed from: a */
+    public final C12567u f26669a = C12567u.f26614a;
+
+    /* JADX INFO: renamed from: b */
+    public final Object[] f26670b = new Object[0];
 
     public C12570x(C12571y c12571y, Class cls) {
         this.f26672d = c12571y;

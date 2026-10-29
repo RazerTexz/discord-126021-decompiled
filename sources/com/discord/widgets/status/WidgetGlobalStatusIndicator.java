@@ -78,7 +78,7 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicator$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGlobalStatusIndicator.kt */
-    public static final /* synthetic */ class C101021 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
+    public final /* synthetic */ class C101021 extends C12236k implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
         public C101021(WidgetGlobalStatusIndicator widgetGlobalStatusIndicator) {
             super(1, widgetGlobalStatusIndicator, WidgetGlobalStatusIndicator.class, "configureUIVisibility", "configureUIVisibility(Lcom/discord/widgets/status/WidgetGlobalStatusIndicatorState$State;)V", 0);
         }
@@ -98,7 +98,7 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicator$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetGlobalStatusIndicator.kt */
-    public static final /* synthetic */ class C101032 extends C12236k implements Function1<WidgetGlobalStatusIndicatorViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C101032 extends C12236k implements Function1<WidgetGlobalStatusIndicatorViewModel.ViewState, Unit> {
         public C101032(WidgetGlobalStatusIndicator widgetGlobalStatusIndicator) {
             super(1, widgetGlobalStatusIndicator, WidgetGlobalStatusIndicator.class, "configureUI", "configureUI(Lcom/discord/widgets/status/WidgetGlobalStatusIndicatorViewModel$ViewState;)V", 0);
         }
@@ -208,6 +208,30 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
 
     private final void onViewBindingDestroy(WidgetGlobalStatusIndicatorBinding binding) {
         resetContentVisibility(binding);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        ViewCompat.setOnApplyWindowInsetsListener(view, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.status.WidgetGlobalStatusIndicator.onViewBound.1
+            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
+                C12238m.checkNotNullParameter(view2, "container");
+                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
+                view2.setPadding(view2.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view2.getPaddingRight(), view2.getPaddingBottom());
+                return windowInsetsCompat.consumeSystemWindowInsets();
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.indicatorState.observeState(), this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101021(this));
+        Observable<WidgetGlobalStatusIndicatorViewModel.ViewState> observableBindDelay = bindDelay(getViewModel().observeViewState());
+        C12238m.checkNotNullExpressionValue(observableBindDelay, "viewModel\n        .obser…te()\n        .bindDelay()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableBindDelay, this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101032(this));
     }
 
     private final void resetContentVisibility(WidgetGlobalStatusIndicatorBinding binding) {
@@ -327,7 +351,7 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicator$setupStageContainerClicks$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetGlobalStatusIndicator.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -346,7 +370,7 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicator$setupStageContainerClicks$2$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetGlobalStatusIndicator.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -443,29 +467,5 @@ public final class WidgetGlobalStatusIndicator extends AppFragment {
             name = C1107b.m216h(context, C5419R.string.stage_speak_invite_blocked_users, objArr, null, 4);
         }
         textView3.setText(name);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        ViewCompat.setOnApplyWindowInsetsListener(view, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.status.WidgetGlobalStatusIndicator.onViewBound.1
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
-                C12238m.checkNotNullParameter(view2, "container");
-                C12238m.checkNotNullParameter(windowInsetsCompat, "insets");
-                view2.setPadding(view2.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view2.getPaddingRight(), view2.getPaddingBottom());
-                return windowInsetsCompat.consumeSystemWindowInsets();
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(this.indicatorState.observeState(), this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101021(this));
-        Observable<WidgetGlobalStatusIndicatorViewModel.ViewState> observableBindDelay = bindDelay(getViewModel().observeViewState());
-        C12238m.checkNotNullExpressionValue(observableBindDelay, "viewModel\n        .obser…te()\n        .bindDelay()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableBindDelay, this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101032(this));
     }
 }

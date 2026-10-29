@@ -17,28 +17,28 @@ public final class Recreator implements GenericLifecycleObserver {
     public static final String COMPONENT_KEY = "androidx.savedstate.Restarter";
     private final SavedStateRegistryOwner mOwner;
 
-    public static final class SavedStateProvider implements SavedStateRegistry.SavedStateProvider {
-        public final Set<String> mClasses = new HashSet();
-
-        public SavedStateProvider(SavedStateRegistry savedStateRegistry) {
-            savedStateRegistry.registerSavedStateProvider(Recreator.COMPONENT_KEY, this);
-        }
-
-        public void add(String str) {
-            this.mClasses.add(str);
-        }
-
-        @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
-        @NonNull
-        public Bundle saveState() {
-            Bundle bundle = new Bundle();
-            bundle.putStringArrayList(Recreator.CLASSES_KEY, new ArrayList<>(this.mClasses));
-            return bundle;
-        }
-    }
-
     public Recreator(SavedStateRegistryOwner savedStateRegistryOwner) {
         this.mOwner = savedStateRegistryOwner;
+    }
+
+    @Override // androidx.view.LifecycleEventObserver
+    public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
+        if (event != Lifecycle.Event.ON_CREATE) {
+            throw new AssertionError("Next event must be ON_CREATE");
+        }
+        lifecycleOwner.getLifecycle().removeObserver(this);
+        Bundle bundleConsumeRestoredStateForKey = this.mOwner.getSavedStateRegistry().consumeRestoredStateForKey(COMPONENT_KEY);
+        if (bundleConsumeRestoredStateForKey == null) {
+            return;
+        }
+        ArrayList<String> stringArrayList = bundleConsumeRestoredStateForKey.getStringArrayList(CLASSES_KEY);
+        if (stringArrayList == null) {
+            throw new IllegalStateException("Bundle with restored state for the component \"androidx.savedstate.Restarter\" must contain list of strings by the key \"classes_to_restore\"");
+        }
+        Iterator<String> it = stringArrayList.iterator();
+        while (it.hasNext()) {
+            reflectiveNew(it.next());
+        }
     }
 
     private void reflectiveNew(String str) {
@@ -63,23 +63,23 @@ public final class Recreator implements GenericLifecycleObserver {
         }
     }
 
-    @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
-        if (event != Lifecycle.Event.ON_CREATE) {
-            throw new AssertionError("Next event must be ON_CREATE");
+    public final class SavedStateProvider implements SavedStateRegistry.SavedStateProvider {
+        public final Set<String> mClasses = new HashSet();
+
+        public SavedStateProvider(SavedStateRegistry savedStateRegistry) {
+            savedStateRegistry.registerSavedStateProvider(Recreator.COMPONENT_KEY, this);
         }
-        lifecycleOwner.getLifecycle().removeObserver(this);
-        Bundle bundleConsumeRestoredStateForKey = this.mOwner.getSavedStateRegistry().consumeRestoredStateForKey(COMPONENT_KEY);
-        if (bundleConsumeRestoredStateForKey == null) {
-            return;
+
+        public void add(String str) {
+            this.mClasses.add(str);
         }
-        ArrayList<String> stringArrayList = bundleConsumeRestoredStateForKey.getStringArrayList(CLASSES_KEY);
-        if (stringArrayList == null) {
-            throw new IllegalStateException("Bundle with restored state for the component \"androidx.savedstate.Restarter\" must contain list of strings by the key \"classes_to_restore\"");
-        }
-        Iterator<String> it = stringArrayList.iterator();
-        while (it.hasNext()) {
-            reflectiveNew(it.next());
+
+        @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
+        @NonNull
+        public Bundle saveState() {
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList(Recreator.CLASSES_KEY, new ArrayList<>(this.mClasses));
+            return bundle;
         }
     }
 }

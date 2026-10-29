@@ -31,80 +31,6 @@ public final class C3091l implements InterfaceC3087i0.c {
         this.f8722b = abstractC4523p;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.p276k0.InterfaceC3087i0.c
-    @Nullable
-    /* JADX INFO: renamed from: a */
-    public InterfaceC3087i0 mo3764a(int i, InterfaceC3087i0.b bVar) {
-        if (i != 2) {
-            if (i == 3 || i == 4) {
-                return new C3104y(new C3101v(bVar.f8677b));
-            }
-            if (i == 21) {
-                return new C3104y(new C3099t());
-            }
-            if (i == 27) {
-                if (m3777d(4)) {
-                    return null;
-                }
-                return new C3104y(new C3097r(new C3079e0(m3776c(bVar)), m3777d(1), m3777d(8)));
-            }
-            if (i == 36) {
-                return new C3104y(new C3098s(new C3079e0(m3776c(bVar))));
-            }
-            if (i == 89) {
-                return new C3104y(new C3093n(bVar.f8678c));
-            }
-            if (i != 138) {
-                if (i == 172) {
-                    return new C3104y(new C3086i(bVar.f8677b));
-                }
-                if (i == 257) {
-                    return new C3077d0(new C3103x("application/vnd.dvb.ait"));
-                }
-                if (i == 134) {
-                    if (m3777d(16)) {
-                        return null;
-                    }
-                    return new C3077d0(new C3103x("application/x-scte35"));
-                }
-                if (i != 135) {
-                    switch (i) {
-                        case 15:
-                            if (m3777d(2)) {
-                                return null;
-                            }
-                            return new C3104y(new C3090k(false, bVar.f8677b));
-                        case 16:
-                            return new C3104y(new C3096q(new C3089j0(m3776c(bVar))));
-                        case 17:
-                            if (m3777d(2)) {
-                                return null;
-                            }
-                            return new C3104y(new C3100u(bVar.f8677b));
-                        default:
-                            switch (i) {
-                                case 128:
-                                    break;
-                                case Opcodes.LOR /* 129 */:
-                                    break;
-                                case 130:
-                                    if (!m3777d(64)) {
-                                        return null;
-                                    }
-                                    break;
-                                default:
-                                    return null;
-                            }
-                            break;
-                    }
-                }
-                return new C3104y(new C3082g(bVar.f8677b));
-            }
-            return new C3104y(new C3092m(bVar.f8677b));
-        }
-        return new C3104y(new C3095p(new C3089j0(m3776c(bVar))));
-    }
-
     /* JADX INFO: renamed from: b */
     public SparseArray<InterfaceC3087i0> m3775b() {
         return new SparseArray<>();
@@ -178,5 +104,79 @@ public final class C3091l implements InterfaceC3087i0.c {
     /* JADX INFO: renamed from: d */
     public final boolean m3777d(int i) {
         return (i & this.f8721a) != 0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p276k0.InterfaceC3087i0.c
+    @Nullable
+    /* JADX INFO: renamed from: a */
+    public InterfaceC3087i0 mo3764a(int i, InterfaceC3087i0.b bVar) {
+        if (i != 2) {
+            if (i == 3 || i == 4) {
+                return new C3104y(new C3101v(bVar.f8677b));
+            }
+            if (i == 21) {
+                return new C3104y(new C3099t());
+            }
+            if (i == 27) {
+                if (m3777d(4)) {
+                    return null;
+                }
+                return new C3104y(new C3097r(new C3079e0(m3776c(bVar)), m3777d(1), m3777d(8)));
+            }
+            if (i == 36) {
+                return new C3104y(new C3098s(new C3079e0(m3776c(bVar))));
+            }
+            if (i == 89) {
+                return new C3104y(new C3093n(bVar.f8678c));
+            }
+            if (i != 138) {
+                if (i == 172) {
+                    return new C3104y(new C3086i(bVar.f8677b));
+                }
+                if (i == 257) {
+                    return new C3077d0(new C3103x("application/vnd.dvb.ait"));
+                }
+                if (i == 134) {
+                    if (m3777d(16)) {
+                        return null;
+                    }
+                    return new C3077d0(new C3103x("application/x-scte35"));
+                }
+                if (i != 135) {
+                    switch (i) {
+                        case 15:
+                            if (m3777d(2)) {
+                                return null;
+                            }
+                            return new C3104y(new C3090k(false, bVar.f8677b));
+                        case 16:
+                            return new C3104y(new C3096q(new C3089j0(m3776c(bVar))));
+                        case 17:
+                            if (m3777d(2)) {
+                                return null;
+                            }
+                            return new C3104y(new C3100u(bVar.f8677b));
+                        default:
+                            switch (i) {
+                                case 128:
+                                    break;
+                                case Opcodes.LOR /* 129 */:
+                                    break;
+                                case 130:
+                                    if (!m3777d(64)) {
+                                        return null;
+                                    }
+                                    break;
+                                default:
+                                    return null;
+                            }
+                            break;
+                    }
+                }
+                return new C3104y(new C3082g(bVar.f8677b));
+            }
+            return new C3104y(new C3092m(bVar.f8677b));
+        }
+        return new C3104y(new C3095p(new C3089j0(m3776c(bVar))));
     }
 }

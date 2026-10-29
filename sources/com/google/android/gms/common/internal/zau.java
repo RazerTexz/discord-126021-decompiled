@@ -13,7 +13,6 @@ import p007b.p225i.p226a.p288f.p299e.p304k.InterfaceC3355g;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zau extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zau> CREATOR = new C3389x();
 
     /* JADX INFO: renamed from: j */
     public final int f20550j;
@@ -30,6 +29,7 @@ public final class zau extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: n */
     public boolean f20554n;
+    public static final Parcelable.Creator<zau> CREATOR = new C3389x();
 
     public zau(int i, @Nullable IBinder iBinder, ConnectionResult connectionResult, boolean z2, boolean z3) {
         this.f20550j = i;

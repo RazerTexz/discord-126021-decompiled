@@ -17,6 +17,17 @@ import p007b.p195g.p196a.p198b.p204t.InterfaceC2145g;
 /* JADX INFO: compiled from: JsonFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2107c extends AbstractC2118n implements Serializable {
+    public AbstractC2122b _characterEscapes;
+    public int _factoryFeatures;
+    public int _generatorFeatures;
+    public AbstractC2124d _inputDecorator;
+    public int _maximumNonEscapedChar;
+    public AbstractC2113i _objectCodec;
+    public AbstractC2128h _outputDecorator;
+    public int _parserFeatures;
+    public final char _quoteChar;
+    public InterfaceC2115k _rootValueSeparator;
+    private static final long serialVersionUID = 2;
 
     /* JADX INFO: renamed from: j */
     public static final int f4455j = a.m1628h();
@@ -29,17 +40,6 @@ public class C2107c extends AbstractC2118n implements Serializable {
 
     /* JADX INFO: renamed from: m */
     public static final InterfaceC2115k f4458m = C2142d.f4599j;
-    private static final long serialVersionUID = 2;
-    public AbstractC2122b _characterEscapes;
-    public int _factoryFeatures;
-    public int _generatorFeatures;
-    public AbstractC2124d _inputDecorator;
-    public int _maximumNonEscapedChar;
-    public AbstractC2113i _objectCodec;
-    public AbstractC2128h _outputDecorator;
-    public int _parserFeatures;
-    public final char _quoteChar;
-    public InterfaceC2115k _rootValueSeparator;
 
     /* JADX INFO: renamed from: b.g.a.b.c$a */
     /* JADX INFO: compiled from: JsonFactory.java */

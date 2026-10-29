@@ -22,7 +22,7 @@ public class BadgeUtils {
     public static final boolean USE_COMPAT_PARENT = false;
 
     /* JADX INFO: renamed from: com.google.android.material.badge.BadgeUtils$a */
-    public static class RunnableC10829a implements Runnable {
+    public final class RunnableC10829a implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Toolbar f20884j;

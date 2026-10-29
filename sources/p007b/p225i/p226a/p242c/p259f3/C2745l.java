@@ -28,15 +28,6 @@ public final class C2745l<E> implements Iterable<E> {
     @GuardedBy("lock")
     public List<E> f6732m = Collections.emptyList();
 
-    /* JADX INFO: renamed from: c */
-    public int m3027c(E e) {
-        int iIntValue;
-        synchronized (this.f6729j) {
-            iIntValue = this.f6730k.containsKey(e) ? this.f6730k.get(e).intValue() : 0;
-        }
-        return iIntValue;
-    }
-
     @Override // java.lang.Iterable
     public Iterator<E> iterator() {
         Iterator<E> it;
@@ -44,5 +35,14 @@ public final class C2745l<E> implements Iterable<E> {
             it = this.f6732m.iterator();
         }
         return it;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public int m3027c(E e) {
+        int iIntValue;
+        synchronized (this.f6729j) {
+            iIntValue = this.f6730k.containsKey(e) ? this.f6730k.get(e).intValue() : 0;
+        }
+        return iIntValue;
     }
 }

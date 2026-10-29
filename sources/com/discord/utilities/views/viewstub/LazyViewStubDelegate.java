@@ -22,7 +22,7 @@ public final class LazyViewStubDelegate {
     private final Lazy<View> viewField;
 
     /* JADX INFO: compiled from: LazyViewStubDelegate.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -42,10 +42,6 @@ public final class LazyViewStubDelegate {
         this.view = lazy;
     }
 
-    private final View getView() {
-        return (View) this.view.getValue();
-    }
-
     public final View getForceInitializedView() {
         View view = getView();
         C12238m.checkNotNullExpressionValue(view, "view");
@@ -57,6 +53,10 @@ public final class LazyViewStubDelegate {
             return getView();
         }
         return null;
+    }
+
+    private final View getView() {
+        return (View) this.view.getValue();
     }
 
     public final boolean isVisible() {

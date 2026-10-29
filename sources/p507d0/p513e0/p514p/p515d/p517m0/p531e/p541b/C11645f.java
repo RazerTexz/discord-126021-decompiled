@@ -35,11 +35,14 @@ public final class C11645f {
     /* JADX INFO: renamed from: a */
     public static final a f23603a = new a(null);
 
-    /* JADX INFO: renamed from: b */
-    public static final Set<C11636a.a> f23604b = C12146m0.setOf(C11636a.a.CLASS);
-
     /* JADX INFO: renamed from: c */
     public static final Set<C11636a.a> f23605c = C12148n0.setOf((Object[]) new C11636a.a[]{C11636a.a.FILE_FACADE, C11636a.a.MULTIFILE_CLASS_PART});
+
+    /* JADX INFO: renamed from: g */
+    public C11874j f23609g;
+
+    /* JADX INFO: renamed from: b */
+    public static final Set<C11636a.a> f23604b = C12146m0.setOf(C11636a.a.CLASS);
 
     /* JADX INFO: renamed from: d */
     public static final C11673f f23606d = new C11673f(1, 1, 2);
@@ -50,12 +53,9 @@ public final class C11645f {
     /* JADX INFO: renamed from: f */
     public static final C11673f f23608f = new C11673f(1, 1, 13);
 
-    /* JADX INFO: renamed from: g */
-    public C11874j f23609g;
-
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.f$a */
     /* JADX INFO: compiled from: DeserializedDescriptorResolver.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -70,7 +70,7 @@ public final class C11645f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.f$b */
     /* JADX INFO: compiled from: DeserializedDescriptorResolver.kt */
-    public static final class b extends AbstractC12240o implements Function0<Collection<? extends C11716e>> {
+    public final class b extends AbstractC12240o implements Function0<Collection<? extends C11716e>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23610j = new b();
@@ -87,36 +87,6 @@ public final class C11645f {
 
     public static final boolean access$getSkipMetadataVersionCheck(C11645f c11645f) {
         return c11645f.getComponents().getConfiguration().getSkipMetadataVersionCheck();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final EnumC11860e m9545a(InterfaceC11655p interfaceC11655p) {
-        EnumC11860e enumC11860e = EnumC11860e.STABLE;
-        if (getComponents().getConfiguration().getAllowUnstableDependencies()) {
-            return enumC11860e;
-        }
-        if (interfaceC11655p.getClassHeader().isUnstableFirBinary()) {
-            return EnumC11860e.FIR_UNSTABLE;
-        }
-        return interfaceC11655p.getClassHeader().isUnstableJvmIrBinary() ? EnumC11860e.IR_UNSTABLE : enumC11860e;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final C11882r<C11673f> m9546b(InterfaceC11655p interfaceC11655p) {
-        if (getComponents().getConfiguration().getSkipMetadataVersionCheck() || interfaceC11655p.getClassHeader().getMetadataVersion().isCompatible()) {
-            return null;
-        }
-        return new C11882r<>(interfaceC11655p.getClassHeader().getMetadataVersion(), C11673f.f23711f, interfaceC11655p.getLocation(), interfaceC11655p.getClassId());
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final boolean m9547c(InterfaceC11655p interfaceC11655p) {
-        if (!getComponents().getConfiguration().getReportErrorsOnPreReleaseDependencies() || (!interfaceC11655p.getClassHeader().isPreRelease() && !C12238m.areEqual(interfaceC11655p.getClassHeader().getMetadataVersion(), f23606d))) {
-            if (!(!getComponents().getConfiguration().getSkipPrereleaseCheck() && interfaceC11655p.getClassHeader().isPreRelease() && C12238m.areEqual(interfaceC11655p.getClassHeader().getMetadataVersion(), f23607e))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public final InterfaceC11770i createKotlinPackagePartScope(InterfaceC11331e0 interfaceC11331e0, InterfaceC11655p interfaceC11655p) {
@@ -149,6 +119,45 @@ public final class C11645f {
         return new C11864i(interfaceC11331e0, c11687lComponent2, c11674gComponent1, interfaceC11655p.getClassHeader().getMetadataVersion(), new C11649j(interfaceC11655p, c11687lComponent2, c11674gComponent1, m9546b(interfaceC11655p), m9547c(interfaceC11655p), m9545a(interfaceC11655p)), getComponents(), b.f23610j);
     }
 
+    public final C11874j getComponents() {
+        C11874j c11874j = this.f23609g;
+        if (c11874j != null) {
+            return c11874j;
+        }
+        C12238m.throwUninitializedPropertyAccessException("components");
+        throw null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final EnumC11860e m9545a(InterfaceC11655p interfaceC11655p) {
+        EnumC11860e enumC11860e = EnumC11860e.STABLE;
+        if (getComponents().getConfiguration().getAllowUnstableDependencies()) {
+            return enumC11860e;
+        }
+        if (interfaceC11655p.getClassHeader().isUnstableFirBinary()) {
+            return EnumC11860e.FIR_UNSTABLE;
+        }
+        return interfaceC11655p.getClassHeader().isUnstableJvmIrBinary() ? EnumC11860e.IR_UNSTABLE : enumC11860e;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final C11882r<C11673f> m9546b(InterfaceC11655p interfaceC11655p) {
+        if (getComponents().getConfiguration().getSkipMetadataVersionCheck() || interfaceC11655p.getClassHeader().getMetadataVersion().isCompatible()) {
+            return null;
+        }
+        return new C11882r<>(interfaceC11655p.getClassHeader().getMetadataVersion(), C11673f.f23711f, interfaceC11655p.getLocation(), interfaceC11655p.getClassId());
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final boolean m9547c(InterfaceC11655p interfaceC11655p) {
+        if (!getComponents().getConfiguration().getReportErrorsOnPreReleaseDependencies() || (!interfaceC11655p.getClassHeader().isPreRelease() && !C12238m.areEqual(interfaceC11655p.getClassHeader().getMetadataVersion(), f23606d))) {
+            if (!(!getComponents().getConfiguration().getSkipPrereleaseCheck() && interfaceC11655p.getClassHeader().isPreRelease() && C12238m.areEqual(interfaceC11655p.getClassHeader().getMetadataVersion(), f23607e))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /* JADX INFO: renamed from: d */
     public final String[] m9548d(InterfaceC11655p interfaceC11655p, Set<? extends C11636a.a> set) {
         C11636a classHeader = interfaceC11655p.getClassHeader();
@@ -160,15 +169,6 @@ public final class C11645f {
             return data;
         }
         return null;
-    }
-
-    public final C11874j getComponents() {
-        C11874j c11874j = this.f23609g;
-        if (c11874j != null) {
-            return c11874j;
-        }
-        C12238m.throwUninitializedPropertyAccessException("components");
-        throw null;
     }
 
     public final C11870f readClassData$descriptors_jvm(InterfaceC11655p interfaceC11655p) {

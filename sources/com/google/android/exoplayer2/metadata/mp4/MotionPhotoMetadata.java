@@ -12,7 +12,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class MotionPhotoMetadata implements Metadata.Entry {
-    public static final Parcelable.Creator<MotionPhotoMetadata> CREATOR = new C10738a();
 
     /* JADX INFO: renamed from: j */
     public final long f20008j;
@@ -28,6 +27,7 @@ public final class MotionPhotoMetadata implements Metadata.Entry {
 
     /* JADX INFO: renamed from: n */
     public final long f20012n;
+    public static final Parcelable.Creator<MotionPhotoMetadata> CREATOR = new C10738a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.mp4.MotionPhotoMetadata$a */
     public class C10738a implements Parcelable.Creator<MotionPhotoMetadata> {
@@ -82,6 +82,12 @@ public final class MotionPhotoMetadata implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         long j = this.f20008j;
         long j2 = this.f20009k;
@@ -106,12 +112,6 @@ public final class MotionPhotoMetadata implements Metadata.Entry {
         parcel.writeLong(this.f20010l);
         parcel.writeLong(this.f20011m);
         parcel.writeLong(this.f20012n);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 
     public MotionPhotoMetadata(Parcel parcel, C10738a c10738a) {

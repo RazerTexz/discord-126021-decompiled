@@ -67,7 +67,7 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
     private TextInputLayout searchBox;
     private ViewFlipper viewFlipper;
 
-    public static class Model {
+    public class Model {
         private final boolean canManage;
         private final Channel channel;
         private final List<SimpleMembersAdapter.MemberItem> memberItems;
@@ -77,6 +77,31 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
             this.memberItems = list;
             boolean mfaEnabled = meUser.getMfaEnabled();
             this.canManage = guild.getOwnerId() == meUser.getId() || PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, l, mfaEnabled, guild.getMfaLevel()) || PermissionUtils.canAndIsElevated(8L, l, mfaEnabled, guild.getMfaLevel());
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Model;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) obj;
+            if (!model.canEqual(this) || this.canManage != model.canManage) {
+                return false;
+            }
+            Channel channel = this.channel;
+            Channel channel2 = model.channel;
+            if (channel != null ? !channel.equals(channel2) : channel2 != null) {
+                return false;
+            }
+            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
+            List<SimpleMembersAdapter.MemberItem> list2 = model.memberItems;
+            return list != null ? list.equals(list2) : list2 == null;
         }
 
         public static Observable<Model> get(final long j, final long j2, final Observable<String> observable) {
@@ -169,6 +194,14 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
             });
         }
 
+        public int hashCode() {
+            int i = this.canManage ? 79 : 97;
+            Channel channel = this.channel;
+            int iHashCode = ((i + 59) * 59) + (channel == null ? 43 : channel.hashCode());
+            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
+            return (iHashCode * 59) + (list != null ? list.hashCode() : 43);
+        }
+
         private static boolean isValid(MeUser meUser, Guild guild, Channel channel, List<SimpleMembersAdapter.MemberItem> list) {
             return (channel == null || guild == null || meUser == null || list == null) ? false : true;
         }
@@ -178,39 +211,6 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
                 return new Model(meUser, guild, channel, l, list);
             }
             return null;
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Model;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Model)) {
-                return false;
-            }
-            Model model = (Model) obj;
-            if (!model.canEqual(this) || this.canManage != model.canManage) {
-                return false;
-            }
-            Channel channel = this.channel;
-            Channel channel2 = model.channel;
-            if (channel != null ? !channel.equals(channel2) : channel2 != null) {
-                return false;
-            }
-            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
-            List<SimpleMembersAdapter.MemberItem> list2 = model.memberItems;
-            return list != null ? list.equals(list2) : list2 == null;
-        }
-
-        public int hashCode() {
-            int i = this.canManage ? 79 : 97;
-            Channel channel = this.channel;
-            int iHashCode = ((i + 59) * 59) + (channel == null ? 43 : channel.hashCode());
-            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
-            return (iHashCode * 59) + (list != null ? list.hashCode() : 43);
         }
 
         public String toString() {

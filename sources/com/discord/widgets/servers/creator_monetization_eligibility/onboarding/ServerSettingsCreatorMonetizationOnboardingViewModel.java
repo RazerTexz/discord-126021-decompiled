@@ -42,7 +42,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.ServerSettingsCreatorMonetizationOnboardingViewModel$2 */
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static final class C94132 extends AbstractC12240o implements Function1<Pair<? extends StoreState, ? extends RequirementsState>, Unit> {
+    public final class C94132 extends AbstractC12240o implements Function1<Pair<? extends StoreState, ? extends RequirementsState>, Unit> {
         public C94132() {
             super(1);
         }
@@ -64,8 +64,49 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.ServerSettingsCreatorMonetizationOnboardingViewModel$refreshRequirements$1 */
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static final class Companion {
+    public final class C94181 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C94181() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            error.setShowErrorToasts(false);
+            ServerSettingsCreatorMonetizationOnboardingViewModel.this.requirementsSubject.onNext(new RequirementsState.Error(error));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.ServerSettingsCreatorMonetizationOnboardingViewModel$refreshRequirements$2 */
+    /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
+    public final class C94192 extends AbstractC12240o implements Function1<CreatorMonetizationEligibilityRequirements, Unit> {
+        public C94192() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
+            invoke2(creatorMonetizationEligibilityRequirements);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
+            C12238m.checkNotNullParameter(creatorMonetizationEligibilityRequirements, "requirements");
+            ServerSettingsCreatorMonetizationOnboardingViewModel.this.requirementsSubject.onNext(new RequirementsState.Loaded(creatorMonetizationEligibilityRequirements));
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -79,10 +120,10 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class ShowErrorToast extends Event {
+        public final /* data */ class ShowErrorToast extends Event {
             private final Throwable error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -99,11 +140,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return showErrorToast.copy(th);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Throwable getError() {
-                return this.error;
-            }
-
             public final ShowErrorToast copy(Throwable error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new ShowErrorToast(error);
@@ -114,6 +150,11 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                     return (other instanceof ShowErrorToast) && C12238m.areEqual(this.error, ((ShowErrorToast) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Throwable getError() {
+                return this.error;
             }
 
             public final Throwable getError() {
@@ -145,10 +186,10 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static abstract class RequirementsState {
+    public abstract class RequirementsState {
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class Error extends RequirementsState {
+        public final /* data */ class Error extends RequirementsState {
             private final com.discord.utilities.error.Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -165,11 +206,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return error.copy(error2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final com.discord.utilities.error.Error getError() {
-                return this.error;
-            }
-
             public final Error copy(com.discord.utilities.error.Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new Error(error);
@@ -180,6 +216,11 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                     return (other instanceof Error) && C12238m.areEqual(this.error, ((Error) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final com.discord.utilities.error.Error getError() {
+                return this.error;
             }
 
             public final com.discord.utilities.error.Error getError() {
@@ -203,7 +244,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class Loaded extends RequirementsState {
+        public final /* data */ class Loaded extends RequirementsState {
             private final CreatorMonetizationEligibilityRequirements requirements;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -220,11 +261,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return loaded.copy(creatorMonetizationEligibilityRequirements);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final CreatorMonetizationEligibilityRequirements getRequirements() {
-                return this.requirements;
-            }
-
             public final Loaded copy(CreatorMonetizationEligibilityRequirements requirements) {
                 C12238m.checkNotNullParameter(requirements, "requirements");
                 return new Loaded(requirements);
@@ -235,6 +271,11 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                     return (other instanceof Loaded) && C12238m.areEqual(this.requirements, ((Loaded) other).requirements);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final CreatorMonetizationEligibilityRequirements getRequirements() {
+                return this.requirements;
             }
 
             public final CreatorMonetizationEligibilityRequirements getRequirements() {
@@ -258,7 +299,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final class Loading extends RequirementsState {
+        public final class Loading extends RequirementsState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -275,7 +316,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final boolean isGuildOwner;
 
@@ -294,16 +335,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
             return storeState.copy(guild, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsGuildOwner() {
-            return this.isGuildOwner;
-        }
-
         public final StoreState copy(Guild guild, boolean isGuildOwner) {
             return new StoreState(guild, isGuildOwner);
         }
@@ -319,8 +350,18 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
             return C12238m.areEqual(this.guild, storeState.guild) && this.isGuildOwner == storeState.isGuildOwner;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsGuildOwner() {
+            return this.isGuildOwner;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -352,10 +393,10 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class AcceptTerms extends ViewState {
+        public final /* data */ class AcceptTerms extends ViewState {
             private final Guild guild;
             private final boolean hasAcceptedTerms;
             private final boolean isGuildOwner;
@@ -388,31 +429,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return acceptTerms.copy(guild, z5, creatorMonetizationEnableRequest2, z6, z4);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsGuildOwner() {
-                return this.isGuildOwner;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final CreatorMonetizationEnableRequest getLatestRequest() {
-                return this.latestRequest;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getHasAcceptedTerms() {
-                return this.hasAcceptedTerms;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsSubmitting() {
-                return this.isSubmitting;
-            }
-
             public final AcceptTerms copy(Guild guild, boolean isGuildOwner, CreatorMonetizationEnableRequest latestRequest, boolean hasAcceptedTerms, boolean isSubmitting) {
                 C12238m.checkNotNullParameter(guild, "guild");
                 C12238m.checkNotNullParameter(latestRequest, "latestRequest");
@@ -430,12 +446,37 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return C12238m.areEqual(this.guild, acceptTerms.guild) && this.isGuildOwner == acceptTerms.isGuildOwner && C12238m.areEqual(this.latestRequest, acceptTerms.latestRequest) && this.hasAcceptedTerms == acceptTerms.hasAcceptedTerms && this.isSubmitting == acceptTerms.isSubmitting;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Guild getGuild() {
                 return this.guild;
             }
 
+            public final Guild getGuild() {
+                return this.guild;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final boolean getHasAcceptedTerms() {
                 return this.hasAcceptedTerms;
+            }
+
+            public final boolean getHasAcceptedTerms() {
+                return this.hasAcceptedTerms;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsGuildOwner() {
+                return this.isGuildOwner;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIsSubmitting() {
+                return this.isSubmitting;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final CreatorMonetizationEnableRequest getLatestRequest() {
+                return this.latestRequest;
             }
 
             public final CreatorMonetizationEnableRequest getLatestRequest() {
@@ -511,7 +552,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class CreateRequest extends ViewState {
+        public final /* data */ class CreateRequest extends ViewState {
             private final boolean isGuildOwner;
             private final boolean isSubmitting;
             private final CreatorMonetizationEligibilityRequirements requirements;
@@ -533,21 +574,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return createRequest.copy(creatorMonetizationEligibilityRequirements, z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final CreatorMonetizationEligibilityRequirements getRequirements() {
-                return this.requirements;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsGuildOwner() {
-                return this.isGuildOwner;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsSubmitting() {
-                return this.isSubmitting;
-            }
-
             public final CreateRequest copy(CreatorMonetizationEligibilityRequirements requirements, boolean isGuildOwner, boolean isSubmitting) {
                 C12238m.checkNotNullParameter(requirements, "requirements");
                 return new CreateRequest(requirements, isGuildOwner, isSubmitting);
@@ -562,6 +588,21 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 }
                 CreateRequest createRequest = (CreateRequest) other;
                 return C12238m.areEqual(this.requirements, createRequest.requirements) && this.isGuildOwner == createRequest.isGuildOwner && this.isSubmitting == createRequest.isSubmitting;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsGuildOwner() {
+                return this.isGuildOwner;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsSubmitting() {
+                return this.isSubmitting;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final CreatorMonetizationEligibilityRequirements getRequirements() {
+                return this.requirements;
             }
 
             public final CreatorMonetizationEligibilityRequirements getRequirements() {
@@ -623,7 +664,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final /* data */ class Error extends ViewState {
+        public final /* data */ class Error extends ViewState {
             private final com.discord.utilities.error.Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -640,11 +681,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                 return error.copy(error2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final com.discord.utilities.error.Error getError() {
-                return this.error;
-            }
-
             public final Error copy(com.discord.utilities.error.Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new Error(error);
@@ -655,6 +691,11 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
                     return (other instanceof Error) && C12238m.areEqual(this.error, ((Error) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final com.discord.utilities.error.Error getError() {
+                return this.error;
             }
 
             public final com.discord.utilities.error.Error getError() {
@@ -678,7 +719,7 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -691,47 +732,6 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.ServerSettingsCreatorMonetizationOnboardingViewModel$refreshRequirements$1 */
-    /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static final class C94181 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C94181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            error.setShowErrorToasts(false);
-            ServerSettingsCreatorMonetizationOnboardingViewModel.this.requirementsSubject.onNext(new RequirementsState.Error(error));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.ServerSettingsCreatorMonetizationOnboardingViewModel$refreshRequirements$2 */
-    /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
-    public static final class C94192 extends AbstractC12240o implements Function1<CreatorMonetizationEligibilityRequirements, Unit> {
-        public C94192() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
-            invoke2(creatorMonetizationEligibilityRequirements);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
-            C12238m.checkNotNullParameter(creatorMonetizationEligibilityRequirements, "requirements");
-            ServerSettingsCreatorMonetizationOnboardingViewModel.this.requirementsSubject.onNext(new RequirementsState.Loaded(creatorMonetizationEligibilityRequirements));
         }
     }
 
@@ -760,6 +760,16 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
 
     public static final /* synthetic */ ViewState access$requireViewState(ServerSettingsCreatorMonetizationOnboardingViewModel serverSettingsCreatorMonetizationOnboardingViewModel) {
         return serverSettingsCreatorMonetizationOnboardingViewModel.requireViewState();
+    }
+
+    public final void createRequestToEnableMonetization() {
+        ViewState viewStateAccess$requireViewState = access$requireViewState(this);
+        if (viewStateAccess$requireViewState instanceof ViewState.CreateRequest) {
+            Observable observableDispatchErrorsToUI = dispatchErrorsToUI(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.createCreatorMonetizationEnableRequest(this.guildId), false, 1, null), this, null, 2, null));
+            C12238m.checkNotNullExpressionValue(observableDispatchErrorsToUI, "restApi.createCreatorMon…    .dispatchErrorsToUI()");
+            ObservableExtensionsKt.appSubscribe(observableDispatchErrorsToUI, (Class<?>) ServerSettingsCreatorMonetizationOnboardingViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C9415xdae06f44(this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C9416xdae06f45(this));
+            updateViewState(ViewState.CreateRequest.copy$default((ViewState.CreateRequest) viewStateAccess$requireViewState, null, false, true, 3, null));
+        }
     }
 
     private final <T> Observable<T> dispatchErrorsToUI(Observable<T> observable) {
@@ -809,36 +819,18 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
         }
     }
 
+    public final Observable<Event> listenForEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
+    }
+
     private final void refreshRequirements() {
         if (this.requirementsSubject.m11132n0() instanceof RequirementsState.Loading) {
             return;
         }
         this.requirementsSubject.onNext(RequirementsState.Loading.INSTANCE);
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.getCreatorMonetizationEligibilityRequirements(this.guildId), false, 1, null), this, null, 2, null), (Class<?>) ServerSettingsCreatorMonetizationOnboardingViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C94181()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94192());
-    }
-
-    private final /* synthetic */ <T extends ViewState> void updateWithViewState(Function1<? super T, ? extends T> transform) {
-        ViewState viewStateAccess$requireViewState = access$requireViewState(this);
-        C12238m.reifiedOperationMarker(3, ExifInterface.GPS_DIRECTION_TRUE);
-        if (viewStateAccess$requireViewState instanceof ViewState) {
-            updateViewState(transform.invoke(viewStateAccess$requireViewState));
-        }
-    }
-
-    public final void createRequestToEnableMonetization() {
-        ViewState viewStateAccess$requireViewState = access$requireViewState(this);
-        if (viewStateAccess$requireViewState instanceof ViewState.CreateRequest) {
-            Observable observableDispatchErrorsToUI = dispatchErrorsToUI(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.createCreatorMonetizationEnableRequest(this.guildId), false, 1, null), this, null, 2, null));
-            C12238m.checkNotNullExpressionValue(observableDispatchErrorsToUI, "restApi.createCreatorMon…    .dispatchErrorsToUI()");
-            ObservableExtensionsKt.appSubscribe(observableDispatchErrorsToUI, (Class<?>) ServerSettingsCreatorMonetizationOnboardingViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C9415xdae06f44(this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C9416xdae06f45(this));
-            updateViewState(ViewState.CreateRequest.copy$default((ViewState.CreateRequest) viewStateAccess$requireViewState, null, false, true, 3, null));
-        }
-    }
-
-    public final Observable<Event> listenForEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
     }
 
     public final void setHasAcceptedTerms(boolean hasAccepted) {
@@ -856,6 +848,14 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel extends 
             C12238m.checkNotNullExpressionValue(observableDispatchErrorsToUI, "restApi.acceptCreatorMon…    .dispatchErrorsToUI()");
             ObservableExtensionsKt.appSubscribe(observableDispatchErrorsToUI, (Class<?>) ServerSettingsCreatorMonetizationOnboardingViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C9420xb41a0270(acceptTerms, this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C9421xb8286ad7.INSTANCE);
             updateViewState(ViewState.AcceptTerms.copy$default(acceptTerms, null, false, null, false, true, 15, null));
+        }
+    }
+
+    private final /* synthetic */ <T extends ViewState> void updateWithViewState(Function1<? super T, ? extends T> transform) {
+        ViewState viewStateAccess$requireViewState = access$requireViewState(this);
+        C12238m.reifiedOperationMarker(3, ExifInterface.GPS_DIRECTION_TRUE);
+        if (viewStateAccess$requireViewState instanceof ViewState) {
+            updateViewState(transform.invoke(viewStateAccess$requireViewState));
         }
     }
 

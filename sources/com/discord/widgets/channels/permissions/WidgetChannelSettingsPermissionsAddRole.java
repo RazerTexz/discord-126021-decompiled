@@ -41,7 +41,7 @@ public class WidgetChannelSettingsPermissionsAddRole extends AppFragment {
     private SimpleRolesAdapter rolesAdapter;
     private RecyclerView rolesRecycler;
 
-    public static class Model {
+    public class Model {
         private final boolean canManage;
         private final Channel channel;
         private final List<SimpleRolesAdapter.RoleItem> roleItems;
@@ -51,6 +51,31 @@ public class WidgetChannelSettingsPermissionsAddRole extends AppFragment {
             this.roleItems = list;
             boolean mfaEnabled = meUser.getMfaEnabled();
             this.canManage = guild.getOwnerId() == meUser.getId() || PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, l, mfaEnabled, guild.getMfaLevel()) || PermissionUtils.canAndIsElevated(8L, l, mfaEnabled, guild.getMfaLevel());
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Model;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) obj;
+            if (!model.canEqual(this) || this.canManage != model.canManage) {
+                return false;
+            }
+            Channel channel = this.channel;
+            Channel channel2 = model.channel;
+            if (channel != null ? !channel.equals(channel2) : channel2 != null) {
+                return false;
+            }
+            List<SimpleRolesAdapter.RoleItem> list = this.roleItems;
+            List<SimpleRolesAdapter.RoleItem> list2 = model.roleItems;
+            return list != null ? list.equals(list2) : list2 == null;
         }
 
         public static Observable<Model> get(final long j) {
@@ -94,6 +119,14 @@ public class WidgetChannelSettingsPermissionsAddRole extends AppFragment {
             }).m11108k(C0878n.f565j);
         }
 
+        public int hashCode() {
+            int i = this.canManage ? 79 : 97;
+            Channel channel = this.channel;
+            int iHashCode = ((i + 59) * 59) + (channel == null ? 43 : channel.hashCode());
+            List<SimpleRolesAdapter.RoleItem> list = this.roleItems;
+            return (iHashCode * 59) + (list != null ? list.hashCode() : 43);
+        }
+
         private static boolean isValid(Guild guild, Channel channel) {
             return (channel == null || guild == null) ? false : true;
         }
@@ -103,39 +136,6 @@ public class WidgetChannelSettingsPermissionsAddRole extends AppFragment {
                 return new Model(meUser, guild, channel, l, list);
             }
             return null;
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Model;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Model)) {
-                return false;
-            }
-            Model model = (Model) obj;
-            if (!model.canEqual(this) || this.canManage != model.canManage) {
-                return false;
-            }
-            Channel channel = this.channel;
-            Channel channel2 = model.channel;
-            if (channel != null ? !channel.equals(channel2) : channel2 != null) {
-                return false;
-            }
-            List<SimpleRolesAdapter.RoleItem> list = this.roleItems;
-            List<SimpleRolesAdapter.RoleItem> list2 = model.roleItems;
-            return list != null ? list.equals(list2) : list2 == null;
-        }
-
-        public int hashCode() {
-            int i = this.canManage ? 79 : 97;
-            Channel channel = this.channel;
-            int iHashCode = ((i + 59) * 59) + (channel == null ? 43 : channel.hashCode());
-            List<SimpleRolesAdapter.RoleItem> list = this.roleItems;
-            return (iHashCode * 59) + (list != null ? list.hashCode() : 43);
         }
 
         public String toString() {

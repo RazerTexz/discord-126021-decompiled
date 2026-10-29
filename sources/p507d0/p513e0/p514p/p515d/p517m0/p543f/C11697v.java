@@ -18,14 +18,11 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11697v extends AbstractC11727g implements InterfaceC11735o {
+    private int bitField0_;
+    private int errorCode_;
 
     /* JADX INFO: renamed from: j */
     public static final C11697v f23970j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11697v> f23971k = new a();
-    private int bitField0_;
-    private int errorCode_;
     private c level_;
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
@@ -35,9 +32,12 @@ public final class C11697v extends AbstractC11727g implements InterfaceC11735o {
     private d versionKind_;
     private int version_;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11697v> f23971k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.v$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11697v> {
+    public final class a extends AbstractC11722b<C11697v> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11697v parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11697v(c11724d, c11725e, null);
@@ -46,7 +46,7 @@ public final class C11697v extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.v$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.b<C11697v, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.b<C11697v, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: k */
         public int f23972k;
@@ -298,10 +298,6 @@ public final class C11697v extends AbstractC11727g implements InterfaceC11735o {
         return f23970j;
     }
 
-    public static b newBuilder(C11697v c11697v) {
-        return newBuilder().mergeFrom(c11697v);
-    }
-
     public int getErrorCode() {
         return this.errorCode_;
     }
@@ -388,6 +384,10 @@ public final class C11697v extends AbstractC11727g implements InterfaceC11735o {
         }
         this.memoizedIsInitialized = (byte) 1;
         return true;
+    }
+
+    public static b newBuilder(C11697v c11697v) {
+        return newBuilder().mergeFrom(c11697v);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

@@ -16,7 +16,7 @@ public final class C12604b1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.b1$a */
     /* JADX INFO: compiled from: OperatorOnBackpressureLatest.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12604b1<Object> f26740a = new C12604b1<>();
@@ -24,22 +24,27 @@ public final class C12604b1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.b1$b */
     /* JADX INFO: compiled from: OperatorOnBackpressureLatest.java */
-    public static final class b<T> extends AtomicLong implements Producer, Subscription, InterfaceC12581g<T> {
-
-        /* JADX INFO: renamed from: j */
-        public static final Object f26741j = new Object();
-        private static final long serialVersionUID = -1364393685005146274L;
+    public final class b<T> extends AtomicLong implements Producer, Subscription, InterfaceC12581g<T> {
         public final Subscriber<? super T> child;
         public volatile boolean done;
         public boolean emitting;
         public boolean missed;
         public c<? super T> parent;
+        private static final long serialVersionUID = -1364393685005146274L;
         public Throwable terminal;
+
+        /* JADX INFO: renamed from: j */
+        public static final Object f26741j = new Object();
         public final AtomicReference<Object> value = new AtomicReference<>(f26741j);
 
         public b(Subscriber<? super T> subscriber) {
             this.child = subscriber;
             lazySet(-4611686018427387904L);
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return get() == Long.MIN_VALUE;
         }
 
         /* JADX INFO: renamed from: a */
@@ -117,11 +122,6 @@ public final class C12604b1<T> implements Observable.InterfaceC13006b<T, T> {
             }
         }
 
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return get() == Long.MIN_VALUE;
-        }
-
         @Override // p658rx.Producer
         /* JADX INFO: renamed from: j */
         public void mo10704j(long j) throws Throwable {
@@ -178,7 +178,7 @@ public final class C12604b1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.b1$c */
     /* JADX INFO: compiled from: OperatorOnBackpressureLatest.java */
-    public static final class c<T> extends Subscriber<T> {
+    public final class c<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final b<T> f26742j;

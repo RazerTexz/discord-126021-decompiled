@@ -46,7 +46,7 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-        public static final class C13336a extends AbstractC12240o implements Function0<List<? extends AbstractC11913c0>> {
+        public final class C13336a extends AbstractC12240o implements Function0<List<? extends AbstractC11913c0>> {
             public final /* synthetic */ AbstractC11924g this$1;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -119,7 +119,7 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$b */
     /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final Collection<AbstractC11913c0> f24776a;
@@ -150,7 +150,7 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$c */
     /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-    public static final class c extends AbstractC12240o implements Function0<b> {
+    public final class c extends AbstractC12240o implements Function0<b> {
         public c() {
             super(0);
         }
@@ -164,7 +164,7 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$d */
     /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-    public static final class d extends AbstractC12240o implements Function1<Boolean, b> {
+    public final class d extends AbstractC12240o implements Function1<Boolean, b> {
 
         /* JADX INFO: renamed from: j */
         public static final d f24778j = new d();
@@ -185,11 +185,11 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$e */
     /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-    public static final class e extends AbstractC12240o implements Function1<b, Unit> {
+    public final class e extends AbstractC12240o implements Function1<b, Unit> {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$e$a */
         /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-        public static final class a extends AbstractC12240o implements Function1<InterfaceC12008u0, Iterable<? extends AbstractC11913c0>> {
+        public final class a extends AbstractC12240o implements Function1<InterfaceC12008u0, Iterable<? extends AbstractC11913c0>> {
             public final /* synthetic */ AbstractC11924g this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -207,7 +207,7 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$e$b */
         /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
-        public static final class b extends AbstractC12240o implements Function1<AbstractC11913c0, Unit> {
+        public final class b extends AbstractC12240o implements Function1<AbstractC11913c0, Unit> {
             public final /* synthetic */ AbstractC11924g this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -277,21 +277,19 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
         return supertypes;
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+    public abstract InterfaceC11352h getDeclarationDescriptor();
+
     /* JADX INFO: renamed from: a */
     public abstract Collection<AbstractC11913c0> mo9370a();
+
+    /* JADX INFO: renamed from: d */
+    public abstract InterfaceC11473x0 mo9371d();
 
     /* JADX INFO: renamed from: b */
     public AbstractC11913c0 mo9403b() {
         return null;
     }
-
-    /* JADX INFO: renamed from: c */
-    public Collection<AbstractC11913c0> mo9996c(boolean z2) {
-        return C12147n.emptyList();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public abstract InterfaceC11473x0 mo9371d();
 
     /* JADX INFO: renamed from: e */
     public List<AbstractC11913c0> mo9404e(List<AbstractC11913c0> list) {
@@ -304,8 +302,10 @@ public abstract class AbstractC11924g implements InterfaceC12008u0 {
         C12238m.checkNotNullParameter(abstractC11913c0, "type");
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-    public abstract InterfaceC11352h getDeclarationDescriptor();
+    /* JADX INFO: renamed from: c */
+    public Collection<AbstractC11913c0> mo9996c(boolean z2) {
+        return C12147n.emptyList();
+    }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
     public InterfaceC12008u0 refine(AbstractC11947g abstractC11947g) {

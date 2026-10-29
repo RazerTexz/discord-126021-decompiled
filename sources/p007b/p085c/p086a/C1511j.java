@@ -51,9 +51,6 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
     /* JADX INFO: renamed from: C */
     public boolean f2368C;
 
-    /* JADX INFO: renamed from: j */
-    public final Matrix f2369j = new Matrix();
-
     /* JADX INFO: renamed from: k */
     public C1505d f2370k;
 
@@ -107,6 +104,9 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
 
     /* JADX INFO: renamed from: z */
     public boolean f2385z;
+
+    /* JADX INFO: renamed from: j */
+    public final Matrix f2369j = new Matrix();
 
     /* JADX INFO: renamed from: b.c.a.j$a */
     /* JADX INFO: compiled from: LottieDrawable.java */
@@ -383,6 +383,75 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
         choreographerFrameCallbackC1496d.f2293j.add(fVar);
     }
 
+    @Override // android.graphics.drawable.Drawable
+    public void draw(@NonNull Canvas canvas) {
+        this.f2368C = false;
+        if (this.f2374o) {
+            try {
+                m684d(canvas);
+            } catch (Throwable unused) {
+                Objects.requireNonNull((C1494b) C1495c.f2296a);
+            }
+        } else {
+            m684d(canvas);
+        }
+        C1500c.m663a("Drawable#draw");
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getAlpha() {
+        return this.f2384y;
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getIntrinsicHeight() {
+        C1505d c1505d = this.f2370k;
+        if (c1505d == null) {
+            return -1;
+        }
+        return (int) (c1505d.f2345j.height() * this.f2372m);
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getIntrinsicWidth() {
+        C1505d c1505d = this.f2370k;
+        if (c1505d == null) {
+            return -1;
+        }
+        return (int) (c1505d.f2345j.width() * this.f2372m);
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public int getOpacity() {
+        return -3;
+    }
+
+    @Override // android.graphics.drawable.Drawable.Callback
+    public void invalidateDrawable(@NonNull Drawable drawable) {
+        Drawable.Callback callback = getCallback();
+        if (callback == null) {
+            return;
+        }
+        callback.invalidateDrawable(this);
+    }
+
+    @Override // android.graphics.drawable.Drawable
+    public void invalidateSelf() {
+        if (this.f2368C) {
+            return;
+        }
+        this.f2368C = true;
+        Drawable.Callback callback = getCallback();
+        if (callback != null) {
+            callback.invalidateDrawable(this);
+        }
+    }
+
+    @Override // android.graphics.drawable.Animatable
+    public boolean isRunning() {
+        return m689i();
+    }
+
     /* JADX INFO: renamed from: a */
     public <T> void m681a(C1567f c1567f, T t, C1503c<T> c1503c) {
         List listEmptyList;
@@ -516,21 +585,6 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable
-    public void draw(@NonNull Canvas canvas) {
-        this.f2368C = false;
-        if (this.f2374o) {
-            try {
-                m684d(canvas);
-            } catch (Throwable unused) {
-                Objects.requireNonNull((C1494b) C1495c.f2296a);
-            }
-        } else {
-            m684d(canvas);
-        }
-        C1500c.m663a("Drawable#draw");
-    }
-
     /* JADX INFO: renamed from: e */
     public float m685e() {
         return this.f2371l.m644i();
@@ -547,34 +601,6 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
         return this.f2371l.m643h();
     }
 
-    @Override // android.graphics.drawable.Drawable
-    public int getAlpha() {
-        return this.f2384y;
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getIntrinsicHeight() {
-        C1505d c1505d = this.f2370k;
-        if (c1505d == null) {
-            return -1;
-        }
-        return (int) (c1505d.f2345j.height() * this.f2372m);
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getIntrinsicWidth() {
-        C1505d c1505d = this.f2370k;
-        if (c1505d == null) {
-            return -1;
-        }
-        return (int) (c1505d.f2345j.width() * this.f2372m);
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public int getOpacity() {
-        return -3;
-    }
-
     /* JADX INFO: renamed from: h */
     public int m688h() {
         return this.f2371l.getRepeatCount();
@@ -587,32 +613,6 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
             return false;
         }
         return choreographerFrameCallbackC1496d.f2305t;
-    }
-
-    @Override // android.graphics.drawable.Drawable.Callback
-    public void invalidateDrawable(@NonNull Drawable drawable) {
-        Drawable.Callback callback = getCallback();
-        if (callback == null) {
-            return;
-        }
-        callback.invalidateDrawable(this);
-    }
-
-    @Override // android.graphics.drawable.Drawable
-    public void invalidateSelf() {
-        if (this.f2368C) {
-            return;
-        }
-        this.f2368C = true;
-        Drawable.Callback callback = getCallback();
-        if (callback != null) {
-            callback.invalidateDrawable(this);
-        }
-    }
-
-    @Override // android.graphics.drawable.Animatable
-    public boolean isRunning() {
-        return m689i();
     }
 
     @MainThread
@@ -761,6 +761,37 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
         m698r((int) c1570iM672d.f2718b);
     }
 
+    /* JADX INFO: renamed from: t */
+    public void m700t(float f2) {
+        C1505d c1505d = this.f2370k;
+        if (c1505d == null) {
+            this.f2375p.add(new j(f2));
+        } else {
+            m698r((int) C1498f.m655e(c1505d.f2346k, c1505d.f2347l, f2));
+        }
+    }
+
+    /* JADX INFO: renamed from: u */
+    public void m701u(@FloatRange(from = 0.0d, m75to = 1.0d) float f2) {
+        C1505d c1505d = this.f2370k;
+        if (c1505d == null) {
+            this.f2375p.add(new d(f2));
+        } else {
+            this.f2371l.m649n(C1498f.m655e(c1505d.f2346k, c1505d.f2347l, f2));
+            C1500c.m663a("Drawable#setProgress");
+        }
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final void m702v() {
+        C1505d c1505d = this.f2370k;
+        if (c1505d == null) {
+            return;
+        }
+        float f2 = this.f2372m;
+        setBounds(0, 0, (int) (c1505d.f2345j.width() * f2), (int) (this.f2370k.f2345j.height() * f2));
+    }
+
     @Override // android.graphics.drawable.Drawable.Callback
     public void scheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable, long j2) {
         Drawable.Callback callback = getCallback();
@@ -794,27 +825,6 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
         this.f2371l.m642g();
     }
 
-    /* JADX INFO: renamed from: t */
-    public void m700t(float f2) {
-        C1505d c1505d = this.f2370k;
-        if (c1505d == null) {
-            this.f2375p.add(new j(f2));
-        } else {
-            m698r((int) C1498f.m655e(c1505d.f2346k, c1505d.f2347l, f2));
-        }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public void m701u(@FloatRange(from = 0.0d, m75to = 1.0d) float f2) {
-        C1505d c1505d = this.f2370k;
-        if (c1505d == null) {
-            this.f2375p.add(new d(f2));
-        } else {
-            this.f2371l.m649n(C1498f.m655e(c1505d.f2346k, c1505d.f2347l, f2));
-            C1500c.m663a("Drawable#setProgress");
-        }
-    }
-
     @Override // android.graphics.drawable.Drawable.Callback
     public void unscheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable) {
         Drawable.Callback callback = getCallback();
@@ -822,15 +832,5 @@ public class C1511j extends Drawable implements Drawable.Callback, Animatable {
             return;
         }
         callback.unscheduleDrawable(this, runnable);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final void m702v() {
-        C1505d c1505d = this.f2370k;
-        if (c1505d == null) {
-            return;
-        }
-        float f2 = this.f2372m;
-        setBounds(0, 0, (int) (c1505d.f2345j.width() * f2), (int) (this.f2370k.f2345j.height() * f2));
     }
 }

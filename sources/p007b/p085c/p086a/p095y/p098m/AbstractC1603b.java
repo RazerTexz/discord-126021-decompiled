@@ -45,21 +45,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.b, InterfaceC1568g {
 
-    /* JADX INFO: renamed from: a */
-    public final Path f2836a = new Path();
-
-    /* JADX INFO: renamed from: b */
-    public final Matrix f2837b = new Matrix();
-
-    /* JADX INFO: renamed from: c */
-    public final Paint f2838c = new C1524a(1);
-
-    /* JADX INFO: renamed from: d */
-    public final Paint f2839d = new C1524a(1, PorterDuff.Mode.DST_IN);
-
-    /* JADX INFO: renamed from: e */
-    public final Paint f2840e = new C1524a(1, PorterDuff.Mode.DST_OUT);
-
     /* JADX INFO: renamed from: f */
     public final Paint f2841f;
 
@@ -118,6 +103,21 @@ public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.
     /* JADX INFO: renamed from: w */
     public boolean f2858w;
 
+    /* JADX INFO: renamed from: a */
+    public final Path f2836a = new Path();
+
+    /* JADX INFO: renamed from: b */
+    public final Matrix f2837b = new Matrix();
+
+    /* JADX INFO: renamed from: c */
+    public final Paint f2838c = new C1524a(1);
+
+    /* JADX INFO: renamed from: d */
+    public final Paint f2839d = new C1524a(1, PorterDuff.Mode.DST_IN);
+
+    /* JADX INFO: renamed from: e */
+    public final Paint f2840e = new C1524a(1, PorterDuff.Mode.DST_OUT);
+
     public AbstractC1603b(C1511j c1511j, C1606e c1606e) {
         C1524a c1524a = new C1524a(1);
         this.f2841f = c1524a;
@@ -165,6 +165,87 @@ public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.
         c1546c.f2596a.add(new C1602a(this));
         m786p(this.f2852q.mo727e().floatValue() == 1.0f);
         m777e(this.f2852q);
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2850o.f2870c;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m777e(@Nullable AbstractC1544a<?, ?> abstractC1544a) {
+        if (abstractC1544a == null) {
+            return;
+        }
+        this.f2856u.add(abstractC1544a);
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m778h() {
+        if (this.f2855t != null) {
+            return;
+        }
+        if (this.f2854s == null) {
+            this.f2855t = Collections.emptyList();
+            return;
+        }
+        this.f2855t = new ArrayList();
+        for (AbstractC1603b abstractC1603b = this.f2854s; abstractC1603b != null; abstractC1603b = abstractC1603b.f2854s) {
+            this.f2855t.add(abstractC1603b);
+        }
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final void m779i(Canvas canvas) {
+        RectF rectF = this.f2843h;
+        canvas.drawRect(rectF.left - 1.0f, rectF.top - 1.0f, rectF.right + 1.0f, rectF.bottom + 1.0f, this.f2842g);
+        C1500c.m663a("Layer#clearLayer");
+    }
+
+    /* JADX INFO: renamed from: k */
+    public boolean m781k() {
+        C1550g c1550g = this.f2851p;
+        return (c1550g == null || c1550g.f2611a.isEmpty()) ? false : true;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public boolean m782l() {
+        return this.f2853r != null;
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final void m783m(float f) {
+        C1520s c1520s = this.f2849n.f2370k.f2336a;
+        String str = this.f2850o.f2870c;
+        if (c1520s.f2458a) {
+            C1497e c1497e = c1520s.f2460c.get(str);
+            if (c1497e == null) {
+                c1497e = new C1497e();
+                c1520s.f2460c.put(str, c1497e);
+            }
+            float f2 = c1497e.f2306a + f;
+            c1497e.f2306a = f2;
+            int i = c1497e.f2307b + 1;
+            c1497e.f2307b = i;
+            if (i == Integer.MAX_VALUE) {
+                c1497e.f2306a = f2 / 2.0f;
+                c1497e.f2307b = i / 2;
+            }
+            if (str.equals("__container")) {
+                Iterator<C1520s.a> it = c1520s.f2459b.iterator();
+                while (it.hasNext()) {
+                    it.next().m708a(f);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: p */
+    public final void m786p(boolean z2) {
+        if (z2 != this.f2858w) {
+            this.f2858w = z2;
+            this.f2849n.invalidateSelf();
+        }
     }
 
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
@@ -215,14 +296,6 @@ public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.
             }
         }
         this.f2848m.preConcat(this.f2857v.m747e());
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m777e(@Nullable AbstractC1544a<?, ?> abstractC1544a) {
-        if (abstractC1544a == null) {
-            return;
-        }
-        this.f2856u.add(abstractC1544a);
     }
 
     /* JADX WARN: Code duplicated, block: B:115:0x017c A[SYNTHETIC] */
@@ -463,73 +536,8 @@ public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.
         this.f2857v.m745c(t, c1503c);
     }
 
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2850o.f2870c;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m778h() {
-        if (this.f2855t != null) {
-            return;
-        }
-        if (this.f2854s == null) {
-            this.f2855t = Collections.emptyList();
-            return;
-        }
-        this.f2855t = new ArrayList();
-        for (AbstractC1603b abstractC1603b = this.f2854s; abstractC1603b != null; abstractC1603b = abstractC1603b.f2854s) {
-            this.f2855t.add(abstractC1603b);
-        }
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final void m779i(Canvas canvas) {
-        RectF rectF = this.f2843h;
-        canvas.drawRect(rectF.left - 1.0f, rectF.top - 1.0f, rectF.right + 1.0f, rectF.bottom + 1.0f, this.f2842g);
-        C1500c.m663a("Layer#clearLayer");
-    }
-
     /* JADX INFO: renamed from: j */
     public abstract void mo780j(Canvas canvas, Matrix matrix, int i);
-
-    /* JADX INFO: renamed from: k */
-    public boolean m781k() {
-        C1550g c1550g = this.f2851p;
-        return (c1550g == null || c1550g.f2611a.isEmpty()) ? false : true;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public boolean m782l() {
-        return this.f2853r != null;
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m783m(float f) {
-        C1520s c1520s = this.f2849n.f2370k.f2336a;
-        String str = this.f2850o.f2870c;
-        if (c1520s.f2458a) {
-            C1497e c1497e = c1520s.f2460c.get(str);
-            if (c1497e == null) {
-                c1497e = new C1497e();
-                c1520s.f2460c.put(str, c1497e);
-            }
-            float f2 = c1497e.f2306a + f;
-            c1497e.f2306a = f2;
-            int i = c1497e.f2307b + 1;
-            c1497e.f2307b = i;
-            if (i == Integer.MAX_VALUE) {
-                c1497e.f2306a = f2 / 2.0f;
-                c1497e.f2307b = i / 2;
-            }
-            if (str.equals("__container")) {
-                Iterator<C1520s.a> it = c1520s.f2459b.iterator();
-                while (it.hasNext()) {
-                    it.next().m708a(f);
-                }
-            }
-        }
-    }
 
     /* JADX INFO: renamed from: n */
     public void mo784n(C1567f c1567f, int i, List<C1567f> list, C1567f c1567f2) {
@@ -593,14 +601,6 @@ public abstract class AbstractC1603b implements InterfaceC1529e, AbstractC1544a.
         }
         for (int i2 = 0; i2 < this.f2856u.size(); i2++) {
             this.f2856u.get(i2).mo730h(f);
-        }
-    }
-
-    /* JADX INFO: renamed from: p */
-    public final void m786p(boolean z2) {
-        if (z2 != this.f2858w) {
-            this.f2858w = z2;
-            this.f2849n.invalidateSelf();
         }
     }
 }

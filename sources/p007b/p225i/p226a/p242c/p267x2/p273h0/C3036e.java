@@ -38,22 +38,10 @@ public final class C3036e implements InterfaceC3038g {
         return Pair.create(Long.valueOf(j), Long.valueOf(((long) ((j4 == j2 ? 0.0d : (j - j2) / (j4 - j2)) * (jArr2[i] - j3))) + j3));
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: a */
-    public long mo3689a() {
-        return -1L;
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
     /* JADX INFO: renamed from: c */
     public boolean mo3619c() {
         return true;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: d */
-    public long mo3690d(long j) {
-        return C2738e0.m2981B(((Long) m3692b(j, this.f8312a, this.f8313b).second).longValue());
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
@@ -67,5 +55,17 @@ public final class C3036e implements InterfaceC3038g {
     /* JADX INFO: renamed from: i */
     public long mo3621i() {
         return this.f8314c;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: a */
+    public long mo3689a() {
+        return -1L;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: d */
+    public long mo3690d(long j) {
+        return C2738e0.m2981B(((Long) m3692b(j, this.f8312a, this.f8313b).second).longValue());
     }
 }

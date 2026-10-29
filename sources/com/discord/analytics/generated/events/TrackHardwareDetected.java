@@ -9,38 +9,32 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackHardwareDetected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackHardwareDetected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long wave = null;
+    private final Long batteries = null;
+    private final Long cameraCount = null;
+    private final CharSequence cameraDefaultBus = null;
+    private final Boolean cameraDefaultHasI420 = null;
+    private final Boolean cameraDefaultHasMjpg = null;
+    private final Boolean cameraDefaultHasNv12 = null;
+    private final Boolean cameraDefaultHasYuy2 = null;
+    private final Long cameraDefaultMaxHeight = null;
+    private final Long cameraDefaultMaxWidth = null;
+    private final CharSequence cameraDefaultName = null;
+    private final Long cameraDefaultProductId = null;
+    private final Long cameraDefaultVendorId = null;
     private final CharSequence cpuBrand = null;
-    private final CharSequence cpuVendor = null;
     private final Long cpuMemory = null;
+    private final CharSequence cpuVendor = null;
+    private final Long displayDesktopHeight = null;
+    private final Long displayDesktopWidth = null;
+    private final Long displayMonitors = null;
+    private final Long displayPrimaryHeight = null;
+    private final Long displayPrimaryWidth = null;
     private final CharSequence gpuBrand = null;
     private final Long gpuCount = null;
     private final Long gpuMemory = null;
-    private final Long batteries = null;
-    private final Long displayMonitors = null;
-    private final Long displayPrimaryWidth = null;
-    private final Long displayPrimaryHeight = null;
-    private final Long displayDesktopWidth = null;
-    private final Long displayDesktopHeight = null;
-    private final Long cameraCount = null;
-    private final CharSequence cameraDefaultName = null;
-    private final Long cameraDefaultMaxWidth = null;
-    private final Long cameraDefaultMaxHeight = null;
-    private final Boolean cameraDefaultHasI420 = null;
-    private final Boolean cameraDefaultHasNv12 = null;
-    private final Boolean cameraDefaultHasYuy2 = null;
-    private final Boolean cameraDefaultHasMjpg = null;
-    private final CharSequence cameraDefaultBus = null;
-    private final Long cameraDefaultVendorId = null;
-    private final Long cameraDefaultProductId = null;
+    private TrackBase trackBase;
+    private final Long wave = null;
     private final transient String analyticsSchemaTypeName = "hardware_detected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -51,6 +45,12 @@ public final /* data */ class TrackHardwareDetected implements AnalyticsSchema, 
         }
         TrackHardwareDetected trackHardwareDetected = (TrackHardwareDetected) other;
         return C12238m.areEqual(this.wave, trackHardwareDetected.wave) && C12238m.areEqual(this.cpuBrand, trackHardwareDetected.cpuBrand) && C12238m.areEqual(this.cpuVendor, trackHardwareDetected.cpuVendor) && C12238m.areEqual(this.cpuMemory, trackHardwareDetected.cpuMemory) && C12238m.areEqual(this.gpuBrand, trackHardwareDetected.gpuBrand) && C12238m.areEqual(this.gpuCount, trackHardwareDetected.gpuCount) && C12238m.areEqual(this.gpuMemory, trackHardwareDetected.gpuMemory) && C12238m.areEqual(this.batteries, trackHardwareDetected.batteries) && C12238m.areEqual(this.displayMonitors, trackHardwareDetected.displayMonitors) && C12238m.areEqual(this.displayPrimaryWidth, trackHardwareDetected.displayPrimaryWidth) && C12238m.areEqual(this.displayPrimaryHeight, trackHardwareDetected.displayPrimaryHeight) && C12238m.areEqual(this.displayDesktopWidth, trackHardwareDetected.displayDesktopWidth) && C12238m.areEqual(this.displayDesktopHeight, trackHardwareDetected.displayDesktopHeight) && C12238m.areEqual(this.cameraCount, trackHardwareDetected.cameraCount) && C12238m.areEqual(this.cameraDefaultName, trackHardwareDetected.cameraDefaultName) && C12238m.areEqual(this.cameraDefaultMaxWidth, trackHardwareDetected.cameraDefaultMaxWidth) && C12238m.areEqual(this.cameraDefaultMaxHeight, trackHardwareDetected.cameraDefaultMaxHeight) && C12238m.areEqual(this.cameraDefaultHasI420, trackHardwareDetected.cameraDefaultHasI420) && C12238m.areEqual(this.cameraDefaultHasNv12, trackHardwareDetected.cameraDefaultHasNv12) && C12238m.areEqual(this.cameraDefaultHasYuy2, trackHardwareDetected.cameraDefaultHasYuy2) && C12238m.areEqual(this.cameraDefaultHasMjpg, trackHardwareDetected.cameraDefaultHasMjpg) && C12238m.areEqual(this.cameraDefaultBus, trackHardwareDetected.cameraDefaultBus) && C12238m.areEqual(this.cameraDefaultVendorId, trackHardwareDetected.cameraDefaultVendorId) && C12238m.areEqual(this.cameraDefaultProductId, trackHardwareDetected.cameraDefaultProductId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -27,7 +27,6 @@ public final class StoreUserProfile extends StoreV2 {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final UserProfile EMPTY_PROFILE = new UserProfile(null, null, null, null, null, null, null, Opcodes.LAND);
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
     private final HashMap<Long, UserProfile> profiles;
@@ -35,24 +34,11 @@ public final class StoreUserProfile extends StoreV2 {
     private Map<Long, UserProfile> profilesSnapshot;
     private final RestAPI restAPI;
     private final StoreStream storeStream;
-
-    /* JADX INFO: compiled from: StoreUserProfile.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final UserProfile getEMPTY_PROFILE() {
-            return StoreUserProfile.EMPTY_PROFILE;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final UserProfile EMPTY_PROFILE = new UserProfile(null, null, null, null, null, null, null, Opcodes.LAND);
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$fetchProfile$1 */
     /* JADX INFO: compiled from: StoreUserProfile.kt */
-    public static final class C65881 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65881 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ Function1 $onFetchSuccess;
         public final /* synthetic */ long $userId;
@@ -60,11 +46,11 @@ public final class StoreUserProfile extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$fetchProfile$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserProfile.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<UserProfile, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<UserProfile, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$fetchProfile$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreUserProfile.kt */
-            public static final class C132661 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132661 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ UserProfile $userProfile;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -108,11 +94,11 @@ public final class StoreUserProfile extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$fetchProfile$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreUserProfile.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$fetchProfile$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreUserProfile.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -176,7 +162,7 @@ public final class StoreUserProfile extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$observeUserProfile$1 */
     /* JADX INFO: compiled from: StoreUserProfile.kt */
-    public static final class C65891 extends AbstractC12240o implements Function0<UserProfile> {
+    public final class C65891 extends AbstractC12240o implements Function0<UserProfile> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -194,7 +180,7 @@ public final class StoreUserProfile extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserProfile$updateUser$1 */
     /* JADX INFO: compiled from: StoreUserProfile.kt */
-    public static final class C65901 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65901 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ User $user;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -215,8 +201,31 @@ public final class StoreUserProfile extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreUserProfile.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final UserProfile getEMPTY_PROFILE() {
+            return StoreUserProfile.EMPTY_PROFILE;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreUserProfile(Dispatcher dispatcher, ObservationDeck observationDeck, StoreStream storeStream, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, storeStream, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
+    }
+
+    public final void fetchProfile(long userId, Long guildId, boolean withMutualGuilds, Function1<? super UserProfile, Unit> onFetchSuccess) {
+        this.dispatcher.schedule(new C65881(userId, guildId, withMutualGuilds, onFetchSuccess));
+    }
+
+    public final UserProfile getUserProfile(long userId) {
+        UserProfile userProfile = this.profilesSnapshot.get(Long.valueOf(userId));
+        return userProfile != null ? userProfile : EMPTY_PROFILE;
     }
 
     @StoreThread
@@ -232,15 +241,6 @@ public final class StoreUserProfile extends StoreV2 {
             this.profiles.put(Long.valueOf(user.getId()), new UserProfile(userProfile.m8306b(), userProfile.m8308d(), user, userProfile.getPremiumSince(), userProfile.getPremiumGuildSince(), null, userProfile.getApplication()));
             markChanged();
         }
-    }
-
-    public final void fetchProfile(long userId, Long guildId, boolean withMutualGuilds, Function1<? super UserProfile, Unit> onFetchSuccess) {
-        this.dispatcher.schedule(new C65881(userId, guildId, withMutualGuilds, onFetchSuccess));
-    }
-
-    public final UserProfile getUserProfile(long userId) {
-        UserProfile userProfile = this.profilesSnapshot.get(Long.valueOf(userId));
-        return userProfile != null ? userProfile : EMPTY_PROFILE;
     }
 
     @StoreThread

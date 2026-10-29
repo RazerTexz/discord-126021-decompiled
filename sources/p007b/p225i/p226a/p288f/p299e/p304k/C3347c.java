@@ -44,7 +44,7 @@ public final class C3347c {
 
     /* JADX INFO: renamed from: b.i.a.f.e.k.c$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public Account f9509a;
@@ -66,7 +66,7 @@ public final class C3347c {
 
     /* JADX INFO: renamed from: b.i.a.f.e.k.c$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static final class b {
+    public final class b {
     }
 
     public C3347c(Account account, Set set, Map map, int i, View view, String str, String str2, C4335a c4335a) {

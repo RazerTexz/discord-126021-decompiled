@@ -42,7 +42,7 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$1 */
     /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static final /* synthetic */ class C85521 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C85521 extends C12236k implements Function1<StoreState, Unit> {
         public C85521(DisableGuildCommunicationViewModel disableGuildCommunicationViewModel) {
             super(1, disableGuildCommunicationViewModel, DisableGuildCommunicationViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildcommunicationdisabled/start/DisableGuildCommunicationViewModel$StoreState;)V", 0);
         }
@@ -60,8 +60,52 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$1 */
     /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static final class Companion {
+    public final class C85531 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ long $disabledUntilTimestamp;
+        public final /* synthetic */ long $durationS;
+        public final /* synthetic */ String $reason;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C85531(long j, long j2, String str) {
+            super(1);
+            this.$durationS = j;
+            this.$disabledUntilTimestamp = j2;
+            this.$reason = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final TrackNetworkMetadataReceiver invoke(Void r7) {
+            return new TrackNetworkActionUserCommunicationDisabledUpdate(Long.valueOf(DisableGuildCommunicationViewModel.this.guildId), Long.valueOf(DisableGuildCommunicationViewModel.this.userId), Float.valueOf(this.$durationS), this.$reason, Long.valueOf(this.$disabledUntilTimestamp));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$2 */
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final class C85542 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ Function0 $onFinished;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C85542(Function0 function0) {
+            super(1);
+            this.$onFinished = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            this.$onFinished.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -75,7 +119,7 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final User user;
 
@@ -94,16 +138,6 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
             return storeState.copy(user, guild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
         public final StoreState copy(User user, Guild guild) {
             return new StoreState(user, guild);
         }
@@ -119,8 +153,18 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
             return C12238m.areEqual(this.user, storeState.user) && C12238m.areEqual(this.guild, storeState.guild);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -145,10 +189,10 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
     }
 
     /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -157,7 +201,7 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
         }
 
         /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final long guildId;
             private final TimeDurationDisabledCommunication selectedDurationOption;
             private final User user;
@@ -184,21 +228,6 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
                 return valid.copy(user, j, timeDurationDisabledCommunication);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final User getUser() {
-                return this.user;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final TimeDurationDisabledCommunication getSelectedDurationOption() {
-                return this.selectedDurationOption;
-            }
-
             public final Valid copy(User user, long guildId, TimeDurationDisabledCommunication selectedDurationOption) {
                 C12238m.checkNotNullParameter(selectedDurationOption, "selectedDurationOption");
                 return new Valid(user, guildId, selectedDurationOption);
@@ -215,12 +244,27 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
                 return C12238m.areEqual(this.user, valid.user) && this.guildId == valid.guildId && C12238m.areEqual(this.selectedDurationOption, valid.selectedDurationOption);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
             }
 
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final TimeDurationDisabledCommunication getSelectedDurationOption() {
                 return this.selectedDurationOption;
+            }
+
+            public final TimeDurationDisabledCommunication getSelectedDurationOption() {
+                return this.selectedDurationOption;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final User getUser() {
+                return this.user;
             }
 
             public final User getUser() {
@@ -251,50 +295,6 @@ public final class DisableGuildCommunicationViewModel extends AbstractC0859d0<Vi
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$1 */
-    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static final class C85531 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
-        public final /* synthetic */ long $disabledUntilTimestamp;
-        public final /* synthetic */ long $durationS;
-        public final /* synthetic */ String $reason;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C85531(long j, long j2, String str) {
-            super(1);
-            this.$durationS = j;
-            this.$disabledUntilTimestamp = j2;
-            this.$reason = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final TrackNetworkMetadataReceiver invoke(Void r7) {
-            return new TrackNetworkActionUserCommunicationDisabledUpdate(Long.valueOf(DisableGuildCommunicationViewModel.this.guildId), Long.valueOf(DisableGuildCommunicationViewModel.this.userId), Float.valueOf(this.$durationS), this.$reason, Long.valueOf(this.$disabledUntilTimestamp));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$2 */
-    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
-    public static final class C85542 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onFinished;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C85542(Function0 function0) {
-            super(1);
-            this.$onFinished = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onFinished.invoke();
         }
     }
 

@@ -33,11 +33,11 @@ import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog.SCL.lombok */
 public class HandleLog {
-    private static final IdentifierName LOG = IdentifierName.valueOf("log");
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$core$configuration$LogDeclaration$LogFactoryParameter */
     private static /* synthetic */ int[] f27472xeb5c83f5;
+    private static final IdentifierName LOG = IdentifierName.valueOf("log");
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;
@@ -239,7 +239,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleCommonsLog.SCL.lombok */
-    public static class HandleCommonsLog extends EclipseAnnotationHandler<CommonsLog> {
+    public class HandleCommonsLog extends EclipseAnnotationHandler<CommonsLog> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<CommonsLog> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_COMMONS_FLAG_USAGE, "@apachecommons.CommonsLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -248,7 +248,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleJulLog.SCL.lombok */
-    public static class HandleJulLog extends EclipseAnnotationHandler<Log> {
+    public class HandleJulLog extends EclipseAnnotationHandler<Log> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<Log> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_JUL_FLAG_USAGE, "@java.Log", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -257,7 +257,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleLog4jLog.SCL.lombok */
-    public static class HandleLog4jLog extends EclipseAnnotationHandler<Log4j> {
+    public class HandleLog4jLog extends EclipseAnnotationHandler<Log4j> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<Log4j> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_LOG4J_FLAG_USAGE, "@Log4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -266,7 +266,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleLog4j2Log.SCL.lombok */
-    public static class HandleLog4j2Log extends EclipseAnnotationHandler<Log4j2> {
+    public class HandleLog4j2Log extends EclipseAnnotationHandler<Log4j2> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<Log4j2> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_LOG4J2_FLAG_USAGE, "@Log4j2", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -275,7 +275,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleSlf4jLog.SCL.lombok */
-    public static class HandleSlf4jLog extends EclipseAnnotationHandler<Slf4j> {
+    public class HandleSlf4jLog extends EclipseAnnotationHandler<Slf4j> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<Slf4j> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_SLF4J_FLAG_USAGE, "@Slf4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -284,7 +284,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleXSlf4jLog.SCL.lombok */
-    public static class HandleXSlf4jLog extends EclipseAnnotationHandler<XSlf4j> {
+    public class HandleXSlf4jLog extends EclipseAnnotationHandler<XSlf4j> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<XSlf4j> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_XSLF4J_FLAG_USAGE, "@XSlf4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -293,7 +293,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleJBossLog.SCL.lombok */
-    public static class HandleJBossLog extends EclipseAnnotationHandler<JBossLog> {
+    public class HandleJBossLog extends EclipseAnnotationHandler<JBossLog> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<JBossLog> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_JBOSSLOG_FLAG_USAGE, "@JBossLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -302,7 +302,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleFloggerLog.SCL.lombok */
-    public static class HandleFloggerLog extends EclipseAnnotationHandler<Flogger> {
+    public class HandleFloggerLog extends EclipseAnnotationHandler<Flogger> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<Flogger> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_FLOGGER_FLAG_USAGE, "@Flogger", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -311,7 +311,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleLog$HandleCustomLog.SCL.lombok */
-    public static class HandleCustomLog extends EclipseAnnotationHandler<CustomLog> {
+    public class HandleCustomLog extends EclipseAnnotationHandler<CustomLog> {
         @Override // lombok.eclipse.EclipseAnnotationHandler
         public void handle(AnnotationValues<CustomLog> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation source, EclipseNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_CUSTOM_FLAG_USAGE, "@CustomLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");

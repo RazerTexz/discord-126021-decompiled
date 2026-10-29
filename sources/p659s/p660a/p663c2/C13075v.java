@@ -13,7 +13,7 @@ public final class C13075v<T> {
 
     /* JADX INFO: renamed from: s.a.c2.v$a */
     /* JADX INFO: compiled from: Channel.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final Throwable f27771a;

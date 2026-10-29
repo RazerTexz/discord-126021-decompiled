@@ -16,16 +16,16 @@ public interface InterfaceC12269e extends Cloneable {
         InterfaceC12269e mo10114b(Request request);
     }
 
+    void cancel();
+
+    Response execute() throws IOException;
+
     /* JADX INFO: renamed from: c */
     Request mo10111c();
-
-    void cancel();
 
     /* JADX INFO: renamed from: d */
     boolean mo10112d();
 
     /* JADX INFO: renamed from: e */
     void mo10113e(InterfaceC12361f interfaceC12361f);
-
-    Response execute() throws IOException;
 }

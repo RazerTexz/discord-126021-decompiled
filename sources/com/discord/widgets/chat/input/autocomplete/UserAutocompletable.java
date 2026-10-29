@@ -47,31 +47,6 @@ public final /* data */ class UserAutocompletable extends Autocompletable {
         return userAutocompletable.copy(user, guildMember2, str2, presence2, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getNickname() {
-        return this.nickname;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Presence getPresence() {
-        return this.presence;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanUserReadChannel() {
-        return this.canUserReadChannel;
-    }
-
     public final UserAutocompletable copy(User user, GuildMember guildMember, String nickname, Presence presence, boolean canUserReadChannel) {
         C12238m.checkNotNullParameter(user, "user");
         return new UserAutocompletable(user, guildMember, nickname, presence, canUserReadChannel);
@@ -97,8 +72,18 @@ public final /* data */ class UserAutocompletable extends Autocompletable {
         return this.autoTextMatchers;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanUserReadChannel() {
         return this.canUserReadChannel;
+    }
+
+    public final boolean getCanUserReadChannel() {
+        return this.canUserReadChannel;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
     }
 
     public final GuildMember getGuildMember() {
@@ -119,8 +104,18 @@ public final /* data */ class UserAutocompletable extends Autocompletable {
         return this.textMatchers;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getNickname() {
         return this.nickname;
+    }
+
+    public final String getNickname() {
+        return this.nickname;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Presence getPresence() {
+        return this.presence;
     }
 
     public final Presence getPresence() {
@@ -129,6 +124,11 @@ public final /* data */ class UserAutocompletable extends Autocompletable {
 
     public final List<String> getTextMatchers() {
         return this.textMatchers;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

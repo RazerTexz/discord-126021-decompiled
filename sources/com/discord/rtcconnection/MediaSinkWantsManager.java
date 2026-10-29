@@ -72,50 +72,9 @@ public final class MediaSinkWantsManager implements MediaEngineConnection.Interf
     /* JADX INFO: renamed from: l */
     public final InterfaceC5602a f18753l;
 
-    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-    public enum VideoQualityMode {
-        AUTO(1),
-        FULL(2);
-
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private final int numeral;
-
-        /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$VideoQualityMode$a, reason: from kotlin metadata */
-        /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-        public static final class Companion {
-            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            }
-
-            /* JADX INFO: renamed from: a */
-            public final VideoQualityMode m8457a(Integer num) {
-                if (num != null && num.intValue() == 1) {
-                    return VideoQualityMode.AUTO;
-                }
-                return (num != null && num.intValue() == 2) ? VideoQualityMode.FULL : VideoQualityMode.AUTO;
-            }
-        }
-
-        VideoQualityMode(int i) {
-            this.numeral = i;
-        }
-
-        public final int getNumeral() {
-            return this.numeral;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$a */
-    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-    public interface InterfaceC5602a {
-        /* JADX INFO: renamed from: a */
-        void mo8458a(long j, long j2, long j3, VideoMetadata videoMetadata);
-    }
-
     /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$b */
     /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-    public static final class C5603b {
+    public final class C5603b {
 
         /* JADX INFO: renamed from: a */
         public final EncodeQuality f18754a;
@@ -165,7 +124,7 @@ public final class MediaSinkWantsManager implements MediaEngineConnection.Interf
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$c */
     /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-    public static final class C5604c extends AbstractC12240o implements Function0<Unit> {
+    public final class C5604c extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $ssrc;
         public final /* synthetic */ long $userId;
 
@@ -185,6 +144,47 @@ public final class MediaSinkWantsManager implements MediaEngineConnection.Interf
             }
             MediaSinkWantsManager.m8452e(MediaSinkWantsManager.this, null, 1);
             return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$a */
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public interface InterfaceC5602a {
+        /* JADX INFO: renamed from: a */
+        void mo8458a(long j, long j2, long j3, VideoMetadata videoMetadata);
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public enum VideoQualityMode {
+        AUTO(1),
+        FULL(2);
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final int numeral;
+
+        /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$VideoQualityMode$a, reason: from kotlin metadata */
+        /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+        public final class Companion {
+            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            }
+
+            /* JADX INFO: renamed from: a */
+            public final VideoQualityMode m8457a(Integer num) {
+                if (num != null && num.intValue() == 1) {
+                    return VideoQualityMode.AUTO;
+                }
+                return (num != null && num.intValue() == 2) ? VideoQualityMode.FULL : VideoQualityMode.AUTO;
+            }
+        }
+
+        VideoQualityMode(int i) {
+            this.numeral = i;
+        }
+
+        public final int getNumeral() {
+            return this.numeral;
         }
     }
 

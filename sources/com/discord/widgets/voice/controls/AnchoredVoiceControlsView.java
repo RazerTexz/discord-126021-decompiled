@@ -45,20 +45,9 @@ public final class AnchoredVoiceControlsView extends FrameLayout {
     private final AnchoredVoiceControlsViewBinding binding;
     private final TooltipManager tooltipManager;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            MediaEngineConnection.InputMode.values();
-            int[] iArr = new int[2];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[MediaEngineConnection.InputMode.PUSH_TO_TALK.ordinal()] = 1;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.voice.controls.AnchoredVoiceControlsView$setOnPttPressedListener$1 */
     /* JADX INFO: compiled from: AnchoredVoiceControlsView.kt */
-    public static final class C104341 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C104341 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ Function1 $onPttPressed;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -75,6 +64,17 @@ public final class AnchoredVoiceControlsView extends FrameLayout {
 
         public final void invoke(boolean z2) {
             this.$onPttPressed.invoke(Boolean.valueOf(z2));
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            MediaEngineConnection.InputMode.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[MediaEngineConnection.InputMode.PUSH_TO_TALK.ordinal()] = 1;
         }
     }
 

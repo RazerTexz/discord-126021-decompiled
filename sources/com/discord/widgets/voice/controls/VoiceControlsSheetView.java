@@ -86,53 +86,6 @@ public final class VoiceControlsSheetView extends LinearLayout {
         imageView2.setBackgroundTintList(ColorStateList.valueOf(getDefaultButtonBackgroundTint(context, false)));
     }
 
-    /* JADX INFO: renamed from: configureMoveToAudienceButton-yox5PQY, reason: not valid java name */
-    private final void m11438configureMoveToAudienceButtonyox5PQY(final StageRoles stageRoles, final Function0<Unit> onMoveToAudienceClick) {
-        ImageView imageView = this.binding.f15600j;
-        imageView.setVisibility((stageRoles == null || !StageRoles.m11410isSpeakerimpl(stageRoles.m11412unboximpl()) || StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) ? false : true ? 0 : 8);
-        ImageView imageView2 = this.binding.f15600j;
-        C12238m.checkNotNullExpressionValue(imageView2, "binding.moveToAudienceButton");
-        imageView2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(imageView.getContext(), C5419R.color.white_alpha_24)));
-        imageView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureMoveToAudienceButton$$inlined$apply$lambda$1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                onMoveToAudienceClick.invoke();
-            }
-        });
-    }
-
-    /* JADX INFO: renamed from: configureMuteButton-P2fzehM, reason: not valid java name */
-    private final void m11439configureMuteButtonP2fzehM(CallModel model, StageRoles stageRoles, final Function0<Unit> onMuteClick) {
-        if (stageRoles != null && !StageRoles.m11410isSpeakerimpl(stageRoles.m11412unboximpl())) {
-            ImageView imageView = this.binding.f15601k;
-            C12238m.checkNotNullExpressionValue(imageView, "binding.muteButton");
-            imageView.setVisibility(8);
-            return;
-        }
-        ImageView imageView2 = this.binding.f15601k;
-        C12238m.checkNotNullExpressionValue(imageView2, "binding.muteButton");
-        imageView2.setVisibility(0);
-        boolean zIsMeMutedByAnySource = model.isMeMutedByAnySource();
-        Context context = getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        int defaultButtonBackgroundTint = getDefaultButtonBackgroundTint(context, zIsMeMutedByAnySource);
-        ImageView imageView3 = this.binding.f15601k;
-        C12238m.checkNotNullExpressionValue(imageView3, "binding.muteButton");
-        imageView3.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
-        this.binding.f15601k.setImageResource(zIsMeMutedByAnySource ? C5419R.drawable.ic_mic_mute_red_strike_24dp : C5419R.drawable.ic_mic_white_24dp);
-        this.binding.f15601k.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureMuteButton$1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                onMuteClick.invoke();
-            }
-        });
-        ImageView imageView4 = this.binding.f15601k;
-        C12238m.checkNotNullExpressionValue(imageView4, "binding.muteButton");
-        Context context2 = getContext();
-        C12238m.checkNotNullExpressionValue(context2, "context");
-        imageView4.setContentDescription(C1107b.m216h(context2, zIsMeMutedByAnySource ? C5419R.string.unmute : C5419R.string.mute, new Object[0], null, 4));
-    }
-
     private final void configureOutputSelectors(VoiceControlsOutputSelectorState outputSelectorState, final Function0<Unit> onAudioOutputClick, boolean showInTopRow) {
         FrameLayout frameLayout = this.binding.f15593c;
         C12238m.checkNotNullExpressionValue(frameLayout, "binding.audioOutputContainer");
@@ -171,57 +124,6 @@ public final class VoiceControlsSheetView extends LinearLayout {
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
                 onAudioOutputClick.invoke();
-            }
-        });
-    }
-
-    /* JADX INFO: renamed from: configureRaiseHandButton-fw_bWyM, reason: not valid java name */
-    private final void m11440configureRaiseHandButtonfw_bWyM(final CallModel model, final StageRoles stageRoles, int requestingToSpeakCount, final boolean isUpdatingRequestToSpeak, final Function0<Unit> onRaiseHandClick) {
-        int i;
-        if (stageRoles == null || !(StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl()) || StageRoles.m11407isAudienceimpl(stageRoles.m11412unboximpl()))) {
-            NumericBadgingView numericBadgingView = this.binding.f15604n;
-            C12238m.checkNotNullExpressionValue(numericBadgingView, "binding.raiseHandBadge");
-            numericBadgingView.setVisibility(8);
-            return;
-        }
-        NumericBadgingView numericBadgingView2 = this.binding.f15604n;
-        boolean z2 = false;
-        numericBadgingView2.setVisibility(0);
-        if (!StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
-            requestingToSpeakCount = 0;
-        }
-        numericBadgingView2.setBadgeNumber(requestingToSpeakCount);
-        ImageView imageView = this.binding.f15605o;
-        if (StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
-            imageView.setContentDescription(imageView.getResources().getString(C5419R.string.request_to_speak_area_title));
-            ViewExtensions.setEnabledAndAlpha$default(imageView, true, 0.0f, 2, null);
-            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), C5419R.drawable.ic_stage_raised_hand_list));
-        } else {
-            Resources resources = imageView.getResources();
-            if (model.canRequestToSpeak()) {
-                i = model.isMyHandRaised() ? C5419R.string.audience_lower_hand : C5419R.string.audience_raise_hand_cta;
-            } else {
-                i = C5419R.string.audience_raise_hand_no_permission;
-            }
-            imageView.setContentDescription(resources.getString(i));
-            ViewExtensions.setEnabledAndAlpha(imageView, !isUpdatingRequestToSpeak && model.canRequestToSpeak(), 0.2f);
-            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), C5419R.drawable.ic_stage_raised_hand));
-        }
-        if (model.isMyHandRaised() && !StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
-            z2 = true;
-        }
-        Context context = imageView.getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        int defaultButtonBackgroundTint = getDefaultButtonBackgroundTint(context, z2);
-        Context context2 = imageView.getContext();
-        C12238m.checkNotNullExpressionValue(context2, "context");
-        int defaultButtonIconTint = getDefaultButtonIconTint(context2, z2);
-        imageView.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
-        ColorCompatKt.tintWithColor(imageView, defaultButtonIconTint);
-        imageView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureRaiseHandButton$$inlined$apply$lambda$1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                onRaiseHandClick.invoke();
             }
         });
     }
@@ -324,6 +226,116 @@ public final class VoiceControlsSheetView extends LinearLayout {
         return ColorCompat.getColor(context, typedValue.resourceId);
     }
 
+    public final int getPeekHeight() {
+        LinearLayout linearLayout = this.binding.f15602l;
+        C12238m.checkNotNullExpressionValue(linearLayout, "binding.peekContainer");
+        return linearLayout.getMeasuredHeight();
+    }
+
+    public final void handleSheetState(int bottomSheetState) {
+        CardView cardView = this.binding.f15608r;
+        C12238m.checkNotNullExpressionValue(cardView, "binding.secondaryActionsCard");
+        cardView.setVisibility((bottomSheetState != 4 || this.isGestureNavigationEnabled) ? 0 : 4);
+    }
+
+    /* JADX INFO: renamed from: configureMoveToAudienceButton-yox5PQY, reason: not valid java name */
+    private final void m11438configureMoveToAudienceButtonyox5PQY(final StageRoles stageRoles, final Function0<Unit> onMoveToAudienceClick) {
+        ImageView imageView = this.binding.f15600j;
+        imageView.setVisibility((stageRoles == null || !StageRoles.m11410isSpeakerimpl(stageRoles.m11412unboximpl()) || StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) ? false : true ? 0 : 8);
+        ImageView imageView2 = this.binding.f15600j;
+        C12238m.checkNotNullExpressionValue(imageView2, "binding.moveToAudienceButton");
+        imageView2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(imageView.getContext(), C5419R.color.white_alpha_24)));
+        imageView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureMoveToAudienceButton$$inlined$apply$lambda$1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                onMoveToAudienceClick.invoke();
+            }
+        });
+    }
+
+    /* JADX INFO: renamed from: configureMuteButton-P2fzehM, reason: not valid java name */
+    private final void m11439configureMuteButtonP2fzehM(CallModel model, StageRoles stageRoles, final Function0<Unit> onMuteClick) {
+        if (stageRoles != null && !StageRoles.m11410isSpeakerimpl(stageRoles.m11412unboximpl())) {
+            ImageView imageView = this.binding.f15601k;
+            C12238m.checkNotNullExpressionValue(imageView, "binding.muteButton");
+            imageView.setVisibility(8);
+            return;
+        }
+        ImageView imageView2 = this.binding.f15601k;
+        C12238m.checkNotNullExpressionValue(imageView2, "binding.muteButton");
+        imageView2.setVisibility(0);
+        boolean zIsMeMutedByAnySource = model.isMeMutedByAnySource();
+        Context context = getContext();
+        C12238m.checkNotNullExpressionValue(context, "context");
+        int defaultButtonBackgroundTint = getDefaultButtonBackgroundTint(context, zIsMeMutedByAnySource);
+        ImageView imageView3 = this.binding.f15601k;
+        C12238m.checkNotNullExpressionValue(imageView3, "binding.muteButton");
+        imageView3.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
+        this.binding.f15601k.setImageResource(zIsMeMutedByAnySource ? C5419R.drawable.ic_mic_mute_red_strike_24dp : C5419R.drawable.ic_mic_white_24dp);
+        this.binding.f15601k.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureMuteButton$1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                onMuteClick.invoke();
+            }
+        });
+        ImageView imageView4 = this.binding.f15601k;
+        C12238m.checkNotNullExpressionValue(imageView4, "binding.muteButton");
+        Context context2 = getContext();
+        C12238m.checkNotNullExpressionValue(context2, "context");
+        imageView4.setContentDescription(C1107b.m216h(context2, zIsMeMutedByAnySource ? C5419R.string.unmute : C5419R.string.mute, new Object[0], null, 4));
+    }
+
+    /* JADX INFO: renamed from: configureRaiseHandButton-fw_bWyM, reason: not valid java name */
+    private final void m11440configureRaiseHandButtonfw_bWyM(final CallModel model, final StageRoles stageRoles, int requestingToSpeakCount, final boolean isUpdatingRequestToSpeak, final Function0<Unit> onRaiseHandClick) {
+        int i;
+        if (stageRoles == null || !(StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl()) || StageRoles.m11407isAudienceimpl(stageRoles.m11412unboximpl()))) {
+            NumericBadgingView numericBadgingView = this.binding.f15604n;
+            C12238m.checkNotNullExpressionValue(numericBadgingView, "binding.raiseHandBadge");
+            numericBadgingView.setVisibility(8);
+            return;
+        }
+        NumericBadgingView numericBadgingView2 = this.binding.f15604n;
+        boolean z2 = false;
+        numericBadgingView2.setVisibility(0);
+        if (!StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
+            requestingToSpeakCount = 0;
+        }
+        numericBadgingView2.setBadgeNumber(requestingToSpeakCount);
+        ImageView imageView = this.binding.f15605o;
+        if (StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
+            imageView.setContentDescription(imageView.getResources().getString(C5419R.string.request_to_speak_area_title));
+            ViewExtensions.setEnabledAndAlpha$default(imageView, true, 0.0f, 2, null);
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), C5419R.drawable.ic_stage_raised_hand_list));
+        } else {
+            Resources resources = imageView.getResources();
+            if (model.canRequestToSpeak()) {
+                i = model.isMyHandRaised() ? C5419R.string.audience_lower_hand : C5419R.string.audience_raise_hand_cta;
+            } else {
+                i = C5419R.string.audience_raise_hand_no_permission;
+            }
+            imageView.setContentDescription(resources.getString(i));
+            ViewExtensions.setEnabledAndAlpha(imageView, !isUpdatingRequestToSpeak && model.canRequestToSpeak(), 0.2f);
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), C5419R.drawable.ic_stage_raised_hand));
+        }
+        if (model.isMyHandRaised() && !StageRoles.m11409isModeratorimpl(stageRoles.m11412unboximpl())) {
+            z2 = true;
+        }
+        Context context = imageView.getContext();
+        C12238m.checkNotNullExpressionValue(context, "context");
+        int defaultButtonBackgroundTint = getDefaultButtonBackgroundTint(context, z2);
+        Context context2 = imageView.getContext();
+        C12238m.checkNotNullExpressionValue(context2, "context");
+        int defaultButtonIconTint = getDefaultButtonIconTint(context2, z2);
+        imageView.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
+        ColorCompatKt.tintWithColor(imageView, defaultButtonIconTint);
+        imageView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureRaiseHandButton$$inlined$apply$lambda$1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                onRaiseHandClick.invoke();
+            }
+        });
+    }
+
     /* JADX INFO: renamed from: configureUI-3jxq49Y, reason: not valid java name */
     public final void m11441configureUI3jxq49Y(CallModel model, VoiceControlsOutputSelectorState outputSelectorState, boolean isVideoEnabledForCall, boolean isPttEnabled, boolean isDeafened, boolean startedAsVideo, boolean showStopWatching, final boolean showDisconnect, final Function0<Unit> onStopWatchingClick, final Function0<Unit> onDisconnectClick, Function0<Unit> onAudioOutputClick, Function0<Unit> onVideoClick, Function0<Unit> onMuteClick, Function0<Unit> onInviteClick, Function0<Unit> onScreenshareClick, boolean showStreamVolume, float perceptualStreamVolume, Function2<? super Float, ? super Boolean, Unit> onStreamVolumeChange, final Function0<Unit> onDeafenPressed, int requestingToSpeakCount, Function0<Unit> onRaiseHandClick, Function0<Unit> onMoveToAudienceClick, boolean isUpdatingRequestToSpeak, final StageRoles stageRoles) {
         int i;
@@ -405,18 +417,6 @@ public final class VoiceControlsSheetView extends LinearLayout {
         configureScreenshareButtons(model, onScreenshareClick, startedAsVideo);
         configureStreamVolume(showStreamVolume, perceptualStreamVolume, onStreamVolumeChange);
         configureInviteButtons(model, onInviteClick, ChannelUtils.m7669D(model.getChannel()));
-    }
-
-    public final int getPeekHeight() {
-        LinearLayout linearLayout = this.binding.f15602l;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.peekContainer");
-        return linearLayout.getMeasuredHeight();
-    }
-
-    public final void handleSheetState(int bottomSheetState) {
-        CardView cardView = this.binding.f15608r;
-        C12238m.checkNotNullExpressionValue(cardView, "binding.secondaryActionsCard");
-        cardView.setVisibility((bottomSheetState != 4 || this.isGestureNavigationEnabled) ? 0 : 4);
     }
 
     @Override // android.view.ViewGroup, android.view.View

@@ -77,7 +77,7 @@ public final class C12366j {
 
     /* JADX INFO: renamed from: f0.j$a */
     /* JADX INFO: compiled from: CipherSuite.kt */
-    public static final class a implements Comparator<String> {
+    public final class a implements Comparator<String> {
         /* JADX WARN: Code duplicated, block: B:9:0x002c A[RETURN, SYNTHETIC] */
         @Override // java.util.Comparator
         public int compare(String str, String str2) {
@@ -110,7 +110,7 @@ public final class C12366j {
 
     /* JADX INFO: renamed from: f0.j$b */
     /* JADX INFO: compiled from: CipherSuite.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

@@ -19,20 +19,6 @@ public final class C11912c {
     /* JADX INFO: renamed from: a */
     public static final C11912c f24743a = new C11912c();
 
-    /* JADX INFO: renamed from: a */
-    public final boolean m9997a(AbstractC11921f abstractC11921f, InterfaceC11980i interfaceC11980i, InterfaceC11983l interfaceC11983l) {
-        if (abstractC11921f.isNothing(interfaceC11980i)) {
-            return true;
-        }
-        if (abstractC11921f.isMarkedNullable(interfaceC11980i)) {
-            return false;
-        }
-        if (abstractC11921f.isStubTypeEqualsToAnything() && abstractC11921f.isStubType(interfaceC11980i)) {
-            return true;
-        }
-        return abstractC11921f.areEqualTypeConstructors(abstractC11921f.typeConstructor(interfaceC11980i), interfaceC11983l);
-    }
-
     public final boolean hasNotNullSupertype(AbstractC11921f abstractC11921f, InterfaceC11980i interfaceC11980i, AbstractC11921f.b bVar) {
         C12238m.checkNotNullParameter(abstractC11921f, "<this>");
         C12238m.checkNotNullParameter(interfaceC11980i, "type");
@@ -137,5 +123,19 @@ public final class C11912c {
             return false;
         }
         return hasPathByNotMarkedNullableNodes(abstractC11921f, interfaceC11980i, abstractC11921f.typeConstructor(interfaceC11980i2));
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m9997a(AbstractC11921f abstractC11921f, InterfaceC11980i interfaceC11980i, InterfaceC11983l interfaceC11983l) {
+        if (abstractC11921f.isNothing(interfaceC11980i)) {
+            return true;
+        }
+        if (abstractC11921f.isMarkedNullable(interfaceC11980i)) {
+            return false;
+        }
+        if (abstractC11921f.isStubTypeEqualsToAnything() && abstractC11921f.isStubType(interfaceC11980i)) {
+            return true;
+        }
+        return abstractC11921f.areEqualTypeConstructors(abstractC11921f.typeConstructor(interfaceC11980i), interfaceC11983l);
     }
 }

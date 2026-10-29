@@ -47,7 +47,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
     private static final int CORNER_ANIMATION_DURATION = 500;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_BottomSheet_Modal;
     private static final float HIDE_FRICTION = 0.1f;
     private static final float HIDE_THRESHOLD = 0.5f;
     public static final int PEEK_HEIGHT_AUTO = -1;
@@ -122,109 +121,12 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
 
     @Nullable
     public WeakReference<V> viewRef;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_BottomSheet_Modal;
 
-    public static abstract class BottomSheetCallback {
+    public abstract class BottomSheetCallback {
         public abstract void onSlide(@NonNull View view, float f);
 
         public abstract void onStateChanged(@NonNull View view, int i);
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface SaveFlags {
-    }
-
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10852a();
-        public boolean fitToContents;
-        public boolean hideable;
-        public int peekHeight;
-        public boolean skipCollapsed;
-        public final int state;
-
-        /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$SavedState$a */
-        public static class C10852a implements Parcelable.ClassLoaderCreator<SavedState> {
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            @NonNull
-            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @Nullable
-            public Object createFromParcel(@NonNull Parcel parcel) {
-                return new SavedState(parcel, (ClassLoader) null);
-            }
-        }
-
-        public SavedState(@NonNull Parcel parcel) {
-            this(parcel, (ClassLoader) null);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.state);
-            parcel.writeInt(this.peekHeight);
-            parcel.writeInt(this.fitToContents ? 1 : 0);
-            parcel.writeInt(this.hideable ? 1 : 0);
-            parcel.writeInt(this.skipCollapsed ? 1 : 0);
-        }
-
-        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            this.state = parcel.readInt();
-            this.peekHeight = parcel.readInt();
-            this.fitToContents = parcel.readInt() == 1;
-            this.hideable = parcel.readInt() == 1;
-            this.skipCollapsed = parcel.readInt() == 1;
-        }
-
-        public SavedState(Parcelable parcelable, @NonNull BottomSheetBehavior<?> bottomSheetBehavior) {
-            super(parcelable);
-            this.state = bottomSheetBehavior.state;
-            this.peekHeight = ((BottomSheetBehavior) bottomSheetBehavior).peekHeight;
-            this.fitToContents = ((BottomSheetBehavior) bottomSheetBehavior).fitToContents;
-            this.hideable = bottomSheetBehavior.hideable;
-            this.skipCollapsed = ((BottomSheetBehavior) bottomSheetBehavior).skipCollapsed;
-        }
-
-        @Deprecated
-        public SavedState(Parcelable parcelable, int i) {
-            super(parcelable);
-            this.state = i;
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface State {
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$a */
-    public class RunnableC10853a implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ View f20924j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ int f20925k;
-
-        public RunnableC10853a(View view, int i) {
-            this.f20924j = view;
-            this.f20925k = i;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            BottomSheetBehavior.this.settleToState(this.f20924j, this.f20925k);
-        }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$b */
@@ -403,6 +305,26 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         }
     }
 
+    /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$a */
+    public class RunnableC10853a implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ View f20924j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ int f20925k;
+
+        public RunnableC10853a(View view, int i) {
+            this.f20924j = view;
+            this.f20925k = i;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BottomSheetBehavior.this.settleToState(this.f20924j, this.f20925k);
+        }
+    }
+
     /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$f */
     public class RunnableC10858f implements Runnable {
 
@@ -432,6 +354,84 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         }
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface SaveFlags {
+    }
+
+    public class SavedState extends AbsSavedState {
+        public boolean fitToContents;
+        public boolean hideable;
+        public int peekHeight;
+        public boolean skipCollapsed;
+        public final int state;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10852a();
+
+        /* JADX INFO: renamed from: com.google.android.material.bottomsheet.BottomSheetBehavior$SavedState$a */
+        public final class C10852a implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public Object[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @Nullable
+            public Object createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel, (ClassLoader) null);
+            }
+        }
+
+        public SavedState(@NonNull Parcel parcel) {
+            this(parcel, (ClassLoader) null);
+        }
+
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.state);
+            parcel.writeInt(this.peekHeight);
+            parcel.writeInt(this.fitToContents ? 1 : 0);
+            parcel.writeInt(this.hideable ? 1 : 0);
+            parcel.writeInt(this.skipCollapsed ? 1 : 0);
+        }
+
+        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.state = parcel.readInt();
+            this.peekHeight = parcel.readInt();
+            this.fitToContents = parcel.readInt() == 1;
+            this.hideable = parcel.readInt() == 1;
+            this.skipCollapsed = parcel.readInt() == 1;
+        }
+
+        public SavedState(Parcelable parcelable, @NonNull BottomSheetBehavior<?> bottomSheetBehavior) {
+            super(parcelable);
+            this.state = bottomSheetBehavior.state;
+            this.peekHeight = ((BottomSheetBehavior) bottomSheetBehavior).peekHeight;
+            this.fitToContents = ((BottomSheetBehavior) bottomSheetBehavior).fitToContents;
+            this.hideable = bottomSheetBehavior.hideable;
+            this.skipCollapsed = ((BottomSheetBehavior) bottomSheetBehavior).skipCollapsed;
+        }
+
+        @Deprecated
+        public SavedState(Parcelable parcelable, int i) {
+            super(parcelable);
+            this.state = i;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface State {
+    }
+
     public BottomSheetBehavior() {
         this.saveFlags = 0;
         this.fitToContents = true;
@@ -448,6 +448,13 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
 
     private int addAccessibilityActionForState(V v, @StringRes int i, int i2) {
         return ViewCompat.addAccessibilityAction(v, v.getResources().getString(i), createAccessibilityViewCommandForState(i2));
+    }
+
+    public void addBottomSheetCallback(@NonNull BottomSheetCallback bottomSheetCallback) {
+        if (this.callbacks.contains(bottomSheetCallback)) {
+            return;
+        }
+        this.callbacks.add(bottomSheetCallback);
     }
 
     private void calculateCollapsedOffset() {
@@ -484,196 +491,6 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         this.interpolatorAnimator = valueAnimatorOfFloat;
         valueAnimatorOfFloat.setDuration(500L);
         this.interpolatorAnimator.addUpdateListener(new C10854b());
-    }
-
-    @NonNull
-    public static <V extends View> BottomSheetBehavior<V> from(@NonNull V v) {
-        ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
-            throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
-        }
-        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior();
-        if (behavior instanceof BottomSheetBehavior) {
-            return (BottomSheetBehavior) behavior;
-        }
-        throw new IllegalArgumentException("The view is not associated with BottomSheetBehavior");
-    }
-
-    private float getYVelocity() {
-        VelocityTracker velocityTracker = this.velocityTracker;
-        if (velocityTracker == null) {
-            return 0.0f;
-        }
-        velocityTracker.computeCurrentVelocity(1000, this.maximumVelocity);
-        return this.velocityTracker.getYVelocity(this.activePointerId);
-    }
-
-    private void replaceAccessibilityActionForState(V v, AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat, int i) {
-        ViewCompat.replaceAccessibilityAction(v, accessibilityActionCompat, null, createAccessibilityViewCommandForState(i));
-    }
-
-    private void reset() {
-        this.activePointerId = -1;
-        VelocityTracker velocityTracker = this.velocityTracker;
-        if (velocityTracker != null) {
-            velocityTracker.recycle();
-            this.velocityTracker = null;
-        }
-    }
-
-    private void restoreOptionalState(@NonNull SavedState savedState) {
-        int i = this.saveFlags;
-        if (i == 0) {
-            return;
-        }
-        if (i == -1 || (i & 1) == 1) {
-            this.peekHeight = savedState.peekHeight;
-        }
-        if (i == -1 || (i & 2) == 2) {
-            this.fitToContents = savedState.fitToContents;
-        }
-        if (i == -1 || (i & 4) == 4) {
-            this.hideable = savedState.hideable;
-        }
-        if (i == -1 || (i & 8) == 8) {
-            this.skipCollapsed = savedState.skipCollapsed;
-        }
-    }
-
-    private void setSystemGestureInsets(@NonNull View view) {
-        if (Build.VERSION.SDK_INT < 29 || isGestureInsetBottomIgnored() || this.peekHeightAuto) {
-            return;
-        }
-        ViewUtils.doOnApplyWindowInsets(view, new C10855c());
-    }
-
-    private void settleToStatePendingLayout(int i) {
-        V v = this.viewRef.get();
-        if (v == null) {
-            return;
-        }
-        ViewParent parent = v.getParent();
-        if (parent != null && parent.isLayoutRequested() && ViewCompat.isAttachedToWindow(v)) {
-            v.post(new RunnableC10853a(v, i));
-        } else {
-            settleToState(v, i);
-        }
-    }
-
-    private void updateAccessibilityActions() {
-        V v;
-        WeakReference<V> weakReference = this.viewRef;
-        if (weakReference == null || (v = weakReference.get()) == null) {
-            return;
-        }
-        ViewCompat.removeAccessibilityAction(v, 524288);
-        ViewCompat.removeAccessibilityAction(v, 262144);
-        ViewCompat.removeAccessibilityAction(v, 1048576);
-        int i = this.expandHalfwayActionId;
-        if (i != -1) {
-            ViewCompat.removeAccessibilityAction(v, i);
-        }
-        if (this.state != 6) {
-            this.expandHalfwayActionId = addAccessibilityActionForState(v, C10817R.string.bottomsheet_action_expand_halfway, 6);
-        }
-        if (this.hideable && this.state != 5) {
-            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_DISMISS, 5);
-        }
-        int i2 = this.state;
-        if (i2 == 3) {
-            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_COLLAPSE, this.fitToContents ? 4 : 6);
-            return;
-        }
-        if (i2 == 4) {
-            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_EXPAND, this.fitToContents ? 3 : 6);
-        } else {
-            if (i2 != 6) {
-                return;
-            }
-            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_COLLAPSE, 4);
-            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_EXPAND, 3);
-        }
-    }
-
-    private void updateDrawableForTargetState(int i) {
-        ValueAnimator valueAnimator;
-        if (i == 2) {
-            return;
-        }
-        boolean z2 = i == 3;
-        if (this.isShapeExpanded != z2) {
-            this.isShapeExpanded = z2;
-            if (this.materialShapeDrawable == null || (valueAnimator = this.interpolatorAnimator) == null) {
-                return;
-            }
-            if (valueAnimator.isRunning()) {
-                this.interpolatorAnimator.reverse();
-                return;
-            }
-            float f = z2 ? 0.0f : 1.0f;
-            this.interpolatorAnimator.setFloatValues(1.0f - f, f);
-            this.interpolatorAnimator.start();
-        }
-    }
-
-    private void updateImportantForAccessibility(boolean z2) {
-        Map<View, Integer> map;
-        WeakReference<V> weakReference = this.viewRef;
-        if (weakReference == null) {
-            return;
-        }
-        ViewParent parent = weakReference.get().getParent();
-        if (parent instanceof CoordinatorLayout) {
-            CoordinatorLayout coordinatorLayout = (CoordinatorLayout) parent;
-            int childCount = coordinatorLayout.getChildCount();
-            if (z2) {
-                if (this.importantForAccessibilityMap != null) {
-                    return;
-                } else {
-                    this.importantForAccessibilityMap = new HashMap(childCount);
-                }
-            }
-            for (int i = 0; i < childCount; i++) {
-                View childAt = coordinatorLayout.getChildAt(i);
-                if (childAt != this.viewRef.get()) {
-                    if (z2) {
-                        this.importantForAccessibilityMap.put(childAt, Integer.valueOf(childAt.getImportantForAccessibility()));
-                        if (this.updateImportantForAccessibilityOnSiblings) {
-                            ViewCompat.setImportantForAccessibility(childAt, 4);
-                        }
-                    } else if (this.updateImportantForAccessibilityOnSiblings && (map = this.importantForAccessibilityMap) != null && map.containsKey(childAt)) {
-                        ViewCompat.setImportantForAccessibility(childAt, this.importantForAccessibilityMap.get(childAt).intValue());
-                    }
-                }
-            }
-            if (!z2) {
-                this.importantForAccessibilityMap = null;
-            } else if (this.updateImportantForAccessibilityOnSiblings) {
-                this.viewRef.get().sendAccessibilityEvent(8);
-            }
-        }
-    }
-
-    private void updatePeekHeight(boolean z2) {
-        V v;
-        if (this.viewRef != null) {
-            calculateCollapsedOffset();
-            if (this.state != 4 || (v = this.viewRef.get()) == null) {
-                return;
-            }
-            if (z2) {
-                settleToStatePendingLayout(this.state);
-            } else {
-                v.requestLayout();
-            }
-        }
-    }
-
-    public void addBottomSheetCallback(@NonNull BottomSheetCallback bottomSheetCallback) {
-        if (this.callbacks.contains(bottomSheetCallback)) {
-            return;
-        }
-        this.callbacks.add(bottomSheetCallback);
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -725,6 +542,19 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         return null;
     }
 
+    @NonNull
+    public static <V extends View> BottomSheetBehavior<V> from(@NonNull V v) {
+        ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
+            throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
+        }
+        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior();
+        if (behavior instanceof BottomSheetBehavior) {
+            return (BottomSheetBehavior) behavior;
+        }
+        throw new IllegalArgumentException("The view is not associated with BottomSheetBehavior");
+    }
+
     public int getExpandedOffset() {
         return this.fitToContents ? this.fitToContentsOffset : this.expandedOffset;
     }
@@ -756,6 +586,15 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
 
     public int getState() {
         return this.state;
+    }
+
+    private float getYVelocity() {
+        VelocityTracker velocityTracker = this.velocityTracker;
+        if (velocityTracker == null) {
+            return 0.0f;
+        }
+        velocityTracker.computeCurrentVelocity(1000, this.maximumVelocity);
+        return this.velocityTracker.getYVelocity(this.activePointerId);
     }
 
     public boolean isDraggable() {
@@ -1069,6 +908,38 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         this.callbacks.remove(bottomSheetCallback);
     }
 
+    private void replaceAccessibilityActionForState(V v, AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat, int i) {
+        ViewCompat.replaceAccessibilityAction(v, accessibilityActionCompat, null, createAccessibilityViewCommandForState(i));
+    }
+
+    private void reset() {
+        this.activePointerId = -1;
+        VelocityTracker velocityTracker = this.velocityTracker;
+        if (velocityTracker != null) {
+            velocityTracker.recycle();
+            this.velocityTracker = null;
+        }
+    }
+
+    private void restoreOptionalState(@NonNull SavedState savedState) {
+        int i = this.saveFlags;
+        if (i == 0) {
+            return;
+        }
+        if (i == -1 || (i & 1) == 1) {
+            this.peekHeight = savedState.peekHeight;
+        }
+        if (i == -1 || (i & 2) == 2) {
+            this.fitToContents = savedState.fitToContents;
+        }
+        if (i == -1 || (i & 4) == 4) {
+            this.hideable = savedState.hideable;
+        }
+        if (i == -1 || (i & 8) == 8) {
+            this.skipCollapsed = savedState.skipCollapsed;
+        }
+    }
+
     @Deprecated
     public void setBottomSheetCallback(BottomSheetCallback bottomSheetCallback) {
         Log.w(TAG, "BottomSheetBehavior now supports multiple callbacks. `setBottomSheetCallback()` removes all existing callbacks, including ones set internally by library authors, which may result in unintended behavior. This may change in the future. Please use `addBottomSheetCallback()` and `removeBottomSheetCallback()` instead to set your own callbacks.");
@@ -1172,6 +1043,13 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         updateAccessibilityActions();
     }
 
+    private void setSystemGestureInsets(@NonNull View view) {
+        if (Build.VERSION.SDK_INT < 29 || isGestureInsetBottomIgnored() || this.peekHeightAuto) {
+            return;
+        }
+        ViewUtils.doOnApplyWindowInsets(view, new C10855c());
+    }
+
     public void setUpdateImportantForAccessibilityOnSiblings(boolean z2) {
         this.updateImportantForAccessibilityOnSiblings = z2;
     }
@@ -1196,6 +1074,19 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
             expandedOffset = this.parentHeight;
         }
         startSettlingAnimation(view, i, expandedOffset, false);
+    }
+
+    private void settleToStatePendingLayout(int i) {
+        V v = this.viewRef.get();
+        if (v == null) {
+            return;
+        }
+        ViewParent parent = v.getParent();
+        if (parent != null && parent.isLayoutRequested() && ViewCompat.isAttachedToWindow(v)) {
+            v.post(new RunnableC10853a(v, i));
+        } else {
+            settleToState(v, i);
+        }
     }
 
     public boolean shouldHide(@NonNull View view, float f) {
@@ -1227,6 +1118,115 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         runnableC10858f.f20934l = i;
         ViewCompat.postOnAnimation(view, runnableC10858f);
         this.settleRunnable.f20933k = true;
+    }
+
+    private void updateAccessibilityActions() {
+        V v;
+        WeakReference<V> weakReference = this.viewRef;
+        if (weakReference == null || (v = weakReference.get()) == null) {
+            return;
+        }
+        ViewCompat.removeAccessibilityAction(v, 524288);
+        ViewCompat.removeAccessibilityAction(v, 262144);
+        ViewCompat.removeAccessibilityAction(v, 1048576);
+        int i = this.expandHalfwayActionId;
+        if (i != -1) {
+            ViewCompat.removeAccessibilityAction(v, i);
+        }
+        if (this.state != 6) {
+            this.expandHalfwayActionId = addAccessibilityActionForState(v, C10817R.string.bottomsheet_action_expand_halfway, 6);
+        }
+        if (this.hideable && this.state != 5) {
+            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_DISMISS, 5);
+        }
+        int i2 = this.state;
+        if (i2 == 3) {
+            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_COLLAPSE, this.fitToContents ? 4 : 6);
+            return;
+        }
+        if (i2 == 4) {
+            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_EXPAND, this.fitToContents ? 3 : 6);
+        } else {
+            if (i2 != 6) {
+                return;
+            }
+            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_COLLAPSE, 4);
+            replaceAccessibilityActionForState(v, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_EXPAND, 3);
+        }
+    }
+
+    private void updateDrawableForTargetState(int i) {
+        ValueAnimator valueAnimator;
+        if (i == 2) {
+            return;
+        }
+        boolean z2 = i == 3;
+        if (this.isShapeExpanded != z2) {
+            this.isShapeExpanded = z2;
+            if (this.materialShapeDrawable == null || (valueAnimator = this.interpolatorAnimator) == null) {
+                return;
+            }
+            if (valueAnimator.isRunning()) {
+                this.interpolatorAnimator.reverse();
+                return;
+            }
+            float f = z2 ? 0.0f : 1.0f;
+            this.interpolatorAnimator.setFloatValues(1.0f - f, f);
+            this.interpolatorAnimator.start();
+        }
+    }
+
+    private void updateImportantForAccessibility(boolean z2) {
+        Map<View, Integer> map;
+        WeakReference<V> weakReference = this.viewRef;
+        if (weakReference == null) {
+            return;
+        }
+        ViewParent parent = weakReference.get().getParent();
+        if (parent instanceof CoordinatorLayout) {
+            CoordinatorLayout coordinatorLayout = (CoordinatorLayout) parent;
+            int childCount = coordinatorLayout.getChildCount();
+            if (z2) {
+                if (this.importantForAccessibilityMap != null) {
+                    return;
+                } else {
+                    this.importantForAccessibilityMap = new HashMap(childCount);
+                }
+            }
+            for (int i = 0; i < childCount; i++) {
+                View childAt = coordinatorLayout.getChildAt(i);
+                if (childAt != this.viewRef.get()) {
+                    if (z2) {
+                        this.importantForAccessibilityMap.put(childAt, Integer.valueOf(childAt.getImportantForAccessibility()));
+                        if (this.updateImportantForAccessibilityOnSiblings) {
+                            ViewCompat.setImportantForAccessibility(childAt, 4);
+                        }
+                    } else if (this.updateImportantForAccessibilityOnSiblings && (map = this.importantForAccessibilityMap) != null && map.containsKey(childAt)) {
+                        ViewCompat.setImportantForAccessibility(childAt, this.importantForAccessibilityMap.get(childAt).intValue());
+                    }
+                }
+            }
+            if (!z2) {
+                this.importantForAccessibilityMap = null;
+            } else if (this.updateImportantForAccessibilityOnSiblings) {
+                this.viewRef.get().sendAccessibilityEvent(8);
+            }
+        }
+    }
+
+    private void updatePeekHeight(boolean z2) {
+        V v;
+        if (this.viewRef != null) {
+            calculateCollapsedOffset();
+            if (this.state != 4 || (v = this.viewRef.get()) == null) {
+                return;
+            }
+            if (z2) {
+                settleToStatePendingLayout(this.state);
+            } else {
+                v.requestLayout();
+            }
+        }
     }
 
     private void createMaterialShapeDrawable(@NonNull Context context, AttributeSet attributeSet, boolean z2, @Nullable ColorStateList colorStateList) {

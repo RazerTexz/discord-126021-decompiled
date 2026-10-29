@@ -33,30 +33,9 @@ public final class StoreUIEventHandler {
     private final StoreUserGuildSettings storeUserGuildSettings;
     private final StoreVoiceChannelSelected voiceChannelSelectedStore;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-
-        static {
-            KrispOveruseDetector.Status.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[KrispOveruseDetector.Status.CPU_OVERUSE.ordinal()] = 1;
-            iArr[KrispOveruseDetector.Status.VAD_CPU_OVERUSE.ordinal()] = 2;
-            iArr[KrispOveruseDetector.Status.FAILED.ordinal()] = 3;
-            StoreUserGuildSettings.SettingsUpdateType.values();
-            int[] iArr2 = new int[4];
-            $EnumSwitchMapping$1 = iArr2;
-            iArr2[StoreUserGuildSettings.SettingsUpdateType.GUILD.ordinal()] = 1;
-            iArr2[StoreUserGuildSettings.SettingsUpdateType.CHANNEL.ordinal()] = 2;
-            iArr2[StoreUserGuildSettings.SettingsUpdateType.THREAD.ordinal()] = 3;
-            iArr2[StoreUserGuildSettings.SettingsUpdateType.CATEGORY.ordinal()] = 4;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.StoreUIEventHandler$subscribeToStoreEvents$1 */
     /* JADX INFO: compiled from: StoreUIEventHandler.kt */
-    public static final class C66621 extends AbstractC12240o implements Function1<KrispOveruseDetector.Status, Unit> {
+    public final class C66621 extends AbstractC12240o implements Function1<KrispOveruseDetector.Status, Unit> {
         public C66621() {
             super(1);
         }
@@ -76,7 +55,7 @@ public final class StoreUIEventHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.StoreUIEventHandler$subscribeToStoreEvents$2 */
     /* JADX INFO: compiled from: StoreUIEventHandler.kt */
-    public static final class C66632 extends AbstractC12240o implements Function1<StoreUserGuildSettings.Event, Unit> {
+    public final class C66632 extends AbstractC12240o implements Function1<StoreUserGuildSettings.Event, Unit> {
         public C66632() {
             super(1);
         }
@@ -91,6 +70,27 @@ public final class StoreUIEventHandler {
         public final void invoke2(StoreUserGuildSettings.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             StoreUIEventHandler.this.handleUserGuildSettingsEvent(event);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            KrispOveruseDetector.Status.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[KrispOveruseDetector.Status.CPU_OVERUSE.ordinal()] = 1;
+            iArr[KrispOveruseDetector.Status.VAD_CPU_OVERUSE.ordinal()] = 2;
+            iArr[KrispOveruseDetector.Status.FAILED.ordinal()] = 3;
+            StoreUserGuildSettings.SettingsUpdateType.values();
+            int[] iArr2 = new int[4];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[StoreUserGuildSettings.SettingsUpdateType.GUILD.ordinal()] = 1;
+            iArr2[StoreUserGuildSettings.SettingsUpdateType.CHANNEL.ordinal()] = 2;
+            iArr2[StoreUserGuildSettings.SettingsUpdateType.THREAD.ordinal()] = 3;
+            iArr2[StoreUserGuildSettings.SettingsUpdateType.CATEGORY.ordinal()] = 4;
         }
     }
 

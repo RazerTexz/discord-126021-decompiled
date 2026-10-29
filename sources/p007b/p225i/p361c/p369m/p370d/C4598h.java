@@ -23,9 +23,6 @@ import p007b.p225i.p361c.p369m.p370d.p384s.p386i.C4751e;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4598h {
 
-    /* JADX INFO: renamed from: a */
-    public final C4706b f12234a = new C4706b();
-
     /* JADX INFO: renamed from: b */
     public final C4542c f12235b;
 
@@ -61,6 +58,9 @@ public class C4598h {
 
     /* JADX INFO: renamed from: m */
     public C4650q0 f12246m;
+
+    /* JADX INFO: renamed from: a */
+    public final C4706b f12234a = new C4706b();
 
     public C4598h(C4542c c4542c, Context context, C4660v0 c4660v0, C4650q0 c4650q0) {
         this.f12235b = c4542c;

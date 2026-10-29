@@ -31,7 +31,7 @@ public final class WidgetHubAddServerViewModel extends AbstractC0859d0<HubAddSer
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServerViewModel$1 */
     /* JADX INFO: compiled from: WidgetHubAddServerViewModel.kt */
-    public static final /* synthetic */ class C89991 extends C12236k implements Function1<HubAddServerState, Unit> {
+    public final /* synthetic */ class C89991 extends C12236k implements Function1<HubAddServerState, Unit> {
         public C89991(WidgetHubAddServerViewModel widgetHubAddServerViewModel) {
             super(1, widgetHubAddServerViewModel, WidgetHubAddServerViewModel.class, "handleStoreUpdate", "handleStoreUpdate(Lcom/discord/widgets/hubs/HubAddServerState;)V", 0);
         }
@@ -50,7 +50,7 @@ public final class WidgetHubAddServerViewModel extends AbstractC0859d0<HubAddSer
     }
 
     /* JADX INFO: compiled from: WidgetHubAddServerViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -79,10 +79,6 @@ public final class WidgetHubAddServerViewModel extends AbstractC0859d0<HubAddSer
         this(observable);
     }
 
-    private final void handleStoreUpdate(HubAddServerState state) {
-        updateViewState(HubAddServerState.copy$default(requireViewState(), state.getHubName(), state.getDirectoryChannelId(), 0, state.getSelectableGuilds(), state.getAddedGuilds(), state.getAddedDirectories(), 4, null));
-    }
-
     public final Long getChannelId() {
         HubAddServerState viewState = getViewState();
         if (viewState != null) {
@@ -95,6 +91,10 @@ public final class WidgetHubAddServerViewModel extends AbstractC0859d0<HubAddSer
         HubAddServerState viewState = getViewState();
         String hubName = viewState != null ? viewState.getHubName() : null;
         return hubName != null ? hubName : "";
+    }
+
+    private final void handleStoreUpdate(HubAddServerState state) {
+        updateViewState(HubAddServerState.copy$default(requireViewState(), state.getHubName(), state.getDirectoryChannelId(), 0, state.getSelectableGuilds(), state.getAddedGuilds(), state.getAddedDirectories(), 4, null));
     }
 
     public final void removeGuild(long id2, long directoryChannelId) {

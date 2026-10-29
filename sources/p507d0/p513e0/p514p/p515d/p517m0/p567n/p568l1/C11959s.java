@@ -6,6 +6,18 @@ import p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0;
 /* JADX INFO: compiled from: TypeCheckerProcedureCallbacksImpl.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C11959s implements InterfaceC11961u {
+    public boolean assertEqualTypeConstructors(InterfaceC12008u0 interfaceC12008u0, InterfaceC12008u0 interfaceC12008u1) {
+        if (interfaceC12008u0 == null) {
+            m10013a(3);
+            throw null;
+        }
+        if (interfaceC12008u1 != null) {
+            return interfaceC12008u0.equals(interfaceC12008u1);
+        }
+        m10013a(4);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m10013a(int i) {
         Object[] objArr = new Object[3];
@@ -61,17 +73,5 @@ public class C11959s implements InterfaceC11961u {
                 break;
         }
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-    }
-
-    public boolean assertEqualTypeConstructors(InterfaceC12008u0 interfaceC12008u0, InterfaceC12008u0 interfaceC12008u1) {
-        if (interfaceC12008u0 == null) {
-            m10013a(3);
-            throw null;
-        }
-        if (interfaceC12008u1 != null) {
-            return interfaceC12008u0.equals(interfaceC12008u1);
-        }
-        m10013a(4);
-        throw null;
     }
 }

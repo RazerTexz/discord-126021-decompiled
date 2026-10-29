@@ -7,14 +7,20 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3952l<E> extends AbstractC3951k<E> {
 
-    /* JADX INFO: renamed from: l */
-    public static final AbstractC3951k<Object> f10490l = new C3952l(new Object[0]);
-
     /* JADX INFO: renamed from: m */
     public final transient Object[] f10491m;
 
+    /* JADX INFO: renamed from: l */
+    public static final AbstractC3951k<Object> f10490l = new C3952l(new Object[0]);
+
     public C3952l(Object[] objArr) {
         this.f10491m = objArr;
+    }
+
+    @Override // java.util.List
+    public final E get(int i) {
+        C3404f.m4206F1(i, 0, "index");
+        return (E) this.f10491m[i];
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3951k, p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3948h
@@ -40,12 +46,6 @@ public final class C3952l<E> extends AbstractC3951k<E> {
     /* JADX INFO: renamed from: g */
     public final Object[] mo5433g() {
         return this.f10491m;
-    }
-
-    @Override // java.util.List
-    public final E get(int i) {
-        C3404f.m4206F1(i, 0, "index");
-        return (E) this.f10491m[i];
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List

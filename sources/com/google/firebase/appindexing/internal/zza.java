@@ -12,7 +12,6 @@ import p007b.p225i.p361c.p365k.p367d.C4563a;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zza extends AbstractSafeParcelable implements InterfaceC4560a {
-    public static final Parcelable.Creator<zza> CREATOR = new C4563a();
 
     /* JADX INFO: renamed from: j */
     public final String f21405j;
@@ -34,6 +33,7 @@ public final class zza extends AbstractSafeParcelable implements InterfaceC4560a
 
     /* JADX INFO: renamed from: p */
     public final Bundle f21411p;
+    public static final Parcelable.Creator<zza> CREATOR = new C4563a();
 
     public zza(String str, String str2, String str3, String str4, zzc zzcVar, String str5, Bundle bundle) {
         this.f21405j = str;

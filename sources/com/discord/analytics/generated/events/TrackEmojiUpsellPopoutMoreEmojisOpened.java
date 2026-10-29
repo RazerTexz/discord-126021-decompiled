@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackEmojiUpsellPopoutMoreEmojisOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackEmojiUpsellPopoutMoreEmojisOpened implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
+    private final Long emojiId = null;
+    private final Long guildId = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
-    private final Long guildId = null;
-    private final Long emojiId = null;
     private final transient String analyticsSchemaTypeName = "emoji_upsell_popout_more_emojis_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackEmojiUpsellPopoutMoreEmojisOpened implements 
         }
         TrackEmojiUpsellPopoutMoreEmojisOpened trackEmojiUpsellPopoutMoreEmojisOpened = (TrackEmojiUpsellPopoutMoreEmojisOpened) other;
         return C12238m.areEqual(this.guildId, trackEmojiUpsellPopoutMoreEmojisOpened.guildId) && C12238m.areEqual(this.emojiId, trackEmojiUpsellPopoutMoreEmojisOpened.emojiId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

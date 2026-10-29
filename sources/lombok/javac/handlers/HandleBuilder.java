@@ -33,18 +33,18 @@ import lombok.javac.JavacTreeMaker;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleBuilder.SCL.lombok */
 @HandlerPriority(-1024)
 public class HandleBuilder extends JavacAnnotationHandler<Builder> {
-    private HandleConstructor handleConstructor = new HandleConstructor();
+    static final String BUILDER_TEMP_VAR = "builder";
     static final String CLEAN_FIELD_NAME = "$lombokUnclean";
     static final String CLEAN_METHOD_NAME = "$lombokClean";
-    static final String TO_BUILDER_METHOD_NAME = "toBuilder";
     static final String DEFAULT_PREFIX = "$default$";
     static final String SET_PREFIX = "$set";
-    static final String VALUE_PREFIX = "$value";
-    static final String BUILDER_TEMP_VAR = "builder";
+    static final String TO_BUILDER_METHOD_NAME = "toBuilder";
     static final String TO_BUILDER_NOT_SUPPORTED = "@Builder(toBuilder=true) is only supported if you return your own type.";
+    static final String VALUE_PREFIX = "$value";
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
     private static /* synthetic */ int[] f27481x2486df07;
+    private HandleConstructor handleConstructor = new HandleConstructor();
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
     static /* synthetic */ int[] m10941x2486df07() {
@@ -80,7 +80,7 @@ public class HandleBuilder extends JavacAnnotationHandler<Builder> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleBuilder$BuilderJob.SCL.lombok */
-    static class BuilderJob {
+    class BuilderJob {
         CheckerFrameworkVersion checkerFramework;
         JavacNode parentType;
         String builderMethodName;
@@ -167,18 +167,18 @@ public class HandleBuilder extends JavacAnnotationHandler<Builder> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleBuilder$BuilderFieldData.SCL.lombok */
-    static class BuilderFieldData {
+    class BuilderFieldData {
         List<JCTree.JCAnnotation> annotations;
-        JCTree.JCExpression type;
-        Name rawName;
-        Name name;
         Name builderFieldName;
+        Name name;
         Name nameOfDefaultProvider;
         Name nameOfSetFlag;
-        JavacSingularsRecipes.SingularData singularData;
         Builder.ObtainVia obtainVia;
         JavacNode obtainViaNode;
         JavacNode originalFieldNode;
+        Name rawName;
+        JavacSingularsRecipes.SingularData singularData;
+        JCTree.JCExpression type;
         java.util.List<JavacNode> createdFields = new ArrayList();
 
         BuilderFieldData() {

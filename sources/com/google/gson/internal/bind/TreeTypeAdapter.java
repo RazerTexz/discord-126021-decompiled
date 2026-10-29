@@ -34,13 +34,19 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
     /* JADX INFO: renamed from: e */
     public final InterfaceC4911o f21545e;
 
-    /* JADX INFO: renamed from: f */
-    public final TreeTypeAdapter<T>.C11113b f21546f = new C11113b(this, null);
-
     /* JADX INFO: renamed from: g */
     public TypeAdapter<T> f21547g;
 
-    public static final class SingleTypeFactory implements InterfaceC4911o {
+    /* JADX INFO: renamed from: f */
+    public final TreeTypeAdapter<T>.C11113b f21546f = new C11113b(this, null);
+
+    /* JADX INFO: renamed from: com.google.gson.internal.bind.TreeTypeAdapter$b */
+    public final class C11113b implements InterfaceC4908l, InterfaceC4904h {
+        public C11113b(TreeTypeAdapter treeTypeAdapter, C11112a c11112a) {
+        }
+    }
+
+    public final class SingleTypeFactory implements InterfaceC4911o {
 
         /* JADX INFO: renamed from: j */
         public final TypeToken<?> f21548j;
@@ -81,12 +87,6 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
                 return new TreeTypeAdapter(this.f21551m, this.f21552n, gson, typeToken, this);
             }
             return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.gson.internal.bind.TreeTypeAdapter$b */
-    public final class C11113b implements InterfaceC4908l, InterfaceC4904h {
-        public C11113b(TreeTypeAdapter treeTypeAdapter, C11112a c11112a) {
         }
     }
 

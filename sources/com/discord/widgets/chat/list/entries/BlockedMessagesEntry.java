@@ -22,11 +22,6 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
         this.key = String.valueOf(getType());
     }
 
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    private final boolean getIsExpandedBlock() {
-        return this.isExpandedBlock;
-    }
-
     public static /* synthetic */ BlockedMessagesEntry copy$default(BlockedMessagesEntry blockedMessagesEntry, Message message, int i, boolean z2, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             message = blockedMessagesEntry.message;
@@ -38,16 +33,6 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
             z2 = blockedMessagesEntry.isExpandedBlock;
         }
         return blockedMessagesEntry.copy(message, i, z2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getBlockedCount() {
-        return this.blockedCount;
     }
 
     public final BlockedMessagesEntry copy(Message message, int blockedCount, boolean isExpandedBlock) {
@@ -66,13 +51,28 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
         return C12238m.areEqual(this.message, blockedMessagesEntry.message) && this.blockedCount == blockedMessagesEntry.blockedCount && this.isExpandedBlock == blockedMessagesEntry.isExpandedBlock;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getBlockedCount() {
         return this.blockedCount;
+    }
+
+    public final int getBlockedCount() {
+        return this.blockedCount;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    private final boolean getIsExpandedBlock() {
+        return this.isExpandedBlock;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Message getMessage() {
+        return this.message;
     }
 
     public final Message getMessage() {

@@ -9,10 +9,18 @@ import p007b.p225i.p226a.p242c.p267x2.AbstractC2999a;
 /* JADX INFO: compiled from: PsBinarySearchSeeker.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3105z extends AbstractC2999a {
+    public C3105z(C2736d0 c2736d0, long j, long j2) {
+        super(new AbstractC2999a.b(), new b(c2736d0, null), j, 0L, j + 1, 0L, j2, 188L, 1000);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public static int m3794g(byte[] bArr, int i) {
+        return (bArr[i + 3] & 255) | ((bArr[i] & 255) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8);
+    }
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.z$b */
     /* JADX INFO: compiled from: PsBinarySearchSeeker.java */
-    public static final class b implements AbstractC2999a.f {
+    public final class b implements AbstractC2999a.f {
 
         /* JADX INFO: renamed from: a */
         public final C2736d0 f8923a;
@@ -67,14 +75,5 @@ public final class C3105z extends AbstractC2999a {
             */
             throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p242c.p267x2.p276k0.C3105z.b.mo3628b(b.i.a.c.x2.i, long):b.i.a.c.x2.a$e");
         }
-    }
-
-    public C3105z(C2736d0 c2736d0, long j, long j2) {
-        super(new AbstractC2999a.b(), new b(c2736d0, null), j, 0L, j + 1, 0L, j2, 188L, 1000);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public static int m3794g(byte[] bArr, int i) {
-        return (bArr[i + 3] & 255) | ((bArr[i] & 255) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8);
     }
 }

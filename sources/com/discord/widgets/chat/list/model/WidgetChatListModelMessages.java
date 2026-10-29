@@ -80,7 +80,7 @@ public final /* data */ class WidgetChatListModelMessages {
     private final long oldestMessageId;
 
     /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -101,8 +101,147 @@ public final /* data */ class WidgetChatListModelMessages {
             }
         }
 
+        public final Observable<WidgetChatListModelMessages> get(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            Observable<MessagesWithMetadata> observable = MessagesWithMetadata.INSTANCE.get(channel);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Channel> observableObserveChannel = companion.getChannels().observeChannel(channel.getParentId());
+            Observable<Map<Long, Integer>> observableObserveForType = companion.getUserRelationships().observeForType(2);
+            Observable<List<Long>> observableObserveExpandedBlockedMessageIds = companion.getChat().observeExpandedBlockedMessageIds();
+            Observable<Map<Long, GuildMember>> observableObserveGuildMembers = companion.getGuilds().observeGuildMembers(channel.getGuildId());
+            C12238m.checkNotNullExpressionValue(observableObserveGuildMembers, "StoreStream\n            …dMembers(channel.guildId)");
+            Observable<Long> observableObserveUnreadMarkerMessageId = observeUnreadMarkerMessageId(companion.getReadStates(), channel.getId());
+            C12238m.checkNotNullExpressionValue(observableObserveUnreadMarkerMessageId, "StoreStream\n            …rkerMessageId(channel.id)");
+            return ObservableCombineLatestOverloadsKt.combineLatest(observable, observableObserveChannel, observableObserveForType, observableObserveExpandedBlockedMessageIds, observableObserveGuildMembers, observableObserveUnreadMarkerMessageId, companion.getGuilds().observeRoles(channel.getGuildId()), observePermissionsForChannel(companion.getPermissions(), channel), StoreUserSettings.observeIsAnimatedEmojisEnabled$default(companion.getUserSettings(), false, 1, null), StoreUserSettings.observeIsAutoPlayGifsEnabled$default(companion.getUserSettings(), false, 1, null), companion.getUserSettings().observeIsRenderEmbedsEnabled(), companion.getUsers().observeMeId(), ComponentChatListState.INSTANCE.observeChatListComponentState(), InviteEmbedModel.Companion.observe$default(InviteEmbedModel.INSTANCE, null, null, null, null, 15, null), GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildSeePurchaseFeedbackLoopSystemMessages(Long.valueOf(channel.getGuildId())), new WidgetChatListModelMessages$Companion$get$1(channel));
+        }
+
         public static /* synthetic */ List getMessageItems$default(Companion companion, Channel channel, Map map, Map map2, Map map3, Channel channel2, StoreThreadMessages.ThreadState threadState, Message message, StoreMessageState.State state, Map map4, boolean z2, boolean z3, Long l, boolean z4, boolean z5, boolean z6, long j, boolean z7, Map map5, InviteEmbedModel inviteEmbedModel, boolean z8, boolean z9, int i, Object obj) {
             return companion.getMessageItems(channel, map, map2, map3, channel2, threadState, message, state, map4, z2, z3, l, z4, z5, z6, j, z7, map5, inviteEmbedModel, (i & 524288) != 0 ? false : z8, (i & 1048576) != 0 ? false : z9);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:78:0x01f6  */
+        public final List<ChatListEntry> getMessageItems(Channel channel, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, Integer> blockedRelationships, Channel thread, StoreThreadMessages.ThreadState threadEmbedMetadata, Message message, StoreMessageState.State messageState, Map<Long, ? extends StoreMessageReplies.MessageState> repliedMessages, boolean blockedChunkExpanded, boolean shouldConcat, Long permissionsForChannel, boolean animateEmojis, boolean autoPlayGifs, boolean renderEmbeds, long meUserId, boolean showBotComponents, Map<Long, ComponentChatListState.ComponentStoreState> componentStoreState, InviteEmbedModel inviteEmbedModel, boolean isThreadStarterMessage, boolean showRoleSubscriptionPurchaseSystemMessage) {
+            MessageEntry.ReplyData replyData;
+            boolean z2;
+            User user;
+            User user2;
+            MessageEntry messageEntry;
+            StoreMessageReplies.MessageState messageState2;
+            boolean zContainsKey;
+            Integer type;
+            C12238m.checkNotNullParameter(channel, "channel");
+            C12238m.checkNotNullParameter(guildMembers, "guildMembers");
+            C12238m.checkNotNullParameter(guildRoles, "guildRoles");
+            C12238m.checkNotNullParameter(blockedRelationships, "blockedRelationships");
+            C12238m.checkNotNullParameter(message, "message");
+            C12238m.checkNotNullParameter(repliedMessages, "repliedMessages");
+            C12238m.checkNotNullParameter(componentStoreState, "componentStoreState");
+            C12238m.checkNotNullParameter(inviteEmbedModel, "inviteEmbedModel");
+            Integer type2 = message.getType();
+            if (type2 != null && type2.intValue() == 38 && !PermissionUtils.can(1L, permissionsForChannel)) {
+                return C12147n.emptyList();
+            }
+            if (!showRoleSubscriptionPurchaseSystemMessage && (type = message.getType()) != null && type.intValue() == 25) {
+                return C12147n.emptyList();
+            }
+            ArrayList arrayList = new ArrayList();
+            MessageReference messageReference = message.getMessageReference();
+            StoreMessageReplies.MessageState messageState3 = repliedMessages.get(messageReference != null ? messageReference.getMessageId() : null);
+            if (messageState3 != null) {
+                boolean z3 = messageState3 instanceof StoreMessageReplies.MessageState.Loaded;
+                if (z3) {
+                    Object objFirstOrNull = C12163u.firstOrNull((List<? extends Object>) getMessageItems$default(this, channel, guildMembers, guildRoles, blockedRelationships, thread, threadEmbedMetadata, ((StoreMessageReplies.MessageState.Loaded) messageState3).getMessage(), messageState, repliedMessages, blockedChunkExpanded, false, null, false, autoPlayGifs, renderEmbeds, meUserId, showBotComponents, componentStoreState, inviteEmbedModel, false, showRoleSubscriptionPurchaseSystemMessage, 524288, null));
+                    if (!(objFirstOrNull instanceof MessageEntry)) {
+                        objFirstOrNull = null;
+                    }
+                    messageEntry = (MessageEntry) objFirstOrNull;
+                } else {
+                    messageEntry = null;
+                }
+                if (z3) {
+                    messageState2 = messageState3;
+                    User author = ((StoreMessageReplies.MessageState.Loaded) messageState2).getMessage().getAuthor();
+                    zContainsKey = blockedRelationships.containsKey(author != null ? Long.valueOf(author.getId()) : null);
+                } else {
+                    messageState2 = messageState3;
+                    zContainsKey = false;
+                }
+                new MessageEntry.ReplyData(messageState2, messageEntry, zContainsKey);
+                replyData = r13;
+            } else {
+                arrayList = arrayList;
+                replyData = null;
+            }
+            User author2 = message.getAuthor();
+            GuildMember guildMember = guildMembers.get(author2 != null ? Long.valueOf(author2.getId()) : null);
+            List<User> mentions = message.getMentions();
+            GuildMember guildMember2 = guildMembers.get((mentions == null || (user2 = (User) C12163u.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user2.getId()));
+            Map<Long, GuildRole> map = RoleUtils.containsRoleMentions(message.getContent()) ? guildRoles : null;
+            Map<Long, String> nickOrUsernames = MessageUtils.getNickOrUsernames(message, channel, guildMembers, channel.m7650q());
+            Interaction interaction = message.getInteraction();
+            GuildMember guildMember3 = guildMembers.get((interaction == null || (user = interaction.getUser()) == null) ? null : Long.valueOf(user.getId()));
+            MessageEntry.CtaData ctaData = parseCtaData(message, meUserId, guildMembers, channel, permissionsForChannel);
+            boolean z4 = ChannelUtils.m7694r(channel, (1 & 1) != 0 ? StoreStream.INSTANCE.getChannels().getChannel(channel.getParentId()) : null) && channel.getId() == message.getId() && ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null);
+            if (ChannelUtils.m7694r(channel, (1 & 1) != 0 ? StoreStream.INSTANCE.getChannels().getChannel(channel.getParentId()) : null)) {
+                long ownerId = channel.getOwnerId();
+                User author3 = message.getAuthor();
+                if (author3 != null && ownerId == author3.getId() && ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null)) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+            } else {
+                z2 = false;
+            }
+            List<ChatListEntry> list = arrayList;
+            list.add(new MessageEntry(message, messageState, guildMember, guildMember2, map, nickOrUsernames, shouldConcat, blockedChunkExpanded, animateEmojis, replyData, guildMember3, isThreadStarterMessage, z4, z2, ctaData, permissionsForChannel));
+            int size = list.size();
+            ChatListEntry.Companion companion = ChatListEntry.INSTANCE;
+            User author4 = message.getAuthor();
+            list.addAll(companion.createEmbedEntries(message, messageState, blockedChunkExpanded, animateEmojis, autoPlayGifs, renderEmbeds, isThreadStarterMessage, channel, guildMembers.get(author4 != null ? Long.valueOf(author4.getId()) : null), RoleUtils.containsRoleMentions(message.getContent()) ? guildRoles : null, MessageUtils.getNickOrUsernames(message, channel, guildMembers, channel.m7650q())));
+            list.addAll(companion.createStickerEntries(message));
+            list.addAll(companion.createGameInviteEntries(message));
+            list.addAll(companion.createSpotifyListenTogetherEntries(message));
+            list.addAll(companion.createInviteEntries(message, inviteEmbedModel));
+            list.addAll(companion.createGuildTemplateEntries(message));
+            list.addAll(companion.createGiftEntries(message));
+            if (isThreadStarterMessage) {
+                list.add(new ThreadStarterDividerEntry(channel.getId(), message.getId()));
+                return list;
+            }
+            if (showBotComponents) {
+                list.addAll(companion.createBotComponentEntries(message, channel.getGuildId(), componentStoreState.get(Long.valueOf(message.getId())), animateEmojis));
+            }
+            if (!message.getReactionsMap().isEmpty()) {
+                ThreadMetadata threadMetadata = channel.getThreadMetadata();
+                boolean z5 = threadMetadata == null || !threadMetadata.getArchived();
+                list.add(new ReactionsEntry(message, z5, PermissionUtils.can(64L, permissionsForChannel) && z5, animateEmojis));
+            }
+            if (message.getHasLocalUploads() && !message.isFailed()) {
+                String nonce = message.getNonce();
+                if (nonce == null) {
+                    nonce = "";
+                }
+                list.add(new UploadProgressEntry(nonce, message.getChannelId()));
+            }
+            if (ViewThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled() && message.hasThread() && thread != null) {
+                enableThreadSpine(list, size);
+                list.addAll(companion.createThreadEmbedEntries(channel, guildMembers, message, thread, threadEmbedMetadata, guildRoles, animateEmojis, renderEmbeds));
+            }
+            if (message.isEphemeralMessage() || (message.isInteraction() && message.isFailed())) {
+                list.add(new EphemeralMessageEntry(message));
+            }
+            return list;
+        }
+
+        public final Observable<List<ChatListEntry>> getSingleMessage(Channel channel, long messageId) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Message> observableObserveMessagesForChannel = companion.getMessages().observeMessagesForChannel(channel.getId(), messageId);
+            Observable<MessagesWithMetadata> observable = MessagesWithMetadata.INSTANCE.get(channel);
+            Observable<Map<Long, GuildMember>> observableObserveGuildMembers = companion.getGuilds().observeGuildMembers(channel.getGuildId());
+            C12238m.checkNotNullExpressionValue(observableObserveGuildMembers, "StoreStream\n            …dMembers(channel.guildId)");
+            return ObservableCombineLatestOverloadsKt.combineLatest(observableObserveMessagesForChannel, observable, observableObserveGuildMembers, companion.getGuilds().observeRoles(channel.getGuildId()), StoreUserSettings.observeIsAnimatedEmojisEnabled$default(companion.getUserSettings(), false, 1, null), StoreUserSettings.observeIsAutoPlayGifsEnabled$default(companion.getUserSettings(), false, 1, null), companion.getUsers().observeMeId(), companion.getUserSettings().observeIsRenderEmbedsEnabled(), InviteEmbedModel.Companion.observe$default(InviteEmbedModel.INSTANCE, null, null, null, null, 15, null), GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildSeePurchaseFeedbackLoopSystemMessages(Long.valueOf(channel.getGuildId())), new WidgetChatListModelMessages$Companion$getSingleMessage$1(channel, messageId));
         }
 
         private final Pair<Message, Channel> getThreadStarterMessageAndChannel(Channel parentChannel, Channel channel, Message message, MessagesWithMetadata messagesWithMetadata) {
@@ -120,6 +259,20 @@ public final /* data */ class WidgetChatListModelMessages {
                 messageCreateThreadStarterMessageNotFoundMessage = ((StoreMessageReplies.MessageState.Loaded) messageState).getMessage();
             }
             return new Pair<>(messageCreateThreadStarterMessageNotFoundMessage, parentChannel);
+        }
+
+        public final List<ChatListEntry> getThreadStarterMessageItems(Channel parentChannel, Channel channel, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, Integer> blockedRelationships, Message message, MessagesWithMetadata messagesWithMetadata, boolean animateEmojis, boolean autoPlayGifs, boolean renderEmbeds, long meUserId, boolean showBotComponents, Map<Long, ComponentChatListState.ComponentStoreState> componentStoreState, InviteEmbedModel inviteEmbedModel) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            C12238m.checkNotNullParameter(guildMembers, "guildMembers");
+            C12238m.checkNotNullParameter(guildRoles, "guildRoles");
+            C12238m.checkNotNullParameter(blockedRelationships, "blockedRelationships");
+            C12238m.checkNotNullParameter(message, "message");
+            C12238m.checkNotNullParameter(messagesWithMetadata, "messagesWithMetadata");
+            C12238m.checkNotNullParameter(componentStoreState, "componentStoreState");
+            C12238m.checkNotNullParameter(inviteEmbedModel, "inviteEmbedModel");
+            Pair<Message, Channel> threadStarterMessageAndChannel = getThreadStarterMessageAndChannel(parentChannel, channel, message, messagesWithMetadata);
+            Message first = threadStarterMessageAndChannel.getFirst();
+            return getMessageItems$default(this, threadStarterMessageAndChannel.getSecond(), guildMembers, guildRoles, blockedRelationships, null, null, first, messagesWithMetadata.getMessageState().get(Long.valueOf(first.getId())), messagesWithMetadata.getParentChannelMessageReplyState(), false, false, null, animateEmojis, autoPlayGifs, renderEmbeds, meUserId, showBotComponents, componentStoreState, inviteEmbedModel, true, false, 1048576, null);
         }
 
         private final Observable<Long> observePermissionsForChannel(StorePermissions storePermissions, Channel channel) {
@@ -283,173 +436,13 @@ public final /* data */ class WidgetChatListModelMessages {
             return timestamp > nextDayTimestamp;
         }
 
-        public final Observable<WidgetChatListModelMessages> get(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            Observable<MessagesWithMetadata> observable = MessagesWithMetadata.INSTANCE.get(channel);
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<Channel> observableObserveChannel = companion.getChannels().observeChannel(channel.getParentId());
-            Observable<Map<Long, Integer>> observableObserveForType = companion.getUserRelationships().observeForType(2);
-            Observable<List<Long>> observableObserveExpandedBlockedMessageIds = companion.getChat().observeExpandedBlockedMessageIds();
-            Observable<Map<Long, GuildMember>> observableObserveGuildMembers = companion.getGuilds().observeGuildMembers(channel.getGuildId());
-            C12238m.checkNotNullExpressionValue(observableObserveGuildMembers, "StoreStream\n            …dMembers(channel.guildId)");
-            Observable<Long> observableObserveUnreadMarkerMessageId = observeUnreadMarkerMessageId(companion.getReadStates(), channel.getId());
-            C12238m.checkNotNullExpressionValue(observableObserveUnreadMarkerMessageId, "StoreStream\n            …rkerMessageId(channel.id)");
-            return ObservableCombineLatestOverloadsKt.combineLatest(observable, observableObserveChannel, observableObserveForType, observableObserveExpandedBlockedMessageIds, observableObserveGuildMembers, observableObserveUnreadMarkerMessageId, companion.getGuilds().observeRoles(channel.getGuildId()), observePermissionsForChannel(companion.getPermissions(), channel), StoreUserSettings.observeIsAnimatedEmojisEnabled$default(companion.getUserSettings(), false, 1, null), StoreUserSettings.observeIsAutoPlayGifsEnabled$default(companion.getUserSettings(), false, 1, null), companion.getUserSettings().observeIsRenderEmbedsEnabled(), companion.getUsers().observeMeId(), ComponentChatListState.INSTANCE.observeChatListComponentState(), InviteEmbedModel.Companion.observe$default(InviteEmbedModel.INSTANCE, null, null, null, null, 15, null), GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildSeePurchaseFeedbackLoopSystemMessages(Long.valueOf(channel.getGuildId())), new WidgetChatListModelMessages$Companion$get$1(channel));
-        }
-
-        /* JADX WARN: Code duplicated, block: B:78:0x01f6  */
-        public final List<ChatListEntry> getMessageItems(Channel channel, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, Integer> blockedRelationships, Channel thread, StoreThreadMessages.ThreadState threadEmbedMetadata, Message message, StoreMessageState.State messageState, Map<Long, ? extends StoreMessageReplies.MessageState> repliedMessages, boolean blockedChunkExpanded, boolean shouldConcat, Long permissionsForChannel, boolean animateEmojis, boolean autoPlayGifs, boolean renderEmbeds, long meUserId, boolean showBotComponents, Map<Long, ComponentChatListState.ComponentStoreState> componentStoreState, InviteEmbedModel inviteEmbedModel, boolean isThreadStarterMessage, boolean showRoleSubscriptionPurchaseSystemMessage) {
-            MessageEntry.ReplyData replyData;
-            boolean z2;
-            User user;
-            User user2;
-            MessageEntry messageEntry;
-            StoreMessageReplies.MessageState messageState2;
-            boolean zContainsKey;
-            Long lValueOf;
-            Integer type;
-            C12238m.checkNotNullParameter(channel, "channel");
-            C12238m.checkNotNullParameter(guildMembers, "guildMembers");
-            C12238m.checkNotNullParameter(guildRoles, "guildRoles");
-            C12238m.checkNotNullParameter(blockedRelationships, "blockedRelationships");
-            C12238m.checkNotNullParameter(message, "message");
-            C12238m.checkNotNullParameter(repliedMessages, "repliedMessages");
-            C12238m.checkNotNullParameter(componentStoreState, "componentStoreState");
-            C12238m.checkNotNullParameter(inviteEmbedModel, "inviteEmbedModel");
-            Integer type2 = message.getType();
-            if (type2 != null && type2.intValue() == 38 && !PermissionUtils.can(1L, permissionsForChannel)) {
-                return C12147n.emptyList();
-            }
-            if (!showRoleSubscriptionPurchaseSystemMessage && (type = message.getType()) != null && type.intValue() == 25) {
-                return C12147n.emptyList();
-            }
-            ArrayList arrayList = new ArrayList();
-            MessageReference messageReference = message.getMessageReference();
-            StoreMessageReplies.MessageState messageState3 = repliedMessages.get(messageReference != null ? messageReference.getMessageId() : null);
-            if (messageState3 != null) {
-                boolean z3 = messageState3 instanceof StoreMessageReplies.MessageState.Loaded;
-                if (z3) {
-                    Object objFirstOrNull = C12163u.firstOrNull((List<? extends Object>) getMessageItems$default(this, channel, guildMembers, guildRoles, blockedRelationships, thread, threadEmbedMetadata, ((StoreMessageReplies.MessageState.Loaded) messageState3).getMessage(), messageState, repliedMessages, blockedChunkExpanded, false, null, false, autoPlayGifs, renderEmbeds, meUserId, showBotComponents, componentStoreState, inviteEmbedModel, false, showRoleSubscriptionPurchaseSystemMessage, 524288, null));
-                    if (!(objFirstOrNull instanceof MessageEntry)) {
-                        objFirstOrNull = null;
-                    }
-                    messageEntry = (MessageEntry) objFirstOrNull;
-                } else {
-                    messageEntry = null;
-                }
-                if (z3) {
-                    User author = ((StoreMessageReplies.MessageState.Loaded) messageState2).getMessage().getAuthor();
-                    if (author != null) {
-                        messageState2 = messageState3;
-                        lValueOf = Long.valueOf(author.getId());
-                    } else {
-                        messageState2 = messageState3;
-                        lValueOf = null;
-                    }
-                    zContainsKey = blockedRelationships.containsKey(lValueOf);
-                } else {
-                    messageState2 = messageState3;
-                    zContainsKey = false;
-                }
-                new MessageEntry.ReplyData(messageState2, messageEntry, zContainsKey);
-                replyData = r13;
-            } else {
-                arrayList = arrayList;
-                replyData = null;
-            }
-            User author2 = message.getAuthor();
-            GuildMember guildMember = guildMembers.get(author2 != null ? Long.valueOf(author2.getId()) : null);
-            List<User> mentions = message.getMentions();
-            GuildMember guildMember2 = guildMembers.get((mentions == null || (user2 = (User) C12163u.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user2.getId()));
-            Map<Long, GuildRole> map = RoleUtils.containsRoleMentions(message.getContent()) ? guildRoles : null;
-            Map<Long, String> nickOrUsernames = MessageUtils.getNickOrUsernames(message, channel, guildMembers, channel.m7650q());
-            Interaction interaction = message.getInteraction();
-            GuildMember guildMember3 = guildMembers.get((interaction == null || (user = interaction.getUser()) == null) ? null : Long.valueOf(user.getId()));
-            MessageEntry.CtaData ctaData = parseCtaData(message, meUserId, guildMembers, channel, permissionsForChannel);
-            boolean z4 = ChannelUtils.m7694r(channel, (1 & 1) != 0 ? StoreStream.INSTANCE.getChannels().getChannel(channel.getParentId()) : null) && channel.getId() == message.getId() && ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null);
-            if (ChannelUtils.m7694r(channel, (1 & 1) != 0 ? StoreStream.INSTANCE.getChannels().getChannel(channel.getParentId()) : null)) {
-                long ownerId = channel.getOwnerId();
-                User author3 = message.getAuthor();
-                if (author3 != null && ownerId == author3.getId() && ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null)) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-            } else {
-                z2 = false;
-            }
-            List<ChatListEntry> list = arrayList;
-            list.add(new MessageEntry(message, messageState, guildMember, guildMember2, map, nickOrUsernames, shouldConcat, blockedChunkExpanded, animateEmojis, replyData, guildMember3, isThreadStarterMessage, z4, z2, ctaData, permissionsForChannel));
-            int size = list.size();
-            ChatListEntry.Companion companion = ChatListEntry.INSTANCE;
-            User author4 = message.getAuthor();
-            list.addAll(companion.createEmbedEntries(message, messageState, blockedChunkExpanded, animateEmojis, autoPlayGifs, renderEmbeds, isThreadStarterMessage, channel, guildMembers.get(author4 != null ? Long.valueOf(author4.getId()) : null), RoleUtils.containsRoleMentions(message.getContent()) ? guildRoles : null, MessageUtils.getNickOrUsernames(message, channel, guildMembers, channel.m7650q())));
-            list.addAll(companion.createStickerEntries(message));
-            list.addAll(companion.createGameInviteEntries(message));
-            list.addAll(companion.createSpotifyListenTogetherEntries(message));
-            list.addAll(companion.createInviteEntries(message, inviteEmbedModel));
-            list.addAll(companion.createGuildTemplateEntries(message));
-            list.addAll(companion.createGiftEntries(message));
-            if (isThreadStarterMessage) {
-                list.add(new ThreadStarterDividerEntry(channel.getId(), message.getId()));
-                return list;
-            }
-            if (showBotComponents) {
-                list.addAll(companion.createBotComponentEntries(message, channel.getGuildId(), componentStoreState.get(Long.valueOf(message.getId())), animateEmojis));
-            }
-            if (!message.getReactionsMap().isEmpty()) {
-                ThreadMetadata threadMetadata = channel.getThreadMetadata();
-                boolean z5 = threadMetadata == null || !threadMetadata.getArchived();
-                list.add(new ReactionsEntry(message, z5, PermissionUtils.can(64L, permissionsForChannel) && z5, animateEmojis));
-            }
-            if (message.getHasLocalUploads() && !message.isFailed()) {
-                String nonce = message.getNonce();
-                if (nonce == null) {
-                    nonce = "";
-                }
-                list.add(new UploadProgressEntry(nonce, message.getChannelId()));
-            }
-            if (ViewThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled() && message.hasThread() && thread != null) {
-                enableThreadSpine(list, size);
-                list.addAll(companion.createThreadEmbedEntries(channel, guildMembers, message, thread, threadEmbedMetadata, guildRoles, animateEmojis, renderEmbeds));
-            }
-            if (message.isEphemeralMessage() || (message.isInteraction() && message.isFailed())) {
-                list.add(new EphemeralMessageEntry(message));
-            }
-            return list;
-        }
-
-        public final Observable<List<ChatListEntry>> getSingleMessage(Channel channel, long messageId) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<Message> observableObserveMessagesForChannel = companion.getMessages().observeMessagesForChannel(channel.getId(), messageId);
-            Observable<MessagesWithMetadata> observable = MessagesWithMetadata.INSTANCE.get(channel);
-            Observable<Map<Long, GuildMember>> observableObserveGuildMembers = companion.getGuilds().observeGuildMembers(channel.getGuildId());
-            C12238m.checkNotNullExpressionValue(observableObserveGuildMembers, "StoreStream\n            …dMembers(channel.guildId)");
-            return ObservableCombineLatestOverloadsKt.combineLatest(observableObserveMessagesForChannel, observable, observableObserveGuildMembers, companion.getGuilds().observeRoles(channel.getGuildId()), StoreUserSettings.observeIsAnimatedEmojisEnabled$default(companion.getUserSettings(), false, 1, null), StoreUserSettings.observeIsAutoPlayGifsEnabled$default(companion.getUserSettings(), false, 1, null), companion.getUsers().observeMeId(), companion.getUserSettings().observeIsRenderEmbedsEnabled(), InviteEmbedModel.Companion.observe$default(InviteEmbedModel.INSTANCE, null, null, null, null, 15, null), GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildSeePurchaseFeedbackLoopSystemMessages(Long.valueOf(channel.getGuildId())), new WidgetChatListModelMessages$Companion$getSingleMessage$1(channel, messageId));
-        }
-
-        public final List<ChatListEntry> getThreadStarterMessageItems(Channel parentChannel, Channel channel, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, Integer> blockedRelationships, Message message, MessagesWithMetadata messagesWithMetadata, boolean animateEmojis, boolean autoPlayGifs, boolean renderEmbeds, long meUserId, boolean showBotComponents, Map<Long, ComponentChatListState.ComponentStoreState> componentStoreState, InviteEmbedModel inviteEmbedModel) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            C12238m.checkNotNullParameter(guildMembers, "guildMembers");
-            C12238m.checkNotNullParameter(guildRoles, "guildRoles");
-            C12238m.checkNotNullParameter(blockedRelationships, "blockedRelationships");
-            C12238m.checkNotNullParameter(message, "message");
-            C12238m.checkNotNullParameter(messagesWithMetadata, "messagesWithMetadata");
-            C12238m.checkNotNullParameter(componentStoreState, "componentStoreState");
-            C12238m.checkNotNullParameter(inviteEmbedModel, "inviteEmbedModel");
-            Pair<Message, Channel> threadStarterMessageAndChannel = getThreadStarterMessageAndChannel(parentChannel, channel, message, messagesWithMetadata);
-            Message first = threadStarterMessageAndChannel.getFirst();
-            return getMessageItems$default(this, threadStarterMessageAndChannel.getSecond(), guildMembers, guildRoles, blockedRelationships, null, null, first, messagesWithMetadata.getMessageState().get(Long.valueOf(first.getId())), messagesWithMetadata.getParentChannelMessageReplyState(), false, false, null, animateEmojis, autoPlayGifs, renderEmbeds, meUserId, showBotComponents, componentStoreState, inviteEmbedModel, true, false, 1048576, null);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-    public static final class Items {
+    public final class Items {
         private static final Companion Companion = new Companion(null);
 
         @Deprecated
@@ -459,7 +452,7 @@ public final /* data */ class WidgetChatListModelMessages {
         private MGRecyclerDataPayload listItemMostRecentlyAdded;
 
         /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -514,7 +507,7 @@ public final /* data */ class WidgetChatListModelMessages {
     }
 
     /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-    public static final /* data */ class MessagesWithMetadata {
+    public final /* data */ class MessagesWithMetadata {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -526,7 +519,7 @@ public final /* data */ class WidgetChatListModelMessages {
         private final Map<Long, StoreThreadMessages.ThreadState> threadCountsAndLatestMessages;
 
         /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -562,7 +555,7 @@ public final /* data */ class WidgetChatListModelMessages {
 
                     /* JADX INFO: renamed from: com.discord.widgets.chat.list.model.WidgetChatListModelMessages$MessagesWithMetadata$Companion$get$2$1 */
                     /* JADX INFO: compiled from: WidgetChatListModelMessages.kt */
-                    public static final /* synthetic */ class C81611 extends C12236k implements Function6<List<? extends Message>, Map<Long, ? extends StoreMessageState.State>, Map<Long, ? extends Channel>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends StoreMessageReplies.MessageState>, Map<Long, ? extends StoreMessageReplies.MessageState>, WidgetChatListModelMessages.MessagesWithMetadata> {
+                    public final /* synthetic */ class C81611 extends C12236k implements Function6<List<? extends Message>, Map<Long, ? extends StoreMessageState.State>, Map<Long, ? extends Channel>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends StoreMessageReplies.MessageState>, Map<Long, ? extends StoreMessageReplies.MessageState>, WidgetChatListModelMessages.MessagesWithMetadata> {
                         public static final C81611 INSTANCE = new C81611();
 
                         public C81611() {
@@ -636,6 +629,30 @@ public final /* data */ class WidgetChatListModelMessages {
             this.parentChannelMessageReplyState = map5;
         }
 
+        public final List<Message> component1() {
+            return this.messages;
+        }
+
+        public final Map<Long, StoreMessageState.State> component2() {
+            return this.messageState;
+        }
+
+        public final Map<Long, Channel> component3() {
+            return this.messageThreads;
+        }
+
+        public final Map<Long, StoreThreadMessages.ThreadState> component4() {
+            return this.threadCountsAndLatestMessages;
+        }
+
+        public final Map<Long, StoreMessageReplies.MessageState> component5() {
+            return this.messageReplyState;
+        }
+
+        public final Map<Long, StoreMessageReplies.MessageState> component6() {
+            return this.parentChannelMessageReplyState;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ MessagesWithMetadata copy$default(MessagesWithMetadata messagesWithMetadata, List list, Map map, Map map2, Map map3, Map map4, Map map5, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -661,30 +678,6 @@ public final /* data */ class WidgetChatListModelMessages {
                 map5 = messagesWithMetadata.parentChannelMessageReplyState;
             }
             return messagesWithMetadata.copy(list, map6, map7, map8, map9, map5);
-        }
-
-        public final List<Message> component1() {
-            return this.messages;
-        }
-
-        public final Map<Long, StoreMessageState.State> component2() {
-            return this.messageState;
-        }
-
-        public final Map<Long, Channel> component3() {
-            return this.messageThreads;
-        }
-
-        public final Map<Long, StoreThreadMessages.ThreadState> component4() {
-            return this.threadCountsAndLatestMessages;
-        }
-
-        public final Map<Long, StoreMessageReplies.MessageState> component5() {
-            return this.messageReplyState;
-        }
-
-        public final Map<Long, StoreMessageReplies.MessageState> component6() {
-            return this.parentChannelMessageReplyState;
         }
 
         public final MessagesWithMetadata copy(List<Message> messages, Map<Long, StoreMessageState.State> messageState, Map<Long, Channel> messageThreads, Map<Long, StoreThreadMessages.ThreadState> threadCountsAndLatestMessages, Map<Long, ? extends StoreMessageReplies.MessageState> messageReplyState, Map<Long, ? extends StoreMessageReplies.MessageState> parentChannelMessageReplyState) {
@@ -778,28 +771,8 @@ public final /* data */ class WidgetChatListModelMessages {
         return this.items;
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getOldestMessageId() {
-        return this.oldestMessageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getNewestKnownMessageId() {
-        return this.newestKnownMessageId;
-    }
-
     public final Map<Long, GuildMember> component4() {
         return this.guildMembers;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getNewMessagesMarkerMessageId() {
-        return this.newMessagesMarkerMessageId;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Long getNewestSentByUserMessageId() {
-        return this.newestSentByUserMessageId;
     }
 
     public final WidgetChatListModelMessages copy(List<? extends ChatListEntry> items, long oldestMessageId, long newestKnownMessageId, Map<Long, GuildMember> guildMembers, long newMessagesMarkerMessageId, Long newestSentByUserMessageId) {
@@ -826,16 +799,36 @@ public final /* data */ class WidgetChatListModelMessages {
         return this.items;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getNewMessagesMarkerMessageId() {
         return this.newMessagesMarkerMessageId;
+    }
+
+    public final long getNewMessagesMarkerMessageId() {
+        return this.newMessagesMarkerMessageId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getNewestKnownMessageId() {
+        return this.newestKnownMessageId;
     }
 
     public final long getNewestKnownMessageId() {
         return this.newestKnownMessageId;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final Long getNewestSentByUserMessageId() {
         return this.newestSentByUserMessageId;
+    }
+
+    public final Long getNewestSentByUserMessageId() {
+        return this.newestSentByUserMessageId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getOldestMessageId() {
+        return this.oldestMessageId;
     }
 
     public final long getOldestMessageId() {

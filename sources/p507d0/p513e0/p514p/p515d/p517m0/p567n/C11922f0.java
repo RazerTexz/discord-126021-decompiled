@@ -24,7 +24,7 @@ public final class C11922f0 extends AbstractC11938k1 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f0$a */
     /* JADX INFO: compiled from: SpecialTypes.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
         public final /* synthetic */ AbstractC11947g $kotlinTypeRefiner;
         public final /* synthetic */ C11922f0 this$0;
 
@@ -52,14 +52,14 @@ public final class C11922f0 extends AbstractC11938k1 {
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11938k1
-    /* JADX INFO: renamed from: a */
-    public AbstractC11913c0 mo10011a() {
-        return this.f24771m.invoke();
+    public boolean isComputed() {
+        return ((C11896f.h) this.f24771m).isComputed();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11938k1
-    public boolean isComputed() {
-        return ((C11896f.h) this.f24771m).isComputed();
+    /* JADX INFO: renamed from: a */
+    public AbstractC11913c0 mo10011a() {
+        return this.f24771m.invoke();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11913c0

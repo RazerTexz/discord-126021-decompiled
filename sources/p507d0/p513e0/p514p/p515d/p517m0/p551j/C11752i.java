@@ -173,7 +173,7 @@ public final class C11752i implements InterfaceC11751h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.i$a */
     /* JADX INFO: compiled from: DescriptorRendererOptionsImpl.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11326c1, String> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11326c1, String> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24310j = new a();
@@ -191,7 +191,7 @@ public final class C11752i implements InterfaceC11751h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.i$b */
     /* JADX INFO: compiled from: DescriptorRendererOptionsImpl.kt */
-    public static final class b extends AbstractC12240o implements Function1<AbstractC11913c0, AbstractC11913c0> {
+    public final class b extends AbstractC12240o implements Function1<AbstractC11913c0, AbstractC11913c0> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24311j = new b();
@@ -272,7 +272,7 @@ public final class C11752i implements InterfaceC11751h {
         this.f24284W = new C11753j(bool, bool, this);
     }
 
-    public final C11752i copy() {
+    public final C11752i copy() throws IllegalAccessException {
         C11752i c11752i = new C11752i();
         Field[] declaredFields = C11752i.class.getDeclaredFields();
         C12238m.checkNotNullExpressionValue(declaredFields, "this::class.java.declaredFields");

@@ -12,7 +12,7 @@ public interface InterfaceC13059f<E> extends InterfaceC13072s<E>, InterfaceC1306
 
     /* JADX INFO: renamed from: s.a.c2.f$a */
     /* JADX INFO: compiled from: Channel.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: b */
         public static final /* synthetic */ a f27761b = new a();

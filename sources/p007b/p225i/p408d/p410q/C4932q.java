@@ -13,10 +13,6 @@ public final class C4932q extends Number {
         this.value = str;
     }
 
-    private Object writeReplace() throws ObjectStreamException {
-        return new BigDecimal(this.value);
-    }
-
     @Override // java.lang.Number
     public double doubleValue() {
         return Double.parseDouble(this.value);
@@ -67,5 +63,9 @@ public final class C4932q extends Number {
 
     public String toString() {
         return this.value;
+    }
+
+    private Object writeReplace() throws ObjectStreamException {
+        return new BigDecimal(this.value);
     }
 }

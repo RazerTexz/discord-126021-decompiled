@@ -10,7 +10,7 @@ public interface InterfaceC11626t {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.t$a */
     /* JADX INFO: compiled from: JavaClassesTracker.kt */
-    public static final class a implements InterfaceC11626t {
+    public final class a implements InterfaceC11626t {
 
         /* JADX INFO: renamed from: a */
         public static final a f23521a = new a();

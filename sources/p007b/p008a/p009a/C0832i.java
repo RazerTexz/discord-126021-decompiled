@@ -26,19 +26,26 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0832i extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f384j = {C1643a.m846d0(C0832i.class, "binding", "getBinding()Lcom/discord/databinding/ConnectedAccountActionsDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f384j = {C1643a.m846d0(C0832i.class, "binding", "getBinding()Lcom/discord/databinding/ConnectedAccountActionsDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: b.a.a.i$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ConnectedAccountActionsDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.i$a */
     /* JADX INFO: compiled from: java-style lambda group */
     /* JADX INFO: loaded from: classes2.dex */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f387j;
@@ -78,16 +85,9 @@ public final class C0832i extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.i$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: ConnectedAccountActionsDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.i$c */
     /* JADX INFO: compiled from: ConnectedAccountActionsDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C0967h> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C0967h> {
 
         /* JADX INFO: renamed from: j */
         public static final c f390j = new c();

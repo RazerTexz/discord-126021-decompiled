@@ -17,11 +17,6 @@ public final /* data */ class DirectoryEntryEvent {
     private final GuildScheduledEvent guildScheduledEvent;
     private final int primaryCategoryId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final GuildScheduledEvent getGuildScheduledEvent() {
-        return this.guildScheduledEvent;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,6 +26,11 @@ public final /* data */ class DirectoryEntryEvent {
         }
         DirectoryEntryEvent directoryEntryEvent = (DirectoryEntryEvent) other;
         return this.directoryChannelId == directoryEntryEvent.directoryChannelId && this.entityId == directoryEntryEvent.entityId && this.authorId == directoryEntryEvent.authorId && C12238m.areEqual(this.description, directoryEntryEvent.description) && this.primaryCategoryId == directoryEntryEvent.primaryCategoryId && C12238m.areEqual(this.createdAt, directoryEntryEvent.createdAt) && C12238m.areEqual(this.guildScheduledEvent, directoryEntryEvent.guildScheduledEvent);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final GuildScheduledEvent getGuildScheduledEvent() {
+        return this.guildScheduledEvent;
     }
 
     public int hashCode() {

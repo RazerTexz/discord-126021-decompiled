@@ -61,12 +61,6 @@ import p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3670g8;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4196t9 extends AbstractC4170r5 {
 
-    /* JADX INFO: renamed from: c */
-    public static final String[] f11231c = {"firebase_", "google_", "ga_"};
-
-    /* JADX INFO: renamed from: d */
-    public static final String[] f11232d = {"_err"};
-
     /* JADX INFO: renamed from: e */
     public SecureRandom f11233e;
 
@@ -78,6 +72,12 @@ public final class C4196t9 extends AbstractC4170r5 {
 
     /* JADX INFO: renamed from: h */
     public Integer f11236h;
+
+    /* JADX INFO: renamed from: c */
+    public static final String[] f11231c = {"firebase_", "google_", "ga_"};
+
+    /* JADX INFO: renamed from: d */
+    public static final String[] f11232d = {"_err"};
 
     public C4196t9(C4202u4 c4202u4) {
         super(c4202u4);
@@ -746,22 +746,6 @@ public final class C4196t9 extends AbstractC4170r5 {
         return "_ldl".equals(str) ? m5910b0("user property referrer", str, m5930z0(str), obj) : m5910b0("user property", str, m5930z0(str), obj) ? 0 : 7;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    @WorkerThread
-    /* JADX INFO: renamed from: m */
-    public final void mo5573m() {
-        mo5848b();
-        SecureRandom secureRandom = new SecureRandom();
-        long jNextLong = secureRandom.nextLong();
-        if (jNextLong == 0) {
-            jNextLong = secureRandom.nextLong();
-            if (jNextLong == 0) {
-                mo5726g().f11144i.m5860a("Utils falling back to Random for random id");
-            }
-        }
-        this.f11234f.set(jNextLong);
-    }
-
     /* JADX INFO: renamed from: m0 */
     public final boolean m5915m0(String str, String str2) {
         if (str2 == null) {
@@ -823,12 +807,6 @@ public final class C4196t9 extends AbstractC4170r5 {
         }
         mo5726g().f11148m.m5861b("Permission not granted", str);
         return false;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    /* JADX INFO: renamed from: r */
-    public final boolean mo5574r() {
-        return true;
     }
 
     /* JADX WARN: Code duplicated, block: B:27:0x0073  */
@@ -1198,5 +1176,27 @@ public final class C4196t9 extends AbstractC4170r5 {
             return 256;
         }
         return (this.f11202a.f11260h.m5526o(C4142p.f11076h0) && "_lgclid".equals(str)) ? 100 : 36;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    @WorkerThread
+    /* JADX INFO: renamed from: m */
+    public final void mo5573m() {
+        mo5848b();
+        SecureRandom secureRandom = new SecureRandom();
+        long jNextLong = secureRandom.nextLong();
+        if (jNextLong == 0) {
+            jNextLong = secureRandom.nextLong();
+            if (jNextLong == 0) {
+                mo5726g().f11144i.m5860a("Utils falling back to Random for random id");
+            }
+        }
+        this.f11234f.set(jNextLong);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    /* JADX INFO: renamed from: r */
+    public final boolean mo5574r() {
+        return true;
     }
 }

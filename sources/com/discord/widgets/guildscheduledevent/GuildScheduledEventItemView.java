@@ -64,144 +64,6 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         this(context, (i2 & 2) != 0 ? null : attributeSet, (i2 & 4) != 0 ? 0 : i);
     }
 
-    private final void configureDescription(String description, long guildId) {
-        getDescriptionParser().configureDescription(description, guildId);
-    }
-
-    private final void configureInternal(GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo locationInfo, ButtonConfiguration buttonConfiguration, Guild guild, UserGuildMember creator, View.OnClickListener onCardClicked) {
-        String str;
-        GuildScheduledEventBottomButtonView guildScheduledEventBottomButtonView = this.binding.f15137b;
-        C12238m.checkNotNullExpressionValue(guildScheduledEventBottomButtonView, "binding.guildScheduledEventListItemButtomView");
-        guildScheduledEventBottomButtonView.setVisibility(buttonConfiguration.getIsAnyButtonVisible() ? 0 : 8);
-        this.binding.f15137b.configure(buttonConfiguration);
-        TextView textView = this.binding.f15146k;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEventListItemRsvpText");
-        Integer userCount = guildScheduledEvent.getUserCount();
-        if (userCount != null) {
-            int iIntValue = userCount.intValue();
-            Context context = getContext();
-            C12238m.checkNotNullExpressionValue(context, "context");
-            str = StringUtilsKt.format(iIntValue, context);
-        } else {
-            str = null;
-        }
-        ViewExtensions.setTextAndVisibilityBy(textView, str);
-        SimpleDraweeView simpleDraweeView = this.binding.f15139d;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildScheduledEventListItemCreatorAvatar");
-        SimpleDraweeViewExtensionsKt.configureCreator(simpleDraweeView, creator);
-        GuildScheduledEventDateView.configure$default(this.binding.f15140e, guildScheduledEvent, false, 2, null);
-        TextView textView2 = this.binding.f15147l;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEventListItemTitleText");
-        textView2.setText(guildScheduledEvent.getName());
-        configureDescription(guildScheduledEvent.getDescription(), guildScheduledEvent.getGuildId());
-        configureLocation(locationInfo, guild);
-        this.binding.f15136a.setOnClickListener(onCardClicked);
-    }
-
-    private final void configureLocation(GuildScheduledEventLocationInfo locationInfo, Guild guild) {
-        CharSequence textFromLocation;
-        int i;
-        int locationIconSmall;
-        if (locationInfo == null && guild == null) {
-            ConstraintLayout constraintLayout = this.binding.f15138c;
-            C12238m.checkNotNullExpressionValue(constraintLayout, "binding.guildScheduledEv…ItemChannelGuildContainer");
-            constraintLayout.setVisibility(8);
-            return;
-        }
-        if (locationInfo != null && guild == null) {
-            ConstraintLayout constraintLayout2 = this.binding.f15138c;
-            C12238m.checkNotNullExpressionValue(constraintLayout2, "binding.guildScheduledEv…ItemChannelGuildContainer");
-            constraintLayout2.setVisibility(0);
-            SimpleDraweeView simpleDraweeView = this.binding.f15143h;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildScheduledEventListItemGuildIcon");
-            simpleDraweeView.setVisibility(8);
-            TextView textView = this.binding.f15144i;
-            C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…mGuildIconPlaceholderText");
-            textView.setVisibility(8);
-            TextView textView2 = this.binding.f15145j;
-            C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEventListItemGuildName");
-            textView2.setVisibility(8);
-            TextView textView3 = this.binding.f15142g;
-            C12238m.checkNotNullExpressionValue(textView3, "binding.guildScheduledEv…tListItemGuildChannelName");
-            textView3.setVisibility(8);
-            ImageView imageView = this.binding.f15148m;
-            imageView.setVisibility(0);
-            imageView.setImageResource(locationInfo.getLocationIcon());
-            LinkifiedTextView linkifiedTextView = this.binding.f15149n;
-            linkifiedTextView.setVisibility(0);
-            GuildScheduledEventExternalLocationParser locationParser = getLocationParser();
-            Context context = linkifiedTextView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "context");
-            linkifiedTextView.setText(locationParser.getTextFromLocation(context, locationInfo));
-            C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.standaloneChanne…xt, locationInfo)\n      }");
-            return;
-        }
-        if (guild != null) {
-            ConstraintLayout constraintLayout3 = this.binding.f15138c;
-            C12238m.checkNotNullExpressionValue(constraintLayout3, "binding.guildScheduledEv…ItemChannelGuildContainer");
-            constraintLayout3.setVisibility(0);
-            ImageView imageView2 = this.binding.f15148m;
-            C12238m.checkNotNullExpressionValue(imageView2, "binding.standaloneChannelIcon");
-            imageView2.setVisibility(8);
-            LinkifiedTextView linkifiedTextView2 = this.binding.f15149n;
-            C12238m.checkNotNullExpressionValue(linkifiedTextView2, "binding.standaloneChannelName");
-            linkifiedTextView2.setVisibility(8);
-            SimpleDraweeView simpleDraweeView2 = this.binding.f15143h;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildScheduledEventListItemGuildIcon");
-            simpleDraweeView2.setVisibility(0);
-            TextView textView4 = this.binding.f15144i;
-            C12238m.checkNotNullExpressionValue(textView4, "binding.guildScheduledEv…mGuildIconPlaceholderText");
-            textView4.setVisibility(0);
-            TextView textView5 = this.binding.f15144i;
-            textView5.setText(guild.getShortName());
-            textView5.setVisibility(guild.hasIcon() ^ true ? 0 : 8);
-            SimpleDraweeView simpleDraweeView3 = this.binding.f15143h;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView3, "binding.guildScheduledEventListItemGuildIcon");
-            SimpleDraweeViewExtensionsKt.setGuildIcon(simpleDraweeView3, true, (496 & 2) != 0 ? null : guild, getResources().getDimensionPixelSize(C5419R.dimen.guild_scheduled_event_icon_corner_radius), (496 & 8) != 0 ? null : Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(C5419R.dimen.avatar_size_standard))), (496 & 16) != 0 ? null : null, (496 & 32) != 0 ? null : null, (496 & 64) != 0 ? null : null, (496 & 128) != 0 ? false : false, (496 & 256) != 0 ? null : null);
-            TextView textView6 = this.binding.f15145j;
-            C12238m.checkNotNullExpressionValue(textView6, "binding.guildScheduledEventListItemGuildName");
-            textView6.setText(guild.getName());
-            TextView textView7 = this.binding.f15142g;
-            C12238m.checkNotNullExpressionValue(textView7, "binding.guildScheduledEv…tListItemGuildChannelName");
-            textView7.setVisibility(locationInfo != null ? 0 : 8);
-            TextView textView8 = this.binding.f15142g;
-            C12238m.checkNotNullExpressionValue(textView8, "binding.guildScheduledEv…tListItemGuildChannelName");
-            if (locationInfo != null) {
-                GuildScheduledEventExternalLocationParser locationParser2 = getLocationParser();
-                Context context2 = getContext();
-                C12238m.checkNotNullExpressionValue(context2, "context");
-                textFromLocation = locationParser2.getTextFromLocation(context2, locationInfo);
-            } else {
-                textFromLocation = null;
-            }
-            ViewExtensions.setTextAndVisibilityBy(textView8, textFromLocation);
-            TextView textView9 = this.binding.f15142g;
-            if (locationInfo != null) {
-                locationIconSmall = locationInfo.getLocationIconSmall();
-                i = 0;
-            } else {
-                i = 0;
-                locationIconSmall = 0;
-            }
-            textView9.setCompoundDrawablesWithIntrinsicBounds(locationIconSmall, i, i, i);
-        }
-    }
-
-    public static /* synthetic */ void configureLocation$default(GuildScheduledEventItemView guildScheduledEventItemView, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, Guild guild, int i, Object obj) {
-        if ((i & 2) != 0) {
-            guild = null;
-        }
-        guildScheduledEventItemView.configureLocation(guildScheduledEventLocationInfo, guild);
-    }
-
-    private final GuildScheduledEventDescriptionParser getDescriptionParser() {
-        return (GuildScheduledEventDescriptionParser) this.descriptionParser.getValue();
-    }
-
-    private final GuildScheduledEventExternalLocationParser getLocationParser() {
-        return (GuildScheduledEventExternalLocationParser) this.locationParser.getValue();
-    }
-
     public final void configureAsPreview(GuildScheduledEventModel eventModel, Channel channel, UserGuildMember creator) {
         Long lValueOf;
         C12238m.checkNotNullParameter(eventModel, "eventModel");
@@ -236,6 +98,10 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         configureDescription(eventModel.getDescription(), eventModel.getGuildId());
         this.binding.f15140e.configure(millis, lValueOf, eventModel.getEntityType(), GuildScheduledEventStatus.SCHEDULED, (16 & 16) != 0);
         configureLocation$default(this, GuildScheduledEventLocationInfo.INSTANCE.buildLocationInfo(eventModel, channel), null, 2, null);
+    }
+
+    private final void configureDescription(String description, long guildId) {
+        getDescriptionParser().configureDescription(description, guildId);
     }
 
     public final void configureInChatList(GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, boolean isInGuild, boolean isRsvped, boolean isConnected, boolean canConnect, View.OnClickListener cardClickListener, View.OnClickListener rsvpButtonClickListener, View.OnClickListener joinServerButtonClickListener, View.OnClickListener shareButtonClickListener) {
@@ -337,6 +203,140 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
             textView2.setMaxLines(1);
             textView2.setEllipsize(TextUtils.TruncateAt.END);
         }
+    }
+
+    private final void configureInternal(GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo locationInfo, ButtonConfiguration buttonConfiguration, Guild guild, UserGuildMember creator, View.OnClickListener onCardClicked) {
+        String str;
+        GuildScheduledEventBottomButtonView guildScheduledEventBottomButtonView = this.binding.f15137b;
+        C12238m.checkNotNullExpressionValue(guildScheduledEventBottomButtonView, "binding.guildScheduledEventListItemButtomView");
+        guildScheduledEventBottomButtonView.setVisibility(buttonConfiguration.getIsAnyButtonVisible() ? 0 : 8);
+        this.binding.f15137b.configure(buttonConfiguration);
+        TextView textView = this.binding.f15146k;
+        C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEventListItemRsvpText");
+        Integer userCount = guildScheduledEvent.getUserCount();
+        if (userCount != null) {
+            int iIntValue = userCount.intValue();
+            Context context = getContext();
+            C12238m.checkNotNullExpressionValue(context, "context");
+            str = StringUtilsKt.format(iIntValue, context);
+        } else {
+            str = null;
+        }
+        ViewExtensions.setTextAndVisibilityBy(textView, str);
+        SimpleDraweeView simpleDraweeView = this.binding.f15139d;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildScheduledEventListItemCreatorAvatar");
+        SimpleDraweeViewExtensionsKt.configureCreator(simpleDraweeView, creator);
+        GuildScheduledEventDateView.configure$default(this.binding.f15140e, guildScheduledEvent, false, 2, null);
+        TextView textView2 = this.binding.f15147l;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEventListItemTitleText");
+        textView2.setText(guildScheduledEvent.getName());
+        configureDescription(guildScheduledEvent.getDescription(), guildScheduledEvent.getGuildId());
+        configureLocation(locationInfo, guild);
+        this.binding.f15136a.setOnClickListener(onCardClicked);
+    }
+
+    public static /* synthetic */ void configureLocation$default(GuildScheduledEventItemView guildScheduledEventItemView, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, Guild guild, int i, Object obj) {
+        if ((i & 2) != 0) {
+            guild = null;
+        }
+        guildScheduledEventItemView.configureLocation(guildScheduledEventLocationInfo, guild);
+    }
+
+    private final void configureLocation(GuildScheduledEventLocationInfo locationInfo, Guild guild) {
+        CharSequence textFromLocation;
+        int i;
+        int locationIconSmall;
+        if (locationInfo == null && guild == null) {
+            ConstraintLayout constraintLayout = this.binding.f15138c;
+            C12238m.checkNotNullExpressionValue(constraintLayout, "binding.guildScheduledEv…ItemChannelGuildContainer");
+            constraintLayout.setVisibility(8);
+            return;
+        }
+        if (locationInfo != null && guild == null) {
+            ConstraintLayout constraintLayout2 = this.binding.f15138c;
+            C12238m.checkNotNullExpressionValue(constraintLayout2, "binding.guildScheduledEv…ItemChannelGuildContainer");
+            constraintLayout2.setVisibility(0);
+            SimpleDraweeView simpleDraweeView = this.binding.f15143h;
+            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildScheduledEventListItemGuildIcon");
+            simpleDraweeView.setVisibility(8);
+            TextView textView = this.binding.f15144i;
+            C12238m.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…mGuildIconPlaceholderText");
+            textView.setVisibility(8);
+            TextView textView2 = this.binding.f15145j;
+            C12238m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEventListItemGuildName");
+            textView2.setVisibility(8);
+            TextView textView3 = this.binding.f15142g;
+            C12238m.checkNotNullExpressionValue(textView3, "binding.guildScheduledEv…tListItemGuildChannelName");
+            textView3.setVisibility(8);
+            ImageView imageView = this.binding.f15148m;
+            imageView.setVisibility(0);
+            imageView.setImageResource(locationInfo.getLocationIcon());
+            LinkifiedTextView linkifiedTextView = this.binding.f15149n;
+            linkifiedTextView.setVisibility(0);
+            GuildScheduledEventExternalLocationParser locationParser = getLocationParser();
+            Context context = linkifiedTextView.getContext();
+            C12238m.checkNotNullExpressionValue(context, "context");
+            linkifiedTextView.setText(locationParser.getTextFromLocation(context, locationInfo));
+            C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.standaloneChanne…xt, locationInfo)\n      }");
+            return;
+        }
+        if (guild != null) {
+            ConstraintLayout constraintLayout3 = this.binding.f15138c;
+            C12238m.checkNotNullExpressionValue(constraintLayout3, "binding.guildScheduledEv…ItemChannelGuildContainer");
+            constraintLayout3.setVisibility(0);
+            ImageView imageView2 = this.binding.f15148m;
+            C12238m.checkNotNullExpressionValue(imageView2, "binding.standaloneChannelIcon");
+            imageView2.setVisibility(8);
+            LinkifiedTextView linkifiedTextView2 = this.binding.f15149n;
+            C12238m.checkNotNullExpressionValue(linkifiedTextView2, "binding.standaloneChannelName");
+            linkifiedTextView2.setVisibility(8);
+            SimpleDraweeView simpleDraweeView2 = this.binding.f15143h;
+            C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildScheduledEventListItemGuildIcon");
+            simpleDraweeView2.setVisibility(0);
+            TextView textView4 = this.binding.f15144i;
+            C12238m.checkNotNullExpressionValue(textView4, "binding.guildScheduledEv…mGuildIconPlaceholderText");
+            textView4.setVisibility(0);
+            TextView textView5 = this.binding.f15144i;
+            textView5.setText(guild.getShortName());
+            textView5.setVisibility(guild.hasIcon() ^ true ? 0 : 8);
+            SimpleDraweeView simpleDraweeView3 = this.binding.f15143h;
+            C12238m.checkNotNullExpressionValue(simpleDraweeView3, "binding.guildScheduledEventListItemGuildIcon");
+            SimpleDraweeViewExtensionsKt.setGuildIcon(simpleDraweeView3, true, (496 & 2) != 0 ? null : guild, getResources().getDimensionPixelSize(C5419R.dimen.guild_scheduled_event_icon_corner_radius), (496 & 8) != 0 ? null : Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(C5419R.dimen.avatar_size_standard))), (496 & 16) != 0 ? null : null, (496 & 32) != 0 ? null : null, (496 & 64) != 0 ? null : null, (496 & 128) != 0 ? false : false, (496 & 256) != 0 ? null : null);
+            TextView textView6 = this.binding.f15145j;
+            C12238m.checkNotNullExpressionValue(textView6, "binding.guildScheduledEventListItemGuildName");
+            textView6.setText(guild.getName());
+            TextView textView7 = this.binding.f15142g;
+            C12238m.checkNotNullExpressionValue(textView7, "binding.guildScheduledEv…tListItemGuildChannelName");
+            textView7.setVisibility(locationInfo != null ? 0 : 8);
+            TextView textView8 = this.binding.f15142g;
+            C12238m.checkNotNullExpressionValue(textView8, "binding.guildScheduledEv…tListItemGuildChannelName");
+            if (locationInfo != null) {
+                GuildScheduledEventExternalLocationParser locationParser2 = getLocationParser();
+                Context context2 = getContext();
+                C12238m.checkNotNullExpressionValue(context2, "context");
+                textFromLocation = locationParser2.getTextFromLocation(context2, locationInfo);
+            } else {
+                textFromLocation = null;
+            }
+            ViewExtensions.setTextAndVisibilityBy(textView8, textFromLocation);
+            TextView textView9 = this.binding.f15142g;
+            if (locationInfo != null) {
+                locationIconSmall = locationInfo.getLocationIconSmall();
+                i = 0;
+            } else {
+                i = 0;
+                locationIconSmall = 0;
+            }
+            textView9.setCompoundDrawablesWithIntrinsicBounds(locationIconSmall, i, i, i);
+        }
+    }
+
+    private final GuildScheduledEventDescriptionParser getDescriptionParser() {
+        return (GuildScheduledEventDescriptionParser) this.descriptionParser.getValue();
+    }
+
+    private final GuildScheduledEventExternalLocationParser getLocationParser() {
+        return (GuildScheduledEventExternalLocationParser) this.locationParser.getValue();
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

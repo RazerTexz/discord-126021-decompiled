@@ -48,6 +48,36 @@ public class C1733d extends AbstractDraweeControllerBuilder<C1733d, ImageRequest
         this.f3185p = c1735f;
     }
 
+    /* JADX WARN: Type inference failed for: r2v2, types: [REQUEST, com.facebook.imagepipeline.request.ImageRequest] */
+    /* JADX INFO: renamed from: f */
+    public C1733d m1058f(Uri uri) {
+        if (uri == null) {
+            this.f19484h = null;
+            return this;
+        }
+        ImageRequestBuilder imageRequestBuilderM8723b = ImageRequestBuilder.m8723b(uri);
+        imageRequestBuilderM8723b.f19616e = C1885f.f3722b;
+        this.f19484h = imageRequestBuilderM8723b.m8724a();
+        return this;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: g */
+    public C1733d m1059g(String str) {
+        Uri uri;
+        if (str != null && !str.isEmpty()) {
+            return m1058f(Uri.parse(str));
+        }
+        REQUEST requestM8724a = 0;
+        requestM8724a = 0;
+        requestM8724a = 0;
+        if (str != null && str.length() != 0 && (uri = Uri.parse(str)) != null) {
+            requestM8724a = ImageRequestBuilder.m8723b(uri).m8724a();
+        }
+        this.f19484h = requestM8724a;
+        return this;
+    }
+
     @Override // com.facebook.drawee.controller.AbstractDraweeControllerBuilder
     /* JADX INFO: renamed from: b */
     public DataSource<CloseableReference<AbstractC1917c>> mo1056b(DraweeController draweeController, String str, ImageRequest imageRequest, Object obj, AbstractDraweeControllerBuilder.EnumC10643b enumC10643b) {
@@ -131,35 +161,5 @@ public class C1733d extends AbstractDraweeControllerBuilder<C1733d, ImageRequest
         } finally {
             C2030b.m1527b();
         }
-    }
-
-    /* JADX WARN: Type inference failed for: r2v2, types: [REQUEST, com.facebook.imagepipeline.request.ImageRequest] */
-    /* JADX INFO: renamed from: f */
-    public C1733d m1058f(Uri uri) {
-        if (uri == null) {
-            this.f19484h = null;
-            return this;
-        }
-        ImageRequestBuilder imageRequestBuilderM8723b = ImageRequestBuilder.m8723b(uri);
-        imageRequestBuilderM8723b.f19616e = C1885f.f3722b;
-        this.f19484h = imageRequestBuilderM8723b.m8724a();
-        return this;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: g */
-    public C1733d m1059g(String str) {
-        Uri uri;
-        if (str != null && !str.isEmpty()) {
-            return m1058f(Uri.parse(str));
-        }
-        REQUEST requestM8724a = 0;
-        requestM8724a = 0;
-        requestM8724a = 0;
-        if (str != null && str.length() != 0 && (uri = Uri.parse(str)) != null) {
-            requestM8724a = ImageRequestBuilder.m8723b(uri).m8724a();
-        }
-        this.f19484h = requestM8724a;
-        return this;
     }
 }

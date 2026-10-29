@@ -21,7 +21,7 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
     private final boolean isSelected;
 
     /* JADX INFO: compiled from: StickerCategoryItem.kt */
-    public static final /* data */ class GuildItem extends StickerCategoryItem {
+    public final /* data */ class GuildItem extends StickerCategoryItem {
         private final Pair<Integer, Integer> categoryRange;
         private final Guild guild;
         private final boolean isSelected;
@@ -41,6 +41,18 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             this.key = String.valueOf(guild.getId());
         }
 
+        public final List<Sticker> component2() {
+            return this.stickers;
+        }
+
+        public final Pair<Integer, Integer> component3() {
+            return getCategoryRange();
+        }
+
+        public final boolean component4() {
+            return getIsSelected();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ GuildItem copy$default(GuildItem guildItem, Guild guild, List list, Pair pair, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -56,23 +68,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
                 z2 = guildItem.getIsSelected();
             }
             return guildItem.copy(guild, list, pair, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final List<Sticker> component2() {
-            return this.stickers;
-        }
-
-        public final Pair<Integer, Integer> component3() {
-            return getCategoryRange();
-        }
-
-        public final boolean component4() {
-            return getIsSelected();
         }
 
         public final GuildItem copy(Guild guild, List<Sticker> stickers, Pair<Integer, Integer> categoryRange, boolean isSelected) {
@@ -98,8 +93,19 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             return this.categoryRange;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public boolean getIsSelected() {
+            return this.isSelected;
         }
 
         @Override // com.discord.utilities.recycler.DiffKeyProvider
@@ -131,12 +137,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             return iHashCode3 + r1;
         }
 
-        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("GuildItem(guild=");
             sbM833U.append(this.guild);
@@ -152,7 +152,7 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: StickerCategoryItem.kt */
-    public static final /* data */ class PackItem extends StickerCategoryItem {
+    public final /* data */ class PackItem extends StickerCategoryItem {
         private final Pair<Integer, Integer> categoryRange;
         private final boolean isSelected;
         private final String key;
@@ -169,6 +169,14 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             this.key = String.valueOf(modelStickerPack.getId());
         }
 
+        public final Pair<Integer, Integer> component2() {
+            return getCategoryRange();
+        }
+
+        public final boolean component3() {
+            return getIsSelected();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ PackItem copy$default(PackItem packItem, ModelStickerPack modelStickerPack, Pair pair, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -181,19 +189,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
                 z2 = packItem.getIsSelected();
             }
             return packItem.copy(modelStickerPack, pair, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelStickerPack getPack() {
-            return this.pack;
-        }
-
-        public final Pair<Integer, Integer> component2() {
-            return getCategoryRange();
-        }
-
-        public final boolean component3() {
-            return getIsSelected();
         }
 
         public final PackItem copy(ModelStickerPack pack, Pair<Integer, Integer> categoryRange, boolean isSelected) {
@@ -218,9 +213,20 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             return this.categoryRange;
         }
 
+        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public boolean getIsSelected() {
+            return this.isSelected;
+        }
+
         @Override // com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelStickerPack getPack() {
+            return this.pack;
         }
 
         public final ModelStickerPack getPack() {
@@ -245,12 +251,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             return iHashCode2 + r1;
         }
 
-        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("PackItem(pack=");
             sbM833U.append(this.pack);
@@ -264,7 +264,7 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: StickerCategoryItem.kt */
-    public static final /* data */ class RecentItem extends StickerCategoryItem {
+    public final /* data */ class RecentItem extends StickerCategoryItem {
         private final Pair<Integer, Integer> categoryRange;
         private final boolean isSelected;
         private final String key;
@@ -278,6 +278,14 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             this.key = "recent";
         }
 
+        public final boolean component1() {
+            return getIsSelected();
+        }
+
+        public final Pair<Integer, Integer> component2() {
+            return getCategoryRange();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ RecentItem copy$default(RecentItem recentItem, boolean z2, Pair pair, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -287,14 +295,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
                 pair = recentItem.getCategoryRange();
             }
             return recentItem.copy(z2, pair);
-        }
-
-        public final boolean component1() {
-            return getIsSelected();
-        }
-
-        public final Pair<Integer, Integer> component2() {
-            return getCategoryRange();
         }
 
         public final RecentItem copy(boolean isSelected, Pair<Integer, Integer> categoryRange) {
@@ -318,6 +318,12 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             return this.categoryRange;
         }
 
+        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public boolean getIsSelected() {
+            return this.isSelected;
+        }
+
         @Override // com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -336,12 +342,6 @@ public abstract class StickerCategoryItem implements DiffKeyProvider {
             int i = r0 * 31;
             Pair<Integer, Integer> categoryRange = getCategoryRange();
             return i + (categoryRange != null ? categoryRange.hashCode() : 0);
-        }
-
-        @Override // com.discord.widgets.chat.input.sticker.StickerCategoryItem
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public boolean getIsSelected() {
-            return this.isSelected;
         }
 
         public String toString() {

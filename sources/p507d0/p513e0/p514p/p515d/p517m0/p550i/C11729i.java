@@ -10,7 +10,7 @@ public class C11729i extends C11730j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.i$b */
     /* JADX INFO: compiled from: LazyField.java */
-    public static class b<K> implements Map.Entry<K, Object> {
+    public class b<K> implements Map.Entry<K, Object> {
 
         /* JADX INFO: renamed from: j */
         public Map.Entry<K, C11729i> f24143j;
@@ -44,7 +44,7 @@ public class C11729i extends C11730j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.i.i$c */
     /* JADX INFO: compiled from: LazyField.java */
-    public static class c<K> implements Iterator<Map.Entry<K, Object>> {
+    public class c<K> implements Iterator<Map.Entry<K, Object>> {
 
         /* JADX INFO: renamed from: j */
         public Iterator<Map.Entry<K, Object>> f24144j;

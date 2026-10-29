@@ -30,21 +30,6 @@ public final /* data */ class PendingDowngrade {
         return pendingDowngrade.copy(str, str2, str3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getPurchaseToken() {
-        return this.purchaseToken;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getSubscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getNewSkuName() {
-        return this.newSkuName;
-    }
-
     public final PendingDowngrade copy(String purchaseToken, String subscriptionId, String newSkuName) {
         C12238m.checkNotNullParameter(purchaseToken, "purchaseToken");
         C12238m.checkNotNullParameter(subscriptionId, "subscriptionId");
@@ -63,12 +48,27 @@ public final /* data */ class PendingDowngrade {
         return C12238m.areEqual(this.purchaseToken, pendingDowngrade.purchaseToken) && C12238m.areEqual(this.subscriptionId, pendingDowngrade.subscriptionId) && C12238m.areEqual(this.newSkuName, pendingDowngrade.newSkuName);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getNewSkuName() {
         return this.newSkuName;
     }
 
+    public final String getNewSkuName() {
+        return this.newSkuName;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getPurchaseToken() {
         return this.purchaseToken;
+    }
+
+    public final String getPurchaseToken() {
+        return this.purchaseToken;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getSubscriptionId() {
+        return this.subscriptionId;
     }
 
     public final String getSubscriptionId() {

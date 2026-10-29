@@ -35,12 +35,6 @@ import p007b.p109f.p115d.p126k.InterfaceC1713a;
 /* JADX INFO: loaded from: classes.dex */
 public class C1661d implements InterfaceC1665h {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f3041a = TimeUnit.HOURS.toMillis(2);
-
-    /* JADX INFO: renamed from: b */
-    public static final long f3042b = TimeUnit.MINUTES.toMillis(30);
-
     /* JADX INFO: renamed from: c */
     public final long f3043c;
 
@@ -84,6 +78,12 @@ public class C1661d implements InterfaceC1665h {
     /* JADX INFO: renamed from: p */
     public final InterfaceC1713a f3056p;
 
+    /* JADX INFO: renamed from: a */
+    public static final long f3041a = TimeUnit.HOURS.toMillis(2);
+
+    /* JADX INFO: renamed from: b */
+    public static final long f3042b = TimeUnit.MINUTES.toMillis(30);
+
     /* JADX INFO: renamed from: q */
     public final Object f3057q = new Object();
 
@@ -103,37 +103,9 @@ public class C1661d implements InterfaceC1665h {
         }
     }
 
-    /* JADX INFO: renamed from: b.f.b.b.d$b */
-    /* JADX INFO: compiled from: DiskStorageCache.java */
-    @VisibleForTesting
-    public static class b {
-
-        /* JADX INFO: renamed from: a */
-        public boolean f3059a = false;
-
-        /* JADX INFO: renamed from: b */
-        public long f3060b = -1;
-
-        /* JADX INFO: renamed from: c */
-        public long f3061c = -1;
-
-        /* JADX INFO: renamed from: a */
-        public synchronized long m957a() {
-            return this.f3060b;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public synchronized void m958b(long j, long j2) {
-            if (this.f3059a) {
-                this.f3060b += j;
-                this.f3061c += j2;
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: b.f.b.b.d$c */
     /* JADX INFO: compiled from: DiskStorageCache.java */
-    public static class c {
+    public class c {
 
         /* JADX INFO: renamed from: a */
         public final long f3062a;
@@ -486,6 +458,34 @@ public class C1661d implements InterfaceC1665h {
             this.f3046f = this.f3043c;
         } else {
             this.f3046f = this.f3044d;
+        }
+    }
+
+    /* JADX INFO: renamed from: b.f.b.b.d$b */
+    /* JADX INFO: compiled from: DiskStorageCache.java */
+    @VisibleForTesting
+    public class b {
+
+        /* JADX INFO: renamed from: a */
+        public boolean f3059a = false;
+
+        /* JADX INFO: renamed from: b */
+        public long f3060b = -1;
+
+        /* JADX INFO: renamed from: c */
+        public long f3061c = -1;
+
+        /* JADX INFO: renamed from: a */
+        public synchronized long m957a() {
+            return this.f3060b;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public synchronized void m958b(long j, long j2) {
+            if (this.f3059a) {
+                this.f3060b += j;
+                this.f3061c += j2;
+            }
         }
     }
 }

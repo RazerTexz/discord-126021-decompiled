@@ -20,7 +20,7 @@ public final class C11555c extends AbstractC12240o implements Function0<Abstract
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.m.c$a */
     /* JADX INFO: compiled from: JavaTypeResolver.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
         public final /* synthetic */ InterfaceC12008u0 $constructor;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

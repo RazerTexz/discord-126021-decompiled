@@ -33,11 +33,235 @@ public final class StoreEntitlements extends StoreV2 {
     private State state;
     private State stateSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$1 */
     /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static abstract class State {
+    public final class C59051 extends AbstractC12240o implements Function0<Unit> {
+        public C59051() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreEntitlements.this.handleFetchingState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$2 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59062 extends AbstractC12240o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreEntitlements.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreEntitlements.this.handleFetchError();
+            }
+        }
+
+        public C59062() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$3 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59073 extends AbstractC12240o implements Function1<List<? extends ModelEntitlement>, Unit> {
+        public final /* synthetic */ long $applicationId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreEntitlements.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ List $entitlements;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$entitlements = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                C59073 c59073 = C59073.this;
+                StoreEntitlements.this.handleFetchEntitlementsSuccess(c59073.$applicationId, this.$entitlements);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C59073(long j) {
+            super(1);
+            this.$applicationId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelEntitlement> list) {
+            invoke2((List<ModelEntitlement>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelEntitlement> list) {
+            C12238m.checkNotNullParameter(list, "entitlements");
+            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$1 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59081 extends AbstractC12240o implements Function0<Unit> {
+        public C59081() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreEntitlements.this.handleFetchingState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$2 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59092 extends AbstractC12240o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreEntitlements.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreEntitlements.this.handleFetchError();
+            }
+        }
+
+        public C59092() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$3 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59103 extends AbstractC12240o implements Function1<List<? extends ModelEntitlement>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreEntitlements.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ List $entitlements;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$entitlements = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreEntitlements.this.handleFetchGiftsSuccess(this.$entitlements);
+            }
+        }
+
+        public C59103() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelEntitlement> list) {
+            invoke2((List<ModelEntitlement>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelEntitlement> list) {
+            C12238m.checkNotNullParameter(list, "entitlements");
+            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$observeEntitlementState$1 */
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public final class C59111 extends AbstractC12240o implements Function0<State> {
+        public C59111() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreEntitlements.this.stateSnapshot;
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreEntitlements.kt */
+    public abstract class State {
 
         /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class Failure extends State {
+        public final class Failure extends State {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -46,7 +270,7 @@ public final class StoreEntitlements extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final /* data */ class Loaded extends State {
+        public final /* data */ class Loaded extends State {
             private final Map<Long, List<ModelEntitlement>> giftableEntitlements;
             private final Map<Long, List<ModelEntitlement>> ownedEntitlements;
 
@@ -60,6 +284,14 @@ public final class StoreEntitlements extends StoreV2 {
                 this.ownedEntitlements = map2;
             }
 
+            public final Map<Long, List<ModelEntitlement>> component1() {
+                return this.giftableEntitlements;
+            }
+
+            public final Map<Long, List<ModelEntitlement>> component2() {
+                return this.ownedEntitlements;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, Map map2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -69,14 +301,6 @@ public final class StoreEntitlements extends StoreV2 {
                     map2 = loaded.ownedEntitlements;
                 }
                 return loaded.copy(map, map2);
-            }
-
-            public final Map<Long, List<ModelEntitlement>> component1() {
-                return this.giftableEntitlements;
-            }
-
-            public final Map<Long, List<ModelEntitlement>> component2() {
-                return this.ownedEntitlements;
             }
 
             public final Loaded copy(Map<Long, ? extends List<ModelEntitlement>> giftableEntitlements, Map<Long, ? extends List<ModelEntitlement>> ownedEntitlements) {
@@ -125,7 +349,7 @@ public final class StoreEntitlements extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class Loading extends State {
+        public final class Loading extends State {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -142,230 +366,6 @@ public final class StoreEntitlements extends StoreV2 {
 
         public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$1 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59051 extends AbstractC12240o implements Function0<Unit> {
-        public C59051() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreEntitlements.this.handleFetchingState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$2 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59062 extends AbstractC12240o implements Function1<Error, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreEntitlements.this.handleFetchError();
-            }
-        }
-
-        public C59062() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$3 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59073 extends AbstractC12240o implements Function1<List<? extends ModelEntitlement>, Unit> {
-        public final /* synthetic */ long $applicationId;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyEntitlementsForApplication$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ List $entitlements;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(List list) {
-                super(0);
-                this.$entitlements = list;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                C59073 c59073 = C59073.this;
-                StoreEntitlements.this.handleFetchEntitlementsSuccess(c59073.$applicationId, this.$entitlements);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59073(long j) {
-            super(1);
-            this.$applicationId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelEntitlement> list) {
-            invoke2((List<ModelEntitlement>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<ModelEntitlement> list) {
-            C12238m.checkNotNullParameter(list, "entitlements");
-            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1(list));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$1 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59081 extends AbstractC12240o implements Function0<Unit> {
-        public C59081() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreEntitlements.this.handleFetchingState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$2 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59092 extends AbstractC12240o implements Function1<Error, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreEntitlements.this.handleFetchError();
-            }
-        }
-
-        public C59092() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$3 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59103 extends AbstractC12240o implements Function1<List<? extends ModelEntitlement>, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$fetchMyGiftEntitlements$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreEntitlements.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ List $entitlements;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(List list) {
-                super(0);
-                this.$entitlements = list;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreEntitlements.this.handleFetchGiftsSuccess(this.$entitlements);
-            }
-        }
-
-        public C59103() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelEntitlement> list) {
-            invoke2((List<ModelEntitlement>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<ModelEntitlement> list) {
-            C12238m.checkNotNullParameter(list, "entitlements");
-            StoreEntitlements.this.dispatcher.schedule(new AnonymousClass1(list));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreEntitlements$observeEntitlementState$1 */
-    /* JADX INFO: compiled from: StoreEntitlements.kt */
-    public static final class C59111 extends AbstractC12240o implements Function0<State> {
-        public C59111() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final State invoke() {
-            return StoreEntitlements.this.stateSnapshot;
         }
     }
 

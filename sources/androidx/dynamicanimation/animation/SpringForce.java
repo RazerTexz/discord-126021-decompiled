@@ -34,26 +34,6 @@ public final class SpringForce implements Force {
         this.mMassState = new DynamicAnimation.MassState();
     }
 
-    private void init() {
-        if (this.mInitialized) {
-            return;
-        }
-        if (this.mFinalPosition == UNSET) {
-            throw new IllegalStateException("Error: Final position of the spring must be set before the animation starts");
-        }
-        double d = this.mDampingRatio;
-        if (d > 1.0d) {
-            double d2 = this.mNaturalFreq;
-            this.mGammaPlus = (Math.sqrt((d * d) - 1.0d) * d2) + ((-d) * d2);
-            double d3 = this.mDampingRatio;
-            double d4 = this.mNaturalFreq;
-            this.mGammaMinus = ((-d3) * d4) - (Math.sqrt((d3 * d3) - 1.0d) * d4);
-        } else if (d >= 0.0d && d < 1.0d) {
-            this.mDampedFreq = Math.sqrt(1.0d - (d * d)) * this.mNaturalFreq;
-        }
-        this.mInitialized = true;
-    }
-
     @Override // androidx.dynamicanimation.animation.Force
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public float getAcceleration(float f, float f2) {
@@ -73,6 +53,26 @@ public final class SpringForce implements Force {
     public float getStiffness() {
         double d = this.mNaturalFreq;
         return (float) (d * d);
+    }
+
+    private void init() {
+        if (this.mInitialized) {
+            return;
+        }
+        if (this.mFinalPosition == UNSET) {
+            throw new IllegalStateException("Error: Final position of the spring must be set before the animation starts");
+        }
+        double d = this.mDampingRatio;
+        if (d > 1.0d) {
+            double d2 = this.mNaturalFreq;
+            this.mGammaPlus = (Math.sqrt((d * d) - 1.0d) * d2) + ((-d) * d2);
+            double d3 = this.mDampingRatio;
+            double d4 = this.mNaturalFreq;
+            this.mGammaMinus = ((-d3) * d4) - (Math.sqrt((d3 * d3) - 1.0d) * d4);
+        } else if (d >= 0.0d && d < 1.0d) {
+            this.mDampedFreq = Math.sqrt(1.0d - (d * d)) * this.mNaturalFreq;
+        }
+        this.mInitialized = true;
     }
 
     @Override // androidx.dynamicanimation.animation.Force

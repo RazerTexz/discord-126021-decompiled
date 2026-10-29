@@ -22,6 +22,132 @@ import p507d0.p592z.p594d.C12238m;
 public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<ViewState> {
     public static final int SAMPLE_USER_COUNT = 1;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setDescription$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88251 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ String $description;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88251(String str) {
+            super(1);
+            this.$description = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : this.$description, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setEndDate$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88261 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ GuildScheduledEventPickerDate $newEndDate;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88261(GuildScheduledEventPickerDate guildScheduledEventPickerDate) {
+            super(1);
+            this.$newEndDate = guildScheduledEventPickerDate;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : this.$newEndDate, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setEndTime$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88271 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ GuildScheduledEventPickerTime $newEndTime;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88271(GuildScheduledEventPickerTime guildScheduledEventPickerTime) {
+            super(1);
+            this.$newEndTime = guildScheduledEventPickerTime;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : this.$newEndTime, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setStartDate$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88281 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ GuildScheduledEventPickerDate $newStartDate;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88281(GuildScheduledEventPickerDate guildScheduledEventPickerDate) {
+            super(1);
+            this.$newStartDate = guildScheduledEventPickerDate;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : this.$newStartDate, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setStartTime$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88291 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ GuildScheduledEventPickerTime $newStartTime;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88291(GuildScheduledEventPickerTime guildScheduledEventPickerTime) {
+            super(1);
+            this.$newStartTime = guildScheduledEventPickerTime;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : this.$newStartTime, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setTopic$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88301 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ String $topic;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88301(String str) {
+            super(1);
+            this.$topic = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : this.$topic, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$toggleBroadcastToDirectoryChannel$1 */
+    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
+    public final class C88311 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
+        public final /* synthetic */ boolean $associateToHubs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C88311(boolean z2) {
+            super(1);
+            this.$associateToHubs = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
+            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
+            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : Boolean.valueOf(this.$associateToHubs));
+        }
+    }
+
     /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
     public enum DateError {
         INVALID_VIEW_STATE,
@@ -31,10 +157,10 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-        public static final /* data */ class Initialized extends ViewState {
+        public final /* data */ class Initialized extends ViewState {
             private final GuildScheduledEventModel eventModel;
             private final GuildScheduledEvent existingEvent;
 
@@ -56,16 +182,6 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
                 return initialized.copy(guildScheduledEventModel, guildScheduledEvent);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildScheduledEventModel getEventModel() {
-                return this.eventModel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final GuildScheduledEvent getExistingEvent() {
-                return this.existingEvent;
-            }
-
             public final Initialized copy(GuildScheduledEventModel eventModel, GuildScheduledEvent existingEvent) {
                 C12238m.checkNotNullParameter(eventModel, "eventModel");
                 return new Initialized(eventModel, existingEvent);
@@ -82,8 +198,18 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
                 return C12238m.areEqual(this.eventModel, initialized.eventModel) && C12238m.areEqual(this.existingEvent, initialized.existingEvent);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final GuildScheduledEventModel getEventModel() {
                 return this.eventModel;
+            }
+
+            public final GuildScheduledEventModel getEventModel() {
+                return this.eventModel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final GuildScheduledEvent getExistingEvent() {
+                return this.existingEvent;
             }
 
             public final GuildScheduledEvent getExistingEvent() {
@@ -108,7 +234,7 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
         }
 
         /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -124,147 +250,8 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setDescription$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88251 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ String $description;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88251(String str) {
-            super(1);
-            this.$description = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : this.$description, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setEndDate$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88261 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ GuildScheduledEventPickerDate $newEndDate;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88261(GuildScheduledEventPickerDate guildScheduledEventPickerDate) {
-            super(1);
-            this.$newEndDate = guildScheduledEventPickerDate;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : this.$newEndDate, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setEndTime$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88271 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ GuildScheduledEventPickerTime $newEndTime;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88271(GuildScheduledEventPickerTime guildScheduledEventPickerTime) {
-            super(1);
-            this.$newEndTime = guildScheduledEventPickerTime;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : this.$newEndTime, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setStartDate$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88281 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ GuildScheduledEventPickerDate $newStartDate;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88281(GuildScheduledEventPickerDate guildScheduledEventPickerDate) {
-            super(1);
-            this.$newStartDate = guildScheduledEventPickerDate;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : this.$newStartDate, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setStartTime$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88291 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ GuildScheduledEventPickerTime $newStartTime;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88291(GuildScheduledEventPickerTime guildScheduledEventPickerTime) {
-            super(1);
-            this.$newStartTime = guildScheduledEventPickerTime;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : this.$newStartTime, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$setTopic$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88301 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ String $topic;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88301(String str) {
-            super(1);
-            this.$topic = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : this.$topic, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventSettingsViewModel$toggleBroadcastToDirectoryChannel$1 */
-    /* JADX INFO: compiled from: GuildScheduledEventSettingsViewModel.kt */
-    public static final class C88311 extends AbstractC12240o implements Function1<GuildScheduledEventModel, GuildScheduledEventModel> {
-        public final /* synthetic */ boolean $associateToHubs;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88311(boolean z2) {
-            super(1);
-            this.$associateToHubs = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final GuildScheduledEventModel invoke(GuildScheduledEventModel guildScheduledEventModel) {
-            C12238m.checkNotNullParameter(guildScheduledEventModel, "$receiver");
-            return guildScheduledEventModel.copy((7935 & 1) != 0 ? guildScheduledEventModel.guildId : 0L, (7935 & 2) != 0 ? guildScheduledEventModel.name : null, (7935 & 4) != 0 ? guildScheduledEventModel.channelId : null, (7935 & 8) != 0 ? guildScheduledEventModel.creatorId : null, (7935 & 16) != 0 ? guildScheduledEventModel.startDate : null, (7935 & 32) != 0 ? guildScheduledEventModel.startTime : null, (7935 & 64) != 0 ? guildScheduledEventModel.endDate : null, (7935 & 128) != 0 ? guildScheduledEventModel.endTime : null, (7935 & 256) != 0 ? guildScheduledEventModel.description : null, (7935 & 512) != 0 ? guildScheduledEventModel.entityType : null, (7935 & 1024) != 0 ? guildScheduledEventModel.entityMetadata : null, (7935 & 2048) != 0 ? guildScheduledEventModel.userCount : null, (7935 & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : Boolean.valueOf(this.$associateToHubs));
-        }
-    }
-
     public /* synthetic */ GuildScheduledEventSettingsViewModel(long j, Long l, GuildScheduledEventEntityType guildScheduledEventEntityType, Long l2, String str, StoreGuildScheduledEvents storeGuildScheduledEvents, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(j, l, guildScheduledEventEntityType, l2, str, (i & 32) != 0 ? StoreStream.INSTANCE.getGuildScheduledEvents() : storeGuildScheduledEvents);
-    }
-
-    private final Unit updateEventModel(Function1<? super GuildScheduledEventModel, GuildScheduledEventModel> updateEventModel) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Initialized)) {
-            viewState = null;
-        }
-        ViewState.Initialized initialized = (ViewState.Initialized) viewState;
-        if (initialized == null) {
-            return null;
-        }
-        updateViewState(ViewState.Initialized.copy$default(initialized, updateEventModel.invoke(initialized.getEventModel()), null, 2, null));
-        return Unit.f27425a;
     }
 
     public final boolean hasEndTimeChanged(ViewState.Initialized viewState) {
@@ -357,6 +344,19 @@ public final class GuildScheduledEventSettingsViewModel extends AbstractC0859d0<
 
     public final Unit toggleBroadcastToDirectoryChannel(boolean associateToHubs) {
         return updateEventModel(new C88311(associateToHubs));
+    }
+
+    private final Unit updateEventModel(Function1<? super GuildScheduledEventModel, GuildScheduledEventModel> updateEventModel) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Initialized)) {
+            viewState = null;
+        }
+        ViewState.Initialized initialized = (ViewState.Initialized) viewState;
+        if (initialized == null) {
+            return null;
+        }
+        updateViewState(ViewState.Initialized.copy$default(initialized, updateEventModel.invoke(initialized.getEventModel()), null, 2, null));
+        return Unit.f27425a;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

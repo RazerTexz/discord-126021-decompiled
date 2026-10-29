@@ -24,15 +24,6 @@ public class TextDrawableHelper {
     @Nullable
     private WeakReference<TextDrawableDelegate> delegate = new WeakReference<>(null);
 
-    public interface TextDrawableDelegate {
-        @NonNull
-        int[] getState();
-
-        boolean onStateChange(int[] iArr);
-
-        void onTextSizeChange();
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.internal.TextDrawableHelper$a */
     public class C10946a extends TextAppearanceFontCallback {
         public C10946a() {
@@ -58,6 +49,15 @@ public class TextDrawableHelper {
                 textDrawableDelegate.onTextSizeChange();
             }
         }
+    }
+
+    public interface TextDrawableDelegate {
+        @NonNull
+        int[] getState();
+
+        boolean onStateChange(int[] iArr);
+
+        void onTextSizeChange();
     }
 
     public TextDrawableHelper(@Nullable TextDrawableDelegate textDrawableDelegate) {

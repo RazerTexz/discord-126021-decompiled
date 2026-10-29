@@ -24,11 +24,6 @@ public final class C2820l2 extends AbstractC2656d2 {
         this.f7241l = -1.0f;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static String m3304a(int i) {
-        return Integer.toString(i, 36);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof C2820l2)) {
             return false;
@@ -39,6 +34,11 @@ public final class C2820l2 extends AbstractC2656d2 {
 
     public int hashCode() {
         return Arrays.hashCode(new Object[]{Integer.valueOf(this.f7240k), Float.valueOf(this.f7241l)});
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static String m3304a(int i) {
+        return Integer.toString(i, 36);
     }
 
     public C2820l2(@IntRange(from = 1) int i, @FloatRange(from = 0.0d) float f) {

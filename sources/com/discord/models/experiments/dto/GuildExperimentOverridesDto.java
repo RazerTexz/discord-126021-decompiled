@@ -17,7 +17,7 @@ public final /* data */ class GuildExperimentOverridesDto {
     private final List<Long> guilds;
 
     /* JADX INFO: compiled from: GuildExperimentDto.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -69,6 +69,10 @@ public final /* data */ class GuildExperimentOverridesDto {
         this.guilds = list;
     }
 
+    public final List<Long> component2() {
+        return this.guilds;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildExperimentOverridesDto copy$default(GuildExperimentOverridesDto guildExperimentOverridesDto, int i, List list, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -78,15 +82,6 @@ public final /* data */ class GuildExperimentOverridesDto {
             list = guildExperimentOverridesDto.guilds;
         }
         return guildExperimentOverridesDto.copy(i, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getBucket() {
-        return this.bucket;
-    }
-
-    public final List<Long> component2() {
-        return this.guilds;
     }
 
     public final GuildExperimentOverridesDto copy(int bucket, List<Long> guilds) {
@@ -103,6 +98,11 @@ public final /* data */ class GuildExperimentOverridesDto {
         }
         GuildExperimentOverridesDto guildExperimentOverridesDto = (GuildExperimentOverridesDto) other;
         return this.bucket == guildExperimentOverridesDto.bucket && C12238m.areEqual(this.guilds, guildExperimentOverridesDto.guilds);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getBucket() {
+        return this.bucket;
     }
 
     public final int getBucket() {

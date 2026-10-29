@@ -17,10 +17,6 @@ import p007b.p195g.p196a.p205c.p218h0.C2335n;
 /* JADX INFO: compiled from: BaseSettings.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2383a implements Serializable {
-
-    /* JADX INFO: renamed from: j */
-    public static final TimeZone f5074j = TimeZone.getTimeZone("UTC");
-    private static final long serialVersionUID = 1;
     public final AbstractC2173a.a _accessorNaming;
     public final AbstractC2165b _annotationIntrospector;
     public final AbstractC2199t _classIntrospector;
@@ -33,6 +29,10 @@ public final class C2383a implements Serializable {
     public final C2335n _typeFactory;
     public final InterfaceC2214f<?> _typeResolverBuilder;
     public final AbstractC2211c _typeValidator;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: j */
+    public static final TimeZone f5074j = TimeZone.getTimeZone("UTC");
 
     public C2383a(AbstractC2199t abstractC2199t, AbstractC2165b abstractC2165b, C2371u c2371u, C2335n c2335n, InterfaceC2214f interfaceC2214f, DateFormat dateFormat, Locale locale, TimeZone timeZone, C2105a c2105a, AbstractC2211c abstractC2211c, AbstractC2173a.a aVar) {
         this._classIntrospector = abstractC2199t;

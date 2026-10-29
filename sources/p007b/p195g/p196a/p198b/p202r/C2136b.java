@@ -9,12 +9,12 @@ public final class C2136b {
 
     /* JADX INFO: renamed from: b.g.a.b.r.b$a */
     /* JADX INFO: compiled from: CharsToNameCanonicalizer.java */
-    public static final class a {
+    public final class a {
     }
 
     /* JADX INFO: renamed from: b.g.a.b.r.b$b */
     /* JADX INFO: compiled from: CharsToNameCanonicalizer.java */
-    public static final class b {
+    public final class b {
         public b(int i, int i2, String[] strArr, a[] aVarArr) {
         }
     }

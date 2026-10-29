@@ -71,6 +71,15 @@ public final class C12301g implements Interceptor.Chain {
         return new C12301g(c12301g.f25532b, c12301g.f25533c, i6, c12283c2, request2, i7, i8, i9);
     }
 
+    /* JADX INFO: renamed from: b */
+    public InterfaceC12367k m10229b() {
+        C12283c c12283c = this.f25535e;
+        if (c12283c != null) {
+            return c12283c.f25438b;
+        }
+        return null;
+    }
+
     @Override // okhttp3.Interceptor.Chain
     /* JADX INFO: renamed from: a */
     public Response mo10228a(Request request) throws IOException {
@@ -109,15 +118,6 @@ public final class C12301g implements Interceptor.Chain {
             return responseIntercept;
         }
         throw new IllegalStateException(("interceptor " + interceptor + " returned a response with no body").toString());
-    }
-
-    /* JADX INFO: renamed from: b */
-    public InterfaceC12367k m10229b() {
-        C12283c c12283c = this.f25535e;
-        if (c12283c != null) {
-            return c12283c.f25438b;
-        }
-        return null;
     }
 
     @Override // okhttp3.Interceptor.Chain

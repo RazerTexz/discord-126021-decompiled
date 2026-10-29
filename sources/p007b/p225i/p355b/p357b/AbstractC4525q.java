@@ -33,9 +33,207 @@ public abstract class AbstractC4525q<K, V> implements Map<K, V>, Serializable {
     @LazyInit
     public transient AbstractC4519n<V> f12051l;
 
+    /* JADX INFO: renamed from: b.i.b.b.q$b */
+    /* JADX INFO: compiled from: ImmutableMap.java */
+    public class b implements Serializable {
+        private static final long serialVersionUID = 0;
+        private final Object[] keys;
+        private final Object[] values;
+
+        public b(AbstractC4525q<?, ?> abstractC4525q) {
+            this.keys = new Object[abstractC4525q.size()];
+            this.values = new Object[abstractC4525q.size()];
+            AbstractC4530s0<Map.Entry<?, ?>> it = abstractC4525q.entrySet().iterator();
+            int i = 0;
+            while (it.hasNext()) {
+                Map.Entry<?, ?> next = it.next();
+                this.keys[i] = next.getKey();
+                this.values[i] = next.getValue();
+                i++;
+            }
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public Object readResolve() {
+            a aVar = new a(this.keys.length);
+            int i = 0;
+            while (true) {
+                Object[] objArr = this.keys;
+                if (i >= objArr.length) {
+                    return aVar.m6275a();
+                }
+                aVar.m6277c(objArr[i], this.values[i]);
+                i++;
+            }
+        }
+    }
+
+    @Override // java.util.Map
+    @Deprecated
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Map
+    public boolean containsKey(@NullableDecl Object obj) {
+        return get(obj) != null;
+    }
+
+    @Override // java.util.Map
+    public boolean containsValue(@NullableDecl Object obj) {
+        AbstractC4519n<V> abstractC4519nMo6249d = this.f12051l;
+        if (abstractC4519nMo6249d == null) {
+            abstractC4519nMo6249d = mo6249d();
+            this.f12051l = abstractC4519nMo6249d;
+        }
+        return abstractC4519nMo6249d.contains(obj);
+    }
+
+    @Override // java.util.Map
+    /* JADX INFO: renamed from: e, reason: merged with bridge method [inline-methods] */
+    public AbstractC4527r<Map.Entry<K, V>> entrySet() {
+        AbstractC4527r<Map.Entry<K, V>> abstractC4527r = this.f12049j;
+        if (abstractC4527r != null) {
+            return abstractC4527r;
+        }
+        AbstractC4527r<Map.Entry<K, V>> abstractC4527rMo6247b = mo6247b();
+        this.f12049j = abstractC4527rMo6247b;
+        return abstractC4527rMo6247b;
+    }
+
+    @Override // java.util.Map
+    public boolean equals(@NullableDecl Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Map) {
+            return entrySet().equals(((Map) obj).entrySet());
+        }
+        return false;
+    }
+
+    @Override // java.util.Map
+    public abstract V get(@NullableDecl Object obj);
+
+    @Override // java.util.Map
+    public final V getOrDefault(@NullableDecl Object obj, @NullableDecl V v) {
+        V v2 = get(obj);
+        return v2 != null ? v2 : v;
+    }
+
+    @Override // java.util.Map
+    public int hashCode() {
+        return C4507h.m6238a(entrySet());
+    }
+
+    @Override // java.util.Map
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    @Override // java.util.Map
+    public Set keySet() {
+        AbstractC4527r<K> abstractC4527r = this.f12050k;
+        if (abstractC4527r != null) {
+            return abstractC4527r;
+        }
+        AbstractC4527r<K> abstractC4527rMo6248c = mo6248c();
+        this.f12050k = abstractC4527rMo6248c;
+        return abstractC4527rMo6248c;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: a */
+    public static <K, V> AbstractC4525q<K, V> m6273a(Map<? extends K, ? extends V> map) {
+        if ((map instanceof AbstractC4525q) && !(map instanceof SortedMap)) {
+            AbstractC4525q<K, V> abstractC4525q = (AbstractC4525q) map;
+            if (!abstractC4525q.mo6250f()) {
+                return abstractC4525q;
+            }
+        }
+        Set<Map.Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
+        boolean z2 = setEntrySet instanceof Collection;
+        a aVar = new a(z2 ? setEntrySet.size() : 4);
+        if (z2) {
+            aVar.m6276b(setEntrySet.size() + aVar.f12053b);
+        }
+        Iterator<T> it = setEntrySet.iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            aVar.m6277c(entry.getKey(), entry.getValue());
+        }
+        return aVar.m6275a();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public abstract AbstractC4527r<Map.Entry<K, V>> mo6247b();
+
+    /* JADX INFO: renamed from: c */
+    public abstract AbstractC4527r<K> mo6248c();
+
+    /* JADX INFO: renamed from: d */
+    public abstract AbstractC4519n<V> mo6249d();
+
+    /* JADX INFO: renamed from: f */
+    public abstract boolean mo6250f();
+
+    @Override // java.util.Map
+    @CanIgnoreReturnValue
+    @Deprecated
+    public final V put(K k, V v) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Map
+    @Deprecated
+    public final void putAll(Map<? extends K, ? extends V> map) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Map
+    @CanIgnoreReturnValue
+    @Deprecated
+    public final V remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    public String toString() {
+        int size = size();
+        C3404f.m4189A(size, "size");
+        StringBuilder sb = new StringBuilder((int) Math.min(((long) size) * 8, Permission.MANAGE_EMOJIS_AND_STICKERS));
+        sb.append('{');
+        boolean z2 = true;
+        for (Map.Entry entry : entrySet()) {
+            if (!z2) {
+                sb.append(", ");
+            }
+            z2 = false;
+            sb.append(entry.getKey());
+            sb.append('=');
+            sb.append(entry.getValue());
+        }
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override // java.util.Map
+    public Collection values() {
+        AbstractC4519n<V> abstractC4519n = this.f12051l;
+        if (abstractC4519n != null) {
+            return abstractC4519n;
+        }
+        AbstractC4519n<V> abstractC4519nMo6249d = mo6249d();
+        this.f12051l = abstractC4519nMo6249d;
+        return abstractC4519nMo6249d;
+    }
+
+    public Object writeReplace() {
+        return new b(this);
+    }
+
     /* JADX INFO: renamed from: b.i.b.b.q$a */
     /* JADX INFO: compiled from: ImmutableMap.java */
-    public static class a<K, V> {
+    public class a<K, V> {
 
         /* JADX INFO: renamed from: a */
         public Object[] f12052a;
@@ -119,203 +317,5 @@ public abstract class AbstractC4525q<K, V> implements Map<K, V>, Serializable {
             this.f12053b = i + 1;
             return this;
         }
-    }
-
-    /* JADX INFO: renamed from: b.i.b.b.q$b */
-    /* JADX INFO: compiled from: ImmutableMap.java */
-    public static class b implements Serializable {
-        private static final long serialVersionUID = 0;
-        private final Object[] keys;
-        private final Object[] values;
-
-        public b(AbstractC4525q<?, ?> abstractC4525q) {
-            this.keys = new Object[abstractC4525q.size()];
-            this.values = new Object[abstractC4525q.size()];
-            AbstractC4530s0<Map.Entry<?, ?>> it = abstractC4525q.entrySet().iterator();
-            int i = 0;
-            while (it.hasNext()) {
-                Map.Entry<?, ?> next = it.next();
-                this.keys[i] = next.getKey();
-                this.values[i] = next.getValue();
-                i++;
-            }
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public Object readResolve() {
-            a aVar = new a(this.keys.length);
-            int i = 0;
-            while (true) {
-                Object[] objArr = this.keys;
-                if (i >= objArr.length) {
-                    return aVar.m6275a();
-                }
-                aVar.m6277c(objArr[i], this.values[i]);
-                i++;
-            }
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: a */
-    public static <K, V> AbstractC4525q<K, V> m6273a(Map<? extends K, ? extends V> map) {
-        if ((map instanceof AbstractC4525q) && !(map instanceof SortedMap)) {
-            AbstractC4525q<K, V> abstractC4525q = (AbstractC4525q) map;
-            if (!abstractC4525q.mo6250f()) {
-                return abstractC4525q;
-            }
-        }
-        Set<Map.Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
-        boolean z2 = setEntrySet instanceof Collection;
-        a aVar = new a(z2 ? setEntrySet.size() : 4);
-        if (z2) {
-            aVar.m6276b(setEntrySet.size() + aVar.f12053b);
-        }
-        Iterator<T> it = setEntrySet.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            aVar.m6277c(entry.getKey(), entry.getValue());
-        }
-        return aVar.m6275a();
-    }
-
-    /* JADX INFO: renamed from: b */
-    public abstract AbstractC4527r<Map.Entry<K, V>> mo6247b();
-
-    /* JADX INFO: renamed from: c */
-    public abstract AbstractC4527r<K> mo6248c();
-
-    @Override // java.util.Map
-    @Deprecated
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override // java.util.Map
-    public boolean containsKey(@NullableDecl Object obj) {
-        return get(obj) != null;
-    }
-
-    @Override // java.util.Map
-    public boolean containsValue(@NullableDecl Object obj) {
-        AbstractC4519n<V> abstractC4519nMo6249d = this.f12051l;
-        if (abstractC4519nMo6249d == null) {
-            abstractC4519nMo6249d = mo6249d();
-            this.f12051l = abstractC4519nMo6249d;
-        }
-        return abstractC4519nMo6249d.contains(obj);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public abstract AbstractC4519n<V> mo6249d();
-
-    @Override // java.util.Map
-    /* JADX INFO: renamed from: e, reason: merged with bridge method [inline-methods] */
-    public AbstractC4527r<Map.Entry<K, V>> entrySet() {
-        AbstractC4527r<Map.Entry<K, V>> abstractC4527r = this.f12049j;
-        if (abstractC4527r != null) {
-            return abstractC4527r;
-        }
-        AbstractC4527r<Map.Entry<K, V>> abstractC4527rMo6247b = mo6247b();
-        this.f12049j = abstractC4527rMo6247b;
-        return abstractC4527rMo6247b;
-    }
-
-    @Override // java.util.Map
-    public boolean equals(@NullableDecl Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Map) {
-            return entrySet().equals(((Map) obj).entrySet());
-        }
-        return false;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public abstract boolean mo6250f();
-
-    @Override // java.util.Map
-    public abstract V get(@NullableDecl Object obj);
-
-    @Override // java.util.Map
-    public final V getOrDefault(@NullableDecl Object obj, @NullableDecl V v) {
-        V v2 = get(obj);
-        return v2 != null ? v2 : v;
-    }
-
-    @Override // java.util.Map
-    public int hashCode() {
-        return C4507h.m6238a(entrySet());
-    }
-
-    @Override // java.util.Map
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
-    @Override // java.util.Map
-    public Set keySet() {
-        AbstractC4527r<K> abstractC4527r = this.f12050k;
-        if (abstractC4527r != null) {
-            return abstractC4527r;
-        }
-        AbstractC4527r<K> abstractC4527rMo6248c = mo6248c();
-        this.f12050k = abstractC4527rMo6248c;
-        return abstractC4527rMo6248c;
-    }
-
-    @Override // java.util.Map
-    @CanIgnoreReturnValue
-    @Deprecated
-    public final V put(K k, V v) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override // java.util.Map
-    @Deprecated
-    public final void putAll(Map<? extends K, ? extends V> map) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override // java.util.Map
-    @CanIgnoreReturnValue
-    @Deprecated
-    public final V remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    public String toString() {
-        int size = size();
-        C3404f.m4189A(size, "size");
-        StringBuilder sb = new StringBuilder((int) Math.min(((long) size) * 8, Permission.MANAGE_EMOJIS_AND_STICKERS));
-        sb.append('{');
-        boolean z2 = true;
-        for (Map.Entry entry : entrySet()) {
-            if (!z2) {
-                sb.append(", ");
-            }
-            z2 = false;
-            sb.append(entry.getKey());
-            sb.append('=');
-            sb.append(entry.getValue());
-        }
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override // java.util.Map
-    public Collection values() {
-        AbstractC4519n<V> abstractC4519n = this.f12051l;
-        if (abstractC4519n != null) {
-            return abstractC4519n;
-        }
-        AbstractC4519n<V> abstractC4519nMo6249d = mo6249d();
-        this.f12051l = abstractC4519nMo6249d;
-        return abstractC4519nMo6249d;
-    }
-
-    public Object writeReplace() {
-        return new b(this);
     }
 }

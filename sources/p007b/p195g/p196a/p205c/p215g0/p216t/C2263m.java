@@ -18,7 +18,7 @@ public final class C2263m {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.t.m$a */
     /* JADX INFO: compiled from: ReadOnlyClassToSerializerMap.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC2364n<Object> f4838a;

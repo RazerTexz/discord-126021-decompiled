@@ -35,16 +35,16 @@ public final class C3266a<O extends d> {
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static abstract class a<T extends f, O> extends e<T, O> {
+    public class a<T extends f, O> extends e<T, O> {
+        /* JADX INFO: renamed from: b */
+        public T mo3971b(Context context, Looper looper, C3347c c3347c, O o, InterfaceC3290f interfaceC3290f, InterfaceC3303l interfaceC3303l) {
+            throw new UnsupportedOperationException("buildClient must be implemented");
+        }
+
         @Deprecated
         /* JADX INFO: renamed from: a */
         public T mo3996a(Context context, Looper looper, C3347c c3347c, O o, AbstractC3268c.a aVar, AbstractC3268c.b bVar) {
             return (T) mo3971b(context, looper, c3347c, o, aVar, bVar);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public T mo3971b(Context context, Looper looper, C3347c c3347c, O o, InterfaceC3290f interfaceC3290f, InterfaceC3303l interfaceC3303l) {
-            throw new UnsupportedOperationException("buildClient must be implemented");
         }
     }
 
@@ -55,7 +55,7 @@ public final class C3266a<O extends d> {
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$c */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class c<C extends b> {
+    public class c<C extends b> {
     }
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$d */
@@ -78,22 +78,18 @@ public final class C3266a<O extends d> {
 
         /* JADX INFO: renamed from: b.i.a.f.e.h.a$d$c */
         /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-        public static final class c implements d {
+        public final class c implements d {
         }
     }
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$e */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static abstract class e<T extends b, O> {
+    public class e<T extends b, O> {
     }
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$f */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
     public interface f extends b {
-        @NonNull
-        /* JADX INFO: renamed from: a */
-        Set<Scope> mo4030a();
-
         /* JADX INFO: renamed from: b */
         void m4031b(@Nullable InterfaceC3355g interfaceC3355g, @Nullable Set<Scope> set);
 
@@ -109,20 +105,11 @@ public final class C3266a<O extends d> {
         /* JADX INFO: renamed from: g */
         void m4035g(AbstractC3345b.c cVar);
 
-        /* JADX INFO: renamed from: h */
-        void mo4036h();
-
         /* JADX INFO: renamed from: i */
         void m4037i(AbstractC3345b.e eVar);
 
         /* JADX INFO: renamed from: j */
         boolean m4038j();
-
-        /* JADX INFO: renamed from: k */
-        boolean mo4039k();
-
-        /* JADX INFO: renamed from: l */
-        int mo3982l();
 
         /* JADX INFO: renamed from: m */
         Feature[] m4040m();
@@ -131,13 +118,26 @@ public final class C3266a<O extends d> {
         /* JADX INFO: renamed from: n */
         String m4041n();
 
+        /* JADX INFO: renamed from: l */
+        int mo3982l();
+
+        @NonNull
+        /* JADX INFO: renamed from: a */
+        Set<Scope> mo4030a();
+
+        /* JADX INFO: renamed from: h */
+        void mo4036h();
+
+        /* JADX INFO: renamed from: k */
+        boolean mo4039k();
+
         /* JADX INFO: renamed from: o */
         boolean mo4042o();
     }
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.a$g */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static final class g<C extends f> extends c<C> {
+    public final class g<C extends f> extends c<C> {
     }
 
     /* JADX WARN: Multi-variable type inference failed */

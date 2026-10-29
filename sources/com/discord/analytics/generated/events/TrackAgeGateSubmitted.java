@@ -27,17 +27,6 @@ public final /* data */ class TrackAgeGateSubmitted implements AnalyticsSchema, 
         this.analyticsSchemaTypeName = "age_gate_submitted";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7509e(TrackSourceMetadata trackSourceMetadata) {
-        this.trackSourceMetadata = trackSourceMetadata;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -49,6 +38,12 @@ public final /* data */ class TrackAgeGateSubmitted implements AnalyticsSchema, 
         return C12238m.areEqual(this.dob, trackAgeGateSubmitted.dob) && C12238m.areEqual(this.dobDay, trackAgeGateSubmitted.dobDay) && C12238m.areEqual(this.dobMonth, trackAgeGateSubmitted.dobMonth) && C12238m.areEqual(this.dobYear, trackAgeGateSubmitted.dobYear);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         Long l = this.dob;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -58,6 +53,11 @@ public final /* data */ class TrackAgeGateSubmitted implements AnalyticsSchema, 
         int iHashCode3 = (iHashCode2 + (l3 != null ? l3.hashCode() : 0)) * 31;
         Long l4 = this.dobYear;
         return iHashCode3 + (l4 != null ? l4.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7509e(TrackSourceMetadata trackSourceMetadata) {
+        this.trackSourceMetadata = trackSourceMetadata;
     }
 
     public String toString() {

@@ -17,14 +17,14 @@ import p007b.p225i.p414e.p418n.C4962a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4990d extends AbstractC4997k {
 
-    /* JADX INFO: renamed from: a */
-    public static final char[] f13363a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%abcd*".toCharArray();
-
     /* JADX INFO: renamed from: b */
     public static final int[] f13364b;
 
     /* JADX INFO: renamed from: c */
     public static final int f13365c;
+
+    /* JADX INFO: renamed from: a */
+    public static final char[] f13363a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%abcd*".toCharArray();
 
     /* JADX INFO: renamed from: d */
     public final StringBuilder f13366d = new StringBuilder(20);

@@ -53,8 +53,29 @@ public final class WidgetServerDeleteDialog extends AppDialog {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerDeleteDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerDeleteDialog.kt */
-    public static final class Companion {
+    public final class C91561 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C91561() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetServerDeleteDialog widgetServerDeleteDialog = WidgetServerDeleteDialog.this;
+            C12238m.checkNotNullExpressionValue(model, "it");
+            widgetServerDeleteDialog.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerDeleteDialog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,7 +94,7 @@ public final class WidgetServerDeleteDialog extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetServerDeleteDialog.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -81,7 +102,7 @@ public final class WidgetServerDeleteDialog extends AppDialog {
         private final MeUser me;
 
         /* JADX INFO: compiled from: WidgetServerDeleteDialog.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -121,27 +142,6 @@ public final class WidgetServerDeleteDialog extends AppDialog {
 
         public final MeUser getMe() {
             return this.me;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerDeleteDialog$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerDeleteDialog.kt */
-    public static final class C91561 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C91561() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetServerDeleteDialog widgetServerDeleteDialog = WidgetServerDeleteDialog.this;
-            C12238m.checkNotNullExpressionValue(model, "it");
-            widgetServerDeleteDialog.configureUI(model);
         }
     }
 
@@ -205,15 +205,15 @@ public final class WidgetServerDeleteDialog extends AppDialog {
         return (WidgetServerDeleteDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    public static final void show(FragmentManager fragmentManager, long j) {
-        INSTANCE.show(fragmentManager, j);
-    }
-
     @Override // com.discord.app.AppDialog
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<Model> observable = Model.INSTANCE.get$app_productionGoogleRelease(getArgumentsOrDefault().getLong(INTENT_GUILD_ID));
         C12238m.checkNotNullExpressionValue(observable, "Model.get(guildId)");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), (Class<?>) WidgetServerDeleteDialog.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C91561());
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j) {
+        INSTANCE.show(fragmentManager, j);
     }
 }

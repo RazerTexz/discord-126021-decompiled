@@ -21,7 +21,7 @@ public final class WidgetGlobalSearchAdapter extends MGRecyclerAdapterSimple<Wid
     private Function4<? super View, ? super Integer, ? super WidgetGlobalSearchModel.ItemDataPayload, ? super Boolean, Unit> onSelectedListener;
 
     /* JADX INFO: compiled from: WidgetGlobalSearchAdapter.kt */
-    public static final class ChannelViewHolder extends SearchViewHolder {
+    public final class ChannelViewHolder extends SearchViewHolder {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ChannelViewHolder(WidgetGlobalSearchAdapter widgetGlobalSearchAdapter) {
             super(widgetGlobalSearchAdapter);
@@ -38,7 +38,7 @@ public final class WidgetGlobalSearchAdapter extends MGRecyclerAdapterSimple<Wid
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchAdapter.kt */
-    public static final class GuildViewHolder extends SearchViewHolder {
+    public final class GuildViewHolder extends SearchViewHolder {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public GuildViewHolder(WidgetGlobalSearchAdapter widgetGlobalSearchAdapter) {
             super(widgetGlobalSearchAdapter);
@@ -55,7 +55,7 @@ public final class WidgetGlobalSearchAdapter extends MGRecyclerAdapterSimple<Wid
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchAdapter.kt */
-    public static final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetGlobalSearchAdapter, WidgetGlobalSearchModel.ItemDataPayload> {
+    public final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetGlobalSearchAdapter, WidgetGlobalSearchModel.ItemDataPayload> {
         private final WidgetChannelSearchItemHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -94,7 +94,7 @@ public final class WidgetGlobalSearchAdapter extends MGRecyclerAdapterSimple<Wid
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchAdapter.kt */
-    public static abstract class SearchViewHolder extends MGRecyclerViewHolder<WidgetGlobalSearchAdapter, WidgetGlobalSearchModel.ItemDataPayload> {
+    public abstract class SearchViewHolder extends MGRecyclerViewHolder<WidgetGlobalSearchAdapter, WidgetGlobalSearchModel.ItemDataPayload> {
         private final ViewGlobalSearchItem viewGlobalSearchItem;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -136,7 +136,7 @@ public final class WidgetGlobalSearchAdapter extends MGRecyclerAdapterSimple<Wid
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchAdapter.kt */
-    public static final class UserViewHolder extends SearchViewHolder {
+    public final class UserViewHolder extends SearchViewHolder {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public UserViewHolder(WidgetGlobalSearchAdapter widgetGlobalSearchAdapter) {
             super(widgetGlobalSearchAdapter);

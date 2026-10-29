@@ -20,11 +20,6 @@ public final /* data */ class SearchResultCountEntry extends ChatListEntry {
         return searchResultCountEntry.copy(i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getTotalResults() {
-        return this.totalResults;
-    }
-
     public final SearchResultCountEntry copy(int totalResults) {
         return new SearchResultCountEntry(totalResults);
     }
@@ -39,6 +34,11 @@ public final /* data */ class SearchResultCountEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getTotalResults() {
+        return this.totalResults;
     }
 
     public final int getTotalResults() {

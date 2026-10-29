@@ -11,21 +11,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalLaunchStepCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalLaunchStepCompleted implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
-    private final CharSequence step = null;
-    private final CharSequence nextStep = null;
     private final Long durationMs = null;
-    private final Boolean success = null;
     private final Long errorCode = null;
     private final CharSequence errorMessage = null;
+    private final CharSequence nextStep = null;
+    private final CharSequence step = null;
+    private final Boolean success = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_internal_launch_step_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackActivityInternalLaunchStepCompleted implement
         }
         TrackActivityInternalLaunchStepCompleted trackActivityInternalLaunchStepCompleted = (TrackActivityInternalLaunchStepCompleted) other;
         return C12238m.areEqual(this.step, trackActivityInternalLaunchStepCompleted.step) && C12238m.areEqual(this.nextStep, trackActivityInternalLaunchStepCompleted.nextStep) && C12238m.areEqual(this.durationMs, trackActivityInternalLaunchStepCompleted.durationMs) && C12238m.areEqual(this.success, trackActivityInternalLaunchStepCompleted.success) && C12238m.areEqual(this.errorCode, trackActivityInternalLaunchStepCompleted.errorCode) && C12238m.areEqual(this.errorMessage, trackActivityInternalLaunchStepCompleted.errorMessage);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

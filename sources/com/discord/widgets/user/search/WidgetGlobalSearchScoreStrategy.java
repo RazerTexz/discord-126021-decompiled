@@ -14,8 +14,8 @@ public final class WidgetGlobalSearchScoreStrategy {
     public static final int FRECENCY_PRI_LIMIT = 50;
     private static final int FUZZY_MATCH_SCORE_BASE = -100;
     private static final int FUZZY_MATCH_SCORE_MAX_DEDUCTION = 20;
-    public static final WidgetGlobalSearchScoreStrategy INSTANCE = new WidgetGlobalSearchScoreStrategy();
     private static final int MENTIONS_MATCH_SCORE = 100;
+    public static final WidgetGlobalSearchScoreStrategy INSTANCE = new WidgetGlobalSearchScoreStrategy();
 
     /* JADX INFO: compiled from: WidgetGlobalSearchScoreStrategy.kt */
     public enum SearchType {

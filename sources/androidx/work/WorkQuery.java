@@ -11,36 +11,33 @@ public final class WorkQuery {
     private final List<String> mTags;
     private final List<String> mUniqueWorkNames;
 
-    public static final class Builder {
+    public WorkQuery(@NonNull Builder builder) {
+        this.mUniqueWorkNames = builder.mUniqueWorkNames;
+        this.mTags = builder.mTags;
+        this.mStates = builder.mStates;
+    }
+
+    @NonNull
+    public List<WorkInfo.State> getStates() {
+        return this.mStates;
+    }
+
+    @NonNull
+    public List<String> getTags() {
+        return this.mTags;
+    }
+
+    @NonNull
+    public List<String> getUniqueWorkNames() {
+        return this.mUniqueWorkNames;
+    }
+
+    public final class Builder {
         public List<String> mUniqueWorkNames = new ArrayList();
         public List<String> mTags = new ArrayList();
         public List<WorkInfo.State> mStates = new ArrayList();
 
         private Builder() {
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromStates(@NonNull List<WorkInfo.State> list) {
-            Builder builder = new Builder();
-            builder.addStates(list);
-            return builder;
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromTags(@NonNull List<String> list) {
-            Builder builder = new Builder();
-            builder.addTags(list);
-            return builder;
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromUniqueWorkNames(@NonNull List<String> list) {
-            Builder builder = new Builder();
-            builder.addUniqueWorkNames(list);
-            return builder;
         }
 
         @NonNull
@@ -68,26 +65,29 @@ public final class WorkQuery {
             }
             return new WorkQuery(this);
         }
-    }
 
-    public WorkQuery(@NonNull Builder builder) {
-        this.mUniqueWorkNames = builder.mUniqueWorkNames;
-        this.mTags = builder.mTags;
-        this.mStates = builder.mStates;
-    }
+        @NonNull
+        @SuppressLint({"BuilderSetStyle"})
+        public static Builder fromStates(@NonNull List<WorkInfo.State> list) {
+            Builder builder = new Builder();
+            builder.addStates(list);
+            return builder;
+        }
 
-    @NonNull
-    public List<WorkInfo.State> getStates() {
-        return this.mStates;
-    }
+        @NonNull
+        @SuppressLint({"BuilderSetStyle"})
+        public static Builder fromTags(@NonNull List<String> list) {
+            Builder builder = new Builder();
+            builder.addTags(list);
+            return builder;
+        }
 
-    @NonNull
-    public List<String> getTags() {
-        return this.mTags;
-    }
-
-    @NonNull
-    public List<String> getUniqueWorkNames() {
-        return this.mUniqueWorkNames;
+        @NonNull
+        @SuppressLint({"BuilderSetStyle"})
+        public static Builder fromUniqueWorkNames(@NonNull List<String> list) {
+            Builder builder = new Builder();
+            builder.addUniqueWorkNames(list);
+            return builder;
+        }
     }
 }

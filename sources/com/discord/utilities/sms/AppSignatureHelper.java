@@ -20,10 +20,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 @SuppressLint({"PackageManagerGetSignatures"})
 public final class AppSignatureHelper extends ContextWrapper {
+    private static final String HASH_TYPE = "SHA-256";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String HASH_TYPE = "SHA-256";
     private static final int NUM_BASE64_CHAR = 11;
     private static final int NUM_HASHED_BYTES = 9;
     private static final String TAG;
@@ -32,8 +32,12 @@ public final class AppSignatureHelper extends ContextWrapper {
     private final Lazy appSignatures;
 
     /* JADX INFO: compiled from: AppSignatureHelper.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final String getTAG() {
+            return AppSignatureHelper.TAG;
         }
 
         private final String hash(String packageName, String signature) {
@@ -63,10 +67,6 @@ public final class AppSignatureHelper extends ContextWrapper {
                 Logger.e$default(AppLog.f14950g, getTAG(), "hash:NoSuchAlgorithm", e, null, 8, null);
                 return null;
             }
-        }
-
-        public final String getTAG() {
-            return AppSignatureHelper.TAG;
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {

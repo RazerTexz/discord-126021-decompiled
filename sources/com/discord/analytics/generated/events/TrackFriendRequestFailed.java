@@ -13,25 +13,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFriendRequestFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFriendRequestFailed implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
-    private TrackBase trackBase;
-    private TrackMarketingSite trackMarketingSite;
+    private final Long discrimLen = null;
     private final Long discriminator = null;
     private final CharSequence email = null;
-    private final CharSequence reason = null;
-    private final CharSequence username = null;
-    private final Long discrimLen = null;
-    private final Long usernameLen = null;
     private final Boolean isEmailLike = null;
     private final Boolean isInviteLike = null;
     private final Boolean isNumOnly = null;
     private final CharSequence query = null;
+    private final CharSequence reason = null;
+    private TrackBase trackBase;
+    private TrackMarketingSite trackMarketingSite;
+    private final CharSequence username = null;
+    private final Long usernameLen = null;
     private final transient String analyticsSchemaTypeName = "friend_request_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -42,6 +36,12 @@ public final /* data */ class TrackFriendRequestFailed implements AnalyticsSchem
         }
         TrackFriendRequestFailed trackFriendRequestFailed = (TrackFriendRequestFailed) other;
         return C12238m.areEqual(this.discriminator, trackFriendRequestFailed.discriminator) && C12238m.areEqual(this.email, trackFriendRequestFailed.email) && C12238m.areEqual(this.reason, trackFriendRequestFailed.reason) && C12238m.areEqual(this.username, trackFriendRequestFailed.username) && C12238m.areEqual(this.discrimLen, trackFriendRequestFailed.discrimLen) && C12238m.areEqual(this.usernameLen, trackFriendRequestFailed.usernameLen) && C12238m.areEqual(this.isEmailLike, trackFriendRequestFailed.isEmailLike) && C12238m.areEqual(this.isInviteLike, trackFriendRequestFailed.isInviteLike) && C12238m.areEqual(this.isNumOnly, trackFriendRequestFailed.isNumOnly) && C12238m.areEqual(this.query, trackFriendRequestFailed.query);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

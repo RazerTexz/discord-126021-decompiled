@@ -13,7 +13,7 @@ public abstract class AbstractC12376t {
 
     /* JADX INFO: renamed from: f0.t$a */
     /* JADX INFO: compiled from: EventListener.kt */
-    public static final class a extends AbstractC12376t {
+    public final class a extends AbstractC12376t {
     }
 
     /* JADX INFO: renamed from: f0.t$b */

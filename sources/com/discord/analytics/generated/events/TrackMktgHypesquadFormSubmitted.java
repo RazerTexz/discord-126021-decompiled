@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMktgHypesquadFormSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMktgHypesquadFormSubmitted implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+    private final CharSequence referredByCode = null;
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
-    private final CharSequence referredByCode = null;
     private final transient String analyticsSchemaTypeName = "mktg_hypesquad_form_submitted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackMktgHypesquadFormSubmitted) && C12238m.areEqual(this.referredByCode, ((TrackMktgHypesquadFormSubmitted) other).referredByCode);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

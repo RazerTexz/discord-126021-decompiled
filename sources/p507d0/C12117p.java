@@ -9,7 +9,7 @@ public final class C12117p implements Comparable<C12117p> {
 
     /* JADX INFO: renamed from: d0.p$a */
     /* JADX INFO: compiled from: UInt.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

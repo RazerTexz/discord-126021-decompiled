@@ -9,31 +9,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAndroidHardwareSurvey.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAndroidHardwareSurvey implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long decoders1080 = null;
+    private final Long decoders480 = null;
+    private final Long decoders720 = null;
     private final CharSequence deviceBoard = null;
     private final CharSequence deviceBrand = null;
+    private final Boolean deviceIs64Bit = null;
     private final CharSequence deviceManufacturer = null;
     private final CharSequence deviceModel = null;
     private final CharSequence deviceProduct = null;
     private final CharSequence deviceSupportedAbis = null;
-    private final Boolean deviceIs64Bit = null;
-    private final Boolean isLowRamDevice = null;
-    private final Long memoryClass = null;
-    private final Long largeMemoryClass = null;
     private final Long hardwareDecoders1080 = null;
-    private final Long hardwareDecoders720 = null;
     private final Long hardwareDecoders480 = null;
-    private final Long decoders1080 = null;
-    private final Long decoders720 = null;
-    private final Long decoders480 = null;
+    private final Long hardwareDecoders720 = null;
+    private final Boolean isLowRamDevice = null;
+    private final Long largeMemoryClass = null;
+    private final Long memoryClass = null;
     private final Long testDurationMs = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "android_hardware_survey";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackAndroidHardwareSurvey implements AnalyticsSch
         }
         TrackAndroidHardwareSurvey trackAndroidHardwareSurvey = (TrackAndroidHardwareSurvey) other;
         return C12238m.areEqual(this.deviceBoard, trackAndroidHardwareSurvey.deviceBoard) && C12238m.areEqual(this.deviceBrand, trackAndroidHardwareSurvey.deviceBrand) && C12238m.areEqual(this.deviceManufacturer, trackAndroidHardwareSurvey.deviceManufacturer) && C12238m.areEqual(this.deviceModel, trackAndroidHardwareSurvey.deviceModel) && C12238m.areEqual(this.deviceProduct, trackAndroidHardwareSurvey.deviceProduct) && C12238m.areEqual(this.deviceSupportedAbis, trackAndroidHardwareSurvey.deviceSupportedAbis) && C12238m.areEqual(this.deviceIs64Bit, trackAndroidHardwareSurvey.deviceIs64Bit) && C12238m.areEqual(this.isLowRamDevice, trackAndroidHardwareSurvey.isLowRamDevice) && C12238m.areEqual(this.memoryClass, trackAndroidHardwareSurvey.memoryClass) && C12238m.areEqual(this.largeMemoryClass, trackAndroidHardwareSurvey.largeMemoryClass) && C12238m.areEqual(this.hardwareDecoders1080, trackAndroidHardwareSurvey.hardwareDecoders1080) && C12238m.areEqual(this.hardwareDecoders720, trackAndroidHardwareSurvey.hardwareDecoders720) && C12238m.areEqual(this.hardwareDecoders480, trackAndroidHardwareSurvey.hardwareDecoders480) && C12238m.areEqual(this.decoders1080, trackAndroidHardwareSurvey.decoders1080) && C12238m.areEqual(this.decoders720, trackAndroidHardwareSurvey.decoders720) && C12238m.areEqual(this.decoders480, trackAndroidHardwareSurvey.decoders480) && C12238m.areEqual(this.testDurationMs, trackAndroidHardwareSurvey.testDurationMs);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

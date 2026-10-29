@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackInputMute.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackInputMute implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "input_mute";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "input_mute";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

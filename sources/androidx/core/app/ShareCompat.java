@@ -35,7 +35,7 @@ public final class ShareCompat {
     private static final String HISTORY_FILENAME_PREFIX = ".sharecompat_";
 
     @RequiresApi(16)
-    public static class Api16Impl {
+    public class Api16Impl {
         private Api16Impl() {
         }
 
@@ -55,7 +55,7 @@ public final class ShareCompat {
         }
     }
 
-    public static class IntentBuilder {
+    public class IntentBuilder {
 
         @Nullable
         private ArrayList<String> mBccAddresses;
@@ -105,23 +105,6 @@ public final class ShareCompat {
             }
         }
 
-        private void combineArrayExtra(String str, ArrayList<String> arrayList) {
-            String[] stringArrayExtra = this.mIntent.getStringArrayExtra(str);
-            int length = stringArrayExtra != null ? stringArrayExtra.length : 0;
-            String[] strArr = new String[arrayList.size() + length];
-            arrayList.toArray(strArr);
-            if (stringArrayExtra != null) {
-                System.arraycopy(stringArrayExtra, 0, strArr, arrayList.size(), length);
-            }
-            this.mIntent.putExtra(str, strArr);
-        }
-
-        @NonNull
-        @Deprecated
-        public static IntentBuilder from(@NonNull Activity activity) {
-            return new IntentBuilder(activity);
-        }
-
         @NonNull
         public IntentBuilder addEmailBcc(@NonNull String str) {
             if (this.mBccAddresses == null) {
@@ -158,9 +141,26 @@ public final class ShareCompat {
             return this;
         }
 
+        private void combineArrayExtra(String str, ArrayList<String> arrayList) {
+            String[] stringArrayExtra = this.mIntent.getStringArrayExtra(str);
+            int length = stringArrayExtra != null ? stringArrayExtra.length : 0;
+            String[] strArr = new String[arrayList.size() + length];
+            arrayList.toArray(strArr);
+            if (stringArrayExtra != null) {
+                System.arraycopy(stringArrayExtra, 0, strArr, arrayList.size(), length);
+            }
+            this.mIntent.putExtra(str, strArr);
+        }
+
         @NonNull
         public Intent createChooserIntent() {
             return Intent.createChooser(getIntent(), this.mChooserTitle);
+        }
+
+        @NonNull
+        @Deprecated
+        public static IntentBuilder from(@NonNull Activity activity) {
+            return new IntentBuilder(activity);
         }
 
         @NonNull
@@ -307,7 +307,7 @@ public final class ShareCompat {
         }
     }
 
-    public static class IntentReader {
+    public class IntentReader {
         private static final String TAG = "IntentReader";
 
         @Nullable
@@ -333,36 +333,6 @@ public final class ShareCompat {
         @Deprecated
         public static IntentReader from(@NonNull Activity activity) {
             return new IntentReader(activity);
-        }
-
-        private static void withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
-            while (i < i2) {
-                char cCharAt = charSequence.charAt(i);
-                if (cCharAt == '<') {
-                    sb.append("&lt;");
-                } else if (cCharAt == '>') {
-                    sb.append("&gt;");
-                } else if (cCharAt == '&') {
-                    sb.append("&amp;");
-                } else if (cCharAt > '~' || cCharAt < ' ') {
-                    sb.append("&#");
-                    sb.append((int) cCharAt);
-                    sb.append(";");
-                } else if (cCharAt == ' ') {
-                    while (true) {
-                        int i3 = i + 1;
-                        if (i3 >= i2 || charSequence.charAt(i3) != ' ') {
-                            break;
-                        }
-                        sb.append("&nbsp;");
-                        i = i3;
-                    }
-                    sb.append(' ');
-                } else {
-                    sb.append(cCharAt);
-                }
-                i++;
-            }
         }
 
         @Nullable
@@ -482,6 +452,36 @@ public final class ShareCompat {
 
         public boolean isSingleShare() {
             return "android.intent.action.SEND".equals(this.mIntent.getAction());
+        }
+
+        private static void withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
+            while (i < i2) {
+                char cCharAt = charSequence.charAt(i);
+                if (cCharAt == '<') {
+                    sb.append("&lt;");
+                } else if (cCharAt == '>') {
+                    sb.append("&gt;");
+                } else if (cCharAt == '&') {
+                    sb.append("&amp;");
+                } else if (cCharAt > '~' || cCharAt < ' ') {
+                    sb.append("&#");
+                    sb.append((int) cCharAt);
+                    sb.append(";");
+                } else if (cCharAt == ' ') {
+                    while (true) {
+                        int i3 = i + 1;
+                        if (i3 >= i2 || charSequence.charAt(i3) != ' ') {
+                            break;
+                        }
+                        sb.append("&nbsp;");
+                        i = i3;
+                    }
+                    sb.append(' ');
+                } else {
+                    sb.append(cCharAt);
+                }
+                i++;
+            }
         }
 
         public IntentReader(@NonNull Context context, @NonNull Intent intent) {

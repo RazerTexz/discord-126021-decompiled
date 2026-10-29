@@ -27,7 +27,7 @@ public class C2010s0 implements InterfaceC2018w0<CloseableReference<AbstractC191
 
     /* JADX INFO: renamed from: b.f.j.p.s0$a */
     /* JADX INFO: compiled from: PostprocessedBitmapMemoryCacheProducer.java */
-    public static class a extends AbstractC2003p<CloseableReference<AbstractC1917c>, CloseableReference<AbstractC1917c>> {
+    public class a extends AbstractC2003p<CloseableReference<AbstractC1917c>, CloseableReference<AbstractC1917c>> {
 
         /* JADX INFO: renamed from: c */
         public final CacheKey f4209c;

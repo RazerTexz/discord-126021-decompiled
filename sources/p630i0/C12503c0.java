@@ -30,7 +30,7 @@ public final class C12503c0 {
 
     /* JADX INFO: renamed from: i0.c0$a */
     /* JADX INFO: compiled from: Utils.java */
-    public static final class a implements GenericArrayType {
+    public final class a implements GenericArrayType {
 
         /* JADX INFO: renamed from: j */
         public final Type f26491j;
@@ -59,7 +59,7 @@ public final class C12503c0 {
 
     /* JADX INFO: renamed from: i0.c0$b */
     /* JADX INFO: compiled from: Utils.java */
-    public static final class b implements ParameterizedType {
+    public final class b implements ParameterizedType {
 
         /* JADX INFO: renamed from: j */
         public final Type f26492j;
@@ -130,7 +130,7 @@ public final class C12503c0 {
 
     /* JADX INFO: renamed from: i0.c0$c */
     /* JADX INFO: compiled from: Utils.java */
-    public static final class c implements WildcardType {
+    public final class c implements WildcardType {
 
         /* JADX INFO: renamed from: j */
         public final Type f26495j;
@@ -399,28 +399,26 @@ public final class C12503c0 {
     /* JADX INFO: renamed from: n */
     public static Type m10694n(Type type, Class<?> cls, Type type2) {
         Type type3;
-        WildcardType wildcardType;
-        Type type4;
-        Type type5 = type2;
+        Type type4 = type2;
         while (true) {
             int i = 0;
-            if (!(type5 instanceof TypeVariable)) {
-                if (type5 instanceof Class) {
-                    Class cls2 = (Class) type5;
+            if (!(type4 instanceof TypeVariable)) {
+                if (type4 instanceof Class) {
+                    Class cls2 = (Class) type4;
                     if (cls2.isArray()) {
                         Class<?> componentType = cls2.getComponentType();
                         Type typeM10694n = m10694n(type, cls, componentType);
                         return componentType == typeM10694n ? cls2 : new a(typeM10694n);
                     }
                 }
-                if (type5 instanceof GenericArrayType) {
-                    GenericArrayType genericArrayType = (GenericArrayType) type5;
+                if (type4 instanceof GenericArrayType) {
+                    GenericArrayType genericArrayType = (GenericArrayType) type4;
                     Type genericComponentType = genericArrayType.getGenericComponentType();
                     Type typeM10694n2 = m10694n(type, cls, genericComponentType);
                     return genericComponentType == typeM10694n2 ? genericArrayType : new a(typeM10694n2);
                 }
-                if (type5 instanceof ParameterizedType) {
-                    ParameterizedType parameterizedType = (ParameterizedType) type5;
+                if (type4 instanceof ParameterizedType) {
+                    ParameterizedType parameterizedType = (ParameterizedType) type4;
                     Type ownerType = parameterizedType.getOwnerType();
                     Type typeM10694n3 = m10694n(type, cls, ownerType);
                     boolean z2 = typeM10694n3 != ownerType;
@@ -439,39 +437,36 @@ public final class C12503c0 {
                     }
                     return z2 ? new b(typeM10694n3, parameterizedType.getRawType(), actualTypeArguments) : parameterizedType;
                 }
-                if (type5 instanceof WildcardType) {
-                    wildcardType = (WildcardType) type5;
+                boolean z3 = type4 instanceof WildcardType;
+                Type type5 = type4;
+                if (z3) {
+                    WildcardType wildcardType = (WildcardType) type4;
                     Type[] lowerBounds = wildcardType.getLowerBounds();
                     Type[] upperBounds = wildcardType.getUpperBounds();
                     if (lowerBounds.length == 1) {
                         Type typeM10694n5 = m10694n(type, cls, lowerBounds[0]);
+                        type5 = wildcardType;
                         if (typeM10694n5 != lowerBounds[0]) {
-                            type3 = type5;
-                            type3 = wildcardType;
                             return new c(new Type[]{Object.class}, new Type[]{typeM10694n5});
                         }
-                    } else if (upperBounds.length == 1) {
-                        type3 = type5;
-                        type3 = wildcardType;
-                        Type typeM10694n6 = m10694n(type, cls, upperBounds[0]);
-                        type3 = wildcardType;
-                        if (typeM10694n6 != upperBounds[0]) {
-                            return new c(new Type[]{typeM10694n6}, f26490a);
+                    } else {
+                        type5 = wildcardType;
+                        if (upperBounds.length == 1) {
+                            Type typeM10694n6 = m10694n(type, cls, upperBounds[0]);
+                            type5 = wildcardType;
+                            if (typeM10694n6 != upperBounds[0]) {
+                                return new c(new Type[]{typeM10694n6}, f26490a);
+                            }
                         }
                     }
                 }
-                type3 = type5;
-                type3 = wildcardType;
-                type3 = type5;
-                type3 = wildcardType;
-                type3 = type5;
-                return type3;
+                return type5;
             }
-            TypeVariable typeVariable = (TypeVariable) type5;
+            TypeVariable typeVariable = (TypeVariable) type4;
             GenericDeclaration genericDeclaration = typeVariable.getGenericDeclaration();
             Class cls3 = genericDeclaration instanceof Class ? (Class) genericDeclaration : null;
             if (cls3 == null) {
-                type4 = typeVariable;
+                type3 = typeVariable;
             } else {
                 Type typeM10684d = m10684d(type, cls, cls3);
                 if (typeM10684d instanceof ParameterizedType) {
@@ -481,19 +476,19 @@ public final class C12503c0 {
                             throw new NoSuchElementException();
                         }
                         if (typeVariable.equals(typeParameters[i])) {
-                            type4 = ((ParameterizedType) typeM10684d).getActualTypeArguments()[i];
+                            type3 = ((ParameterizedType) typeM10684d).getActualTypeArguments()[i];
                             break;
                         }
                         i++;
                     }
                 } else {
-                    type4 = typeVariable;
+                    type3 = typeVariable;
                 }
             }
-            if (type4 == typeVariable) {
-                return type4;
+            if (type3 == typeVariable) {
+                return type3;
             }
-            type5 = type4;
+            type4 = type3;
         }
     }
 

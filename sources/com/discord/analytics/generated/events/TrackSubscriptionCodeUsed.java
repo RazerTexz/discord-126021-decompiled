@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionCodeUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionCodeUsed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence couponCode = null;
+    private final Long currentPeriodEnd = null;
     private final CharSequence source = null;
     private final Long subscriptionType = null;
-    private final Long currentPeriodEnd = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "subscription_code_used";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackSubscriptionCodeUsed implements AnalyticsSche
         }
         TrackSubscriptionCodeUsed trackSubscriptionCodeUsed = (TrackSubscriptionCodeUsed) other;
         return C12238m.areEqual(this.couponCode, trackSubscriptionCodeUsed.couponCode) && C12238m.areEqual(this.source, trackSubscriptionCodeUsed.source) && C12238m.areEqual(this.subscriptionType, trackSubscriptionCodeUsed.subscriptionType) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionCodeUsed.currentPeriodEnd);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

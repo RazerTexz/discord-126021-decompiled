@@ -76,7 +76,7 @@ public final class C2417d implements InterfaceC2462m {
 
     /* JADX INFO: renamed from: b.i.a.b.i.d$a */
     /* JADX INFO: compiled from: CctTransportBackend.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final URL f5139a;
@@ -97,7 +97,7 @@ public final class C2417d implements InterfaceC2462m {
 
     /* JADX INFO: renamed from: b.i.a.b.i.d$b */
     /* JADX INFO: compiled from: CctTransportBackend.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f5142a;

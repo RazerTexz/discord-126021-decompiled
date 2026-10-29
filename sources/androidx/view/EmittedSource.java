@@ -26,7 +26,7 @@ public final class EmittedSource implements InterfaceC13130m0 {
     /* JADX INFO: renamed from: androidx.lifecycle.EmittedSource$dispose$1 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.EmittedSource$dispose$1", m10085f = "CoroutineLiveData.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C04311 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04311 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C04311(Continuation continuation) {
@@ -45,7 +45,7 @@ public final class EmittedSource implements InterfaceC13130m0 {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -59,7 +59,7 @@ public final class EmittedSource implements InterfaceC13130m0 {
     /* JADX INFO: renamed from: androidx.lifecycle.EmittedSource$disposeNow$2 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.EmittedSource$disposeNow$2", m10085f = "CoroutineLiveData.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C04322 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C04322 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C04322(Continuation continuation) {
@@ -78,7 +78,7 @@ public final class EmittedSource implements InterfaceC13130m0 {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -96,15 +96,6 @@ public final class EmittedSource implements InterfaceC13130m0 {
         this.mediator = mediatorLiveData;
     }
 
-    @MainThread
-    private final void removeSource() {
-        if (this.disposed) {
-            return;
-        }
-        this.mediator.removeSource(this.source);
-        this.disposed = true;
-    }
-
     @Override // p659s.p660a.InterfaceC13130m0
     public void dispose() {
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
@@ -115,5 +106,14 @@ public final class EmittedSource implements InterfaceC13130m0 {
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
         Object objM4197C1 = C3404f.m4197C1(C13031n.f27700b.mo11194H(), new C04322(null), continuation);
         return objM4197C1 == C12183c.getCOROUTINE_SUSPENDED() ? objM4197C1 : Unit.f27425a;
+    }
+
+    @MainThread
+    private final void removeSource() {
+        if (this.disposed) {
+            return;
+        }
+        this.mediator.removeSource(this.source);
+        this.disposed = true;
     }
 }

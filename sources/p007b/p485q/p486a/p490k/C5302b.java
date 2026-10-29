@@ -15,14 +15,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5302b {
 
-    /* JADX INFO: renamed from: a */
-    public static final byte[] f14440a = "Exif\u0000\u0000".getBytes(Charset.forName(Constants.ENCODING));
-
     /* JADX INFO: renamed from: b */
     public static final int[] f14441b = {0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8};
 
     /* JADX INFO: renamed from: c */
     public final a f14442c;
+
+    /* JADX INFO: renamed from: a */
+    public static final byte[] f14440a = "Exif\u0000\u0000".getBytes(Charset.forName(Constants.ENCODING));
 
     /* JADX INFO: renamed from: b.q.a.k.b$a */
     /* JADX INFO: compiled from: ImageHeaderParser.java */
@@ -31,7 +31,7 @@ public class C5302b {
 
     /* JADX INFO: renamed from: b.q.a.k.b$b */
     /* JADX INFO: compiled from: ImageHeaderParser.java */
-    public static class b implements a {
+    public class b implements a {
 
         /* JADX INFO: renamed from: a */
         public final InputStream f14443a;

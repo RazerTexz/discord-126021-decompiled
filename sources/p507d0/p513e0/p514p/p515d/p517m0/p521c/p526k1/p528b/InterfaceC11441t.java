@@ -16,7 +16,7 @@ public interface InterfaceC11441t extends InterfaceC11586s {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.t$a */
     /* JADX INFO: compiled from: ReflectJavaModifierListOwner.kt */
-    public static final class a {
+    public final class a {
         public static AbstractC11335f1 getVisibility(InterfaceC11441t interfaceC11441t) {
             C12238m.checkNotNullParameter(interfaceC11441t, "this");
             int modifiers = interfaceC11441t.getModifiers();

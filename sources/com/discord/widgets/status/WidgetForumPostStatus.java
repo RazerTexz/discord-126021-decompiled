@@ -58,7 +58,7 @@ public final class WidgetForumPostStatus extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$configureReactions$3 */
     /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
-    public static final class C100883 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C100883 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ WidgetForumPostStatusViewModel.ViewState.Valid $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -86,7 +86,7 @@ public final class WidgetForumPostStatus extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$onResume$1 */
     /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
-    public static final class C100891 extends AbstractC12240o implements Function1<WidgetForumPostStatusViewModel.ViewState, Unit> {
+    public final class C100891 extends AbstractC12240o implements Function1<WidgetForumPostStatusViewModel.ViewState, Unit> {
         public C100891() {
             super(1);
         }
@@ -188,22 +188,6 @@ public final class WidgetForumPostStatus extends AppFragment {
         ViewExtensions.setOnLongClickListenerConsumeClick(reactionView3, new C100883(viewState));
     }
 
-    private final WidgetForumPostStatusBinding getBinding() {
-        return (WidgetForumPostStatusBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final ColorStateList getDefaultReactionMeTextColor() {
-        return (ColorStateList) this.defaultReactionMeTextColor.getValue();
-    }
-
-    private final ColorStateList getReactionMeTextColor() {
-        return (ColorStateList) this.reactionMeTextColor.getValue();
-    }
-
-    private final WidgetForumPostStatusViewModel getViewModel() {
-        return (WidgetForumPostStatusViewModel) this.viewModel.getValue();
-    }
-
     public final void configureUI(WidgetForumPostStatusViewModel.ViewState.Valid viewState) {
         C12238m.checkNotNullParameter(viewState, "viewState");
         if (viewState.getMessageId() == null) {
@@ -225,6 +209,22 @@ public final class WidgetForumPostStatus extends AppFragment {
         configureMessageCount(viewState);
         configureReactions(viewState);
         configureFollow(viewState);
+    }
+
+    private final WidgetForumPostStatusBinding getBinding() {
+        return (WidgetForumPostStatusBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    private final ColorStateList getDefaultReactionMeTextColor() {
+        return (ColorStateList) this.defaultReactionMeTextColor.getValue();
+    }
+
+    private final ColorStateList getReactionMeTextColor() {
+        return (ColorStateList) this.reactionMeTextColor.getValue();
+    }
+
+    private final WidgetForumPostStatusViewModel getViewModel() {
+        return (WidgetForumPostStatusViewModel) this.viewModel.getValue();
     }
 
     public final void handleViewState(WidgetForumPostStatusViewModel.ViewState viewState) {

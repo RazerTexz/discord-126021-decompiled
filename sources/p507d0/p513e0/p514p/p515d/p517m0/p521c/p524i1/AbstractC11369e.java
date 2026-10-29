@@ -47,7 +47,7 @@ public abstract class AbstractC11369e extends AbstractC11383l implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.e$a */
     /* JADX INFO: compiled from: AbstractTypeAliasDescriptor.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
         public a() {
             super(1);
         }
@@ -68,7 +68,7 @@ public abstract class AbstractC11369e extends AbstractC11383l implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.e$b */
     /* JADX INFO: compiled from: AbstractTypeAliasDescriptor.kt */
-    public static final class b implements InterfaceC12008u0 {
+    public final class b implements InterfaceC12008u0 {
         public b() {
         }
 

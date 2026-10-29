@@ -21,22 +21,22 @@ import java.util.Set;
 
 /* JADX INFO: loaded from: discord-126021.apk:com/zwitserloot/cmdreader/ParseItem.SCL.lombok */
 class ParseItem {
-    private final Field field;
-    private final boolean isCollection;
-    private final Class<?> type;
-    private final String fullName;
-    private final boolean isSeq;
-    private final boolean isParameterized;
-    private final boolean isMandatory;
-    private final String shorthand;
-    private final String description;
-    private final List<String> excludes;
-    private final List<String> mandatoryIf;
-    private final List<String> mandatoryIfNot;
-    private final List<String> requires;
     private static final List<Class<?>> ARRAY_LIST_COMPATIBLES = Collections.unmodifiableList(Arrays.asList(Collection.class, AbstractCollection.class, List.class, AbstractList.class, ArrayList.class));
     private static final List<Class<?>> HASH_SET_COMPATIBLES = Collections.unmodifiableList(Arrays.asList(Set.class, AbstractSet.class, HashSet.class));
     private static final List<Class<?>> LINKED_LIST_COMPATIBLES = Collections.unmodifiableList(Arrays.asList(AbstractSequentialList.class, Queue.class, LinkedList.class));
+    private final String description;
+    private final List<String> excludes;
+    private final Field field;
+    private final String fullName;
+    private final boolean isCollection;
+    private final boolean isMandatory;
+    private final boolean isParameterized;
+    private final boolean isSeq;
+    private final List<String> mandatoryIf;
+    private final List<String> mandatoryIfNot;
+    private final List<String> requires;
+    private final String shorthand;
+    private final Class<?> type;
     private final List<Class<?>> LEGAL_CLASSES = Collections.unmodifiableList(Arrays.asList(Integer.class, Long.class, Short.class, Byte.class, Float.class, Double.class, Boolean.class, Character.class, String.class, Enum.class));
     private List<String> TRUE_VALS = Collections.unmodifiableList(Arrays.asList("1", "true", "t", "y", "yes", "on"));
     private List<String> FALSE_VALS = Collections.unmodifiableList(Arrays.asList("0", "false", "f", "n", "no", "off"));

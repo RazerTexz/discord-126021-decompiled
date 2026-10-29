@@ -12,14 +12,15 @@ public final /* data */ class ApiGuildScheduledEventUser {
     private final ApiGuildScheduledEventUserGuildMember member;
     private final User user;
 
-    /* JADX INFO: renamed from: a */
-    public final GuildMember m7967a(long guildId) {
-        ApiGuildScheduledEventUserGuildMember apiGuildScheduledEventUserGuildMember;
-        User user = this.user;
-        if (user == null || (apiGuildScheduledEventUserGuildMember = this.member) == null) {
-            return null;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
         }
-        return apiGuildScheduledEventUserGuildMember.m7970a(user, guildId);
+        if (!(other instanceof ApiGuildScheduledEventUser)) {
+            return false;
+        }
+        ApiGuildScheduledEventUser apiGuildScheduledEventUser = (ApiGuildScheduledEventUser) other;
+        return C12238m.areEqual(this.user, apiGuildScheduledEventUser.user) && C12238m.areEqual(this.member, apiGuildScheduledEventUser.member) && this.guildScheduledEventId == apiGuildScheduledEventUser.guildScheduledEventId;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -32,17 +33,6 @@ public final /* data */ class ApiGuildScheduledEventUser {
         return this.user;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ApiGuildScheduledEventUser)) {
-            return false;
-        }
-        ApiGuildScheduledEventUser apiGuildScheduledEventUser = (ApiGuildScheduledEventUser) other;
-        return C12238m.areEqual(this.user, apiGuildScheduledEventUser.user) && C12238m.areEqual(this.member, apiGuildScheduledEventUser.member) && this.guildScheduledEventId == apiGuildScheduledEventUser.guildScheduledEventId;
-    }
-
     public int hashCode() {
         User user = this.user;
         int iHashCode = (user != null ? user.hashCode() : 0) * 31;
@@ -50,6 +40,16 @@ public final /* data */ class ApiGuildScheduledEventUser {
         int iHashCode2 = (iHashCode + (apiGuildScheduledEventUserGuildMember != null ? apiGuildScheduledEventUserGuildMember.hashCode() : 0)) * 31;
         long j = this.guildScheduledEventId;
         return iHashCode2 + ((int) (j ^ (j >>> 32)));
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final GuildMember m7967a(long guildId) {
+        ApiGuildScheduledEventUserGuildMember apiGuildScheduledEventUserGuildMember;
+        User user = this.user;
+        if (user == null || (apiGuildScheduledEventUserGuildMember = this.member) == null) {
+            return null;
+        }
+        return apiGuildScheduledEventUserGuildMember.m7970a(user, guildId);
     }
 
     public String toString() {

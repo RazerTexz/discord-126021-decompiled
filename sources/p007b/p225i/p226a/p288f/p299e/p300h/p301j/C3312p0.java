@@ -24,9 +24,24 @@ public final class C3312p0 extends AbstractC3288e0<Boolean> {
         this.f9442c = aVar;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
-    /* JADX INFO: renamed from: d */
-    public final /* bridge */ /* synthetic */ void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
+    /* JADX WARN: Type inference incomplete: some casts might be missing */
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3288e0
+    /* JADX INFO: renamed from: h */
+    public final void mo4075h(C3293g.a<?> aVar) throws RemoteException {
+        C3285d0 c3285d0Remove = aVar.f9398g.remove(this.f9442c);
+        if (c3285d0Remove == null) {
+            this.f9367b.m9126b((T) Boolean.FALSE);
+            return;
+        }
+        AbstractC3313q<C3266a.b, ?> abstractC3313q = c3285d0Remove.f9361b;
+        C3266a.f fVar = aVar.f9393b;
+        TaskCompletionSource<T> taskCompletionSource = this.f9367b;
+        C4316x c4316x = (C4316x) abstractC3313q;
+        Objects.requireNonNull(c4316x);
+        c4316x.f11437b.mo5981a((C4280f) fVar, C4286i.m5983j(c4316x.f11438c, taskCompletionSource));
+        C3301k<?> c3301k = c3285d0Remove.f9360a.f9435a;
+        c3301k.f9429b = null;
+        c3301k.f9430c = null;
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3306m0
@@ -52,23 +67,8 @@ public final class C3312p0 extends AbstractC3288e0<Boolean> {
         return false;
     }
 
-    /* JADX WARN: Type inference incomplete: some casts might be missing */
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3288e0
-    /* JADX INFO: renamed from: h */
-    public final void mo4075h(C3293g.a<?> aVar) throws RemoteException {
-        C3285d0 c3285d0Remove = aVar.f9398g.remove(this.f9442c);
-        if (c3285d0Remove == null) {
-            this.f9367b.m9126b((T) Boolean.FALSE);
-            return;
-        }
-        AbstractC3313q<C3266a.b, ?> abstractC3313q = c3285d0Remove.f9361b;
-        C3266a.f fVar = aVar.f9393b;
-        TaskCompletionSource<T> taskCompletionSource = this.f9367b;
-        C4316x c4316x = (C4316x) abstractC3313q;
-        Objects.requireNonNull(c4316x);
-        c4316x.f11437b.mo5981a((C4280f) fVar, C4286i.m5983j(c4316x.f11438c, taskCompletionSource));
-        C3301k<?> c3301k = c3285d0Remove.f9360a.f9435a;
-        c3301k.f9429b = null;
-        c3301k.f9430c = null;
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
+    /* JADX INFO: renamed from: d */
+    public final /* bridge */ /* synthetic */ void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
     }
 }

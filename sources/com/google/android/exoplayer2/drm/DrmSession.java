@@ -9,7 +9,7 @@ import p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s;
 /* JADX INFO: loaded from: classes3.dex */
 public interface DrmSession {
 
-    public static class DrmSessionException extends IOException {
+    public class DrmSessionException extends IOException {
         public final int errorCode;
 
         public DrmSessionException(Throwable th, int i) {
@@ -17,6 +17,8 @@ public interface DrmSession {
             this.errorCode = i;
         }
     }
+
+    int getState();
 
     /* JADX INFO: renamed from: a */
     void mo3606a(@Nullable InterfaceC2988s.a aVar);
@@ -40,6 +42,4 @@ public interface DrmSession {
     @Nullable
     /* JADX INFO: renamed from: g */
     InterfaceC2954b mo3612g();
-
-    int getState();
 }

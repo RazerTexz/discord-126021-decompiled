@@ -21,32 +21,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: utils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11966z {
-    /* JADX INFO: renamed from: a */
-    public static final String m10017a(InterfaceC12008u0 interfaceC12008u0) {
-        StringBuilder sb = new StringBuilder();
-        m10018b(C12238m.stringPlus("type: ", interfaceC12008u0), sb);
-        m10018b(C12238m.stringPlus("hashCode: ", Integer.valueOf(interfaceC12008u0.hashCode())), sb);
-        m10018b(C12238m.stringPlus("javaClass: ", interfaceC12008u0.getClass().getCanonicalName()), sb);
-        for (InterfaceC11450m declarationDescriptor = interfaceC12008u0.getDeclarationDescriptor(); declarationDescriptor != null; declarationDescriptor = declarationDescriptor.getContainingDeclaration()) {
-            m10018b(C12238m.stringPlus("fqName: ", AbstractC11746c.f24226b.render(declarationDescriptor)), sb);
-            m10018b(C12238m.stringPlus("javaClass: ", declarationDescriptor.getClass().getCanonicalName()), sb);
-        }
-        String string = sb.toString();
-        C12238m.checkNotNullExpressionValue(string, "StringBuilder().apply(builderAction).toString()");
-        return string;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public static final StringBuilder m10018b(String str, StringBuilder sb) {
-        C12238m.checkNotNullParameter(str, "<this>");
-        C12238m.checkNotNullParameter(sb, "$this_anonymous");
-        sb.append(str);
-        C12238m.checkNotNullExpressionValue(sb, "append(value)");
-        sb.append('\n');
-        C12238m.checkNotNullExpressionValue(sb, "append('\\n')");
-        return sb;
-    }
-
     public static final AbstractC11913c0 findCorrespondingSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1, InterfaceC11961u interfaceC11961u) {
         boolean z2;
         EnumC11935j1 enumC11935j1 = EnumC11935j1.INVARIANT;
@@ -110,5 +84,31 @@ public final class C11966z {
             }
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final String m10017a(InterfaceC12008u0 interfaceC12008u0) {
+        StringBuilder sb = new StringBuilder();
+        m10018b(C12238m.stringPlus("type: ", interfaceC12008u0), sb);
+        m10018b(C12238m.stringPlus("hashCode: ", Integer.valueOf(interfaceC12008u0.hashCode())), sb);
+        m10018b(C12238m.stringPlus("javaClass: ", interfaceC12008u0.getClass().getCanonicalName()), sb);
+        for (InterfaceC11450m declarationDescriptor = interfaceC12008u0.getDeclarationDescriptor(); declarationDescriptor != null; declarationDescriptor = declarationDescriptor.getContainingDeclaration()) {
+            m10018b(C12238m.stringPlus("fqName: ", AbstractC11746c.f24226b.render(declarationDescriptor)), sb);
+            m10018b(C12238m.stringPlus("javaClass: ", declarationDescriptor.getClass().getCanonicalName()), sb);
+        }
+        String string = sb.toString();
+        C12238m.checkNotNullExpressionValue(string, "StringBuilder().apply(builderAction).toString()");
+        return string;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static final StringBuilder m10018b(String str, StringBuilder sb) {
+        C12238m.checkNotNullParameter(str, "<this>");
+        C12238m.checkNotNullParameter(sb, "$this_anonymous");
+        sb.append(str);
+        C12238m.checkNotNullExpressionValue(sb, "append(value)");
+        sb.append('\n');
+        C12238m.checkNotNullExpressionValue(sb, "append('\\n')");
+        return sb;
     }
 }

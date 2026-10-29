@@ -42,7 +42,7 @@ public class C3172c {
 
     /* JADX INFO: renamed from: b.i.a.e.c$b */
     /* JADX INFO: compiled from: FlexboxHelper.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public List<C3171b> f9186a;
@@ -59,7 +59,7 @@ public class C3172c {
 
     /* JADX INFO: renamed from: b.i.a.e.c$c */
     /* JADX INFO: compiled from: FlexboxHelper.java */
-    public static class c implements Comparable<c> {
+    public class c implements Comparable<c> {
 
         /* JADX INFO: renamed from: j */
         public int f9188j;
@@ -300,21 +300,19 @@ public class C3172c {
                             arrayList = arrayList;
                             m3938a(arrayList, c3171b, i16 > 0 ? i16 - 1 : 0, i21);
                             i21 += c3171b.f9169g;
+                        } else {
+                            arrayList = arrayList;
                         }
                         if (zMo3932i) {
-                            arrayList = arrayList;
                             if (flexItem2.getHeight() == -1) {
                                 InterfaceC3170a interfaceC3170a = this.f9181a;
                                 viewMo3926c.measure(iMo3931h, interfaceC3170a.mo3931h(i7, flexItem2.mo8957I() + flexItem2.mo8959N() + this.f9181a.getPaddingBottom() + interfaceC3170a.getPaddingTop() + i21, flexItem2.getHeight()));
                                 m3940c(viewMo3926c, i16);
                             }
-                        } else {
-                            arrayList = arrayList;
-                            if (flexItem2.getWidth() == -1) {
-                                InterfaceC3170a interfaceC3170a2 = this.f9181a;
-                                viewMo3926c.measure(interfaceC3170a2.mo3927d(i7, flexItem2.mo8963d0() + flexItem2.mo8958J() + this.f9181a.getPaddingRight() + interfaceC3170a2.getPaddingLeft() + i21, flexItem2.getWidth()), iMo3931h);
-                                m3940c(viewMo3926c, i16);
-                            }
+                        } else if (flexItem2.getWidth() == -1) {
+                            InterfaceC3170a interfaceC3170a2 = this.f9181a;
+                            viewMo3926c.measure(interfaceC3170a2.mo3927d(i7, flexItem2.mo8963d0() + flexItem2.mo8958J() + this.f9181a.getPaddingRight() + interfaceC3170a2.getPaddingLeft() + i21, flexItem2.getWidth()), iMo3931h);
+                            m3940c(viewMo3926c, i16);
                         }
                         c3171b = new C3171b();
                         c3171b.f9170h = 1;
@@ -1079,12 +1077,11 @@ public class C3172c {
                         i6 = i9;
                     } else {
                         float fMo8969x = measuredWidth - (flexItem.mo8969x() * f3);
+                        i6 = i9;
                         if (i6 == c3171b.f9170h - 1) {
-                            i6 = i9;
                             fMo8969x += f4;
                             f4 = 0.0f;
                         }
-                        i6 = i9;
                         int iRound = Math.round(fMo8969x);
                         if (iRound < flexItem.mo8955D()) {
                             iMo8955D = flexItem.mo8955D();

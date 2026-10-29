@@ -34,12 +34,6 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
         this.analyticsSchemaTypeName = "dismissible_content_dismissed";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -49,6 +43,12 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
         }
         TrackDismissibleContentDismissed trackDismissibleContentDismissed = (TrackDismissibleContentDismissed) other;
         return C12238m.areEqual(this.type, trackDismissibleContentDismissed.type) && C12238m.areEqual(this.action, trackDismissibleContentDismissed.action) && C12238m.areEqual(this.contentCount, trackDismissibleContentDismissed.contentCount) && C12238m.areEqual(this.groupName, trackDismissibleContentDismissed.groupName) && C12238m.areEqual(this.bypassFatigue, trackDismissibleContentDismissed.bypassFatigue);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -120,9 +120,8 @@ public final class InputConnectionCompat {
     public static boolean handlePerformPrivateCommand(@Nullable String str, @NonNull Bundle bundle, @NonNull OnCommitContentListener onCommitContentListener) throws Throwable {
         boolean z2;
         ResultReceiver resultReceiver;
-        boolean zOnCommitContent;
-        ?? r0 = 0;
-        r0 = 0;
+        ?? OnCommitContent = 0;
+        OnCommitContent = 0;
         if (bundle == null) {
             return false;
         }
@@ -143,14 +142,12 @@ public final class InputConnectionCompat {
                 int i = bundle.getInt(z2 ? COMMIT_CONTENT_FLAGS_INTEROP_KEY : COMMIT_CONTENT_FLAGS_KEY);
                 Bundle bundle2 = (Bundle) bundle.getParcelable(z2 ? COMMIT_CONTENT_OPTS_INTEROP_KEY : COMMIT_CONTENT_OPTS_KEY);
                 if (uri != null && clipDescription != null) {
-                    zOnCommitContent = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), i, bundle2);
+                    OnCommitContent = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), i, bundle2);
                 }
                 if (resultReceiver != 0) {
-                    r0 = zOnCommitContent;
-                    resultReceiver.send(r0, null);
+                    resultReceiver.send(OnCommitContent, null);
                 }
-                r0 = zOnCommitContent;
-                return r0;
+                return OnCommitContent;
             } catch (Throwable th) {
                 th = th;
                 if (resultReceiver != 0) {

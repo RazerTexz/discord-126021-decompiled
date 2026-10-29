@@ -38,18 +38,6 @@ public class C2227l extends AbstractC2226k {
         return iLastIndexOf < 0 ? name : name.substring(iLastIndexOf + 1);
     }
 
-    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
-    /* JADX INFO: renamed from: a */
-    public String mo1946a(Object obj) {
-        return m1968e(obj.getClass());
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
-    /* JADX INFO: renamed from: c */
-    public String mo1948c(Object obj, Class<?> cls) {
-        return obj == null ? m1968e(cls) : m1968e(obj.getClass());
-    }
-
     /* JADX INFO: renamed from: e */
     public String m1968e(Class<?> cls) {
         if (cls == null) {
@@ -68,6 +56,18 @@ public class C2227l extends AbstractC2226k {
             this.f4777d.put(name, strM1967d);
         }
         return strM1967d;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
+    /* JADX INFO: renamed from: a */
+    public String mo1946a(Object obj) {
+        return m1968e(obj.getClass());
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
+    /* JADX INFO: renamed from: c */
+    public String mo1948c(Object obj, Class<?> cls) {
+        return obj == null ? m1968e(cls) : m1968e(obj.getClass());
     }
 
     public String toString() {

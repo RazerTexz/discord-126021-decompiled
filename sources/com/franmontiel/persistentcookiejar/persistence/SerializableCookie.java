@@ -17,12 +17,12 @@ import p600f0.C12370n;
 /* JADX INFO: loaded from: classes3.dex */
 public class SerializableCookie implements Serializable {
 
-    /* JADX INFO: renamed from: j */
-    public static final String f19670j = SerializableCookie.class.getSimpleName();
-    private static final long serialVersionUID = -8594045714036645534L;
-
     /* JADX INFO: renamed from: k */
     public transient C12370n f19671k;
+    private static final long serialVersionUID = -8594045714036645534L;
+
+    /* JADX INFO: renamed from: j */
+    public static final String f19670j = SerializableCookie.class.getSimpleName();
 
     private void readObject(ObjectInputStream objectInputStream) throws IOException, ClassNotFoundException {
         long j;

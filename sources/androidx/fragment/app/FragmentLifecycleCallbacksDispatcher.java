@@ -16,7 +16,7 @@ public class FragmentLifecycleCallbacksDispatcher {
     @NonNull
     private final CopyOnWriteArrayList<FragmentLifecycleCallbacksHolder> mLifecycleCallbacks = new CopyOnWriteArrayList<>();
 
-    public static final class FragmentLifecycleCallbacksHolder {
+    public final class FragmentLifecycleCallbacksHolder {
 
         @NonNull
         public final FragmentManager.FragmentLifecycleCallbacks mCallback;

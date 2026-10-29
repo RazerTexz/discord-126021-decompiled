@@ -62,7 +62,7 @@ public final class StoreMentions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleConnectionOpen$3 */
     /* JADX INFO: compiled from: StoreMentions.kt */
-    public static final class C61923 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
+    public final class C61923 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
         public final /* synthetic */ HashSet $newReadStateChannelIds;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -85,7 +85,7 @@ public final class StoreMentions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleConnectionOpen$5 */
     /* JADX INFO: compiled from: StoreMentions.kt */
-    public static final class C61935 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
+    public final class C61935 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
         public C61935() {
             super(1);
         }
@@ -104,7 +104,7 @@ public final class StoreMentions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleMessageAck$1 */
     /* JADX INFO: compiled from: StoreMentions.kt */
-    public static final class C61941 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
+    public final class C61941 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
         public final /* synthetic */ ModelReadState $readState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -127,7 +127,7 @@ public final class StoreMentions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMentions$observeMentionCounts$1 */
     /* JADX INFO: compiled from: StoreMentions.kt */
-    public static final class C61951 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
+    public final class C61951 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
         public C61951() {
             super(0);
         }
@@ -179,92 +179,6 @@ public final class StoreMentions extends StoreV2 {
             }
         }
         return map;
-    }
-
-    @StoreThread
-    private final boolean hasMention(long channelId, User author, UtcDateTime editedTimestamp, List<User> mentions, List<Long> mentionRoles, Boolean mentionEveryone) {
-        List<Long> list;
-        boolean z2;
-        ModelNotificationSettings modelNotificationSettings;
-        ModelNotificationSettings.ChannelOverride channelOverride;
-        Long l = this.channelGuildIds.get(Long.valueOf(channelId));
-        if (l == null) {
-            l = 0L;
-        }
-        C12238m.checkNotNullExpressionValue(l, "channelGuildIds[channelId] ?: 0");
-        long jLongValue = l.longValue();
-        if (author == null || author.getId() != this.myId) {
-            if ((editedTimestamp != null ? editedTimestamp.getDateTimeMillis() : 0L) <= 0) {
-                Channel channel = this.storeChannels.getChannel(channelId);
-                if (channel != null && ChannelUtils.m7673H(channel) && !this.storeThreadsJoined.hasJoined(channelId)) {
-                    return false;
-                }
-                Map<Long, ModelNotificationSettings> guildSettingsInternal$app_productionGoogleRelease = this.storeUserGuildSettings.getGuildSettingsInternal$app_productionGoogleRelease();
-                if (this.privateChannels.contains(Long.valueOf(channelId)) && ((modelNotificationSettings = guildSettingsInternal$app_productionGoogleRelease.get(0L)) == null || (channelOverride = modelNotificationSettings.getChannelOverride(channelId)) == null || !channelOverride.isMuted())) {
-                    return true;
-                }
-                if (mentions != null) {
-                    if (!mentions.isEmpty()) {
-                        Iterator<T> it = mentions.iterator();
-                        while (true) {
-                            if (!it.hasNext()) {
-                                z2 = false;
-                                break;
-                            }
-                            if (((User) it.next()).getId() == this.myId) {
-                                z2 = true;
-                                break;
-                            }
-                        }
-                    } else {
-                        z2 = false;
-                        break;
-                    }
-                    if (z2) {
-                        return true;
-                    }
-                }
-                ModelNotificationSettings modelNotificationSettings2 = guildSettingsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue));
-                if ((modelNotificationSettings2 == null || !modelNotificationSettings2.isSuppressRoles()) && (list = this.myRoleIds.get(Long.valueOf(jLongValue))) != null && mentionRoles != null) {
-                    Iterator<T> it2 = mentionRoles.iterator();
-                    if (it2.hasNext()) {
-                        return list.contains(Long.valueOf(((Number) it2.next()).longValue()));
-                    }
-                }
-                if (!C12238m.areEqual(mentionEveryone, Boolean.TRUE)) {
-                    return false;
-                }
-                ModelNotificationSettings modelNotificationSettings3 = guildSettingsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue));
-                return modelNotificationSettings3 == null || !modelNotificationSettings3.isSuppressEveryone();
-            }
-        }
-        return false;
-    }
-
-    @StoreThread
-    private final boolean isMentionableChannel(long channelId) {
-        StoreMessageAck.Ack ack = this.storeMessageAck.getAllInternal().get(Long.valueOf(channelId));
-        boolean zIsLockedAck = ack != null ? ack.isLockedAck() : false;
-        if (channelId == this.selectedChannelId && !zIsLockedAck) {
-            return false;
-        }
-        return this.privateChannels.contains(Long.valueOf(channelId)) || PermissionUtils.can(Permission.VIEW_CHANNEL, this.storePermissions.getPermissionsByChannel().get(Long.valueOf(channelId)));
-    }
-
-    @StoreThread
-    private final void removeAllMessagesForChannel(long channelId) {
-        HashMap<Long, Message> map = this.mentionedMessages;
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map.Entry<Long, Message> entry : map.entrySet()) {
-            if (entry.getValue().getChannelId() == channelId) {
-                linkedHashMap.put(entry.getKey(), entry.getValue());
-            }
-        }
-        Iterator it = linkedHashMap.keySet().iterator();
-        while (it.hasNext()) {
-            this.mentionedMessages.remove(Long.valueOf(((Number) it.next()).longValue()));
-            markChanged();
-        }
     }
 
     public final Map<Long, Integer> getMentionCounts() {
@@ -450,6 +364,76 @@ public final class StoreMentions extends StoreV2 {
         removeAllMessagesForChannel(payload.getId());
     }
 
+    @StoreThread
+    private final boolean hasMention(long channelId, User author, UtcDateTime editedTimestamp, List<User> mentions, List<Long> mentionRoles, Boolean mentionEveryone) {
+        List<Long> list;
+        boolean z2;
+        ModelNotificationSettings modelNotificationSettings;
+        ModelNotificationSettings.ChannelOverride channelOverride;
+        Long l = this.channelGuildIds.get(Long.valueOf(channelId));
+        if (l == null) {
+            l = 0L;
+        }
+        C12238m.checkNotNullExpressionValue(l, "channelGuildIds[channelId] ?: 0");
+        long jLongValue = l.longValue();
+        if (author == null || author.getId() != this.myId) {
+            if ((editedTimestamp != null ? editedTimestamp.getDateTimeMillis() : 0L) <= 0) {
+                Channel channel = this.storeChannels.getChannel(channelId);
+                if (channel != null && ChannelUtils.m7673H(channel) && !this.storeThreadsJoined.hasJoined(channelId)) {
+                    return false;
+                }
+                Map<Long, ModelNotificationSettings> guildSettingsInternal$app_productionGoogleRelease = this.storeUserGuildSettings.getGuildSettingsInternal$app_productionGoogleRelease();
+                if (this.privateChannels.contains(Long.valueOf(channelId)) && ((modelNotificationSettings = guildSettingsInternal$app_productionGoogleRelease.get(0L)) == null || (channelOverride = modelNotificationSettings.getChannelOverride(channelId)) == null || !channelOverride.isMuted())) {
+                    return true;
+                }
+                if (mentions != null) {
+                    if (!mentions.isEmpty()) {
+                        Iterator<T> it = mentions.iterator();
+                        while (true) {
+                            if (!it.hasNext()) {
+                                z2 = false;
+                                break;
+                            }
+                            if (((User) it.next()).getId() == this.myId) {
+                                z2 = true;
+                                break;
+                            }
+                        }
+                    } else {
+                        z2 = false;
+                        break;
+                    }
+                    if (z2) {
+                        return true;
+                    }
+                }
+                ModelNotificationSettings modelNotificationSettings2 = guildSettingsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue));
+                if ((modelNotificationSettings2 == null || !modelNotificationSettings2.isSuppressRoles()) && (list = this.myRoleIds.get(Long.valueOf(jLongValue))) != null && mentionRoles != null) {
+                    Iterator<T> it2 = mentionRoles.iterator();
+                    if (it2.hasNext()) {
+                        return list.contains(Long.valueOf(((Number) it2.next()).longValue()));
+                    }
+                }
+                if (!C12238m.areEqual(mentionEveryone, Boolean.TRUE)) {
+                    return false;
+                }
+                ModelNotificationSettings modelNotificationSettings3 = guildSettingsInternal$app_productionGoogleRelease.get(Long.valueOf(jLongValue));
+                return modelNotificationSettings3 == null || !modelNotificationSettings3.isSuppressEveryone();
+            }
+        }
+        return false;
+    }
+
+    @StoreThread
+    private final boolean isMentionableChannel(long channelId) {
+        StoreMessageAck.Ack ack = this.storeMessageAck.getAllInternal().get(Long.valueOf(channelId));
+        boolean zIsLockedAck = ack != null ? ack.isLockedAck() : false;
+        if (channelId == this.selectedChannelId && !zIsLockedAck) {
+            return false;
+        }
+        return this.privateChannels.contains(Long.valueOf(channelId)) || PermissionUtils.can(Permission.VIEW_CHANNEL, this.storePermissions.getPermissionsByChannel().get(Long.valueOf(channelId)));
+    }
+
     public final Observable<Map<Long, Integer>> observeMentionCounts() {
         Observable<Map<Long, Integer>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C61951(), 14, null).m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
@@ -485,6 +469,22 @@ public final class StoreMentions extends StoreV2 {
         C12160r.removeAll((List) this.serverInitReadStates, (Function1) new StoreMentions$processMarkUnread$1(channelId));
         markChanged();
         return i;
+    }
+
+    @StoreThread
+    private final void removeAllMessagesForChannel(long channelId) {
+        HashMap<Long, Message> map = this.mentionedMessages;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        for (Map.Entry<Long, Message> entry : map.entrySet()) {
+            if (entry.getValue().getChannelId() == channelId) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        Iterator it = linkedHashMap.keySet().iterator();
+        while (it.hasNext()) {
+            this.mentionedMessages.remove(Long.valueOf(((Number) it.next()).longValue()));
+            markChanged();
+        }
     }
 
     @Override // com.discord.stores.StoreV2

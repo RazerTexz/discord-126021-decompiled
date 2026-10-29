@@ -10,13 +10,13 @@ public class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     private double deviationBytes;
     private double timeSinceLastAdjustmentMs;
 
-    private double getBitrateAdjustmentScale() {
-        return Math.pow(BITRATE_ADJUSTMENT_MAX_SCALE, ((double) this.bitrateAdjustmentScaleExp) / 20.0d);
-    }
-
     @Override // org.webrtc.BaseBitrateAdjuster, org.webrtc.BitrateAdjuster
     public int getAdjustedBitrateBps() {
         return (int) (((double) this.targetBitrateBps) * getBitrateAdjustmentScale());
+    }
+
+    private double getBitrateAdjustmentScale() {
+        return Math.pow(BITRATE_ADJUSTMENT_MAX_SCALE, ((double) this.bitrateAdjustmentScaleExp) / 20.0d);
     }
 
     @Override // org.webrtc.BaseBitrateAdjuster, org.webrtc.BitrateAdjuster

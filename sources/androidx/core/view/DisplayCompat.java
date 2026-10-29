@@ -18,7 +18,7 @@ public final class DisplayCompat {
     private static final int DISPLAY_SIZE_4K_WIDTH = 3840;
 
     @RequiresApi(17)
-    public static class Api17Impl {
+    public class Api17Impl {
         private Api17Impl() {
         }
 
@@ -118,7 +118,7 @@ public final class DisplayCompat {
     }
 
     @RequiresApi(23)
-    public static class Api23Impl {
+    public class Api23Impl {
         private Api23Impl() {
         }
 
@@ -168,7 +168,7 @@ public final class DisplayCompat {
         }
     }
 
-    public static final class ModeCompat {
+    public final class ModeCompat {
         private final boolean mIsNative;
         private final Display.Mode mMode;
         private final Point mPhysicalSize;

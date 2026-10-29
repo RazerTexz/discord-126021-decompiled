@@ -36,7 +36,7 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
 
     /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationViewModel$1 */
     /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-    public static final /* synthetic */ class C101791 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C101791 extends C12236k implements Function1<StoreState, Unit> {
         public C101791(WidgetTosReportViolationViewModel widgetTosReportViolationViewModel) {
             super(1, widgetTosReportViolationViewModel, WidgetTosReportViolationViewModel.class, "generateViewState", "generateViewState(Lcom/discord/widgets/tos/WidgetTosReportViolationViewModel$StoreState;)V", 0);
         }
@@ -54,11 +54,51 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationViewModel$sendReportAPICall$1 */
     /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-    public static abstract class StoreState {
+    public final class C101811 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C101811() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetTosReportViolationViewModel.this.updateViewState(ViewState.SubmissionError.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationViewModel$sendReportAPICall$2 */
+    /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
+    public final class C101822 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public C101822() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            C12238m.checkNotNullParameter(unit, "it");
+            WidgetTosReportViolationViewModel.this.updateViewState(ViewState.Submitted.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final /* data */ class ReportReasons extends StoreState {
+        public final /* data */ class ReportReasons extends StoreState {
             private final List<ReportReason> reasons;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -68,16 +108,16 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
                 this.reasons = list;
             }
 
+            public final List<ReportReason> component1() {
+                return this.reasons;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ ReportReasons copy$default(ReportReasons reportReasons, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = reportReasons.reasons;
                 }
                 return reportReasons.copy(list);
-            }
-
-            public final List<ReportReason> component1() {
-                return this.reasons;
             }
 
             public final ReportReasons copy(List<ReportReason> reasons) {
@@ -118,10 +158,10 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<ReportReason> reasons;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -131,16 +171,16 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
                 this.reasons = list;
             }
 
+            public final List<ReportReason> component1() {
+                return this.reasons;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.reasons;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<ReportReason> component1() {
-                return this.reasons;
             }
 
             public final Loaded copy(List<ReportReason> reasons) {
@@ -173,7 +213,7 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -182,7 +222,7 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final class SubmissionError extends ViewState {
+        public final class SubmissionError extends ViewState {
             public static final SubmissionError INSTANCE = new SubmissionError();
 
             private SubmissionError() {
@@ -191,7 +231,7 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final class Submitted extends ViewState {
+        public final class Submitted extends ViewState {
             public static final Submitted INSTANCE = new Submitted();
 
             private Submitted() {
@@ -200,7 +240,7 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-        public static final /* data */ class Submitting extends ViewState {
+        public final /* data */ class Submitting extends ViewState {
             private final int reason;
 
             public Submitting(int i) {
@@ -215,11 +255,6 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
                 return submitting.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getReason() {
-                return this.reason;
-            }
-
             public final Submitting copy(int reason) {
                 return new Submitting(reason);
             }
@@ -229,6 +264,11 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
                     return (other instanceof Submitting) && this.reason == ((Submitting) other).reason;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getReason() {
+                return this.reason;
             }
 
             public final int getReason() {
@@ -252,46 +292,6 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationViewModel$sendReportAPICall$1 */
-    /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-    public static final class C101811 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C101811() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetTosReportViolationViewModel.this.updateViewState(ViewState.SubmissionError.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationViewModel$sendReportAPICall$2 */
-    /* JADX INFO: compiled from: WidgetTosReportViolationViewModel.kt */
-    public static final class C101822 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C101822() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            C12238m.checkNotNullParameter(unit, "it");
-            WidgetTosReportViolationViewModel.this.updateViewState(ViewState.Submitted.INSTANCE);
-        }
-    }
-
     public WidgetTosReportViolationViewModel(long j, long j2) {
         super(ViewState.Loading.INSTANCE);
         this.channelId = j;
@@ -309,6 +309,19 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         }
     }
 
+    public final ReportReason getReasonSelected() {
+        return this.reasonSelected;
+    }
+
+    @MainThread
+    public final void handleDismissError() {
+        StoreState storeState = this.storeState;
+        if (storeState == null) {
+            C12238m.throwUninitializedPropertyAccessException("storeState");
+        }
+        generateViewState(storeState);
+    }
+
     private final Observable<StoreState> observeStoreState() {
         Observable<StoreState> observableM11083G = ObservableExtensionsKt.restSubscribeOn$default(RestAPIInterface.DefaultImpls.report$default(RestAPI.INSTANCE.getApi(), Long.valueOf(this.channelId), null, Long.valueOf(this.messageId), null, 2, null), false, 1, null).m11083G(new InterfaceC12589b<List<? extends ReportReason>, StoreState>() { // from class: com.discord.widgets.tos.WidgetTosReportViolationViewModel.observeStoreState.1
             @Override // p637j0.p641k.InterfaceC12589b
@@ -324,19 +337,6 @@ public final class WidgetTosReportViolationViewModel extends AbstractC0859d0<Vie
         });
         C12238m.checkNotNullExpressionValue(observableM11083G, "RestAPI\n          .api\n …eportReasons)\n          }");
         return observableM11083G;
-    }
-
-    public final ReportReason getReasonSelected() {
-        return this.reasonSelected;
-    }
-
-    @MainThread
-    public final void handleDismissError() {
-        StoreState storeState = this.storeState;
-        if (storeState == null) {
-            C12238m.throwUninitializedPropertyAccessException("storeState");
-        }
-        generateViewState(storeState);
     }
 
     @MainThread

@@ -188,6 +188,13 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         return GuildMember.INSTANCE.getColor(member, ColorCompat.getThemedColor(view.getContext(), C5419R.attr.colorHeaderPrimary));
     }
 
+    public static /* synthetic */ LeadingMarginSpan getLeadingMarginSpan$default(WidgetChatListAdapterItemThreadEmbed widgetChatListAdapterItemThreadEmbed, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return widgetChatListAdapterItemThreadEmbed.getLeadingMarginSpan(z2);
+    }
+
     private final LeadingMarginSpan getLeadingMarginSpan(boolean showAuthor) {
         int measuredWidth;
         this.binding.f16345j.measure(0, 0);
@@ -199,13 +206,6 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
             measuredWidth = 0;
         }
         return new LeadingMarginSpan.Standard(measuredWidth, 0);
-    }
-
-    public static /* synthetic */ LeadingMarginSpan getLeadingMarginSpan$default(WidgetChatListAdapterItemThreadEmbed widgetChatListAdapterItemThreadEmbed, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return widgetChatListAdapterItemThreadEmbed.getLeadingMarginSpan(z2);
     }
 
     private final void setAuthorAndAvatar(Message mostRecentMessage, Map<Long, String> nickOrUsernames, GuildMember mostRecentMessageAuthorGuildMember) {
@@ -225,18 +225,18 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         IconUtils.setIcon$default(simpleDraweeView, coreUser, C5419R.dimen.avatar_size_small, null, null, mostRecentMessageAuthorGuildMember, 24, null);
     }
 
-    private final void setIcon(Drawable icon) {
-        ImageView imageView = this.binding.f16340e;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.threadEmbedIcon");
-        imageView.setVisibility(icon != null ? 0 : 8);
-        this.binding.f16340e.setImageDrawable(icon);
-    }
-
     public static /* synthetic */ void setIcon$default(WidgetChatListAdapterItemThreadEmbed widgetChatListAdapterItemThreadEmbed, Drawable drawable, int i, Object obj) {
         if ((i & 1) != 0) {
             drawable = null;
         }
         widgetChatListAdapterItemThreadEmbed.setIcon(drawable);
+    }
+
+    private final void setIcon(Drawable icon) {
+        ImageView imageView = this.binding.f16340e;
+        C12238m.checkNotNullExpressionValue(imageView, "binding.threadEmbedIcon");
+        imageView.setVisibility(icon != null ? 0 : 8);
+        this.binding.f16340e.setImageDrawable(icon);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -253,6 +253,10 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         setIcon$default(this, null, 1, null);
     }
 
+    public static /* synthetic */ void setNoMostRecentMessage$default(WidgetChatListAdapterItemThreadEmbed widgetChatListAdapterItemThreadEmbed, String str, Message message, Map map, GuildMember guildMember, Drawable drawable, int i, Object obj) {
+        widgetChatListAdapterItemThreadEmbed.setNoMostRecentMessage(str, (i & 2) != 0 ? null : message, map, (i & 8) != 0 ? null : guildMember, (i & 16) != 0 ? null : drawable);
+    }
+
     private final void setNoMostRecentMessage(String messageText, Message mostRecentMessage, Map<Long, String> nickOrUsernames, GuildMember mostRecentMessageAuthorGuildMember, Drawable icon) {
         SpannableString spannableString = new SpannableString(messageText + (char) 160);
         setAuthorAndAvatar(mostRecentMessage, nickOrUsernames, mostRecentMessageAuthorGuildMember);
@@ -266,10 +270,6 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         C12238m.checkNotNullExpressionValue(context, "context");
         simpleDraweeSpanTextView2.setTypeface(fontUtils.getThemedFont(context, C5419R.attr.font_primary_normal), 2);
         setIcon(icon);
-    }
-
-    public static /* synthetic */ void setNoMostRecentMessage$default(WidgetChatListAdapterItemThreadEmbed widgetChatListAdapterItemThreadEmbed, String str, Message message, Map map, GuildMember guildMember, Drawable drawable, int i, Object obj) {
-        widgetChatListAdapterItemThreadEmbed.setNoMostRecentMessage(str, (i & 2) != 0 ? null : message, map, (i & 8) != 0 ? null : guildMember, (i & 16) != 0 ? null : drawable);
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

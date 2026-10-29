@@ -50,56 +50,6 @@ public final /* data */ class ApplicationCommandLocalSendData {
         this.nonceString = String.valueOf(j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final String getVersion() {
-        return this.version;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final Long getInteractionId() {
-        return this.interactionId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getCommandGuildId() {
-        return this.commandGuildId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getSessionId() {
-        return this.sessionId;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getApplicationCommandName() {
-        return this.applicationCommandName;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final String getApplicationCommandId() {
-        return this.applicationCommandId;
-    }
-
     public final List<ApplicationCommandValue> component9() {
         return this.applicationCommandsValues;
     }
@@ -123,12 +73,27 @@ public final /* data */ class ApplicationCommandLocalSendData {
         return this.nonce == applicationCommandLocalSendData.nonce && this.channelId == applicationCommandLocalSendData.channelId && C12238m.areEqual(this.guildId, applicationCommandLocalSendData.guildId) && C12238m.areEqual(this.commandGuildId, applicationCommandLocalSendData.commandGuildId) && C12238m.areEqual(this.application, applicationCommandLocalSendData.application) && C12238m.areEqual(this.sessionId, applicationCommandLocalSendData.sessionId) && C12238m.areEqual(this.applicationCommandName, applicationCommandLocalSendData.applicationCommandName) && C12238m.areEqual(this.applicationCommandId, applicationCommandLocalSendData.applicationCommandId) && C12238m.areEqual(this.applicationCommandsValues, applicationCommandLocalSendData.applicationCommandsValues) && C12238m.areEqual(this.version, applicationCommandLocalSendData.version) && C12238m.areEqual(this.interactionId, applicationCommandLocalSendData.interactionId);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final Application getApplication() {
         return this.application;
     }
 
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final String getApplicationCommandId() {
         return this.applicationCommandId;
+    }
+
+    public final String getApplicationCommandId() {
+        return this.applicationCommandId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final String getApplicationCommandName() {
+        return this.applicationCommandName;
     }
 
     public final String getApplicationCommandName() {
@@ -139,20 +104,45 @@ public final /* data */ class ApplicationCommandLocalSendData {
         return this.applicationCommandsValues;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Long getCommandGuildId() {
+        return this.commandGuildId;
     }
 
     public final Long getCommandGuildId() {
         return this.commandGuildId;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
     }
 
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final Long getInteractionId() {
         return this.interactionId;
+    }
+
+    public final Long getInteractionId() {
+        return this.interactionId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getNonce() {
+        return this.nonce;
     }
 
     public final long getNonce() {
@@ -163,8 +153,18 @@ public final /* data */ class ApplicationCommandLocalSendData {
         return this.nonceString;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final String getSessionId() {
         return this.sessionId;
+    }
+
+    public final String getSessionId() {
+        return this.sessionId;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final String getVersion() {
+        return this.version;
     }
 
     public final String getVersion() {

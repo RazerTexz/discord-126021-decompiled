@@ -20,11 +20,6 @@ public final /* data */ class ModelApplicationStreamPreview {
         return modelApplicationStreamPreview.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
     public final ModelApplicationStreamPreview copy(String url) {
         C12238m.checkNotNullParameter(url, "url");
         return new ModelApplicationStreamPreview(url);
@@ -35,6 +30,11 @@ public final /* data */ class ModelApplicationStreamPreview {
             return (other instanceof ModelApplicationStreamPreview) && C12238m.areEqual(this.url, ((ModelApplicationStreamPreview) other).url);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getUrl() {
+        return this.url;
     }
 
     public final String getUrl() {

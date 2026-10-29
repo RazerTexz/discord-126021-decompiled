@@ -62,27 +62,9 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            StoreStream.INSTANCE.getAnalytics().onGuildSettingsPaneViewed("COMMUNITY_OVERVIEW", guildId);
-            Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
-            C0870j.m156d(context, WidgetServerSettingsCommunityOverview.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityOverview$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final class C93641 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C93641 extends AbstractC12240o implements Function1<String, Unit> {
         public C93641() {
             super(1);
         }
@@ -102,7 +84,7 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityOverview$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final class C93652 extends AbstractC12240o implements Function2<Long, String, Unit> {
+    public final class C93652 extends AbstractC12240o implements Function2<Long, String, Unit> {
         public C93652() {
             super(2);
         }
@@ -121,7 +103,7 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityOverview$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final class C93663 extends AbstractC12240o implements Function2<Long, String, Unit> {
+    public final class C93663 extends AbstractC12240o implements Function2<Long, String, Unit> {
         public C93663() {
             super(2);
         }
@@ -140,7 +122,7 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityOverview$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final /* synthetic */ class C93671 extends C12236k implements Function1<WidgetServerSettingsCommunityOverviewViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C93671 extends C12236k implements Function1<WidgetServerSettingsCommunityOverviewViewModel.ViewState, Unit> {
         public C93671(WidgetServerSettingsCommunityOverview widgetServerSettingsCommunityOverview) {
             super(1, widgetServerSettingsCommunityOverview, WidgetServerSettingsCommunityOverview.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsCommunityOverviewViewModel$ViewState;)V", 0);
         }
@@ -160,7 +142,7 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityOverview$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
-    public static final class C93682 extends AbstractC12240o implements Function1<WidgetServerSettingsCommunityOverviewViewModel.Event, Unit> {
+    public final class C93682 extends AbstractC12240o implements Function1<WidgetServerSettingsCommunityOverviewViewModel.Event, Unit> {
         public C93682() {
             super(1);
         }
@@ -187,6 +169,24 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
             } else if (C12238m.areEqual(event, WidgetServerSettingsCommunityOverviewViewModel.Event.Error.INSTANCE)) {
                 C0876m.m171i(WidgetServerSettingsCommunityOverview.this, C5419R.string.guild_settings_public_update_failed, 0, 4);
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityOverview.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            StoreStream.INSTANCE.getAnalytics().onGuildSettingsPaneViewed("COMMUNITY_OVERVIEW", guildId);
+            Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
+            C0870j.m156d(context, WidgetServerSettingsCommunityOverview.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -265,10 +265,6 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
         return (WidgetServerSettingsCommunityOverviewBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetServerSettingsCommunityOverviewViewModel getViewModel() {
-        return (WidgetServerSettingsCommunityOverviewViewModel) this.viewModel.getValue();
-    }
-
     public final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
@@ -276,6 +272,10 @@ public final class WidgetServerSettingsCommunityOverview extends AppFragment {
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
+    }
+
+    private final WidgetServerSettingsCommunityOverviewViewModel getViewModel() {
+        return (WidgetServerSettingsCommunityOverviewViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment

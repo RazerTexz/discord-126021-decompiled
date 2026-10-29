@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayHookResult.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayHookResult implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayReceiver {
+    private final Boolean success = null;
     private TrackBase trackBase;
     private TrackOverlay trackOverlay;
-    private final Boolean success = null;
     private final transient String analyticsSchemaTypeName = "overlay_hook_result";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackOverlayHookResult) && C12238m.areEqual(this.success, ((TrackOverlayHookResult) other).success);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -42,7 +42,7 @@ public final class NumericBadgingView extends CutoutView {
 
     /* JADX INFO: renamed from: com.discord.views.NumericBadgingView$a */
     /* JADX INFO: compiled from: NumericBadgingView.kt */
-    public static final class C7079a implements CutoutView.InterfaceC7075a {
+    public final class C7079a implements CutoutView.InterfaceC7075a {
 
         /* JADX INFO: renamed from: a */
         public final RectF f19090a;
@@ -54,6 +54,22 @@ public final class NumericBadgingView extends CutoutView {
             C12238m.checkNotNullParameter(rectF, "badgeRect");
             this.f19090a = rectF;
             this.f19091b = f;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof C7079a)) {
+                return false;
+            }
+            C7079a c7079a = (C7079a) obj;
+            return C12238m.areEqual(this.f19090a, c7079a.f19090a) && Float.compare(this.f19091b, c7079a.f19091b) == 0;
+        }
+
+        public int hashCode() {
+            RectF rectF = this.f19090a;
+            return Float.floatToIntBits(this.f19091b) + ((rectF != null ? rectF.hashCode() : 0) * 31);
         }
 
         @Override // com.discord.views.CutoutView.InterfaceC7075a
@@ -74,22 +90,6 @@ public final class NumericBadgingView extends CutoutView {
             Path path3 = new Path(path2);
             path3.op(path, Path.Op.DIFFERENCE);
             return path3;
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof C7079a)) {
-                return false;
-            }
-            C7079a c7079a = (C7079a) obj;
-            return C12238m.areEqual(this.f19090a, c7079a.f19090a) && Float.compare(this.f19091b, c7079a.f19091b) == 0;
-        }
-
-        public int hashCode() {
-            RectF rectF = this.f19090a;
-            return Float.floatToIntBits(this.f19091b) + ((rectF != null ? rectF.hashCode() : 0) * 31);
         }
 
         public String toString() {

@@ -12,7 +12,7 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
     private final CoroutineContext.Key<AppErrorTag> key;
 
     /* JADX INFO: compiled from: AppCoroutineScope.kt */
-    public static final class Key implements CoroutineContext.Key<AppErrorTag> {
+    public final class Key implements CoroutineContext.Key<AppErrorTag> {
         public static final Key INSTANCE = new Key();
 
         private Key() {
@@ -30,11 +30,6 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
             str = appErrorTag.errorTag;
         }
         return appErrorTag.copy(str);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getErrorTag() {
-        return this.errorTag;
     }
 
     public final AppErrorTag copy(String errorTag) {
@@ -59,6 +54,11 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
     public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
         C12238m.checkNotNullParameter(key, "key");
         return (E) CoroutineContext.Element.C12790a.get(this, key);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getErrorTag() {
+        return this.errorTag;
     }
 
     public final String getErrorTag() {

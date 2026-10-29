@@ -125,48 +125,8 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
     private final StoreUserSettings storeUserSettings;
     private boolean useTimeoutUpdateInterval;
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$1 */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final /* synthetic */ class C76831 extends C12236k implements Function1<StoreState, Unit> {
-        public C76831(ChatInputViewModel chatInputViewModel) {
-            super(1, chatInputViewModel, ChatInputViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/ChatInputViewModel$StoreState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "p1");
-            ((ChatInputViewModel) this.receiver).handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$2 */
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final /* synthetic */ class C76842 extends C12236k implements Function1<StoreChat.Event, Unit> {
-        public C76842(ChatInputViewModel chatInputViewModel) {
-            super(1, chatInputViewModel, ChatInputViewModel.class, "handleStoreChatEvent", "handleStoreChatEvent(Lcom/discord/stores/StoreChat$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreChat.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreChat.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((ChatInputViewModel) this.receiver).handleStoreChatEvent(event);
-        }
-    }
-
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final /* data */ class AttachmentContext {
+    public final /* data */ class AttachmentContext {
         private final List<Float> attachmentSizes;
         private final ArrayList<Attachment<?>> attachments;
         private final float currentFileSizeMB;
@@ -185,6 +145,14 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             this.attachmentSizes = list;
             this.currentFileSizeMB = f;
             this.maxAttachmentSizeMB = f2;
+        }
+
+        public final ArrayList<Attachment<?>> component1() {
+            return this.attachments;
+        }
+
+        public final List<Float> component5() {
+            return this.attachmentSizes;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -218,39 +186,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             return attachmentContext.copy(arrayList, z5, z6, z7, list2, f3, f2);
         }
 
-        public final ArrayList<Attachment<?>> component1() {
-            return this.attachments;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getHasImage() {
-            return this.hasImage;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getHasVideo() {
-            return this.hasVideo;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getHasGif() {
-            return this.hasGif;
-        }
-
-        public final List<Float> component5() {
-            return this.attachmentSizes;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final float getCurrentFileSizeMB() {
-            return this.currentFileSizeMB;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final float getMaxAttachmentSizeMB() {
-            return this.maxAttachmentSizeMB;
-        }
-
         public final AttachmentContext copy(ArrayList<Attachment<?>> attachments, boolean hasImage, boolean hasVideo, boolean hasGif, List<Float> attachmentSizes, float currentFileSizeMB, float maxAttachmentSizeMB) {
             C12238m.checkNotNullParameter(attachments, "attachments");
             C12238m.checkNotNullParameter(attachmentSizes, "attachmentSizes");
@@ -276,20 +211,45 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             return this.attachments;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final float getCurrentFileSizeMB() {
             return this.currentFileSizeMB;
+        }
+
+        public final float getCurrentFileSizeMB() {
+            return this.currentFileSizeMB;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getHasGif() {
+            return this.hasGif;
         }
 
         public final boolean getHasGif() {
             return this.hasGif;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getHasImage() {
             return this.hasImage;
         }
 
+        public final boolean getHasImage() {
+            return this.hasImage;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getHasVideo() {
             return this.hasVideo;
+        }
+
+        public final boolean getHasVideo() {
+            return this.hasVideo;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final float getMaxAttachmentSizeMB() {
+            return this.maxAttachmentSizeMB;
         }
 
         public final float getMaxAttachmentSizeMB() {
@@ -347,8 +307,149 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$1 */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C76831 extends C12236k implements Function1<StoreState, Unit> {
+        public C76831(ChatInputViewModel chatInputViewModel) {
+            super(1, chatInputViewModel, ChatInputViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/ChatInputViewModel$StoreState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            C12238m.checkNotNullParameter(storeState, "p1");
+            ((ChatInputViewModel) this.receiver).handleStoreState(storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$2 */
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final /* synthetic */ class C76842 extends C12236k implements Function1<StoreChat.Event, Unit> {
+        public C76842(ChatInputViewModel chatInputViewModel) {
+            super(1, chatInputViewModel, ChatInputViewModel.class, "handleStoreChatEvent", "handleStoreChatEvent(Lcom/discord/stores/StoreChat$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreChat.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreChat.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((ChatInputViewModel) this.receiver).handleStoreChatEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$createAndGotoThread$2 */
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final class C76892 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final /* synthetic */ ViewState.Loaded $loadedViewState;
+        public final /* synthetic */ Function1 $onThreadCreated;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C76892(ViewState.Loaded loaded, Function1 function1) {
+            super(1);
+            this.$loadedViewState = loaded;
+            this.$onThreadCreated = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            if (channel != null) {
+                StoreStream.INSTANCE.getSlowMode().onThreadCreated(this.$loadedViewState.getChannelId());
+                Function1 function1 = this.$onThreadCreated;
+                if (function1 != null) {
+                    function1.invoke(channel);
+                }
+                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), channel, null, null, 6, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$createAndGotoThread$3 */
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final class C76903 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ ViewState.Loaded $loadedViewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C76903(Context context, ViewState.Loaded loaded) {
+            super(1);
+            this.$context = context;
+            this.$loadedViewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            ThreadUtils.INSTANCE.handleThreadCreateError(this.$context, error, this.$loadedViewState.getChannelId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendCommand$1 */
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final class C76931 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public static final C76931 INSTANCE = new C76931();
+
+        public C76931() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendMessage$1 */
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final class C76951 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final /* synthetic */ Function1 $sendMessage;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C76951(Function1 function1) {
+            super(1);
+            this.$sendMessage = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "thread");
+            this.$sendMessage.invoke(Long.valueOf(channel.getId()));
+        }
+    }
+
+    /* JADX INFO: compiled from: ChatInputViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -418,7 +519,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
 
                 /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$Companion$observeStoreState$1$1 */
                 /* JADX INFO: compiled from: ChatInputViewModel.kt */
-                public static final class C76871 extends AbstractC12240o implements Function13<MeUser, StoreChat.EditingMessage, Integer, Long, GuildVerificationLevel, Boolean, Boolean, Guild, ChatInputViewModel.StoreState.Loaded.PendingReply, GuildMember, GuildJoinRequest, StoreThreadDraft.ThreadDraftState, Boolean, ChatInputViewModel.StoreState.Loaded> {
+                public final class C76871 extends AbstractC12240o implements Function13<MeUser, StoreChat.EditingMessage, Integer, Long, GuildVerificationLevel, Boolean, Boolean, Guild, ChatInputViewModel.StoreState.Loaded.PendingReply, GuildMember, GuildJoinRequest, StoreThreadDraft.ThreadDraftState, Boolean, ChatInputViewModel.StoreState.Loaded> {
                     public final /* synthetic */ Channel $channel;
                     public final /* synthetic */ StoreChannelsSelected.ResolvedSelectedChannel $selectedChannel;
 
@@ -479,10 +580,10 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class AppendChatText extends Event {
+        public final /* data */ class AppendChatText extends Event {
             private final String text;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -499,11 +600,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return appendChatText.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getText() {
-                return this.text;
-            }
-
             public final AppendChatText copy(String text) {
                 C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
                 return new AppendChatText(text);
@@ -514,6 +610,11 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof AppendChatText) && C12238m.areEqual(this.text, ((AppendChatText) other).text);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getText() {
+                return this.text;
             }
 
             public final String getText() {
@@ -534,7 +635,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class CommandInputsInvalid extends Event {
+        public final class CommandInputsInvalid extends Event {
             public static final CommandInputsInvalid INSTANCE = new CommandInputsInvalid();
 
             private CommandInputsInvalid() {
@@ -543,7 +644,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class EmptyThreadName extends Event {
+        public final class EmptyThreadName extends Event {
             public static final EmptyThreadName INSTANCE = new EmptyThreadName();
 
             private EmptyThreadName() {
@@ -552,7 +653,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class FailedDeliveryToRecipient extends Event {
+        public final class FailedDeliveryToRecipient extends Event {
             public static final FailedDeliveryToRecipient INSTANCE = new FailedDeliveryToRecipient();
 
             private FailedDeliveryToRecipient() {
@@ -561,7 +662,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class FilesTooLarge extends Event {
+        public final /* data */ class FilesTooLarge extends Event {
             private final List<Attachment<?>> attachments;
             private final float currentFileSizeMB;
             private final boolean hasGif;
@@ -588,43 +689,8 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 this.onResendCompressed = function0;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getMaxFileSizeMB() {
-                return this.maxFileSizeMB;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final float getCurrentFileSizeMB() {
-                return this.currentFileSizeMB;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final float getMaxAttachmentSizeMB() {
-                return this.maxAttachmentSizeMB;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsUserPremium() {
-                return this.isUserPremium;
-            }
-
             public final List<Attachment<?>> component5() {
                 return this.attachments;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getHasImage() {
-                return this.hasImage;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getHasVideo() {
-                return this.hasVideo;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getHasGif() {
-                return this.hasGif;
             }
 
             public final Function0<Unit> component9() {
@@ -651,24 +717,59 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return this.attachments;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final float getCurrentFileSizeMB() {
                 return this.currentFileSizeMB;
+            }
+
+            public final float getCurrentFileSizeMB() {
+                return this.currentFileSizeMB;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getHasGif() {
+                return this.hasGif;
             }
 
             public final boolean getHasGif() {
                 return this.hasGif;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final boolean getHasImage() {
                 return this.hasImage;
+            }
+
+            public final boolean getHasImage() {
+                return this.hasImage;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getHasVideo() {
+                return this.hasVideo;
             }
 
             public final boolean getHasVideo() {
                 return this.hasVideo;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsUserPremium() {
+                return this.isUserPremium;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final float getMaxAttachmentSizeMB() {
                 return this.maxAttachmentSizeMB;
+            }
+
+            public final float getMaxAttachmentSizeMB() {
+                return this.maxAttachmentSizeMB;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getMaxFileSizeMB() {
+                return this.maxFileSizeMB;
             }
 
             public final int getMaxFileSizeMB() {
@@ -751,7 +852,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class MessageTooLong extends Event {
+        public final /* data */ class MessageTooLong extends Event {
             private final int currentCharacterCount;
             private final int maxCharacterCount;
 
@@ -771,16 +872,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return messageTooLong.copy(i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getCurrentCharacterCount() {
-                return this.currentCharacterCount;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getMaxCharacterCount() {
-                return this.maxCharacterCount;
-            }
-
             public final MessageTooLong copy(int currentCharacterCount, int maxCharacterCount) {
                 return new MessageTooLong(currentCharacterCount, maxCharacterCount);
             }
@@ -796,8 +887,18 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return this.currentCharacterCount == messageTooLong.currentCharacterCount && this.maxCharacterCount == messageTooLong.maxCharacterCount;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getCurrentCharacterCount() {
                 return this.currentCharacterCount;
+            }
+
+            public final int getCurrentCharacterCount() {
+                return this.currentCharacterCount;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getMaxCharacterCount() {
+                return this.maxCharacterCount;
             }
 
             public final int getMaxCharacterCount() {
@@ -817,7 +918,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class SetChatText extends Event {
+        public final /* data */ class SetChatText extends Event {
             private final String text;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -834,11 +935,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return setChatText.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getText() {
-                return this.text;
-            }
-
             public final SetChatText copy(String text) {
                 C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
                 return new SetChatText(text);
@@ -849,6 +945,11 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof SetChatText) && C12238m.areEqual(this.text, ((SetChatText) other).text);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getText() {
+                return this.text;
             }
 
             public final String getText() {
@@ -869,7 +970,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class ShowPremiumUpsell extends Event {
+        public final /* data */ class ShowPremiumUpsell extends Event {
             private final int bodyResId;
             private final int headerResId;
             private final int page;
@@ -902,31 +1003,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return showPremiumUpsell.copy(i, i5, i6, z4, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getPage() {
-                return this.page;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getHeaderResId() {
-                return this.headerResId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getBodyResId() {
-                return this.bodyResId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getShowOtherPages() {
-                return this.showOtherPages;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getShowLearnMore() {
-                return this.showLearnMore;
-            }
-
             public final ShowPremiumUpsell copy(int page, @StringRes int headerResId, @StringRes int bodyResId, boolean showOtherPages, boolean showLearnMore) {
                 return new ShowPremiumUpsell(page, headerResId, bodyResId, showOtherPages, showLearnMore);
             }
@@ -942,20 +1018,45 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return this.page == showPremiumUpsell.page && this.headerResId == showPremiumUpsell.headerResId && this.bodyResId == showPremiumUpsell.bodyResId && this.showOtherPages == showPremiumUpsell.showOtherPages && this.showLearnMore == showPremiumUpsell.showLearnMore;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final int getBodyResId() {
                 return this.bodyResId;
+            }
+
+            public final int getBodyResId() {
+                return this.bodyResId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getHeaderResId() {
+                return this.headerResId;
             }
 
             public final int getHeaderResId() {
                 return this.headerResId;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getPage() {
                 return this.page;
             }
 
+            public final int getPage() {
+                return this.page;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final boolean getShowLearnMore() {
                 return this.showLearnMore;
+            }
+
+            public final boolean getShowLearnMore() {
+                return this.showLearnMore;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getShowOtherPages() {
+                return this.showOtherPages;
             }
 
             public final boolean getShowOtherPages() {
@@ -1007,7 +1108,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class ThreadDraftClosed extends Event {
+        public final class ThreadDraftClosed extends Event {
             public static final ThreadDraftClosed INSTANCE = new ThreadDraftClosed();
 
             private ThreadDraftClosed() {
@@ -1024,10 +1125,10 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class Loaded extends StoreState {
+        public final /* data */ class Loaded extends StoreState {
             private final Channel channel;
             private final Long channelPermissions;
             private final StoreChat.EditingMessage editingMessage;
@@ -1045,7 +1146,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             private final GuildVerificationLevel verificationLevelTriggered;
 
             /* JADX INFO: compiled from: ChatInputViewModel.kt */
-            public static final /* data */ class PendingReply {
+            public final /* data */ class PendingReply {
                 private final StorePendingReplies.PendingReply pendingReply;
                 private final com.discord.models.user.User repliedAuthor;
                 private final GuildMember repliedAuthorGuildMember;
@@ -1070,21 +1171,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                     return pendingReply.copy(pendingReply2, user, guildMember);
                 }
 
-                /* JADX INFO: renamed from: component1, reason: from getter */
-                public final StorePendingReplies.PendingReply getPendingReply() {
-                    return this.pendingReply;
-                }
-
-                /* JADX INFO: renamed from: component2, reason: from getter */
-                public final com.discord.models.user.User getRepliedAuthor() {
-                    return this.repliedAuthor;
-                }
-
-                /* JADX INFO: renamed from: component3, reason: from getter */
-                public final GuildMember getRepliedAuthorGuildMember() {
-                    return this.repliedAuthorGuildMember;
-                }
-
                 public final PendingReply copy(StorePendingReplies.PendingReply pendingReply, com.discord.models.user.User repliedAuthor, GuildMember repliedAuthorGuildMember) {
                     C12238m.checkNotNullParameter(pendingReply, "pendingReply");
                     return new PendingReply(pendingReply, repliedAuthor, repliedAuthorGuildMember);
@@ -1101,12 +1187,27 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                     return C12238m.areEqual(this.pendingReply, pendingReply.pendingReply) && C12238m.areEqual(this.repliedAuthor, pendingReply.repliedAuthor) && C12238m.areEqual(this.repliedAuthorGuildMember, pendingReply.repliedAuthorGuildMember);
                 }
 
+                /* JADX INFO: renamed from: component1, reason: from getter */
                 public final StorePendingReplies.PendingReply getPendingReply() {
                     return this.pendingReply;
                 }
 
+                public final StorePendingReplies.PendingReply getPendingReply() {
+                    return this.pendingReply;
+                }
+
+                /* JADX INFO: renamed from: component2, reason: from getter */
                 public final com.discord.models.user.User getRepliedAuthor() {
                     return this.repliedAuthor;
+                }
+
+                public final com.discord.models.user.User getRepliedAuthor() {
+                    return this.repliedAuthor;
+                }
+
+                /* JADX INFO: renamed from: component3, reason: from getter */
+                public final GuildMember getRepliedAuthorGuildMember() {
+                    return this.repliedAuthorGuildMember;
                 }
 
                 public final GuildMember getRepliedAuthorGuildMember() {
@@ -1158,81 +1259,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 this.isForumPostCreateInProgress = z4;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final PendingReply getPendingReply() {
-                return this.pendingReply;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
-                return this.selectedThreadDraft;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final GuildMember getMeGuildMember() {
-                return this.meGuildMember;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final GuildJoinRequest getGuildJoinRequest() {
-                return this.guildJoinRequest;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
-                return this.threadDraftState;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final boolean getIsForumPostCreateInProgress() {
-                return this.isForumPostCreateInProgress;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final MeUser getMe() {
-                return this.me;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final StoreChat.EditingMessage getEditingMessage() {
-                return this.editingMessage;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Integer getRelationshipType() {
-                return this.relationshipType;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Long getChannelPermissions() {
-                return this.channelPermissions;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final GuildVerificationLevel getVerificationLevelTriggered() {
-                return this.verificationLevelTriggered;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getIsLurking() {
-                return this.isLurking;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsOnCooldown() {
-                return this.isOnCooldown;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
             public final Loaded copy(Channel channel, MeUser me2, StoreChat.EditingMessage editingMessage, Integer relationshipType, Long channelPermissions, GuildVerificationLevel verificationLevelTriggered, boolean isLurking, boolean isOnCooldown, Guild guild, PendingReply pendingReply, StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft selectedThreadDraft, GuildMember meGuildMember, GuildJoinRequest guildJoinRequest, StoreThreadDraft.ThreadDraftState threadDraftState, boolean isForumPostCreateInProgress) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 C12238m.checkNotNullParameter(me2, "me");
@@ -1252,48 +1278,123 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.channel, loaded.channel) && C12238m.areEqual(this.me, loaded.me) && C12238m.areEqual(this.editingMessage, loaded.editingMessage) && C12238m.areEqual(this.relationshipType, loaded.relationshipType) && C12238m.areEqual(this.channelPermissions, loaded.channelPermissions) && C12238m.areEqual(this.verificationLevelTriggered, loaded.verificationLevelTriggered) && this.isLurking == loaded.isLurking && this.isOnCooldown == loaded.isOnCooldown && C12238m.areEqual(this.guild, loaded.guild) && C12238m.areEqual(this.pendingReply, loaded.pendingReply) && C12238m.areEqual(this.selectedThreadDraft, loaded.selectedThreadDraft) && C12238m.areEqual(this.meGuildMember, loaded.meGuildMember) && C12238m.areEqual(this.guildJoinRequest, loaded.guildJoinRequest) && C12238m.areEqual(this.threadDraftState, loaded.threadDraftState) && this.isForumPostCreateInProgress == loaded.isForumPostCreateInProgress;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getChannel() {
                 return this.channel;
+            }
+
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final Long getChannelPermissions() {
+                return this.channelPermissions;
             }
 
             public final Long getChannelPermissions() {
                 return this.channelPermissions;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final StoreChat.EditingMessage getEditingMessage() {
                 return this.editingMessage;
+            }
+
+            public final StoreChat.EditingMessage getEditingMessage() {
+                return this.editingMessage;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
                 return this.guild;
             }
 
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final GuildJoinRequest getGuildJoinRequest() {
                 return this.guildJoinRequest;
+            }
+
+            public final GuildJoinRequest getGuildJoinRequest() {
+                return this.guildJoinRequest;
+            }
+
+            /* JADX INFO: renamed from: component15, reason: from getter */
+            public final boolean getIsForumPostCreateInProgress() {
+                return this.isForumPostCreateInProgress;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getIsLurking() {
+                return this.isLurking;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsOnCooldown() {
+                return this.isOnCooldown;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final MeUser getMe() {
+                return this.me;
             }
 
             public final MeUser getMe() {
                 return this.me;
             }
 
+            /* JADX INFO: renamed from: component12, reason: from getter */
             public final GuildMember getMeGuildMember() {
                 return this.meGuildMember;
+            }
+
+            public final GuildMember getMeGuildMember() {
+                return this.meGuildMember;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final PendingReply getPendingReply() {
+                return this.pendingReply;
             }
 
             public final PendingReply getPendingReply() {
                 return this.pendingReply;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final Integer getRelationshipType() {
                 return this.relationshipType;
+            }
+
+            public final Integer getRelationshipType() {
+                return this.relationshipType;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
+                return this.selectedThreadDraft;
             }
 
             public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
                 return this.selectedThreadDraft;
             }
 
+            /* JADX INFO: renamed from: component14, reason: from getter */
             public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
                 return this.threadDraftState;
+            }
+
+            public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
+                return this.threadDraftState;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final GuildVerificationLevel getVerificationLevelTriggered() {
+                return this.verificationLevelTriggered;
             }
 
             public final GuildVerificationLevel getVerificationLevelTriggered() {
@@ -1400,7 +1501,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class Loading extends StoreState {
+        public final class Loading extends StoreState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -1417,10 +1518,10 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean ableToSendMessage;
             private final Channel channel;
             private final long channelId;
@@ -1449,10 +1550,10 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             private final GuildVerificationLevel verificationLevelTriggered;
 
             /* JADX INFO: compiled from: ChatInputViewModel.kt */
-            public static abstract class PendingReplyState {
+            public abstract class PendingReplyState {
 
                 /* JADX INFO: compiled from: ChatInputViewModel.kt */
-                public static final class Hide extends PendingReplyState {
+                public final class Hide extends PendingReplyState {
                     public static final Hide INSTANCE = new Hide();
 
                     private Hide() {
@@ -1461,7 +1562,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 }
 
                 /* JADX INFO: compiled from: ChatInputViewModel.kt */
-                public static final /* data */ class Replying extends PendingReplyState {
+                public final /* data */ class Replying extends PendingReplyState {
                     private final MessageReference messageReference;
                     private final com.discord.models.user.User repliedAuthor;
                     private final GuildMember repliedAuthorGuildMember;
@@ -1502,31 +1603,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                         return replying.copy(messageReference, z4, z5, user2, guildMember);
                     }
 
-                    /* JADX INFO: renamed from: component1, reason: from getter */
-                    public final MessageReference getMessageReference() {
-                        return this.messageReference;
-                    }
-
-                    /* JADX INFO: renamed from: component2, reason: from getter */
-                    public final boolean getShouldMention() {
-                        return this.shouldMention;
-                    }
-
-                    /* JADX INFO: renamed from: component3, reason: from getter */
-                    public final boolean getShowMentionToggle() {
-                        return this.showMentionToggle;
-                    }
-
-                    /* JADX INFO: renamed from: component4, reason: from getter */
-                    public final com.discord.models.user.User getRepliedAuthor() {
-                        return this.repliedAuthor;
-                    }
-
-                    /* JADX INFO: renamed from: component5, reason: from getter */
-                    public final GuildMember getRepliedAuthorGuildMember() {
-                        return this.repliedAuthorGuildMember;
-                    }
-
                     public final Replying copy(MessageReference messageReference, boolean shouldMention, boolean showMentionToggle, com.discord.models.user.User repliedAuthor, GuildMember repliedAuthorGuildMember) {
                         C12238m.checkNotNullParameter(messageReference, "messageReference");
                         C12238m.checkNotNullParameter(repliedAuthor, "repliedAuthor");
@@ -1544,20 +1620,45 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                         return C12238m.areEqual(this.messageReference, replying.messageReference) && this.shouldMention == replying.shouldMention && this.showMentionToggle == replying.showMentionToggle && C12238m.areEqual(this.repliedAuthor, replying.repliedAuthor) && C12238m.areEqual(this.repliedAuthorGuildMember, replying.repliedAuthorGuildMember);
                     }
 
+                    /* JADX INFO: renamed from: component1, reason: from getter */
                     public final MessageReference getMessageReference() {
                         return this.messageReference;
+                    }
+
+                    public final MessageReference getMessageReference() {
+                        return this.messageReference;
+                    }
+
+                    /* JADX INFO: renamed from: component4, reason: from getter */
+                    public final com.discord.models.user.User getRepliedAuthor() {
+                        return this.repliedAuthor;
                     }
 
                     public final com.discord.models.user.User getRepliedAuthor() {
                         return this.repliedAuthor;
                     }
 
+                    /* JADX INFO: renamed from: component5, reason: from getter */
                     public final GuildMember getRepliedAuthorGuildMember() {
                         return this.repliedAuthorGuildMember;
                     }
 
+                    public final GuildMember getRepliedAuthorGuildMember() {
+                        return this.repliedAuthorGuildMember;
+                    }
+
+                    /* JADX INFO: renamed from: component2, reason: from getter */
                     public final boolean getShouldMention() {
                         return this.shouldMention;
+                    }
+
+                    public final boolean getShouldMention() {
+                        return this.shouldMention;
+                    }
+
+                    /* JADX INFO: renamed from: component3, reason: from getter */
+                    public final boolean getShowMentionToggle() {
+                        return this.showMentionToggle;
                     }
 
                     public final boolean getShowMentionToggle() {
@@ -1613,173 +1714,8 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 }
             }
 
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(Channel channel, long j, MeUser meUser, GuildMember guildMember, StoreChat.EditingMessage editingMessage, boolean z2, GuildVerificationLevel guildVerificationLevel, boolean z3, boolean z4, boolean z5, int i, boolean z6, PendingReplyState pendingReplyState, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, long j2, StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft, boolean z14, ApplicationStatus applicationStatus, StoreThreadDraft.ThreadDraftState threadDraftState, boolean z15) {
-                super(null);
-                C12238m.checkNotNullParameter(channel, "channel");
-                C12238m.checkNotNullParameter(guildVerificationLevel, "verificationLevelTriggered");
-                C12238m.checkNotNullParameter(pendingReplyState, "pendingReplyState");
-                C12238m.checkNotNullParameter(threadDraftState, "threadDraftState");
-                this.channel = channel;
-                this.channelId = j;
-                this.me = meUser;
-                this.meGuildMember = guildMember;
-                this.editingMessage = editingMessage;
-                this.ableToSendMessage = z2;
-                this.verificationLevelTriggered = guildVerificationLevel;
-                this.isLurking = z3;
-                this.isSystemDM = z4;
-                this.isOnCooldown = z5;
-                this.maxFileSizeMB = i;
-                this.shouldShowFollow = z6;
-                this.pendingReplyState = pendingReplyState;
-                this.shouldBadgeChatInput = z7;
-                this.isBlocked = z8;
-                this.isInputShowing = z9;
-                this.isVerificationLevelTriggered = z10;
-                this.isEditing = z11;
-                this.isReplying = z12;
-                this.isCommunicationDisabled = z13;
-                this.timeoutLeftMs = j2;
-                this.selectedThreadDraft = threadDraft;
-                this.shouldShowVerificationGate = z14;
-                this.joinRequestStatus = applicationStatus;
-                this.threadDraftState = threadDraftState;
-                this.showCreateThreadOption = z15;
-            }
-
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Channel channel, long j, MeUser meUser, GuildMember guildMember, StoreChat.EditingMessage editingMessage, boolean z2, GuildVerificationLevel guildVerificationLevel, boolean z3, boolean z4, boolean z5, int i, boolean z6, PendingReplyState pendingReplyState, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, long j2, StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft, boolean z14, ApplicationStatus applicationStatus, StoreThreadDraft.ThreadDraftState threadDraftState, boolean z15, int i2, Object obj) {
                 return loaded.copy((i2 & 1) != 0 ? loaded.channel : channel, (i2 & 2) != 0 ? loaded.channelId : j, (i2 & 4) != 0 ? loaded.me : meUser, (i2 & 8) != 0 ? loaded.meGuildMember : guildMember, (i2 & 16) != 0 ? loaded.editingMessage : editingMessage, (i2 & 32) != 0 ? loaded.ableToSendMessage : z2, (i2 & 64) != 0 ? loaded.verificationLevelTriggered : guildVerificationLevel, (i2 & 128) != 0 ? loaded.isLurking : z3, (i2 & 256) != 0 ? loaded.isSystemDM : z4, (i2 & 512) != 0 ? loaded.isOnCooldown : z5, (i2 & 1024) != 0 ? loaded.maxFileSizeMB : i, (i2 & 2048) != 0 ? loaded.shouldShowFollow : z6, (i2 & 4096) != 0 ? loaded.pendingReplyState : pendingReplyState, (i2 & 8192) != 0 ? loaded.shouldBadgeChatInput : z7, (i2 & 16384) != 0 ? loaded.isBlocked : z8, (i2 & 32768) != 0 ? loaded.isInputShowing : z9, (i2 & 65536) != 0 ? loaded.isVerificationLevelTriggered : z10, (i2 & 131072) != 0 ? loaded.isEditing : z11, (i2 & 262144) != 0 ? loaded.isReplying : z12, (i2 & 524288) != 0 ? loaded.isCommunicationDisabled : z13, (i2 & 1048576) != 0 ? loaded.timeoutLeftMs : j2, (i2 & 2097152) != 0 ? loaded.selectedThreadDraft : threadDraft, (4194304 & i2) != 0 ? loaded.shouldShowVerificationGate : z14, (i2 & 8388608) != 0 ? loaded.joinRequestStatus : applicationStatus, (i2 & 16777216) != 0 ? loaded.threadDraftState : threadDraftState, (i2 & 33554432) != 0 ? loaded.showCreateThreadOption : z15);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final boolean getIsOnCooldown() {
-                return this.isOnCooldown;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final int getMaxFileSizeMB() {
-                return this.maxFileSizeMB;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getShouldShowFollow() {
-                return this.shouldShowFollow;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final PendingReplyState getPendingReplyState() {
-                return this.pendingReplyState;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final boolean getShouldBadgeChatInput() {
-                return this.shouldBadgeChatInput;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final boolean getIsBlocked() {
-                return this.isBlocked;
-            }
-
-            /* JADX INFO: renamed from: component16, reason: from getter */
-            public final boolean getIsInputShowing() {
-                return this.isInputShowing;
-            }
-
-            /* JADX INFO: renamed from: component17, reason: from getter */
-            public final boolean getIsVerificationLevelTriggered() {
-                return this.isVerificationLevelTriggered;
-            }
-
-            /* JADX INFO: renamed from: component18, reason: from getter */
-            public final boolean getIsEditing() {
-                return this.isEditing;
-            }
-
-            /* JADX INFO: renamed from: component19, reason: from getter */
-            public final boolean getIsReplying() {
-                return this.isReplying;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component20, reason: from getter */
-            public final boolean getIsCommunicationDisabled() {
-                return this.isCommunicationDisabled;
-            }
-
-            /* JADX INFO: renamed from: component21, reason: from getter */
-            public final long getTimeoutLeftMs() {
-                return this.timeoutLeftMs;
-            }
-
-            /* JADX INFO: renamed from: component22, reason: from getter */
-            public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
-                return this.selectedThreadDraft;
-            }
-
-            /* JADX INFO: renamed from: component23, reason: from getter */
-            public final boolean getShouldShowVerificationGate() {
-                return this.shouldShowVerificationGate;
-            }
-
-            /* JADX INFO: renamed from: component24, reason: from getter */
-            public final ApplicationStatus getJoinRequestStatus() {
-                return this.joinRequestStatus;
-            }
-
-            /* JADX INFO: renamed from: component25, reason: from getter */
-            public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
-                return this.threadDraftState;
-            }
-
-            /* JADX INFO: renamed from: component26, reason: from getter */
-            public final boolean getShowCreateThreadOption() {
-                return this.showCreateThreadOption;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final MeUser getMe() {
-                return this.me;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final GuildMember getMeGuildMember() {
-                return this.meGuildMember;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final StoreChat.EditingMessage getEditingMessage() {
-                return this.editingMessage;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getAbleToSendMessage() {
-                return this.ableToSendMessage;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final GuildVerificationLevel getVerificationLevelTriggered() {
-                return this.verificationLevelTriggered;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsLurking() {
-                return this.isLurking;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsSystemDM() {
-                return this.isSystemDM;
             }
 
             public final Loaded copy(Channel channel, long channelId, MeUser me2, GuildMember meGuildMember, StoreChat.EditingMessage editingMessage, boolean ableToSendMessage, GuildVerificationLevel verificationLevelTriggered, boolean isLurking, boolean isSystemDM, boolean isOnCooldown, int maxFileSizeMB, boolean shouldShowFollow, PendingReplyState pendingReplyState, boolean shouldBadgeChatInput, boolean isBlocked, boolean isInputShowing, boolean isVerificationLevelTriggered, boolean isEditing, boolean isReplying, boolean isCommunicationDisabled, long timeoutLeftMs, StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft selectedThreadDraft, boolean shouldShowVerificationGate, ApplicationStatus joinRequestStatus, StoreThreadDraft.ThreadDraftState threadDraftState, boolean showCreateThreadOption) {
@@ -1801,68 +1737,198 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.channel, loaded.channel) && this.channelId == loaded.channelId && C12238m.areEqual(this.me, loaded.me) && C12238m.areEqual(this.meGuildMember, loaded.meGuildMember) && C12238m.areEqual(this.editingMessage, loaded.editingMessage) && this.ableToSendMessage == loaded.ableToSendMessage && C12238m.areEqual(this.verificationLevelTriggered, loaded.verificationLevelTriggered) && this.isLurking == loaded.isLurking && this.isSystemDM == loaded.isSystemDM && this.isOnCooldown == loaded.isOnCooldown && this.maxFileSizeMB == loaded.maxFileSizeMB && this.shouldShowFollow == loaded.shouldShowFollow && C12238m.areEqual(this.pendingReplyState, loaded.pendingReplyState) && this.shouldBadgeChatInput == loaded.shouldBadgeChatInput && this.isBlocked == loaded.isBlocked && this.isInputShowing == loaded.isInputShowing && this.isVerificationLevelTriggered == loaded.isVerificationLevelTriggered && this.isEditing == loaded.isEditing && this.isReplying == loaded.isReplying && this.isCommunicationDisabled == loaded.isCommunicationDisabled && this.timeoutLeftMs == loaded.timeoutLeftMs && C12238m.areEqual(this.selectedThreadDraft, loaded.selectedThreadDraft) && this.shouldShowVerificationGate == loaded.shouldShowVerificationGate && C12238m.areEqual(this.joinRequestStatus, loaded.joinRequestStatus) && C12238m.areEqual(this.threadDraftState, loaded.threadDraftState) && this.showCreateThreadOption == loaded.showCreateThreadOption;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final boolean getAbleToSendMessage() {
                 return this.ableToSendMessage;
+            }
+
+            public final boolean getAbleToSendMessage() {
+                return this.ableToSendMessage;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
                 return this.channel;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getChannelId() {
                 return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final StoreChat.EditingMessage getEditingMessage() {
+                return this.editingMessage;
             }
 
             public final StoreChat.EditingMessage getEditingMessage() {
                 return this.editingMessage;
             }
 
+            /* JADX INFO: renamed from: component15, reason: from getter */
+            public final boolean getIsBlocked() {
+                return this.isBlocked;
+            }
+
+            /* JADX INFO: renamed from: component20, reason: from getter */
+            public final boolean getIsCommunicationDisabled() {
+                return this.isCommunicationDisabled;
+            }
+
+            /* JADX INFO: renamed from: component18, reason: from getter */
+            public final boolean getIsEditing() {
+                return this.isEditing;
+            }
+
+            /* JADX INFO: renamed from: component16, reason: from getter */
+            public final boolean getIsInputShowing() {
+                return this.isInputShowing;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsLurking() {
+                return this.isLurking;
+            }
+
+            /* JADX INFO: renamed from: component10, reason: from getter */
+            public final boolean getIsOnCooldown() {
+                return this.isOnCooldown;
+            }
+
+            /* JADX INFO: renamed from: component19, reason: from getter */
+            public final boolean getIsReplying() {
+                return this.isReplying;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getIsSystemDM() {
+                return this.isSystemDM;
+            }
+
+            /* JADX INFO: renamed from: component17, reason: from getter */
+            public final boolean getIsVerificationLevelTriggered() {
+                return this.isVerificationLevelTriggered;
+            }
+
+            /* JADX INFO: renamed from: component24, reason: from getter */
             public final ApplicationStatus getJoinRequestStatus() {
                 return this.joinRequestStatus;
+            }
+
+            public final ApplicationStatus getJoinRequestStatus() {
+                return this.joinRequestStatus;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final int getMaxFileSizeMB() {
+                return this.maxFileSizeMB;
             }
 
             public final int getMaxFileSizeMB() {
                 return this.maxFileSizeMB;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final MeUser getMe() {
                 return this.me;
+            }
+
+            public final MeUser getMe() {
+                return this.me;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final GuildMember getMeGuildMember() {
+                return this.meGuildMember;
             }
 
             public final GuildMember getMeGuildMember() {
                 return this.meGuildMember;
             }
 
+            /* JADX INFO: renamed from: component13, reason: from getter */
             public final PendingReplyState getPendingReplyState() {
                 return this.pendingReplyState;
+            }
+
+            public final PendingReplyState getPendingReplyState() {
+                return this.pendingReplyState;
+            }
+
+            /* JADX INFO: renamed from: component22, reason: from getter */
+            public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
+                return this.selectedThreadDraft;
             }
 
             public final StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft getSelectedThreadDraft() {
                 return this.selectedThreadDraft;
             }
 
+            /* JADX INFO: renamed from: component14, reason: from getter */
             public final boolean getShouldBadgeChatInput() {
                 return this.shouldBadgeChatInput;
+            }
+
+            public final boolean getShouldBadgeChatInput() {
+                return this.shouldBadgeChatInput;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final boolean getShouldShowFollow() {
+                return this.shouldShowFollow;
             }
 
             public final boolean getShouldShowFollow() {
                 return this.shouldShowFollow;
             }
 
+            /* JADX INFO: renamed from: component23, reason: from getter */
             public final boolean getShouldShowVerificationGate() {
                 return this.shouldShowVerificationGate;
+            }
+
+            public final boolean getShouldShowVerificationGate() {
+                return this.shouldShowVerificationGate;
+            }
+
+            /* JADX INFO: renamed from: component26, reason: from getter */
+            public final boolean getShowCreateThreadOption() {
+                return this.showCreateThreadOption;
             }
 
             public final boolean getShowCreateThreadOption() {
                 return this.showCreateThreadOption;
             }
 
+            /* JADX INFO: renamed from: component25, reason: from getter */
             public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
                 return this.threadDraftState;
             }
 
+            public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
+                return this.threadDraftState;
+            }
+
+            /* JADX INFO: renamed from: component21, reason: from getter */
             public final long getTimeoutLeftMs() {
                 return this.timeoutLeftMs;
+            }
+
+            public final long getTimeoutLeftMs() {
+                return this.timeoutLeftMs;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final GuildVerificationLevel getVerificationLevelTriggered() {
+                return this.verificationLevelTriggered;
             }
 
             public final GuildVerificationLevel getVerificationLevelTriggered() {
@@ -2051,6 +2117,41 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 return this.isVerificationLevelTriggered;
             }
 
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(Channel channel, long j, MeUser meUser, GuildMember guildMember, StoreChat.EditingMessage editingMessage, boolean z2, GuildVerificationLevel guildVerificationLevel, boolean z3, boolean z4, boolean z5, int i, boolean z6, PendingReplyState pendingReplyState, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, long j2, StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft, boolean z14, ApplicationStatus applicationStatus, StoreThreadDraft.ThreadDraftState threadDraftState, boolean z15) {
+                super(null);
+                C12238m.checkNotNullParameter(channel, "channel");
+                C12238m.checkNotNullParameter(guildVerificationLevel, "verificationLevelTriggered");
+                C12238m.checkNotNullParameter(pendingReplyState, "pendingReplyState");
+                C12238m.checkNotNullParameter(threadDraftState, "threadDraftState");
+                this.channel = channel;
+                this.channelId = j;
+                this.me = meUser;
+                this.meGuildMember = guildMember;
+                this.editingMessage = editingMessage;
+                this.ableToSendMessage = z2;
+                this.verificationLevelTriggered = guildVerificationLevel;
+                this.isLurking = z3;
+                this.isSystemDM = z4;
+                this.isOnCooldown = z5;
+                this.maxFileSizeMB = i;
+                this.shouldShowFollow = z6;
+                this.pendingReplyState = pendingReplyState;
+                this.shouldBadgeChatInput = z7;
+                this.isBlocked = z8;
+                this.isInputShowing = z9;
+                this.isVerificationLevelTriggered = z10;
+                this.isEditing = z11;
+                this.isReplying = z12;
+                this.isCommunicationDisabled = z13;
+                this.timeoutLeftMs = j2;
+                this.selectedThreadDraft = threadDraft;
+                this.shouldShowVerificationGate = z14;
+                this.joinRequestStatus = applicationStatus;
+                this.threadDraftState = threadDraftState;
+                this.showCreateThreadOption = z15;
+            }
+
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("Loaded(channel=");
                 sbM833U.append(this.channel);
@@ -2108,7 +2209,7 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChatInputViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -2136,107 +2237,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             iArr[GuildVerificationLevel.NONE.ordinal()] = 3;
             iArr[GuildVerificationLevel.MEDIUM.ordinal()] = 4;
             iArr[GuildVerificationLevel.HIGH.ordinal()] = 5;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$createAndGotoThread$2 */
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76892 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public final /* synthetic */ ViewState.Loaded $loadedViewState;
-        public final /* synthetic */ Function1 $onThreadCreated;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C76892(ViewState.Loaded loaded, Function1 function1) {
-            super(1);
-            this.$loadedViewState = loaded;
-            this.$onThreadCreated = function1;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            if (channel != null) {
-                StoreStream.INSTANCE.getSlowMode().onThreadCreated(this.$loadedViewState.getChannelId());
-                Function1 function1 = this.$onThreadCreated;
-                if (function1 != null) {
-                    function1.invoke(channel);
-                }
-                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), channel, null, null, 6, null);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$createAndGotoThread$3 */
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76903 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ ViewState.Loaded $loadedViewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C76903(Context context, ViewState.Loaded loaded) {
-            super(1);
-            this.$context = context;
-            this.$loadedViewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            ThreadUtils.INSTANCE.handleThreadCreateError(this.$context, error, this.$loadedViewState.getChannelId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendCommand$1 */
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76931 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public static final C76931 INSTANCE = new C76931();
-
-        public C76931() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendMessage$1 */
-    /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public static final class C76951 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public final /* synthetic */ Function1 $sendMessage;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C76951(Function1 function1) {
-            super(1);
-            this.$sendMessage = function1;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "thread");
-            this.$sendMessage.invoke(Long.valueOf(channel.getId()));
         }
     }
 
@@ -2279,6 +2279,14 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         return communicationDisabledUntil.getDateTimeMillis() - ClockFactory.get().currentTimeMillis();
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void createAndGotoThread$default(ChatInputViewModel chatInputViewModel, Context context, Long l, String str, ViewState.Loaded loaded, Function1 function1, int i, Object obj) {
+        if ((i & 16) != 0) {
+            function1 = null;
+        }
+        chatInputViewModel.createAndGotoThread(context, l, str, loaded, function1);
+    }
+
     private final void createAndGotoThread(Context context, Long parentMessageId, String location, ViewState.Loaded loadedViewState, Function1<? super Channel, Unit> onThreadCreated) {
         int i;
         ThreadUtils threadUtils = ThreadUtils.INSTANCE;
@@ -2304,14 +2312,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11082A, this, null, 2, null), (Class<?>) ChatInputViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C76903(context, loadedViewState)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76892(loadedViewState, onThreadCreated));
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void createAndGotoThread$default(ChatInputViewModel chatInputViewModel, Context context, Long l, String str, ViewState.Loaded loaded, Function1 function1, int i, Object obj) {
-        if ((i & 16) != 0) {
-            function1 = null;
-        }
-        chatInputViewModel.createAndGotoThread(context, l, str, loaded, function1);
-    }
-
     private final void createForumPostWithMessage(Context context, long channelId, MessageManager messageManager, MessageContent messageContent, MessageManager.AttachmentsRequest attachmentsRequest, Function2<? super Integer, ? super Integer, Unit> onMessageTooLong, Function2<? super Integer, ? super Boolean, Unit> onFilesTooLarge) {
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Loaded)) {
@@ -2320,6 +2320,21 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
         ViewState.Loaded loaded = (ViewState.Loaded) viewState;
         if (loaded != null) {
             ForumPostCreateManager.INSTANCE.createForumPostWithMessage(context, messageManager, channelId, getAutoArchiveDuration(), messageContent.getTextContent(), loaded.getThreadDraftState(), attachmentsRequest, onMessageTooLong, onFilesTooLarge);
+        }
+    }
+
+    public final void deleteEditingMessage() {
+        this.storeChat.setEditingMessage(null);
+    }
+
+    public final void deletePendingReply() {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            this.storePendingReplies.onDeletePendingReply(loaded.getChannelId());
         }
     }
 
@@ -2340,6 +2355,17 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
             return autoArchiveDuration.intValue();
         }
         return 1440;
+    }
+
+    public final boolean handleEmojiAutocompleteUpsellClicked(Autocompletable item) {
+        C12238m.checkNotNullParameter(item, "item");
+        if (!this.isEmojiAutocompleteUpsellEnabled || !(item instanceof EmojiUpsellPlaceholder)) {
+            return false;
+        }
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(new Event.ShowPremiumUpsell(1, C5419R.string.autocomplete_emoji_upsell_modal_header, C5419R.string.autocomplete_emoji_upsell_modal_blurb_mobile, false, false, 24, null));
+        this.storeAnalytics.emojiAutocompleteUpsellModalViewed();
+        return true;
     }
 
     private final void handleStoreChatEvent(StoreChat.Event event) {
@@ -2425,32 +2451,6 @@ public final class ChatInputViewModel extends AbstractC0859d0<ViewState> {
                 this.eventSubject.f27650k.onNext(Event.ThreadDraftClosed.INSTANCE);
             }
         }
-    }
-
-    public final void deleteEditingMessage() {
-        this.storeChat.setEditingMessage(null);
-    }
-
-    public final void deletePendingReply() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            this.storePendingReplies.onDeletePendingReply(loaded.getChannelId());
-        }
-    }
-
-    public final boolean handleEmojiAutocompleteUpsellClicked(Autocompletable item) {
-        C12238m.checkNotNullParameter(item, "item");
-        if (!this.isEmojiAutocompleteUpsellEnabled || !(item instanceof EmojiUpsellPlaceholder)) {
-            return false;
-        }
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.ShowPremiumUpsell(1, C5419R.string.autocomplete_emoji_upsell_modal_header, C5419R.string.autocomplete_emoji_upsell_modal_blurb_mobile, false, false, 24, null));
-        this.storeAnalytics.emojiAutocompleteUpsellModalViewed();
-        return true;
     }
 
     public final void jumpToMessageReference(MessageReference messageReference) {

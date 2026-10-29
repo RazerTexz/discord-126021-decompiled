@@ -148,15 +148,19 @@ public final class SubtitleView extends FrameLayout implements InterfaceC3128y1.
         return new C2667k(userStyle.hasForegroundColor() ? userStyle.foregroundColor : -1, userStyle.hasBackgroundColor() ? userStyle.backgroundColor : ViewCompat.MEASURED_STATE_MASK, userStyle.hasWindowColor() ? userStyle.windowColor : 0, userStyle.hasEdgeType() ? userStyle.edgeType : 0, userStyle.hasEdgeColor() ? userStyle.edgeColor : -1, userStyle.getTypeface());
     }
 
-    private <T extends View & InterfaceC10760a> void setView(T t) {
-        removeView(this.f20199s);
-        View view = this.f20199s;
-        if (view instanceof C2674r) {
-            ((C2674r) view).f6403k.destroy();
-        }
-        this.f20199s = t;
-        this.f20198r = t;
-        addView(t);
+    /* JADX INFO: renamed from: k */
+    public void m8929k() {
+        setStyle(getUserCaptionStyle());
+    }
+
+    /* JADX INFO: renamed from: l */
+    public void m8930l() {
+        setFractionalTextSize(getUserCaptionFontScale() * 0.0533f);
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final void m8931m() {
+        this.f20198r.mo2758a(getCuesWithStylingPreferencesApplied(), this.f20191k, this.f20193m, this.f20192l, this.f20194n);
     }
 
     @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
@@ -297,21 +301,6 @@ public final class SubtitleView extends FrameLayout implements InterfaceC3128y1.
         C2528a2.m2425g(this, z2);
     }
 
-    /* JADX INFO: renamed from: k */
-    public void m8929k() {
-        setStyle(getUserCaptionStyle());
-    }
-
-    /* JADX INFO: renamed from: l */
-    public void m8930l() {
-        setFractionalTextSize(getUserCaptionFontScale() * 0.0533f);
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m8931m() {
-        this.f20198r.mo2758a(getCuesWithStylingPreferencesApplied(), this.f20191k, this.f20193m, this.f20192l, this.f20194n);
-    }
-
     @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
     /* JADX INFO: renamed from: p */
     public /* synthetic */ void mo258p(C2836p2 c2836p2) {
@@ -328,6 +317,36 @@ public final class SubtitleView extends FrameLayout implements InterfaceC3128y1.
     /* JADX INFO: renamed from: s */
     public /* synthetic */ void mo260s(PlaybackException playbackException) {
         C2528a2.m2433o(this, playbackException);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+    /* JADX INFO: renamed from: t */
+    public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
+        C2528a2.m2419a(this, bVar);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+    /* JADX INFO: renamed from: v */
+    public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
+        C2528a2.m2441w(this, abstractC2832o2, i);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+    /* JADX INFO: renamed from: w */
+    public /* synthetic */ void mo263w(float f) {
+        C2528a2.m2444z(this, f);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ void mo264y(int i) {
+        C2528a2.m2431m(this, i);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+    /* JADX INFO: renamed from: z */
+    public /* synthetic */ void mo265z(C2633c1 c2633c1) {
+        C2528a2.m2421c(this, c2633c1);
     }
 
     public void setApplyEmbeddedFontSizes(boolean z2) {
@@ -364,6 +383,17 @@ public final class SubtitleView extends FrameLayout implements InterfaceC3128y1.
         m8931m();
     }
 
+    private <T extends View & InterfaceC10760a> void setView(T t) {
+        removeView(this.f20199s);
+        View view = this.f20199s;
+        if (view instanceof C2674r) {
+            ((C2674r) view).f6403k.destroy();
+        }
+        this.f20199s = t;
+        this.f20198r = t;
+        addView(t);
+    }
+
     public void setViewType(int i) {
         if (this.f20197q == i) {
             return;
@@ -377,35 +407,5 @@ public final class SubtitleView extends FrameLayout implements InterfaceC3128y1.
             setView(new C2674r(getContext()));
         }
         this.f20197q = i;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-    /* JADX INFO: renamed from: t */
-    public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
-        C2528a2.m2419a(this, bVar);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-    /* JADX INFO: renamed from: v */
-    public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
-        C2528a2.m2441w(this, abstractC2832o2, i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-    /* JADX INFO: renamed from: w */
-    public /* synthetic */ void mo263w(float f) {
-        C2528a2.m2444z(this, f);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ void mo264y(int i) {
-        C2528a2.m2431m(this, i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-    /* JADX INFO: renamed from: z */
-    public /* synthetic */ void mo265z(C2633c1 c2633c1) {
-        C2528a2.m2421c(this, c2633c1);
     }
 }

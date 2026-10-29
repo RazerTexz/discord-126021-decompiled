@@ -32,7 +32,7 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionTierListViewModel$1 */
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-    public static final class C94421 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C94421 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C94421() {
             super(1);
         }
@@ -51,7 +51,7 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -65,7 +65,7 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState guildRoleSubscriptionGroupState;
 
         public StoreState(StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState guildRoleSubscriptionGroupState) {
@@ -79,11 +79,6 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
             return storeState.copy(guildRoleSubscriptionGroupState);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
-            return this.guildRoleSubscriptionGroupState;
-        }
-
         public final StoreState copy(StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState guildRoleSubscriptionGroupState) {
             return new StoreState(guildRoleSubscriptionGroupState);
         }
@@ -93,6 +88,11 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
                 return (other instanceof StoreState) && C12238m.areEqual(this.guildRoleSubscriptionGroupState, ((StoreState) other).guildRoleSubscriptionGroupState);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
+            return this.guildRoleSubscriptionGroupState;
         }
 
         public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
@@ -116,10 +116,10 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-        public static final class Failed extends ViewState {
+        public final class Failed extends ViewState {
             public static final Failed INSTANCE = new Failed();
 
             private Failed() {
@@ -128,7 +128,7 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<ServerSettingsGuildRoleSubscriptionTierAdapterItem> adapterItems;
             private final long groupListingId;
 
@@ -141,6 +141,10 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
                 this.groupListingId = j;
             }
 
+            public final List<ServerSettingsGuildRoleSubscriptionTierAdapterItem> component1() {
+                return this.adapterItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, long j, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -150,15 +154,6 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
                     j = loaded.groupListingId;
                 }
                 return loaded.copy(list, j);
-            }
-
-            public final List<ServerSettingsGuildRoleSubscriptionTierAdapterItem> component1() {
-                return this.adapterItems;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGroupListingId() {
-                return this.groupListingId;
             }
 
             public final Loaded copy(List<? extends ServerSettingsGuildRoleSubscriptionTierAdapterItem> adapterItems, long groupListingId) {
@@ -181,6 +176,11 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
                 return this.adapterItems;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getGroupListingId() {
+                return this.groupListingId;
+            }
+
             public final long getGroupListingId() {
                 return this.groupListingId;
             }
@@ -199,7 +199,7 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel extends 
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {

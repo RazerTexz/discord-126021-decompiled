@@ -9,9 +9,6 @@ import p007b.p085c.p086a.p087a0.C1460d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3123x {
 
-    /* JADX INFO: renamed from: a */
-    public final byte[] f9004a = new byte[10];
-
     /* JADX INFO: renamed from: b */
     public boolean f9005b;
 
@@ -29,6 +26,9 @@ public final class C3123x {
 
     /* JADX INFO: renamed from: g */
     public int f9010g;
+
+    /* JADX INFO: renamed from: a */
+    public final byte[] f9004a = new byte[10];
 
     /* JADX INFO: renamed from: a */
     public void m3819a(InterfaceC3122w interfaceC3122w, @Nullable InterfaceC3122w.a aVar) {

@@ -26,15 +26,15 @@ import lombok.javac.JavacTreeMaker;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleGetter.SCL.lombok */
 public class HandleGetter extends JavacAnnotationHandler<Getter> {
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+    public static final Map<JavacTreeMaker.TypeTag, String> TYPE_MAP;
 
     /* JADX INFO: renamed from: AR */
     private static final String f27484AR = "java.util.concurrent.atomic.AtomicReference";
-    private static final List<JCTree.JCExpression> NIL_EXPRESSION = List.nil();
-    public static final Map<JavacTreeMaker.TypeTag, String> TYPE_MAP;
-    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
     private static /* synthetic */ int[] f27485x2486df07;
+    private static final List<JCTree.JCExpression> NIL_EXPRESSION = List.nil();
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;

@@ -56,10 +56,32 @@ public final class C2916c0 extends AbstractC2938v {
         this.f7694o = bArr;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v, com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: a */
-    public boolean mo3472a() {
-        return this.f7692m;
+    /* JADX INFO: renamed from: k */
+    public final int m3476k(ByteBuffer byteBuffer) {
+        for (int iPosition = byteBuffer.position(); iPosition < byteBuffer.limit(); iPosition += 2) {
+            if (Math.abs((int) byteBuffer.getShort(iPosition)) > this.f7690k) {
+                int i = this.f7691l;
+                return (iPosition / i) * i;
+            }
+        }
+        return byteBuffer.limit();
+    }
+
+    /* JADX INFO: renamed from: l */
+    public final void m3477l(byte[] bArr, int i) {
+        m3511j(i).put(bArr, 0, i).flip();
+        if (i > 0) {
+            this.f7698s = true;
+        }
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final void m3478m(ByteBuffer byteBuffer, byte[] bArr, int i) {
+        int iMin = Math.min(byteBuffer.remaining(), this.f7697r);
+        int i2 = this.f7697r - iMin;
+        System.arraycopy(bArr, i - i2, this.f7694o, 0, i2);
+        byteBuffer.position(byteBuffer.limit() - iMin);
+        byteBuffer.get(this.f7694o, i2, iMin);
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
@@ -153,6 +175,12 @@ public final class C2916c0 extends AbstractC2938v {
         throw new AudioProcessor.UnhandledAudioFormatException(c10685a);
     }
 
+    @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v, com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: a */
+    public boolean mo3472a() {
+        return this.f7692m;
+    }
+
     @Override // p007b.p225i.p226a.p242c.p263t2.AbstractC2938v
     /* JADX INFO: renamed from: g */
     public void mo3473g() {
@@ -199,33 +227,5 @@ public final class C2916c0 extends AbstractC2938v {
         byte[] bArr = C2738e0.f6713f;
         this.f7693n = bArr;
         this.f7694o = bArr;
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final int m3476k(ByteBuffer byteBuffer) {
-        for (int iPosition = byteBuffer.position(); iPosition < byteBuffer.limit(); iPosition += 2) {
-            if (Math.abs((int) byteBuffer.getShort(iPosition)) > this.f7690k) {
-                int i = this.f7691l;
-                return (iPosition / i) * i;
-            }
-        }
-        return byteBuffer.limit();
-    }
-
-    /* JADX INFO: renamed from: l */
-    public final void m3477l(byte[] bArr, int i) {
-        m3511j(i).put(bArr, 0, i).flip();
-        if (i > 0) {
-            this.f7698s = true;
-        }
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m3478m(ByteBuffer byteBuffer, byte[] bArr, int i) {
-        int iMin = Math.min(byteBuffer.remaining(), this.f7697r);
-        int i2 = this.f7697r - iMin;
-        System.arraycopy(bArr, i - i2, this.f7694o, 0, i2);
-        byteBuffer.position(byteBuffer.limit() - iMin);
-        byteBuffer.get(this.f7694o, i2, iMin);
     }
 }

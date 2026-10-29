@@ -7,10 +7,13 @@ import com.discord.C5419R;
 public final class C10638R {
 
     /* JADX INFO: renamed from: com.facebook.drawee.R$a */
-    public static final class a {
+    public final class a {
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -28,6 +31,7 @@ public final class C10638R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GenericDraweeHierarchy = {C5419R.attr.actualImageScaleType, C5419R.attr.backgroundImage, C5419R.attr.fadeDuration, C5419R.attr.failureImage, C5419R.attr.failureImageScaleType, C5419R.attr.overlayImage, C5419R.attr.placeholderImage, C5419R.attr.placeholderImageScaleType, C5419R.attr.pressedStateOverlayImage, C5419R.attr.progressBarAutoRotateInterval, C5419R.attr.progressBarImage, C5419R.attr.progressBarImageScaleType, C5419R.attr.retryImage, C5419R.attr.retryImageScaleType, C5419R.attr.roundAsCircle, C5419R.attr.roundBottomEnd, C5419R.attr.roundBottomLeft, C5419R.attr.roundBottomRight, C5419R.attr.roundBottomStart, C5419R.attr.roundTopEnd, C5419R.attr.roundTopLeft, C5419R.attr.roundTopRight, C5419R.attr.roundTopStart, C5419R.attr.roundWithOverlayColor, C5419R.attr.roundedCornerRadius, C5419R.attr.roundingBorderColor, C5419R.attr.roundingBorderPadding, C5419R.attr.roundingBorderWidth, C5419R.attr.viewAspectRatio};
         public static final int GenericDraweeHierarchy_actualImageScaleType = 0;
         public static final int GenericDraweeHierarchy_backgroundImage = 1;
         public static final int GenericDraweeHierarchy_fadeDuration = 2;
@@ -57,6 +61,8 @@ public final class C10638R {
         public static final int GenericDraweeHierarchy_roundingBorderPadding = 26;
         public static final int GenericDraweeHierarchy_roundingBorderWidth = 27;
         public static final int GenericDraweeHierarchy_viewAspectRatio = 28;
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -71,6 +77,7 @@ public final class C10638R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
+        public static final int[] SimpleDraweeView = {C5419R.attr.actualImageResource, C5419R.attr.actualImageUri, C5419R.attr.backgroundImage, C5419R.attr.fadeDuration, C5419R.attr.failureImage, C5419R.attr.failureImageScaleType, C5419R.attr.overlayImage, C5419R.attr.placeholderImage, C5419R.attr.placeholderImageScaleType, C5419R.attr.pressedStateOverlayImage, C5419R.attr.progressBarAutoRotateInterval, C5419R.attr.progressBarImage, C5419R.attr.progressBarImageScaleType, C5419R.attr.retryImage, C5419R.attr.retryImageScaleType, C5419R.attr.roundAsCircle, C5419R.attr.roundBottomEnd, C5419R.attr.roundBottomLeft, C5419R.attr.roundBottomRight, C5419R.attr.roundBottomStart, C5419R.attr.roundTopEnd, C5419R.attr.roundTopLeft, C5419R.attr.roundTopRight, C5419R.attr.roundTopStart, C5419R.attr.roundWithOverlayColor, C5419R.attr.roundedCornerRadius, C5419R.attr.roundingBorderColor, C5419R.attr.roundingBorderPadding, C5419R.attr.roundingBorderWidth, C5419R.attr.viewAspectRatio};
         public static final int SimpleDraweeView_actualImageResource = 0;
         public static final int SimpleDraweeView_actualImageUri = 1;
         public static final int SimpleDraweeView_backgroundImage = 2;
@@ -101,13 +108,6 @@ public final class C10638R {
         public static final int SimpleDraweeView_roundingBorderPadding = 27;
         public static final int SimpleDraweeView_roundingBorderWidth = 28;
         public static final int SimpleDraweeView_viewAspectRatio = 29;
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GenericDraweeHierarchy = {C5419R.attr.actualImageScaleType, C5419R.attr.backgroundImage, C5419R.attr.fadeDuration, C5419R.attr.failureImage, C5419R.attr.failureImageScaleType, C5419R.attr.overlayImage, C5419R.attr.placeholderImage, C5419R.attr.placeholderImageScaleType, C5419R.attr.pressedStateOverlayImage, C5419R.attr.progressBarAutoRotateInterval, C5419R.attr.progressBarImage, C5419R.attr.progressBarImageScaleType, C5419R.attr.retryImage, C5419R.attr.retryImageScaleType, C5419R.attr.roundAsCircle, C5419R.attr.roundBottomEnd, C5419R.attr.roundBottomLeft, C5419R.attr.roundBottomRight, C5419R.attr.roundBottomStart, C5419R.attr.roundTopEnd, C5419R.attr.roundTopLeft, C5419R.attr.roundTopRight, C5419R.attr.roundTopStart, C5419R.attr.roundWithOverlayColor, C5419R.attr.roundedCornerRadius, C5419R.attr.roundingBorderColor, C5419R.attr.roundingBorderPadding, C5419R.attr.roundingBorderWidth, C5419R.attr.viewAspectRatio};
-        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
-        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
-        public static final int[] SimpleDraweeView = {C5419R.attr.actualImageResource, C5419R.attr.actualImageUri, C5419R.attr.backgroundImage, C5419R.attr.fadeDuration, C5419R.attr.failureImage, C5419R.attr.failureImageScaleType, C5419R.attr.overlayImage, C5419R.attr.placeholderImage, C5419R.attr.placeholderImageScaleType, C5419R.attr.pressedStateOverlayImage, C5419R.attr.progressBarAutoRotateInterval, C5419R.attr.progressBarImage, C5419R.attr.progressBarImageScaleType, C5419R.attr.retryImage, C5419R.attr.retryImageScaleType, C5419R.attr.roundAsCircle, C5419R.attr.roundBottomEnd, C5419R.attr.roundBottomLeft, C5419R.attr.roundBottomRight, C5419R.attr.roundBottomStart, C5419R.attr.roundTopEnd, C5419R.attr.roundTopLeft, C5419R.attr.roundTopRight, C5419R.attr.roundTopStart, C5419R.attr.roundWithOverlayColor, C5419R.attr.roundedCornerRadius, C5419R.attr.roundingBorderColor, C5419R.attr.roundingBorderPadding, C5419R.attr.roundingBorderWidth, C5419R.attr.viewAspectRatio};
 
         private a() {
         }

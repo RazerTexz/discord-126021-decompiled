@@ -9,16 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class ForumPostFirstMessage {
     private final Message firstMessage;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final Message getFirstMessage() {
-        return this.firstMessage;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof ForumPostFirstMessage) && C12238m.areEqual(this.firstMessage, ((ForumPostFirstMessage) other).firstMessage);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final Message getFirstMessage() {
+        return this.firstMessage;
     }
 
     public int hashCode() {

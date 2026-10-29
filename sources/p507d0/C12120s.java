@@ -18,10 +18,6 @@ public final class C12120s<T> implements Lazy<T>, Serializable {
         this._value = C12119r.f25171a;
     }
 
-    private final Object writeReplace() {
-        return new C11220d(getValue());
-    }
-
     @Override // kotlin.Lazy
     public T getValue() {
         if (this._value == C12119r.f25171a) {
@@ -40,5 +36,9 @@ public final class C12120s<T> implements Lazy<T>, Serializable {
 
     public String toString() {
         return isInitialized() ? String.valueOf(getValue()) : "Lazy value not initialized yet.";
+    }
+
+    private final Object writeReplace() {
+        return new C11220d(getValue());
     }
 }

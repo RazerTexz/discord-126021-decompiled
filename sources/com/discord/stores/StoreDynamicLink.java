@@ -51,8 +51,60 @@ public final class StoreDynamicLink {
     private final Dispatcher dispatcher;
     private final StoreStream stream;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreDynamicLink$handleDataReceived$1 */
     /* JADX INFO: compiled from: StoreDynamicLink.kt */
-    public static final class Companion {
+    public final class C58811 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ DynamicLinkData $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58811(DynamicLinkData dynamicLinkData) {
+            super(0);
+            this.$data = dynamicLinkData;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreAuthentication authentication = StoreDynamicLink.this.stream.getAuthentication();
+            DynamicLinkData dynamicLinkData = this.$data;
+            authentication.setFingerprint(dynamicLinkData != null ? dynamicLinkData.getFingerprint() : null, false);
+            DynamicLinkData dynamicLinkData2 = this.$data;
+            if ((dynamicLinkData2 != null ? dynamicLinkData2.getAuthToken() : null) != null) {
+                StoreDynamicLink.this.stream.getAuthentication().setAuthed(this.$data.getAuthToken());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDynamicLink$storeLinkIfExists$3 */
+    /* JADX INFO: compiled from: StoreDynamicLink.kt */
+    public final class C58853 extends AbstractC12240o implements Function1<DynamicLinkData, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C58853(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(DynamicLinkData dynamicLinkData) {
+            invoke2(dynamicLinkData);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(DynamicLinkData dynamicLinkData) {
+            StoreDynamicLink.this.handleDataReceived(dynamicLinkData, this.$context);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreDynamicLink.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,7 +114,7 @@ public final class StoreDynamicLink {
     }
 
     /* JADX INFO: compiled from: StoreDynamicLink.kt */
-    public static final /* data */ class DynamicLinkData {
+    public final /* data */ class DynamicLinkData {
         private final String attemptId;
         private final String authToken;
         private final String fingerprint;
@@ -105,36 +157,6 @@ public final class StoreDynamicLink {
             return dynamicLinkData.copy(uri, str6, str7, str8, str9, str5);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Uri getUri() {
-            return this.uri;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getFingerprint() {
-            return this.fingerprint;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getAttemptId() {
-            return this.attemptId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getInviteCode() {
-            return this.inviteCode;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getGuildTemplateCode() {
-            return this.guildTemplateCode;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getAuthToken() {
-            return this.authToken;
-        }
-
         public final DynamicLinkData copy(Uri uri, String fingerprint, String attemptId, String inviteCode, String guildTemplateCode, String authToken) {
             return new DynamicLinkData(uri, fingerprint, attemptId, inviteCode, guildTemplateCode, authToken);
         }
@@ -150,24 +172,54 @@ public final class StoreDynamicLink {
             return C12238m.areEqual(this.uri, dynamicLinkData.uri) && C12238m.areEqual(this.fingerprint, dynamicLinkData.fingerprint) && C12238m.areEqual(this.attemptId, dynamicLinkData.attemptId) && C12238m.areEqual(this.inviteCode, dynamicLinkData.inviteCode) && C12238m.areEqual(this.guildTemplateCode, dynamicLinkData.guildTemplateCode) && C12238m.areEqual(this.authToken, dynamicLinkData.authToken);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getAttemptId() {
             return this.attemptId;
+        }
+
+        public final String getAttemptId() {
+            return this.attemptId;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final String getAuthToken() {
+            return this.authToken;
         }
 
         public final String getAuthToken() {
             return this.authToken;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getFingerprint() {
             return this.fingerprint;
+        }
+
+        public final String getFingerprint() {
+            return this.fingerprint;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getGuildTemplateCode() {
+            return this.guildTemplateCode;
         }
 
         public final String getGuildTemplateCode() {
             return this.guildTemplateCode;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getInviteCode() {
             return this.inviteCode;
+        }
+
+        public final String getInviteCode() {
+            return this.inviteCode;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Uri getUri() {
+            return this.uri;
         }
 
         public final Uri getUri() {
@@ -205,58 +257,6 @@ public final class StoreDynamicLink {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreDynamicLink$handleDataReceived$1 */
-    /* JADX INFO: compiled from: StoreDynamicLink.kt */
-    public static final class C58811 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ DynamicLinkData $data;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58811(DynamicLinkData dynamicLinkData) {
-            super(0);
-            this.$data = dynamicLinkData;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreAuthentication authentication = StoreDynamicLink.this.stream.getAuthentication();
-            DynamicLinkData dynamicLinkData = this.$data;
-            authentication.setFingerprint(dynamicLinkData != null ? dynamicLinkData.getFingerprint() : null, false);
-            DynamicLinkData dynamicLinkData2 = this.$data;
-            if ((dynamicLinkData2 != null ? dynamicLinkData2.getAuthToken() : null) != null) {
-                StoreDynamicLink.this.stream.getAuthentication().setAuthed(this.$data.getAuthToken());
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreDynamicLink$storeLinkIfExists$3 */
-    /* JADX INFO: compiled from: StoreDynamicLink.kt */
-    public static final class C58853 extends AbstractC12240o implements Function1<DynamicLinkData, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C58853(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(DynamicLinkData dynamicLinkData) {
-            invoke2(dynamicLinkData);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(DynamicLinkData dynamicLinkData) {
-            StoreDynamicLink.this.handleDataReceived(dynamicLinkData, this.$context);
-        }
-    }
-
     public StoreDynamicLink(StoreStream storeStream, Dispatcher dispatcher) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -269,7 +269,7 @@ public final class StoreDynamicLink {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreDynamicLink$getDynamicLinkObservable$firebaseDynamicLinks$1$1 */
             /* JADX INFO: compiled from: StoreDynamicLink.kt */
-            public static final /* synthetic */ class C58791 extends C12236k implements Function1<Throwable, Unit> {
+            public final /* synthetic */ class C58791 extends C12236k implements Function1<Throwable, Unit> {
                 public C58791(Emitter emitter) {
                     super(1, emitter, Emitter.class, "onError", "onError(Ljava/lang/Throwable;)V", 0);
                 }

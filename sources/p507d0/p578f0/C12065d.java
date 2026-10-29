@@ -18,7 +18,7 @@ public final class C12065d<T> implements Sequence<T>, InterfaceC12066e<T> {
 
     /* JADX INFO: renamed from: d0.f0.d$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a implements Iterator<T>, InterfaceC12228a {
+    public final class a implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final Iterator<T> f25079j;
@@ -31,18 +31,18 @@ public final class C12065d<T> implements Sequence<T>, InterfaceC12066e<T> {
             this.f25080k = c12065d.f25078b;
         }
 
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            m10060a();
+            return this.f25079j.hasNext();
+        }
+
         /* JADX INFO: renamed from: a */
         public final void m10060a() {
             while (this.f25080k > 0 && this.f25079j.hasNext()) {
                 this.f25079j.next();
                 this.f25080k--;
             }
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            m10060a();
-            return this.f25079j.hasNext();
         }
 
         @Override // java.util.Iterator

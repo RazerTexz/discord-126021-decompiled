@@ -87,7 +87,7 @@ public abstract class AbstractC11633a<A, C> implements InterfaceC11848c<A, C> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.a$b */
     /* JADX INFO: compiled from: AbstractBinaryClassAnnotationAndConstantLoader.kt */
-    public static final class b<A, C> {
+    public final class b<A, C> {
 
         /* JADX INFO: renamed from: a */
         public final Map<C11658s, List<A>> f23539a;
@@ -114,7 +114,7 @@ public abstract class AbstractC11633a<A, C> implements InterfaceC11848c<A, C> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.a$c */
     /* JADX INFO: compiled from: AbstractBinaryClassAnnotationAndConstantLoader.kt */
-    public static final class c implements InterfaceC11655p.c {
+    public final class c implements InterfaceC11655p.c {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ AbstractC11633a<A, C> f23541a;
@@ -141,7 +141,7 @@ public abstract class AbstractC11633a<A, C> implements InterfaceC11848c<A, C> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.a$d */
     /* JADX INFO: compiled from: AbstractBinaryClassAnnotationAndConstantLoader.kt */
-    public static final class d extends AbstractC12240o implements Function1<InterfaceC11655p, b<? extends A, ? extends C>> {
+    public final class d extends AbstractC12240o implements Function1<InterfaceC11655p, b<? extends A, ? extends C>> {
         public final /* synthetic */ AbstractC11633a<A, C> this$0;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -180,185 +180,6 @@ public abstract class AbstractC11633a<A, C> implements InterfaceC11848c<A, C> {
         C12238m.checkNotNullParameter(interfaceC11655p, "kotlinClass");
         interfaceC11655p.visitMembers(c11635b, null);
         return new b(map, map2);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public static /* synthetic */ List m9528b(AbstractC11633a abstractC11633a, AbstractC11889y abstractC11889y, C11658s c11658s, boolean z2, boolean z3, Boolean bool, boolean z4, int i, Object obj) {
-        return abstractC11633a.m9531a(abstractC11889y, c11658s, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? false : z3, (i & 16) != 0 ? null : bool, (i & 32) != 0 ? false : z4);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public static /* synthetic */ C11658s m9529d(AbstractC11633a abstractC11633a, InterfaceC11734n interfaceC11734n, InterfaceC11704c interfaceC11704c, C11708g c11708g, EnumC11846b enumC11846b, boolean z2, int i, Object obj) {
-        return abstractC11633a.m9532c(interfaceC11734n, interfaceC11704c, c11708g, enumC11846b, (i & 16) != 0 ? false : z2);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public static /* synthetic */ C11658s m9530f(AbstractC11633a abstractC11633a, C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, boolean z3, boolean z4, int i, Object obj) {
-        return abstractC11633a.m9533e(c11689n, interfaceC11704c, c11708g, (i & 8) != 0 ? false : z2, (i & 16) != 0 ? false : z3, (i & 32) != 0 ? true : z4);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final List<A> m9531a(AbstractC11889y abstractC11889y, C11658s c11658s, boolean z2, boolean z3, Boolean bool, boolean z4) {
-        InterfaceC11655p interfaceC11655pM9534g = m9534g(abstractC11889y, z2, z3, bool, z4);
-        if (interfaceC11655pM9534g == null) {
-            interfaceC11655pM9534g = abstractC11889y instanceof AbstractC11889y.a ? m9537j((AbstractC11889y.a) abstractC11889y) : null;
-        }
-        if (interfaceC11655pM9534g == null) {
-            return C12147n.emptyList();
-        }
-        List<A> list = ((b) ((C11896f.m) this.f23534b).invoke(interfaceC11655pM9534g)).getMemberAnnotations().get(c11658s);
-        return list == null ? C12147n.emptyList() : list;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C11658s m9532c(InterfaceC11734n interfaceC11734n, InterfaceC11704c interfaceC11704c, C11708g c11708g, EnumC11846b enumC11846b, boolean z2) {
-        if (interfaceC11734n instanceof C11679d) {
-            C11658s.a aVar = C11658s.f23633a;
-            AbstractC11672e.b jvmConstructorSignature = C11675h.f23720a.getJvmConstructorSignature((C11679d) interfaceC11734n, interfaceC11704c, c11708g);
-            if (jvmConstructorSignature == null) {
-                return null;
-            }
-            return aVar.fromJvmMemberSignature(jvmConstructorSignature);
-        }
-        if (interfaceC11734n instanceof C11684i) {
-            C11658s.a aVar2 = C11658s.f23633a;
-            AbstractC11672e.b jvmMethodSignature = C11675h.f23720a.getJvmMethodSignature((C11684i) interfaceC11734n, interfaceC11704c, c11708g);
-            if (jvmMethodSignature == null) {
-                return null;
-            }
-            return aVar2.fromJvmMemberSignature(jvmMethodSignature);
-        }
-        if (!(interfaceC11734n instanceof C11689n)) {
-            return null;
-        }
-        AbstractC11727g.f<C11689n, C11667a.d> fVar = C11667a.f23654d;
-        C12238m.checkNotNullExpressionValue(fVar, "propertySignature");
-        C11667a.d dVar = (C11667a.d) C11706e.getExtensionOrNull((AbstractC11727g.d) interfaceC11734n, fVar);
-        if (dVar == null) {
-            return null;
-        }
-        int iOrdinal = enumC11846b.ordinal();
-        if (iOrdinal == 1) {
-            return m9533e((C11689n) interfaceC11734n, interfaceC11704c, c11708g, true, true, z2);
-        }
-        if (iOrdinal == 2) {
-            if (!dVar.hasGetter()) {
-                return null;
-            }
-            C11658s.a aVar3 = C11658s.f23633a;
-            C11667a.c getter = dVar.getGetter();
-            C12238m.checkNotNullExpressionValue(getter, "signature.getter");
-            return aVar3.fromMethod(interfaceC11704c, getter);
-        }
-        if (iOrdinal != 3 || !dVar.hasSetter()) {
-            return null;
-        }
-        C11658s.a aVar4 = C11658s.f23633a;
-        C11667a.c setter = dVar.getSetter();
-        C12238m.checkNotNullExpressionValue(setter, "signature.setter");
-        return aVar4.fromMethod(interfaceC11704c, setter);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final C11658s m9533e(C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, boolean z3, boolean z4) {
-        AbstractC11727g.f<C11689n, C11667a.d> fVar = C11667a.f23654d;
-        C12238m.checkNotNullExpressionValue(fVar, "propertySignature");
-        C11667a.d dVar = (C11667a.d) C11706e.getExtensionOrNull(c11689n, fVar);
-        if (dVar == null) {
-            return null;
-        }
-        if (z2) {
-            AbstractC11672e.a jvmFieldSignature = C11675h.f23720a.getJvmFieldSignature(c11689n, interfaceC11704c, c11708g, z4);
-            if (jvmFieldSignature == null) {
-                return null;
-            }
-            return C11658s.f23633a.fromJvmMemberSignature(jvmFieldSignature);
-        }
-        if (!z3 || !dVar.hasSyntheticMethod()) {
-            return null;
-        }
-        C11658s.a aVar = C11658s.f23633a;
-        C11667a.c syntheticMethod = dVar.getSyntheticMethod();
-        C12238m.checkNotNullExpressionValue(syntheticMethod, "signature.syntheticMethod");
-        return aVar.fromMethod(interfaceC11704c, syntheticMethod);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final InterfaceC11655p m9534g(AbstractC11889y abstractC11889y, boolean z2, boolean z3, Boolean bool, boolean z4) {
-        AbstractC11889y.a outerClass;
-        C11678c.c cVar = C11678c.c.INTERFACE;
-        if (z2) {
-            if (bool == null) {
-                throw new IllegalStateException(("isConst should not be null for property (container=" + abstractC11889y + ')').toString());
-            }
-            if (abstractC11889y instanceof AbstractC11889y.a) {
-                AbstractC11889y.a aVar = (AbstractC11889y.a) abstractC11889y;
-                if (aVar.getKind() == cVar) {
-                    InterfaceC11653n interfaceC11653n = this.f23533a;
-                    C11712a c11712aCreateNestedClassId = aVar.getClassId().createNestedClassId(C11716e.identifier("DefaultImpls"));
-                    C12238m.checkNotNullExpressionValue(c11712aCreateNestedClassId, "container.classId.createNestedClassId(Name.identifier(JvmAbi.DEFAULT_IMPLS_CLASS_NAME))");
-                    return C11654o.findKotlinClass(interfaceC11653n, c11712aCreateNestedClassId);
-                }
-            }
-            if (bool.booleanValue() && (abstractC11889y instanceof AbstractC11889y.b)) {
-                InterfaceC11467u0 source = abstractC11889y.getSource();
-                C11649j c11649j = source instanceof C11649j ? (C11649j) source : null;
-                C11839c facadeClassName = c11649j == null ? null : c11649j.getFacadeClassName();
-                if (facadeClassName != null) {
-                    InterfaceC11653n interfaceC11653n2 = this.f23533a;
-                    String internalName = facadeClassName.getInternalName();
-                    C12238m.checkNotNullExpressionValue(internalName, "facadeClassName.internalName");
-                    C11712a c11712a = C11712a.topLevel(new C11713b(C12103t.replace$default(internalName, MentionUtilsKt.SLASH_CHAR, '.', false, 4, (Object) null)));
-                    C12238m.checkNotNullExpressionValue(c11712a, "topLevel(FqName(facadeClassName.internalName.replace('/', '.')))");
-                    return C11654o.findKotlinClass(interfaceC11653n2, c11712a);
-                }
-            }
-        }
-        if (z3 && (abstractC11889y instanceof AbstractC11889y.a)) {
-            AbstractC11889y.a aVar2 = (AbstractC11889y.a) abstractC11889y;
-            if (aVar2.getKind() == C11678c.c.COMPANION_OBJECT && (outerClass = aVar2.getOuterClass()) != null && (outerClass.getKind() == C11678c.c.CLASS || outerClass.getKind() == C11678c.c.ENUM_CLASS || (z4 && (outerClass.getKind() == cVar || outerClass.getKind() == C11678c.c.ANNOTATION_CLASS)))) {
-                return m9537j(outerClass);
-            }
-        }
-        if (!(abstractC11889y instanceof AbstractC11889y.b) || !(abstractC11889y.getSource() instanceof C11649j)) {
-            return null;
-        }
-        InterfaceC11467u0 source2 = abstractC11889y.getSource();
-        Objects.requireNonNull(source2, "null cannot be cast to non-null type org.jetbrains.kotlin.load.kotlin.JvmPackagePartSource");
-        C11649j c11649j2 = (C11649j) source2;
-        InterfaceC11655p knownJvmBinaryClass = c11649j2.getKnownJvmBinaryClass();
-        return knownJvmBinaryClass == null ? C11654o.findKotlinClass(this.f23533a, c11649j2.getClassId()) : knownJvmBinaryClass;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public abstract InterfaceC11655p.a mo9535h(C11712a c11712a, InterfaceC11467u0 interfaceC11467u0, List<A> list);
-
-    /* JADX INFO: renamed from: i */
-    public final List<A> m9536i(AbstractC11889y abstractC11889y, C11689n c11689n, a aVar) {
-        Boolean bool = C11703b.f24055z.get(c11689n.getFlags());
-        C12238m.checkNotNullExpressionValue(bool, "IS_CONST.get(proto.flags)");
-        boolean zBooleanValue = bool.booleanValue();
-        C11675h c11675h = C11675h.f23720a;
-        boolean zIsMovedFromInterfaceCompanion = C11675h.isMovedFromInterfaceCompanion(c11689n);
-        if (aVar == a.PROPERTY) {
-            C11658s c11658sM9530f = m9530f(this, c11689n, abstractC11889y.getNameResolver(), abstractC11889y.getTypeTable(), false, true, false, 40, null);
-            return c11658sM9530f == null ? C12147n.emptyList() : m9528b(this, abstractC11889y, c11658sM9530f, true, false, Boolean.valueOf(zBooleanValue), zIsMovedFromInterfaceCompanion, 8, null);
-        }
-        C11658s c11658sM9530f2 = m9530f(this, c11689n, abstractC11889y.getNameResolver(), abstractC11889y.getTypeTable(), true, false, false, 48, null);
-        if (c11658sM9530f2 == null) {
-            return C12147n.emptyList();
-        }
-        return C12106w.contains$default((CharSequence) c11658sM9530f2.getSignature(), (CharSequence) "$delegate", false, 2, (Object) null) != (aVar == a.DELEGATE_FIELD) ? C12147n.emptyList() : m9531a(abstractC11889y, c11658sM9530f2, true, true, Boolean.valueOf(zBooleanValue), zIsMovedFromInterfaceCompanion);
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final InterfaceC11655p m9537j(AbstractC11889y.a aVar) {
-        InterfaceC11467u0 source = aVar.getSource();
-        C11657r c11657r = source instanceof C11657r ? (C11657r) source : null;
-        if (c11657r == null) {
-            return null;
-        }
-        return c11657r.getBinaryClass();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.InterfaceC11848c
@@ -531,4 +352,183 @@ public abstract class AbstractC11633a<A, C> implements InterfaceC11848c<A, C> {
         }
         return m9528b(this, abstractC11889y, C11658s.f23633a.fromMethodSignatureAndParameterIndex(c11658sM9529d, i + i2), false, false, null, false, 60, null);
     }
+
+    /* JADX INFO: renamed from: b */
+    public static /* synthetic */ List m9528b(AbstractC11633a abstractC11633a, AbstractC11889y abstractC11889y, C11658s c11658s, boolean z2, boolean z3, Boolean bool, boolean z4, int i, Object obj) {
+        return abstractC11633a.m9531a(abstractC11889y, c11658s, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? false : z3, (i & 16) != 0 ? null : bool, (i & 32) != 0 ? false : z4);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public static /* synthetic */ C11658s m9529d(AbstractC11633a abstractC11633a, InterfaceC11734n interfaceC11734n, InterfaceC11704c interfaceC11704c, C11708g c11708g, EnumC11846b enumC11846b, boolean z2, int i, Object obj) {
+        return abstractC11633a.m9532c(interfaceC11734n, interfaceC11704c, c11708g, enumC11846b, (i & 16) != 0 ? false : z2);
+    }
+
+    /* JADX INFO: renamed from: f */
+    public static /* synthetic */ C11658s m9530f(AbstractC11633a abstractC11633a, C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, boolean z3, boolean z4, int i, Object obj) {
+        return abstractC11633a.m9533e(c11689n, interfaceC11704c, c11708g, (i & 8) != 0 ? false : z2, (i & 16) != 0 ? false : z3, (i & 32) != 0 ? true : z4);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<A> m9531a(AbstractC11889y abstractC11889y, C11658s c11658s, boolean z2, boolean z3, Boolean bool, boolean z4) {
+        InterfaceC11655p interfaceC11655pM9534g = m9534g(abstractC11889y, z2, z3, bool, z4);
+        if (interfaceC11655pM9534g == null) {
+            interfaceC11655pM9534g = abstractC11889y instanceof AbstractC11889y.a ? m9537j((AbstractC11889y.a) abstractC11889y) : null;
+        }
+        if (interfaceC11655pM9534g == null) {
+            return C12147n.emptyList();
+        }
+        List<A> list = ((b) ((C11896f.m) this.f23534b).invoke(interfaceC11655pM9534g)).getMemberAnnotations().get(c11658s);
+        return list == null ? C12147n.emptyList() : list;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final C11658s m9532c(InterfaceC11734n interfaceC11734n, InterfaceC11704c interfaceC11704c, C11708g c11708g, EnumC11846b enumC11846b, boolean z2) {
+        if (interfaceC11734n instanceof C11679d) {
+            C11658s.a aVar = C11658s.f23633a;
+            AbstractC11672e.b jvmConstructorSignature = C11675h.f23720a.getJvmConstructorSignature((C11679d) interfaceC11734n, interfaceC11704c, c11708g);
+            if (jvmConstructorSignature == null) {
+                return null;
+            }
+            return aVar.fromJvmMemberSignature(jvmConstructorSignature);
+        }
+        if (interfaceC11734n instanceof C11684i) {
+            C11658s.a aVar2 = C11658s.f23633a;
+            AbstractC11672e.b jvmMethodSignature = C11675h.f23720a.getJvmMethodSignature((C11684i) interfaceC11734n, interfaceC11704c, c11708g);
+            if (jvmMethodSignature == null) {
+                return null;
+            }
+            return aVar2.fromJvmMemberSignature(jvmMethodSignature);
+        }
+        if (!(interfaceC11734n instanceof C11689n)) {
+            return null;
+        }
+        AbstractC11727g.f<C11689n, C11667a.d> fVar = C11667a.f23654d;
+        C12238m.checkNotNullExpressionValue(fVar, "propertySignature");
+        C11667a.d dVar = (C11667a.d) C11706e.getExtensionOrNull((AbstractC11727g.d) interfaceC11734n, fVar);
+        if (dVar == null) {
+            return null;
+        }
+        int iOrdinal = enumC11846b.ordinal();
+        if (iOrdinal == 1) {
+            return m9533e((C11689n) interfaceC11734n, interfaceC11704c, c11708g, true, true, z2);
+        }
+        if (iOrdinal == 2) {
+            if (!dVar.hasGetter()) {
+                return null;
+            }
+            C11658s.a aVar3 = C11658s.f23633a;
+            C11667a.c getter = dVar.getGetter();
+            C12238m.checkNotNullExpressionValue(getter, "signature.getter");
+            return aVar3.fromMethod(interfaceC11704c, getter);
+        }
+        if (iOrdinal != 3 || !dVar.hasSetter()) {
+            return null;
+        }
+        C11658s.a aVar4 = C11658s.f23633a;
+        C11667a.c setter = dVar.getSetter();
+        C12238m.checkNotNullExpressionValue(setter, "signature.setter");
+        return aVar4.fromMethod(interfaceC11704c, setter);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final C11658s m9533e(C11689n c11689n, InterfaceC11704c interfaceC11704c, C11708g c11708g, boolean z2, boolean z3, boolean z4) {
+        AbstractC11727g.f<C11689n, C11667a.d> fVar = C11667a.f23654d;
+        C12238m.checkNotNullExpressionValue(fVar, "propertySignature");
+        C11667a.d dVar = (C11667a.d) C11706e.getExtensionOrNull(c11689n, fVar);
+        if (dVar == null) {
+            return null;
+        }
+        if (z2) {
+            AbstractC11672e.a jvmFieldSignature = C11675h.f23720a.getJvmFieldSignature(c11689n, interfaceC11704c, c11708g, z4);
+            if (jvmFieldSignature == null) {
+                return null;
+            }
+            return C11658s.f23633a.fromJvmMemberSignature(jvmFieldSignature);
+        }
+        if (!z3 || !dVar.hasSyntheticMethod()) {
+            return null;
+        }
+        C11658s.a aVar = C11658s.f23633a;
+        C11667a.c syntheticMethod = dVar.getSyntheticMethod();
+        C12238m.checkNotNullExpressionValue(syntheticMethod, "signature.syntheticMethod");
+        return aVar.fromMethod(interfaceC11704c, syntheticMethod);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final InterfaceC11655p m9534g(AbstractC11889y abstractC11889y, boolean z2, boolean z3, Boolean bool, boolean z4) {
+        AbstractC11889y.a outerClass;
+        C11678c.c cVar = C11678c.c.INTERFACE;
+        if (z2) {
+            if (bool == null) {
+                throw new IllegalStateException(("isConst should not be null for property (container=" + abstractC11889y + ')').toString());
+            }
+            if (abstractC11889y instanceof AbstractC11889y.a) {
+                AbstractC11889y.a aVar = (AbstractC11889y.a) abstractC11889y;
+                if (aVar.getKind() == cVar) {
+                    InterfaceC11653n interfaceC11653n = this.f23533a;
+                    C11712a c11712aCreateNestedClassId = aVar.getClassId().createNestedClassId(C11716e.identifier("DefaultImpls"));
+                    C12238m.checkNotNullExpressionValue(c11712aCreateNestedClassId, "container.classId.createNestedClassId(Name.identifier(JvmAbi.DEFAULT_IMPLS_CLASS_NAME))");
+                    return C11654o.findKotlinClass(interfaceC11653n, c11712aCreateNestedClassId);
+                }
+            }
+            if (bool.booleanValue() && (abstractC11889y instanceof AbstractC11889y.b)) {
+                InterfaceC11467u0 source = abstractC11889y.getSource();
+                C11649j c11649j = source instanceof C11649j ? (C11649j) source : null;
+                C11839c facadeClassName = c11649j == null ? null : c11649j.getFacadeClassName();
+                if (facadeClassName != null) {
+                    InterfaceC11653n interfaceC11653n2 = this.f23533a;
+                    String internalName = facadeClassName.getInternalName();
+                    C12238m.checkNotNullExpressionValue(internalName, "facadeClassName.internalName");
+                    C11712a c11712a = C11712a.topLevel(new C11713b(C12103t.replace$default(internalName, MentionUtilsKt.SLASH_CHAR, '.', false, 4, (Object) null)));
+                    C12238m.checkNotNullExpressionValue(c11712a, "topLevel(FqName(facadeClassName.internalName.replace('/', '.')))");
+                    return C11654o.findKotlinClass(interfaceC11653n2, c11712a);
+                }
+            }
+        }
+        if (z3 && (abstractC11889y instanceof AbstractC11889y.a)) {
+            AbstractC11889y.a aVar2 = (AbstractC11889y.a) abstractC11889y;
+            if (aVar2.getKind() == C11678c.c.COMPANION_OBJECT && (outerClass = aVar2.getOuterClass()) != null && (outerClass.getKind() == C11678c.c.CLASS || outerClass.getKind() == C11678c.c.ENUM_CLASS || (z4 && (outerClass.getKind() == cVar || outerClass.getKind() == C11678c.c.ANNOTATION_CLASS)))) {
+                return m9537j(outerClass);
+            }
+        }
+        if (!(abstractC11889y instanceof AbstractC11889y.b) || !(abstractC11889y.getSource() instanceof C11649j)) {
+            return null;
+        }
+        InterfaceC11467u0 source2 = abstractC11889y.getSource();
+        Objects.requireNonNull(source2, "null cannot be cast to non-null type org.jetbrains.kotlin.load.kotlin.JvmPackagePartSource");
+        C11649j c11649j2 = (C11649j) source2;
+        InterfaceC11655p knownJvmBinaryClass = c11649j2.getKnownJvmBinaryClass();
+        return knownJvmBinaryClass == null ? C11654o.findKotlinClass(this.f23533a, c11649j2.getClassId()) : knownJvmBinaryClass;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final List<A> m9536i(AbstractC11889y abstractC11889y, C11689n c11689n, a aVar) {
+        Boolean bool = C11703b.f24055z.get(c11689n.getFlags());
+        C12238m.checkNotNullExpressionValue(bool, "IS_CONST.get(proto.flags)");
+        boolean zBooleanValue = bool.booleanValue();
+        C11675h c11675h = C11675h.f23720a;
+        boolean zIsMovedFromInterfaceCompanion = C11675h.isMovedFromInterfaceCompanion(c11689n);
+        if (aVar == a.PROPERTY) {
+            C11658s c11658sM9530f = m9530f(this, c11689n, abstractC11889y.getNameResolver(), abstractC11889y.getTypeTable(), false, true, false, 40, null);
+            return c11658sM9530f == null ? C12147n.emptyList() : m9528b(this, abstractC11889y, c11658sM9530f, true, false, Boolean.valueOf(zBooleanValue), zIsMovedFromInterfaceCompanion, 8, null);
+        }
+        C11658s c11658sM9530f2 = m9530f(this, c11689n, abstractC11889y.getNameResolver(), abstractC11889y.getTypeTable(), true, false, false, 48, null);
+        if (c11658sM9530f2 == null) {
+            return C12147n.emptyList();
+        }
+        return C12106w.contains$default((CharSequence) c11658sM9530f2.getSignature(), (CharSequence) "$delegate", false, 2, (Object) null) != (aVar == a.DELEGATE_FIELD) ? C12147n.emptyList() : m9531a(abstractC11889y, c11658sM9530f2, true, true, Boolean.valueOf(zBooleanValue), zIsMovedFromInterfaceCompanion);
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final InterfaceC11655p m9537j(AbstractC11889y.a aVar) {
+        InterfaceC11467u0 source = aVar.getSource();
+        C11657r c11657r = source instanceof C11657r ? (C11657r) source : null;
+        if (c11657r == null) {
+            return null;
+        }
+        return c11657r.getBinaryClass();
+    }
+
+    /* JADX INFO: renamed from: h */
+    public abstract InterfaceC11655p.a mo9535h(C11712a c11712a, InterfaceC11467u0 interfaceC11467u0, List<A> list);
 }

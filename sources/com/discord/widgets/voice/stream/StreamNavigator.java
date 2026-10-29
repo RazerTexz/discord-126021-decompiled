@@ -12,8 +12,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: StreamNavigator.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class StreamNavigator {
-    public static final StreamNavigator INSTANCE = new StreamNavigator();
     private static final int START_SCREENSHARE_REQUEST_CODE = 420;
+    public static final StreamNavigator INSTANCE = new StreamNavigator();
 
     private StreamNavigator() {
     }

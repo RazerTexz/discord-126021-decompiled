@@ -28,7 +28,7 @@ public final class WidgetEmojiPickerSheet extends WidgetExpressionPickerSheet im
     private EmojiPickerListener emojiPickerListenerDelegate;
 
     /* JADX INFO: compiled from: WidgetEmojiPickerSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

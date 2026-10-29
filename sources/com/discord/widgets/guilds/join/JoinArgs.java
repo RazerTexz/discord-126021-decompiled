@@ -26,26 +26,6 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
         this(j, z2, str, l, cls, (i & 32) != 0 ? null : function1, (i & 64) != 0 ? null : function2, function3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsLurker() {
-        return this.isLurker;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getSessionId() {
-        return this.sessionId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getDirectoryChannelId() {
-        return this.directoryChannelId;
-    }
-
     public final Class<?> component5() {
         return this.errorClass;
     }
@@ -79,6 +59,11 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
         return this.guildId == joinArgs.guildId && this.isLurker == joinArgs.isLurker && C12238m.areEqual(this.sessionId, joinArgs.sessionId) && C12238m.areEqual(this.directoryChannelId, joinArgs.directoryChannelId) && C12238m.areEqual(this.errorClass, joinArgs.errorClass) && C12238m.areEqual(this.subscriptionHandler, joinArgs.subscriptionHandler) && C12238m.areEqual(this.errorHandler, joinArgs.errorHandler) && C12238m.areEqual(this.onNext, joinArgs.onNext);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final Long getDirectoryChannelId() {
+        return this.directoryChannelId;
+    }
+
     public final Long getDirectoryChannelId() {
         return this.directoryChannelId;
     }
@@ -91,12 +76,27 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
         return this.errorHandler;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
     }
 
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsLurker() {
+        return this.isLurker;
+    }
+
     public final Function1<Guild, Unit> getOnNext() {
         return this.onNext;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getSessionId() {
+        return this.sessionId;
     }
 
     public final String getSessionId() {

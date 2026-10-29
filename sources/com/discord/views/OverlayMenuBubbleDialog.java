@@ -55,7 +55,7 @@ public final class OverlayMenuBubbleDialog extends AbstractC1356l implements App
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuBubbleDialog$a */
     /* JADX INFO: compiled from: OverlayMenuBubbleDialog.kt */
-    public static final class C7081a extends SimpleRecyclerAdapter.ViewHolder<StoreVoiceParticipants.VoiceUser> {
+    public final class C7081a extends SimpleRecyclerAdapter.ViewHolder<StoreVoiceParticipants.VoiceUser> {
 
         /* JADX INFO: renamed from: a */
         public final C1094z0 f19095a;
@@ -79,7 +79,7 @@ public final class OverlayMenuBubbleDialog extends AbstractC1356l implements App
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuBubbleDialog$b */
     /* JADX INFO: compiled from: OverlayMenuBubbleDialog.kt */
-    public static final class C7082b<T, R> implements InterfaceC12589b<Long, Observable<? extends List<? extends StoreVoiceParticipants.VoiceUser>>> {
+    public final class C7082b<T, R> implements InterfaceC12589b<Long, Observable<? extends List<? extends StoreVoiceParticipants.VoiceUser>>> {
 
         /* JADX INFO: renamed from: j */
         public static final C7082b f19096j = new C7082b();
@@ -95,7 +95,7 @@ public final class OverlayMenuBubbleDialog extends AbstractC1356l implements App
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuBubbleDialog$c */
     /* JADX INFO: compiled from: OverlayMenuBubbleDialog.kt */
-    public static final class C7083c<T, R> implements InterfaceC12589b<List<? extends StoreVoiceParticipants.VoiceUser>, Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer>> {
+    public final class C7083c<T, R> implements InterfaceC12589b<List<? extends StoreVoiceParticipants.VoiceUser>, Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer>> {
 
         /* JADX INFO: renamed from: j */
         public static final C7083c f19097j = new C7083c();
@@ -116,30 +116,27 @@ public final class OverlayMenuBubbleDialog extends AbstractC1356l implements App
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuBubbleDialog$d */
     /* JADX INFO: compiled from: OverlayMenuBubbleDialog.kt */
-    public static final class C7084d extends AbstractC12240o implements Function1<Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer>, Unit> {
+    public final class C7084d extends AbstractC12240o implements Function1<Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer>, Unit> {
         public C7084d() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer> pair) {
-            String string;
+            String str;
             Pair<? extends List<? extends StoreVoiceParticipants.VoiceUser>, ? extends Integer> pair2 = pair;
             List<? extends StoreVoiceParticipants.VoiceUser> listComponent1 = pair2.component1();
             int iIntValue = pair2.component2().intValue();
             OverlayMenuBubbleDialog overlayMenuBubbleDialog = OverlayMenuBubbleDialog.this;
             overlayMenuBubbleDialog.adapter.setData(listComponent1);
             if (iIntValue == 0) {
-                string = null;
+                str = null;
             } else {
-                StringBuilder sb = new StringBuilder();
-                sb.append('+');
-                sb.append(iIntValue);
-                string = sb.toString();
+                str = "" + '+' + iIntValue;
             }
             TextView textView = overlayMenuBubbleDialog.binding.f1395d;
             C12238m.checkNotNullExpressionValue(textView, "binding.overlayMembersOverflowTv");
-            ViewExtensions.setTextAndVisibilityBy(textView, string);
+            ViewExtensions.setTextAndVisibilityBy(textView, str);
             return Unit.f27425a;
         }
     }

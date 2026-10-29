@@ -27,6 +27,10 @@ public class SimpleDraweeView extends C1800a {
         init(context, null);
     }
 
+    public AbstractDraweeControllerBuilder getControllerBuilder() {
+        return this.mControllerBuilder;
+    }
+
     private void init(Context context, AttributeSet attributeSet) {
         int resourceId;
         try {
@@ -71,14 +75,6 @@ public class SimpleDraweeView extends C1800a {
         sDraweecontrollerbuildersupplier = supplier;
     }
 
-    public static void shutDown() {
-        sDraweecontrollerbuildersupplier = null;
-    }
-
-    public AbstractDraweeControllerBuilder getControllerBuilder() {
-        return this.mControllerBuilder;
-    }
-
     public void setActualImageResource(@DrawableRes int i, Object obj) {
         Uri uri = C1717b.f3138a;
         setImageURI(new Uri.Builder().scheme("res").path(String.valueOf(i)).build(), obj);
@@ -100,6 +96,10 @@ public class SimpleDraweeView extends C1800a {
     @Override // com.facebook.drawee.view.DraweeView, android.widget.ImageView
     public void setImageURI(Uri uri) {
         setImageURI(uri, (Object) null);
+    }
+
+    public static void shutDown() {
+        sDraweecontrollerbuildersupplier = null;
     }
 
     public void setImageURI(String str) {

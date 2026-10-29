@@ -26,13 +26,13 @@ public final class C2753t {
 
     /* JADX INFO: renamed from: b.i.a.c.f3.t$a */
     /* JADX INFO: compiled from: MimeTypes.java */
-    public static final class a {
+    public final class a {
     }
 
     /* JADX INFO: renamed from: b.i.a.c.f3.t$b */
     /* JADX INFO: compiled from: MimeTypes.java */
     @VisibleForTesting
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f6751a;

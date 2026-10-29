@@ -41,6 +41,12 @@ public final class ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding impleme
         this.f15490e = imageView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15486a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding m8398a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
@@ -63,11 +69,5 @@ public final class ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding impleme
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15486a;
     }
 }

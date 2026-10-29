@@ -47,7 +47,7 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.FolderContextMenuViewModel$1 */
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static final /* synthetic */ class C85831 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C85831 extends C12236k implements Function1<StoreState, Unit> {
         public C85831(FolderContextMenuViewModel folderContextMenuViewModel) {
             super(1, folderContextMenuViewModel, FolderContextMenuViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$StoreState;)V", 0);
         }
@@ -65,8 +65,28 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.FolderContextMenuViewModel$onMarkAsReadClicked$1 */
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static final class Companion {
+    public final class C85841 extends AbstractC12240o implements Function1<List<Void>, Unit> {
+        public C85841() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<Void> list) {
+            invoke2(list);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<Void> list) {
+            FolderContextMenuViewModel.this.eventSubject.f27650k.onNext((T) Event.Dismiss.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -109,10 +129,10 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-        public static final class Dismiss extends Event {
+        public final class Dismiss extends Event {
             public static final Dismiss INSTANCE = new Dismiss();
 
             private Dismiss() {
@@ -129,10 +149,10 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -141,7 +161,7 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-        public static final /* data */ class Valid extends StoreState {
+        public final /* data */ class Valid extends StoreState {
             private final ModelGuildFolder folder;
             private final Set<Long> unreadGuildIds;
 
@@ -154,6 +174,10 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
                 this.unreadGuildIds = set;
             }
 
+            public final Set<Long> component2() {
+                return this.unreadGuildIds;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Valid copy$default(Valid valid, ModelGuildFolder modelGuildFolder, Set set, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -163,15 +187,6 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
                     set = valid.unreadGuildIds;
                 }
                 return valid.copy(modelGuildFolder, set);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildFolder getFolder() {
-                return this.folder;
-            }
-
-            public final Set<Long> component2() {
-                return this.unreadGuildIds;
             }
 
             public final Valid copy(ModelGuildFolder folder, Set<Long> unreadGuildIds) {
@@ -189,6 +204,11 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
                 }
                 Valid valid = (Valid) other;
                 return C12238m.areEqual(this.folder, valid.folder) && C12238m.areEqual(this.unreadGuildIds, valid.unreadGuildIds);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelGuildFolder getFolder() {
+                return this.folder;
             }
 
             public final ModelGuildFolder getFolder() {
@@ -223,10 +243,10 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -235,7 +255,7 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
         }
 
         /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final ModelGuildFolder folder;
             private final boolean showMarkAsRead;
 
@@ -257,16 +277,6 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
                 return valid.copy(modelGuildFolder, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildFolder getFolder() {
-                return this.folder;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getShowMarkAsRead() {
-                return this.showMarkAsRead;
-            }
-
             public final Valid copy(ModelGuildFolder folder, boolean showMarkAsRead) {
                 C12238m.checkNotNullParameter(folder, "folder");
                 return new Valid(folder, showMarkAsRead);
@@ -283,8 +293,18 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
                 return C12238m.areEqual(this.folder, valid.folder) && this.showMarkAsRead == valid.showMarkAsRead;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ModelGuildFolder getFolder() {
                 return this.folder;
+            }
+
+            public final ModelGuildFolder getFolder() {
+                return this.folder;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getShowMarkAsRead() {
+                return this.showMarkAsRead;
             }
 
             public final boolean getShowMarkAsRead() {
@@ -323,26 +343,6 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.FolderContextMenuViewModel$onMarkAsReadClicked$1 */
-    /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public static final class C85841 extends AbstractC12240o implements Function1<List<Void>, Unit> {
-        public C85841() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<Void> list) {
-            invoke2(list);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<Void> list) {
-            FolderContextMenuViewModel.this.eventSubject.f27650k.onNext((T) Event.Dismiss.INSTANCE);
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ FolderContextMenuViewModel(long j, RestAPI restAPI, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         restAPI = (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI;
@@ -352,6 +352,10 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
             observable = companion.observeStoreState(j, companion2.getUserSettings(), companion2.getReadStates());
         }
         this(j, restAPI, observable);
+    }
+
+    public final Observable<StoreState> getStoreStateObservable() {
+        return this.storeStateObservable;
     }
 
     @MainThread
@@ -379,10 +383,6 @@ public final class FolderContextMenuViewModel extends AbstractC0859d0<ViewState>
             }
         }
         updateViewState(new ViewState.Valid(folder, z2));
-    }
-
-    public final Observable<StoreState> getStoreStateObservable() {
-        return this.storeStateObservable;
     }
 
     public final Observable<Event> observeEvents() {

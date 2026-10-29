@@ -48,31 +48,6 @@ public final /* data */ class ModelStickerPackStoreListing {
         return modelStickerPackStoreListing.copy(modelSku, j2, str3, str4, modelStoreAsset);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelSku getSku() {
-        return this.sku;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getUnpublishedAt() {
-        return this.unpublishedAt;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final ModelStoreAsset getThumbnail() {
-        return this.thumbnail;
-    }
-
     public final ModelStickerPackStoreListing copy(ModelSku sku, long id2, String description, String unpublishedAt, ModelStoreAsset thumbnail) {
         C12238m.checkNotNullParameter(sku, "sku");
         C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
@@ -90,20 +65,45 @@ public final /* data */ class ModelStickerPackStoreListing {
         return C12238m.areEqual(this.sku, modelStickerPackStoreListing.sku) && this.id == modelStickerPackStoreListing.id && C12238m.areEqual(this.description, modelStickerPackStoreListing.description) && C12238m.areEqual(this.unpublishedAt, modelStickerPackStoreListing.unpublishedAt) && C12238m.areEqual(this.thumbnail, modelStickerPackStoreListing.thumbnail);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getDescription() {
         return this.description;
+    }
+
+    public final String getDescription() {
+        return this.description;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {
         return this.id;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final ModelSku getSku() {
         return this.sku;
     }
 
+    public final ModelSku getSku() {
+        return this.sku;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final ModelStoreAsset getThumbnail() {
         return this.thumbnail;
+    }
+
+    public final ModelStoreAsset getThumbnail() {
+        return this.thumbnail;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getUnpublishedAt() {
+        return this.unpublishedAt;
     }
 
     public final String getUnpublishedAt() {

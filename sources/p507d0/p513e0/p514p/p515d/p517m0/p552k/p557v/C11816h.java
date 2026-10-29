@@ -23,7 +23,7 @@ public final class C11816h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.h$a */
     /* JADX INFO: compiled from: ConstantValueFactory.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
         public final /* synthetic */ AbstractC11913c0 $type;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -41,7 +41,7 @@ public final class C11816h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.h$b */
     /* JADX INFO: compiled from: ConstantValueFactory.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
         public final /* synthetic */ EnumC11289i $componentType;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -57,20 +57,6 @@ public final class C11816h {
             C12238m.checkNotNullExpressionValue(primitiveArrayKotlinType, "module.builtIns.getPrimitiveArrayKotlinType(componentType)");
             return primitiveArrayKotlinType;
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final C11809b m9942a(List<?> list, EnumC11289i enumC11289i) {
-        List list2 = C12163u.toList(list);
-        ArrayList arrayList = new ArrayList();
-        Iterator it = list2.iterator();
-        while (it.hasNext()) {
-            AbstractC11815g<?> abstractC11815gCreateConstantValue = createConstantValue(it.next());
-            if (abstractC11815gCreateConstantValue != null) {
-                arrayList.add(abstractC11815gCreateConstantValue);
-            }
-        }
-        return new C11809b(arrayList, new b(enumC11289i));
     }
 
     public final C11809b createArrayValue(List<? extends AbstractC11815g<?>> list, AbstractC11913c0 abstractC11913c0) {
@@ -135,5 +121,19 @@ public final class C11816h {
             return new C11828t();
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final C11809b m9942a(List<?> list, EnumC11289i enumC11289i) {
+        List list2 = C12163u.toList(list);
+        ArrayList arrayList = new ArrayList();
+        Iterator it = list2.iterator();
+        while (it.hasNext()) {
+            AbstractC11815g<?> abstractC11815gCreateConstantValue = createConstantValue(it.next());
+            if (abstractC11815gCreateConstantValue != null) {
+                arrayList.add(abstractC11815gCreateConstantValue);
+            }
+        }
+        return new C11809b(arrayList, new b(enumC11289i));
     }
 }

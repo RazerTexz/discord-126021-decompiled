@@ -50,132 +50,13 @@ public final class StoreSpotify {
     private SpotifyState spotifyState;
     private final StoreStream stream;
 
-    /* JADX INFO: compiled from: StoreSpotify.kt */
-    public static final /* data */ class SpotifyState {
-        private final boolean playing;
-        private final int position;
-        private final long start;
-        private final ModelSpotifyTrack track;
-
-        public SpotifyState() {
-            this(null, false, 0, 0L, 15, null);
-        }
-
-        public SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j) {
-            this.track = modelSpotifyTrack;
-            this.playing = z2;
-            this.position = i;
-            this.start = j;
-        }
-
-        public static /* synthetic */ SpotifyState copy$default(SpotifyState spotifyState, ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                modelSpotifyTrack = spotifyState.track;
-            }
-            if ((i2 & 2) != 0) {
-                z2 = spotifyState.playing;
-            }
-            boolean z3 = z2;
-            if ((i2 & 4) != 0) {
-                i = spotifyState.position;
-            }
-            int i3 = i;
-            if ((i2 & 8) != 0) {
-                j = spotifyState.start;
-            }
-            return spotifyState.copy(modelSpotifyTrack, z3, i3, j);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelSpotifyTrack getTrack() {
-            return this.track;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getPlaying() {
-            return this.playing;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getPosition() {
-            return this.position;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getStart() {
-            return this.start;
-        }
-
-        public final SpotifyState copy(ModelSpotifyTrack track, boolean playing, int position, long start) {
-            return new SpotifyState(track, playing, position, start);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof SpotifyState)) {
-                return false;
-            }
-            SpotifyState spotifyState = (SpotifyState) other;
-            return C12238m.areEqual(this.track, spotifyState.track) && this.playing == spotifyState.playing && this.position == spotifyState.position && this.start == spotifyState.start;
-        }
-
-        public final boolean getPlaying() {
-            return this.playing;
-        }
-
-        public final int getPosition() {
-            return this.position;
-        }
-
-        public final long getStart() {
-            return this.start;
-        }
-
-        public final ModelSpotifyTrack getTrack() {
-            return this.track;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v4, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v6 */
-        /* JADX WARN: Type inference failed for: r1v7 */
-        public int hashCode() {
-            ModelSpotifyTrack modelSpotifyTrack = this.track;
-            int iHashCode = (modelSpotifyTrack != null ? modelSpotifyTrack.hashCode() : 0) * 31;
-            boolean z2 = this.playing;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            return C0002b.m3a(this.start) + ((((iHashCode + r1) * 31) + this.position) * 31);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("SpotifyState(track=");
-            sbM833U.append(this.track);
-            sbM833U.append(", playing=");
-            sbM833U.append(this.playing);
-            sbM833U.append(", position=");
-            sbM833U.append(this.position);
-            sbM833U.append(", start=");
-            return C1643a.m815C(sbM833U, this.start, ")");
-        }
-
-        public /* synthetic */ SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i2 & 1) != 0 ? null : modelSpotifyTrack, (i2 & 2) != 0 ? false : z2, (i2 & 4) == 0 ? i : 0, (i2 & 8) != 0 ? 0L : j);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$3 */
     /* JADX INFO: compiled from: StoreSpotify.kt */
-    public static final class C64043 extends AbstractC12240o implements Function1<ModelSpotifyTrack, Unit> {
+    public final class C64043 extends AbstractC12240o implements Function1<ModelSpotifyTrack, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreSpotify.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ ModelSpotifyTrack $track;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -225,7 +106,7 @@ public final class StoreSpotify {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$setPlayingStatus$1 */
     /* JADX INFO: compiled from: StoreSpotify.kt */
-    public static final class C64051 extends AbstractC12240o implements Function0<Unit> {
+    public final class C64051 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $playing;
         public final /* synthetic */ int $position;
 
@@ -256,7 +137,7 @@ public final class StoreSpotify {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$1 */
     /* JADX INFO: compiled from: StoreSpotify.kt */
-    public static final class C64061 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C64061 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C64061() {
             super(1);
         }
@@ -276,11 +157,11 @@ public final class StoreSpotify {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$2 */
     /* JADX INFO: compiled from: StoreSpotify.kt */
-    public static final class C64072 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C64072 extends AbstractC12240o implements Function1<Long, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreSpotify.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -314,6 +195,125 @@ public final class StoreSpotify {
         }
     }
 
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final /* data */ class SpotifyState {
+        private final boolean playing;
+        private final int position;
+        private final long start;
+        private final ModelSpotifyTrack track;
+
+        public SpotifyState() {
+            this(null, false, 0, 0L, 15, null);
+        }
+
+        public SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j) {
+            this.track = modelSpotifyTrack;
+            this.playing = z2;
+            this.position = i;
+            this.start = j;
+        }
+
+        public static /* synthetic */ SpotifyState copy$default(SpotifyState spotifyState, ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                modelSpotifyTrack = spotifyState.track;
+            }
+            if ((i2 & 2) != 0) {
+                z2 = spotifyState.playing;
+            }
+            boolean z3 = z2;
+            if ((i2 & 4) != 0) {
+                i = spotifyState.position;
+            }
+            int i3 = i;
+            if ((i2 & 8) != 0) {
+                j = spotifyState.start;
+            }
+            return spotifyState.copy(modelSpotifyTrack, z3, i3, j);
+        }
+
+        public final SpotifyState copy(ModelSpotifyTrack track, boolean playing, int position, long start) {
+            return new SpotifyState(track, playing, position, start);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SpotifyState)) {
+                return false;
+            }
+            SpotifyState spotifyState = (SpotifyState) other;
+            return C12238m.areEqual(this.track, spotifyState.track) && this.playing == spotifyState.playing && this.position == spotifyState.position && this.start == spotifyState.start;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getPlaying() {
+            return this.playing;
+        }
+
+        public final boolean getPlaying() {
+            return this.playing;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getPosition() {
+            return this.position;
+        }
+
+        public final int getPosition() {
+            return this.position;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getStart() {
+            return this.start;
+        }
+
+        public final long getStart() {
+            return this.start;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelSpotifyTrack getTrack() {
+            return this.track;
+        }
+
+        public final ModelSpotifyTrack getTrack() {
+            return this.track;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        /* JADX WARN: Type inference failed for: r1v7 */
+        public int hashCode() {
+            ModelSpotifyTrack modelSpotifyTrack = this.track;
+            int iHashCode = (modelSpotifyTrack != null ? modelSpotifyTrack.hashCode() : 0) * 31;
+            boolean z2 = this.playing;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return C0002b.m3a(this.start) + ((((iHashCode + r1) * 31) + this.position) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("SpotifyState(track=");
+            sbM833U.append(this.track);
+            sbM833U.append(", playing=");
+            sbM833U.append(this.playing);
+            sbM833U.append(", position=");
+            sbM833U.append(this.position);
+            sbM833U.append(", start=");
+            return C1643a.m815C(sbM833U, this.start, ")");
+        }
+
+        public /* synthetic */ SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i2 & 1) != 0 ? null : modelSpotifyTrack, (i2 & 2) != 0 ? false : z2, (i2 & 4) == 0 ? i : 0, (i2 & 8) != 0 ? 0L : j);
+        }
+    }
+
     public StoreSpotify(StoreStream storeStream, Dispatcher dispatcher, Clock clock) {
         C12238m.checkNotNullParameter(storeStream, "stream");
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -323,6 +323,66 @@ public final class StoreSpotify {
         this.clock = clock;
         this.publishStateTrigger = BehaviorSubject.m11129k0();
         this.spotifyApiClient = new SpotifyApiClient(clock);
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        List<ConnectedAccount> connectedAccounts = payload.getConnectedAccounts();
+        C12238m.checkNotNullExpressionValue(connectedAccounts, "payload.connectedAccounts");
+        handleUserConnections(connectedAccounts);
+        this.publishStateTrigger.onNext(Unit.f27425a);
+    }
+
+    @StoreThread
+    public final void handleConnectionReady(boolean ready) {
+        if (ready) {
+            this.publishStateTrigger.onNext(Unit.f27425a);
+        }
+    }
+
+    @StoreThread
+    public final void handlePreLogout() {
+        this.spotifyState = null;
+    }
+
+    @StoreThread
+    public final void handleUserConnections(List<ConnectedAccount> accounts) {
+        Object next;
+        C12238m.checkNotNullParameter(accounts, "accounts");
+        Iterator<T> it = accounts.iterator();
+        do {
+            if (!it.hasNext()) {
+                next = null;
+                break;
+            }
+            next = it.next();
+        } while (!C12103t.equals(Platform.SPOTIFY.name(), ((ConnectedAccount) next).getType(), true));
+        ConnectedAccount connectedAccount = (ConnectedAccount) next;
+        this.spotifyApiClient.setSpotifyAccountId(connectedAccount != null ? connectedAccount.getId() : null);
+    }
+
+    public final void init(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        SpotifyHelper.registerSpotifyBroadcastReceivers(context);
+        Observable observableM11110p = Observable.m11076j(this.publishStateTrigger, this.spotifyApiClient.getSpotifyTrack().m11099Y(new InterfaceC12589b<ModelSpotifyTrack, Observable<? extends ModelSpotifyTrack>>() { // from class: com.discord.stores.StoreSpotify.init.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends ModelSpotifyTrack> call(ModelSpotifyTrack modelSpotifyTrack) {
+                return modelSpotifyTrack != null ? new C12721k(modelSpotifyTrack) : Observable.m11068d0(1L, TimeUnit.SECONDS).m11083G(new InterfaceC12589b() { // from class: com.discord.stores.StoreSpotify.init.1.1
+                    @Override // p637j0.p641k.InterfaceC12589b
+                    public final Void call(Long l) {
+                        return null;
+                    }
+                });
+            }
+        }).m11112r(), new Func2<Unit, ModelSpotifyTrack, ModelSpotifyTrack>() { // from class: com.discord.stores.StoreSpotify.init.2
+            @Override // p658rx.functions.Func2
+            public final ModelSpotifyTrack call(Unit unit, ModelSpotifyTrack modelSpotifyTrack) {
+                return modelSpotifyTrack;
+            }
+        }).m11110p(2L, TimeUnit.SECONDS);
+        C12238m.checkNotNullExpressionValue(observableM11110p, "Observable.combineLatest…unce(2, TimeUnit.SECONDS)");
+        ObservableExtensionsKt.appSubscribe(observableM11110p, (Class<?>) StoreSpotify.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C64043());
     }
 
     @StoreThread
@@ -387,73 +447,6 @@ public final class StoreSpotify {
         }
     }
 
-    @StoreThread
-    private final void startStateExpiration(long timeLeftMs) {
-        Observable<Long> observableM11068d0 = Observable.m11068d0(timeLeftMs + 5000, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n        .time…), TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) StoreSpotify.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C64061()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C64072());
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        List<ConnectedAccount> connectedAccounts = payload.getConnectedAccounts();
-        C12238m.checkNotNullExpressionValue(connectedAccounts, "payload.connectedAccounts");
-        handleUserConnections(connectedAccounts);
-        this.publishStateTrigger.onNext(Unit.f27425a);
-    }
-
-    @StoreThread
-    public final void handleConnectionReady(boolean ready) {
-        if (ready) {
-            this.publishStateTrigger.onNext(Unit.f27425a);
-        }
-    }
-
-    @StoreThread
-    public final void handlePreLogout() {
-        this.spotifyState = null;
-    }
-
-    @StoreThread
-    public final void handleUserConnections(List<ConnectedAccount> accounts) {
-        Object next;
-        C12238m.checkNotNullParameter(accounts, "accounts");
-        Iterator<T> it = accounts.iterator();
-        do {
-            if (!it.hasNext()) {
-                next = null;
-                break;
-            }
-            next = it.next();
-        } while (!C12103t.equals(Platform.SPOTIFY.name(), ((ConnectedAccount) next).getType(), true));
-        ConnectedAccount connectedAccount = (ConnectedAccount) next;
-        this.spotifyApiClient.setSpotifyAccountId(connectedAccount != null ? connectedAccount.getId() : null);
-    }
-
-    public final void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        SpotifyHelper.registerSpotifyBroadcastReceivers(context);
-        Observable observableM11110p = Observable.m11076j(this.publishStateTrigger, this.spotifyApiClient.getSpotifyTrack().m11099Y(new InterfaceC12589b<ModelSpotifyTrack, Observable<? extends ModelSpotifyTrack>>() { // from class: com.discord.stores.StoreSpotify.init.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends ModelSpotifyTrack> call(ModelSpotifyTrack modelSpotifyTrack) {
-                return modelSpotifyTrack != null ? new C12721k(modelSpotifyTrack) : Observable.m11068d0(1L, TimeUnit.SECONDS).m11083G(new InterfaceC12589b() { // from class: com.discord.stores.StoreSpotify.init.1.1
-                    @Override // p637j0.p641k.InterfaceC12589b
-                    public final Void call(Long l) {
-                        return null;
-                    }
-                });
-            }
-        }).m11112r(), new Func2<Unit, ModelSpotifyTrack, ModelSpotifyTrack>() { // from class: com.discord.stores.StoreSpotify.init.2
-            @Override // p658rx.functions.Func2
-            public final ModelSpotifyTrack call(Unit unit, ModelSpotifyTrack modelSpotifyTrack) {
-                return modelSpotifyTrack;
-            }
-        }).m11110p(2L, TimeUnit.SECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11110p, "Observable.combineLatest…unce(2, TimeUnit.SECONDS)");
-        ObservableExtensionsKt.appSubscribe(observableM11110p, (Class<?>) StoreSpotify.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C64043());
-    }
-
     public final void setCurrentTrackId(String trackId) {
         C12238m.checkNotNullParameter(trackId, "trackId");
         this.spotifyApiClient.fetchSpotifyTrack(trackId);
@@ -461,5 +454,12 @@ public final class StoreSpotify {
 
     public final void setPlayingStatus(boolean playing, int position) {
         this.dispatcher.schedule(new C64051(playing, position));
+    }
+
+    @StoreThread
+    private final void startStateExpiration(long timeLeftMs) {
+        Observable<Long> observableM11068d0 = Observable.m11068d0(timeLeftMs + 5000, TimeUnit.MILLISECONDS);
+        C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n        .time…), TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) StoreSpotify.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C64061()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C64072());
     }
 }

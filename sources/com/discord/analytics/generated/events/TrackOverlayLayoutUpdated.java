@@ -13,22 +13,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class TrackOverlayLayoutUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
     private TrackBase trackBase;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final Boolean wasResized = null;
     private final Boolean wasDragged = null;
-    private final CharSequence widgetType = null;
-    private final Long windowWidth = null;
-    private final Long windowHeight = null;
-    private final Long widgetWidth = null;
+    private final Boolean wasResized = null;
     private final Long widgetHeight = null;
     private final Long widgetLeft = null;
     private final Long widgetTop = null;
+    private final CharSequence widgetType = null;
+    private final Long widgetWidth = null;
+    private final Long windowHeight = null;
+    private final Long windowWidth = null;
     private final transient String analyticsSchemaTypeName = "overlay_layout_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackOverlayLayoutUpdated implements AnalyticsSche
         }
         TrackOverlayLayoutUpdated trackOverlayLayoutUpdated = (TrackOverlayLayoutUpdated) other;
         return C12238m.areEqual(this.wasResized, trackOverlayLayoutUpdated.wasResized) && C12238m.areEqual(this.wasDragged, trackOverlayLayoutUpdated.wasDragged) && C12238m.areEqual(this.widgetType, trackOverlayLayoutUpdated.widgetType) && C12238m.areEqual(this.windowWidth, trackOverlayLayoutUpdated.windowWidth) && C12238m.areEqual(this.windowHeight, trackOverlayLayoutUpdated.windowHeight) && C12238m.areEqual(this.widgetWidth, trackOverlayLayoutUpdated.widgetWidth) && C12238m.areEqual(this.widgetHeight, trackOverlayLayoutUpdated.widgetHeight) && C12238m.areEqual(this.widgetLeft, trackOverlayLayoutUpdated.widgetLeft) && C12238m.areEqual(this.widgetTop, trackOverlayLayoutUpdated.widgetTop);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

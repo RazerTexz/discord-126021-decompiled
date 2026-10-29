@@ -68,7 +68,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     /* JADX INFO: renamed from: com.discord.app.AppFragment$a */
     /* JADX INFO: compiled from: AppFragment.kt */
-    public static final class C5447a extends AbstractC12240o implements Function0<AppLogger> {
+    public final class C5447a extends AbstractC12240o implements Function0<AppLogger> {
         public C5447a() {
             super(0);
         }
@@ -81,7 +81,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     /* JADX INFO: renamed from: com.discord.app.AppFragment$b */
     /* JADX INFO: compiled from: AppFragment.kt */
-    public static final class C5448b extends AbstractC12240o implements Function0<C1448b> {
+    public final class C5448b extends AbstractC12240o implements Function0<C1448b> {
         public C5448b() {
             super(0);
         }
@@ -94,7 +94,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     /* JADX INFO: renamed from: com.discord.app.AppFragment$c */
     /* JADX INFO: compiled from: AppFragment.kt */
-    public static final class C5449c implements MediaPicker.InterfaceC5527a {
+    public final class C5449c implements MediaPicker.InterfaceC5527a {
         public C5449c() {
         }
 
@@ -121,7 +121,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     /* JADX INFO: renamed from: com.discord.app.AppFragment$d */
     /* JADX INFO: compiled from: AppFragment.kt */
-    public static final class C5450d extends AbstractC12240o implements Function0<Unit> {
+    public final class C5450d extends AbstractC12240o implements Function0<Unit> {
         public C5450d() {
             super(0);
         }
@@ -156,7 +156,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     /* JADX INFO: renamed from: com.discord.app.AppFragment$e */
     /* JADX INFO: compiled from: AppFragment.kt */
-    public static final class C5451e extends AbstractC12240o implements Function0<Boolean> {
+    public final class C5451e extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ Func0 $onBackAction;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -189,47 +189,6 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
             view = null;
         }
         return appFragment.bindToolbar(view);
-    }
-
-    public static /* synthetic */ void hideKeyboard$default(AppFragment appFragment, View view, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
-        }
-        if ((i & 1) != 0) {
-            view = null;
-        }
-        appFragment.hideKeyboard(view);
-    }
-
-    public static /* synthetic */ Toolbar setActionBarDisplayHomeAsUpEnabled$default(AppFragment appFragment, boolean z2, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setActionBarDisplayHomeAsUpEnabled");
-        }
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return appFragment.setActionBarDisplayHomeAsUpEnabled(z2);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Toolbar setActionBarOptionsMenu$default(AppFragment appFragment, int i, Action2 action2, Action1 action1, int i2, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setActionBarOptionsMenu");
-        }
-        if ((i2 & 4) != 0) {
-            action1 = null;
-        }
-        return appFragment.setActionBarOptionsMenu(i, action2, action1);
-    }
-
-    public static /* synthetic */ void setOnBackPressed$default(AppFragment appFragment, Func0 func0, int i, int i2, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setOnBackPressed");
-        }
-        if ((i2 & 2) != 0) {
-            i = Integer.MAX_VALUE;
-        }
-        appFragment.setOnBackPressed(func0, i);
     }
 
     @CallSuper
@@ -269,6 +228,11 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return getFileManager().mo409b();
     }
 
+    /* JADX INFO: renamed from: isRecreated, reason: from getter */
+    public final boolean getIsRecreated() {
+        return this.isRecreated;
+    }
+
     @Override // com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
@@ -290,6 +254,16 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return requireAppActivity().appPermissions.hasMedia();
     }
 
+    public static /* synthetic */ void hideKeyboard$default(AppFragment appFragment, View view, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: hideKeyboard");
+        }
+        if ((i & 1) != 0) {
+            view = null;
+        }
+        appFragment.hideKeyboard(view);
+    }
+
     public final void hideKeyboard() {
         hideKeyboard$default(this, null, 1, null);
     }
@@ -299,11 +273,6 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         if (appActivity != null) {
             appActivity.hideKeyboard(view);
         }
-    }
-
-    /* JADX INFO: renamed from: isRecreated, reason: from getter */
-    public final boolean getIsRecreated() {
-        return this.isRecreated;
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -480,6 +449,16 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return appActivity;
     }
 
+    public static /* synthetic */ Toolbar setActionBarDisplayHomeAsUpEnabled$default(AppFragment appFragment, boolean z2, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setActionBarDisplayHomeAsUpEnabled");
+        }
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return appFragment.setActionBarDisplayHomeAsUpEnabled(z2);
+    }
+
     public final Toolbar setActionBarDisplayHomeAsUpEnabled() {
         return setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
     }
@@ -491,6 +470,17 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         }
         boolean z2 = AppActivity.f14908m;
         return appActivity.m8350k(showHomeAsUp, null, null);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ Toolbar setActionBarOptionsMenu$default(AppFragment appFragment, int i, Action2 action2, Action1 action1, int i2, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setActionBarOptionsMenu");
+        }
+        if ((i2 & 4) != 0) {
+            action1 = null;
+        }
+        return appFragment.setActionBarOptionsMenu(i, action2, action1);
     }
 
     public final Toolbar setActionBarOptionsMenu(@MenuRes int i, Action2<MenuItem, Context> action2) {
@@ -591,6 +581,16 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
             toolbarTitleLayoutM8345e.setLayoutParams(new Toolbar.LayoutParams(-2, -2));
         }
         return Unit.f27425a;
+    }
+
+    public static /* synthetic */ void setOnBackPressed$default(AppFragment appFragment, Func0 func0, int i, int i2, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: setOnBackPressed");
+        }
+        if ((i2 & 2) != 0) {
+            i = Integer.MAX_VALUE;
+        }
+        appFragment.setOnBackPressed(func0, i);
     }
 
     public final void setOnBackPressed(Func0<Boolean> func0) {

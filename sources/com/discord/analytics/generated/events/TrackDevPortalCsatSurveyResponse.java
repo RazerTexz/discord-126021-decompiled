@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDevPortalCsatSurveyResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDevPortalCsatSurveyResponse implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence ctaName = null;
     private final Long csatResponse = null;
+    private final CharSequence ctaName = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "dev_portal_csat_survey_response";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackDevPortalCsatSurveyResponse implements Analyt
         }
         TrackDevPortalCsatSurveyResponse trackDevPortalCsatSurveyResponse = (TrackDevPortalCsatSurveyResponse) other;
         return C12238m.areEqual(this.ctaName, trackDevPortalCsatSurveyResponse.ctaName) && C12238m.areEqual(this.csatResponse, trackDevPortalCsatSurveyResponse.csatResponse);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

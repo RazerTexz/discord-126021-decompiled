@@ -26,12 +26,12 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetHomePanelLoading.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHomePanelLoading {
-    private static boolean panelInitialized;
     private final WidgetHomeBinding binding;
+    private static boolean panelInitialized;
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelLoading$configure$1 */
     /* JADX INFO: compiled from: WidgetHomePanelLoading.kt */
-    public static final class C89741 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C89741 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C89741() {
             super(1);
         }
@@ -67,6 +67,12 @@ public final class WidgetHomePanelLoading {
         ImageView imageView3 = this.binding.f17125b.f1064b;
         C12238m.checkNotNullExpressionValue(imageView3, "binding.loading.logo");
         imageView3.setLayoutParams(layoutParams2);
+    }
+
+    public final void configure(AppFragment fragment) {
+        C12238m.checkNotNullParameter(fragment, "fragment");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(WidgetHomeModel.INSTANCE.getInitialized(), fragment, null, 2, null), (Class<?>) WidgetHomePanelLoading.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C89741());
+        setLoadingPanelVisibility(panelInitialized, false);
     }
 
     private final void setLoadingPanelVisibility(boolean initialized, boolean animate) {
@@ -110,11 +116,5 @@ public final class WidgetHomePanelLoading {
             }
             StoreStream.INSTANCE.getAnalytics().appUiViewed(WidgetHome.class);
         }
-    }
-
-    public final void configure(AppFragment fragment) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(WidgetHomeModel.INSTANCE.getInitialized(), fragment, null, 2, null), (Class<?>) WidgetHomePanelLoading.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C89741());
-        setLoadingPanelVisibility(panelInitialized, false);
     }
 }

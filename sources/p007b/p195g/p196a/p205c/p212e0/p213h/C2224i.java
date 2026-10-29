@@ -22,30 +22,6 @@ public class C2224i extends AbstractC2212d implements Serializable {
     private static final long serialVersionUID = 1;
     public LinkedHashSet<C2210b> _registeredSubtypes;
 
-    @Override // p007b.p195g.p196a.p205c.p212e0.AbstractC2212d
-    /* JADX INFO: renamed from: a */
-    public Collection<C2210b> mo1945a(AbstractC2394l<?> abstractC2394l, AbstractC2188i abstractC2188i, AbstractC2360j abstractC2360j) {
-        List<C2210b> listMo1758N;
-        AbstractC2165b abstractC2165bM2267e = abstractC2394l.m2267e();
-        Class<?> clsMo1820d = abstractC2360j == null ? abstractC2188i.mo1820d() : abstractC2360j._class;
-        HashMap<C2210b, C2210b> map = new HashMap<>();
-        LinkedHashSet<C2210b> linkedHashSet = this._registeredSubtypes;
-        if (linkedHashSet != null) {
-            for (C2210b c2210b : linkedHashSet) {
-                if (clsMo1820d.isAssignableFrom(c2210b._class)) {
-                    m1965b(C2179d.m1879h(abstractC2394l, c2210b._class), c2210b, abstractC2394l, abstractC2165bM2267e, map);
-                }
-            }
-        }
-        if (abstractC2188i != null && (listMo1758N = abstractC2165bM2267e.mo1758N(abstractC2188i)) != null) {
-            for (C2210b c2210b2 : listMo1758N) {
-                m1965b(C2179d.m1879h(abstractC2394l, c2210b2._class), c2210b2, abstractC2394l, abstractC2165bM2267e, map);
-            }
-        }
-        m1965b(C2179d.m1879h(abstractC2394l, clsMo1820d), new C2210b(clsMo1820d, null), abstractC2394l, abstractC2165bM2267e, map);
-        return new ArrayList(map.values());
-    }
-
     /* JADX INFO: renamed from: b */
     public void m1965b(C2177c c2177c, C2210b c2210b, AbstractC2394l<?> abstractC2394l, AbstractC2165b abstractC2165b, HashMap<C2210b, C2210b> map) {
         String strMo1759O;
@@ -68,5 +44,29 @@ public class C2224i extends AbstractC2212d implements Serializable {
         for (C2210b c2210b3 : listMo1758N) {
             m1965b(C2179d.m1879h(abstractC2394l, c2210b3._class), c2210b3, abstractC2394l, abstractC2165b, map);
         }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.AbstractC2212d
+    /* JADX INFO: renamed from: a */
+    public Collection<C2210b> mo1945a(AbstractC2394l<?> abstractC2394l, AbstractC2188i abstractC2188i, AbstractC2360j abstractC2360j) {
+        List<C2210b> listMo1758N;
+        AbstractC2165b abstractC2165bM2267e = abstractC2394l.m2267e();
+        Class<?> clsMo1820d = abstractC2360j == null ? abstractC2188i.mo1820d() : abstractC2360j._class;
+        HashMap<C2210b, C2210b> map = new HashMap<>();
+        LinkedHashSet<C2210b> linkedHashSet = this._registeredSubtypes;
+        if (linkedHashSet != null) {
+            for (C2210b c2210b : linkedHashSet) {
+                if (clsMo1820d.isAssignableFrom(c2210b._class)) {
+                    m1965b(C2179d.m1879h(abstractC2394l, c2210b._class), c2210b, abstractC2394l, abstractC2165bM2267e, map);
+                }
+            }
+        }
+        if (abstractC2188i != null && (listMo1758N = abstractC2165bM2267e.mo1758N(abstractC2188i)) != null) {
+            for (C2210b c2210b2 : listMo1758N) {
+                m1965b(C2179d.m1879h(abstractC2394l, c2210b2._class), c2210b2, abstractC2394l, abstractC2165bM2267e, map);
+            }
+        }
+        m1965b(C2179d.m1879h(abstractC2394l, clsMo1820d), new C2210b(clsMo1820d, null), abstractC2394l, abstractC2165bM2267e, map);
+        return new ArrayList(map.values());
     }
 }

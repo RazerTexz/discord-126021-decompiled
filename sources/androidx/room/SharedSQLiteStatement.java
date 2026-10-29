@@ -8,25 +8,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public abstract class SharedSQLiteStatement {
     private final RoomDatabase mDatabase;
-    private final AtomicBoolean mLock = new AtomicBoolean(false);
     private volatile SupportSQLiteStatement mStmt;
+    private final AtomicBoolean mLock = new AtomicBoolean(false);
 
     public SharedSQLiteStatement(RoomDatabase roomDatabase) {
         this.mDatabase = roomDatabase;
-    }
-
-    private SupportSQLiteStatement createNewStatement() {
-        return this.mDatabase.compileStatement(createQuery());
-    }
-
-    private SupportSQLiteStatement getStmt(boolean z2) {
-        if (!z2) {
-            return createNewStatement();
-        }
-        if (this.mStmt == null) {
-            this.mStmt = createNewStatement();
-        }
-        return this.mStmt;
     }
 
     public SupportSQLiteStatement acquire() {
@@ -38,7 +24,21 @@ public abstract class SharedSQLiteStatement {
         this.mDatabase.assertNotMainThread();
     }
 
+    private SupportSQLiteStatement createNewStatement() {
+        return this.mDatabase.compileStatement(createQuery());
+    }
+
     public abstract String createQuery();
+
+    private SupportSQLiteStatement getStmt(boolean z2) {
+        if (!z2) {
+            return createNewStatement();
+        }
+        if (this.mStmt == null) {
+            this.mStmt = createNewStatement();
+        }
+        return this.mStmt;
+    }
 
     public void release(SupportSQLiteStatement supportSQLiteStatement) {
         if (supportSQLiteStatement == this.mStmt) {

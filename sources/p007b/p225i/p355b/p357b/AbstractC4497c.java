@@ -16,6 +16,11 @@ public abstract class AbstractC4497c<K, V> extends AbstractC4501e<K, V> implemen
         super(map);
     }
 
+    @Override // p007b.p225i.p355b.p357b.AbstractC4505g
+    public boolean equals(@NullableDecl Object obj) {
+        return super.equals(obj);
+    }
+
     @Override // p007b.p225i.p355b.p357b.AbstractC4505g, p007b.p225i.p355b.p357b.InterfaceC4496b0
     /* JADX INFO: renamed from: a */
     public Map<K, Collection<V>> mo6216a() {
@@ -33,10 +38,5 @@ public abstract class AbstractC4497c<K, V> extends AbstractC4501e<K, V> implemen
             this.f12008l = map;
         }
         return map;
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4505g
-    public boolean equals(@NullableDecl Object obj) {
-        return super.equals(obj);
     }
 }

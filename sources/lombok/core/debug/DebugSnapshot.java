@@ -8,13 +8,13 @@ import org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/DebugSnapshot.SCL.lombok */
 public class DebugSnapshot implements Comparable<DebugSnapshot> {
-    private static AtomicLong counter = new AtomicLong();
     private final long bits;
-    private final List<StackTraceElement> trace;
-    private final String threadName;
     private final String message;
-    private final Object[] params;
     private final WeakReference<CompilationUnitDeclaration> owner;
+    private final Object[] params;
+    private final String threadName;
+    private final List<StackTraceElement> trace;
+    private static AtomicLong counter = new AtomicLong();
 
     /* JADX INFO: renamed from: id */
     private final long f27466id = counter.getAndIncrement();

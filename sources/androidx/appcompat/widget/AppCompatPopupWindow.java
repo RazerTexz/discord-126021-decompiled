@@ -13,8 +13,8 @@ import androidx.core.widget.PopupWindowCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatPopupWindow extends PopupWindow {
-    private static final boolean COMPAT_OVERLAP_ANCHOR = false;
     private boolean mOverlapAnchor;
+    private static final boolean COMPAT_OVERLAP_ANCHOR = false;
 
     public AppCompatPopupWindow(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i) {
         super(context, attributeSet, i);

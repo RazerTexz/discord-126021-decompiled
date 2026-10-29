@@ -13,20 +13,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfNewsChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfNewsChanged implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver {
+    private final CharSequence newsChangeType = null;
+    private final Long newsFromIndex = null;
+    private final Long newsToIndex = null;
+    private final CharSequence newsUrl = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackBase trackBase;
-    private final CharSequence newsUrl = null;
-    private final Long newsToIndex = null;
-    private final Long newsFromIndex = null;
-    private final CharSequence newsChangeType = null;
     private final transient String analyticsSchemaTypeName = "af_news_changed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackAfNewsChanged implements AnalyticsSchema, Tra
         }
         TrackAfNewsChanged trackAfNewsChanged = (TrackAfNewsChanged) other;
         return C12238m.areEqual(this.newsUrl, trackAfNewsChanged.newsUrl) && C12238m.areEqual(this.newsToIndex, trackAfNewsChanged.newsToIndex) && C12238m.areEqual(this.newsFromIndex, trackAfNewsChanged.newsFromIndex) && C12238m.areEqual(this.newsChangeType, trackAfNewsChanged.newsChangeType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -30,7 +30,7 @@ public final class StoreGuildMemberRequester extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberRequester$performQueuedRequests$1 */
     /* JADX INFO: compiled from: StoreGuildMemberRequester.kt */
-    public static final class C60331 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60331 extends AbstractC12240o implements Function0<Unit> {
         public C60331() {
             super(0);
         }
@@ -49,7 +49,7 @@ public final class StoreGuildMemberRequester extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberRequester$queueRequest$1 */
     /* JADX INFO: compiled from: StoreGuildMemberRequester.kt */
-    public static final class C60341 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60341 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ long $userId;
 
@@ -85,28 +85,6 @@ public final class StoreGuildMemberRequester extends Store {
     private final boolean guildMemberExists(long guildId, long userId) {
         Map<Long, GuildMember> map = this.collector.getGuilds().getGuildMembersComputedInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
         return (map != null ? map.get(Long.valueOf(userId)) : null) != null;
-    }
-
-    @StoreThread
-    private final void requestForMessages(long guildId, Iterable<Message> messages) {
-        for (Message message : messages) {
-            User author = message.getAuthor();
-            if (author != null) {
-                this.requestManager.queueRequest(guildId, author.getId());
-            }
-            List<User> mentions = message.getMentions();
-            if (mentions != null) {
-                Iterator<T> it = mentions.iterator();
-                while (it.hasNext()) {
-                    this.requestManager.queueRequest(guildId, ((User) it.next()).getId());
-                }
-            }
-        }
-    }
-
-    @StoreThread
-    private final void sendRequests(long guildId, List<Long> userIds) {
-        StoreGatewayConnection.requestGuildMembers$default(this.collector.getGatewaySocket(), guildId, null, userIds, null, 2, null);
     }
 
     @StoreThread
@@ -183,5 +161,27 @@ public final class StoreGuildMemberRequester extends Store {
 
     public final void queueRequest(long guildId, long userId) {
         this.dispatcher.schedule(new C60341(guildId, userId));
+    }
+
+    @StoreThread
+    private final void requestForMessages(long guildId, Iterable<Message> messages) {
+        for (Message message : messages) {
+            User author = message.getAuthor();
+            if (author != null) {
+                this.requestManager.queueRequest(guildId, author.getId());
+            }
+            List<User> mentions = message.getMentions();
+            if (mentions != null) {
+                Iterator<T> it = mentions.iterator();
+                while (it.hasNext()) {
+                    this.requestManager.queueRequest(guildId, ((User) it.next()).getId());
+                }
+            }
+        }
+    }
+
+    @StoreThread
+    private final void sendRequests(long guildId, List<Long> userIds) {
+        StoreGatewayConnection.requestGuildMembers$default(this.collector.getGatewaySocket(), guildId, null, userIds, null, 2, null);
     }
 }

@@ -34,13 +34,13 @@ public final class GuildRoleSubscriptionOnboardingUpsellManager {
         this.countryAllowlist = new CreatorMonetizationCountryAllowlist(storeExperiments);
     }
 
-    private final boolean hasBeenShown() {
-        return this.sharedPreferences.getBoolean(SHOWN_CACHE_KEY, false);
-    }
-
     public final boolean canShow(Guild guild) {
         C12238m.checkNotNullParameter(guild, "guild");
         return (hasBeenShown() || guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE) || guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE_DISABLED) || !this.featureFlag.canGuildSeeGuildRoleSubscriptionSettings(guild.getId(), this.countryAllowlist)) ? false : true;
+    }
+
+    private final boolean hasBeenShown() {
+        return this.sharedPreferences.getBoolean(SHOWN_CACHE_KEY, false);
     }
 
     public final void setHasBeenShown() {

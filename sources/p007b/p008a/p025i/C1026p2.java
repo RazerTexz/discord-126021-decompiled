@@ -37,6 +37,12 @@ public final class C1026p2 implements ViewBinding {
         this.f1133d = linkifiedTextView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f1130a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C1026p2 m203a(@NonNull View view) {
@@ -54,11 +60,5 @@ public final class C1026p2 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f1130a;
     }
 }

@@ -33,6 +33,10 @@ public final class GuildDeleteFeedbackSubmitter implements FeedbackSubmitter {
         this.pendingFeedback = guildDeleteFeedback;
     }
 
+    public final PendingFeedback.GuildDeleteFeedback getPendingFeedback() {
+        return this.pendingFeedback;
+    }
+
     private final String getReasonFromFeedbackIssue(FeedbackIssue issue) {
         if (issue != null) {
             switch (issue.ordinal()) {
@@ -53,10 +57,6 @@ public final class GuildDeleteFeedbackSubmitter implements FeedbackSubmitter {
             }
         }
         return null;
-    }
-
-    public final PendingFeedback.GuildDeleteFeedback getPendingFeedback() {
-        return this.pendingFeedback;
     }
 
     public final void skip() {

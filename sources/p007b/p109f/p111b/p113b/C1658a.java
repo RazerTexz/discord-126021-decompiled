@@ -33,9 +33,6 @@ import p007b.p109f.p161j.p168c.C1861h;
 /* JADX INFO: loaded from: classes.dex */
 public class C1658a implements InterfaceC1660c {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f3021a = TimeUnit.MINUTES.toMillis(30);
-
     /* JADX INFO: renamed from: b */
     public static final /* synthetic */ int f3022b = 0;
 
@@ -54,41 +51,13 @@ public class C1658a implements InterfaceC1660c {
     /* JADX INFO: renamed from: g */
     public final InterfaceC1713a f3027g;
 
-    /* JADX INFO: renamed from: b.f.b.b.a$b */
-    /* JADX INFO: compiled from: DefaultDiskStorage.java */
-    public class b implements InterfaceC1677a {
-
-        /* JADX INFO: renamed from: a */
-        public final List<InterfaceC1660c.a> f3028a = new ArrayList();
-
-        public b(a aVar) {
-        }
-
-        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
-        /* JADX INFO: renamed from: a */
-        public void mo942a(File file) {
-            d dVarM931h = C1658a.m931h(C1658a.this, file);
-            if (dVarM931h == null || dVarM931h.f3034a != ".cnt") {
-                return;
-            }
-            this.f3028a.add(new c(dVarM931h.f3035b, file, null));
-        }
-
-        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
-        /* JADX INFO: renamed from: b */
-        public void mo943b(File file) {
-        }
-
-        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
-        /* JADX INFO: renamed from: c */
-        public void mo944c(File file) {
-        }
-    }
+    /* JADX INFO: renamed from: a */
+    public static final long f3021a = TimeUnit.MINUTES.toMillis(30);
 
     /* JADX INFO: renamed from: b.f.b.b.a$c */
     /* JADX INFO: compiled from: DefaultDiskStorage.java */
     @VisibleForTesting
-    public static class c implements InterfaceC1660c.a {
+    public class c implements InterfaceC1660c.a {
 
         /* JADX INFO: renamed from: a */
         public final String f3030a;
@@ -111,15 +80,6 @@ public class C1658a implements InterfaceC1660c {
         }
 
         @Override // p007b.p109f.p111b.p113b.InterfaceC1660c.a
-        /* JADX INFO: renamed from: a */
-        public long mo945a() {
-            if (this.f3033d < 0) {
-                this.f3033d = this.f3031b.f3016a.lastModified();
-            }
-            return this.f3033d;
-        }
-
-        @Override // p007b.p109f.p111b.p113b.InterfaceC1660c.a
         public String getId() {
             return this.f3030a;
         }
@@ -131,11 +91,20 @@ public class C1658a implements InterfaceC1660c {
             }
             return this.f3032c;
         }
+
+        @Override // p007b.p109f.p111b.p113b.InterfaceC1660c.a
+        /* JADX INFO: renamed from: a */
+        public long mo945a() {
+            if (this.f3033d < 0) {
+                this.f3033d = this.f3031b.f3016a.lastModified();
+            }
+            return this.f3033d;
+        }
     }
 
     /* JADX INFO: renamed from: b.f.b.b.a$d */
     /* JADX INFO: compiled from: DefaultDiskStorage.java */
-    public static class d {
+    public class d {
 
         /* JADX INFO: renamed from: a */
         public final String f3034a;
@@ -158,7 +127,7 @@ public class C1658a implements InterfaceC1660c {
 
     /* JADX INFO: renamed from: b.f.b.b.a$e */
     /* JADX INFO: compiled from: DefaultDiskStorage.java */
-    public static class e extends IOException {
+    public class e extends IOException {
         public e(long j, long j2) {
             super("File was not written completely. Expected: " + j + ", found: " + j2);
         }
@@ -357,6 +326,11 @@ public class C1658a implements InterfaceC1660c {
         this.f3027g = C1715c.f3133a;
     }
 
+    @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
+    public boolean isExternal() {
+        return this.f3024d;
+    }
+
     /* JADX WARN: Code duplicated, block: B:18:0x003d  */
     /* JADX INFO: renamed from: h */
     public static d m931h(C1658a c1658a, File file) {
@@ -391,6 +365,32 @@ public class C1658a implements InterfaceC1660c {
             return dVar;
         }
         return null;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final long m939i(File file) {
+        if (!file.exists()) {
+            return 0L;
+        }
+        long length = file.length();
+        if (file.delete()) {
+            return length;
+        }
+        return -1L;
+    }
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: j */
+    public File m940j(String str) {
+        return new File(C1643a.m823K(C1643a.m833U(m941k(str)), File.separator, str, ".cnt"));
+    }
+
+    /* JADX INFO: renamed from: k */
+    public final String m941k(String str) {
+        String strValueOf = String.valueOf(Math.abs(str.hashCode() % 100));
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.f3025e);
+        return C1643a.m822J(sb, File.separator, strValueOf);
     }
 
     @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
@@ -463,34 +463,34 @@ public class C1658a implements InterfaceC1660c {
         return m939i(((c) aVar).f3031b.f3016a);
     }
 
-    /* JADX INFO: renamed from: i */
-    public final long m939i(File file) {
-        if (!file.exists()) {
-            return 0L;
+    /* JADX INFO: renamed from: b.f.b.b.a$b */
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    public class b implements InterfaceC1677a {
+
+        /* JADX INFO: renamed from: a */
+        public final List<InterfaceC1660c.a> f3028a = new ArrayList();
+
+        public b(a aVar) {
         }
-        long length = file.length();
-        if (file.delete()) {
-            return length;
+
+        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
+        /* JADX INFO: renamed from: a */
+        public void mo942a(File file) {
+            d dVarM931h = C1658a.m931h(C1658a.this, file);
+            if (dVarM931h == null || dVarM931h.f3034a != ".cnt") {
+                return;
+            }
+            this.f3028a.add(new c(dVarM931h.f3035b, file, null));
         }
-        return -1L;
-    }
 
-    @Override // p007b.p109f.p111b.p113b.InterfaceC1660c
-    public boolean isExternal() {
-        return this.f3024d;
-    }
+        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
+        /* JADX INFO: renamed from: b */
+        public void mo943b(File file) {
+        }
 
-    @VisibleForTesting
-    /* JADX INFO: renamed from: j */
-    public File m940j(String str) {
-        return new File(C1643a.m823K(C1643a.m833U(m941k(str)), File.separator, str, ".cnt"));
-    }
-
-    /* JADX INFO: renamed from: k */
-    public final String m941k(String str) {
-        String strValueOf = String.valueOf(Math.abs(str.hashCode() % 100));
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.f3025e);
-        return C1643a.m822J(sb, File.separator, strValueOf);
+        @Override // p007b.p109f.p115d.p118c.InterfaceC1677a
+        /* JADX INFO: renamed from: c */
+        public void mo944c(File file) {
+        }
     }
 }

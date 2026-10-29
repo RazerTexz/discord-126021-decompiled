@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppExceptionThrown.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppExceptionThrown implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence stacktrace = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_exception_thrown";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAppExceptionThrown) && C12238m.areEqual(this.stacktrace, ((TrackAppExceptionThrown) other).stacktrace);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

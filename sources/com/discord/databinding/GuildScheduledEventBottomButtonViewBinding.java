@@ -52,6 +52,12 @@ public final class GuildScheduledEventBottomButtonViewBinding implements ViewBin
         this.f15132g = imageView4;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15126a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static GuildScheduledEventBottomButtonViewBinding m8386a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -85,11 +91,5 @@ public final class GuildScheduledEventBottomButtonViewBinding implements ViewBin
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15126a;
     }
 }

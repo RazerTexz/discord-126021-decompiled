@@ -140,6 +140,14 @@ public class PriorityGoalRow extends ArrayRow {
         this.mCache = cache;
     }
 
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
+    public void addError(SolverVariable solverVariable) {
+        this.accessor.init(solverVariable);
+        this.accessor.reset();
+        solverVariable.goalStrengthVector[solverVariable.strength] = 1.0f;
+        addToGoal(solverVariable);
+    }
+
     private final void addToGoal(SolverVariable solverVariable) {
         int i;
         int i2 = this.numGoals + 1;
@@ -178,37 +186,6 @@ public class PriorityGoalRow extends ArrayRow {
         solverVariable.addToRow(this);
     }
 
-    private final void removeGoal(SolverVariable solverVariable) {
-        int i = 0;
-        while (i < this.numGoals) {
-            if (this.arrayGoals[i] == solverVariable) {
-                while (true) {
-                    int i2 = this.numGoals;
-                    if (i >= i2 - 1) {
-                        this.numGoals = i2 - 1;
-                        solverVariable.inGoal = false;
-                        return;
-                    } else {
-                        SolverVariable[] solverVariableArr = this.arrayGoals;
-                        int i3 = i + 1;
-                        solverVariableArr[i] = solverVariableArr[i3];
-                        i = i3;
-                    }
-                }
-            } else {
-                i++;
-            }
-        }
-    }
-
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
-    public void addError(SolverVariable solverVariable) {
-        this.accessor.init(solverVariable);
-        this.accessor.reset();
-        solverVariable.goalStrengthVector[solverVariable.strength] = 1.0f;
-        addToGoal(solverVariable);
-    }
-
     @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public void clear() {
         this.numGoals = 0;
@@ -241,6 +218,29 @@ public class PriorityGoalRow extends ArrayRow {
     @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public boolean isEmpty() {
         return this.numGoals == 0;
+    }
+
+    private final void removeGoal(SolverVariable solverVariable) {
+        int i = 0;
+        while (i < this.numGoals) {
+            if (this.arrayGoals[i] == solverVariable) {
+                while (true) {
+                    int i2 = this.numGoals;
+                    if (i >= i2 - 1) {
+                        this.numGoals = i2 - 1;
+                        solverVariable.inGoal = false;
+                        return;
+                    } else {
+                        SolverVariable[] solverVariableArr = this.arrayGoals;
+                        int i3 = i + 1;
+                        solverVariableArr[i] = solverVariableArr[i3];
+                        i = i3;
+                    }
+                }
+            } else {
+                i++;
+            }
+        }
     }
 
     @Override // androidx.constraintlayout.solver.ArrayRow

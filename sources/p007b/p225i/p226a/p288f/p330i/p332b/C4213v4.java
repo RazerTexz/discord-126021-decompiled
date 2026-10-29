@@ -16,12 +16,12 @@ public final class C4213v4 extends Thread {
     /* JADX INFO: renamed from: k */
     public final BlockingQueue<C4180s4<?>> f11301k;
 
+    /* JADX INFO: renamed from: m */
+    public final /* synthetic */ C4169r4 f11303m;
+
     /* JADX INFO: renamed from: l */
     @GuardedBy("threadLifeCycleLock")
     public boolean f11302l = false;
-
-    /* JADX INFO: renamed from: m */
-    public final /* synthetic */ C4169r4 f11303m;
 
     public C4213v4(C4169r4 c4169r4, String str, BlockingQueue<C4180s4<?>> blockingQueue) {
         this.f11303m = c4169r4;

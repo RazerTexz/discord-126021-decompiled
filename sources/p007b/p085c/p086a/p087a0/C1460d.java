@@ -207,7 +207,7 @@ public class C1460d {
     /* JADX INFO: renamed from: b.c.a.a0.d$a */
     /* JADX INFO: compiled from: ArrayBuilders.java */
     /* JADX INFO: loaded from: classes3.dex */
-    public static class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Class f2222a;
@@ -1223,27 +1223,25 @@ public class C1460d {
     /* JADX INFO: renamed from: V1 */
     public static <TInput, TResult, TException extends Throwable> TResult m482V1(int i, TInput tinput, C2415b<TInput, TResult, TException> c2415b, InterfaceC2465a<TInput, TResult> interfaceC2465a) throws Throwable {
         ?? r0;
-        boolean z2;
         if (i < 1) {
             return (TResult) c2415b.m2295a(tinput);
         }
-        while (true) {
+        do {
             r0 = (TResult) c2415b.m2295a(tinput);
             C2417d.a aVar = (C2417d.a) tinput;
             C2417d.b bVar = (C2417d.b) r0;
             URL url = bVar.f5143b;
             if (url != null) {
                 m486X("CctTransportBackend", "Following redirect to: %s", url);
-                z2 = (TInput) new C2417d.a(bVar.f5143b, aVar.f5140b, aVar.f5141c);
+                tinput = (TInput) new C2417d.a(bVar.f5143b, aVar.f5140b, aVar.f5141c);
             } else {
                 tinput = 0;
             }
-            if (tinput == 0 || (i = i - 1) < 1) {
-                tinput = z2;
+            if (tinput == 0) {
                 break;
             }
-            tinput = z2;
-        }
+            i--;
+        } while (i >= 1);
         return r0;
     }
 

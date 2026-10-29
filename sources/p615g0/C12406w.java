@@ -27,16 +27,6 @@ public final class C12406w extends C12385b {
     }
 
     @Override // p615g0.C12385b
-    /* JADX INFO: renamed from: k */
-    public IOException mo10296k(IOException iOException) {
-        SocketTimeoutException socketTimeoutException = new SocketTimeoutException("timeout");
-        if (iOException != null) {
-            socketTimeoutException.initCause(iOException);
-        }
-        return socketTimeoutException;
-    }
-
-    @Override // p615g0.C12385b
     /* JADX INFO: renamed from: l */
     public void mo10191l() {
         try {
@@ -57,5 +47,15 @@ public final class C12406w extends C12385b {
             sbM833U2.append(this.f26132m);
             logger2.log(level2, sbM833U2.toString(), (Throwable) e2);
         }
+    }
+
+    @Override // p615g0.C12385b
+    /* JADX INFO: renamed from: k */
+    public IOException mo10296k(IOException iOException) {
+        SocketTimeoutException socketTimeoutException = new SocketTimeoutException("timeout");
+        if (iOException != null) {
+            socketTimeoutException.initCause(iOException);
+        }
+        return socketTimeoutException;
     }
 }

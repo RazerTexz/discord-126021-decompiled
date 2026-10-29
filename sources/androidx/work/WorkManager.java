@@ -20,20 +20,6 @@ public abstract class WorkManager {
     }
 
     @NonNull
-    @Deprecated
-    public static WorkManager getInstance() {
-        WorkManagerImpl workManagerImpl = WorkManagerImpl.getInstance();
-        if (workManagerImpl != null) {
-            return workManagerImpl;
-        }
-        throw new IllegalStateException("WorkManager is not initialized properly.  The most likely cause is that you disabled WorkManagerInitializer in your manifest but forgot to call WorkManager#initialize in your Application#onCreate or a ContentProvider.");
-    }
-
-    public static void initialize(@NonNull Context context, @NonNull Configuration configuration) {
-        WorkManagerImpl.initialize(context, configuration);
-    }
-
-    @NonNull
     public final WorkContinuation beginUniqueWork(@NonNull String str, @NonNull ExistingWorkPolicy existingWorkPolicy, @NonNull OneTimeWorkRequest oneTimeWorkRequest) {
         return beginUniqueWork(str, existingWorkPolicy, Collections.singletonList(oneTimeWorkRequest));
     }
@@ -84,6 +70,16 @@ public abstract class WorkManager {
     public abstract Operation enqueueUniqueWork(@NonNull String str, @NonNull ExistingWorkPolicy existingWorkPolicy, @NonNull List<OneTimeWorkRequest> list);
 
     @NonNull
+    @Deprecated
+    public static WorkManager getInstance() {
+        WorkManagerImpl workManagerImpl = WorkManagerImpl.getInstance();
+        if (workManagerImpl != null) {
+            return workManagerImpl;
+        }
+        throw new IllegalStateException("WorkManager is not initialized properly.  The most likely cause is that you disabled WorkManagerInitializer in your manifest but forgot to call WorkManager#initialize in your Application#onCreate or a ContentProvider.");
+    }
+
+    @NonNull
     public abstract InterfaceFutureC4539a<Long> getLastCancelAllTimeMillis();
 
     @NonNull
@@ -112,6 +108,10 @@ public abstract class WorkManager {
 
     @NonNull
     public abstract LiveData<List<WorkInfo>> getWorkInfosLiveData(@NonNull WorkQuery workQuery);
+
+    public static void initialize(@NonNull Context context, @NonNull Configuration configuration) {
+        WorkManagerImpl.initialize(context, configuration);
+    }
 
     @NonNull
     public abstract Operation pruneWork();

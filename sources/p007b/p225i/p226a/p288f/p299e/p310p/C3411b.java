@@ -9,12 +9,12 @@ import androidx.annotation.RecentlyNonNull;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3411b {
 
-    /* JADX INFO: renamed from: a */
-    public static C3411b f9606a = new C3411b();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public C3410a f9607b = null;
+
+    /* JADX INFO: renamed from: a */
+    public static C3411b f9606a = new C3411b();
 
     @RecentlyNonNull
     /* JADX INFO: renamed from: a */

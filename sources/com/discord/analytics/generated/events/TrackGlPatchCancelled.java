@@ -13,11 +13,11 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackGlPatchCancelled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackGlPatchCancelled implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver, TrackDispatchPatchReceiver, TrackDispatchStatsReceiver {
-    private final transient String analyticsSchemaTypeName = "gl_patch_cancelled";
     private TrackBase trackBase;
     private TrackDispatchBase trackDispatchBase;
     private TrackDispatchPatch trackDispatchPatch;
     private TrackDispatchStats trackDispatchStats;
+    private final transient String analyticsSchemaTypeName = "gl_patch_cancelled";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

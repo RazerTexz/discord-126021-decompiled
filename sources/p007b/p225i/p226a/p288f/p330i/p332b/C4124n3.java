@@ -63,12 +63,6 @@ public final class C4124n3 extends AbstractC3974a5 {
         this.f10984h = j;
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
-    /* JADX INFO: renamed from: v */
-    public final boolean mo5499v() {
-        return true;
-    }
-
     /* JADX WARN: Code duplicated, block: B:125:0x02d6  */
     /* JADX WARN: Code duplicated, block: B:126:0x02d7 A[Catch: NotFoundException -> 0x02dc, TRY_LEAVE, TryCatch #2 {NotFoundException -> 0x02dc, blocks: (B:123:0x02c4, B:126:0x02d7), top: B:155:0x02c4 }] */
     /* JADX WARN: Code duplicated, block: B:131:0x02ea  */
@@ -292,5 +286,11 @@ public final class C4124n3 extends AbstractC3974a5 {
         } else {
             this.f10986j = 0;
         }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
+    /* JADX INFO: renamed from: v */
+    public final boolean mo5499v() {
+        return true;
     }
 }

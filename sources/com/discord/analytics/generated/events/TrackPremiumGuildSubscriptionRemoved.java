@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumGuildSubscriptionRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long currentTier = null;
     private final Long guildId = null;
     private final Long premiumGuildSubscriptionId = null;
-    private final Long currentTier = null;
-    private final Long previousTier = null;
     private final Long premiumSubscriptionCount = null;
+    private final Long previousTier = null;
     private final Long tierLost = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "premium_guild_subscription_removed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements An
         }
         TrackPremiumGuildSubscriptionRemoved trackPremiumGuildSubscriptionRemoved = (TrackPremiumGuildSubscriptionRemoved) other;
         return C12238m.areEqual(this.guildId, trackPremiumGuildSubscriptionRemoved.guildId) && C12238m.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionRemoved.premiumGuildSubscriptionId) && C12238m.areEqual(this.currentTier, trackPremiumGuildSubscriptionRemoved.currentTier) && C12238m.areEqual(this.previousTier, trackPremiumGuildSubscriptionRemoved.previousTier) && C12238m.areEqual(this.premiumSubscriptionCount, trackPremiumGuildSubscriptionRemoved.premiumSubscriptionCount) && C12238m.areEqual(this.tierLost, trackPremiumGuildSubscriptionRemoved.tierLost);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

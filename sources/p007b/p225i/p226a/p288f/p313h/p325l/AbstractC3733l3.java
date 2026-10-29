@@ -80,6 +80,27 @@ public abstract class AbstractC3733l3<MessageType extends AbstractC3733l3<Messag
         }
     }
 
+    /* JADX INFO: renamed from: d */
+    public final byte[] m5052d() {
+        try {
+            AbstractC3851u4 abstractC3851u4 = (AbstractC3851u4) this;
+            int iMo4606g = abstractC3851u4.mo4606g();
+            byte[] bArr = new byte[iMo4606g];
+            Logger logger = zzhi.f20628a;
+            zzhi.C10804a c10804a = new zzhi.C10804a(bArr, iMo4606g);
+            abstractC3851u4.mo4608i(c10804a);
+            if (c10804a.mo9083a() == 0) {
+                return bArr;
+            }
+            throw new IllegalStateException("Did not write as much data as expected.");
+        } catch (IOException e) {
+            String name = getClass().getName();
+            StringBuilder sbM831S = C1643a.m831S(name.length() + 62 + 10, "Serializing ", name, " to a ", "byte array");
+            sbM831S.append(" threw an IOException (should never happen).");
+            throw new RuntimeException(sbM831S.toString(), e);
+        }
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3612c6
     /* JADX INFO: renamed from: b */
     public final AbstractC3837t3 mo4604b() {
@@ -98,27 +119,6 @@ public abstract class AbstractC3733l3<MessageType extends AbstractC3733l3<Messag
         } catch (IOException e) {
             String name = getClass().getName();
             StringBuilder sbM831S = C1643a.m831S(name.length() + 62 + 10, "Serializing ", name, " to a ", "ByteString");
-            sbM831S.append(" threw an IOException (should never happen).");
-            throw new RuntimeException(sbM831S.toString(), e);
-        }
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final byte[] m5052d() {
-        try {
-            AbstractC3851u4 abstractC3851u4 = (AbstractC3851u4) this;
-            int iMo4606g = abstractC3851u4.mo4606g();
-            byte[] bArr = new byte[iMo4606g];
-            Logger logger = zzhi.f20628a;
-            zzhi.C10804a c10804a = new zzhi.C10804a(bArr, iMo4606g);
-            abstractC3851u4.mo4608i(c10804a);
-            if (c10804a.mo9083a() == 0) {
-                return bArr;
-            }
-            throw new IllegalStateException("Did not write as much data as expected.");
-        } catch (IOException e) {
-            String name = getClass().getName();
-            StringBuilder sbM831S = C1643a.m831S(name.length() + 62 + 10, "Serializing ", name, " to a ", "byte array");
             sbM831S.append(" threw an IOException (should never happen).");
             throw new RuntimeException(sbM831S.toString(), e);
         }

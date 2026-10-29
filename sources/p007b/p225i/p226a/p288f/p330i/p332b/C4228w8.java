@@ -29,12 +29,6 @@ public final class C4228w8 extends AbstractC3974a5 {
         this.f11331f = new C4239x8(this);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
-    /* JADX INFO: renamed from: v */
-    public final boolean mo5499v() {
-        return false;
-    }
-
     /* JADX INFO: renamed from: w */
     public final boolean m5959w(boolean z2, boolean z3, long j) {
         return this.f11330e.m5584a(z2, z3, j);
@@ -47,5 +41,11 @@ public final class C4228w8 extends AbstractC3974a5 {
         if (this.f11328c == null) {
             this.f11328c = new HandlerC3604bc(Looper.getMainLooper());
         }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC3974a5
+    /* JADX INFO: renamed from: v */
+    public final boolean mo5499v() {
+        return false;
     }
 }

@@ -31,6 +31,14 @@ public final class C12343j implements InterfaceC12344k {
         this.f25806b = aVar;
     }
 
+    /* JADX INFO: renamed from: e */
+    public final synchronized InterfaceC12344k m10341e(SSLSocket sSLSocket) {
+        if (this.f25805a == null && this.f25806b.mo10339a(sSLSocket)) {
+            this.f25805a = this.f25806b.mo10340b(sSLSocket);
+        }
+        return this.f25805a;
+    }
+
     @Override // p600f0.p601e0.p609k.p610i.InterfaceC12344k
     /* JADX INFO: renamed from: a */
     public boolean mo10334a(SSLSocket sSLSocket) {
@@ -64,13 +72,5 @@ public final class C12343j implements InterfaceC12344k {
         if (interfaceC12344kM10341e != null) {
             interfaceC12344kM10341e.mo10337d(sSLSocket, str, list);
         }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final synchronized InterfaceC12344k m10341e(SSLSocket sSLSocket) {
-        if (this.f25805a == null && this.f25806b.mo10339a(sSLSocket)) {
-            this.f25805a = this.f25806b.mo10340b(sSLSocket);
-        }
-        return this.f25805a;
     }
 }

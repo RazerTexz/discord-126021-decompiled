@@ -14,7 +14,7 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
     private final String email;
     private final Long guildId;
 
-    public static class Creator implements Parcelable.Creator<HubAuthenticationArgs> {
+    public final class Creator implements Parcelable.Creator<HubAuthenticationArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubAuthenticationArgs createFromParcel(Parcel parcel) {
@@ -50,16 +50,6 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
         return hubAuthenticationArgs.copy(str, l);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
     public final HubAuthenticationArgs copy(String email, Long guildId) {
         C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
         return new HubAuthenticationArgs(email, guildId);
@@ -81,8 +71,18 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
         return C12238m.areEqual(this.email, hubAuthenticationArgs.email) && C12238m.areEqual(this.guildId, hubAuthenticationArgs.guildId);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getEmail() {
         return this.email;
+    }
+
+    public final String getEmail() {
+        return this.email;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Long getGuildId() {
+        return this.guildId;
     }
 
     public final Long getGuildId() {

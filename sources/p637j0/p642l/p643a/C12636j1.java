@@ -25,9 +25,6 @@ import p658rx.functions.Func0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12636j1<T> extends AbstractC12757b<T> implements Subscription {
 
-    /* JADX INFO: renamed from: k */
-    public static final Func0 f26857k = new a();
-
     /* JADX INFO: renamed from: l */
     public final Observable<? extends T> f26858l;
 
@@ -37,9 +34,12 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
     /* JADX INFO: renamed from: n */
     public final Func0<? extends e<T>> f26860n;
 
+    /* JADX INFO: renamed from: k */
+    public static final Func0 f26857k = new a();
+
     /* JADX INFO: renamed from: j0.l.a.j1$a */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static class a implements Func0 {
+    public final class a implements Func0 {
         @Override // p658rx.functions.Func0, java.util.concurrent.Callable
         public Object call() {
             return new h(16);
@@ -48,7 +48,7 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
 
     /* JADX INFO: renamed from: j0.l.a.j1$b */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static class b<T> extends AtomicReference<d> implements e<T> {
+    public class b<T> extends AtomicReference<d> implements e<T> {
         private static final long serialVersionUID = 2346567790059478686L;
         public long index;
         public int size;
@@ -60,10 +60,6 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
             set(dVar);
         }
 
-        /* JADX INFO: renamed from: a */
-        public void mo10762a() {
-        }
-
         @Override // p637j0.p642l.p643a.C12636j1.e
         public final void complete() {
             Object obj = C12614e.f26768a;
@@ -73,6 +69,10 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
             this.tail.set(dVar);
             this.tail = dVar;
             this.size++;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public void mo10762a() {
         }
 
         @Override // p637j0.p642l.p643a.C12636j1.e
@@ -167,139 +167,9 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
         }
     }
 
-    /* JADX INFO: renamed from: j0.l.a.j1$c */
-    /* JADX INFO: compiled from: OperatorReplay.java */
-    public static final class c<T> extends AtomicLong implements Producer, Subscription {
-        private static final long serialVersionUID = -4453897557930727610L;
-        public Subscriber<? super T> child;
-        public boolean emitting;
-        public Object index;
-        public boolean missed;
-        public final f<T> parent;
-        public final AtomicLong totalRequested = new AtomicLong();
-
-        public c(f<T> fVar, Subscriber<? super T> subscriber) {
-            this.parent = fVar;
-            this.child = subscriber;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m10766a(long j) {
-            long j2;
-            long j3;
-            do {
-                j2 = this.totalRequested.get();
-                j3 = j2 + j;
-                if (j3 < 0) {
-                    j3 = RecyclerView.FOREVER_NS;
-                }
-            } while (!this.totalRequested.compareAndSet(j2, j3));
-        }
-
-        /* JADX INFO: renamed from: b */
-        public long m10767b(long j) {
-            long j2;
-            long j3;
-            if (j <= 0) {
-                throw new IllegalArgumentException("Cant produce zero or less");
-            }
-            do {
-                j2 = get();
-                if (j2 == Long.MIN_VALUE) {
-                    return Long.MIN_VALUE;
-                }
-                j3 = j2 - j;
-                if (j3 < 0) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("More produced (");
-                    sb.append(j);
-                    sb.append(") than requested (");
-                    throw new IllegalStateException(C1643a.m815C(sb, j2, ")"));
-                }
-            } while (!compareAndSet(j2, j3));
-            return j3;
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return get() == Long.MIN_VALUE;
-        }
-
-        @Override // p658rx.Producer
-        /* JADX INFO: renamed from: j */
-        public void mo10704j(long j) {
-            long j2;
-            long j3;
-            if (j < 0) {
-                return;
-            }
-            do {
-                j2 = get();
-                if (j2 == Long.MIN_VALUE) {
-                    return;
-                }
-                if (j2 >= 0 && j == 0) {
-                    return;
-                }
-                j3 = j2 + j;
-                if (j3 < 0) {
-                    j3 = RecyclerView.FOREVER_NS;
-                }
-            } while (!compareAndSet(j2, j3));
-            m10766a(j);
-            this.parent.m10770c(this);
-            this.parent.f26862k.mo10764h(this);
-        }
-
-        @Override // p658rx.Subscription
-        public void unsubscribe() {
-            if (get() == Long.MIN_VALUE || getAndSet(Long.MIN_VALUE) == Long.MIN_VALUE) {
-                return;
-            }
-            f<T> fVar = this.parent;
-            if (!fVar.f26864m) {
-                synchronized (fVar.f26865n) {
-                    if (!fVar.f26864m) {
-                        C12717g<c<T>> c12717g = fVar.f26865n;
-                        c<T>[] cVarArr = c12717g.f27280d;
-                        int i = c12717g.f27277a;
-                        int iM10814b = C12717g.m10814b(hashCode()) & i;
-                        c<T> cVar = cVarArr[iM10814b];
-                        boolean z2 = true;
-                        if (cVar != null) {
-                            if (!cVar.equals(this)) {
-                                while (true) {
-                                    iM10814b = (iM10814b + 1) & i;
-                                    c<T> cVar2 = cVarArr[iM10814b];
-                                    if (cVar2 == null) {
-                                        break;
-                                    } else if (cVar2.equals(this)) {
-                                        c12717g.m10816c(iM10814b, cVarArr, i);
-                                        break;
-                                    }
-                                }
-                            } else {
-                                c12717g.m10816c(iM10814b, cVarArr, i);
-                            }
-                        }
-                        if (fVar.f26865n.f27278b != 0) {
-                            z2 = false;
-                        }
-                        if (z2) {
-                            fVar.f26866o = f.f26861j;
-                        }
-                        fVar.f26867p++;
-                    }
-                }
-            }
-            this.parent.m10770c(this);
-            this.child = null;
-        }
-    }
-
     /* JADX INFO: renamed from: j0.l.a.j1$d */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static final class d extends AtomicReference<d> {
+    public final class d extends AtomicReference<d> {
         private static final long serialVersionUID = 245354315435971818L;
         public final long index;
         public final Object value;
@@ -327,10 +197,7 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
 
     /* JADX INFO: renamed from: j0.l.a.j1$f */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static final class f<T> extends Subscriber<T> implements Subscription {
-
-        /* JADX INFO: renamed from: j */
-        public static final c[] f26861j = new c[0];
+    public final class f<T> extends Subscriber<T> implements Subscription {
 
         /* JADX INFO: renamed from: k */
         public final e<T> f26862k;
@@ -367,6 +234,9 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
 
         /* JADX INFO: renamed from: y */
         public boolean f26876y;
+
+        /* JADX INFO: renamed from: j */
+        public static final c[] f26861j = new c[0];
 
         /* JADX INFO: renamed from: n */
         public final C12717g<c<T>> f26865n = new C12717g<>();
@@ -570,7 +440,7 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
 
     /* JADX INFO: renamed from: j0.l.a.j1$g */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static final class g<T> extends b<T> {
+    public final class g<T> extends b<T> {
         private static final long serialVersionUID = -5898283885385201806L;
         public final int limit;
 
@@ -594,7 +464,7 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
 
     /* JADX INFO: renamed from: j0.l.a.j1$h */
     /* JADX INFO: compiled from: OperatorReplay.java */
-    public static final class h<T> extends ArrayList<Object> implements e<T> {
+    public final class h<T> extends ArrayList<Object> implements e<T> {
         private static final long serialVersionUID = 7063189396499112664L;
         public volatile int size;
 
@@ -719,5 +589,135 @@ public final class C12636j1<T> extends AbstractC12757b<T> implements Subscriptio
     @Override // p658rx.Subscription
     public void unsubscribe() {
         this.f26859m.lazySet(null);
+    }
+
+    /* JADX INFO: renamed from: j0.l.a.j1$c */
+    /* JADX INFO: compiled from: OperatorReplay.java */
+    public final class c<T> extends AtomicLong implements Producer, Subscription {
+        public Subscriber<? super T> child;
+        public boolean emitting;
+        public Object index;
+        public boolean missed;
+        public final f<T> parent;
+        private static final long serialVersionUID = -4453897557930727610L;
+        public final AtomicLong totalRequested = new AtomicLong();
+
+        public c(f<T> fVar, Subscriber<? super T> subscriber) {
+            this.parent = fVar;
+            this.child = subscriber;
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return get() == Long.MIN_VALUE;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public void m10766a(long j) {
+            long j2;
+            long j3;
+            do {
+                j2 = this.totalRequested.get();
+                j3 = j2 + j;
+                if (j3 < 0) {
+                    j3 = RecyclerView.FOREVER_NS;
+                }
+            } while (!this.totalRequested.compareAndSet(j2, j3));
+        }
+
+        /* JADX INFO: renamed from: b */
+        public long m10767b(long j) {
+            long j2;
+            long j3;
+            if (j <= 0) {
+                throw new IllegalArgumentException("Cant produce zero or less");
+            }
+            do {
+                j2 = get();
+                if (j2 == Long.MIN_VALUE) {
+                    return Long.MIN_VALUE;
+                }
+                j3 = j2 - j;
+                if (j3 < 0) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("More produced (");
+                    sb.append(j);
+                    sb.append(") than requested (");
+                    throw new IllegalStateException(C1643a.m815C(sb, j2, ")"));
+                }
+            } while (!compareAndSet(j2, j3));
+            return j3;
+        }
+
+        @Override // p658rx.Producer
+        /* JADX INFO: renamed from: j */
+        public void mo10704j(long j) {
+            long j2;
+            long j3;
+            if (j < 0) {
+                return;
+            }
+            do {
+                j2 = get();
+                if (j2 == Long.MIN_VALUE) {
+                    return;
+                }
+                if (j2 >= 0 && j == 0) {
+                    return;
+                }
+                j3 = j2 + j;
+                if (j3 < 0) {
+                    j3 = RecyclerView.FOREVER_NS;
+                }
+            } while (!compareAndSet(j2, j3));
+            m10766a(j);
+            this.parent.m10770c(this);
+            this.parent.f26862k.mo10764h(this);
+        }
+
+        @Override // p658rx.Subscription
+        public void unsubscribe() {
+            if (get() == Long.MIN_VALUE || getAndSet(Long.MIN_VALUE) == Long.MIN_VALUE) {
+                return;
+            }
+            f<T> fVar = this.parent;
+            if (!fVar.f26864m) {
+                synchronized (fVar.f26865n) {
+                    if (!fVar.f26864m) {
+                        C12717g<c<T>> c12717g = fVar.f26865n;
+                        c<T>[] cVarArr = c12717g.f27280d;
+                        int i = c12717g.f27277a;
+                        int iM10814b = C12717g.m10814b(hashCode()) & i;
+                        c<T> cVar = cVarArr[iM10814b];
+                        boolean z2 = true;
+                        if (cVar != null) {
+                            if (!cVar.equals(this)) {
+                                while (true) {
+                                    iM10814b = (iM10814b + 1) & i;
+                                    c<T> cVar2 = cVarArr[iM10814b];
+                                    if (cVar2 == null) {
+                                        break;
+                                    } else if (cVar2.equals(this)) {
+                                        c12717g.m10816c(iM10814b, cVarArr, i);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                c12717g.m10816c(iM10814b, cVarArr, i);
+                            }
+                        }
+                        if (fVar.f26865n.f27278b != 0) {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            fVar.f26866o = f.f26861j;
+                        }
+                        fVar.f26867p++;
+                    }
+                }
+            }
+            this.parent.m10770c(this);
+            this.child = null;
+        }
     }
 }

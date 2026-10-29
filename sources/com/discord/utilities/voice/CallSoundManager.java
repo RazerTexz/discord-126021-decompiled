@@ -51,13 +51,78 @@ public final class CallSoundManager {
     private List<Long> streamingUserIds;
     private Long voiceChannelId;
 
+    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$1 */
+    /* JADX INFO: compiled from: CallSoundManager.kt */
+    public final class C70281 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C70281() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            CallSoundManager.this.storeStateSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$2 */
+    /* JADX INFO: compiled from: CallSoundManager.kt */
+    public final class C70292 extends AbstractC12240o implements Function0<Unit> {
+        public C70292() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            CallSoundManager.this.appSoundManager.stop(AppSound.INSTANCE.getSOUND_CALL_CALLING());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$3 */
+    /* JADX INFO: compiled from: CallSoundManager.kt */
+    public final class C70303 extends AbstractC12240o implements Function1<StoreState, Unit> {
+        public final /* synthetic */ long $voiceChannelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70303(long j) {
+            super(1);
+            this.$voiceChannelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            CallSoundManager callSoundManager = CallSoundManager.this;
+            long j = this.$voiceChannelId;
+            C12238m.checkNotNullExpressionValue(storeState, "storeState");
+            callSoundManager.handleStoreState(j, storeState);
+        }
+    }
+
     /* JADX INFO: compiled from: CallSoundManager.kt */
     public interface IStoreStateGenerator {
         Observable<StoreState> observeStoreState(long voiceChannelId);
     }
 
     /* JADX INFO: compiled from: CallSoundManager.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream;
         private final MeUser me;
         private final RtcConnection.State rtcConnectionState;
@@ -80,6 +145,18 @@ public final class CallSoundManager {
             this.activeApplicationStream = activeApplicationStream;
             this.me = meUser;
             this.selectedVoiceChannel = channel;
+        }
+
+        public final Map<Long, StoreVoiceParticipants.VoiceUser> component1() {
+            return this.voiceParticipants;
+        }
+
+        public final Map<Long, ModelApplicationStream> component3() {
+            return this.streamsByUser;
+        }
+
+        public final Map<String, List<Long>> component4() {
+            return this.streamSpectators;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -113,38 +190,6 @@ public final class CallSoundManager {
             return storeState.copy(map, state2, map4, map5, activeApplicationStream2, meUser2, channel);
         }
 
-        public final Map<Long, StoreVoiceParticipants.VoiceUser> component1() {
-            return this.voiceParticipants;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final RtcConnection.State getRtcConnectionState() {
-            return this.rtcConnectionState;
-        }
-
-        public final Map<Long, ModelApplicationStream> component3() {
-            return this.streamsByUser;
-        }
-
-        public final Map<String, List<Long>> component4() {
-            return this.streamSpectators;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final StoreApplicationStreaming.ActiveApplicationStream getActiveApplicationStream() {
-            return this.activeApplicationStream;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Channel getSelectedVoiceChannel() {
-            return this.selectedVoiceChannel;
-        }
-
         public final StoreState copy(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, RtcConnection.State rtcConnectionState, Map<Long, ? extends ModelApplicationStream> streamsByUser, Map<String, ? extends List<Long>> streamSpectators, StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream, MeUser me2, Channel selectedVoiceChannel) {
             C12238m.checkNotNullParameter(voiceParticipants, "voiceParticipants");
             C12238m.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
@@ -165,16 +210,36 @@ public final class CallSoundManager {
             return C12238m.areEqual(this.voiceParticipants, storeState.voiceParticipants) && C12238m.areEqual(this.rtcConnectionState, storeState.rtcConnectionState) && C12238m.areEqual(this.streamsByUser, storeState.streamsByUser) && C12238m.areEqual(this.streamSpectators, storeState.streamSpectators) && C12238m.areEqual(this.activeApplicationStream, storeState.activeApplicationStream) && C12238m.areEqual(this.me, storeState.me) && C12238m.areEqual(this.selectedVoiceChannel, storeState.selectedVoiceChannel);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final StoreApplicationStreaming.ActiveApplicationStream getActiveApplicationStream() {
             return this.activeApplicationStream;
+        }
+
+        public final StoreApplicationStreaming.ActiveApplicationStream getActiveApplicationStream() {
+            return this.activeApplicationStream;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final MeUser getMe() {
+            return this.me;
         }
 
         public final MeUser getMe() {
             return this.me;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final RtcConnection.State getRtcConnectionState() {
             return this.rtcConnectionState;
+        }
+
+        public final RtcConnection.State getRtcConnectionState() {
+            return this.rtcConnectionState;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final Channel getSelectedVoiceChannel() {
+            return this.selectedVoiceChannel;
         }
 
         public final Channel getSelectedVoiceChannel() {
@@ -231,7 +296,7 @@ public final class CallSoundManager {
     }
 
     /* JADX INFO: compiled from: CallSoundManager.kt */
-    public static final class StoreStateGenerator implements IStoreStateGenerator {
+    public final class StoreStateGenerator implements IStoreStateGenerator {
         private final StoreApplicationStreaming storeApplicationStreaming;
         private final StoreChannels storeChannels;
         private final StoreRtcConnection storeRtcConnection;
@@ -279,71 +344,6 @@ public final class CallSoundManager {
 
         public /* synthetic */ StoreStateGenerator(StoreVoiceParticipants storeVoiceParticipants, StoreRtcConnection storeRtcConnection, StoreApplicationStreaming storeApplicationStreaming, StoreUser storeUser, StoreChannels storeChannels, int i, DefaultConstructorMarker defaultConstructorMarker) {
             this((i & 1) != 0 ? StoreStream.INSTANCE.getVoiceParticipants() : storeVoiceParticipants, (i & 2) != 0 ? StoreStream.INSTANCE.getRtcConnection() : storeRtcConnection, (i & 4) != 0 ? StoreStream.INSTANCE.getApplicationStreaming() : storeApplicationStreaming, (i & 8) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 16) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$1 */
-    /* JADX INFO: compiled from: CallSoundManager.kt */
-    public static final class C70281 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C70281() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            CallSoundManager.this.storeStateSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$2 */
-    /* JADX INFO: compiled from: CallSoundManager.kt */
-    public static final class C70292 extends AbstractC12240o implements Function0<Unit> {
-        public C70292() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            CallSoundManager.this.appSoundManager.stop(AppSound.INSTANCE.getSOUND_CALL_CALLING());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$3 */
-    /* JADX INFO: compiled from: CallSoundManager.kt */
-    public static final class C70303 extends AbstractC12240o implements Function1<StoreState, Unit> {
-        public final /* synthetic */ long $voiceChannelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70303(long j) {
-            super(1);
-            this.$voiceChannelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            CallSoundManager callSoundManager = CallSoundManager.this;
-            long j = this.$voiceChannelId;
-            C12238m.checkNotNullExpressionValue(storeState, "storeState");
-            callSoundManager.handleStoreState(j, storeState);
         }
     }
 

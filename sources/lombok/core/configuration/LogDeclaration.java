@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/LogDeclaration.SCL.lombok */
 public final class LogDeclaration implements ConfigurationValueType {
+    private final IdentifierName loggerFactoryMethod;
+    private final TypeName loggerFactoryType;
+    private final TypeName loggerType;
+    private final List<LogFactoryParameter> parametersWithTopic;
+    private final List<LogFactoryParameter> parametersWithoutTopic;
     private static final Pattern PARAMETERS_PATTERN = Pattern.compile("(?:\\(([A-Z,]*)\\))");
     private static final Pattern DECLARATION_PATTERN = Pattern.compile("^(?:([^ ]+) )?([^(]+)\\.([^(]+)(" + PARAMETERS_PATTERN.pattern() + "+)$");
-    private final TypeName loggerType;
-    private final TypeName loggerFactoryType;
-    private final IdentifierName loggerFactoryMethod;
-    private final List<LogFactoryParameter> parametersWithoutTopic;
-    private final List<LogFactoryParameter> parametersWithTopic;
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/LogDeclaration$LogFactoryParameter.SCL.lombok */
     public enum LogFactoryParameter {

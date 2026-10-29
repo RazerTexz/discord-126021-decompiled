@@ -39,36 +39,6 @@ public class ActionBarContextView extends AbsActionBarView {
         this(context, null);
     }
 
-    private void initTitle() {
-        if (this.mTitleLayout == null) {
-            LayoutInflater.from(getContext()).inflate(C0051R.layout.abc_action_bar_title_item, this);
-            LinearLayout linearLayout = (LinearLayout) getChildAt(getChildCount() - 1);
-            this.mTitleLayout = linearLayout;
-            this.mTitleView = (TextView) linearLayout.findViewById(C0051R.id.action_bar_title);
-            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(C0051R.id.action_bar_subtitle);
-            if (this.mTitleStyleRes != 0) {
-                this.mTitleView.setTextAppearance(getContext(), this.mTitleStyleRes);
-            }
-            if (this.mSubtitleStyleRes != 0) {
-                this.mSubtitleView.setTextAppearance(getContext(), this.mSubtitleStyleRes);
-            }
-        }
-        this.mTitleView.setText(this.mTitle);
-        this.mSubtitleView.setText(this.mSubtitle);
-        boolean z2 = !TextUtils.isEmpty(this.mTitle);
-        boolean z3 = !TextUtils.isEmpty(this.mSubtitle);
-        int i = 0;
-        this.mSubtitleView.setVisibility(z3 ? 0 : 8);
-        LinearLayout linearLayout2 = this.mTitleLayout;
-        if (!z2 && !z3) {
-            i = 8;
-        }
-        linearLayout2.setVisibility(i);
-        if (this.mTitleLayout.getParent() == null) {
-            addView(this.mTitleLayout);
-        }
-    }
-
     @Override // androidx.appcompat.widget.AbsActionBarView
     public /* bridge */ /* synthetic */ void animateToVisibility(int i) {
         super.animateToVisibility(i);
@@ -156,6 +126,36 @@ public class ActionBarContextView extends AbsActionBarView {
         this.mMenuView = actionMenuView;
         ViewCompat.setBackground(actionMenuView, null);
         addView(this.mMenuView, layoutParams);
+    }
+
+    private void initTitle() {
+        if (this.mTitleLayout == null) {
+            LayoutInflater.from(getContext()).inflate(C0051R.layout.abc_action_bar_title_item, this);
+            LinearLayout linearLayout = (LinearLayout) getChildAt(getChildCount() - 1);
+            this.mTitleLayout = linearLayout;
+            this.mTitleView = (TextView) linearLayout.findViewById(C0051R.id.action_bar_title);
+            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(C0051R.id.action_bar_subtitle);
+            if (this.mTitleStyleRes != 0) {
+                this.mTitleView.setTextAppearance(getContext(), this.mTitleStyleRes);
+            }
+            if (this.mSubtitleStyleRes != 0) {
+                this.mSubtitleView.setTextAppearance(getContext(), this.mSubtitleStyleRes);
+            }
+        }
+        this.mTitleView.setText(this.mTitle);
+        this.mSubtitleView.setText(this.mSubtitle);
+        boolean z2 = !TextUtils.isEmpty(this.mTitle);
+        boolean z3 = !TextUtils.isEmpty(this.mSubtitle);
+        int i = 0;
+        this.mSubtitleView.setVisibility(z3 ? 0 : 8);
+        LinearLayout linearLayout2 = this.mTitleLayout;
+        if (!z2 && !z3) {
+            i = 8;
+        }
+        linearLayout2.setVisibility(i);
+        if (this.mTitleLayout.getParent() == null) {
+            addView(this.mTitleLayout);
+        }
     }
 
     @Override // androidx.appcompat.widget.AbsActionBarView

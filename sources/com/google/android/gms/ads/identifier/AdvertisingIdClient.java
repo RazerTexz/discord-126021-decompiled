@@ -58,41 +58,8 @@ public class AdvertisingIdClient {
     /* JADX INFO: renamed from: h */
     public final long f20379h;
 
-    public static final class Info {
-
-        /* JADX INFO: renamed from: a */
-        public final String f20380a;
-
-        /* JADX INFO: renamed from: b */
-        public final boolean f20381b;
-
-        public Info(String str, boolean z2) {
-            this.f20380a = str;
-            this.f20381b = z2;
-        }
-
-        public final String getId() {
-            return this.f20380a;
-        }
-
-        public final boolean isLimitAdTrackingEnabled() {
-            return this.f20381b;
-        }
-
-        public final String toString() {
-            String str = this.f20380a;
-            boolean z2 = this.f20381b;
-            StringBuilder sb = new StringBuilder(String.valueOf(str).length() + 7);
-            sb.append("{");
-            sb.append(str);
-            sb.append("}");
-            sb.append(z2);
-            return sb.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.gms.ads.identifier.AdvertisingIdClient$a */
-    public static class C10786a extends Thread {
+    public final class C10786a extends Thread {
 
         /* JADX INFO: renamed from: j */
         public WeakReference<AdvertisingIdClient> f20382j;
@@ -131,6 +98,39 @@ public class AdvertisingIdClient {
         }
     }
 
+    public final class Info {
+
+        /* JADX INFO: renamed from: a */
+        public final String f20380a;
+
+        /* JADX INFO: renamed from: b */
+        public final boolean f20381b;
+
+        public Info(String str, boolean z2) {
+            this.f20380a = str;
+            this.f20381b = z2;
+        }
+
+        public final String getId() {
+            return this.f20380a;
+        }
+
+        public final boolean isLimitAdTrackingEnabled() {
+            return this.f20381b;
+        }
+
+        public final String toString() {
+            String str = this.f20380a;
+            boolean z2 = this.f20381b;
+            StringBuilder sb = new StringBuilder(String.valueOf(str).length() + 7);
+            sb.append("{");
+            sb.append(str);
+            sb.append("}");
+            sb.append(z2);
+            return sb.toString();
+        }
+    }
+
     public AdvertisingIdClient(Context context, long j, boolean z2, boolean z3) {
         Context applicationContext;
         Objects.requireNonNull(context, "null reference");
@@ -141,6 +141,47 @@ public class AdvertisingIdClient {
         this.f20374c = false;
         this.f20379h = j;
         this.f20378g = z3;
+    }
+
+    public void finalize() throws Throwable {
+        m9002a();
+        super.finalize();
+    }
+
+    public static Info getAdvertisingIdInfo(Context context) throws GooglePlayServicesRepairableException, IllegalStateException, GooglePlayServicesNotAvailableException, IOException {
+        float f;
+        String string;
+        C3174b c3174b = new C3174b(context);
+        boolean zM3965a = c3174b.m3965a("gads:ad_id_app_context:enabled");
+        try {
+            SharedPreferences sharedPreferences = c3174b.f9191a;
+            f = sharedPreferences == null ? 0.0f : sharedPreferences.getFloat("gads:ad_id_app_context:ping_ratio", 0.0f);
+        } catch (Throwable th) {
+            Log.w("GmscoreFlag", "Error while reading from SharedPreferences ", th);
+        }
+        try {
+            SharedPreferences sharedPreferences2 = c3174b.f9191a;
+            string = sharedPreferences2 == null ? "" : sharedPreferences2.getString("gads:ad_id_use_shared_preference:experiment_id", "");
+        } catch (Throwable th2) {
+            Log.w("GmscoreFlag", "Error while reading from SharedPreferences ", th2);
+        }
+        AdvertisingIdClient advertisingIdClient = new AdvertisingIdClient(context, -1L, zM3965a, c3174b.m3965a("gads:ad_id_use_persistent_service:enabled"));
+        try {
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            advertisingIdClient.m9005f(false);
+            Info infoM9003b = advertisingIdClient.m9003b();
+            advertisingIdClient.m9006g(infoM9003b, zM3965a, f, SystemClock.elapsedRealtime() - jElapsedRealtime, string, null);
+            advertisingIdClient.m9002a();
+            return infoM9003b;
+        } catch (Throwable th3) {
+            try {
+                advertisingIdClient.m9006g(null, zM3965a, f, -1L, string, th3);
+                throw th3;
+            } catch (Throwable th4) {
+                advertisingIdClient.m9002a();
+                throw th4;
+            }
+        }
     }
 
     /* JADX INFO: renamed from: c */
@@ -179,42 +220,6 @@ public class AdvertisingIdClient {
             throw new IOException("Interrupted exception");
         } catch (Throwable th) {
             throw new IOException(th);
-        }
-    }
-
-    public static Info getAdvertisingIdInfo(Context context) throws GooglePlayServicesRepairableException, IllegalStateException, GooglePlayServicesNotAvailableException, IOException {
-        float f;
-        String string;
-        C3174b c3174b = new C3174b(context);
-        boolean zM3965a = c3174b.m3965a("gads:ad_id_app_context:enabled");
-        try {
-            SharedPreferences sharedPreferences = c3174b.f9191a;
-            f = sharedPreferences == null ? 0.0f : sharedPreferences.getFloat("gads:ad_id_app_context:ping_ratio", 0.0f);
-        } catch (Throwable th) {
-            Log.w("GmscoreFlag", "Error while reading from SharedPreferences ", th);
-        }
-        try {
-            SharedPreferences sharedPreferences2 = c3174b.f9191a;
-            string = sharedPreferences2 == null ? "" : sharedPreferences2.getString("gads:ad_id_use_shared_preference:experiment_id", "");
-        } catch (Throwable th2) {
-            Log.w("GmscoreFlag", "Error while reading from SharedPreferences ", th2);
-        }
-        AdvertisingIdClient advertisingIdClient = new AdvertisingIdClient(context, -1L, zM3965a, c3174b.m3965a("gads:ad_id_use_persistent_service:enabled"));
-        try {
-            long jElapsedRealtime = SystemClock.elapsedRealtime();
-            advertisingIdClient.m9005f(false);
-            Info infoM9003b = advertisingIdClient.m9003b();
-            advertisingIdClient.m9006g(infoM9003b, zM3965a, f, SystemClock.elapsedRealtime() - jElapsedRealtime, string, null);
-            advertisingIdClient.m9002a();
-            return infoM9003b;
-        } catch (Throwable th3) {
-            try {
-                advertisingIdClient.m9006g(null, zM3965a, f, -1L, string, th3);
-                throw th3;
-            } catch (Throwable th4) {
-                advertisingIdClient.m9002a();
-                throw th4;
-            }
         }
     }
 
@@ -271,7 +276,6 @@ public class AdvertisingIdClient {
                     throw new IOException("AdvertisingIdClient cannot reconnect.", e2);
                 }
             }
-            throw th;
         }
         m9004e();
         return info;
@@ -309,11 +313,6 @@ public class AdvertisingIdClient {
                 m9004e();
             }
         }
-    }
-
-    public void finalize() throws Throwable {
-        m9002a();
-        super.finalize();
     }
 
     /* JADX INFO: renamed from: g */

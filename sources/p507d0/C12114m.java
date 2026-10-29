@@ -22,7 +22,7 @@ public final class C12114m<T> implements Lazy<T>, Serializable {
 
     /* JADX INFO: renamed from: d0.m$a */
     /* JADX INFO: compiled from: LazyJVM.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -38,10 +38,6 @@ public final class C12114m<T> implements Lazy<T>, Serializable {
         C12119r c12119r = C12119r.f25171a;
         this._value = c12119r;
         this.f28003final = c12119r;
-    }
-
-    private final Object writeReplace() {
-        return new C11220d(getValue());
     }
 
     @Override // kotlin.Lazy
@@ -69,5 +65,9 @@ public final class C12114m<T> implements Lazy<T>, Serializable {
 
     public String toString() {
         return isInitialized() ? String.valueOf(getValue()) : "Lazy value not initialized yet.";
+    }
+
+    private final Object writeReplace() {
+        return new C11220d(getValue());
     }
 }

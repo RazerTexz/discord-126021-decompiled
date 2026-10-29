@@ -15,31 +15,6 @@ public final /* data */ class UserSurvey {
     private final String prompt;
     private final String url;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getCta() {
-        return this.cta;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Long> m8315b() {
-        return this.guild_permissions;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<String> m8316c() {
-        return this.guild_requirements;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<Integer> m8317d() {
-        return this.guild_size;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final String getKey() {
-        return this.key;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -49,6 +24,16 @@ public final /* data */ class UserSurvey {
         }
         UserSurvey userSurvey = (UserSurvey) other;
         return C12238m.areEqual(this.prompt, userSurvey.prompt) && C12238m.areEqual(this.cta, userSurvey.cta) && C12238m.areEqual(this.url, userSurvey.url) && C12238m.areEqual(this.key, userSurvey.key) && C12238m.areEqual(this.guild_requirements, userSurvey.guild_requirements) && C12238m.areEqual(this.guild_size, userSurvey.guild_size) && C12238m.areEqual(this.guild_permissions, userSurvey.guild_permissions);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getCta() {
+        return this.cta;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final String getKey() {
+        return this.key;
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -76,6 +61,21 @@ public final /* data */ class UserSurvey {
         int iHashCode6 = (iHashCode5 + (list2 != null ? list2.hashCode() : 0)) * 31;
         List<Long> list3 = this.guild_permissions;
         return iHashCode6 + (list3 != null ? list3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<Long> m8315b() {
+        return this.guild_permissions;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<String> m8316c() {
+        return this.guild_requirements;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Integer> m8317d() {
+        return this.guild_size;
     }
 
     public String toString() {

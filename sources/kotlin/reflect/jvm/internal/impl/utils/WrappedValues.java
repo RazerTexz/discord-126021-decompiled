@@ -8,18 +8,15 @@ public class WrappedValues {
     /* JADX INFO: renamed from: a */
     public static final Object f27450a = new C12795a();
 
-    public static class WrappedProcessCanceledException extends RuntimeException {
-    }
-
     /* JADX INFO: renamed from: kotlin.reflect.jvm.internal.impl.utils.WrappedValues$a */
-    public static class C12795a {
+    public final class C12795a {
         public String toString() {
             return "NULL_VALUE";
         }
     }
 
     /* JADX INFO: renamed from: kotlin.reflect.jvm.internal.impl.utils.WrappedValues$b */
-    public static final class C12796b {
+    public final class C12796b {
 
         /* JADX INFO: renamed from: a */
         public final Throwable f27451a;
@@ -31,6 +28,15 @@ public class WrappedValues {
                 m10899a(0);
                 throw null;
             }
+        }
+
+        public Throwable getThrowable() {
+            Throwable th = this.f27451a;
+            if (th != null) {
+                return th;
+            }
+            m10899a(1);
+            throw null;
         }
 
         /* JADX INFO: renamed from: a */
@@ -56,18 +62,24 @@ public class WrappedValues {
             }
         }
 
-        public Throwable getThrowable() {
-            Throwable th = this.f27451a;
-            if (th != null) {
-                return th;
-            }
-            m10899a(1);
-            throw null;
-        }
-
         public String toString() {
             return this.f27451a.toString();
         }
+    }
+
+    public class WrappedProcessCanceledException extends RuntimeException {
+    }
+
+    public static <V> Object escapeNull(V v) {
+        return v == null ? f27450a : v;
+    }
+
+    public static Object escapeThrowable(Throwable th) {
+        if (th != null) {
+            return new C12796b(th, null);
+        }
+        m10898a(3);
+        throw null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -100,18 +112,6 @@ public class WrappedValues {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    public static <V> Object escapeNull(V v) {
-        return v == null ? f27450a : v;
-    }
-
-    public static Object escapeThrowable(Throwable th) {
-        if (th != null) {
-            return new C12796b(th, null);
-        }
-        m10898a(3);
-        throw null;
     }
 
     public static <V> V unescapeExceptionOrNull(Object obj) {

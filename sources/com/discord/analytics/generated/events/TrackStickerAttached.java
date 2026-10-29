@@ -11,18 +11,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStickerAttached.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStickerAttached implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
+    private final Boolean replaced = null;
     private final CharSequence source = null;
     private final Long stickerId = null;
-    private final Boolean replaced = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "sticker_attached";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackStickerAttached implements AnalyticsSchema, T
         }
         TrackStickerAttached trackStickerAttached = (TrackStickerAttached) other;
         return C12238m.areEqual(this.source, trackStickerAttached.source) && C12238m.areEqual(this.stickerId, trackStickerAttached.stickerId) && C12238m.areEqual(this.replaced, trackStickerAttached.replaced);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

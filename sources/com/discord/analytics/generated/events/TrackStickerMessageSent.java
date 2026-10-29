@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStickerMessageSent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long messageId = null;
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long guildId = null;
+    private final Long messageId = null;
     private final List<Long> stickerIds = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "sticker_message_sent";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema
         }
         TrackStickerMessageSent trackStickerMessageSent = (TrackStickerMessageSent) other;
         return C12238m.areEqual(this.messageId, trackStickerMessageSent.messageId) && C12238m.areEqual(this.channelId, trackStickerMessageSent.channelId) && C12238m.areEqual(this.channelType, trackStickerMessageSent.channelType) && C12238m.areEqual(this.guildId, trackStickerMessageSent.guildId) && C12238m.areEqual(this.stickerIds, trackStickerMessageSent.stickerIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

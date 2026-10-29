@@ -21,6 +21,14 @@ public final class AppMeasurementJobService extends JobService implements Interf
     /* JADX INFO: renamed from: j */
     public C4151p8<AppMeasurementJobService> f20656j;
 
+    /* JADX INFO: renamed from: c */
+    public final C4151p8<AppMeasurementJobService> m9109c() {
+        if (this.f20656j == null) {
+            this.f20656j = new C4151p8<>(this);
+        }
+        return this.f20656j;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4195t8
     @TargetApi(24)
     /* JADX INFO: renamed from: a */
@@ -31,14 +39,6 @@ public final class AppMeasurementJobService extends JobService implements Interf
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4195t8
     /* JADX INFO: renamed from: b */
     public final void mo5869b(Intent intent) {
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C4151p8<AppMeasurementJobService> m9109c() {
-        if (this.f20656j == null) {
-            this.f20656j = new C4151p8<>(this);
-        }
-        return this.f20656j;
     }
 
     @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4195t8

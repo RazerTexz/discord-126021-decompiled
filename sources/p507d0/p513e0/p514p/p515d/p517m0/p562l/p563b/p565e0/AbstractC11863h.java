@@ -148,22 +148,9 @@ public abstract class AbstractC11863h extends AbstractC11771j {
         /* JADX INFO: renamed from: o */
         public final /* synthetic */ AbstractC11863h f24586o;
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$a */
-        /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
-            public a() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public final List<? extends InterfaceC11465t0> invoke() {
-                return C12163u.plus((Collection) b.access$getDeclaredFunctions(b.this), (Iterable) b.access$computeAllNonDeclaredFunctions(b.this));
-            }
-        }
-
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class C13332b extends AbstractC12240o implements Function0<List<? extends InterfaceC11453n0>> {
+        public final class C13332b extends AbstractC12240o implements Function0<List<? extends InterfaceC11453n0>> {
             public C13332b() {
                 super(0);
             }
@@ -174,9 +161,22 @@ public abstract class AbstractC11863h extends AbstractC11771j {
             }
         }
 
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$a */
+        /* JADX INFO: compiled from: DeserializedMemberScope.kt */
+        public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public final List<? extends InterfaceC11465t0> invoke() {
+                return C12163u.plus((Collection) b.access$getDeclaredFunctions(b.this), (Iterable) b.access$computeAllNonDeclaredFunctions(b.this));
+            }
+        }
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$c */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11475y0>> {
+        public final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11475y0>> {
             public c() {
                 super(0);
             }
@@ -189,7 +189,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$d */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class d extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
+        public final class d extends AbstractC12240o implements Function0<List<? extends InterfaceC11465t0>> {
             public d() {
                 super(0);
             }
@@ -202,7 +202,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$e */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11453n0>> {
+        public final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11453n0>> {
             public e() {
                 super(0);
             }
@@ -215,7 +215,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$f */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class f extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class f extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public final /* synthetic */ AbstractC11863h this$1;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -240,7 +240,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$g */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class g extends AbstractC12240o implements Function0<Map<C11716e, ? extends List<? extends InterfaceC11465t0>>> {
+        public final class g extends AbstractC12240o implements Function0<Map<C11716e, ? extends List<? extends InterfaceC11465t0>>> {
             public g() {
                 super(0);
             }
@@ -265,7 +265,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$h */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class h extends AbstractC12240o implements Function0<Map<C11716e, ? extends List<? extends InterfaceC11453n0>>> {
+        public final class h extends AbstractC12240o implements Function0<Map<C11716e, ? extends List<? extends InterfaceC11453n0>>> {
             public h() {
                 super(0);
             }
@@ -290,7 +290,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$i */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class i extends AbstractC12240o implements Function0<Map<C11716e, ? extends InterfaceC11475y0>> {
+        public final class i extends AbstractC12240o implements Function0<Map<C11716e, ? extends InterfaceC11475y0>> {
             public i() {
                 super(0);
             }
@@ -310,7 +310,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$b$j */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class j extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class j extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public final /* synthetic */ AbstractC11863h this$1;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -563,10 +563,24 @@ public abstract class AbstractC11863h extends AbstractC11771j {
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ AbstractC11863h f24596j;
 
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$c, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: DeserializedMemberScope.kt */
+        public final class C13333c extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
+            public C13333c() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final Collection<InterfaceC11465t0> invoke(C11716e c11716e) {
+                C12238m.checkNotNullParameter(c11716e, "it");
+                return c.access$computeFunctions(c.this, c11716e);
+            }
+        }
+
         /* JADX INFO: Add missing generic type declarations: [M] */
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$a */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class a<M> extends AbstractC12240o implements Function0<M> {
+        public final class a<M> extends AbstractC12240o implements Function0<M> {
             public final /* synthetic */ ByteArrayInputStream $inputStream;
             public final /* synthetic */ InterfaceC11736p<M> $parser;
             public final /* synthetic */ AbstractC11863h this$0;
@@ -588,7 +602,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$b */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class b extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class b extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public final /* synthetic */ AbstractC11863h this$1;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -603,23 +617,9 @@ public abstract class AbstractC11863h extends AbstractC11771j {
             }
         }
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$c, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class C13333c extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11465t0>> {
-            public C13333c() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final Collection<InterfaceC11465t0> invoke(C11716e c11716e) {
-                C12238m.checkNotNullParameter(c11716e, "it");
-                return c.access$computeFunctions(c.this, c11716e);
-            }
-        }
-
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$d */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class d extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11453n0>> {
+        public final class d extends AbstractC12240o implements Function1<C11716e, Collection<? extends InterfaceC11453n0>> {
             public d() {
                 super(1);
             }
@@ -633,7 +633,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$e */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class e extends AbstractC12240o implements Function1<C11716e, InterfaceC11475y0> {
+        public final class e extends AbstractC12240o implements Function1<C11716e, InterfaceC11475y0> {
             public e() {
                 super(1);
             }
@@ -647,7 +647,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$c$f */
         /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-        public static final class f extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+        public final class f extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
             public final /* synthetic */ AbstractC11863h this$1;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -774,26 +774,6 @@ public abstract class AbstractC11863h extends AbstractC11771j {
             return cVar.f24596j.f24568c.getMemberDeserializer().loadTypeAlias(delimitedFrom);
         }
 
-        /* JADX INFO: renamed from: a */
-        public final Map<C11716e, byte[]> m9966a(Map<C11716e, ? extends Collection<? extends AbstractC11721a>> map) throws IOException {
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
-            Iterator<T> it = map.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry entry = (Map.Entry) it.next();
-                Object key = entry.getKey();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                Iterable iterable = (Iterable) entry.getValue();
-                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(iterable, 10));
-                Iterator it2 = iterable.iterator();
-                while (it2.hasNext()) {
-                    ((AbstractC11721a) it2.next()).writeDelimitedTo(byteArrayOutputStream);
-                    arrayList.add(Unit.f27425a);
-                }
-                linkedHashMap.put(key, byteArrayOutputStream.toByteArray());
-            }
-            return linkedHashMap;
-        }
-
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p565e0.AbstractC11863h.a
         public void addFunctionsAndPropertiesTo(Collection<InterfaceC11450m> collection, C11765d c11765d, Function1<? super C11716e, Boolean> function1, InterfaceC11480b interfaceC11480b) {
             C12238m.checkNotNullParameter(collection, "result");
@@ -862,11 +842,31 @@ public abstract class AbstractC11863h extends AbstractC11771j {
         public Set<C11716e> getVariableNames() {
             return (Set) C11904n.getValue(this.f24595i, this, (KProperty<?>) f24587a[1]);
         }
+
+        /* JADX INFO: renamed from: a */
+        public final Map<C11716e, byte[]> m9966a(Map<C11716e, ? extends Collection<? extends AbstractC11721a>> map) throws IOException {
+            LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(map.size()));
+            Iterator<T> it = map.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                Object key = entry.getKey();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                Iterable iterable = (Iterable) entry.getValue();
+                ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(iterable, 10));
+                Iterator it2 = iterable.iterator();
+                while (it2.hasNext()) {
+                    ((AbstractC11721a) it2.next()).writeDelimitedTo(byteArrayOutputStream);
+                    arrayList.add(Unit.f27425a);
+                }
+                linkedHashMap.put(key, byteArrayOutputStream.toByteArray());
+            }
+            return linkedHashMap;
+        }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$d */
     /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-    public static final class d extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class d extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public final /* synthetic */ Function0<Collection<C11716e>> $classNames;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -884,7 +884,7 @@ public abstract class AbstractC11863h extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.h$e */
     /* JADX INFO: compiled from: DeserializedMemberScope.kt */
-    public static final class e extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
+    public final class e extends AbstractC12240o implements Function0<Set<? extends C11716e>> {
         public e() {
             super(0);
         }
@@ -910,58 +910,6 @@ public abstract class AbstractC11863h extends AbstractC11771j {
         this.f24570e = c11876l.getStorageManager().createLazyValue(new d(function0));
         this.f24571f = c11876l.getStorageManager().createNullableLazyValue(new e());
     }
-
-    /* JADX INFO: renamed from: a */
-    public abstract void mo9955a(Collection<InterfaceC11450m> collection, Function1<? super C11716e, Boolean> function1);
-
-    /* JADX INFO: renamed from: b */
-    public final Collection<InterfaceC11450m> m9964b(C11765d c11765d, Function1<? super C11716e, Boolean> function1, InterfaceC11480b interfaceC11480b) {
-        C12238m.checkNotNullParameter(c11765d, "kindFilter");
-        C12238m.checkNotNullParameter(function1, "nameFilter");
-        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        ArrayList arrayList = new ArrayList(0);
-        C11765d.a aVar = C11765d.f24339a;
-        if (c11765d.acceptsKinds(aVar.getSINGLETON_CLASSIFIERS_MASK())) {
-            mo9955a(arrayList, function1);
-        }
-        this.f24569d.addFunctionsAndPropertiesTo(arrayList, c11765d, function1, interfaceC11480b);
-        if (c11765d.acceptsKinds(aVar.getCLASSIFIERS_MASK())) {
-            for (C11716e c11716e : getClassNames$deserialization()) {
-                if (function1.invoke(c11716e).booleanValue()) {
-                    C12033a.addIfNotNull(arrayList, this.f24568c.getComponents().deserializeClass(mo9958e(c11716e)));
-                }
-            }
-        }
-        if (c11765d.acceptsKinds(C11765d.f24339a.getTYPE_ALIASES_MASK())) {
-            for (C11716e c11716e2 : this.f24569d.getTypeAliasNames()) {
-                if (function1.invoke(c11716e2).booleanValue()) {
-                    C12033a.addIfNotNull(arrayList, this.f24569d.getTypeAliasByName(c11716e2));
-                }
-            }
-        }
-        return C12033a.compact(arrayList);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void mo9956c(C11716e c11716e, List<InterfaceC11465t0> list) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "functions");
-    }
-
-    /* JADX INFO: renamed from: d */
-    public void mo9957d(C11716e c11716e, List<InterfaceC11453n0> list) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "descriptors");
-    }
-
-    /* JADX INFO: renamed from: e */
-    public abstract C11712a mo9958e(C11716e c11716e);
-
-    /* JADX INFO: renamed from: f */
-    public abstract Set<C11716e> mo9959f();
-
-    /* JADX INFO: renamed from: g */
-    public abstract Set<C11716e> mo9960g();
 
     public final Set<C11716e> getClassNames$deserialization() {
         return (Set) C11904n.getValue(this.f24570e, this, (KProperty<?>) f24567b[0]);
@@ -1009,18 +957,70 @@ public abstract class AbstractC11863h extends AbstractC11771j {
         return this.f24569d.getVariableNames();
     }
 
+    /* JADX INFO: renamed from: b */
+    public final Collection<InterfaceC11450m> m9964b(C11765d c11765d, Function1<? super C11716e, Boolean> function1, InterfaceC11480b interfaceC11480b) {
+        C12238m.checkNotNullParameter(c11765d, "kindFilter");
+        C12238m.checkNotNullParameter(function1, "nameFilter");
+        C12238m.checkNotNullParameter(interfaceC11480b, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        ArrayList arrayList = new ArrayList(0);
+        C11765d.a aVar = C11765d.f24339a;
+        if (c11765d.acceptsKinds(aVar.getSINGLETON_CLASSIFIERS_MASK())) {
+            mo9955a(arrayList, function1);
+        }
+        this.f24569d.addFunctionsAndPropertiesTo(arrayList, c11765d, function1, interfaceC11480b);
+        if (c11765d.acceptsKinds(aVar.getCLASSIFIERS_MASK())) {
+            for (C11716e c11716e : getClassNames$deserialization()) {
+                if (function1.invoke(c11716e).booleanValue()) {
+                    C12033a.addIfNotNull(arrayList, this.f24568c.getComponents().deserializeClass(mo9958e(c11716e)));
+                }
+            }
+        }
+        if (c11765d.acceptsKinds(C11765d.f24339a.getTYPE_ALIASES_MASK())) {
+            for (C11716e c11716e2 : this.f24569d.getTypeAliasNames()) {
+                if (function1.invoke(c11716e2).booleanValue()) {
+                    C12033a.addIfNotNull(arrayList, this.f24569d.getTypeAliasByName(c11716e2));
+                }
+            }
+        }
+        return C12033a.compact(arrayList);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo9955a(Collection<InterfaceC11450m> collection, Function1<? super C11716e, Boolean> function1);
+
+    /* JADX INFO: renamed from: c */
+    public void mo9956c(C11716e c11716e, List<InterfaceC11465t0> list) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(list, "functions");
+    }
+
+    /* JADX INFO: renamed from: d */
+    public void mo9957d(C11716e c11716e, List<InterfaceC11453n0> list) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(list, "descriptors");
+    }
+
+    /* JADX INFO: renamed from: e */
+    public abstract C11712a mo9958e(C11716e c11716e);
+
+    /* JADX INFO: renamed from: f */
+    public abstract Set<C11716e> mo9959f();
+
+    /* JADX INFO: renamed from: g */
+    public abstract Set<C11716e> mo9960g();
+
     /* JADX INFO: renamed from: h */
     public abstract Set<C11716e> mo9961h();
-
-    /* JADX INFO: renamed from: i */
-    public boolean mo9965i(C11716e c11716e) {
-        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        return getClassNames$deserialization().contains(c11716e);
-    }
 
     /* JADX INFO: renamed from: j */
     public boolean mo9962j(InterfaceC11465t0 interfaceC11465t0) {
         C12238m.checkNotNullParameter(interfaceC11465t0, "function");
         return true;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public boolean mo9965i(C11716e c11716e) {
+        C12238m.checkNotNullParameter(c11716e, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        return getClassNames$deserialization().contains(c11716e);
     }
 }

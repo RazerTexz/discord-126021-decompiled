@@ -12,34 +12,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFeedLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+    private final List<CharSequence> feedItemIds = null;
+    private final CharSequence homeSessionId = null;
+    private final CharSequence loadId = null;
+    private final Long loadTimeMillis = null;
+    private final List<CharSequence> readFeedItemIds = null;
+    private final CharSequence startHomeSessionId = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
-    private final CharSequence loadId = null;
-    private final List<CharSequence> feedItemIds = null;
     private final List<CharSequence> unreadFeedItemIds = null;
-    private final List<CharSequence> readFeedItemIds = null;
-    private final Long loadTimeMillis = null;
-    private final CharSequence homeSessionId = null;
-    private final CharSequence startHomeSessionId = null;
     private final transient String analyticsSchemaTypeName = "feed_loaded";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +32,18 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
         }
         TrackFeedLoaded trackFeedLoaded = (TrackFeedLoaded) other;
         return C12238m.areEqual(this.loadId, trackFeedLoaded.loadId) && C12238m.areEqual(this.feedItemIds, trackFeedLoaded.feedItemIds) && C12238m.areEqual(this.unreadFeedItemIds, trackFeedLoaded.unreadFeedItemIds) && C12238m.areEqual(this.readFeedItemIds, trackFeedLoaded.readFeedItemIds) && C12238m.areEqual(this.loadTimeMillis, trackFeedLoaded.loadTimeMillis) && C12238m.areEqual(this.homeSessionId, trackFeedLoaded.homeSessionId) && C12238m.areEqual(this.startHomeSessionId, trackFeedLoaded.startHomeSessionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -67,6 +61,12 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
         int iHashCode6 = (iHashCode5 + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31;
         CharSequence charSequence3 = this.startHomeSessionId;
         return iHashCode6 + (charSequence3 != null ? charSequence3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

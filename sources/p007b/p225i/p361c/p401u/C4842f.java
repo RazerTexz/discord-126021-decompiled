@@ -47,12 +47,6 @@ import p007b.p225i.p361c.p407x.InterfaceC4896h;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4842f implements InterfaceC4843g {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f12928a = new Object();
-
-    /* JADX INFO: renamed from: b */
-    public static final ThreadFactory f12929b = new a();
-
     /* JADX INFO: renamed from: c */
     public final C4542c f12930c;
 
@@ -88,18 +82,11 @@ public class C4842f implements InterfaceC4843g {
     @GuardedBy("lock")
     public final List<InterfaceC4849m> f12940m;
 
-    /* JADX INFO: renamed from: b.i.c.u.f$a */
-    /* JADX INFO: compiled from: FirebaseInstallations.java */
-    public class a implements ThreadFactory {
+    /* JADX INFO: renamed from: a */
+    public static final Object f12928a = new Object();
 
-        /* JADX INFO: renamed from: j */
-        public final AtomicInteger f12941j = new AtomicInteger(1);
-
-        @Override // java.util.concurrent.ThreadFactory
-        public Thread newThread(Runnable runnable) {
-            return new Thread(runnable, String.format("firebase-installations-executor-%d", Integer.valueOf(this.f12941j.getAndIncrement())));
-        }
-    }
+    /* JADX INFO: renamed from: b */
+    public static final ThreadFactory f12929b = new a();
 
     public C4842f(C4542c c4542c, @NonNull InterfaceC4836a<InterfaceC4896h> interfaceC4836a, @NonNull InterfaceC4836a<InterfaceC4803d> interfaceC4836a2) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
@@ -124,6 +111,42 @@ public class C4842f implements InterfaceC4843g {
         this.f12938k = new ThreadPoolExecutor(0, 1, 30L, timeUnit, new LinkedBlockingQueue(), threadFactory);
     }
 
+    @Override // p007b.p225i.p361c.p401u.InterfaceC4843g
+    @NonNull
+    public Task<String> getId() {
+        String str;
+        m6762h();
+        synchronized (this) {
+            str = this.f12939l;
+        }
+        if (str != null) {
+            return C3404f.m4264Z(str);
+        }
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        C4846j c4846j = new C4846j(taskCompletionSource);
+        synchronized (this.f12936i) {
+            this.f12940m.add(c4846j);
+        }
+        Task task = taskCompletionSource.f20845a;
+        this.f12937j.execute(new Runnable(this) { // from class: b.i.c.u.c
+
+            /* JADX INFO: renamed from: j */
+            public final C4842f f12923j;
+
+            {
+                this.f12923j = this;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                C4842f c4842f = this.f12923j;
+                Object obj = C4842f.f12928a;
+                c4842f.m6757b(false);
+            }
+        });
+        return task;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: f */
     public static C4842f m6755f() {
@@ -131,41 +154,6 @@ public class C4842f implements InterfaceC4843g {
         C1460d.m551o(true, "Null is not a valid value of FirebaseApp.");
         c4542cM6327b.m6330a();
         return (C4842f) c4542cM6327b.f12121g.mo6346a(InterfaceC4843g.class);
-    }
-
-    @Override // p007b.p225i.p361c.p401u.InterfaceC4843g
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public Task<AbstractC4847k> mo6756a(final boolean z2) {
-        m6762h();
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        C4845i c4845i = new C4845i(this.f12933f, taskCompletionSource);
-        synchronized (this.f12936i) {
-            this.f12940m.add(c4845i);
-        }
-        Task task = taskCompletionSource.f20845a;
-        this.f12937j.execute(new Runnable(this, z2) { // from class: b.i.c.u.d
-
-            /* JADX INFO: renamed from: j */
-            public final C4842f f12924j;
-
-            /* JADX INFO: renamed from: k */
-            public final boolean f12925k;
-
-            {
-                this.f12924j = this;
-                this.f12925k = z2;
-            }
-
-            @Override // java.lang.Runnable
-            public void run() {
-                C4842f c4842f = this.f12924j;
-                boolean z3 = this.f12925k;
-                Object obj = C4842f.f12928a;
-                c4842f.m6757b(z3);
-            }
-        });
-        return task;
     }
 
     /* JADX INFO: renamed from: b */
@@ -399,42 +387,6 @@ public class C4842f implements InterfaceC4843g {
         return c4542c.f12120f.f12140g;
     }
 
-    @Override // p007b.p225i.p361c.p401u.InterfaceC4843g
-    @NonNull
-    public Task<String> getId() {
-        String str;
-        m6762h();
-        synchronized (this) {
-            str = this.f12939l;
-        }
-        if (str != null) {
-            return C3404f.m4264Z(str);
-        }
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        C4846j c4846j = new C4846j(taskCompletionSource);
-        synchronized (this.f12936i) {
-            this.f12940m.add(c4846j);
-        }
-        Task task = taskCompletionSource.f20845a;
-        this.f12937j.execute(new Runnable(this) { // from class: b.i.c.u.c
-
-            /* JADX INFO: renamed from: j */
-            public final C4842f f12923j;
-
-            {
-                this.f12923j = this;
-            }
-
-            @Override // java.lang.Runnable
-            public void run() {
-                C4842f c4842f = this.f12923j;
-                Object obj = C4842f.f12928a;
-                c4842f.m6757b(false);
-            }
-        });
-        return task;
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m6762h() {
         C1460d.m579v(m6760e(), "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
@@ -599,6 +551,54 @@ public class C4842f implements InterfaceC4843g {
                     it.remove();
                 }
             }
+        }
+    }
+
+    @Override // p007b.p225i.p361c.p401u.InterfaceC4843g
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public Task<AbstractC4847k> mo6756a(final boolean z2) {
+        m6762h();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        C4845i c4845i = new C4845i(this.f12933f, taskCompletionSource);
+        synchronized (this.f12936i) {
+            this.f12940m.add(c4845i);
+        }
+        Task task = taskCompletionSource.f20845a;
+        this.f12937j.execute(new Runnable(this, z2) { // from class: b.i.c.u.d
+
+            /* JADX INFO: renamed from: j */
+            public final C4842f f12924j;
+
+            /* JADX INFO: renamed from: k */
+            public final boolean f12925k;
+
+            {
+                this.f12924j = this;
+                this.f12925k = z2;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                C4842f c4842f = this.f12924j;
+                boolean z3 = this.f12925k;
+                Object obj = C4842f.f12928a;
+                c4842f.m6757b(z3);
+            }
+        });
+        return task;
+    }
+
+    /* JADX INFO: renamed from: b.i.c.u.f$a */
+    /* JADX INFO: compiled from: FirebaseInstallations.java */
+    public class a implements ThreadFactory {
+
+        /* JADX INFO: renamed from: j */
+        public final AtomicInteger f12941j = new AtomicInteger(1);
+
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(Runnable runnable) {
+            return new Thread(runnable, String.format("firebase-installations-executor-%d", Integer.valueOf(this.f12941j.getAndIncrement())));
         }
     }
 }

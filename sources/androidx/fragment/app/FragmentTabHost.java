@@ -30,7 +30,7 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
     private FrameLayout mRealTabContent;
     private final ArrayList<TabInfo> mTabs;
 
-    public static class DummyTabFactory implements TabHost.TabContentFactory {
+    public class DummyTabFactory implements TabHost.TabContentFactory {
         private final Context mContext;
 
         public DummyTabFactory(Context context) {
@@ -46,7 +46,8 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         }
     }
 
-    public static class SavedState extends View.BaseSavedState {
+    public class SavedState extends View.BaseSavedState {
+        public String curTab;
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.fragment.app.FragmentTabHost.SavedState.1
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
@@ -60,7 +61,6 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
                 return new SavedState[i];
             }
         };
-        public String curTab;
 
         public SavedState(Parcelable parcelable) {
             super(parcelable);
@@ -86,7 +86,7 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         }
     }
 
-    public static final class TabInfo {
+    public final class TabInfo {
 
         @Nullable
         public final Bundle args;
@@ -110,6 +110,24 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         super(context, null);
         this.mTabs = new ArrayList<>();
         initFragmentTabHost(context, null);
+    }
+
+    @Deprecated
+    public void addTab(@NonNull TabHost.TabSpec tabSpec, @NonNull Class<?> cls, @Nullable Bundle bundle) {
+        tabSpec.setContent(new DummyTabFactory(this.mContext));
+        String tag = tabSpec.getTag();
+        TabInfo tabInfo = new TabInfo(tag, cls, bundle);
+        if (this.mAttached) {
+            Fragment fragmentFindFragmentByTag = this.mFragmentManager.findFragmentByTag(tag);
+            tabInfo.fragment = fragmentFindFragmentByTag;
+            if (fragmentFindFragmentByTag != null && !fragmentFindFragmentByTag.isDetached()) {
+                FragmentTransaction fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
+                fragmentTransactionBeginTransaction.detach(tabInfo.fragment);
+                fragmentTransactionBeginTransaction.commit();
+            }
+        }
+        this.mTabs.add(tabInfo);
+        addTab(tabSpec);
     }
 
     @Nullable
@@ -189,24 +207,6 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         this.mContainerId = typedArrayObtainStyledAttributes.getResourceId(0, 0);
         typedArrayObtainStyledAttributes.recycle();
         super.setOnTabChangedListener(this);
-    }
-
-    @Deprecated
-    public void addTab(@NonNull TabHost.TabSpec tabSpec, @NonNull Class<?> cls, @Nullable Bundle bundle) {
-        tabSpec.setContent(new DummyTabFactory(this.mContext));
-        String tag = tabSpec.getTag();
-        TabInfo tabInfo = new TabInfo(tag, cls, bundle);
-        if (this.mAttached) {
-            Fragment fragmentFindFragmentByTag = this.mFragmentManager.findFragmentByTag(tag);
-            tabInfo.fragment = fragmentFindFragmentByTag;
-            if (fragmentFindFragmentByTag != null && !fragmentFindFragmentByTag.isDetached()) {
-                FragmentTransaction fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
-                fragmentTransactionBeginTransaction.detach(tabInfo.fragment);
-                fragmentTransactionBeginTransaction.commit();
-            }
-        }
-        this.mTabs.add(tabInfo);
-        addTab(tabSpec);
     }
 
     @Override // android.view.ViewGroup, android.view.View

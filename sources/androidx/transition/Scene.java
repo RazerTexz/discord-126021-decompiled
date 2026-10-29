@@ -23,32 +23,6 @@ public class Scene {
         this.mSceneRoot = viewGroup;
     }
 
-    @Nullable
-    public static Scene getCurrentScene(@NonNull ViewGroup viewGroup) {
-        return (Scene) viewGroup.getTag(C0658R.id.transition_current_scene);
-    }
-
-    @NonNull
-    public static Scene getSceneForLayout(@NonNull ViewGroup viewGroup, @LayoutRes int i, @NonNull Context context) {
-        int i2 = C0658R.id.transition_scene_layoutid_cache;
-        SparseArray sparseArray = (SparseArray) viewGroup.getTag(i2);
-        if (sparseArray == null) {
-            sparseArray = new SparseArray();
-            viewGroup.setTag(i2, sparseArray);
-        }
-        Scene scene = (Scene) sparseArray.get(i);
-        if (scene != null) {
-            return scene;
-        }
-        Scene scene2 = new Scene(viewGroup, i, context);
-        sparseArray.put(i, scene2);
-        return scene2;
-    }
-
-    public static void setCurrentScene(@NonNull ViewGroup viewGroup, @Nullable Scene scene) {
-        viewGroup.setTag(C0658R.id.transition_current_scene, scene);
-    }
-
     public void enter() {
         if (this.mLayoutId > 0 || this.mLayout != null) {
             getSceneRoot().removeAllViews();
@@ -73,6 +47,28 @@ public class Scene {
         runnable.run();
     }
 
+    @Nullable
+    public static Scene getCurrentScene(@NonNull ViewGroup viewGroup) {
+        return (Scene) viewGroup.getTag(C0658R.id.transition_current_scene);
+    }
+
+    @NonNull
+    public static Scene getSceneForLayout(@NonNull ViewGroup viewGroup, @LayoutRes int i, @NonNull Context context) {
+        int i2 = C0658R.id.transition_scene_layoutid_cache;
+        SparseArray sparseArray = (SparseArray) viewGroup.getTag(i2);
+        if (sparseArray == null) {
+            sparseArray = new SparseArray();
+            viewGroup.setTag(i2, sparseArray);
+        }
+        Scene scene = (Scene) sparseArray.get(i);
+        if (scene != null) {
+            return scene;
+        }
+        Scene scene2 = new Scene(viewGroup, i, context);
+        sparseArray.put(i, scene2);
+        return scene2;
+    }
+
     @NonNull
     public ViewGroup getSceneRoot() {
         return this.mSceneRoot;
@@ -80,6 +76,10 @@ public class Scene {
 
     public boolean isCreatedFromLayoutResource() {
         return this.mLayoutId > 0;
+    }
+
+    public static void setCurrentScene(@NonNull ViewGroup viewGroup, @Nullable Scene scene) {
+        viewGroup.setTag(C0658R.id.transition_current_scene, scene);
     }
 
     public void setEnterAction(@Nullable Runnable runnable) {

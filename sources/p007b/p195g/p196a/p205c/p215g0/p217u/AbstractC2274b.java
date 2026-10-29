@@ -47,6 +47,37 @@ public abstract class AbstractC2274b<T> extends AbstractC2239h<T> implements Int
         this._unwrapSingle = null;
     }
 
+    /* JADX INFO: renamed from: r */
+    public final AbstractC2364n<Object> m2045r(AbstractC2262l abstractC2262l, Class<?> cls, AbstractC2374x abstractC2374x) throws JsonMappingException {
+        AbstractC2364n<Object> abstractC2364nM2250n = abstractC2374x.m2250n(cls, this._property);
+        AbstractC2262l abstractC2262lMo2033b = abstractC2262l.mo2033b(cls, abstractC2364nM2250n);
+        if (abstractC2262l != abstractC2262lMo2033b) {
+            this._dynamicSerializers = abstractC2262lMo2033b;
+        }
+        return abstractC2364nM2250n;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        if (abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) && mo1996q(t)) {
+            mo2022s(t, abstractC2108d, abstractC2374x);
+            return;
+        }
+        abstractC2108d.mo1646X(t);
+        mo2022s(t, abstractC2108d, abstractC2374x);
+        abstractC2108d.mo1663t();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(t, EnumC2112h.START_ARRAY));
+        abstractC2108d.mo1654e(t);
+        mo2022s(t, abstractC2108d, abstractC2374x);
+        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
+    }
+
     /* JADX WARN: Code duplicated, block: B:12:0x0020  */
     @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
@@ -79,37 +110,6 @@ public abstract class AbstractC2274b<T> extends AbstractC2239h<T> implements Int
             abstractC2364nM2073k = abstractC2374x.m2249m(this._elementType, interfaceC2206d);
         }
         return (abstractC2364nM2073k == this._elementSerializer && interfaceC2206d == this._property && this._valueTypeSerializer == abstractC2215gMo1955a && Objects.equals(this._unwrapSingle, boolM1598b)) ? this : mo2023t(interfaceC2206d, abstractC2215gMo1955a, abstractC2364nM2073k, boolM1598b);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        if (abstractC2374x.m2240D(EnumC2373w.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) && mo1996q(t)) {
-            mo2022s(t, abstractC2108d, abstractC2374x);
-            return;
-        }
-        abstractC2108d.mo1646X(t);
-        mo2022s(t, abstractC2108d, abstractC2374x);
-        abstractC2108d.mo1663t();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(T t, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(t, EnumC2112h.START_ARRAY));
-        abstractC2108d.mo1654e(t);
-        mo2022s(t, abstractC2108d, abstractC2374x);
-        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
-    }
-
-    /* JADX INFO: renamed from: r */
-    public final AbstractC2364n<Object> m2045r(AbstractC2262l abstractC2262l, Class<?> cls, AbstractC2374x abstractC2374x) throws JsonMappingException {
-        AbstractC2364n<Object> abstractC2364nM2250n = abstractC2374x.m2250n(cls, this._property);
-        AbstractC2262l abstractC2262lMo2033b = abstractC2262l.mo2033b(cls, abstractC2364nM2250n);
-        if (abstractC2262l != abstractC2262lMo2033b) {
-            this._dynamicSerializers = abstractC2262lMo2033b;
-        }
-        return abstractC2364nM2250n;
     }
 
     /* JADX INFO: renamed from: s */

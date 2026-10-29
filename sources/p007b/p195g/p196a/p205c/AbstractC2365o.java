@@ -7,6 +7,6 @@ public abstract class AbstractC2365o {
 
     /* JADX INFO: renamed from: b.g.a.c.o$a */
     /* JADX INFO: compiled from: KeyDeserializer.java */
-    public static abstract class a extends AbstractC2365o {
+    public abstract class a extends AbstractC2365o {
     }
 }

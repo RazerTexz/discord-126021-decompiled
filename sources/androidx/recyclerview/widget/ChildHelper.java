@@ -13,116 +13,6 @@ public class ChildHelper {
     public final Bucket mBucket = new Bucket();
     public final List<View> mHiddenViews = new ArrayList();
 
-    public static class Bucket {
-        public static final int BITS_PER_WORD = 64;
-        public static final long LAST_BIT = Long.MIN_VALUE;
-        public long mData = 0;
-        public Bucket mNext;
-
-        private void ensureNext() {
-            if (this.mNext == null) {
-                this.mNext = new Bucket();
-            }
-        }
-
-        public void clear(int i) {
-            if (i < 64) {
-                this.mData &= ~(1 << i);
-                return;
-            }
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                bucket.clear(i - 64);
-            }
-        }
-
-        public int countOnesBefore(int i) {
-            Bucket bucket = this.mNext;
-            if (bucket == null) {
-                return i >= 64 ? Long.bitCount(this.mData) : Long.bitCount(this.mData & ((1 << i) - 1));
-            }
-            if (i < 64) {
-                return Long.bitCount(this.mData & ((1 << i) - 1));
-            }
-            return Long.bitCount(this.mData) + bucket.countOnesBefore(i - 64);
-        }
-
-        public boolean get(int i) {
-            if (i < 64) {
-                return (this.mData & (1 << i)) != 0;
-            }
-            ensureNext();
-            return this.mNext.get(i - 64);
-        }
-
-        public void insert(int i, boolean z2) {
-            if (i >= 64) {
-                ensureNext();
-                this.mNext.insert(i - 64, z2);
-                return;
-            }
-            long j = this.mData;
-            boolean z3 = (Long.MIN_VALUE & j) != 0;
-            long j2 = (1 << i) - 1;
-            this.mData = ((j & (~j2)) << 1) | (j & j2);
-            if (z2) {
-                set(i);
-            } else {
-                clear(i);
-            }
-            if (z3 || this.mNext != null) {
-                ensureNext();
-                this.mNext.insert(0, z3);
-            }
-        }
-
-        public boolean remove(int i) {
-            if (i >= 64) {
-                ensureNext();
-                return this.mNext.remove(i - 64);
-            }
-            long j = 1 << i;
-            long j2 = this.mData;
-            boolean z2 = (j2 & j) != 0;
-            long j3 = j2 & (~j);
-            this.mData = j3;
-            long j4 = j - 1;
-            this.mData = (j3 & j4) | Long.rotateRight((~j4) & j3, 1);
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                if (bucket.get(0)) {
-                    set(63);
-                }
-                this.mNext.remove(0);
-            }
-            return z2;
-        }
-
-        public void reset() {
-            this.mData = 0L;
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                bucket.reset();
-            }
-        }
-
-        public void set(int i) {
-            if (i < 64) {
-                this.mData |= 1 << i;
-            } else {
-                ensureNext();
-                this.mNext.set(i - 64);
-            }
-        }
-
-        public String toString() {
-            if (this.mNext == null) {
-                return Long.toBinaryString(this.mData);
-            }
-            return this.mNext.toString() + "xx" + Long.toBinaryString(this.mData);
-        }
-    }
-
     public interface Callback {
         void addView(View view, int i);
 
@@ -149,38 +39,6 @@ public class ChildHelper {
 
     public ChildHelper(Callback callback) {
         this.mCallback = callback;
-    }
-
-    private int getOffset(int i) {
-        if (i < 0) {
-            return -1;
-        }
-        int childCount = this.mCallback.getChildCount();
-        int i2 = i;
-        while (i2 < childCount) {
-            int iCountOnesBefore = i - (i2 - this.mBucket.countOnesBefore(i2));
-            if (iCountOnesBefore == 0) {
-                while (this.mBucket.get(i2)) {
-                    i2++;
-                }
-                return i2;
-            }
-            i2 += iCountOnesBefore;
-        }
-        return -1;
-    }
-
-    private void hideViewInternal(View view) {
-        this.mHiddenViews.add(view);
-        this.mCallback.onEnteredHiddenState(view);
-    }
-
-    private boolean unhideViewInternal(View view) {
-        if (!this.mHiddenViews.remove(view)) {
-            return false;
-        }
-        this.mCallback.onLeftHiddenState(view);
-        return true;
     }
 
     public void addView(View view, boolean z2) {
@@ -222,6 +80,25 @@ public class ChildHelper {
         return this.mCallback.getChildCount() - this.mHiddenViews.size();
     }
 
+    private int getOffset(int i) {
+        if (i < 0) {
+            return -1;
+        }
+        int childCount = this.mCallback.getChildCount();
+        int i2 = i;
+        while (i2 < childCount) {
+            int iCountOnesBefore = i - (i2 - this.mBucket.countOnesBefore(i2));
+            if (iCountOnesBefore == 0) {
+                while (this.mBucket.get(i2)) {
+                    i2++;
+                }
+                return i2;
+            }
+            i2 += iCountOnesBefore;
+        }
+        return -1;
+    }
+
     public View getUnfilteredChildAt(int i) {
         return this.mCallback.getChildAt(i);
     }
@@ -238,6 +115,11 @@ public class ChildHelper {
         } else {
             throw new IllegalArgumentException("view is not a child, cannot hide " + view);
         }
+    }
+
+    private void hideViewInternal(View view) {
+        this.mHiddenViews.add(view);
+        this.mCallback.onEnteredHiddenState(view);
     }
 
     public int indexOfChild(View view) {
@@ -313,6 +195,124 @@ public class ChildHelper {
             unhideViewInternal(view);
         } else {
             throw new RuntimeException("trying to unhide a view that was not hidden" + view);
+        }
+    }
+
+    private boolean unhideViewInternal(View view) {
+        if (!this.mHiddenViews.remove(view)) {
+            return false;
+        }
+        this.mCallback.onLeftHiddenState(view);
+        return true;
+    }
+
+    public class Bucket {
+        public static final int BITS_PER_WORD = 64;
+        public static final long LAST_BIT = Long.MIN_VALUE;
+        public Bucket mNext;
+        public long mData = 0;
+
+        public void clear(int i) {
+            if (i < 64) {
+                this.mData &= ~(1 << i);
+                return;
+            }
+            Bucket bucket = this.mNext;
+            if (bucket != null) {
+                bucket.clear(i - 64);
+            }
+        }
+
+        public int countOnesBefore(int i) {
+            Bucket bucket = this.mNext;
+            if (bucket == null) {
+                return i >= 64 ? Long.bitCount(this.mData) : Long.bitCount(this.mData & ((1 << i) - 1));
+            }
+            if (i < 64) {
+                return Long.bitCount(this.mData & ((1 << i) - 1));
+            }
+            return Long.bitCount(this.mData) + bucket.countOnesBefore(i - 64);
+        }
+
+        private void ensureNext() {
+            if (this.mNext == null) {
+                this.mNext = new Bucket();
+            }
+        }
+
+        public boolean get(int i) {
+            if (i < 64) {
+                return (this.mData & (1 << i)) != 0;
+            }
+            ensureNext();
+            return this.mNext.get(i - 64);
+        }
+
+        public void insert(int i, boolean z2) {
+            if (i >= 64) {
+                ensureNext();
+                this.mNext.insert(i - 64, z2);
+                return;
+            }
+            long j = this.mData;
+            boolean z3 = (Long.MIN_VALUE & j) != 0;
+            long j2 = (1 << i) - 1;
+            this.mData = ((j & (~j2)) << 1) | (j & j2);
+            if (z2) {
+                set(i);
+            } else {
+                clear(i);
+            }
+            if (z3 || this.mNext != null) {
+                ensureNext();
+                this.mNext.insert(0, z3);
+            }
+        }
+
+        public boolean remove(int i) {
+            if (i >= 64) {
+                ensureNext();
+                return this.mNext.remove(i - 64);
+            }
+            long j = 1 << i;
+            long j2 = this.mData;
+            boolean z2 = (j2 & j) != 0;
+            long j3 = j2 & (~j);
+            this.mData = j3;
+            long j4 = j - 1;
+            this.mData = (j3 & j4) | Long.rotateRight((~j4) & j3, 1);
+            Bucket bucket = this.mNext;
+            if (bucket != null) {
+                if (bucket.get(0)) {
+                    set(63);
+                }
+                this.mNext.remove(0);
+            }
+            return z2;
+        }
+
+        public void reset() {
+            this.mData = 0L;
+            Bucket bucket = this.mNext;
+            if (bucket != null) {
+                bucket.reset();
+            }
+        }
+
+        public void set(int i) {
+            if (i < 64) {
+                this.mData |= 1 << i;
+            } else {
+                ensureNext();
+                this.mNext.set(i - 64);
+            }
+        }
+
+        public String toString() {
+            if (this.mNext == null) {
+                return Long.toBinaryString(this.mData);
+            }
+            return this.mNext.toString() + "xx" + Long.toBinaryString(this.mData);
         }
     }
 

@@ -45,7 +45,7 @@ public final class C10014xb1a69f5f extends AbstractC12194k implements Function2<
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
         int i = this.label;
         if (i == 0) {

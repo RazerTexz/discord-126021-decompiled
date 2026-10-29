@@ -8,11 +8,11 @@ public final class MessageParseState implements Rules.BlockQuoteState<MessagePar
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final MessageParseState initialState = new MessageParseState(false);
     private final boolean isInQuote;
+    private static final MessageParseState initialState = new MessageParseState(false);
 
     /* JADX INFO: compiled from: MessageParseState.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

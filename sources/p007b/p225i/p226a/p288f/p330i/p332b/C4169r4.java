@@ -15,9 +15,6 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4169r4 extends AbstractC4170r5 {
 
-    /* JADX INFO: renamed from: c */
-    public static final AtomicLong f11167c = new AtomicLong(Long.MIN_VALUE);
-
     /* JADX INFO: renamed from: d */
     public C4213v4 f11168d;
 
@@ -42,6 +39,9 @@ public final class C4169r4 extends AbstractC4170r5 {
     /* JADX INFO: renamed from: k */
     public final Semaphore f11175k;
 
+    /* JADX INFO: renamed from: c */
+    public static final AtomicLong f11167c = new AtomicLong(Long.MIN_VALUE);
+
     public C4169r4(C4202u4 c4202u4) {
         super(c4202u4);
         this.f11174j = new Object();
@@ -50,28 +50,6 @@ public final class C4169r4 extends AbstractC4170r5 {
         this.f11171g = new LinkedBlockingQueue();
         this.f11172h = new C4191t4(this, "Thread death: Uncaught exception on worker thread");
         this.f11173i = new C4191t4(this, "Thread death: Uncaught exception on network thread");
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
-    /* JADX INFO: renamed from: a */
-    public final void mo5847a() {
-        if (Thread.currentThread() != this.f11169e) {
-            throw new IllegalStateException("Call expected from network thread");
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
-    /* JADX INFO: renamed from: b */
-    public final void mo5848b() {
-        if (Thread.currentThread() != this.f11168d) {
-            throw new IllegalStateException("Call expected from worker thread");
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
-    /* JADX INFO: renamed from: r */
-    public final boolean mo5574r() {
-        return false;
     }
 
     /* JADX INFO: renamed from: s */
@@ -161,5 +139,27 @@ public final class C4169r4 extends AbstractC4170r5 {
     /* JADX INFO: renamed from: y */
     public final boolean m5855y() {
         return Thread.currentThread() == this.f11168d;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4170r5
+    /* JADX INFO: renamed from: r */
+    public final boolean mo5574r() {
+        return false;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
+    /* JADX INFO: renamed from: a */
+    public final void mo5847a() {
+        if (Thread.currentThread() != this.f11169e) {
+            throw new IllegalStateException("Call expected from network thread");
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.C4181s5
+    /* JADX INFO: renamed from: b */
+    public final void mo5848b() {
+        if (Thread.currentThread() != this.f11168d) {
+            throw new IllegalStateException("Call expected from worker thread");
+        }
     }
 }

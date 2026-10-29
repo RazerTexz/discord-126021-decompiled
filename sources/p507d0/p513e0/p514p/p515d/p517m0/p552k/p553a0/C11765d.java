@@ -83,11 +83,11 @@ public final class C11765d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.d$a */
     /* JADX INFO: compiled from: MemberScope.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.d$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: MemberScope.kt */
-        public static final class C13327a {
+        public final class C13327a {
 
             /* JADX INFO: renamed from: a */
             public final int f24360a;

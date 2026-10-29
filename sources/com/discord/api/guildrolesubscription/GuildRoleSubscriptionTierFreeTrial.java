@@ -12,6 +12,17 @@ public final /* data */ class GuildRoleSubscriptionTierFreeTrial {
     private final Integer maxNumActiveTrialUsers;
     private final Integer numActiveTrialUsers;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRoleSubscriptionTierFreeTrial)) {
+            return false;
+        }
+        GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial = (GuildRoleSubscriptionTierFreeTrial) other;
+        return this.id == guildRoleSubscriptionTierFreeTrial.id && C12238m.areEqual(this.numActiveTrialUsers, guildRoleSubscriptionTierFreeTrial.numActiveTrialUsers) && C12238m.areEqual(this.activeTrial, guildRoleSubscriptionTierFreeTrial.activeTrial) && C12238m.areEqual(this.maxNumActiveTrialUsers, guildRoleSubscriptionTierFreeTrial.maxNumActiveTrialUsers);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final SubscriptionTrial getActiveTrial() {
         return this.activeTrial;
@@ -25,17 +36,6 @@ public final /* data */ class GuildRoleSubscriptionTierFreeTrial {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final Integer getMaxNumActiveTrialUsers() {
         return this.maxNumActiveTrialUsers;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRoleSubscriptionTierFreeTrial)) {
-            return false;
-        }
-        GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial = (GuildRoleSubscriptionTierFreeTrial) other;
-        return this.id == guildRoleSubscriptionTierFreeTrial.id && C12238m.areEqual(this.numActiveTrialUsers, guildRoleSubscriptionTierFreeTrial.numActiveTrialUsers) && C12238m.areEqual(this.activeTrial, guildRoleSubscriptionTierFreeTrial.activeTrial) && C12238m.areEqual(this.maxNumActiveTrialUsers, guildRoleSubscriptionTierFreeTrial.maxNumActiveTrialUsers);
     }
 
     public int hashCode() {

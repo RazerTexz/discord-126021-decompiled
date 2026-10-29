@@ -50,14 +50,14 @@ public final class C12037e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.e$a */
     /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.e$b */
     /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
-    public static final class b extends AbstractC12240o implements Function0<String[]> {
+    public final class b extends AbstractC12240o implements Function0<String[]> {
         public b() {
             super(0);
         }

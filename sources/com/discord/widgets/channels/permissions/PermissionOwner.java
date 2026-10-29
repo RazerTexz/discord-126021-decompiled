@@ -13,7 +13,7 @@ public abstract class PermissionOwner implements Serializable {
     private final long entityId;
 
     /* JADX INFO: compiled from: PermissionOwner.kt */
-    public static final /* data */ class Member extends PermissionOwner {
+    public final /* data */ class Member extends PermissionOwner {
         private final boolean isOwner;
         private final String nickname;
         private final User user;
@@ -40,21 +40,6 @@ public abstract class PermissionOwner implements Serializable {
             return member.copy(user, str, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getNickname() {
-            return this.nickname;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsOwner() {
-            return this.isOwner;
-        }
-
         public final Member copy(User user, String nickname, boolean isOwner) {
             C12238m.checkNotNullParameter(user, "user");
             return new Member(user, nickname, isOwner);
@@ -71,8 +56,23 @@ public abstract class PermissionOwner implements Serializable {
             return C12238m.areEqual(this.user, member.user) && C12238m.areEqual(this.nickname, member.nickname) && this.isOwner == member.isOwner;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsOwner() {
+            return this.isOwner;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getNickname() {
             return this.nickname;
+        }
+
+        public final String getNickname() {
+            return this.nickname;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -112,7 +112,7 @@ public abstract class PermissionOwner implements Serializable {
     }
 
     /* JADX INFO: compiled from: PermissionOwner.kt */
-    public static final /* data */ class Role extends PermissionOwner {
+    public final /* data */ class Role extends PermissionOwner {
         private final GuildRole role;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -129,11 +129,6 @@ public abstract class PermissionOwner implements Serializable {
             return role.copy(guildRole);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
         public final Role copy(GuildRole role) {
             C12238m.checkNotNullParameter(role, "role");
             return new Role(role);
@@ -144,6 +139,11 @@ public abstract class PermissionOwner implements Serializable {
                 return (other instanceof Role) && C12238m.areEqual(this.role, ((Role) other).role);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
         }
 
         public final GuildRole getRole() {

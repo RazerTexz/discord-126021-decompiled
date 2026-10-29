@@ -67,8 +67,155 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
     private final ActivityResultLauncher<Intent> phoneVerificationLauncher;
     private String source;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class Companion {
+    public final class C102591 extends AbstractC12240o implements Function0<PhoneCountryCode> {
+        public final /* synthetic */ StorePhone $phoneStore;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C102591(StorePhone storePhone) {
+            super(0);
+            this.$phoneStore = storePhone;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final PhoneCountryCode invoke() {
+            return this.$phoneStore.getCountryCode();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102602 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
+        public C102602() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(PhoneCountryCode phoneCountryCode) {
+            invoke2(phoneCountryCode);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(PhoneCountryCode phoneCountryCode) {
+            C12238m.checkNotNullParameter(phoneCountryCode, "it");
+            WidgetUserPhoneManage.this.getBinding().f18353f.setCountryCode(phoneCountryCode);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102613 extends AbstractC12240o implements Function0<Unit> {
+        public C102613() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserPhoneManage.this.handlePhoneNumberTextChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102641 extends AbstractC12240o implements Function1<MeUser, Unit> {
+        public C102641() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            C12238m.checkNotNullParameter(meUser, "it");
+            WidgetUserPhoneManage.this.configureUI(meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$removePhoneNumber$1 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102651 extends AbstractC12240o implements Function1<View, Unit> {
+        public C102651() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.this.passwordVerifyLauncher);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$1 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102661 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C102661() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            if (GrowthTeamFeatures.INSTANCE.isPhoneVerifyCaptchaEnabled()) {
+                WidgetCaptcha.Companion companion = WidgetCaptcha.INSTANCE;
+                Context contextRequireContext = WidgetUserPhoneManage.this.requireContext();
+                ActivityResultLauncher<Intent> activityResultLauncher = WidgetUserPhoneManage.this.captchaLauncher;
+                Error.Response response = error.getResponse();
+                C12238m.checkNotNullExpressionValue(response, "error.response");
+                companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncher, C12163u.toMutableList((Collection) response.getMessages().keySet()), error);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$2 */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class C102672 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ String $phoneNumber;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C102672(String str) {
+            super(1);
+            this.$phoneNumber = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            WidgetUserPhoneVerify.INSTANCE.launch(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.this.phoneVerificationLauncher, WidgetUserPhoneManage.this.getMode(), this.$phoneNumber, WidgetUserPhoneManage.access$getSource$p(WidgetUserPhoneManage.this));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
         public enum Source {
@@ -107,153 +254,6 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102591 extends AbstractC12240o implements Function0<PhoneCountryCode> {
-        public final /* synthetic */ StorePhone $phoneStore;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C102591(StorePhone storePhone) {
-            super(0);
-            this.$phoneStore = storePhone;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final PhoneCountryCode invoke() {
-            return this.$phoneStore.getCountryCode();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102602 extends AbstractC12240o implements Function1<PhoneCountryCode, Unit> {
-        public C102602() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(PhoneCountryCode phoneCountryCode) {
-            invoke2(phoneCountryCode);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(PhoneCountryCode phoneCountryCode) {
-            C12238m.checkNotNullParameter(phoneCountryCode, "it");
-            WidgetUserPhoneManage.this.getBinding().f18353f.setCountryCode(phoneCountryCode);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102613 extends AbstractC12240o implements Function0<Unit> {
-        public C102613() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserPhoneManage.this.handlePhoneNumberTextChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102641 extends AbstractC12240o implements Function1<MeUser, Unit> {
-        public C102641() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
-            invoke2(meUser);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MeUser meUser) {
-            C12238m.checkNotNullParameter(meUser, "it");
-            WidgetUserPhoneManage.this.configureUI(meUser);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$removePhoneNumber$1 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102651 extends AbstractC12240o implements Function1<View, Unit> {
-        public C102651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.this.passwordVerifyLauncher);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$1 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102661 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C102661() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            if (GrowthTeamFeatures.INSTANCE.isPhoneVerifyCaptchaEnabled()) {
-                WidgetCaptcha.Companion companion = WidgetCaptcha.INSTANCE;
-                Context contextRequireContext = WidgetUserPhoneManage.this.requireContext();
-                ActivityResultLauncher<Intent> activityResultLauncher = WidgetUserPhoneManage.this.captchaLauncher;
-                Error.Response response = error.getResponse();
-                C12238m.checkNotNullExpressionValue(response, "error.response");
-                companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncher, C12163u.toMutableList((Collection) response.getMessages().keySet()), error);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$2 */
-    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
-    public static final class C102672 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ String $phoneNumber;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C102672(String str) {
-            super(1);
-            this.$phoneNumber = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r7) {
-            WidgetUserPhoneVerify.INSTANCE.launch(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.this.phoneVerificationLauncher, WidgetUserPhoneManage.this.getMode(), this.$phoneNumber, WidgetUserPhoneManage.access$getSource$p(WidgetUserPhoneManage.this));
         }
     }
 
@@ -307,45 +307,6 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
         materialButton.setEnabled((textOrEmpty.length() > 0) && C12103t.startsWith$default(textOrEmpty, BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX, false, 2, null));
     }
 
-    private final void removePhoneNumber() {
-        if (!UserUtils.INSTANCE.isMfaSMSEnabled(StoreStream.INSTANCE.getUsers().getMeSnapshot())) {
-            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(requireContext(), this.passwordVerifyLauncher);
-            return;
-        }
-        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        CharSequence charSequenceM211c = C1107b.m211c(resources, C5419R.string.user_settings_account_remove_phone_number_warning_title, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
-        Resources resources2 = getResources();
-        C12238m.checkNotNullExpressionValue(resources2, "resources");
-        CharSequence charSequenceM211c2 = C1107b.m211c(resources2, C5419R.string.user_settings_account_remove_phone_number_warning_body, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
-        Resources resources3 = getResources();
-        C12238m.checkNotNullExpressionValue(resources3, "resources");
-        CharSequence charSequenceM211c3 = C1107b.m211c(resources3, C5419R.string.remove, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
-        Resources resources4 = getResources();
-        C12238m.checkNotNullExpressionValue(resources4, "resources");
-        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, charSequenceM211c, charSequenceM211c2, charSequenceM211c3, C1107b.m211c(resources4, C5419R.string.cancel, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null), C12134g0.mapOf(C12116o.m10073to(Integer.valueOf(C5419R.id.notice_ok), new C102651())), null, null, null, Integer.valueOf(C5419R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
-    }
-
-    private final void updatePhoneNumber(CaptchaHelper.CaptchaPayload captchaPayload) {
-        String textOrEmpty = getBinding().f18353f.getTextOrEmpty();
-        RestAPI api = RestAPI.INSTANCE.getApi();
-        String str = this.source;
-        if (str == null) {
-            C12238m.throwUninitializedPropertyAccessException("source");
-        }
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(api.userAddPhone(new RestAPIParams.Phone(textOrEmpty, str, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), getBinding().f18349b, 0L, 2, null), this, null, 2, null), (Class<?>) WidgetUserPhoneManage.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C102661()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102672(textOrEmpty));
-    }
-
-    public static /* synthetic */ void updatePhoneNumber$default(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetUserPhoneManage.updatePhoneNumber(captchaPayload);
-    }
-
     @Override // com.discord.widgets.user.account.WidgetUserAccountVerifyBase, com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -374,5 +335,44 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) WidgetUserPhoneManage.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102641());
+    }
+
+    private final void removePhoneNumber() {
+        if (!UserUtils.INSTANCE.isMfaSMSEnabled(StoreStream.INSTANCE.getUsers().getMeSnapshot())) {
+            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(requireContext(), this.passwordVerifyLauncher);
+            return;
+        }
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Resources resources = getResources();
+        C12238m.checkNotNullExpressionValue(resources, "resources");
+        CharSequence charSequenceM211c = C1107b.m211c(resources, C5419R.string.user_settings_account_remove_phone_number_warning_title, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
+        Resources resources2 = getResources();
+        C12238m.checkNotNullExpressionValue(resources2, "resources");
+        CharSequence charSequenceM211c2 = C1107b.m211c(resources2, C5419R.string.user_settings_account_remove_phone_number_warning_body, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
+        Resources resources3 = getResources();
+        C12238m.checkNotNullExpressionValue(resources3, "resources");
+        CharSequence charSequenceM211c3 = C1107b.m211c(resources3, C5419R.string.remove, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
+        Resources resources4 = getResources();
+        C12238m.checkNotNullExpressionValue(resources4, "resources");
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, charSequenceM211c, charSequenceM211c2, charSequenceM211c3, C1107b.m211c(resources4, C5419R.string.cancel, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null), C12134g0.mapOf(C12116o.m10073to(Integer.valueOf(C5419R.id.notice_ok), new C102651())), null, null, null, Integer.valueOf(C5419R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
+    }
+
+    public static /* synthetic */ void updatePhoneNumber$default(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetUserPhoneManage.updatePhoneNumber(captchaPayload);
+    }
+
+    private final void updatePhoneNumber(CaptchaHelper.CaptchaPayload captchaPayload) {
+        String textOrEmpty = getBinding().f18353f.getTextOrEmpty();
+        RestAPI api = RestAPI.INSTANCE.getApi();
+        String str = this.source;
+        if (str == null) {
+            C12238m.throwUninitializedPropertyAccessException("source");
+        }
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(api.userAddPhone(new RestAPIParams.Phone(textOrEmpty, str, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), getBinding().f18349b, 0L, 2, null), this, null, 2, null), (Class<?>) WidgetUserPhoneManage.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C102661()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102672(textOrEmpty));
     }
 }

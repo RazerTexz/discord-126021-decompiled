@@ -10,7 +10,7 @@ public final class C2498g implements InterfaceC5318a {
 
     /* JADX INFO: renamed from: b.i.a.b.j.t.i.g$a */
     /* JADX INFO: compiled from: EventStoreModule_StoreConfigFactory.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C2498g f5423a = new C2498g();

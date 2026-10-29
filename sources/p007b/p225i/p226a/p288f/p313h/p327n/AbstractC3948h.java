@@ -28,14 +28,14 @@ public abstract class AbstractC3948h<E> extends AbstractCollection<E> implements
         throw new UnsupportedOperationException();
     }
 
-    /* JADX INFO: renamed from: c */
-    public abstract int mo5430c(Object[] objArr, int i);
-
     @Override // java.util.AbstractCollection, java.util.Collection
     @Deprecated
     public final void clear() {
         throw new UnsupportedOperationException();
     }
+
+    /* JADX INFO: renamed from: c */
+    public abstract int mo5430c(Object[] objArr, int i);
 
     /* JADX INFO: renamed from: d */
     public abstract int mo5431d();

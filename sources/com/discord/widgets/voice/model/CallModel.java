@@ -68,10 +68,10 @@ public final /* data */ class CallModel {
     private final StoreMediaSettings.VoiceConfiguration voiceSettings;
 
     /* JADX INFO: compiled from: CallModel.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: compiled from: CallModel.kt */
-        public static final /* data */ class Chunk {
+        public final /* data */ class Chunk {
             private final StoreAudioManagerV2.State audioManagerState;
             private final Channel channel;
             private final Long channelPermissions;
@@ -99,47 +99,12 @@ public final /* data */ class CallModel {
                 this.audioManagerState = state;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getMyUserId() {
-                return this.myUserId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getTimeConnectedMs() {
-                return this.timeConnectedMs;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final StoreMediaSettings.VoiceConfiguration getVoiceConfig() {
-                return this.voiceConfig;
-            }
-
             public final Map<Long, StoreVoiceParticipants.VoiceUser> component5() {
                 return this.voiceParticipants;
             }
 
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Long getChannelPermissions() {
-                return this.channelPermissions;
-            }
-
             public final List<VideoInputDeviceDescription> component7() {
                 return this.videoDevices;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final VideoInputDeviceDescription getSelectedVideoDevice() {
-                return this.selectedVideoDevice;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final StoreAudioManagerV2.State getAudioManagerState() {
-                return this.audioManagerState;
             }
 
             public final Chunk copy(Channel channel, long myUserId, long timeConnectedMs, StoreMediaSettings.VoiceConfiguration voiceConfig, Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, Long channelPermissions, List<VideoInputDeviceDescription> videoDevices, VideoInputDeviceDescription selectedVideoDevice, StoreAudioManagerV2.State audioManagerState) {
@@ -162,24 +127,54 @@ public final /* data */ class CallModel {
                 return C12238m.areEqual(this.channel, chunk.channel) && this.myUserId == chunk.myUserId && this.timeConnectedMs == chunk.timeConnectedMs && C12238m.areEqual(this.voiceConfig, chunk.voiceConfig) && C12238m.areEqual(this.voiceParticipants, chunk.voiceParticipants) && C12238m.areEqual(this.channelPermissions, chunk.channelPermissions) && C12238m.areEqual(this.videoDevices, chunk.videoDevices) && C12238m.areEqual(this.selectedVideoDevice, chunk.selectedVideoDevice) && C12238m.areEqual(this.audioManagerState, chunk.audioManagerState);
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final StoreAudioManagerV2.State getAudioManagerState() {
                 return this.audioManagerState;
+            }
+
+            public final StoreAudioManagerV2.State getAudioManagerState() {
+                return this.audioManagerState;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
                 return this.channel;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final Long getChannelPermissions() {
                 return this.channelPermissions;
+            }
+
+            public final Long getChannelPermissions() {
+                return this.channelPermissions;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getMyUserId() {
+                return this.myUserId;
             }
 
             public final long getMyUserId() {
                 return this.myUserId;
             }
 
+            /* JADX INFO: renamed from: component8, reason: from getter */
             public final VideoInputDeviceDescription getSelectedVideoDevice() {
                 return this.selectedVideoDevice;
+            }
+
+            public final VideoInputDeviceDescription getSelectedVideoDevice() {
+                return this.selectedVideoDevice;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final long getTimeConnectedMs() {
+                return this.timeConnectedMs;
             }
 
             public final long getTimeConnectedMs() {
@@ -188,6 +183,11 @@ public final /* data */ class CallModel {
 
             public final List<VideoInputDeviceDescription> getVideoDevices() {
                 return this.videoDevices;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final StoreMediaSettings.VoiceConfiguration getVoiceConfig() {
+                return this.voiceConfig;
             }
 
             public final StoreMediaSettings.VoiceConfiguration getVoiceConfig() {
@@ -265,6 +265,12 @@ public final /* data */ class CallModel {
             return new CallModel(voiceParticipants, myUserId, timeConnectedMs, videoDevices, selectedVideoDevice, voiceConfig, rtcConnectionMetadata, callFeedbackTriggerRateDenominator, streamFeedbackTriggerRateDenominator, activeStream, voiceChannelJoinability, maxVideoChannelUsers, guild, isChannelSelected, z2, guildScheduledEvents, embeddedActivitiesForChannel, applications, channel, i, channelPermissions, audioManagerState);
         }
 
+        public final Observable<CallModel> get(long channelId) {
+            Observable observableM11099Y = StoreStream.INSTANCE.getChannels().observeChannel(channelId).m11099Y(new CallModel$Companion$get$1(channelId));
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n          .g…            }\n          }");
+            return observableM11099Y;
+        }
+
         private final Observable<Chunk> observeChunk(final Channel channel) {
             StoreStream.Companion companion = StoreStream.INSTANCE;
             Observable<Chunk> observableM11067d = Observable.m11067d(companion.getUsers().observeMeId(), companion.getVoiceChannelSelected().observeTimeSelectedMs(), companion.getMediaSettings().getVoiceConfiguration(), ObservableExtensionsKt.leadingEdgeThrottle(companion.getVoiceParticipants().get(channel.getId()), 250L, TimeUnit.MILLISECONDS), companion.getPermissions().observePermissionsForChannel(channel.getId()), companion.getMediaEngine().getVideoInputDevices(), companion.getMediaEngine().getSelectedVideoInputDevice(), companion.getAudioManagerV2().observeAudioManagerState(), new Func8<Long, Long, StoreMediaSettings.VoiceConfiguration, Map<Long, ? extends StoreVoiceParticipants.VoiceUser>, Long, List<? extends VideoInputDeviceDescription>, VideoInputDeviceDescription, StoreAudioManagerV2.State, Chunk>() { // from class: com.discord.widgets.voice.model.CallModel$Companion$observeChunk$1
@@ -289,12 +295,6 @@ public final /* data */ class CallModel {
             });
             C12238m.checkNotNullExpressionValue(observableM11067d, "Observable\n          .co…            )\n          }");
             return observableM11067d;
-        }
-
-        public final Observable<CallModel> get(long channelId) {
-            Observable observableM11099Y = StoreStream.INSTANCE.getChannels().observeChannel(channelId).m11099Y(new CallModel$Companion$get$1(channelId));
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n          .g…            }\n          }");
-            return observableM11099Y;
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -363,26 +363,6 @@ public final /* data */ class CallModel {
         this.isVideoCall = z5;
     }
 
-    /* JADX INFO: renamed from: component19, reason: from getter */
-    private final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component20, reason: from getter */
-    private final int getNumUsersConnected() {
-        return this.numUsersConnected;
-    }
-
-    /* JADX INFO: renamed from: component21, reason: from getter */
-    private final Long getChannelPermissions() {
-        return this.channelPermissions;
-    }
-
-    /* JADX INFO: renamed from: component22, reason: from getter */
-    private final StoreAudioManagerV2.State getAudioManagerState() {
-        return this.audioManagerState;
-    }
-
     public final boolean canInvite() {
         boolean zM7667B = ChannelUtils.m7667B(this.channel);
         boolean z2 = ChannelUtils.m7699w(this.channel) && PermissionUtils.can(1L, this.channelPermissions);
@@ -402,36 +382,6 @@ public final /* data */ class CallModel {
         return this.participants;
     }
 
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
-        return this.activeStream;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final VoiceChannelJoinability getVoiceChannelJoinability() {
-        return this.voiceChannelJoinability;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelMembers() {
-        return this.guildMaxVideoChannelMembers;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final boolean getIsChannelSelected() {
-        return this.isChannelSelected;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final boolean getIsMyHandRaised() {
-        return this.isMyHandRaised;
-    }
-
     public final List<GuildScheduledEvent> component16() {
         return this.guildScheduledEvents;
     }
@@ -444,43 +394,8 @@ public final /* data */ class CallModel {
         return this.applications;
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMyId() {
-        return this.myId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getTimeConnectedMs() {
-        return this.timeConnectedMs;
-    }
-
     public final List<VideoInputDeviceDescription> component4() {
         return this.videoDevices;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final VideoInputDeviceDescription getSelectedVideoDevice() {
-        return this.selectedVideoDevice;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StoreMediaSettings.VoiceConfiguration getVoiceSettings() {
-        return this.voiceSettings;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final RtcConnection.Metadata getRtcConnectionMetadata() {
-        return this.rtcConnectionMetadata;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getCallFeedbackTriggerRateDenominator() {
-        return this.callFeedbackTriggerRateDenominator;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getStreamFeedbackTriggerRateDenominator() {
-        return this.streamFeedbackTriggerRateDenominator;
     }
 
     public final CallModel copy(Map<Long, StoreVoiceParticipants.VoiceUser> participants, long myId, long timeConnectedMs, List<VideoInputDeviceDescription> videoDevices, VideoInputDeviceDescription selectedVideoDevice, StoreMediaSettings.VoiceConfiguration voiceSettings, RtcConnection.Metadata rtcConnectionMetadata, int callFeedbackTriggerRateDenominator, int streamFeedbackTriggerRateDenominator, StoreApplicationStreaming.ActiveApplicationStream activeStream, VoiceChannelJoinability voiceChannelJoinability, GuildMaxVideoChannelUsers guildMaxVideoChannelMembers, Guild guild, boolean isChannelSelected, boolean isMyHandRaised, List<GuildScheduledEvent> guildScheduledEvents, Map<Long, EmbeddedActivity> embeddedActivitiesForChannel, Map<Long, Application> applications, Channel channel, int numUsersConnected, Long channelPermissions, StoreAudioManagerV2.State audioManagerState) {
@@ -508,12 +423,22 @@ public final /* data */ class CallModel {
         return C12238m.areEqual(this.participants, callModel.participants) && this.myId == callModel.myId && this.timeConnectedMs == callModel.timeConnectedMs && C12238m.areEqual(this.videoDevices, callModel.videoDevices) && C12238m.areEqual(this.selectedVideoDevice, callModel.selectedVideoDevice) && C12238m.areEqual(this.voiceSettings, callModel.voiceSettings) && C12238m.areEqual(this.rtcConnectionMetadata, callModel.rtcConnectionMetadata) && this.callFeedbackTriggerRateDenominator == callModel.callFeedbackTriggerRateDenominator && this.streamFeedbackTriggerRateDenominator == callModel.streamFeedbackTriggerRateDenominator && C12238m.areEqual(this.activeStream, callModel.activeStream) && C12238m.areEqual(this.voiceChannelJoinability, callModel.voiceChannelJoinability) && C12238m.areEqual(this.guildMaxVideoChannelMembers, callModel.guildMaxVideoChannelMembers) && C12238m.areEqual(this.guild, callModel.guild) && this.isChannelSelected == callModel.isChannelSelected && this.isMyHandRaised == callModel.isMyHandRaised && C12238m.areEqual(this.guildScheduledEvents, callModel.guildScheduledEvents) && C12238m.areEqual(this.embeddedActivitiesForChannel, callModel.embeddedActivitiesForChannel) && C12238m.areEqual(this.applications, callModel.applications) && C12238m.areEqual(this.channel, callModel.channel) && this.numUsersConnected == callModel.numUsersConnected && C12238m.areEqual(this.channelPermissions, callModel.channelPermissions) && C12238m.areEqual(this.audioManagerState, callModel.audioManagerState);
     }
 
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
+        return this.activeStream;
+    }
+
     public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
         return this.activeStream;
     }
 
     public final Map<Long, Application> getApplications() {
         return this.applications;
+    }
+
+    /* JADX INFO: renamed from: component22, reason: from getter */
+    private final StoreAudioManagerV2.State getAudioManagerState() {
+        return this.audioManagerState;
     }
 
     public final StoreAudioManagerV2.State getAudioManagerState() {
@@ -525,6 +450,11 @@ public final /* data */ class CallModel {
         return clock.currentTimeMillis() - this.timeConnectedMs;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final int getCallFeedbackTriggerRateDenominator() {
+        return this.callFeedbackTriggerRateDenominator;
+    }
+
     public final int getCallFeedbackTriggerRateDenominator() {
         return this.callFeedbackTriggerRateDenominator;
     }
@@ -533,8 +463,18 @@ public final /* data */ class CallModel {
         return this.cameraState;
     }
 
+    /* JADX INFO: renamed from: component19, reason: from getter */
+    private final Channel getChannel() {
+        return this.channel;
+    }
+
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component21, reason: from getter */
+    private final Long getChannelPermissions() {
+        return this.channelPermissions;
     }
 
     public final Long getChannelPermissions() {
@@ -559,8 +499,18 @@ public final /* data */ class CallModel {
         return this.embeddedActivitiesForChannel;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final Guild getGuild() {
         return this.guild;
+    }
+
+    public final Guild getGuild() {
+        return this.guild;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelMembers() {
+        return this.guildMaxVideoChannelMembers;
     }
 
     public final GuildMaxVideoChannelUsers getGuildMaxVideoChannelMembers() {
@@ -575,8 +525,33 @@ public final /* data */ class CallModel {
         return this.voiceSettings.getInputMode();
     }
 
+    /* JADX INFO: renamed from: component14, reason: from getter */
+    public final boolean getIsChannelSelected() {
+        return this.isChannelSelected;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final boolean getIsMyHandRaised() {
+        return this.isMyHandRaised;
+    }
+
+    /* JADX INFO: renamed from: isVideoCall, reason: from getter */
+    public final boolean getIsVideoCall() {
+        return this.isVideoCall;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getMyId() {
         return this.myId;
+    }
+
+    public final long getMyId() {
+        return this.myId;
+    }
+
+    /* JADX INFO: renamed from: component20, reason: from getter */
+    private final int getNumUsersConnected() {
+        return this.numUsersConnected;
     }
 
     public final int getNumUsersConnected() {
@@ -587,16 +562,36 @@ public final /* data */ class CallModel {
         return this.participants;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final RtcConnection.Metadata getRtcConnectionMetadata() {
         return this.rtcConnectionMetadata;
+    }
+
+    public final RtcConnection.Metadata getRtcConnectionMetadata() {
+        return this.rtcConnectionMetadata;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final VideoInputDeviceDescription getSelectedVideoDevice() {
+        return this.selectedVideoDevice;
     }
 
     public final VideoInputDeviceDescription getSelectedVideoDevice() {
         return this.selectedVideoDevice;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final int getStreamFeedbackTriggerRateDenominator() {
         return this.streamFeedbackTriggerRateDenominator;
+    }
+
+    public final int getStreamFeedbackTriggerRateDenominator() {
+        return this.streamFeedbackTriggerRateDenominator;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getTimeConnectedMs() {
+        return this.timeConnectedMs;
     }
 
     public final long getTimeConnectedMs() {
@@ -607,8 +602,18 @@ public final /* data */ class CallModel {
         return this.videoDevices;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final VoiceChannelJoinability getVoiceChannelJoinability() {
         return this.voiceChannelJoinability;
+    }
+
+    public final VoiceChannelJoinability getVoiceChannelJoinability() {
+        return this.voiceChannelJoinability;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final StoreMediaSettings.VoiceConfiguration getVoiceSettings() {
+        return this.voiceSettings;
     }
 
     public final StoreMediaSettings.VoiceConfiguration getVoiceSettings() {
@@ -728,11 +733,6 @@ public final /* data */ class CallModel {
             return false;
         }
         return voiceState.getSuppress();
-    }
-
-    /* JADX INFO: renamed from: isVideoCall, reason: from getter */
-    public final boolean getIsVideoCall() {
-        return this.isVideoCall;
     }
 
     public String toString() {

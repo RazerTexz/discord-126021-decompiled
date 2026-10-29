@@ -27,38 +27,8 @@ public final /* data */ class ModelInvoiceItem {
         this.subscriptionPlanPrice = i3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getAmount() {
-        return this.amount;
-    }
-
     public final List<ModelInvoiceDiscount> component2() {
         return this.discount;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getProration() {
-        return this.proration;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getQuantity() {
-        return this.quantity;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final long getSubscriptionPlanId() {
-        return this.subscriptionPlanId;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getSubscriptionPlanPrice() {
-        return this.subscriptionPlanPrice;
     }
 
     public final ModelInvoiceItem copy(int amount, List<ModelInvoiceDiscount> discount, long id2, boolean proration, int quantity, long subscriptionPlanId, int subscriptionPlanPrice) {
@@ -77,6 +47,11 @@ public final /* data */ class ModelInvoiceItem {
         return this.amount == modelInvoiceItem.amount && C12238m.areEqual(this.discount, modelInvoiceItem.discount) && this.id == modelInvoiceItem.id && this.proration == modelInvoiceItem.proration && this.quantity == modelInvoiceItem.quantity && this.subscriptionPlanId == modelInvoiceItem.subscriptionPlanId && this.subscriptionPlanPrice == modelInvoiceItem.subscriptionPlanPrice;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getAmount() {
+        return this.amount;
+    }
+
     public final int getAmount() {
         return this.amount;
     }
@@ -85,20 +60,45 @@ public final /* data */ class ModelInvoiceItem {
         return this.discount;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getProration() {
+        return this.proration;
     }
 
     public final boolean getProration() {
         return this.proration;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final int getQuantity() {
         return this.quantity;
     }
 
+    public final int getQuantity() {
+        return this.quantity;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final long getSubscriptionPlanId() {
         return this.subscriptionPlanId;
+    }
+
+    public final long getSubscriptionPlanId() {
+        return this.subscriptionPlanId;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getSubscriptionPlanPrice() {
+        return this.subscriptionPlanPrice;
     }
 
     public final int getSubscriptionPlanPrice() {

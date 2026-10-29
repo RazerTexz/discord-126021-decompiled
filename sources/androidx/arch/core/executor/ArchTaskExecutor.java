@@ -8,13 +8,13 @@ import java.util.concurrent.Executor;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ArchTaskExecutor extends TaskExecutor {
-    private static volatile ArchTaskExecutor sInstance;
 
     @NonNull
     private TaskExecutor mDefaultTaskExecutor;
 
     @NonNull
     private TaskExecutor mDelegate;
+    private static volatile ArchTaskExecutor sInstance;
 
     @NonNull
     private static final Executor sMainThreadExecutor = new Executor() { // from class: androidx.arch.core.executor.ArchTaskExecutor.1
@@ -38,6 +38,11 @@ public class ArchTaskExecutor extends TaskExecutor {
         this.mDelegate = defaultTaskExecutor;
     }
 
+    @Override // androidx.arch.core.executor.TaskExecutor
+    public void executeOnDiskIO(Runnable runnable) {
+        this.mDelegate.executeOnDiskIO(runnable);
+    }
+
     @NonNull
     public static Executor getIOThreadExecutor() {
         return sIOThreadExecutor;
@@ -59,11 +64,6 @@ public class ArchTaskExecutor extends TaskExecutor {
     @NonNull
     public static Executor getMainThreadExecutor() {
         return sMainThreadExecutor;
-    }
-
-    @Override // androidx.arch.core.executor.TaskExecutor
-    public void executeOnDiskIO(Runnable runnable) {
-        this.mDelegate.executeOnDiskIO(runnable);
     }
 
     @Override // androidx.arch.core.executor.TaskExecutor

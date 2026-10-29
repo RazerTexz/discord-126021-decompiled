@@ -11,14 +11,14 @@ import p658rx.functions.Action1;
 /* JADX INFO: loaded from: classes3.dex */
 public final class BehaviorSubject<T> extends Subject<T, T> {
 
-    /* JADX INFO: renamed from: k */
-    public static final Object[] f27647k = new Object[0];
-
     /* JADX INFO: renamed from: l */
     public final C12784c<T> f27648l;
 
+    /* JADX INFO: renamed from: k */
+    public static final Object[] f27647k = new Object[0];
+
     /* JADX INFO: renamed from: rx.subjects.BehaviorSubject$a */
-    public static class C13014a implements Action1<C12784c.b<T>> {
+    public final class C13014a implements Action1<C12784c.b<T>> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ C12784c f27649j;

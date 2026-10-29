@@ -34,56 +34,6 @@ public final /* data */ class PaymentSourceRaw {
         this.expiresYear = i3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final int getExpiresYear() {
-        return this.expiresYear;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getInvalid() {
-        return this.invalid;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final ModelBillingAddress getBillingAddress() {
-        return this.billingAddress;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getDefault() {
-        return this.default;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getBrand() {
-        return this.brand;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final String getLast_4() {
-        return this.last_4;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getExpiresMonth() {
-        return this.expiresMonth;
-    }
-
     public final PaymentSourceRaw copy(int type, String id2, boolean invalid, ModelBillingAddress billingAddress, boolean z2, String email, String brand, String last_4, int expiresMonth, int expiresYear) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(billingAddress, "billingAddress");
@@ -101,40 +51,90 @@ public final /* data */ class PaymentSourceRaw {
         return this.type == paymentSourceRaw.type && C12238m.areEqual(this.id, paymentSourceRaw.id) && this.invalid == paymentSourceRaw.invalid && C12238m.areEqual(this.billingAddress, paymentSourceRaw.billingAddress) && this.default == paymentSourceRaw.default && C12238m.areEqual(this.email, paymentSourceRaw.email) && C12238m.areEqual(this.brand, paymentSourceRaw.brand) && C12238m.areEqual(this.last_4, paymentSourceRaw.last_4) && this.expiresMonth == paymentSourceRaw.expiresMonth && this.expiresYear == paymentSourceRaw.expiresYear;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final ModelBillingAddress getBillingAddress() {
         return this.billingAddress;
+    }
+
+    public final ModelBillingAddress getBillingAddress() {
+        return this.billingAddress;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final String getBrand() {
+        return this.brand;
     }
 
     public final String getBrand() {
         return this.brand;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getDefault() {
         return this.default;
+    }
+
+    public final boolean getDefault() {
+        return this.default;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getEmail() {
+        return this.email;
     }
 
     public final String getEmail() {
         return this.email;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final int getExpiresMonth() {
         return this.expiresMonth;
+    }
+
+    public final int getExpiresMonth() {
+        return this.expiresMonth;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final int getExpiresYear() {
+        return this.expiresYear;
     }
 
     public final int getExpiresYear() {
         return this.expiresYear;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getId() {
         return this.id;
+    }
+
+    public final String getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getInvalid() {
+        return this.invalid;
     }
 
     public final boolean getInvalid() {
         return this.invalid;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final String getLast_4() {
         return this.last_4;
+    }
+
+    public final String getLast_4() {
+        return this.last_4;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

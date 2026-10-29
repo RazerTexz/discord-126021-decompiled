@@ -21,7 +21,7 @@ public final class C2796h {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.z.h$a */
     /* JADX INFO: compiled from: Projection.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final b[] f6983a;
@@ -33,7 +33,7 @@ public final class C2796h {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.z.h$b */
     /* JADX INFO: compiled from: Projection.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f6984a;

@@ -39,6 +39,14 @@ public final class ThreadSpineItemDecoration extends RecyclerView.ItemDecoration
         }
     }
 
+    public final WidgetChatListAdapter getAdapter() {
+        return this.adapter;
+    }
+
+    public final Context getContext() {
+        return this.context;
+    }
+
     private final void handleRecyclerViewChildren(Canvas canvas, RecyclerView parent) {
         canvas.save();
         int childCount = parent.getChildCount();
@@ -51,14 +59,6 @@ public final class ThreadSpineItemDecoration extends RecyclerView.ItemDecoration
             }
         }
         canvas.restore();
-    }
-
-    public final WidgetChatListAdapter getAdapter() {
-        return this.adapter;
-    }
-
-    public final Context getContext() {
-        return this.context;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration

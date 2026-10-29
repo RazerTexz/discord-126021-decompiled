@@ -32,7 +32,7 @@ public class C2017w implements InterfaceC2018w0<C1919e> {
 
     /* JADX INFO: renamed from: b.f.j.p.w$a */
     /* JADX INFO: compiled from: EncodedProbeProducer.java */
-    public static class a extends AbstractC2003p<C1919e, C1919e> {
+    public class a extends AbstractC2003p<C1919e, C1919e> {
 
         /* JADX INFO: renamed from: c */
         public final InterfaceC2020x0 f4252c;

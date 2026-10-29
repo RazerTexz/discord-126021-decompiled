@@ -44,7 +44,7 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$1 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C57961 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C57961 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -69,7 +69,7 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$2 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C57972 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C57972 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ AppComponent $appComponent;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
@@ -79,7 +79,7 @@ public final class StoreCalls {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$2$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreCalls.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Boolean, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -100,7 +100,7 @@ public final class StoreCalls {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$2$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreCalls.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
             public final /* synthetic */ long $userId;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -169,7 +169,7 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$3 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C57983 extends AbstractC12240o implements Function1<Channel, Boolean> {
+    public final class C57983 extends AbstractC12240o implements Function1<Channel, Boolean> {
         public static final C57983 INSTANCE = new C57983();
 
         public C57983() {
@@ -189,7 +189,7 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$call$5 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C58005 extends AbstractC12240o implements Function1<Pair<? extends Channel, ? extends Map<Long, ? extends VoiceState>>, Unit> {
+    public final class C58005 extends AbstractC12240o implements Function1<Pair<? extends Channel, ? extends Map<Long, ? extends VoiceState>>, Unit> {
         public final /* synthetic */ C57961 $doCall$1;
         public final /* synthetic */ C57972 $doCallIfCallable$2;
 
@@ -221,7 +221,7 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$findCall$1 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C58011 extends AbstractC12240o implements Function1<ModelCall, Boolean> {
+    public final class C58011 extends AbstractC12240o implements Function1<ModelCall, Boolean> {
         public static final C58011 INSTANCE = new C58011();
 
         public C58011() {
@@ -241,12 +241,12 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$ring$1 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C58031 extends AbstractC12240o implements Function1<ModelCall, Unit> {
+    public final class C58031 extends AbstractC12240o implements Function1<ModelCall, Unit> {
         public final /* synthetic */ List $recipients;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreCalls$ring$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreCalls.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -286,13 +286,13 @@ public final class StoreCalls {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCalls$stopRinging$1 */
     /* JADX INFO: compiled from: StoreCalls.kt */
-    public static final class C58041 extends AbstractC12240o implements Function1<ModelCall, Unit> {
+    public final class C58041 extends AbstractC12240o implements Function1<ModelCall, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ List $recipients;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreCalls$stopRinging$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreCalls.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {
@@ -348,53 +348,6 @@ public final class StoreCalls {
         storeCalls.call(appComponent, context, fragmentManager, j, function0);
     }
 
-    private final void callConnect() {
-        if (this.connectionReady && this.selectedGuildId == 0) {
-            long j = this.selectedChannelId;
-            if (j <= 0 || this.calls.containsKey(Long.valueOf(j))) {
-                return;
-            }
-            this.calls.put(Long.valueOf(this.selectedChannelId), null);
-            this.stream.getGatewaySocket().callConnect(this.selectedChannelId);
-        }
-    }
-
-    private final void callSubjectUpdate(boolean updated) {
-        if (updated) {
-            SerializedSubject<HashMap<Long, ModelCall>, HashMap<Long, ModelCall>> serializedSubject = this.callsSubject;
-            serializedSubject.f27653k.onNext(new HashMap<>(this.calls));
-        }
-    }
-
-    public static /* synthetic */ void callSubjectUpdate$default(StoreCalls storeCalls, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        storeCalls.callSubjectUpdate(z2);
-    }
-
-    private final void findCall(long channelId, Function1<? super ModelCall, Unit> onFoundCall) {
-        Observable<R> observableM11108k = get(channelId).m11108k(C0879o.m177c(C58011.INSTANCE, null, 3L, TimeUnit.SECONDS));
-        C12238m.checkNotNullExpressionValue(observableM11108k, "get(channelId)\n        .…l?, 3, TimeUnit.SECONDS))");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11108k, 0L, false, 3, null), (Class<?>) StoreCalls.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), onFoundCall);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void ring$default(StoreCalls storeCalls, long j, List list, int i, Object obj) {
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        storeCalls.ring(j, list);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void stopRinging$default(StoreCalls storeCalls, long j, List list, int i, Object obj) {
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        storeCalls.stopRinging(j, list);
-    }
-
     public final void call(AppComponent appComponent, Context context, FragmentManager fragmentManager, long channelId, Function0<Unit> onError) {
         C12238m.checkNotNullParameter(appComponent, "appComponent");
         C12238m.checkNotNullParameter(context, "context");
@@ -415,6 +368,37 @@ public final class StoreCalls {
         }).m11100Z(1);
         C12238m.checkNotNullExpressionValue(observableM11100Z, "Observable\n        .zip(…tates) }\n        .take(1)");
         ObservableExtensionsKt.appSubscribe(observableM11100Z, (Class<?>) StoreCalls.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C58005(c57972, c57961));
+    }
+
+    private final void callConnect() {
+        if (this.connectionReady && this.selectedGuildId == 0) {
+            long j = this.selectedChannelId;
+            if (j <= 0 || this.calls.containsKey(Long.valueOf(j))) {
+                return;
+            }
+            this.calls.put(Long.valueOf(this.selectedChannelId), null);
+            this.stream.getGatewaySocket().callConnect(this.selectedChannelId);
+        }
+    }
+
+    public static /* synthetic */ void callSubjectUpdate$default(StoreCalls storeCalls, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        storeCalls.callSubjectUpdate(z2);
+    }
+
+    private final void callSubjectUpdate(boolean updated) {
+        if (updated) {
+            SerializedSubject<HashMap<Long, ModelCall>, HashMap<Long, ModelCall>> serializedSubject = this.callsSubject;
+            serializedSubject.f27653k.onNext(new HashMap<>(this.calls));
+        }
+    }
+
+    private final void findCall(long channelId, Function1<? super ModelCall, Unit> onFoundCall) {
+        Observable<R> observableM11108k = get(channelId).m11108k(C0879o.m177c(C58011.INSTANCE, null, 3L, TimeUnit.SECONDS));
+        C12238m.checkNotNullExpressionValue(observableM11108k, "get(channelId)\n        .…l?, 3, TimeUnit.SECONDS))");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableM11108k, 0L, false, 3, null), (Class<?>) StoreCalls.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), onFoundCall);
     }
 
     public final Observable<ModelCall> get(final long channelId) {
@@ -472,8 +456,24 @@ public final class StoreCalls {
         callConnect();
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void ring$default(StoreCalls storeCalls, long j, List list, int i, Object obj) {
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        storeCalls.ring(j, list);
+    }
+
     public final void ring(long channelId, List<Long> recipients) {
         findCall(channelId, new C58031(recipients));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void stopRinging$default(StoreCalls storeCalls, long j, List list, int i, Object obj) {
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        storeCalls.stopRinging(j, list);
     }
 
     public final void stopRinging(long channelId, List<Long> recipients) {

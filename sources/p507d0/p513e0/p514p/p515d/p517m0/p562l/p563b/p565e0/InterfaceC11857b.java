@@ -11,7 +11,7 @@ public interface InterfaceC11857b extends InterfaceC11321b, InterfaceC11862g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.b$a */
     /* JADX INFO: compiled from: DeserializedMemberDescriptor.kt */
-    public static final class a {
+    public final class a {
         public static List<C11709h> getVersionRequirements(InterfaceC11857b interfaceC11857b) {
             return InterfaceC11862g.b.getVersionRequirements(interfaceC11857b);
         }

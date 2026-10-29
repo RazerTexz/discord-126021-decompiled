@@ -53,7 +53,7 @@ public final class C11380j0 extends AbstractC11391q implements InterfaceC11378i0
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.j0$a */
     /* JADX INFO: compiled from: TypeAliasConstructorDescriptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -96,7 +96,7 @@ public final class C11380j0 extends AbstractC11391q implements InterfaceC11378i0
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.j0$b */
     /* JADX INFO: compiled from: TypeAliasConstructorDescriptor.kt */
-    public static final class b extends AbstractC12240o implements Function0<C11380j0> {
+    public final class b extends AbstractC12240o implements Function0<C11380j0> {
         public final /* synthetic */ InterfaceC11327d $underlyingConstructorDescriptor;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -143,16 +143,6 @@ public final class C11380j0 extends AbstractC11391q implements InterfaceC11378i0
         this(interfaceC11905o, interfaceC11475y0, interfaceC11327d, interfaceC11378i0, interfaceC11344g, aVar, interfaceC11467u0);
     }
 
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    /* JADX INFO: renamed from: b */
-    public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
-        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
-        C12238m.checkNotNullParameter(aVar, "kind");
-        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
-        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
-        return new C11380j0(this.f22889O, getTypeAliasDescriptor(), getUnderlyingConstructorDescriptor(), this, interfaceC11344g, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
     public InterfaceC11330e getConstructedClass() {
         InterfaceC11330e constructedClass = getUnderlyingConstructorDescriptor().getConstructedClass();
@@ -183,6 +173,16 @@ public final class C11380j0 extends AbstractC11391q implements InterfaceC11378i0
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11448l
     public boolean isPrimary() {
         return getUnderlyingConstructorDescriptor().isPrimary();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    /* JADX INFO: renamed from: b */
+    public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
+        C12238m.checkNotNullParameter(interfaceC11450m, "newOwner");
+        C12238m.checkNotNullParameter(aVar, "kind");
+        C12238m.checkNotNullParameter(interfaceC11344g, "annotations");
+        C12238m.checkNotNullParameter(interfaceC11467u0, "source");
+        return new C11380j0(this.f22889O, getTypeAliasDescriptor(), getUnderlyingConstructorDescriptor(), this, interfaceC11344g, InterfaceC11321b.a.DECLARATION, interfaceC11467u0);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b

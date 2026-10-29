@@ -72,7 +72,7 @@ public final class InviteJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$1 */
     /* JADX INFO: compiled from: InviteJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$1", m10085f = "InviteJoinHelper.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C86321 extends AbstractC12194k implements Function2<Error, Continuation<? super Unit>, Object> {
+    public final class C86321 extends AbstractC12194k implements Function2<Error, Continuation<? super Unit>, Object> {
         public int label;
 
         public C86321(Continuation continuation) {
@@ -91,7 +91,7 @@ public final class InviteJoinHelper {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -104,7 +104,7 @@ public final class InviteJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$2 */
     /* JADX INFO: compiled from: InviteJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$2", m10085f = "InviteJoinHelper.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C86332 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    public final class C86332 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public C86332(Continuation continuation) {
@@ -123,7 +123,7 @@ public final class InviteJoinHelper {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -136,7 +136,7 @@ public final class InviteJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$3 */
     /* JADX INFO: compiled from: InviteJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$3", m10085f = "InviteJoinHelper.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C86343 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    public final class C86343 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public C86343(Continuation continuation) {
@@ -155,7 +155,7 @@ public final class InviteJoinHelper {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -168,7 +168,7 @@ public final class InviteJoinHelper {
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$4 */
     /* JADX INFO: compiled from: InviteJoinHelper.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.InviteJoinHelper$joinViaInvite$4", m10085f = "InviteJoinHelper.kt", m10086l = {79, 104, 117, 118, Opcodes.IINC, Opcodes.LOOKUPSWITCH, 200}, m10087m = "invokeSuspend")
-    public static final class C86354 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C86354 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ CaptchaHelper.CaptchaPayload $captchaPayload;
         public final /* synthetic */ AppFragment $fragment;
         public final /* synthetic */ ModelInvite $invite;
@@ -1273,6 +1273,19 @@ public final class InviteJoinHelper {
     private InviteJoinHelper() {
     }
 
+    public final Job joinViaInvite(ModelInvite invite, Class<?> javaClass, AppFragment fragment, String location, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> onInvitePostError, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished, CaptchaHelper.CaptchaPayload captchaPayload) {
+        C12238m.checkNotNullParameter(invite, "invite");
+        C12238m.checkNotNullParameter(javaClass, "javaClass");
+        C12238m.checkNotNullParameter(fragment, "fragment");
+        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        C12238m.checkNotNullParameter(onInvitePostError, "onInvitePostError");
+        C12238m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
+        C12238m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
+        LifecycleOwner viewLifecycleOwner = fragment.getViewLifecycleOwner();
+        C12238m.checkNotNullExpressionValue(viewLifecycleOwner, "fragment.viewLifecycleOwner");
+        return AppCoroutineScopeKt.appLaunch$default(LifecycleOwnerKt.getLifecycleScope(viewLifecycleOwner), javaClass, (CoroutineContext) null, (CoroutineStart) null, new C86354(fragment, invite, location, onInvitePostSuccess, captchaPayload, javaClass, onInvitePostError, onInviteFlowFinished, null), 6, (Object) null);
+    }
+
     private final void navigateToChannel(Context context, AppFragment appFragment, ModelInvite modelInvite) {
         Channel channel = modelInvite.getChannel();
         if (channel != null) {
@@ -1308,18 +1321,5 @@ public final class InviteJoinHelper {
         if (guildScheduledEvent != null) {
             WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE.enqueue(guildScheduledEvent.getId());
         }
-    }
-
-    public final Job joinViaInvite(ModelInvite invite, Class<?> javaClass, AppFragment fragment, String location, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> onInvitePostError, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished, CaptchaHelper.CaptchaPayload captchaPayload) {
-        C12238m.checkNotNullParameter(invite, "invite");
-        C12238m.checkNotNullParameter(javaClass, "javaClass");
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C12238m.checkNotNullParameter(onInvitePostError, "onInvitePostError");
-        C12238m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
-        C12238m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
-        LifecycleOwner viewLifecycleOwner = fragment.getViewLifecycleOwner();
-        C12238m.checkNotNullExpressionValue(viewLifecycleOwner, "fragment.viewLifecycleOwner");
-        return AppCoroutineScopeKt.appLaunch$default(LifecycleOwnerKt.getLifecycleScope(viewLifecycleOwner), javaClass, (CoroutineContext) null, (CoroutineStart) null, new C86354(fragment, invite, location, onInvitePostSuccess, captchaPayload, javaClass, onInvitePostError, onInviteFlowFinished, null), 6, (Object) null);
     }
 }

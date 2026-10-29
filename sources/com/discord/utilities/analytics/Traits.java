@@ -16,7 +16,7 @@ public final class Traits {
     public static final Traits INSTANCE = new Traits();
 
     /* JADX INFO: compiled from: Traits.kt */
-    public static final /* data */ class Location implements Serializable {
+    public final /* data */ class Location implements Serializable {
         private final String _object;
         private final String objectType;
         private final String page;
@@ -24,47 +24,47 @@ public final class Traits {
         private final String section;
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Obj {
+        public final class Obj {
             public static final String ACTIVITY_ACTION = "Activity Action";
             public static final String BOOST_GEM_ICON = "Boost Gem Icon";
             public static final String BUTTON_CTA = "Button CTA";
             public static final String BUTTON_UPSELL = "Button Upsell";
             public static final String EDIT_PROFILE_BANNER = "Edit Profile Banner";
-            public static final Obj INSTANCE = new Obj();
             public static final String LIST_ITEM = "List Item";
             public static final String PRIVATE_THREAD_CHECKBOX = "Private Thread Checkbox";
+            public static final Obj INSTANCE = new Obj();
 
             private Obj() {
             }
         }
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class ObjType {
+        public final class ObjType {
             public static final String BUY = "buy";
-            public static final ObjType INSTANCE = new ObjType();
             public static final String SEARCH = "Search";
             public static final String TIER_1 = "tier_1";
             public static final String TIER_2 = "tier_2";
             public static final String TIER_3 = "tier_3";
+            public static final ObjType INSTANCE = new ObjType();
 
             private ObjType() {
             }
         }
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Page {
+        public final class Page {
             public static final String BOOST_MARKETING = "User-Facing Premium Guild Subscription Fullscreen Modal";
             public static final String CHANNEL_SETTINGS = "Channel Settings";
             public static final String GUILD_CHANNEL = "Guild Channel";
-            public static final Page INSTANCE = new Page();
             public static final String USER_SETTINGS = "User Settings";
+            public static final Page INSTANCE = new Page();
 
             private Page() {
             }
         }
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Section {
+        public final class Section {
             public static final String ANDROID_CANNOT_MANAGE_SUBSCRIPTION = "Android Cannot Manage Subscription";
             public static final String CHANNEL_TEXT_AREA = "Channel Text Area";
             public static final String EMOJI_PICKER_POPOUT = "Emoji Picker Popout";
@@ -74,7 +74,6 @@ public final class Traits {
             public static final String FOOTER = "Footer";
             public static final String GUILD_POPOUT = "Guild Popout";
             public static final String HEADER = "Header";
-            public static final Section INSTANCE = new Section();
             public static final String PLAYSTATION_UPSELL = "Playstation Upsell";
             public static final String PREMIUM_GUILD_SUBSCRIPTION_CONFIRMATION = "Premium Guild Subscription Confirmation";
             public static final String PREMIUM_GUILD_UPSELL_MODAL = "Premium Guild Upsell Modal";
@@ -86,6 +85,7 @@ public final class Traits {
             public static final String THREAD_ARCHIVAL_DURATION_SHEET = "Thread Archival Duration Sheet";
             public static final String THREAD_CREATION_OPTIONS = "Thread Creation Options";
             public static final String USER_PROFILE = "User Profile";
+            public static final Section INSTANCE = new Section();
 
             private Section() {
             }
@@ -125,31 +125,6 @@ public final class Traits {
             return location.copy(str, str5, str6, str7, num);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getPage() {
-            return this.page;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSection() {
-            return this.section;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String get_object() {
-            return this._object;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getObjectType() {
-            return this.objectType;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Integer getPromotionId() {
-            return this.promotionId;
-        }
-
         public final Location copy(String page, String section, String _object, String objectType, Integer promotionId) {
             return new Location(page, section, _object, objectType, promotionId);
         }
@@ -165,20 +140,45 @@ public final class Traits {
             return C12238m.areEqual(this.page, location.page) && C12238m.areEqual(this.section, location.section) && C12238m.areEqual(this._object, location._object) && C12238m.areEqual(this.objectType, location.objectType) && C12238m.areEqual(this.promotionId, location.promotionId);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getObjectType() {
             return this.objectType;
+        }
+
+        public final String getObjectType() {
+            return this.objectType;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getPage() {
+            return this.page;
         }
 
         public final String getPage() {
             return this.page;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Integer getPromotionId() {
             return this.promotionId;
         }
 
+        public final Integer getPromotionId() {
+            return this.promotionId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getSection() {
             return this.section;
+        }
+
+        public final String getSection() {
+            return this.section;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String get_object() {
+            return this._object;
         }
 
         public final String get_object() {
@@ -241,7 +241,7 @@ public final class Traits {
     }
 
     /* JADX INFO: compiled from: Traits.kt */
-    public static final /* data */ class Payment {
+    public final /* data */ class Payment {
         private final String currency;
         private final boolean isGift;
         private final int price;
@@ -249,10 +249,10 @@ public final class Traits {
         private final String type;
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Type {
-            public static final Type INSTANCE = new Type();
+        public final class Type {
             public static final String STICKER = "sticker";
             public static final String SUBSCRIPTION = "subscription";
+            public static final Type INSTANCE = new Type();
 
             private Type() {
             }
@@ -290,31 +290,6 @@ public final class Traits {
             return payment.copy(str, i4, i5, str3, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getPrice() {
-            return this.price;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getRegularPrice() {
-            return this.regularPrice;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getCurrency() {
-            return this.currency;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsGift() {
-            return this.isGift;
-        }
-
         public final Payment copy(String type, int price, int regularPrice, String currency, boolean isGift) {
             C12238m.checkNotNullParameter(type, "type");
             C12238m.checkNotNullParameter(currency, "currency");
@@ -332,16 +307,41 @@ public final class Traits {
             return C12238m.areEqual(this.type, payment.type) && this.price == payment.price && this.regularPrice == payment.regularPrice && C12238m.areEqual(this.currency, payment.currency) && this.isGift == payment.isGift;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getCurrency() {
             return this.currency;
+        }
+
+        public final String getCurrency() {
+            return this.currency;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsGift() {
+            return this.isGift;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getPrice() {
+            return this.price;
         }
 
         public final int getPrice() {
             return this.price;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getRegularPrice() {
             return this.regularPrice;
+        }
+
+        public final int getRegularPrice() {
+            return this.regularPrice;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getType() {
+            return this.type;
         }
 
         public final String getType() {
@@ -394,7 +394,7 @@ public final class Traits {
     }
 
     /* JADX INFO: compiled from: Traits.kt */
-    public static final /* data */ class Source {
+    public final /* data */ class Source {
         private final String _object;
         private final String objectType;
         private final String page;
@@ -402,7 +402,7 @@ public final class Traits {
         private final String section;
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Obj {
+        public final class Obj {
             public static final String GIF_PICKER = "GIF Picker";
             public static final Obj INSTANCE = new Obj();
 
@@ -444,31 +444,6 @@ public final class Traits {
             return source.copy(str, str5, str6, str7, num);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getPage() {
-            return this.page;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSection() {
-            return this.section;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String get_object() {
-            return this._object;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getObjectType() {
-            return this.objectType;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Integer getPromotionId() {
-            return this.promotionId;
-        }
-
         public final Source copy(String page, String section, String _object, String objectType, Integer promotionId) {
             return new Source(page, section, _object, objectType, promotionId);
         }
@@ -484,20 +459,45 @@ public final class Traits {
             return C12238m.areEqual(this.page, source.page) && C12238m.areEqual(this.section, source.section) && C12238m.areEqual(this._object, source._object) && C12238m.areEqual(this.objectType, source.objectType) && C12238m.areEqual(this.promotionId, source.promotionId);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getObjectType() {
             return this.objectType;
+        }
+
+        public final String getObjectType() {
+            return this.objectType;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getPage() {
+            return this.page;
         }
 
         public final String getPage() {
             return this.page;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Integer getPromotionId() {
             return this.promotionId;
         }
 
+        public final Integer getPromotionId() {
+            return this.promotionId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getSection() {
             return this.section;
+        }
+
+        public final String getSection() {
+            return this.section;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String get_object() {
+            return this._object;
         }
 
         public final String get_object() {
@@ -560,7 +560,7 @@ public final class Traits {
     }
 
     /* JADX INFO: compiled from: Traits.kt */
-    public static final /* data */ class StoreSku {
+    public final /* data */ class StoreSku {
         private final long applicationId;
         private final long skuId;
         private final int skuType;
@@ -593,26 +593,6 @@ public final class Traits {
             return storeSku.copy(j3, i3, j4, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getSkuId() {
-            return this.skuId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getSkuType() {
-            return this.skuType;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getStoreTitle() {
-            return this.storeTitle;
-        }
-
         public final StoreSku copy(long skuId, int skuType, long applicationId, String storeTitle) {
             C12238m.checkNotNullParameter(storeTitle, "storeTitle");
             return new StoreSku(skuId, skuType, applicationId, storeTitle);
@@ -629,16 +609,36 @@ public final class Traits {
             return this.skuId == storeSku.skuId && this.skuType == storeSku.skuType && this.applicationId == storeSku.applicationId && C12238m.areEqual(this.storeTitle, storeSku.storeTitle);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getSkuId() {
+            return this.skuId;
         }
 
         public final long getSkuId() {
             return this.skuId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getSkuType() {
             return this.skuType;
+        }
+
+        public final int getSkuType() {
+            return this.skuType;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getStoreTitle() {
+            return this.storeTitle;
         }
 
         public final String getStoreTitle() {
@@ -672,7 +672,7 @@ public final class Traits {
     }
 
     /* JADX INFO: compiled from: Traits.kt */
-    public static final /* data */ class Subscription {
+    public final /* data */ class Subscription {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -681,7 +681,7 @@ public final class Traits {
         private final Integer type;
 
         /* JADX INFO: compiled from: Traits.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -719,21 +719,6 @@ public final class Traits {
             return subscription.copy(str, num, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getGatewayPlanId() {
-            return this.gatewayPlanId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getPlanId() {
-            return this.planId;
-        }
-
         public final Subscription copy(String gatewayPlanId, Integer type, Long planId) {
             return new Subscription(gatewayPlanId, type, planId);
         }
@@ -749,12 +734,27 @@ public final class Traits {
             return C12238m.areEqual(this.gatewayPlanId, subscription.gatewayPlanId) && C12238m.areEqual(this.type, subscription.type) && C12238m.areEqual(this.planId, subscription.planId);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getGatewayPlanId() {
             return this.gatewayPlanId;
         }
 
+        public final String getGatewayPlanId() {
+            return this.gatewayPlanId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getPlanId() {
             return this.planId;
+        }
+
+        public final Long getPlanId() {
+            return this.planId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Integer getType() {
+            return this.type;
         }
 
         public final Integer getType() {

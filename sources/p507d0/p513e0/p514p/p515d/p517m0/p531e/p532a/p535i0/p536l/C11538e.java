@@ -91,7 +91,7 @@ public final class C11538e implements InterfaceC11340c, InterfaceC11518i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.e$a */
     /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
-    public static final class a extends AbstractC12240o implements Function0<Map<C11716e, ? extends AbstractC11815g<?>>> {
+    public final class a extends AbstractC12240o implements Function0<Map<C11716e, ? extends AbstractC11815g<?>>> {
         public a() {
             super(0);
         }
@@ -118,7 +118,7 @@ public final class C11538e implements InterfaceC11340c, InterfaceC11518i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.e$b */
     /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
-    public static final class b extends AbstractC12240o implements Function0<C11713b> {
+    public final class b extends AbstractC12240o implements Function0<C11713b> {
         public b() {
             super(0);
         }
@@ -136,7 +136,7 @@ public final class C11538e implements InterfaceC11340c, InterfaceC11518i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.e$c */
     /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
-    public static final class c extends AbstractC12240o implements Function0<AbstractC11934j0> {
+    public final class c extends AbstractC12240o implements Function0<AbstractC11934j0> {
         public c() {
             super(0);
         }
@@ -178,6 +178,25 @@ public final class C11538e implements InterfaceC11340c, InterfaceC11518i {
         C11712a c11712a = C11712a.topLevel(c11713b);
         C12238m.checkNotNullExpressionValue(c11712a, "topLevel(fqName)");
         return C11470w.findNonGenericClassAcrossDependencies(module, c11712a, c11538e.f23335b.getComponents().getDeserializedDescriptorResolver().getComponents().getNotFoundClasses());
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
+    public Map<C11716e, AbstractC11815g<?>> getAllValueArguments() {
+        return (Map) C11904n.getValue(this.f23340g, this, (KProperty<?>) f23334a[2]);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
+    public C11713b getFqName() {
+        return (C11713b) C11904n.getValue(this.f23337d, this, (KProperty<?>) f23334a[0]);
+    }
+
+    public final boolean isFreshlySupportedTypeUseAnnotation() {
+        return this.f23342i;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11518i
+    public boolean isIdeExternalAnnotation() {
+        return this.f23341h;
     }
 
     /* JADX INFO: renamed from: a */
@@ -235,25 +254,6 @@ public final class C11538e implements InterfaceC11340c, InterfaceC11518i {
             c11807a = new C11807a(new C11538e(this.f23335b, ((InterfaceC11568c) interfaceC11566b).getAnnotation(), false, 4, null));
         }
         return c11807a;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
-    public Map<C11716e, AbstractC11815g<?>> getAllValueArguments() {
-        return (Map) C11904n.getValue(this.f23340g, this, (KProperty<?>) f23334a[2]);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
-    public C11713b getFqName() {
-        return (C11713b) C11904n.getValue(this.f23337d, this, (KProperty<?>) f23334a[0]);
-    }
-
-    public final boolean isFreshlySupportedTypeUseAnnotation() {
-        return this.f23342i;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p534h0.InterfaceC11518i
-    public boolean isIdeExternalAnnotation() {
-        return this.f23341h;
     }
 
     public String toString() {

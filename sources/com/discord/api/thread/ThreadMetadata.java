@@ -12,6 +12,17 @@ public final /* data */ class ThreadMetadata {
     private final int autoArchiveDuration;
     private final boolean locked;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ThreadMetadata)) {
+            return false;
+        }
+        ThreadMetadata threadMetadata = (ThreadMetadata) other;
+        return this.archived == threadMetadata.archived && C12238m.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getArchiveTimestamp() {
         return this.archiveTimestamp;
@@ -30,17 +41,6 @@ public final /* data */ class ThreadMetadata {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final boolean getLocked() {
         return this.locked;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ThreadMetadata)) {
-            return false;
-        }
-        ThreadMetadata threadMetadata = (ThreadMetadata) other;
-        return this.archived == threadMetadata.archived && C12238m.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

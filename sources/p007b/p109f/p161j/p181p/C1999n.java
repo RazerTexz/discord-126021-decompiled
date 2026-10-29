@@ -329,72 +329,6 @@ public class C1999n implements InterfaceC2018w0<CloseableReference<AbstractC1917
             interfaceC2020x0.mo1448f(new b(C1999n.this, z2));
         }
 
-        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: g */
-        public void mo1318g() {
-            m1499q();
-        }
-
-        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: h */
-        public void mo1319h(Throwable th) {
-            m1500r(th);
-        }
-
-        /* JADX WARN: Code duplicated, block: B:11:0x0034 A[Catch: all -> 0x0056, TRY_LEAVE, TryCatch #0 {all -> 0x0056, blocks: (B:3:0x0002, B:7:0x000e, B:8:0x001e, B:10:0x0024, B:11:0x0034, B:15:0x003f, B:18:0x0047, B:20:0x004f), top: B:26:0x0002 }] */
-        /* JADX WARN: Code duplicated, block: B:14:0x003e  */
-        /* JADX WARN: Code duplicated, block: B:20:0x004f A[Catch: all -> 0x0056, TRY_LEAVE, TryCatch #0 {all -> 0x0056, blocks: (B:3:0x0002, B:7:0x000e, B:8:0x001e, B:10:0x0024, B:11:0x0034, B:15:0x003f, B:18:0x0047, B:20:0x004f), top: B:26:0x0002 }] */
-        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: i */
-        public void mo1320i(Object obj, int i) {
-            C1919e c1919e = (C1919e) obj;
-            try {
-                C2030b.m1527b();
-                boolean zM1419e = AbstractC1965b.m1419e(i);
-                if (zM1419e) {
-                    if (c1919e == null) {
-                        ExceptionWithNoStacktrace exceptionWithNoStacktrace = new ExceptionWithNoStacktrace("Encoded image is null.");
-                        m1503u(true);
-                        this.f4179b.mo1425c(exceptionWithNoStacktrace);
-                    } else if (!c1919e.m1346t()) {
-                        ExceptionWithNoStacktrace exceptionWithNoStacktrace2 = new ExceptionWithNoStacktrace("Encoded image is not valid.");
-                        m1503u(true);
-                        this.f4179b.mo1425c(exceptionWithNoStacktrace2);
-                    } else if (mo1497w(c1919e, i)) {
-                        boolean zM1422m = AbstractC1965b.m1422m(i, 4);
-                        if (zM1419e) {
-                            this.f4162g.m1434d();
-                        } else {
-                            this.f4162g.m1434d();
-                        }
-                    }
-                } else if (mo1497w(c1919e, i)) {
-                    boolean zM1422m2 = AbstractC1965b.m1422m(i, 4);
-                    if (zM1419e || zM1422m2 || this.f4158c.mo1458p()) {
-                        this.f4162g.m1434d();
-                    }
-                }
-            } finally {
-                C2030b.m1527b();
-            }
-        }
-
-        /* JADX WARN: Type inference fix 'apply assigned field type' failed
-        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
-        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-         */
-        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: j */
-        public void mo1321j(float f) {
-            this.f4179b.mo1423a(f * 0.99f);
-        }
-
         /* JADX INFO: renamed from: n */
         public final Map<String, String> m1498n(AbstractC1917c abstractC1917c, long j, InterfaceC1923i interfaceC1923i, boolean z2, String str, String str2, String str3, String str4) {
             if (!this.f4159d.mo1360g(this.f4158c, "DecodeProducer")) {
@@ -429,12 +363,6 @@ public class C1999n implements InterfaceC2018w0<CloseableReference<AbstractC1917
             map2.put("byteCount", bitmap.getByteCount() + "");
             return new C1683f(map2);
         }
-
-        /* JADX INFO: renamed from: o */
-        public abstract int mo1495o(C1919e c1919e);
-
-        /* JADX INFO: renamed from: p */
-        public abstract InterfaceC1923i mo1496p();
 
         /* JADX INFO: renamed from: q */
         public final void m1499q() {
@@ -522,6 +450,78 @@ public class C1999n implements InterfaceC2018w0<CloseableReference<AbstractC1917
                 abstractC1917c.m1335e(this.f4158c.mo1443a());
             }
         }
+
+        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: g */
+        public void mo1318g() {
+            m1499q();
+        }
+
+        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: h */
+        public void mo1319h(Throwable th) {
+            m1500r(th);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:11:0x0034 A[Catch: all -> 0x0056, TRY_LEAVE, TryCatch #0 {all -> 0x0056, blocks: (B:3:0x0002, B:7:0x000e, B:8:0x001e, B:10:0x0024, B:11:0x0034, B:15:0x003f, B:18:0x0047, B:20:0x004f), top: B:26:0x0002 }] */
+        /* JADX WARN: Code duplicated, block: B:14:0x003e  */
+        /* JADX WARN: Code duplicated, block: B:20:0x004f A[Catch: all -> 0x0056, TRY_LEAVE, TryCatch #0 {all -> 0x0056, blocks: (B:3:0x0002, B:7:0x000e, B:8:0x001e, B:10:0x0024, B:11:0x0034, B:15:0x003f, B:18:0x0047, B:20:0x004f), top: B:26:0x0002 }] */
+        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: i */
+        public void mo1320i(Object obj, int i) {
+            C1919e c1919e = (C1919e) obj;
+            try {
+                C2030b.m1527b();
+                boolean zM1419e = AbstractC1965b.m1419e(i);
+                if (zM1419e) {
+                    if (c1919e == null) {
+                        ExceptionWithNoStacktrace exceptionWithNoStacktrace = new ExceptionWithNoStacktrace("Encoded image is null.");
+                        m1503u(true);
+                        this.f4179b.mo1425c(exceptionWithNoStacktrace);
+                    } else if (!c1919e.m1346t()) {
+                        ExceptionWithNoStacktrace exceptionWithNoStacktrace2 = new ExceptionWithNoStacktrace("Encoded image is not valid.");
+                        m1503u(true);
+                        this.f4179b.mo1425c(exceptionWithNoStacktrace2);
+                    } else if (mo1497w(c1919e, i)) {
+                        boolean zM1422m = AbstractC1965b.m1422m(i, 4);
+                        if (zM1419e) {
+                            this.f4162g.m1434d();
+                        } else {
+                            this.f4162g.m1434d();
+                        }
+                    }
+                } else if (mo1497w(c1919e, i)) {
+                    boolean zM1422m2 = AbstractC1965b.m1422m(i, 4);
+                    if (zM1419e || zM1422m2 || this.f4158c.mo1458p()) {
+                        this.f4162g.m1434d();
+                    }
+                }
+            } finally {
+                C2030b.m1527b();
+            }
+        }
+
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        @Override // p007b.p109f.p161j.p181p.AbstractC2003p, p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: j */
+        public void mo1321j(float f) {
+            this.f4179b.mo1423a(f * 0.99f);
+        }
+
+        /* JADX INFO: renamed from: o */
+        public abstract int mo1495o(C1919e c1919e);
+
+        /* JADX INFO: renamed from: p */
+        public abstract InterfaceC1923i mo1496p();
 
         /* JADX INFO: renamed from: w */
         public abstract boolean mo1497w(C1919e c1919e, int i);

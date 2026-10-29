@@ -31,7 +31,7 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.x0$a */
     /* JADX INFO: compiled from: OperatorMerge.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12685x0<Object> f27082a = new C12685x0<>(true, Integer.MAX_VALUE);
@@ -39,7 +39,7 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.x0$b */
     /* JADX INFO: compiled from: OperatorMerge.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public static final C12685x0<Object> f27083a = new C12685x0<>(false, Integer.MAX_VALUE);
@@ -47,10 +47,7 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.x0$c */
     /* JADX INFO: compiled from: OperatorMerge.java */
-    public static final class c<T> extends Subscriber<T> {
-
-        /* JADX INFO: renamed from: j */
-        public static final int f27084j = C12719i.f27283j / 4;
+    public final class c<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: k */
         public final e<T> f27085k;
@@ -66,6 +63,9 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
         /* JADX INFO: renamed from: o */
         public int f27089o;
+
+        /* JADX INFO: renamed from: j */
+        public static final int f27084j = C12719i.f27283j / 4;
 
         public c(e<T> eVar, long j) {
             this.f27085k = eVar;
@@ -191,7 +191,7 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.x0$d */
     /* JADX INFO: compiled from: OperatorMerge.java */
-    public static final class d<T> extends AtomicLong implements Producer {
+    public final class d<T> extends AtomicLong implements Producer {
         private static final long serialVersionUID = -1214379189873595503L;
         public final e<T> subscriber;
 
@@ -223,10 +223,7 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.x0$e */
     /* JADX INFO: compiled from: OperatorMerge.java */
-    public static final class e<T> extends Subscriber<Observable<? extends T>> {
-
-        /* JADX INFO: renamed from: j */
-        public static final c<?>[] f27090j = new c[0];
+    public final class e<T> extends Subscriber<Observable<? extends T>> {
 
         /* JADX INFO: renamed from: A */
         public int f27091A;
@@ -261,12 +258,6 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
         /* JADX INFO: renamed from: t */
         public boolean f27101t;
 
-        /* JADX INFO: renamed from: u */
-        public final Object f27102u = new Object();
-
-        /* JADX INFO: renamed from: v */
-        public volatile c<?>[] f27103v = f27090j;
-
         /* JADX INFO: renamed from: w */
         public long f27104w;
 
@@ -278,6 +269,15 @@ public final class C12685x0<T> implements Observable.InterfaceC13006b<T, Observa
 
         /* JADX INFO: renamed from: z */
         public final int f27107z;
+
+        /* JADX INFO: renamed from: j */
+        public static final c<?>[] f27090j = new c[0];
+
+        /* JADX INFO: renamed from: u */
+        public final Object f27102u = new Object();
+
+        /* JADX INFO: renamed from: v */
+        public volatile c<?>[] f27103v = f27090j;
 
         public e(Subscriber<? super T> subscriber, boolean z2, int i) {
             this.f27092k = subscriber;

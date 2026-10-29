@@ -19,6 +19,10 @@ public final /* data */ class PrivateChannelMemberListItems implements WidgetCha
         this.listItems = list;
     }
 
+    public final String component1() {
+        return getListId();
+    }
+
     private final List<ChannelMembersListAdapter.Item> component2() {
         return this.listItems;
     }
@@ -32,10 +36,6 @@ public final /* data */ class PrivateChannelMemberListItems implements WidgetCha
             list = privateChannelMemberListItems.listItems;
         }
         return privateChannelMemberListItems.copy(str, list);
-    }
-
-    public final String component1() {
-        return getListId();
     }
 
     public final PrivateChannelMemberListItems copy(String listId, List<? extends ChannelMembersListAdapter.Item> listItems) {

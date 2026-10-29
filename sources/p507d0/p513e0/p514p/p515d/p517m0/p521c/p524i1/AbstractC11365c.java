@@ -39,6 +39,91 @@ public abstract class AbstractC11365c extends AbstractC11381k implements Interfa
         }
     }
 
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+        return interfaceC11454o.visitReceiverParameterDescriptor(this, d);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getDispatchReceiverParameter() {
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getExtensionReceiverParameter() {
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
+    public InterfaceC11407k0 getOriginal() {
+        return this;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public Collection<? extends InterfaceC11318a> getOverriddenDescriptors() {
+        Set setEmptySet = Collections.emptySet();
+        if (setEmptySet != null) {
+            return setEmptySet;
+        }
+        m9391a(5);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public AbstractC11913c0 getReturnType() {
+        return getType();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11456p
+    public InterfaceC11467u0 getSource() {
+        return InterfaceC11467u0.f23099a;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11323b1
+    public AbstractC11913c0 getType() {
+        AbstractC11913c0 type = getValue().getType();
+        if (type != null) {
+            return type;
+        }
+        m9391a(3);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11477z0> getTypeParameters() {
+        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9391a(2);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11326c1> getValueParameters() {
+        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9391a(4);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public AbstractC11466u getVisibility() {
+        AbstractC11466u abstractC11466u = C11464t.f23088f;
+        if (abstractC11466u != null) {
+            return abstractC11466u;
+        }
+        m9391a(6);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return false;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9391a(int i) {
         String str;
@@ -144,91 +229,6 @@ public abstract class AbstractC11365c extends AbstractC11381k implements Interfa
             default:
                 throw new IllegalArgumentException(str2);
         }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-        return interfaceC11454o.visitReceiverParameterDescriptor(this, d);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getDispatchReceiverParameter() {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getExtensionReceiverParameter() {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11381k, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
-    public InterfaceC11407k0 getOriginal() {
-        return this;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public Collection<? extends InterfaceC11318a> getOverriddenDescriptors() {
-        Set setEmptySet = Collections.emptySet();
-        if (setEmptySet != null) {
-            return setEmptySet;
-        }
-        m9391a(5);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public AbstractC11913c0 getReturnType() {
-        return getType();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11456p
-    public InterfaceC11467u0 getSource() {
-        return InterfaceC11467u0.f23099a;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11323b1
-    public AbstractC11913c0 getType() {
-        AbstractC11913c0 type = getValue().getType();
-        if (type != null) {
-            return type;
-        }
-        m9391a(3);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11477z0> getTypeParameters() {
-        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9391a(2);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11326c1> getValueParameters() {
-        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9391a(4);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public AbstractC11466u getVisibility() {
-        AbstractC11466u abstractC11466u = C11464t.f23088f;
-        if (abstractC11466u != null) {
-            return abstractC11466u;
-        }
-        m9391a(6);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return false;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11471w0

@@ -6,12 +6,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackThread.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackThread {
+    private final Long threadApproximateCreationDate = null;
     private final Long threadApproximateMemberCount = null;
     private final Long threadApproximateMessageCount = null;
     private final Boolean threadArchived = null;
-    private final Boolean threadLocked = null;
     private final Long threadAutoArchiveDurationMinutes = null;
-    private final Long threadApproximateCreationDate = null;
+    private final Boolean threadLocked = null;
 
     public boolean equals(Object other) {
         if (this == other) {

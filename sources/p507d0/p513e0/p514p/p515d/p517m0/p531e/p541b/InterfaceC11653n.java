@@ -13,11 +13,11 @@ public interface InterfaceC11653n extends InterfaceC11883s {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.n$a */
     /* JADX INFO: compiled from: KotlinClassFinder.kt */
-    public static abstract class a {
+    public abstract class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.n$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: KotlinClassFinder.kt */
-        public static final class C13316a extends a {
+        public final class C13316a extends a {
             public final byte[] getContent() {
                 return null;
             }
@@ -25,7 +25,7 @@ public interface InterfaceC11653n extends InterfaceC11883s {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.n$a$b */
         /* JADX INFO: compiled from: KotlinClassFinder.kt */
-        public static final class b extends a {
+        public final class b extends a {
 
             /* JADX INFO: renamed from: a */
             public final InterfaceC11655p f23630a;

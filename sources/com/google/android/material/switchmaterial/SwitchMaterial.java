@@ -17,7 +17,6 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SwitchMaterial extends SwitchCompat {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CompoundButton_Switch;
     private static final int[][] ENABLED_CHECKED_STATES = {new int[]{R.attr.state_enabled, R.attr.state_checked}, new int[]{R.attr.state_enabled, -16842912}, new int[]{-16842910, R.attr.state_checked}, new int[]{-16842910, -16842912}};
 
     @NonNull
@@ -29,6 +28,7 @@ public class SwitchMaterial extends SwitchCompat {
     @Nullable
     private ColorStateList materialThemeColorsTrackTintList;
     private boolean useMaterialThemeColors;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CompoundButton_Switch;
 
     public SwitchMaterial(@NonNull Context context) {
         this(context, null);

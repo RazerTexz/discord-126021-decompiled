@@ -26,16 +26,6 @@ public final /* data */ class ApplicationCommandData {
         this.attachments = list2;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<ApplicationCommandValue> m7725b() {
-        return this.options;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -45,6 +35,11 @@ public final /* data */ class ApplicationCommandData {
         }
         ApplicationCommandData applicationCommandData = (ApplicationCommandData) other;
         return C12238m.areEqual(this.version, applicationCommandData.version) && C12238m.areEqual(this.guildId, applicationCommandData.guildId) && C12238m.areEqual(this.id, applicationCommandData.id) && C12238m.areEqual(this.name, applicationCommandData.name) && C12238m.areEqual(this.options, applicationCommandData.options) && C12238m.areEqual(this.attachments, applicationCommandData.attachments);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public int hashCode() {
@@ -60,6 +55,11 @@ public final /* data */ class ApplicationCommandData {
         int iHashCode5 = (iHashCode4 + (list != null ? list.hashCode() : 0)) * 31;
         List<ApplicationCommandAttachment> list2 = this.attachments;
         return iHashCode5 + (list2 != null ? list2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<ApplicationCommandValue> m7725b() {
+        return this.options;
     }
 
     public String toString() {

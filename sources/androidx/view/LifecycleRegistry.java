@@ -25,7 +25,7 @@ public class LifecycleRegistry extends Lifecycle {
     private ArrayList<Lifecycle.State> mParentStates;
     private Lifecycle.State mState;
 
-    public static class ObserverWithState {
+    public class ObserverWithState {
         public LifecycleEventObserver mLifecycleObserver;
         public Lifecycle.State mState;
 
@@ -44,6 +44,39 @@ public class LifecycleRegistry extends Lifecycle {
 
     public LifecycleRegistry(@NonNull LifecycleOwner lifecycleOwner) {
         this(lifecycleOwner, true);
+    }
+
+    @Override // androidx.view.Lifecycle
+    public void addObserver(@NonNull LifecycleObserver lifecycleObserver) {
+        LifecycleOwner lifecycleOwner;
+        enforceMainThreadIfNeeded("addObserver");
+        Lifecycle.State state = this.mState;
+        Lifecycle.State state2 = Lifecycle.State.DESTROYED;
+        if (state != state2) {
+            state2 = Lifecycle.State.INITIALIZED;
+        }
+        ObserverWithState observerWithState = new ObserverWithState(lifecycleObserver, state2);
+        if (this.mObserverMap.putIfAbsent(lifecycleObserver, observerWithState) == null && (lifecycleOwner = this.mLifecycleOwner.get()) != null) {
+            boolean z2 = this.mAddingObserverCounter != 0 || this.mHandlingEvent;
+            Lifecycle.State stateCalculateTargetState = calculateTargetState(lifecycleObserver);
+            this.mAddingObserverCounter++;
+            while (observerWithState.mState.compareTo(stateCalculateTargetState) < 0 && this.mObserverMap.contains(lifecycleObserver)) {
+                pushParentState(observerWithState.mState);
+                Lifecycle.Event eventUpFrom = Lifecycle.Event.upFrom(observerWithState.mState);
+                if (eventUpFrom == null) {
+                    StringBuilder sbM833U = C1643a.m833U("no event up from ");
+                    sbM833U.append(observerWithState.mState);
+                    throw new IllegalStateException(sbM833U.toString());
+                }
+                observerWithState.dispatchEvent(lifecycleOwner, eventUpFrom);
+                popParentState();
+                stateCalculateTargetState = calculateTargetState(lifecycleObserver);
+            }
+            if (!z2) {
+                sync();
+            }
+            this.mAddingObserverCounter--;
+        }
     }
 
     private void backwardPass(LifecycleOwner lifecycleOwner) {
@@ -108,6 +141,22 @@ public class LifecycleRegistry extends Lifecycle {
         }
     }
 
+    @Override // androidx.view.Lifecycle
+    @NonNull
+    public Lifecycle.State getCurrentState() {
+        return this.mState;
+    }
+
+    public int getObserverCount() {
+        enforceMainThreadIfNeeded("getObserverCount");
+        return this.mObserverMap.size();
+    }
+
+    public void handleLifecycleEvent(@NonNull Lifecycle.Event event) {
+        enforceMainThreadIfNeeded("handleLifecycleEvent");
+        moveToState(event.getTargetState());
+    }
+
     private boolean isSynced() {
         if (this.mObserverMap.size() == 0) {
             return true;
@@ -115,6 +164,13 @@ public class LifecycleRegistry extends Lifecycle {
         Lifecycle.State state = this.mObserverMap.eldest().getValue().mState;
         Lifecycle.State state2 = this.mObserverMap.newest().getValue().mState;
         return state == state2 && this.mState == state2;
+    }
+
+    @MainThread
+    @Deprecated
+    public void markState(@NonNull Lifecycle.State state) {
+        enforceMainThreadIfNeeded("markState");
+        setCurrentState(state);
     }
 
     public static Lifecycle.State min(@NonNull Lifecycle.State state, @Nullable Lifecycle.State state2) {
@@ -144,6 +200,18 @@ public class LifecycleRegistry extends Lifecycle {
         this.mParentStates.add(state);
     }
 
+    @Override // androidx.view.Lifecycle
+    public void removeObserver(@NonNull LifecycleObserver lifecycleObserver) {
+        enforceMainThreadIfNeeded("removeObserver");
+        this.mObserverMap.remove(lifecycleObserver);
+    }
+
+    @MainThread
+    public void setCurrentState(@NonNull Lifecycle.State state) {
+        enforceMainThreadIfNeeded("setCurrentState");
+        moveToState(state);
+    }
+
     private void sync() {
         LifecycleOwner lifecycleOwner = this.mLifecycleOwner.get();
         if (lifecycleOwner == null) {
@@ -160,74 +228,6 @@ public class LifecycleRegistry extends Lifecycle {
             }
         }
         this.mNewEventOccurred = false;
-    }
-
-    @Override // androidx.view.Lifecycle
-    public void addObserver(@NonNull LifecycleObserver lifecycleObserver) {
-        LifecycleOwner lifecycleOwner;
-        enforceMainThreadIfNeeded("addObserver");
-        Lifecycle.State state = this.mState;
-        Lifecycle.State state2 = Lifecycle.State.DESTROYED;
-        if (state != state2) {
-            state2 = Lifecycle.State.INITIALIZED;
-        }
-        ObserverWithState observerWithState = new ObserverWithState(lifecycleObserver, state2);
-        if (this.mObserverMap.putIfAbsent(lifecycleObserver, observerWithState) == null && (lifecycleOwner = this.mLifecycleOwner.get()) != null) {
-            boolean z2 = this.mAddingObserverCounter != 0 || this.mHandlingEvent;
-            Lifecycle.State stateCalculateTargetState = calculateTargetState(lifecycleObserver);
-            this.mAddingObserverCounter++;
-            while (observerWithState.mState.compareTo(stateCalculateTargetState) < 0 && this.mObserverMap.contains(lifecycleObserver)) {
-                pushParentState(observerWithState.mState);
-                Lifecycle.Event eventUpFrom = Lifecycle.Event.upFrom(observerWithState.mState);
-                if (eventUpFrom == null) {
-                    StringBuilder sbM833U = C1643a.m833U("no event up from ");
-                    sbM833U.append(observerWithState.mState);
-                    throw new IllegalStateException(sbM833U.toString());
-                }
-                observerWithState.dispatchEvent(lifecycleOwner, eventUpFrom);
-                popParentState();
-                stateCalculateTargetState = calculateTargetState(lifecycleObserver);
-            }
-            if (!z2) {
-                sync();
-            }
-            this.mAddingObserverCounter--;
-        }
-    }
-
-    @Override // androidx.view.Lifecycle
-    @NonNull
-    public Lifecycle.State getCurrentState() {
-        return this.mState;
-    }
-
-    public int getObserverCount() {
-        enforceMainThreadIfNeeded("getObserverCount");
-        return this.mObserverMap.size();
-    }
-
-    public void handleLifecycleEvent(@NonNull Lifecycle.Event event) {
-        enforceMainThreadIfNeeded("handleLifecycleEvent");
-        moveToState(event.getTargetState());
-    }
-
-    @MainThread
-    @Deprecated
-    public void markState(@NonNull Lifecycle.State state) {
-        enforceMainThreadIfNeeded("markState");
-        setCurrentState(state);
-    }
-
-    @Override // androidx.view.Lifecycle
-    public void removeObserver(@NonNull LifecycleObserver lifecycleObserver) {
-        enforceMainThreadIfNeeded("removeObserver");
-        this.mObserverMap.remove(lifecycleObserver);
-    }
-
-    @MainThread
-    public void setCurrentState(@NonNull Lifecycle.State state) {
-        enforceMainThreadIfNeeded("setCurrentState");
-        moveToState(state);
     }
 
     private LifecycleRegistry(@NonNull LifecycleOwner lifecycleOwner, boolean z2) {

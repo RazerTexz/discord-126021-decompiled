@@ -24,9 +24,8 @@ public final /* data */ class HasNode extends AnswerNode {
         this.text = charSequence;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    private final HasAnswerOption getHasAnswerOption() {
-        return this.hasAnswerOption;
+    public final CharSequence component2() {
+        return getText();
     }
 
     public static /* synthetic */ HasNode copy$default(HasNode hasNode, HasAnswerOption hasAnswerOption, CharSequence charSequence, int i, Object obj) {
@@ -37,10 +36,6 @@ public final /* data */ class HasNode extends AnswerNode {
             charSequence = hasNode.getText();
         }
         return hasNode.copy(hasAnswerOption, charSequence);
-    }
-
-    public final CharSequence component2() {
-        return getText();
     }
 
     public final HasNode copy(HasAnswerOption hasAnswerOption, CharSequence text) {
@@ -58,6 +53,11 @@ public final /* data */ class HasNode extends AnswerNode {
         }
         HasNode hasNode = (HasNode) other;
         return C12238m.areEqual(this.hasAnswerOption, hasNode.hasAnswerOption) && C12238m.areEqual(getText(), hasNode.getText());
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    private final HasAnswerOption getHasAnswerOption() {
+        return this.hasAnswerOption;
     }
 
     @Override // com.discord.utilities.search.query.node.QueryNode

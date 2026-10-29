@@ -6,8 +6,8 @@ import p007b.p195g.p196a.p205c.p212e0.AbstractC2211c;
 /* JADX INFO: compiled from: LaissezFaireSubTypeValidator.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2222g extends AbstractC2211c.a {
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: j */
     public static final C2222g f4772j = new C2222g();
-    private static final long serialVersionUID = 1;
 }

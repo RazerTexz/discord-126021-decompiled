@@ -31,7 +31,7 @@ public final class WidgetChatInputEditText {
     private Function0<Unit> onSendListener;
 
     /* JADX INFO: compiled from: WidgetChatInputEditText.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,6 +62,30 @@ public final class WidgetChatInputEditText {
         setHardwareKeyboardSendBehavior();
     }
 
+    public final void clearLastTypingEmission() {
+        this.lastTypingEmissionMillis = 0L;
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Function0<Unit> getOnSendListener() {
+        return this.onSendListener;
+    }
+
+    public final String getText() {
+        return INSTANCE.toStringSafe(this.editText);
+    }
+
+    public final void saveText() {
+        this.messageDraftsRepo.setTextChannelInput(this.channelId, this.editText.getText());
+    }
+
+    public final void setChannelId(long j) {
+        this.channelId = j;
+    }
+
     private final void setHardwareKeyboardSendBehavior() {
         this.editText.setOnKeyListener(new View.OnKeyListener() { // from class: com.discord.widgets.chat.input.WidgetChatInputEditText.setHardwareKeyboardSendBehavior.1
             @Override // android.view.View.OnKeyListener
@@ -84,14 +108,13 @@ public final class WidgetChatInputEditText {
         });
     }
 
+    public final void setOnSendListener(Function0<Unit> function0) {
+        this.onSendListener = function0;
+    }
+
     private final void setOnTextChangedListener() {
         this.editText.addTextChangedListener(new TextWatcher() { // from class: com.discord.widgets.chat.input.WidgetChatInputEditText.setOnTextChangedListener.1
-            private boolean empty;
-
-            {
-                super(null, null, null, 7, null);
-                this.empty = true;
-            }
+            private boolean empty = true;
 
             @Override // com.discord.utilities.view.text.TextWatcher, android.text.TextWatcher
             public void afterTextChanged(Editable s2) {
@@ -129,34 +152,6 @@ public final class WidgetChatInputEditText {
                 return true;
             }
         });
-    }
-
-    public final void clearLastTypingEmission() {
-        this.lastTypingEmissionMillis = 0L;
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Function0<Unit> getOnSendListener() {
-        return this.onSendListener;
-    }
-
-    public final String getText() {
-        return INSTANCE.toStringSafe(this.editText);
-    }
-
-    public final void saveText() {
-        this.messageDraftsRepo.setTextChannelInput(this.channelId, this.editText.getText());
-    }
-
-    public final void setChannelId(long j) {
-        this.channelId = j;
-    }
-
-    public final void setOnSendListener(Function0<Unit> function0) {
-        this.onSendListener = function0;
     }
 
     public final void setChannelId(long channelId, boolean saveExistingText) {

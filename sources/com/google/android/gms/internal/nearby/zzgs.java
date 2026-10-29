@@ -14,9 +14,6 @@ import p007b.p225i.p226a.p288f.p313h.p326m.C3929f;
 public final class zzgs extends AbstractSafeParcelable {
     public static final Parcelable.Creator<zzgs> CREATOR = new C3929f();
 
-    /* JADX INFO: renamed from: j */
-    public static final zzgs f20644j = new zzgs(1, "", null);
-
     /* JADX INFO: renamed from: k */
     public final int f20645k;
 
@@ -26,6 +23,9 @@ public final class zzgs extends AbstractSafeParcelable {
     /* JADX INFO: renamed from: m */
     @Nullable
     public final String f20647m;
+
+    /* JADX INFO: renamed from: j */
+    public static final zzgs f20644j = new zzgs(1, "", null);
 
     public zzgs(int i, @Nullable String str, @Nullable String str2) {
         Integer numValueOf = Integer.valueOf(i);

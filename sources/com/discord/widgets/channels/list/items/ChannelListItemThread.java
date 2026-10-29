@@ -30,6 +30,14 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         this.type = 12;
     }
 
+    public final int component3() {
+        return getMentionCount();
+    }
+
+    public final boolean component4() {
+        return getIsUnread();
+    }
+
     public static /* synthetic */ ChannelListItemThread copy$default(ChannelListItemThread channelListItemThread, Channel channel, boolean z2, int i, boolean z3, boolean z4, boolean z5, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             channel = channelListItemThread.channel;
@@ -56,34 +64,6 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return channelListItemThread.copy(channel, z6, i3, z7, z8, z5);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
-    public final int component3() {
-        return getMentionCount();
-    }
-
-    public final boolean component4() {
-        return getIsUnread();
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsLocked() {
-        return this.isLocked;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getMuted() {
-        return this.muted;
-    }
-
     public final ChannelListItemThread copy(Channel channel, boolean selected, int mentionCount, boolean isUnread, boolean isLocked, boolean muted) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemThread(channel, selected, mentionCount, isUnread, isLocked, muted);
@@ -100,18 +80,29 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return C12238m.areEqual(this.channel, channelListItemThread.channel) && this.selected == channelListItemThread.selected && getMentionCount() == channelListItemThread.getMentionCount() && getIsUnread() == channelListItemThread.getIsUnread() && this.isLocked == channelListItemThread.isLocked && this.muted == channelListItemThread.muted;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
     }
 
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsLocked() {
+        return this.isLocked;
+    }
+
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    /* JADX INFO: renamed from: isUnread, reason: from getter */
+    public boolean getIsUnread() {
+        return this.isUnread;
+    }
+
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(this.channel.getId());
-        sb.append(this.spineType);
-        sb.append(this.muted);
-        return sb.toString();
+        return "" + getType() + this.channel.getId() + this.spineType + this.muted;
     }
 
     @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
@@ -119,8 +110,18 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.mentionCount;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getMuted() {
         return this.muted;
+    }
+
+    public final boolean getMuted() {
+        return this.muted;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getSelected() {
+        return this.selected;
     }
 
     public final boolean getSelected() {
@@ -179,12 +180,6 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
 
     public final boolean isLocked() {
         return this.isLocked;
-    }
-
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
-    /* JADX INFO: renamed from: isUnread, reason: from getter */
-    public boolean getIsUnread() {
-        return this.isUnread;
     }
 
     public final void setSpineType(WidgetChannelListModel.ThreadSpineType threadSpineType) {

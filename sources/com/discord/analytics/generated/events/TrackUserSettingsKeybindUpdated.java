@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserSettingsKeybindUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserSettingsKeybindUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence keybindAction = null;
-    private final Boolean keybindIsBound = null;
     private final Boolean keybindHasShortcut = null;
+    private final Boolean keybindIsBound = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_settings_keybind_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackUserSettingsKeybindUpdated implements Analyti
         }
         TrackUserSettingsKeybindUpdated trackUserSettingsKeybindUpdated = (TrackUserSettingsKeybindUpdated) other;
         return C12238m.areEqual(this.keybindAction, trackUserSettingsKeybindUpdated.keybindAction) && C12238m.areEqual(this.keybindIsBound, trackUserSettingsKeybindUpdated.keybindIsBound) && C12238m.areEqual(this.keybindHasShortcut, trackUserSettingsKeybindUpdated.keybindHasShortcut);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

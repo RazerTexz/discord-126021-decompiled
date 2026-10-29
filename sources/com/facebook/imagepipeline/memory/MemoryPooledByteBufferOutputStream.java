@@ -22,7 +22,7 @@ public class MemoryPooledByteBufferOutputStream extends AbstractC1702i {
     /* JADX INFO: renamed from: l */
     public int f19562l;
 
-    public static class InvalidStreamException extends RuntimeException {
+    public class InvalidStreamException extends RuntimeException {
         public InvalidStreamException() {
             super("OutputStream no longer valid");
         }
@@ -34,6 +34,18 @@ public class MemoryPooledByteBufferOutputStream extends AbstractC1702i {
         this.f19560j = abstractC1947s;
         this.f19562l = 0;
         this.f19561k = CloseableReference.m8633D(abstractC1947s.get(i), abstractC1947s);
+    }
+
+    @Override // p007b.p109f.p115d.p122g.AbstractC1702i, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws Throwable {
+        CloseableReference<InterfaceC1946r> closeableReference = this.f19561k;
+        Class<CloseableReference> cls = CloseableReference.f19438j;
+        if (closeableReference != null) {
+            closeableReference.close();
+        }
+        this.f19561k = null;
+        this.f19562l = -1;
+        super.close();
     }
 
     /* JADX INFO: renamed from: a */
@@ -49,18 +61,6 @@ public class MemoryPooledByteBufferOutputStream extends AbstractC1702i {
         CloseableReference<InterfaceC1946r> closeableReference = this.f19561k;
         Objects.requireNonNull(closeableReference);
         return new C1948t(closeableReference, this.f19562l);
-    }
-
-    @Override // p007b.p109f.p115d.p122g.AbstractC1702i, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws Throwable {
-        CloseableReference<InterfaceC1946r> closeableReference = this.f19561k;
-        Class<CloseableReference> cls = CloseableReference.f19438j;
-        if (closeableReference != null) {
-            closeableReference.close();
-        }
-        this.f19561k = null;
-        this.f19562l = -1;
-        super.close();
     }
 
     @Override // java.io.OutputStream

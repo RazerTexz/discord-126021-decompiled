@@ -60,9 +60,6 @@ import p007b.p485q.p486a.p491l.C5307c;
 /* JADX INFO: loaded from: classes3.dex */
 public class UCropActivity extends AppCompatActivity {
 
-    /* JADX INFO: renamed from: j */
-    public static final Bitmap.CompressFormat f22167j = Bitmap.CompressFormat.JPEG;
-
     /* JADX INFO: renamed from: A */
     public ViewGroup f22168A;
 
@@ -86,6 +83,9 @@ public class UCropActivity extends AppCompatActivity {
 
     /* JADX INFO: renamed from: I */
     public Transition f22176I;
+
+    /* JADX INFO: renamed from: L */
+    public int[] f22179L = {1, 2, 3};
 
     /* JADX INFO: renamed from: k */
     public String f22182k;
@@ -135,6 +135,9 @@ public class UCropActivity extends AppCompatActivity {
     /* JADX INFO: renamed from: z */
     public ViewGroup f22197z;
 
+    /* JADX INFO: renamed from: j */
+    public static final Bitmap.CompressFormat f22167j = Bitmap.CompressFormat.JPEG;
+
     /* JADX INFO: renamed from: u */
     public boolean f22192u = true;
 
@@ -146,9 +149,6 @@ public class UCropActivity extends AppCompatActivity {
 
     /* JADX INFO: renamed from: K */
     public int f22178K = 90;
-
-    /* JADX INFO: renamed from: L */
-    public int[] f22179L = {1, 2, 3};
 
     /* JADX INFO: renamed from: M */
     public C5307c.a f22180M = new C11200a();

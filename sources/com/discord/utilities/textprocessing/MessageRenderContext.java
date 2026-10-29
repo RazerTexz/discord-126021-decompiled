@@ -45,7 +45,7 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessageRenderContext$1 */
     /* JADX INFO: compiled from: MessageRenderContext.kt */
-    public static final class C69461 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+    public final class C69461 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
         public static final C69461 INSTANCE = new C69461();
 
         public C69461() {
@@ -68,7 +68,7 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessageRenderContext$2 */
     /* JADX INFO: compiled from: MessageRenderContext.kt */
-    public static final class C69472 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C69472 extends AbstractC12240o implements Function1<String, Unit> {
         public static final C69472 INSTANCE = new C69472();
 
         public C69472() {
@@ -241,6 +241,12 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
         return this.context;
     }
 
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+    /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
+    public boolean getIsAnimationEnabled() {
+        return this.isAnimationEnabled;
+    }
+
     @Override // com.discord.utilities.textprocessing.node.UrlNode.RenderContext
     public int getLinkColorAttrResId() {
         return this.linkColorAttrResId;
@@ -316,12 +322,6 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
         int iHashCode5 = (iHashCode4 + (userMentionOnClick != null ? userMentionOnClick.hashCode() : 0)) * 31;
         Function1<Long, Unit> channelMentionOnClick = getChannelMentionOnClick();
         return iHashCode5 + (channelMentionOnClick != null ? channelMentionOnClick.hashCode() : 0);
-    }
-
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
-    /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
-    public boolean getIsAnimationEnabled() {
-        return this.isAnimationEnabled;
     }
 
     @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext

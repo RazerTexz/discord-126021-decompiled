@@ -27,17 +27,17 @@ public class TouchResponse {
     private static final int SIDE_START = 5;
     private static final int SIDE_TOP = 0;
     private static final String TAG = "TouchResponse";
+    private static final float[][] TOUCH_DIRECTION = {new float[]{0.0f, -1.0f}, new float[]{0.0f, 1.0f}, new float[]{-1.0f, 0.0f}, new float[]{1.0f, 0.0f}, new float[]{-1.0f, 0.0f}, new float[]{1.0f, 0.0f}};
     private static final int TOUCH_DOWN = 1;
     private static final int TOUCH_END = 5;
     private static final int TOUCH_LEFT = 2;
     private static final int TOUCH_RIGHT = 3;
+    private static final float[][] TOUCH_SIDES = {new float[]{0.5f, 0.0f}, new float[]{0.0f, 0.5f}, new float[]{1.0f, 0.5f}, new float[]{0.5f, 1.0f}, new float[]{0.5f, 0.5f}, new float[]{0.0f, 0.5f}, new float[]{1.0f, 0.5f}};
     private static final int TOUCH_START = 4;
     private static final int TOUCH_UP = 0;
     private float mLastTouchX;
     private float mLastTouchY;
     private final MotionLayout mMotionLayout;
-    private static final float[][] TOUCH_SIDES = {new float[]{0.5f, 0.0f}, new float[]{0.0f, 0.5f}, new float[]{1.0f, 0.5f}, new float[]{0.5f, 1.0f}, new float[]{0.5f, 0.5f}, new float[]{0.0f, 0.5f}, new float[]{1.0f, 0.5f}};
-    private static final float[][] TOUCH_DIRECTION = {new float[]{0.0f, -1.0f}, new float[]{0.0f, 1.0f}, new float[]{-1.0f, 0.0f}, new float[]{1.0f, 0.0f}, new float[]{-1.0f, 0.0f}, new float[]{1.0f, 0.0f}};
     private int mTouchAnchorSide = 0;
     private int mTouchSide = 0;
     private int mOnTouchUp = 0;
@@ -60,6 +60,10 @@ public class TouchResponse {
     public TouchResponse(Context context, MotionLayout motionLayout, XmlPullParser xmlPullParser) {
         this.mMotionLayout = motionLayout;
         fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+    }
+
+    public float dot(float f, float f2) {
+        return (f2 * this.mTouchDirectionY) + (f * this.mTouchDirectionX);
     }
 
     private void fill(TypedArray typedArray) {
@@ -106,10 +110,6 @@ public class TouchResponse {
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0201R.styleable.OnSwipe);
         fill(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    public float dot(float f, float f2) {
-        return (f2 * this.mTouchDirectionY) + (f * this.mTouchDirectionX);
     }
 
     public int getAnchorId() {

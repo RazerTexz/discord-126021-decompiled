@@ -17,9 +17,6 @@ import p007b.p225i.p355b.p357b.C4508h0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2964w1 {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC2530a0.a f7946a = new InterfaceC2530a0.a(new Object());
-
     /* JADX INFO: renamed from: b */
     public final AbstractC2832o2 f7947b;
 
@@ -77,6 +74,9 @@ public final class C2964w1 {
 
     /* JADX INFO: renamed from: t */
     public volatile long f7965t;
+
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC2530a0.a f7946a = new InterfaceC2530a0.a(new Object());
 
     public C2964w1(AbstractC2832o2 abstractC2832o2, InterfaceC2530a0.a aVar, long j, long j2, int i, @Nullable ExoPlaybackException exoPlaybackException, boolean z2, C2558o0 c2558o0, C2652r c2652r, List<Metadata> list, InterfaceC2530a0.a aVar2, boolean z3, int i2, C2998x1 c2998x1, long j3, long j4, long j5, boolean z4, boolean z5) {
         this.f7947b = abstractC2832o2;

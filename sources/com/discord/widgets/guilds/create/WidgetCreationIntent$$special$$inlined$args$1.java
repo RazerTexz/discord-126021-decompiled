@@ -1,7 +1,6 @@
 package com.discord.widgets.guilds.create;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import com.discord.app.AppFragment;
 import kotlin.jvm.functions.Function0;
 import p007b.p100d.p104b.p105a.C1643a;
@@ -24,19 +23,16 @@ public final class WidgetCreationIntent$$special$$inlined$args$1 extends Abstrac
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
     public final CreationIntentArgs invoke() {
-        Parcelable parcelableExtra;
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
         CreationIntentArgs creationIntentArgs = (CreationIntentArgs) (obj instanceof CreationIntentArgs ? obj : null);
-        CreationIntentArgs creationIntentArgs2 = creationIntentArgs;
+        CreationIntentArgs parcelableExtra = creationIntentArgs;
         if (creationIntentArgs == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
-        if (creationIntentArgs2 != 0) {
-            creationIntentArgs2 = parcelableExtra;
-            return creationIntentArgs2;
+        if (parcelableExtra != 0) {
+            return parcelableExtra;
         }
-        creationIntentArgs2 = parcelableExtra;
         StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
         C1643a.m862l0(CreationIntentArgs.class, sbM833U, " + key ");
         throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));

@@ -16,20 +16,20 @@ public interface InterfaceC2644j extends InterfaceC2647m {
     /* JADX INFO: renamed from: b */
     int mo2723b();
 
-    /* JADX INFO: renamed from: c */
-    void mo2728c(boolean z2);
-
     /* JADX INFO: renamed from: e */
     void mo2724e();
 
     /* JADX INFO: renamed from: g */
     void mo2725g();
 
-    /* JADX INFO: renamed from: h */
-    C2811j1 mo2731h();
-
     /* JADX INFO: renamed from: i */
     void mo2726i(float f);
+
+    /* JADX INFO: renamed from: c */
+    void mo2728c(boolean z2);
+
+    /* JADX INFO: renamed from: h */
+    C2811j1 mo2731h();
 
     /* JADX INFO: renamed from: j */
     void mo2732j();
@@ -39,7 +39,7 @@ public interface InterfaceC2644j extends InterfaceC2647m {
 
     /* JADX INFO: renamed from: b.i.a.c.c3.j$a */
     /* JADX INFO: compiled from: ExoTrackSelection.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C2556n0 f6259a;

@@ -13,7 +13,7 @@ public abstract class InputSelectionModel {
     private final IntRange selection;
 
     /* JADX INFO: compiled from: InputSelectionModel.kt */
-    public static final /* data */ class CommandInputSelectionModel extends InputSelectionModel {
+    public final /* data */ class CommandInputSelectionModel extends InputSelectionModel {
         private final MentionInputModel.VerifiedCommandInputModel inputModel;
         private final ApplicationCommandOption selectedCommandOption;
         private final IntRange selection;
@@ -28,6 +28,14 @@ public abstract class InputSelectionModel {
             this.selectedCommandOption = applicationCommandOption;
         }
 
+        public final MentionInputModel.VerifiedCommandInputModel component1() {
+            return getInputModel();
+        }
+
+        public final IntRange component2() {
+            return getSelection();
+        }
+
         public static /* synthetic */ CommandInputSelectionModel copy$default(CommandInputSelectionModel commandInputSelectionModel, MentionInputModel.VerifiedCommandInputModel verifiedCommandInputModel, IntRange intRange, ApplicationCommandOption applicationCommandOption, int i, Object obj) {
             if ((i & 1) != 0) {
                 verifiedCommandInputModel = commandInputSelectionModel.getInputModel();
@@ -39,19 +47,6 @@ public abstract class InputSelectionModel {
                 applicationCommandOption = commandInputSelectionModel.selectedCommandOption;
             }
             return commandInputSelectionModel.copy(verifiedCommandInputModel, intRange, applicationCommandOption);
-        }
-
-        public final MentionInputModel.VerifiedCommandInputModel component1() {
-            return getInputModel();
-        }
-
-        public final IntRange component2() {
-            return getSelection();
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final ApplicationCommandOption getSelectedCommandOption() {
-            return this.selectedCommandOption;
         }
 
         public final CommandInputSelectionModel copy(MentionInputModel.VerifiedCommandInputModel inputModel, IntRange selection, ApplicationCommandOption selectedCommandOption) {
@@ -69,6 +64,11 @@ public abstract class InputSelectionModel {
             }
             CommandInputSelectionModel commandInputSelectionModel = (CommandInputSelectionModel) other;
             return C12238m.areEqual(getInputModel(), commandInputSelectionModel.getInputModel()) && C12238m.areEqual(getSelection(), commandInputSelectionModel.getSelection()) && C12238m.areEqual(this.selectedCommandOption, commandInputSelectionModel.selectedCommandOption);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final ApplicationCommandOption getSelectedCommandOption() {
+            return this.selectedCommandOption;
         }
 
         public final ApplicationCommandOption getSelectedCommandOption() {
@@ -107,7 +107,7 @@ public abstract class InputSelectionModel {
     }
 
     /* JADX INFO: compiled from: InputSelectionModel.kt */
-    public static final /* data */ class MessageInputSelectionModel extends InputSelectionModel {
+    public final /* data */ class MessageInputSelectionModel extends InputSelectionModel {
         private final MentionInputModel inputModel;
         private final IntRange selection;
 
@@ -120,6 +120,14 @@ public abstract class InputSelectionModel {
             this.selection = intRange;
         }
 
+        public final MentionInputModel component1() {
+            return getInputModel();
+        }
+
+        public final IntRange component2() {
+            return getSelection();
+        }
+
         public static /* synthetic */ MessageInputSelectionModel copy$default(MessageInputSelectionModel messageInputSelectionModel, MentionInputModel mentionInputModel, IntRange intRange, int i, Object obj) {
             if ((i & 1) != 0) {
                 mentionInputModel = messageInputSelectionModel.getInputModel();
@@ -128,14 +136,6 @@ public abstract class InputSelectionModel {
                 intRange = messageInputSelectionModel.getSelection();
             }
             return messageInputSelectionModel.copy(mentionInputModel, intRange);
-        }
-
-        public final MentionInputModel component1() {
-            return getInputModel();
-        }
-
-        public final IntRange component2() {
-            return getSelection();
         }
 
         public final MessageInputSelectionModel copy(MentionInputModel inputModel, IntRange selection) {

@@ -23,7 +23,6 @@ public class DelayMetCommandHandler implements WorkConstraintsCallback, Executio
     private static final int STATE_INITIAL = 0;
     private static final int STATE_START_REQUESTED = 1;
     private static final int STATE_STOP_REQUESTED = 2;
-    private static final String TAG = Logger.tagWithPrefix("DelayMetCommandHandler");
     private final Context mContext;
     private final SystemAlarmDispatcher mDispatcher;
     private final int mStartId;
@@ -32,6 +31,7 @@ public class DelayMetCommandHandler implements WorkConstraintsCallback, Executio
     private PowerManager.WakeLock mWakeLock;
     private final WorkConstraintsTracker mWorkConstraintsTracker;
     private final String mWorkSpecId;
+    private static final String TAG = Logger.tagWithPrefix("DelayMetCommandHandler");
     private boolean mHasConstraints = false;
     private int mCurrentState = 0;
     private final Object mLock = new Object();
@@ -52,30 +52,6 @@ public class DelayMetCommandHandler implements WorkConstraintsCallback, Executio
             if (wakeLock != null && wakeLock.isHeld()) {
                 Logger.get().debug(TAG, String.format("Releasing wakelock %s for WorkSpec %s", this.mWakeLock, this.mWorkSpecId), new Throwable[0]);
                 this.mWakeLock.release();
-            }
-        }
-    }
-
-    private void stopWork() {
-        synchronized (this.mLock) {
-            if (this.mCurrentState < 2) {
-                this.mCurrentState = 2;
-                Logger logger = Logger.get();
-                String str = TAG;
-                logger.debug(str, String.format("Stopping work for WorkSpec %s", this.mWorkSpecId), new Throwable[0]);
-                Intent intentCreateStopWorkIntent = CommandHandler.createStopWorkIntent(this.mContext, this.mWorkSpecId);
-                SystemAlarmDispatcher systemAlarmDispatcher = this.mDispatcher;
-                systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher, intentCreateStopWorkIntent, this.mStartId));
-                if (this.mDispatcher.getProcessor().isEnqueued(this.mWorkSpecId)) {
-                    Logger.get().debug(str, String.format("WorkSpec %s needs to be rescheduled", this.mWorkSpecId), new Throwable[0]);
-                    Intent intentCreateScheduleWorkIntent = CommandHandler.createScheduleWorkIntent(this.mContext, this.mWorkSpecId);
-                    SystemAlarmDispatcher systemAlarmDispatcher2 = this.mDispatcher;
-                    systemAlarmDispatcher2.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher2, intentCreateScheduleWorkIntent, this.mStartId));
-                } else {
-                    Logger.get().debug(str, String.format("Processor does not have WorkSpec %s. No need to reschedule ", this.mWorkSpecId), new Throwable[0]);
-                }
-            } else {
-                Logger.get().debug(TAG, String.format("Already stopped work for %s", this.mWorkSpecId), new Throwable[0]);
             }
         }
     }
@@ -146,5 +122,29 @@ public class DelayMetCommandHandler implements WorkConstraintsCallback, Executio
     public void onTimeLimitExceeded(@NonNull String str) {
         Logger.get().debug(TAG, String.format("Exceeded time limits on execution for %s", str), new Throwable[0]);
         stopWork();
+    }
+
+    private void stopWork() {
+        synchronized (this.mLock) {
+            if (this.mCurrentState < 2) {
+                this.mCurrentState = 2;
+                Logger logger = Logger.get();
+                String str = TAG;
+                logger.debug(str, String.format("Stopping work for WorkSpec %s", this.mWorkSpecId), new Throwable[0]);
+                Intent intentCreateStopWorkIntent = CommandHandler.createStopWorkIntent(this.mContext, this.mWorkSpecId);
+                SystemAlarmDispatcher systemAlarmDispatcher = this.mDispatcher;
+                systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher, intentCreateStopWorkIntent, this.mStartId));
+                if (this.mDispatcher.getProcessor().isEnqueued(this.mWorkSpecId)) {
+                    Logger.get().debug(str, String.format("WorkSpec %s needs to be rescheduled", this.mWorkSpecId), new Throwable[0]);
+                    Intent intentCreateScheduleWorkIntent = CommandHandler.createScheduleWorkIntent(this.mContext, this.mWorkSpecId);
+                    SystemAlarmDispatcher systemAlarmDispatcher2 = this.mDispatcher;
+                    systemAlarmDispatcher2.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher2, intentCreateScheduleWorkIntent, this.mStartId));
+                } else {
+                    Logger.get().debug(str, String.format("Processor does not have WorkSpec %s. No need to reschedule ", this.mWorkSpecId), new Throwable[0]);
+                }
+            } else {
+                Logger.get().debug(TAG, String.format("Already stopped work for %s", this.mWorkSpecId), new Throwable[0]);
+            }
+        }
     }
 }

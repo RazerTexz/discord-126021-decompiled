@@ -47,7 +47,7 @@ public @interface InterfaceC2070c0 {
     /* JADX INFO: renamed from: b.g.a.a.c0$c */
     /* JADX INFO: compiled from: JsonTypeInfo.java */
     @Deprecated
-    public static abstract class c {
+    public abstract class c {
     }
 
     Class<?> defaultImpl() default InterfaceC2070c0.class;

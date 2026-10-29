@@ -20,9 +20,15 @@ public final /* data */ class GuildRole implements Serializable {
     private final GuildRoleTags tags;
     private final String unicodeEmoji;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getId() {
-        return this.id;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRole)) {
+            return false;
+        }
+        GuildRole guildRole = (GuildRole) other;
+        return this.position == guildRole.position && C12238m.areEqual(this.name, guildRole.name) && this.id == guildRole.id && this.color == guildRole.color && this.hoist == guildRole.hoist && this.permissions == guildRole.permissions && this.mentionable == guildRole.mentionable && this.managed == guildRole.managed && C12238m.areEqual(this.icon, guildRole.icon) && C12238m.areEqual(this.tags, guildRole.tags) && C12238m.areEqual(this.unicodeEmoji, guildRole.unicodeEmoji);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -40,20 +46,18 @@ public final /* data */ class GuildRole implements Serializable {
         return this.icon;
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
     /* JADX INFO: renamed from: e, reason: from getter */
     public final boolean getManaged() {
         return this.managed;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRole)) {
-            return false;
-        }
-        GuildRole guildRole = (GuildRole) other;
-        return this.position == guildRole.position && C12238m.areEqual(this.name, guildRole.name) && this.id == guildRole.id && this.color == guildRole.color && this.hoist == guildRole.hoist && this.permissions == guildRole.permissions && this.mentionable == guildRole.mentionable && this.managed == guildRole.managed && C12238m.areEqual(this.icon, guildRole.icon) && C12238m.areEqual(this.tags, guildRole.tags) && C12238m.areEqual(this.unicodeEmoji, guildRole.unicodeEmoji);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -66,13 +70,24 @@ public final /* data */ class GuildRole implements Serializable {
         return this.name;
     }
 
-    public final long getId() {
-        return this.id;
-    }
-
     /* JADX INFO: renamed from: h, reason: from getter */
     public final long getPermissions() {
         return this.permissions;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final int getPosition() {
+        return this.position;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final GuildRoleTags getTags() {
+        return this.tags;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final String getUnicodeEmoji() {
+        return this.unicodeEmoji;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -113,21 +128,6 @@ public final /* data */ class GuildRole implements Serializable {
         int iHashCode3 = (iHashCode2 + (guildRoleTags != null ? guildRoleTags.hashCode() : 0)) * 31;
         String str3 = this.unicodeEmoji;
         return iHashCode3 + (str3 != null ? str3.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final int getPosition() {
-        return this.position;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final GuildRoleTags getTags() {
-        return this.tags;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final String getUnicodeEmoji() {
-        return this.unicodeEmoji;
     }
 
     public String toString() {

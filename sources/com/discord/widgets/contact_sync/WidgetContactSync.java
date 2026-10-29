@@ -95,54 +95,9 @@ public final class WidgetContactSync extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void launch$default(Companion companion, Context context, ContactSyncMode contactSyncMode, boolean z2, boolean z3, boolean z4, int i, Object obj) {
-            if ((i & 2) != 0) {
-                contactSyncMode = ContactSyncMode.DEFAULT;
-            }
-            companion.launch(context, contactSyncMode, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? true : z3, (i & 16) != 0 ? true : z4);
-        }
-
-        public final ContactSyncMode getContactSyncModeFromIntent(AppActivity appActivity) {
-            C12238m.checkNotNullParameter(appActivity, "appActivity");
-            Serializable serializableExtra = appActivity.m8343c().getSerializableExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE);
-            Objects.requireNonNull(serializableExtra, "null cannot be cast to non-null type com.discord.widgets.contact_sync.ContactSyncMode");
-            return (ContactSyncMode) serializableExtra;
-        }
-
-        public final boolean getEmailDiscoverableFromIntent(AppActivity appActivity) {
-            C12238m.checkNotNullParameter(appActivity, "appActivity");
-            return appActivity.m8343c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, true);
-        }
-
-        public final boolean getPhoneDiscoverableFromIntent(AppActivity appActivity) {
-            C12238m.checkNotNullParameter(appActivity, "appActivity");
-            return appActivity.m8343c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, true);
-        }
-
-        public final void launch(Context context, ContactSyncMode mode, boolean immediatelyProceed, boolean discoverByPhone, boolean discoverByEmail) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(mode, "mode");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE, mode);
-            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_IMMEDIATELY_PROCEED, immediatelyProceed);
-            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, discoverByPhone);
-            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, discoverByEmail);
-            C0870j.m156d(context, WidgetContactSync.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82334 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C82334 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C82334() {
             super(1);
         }
@@ -155,11 +110,11 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetContactSync.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetContactSync.kt */
-            public static final class C132851 extends AbstractC12240o implements Function1<View, Unit> {
+            public final class C132851 extends AbstractC12240o implements Function1<View, Unit> {
                 public C132851() {
                     super(1);
                 }
@@ -207,7 +162,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$8 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82378 extends AbstractC12240o implements Function0<Unit> {
+    public final class C82378 extends AbstractC12240o implements Function0<Unit> {
         public C82378() {
             super(0);
         }
@@ -226,7 +181,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$9 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82389 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C82389 extends AbstractC12240o implements Function1<String, Unit> {
         public C82389() {
             super(1);
         }
@@ -246,7 +201,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82392 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
+    public final class C82392 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
         public C82392() {
             super(2);
         }
@@ -264,7 +219,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82401 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
+    public final class C82401 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
         public C82401() {
             super(1);
         }
@@ -284,7 +239,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82412 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.Event, Unit> {
+    public final class C82412 extends AbstractC12240o implements Function1<WidgetContactSyncViewModel.Event, Unit> {
         public C82412() {
             super(1);
         }
@@ -304,7 +259,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$requestContactsPermissions$1 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82421 extends AbstractC12240o implements Function0<Unit> {
+    public final class C82421 extends AbstractC12240o implements Function0<Unit> {
         public C82421() {
             super(0);
         }
@@ -323,7 +278,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$requestContactsPermissions$2 */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public static final class C82432 extends AbstractC12240o implements Function0<Unit> {
+    public final class C82432 extends AbstractC12240o implements Function0<Unit> {
         public C82432() {
             super(0);
         }
@@ -337,6 +292,51 @@ public final class WidgetContactSync extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             WidgetContactSync.this.onPermissionsDenied();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetContactSync.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ContactSyncMode getContactSyncModeFromIntent(AppActivity appActivity) {
+            C12238m.checkNotNullParameter(appActivity, "appActivity");
+            Serializable serializableExtra = appActivity.m8343c().getSerializableExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE);
+            Objects.requireNonNull(serializableExtra, "null cannot be cast to non-null type com.discord.widgets.contact_sync.ContactSyncMode");
+            return (ContactSyncMode) serializableExtra;
+        }
+
+        public final boolean getEmailDiscoverableFromIntent(AppActivity appActivity) {
+            C12238m.checkNotNullParameter(appActivity, "appActivity");
+            return appActivity.m8343c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, true);
+        }
+
+        public final boolean getPhoneDiscoverableFromIntent(AppActivity appActivity) {
+            C12238m.checkNotNullParameter(appActivity, "appActivity");
+            return appActivity.m8343c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, true);
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, ContactSyncMode contactSyncMode, boolean z2, boolean z3, boolean z4, int i, Object obj) {
+            if ((i & 2) != 0) {
+                contactSyncMode = ContactSyncMode.DEFAULT;
+            }
+            companion.launch(context, contactSyncMode, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? true : z3, (i & 16) != 0 ? true : z4);
+        }
+
+        public final void launch(Context context, ContactSyncMode mode, boolean immediatelyProceed, boolean discoverByPhone, boolean discoverByEmail) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(mode, "mode");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE, mode);
+            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_IMMEDIATELY_PROCEED, immediatelyProceed);
+            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, discoverByPhone);
+            intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, discoverByEmail);
+            C0870j.m156d(context, WidgetContactSync.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -535,6 +535,11 @@ public final class WidgetContactSync extends AppFragment {
         return (WidgetContactSyncBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final WidgetContactSyncViewModel getViewModel() {
         return (WidgetContactSyncViewModel) this.viewModel.getValue();
     }
@@ -631,30 +636,6 @@ public final class WidgetContactSync extends AppFragment {
         }
     }
 
-    private final void requestContactsPermissions() {
-        if (!ContactsProviderUtils.INSTANCE.hasContactPermissions(requireContext())) {
-            AnalyticsTracker.INSTANCE.permissionsRequested("contacts");
-            getViewModel().requestingPermissions();
-        }
-        requestContacts(new C82421(), new C82432());
-    }
-
-    private final void submitPhoneNumber(CaptchaHelper.CaptchaPayload captchaPayload) {
-        getViewModel().onPhoneNumberSubmitted(getBinding().f16410b.f967b.getTextOrEmpty(), captchaPayload);
-    }
-
-    public static /* synthetic */ void submitPhoneNumber$default(WidgetContactSync widgetContactSync, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetContactSync.submitPhoneNumber(captchaPayload);
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
@@ -682,5 +663,24 @@ public final class WidgetContactSync extends AppFragment {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetContactSync.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82401());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetContactSync.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82412());
+    }
+
+    private final void requestContactsPermissions() {
+        if (!ContactsProviderUtils.INSTANCE.hasContactPermissions(requireContext())) {
+            AnalyticsTracker.INSTANCE.permissionsRequested("contacts");
+            getViewModel().requestingPermissions();
+        }
+        requestContacts(new C82421(), new C82432());
+    }
+
+    public static /* synthetic */ void submitPhoneNumber$default(WidgetContactSync widgetContactSync, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetContactSync.submitPhoneNumber(captchaPayload);
+    }
+
+    private final void submitPhoneNumber(CaptchaHelper.CaptchaPayload captchaPayload) {
+        getViewModel().onPhoneNumberSubmitted(getBinding().f16410b.f967b.getTextOrEmpty(), captchaPayload);
     }
 }

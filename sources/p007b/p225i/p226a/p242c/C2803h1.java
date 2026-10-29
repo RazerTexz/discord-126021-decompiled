@@ -185,7 +185,7 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
 
     /* JADX INFO: renamed from: b.i.a.c.h1$a */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final List<C2945u1.c> f7093a;
@@ -209,12 +209,12 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
 
     /* JADX INFO: renamed from: b.i.a.c.h1$b */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static class b {
+    public class b {
     }
 
     /* JADX INFO: renamed from: b.i.a.c.h1$c */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static final class c implements Comparable<c> {
+    public final class c implements Comparable<c> {
 
         /* JADX INFO: renamed from: j */
         public final C2576b2 f7097j;
@@ -269,7 +269,7 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
 
     /* JADX INFO: renamed from: b.i.a.c.h1$d */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public boolean f7101a;
@@ -310,7 +310,7 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
 
     /* JADX INFO: renamed from: b.i.a.c.h1$f */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static final class f {
+    public final class f {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC2530a0.a f7108a;
@@ -342,7 +342,7 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
 
     /* JADX INFO: renamed from: b.i.a.c.h1$g */
     /* JADX INFO: compiled from: ExoPlayerImplInternal.java */
-    public static final class g {
+    public final class g {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC2832o2 f7114a;
@@ -400,6 +400,142 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
         Looper looper2 = handlerThread.getLooper();
         this.f7085s = looper2;
         this.f7083q = interfaceC2740g.mo2950b(looper2, this);
+    }
+
+    @Override // android.os.Handler.Callback
+    public boolean handleMessage(Message message) throws Throwable {
+        C2839q1 c2839q1;
+        int i = 1000;
+        try {
+            switch (message.what) {
+                case 0:
+                    m3215D();
+                    break;
+                case 1:
+                    m3235a0(message.arg1 != 0, message.arg2, true, 1);
+                    break;
+                case 2:
+                    m3243f();
+                    break;
+                case 3:
+                    m3225Q((g) message.obj);
+                    break;
+                case 4:
+                    m3236b0((C2998x1) message.obj);
+                    break;
+                case 5:
+                    this.f7057F = (C2812j2) message.obj;
+                    break;
+                case 6:
+                    m3251j0(false, true);
+                    break;
+                case 7:
+                    m3216E();
+                    return true;
+                case 8:
+                    m3264s((InterfaceC2570x) message.obj);
+                    break;
+                case 9:
+                    m3260o((InterfaceC2570x) message.obj);
+                    break;
+                case 10:
+                    m3218G();
+                    break;
+                case 11:
+                    m3238c0(message.arg1);
+                    break;
+                case 12:
+                    m3240d0(message.arg1 != 0);
+                    break;
+                case 13:
+                    m3231W(message.arg1 != 0, (AtomicBoolean) message.obj);
+                    break;
+                case 14:
+                    C2576b2 c2576b2 = (C2576b2) message.obj;
+                    Objects.requireNonNull(c2576b2);
+                    m3228T(c2576b2);
+                    break;
+                case 15:
+                    m3229U((C2576b2) message.obj);
+                    break;
+                case 16:
+                    C2998x1 c2998x1 = (C2998x1) message.obj;
+                    m3265t(c2998x1, c2998x1.f8027k, true, false);
+                    break;
+                case 17:
+                    m3232X((a) message.obj);
+                    break;
+                case 18:
+                    m3237c((a) message.obj, message.arg1);
+                    break;
+                case 19:
+                    m3214C((b) message.obj);
+                    break;
+                case 20:
+                    m3217F(message.arg1, message.arg2, (InterfaceC2550k0) message.obj);
+                    break;
+                case 21:
+                    m3242e0((InterfaceC2550k0) message.obj);
+                    break;
+                case 22:
+                    m3213B();
+                    break;
+                case 23:
+                    m3234Z(message.arg1 != 0);
+                    break;
+                case 24:
+                    m3233Y(message.arg1 == 1);
+                    break;
+                case 25:
+                    m3224P(true);
+                    break;
+                default:
+                    return false;
+            }
+        } catch (ExoPlaybackException e2) {
+            e = e2;
+            if (e.type == 1 && (c2839q1 = this.f7053B.f7494i) != null) {
+                e = e.m8754a(c2839q1.f7447f.f7465a);
+            }
+            if (e.isRecoverable && this.f7075X == null) {
+                C2750q.m3040c("ExoPlayerImplInternal", "Recoverable renderer error", e);
+                this.f7075X = e;
+                InterfaceC2748o interfaceC2748o = this.f7083q;
+                interfaceC2748o.mo2957d(interfaceC2748o.mo2962i(25, e));
+            } else {
+                ExoPlaybackException exoPlaybackException = this.f7075X;
+                if (exoPlaybackException != null) {
+                    exoPlaybackException.addSuppressed(e);
+                    e = this.f7075X;
+                }
+                C2750q.m3039b("ExoPlayerImplInternal", "Playback error", e);
+                m3251j0(true, false);
+                this.f7058G = this.f7058G.m3566e(e);
+            }
+        } catch (ParserException e3) {
+            int i2 = e3.dataType;
+            if (i2 == 1) {
+                i = e3.contentIsMalformed ? 3001 : 3003;
+            } else if (i2 == 4) {
+                i = e3.contentIsMalformed ? 3002 : 3004;
+            }
+            m3261p(e3, i);
+        } catch (DrmSession.DrmSessionException e4) {
+            m3261p(e4, e4.errorCode);
+        } catch (BehindLiveWindowException e5) {
+            m3261p(e5, PointerIconCompat.TYPE_HAND);
+        } catch (DataSourceException e6) {
+            m3261p(e6, e6.reason);
+        } catch (IOException e7) {
+            m3261p(e7, 2000);
+        } catch (RuntimeException e8) {
+            ExoPlaybackException exoPlaybackExceptionM8753b = ExoPlaybackException.m8753b(e8, ((e8 instanceof IllegalStateException) || (e8 instanceof IllegalArgumentException)) ? PointerIconCompat.TYPE_WAIT : 1000);
+            C2750q.m3039b("ExoPlayerImplInternal", "Playback error", exoPlaybackExceptionM8753b);
+            m3251j0(true, false);
+            this.f7058G = this.f7058G.m3566e(exoPlaybackExceptionM8753b);
+        }
+        m3212A();
+        return true;
     }
 
     /* JADX INFO: renamed from: K */
@@ -1127,12 +1263,6 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2548j0.a
-    /* JADX INFO: renamed from: a */
-    public void mo2542a(InterfaceC2548j0 interfaceC2548j0) {
-        ((C2732b0.b) this.f7083q.mo2962i(9, (InterfaceC2570x) interfaceC2548j0)).m2965b();
-    }
-
     /* JADX INFO: renamed from: a0 */
     public final void m3235a0(boolean z2, int i, boolean z3, int i2) throws ExoPlaybackException {
         this.f7059H.m3271a(z3 ? 1 : 0);
@@ -1161,12 +1291,6 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
         } else if (i3 == 2) {
             this.f7083q.mo2959f(2);
         }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x.a
-    /* JADX INFO: renamed from: b */
-    public void mo2563b(InterfaceC2570x interfaceC2570x) {
-        ((C2732b0.b) this.f7083q.mo2962i(8, interfaceC2570x)).m2965b();
     }
 
     /* JADX INFO: renamed from: b0 */
@@ -1710,142 +1834,6 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
         }
         AbstractC2832o2.c cVar = this.f7086t;
         return cVar.f7361v && cVar.f7358s != -9223372036854775807L;
-    }
-
-    @Override // android.os.Handler.Callback
-    public boolean handleMessage(Message message) throws Throwable {
-        C2839q1 c2839q1;
-        int i = 1000;
-        try {
-            switch (message.what) {
-                case 0:
-                    m3215D();
-                    break;
-                case 1:
-                    m3235a0(message.arg1 != 0, message.arg2, true, 1);
-                    break;
-                case 2:
-                    m3243f();
-                    break;
-                case 3:
-                    m3225Q((g) message.obj);
-                    break;
-                case 4:
-                    m3236b0((C2998x1) message.obj);
-                    break;
-                case 5:
-                    this.f7057F = (C2812j2) message.obj;
-                    break;
-                case 6:
-                    m3251j0(false, true);
-                    break;
-                case 7:
-                    m3216E();
-                    return true;
-                case 8:
-                    m3264s((InterfaceC2570x) message.obj);
-                    break;
-                case 9:
-                    m3260o((InterfaceC2570x) message.obj);
-                    break;
-                case 10:
-                    m3218G();
-                    break;
-                case 11:
-                    m3238c0(message.arg1);
-                    break;
-                case 12:
-                    m3240d0(message.arg1 != 0);
-                    break;
-                case 13:
-                    m3231W(message.arg1 != 0, (AtomicBoolean) message.obj);
-                    break;
-                case 14:
-                    C2576b2 c2576b2 = (C2576b2) message.obj;
-                    Objects.requireNonNull(c2576b2);
-                    m3228T(c2576b2);
-                    break;
-                case 15:
-                    m3229U((C2576b2) message.obj);
-                    break;
-                case 16:
-                    C2998x1 c2998x1 = (C2998x1) message.obj;
-                    m3265t(c2998x1, c2998x1.f8027k, true, false);
-                    break;
-                case 17:
-                    m3232X((a) message.obj);
-                    break;
-                case 18:
-                    m3237c((a) message.obj, message.arg1);
-                    break;
-                case 19:
-                    m3214C((b) message.obj);
-                    break;
-                case 20:
-                    m3217F(message.arg1, message.arg2, (InterfaceC2550k0) message.obj);
-                    break;
-                case 21:
-                    m3242e0((InterfaceC2550k0) message.obj);
-                    break;
-                case 22:
-                    m3213B();
-                    break;
-                case 23:
-                    m3234Z(message.arg1 != 0);
-                    break;
-                case 24:
-                    m3233Y(message.arg1 == 1);
-                    break;
-                case 25:
-                    m3224P(true);
-                    break;
-                default:
-                    return false;
-            }
-        } catch (ExoPlaybackException e2) {
-            e = e2;
-            if (e.type == 1 && (c2839q1 = this.f7053B.f7494i) != null) {
-                e = e.m8754a(c2839q1.f7447f.f7465a);
-            }
-            if (e.isRecoverable && this.f7075X == null) {
-                C2750q.m3040c("ExoPlayerImplInternal", "Recoverable renderer error", e);
-                this.f7075X = e;
-                InterfaceC2748o interfaceC2748o = this.f7083q;
-                interfaceC2748o.mo2957d(interfaceC2748o.mo2962i(25, e));
-            } else {
-                ExoPlaybackException exoPlaybackException = this.f7075X;
-                if (exoPlaybackException != null) {
-                    exoPlaybackException.addSuppressed(e);
-                    e = this.f7075X;
-                }
-                C2750q.m3039b("ExoPlayerImplInternal", "Playback error", e);
-                m3251j0(true, false);
-                this.f7058G = this.f7058G.m3566e(e);
-            }
-        } catch (ParserException e3) {
-            int i2 = e3.dataType;
-            if (i2 == 1) {
-                i = e3.contentIsMalformed ? 3001 : 3003;
-            } else if (i2 == 4) {
-                i = e3.contentIsMalformed ? 3002 : 3004;
-            }
-            m3261p(e3, i);
-        } catch (DrmSession.DrmSessionException e4) {
-            m3261p(e4, e4.errorCode);
-        } catch (BehindLiveWindowException e5) {
-            m3261p(e5, PointerIconCompat.TYPE_HAND);
-        } catch (DataSourceException e6) {
-            m3261p(e6, e6.reason);
-        } catch (IOException e7) {
-            m3261p(e7, 2000);
-        } catch (RuntimeException e8) {
-            ExoPlaybackException exoPlaybackExceptionM8753b = ExoPlaybackException.m8753b(e8, ((e8 instanceof IllegalStateException) || (e8 instanceof IllegalArgumentException)) ? PointerIconCompat.TYPE_WAIT : 1000);
-            C2750q.m3039b("ExoPlayerImplInternal", "Playback error", exoPlaybackExceptionM8753b);
-            m3251j0(true, false);
-            this.f7058G = this.f7058G.m3566e(exoPlaybackExceptionM8753b);
-        }
-        m3212A();
-        return true;
     }
 
     /* JADX INFO: renamed from: i0 */
@@ -2742,5 +2730,17 @@ public final class C2803h1 implements Handler.Callback, InterfaceC2570x.a, C2945
             c2839q2.f7442a.mo2483g(j3 - c2839q2.f7456o);
         }
         m3255l0();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2548j0.a
+    /* JADX INFO: renamed from: a */
+    public void mo2542a(InterfaceC2548j0 interfaceC2548j0) {
+        ((C2732b0.b) this.f7083q.mo2962i(9, (InterfaceC2570x) interfaceC2548j0)).m2965b();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2570x.a
+    /* JADX INFO: renamed from: b */
+    public void mo2563b(InterfaceC2570x interfaceC2570x) {
+        ((C2732b0.b) this.f7083q.mo2962i(8, interfaceC2570x)).m2965b();
     }
 }

@@ -12,12 +12,12 @@ import p007b.p225i.p226a.p288f.p298d.C3228c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class CloudMessage extends AbstractSafeParcelable {
 
-    @NonNull
-    public static final Parcelable.Creator<CloudMessage> CREATOR = new C3228c();
-
     /* JADX INFO: renamed from: j */
     @NonNull
     public Intent f20470j;
+
+    @NonNull
+    public static final Parcelable.Creator<CloudMessage> CREATOR = new C3228c();
 
     public CloudMessage(@NonNull Intent intent) {
         this.f20470j = intent;

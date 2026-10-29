@@ -39,6 +39,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     /* JADX INFO: renamed from: n */
     public static ThreadPoolExecutor f18694n;
 
+    /* JADX INFO: renamed from: o */
+    public static final Companion f18695o = new Companion(null);
+
     /* JADX INFO: renamed from: A */
     public Runnable f18696A;
 
@@ -144,9 +147,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     /* JADX INFO: renamed from: z */
     public volatile boolean f18730z;
 
-    /* JADX INFO: renamed from: o */
-    public static final Companion f18695o = new Companion(null);
-
     /* JADX INFO: renamed from: j */
     public static final Handler f18690j = new Handler(Looper.getMainLooper());
 
@@ -160,7 +160,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     public static final ExecutorService f18693m = Executors.newCachedThreadPool();
 
     /* JADX INFO: compiled from: RLottieDrawable.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -187,7 +187,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     /* JADX INFO: renamed from: com.discord.rlottie.RLottieDrawable$a */
     /* JADX INFO: compiled from: java-style lambda group */
     /* JADX INFO: loaded from: classes2.dex */
-    public static final class RunnableC5598a implements Runnable {
+    public final class RunnableC5598a implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f18731j;
@@ -382,92 +382,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.f18723s = Math.max(this.f18705J ? 33 : 16, (int) (1000.0f / iArr2[1]));
     }
 
-    /* JADX INFO: renamed from: a */
-    public static final void m8442a(RLottieDrawable rLottieDrawable) {
-        if (rLottieDrawable.f18712Q != 0) {
-            if (!rLottieDrawable.m8443b()) {
-                rLottieDrawable.f18711P = false;
-            }
-            rLottieDrawable.m8445d();
-            return;
-        }
-        if (rLottieDrawable.f18698C != null) {
-            Bitmap bitmap = rLottieDrawable.f18698C;
-            if (bitmap == null) {
-                C12238m.throwNpe();
-            }
-            bitmap.recycle();
-            rLottieDrawable.f18698C = null;
-        }
-        if (rLottieDrawable.f18700E != null) {
-            Bitmap bitmap2 = rLottieDrawable.f18700E;
-            if (bitmap2 == null) {
-                C12238m.throwNpe();
-            }
-            bitmap2.recycle();
-            rLottieDrawable.f18700E = null;
-        }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m8443b() {
-        if (getCallback() != null) {
-            return true;
-        }
-        for (int size = this.f18713R.size(); size > 0; size--) {
-            if (this.f18713R.get(0).get() != null) {
-                return true;
-            }
-            this.f18713R.remove(0);
-        }
-        return false;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m8444c() {
-        int size = this.f18713R.size();
-        int i = 0;
-        while (i < size) {
-            View view = this.f18713R.get(i).get();
-            if (view != null) {
-                view.invalidate();
-            } else {
-                this.f18713R.remove(i);
-                size--;
-                i--;
-            }
-            i++;
-        }
-        if (getCallback() != null) {
-            invalidateSelf();
-        }
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final boolean m8445d() {
-        if (this.f18697B != null || this.f18699D != null || this.f18712Q == 0) {
-            return false;
-        }
-        if (!this.f18711P) {
-            boolean z2 = this.f18701F;
-            if (!z2) {
-                return false;
-            }
-            if (z2 && this.f18702G) {
-                return false;
-            }
-        }
-        if (!this.f18725u.isEmpty()) {
-            this.f18726v.putAll(this.f18725u);
-            this.f18725u.clear();
-        }
-        ExecutorService executorService = f18693m;
-        Runnable runnable = this.f18719X;
-        this.f18697B = runnable;
-        executorService.execute(runnable);
-        return true;
-    }
-
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         boolean z2;
@@ -558,23 +472,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         }
     }
 
-    /* JADX INFO: renamed from: e */
-    public final void m8446e(boolean z2) {
-        this.f18701F = z2;
-        if (z2) {
-            m8445d();
-        }
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m8447f(PlaybackMode playbackMode) {
-        C12238m.checkParameterIsNotNull(playbackMode, "value");
-        if (this.f18727w == PlaybackMode.ONCE && playbackMode == PlaybackMode.FREEZE && this.f18704I != 0) {
-            return;
-        }
-        this.f18727w = playbackMode;
-    }
-
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public int getIntrinsicHeight() {
         return this.f18721q;
@@ -603,6 +500,109 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     @Override // android.graphics.drawable.Animatable
     public boolean isRunning() {
         return this.f18711P;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final void m8442a(RLottieDrawable rLottieDrawable) {
+        if (rLottieDrawable.f18712Q != 0) {
+            if (!rLottieDrawable.m8443b()) {
+                rLottieDrawable.f18711P = false;
+            }
+            rLottieDrawable.m8445d();
+            return;
+        }
+        if (rLottieDrawable.f18698C != null) {
+            Bitmap bitmap = rLottieDrawable.f18698C;
+            if (bitmap == null) {
+                C12238m.throwNpe();
+            }
+            bitmap.recycle();
+            rLottieDrawable.f18698C = null;
+        }
+        if (rLottieDrawable.f18700E != null) {
+            Bitmap bitmap2 = rLottieDrawable.f18700E;
+            if (bitmap2 == null) {
+                C12238m.throwNpe();
+            }
+            bitmap2.recycle();
+            rLottieDrawable.f18700E = null;
+        }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m8443b() {
+        if (getCallback() != null) {
+            return true;
+        }
+        for (int size = this.f18713R.size(); size > 0; size--) {
+            if (this.f18713R.get(0).get() != null) {
+                return true;
+            }
+            this.f18713R.remove(0);
+        }
+        return false;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m8444c() {
+        int size = this.f18713R.size();
+        int i = 0;
+        while (i < size) {
+            View view = this.f18713R.get(i).get();
+            if (view != null) {
+                view.invalidate();
+            } else {
+                this.f18713R.remove(i);
+                size--;
+                i--;
+            }
+            i++;
+        }
+        if (getCallback() != null) {
+            invalidateSelf();
+        }
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final boolean m8445d() {
+        if (this.f18697B != null || this.f18699D != null || this.f18712Q == 0) {
+            return false;
+        }
+        if (!this.f18711P) {
+            boolean z2 = this.f18701F;
+            if (!z2) {
+                return false;
+            }
+            if (z2 && this.f18702G) {
+                return false;
+            }
+        }
+        if (!this.f18725u.isEmpty()) {
+            this.f18726v.putAll(this.f18725u);
+            this.f18725u.clear();
+        }
+        ExecutorService executorService = f18693m;
+        Runnable runnable = this.f18719X;
+        this.f18697B = runnable;
+        executorService.execute(runnable);
+        return true;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final void m8446e(boolean z2) {
+        this.f18701F = z2;
+        if (z2) {
+            m8445d();
+        }
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final void m8447f(PlaybackMode playbackMode) {
+        C12238m.checkParameterIsNotNull(playbackMode, "value");
+        if (this.f18727w == PlaybackMode.ONCE && playbackMode == PlaybackMode.FREEZE && this.f18704I != 0) {
+            return;
+        }
+        this.f18727w = playbackMode;
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable

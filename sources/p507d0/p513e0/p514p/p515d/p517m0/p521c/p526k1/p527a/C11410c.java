@@ -28,6 +28,22 @@ public final class C11410c {
     /* JADX INFO: renamed from: a */
     public static final C11410c f23013a = new C11410c();
 
+    public final void loadClassAnnotations(Class<?> cls, InterfaceC11655p.c cVar) throws InvocationTargetException {
+        C12238m.checkNotNullParameter(cls, "klass");
+        C12238m.checkNotNullParameter(cVar, "visitor");
+        Annotation[] declaredAnnotations = cls.getDeclaredAnnotations();
+        C12238m.checkNotNullExpressionValue(declaredAnnotations, "klass.declaredAnnotations");
+        int length = declaredAnnotations.length;
+        int i = 0;
+        while (i < length) {
+            Annotation annotation = declaredAnnotations[i];
+            i++;
+            C12238m.checkNotNullExpressionValue(annotation, "annotation");
+            m9433b(cVar, annotation);
+        }
+        cVar.visitEnd();
+    }
+
     /* JADX INFO: renamed from: a */
     public final C11814f m9432a(Class<?> cls) {
         int i = 0;
@@ -161,23 +177,7 @@ public final class C11410c {
         aVar.visitEnd();
     }
 
-    public final void loadClassAnnotations(Class<?> cls, InterfaceC11655p.c cVar) {
-        C12238m.checkNotNullParameter(cls, "klass");
-        C12238m.checkNotNullParameter(cVar, "visitor");
-        Annotation[] declaredAnnotations = cls.getDeclaredAnnotations();
-        C12238m.checkNotNullExpressionValue(declaredAnnotations, "klass.declaredAnnotations");
-        int length = declaredAnnotations.length;
-        int i = 0;
-        while (i < length) {
-            Annotation annotation = declaredAnnotations[i];
-            i++;
-            C12238m.checkNotNullExpressionValue(annotation, "annotation");
-            m9433b(cVar, annotation);
-        }
-        cVar.visitEnd();
-    }
-
-    public final void visitMembers(Class<?> cls, InterfaceC11655p.d dVar) {
+    public final void visitMembers(Class<?> cls, InterfaceC11655p.d dVar) throws InvocationTargetException {
         String str;
         Constructor<?>[] constructorArr;
         int i;

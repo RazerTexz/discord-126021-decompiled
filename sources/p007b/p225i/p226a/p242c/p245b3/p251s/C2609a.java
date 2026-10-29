@@ -20,17 +20,17 @@ import p007b.p225i.p226a.p242c.p259f3.C2757x;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2609a extends AbstractC2582f {
 
-    /* JADX INFO: renamed from: n */
-    public static final Pattern f6020n = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*");
-
-    /* JADX INFO: renamed from: o */
-    public static final Pattern f6021o = Pattern.compile("\\{\\\\.*?\\}");
-
     /* JADX INFO: renamed from: p */
     public final StringBuilder f6022p;
 
     /* JADX INFO: renamed from: q */
     public final ArrayList<String> f6023q;
+
+    /* JADX INFO: renamed from: n */
+    public static final Pattern f6020n = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*");
+
+    /* JADX INFO: renamed from: o */
+    public static final Pattern f6021o = Pattern.compile("\\{\\\\.*?\\}");
 
     public C2609a() {
         super("SubripDecoder");

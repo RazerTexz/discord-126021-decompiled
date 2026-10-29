@@ -43,7 +43,7 @@ public class CapturingDiagnosticListener implements DiagnosticListener<JavaFileO
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CapturingDiagnosticListener$CompilerMessage.SCL.lombok */
-    public static final class CompilerMessage {
+    public final class CompilerMessage {
         private final long line;
         private final long position;
         private final boolean isError;

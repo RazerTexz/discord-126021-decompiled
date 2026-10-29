@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageDiscoveryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean hasScrolled = null;
+    private final Long lastVisibleIndex = null;
+    private final Long lastVisibleIndexAtLoad = null;
     private final CharSequence loadId = null;
     private final CharSequence stageInstanceRecommendations = null;
-    private final Long lastVisibleIndexAtLoad = null;
-    private final Long lastVisibleIndex = null;
-    private final Boolean hasScrolled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stage_discovery_exited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
         }
         TrackStageDiscoveryExited trackStageDiscoveryExited = (TrackStageDiscoveryExited) other;
         return C12238m.areEqual(this.loadId, trackStageDiscoveryExited.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryExited.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryExited.lastVisibleIndexAtLoad) && C12238m.areEqual(this.lastVisibleIndex, trackStageDiscoveryExited.lastVisibleIndex) && C12238m.areEqual(this.hasScrolled, trackStageDiscoveryExited.hasScrolled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -129,7 +129,7 @@ public class JavacResolution {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacResolution$EnvFinder.SCL.lombok */
-    private static final class EnvFinder extends JCTree.Visitor {
+    final class EnvFinder extends JCTree.Visitor {
         private Enter enter;
         private MemberEnter memberEnter;
         private Env<AttrContext> env = null;
@@ -314,14 +314,14 @@ public class JavacResolution {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacResolution$TypeNotConvertibleException.SCL.lombok */
-    public static class TypeNotConvertibleException extends Exception {
+    public class TypeNotConvertibleException extends Exception {
         public TypeNotConvertibleException(String msg) {
             super(msg);
         }
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacResolution$ReflectiveAccess.SCL.lombok */
-    private static class ReflectiveAccess {
+    class ReflectiveAccess {
         private static Method UPPER_BOUND;
 
         private ReflectiveAccess() {
@@ -406,9 +406,9 @@ public class JavacResolution {
             @Override // java.lang.Iterable
             public Iterator<Type> iterator() {
                 return new Iterator<Type>(ts, t) { // from class: lombok.javac.JavacResolution.1.1
-                    private boolean first = true;
-                    private Iterator<? extends Type> wrap;
                     private final /* synthetic */ Type val$t;
+                    private Iterator<? extends Type> wrap;
+                    private boolean first = true;
 
                     {
                         this.val$t = type;

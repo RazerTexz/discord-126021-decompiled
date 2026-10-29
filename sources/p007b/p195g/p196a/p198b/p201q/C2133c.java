@@ -37,18 +37,6 @@ public class C2133c extends AbstractC2111g {
         this.f4504b = -1;
     }
 
-    @Override // p007b.p195g.p196a.p198b.AbstractC2111g
-    /* JADX INFO: renamed from: a */
-    public final String mo1673a() {
-        return this.f4573f;
-    }
-
-    @Override // p007b.p195g.p196a.p198b.AbstractC2111g
-    /* JADX INFO: renamed from: d */
-    public void mo1676d(Object obj) {
-        this.f4574g = obj;
-    }
-
     /* JADX INFO: renamed from: f */
     public C2133c m1706f() {
         C2133c c2133c = this.f4572e;
@@ -216,6 +204,18 @@ public class C2133c extends AbstractC2111g {
         int i3 = this.f4504b + 1;
         this.f4504b = i3;
         return i3 == 0 ? 0 : 3;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2111g
+    /* JADX INFO: renamed from: a */
+    public final String mo1673a() {
+        return this.f4573f;
+    }
+
+    @Override // p007b.p195g.p196a.p198b.AbstractC2111g
+    /* JADX INFO: renamed from: d */
+    public void mo1676d(Object obj) {
+        this.f4574g = obj;
     }
 
     public C2133c(int i, C2133c c2133c, C2131a c2131a, Object obj) {

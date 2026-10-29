@@ -29,6 +29,14 @@ public final class C12335b extends AbstractC12349c {
         this.f25787b = x509TrustManagerExtensions;
     }
 
+    public boolean equals(Object obj) {
+        return (obj instanceof C12335b) && ((C12335b) obj).f25786a == this.f25786a;
+    }
+
+    public int hashCode() {
+        return System.identityHashCode(this.f25786a);
+    }
+
     @Override // p600f0.p601e0.p612m.AbstractC12349c
     /* JADX INFO: renamed from: a */
     public List<Certificate> mo10338a(List<? extends Certificate> list, String str) throws SSLPeerUnverifiedException {
@@ -47,13 +55,5 @@ public final class C12335b extends AbstractC12349c {
             sSLPeerUnverifiedException.initCause(e);
             throw sSLPeerUnverifiedException;
         }
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof C12335b) && ((C12335b) obj).f25786a == this.f25786a;
-    }
-
-    public int hashCode() {
-        return System.identityHashCode(this.f25786a);
     }
 }

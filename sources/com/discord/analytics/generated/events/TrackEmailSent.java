@@ -12,23 +12,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackEmailSent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBaseReceiver, TrackEmailReceiver {
-    private TrackBase trackBase;
-    private TrackEmail trackEmail;
+    private final Float clickProbability = null;
     private final CharSequence email = null;
     private final CharSequence emailDomain = null;
-    private final Long mmNumGuildsMissed = null;
     private final Long mmNumChannelsMissed = null;
     private final Long mmNumDmsMissed = null;
+    private final Long mmNumGuildsMissed = null;
     private final Long mmNumMessagesMissed = null;
+    private TrackBase trackBase;
+    private TrackEmail trackEmail;
     private final Long userLastActive = null;
-    private final Float clickProbability = null;
     private final transient String analyticsSchemaTypeName = "email_sent";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBa
         }
         TrackEmailSent trackEmailSent = (TrackEmailSent) other;
         return C12238m.areEqual(this.email, trackEmailSent.email) && C12238m.areEqual(this.emailDomain, trackEmailSent.emailDomain) && C12238m.areEqual(this.mmNumGuildsMissed, trackEmailSent.mmNumGuildsMissed) && C12238m.areEqual(this.mmNumChannelsMissed, trackEmailSent.mmNumChannelsMissed) && C12238m.areEqual(this.mmNumDmsMissed, trackEmailSent.mmNumDmsMissed) && C12238m.areEqual(this.mmNumMessagesMissed, trackEmailSent.mmNumMessagesMissed) && C12238m.areEqual(this.userLastActive, trackEmailSent.userLastActive) && C12238m.areEqual(this.clickProbability, trackEmailSent.clickProbability);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

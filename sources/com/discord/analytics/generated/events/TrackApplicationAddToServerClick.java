@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationAddToServerClick.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationAddToServerClick implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
     private final CharSequence authType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_add_to_server_click";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackApplicationAddToServerClick implements Analyt
         }
         TrackApplicationAddToServerClick trackApplicationAddToServerClick = (TrackApplicationAddToServerClick) other;
         return C12238m.areEqual(this.applicationId, trackApplicationAddToServerClick.applicationId) && C12238m.areEqual(this.authType, trackApplicationAddToServerClick.authType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

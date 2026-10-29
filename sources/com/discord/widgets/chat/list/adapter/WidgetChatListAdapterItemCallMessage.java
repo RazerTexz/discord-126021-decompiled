@@ -69,6 +69,101 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
     private Subscription stateSubscription;
     private final WidgetCollapsedUsersListAdapter usersAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class C80391 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80391() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetChatListAdapterItemCallMessage.this.stateSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class C80402 extends AbstractC12240o implements Function1<State, Unit> {
+        public C80402() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(State state) {
+            invoke2(state);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(State state) {
+            C12238m.checkNotNullParameter(state, "state");
+            WidgetChatListAdapterItemCallMessage.this.handleState(state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class C80411 extends AbstractC12240o implements Function1<Long, Unit> {
+        public final /* synthetic */ long $callJoinedTimestampMs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80411(long j) {
+            super(1);
+            this.$callJoinedTimestampMs = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            String string = TimeUtils.toFriendlyString$default(TimeUtils.INSTANCE, this.$callJoinedTimestampMs, WidgetChatListAdapterItemCallMessage.this.clock.currentTimeMillis(), null, null, 12, null).toString();
+            int minWidthPxForTime = WidgetChatListAdapterItemCallMessage.this.getMinWidthPxForTime(string);
+            TextView textView = WidgetChatListAdapterItemCallMessage.this.binding.f16176d;
+            C12238m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemCallSubtitle");
+            textView.setText(string);
+            TextView textView2 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
+            C12238m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemUnjoinedCallDuration");
+            textView2.setText(string);
+            TextView textView3 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
+            C12238m.checkNotNullExpressionValue(textView3, "binding.chatListAdapterItemUnjoinedCallDuration");
+            TextView textView4 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
+            C12238m.checkNotNullExpressionValue(textView4, "binding.chatListAdapterItemUnjoinedCallDuration");
+            textView3.setMinWidth(textView4.getPaddingStart() + minWidthPxForTime);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class C80422 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80422() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetChatListAdapterItemCallMessage.this.ongoingCallDurationSubscription = subscription;
+        }
+    }
+
     /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
     public enum CallStatus {
         ACTIVE_UNJOINED,
@@ -78,7 +173,7 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final MessageEntry messageEntry;
         private final Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants;
 
@@ -87,6 +182,10 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
             C12238m.checkNotNullParameter(messageEntry, "messageEntry");
             this.voiceParticipants = map;
             this.messageEntry = messageEntry;
+        }
+
+        public final Map<Long, StoreVoiceParticipants.VoiceUser> component1() {
+            return this.voiceParticipants;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -98,15 +197,6 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
                 messageEntry = state.messageEntry;
             }
             return state.copy(map, messageEntry);
-        }
-
-        public final Map<Long, StoreVoiceParticipants.VoiceUser> component1() {
-            return this.voiceParticipants;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final MessageEntry getMessageEntry() {
-            return this.messageEntry;
         }
 
         public final State copy(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, MessageEntry messageEntry) {
@@ -124,6 +214,11 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
             }
             State state = (State) other;
             return C12238m.areEqual(this.voiceParticipants, state.voiceParticipants) && C12238m.areEqual(this.messageEntry, state.messageEntry);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final MessageEntry getMessageEntry() {
+            return this.messageEntry;
         }
 
         public final MessageEntry getMessageEntry() {
@@ -182,101 +277,6 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
             iArr3[callStatus2.ordinal()] = 2;
             iArr3[callStatus3.ordinal()] = 3;
             iArr3[callStatus4.ordinal()] = 4;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
-    public static final class C80391 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80391() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            WidgetChatListAdapterItemCallMessage.this.stateSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
-    public static final class C80402 extends AbstractC12240o implements Function1<State, Unit> {
-        public C80402() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(State state) {
-            invoke2(state);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(State state) {
-            C12238m.checkNotNullParameter(state, "state");
-            WidgetChatListAdapterItemCallMessage.this.handleState(state);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
-    public static final class C80411 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ long $callJoinedTimestampMs;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80411(long j) {
-            super(1);
-            this.$callJoinedTimestampMs = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            String string = TimeUtils.toFriendlyString$default(TimeUtils.INSTANCE, this.$callJoinedTimestampMs, WidgetChatListAdapterItemCallMessage.this.clock.currentTimeMillis(), null, null, 12, null).toString();
-            int minWidthPxForTime = WidgetChatListAdapterItemCallMessage.this.getMinWidthPxForTime(string);
-            TextView textView = WidgetChatListAdapterItemCallMessage.this.binding.f16176d;
-            C12238m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemCallSubtitle");
-            textView.setText(string);
-            TextView textView2 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
-            C12238m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemUnjoinedCallDuration");
-            textView2.setText(string);
-            TextView textView3 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
-            C12238m.checkNotNullExpressionValue(textView3, "binding.chatListAdapterItemUnjoinedCallDuration");
-            TextView textView4 = WidgetChatListAdapterItemCallMessage.this.binding.f16179g;
-            C12238m.checkNotNullExpressionValue(textView4, "binding.chatListAdapterItemUnjoinedCallDuration");
-            textView3.setMinWidth(textView4.getPaddingStart() + minWidthPxForTime);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
-    public static final class C80422 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80422() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            WidgetChatListAdapterItemCallMessage.this.ongoingCallDurationSubscription = subscription;
         }
     }
 
@@ -556,13 +556,6 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         ((WidgetChatListAdapter) this.adapter).getEventHandler().onCallMessageClicked(channelId, callStatus);
     }
 
-    private final void resetCurrentChatListEntry() {
-        ChatListEntry chatListEntry = this.chatListEntry;
-        if (chatListEntry != null) {
-            configure(chatListEntry);
-        }
-    }
-
     @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
     public void onPause() {
         clearSubscriptions();
@@ -571,6 +564,13 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
     @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
     public void onResume() {
         resetCurrentChatListEntry();
+    }
+
+    private final void resetCurrentChatListEntry() {
+        ChatListEntry chatListEntry = this.chatListEntry;
+        if (chatListEntry != null) {
+            configure(chatListEntry);
+        }
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

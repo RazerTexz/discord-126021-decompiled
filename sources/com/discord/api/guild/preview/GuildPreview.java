@@ -22,6 +22,17 @@ public final /* data */ class GuildPreview {
     private final String name;
     private final String splash;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildPreview)) {
+            return false;
+        }
+        GuildPreview guildPreview = (GuildPreview) other;
+        return this.id == guildPreview.id && C12238m.areEqual(this.name, guildPreview.name) && C12238m.areEqual(this.description, guildPreview.description) && C12238m.areEqual(this.splash, guildPreview.splash) && C12238m.areEqual(this.banner, guildPreview.banner) && C12238m.areEqual(this.icon, guildPreview.icon) && C12238m.areEqual(this.approximatePresenceCount, guildPreview.approximatePresenceCount) && C12238m.areEqual(this.approximateMemberCount, guildPreview.approximateMemberCount) && C12238m.areEqual(this.emojis, guildPreview.emojis) && C12238m.areEqual(this.features, guildPreview.features) && C12238m.areEqual(this.featurableInDirectory, guildPreview.featurableInDirectory);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Integer getApproximateMemberCount() {
         return this.approximateMemberCount;
@@ -37,30 +48,9 @@ public final /* data */ class GuildPreview {
         return this.description;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final List<GuildEmoji> m7887d() {
-        return this.emojis;
-    }
-
     /* JADX INFO: renamed from: e, reason: from getter */
     public final Boolean getFeaturableInDirectory() {
         return this.featurableInDirectory;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildPreview)) {
-            return false;
-        }
-        GuildPreview guildPreview = (GuildPreview) other;
-        return this.id == guildPreview.id && C12238m.areEqual(this.name, guildPreview.name) && C12238m.areEqual(this.description, guildPreview.description) && C12238m.areEqual(this.splash, guildPreview.splash) && C12238m.areEqual(this.banner, guildPreview.banner) && C12238m.areEqual(this.icon, guildPreview.icon) && C12238m.areEqual(this.approximatePresenceCount, guildPreview.approximatePresenceCount) && C12238m.areEqual(this.approximateMemberCount, guildPreview.approximateMemberCount) && C12238m.areEqual(this.emojis, guildPreview.emojis) && C12238m.areEqual(this.features, guildPreview.features) && C12238m.areEqual(this.featurableInDirectory, guildPreview.featurableInDirectory);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final List<GuildFeature> m7889f() {
-        return this.features;
     }
 
     /* JADX INFO: renamed from: g, reason: from getter */
@@ -71,6 +61,16 @@ public final /* data */ class GuildPreview {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final String getSplash() {
+        return this.splash;
     }
 
     public int hashCode() {
@@ -98,14 +98,14 @@ public final /* data */ class GuildPreview {
         return iHashCode9 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final String getName() {
-        return this.name;
+    /* JADX INFO: renamed from: d */
+    public final List<GuildEmoji> m7887d() {
+        return this.emojis;
     }
 
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final String getSplash() {
-        return this.splash;
+    /* JADX INFO: renamed from: f */
+    public final List<GuildFeature> m7889f() {
+        return this.features;
     }
 
     public String toString() {

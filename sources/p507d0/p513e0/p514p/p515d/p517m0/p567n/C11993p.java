@@ -21,7 +21,7 @@ public final class C11993p extends AbstractC12018z0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.p$a */
     /* JADX INFO: compiled from: DisjointKeysUnionTypeSubstitution.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -40,10 +40,6 @@ public final class C11993p extends AbstractC12018z0 {
         this.f24854d = abstractC12018z1;
     }
 
-    public static final AbstractC12018z0 create(AbstractC12018z0 abstractC12018z0, AbstractC12018z0 abstractC12018z1) {
-        return f24852b.create(abstractC12018z0, abstractC12018z1);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
     public boolean approximateCapturedTypes() {
         return this.f24853c.approximateCapturedTypes() || this.f24854d.approximateCapturedTypes();
@@ -52,6 +48,10 @@ public final class C11993p extends AbstractC12018z0 {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0
     public boolean approximateContravariantCapturedTypes() {
         return this.f24853c.approximateContravariantCapturedTypes() || this.f24854d.approximateContravariantCapturedTypes();
+    }
+
+    public static final AbstractC12018z0 create(AbstractC12018z0 abstractC12018z0, AbstractC12018z0 abstractC12018z1) {
+        return f24852b.create(abstractC12018z0, abstractC12018z1);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC12018z0

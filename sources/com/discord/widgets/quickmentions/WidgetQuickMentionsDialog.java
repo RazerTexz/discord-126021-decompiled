@@ -55,16 +55,52 @@ public final class WidgetQuickMentionsDialog extends AppDialog {
     /* JADX INFO: renamed from: dismissViewModel$delegate, reason: from kotlin metadata */
     private final Lazy dismissViewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.quickmentions.WidgetQuickMentionsDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
-    public static final class Companion {
-        private Companion() {
+    public final class C91221 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public C91221() {
+            super(1);
         }
 
-        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, int i, Object obj) {
-            if ((i & 2) != 0) {
-                str = null;
-            }
-            companion.show(fragmentManager, str);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            C12238m.checkNotNullParameter(unit, "it");
+            WidgetQuickMentionsDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.quickmentions.WidgetQuickMentionsDialog$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
+    public final class C91232 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
+        public final /* synthetic */ TabsAdapter $adapter;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91232(TabsAdapter tabsAdapter) {
+            super(2);
+            this.$adapter = tabsAdapter;
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(TabLayout.Tab tab, Integer num) {
+            invoke(tab, num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(TabLayout.Tab tab, int i) {
+            C12238m.checkNotNullParameter(tab, "tab");
+            tab.setText(WidgetQuickMentionsDialog.this.getString(this.$adapter.getItemTitleResId(i)));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
+    public final class Companion {
+        private Companion() {
         }
 
         public final void dismiss(FragmentManager fragmentManager) {
@@ -73,6 +109,13 @@ public final class WidgetQuickMentionsDialog extends AppDialog {
             if (fragmentFindFragmentByTag instanceof WidgetQuickMentionsDialog) {
                 ((WidgetQuickMentionsDialog) fragmentFindFragmentByTag).dismiss();
             }
+        }
+
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, int i, Object obj) {
+            if ((i & 2) != 0) {
+                str = null;
+            }
+            companion.show(fragmentManager, str);
         }
 
         public final void show(FragmentManager fragmentManager, String searchText) {
@@ -90,7 +133,7 @@ public final class WidgetQuickMentionsDialog extends AppDialog {
     }
 
     /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
-    public static final class TabsAdapter extends FragmentStateAdapter {
+    public final class TabsAdapter extends FragmentStateAdapter {
         private final String searchText;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -111,12 +154,6 @@ public final class WidgetQuickMentionsDialog extends AppDialog {
             throw new UnsupportedOperationException();
         }
 
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        /* JADX INFO: renamed from: getItemCount */
-        public int getPageSize() {
-            return 2;
-        }
-
         public final int getItemTitleResId(int position) {
             if (position == 0) {
                 return C5419R.string.search;
@@ -126,48 +163,11 @@ public final class WidgetQuickMentionsDialog extends AppDialog {
             }
             throw new UnsupportedOperationException();
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.widgets.quickmentions.WidgetQuickMentionsDialog$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
-    public static final class C91221 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C91221() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            C12238m.checkNotNullParameter(unit, "it");
-            WidgetQuickMentionsDialog.this.dismiss();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.quickmentions.WidgetQuickMentionsDialog$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetQuickMentionsDialog.kt */
-    public static final class C91232 extends AbstractC12240o implements Function2<TabLayout.Tab, Integer, Unit> {
-        public final /* synthetic */ TabsAdapter $adapter;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91232(TabsAdapter tabsAdapter) {
-            super(2);
-            this.$adapter = tabsAdapter;
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(TabLayout.Tab tab, Integer num) {
-            invoke(tab, num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(TabLayout.Tab tab, int i) {
-            C12238m.checkNotNullParameter(tab, "tab");
-            tab.setText(WidgetQuickMentionsDialog.this.getString(this.$adapter.getItemTitleResId(i)));
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        /* JADX INFO: renamed from: getItemCount */
+        public int getPageSize() {
+            return 2;
         }
     }
 

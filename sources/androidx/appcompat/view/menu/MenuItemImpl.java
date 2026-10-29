@@ -81,6 +81,10 @@ public final class MenuItemImpl implements SupportMenuItem {
         this.mShowAsAction = i5;
     }
 
+    public void actionFormatChanged() {
+        this.mMenu.onItemActionRequestChanged(this);
+    }
+
     private static void appendModifier(StringBuilder sb, int i, int i2, String str) {
         if ((i & i2) == i2) {
             sb.append(str);
@@ -99,10 +103,6 @@ public final class MenuItemImpl implements SupportMenuItem {
             this.mNeedToApplyIconTint = false;
         }
         return drawable;
-    }
-
-    public void actionFormatChanged() {
-        this.mMenu.onItemActionRequestChanged(this);
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem

@@ -13,7 +13,7 @@ import p507d0.p592z.p594d.C12238m;
 public final class GuildRoleSubscriptionPlanDetailsViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionPlanDetailsViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final Long applicationId;
         private final String coverImage;
         private final Long coverImageAssetId;
@@ -54,31 +54,6 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends AbstractC08
             return viewState.copy(str, l3, l4, str3, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getCoverImage() {
-            return this.coverImage;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getCoverImageAssetId() {
-            return this.coverImageAssetId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsFullServerGate() {
-            return this.isFullServerGate;
-        }
-
         public final ViewState copy(String coverImage, Long applicationId, Long coverImageAssetId, String description, boolean isFullServerGate) {
             return new ViewState(coverImage, applicationId, coverImageAssetId, description, isFullServerGate);
         }
@@ -94,20 +69,45 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends AbstractC08
             return C12238m.areEqual(this.coverImage, viewState.coverImage) && C12238m.areEqual(this.applicationId, viewState.applicationId) && C12238m.areEqual(this.coverImageAssetId, viewState.coverImageAssetId) && C12238m.areEqual(this.description, viewState.description) && this.isFullServerGate == viewState.isFullServerGate;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final Long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getCoverImage() {
+            return this.coverImage;
         }
 
         public final String getCoverImage() {
             return this.coverImage;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getCoverImageAssetId() {
             return this.coverImageAssetId;
         }
 
+        public final Long getCoverImageAssetId() {
+            return this.coverImageAssetId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getDescription() {
             return this.description;
+        }
+
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsFullServerGate() {
+            return this.isFullServerGate;
         }
 
         /* JADX WARN: Multi-variable type inference failed */

@@ -7,11 +7,11 @@ import java.nio.charset.Charset;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3787p5 implements InterfaceC3788p6 {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC3917z5 f10197a = new C3826s5();
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC3917z5 f10198b;
+
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC3917z5 f10197a = new C3826s5();
 
     public C3787p5() {
         InterfaceC3917z5 interfaceC3917z5;

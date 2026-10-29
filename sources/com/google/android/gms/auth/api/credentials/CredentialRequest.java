@@ -11,7 +11,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p294d.C3192g;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class CredentialRequest extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<CredentialRequest> CREATOR = new C3192g();
 
     /* JADX INFO: renamed from: j */
     public final int f20405j;
@@ -41,6 +40,7 @@ public final class CredentialRequest extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: r */
     public final boolean f20413r;
+    public static final Parcelable.Creator<CredentialRequest> CREATOR = new C3192g();
 
     public CredentialRequest(int i, boolean z2, String[] strArr, @Nullable CredentialPickerConfig credentialPickerConfig, @Nullable CredentialPickerConfig credentialPickerConfig2, boolean z3, @Nullable String str, @Nullable String str2, boolean z4) {
         this.f20405j = i;

@@ -46,7 +46,7 @@ public final class RawResourceDataSource extends AbstractC2705g {
     /* JADX INFO: renamed from: k */
     public boolean f20253k;
 
-    public static class RawResourceDataSourceException extends DataSourceException {
+    public class RawResourceDataSourceException extends DataSourceException {
         public RawResourceDataSourceException(@Nullable String str, @Nullable Throwable th, int i) {
             super(str, th, i);
         }
@@ -63,6 +63,47 @@ public final class RawResourceDataSource extends AbstractC2705g {
         sb.append("rawresource:///");
         sb.append(i);
         return Uri.parse(sb.toString());
+    }
+
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0037 */
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0055 */
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    public void close() throws RawResourceDataSourceException {
+        this.f20249g = null;
+        try {
+            InputStream inputStream = this.f20251i;
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            this.f20251i = null;
+            try {
+                try {
+                    AssetFileDescriptor assetFileDescriptor = this.f20250h;
+                    if (assetFileDescriptor != null) {
+                        assetFileDescriptor.close();
+                    }
+                    this.f20250h = null;
+                    if (this.f20253k) {
+                        this.f20253k = false;
+                        m2849q();
+                    }
+                } catch (IOException e) {
+                    throw new RawResourceDataSourceException(null, e, 2000);
+                }
+            } catch (Throwable th) {
+                this.f20250h = null;
+                if (this.f20253k) {
+                    this.f20253k = false;
+                    m2849q();
+                }
+                throw th;
+            }
+        } catch (IOException e2) {
+            throw new RawResourceDataSourceException(null, e2, 2000);
+        }
     }
 
     /* JADX WARN: Code duplicated, block: B:86:0x00a5 A[EXC_TOP_SPLITTER, SYNTHETIC] */
@@ -165,47 +206,6 @@ public final class RawResourceDataSource extends AbstractC2705g {
             return j3 != -1 ? j3 : this.f20252j;
         } catch (Resources.NotFoundException e3) {
             throw new RawResourceDataSourceException(null, e3, 2005);
-        }
-    }
-
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0037 */
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0055 */
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public void close() throws RawResourceDataSourceException {
-        this.f20249g = null;
-        try {
-            InputStream inputStream = this.f20251i;
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            this.f20251i = null;
-            try {
-                try {
-                    AssetFileDescriptor assetFileDescriptor = this.f20250h;
-                    if (assetFileDescriptor != null) {
-                        assetFileDescriptor.close();
-                    }
-                    this.f20250h = null;
-                    if (this.f20253k) {
-                        this.f20253k = false;
-                        m2849q();
-                    }
-                } catch (IOException e) {
-                    throw new RawResourceDataSourceException(null, e, 2000);
-                }
-            } catch (Throwable th) {
-                this.f20250h = null;
-                if (this.f20253k) {
-                    this.f20253k = false;
-                    m2849q();
-                }
-                throw th;
-            }
-        } catch (IOException e2) {
-            throw new RawResourceDataSourceException(null, e2, 2000);
         }
     }
 

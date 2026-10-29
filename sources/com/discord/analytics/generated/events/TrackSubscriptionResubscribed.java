@@ -9,24 +9,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSubscriptionResubscribed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSubscriptionResubscribed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long subscriptionId = null;
-    private final Long subscriptionType = null;
+    private final Long createdAt = null;
+    private final Long currentPeriodEnd = null;
+    private final Long currentPeriodStart = null;
+    private final Long paymentGateway = null;
     private final CharSequence paymentGatewayPlanId = null;
     private final Long planId = null;
-    private final Long paymentGateway = null;
-    private final Long createdAt = null;
-    private final Long currentPeriodStart = null;
-    private final Long currentPeriodEnd = null;
-    private final Long trialId = null;
+    private final Long subscriptionId = null;
+    private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final Long trialEndsAt = null;
+    private final Long trialId = null;
     private final transient String analyticsSchemaTypeName = "subscription_resubscribed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
         }
         TrackSubscriptionResubscribed trackSubscriptionResubscribed = (TrackSubscriptionResubscribed) other;
         return C12238m.areEqual(this.subscriptionId, trackSubscriptionResubscribed.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionResubscribed.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionResubscribed.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionResubscribed.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionResubscribed.paymentGateway) && C12238m.areEqual(this.createdAt, trackSubscriptionResubscribed.createdAt) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionResubscribed.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionResubscribed.currentPeriodEnd) && C12238m.areEqual(this.trialId, trackSubscriptionResubscribed.trialId) && C12238m.areEqual(this.trialEndsAt, trackSubscriptionResubscribed.trialEndsAt);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

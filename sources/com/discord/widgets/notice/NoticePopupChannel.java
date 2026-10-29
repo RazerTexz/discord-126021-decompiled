@@ -66,8 +66,63 @@ import p658rx.functions.Func9;
 public final class NoticePopupChannel {
     public static final NoticePopupChannel INSTANCE = new NoticePopupChannel();
 
+    /* JADX INFO: renamed from: com.discord.widgets.notice.NoticePopupChannel$enqueue$1 */
     /* JADX INFO: compiled from: NoticePopupChannel.kt */
-    public static final /* data */ class Model {
+    public final /* synthetic */ class C90931 extends C12236k implements Function9<Context, Message, Guild, Channel, Map<Long, ? extends GuildMember>, Long, User, Map<Long, ? extends String>, Map<Long, ? extends GuildRole>, Model> {
+        public C90931(NoticePopupChannel noticePopupChannel) {
+            super(9, noticePopupChannel, NoticePopupChannel.class, "createModel", "createModel(Landroid/content/Context;Lcom/discord/models/message/Message;Lcom/discord/models/guild/Guild;Lcom/discord/api/channel/Channel;Ljava/util/Map;Ljava/lang/Long;Lcom/discord/models/user/User;Ljava/util/Map;Ljava/util/Map;)Lcom/discord/widgets/notice/NoticePopupChannel$Model;", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function9
+        public /* bridge */ /* synthetic */ Model invoke(Context context, Message message, Guild guild, Channel channel, Map<Long, ? extends GuildMember> map, Long l, User user, Map<Long, ? extends String> map2, Map<Long, ? extends GuildRole> map3) {
+            return invoke2(context, message, guild, channel, (Map<Long, GuildMember>) map, l, user, (Map<Long, String>) map2, (Map<Long, GuildRole>) map3);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Model invoke2(Context context, Message message, Guild guild, Channel channel, Map<Long, GuildMember> map, Long l, User user, Map<Long, String> map2, Map<Long, GuildRole> map3) {
+            C12238m.checkNotNullParameter(context, "p1");
+            C12238m.checkNotNullParameter(message, "p2");
+            C12238m.checkNotNullParameter(map, "p5");
+            C12238m.checkNotNullParameter(user, "p7");
+            C12238m.checkNotNullParameter(map2, "p8");
+            C12238m.checkNotNullParameter(map3, "p9");
+            return ((NoticePopupChannel) this.receiver).createModel(context, message, guild, channel, map, l, user, map2, map3);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.notice.NoticePopupChannel$enqueue$2 */
+    /* JADX INFO: compiled from: NoticePopupChannel.kt */
+    public final class C90942 extends AbstractC12240o implements Function1<Model, Unit> {
+        public final /* synthetic */ String $noticeName;
+        public final /* synthetic */ Function1 $onClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C90942(String str, Function1 function1) {
+            super(1);
+            this.$noticeName = str;
+            this.$onClick = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            if (model != null) {
+                NoticePopup noticePopup = NoticePopup.INSTANCE;
+                String str = this.$noticeName;
+                CharSequence noticeTitle = model.getNoticeTitle();
+                CharSequence noticeSubtitle = model.getNoticeSubtitle();
+                noticePopup.enqueue(str, noticeTitle, (16116 & 4) != 0 ? null : noticeSubtitle, model.getNoticeBody(), (16116 & 16) != 0 ? null : model.getNoticeBodyBackgroundDrawable(), (16116 & 32) != 0 ? null : model.getNoticeBodyImageUrl(), (16116 & 64) != 0 ? null : model.getNoticeBodyImageDrawable(), (16116 & 128) != 0 ? null : model.getNoticeStickers(), (16116 & 256) != 0 ? null : model.getNoticeIconUrl(), (16116 & 512) != 0 ? null : null, (16116 & 1024) != 0 ? null : model.getNoticeIconTopRight(), (16116 & 2048) != 0 ? 5 : null, (16116 & 4096) != 0 ? C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)) : null, (16116 & 8192) != 0 ? NoticePopup.C90901.INSTANCE : model.getOnClickTopRightIcon(), this.$onClick);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: NoticePopupChannel.kt */
+    public final /* data */ class Model {
         private final DraweeSpanStringBuilder noticeBody;
         private Drawable noticeBodyBackgroundDrawable;
         private Drawable noticeBodyImageDrawable;
@@ -96,48 +151,8 @@ public final class NoticePopupChannel {
             this.noticeStickers = list;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getNoticeTitle() {
-            return this.noticeTitle;
-        }
-
         public final List<Sticker> component10() {
             return this.noticeStickers;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getNoticeSubtitle() {
-            return this.noticeSubtitle;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final DraweeSpanStringBuilder getNoticeBody() {
-            return this.noticeBody;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getNoticeIconUrl() {
-            return this.noticeIconUrl;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Drawable getNoticeBodyBackgroundDrawable() {
-            return this.noticeBodyBackgroundDrawable;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getNoticeBodyImageUrl() {
-            return this.noticeBodyImageUrl;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Drawable getNoticeBodyImageDrawable() {
-            return this.noticeBodyImageDrawable;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Drawable getNoticeIconTopRight() {
-            return this.noticeIconTopRight;
         }
 
         public final Function1<View, Unit> component9() {
@@ -162,24 +177,54 @@ public final class NoticePopupChannel {
             return C12238m.areEqual(this.noticeTitle, model.noticeTitle) && C12238m.areEqual(this.noticeSubtitle, model.noticeSubtitle) && C12238m.areEqual(this.noticeBody, model.noticeBody) && C12238m.areEqual(this.noticeIconUrl, model.noticeIconUrl) && C12238m.areEqual(this.noticeBodyBackgroundDrawable, model.noticeBodyBackgroundDrawable) && C12238m.areEqual(this.noticeBodyImageUrl, model.noticeBodyImageUrl) && C12238m.areEqual(this.noticeBodyImageDrawable, model.noticeBodyImageDrawable) && C12238m.areEqual(this.noticeIconTopRight, model.noticeIconTopRight) && C12238m.areEqual(this.onClickTopRightIcon, model.onClickTopRightIcon) && C12238m.areEqual(this.noticeStickers, model.noticeStickers);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final DraweeSpanStringBuilder getNoticeBody() {
             return this.noticeBody;
+        }
+
+        public final DraweeSpanStringBuilder getNoticeBody() {
+            return this.noticeBody;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Drawable getNoticeBodyBackgroundDrawable() {
+            return this.noticeBodyBackgroundDrawable;
         }
 
         public final Drawable getNoticeBodyBackgroundDrawable() {
             return this.noticeBodyBackgroundDrawable;
         }
 
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final Drawable getNoticeBodyImageDrawable() {
             return this.noticeBodyImageDrawable;
+        }
+
+        public final Drawable getNoticeBodyImageDrawable() {
+            return this.noticeBodyImageDrawable;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final String getNoticeBodyImageUrl() {
+            return this.noticeBodyImageUrl;
         }
 
         public final String getNoticeBodyImageUrl() {
             return this.noticeBodyImageUrl;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final Drawable getNoticeIconTopRight() {
             return this.noticeIconTopRight;
+        }
+
+        public final Drawable getNoticeIconTopRight() {
+            return this.noticeIconTopRight;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getNoticeIconUrl() {
+            return this.noticeIconUrl;
         }
 
         public final String getNoticeIconUrl() {
@@ -190,8 +235,18 @@ public final class NoticePopupChannel {
             return this.noticeStickers;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final CharSequence getNoticeSubtitle() {
             return this.noticeSubtitle;
+        }
+
+        public final CharSequence getNoticeSubtitle() {
+            return this.noticeSubtitle;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getNoticeTitle() {
+            return this.noticeTitle;
         }
 
         public final CharSequence getNoticeTitle() {
@@ -261,61 +316,6 @@ public final class NoticePopupChannel {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.notice.NoticePopupChannel$enqueue$1 */
-    /* JADX INFO: compiled from: NoticePopupChannel.kt */
-    public static final /* synthetic */ class C90931 extends C12236k implements Function9<Context, Message, Guild, Channel, Map<Long, ? extends GuildMember>, Long, User, Map<Long, ? extends String>, Map<Long, ? extends GuildRole>, Model> {
-        public C90931(NoticePopupChannel noticePopupChannel) {
-            super(9, noticePopupChannel, NoticePopupChannel.class, "createModel", "createModel(Landroid/content/Context;Lcom/discord/models/message/Message;Lcom/discord/models/guild/Guild;Lcom/discord/api/channel/Channel;Ljava/util/Map;Ljava/lang/Long;Lcom/discord/models/user/User;Ljava/util/Map;Ljava/util/Map;)Lcom/discord/widgets/notice/NoticePopupChannel$Model;", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function9
-        public /* bridge */ /* synthetic */ Model invoke(Context context, Message message, Guild guild, Channel channel, Map<Long, ? extends GuildMember> map, Long l, User user, Map<Long, ? extends String> map2, Map<Long, ? extends GuildRole> map3) {
-            return invoke2(context, message, guild, channel, (Map<Long, GuildMember>) map, l, user, (Map<Long, String>) map2, (Map<Long, GuildRole>) map3);
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final Model invoke2(Context context, Message message, Guild guild, Channel channel, Map<Long, GuildMember> map, Long l, User user, Map<Long, String> map2, Map<Long, GuildRole> map3) {
-            C12238m.checkNotNullParameter(context, "p1");
-            C12238m.checkNotNullParameter(message, "p2");
-            C12238m.checkNotNullParameter(map, "p5");
-            C12238m.checkNotNullParameter(user, "p7");
-            C12238m.checkNotNullParameter(map2, "p8");
-            C12238m.checkNotNullParameter(map3, "p9");
-            return ((NoticePopupChannel) this.receiver).createModel(context, message, guild, channel, map, l, user, map2, map3);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.notice.NoticePopupChannel$enqueue$2 */
-    /* JADX INFO: compiled from: NoticePopupChannel.kt */
-    public static final class C90942 extends AbstractC12240o implements Function1<Model, Unit> {
-        public final /* synthetic */ String $noticeName;
-        public final /* synthetic */ Function1 $onClick;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C90942(String str, Function1 function1) {
-            super(1);
-            this.$noticeName = str;
-            this.$onClick = function1;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            if (model != null) {
-                NoticePopup noticePopup = NoticePopup.INSTANCE;
-                String str = this.$noticeName;
-                CharSequence noticeTitle = model.getNoticeTitle();
-                CharSequence noticeSubtitle = model.getNoticeSubtitle();
-                noticePopup.enqueue(str, noticeTitle, (16116 & 4) != 0 ? null : noticeSubtitle, model.getNoticeBody(), (16116 & 16) != 0 ? null : model.getNoticeBodyBackgroundDrawable(), (16116 & 32) != 0 ? null : model.getNoticeBodyImageUrl(), (16116 & 64) != 0 ? null : model.getNoticeBodyImageDrawable(), (16116 & 128) != 0 ? null : model.getNoticeStickers(), (16116 & 256) != 0 ? null : model.getNoticeIconUrl(), (16116 & 512) != 0 ? null : null, (16116 & 1024) != 0 ? null : model.getNoticeIconTopRight(), (16116 & 2048) != 0 ? 5 : null, (16116 & 4096) != 0 ? C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)) : null, (16116 & 8192) != 0 ? NoticePopup.C90901.INSTANCE : model.getOnClickTopRightIcon(), this.$onClick);
-            }
-        }
-    }
-
     private NoticePopupChannel() {
     }
 
@@ -334,11 +334,9 @@ public final class NoticePopupChannel {
         String forChannel$default;
         Context context2;
         int i;
-        ?? r0;
         Object proxyUrl;
         Object drawable$default;
         Object drawable$default2;
-        MessageAttachment messageAttachment;
         MessageEmbed messageEmbed;
         if (channel != null) {
             long id2 = channel.getId();
@@ -396,11 +394,7 @@ public final class NoticePopupChannel {
                     draweeSpanStringBuilder2.insert(0, (CharSequence) spannableStringBuilder);
                 }
                 List<MessageAttachment> attachments = message.getAttachments();
-                if (attachments != null) {
-                    messageAttachment = (MessageAttachment) C12163u.firstOrNull((List) attachments);
-                } else {
-                    r0 = num;
-                }
+                ?? r0 = attachments != null ? (MessageAttachment) C12163u.firstOrNull((List) attachments) : num;
                 if (r0 == 0 || !r0.m8071h()) {
                     if ((r0 != 0 ? r0.m8068e() : num) == MessageAttachmentType.IMAGE) {
                         proxyUrl = r0.getProxyUrl();
@@ -416,7 +410,6 @@ public final class NoticePopupChannel {
                     drawable$default2 = num;
                     drawable$default = drawable$default2;
                 } else {
-                    r0 = messageAttachment;
                     drawable$default2 = ContextCompat.getDrawable(context2, DrawableCompat.getThemedDrawableRes$default(context2, C5419R.attr.theme_chat_spoiler_inapp_bg, 0, i, num));
                     proxyUrl = num;
                     drawable$default = proxyUrl;

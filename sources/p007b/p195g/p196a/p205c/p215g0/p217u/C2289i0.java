@@ -26,7 +26,7 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$a */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class a extends AbstractC2272a<boolean[]> {
+    public class a extends AbstractC2272a<boolean[]> {
         static {
             C2335n.f4925k.m2168j(Boolean.class);
         }
@@ -35,10 +35,11 @@ public class C2289i0 {
             super(boolean[].class);
         }
 
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((boolean[]) obj).length == 0;
+        /* JADX INFO: renamed from: u */
+        public void m2061u(boolean[] zArr, AbstractC2108d abstractC2108d) throws IOException {
+            for (boolean z2 : zArr) {
+                abstractC2108d.mo1662s(z2);
+            }
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -67,6 +68,12 @@ public class C2289i0 {
             return ((boolean[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((boolean[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -79,13 +86,6 @@ public class C2289i0 {
             m2061u(zArr, abstractC2108d);
         }
 
-        /* JADX INFO: renamed from: u */
-        public void m2061u(boolean[] zArr, AbstractC2108d abstractC2108d) throws IOException {
-            for (boolean z2 : zArr) {
-                abstractC2108d.mo1662s(z2);
-            }
-        }
-
         public a(a aVar, InterfaceC2206d interfaceC2206d, Boolean bool) {
             super(aVar, interfaceC2206d, bool);
         }
@@ -94,15 +94,9 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$b */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class b extends AbstractC2305q0<char[]> {
+    public class b extends AbstractC2305q0<char[]> {
         public b() {
             super(char[].class);
-        }
-
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((char[]) obj).length == 0;
         }
 
         @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -138,24 +132,24 @@ public class C2289i0 {
             }
             abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
         }
+
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((char[]) obj).length == 0;
+        }
     }
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$c */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class c extends AbstractC2272a<double[]> {
+    public class c extends AbstractC2272a<double[]> {
         static {
             C2335n.f4925k.m2168j(Double.TYPE);
         }
 
         public c() {
             super(double[].class);
-        }
-
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((double[]) obj).length == 0;
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -195,6 +189,12 @@ public class C2289i0 {
             return ((double[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((double[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -217,7 +217,7 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$d */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class d extends h<float[]> {
+    public class d extends h<float[]> {
         static {
             C2335n.f4925k.m2168j(Float.TYPE);
         }
@@ -226,10 +226,11 @@ public class C2289i0 {
             super(float[].class);
         }
 
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((float[]) obj).length == 0;
+        /* JADX INFO: renamed from: u */
+        public void m2062u(float[] fArr, AbstractC2108d abstractC2108d) throws IOException {
+            for (float f : fArr) {
+                abstractC2108d.mo1633D(f);
+            }
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -252,6 +253,12 @@ public class C2289i0 {
             return ((float[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((float[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -264,13 +271,6 @@ public class C2289i0 {
             m2062u((float[]) obj, abstractC2108d);
         }
 
-        /* JADX INFO: renamed from: u */
-        public void m2062u(float[] fArr, AbstractC2108d abstractC2108d) throws IOException {
-            for (float f : fArr) {
-                abstractC2108d.mo1633D(f);
-            }
-        }
-
         public d(d dVar, InterfaceC2206d interfaceC2206d, Boolean bool) {
             super(dVar, interfaceC2206d, bool);
         }
@@ -279,19 +279,13 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$e */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class e extends AbstractC2272a<int[]> {
+    public class e extends AbstractC2272a<int[]> {
         static {
             C2335n.f4925k.m2168j(Integer.TYPE);
         }
 
         public e() {
             super(int[].class);
-        }
-
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((int[]) obj).length == 0;
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -331,6 +325,12 @@ public class C2289i0 {
             return ((int[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((int[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -353,19 +353,13 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$f */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class f extends h<long[]> {
+    public class f extends h<long[]> {
         static {
             C2335n.f4925k.m2168j(Long.TYPE);
         }
 
         public f() {
             super(long[].class);
-        }
-
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((long[]) obj).length == 0;
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -399,6 +393,12 @@ public class C2289i0 {
             return ((long[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((long[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -421,7 +421,7 @@ public class C2289i0 {
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$g */
     /* JADX INFO: compiled from: StdArraySerializers.java */
     @InterfaceC2375a
-    public static class g extends h<short[]> {
+    public class g extends h<short[]> {
         static {
             C2335n.f4925k.m2168j(Short.TYPE);
         }
@@ -430,10 +430,11 @@ public class C2289i0 {
             super(short[].class);
         }
 
-        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-        /* JADX INFO: renamed from: d */
-        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-            return ((short[]) obj).length == 0;
+        /* JADX INFO: renamed from: u */
+        public void m2063u(short[] sArr, AbstractC2108d abstractC2108d) throws IOException {
+            for (short s2 : sArr) {
+                abstractC2108d.mo1634H(s2);
+            }
         }
 
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a, p007b.p195g.p196a.p205c.AbstractC2364n
@@ -456,6 +457,12 @@ public class C2289i0 {
             return ((short[]) obj).length == 1;
         }
 
+        @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+        /* JADX INFO: renamed from: d */
+        public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+            return ((short[]) obj).length == 0;
+        }
+
         @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2272a
         /* JADX INFO: renamed from: s */
         public AbstractC2364n<?> mo2037s(InterfaceC2206d interfaceC2206d, Boolean bool) {
@@ -468,13 +475,6 @@ public class C2289i0 {
             m2063u((short[]) obj, abstractC2108d);
         }
 
-        /* JADX INFO: renamed from: u */
-        public void m2063u(short[] sArr, AbstractC2108d abstractC2108d) throws IOException {
-            for (short s2 : sArr) {
-                abstractC2108d.mo1634H(s2);
-            }
-        }
-
         public g(g gVar, InterfaceC2206d interfaceC2206d, Boolean bool) {
             super(gVar, interfaceC2206d, bool);
         }
@@ -482,7 +482,7 @@ public class C2289i0 {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.i0$h */
     /* JADX INFO: compiled from: StdArraySerializers.java */
-    public static abstract class h<T> extends AbstractC2272a<T> {
+    public abstract class h<T> extends AbstractC2272a<T> {
         public h(Class<T> cls) {
             super(cls);
         }

@@ -21,12 +21,6 @@ public class C1830a implements C1832c.a {
     /* JADX INFO: renamed from: d */
     public static final int f3572d;
 
-    /* JADX INFO: renamed from: e */
-    public static final byte[] f3573e = C1460d.m511e("GIF87a");
-
-    /* JADX INFO: renamed from: f */
-    public static final byte[] f3574f = C1460d.m511e("GIF89a");
-
     /* JADX INFO: renamed from: g */
     public static final byte[] f3575g;
 
@@ -56,6 +50,12 @@ public class C1830a implements C1832c.a {
 
     /* JADX INFO: renamed from: p */
     public final int f3584p;
+
+    /* JADX INFO: renamed from: e */
+    public static final byte[] f3573e = C1460d.m511e("GIF87a");
+
+    /* JADX INFO: renamed from: f */
+    public static final byte[] f3574f = C1460d.m511e("GIF89a");
 
     static {
         byte[] bArr = {-1, -40, -1};

@@ -33,7 +33,7 @@ public class C12777o {
 
     /* JADX INFO: renamed from: j0.o.o$a */
     /* JADX INFO: compiled from: RxJavaPlugins.java */
-    public static class a extends AbstractC12764b {
+    public final class a extends AbstractC12764b {
     }
 
     /* JADX INFO: renamed from: j0.o.o$b */

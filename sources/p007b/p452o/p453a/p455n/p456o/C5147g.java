@@ -14,11 +14,11 @@ import p007b.p452o.p453a.p455n.AbstractC5135i;
 @RequiresApi(21)
 public class C5147g extends AbstractC5145e {
 
-    /* JADX INFO: renamed from: e */
-    public static final C5103b f13941e = new C5103b(AbstractC5135i.class.getSimpleName());
-
     /* JADX INFO: renamed from: f */
     public String f13942f;
+
+    /* JADX INFO: renamed from: e */
+    public static final C5103b f13941e = new C5103b(AbstractC5135i.class.getSimpleName());
 
     @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5145e, p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
     /* JADX INFO: renamed from: b */

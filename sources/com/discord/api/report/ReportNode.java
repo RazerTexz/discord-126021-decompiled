@@ -18,19 +18,20 @@ public final /* data */ class ReportNode {
     private final String menu_name;
     private final String subheader;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ReportNode)) {
+            return false;
+        }
+        ReportNode reportNode = (ReportNode) other;
+        return this.id == reportNode.id && C12238m.areEqual(this.menu_name, reportNode.menu_name) && C12238m.areEqual(this.header, reportNode.header) && C12238m.areEqual(this.subheader, reportNode.subheader) && C12238m.areEqual(this.info, reportNode.info) && C12238m.areEqual(this.description, reportNode.description) && C12238m.areEqual(this.children, reportNode.children) && C12238m.areEqual(this.elements, reportNode.elements) && C12238m.areEqual(this.button, reportNode.button);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final ReportNodeBottomButton getButton() {
         return this.button;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<ReportNodeChild> m8172b() {
-        return this.children;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<ReportNodeElement> m8173c() {
-        return this.elements;
     }
 
     /* JADX INFO: renamed from: d, reason: from getter */
@@ -41,17 +42,6 @@ public final /* data */ class ReportNode {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final int getId() {
         return this.id;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ReportNode)) {
-            return false;
-        }
-        ReportNode reportNode = (ReportNode) other;
-        return this.id == reportNode.id && C12238m.areEqual(this.menu_name, reportNode.menu_name) && C12238m.areEqual(this.header, reportNode.header) && C12238m.areEqual(this.subheader, reportNode.subheader) && C12238m.areEqual(this.info, reportNode.info) && C12238m.areEqual(this.description, reportNode.description) && C12238m.areEqual(this.children, reportNode.children) && C12238m.areEqual(this.elements, reportNode.elements) && C12238m.areEqual(this.button, reportNode.button);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -82,6 +72,16 @@ public final /* data */ class ReportNode {
         int iHashCode7 = (iHashCode6 + (list2 != null ? list2.hashCode() : 0)) * 31;
         ReportNodeBottomButton reportNodeBottomButton = this.button;
         return iHashCode7 + (reportNodeBottomButton != null ? reportNodeBottomButton.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<ReportNodeChild> m8172b() {
+        return this.children;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<ReportNodeElement> m8173c() {
+        return this.elements;
     }
 
     public String toString() {

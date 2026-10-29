@@ -42,7 +42,7 @@ public final class C11868m extends AbstractC11363b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.m$a */
     /* JADX INFO: compiled from: DeserializedTypeParameterDescriptor.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public a() {
             super(0);
         }
@@ -69,6 +69,10 @@ public final class C11868m extends AbstractC11363b {
         this.f24624v = new C11856a(c11876l.getStorageManager(), new a());
     }
 
+    public final C11694s getProto() {
+        return this.f24623u;
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11371f
     /* JADX INFO: renamed from: c */
     public void mo9400c(AbstractC11913c0 abstractC11913c0) {
@@ -90,10 +94,6 @@ public final class C11868m extends AbstractC11363b {
             arrayList.add(typeDeserializer.type((C11692q) it.next()));
         }
         return arrayList;
-    }
-
-    public final C11694s getProto() {
-        return this.f24623u;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.C11339b, p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a

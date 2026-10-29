@@ -26,16 +26,6 @@ public final /* data */ class FriendSuggestion {
         return friendSuggestion.copy(user, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getPublicName() {
-        return this.publicName;
-    }
-
     public final FriendSuggestion copy(User user, String publicName) {
         C12238m.checkNotNullParameter(user, "user");
         return new FriendSuggestion(user, publicName);
@@ -52,8 +42,18 @@ public final /* data */ class FriendSuggestion {
         return C12238m.areEqual(this.user, friendSuggestion.user) && C12238m.areEqual(this.publicName, friendSuggestion.publicName);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getPublicName() {
         return this.publicName;
+    }
+
+    public final String getPublicName() {
+        return this.publicName;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

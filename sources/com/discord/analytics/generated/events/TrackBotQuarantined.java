@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackBotQuarantined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackBotQuarantined implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long botId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "bot_quarantined";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackBotQuarantined) && C12238m.areEqual(this.botId, ((TrackBotQuarantined) other).botId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

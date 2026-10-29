@@ -39,13 +39,6 @@ import p007b.p195g.p196a.p205c.p220y.InterfaceC2375a;
 /* JADX INFO: loaded from: classes3.dex */
 @InterfaceC2375a
 public class C2310t extends AbstractC2239h<Map<?, ?>> implements InterfaceC2240i {
-
-    /* JADX INFO: renamed from: k */
-    public static final AbstractC2360j f4864k = C2335n.m2158k();
-
-    /* JADX INFO: renamed from: l */
-    public static final Object f4865l = InterfaceC2094p.a.NON_EMPTY;
-    private static final long serialVersionUID = 1;
     public AbstractC2262l _dynamicValueSerializers;
     public final Object _filterId;
     public final Set<String> _ignoredEntries;
@@ -61,6 +54,13 @@ public class C2310t extends AbstractC2239h<Map<?, ?>> implements InterfaceC2240i
     public final AbstractC2360j _valueType;
     public final boolean _valueTypeIsStatic;
     public final AbstractC2215g _valueTypeSerializer;
+    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: k */
+    public static final AbstractC2360j f4864k = C2335n.m2158k();
+
+    /* JADX INFO: renamed from: l */
+    public static final Object f4865l = InterfaceC2094p.a.NON_EMPTY;
 
     public C2310t(Set<String> set, Set<String> set2, AbstractC2360j abstractC2360j, AbstractC2360j abstractC2360j2, boolean z2, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, AbstractC2364n<?> abstractC2364n2) {
         super(Map.class, false);
@@ -110,207 +110,6 @@ public class C2310t extends AbstractC2239h<Map<?, ?>> implements InterfaceC2240i
         }
         C2342d.m2194z(C2310t.class, c2310t, "withFilterId");
         return new C2310t(c2310t, obj, c2310t._sortKeys);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:107:0x0194 A[PHI: r11
-      0x0194: PHI (r11v1 java.lang.Object) = (r11v0 java.lang.Object), (r11v0 java.lang.Object), (r11v3 java.lang.Object), (r11v4 java.lang.Object) binds: [B:83:0x0151, B:104:0x018f, B:106:0x0193, B:94:0x0167] A[DONT_GENERATE, DONT_INLINE]] */
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        AbstractC2364n<?> abstractC2364nMo2000H;
-        AbstractC2364n<Object> abstractC2364nMo2000H2;
-        Set<String> set;
-        Set<String> set2;
-        boolean zBooleanValue;
-        C2310t c2310t;
-        InterfaceC2094p.a aVar;
-        boolean zMo1999B;
-        Object objM572t0;
-        Boolean boolM1598b;
-        AbstractC2165b abstractC2165bM2257v = abstractC2374x.m2257v();
-        Object objMo1998A = null;
-        AbstractC2188i member = interfaceC2206d == null ? null : interfaceC2206d.getMember();
-        if (AbstractC2305q0.m2072j(member, abstractC2165bM2257v)) {
-            Object objMo1788l = abstractC2165bM2257v.mo1788l(member);
-            abstractC2364nMo2000H = objMo1788l != null ? abstractC2374x.mo2000H(member, objMo1788l) : null;
-            Object objMo1775c = abstractC2165bM2257v.mo1775c(member);
-            abstractC2364nMo2000H2 = objMo1775c != null ? abstractC2374x.mo2000H(member, objMo1775c) : null;
-        } else {
-            abstractC2364nMo2000H = null;
-            abstractC2364nMo2000H2 = null;
-        }
-        if (abstractC2364nMo2000H2 == null) {
-            abstractC2364nMo2000H2 = this._valueSerializer;
-        }
-        AbstractC2364n<?> abstractC2364nM2073k = m2073k(abstractC2374x, interfaceC2206d, abstractC2364nMo2000H2);
-        if (abstractC2364nM2073k == null && this._valueTypeIsStatic && !this._valueType.m2221y()) {
-            abstractC2364nM2073k = abstractC2374x.m2249m(this._valueType, interfaceC2206d);
-        }
-        AbstractC2364n<?> abstractC2364n = abstractC2364nM2073k;
-        if (abstractC2364nMo2000H == null) {
-            abstractC2364nMo2000H = this._keySerializer;
-        }
-        AbstractC2364n<?> abstractC2364nM2251o = abstractC2364nMo2000H == null ? abstractC2374x.m2251o(this._keyType, interfaceC2206d) : abstractC2374x.m2261z(abstractC2364nMo2000H, interfaceC2206d);
-        Set<String> hashSet = this._ignoredEntries;
-        Set<String> hashSet2 = this._includedEntries;
-        if (AbstractC2305q0.m2072j(member, abstractC2165bM2257v)) {
-            C2372v c2372v = abstractC2374x._config;
-            Set<String> setM1617d = abstractC2165bM2257v.mo1800x(c2372v, member).m1617d();
-            if ((setM1617d == null || setM1617d.isEmpty()) ? false : true) {
-                hashSet = hashSet == null ? new HashSet<>() : new HashSet(hashSet);
-                Iterator<String> it = setM1617d.iterator();
-                while (it.hasNext()) {
-                    hashSet.add(it.next());
-                }
-            }
-            Set<String> set3 = abstractC2165bM2257v.mo1745A(c2372v, member)._included;
-            if (set3 != null) {
-                hashSet2 = hashSet2 == null ? new HashSet<>() : new HashSet(hashSet2);
-                Iterator<String> it2 = set3.iterator();
-                while (it2.hasNext()) {
-                    hashSet2.add(it2.next());
-                }
-            }
-            zBooleanValue = Boolean.TRUE.equals(abstractC2165bM2257v.mo1754J(member));
-            set = hashSet;
-            set2 = hashSet2;
-        } else {
-            set = hashSet;
-            set2 = hashSet2;
-            zBooleanValue = false;
-        }
-        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, Map.class);
-        if (dVarM2074l != null && (boolM1598b = dVarM2074l.m1598b(InterfaceC2081i.a.WRITE_SORTED_MAP_ENTRIES)) != null) {
-            zBooleanValue = boolM1598b.booleanValue();
-        }
-        boolean z2 = zBooleanValue;
-        C2342d.m2194z(C2310t.class, this, "withResolved");
-        C2310t c2310t2 = new C2310t(this, interfaceC2206d, abstractC2364nM2251o, abstractC2364n, set, set2);
-        if (z2 != c2310t2._sortKeys) {
-            c2310t = new C2310t(c2310t2, this._filterId, z2);
-        }
-        if (member != null) {
-            c2310t = c2310t2;
-            Object objMo1783g = abstractC2165bM2257v.mo1783g(member);
-            if (objMo1783g != null && c2310t._filterId != objMo1783g) {
-                C2342d.m2194z(C2310t.class, c2310t, "withFilterId");
-                c2310t = new C2310t(c2310t, objMo1783g, c2310t._sortKeys);
-            }
-        }
-        c2310t = c2310t2;
-        InterfaceC2094p.b bVarMo1929b = interfaceC2206d != null ? interfaceC2206d.mo1929b(abstractC2374x._config, Map.class) : abstractC2374x._config.mo2272j(Map.class);
-        if (bVarMo1929b == null || (aVar = bVarMo1929b._contentInclusion) == InterfaceC2094p.a.USE_DEFAULTS) {
-            return c2310t;
-        }
-        int iOrdinal = aVar.ordinal();
-        if (iOrdinal == 1) {
-            zMo1999B = true;
-        } else if (iOrdinal != 2) {
-            if (iOrdinal == 3) {
-                objM572t0 = f4865l;
-            } else if (iOrdinal == 4) {
-                objM572t0 = C1460d.m572t0(this._valueType);
-                if (objM572t0 != null && objM572t0.getClass().isArray()) {
-                    objM572t0 = C1460d.m560q0(objM572t0);
-                }
-            } else if (iOrdinal != 5) {
-                zMo1999B = false;
-            } else {
-                objMo1998A = abstractC2374x.mo1998A(null, bVarMo1929b._contentFilter);
-                if (objMo1998A == null) {
-                    zMo1999B = true;
-                } else {
-                    zMo1999B = abstractC2374x.mo1999B(objMo1998A);
-                }
-            }
-            objMo1998A = objM572t0;
-            zMo1999B = true;
-        } else {
-            if (this._valueType.mo1728b()) {
-                objM572t0 = f4865l;
-                objMo1998A = objM572t0;
-            }
-            zMo1999B = true;
-        }
-        return c2310t.m2086v(objMo1998A, zMo1999B);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        Map map = (Map) obj;
-        if (!map.isEmpty()) {
-            Object obj2 = this._suppressableValue;
-            if (obj2 == null && !this._suppressNulls) {
-                return false;
-            }
-            AbstractC2364n<Object> abstractC2364n = this._valueSerializer;
-            boolean z2 = f4865l == obj2;
-            if (abstractC2364n != null) {
-                for (Object obj3 : map.values()) {
-                    if (obj3 == null) {
-                        if (!this._suppressNulls) {
-                            return false;
-                        }
-                    } else if (z2) {
-                        if (!abstractC2364n.mo2021d(abstractC2374x, obj3)) {
-                            return false;
-                        }
-                    } else if (obj2 == null || !obj2.equals(map)) {
-                        return false;
-                    }
-                }
-            } else {
-                for (Object obj4 : map.values()) {
-                    if (obj4 != null) {
-                        try {
-                            AbstractC2364n<Object> abstractC2364nM2083r = m2083r(abstractC2374x, obj4);
-                            if (z2) {
-                                if (!abstractC2364nM2083r.mo2021d(abstractC2374x, obj4)) {
-                                    return false;
-                                }
-                            } else if (obj2 == null || !obj2.equals(map)) {
-                                return false;
-                            }
-                        } catch (JsonMappingException unused) {
-                            return false;
-                        }
-                    } else if (!this._suppressNulls) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        Map<?, ?> map = (Map) obj;
-        abstractC2108d.mo1653d0(map);
-        m2085u(map, abstractC2108d, abstractC2374x);
-        abstractC2108d.mo1664u();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        Map<?, ?> map = (Map) obj;
-        abstractC2108d.mo1654e(map);
-        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(map, EnumC2112h.START_OBJECT));
-        m2085u(map, abstractC2108d, abstractC2374x);
-        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
-    /* JADX INFO: renamed from: p */
-    public AbstractC2239h mo1995p(AbstractC2215g abstractC2215g) {
-        if (this._valueTypeSerializer == abstractC2215g) {
-            return this;
-        }
-        C2342d.m2194z(C2310t.class, this, "_withValueTypeSerializer");
-        return new C2310t(this, abstractC2215g, this._suppressableValue, this._suppressNulls);
     }
 
     /* JADX INFO: renamed from: r */
@@ -588,6 +387,200 @@ public class C2310t extends AbstractC2239h<Map<?, ?>> implements InterfaceC2240i
         }
         C2342d.m2194z(C2310t.class, this, "withContentInclusion");
         return new C2310t(this, this._valueTypeSerializer, obj, z2);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        Map<?, ?> map = (Map) obj;
+        abstractC2108d.mo1653d0(map);
+        m2085u(map, abstractC2108d, abstractC2374x);
+        abstractC2108d.mo1664u();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        Map<?, ?> map = (Map) obj;
+        abstractC2108d.mo1654e(map);
+        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(map, EnumC2112h.START_OBJECT));
+        m2085u(map, abstractC2108d, abstractC2374x);
+        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
+    /* JADX INFO: renamed from: p */
+    public AbstractC2239h mo1995p(AbstractC2215g abstractC2215g) {
+        if (this._valueTypeSerializer == abstractC2215g) {
+            return this;
+        }
+        C2342d.m2194z(C2310t.class, this, "_withValueTypeSerializer");
+        return new C2310t(this, abstractC2215g, this._suppressableValue, this._suppressNulls);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:107:0x0194 A[PHI: r11
+      0x0194: PHI (r11v1 java.lang.Object) = (r11v0 java.lang.Object), (r11v0 java.lang.Object), (r11v3 java.lang.Object), (r11v4 java.lang.Object) binds: [B:83:0x0151, B:104:0x018f, B:106:0x0193, B:94:0x0167] A[DONT_GENERATE, DONT_INLINE]] */
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        AbstractC2364n<?> abstractC2364nMo2000H;
+        AbstractC2364n<Object> abstractC2364nMo2000H2;
+        Set<String> set;
+        Set<String> set2;
+        boolean zBooleanValue;
+        InterfaceC2094p.a aVar;
+        boolean zMo1999B;
+        Object objM572t0;
+        Object objMo1783g;
+        Boolean boolM1598b;
+        AbstractC2165b abstractC2165bM2257v = abstractC2374x.m2257v();
+        Object objMo1998A = null;
+        AbstractC2188i member = interfaceC2206d == null ? null : interfaceC2206d.getMember();
+        if (AbstractC2305q0.m2072j(member, abstractC2165bM2257v)) {
+            Object objMo1788l = abstractC2165bM2257v.mo1788l(member);
+            abstractC2364nMo2000H = objMo1788l != null ? abstractC2374x.mo2000H(member, objMo1788l) : null;
+            Object objMo1775c = abstractC2165bM2257v.mo1775c(member);
+            abstractC2364nMo2000H2 = objMo1775c != null ? abstractC2374x.mo2000H(member, objMo1775c) : null;
+        } else {
+            abstractC2364nMo2000H = null;
+            abstractC2364nMo2000H2 = null;
+        }
+        if (abstractC2364nMo2000H2 == null) {
+            abstractC2364nMo2000H2 = this._valueSerializer;
+        }
+        AbstractC2364n<?> abstractC2364nM2073k = m2073k(abstractC2374x, interfaceC2206d, abstractC2364nMo2000H2);
+        if (abstractC2364nM2073k == null && this._valueTypeIsStatic && !this._valueType.m2221y()) {
+            abstractC2364nM2073k = abstractC2374x.m2249m(this._valueType, interfaceC2206d);
+        }
+        AbstractC2364n<?> abstractC2364n = abstractC2364nM2073k;
+        if (abstractC2364nMo2000H == null) {
+            abstractC2364nMo2000H = this._keySerializer;
+        }
+        AbstractC2364n<?> abstractC2364nM2251o = abstractC2364nMo2000H == null ? abstractC2374x.m2251o(this._keyType, interfaceC2206d) : abstractC2374x.m2261z(abstractC2364nMo2000H, interfaceC2206d);
+        Set<String> hashSet = this._ignoredEntries;
+        Set<String> hashSet2 = this._includedEntries;
+        if (AbstractC2305q0.m2072j(member, abstractC2165bM2257v)) {
+            C2372v c2372v = abstractC2374x._config;
+            Set<String> setM1617d = abstractC2165bM2257v.mo1800x(c2372v, member).m1617d();
+            if ((setM1617d == null || setM1617d.isEmpty()) ? false : true) {
+                hashSet = hashSet == null ? new HashSet<>() : new HashSet(hashSet);
+                Iterator<String> it = setM1617d.iterator();
+                while (it.hasNext()) {
+                    hashSet.add(it.next());
+                }
+            }
+            Set<String> set3 = abstractC2165bM2257v.mo1745A(c2372v, member)._included;
+            if (set3 != null) {
+                hashSet2 = hashSet2 == null ? new HashSet<>() : new HashSet(hashSet2);
+                Iterator<String> it2 = set3.iterator();
+                while (it2.hasNext()) {
+                    hashSet2.add(it2.next());
+                }
+            }
+            zBooleanValue = Boolean.TRUE.equals(abstractC2165bM2257v.mo1754J(member));
+            set = hashSet;
+            set2 = hashSet2;
+        } else {
+            set = hashSet;
+            set2 = hashSet2;
+            zBooleanValue = false;
+        }
+        InterfaceC2081i.d dVarM2074l = m2074l(abstractC2374x, interfaceC2206d, Map.class);
+        if (dVarM2074l != null && (boolM1598b = dVarM2074l.m1598b(InterfaceC2081i.a.WRITE_SORTED_MAP_ENTRIES)) != null) {
+            zBooleanValue = boolM1598b.booleanValue();
+        }
+        boolean z2 = zBooleanValue;
+        C2342d.m2194z(C2310t.class, this, "withResolved");
+        C2310t c2310t = new C2310t(this, interfaceC2206d, abstractC2364nM2251o, abstractC2364n, set, set2);
+        C2310t c2310t2 = z2 != c2310t._sortKeys ? new C2310t(c2310t, this._filterId, z2) : c2310t;
+        if (member != null && (objMo1783g = abstractC2165bM2257v.mo1783g(member)) != null && c2310t2._filterId != objMo1783g) {
+            C2342d.m2194z(C2310t.class, c2310t2, "withFilterId");
+            c2310t2 = new C2310t(c2310t2, objMo1783g, c2310t2._sortKeys);
+        }
+        InterfaceC2094p.b bVarMo1929b = interfaceC2206d != null ? interfaceC2206d.mo1929b(abstractC2374x._config, Map.class) : abstractC2374x._config.mo2272j(Map.class);
+        if (bVarMo1929b == null || (aVar = bVarMo1929b._contentInclusion) == InterfaceC2094p.a.USE_DEFAULTS) {
+            return c2310t2;
+        }
+        int iOrdinal = aVar.ordinal();
+        if (iOrdinal == 1) {
+            zMo1999B = true;
+        } else if (iOrdinal != 2) {
+            if (iOrdinal == 3) {
+                objM572t0 = f4865l;
+            } else if (iOrdinal == 4) {
+                objM572t0 = C1460d.m572t0(this._valueType);
+                if (objM572t0 != null && objM572t0.getClass().isArray()) {
+                    objM572t0 = C1460d.m560q0(objM572t0);
+                }
+            } else if (iOrdinal != 5) {
+                zMo1999B = false;
+            } else {
+                objMo1998A = abstractC2374x.mo1998A(null, bVarMo1929b._contentFilter);
+                if (objMo1998A == null) {
+                    zMo1999B = true;
+                } else {
+                    zMo1999B = abstractC2374x.mo1999B(objMo1998A);
+                }
+            }
+            objMo1998A = objM572t0;
+            zMo1999B = true;
+        } else {
+            if (this._valueType.mo1728b()) {
+                objM572t0 = f4865l;
+                objMo1998A = objM572t0;
+            }
+            zMo1999B = true;
+        }
+        return c2310t2.m2086v(objMo1998A, zMo1999B);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        Map map = (Map) obj;
+        if (!map.isEmpty()) {
+            Object obj2 = this._suppressableValue;
+            if (obj2 == null && !this._suppressNulls) {
+                return false;
+            }
+            AbstractC2364n<Object> abstractC2364n = this._valueSerializer;
+            boolean z2 = f4865l == obj2;
+            if (abstractC2364n != null) {
+                for (Object obj3 : map.values()) {
+                    if (obj3 == null) {
+                        if (!this._suppressNulls) {
+                            return false;
+                        }
+                    } else if (z2) {
+                        if (!abstractC2364n.mo2021d(abstractC2374x, obj3)) {
+                            return false;
+                        }
+                    } else if (obj2 == null || !obj2.equals(map)) {
+                        return false;
+                    }
+                }
+            } else {
+                for (Object obj4 : map.values()) {
+                    if (obj4 != null) {
+                        try {
+                            AbstractC2364n<Object> abstractC2364nM2083r = m2083r(abstractC2374x, obj4);
+                            if (z2) {
+                                if (!abstractC2364nM2083r.mo2021d(abstractC2374x, obj4)) {
+                                    return false;
+                                }
+                            } else if (obj2 == null || !obj2.equals(map)) {
+                                return false;
+                            }
+                        } catch (JsonMappingException unused) {
+                            return false;
+                        }
+                    } else if (!this._suppressNulls) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public C2310t(C2310t c2310t, InterfaceC2206d interfaceC2206d, AbstractC2364n<?> abstractC2364n, AbstractC2364n<?> abstractC2364n2, Set<String> set, Set<String> set2) {

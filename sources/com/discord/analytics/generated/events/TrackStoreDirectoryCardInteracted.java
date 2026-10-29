@@ -15,28 +15,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreDirectoryCardInteracted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreDirectoryCardInteracted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver {
+    private final Boolean audioEnabled = null;
+    private final Boolean blogPostOpened = null;
+    private final Boolean isHero = null;
+    private final CharSequence listFilterDistributionType = null;
+    private final Long listIndex = null;
+    private final Boolean listSearched = null;
+    private final CharSequence listSort = null;
+    private final CharSequence loadId = null;
+    private final Boolean nitroLearnMore = null;
+    private final Boolean premiumLearnMore = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence loadId = null;
-    private final Boolean audioEnabled = null;
-    private final Boolean blogPostOpened = null;
-    private final Boolean isHero = null;
     private final Boolean watchTrailer = null;
-    private final Boolean nitroLearnMore = null;
-    private final Boolean premiumLearnMore = null;
-    private final Long listIndex = null;
-    private final Boolean listSearched = null;
-    private final CharSequence listSort = null;
-    private final CharSequence listFilterDistributionType = null;
     private final transient String analyticsSchemaTypeName = "store_directory_card_interacted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,6 +41,12 @@ public final /* data */ class TrackStoreDirectoryCardInteracted implements Analy
         }
         TrackStoreDirectoryCardInteracted trackStoreDirectoryCardInteracted = (TrackStoreDirectoryCardInteracted) other;
         return C12238m.areEqual(this.loadId, trackStoreDirectoryCardInteracted.loadId) && C12238m.areEqual(this.audioEnabled, trackStoreDirectoryCardInteracted.audioEnabled) && C12238m.areEqual(this.blogPostOpened, trackStoreDirectoryCardInteracted.blogPostOpened) && C12238m.areEqual(this.isHero, trackStoreDirectoryCardInteracted.isHero) && C12238m.areEqual(this.watchTrailer, trackStoreDirectoryCardInteracted.watchTrailer) && C12238m.areEqual(this.nitroLearnMore, trackStoreDirectoryCardInteracted.nitroLearnMore) && C12238m.areEqual(this.premiumLearnMore, trackStoreDirectoryCardInteracted.premiumLearnMore) && C12238m.areEqual(this.listIndex, trackStoreDirectoryCardInteracted.listIndex) && C12238m.areEqual(this.listSearched, trackStoreDirectoryCardInteracted.listSearched) && C12238m.areEqual(this.listSort, trackStoreDirectoryCardInteracted.listSort) && C12238m.areEqual(this.listFilterDistributionType, trackStoreDirectoryCardInteracted.listFilterDistributionType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

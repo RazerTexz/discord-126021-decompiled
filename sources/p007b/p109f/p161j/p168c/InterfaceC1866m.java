@@ -13,7 +13,7 @@ public interface InterfaceC1866m<K, V> extends InterfaceC1876w<K, V>, InterfaceC
     /* JADX INFO: renamed from: b.f.j.c.m$a */
     /* JADX INFO: compiled from: CountingMemoryCache.java */
     @VisibleForTesting
-    public static class a<K, V> {
+    public class a<K, V> {
 
         /* JADX INFO: renamed from: a */
         public final K f3678a;

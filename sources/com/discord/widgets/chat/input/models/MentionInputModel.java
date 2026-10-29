@@ -25,7 +25,7 @@ public abstract class MentionInputModel {
     private final Map<IntRange, Autocompletable> inputMentionsMap;
 
     /* JADX INFO: compiled from: MentionInputModel.kt */
-    public static final /* data */ class VerifiedMessageInputModel extends MentionInputModel {
+    public final /* data */ class VerifiedMessageInputModel extends MentionInputModel {
         private final Map<LeadingIdentifier, Set<Autocompletable>> autocompletables;
         private final CharSequence input;
         private final Map<IntRange, Autocompletable> inputMentionsMap;
@@ -42,6 +42,18 @@ public abstract class MentionInputModel {
             this.inputMentionsMap = map2;
         }
 
+        public final CharSequence component1() {
+            return getInput();
+        }
+
+        public final Map<LeadingIdentifier, Set<Autocompletable>> component2() {
+            return getAutocompletables();
+        }
+
+        public final Map<IntRange, Autocompletable> component3() {
+            return getInputMentionsMap();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ VerifiedMessageInputModel copy$default(VerifiedMessageInputModel verifiedMessageInputModel, CharSequence charSequence, Map map, Map map2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -54,18 +66,6 @@ public abstract class MentionInputModel {
                 map2 = verifiedMessageInputModel.getInputMentionsMap();
             }
             return verifiedMessageInputModel.copy(charSequence, map, map2);
-        }
-
-        public final CharSequence component1() {
-            return getInput();
-        }
-
-        public final Map<LeadingIdentifier, Set<Autocompletable>> component2() {
-            return getAutocompletables();
-        }
-
-        public final Map<IntRange, Autocompletable> component3() {
-            return getInputMentionsMap();
         }
 
         public final VerifiedMessageInputModel copy(CharSequence input, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> autocompletables, Map<IntRange, ? extends Autocompletable> inputMentionsMap) {
@@ -146,7 +146,7 @@ public abstract class MentionInputModel {
     }
 
     /* JADX INFO: compiled from: MentionInputModel.kt */
-    public static final class VerifiedCommandInputModel extends MentionInputModel {
+    public final class VerifiedCommandInputModel extends MentionInputModel {
         private final List<Application> applications;
         private final Map<LeadingIdentifier, Set<Autocompletable>> autocompletables;
         private final Map<String, Map<String, CommandAutocompleteState>> commandOptionAutocompleteItems;

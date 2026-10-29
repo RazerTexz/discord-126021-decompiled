@@ -33,26 +33,6 @@ public final /* data */ class Duration {
         return duration.copy(i, i2, i3, i4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getListening() {
-        return this.listening;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getSpeaking() {
-        return this.speaking;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getParticipation() {
-        return this.participation;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getConnected() {
-        return this.connected;
-    }
-
     public final Duration copy(int listening, int speaking, int participation, int connected) {
         return new Duration(listening, speaking, participation, connected);
     }
@@ -68,16 +48,36 @@ public final /* data */ class Duration {
         return this.listening == duration.listening && this.speaking == duration.speaking && this.participation == duration.participation && this.connected == duration.connected;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getConnected() {
         return this.connected;
+    }
+
+    public final int getConnected() {
+        return this.connected;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getListening() {
+        return this.listening;
     }
 
     public final int getListening() {
         return this.listening;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getParticipation() {
         return this.participation;
+    }
+
+    public final int getParticipation() {
+        return this.participation;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getSpeaking() {
+        return this.speaking;
     }
 
     public final int getSpeaking() {

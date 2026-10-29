@@ -98,6 +98,28 @@ public class AsyncTaskC5299a extends AsyncTask<Void, Void, Throwable> {
         this.f14421m = interfaceC5292a;
     }
 
+    @Override // android.os.AsyncTask
+    @Nullable
+    public Throwable doInBackground(Void[] voidArr) {
+        Bitmap bitmap = this.f14410b;
+        if (bitmap == null) {
+            return new NullPointerException("ViewBitmap is null");
+        }
+        if (bitmap.isRecycled()) {
+            return new NullPointerException("ViewBitmap is recycled");
+        }
+        if (this.f14412d.isEmpty()) {
+            return new NullPointerException("CurrentImageRect is empty");
+        }
+        try {
+            m7471a();
+            this.f14410b = null;
+            return null;
+        } catch (Throwable th) {
+            return th;
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:122:0x0268 A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:126:0x0261 A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:138:0x0233 A[SYNTHETIC] */
@@ -322,28 +344,6 @@ public class AsyncTaskC5299a extends AsyncTask<Void, Void, Throwable> {
             exifInterface.saveAttributes();
         }
         return true;
-    }
-
-    @Override // android.os.AsyncTask
-    @Nullable
-    public Throwable doInBackground(Void[] voidArr) {
-        Bitmap bitmap = this.f14410b;
-        if (bitmap == null) {
-            return new NullPointerException("ViewBitmap is null");
-        }
-        if (bitmap.isRecycled()) {
-            return new NullPointerException("ViewBitmap is recycled");
-        }
-        if (this.f14412d.isEmpty()) {
-            return new NullPointerException("CurrentImageRect is empty");
-        }
-        try {
-            m7471a();
-            this.f14410b = null;
-            return null;
-        } catch (Throwable th) {
-            return th;
-        }
     }
 
     @Override // android.os.AsyncTask

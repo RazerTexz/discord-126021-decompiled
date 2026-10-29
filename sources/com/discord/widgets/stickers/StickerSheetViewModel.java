@@ -44,7 +44,7 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.StickerSheetViewModel$1 */
     /* JADX INFO: compiled from: StickerSheetViewModel.kt */
-    public static final class C101301 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C101301 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C101301() {
             super(1);
         }
@@ -63,7 +63,7 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -88,7 +88,7 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final MeUser meUser;
         private final StoreStickers.StickerPackState stickerPack;
 
@@ -109,16 +109,6 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(stickerPackState, meUser);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreStickers.StickerPackState getStickerPack() {
-            return this.stickerPack;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
         public final StoreState copy(StoreStickers.StickerPackState stickerPack, MeUser meUser) {
             C12238m.checkNotNullParameter(stickerPack, "stickerPack");
             C12238m.checkNotNullParameter(meUser, "meUser");
@@ -136,8 +126,18 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.stickerPack, storeState.stickerPack) && C12238m.areEqual(this.meUser, storeState.meUser);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final MeUser getMeUser() {
             return this.meUser;
+        }
+
+        public final MeUser getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreStickers.StickerPackState getStickerPack() {
+            return this.stickerPack;
         }
 
         public final StoreStickers.StickerPackState getStickerPack() {
@@ -162,7 +162,7 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerSheetViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canUsePremiumStickers;
         private final boolean isStickerPackEnabled;
         private final PremiumTier meUserPremiumTier;
@@ -196,26 +196,6 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
             return viewState.copy(modelStickerPack, sticker, premiumTier, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelStickerPack getStickerPack() {
-            return this.stickerPack;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Sticker getSticker() {
-            return this.sticker;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final PremiumTier getMeUserPremiumTier() {
-            return this.meUserPremiumTier;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsStickerPackEnabled() {
-            return this.isStickerPackEnabled;
-        }
-
         public final ViewState copy(ModelStickerPack stickerPack, Sticker sticker, PremiumTier meUserPremiumTier, boolean isStickerPackEnabled) {
             C12238m.checkNotNullParameter(stickerPack, "stickerPack");
             C12238m.checkNotNullParameter(sticker, "sticker");
@@ -238,12 +218,32 @@ public final class StickerSheetViewModel extends AbstractC0859d0<ViewState> {
             return this.canUsePremiumStickers;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsStickerPackEnabled() {
+            return this.isStickerPackEnabled;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final PremiumTier getMeUserPremiumTier() {
             return this.meUserPremiumTier;
         }
 
+        public final PremiumTier getMeUserPremiumTier() {
+            return this.meUserPremiumTier;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Sticker getSticker() {
             return this.sticker;
+        }
+
+        public final Sticker getSticker() {
+            return this.sticker;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelStickerPack getStickerPack() {
+            return this.stickerPack;
         }
 
         public final ModelStickerPack getStickerPack() {

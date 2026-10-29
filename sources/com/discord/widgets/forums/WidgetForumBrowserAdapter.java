@@ -29,7 +29,7 @@ public final class WidgetForumBrowserAdapter extends MGRecyclerAdapterSimple<For
     private final Function1<Channel, Unit> onPostLongClick;
 
     /* JADX INFO: compiled from: WidgetForumBrowserAdapter.kt */
-    public static final class HeaderItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
+    public final class HeaderItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
         private final ForumBrowserHeaderItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -55,7 +55,7 @@ public final class WidgetForumBrowserAdapter extends MGRecyclerAdapterSimple<For
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserAdapter.kt */
-    public static final class LoadingItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
+    public final class LoadingItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public LoadingItem(WidgetForumBrowserAdapter widgetForumBrowserAdapter) {
             super(C5419R.layout.forum_browser_loading_item, widgetForumBrowserAdapter);
@@ -64,7 +64,7 @@ public final class WidgetForumBrowserAdapter extends MGRecyclerAdapterSimple<For
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserAdapter.kt */
-    public static final class PostItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
+    public final class PostItem extends MGRecyclerViewHolder<WidgetForumBrowserAdapter, ForumBrowserItem> {
         private final ForumBrowserPostItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

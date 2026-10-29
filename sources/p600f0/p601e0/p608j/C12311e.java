@@ -127,7 +127,7 @@ public final class C12311e implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.e$a */
     /* JADX INFO: compiled from: TaskQueue.kt */
-    public static final class a extends AbstractC12277a {
+    public final class a extends AbstractC12277a {
 
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ C12311e f25645e;
@@ -170,7 +170,7 @@ public final class C12311e implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.e$b */
     /* JADX INFO: compiled from: Http2Connection.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public Socket f25647a;
@@ -210,14 +210,14 @@ public final class C12311e implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.e$c */
     /* JADX INFO: compiled from: Http2Connection.kt */
-    public static abstract class c {
+    public abstract class c {
 
         /* JADX INFO: renamed from: a */
         public static final c f25656a = new a();
 
         /* JADX INFO: renamed from: f0.e0.j.e$c$a */
         /* JADX INFO: compiled from: Http2Connection.kt */
-        public static final class a extends c {
+        public final class a extends c {
             @Override // p600f0.p601e0.p608j.C12311e.c
             /* JADX INFO: renamed from: b */
             public void mo10193b(C12320n c12320n) throws IOException {
@@ -248,7 +248,7 @@ public final class C12311e implements Closeable {
 
         /* JADX INFO: renamed from: f0.e0.j.e$d$a */
         /* JADX INFO: compiled from: TaskQueue.kt */
-        public static final class a extends AbstractC12277a {
+        public final class a extends AbstractC12277a {
 
             /* JADX INFO: renamed from: e */
             public final /* synthetic */ C12320n f25659e;
@@ -291,7 +291,7 @@ public final class C12311e implements Closeable {
 
         /* JADX INFO: renamed from: f0.e0.j.e$d$b */
         /* JADX INFO: compiled from: TaskQueue.kt */
-        public static final class b extends AbstractC12277a {
+        public final class b extends AbstractC12277a {
 
             /* JADX INFO: renamed from: e */
             public final /* synthetic */ d f25662e;
@@ -320,7 +320,7 @@ public final class C12311e implements Closeable {
 
         /* JADX INFO: renamed from: f0.e0.j.e$d$c */
         /* JADX INFO: compiled from: TaskQueue.kt */
-        public static final class c extends AbstractC12277a {
+        public final class c extends AbstractC12277a {
 
             /* JADX INFO: renamed from: e */
             public final /* synthetic */ d f25665e;
@@ -444,6 +444,62 @@ public final class C12311e implements Closeable {
             C12238m.checkParameterIsNotNull(c12319m, "reader");
             this.f25658k = c12311e;
             this.f25657j = c12319m;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v0, types: [f0.e0.j.a] */
+        /* JADX WARN: Type inference failed for: r0v3 */
+        /* JADX WARN: Type inference failed for: r0v6, types: [kotlin.Unit] */
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() throws Throwable {
+            Throwable th;
+            EnumC12307a enumC12307a;
+            EnumC12307a enumC12307a2 = EnumC12307a.INTERNAL_ERROR;
+            IOException e = null;
+            try {
+                try {
+                    this.f25657j.m10279b(this);
+                    while (this.f25657j.m10278a(false, this)) {
+                    }
+                    EnumC12307a enumC12307a3 = EnumC12307a.NO_ERROR;
+                    try {
+                        this.f25658k.m10258a(enumC12307a3, EnumC12307a.CANCEL, null);
+                        enumC12307a = enumC12307a3;
+                    } catch (IOException e2) {
+                        e = e2;
+                        EnumC12307a enumC12307a4 = EnumC12307a.PROTOCOL_ERROR;
+                        C12311e c12311e = this.f25658k;
+                        c12311e.m10258a(enumC12307a4, enumC12307a4, e);
+                        enumC12307a = c12311e;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    this.f25658k.m10258a(enumC12307a, enumC12307a2, e);
+                    C12272c.m10123d(this.f25657j);
+                    throw th;
+                }
+            } catch (IOException e3) {
+                e = e3;
+            } catch (Throwable th3) {
+                th = th3;
+                enumC12307a = enumC12307a2;
+                this.f25658k.m10258a(enumC12307a, enumC12307a2, e);
+                C12272c.m10123d(this.f25657j);
+                throw th;
+            }
+            C12272c.m10123d(this.f25657j);
+            enumC12307a2 = Unit.f27425a;
+            return enumC12307a2;
         }
 
         @Override // p600f0.p601e0.p608j.C12319m.b
@@ -678,62 +734,6 @@ public final class C12311e implements Closeable {
             }
         }
 
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v0, types: [f0.e0.j.a] */
-        /* JADX WARN: Type inference failed for: r0v3 */
-        /* JADX WARN: Type inference failed for: r0v6, types: [kotlin.Unit] */
-        /* JADX WARN: Type inference fix 'apply assigned field type' failed
-        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
-        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-         */
-        @Override // kotlin.jvm.functions.Function0
-        public Unit invoke() throws Throwable {
-            Throwable th;
-            EnumC12307a enumC12307a;
-            EnumC12307a enumC12307a2 = EnumC12307a.INTERNAL_ERROR;
-            IOException e = null;
-            try {
-                try {
-                    this.f25657j.m10279b(this);
-                    while (this.f25657j.m10278a(false, this)) {
-                    }
-                    EnumC12307a enumC12307a3 = EnumC12307a.NO_ERROR;
-                    try {
-                        this.f25658k.m10258a(enumC12307a3, EnumC12307a.CANCEL, null);
-                        enumC12307a = enumC12307a3;
-                    } catch (IOException e2) {
-                        e = e2;
-                        EnumC12307a enumC12307a4 = EnumC12307a.PROTOCOL_ERROR;
-                        C12311e c12311e = this.f25658k;
-                        c12311e.m10258a(enumC12307a4, enumC12307a4, e);
-                        enumC12307a = c12311e;
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                    this.f25658k.m10258a(enumC12307a, enumC12307a2, e);
-                    C12272c.m10123d(this.f25657j);
-                    throw th;
-                }
-            } catch (IOException e3) {
-                e = e3;
-            } catch (Throwable th3) {
-                th = th3;
-                enumC12307a = enumC12307a2;
-                this.f25658k.m10258a(enumC12307a, enumC12307a2, e);
-                C12272c.m10123d(this.f25657j);
-                throw th;
-            }
-            C12272c.m10123d(this.f25657j);
-            enumC12307a2 = Unit.f27425a;
-            return enumC12307a2;
-        }
-
         @Override // p600f0.p601e0.p608j.C12319m.b
         /* JADX INFO: renamed from: j */
         public void mo10277j(int i, EnumC12307a enumC12307a, ByteString byteString) {
@@ -761,7 +761,7 @@ public final class C12311e implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.e$e */
     /* JADX INFO: compiled from: TaskQueue.kt */
-    public static final class e extends AbstractC12277a {
+    public final class e extends AbstractC12277a {
 
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ C12311e f25668e;
@@ -802,7 +802,7 @@ public final class C12311e implements Closeable {
 
     /* JADX INFO: renamed from: f0.e0.j.e$f */
     /* JADX INFO: compiled from: TaskQueue.kt */
-    public static final class f extends AbstractC12277a {
+    public final class f extends AbstractC12277a {
 
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ C12311e f25671e;
@@ -894,6 +894,11 @@ public final class C12311e implements Closeable {
         }
     }
 
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        m10258a(EnumC12307a.NO_ERROR, EnumC12307a.CANCEL, null);
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m10258a(EnumC12307a enumC12307a, EnumC12307a enumC12307a2, IOException iOException) {
         int i;
@@ -944,11 +949,6 @@ public final class C12311e implements Closeable {
     /* JADX INFO: renamed from: c */
     public final boolean m10260c(int i) {
         return i != 0 && (i & 1) == 0;
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        m10258a(EnumC12307a.NO_ERROR, EnumC12307a.CANCEL, null);
     }
 
     /* JADX INFO: renamed from: d */

@@ -17,7 +17,7 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
         this.messageNonce = str;
         this.channelId = j;
         this.type = 6;
-        this.key = getType() + ' ' + str;
+        this.key = "" + getType() + ' ' + str;
     }
 
     public static /* synthetic */ UploadProgressEntry copy$default(UploadProgressEntry uploadProgressEntry, String str, long j, int i, Object obj) {
@@ -28,16 +28,6 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
             j = uploadProgressEntry.channelId;
         }
         return uploadProgressEntry.copy(str, j);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getMessageNonce() {
-        return this.messageNonce;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
     }
 
     public final UploadProgressEntry copy(String messageNonce, long channelId) {
@@ -56,6 +46,11 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
         return C12238m.areEqual(this.messageNonce, uploadProgressEntry.messageNonce) && this.channelId == uploadProgressEntry.channelId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
     public final long getChannelId() {
         return this.channelId;
     }
@@ -63,6 +58,11 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getMessageNonce() {
+        return this.messageNonce;
     }
 
     public final String getMessageNonce() {

@@ -18,7 +18,7 @@ public final class BasicTextInputValidator implements InputValidator<TextInputLa
     private final int messageResId;
 
     /* JADX INFO: compiled from: BasicTextInputValidator.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

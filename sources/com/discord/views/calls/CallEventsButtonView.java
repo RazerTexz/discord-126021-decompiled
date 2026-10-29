@@ -31,7 +31,7 @@ public final class CallEventsButtonView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.views.calls.CallEventsButtonView$a */
     /* JADX INFO: compiled from: CallEventsButtonView.kt */
-    public static final class ViewOnClickListenerC7100a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7100a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ FragmentManager f19207j;
@@ -75,13 +75,6 @@ public final class CallEventsButtonView extends ConstraintLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }
 
-    private final void setContentColor(int color) {
-        this.binding.f665c.setTextColor(color);
-        ImageView imageView = this.binding.f664b;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.icon");
-        ColorCompatKt.tintWithColor(imageView, color);
-    }
-
     /* JADX INFO: renamed from: a */
     public final void m8573a(FragmentManager fragmentManager, long guildId, long channelId, List<GuildScheduledEvent> events) {
         C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
@@ -108,5 +101,12 @@ public final class CallEventsButtonView extends ConstraintLayout {
         C12238m.checkNotNullExpressionValue(context2, "context");
         textView2.setText(C1107b.m216h(context2, C5419R.string.guild_events_plural, new Object[]{i18nPluralString}, null, 4));
         setContentColor(ContextCompat.getColor(getContext(), C5419R.color.white));
+    }
+
+    private final void setContentColor(int color) {
+        this.binding.f665c.setTextColor(color);
+        ImageView imageView = this.binding.f664b;
+        C12238m.checkNotNullExpressionValue(imageView, "binding.icon");
+        ColorCompatKt.tintWithColor(imageView, color);
     }
 }

@@ -31,18 +31,6 @@ public final /* data */ class TrackNetworkActionUserLogin implements AnalyticsSc
         this.analyticsSchemaTypeName = "network_action_user_login";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -54,11 +42,23 @@ public final /* data */ class TrackNetworkActionUserLogin implements AnalyticsSc
         return C12238m.areEqual(this.inviteCode, trackNetworkActionUserLogin.inviteCode) && C12238m.areEqual(this.isMultiAccount, trackNetworkActionUserLogin.isMultiAccount);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.inviteCode;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
         Boolean bool = this.isMultiAccount;
         return iHashCode + (bool != null ? bool.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

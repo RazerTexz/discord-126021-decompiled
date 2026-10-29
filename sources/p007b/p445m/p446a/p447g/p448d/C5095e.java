@@ -26,7 +26,7 @@ public class C5095e {
 
     /* JADX INFO: renamed from: b.m.a.g.d.e$a */
     /* JADX INFO: compiled from: SntpClient.java */
-    public static class a extends IOException {
+    public class a extends IOException {
         public a(String str) {
             super(str);
         }
@@ -34,7 +34,7 @@ public class C5095e {
 
     /* JADX INFO: renamed from: b.m.a.g.d.e$b */
     /* JADX INFO: compiled from: SntpClient.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final long f13652a;

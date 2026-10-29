@@ -18,7 +18,7 @@ public final class C2928l {
 
     /* JADX INFO: renamed from: b.i.a.c.t2.l$b */
     /* JADX INFO: compiled from: AacUtil.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f7766a;

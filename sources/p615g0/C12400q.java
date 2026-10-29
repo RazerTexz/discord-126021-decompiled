@@ -27,6 +27,52 @@ public final class C12400q implements BufferedSink {
         this.f26111j = new C12388e();
     }
 
+    @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws Throwable {
+        if (this.f26112k) {
+            return;
+        }
+        Throwable th = null;
+        try {
+            C12388e c12388e = this.f26111j;
+            long j = c12388e.f26080k;
+            if (j > 0) {
+                this.f26113l.write(c12388e, j);
+            }
+        } catch (Throwable th2) {
+            th = th2;
+        }
+        try {
+            this.f26113l.close();
+        } catch (Throwable th3) {
+            if (th == null) {
+                th = th3;
+            }
+        }
+        this.f26112k = true;
+        if (th != null) {
+            throw th;
+        }
+    }
+
+    @Override // okio.BufferedSink, p615g0.InterfaceC12405v, java.io.Flushable
+    public void flush() throws IOException {
+        if (!(!this.f26112k)) {
+            throw new IllegalStateException("closed".toString());
+        }
+        C12388e c12388e = this.f26111j;
+        long j = c12388e.f26080k;
+        if (j > 0) {
+            this.f26113l.write(c12388e, j);
+        }
+        this.f26113l.flush();
+    }
+
+    @Override // java.nio.channels.Channel
+    public boolean isOpen() {
+        return !this.f26112k;
+    }
+
     @Override // okio.BufferedSink
     /* JADX INFO: renamed from: F */
     public BufferedSink mo10431F() throws IOException {
@@ -77,34 +123,6 @@ public final class C12400q implements BufferedSink {
         return mo10431F();
     }
 
-    @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws Throwable {
-        if (this.f26112k) {
-            return;
-        }
-        Throwable th = null;
-        try {
-            C12388e c12388e = this.f26111j;
-            long j = c12388e.f26080k;
-            if (j > 0) {
-                this.f26113l.write(c12388e, j);
-            }
-        } catch (Throwable th2) {
-            th = th2;
-        }
-        try {
-            this.f26113l.close();
-        } catch (Throwable th3) {
-            if (th == null) {
-                th = th3;
-            }
-        }
-        this.f26112k = true;
-        if (th != null) {
-            throw th;
-        }
-    }
-
     @Override // okio.BufferedSink
     /* JADX INFO: renamed from: e0 */
     public BufferedSink mo10455e0(ByteString byteString) throws IOException {
@@ -117,28 +135,10 @@ public final class C12400q implements BufferedSink {
         return this;
     }
 
-    @Override // okio.BufferedSink, p615g0.InterfaceC12405v, java.io.Flushable
-    public void flush() throws IOException {
-        if (!(!this.f26112k)) {
-            throw new IllegalStateException("closed".toString());
-        }
-        C12388e c12388e = this.f26111j;
-        long j = c12388e.f26080k;
-        if (j > 0) {
-            this.f26113l.write(c12388e, j);
-        }
-        this.f26113l.flush();
-    }
-
     @Override // okio.BufferedSink
     /* JADX INFO: renamed from: g */
     public C12388e mo10457g() {
         return this.f26111j;
-    }
-
-    @Override // java.nio.channels.Channel
-    public boolean isOpen() {
-        return !this.f26112k;
     }
 
     @Override // okio.BufferedSink

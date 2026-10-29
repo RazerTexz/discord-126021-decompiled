@@ -14,7 +14,7 @@ public final class WidgetUserMentions$Model$MessageLoader$handleLoaded$1 extends
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$Model$MessageLoader$handleLoaded$1$1 */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public static final class C102091 extends AbstractC12240o implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
+    public final class C102091 extends AbstractC12240o implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
         public C102091() {
             super(1);
         }

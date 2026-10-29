@@ -13,7 +13,7 @@ import sun.misc.Unsafe;
 /* JADX INFO: loaded from: classes.dex */
 public class UnsafeCacheFields {
 
-    public static final class UnsafeBooleanField extends UnsafeCachedField {
+    public final class UnsafeBooleanField extends UnsafeCachedField {
         public UnsafeBooleanField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -34,7 +34,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeByteField extends UnsafeCachedField {
+    public final class UnsafeByteField extends UnsafeCachedField {
         public UnsafeByteField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -55,13 +55,13 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static abstract class UnsafeCachedField extends FieldSerializer.CachedField {
+    public abstract class UnsafeCachedField extends FieldSerializer.CachedField {
         public UnsafeCachedField(long j) {
             this.offset = j;
         }
     }
 
-    public static final class UnsafeCharField extends UnsafeCachedField {
+    public final class UnsafeCharField extends UnsafeCachedField {
         public UnsafeCharField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -82,7 +82,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeDoubleField extends UnsafeCachedField {
+    public final class UnsafeDoubleField extends UnsafeCachedField {
         public UnsafeDoubleField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -103,7 +103,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeFloatField extends UnsafeCachedField {
+    public final class UnsafeFloatField extends UnsafeCachedField {
         public UnsafeFloatField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -124,7 +124,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeIntField extends UnsafeCachedField {
+    public final class UnsafeIntField extends UnsafeCachedField {
         public UnsafeIntField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -153,7 +153,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeLongField extends UnsafeCachedField {
+    public final class UnsafeLongField extends UnsafeCachedField {
         public UnsafeLongField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -182,7 +182,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeObjectField extends ObjectField {
+    public final class UnsafeObjectField extends ObjectField {
         public UnsafeObjectField(FieldSerializer fieldSerializer) {
             super(fieldSerializer);
         }
@@ -227,13 +227,25 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeRegionField extends UnsafeCachedField {
+    public final class UnsafeRegionField extends UnsafeCachedField {
         public static final boolean bulkReadsSupported = false;
         public final long len;
 
         public UnsafeRegionField(long j, long j2) {
             super(j);
             this.len = j2;
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            Unsafe unsafe = UnsafeUtil.unsafe();
+            long j = this.offset;
+            unsafe.copyMemory(obj, j, obj2, j, this.len);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public final void read(Input input, Object obj) {
+            readSlow(input, obj);
         }
 
         private void readSlow(Input input, Object obj) {
@@ -256,18 +268,6 @@ public class UnsafeCacheFields {
                     j3++;
                 }
             }
-        }
-
-        @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
-        public void copy(Object obj, Object obj2) {
-            Unsafe unsafe = UnsafeUtil.unsafe();
-            long j = this.offset;
-            unsafe.copyMemory(obj, j, obj2, j, this.len);
-        }
-
-        @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
-        public final void read(Input input, Object obj) {
-            readSlow(input, obj);
         }
 
         @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
@@ -302,7 +302,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeShortField extends UnsafeCachedField {
+    public final class UnsafeShortField extends UnsafeCachedField {
         public UnsafeShortField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }
@@ -323,7 +323,7 @@ public class UnsafeCacheFields {
         }
     }
 
-    public static final class UnsafeStringField extends UnsafeCachedField {
+    public final class UnsafeStringField extends UnsafeCachedField {
         public UnsafeStringField(Field field) {
             super(UnsafeUtil.unsafe().objectFieldOffset(field));
         }

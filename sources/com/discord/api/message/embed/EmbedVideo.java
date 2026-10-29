@@ -11,6 +11,17 @@ public final /* data */ class EmbedVideo {
     private final String url;
     private final Integer width;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbedVideo)) {
+            return false;
+        }
+        EmbedVideo embedVideo = (EmbedVideo) other;
+        return C12238m.areEqual(this.url, embedVideo.url) && C12238m.areEqual(this.proxyUrl, embedVideo.proxyUrl) && C12238m.areEqual(this.height, embedVideo.height) && C12238m.areEqual(this.width, embedVideo.width);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Integer getHeight() {
         return this.height;
@@ -29,17 +40,6 @@ public final /* data */ class EmbedVideo {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final Integer getWidth() {
         return this.width;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbedVideo)) {
-            return false;
-        }
-        EmbedVideo embedVideo = (EmbedVideo) other;
-        return C12238m.areEqual(this.url, embedVideo.url) && C12238m.areEqual(this.proxyUrl, embedVideo.proxyUrl) && C12238m.areEqual(this.height, embedVideo.height) && C12238m.areEqual(this.width, embedVideo.width);
     }
 
     public int hashCode() {

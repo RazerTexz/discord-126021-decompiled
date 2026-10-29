@@ -23,7 +23,7 @@ public final class WidgetGlobalSearchModel$Companion$create$4 extends AbstractC1
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$4$1 */
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final class C103301 extends AbstractC12240o implements Function0<WidgetGlobalSearchModel.MatchedResult> {
+    public final class C103301 extends AbstractC12240o implements Function0<WidgetGlobalSearchModel.MatchedResult> {
         public final /* synthetic */ String $channelFilter;
         public final /* synthetic */ Channel $this_toItemChannel;
 

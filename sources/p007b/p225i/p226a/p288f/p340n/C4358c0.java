@@ -18,9 +18,6 @@ public final class C4358c0<TResult> extends Task<TResult> {
     /* JADX INFO: renamed from: a */
     public final Object f11471a = new Object();
 
-    /* JADX INFO: renamed from: b */
-    public final C4382z<TResult> f11472b = new C4382z<>();
-
     /* JADX INFO: renamed from: c */
     public boolean f11473c;
 
@@ -33,6 +30,73 @@ public final class C4358c0<TResult> extends Task<TResult> {
 
     /* JADX INFO: renamed from: f */
     public Exception f11476f;
+
+    /* JADX INFO: renamed from: b */
+    public final C4382z<TResult> f11472b = new C4382z<>();
+
+    /* JADX INFO: renamed from: s */
+    public final void m6024s(@Nullable TResult tresult) {
+        synchronized (this.f11471a) {
+            m6027v();
+            this.f11473c = true;
+            this.f11475e = tresult;
+        }
+        this.f11472b.m6032b(this);
+    }
+
+    /* JADX INFO: renamed from: t */
+    public final void m6025t(@NonNull Exception exc) {
+        C1460d.m595z(exc, "Exception must not be null");
+        synchronized (this.f11471a) {
+            m6027v();
+            this.f11473c = true;
+            this.f11476f = exc;
+        }
+        this.f11472b.m6032b(this);
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final boolean m6026u() {
+        synchronized (this.f11471a) {
+            if (this.f11473c) {
+                return false;
+            }
+            this.f11473c = true;
+            this.f11474d = true;
+            this.f11472b.m6032b(this);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final void m6027v() {
+        String strM822J;
+        if (this.f11473c) {
+            int i = DuplicateTaskCompletionException.f20844j;
+            if (!mo6020o()) {
+                throw new IllegalStateException("DuplicateTaskCompletionException can only be created from completed Task.");
+            }
+            Exception excMo6016k = mo6016k();
+            if (excMo6016k != null) {
+                strM822J = "failure";
+            } else if (mo6021p()) {
+                String strValueOf = String.valueOf(mo6017l());
+                strM822J = C1643a.m822J(new StringBuilder(strValueOf.length() + 7), "result ", strValueOf);
+            } else {
+                strM822J = mo6019n() ? "cancellation" : "unknown issue";
+            }
+            String strValueOf2 = String.valueOf(strM822J);
+        }
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final void m6028w() {
+        synchronized (this.f11471a) {
+            if (this.f11473c) {
+                this.f11472b.m6032b(this);
+            }
+        }
+    }
 
     @Override // com.google.android.gms.tasks.Task
     @NonNull
@@ -220,69 +284,5 @@ public final class C4358c0<TResult> extends Task<TResult> {
         this.f11472b.m6031a(new C4380x(executor, interfaceC4362f, c4358c0));
         m6028w();
         return c4358c0;
-    }
-
-    /* JADX INFO: renamed from: s */
-    public final void m6024s(@Nullable TResult tresult) {
-        synchronized (this.f11471a) {
-            m6027v();
-            this.f11473c = true;
-            this.f11475e = tresult;
-        }
-        this.f11472b.m6032b(this);
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final void m6025t(@NonNull Exception exc) {
-        C1460d.m595z(exc, "Exception must not be null");
-        synchronized (this.f11471a) {
-            m6027v();
-            this.f11473c = true;
-            this.f11476f = exc;
-        }
-        this.f11472b.m6032b(this);
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final boolean m6026u() {
-        synchronized (this.f11471a) {
-            if (this.f11473c) {
-                return false;
-            }
-            this.f11473c = true;
-            this.f11474d = true;
-            this.f11472b.m6032b(this);
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final void m6027v() {
-        String strM822J;
-        if (this.f11473c) {
-            int i = DuplicateTaskCompletionException.f20844j;
-            if (!mo6020o()) {
-                throw new IllegalStateException("DuplicateTaskCompletionException can only be created from completed Task.");
-            }
-            Exception excMo6016k = mo6016k();
-            if (excMo6016k != null) {
-                strM822J = "failure";
-            } else if (mo6021p()) {
-                String strValueOf = String.valueOf(mo6017l());
-                strM822J = C1643a.m822J(new StringBuilder(strValueOf.length() + 7), "result ", strValueOf);
-            } else {
-                strM822J = mo6019n() ? "cancellation" : "unknown issue";
-            }
-            String strValueOf2 = String.valueOf(strM822J);
-        }
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final void m6028w() {
-        synchronized (this.f11471a) {
-            if (this.f11473c) {
-                this.f11472b.m6032b(this);
-            }
-        }
     }
 }

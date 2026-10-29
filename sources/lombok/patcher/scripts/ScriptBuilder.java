@@ -27,13 +27,13 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$AddFieldBuilder.SCL.lombok */
-    public static class AddFieldBuilder {
+    public class AddFieldBuilder {
+        private static final int NO_ACCESS_LEVELS = -4;
         private int accessFlags;
-        private List<String> targetClasses = new ArrayList();
         private String fieldName;
         private String fieldType;
         private Object value;
-        private static final int NO_ACCESS_LEVELS = -4;
+        private List<String> targetClasses = new ArrayList();
 
         public AddFieldScript build() {
             if (this.targetClasses.isEmpty()) {
@@ -116,11 +116,11 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$ExitEarlyBuilder.SCL.lombok */
-    public static class ExitEarlyBuilder {
+    public class ExitEarlyBuilder {
         private Hook decisionMethod;
-        private Hook valueMethod;
-        private boolean transplant;
         private boolean insert;
+        private boolean transplant;
+        private Hook valueMethod;
         private List<TargetMatcher> matchers = new ArrayList();
         private Set<StackRequest> requests = new HashSet();
 
@@ -170,11 +170,11 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$ReplaceMethodCallBuilder.SCL.lombok */
-    public static class ReplaceMethodCallBuilder {
-        private Hook replacementMethod;
-        private Hook methodToReplace;
-        private boolean transplant;
+    public class ReplaceMethodCallBuilder {
         private boolean insert;
+        private Hook methodToReplace;
+        private Hook replacementMethod;
+        private boolean transplant;
         private List<TargetMatcher> matchers = new ArrayList();
         private Set<StackRequest> extraRequests = new HashSet();
 
@@ -230,11 +230,11 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$WrapMethodCallBuilder.SCL.lombok */
-    public static class WrapMethodCallBuilder {
-        private Hook wrapMethod;
+    public class WrapMethodCallBuilder {
+        private boolean insert;
         private Hook methodToWrap;
         private boolean transplant;
-        private boolean insert;
+        private Hook wrapMethod;
         private List<TargetMatcher> matchers = new ArrayList();
         private Set<StackRequest> extraRequests = new HashSet();
 
@@ -290,11 +290,11 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$WrapReturnValueBuilder.SCL.lombok */
-    public static class WrapReturnValueBuilder {
-        private Hook wrapMethod;
-        private boolean transplant;
-        private boolean insert;
+    public class WrapReturnValueBuilder {
         private boolean cast;
+        private boolean insert;
+        private boolean transplant;
+        private Hook wrapMethod;
         private List<TargetMatcher> matchers = new ArrayList();
         private Set<StackRequest> requests = new HashSet();
 
@@ -350,11 +350,11 @@ public class ScriptBuilder {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ScriptBuilder$SetSymbolDuringMethodCallBuilder.SCL.lombok */
-    public static class SetSymbolDuringMethodCallBuilder {
-        private List<TargetMatcher> matchers = new ArrayList();
+    public class SetSymbolDuringMethodCallBuilder {
         private Hook callToWrap;
-        private String symbol;
         private boolean report;
+        private String symbol;
+        private List<TargetMatcher> matchers = new ArrayList();
 
         public SetSymbolDuringMethodCallScript build() {
             if (this.matchers.isEmpty()) {

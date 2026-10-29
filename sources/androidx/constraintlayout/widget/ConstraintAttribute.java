@@ -28,8 +28,18 @@ public class ConstraintAttribute {
     private String mStringValue;
     private AttributeType mType;
 
+    public enum AttributeType {
+        INT_TYPE,
+        FLOAT_TYPE,
+        COLOR_TYPE,
+        COLOR_DRAWABLE_TYPE,
+        STRING_TYPE,
+        BOOLEAN_TYPE,
+        DIMENSION_TYPE
+    }
+
     /* JADX INFO: renamed from: androidx.constraintlayout.widget.ConstraintAttribute$1 */
-    public static /* synthetic */ class C01991 {
+    public /* synthetic */ class C01991 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType */
         public static final /* synthetic */ int[] f126x66adad53;
@@ -69,16 +79,6 @@ public class ConstraintAttribute {
         }
     }
 
-    public enum AttributeType {
-        INT_TYPE,
-        FLOAT_TYPE,
-        COLOR_TYPE,
-        COLOR_DRAWABLE_TYPE,
-        STRING_TYPE,
-        BOOLEAN_TYPE,
-        DIMENSION_TYPE
-    }
-
     public ConstraintAttribute(String str, AttributeType attributeType) {
         this.mName = str;
         this.mType = attributeType;
@@ -87,6 +87,30 @@ public class ConstraintAttribute {
     private static int clamp(int i) {
         int i2 = (i & (~(i >> 31))) - 255;
         return (i2 & (i2 >> 31)) + 255;
+    }
+
+    public boolean diff(ConstraintAttribute constraintAttribute) {
+        AttributeType attributeType;
+        if (constraintAttribute == null || (attributeType = this.mType) != constraintAttribute.mType) {
+            return false;
+        }
+        switch (attributeType) {
+            case INT_TYPE:
+                return this.mIntegerValue == constraintAttribute.mIntegerValue;
+            case FLOAT_TYPE:
+                return this.mFloatValue == constraintAttribute.mFloatValue;
+            case COLOR_TYPE:
+            case COLOR_DRAWABLE_TYPE:
+                return this.mColorValue == constraintAttribute.mColorValue;
+            case STRING_TYPE:
+                return this.mIntegerValue == constraintAttribute.mIntegerValue;
+            case BOOLEAN_TYPE:
+                return this.mBooleanValue == constraintAttribute.mBooleanValue;
+            case DIMENSION_TYPE:
+                return this.mFloatValue == constraintAttribute.mFloatValue;
+            default:
+                return false;
+        }
     }
 
     public static HashMap<String, ConstraintAttribute> extractAttributes(HashMap<String, ConstraintAttribute> map, View view) {
@@ -109,6 +133,68 @@ public class ConstraintAttribute {
             }
         }
         return map2;
+    }
+
+    public AttributeType getType() {
+        return this.mType;
+    }
+
+    public float getValueToInterpolate() {
+        switch (this.mType) {
+            case INT_TYPE:
+                return this.mIntegerValue;
+            case FLOAT_TYPE:
+                return this.mFloatValue;
+            case COLOR_TYPE:
+            case COLOR_DRAWABLE_TYPE:
+                throw new RuntimeException("Color does not have a single color to interpolate");
+            case STRING_TYPE:
+                throw new RuntimeException("Cannot interpolate String");
+            case BOOLEAN_TYPE:
+                return this.mBooleanValue ? 1.0f : 0.0f;
+            case DIMENSION_TYPE:
+                return this.mFloatValue;
+            default:
+                return Float.NaN;
+        }
+    }
+
+    public void getValuesToInterpolate(float[] fArr) {
+        switch (this.mType) {
+            case INT_TYPE:
+                fArr[0] = this.mIntegerValue;
+                return;
+            case FLOAT_TYPE:
+                fArr[0] = this.mFloatValue;
+                return;
+            case COLOR_TYPE:
+            case COLOR_DRAWABLE_TYPE:
+                int i = this.mColorValue;
+                int i2 = (i >> 24) & 255;
+                float fPow = (float) Math.pow(((i >> 16) & 255) / 255.0f, 2.2d);
+                float fPow2 = (float) Math.pow(((i >> 8) & 255) / 255.0f, 2.2d);
+                float fPow3 = (float) Math.pow((i & 255) / 255.0f, 2.2d);
+                fArr[0] = fPow;
+                fArr[1] = fPow2;
+                fArr[2] = fPow3;
+                fArr[3] = i2 / 255.0f;
+                return;
+            case STRING_TYPE:
+                throw new RuntimeException("Color does not have a single color to interpolate");
+            case BOOLEAN_TYPE:
+                fArr[0] = this.mBooleanValue ? 1.0f : 0.0f;
+                return;
+            case DIMENSION_TYPE:
+                fArr[0] = this.mFloatValue;
+                return;
+            default:
+                return;
+        }
+    }
+
+    public int noOfInterpValues() {
+        int iOrdinal = this.mType.ordinal();
+        return (iOrdinal == 2 || iOrdinal == 3) ? 4 : 1;
     }
 
     public static void parse(Context context, XmlPullParser xmlPullParser, HashMap<String, ConstraintAttribute> map) {
@@ -215,92 +301,6 @@ public class ConstraintAttribute {
                 e3.printStackTrace();
             }
         }
-    }
-
-    public boolean diff(ConstraintAttribute constraintAttribute) {
-        AttributeType attributeType;
-        if (constraintAttribute == null || (attributeType = this.mType) != constraintAttribute.mType) {
-            return false;
-        }
-        switch (attributeType) {
-            case INT_TYPE:
-                return this.mIntegerValue == constraintAttribute.mIntegerValue;
-            case FLOAT_TYPE:
-                return this.mFloatValue == constraintAttribute.mFloatValue;
-            case COLOR_TYPE:
-            case COLOR_DRAWABLE_TYPE:
-                return this.mColorValue == constraintAttribute.mColorValue;
-            case STRING_TYPE:
-                return this.mIntegerValue == constraintAttribute.mIntegerValue;
-            case BOOLEAN_TYPE:
-                return this.mBooleanValue == constraintAttribute.mBooleanValue;
-            case DIMENSION_TYPE:
-                return this.mFloatValue == constraintAttribute.mFloatValue;
-            default:
-                return false;
-        }
-    }
-
-    public AttributeType getType() {
-        return this.mType;
-    }
-
-    public float getValueToInterpolate() {
-        switch (this.mType) {
-            case INT_TYPE:
-                return this.mIntegerValue;
-            case FLOAT_TYPE:
-                return this.mFloatValue;
-            case COLOR_TYPE:
-            case COLOR_DRAWABLE_TYPE:
-                throw new RuntimeException("Color does not have a single color to interpolate");
-            case STRING_TYPE:
-                throw new RuntimeException("Cannot interpolate String");
-            case BOOLEAN_TYPE:
-                return this.mBooleanValue ? 1.0f : 0.0f;
-            case DIMENSION_TYPE:
-                return this.mFloatValue;
-            default:
-                return Float.NaN;
-        }
-    }
-
-    public void getValuesToInterpolate(float[] fArr) {
-        switch (this.mType) {
-            case INT_TYPE:
-                fArr[0] = this.mIntegerValue;
-                return;
-            case FLOAT_TYPE:
-                fArr[0] = this.mFloatValue;
-                return;
-            case COLOR_TYPE:
-            case COLOR_DRAWABLE_TYPE:
-                int i = this.mColorValue;
-                int i2 = (i >> 24) & 255;
-                float fPow = (float) Math.pow(((i >> 16) & 255) / 255.0f, 2.2d);
-                float fPow2 = (float) Math.pow(((i >> 8) & 255) / 255.0f, 2.2d);
-                float fPow3 = (float) Math.pow((i & 255) / 255.0f, 2.2d);
-                fArr[0] = fPow;
-                fArr[1] = fPow2;
-                fArr[2] = fPow3;
-                fArr[3] = i2 / 255.0f;
-                return;
-            case STRING_TYPE:
-                throw new RuntimeException("Color does not have a single color to interpolate");
-            case BOOLEAN_TYPE:
-                fArr[0] = this.mBooleanValue ? 1.0f : 0.0f;
-                return;
-            case DIMENSION_TYPE:
-                fArr[0] = this.mFloatValue;
-                return;
-            default:
-                return;
-        }
-    }
-
-    public int noOfInterpValues() {
-        int iOrdinal = this.mType.ordinal();
-        return (iOrdinal == 2 || iOrdinal == 3) ? 4 : 1;
     }
 
     public void setColorValue(int i) {

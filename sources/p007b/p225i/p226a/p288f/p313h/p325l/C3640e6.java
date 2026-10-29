@@ -20,12 +20,6 @@ import sun.misc.Unsafe;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3640e6<T> implements InterfaceC3801q6<T> {
 
-    /* JADX INFO: renamed from: a */
-    public static final int[] f9913a = new int[0];
-
-    /* JADX INFO: renamed from: b */
-    public static final Unsafe f9914b = C3711j7.m4986k();
-
     /* JADX INFO: renamed from: c */
     public final int[] f9915c;
 
@@ -70,6 +64,12 @@ public final class C3640e6<T> implements InterfaceC3801q6<T> {
 
     /* JADX INFO: renamed from: q */
     public final InterfaceC3865v5 f9929q;
+
+    /* JADX INFO: renamed from: a */
+    public static final int[] f9913a = new int[0];
+
+    /* JADX INFO: renamed from: b */
+    public static final Unsafe f9914b = C3711j7.m4986k();
 
     public C3640e6(int[] iArr, Object[] objArr, int i, int i2, InterfaceC3612c6 interfaceC3612c6, boolean z2, int[] iArr2, int i3, int i4, InterfaceC3696i6 interfaceC3696i6, AbstractC3748m5 abstractC3748m5, AbstractC3627d7 abstractC3627d7, AbstractC3708j4 abstractC3708j4, InterfaceC3865v5 interfaceC3865v5) {
         this.f9915c = iArr;
@@ -1071,6 +1071,801 @@ public final class C3640e6<T> implements InterfaceC3801q6<T> {
     /* JADX INFO: renamed from: K */
     public final int m4842K(int i) {
         return this.f9915c[i + 2];
+    }
+
+    /* JADX INFO: renamed from: j */
+    public final int m4852j(T t, byte[] bArr, int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, int i8, C3824s3 c3824s3) throws IOException {
+        int iM4322n2;
+        Unsafe unsafe = f9914b;
+        long j2 = this.f9915c[i8 + 2] & 1048575;
+        switch (i7) {
+            case 51:
+                if (i5 != 1) {
+                    return i;
+                }
+                unsafe.putObject(t, j, Double.valueOf(Double.longBitsToDouble(C3404f.m4326o2(bArr, i))));
+                iM4322n2 = i + 8;
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 52:
+                if (i5 != 5) {
+                    return i;
+                }
+                unsafe.putObject(t, j, Float.valueOf(Float.intBitsToFloat(C3404f.m4230N1(bArr, i))));
+                iM4322n2 = i + 4;
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 53:
+            case 54:
+                if (i5 != 0) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
+                unsafe.putObject(t, j, Long.valueOf(c3824s3.f10308b));
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 55:
+            case 62:
+                if (i5 != 0) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4233O1(bArr, i, c3824s3);
+                unsafe.putObject(t, j, Integer.valueOf(c3824s3.f10307a));
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 56:
+            case 65:
+                if (i5 != 1) {
+                    return i;
+                }
+                unsafe.putObject(t, j, Long.valueOf(C3404f.m4326o2(bArr, i)));
+                iM4322n2 = i + 8;
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 57:
+            case 64:
+                if (i5 != 5) {
+                    return i;
+                }
+                unsafe.putObject(t, j, Integer.valueOf(C3404f.m4230N1(bArr, i)));
+                iM4322n2 = i + 4;
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 58:
+                if (i5 != 0) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
+                unsafe.putObject(t, j, Boolean.valueOf(c3824s3.f10308b != 0));
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 59:
+                if (i5 != 2) {
+                    return i;
+                }
+                int iM4233O1 = C3404f.m4233O1(bArr, i, c3824s3);
+                int i9 = c3824s3.f10307a;
+                if (i9 == 0) {
+                    unsafe.putObject(t, j, "");
+                } else {
+                    if ((i6 & 536870912) != 0 && !C3724k7.m5022b(bArr, iM4233O1, iM4233O1 + i9)) {
+                        throw zzij.m9107e();
+                    }
+                    unsafe.putObject(t, j, new String(bArr, iM4233O1, i9, C3877w4.f10379a));
+                    iM4233O1 += i9;
+                }
+                unsafe.putInt(t, j2, i4);
+                return iM4233O1;
+            case 60:
+                if (i5 != 2) {
+                    return i;
+                }
+                int iM4227M1 = C3404f.m4227M1(m4856o(i8), bArr, i, i2, c3824s3);
+                Object object = unsafe.getInt(t, j2) == i4 ? unsafe.getObject(t, j) : null;
+                if (object == null) {
+                    unsafe.putObject(t, j, c3824s3.f10309c);
+                } else {
+                    unsafe.putObject(t, j, C3877w4.m5346c(object, c3824s3.f10309c));
+                }
+                unsafe.putInt(t, j2, i4);
+                return iM4227M1;
+            case 61:
+                if (i5 != 2) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4354v2(bArr, i, c3824s3);
+                unsafe.putObject(t, j, c3824s3.f10309c);
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 63:
+                if (i5 != 0) {
+                    return i;
+                }
+                int iM4233O2 = C3404f.m4233O1(bArr, i, c3824s3);
+                int i10 = c3824s3.f10307a;
+                InterfaceC3583a5 interfaceC3583a5 = (InterfaceC3583a5) this.f9916d[((i8 / 3) << 1) + 1];
+                if (interfaceC3583a5 != null && !interfaceC3583a5.mo4556f(i10)) {
+                    m4826M(t).m4611a(i3, Long.valueOf(i10));
+                    return iM4233O2;
+                }
+                unsafe.putObject(t, j, Integer.valueOf(i10));
+                iM4322n2 = iM4233O2;
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 66:
+                if (i5 != 0) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4233O1(bArr, i, c3824s3);
+                unsafe.putObject(t, j, Integer.valueOf(C3624d4.m4631b(c3824s3.f10307a)));
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 67:
+                if (i5 != 0) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
+                unsafe.putObject(t, j, Long.valueOf(C3624d4.m4630a(c3824s3.f10308b)));
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            case 68:
+                if (i5 != 3) {
+                    return i;
+                }
+                iM4322n2 = C3404f.m4224L1(m4856o(i8), bArr, i, i2, (i3 & (-8)) | 4, c3824s3);
+                Object object2 = unsafe.getInt(t, j2) == i4 ? unsafe.getObject(t, j) : null;
+                if (object2 == null) {
+                    unsafe.putObject(t, j, c3824s3.f10309c);
+                } else {
+                    unsafe.putObject(t, j, C3877w4.m5346c(object2, c3824s3.f10309c));
+                }
+                unsafe.putInt(t, j2, i4);
+                return iM4322n2;
+            default:
+                return i;
+        }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: k */
+    public final int m4853k(T t, byte[] bArr, int i, int i2, int i3, int i4, int i5, int i6, long j, int i7, long j2, C3824s3 c3824s3) throws IOException {
+        int iM4212H1;
+        int iM4233O1 = i;
+        Unsafe unsafe = f9914b;
+        InterfaceC3597b5 interfaceC3597b5Mo4569f = (InterfaceC3597b5) unsafe.getObject(t, j2);
+        if (!interfaceC3597b5Mo4569f.mo4568a()) {
+            int size = interfaceC3597b5Mo4569f.size();
+            interfaceC3597b5Mo4569f = interfaceC3597b5Mo4569f.mo4569f(size == 0 ? 10 : size << 1);
+            unsafe.putObject(t, j2, interfaceC3597b5Mo4569f);
+        }
+        switch (i7) {
+            case 18:
+            case 35:
+                if (i5 == 2) {
+                    C3652f4 c3652f4 = (C3652f4) interfaceC3597b5Mo4569f;
+                    int iM4233O2 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i8 = c3824s3.f10307a + iM4233O2;
+                    while (iM4233O2 < i8) {
+                        c3652f4.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, iM4233O2)));
+                        iM4233O2 += 8;
+                    }
+                    if (iM4233O2 == i8) {
+                        return iM4233O2;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 1) {
+                    C3652f4 c3652f5 = (C3652f4) interfaceC3597b5Mo4569f;
+                    c3652f5.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, i)));
+                    while (true) {
+                        int i9 = iM4233O1 + 8;
+                        if (i9 >= i2) {
+                            return i9;
+                        }
+                        iM4233O1 = C3404f.m4233O1(bArr, i9, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return i9;
+                        }
+                        c3652f5.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, iM4233O1)));
+                    }
+                }
+                break;
+            case 19:
+            case 36:
+                if (i5 == 2) {
+                    C3838t4 c3838t4 = (C3838t4) interfaceC3597b5Mo4569f;
+                    int iM4233O3 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i10 = c3824s3.f10307a + iM4233O3;
+                    while (iM4233O3 < i10) {
+                        c3838t4.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, iM4233O3)));
+                        iM4233O3 += 4;
+                    }
+                    if (iM4233O3 == i10) {
+                        return iM4233O3;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 5) {
+                    C3838t4 c3838t5 = (C3838t4) interfaceC3597b5Mo4569f;
+                    c3838t5.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, i)));
+                    while (true) {
+                        int i11 = iM4233O1 + 4;
+                        if (i11 >= i2) {
+                            return i11;
+                        }
+                        iM4233O1 = C3404f.m4233O1(bArr, i11, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return i11;
+                        }
+                        c3838t5.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, iM4233O1)));
+                    }
+                }
+                break;
+            case 20:
+            case 21:
+            case 37:
+            case 38:
+                if (i5 == 2) {
+                    C3800q5 c3800q5 = (C3800q5) interfaceC3597b5Mo4569f;
+                    int iM4233O4 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i12 = c3824s3.f10307a + iM4233O4;
+                    while (iM4233O4 < i12) {
+                        iM4233O4 = C3404f.m4322n2(bArr, iM4233O4, c3824s3);
+                        c3800q5.m5186d(c3824s3.f10308b);
+                    }
+                    if (iM4233O4 == i12) {
+                        return iM4233O4;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 0) {
+                    C3800q5 c3800q6 = (C3800q5) interfaceC3597b5Mo4569f;
+                    int iM4322n2 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
+                    c3800q6.m5186d(c3824s3.f10308b);
+                    while (iM4322n2 < i2) {
+                        int iM4233O5 = C3404f.m4233O1(bArr, iM4322n2, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return iM4322n2;
+                        }
+                        iM4322n2 = C3404f.m4322n2(bArr, iM4233O5, c3824s3);
+                        c3800q6.m5186d(c3824s3.f10308b);
+                    }
+                    return iM4322n2;
+                }
+                break;
+            case 22:
+            case 29:
+            case 39:
+            case 43:
+                if (i5 == 2) {
+                    return C3404f.m4236P1(bArr, iM4233O1, interfaceC3597b5Mo4569f, c3824s3);
+                }
+                if (i5 == 0) {
+                    return C3404f.m4212H1(i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
+                }
+                break;
+            case 23:
+            case 32:
+            case 40:
+            case 46:
+                if (i5 == 2) {
+                    C3800q5 c3800q7 = (C3800q5) interfaceC3597b5Mo4569f;
+                    int iM4233O6 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i13 = c3824s3.f10307a + iM4233O6;
+                    while (iM4233O6 < i13) {
+                        c3800q7.m5186d(C3404f.m4326o2(bArr, iM4233O6));
+                        iM4233O6 += 8;
+                    }
+                    if (iM4233O6 == i13) {
+                        return iM4233O6;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 1) {
+                    C3800q5 c3800q8 = (C3800q5) interfaceC3597b5Mo4569f;
+                    c3800q8.m5186d(C3404f.m4326o2(bArr, i));
+                    while (true) {
+                        int i14 = iM4233O1 + 8;
+                        if (i14 >= i2) {
+                            return i14;
+                        }
+                        iM4233O1 = C3404f.m4233O1(bArr, i14, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return i14;
+                        }
+                        c3800q8.m5186d(C3404f.m4326o2(bArr, iM4233O1));
+                    }
+                }
+                break;
+            case 24:
+            case 31:
+            case 41:
+            case 45:
+                if (i5 == 2) {
+                    C3890x4 c3890x4 = (C3890x4) interfaceC3597b5Mo4569f;
+                    int iM4233O7 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i15 = c3824s3.f10307a + iM4233O7;
+                    while (iM4233O7 < i15) {
+                        c3890x4.m5358g(C3404f.m4230N1(bArr, iM4233O7));
+                        iM4233O7 += 4;
+                    }
+                    if (iM4233O7 == i15) {
+                        return iM4233O7;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 5) {
+                    C3890x4 c3890x5 = (C3890x4) interfaceC3597b5Mo4569f;
+                    c3890x5.m5358g(C3404f.m4230N1(bArr, i));
+                    while (true) {
+                        int i16 = iM4233O1 + 4;
+                        if (i16 >= i2) {
+                            return i16;
+                        }
+                        iM4233O1 = C3404f.m4233O1(bArr, i16, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return i16;
+                        }
+                        c3890x5.m5358g(C3404f.m4230N1(bArr, iM4233O1));
+                    }
+                }
+                break;
+            case 25:
+            case 42:
+                if (i5 == 2) {
+                    C3811r3 c3811r3 = (C3811r3) interfaceC3597b5Mo4569f;
+                    int iM4233O8 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i17 = c3824s3.f10307a + iM4233O8;
+                    while (iM4233O8 < i17) {
+                        iM4233O8 = C3404f.m4322n2(bArr, iM4233O8, c3824s3);
+                        c3811r3.m5198d(c3824s3.f10308b != 0);
+                    }
+                    if (iM4233O8 == i17) {
+                        return iM4233O8;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 0) {
+                    C3811r3 c3811r4 = (C3811r3) interfaceC3597b5Mo4569f;
+                    int iM4322n3 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
+                    c3811r4.m5198d(c3824s3.f10308b != 0);
+                    while (iM4322n3 < i2) {
+                        int iM4233O9 = C3404f.m4233O1(bArr, iM4322n3, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return iM4322n3;
+                        }
+                        iM4322n3 = C3404f.m4322n2(bArr, iM4233O9, c3824s3);
+                        c3811r4.m5198d(c3824s3.f10308b != 0);
+                    }
+                    return iM4322n3;
+                }
+                break;
+            case 26:
+                if (i5 == 2) {
+                    if ((j & Permission.MANAGE_WEBHOOKS) != 0) {
+                        iM4233O1 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                        int i18 = c3824s3.f10307a;
+                        if (i18 < 0) {
+                            throw zzij.m9104b();
+                        }
+                        if (i18 == 0) {
+                            interfaceC3597b5Mo4569f.add("");
+                        } else {
+                            int i19 = iM4233O1 + i18;
+                            if (!C3724k7.m5022b(bArr, iM4233O1, i19)) {
+                                throw zzij.m9107e();
+                            }
+                            interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i18, C3877w4.f10379a));
+                            iM4233O1 = i19;
+                        }
+                        while (iM4233O1 < i2) {
+                            int iM4233O10 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                            if (i3 != c3824s3.f10307a) {
+                                break;
+                            } else {
+                                iM4233O1 = C3404f.m4233O1(bArr, iM4233O10, c3824s3);
+                                int i20 = c3824s3.f10307a;
+                                if (i20 < 0) {
+                                    throw zzij.m9104b();
+                                }
+                                if (i20 == 0) {
+                                    interfaceC3597b5Mo4569f.add("");
+                                } else {
+                                    int i21 = iM4233O1 + i20;
+                                    if (!C3724k7.m5022b(bArr, iM4233O1, i21)) {
+                                        throw zzij.m9107e();
+                                    }
+                                    interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i20, C3877w4.f10379a));
+                                    iM4233O1 = i21;
+                                }
+                            }
+                        }
+                    } else {
+                        iM4233O1 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                        int i22 = c3824s3.f10307a;
+                        if (i22 < 0) {
+                            throw zzij.m9104b();
+                        }
+                        if (i22 == 0) {
+                            interfaceC3597b5Mo4569f.add("");
+                        } else {
+                            interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i22, C3877w4.f10379a));
+                            iM4233O1 += i22;
+                        }
+                        while (iM4233O1 < i2) {
+                            int iM4233O11 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                            if (i3 != c3824s3.f10307a) {
+                                break;
+                            } else {
+                                iM4233O1 = C3404f.m4233O1(bArr, iM4233O11, c3824s3);
+                                int i23 = c3824s3.f10307a;
+                                if (i23 < 0) {
+                                    throw zzij.m9104b();
+                                }
+                                if (i23 == 0) {
+                                    interfaceC3597b5Mo4569f.add("");
+                                } else {
+                                    interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i23, C3877w4.f10379a));
+                                    iM4233O1 += i23;
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case 27:
+                if (i5 == 2) {
+                    return C3404f.m4221K1(m4856o(i6), i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
+                }
+                break;
+            case 28:
+                if (i5 == 2) {
+                    int iM4233O12 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i24 = c3824s3.f10307a;
+                    if (i24 < 0) {
+                        throw zzij.m9104b();
+                    }
+                    if (i24 > bArr.length - iM4233O12) {
+                        throw zzij.m9103a();
+                    }
+                    if (i24 == 0) {
+                        interfaceC3597b5Mo4569f.add(AbstractC3837t3.f10322j);
+                    } else {
+                        interfaceC3597b5Mo4569f.add(AbstractC3837t3.m5279h(bArr, iM4233O12, i24));
+                        iM4233O12 += i24;
+                    }
+                    while (iM4233O12 < i2) {
+                        int iM4233O13 = C3404f.m4233O1(bArr, iM4233O12, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return iM4233O12;
+                        }
+                        iM4233O12 = C3404f.m4233O1(bArr, iM4233O13, c3824s3);
+                        int i25 = c3824s3.f10307a;
+                        if (i25 < 0) {
+                            throw zzij.m9104b();
+                        }
+                        if (i25 > bArr.length - iM4233O12) {
+                            throw zzij.m9103a();
+                        }
+                        if (i25 == 0) {
+                            interfaceC3597b5Mo4569f.add(AbstractC3837t3.f10322j);
+                        } else {
+                            interfaceC3597b5Mo4569f.add(AbstractC3837t3.m5279h(bArr, iM4233O12, i25));
+                            iM4233O12 += i25;
+                        }
+                    }
+                    return iM4233O12;
+                }
+                break;
+            case 30:
+            case 44:
+                if (i5 == 2) {
+                    iM4212H1 = C3404f.m4236P1(bArr, iM4233O1, interfaceC3597b5Mo4569f, c3824s3);
+                } else if (i5 == 0) {
+                    iM4212H1 = C3404f.m4212H1(i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
+                }
+                AbstractC3851u4 abstractC3851u4 = (AbstractC3851u4) t;
+                Object objMo4634a = abstractC3851u4.zzb;
+                if (objMo4634a == C3613c7.f9877a) {
+                    objMo4634a = null;
+                }
+                InterfaceC3583a5 interfaceC3583a5 = (InterfaceC3583a5) this.f9916d[((i6 / 3) << 1) + 1];
+                AbstractC3627d7<?, ?> abstractC3627d7 = this.f9927o;
+                Class<?> cls = C3827s6.f10313a;
+                if (interfaceC3583a5 != null) {
+                    if (interfaceC3597b5Mo4569f instanceof RandomAccess) {
+                        int size2 = interfaceC3597b5Mo4569f.size();
+                        int i26 = 0;
+                        for (int i27 = 0; i27 < size2; i27++) {
+                            int iIntValue = ((Integer) interfaceC3597b5Mo4569f.get(i27)).intValue();
+                            if (interfaceC3583a5.mo4556f(iIntValue)) {
+                                if (i27 != i26) {
+                                    interfaceC3597b5Mo4569f.set(i26, Integer.valueOf(iIntValue));
+                                }
+                                i26++;
+                            } else {
+                                if (objMo4634a == null) {
+                                    objMo4634a = abstractC3627d7.mo4634a();
+                                }
+                                abstractC3627d7.mo4635b(objMo4634a, i4, iIntValue);
+                            }
+                        }
+                        if (i26 != size2) {
+                            interfaceC3597b5Mo4569f.subList(i26, size2).clear();
+                        }
+                    } else {
+                        Iterator<E> it = interfaceC3597b5Mo4569f.iterator();
+                        while (it.hasNext()) {
+                            int iIntValue2 = ((Integer) it.next()).intValue();
+                            if (!interfaceC3583a5.mo4556f(iIntValue2)) {
+                                if (objMo4634a == null) {
+                                    objMo4634a = abstractC3627d7.mo4634a();
+                                }
+                                abstractC3627d7.mo4635b(objMo4634a, i4, iIntValue2);
+                                it.remove();
+                            }
+                        }
+                    }
+                }
+                C3613c7 c3613c7 = (C3613c7) objMo4634a;
+                if (c3613c7 != null) {
+                    abstractC3851u4.zzb = c3613c7;
+                }
+                return iM4212H1;
+            case 33:
+            case 47:
+                if (i5 == 2) {
+                    C3890x4 c3890x6 = (C3890x4) interfaceC3597b5Mo4569f;
+                    int iM4233O14 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i28 = c3824s3.f10307a + iM4233O14;
+                    while (iM4233O14 < i28) {
+                        iM4233O14 = C3404f.m4233O1(bArr, iM4233O14, c3824s3);
+                        c3890x6.m5358g(C3624d4.m4631b(c3824s3.f10307a));
+                    }
+                    if (iM4233O14 == i28) {
+                        return iM4233O14;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 0) {
+                    C3890x4 c3890x7 = (C3890x4) interfaceC3597b5Mo4569f;
+                    int iM4233O15 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    c3890x7.m5358g(C3624d4.m4631b(c3824s3.f10307a));
+                    while (iM4233O15 < i2) {
+                        int iM4233O16 = C3404f.m4233O1(bArr, iM4233O15, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return iM4233O15;
+                        }
+                        iM4233O15 = C3404f.m4233O1(bArr, iM4233O16, c3824s3);
+                        c3890x7.m5358g(C3624d4.m4631b(c3824s3.f10307a));
+                    }
+                    return iM4233O15;
+                }
+                break;
+            case 34:
+            case 48:
+                if (i5 == 2) {
+                    C3800q5 c3800q9 = (C3800q5) interfaceC3597b5Mo4569f;
+                    int iM4233O17 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                    int i29 = c3824s3.f10307a + iM4233O17;
+                    while (iM4233O17 < i29) {
+                        iM4233O17 = C3404f.m4322n2(bArr, iM4233O17, c3824s3);
+                        c3800q9.m5186d(C3624d4.m4630a(c3824s3.f10308b));
+                    }
+                    if (iM4233O17 == i29) {
+                        return iM4233O17;
+                    }
+                    throw zzij.m9103a();
+                }
+                if (i5 == 0) {
+                    C3800q5 c3800q10 = (C3800q5) interfaceC3597b5Mo4569f;
+                    int iM4322n4 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
+                    c3800q10.m5186d(C3624d4.m4630a(c3824s3.f10308b));
+                    while (iM4322n4 < i2) {
+                        int iM4233O18 = C3404f.m4233O1(bArr, iM4322n4, c3824s3);
+                        if (i3 != c3824s3.f10307a) {
+                            return iM4322n4;
+                        }
+                        iM4322n4 = C3404f.m4322n2(bArr, iM4233O18, c3824s3);
+                        c3800q10.m5186d(C3624d4.m4630a(c3824s3.f10308b));
+                    }
+                    return iM4322n4;
+                }
+                break;
+            case 49:
+                if (i5 == 3) {
+                    InterfaceC3801q6 interfaceC3801q6M4856o = m4856o(i6);
+                    int i30 = (i3 & (-8)) | 4;
+                    iM4233O1 = C3404f.m4224L1(interfaceC3801q6M4856o, bArr, i, i2, i30, c3824s3);
+                    interfaceC3597b5Mo4569f.add(c3824s3.f10309c);
+                    while (iM4233O1 < i2) {
+                        int iM4233O19 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
+                        if (i3 == c3824s3.f10307a) {
+                            iM4233O1 = C3404f.m4224L1(interfaceC3801q6M4856o, bArr, iM4233O19, i2, i30, c3824s3);
+                            interfaceC3597b5Mo4569f.add(c3824s3.f10309c);
+                        }
+                    }
+                }
+                break;
+        }
+        return iM4233O1;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public final <K, V> int m4854l(T t, byte[] bArr, int i, int i2, int i3, long j, C3824s3 c3824s3) throws IOException {
+        Unsafe unsafe = f9914b;
+        Object obj = this.f9916d[(i3 / 3) << 1];
+        Object object = unsafe.getObject(t, j);
+        if (this.f9929q.mo5335d(object)) {
+            Object objMo5339h = this.f9929q.mo5339h(obj);
+            this.f9929q.mo5337f(objMo5339h, object);
+            unsafe.putObject(t, j, objMo5339h);
+            object = objMo5339h;
+        }
+        C3839t5<?, ?> c3839t5Mo5338g = this.f9929q.mo5338g(obj);
+        this.f9929q.mo5333b(object);
+        int iM4233O1 = C3404f.m4233O1(bArr, i, c3824s3);
+        int i4 = c3824s3.f10307a;
+        if (i4 < 0 || i4 > i2 - iM4233O1) {
+            throw zzij.m9103a();
+        }
+        Objects.requireNonNull(c3839t5Mo5338g);
+        throw null;
+    }
+
+    /*  JADX ERROR: Type inference failed
+        jadx.core.utils.exceptions.JadxOverflowException: Type inference error: updates count limit reached with updateSeq = 14621. Try increasing type updates limit count.
+        	at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
+        	at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
+        	at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
+        	at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:79)
+        */
+    /* JADX INFO: renamed from: m */
+    public final int m4855m(T r31, byte[] r32, int r33, int r34, int r35, p007b.p225i.p226a.p288f.p313h.p325l.C3824s3 r36) throws java.io.IOException {
+        /*
+            Method dump skipped, instruction units count: 1462
+            To view this dump add '--comments-level debug' option
+        */
+        throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p288f.p313h.p325l.C3640e6.m4855m(java.lang.Object, byte[], int, int, int, b.i.a.f.h.l.s3):int");
+    }
+
+    /* JADX INFO: renamed from: o */
+    public final InterfaceC3801q6 m4856o(int i) {
+        int i2 = (i / 3) << 1;
+        Object[] objArr = this.f9916d;
+        InterfaceC3801q6 interfaceC3801q6 = (InterfaceC3801q6) objArr[i2];
+        if (interfaceC3801q6 != null) {
+            return interfaceC3801q6;
+        }
+        InterfaceC3801q6<T> interfaceC3801q6M5138a = C3762n6.f10114a.m5138a((Class) objArr[i2 + 1]);
+        this.f9916d[i2] = interfaceC3801q6M5138a;
+        return interfaceC3801q6M5138a;
+    }
+
+    /* JADX INFO: renamed from: t */
+    public final <K, V> void m4857t(InterfaceC3867v7 interfaceC3867v7, int i, Object obj, int i2) throws IOException {
+        if (obj != null) {
+            this.f9929q.mo5338g(this.f9916d[(i2 / 3) << 1]);
+            Map<?, ?> mapMo5336e = this.f9929q.mo5336e(obj);
+            C3666g4 c3666g4 = (C3666g4) interfaceC3867v7;
+            Objects.requireNonNull(c3666g4);
+            Iterator<Map.Entry<?, ?>> it = mapMo5336e.entrySet().iterator();
+            if (it.hasNext()) {
+                Map.Entry<?, ?> next = it.next();
+                c3666g4.f9967a.mo9086f(i, 2);
+                next.getKey();
+                next.getValue();
+                Objects.requireNonNull(null);
+                throw null;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final void m4858u(T t, T t2, int i) {
+        long j = this.f9915c[i + 1] & 1048575;
+        if (m4859v(t2, i)) {
+            Object objM4993r = C3711j7.m4993r(t, j);
+            Object objM4993r2 = C3711j7.m4993r(t2, j);
+            if (objM4993r != null && objM4993r2 != null) {
+                C3711j7.m4981f(t, j, C3877w4.m5346c(objM4993r, objM4993r2));
+                m4835B(t, i);
+            } else if (objM4993r2 != null) {
+                C3711j7.m4981f(t, j, objM4993r2);
+                m4835B(t, i);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final boolean m4859v(T t, int i) {
+        int[] iArr = this.f9915c;
+        int i2 = iArr[i + 2];
+        long j = i2 & 1048575;
+        if (j != 1048575) {
+            return (C3711j7.m4977b(t, j) & (1 << (i2 >>> 20))) != 0;
+        }
+        int i3 = iArr[i + 1];
+        long j2 = i3 & 1048575;
+        switch ((i3 & 267386880) >>> 20) {
+            case 0:
+                return C3711j7.m4992q(t, j2) != 0.0d;
+            case 1:
+                return C3711j7.m4989n(t, j2) != 0.0f;
+            case 2:
+                return C3711j7.m4984i(t, j2) != 0;
+            case 3:
+                return C3711j7.m4984i(t, j2) != 0;
+            case 4:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 5:
+                return C3711j7.m4984i(t, j2) != 0;
+            case 6:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 7:
+                return C3711j7.m4988m(t, j2);
+            case 8:
+                Object objM4993r = C3711j7.m4993r(t, j2);
+                if (objM4993r instanceof String) {
+                    return !((String) objM4993r).isEmpty();
+                }
+                if (objM4993r instanceof AbstractC3837t3) {
+                    return !AbstractC3837t3.f10322j.equals(objM4993r);
+                }
+                throw new IllegalArgumentException();
+            case 9:
+                return C3711j7.m4993r(t, j2) != null;
+            case 10:
+                return !AbstractC3837t3.f10322j.equals(C3711j7.m4993r(t, j2));
+            case 11:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 12:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 13:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 14:
+                return C3711j7.m4984i(t, j2) != 0;
+            case 15:
+                return C3711j7.m4977b(t, j2) != 0;
+            case 16:
+                return C3711j7.m4984i(t, j2) != 0;
+            case 17:
+                return C3711j7.m4993r(t, j2) != null;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final boolean m4860w(T t, int i, int i2) {
+        return C3711j7.m4977b(t, (long) (this.f9915c[i2 + 2] & 1048575)) == i;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final boolean m4861x(T t, int i, int i2, int i3, int i4) {
+        if (i2 == 1048575) {
+            return m4859v(t, i);
+        }
+        return (i3 & i4) != 0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final int m4862z(int i, int i2) {
+        int length = (this.f9915c.length / 3) - 1;
+        while (i2 <= length) {
+            int i3 = (length + i2) >>> 1;
+            int i4 = i3 * 3;
+            int i5 = this.f9915c[i4];
+            if (i == i5) {
+                return i4;
+            }
+            if (i < i5) {
+                length = i3 - 1;
+            } else {
+                i2 = i3 + 1;
+            }
+        }
+        return -1;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3801q6
@@ -3193,13 +3988,13 @@ public final class C3640e6<T> implements InterfaceC3801q6<T> {
                             bArr2 = bArr2;
                             t4 = t7;
                             if (i24 == 2) {
-                                iM4215I1 = C3404f.m4227M1(c3640e10.m4856o(i14), bArr2, iM4218J1, i2, c3824s6);
+                                InterfaceC3801q6 interfaceC3801q6M4856o = c3640e10.m4856o(i14);
+                                c3640e10 = c3640e10;
+                                iM4215I1 = C3404f.m4227M1(interfaceC3801q6M4856o, bArr2, iM4218J1, i2, c3824s6);
                                 Object object = unsafe2.getObject(t4, j);
                                 if (object == null) {
-                                    c3640e10 = c3640e10;
                                     unsafe2.putObject(t4, j, c3824s6.f10309c);
                                 } else {
-                                    c3640e10 = c3640e10;
                                     unsafe2.putObject(t4, j, C3877w4.m5346c(object, c3824s6.f10309c));
                                 }
                                 c3824s5 = c3824s6;
@@ -3648,800 +4443,5 @@ public final class C3640e6<T> implements InterfaceC3801q6<T> {
         if (this.f9920h) {
             C3827s6.m5243i(this.f9928p, t, t2);
         }
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final int m4852j(T t, byte[] bArr, int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, int i8, C3824s3 c3824s3) throws IOException {
-        int iM4322n2;
-        Unsafe unsafe = f9914b;
-        long j2 = this.f9915c[i8 + 2] & 1048575;
-        switch (i7) {
-            case 51:
-                if (i5 != 1) {
-                    return i;
-                }
-                unsafe.putObject(t, j, Double.valueOf(Double.longBitsToDouble(C3404f.m4326o2(bArr, i))));
-                iM4322n2 = i + 8;
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 52:
-                if (i5 != 5) {
-                    return i;
-                }
-                unsafe.putObject(t, j, Float.valueOf(Float.intBitsToFloat(C3404f.m4230N1(bArr, i))));
-                iM4322n2 = i + 4;
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 53:
-            case 54:
-                if (i5 != 0) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
-                unsafe.putObject(t, j, Long.valueOf(c3824s3.f10308b));
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 55:
-            case 62:
-                if (i5 != 0) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4233O1(bArr, i, c3824s3);
-                unsafe.putObject(t, j, Integer.valueOf(c3824s3.f10307a));
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 56:
-            case 65:
-                if (i5 != 1) {
-                    return i;
-                }
-                unsafe.putObject(t, j, Long.valueOf(C3404f.m4326o2(bArr, i)));
-                iM4322n2 = i + 8;
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 57:
-            case 64:
-                if (i5 != 5) {
-                    return i;
-                }
-                unsafe.putObject(t, j, Integer.valueOf(C3404f.m4230N1(bArr, i)));
-                iM4322n2 = i + 4;
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 58:
-                if (i5 != 0) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
-                unsafe.putObject(t, j, Boolean.valueOf(c3824s3.f10308b != 0));
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 59:
-                if (i5 != 2) {
-                    return i;
-                }
-                int iM4233O1 = C3404f.m4233O1(bArr, i, c3824s3);
-                int i9 = c3824s3.f10307a;
-                if (i9 == 0) {
-                    unsafe.putObject(t, j, "");
-                } else {
-                    if ((i6 & 536870912) != 0 && !C3724k7.m5022b(bArr, iM4233O1, iM4233O1 + i9)) {
-                        throw zzij.m9107e();
-                    }
-                    unsafe.putObject(t, j, new String(bArr, iM4233O1, i9, C3877w4.f10379a));
-                    iM4233O1 += i9;
-                }
-                unsafe.putInt(t, j2, i4);
-                return iM4233O1;
-            case 60:
-                if (i5 != 2) {
-                    return i;
-                }
-                int iM4227M1 = C3404f.m4227M1(m4856o(i8), bArr, i, i2, c3824s3);
-                Object object = unsafe.getInt(t, j2) == i4 ? unsafe.getObject(t, j) : null;
-                if (object == null) {
-                    unsafe.putObject(t, j, c3824s3.f10309c);
-                } else {
-                    unsafe.putObject(t, j, C3877w4.m5346c(object, c3824s3.f10309c));
-                }
-                unsafe.putInt(t, j2, i4);
-                return iM4227M1;
-            case 61:
-                if (i5 != 2) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4354v2(bArr, i, c3824s3);
-                unsafe.putObject(t, j, c3824s3.f10309c);
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 63:
-                if (i5 != 0) {
-                    return i;
-                }
-                int iM4233O2 = C3404f.m4233O1(bArr, i, c3824s3);
-                int i10 = c3824s3.f10307a;
-                InterfaceC3583a5 interfaceC3583a5 = (InterfaceC3583a5) this.f9916d[((i8 / 3) << 1) + 1];
-                if (interfaceC3583a5 != null && !interfaceC3583a5.mo4556f(i10)) {
-                    m4826M(t).m4611a(i3, Long.valueOf(i10));
-                    return iM4233O2;
-                }
-                unsafe.putObject(t, j, Integer.valueOf(i10));
-                iM4322n2 = iM4233O2;
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 66:
-                if (i5 != 0) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4233O1(bArr, i, c3824s3);
-                unsafe.putObject(t, j, Integer.valueOf(C3624d4.m4631b(c3824s3.f10307a)));
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 67:
-                if (i5 != 0) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4322n2(bArr, i, c3824s3);
-                unsafe.putObject(t, j, Long.valueOf(C3624d4.m4630a(c3824s3.f10308b)));
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            case 68:
-                if (i5 != 3) {
-                    return i;
-                }
-                iM4322n2 = C3404f.m4224L1(m4856o(i8), bArr, i, i2, (i3 & (-8)) | 4, c3824s3);
-                Object object2 = unsafe.getInt(t, j2) == i4 ? unsafe.getObject(t, j) : null;
-                if (object2 == null) {
-                    unsafe.putObject(t, j, c3824s3.f10309c);
-                } else {
-                    unsafe.putObject(t, j, C3877w4.m5346c(object2, c3824s3.f10309c));
-                }
-                unsafe.putInt(t, j2, i4);
-                return iM4322n2;
-            default:
-                return i;
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: k */
-    public final int m4853k(T t, byte[] bArr, int i, int i2, int i3, int i4, int i5, int i6, long j, int i7, long j2, C3824s3 c3824s3) throws IOException {
-        int iM4212H1;
-        int iM4233O1 = i;
-        Unsafe unsafe = f9914b;
-        InterfaceC3597b5 interfaceC3597b5Mo4569f = (InterfaceC3597b5) unsafe.getObject(t, j2);
-        if (!interfaceC3597b5Mo4569f.mo4568a()) {
-            int size = interfaceC3597b5Mo4569f.size();
-            interfaceC3597b5Mo4569f = interfaceC3597b5Mo4569f.mo4569f(size == 0 ? 10 : size << 1);
-            unsafe.putObject(t, j2, interfaceC3597b5Mo4569f);
-        }
-        switch (i7) {
-            case 18:
-            case 35:
-                if (i5 == 2) {
-                    C3652f4 c3652f4 = (C3652f4) interfaceC3597b5Mo4569f;
-                    int iM4233O2 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i8 = c3824s3.f10307a + iM4233O2;
-                    while (iM4233O2 < i8) {
-                        c3652f4.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, iM4233O2)));
-                        iM4233O2 += 8;
-                    }
-                    if (iM4233O2 == i8) {
-                        return iM4233O2;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 1) {
-                    C3652f4 c3652f5 = (C3652f4) interfaceC3597b5Mo4569f;
-                    c3652f5.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, i)));
-                    while (true) {
-                        int i9 = iM4233O1 + 8;
-                        if (i9 >= i2) {
-                            return i9;
-                        }
-                        iM4233O1 = C3404f.m4233O1(bArr, i9, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return i9;
-                        }
-                        c3652f5.m4877d(Double.longBitsToDouble(C3404f.m4326o2(bArr, iM4233O1)));
-                    }
-                }
-                break;
-            case 19:
-            case 36:
-                if (i5 == 2) {
-                    C3838t4 c3838t4 = (C3838t4) interfaceC3597b5Mo4569f;
-                    int iM4233O3 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i10 = c3824s3.f10307a + iM4233O3;
-                    while (iM4233O3 < i10) {
-                        c3838t4.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, iM4233O3)));
-                        iM4233O3 += 4;
-                    }
-                    if (iM4233O3 == i10) {
-                        return iM4233O3;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 5) {
-                    C3838t4 c3838t5 = (C3838t4) interfaceC3597b5Mo4569f;
-                    c3838t5.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, i)));
-                    while (true) {
-                        int i11 = iM4233O1 + 4;
-                        if (i11 >= i2) {
-                            return i11;
-                        }
-                        iM4233O1 = C3404f.m4233O1(bArr, i11, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return i11;
-                        }
-                        c3838t5.m5290d(Float.intBitsToFloat(C3404f.m4230N1(bArr, iM4233O1)));
-                    }
-                }
-                break;
-            case 20:
-            case 21:
-            case 37:
-            case 38:
-                if (i5 == 2) {
-                    C3800q5 c3800q5 = (C3800q5) interfaceC3597b5Mo4569f;
-                    int iM4233O4 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i12 = c3824s3.f10307a + iM4233O4;
-                    while (iM4233O4 < i12) {
-                        iM4233O4 = C3404f.m4322n2(bArr, iM4233O4, c3824s3);
-                        c3800q5.m5186d(c3824s3.f10308b);
-                    }
-                    if (iM4233O4 == i12) {
-                        return iM4233O4;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 0) {
-                    C3800q5 c3800q6 = (C3800q5) interfaceC3597b5Mo4569f;
-                    int iM4322n2 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
-                    c3800q6.m5186d(c3824s3.f10308b);
-                    while (iM4322n2 < i2) {
-                        int iM4233O5 = C3404f.m4233O1(bArr, iM4322n2, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return iM4322n2;
-                        }
-                        iM4322n2 = C3404f.m4322n2(bArr, iM4233O5, c3824s3);
-                        c3800q6.m5186d(c3824s3.f10308b);
-                    }
-                    return iM4322n2;
-                }
-                break;
-            case 22:
-            case 29:
-            case 39:
-            case 43:
-                if (i5 == 2) {
-                    return C3404f.m4236P1(bArr, iM4233O1, interfaceC3597b5Mo4569f, c3824s3);
-                }
-                if (i5 == 0) {
-                    return C3404f.m4212H1(i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
-                }
-                break;
-            case 23:
-            case 32:
-            case 40:
-            case 46:
-                if (i5 == 2) {
-                    C3800q5 c3800q7 = (C3800q5) interfaceC3597b5Mo4569f;
-                    int iM4233O6 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i13 = c3824s3.f10307a + iM4233O6;
-                    while (iM4233O6 < i13) {
-                        c3800q7.m5186d(C3404f.m4326o2(bArr, iM4233O6));
-                        iM4233O6 += 8;
-                    }
-                    if (iM4233O6 == i13) {
-                        return iM4233O6;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 1) {
-                    C3800q5 c3800q8 = (C3800q5) interfaceC3597b5Mo4569f;
-                    c3800q8.m5186d(C3404f.m4326o2(bArr, i));
-                    while (true) {
-                        int i14 = iM4233O1 + 8;
-                        if (i14 >= i2) {
-                            return i14;
-                        }
-                        iM4233O1 = C3404f.m4233O1(bArr, i14, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return i14;
-                        }
-                        c3800q8.m5186d(C3404f.m4326o2(bArr, iM4233O1));
-                    }
-                }
-                break;
-            case 24:
-            case 31:
-            case 41:
-            case 45:
-                if (i5 == 2) {
-                    C3890x4 c3890x4 = (C3890x4) interfaceC3597b5Mo4569f;
-                    int iM4233O7 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i15 = c3824s3.f10307a + iM4233O7;
-                    while (iM4233O7 < i15) {
-                        c3890x4.m5358g(C3404f.m4230N1(bArr, iM4233O7));
-                        iM4233O7 += 4;
-                    }
-                    if (iM4233O7 == i15) {
-                        return iM4233O7;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 5) {
-                    C3890x4 c3890x5 = (C3890x4) interfaceC3597b5Mo4569f;
-                    c3890x5.m5358g(C3404f.m4230N1(bArr, i));
-                    while (true) {
-                        int i16 = iM4233O1 + 4;
-                        if (i16 >= i2) {
-                            return i16;
-                        }
-                        iM4233O1 = C3404f.m4233O1(bArr, i16, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return i16;
-                        }
-                        c3890x5.m5358g(C3404f.m4230N1(bArr, iM4233O1));
-                    }
-                }
-                break;
-            case 25:
-            case 42:
-                if (i5 == 2) {
-                    C3811r3 c3811r3 = (C3811r3) interfaceC3597b5Mo4569f;
-                    int iM4233O8 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i17 = c3824s3.f10307a + iM4233O8;
-                    while (iM4233O8 < i17) {
-                        iM4233O8 = C3404f.m4322n2(bArr, iM4233O8, c3824s3);
-                        c3811r3.m5198d(c3824s3.f10308b != 0);
-                    }
-                    if (iM4233O8 == i17) {
-                        return iM4233O8;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 0) {
-                    C3811r3 c3811r4 = (C3811r3) interfaceC3597b5Mo4569f;
-                    int iM4322n3 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
-                    c3811r4.m5198d(c3824s3.f10308b != 0);
-                    while (iM4322n3 < i2) {
-                        int iM4233O9 = C3404f.m4233O1(bArr, iM4322n3, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return iM4322n3;
-                        }
-                        iM4322n3 = C3404f.m4322n2(bArr, iM4233O9, c3824s3);
-                        c3811r4.m5198d(c3824s3.f10308b != 0);
-                    }
-                    return iM4322n3;
-                }
-                break;
-            case 26:
-                if (i5 == 2) {
-                    if ((j & Permission.MANAGE_WEBHOOKS) != 0) {
-                        iM4233O1 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                        int i18 = c3824s3.f10307a;
-                        if (i18 < 0) {
-                            throw zzij.m9104b();
-                        }
-                        if (i18 == 0) {
-                            interfaceC3597b5Mo4569f.add("");
-                        } else {
-                            int i19 = iM4233O1 + i18;
-                            if (!C3724k7.m5022b(bArr, iM4233O1, i19)) {
-                                throw zzij.m9107e();
-                            }
-                            interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i18, C3877w4.f10379a));
-                            iM4233O1 = i19;
-                        }
-                        while (iM4233O1 < i2) {
-                            int iM4233O10 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                            if (i3 != c3824s3.f10307a) {
-                                break;
-                            } else {
-                                iM4233O1 = C3404f.m4233O1(bArr, iM4233O10, c3824s3);
-                                int i20 = c3824s3.f10307a;
-                                if (i20 < 0) {
-                                    throw zzij.m9104b();
-                                }
-                                if (i20 == 0) {
-                                    interfaceC3597b5Mo4569f.add("");
-                                } else {
-                                    int i21 = iM4233O1 + i20;
-                                    if (!C3724k7.m5022b(bArr, iM4233O1, i21)) {
-                                        throw zzij.m9107e();
-                                    }
-                                    interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i20, C3877w4.f10379a));
-                                    iM4233O1 = i21;
-                                }
-                            }
-                        }
-                    } else {
-                        iM4233O1 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                        int i22 = c3824s3.f10307a;
-                        if (i22 < 0) {
-                            throw zzij.m9104b();
-                        }
-                        if (i22 == 0) {
-                            interfaceC3597b5Mo4569f.add("");
-                        } else {
-                            interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i22, C3877w4.f10379a));
-                            iM4233O1 += i22;
-                        }
-                        while (iM4233O1 < i2) {
-                            int iM4233O11 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                            if (i3 != c3824s3.f10307a) {
-                                break;
-                            } else {
-                                iM4233O1 = C3404f.m4233O1(bArr, iM4233O11, c3824s3);
-                                int i23 = c3824s3.f10307a;
-                                if (i23 < 0) {
-                                    throw zzij.m9104b();
-                                }
-                                if (i23 == 0) {
-                                    interfaceC3597b5Mo4569f.add("");
-                                } else {
-                                    interfaceC3597b5Mo4569f.add(new String(bArr, iM4233O1, i23, C3877w4.f10379a));
-                                    iM4233O1 += i23;
-                                }
-                            }
-                        }
-                    }
-                }
-                break;
-            case 27:
-                if (i5 == 2) {
-                    return C3404f.m4221K1(m4856o(i6), i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
-                }
-                break;
-            case 28:
-                if (i5 == 2) {
-                    int iM4233O12 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i24 = c3824s3.f10307a;
-                    if (i24 < 0) {
-                        throw zzij.m9104b();
-                    }
-                    if (i24 > bArr.length - iM4233O12) {
-                        throw zzij.m9103a();
-                    }
-                    if (i24 == 0) {
-                        interfaceC3597b5Mo4569f.add(AbstractC3837t3.f10322j);
-                    } else {
-                        interfaceC3597b5Mo4569f.add(AbstractC3837t3.m5279h(bArr, iM4233O12, i24));
-                        iM4233O12 += i24;
-                    }
-                    while (iM4233O12 < i2) {
-                        int iM4233O13 = C3404f.m4233O1(bArr, iM4233O12, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return iM4233O12;
-                        }
-                        iM4233O12 = C3404f.m4233O1(bArr, iM4233O13, c3824s3);
-                        int i25 = c3824s3.f10307a;
-                        if (i25 < 0) {
-                            throw zzij.m9104b();
-                        }
-                        if (i25 > bArr.length - iM4233O12) {
-                            throw zzij.m9103a();
-                        }
-                        if (i25 == 0) {
-                            interfaceC3597b5Mo4569f.add(AbstractC3837t3.f10322j);
-                        } else {
-                            interfaceC3597b5Mo4569f.add(AbstractC3837t3.m5279h(bArr, iM4233O12, i25));
-                            iM4233O12 += i25;
-                        }
-                    }
-                    return iM4233O12;
-                }
-                break;
-            case 30:
-            case 44:
-                if (i5 == 2) {
-                    iM4212H1 = C3404f.m4236P1(bArr, iM4233O1, interfaceC3597b5Mo4569f, c3824s3);
-                } else if (i5 == 0) {
-                    iM4212H1 = C3404f.m4212H1(i3, bArr, i, i2, interfaceC3597b5Mo4569f, c3824s3);
-                }
-                AbstractC3851u4 abstractC3851u4 = (AbstractC3851u4) t;
-                Object objMo4634a = abstractC3851u4.zzb;
-                if (objMo4634a == C3613c7.f9877a) {
-                    objMo4634a = null;
-                }
-                InterfaceC3583a5 interfaceC3583a5 = (InterfaceC3583a5) this.f9916d[((i6 / 3) << 1) + 1];
-                AbstractC3627d7<?, ?> abstractC3627d7 = this.f9927o;
-                Class<?> cls = C3827s6.f10313a;
-                if (interfaceC3583a5 != null) {
-                    if (interfaceC3597b5Mo4569f instanceof RandomAccess) {
-                        int size2 = interfaceC3597b5Mo4569f.size();
-                        int i26 = 0;
-                        for (int i27 = 0; i27 < size2; i27++) {
-                            int iIntValue = ((Integer) interfaceC3597b5Mo4569f.get(i27)).intValue();
-                            if (interfaceC3583a5.mo4556f(iIntValue)) {
-                                if (i27 != i26) {
-                                    interfaceC3597b5Mo4569f.set(i26, Integer.valueOf(iIntValue));
-                                }
-                                i26++;
-                            } else {
-                                if (objMo4634a == null) {
-                                    objMo4634a = abstractC3627d7.mo4634a();
-                                }
-                                abstractC3627d7.mo4635b(objMo4634a, i4, iIntValue);
-                            }
-                        }
-                        if (i26 != size2) {
-                            interfaceC3597b5Mo4569f.subList(i26, size2).clear();
-                        }
-                    } else {
-                        Iterator<E> it = interfaceC3597b5Mo4569f.iterator();
-                        while (it.hasNext()) {
-                            int iIntValue2 = ((Integer) it.next()).intValue();
-                            if (!interfaceC3583a5.mo4556f(iIntValue2)) {
-                                if (objMo4634a == null) {
-                                    objMo4634a = abstractC3627d7.mo4634a();
-                                }
-                                abstractC3627d7.mo4635b(objMo4634a, i4, iIntValue2);
-                                it.remove();
-                            }
-                        }
-                    }
-                }
-                C3613c7 c3613c7 = (C3613c7) objMo4634a;
-                if (c3613c7 != null) {
-                    abstractC3851u4.zzb = c3613c7;
-                }
-                return iM4212H1;
-            case 33:
-            case 47:
-                if (i5 == 2) {
-                    C3890x4 c3890x6 = (C3890x4) interfaceC3597b5Mo4569f;
-                    int iM4233O14 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i28 = c3824s3.f10307a + iM4233O14;
-                    while (iM4233O14 < i28) {
-                        iM4233O14 = C3404f.m4233O1(bArr, iM4233O14, c3824s3);
-                        c3890x6.m5358g(C3624d4.m4631b(c3824s3.f10307a));
-                    }
-                    if (iM4233O14 == i28) {
-                        return iM4233O14;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 0) {
-                    C3890x4 c3890x7 = (C3890x4) interfaceC3597b5Mo4569f;
-                    int iM4233O15 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    c3890x7.m5358g(C3624d4.m4631b(c3824s3.f10307a));
-                    while (iM4233O15 < i2) {
-                        int iM4233O16 = C3404f.m4233O1(bArr, iM4233O15, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return iM4233O15;
-                        }
-                        iM4233O15 = C3404f.m4233O1(bArr, iM4233O16, c3824s3);
-                        c3890x7.m5358g(C3624d4.m4631b(c3824s3.f10307a));
-                    }
-                    return iM4233O15;
-                }
-                break;
-            case 34:
-            case 48:
-                if (i5 == 2) {
-                    C3800q5 c3800q9 = (C3800q5) interfaceC3597b5Mo4569f;
-                    int iM4233O17 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                    int i29 = c3824s3.f10307a + iM4233O17;
-                    while (iM4233O17 < i29) {
-                        iM4233O17 = C3404f.m4322n2(bArr, iM4233O17, c3824s3);
-                        c3800q9.m5186d(C3624d4.m4630a(c3824s3.f10308b));
-                    }
-                    if (iM4233O17 == i29) {
-                        return iM4233O17;
-                    }
-                    throw zzij.m9103a();
-                }
-                if (i5 == 0) {
-                    C3800q5 c3800q10 = (C3800q5) interfaceC3597b5Mo4569f;
-                    int iM4322n4 = C3404f.m4322n2(bArr, iM4233O1, c3824s3);
-                    c3800q10.m5186d(C3624d4.m4630a(c3824s3.f10308b));
-                    while (iM4322n4 < i2) {
-                        int iM4233O18 = C3404f.m4233O1(bArr, iM4322n4, c3824s3);
-                        if (i3 != c3824s3.f10307a) {
-                            return iM4322n4;
-                        }
-                        iM4322n4 = C3404f.m4322n2(bArr, iM4233O18, c3824s3);
-                        c3800q10.m5186d(C3624d4.m4630a(c3824s3.f10308b));
-                    }
-                    return iM4322n4;
-                }
-                break;
-            case 49:
-                if (i5 == 3) {
-                    InterfaceC3801q6 interfaceC3801q6M4856o = m4856o(i6);
-                    int i30 = (i3 & (-8)) | 4;
-                    iM4233O1 = C3404f.m4224L1(interfaceC3801q6M4856o, bArr, i, i2, i30, c3824s3);
-                    interfaceC3597b5Mo4569f.add(c3824s3.f10309c);
-                    while (iM4233O1 < i2) {
-                        int iM4233O19 = C3404f.m4233O1(bArr, iM4233O1, c3824s3);
-                        if (i3 == c3824s3.f10307a) {
-                            iM4233O1 = C3404f.m4224L1(interfaceC3801q6M4856o, bArr, iM4233O19, i2, i30, c3824s3);
-                            interfaceC3597b5Mo4569f.add(c3824s3.f10309c);
-                        }
-                    }
-                }
-                break;
-        }
-        return iM4233O1;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public final <K, V> int m4854l(T t, byte[] bArr, int i, int i2, int i3, long j, C3824s3 c3824s3) throws IOException {
-        Unsafe unsafe = f9914b;
-        Object obj = this.f9916d[(i3 / 3) << 1];
-        Object object = unsafe.getObject(t, j);
-        if (this.f9929q.mo5335d(object)) {
-            Object objMo5339h = this.f9929q.mo5339h(obj);
-            this.f9929q.mo5337f(objMo5339h, object);
-            unsafe.putObject(t, j, objMo5339h);
-            object = objMo5339h;
-        }
-        C3839t5<?, ?> c3839t5Mo5338g = this.f9929q.mo5338g(obj);
-        this.f9929q.mo5333b(object);
-        int iM4233O1 = C3404f.m4233O1(bArr, i, c3824s3);
-        int i4 = c3824s3.f10307a;
-        if (i4 < 0 || i4 > i2 - iM4233O1) {
-            throw zzij.m9103a();
-        }
-        Objects.requireNonNull(c3839t5Mo5338g);
-        throw null;
-    }
-
-    /*  JADX ERROR: Type inference failed
-        jadx.core.utils.exceptions.JadxOverflowException: Type inference error: updates count limit reached with updateSeq = 14621. Try increasing type updates limit count.
-        	at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
-        	at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
-        	at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
-        	at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:79)
-        */
-    /* JADX INFO: renamed from: m */
-    public final int m4855m(T r31, byte[] r32, int r33, int r34, int r35, p007b.p225i.p226a.p288f.p313h.p325l.C3824s3 r36) throws java.io.IOException {
-        /*
-            Method dump skipped, instruction units count: 1462
-            To view this dump add '--comments-level debug' option
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p288f.p313h.p325l.C3640e6.m4855m(java.lang.Object, byte[], int, int, int, b.i.a.f.h.l.s3):int");
-    }
-
-    /* JADX INFO: renamed from: o */
-    public final InterfaceC3801q6 m4856o(int i) {
-        int i2 = (i / 3) << 1;
-        Object[] objArr = this.f9916d;
-        InterfaceC3801q6 interfaceC3801q6 = (InterfaceC3801q6) objArr[i2];
-        if (interfaceC3801q6 != null) {
-            return interfaceC3801q6;
-        }
-        InterfaceC3801q6<T> interfaceC3801q6M5138a = C3762n6.f10114a.m5138a((Class) objArr[i2 + 1]);
-        this.f9916d[i2] = interfaceC3801q6M5138a;
-        return interfaceC3801q6M5138a;
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final <K, V> void m4857t(InterfaceC3867v7 interfaceC3867v7, int i, Object obj, int i2) throws IOException {
-        if (obj != null) {
-            this.f9929q.mo5338g(this.f9916d[(i2 / 3) << 1]);
-            Map<?, ?> mapMo5336e = this.f9929q.mo5336e(obj);
-            C3666g4 c3666g4 = (C3666g4) interfaceC3867v7;
-            Objects.requireNonNull(c3666g4);
-            Iterator<Map.Entry<?, ?>> it = mapMo5336e.entrySet().iterator();
-            if (it.hasNext()) {
-                Map.Entry<?, ?> next = it.next();
-                c3666g4.f9967a.mo9086f(i, 2);
-                next.getKey();
-                next.getValue();
-                Objects.requireNonNull(null);
-                throw null;
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final void m4858u(T t, T t2, int i) {
-        long j = this.f9915c[i + 1] & 1048575;
-        if (m4859v(t2, i)) {
-            Object objM4993r = C3711j7.m4993r(t, j);
-            Object objM4993r2 = C3711j7.m4993r(t2, j);
-            if (objM4993r != null && objM4993r2 != null) {
-                C3711j7.m4981f(t, j, C3877w4.m5346c(objM4993r, objM4993r2));
-                m4835B(t, i);
-            } else if (objM4993r2 != null) {
-                C3711j7.m4981f(t, j, objM4993r2);
-                m4835B(t, i);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final boolean m4859v(T t, int i) {
-        int[] iArr = this.f9915c;
-        int i2 = iArr[i + 2];
-        long j = i2 & 1048575;
-        if (j != 1048575) {
-            return (C3711j7.m4977b(t, j) & (1 << (i2 >>> 20))) != 0;
-        }
-        int i3 = iArr[i + 1];
-        long j2 = i3 & 1048575;
-        switch ((i3 & 267386880) >>> 20) {
-            case 0:
-                return C3711j7.m4992q(t, j2) != 0.0d;
-            case 1:
-                return C3711j7.m4989n(t, j2) != 0.0f;
-            case 2:
-                return C3711j7.m4984i(t, j2) != 0;
-            case 3:
-                return C3711j7.m4984i(t, j2) != 0;
-            case 4:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 5:
-                return C3711j7.m4984i(t, j2) != 0;
-            case 6:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 7:
-                return C3711j7.m4988m(t, j2);
-            case 8:
-                Object objM4993r = C3711j7.m4993r(t, j2);
-                if (objM4993r instanceof String) {
-                    return !((String) objM4993r).isEmpty();
-                }
-                if (objM4993r instanceof AbstractC3837t3) {
-                    return !AbstractC3837t3.f10322j.equals(objM4993r);
-                }
-                throw new IllegalArgumentException();
-            case 9:
-                return C3711j7.m4993r(t, j2) != null;
-            case 10:
-                return !AbstractC3837t3.f10322j.equals(C3711j7.m4993r(t, j2));
-            case 11:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 12:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 13:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 14:
-                return C3711j7.m4984i(t, j2) != 0;
-            case 15:
-                return C3711j7.m4977b(t, j2) != 0;
-            case 16:
-                return C3711j7.m4984i(t, j2) != 0;
-            case 17:
-                return C3711j7.m4993r(t, j2) != null;
-            default:
-                throw new IllegalArgumentException();
-        }
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final boolean m4860w(T t, int i, int i2) {
-        return C3711j7.m4977b(t, (long) (this.f9915c[i2 + 2] & 1048575)) == i;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final boolean m4861x(T t, int i, int i2, int i3, int i4) {
-        if (i2 == 1048575) {
-            return m4859v(t, i);
-        }
-        return (i3 & i4) != 0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final int m4862z(int i, int i2) {
-        int length = (this.f9915c.length / 3) - 1;
-        while (i2 <= length) {
-            int i3 = (length + i2) >>> 1;
-            int i4 = i3 * 3;
-            int i5 = this.f9915c[i4];
-            if (i == i5) {
-                return i4;
-            }
-            if (i < i5) {
-                length = i3 - 1;
-            } else {
-                i2 = i3 + 1;
-            }
-        }
-        return -1;
     }
 }

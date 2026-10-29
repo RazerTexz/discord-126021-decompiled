@@ -21,11 +21,6 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         this.mManager = fragmentManager;
     }
 
-    private static boolean isFragmentPostponed(FragmentTransaction.C0394Op c0394Op) {
-        Fragment fragment = c0394Op.mFragment;
-        return (fragment == null || !fragment.mAdded || fragment.mView == null || fragment.mDetached || fragment.mHidden || !fragment.isPostponed()) ? false : true;
-    }
-
     public void bumpBackStackNesting(int i) {
         if (this.mAddToBackStack) {
             if (FragmentManager.isLoggingEnabled(2)) {
@@ -376,6 +371,11 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
     @Override // androidx.fragment.app.FragmentTransaction
     public boolean isEmpty() {
         return this.mOps.isEmpty();
+    }
+
+    private static boolean isFragmentPostponed(FragmentTransaction.C0394Op c0394Op) {
+        Fragment fragment = c0394Op.mFragment;
+        return (fragment == null || !fragment.mAdded || fragment.mView == null || fragment.mDetached || fragment.mHidden || !fragment.isPostponed()) ? false : true;
     }
 
     public boolean isPostponed() {

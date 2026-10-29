@@ -27,11 +27,11 @@ import lombok.javac.JavacTreeMaker;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog.SCL.lombok */
 public class HandleLog {
-    private static final IdentifierName LOG = IdentifierName.valueOf("log");
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$core$configuration$LogDeclaration$LogFactoryParameter */
     private static /* synthetic */ int[] f27486xeb5c83f5;
+    private static final IdentifierName LOG = IdentifierName.valueOf("log");
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;
@@ -198,7 +198,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleCommonsLog.SCL.lombok */
-    public static class HandleCommonsLog extends JavacAnnotationHandler<CommonsLog> {
+    public class HandleCommonsLog extends JavacAnnotationHandler<CommonsLog> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<CommonsLog> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_COMMONS_FLAG_USAGE, "@apachecommons.CommonsLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -207,7 +207,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleJulLog.SCL.lombok */
-    public static class HandleJulLog extends JavacAnnotationHandler<Log> {
+    public class HandleJulLog extends JavacAnnotationHandler<Log> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<Log> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_JUL_FLAG_USAGE, "@java.Log", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -216,7 +216,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleLog4jLog.SCL.lombok */
-    public static class HandleLog4jLog extends JavacAnnotationHandler<Log4j> {
+    public class HandleLog4jLog extends JavacAnnotationHandler<Log4j> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<Log4j> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_LOG4J_FLAG_USAGE, "@Log4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -225,7 +225,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleLog4j2Log.SCL.lombok */
-    public static class HandleLog4j2Log extends JavacAnnotationHandler<Log4j2> {
+    public class HandleLog4j2Log extends JavacAnnotationHandler<Log4j2> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<Log4j2> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_LOG4J2_FLAG_USAGE, "@Log4j2", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -234,7 +234,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleSlf4jLog.SCL.lombok */
-    public static class HandleSlf4jLog extends JavacAnnotationHandler<Slf4j> {
+    public class HandleSlf4jLog extends JavacAnnotationHandler<Slf4j> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<Slf4j> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_SLF4J_FLAG_USAGE, "@Slf4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -243,7 +243,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleXSlf4jLog.SCL.lombok */
-    public static class HandleXSlf4jLog extends JavacAnnotationHandler<XSlf4j> {
+    public class HandleXSlf4jLog extends JavacAnnotationHandler<XSlf4j> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<XSlf4j> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_XSLF4J_FLAG_USAGE, "@XSlf4j", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -252,7 +252,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleJBossLog.SCL.lombok */
-    public static class HandleJBossLog extends JavacAnnotationHandler<JBossLog> {
+    public class HandleJBossLog extends JavacAnnotationHandler<JBossLog> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<JBossLog> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_JBOSSLOG_FLAG_USAGE, "@JBossLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -261,7 +261,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleFloggerLog.SCL.lombok */
-    public static class HandleFloggerLog extends JavacAnnotationHandler<Flogger> {
+    public class HandleFloggerLog extends JavacAnnotationHandler<Flogger> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<Flogger> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_FLOGGER_FLAG_USAGE, "@Flogger", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");
@@ -270,7 +270,7 @@ public class HandleLog {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleLog$HandleCustomLog.SCL.lombok */
-    public static class HandleCustomLog extends JavacAnnotationHandler<CustomLog> {
+    public class HandleCustomLog extends JavacAnnotationHandler<CustomLog> {
         @Override // lombok.javac.JavacAnnotationHandler
         public void handle(AnnotationValues<CustomLog> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
             HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.LOG_CUSTOM_FLAG_USAGE, "@CustomLog", ConfigurationKeys.LOG_ANY_FLAG_USAGE, "any @Log");

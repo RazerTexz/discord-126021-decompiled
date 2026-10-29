@@ -57,7 +57,7 @@ public final class C2970c0 implements InterfaceC2966a0 {
     /* JADX INFO: renamed from: b.i.a.c.w2.c0$a */
     /* JADX INFO: compiled from: FrameworkMediaDrm.java */
     @RequiresApi(31)
-    public static class a {
+    public class a {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static boolean m3582a(MediaDrm mediaDrm, String str) {

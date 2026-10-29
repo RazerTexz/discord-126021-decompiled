@@ -17,16 +17,16 @@ public @interface InterfaceC2091n {
 
     /* JADX INFO: renamed from: b.g.a.a.n$a */
     /* JADX INFO: compiled from: JsonIgnoreProperties.java */
-    public static class a implements Serializable {
-
-        /* JADX INFO: renamed from: j */
-        public static final a f4427j = new a(Collections.emptySet(), false, false, false, true);
-        private static final long serialVersionUID = 1;
+    public class a implements Serializable {
         public final boolean _allowGetters;
         public final boolean _allowSetters;
         public final boolean _ignoreUnknown;
         public final Set<String> _ignored;
         public final boolean _merge;
+        private static final long serialVersionUID = 1;
+
+        /* JADX INFO: renamed from: j */
+        public static final a f4427j = new a(Collections.emptySet(), false, false, false, true);
 
         public a(Set<String> set, boolean z2, boolean z3, boolean z4, boolean z5) {
             if (set == null) {
@@ -38,6 +38,17 @@ public @interface InterfaceC2091n {
             this._allowGetters = z3;
             this._allowSetters = z4;
             this._merge = z5;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            return obj != null && obj.getClass() == a.class && m1615b(this, (a) obj);
+        }
+
+        public int hashCode() {
+            return this._ignored.size() + (this._ignoreUnknown ? 1 : -3) + (this._allowGetters ? 3 : -7) + (this._allowSetters ? 7 : -11) + (this._merge ? 11 : -13);
         }
 
         /* JADX INFO: renamed from: a */
@@ -62,17 +73,6 @@ public @interface InterfaceC2091n {
         /* JADX INFO: renamed from: d */
         public Set<String> m1617d() {
             return this._allowGetters ? Collections.emptySet() : this._ignored;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            return obj != null && obj.getClass() == a.class && m1615b(this, (a) obj);
-        }
-
-        public int hashCode() {
-            return this._ignored.size() + (this._ignoreUnknown ? 1 : -3) + (this._allowGetters ? 3 : -7) + (this._allowSetters ? 7 : -11) + (this._merge ? 11 : -13);
         }
 
         public Object readResolve() {

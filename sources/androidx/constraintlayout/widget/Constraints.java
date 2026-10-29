@@ -16,16 +16,16 @@ public class Constraints extends ViewGroup {
         super.setVisibility(8);
     }
 
-    private void init(AttributeSet attributeSet) {
-        Log.v(TAG, " ################# init");
-    }
-
     public ConstraintSet getConstraintSet() {
         if (this.myConstraintSet == null) {
             this.myConstraintSet = new ConstraintSet();
         }
         this.myConstraintSet.clone(this);
         return this.myConstraintSet;
+    }
+
+    private void init(AttributeSet attributeSet) {
+        Log.v(TAG, " ################# init");
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -59,7 +59,7 @@ public class Constraints extends ViewGroup {
         super.setVisibility(8);
     }
 
-    public static class LayoutParams extends ConstraintLayout.LayoutParams {
+    public class LayoutParams extends ConstraintLayout.LayoutParams {
         public float alpha;
         public boolean applyElevation;
         public float elevation;

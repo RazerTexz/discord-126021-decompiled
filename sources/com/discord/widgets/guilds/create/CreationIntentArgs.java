@@ -12,7 +12,7 @@ public final /* data */ class CreationIntentArgs implements Parcelable {
     private final WidgetGuildCreate.Options createGuildOptions;
     private final CreateGuildTrigger trigger;
 
-    public static class Creator implements Parcelable.Creator<CreationIntentArgs> {
+    public final class Creator implements Parcelable.Creator<CreationIntentArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final CreationIntentArgs createFromParcel(Parcel parcel) {
@@ -44,16 +44,6 @@ public final /* data */ class CreationIntentArgs implements Parcelable {
         return creationIntentArgs.copy(createGuildTrigger, options);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CreateGuildTrigger getTrigger() {
-        return this.trigger;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final WidgetGuildCreate.Options getCreateGuildOptions() {
-        return this.createGuildOptions;
-    }
-
     public final CreationIntentArgs copy(CreateGuildTrigger trigger, WidgetGuildCreate.Options createGuildOptions) {
         C12238m.checkNotNullParameter(trigger, "trigger");
         C12238m.checkNotNullParameter(createGuildOptions, "createGuildOptions");
@@ -76,8 +66,18 @@ public final /* data */ class CreationIntentArgs implements Parcelable {
         return C12238m.areEqual(this.trigger, creationIntentArgs.trigger) && C12238m.areEqual(this.createGuildOptions, creationIntentArgs.createGuildOptions);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final WidgetGuildCreate.Options getCreateGuildOptions() {
         return this.createGuildOptions;
+    }
+
+    public final WidgetGuildCreate.Options getCreateGuildOptions() {
+        return this.createGuildOptions;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final CreateGuildTrigger getTrigger() {
+        return this.trigger;
     }
 
     public final CreateGuildTrigger getTrigger() {

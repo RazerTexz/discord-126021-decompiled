@@ -39,11 +39,55 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
     private final RestAPI restApi;
     private final StoreGuildRoleSubscriptions storeGuildRoleSubscriptions;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.GuildRoleSubscriptionPlanSetupViewModel$submit$1 */
     /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-    public static abstract class Event {
+    public final class C84491 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierListing, Unit> {
+        public C84491() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
+            invoke2(guildRoleSubscriptionTierListing);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
+            C12238m.checkNotNullParameter(guildRoleSubscriptionTierListing, "it");
+            GuildRoleSubscriptionPlanSetupViewModel guildRoleSubscriptionPlanSetupViewModel = GuildRoleSubscriptionPlanSetupViewModel.this;
+            guildRoleSubscriptionPlanSetupViewModel.updateViewState(ViewState.copy$default(GuildRoleSubscriptionPlanSetupViewModel.access$requireViewState(guildRoleSubscriptionPlanSetupViewModel), 0, false, false, null, null, null, null, Opcodes.LUSHR, null));
+            GuildRoleSubscriptionPlanSetupViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.GuildRoleSubscriptionPlanSetupViewModel$submit$2 */
+    /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
+    public final class C84502 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C84502() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            GuildRoleSubscriptionPlanSetupViewModel guildRoleSubscriptionPlanSetupViewModel = GuildRoleSubscriptionPlanSetupViewModel.this;
+            guildRoleSubscriptionPlanSetupViewModel.updateViewState(ViewState.copy$default(GuildRoleSubscriptionPlanSetupViewModel.access$requireViewState(guildRoleSubscriptionPlanSetupViewModel), 0, false, false, null, null, null, null, Opcodes.LUSHR, null));
+            GuildRoleSubscriptionPlanSetupViewModel.this.emitEvent(new Event.SubmitFailure(error));
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-        public static final /* data */ class SubmitFailure extends Event {
+        public final /* data */ class SubmitFailure extends Event {
             private final Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -60,11 +104,6 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
                 return submitFailure.copy(error);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Error getError() {
-                return this.error;
-            }
-
             public final SubmitFailure copy(Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new SubmitFailure(error);
@@ -75,6 +114,11 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
                     return (other instanceof SubmitFailure) && C12238m.areEqual(this.error, ((SubmitFailure) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Error getError() {
+                return this.error;
             }
 
             public final Error getError() {
@@ -98,7 +142,7 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-        public static final class SubmitSuccess extends Event {
+        public final class SubmitSuccess extends Event {
             public static final SubmitSuccess INSTANCE = new SubmitSuccess();
 
             private SubmitSuccess() {
@@ -115,7 +159,7 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canProceedToNextStep;
         private final String coverImage;
         private final int currentStep;
@@ -169,41 +213,6 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
             return viewState.copy(i, z4, z5, str3, str4, bool2, guildRoleSubscriptionTier);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getCurrentStep() {
-            return this.currentStep;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsSubmitting() {
-            return this.isSubmitting;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanProceedToNextStep() {
-            return this.canProceedToNextStep;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getCoverImage() {
-            return this.coverImage;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getPlanDescription() {
-            return this.planDescription;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Boolean getIsFullServerGating() {
-            return this.isFullServerGating;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
-            return this.guildRoleSubscriptionTier;
-        }
-
         public final ViewState copy(int currentStep, boolean isSubmitting, boolean canProceedToNextStep, String coverImage, String planDescription, Boolean isFullServerGating, GuildRoleSubscriptionTier guildRoleSubscriptionTier) {
             C12238m.checkNotNullParameter(guildRoleSubscriptionTier, "guildRoleSubscriptionTier");
             return new ViewState(currentStep, isSubmitting, canProceedToNextStep, coverImage, planDescription, isFullServerGating, guildRoleSubscriptionTier);
@@ -220,20 +229,55 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
             return this.currentStep == viewState.currentStep && this.isSubmitting == viewState.isSubmitting && this.canProceedToNextStep == viewState.canProceedToNextStep && C12238m.areEqual(this.coverImage, viewState.coverImage) && C12238m.areEqual(this.planDescription, viewState.planDescription) && C12238m.areEqual(this.isFullServerGating, viewState.isFullServerGating) && C12238m.areEqual(this.guildRoleSubscriptionTier, viewState.guildRoleSubscriptionTier);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getCanProceedToNextStep() {
             return this.canProceedToNextStep;
+        }
+
+        public final boolean getCanProceedToNextStep() {
+            return this.canProceedToNextStep;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getCoverImage() {
+            return this.coverImage;
         }
 
         public final String getCoverImage() {
             return this.coverImage;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getCurrentStep() {
             return this.currentStep;
         }
 
+        public final int getCurrentStep() {
+            return this.currentStep;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
             return this.guildRoleSubscriptionTier;
+        }
+
+        public final GuildRoleSubscriptionTier getGuildRoleSubscriptionTier() {
+            return this.guildRoleSubscriptionTier;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Boolean getIsFullServerGating() {
+            return this.isFullServerGating;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSubmitting() {
+            return this.isSubmitting;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getPlanDescription() {
+            return this.planDescription;
         }
 
         public final String getPlanDescription() {
@@ -298,50 +342,6 @@ public final class GuildRoleSubscriptionPlanSetupViewModel extends AbstractC0859
 
         public /* synthetic */ ViewState(int i, boolean z2, boolean z3, String str, String str2, Boolean bool, GuildRoleSubscriptionTier guildRoleSubscriptionTier, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this((i2 & 1) != 0 ? 0 : i, (i2 & 2) != 0 ? false : z2, (i2 & 4) == 0 ? z3 : false, (i2 & 8) != 0 ? null : str, (i2 & 16) != 0 ? null : str2, (i2 & 32) == 0 ? bool : null, (i2 & 64) != 0 ? new GuildRoleSubscriptionTier(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 32767, null) : guildRoleSubscriptionTier);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.GuildRoleSubscriptionPlanSetupViewModel$submit$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-    public static final class C84491 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierListing, Unit> {
-        public C84491() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
-            invoke2(guildRoleSubscriptionTierListing);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
-            C12238m.checkNotNullParameter(guildRoleSubscriptionTierListing, "it");
-            GuildRoleSubscriptionPlanSetupViewModel guildRoleSubscriptionPlanSetupViewModel = GuildRoleSubscriptionPlanSetupViewModel.this;
-            guildRoleSubscriptionPlanSetupViewModel.updateViewState(ViewState.copy$default(GuildRoleSubscriptionPlanSetupViewModel.access$requireViewState(guildRoleSubscriptionPlanSetupViewModel), 0, false, false, null, null, null, null, Opcodes.LUSHR, null));
-            GuildRoleSubscriptionPlanSetupViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.GuildRoleSubscriptionPlanSetupViewModel$submit$2 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionPlanSetupViewModel.kt */
-    public static final class C84502 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C84502() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            GuildRoleSubscriptionPlanSetupViewModel guildRoleSubscriptionPlanSetupViewModel = GuildRoleSubscriptionPlanSetupViewModel.this;
-            guildRoleSubscriptionPlanSetupViewModel.updateViewState(ViewState.copy$default(GuildRoleSubscriptionPlanSetupViewModel.access$requireViewState(guildRoleSubscriptionPlanSetupViewModel), 0, false, false, null, null, null, null, Opcodes.LUSHR, null));
-            GuildRoleSubscriptionPlanSetupViewModel.this.emitEvent(new Event.SubmitFailure(error));
         }
     }
 

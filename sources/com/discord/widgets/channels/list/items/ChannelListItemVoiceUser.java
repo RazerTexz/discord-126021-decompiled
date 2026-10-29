@@ -31,11 +31,7 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
         this.isApplicationStreaming = z2;
         this.hasChannelConnectPermission = z3;
         this.type = 2;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(voiceState.getChannelId());
-        sb.append(voiceState.getUserId());
-        this.key = sb.toString();
+        this.key = "" + getType() + voiceState.getChannelId() + voiceState.getUserId();
     }
 
     public static /* synthetic */ ChannelListItemVoiceUser copy$default(ChannelListItemVoiceUser channelListItemVoiceUser, Channel channel, VoiceState voiceState, User user, GuildMember guildMember, boolean z2, boolean z3, int i, Object obj) {
@@ -64,36 +60,6 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
         return channelListItemVoiceUser.copy(channel, voiceState2, user2, guildMember2, z4, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final VoiceState getVoiceState() {
-        return this.voiceState;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final GuildMember getComputed() {
-        return this.computed;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsApplicationStreaming() {
-        return this.isApplicationStreaming;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getHasChannelConnectPermission() {
-        return this.hasChannelConnectPermission;
-    }
-
     public final ChannelListItemVoiceUser copy(Channel channel, VoiceState voiceState, User user, GuildMember computed, boolean isApplicationStreaming, boolean hasChannelConnectPermission) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(voiceState, "voiceState");
@@ -113,16 +79,36 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
         return C12238m.areEqual(this.channel, channelListItemVoiceUser.channel) && C12238m.areEqual(this.voiceState, channelListItemVoiceUser.voiceState) && C12238m.areEqual(this.user, channelListItemVoiceUser.user) && C12238m.areEqual(this.computed, channelListItemVoiceUser.computed) && this.isApplicationStreaming == channelListItemVoiceUser.isApplicationStreaming && this.hasChannelConnectPermission == channelListItemVoiceUser.hasChannelConnectPermission;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final GuildMember getComputed() {
+        return this.computed;
     }
 
     public final GuildMember getComputed() {
         return this.computed;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getHasChannelConnectPermission() {
         return this.hasChannelConnectPermission;
+    }
+
+    public final boolean getHasChannelConnectPermission() {
+        return this.hasChannelConnectPermission;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsApplicationStreaming() {
+        return this.isApplicationStreaming;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -135,8 +121,18 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
         return this.type;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final User getUser() {
         return this.user;
+    }
+
+    public final User getUser() {
+        return this.user;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final VoiceState getVoiceState() {
+        return this.voiceState;
     }
 
     public final VoiceState getVoiceState() {

@@ -47,7 +47,7 @@ public final class GuildScheduledEventUtilities {
     public static final String QUERY_PARAM_NAME = "event";
 
     /* JADX INFO: compiled from: GuildScheduledEventUtilities.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -59,63 +59,6 @@ public final class GuildScheduledEventUtilities {
                 storePermissions = StoreStream.INSTANCE.getPermissions();
             }
             return companion.canCreateAnyEvent(j, storeChannels, storePermissions);
-        }
-
-        public static /* synthetic */ boolean canStartEvent$default(Companion companion, long j, Long l, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
-            if ((i & 4) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            StoreChannels storeChannels2 = storeChannels;
-            if ((i & 8) != 0) {
-                storePermissions = StoreStream.INSTANCE.getPermissions();
-            }
-            return companion.canStartEvent(j, l, storeChannels2, storePermissions);
-        }
-
-        private final List<Channel> getGuildScheduledEventCreatableChannelsForGuild(long guildId, StoreChannels channelsStore, StorePermissions permissionsStore) {
-            Map<Long, Channel> channelsForGuild = channelsStore.getChannelsForGuild(guildId);
-            Map<Long, Long> permissionsByChannel = permissionsStore.getPermissionsByChannel();
-            Collection<Channel> collectionValues = channelsForGuild.values();
-            ArrayList arrayList = new ArrayList();
-            for (Object obj : collectionValues) {
-                Channel channel = (Channel) obj;
-                if (GuildScheduledEventUtilities.INSTANCE.canStartEventInChannel(channel, (Long) C1643a.m845d(channel, permissionsByChannel))) {
-                    arrayList.add(obj);
-                }
-            }
-            return arrayList;
-        }
-
-        public static /* synthetic */ List getGuildScheduledEventCreatableChannelsForGuild$default(Companion companion, long j, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
-            if ((i & 2) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            if ((i & 4) != 0) {
-                storePermissions = StoreStream.INSTANCE.getPermissions();
-            }
-            return companion.getGuildScheduledEventCreatableChannelsForGuild(j, storeChannels, storePermissions);
-        }
-
-        public static /* synthetic */ GuildScheduledEvent getGuildScheduledEventToEndForCall$default(Companion companion, CallModel callModel, Long l, StoreGuilds storeGuilds, int i, Object obj) {
-            if ((i & 4) != 0) {
-                storeGuilds = StoreStream.INSTANCE.getGuilds();
-            }
-            return companion.getGuildScheduledEventToEndForCall(callModel, l, storeGuilds);
-        }
-
-        public static /* synthetic */ Observable observeCanCreateAnyEvent$default(Companion companion, long j, ObservationDeck observationDeck, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
-            if ((i & 2) != 0) {
-                observationDeck = ObservationDeckProvider.get();
-            }
-            ObservationDeck observationDeck2 = observationDeck;
-            if ((i & 4) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            StoreChannels storeChannels2 = storeChannels;
-            if ((i & 8) != 0) {
-                storePermissions = StoreStream.INSTANCE.getPermissions();
-            }
-            return companion.observeCanCreateAnyEvent(j, observationDeck2, storeChannels2, storePermissions);
         }
 
         public final boolean canCreateAnyEvent(long guildId, StoreChannels channelsStore, StorePermissions permissionsStore) {
@@ -156,6 +99,17 @@ public final class GuildScheduledEventUtilities {
             return (!permissionUtils.canEveryoneRole(Permission.VIEW_CHANNEL, channel, mapEmptyMap) || (member = guildsStore.getMember(channel.getGuildId(), usersStore.getMeSnapshot().getId())) == null || member.getPending()) ? false : true;
         }
 
+        public static /* synthetic */ boolean canStartEvent$default(Companion companion, long j, Long l, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
+            if ((i & 4) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            StoreChannels storeChannels2 = storeChannels;
+            if ((i & 8) != 0) {
+                storePermissions = StoreStream.INSTANCE.getPermissions();
+            }
+            return companion.canStartEvent(j, l, storeChannels2, storePermissions);
+        }
+
         public final boolean canStartEvent(long guildId, Long channelId, StoreChannels channelsStore, StorePermissions permissionsStore) {
             C12238m.checkNotNullParameter(channelsStore, "channelsStore");
             C12238m.checkNotNullParameter(permissionsStore, "permissionsStore");
@@ -186,6 +140,37 @@ public final class GuildScheduledEventUtilities {
                 return PermissionUtils.can(Permission.START_VOICE_EVENT, channelPermissions);
             }
             return false;
+        }
+
+        public static /* synthetic */ List getGuildScheduledEventCreatableChannelsForGuild$default(Companion companion, long j, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            if ((i & 4) != 0) {
+                storePermissions = StoreStream.INSTANCE.getPermissions();
+            }
+            return companion.getGuildScheduledEventCreatableChannelsForGuild(j, storeChannels, storePermissions);
+        }
+
+        private final List<Channel> getGuildScheduledEventCreatableChannelsForGuild(long guildId, StoreChannels channelsStore, StorePermissions permissionsStore) {
+            Map<Long, Channel> channelsForGuild = channelsStore.getChannelsForGuild(guildId);
+            Map<Long, Long> permissionsByChannel = permissionsStore.getPermissionsByChannel();
+            Collection<Channel> collectionValues = channelsForGuild.values();
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : collectionValues) {
+                Channel channel = (Channel) obj;
+                if (GuildScheduledEventUtilities.INSTANCE.canStartEventInChannel(channel, (Long) C1643a.m845d(channel, permissionsByChannel))) {
+                    arrayList.add(obj);
+                }
+            }
+            return arrayList;
+        }
+
+        public static /* synthetic */ GuildScheduledEvent getGuildScheduledEventToEndForCall$default(Companion companion, CallModel callModel, Long l, StoreGuilds storeGuilds, int i, Object obj) {
+            if ((i & 4) != 0) {
+                storeGuilds = StoreStream.INSTANCE.getGuilds();
+            }
+            return companion.getGuildScheduledEventToEndForCall(callModel, l, storeGuilds);
         }
 
         public final GuildScheduledEvent getGuildScheduledEventToEndForCall(CallModel callModel, Long myPermissions, StoreGuilds guildsStore) {
@@ -240,6 +225,21 @@ public final class GuildScheduledEventUtilities {
                 C12238m.checkNotNullExpressionValue(context, "context");
                 C0876m.m165c(context, eventDetailsUrl, 0, 4);
             }
+        }
+
+        public static /* synthetic */ Observable observeCanCreateAnyEvent$default(Companion companion, long j, ObservationDeck observationDeck, StoreChannels storeChannels, StorePermissions storePermissions, int i, Object obj) {
+            if ((i & 2) != 0) {
+                observationDeck = ObservationDeckProvider.get();
+            }
+            ObservationDeck observationDeck2 = observationDeck;
+            if ((i & 4) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            StoreChannels storeChannels2 = storeChannels;
+            if ((i & 8) != 0) {
+                storePermissions = StoreStream.INSTANCE.getPermissions();
+            }
+            return companion.observeCanCreateAnyEvent(j, observationDeck2, storeChannels2, storePermissions);
         }
 
         public final Observable<Boolean> observeCanCreateAnyEvent(long guildId, ObservationDeck observationDeck, StoreChannels channelsStore, StorePermissions permissionsStore) {

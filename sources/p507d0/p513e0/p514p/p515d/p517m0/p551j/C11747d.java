@@ -305,7 +305,7 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.d$b */
     /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC12012w0, CharSequence> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC12012w0, CharSequence> {
         public b() {
             super(1);
         }
@@ -323,17 +323,17 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
             if (interfaceC12012w0.getProjectionKind() == EnumC11935j1.INVARIANT) {
                 return strRenderType;
             }
-            return interfaceC12012w0.getProjectionKind() + ' ' + strRenderType;
+            return "" + interfaceC12012w0.getProjectionKind() + ' ' + strRenderType;
         }
     }
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.d$c */
     /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
-    public static final class c extends AbstractC12240o implements Function0<C11747d> {
+    public final class c extends AbstractC12240o implements Function0<C11747d> {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.j.d$c$a */
         /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
-        public static final class a extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
+        public final class a extends AbstractC12240o implements Function1<InterfaceC11751h, Unit> {
 
             /* JADX INFO: renamed from: j */
             public static final a f24242j = new a();
@@ -369,7 +369,7 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.d$d */
     /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
-    public static final class d extends AbstractC12240o implements Function1<AbstractC11815g<?>, CharSequence> {
+    public final class d extends AbstractC12240o implements Function1<AbstractC11815g<?>, CharSequence> {
         public d() {
             super(1);
         }
@@ -725,6 +725,210 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
         sb.append(c11747d.renderType(interfaceC11475y0.getUnderlyingType()));
     }
 
+    public boolean getActualPropertiesInPrimaryConstructor() {
+        return this.f24239d.getActualPropertiesInPrimaryConstructor();
+    }
+
+    public boolean getAlwaysRenderModifiers() {
+        return this.f24239d.getAlwaysRenderModifiers();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
+    public EnumC11744a getAnnotationArgumentsRenderingPolicy() {
+        return this.f24239d.getAnnotationArgumentsRenderingPolicy();
+    }
+
+    public Function1<InterfaceC11340c, Boolean> getAnnotationFilter() {
+        return this.f24239d.getAnnotationFilter();
+    }
+
+    public boolean getBoldOnlyForNamesInHtml() {
+        return this.f24239d.getBoldOnlyForNamesInHtml();
+    }
+
+    public boolean getClassWithPrimaryConstructor() {
+        return this.f24239d.getClassWithPrimaryConstructor();
+    }
+
+    public InterfaceC11745b getClassifierNamePolicy() {
+        return this.f24239d.getClassifierNamePolicy();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
+    public boolean getDebugMode() {
+        return this.f24239d.getDebugMode();
+    }
+
+    public Function1<InterfaceC11326c1, String> getDefaultParameterValueRenderer() {
+        return this.f24239d.getDefaultParameterValueRenderer();
+    }
+
+    public boolean getEachAnnotationOnNewLine() {
+        return this.f24239d.getEachAnnotationOnNewLine();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
+    public boolean getEnhancedTypes() {
+        return this.f24239d.getEnhancedTypes();
+    }
+
+    public Set<C11713b> getExcludedAnnotationClasses() {
+        return this.f24239d.getExcludedAnnotationClasses();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
+    public Set<C11713b> getExcludedTypeAnnotationClasses() {
+        return this.f24239d.getExcludedTypeAnnotationClasses();
+    }
+
+    public boolean getIncludeAdditionalModifiers() {
+        return this.f24239d.getIncludeAdditionalModifiers();
+    }
+
+    public boolean getIncludeAnnotationArguments() {
+        return this.f24239d.getIncludeAnnotationArguments();
+    }
+
+    public boolean getIncludeEmptyAnnotationArguments() {
+        return this.f24239d.getIncludeEmptyAnnotationArguments();
+    }
+
+    public boolean getIncludePropertyConstant() {
+        return this.f24239d.getIncludePropertyConstant();
+    }
+
+    public boolean getInformativeErrorType() {
+        return this.f24239d.getInformativeErrorType();
+    }
+
+    public Set<EnumC11750g> getModifiers() {
+        return this.f24239d.getModifiers();
+    }
+
+    public boolean getNormalizedVisibilities() {
+        return this.f24239d.getNormalizedVisibilities();
+    }
+
+    public final C11752i getOptions() {
+        return this.f24239d;
+    }
+
+    public EnumC11756m getOverrideRenderingPolicy() {
+        return this.f24239d.getOverrideRenderingPolicy();
+    }
+
+    public EnumC11757n getParameterNameRenderingPolicy() {
+        return this.f24239d.getParameterNameRenderingPolicy();
+    }
+
+    public boolean getParameterNamesInFunctionalTypes() {
+        return this.f24239d.getParameterNamesInFunctionalTypes();
+    }
+
+    public boolean getPresentableUnresolvedTypes() {
+        return this.f24239d.getPresentableUnresolvedTypes();
+    }
+
+    public EnumC11758o getPropertyAccessorRenderingPolicy() {
+        return this.f24239d.getPropertyAccessorRenderingPolicy();
+    }
+
+    public boolean getReceiverAfterName() {
+        return this.f24239d.getReceiverAfterName();
+    }
+
+    public boolean getRenderCompanionObjectName() {
+        return this.f24239d.getRenderCompanionObjectName();
+    }
+
+    public boolean getRenderConstructorDelegation() {
+        return this.f24239d.getRenderConstructorDelegation();
+    }
+
+    public boolean getRenderConstructorKeyword() {
+        return this.f24239d.getRenderConstructorKeyword();
+    }
+
+    public boolean getRenderDefaultAnnotationArguments() {
+        return this.f24239d.getRenderDefaultAnnotationArguments();
+    }
+
+    public boolean getRenderDefaultModality() {
+        return this.f24239d.getRenderDefaultModality();
+    }
+
+    public boolean getRenderDefaultVisibility() {
+        return this.f24239d.getRenderDefaultVisibility();
+    }
+
+    public boolean getRenderPrimaryConstructorParametersAsProperties() {
+        return this.f24239d.getRenderPrimaryConstructorParametersAsProperties();
+    }
+
+    public boolean getRenderTypeExpansions() {
+        return this.f24239d.getRenderTypeExpansions();
+    }
+
+    public boolean getRenderUnabbreviatedType() {
+        return this.f24239d.getRenderUnabbreviatedType();
+    }
+
+    public boolean getSecondaryConstructorsAsPrimary() {
+        return this.f24239d.getSecondaryConstructorsAsPrimary();
+    }
+
+    public boolean getStartFromDeclarationKeyword() {
+        return this.f24239d.getStartFromDeclarationKeyword();
+    }
+
+    public boolean getStartFromName() {
+        return this.f24239d.getStartFromName();
+    }
+
+    public EnumC11759p getTextFormat() {
+        return this.f24239d.getTextFormat();
+    }
+
+    public Function1<AbstractC11913c0, AbstractC11913c0> getTypeNormalizer() {
+        return this.f24239d.getTypeNormalizer();
+    }
+
+    public boolean getUninferredTypeParameterAsName() {
+        return this.f24239d.getUninferredTypeParameterAsName();
+    }
+
+    public boolean getUnitReturnType() {
+        return this.f24239d.getUnitReturnType();
+    }
+
+    public AbstractC11746c.l getValueParametersHandler() {
+        return this.f24239d.getValueParametersHandler();
+    }
+
+    public boolean getVerbose() {
+        return this.f24239d.getVerbose();
+    }
+
+    public boolean getWithDefinedIn() {
+        return this.f24239d.getWithDefinedIn();
+    }
+
+    public boolean getWithSourceFileForTopLevel() {
+        return this.f24239d.getWithSourceFileForTopLevel();
+    }
+
+    public boolean getWithoutReturnType() {
+        return this.f24239d.getWithoutReturnType();
+    }
+
+    public boolean getWithoutSuperTypes() {
+        return this.f24239d.getWithoutSuperTypes();
+    }
+
+    public boolean getWithoutTypeParameters() {
+        return this.f24239d.getWithoutTypeParameters();
+    }
+
     /* JADX INFO: renamed from: i */
     public static /* synthetic */ void m9870i(C11747d c11747d, StringBuilder sb, InterfaceC11338a interfaceC11338a, EnumC11342e enumC11342e, int i) {
         int i2 = i & 2;
@@ -1067,210 +1271,6 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
         }
     }
 
-    public boolean getActualPropertiesInPrimaryConstructor() {
-        return this.f24239d.getActualPropertiesInPrimaryConstructor();
-    }
-
-    public boolean getAlwaysRenderModifiers() {
-        return this.f24239d.getAlwaysRenderModifiers();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
-    public EnumC11744a getAnnotationArgumentsRenderingPolicy() {
-        return this.f24239d.getAnnotationArgumentsRenderingPolicy();
-    }
-
-    public Function1<InterfaceC11340c, Boolean> getAnnotationFilter() {
-        return this.f24239d.getAnnotationFilter();
-    }
-
-    public boolean getBoldOnlyForNamesInHtml() {
-        return this.f24239d.getBoldOnlyForNamesInHtml();
-    }
-
-    public boolean getClassWithPrimaryConstructor() {
-        return this.f24239d.getClassWithPrimaryConstructor();
-    }
-
-    public InterfaceC11745b getClassifierNamePolicy() {
-        return this.f24239d.getClassifierNamePolicy();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
-    public boolean getDebugMode() {
-        return this.f24239d.getDebugMode();
-    }
-
-    public Function1<InterfaceC11326c1, String> getDefaultParameterValueRenderer() {
-        return this.f24239d.getDefaultParameterValueRenderer();
-    }
-
-    public boolean getEachAnnotationOnNewLine() {
-        return this.f24239d.getEachAnnotationOnNewLine();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
-    public boolean getEnhancedTypes() {
-        return this.f24239d.getEnhancedTypes();
-    }
-
-    public Set<C11713b> getExcludedAnnotationClasses() {
-        return this.f24239d.getExcludedAnnotationClasses();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
-    public Set<C11713b> getExcludedTypeAnnotationClasses() {
-        return this.f24239d.getExcludedTypeAnnotationClasses();
-    }
-
-    public boolean getIncludeAdditionalModifiers() {
-        return this.f24239d.getIncludeAdditionalModifiers();
-    }
-
-    public boolean getIncludeAnnotationArguments() {
-        return this.f24239d.getIncludeAnnotationArguments();
-    }
-
-    public boolean getIncludeEmptyAnnotationArguments() {
-        return this.f24239d.getIncludeEmptyAnnotationArguments();
-    }
-
-    public boolean getIncludePropertyConstant() {
-        return this.f24239d.getIncludePropertyConstant();
-    }
-
-    public boolean getInformativeErrorType() {
-        return this.f24239d.getInformativeErrorType();
-    }
-
-    public Set<EnumC11750g> getModifiers() {
-        return this.f24239d.getModifiers();
-    }
-
-    public boolean getNormalizedVisibilities() {
-        return this.f24239d.getNormalizedVisibilities();
-    }
-
-    public final C11752i getOptions() {
-        return this.f24239d;
-    }
-
-    public EnumC11756m getOverrideRenderingPolicy() {
-        return this.f24239d.getOverrideRenderingPolicy();
-    }
-
-    public EnumC11757n getParameterNameRenderingPolicy() {
-        return this.f24239d.getParameterNameRenderingPolicy();
-    }
-
-    public boolean getParameterNamesInFunctionalTypes() {
-        return this.f24239d.getParameterNamesInFunctionalTypes();
-    }
-
-    public boolean getPresentableUnresolvedTypes() {
-        return this.f24239d.getPresentableUnresolvedTypes();
-    }
-
-    public EnumC11758o getPropertyAccessorRenderingPolicy() {
-        return this.f24239d.getPropertyAccessorRenderingPolicy();
-    }
-
-    public boolean getReceiverAfterName() {
-        return this.f24239d.getReceiverAfterName();
-    }
-
-    public boolean getRenderCompanionObjectName() {
-        return this.f24239d.getRenderCompanionObjectName();
-    }
-
-    public boolean getRenderConstructorDelegation() {
-        return this.f24239d.getRenderConstructorDelegation();
-    }
-
-    public boolean getRenderConstructorKeyword() {
-        return this.f24239d.getRenderConstructorKeyword();
-    }
-
-    public boolean getRenderDefaultAnnotationArguments() {
-        return this.f24239d.getRenderDefaultAnnotationArguments();
-    }
-
-    public boolean getRenderDefaultModality() {
-        return this.f24239d.getRenderDefaultModality();
-    }
-
-    public boolean getRenderDefaultVisibility() {
-        return this.f24239d.getRenderDefaultVisibility();
-    }
-
-    public boolean getRenderPrimaryConstructorParametersAsProperties() {
-        return this.f24239d.getRenderPrimaryConstructorParametersAsProperties();
-    }
-
-    public boolean getRenderTypeExpansions() {
-        return this.f24239d.getRenderTypeExpansions();
-    }
-
-    public boolean getRenderUnabbreviatedType() {
-        return this.f24239d.getRenderUnabbreviatedType();
-    }
-
-    public boolean getSecondaryConstructorsAsPrimary() {
-        return this.f24239d.getSecondaryConstructorsAsPrimary();
-    }
-
-    public boolean getStartFromDeclarationKeyword() {
-        return this.f24239d.getStartFromDeclarationKeyword();
-    }
-
-    public boolean getStartFromName() {
-        return this.f24239d.getStartFromName();
-    }
-
-    public EnumC11759p getTextFormat() {
-        return this.f24239d.getTextFormat();
-    }
-
-    public Function1<AbstractC11913c0, AbstractC11913c0> getTypeNormalizer() {
-        return this.f24239d.getTypeNormalizer();
-    }
-
-    public boolean getUninferredTypeParameterAsName() {
-        return this.f24239d.getUninferredTypeParameterAsName();
-    }
-
-    public boolean getUnitReturnType() {
-        return this.f24239d.getUnitReturnType();
-    }
-
-    public AbstractC11746c.l getValueParametersHandler() {
-        return this.f24239d.getValueParametersHandler();
-    }
-
-    public boolean getVerbose() {
-        return this.f24239d.getVerbose();
-    }
-
-    public boolean getWithDefinedIn() {
-        return this.f24239d.getWithDefinedIn();
-    }
-
-    public boolean getWithSourceFileForTopLevel() {
-        return this.f24239d.getWithSourceFileForTopLevel();
-    }
-
-    public boolean getWithoutReturnType() {
-        return this.f24239d.getWithoutReturnType();
-    }
-
-    public boolean getWithoutSuperTypes() {
-        return this.f24239d.getWithoutSuperTypes();
-    }
-
-    public boolean getWithoutTypeParameters() {
-        return this.f24239d.getWithoutTypeParameters();
-    }
-
     /* JADX INFO: renamed from: h */
     public final void m9890h(StringBuilder sb, InterfaceC11338a interfaceC11338a, EnumC11342e enumC11342e) {
         if (getModifiers().contains(EnumC11750g.ANNOTATIONS)) {
@@ -1429,6 +1429,228 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
         EnumC11476z modality = interfaceC11321b.getModality();
         C12238m.checkNotNullExpressionValue(modality, "callable.modality");
         m9898q(modality, sb, m9887e(interfaceC11321b));
+    }
+
+    /* JADX INFO: renamed from: s */
+    public final void m9900s(StringBuilder sb, boolean z2, String str) {
+        if (z2) {
+            sb.append(m9895n(str));
+            sb.append(" ");
+        }
+    }
+
+    /* JADX INFO: renamed from: t */
+    public final void m9901t(InterfaceC11450m interfaceC11450m, StringBuilder sb, boolean z2) {
+        C11716e name = interfaceC11450m.getName();
+        C12238m.checkNotNullExpressionValue(name, "descriptor.name");
+        sb.append(renderName(name, z2));
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final void m9902u(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
+        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
+        C11906a c11906a = abstractC11932i1Unwrap instanceof C11906a ? (C11906a) abstractC11932i1Unwrap : null;
+        if (c11906a == null) {
+            m9903v(sb, abstractC11913c0);
+            return;
+        }
+        if (getRenderTypeExpansions()) {
+            m9903v(sb, c11906a.getExpandedType());
+            return;
+        }
+        m9903v(sb, c11906a.getAbbreviation());
+        if (getRenderUnabbreviatedType()) {
+            m9889g(sb, c11906a);
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:71:0x0124  */
+    /* JADX INFO: renamed from: v */
+    public final void m9903v(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
+        String strEscape;
+        C11716e c11716eExtractParameterNameFromFunctionTypeArgument;
+        boolean z2;
+        if ((abstractC11913c0 instanceof AbstractC11938k1) && getDebugMode() && !((AbstractC11938k1) abstractC11913c0).isComputed()) {
+            sb.append("<Not computed yet>");
+            return;
+        }
+        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
+        if (abstractC11932i1Unwrap instanceof AbstractC12009v) {
+            sb.append(((AbstractC12009v) abstractC11932i1Unwrap).render(this, this));
+            return;
+        }
+        if (abstractC11932i1Unwrap instanceof AbstractC11934j0) {
+            AbstractC11934j0 abstractC11934j0 = (AbstractC11934j0) abstractC11932i1Unwrap;
+            if (C12238m.areEqual(abstractC11934j0, C11920e1.f24754b) || C11920e1.isDontCarePlaceholder(abstractC11934j0)) {
+                sb.append("???");
+                return;
+            }
+            if (C12005t.isUninferredParameter(abstractC11934j0)) {
+                if (!getUninferredTypeParameterAsName()) {
+                    sb.append("???");
+                    return;
+                }
+                String string = ((C12005t.f) abstractC11934j0.getConstructor()).getTypeParameterDescriptor().getName().toString();
+                C12238m.checkNotNullExpressionValue(string, "type.constructor as UninferredParameterTypeConstructor).typeParameterDescriptor.name.toString()");
+                int iOrdinal = getTextFormat().ordinal();
+                if (iOrdinal != 0) {
+                    if (iOrdinal != 1) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    string = C1643a.m886y("<font color=red><b>", string, "</b></font>");
+                }
+                sb.append(string);
+                return;
+            }
+            if (C11919e0.isError(abstractC11934j0)) {
+                m9893l(sb, abstractC11934j0);
+                return;
+            }
+            if (!m9882L(abstractC11934j0)) {
+                m9893l(sb, abstractC11934j0);
+                return;
+            }
+            int length = sb.length();
+            m9870i((C11747d) this.f24240e.getValue(), sb, abstractC11934j0, null, 2);
+            boolean z3 = sb.length() != length;
+            boolean zIsSuspendFunctionType = C11287g.isSuspendFunctionType(abstractC11934j0);
+            boolean zIsMarkedNullable = abstractC11934j0.isMarkedNullable();
+            AbstractC11913c0 receiverTypeFromFunctionType = C11287g.getReceiverTypeFromFunctionType(abstractC11934j0);
+            boolean z4 = zIsMarkedNullable || (z3 && receiverTypeFromFunctionType != null);
+            if (z4) {
+                if (zIsSuspendFunctionType) {
+                    sb.insert(length, '(');
+                } else {
+                    if (z3) {
+                        C12108y.last(sb);
+                        if (sb.charAt(C12106w.getLastIndex(sb) - 1) != ')') {
+                            sb.insert(C12106w.getLastIndex(sb), "()");
+                        }
+                    }
+                    sb.append("(");
+                }
+            }
+            m9900s(sb, zIsSuspendFunctionType, "suspend");
+            if (receiverTypeFromFunctionType != null) {
+                if (m9882L(receiverTypeFromFunctionType) && !receiverTypeFromFunctionType.isMarkedNullable()) {
+                    z2 = true;
+                } else if (C11287g.isSuspendFunctionType(receiverTypeFromFunctionType) || !receiverTypeFromFunctionType.getAnnotations().isEmpty()) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                if (z2) {
+                    sb.append("(");
+                }
+                m9902u(sb, receiverTypeFromFunctionType);
+                if (z2) {
+                    sb.append(")");
+                }
+                sb.append(".");
+            }
+            sb.append("(");
+            int i = 0;
+            for (InterfaceC12012w0 interfaceC12012w0 : C11287g.getValueParameterTypesFromFunctionType(abstractC11934j0)) {
+                int i2 = i + 1;
+                if (i > 0) {
+                    sb.append(", ");
+                }
+                if (getParameterNamesInFunctionalTypes()) {
+                    AbstractC11913c0 type = interfaceC12012w0.getType();
+                    C12238m.checkNotNullExpressionValue(type, "typeProjection.type");
+                    c11716eExtractParameterNameFromFunctionTypeArgument = C11287g.extractParameterNameFromFunctionTypeArgument(type);
+                } else {
+                    c11716eExtractParameterNameFromFunctionTypeArgument = null;
+                }
+                if (c11716eExtractParameterNameFromFunctionTypeArgument != null) {
+                    sb.append(renderName(c11716eExtractParameterNameFromFunctionTypeArgument, false));
+                    sb.append(": ");
+                }
+                sb.append(renderTypeProjection(interfaceC12012w0));
+                i = i2;
+            }
+            sb.append(") ");
+            int iOrdinal2 = getTextFormat().ordinal();
+            if (iOrdinal2 == 0) {
+                strEscape = getTextFormat().escape("->");
+            } else {
+                if (iOrdinal2 != 1) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                strEscape = "&rarr;";
+            }
+            sb.append(strEscape);
+            sb.append(" ");
+            m9902u(sb, C11287g.getReturnTypeFromFunctionType(abstractC11934j0));
+            if (z4) {
+                sb.append(")");
+            }
+            if (zIsMarkedNullable) {
+                sb.append("?");
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final void m9904w(InterfaceC11321b interfaceC11321b, StringBuilder sb) {
+        if (getModifiers().contains(EnumC11750g.OVERRIDE) && (!interfaceC11321b.getOverriddenDescriptors().isEmpty()) && getOverrideRenderingPolicy() != EnumC11756m.RENDER_OPEN) {
+            m9900s(sb, true, "override");
+            if (getVerbose()) {
+                sb.append("/*");
+                sb.append(interfaceC11321b.getOverriddenDescriptors().size());
+                sb.append("*/ ");
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final void m9905x(C11713b c11713b, String str, StringBuilder sb) {
+        sb.append(m9895n(str));
+        C11714c unsafe = c11713b.toUnsafe();
+        C12238m.checkNotNullExpressionValue(unsafe, "fqName.toUnsafe()");
+        String strRenderFqName = renderFqName(unsafe);
+        if (strRenderFqName.length() > 0) {
+            sb.append(" ");
+            sb.append(strRenderFqName);
+        }
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final void m9906y(StringBuilder sb, C11449l0 c11449l0) {
+        StringBuilder sb2;
+        C11449l0 outerType = c11449l0.getOuterType();
+        if (outerType == null) {
+            sb2 = null;
+        } else {
+            m9906y(sb, outerType);
+            sb.append('.');
+            C11716e name = c11449l0.getClassifierDescriptor().getName();
+            C12238m.checkNotNullExpressionValue(name, "possiblyInnerType.classifierDescriptor.name");
+            sb.append(renderName(name, false));
+            sb2 = sb;
+        }
+        if (sb2 == null) {
+            InterfaceC12008u0 typeConstructor = c11449l0.getClassifierDescriptor().getTypeConstructor();
+            C12238m.checkNotNullExpressionValue(typeConstructor, "possiblyInnerType.classifierDescriptor.typeConstructor");
+            sb.append(renderTypeConstructor(typeConstructor));
+        }
+        sb.append(renderTypeArguments(c11449l0.getArguments()));
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final void m9907z(InterfaceC11318a interfaceC11318a, StringBuilder sb) {
+        InterfaceC11459q0 extensionReceiverParameter = interfaceC11318a.getExtensionReceiverParameter();
+        if (extensionReceiverParameter != null) {
+            m9890h(sb, extensionReceiverParameter, EnumC11342e.RECEIVER);
+            AbstractC11913c0 type = extensionReceiverParameter.getType();
+            C12238m.checkNotNullExpressionValue(type, "receiver.type");
+            String strRenderType = renderType(type);
+            if (m9882L(type) && !C11920e1.isNullableType(type)) {
+                strRenderType = '(' + strRenderType + ')';
+            }
+            sb.append(strRenderType);
+            sb.append(".");
+        }
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.AbstractC11746c
@@ -1647,14 +1869,6 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
         return string;
     }
 
-    /* JADX INFO: renamed from: s */
-    public final void m9900s(StringBuilder sb, boolean z2, String str) {
-        if (z2) {
-            sb.append(m9895n(str));
-            sb.append(" ");
-        }
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
     public void setAnnotationArgumentsRenderingPolicy(EnumC11744a enumC11744a) {
         C12238m.checkNotNullParameter(enumC11744a, "<set-?>");
@@ -1724,219 +1938,5 @@ public final class C11747d extends AbstractC11746c implements InterfaceC11751h {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11751h
     public void setWithoutTypeParameters(boolean z2) {
         this.f24239d.setWithoutTypeParameters(z2);
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final void m9901t(InterfaceC11450m interfaceC11450m, StringBuilder sb, boolean z2) {
-        C11716e name = interfaceC11450m.getName();
-        C12238m.checkNotNullExpressionValue(name, "descriptor.name");
-        sb.append(renderName(name, z2));
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final void m9902u(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
-        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
-        C11906a c11906a = abstractC11932i1Unwrap instanceof C11906a ? (C11906a) abstractC11932i1Unwrap : null;
-        if (c11906a == null) {
-            m9903v(sb, abstractC11913c0);
-            return;
-        }
-        if (getRenderTypeExpansions()) {
-            m9903v(sb, c11906a.getExpandedType());
-            return;
-        }
-        m9903v(sb, c11906a.getAbbreviation());
-        if (getRenderUnabbreviatedType()) {
-            m9889g(sb, c11906a);
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:71:0x0124  */
-    /* JADX INFO: renamed from: v */
-    public final void m9903v(StringBuilder sb, AbstractC11913c0 abstractC11913c0) {
-        String strEscape;
-        C11716e c11716eExtractParameterNameFromFunctionTypeArgument;
-        boolean z2;
-        if ((abstractC11913c0 instanceof AbstractC11938k1) && getDebugMode() && !((AbstractC11938k1) abstractC11913c0).isComputed()) {
-            sb.append("<Not computed yet>");
-            return;
-        }
-        AbstractC11932i1 abstractC11932i1Unwrap = abstractC11913c0.unwrap();
-        if (abstractC11932i1Unwrap instanceof AbstractC12009v) {
-            sb.append(((AbstractC12009v) abstractC11932i1Unwrap).render(this, this));
-            return;
-        }
-        if (abstractC11932i1Unwrap instanceof AbstractC11934j0) {
-            AbstractC11934j0 abstractC11934j0 = (AbstractC11934j0) abstractC11932i1Unwrap;
-            if (C12238m.areEqual(abstractC11934j0, C11920e1.f24754b) || C11920e1.isDontCarePlaceholder(abstractC11934j0)) {
-                sb.append("???");
-                return;
-            }
-            if (C12005t.isUninferredParameter(abstractC11934j0)) {
-                if (!getUninferredTypeParameterAsName()) {
-                    sb.append("???");
-                    return;
-                }
-                String string = ((C12005t.f) abstractC11934j0.getConstructor()).getTypeParameterDescriptor().getName().toString();
-                C12238m.checkNotNullExpressionValue(string, "type.constructor as UninferredParameterTypeConstructor).typeParameterDescriptor.name.toString()");
-                int iOrdinal = getTextFormat().ordinal();
-                if (iOrdinal != 0) {
-                    if (iOrdinal != 1) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    string = C1643a.m886y("<font color=red><b>", string, "</b></font>");
-                }
-                sb.append(string);
-                return;
-            }
-            if (C11919e0.isError(abstractC11934j0)) {
-                m9893l(sb, abstractC11934j0);
-                return;
-            }
-            if (!m9882L(abstractC11934j0)) {
-                m9893l(sb, abstractC11934j0);
-                return;
-            }
-            int length = sb.length();
-            m9870i((C11747d) this.f24240e.getValue(), sb, abstractC11934j0, null, 2);
-            boolean z3 = sb.length() != length;
-            boolean zIsSuspendFunctionType = C11287g.isSuspendFunctionType(abstractC11934j0);
-            boolean zIsMarkedNullable = abstractC11934j0.isMarkedNullable();
-            AbstractC11913c0 receiverTypeFromFunctionType = C11287g.getReceiverTypeFromFunctionType(abstractC11934j0);
-            boolean z4 = zIsMarkedNullable || (z3 && receiverTypeFromFunctionType != null);
-            if (z4) {
-                if (zIsSuspendFunctionType) {
-                    sb.insert(length, '(');
-                } else {
-                    if (z3) {
-                        C12108y.last(sb);
-                        if (sb.charAt(C12106w.getLastIndex(sb) - 1) != ')') {
-                            sb.insert(C12106w.getLastIndex(sb), "()");
-                        }
-                    }
-                    sb.append("(");
-                }
-            }
-            m9900s(sb, zIsSuspendFunctionType, "suspend");
-            if (receiverTypeFromFunctionType != null) {
-                if (m9882L(receiverTypeFromFunctionType) && !receiverTypeFromFunctionType.isMarkedNullable()) {
-                    z2 = true;
-                } else if (C11287g.isSuspendFunctionType(receiverTypeFromFunctionType) || !receiverTypeFromFunctionType.getAnnotations().isEmpty()) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                if (z2) {
-                    sb.append("(");
-                }
-                m9902u(sb, receiverTypeFromFunctionType);
-                if (z2) {
-                    sb.append(")");
-                }
-                sb.append(".");
-            }
-            sb.append("(");
-            int i = 0;
-            for (InterfaceC12012w0 interfaceC12012w0 : C11287g.getValueParameterTypesFromFunctionType(abstractC11934j0)) {
-                int i2 = i + 1;
-                if (i > 0) {
-                    sb.append(", ");
-                }
-                if (getParameterNamesInFunctionalTypes()) {
-                    AbstractC11913c0 type = interfaceC12012w0.getType();
-                    C12238m.checkNotNullExpressionValue(type, "typeProjection.type");
-                    c11716eExtractParameterNameFromFunctionTypeArgument = C11287g.extractParameterNameFromFunctionTypeArgument(type);
-                } else {
-                    c11716eExtractParameterNameFromFunctionTypeArgument = null;
-                }
-                if (c11716eExtractParameterNameFromFunctionTypeArgument != null) {
-                    sb.append(renderName(c11716eExtractParameterNameFromFunctionTypeArgument, false));
-                    sb.append(": ");
-                }
-                sb.append(renderTypeProjection(interfaceC12012w0));
-                i = i2;
-            }
-            sb.append(") ");
-            int iOrdinal2 = getTextFormat().ordinal();
-            if (iOrdinal2 == 0) {
-                strEscape = getTextFormat().escape("->");
-            } else {
-                if (iOrdinal2 != 1) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                strEscape = "&rarr;";
-            }
-            sb.append(strEscape);
-            sb.append(" ");
-            m9902u(sb, C11287g.getReturnTypeFromFunctionType(abstractC11934j0));
-            if (z4) {
-                sb.append(")");
-            }
-            if (zIsMarkedNullable) {
-                sb.append("?");
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final void m9904w(InterfaceC11321b interfaceC11321b, StringBuilder sb) {
-        if (getModifiers().contains(EnumC11750g.OVERRIDE) && (!interfaceC11321b.getOverriddenDescriptors().isEmpty()) && getOverrideRenderingPolicy() != EnumC11756m.RENDER_OPEN) {
-            m9900s(sb, true, "override");
-            if (getVerbose()) {
-                sb.append("/*");
-                sb.append(interfaceC11321b.getOverriddenDescriptors().size());
-                sb.append("*/ ");
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final void m9905x(C11713b c11713b, String str, StringBuilder sb) {
-        sb.append(m9895n(str));
-        C11714c unsafe = c11713b.toUnsafe();
-        C12238m.checkNotNullExpressionValue(unsafe, "fqName.toUnsafe()");
-        String strRenderFqName = renderFqName(unsafe);
-        if (strRenderFqName.length() > 0) {
-            sb.append(" ");
-            sb.append(strRenderFqName);
-        }
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final void m9906y(StringBuilder sb, C11449l0 c11449l0) {
-        StringBuilder sb2;
-        C11449l0 outerType = c11449l0.getOuterType();
-        if (outerType == null) {
-            sb2 = null;
-        } else {
-            m9906y(sb, outerType);
-            sb.append('.');
-            C11716e name = c11449l0.getClassifierDescriptor().getName();
-            C12238m.checkNotNullExpressionValue(name, "possiblyInnerType.classifierDescriptor.name");
-            sb.append(renderName(name, false));
-            sb2 = sb;
-        }
-        if (sb2 == null) {
-            InterfaceC12008u0 typeConstructor = c11449l0.getClassifierDescriptor().getTypeConstructor();
-            C12238m.checkNotNullExpressionValue(typeConstructor, "possiblyInnerType.classifierDescriptor.typeConstructor");
-            sb.append(renderTypeConstructor(typeConstructor));
-        }
-        sb.append(renderTypeArguments(c11449l0.getArguments()));
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final void m9907z(InterfaceC11318a interfaceC11318a, StringBuilder sb) {
-        InterfaceC11459q0 extensionReceiverParameter = interfaceC11318a.getExtensionReceiverParameter();
-        if (extensionReceiverParameter != null) {
-            m9890h(sb, extensionReceiverParameter, EnumC11342e.RECEIVER);
-            AbstractC11913c0 type = extensionReceiverParameter.getType();
-            C12238m.checkNotNullExpressionValue(type, "receiver.type");
-            String strRenderType = renderType(type);
-            if (m9882L(type) && !C11920e1.isNullableType(type)) {
-                strRenderType = '(' + strRenderType + ')';
-            }
-            sb.append(strRenderType);
-            sb.append(".");
-        }
     }
 }

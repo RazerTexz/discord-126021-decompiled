@@ -14,10 +14,7 @@ public final /* data */ class ThreadStarterDividerEntry extends ChatListEntry {
     public ThreadStarterDividerEntry(long j, long j2) {
         this.channelId = j;
         this.messageId = j2;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
+        this.key = "" + getType() + j;
     }
 
     public static /* synthetic */ ThreadStarterDividerEntry copy$default(ThreadStarterDividerEntry threadStarterDividerEntry, long j, long j2, int i, Object obj) {
@@ -28,16 +25,6 @@ public final /* data */ class ThreadStarterDividerEntry extends ChatListEntry {
             j2 = threadStarterDividerEntry.messageId;
         }
         return threadStarterDividerEntry.copy(j, j2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
     }
 
     public final ThreadStarterDividerEntry copy(long channelId, long messageId) {
@@ -55,6 +42,11 @@ public final /* data */ class ThreadStarterDividerEntry extends ChatListEntry {
         return this.channelId == threadStarterDividerEntry.channelId && this.messageId == threadStarterDividerEntry.messageId;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
     public final long getChannelId() {
         return this.channelId;
     }
@@ -62,6 +54,11 @@ public final /* data */ class ThreadStarterDividerEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
     }
 
     public final long getMessageId() {

@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInviteLoginSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence inviteCode = null;
-    private final Long guildId = null;
     private final Long channelId = null;
+    private final Long guildId = null;
+    private final CharSequence inviteCode = null;
     private final Long inviterId = null;
     private final Long prevUserId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "invite_login_successful";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
         }
         TrackInviteLoginSuccessful trackInviteLoginSuccessful = (TrackInviteLoginSuccessful) other;
         return C12238m.areEqual(this.inviteCode, trackInviteLoginSuccessful.inviteCode) && C12238m.areEqual(this.guildId, trackInviteLoginSuccessful.guildId) && C12238m.areEqual(this.channelId, trackInviteLoginSuccessful.channelId) && C12238m.areEqual(this.inviterId, trackInviteLoginSuccessful.inviterId) && C12238m.areEqual(this.prevUserId, trackInviteLoginSuccessful.prevUserId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

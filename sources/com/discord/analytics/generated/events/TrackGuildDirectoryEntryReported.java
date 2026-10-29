@@ -16,35 +16,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildDirectoryEntryReported.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildDirectoryEntryReported implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final CharSequence description = null;
+    private final Long reasonEnum = null;
+    private final Long reportId = null;
+    private final CharSequence reportSubType = null;
+    private final CharSequence reportType = null;
+    private final CharSequence subject = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence reportType = null;
-    private final CharSequence reportSubType = null;
-    private final CharSequence subject = null;
-    private final CharSequence description = null;
-    private final Long reasonEnum = null;
-    private final Long reportId = null;
     private final transient String analyticsSchemaTypeName = "guild_directory_entry_reported";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,6 +37,18 @@ public final /* data */ class TrackGuildDirectoryEntryReported implements Analyt
         }
         TrackGuildDirectoryEntryReported trackGuildDirectoryEntryReported = (TrackGuildDirectoryEntryReported) other;
         return C12238m.areEqual(this.reportType, trackGuildDirectoryEntryReported.reportType) && C12238m.areEqual(this.reportSubType, trackGuildDirectoryEntryReported.reportSubType) && C12238m.areEqual(this.subject, trackGuildDirectoryEntryReported.subject) && C12238m.areEqual(this.description, trackGuildDirectoryEntryReported.description) && C12238m.areEqual(this.reasonEnum, trackGuildDirectoryEntryReported.reasonEnum) && C12238m.areEqual(this.reportId, trackGuildDirectoryEntryReported.reportId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -70,6 +64,12 @@ public final /* data */ class TrackGuildDirectoryEntryReported implements Analyt
         int iHashCode5 = (iHashCode4 + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.reportId;
         return iHashCode5 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

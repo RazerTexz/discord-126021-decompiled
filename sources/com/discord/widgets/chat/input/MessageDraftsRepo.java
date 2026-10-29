@@ -13,7 +13,7 @@ public final class MessageDraftsRepo {
     private final HashMap<Long, CharSequence> textChannelInput;
 
     /* JADX INFO: compiled from: MessageDraftsRepo.kt */
-    public static final class Provider {
+    public final class Provider {
         public static final Provider INSTANCE = new Provider();
 
         /* JADX INFO: renamed from: MESSAGE_DRAFTS_REPO_INSTANCE$delegate, reason: from kotlin metadata */
@@ -22,12 +22,12 @@ public final class MessageDraftsRepo {
         private Provider() {
         }
 
-        private final MessageDraftsRepo getMESSAGE_DRAFTS_REPO_INSTANCE() {
-            return (MessageDraftsRepo) MESSAGE_DRAFTS_REPO_INSTANCE.getValue();
-        }
-
         public final MessageDraftsRepo get() {
             return getMESSAGE_DRAFTS_REPO_INSTANCE();
+        }
+
+        private final MessageDraftsRepo getMESSAGE_DRAFTS_REPO_INSTANCE() {
+            return (MessageDraftsRepo) MESSAGE_DRAFTS_REPO_INSTANCE.getValue();
         }
     }
 

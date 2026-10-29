@@ -36,6 +36,12 @@ public final class C0948e4 implements ViewBinding {
         this.f816d = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f813a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C0948e4 m198a(@NonNull View view) {
@@ -54,11 +60,5 @@ public final class C0948e4 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f813a;
     }
 }

@@ -21,14 +21,14 @@ public final class C13147s extends ExecutorCoroutineDispatcher {
 
     /* JADX INFO: renamed from: j */
     public static final int f27897j;
+    public static volatile Executor pool;
 
     /* JADX INFO: renamed from: k */
     public static final C13147s f27898k = new C13147s();
-    public static volatile Executor pool;
 
     /* JADX INFO: renamed from: s.a.s$a */
     /* JADX INFO: compiled from: CommonPool.kt */
-    public static final class a implements ThreadFactory {
+    public final class a implements ThreadFactory {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ AtomicInteger f27899j;
@@ -65,6 +65,30 @@ public final class C13147s extends ExecutorCoroutineDispatcher {
             iIntValue = -1;
         }
         f27897j = iIntValue;
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        throw new IllegalStateException("Close cannot be invoked on CommonPool".toString());
+    }
+
+    @Override // kotlinx.coroutines.CoroutineDispatcher
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        try {
+            Executor executorM11346J = pool;
+            if (executorM11346J == null) {
+                synchronized (this) {
+                    executorM11346J = pool;
+                    if (executorM11346J == null) {
+                        executorM11346J = m11346J();
+                        pool = executorM11346J;
+                    }
+                }
+            }
+            executorM11346J.execute(runnable);
+        } catch (RejectedExecutionException unused) {
+            RunnableC13077d0.f27779q.m11341T(runnable);
+        }
     }
 
     /* JADX INFO: renamed from: I */
@@ -138,30 +162,6 @@ public final class C13147s extends ExecutorCoroutineDispatcher {
             numValueOf = null;
         }
         return numValueOf != null ? numValueOf.intValue() : C11226f.coerceAtLeast(Runtime.getRuntime().availableProcessors() - 1, 1);
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        throw new IllegalStateException("Close cannot be invoked on CommonPool".toString());
-    }
-
-    @Override // kotlinx.coroutines.CoroutineDispatcher
-    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        try {
-            Executor executorM11346J = pool;
-            if (executorM11346J == null) {
-                synchronized (this) {
-                    executorM11346J = pool;
-                    if (executorM11346J == null) {
-                        executorM11346J = m11346J();
-                        pool = executorM11346J;
-                    }
-                }
-            }
-            executorM11346J.execute(runnable);
-        } catch (RejectedExecutionException unused) {
-            RunnableC13077d0.f27779q.m11341T(runnable);
-        }
     }
 
     @Override // kotlinx.coroutines.CoroutineDispatcher

@@ -9,9 +9,6 @@ import p007b.p225i.p414e.AbstractC4951f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4969h extends AbstractC4947b {
 
-    /* JADX INFO: renamed from: b */
-    public static final byte[] f13277b = new byte[0];
-
     /* JADX INFO: renamed from: c */
     public byte[] f13278c;
 
@@ -20,6 +17,9 @@ public final class C4969h extends AbstractC4947b {
 
     /* JADX INFO: renamed from: e */
     public C4963b f13280e;
+
+    /* JADX INFO: renamed from: b */
+    public static final byte[] f13277b = new byte[0];
 
     public C4969h(AbstractC4951f abstractC4951f) {
         super(abstractC4951f);

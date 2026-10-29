@@ -26,16 +26,6 @@ public final /* data */ class PatchPaymentSourceRaw {
         return patchPaymentSourceRaw.copy(modelBillingAddress, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelBillingAddress getBillingAddress() {
-        return this.billingAddress;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getDefault() {
-        return this.default;
-    }
-
     public final PatchPaymentSourceRaw copy(ModelBillingAddress billingAddress, boolean z2) {
         C12238m.checkNotNullParameter(billingAddress, "billingAddress");
         return new PatchPaymentSourceRaw(billingAddress, z2);
@@ -52,8 +42,18 @@ public final /* data */ class PatchPaymentSourceRaw {
         return C12238m.areEqual(this.billingAddress, patchPaymentSourceRaw.billingAddress) && this.default == patchPaymentSourceRaw.default;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final ModelBillingAddress getBillingAddress() {
         return this.billingAddress;
+    }
+
+    public final ModelBillingAddress getBillingAddress() {
+        return this.billingAddress;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getDefault() {
+        return this.default;
     }
 
     public final boolean getDefault() {

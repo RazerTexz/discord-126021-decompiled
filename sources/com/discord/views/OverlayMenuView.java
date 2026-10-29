@@ -57,7 +57,7 @@ public final class OverlayMenuView extends LinearLayout implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuView$a */
     /* JADX INFO: compiled from: OverlayMenuView.kt */
-    public static final class C7085a {
+    public final class C7085a {
 
         /* JADX INFO: renamed from: a */
         public final Long f19102a;
@@ -82,7 +82,7 @@ public final class OverlayMenuView extends LinearLayout implements AppComponent 
 
     /* JADX INFO: renamed from: com.discord.views.OverlayMenuView$b */
     /* JADX INFO: compiled from: OverlayMenuView.kt */
-    public static final class C7086b extends AbstractC12240o implements Function1<C7085a, Unit> {
+    public final class C7086b extends AbstractC12240o implements Function1<C7085a, Unit> {
         public C7086b() {
             super(1);
         }

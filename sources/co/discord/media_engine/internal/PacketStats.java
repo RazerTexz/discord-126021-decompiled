@@ -18,26 +18,6 @@ public final /* data */ class PacketStats {
         this.payloadBytes = j4;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getHeaderBytes() {
-        return this.headerBytes;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getPackets() {
-        return this.packets;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getPaddingBytes() {
-        return this.paddingBytes;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getPayloadBytes() {
-        return this.payloadBytes;
-    }
-
     public final PacketStats copy(long headerBytes, long packets, long paddingBytes, long payloadBytes) {
         return new PacketStats(headerBytes, packets, paddingBytes, payloadBytes);
     }
@@ -53,16 +33,36 @@ public final /* data */ class PacketStats {
         return this.headerBytes == packetStats.headerBytes && this.packets == packetStats.packets && this.paddingBytes == packetStats.paddingBytes && this.payloadBytes == packetStats.payloadBytes;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getHeaderBytes() {
         return this.headerBytes;
+    }
+
+    public final long getHeaderBytes() {
+        return this.headerBytes;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getPackets() {
+        return this.packets;
     }
 
     public final long getPackets() {
         return this.packets;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getPaddingBytes() {
         return this.paddingBytes;
+    }
+
+    public final long getPaddingBytes() {
+        return this.paddingBytes;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final long getPayloadBytes() {
+        return this.payloadBytes;
     }
 
     public final long getPayloadBytes() {

@@ -9,11 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackExternalPaymentSucceeded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackExternalPaymentSucceeded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long amount = null;
+    private final Long amountRefunded = null;
     private final Long createdAt = null;
     private final CharSequence currency = null;
-    private final Long amountRefunded = null;
     private final Long paymentGateway = null;
     private final Long paymentId = null;
     private final CharSequence paymentType = null;
@@ -30,13 +29,8 @@ public final /* data */ class TrackExternalPaymentSucceeded implements Analytics
     private final Long subscriptionPremiumGuildQuantity = null;
     private final Long subscriptionPremiumPlanId = null;
     private final Long subscriptionType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "external_payment_succeeded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,6 +41,12 @@ public final /* data */ class TrackExternalPaymentSucceeded implements Analytics
         }
         TrackExternalPaymentSucceeded trackExternalPaymentSucceeded = (TrackExternalPaymentSucceeded) other;
         return C12238m.areEqual(this.amount, trackExternalPaymentSucceeded.amount) && C12238m.areEqual(this.createdAt, trackExternalPaymentSucceeded.createdAt) && C12238m.areEqual(this.currency, trackExternalPaymentSucceeded.currency) && C12238m.areEqual(this.amountRefunded, trackExternalPaymentSucceeded.amountRefunded) && C12238m.areEqual(this.paymentGateway, trackExternalPaymentSucceeded.paymentGateway) && C12238m.areEqual(this.paymentId, trackExternalPaymentSucceeded.paymentId) && C12238m.areEqual(this.paymentType, trackExternalPaymentSucceeded.paymentType) && C12238m.areEqual(this.price, trackExternalPaymentSucceeded.price) && C12238m.areEqual(this.skuId, trackExternalPaymentSucceeded.skuId) && C12238m.areEqual(this.skuSubscriptionPlanId, trackExternalPaymentSucceeded.skuSubscriptionPlanId) && C12238m.areEqual(this.skuType, trackExternalPaymentSucceeded.skuType) && C12238m.areEqual(this.subscriptionCurrentPeriodEnd, trackExternalPaymentSucceeded.subscriptionCurrentPeriodEnd) && C12238m.areEqual(this.subscriptionCurrentPeriodStart, trackExternalPaymentSucceeded.subscriptionCurrentPeriodStart) && C12238m.areEqual(this.subscriptionId, trackExternalPaymentSucceeded.subscriptionId) && C12238m.areEqual(this.subscriptionPaymentGatewayPlanId, trackExternalPaymentSucceeded.subscriptionPaymentGatewayPlanId) && C12238m.areEqual(this.subscriptionPlanId, trackExternalPaymentSucceeded.subscriptionPlanId) && C12238m.areEqual(this.subscriptionPremiumGuildPlanId, trackExternalPaymentSucceeded.subscriptionPremiumGuildPlanId) && C12238m.areEqual(this.subscriptionPremiumGuildQuantity, trackExternalPaymentSucceeded.subscriptionPremiumGuildQuantity) && C12238m.areEqual(this.subscriptionPremiumPlanId, trackExternalPaymentSucceeded.subscriptionPremiumPlanId) && C12238m.areEqual(this.subscriptionType, trackExternalPaymentSucceeded.subscriptionType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

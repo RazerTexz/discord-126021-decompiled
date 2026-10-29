@@ -27,7 +27,7 @@ public final class WidgetChatListAdapterItemGuildInviteReminder extends WidgetCh
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildInviteReminder$onConfigure$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildInviteReminder.kt */
-    public static final class C80752 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C80752 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ ChatListEntry $data;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -34,16 +34,9 @@ public final class WidgetchannelPickerAdapter extends RecyclerView.Adapter<Chann
     private List<? extends ChannelPickerAdapterItem> items;
     private final OnItemClickListener listener;
 
-    /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public interface OnItemClickListener {
-        void onChannelItemClick(ChannelPickerAdapterItem.ChannelItem channelItem);
-
-        void onCreateChannelClick();
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetchannelPickerAdapter$onCreateViewHolder$1 */
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final /* synthetic */ class C74021 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C74021 extends C12236k implements Function0<Unit> {
         public C74021(OnItemClickListener onItemClickListener) {
             super(0, onItemClickListener, OnItemClickListener.class, "onCreateChannelClick", "onCreateChannelClick()V", 0);
         }
@@ -62,7 +55,7 @@ public final class WidgetchannelPickerAdapter extends RecyclerView.Adapter<Chann
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetchannelPickerAdapter$onCreateViewHolder$2 */
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final /* synthetic */ class C74032 extends C12236k implements Function1<ChannelPickerAdapterItem.ChannelItem, Unit> {
+    public final /* synthetic */ class C74032 extends C12236k implements Function1<ChannelPickerAdapterItem.ChannelItem, Unit> {
         public C74032(OnItemClickListener onItemClickListener) {
             super(1, onItemClickListener, OnItemClickListener.class, "onChannelItemClick", "onChannelItemClick(Lcom/discord/widgets/channels/ChannelPickerAdapterItem$ChannelItem;)V", 0);
         }
@@ -82,7 +75,7 @@ public final class WidgetchannelPickerAdapter extends RecyclerView.Adapter<Chann
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetchannelPickerAdapter$setItems$1 */
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final class C74041 extends AbstractC12240o implements Function1<List<? extends ChannelPickerAdapterItem>, Unit> {
+    public final class C74041 extends AbstractC12240o implements Function1<List<? extends ChannelPickerAdapterItem>, Unit> {
         public C74041() {
             super(1);
         }
@@ -100,14 +93,15 @@ public final class WidgetchannelPickerAdapter extends RecyclerView.Adapter<Chann
         }
     }
 
-    public /* synthetic */ WidgetchannelPickerAdapter(OnItemClickListener onItemClickListener, AppComponent appComponent, DiffCreator diffCreator, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(onItemClickListener, appComponent, (i & 4) != 0 ? new DiffCreator(appComponent) : diffCreator);
+    /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
+    public interface OnItemClickListener {
+        void onChannelItemClick(ChannelPickerAdapterItem.ChannelItem channelItem);
+
+        void onCreateChannelClick();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.items.size();
+    public /* synthetic */ WidgetchannelPickerAdapter(OnItemClickListener onItemClickListener, AppComponent appComponent, DiffCreator diffCreator, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(onItemClickListener, appComponent, (i & 4) != 0 ? new DiffCreator(appComponent) : diffCreator);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -120,6 +114,12 @@ public final class WidgetchannelPickerAdapter extends RecyclerView.Adapter<Chann
             return 1;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.items.size();
     }
 
     public final void setItems(List<? extends ChannelPickerAdapterItem> newItems) {

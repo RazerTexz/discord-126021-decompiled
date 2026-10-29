@@ -9,15 +9,15 @@ import p658rx.functions.Action0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12785a implements Subscription {
 
-    /* JADX INFO: renamed from: j */
-    public static final Action0 f27419j = new a();
-
     /* JADX INFO: renamed from: k */
     public final AtomicReference<Action0> f27420k;
 
+    /* JADX INFO: renamed from: j */
+    public static final Action0 f27419j = new a();
+
     /* JADX INFO: renamed from: j0.r.a$a */
     /* JADX INFO: compiled from: BooleanSubscription.java */
-    public static class a implements Action0 {
+    public final class a implements Action0 {
         @Override // p658rx.functions.Action0
         public void call() {
         }

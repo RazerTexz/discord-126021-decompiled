@@ -33,7 +33,7 @@ public interface InterfaceC11862g extends InterfaceC11450m, InterfaceC11474y {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e0.g$b */
     /* JADX INFO: compiled from: DeserializedMemberDescriptor.kt */
-    public static final class b {
+    public final class b {
         public static List<C11709h> getVersionRequirements(InterfaceC11862g interfaceC11862g) {
             C12238m.checkNotNullParameter(interfaceC11862g, "this");
             return C11709h.f24062a.create(interfaceC11862g.getProto(), interfaceC11862g.getNameResolver(), interfaceC11862g.getVersionRequirementTable());

@@ -33,9 +33,6 @@ public @interface InterfaceC2379e {
         DEFAULT_TYPING
     }
 
-    /* JADX INFO: renamed from: as */
-    Class<?> m2262as() default Void.class;
-
     Class<?> contentAs() default Void.class;
 
     Class<? extends InterfaceC2343e> contentConverter() default InterfaceC2343e.a.class;
@@ -50,6 +47,9 @@ public @interface InterfaceC2379e {
     Class<?> keyAs() default Void.class;
 
     Class<? extends AbstractC2364n> keyUsing() default AbstractC2364n.a.class;
+
+    /* JADX INFO: renamed from: as */
+    Class<?> m2262as() default Void.class;
 
     Class<? extends AbstractC2364n> nullsUsing() default AbstractC2364n.a.class;
 

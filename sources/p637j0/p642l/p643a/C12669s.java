@@ -21,7 +21,7 @@ public final class C12669s<T, R> implements Observable.InterfaceC13005a<R> {
 
     /* JADX INFO: renamed from: j0.l.a.s$a */
     /* JADX INFO: compiled from: OnSubscribeMap.java */
-    public static final class a<T, R> extends Subscriber<T> {
+    public final class a<T, R> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super R> f27033j;

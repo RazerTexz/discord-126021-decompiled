@@ -62,7 +62,7 @@ public final class C5099i implements InterfaceC5098h {
 
     /* JADX INFO: renamed from: b.m.a.g.d.i$b */
     /* JADX INFO: compiled from: SntpService.kt */
-    public static final class b implements ThreadFactory {
+    public final class b implements ThreadFactory {
 
         /* JADX INFO: renamed from: j */
         public static final b f13674j = new b();
@@ -75,7 +75,7 @@ public final class C5099i implements InterfaceC5098h {
 
     /* JADX INFO: renamed from: b.m.a.g.d.i$c */
     /* JADX INFO: compiled from: SntpService.kt */
-    public static final class c implements Runnable {
+    public final class c implements Runnable {
         public c() {
         }
 
@@ -153,6 +153,13 @@ public final class C5099i implements InterfaceC5098h {
         this.f13660c = Executors.newSingleThreadExecutor(b.f13674j);
     }
 
+    /* JADX INFO: renamed from: c */
+    public final void m7152c() {
+        if (this.f13658a.get() == a.STOPPED) {
+            throw new IllegalStateException("Service already shutdown");
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:11:0x003c  */
     @Override // p007b.p445m.p446a.p447g.p448d.InterfaceC5098h
     /* JADX INFO: renamed from: a */
@@ -186,13 +193,6 @@ public final class C5099i implements InterfaceC5098h {
         m7152c();
         if (this.f13658a.get() != a.SYNCING) {
             this.f13660c.submit(new c());
-        }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m7152c() {
-        if (this.f13658a.get() == a.STOPPED) {
-            throw new IllegalStateException("Service already shutdown");
         }
     }
 }

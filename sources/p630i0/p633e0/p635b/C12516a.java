@@ -10,11 +10,11 @@ import p630i0.InterfaceC12554h;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12516a<T> implements InterfaceC12554h<T, RequestBody> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12516a<Object> f26517a = new C12516a<>();
-
     /* JADX INFO: renamed from: b */
     public static final MediaType f26518b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12516a<Object> f26517a = new C12516a<>();
 
     static {
         MediaType.Companion companion = MediaType.INSTANCE;

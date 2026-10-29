@@ -33,29 +33,11 @@ import p507d0.p592z.p594d.C12244s;
 /* JADX INFO: loaded from: classes.dex */
 public class OverlayBubbleWrap extends FrameLayout {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f18620j = {C12216a0.mutableProperty1(new C12244s(OverlayBubbleWrap.class, "isMoving", "isMoving()Z", 0))};
+    /* JADX INFO: renamed from: v, reason: from kotlin metadata */
+    public Point actualPosition;
 
-    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final WindowManager windowManager;
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public WindowManager.LayoutParams windowLayoutParams;
-
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public final Rect insetMargins;
-
-    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public final int moveThresholdPx;
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public final ReadWriteProperty isMoving;
-
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public Function1<? super Boolean, Unit> onMovingStateChanged;
-
-    /* JADX INFO: renamed from: q, reason: from kotlin metadata */
-    public final int[] screenOffset;
+    /* JADX INFO: renamed from: w, reason: from kotlin metadata */
+    public Point anchorPosition;
 
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
     public int deltaX;
@@ -63,21 +45,39 @@ public class OverlayBubbleWrap extends FrameLayout {
     /* JADX INFO: renamed from: s, reason: from kotlin metadata */
     public int deltaY;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f18620j = {C12216a0.mutableProperty1(new C12244s(OverlayBubbleWrap.class, "isMoving", "isMoving()Z", 0))};
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public final Rect insetMargins;
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public final ReadWriteProperty isMoving;
+
+    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
+    public final int moveThresholdPx;
+
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public Function1<? super Boolean, Unit> onMovingStateChanged;
+
+    /* JADX INFO: renamed from: q, reason: from kotlin metadata */
+    public final int[] screenOffset;
+
     /* JADX INFO: renamed from: t, reason: from kotlin metadata */
     public final SpringAnimation springAnimationX;
 
     /* JADX INFO: renamed from: u, reason: from kotlin metadata */
     public final SpringAnimation springAnimationY;
 
-    /* JADX INFO: renamed from: v, reason: from kotlin metadata */
-    public Point actualPosition;
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public WindowManager.LayoutParams windowLayoutParams;
 
-    /* JADX INFO: renamed from: w, reason: from kotlin metadata */
-    public Point anchorPosition;
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public final WindowManager windowManager;
 
     /* JADX INFO: renamed from: com.discord.overlay.views.OverlayBubbleWrap$a */
     /* JADX INFO: compiled from: Delegates.kt */
-    public static final class C5571a extends AbstractC11212a<Boolean> {
+    public final class C5571a extends AbstractC11212a<Boolean> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ OverlayBubbleWrap f18634a;
@@ -110,7 +110,7 @@ public class OverlayBubbleWrap extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.overlay.views.OverlayBubbleWrap$b */
     /* JADX INFO: compiled from: View.kt */
-    public static final class ViewOnLayoutChangeListenerC5572b implements View.OnLayoutChangeListener {
+    public final class ViewOnLayoutChangeListenerC5572b implements View.OnLayoutChangeListener {
         public ViewOnLayoutChangeListenerC5572b() {
         }
 
@@ -162,6 +162,95 @@ public class OverlayBubbleWrap extends FrameLayout {
         this.actualPosition = new Point(layoutParams2.x, layoutParams2.y);
     }
 
+    @Override // android.view.ViewGroup, android.view.View
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        C12238m.checkNotNullParameter(motionEvent, "motionEvent");
+        int action = motionEvent.getAction();
+        if (action != 0) {
+            if (action != 1) {
+                if (action == 2) {
+                    if (mo8437f()) {
+                        this.actualPosition.x = ((int) motionEvent.getRawX()) - this.deltaX;
+                        this.actualPosition.y = ((int) motionEvent.getRawY()) - this.deltaY;
+                        if (ViewCompat.isAttachedToWindow(this) && this.anchorPosition == null) {
+                            WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+                            Point point = this.actualPosition;
+                            layoutParams.x = point.x;
+                            layoutParams.y = point.y;
+                            this.windowManager.updateViewLayout(this, layoutParams);
+                        }
+                    } else {
+                        if (Math.abs((this.deltaX + this.windowLayoutParams.x) - ((int) motionEvent.getRawX())) > this.moveThresholdPx) {
+                            setMoving(true);
+                        }
+                    }
+                }
+            } else if (mo8437f()) {
+                setMoving(false);
+            }
+        } else {
+            this.deltaX = ((int) motionEvent.getRawX()) - this.windowLayoutParams.x;
+            this.deltaY = ((int) motionEvent.getRawY()) - this.windowLayoutParams.y;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final int getCenterX() {
+        return (getWidth() / 2) + this.windowLayoutParams.x;
+    }
+
+    public final int getCenterY() {
+        return (getHeight() / 2) + this.windowLayoutParams.y;
+    }
+
+    public final Rect getInsetMargins() {
+        return this.insetMargins;
+    }
+
+    public final int getMoveThresholdPx() {
+        return this.moveThresholdPx;
+    }
+
+    public final Function1<Boolean, Unit> getOnMovingStateChanged() {
+        return this.onMovingStateChanged;
+    }
+
+    public final int[] getScreenOffset() {
+        return this.screenOffset;
+    }
+
+    public static /* synthetic */ void getSpringAnimationX$annotations() {
+    }
+
+    public final SpringAnimation getSpringAnimationX() {
+        return this.springAnimationX;
+    }
+
+    public static /* synthetic */ void getSpringAnimationY$annotations() {
+    }
+
+    public final SpringAnimation getSpringAnimationY() {
+        return this.springAnimationY;
+    }
+
+    public final WindowManager.LayoutParams getWindowLayoutParams() {
+        return this.windowLayoutParams;
+    }
+
+    public final WindowManager getWindowManager() {
+        return this.windowManager;
+    }
+
+    @Override // android.view.View
+    public float getX() {
+        return this.windowLayoutParams.x;
+    }
+
+    @Override // android.view.View
+    public float getY() {
+        return this.windowLayoutParams.y;
+    }
+
     /* JADX INFO: renamed from: c */
     public static void m8434c(OverlayBubbleWrap overlayBubbleWrap, int i, int i2, Rect rect, int i3, Object obj) {
         Rect rectM8436e;
@@ -189,10 +278,27 @@ public class OverlayBubbleWrap extends FrameLayout {
         springAnimation2.animateToFinalPosition(iMin2);
     }
 
-    public static /* synthetic */ void getSpringAnimationX$annotations() {
+    /* JADX INFO: renamed from: d */
+    public final void m8435d() {
+        getLocationOnScreen(this.screenOffset);
+        int[] iArr = this.screenOffset;
+        int i = iArr[0];
+        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+        iArr[0] = i - layoutParams.x;
+        iArr[1] = iArr[1] - layoutParams.y;
     }
 
-    public static /* synthetic */ void getSpringAnimationY$annotations() {
+    /* JADX INFO: renamed from: e */
+    public final Rect m8436e(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        Rect screenSize = DisplayUtils.getScreenSize(context);
+        int i = screenSize.left;
+        Rect rect = this.insetMargins;
+        screenSize.left = i + rect.left;
+        screenSize.right -= rect.right;
+        screenSize.top += rect.top;
+        screenSize.bottom -= rect.bottom;
+        return screenSize;
     }
 
     /* JADX INFO: renamed from: a */
@@ -240,115 +346,9 @@ public class OverlayBubbleWrap extends FrameLayout {
         Log.d(simpleName, sbM833U.toString());
     }
 
-    /* JADX INFO: renamed from: d */
-    public final void m8435d() {
-        getLocationOnScreen(this.screenOffset);
-        int[] iArr = this.screenOffset;
-        int i = iArr[0];
-        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        iArr[0] = i - layoutParams.x;
-        iArr[1] = iArr[1] - layoutParams.y;
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        C12238m.checkNotNullParameter(motionEvent, "motionEvent");
-        int action = motionEvent.getAction();
-        if (action != 0) {
-            if (action != 1) {
-                if (action == 2) {
-                    if (mo8437f()) {
-                        this.actualPosition.x = ((int) motionEvent.getRawX()) - this.deltaX;
-                        this.actualPosition.y = ((int) motionEvent.getRawY()) - this.deltaY;
-                        if (ViewCompat.isAttachedToWindow(this) && this.anchorPosition == null) {
-                            WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-                            Point point = this.actualPosition;
-                            layoutParams.x = point.x;
-                            layoutParams.y = point.y;
-                            this.windowManager.updateViewLayout(this, layoutParams);
-                        }
-                    } else {
-                        if (Math.abs((this.deltaX + this.windowLayoutParams.x) - ((int) motionEvent.getRawX())) > this.moveThresholdPx) {
-                            setMoving(true);
-                        }
-                    }
-                }
-            } else if (mo8437f()) {
-                setMoving(false);
-            }
-        } else {
-            this.deltaX = ((int) motionEvent.getRawX()) - this.windowLayoutParams.x;
-            this.deltaY = ((int) motionEvent.getRawY()) - this.windowLayoutParams.y;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final Rect m8436e(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        Rect screenSize = DisplayUtils.getScreenSize(context);
-        int i = screenSize.left;
-        Rect rect = this.insetMargins;
-        screenSize.left = i + rect.left;
-        screenSize.right -= rect.right;
-        screenSize.top += rect.top;
-        screenSize.bottom -= rect.bottom;
-        return screenSize;
-    }
-
     /* JADX INFO: renamed from: f */
     public boolean mo8437f() {
         return ((Boolean) this.isMoving.getValue(this, f18620j[0])).booleanValue();
-    }
-
-    public final int getCenterX() {
-        return (getWidth() / 2) + this.windowLayoutParams.x;
-    }
-
-    public final int getCenterY() {
-        return (getHeight() / 2) + this.windowLayoutParams.y;
-    }
-
-    public final Rect getInsetMargins() {
-        return this.insetMargins;
-    }
-
-    public final int getMoveThresholdPx() {
-        return this.moveThresholdPx;
-    }
-
-    public final Function1<Boolean, Unit> getOnMovingStateChanged() {
-        return this.onMovingStateChanged;
-    }
-
-    public final int[] getScreenOffset() {
-        return this.screenOffset;
-    }
-
-    public final SpringAnimation getSpringAnimationX() {
-        return this.springAnimationX;
-    }
-
-    public final SpringAnimation getSpringAnimationY() {
-        return this.springAnimationY;
-    }
-
-    public final WindowManager.LayoutParams getWindowLayoutParams() {
-        return this.windowLayoutParams;
-    }
-
-    public final WindowManager getWindowManager() {
-        return this.windowManager;
-    }
-
-    @Override // android.view.View
-    public float getX() {
-        return this.windowLayoutParams.x;
-    }
-
-    @Override // android.view.View
-    public float getY() {
-        return this.windowLayoutParams.y;
     }
 
     @Override // android.view.View

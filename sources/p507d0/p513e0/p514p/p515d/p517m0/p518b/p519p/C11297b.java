@@ -76,7 +76,7 @@ public final class C11297b extends AbstractC11361a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.p.b$a */
     /* JADX INFO: compiled from: FunctionClassDescriptor.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -111,11 +111,6 @@ public final class C11297b extends AbstractC11361a {
         this.f22599w = C12163u.toList(arrayList);
     }
 
-    /* JADX INFO: renamed from: b */
-    public static final void m9369b(ArrayList<InterfaceC11477z0> arrayList, C11297b c11297b, EnumC11935j1 enumC11935j1, String str) {
-        arrayList.add(C11382k0.createWithDefaultBound(c11297b, InterfaceC11344g.f22735f.getEMPTY(), false, enumC11935j1, C11716e.identifier(str), arrayList.size(), c11297b.f22593q));
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
     public InterfaceC11344g getAnnotations() {
         return InterfaceC11344g.f22735f.getEMPTY();
@@ -128,11 +123,6 @@ public final class C11297b extends AbstractC11361a {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
     public /* bridge */ /* synthetic */ InterfaceC11330e getCompanionObjectDescriptor() {
         return (InterfaceC11330e) m11459getCompanionObjectDescriptor();
-    }
-
-    /* JADX INFO: renamed from: getCompanionObjectDescriptor, reason: collision with other method in class */
-    public Void m11459getCompanionObjectDescriptor() {
-        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11359i
@@ -175,11 +165,6 @@ public final class C11297b extends AbstractC11361a {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
     public /* bridge */ /* synthetic */ InterfaceC11327d getUnsubstitutedPrimaryConstructor() {
         return (InterfaceC11327d) m11460getUnsubstitutedPrimaryConstructor();
-    }
-
-    /* JADX INFO: renamed from: getUnsubstitutedPrimaryConstructor, reason: collision with other method in class */
-    public Void m11460getUnsubstitutedPrimaryConstructor() {
-        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
@@ -234,6 +219,21 @@ public final class C11297b extends AbstractC11361a {
         return false;
     }
 
+    /* JADX INFO: renamed from: getCompanionObjectDescriptor, reason: collision with other method in class */
+    public Void m11459getCompanionObjectDescriptor() {
+        return null;
+    }
+
+    /* JADX INFO: renamed from: getUnsubstitutedPrimaryConstructor, reason: collision with other method in class */
+    public Void m11460getUnsubstitutedPrimaryConstructor() {
+        return null;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static final void m9369b(ArrayList<InterfaceC11477z0> arrayList, C11297b c11297b, EnumC11935j1 enumC11935j1, String str) {
+        arrayList.add(C11382k0.createWithDefaultBound(c11297b, InterfaceC11344g.f22735f.getEMPTY(), false, enumC11935j1, C11716e.identifier(str), arrayList.size(), c11297b.f22593q));
+    }
+
     public String toString() {
         String strAsString = getName().asString();
         C12238m.checkNotNullExpressionValue(strAsString, "name.asString()");
@@ -252,6 +252,16 @@ public final class C11297b extends AbstractC11361a {
             super(c11297b.f22593q);
             C12238m.checkNotNullParameter(c11297b, "this$0");
             this.f22600c = c11297b;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public List<InterfaceC11477z0> getParameters() {
+            return this.f22600c.f22599w;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+        public boolean isDenotable() {
+            return true;
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11924g
@@ -292,16 +302,6 @@ public final class C11297b extends AbstractC11361a {
         /* JADX INFO: renamed from: d */
         public InterfaceC11473x0 mo9371d() {
             return InterfaceC11473x0.a.f23103a;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public List<InterfaceC11477z0> getParameters() {
-            return this.f22600c.f22599w;
-        }
-
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-        public boolean isDenotable() {
-            return true;
         }
 
         public String toString() {

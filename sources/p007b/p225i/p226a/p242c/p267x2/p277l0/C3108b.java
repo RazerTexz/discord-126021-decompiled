@@ -46,7 +46,7 @@ public final class C3108b implements InterfaceC3031h {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.l0.b$a */
     /* JADX INFO: compiled from: WavExtractor.java */
-    public static final class a implements b {
+    public final class a implements b {
 
         /* JADX INFO: renamed from: a */
         public static final int[] f8932a = {-1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8};
@@ -123,6 +123,20 @@ public final class C3108b implements InterfaceC3031h {
             this.f8941j = bVar.m3277a();
         }
 
+        /* JADX INFO: renamed from: d */
+        public final int m3798d(int i) {
+            return i / (this.f8936e.f8955b * 2);
+        }
+
+        /* JADX INFO: renamed from: e */
+        public final void m3799e(int i) {
+            long jM2985F = this.f8943l + C2738e0.m2985F(this.f8945n, 1000000L, this.f8936e.f8956c);
+            int i2 = i * 2 * this.f8936e.f8955b;
+            this.f8935d.mo2525d(jM2985F, 1, i2, this.f8944m - i2, null);
+            this.f8945n += (long) i;
+            this.f8944m -= i2;
+        }
+
         @Override // p007b.p225i.p226a.p242c.p267x2.p277l0.C3108b.b
         /* JADX INFO: renamed from: a */
         public void mo3795a(long j) {
@@ -159,20 +173,6 @@ public final class C3108b implements InterfaceC3031h {
             */
             throw new UnsupportedOperationException("Method not decompiled: p007b.p225i.p226a.p242c.p267x2.p277l0.C3108b.a.mo3797c(b.i.a.c.x2.i, long):boolean");
         }
-
-        /* JADX INFO: renamed from: d */
-        public final int m3798d(int i) {
-            return i / (this.f8936e.f8955b * 2);
-        }
-
-        /* JADX INFO: renamed from: e */
-        public final void m3799e(int i) {
-            long jM2985F = this.f8943l + C2738e0.m2985F(this.f8945n, 1000000L, this.f8936e.f8956c);
-            int i2 = i * 2 * this.f8936e.f8955b;
-            this.f8935d.mo2525d(jM2985F, 1, i2, this.f8944m - i2, null);
-            this.f8945n += (long) i;
-            this.f8944m -= i2;
-        }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.x2.l0.b$b */
@@ -190,7 +190,7 @@ public final class C3108b implements InterfaceC3031h {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.l0.b$c */
     /* JADX INFO: compiled from: WavExtractor.java */
-    public static final class c implements b {
+    public final class c implements b {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC3058j f8946a;

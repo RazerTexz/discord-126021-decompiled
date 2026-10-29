@@ -61,14 +61,62 @@ import p507d0.p592z.p594d.C12238m;
 public final class ThreadBrowserThreadView extends FrameLayout {
     private final ThreadBrowserThreadViewBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1 */
     /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-    public static abstract class ThreadData {
+    public final class C76311 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ GuildMember $creatorMember;
+        public final /* synthetic */ String $creatorName;
+
+        /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+                invoke2(hook);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Hook hook) {
+                C12238m.checkNotNullParameter(hook, "$receiver");
+                C76311 c76311 = C76311.this;
+                hook.replacementText = c76311.$creatorName;
+                hook.styles.addAll(ThreadBrowserThreadView.this.getMemberCharacterStyles(c76311.$creatorMember));
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C76311(String str, GuildMember guildMember) {
+            super(1);
+            this.$creatorName = str;
+            this.$creatorMember = guildMember;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8422a("authorHook", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
+    public abstract class ThreadData {
         private final Channel channel;
         private final Map<Long, GuildMember> guildMembers;
         private final User owner;
 
         /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-        public static final /* data */ class ActiveThread extends ThreadData {
+        public final /* data */ class ActiveThread extends ThreadData {
             private final Channel channel;
             private final Map<Long, String> channelNames;
             private final Map<Long, GuildMember> guildMembers;
@@ -103,16 +151,6 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 return getOwner();
             }
 
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Message getMessage() {
-                return this.message;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final long getMyUserId() {
-                return this.myUserId;
-            }
-
             public final Map<Long, GuildMember> component5() {
                 return getGuildMembers();
             }
@@ -123,11 +161,6 @@ public final class ThreadBrowserThreadView extends FrameLayout {
 
             public final Map<Long, String> component7() {
                 return this.channelNames;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsMessageBlocked() {
-                return this.isMessageBlocked;
             }
 
             public final ActiveThread copy(Channel channel, User owner, Message message, long myUserId, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, String> channelNames, boolean isMessageBlocked) {
@@ -167,8 +200,23 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 return this.guildRoles;
             }
 
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getIsMessageBlocked() {
+                return this.isMessageBlocked;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final Message getMessage() {
                 return this.message;
+            }
+
+            public final Message getMessage() {
+                return this.message;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final long getMyUserId() {
+                return this.myUserId;
             }
 
             public final long getMyUserId() {
@@ -231,7 +279,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         }
 
         /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-        public static final /* data */ class ArchivedThread extends ThreadData {
+        public final /* data */ class ArchivedThread extends ThreadData {
             private final Channel channel;
             private final Map<Long, GuildMember> guildMembers;
             private final User owner;
@@ -249,6 +297,18 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 this.timestampMode = timestampMode;
             }
 
+            public final Channel component1() {
+                return getChannel();
+            }
+
+            public final Map<Long, GuildMember> component2() {
+                return getGuildMembers();
+            }
+
+            public final User component3() {
+                return getOwner();
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ ArchivedThread copy$default(ArchivedThread archivedThread, Channel channel, Map map, User user, TimestampMode timestampMode, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -264,23 +324,6 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                     timestampMode = archivedThread.timestampMode;
                 }
                 return archivedThread.copy(channel, map, user, timestampMode);
-            }
-
-            public final Channel component1() {
-                return getChannel();
-            }
-
-            public final Map<Long, GuildMember> component2() {
-                return getGuildMembers();
-            }
-
-            public final User component3() {
-                return getOwner();
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final TimestampMode getTimestampMode() {
-                return this.timestampMode;
             }
 
             public final ArchivedThread copy(Channel channel, Map<Long, GuildMember> guildMembers, User owner, TimestampMode timestampMode) {
@@ -314,6 +357,11 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             @Override // com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView.ThreadData
             public User getOwner() {
                 return this.owner;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final TimestampMode getTimestampMode() {
+                return this.timestampMode;
             }
 
             public final TimestampMode getTimestampMode() {
@@ -391,54 +439,6 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             $EnumSwitchMapping$1 = iArr2;
             iArr2[timestampMode.ordinal()] = 1;
             iArr2[timestampMode2.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1 */
-    /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-    public static final class C76311 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public final /* synthetic */ GuildMember $creatorMember;
-        public final /* synthetic */ String $creatorName;
-
-        /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
-                invoke2(hook);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Hook hook) {
-                C12238m.checkNotNullParameter(hook, "$receiver");
-                C76311 c76311 = C76311.this;
-                hook.replacementText = c76311.$creatorName;
-                hook.styles.addAll(ThreadBrowserThreadView.this.getMemberCharacterStyles(c76311.$creatorMember));
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C76311(String str, GuildMember guildMember) {
-            super(1);
-            this.$creatorName = str;
-            this.$creatorMember = guildMember;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8422a("authorHook", new AnonymousClass1());
         }
     }
 
@@ -579,6 +579,13 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         }
     }
 
+    public static /* synthetic */ void configureAvatar$default(ThreadBrowserThreadView threadBrowserThreadView, User user, GuildMember guildMember, int i, Object obj) {
+        if ((i & 2) != 0) {
+            guildMember = null;
+        }
+        threadBrowserThreadView.configureAvatar(user, guildMember);
+    }
+
     private final void configureAvatar(User user, GuildMember guildMember) {
         if (user == null) {
             ImageView imageView = this.binding.f15316c;
@@ -598,13 +605,6 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         SimpleDraweeView simpleDraweeView3 = this.binding.f15315b;
         C12238m.checkNotNullExpressionValue(simpleDraweeView3, "binding.threadAvatar");
         IconUtils.setIcon$default(simpleDraweeView3, user, C5419R.dimen.avatar_size_small, null, null, guildMember, 24, null);
-    }
-
-    public static /* synthetic */ void configureAvatar$default(ThreadBrowserThreadView threadBrowserThreadView, User user, GuildMember guildMember, int i, Object obj) {
-        if ((i & 2) != 0) {
-            guildMember = null;
-        }
-        threadBrowserThreadView.configureAvatar(user, guildMember);
     }
 
     private final CharSequence formatActivityTimestamp(long timestamp) {

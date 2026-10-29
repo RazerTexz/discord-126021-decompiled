@@ -55,6 +55,21 @@ public final class C12274b implements InterfaceC12265c {
         this.f25405b = interfaceC12375s2;
     }
 
+    /* JADX INFO: renamed from: b */
+    public final InetAddress m10146b(Proxy proxy, C12379w c12379w, InterfaceC12375s interfaceC12375s) throws IOException {
+        Proxy.Type type = proxy.type();
+        if (type != null && C12273a.f25404a[type.ordinal()] == 1) {
+            return (InetAddress) C12163u.first((List) interfaceC12375s.mo10392a(c12379w.f25979g));
+        }
+        SocketAddress socketAddressAddress = proxy.address();
+        if (socketAddressAddress == null) {
+            throw new TypeCastException("null cannot be cast to non-null type java.net.InetSocketAddress");
+        }
+        InetAddress address = ((InetSocketAddress) socketAddressAddress).getAddress();
+        C12238m.checkExpressionValueIsNotNull(address, "(address() as InetSocketAddress).address");
+        return address;
+    }
+
     /* JADX WARN: Code duplicated, block: B:21:0x006f  */
     /* JADX WARN: Code duplicated, block: B:26:0x0077  */
     /* JADX WARN: Code duplicated, block: B:30:0x0083  */
@@ -307,20 +322,5 @@ public final class C12274b implements InterfaceC12265c {
             z3 = true;
         }
         return null;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final InetAddress m10146b(Proxy proxy, C12379w c12379w, InterfaceC12375s interfaceC12375s) throws IOException {
-        Proxy.Type type = proxy.type();
-        if (type != null && C12273a.f25404a[type.ordinal()] == 1) {
-            return (InetAddress) C12163u.first((List) interfaceC12375s.mo10392a(c12379w.f25979g));
-        }
-        SocketAddress socketAddressAddress = proxy.address();
-        if (socketAddressAddress == null) {
-            throw new TypeCastException("null cannot be cast to non-null type java.net.InetSocketAddress");
-        }
-        InetAddress address = ((InetSocketAddress) socketAddressAddress).getAddress();
-        C12238m.checkExpressionValueIsNotNull(address, "(address() as InetSocketAddress).address");
-        return address;
     }
 }

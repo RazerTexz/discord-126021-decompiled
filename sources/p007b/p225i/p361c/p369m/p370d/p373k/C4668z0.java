@@ -13,11 +13,11 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4668z0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final Charset f12468a = Charset.forName(Constants.ENCODING);
-
     /* JADX INFO: renamed from: b */
     public final File f12469b;
+
+    /* JADX INFO: renamed from: a */
+    public static final Charset f12468a = Charset.forName(Constants.ENCODING);
 
     public C4668z0(File file) {
         this.f12469b = file;

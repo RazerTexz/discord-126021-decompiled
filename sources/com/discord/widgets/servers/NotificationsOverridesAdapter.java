@@ -36,7 +36,7 @@ public final class NotificationsOverridesAdapter extends RecyclerView.Adapter<Vi
     private final Function2<View, Item, Unit> onClick;
 
     /* JADX INFO: compiled from: NotificationsOverridesAdapter.kt */
-    public static final class DiffCallback extends DiffUtil.Callback {
+    public final class DiffCallback extends DiffUtil.Callback {
         private final List<Item> newItems;
         private final List<Item> oldItems;
 
@@ -69,7 +69,7 @@ public final class NotificationsOverridesAdapter extends RecyclerView.Adapter<Vi
     }
 
     /* JADX INFO: compiled from: NotificationsOverridesAdapter.kt */
-    public static final class Item {
+    public final class Item {
         private final Channel channel;
         private final ModelNotificationSettings.ChannelOverride overrideSettings;
         private final Channel parent;
@@ -96,11 +96,11 @@ public final class NotificationsOverridesAdapter extends RecyclerView.Adapter<Vi
     }
 
     /* JADX INFO: compiled from: NotificationsOverridesAdapter.kt */
-    public static abstract class ViewHolder extends RecyclerView.ViewHolder {
+    public abstract class ViewHolder extends RecyclerView.ViewHolder {
         private final Function2<View, Item, Unit> onClick;
 
         /* JADX INFO: compiled from: NotificationsOverridesAdapter.kt */
-        public static final class CategoryOverridesViewHolder extends ViewHolder {
+        public final class CategoryOverridesViewHolder extends ViewHolder {
             private final ViewCategoryOverrideItemBinding binding;
 
             /* JADX WARN: Illegal instructions before constructor call */
@@ -128,7 +128,7 @@ public final class NotificationsOverridesAdapter extends RecyclerView.Adapter<Vi
         }
 
         /* JADX INFO: compiled from: NotificationsOverridesAdapter.kt */
-        public static final class ChannelOverridesViewHolder extends ViewHolder {
+        public final class ChannelOverridesViewHolder extends ViewHolder {
             private final ViewChannelOverrideItemBinding binding;
 
             /* JADX WARN: Illegal instructions before constructor call */
@@ -212,18 +212,18 @@ public final class NotificationsOverridesAdapter extends RecyclerView.Adapter<Vi
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         return this.data.get(position).getChannel().getType();
     }
 
     public final Function2<View, Item, Unit> getOnClick() {
         return this.onClick;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     @MainThread

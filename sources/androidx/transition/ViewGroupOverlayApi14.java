@@ -11,13 +11,13 @@ public class ViewGroupOverlayApi14 extends ViewOverlayApi14 implements ViewGroup
         super(context, viewGroup, view);
     }
 
-    public static ViewGroupOverlayApi14 createFrom(ViewGroup viewGroup) {
-        return (ViewGroupOverlayApi14) ViewOverlayApi14.createFrom(viewGroup);
-    }
-
     @Override // androidx.transition.ViewGroupOverlayImpl
     public void add(@NonNull View view) {
         this.mOverlayViewGroup.add(view);
+    }
+
+    public static ViewGroupOverlayApi14 createFrom(ViewGroup viewGroup) {
+        return (ViewGroupOverlayApi14) ViewOverlayApi14.createFrom(viewGroup);
     }
 
     @Override // androidx.transition.ViewGroupOverlayImpl

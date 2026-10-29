@@ -25,21 +25,7 @@ public class C12567u {
 
     /* JADX INFO: renamed from: i0.u$a */
     /* JADX INFO: compiled from: Platform.java */
-    public static final class a extends C12567u {
-
-        /* JADX INFO: renamed from: i0.u$a$a, reason: collision with other inner class name */
-        /* JADX INFO: compiled from: Platform.java */
-        public static final class ExecutorC13347a implements Executor {
-
-            /* JADX INFO: renamed from: j */
-            public final Handler f26617j = new Handler(Looper.getMainLooper());
-
-            @Override // java.util.concurrent.Executor
-            public void execute(Runnable runnable) {
-                this.f26617j.post(runnable);
-            }
-        }
-
+    public final class a extends C12567u {
         public a() {
             super(Build.VERSION.SDK_INT >= 24);
         }
@@ -57,6 +43,19 @@ public class C12567u {
                 return super.mo10717b(method, cls, obj, objArr);
             }
             throw new UnsupportedOperationException("Calling default methods on API 24 and 25 is not supported");
+        }
+
+        /* JADX INFO: renamed from: i0.u$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: Platform.java */
+        public final class ExecutorC13347a implements Executor {
+
+            /* JADX INFO: renamed from: j */
+            public final Handler f26617j = new Handler(Looper.getMainLooper());
+
+            @Override // java.util.concurrent.Executor
+            public void execute(Runnable runnable) {
+                this.f26617j.post(runnable);
+            }
         }
     }
 

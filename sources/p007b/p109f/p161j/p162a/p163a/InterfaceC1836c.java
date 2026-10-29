@@ -6,6 +6,10 @@ import android.graphics.Bitmap;
 /* JADX INFO: compiled from: AnimatedImage.java */
 /* JADX INFO: loaded from: classes2.dex */
 public interface InterfaceC1836c {
+    int getHeight();
+
+    int getWidth();
+
     /* JADX INFO: renamed from: a */
     int mo1177a();
 
@@ -23,10 +27,6 @@ public interface InterfaceC1836c {
 
     /* JADX INFO: renamed from: g */
     C1835b mo1182g(int i);
-
-    int getHeight();
-
-    int getWidth();
 
     /* JADX INFO: renamed from: i */
     int[] mo1183i();

@@ -16,6 +16,17 @@ public final /* data */ class MessageReference {
         this.messageId = l3;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageReference)) {
+            return false;
+        }
+        MessageReference messageReference = (MessageReference) other;
+        return C12238m.areEqual(this.guildId, messageReference.guildId) && C12238m.areEqual(this.channelId, messageReference.channelId) && C12238m.areEqual(this.messageId, messageReference.messageId);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getChannelId() {
         return this.channelId;
@@ -29,17 +40,6 @@ public final /* data */ class MessageReference {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final Long getMessageId() {
         return this.messageId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageReference)) {
-            return false;
-        }
-        MessageReference messageReference = (MessageReference) other;
-        return C12238m.areEqual(this.guildId, messageReference.guildId) && C12238m.areEqual(this.channelId, messageReference.channelId) && C12238m.areEqual(this.messageId, messageReference.messageId);
     }
 
     public int hashCode() {

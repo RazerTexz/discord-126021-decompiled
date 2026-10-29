@@ -115,18 +115,13 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     public Function2<? super StreamResolution, ? super StreamFps, Unit> onStreamQualityIndicatorShown;
 
     /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-    public static final /* data */ class StreamFps {
+    public final /* data */ class StreamFps {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final int fps;
 
         public StreamFps(int i) {
             this.fps = i;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final boolean m8586a() {
-            return this.fps == 60;
         }
 
         public boolean equals(Object other) {
@@ -141,17 +136,22 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             return this.fps;
         }
 
+        /* JADX INFO: renamed from: a */
+        public final boolean m8586a() {
+            return this.fps == 60;
+        }
+
         public String toString() {
             return C1643a.m814B(C1643a.m833U("StreamFps(fps="), this.fps, ")");
         }
     }
 
     /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-    public static abstract class StreamResolution {
+    public abstract class StreamResolution {
 
         /* JADX INFO: renamed from: com.discord.views.calls.VideoCallParticipantView$StreamResolution$a */
         /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-        public static final class C7108a extends StreamResolution {
+        public final class C7108a extends StreamResolution {
 
             /* JADX INFO: renamed from: a */
             public final int f19254a;
@@ -159,13 +159,6 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             public C7108a(int i) {
                 super(null);
                 this.f19254a = i;
-            }
-
-            @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
-            /* JADX INFO: renamed from: a */
-            public CharSequence mo8587a(Context context) {
-                C12238m.checkNotNullParameter(context, "context");
-                return C1107b.m216h(context, C5419R.string.screenshare_resolution_abbreviated, new Object[]{Integer.valueOf(this.f19254a)}, null, 4);
             }
 
             public boolean equals(Object obj) {
@@ -179,6 +172,13 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                 return this.f19254a;
             }
 
+            @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
+            /* JADX INFO: renamed from: a */
+            public CharSequence mo8587a(Context context) {
+                C12238m.checkNotNullParameter(context, "context");
+                return C1107b.m216h(context, C5419R.string.screenshare_resolution_abbreviated, new Object[]{Integer.valueOf(this.f19254a)}, null, 4);
+            }
+
             public String toString() {
                 return C1643a.m814B(C1643a.m833U("Fixed(heightPx="), this.f19254a, ")");
             }
@@ -186,7 +186,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
         /* JADX INFO: renamed from: com.discord.views.calls.VideoCallParticipantView$StreamResolution$b */
         /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-        public static final class C7109b extends StreamResolution {
+        public final class C7109b extends StreamResolution {
 
             /* JADX INFO: renamed from: a */
             public static final C7109b f19255a = new C7109b();
@@ -206,13 +206,13 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         public StreamResolution() {
         }
 
-        /* JADX INFO: renamed from: a */
-        public abstract CharSequence mo8587a(Context context);
-
         /* JADX INFO: renamed from: b */
         public final boolean m8588b() {
             return (this instanceof C7109b) || ((this instanceof C7108a) && ((C7108a) this).f19254a == 1080);
         }
+
+        /* JADX INFO: renamed from: a */
+        public abstract CharSequence mo8587a(Context context);
 
         public StreamResolution(DefaultConstructorMarker defaultConstructorMarker) {
         }
@@ -220,7 +220,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
     /* JADX INFO: renamed from: com.discord.views.calls.VideoCallParticipantView$a */
     /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-    public static final class ViewOnClickListenerC7110a implements View.OnClickListener {
+    public final class ViewOnClickListenerC7110a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ ParticipantData.C7107a f19257k;
@@ -363,6 +363,19 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i4)));
     }
 
+    public final ParticipantData getData() {
+        return this.data;
+    }
+
+    @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
+    public String getDataId() {
+        ParticipantData participantData = this.data;
+        if (participantData != null) {
+            return participantData.id;
+        }
+        return null;
+    }
+
     /* JADX INFO: renamed from: d */
     public static /* synthetic */ void m8580d(VideoCallParticipantView videoCallParticipantView, ParticipantData participantData, DisplayCutoutCompat displayCutoutCompat, boolean z2, VideoCallGridAdapter.CallUiInsets callUiInsets, boolean z3, int i) {
         DisplayCutoutCompat displayCutoutCompat2 = (i & 2) != 0 ? videoCallParticipantView.displayCutout : null;
@@ -405,20 +418,16 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         } else {
             charSequenceM216h = "";
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(charSequenceMo8587a);
-        sb.append(' ');
-        sb.append(charSequenceM216h);
-        String string = sb.toString();
-        Objects.requireNonNull(string, "null cannot be cast to non-null type kotlin.CharSequence");
-        String string2 = C12106w.trim(string).toString();
-        Drawable drawable = (!(string2.length() == 0) || c7107a.f19249a) ? this.liveSplitPillBg : this.livePillBg;
+        String str = "" + charSequenceMo8587a + ' ' + charSequenceM216h;
+        Objects.requireNonNull(str, "null cannot be cast to non-null type kotlin.CharSequence");
+        String string = C12106w.trim(str).toString();
+        Drawable drawable = (!(string.length() == 0) || c7107a.f19249a) ? this.liveSplitPillBg : this.livePillBg;
         TextView textView = this.binding.f919h;
         C12238m.checkNotNullExpressionValue(textView, "binding.participantFulls…enStreamqualLiveIndicator");
         textView.setBackground(drawable);
         int i = c7107a.f19252d ? C5419R.color.primary_300 : C5419R.color.white;
         TextView textView2 = this.binding.f918g;
-        textView2.setText(string2);
+        textView2.setText(string);
         CharSequence text = textView2.getText();
         C12238m.checkNotNullExpressionValue(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         textView2.setVisibility(text.length() > 0 ? 0 : 8);
@@ -800,19 +809,6 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         }
     }
 
-    public final ParticipantData getData() {
-        return this.data;
-    }
-
-    @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
-    public String getDataId() {
-        ParticipantData participantData = this.data;
-        if (participantData != null) {
-            return participantData.id;
-        }
-        return null;
-    }
-
     @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
     public void onBind(FrameGridLayout.Data data) {
         C12238m.checkNotNullParameter(data, "data");
@@ -845,7 +841,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     }
 
     /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-    public static final /* data */ class ParticipantData implements FrameGridLayout.Data {
+    public final /* data */ class ParticipantData implements FrameGridLayout.Data {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final String id;
@@ -886,15 +882,9 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             ENDED
         }
 
-        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-        public enum Type {
-            DEFAULT,
-            APPLICATION_STREAMING
-        }
-
         /* JADX INFO: renamed from: com.discord.views.calls.VideoCallParticipantView$ParticipantData$a */
         /* JADX INFO: compiled from: VideoCallParticipantView.kt */
-        public static final class C7107a {
+        public final class C7107a {
 
             /* JADX INFO: renamed from: a */
             public final boolean f19249a;
@@ -962,6 +952,12 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             }
         }
 
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public enum Type {
+            DEFAULT,
+            APPLICATION_STREAMING
+        }
+
         public ParticipantData(StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, C7107a c7107a) {
             C12238m.checkNotNullParameter(voiceUser, "voiceParticipant");
             C12238m.checkNotNullParameter(type, "type");
@@ -974,48 +970,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             this.showLabel = z3;
             this.isFocused = z4;
             this.streamQualityIndicatorData = c7107a;
-            StringBuilder sb = new StringBuilder();
-            sb.append(voiceUser.getUser().getId());
-            sb.append(type);
-            this.id = sb.toString();
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static ParticipantData m8584a(ParticipantData participantData, StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, C7107a c7107a, int i) {
-            StoreVoiceParticipants.VoiceUser voiceUser2 = (i & 1) != 0 ? participantData.voiceParticipant : null;
-            boolean z5 = (i & 2) != 0 ? participantData.mirrorVideo : z2;
-            RendererCommon.ScalingType scalingType3 = (i & 4) != 0 ? participantData.scalingType : scalingType;
-            RendererCommon.ScalingType scalingType4 = (i & 8) != 0 ? participantData.scalingTypeMismatchOrientation : scalingType2;
-            ApplicationStreamState applicationStreamState2 = (i & 16) != 0 ? participantData.applicationStreamState : null;
-            Type type2 = (i & 32) != 0 ? participantData.type : null;
-            boolean z6 = (i & 64) != 0 ? participantData.showLabel : z3;
-            boolean z7 = (i & 128) != 0 ? participantData.isFocused : z4;
-            C7107a c7107a2 = (i & 256) != 0 ? participantData.streamQualityIndicatorData : c7107a;
-            Objects.requireNonNull(participantData);
-            C12238m.checkNotNullParameter(voiceUser2, "voiceParticipant");
-            C12238m.checkNotNullParameter(type2, "type");
-            return new ParticipantData(voiceUser2, z5, scalingType3, scalingType4, applicationStreamState2, type2, z6, z7, c7107a2);
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final Integer m8585b() {
-            VoiceState voiceState;
-            int iOrdinal = this.type.ordinal();
-            if (iOrdinal == 0) {
-                VoiceState voiceState2 = this.voiceParticipant.getVoiceState();
-                if (voiceState2 == null || !voiceState2.getSelfVideo()) {
-                    return null;
-                }
-                return this.voiceParticipant.getCallStreamId();
-            }
-            if (iOrdinal != 1) {
-                throw new NoWhenBranchMatchedException();
-            }
-            ApplicationStreamState applicationStreamState = this.applicationStreamState;
-            if ((applicationStreamState == ApplicationStreamState.CONNECTING || applicationStreamState == ApplicationStreamState.ACTIVE || applicationStreamState == ApplicationStreamState.PAUSED) && (voiceState = this.voiceParticipant.getVoiceState()) != null && voiceState.getSelfStream()) {
-                return this.voiceParticipant.getApplicationStreamId();
-            }
-            return null;
+            this.id = "" + voiceUser.getUser().getId() + type;
         }
 
         @Override // com.discord.utilities.view.grid.FrameGridLayout.Data
@@ -1078,6 +1033,44 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             int i3 = (i2 + (z4 ? 1 : z4)) * 31;
             C7107a c7107a = this.streamQualityIndicatorData;
             return i3 + (c7107a != null ? c7107a.hashCode() : 0);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static ParticipantData m8584a(ParticipantData participantData, StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, C7107a c7107a, int i) {
+            StoreVoiceParticipants.VoiceUser voiceUser2 = (i & 1) != 0 ? participantData.voiceParticipant : null;
+            boolean z5 = (i & 2) != 0 ? participantData.mirrorVideo : z2;
+            RendererCommon.ScalingType scalingType3 = (i & 4) != 0 ? participantData.scalingType : scalingType;
+            RendererCommon.ScalingType scalingType4 = (i & 8) != 0 ? participantData.scalingTypeMismatchOrientation : scalingType2;
+            ApplicationStreamState applicationStreamState2 = (i & 16) != 0 ? participantData.applicationStreamState : null;
+            Type type2 = (i & 32) != 0 ? participantData.type : null;
+            boolean z6 = (i & 64) != 0 ? participantData.showLabel : z3;
+            boolean z7 = (i & 128) != 0 ? participantData.isFocused : z4;
+            C7107a c7107a2 = (i & 256) != 0 ? participantData.streamQualityIndicatorData : c7107a;
+            Objects.requireNonNull(participantData);
+            C12238m.checkNotNullParameter(voiceUser2, "voiceParticipant");
+            C12238m.checkNotNullParameter(type2, "type");
+            return new ParticipantData(voiceUser2, z5, scalingType3, scalingType4, applicationStreamState2, type2, z6, z7, c7107a2);
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final Integer m8585b() {
+            VoiceState voiceState;
+            int iOrdinal = this.type.ordinal();
+            if (iOrdinal == 0) {
+                VoiceState voiceState2 = this.voiceParticipant.getVoiceState();
+                if (voiceState2 == null || !voiceState2.getSelfVideo()) {
+                    return null;
+                }
+                return this.voiceParticipant.getCallStreamId();
+            }
+            if (iOrdinal != 1) {
+                throw new NoWhenBranchMatchedException();
+            }
+            ApplicationStreamState applicationStreamState = this.applicationStreamState;
+            if ((applicationStreamState == ApplicationStreamState.CONNECTING || applicationStreamState == ApplicationStreamState.ACTIVE || applicationStreamState == ApplicationStreamState.PAUSED) && (voiceState = this.voiceParticipant.getVoiceState()) != null && voiceState.getSelfStream()) {
+                return this.voiceParticipant.getApplicationStreamId();
+            }
+            return null;
         }
 
         public String toString() {

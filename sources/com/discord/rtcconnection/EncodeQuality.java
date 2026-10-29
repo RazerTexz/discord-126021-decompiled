@@ -24,7 +24,7 @@ public enum EncodeQuality {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.EncodeQuality$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

@@ -28,7 +28,7 @@ public final class C11245c {
 
     /* JADX INFO: renamed from: d0.e0.p.c$a */
     /* JADX INFO: compiled from: reflectLambda.kt */
-    public static final /* synthetic */ class a extends C12235j implements Function2<C11885u, C11684i, InterfaceC11465t0> {
+    public final /* synthetic */ class a extends C12235j implements Function2<C11885u, C11684i, InterfaceC11465t0> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22318j = new a();

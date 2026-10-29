@@ -57,62 +57,6 @@ public class ToolbarWidgetWrapper implements DecorToolbar {
         this(toolbar, z2, C0051R.string.abc_action_bar_up_description, C0051R.drawable.abc_ic_ab_back_material);
     }
 
-    private int detectDisplayOptions() {
-        if (this.mToolbar.getNavigationIcon() == null) {
-            return 11;
-        }
-        this.mDefaultNavigationIcon = this.mToolbar.getNavigationIcon();
-        return 15;
-    }
-
-    private void ensureSpinner() {
-        if (this.mSpinner == null) {
-            this.mSpinner = new AppCompatSpinner(getContext(), null, C0051R.attr.actionDropDownStyle);
-            this.mSpinner.setLayoutParams(new Toolbar.LayoutParams(-2, -2, 8388627));
-        }
-    }
-
-    private void setTitleInt(CharSequence charSequence) {
-        this.mTitle = charSequence;
-        if ((this.mDisplayOpts & 8) != 0) {
-            this.mToolbar.setTitle(charSequence);
-        }
-    }
-
-    private void updateHomeAccessibility() {
-        if ((this.mDisplayOpts & 4) != 0) {
-            if (TextUtils.isEmpty(this.mHomeDescription)) {
-                this.mToolbar.setNavigationContentDescription(this.mDefaultNavigationContentDescription);
-            } else {
-                this.mToolbar.setNavigationContentDescription(this.mHomeDescription);
-            }
-        }
-    }
-
-    private void updateNavigationIcon() {
-        if ((this.mDisplayOpts & 4) == 0) {
-            this.mToolbar.setNavigationIcon((Drawable) null);
-            return;
-        }
-        Toolbar toolbar = this.mToolbar;
-        Drawable drawable = this.mNavIcon;
-        if (drawable == null) {
-            drawable = this.mDefaultNavigationIcon;
-        }
-        toolbar.setNavigationIcon(drawable);
-    }
-
-    private void updateToolbarLogo() {
-        Drawable drawable;
-        int i = this.mDisplayOpts;
-        if ((i & 2) == 0) {
-            drawable = null;
-        } else if ((i & 1) == 0 || (drawable = this.mLogo) == null) {
-            drawable = this.mIcon;
-        }
-        this.mToolbar.setLogo(drawable);
-    }
-
     @Override // androidx.appcompat.widget.DecorToolbar
     public void animateToVisibility(int i) {
         ViewPropertyAnimatorCompat viewPropertyAnimatorCompat = setupAnimatorToVisibility(i, DEFAULT_FADE_DURATION_MS);
@@ -131,9 +75,24 @@ public class ToolbarWidgetWrapper implements DecorToolbar {
         this.mToolbar.collapseActionView();
     }
 
+    private int detectDisplayOptions() {
+        if (this.mToolbar.getNavigationIcon() == null) {
+            return 11;
+        }
+        this.mDefaultNavigationIcon = this.mToolbar.getNavigationIcon();
+        return 15;
+    }
+
     @Override // androidx.appcompat.widget.DecorToolbar
     public void dismissPopupMenus() {
         this.mToolbar.dismissPopupMenus();
+    }
+
+    private void ensureSpinner() {
+        if (this.mSpinner == null) {
+            this.mSpinner = new AppCompatSpinner(getContext(), null, C0051R.attr.actionDropDownStyle);
+            this.mSpinner.setLayoutParams(new Toolbar.LayoutParams(-2, -2, 8388627));
+        }
     }
 
     @Override // androidx.appcompat.widget.DecorToolbar
@@ -483,6 +442,13 @@ public class ToolbarWidgetWrapper implements DecorToolbar {
         setTitleInt(charSequence);
     }
 
+    private void setTitleInt(CharSequence charSequence) {
+        this.mTitle = charSequence;
+        if ((this.mDisplayOpts & 8) != 0) {
+            this.mToolbar.setTitle(charSequence);
+        }
+    }
+
     @Override // androidx.appcompat.widget.DecorToolbar
     public void setVisibility(int i) {
         this.mToolbar.setVisibility(i);
@@ -529,6 +495,40 @@ public class ToolbarWidgetWrapper implements DecorToolbar {
     @Override // androidx.appcompat.widget.DecorToolbar
     public boolean showOverflowMenu() {
         return this.mToolbar.showOverflowMenu();
+    }
+
+    private void updateHomeAccessibility() {
+        if ((this.mDisplayOpts & 4) != 0) {
+            if (TextUtils.isEmpty(this.mHomeDescription)) {
+                this.mToolbar.setNavigationContentDescription(this.mDefaultNavigationContentDescription);
+            } else {
+                this.mToolbar.setNavigationContentDescription(this.mHomeDescription);
+            }
+        }
+    }
+
+    private void updateNavigationIcon() {
+        if ((this.mDisplayOpts & 4) == 0) {
+            this.mToolbar.setNavigationIcon((Drawable) null);
+            return;
+        }
+        Toolbar toolbar = this.mToolbar;
+        Drawable drawable = this.mNavIcon;
+        if (drawable == null) {
+            drawable = this.mDefaultNavigationIcon;
+        }
+        toolbar.setNavigationIcon(drawable);
+    }
+
+    private void updateToolbarLogo() {
+        Drawable drawable;
+        int i = this.mDisplayOpts;
+        if ((i & 2) == 0) {
+            drawable = null;
+        } else if ((i & 1) == 0 || (drawable = this.mLogo) == null) {
+            drawable = this.mIcon;
+        }
+        this.mToolbar.setLogo(drawable);
     }
 
     public ToolbarWidgetWrapper(Toolbar toolbar, boolean z2, int i, int i2) {

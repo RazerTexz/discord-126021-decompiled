@@ -59,7 +59,7 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     private Function2<? super Integer, Object, Unit> onUserInputDataEntered;
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class ApproveTermsItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class ApproveTermsItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationApproveTermsItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -96,7 +96,7 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class ItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class ItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationHeaderItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -122,7 +122,7 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class MultipleChoiceItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class MultipleChoiceItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationMultipleChoiceItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -195,13 +195,13 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class ParagraphItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class ParagraphItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationParagraphItemBinding binding;
         private int fieldIndex;
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationRulesAdapter$ParagraphItemHolder$1 */
         /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-        public static final class C95481 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public final class C95481 extends AbstractC12240o implements Function1<Editable, Unit> {
             public final /* synthetic */ MemberVerificationRulesAdapter $adapter;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -253,7 +253,7 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class TermHeaderItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class TermHeaderItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationHeaderItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -281,7 +281,7 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class TermItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class TermItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationRuleItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -347,13 +347,13 @@ public final class MemberVerificationRulesAdapter extends MGRecyclerAdapterSimpl
     }
 
     /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-    public static final class TextInputItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
+    public final class TextInputItemHolder extends MGRecyclerViewHolder<MemberVerificationRulesAdapter, MGRecyclerDataPayload> {
         private final WidgetMemberVerificationTextInputItemBinding binding;
         private int fieldIndex;
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationRulesAdapter$TextInputItemHolder$1 */
         /* JADX INFO: compiled from: MemberVerificationRulesAdapter.kt */
-        public static final class C95491 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public final class C95491 extends AbstractC12240o implements Function1<Editable, Unit> {
             public final /* synthetic */ MemberVerificationRulesAdapter $adapter;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

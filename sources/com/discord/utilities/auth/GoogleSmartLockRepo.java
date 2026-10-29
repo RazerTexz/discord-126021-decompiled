@@ -25,15 +25,15 @@ public final class GoogleSmartLockRepo {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(GoogleSmartLockRepo$Companion$INSTANCE$2.INSTANCE);
     private boolean disableAutoLogin;
     private String pendingIdChange;
     private PublishSubject<GoogleSmartLockManager.SmartLockCredentials> smartLockLogin;
     private SmartLockSignInAttempt smartLockLoginAttempt;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(GoogleSmartLockRepo$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.utilities.auth.GoogleSmartLockRepo$1 */
     /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
-    public static final class C67011 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C67011 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C67011() {
             super(1);
         }
@@ -53,7 +53,7 @@ public final class GoogleSmartLockRepo {
     }
 
     /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

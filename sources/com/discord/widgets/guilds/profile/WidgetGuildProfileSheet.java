@@ -73,10 +73,10 @@ import p658rx.functions.Action1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildProfileSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildProfileSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildProfileSheetBinding;", 0)};
+    private static final String EXTRA_FROM_UPSELL = "EXTRA_FROM_UPSELL";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_FROM_UPSELL = "EXTRA_FROM_UPSELL";
     private static final int LOADED_VIEW_INDEX = 1;
     private static final int LOADING_VIEW_INDEX = 0;
     private static final int NUM_ROWS_EMOJIS = 2;
@@ -95,42 +95,9 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, boolean viewingGuild, long guildId, long channelId, boolean fromGuildEventUpsell) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetGuildProfileSheet widgetGuildProfileSheet = new WidgetGuildProfileSheet();
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            bundleM832T.putBoolean("com.discord.intent.extra.EXTRA_VIEWING_GUILD", viewingGuild);
-            bundleM832T.putBoolean(WidgetGuildProfileSheet.EXTRA_FROM_UPSELL, fromGuildEventUpsell);
-            widgetGuildProfileSheet.setArguments(bundleM832T);
-            widgetGuildProfileSheet.show(fragmentManager, WidgetGuildProfileSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            WidgetGuildProfileSheetViewModel.Banner.Type.values();
-            int[] iArr = new int[2];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.BANNER.ordinal()] = 1;
-            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.SPLASH.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureGuildHubActions$2 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
-    public static final class C87922 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C87922 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -202,7 +169,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
-    public static final /* synthetic */ class C87991 extends C12236k implements Function1<WidgetGuildProfileSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C87991 extends C12236k implements Function1<WidgetGuildProfileSheetViewModel.ViewState, Unit> {
         public C87991(WidgetGuildProfileSheet widgetGuildProfileSheet) {
             super(1, widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "handleViewState", "handleViewState(Lcom/discord/widgets/guilds/profile/WidgetGuildProfileSheetViewModel$ViewState;)V", 0);
         }
@@ -222,7 +189,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$2 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
-    public static final /* synthetic */ class C88002 extends C12236k implements Function1<WidgetGuildProfileSheetViewModel.Event, Unit> {
+    public final /* synthetic */ class C88002 extends C12236k implements Function1<WidgetGuildProfileSheetViewModel.Event, Unit> {
         public C88002(WidgetGuildProfileSheet widgetGuildProfileSheet) {
             super(1, widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/profile/WidgetGuildProfileSheetViewModel$Event;)V", 0);
         }
@@ -242,7 +209,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$3 */
     /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
-    public static final class C88013 extends AbstractC12240o implements Function0<Unit> {
+    public final class C88013 extends AbstractC12240o implements Function0<Unit> {
         public C88013() {
             super(0);
         }
@@ -256,6 +223,39 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             WidgetGuildProfileSheet.this.getViewModel().onClickEmoji();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, boolean viewingGuild, long guildId, long channelId, boolean fromGuildEventUpsell) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetGuildProfileSheet widgetGuildProfileSheet = new WidgetGuildProfileSheet();
+            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            bundleM832T.putBoolean("com.discord.intent.extra.EXTRA_VIEWING_GUILD", viewingGuild);
+            bundleM832T.putBoolean(WidgetGuildProfileSheet.EXTRA_FROM_UPSELL, fromGuildEventUpsell);
+            widgetGuildProfileSheet.setArguments(bundleM832T);
+            widgetGuildProfileSheet.show(fragmentManager, WidgetGuildProfileSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            WidgetGuildProfileSheetViewModel.Banner.Type.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.BANNER.ordinal()] = 1;
+            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.SPLASH.ordinal()] = 2;
         }
     }
 
@@ -1087,6 +1087,11 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         return (WidgetGuildProfileSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_profile_sheet;
+    }
+
     private final boolean getFromGuildEventUpsell() {
         return ((Boolean) this.fromGuildEventUpsell.getValue()).booleanValue();
     }
@@ -1164,6 +1169,16 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         return ((i - contentPaddingRight) - (linearLayout2.getPaddingEnd() + paddingStart)) / getResources().getDimensionPixelSize(C5419R.dimen.emoji_size);
     }
 
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        this.channelId = Long.valueOf(getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildProfileSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87991(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetGuildProfileSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88002(this));
+        this.emojisAdapter.setOnClickEmoji(new C88013());
+    }
+
     public static final void show(FragmentManager fragmentManager, boolean z2, long j, long j2, boolean z3) {
         INSTANCE.show(fragmentManager, z2, j, j2, z3);
     }
@@ -1187,20 +1202,5 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.guildProfileSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
         configureUI(viewState);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_profile_sheet;
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        this.channelId = Long.valueOf(getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildProfileSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87991(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetGuildProfileSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88002(this));
-        this.emojisAdapter.setOnClickEmoji(new C88013());
     }
 }

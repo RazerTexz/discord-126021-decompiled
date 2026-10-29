@@ -60,7 +60,7 @@ public final class C4413a {
 
     /* JADX INFO: renamed from: b.i.a.g.f.a$a */
     /* JADX INFO: compiled from: StaticLayoutBuilderCompat.java */
-    public static class a extends Exception {
+    public class a extends Exception {
         /* JADX WARN: Illegal instructions before constructor call */
         public a(Throwable th) {
             StringBuilder sbM833U = C1643a.m833U("Error thrown initializing StaticLayout ");

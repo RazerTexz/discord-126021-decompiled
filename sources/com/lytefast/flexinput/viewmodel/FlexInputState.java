@@ -73,27 +73,6 @@ public final /* data */ class FlexInputState {
         this.guildId = l2;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static FlexInputState m9302a(FlexInputState flexInputState, String str, boolean z2, List list, boolean z3, boolean z4, Integer num, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, Long l, Long l2, int i) {
-        String str2 = (i & 1) != 0 ? flexInputState.inputText : str;
-        boolean z10 = (i & 2) != 0 ? flexInputState.showExpandedButtons : z2;
-        List list2 = (i & 4) != 0 ? flexInputState.attachments : list;
-        boolean z11 = (i & 8) != 0 ? flexInputState.attachmentViewEnabled : z3;
-        boolean z12 = (i & 16) != 0 ? flexInputState.singleSelectMode : z4;
-        Integer num2 = (i & 32) != 0 ? flexInputState.showContentDialogIndex : num;
-        boolean z13 = (i & 64) != 0 ? flexInputState.ableToSendMessages : z5;
-        boolean z14 = (i & 128) != 0 ? flexInputState.ableToAttachFiles : z6;
-        boolean z15 = (i & 256) != 0 ? flexInputState.showExpressionTray : z7;
-        boolean z16 = (i & 512) != 0 ? flexInputState.showExpressionTrayButtonBadge : z8;
-        boolean z17 = (i & 1024) != 0 ? flexInputState.expressionSuggestionsEnabled : z9;
-        Long l3 = (i & 2048) != 0 ? flexInputState.channelId : l;
-        Long l4 = (i & 4096) != 0 ? flexInputState.guildId : l2;
-        Objects.requireNonNull(flexInputState);
-        C12238m.checkNotNullParameter(str2, "inputText");
-        C12238m.checkNotNullParameter(list2, "attachments");
-        return new FlexInputState(str2, z10, list2, z11, z12, num2, z13, z14, z15, z16, z17, l3, l4);
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -186,6 +165,27 @@ public final /* data */ class FlexInputState {
         int iHashCode4 = (i8 + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.guildId;
         return iHashCode4 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static FlexInputState m9302a(FlexInputState flexInputState, String str, boolean z2, List list, boolean z3, boolean z4, Integer num, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, Long l, Long l2, int i) {
+        String str2 = (i & 1) != 0 ? flexInputState.inputText : str;
+        boolean z10 = (i & 2) != 0 ? flexInputState.showExpandedButtons : z2;
+        List list2 = (i & 4) != 0 ? flexInputState.attachments : list;
+        boolean z11 = (i & 8) != 0 ? flexInputState.attachmentViewEnabled : z3;
+        boolean z12 = (i & 16) != 0 ? flexInputState.singleSelectMode : z4;
+        Integer num2 = (i & 32) != 0 ? flexInputState.showContentDialogIndex : num;
+        boolean z13 = (i & 64) != 0 ? flexInputState.ableToSendMessages : z5;
+        boolean z14 = (i & 128) != 0 ? flexInputState.ableToAttachFiles : z6;
+        boolean z15 = (i & 256) != 0 ? flexInputState.showExpressionTray : z7;
+        boolean z16 = (i & 512) != 0 ? flexInputState.showExpressionTrayButtonBadge : z8;
+        boolean z17 = (i & 1024) != 0 ? flexInputState.expressionSuggestionsEnabled : z9;
+        Long l3 = (i & 2048) != 0 ? flexInputState.channelId : l;
+        Long l4 = (i & 4096) != 0 ? flexInputState.guildId : l2;
+        Objects.requireNonNull(flexInputState);
+        C12238m.checkNotNullParameter(str2, "inputText");
+        C12238m.checkNotNullParameter(list2, "attachments");
+        return new FlexInputState(str2, z10, list2, z11, z12, num2, z13, z14, z15, z16, z17, l3, l4);
     }
 
     public String toString() {

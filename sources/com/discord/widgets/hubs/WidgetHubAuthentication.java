@@ -55,7 +55,7 @@ public final class WidgetHubAuthentication extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$configureUi$1 */
     /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-    public static final class C90001 extends AbstractC12240o implements Function1<Success<? extends EmailVerificationCode>, Unit> {
+    public final class C90001 extends AbstractC12240o implements Function1<Success<? extends EmailVerificationCode>, Unit> {
         public C90001() {
             super(1);
         }
@@ -87,7 +87,7 @@ public final class WidgetHubAuthentication extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$configureUi$2 */
     /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-    public static final class C90012 extends AbstractC12240o implements Function1<Success<? extends EmailVerification>, Unit> {
+    public final class C90012 extends AbstractC12240o implements Function1<Success<? extends EmailVerification>, Unit> {
         public C90012() {
             super(1);
         }
@@ -107,7 +107,7 @@ public final class WidgetHubAuthentication extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-    public static final class C90021 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C90021 extends AbstractC12240o implements Function1<String, Unit> {
         public C90021() {
             super(1);
         }
@@ -127,11 +127,11 @@ public final class WidgetHubAuthentication extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-    public static final class C90032 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C90032 extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -168,7 +168,7 @@ public final class WidgetHubAuthentication extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
-    public static final /* synthetic */ class C90041 extends C12236k implements Function1<HubAuthenticationState, Unit> {
+    public final /* synthetic */ class C90041 extends C12236k implements Function1<HubAuthenticationState, Unit> {
         public C90041(WidgetHubAuthentication widgetHubAuthentication) {
             super(1, widgetHubAuthentication, WidgetHubAuthentication.class, "configureUi", "configureUi(Lcom/discord/widgets/hubs/HubAuthenticationState;)V", 0);
         }
@@ -204,16 +204,16 @@ public final class WidgetHubAuthentication extends AppFragment {
         }
     }
 
+    public final HubAuthenticationArgs getArgs() {
+        return (HubAuthenticationArgs) this.args.getValue();
+    }
+
     private final WidgetHubAuthenticationBinding getBinding() {
         return (WidgetHubAuthenticationBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     private final WidgetHubAuthenticationViewModel getViewModel() {
         return (WidgetHubAuthenticationViewModel) this.viewModel.getValue();
-    }
-
-    public final HubAuthenticationArgs getArgs() {
-        return (HubAuthenticationArgs) this.args.getValue();
     }
 
     @Override // com.discord.app.AppFragment

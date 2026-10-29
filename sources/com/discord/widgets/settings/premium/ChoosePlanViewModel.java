@@ -24,6 +24,7 @@ import com.discord.utilities.logging.Logger;
 import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.premium.PremiumUtils;
 import com.discord.utilities.user.UserUtils;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -61,7 +62,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ChoosePlanViewModel$1 */
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static final /* synthetic */ class C98691 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C98691 extends C12236k implements Function1<StoreState, Unit> {
         public C98691(ChoosePlanViewModel choosePlanViewModel) {
             super(1, choosePlanViewModel, ChoosePlanViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/settings/premium/ChoosePlanViewModel$StoreState;)V", 0);
         }
@@ -81,7 +82,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.ChoosePlanViewModel$2 */
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static final /* synthetic */ class C98702 extends C12236k implements Function1<StoreGooglePlayPurchases.Event, Unit> {
+    public final /* synthetic */ class C98702 extends C12236k implements Function1<StoreGooglePlayPurchases.Event, Unit> {
         public C98702(ChoosePlanViewModel choosePlanViewModel) {
             super(1, choosePlanViewModel, ChoosePlanViewModel.class, "handleEvent", "handleEvent(Lcom/discord/stores/StoreGooglePlayPurchases$Event;)V", 0);
         }
@@ -100,7 +101,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -131,10 +132,10 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-        public static final /* data */ class CompleteSkuPurchase extends Event {
+        public final /* data */ class CompleteSkuPurchase extends Event {
             private final String planName;
             private final String skuName;
 
@@ -157,16 +158,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return completeSkuPurchase.copy(str, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getSkuName() {
-                return this.skuName;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getPlanName() {
-                return this.planName;
-            }
-
             public final CompleteSkuPurchase copy(String skuName, String planName) {
                 C12238m.checkNotNullParameter(skuName, "skuName");
                 C12238m.checkNotNullParameter(planName, "planName");
@@ -184,8 +175,18 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.skuName, completeSkuPurchase.skuName) && C12238m.areEqual(this.planName, completeSkuPurchase.planName);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getPlanName() {
                 return this.planName;
+            }
+
+            public final String getPlanName() {
+                return this.planName;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getSkuName() {
+                return this.skuName;
             }
 
             public final String getSkuName() {
@@ -208,7 +209,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-        public static final /* data */ class ErrorSkuPurchase extends Event {
+        public final /* data */ class ErrorSkuPurchase extends Event {
             private final int message;
 
             public ErrorSkuPurchase(@StringRes int i) {
@@ -223,11 +224,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return errorSkuPurchase.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getMessage() {
-                return this.message;
-            }
-
             public final ErrorSkuPurchase copy(@StringRes int message) {
                 return new ErrorSkuPurchase(message);
             }
@@ -237,6 +233,11 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ErrorSkuPurchase) && this.message == ((ErrorSkuPurchase) other).message;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getMessage() {
+                return this.message;
             }
 
             public final int getMessage() {
@@ -253,7 +254,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-        public static final /* data */ class StartSkuPurchase extends Event {
+        public final /* data */ class StartSkuPurchase extends Event {
             private final BillingFlowParams billingParams;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -270,11 +271,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return startSkuPurchase.copy(billingFlowParams);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final BillingFlowParams getBillingParams() {
-                return this.billingParams;
-            }
-
             public final StartSkuPurchase copy(BillingFlowParams billingParams) {
                 C12238m.checkNotNullParameter(billingParams, "billingParams");
                 return new StartSkuPurchase(billingParams);
@@ -285,6 +281,11 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof StartSkuPurchase) && C12238m.areEqual(this.billingParams, ((StartSkuPurchase) other).billingParams);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final BillingFlowParams getBillingParams() {
+                return this.billingParams;
             }
 
             public final BillingFlowParams getBillingParams() {
@@ -316,7 +317,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreGooglePlayPurchases.QueryState purchasesQueryState;
         private final StoreGooglePlayPurchases.State purchasesState;
         private final StoreGooglePlaySkuDetails.State skuDetailsState;
@@ -349,26 +350,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
             return storeState.copy(state, state2, queryState, subscriptionsState);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
-            return this.skuDetailsState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreGooglePlayPurchases.State getPurchasesState() {
-            return this.purchasesState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
-            return this.purchasesQueryState;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
-            return this.subscriptionsState;
-        }
-
         public final StoreState copy(StoreGooglePlaySkuDetails.State skuDetailsState, StoreGooglePlayPurchases.State purchasesState, StoreGooglePlayPurchases.QueryState purchasesQueryState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
             C12238m.checkNotNullParameter(skuDetailsState, "skuDetailsState");
             C12238m.checkNotNullParameter(purchasesState, "purchasesState");
@@ -388,16 +369,36 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.skuDetailsState, storeState.skuDetailsState) && C12238m.areEqual(this.purchasesState, storeState.purchasesState) && C12238m.areEqual(this.purchasesQueryState, storeState.purchasesQueryState) && C12238m.areEqual(this.subscriptionsState, storeState.subscriptionsState);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
             return this.purchasesQueryState;
+        }
+
+        public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
+            return this.purchasesQueryState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreGooglePlayPurchases.State getPurchasesState() {
+            return this.purchasesState;
         }
 
         public final StoreGooglePlayPurchases.State getPurchasesState() {
             return this.purchasesState;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
             return this.skuDetailsState;
+        }
+
+        public final StoreGooglePlaySkuDetails.State getSkuDetailsState() {
+            return this.skuDetailsState;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
         }
 
         public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
@@ -430,10 +431,10 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean isEmpty;
             private final List<WidgetChoosePlanAdapter.Item> items;
             private final List<Purchase> purchases;
@@ -456,6 +457,22 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 this.purchases = list2;
                 this.subscriptions = list3;
                 this.isEmpty = z2;
+            }
+
+            public final List<WidgetChoosePlanAdapter.Item> component2() {
+                return this.items;
+            }
+
+            public final Map<String, SkuDetails> component3() {
+                return this.skuDetails;
+            }
+
+            public final List<Purchase> component4() {
+                return this.purchases;
+            }
+
+            public final List<ModelSubscription> component5() {
+                return this.subscriptions;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -485,32 +502,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return loaded.copy(queryState, list4, map2, list5, list6, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
-                return this.purchasesQueryState;
-            }
-
-            public final List<WidgetChoosePlanAdapter.Item> component2() {
-                return this.items;
-            }
-
-            public final Map<String, SkuDetails> component3() {
-                return this.skuDetails;
-            }
-
-            public final List<Purchase> component4() {
-                return this.purchases;
-            }
-
-            public final List<ModelSubscription> component5() {
-                return this.subscriptions;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsEmpty() {
-                return this.isEmpty;
-            }
-
             public final Loaded copy(StoreGooglePlayPurchases.QueryState purchasesQueryState, List<? extends WidgetChoosePlanAdapter.Item> items, Map<String, ? extends SkuDetails> skuDetails, List<? extends Purchase> purchases, List<ModelSubscription> subscriptions, boolean isEmpty) {
                 C12238m.checkNotNullParameter(purchasesQueryState, "purchasesQueryState");
                 C12238m.checkNotNullParameter(items, "items");
@@ -531,12 +522,22 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.purchasesQueryState, loaded.purchasesQueryState) && C12238m.areEqual(this.items, loaded.items) && C12238m.areEqual(this.skuDetails, loaded.skuDetails) && C12238m.areEqual(this.purchases, loaded.purchases) && C12238m.areEqual(this.subscriptions, loaded.subscriptions) && this.isEmpty == loaded.isEmpty;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsEmpty() {
+                return this.isEmpty;
+            }
+
             public final List<WidgetChoosePlanAdapter.Item> getItems() {
                 return this.items;
             }
 
             public final List<Purchase> getPurchases() {
                 return this.purchases;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
+                return this.purchasesQueryState;
             }
 
             public final StoreGooglePlayPurchases.QueryState getPurchasesQueryState() {
@@ -596,7 +597,7 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: ChoosePlanViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -630,11 +631,102 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
         this(viewType, str, (i & 4) != 0 ? INSTANCE.observeStores() : observable);
     }
 
-    public static /* synthetic */ void buy$default(ChoosePlanViewModel choosePlanViewModel, GooglePlaySku googlePlaySku, String str, Traits.Location location, String str2, int i, Object obj) {
+    public static /* synthetic */ void buy$default(ChoosePlanViewModel choosePlanViewModel, GooglePlaySku googlePlaySku, String str, Traits.Location location, String str2, int i, Object obj) throws NoSuchAlgorithmException {
         if ((i & 2) != 0) {
             str = null;
         }
         choosePlanViewModel.buy(googlePlaySku, str, location, str2);
+    }
+
+    public final void buy(GooglePlaySku sku, String oldSkuName, Traits.Location locationTrait, String fromStep) throws NoSuchAlgorithmException {
+        C12238m.checkNotNullParameter(sku, "sku");
+        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
+        C12238m.checkNotNullParameter(fromStep, "fromStep");
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            Map<String, SkuDetails> skuDetails = loaded.getSkuDetails();
+            SkuDetails skuDetails2 = skuDetails.get(sku.getSkuName());
+            SkuDetails skuDetails3 = skuDetails.get(oldSkuName);
+            Traits.Subscription subscriptionWithGatewayPlanId = Traits.Subscription.INSTANCE.withGatewayPlanId(sku.getSkuName());
+            this.locationTrait = locationTrait;
+            if (skuDetails2 == null || (oldSkuName != null && skuDetails3 == null)) {
+                AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
+                AppLog appLog = AppLog.f14950g;
+                StringBuilder sb = new StringBuilder();
+                sb.append("Purchase details not found.");
+                sb.append("oldSku: ");
+                sb.append(oldSkuName);
+                sb.append("; hasOldSkuDetails: ");
+                sb.append(skuDetails3 == null);
+                sb.append("; ");
+                sb.append("hasNewSkuDetails: ");
+                sb.append(skuDetails2 == null);
+                Logger.e$default(appLog, sb.toString(), new Exception(), null, 4, null);
+                this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase_details_not_found));
+                return;
+            }
+            BillingFlowParams.C5412a c5412a = new BillingFlowParams.C5412a();
+            ArrayList<SkuDetails> arrayList = new ArrayList<>();
+            arrayList.add(skuDetails2);
+            c5412a.f14556d = arrayList;
+            C12238m.checkNotNullExpressionValue(c5412a, "BillingFlowParams.newBui…SkuDetails(newSkuDetails)");
+            if (oldSkuName != null && skuDetails3 != null && (!C12238m.areEqual(sku.getSkuName(), oldSkuName))) {
+                PremiumUtils premiumUtils = PremiumUtils.INSTANCE;
+                Purchase purchaseFindPurchaseForSkuName = premiumUtils.findPurchaseForSkuName(loaded.getPurchases(), oldSkuName);
+                if (purchaseFindPurchaseForSkuName == null) {
+                    AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
+                    AppLog appLog2 = AppLog.f14950g;
+                    StringBuilder sbM837Y = C1643a.m837Y("Subscription without matching purchase. oldSkuName: ", oldSkuName, "; skuName: ");
+                    sbM837Y.append(sku.getSkuName());
+                    Logger.e$default(appLog2, sbM837Y.toString(), new Exception(), null, 4, null);
+                    this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase));
+                    return;
+                }
+                int prorationMode = getProrationMode(skuDetails3, skuDetails2);
+                C1618c c1618c = new C1618c();
+                C12238m.checkNotNullExpressionValue(c1618c, "BillingFlowParams.Subscr…UpdateParams.newBuilder()");
+                String strM7497a = purchaseFindPurchaseForSkuName.m7497a();
+                c1618c.f2956a = strM7497a;
+                c1618c.f2957b = prorationMode;
+                if (TextUtils.isEmpty(strM7497a) && TextUtils.isEmpty(null)) {
+                    throw new IllegalArgumentException("Old SKU purchase token/id must be provided.");
+                }
+                String str = c1618c.f2956a;
+                int i = c1618c.f2957b;
+                c5412a.f14554b = str;
+                c5412a.f14555c = i;
+                if (prorationMode == 4) {
+                    ModelSubscription modelSubscriptionFindSubscriptionForSku = premiumUtils.findSubscriptionForSku(loaded.getSubscriptions(), oldSkuName);
+                    String id2 = modelSubscriptionFindSubscriptionForSku != null ? modelSubscriptionFindSubscriptionForSku.getId() : null;
+                    if (id2 == null) {
+                        AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
+                        AppLog appLog3 = AppLog.f14950g;
+                        StringBuilder sbM837Y2 = C1643a.m837Y("No premium subscription for downgrade found. oldSkuName: ", oldSkuName, "; skuName: ");
+                        sbM837Y2.append(sku.getSkuName());
+                        Logger.e$default(appLog3, sbM837Y2.toString(), new Exception(), null, 4, null);
+                        this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase));
+                        return;
+                    }
+                    StoreGooglePlayPurchases googlePlayPurchases = StoreStream.INSTANCE.getGooglePlayPurchases();
+                    String strM7497a2 = purchaseFindPurchaseForSkuName.m7497a();
+                    C12238m.checkNotNullExpressionValue(strM7497a2, "purchase.purchaseToken");
+                    googlePlayPurchases.updatePendingDowngrade(new PendingDowngrade(strM7497a2, id2, sku.getSkuName()));
+                }
+            }
+            String obfuscatedUserId = UserUtils.INSTANCE.getObfuscatedUserId(Long.valueOf(StoreStream.INSTANCE.getUsers().getMe().getId()));
+            if (obfuscatedUserId != null) {
+                c5412a.f14553a = obfuscatedUserId;
+            }
+            AnalyticsTracker.INSTANCE.paymentFlowStep(locationTrait, (48 & 2) != 0 ? null : subscriptionWithGatewayPlanId, "external_payment", fromStep, (48 & 16) != 0 ? null : null, (48 & 32) != 0 ? null : null);
+            PublishSubject<Event> publishSubject = this.eventSubject;
+            BillingFlowParams billingFlowParamsM7495a = c5412a.m7495a();
+            C12238m.checkNotNullExpressionValue(billingFlowParamsM7495a, "builder.build()");
+            publishSubject.f27650k.onNext(new Event.StartSkuPurchase(billingFlowParamsM7495a));
+        }
     }
 
     private final void fetchData() {
@@ -697,6 +789,13 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
         return new WidgetChoosePlanAdapter.Item.Header(GooglePlaySku.Section.INSTANCE.getHeaderResource(section));
     }
 
+    public static /* synthetic */ List getItemsForViewType$default(ChoosePlanViewModel choosePlanViewModel, WidgetChoosePlan.ViewType viewType, Map map, SubscriptionInterval subscriptionInterval, int i, Object obj) {
+        if ((i & 4) != 0) {
+            subscriptionInterval = SubscriptionInterval.MONTHLY;
+        }
+        return choosePlanViewModel.getItemsForViewType(viewType, map, subscriptionInterval);
+    }
+
     private final List<WidgetChoosePlanAdapter.Item> getItemsForViewType(WidgetChoosePlan.ViewType viewType, Map<String, ? extends SkuDetails> skuDetailsMap, SubscriptionInterval skuInterval) {
         int iOrdinal = viewType.ordinal();
         if (iOrdinal == 0) {
@@ -736,13 +835,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
             }
         }
         return getPlansWithHeaders(arrayList3, skuDetailsMap);
-    }
-
-    public static /* synthetic */ List getItemsForViewType$default(ChoosePlanViewModel choosePlanViewModel, WidgetChoosePlan.ViewType viewType, Map map, SubscriptionInterval subscriptionInterval, int i, Object obj) {
-        if ((i & 4) != 0) {
-            subscriptionInterval = SubscriptionInterval.MONTHLY;
-        }
-        return choosePlanViewModel.getItemsForViewType(viewType, map, subscriptionInterval);
     }
 
     private final WidgetChoosePlanAdapter.Item.Plan getPlanForSku(GooglePlaySku sku, Map<String, ? extends SkuDetails> skuDetailsMap) {
@@ -841,97 +933,6 @@ public final class ChoosePlanViewModel extends AbstractC0859d0<ViewState> {
             loaded = ViewState.Loading.INSTANCE;
         }
         updateViewState(loaded);
-    }
-
-    public final void buy(GooglePlaySku sku, String oldSkuName, Traits.Location locationTrait, String fromStep) {
-        C12238m.checkNotNullParameter(sku, "sku");
-        C12238m.checkNotNullParameter(locationTrait, "locationTrait");
-        C12238m.checkNotNullParameter(fromStep, "fromStep");
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            Map<String, SkuDetails> skuDetails = loaded.getSkuDetails();
-            SkuDetails skuDetails2 = skuDetails.get(sku.getSkuName());
-            SkuDetails skuDetails3 = skuDetails.get(oldSkuName);
-            Traits.Subscription subscriptionWithGatewayPlanId = Traits.Subscription.INSTANCE.withGatewayPlanId(sku.getSkuName());
-            this.locationTrait = locationTrait;
-            if (skuDetails2 == null || (oldSkuName != null && skuDetails3 == null)) {
-                AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
-                AppLog appLog = AppLog.f14950g;
-                StringBuilder sb = new StringBuilder();
-                sb.append("Purchase details not found.");
-                sb.append("oldSku: ");
-                sb.append(oldSkuName);
-                sb.append("; hasOldSkuDetails: ");
-                sb.append(skuDetails3 == null);
-                sb.append("; ");
-                sb.append("hasNewSkuDetails: ");
-                sb.append(skuDetails2 == null);
-                Logger.e$default(appLog, sb.toString(), new Exception(), null, 4, null);
-                this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase_details_not_found));
-                return;
-            }
-            BillingFlowParams.C5412a c5412a = new BillingFlowParams.C5412a();
-            ArrayList<SkuDetails> arrayList = new ArrayList<>();
-            arrayList.add(skuDetails2);
-            c5412a.f14556d = arrayList;
-            C12238m.checkNotNullExpressionValue(c5412a, "BillingFlowParams.newBui…SkuDetails(newSkuDetails)");
-            if (oldSkuName != null && skuDetails3 != null && (!C12238m.areEqual(sku.getSkuName(), oldSkuName))) {
-                PremiumUtils premiumUtils = PremiumUtils.INSTANCE;
-                Purchase purchaseFindPurchaseForSkuName = premiumUtils.findPurchaseForSkuName(loaded.getPurchases(), oldSkuName);
-                if (purchaseFindPurchaseForSkuName == null) {
-                    AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
-                    AppLog appLog2 = AppLog.f14950g;
-                    StringBuilder sbM837Y = C1643a.m837Y("Subscription without matching purchase. oldSkuName: ", oldSkuName, "; skuName: ");
-                    sbM837Y.append(sku.getSkuName());
-                    Logger.e$default(appLog2, sbM837Y.toString(), new Exception(), null, 4, null);
-                    this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase));
-                    return;
-                }
-                int prorationMode = getProrationMode(skuDetails3, skuDetails2);
-                C1618c c1618c = new C1618c();
-                C12238m.checkNotNullExpressionValue(c1618c, "BillingFlowParams.Subscr…UpdateParams.newBuilder()");
-                String strM7497a = purchaseFindPurchaseForSkuName.m7497a();
-                c1618c.f2956a = strM7497a;
-                c1618c.f2957b = prorationMode;
-                if (TextUtils.isEmpty(strM7497a) && TextUtils.isEmpty(null)) {
-                    throw new IllegalArgumentException("Old SKU purchase token/id must be provided.");
-                }
-                String str = c1618c.f2956a;
-                int i = c1618c.f2957b;
-                c5412a.f14554b = str;
-                c5412a.f14555c = i;
-                if (prorationMode == 4) {
-                    ModelSubscription modelSubscriptionFindSubscriptionForSku = premiumUtils.findSubscriptionForSku(loaded.getSubscriptions(), oldSkuName);
-                    String id2 = modelSubscriptionFindSubscriptionForSku != null ? modelSubscriptionFindSubscriptionForSku.getId() : null;
-                    if (id2 == null) {
-                        AnalyticsTracker.paymentFlowFailed$default(AnalyticsTracker.INSTANCE, locationTrait, subscriptionWithGatewayPlanId, null, null, 12, null);
-                        AppLog appLog3 = AppLog.f14950g;
-                        StringBuilder sbM837Y2 = C1643a.m837Y("No premium subscription for downgrade found. oldSkuName: ", oldSkuName, "; skuName: ");
-                        sbM837Y2.append(sku.getSkuName());
-                        Logger.e$default(appLog3, sbM837Y2.toString(), new Exception(), null, 4, null);
-                        this.eventSubject.f27650k.onNext(new Event.ErrorSkuPurchase(C5419R.string.billing_error_purchase));
-                        return;
-                    }
-                    StoreGooglePlayPurchases googlePlayPurchases = StoreStream.INSTANCE.getGooglePlayPurchases();
-                    String strM7497a2 = purchaseFindPurchaseForSkuName.m7497a();
-                    C12238m.checkNotNullExpressionValue(strM7497a2, "purchase.purchaseToken");
-                    googlePlayPurchases.updatePendingDowngrade(new PendingDowngrade(strM7497a2, id2, sku.getSkuName()));
-                }
-            }
-            String obfuscatedUserId = UserUtils.INSTANCE.getObfuscatedUserId(Long.valueOf(StoreStream.INSTANCE.getUsers().getMe().getId()));
-            if (obfuscatedUserId != null) {
-                c5412a.f14553a = obfuscatedUserId;
-            }
-            AnalyticsTracker.INSTANCE.paymentFlowStep(locationTrait, (48 & 2) != 0 ? null : subscriptionWithGatewayPlanId, "external_payment", fromStep, (48 & 16) != 0 ? null : null, (48 & 32) != 0 ? null : null);
-            PublishSubject<Event> publishSubject = this.eventSubject;
-            BillingFlowParams billingFlowParamsM7495a = c5412a.m7495a();
-            C12238m.checkNotNullExpressionValue(billingFlowParamsM7495a, "builder.build()");
-            publishSubject.f27650k.onNext(new Event.StartSkuPurchase(billingFlowParamsM7495a));
-        }
     }
 
     public final Observable<Event> observeEvents() {

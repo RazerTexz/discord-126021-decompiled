@@ -14,38 +14,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageInstanceEnded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageInstanceEnded implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final Long guildScheduledEventId = null;
+    private final Long maxConcurrentListeners = null;
+    private final Long maxConcurrentSpeakers = null;
+    private final Long numParticipants = null;
+    private final Long privacyLevel = null;
+    private final Long stageInstanceId = null;
+    private final CharSequence topic = null;
+    private final Long totalUniqueListeners = null;
+    private final Long totalUniqueSpeakers = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final Long stageInstanceId = null;
-    private final CharSequence topic = null;
-    private final Long privacyLevel = null;
     private final Long updaterId = null;
-    private final Long guildScheduledEventId = null;
-    private final Long totalUniqueListeners = null;
-    private final Long maxConcurrentListeners = null;
-    private final Long totalUniqueSpeakers = null;
-    private final Long maxConcurrentSpeakers = null;
-    private final Long numParticipants = null;
     private final transient String analyticsSchemaTypeName = "stage_instance_ended";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -56,6 +38,18 @@ public final /* data */ class TrackStageInstanceEnded implements AnalyticsSchema
         }
         TrackStageInstanceEnded trackStageInstanceEnded = (TrackStageInstanceEnded) other;
         return C12238m.areEqual(this.stageInstanceId, trackStageInstanceEnded.stageInstanceId) && C12238m.areEqual(this.topic, trackStageInstanceEnded.topic) && C12238m.areEqual(this.privacyLevel, trackStageInstanceEnded.privacyLevel) && C12238m.areEqual(this.updaterId, trackStageInstanceEnded.updaterId) && C12238m.areEqual(this.guildScheduledEventId, trackStageInstanceEnded.guildScheduledEventId) && C12238m.areEqual(this.totalUniqueListeners, trackStageInstanceEnded.totalUniqueListeners) && C12238m.areEqual(this.maxConcurrentListeners, trackStageInstanceEnded.maxConcurrentListeners) && C12238m.areEqual(this.totalUniqueSpeakers, trackStageInstanceEnded.totalUniqueSpeakers) && C12238m.areEqual(this.maxConcurrentSpeakers, trackStageInstanceEnded.maxConcurrentSpeakers) && C12238m.areEqual(this.numParticipants, trackStageInstanceEnded.numParticipants);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -79,6 +73,12 @@ public final /* data */ class TrackStageInstanceEnded implements AnalyticsSchema
         int iHashCode9 = (iHashCode8 + (l8 != null ? l8.hashCode() : 0)) * 31;
         Long l9 = this.numParticipants;
         return iHashCode9 + (l9 != null ? l9.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

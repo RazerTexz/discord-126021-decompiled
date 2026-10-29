@@ -27,24 +27,9 @@ import p507d0.p592z.p594d.C12238m;
 public final class MemberVerificationUtils {
     public static final MemberVerificationUtils INSTANCE = new MemberVerificationUtils();
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            ApplicationStatus.values();
-            int[] iArr = new int[5];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[ApplicationStatus.APPROVED.ordinal()] = 1;
-            iArr[ApplicationStatus.PENDING.ordinal()] = 2;
-            iArr[ApplicationStatus.REJECTED.ordinal()] = 3;
-            iArr[ApplicationStatus.STARTED.ordinal()] = 4;
-            iArr[ApplicationStatus.UNKNOWN.ordinal()] = 5;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.guilds.MemberVerificationUtils$maybeShowVerificationGate$1 */
     /* JADX INFO: compiled from: MemberVerificationUtils.kt */
-    public static final class C67681 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67681 extends AbstractC12240o implements Function0<Unit> {
         public static final C67681 INSTANCE = new C67681();
 
         public C67681() {
@@ -62,6 +47,21 @@ public final class MemberVerificationUtils {
         }
     }
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ApplicationStatus.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ApplicationStatus.APPROVED.ordinal()] = 1;
+            iArr[ApplicationStatus.PENDING.ordinal()] = 2;
+            iArr[ApplicationStatus.REJECTED.ordinal()] = 3;
+            iArr[ApplicationStatus.STARTED.ordinal()] = 4;
+            iArr[ApplicationStatus.UNKNOWN.ordinal()] = 5;
+        }
+    }
+
     private MemberVerificationUtils() {
     }
 
@@ -73,40 +73,6 @@ public final class MemberVerificationUtils {
             modelInvite = null;
         }
         return memberVerificationUtils.hasVerificationGate(guild, modelInvite);
-    }
-
-    private final void showMemberVerificationPendingDialog(FragmentManager fragmentManager, long guildId) {
-        MemberVerificationPendingDialog.Companion.show$default(MemberVerificationPendingDialog.INSTANCE, fragmentManager, guildId, null, 4, null);
-    }
-
-    private final void showMemberVerificationSuccessDialog(Guild guild, ModelInvite invite) {
-        String name;
-        com.discord.api.guild.Guild guild2;
-        if (guild == null || (name = guild.getName()) == null) {
-            name = (invite == null || (guild2 = invite.guild) == null) ? null : guild2.getName();
-        }
-        if (name == null || guild == null) {
-            return;
-        }
-        MemberVerificationSuccessDialog.INSTANCE.enqueue(guild.getId());
-    }
-
-    public static /* synthetic */ void showMemberVerificationSuccessDialog$default(MemberVerificationUtils memberVerificationUtils, Guild guild, ModelInvite modelInvite, int i, Object obj) {
-        if ((i & 2) != 0) {
-            modelInvite = null;
-        }
-        memberVerificationUtils.showMemberVerificationSuccessDialog(guild, modelInvite);
-    }
-
-    private final void showMemberVerificationWidget(Context context, long guildId, String location, ModelInvite invite) {
-        WidgetMemberVerification.INSTANCE.create(context, guildId, location, invite);
-    }
-
-    public static /* synthetic */ void showMemberVerificationWidget$default(MemberVerificationUtils memberVerificationUtils, Context context, long j, String str, ModelInvite modelInvite, int i, Object obj) {
-        if ((i & 8) != 0) {
-            modelInvite = null;
-        }
-        memberVerificationUtils.showMemberVerificationWidget(context, j, str, modelInvite);
     }
 
     public final boolean hasVerificationGate(Guild guild, ModelInvite invite) {
@@ -161,5 +127,39 @@ public final class MemberVerificationUtils {
             onFullMembership.invoke();
             showMemberVerificationSuccessDialog(guild, invite);
         }
+    }
+
+    private final void showMemberVerificationPendingDialog(FragmentManager fragmentManager, long guildId) {
+        MemberVerificationPendingDialog.Companion.show$default(MemberVerificationPendingDialog.INSTANCE, fragmentManager, guildId, null, 4, null);
+    }
+
+    public static /* synthetic */ void showMemberVerificationSuccessDialog$default(MemberVerificationUtils memberVerificationUtils, Guild guild, ModelInvite modelInvite, int i, Object obj) {
+        if ((i & 2) != 0) {
+            modelInvite = null;
+        }
+        memberVerificationUtils.showMemberVerificationSuccessDialog(guild, modelInvite);
+    }
+
+    private final void showMemberVerificationSuccessDialog(Guild guild, ModelInvite invite) {
+        String name;
+        com.discord.api.guild.Guild guild2;
+        if (guild == null || (name = guild.getName()) == null) {
+            name = (invite == null || (guild2 = invite.guild) == null) ? null : guild2.getName();
+        }
+        if (name == null || guild == null) {
+            return;
+        }
+        MemberVerificationSuccessDialog.INSTANCE.enqueue(guild.getId());
+    }
+
+    public static /* synthetic */ void showMemberVerificationWidget$default(MemberVerificationUtils memberVerificationUtils, Context context, long j, String str, ModelInvite modelInvite, int i, Object obj) {
+        if ((i & 8) != 0) {
+            modelInvite = null;
+        }
+        memberVerificationUtils.showMemberVerificationWidget(context, j, str, modelInvite);
+    }
+
+    private final void showMemberVerificationWidget(Context context, long guildId, String location, ModelInvite invite) {
+        WidgetMemberVerification.INSTANCE.create(context, guildId, location, invite);
     }
 }

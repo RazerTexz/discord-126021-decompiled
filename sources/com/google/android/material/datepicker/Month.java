@@ -14,7 +14,6 @@ import p007b.p225i.p226a.p341g.p345d.C4401l;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class Month implements Comparable<Month>, Parcelable {
-    public static final Parcelable.Creator<Month> CREATOR = new C10902a();
 
     /* JADX INFO: renamed from: j */
     @NonNull
@@ -38,9 +37,10 @@ public final class Month implements Comparable<Month>, Parcelable {
     /* JADX INFO: renamed from: p */
     @Nullable
     public String f20990p;
+    public static final Parcelable.Creator<Month> CREATOR = new C10902a();
 
     /* JADX INFO: renamed from: com.google.android.material.datepicker.Month$a */
-    public static class C10902a implements Parcelable.Creator<Month> {
+    public final class C10902a implements Parcelable.Creator<Month> {
         @Override // android.os.Parcelable.Creator
         @NonNull
         public Month createFromParcel(@NonNull Parcel parcel) {
@@ -65,6 +65,32 @@ public final class Month implements Comparable<Month>, Parcelable {
         this.f20989o = calendarM6071d.getTimeInMillis();
     }
 
+    @Override // java.lang.Comparable
+    /* JADX INFO: renamed from: f, reason: merged with bridge method [inline-methods] */
+    public int compareTo(@NonNull Month month) {
+        return this.f20984j.compareTo(month.f20984j);
+    }
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Month)) {
+            return false;
+        }
+        Month month = (Month) obj;
+        return this.f20985k == month.f20985k && this.f20986l == month.f20986l;
+    }
+
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20985k), Integer.valueOf(this.f20986l)});
+    }
+
     @NonNull
     /* JADX INFO: renamed from: g */
     public static Month m9131g(int i, int i2) {
@@ -86,32 +112,6 @@ public final class Month implements Comparable<Month>, Parcelable {
     /* JADX INFO: renamed from: i */
     public static Month m9133i() {
         return new Month(C4401l.m6075h());
-    }
-
-    @Override // android.os.Parcelable
-    public int describeContents() {
-        return 0;
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Month)) {
-            return false;
-        }
-        Month month = (Month) obj;
-        return this.f20985k == month.f20985k && this.f20986l == month.f20986l;
-    }
-
-    @Override // java.lang.Comparable
-    /* JADX INFO: renamed from: f, reason: merged with bridge method [inline-methods] */
-    public int compareTo(@NonNull Month month) {
-        return this.f20984j.compareTo(month.f20984j);
-    }
-
-    public int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20985k), Integer.valueOf(this.f20986l)});
     }
 
     /* JADX INFO: renamed from: j */

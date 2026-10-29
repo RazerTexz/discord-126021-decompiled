@@ -63,30 +63,9 @@ public final class StoreUserSettings extends Store {
     private final Persister<Integer> stickerAnimationSettingsPublisher;
     private final Persister<Boolean> stickerSuggestionsPublisher;
 
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final void updateUserSettings(AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : appActivity, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new StoreUserSettings$Companion$updateUserSettings$1(appActivity, num));
-        }
-
-        public static /* synthetic */ void updateUserSettings$default(Companion companion, AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num, int i, Object obj) {
-            if ((i & 2) != 0) {
-                num = null;
-            }
-            companion.updateUserSettings(appActivity, userSettings, num);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$expireCustomStatus$1 */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class C65971 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+    public final class C65971 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
         public static final C65971 INSTANCE = new C65971();
 
         public C65971() {
@@ -107,7 +86,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateAllowAccessibilityDetectionInternal$1 */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class C66001 extends AbstractC12240o implements Function0<Unit> {
+    public final class C66001 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $allowAccessibilityDetection;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -130,7 +109,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateContactSyncShown$1 */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class C66011 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+    public final class C66011 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
         public static final C66011 INSTANCE = new C66011();
 
         public C66011() {
@@ -151,7 +130,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$1 */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class C66021 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C66021 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C66021() {
             super(1);
         }
@@ -171,7 +150,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$2 */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public static final class C66032 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C66032 extends AbstractC12240o implements Function1<Long, Unit> {
         public C66032() {
             super(1);
         }
@@ -185,6 +164,27 @@ public final class StoreUserSettings extends Store {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Long l) {
             StoreUserSettings.this.expireCustomStatus();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void updateUserSettings$default(Companion companion, AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num, int i, Object obj) {
+            if ((i & 2) != 0) {
+                num = null;
+            }
+            companion.updateUserSettings(appActivity, userSettings, num);
+        }
+
+        private final void updateUserSettings(AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : appActivity, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new StoreUserSettings$Companion$updateUserSettings$1(appActivity, num));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -212,6 +212,65 @@ public final class StoreUserSettings extends Store {
 
     private final void expireCustomStatus() {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(updateCustomStatus(null), false, 1, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C65971.INSTANCE);
+    }
+
+    public final Boolean getContactSyncUpsellShown() {
+        return this.contactSyncUpsellShown;
+    }
+
+    public final boolean getIsAttachmentMediaInline() {
+        return getPrefs().getBoolean("CACHE_KEY_INLINE_ATTACHMENT_MEDIA", true);
+    }
+
+    public final boolean getIsAutoImageCompressionEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_IMAGE_COMPRESSION", false);
+    }
+
+    public final boolean getIsAutoPlayGifsEnabled() {
+        return getPrefs().getBoolean("STORE_SETTINGS_AUTO_PLAY_GIFS", true);
+    }
+
+    public final boolean getIsChromeCustomTabsEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", true);
+    }
+
+    public final boolean getIsDeveloperMode() {
+        return getPrefs().getBoolean("CACHE_KEY_DEVELOPER_MODE", false);
+    }
+
+    public final boolean getIsEmbedMediaInlined() {
+        return getPrefs().getBoolean("CACHE_KEY_INLINE_EMBED_MEDIA", true);
+    }
+
+    public final boolean getIsMobileOverlayEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_MOBILE_OVERLAY", false);
+    }
+
+    public final boolean getIsRenderEmbedsEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_RENDER_EMBEDS", true);
+    }
+
+    public final boolean getIsShiftEnterToSendEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", false);
+    }
+
+    public final boolean getIsStickerSuggestionsEnabled() {
+        return this.stickerSuggestionsPublisher.get().booleanValue();
+    }
+
+    public final boolean getIsSyncTextAndImagesEnabled() {
+        return getPrefs().getBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", true);
+    }
+
+    public final int getStickerAnimationSettings() {
+        return this.stickerAnimationSettingsPublisher.get().intValue();
+    }
+
+    public final void handleConnectionOpen(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        ModelUserSettings userSettings = payload.getUserSettings();
+        C12238m.checkNotNullExpressionValue(userSettings, "userSettings");
+        handleUserSettings(userSettings);
     }
 
     private final void handleUserSettings(ModelUserSettings userSettings) {
@@ -285,112 +344,6 @@ public final class StoreUserSettings extends Store {
         }
     }
 
-    public static /* synthetic */ Observable observeIsAnimatedEmojisEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return storeUserSettings.observeIsAnimatedEmojisEnabled(z2);
-    }
-
-    public static /* synthetic */ Observable observeIsAutoPlayGifsEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return storeUserSettings.observeIsAutoPlayGifsEnabled(z2);
-    }
-
-    public static /* synthetic */ Observable observeStickerAnimationSettings$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return storeUserSettings.observeStickerAnimationSettings(z2);
-    }
-
-    private final void setDeveloperModeInternal(boolean isDeveloperMode) {
-        getPrefs().edit().putBoolean("CACHE_KEY_DEVELOPER_MODE", isDeveloperMode).apply();
-    }
-
-    private final void updateAllowAccessibilityDetectionInternal(boolean allowAccessibilityDetection) {
-        Persister.set$default(this.allowAccessibilityDetectionPublisher, Boolean.valueOf(allowAccessibilityDetection), false, 2, null);
-        this.dispatcher.schedule(new C66001(allowAccessibilityDetection));
-    }
-
-    private final synchronized void updateLocalCustomStatus(ModelCustomStatusSetting customStatus) {
-        Subscription subscription = this.expireCustomStatusSubscription;
-        if (subscription != null) {
-            C12238m.checkNotNull(subscription);
-            subscription.unsubscribe();
-        }
-        this.customStatusSubject.f27653k.onNext(customStatus);
-        if (!C12238m.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
-            C12238m.checkNotNull(customStatus);
-            if (customStatus.getExpiresAt() != null) {
-                Observable<Long> observableM11068d0 = Observable.m11068d0(C11226f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
-                C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
-                ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C66021()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C66032());
-            }
-        }
-    }
-
-    public final Boolean getContactSyncUpsellShown() {
-        return this.contactSyncUpsellShown;
-    }
-
-    public final boolean getIsAttachmentMediaInline() {
-        return getPrefs().getBoolean("CACHE_KEY_INLINE_ATTACHMENT_MEDIA", true);
-    }
-
-    public final boolean getIsAutoImageCompressionEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_IMAGE_COMPRESSION", false);
-    }
-
-    public final boolean getIsAutoPlayGifsEnabled() {
-        return getPrefs().getBoolean("STORE_SETTINGS_AUTO_PLAY_GIFS", true);
-    }
-
-    public final boolean getIsChromeCustomTabsEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", true);
-    }
-
-    public final boolean getIsDeveloperMode() {
-        return getPrefs().getBoolean("CACHE_KEY_DEVELOPER_MODE", false);
-    }
-
-    public final boolean getIsEmbedMediaInlined() {
-        return getPrefs().getBoolean("CACHE_KEY_INLINE_EMBED_MEDIA", true);
-    }
-
-    public final boolean getIsMobileOverlayEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_MOBILE_OVERLAY", false);
-    }
-
-    public final boolean getIsRenderEmbedsEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_RENDER_EMBEDS", true);
-    }
-
-    public final boolean getIsShiftEnterToSendEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", false);
-    }
-
-    public final boolean getIsStickerSuggestionsEnabled() {
-        return this.stickerSuggestionsPublisher.get().booleanValue();
-    }
-
-    public final boolean getIsSyncTextAndImagesEnabled() {
-        return getPrefs().getBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", true);
-    }
-
-    public final int getStickerAnimationSettings() {
-        return this.stickerAnimationSettingsPublisher.get().intValue();
-    }
-
-    public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        ModelUserSettings userSettings = payload.getUserSettings();
-        C12238m.checkNotNullExpressionValue(userSettings, "userSettings");
-        handleUserSettings(userSettings);
-    }
-
     @StoreThread
     public final void handleUserSettingsUpdate(ModelUserSettings userSettings) {
         C12238m.checkNotNullParameter(userSettings, "userSettings");
@@ -453,6 +406,13 @@ public final class StoreUserSettings extends Store {
         return observableM11112r;
     }
 
+    public static /* synthetic */ Observable observeIsAnimatedEmojisEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return storeUserSettings.observeIsAnimatedEmojisEnabled(z2);
+    }
+
     public final Observable<Boolean> observeIsAnimatedEmojisEnabled(boolean respectReducedMotion) {
         Observable<Boolean> observable = this.allowAnimatedEmojisPublisher.getObservable();
         if (respectReducedMotion) {
@@ -467,6 +427,13 @@ public final class StoreUserSettings extends Store {
         Observable<Boolean> observableM11112r = observable.m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "allowAnimatedEmojisPubli…  .distinctUntilChanged()");
         return observableM11112r;
+    }
+
+    public static /* synthetic */ Observable observeIsAutoPlayGifsEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return storeUserSettings.observeIsAutoPlayGifsEnabled(z2);
     }
 
     public final Observable<Boolean> observeIsAutoPlayGifsEnabled(boolean respectReducedMotion) {
@@ -511,6 +478,13 @@ public final class StoreUserSettings extends Store {
         return observableM11112r;
     }
 
+    public static /* synthetic */ Observable observeStickerAnimationSettings$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return storeUserSettings.observeStickerAnimationSettings(z2);
+    }
+
     public final Observable<Integer> observeStickerAnimationSettings(boolean respectReducedMotion) {
         Observable<Integer> observable = this.stickerAnimationSettingsPublisher.getObservable();
         if (respectReducedMotion) {
@@ -541,6 +515,10 @@ public final class StoreUserSettings extends Store {
         if (activity != null) {
             Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRestrictedGuilds(Boolean.valueOf(defaultGuildsRestricted), restrictedGuilds), null, 2, null);
         }
+    }
+
+    private final void setDeveloperModeInternal(boolean isDeveloperMode) {
+        getPrefs().edit().putBoolean("CACHE_KEY_DEVELOPER_MODE", isDeveloperMode).apply();
     }
 
     public final void setExplicitContentFilter(AppActivity activity, int explicitContentFilter) {
@@ -693,12 +671,34 @@ public final class StoreUserSettings extends Store {
         Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithStickerAnimationSettings(Integer.valueOf(stickerAnimationSettings)), null, 2, null);
     }
 
+    private final void updateAllowAccessibilityDetectionInternal(boolean allowAccessibilityDetection) {
+        Persister.set$default(this.allowAccessibilityDetectionPublisher, Boolean.valueOf(allowAccessibilityDetection), false, 2, null);
+        this.dispatcher.schedule(new C66001(allowAccessibilityDetection));
+    }
+
     public final void updateContactSyncShown() {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithContactSyncUpsellShown()), false, 1, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C66011.INSTANCE);
     }
 
     public final Observable<ModelUserSettings> updateCustomStatus(ModelCustomStatusSetting customStatus) {
         return RestAPI.INSTANCE.getApiSerializeNulls().updateUserSettingsCustomStatus(new RestAPIParams.UserSettingsCustomStatus(customStatus));
+    }
+
+    private final synchronized void updateLocalCustomStatus(ModelCustomStatusSetting customStatus) {
+        Subscription subscription = this.expireCustomStatusSubscription;
+        if (subscription != null) {
+            C12238m.checkNotNull(subscription);
+            subscription.unsubscribe();
+        }
+        this.customStatusSubject.f27653k.onNext(customStatus);
+        if (!C12238m.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
+            C12238m.checkNotNull(customStatus);
+            if (customStatus.getExpiresAt() != null) {
+                Observable<Long> observableM11068d0 = Observable.m11068d0(C11226f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
+                C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
+                ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C66021()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C66032());
+            }
+        }
     }
 
     public final void getIsSyncTextAndImagesEnabled(boolean isSyncTextAndImagesEnabled) {

@@ -7,19 +7,19 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3607c1 extends AbstractC3851u4<C3607c1, a> implements InterfaceC3626d6 {
-    private static final C3607c1 zzj;
-    private static volatile InterfaceC3710j6<C3607c1> zzk;
     private int zzc;
     private long zzf;
     private float zzg;
     private double zzh;
+    private static final C3607c1 zzj;
+    private static volatile InterfaceC3710j6<C3607c1> zzk;
     private String zzd = "";
     private String zze = "";
     private InterfaceC3597b5<C3607c1> zzi = C3749m6.f10094k;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.c1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3607c1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3607c1, a> implements InterfaceC3626d6 {
         public a() {
             super(C3607c1.zzj);
         }

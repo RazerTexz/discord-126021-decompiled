@@ -12,7 +12,7 @@ public final /* data */ class HubWaitlistArgs implements Parcelable {
     public static final Parcelable.Creator<HubWaitlistArgs> CREATOR = new Creator();
     private final String email;
 
-    public static class Creator implements Parcelable.Creator<HubWaitlistArgs> {
+    public final class Creator implements Parcelable.Creator<HubWaitlistArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubWaitlistArgs createFromParcel(Parcel parcel) {
@@ -39,11 +39,6 @@ public final /* data */ class HubWaitlistArgs implements Parcelable {
         return hubWaitlistArgs.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
     public final HubWaitlistArgs copy(String email) {
         C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
         return new HubWaitlistArgs(email);
@@ -59,6 +54,11 @@ public final /* data */ class HubWaitlistArgs implements Parcelable {
             return (other instanceof HubWaitlistArgs) && C12238m.areEqual(this.email, ((HubWaitlistArgs) other).email);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getEmail() {
+        return this.email;
     }
 
     public final String getEmail() {

@@ -57,6 +57,88 @@ public final class AuditLogChangeUtils {
     private static final List<Integer> RENDERABLE_DELETE_ACTION_TYPES = C12147n.listOf((Object[]) new Integer[]{22, 20, 21});
     private static final List<String> CHANGE_KEYS_REFERENCING_CHANNEL = C12147n.listOf((Object[]) new String[]{ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, ModelAuditLogEntry.CHANGE_KEY_AFK_CHANNEL_ID, ModelAuditLogEntry.CHANGE_KEY_SYSTEM_CHANNEL_ID, ModelAuditLogEntry.CHANGE_KEY_RULES_CHANNEL_ID, ModelAuditLogEntry.CHANGE_KEY_UPDATES_CHANNEL_ID});
 
+    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$1 */
+    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
+    public final class C66911 extends AbstractC12240o implements Function1<Long, Integer> {
+        public final /* synthetic */ ModelAuditLogEntry $auditLogEntry;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66911(ModelAuditLogEntry modelAuditLogEntry) {
+            super(1);
+            this.$auditLogEntry = modelAuditLogEntry;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Integer invoke(Long l) {
+            return invoke(l.longValue());
+        }
+
+        public final Integer invoke(long j) {
+            return Integer.valueOf(AuditLogChangeUtils.INSTANCE.getStringForPermission(j, this.$auditLogEntry));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$2 */
+    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
+    public final class C66922 extends AbstractC12240o implements Function1<Integer, Boolean> {
+        public static final C66922 INSTANCE = new C66922();
+
+        public C66922() {
+            super(1);
+        }
+
+        public final boolean invoke(int i) {
+            return i != 0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Integer num) {
+            return Boolean.valueOf(invoke(num.intValue()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$3 */
+    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
+    public final class C66933 extends AbstractC12240o implements Function1<Integer, CharSequence> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66933(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final CharSequence invoke(int i) {
+            return C1107b.m216h(this.$context, i, new Object[0], null, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$4 */
+    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
+    public final class C66944 extends AbstractC12240o implements Function1<CharSequence, Boolean> {
+        public static final C66944 INSTANCE = new C66944();
+
+        public C66944() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(CharSequence charSequence) {
+            return Boolean.valueOf(invoke2(charSequence));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(CharSequence charSequence) {
+            C12238m.checkNotNullParameter(charSequence, "it");
+            return charSequence.length() == 0;
+        }
+    }
+
     public final /* synthetic */ class WhenMappings {
         public static final /* synthetic */ int[] $EnumSwitchMapping$0;
         public static final /* synthetic */ int[] $EnumSwitchMapping$1;
@@ -94,88 +176,6 @@ public final class AuditLogChangeUtils {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$1 */
-    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
-    public static final class C66911 extends AbstractC12240o implements Function1<Long, Integer> {
-        public final /* synthetic */ ModelAuditLogEntry $auditLogEntry;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66911(ModelAuditLogEntry modelAuditLogEntry) {
-            super(1);
-            this.$auditLogEntry = modelAuditLogEntry;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Integer invoke(Long l) {
-            return invoke(l.longValue());
-        }
-
-        public final Integer invoke(long j) {
-            return Integer.valueOf(AuditLogChangeUtils.INSTANCE.getStringForPermission(j, this.$auditLogEntry));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$2 */
-    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
-    public static final class C66922 extends AbstractC12240o implements Function1<Integer, Boolean> {
-        public static final C66922 INSTANCE = new C66922();
-
-        public C66922() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(Integer num) {
-            return Boolean.valueOf(invoke(num.intValue()));
-        }
-
-        public final boolean invoke(int i) {
-            return i != 0;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$3 */
-    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
-    public static final class C66933 extends AbstractC12240o implements Function1<Integer, CharSequence> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66933(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ CharSequence invoke(Integer num) {
-            return invoke(num.intValue());
-        }
-
-        public final CharSequence invoke(int i) {
-            return C1107b.m216h(this.$context, i, new Object[0], null, 4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$renderPermissionList$4 */
-    /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
-    public static final class C66944 extends AbstractC12240o implements Function1<CharSequence, Boolean> {
-        public static final C66944 INSTANCE = new C66944();
-
-        public C66944() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(CharSequence charSequence) {
-            return Boolean.valueOf(invoke2(charSequence));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(CharSequence charSequence) {
-            C12238m.checkNotNullParameter(charSequence, "it");
-            return charSequence.length() == 0;
-        }
-    }
-
     private AuditLogChangeUtils() {
     }
 
@@ -209,10 +209,122 @@ public final class AuditLogChangeUtils {
         if (number < 0 || 9 < number) {
             return String.valueOf(number);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append('0');
-        sb.append(number);
-        return sb.toString();
+        return "" + '0' + number;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:29:0x009c  */
+    public final CharSequence getChangeSummary(Context context, ModelAuditLogEntry auditLogEntry, Map<ModelAuditLogEntry.TargetType, ? extends Map<Long, ? extends CharSequence>> targets) {
+        int i;
+        int iOrdinal;
+        int guildChangeString;
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(auditLogEntry, "auditLogEntry");
+        C12238m.checkNotNullParameter(targets, "targets");
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        Typeface typefaceCreate = Typeface.create(FontUtils.INSTANCE.getThemedFont(context, C5419R.attr.font_monospace), 0);
+        List<ModelAuditLogEntry.Change> changes = auditLogEntry.getChanges();
+        if (changes != null) {
+            int i2 = 0;
+            for (ModelAuditLogEntry.Change change : changes) {
+                AuditLogChangeUtils auditLogChangeUtils = INSTANCE;
+                C12238m.checkNotNullExpressionValue(change, "change");
+                if (!auditLogChangeUtils.shouldNotRenderChange(auditLogEntry, change)) {
+                    ModelAuditLogEntry.TargetType targetType = auditLogEntry.getTargetType();
+                    if (targetType != null && (iOrdinal = targetType.ordinal()) != 0) {
+                        switch (iOrdinal) {
+                            case 2:
+                                guildChangeString = auditLogChangeUtils.getGuildChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 3:
+                            case 4:
+                                guildChangeString = auditLogChangeUtils.getChannelChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 5:
+                                guildChangeString = auditLogChangeUtils.getUserChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 6:
+                                guildChangeString = auditLogChangeUtils.getRoleChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 7:
+                                guildChangeString = auditLogChangeUtils.getInviteChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 8:
+                                guildChangeString = auditLogChangeUtils.getWebhookChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 9:
+                                guildChangeString = auditLogChangeUtils.getEmojiChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 10:
+                                guildChangeString = auditLogChangeUtils.getIntegrationChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 11:
+                                guildChangeString = auditLogChangeUtils.getStageInstanceChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 12:
+                                guildChangeString = auditLogChangeUtils.getGuildScheduledEventChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 13:
+                                guildChangeString = auditLogChangeUtils.getStickerChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            case 14:
+                                guildChangeString = auditLogChangeUtils.getThreadChangeString(change);
+                                i = guildChangeString;
+                                break;
+                            default:
+                                i = 0;
+                                break;
+                        }
+                    } else {
+                        i = 0;
+                    }
+                    if (i != 0) {
+                        int i3 = i2 + 1;
+                        if (i3 != 1) {
+                            spannableStringBuilder.append((CharSequence) "\n");
+                        }
+                        int iMax = Math.max(spannableStringBuilder.length() - 1, 0);
+                        spannableStringBuilder.append((CharSequence) (auditLogChangeUtils.getChangeNumberString(i3) + " — "));
+                        int length = spannableStringBuilder.length() - 1;
+                        spannableStringBuilder.setSpan(new ForegroundColorSpan(auditLogChangeUtils.getTextColor(context, auditLogEntry)), iMax, length, 33);
+                        C12238m.checkNotNullExpressionValue(typefaceCreate, "numberTypeface");
+                        spannableStringBuilder.setSpan(new TypefaceSpanCompat(typefaceCreate), iMax, length, 33);
+                        spannableStringBuilder.append(C1107b.m215g(auditLogChangeUtils.getChangeTextWithParams(context, auditLogEntry, change, i, targets), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null));
+                        if (C12238m.areEqual(change.getKey(), ModelAuditLogEntry.CHANGE_KEY_COLOR) && change.getValue() != null) {
+                            Object value = change.getValue();
+                            Long l = (Long) (value instanceof Long ? value : null);
+                            if (l == null || l.longValue() != 0) {
+                                spannableStringBuilder.append((CharSequence) "●");
+                                Object value2 = change.getValue();
+                                Objects.requireNonNull(value2, "null cannot be cast to non-null type kotlin.Long");
+                                String str = String.format("#%06X", Arrays.copyOf(new Object[]{Integer.valueOf(16777215 & ((int) ((Long) value2).longValue()))}, 1));
+                                C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
+                                spannableStringBuilder.setSpan(new ForegroundColorSpan(Color.parseColor(str)), C12106w.getLastIndex(spannableStringBuilder), C12106w.getLastIndex(spannableStringBuilder) + 1, 33);
+                            }
+                        }
+                        i2 = i3;
+                    } else {
+                        AppLog appLog = AppLog.f14950g;
+                        StringBuilder sbM833U = C1643a.m833U("No change text for actiontype: ");
+                        sbM833U.append(auditLogEntry.getActionTypeId());
+                        sbM833U.append(" key:");
+                        sbM833U.append(change.getKey());
+                        Logger.w$default(appLog, "Audit Logs", sbM833U.toString(), null, 4, null);
+                    }
+                }
+            }
+        }
+        return spannableStringBuilder;
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0044  */
@@ -915,6 +1027,10 @@ public final class AuditLogChangeUtils {
         return 0;
     }
 
+    public static /* synthetic */ int getNullableNewOrOldValueString$default(AuditLogChangeUtils auditLogChangeUtils, ModelAuditLogEntry.Change change, Integer num, Integer num2, Integer num3, Integer num4, int i, Object obj) {
+        return auditLogChangeUtils.getNullableNewOrOldValueString(change, (i & 1) != 0 ? null : num, (i & 2) != 0 ? null : num2, (i & 4) != 0 ? null : num3, (i & 8) != 0 ? null : num4);
+    }
+
     private final int getNullableNewOrOldValueString(ModelAuditLogEntry.Change change, @StringRes Integer num, @StringRes Integer num2, @StringRes Integer num3, @StringRes Integer num4) {
         if (change.getNewValue() == null || change.getOldValue() == null) {
             if (change.getNewValue() != null) {
@@ -927,10 +1043,6 @@ public final class AuditLogChangeUtils {
             return num.intValue();
         }
         return 0;
-    }
-
-    public static /* synthetic */ int getNullableNewOrOldValueString$default(AuditLogChangeUtils auditLogChangeUtils, ModelAuditLogEntry.Change change, Integer num, Integer num2, Integer num3, Integer num4, int i, Object obj) {
-        return auditLogChangeUtils.getNullableNewOrOldValueString(change, (i & 1) != 0 ? null : num, (i & 2) != 0 ? null : num2, (i & 4) != 0 ? null : num3, (i & 8) != 0 ? null : num4);
     }
 
     private final int getNullableNewValueString(ModelAuditLogEntry.Change change, @StringRes int i, @StringRes int i2) {
@@ -1469,6 +1581,28 @@ public final class AuditLogChangeUtils {
         return 0;
     }
 
+    public final boolean hasChangesToRender(ModelAuditLogEntry log) {
+        boolean z2;
+        C12238m.checkNotNullParameter(log, "log");
+        List<ModelAuditLogEntry.Change> changes = log.getChanges();
+        if (changes == null) {
+            return false;
+        }
+        if (changes.isEmpty()) {
+            z2 = false;
+        } else {
+            for (ModelAuditLogEntry.Change change : changes) {
+                AuditLogChangeUtils auditLogChangeUtils = INSTANCE;
+                C12238m.checkNotNullExpressionValue(change, "it");
+                if (!auditLogChangeUtils.shouldNotRenderChange(log, change)) {
+                    z2 = true;
+                }
+            }
+            z2 = false;
+        }
+        return z2;
+    }
+
     private final boolean hasNewValue(ModelAuditLogEntry.Change change, String str) {
         return change.getNewValue() != null && C12238m.areEqual(change.getKey(), str);
     }
@@ -1617,143 +1751,6 @@ public final class AuditLogChangeUtils {
         return true;
     }
 
-    /* JADX WARN: Code duplicated, block: B:29:0x009c  */
-    public final CharSequence getChangeSummary(Context context, ModelAuditLogEntry auditLogEntry, Map<ModelAuditLogEntry.TargetType, ? extends Map<Long, ? extends CharSequence>> targets) {
-        int i;
-        int iOrdinal;
-        int guildChangeString;
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(auditLogEntry, "auditLogEntry");
-        C12238m.checkNotNullParameter(targets, "targets");
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        Typeface typefaceCreate = Typeface.create(FontUtils.INSTANCE.getThemedFont(context, C5419R.attr.font_monospace), 0);
-        List<ModelAuditLogEntry.Change> changes = auditLogEntry.getChanges();
-        if (changes != null) {
-            int i2 = 0;
-            for (ModelAuditLogEntry.Change change : changes) {
-                AuditLogChangeUtils auditLogChangeUtils = INSTANCE;
-                C12238m.checkNotNullExpressionValue(change, "change");
-                if (!auditLogChangeUtils.shouldNotRenderChange(auditLogEntry, change)) {
-                    ModelAuditLogEntry.TargetType targetType = auditLogEntry.getTargetType();
-                    if (targetType != null && (iOrdinal = targetType.ordinal()) != 0) {
-                        switch (iOrdinal) {
-                            case 2:
-                                guildChangeString = auditLogChangeUtils.getGuildChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 3:
-                            case 4:
-                                guildChangeString = auditLogChangeUtils.getChannelChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 5:
-                                guildChangeString = auditLogChangeUtils.getUserChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 6:
-                                guildChangeString = auditLogChangeUtils.getRoleChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 7:
-                                guildChangeString = auditLogChangeUtils.getInviteChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 8:
-                                guildChangeString = auditLogChangeUtils.getWebhookChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 9:
-                                guildChangeString = auditLogChangeUtils.getEmojiChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 10:
-                                guildChangeString = auditLogChangeUtils.getIntegrationChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 11:
-                                guildChangeString = auditLogChangeUtils.getStageInstanceChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 12:
-                                guildChangeString = auditLogChangeUtils.getGuildScheduledEventChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 13:
-                                guildChangeString = auditLogChangeUtils.getStickerChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            case 14:
-                                guildChangeString = auditLogChangeUtils.getThreadChangeString(change);
-                                i = guildChangeString;
-                                break;
-                            default:
-                                i = 0;
-                                break;
-                        }
-                    } else {
-                        i = 0;
-                    }
-                    if (i != 0) {
-                        int i3 = i2 + 1;
-                        if (i3 != 1) {
-                            spannableStringBuilder.append((CharSequence) "\n");
-                        }
-                        int iMax = Math.max(spannableStringBuilder.length() - 1, 0);
-                        spannableStringBuilder.append((CharSequence) (auditLogChangeUtils.getChangeNumberString(i3) + " — "));
-                        int length = spannableStringBuilder.length() - 1;
-                        spannableStringBuilder.setSpan(new ForegroundColorSpan(auditLogChangeUtils.getTextColor(context, auditLogEntry)), iMax, length, 33);
-                        C12238m.checkNotNullExpressionValue(typefaceCreate, "numberTypeface");
-                        spannableStringBuilder.setSpan(new TypefaceSpanCompat(typefaceCreate), iMax, length, 33);
-                        spannableStringBuilder.append(C1107b.m215g(auditLogChangeUtils.getChangeTextWithParams(context, auditLogEntry, change, i, targets), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null));
-                        if (C12238m.areEqual(change.getKey(), ModelAuditLogEntry.CHANGE_KEY_COLOR) && change.getValue() != null) {
-                            Object value = change.getValue();
-                            Long l = (Long) (value instanceof Long ? value : null);
-                            if (l == null || l.longValue() != 0) {
-                                spannableStringBuilder.append((CharSequence) "●");
-                                Object value2 = change.getValue();
-                                Objects.requireNonNull(value2, "null cannot be cast to non-null type kotlin.Long");
-                                String str = String.format("#%06X", Arrays.copyOf(new Object[]{Integer.valueOf(16777215 & ((int) ((Long) value2).longValue()))}, 1));
-                                C12238m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
-                                spannableStringBuilder.setSpan(new ForegroundColorSpan(Color.parseColor(str)), C12106w.getLastIndex(spannableStringBuilder), C12106w.getLastIndex(spannableStringBuilder) + 1, 33);
-                            }
-                        }
-                        i2 = i3;
-                    } else {
-                        AppLog appLog = AppLog.f14950g;
-                        StringBuilder sbM833U = C1643a.m833U("No change text for actiontype: ");
-                        sbM833U.append(auditLogEntry.getActionTypeId());
-                        sbM833U.append(" key:");
-                        sbM833U.append(change.getKey());
-                        Logger.w$default(appLog, "Audit Logs", sbM833U.toString(), null, 4, null);
-                    }
-                }
-            }
-        }
-        return spannableStringBuilder;
-    }
-
-    public final boolean hasChangesToRender(ModelAuditLogEntry log) {
-        boolean z2;
-        C12238m.checkNotNullParameter(log, "log");
-        List<ModelAuditLogEntry.Change> changes = log.getChanges();
-        if (changes == null) {
-            return false;
-        }
-        if (changes.isEmpty()) {
-            z2 = false;
-        } else {
-            for (ModelAuditLogEntry.Change change : changes) {
-                AuditLogChangeUtils auditLogChangeUtils = INSTANCE;
-                C12238m.checkNotNullExpressionValue(change, "it");
-                if (!auditLogChangeUtils.shouldNotRenderChange(log, change)) {
-                    z2 = true;
-                }
-            }
-            z2 = false;
-        }
-        return z2;
-    }
-
     public final List<ModelAuditLogEntry.Change> transformPermissionChange(ModelAuditLogEntry.Change change) {
         C12238m.checkNotNullParameter(change, "change");
         Pair<HashSet<Long>, HashSet<Long>> pairCalculatePermissionChange = calculatePermissionChange(change);
@@ -1782,7 +1779,7 @@ public final class AuditLogChangeUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.auditlogs.AuditLogChangeUtils$getChangeTextWithParams$1 */
     /* JADX INFO: compiled from: AuditLogChangeUtils.kt */
-    public static final class C66901 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C66901 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ ModelAuditLogEntry.Change $change;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

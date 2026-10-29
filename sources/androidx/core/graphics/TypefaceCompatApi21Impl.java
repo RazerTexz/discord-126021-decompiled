@@ -56,53 +56,6 @@ public class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
         }
     }
 
-    private File getFile(@NonNull ParcelFileDescriptor parcelFileDescriptor) {
-        try {
-            String str = Os.readlink("/proc/self/fd/" + parcelFileDescriptor.getFd());
-            if (OsConstants.S_ISREG(Os.stat(str).st_mode)) {
-                return new File(str);
-            }
-        } catch (ErrnoException unused) {
-        }
-        return null;
-    }
-
-    private static void init() throws NoSuchMethodException {
-        Method method;
-        Class<?> cls;
-        Method method2;
-        if (sHasInitBeenCalled) {
-            return;
-        }
-        sHasInitBeenCalled = true;
-        Constructor<?> constructor = null;
-        try {
-            cls = Class.forName(FONT_FAMILY_CLASS);
-            Constructor<?> constructor2 = cls.getConstructor(new Class[0]);
-            method2 = cls.getMethod(ADD_FONT_WEIGHT_STYLE_METHOD, String.class, Integer.TYPE, Boolean.TYPE);
-            method = Typeface.class.getMethod(CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD, Array.newInstance(cls, 1).getClass());
-            constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            Log.e(TAG, e.getClass().getName(), e);
-            method = null;
-            cls = null;
-            method2 = null;
-        }
-        sFontFamilyCtor = constructor;
-        sFontFamily = cls;
-        sAddFontWeightStyle = method2;
-        sCreateFromFamiliesWithDefault = method;
-    }
-
-    private static Object newFamily() throws NoSuchMethodException {
-        init();
-        try {
-            return sFontFamilyCtor.newInstance(new Object[0]);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i) throws NoSuchMethodException {
         Object objNewFamily = newFamily();
@@ -173,6 +126,53 @@ public class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
             }
         } catch (IOException unused) {
             return null;
+        }
+    }
+
+    private File getFile(@NonNull ParcelFileDescriptor parcelFileDescriptor) {
+        try {
+            String str = Os.readlink("/proc/self/fd/" + parcelFileDescriptor.getFd());
+            if (OsConstants.S_ISREG(Os.stat(str).st_mode)) {
+                return new File(str);
+            }
+        } catch (ErrnoException unused) {
+        }
+        return null;
+    }
+
+    private static void init() throws NoSuchMethodException {
+        Method method;
+        Class<?> cls;
+        Method method2;
+        if (sHasInitBeenCalled) {
+            return;
+        }
+        sHasInitBeenCalled = true;
+        Constructor<?> constructor = null;
+        try {
+            cls = Class.forName(FONT_FAMILY_CLASS);
+            Constructor<?> constructor2 = cls.getConstructor(new Class[0]);
+            method2 = cls.getMethod(ADD_FONT_WEIGHT_STYLE_METHOD, String.class, Integer.TYPE, Boolean.TYPE);
+            method = Typeface.class.getMethod(CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD, Array.newInstance(cls, 1).getClass());
+            constructor = constructor2;
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            Log.e(TAG, e.getClass().getName(), e);
+            method = null;
+            cls = null;
+            method2 = null;
+        }
+        sFontFamilyCtor = constructor;
+        sFontFamily = cls;
+        sAddFontWeightStyle = method2;
+        sCreateFromFamiliesWithDefault = method;
+    }
+
+    private static Object newFamily() throws NoSuchMethodException {
+        init();
+        try {
+            return sFontFamilyCtor.newInstance(new Object[0]);
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
     }
 }

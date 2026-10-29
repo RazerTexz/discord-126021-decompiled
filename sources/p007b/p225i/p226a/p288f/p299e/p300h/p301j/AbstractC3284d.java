@@ -26,16 +26,6 @@ public abstract class AbstractC3284d<R extends InterfaceC3273h, A extends C3266a
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
-    /* JADX INFO: renamed from: a */
-    public final void mo4067a(@NonNull Status status) {
-        C1460d.m551o(!status.m9030w0(), "Failed result must not be success");
-        mo3989b(mo3987d(status));
-    }
-
-    /* JADX INFO: renamed from: k */
-    public abstract void mo3988k(@NonNull A a) throws RemoteException;
-
     /* JADX INFO: renamed from: l */
     public final void m4068l(@NonNull A a) throws DeadObjectException {
         if (a instanceof C3391y) {
@@ -49,5 +39,15 @@ public abstract class AbstractC3284d<R extends InterfaceC3273h, A extends C3266a
         } catch (RemoteException e2) {
             mo4067a(new Status(8, e2.getLocalizedMessage(), null));
         }
+    }
+
+    /* JADX INFO: renamed from: k */
+    public abstract void mo3988k(@NonNull A a) throws RemoteException;
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
+    /* JADX INFO: renamed from: a */
+    public final void mo4067a(@NonNull Status status) {
+        C1460d.m551o(!status.m9030w0(), "Failed result must not be success");
+        mo3989b(mo3987d(status));
     }
 }

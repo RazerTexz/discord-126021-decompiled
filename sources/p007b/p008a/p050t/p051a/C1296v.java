@@ -30,7 +30,7 @@ public final class C1296v {
 
     /* JADX INFO: renamed from: b.a.t.a.v$a */
     /* JADX INFO: compiled from: Xml.kt */
-    public static final class a<RC> extends Node.C5655a<RC> {
+    public final class a<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: a */
         public final String f1976a;
@@ -43,7 +43,7 @@ public final class C1296v {
 
         /* JADX INFO: renamed from: b.a.t.a.v$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: Xml.kt */
-        public static final /* synthetic */ class C13217a extends C12236k implements Function1<RC, Iterable<?>> {
+        public final /* synthetic */ class C13217a extends C12236k implements Function1<RC, Iterable<?>> {
             public C13217a(StyleNode.InterfaceC5656a interfaceC5656a) {
                 super(1, interfaceC5656a, StyleNode.InterfaceC5656a.class, "get", "get(Ljava/lang/Object;)Ljava/lang/Iterable;", 0);
             }

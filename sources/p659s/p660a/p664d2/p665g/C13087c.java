@@ -17,7 +17,7 @@ public final class C13087c implements CoroutineContext.Element {
 
     /* JADX INFO: renamed from: s.a.d2.g.c$a */
     /* JADX INFO: compiled from: SafeCollector.kt */
-    public static final class a implements CoroutineContext.Key<C13087c> {
+    public final class a implements CoroutineContext.Key<C13087c> {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

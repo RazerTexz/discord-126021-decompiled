@@ -33,16 +33,16 @@ public final class WidgetChatListAdapterItemEphemeralMessage extends WidgetChatL
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEphemeralMessage$onConfigure$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemEphemeralMessage.kt */
-    public static final class C80612 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C80612 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEphemeralMessage$onConfigure$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemEphemeralMessage.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEphemeralMessage$onConfigure$2$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetChatListAdapterItemEphemeralMessage.kt */
-            public static final class C132781 extends AbstractC12240o implements Function2<String, View, Unit> {
+            public final class C132781 extends AbstractC12240o implements Function2<String, View, Unit> {
                 public C132781() {
                     super(2);
                 }

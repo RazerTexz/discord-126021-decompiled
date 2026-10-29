@@ -100,13 +100,6 @@ public class JavacTreeMaker {
     private static final MethodId<JCTree.JCExpression> Type = MethodId("Type");
     private static final FieldId<JCTree.JCVariableDecl> MethodDecl_recvParam = FieldId(JCTree.JCMethodDecl.class, "recvparam", JCTree.JCVariableDecl.class);
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$Case12.SCL.lombok */
-    public static class Case12 {
-        private static final Class<?> CASE_KIND_CLASS = JavacTreeMaker.classForName(TreeMaker.class, "com.sun.source.tree.CaseTree$CaseKind");
-        static final MethodId<JCTree.JCCase> Case12 = JavacTreeMaker.MethodId("Case", JCTree.JCCase.class, CASE_KIND_CLASS, List.class, List.class, JCTree.class);
-        static final Object CASE_KIND_STATEMENT = CASE_KIND_CLASS.getEnumConstants()[0];
-    }
-
     public JavacTreeMaker(TreeMaker tm) {
         this.f27479tm = tm;
     }
@@ -122,7 +115,7 @@ public class JavacTreeMaker {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$FieldId.SCL.lombok */
-    private static final class FieldId<J> {
+    final class FieldId<J> {
         private final Class<?> owner;
         private final String name;
         private final Class<J> fieldType;
@@ -135,7 +128,7 @@ public class JavacTreeMaker {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$MethodId.SCL.lombok */
-    private static final class MethodId<J> {
+    final class MethodId<J> {
         private final Class<?> owner;
         private final String name;
         private final Class<J> returnType;
@@ -165,7 +158,7 @@ public class JavacTreeMaker {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$SchroedingerType.SCL.lombok */
-    private static class SchroedingerType {
+    class SchroedingerType {
         final Object value;
         private static Field NOSUCHFIELDEX_MARKER;
 
@@ -249,19 +242,19 @@ public class JavacTreeMaker {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$TypeTag.SCL.lombok */
-    public static class TypeTag extends SchroedingerType {
+    public class TypeTag extends SchroedingerType {
+        private static final Method TYPE_TYPETAG_METHOD;
         private static final ConcurrentMap<String, Object> TYPE_TAG_CACHE = new ConcurrentHashMap();
         private static final ConcurrentMap<Class<?>, Field> FIELD_CACHE = new ConcurrentHashMap();
-        private static final Method TYPE_TYPETAG_METHOD;
-
-        @Override // lombok.javac.JavacTreeMaker.SchroedingerType
-        public /* bridge */ /* synthetic */ int hashCode() {
-            return super.hashCode();
-        }
 
         @Override // lombok.javac.JavacTreeMaker.SchroedingerType
         public /* bridge */ /* synthetic */ boolean equals(Object obj) {
             return super.equals(obj);
+        }
+
+        @Override // lombok.javac.JavacTreeMaker.SchroedingerType
+        public /* bridge */ /* synthetic */ int hashCode() {
+            return super.hashCode();
         }
 
         static {
@@ -311,20 +304,20 @@ public class JavacTreeMaker {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$TreeTag.SCL.lombok */
-    public static class TreeTag extends SchroedingerType {
+    public class TreeTag extends SchroedingerType {
         private static final Field TAG_FIELD;
         private static final Method TAG_METHOD;
         private static final ConcurrentMap<String, Object> TREE_TAG_CACHE = new ConcurrentHashMap();
         private static final MethodId<Integer> OP_PREC = JavacTreeMaker.MethodId(TreeInfo.class, "opPrec", Integer.TYPE, TreeTag.class);
 
         @Override // lombok.javac.JavacTreeMaker.SchroedingerType
-        public /* bridge */ /* synthetic */ int hashCode() {
-            return super.hashCode();
+        public /* bridge */ /* synthetic */ boolean equals(Object obj) {
+            return super.equals(obj);
         }
 
         @Override // lombok.javac.JavacTreeMaker.SchroedingerType
-        public /* bridge */ /* synthetic */ boolean equals(Object obj) {
-            return super.equals(obj);
+        public /* bridge */ /* synthetic */ int hashCode() {
+            return super.hashCode();
         }
 
         static {
@@ -622,6 +615,13 @@ public class JavacTreeMaker {
 
     public JCTree.JCSwitch Switch(JCTree.JCExpression selector, List<JCTree.JCCase> cases) {
         return (JCTree.JCSwitch) invoke(Switch, selector, cases);
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTreeMaker$Case12.SCL.lombok */
+    public class Case12 {
+        private static final Class<?> CASE_KIND_CLASS = JavacTreeMaker.classForName(TreeMaker.class, "com.sun.source.tree.CaseTree$CaseKind");
+        static final MethodId<JCTree.JCCase> Case12 = JavacTreeMaker.MethodId("Case", JCTree.JCCase.class, CASE_KIND_CLASS, List.class, List.class, JCTree.class);
+        static final Object CASE_KIND_STATEMENT = CASE_KIND_CLASS.getEnumConstants()[0];
     }
 
     static Class<?> classForName(Class<?> context, String name) {

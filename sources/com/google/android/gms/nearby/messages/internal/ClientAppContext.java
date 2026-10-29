@@ -55,6 +55,21 @@ public final class ClientAppContext extends AbstractSafeParcelable implements Re
         this(1, str, str2, z2, i, null);
     }
 
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ClientAppContext)) {
+            return false;
+        }
+        ClientAppContext clientAppContext = (ClientAppContext) obj;
+        return m9122x0(this.f20742k, clientAppContext.f20742k) && m9122x0(this.f20743l, clientAppContext.f20743l) && this.f20744m == clientAppContext.f20744m && m9122x0(this.f20746o, clientAppContext.f20746o) && this.f20745n == clientAppContext.f20745n;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f20742k, this.f20743l, Boolean.valueOf(this.f20744m), this.f20746o, Integer.valueOf(this.f20745n)});
+    }
+
     @Nullable
     /* JADX INFO: renamed from: w0 */
     public static final ClientAppContext m9121w0(@Nullable ClientAppContext clientAppContext, @Nullable String str, @Nullable String str2, boolean z2) {
@@ -70,21 +85,6 @@ public final class ClientAppContext extends AbstractSafeParcelable implements Re
     /* JADX INFO: renamed from: x0 */
     public static boolean m9122x0(String str, String str2) {
         return TextUtils.isEmpty(str) ? TextUtils.isEmpty(str2) : str.equals(str2);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof ClientAppContext)) {
-            return false;
-        }
-        ClientAppContext clientAppContext = (ClientAppContext) obj;
-        return m9122x0(this.f20742k, clientAppContext.f20742k) && m9122x0(this.f20743l, clientAppContext.f20743l) && this.f20744m == clientAppContext.f20744m && m9122x0(this.f20746o, clientAppContext.f20746o) && this.f20745n == clientAppContext.f20745n;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f20742k, this.f20743l, Boolean.valueOf(this.f20744m), this.f20746o, Integer.valueOf(this.f20745n)});
     }
 
     public final String toString() {

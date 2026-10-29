@@ -26,7 +26,7 @@ public class IntMap<V> {
     public V[] valueTable;
     public V zeroValue;
 
-    public static class Entries<V> extends MapIterator<V> implements Iterable<Entry<V>>, Iterator<Entry<V>> {
+    public class Entries<V> extends MapIterator<V> implements Iterable<Entry<V>>, Iterator<Entry<V>> {
         private Entry<V> entry;
 
         public Entries(IntMap intMap) {
@@ -77,7 +77,7 @@ public class IntMap<V> {
         }
     }
 
-    public static class Entry<V> {
+    public class Entry<V> {
         public int key;
         public V value;
 
@@ -86,7 +86,7 @@ public class IntMap<V> {
         }
     }
 
-    public static class Keys extends MapIterator {
+    public class Keys extends MapIterator {
         public Keys(IntMap intMap) {
             super(intMap);
         }
@@ -121,7 +121,7 @@ public class IntMap<V> {
         }
     }
 
-    public static class MapIterator<V> {
+    public class MapIterator<V> {
         public static final int INDEX_ILLEGAL = -2;
         public static final int INDEX_ZERO = -1;
         public int currentIndex;
@@ -206,7 +206,7 @@ public class IntMap<V> {
         }
     }
 
-    public static class Values<V> extends MapIterator<V> implements Iterable<V>, Iterator<V> {
+    public class Values<V> extends MapIterator<V> implements Iterable<V>, Iterator<V> {
         public Values(IntMap<V> intMap) {
             super(intMap);
         }
@@ -256,271 +256,6 @@ public class IntMap<V> {
         this(32, 0.8f);
     }
 
-    private boolean containsKeyStash(int i) {
-        int[] iArr = this.keyTable;
-        int i2 = this.capacity;
-        int i3 = this.stashSize + i2;
-        while (i2 < i3) {
-            if (iArr[i2] == i) {
-                return true;
-            }
-            i2++;
-        }
-        return false;
-    }
-
-    private V getStash(int i, V v) {
-        int[] iArr = this.keyTable;
-        int i2 = this.capacity;
-        int i3 = this.stashSize + i2;
-        while (i2 < i3) {
-            if (iArr[i2] == i) {
-                return this.valueTable[i2];
-            }
-            i2++;
-        }
-        return v;
-    }
-
-    private int hash2(int i) {
-        int i2 = i * PRIME2;
-        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
-    }
-
-    private int hash3(int i) {
-        int i2 = i * PRIME3;
-        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
-    }
-
-    private int hash4(int i) {
-        int i2 = i * PRIME4;
-        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
-    }
-
-    private void push(int i, V v, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
-        int[] iArr = this.keyTable;
-        V[] vArr = this.valueTable;
-        int i10 = this.mask;
-        boolean z2 = this.isBigTable;
-        int i11 = this.pushIterations;
-        int i12 = z2 ? 4 : 3;
-        int i13 = i;
-        V v2 = v;
-        int i14 = i2;
-        int i15 = i3;
-        int iHash2 = i4;
-        int i16 = i5;
-        int iHash3 = i6;
-        int i17 = i7;
-        int iHash4 = i8;
-        int i18 = i9;
-        int i19 = 0;
-        while (true) {
-            int iNextInt = ObjectMap.random.nextInt(i12);
-            int i20 = i12;
-            if (iNextInt == 0) {
-                V v3 = vArr[i14];
-                iArr[i14] = i13;
-                vArr[i14] = v2;
-                i13 = i15;
-                v2 = v3;
-            } else if (iNextInt == 1) {
-                V v4 = vArr[iHash2];
-                iArr[iHash2] = i13;
-                vArr[iHash2] = v2;
-                v2 = v4;
-                i13 = i16;
-            } else if (iNextInt != 2) {
-                V v5 = vArr[iHash4];
-                iArr[iHash4] = i13;
-                vArr[iHash4] = v2;
-                v2 = v5;
-                i13 = i18;
-            } else {
-                V v6 = vArr[iHash3];
-                iArr[iHash3] = i13;
-                vArr[iHash3] = v2;
-                v2 = v6;
-                i13 = i17;
-            }
-            i14 = i13 & i10;
-            int i21 = iArr[i14];
-            if (i21 == 0) {
-                iArr[i14] = i13;
-                vArr[i14] = v2;
-                int i22 = this.size;
-                this.size = i22 + 1;
-                if (i22 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            iHash2 = hash2(i13);
-            i16 = iArr[iHash2];
-            if (i16 == 0) {
-                iArr[iHash2] = i13;
-                vArr[iHash2] = v2;
-                int i23 = this.size;
-                this.size = i23 + 1;
-                if (i23 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            iHash3 = hash3(i13);
-            i17 = iArr[iHash3];
-            if (i17 == 0) {
-                iArr[iHash3] = i13;
-                vArr[iHash3] = v2;
-                int i24 = this.size;
-                this.size = i24 + 1;
-                if (i24 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            if (z2 && (i18 = iArr[(iHash4 = hash4(i13))]) == 0) {
-                iArr[iHash4] = i13;
-                vArr[iHash4] = v2;
-                int i25 = this.size;
-                this.size = i25 + 1;
-                if (i25 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            int i26 = i19 + 1;
-            if (i26 == i11) {
-                putStash(i13, v2);
-                return;
-            } else {
-                i19 = i26;
-                i15 = i21;
-                i12 = i20;
-            }
-        }
-    }
-
-    private void putResize(int i, V v) {
-        int i2;
-        int i3;
-        if (i == 0) {
-            this.zeroValue = v;
-            this.hasZeroValue = true;
-            return;
-        }
-        int i4 = i & this.mask;
-        int[] iArr = this.keyTable;
-        int i5 = iArr[i4];
-        if (i5 == 0) {
-            iArr[i4] = i;
-            this.valueTable[i4] = v;
-            int i6 = this.size;
-            this.size = i6 + 1;
-            if (i6 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        int iHash2 = hash2(i);
-        int[] iArr2 = this.keyTable;
-        int i7 = iArr2[iHash2];
-        if (i7 == 0) {
-            iArr2[iHash2] = i;
-            this.valueTable[iHash2] = v;
-            int i8 = this.size;
-            this.size = i8 + 1;
-            if (i8 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        int iHash3 = hash3(i);
-        int[] iArr3 = this.keyTable;
-        int i9 = iArr3[iHash3];
-        if (i9 == 0) {
-            iArr3[iHash3] = i;
-            this.valueTable[iHash3] = v;
-            int i10 = this.size;
-            this.size = i10 + 1;
-            if (i10 >= this.threshold) {
-                resize(this.capacity << 1);
-                return;
-            }
-            return;
-        }
-        if (this.isBigTable) {
-            int iHash4 = hash4(i);
-            int[] iArr4 = this.keyTable;
-            int i11 = iArr4[iHash4];
-            if (i11 == 0) {
-                iArr4[iHash4] = i;
-                this.valueTable[iHash4] = v;
-                int i12 = this.size;
-                this.size = i12 + 1;
-                if (i12 >= this.threshold) {
-                    resize(this.capacity << 1);
-                    return;
-                }
-                return;
-            }
-            i2 = iHash4;
-            i3 = i11;
-        } else {
-            i2 = -1;
-            i3 = -1;
-        }
-        push(i, v, i4, i5, iHash2, i7, iHash3, i9, i2, i3);
-    }
-
-    private void putStash(int i, V v) {
-        int i2 = this.stashSize;
-        if (i2 == this.stashCapacity) {
-            resize(this.capacity << 1);
-            put(i, v);
-            return;
-        }
-        int i3 = this.capacity + i2;
-        this.keyTable[i3] = i;
-        this.valueTable[i3] = v;
-        this.stashSize = i2 + 1;
-        this.size++;
-    }
-
-    private void resize(int i) {
-        int i2 = this.capacity + this.stashSize;
-        this.capacity = i;
-        this.threshold = (int) (i * this.loadFactor);
-        this.mask = i - 1;
-        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
-        double d = i;
-        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
-        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
-        this.isBigTable = (this.capacity >>> 16) != 0;
-        int[] iArr = this.keyTable;
-        V[] vArr = this.valueTable;
-        int i3 = this.stashCapacity;
-        this.keyTable = new int[i + i3];
-        this.valueTable = (V[]) new Object[i + i3];
-        int i4 = this.size;
-        this.size = this.hasZeroValue ? 1 : 0;
-        this.stashSize = 0;
-        if (i4 > 0) {
-            for (int i5 = 0; i5 < i2; i5++) {
-                int i6 = iArr[i5];
-                if (i6 != 0) {
-                    putResize(i6, vArr[i5]);
-                }
-            }
-        }
-    }
-
     public void clear(int i) {
         if (this.capacity <= i) {
             clear();
@@ -552,6 +287,19 @@ public class IntMap<V> {
             return containsKeyStash(i);
         }
         return true;
+    }
+
+    private boolean containsKeyStash(int i) {
+        int[] iArr = this.keyTable;
+        int i2 = this.capacity;
+        int i3 = this.stashSize + i2;
+        while (i2 < i3) {
+            if (iArr[i2] == i) {
+                return true;
+            }
+            i2++;
+        }
+        return false;
     }
 
     public boolean containsValue(Object obj, boolean z2) {
@@ -695,8 +443,144 @@ public class IntMap<V> {
         return this.valueTable[iHash2];
     }
 
+    private V getStash(int i, V v) {
+        int[] iArr = this.keyTable;
+        int i2 = this.capacity;
+        int i3 = this.stashSize + i2;
+        while (i2 < i3) {
+            if (iArr[i2] == i) {
+                return this.valueTable[i2];
+            }
+            i2++;
+        }
+        return v;
+    }
+
+    private int hash2(int i) {
+        int i2 = i * PRIME2;
+        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
+    }
+
+    private int hash3(int i) {
+        int i2 = i * PRIME3;
+        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
+    }
+
+    private int hash4(int i) {
+        int i2 = i * PRIME4;
+        return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
+    }
+
     public Keys keys() {
         return new Keys(this);
+    }
+
+    private void push(int i, V v, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
+        int[] iArr = this.keyTable;
+        V[] vArr = this.valueTable;
+        int i10 = this.mask;
+        boolean z2 = this.isBigTable;
+        int i11 = this.pushIterations;
+        int i12 = z2 ? 4 : 3;
+        int i13 = i;
+        V v2 = v;
+        int i14 = i2;
+        int i15 = i3;
+        int iHash2 = i4;
+        int i16 = i5;
+        int iHash3 = i6;
+        int i17 = i7;
+        int iHash4 = i8;
+        int i18 = i9;
+        int i19 = 0;
+        while (true) {
+            int iNextInt = ObjectMap.random.nextInt(i12);
+            int i20 = i12;
+            if (iNextInt == 0) {
+                V v3 = vArr[i14];
+                iArr[i14] = i13;
+                vArr[i14] = v2;
+                i13 = i15;
+                v2 = v3;
+            } else if (iNextInt == 1) {
+                V v4 = vArr[iHash2];
+                iArr[iHash2] = i13;
+                vArr[iHash2] = v2;
+                v2 = v4;
+                i13 = i16;
+            } else if (iNextInt != 2) {
+                V v5 = vArr[iHash4];
+                iArr[iHash4] = i13;
+                vArr[iHash4] = v2;
+                v2 = v5;
+                i13 = i18;
+            } else {
+                V v6 = vArr[iHash3];
+                iArr[iHash3] = i13;
+                vArr[iHash3] = v2;
+                v2 = v6;
+                i13 = i17;
+            }
+            i14 = i13 & i10;
+            int i21 = iArr[i14];
+            if (i21 == 0) {
+                iArr[i14] = i13;
+                vArr[i14] = v2;
+                int i22 = this.size;
+                this.size = i22 + 1;
+                if (i22 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            iHash2 = hash2(i13);
+            i16 = iArr[iHash2];
+            if (i16 == 0) {
+                iArr[iHash2] = i13;
+                vArr[iHash2] = v2;
+                int i23 = this.size;
+                this.size = i23 + 1;
+                if (i23 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            iHash3 = hash3(i13);
+            i17 = iArr[iHash3];
+            if (i17 == 0) {
+                iArr[iHash3] = i13;
+                vArr[iHash3] = v2;
+                int i24 = this.size;
+                this.size = i24 + 1;
+                if (i24 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            if (z2 && (i18 = iArr[(iHash4 = hash4(i13))]) == 0) {
+                iArr[iHash4] = i13;
+                vArr[iHash4] = v2;
+                int i25 = this.size;
+                this.size = i25 + 1;
+                if (i25 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            int i26 = i19 + 1;
+            if (i26 == i11) {
+                putStash(i13, v2);
+                return;
+            } else {
+                i19 = i26;
+                i15 = i21;
+                i12 = i20;
+            }
+        }
     }
 
     public V put(int i, V v) {
@@ -811,6 +695,94 @@ public class IntMap<V> {
         }
     }
 
+    private void putResize(int i, V v) {
+        int i2;
+        int i3;
+        if (i == 0) {
+            this.zeroValue = v;
+            this.hasZeroValue = true;
+            return;
+        }
+        int i4 = i & this.mask;
+        int[] iArr = this.keyTable;
+        int i5 = iArr[i4];
+        if (i5 == 0) {
+            iArr[i4] = i;
+            this.valueTable[i4] = v;
+            int i6 = this.size;
+            this.size = i6 + 1;
+            if (i6 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        int iHash2 = hash2(i);
+        int[] iArr2 = this.keyTable;
+        int i7 = iArr2[iHash2];
+        if (i7 == 0) {
+            iArr2[iHash2] = i;
+            this.valueTable[iHash2] = v;
+            int i8 = this.size;
+            this.size = i8 + 1;
+            if (i8 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        int iHash3 = hash3(i);
+        int[] iArr3 = this.keyTable;
+        int i9 = iArr3[iHash3];
+        if (i9 == 0) {
+            iArr3[iHash3] = i;
+            this.valueTable[iHash3] = v;
+            int i10 = this.size;
+            this.size = i10 + 1;
+            if (i10 >= this.threshold) {
+                resize(this.capacity << 1);
+                return;
+            }
+            return;
+        }
+        if (this.isBigTable) {
+            int iHash4 = hash4(i);
+            int[] iArr4 = this.keyTable;
+            int i11 = iArr4[iHash4];
+            if (i11 == 0) {
+                iArr4[iHash4] = i;
+                this.valueTable[iHash4] = v;
+                int i12 = this.size;
+                this.size = i12 + 1;
+                if (i12 >= this.threshold) {
+                    resize(this.capacity << 1);
+                    return;
+                }
+                return;
+            }
+            i2 = iHash4;
+            i3 = i11;
+        } else {
+            i2 = -1;
+            i3 = -1;
+        }
+        push(i, v, i4, i5, iHash2, i7, iHash3, i9, i2, i3);
+    }
+
+    private void putStash(int i, V v) {
+        int i2 = this.stashSize;
+        if (i2 == this.stashCapacity) {
+            resize(this.capacity << 1);
+            put(i, v);
+            return;
+        }
+        int i3 = this.capacity + i2;
+        this.keyTable[i3] = i;
+        this.valueTable[i3] = v;
+        this.stashSize = i2 + 1;
+        this.size++;
+    }
+
     public V remove(int i) {
         if (i == 0) {
             if (!this.hasZeroValue) {
@@ -896,6 +868,34 @@ public class IntMap<V> {
         V[] vArr = this.valueTable;
         vArr[i] = vArr[i3];
         vArr[i3] = null;
+    }
+
+    private void resize(int i) {
+        int i2 = this.capacity + this.stashSize;
+        this.capacity = i;
+        this.threshold = (int) (i * this.loadFactor);
+        this.mask = i - 1;
+        this.hashShift = 31 - Integer.numberOfTrailingZeros(i);
+        double d = i;
+        this.stashCapacity = Math.max(3, ((int) Math.ceil(Math.log(d))) * 2);
+        this.pushIterations = Math.max(Math.min(i, 8), ((int) Math.sqrt(d)) / 8);
+        this.isBigTable = (this.capacity >>> 16) != 0;
+        int[] iArr = this.keyTable;
+        V[] vArr = this.valueTable;
+        int i3 = this.stashCapacity;
+        this.keyTable = new int[i + i3];
+        this.valueTable = (V[]) new Object[i + i3];
+        int i4 = this.size;
+        this.size = this.hasZeroValue ? 1 : 0;
+        this.stashSize = 0;
+        if (i4 > 0) {
+            for (int i5 = 0; i5 < i2; i5++) {
+                int i6 = iArr[i5];
+                if (i6 != 0) {
+                    putResize(i6, vArr[i5]);
+                }
+            }
+        }
     }
 
     public void shrink(int i) {

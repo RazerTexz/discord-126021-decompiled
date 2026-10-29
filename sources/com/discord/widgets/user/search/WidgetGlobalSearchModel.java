@@ -57,11 +57,11 @@ import p658rx.functions.Func8;
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class WidgetGlobalSearchModel {
+    private static final Function2<Channel, Map<Long, Long>, Boolean> DEFAULT_PERMISSIONS_PREDICATE;
+    private static final Pattern DISCRIMINATOR_PATTERN;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Function2<Channel, Map<Long, Long>, Boolean> DEFAULT_PERMISSIONS_PREDICATE;
-    private static final Pattern DISCRIMINATOR_PATTERN;
     private static final int MAX_RESULTS = 50;
     public static final int SEARCH_TYPE_GENERAL = 0;
     public static final int SEARCH_TYPE_GUILD = 3;
@@ -78,7 +78,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     private final int searchType;
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class ChannelContext {
+    public final /* data */ class ChannelContext {
         private final Map<Long, Channel> activeJoinedThreads;
         private final Map<Long, Long> channelPerms;
         private final Map<Long, Channel> channels;
@@ -247,7 +247,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -261,6 +261,103 @@ public final /* data */ class WidgetGlobalSearchModel {
                 function2 = WidgetGlobalSearchModel$Companion$create$1.INSTANCE;
             }
             return companion.create(searchContext, usersContext, channelContext, widgetGlobalSearchGuildsModel, function3, function2);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public final WidgetGlobalSearchModel create(final SearchContext searchContext, UsersContext usersContext, ChannelContext channelContext, WidgetGlobalSearchGuildsModel widgetGuildsListModel, Function1<? super ItemDataPayload, Boolean> resultsFilter, Function1<? super SearchContext, Long> lastChannelIdProvider) {
+            Set<Long> setEmptySet;
+            Sequence sequenceMapNotNull;
+            Sequence sequenceMapNotNull2;
+            C12238m.checkNotNullParameter(searchContext, "searchContext");
+            C12238m.checkNotNullParameter(usersContext, "usersContext");
+            C12238m.checkNotNullParameter(channelContext, "channelContext");
+            C12238m.checkNotNullParameter(widgetGuildsListModel, "widgetGuildsListModel");
+            C12238m.checkNotNullParameter(lastChannelIdProvider, "lastChannelIdProvider");
+            WidgetGlobalSearchModel$Companion$create$2 widgetGlobalSearchModel$Companion$create$2 = new WidgetGlobalSearchModel$Companion$create$2(usersContext, searchContext, channelContext);
+            WidgetGlobalSearchModel$Companion$create$3 widgetGlobalSearchModel$Companion$create$3 = new WidgetGlobalSearchModel$Companion$create$3(channelContext, searchContext);
+            WidgetGlobalSearchModel$Companion$create$4 widgetGlobalSearchModel$Companion$create$4 = new WidgetGlobalSearchModel$Companion$create$4(channelContext, widgetGlobalSearchModel$Companion$create$2, searchContext);
+            int searchType = searchContext.getSearchType();
+            String sanitizedFilter = searchContext.getSanitizedFilter();
+            Map<Long, GuildMember> map = usersContext.getMembers().get(C12163u.first((List) searchContext.getRecentGuildIds()));
+            if (map == null || (setEmptySet = map.keySet()) == null) {
+                setEmptySet = C12148n0.emptySet();
+            }
+            Set<Long> set = setEmptySet;
+            if (searchType != 1) {
+                if (searchType == 2) {
+                    sequenceMapNotNull2 = C12078q.mapNotNull(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), WidgetGlobalSearchModel$Companion$create$filteredResults$3.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$4(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter));
+                } else if (searchType == 3) {
+                    sequenceMapNotNull2 = C12078q.mapNotNull(C12163u.asSequence(channelContext.getGuilds().values()), new WidgetGlobalSearchModel$Companion$create$filteredResults$2(widgetGlobalSearchModel$Companion$create$3, sanitizedFilter));
+                } else if (searchType == 4) {
+                    sequenceMapNotNull2 = C12078q.sortedWith(C12078q.mapNotNull(C12078q.filter(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), WidgetGlobalSearchModel$Companion$create$filteredResults$5.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$6(channelContext)), new WidgetGlobalSearchModel$Companion$create$filteredResults$7(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter)), new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1
+                        /* JADX WARN: Code duplicated, block: B:13:0x0039  */
+                        @Override // java.util.Comparator
+                        public final int compare(T t, T t2) {
+                            int iIntValue;
+                            Channel channel = ((WidgetGlobalSearchModel.ItemDataPayload) t).getChannel();
+                            int iIntValue2 = Integer.MAX_VALUE;
+                            if (channel != null) {
+                                Integer numValueOf = Integer.valueOf(searchContext.getRecentGuildIds().indexOf(Long.valueOf(channel.getGuildId())));
+                                if (!(numValueOf.intValue() != -1)) {
+                                    numValueOf = null;
+                                }
+                                if (numValueOf != null) {
+                                    iIntValue = numValueOf.intValue();
+                                } else {
+                                    iIntValue = Integer.MAX_VALUE;
+                                }
+                            } else {
+                                iIntValue = Integer.MAX_VALUE;
+                            }
+                            Integer numValueOf2 = Integer.valueOf(iIntValue);
+                            Channel channel2 = ((WidgetGlobalSearchModel.ItemDataPayload) t2).getChannel();
+                            if (channel2 != null) {
+                                Integer numValueOf3 = Integer.valueOf(searchContext.getRecentGuildIds().indexOf(Long.valueOf(channel2.getGuildId())));
+                                Integer num = numValueOf3.intValue() != -1 ? numValueOf3 : null;
+                                if (num != null) {
+                                    iIntValue2 = num.intValue();
+                                }
+                            }
+                            return C12169a.compareValues(numValueOf2, Integer.valueOf(iIntValue2));
+                        }
+                    });
+                } else if (C12103t.isBlank(sanitizedFilter)) {
+                    sequenceMapNotNull2 = C12078q.mapNotNull(C12078q.filter(C12078q.mapNotNull(C12163u.asSequence(C12163u.union(searchContext.getMentionCounts().keySet(), C12078q.asIterable(getRecentChannelIds(searchContext)))), new WidgetGlobalSearchModel$Companion$create$filteredResults$9(channelContext)), WidgetGlobalSearchModel$Companion$create$filteredResults$10.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$11(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter));
+                } else {
+                    HashSet hashSet = new HashSet();
+                    sequenceMapNotNull2 = C12078q.plus(C12078q.mapNotNull(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), C10331xf66aaceb.INSTANCE), new C10332xf66aacec(hashSet, widgetGlobalSearchModel$Companion$create$2, usersContext, sanitizedFilter, widgetGlobalSearchModel$Companion$create$4)), C12078q.mapNotNull(C12078q.filterNot(C12163u.asSequence(set), new C10333x15369a2b(hashSet)), new C10334x15369a2c(widgetGlobalSearchModel$Companion$create$2, usersContext, sanitizedFilter)));
+                }
+                sequenceMapNotNull = sequenceMapNotNull2;
+            } else {
+                sequenceMapNotNull = C12078q.mapNotNull(C12103t.isBlank(sanitizedFilter) ? getDefaultUserSearch(searchContext, channelContext, usersContext, set) : C12163u.asSequence(usersContext.getUsers().values()), new WidgetGlobalSearchModel$Companion$create$filteredResults$1(widgetGlobalSearchModel$Companion$create$2, sanitizedFilter));
+            }
+            if (resultsFilter != null) {
+                sequenceMapNotNull = C12078q.filter(sequenceMapNotNull, resultsFilter);
+            }
+            Sequence sequenceTake = C12078q.take(C12078q.sortedWith(sequenceMapNotNull, new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$$inlined$sortedByDescending$1
+                @Override // java.util.Comparator
+                public final int compare(T t, T t2) {
+                    WidgetGlobalSearchScoreStrategy widgetGlobalSearchScoreStrategy = WidgetGlobalSearchScoreStrategy.INSTANCE;
+                    return C12169a.compareValues(Integer.valueOf(widgetGlobalSearchScoreStrategy.score((WidgetGlobalSearchModel.ItemDataPayload) t2, searchContext.getSearchType(), searchContext.getFrecencyChannels())), Integer.valueOf(widgetGlobalSearchScoreStrategy.score((WidgetGlobalSearchModel.ItemDataPayload) t, searchContext.getSearchType(), searchContext.getFrecencyChannels())));
+                }
+            }), 50);
+            if (searchType == 0 && C12103t.isBlank(searchContext.getFilter())) {
+                Channel channel = channelContext.getChannels().get(lastChannelIdProvider.invoke(searchContext));
+                ItemDataPayload itemDataPayloadInvoke2 = channel != null ? widgetGlobalSearchModel$Companion$create$4.invoke(channel, "") : null;
+                return new WidgetGlobalSearchModel(sanitizedFilter, searchType, C12078q.toList(itemDataPayloadInvoke2 == null ? C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, false, 6, null)), sequenceTake) : C12078q.plus(C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.quickswitcher_last_channel, 0, false, 6, null), itemDataPayloadInvoke2), C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, 0 == true ? 1 : 0, 6, null))), C12078q.filterNot(sequenceTake, new WidgetGlobalSearchModel$Companion$create$results$1(channel)))), widgetGuildsListModel.getItems());
+            }
+            if (C12078q.firstOrNull(sequenceTake) != null) {
+                sequenceTake = C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, false, 6, null)), sequenceTake);
+            }
+            return new WidgetGlobalSearchModel(sanitizedFilter, searchType, C12078q.toList(sequenceTake), null, 8, null);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Observable get$default(Companion companion, Observable observable, Function2 function2, Function1 function1, Function1 function3, int i, Object obj) {
+            if ((i & 4) != 0) {
+                function1 = null;
+            }
+            return companion.get(observable, function2, function1, function3);
         }
 
         private final Observable<WidgetGlobalSearchModel> get(Observable<String> filterPublisher, final Function2<? super Channel, ? super Map<Long, Long>, Boolean> permissionsPredicate, Function1<? super ItemDataPayload, Boolean> resultsFilter, Function1<? super SearchContext, Long> lastChannelIdProvider) {
@@ -368,123 +465,9 @@ public final /* data */ class WidgetGlobalSearchModel {
             return observableM11112r6;
         }
 
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Observable get$default(Companion companion, Observable observable, Function2 function2, Function1 function1, Function1 function3, int i, Object obj) {
-            if ((i & 4) != 0) {
-                function1 = null;
-            }
-            return companion.get(observable, function2, function1, function3);
-        }
-
         private final Sequence<User> getDefaultUserSearch(SearchContext searchContext, ChannelContext channelContext, UsersContext usersContext, Set<Long> selectedGuildUserIds) {
             Sequence sequenceMapNotNull = C12078q.mapNotNull(getRecentChannelIds(searchContext), new C10336x3304ae52(channelContext));
             return C12078q.filterNot(C12078q.take(C12078q.mapNotNull(C12078q.distinct(C12078q.plus(C12078q.plus(sequenceMapNotNull, (Iterable) selectedGuildUserIds), C12075n.flattenSequenceOfIterable(C12078q.mapNotNull(C12163u.asSequence(channelContext.getSmallGuildIds()), new C10337x33c8c56a(usersContext))))), new WidgetGlobalSearchModel$Companion$getDefaultUserSearch$1(usersContext)), 100), WidgetGlobalSearchModel$Companion$getDefaultUserSearch$2.INSTANCE);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Observable getForSend$default(Companion companion, Observable observable, Function1 function1, int i, Object obj) {
-            if ((i & 2) != 0) {
-                function1 = null;
-            }
-            return companion.getForSend(observable, function1);
-        }
-
-        private final Sequence<Long> getRecentChannelIds(SearchContext searchContext) {
-            return searchContext.getFrecencyChannels().isEmpty() ^ true ? C12163u.asSequence(searchContext.getFrecencyChannels()) : C12078q.map(C12078q.take(C12163u.asSequence(C12163u.sortedWith(searchContext.getMostRecent().entrySet(), new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$getRecentChannelIds$$inlined$sortedBy$1
-                @Override // java.util.Comparator
-                public final int compare(T t, T t2) {
-                    return C12169a.compareValues((Long) ((Map.Entry) t).getValue(), (Long) ((Map.Entry) t2).getValue());
-                }
-            })), 50), WidgetGlobalSearchModel$Companion$getRecentChannelIds$2.INSTANCE);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public final WidgetGlobalSearchModel create(final SearchContext searchContext, UsersContext usersContext, ChannelContext channelContext, WidgetGlobalSearchGuildsModel widgetGuildsListModel, Function1<? super ItemDataPayload, Boolean> resultsFilter, Function1<? super SearchContext, Long> lastChannelIdProvider) {
-            Set<Long> setEmptySet;
-            Sequence sequenceMapNotNull;
-            Sequence sequenceMapNotNull2;
-            C12238m.checkNotNullParameter(searchContext, "searchContext");
-            C12238m.checkNotNullParameter(usersContext, "usersContext");
-            C12238m.checkNotNullParameter(channelContext, "channelContext");
-            C12238m.checkNotNullParameter(widgetGuildsListModel, "widgetGuildsListModel");
-            C12238m.checkNotNullParameter(lastChannelIdProvider, "lastChannelIdProvider");
-            WidgetGlobalSearchModel$Companion$create$2 widgetGlobalSearchModel$Companion$create$2 = new WidgetGlobalSearchModel$Companion$create$2(usersContext, searchContext, channelContext);
-            WidgetGlobalSearchModel$Companion$create$3 widgetGlobalSearchModel$Companion$create$3 = new WidgetGlobalSearchModel$Companion$create$3(channelContext, searchContext);
-            WidgetGlobalSearchModel$Companion$create$4 widgetGlobalSearchModel$Companion$create$4 = new WidgetGlobalSearchModel$Companion$create$4(channelContext, widgetGlobalSearchModel$Companion$create$2, searchContext);
-            int searchType = searchContext.getSearchType();
-            String sanitizedFilter = searchContext.getSanitizedFilter();
-            Map<Long, GuildMember> map = usersContext.getMembers().get(C12163u.first((List) searchContext.getRecentGuildIds()));
-            if (map == null || (setEmptySet = map.keySet()) == null) {
-                setEmptySet = C12148n0.emptySet();
-            }
-            Set<Long> set = setEmptySet;
-            if (searchType != 1) {
-                if (searchType == 2) {
-                    sequenceMapNotNull2 = C12078q.mapNotNull(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), WidgetGlobalSearchModel$Companion$create$filteredResults$3.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$4(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter));
-                } else if (searchType == 3) {
-                    sequenceMapNotNull2 = C12078q.mapNotNull(C12163u.asSequence(channelContext.getGuilds().values()), new WidgetGlobalSearchModel$Companion$create$filteredResults$2(widgetGlobalSearchModel$Companion$create$3, sanitizedFilter));
-                } else if (searchType == 4) {
-                    sequenceMapNotNull2 = C12078q.sortedWith(C12078q.mapNotNull(C12078q.filter(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), WidgetGlobalSearchModel$Companion$create$filteredResults$5.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$6(channelContext)), new WidgetGlobalSearchModel$Companion$create$filteredResults$7(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter)), new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1
-                        /* JADX WARN: Code duplicated, block: B:13:0x0039  */
-                        @Override // java.util.Comparator
-                        public final int compare(T t, T t2) {
-                            int iIntValue;
-                            Channel channel = ((WidgetGlobalSearchModel.ItemDataPayload) t).getChannel();
-                            int iIntValue2 = Integer.MAX_VALUE;
-                            if (channel != null) {
-                                Integer numValueOf = Integer.valueOf(searchContext.getRecentGuildIds().indexOf(Long.valueOf(channel.getGuildId())));
-                                if (!(numValueOf.intValue() != -1)) {
-                                    numValueOf = null;
-                                }
-                                if (numValueOf != null) {
-                                    iIntValue = numValueOf.intValue();
-                                } else {
-                                    iIntValue = Integer.MAX_VALUE;
-                                }
-                            } else {
-                                iIntValue = Integer.MAX_VALUE;
-                            }
-                            Integer numValueOf2 = Integer.valueOf(iIntValue);
-                            Channel channel2 = ((WidgetGlobalSearchModel.ItemDataPayload) t2).getChannel();
-                            if (channel2 != null) {
-                                Integer numValueOf3 = Integer.valueOf(searchContext.getRecentGuildIds().indexOf(Long.valueOf(channel2.getGuildId())));
-                                Integer num = numValueOf3.intValue() != -1 ? numValueOf3 : null;
-                                if (num != null) {
-                                    iIntValue2 = num.intValue();
-                                }
-                            }
-                            return C12169a.compareValues(numValueOf2, Integer.valueOf(iIntValue2));
-                        }
-                    });
-                } else if (C12103t.isBlank(sanitizedFilter)) {
-                    sequenceMapNotNull2 = C12078q.mapNotNull(C12078q.filter(C12078q.mapNotNull(C12163u.asSequence(C12163u.union(searchContext.getMentionCounts().keySet(), C12078q.asIterable(getRecentChannelIds(searchContext)))), new WidgetGlobalSearchModel$Companion$create$filteredResults$9(channelContext)), WidgetGlobalSearchModel$Companion$create$filteredResults$10.INSTANCE), new WidgetGlobalSearchModel$Companion$create$filteredResults$11(widgetGlobalSearchModel$Companion$create$4, sanitizedFilter));
-                } else {
-                    HashSet hashSet = new HashSet();
-                    sequenceMapNotNull2 = C12078q.plus(C12078q.mapNotNull(C12078q.filter(C12163u.asSequence(channelContext.getChannels().values()), C10331xf66aaceb.INSTANCE), new C10332xf66aacec(hashSet, widgetGlobalSearchModel$Companion$create$2, usersContext, sanitizedFilter, widgetGlobalSearchModel$Companion$create$4)), C12078q.mapNotNull(C12078q.filterNot(C12163u.asSequence(set), new C10333x15369a2b(hashSet)), new C10334x15369a2c(widgetGlobalSearchModel$Companion$create$2, usersContext, sanitizedFilter)));
-                }
-                sequenceMapNotNull = sequenceMapNotNull2;
-            } else {
-                sequenceMapNotNull = C12078q.mapNotNull(C12103t.isBlank(sanitizedFilter) ? getDefaultUserSearch(searchContext, channelContext, usersContext, set) : C12163u.asSequence(usersContext.getUsers().values()), new WidgetGlobalSearchModel$Companion$create$filteredResults$1(widgetGlobalSearchModel$Companion$create$2, sanitizedFilter));
-            }
-            if (resultsFilter != null) {
-                sequenceMapNotNull = C12078q.filter(sequenceMapNotNull, resultsFilter);
-            }
-            Sequence sequenceTake = C12078q.take(C12078q.sortedWith(sequenceMapNotNull, new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$$inlined$sortedByDescending$1
-                @Override // java.util.Comparator
-                public final int compare(T t, T t2) {
-                    WidgetGlobalSearchScoreStrategy widgetGlobalSearchScoreStrategy = WidgetGlobalSearchScoreStrategy.INSTANCE;
-                    return C12169a.compareValues(Integer.valueOf(widgetGlobalSearchScoreStrategy.score((WidgetGlobalSearchModel.ItemDataPayload) t2, searchContext.getSearchType(), searchContext.getFrecencyChannels())), Integer.valueOf(widgetGlobalSearchScoreStrategy.score((WidgetGlobalSearchModel.ItemDataPayload) t, searchContext.getSearchType(), searchContext.getFrecencyChannels())));
-                }
-            }), 50);
-            if (searchType == 0 && C12103t.isBlank(searchContext.getFilter())) {
-                Channel channel = channelContext.getChannels().get(lastChannelIdProvider.invoke(searchContext));
-                ItemDataPayload itemDataPayloadInvoke2 = channel != null ? widgetGlobalSearchModel$Companion$create$4.invoke(channel, "") : null;
-                return new WidgetGlobalSearchModel(sanitizedFilter, searchType, C12078q.toList(itemDataPayloadInvoke2 == null ? C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, false, 6, null)), sequenceTake) : C12078q.plus(C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.quickswitcher_last_channel, 0, false, 6, null), itemDataPayloadInvoke2), C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, 0 == true ? 1 : 0, 6, null))), C12078q.filterNot(sequenceTake, new WidgetGlobalSearchModel$Companion$create$results$1(channel)))), widgetGuildsListModel.getItems());
-            }
-            if (C12078q.firstOrNull(sequenceTake) != null) {
-                sequenceTake = C12078q.plus(C12075n.sequenceOf(new ItemHeader(C5419R.string.suggestions, 0, false, 6, null)), sequenceTake);
-            }
-            return new WidgetGlobalSearchModel(sanitizedFilter, searchType, C12078q.toList(sequenceTake), null, 8, null);
         }
 
         public final MatchedResult getEMPTY_MATCH_RESULT() {
@@ -496,9 +479,26 @@ public final /* data */ class WidgetGlobalSearchModel {
             return get$default(this, filterPublisher, WidgetGlobalSearchModel.DEFAULT_PERMISSIONS_PREDICATE, null, WidgetGlobalSearchModel$Companion$getForNav$1.INSTANCE, 4, null);
         }
 
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Observable getForSend$default(Companion companion, Observable observable, Function1 function1, int i, Object obj) {
+            if ((i & 2) != 0) {
+                function1 = null;
+            }
+            return companion.getForSend(observable, function1);
+        }
+
         public final Observable<WidgetGlobalSearchModel> getForSend(Observable<String> filterPublisher, Function1<? super ItemDataPayload, Boolean> resultsFilter) {
             C12238m.checkNotNullParameter(filterPublisher, "filterPublisher");
             return get(filterPublisher, WidgetGlobalSearchModel$Companion$getForSend$1.INSTANCE, resultsFilter, WidgetGlobalSearchModel$Companion$getForSend$2.INSTANCE);
+        }
+
+        private final Sequence<Long> getRecentChannelIds(SearchContext searchContext) {
+            return searchContext.getFrecencyChannels().isEmpty() ^ true ? C12163u.asSequence(searchContext.getFrecencyChannels()) : C12078q.map(C12078q.take(C12163u.asSequence(C12163u.sortedWith(searchContext.getMostRecent().entrySet(), new Comparator() { // from class: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$getRecentChannelIds$$inlined$sortedBy$1
+                @Override // java.util.Comparator
+                public final int compare(T t, T t2) {
+                    return C12169a.compareValues((Long) ((Map.Entry) t).getValue(), (Long) ((Map.Entry) t2).getValue());
+                }
+            })), 50), WidgetGlobalSearchModel$Companion$getRecentChannelIds$2.INSTANCE);
         }
 
         public final MatchedResult toFuzzyMatchedResult(String str, String str2) {
@@ -545,7 +545,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class MatchedResult {
+    public final /* data */ class MatchedResult {
         private final int filterLength;
         private final int firstMatchIndex;
         private final CharSequence value;
@@ -570,21 +570,6 @@ public final /* data */ class WidgetGlobalSearchModel {
             return matchedResult.copy(charSequence, i, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getValue() {
-            return this.value;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getFirstMatchIndex() {
-            return this.firstMatchIndex;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getFilterLength() {
-            return this.filterLength;
-        }
-
         public final MatchedResult copy(CharSequence value, int firstMatchIndex, int filterLength) {
             C12238m.checkNotNullParameter(value, "value");
             return new MatchedResult(value, firstMatchIndex, filterLength);
@@ -601,12 +586,27 @@ public final /* data */ class WidgetGlobalSearchModel {
             return C12238m.areEqual(this.value, matchedResult.value) && this.firstMatchIndex == matchedResult.firstMatchIndex && this.filterLength == matchedResult.filterLength;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getFilterLength() {
             return this.filterLength;
         }
 
+        public final int getFilterLength() {
+            return this.filterLength;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getFirstMatchIndex() {
             return this.firstMatchIndex;
+        }
+
+        public final int getFirstMatchIndex() {
+            return this.firstMatchIndex;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getValue() {
+            return this.value;
         }
 
         public final CharSequence getValue() {
@@ -629,7 +629,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class SearchContext {
+    public final /* data */ class SearchContext {
         private final String filter;
         private final Collection<Long> frecencyChannels;
         private final boolean hasDiscriminator;
@@ -679,28 +679,8 @@ public final /* data */ class WidgetGlobalSearchModel {
             this.hasDiscriminator = (i == 0 || i == 1) ? WidgetGlobalSearchModel.DISCRIMINATOR_PATTERN.matcher(str).find() : false;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getFilter() {
-            return this.filter;
-        }
-
         public final List<Long> component2() {
             return this.recentGuildIds;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getSelectedChannelId() {
-            return this.selectedChannelId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getPrevSelectedChannelId() {
-            return this.prevSelectedChannelId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final long getSelectedVoiceChannelId() {
-            return this.selectedVoiceChannelId;
         }
 
         public final Map<Long, Long> component6() {
@@ -730,6 +710,11 @@ public final /* data */ class WidgetGlobalSearchModel {
             return C12238m.areEqual(this.filter, searchContext.filter) && C12238m.areEqual(this.recentGuildIds, searchContext.recentGuildIds) && this.selectedChannelId == searchContext.selectedChannelId && this.prevSelectedChannelId == searchContext.prevSelectedChannelId && this.selectedVoiceChannelId == searchContext.selectedVoiceChannelId && C12238m.areEqual(this.mostRecent, searchContext.mostRecent) && C12238m.areEqual(this.mentionCounts, searchContext.mentionCounts);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getFilter() {
+            return this.filter;
+        }
+
         public final String getFilter() {
             return this.filter;
         }
@@ -750,6 +735,11 @@ public final /* data */ class WidgetGlobalSearchModel {
             return this.mostRecent;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getPrevSelectedChannelId() {
+            return this.prevSelectedChannelId;
+        }
+
         public final long getPrevSelectedChannelId() {
             return this.prevSelectedChannelId;
         }
@@ -766,8 +756,18 @@ public final /* data */ class WidgetGlobalSearchModel {
             return this.searchType;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getSelectedChannelId() {
             return this.selectedChannelId;
+        }
+
+        public final long getSelectedChannelId() {
+            return this.selectedChannelId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getSelectedVoiceChannelId() {
+            return this.selectedVoiceChannelId;
         }
 
         public final long getSelectedVoiceChannelId() {
@@ -804,7 +804,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class UsersContext {
+    public final /* data */ class UsersContext {
         private final Map<Long, Map<Long, GuildMember>> members;
         private final Map<Long, Presence> presences;
         private final Map<Long, Integer> relationships;
@@ -822,6 +822,22 @@ public final /* data */ class WidgetGlobalSearchModel {
             this.members = map4;
         }
 
+        public final Map<Long, User> component1() {
+            return this.users;
+        }
+
+        public final Map<Long, Presence> component2() {
+            return this.presences;
+        }
+
+        public final Map<Long, Integer> component3() {
+            return this.relationships;
+        }
+
+        public final Map<Long, Map<Long, GuildMember>> component4() {
+            return this.members;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ UsersContext copy$default(UsersContext usersContext, Map map, Map map2, Map map3, Map map4, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -837,22 +853,6 @@ public final /* data */ class WidgetGlobalSearchModel {
                 map4 = usersContext.members;
             }
             return usersContext.copy(map, map2, map3, map4);
-        }
-
-        public final Map<Long, User> component1() {
-            return this.users;
-        }
-
-        public final Map<Long, Presence> component2() {
-            return this.presences;
-        }
-
-        public final Map<Long, Integer> component3() {
-            return this.relationships;
-        }
-
-        public final Map<Long, Map<Long, GuildMember>> component4() {
-            return this.members;
         }
 
         public final UsersContext copy(Map<Long, ? extends User> users, Map<Long, Presence> presences, Map<Long, Integer> relationships, Map<Long, ? extends Map<Long, GuildMember>> members) {
@@ -930,6 +930,14 @@ public final /* data */ class WidgetGlobalSearchModel {
         this.guildsList = list2;
     }
 
+    public final List<ItemDataPayload> component3() {
+        return this.data;
+    }
+
+    public final List<WidgetGlobalSearchGuildsModel.Item> component4() {
+        return this.guildsList;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetGlobalSearchModel copy$default(WidgetGlobalSearchModel widgetGlobalSearchModel, String str, int i, List list, List list2, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -945,24 +953,6 @@ public final /* data */ class WidgetGlobalSearchModel {
             list2 = widgetGlobalSearchModel.guildsList;
         }
         return widgetGlobalSearchModel.copy(str, i, list, list2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getFilter() {
-        return this.filter;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getSearchType() {
-        return this.searchType;
-    }
-
-    public final List<ItemDataPayload> component3() {
-        return this.data;
-    }
-
-    public final List<WidgetGlobalSearchGuildsModel.Item> component4() {
-        return this.guildsList;
     }
 
     public final WidgetGlobalSearchModel copy(String filter, int searchType, List<? extends ItemDataPayload> data, List<WidgetGlobalSearchGuildsModel.Item> guildsList) {
@@ -986,12 +976,22 @@ public final /* data */ class WidgetGlobalSearchModel {
         return this.data;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getFilter() {
+        return this.filter;
+    }
+
     public final String getFilter() {
         return this.filter;
     }
 
     public final List<WidgetGlobalSearchGuildsModel.Item> getGuildsList() {
         return this.guildsList;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getSearchType() {
+        return this.searchType;
     }
 
     public final int getSearchType() {
@@ -1019,7 +1019,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class ItemChannel implements ItemDataPayload {
+    public final /* data */ class ItemChannel implements ItemDataPayload {
         private final Channel channel;
         private final Guild guild;
         private final String key;
@@ -1039,6 +1039,22 @@ public final /* data */ class WidgetGlobalSearchModel {
             this.mentions = i;
             this.unread = z2;
             this.key = String.valueOf(getChannel().getId());
+        }
+
+        public final MatchedResult component1() {
+            return getMatchedResult();
+        }
+
+        public final Channel component2() {
+            return getChannel();
+        }
+
+        public final int component5() {
+            return getMentions();
+        }
+
+        public final boolean component6() {
+            return getUnread();
         }
 
         public static /* synthetic */ ItemChannel copy$default(ItemChannel itemChannel, MatchedResult matchedResult, Channel channel, Channel channel2, Guild guild, int i, boolean z2, int i2, Object obj) {
@@ -1067,32 +1083,6 @@ public final /* data */ class WidgetGlobalSearchModel {
             return itemChannel.copy(matchedResult, channel3, channel4, guild2, i3, z2);
         }
 
-        public final MatchedResult component1() {
-            return getMatchedResult();
-        }
-
-        public final Channel component2() {
-            return getChannel();
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getParentChannel() {
-            return this.parentChannel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final int component5() {
-            return getMentions();
-        }
-
-        public final boolean component6() {
-            return getUnread();
-        }
-
         public final ItemChannel copy(MatchedResult matchedResult, Channel channel, Channel parentChannel, Guild guild, int mentions, boolean unread) {
             C12238m.checkNotNullParameter(matchedResult, "matchedResult");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -1115,6 +1105,11 @@ public final /* data */ class WidgetGlobalSearchModel {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
         public final Guild getGuild() {
             return this.guild;
         }
@@ -1132,6 +1127,11 @@ public final /* data */ class WidgetGlobalSearchModel {
         @Override // com.discord.widgets.user.search.WidgetGlobalSearchModel.ItemDataPayload
         public int getMentions() {
             return this.mentions;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Channel getParentChannel() {
+            return this.parentChannel;
         }
 
         public final Channel getParentChannel() {
@@ -1184,7 +1184,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class ItemGuild implements ItemDataPayload {
+    public final /* data */ class ItemGuild implements ItemDataPayload {
         private final Channel channel;
         private final Guild guild;
         private final String key;
@@ -1203,6 +1203,22 @@ public final /* data */ class WidgetGlobalSearchModel {
             this.unread = z2;
             this.type = 2;
             this.key = String.valueOf(guild.getId());
+        }
+
+        public final MatchedResult component1() {
+            return getMatchedResult();
+        }
+
+        public final Channel component3() {
+            return getChannel();
+        }
+
+        public final int component4() {
+            return getMentions();
+        }
+
+        public final boolean component5() {
+            return getUnread();
         }
 
         public static /* synthetic */ ItemGuild copy$default(ItemGuild itemGuild, MatchedResult matchedResult, Guild guild, Channel channel, int i, boolean z2, int i2, Object obj) {
@@ -1227,27 +1243,6 @@ public final /* data */ class WidgetGlobalSearchModel {
             return itemGuild.copy(matchedResult, guild2, channel2, i3, z2);
         }
 
-        public final MatchedResult component1() {
-            return getMatchedResult();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Channel component3() {
-            return getChannel();
-        }
-
-        public final int component4() {
-            return getMentions();
-        }
-
-        public final boolean component5() {
-            return getUnread();
-        }
-
         public final ItemGuild copy(MatchedResult matchedResult, Guild guild, Channel channel, int mentions, boolean unread) {
             C12238m.checkNotNullParameter(matchedResult, "matchedResult");
             C12238m.checkNotNullParameter(guild, "guild");
@@ -1268,6 +1263,11 @@ public final /* data */ class WidgetGlobalSearchModel {
         @Override // com.discord.widgets.user.search.WidgetGlobalSearchModel.ItemDataPayload
         public Channel getChannel() {
             return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -1329,7 +1329,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class ItemUser implements ItemDataPayload {
+    public final /* data */ class ItemUser implements ItemDataPayload {
         private final List<CharSequence> aliases;
         private final Channel channel;
         private final boolean isFriend;
@@ -1362,23 +1362,8 @@ public final /* data */ class WidgetGlobalSearchModel {
             return getMatchedResult();
         }
 
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
         public final List<CharSequence> component3() {
             return this.aliases;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsFriend() {
-            return this.isFriend;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
         }
 
         public final Channel component6() {
@@ -1420,6 +1405,11 @@ public final /* data */ class WidgetGlobalSearchModel {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsFriend() {
+            return this.isFriend;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
@@ -1435,6 +1425,11 @@ public final /* data */ class WidgetGlobalSearchModel {
             return this.mentions;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
         public final Presence getPresence() {
             return this.presence;
         }
@@ -1447,6 +1442,11 @@ public final /* data */ class WidgetGlobalSearchModel {
         @Override // com.discord.widgets.user.search.WidgetGlobalSearchModel.ItemDataPayload
         public boolean getUnread() {
             return this.unread;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {
@@ -1499,7 +1499,7 @@ public final /* data */ class WidgetGlobalSearchModel {
     }
 
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public static final /* data */ class ItemHeader implements ItemDataPayload {
+    public final /* data */ class ItemHeader implements ItemDataPayload {
         private final Channel channel;
         private final String key;
         private final MatchedResult matchedResult;
@@ -1517,6 +1517,14 @@ public final /* data */ class WidgetGlobalSearchModel {
             this.key = C1643a.m871q("header", i);
         }
 
+        public final int component2() {
+            return getMentions();
+        }
+
+        public final boolean component3() {
+            return getUnread();
+        }
+
         public static /* synthetic */ ItemHeader copy$default(ItemHeader itemHeader, int i, int i2, boolean z2, int i3, Object obj) {
             if ((i3 & 1) != 0) {
                 i = itemHeader.name;
@@ -1528,19 +1536,6 @@ public final /* data */ class WidgetGlobalSearchModel {
                 z2 = itemHeader.getUnread();
             }
             return itemHeader.copy(i, i2, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getName() {
-            return this.name;
-        }
-
-        public final int component2() {
-            return getMentions();
-        }
-
-        public final boolean component3() {
-            return getUnread();
         }
 
         public final ItemHeader copy(@StringRes int name, int mentions, boolean unread) {
@@ -1576,6 +1571,11 @@ public final /* data */ class WidgetGlobalSearchModel {
         @Override // com.discord.widgets.user.search.WidgetGlobalSearchModel.ItemDataPayload
         public int getMentions() {
             return this.mentions;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getName() {
+            return this.name;
         }
 
         public final int getName() {

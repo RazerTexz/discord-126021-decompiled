@@ -11,20 +11,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLoginSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLoginSuccessful implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackGiftCodeMetadata trackGiftCodeMetadata;
+    private final Long fingerprint = null;
+    private final Boolean isNewUser = null;
+    private final CharSequence loginMethod = null;
     private final CharSequence loginSource = null;
     private final CharSequence source = null;
-    private final Boolean isNewUser = null;
-    private final Long fingerprint = null;
-    private final CharSequence loginMethod = null;
+    private TrackBase trackBase;
+    private TrackGiftCodeMetadata trackGiftCodeMetadata;
     private final transient String analyticsSchemaTypeName = "login_successful";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackLoginSuccessful implements AnalyticsSchema, T
         }
         TrackLoginSuccessful trackLoginSuccessful = (TrackLoginSuccessful) other;
         return C12238m.areEqual(this.loginSource, trackLoginSuccessful.loginSource) && C12238m.areEqual(this.source, trackLoginSuccessful.source) && C12238m.areEqual(this.isNewUser, trackLoginSuccessful.isNewUser) && C12238m.areEqual(this.fingerprint, trackLoginSuccessful.fingerprint) && C12238m.areEqual(this.loginMethod, trackLoginSuccessful.loginMethod);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

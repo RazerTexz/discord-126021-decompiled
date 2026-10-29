@@ -20,7 +20,6 @@ import p007b.p225i.p226a.p288f.p299e.p303j.C3342a;
 /* JADX INFO: loaded from: classes3.dex */
 @KeepName
 public final class DataHolder extends AbstractSafeParcelable implements Closeable {
-    public static final Parcelable.Creator<DataHolder> CREATOR = new C3342a();
 
     /* JADX INFO: renamed from: j */
     public final int f20512j;
@@ -43,6 +42,7 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
 
     /* JADX INFO: renamed from: p */
     public int[] f20518p;
+    public static final Parcelable.Creator<DataHolder> CREATOR = new C3342a();
 
     /* JADX INFO: renamed from: q */
     public boolean f20519q = false;
@@ -51,7 +51,7 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
     public boolean f20520r = true;
 
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class zaa extends RuntimeException {
+    public final class zaa extends RuntimeException {
     }
 
     static {

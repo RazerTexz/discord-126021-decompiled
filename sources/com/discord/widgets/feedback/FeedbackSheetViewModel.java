@@ -15,17 +15,17 @@ import p658rx.Observable;
 public interface FeedbackSheetViewModel {
 
     /* JADX INFO: compiled from: FeedbackSheetViewModel.kt */
-    public static final class DefaultImpls {
+    public final class DefaultImpls {
         public static void selectRating(FeedbackSheetViewModel feedbackSheetViewModel, FeedbackRating feedbackRating) {
             C12238m.checkNotNullParameter(feedbackRating, "feedbackRating");
         }
     }
 
     /* JADX INFO: compiled from: FeedbackSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: FeedbackSheetViewModel.kt */
-        public static final /* data */ class NavigateToIssueDetails extends Event {
+        public final /* data */ class NavigateToIssueDetails extends Event {
             private final PendingFeedback pendingFeedback;
             private final boolean showCxLinkForIssueDetails;
 
@@ -47,16 +47,6 @@ public interface FeedbackSheetViewModel {
                 return navigateToIssueDetails.copy(pendingFeedback, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PendingFeedback getPendingFeedback() {
-                return this.pendingFeedback;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getShowCxLinkForIssueDetails() {
-                return this.showCxLinkForIssueDetails;
-            }
-
             public final NavigateToIssueDetails copy(PendingFeedback pendingFeedback, boolean showCxLinkForIssueDetails) {
                 C12238m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
                 return new NavigateToIssueDetails(pendingFeedback, showCxLinkForIssueDetails);
@@ -73,8 +63,18 @@ public interface FeedbackSheetViewModel {
                 return C12238m.areEqual(this.pendingFeedback, navigateToIssueDetails.pendingFeedback) && this.showCxLinkForIssueDetails == navigateToIssueDetails.showCxLinkForIssueDetails;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final PendingFeedback getPendingFeedback() {
                 return this.pendingFeedback;
+            }
+
+            public final PendingFeedback getPendingFeedback() {
+                return this.pendingFeedback;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getShowCxLinkForIssueDetails() {
+                return this.showCxLinkForIssueDetails;
             }
 
             public final boolean getShowCxLinkForIssueDetails() {
@@ -106,7 +106,7 @@ public interface FeedbackSheetViewModel {
         }
 
         /* JADX INFO: compiled from: FeedbackSheetViewModel.kt */
-        public static final /* data */ class Submitted extends Event {
+        public final /* data */ class Submitted extends Event {
             private final boolean showConfirmation;
 
             public Submitted(boolean z2) {
@@ -121,11 +121,6 @@ public interface FeedbackSheetViewModel {
                 return submitted.copy(z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getShowConfirmation() {
-                return this.showConfirmation;
-            }
-
             public final Submitted copy(boolean showConfirmation) {
                 return new Submitted(showConfirmation);
             }
@@ -135,6 +130,11 @@ public interface FeedbackSheetViewModel {
                     return (other instanceof Submitted) && this.showConfirmation == ((Submitted) other).showConfirmation;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getShowConfirmation() {
+                return this.showConfirmation;
             }
 
             public final boolean getShowConfirmation() {
@@ -173,7 +173,7 @@ public interface FeedbackSheetViewModel {
     void submitForm();
 
     /* JADX INFO: compiled from: FeedbackSheetViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final List<FeedbackIssue> feedbackIssues;
         private final int issuesHeaderTextResId;
         private final Integer promptTextResId;
@@ -191,6 +191,10 @@ public interface FeedbackSheetViewModel {
             this.promptTextResId = num;
             this.issuesHeaderTextResId = i2;
             this.showFaceRatings = num != null;
+        }
+
+        public final List<FeedbackIssue> component2() {
+            return this.feedbackIssues;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -216,30 +220,6 @@ public interface FeedbackSheetViewModel {
             return viewState.copy(feedbackRating, list2, i4, num2, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final FeedbackRating getSelectedFeedbackRating() {
-            return this.selectedFeedbackRating;
-        }
-
-        public final List<FeedbackIssue> component2() {
-            return this.feedbackIssues;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getTitleTextResId() {
-            return this.titleTextResId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getPromptTextResId() {
-            return this.promptTextResId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getIssuesHeaderTextResId() {
-            return this.issuesHeaderTextResId;
-        }
-
         public final ViewState copy(FeedbackRating selectedFeedbackRating, List<? extends FeedbackIssue> feedbackIssues, @StringRes int titleTextResId, @StringRes Integer promptTextResId, @StringRes int issuesHeaderTextResId) {
             C12238m.checkNotNullParameter(selectedFeedbackRating, "selectedFeedbackRating");
             C12238m.checkNotNullParameter(feedbackIssues, "feedbackIssues");
@@ -261,12 +241,27 @@ public interface FeedbackSheetViewModel {
             return this.feedbackIssues;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final int getIssuesHeaderTextResId() {
             return this.issuesHeaderTextResId;
         }
 
+        public final int getIssuesHeaderTextResId() {
+            return this.issuesHeaderTextResId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getPromptTextResId() {
             return this.promptTextResId;
+        }
+
+        public final Integer getPromptTextResId() {
+            return this.promptTextResId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final FeedbackRating getSelectedFeedbackRating() {
+            return this.selectedFeedbackRating;
         }
 
         public final FeedbackRating getSelectedFeedbackRating() {
@@ -275,6 +270,11 @@ public interface FeedbackSheetViewModel {
 
         public final boolean getShowFaceRatings() {
             return this.showFaceRatings;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getTitleTextResId() {
+            return this.titleTextResId;
         }
 
         public final int getTitleTextResId() {

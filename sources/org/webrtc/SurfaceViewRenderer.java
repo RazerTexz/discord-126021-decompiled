@@ -33,77 +33,6 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         getHolder().addCallback(surfaceEglRenderer);
     }
 
-    private String getResourceName() {
-        try {
-            return getResources().getResourceEntryName(getId());
-        } catch (Resources.NotFoundException unused) {
-            return "";
-        }
-    }
-
-    private void logD(String str) {
-        Logging.m11027d(TAG, this.resourceName + ": " + str);
-    }
-
-    private void postOrRun(Runnable runnable) {
-        if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-            runnable.run();
-        } else {
-            post(runnable);
-        }
-    }
-
-    private void updateSurfaceSize() {
-        ThreadUtils.checkIsOnMainThread();
-        if (!this.enableFixedSize || this.rotatedFrameWidth == 0 || this.rotatedFrameHeight == 0 || getWidth() == 0 || getHeight() == 0) {
-            this.surfaceHeight = 0;
-            this.surfaceWidth = 0;
-            getHolder().setSizeFromLayout();
-            return;
-        }
-        float width = getWidth() / getHeight();
-        int i = this.rotatedFrameWidth;
-        int i2 = this.rotatedFrameHeight;
-        if (i / i2 > width) {
-            i = (int) (i2 * width);
-        } else {
-            i2 = (int) (i / width);
-        }
-        int iMin = Math.min(getWidth(), i);
-        int iMin2 = Math.min(getHeight(), i2);
-        StringBuilder sbM833U = C1643a.m833U("updateSurfaceSize. Layout size: ");
-        sbM833U.append(getWidth());
-        sbM833U.append("x");
-        sbM833U.append(getHeight());
-        sbM833U.append(", frame size: ");
-        sbM833U.append(this.rotatedFrameWidth);
-        sbM833U.append("x");
-        sbM833U.append(this.rotatedFrameHeight);
-        sbM833U.append(", requested surface size: ");
-        sbM833U.append(iMin);
-        sbM833U.append("x");
-        sbM833U.append(iMin2);
-        sbM833U.append(", old surface size: ");
-        sbM833U.append(this.surfaceWidth);
-        sbM833U.append("x");
-        sbM833U.append(this.surfaceHeight);
-        logD(sbM833U.toString());
-        if (iMin == this.surfaceWidth && iMin2 == this.surfaceHeight) {
-            return;
-        }
-        this.surfaceWidth = iMin;
-        this.surfaceHeight = iMin2;
-        getHolder().setFixedSize(iMin, iMin2);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m11047a(int i, int i2) {
-        this.rotatedFrameWidth = i;
-        this.rotatedFrameHeight = i2;
-        updateSurfaceSize();
-        requestLayout();
-    }
-
     public void addFrameListener(EglRenderer.FrameListener frameListener, float f, RendererCommon.GlDrawer glDrawer) {
         this.eglRenderer.addFrameListener(frameListener, f, glDrawer);
     }
@@ -116,8 +45,28 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         this.eglRenderer.disableFpsReduction();
     }
 
+    private String getResourceName() {
+        try {
+            return getResources().getResourceEntryName(getId());
+        } catch (Resources.NotFoundException unused) {
+            return "";
+        }
+    }
+
     public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents) {
         init(context, rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
+    }
+
+    private void logD(String str) {
+        Logging.m11027d(TAG, this.resourceName + ": " + str);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ void m11047a(int i, int i2) {
+        this.rotatedFrameWidth = i;
+        this.rotatedFrameHeight = i2;
+        updateSurfaceSize();
+        requestLayout();
     }
 
     @Override // org.webrtc.RendererCommon.RendererEvents
@@ -174,6 +123,14 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         this.eglRenderer.pauseVideo();
     }
 
+    private void postOrRun(Runnable runnable) {
+        if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
+            runnable.run();
+        } else {
+            post(runnable);
+        }
+    }
+
     public void release() {
         this.eglRenderer.release();
     }
@@ -216,6 +173,49 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
 
     @Override // android.view.SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+    }
+
+    private void updateSurfaceSize() {
+        ThreadUtils.checkIsOnMainThread();
+        if (!this.enableFixedSize || this.rotatedFrameWidth == 0 || this.rotatedFrameHeight == 0 || getWidth() == 0 || getHeight() == 0) {
+            this.surfaceHeight = 0;
+            this.surfaceWidth = 0;
+            getHolder().setSizeFromLayout();
+            return;
+        }
+        float width = getWidth() / getHeight();
+        int i = this.rotatedFrameWidth;
+        int i2 = this.rotatedFrameHeight;
+        if (i / i2 > width) {
+            i = (int) (i2 * width);
+        } else {
+            i2 = (int) (i / width);
+        }
+        int iMin = Math.min(getWidth(), i);
+        int iMin2 = Math.min(getHeight(), i2);
+        StringBuilder sbM833U = C1643a.m833U("updateSurfaceSize. Layout size: ");
+        sbM833U.append(getWidth());
+        sbM833U.append("x");
+        sbM833U.append(getHeight());
+        sbM833U.append(", frame size: ");
+        sbM833U.append(this.rotatedFrameWidth);
+        sbM833U.append("x");
+        sbM833U.append(this.rotatedFrameHeight);
+        sbM833U.append(", requested surface size: ");
+        sbM833U.append(iMin);
+        sbM833U.append("x");
+        sbM833U.append(iMin2);
+        sbM833U.append(", old surface size: ");
+        sbM833U.append(this.surfaceWidth);
+        sbM833U.append("x");
+        sbM833U.append(this.surfaceHeight);
+        logD(sbM833U.toString());
+        if (iMin == this.surfaceWidth && iMin2 == this.surfaceHeight) {
+            return;
+        }
+        this.surfaceWidth = iMin;
+        this.surfaceHeight = iMin2;
+        getHolder().setFixedSize(iMin, iMin2);
     }
 
     public void addFrameListener(EglRenderer.FrameListener frameListener, float f) {

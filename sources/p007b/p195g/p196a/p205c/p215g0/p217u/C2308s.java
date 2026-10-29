@@ -38,7 +38,7 @@ public class C2308s extends AbstractC2305q0<Object> implements InterfaceC2240i {
 
     /* JADX INFO: renamed from: b.g.a.c.g0.u.s$a */
     /* JADX INFO: compiled from: JsonValueSerializer.java */
-    public static class a extends AbstractC2215g {
+    public class a extends AbstractC2215g {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC2215g f4862a;
@@ -96,45 +96,28 @@ public class C2308s extends AbstractC2305q0<Object> implements InterfaceC2240i {
         this.f4861k = AbstractC2262l.b.f4828b;
     }
 
-    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
-    /* JADX INFO: renamed from: a */
-    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
-        AbstractC2215g abstractC2215gMo1955a = this._valueTypeSerializer;
-        if (abstractC2215gMo1955a != null) {
-            abstractC2215gMo1955a = abstractC2215gMo1955a.mo1955a(interfaceC2206d);
+    /* JADX INFO: renamed from: p */
+    public AbstractC2364n<Object> m2080p(AbstractC2374x abstractC2374x, Class<?> cls) throws JsonMappingException {
+        AbstractC2364n<Object> abstractC2364nMo2034c = this.f4861k.mo2034c(cls);
+        if (abstractC2364nMo2034c != null) {
+            return abstractC2364nMo2034c;
         }
-        AbstractC2364n<?> abstractC2364n = this._valueSerializer;
-        if (abstractC2364n != null) {
-            return m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2374x.m2260y(abstractC2364n, interfaceC2206d), this._forceTypeInformation);
+        if (!this._valueType.mo2102r()) {
+            AbstractC2364n<Object> abstractC2364nM2253r = abstractC2374x.m2253r(cls, this._property);
+            this.f4861k = this.f4861k.mo2033b(cls, abstractC2364nM2253r);
+            return abstractC2364nM2253r;
         }
-        if (!abstractC2374x.m2239C(EnumC2366p.USE_STATIC_TYPING) && !this._valueType.m2220x()) {
-            return interfaceC2206d != this._property ? m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2364n, this._forceTypeInformation) : this;
-        }
-        AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(this._valueType, interfaceC2206d);
-        Class<?> cls = this._valueType._class;
-        boolean zM2187s = false;
-        if (!cls.isPrimitive() ? cls == String.class || cls == Integer.class || cls == Boolean.class || cls == Double.class : cls == Integer.TYPE || cls == Boolean.TYPE || cls == Double.TYPE) {
-            zM2187s = C2342d.m2187s(abstractC2364nM2252q);
-        }
-        return m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2364nM2252q, zM2187s);
+        AbstractC2360j abstractC2360jM2247k = abstractC2374x.m2247k(this._valueType, cls);
+        AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(abstractC2360jM2247k, this._property);
+        AbstractC2262l abstractC2262l = this.f4861k;
+        Objects.requireNonNull(abstractC2262l);
+        this.f4861k = abstractC2262l.mo2033b(abstractC2360jM2247k._class, abstractC2364nM2252q);
+        return abstractC2364nM2252q;
     }
 
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: d */
-    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
-        Object objMo1889j = this._accessor.mo1889j(obj);
-        if (objMo1889j == null) {
-            return true;
-        }
-        AbstractC2364n<Object> abstractC2364nM2080p = this._valueSerializer;
-        if (abstractC2364nM2080p == null) {
-            try {
-                abstractC2364nM2080p = m2080p(abstractC2374x, objMo1889j.getClass());
-            } catch (JsonMappingException e) {
-                throw new RuntimeJsonMappingException(e);
-            }
-        }
-        return abstractC2364nM2080p.mo2021d(abstractC2374x, objMo1889j);
+    /* JADX INFO: renamed from: q */
+    public C2308s m2081q(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, boolean z2) {
+        return (this._property == interfaceC2206d && this._valueTypeSerializer == abstractC2215g && this._valueSerializer == abstractC2364n && z2 == this._forceTypeInformation) ? this : new C2308s(this, interfaceC2206d, abstractC2215g, abstractC2364n, z2);
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
@@ -187,28 +170,45 @@ public class C2308s extends AbstractC2305q0<Object> implements InterfaceC2240i {
         }
     }
 
-    /* JADX INFO: renamed from: p */
-    public AbstractC2364n<Object> m2080p(AbstractC2374x abstractC2374x, Class<?> cls) throws JsonMappingException {
-        AbstractC2364n<Object> abstractC2364nMo2034c = this.f4861k.mo2034c(cls);
-        if (abstractC2364nMo2034c != null) {
-            return abstractC2364nMo2034c;
+    @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
+    /* JADX INFO: renamed from: a */
+    public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
+        AbstractC2215g abstractC2215gMo1955a = this._valueTypeSerializer;
+        if (abstractC2215gMo1955a != null) {
+            abstractC2215gMo1955a = abstractC2215gMo1955a.mo1955a(interfaceC2206d);
         }
-        if (!this._valueType.mo2102r()) {
-            AbstractC2364n<Object> abstractC2364nM2253r = abstractC2374x.m2253r(cls, this._property);
-            this.f4861k = this.f4861k.mo2033b(cls, abstractC2364nM2253r);
-            return abstractC2364nM2253r;
+        AbstractC2364n<?> abstractC2364n = this._valueSerializer;
+        if (abstractC2364n != null) {
+            return m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2374x.m2260y(abstractC2364n, interfaceC2206d), this._forceTypeInformation);
         }
-        AbstractC2360j abstractC2360jM2247k = abstractC2374x.m2247k(this._valueType, cls);
-        AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(abstractC2360jM2247k, this._property);
-        AbstractC2262l abstractC2262l = this.f4861k;
-        Objects.requireNonNull(abstractC2262l);
-        this.f4861k = abstractC2262l.mo2033b(abstractC2360jM2247k._class, abstractC2364nM2252q);
-        return abstractC2364nM2252q;
+        if (!abstractC2374x.m2239C(EnumC2366p.USE_STATIC_TYPING) && !this._valueType.m2220x()) {
+            return interfaceC2206d != this._property ? m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2364n, this._forceTypeInformation) : this;
+        }
+        AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(this._valueType, interfaceC2206d);
+        Class<?> cls = this._valueType._class;
+        boolean zM2187s = false;
+        if (!cls.isPrimitive() ? cls == String.class || cls == Integer.class || cls == Boolean.class || cls == Double.class : cls == Integer.TYPE || cls == Boolean.TYPE || cls == Double.TYPE) {
+            zM2187s = C2342d.m2187s(abstractC2364nM2252q);
+        }
+        return m2081q(interfaceC2206d, abstractC2215gMo1955a, abstractC2364nM2252q, zM2187s);
     }
 
-    /* JADX INFO: renamed from: q */
-    public C2308s m2081q(InterfaceC2206d interfaceC2206d, AbstractC2215g abstractC2215g, AbstractC2364n<?> abstractC2364n, boolean z2) {
-        return (this._property == interfaceC2206d && this._valueTypeSerializer == abstractC2215g && this._valueSerializer == abstractC2364n && z2 == this._forceTypeInformation) ? this : new C2308s(this, interfaceC2206d, abstractC2215g, abstractC2364n, z2);
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: d */
+    public boolean mo2021d(AbstractC2374x abstractC2374x, Object obj) {
+        Object objMo1889j = this._accessor.mo1889j(obj);
+        if (objMo1889j == null) {
+            return true;
+        }
+        AbstractC2364n<Object> abstractC2364nM2080p = this._valueSerializer;
+        if (abstractC2364nM2080p == null) {
+            try {
+                abstractC2364nM2080p = m2080p(abstractC2374x, objMo1889j.getClass());
+            } catch (JsonMappingException e) {
+                throw new RuntimeJsonMappingException(e);
+            }
+        }
+        return abstractC2364nM2080p.mo2021d(abstractC2374x, objMo1889j);
     }
 
     public String toString() {

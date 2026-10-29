@@ -90,8 +90,128 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
     private boolean mentionMeMessageLevelHighlighting;
     private ScrollToWithHighlight scrollToWithHighlight;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$disposeHandlers$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class Companion {
+    public final class C79881 extends AbstractC12240o implements Function2<List<? extends ChatListEntry>, List<? extends ChatListEntry>, Unit> {
+        public static final C79881 INSTANCE = new C79881();
+
+        public C79881() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
+            invoke2(list, list2);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
+            C12238m.checkNotNullParameter(list, "<anonymous parameter 0>");
+            C12238m.checkNotNullParameter(list2, "<anonymous parameter 1>");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$scrollToMessageId$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
+    public final class C79891 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Action0 $onCompleted;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C79891(Action0 action0) {
+            super(0);
+            this.$onCompleted = action0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetChatListAdapter.this.scrollToWithHighlight = null;
+            WidgetChatListAdapter.this.publishInteractionState();
+            this.$onCompleted.call();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
+    public final class C79901 extends AbstractC12240o implements Function2<List<? extends ChatListEntry>, List<? extends ChatListEntry>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
+        @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1$1", m10085f = "WidgetChatListAdapter.kt", m10086l = {118}, m10087m = "invokeSuspend")
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+            public int label;
+
+            public AnonymousClass1(Continuation continuation) {
+                super(2, continuation);
+            }
+
+            @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+            public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+                C12238m.checkNotNullParameter(continuation, "completion");
+                return C79901.this.new AnonymousClass1(continuation);
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+                return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
+            }
+
+            @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+            public final Object invokeSuspend(Object obj) throws Throwable {
+                Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
+                int i = this.label;
+                if (i == 0) {
+                    C12113l.throwOnFailure(obj);
+                    this.label = 1;
+                    if (C3404f.m4234P(250L, this) == coroutine_suspended) {
+                        return coroutine_suspended;
+                    }
+                } else {
+                    if (i != 1) {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                    C12113l.throwOnFailure(obj);
+                }
+                WidgetChatListAdapter.this.handlerOfUpdates.run();
+                return Unit.f27425a;
+            }
+        }
+
+        public C79901() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
+            invoke2(list, list2);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
+            C12238m.checkNotNullParameter(list, "<anonymous parameter 0>");
+            C12238m.checkNotNullParameter(list2, "<anonymous parameter 1>");
+            Job job = WidgetChatListAdapter.this.lastUpdateJob;
+            if (job != null) {
+                C3404f.m4343t(job, null, 1, null);
+            }
+            WidgetChatListAdapter widgetChatListAdapter = WidgetChatListAdapter.this;
+            CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(widgetChatListAdapter.getRecycler());
+            widgetChatListAdapter.lastUpdateJob = coroutineScope != null ? C3404f.m4211H0(coroutineScope, null, null, new AnonymousClass1(null), 3, null) : null;
+            WidgetChatListAdapter.this.getRecycler().setOnTouchListener(WidgetChatListAdapter.this.handlerOfTouches);
+            WidgetChatListAdapter.this.getRecycler().removeOnScrollListener(WidgetChatListAdapter.this.handlerOfScrolls);
+            WidgetChatListAdapter.this.getRecycler().addOnScrollListener(WidgetChatListAdapter.this.handlerOfScrolls);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -120,6 +240,9 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
 
         long getGuildId();
 
+        /* JADX INFO: renamed from: isSpoilerClickAllowed */
+        boolean getIsSpoilerClickAllowed();
+
         List<ChatListEntry> getList();
 
         Set<Long> getMyRoleIds();
@@ -129,81 +252,13 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
         long getOldestMessageId();
 
         long getUserId();
-
-        /* JADX INFO: renamed from: isSpoilerClickAllowed */
-        boolean getIsSpoilerClickAllowed();
-    }
-
-    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class EmptyData implements Data {
-        private final long channelId;
-        private final Guild guild;
-        private final long guildId;
-        private final boolean isSpoilerClickAllowed;
-        private final long newMessagesMarkerMessageId;
-        private final long oldestMessageId;
-        private final long userId;
-        private final Map<Long, String> channelNames = C12136h0.emptyMap();
-        private final List<ChatListEntry> list = C12147n.emptyList();
-        private final Set<Long> myRoleIds = C12148n0.emptySet();
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public long getChannelId() {
-            return this.channelId;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public Map<Long, String> getChannelNames() {
-            return this.channelNames;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public Guild getGuild() {
-            return this.guild;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public long getGuildId() {
-            return this.guildId;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public List<ChatListEntry> getList() {
-            return this.list;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public Set<Long> getMyRoleIds() {
-            return this.myRoleIds;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public long getNewMessagesMarkerMessageId() {
-            return this.newMessagesMarkerMessageId;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public long getOldestMessageId() {
-            return this.oldestMessageId;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        public long getUserId() {
-            return this.userId;
-        }
-
-        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-        /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
-        public boolean getIsSpoilerClickAllowed() {
-            return this.isSpoilerClickAllowed;
-        }
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
     public interface EventHandler {
 
         /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-        public static final class DefaultImpls {
+        public final class DefaultImpls {
             public static void onBotUiComponentClicked(EventHandler eventHandler, long j, Long l, long j2, long j3, Long l2, int i, RestAPIParams.ComponentInteractionData componentInteractionData) {
                 C12238m.checkNotNullParameter(componentInteractionData, "componentSendData");
             }
@@ -469,7 +524,7 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class ScrollToWithHighlight implements Runnable {
+    public final class ScrollToWithHighlight implements Runnable {
         private final WidgetChatListAdapter adapter;
         private int attempts;
         private final long messageId;
@@ -494,6 +549,18 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
             if (coroutineScope != null) {
                 C3404f.m4211H0(coroutineScope, null, null, new WidgetChatListAdapter$ScrollToWithHighlight$animateHighlight$1(transitionDrawable, null), 3, null);
             }
+        }
+
+        public final void cancel() {
+            this.adapter.getRecycler().removeCallbacks(this);
+        }
+
+        public final WidgetChatListAdapter getAdapter() {
+            return this.adapter;
+        }
+
+        public final long getMessageId() {
+            return this.messageId;
         }
 
         private final int getNewMessageEntryIndex(List<? extends ChatListEntry> list) {
@@ -539,31 +606,6 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
             return num3 != null ? num3.intValue() : iFindBestNewMessagesPosition;
         }
 
-        private final void scheduleRetry() {
-            int i = this.attempts;
-            if (i >= 20) {
-                this.onCompleted.invoke();
-                return;
-            }
-            this.attempts = i + 1;
-            CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(this.adapter.getRecycler());
-            if (coroutineScope != null) {
-                C3404f.m4211H0(coroutineScope, null, null, new WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1(this, null), 3, null);
-            }
-        }
-
-        public final void cancel() {
-            this.adapter.getRecycler().removeCallbacks(this);
-        }
-
-        public final WidgetChatListAdapter getAdapter() {
-            return this.adapter;
-        }
-
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
         public final Function0<Unit> getOnCompleted() {
             return this.onCompleted;
         }
@@ -600,125 +642,18 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
             }
             this.onCompleted.invoke();
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$disposeHandlers$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class C79881 extends AbstractC12240o implements Function2<List<? extends ChatListEntry>, List<? extends ChatListEntry>, Unit> {
-        public static final C79881 INSTANCE = new C79881();
-
-        public C79881() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
-            invoke2(list, list2);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
-            C12238m.checkNotNullParameter(list, "<anonymous parameter 0>");
-            C12238m.checkNotNullParameter(list2, "<anonymous parameter 1>");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$scrollToMessageId$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class C79891 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Action0 $onCompleted;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C79891(Action0 action0) {
-            super(0);
-            this.$onCompleted = action0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetChatListAdapter.this.scrollToWithHighlight = null;
-            WidgetChatListAdapter.this.publishInteractionState();
-            this.$onCompleted.call();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-    public static final class C79901 extends AbstractC12240o implements Function2<List<? extends ChatListEntry>, List<? extends ChatListEntry>, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
-        @InterfaceC12188e(m10084c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$setHandlers$1$1", m10085f = "WidgetChatListAdapter.kt", m10086l = {118}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
-            public int label;
-
-            public AnonymousClass1(Continuation continuation) {
-                super(2, continuation);
+        private final void scheduleRetry() {
+            int i = this.attempts;
+            if (i >= 20) {
+                this.onCompleted.invoke();
+                return;
             }
-
-            @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-                C12238m.checkNotNullParameter(continuation, "completion");
-                return C79901.this.new AnonymousClass1(continuation);
+            this.attempts = i + 1;
+            CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(this.adapter.getRecycler());
+            if (coroutineScope != null) {
+                C3404f.m4211H0(coroutineScope, null, null, new WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1(this, null), 3, null);
             }
-
-            @Override // kotlin.jvm.functions.Function2
-            public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
-                return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.f27425a);
-            }
-
-            @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
-                Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
-                int i = this.label;
-                if (i == 0) {
-                    C12113l.throwOnFailure(obj);
-                    this.label = 1;
-                    if (C3404f.m4234P(250L, this) == coroutine_suspended) {
-                        return coroutine_suspended;
-                    }
-                } else {
-                    if (i != 1) {
-                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                    }
-                    C12113l.throwOnFailure(obj);
-                }
-                WidgetChatListAdapter.this.handlerOfUpdates.run();
-                return Unit.f27425a;
-            }
-        }
-
-        public C79901() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
-            invoke2(list, list2);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends ChatListEntry> list, List<? extends ChatListEntry> list2) {
-            C12238m.checkNotNullParameter(list, "<anonymous parameter 0>");
-            C12238m.checkNotNullParameter(list2, "<anonymous parameter 1>");
-            Job job = WidgetChatListAdapter.this.lastUpdateJob;
-            if (job != null) {
-                C3404f.m4343t(job, null, 1, null);
-            }
-            WidgetChatListAdapter widgetChatListAdapter = WidgetChatListAdapter.this;
-            CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(widgetChatListAdapter.getRecycler());
-            widgetChatListAdapter.lastUpdateJob = coroutineScope != null ? C3404f.m4211H0(coroutineScope, null, null, new AnonymousClass1(null), 3, null) : null;
-            WidgetChatListAdapter.this.getRecycler().setOnTouchListener(WidgetChatListAdapter.this.handlerOfTouches);
-            WidgetChatListAdapter.this.getRecycler().removeOnScrollListener(WidgetChatListAdapter.this.handlerOfScrolls);
-            WidgetChatListAdapter.this.getRecycler().addOnScrollListener(WidgetChatListAdapter.this.handlerOfScrolls);
         }
     }
 
@@ -732,15 +667,6 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
 
     public /* synthetic */ WidgetChatListAdapter(RecyclerView recyclerView, AppPermissionsRequests appPermissionsRequests, FragmentManager fragmentManager, EventHandler eventHandler, AppFlexInputViewModel appFlexInputViewModel, Clock clock, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(recyclerView, appPermissionsRequests, fragmentManager, eventHandler, (i & 16) != 0 ? null : appFlexInputViewModel, (i & 32) != 0 ? ClockFactory.get() : clock);
-    }
-
-    private final void publishInteractionState() {
-        Data data = this.data;
-        if (!(data instanceof WidgetChatListModel)) {
-            data = null;
-        }
-        WidgetChatListModel widgetChatListModel = (WidgetChatListModel) data;
-        this.eventHandler.onInteractionStateUpdated(new StoreChat.InteractionState(this.data.getChannelId(), widgetChatListModel != null ? widgetChatListModel.getNewestKnownMessageId() : 0L, this.isTouchedSinceLastJump, getLayoutManager()));
     }
 
     public final void disposeHandlers() {
@@ -869,6 +795,15 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
         this.eventHandler.onUserActivityAction(authorId, this.data.getChannelId(), messageId, messageActivityType, activity, application);
     }
 
+    private final void publishInteractionState() {
+        Data data = this.data;
+        if (!(data instanceof WidgetChatListModel)) {
+            data = null;
+        }
+        WidgetChatListModel widgetChatListModel = (WidgetChatListModel) data;
+        this.eventHandler.onInteractionStateUpdated(new StoreChat.InteractionState(this.data.getChannelId(), widgetChatListModel != null ? widgetChatListModel.getNewestKnownMessageId() : 0L, this.isTouchedSinceLastJump, getLayoutManager()));
+    }
+
     public final void scrollToMessageId(long messageId, Action0 onCompleted) {
         C12238m.checkNotNullParameter(onCompleted, "onCompleted");
         ScrollToWithHighlight scrollToWithHighlight = this.scrollToWithHighlight;
@@ -901,6 +836,71 @@ public final class WidgetChatListAdapter extends MGRecyclerAdapterSimple<ChatLis
 
     public final void setMentionMeMessageLevelHighlighting(boolean z2) {
         this.mentionMeMessageLevelHighlighting = z2;
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapter.kt */
+    public final class EmptyData implements Data {
+        private final long channelId;
+        private final Guild guild;
+        private final long guildId;
+        private final boolean isSpoilerClickAllowed;
+        private final long newMessagesMarkerMessageId;
+        private final long oldestMessageId;
+        private final long userId;
+        private final Map<Long, String> channelNames = C12136h0.emptyMap();
+        private final List<ChatListEntry> list = C12147n.emptyList();
+        private final Set<Long> myRoleIds = C12148n0.emptySet();
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public long getChannelId() {
+            return this.channelId;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public Map<Long, String> getChannelNames() {
+            return this.channelNames;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public Guild getGuild() {
+            return this.guild;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public long getGuildId() {
+            return this.guildId;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
+        public boolean getIsSpoilerClickAllowed() {
+            return this.isSpoilerClickAllowed;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public List<ChatListEntry> getList() {
+            return this.list;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public Set<Long> getMyRoleIds() {
+            return this.myRoleIds;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public long getNewMessagesMarkerMessageId() {
+            return this.newMessagesMarkerMessageId;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public long getOldestMessageId() {
+            return this.oldestMessageId;
+        }
+
+        @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+        public long getUserId() {
+            return this.userId;
+        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

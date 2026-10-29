@@ -9,35 +9,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLeaveStageInstance.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLeaveStageInstance implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long channelBitrate = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long channelBitrate = null;
-    private final Long guildId = null;
-    private final CharSequence nonce = null;
-    private final CharSequence rtcConnectionId = null;
-    private final CharSequence mediaSessionId = null;
     private final Long duration = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
+    private final Long gameId = null;
     private final CharSequence gameName = null;
     private final CharSequence gamePlatform = null;
-    private final Long gameId = null;
-    private final Long maxVoiceStateCount = null;
-    private final Long totalVoiceStateCount = null;
-    private final Long maxSpeakerCount = null;
-    private final Long totalSpeakerCount = null;
+    private final Long guildId = null;
     private final Long maxListenerCount = null;
-    private final Long totalListenerCount = null;
+    private final Long maxSpeakerCount = null;
+    private final Long maxVoiceStateCount = null;
+    private final CharSequence mediaSessionId = null;
+    private final CharSequence nonce = null;
+    private final CharSequence rtcConnectionId = null;
     private final Long stageInstanceId = null;
+    private final Long totalListenerCount = null;
+    private final Long totalSpeakerCount = null;
+    private final Long totalVoiceStateCount = null;
+    private TrackBase trackBase;
+    private final Boolean videoEnabled = null;
+    private final Long videoStreamCount = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "leave_stage_instance";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +42,12 @@ public final /* data */ class TrackLeaveStageInstance implements AnalyticsSchema
         }
         TrackLeaveStageInstance trackLeaveStageInstance = (TrackLeaveStageInstance) other;
         return C12238m.areEqual(this.channelId, trackLeaveStageInstance.channelId) && C12238m.areEqual(this.channelType, trackLeaveStageInstance.channelType) && C12238m.areEqual(this.channelBitrate, trackLeaveStageInstance.channelBitrate) && C12238m.areEqual(this.guildId, trackLeaveStageInstance.guildId) && C12238m.areEqual(this.nonce, trackLeaveStageInstance.nonce) && C12238m.areEqual(this.rtcConnectionId, trackLeaveStageInstance.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackLeaveStageInstance.mediaSessionId) && C12238m.areEqual(this.duration, trackLeaveStageInstance.duration) && C12238m.areEqual(this.voiceStateCount, trackLeaveStageInstance.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackLeaveStageInstance.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackLeaveStageInstance.videoEnabled) && C12238m.areEqual(this.gameName, trackLeaveStageInstance.gameName) && C12238m.areEqual(this.gamePlatform, trackLeaveStageInstance.gamePlatform) && C12238m.areEqual(this.gameId, trackLeaveStageInstance.gameId) && C12238m.areEqual(this.maxVoiceStateCount, trackLeaveStageInstance.maxVoiceStateCount) && C12238m.areEqual(this.totalVoiceStateCount, trackLeaveStageInstance.totalVoiceStateCount) && C12238m.areEqual(this.maxSpeakerCount, trackLeaveStageInstance.maxSpeakerCount) && C12238m.areEqual(this.totalSpeakerCount, trackLeaveStageInstance.totalSpeakerCount) && C12238m.areEqual(this.maxListenerCount, trackLeaveStageInstance.maxListenerCount) && C12238m.areEqual(this.totalListenerCount, trackLeaveStageInstance.totalListenerCount) && C12238m.areEqual(this.stageInstanceId, trackLeaveStageInstance.stageInstanceId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

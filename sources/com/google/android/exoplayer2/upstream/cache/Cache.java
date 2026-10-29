@@ -11,7 +11,7 @@ import p007b.p225i.p226a.p242c.p257e3.p258b0.InterfaceC2693l;
 /* JADX INFO: loaded from: classes3.dex */
 public interface Cache {
 
-    public static class CacheException extends IOException {
+    public class CacheException extends IOException {
         public CacheException(String str) {
             super(str);
         }

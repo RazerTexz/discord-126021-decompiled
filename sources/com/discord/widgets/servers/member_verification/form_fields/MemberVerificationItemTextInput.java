@@ -14,10 +14,7 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
     public MemberVerificationItemTextInput(int i, String str) {
         this.fieldIndex = i;
         this.response = str;
-        StringBuilder sb = new StringBuilder();
-        sb.append(i);
-        sb.append(getType());
-        this.key = sb.toString();
+        this.key = "" + i + getType();
     }
 
     public static /* synthetic */ MemberVerificationItemTextInput copy$default(MemberVerificationItemTextInput memberVerificationItemTextInput, int i, String str, int i2, Object obj) {
@@ -28,16 +25,6 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
             str = memberVerificationItemTextInput.response;
         }
         return memberVerificationItemTextInput.copy(i, str);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getFieldIndex() {
-        return this.fieldIndex;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getResponse() {
-        return this.response;
     }
 
     public final MemberVerificationItemTextInput copy(int fieldIndex, String response) {
@@ -55,6 +42,11 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
         return this.fieldIndex == memberVerificationItemTextInput.fieldIndex && C12238m.areEqual(this.response, memberVerificationItemTextInput.response);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getFieldIndex() {
+        return this.fieldIndex;
+    }
+
     public final int getFieldIndex() {
         return this.fieldIndex;
     }
@@ -62,6 +54,11 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getResponse() {
+        return this.response;
     }
 
     public final String getResponse() {

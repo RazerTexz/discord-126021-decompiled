@@ -4,12 +4,12 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationSource.SCL.lombok */
 public interface ConfigurationSource {
-    Result resolve(ConfigurationKey<?> configurationKey);
-
     List<ConfigurationFile> imports();
 
+    Result resolve(ConfigurationKey<?> configurationKey);
+
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationSource$Result.SCL.lombok */
-    public static final class Result {
+    public final class Result {
         private final Object value;
         private final boolean authoritative;
 
@@ -32,7 +32,7 @@ public interface ConfigurationSource {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationSource$ListModification.SCL.lombok */
-    public static final class ListModification {
+    public final class ListModification {
         private final Object value;
         private final boolean added;
 

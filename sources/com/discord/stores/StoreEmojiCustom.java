@@ -38,7 +38,7 @@ public final class StoreEmojiCustom extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiCustom$updateAllowedGuildEmojis$1 */
     /* JADX INFO: compiled from: StoreEmojiCustom.kt */
-    public static final class C58981 extends AbstractC12240o implements Function2<Long, ModelEmojiCustom, Unit> {
+    public final class C58981 extends AbstractC12240o implements Function2<Long, ModelEmojiCustom, Unit> {
         public final /* synthetic */ Map $allowed;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -78,54 +78,6 @@ public final class StoreEmojiCustom extends StoreV2 {
         this.allGuildEmojiSnapshot = C12136h0.emptyMap();
         this.allowedGuildEmojis = new LinkedHashMap();
         this.allowedGuildEmojiPersister = new Persister<>("STORE_EMOJI_AVAILABLE_V5", new HashMap());
-    }
-
-    private final void updateAllowedGuildEmojis(long guildId, List<Long> myRoles, Collection<? extends ModelEmojiCustom> guildEmojis) {
-        Object next;
-        Map<Long, Map<Long, Map<Long, ModelEmojiCustom>>> map = this.allowedGuildEmojis;
-        Long lValueOf = Long.valueOf(guildId);
-        Map<Long, Map<Long, ModelEmojiCustom>> map2 = map.get(lValueOf);
-        if (map2 == null) {
-            map2 = new HashMap<>();
-            map.put(lValueOf, map2);
-        }
-        Map<Long, Map<Long, ModelEmojiCustom>> map3 = map2;
-        map3.clear();
-        C58981 c58981 = new C58981(map3);
-        for (ModelEmojiCustom modelEmojiCustom : guildEmojis) {
-            List<Long> roles = modelEmojiCustom.getRoles();
-            if (roles.isEmpty()) {
-                c58981.invoke(0L, modelEmojiCustom);
-            } else {
-                Iterator<T> it = myRoles.iterator();
-                do {
-                    if (!it.hasNext()) {
-                        next = null;
-                        break;
-                    }
-                    next = it.next();
-                } while (!roles.contains(Long.valueOf(((Number) next).longValue())));
-                Long l = (Long) next;
-                if (l != null) {
-                    c58981.invoke(l.longValue(), modelEmojiCustom);
-                }
-            }
-        }
-    }
-
-    private final void updateGlobalEmojis(long guildId, Collection<? extends ModelEmojiCustom> emojis) {
-        if (emojis.isEmpty()) {
-            this.allGuildEmoji.remove(Long.valueOf(guildId));
-        } else {
-            Map<Long, Map<Long, ModelEmojiCustom>> map = this.allGuildEmoji;
-            Long lValueOf = Long.valueOf(guildId);
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(emojis, 10)), 16));
-            for (Object obj : emojis) {
-                linkedHashMap.put(Long.valueOf(((ModelEmojiCustom) obj).getId()), obj);
-            }
-            map.put(lValueOf, linkedHashMap);
-        }
-        markChanged();
     }
 
     public final Map<Long, Map<Long, ModelEmojiCustom>> getAllGuildEmoji() {
@@ -265,5 +217,53 @@ public final class StoreEmojiCustom extends StoreV2 {
             linkedHashMap2.put(Long.valueOf(jLongValue), linkedHashMap3);
         }
         Persister.set$default(this.allowedGuildEmojiPersister, linkedHashMap2, false, 2, null);
+    }
+
+    private final void updateAllowedGuildEmojis(long guildId, List<Long> myRoles, Collection<? extends ModelEmojiCustom> guildEmojis) {
+        Object next;
+        Map<Long, Map<Long, Map<Long, ModelEmojiCustom>>> map = this.allowedGuildEmojis;
+        Long lValueOf = Long.valueOf(guildId);
+        Map<Long, Map<Long, ModelEmojiCustom>> map2 = map.get(lValueOf);
+        if (map2 == null) {
+            map2 = new HashMap<>();
+            map.put(lValueOf, map2);
+        }
+        Map<Long, Map<Long, ModelEmojiCustom>> map3 = map2;
+        map3.clear();
+        C58981 c58981 = new C58981(map3);
+        for (ModelEmojiCustom modelEmojiCustom : guildEmojis) {
+            List<Long> roles = modelEmojiCustom.getRoles();
+            if (roles.isEmpty()) {
+                c58981.invoke(0L, modelEmojiCustom);
+            } else {
+                Iterator<T> it = myRoles.iterator();
+                do {
+                    if (!it.hasNext()) {
+                        next = null;
+                        break;
+                    }
+                    next = it.next();
+                } while (!roles.contains(Long.valueOf(((Number) next).longValue())));
+                Long l = (Long) next;
+                if (l != null) {
+                    c58981.invoke(l.longValue(), modelEmojiCustom);
+                }
+            }
+        }
+    }
+
+    private final void updateGlobalEmojis(long guildId, Collection<? extends ModelEmojiCustom> emojis) {
+        if (emojis.isEmpty()) {
+            this.allGuildEmoji.remove(Long.valueOf(guildId));
+        } else {
+            Map<Long, Map<Long, ModelEmojiCustom>> map = this.allGuildEmoji;
+            Long lValueOf = Long.valueOf(guildId);
+            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(emojis, 10)), 16));
+            for (Object obj : emojis) {
+                linkedHashMap.put(Long.valueOf(((ModelEmojiCustom) obj).getId()), obj);
+            }
+            map.put(lValueOf, linkedHashMap);
+        }
+        markChanged();
     }
 }

@@ -35,22 +35,6 @@ public final class C13156v {
         this.f27910e = th;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static C13156v m11349a(C13156v c13156v, Object obj, AbstractC13120j abstractC13120j, Function1 function1, Object obj2, Throwable th, int i) {
-        Object obj3 = (i & 1) != 0 ? c13156v.f27906a : null;
-        if ((i & 2) != 0) {
-            abstractC13120j = c13156v.f27907b;
-        }
-        AbstractC13120j abstractC13120j2 = abstractC13120j;
-        Function1<Throwable, Unit> function2 = (i & 4) != 0 ? c13156v.f27908c : null;
-        Object obj4 = (i & 8) != 0 ? c13156v.f27909d : null;
-        if ((i & 16) != 0) {
-            th = c13156v.f27910e;
-        }
-        Objects.requireNonNull(c13156v);
-        return new C13156v(obj3, abstractC13120j2, function2, obj4, th);
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -73,6 +57,22 @@ public final class C13156v {
         int iHashCode4 = (iHashCode3 + (obj2 != null ? obj2.hashCode() : 0)) * 31;
         Throwable th = this.f27910e;
         return iHashCode4 + (th != null ? th.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static C13156v m11349a(C13156v c13156v, Object obj, AbstractC13120j abstractC13120j, Function1 function1, Object obj2, Throwable th, int i) {
+        Object obj3 = (i & 1) != 0 ? c13156v.f27906a : null;
+        if ((i & 2) != 0) {
+            abstractC13120j = c13156v.f27907b;
+        }
+        AbstractC13120j abstractC13120j2 = abstractC13120j;
+        Function1<Throwable, Unit> function2 = (i & 4) != 0 ? c13156v.f27908c : null;
+        Object obj4 = (i & 8) != 0 ? c13156v.f27909d : null;
+        if ((i & 16) != 0) {
+            th = c13156v.f27910e;
+        }
+        Objects.requireNonNull(c13156v);
+        return new C13156v(obj3, abstractC13120j2, function2, obj4, th);
     }
 
     public String toString() {

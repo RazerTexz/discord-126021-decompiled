@@ -35,7 +35,7 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
 
     /* JADX INFO: renamed from: s.a.b2.a$a */
     /* JADX INFO: compiled from: HandlerDispatcher.kt */
-    public static final class a implements InterfaceC13130m0 {
+    public final class a implements InterfaceC13130m0 {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ Runnable f27723k;
@@ -52,7 +52,7 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
 
     /* JADX INFO: renamed from: s.a.b2.a$b */
     /* JADX INFO: compiled from: Runnable.kt */
-    public static final class b implements Runnable {
+    public final class b implements Runnable {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ CancellableContinuation f27725k;
@@ -69,7 +69,7 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
 
     /* JADX INFO: renamed from: s.a.b2.a$c */
     /* JADX INFO: compiled from: HandlerDispatcher.kt */
-    public static final class c extends AbstractC12240o implements Function1<Throwable, Unit> {
+    public final class c extends AbstractC12240o implements Function1<Throwable, Unit> {
         public final /* synthetic */ Runnable $block;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -99,20 +99,6 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
         this.f27718j = c13048a;
     }
 
-    @Override // p659s.p660a.AbstractC13128l1
-    /* JADX INFO: renamed from: H */
-    public AbstractC13128l1 mo11194H() {
-        return this.f27718j;
-    }
-
-    @Override // p659s.p660a.InterfaceC13115h0
-    /* JADX INFO: renamed from: c */
-    public void mo11195c(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
-        b bVar = new b(cancellableContinuation);
-        this.f27719k.postDelayed(bVar, C11226f.coerceAtMost(j, 4611686018427387903L));
-        ((C13126l) cancellableContinuation).mo10902f(new c(bVar));
-    }
-
     @Override // kotlinx.coroutines.CoroutineDispatcher
     public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         this.f27719k.post(runnable);
@@ -131,6 +117,27 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
         return !this.f27721m || (C12238m.areEqual(Looper.myLooper(), this.f27719k.getLooper()) ^ true);
     }
 
+    @Override // p659s.p660a.AbstractC13128l1
+    /* JADX INFO: renamed from: H */
+    public AbstractC13128l1 mo11194H() {
+        return this.f27718j;
+    }
+
+    @Override // p659s.p660a.InterfaceC13115h0
+    /* JADX INFO: renamed from: c */
+    public void mo11195c(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
+        b bVar = new b(cancellableContinuation);
+        this.f27719k.postDelayed(bVar, C11226f.coerceAtMost(j, 4611686018427387903L));
+        ((C13126l) cancellableContinuation).mo10902f(new c(bVar));
+    }
+
+    @Override // p659s.p660a.p662b2.AbstractC13049b, p659s.p660a.InterfaceC13115h0
+    /* JADX INFO: renamed from: x */
+    public InterfaceC13130m0 mo11196x(long j, Runnable runnable, CoroutineContext coroutineContext) {
+        this.f27719k.postDelayed(runnable, C11226f.coerceAtMost(j, 4611686018427387903L));
+        return new a(runnable);
+    }
+
     @Override // p659s.p660a.AbstractC13128l1, kotlinx.coroutines.CoroutineDispatcher
     public String toString() {
         String strM11332I = m11332I();
@@ -142,12 +149,5 @@ public final class C13048a extends AbstractC13049b implements InterfaceC13115h0 
             string = this.f27719k.toString();
         }
         return this.f27721m ? C1643a.m883w(string, ".immediate") : string;
-    }
-
-    @Override // p659s.p660a.p662b2.AbstractC13049b, p659s.p660a.InterfaceC13115h0
-    /* JADX INFO: renamed from: x */
-    public InterfaceC13130m0 mo11196x(long j, Runnable runnable, CoroutineContext coroutineContext) {
-        this.f27719k.postDelayed(runnable, C11226f.coerceAtMost(j, 4611686018427387903L));
-        return new a(runnable);
     }
 }

@@ -67,8 +67,68 @@ public final class WidgetUserSetCustomStatus extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
-    public static final class Companion {
+    public final class C102303 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C102303() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "editable");
+            WidgetUserSetCustomStatus.this.getViewModel().setStatusText(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
+    public final /* synthetic */ class C102321 extends C12236k implements Function1<WidgetUserSetCustomStatusViewModel.ViewState, Unit> {
+        public C102321(WidgetUserSetCustomStatus widgetUserSetCustomStatus) {
+            super(1, widgetUserSetCustomStatus, WidgetUserSetCustomStatus.class, "updateView", "updateView(Lcom/discord/widgets/user/WidgetUserSetCustomStatusViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSetCustomStatusViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetUserSetCustomStatusViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetUserSetCustomStatus) this.receiver).updateView(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
+    public final /* synthetic */ class C102332 extends C12236k implements Function1<WidgetUserSetCustomStatusViewModel.Event, Unit> {
+        public C102332(WidgetUserSetCustomStatus widgetUserSetCustomStatus) {
+            super(1, widgetUserSetCustomStatus, WidgetUserSetCustomStatus.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/WidgetUserSetCustomStatusViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSetCustomStatusViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetUserSetCustomStatusViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetUserSetCustomStatus) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -94,66 +154,6 @@ public final class WidgetUserSetCustomStatus extends AppFragment {
             iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_1_HOUR.ordinal()] = 3;
             iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_4_HOURS.ordinal()] = 4;
             iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.TOMORROW.ordinal()] = 5;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
-    public static final class C102303 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C102303() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "editable");
-            WidgetUserSetCustomStatus.this.getViewModel().setStatusText(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
-    public static final /* synthetic */ class C102321 extends C12236k implements Function1<WidgetUserSetCustomStatusViewModel.ViewState, Unit> {
-        public C102321(WidgetUserSetCustomStatus widgetUserSetCustomStatus) {
-            super(1, widgetUserSetCustomStatus, WidgetUserSetCustomStatus.class, "updateView", "updateView(Lcom/discord/widgets/user/WidgetUserSetCustomStatusViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSetCustomStatusViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetUserSetCustomStatusViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetUserSetCustomStatus) this.receiver).updateView(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserSetCustomStatus$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetUserSetCustomStatus.kt */
-    public static final /* synthetic */ class C102332 extends C12236k implements Function1<WidgetUserSetCustomStatusViewModel.Event, Unit> {
-        public C102332(WidgetUserSetCustomStatus widgetUserSetCustomStatus) {
-            super(1, widgetUserSetCustomStatus, WidgetUserSetCustomStatus.class, "handleEvent", "handleEvent(Lcom/discord/widgets/user/WidgetUserSetCustomStatusViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetUserSetCustomStatusViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetUserSetCustomStatusViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetUserSetCustomStatus) this.receiver).handleEvent(event);
         }
     }
 
@@ -186,6 +186,81 @@ public final class WidgetUserSetCustomStatus extends AppFragment {
                 fragmentActivityM95e.onBackPressed();
             }
         }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        Window window;
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppActivity appActivity = getAppActivity();
+        if (appActivity != null && (window = appActivity.getWindow()) != null) {
+            window.setSoftInputMode(32);
+        }
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        setActionBarTitle(C5419R.string.custom_status);
+        this.expirationRadioManager = new RadioManager(C12147n.listOf((Object[]) new MaterialRadioButton[]{getBinding().f18383g, getBinding().f18381e, getBinding().f18380d, getBinding().f18382f, getBinding().f18384h}));
+        getBinding().f18379c.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetUserSetCustomStatus.this.openEmojiPicker();
+            }
+        });
+        getBinding().f18386j.setEndIconOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetUserSetCustomStatus.this.getViewModel().clearStatusTextAndEmoji();
+            }
+        });
+        TextInputLayout textInputLayout = getBinding().f18386j;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.setCustomStatusText");
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new C102303());
+        MaterialRadioButton materialRadioButton = getBinding().f18383g;
+        C12238m.checkNotNullExpressionValue(materialRadioButton, "binding.setCustomStatusExpirationNever");
+        setExpirationOnCheck(materialRadioButton, WidgetUserSetCustomStatusViewModel.FormState.Expiration.NEVER);
+        Resources resources = getResources();
+        C12238m.checkNotNullExpressionValue(resources, "resources");
+        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), C5419R.plurals.custom_status_clear_in_minutes_minutes, 30, 30);
+        MaterialRadioButton materialRadioButton2 = getBinding().f18381e;
+        C12238m.checkNotNullExpressionValue(materialRadioButton2, "binding.setCustomStatusExpiration30Minutes");
+        materialRadioButton2.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_minutes, new Object[]{quantityString}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
+        MaterialRadioButton materialRadioButton3 = getBinding().f18381e;
+        C12238m.checkNotNullExpressionValue(materialRadioButton3, "binding.setCustomStatusExpiration30Minutes");
+        setExpirationOnCheck(materialRadioButton3, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_30_MINUTES);
+        Resources resources2 = getResources();
+        C12238m.checkNotNullExpressionValue(resources2, "resources");
+        CharSequence quantityString2 = StringResourceUtilsKt.getQuantityString(resources2, requireContext(), C5419R.plurals.custom_status_clear_in_hours_hours, 1, 1);
+        MaterialRadioButton materialRadioButton4 = getBinding().f18380d;
+        C12238m.checkNotNullExpressionValue(materialRadioButton4, "binding.setCustomStatusExpiration1Hour");
+        materialRadioButton4.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_hours, new Object[]{quantityString2}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
+        MaterialRadioButton materialRadioButton5 = getBinding().f18380d;
+        C12238m.checkNotNullExpressionValue(materialRadioButton5, "binding.setCustomStatusExpiration1Hour");
+        setExpirationOnCheck(materialRadioButton5, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_1_HOUR);
+        Resources resources3 = getResources();
+        C12238m.checkNotNullExpressionValue(resources3, "resources");
+        CharSequence quantityString3 = StringResourceUtilsKt.getQuantityString(resources3, requireContext(), C5419R.plurals.custom_status_clear_in_hours_hours, 4, 4);
+        MaterialRadioButton materialRadioButton6 = getBinding().f18382f;
+        C12238m.checkNotNullExpressionValue(materialRadioButton6, "binding.setCustomStatusExpiration4Hours");
+        materialRadioButton6.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_hours, new Object[]{quantityString3}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
+        MaterialRadioButton materialRadioButton7 = getBinding().f18382f;
+        C12238m.checkNotNullExpressionValue(materialRadioButton7, "binding.setCustomStatusExpiration4Hours");
+        setExpirationOnCheck(materialRadioButton7, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_4_HOURS);
+        MaterialRadioButton materialRadioButton8 = getBinding().f18384h;
+        C12238m.checkNotNullExpressionValue(materialRadioButton8, "binding.setCustomStatusExpirationTomorrow");
+        setExpirationOnCheck(materialRadioButton8, WidgetUserSetCustomStatusViewModel.FormState.Expiration.TOMORROW);
+        getBinding().f18385i.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.4
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetUserSetCustomStatus.this.getViewModel().saveStatus();
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetUserSetCustomStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102321(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetUserSetCustomStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102332(this));
     }
 
     private final void openEmojiPicker() {
@@ -268,80 +343,5 @@ public final class WidgetUserSetCustomStatus extends AppFragment {
             }
             radioManager.m8550a(materialRadioButton);
         }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        Window window;
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppActivity appActivity = getAppActivity();
-        if (appActivity != null && (window = appActivity.getWindow()) != null) {
-            window.setSoftInputMode(32);
-        }
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarTitle(C5419R.string.custom_status);
-        this.expirationRadioManager = new RadioManager(C12147n.listOf((Object[]) new MaterialRadioButton[]{getBinding().f18383g, getBinding().f18381e, getBinding().f18380d, getBinding().f18382f, getBinding().f18384h}));
-        getBinding().f18379c.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetUserSetCustomStatus.this.openEmojiPicker();
-            }
-        });
-        getBinding().f18386j.setEndIconOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetUserSetCustomStatus.this.getViewModel().clearStatusTextAndEmoji();
-            }
-        });
-        TextInputLayout textInputLayout = getBinding().f18386j;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.setCustomStatusText");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new C102303());
-        MaterialRadioButton materialRadioButton = getBinding().f18383g;
-        C12238m.checkNotNullExpressionValue(materialRadioButton, "binding.setCustomStatusExpirationNever");
-        setExpirationOnCheck(materialRadioButton, WidgetUserSetCustomStatusViewModel.FormState.Expiration.NEVER);
-        Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), C5419R.plurals.custom_status_clear_in_minutes_minutes, 30, 30);
-        MaterialRadioButton materialRadioButton2 = getBinding().f18381e;
-        C12238m.checkNotNullExpressionValue(materialRadioButton2, "binding.setCustomStatusExpiration30Minutes");
-        materialRadioButton2.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_minutes, new Object[]{quantityString}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
-        MaterialRadioButton materialRadioButton3 = getBinding().f18381e;
-        C12238m.checkNotNullExpressionValue(materialRadioButton3, "binding.setCustomStatusExpiration30Minutes");
-        setExpirationOnCheck(materialRadioButton3, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_30_MINUTES);
-        Resources resources2 = getResources();
-        C12238m.checkNotNullExpressionValue(resources2, "resources");
-        CharSequence quantityString2 = StringResourceUtilsKt.getQuantityString(resources2, requireContext(), C5419R.plurals.custom_status_clear_in_hours_hours, 1, 1);
-        MaterialRadioButton materialRadioButton4 = getBinding().f18380d;
-        C12238m.checkNotNullExpressionValue(materialRadioButton4, "binding.setCustomStatusExpiration1Hour");
-        materialRadioButton4.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_hours, new Object[]{quantityString2}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
-        MaterialRadioButton materialRadioButton5 = getBinding().f18380d;
-        C12238m.checkNotNullExpressionValue(materialRadioButton5, "binding.setCustomStatusExpiration1Hour");
-        setExpirationOnCheck(materialRadioButton5, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_1_HOUR);
-        Resources resources3 = getResources();
-        C12238m.checkNotNullExpressionValue(resources3, "resources");
-        CharSequence quantityString3 = StringResourceUtilsKt.getQuantityString(resources3, requireContext(), C5419R.plurals.custom_status_clear_in_hours_hours, 4, 4);
-        MaterialRadioButton materialRadioButton6 = getBinding().f18382f;
-        C12238m.checkNotNullExpressionValue(materialRadioButton6, "binding.setCustomStatusExpiration4Hours");
-        materialRadioButton6.setText(C1107b.m213e(this, C5419R.string.custom_status_clear_in_hours, new Object[]{quantityString3}, (4 & 4) != 0 ? C1107b.a.f1490j : null));
-        MaterialRadioButton materialRadioButton7 = getBinding().f18382f;
-        C12238m.checkNotNullExpressionValue(materialRadioButton7, "binding.setCustomStatusExpiration4Hours");
-        setExpirationOnCheck(materialRadioButton7, WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_4_HOURS);
-        MaterialRadioButton materialRadioButton8 = getBinding().f18384h;
-        C12238m.checkNotNullExpressionValue(materialRadioButton8, "binding.setCustomStatusExpirationTomorrow");
-        setExpirationOnCheck(materialRadioButton8, WidgetUserSetCustomStatusViewModel.FormState.Expiration.TOMORROW);
-        getBinding().f18385i.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserSetCustomStatus.onViewBound.4
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetUserSetCustomStatus.this.getViewModel().saveStatus();
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetUserSetCustomStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102321(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetUserSetCustomStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102332(this));
     }
 }

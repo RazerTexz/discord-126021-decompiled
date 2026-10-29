@@ -96,16 +96,16 @@ public enum EnumC11351n {
         this.isDefault = z2;
     }
 
+    public final boolean isDefault() {
+        return this.isDefault;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11351n[] valuesCustom() {
         EnumC11351n[] enumC11351nArrValuesCustom = values();
         EnumC11351n[] enumC11351nArr = new EnumC11351n[enumC11351nArrValuesCustom.length];
         System.arraycopy(enumC11351nArrValuesCustom, 0, enumC11351nArr, 0, enumC11351nArrValuesCustom.length);
         return enumC11351nArr;
-    }
-
-    public final boolean isDefault() {
-        return this.isDefault;
     }
 
     EnumC11351n(String str, boolean z2, int i) {

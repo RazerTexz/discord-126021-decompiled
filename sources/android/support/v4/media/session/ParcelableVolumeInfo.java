@@ -7,7 +7,6 @@ import android.os.Parcelable;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public class ParcelableVolumeInfo implements Parcelable {
-    public static final Parcelable.Creator<ParcelableVolumeInfo> CREATOR = new C0025a();
 
     /* JADX INFO: renamed from: j */
     public int f54j;
@@ -23,6 +22,7 @@ public class ParcelableVolumeInfo implements Parcelable {
 
     /* JADX INFO: renamed from: n */
     public int f58n;
+    public static final Parcelable.Creator<ParcelableVolumeInfo> CREATOR = new C0025a();
 
     /* JADX INFO: renamed from: android.support.v4.media.session.ParcelableVolumeInfo$a */
     public class C0025a implements Parcelable.Creator<ParcelableVolumeInfo> {

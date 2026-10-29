@@ -28,14 +28,27 @@ import java.util.Locale;
 @RequiresApi(23)
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemJobScheduler implements Scheduler {
-    private static final String TAG = Logger.tagWithPrefix("SystemJobScheduler");
     private final Context mContext;
     private final JobScheduler mJobScheduler;
     private final SystemJobInfoConverter mSystemJobInfoConverter;
     private final WorkManagerImpl mWorkManager;
+    private static final String TAG = Logger.tagWithPrefix("SystemJobScheduler");
 
     public SystemJobScheduler(@NonNull Context context, @NonNull WorkManagerImpl workManagerImpl) {
         this(context, workManagerImpl, (JobScheduler) context.getSystemService("jobscheduler"), new SystemJobInfoConverter(context));
+    }
+
+    @Override // androidx.work.impl.Scheduler
+    public void cancel(@NonNull String str) {
+        List<Integer> pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, str);
+        if (pendingJobIds == null || pendingJobIds.isEmpty()) {
+            return;
+        }
+        Iterator<Integer> it = pendingJobIds.iterator();
+        while (it.hasNext()) {
+            cancelJobById(this.mJobScheduler, it.next().intValue());
+        }
+        this.mWorkManager.getWorkDatabase().systemIdInfoDao().removeSystemIdInfo(str);
     }
 
     public static void cancelAll(@NonNull Context context) {
@@ -122,19 +135,6 @@ public class SystemJobScheduler implements Scheduler {
         } catch (NullPointerException unused) {
             return null;
         }
-    }
-
-    @Override // androidx.work.impl.Scheduler
-    public void cancel(@NonNull String str) {
-        List<Integer> pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, str);
-        if (pendingJobIds == null || pendingJobIds.isEmpty()) {
-            return;
-        }
-        Iterator<Integer> it = pendingJobIds.iterator();
-        while (it.hasNext()) {
-            cancelJobById(this.mJobScheduler, it.next().intValue());
-        }
-        this.mWorkManager.getWorkDatabase().systemIdInfoDao().removeSystemIdInfo(str);
     }
 
     @Override // androidx.work.impl.Scheduler

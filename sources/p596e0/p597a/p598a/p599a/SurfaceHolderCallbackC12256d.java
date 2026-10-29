@@ -91,6 +91,31 @@ public class SurfaceHolderCallbackC12256d extends SurfaceView implements Surface
         getHolder().setType(3);
     }
 
+    public int getDisplayOrientation() {
+        int i = 0;
+        if (this.f25321j == null) {
+            return 0;
+        }
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        int i2 = this.f25321j.f25334b;
+        if (i2 == -1) {
+            Camera.getCameraInfo(0, cameraInfo);
+        } else {
+            Camera.getCameraInfo(i2, cameraInfo);
+        }
+        int rotation = ((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation();
+        if (rotation != 0) {
+            if (rotation == 1) {
+                i = 90;
+            } else if (rotation == 2) {
+                i = 180;
+            } else if (rotation == 3) {
+                i = 270;
+            }
+        }
+        return cameraInfo.facing == 1 ? (360 - ((cameraInfo.orientation + i) % 360)) % 360 : ((cameraInfo.orientation - i) + 360) % 360;
+    }
+
     private Camera.Size getOptimalPreviewSize() {
         C12257e c12257e = this.f25321j;
         Camera.Size size = null;
@@ -199,31 +224,6 @@ public class SurfaceHolderCallbackC12256d extends SurfaceView implements Surface
                 Log.e("CameraPreview", e.toString(), e);
             }
         }
-    }
-
-    public int getDisplayOrientation() {
-        int i = 0;
-        if (this.f25321j == null) {
-            return 0;
-        }
-        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-        int i2 = this.f25321j.f25334b;
-        if (i2 == -1) {
-            Camera.getCameraInfo(0, cameraInfo);
-        } else {
-            Camera.getCameraInfo(i2, cameraInfo);
-        }
-        int rotation = ((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation();
-        if (rotation != 0) {
-            if (rotation == 1) {
-                i = 90;
-            } else if (rotation == 2) {
-                i = 180;
-            } else if (rotation == 3) {
-                i = 270;
-            }
-        }
-        return cameraInfo.facing == 1 ? (360 - ((cameraInfo.orientation + i) % 360)) % 360 : ((cameraInfo.orientation - i) + 360) % 360;
     }
 
     public void setAspectTolerance(float f) {

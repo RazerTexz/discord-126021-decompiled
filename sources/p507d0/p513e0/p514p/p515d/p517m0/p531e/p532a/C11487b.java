@@ -18,18 +18,6 @@ import p507d0.p580t.C12148n0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11487b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C11713b f23166a = new C11713b("javax.annotation.meta.TypeQualifierNickname");
-
-    /* JADX INFO: renamed from: b */
-    public static final C11713b f23167b = new C11713b("javax.annotation.meta.TypeQualifier");
-
-    /* JADX INFO: renamed from: c */
-    public static final C11713b f23168c = new C11713b("javax.annotation.meta.TypeQualifierDefault");
-
-    /* JADX INFO: renamed from: d */
-    public static final C11713b f23169d = new C11713b("kotlin.annotations.jvm.UnderMigration");
-
     /* JADX INFO: renamed from: e */
     public static final List<EnumC11485a> f23170e;
 
@@ -41,6 +29,18 @@ public final class C11487b {
 
     /* JADX INFO: renamed from: h */
     public static final Set<C11713b> f23173h;
+
+    /* JADX INFO: renamed from: a */
+    public static final C11713b f23166a = new C11713b("javax.annotation.meta.TypeQualifierNickname");
+
+    /* JADX INFO: renamed from: b */
+    public static final C11713b f23167b = new C11713b("javax.annotation.meta.TypeQualifier");
+
+    /* JADX INFO: renamed from: c */
+    public static final C11713b f23168c = new C11713b("javax.annotation.meta.TypeQualifierDefault");
+
+    /* JADX INFO: renamed from: d */
+    public static final C11713b f23169d = new C11713b("kotlin.annotations.jvm.UnderMigration");
 
     static {
         EnumC11485a enumC11485a = EnumC11485a.VALUE_PARAMETER;

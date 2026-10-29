@@ -15,7 +15,7 @@ public final /* data */ class RadioSelectorItem implements Parcelable {
     private final boolean selected;
     private final String text;
 
-    public static class Creator implements Parcelable.Creator<RadioSelectorItem> {
+    public final class Creator implements Parcelable.Creator<RadioSelectorItem> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final RadioSelectorItem createFromParcel(Parcel parcel) {
@@ -50,21 +50,6 @@ public final /* data */ class RadioSelectorItem implements Parcelable {
         return radioSelectorItem.copy(i, str, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
     public final RadioSelectorItem copy(int id2, String text, boolean selected) {
         C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new RadioSelectorItem(id2, text, selected);
@@ -86,12 +71,27 @@ public final /* data */ class RadioSelectorItem implements Parcelable {
         return this.id == radioSelectorItem.id && C12238m.areEqual(this.text, radioSelectorItem.text) && this.selected == radioSelectorItem.selected;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getId() {
         return this.id;
     }
 
+    public final int getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getSelected() {
         return this.selected;
+    }
+
+    public final boolean getSelected() {
+        return this.selected;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public final String getText() {

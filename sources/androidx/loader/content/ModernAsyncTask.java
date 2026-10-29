@@ -31,18 +31,28 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
     private static final int MESSAGE_POST_PROGRESS = 2;
     private static final int MESSAGE_POST_RESULT = 1;
     public static final Executor THREAD_POOL_EXECUTOR;
+    private final FutureTask<Result> mFuture;
+    private final WorkerRunnable<Params, Result> mWorker;
     private static volatile Executor sDefaultExecutor;
     private static InternalHandler sHandler;
     private static final BlockingQueue<Runnable> sPoolWorkQueue;
     private static final ThreadFactory sThreadFactory;
-    private final FutureTask<Result> mFuture;
-    private final WorkerRunnable<Params, Result> mWorker;
     private volatile Status mStatus = Status.PENDING;
     public final AtomicBoolean mCancelled = new AtomicBoolean();
     public final AtomicBoolean mTaskInvoked = new AtomicBoolean();
 
+    public class AsyncTaskResult<Data> {
+        public final Data[] mData;
+        public final ModernAsyncTask mTask;
+
+        public AsyncTaskResult(ModernAsyncTask modernAsyncTask, Data... dataArr) {
+            this.mTask = modernAsyncTask;
+            this.mData = dataArr;
+        }
+    }
+
     /* JADX INFO: renamed from: androidx.loader.content.ModernAsyncTask$4 */
-    public static /* synthetic */ class C04734 {
+    public /* synthetic */ class C04734 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$loader$content$ModernAsyncTask$Status;
 
         static {
@@ -60,17 +70,7 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
         }
     }
 
-    public static class AsyncTaskResult<Data> {
-        public final Data[] mData;
-        public final ModernAsyncTask mTask;
-
-        public AsyncTaskResult(ModernAsyncTask modernAsyncTask, Data... dataArr) {
-            this.mTask = modernAsyncTask;
-            this.mData = dataArr;
-        }
-    }
-
-    public static class InternalHandler extends Handler {
+    public class InternalHandler extends Handler {
         public InternalHandler() {
             super(Looper.getMainLooper());
         }
@@ -107,7 +107,7 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
         FINISHED
     }
 
-    public static abstract class WorkerRunnable<Params, Result> implements Callable<Result> {
+    public abstract class WorkerRunnable<Params, Result> implements Callable<Result> {
         public Params[] mParams;
     }
 
@@ -182,22 +182,6 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
         };
     }
 
-    private static Handler getHandler() {
-        InternalHandler internalHandler;
-        synchronized (ModernAsyncTask.class) {
-            if (sHandler == null) {
-                sHandler = new InternalHandler();
-            }
-            internalHandler = sHandler;
-        }
-        return internalHandler;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static void setDefaultExecutor(Executor executor) {
-        sDefaultExecutor = executor;
-    }
-
     public final boolean cancel(boolean z2) {
         this.mCancelled.set(true);
         return this.mFuture.cancel(z2);
@@ -238,6 +222,17 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
 
     public final Result get() throws ExecutionException, InterruptedException {
         return this.mFuture.get();
+    }
+
+    private static Handler getHandler() {
+        InternalHandler internalHandler;
+        synchronized (ModernAsyncTask.class) {
+            if (sHandler == null) {
+                sHandler = new InternalHandler();
+            }
+            internalHandler = sHandler;
+        }
+        return internalHandler;
     }
 
     public final Status getStatus() {
@@ -281,6 +276,11 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
             return;
         }
         getHandler().obtainMessage(2, new AsyncTaskResult(this, progressArr)).sendToTarget();
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static void setDefaultExecutor(Executor executor) {
+        sDefaultExecutor = executor;
     }
 
     public static void execute(Runnable runnable) {

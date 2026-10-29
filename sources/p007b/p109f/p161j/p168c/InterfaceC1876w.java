@@ -14,13 +14,13 @@ public interface InterfaceC1876w<K, V> extends InterfaceC1695b {
     public interface a {
     }
 
+    boolean contains(K k);
+
+    CloseableReference<V> get(K k);
+
     /* JADX INFO: renamed from: a */
     CloseableReference<V> mo1235a(K k, CloseableReference<V> closeableReference);
 
-    boolean contains(K k);
-
     /* JADX INFO: renamed from: d */
     int mo1236d(InterfaceC1687j<K> interfaceC1687j);
-
-    CloseableReference<V> get(K k);
 }

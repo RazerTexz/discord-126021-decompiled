@@ -17,12 +17,12 @@ public abstract class AbstractC2478f {
     /* JADX INFO: renamed from: b.i.a.b.j.t.h.f$a */
     /* JADX INFO: compiled from: SchedulerConfig.java */
     @AutoValue
-    public static abstract class a {
+    public abstract class a {
 
         /* JADX INFO: renamed from: b.i.a.b.j.t.h.f$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: SchedulerConfig.java */
         @AutoValue.Builder
-        public static abstract class AbstractC13221a {
+        public abstract class AbstractC13221a {
             /* JADX INFO: renamed from: a */
             public abstract a mo2379a();
 
@@ -60,9 +60,6 @@ public abstract class AbstractC2478f {
         DEVICE_CHARGING
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract InterfaceC2519a mo2374a();
-
     /* JADX INFO: renamed from: b */
     public long m2383b(EnumC2409d enumC2409d, long j, int i) {
         long jMo2413a = j - mo2374a().mo2413a();
@@ -71,6 +68,9 @@ public abstract class AbstractC2478f {
         int i2 = i - 1;
         return Math.min(Math.max((long) (Math.pow(3.0d, i2) * jMo2376b * Math.max(1.0d, Math.log(10000.0d) / Math.log((jMo2376b > 1 ? jMo2376b : 2L) * ((long) i2)))), jMo2413a), aVar.mo2378d());
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract InterfaceC2519a mo2374a();
 
     /* JADX INFO: renamed from: c */
     public abstract Map<EnumC2409d, a> mo2375c();

@@ -5,11 +5,11 @@ package p007b.p109f.p160i;
 /* JADX INFO: loaded from: classes.dex */
 public class C1832c {
 
-    /* JADX INFO: renamed from: a */
-    public static final C1832c f3597a = new C1832c("UNKNOWN", null);
-
     /* JADX INFO: renamed from: b */
     public final String f3598b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C1832c f3597a = new C1832c("UNKNOWN", null);
 
     /* JADX INFO: renamed from: b.f.i.c$a */
     /* JADX INFO: compiled from: ImageFormat.java */

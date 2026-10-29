@@ -26,7 +26,7 @@ public abstract class AbstractC2999a {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.a$a */
     /* JADX INFO: compiled from: BinarySearchSeeker.java */
-    public static class a implements InterfaceC3119t {
+    public class a implements InterfaceC3119t {
 
         /* JADX INFO: renamed from: a */
         public final d f8034a;
@@ -80,7 +80,7 @@ public abstract class AbstractC2999a {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.a$b */
     /* JADX INFO: compiled from: BinarySearchSeeker.java */
-    public static final class b implements d {
+    public final class b implements d {
         @Override // p007b.p225i.p226a.p242c.p267x2.AbstractC2999a.d
         /* JADX INFO: renamed from: a */
         public long mo3622a(long j) {
@@ -90,7 +90,7 @@ public abstract class AbstractC2999a {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.a$c */
     /* JADX INFO: compiled from: BinarySearchSeeker.java */
-    public static class c {
+    public class c {
 
         /* JADX INFO: renamed from: a */
         public final long f8041a;
@@ -146,10 +146,7 @@ public abstract class AbstractC2999a {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.a$e */
     /* JADX INFO: compiled from: BinarySearchSeeker.java */
-    public static final class e {
-
-        /* JADX INFO: renamed from: a */
-        public static final e f8049a = new e(-3, -9223372036854775807L, -1);
+    public final class e {
 
         /* JADX INFO: renamed from: b */
         public final int f8050b;
@@ -159,6 +156,9 @@ public abstract class AbstractC2999a {
 
         /* JADX INFO: renamed from: d */
         public final long f8052d;
+
+        /* JADX INFO: renamed from: a */
+        public static final e f8049a = new e(-3, -9223372036854775807L, -1);
 
         public e(int i, long j, long j2) {
             this.f8050b = i;

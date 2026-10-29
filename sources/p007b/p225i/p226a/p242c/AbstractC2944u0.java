@@ -8,43 +8,6 @@ public abstract class AbstractC2944u0 implements InterfaceC3128y1 {
     /* JADX INFO: renamed from: a */
     public final AbstractC2832o2.c f7863a = new AbstractC2832o2.c();
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: D */
-    public final boolean mo3518D(int i) {
-        return mo2906i().f9033k.f6733a.get(i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: O */
-    public final void mo3519O() {
-        if (mo2888K().m3331q() || mo2900f()) {
-            return;
-        }
-        if (m3523W()) {
-            int iM3528b = m3528b();
-            if (iM3528b != -1) {
-                mo2904h(iM3528b, -9223372036854775807L);
-                return;
-            }
-            return;
-        }
-        if (m3526Z() && m3525Y()) {
-            mo2904h(mo2881C(), -9223372036854775807L);
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: P */
-    public final void mo3520P() {
-        m3530c0(mo2927v());
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: R */
-    public final void mo3521R() {
-        m3530c0(-mo2895U());
-    }
-
     /* JADX INFO: renamed from: V */
     public final int m3522V() {
         AbstractC2832o2 abstractC2832o2Mo2888K = mo2888K();
@@ -114,6 +77,43 @@ public abstract class AbstractC2944u0 implements InterfaceC3128y1 {
             jMo2894T = Math.min(jMo2894T, jMo2887J);
         }
         m3529b0(Math.max(jMo2894T, 0L));
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: D */
+    public final boolean mo3518D(int i) {
+        return mo2906i().f9033k.f6733a.get(i);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: O */
+    public final void mo3519O() {
+        if (mo2888K().m3331q() || mo2900f()) {
+            return;
+        }
+        if (m3523W()) {
+            int iM3528b = m3528b();
+            if (iM3528b != -1) {
+                mo2904h(iM3528b, -9223372036854775807L);
+                return;
+            }
+            return;
+        }
+        if (m3526Z() && m3525Y()) {
+            mo2904h(mo2881C(), -9223372036854775807L);
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: P */
+    public final void mo3520P() {
+        m3530c0(mo2927v());
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: R */
+    public final void mo3521R() {
+        m3530c0(-mo2895U());
     }
 
     @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1

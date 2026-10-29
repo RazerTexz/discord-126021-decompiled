@@ -83,21 +83,6 @@ public final class GuildVerificationLevelUtils {
         return guildVerificationLevelUtils.getVerificationLevelTriggered(j, storeGuilds2, storeUser2, clock);
     }
 
-    public static /* synthetic */ Observable observeVerificationLevelTriggered$default(GuildVerificationLevelUtils guildVerificationLevelUtils, long j, StoreGuilds storeGuilds, StoreUser storeUser, Clock clock, int i, Object obj) {
-        if ((i & 2) != 0) {
-            storeGuilds = StoreStream.INSTANCE.getGuilds();
-        }
-        StoreGuilds storeGuilds2 = storeGuilds;
-        if ((i & 4) != 0) {
-            storeUser = StoreStream.INSTANCE.getUsers();
-        }
-        StoreUser storeUser2 = storeUser;
-        if ((i & 8) != 0) {
-            clock = ClockFactory.get();
-        }
-        return guildVerificationLevelUtils.observeVerificationLevelTriggered(j, storeGuilds2, storeUser2, clock);
-    }
-
     public final GuildVerificationLevel getVerificationLevelTriggered(long guildId, StoreGuilds guildStore, StoreUser userStore, Clock clock) {
         GuildVerificationLevel verificationLevel;
         C12238m.checkNotNullParameter(guildStore, "guildStore");
@@ -112,6 +97,21 @@ public final class GuildVerificationLevelUtils {
             verificationLevel = GuildVerificationLevel.NONE;
         }
         return computeVerificationLevelTriggered(meSnapshot, guild, guildMember, verificationLevel, GuildMemberUtilsKt.getJoinedAtOrNow(guildStore.getGuildsJoinedAt().get(Long.valueOf(guildId))), clock, map2);
+    }
+
+    public static /* synthetic */ Observable observeVerificationLevelTriggered$default(GuildVerificationLevelUtils guildVerificationLevelUtils, long j, StoreGuilds storeGuilds, StoreUser storeUser, Clock clock, int i, Object obj) {
+        if ((i & 2) != 0) {
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
+        }
+        StoreGuilds storeGuilds2 = storeGuilds;
+        if ((i & 4) != 0) {
+            storeUser = StoreStream.INSTANCE.getUsers();
+        }
+        StoreUser storeUser2 = storeUser;
+        if ((i & 8) != 0) {
+            clock = ClockFactory.get();
+        }
+        return guildVerificationLevelUtils.observeVerificationLevelTriggered(j, storeGuilds2, storeUser2, clock);
     }
 
     public final Observable<GuildVerificationLevel> observeVerificationLevelTriggered(long guildId, StoreGuilds guildStore, StoreUser userStore, final Clock clock) {

@@ -22,10 +22,10 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 /* JADX INFO: loaded from: classes.dex */
 public final class TrustedWebActivityServiceConnectionPool {
     private static final String TAG = "TWAConnectionPool";
-    private final Map<Uri, ConnectionHolder> mConnections = new HashMap();
     private final Context mContext;
+    private final Map<Uri, ConnectionHolder> mConnections = new HashMap();
 
-    public static class BindToServiceAsyncTask extends AsyncTask<Void, Void, Exception> {
+    public class BindToServiceAsyncTask extends AsyncTask<Void, Void, Exception> {
         private final Context mAppContext;
         private final ConnectionHolder mConnection;
         private final Intent mIntent;
@@ -61,6 +61,28 @@ public final class TrustedWebActivityServiceConnectionPool {
 
     private TrustedWebActivityServiceConnectionPool(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
+    }
+
+    @NonNull
+    @MainThread
+    public InterfaceFutureC4539a<TrustedWebActivityServiceConnection> connect(@NonNull final Uri uri, @NonNull Set<Token> set, @NonNull Executor executor) {
+        ConnectionHolder connectionHolder = this.mConnections.get(uri);
+        if (connectionHolder != null) {
+            return connectionHolder.getServiceWrapper();
+        }
+        Intent intentCreateServiceIntent = createServiceIntent(this.mContext, uri, set, true);
+        if (intentCreateServiceIntent == null) {
+            return FutureUtils.immediateFailedFuture(new IllegalArgumentException("No service exists for scope"));
+        }
+        ConnectionHolder connectionHolder2 = new ConnectionHolder(new Runnable() { // from class: y.a.b.c
+            @Override // java.lang.Runnable
+            public final void run() {
+                this.f27954j.m79a(uri);
+            }
+        });
+        this.mConnections.put(uri, connectionHolder2);
+        new BindToServiceAsyncTask(this.mContext, intentCreateServiceIntent, connectionHolder2).executeOnExecutor(executor, new Void[0]);
+        return connectionHolder2.getServiceWrapper();
     }
 
     @NonNull
@@ -119,28 +141,6 @@ public final class TrustedWebActivityServiceConnectionPool {
     /* JADX INFO: renamed from: a */
     public /* synthetic */ void m79a(Uri uri) {
         this.mConnections.remove(uri);
-    }
-
-    @NonNull
-    @MainThread
-    public InterfaceFutureC4539a<TrustedWebActivityServiceConnection> connect(@NonNull final Uri uri, @NonNull Set<Token> set, @NonNull Executor executor) {
-        ConnectionHolder connectionHolder = this.mConnections.get(uri);
-        if (connectionHolder != null) {
-            return connectionHolder.getServiceWrapper();
-        }
-        Intent intentCreateServiceIntent = createServiceIntent(this.mContext, uri, set, true);
-        if (intentCreateServiceIntent == null) {
-            return FutureUtils.immediateFailedFuture(new IllegalArgumentException("No service exists for scope"));
-        }
-        ConnectionHolder connectionHolder2 = new ConnectionHolder(new Runnable() { // from class: y.a.b.c
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27954j.m79a(uri);
-            }
-        });
-        this.mConnections.put(uri, connectionHolder2);
-        new BindToServiceAsyncTask(this.mContext, intentCreateServiceIntent, connectionHolder2).executeOnExecutor(executor, new Void[0]);
-        return connectionHolder2.getServiceWrapper();
     }
 
     @MainThread

@@ -12,9 +12,6 @@ import p007b.p225i.p226a.p288f.p333j.p334b.C4326j;
 public class Strategy extends AbstractSafeParcelable {
     public static final Parcelable.Creator<Strategy> CREATOR = new C4326j();
 
-    /* JADX INFO: renamed from: j */
-    public static final Strategy f20727j = new Strategy(2, 0, 300, 0, false, -1, 3, 0);
-
     /* JADX INFO: renamed from: k */
     public static final Strategy f20728k;
 
@@ -43,6 +40,9 @@ public class Strategy extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: s */
     public final int f20736s;
+
+    /* JADX INFO: renamed from: j */
+    public static final Strategy f20727j = new Strategy(2, 0, 300, 0, false, -1, 3, 0);
 
     static {
         C1460d.m547n(true, "mTtlSeconds(%d) must either be TTL_SECONDS_INFINITE, or it must be between 1 and TTL_SECONDS_MAX(%d) inclusive", Integer.MAX_VALUE, 86400);

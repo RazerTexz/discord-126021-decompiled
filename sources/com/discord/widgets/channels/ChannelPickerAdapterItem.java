@@ -11,7 +11,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ChannelPickerAdapterItem implements DiffKeyProvider {
 
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final /* data */ class ChannelItem extends ChannelPickerAdapterItem {
+    public final /* data */ class ChannelItem extends ChannelPickerAdapterItem {
         private final Channel channel;
         private final boolean isSelected;
         private final String key;
@@ -35,16 +35,6 @@ public abstract class ChannelPickerAdapterItem implements DiffKeyProvider {
             return channelItem.copy(channel, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public final ChannelItem copy(Channel channel, boolean isSelected) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new ChannelItem(channel, isSelected);
@@ -61,8 +51,18 @@ public abstract class ChannelPickerAdapterItem implements DiffKeyProvider {
             return C12238m.areEqual(this.channel, channelItem.channel) && this.isSelected == channelItem.isSelected;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSelected() {
+            return this.isSelected;
         }
 
         @Override // com.discord.utilities.recycler.DiffKeyProvider
@@ -99,7 +99,7 @@ public abstract class ChannelPickerAdapterItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: WidgetChannelPickerAdapter.kt */
-    public static final class CreateChannelItem extends ChannelPickerAdapterItem {
+    public final class CreateChannelItem extends ChannelPickerAdapterItem {
         public static final CreateChannelItem INSTANCE = new CreateChannelItem();
         private static final String key = "channel-picker-create-channel-item";
 

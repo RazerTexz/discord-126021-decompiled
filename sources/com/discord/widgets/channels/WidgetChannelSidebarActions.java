@@ -50,7 +50,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$5 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73415 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73415 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
 
@@ -76,7 +76,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$6 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73426 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73426 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
 
@@ -102,7 +102,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$7 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73437 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73437 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
 
@@ -128,7 +128,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$8 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73448 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73448 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -156,7 +156,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$9 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73459 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C73459 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
@@ -188,7 +188,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
-    public static final class C73461 extends AbstractC12240o implements Function1<WidgetChannelSidebarActionsViewModel.ViewState, Unit> {
+    public final class C73461 extends AbstractC12240o implements Function1<WidgetChannelSidebarActionsViewModel.ViewState, Unit> {
         public C73461() {
             super(1);
         }
@@ -298,6 +298,12 @@ public final class WidgetChannelSidebarActions extends AppFragment {
         return (WidgetChannelSidebarActionsViewModel) this.viewModel.getValue();
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelSidebarActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73461());
+    }
+
     private final void startPrivateCall(long channelId, boolean useVideo) {
         Context contextRequireContext = requireContext();
         FragmentManager parentFragmentManager = getParentFragmentManager();
@@ -308,11 +314,5 @@ public final class WidgetChannelSidebarActions extends AppFragment {
         } else {
             privateCallLauncher.launchVoiceCall(channelId);
         }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelSidebarActions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73461());
     }
 }

@@ -25,16 +25,6 @@ public final /* data */ class MemberVerificationItemApproveTerms implements Memb
         return memberVerificationItemApproveTerms.copy(i, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getFieldIndex() {
-        return this.fieldIndex;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsApproved() {
-        return this.isApproved;
-    }
-
     public final MemberVerificationItemApproveTerms copy(int fieldIndex, boolean isApproved) {
         return new MemberVerificationItemApproveTerms(fieldIndex, isApproved);
     }
@@ -50,8 +40,18 @@ public final /* data */ class MemberVerificationItemApproveTerms implements Memb
         return this.fieldIndex == memberVerificationItemApproveTerms.fieldIndex && this.isApproved == memberVerificationItemApproveTerms.isApproved;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getFieldIndex() {
         return this.fieldIndex;
+    }
+
+    public final int getFieldIndex() {
+        return this.fieldIndex;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsApproved() {
+        return this.isApproved;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

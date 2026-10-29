@@ -10,7 +10,7 @@ public class HorizontalWidgetRun extends WidgetRun {
     private static int[] tempDimensions = new int[2];
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.HorizontalWidgetRun$1 */
-    public static /* synthetic */ class C01921 {
+    public /* synthetic */ class C01921 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType */
         public static final /* synthetic */ int[] f121xbf6f0c8e;
@@ -39,37 +39,6 @@ public class HorizontalWidgetRun extends WidgetRun {
         this.start.type = DependencyNode.Type.LEFT;
         this.end.type = DependencyNode.Type.RIGHT;
         this.orientation = 0;
-    }
-
-    private void computeInsetRatio(int[] iArr, int i, int i2, int i3, int i4, float f, int i5) {
-        int i6 = i2 - i;
-        int i7 = i4 - i3;
-        if (i5 != -1) {
-            if (i5 == 0) {
-                iArr[0] = (int) ((i7 * f) + 0.5f);
-                iArr[1] = i7;
-                return;
-            } else {
-                if (i5 != 1) {
-                    return;
-                }
-                iArr[0] = i6;
-                iArr[1] = (int) ((i6 * f) + 0.5f);
-                return;
-            }
-        }
-        int i8 = (int) ((i7 * f) + 0.5f);
-        int i9 = (int) ((i6 / f) + 0.5f);
-        if (i8 <= i6 && i7 <= i7) {
-            iArr[0] = i8;
-            iArr[1] = i7;
-        } else {
-            if (i6 > i6 || i9 > i7) {
-                return;
-            }
-            iArr[0] = i6;
-            iArr[1] = i9;
-        }
     }
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun
@@ -261,6 +230,37 @@ public class HorizontalWidgetRun extends WidgetRun {
         this.end.clear();
         this.dimension.clear();
         this.resolved = false;
+    }
+
+    private void computeInsetRatio(int[] iArr, int i, int i2, int i3, int i4, float f, int i5) {
+        int i6 = i2 - i;
+        int i7 = i4 - i3;
+        if (i5 != -1) {
+            if (i5 == 0) {
+                iArr[0] = (int) ((i7 * f) + 0.5f);
+                iArr[1] = i7;
+                return;
+            } else {
+                if (i5 != 1) {
+                    return;
+                }
+                iArr[0] = i6;
+                iArr[1] = (int) ((i6 * f) + 0.5f);
+                return;
+            }
+        }
+        int i8 = (int) ((i7 * f) + 0.5f);
+        int i9 = (int) ((i6 / f) + 0.5f);
+        if (i8 <= i6 && i7 <= i7) {
+            iArr[0] = i8;
+            iArr[1] = i7;
+        } else {
+            if (i6 > i6 || i9 > i7) {
+                return;
+            }
+            iArr[0] = i6;
+            iArr[1] = i9;
+        }
     }
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun

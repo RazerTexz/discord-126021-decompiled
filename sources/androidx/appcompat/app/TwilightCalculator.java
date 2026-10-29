@@ -25,13 +25,6 @@ public class TwilightCalculator {
     public long sunrise;
     public long sunset;
 
-    public static TwilightCalculator getInstance() {
-        if (sInstance == null) {
-            sInstance = new TwilightCalculator();
-        }
-        return sInstance;
-    }
-
     public void calculateTwilight(long j, double d, double d2) {
         float f = (j - UTC_2000) / 8.64E7f;
         float f2 = (0.01720197f * f) + 6.24006f;
@@ -63,5 +56,12 @@ public class TwilightCalculator {
                 this.state = 0;
             }
         }
+    }
+
+    public static TwilightCalculator getInstance() {
+        if (sInstance == null) {
+            sInstance = new TwilightCalculator();
+        }
+        return sInstance;
     }
 }

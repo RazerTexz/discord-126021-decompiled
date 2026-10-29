@@ -26,54 +26,6 @@ public final class C3061c extends AbstractC3067i {
     @Nullable
     public a f8517o;
 
-    /* JADX INFO: renamed from: b.i.a.c.x2.j0.c$a */
-    /* JADX INFO: compiled from: FlacReader.java */
-    public static final class a implements InterfaceC3065g {
-
-        /* JADX INFO: renamed from: a */
-        public C3114o f8518a;
-
-        /* JADX INFO: renamed from: b */
-        public C3114o.a f8519b;
-
-        /* JADX INFO: renamed from: c */
-        public long f8520c = -1;
-
-        /* JADX INFO: renamed from: d */
-        public long f8521d = -1;
-
-        public a(C3114o c3114o, C3114o.a aVar) {
-            this.f8518a = c3114o;
-            this.f8519b = aVar;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
-        /* JADX INFO: renamed from: a */
-        public InterfaceC3119t mo3734a() {
-            C1460d.m426D(this.f8520c != -1);
-            return new C3113n(this.f8518a, this.f8520c);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
-        /* JADX INFO: renamed from: b */
-        public long mo3735b(InterfaceC3041i interfaceC3041i) {
-            long j = this.f8521d;
-            if (j < 0) {
-                return -1L;
-            }
-            long j2 = -(j + 2);
-            this.f8521d = -1L;
-            return j2;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
-        /* JADX INFO: renamed from: c */
-        public void mo3736c(long j) {
-            long[] jArr = this.f8519b.f8982a;
-            this.f8521d = jArr[C2738e0.m2997e(jArr, j, true, true)];
-        }
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.AbstractC3067i
     /* JADX INFO: renamed from: c */
     public long mo3737c(C2757x c2757x) {
@@ -129,6 +81,54 @@ public final class C3061c extends AbstractC3067i {
         if (z2) {
             this.f8516n = null;
             this.f8517o = null;
+        }
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.j0.c$a */
+    /* JADX INFO: compiled from: FlacReader.java */
+    public final class a implements InterfaceC3065g {
+
+        /* JADX INFO: renamed from: a */
+        public C3114o f8518a;
+
+        /* JADX INFO: renamed from: b */
+        public C3114o.a f8519b;
+
+        /* JADX INFO: renamed from: c */
+        public long f8520c = -1;
+
+        /* JADX INFO: renamed from: d */
+        public long f8521d = -1;
+
+        public a(C3114o c3114o, C3114o.a aVar) {
+            this.f8518a = c3114o;
+            this.f8519b = aVar;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
+        /* JADX INFO: renamed from: a */
+        public InterfaceC3119t mo3734a() {
+            C1460d.m426D(this.f8520c != -1);
+            return new C3113n(this.f8518a, this.f8520c);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
+        /* JADX INFO: renamed from: b */
+        public long mo3735b(InterfaceC3041i interfaceC3041i) {
+            long j = this.f8521d;
+            if (j < 0) {
+                return -1L;
+            }
+            long j2 = -(j + 2);
+            this.f8521d = -1L;
+            return j2;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.p267x2.p275j0.InterfaceC3065g
+        /* JADX INFO: renamed from: c */
+        public void mo3736c(long j) {
+            long[] jArr = this.f8519b.f8982a;
+            this.f8521d = jArr[C2738e0.m2997e(jArr, j, true, true)];
         }
     }
 }

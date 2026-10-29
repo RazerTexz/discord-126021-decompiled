@@ -57,20 +57,9 @@ public final class WidgetDirectoryCategory extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            DirectoryEntryCategory.values();
-            int[] iArr = new int[11];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[DirectoryEntryCategory.Home.ordinal()] = 1;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryCategory$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetDirectoryCategory.kt */
-    public static final class C82902 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class C82902 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public C82902() {
             super(1);
         }
@@ -86,6 +75,17 @@ public final class WidgetDirectoryCategory extends AppFragment {
             WidgetDirectoryCategory widgetDirectoryCategory = WidgetDirectoryCategory.this;
             C12238m.checkNotNullExpressionValue(viewState, "it");
             widgetDirectoryCategory.configureUi(viewState);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            DirectoryEntryCategory.values();
+            int[] iArr = new int[11];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[DirectoryEntryCategory.Home.ordinal()] = 1;
         }
     }
 
@@ -162,21 +162,6 @@ public final class WidgetDirectoryCategory extends AppFragment {
         }
     }
 
-    private final void maybeAddServerRow(List<DirectoryChannelItem> list, WidgetDirectoriesViewModel.ViewState viewState) {
-        if (viewState.getHasAddGuildPermissions()) {
-            list.add(DirectoryChannelItem.AddServer.INSTANCE);
-        }
-    }
-
-    private final List<DirectoryChannelItem.DirectoryItem> toDirectoryItems(List<DirectoryEntryData> list) {
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
-        Iterator<T> it = list.iterator();
-        while (it.hasNext()) {
-            arrayList.add(new DirectoryChannelItem.DirectoryItem((DirectoryEntryData) it.next()));
-        }
-        return arrayList;
-    }
-
     public final WidgetDirectoryChannelAdapter getAdapter() {
         return this.adapter;
     }
@@ -191,6 +176,12 @@ public final class WidgetDirectoryCategory extends AppFragment {
 
     public final WidgetDirectoriesViewModel getViewModel() {
         return (WidgetDirectoriesViewModel) this.viewModel.getValue();
+    }
+
+    private final void maybeAddServerRow(List<DirectoryChannelItem> list, WidgetDirectoriesViewModel.ViewState viewState) {
+        if (viewState.getHasAddGuildPermissions()) {
+            list.add(DirectoryChannelItem.AddServer.INSTANCE);
+        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -213,5 +204,14 @@ public final class WidgetDirectoryCategory extends AppFragment {
         });
         C12238m.checkNotNullExpressionValue(observableM11118y, "viewModel\n        .obser…   .filter { it != null }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11118y, this, null, 2, null), (Class<?>) WidgetDirectoryCategory.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82902());
+    }
+
+    private final List<DirectoryChannelItem.DirectoryItem> toDirectoryItems(List<DirectoryEntryData> list) {
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
+        Iterator<T> it = list.iterator();
+        while (it.hasNext()) {
+            arrayList.add(new DirectoryChannelItem.DirectoryItem((DirectoryEntryData) it.next()));
+        }
+        return arrayList;
     }
 }

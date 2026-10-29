@@ -49,19 +49,11 @@ public abstract class AbstractC11921f implements InterfaceC11985n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b */
     /* JADX INFO: compiled from: AbstractTypeChecker.kt */
-    public static abstract class b {
-
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b$a */
-        /* JADX INFO: compiled from: AbstractTypeChecker.kt */
-        public static abstract class a extends b {
-            public a() {
-                super(null);
-            }
-        }
+    public abstract class b {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: AbstractTypeChecker.kt */
-        public static final class C13335b extends b {
+        public final class C13335b extends b {
 
             /* JADX INFO: renamed from: a */
             public static final C13335b f24766a = new C13335b();
@@ -78,9 +70,17 @@ public abstract class AbstractC11921f implements InterfaceC11985n {
             }
         }
 
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b$a */
+        /* JADX INFO: compiled from: AbstractTypeChecker.kt */
+        public abstract class a extends b {
+            public a() {
+                super(null);
+            }
+        }
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b$c */
         /* JADX INFO: compiled from: AbstractTypeChecker.kt */
-        public static final class c extends b {
+        public final class c extends b {
 
             /* JADX INFO: renamed from: a */
             public static final c f24767a = new c();
@@ -104,7 +104,7 @@ public abstract class AbstractC11921f implements InterfaceC11985n {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.n.f$b$d */
         /* JADX INFO: compiled from: AbstractTypeChecker.kt */
-        public static final class d extends b {
+        public final class d extends b {
 
             /* JADX INFO: renamed from: a */
             public static final d f24768a = new d();

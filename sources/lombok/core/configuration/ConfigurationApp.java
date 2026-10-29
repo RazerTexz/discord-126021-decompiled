@@ -33,9 +33,9 @@ import lombok.core.LombokApp;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp.SCL.lombok */
 public class ConfigurationApp extends LombokApp {
+    private static final URI NO_CONFIG = URI.create("");
     private PrintStream out = System.out;
     private PrintStream err = System.err;
-    private static final URI NO_CONFIG = URI.create("");
     private static final ConfigurationProblemReporter VOID = new ConfigurationProblemReporter() { // from class: lombok.core.configuration.ConfigurationApp.1
         @Override // lombok.core.configuration.ConfigurationProblemReporter
         public void report(String sourceDescription, String problem, int lineNumber, CharSequence line) {
@@ -58,7 +58,7 @@ public class ConfigurationApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$CmdArgs.SCL.lombok */
-    public static class CmdArgs {
+    public class CmdArgs {
 
         @Mandatory(onlyIfNot = {"help", "generate"})
         @Description("Paths to java files or directories the configuration is to be printed for.")
@@ -320,7 +320,7 @@ public class ConfigurationApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$Source.SCL.lombok */
-    private static final class Source {
+    final class Source {
         final ConfigurationFile file;
         final String description;
 

@@ -21,7 +21,7 @@ public abstract class AbstractC12125c<E> extends AbstractC12121a<E> implements L
 
     /* JADX INFO: renamed from: d0.t.c$a */
     /* JADX INFO: compiled from: AbstractList.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -156,7 +156,7 @@ public abstract class AbstractC12125c<E> extends AbstractC12121a<E> implements L
 
     /* JADX INFO: renamed from: d0.t.c$d */
     /* JADX INFO: compiled from: AbstractList.kt */
-    public static final class d<E> extends AbstractC12125c<E> implements RandomAccess {
+    public final class d<E> extends AbstractC12125c<E> implements RandomAccess {
 
         /* JADX INFO: renamed from: k */
         public int f25181k;

@@ -171,6 +171,46 @@ public class C1610i extends AbstractC1603b {
         m777e(this.f2918N);
     }
 
+    /* JADX INFO: renamed from: q */
+    public final void m789q(int i, Canvas canvas, float f) {
+        int iM758h = C1563b.m758h(i);
+        if (iM758h == 1) {
+            canvas.translate(-f, 0.0f);
+        } else {
+            if (iM758h != 2) {
+                return;
+            }
+            canvas.translate((-f) / 2.0f, 0.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: r */
+    public final void m790r(String str, Paint paint, Canvas canvas) {
+        if (paint.getColor() == 0) {
+            return;
+        }
+        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
+            return;
+        }
+        canvas.drawText(str, 0, str.length(), 0.0f, 0.0f, paint);
+    }
+
+    /* JADX INFO: renamed from: s */
+    public final void m791s(Path path, Paint paint, Canvas canvas) {
+        if (paint.getColor() == 0) {
+            return;
+        }
+        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
+            return;
+        }
+        canvas.drawPath(path, paint);
+    }
+
+    /* JADX INFO: renamed from: t */
+    public final List<String> m792t(String str) {
+        return Arrays.asList(str.replaceAll("\r\n", "\r").replaceAll("\n", "\r").split("\r"));
+    }
+
     @Override // p007b.p085c.p086a.p095y.p098m.AbstractC1603b, p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
     /* JADX INFO: renamed from: d */
     public void mo712d(RectF rectF, Matrix matrix, boolean z2) {
@@ -535,45 +575,5 @@ public class C1610i extends AbstractC1603b {
             }
         }
         canvas.restore();
-    }
-
-    /* JADX INFO: renamed from: q */
-    public final void m789q(int i, Canvas canvas, float f) {
-        int iM758h = C1563b.m758h(i);
-        if (iM758h == 1) {
-            canvas.translate(-f, 0.0f);
-        } else {
-            if (iM758h != 2) {
-                return;
-            }
-            canvas.translate((-f) / 2.0f, 0.0f);
-        }
-    }
-
-    /* JADX INFO: renamed from: r */
-    public final void m790r(String str, Paint paint, Canvas canvas) {
-        if (paint.getColor() == 0) {
-            return;
-        }
-        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
-            return;
-        }
-        canvas.drawText(str, 0, str.length(), 0.0f, 0.0f, paint);
-    }
-
-    /* JADX INFO: renamed from: s */
-    public final void m791s(Path path, Paint paint, Canvas canvas) {
-        if (paint.getColor() == 0) {
-            return;
-        }
-        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
-            return;
-        }
-        canvas.drawPath(path, paint);
-    }
-
-    /* JADX INFO: renamed from: t */
-    public final List<String> m792t(String str) {
-        return Arrays.asList(str.replaceAll("\r\n", "\r").replaceAll("\n", "\r").split("\r"));
     }
 }

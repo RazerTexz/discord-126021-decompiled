@@ -17,7 +17,7 @@ public final class FadeThroughProvider implements VisibilityAnimatorProvider {
     public static final float PROGRESS_THRESHOLD = 0.35f;
 
     /* JADX INFO: renamed from: com.google.android.material.transition.platform.FadeThroughProvider$a */
-    public static class C11053a implements ValueAnimator.AnimatorUpdateListener {
+    public final class C11053a implements ValueAnimator.AnimatorUpdateListener {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f21333a;
@@ -49,7 +49,7 @@ public final class FadeThroughProvider implements VisibilityAnimatorProvider {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.platform.FadeThroughProvider$b */
-    public static class C11054b extends AnimatorListenerAdapter {
+    public final class C11054b extends AnimatorListenerAdapter {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f21338a;
@@ -68,13 +68,6 @@ public final class FadeThroughProvider implements VisibilityAnimatorProvider {
         }
     }
 
-    private static Animator createFadeThroughAnimator(View view, float f, float f2, @FloatRange(from = 0.0d, m75to = 1.0d) float f3, @FloatRange(from = 0.0d, m75to = 1.0d) float f4, float f5) {
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimatorOfFloat.addUpdateListener(new C11053a(view, f, f2, f3, f4));
-        valueAnimatorOfFloat.addListener(new C11054b(view, f5));
-        return valueAnimatorOfFloat;
-    }
-
     @Override // com.google.android.material.transition.platform.VisibilityAnimatorProvider
     @Nullable
     public Animator createAppear(@NonNull ViewGroup viewGroup, @NonNull View view) {
@@ -87,5 +80,12 @@ public final class FadeThroughProvider implements VisibilityAnimatorProvider {
     public Animator createDisappear(@NonNull ViewGroup viewGroup, @NonNull View view) {
         float alpha = view.getAlpha() == 0.0f ? 1.0f : view.getAlpha();
         return createFadeThroughAnimator(view, alpha, 0.0f, 0.0f, 0.35f, alpha);
+    }
+
+    private static Animator createFadeThroughAnimator(View view, float f, float f2, @FloatRange(from = 0.0d, m75to = 1.0d) float f3, @FloatRange(from = 0.0d, m75to = 1.0d) float f4, float f5) {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new C11053a(view, f, f2, f3, f4));
+        valueAnimatorOfFloat.addListener(new C11054b(view, f5));
+        return valueAnimatorOfFloat;
     }
 }

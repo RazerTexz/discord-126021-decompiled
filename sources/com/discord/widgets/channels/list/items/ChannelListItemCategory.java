@@ -21,10 +21,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
         this.isMuted = z3;
         this.canManageChannels = z4;
         this.type = 8;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(channel.getId());
-        this.key = sb.toString();
+        this.key = "" + getType() + channel.getId();
     }
 
     public static /* synthetic */ ChannelListItemCategory copy$default(ChannelListItemCategory channelListItemCategory, Channel channel, boolean z2, boolean z3, boolean z4, int i, Object obj) {
@@ -43,26 +40,6 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
         return channelListItemCategory.copy(channel, z2, z3, z4);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsCollapsed() {
-        return this.isCollapsed;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getIsMuted() {
-        return this.isMuted;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getCanManageChannels() {
-        return this.canManageChannels;
-    }
-
     public final ChannelListItemCategory copy(Channel channel, boolean isCollapsed, boolean isMuted, boolean canManageChannels) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemCategory(channel, isCollapsed, isMuted, canManageChannels);
@@ -79,12 +56,32 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
         return C12238m.areEqual(this.channel, channelListItemCategory.channel) && this.isCollapsed == channelListItemCategory.isCollapsed && this.isMuted == channelListItemCategory.isMuted && this.canManageChannels == channelListItemCategory.canManageChannels;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getCanManageChannels() {
         return this.canManageChannels;
     }
 
+    public final boolean getCanManageChannels() {
+        return this.canManageChannels;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsCollapsed() {
+        return this.isCollapsed;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getIsMuted() {
+        return this.isMuted;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

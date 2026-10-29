@@ -8,14 +8,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Handler.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class HandlerKt {
-    public static final Runnable postAtTime(Handler handler, long j, Object obj, Function0<Unit> function0) {
-        C12238m.checkNotNullParameter(handler, "<this>");
-        C12238m.checkNotNullParameter(function0, "action");
-        HandlerKt$postAtTime$runnable$1 handlerKt$postAtTime$runnable$1 = new HandlerKt$postAtTime$runnable$1(function0);
-        handler.postAtTime(handlerKt$postAtTime$runnable$1, obj, j);
-        return handlerKt$postAtTime$runnable$1;
-    }
-
     public static /* synthetic */ Runnable postAtTime$default(Handler handler, long j, Object obj, Function0 function0, int i, Object obj2) {
         if ((i & 2) != 0) {
             obj = null;
@@ -27,7 +19,18 @@ public final class HandlerKt {
         return handlerKt$postAtTime$runnable$1;
     }
 
-    public static final Runnable postDelayed(Handler handler, long j, Object obj, Function0<Unit> function0) {
+    public static final Runnable postAtTime(Handler handler, long j, Object obj, Function0<Unit> function0) {
+        C12238m.checkNotNullParameter(handler, "<this>");
+        C12238m.checkNotNullParameter(function0, "action");
+        HandlerKt$postAtTime$runnable$1 handlerKt$postAtTime$runnable$1 = new HandlerKt$postAtTime$runnable$1(function0);
+        handler.postAtTime(handlerKt$postAtTime$runnable$1, obj, j);
+        return handlerKt$postAtTime$runnable$1;
+    }
+
+    public static /* synthetic */ Runnable postDelayed$default(Handler handler, long j, Object obj, Function0 function0, int i, Object obj2) {
+        if ((i & 2) != 0) {
+            obj = null;
+        }
         C12238m.checkNotNullParameter(handler, "<this>");
         C12238m.checkNotNullParameter(function0, "action");
         HandlerKt$postDelayed$runnable$1 handlerKt$postDelayed$runnable$1 = new HandlerKt$postDelayed$runnable$1(function0);
@@ -39,10 +42,7 @@ public final class HandlerKt {
         return handlerKt$postDelayed$runnable$1;
     }
 
-    public static /* synthetic */ Runnable postDelayed$default(Handler handler, long j, Object obj, Function0 function0, int i, Object obj2) {
-        if ((i & 2) != 0) {
-            obj = null;
-        }
+    public static final Runnable postDelayed(Handler handler, long j, Object obj, Function0<Unit> function0) {
         C12238m.checkNotNullParameter(handler, "<this>");
         C12238m.checkNotNullParameter(function0, "action");
         HandlerKt$postDelayed$runnable$1 handlerKt$postDelayed$runnable$1 = new HandlerKt$postDelayed$runnable$1(function0);

@@ -13,7 +13,7 @@ public final class C12226f0 implements InterfaceC11235h {
 
     /* JADX INFO: renamed from: d0.z.d.f0$a */
     /* JADX INFO: compiled from: TypeParameterReference.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

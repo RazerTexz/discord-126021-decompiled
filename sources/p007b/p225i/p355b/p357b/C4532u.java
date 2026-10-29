@@ -16,12 +16,6 @@ public final class C4532u {
     /* JADX INFO: renamed from: a */
     public boolean f12064a;
 
-    /* JADX INFO: renamed from: b */
-    public int f12065b = -1;
-
-    /* JADX INFO: renamed from: c */
-    public int f12066c = -1;
-
     /* JADX INFO: renamed from: d */
     @MonotonicNonNullDecl
     public ConcurrentMapC4533v.p f12067d;
@@ -33,6 +27,12 @@ public final class C4532u {
     /* JADX INFO: renamed from: f */
     @MonotonicNonNullDecl
     public AbstractC4484d<Object> f12069f;
+
+    /* JADX INFO: renamed from: b */
+    public int f12065b = -1;
+
+    /* JADX INFO: renamed from: c */
+    public int f12066c = -1;
 
     /* JADX INFO: renamed from: a */
     public ConcurrentMapC4533v.p m6284a() {

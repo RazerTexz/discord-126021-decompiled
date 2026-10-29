@@ -57,8 +57,50 @@ public final class WidgetGuildBoostTransfer extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostTransfer$configureUI$1 */
     /* JADX INFO: compiled from: WidgetGuildBoostTransfer.kt */
-    public static final class Companion {
+    public final class C95201 extends AbstractC12240o implements Function0<Unit> {
+        public C95201() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FragmentActivity fragmentActivityM95e = WidgetGuildBoostTransfer.this.m95e();
+            if (fragmentActivityM95e != null) {
+                fragmentActivityM95e.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostTransfer$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildBoostTransfer.kt */
+    public final /* synthetic */ class C95221 extends C12236k implements Function1<GuildBoostTransferInProgressViewModel.ViewState, Unit> {
+        public C95221(WidgetGuildBoostTransfer widgetGuildBoostTransfer) {
+            super(1, widgetGuildBoostTransfer, WidgetGuildBoostTransfer.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostTransferInProgressViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostTransferInProgressViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildBoostTransferInProgressViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildBoostTransfer) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildBoostTransfer.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -84,48 +126,6 @@ public final class WidgetGuildBoostTransfer extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostTransfer$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoostTransfer.kt */
-    public static final class C95201 extends AbstractC12240o implements Function0<Unit> {
-        public C95201() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            FragmentActivity fragmentActivityM95e = WidgetGuildBoostTransfer.this.m95e();
-            if (fragmentActivityM95e != null) {
-                fragmentActivityM95e.finish();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoostTransfer$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoostTransfer.kt */
-    public static final /* synthetic */ class C95221 extends C12236k implements Function1<GuildBoostTransferInProgressViewModel.ViewState, Unit> {
-        public C95221(WidgetGuildBoostTransfer widgetGuildBoostTransfer) {
-            super(1, widgetGuildBoostTransfer, WidgetGuildBoostTransfer.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostTransferInProgressViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostTransferInProgressViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildBoostTransferInProgressViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildBoostTransfer) this.receiver).configureUI(viewState);
         }
     }
 

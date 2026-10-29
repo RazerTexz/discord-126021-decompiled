@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildInviteReminderScheduled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildInviteReminderScheduled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long guildId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "guild_invite_reminder_scheduled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGuildInviteReminderScheduled) && C12238m.areEqual(this.guildId, ((TrackGuildInviteReminderScheduled) other).guildId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

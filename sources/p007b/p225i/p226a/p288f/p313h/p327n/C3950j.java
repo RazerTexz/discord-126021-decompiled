@@ -20,6 +20,12 @@ public final class C3950j extends AbstractC3951k {
         this.f10488m = i2;
     }
 
+    @Override // java.util.List
+    public final Object get(int i) {
+        C3404f.m4206F1(i, this.f10488m, "index");
+        return this.zzc.get(i + this.f10487l);
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3948h
     /* JADX INFO: renamed from: d */
     public final int mo5431d() {
@@ -38,10 +44,9 @@ public final class C3950j extends AbstractC3951k {
         return this.zzc.mo5433g();
     }
 
-    @Override // java.util.List
-    public final Object get(int i) {
-        C3404f.m4206F1(i, this.f10488m, "index");
-        return this.zzc.get(i + this.f10487l);
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+    public final int size() {
+        return this.f10488m;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p327n.AbstractC3951k, java.util.List
@@ -51,10 +56,5 @@ public final class C3950j extends AbstractC3951k {
         AbstractC3951k abstractC3951k = this.zzc;
         int i3 = this.f10487l;
         return abstractC3951k.subList(i + i3, i2 + i3);
-    }
-
-    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
-    public final int size() {
-        return this.f10488m;
     }
 }

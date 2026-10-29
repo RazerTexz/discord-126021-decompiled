@@ -37,16 +37,6 @@ public class C1775i extends C1772g {
         this.f3367p = (i2 < 0 || i2 > 8) ? 0 : i2;
     }
 
-    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
-    /* JADX INFO: renamed from: d */
-    public void mo1096d(Matrix matrix) {
-        m1103n(matrix);
-        if (this.f3365n.isIdentity()) {
-            return;
-        }
-        matrix.preConcat(this.f3365n);
-    }
-
     @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         int i;
@@ -77,6 +67,16 @@ public class C1775i extends C1772g {
     public int getIntrinsicWidth() {
         int i = this.f3367p;
         return (i == 5 || i == 7 || this.f3366o % 180 != 0) ? super.getIntrinsicHeight() : super.getIntrinsicWidth();
+    }
+
+    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
+    /* JADX INFO: renamed from: d */
+    public void mo1096d(Matrix matrix) {
+        m1103n(matrix);
+        if (this.f3365n.isIdentity()) {
+            return;
+        }
+        matrix.preConcat(this.f3365n);
     }
 
     @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable

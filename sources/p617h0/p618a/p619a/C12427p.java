@@ -7,9 +7,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12427p {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12427p f26248a = new C12427p();
-
     /* JADX INFO: renamed from: b */
     public short f26249b;
 
@@ -48,6 +45,9 @@ public class C12427p {
 
     /* JADX INFO: renamed from: n */
     public C12427p f26261n;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12427p f26248a = new C12427p();
 
     /* JADX INFO: renamed from: a */
     public final void m10587a(int i, int i2, int i3) {

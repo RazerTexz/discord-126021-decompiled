@@ -16,10 +16,10 @@ public final class AccessibilityManagerCompat {
     }
 
     @Deprecated
-    public static abstract class AccessibilityStateChangeListenerCompat implements AccessibilityStateChangeListener {
+    public abstract class AccessibilityStateChangeListenerCompat implements AccessibilityStateChangeListener {
     }
 
-    public static class AccessibilityStateChangeListenerWrapper implements AccessibilityManager.AccessibilityStateChangeListener {
+    public class AccessibilityStateChangeListenerWrapper implements AccessibilityManager.AccessibilityStateChangeListener {
         public AccessibilityStateChangeListener mListener;
 
         public AccessibilityStateChangeListenerWrapper(@NonNull AccessibilityStateChangeListener accessibilityStateChangeListener) {
@@ -51,7 +51,7 @@ public final class AccessibilityManagerCompat {
     }
 
     @RequiresApi(19)
-    public static final class TouchExplorationStateChangeListenerWrapper implements AccessibilityManager.TouchExplorationStateChangeListener {
+    public final class TouchExplorationStateChangeListenerWrapper implements AccessibilityManager.TouchExplorationStateChangeListener {
         public final TouchExplorationStateChangeListener mListener;
 
         public TouchExplorationStateChangeListenerWrapper(@NonNull TouchExplorationStateChangeListener touchExplorationStateChangeListener) {

@@ -34,16 +34,6 @@ public final /* data */ class InputCommandContext {
         return inputCommandContext.copy(application, applicationCommand);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getSelectedApplication() {
-        return this.selectedApplication;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ApplicationCommand getSelectedCommand() {
-        return this.selectedCommand;
-    }
-
     public final InputCommandContext copy(Application selectedApplication, ApplicationCommand selectedCommand) {
         return new InputCommandContext(selectedApplication, selectedCommand);
     }
@@ -59,8 +49,23 @@ public final /* data */ class InputCommandContext {
         return C12238m.areEqual(this.selectedApplication, inputCommandContext.selectedApplication) && C12238m.areEqual(this.selectedCommand, inputCommandContext.selectedCommand);
     }
 
+    /* JADX INFO: renamed from: isCommand, reason: from getter */
+    public final boolean getIsCommand() {
+        return this.isCommand;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Application getSelectedApplication() {
         return this.selectedApplication;
+    }
+
+    public final Application getSelectedApplication() {
+        return this.selectedApplication;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final ApplicationCommand getSelectedCommand() {
+        return this.selectedCommand;
     }
 
     public final ApplicationCommand getSelectedCommand() {
@@ -72,11 +77,6 @@ public final /* data */ class InputCommandContext {
         int iHashCode = (application != null ? application.hashCode() : 0) * 31;
         ApplicationCommand applicationCommand = this.selectedCommand;
         return iHashCode + (applicationCommand != null ? applicationCommand.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: isCommand, reason: from getter */
-    public final boolean getIsCommand() {
-        return this.isCommand;
     }
 
     public String toString() {

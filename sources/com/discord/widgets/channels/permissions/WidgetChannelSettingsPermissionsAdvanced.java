@@ -63,8 +63,79 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
     /* JADX INFO: renamed from: viewBinding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate viewBinding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$configureMembers$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
-    public static final /* data */ class Model {
+    public final class C75461 extends AbstractC12240o implements Function1<User, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C75461(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(User user) {
+            invoke2(user);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(User user) {
+            C12238m.checkNotNullParameter(user, "user");
+            WidgetChannelSettingsEditPermissions.INSTANCE.createForUser(WidgetChannelSettingsPermissionsAdvanced.this.requireContext(), this.$model.getGuild().getId(), this.$model.getChannel().getId(), user.getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$configureRoles$1 */
+    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
+    public final class C75471 extends AbstractC12240o implements Function1<GuildRole, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C75471(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRole guildRole) {
+            invoke2(guildRole);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRole guildRole) {
+            WidgetChannelSettingsEditPermissions.Companion companion = WidgetChannelSettingsEditPermissions.INSTANCE;
+            Context contextRequireContext = WidgetChannelSettingsPermissionsAdvanced.this.requireContext();
+            long id2 = this.$model.getGuild().getId();
+            long id3 = this.$model.getChannel().getId();
+            C12238m.checkNotNull(guildRole);
+            companion.createForRole(contextRequireContext, id2, id3, guildRole.getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
+    public final class C75501 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C75501() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetChannelSettingsPermissionsAdvanced.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -79,8 +150,17 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
         private final List<SimpleRolesAdapter.RoleItem> roleItems;
 
         /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
+            }
+
+            public final Observable<Model> get(long channelId) {
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                StoreChannels channels = companion.getChannels();
+                StoreUser users = companion.getUsers();
+                StorePermissions permissions = companion.getPermissions();
+                StoreGuilds guilds = companion.getGuilds();
+                return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{channels, users, permissions, guilds}, false, null, null, new WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1(channels, channelId, guilds, users, permissions), 14, null);
             }
 
             private final Collection<Long> getOverwriteIds(Channel channel, PermissionOverwrite.Type type) {
@@ -100,15 +180,6 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
                     arrayList2.add(Long.valueOf(((PermissionOverwrite) it.next()).m8131e()));
                 }
                 return arrayList2;
-            }
-
-            public final Observable<Model> get(long channelId) {
-                StoreStream.Companion companion = StoreStream.INSTANCE;
-                StoreChannels channels = companion.getChannels();
-                StoreUser users = companion.getUsers();
-                StorePermissions permissions = companion.getPermissions();
-                StoreGuilds guilds = companion.getGuilds();
-                return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{channels, users, permissions, guilds}, false, null, null, new WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1(channels, channelId, guilds, users, permissions), 14, null);
             }
 
             public final boolean isValid(MeUser me2, Guild guild, Channel channel, Long myPermissionsForChannel) {
@@ -150,6 +221,14 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
             return C12163u.sorted(arrayList);
         }
 
+        public final Map<Long, GuildRole> component5() {
+            return this.guildRoles;
+        }
+
+        public final List<SimpleMembersAdapter.MemberItem> component6() {
+            return this.memberItems;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, MeUser meUser, Guild guild, Channel channel, long j, Map map, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -175,34 +254,6 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
                 list = model.memberItems;
             }
             return model.copy(meUser, guild2, channel2, j2, map2, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getMyPermissions() {
-            return this.myPermissions;
-        }
-
-        public final Map<Long, GuildRole> component5() {
-            return this.guildRoles;
-        }
-
-        public final List<SimpleMembersAdapter.MemberItem> component6() {
-            return this.memberItems;
         }
 
         public final Model copy(MeUser me2, Guild guild, Channel channel, long myPermissions, Map<Long, GuildRole> guildRoles, List<SimpleMembersAdapter.MemberItem> memberItems) {
@@ -233,8 +284,18 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
             return this.canManage;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -245,12 +306,22 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
             return this.guildRoles;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final MeUser getMe() {
+            return this.me;
+        }
+
         public final MeUser getMe() {
             return this.me;
         }
 
         public final List<SimpleMembersAdapter.MemberItem> getMemberItems() {
             return this.memberItems;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getMyPermissions() {
+            return this.myPermissions;
         }
 
         public final long getMyPermissions() {
@@ -287,77 +358,6 @@ public final class WidgetChannelSettingsPermissionsAdvanced extends AppFragment 
             sbM833U.append(this.guildRoles);
             sbM833U.append(", memberItems=");
             return C1643a.m824L(sbM833U, this.memberItems, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$configureMembers$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
-    public static final class C75461 extends AbstractC12240o implements Function1<User, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C75461(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(User user) {
-            invoke2(user);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(User user) {
-            C12238m.checkNotNullParameter(user, "user");
-            WidgetChannelSettingsEditPermissions.INSTANCE.createForUser(WidgetChannelSettingsPermissionsAdvanced.this.requireContext(), this.$model.getGuild().getId(), this.$model.getChannel().getId(), user.getId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$configureRoles$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
-    public static final class C75471 extends AbstractC12240o implements Function1<GuildRole, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C75471(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRole guildRole) {
-            invoke2(guildRole);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRole guildRole) {
-            WidgetChannelSettingsEditPermissions.Companion companion = WidgetChannelSettingsEditPermissions.INSTANCE;
-            Context contextRequireContext = WidgetChannelSettingsPermissionsAdvanced.this.requireContext();
-            long id2 = this.$model.getGuild().getId();
-            long id3 = this.$model.getChannel().getId();
-            C12238m.checkNotNull(guildRole);
-            companion.createForRole(contextRequireContext, id2, id3, guildRole.getId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
-    public static final class C75501 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C75501() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetChannelSettingsPermissionsAdvanced.this.configureUI(model);
         }
     }
 

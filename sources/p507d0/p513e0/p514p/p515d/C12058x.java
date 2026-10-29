@@ -59,17 +59,17 @@ public final class C12058x implements InterfaceC12239n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.x$a */
     /* JADX INFO: compiled from: KTypeImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends C11236i>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends C11236i>> {
         public final /* synthetic */ Function0 $computeJavaType;
 
         /* JADX INFO: renamed from: d0.e0.p.d.x$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: KTypeImpl.kt */
-        public static final class C13342a extends AbstractC12240o implements Function0<Type> {
+        public final class C13342a extends AbstractC12240o implements Function0<Type> {
+            public final /* synthetic */ Lazy $parameterizedTypeArguments$inlined;
+            public final /* synthetic */ KProperty $parameterizedTypeArguments$metadata$inlined = null;
 
             /* JADX INFO: renamed from: $i */
             public final /* synthetic */ int f25066$i;
-            public final /* synthetic */ Lazy $parameterizedTypeArguments$inlined;
-            public final /* synthetic */ KProperty $parameterizedTypeArguments$metadata$inlined = null;
             public final /* synthetic */ a this$0;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -125,7 +125,7 @@ public final class C12058x implements InterfaceC12239n {
 
         /* JADX INFO: renamed from: d0.e0.p.d.x$a$b */
         /* JADX INFO: compiled from: KTypeImpl.kt */
-        public static final class b extends AbstractC12240o implements Function0<List<? extends Type>> {
+        public final class b extends AbstractC12240o implements Function0<List<? extends Type>> {
             public b() {
                 super(0);
             }
@@ -187,7 +187,7 @@ public final class C12058x implements InterfaceC12239n {
 
     /* JADX INFO: renamed from: d0.e0.p.d.x$b */
     /* JADX INFO: compiled from: KTypeImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<InterfaceC11231d> {
+    public final class b extends AbstractC12240o implements Function0<InterfaceC11231d> {
         public b() {
             super(0);
         }
@@ -213,6 +213,37 @@ public final class C12058x implements InterfaceC12239n {
         this.f25062k = aVarLazySoft;
         this.f25063l = C11251c0.lazySoft(new b());
         this.f25064m = C11251c0.lazySoft(new a(function0));
+    }
+
+    public boolean equals(Object obj) {
+        return (obj instanceof C12058x) && C12238m.areEqual(this.f25065n, ((C12058x) obj).f25065n);
+    }
+
+    @Override // kotlin.reflect.KType
+    public List<C11236i> getArguments() {
+        return (List) this.f25064m.getValue(this, f25061j[1]);
+    }
+
+    @Override // kotlin.reflect.KType
+    public InterfaceC11231d getClassifier() {
+        return (InterfaceC11231d) this.f25063l.getValue(this, f25061j[0]);
+    }
+
+    @Override // p507d0.p592z.p594d.InterfaceC12239n
+    public Type getJavaType() {
+        C11251c0.a<Type> aVar = this.f25062k;
+        if (aVar != null) {
+            return aVar.invoke();
+        }
+        return null;
+    }
+
+    public final AbstractC11913c0 getType() {
+        return this.f25065n;
+    }
+
+    public int hashCode() {
+        return this.f25065n.hashCode();
     }
 
     /* JADX INFO: renamed from: a */
@@ -252,37 +283,6 @@ public final class C12058x implements InterfaceC12239n {
             return new C11260h(C11423b.createArrayType(C12209a.getJavaClass(C11243a.getJvmErasure(interfaceC11231dM10057a))));
         }
         throw new C11247a0("Cannot determine classifier for array element type: " + this);
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof C12058x) && C12238m.areEqual(this.f25065n, ((C12058x) obj).f25065n);
-    }
-
-    @Override // kotlin.reflect.KType
-    public List<C11236i> getArguments() {
-        return (List) this.f25064m.getValue(this, f25061j[1]);
-    }
-
-    @Override // kotlin.reflect.KType
-    public InterfaceC11231d getClassifier() {
-        return (InterfaceC11231d) this.f25063l.getValue(this, f25061j[0]);
-    }
-
-    @Override // p507d0.p592z.p594d.InterfaceC12239n
-    public Type getJavaType() {
-        C11251c0.a<Type> aVar = this.f25062k;
-        if (aVar != null) {
-            return aVar.invoke();
-        }
-        return null;
-    }
-
-    public final AbstractC11913c0 getType() {
-        return this.f25065n;
-    }
-
-    public int hashCode() {
-        return this.f25065n.hashCode();
     }
 
     public String toString() {

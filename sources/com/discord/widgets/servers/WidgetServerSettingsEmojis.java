@@ -60,6 +60,7 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -93,10 +94,10 @@ import p658rx.functions.Func3;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEmojis extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsEmojis.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEmojisBinding;", 0)};
+    private static final int EMOJI_MAX_FILESIZE_KB = 256;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int EMOJI_MAX_FILESIZE_KB = 256;
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final int VIEW_INDEX_CONTENT = 1;
     private Adapter adapter;
@@ -108,12 +109,12 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
     private Action1<String> uploadEmojiAction;
 
     /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<Item> {
+    public final class Adapter extends MGRecyclerAdapterSimple<Item> {
         private Function2<? super View, ? super ModelEmojiGuild, Unit> onEmojiItemClicked;
         private Function0<Unit> onUploadEmoji;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class EmojiEmptyViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
+        public final class EmojiEmptyViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public EmojiEmptyViewHolder(Adapter adapter) {
                 super(C5419R.layout.widget_server_settings_emojis_empty, adapter);
@@ -127,7 +128,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class EmojiHeaderViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
+        public final class EmojiHeaderViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
             private final WidgetServerSettingsEmojisHeaderBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -170,7 +171,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class EmojiItemViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
+        public final class EmojiItemViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
             private final WidgetServerSettingsEmojisItemBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -255,7 +256,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class EmojiSectionViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
+        public final class EmojiSectionViewHolder extends MGRecyclerViewHolder<Adapter, Item> {
             private final WidgetServerSettingsEmojisSectionBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -336,8 +337,67 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$configureUI$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final class Companion {
+    public final class C92512 extends AbstractC12240o implements Function0<Unit> {
+        public C92512() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetServerSettingsEmojis.this.openMediaChooser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$configureUI$3 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
+    public final class C92523 extends AbstractC12240o implements Function2<View, ModelEmojiGuild, Unit> {
+        public C92523() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(View view, ModelEmojiGuild modelEmojiGuild) {
+            invoke2(view, modelEmojiGuild);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view, ModelEmojiGuild modelEmojiGuild) {
+            C12238m.checkNotNullParameter(view, "view");
+            C12238m.checkNotNullParameter(modelEmojiGuild, "emoji");
+            WidgetServerSettingsEmojis.this.launchEditScreen(view, modelEmojiGuild);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
+    public final class C92531 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C92531() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) throws Exception {
+            WidgetServerSettingsEmojis.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -353,14 +413,14 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static abstract class Item implements MGRecyclerDataPayload {
+    public abstract class Item implements MGRecyclerDataPayload {
         public static final int TYPE_EMOJI = 0;
         public static final int TYPE_EMPTY = 3;
         public static final int TYPE_HEADER = 2;
         public static final int TYPE_SECTION = 1;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class EmojiEmpty extends Item {
+        public final class EmojiEmpty extends Item {
             public static final EmojiEmpty INSTANCE = new EmojiEmpty();
             private static final int type = 3;
             private static final String key = "EMOJI_EMPTY";
@@ -381,7 +441,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final /* data */ class EmojiHeader extends Item {
+        public final /* data */ class EmojiHeader extends Item {
             private final int emojiMax;
             private final String key;
             private final int type;
@@ -400,11 +460,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return emojiHeader.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getEmojiMax() {
-                return this.emojiMax;
-            }
-
             public final EmojiHeader copy(int emojiMax) {
                 return new EmojiHeader(emojiMax);
             }
@@ -414,6 +469,11 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                     return (other instanceof EmojiHeader) && this.emojiMax == ((EmojiHeader) other).emojiMax;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getEmojiMax() {
+                return this.emojiMax;
             }
 
             public final int getEmojiMax() {
@@ -440,7 +500,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final /* data */ class EmojiItem extends Item {
+        public final /* data */ class EmojiItem extends Item {
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = new Companion(null);
@@ -451,7 +511,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             private final User user;
 
             /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-            public static final class Companion {
+            public final class Companion {
                 private Companion() {
                 }
 
@@ -491,21 +551,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return emojiItem.copy(modelEmojiGuild, user, guildMember);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelEmojiGuild getEmoji() {
-                return this.emoji;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final User getUser() {
-                return this.user;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GuildMember getGuildMember() {
-                return this.guildMember;
-            }
-
             public final EmojiItem copy(ModelEmojiGuild emoji, User user, GuildMember guildMember) {
                 C12238m.checkNotNullParameter(emoji, "emoji");
                 C12238m.checkNotNullParameter(user, "user");
@@ -523,8 +568,18 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return C12238m.areEqual(this.emoji, emojiItem.emoji) && C12238m.areEqual(this.user, emojiItem.user) && C12238m.areEqual(this.guildMember, emojiItem.guildMember);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ModelEmojiGuild getEmoji() {
                 return this.emoji;
+            }
+
+            public final ModelEmojiGuild getEmoji() {
+                return this.emoji;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final GuildMember getGuildMember() {
+                return this.guildMember;
             }
 
             public final GuildMember getGuildMember() {
@@ -539,6 +594,11 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
             public int getType() {
                 return this.type;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final User getUser() {
+                return this.user;
             }
 
             public final User getUser() {
@@ -567,7 +627,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final /* data */ class EmojiSection extends Item {
+        public final /* data */ class EmojiSection extends Item {
             private final int emojiLength;
             private final int emojiMax;
             private final String key;
@@ -596,21 +656,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return emojiSection.copy(i, i2, i3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getEmojiMax() {
-                return this.emojiMax;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getEmojiLength() {
-                return this.emojiLength;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getTitleId() {
-                return this.titleId;
-            }
-
             public final EmojiSection copy(int emojiMax, int emojiLength, int titleId) {
                 return new EmojiSection(emojiMax, emojiLength, titleId);
             }
@@ -626,8 +671,18 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return this.emojiMax == emojiSection.emojiMax && this.emojiLength == emojiSection.emojiLength && this.titleId == emojiSection.titleId;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final int getEmojiLength() {
                 return this.emojiLength;
+            }
+
+            public final int getEmojiLength() {
+                return this.emojiLength;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getEmojiMax() {
+                return this.emojiMax;
             }
 
             public final int getEmojiMax() {
@@ -637,6 +692,11 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final int getTitleId() {
+                return this.titleId;
             }
 
             public final int getTitleId() {
@@ -671,7 +731,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -680,7 +740,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         private final List<Item> items;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -746,6 +806,17 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return new Model(guild, arrayList5, sbM833U.toString());
             }
 
+            public final Observable<Model> get(long guildId) {
+                Observable observableM11099Y = canManageEmojisAndStickers(guildId).m11099Y(new InterfaceC12589b<Permission, Observable<? extends Model>>() { // from class: com.discord.widgets.servers.WidgetServerSettingsEmojis$Model$Companion$get$1
+                    @Override // p637j0.p641k.InterfaceC12589b
+                    public final Observable<? extends WidgetServerSettingsEmojis.Model> call(WidgetServerSettingsEmojis.Model.Permission permission) {
+                        return (permission == null || !permission.getCanManage()) ? new C12721k(null) : WidgetServerSettingsEmojis.Model.INSTANCE.getGuildEmojis(permission.getGuild());
+                    }
+                });
+                C12238m.checkNotNullExpressionValue(observableM11099Y, "canManageEmojisAndSticke…          }\n            }");
+                return observableM11099Y;
+            }
+
             private final Observable<Model> getGuildEmojis(Guild guild) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
                 final StoreEmojiGuild guildEmojis = companion.getGuildEmojis();
@@ -761,24 +832,13 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return ObservableExtensionsKt.computationBuffered(observableM11116v);
             }
 
-            public final Observable<Model> get(long guildId) {
-                Observable observableM11099Y = canManageEmojisAndStickers(guildId).m11099Y(new InterfaceC12589b<Permission, Observable<? extends Model>>() { // from class: com.discord.widgets.servers.WidgetServerSettingsEmojis$Model$Companion$get$1
-                    @Override // p637j0.p641k.InterfaceC12589b
-                    public final Observable<? extends WidgetServerSettingsEmojis.Model> call(WidgetServerSettingsEmojis.Model.Permission permission) {
-                        return (permission == null || !permission.getCanManage()) ? new C12721k(null) : WidgetServerSettingsEmojis.Model.INSTANCE.getGuildEmojis(permission.getGuild());
-                    }
-                });
-                C12238m.checkNotNullExpressionValue(observableM11099Y, "canManageEmojisAndSticke…          }\n            }");
-                return observableM11099Y;
-            }
-
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
                 this();
             }
         }
 
         /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-        public static final /* data */ class Permission {
+        public final /* data */ class Permission {
             private final boolean canManage;
             private final Guild guild;
 
@@ -798,16 +858,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return permission.copy(z2, guild);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getCanManage() {
-                return this.canManage;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
             public final Permission copy(boolean canManage, Guild guild) {
                 C12238m.checkNotNullParameter(guild, "guild");
                 return new Permission(canManage, guild);
@@ -824,8 +874,18 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 return this.canManage == permission.canManage && C12238m.areEqual(this.guild, permission.guild);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final boolean getCanManage() {
                 return this.canManage;
+            }
+
+            public final boolean getCanManage() {
+                return this.canManage;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
@@ -865,6 +925,10 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             this.defaultName = str;
         }
 
+        public final List<Item> component2() {
+            return this.items;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Model copy$default(Model model, Guild guild, List list, String str, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -877,20 +941,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
                 str = model.defaultName;
             }
             return model.copy(guild, list, str);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final List<Item> component2() {
-            return this.items;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getDefaultName() {
-            return this.defaultName;
         }
 
         public final Model copy(Guild guild, List<? extends Item> items, String defaultName) {
@@ -909,8 +959,18 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.items, model.items) && C12238m.areEqual(this.defaultName, model.defaultName);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getDefaultName() {
             return this.defaultName;
+        }
+
+        public final String getDefaultName() {
+            return this.defaultName;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -937,65 +997,6 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
             sbM833U.append(this.items);
             sbM833U.append(", defaultName=");
             return C1643a.m822J(sbM833U, this.defaultName, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final class C92512 extends AbstractC12240o implements Function0<Unit> {
-        public C92512() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetServerSettingsEmojis.this.openMediaChooser();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$configureUI$3 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final class C92523 extends AbstractC12240o implements Function2<View, ModelEmojiGuild, Unit> {
-        public C92523() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(View view, ModelEmojiGuild modelEmojiGuild) {
-            invoke2(view, modelEmojiGuild);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view, ModelEmojiGuild modelEmojiGuild) {
-            C12238m.checkNotNullParameter(view, "view");
-            C12238m.checkNotNullParameter(modelEmojiGuild, "emoji");
-            WidgetServerSettingsEmojis.this.launchEditScreen(view, modelEmojiGuild);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEmojis$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
-    public static final class C92531 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C92531() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) throws Exception {
-            WidgetServerSettingsEmojis.this.configureUI(model);
         }
     }
 
@@ -1062,24 +1063,16 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         return (WidgetServerSettingsEmojisBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final void launchEditScreen(View v, ModelEmojiGuild emoji) {
         WidgetServerSettingsEmojisEdit.Companion companion = WidgetServerSettingsEmojisEdit.INSTANCE;
         Context context = v.getContext();
         C12238m.checkNotNullExpressionValue(context, "v.context");
         companion.create(context, this.guildId, emoji.getId(), emoji.getName());
-    }
-
-    private final void uploadEmoji(String name, String imageBase64) {
-        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postGuildEmoji(this.guildId, new RestAPIParams.PostGuildEmoji(name, imageBase64)), false, 1, null), this, null, 2, null).m11108k(C0879o.m182i(new Action1<ModelEmojiGuild>() { // from class: com.discord.widgets.servers.WidgetServerSettingsEmojis.uploadEmoji.1
-            @Override // p658rx.functions.Action1
-            public final void call(ModelEmojiGuild modelEmojiGuild) {
-            }
-        }, this));
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment
@@ -1093,7 +1086,7 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
@@ -1123,5 +1116,13 @@ public final class WidgetServerSettingsEmojis extends AppFragment {
         super.onViewBoundOrOnResume();
         StoreStream.INSTANCE.getGuildEmojis().activate(this.guildId);
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(this.guildId), this, null, 2, null), (Class<?>) WidgetServerSettingsEmojis.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92531());
+    }
+
+    private final void uploadEmoji(String name, String imageBase64) {
+        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postGuildEmoji(this.guildId, new RestAPIParams.PostGuildEmoji(name, imageBase64)), false, 1, null), this, null, 2, null).m11108k(C0879o.m182i(new Action1<ModelEmojiGuild>() { // from class: com.discord.widgets.servers.WidgetServerSettingsEmojis.uploadEmoji.1
+            @Override // p658rx.functions.Action1
+            public final void call(ModelEmojiGuild modelEmojiGuild) {
+            }
+        }, this));
     }
 }

@@ -56,7 +56,7 @@ public final class UserAvatarPresenceView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.user.UserAvatarPresenceView$b */
     /* JADX INFO: compiled from: UserAvatarPresenceView.kt */
-    public static final class C7132b extends AbstractC12240o implements Function2<Bitmap, String, Unit> {
+    public final class C7132b extends AbstractC12240o implements Function2<Bitmap, String, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final C7132b f19360j = new C7132b();
@@ -74,7 +74,7 @@ public final class UserAvatarPresenceView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.user.UserAvatarPresenceView$c */
     /* JADX INFO: compiled from: UserAvatarPresenceView.kt */
-    public static final class C7133c extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
+    public final class C7133c extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
         public final /* synthetic */ String $iconUrl;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -94,7 +94,7 @@ public final class UserAvatarPresenceView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.user.UserAvatarPresenceView$d */
     /* JADX INFO: compiled from: UserAvatarPresenceView.kt */
-    public static final class C7134d extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
+    public final class C7134d extends AbstractC12240o implements Function1<ImageRequestBuilder, Unit> {
         public final /* synthetic */ String $iconUrl;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -304,7 +304,7 @@ public final class UserAvatarPresenceView extends RelativeLayout {
 
     /* JADX INFO: renamed from: com.discord.views.user.UserAvatarPresenceView$a */
     /* JADX INFO: compiled from: UserAvatarPresenceView.kt */
-    public static final class C7131a {
+    public final class C7131a {
 
         /* JADX INFO: renamed from: a */
         public final User f19355a;

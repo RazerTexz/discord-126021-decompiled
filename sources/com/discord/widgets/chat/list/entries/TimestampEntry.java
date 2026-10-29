@@ -14,10 +14,7 @@ public final /* data */ class TimestampEntry extends ChatListEntry {
     public TimestampEntry(long j, long j2) {
         this.messageId = j;
         this.timestamp = j2;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(j);
-        this.key = sb.toString();
+        this.key = "" + getType() + j;
     }
 
     public static /* synthetic */ TimestampEntry copy$default(TimestampEntry timestampEntry, long j, long j2, int i, Object obj) {
@@ -28,16 +25,6 @@ public final /* data */ class TimestampEntry extends ChatListEntry {
             j2 = timestampEntry.timestamp;
         }
         return timestampEntry.copy(j, j2);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getTimestamp() {
-        return this.timestamp;
     }
 
     public final TimestampEntry copy(long messageId, long timestamp) {
@@ -60,8 +47,18 @@ public final /* data */ class TimestampEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getMessageId() {
         return this.messageId;
+    }
+
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getTimestamp() {
+        return this.timestamp;
     }
 
     public final long getTimestamp() {

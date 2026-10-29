@@ -12,6 +12,17 @@ public final /* data */ class ChannelRecipient {
     private final String nick;
     private final User user;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ChannelRecipient)) {
+            return false;
+        }
+        ChannelRecipient channelRecipient = (ChannelRecipient) other;
+        return C12238m.areEqual(this.nick, channelRecipient.nick) && this.channelId == channelRecipient.channelId && C12238m.areEqual(this.user, channelRecipient.user);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -25,17 +36,6 @@ public final /* data */ class ChannelRecipient {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final User getUser() {
         return this.user;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ChannelRecipient)) {
-            return false;
-        }
-        ChannelRecipient channelRecipient = (ChannelRecipient) other;
-        return C12238m.areEqual(this.nick, channelRecipient.nick) && this.channelId == channelRecipient.channelId && C12238m.areEqual(this.user, channelRecipient.user);
     }
 
     public int hashCode() {

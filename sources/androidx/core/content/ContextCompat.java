@@ -83,12 +83,12 @@ import org.webrtc.MediaStreamTrack;
 /* JADX INFO: loaded from: classes.dex */
 public class ContextCompat {
     private static final String TAG = "ContextCompat";
+    private static TypedValue sTempValue;
     private static final Object sLock = new Object();
     private static final Object sSync = new Object();
-    private static TypedValue sTempValue;
 
     @RequiresApi(16)
-    public static class Api16Impl {
+    public class Api16Impl {
         private Api16Impl() {
         }
 
@@ -104,7 +104,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(19)
-    public static class Api19Impl {
+    public class Api19Impl {
         private Api19Impl() {
         }
 
@@ -125,7 +125,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 
@@ -146,7 +146,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(23)
-    public static class Api23Impl {
+    public class Api23Impl {
         private Api23Impl() {
         }
 
@@ -172,7 +172,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(24)
-    public static class Api24Impl {
+    public class Api24Impl {
         private Api24Impl() {
         }
 
@@ -193,7 +193,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(26)
-    public static class Api26Impl {
+    public class Api26Impl {
         private Api26Impl() {
         }
 
@@ -204,7 +204,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(28)
-    public static class Api28Impl {
+    public class Api28Impl {
         private Api28Impl() {
         }
 
@@ -215,7 +215,7 @@ public class ContextCompat {
     }
 
     @RequiresApi(30)
-    public static class Api30Impl {
+    public class Api30Impl {
         private Api30Impl() {
         }
 
@@ -225,7 +225,7 @@ public class ContextCompat {
         }
     }
 
-    public static final class LegacyServiceMapHolder {
+    public final class LegacyServiceMapHolder {
         public static final HashMap<Class<?>, String> SERVICES;
 
         static {

@@ -15,7 +15,7 @@ public interface InterfaceC11427f extends InterfaceC11570d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.f$a */
     /* JADX INFO: compiled from: ReflectJavaAnnotationOwner.kt */
-    public static final class a {
+    public final class a {
         public static C11424c findAnnotation(InterfaceC11427f interfaceC11427f, C11713b c11713b) {
             Annotation[] declaredAnnotations;
             C12238m.checkNotNullParameter(interfaceC11427f, "this");

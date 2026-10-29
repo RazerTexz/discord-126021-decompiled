@@ -19,15 +19,15 @@ import p007b.p225i.p361c.C4542c;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4852b {
 
-    /* JADX INFO: renamed from: a */
-    public static final String[] f12966a = {"*", "FCM", "GCM", ""};
-
     /* JADX INFO: renamed from: b */
     @GuardedBy("iidPrefs")
     public final SharedPreferences f12967b;
 
     /* JADX INFO: renamed from: c */
     public final String f12968c;
+
+    /* JADX INFO: renamed from: a */
+    public static final String[] f12966a = {"*", "FCM", "GCM", ""};
 
     /* JADX WARN: Code duplicated, block: B:15:0x0048  */
     public C4852b(@NonNull C4542c c4542c) {

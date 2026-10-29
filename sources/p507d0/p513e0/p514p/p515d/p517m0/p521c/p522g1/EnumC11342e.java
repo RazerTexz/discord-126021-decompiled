@@ -29,15 +29,15 @@ public enum EnumC11342e {
         this.renderName = str;
     }
 
+    public final String getRenderName() {
+        return this.renderName;
+    }
+
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static EnumC11342e[] valuesCustom() {
         EnumC11342e[] enumC11342eArrValuesCustom = values();
         EnumC11342e[] enumC11342eArr = new EnumC11342e[enumC11342eArrValuesCustom.length];
         System.arraycopy(enumC11342eArrValuesCustom, 0, enumC11342eArr, 0, enumC11342eArrValuesCustom.length);
         return enumC11342eArr;
-    }
-
-    public final String getRenderName() {
-        return this.renderName;
     }
 }

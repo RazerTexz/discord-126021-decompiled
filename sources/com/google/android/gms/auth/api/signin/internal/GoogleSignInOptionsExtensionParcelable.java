@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p296f.p297b.C3199b;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class GoogleSignInOptionsExtensionParcelable extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<GoogleSignInOptionsExtensionParcelable> CREATOR = new C3199b();
 
     /* JADX INFO: renamed from: j */
     public final int f20458j;
@@ -20,6 +19,7 @@ public class GoogleSignInOptionsExtensionParcelable extends AbstractSafeParcelab
 
     /* JADX INFO: renamed from: l */
     public Bundle f20460l;
+    public static final Parcelable.Creator<GoogleSignInOptionsExtensionParcelable> CREATOR = new C3199b();
 
     public GoogleSignInOptionsExtensionParcelable(int i, int i2, Bundle bundle) {
         this.f20458j = i;

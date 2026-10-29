@@ -17,14 +17,14 @@ import androidx.core.widget.CompoundButtonCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatCompoundButtonHelper {
-    private ColorStateList mButtonTintList = null;
-    private PorterDuff.Mode mButtonTintMode = null;
-    private boolean mHasButtonTint = false;
-    private boolean mHasButtonTintMode = false;
     private boolean mSkipNextApply;
 
     @NonNull
     private final CompoundButton mView;
+    private ColorStateList mButtonTintList = null;
+    private PorterDuff.Mode mButtonTintMode = null;
+    private boolean mHasButtonTint = false;
+    private boolean mHasButtonTintMode = false;
 
     public AppCompatCompoundButtonHelper(@NonNull CompoundButton compoundButton) {
         this.mView = compoundButton;

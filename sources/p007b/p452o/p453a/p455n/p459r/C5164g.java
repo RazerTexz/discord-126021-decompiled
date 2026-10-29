@@ -23,9 +23,6 @@ import p007b.p452o.p453a.p469t.C5211b;
 @RequiresApi(21)
 public class C5164g extends AbstractC5144d {
 
-    /* JADX INFO: renamed from: e */
-    public static final C5103b f13976e = new C5103b(C5164g.class.getSimpleName());
-
     /* JADX INFO: renamed from: f */
     public List<AbstractC5158a> f13977f;
 
@@ -41,10 +38,28 @@ public class C5164g extends AbstractC5144d {
     /* JADX INFO: renamed from: j */
     public final boolean f13981j;
 
+    /* JADX INFO: renamed from: e */
+    public static final C5103b f13976e = new C5103b(C5164g.class.getSimpleName());
+
     public C5164g(@NonNull AbstractC5135i abstractC5135i, @Nullable C5211b c5211b, boolean z2) {
         this.f13979h = c5211b;
         this.f13980i = abstractC5135i;
         this.f13981j = z2;
+    }
+
+    /* JADX INFO: renamed from: n */
+    public final void m7353n(@NonNull InterfaceC5143c interfaceC5143c) {
+        List arrayList = new ArrayList();
+        if (this.f13979h != null) {
+            C5130d c5130d = (C5130d) interfaceC5143c;
+            C5169b c5169b = new C5169b(this.f13980i.mo7281e(), this.f13980i.mo7315z().m7432l(), this.f13980i.mo7254C(EnumC5171b.VIEW), this.f13980i.mo7315z().f14209d, c5130d.f13805g0, c5130d.f13807i0);
+            arrayList = this.f13979h.m7411c(c5169b).m7410b(Integer.MAX_VALUE, c5169b);
+        }
+        C5160c c5160c = new C5160c(arrayList, this.f13981j);
+        C5162e c5162e = new C5162e(arrayList, this.f13981j);
+        C5166i c5166i = new C5166i(arrayList, this.f13981j);
+        this.f13977f = Arrays.asList(c5160c, c5162e, c5166i);
+        this.f13978g = C3404f.m4361x1(c5160c, c5162e, c5166i);
     }
 
     @Override // p007b.p452o.p453a.p455n.p456o.AbstractC5144d, p007b.p452o.p453a.p455n.p456o.AbstractC5145e
@@ -62,20 +77,5 @@ public class C5164g extends AbstractC5144d {
     /* JADX INFO: renamed from: m */
     public AbstractC5145e mo7336m() {
         return this.f13978g;
-    }
-
-    /* JADX INFO: renamed from: n */
-    public final void m7353n(@NonNull InterfaceC5143c interfaceC5143c) {
-        List arrayList = new ArrayList();
-        if (this.f13979h != null) {
-            C5130d c5130d = (C5130d) interfaceC5143c;
-            C5169b c5169b = new C5169b(this.f13980i.mo7281e(), this.f13980i.mo7315z().m7432l(), this.f13980i.mo7254C(EnumC5171b.VIEW), this.f13980i.mo7315z().f14209d, c5130d.f13805g0, c5130d.f13807i0);
-            arrayList = this.f13979h.m7411c(c5169b).m7410b(Integer.MAX_VALUE, c5169b);
-        }
-        C5160c c5160c = new C5160c(arrayList, this.f13981j);
-        C5162e c5162e = new C5162e(arrayList, this.f13981j);
-        C5166i c5166i = new C5166i(arrayList, this.f13981j);
-        this.f13977f = Arrays.asList(c5160c, c5162e, c5166i);
-        this.f13978g = C3404f.m4361x1(c5160c, c5162e, c5166i);
     }
 }

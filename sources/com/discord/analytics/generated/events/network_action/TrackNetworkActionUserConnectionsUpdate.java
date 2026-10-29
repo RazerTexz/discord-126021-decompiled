@@ -39,18 +39,6 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
         this.analyticsSchemaTypeName = "network_action_user_connections_update";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -62,6 +50,12 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
         return C12238m.areEqual(this.name, trackNetworkActionUserConnectionsUpdate.name) && C12238m.areEqual(this.friendSync, trackNetworkActionUserConnectionsUpdate.friendSync) && C12238m.areEqual(this.visibility, trackNetworkActionUserConnectionsUpdate.visibility) && C12238m.areEqual(this.showActivity, trackNetworkActionUserConnectionsUpdate.showActivity);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.name;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
@@ -71,6 +65,12 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
         int iHashCode3 = (iHashCode2 + (bool2 != null ? bool2.hashCode() : 0)) * 31;
         Boolean bool3 = this.showActivity;
         return iHashCode3 + (bool3 != null ? bool3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

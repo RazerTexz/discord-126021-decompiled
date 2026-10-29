@@ -18,22 +18,14 @@ public final class DurationUtilsKt {
         float f = j;
         int i = (int) (f / 86400000);
         int i2 = ((int) (f / 3600000)) % 24;
-        int i3 = ((int) (f / 60000)) % 60;
-        int iCoerceAtLeast = C11226f.coerceAtLeast(((int) (f / 1000)) % 60, 1);
-        StringBuilder sb = new StringBuilder();
-        sb.append(i3);
-        sb.append(C1107b.m216h(context, C5419R.string.countdown_units_minutes, new Object[0], null, 4));
-        sb.append(' ');
-        sb.append(iCoerceAtLeast);
-        sb.append(C1107b.m216h(context, C5419R.string.countdown_units_seconds, new Object[0], null, 4));
-        String string = sb.toString();
+        String str = "" + (((int) (f / 60000)) % 60) + C1107b.m216h(context, C5419R.string.countdown_units_minutes, new Object[0], null, 4) + ' ' + C11226f.coerceAtLeast(((int) (f / 1000)) % 60, 1) + C1107b.m216h(context, C5419R.string.countdown_units_seconds, new Object[0], null, 4);
         if (i <= 0) {
             if (i2 <= 0) {
-                return string;
+                return str;
             }
-            return i2 + C1107b.m216h(context, C5419R.string.countdown_units_hours, new Object[0], null, 4) + ' ' + string;
+            return "" + i2 + C1107b.m216h(context, C5419R.string.countdown_units_hours, new Object[0], null, 4) + ' ' + str;
         }
-        return i + C1107b.m216h(context, C5419R.string.countdown_units_days, new Object[0], null, 4) + ' ' + i2 + C1107b.m216h(context, C5419R.string.countdown_units_hours, new Object[0], null, 4) + ' ' + string;
+        return "" + i + C1107b.m216h(context, C5419R.string.countdown_units_days, new Object[0], null, 4) + ' ' + i2 + C1107b.m216h(context, C5419R.string.countdown_units_hours, new Object[0], null, 4) + ' ' + str;
     }
 
     public static final CharSequence humanizeDuration(Context context, long j) {

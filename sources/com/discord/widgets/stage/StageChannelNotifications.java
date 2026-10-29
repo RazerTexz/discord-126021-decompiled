@@ -41,59 +41,15 @@ public final class StageChannelNotifications {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(StageChannelNotifications$Companion$INSTANCE$2.INSTANCE);
     private static final long NOTIFICATION_ICON_FETCH_DELAY_MS = 250;
     public static final String NOTIFICATION_TAG = "stage-channels";
     private final StoreChannels channelsStore;
-
-    /* JADX INFO: compiled from: StageChannelNotifications.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final StageChannelNotifications getINSTANCE() {
-            Lazy lazy = StageChannelNotifications.INSTANCE$delegate;
-            Companion companion = StageChannelNotifications.INSTANCE;
-            return (StageChannelNotifications) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StageChannelNotifications.kt */
-    public static final class Notifications {
-        public static final Notifications INSTANCE = new Notifications();
-
-        /* JADX INFO: compiled from: StageChannelNotifications.kt */
-        public static final class InvitedToSpeak {
-            public static final InvitedToSpeak INSTANCE = new InvitedToSpeak();
-            private static final int NOTIFICATION_ID = 102;
-
-            private InvitedToSpeak() {
-            }
-
-            public final void cancel(Context context) {
-                C12238m.checkNotNullParameter(context, "context");
-                NotificationManagerCompat.from(context).cancel(StageChannelNotifications.NOTIFICATION_TAG, 102);
-            }
-
-            public final void notify(Context context, Notification notification) {
-                C12238m.checkNotNullParameter(context, "context");
-                C12238m.checkNotNullParameter(notification, "notification");
-                NotificationManagerCompat.from(context).notify(StageChannelNotifications.NOTIFICATION_TAG, 102, notification);
-            }
-        }
-
-        private Notifications() {
-        }
-    }
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(StageChannelNotifications$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelNotifications$onInvitedToSpeak$1 */
     /* JADX INFO: compiled from: StageChannelNotifications.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.stage.StageChannelNotifications$onInvitedToSpeak$1", m10085f = "StageChannelNotifications.kt", m10086l = {49}, m10087m = "invokeSuspend")
-    public static final class C100131 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C100131 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ NotificationCompat.Builder $builder;
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Application $context;
@@ -120,7 +76,7 @@ public final class StageChannelNotifications {
 
         /* JADX WARN: Code duplicated, block: B:18:0x0061  */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             Bitmap bitmap = null;
@@ -162,6 +118,50 @@ public final class StageChannelNotifications {
             C12238m.checkNotNullExpressionValue(notificationBuild2, "builder.build()");
             invitedToSpeak2.notify(application2, notificationBuild2);
             return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: StageChannelNotifications.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final StageChannelNotifications getINSTANCE() {
+            Lazy lazy = StageChannelNotifications.INSTANCE$delegate;
+            Companion companion = StageChannelNotifications.INSTANCE;
+            return (StageChannelNotifications) lazy.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StageChannelNotifications.kt */
+    public final class Notifications {
+        public static final Notifications INSTANCE = new Notifications();
+
+        /* JADX INFO: compiled from: StageChannelNotifications.kt */
+        public final class InvitedToSpeak {
+            private static final int NOTIFICATION_ID = 102;
+            public static final InvitedToSpeak INSTANCE = new InvitedToSpeak();
+
+            private InvitedToSpeak() {
+            }
+
+            public final void cancel(Context context) {
+                C12238m.checkNotNullParameter(context, "context");
+                NotificationManagerCompat.from(context).cancel(StageChannelNotifications.NOTIFICATION_TAG, 102);
+            }
+
+            public final void notify(Context context, Notification notification) {
+                C12238m.checkNotNullParameter(context, "context");
+                C12238m.checkNotNullParameter(notification, "notification");
+                NotificationManagerCompat.from(context).notify(StageChannelNotifications.NOTIFICATION_TAG, 102, notification);
+            }
+        }
+
+        private Notifications() {
         }
     }
 

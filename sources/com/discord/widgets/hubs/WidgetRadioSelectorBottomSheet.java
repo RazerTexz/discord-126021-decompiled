@@ -42,7 +42,7 @@ public final class WidgetRadioSelectorBottomSheet extends AppBottomSheet {
     private Function1<? super Integer, Unit> onSelected;
 
     /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

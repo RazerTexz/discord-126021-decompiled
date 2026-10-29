@@ -29,7 +29,7 @@ public final class PermissionOwnerListView extends RecyclerView {
     private final Adapter adapter;
 
     /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-    public static final class Adapter extends RecyclerView.Adapter<PermissionOwnerViewHolder> {
+    public final class Adapter extends RecyclerView.Adapter<PermissionOwnerViewHolder> {
         private Function1<? super PermissionOwner, Unit> onRemoveClicked = PermissionOwnerListView$Adapter$onRemoveClicked$1.INSTANCE;
         private List<Item> data = C12147n.emptyList();
 
@@ -69,7 +69,7 @@ public final class PermissionOwnerListView extends RecyclerView {
     }
 
     /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-    public static final /* data */ class Item {
+    public final /* data */ class Item {
         private final PermissionOwner permissionOwner;
         private final RemoveStatus removeStatus;
 
@@ -90,16 +90,6 @@ public final class PermissionOwnerListView extends RecyclerView {
             return item.copy(permissionOwner, removeStatus);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PermissionOwner getPermissionOwner() {
-            return this.permissionOwner;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final RemoveStatus getRemoveStatus() {
-            return this.removeStatus;
-        }
-
         public final Item copy(PermissionOwner permissionOwner, RemoveStatus removeStatus) {
             C12238m.checkNotNullParameter(permissionOwner, "permissionOwner");
             C12238m.checkNotNullParameter(removeStatus, "removeStatus");
@@ -117,8 +107,18 @@ public final class PermissionOwnerListView extends RecyclerView {
             return C12238m.areEqual(this.permissionOwner, item.permissionOwner) && C12238m.areEqual(this.removeStatus, item.removeStatus);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final PermissionOwner getPermissionOwner() {
             return this.permissionOwner;
+        }
+
+        public final PermissionOwner getPermissionOwner() {
+            return this.permissionOwner;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final RemoveStatus getRemoveStatus() {
+            return this.removeStatus;
         }
 
         public final RemoveStatus getRemoveStatus() {
@@ -143,7 +143,7 @@ public final class PermissionOwnerListView extends RecyclerView {
     }
 
     /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-    public static final class PermissionOwnerViewHolder extends RecyclerView.ViewHolder {
+    public final class PermissionOwnerViewHolder extends RecyclerView.ViewHolder {
         private final RemovablePermissionOwnerViewBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -201,10 +201,10 @@ public final class PermissionOwnerListView extends RecyclerView {
     }
 
     /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-    public static abstract class RemoveStatus {
+    public abstract class RemoveStatus {
 
         /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-        public static final class CanRemove extends RemoveStatus {
+        public final class CanRemove extends RemoveStatus {
             public static final CanRemove INSTANCE = new CanRemove();
 
             private CanRemove() {
@@ -213,7 +213,7 @@ public final class PermissionOwnerListView extends RecyclerView {
         }
 
         /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-        public static final /* data */ class CannotRemove extends RemoveStatus {
+        public final /* data */ class CannotRemove extends RemoveStatus {
             private final Reason reason;
 
             /* JADX INFO: compiled from: PermissionOwnerListView.kt */
@@ -238,11 +238,6 @@ public final class PermissionOwnerListView extends RecyclerView {
                 return cannotRemove.copy(reason);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Reason getReason() {
-                return this.reason;
-            }
-
             public final CannotRemove copy(Reason reason) {
                 C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
                 return new CannotRemove(reason);
@@ -253,6 +248,11 @@ public final class PermissionOwnerListView extends RecyclerView {
                     return (other instanceof CannotRemove) && C12238m.areEqual(this.reason, ((CannotRemove) other).reason);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Reason getReason() {
+                return this.reason;
             }
 
             public final Reason getReason() {
@@ -276,7 +276,7 @@ public final class PermissionOwnerListView extends RecyclerView {
         }
 
         /* JADX INFO: compiled from: PermissionOwnerListView.kt */
-        public static final class IsRemoving extends RemoveStatus {
+        public final class IsRemoving extends RemoveStatus {
             public static final IsRemoving INSTANCE = new IsRemoving();
 
             private IsRemoving() {

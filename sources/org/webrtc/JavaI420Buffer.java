@@ -63,6 +63,11 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         throw new IllegalArgumentException(sbM834V.toString());
     }
 
+    @Override // org.webrtc.VideoFrame.Buffer
+    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
+        return cropAndScaleI420(this, i, i2, i3, i4, i5, i6);
+    }
+
     public static VideoFrame.Buffer cropAndScaleI420(final VideoFrame.I420Buffer i420Buffer, int i, int i2, int i3, int i4, int i5, int i6) {
         if (i3 != i5 || i4 != i6) {
             JavaI420Buffer javaI420BufferAllocate = allocate(i5, i6);
@@ -84,31 +89,6 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
                 i420Buffer.release();
             }
         });
-    }
-
-    private static native void nativeCropAndScaleI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, int i4, int i5, int i6, int i7, ByteBuffer byteBuffer4, int i8, ByteBuffer byteBuffer5, int i9, ByteBuffer byteBuffer6, int i10, int i11, int i12);
-
-    public static JavaI420Buffer wrap(int i, int i2, ByteBuffer byteBuffer, int i3, ByteBuffer byteBuffer2, int i4, ByteBuffer byteBuffer3, int i5, @Nullable Runnable runnable) {
-        if (byteBuffer == null || byteBuffer2 == null || byteBuffer3 == null) {
-            throw new IllegalArgumentException("Data buffers cannot be null.");
-        }
-        if (!byteBuffer.isDirect() || !byteBuffer2.isDirect() || !byteBuffer3.isDirect()) {
-            throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
-        }
-        ByteBuffer byteBufferSlice = byteBuffer.slice();
-        ByteBuffer byteBufferSlice2 = byteBuffer2.slice();
-        ByteBuffer byteBufferSlice3 = byteBuffer3.slice();
-        int i6 = (i + 1) / 2;
-        int i7 = (i2 + 1) / 2;
-        checkCapacity(byteBufferSlice, i, i2, i3);
-        checkCapacity(byteBufferSlice2, i6, i7, i4);
-        checkCapacity(byteBufferSlice3, i6, i7, i5);
-        return new JavaI420Buffer(i, i2, byteBufferSlice, i3, byteBufferSlice2, i4, byteBufferSlice3, i5, runnable);
-    }
-
-    @Override // org.webrtc.VideoFrame.Buffer
-    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
-        return cropAndScaleI420(this, i, i2, i3, i4, i5, i6);
     }
 
     @Override // org.webrtc.VideoFrame.I420Buffer
@@ -151,6 +131,8 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         return this.width;
     }
 
+    private static native void nativeCropAndScaleI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, int i4, int i5, int i6, int i7, ByteBuffer byteBuffer4, int i8, ByteBuffer byteBuffer5, int i9, ByteBuffer byteBuffer6, int i10, int i11, int i12);
+
     @Override // org.webrtc.VideoFrame.Buffer, org.webrtc.RefCounted
     public void release() {
         this.refCountDelegate.release();
@@ -165,5 +147,23 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     public VideoFrame.I420Buffer toI420() {
         retain();
         return this;
+    }
+
+    public static JavaI420Buffer wrap(int i, int i2, ByteBuffer byteBuffer, int i3, ByteBuffer byteBuffer2, int i4, ByteBuffer byteBuffer3, int i5, @Nullable Runnable runnable) {
+        if (byteBuffer == null || byteBuffer2 == null || byteBuffer3 == null) {
+            throw new IllegalArgumentException("Data buffers cannot be null.");
+        }
+        if (!byteBuffer.isDirect() || !byteBuffer2.isDirect() || !byteBuffer3.isDirect()) {
+            throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
+        }
+        ByteBuffer byteBufferSlice = byteBuffer.slice();
+        ByteBuffer byteBufferSlice2 = byteBuffer2.slice();
+        ByteBuffer byteBufferSlice3 = byteBuffer3.slice();
+        int i6 = (i + 1) / 2;
+        int i7 = (i2 + 1) / 2;
+        checkCapacity(byteBufferSlice, i, i2, i3);
+        checkCapacity(byteBufferSlice2, i6, i7, i4);
+        checkCapacity(byteBufferSlice3, i6, i7, i5);
+        return new JavaI420Buffer(i, i2, byteBufferSlice, i3, byteBufferSlice2, i4, byteBufferSlice3, i5, runnable);
     }
 }

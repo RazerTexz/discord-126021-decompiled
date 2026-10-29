@@ -24,19 +24,6 @@ public class Trackers {
     }
 
     @NonNull
-    public static synchronized Trackers getInstance(Context context, TaskExecutor taskExecutor) {
-        if (sInstance == null) {
-            sInstance = new Trackers(context, taskExecutor);
-        }
-        return sInstance;
-    }
-
-    @VisibleForTesting
-    public static synchronized void setInstance(@NonNull Trackers trackers) {
-        sInstance = trackers;
-    }
-
-    @NonNull
     public BatteryChargingTracker getBatteryChargingTracker() {
         return this.mBatteryChargingTracker;
     }
@@ -47,6 +34,14 @@ public class Trackers {
     }
 
     @NonNull
+    public static synchronized Trackers getInstance(Context context, TaskExecutor taskExecutor) {
+        if (sInstance == null) {
+            sInstance = new Trackers(context, taskExecutor);
+        }
+        return sInstance;
+    }
+
+    @NonNull
     public NetworkStateTracker getNetworkStateTracker() {
         return this.mNetworkStateTracker;
     }
@@ -54,5 +49,10 @@ public class Trackers {
     @NonNull
     public StorageNotLowTracker getStorageNotLowTracker() {
         return this.mStorageNotLowTracker;
+    }
+
+    @VisibleForTesting
+    public static synchronized void setInstance(@NonNull Trackers trackers) {
+        sInstance = trackers;
     }
 }

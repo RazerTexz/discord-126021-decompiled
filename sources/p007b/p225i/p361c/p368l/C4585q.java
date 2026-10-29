@@ -18,6 +18,9 @@ import p007b.p225i.p361c.p396q.InterfaceC4799d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4585q implements InterfaceC4799d, InterfaceC4798c {
 
+    /* JADX INFO: renamed from: c */
+    public final Executor f12208c;
+
     /* JADX INFO: renamed from: a */
     @GuardedBy("this")
     public final Map<Class<?>, ConcurrentHashMap<InterfaceC4797b<Object>, Executor>> f12206a = new HashMap();
@@ -25,9 +28,6 @@ public class C4585q implements InterfaceC4799d, InterfaceC4798c {
     /* JADX INFO: renamed from: b */
     @GuardedBy("this")
     public Queue<C4796a<?>> f12207b = new ArrayDeque();
-
-    /* JADX INFO: renamed from: c */
-    public final Executor f12208c;
 
     public C4585q(Executor executor) {
         this.f12208c = executor;

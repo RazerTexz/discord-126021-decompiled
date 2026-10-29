@@ -27,7 +27,7 @@ public final class C1314d extends Animatable2Compat.AnimationCallback {
     /* JADX INFO: renamed from: b.a.v.d$a */
     /* JADX INFO: compiled from: SparkleView.kt */
     @InterfaceC12188e(m10084c = "com.discord.tooltips.SparkleView$startAnimation$1$onAnimationEnd$1", m10085f = "SparkleView.kt", m10086l = {61}, m10087m = "invokeSuspend")
-    public static final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class a extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public a(Continuation continuation) {
@@ -48,7 +48,7 @@ public final class C1314d extends Animatable2Compat.AnimationCallback {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

@@ -37,7 +37,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
     private static final int TYPE_PARTICIPANT = 1;
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
-    public static final class HeaderViewHolder extends MGRecyclerViewHolder<StageAudienceBlockedBottomSheetAdapter, MGRecyclerDataPayload> {
+    public final class HeaderViewHolder extends MGRecyclerViewHolder<StageAudienceBlockedBottomSheetAdapter, MGRecyclerDataPayload> {
         private final StageAudienceBlockedBottomSheetHeaderItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,10 +77,10 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
     }
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
-    public static abstract class ListItem implements MGRecyclerDataPayload {
+    public abstract class ListItem implements MGRecyclerDataPayload {
 
         /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
-        public static final /* data */ class Header extends ListItem {
+        public final /* data */ class Header extends ListItem {
             private final String key;
             private final int numBlockedUsers;
             private final int type;
@@ -98,11 +98,6 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                 return header.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getNumBlockedUsers() {
-                return this.numBlockedUsers;
-            }
-
             public final Header copy(int numBlockedUsers) {
                 return new Header(numBlockedUsers);
             }
@@ -117,6 +112,11 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getNumBlockedUsers() {
+                return this.numBlockedUsers;
             }
 
             public final int getNumBlockedUsers() {
@@ -138,7 +138,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
         }
 
         /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
-        public static final /* data */ class Participant extends ListItem {
+        public final /* data */ class Participant extends ListItem {
             private final boolean isSpeaker;
             private final String key;
             private final StoreVoiceParticipants.VoiceUser participant;
@@ -164,16 +164,6 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                 return participant.copy(voiceUser, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreVoiceParticipants.VoiceUser getParticipant() {
-                return this.participant;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsSpeaker() {
-                return this.isSpeaker;
-            }
-
             public final Participant copy(StoreVoiceParticipants.VoiceUser participant, boolean isSpeaker) {
                 C12238m.checkNotNullParameter(participant, "participant");
                 return new Participant(participant, isSpeaker);
@@ -190,9 +180,19 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                 return C12238m.areEqual(this.participant, participant.participant) && this.isSpeaker == participant.isSpeaker;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsSpeaker() {
+                return this.isSpeaker;
+            }
+
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final StoreVoiceParticipants.VoiceUser getParticipant() {
+                return this.participant;
             }
 
             public final StoreVoiceParticipants.VoiceUser getParticipant() {
@@ -241,7 +241,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
     }
 
     /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
-    public static final class ParticipantViewHolder extends MGRecyclerViewHolder<StageAudienceBlockedBottomSheetAdapter, MGRecyclerDataPayload> {
+    public final class ParticipantViewHolder extends MGRecyclerViewHolder<StageAudienceBlockedBottomSheetAdapter, MGRecyclerDataPayload> {
         private final StageAudienceBlockedBottomSheetItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

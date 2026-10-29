@@ -26,7 +26,7 @@ public final class C4982a {
 
     /* JADX INFO: renamed from: b.i.e.o.c.a$b */
     /* JADX INFO: compiled from: Detector.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final C4956k f13344a;
@@ -50,7 +50,7 @@ public final class C4982a {
 
     /* JADX INFO: renamed from: b.i.e.o.c.a$c */
     /* JADX INFO: compiled from: Detector.java */
-    public static final class c implements Serializable, Comparator<b> {
+    public final class c implements Serializable, Comparator<b> {
         public c(a aVar) {
         }
 

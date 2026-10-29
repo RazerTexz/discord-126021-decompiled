@@ -11,7 +11,7 @@ public final class C3112m {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.m$a */
     /* JADX INFO: compiled from: FlacFrameReader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public long f8967a;

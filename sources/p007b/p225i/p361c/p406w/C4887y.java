@@ -32,9 +32,6 @@ import p007b.p225i.p361c.p398s.InterfaceC4824o;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4887y {
 
-    /* JADX INFO: renamed from: a */
-    public static final long f13059a = TimeUnit.HOURS.toSeconds(8);
-
     /* JADX INFO: renamed from: b */
     public static final /* synthetic */ int f13060b = 0;
 
@@ -55,6 +52,9 @@ public class C4887y {
 
     /* JADX INFO: renamed from: j */
     public final C4885w f13068j;
+
+    /* JADX INFO: renamed from: a */
+    public static final long f13059a = TimeUnit.HOURS.toSeconds(8);
 
     /* JADX INFO: renamed from: g */
     @GuardedBy("pendingOperations")

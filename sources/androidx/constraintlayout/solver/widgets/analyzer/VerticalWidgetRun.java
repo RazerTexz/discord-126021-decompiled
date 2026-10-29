@@ -11,7 +11,7 @@ public class VerticalWidgetRun extends WidgetRun {
     public DimensionDependency baselineDimension;
 
     /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.VerticalWidgetRun$1 */
-    public static /* synthetic */ class C01931 {
+    public /* synthetic */ class C01931 {
 
         /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType */
         public static final /* synthetic */ int[] f122xbf6f0c8e;

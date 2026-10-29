@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCloseTutorial.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean acknowledged = null;
-    private final CharSequence tutorial = null;
     private final Long applicationId = null;
+    private TrackBase trackBase;
+    private final CharSequence tutorial = null;
     private final transient String analyticsSchemaTypeName = "close_tutorial";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, Tra
         }
         TrackCloseTutorial trackCloseTutorial = (TrackCloseTutorial) other;
         return C12238m.areEqual(this.acknowledged, trackCloseTutorial.acknowledged) && C12238m.areEqual(this.tutorial, trackCloseTutorial.tutorial) && C12238m.areEqual(this.applicationId, trackCloseTutorial.applicationId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

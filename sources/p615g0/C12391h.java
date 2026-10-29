@@ -33,39 +33,6 @@ public final class C12391h implements InterfaceC12405v {
         this.f26092l = deflater;
     }
 
-    @IgnoreJRERequirement
-    /* JADX INFO: renamed from: a */
-    public final void m10477a(boolean z2) throws IOException {
-        C12402s c12402sM10438N;
-        int iDeflate;
-        C12388e c12388eMo10457g = this.f26091k.mo10457g();
-        while (true) {
-            c12402sM10438N = c12388eMo10457g.m10438N(1);
-            if (z2) {
-                Deflater deflater = this.f26092l;
-                byte[] bArr = c12402sM10438N.f26118a;
-                int i = c12402sM10438N.f26120c;
-                iDeflate = deflater.deflate(bArr, i, 8192 - i, 2);
-            } else {
-                Deflater deflater2 = this.f26092l;
-                byte[] bArr2 = c12402sM10438N.f26118a;
-                int i2 = c12402sM10438N.f26120c;
-                iDeflate = deflater2.deflate(bArr2, i2, 8192 - i2);
-            }
-            if (iDeflate > 0) {
-                c12402sM10438N.f26120c += iDeflate;
-                c12388eMo10457g.f26080k += (long) iDeflate;
-                this.f26091k.mo10431F();
-            } else if (this.f26092l.needsInput()) {
-                break;
-            }
-        }
-        if (c12402sM10438N.f26119b == c12402sM10438N.f26120c) {
-            c12388eMo10457g.f26079j = c12402sM10438N.m10494a();
-            C12403t.m10498a(c12402sM10438N);
-        }
-    }
-
     @Override // p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
     public void close() throws Throwable {
         if (this.f26090j) {
@@ -102,6 +69,39 @@ public final class C12391h implements InterfaceC12405v {
     public void flush() throws IOException {
         m10477a(true);
         this.f26091k.flush();
+    }
+
+    @IgnoreJRERequirement
+    /* JADX INFO: renamed from: a */
+    public final void m10477a(boolean z2) throws IOException {
+        C12402s c12402sM10438N;
+        int iDeflate;
+        C12388e c12388eMo10457g = this.f26091k.mo10457g();
+        while (true) {
+            c12402sM10438N = c12388eMo10457g.m10438N(1);
+            if (z2) {
+                Deflater deflater = this.f26092l;
+                byte[] bArr = c12402sM10438N.f26118a;
+                int i = c12402sM10438N.f26120c;
+                iDeflate = deflater.deflate(bArr, i, 8192 - i, 2);
+            } else {
+                Deflater deflater2 = this.f26092l;
+                byte[] bArr2 = c12402sM10438N.f26118a;
+                int i2 = c12402sM10438N.f26120c;
+                iDeflate = deflater2.deflate(bArr2, i2, 8192 - i2);
+            }
+            if (iDeflate > 0) {
+                c12402sM10438N.f26120c += iDeflate;
+                c12388eMo10457g.f26080k += (long) iDeflate;
+                this.f26091k.mo10431F();
+            } else if (this.f26092l.needsInput()) {
+                break;
+            }
+        }
+        if (c12402sM10438N.f26119b == c12402sM10438N.f26120c) {
+            c12388eMo10457g.f26079j = c12402sM10438N.m10494a();
+            C12403t.m10498a(c12402sM10438N);
+        }
     }
 
     @Override // p615g0.InterfaceC12405v

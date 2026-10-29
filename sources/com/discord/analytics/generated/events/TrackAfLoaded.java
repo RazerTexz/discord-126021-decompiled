@@ -12,39 +12,33 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfLoaded implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence loadId = null;
+    private final CharSequence feedLayout = null;
     private final List<Long> gameIds = null;
+    private final List<Long> guildIdsViewed = null;
+    private final CharSequence loadId = null;
+    private final List<Long> newsIdsViewed = null;
     private final Long numCards = null;
-    private final Long numCardsVisible = null;
     private final Long numCardsGameNews = null;
     private final Long numCardsGamePlayable = null;
+    private final Long numCardsVisible = null;
     private final Long numGameParties = null;
-    private final Long numGamePartiesVoice = null;
-    private final Long numGamePartiesSolo = null;
+    private final Long numGamePartiesCollapsed = null;
     private final Long numGamePartiesRecentlyPlayed = null;
     private final Long numGamePartiesRichPresence = null;
-    private final Long numGamePartiesCollapsed = null;
-    private final Long numSoloCollapsed = null;
-    private final Long numRecentlyPlayedCollapsed = null;
-    private final Long numUsersSubscribed = null;
-    private final Long numLauncherApplications = null;
-    private final Long windowWidth = null;
-    private final Long windowHeight = null;
-    private final CharSequence feedLayout = null;
-    private final List<Long> subscribedGames = null;
+    private final Long numGamePartiesSolo = null;
+    private final Long numGamePartiesVoice = null;
     private final Long numItemsNowPlaying = null;
     private final Long numItemsRecentlyPlayed = null;
-    private final List<Long> newsIdsViewed = null;
-    private final List<Long> guildIdsViewed = null;
+    private final Long numLauncherApplications = null;
+    private final Long numRecentlyPlayedCollapsed = null;
+    private final Long numSoloCollapsed = null;
+    private final Long numUsersSubscribed = null;
+    private final List<Long> subscribedGames = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
+    private final Long windowHeight = null;
+    private final Long windowWidth = null;
     private final transient String analyticsSchemaTypeName = "af_loaded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -55,6 +49,12 @@ public final /* data */ class TrackAfLoaded implements AnalyticsSchema, TrackBas
         }
         TrackAfLoaded trackAfLoaded = (TrackAfLoaded) other;
         return C12238m.areEqual(this.loadId, trackAfLoaded.loadId) && C12238m.areEqual(this.gameIds, trackAfLoaded.gameIds) && C12238m.areEqual(this.numCards, trackAfLoaded.numCards) && C12238m.areEqual(this.numCardsVisible, trackAfLoaded.numCardsVisible) && C12238m.areEqual(this.numCardsGameNews, trackAfLoaded.numCardsGameNews) && C12238m.areEqual(this.numCardsGamePlayable, trackAfLoaded.numCardsGamePlayable) && C12238m.areEqual(this.numGameParties, trackAfLoaded.numGameParties) && C12238m.areEqual(this.numGamePartiesVoice, trackAfLoaded.numGamePartiesVoice) && C12238m.areEqual(this.numGamePartiesSolo, trackAfLoaded.numGamePartiesSolo) && C12238m.areEqual(this.numGamePartiesRecentlyPlayed, trackAfLoaded.numGamePartiesRecentlyPlayed) && C12238m.areEqual(this.numGamePartiesRichPresence, trackAfLoaded.numGamePartiesRichPresence) && C12238m.areEqual(this.numGamePartiesCollapsed, trackAfLoaded.numGamePartiesCollapsed) && C12238m.areEqual(this.numSoloCollapsed, trackAfLoaded.numSoloCollapsed) && C12238m.areEqual(this.numRecentlyPlayedCollapsed, trackAfLoaded.numRecentlyPlayedCollapsed) && C12238m.areEqual(this.numUsersSubscribed, trackAfLoaded.numUsersSubscribed) && C12238m.areEqual(this.numLauncherApplications, trackAfLoaded.numLauncherApplications) && C12238m.areEqual(this.windowWidth, trackAfLoaded.windowWidth) && C12238m.areEqual(this.windowHeight, trackAfLoaded.windowHeight) && C12238m.areEqual(this.feedLayout, trackAfLoaded.feedLayout) && C12238m.areEqual(this.subscribedGames, trackAfLoaded.subscribedGames) && C12238m.areEqual(this.numItemsNowPlaying, trackAfLoaded.numItemsNowPlaying) && C12238m.areEqual(this.numItemsRecentlyPlayed, trackAfLoaded.numItemsRecentlyPlayed) && C12238m.areEqual(this.newsIdsViewed, trackAfLoaded.newsIdsViewed) && C12238m.areEqual(this.guildIdsViewed, trackAfLoaded.guildIdsViewed);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

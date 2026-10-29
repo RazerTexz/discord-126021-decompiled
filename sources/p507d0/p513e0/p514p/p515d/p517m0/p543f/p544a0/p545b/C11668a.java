@@ -16,6 +16,62 @@ public class C11668a {
         "true".equals(property);
     }
 
+    public static byte[] decodeBytes(String[] strArr) {
+        if (strArr == null) {
+            m9583a(7);
+            throw null;
+        }
+        if (strArr.length > 0 && !strArr[0].isEmpty()) {
+            char cCharAt = strArr[0].charAt(0);
+            if (cCharAt == 0) {
+                byte[] bArrStringsToBytes = C11676i.stringsToBytes(m9584b(strArr));
+                if (bArrStringsToBytes != null) {
+                    return bArrStringsToBytes;
+                }
+                m9583a(8);
+                throw null;
+            }
+            if (cCharAt == 65535) {
+                strArr = m9584b(strArr);
+            }
+        }
+        int length = 0;
+        for (String str : strArr) {
+            length += str.length();
+        }
+        byte[] bArr = new byte[length];
+        int i = 0;
+        for (String str2 : strArr) {
+            int length2 = str2.length();
+            int i2 = 0;
+            while (i2 < length2) {
+                bArr[i] = (byte) str2.charAt(i2);
+                i2++;
+                i++;
+            }
+        }
+        for (int i3 = 0; i3 < length; i3++) {
+            bArr[i3] = (byte) ((bArr[i3] + 127) & Opcodes.LAND);
+        }
+        int i4 = (length * 7) / 8;
+        byte[] bArr2 = new byte[i4];
+        int i5 = 0;
+        int i6 = 0;
+        for (int i7 = 0; i7 < i4; i7++) {
+            int i8 = (bArr[i5] & 255) >>> i6;
+            i5++;
+            int i9 = i6 + 1;
+            bArr2[i7] = (byte) (i8 + ((bArr[i5] & ((1 << i9) - 1)) << (7 - i6)));
+            if (i6 == 6) {
+                i5++;
+                i6 = 0;
+            } else {
+                i6 = i9;
+            }
+        }
+        return bArr2;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9583a(int i) {
         String str = (i == 1 || i == 3 || i == 6 || i == 8 || i == 10 || i == 12 || i == 14) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -88,61 +144,5 @@ public class C11668a {
         String[] strArr2 = (String[]) strArr.clone();
         strArr2[0] = strArr2[0].substring(1);
         return strArr2;
-    }
-
-    public static byte[] decodeBytes(String[] strArr) {
-        if (strArr == null) {
-            m9583a(7);
-            throw null;
-        }
-        if (strArr.length > 0 && !strArr[0].isEmpty()) {
-            char cCharAt = strArr[0].charAt(0);
-            if (cCharAt == 0) {
-                byte[] bArrStringsToBytes = C11676i.stringsToBytes(m9584b(strArr));
-                if (bArrStringsToBytes != null) {
-                    return bArrStringsToBytes;
-                }
-                m9583a(8);
-                throw null;
-            }
-            if (cCharAt == 65535) {
-                strArr = m9584b(strArr);
-            }
-        }
-        int length = 0;
-        for (String str : strArr) {
-            length += str.length();
-        }
-        byte[] bArr = new byte[length];
-        int i = 0;
-        for (String str2 : strArr) {
-            int length2 = str2.length();
-            int i2 = 0;
-            while (i2 < length2) {
-                bArr[i] = (byte) str2.charAt(i2);
-                i2++;
-                i++;
-            }
-        }
-        for (int i3 = 0; i3 < length; i3++) {
-            bArr[i3] = (byte) ((bArr[i3] + 127) & Opcodes.LAND);
-        }
-        int i4 = (length * 7) / 8;
-        byte[] bArr2 = new byte[i4];
-        int i5 = 0;
-        int i6 = 0;
-        for (int i7 = 0; i7 < i4; i7++) {
-            int i8 = (bArr[i5] & 255) >>> i6;
-            i5++;
-            int i9 = i6 + 1;
-            bArr2[i7] = (byte) (i8 + ((bArr[i5] & ((1 << i9) - 1)) << (7 - i6)));
-            if (i6 == 6) {
-                i5++;
-                i6 = 0;
-            } else {
-                i6 = i9;
-            }
-        }
-        return bArr2;
     }
 }

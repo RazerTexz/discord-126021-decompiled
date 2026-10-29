@@ -28,9 +28,6 @@ public abstract class AbstractC4064i {
         this.f10800c = new RunnableC4087k(this, interfaceC4192t5);
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract void mo5560a();
-
     /* JADX INFO: renamed from: b */
     public final void m5663b(long j) {
         m5664c();
@@ -64,4 +61,7 @@ public abstract class AbstractC4064i {
         }
         return handler;
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo5560a();
 }

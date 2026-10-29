@@ -19,7 +19,7 @@ public class NotificationChannelGroupCompat {
     public final String mId;
     public CharSequence mName;
 
-    public static class Builder {
+    public class Builder {
         public final NotificationChannelGroupCompat mGroup;
 
         public Builder(@NonNull String str) {
@@ -49,6 +49,11 @@ public class NotificationChannelGroupCompat {
         this.mId = (String) Preconditions.checkNotNull(str);
     }
 
+    @NonNull
+    public List<NotificationChannelCompat> getChannels() {
+        return this.mChannels;
+    }
+
     @RequiresApi(26)
     private List<NotificationChannelCompat> getChannelsCompat(List<NotificationChannel> list) {
         ArrayList arrayList = new ArrayList();
@@ -58,11 +63,6 @@ public class NotificationChannelGroupCompat {
             }
         }
         return arrayList;
-    }
-
-    @NonNull
-    public List<NotificationChannelCompat> getChannels() {
-        return this.mChannels;
     }
 
     @Nullable

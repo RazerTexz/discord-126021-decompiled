@@ -19,14 +19,6 @@ public enum EnumC12040h {
         this.description = str;
     }
 
-    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-    public static EnumC12040h[] valuesCustom() {
-        EnumC12040h[] enumC12040hArrValuesCustom = values();
-        EnumC12040h[] enumC12040hArr = new EnumC12040h[enumC12040hArrValuesCustom.length];
-        System.arraycopy(enumC12040hArrValuesCustom, 0, enumC12040hArr, 0, enumC12040hArrValuesCustom.length);
-        return enumC12040hArr;
-    }
-
     public final String getDescription() {
         return this.description;
     }
@@ -37,5 +29,13 @@ public enum EnumC12040h {
 
     public final boolean isWarning() {
         return this == WARN;
+    }
+
+    /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+    public static EnumC12040h[] valuesCustom() {
+        EnumC12040h[] enumC12040hArrValuesCustom = values();
+        EnumC12040h[] enumC12040hArr = new EnumC12040h[enumC12040hArrValuesCustom.length];
+        System.arraycopy(enumC12040hArrValuesCustom, 0, enumC12040hArr, 0, enumC12040hArrValuesCustom.length);
+        return enumC12040hArr;
     }
 }

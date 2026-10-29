@@ -77,6 +77,12 @@ public final class C0966g6 implements ViewBinding {
         this.f890k = textView5;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f880a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C0966g6 m201a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -134,11 +140,5 @@ public final class C0966g6 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f880a;
     }
 }

@@ -33,7 +33,7 @@ public final /* data */ class ReportSubmissionBody {
     private final String version;
 
     /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

@@ -47,10 +47,7 @@ public final class C2568v extends AbstractC2557o<Void> {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.v$a */
     /* JADX INFO: compiled from: MaskingMediaSource.java */
-    public static final class a extends AbstractC2564r {
-
-        /* JADX INFO: renamed from: l */
-        public static final Object f5721l = new Object();
+    public final class a extends AbstractC2564r {
 
         /* JADX INFO: renamed from: m */
         @Nullable
@@ -60,10 +57,33 @@ public final class C2568v extends AbstractC2557o<Void> {
         @Nullable
         public final Object f5723n;
 
+        /* JADX INFO: renamed from: l */
+        public static final Object f5721l = new Object();
+
         public a(AbstractC2832o2 abstractC2832o2, @Nullable Object obj, @Nullable Object obj2) {
             super(abstractC2832o2);
             this.f5722m = obj;
             this.f5723n = obj2;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: g */
+        public AbstractC2832o2.b mo2513g(int i, AbstractC2832o2.b bVar, boolean z2) {
+            this.f5697k.mo2513g(i, bVar, z2);
+            if (C2738e0.m2993a(bVar.f7339k, this.f5723n) && z2) {
+                bVar.f7339k = f5721l;
+            }
+            return bVar;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: o */
+        public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
+            this.f5697k.mo2514o(i, cVar, j);
+            if (C2738e0.m2993a(cVar.f7353n, this.f5722m)) {
+                cVar.f7353n = AbstractC2832o2.c.f7345j;
+            }
+            return cVar;
         }
 
         @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2564r, p007b.p225i.p226a.p242c.AbstractC2832o2
@@ -77,38 +97,18 @@ public final class C2568v extends AbstractC2557o<Void> {
             return abstractC2832o2.mo2554b(obj);
         }
 
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: g */
-        public AbstractC2832o2.b mo2513g(int i, AbstractC2832o2.b bVar, boolean z2) {
-            this.f5697k.mo2513g(i, bVar, z2);
-            if (C2738e0.m2993a(bVar.f7339k, this.f5723n) && z2) {
-                bVar.f7339k = f5721l;
-            }
-            return bVar;
-        }
-
         @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2564r, p007b.p225i.p226a.p242c.AbstractC2832o2
         /* JADX INFO: renamed from: m */
         public Object mo2556m(int i) {
             Object objMo2556m = this.f5697k.mo2556m(i);
             return C2738e0.m2993a(objMo2556m, this.f5723n) ? f5721l : objMo2556m;
         }
-
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: o */
-        public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
-            this.f5697k.mo2514o(i, cVar, j);
-            if (C2738e0.m2993a(cVar.f7353n, this.f5722m)) {
-                cVar.f7353n = AbstractC2832o2.c.f7345j;
-            }
-            return cVar;
-        }
     }
 
     /* JADX INFO: renamed from: b.i.a.c.a3.v$b */
     /* JADX INFO: compiled from: MaskingMediaSource.java */
     @VisibleForTesting
-    public static final class b extends AbstractC2832o2 {
+    public final class b extends AbstractC2832o2 {
 
         /* JADX INFO: renamed from: k */
         public final C2831o1 f5724k;
@@ -118,16 +118,24 @@ public final class C2568v extends AbstractC2557o<Void> {
         }
 
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: b */
-        public int mo2554b(Object obj) {
-            return obj == a.f5721l ? 0 : -1;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
         /* JADX INFO: renamed from: g */
         public AbstractC2832o2.b mo2513g(int i, AbstractC2832o2.b bVar, boolean z2) {
             bVar.m3337f(z2 ? 0 : null, z2 ? a.f5721l : null, 0, -9223372036854775807L, 0L, C2562c.f5680j, true);
             return bVar;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: o */
+        public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
+            cVar.m3342e(AbstractC2832o2.c.f7345j, this.f5724k, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+            cVar.f7364y = true;
+            return cVar;
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: b */
+        public int mo2554b(Object obj) {
+            return obj == a.f5721l ? 0 : -1;
         }
 
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
@@ -140,14 +148,6 @@ public final class C2568v extends AbstractC2557o<Void> {
         /* JADX INFO: renamed from: m */
         public Object mo2556m(int i) {
             return a.f5721l;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: o */
-        public AbstractC2832o2.c mo2514o(int i, AbstractC2832o2.c cVar, long j) {
-            cVar.m3342e(AbstractC2832o2.c.f7345j, this.f5724k, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-            cVar.f7364y = true;
-            return cVar;
         }
 
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
@@ -169,6 +169,21 @@ public final class C2568v extends AbstractC2557o<Void> {
             this.f5716n = new a(abstractC2832o2Mo2456k, null, null);
             this.f5720r = true;
         }
+    }
+
+    @RequiresNonNull({"unpreparedMaskingMediaPeriod"})
+    /* JADX INFO: renamed from: v */
+    public final void m2592v(long j) {
+        C2567u c2567u = this.f5717o;
+        int iMo2554b = this.f5716n.mo2554b(c2567u.f5705j.f5732a);
+        if (iMo2554b == -1) {
+            return;
+        }
+        long j2 = this.f5716n.m3326f(iMo2554b, this.f5715m).f7341m;
+        if (j2 != -9223372036854775807L && j >= j2) {
+            j = Math.max(0L, j2 - 1);
+        }
+        c2567u.f5711p = j;
     }
 
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2530a0
@@ -196,31 +211,6 @@ public final class C2568v extends AbstractC2557o<Void> {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
-    /* JADX INFO: renamed from: q */
-    public void mo2509q(@Nullable InterfaceC2680a0 interfaceC2680a0) {
-        this.f5666i = interfaceC2680a0;
-        this.f5665h = C2738e0.m3002j();
-        if (this.f5713k) {
-            return;
-        }
-        this.f5718p = true;
-        m2566t(null, this.f5712j);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
-    /* JADX INFO: renamed from: s */
-    public void mo2510s() {
-        this.f5719q = false;
-        this.f5718p = false;
-        for (AbstractC2557o.b bVar : this.f5664g.values()) {
-            bVar.f5671a.mo2446a(bVar.f5672b);
-            bVar.f5671a.mo2448c(bVar.f5673c);
-            bVar.f5671a.mo2452g(bVar.f5673c);
-        }
-        this.f5664g.clear();
-    }
-
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2530a0
     /* JADX INFO: renamed from: u, reason: merged with bridge method [inline-methods] */
     public C2567u mo2459n(InterfaceC2530a0.a aVar, C2713o c2713o, long j) {
@@ -244,18 +234,28 @@ public final class C2568v extends AbstractC2557o<Void> {
         return c2567u;
     }
 
-    @RequiresNonNull({"unpreparedMaskingMediaPeriod"})
-    /* JADX INFO: renamed from: v */
-    public final void m2592v(long j) {
-        C2567u c2567u = this.f5717o;
-        int iMo2554b = this.f5716n.mo2554b(c2567u.f5705j.f5732a);
-        if (iMo2554b == -1) {
+    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
+    /* JADX INFO: renamed from: q */
+    public void mo2509q(@Nullable InterfaceC2680a0 interfaceC2680a0) {
+        this.f5666i = interfaceC2680a0;
+        this.f5665h = C2738e0.m3002j();
+        if (this.f5713k) {
             return;
         }
-        long j2 = this.f5716n.m3326f(iMo2554b, this.f5715m).f7341m;
-        if (j2 != -9223372036854775807L && j >= j2) {
-            j = Math.max(0L, j2 - 1);
+        this.f5718p = true;
+        m2566t(null, this.f5712j);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p243a3.AbstractC2551l
+    /* JADX INFO: renamed from: s */
+    public void mo2510s() {
+        this.f5719q = false;
+        this.f5718p = false;
+        for (AbstractC2557o.b bVar : this.f5664g.values()) {
+            bVar.f5671a.mo2446a(bVar.f5672b);
+            bVar.f5671a.mo2448c(bVar.f5673c);
+            bVar.f5671a.mo2452g(bVar.f5673c);
         }
-        c2567u.f5711p = j;
+        this.f5664g.clear();
     }
 }

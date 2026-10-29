@@ -9,25 +9,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkingPeerMetrics.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
-    private final Long peerId = null;
     private final Long intervalNs = null;
-    private final Long pingsSent = null;
-    private final Long pingsReceived = null;
-    private final Long pongsSent = null;
-    private final Long pongsReceived = null;
+    private final Long peerId = null;
     private final Long pingRttAvg = null;
     private final Long pingRttMax = null;
     private final Long pingRttP95 = null;
     private final Long pingRttStddev = null;
+    private final Long pingsReceived = null;
+    private final Long pingsSent = null;
+    private final Long pongsReceived = null;
+    private final Long pongsSent = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "networking_peer_metrics";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
         }
         TrackNetworkingPeerMetrics trackNetworkingPeerMetrics = (TrackNetworkingPeerMetrics) other;
         return C12238m.areEqual(this.applicationId, trackNetworkingPeerMetrics.applicationId) && C12238m.areEqual(this.peerId, trackNetworkingPeerMetrics.peerId) && C12238m.areEqual(this.intervalNs, trackNetworkingPeerMetrics.intervalNs) && C12238m.areEqual(this.pingsSent, trackNetworkingPeerMetrics.pingsSent) && C12238m.areEqual(this.pingsReceived, trackNetworkingPeerMetrics.pingsReceived) && C12238m.areEqual(this.pongsSent, trackNetworkingPeerMetrics.pongsSent) && C12238m.areEqual(this.pongsReceived, trackNetworkingPeerMetrics.pongsReceived) && C12238m.areEqual(this.pingRttAvg, trackNetworkingPeerMetrics.pingRttAvg) && C12238m.areEqual(this.pingRttMax, trackNetworkingPeerMetrics.pingRttMax) && C12238m.areEqual(this.pingRttP95, trackNetworkingPeerMetrics.pingRttP95) && C12238m.areEqual(this.pingRttStddev, trackNetworkingPeerMetrics.pingRttStddev);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

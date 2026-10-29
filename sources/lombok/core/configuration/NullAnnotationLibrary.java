@@ -9,6 +9,9 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/NullAnnotationLibrary.SCL.lombok */
 public final class NullAnnotationLibrary implements ConfigurationValueType {
+    private static final List<NullAnnotationLibrary> ALL_AVAILABLE;
+    private static final String EXAMPLE_VALUE;
+    private static final String MSG = "Not an identifier (provide a fully qualified type for custom: nullity annotations): ";
     private final String key;
     private final String nonNullAnnotation;
     private final String nullableAnnotation;
@@ -24,9 +27,6 @@ public final class NullAnnotationLibrary implements ConfigurationValueType {
     public static final NullAnnotationLibrary FINDBUGS = new NullAnnotationLibrary("findbugs", "edu.umd.cs.findbugs.annotations.NonNull", "edu.umd.cs.findbugs.annotations.Nullable", false);
     public static final NullAnnotationLibrary SPRING = new NullAnnotationLibrary("spring", "org.springframework.lang.NonNull", "org.springframework.lang.Nullable", false);
     public static final NullAnnotationLibrary JML = new NullAnnotationLibrary("jml", "org.jmlspecs.annotation.NonNull", "org.jmlspecs.annotation.Nullable", false);
-    private static final List<NullAnnotationLibrary> ALL_AVAILABLE;
-    private static final String EXAMPLE_VALUE;
-    private static final String MSG = "Not an identifier (provide a fully qualified type for custom: nullity annotations): ";
 
     private NullAnnotationLibrary(String key, String nonNullAnnotation, String nullableAnnotation, boolean typeUse) {
         this.key = key;

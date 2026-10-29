@@ -18,13 +18,6 @@ public final class C2421d extends AbstractC2427j {
         this.f5164a = list;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2427j
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public List<AbstractC2430m> mo2313a() {
-        return this.f5164a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -37,6 +30,13 @@ public final class C2421d extends AbstractC2427j {
 
     public int hashCode() {
         return this.f5164a.hashCode() ^ 1000003;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p229i.p230e.AbstractC2427j
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public List<AbstractC2430m> mo2313a() {
+        return this.f5164a;
     }
 
     public String toString() {

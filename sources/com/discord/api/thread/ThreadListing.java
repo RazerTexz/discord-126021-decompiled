@@ -14,21 +14,6 @@ public final /* data */ class ThreadListing {
     private final List<ThreadMember> members;
     private final List<Channel> threads;
 
-    /* JADX INFO: renamed from: a */
-    public final List<Message> m8256a() {
-        return this.firstMessages;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getHasMore() {
-        return this.hasMore;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Channel> m8258c() {
-        return this.threads;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -38,6 +23,11 @@ public final /* data */ class ThreadListing {
         }
         ThreadListing threadListing = (ThreadListing) other;
         return C12238m.areEqual(this.threads, threadListing.threads) && this.hasMore == threadListing.hasMore && C12238m.areEqual(this.members, threadListing.members) && C12238m.areEqual(this.firstMessages, threadListing.firstMessages);
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getHasMore() {
+        return this.hasMore;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -57,6 +47,16 @@ public final /* data */ class ThreadListing {
         int iHashCode2 = (i + (list2 != null ? list2.hashCode() : 0)) * 31;
         List<Message> list3 = this.firstMessages;
         return iHashCode2 + (list3 != null ? list3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<Message> m8256a() {
+        return this.firstMessages;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<Channel> m8258c() {
+        return this.threads;
     }
 
     public String toString() {

@@ -12,16 +12,6 @@ public final /* data */ class ActivityMetadata {
     private final List<String> buttonUrls;
     private final String contextUri;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getAlbumId() {
-        return this.albumId;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<String> m7557b() {
-        return this.buttonUrls;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -33,6 +23,11 @@ public final /* data */ class ActivityMetadata {
         return C12238m.areEqual(this.contextUri, activityMetadata.contextUri) && C12238m.areEqual(this.albumId, activityMetadata.albumId) && C12238m.areEqual(this.artistIds, activityMetadata.artistIds) && C12238m.areEqual(this.buttonUrls, activityMetadata.buttonUrls);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getAlbumId() {
+        return this.albumId;
+    }
+
     public int hashCode() {
         String str = this.contextUri;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
@@ -42,6 +37,11 @@ public final /* data */ class ActivityMetadata {
         int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
         List<String> list2 = this.buttonUrls;
         return iHashCode3 + (list2 != null ? list2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<String> m7557b() {
+        return this.buttonUrls;
     }
 
     public String toString() {

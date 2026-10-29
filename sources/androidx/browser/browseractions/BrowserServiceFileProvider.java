@@ -42,7 +42,7 @@ public final class BrowserServiceFileProvider extends FileProvider {
     private static final String TAG = "BrowserServiceFP";
     public static Object sFileCleanupLock = new Object();
 
-    public static class FileCleanupTask extends AsyncTask<Void, Void, Void> {
+    public class FileCleanupTask extends AsyncTask<Void, Void, Void> {
         private static final long CLEANUP_REQUIRED_TIME_SPAN;
         private static final long DELETION_FAILED_REATTEMPT_DURATION;
         private static final long IMAGE_RETENTION_DURATION;
@@ -96,7 +96,7 @@ public final class BrowserServiceFileProvider extends FileProvider {
         }
     }
 
-    public static class FileSaveTask extends AsyncTask<String, Void, Void> {
+    public class FileSaveTask extends AsyncTask<String, Void, Void> {
         private final Context mAppContext;
         private final Bitmap mBitmap;
         private final Uri mFileUri;

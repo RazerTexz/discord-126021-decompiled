@@ -11,7 +11,6 @@ import p007b.p225i.p226a.p288f.p330i.p332b.C4262z9;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzn extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzn> CREATOR = new C4262z9();
 
     /* JADX INFO: renamed from: A */
     public final String f20677A;
@@ -81,6 +80,7 @@ public final class zzn extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: z */
     public final boolean f20699z;
+    public static final Parcelable.Creator<zzn> CREATOR = new C4262z9();
 
     public zzn(String str, String str2, String str3, long j, String str4, long j2, long j3, String str5, boolean z2, boolean z3, String str6, long j4, long j5, int i, boolean z4, boolean z5, boolean z6, String str7, Boolean bool, long j6, List<String> list, String str8, String str9) {
         C1460d.m583w(str);

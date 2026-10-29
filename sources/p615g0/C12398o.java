@@ -31,7 +31,7 @@ public final class C12398o extends AbstractC12125c<ByteString> implements Random
 
     /* JADX INFO: renamed from: g0.o$a */
     /* JADX INFO: compiled from: Options.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

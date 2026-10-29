@@ -39,36 +39,10 @@ public final class C3040i implements InterfaceC3038g {
         this.f8344e = j3 != -1 ? j + j3 : -1L;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: a */
-    public long mo3689a() {
-        return this.f8344e;
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
     /* JADX INFO: renamed from: c */
     public boolean mo3619c() {
         return this.f8345f != null;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
-    /* JADX INFO: renamed from: d */
-    public long mo3690d(long j) {
-        long j2 = j - this.f8340a;
-        if (!mo3619c() || j2 <= this.f8341b) {
-            return 0L;
-        }
-        long[] jArr = this.f8345f;
-        C1460d.m438H(jArr);
-        double d = (j2 * 256.0d) / this.f8343d;
-        int iM2997e = C2738e0.m2997e(jArr, (long) d, true, true);
-        long j3 = this.f8342c;
-        long j4 = (((long) iM2997e) * j3) / 100;
-        long j5 = jArr[iM2997e];
-        int i = iM2997e + 1;
-        long j6 = (j3 * ((long) i)) / 100;
-        long j7 = iM2997e == 99 ? 256L : jArr[i];
-        return Math.round((j5 == j7 ? 0.0d : (d - j5) / (j7 - j5)) * (j6 - j4)) + j4;
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3119t
@@ -99,5 +73,31 @@ public final class C3040i implements InterfaceC3038g {
     /* JADX INFO: renamed from: i */
     public long mo3621i() {
         return this.f8342c;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: a */
+    public long mo3689a() {
+        return this.f8344e;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.p273h0.InterfaceC3038g
+    /* JADX INFO: renamed from: d */
+    public long mo3690d(long j) {
+        long j2 = j - this.f8340a;
+        if (!mo3619c() || j2 <= this.f8341b) {
+            return 0L;
+        }
+        long[] jArr = this.f8345f;
+        C1460d.m438H(jArr);
+        double d = (j2 * 256.0d) / this.f8343d;
+        int iM2997e = C2738e0.m2997e(jArr, (long) d, true, true);
+        long j3 = this.f8342c;
+        long j4 = (((long) iM2997e) * j3) / 100;
+        long j5 = jArr[iM2997e];
+        int i = iM2997e + 1;
+        long j6 = (j3 * ((long) i)) / 100;
+        long j7 = iM2997e == 99 ? 256L : jArr[i];
+        return Math.round((j5 == j7 ? 0.0d : (d - j5) / (j7 - j5)) * (j6 - j4)) + j4;
     }
 }

@@ -43,6 +43,9 @@ import p658rx.subjects.Subject;
 /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class VoiceEngineForegroundService extends IntentService implements AppComponent {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String LOG_TAG = "DiscordVoiceService";
     private static final int NOTIFICATION_ID = 101;
     private static final long WAKELOCK_TIMEOUT = 7200000;
@@ -53,22 +56,71 @@ public final class VoiceEngineForegroundService extends IntentService implements
     private PowerManager.WakeLock wakeLockPartial;
     private PowerManager.WakeLock wakeLockProximity;
     private WifiManager.WifiLock wakeLockWifi;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static Function0<Unit> onDisconnect = VoiceEngineForegroundService$Companion$onDisconnect$1.INSTANCE;
     private static Function0<Unit> onToggleSelfDeafen = VoiceEngineForegroundService$Companion$onToggleSelfDeafen$1.INSTANCE;
     private static Function0<Unit> onToggleSelfMute = VoiceEngineForegroundService$Companion$onToggleSelfMute$1.INSTANCE;
 
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineForegroundService$ackStageInvite$1 */
     /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-    public static final class Companion {
+    public final class C70491 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70491(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            StageChannelNotifications.INSTANCE.getINSTANCE().onInvitedToSpeakAckFailed(this.$channelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineForegroundService$ackStageInvite$2 */
+    /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
+    public final class C70502 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ boolean $accept;
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70502(boolean z2, long j) {
+            super(1);
+            this.$accept = z2;
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r3) {
+            if (this.$accept) {
+                AnalyticsTracker.INSTANCE.promotedToSpeaker(this.$channelId);
+            }
+            StageChannelNotifications.Notifications.InvitedToSpeak.INSTANCE.cancel(VoiceEngineForegroundService.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
         public interface ACTION {
+            public static final String DISCONNECT = "com.discord.utilities.voice.action.disconnect";
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = Companion.$$INSTANCE;
-            public static final String DISCONNECT = "com.discord.utilities.voice.action.disconnect";
             public static final String MAIN_ACTION = "com.discord.utilities.voice.action.main";
             public static final String STAGE_INVITE_ACCEPT = "com.discord.utilities.voice.action.stage_invite_accept";
             public static final String STAGE_INVITE_DECLINE = "com.discord.utilities.voice.action.stage_invite_decline";
@@ -80,8 +132,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
             public static final String TOGGLE_MUTED = "com.discord.utilities.voice.action.toggle_muted";
 
             /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-            public static final class Companion {
-                public static final /* synthetic */ Companion $$INSTANCE = new Companion();
+            public final class Companion {
                 public static final String DISCONNECT = "com.discord.utilities.voice.action.disconnect";
                 public static final String MAIN_ACTION = "com.discord.utilities.voice.action.main";
                 public static final String STAGE_INVITE_ACCEPT = "com.discord.utilities.voice.action.stage_invite_accept";
@@ -92,6 +143,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
                 public static final String STOP_STREAM = "com.discord.utilities.voice.action.stop_stream";
                 public static final String TOGGLE_DEAFENED = "com.discord.utilities.voice.action.toggle_deafened";
                 public static final String TOGGLE_MUTED = "com.discord.utilities.voice.action.toggle_muted";
+                public static final /* synthetic */ Companion $$INSTANCE = new Companion();
 
                 private Companion() {
                 }
@@ -101,10 +153,10 @@ public final class VoiceEngineForegroundService extends IntentService implements
         /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
         public interface EXTRA {
             public static final String CHANNEL_ID = "com.discord.utilities.voice.extra.channel_id";
+            public static final String GUILD_ID = "com.discord.utilities.voice.extra.guild_id";
 
             /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
             public static final Companion INSTANCE = Companion.$$INSTANCE;
-            public static final String GUILD_ID = "com.discord.utilities.voice.extra.guild_id";
             public static final String ITEM_CAN_SPEAK = "com.discord.utilities.voice.extra.item_can_speak";
             public static final String ITEM_DEAFENED = "com.discord.utilities.voice.extra.item_deafened";
             public static final String ITEM_MUTED = "com.discord.utilities.voice.extra.item_muted";
@@ -114,8 +166,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
             public static final String TITLE_SUBTEXT = "com.discord.utilities.voice.extra.title_subtext";
 
             /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-            public static final class Companion {
-                public static final /* synthetic */ Companion $$INSTANCE = new Companion();
+            public final class Companion {
                 public static final String CHANNEL_ID = "com.discord.utilities.voice.extra.channel_id";
                 public static final String GUILD_ID = "com.discord.utilities.voice.extra.guild_id";
                 public static final String ITEM_CAN_SPEAK = "com.discord.utilities.voice.extra.item_can_speak";
@@ -125,6 +176,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
                 public static final String PROXIMITY_LOCK_ENABLED = "com.discord.utilities.voice.extra.proximity_lock_enabled";
                 public static final String TITLE = "com.discord.utilities.voice.extra.title";
                 public static final String TITLE_SUBTEXT = "com.discord.utilities.voice.extra.title_subtext";
+                public static final /* synthetic */ Companion $$INSTANCE = new Companion();
 
                 private Companion() {
                 }
@@ -249,7 +301,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
     }
 
     /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-    public static final class Connection {
+    public final class Connection {
         private final ServiceConnection connection;
         private final Context context;
         private boolean isUnbinding;
@@ -298,7 +350,7 @@ public final class VoiceEngineForegroundService extends IntentService implements
     }
 
     /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-    public static final class LocalBinder extends Binder {
+    public final class LocalBinder extends Binder {
         private final VoiceEngineForegroundService service;
 
         public LocalBinder(VoiceEngineForegroundService voiceEngineForegroundService) {
@@ -307,58 +359,6 @@ public final class VoiceEngineForegroundService extends IntentService implements
 
         public final VoiceEngineForegroundService getService() {
             return this.service;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineForegroundService$ackStageInvite$1 */
-    /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-    public static final class C70491 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70491(long j) {
-            super(1);
-            this.$channelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            StageChannelNotifications.INSTANCE.getINSTANCE().onInvitedToSpeakAckFailed(this.$channelId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineForegroundService$ackStageInvite$2 */
-    /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
-    public static final class C70502 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ boolean $accept;
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70502(boolean z2, long j) {
-            super(1);
-            this.$accept = z2;
-            this.$channelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            if (this.$accept) {
-                AnalyticsTracker.INSTANCE.promotedToSpeaker(this.$channelId);
-            }
-            StageChannelNotifications.Notifications.InvitedToSpeak.INSTANCE.cancel(VoiceEngineForegroundService.this);
         }
     }
 

@@ -37,6 +37,9 @@ import p007b.p225i.p355b.p357b.C4520n0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2613c extends AbstractC2582f {
 
+    /* JADX INFO: renamed from: w */
+    public final XmlPullParserFactory f6043w;
+
     /* JADX INFO: renamed from: n */
     public static final Pattern f6034n = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
 
@@ -64,12 +67,9 @@ public final class C2613c extends AbstractC2582f {
     /* JADX INFO: renamed from: v */
     public static final a f6042v = new a(32, 15);
 
-    /* JADX INFO: renamed from: w */
-    public final XmlPullParserFactory f6043w;
-
     /* JADX INFO: renamed from: b.i.a.c.b3.t.c$a */
     /* JADX INFO: compiled from: TtmlDecoder.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f6044a;
@@ -81,7 +81,7 @@ public final class C2613c extends AbstractC2582f {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.t.c$b */
     /* JADX INFO: compiled from: TtmlDecoder.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final float f6045a;
@@ -101,7 +101,7 @@ public final class C2613c extends AbstractC2582f {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.t.c$c */
     /* JADX INFO: compiled from: TtmlDecoder.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f6048a;

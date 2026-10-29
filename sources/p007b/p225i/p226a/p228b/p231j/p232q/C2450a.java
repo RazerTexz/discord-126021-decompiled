@@ -21,19 +21,6 @@ public final class C2450a extends AbstractC2455f {
         this.f5301b = bArr;
     }
 
-    @Override // p007b.p225i.p226a.p228b.p231j.p232q.AbstractC2455f
-    /* JADX INFO: renamed from: a */
-    public Iterable<AbstractC2439f> mo2362a() {
-        return this.f5300a;
-    }
-
-    @Override // p007b.p225i.p226a.p228b.p231j.p232q.AbstractC2455f
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public byte[] mo2363b() {
-        return this.f5301b;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -52,6 +39,19 @@ public final class C2450a extends AbstractC2455f {
 
     public int hashCode() {
         return ((this.f5300a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f5301b);
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p232q.AbstractC2455f
+    /* JADX INFO: renamed from: a */
+    public Iterable<AbstractC2439f> mo2362a() {
+        return this.f5300a;
+    }
+
+    @Override // p007b.p225i.p226a.p228b.p231j.p232q.AbstractC2455f
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public byte[] mo2363b() {
+        return this.f5301b;
     }
 
     public String toString() {

@@ -16,7 +16,7 @@ public final class ContactSyncUpsellSheet$viewModel$2 extends AbstractC12240o im
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.ContactSyncUpsellSheet$viewModel$2$1 */
     /* JADX INFO: compiled from: ContactSyncUpsellSheet.kt */
-    public static final class C82221 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C82221 extends AbstractC12240o implements Function1<Error, Unit> {
         public static final C82221 INSTANCE = new C82221();
 
         public C82221() {

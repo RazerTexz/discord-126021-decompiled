@@ -9,7 +9,7 @@ public abstract class AbstractC2173a {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.a$a */
     /* JADX INFO: compiled from: AccessorNamingStrategy.java */
-    public static abstract class a implements Serializable {
+    public abstract class a implements Serializable {
         private static final long serialVersionUID = 1;
     }
 

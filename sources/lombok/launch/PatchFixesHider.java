@@ -70,7 +70,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$Util.SCL.lombok */
-    public static final class Util {
+    public final class Util {
         private static ClassLoader shadowLoader;
 
         public static Class<?> shadowLoadClass(String name) {
@@ -121,7 +121,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$LombokDeps.SCL.lombok */
-    public static final class LombokDeps {
+    public final class LombokDeps {
         public static final Method ADD_LOMBOK_NOTES;
         public static final Method POST_COMPILER_BYTES_STRING;
         public static final Method POST_COMPILER_OUTPUTSTREAM;
@@ -157,7 +157,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$Transform.SCL.lombok */
-    public static final class Transform {
+    public final class Transform {
         private static final Method TRANSFORM;
         private static final Method TRANSFORM_SWAPPED;
 
@@ -177,7 +177,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$Delegate.SCL.lombok */
-    public static final class Delegate {
+    public final class Delegate {
         private static final Method HANDLE_DELEGATE_FOR_TYPE = null;
         private static final Method GET_CHILDREN = null;
 
@@ -221,9 +221,9 @@ final class PatchFixesHider {
             	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
             	at jadx.core.codegen.MethodGen.addMethodArguments(MethodGen.java:215)
             	at jadx.core.codegen.MethodGen.addDefinition(MethodGen.java:150)
-            	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:415)
-            	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:345)
-            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:299)
+            	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:443)
+            	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:373)
+            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:305)
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
             	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
             	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
@@ -235,12 +235,12 @@ final class PatchFixesHider {
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
             	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
             	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-            	at jadx.core.codegen.ClassGen.addInnerClass(ClassGen.java:320)
-            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:297)
+            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+            	at jadx.core.codegen.ClassGen.addInnerClass(ClassGen.java:348)
+            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:303)
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
             	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
             	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
@@ -252,19 +252,19 @@ final class PatchFixesHider {
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
             	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
             	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-            	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:104)
+            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+            	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:107)
             	at jadx.core.codegen.CodeGen.wrapCodeGen(CodeGen.java:45)
             	at jadx.core.codegen.CodeGen.generateJavaCode(CodeGen.java:34)
             	at jadx.core.codegen.CodeGen.generate(CodeGen.java:22)
             	at jadx.core.ProcessClass.process(ProcessClass.java:89)
             	at jadx.core.ProcessClass.generateCode(ProcessClass.java:127)
-            	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:405)
-            	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:393)
-            	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:343)
+            	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:401)
+            	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:389)
+            	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:339)
             */
 
         /* JADX WARN: Not initialized variable reg: 6, insn: 0x0009: MOVE (r4 I:??[int, float, boolean, short, byte, char, OBJECT, ARRAY]) = (r6 I:??[int, float, boolean, short, byte, char, OBJECT, ARRAY] A[D('classScope' java.lang.Object)]), block:B:2:0x0000 */
@@ -286,7 +286,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$ValPortal.SCL.lombok */
-    public static final class ValPortal {
+    public final class ValPortal {
         private static final Method COPY_INITIALIZATION_OF_FOR_EACH_ITERABLE;
         private static final Method COPY_INITIALIZATION_OF_LOCAL_DECLARATION;
         private static final Method ADD_FINAL_AND_VAL_ANNOTATION_TO_VARIABLE_DECLARATION_STATEMENT;
@@ -318,7 +318,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$Val.SCL.lombok */
-    public static final class Val {
+    public final class Val {
         private static final Method SKIP_RESOLVE_INITIALIZER_IF_ALREADY_CALLED;
         private static final Method SKIP_RESOLVE_INITIALIZER_IF_ALREADY_CALLED2;
         private static final Method HANDLE_VAL_FOR_LOCAL_DECLARATION;
@@ -350,7 +350,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$ExtensionMethod.SCL.lombok */
-    public static final class ExtensionMethod {
+    public final class ExtensionMethod {
         private static final Method RESOLVE_TYPE = null;
         private static final Method ERROR_NO_METHOD_FOR = null;
         private static final Method INVALID_METHOD = null;
@@ -385,9 +385,9 @@ final class PatchFixesHider {
             	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
             	at jadx.core.codegen.MethodGen.addMethodArguments(MethodGen.java:215)
             	at jadx.core.codegen.MethodGen.addDefinition(MethodGen.java:150)
-            	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:415)
-            	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:345)
-            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:299)
+            	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:443)
+            	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:373)
+            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:305)
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
             	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
             	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
@@ -399,12 +399,12 @@ final class PatchFixesHider {
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
             	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
             	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-            	at jadx.core.codegen.ClassGen.addInnerClass(ClassGen.java:320)
-            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:297)
+            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+            	at jadx.core.codegen.ClassGen.addInnerClass(ClassGen.java:348)
+            	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:303)
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
             	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
             	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
@@ -416,19 +416,19 @@ final class PatchFixesHider {
             	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
             	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
             	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-            	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:104)
+            	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+            	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+            	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+            	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:107)
             	at jadx.core.codegen.CodeGen.wrapCodeGen(CodeGen.java:45)
             	at jadx.core.codegen.CodeGen.generateJavaCode(CodeGen.java:34)
             	at jadx.core.codegen.CodeGen.generate(CodeGen.java:22)
             	at jadx.core.ProcessClass.process(ProcessClass.java:89)
             	at jadx.core.ProcessClass.generateCode(ProcessClass.java:127)
-            	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:405)
-            	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:393)
-            	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:343)
+            	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:401)
+            	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:389)
+            	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:339)
             */
 
         /* JADX WARN: Not initialized variable reg: 6, insn: 0x0009: MOVE (r4 I:??[int, float, boolean, short, byte, char, OBJECT, ARRAY]) = 
@@ -551,7 +551,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$Javadoc.SCL.lombok */
-    public static final class Javadoc {
+    public final class Javadoc {
         private static final Method GET_HTML = null;
         private static final Method PRINT_METHOD = null;
 
@@ -611,7 +611,7 @@ final class PatchFixesHider {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:Class50/lombok/launch/PatchFixesHider$PatchFixes.SCL.lombok */
-    public static final class PatchFixes {
+    public final class PatchFixes {
         public static final int ALREADY_PROCESSED_FLAG = 8388608;
 
         public static boolean isGenerated(org.eclipse.jdt.core.dom.ASTNode node) {

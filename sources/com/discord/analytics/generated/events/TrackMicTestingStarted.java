@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMicTestingStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
     private final CharSequence inputDeviceName = null;
     private final Long inputDeviceVolume = null;
-    private final CharSequence outputDeviceName = null;
-    private final Long outputDeviceVolume = null;
     private final CharSequence inputMode = null;
     private final Boolean inputSensitivityIsAutomatic = null;
     private final Long inputSensitivityThreshold = null;
+    private final CharSequence outputDeviceName = null;
+    private final Long outputDeviceVolume = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "mic_testing_started";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
         }
         TrackMicTestingStarted trackMicTestingStarted = (TrackMicTestingStarted) other;
         return C12238m.areEqual(this.inputDeviceName, trackMicTestingStarted.inputDeviceName) && C12238m.areEqual(this.inputDeviceVolume, trackMicTestingStarted.inputDeviceVolume) && C12238m.areEqual(this.outputDeviceName, trackMicTestingStarted.outputDeviceName) && C12238m.areEqual(this.outputDeviceVolume, trackMicTestingStarted.outputDeviceVolume) && C12238m.areEqual(this.inputMode, trackMicTestingStarted.inputMode) && C12238m.areEqual(this.inputSensitivityIsAutomatic, trackMicTestingStarted.inputSensitivityIsAutomatic) && C12238m.areEqual(this.inputSensitivityThreshold, trackMicTestingStarted.inputSensitivityThreshold);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

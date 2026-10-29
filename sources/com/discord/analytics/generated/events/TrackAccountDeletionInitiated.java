@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAccountDeletionInitiated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAccountDeletionInitiated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence initiatedBy = null;
     private final Long reasonCode = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "account_deletion_initiated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackAccountDeletionInitiated implements Analytics
         }
         TrackAccountDeletionInitiated trackAccountDeletionInitiated = (TrackAccountDeletionInitiated) other;
         return C12238m.areEqual(this.initiatedBy, trackAccountDeletionInitiated.initiatedBy) && C12238m.areEqual(this.reasonCode, trackAccountDeletionInitiated.reasonCode);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

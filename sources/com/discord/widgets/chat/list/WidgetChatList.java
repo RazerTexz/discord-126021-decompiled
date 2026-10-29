@@ -48,7 +48,7 @@ public final class WidgetChatList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.WidgetChatList$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChatList.kt */
-    public static final /* synthetic */ class C79551 extends C12236k implements Function1<WidgetChatListModel, Unit> {
+    public final /* synthetic */ class C79551 extends C12236k implements Function1<WidgetChatListModel, Unit> {
         public C79551(WidgetChatList widgetChatList) {
             super(1, widgetChatList, WidgetChatList.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/model/WidgetChatListModel;)V", 0);
         }
@@ -67,7 +67,7 @@ public final class WidgetChatList extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.WidgetChatList$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChatList.kt */
-    public static final /* synthetic */ class C79562 extends C12236k implements Function1<Long, Unit> {
+    public final /* synthetic */ class C79562 extends C12236k implements Function1<Long, Unit> {
         public C79562(WidgetChatList widgetChatList) {
             super(1, widgetChatList, WidgetChatList.class, "scrollTo", "scrollTo(J)V", 0);
         }
@@ -133,33 +133,6 @@ public final class WidgetChatList extends AppFragment {
         this.adapter = widgetChatListAdapter;
     }
 
-    private final WidgetChatListBinding getBinding() {
-        return (WidgetChatListBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final AppFlexInputViewModel getFlexInputViewModel() {
-        return (AppFlexInputViewModel) this.flexInputViewModel.getValue();
-    }
-
-    private final void scrollTo(long messageId) {
-        final WidgetChatList$scrollTo$onCompleted$1 widgetChatList$scrollTo$onCompleted$1 = WidgetChatList$scrollTo$onCompleted$1.INSTANCE;
-        WidgetChatListAdapter widgetChatListAdapter = this.adapter;
-        Object obj = widgetChatList$scrollTo$onCompleted$1;
-        if (widgetChatListAdapter == null) {
-            widgetChatList$scrollTo$onCompleted$1.invoke();
-        } else if (widgetChatListAdapter != null) {
-            if (widgetChatList$scrollTo$onCompleted$1 != null) {
-                obj = new Action0() { // from class: com.discord.widgets.chat.list.WidgetChatList$sam$rx_functions_Action0$0
-                    @Override // p658rx.functions.Action0
-                    public final /* synthetic */ void call() {
-                        C12238m.checkNotNullExpressionValue(widgetChatList$scrollTo$onCompleted$1.invoke(), "invoke(...)");
-                    }
-                };
-            }
-            widgetChatListAdapter.scrollToMessageId(messageId, (Action0) obj);
-        }
-    }
-
     public final void disableItemAnimations() {
         RecyclerView recyclerView = getBinding().f16355b;
         C12238m.checkNotNullExpressionValue(recyclerView, "binding.chatListRecycler");
@@ -170,6 +143,14 @@ public final class WidgetChatList extends AppFragment {
         RecyclerView recyclerView = getBinding().f16355b;
         C12238m.checkNotNullExpressionValue(recyclerView, "binding.chatListRecycler");
         recyclerView.setItemAnimator(this.defaultItemAnimator);
+    }
+
+    private final WidgetChatListBinding getBinding() {
+        return (WidgetChatListBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    private final AppFlexInputViewModel getFlexInputViewModel() {
+        return (AppFlexInputViewModel) this.flexInputViewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
@@ -214,5 +195,24 @@ public final class WidgetChatList extends AppFragment {
         RecyclerView recyclerView = getBinding().f16355b;
         C12238m.checkNotNullExpressionValue(recyclerView, "binding.chatListRecycler");
         this.defaultItemAnimator = recyclerView.getItemAnimator();
+    }
+
+    private final void scrollTo(long messageId) {
+        final WidgetChatList$scrollTo$onCompleted$1 widgetChatList$scrollTo$onCompleted$1 = WidgetChatList$scrollTo$onCompleted$1.INSTANCE;
+        WidgetChatListAdapter widgetChatListAdapter = this.adapter;
+        Object obj = widgetChatList$scrollTo$onCompleted$1;
+        if (widgetChatListAdapter == null) {
+            widgetChatList$scrollTo$onCompleted$1.invoke();
+        } else if (widgetChatListAdapter != null) {
+            if (widgetChatList$scrollTo$onCompleted$1 != null) {
+                obj = new Action0() { // from class: com.discord.widgets.chat.list.WidgetChatList$sam$rx_functions_Action0$0
+                    @Override // p658rx.functions.Action0
+                    public final /* synthetic */ void call() {
+                        C12238m.checkNotNullExpressionValue(widgetChatList$scrollTo$onCompleted$1.invoke(), "invoke(...)");
+                    }
+                };
+            }
+            widgetChatListAdapter.scrollToMessageId(messageId, (Action0) obj);
+        }
     }
 }

@@ -12,19 +12,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAddChannelRecipient.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAddChannelRecipient implements AnalyticsSchema, TrackBaseReceiver, TrackGuildLfgGroupReceiver {
-    private TrackBase trackBase;
-    private TrackGuildLfgGroup trackGuildLfgGroup;
-    private final Long channelType = null;
     private final Long channelId = null;
+    private final Long channelType = null;
     private final Long recipientId = null;
     private final List<Long> recipientIds = null;
+    private TrackBase trackBase;
+    private TrackGuildLfgGroup trackGuildLfgGroup;
     private final transient String analyticsSchemaTypeName = "add_channel_recipient";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackAddChannelRecipient implements AnalyticsSchem
         }
         TrackAddChannelRecipient trackAddChannelRecipient = (TrackAddChannelRecipient) other;
         return C12238m.areEqual(this.channelType, trackAddChannelRecipient.channelType) && C12238m.areEqual(this.channelId, trackAddChannelRecipient.channelId) && C12238m.areEqual(this.recipientId, trackAddChannelRecipient.recipientId) && C12238m.areEqual(this.recipientIds, trackAddChannelRecipient.recipientIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

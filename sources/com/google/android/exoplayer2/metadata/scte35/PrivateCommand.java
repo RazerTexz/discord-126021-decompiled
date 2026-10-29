@@ -6,7 +6,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class PrivateCommand extends SpliceCommand {
-    public static final Parcelable.Creator<PrivateCommand> CREATOR = new C10742a();
 
     /* JADX INFO: renamed from: j */
     public final long f20019j;
@@ -16,6 +15,7 @@ public final class PrivateCommand extends SpliceCommand {
 
     /* JADX INFO: renamed from: l */
     public final byte[] f20021l;
+    public static final Parcelable.Creator<PrivateCommand> CREATOR = new C10742a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.PrivateCommand$a */
     public class C10742a implements Parcelable.Creator<PrivateCommand> {

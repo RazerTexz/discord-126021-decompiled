@@ -37,7 +37,7 @@ public final class C4682i extends AbstractC4695v.d.c {
 
     /* JADX INFO: renamed from: b.i.c.m.d.m.i$b */
     /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Device.java */
-    public static final class b extends AbstractC4695v.d.c.a {
+    public final class b extends AbstractC4695v.d.c.a {
 
         /* JADX INFO: renamed from: a */
         public Integer f12578a;
@@ -112,6 +112,25 @@ public final class C4682i extends AbstractC4695v.d.c {
         this.f12577i = str3;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.c)) {
+            return false;
+        }
+        AbstractC4695v.d.c cVar = (AbstractC4695v.d.c) obj;
+        return this.f12569a == cVar.mo6553a() && this.f12570b.equals(cVar.mo6557e()) && this.f12571c == cVar.mo6554b() && this.f12572d == cVar.mo6559g() && this.f12573e == cVar.mo6555c() && this.f12574f == cVar.mo6561i() && this.f12575g == cVar.mo6560h() && this.f12576h.equals(cVar.mo6556d()) && this.f12577i.equals(cVar.mo6558f());
+    }
+
+    public int hashCode() {
+        int iHashCode = (((((this.f12569a ^ 1000003) * 1000003) ^ this.f12570b.hashCode()) * 1000003) ^ this.f12571c) * 1000003;
+        long j = this.f12572d;
+        int i = (iHashCode ^ ((int) (j ^ (j >>> 32)))) * 1000003;
+        long j2 = this.f12573e;
+        return ((((((((i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ (this.f12574f ? 1231 : 1237)) * 1000003) ^ this.f12575g) * 1000003) ^ this.f12576h.hashCode()) * 1000003) ^ this.f12577i.hashCode();
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.c
     @NonNull
     /* JADX INFO: renamed from: a */
@@ -145,17 +164,6 @@ public final class C4682i extends AbstractC4695v.d.c {
         return this.f12570b;
     }
 
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.c)) {
-            return false;
-        }
-        AbstractC4695v.d.c cVar = (AbstractC4695v.d.c) obj;
-        return this.f12569a == cVar.mo6553a() && this.f12570b.equals(cVar.mo6557e()) && this.f12571c == cVar.mo6554b() && this.f12572d == cVar.mo6559g() && this.f12573e == cVar.mo6555c() && this.f12574f == cVar.mo6561i() && this.f12575g == cVar.mo6560h() && this.f12576h.equals(cVar.mo6556d()) && this.f12577i.equals(cVar.mo6558f());
-    }
-
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.c
     @NonNull
     /* JADX INFO: renamed from: f */
@@ -173,14 +181,6 @@ public final class C4682i extends AbstractC4695v.d.c {
     /* JADX INFO: renamed from: h */
     public int mo6560h() {
         return this.f12575g;
-    }
-
-    public int hashCode() {
-        int iHashCode = (((((this.f12569a ^ 1000003) * 1000003) ^ this.f12570b.hashCode()) * 1000003) ^ this.f12571c) * 1000003;
-        long j = this.f12572d;
-        int i = (iHashCode ^ ((int) (j ^ (j >>> 32)))) * 1000003;
-        long j2 = this.f12573e;
-        return ((((((((i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ (this.f12574f ? 1231 : 1237)) * 1000003) ^ this.f12575g) * 1000003) ^ this.f12576h.hashCode()) * 1000003) ^ this.f12577i.hashCode();
     }
 
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.c

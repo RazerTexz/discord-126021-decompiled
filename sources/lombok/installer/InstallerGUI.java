@@ -54,35 +54,35 @@ import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI.SCL.lombok */
 public class InstallerGUI {
+    private static final String HOW_I_WORK_EXPLANATION = "<html><h2>Eclipse</h2><ol><li>First, I copy myself (lombok.jar) to your Eclipse install directory.</li><li>Then, I edit the <i>eclipse.ini</i> file to add the following entry:<br><pre>-javaagent:lombok.jar</pre></li></ol>On Mac OS X, eclipse.ini is hidden in<br><code>Eclipse.app/Contents/MacOS</code> so that's where I place the jar files.</html>";
+    private static final String HOW_I_WORK_TITLE = "<html><font size=\"+1\"><b><i>What this installer does </i></b></font></html>";
+    private static final String IDE_EXPLANATION = "<html>Lombok can update your Eclipse or eclipse-based IDE to fully support all Lombok features.<br>Select IDE installations below and hit 'Install/Update'.</html>";
+    private static final String IDE_LOADING_EXPLANATION = "Scanning your drives for IDE installations...";
+    private static final String IDE_TITLE = "<html><font size=\"+1\"><b><i>IDEs </i></b></font></html>";
     private static final int INSTALLER_WINDOW_WIDTH = 662;
-    static final AtomicReference<Integer> exitMarker = new AtomicReference<>();
-    private JComponent loadingExpl;
-    private Component javacArea;
-    private Component ideArea;
-    private Component uninstallArea;
+    private static final String JAVAC_EXAMPLE = "<html>Example: <code>javac -cp lombok.jar MyCode.java</code></html>";
+    private static final String JAVAC_EXPLANATION = "<html>Lombok works 'out of the box' with javac.<br>Just make sure the lombok.jar is in your classpath when you compile.";
+    private static final String JAVAC_TITLE = "<html><font size=\"+1\"><b><i>Javac </i></b></font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (and tools that invoke javac such as <i>ant</i> and <i>maven</i>)</html>";
+    private static final String SUCCESS_EXPLANATION = "<html>Lombok has been installed on the selected IDE installations.<br>Don't forget to:<ul><li> add <code>lombok.jar</code> to your projects,<li><b>exit and start</b> your IDE,<li><b>rebuild</b> all projects!</ul>%%%</html>";
+    private static final String SUCCESS_TITLE = "<html><font size=\"+1\"><b><i>Install successful </i></b></font></html>";
+    private static final String UNINSTALL_EXPLANATION = "<html>Uninstall Lombok from the following IDE Installations?</html>";
+    private static final String UNINSTALL_TITLE = "<html><font size=\"+1\"><b><i>Uninstall </i></b></font></html>";
     private Component howIWorkArea;
+    private Component ideArea;
+    private JButton installButton;
+    private Component javacArea;
+    private JComponent loadingExpl;
     private Component successArea;
+    private JLabel successExplanation;
+    private List<IdeLocation> toUninstall;
+    private Component uninstallArea;
     private Box uninstallBox;
     private JHyperLink uninstallButton;
     private JLabel uninstallPlaceholder;
-    private JButton installButton;
-    private List<IdeLocation> toUninstall;
-    private JLabel successExplanation;
-    private static final String IDE_TITLE = "<html><font size=\"+1\"><b><i>IDEs </i></b></font></html>";
-    private static final String IDE_EXPLANATION = "<html>Lombok can update your Eclipse or eclipse-based IDE to fully support all Lombok features.<br>Select IDE installations below and hit 'Install/Update'.</html>";
-    private static final String IDE_LOADING_EXPLANATION = "Scanning your drives for IDE installations...";
-    private static final String JAVAC_TITLE = "<html><font size=\"+1\"><b><i>Javac </i></b></font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (and tools that invoke javac such as <i>ant</i> and <i>maven</i>)</html>";
-    private static final String JAVAC_EXPLANATION = "<html>Lombok works 'out of the box' with javac.<br>Just make sure the lombok.jar is in your classpath when you compile.";
-    private static final String JAVAC_EXAMPLE = "<html>Example: <code>javac -cp lombok.jar MyCode.java</code></html>";
-    private static final String UNINSTALL_TITLE = "<html><font size=\"+1\"><b><i>Uninstall </i></b></font></html>";
-    private static final String UNINSTALL_EXPLANATION = "<html>Uninstall Lombok from the following IDE Installations?</html>";
-    private static final String HOW_I_WORK_TITLE = "<html><font size=\"+1\"><b><i>What this installer does </i></b></font></html>";
-    private static final String HOW_I_WORK_EXPLANATION = "<html><h2>Eclipse</h2><ol><li>First, I copy myself (lombok.jar) to your Eclipse install directory.</li><li>Then, I edit the <i>eclipse.ini</i> file to add the following entry:<br><pre>-javaagent:lombok.jar</pre></li></ol>On Mac OS X, eclipse.ini is hidden in<br><code>Eclipse.app/Contents/MacOS</code> so that's where I place the jar files.</html>";
-    private static final String SUCCESS_TITLE = "<html><font size=\"+1\"><b><i>Install successful </i></b></font></html>";
-    private static final String SUCCESS_EXPLANATION = "<html>Lombok has been installed on the selected IDE installations.<br>Don't forget to:<ul><li> add <code>lombok.jar</code> to your projects,<li><b>exit and start</b> your IDE,<li><b>rebuild</b> all projects!</ul>%%%</html>";
+    static final AtomicReference<Integer> exitMarker = new AtomicReference<>();
     private final Set<String> installSpecificMessages = new LinkedHashSet();
-    private IdesList idesList = new IdesList();
     private JFrame appWindow = new JFrame(String.format("Project Lombok v%s - Installer", Version.getVersion()));
+    private IdesList idesList = new IdesList();
 
     public InstallerGUI() {
         this.appWindow.setLocationByPlatform(true);
@@ -644,7 +644,7 @@ public class InstallerGUI {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$IdesList.SCL.lombok */
-    private class IdesList extends JPanel implements Scrollable {
+    class IdesList extends JPanel implements Scrollable {
         private static final long serialVersionUID = 1;
         List<IdeLocation> locations = new ArrayList();
 
@@ -842,7 +842,7 @@ public class InstallerGUI {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$JHyperLink.SCL.lombok */
-    private static class JHyperLink extends JButton {
+    class JHyperLink extends JButton {
         private static final long serialVersionUID = 1;
 
         public JHyperLink(String text) {

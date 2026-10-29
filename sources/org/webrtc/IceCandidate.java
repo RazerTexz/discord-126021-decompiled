@@ -19,13 +19,6 @@ public class IceCandidate {
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
     }
 
-    private static boolean objectEquals(Object obj, Object obj2) {
-        if (obj == null) {
-            return obj2 == null;
-        }
-        return obj.equals(obj2);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (!(obj instanceof IceCandidate)) {
             return false;
@@ -46,6 +39,13 @@ public class IceCandidate {
 
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.sdpMid, Integer.valueOf(this.sdpMLineIndex), this.sdp});
+    }
+
+    private static boolean objectEquals(Object obj, Object obj2) {
+        if (obj == null) {
+            return obj2 == null;
+        }
+        return obj.equals(obj2);
     }
 
     public String toString() {

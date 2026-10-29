@@ -15,13 +15,13 @@ public abstract class MobileReportArgs implements Parcelable {
     private final ReportType reportType;
 
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final /* data */ class DirectoryServer extends MobileReportArgs {
+    public final /* data */ class DirectoryServer extends MobileReportArgs {
         public static final Parcelable.Creator<DirectoryServer> CREATOR = new Creator();
         private final long channelId;
         private final long guildId;
         private final long hubId;
 
-        public static class Creator implements Parcelable.Creator<DirectoryServer> {
+        public final class Creator implements Parcelable.Creator<DirectoryServer> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final DirectoryServer createFromParcel(Parcel parcel) {
@@ -43,6 +43,10 @@ public abstract class MobileReportArgs implements Parcelable {
             this.channelId = j3;
         }
 
+        public final long component3() {
+            return getChannelId();
+        }
+
         public static /* synthetic */ DirectoryServer copy$default(DirectoryServer directoryServer, long j, long j2, long j3, int i, Object obj) {
             if ((i & 1) != 0) {
                 j = directoryServer.guildId;
@@ -56,20 +60,6 @@ public abstract class MobileReportArgs implements Parcelable {
                 j3 = directoryServer.getChannelId();
             }
             return directoryServer.copy(j4, j5, j3);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getHubId() {
-            return this.hubId;
-        }
-
-        public final long component3() {
-            return getChannelId();
         }
 
         public final DirectoryServer copy(long guildId, long hubId, long channelId) {
@@ -97,8 +87,18 @@ public abstract class MobileReportArgs implements Parcelable {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getHubId() {
+            return this.hubId;
         }
 
         public final long getHubId() {
@@ -130,12 +130,12 @@ public abstract class MobileReportArgs implements Parcelable {
     }
 
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final /* data */ class GuildScheduledEvent extends MobileReportArgs {
+    public final /* data */ class GuildScheduledEvent extends MobileReportArgs {
         public static final Parcelable.Creator<GuildScheduledEvent> CREATOR = new Creator();
         private final long eventId;
         private final long guildId;
 
-        public static class Creator implements Parcelable.Creator<GuildScheduledEvent> {
+        public final class Creator implements Parcelable.Creator<GuildScheduledEvent> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final GuildScheduledEvent createFromParcel(Parcel parcel) {
@@ -166,16 +166,6 @@ public abstract class MobileReportArgs implements Parcelable {
             return guildScheduledEvent.copy(j, j2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getEventId() {
-            return this.eventId;
-        }
-
         public final GuildScheduledEvent copy(long guildId, long eventId) {
             return new GuildScheduledEvent(guildId, eventId);
         }
@@ -196,8 +186,18 @@ public abstract class MobileReportArgs implements Parcelable {
             return this.guildId == guildScheduledEvent.guildId && this.eventId == guildScheduledEvent.eventId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getEventId() {
             return this.eventId;
+        }
+
+        public final long getEventId() {
+            return this.eventId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
@@ -224,12 +224,12 @@ public abstract class MobileReportArgs implements Parcelable {
     }
 
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final /* data */ class Message extends MobileReportArgs {
+    public final /* data */ class Message extends MobileReportArgs {
         public static final Parcelable.Creator<Message> CREATOR = new Creator();
         private final long channelId;
         private final long messageId;
 
-        public static class Creator implements Parcelable.Creator<Message> {
+        public final class Creator implements Parcelable.Creator<Message> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Message createFromParcel(Parcel parcel) {
@@ -250,6 +250,10 @@ public abstract class MobileReportArgs implements Parcelable {
             this.channelId = j2;
         }
 
+        public final long component2() {
+            return getChannelId();
+        }
+
         public static /* synthetic */ Message copy$default(Message message, long j, long j2, int i, Object obj) {
             if ((i & 1) != 0) {
                 j = message.messageId;
@@ -258,15 +262,6 @@ public abstract class MobileReportArgs implements Parcelable {
                 j2 = message.getChannelId();
             }
             return message.copy(j, j2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        public final long component2() {
-            return getChannelId();
         }
 
         public final Message copy(long messageId, long channelId) {
@@ -292,6 +287,11 @@ public abstract class MobileReportArgs implements Parcelable {
         @Override // com.discord.widgets.mobile_reports.MobileReportArgs
         public long getChannelId() {
             return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getMessageId() {
+            return this.messageId;
         }
 
         public final long getMessageId() {
@@ -320,11 +320,11 @@ public abstract class MobileReportArgs implements Parcelable {
     }
 
     /* JADX INFO: compiled from: WidgetMobileReports.kt */
-    public static final /* data */ class StageChannel extends MobileReportArgs {
+    public final /* data */ class StageChannel extends MobileReportArgs {
         public static final Parcelable.Creator<StageChannel> CREATOR = new Creator();
         private final long channelId;
 
-        public static class Creator implements Parcelable.Creator<StageChannel> {
+        public final class Creator implements Parcelable.Creator<StageChannel> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final StageChannel createFromParcel(Parcel parcel) {
@@ -344,15 +344,15 @@ public abstract class MobileReportArgs implements Parcelable {
             this.channelId = j;
         }
 
+        public final long component1() {
+            return getChannelId();
+        }
+
         public static /* synthetic */ StageChannel copy$default(StageChannel stageChannel, long j, int i, Object obj) {
             if ((i & 1) != 0) {
                 j = stageChannel.getChannelId();
             }
             return stageChannel.copy(j);
-        }
-
-        public final long component1() {
-            return getChannelId();
         }
 
         public final StageChannel copy(long channelId) {

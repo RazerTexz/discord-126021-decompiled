@@ -44,7 +44,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionViewModel$1 */
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static final class C94441 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C94441 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C94441() {
             super(1);
         }
@@ -62,8 +62,58 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionViewModel$submitChanges$1 */
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static final class Companion {
+    public final class C94461 extends AbstractC12240o implements Function1<GuildRoleSubscriptionGroupListing, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C94461(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
+            invoke2(guildRoleSubscriptionGroupListing);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
+            C12238m.checkNotNullParameter(guildRoleSubscriptionGroupListing, "it");
+            ServerSettingsGuildRoleSubscriptionViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, false, 0L, 4, null));
+            ServerSettingsGuildRoleSubscriptionViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionViewModel$submitChanges$2 */
+    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
+    public final class C94472 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C94472(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            ServerSettingsGuildRoleSubscriptionViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, false, 0L, 5, null));
+            ServerSettingsGuildRoleSubscriptionViewModel.this.emitEvent(new Event.SubmitFailure(error));
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -77,10 +127,10 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final /* data */ class StoreStateUpdate extends Event {
+        public final /* data */ class StoreStateUpdate extends Event {
             private final Boolean fullServerGatingOverwrite;
             private final GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing;
 
@@ -96,16 +146,6 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                     bool = storeStateUpdate.fullServerGatingOverwrite;
                 }
                 return storeStateUpdate.copy(guildRoleSubscriptionGroupListing, bool);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
-                return this.guildRoleSubscriptionGroupListing;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Boolean getFullServerGatingOverwrite() {
-                return this.fullServerGatingOverwrite;
             }
 
             public final StoreStateUpdate copy(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, Boolean fullServerGatingOverwrite) {
@@ -124,8 +164,18 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                 return C12238m.areEqual(this.guildRoleSubscriptionGroupListing, storeStateUpdate.guildRoleSubscriptionGroupListing) && C12238m.areEqual(this.fullServerGatingOverwrite, storeStateUpdate.fullServerGatingOverwrite);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final Boolean getFullServerGatingOverwrite() {
                 return this.fullServerGatingOverwrite;
+            }
+
+            public final Boolean getFullServerGatingOverwrite() {
+                return this.fullServerGatingOverwrite;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
+                return this.guildRoleSubscriptionGroupListing;
             }
 
             public final GuildRoleSubscriptionGroupListing getGuildRoleSubscriptionGroupListing() {
@@ -156,7 +206,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final /* data */ class SubmitFailure extends Event {
+        public final /* data */ class SubmitFailure extends Event {
             private final Error error;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -173,11 +223,6 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                 return submitFailure.copy(error);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Error getError() {
-                return this.error;
-            }
-
             public final SubmitFailure copy(Error error) {
                 C12238m.checkNotNullParameter(error, "error");
                 return new SubmitFailure(error);
@@ -188,6 +233,11 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                     return (other instanceof SubmitFailure) && C12238m.areEqual(this.error, ((SubmitFailure) other).error);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Error getError() {
+                return this.error;
             }
 
             public final Error getError() {
@@ -211,7 +261,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final class SubmitSuccess extends Event {
+        public final class SubmitSuccess extends Event {
             public static final SubmitSuccess INSTANCE = new SubmitSuccess();
 
             private SubmitSuccess() {
@@ -228,7 +278,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Boolean fullServerGatingOverwrite;
         private final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState guildRoleSubscriptionGroupState;
 
@@ -247,16 +297,6 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
             return storeState.copy(guildRoleSubscriptionGroupState, bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
-            return this.guildRoleSubscriptionGroupState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Boolean getFullServerGatingOverwrite() {
-            return this.fullServerGatingOverwrite;
-        }
-
         public final StoreState copy(StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState guildRoleSubscriptionGroupState, Boolean fullServerGatingOverwrite) {
             return new StoreState(guildRoleSubscriptionGroupState, fullServerGatingOverwrite);
         }
@@ -272,8 +312,18 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
             return C12238m.areEqual(this.guildRoleSubscriptionGroupState, storeState.guildRoleSubscriptionGroupState) && C12238m.areEqual(this.fullServerGatingOverwrite, storeState.fullServerGatingOverwrite);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Boolean getFullServerGatingOverwrite() {
             return this.fullServerGatingOverwrite;
+        }
+
+        public final Boolean getFullServerGatingOverwrite() {
+            return this.fullServerGatingOverwrite;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
+            return this.guildRoleSubscriptionGroupState;
         }
 
         public final StoreGuildRoleSubscriptions.GuildRoleSubscriptionGroupState getGuildRoleSubscriptionGroupState() {
@@ -296,10 +346,10 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final class Empty extends ViewState {
+        public final class Empty extends ViewState {
             public static final Empty INSTANCE = new Empty();
 
             private Empty() {
@@ -308,7 +358,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final class Failed extends ViewState {
+        public final class Failed extends ViewState {
             public static final Failed INSTANCE = new Failed();
 
             private Failed() {
@@ -317,7 +367,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final long groupListingId;
             private final boolean hasChanges;
             private final boolean isSubmitting;
@@ -339,21 +389,6 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                 return loaded.copy(z2, z3, j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getHasChanges() {
-                return this.hasChanges;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsSubmitting() {
-                return this.isSubmitting;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final long getGroupListingId() {
-                return this.groupListingId;
-            }
-
             public final Loaded copy(boolean hasChanges, boolean isSubmitting, long groupListingId) {
                 return new Loaded(hasChanges, isSubmitting, groupListingId);
             }
@@ -369,12 +404,27 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
                 return this.hasChanges == loaded.hasChanges && this.isSubmitting == loaded.isSubmitting && this.groupListingId == loaded.groupListingId;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final long getGroupListingId() {
                 return this.groupListingId;
             }
 
+            public final long getGroupListingId() {
+                return this.groupListingId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final boolean getHasChanges() {
                 return this.hasChanges;
+            }
+
+            public final boolean getHasChanges() {
+                return this.hasChanges;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsSubmitting() {
+                return this.isSubmitting;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -418,7 +468,7 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
         }
 
         /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -431,56 +481,6 @@ public final class ServerSettingsGuildRoleSubscriptionViewModel extends Abstract
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionViewModel$submitChanges$1 */
-    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static final class C94461 extends AbstractC12240o implements Function1<GuildRoleSubscriptionGroupListing, Unit> {
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C94461(ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
-            invoke2(guildRoleSubscriptionGroupListing);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
-            C12238m.checkNotNullParameter(guildRoleSubscriptionGroupListing, "it");
-            ServerSettingsGuildRoleSubscriptionViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, false, 0L, 4, null));
-            ServerSettingsGuildRoleSubscriptionViewModel.this.emitEvent(Event.SubmitSuccess.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsGuildRoleSubscriptionViewModel$submitChanges$2 */
-    /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionViewModel.kt */
-    public static final class C94472 extends AbstractC12240o implements Function1<Error, Unit> {
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C94472(ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            ServerSettingsGuildRoleSubscriptionViewModel.this.updateViewState(ViewState.Loaded.copy$default(this.$viewState, false, false, 0L, 5, null));
-            ServerSettingsGuildRoleSubscriptionViewModel.this.emitEvent(new Event.SubmitFailure(error));
         }
     }
 

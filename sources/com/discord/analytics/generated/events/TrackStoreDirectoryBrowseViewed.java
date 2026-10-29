@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreDirectoryBrowseViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreDirectoryBrowseViewed implements AnalyticsSchema, TrackBaseReceiver, TrackSourceMetadataReceiver {
+    private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackSourceMetadata trackSourceMetadata;
-    private final CharSequence loadId = null;
     private final transient String analyticsSchemaTypeName = "store_directory_browse_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackStoreDirectoryBrowseViewed) && C12238m.areEqual(this.loadId, ((TrackStoreDirectoryBrowseViewed) other).loadId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

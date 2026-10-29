@@ -31,29 +31,6 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageCtaClick
         this.analyticsSchemaTypeName = "role_subscription_purchase_system_message_cta_clicked";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7514e(TrackChannel trackChannel) {
-        this.trackChannel = trackChannel;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -65,6 +42,18 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageCtaClick
         return C12238m.areEqual(this.messageId, trackRoleSubscriptionPurchaseSystemMessageCtaClicked.messageId) && C12238m.areEqual(this.stickerId, trackRoleSubscriptionPurchaseSystemMessageCtaClicked.stickerId) && C12238m.areEqual(this.targetUser, trackRoleSubscriptionPurchaseSystemMessageCtaClicked.targetUser) && C12238m.areEqual(this.sender, trackRoleSubscriptionPurchaseSystemMessageCtaClicked.sender);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.messageId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -74,6 +63,17 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageCtaClick
         int iHashCode3 = (iHashCode2 + (l2 != null ? l2.hashCode() : 0)) * 31;
         Long l3 = this.sender;
         return iHashCode3 + (l3 != null ? l3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7514e(TrackChannel trackChannel) {
+        this.trackChannel = trackChannel;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

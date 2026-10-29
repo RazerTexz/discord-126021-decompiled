@@ -12,15 +12,15 @@ import p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2194o {
 
-    /* JADX INFO: renamed from: a */
-    public static final InterfaceC2339a f4725a = new c();
-
     /* JADX INFO: renamed from: b */
     public final Object f4726b;
 
+    /* JADX INFO: renamed from: a */
+    public static final InterfaceC2339a f4725a = new c();
+
     /* JADX INFO: renamed from: b.g.a.c.c0.o$a */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class a extends AbstractC2194o {
+    public class a extends AbstractC2194o {
 
         /* JADX INFO: renamed from: c */
         public static final a f4727c = new a(null);
@@ -56,7 +56,7 @@ public abstract class AbstractC2194o {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.o$b */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class b extends AbstractC2194o {
+    public class b extends AbstractC2194o {
 
         /* JADX INFO: renamed from: c */
         public final HashMap<Class<?>, Annotation> f4728c;
@@ -113,7 +113,7 @@ public abstract class AbstractC2194o {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.o$c */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class c implements InterfaceC2339a, Serializable {
+    public class c implements InterfaceC2339a, Serializable {
         private static final long serialVersionUID = 1;
 
         @Override // p007b.p195g.p196a.p205c.p219i0.InterfaceC2339a
@@ -130,7 +130,7 @@ public abstract class AbstractC2194o {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.o$d */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class d implements InterfaceC2339a, Serializable {
+    public class d implements InterfaceC2339a, Serializable {
         private static final long serialVersionUID = 1;
         private final Class<?> _type;
         private final Annotation _value;
@@ -157,7 +157,7 @@ public abstract class AbstractC2194o {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.o$e */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class e extends AbstractC2194o {
+    public class e extends AbstractC2194o {
 
         /* JADX INFO: renamed from: c */
         public Class<?> f4729c;
@@ -208,7 +208,7 @@ public abstract class AbstractC2194o {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.o$f */
     /* JADX INFO: compiled from: AnnotationCollector.java */
-    public static class f implements InterfaceC2339a, Serializable {
+    public class f implements InterfaceC2339a, Serializable {
         private static final long serialVersionUID = 1;
         private final Class<?> _type1;
         private final Class<?> _type2;

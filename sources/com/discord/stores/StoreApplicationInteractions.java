@@ -66,10 +66,6 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final ObservationDeck.UpdateSource ComponentStateUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationInteractions$Companion$ComponentStateUpdate$1
-    };
-    private static final ObservationDeck.UpdateSource SentInteractionsUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationInteractions$Companion$SentInteractionsUpdate$1
-    };
     public static final long TYPE_COMPONENT_INTERACTION = 3;
     public static final long TYPE_MODAL_INTERACTION = 5;
     private Map<String, ApplicationCommandLocalSendData> applicationCommandLocalSendDataSet;
@@ -94,355 +90,14 @@ public final class StoreApplicationInteractions extends StoreV2 {
     private final StoreMessages storeMessages;
     private final StoreStream storeStream;
     private final StoreUser storeUser;
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final ObservationDeck.UpdateSource getComponentStateUpdate() {
-            return StoreApplicationInteractions.ComponentStateUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getSentInteractionsUpdate() {
-            return StoreApplicationInteractions.SentInteractionsUpdate;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final /* data */ class ComponentLocation {
-        private final int componentIndex;
-        private final long messageId;
-
-        public ComponentLocation(long j, int i) {
-            this.messageId = j;
-            this.componentIndex = i;
-        }
-
-        public static /* synthetic */ ComponentLocation copy$default(ComponentLocation componentLocation, long j, int i, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                j = componentLocation.messageId;
-            }
-            if ((i2 & 2) != 0) {
-                i = componentLocation.componentIndex;
-            }
-            return componentLocation.copy(j, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getComponentIndex() {
-            return this.componentIndex;
-        }
-
-        public final ComponentLocation copy(long messageId, int componentIndex) {
-            return new ComponentLocation(messageId, componentIndex);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ComponentLocation)) {
-                return false;
-            }
-            ComponentLocation componentLocation = (ComponentLocation) other;
-            return this.messageId == componentLocation.messageId && this.componentIndex == componentLocation.componentIndex;
-        }
-
-        public final int getComponentIndex() {
-            return this.componentIndex;
-        }
-
-        public final long getMessageId() {
-            return this.messageId;
-        }
-
-        public int hashCode() {
-            return (C0002b.m3a(this.messageId) * 31) + this.componentIndex;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ComponentLocation(messageId=");
-            sbM833U.append(this.messageId);
-            sbM833U.append(", componentIndex=");
-            return C1643a.m814B(sbM833U, this.componentIndex, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static abstract class InteractionSendState {
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class Failed extends InteractionSendState {
-            private final String errorMessage;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Failed() {
-                this(null, 1, 0 == true ? 1 : 0);
-            }
-
-            public Failed(String str) {
-                super(null);
-                this.errorMessage = str;
-            }
-
-            public final String getErrorMessage() {
-                return this.errorMessage;
-            }
-
-            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? null : str);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class Loading extends InteractionSendState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class Success extends InteractionSendState {
-            public static final Success INSTANCE = new Success();
-
-            private Success() {
-                super(null);
-            }
-        }
-
-        private InteractionSendState() {
-        }
-
-        public /* synthetic */ InteractionSendState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final /* data */ class SentInteraction {
-        private final long channelId;
-        private final Long guildId;
-        private final Long messageId;
-        private SentInteractionState state;
-
-        public SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState) {
-            C12238m.checkNotNullParameter(sentInteractionState, "state");
-            this.channelId = j;
-            this.messageId = l;
-            this.guildId = l2;
-            this.state = sentInteractionState;
-        }
-
-        public static /* synthetic */ SentInteraction copy$default(SentInteraction sentInteraction, long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = sentInteraction.channelId;
-            }
-            long j2 = j;
-            if ((i & 2) != 0) {
-                l = sentInteraction.messageId;
-            }
-            Long l3 = l;
-            if ((i & 4) != 0) {
-                l2 = sentInteraction.guildId;
-            }
-            Long l4 = l2;
-            if ((i & 8) != 0) {
-                sentInteractionState = sentInteraction.state;
-            }
-            return sentInteraction.copy(j2, l3, l4, sentInteractionState);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getMessageId() {
-            return this.messageId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final SentInteractionState getState() {
-            return this.state;
-        }
-
-        public final SentInteraction copy(long channelId, Long messageId, Long guildId, SentInteractionState state) {
-            C12238m.checkNotNullParameter(state, "state");
-            return new SentInteraction(channelId, messageId, guildId, state);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof SentInteraction)) {
-                return false;
-            }
-            SentInteraction sentInteraction = (SentInteraction) other;
-            return this.channelId == sentInteraction.channelId && C12238m.areEqual(this.messageId, sentInteraction.messageId) && C12238m.areEqual(this.guildId, sentInteraction.guildId) && C12238m.areEqual(this.state, sentInteraction.state);
-        }
-
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        public final Long getMessageId() {
-            return this.messageId;
-        }
-
-        public final SentInteractionState getState() {
-            return this.state;
-        }
-
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.channelId) * 31;
-            Long l = this.messageId;
-            int iHashCode = (iM3a + (l != null ? l.hashCode() : 0)) * 31;
-            Long l2 = this.guildId;
-            int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
-            SentInteractionState sentInteractionState = this.state;
-            return iHashCode2 + (sentInteractionState != null ? sentInteractionState.hashCode() : 0);
-        }
-
-        public final void setState(SentInteractionState sentInteractionState) {
-            C12238m.checkNotNullParameter(sentInteractionState, "<set-?>");
-            this.state = sentInteractionState;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("SentInteraction(channelId=");
-            sbM833U.append(this.channelId);
-            sbM833U.append(", messageId=");
-            sbM833U.append(this.messageId);
-            sbM833U.append(", guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", state=");
-            sbM833U.append(this.state);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-
-        public /* synthetic */ SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(j, l, l2, (i & 8) != 0 ? SentInteractionState.SENDING : sentInteractionState);
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public enum SentInteractionState {
-        SENDING,
-        FAILURE,
-        SUCCESS
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static abstract class State {
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class Failure extends State {
-            public static final Failure INSTANCE = new Failure();
-
-            private Failure() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class Fetching extends State {
-            public static final Fetching INSTANCE = new Fetching();
-
-            private Fetching() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final /* data */ class Loaded extends State {
-            private final ApplicationCommandData commandOptions;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(ApplicationCommandData applicationCommandData) {
-                super(null);
-                C12238m.checkNotNullParameter(applicationCommandData, "commandOptions");
-                this.commandOptions = applicationCommandData;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, ApplicationCommandData applicationCommandData, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    applicationCommandData = loaded.commandOptions;
-                }
-                return loaded.copy(applicationCommandData);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ApplicationCommandData getCommandOptions() {
-                return this.commandOptions;
-            }
-
-            public final Loaded copy(ApplicationCommandData commandOptions) {
-                C12238m.checkNotNullParameter(commandOptions, "commandOptions");
-                return new Loaded(commandOptions);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.commandOptions, ((Loaded) other).commandOptions);
-                }
-                return true;
-            }
-
-            public final ApplicationCommandData getCommandOptions() {
-                return this.commandOptions;
-            }
-
-            public int hashCode() {
-                ApplicationCommandData applicationCommandData = this.commandOptions;
-                if (applicationCommandData != null) {
-                    return applicationCommandData.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(commandOptions=");
-                sbM833U.append(this.commandOptions);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        private State() {
-        }
-
-        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final ObservationDeck.UpdateSource ComponentStateUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationInteractions$Companion$ComponentStateUpdate$1
+    };
+    private static final ObservationDeck.UpdateSource SentInteractionsUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationInteractions$Companion$SentInteractionsUpdate$1
+    };
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$clearComponentInteractionSendSuccessAndFailures$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57211 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57211 extends AbstractC12240o implements Function0<Unit> {
         public C57211() {
             super(0);
         }
@@ -483,7 +138,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$2 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57232 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57232 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $interactionId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -506,12 +161,12 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$3 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57243 extends AbstractC12240o implements Function1<ApplicationCommandData, Unit> {
+    public final class C57243 extends AbstractC12240o implements Function1<ApplicationCommandData, Unit> {
         public final /* synthetic */ long $interactionId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ ApplicationCommandData $interactionDetail;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -554,12 +209,12 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$4 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57254 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C57254 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ long $interactionId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -598,14 +253,14 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$handleSendApplicationCommandRequest$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57261 extends AbstractC12240o implements Function1<MessageResult, Unit> {
+    public final class C57261 extends AbstractC12240o implements Function1<MessageResult, Unit> {
         public final /* synthetic */ ApplicationCommandLocalSendData $localSendData;
         public final /* synthetic */ Function1 $onFail;
         public final /* synthetic */ Function0 $onSuccess;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$handleSendApplicationCommandRequest$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ MessageResult $result;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -650,7 +305,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeComponentInteractionState$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57281 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Integer, ? extends InteractionSendState>>> {
+    public final class C57281 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Integer, ? extends InteractionSendState>>> {
         public C57281() {
             super(0);
         }
@@ -663,7 +318,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeInteractionData$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57291 extends AbstractC12240o implements Function0<State> {
+    public final class C57291 extends AbstractC12240o implements Function0<State> {
         public final /* synthetic */ long $interactionId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -681,7 +336,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeSentInteractions$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57301 extends AbstractC12240o implements Function0<Map<String, ? extends SentInteraction>> {
+    public final class C57301 extends AbstractC12240o implements Function0<Map<String, ? extends SentInteraction>> {
         public C57301() {
             super(0);
         }
@@ -694,7 +349,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$resendApplicationCommand$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57311 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57311 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Message $message;
         public final /* synthetic */ String $nonce;
         public final /* synthetic */ ApplicationCommandLocalSendData $updatedSendData;
@@ -723,7 +378,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendApplicationCommand$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57321 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57321 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $attachments;
         public final /* synthetic */ ApplicationCommandLocalSendData $localSendData;
         public final /* synthetic */ Function1 $onFail;
@@ -752,7 +407,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57331 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57331 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $applicationId;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ int $componentIndex;
@@ -764,7 +419,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Void, Unit> {
             public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
             public AnonymousClass3() {
@@ -784,11 +439,11 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$4, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass4 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass4 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$4$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ Error $it;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -910,7 +565,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1 */
     /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-    public static final class C57341 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57341 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $components;
         public final /* synthetic */ SentInteraction $localSendData;
         public final /* synthetic */ InteractionModalCreate $modal;
@@ -920,7 +575,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -940,7 +595,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function1<Error, Unit> {
             public AnonymousClass3() {
                 super(1);
             }
@@ -1000,6 +655,351 @@ public final class StoreApplicationInteractions extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ObservationDeck.UpdateSource getComponentStateUpdate() {
+            return StoreApplicationInteractions.ComponentStateUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getSentInteractionsUpdate() {
+            return StoreApplicationInteractions.SentInteractionsUpdate;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final /* data */ class ComponentLocation {
+        private final int componentIndex;
+        private final long messageId;
+
+        public ComponentLocation(long j, int i) {
+            this.messageId = j;
+            this.componentIndex = i;
+        }
+
+        public static /* synthetic */ ComponentLocation copy$default(ComponentLocation componentLocation, long j, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                j = componentLocation.messageId;
+            }
+            if ((i2 & 2) != 0) {
+                i = componentLocation.componentIndex;
+            }
+            return componentLocation.copy(j, i);
+        }
+
+        public final ComponentLocation copy(long messageId, int componentIndex) {
+            return new ComponentLocation(messageId, componentIndex);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ComponentLocation)) {
+                return false;
+            }
+            ComponentLocation componentLocation = (ComponentLocation) other;
+            return this.messageId == componentLocation.messageId && this.componentIndex == componentLocation.componentIndex;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getComponentIndex() {
+            return this.componentIndex;
+        }
+
+        public final int getComponentIndex() {
+            return this.componentIndex;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
+        public int hashCode() {
+            return (C0002b.m3a(this.messageId) * 31) + this.componentIndex;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ComponentLocation(messageId=");
+            sbM833U.append(this.messageId);
+            sbM833U.append(", componentIndex=");
+            return C1643a.m814B(sbM833U, this.componentIndex, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public abstract class InteractionSendState {
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Failed extends InteractionSendState {
+            private final String errorMessage;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Failed() {
+                this(null, 1, 0 == true ? 1 : 0);
+            }
+
+            public Failed(String str) {
+                super(null);
+                this.errorMessage = str;
+            }
+
+            public final String getErrorMessage() {
+                return this.errorMessage;
+            }
+
+            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : str);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Loading extends InteractionSendState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Success extends InteractionSendState {
+            public static final Success INSTANCE = new Success();
+
+            private Success() {
+                super(null);
+            }
+        }
+
+        private InteractionSendState() {
+        }
+
+        public /* synthetic */ InteractionSendState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final /* data */ class SentInteraction {
+        private final long channelId;
+        private final Long guildId;
+        private final Long messageId;
+        private SentInteractionState state;
+
+        public SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState) {
+            C12238m.checkNotNullParameter(sentInteractionState, "state");
+            this.channelId = j;
+            this.messageId = l;
+            this.guildId = l2;
+            this.state = sentInteractionState;
+        }
+
+        public static /* synthetic */ SentInteraction copy$default(SentInteraction sentInteraction, long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = sentInteraction.channelId;
+            }
+            long j2 = j;
+            if ((i & 2) != 0) {
+                l = sentInteraction.messageId;
+            }
+            Long l3 = l;
+            if ((i & 4) != 0) {
+                l2 = sentInteraction.guildId;
+            }
+            Long l4 = l2;
+            if ((i & 8) != 0) {
+                sentInteractionState = sentInteraction.state;
+            }
+            return sentInteraction.copy(j2, l3, l4, sentInteractionState);
+        }
+
+        public final SentInteraction copy(long channelId, Long messageId, Long guildId, SentInteractionState state) {
+            C12238m.checkNotNullParameter(state, "state");
+            return new SentInteraction(channelId, messageId, guildId, state);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SentInteraction)) {
+                return false;
+            }
+            SentInteraction sentInteraction = (SentInteraction) other;
+            return this.channelId == sentInteraction.channelId && C12238m.areEqual(this.messageId, sentInteraction.messageId) && C12238m.areEqual(this.guildId, sentInteraction.guildId) && C12238m.areEqual(this.state, sentInteraction.state);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getMessageId() {
+            return this.messageId;
+        }
+
+        public final Long getMessageId() {
+            return this.messageId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final SentInteractionState getState() {
+            return this.state;
+        }
+
+        public final SentInteractionState getState() {
+            return this.state;
+        }
+
+        public int hashCode() {
+            int iM3a = C0002b.m3a(this.channelId) * 31;
+            Long l = this.messageId;
+            int iHashCode = (iM3a + (l != null ? l.hashCode() : 0)) * 31;
+            Long l2 = this.guildId;
+            int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
+            SentInteractionState sentInteractionState = this.state;
+            return iHashCode2 + (sentInteractionState != null ? sentInteractionState.hashCode() : 0);
+        }
+
+        public final void setState(SentInteractionState sentInteractionState) {
+            C12238m.checkNotNullParameter(sentInteractionState, "<set-?>");
+            this.state = sentInteractionState;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("SentInteraction(channelId=");
+            sbM833U.append(this.channelId);
+            sbM833U.append(", messageId=");
+            sbM833U.append(this.messageId);
+            sbM833U.append(", guildId=");
+            sbM833U.append(this.guildId);
+            sbM833U.append(", state=");
+            sbM833U.append(this.state);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+
+        public /* synthetic */ SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(j, l, l2, (i & 8) != 0 ? SentInteractionState.SENDING : sentInteractionState);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public enum SentInteractionState {
+        SENDING,
+        FAILURE,
+        SUCCESS
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Failure extends State {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Fetching extends State {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final /* data */ class Loaded extends State {
+            private final ApplicationCommandData commandOptions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(ApplicationCommandData applicationCommandData) {
+                super(null);
+                C12238m.checkNotNullParameter(applicationCommandData, "commandOptions");
+                this.commandOptions = applicationCommandData;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, ApplicationCommandData applicationCommandData, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    applicationCommandData = loaded.commandOptions;
+                }
+                return loaded.copy(applicationCommandData);
+            }
+
+            public final Loaded copy(ApplicationCommandData commandOptions) {
+                C12238m.checkNotNullParameter(commandOptions, "commandOptions");
+                return new Loaded(commandOptions);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.commandOptions, ((Loaded) other).commandOptions);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ApplicationCommandData getCommandOptions() {
+                return this.commandOptions;
+            }
+
+            public final ApplicationCommandData getCommandOptions() {
+                return this.commandOptions;
+            }
+
+            public int hashCode() {
+                ApplicationCommandData applicationCommandData = this.commandOptions;
+                if (applicationCommandData != null) {
+                    return applicationCommandData.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(commandOptions=");
+                sbM833U.append(this.commandOptions);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        private State() {
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreApplicationInteractions(StoreStream storeStream, Dispatcher dispatcher, StoreMessages storeMessages, StoreLocalActionComponentState storeLocalActionComponentState, StoreUser storeUser, Clock clock, SharedPreferences sharedPreferences, ObservationDeck observationDeck, RestAPI restAPI, NonceGenerator nonceGenerator, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeStream, dispatcher, storeMessages, storeLocalActionComponentState, storeUser, clock, (i & 64) != 0 ? SharedPreferencesProvider.INSTANCE.get() : sharedPreferences, (i & 128) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 256) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 512) != 0 ? new NonceGenerator() : nonceGenerator);
     }
@@ -1010,10 +1010,6 @@ public final class StoreApplicationInteractions extends StoreV2 {
         markChanged(ComponentStateUpdate);
     }
 
-    private final Message buildApplicationCommandLocalMessage(ApplicationCommandLocalSendData localSendData, boolean isLoading, boolean isFailed) {
-        return LocalMessageCreatorsKt.createLocalApplicationCommandMessage(localSendData.getNonce(), localSendData.getApplicationCommandName(), localSendData.getChannelId(), UserUtils.INSTANCE.synthesizeApiUser(this.storeUser.getMeSnapshot()), toUser(localSendData.getApplication()), isFailed, isLoading, localSendData.getInteractionId(), this.clock);
-    }
-
     public static /* synthetic */ Message buildApplicationCommandLocalMessage$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, boolean z2, boolean z3, int i, Object obj) {
         if ((i & 2) != 0) {
             z2 = false;
@@ -1022,6 +1018,10 @@ public final class StoreApplicationInteractions extends StoreV2 {
             z3 = false;
         }
         return storeApplicationInteractions.buildApplicationCommandLocalMessage(applicationCommandLocalSendData, z2, z3);
+    }
+
+    private final Message buildApplicationCommandLocalMessage(ApplicationCommandLocalSendData localSendData, boolean isLoading, boolean isFailed) {
+        return LocalMessageCreatorsKt.createLocalApplicationCommandMessage(localSendData.getNonce(), localSendData.getApplicationCommandName(), localSendData.getChannelId(), UserUtils.INSTANCE.synthesizeApiUser(this.storeUser.getMeSnapshot()), toUser(localSendData.getApplication()), isFailed, isLoading, localSendData.getInteractionId(), this.clock);
     }
 
     @StoreThread
@@ -1038,9 +1038,42 @@ public final class StoreApplicationInteractions extends StoreV2 {
         this.dispatcher.schedule(new C57211());
     }
 
-    @StoreThread
-    private final void handleApplicationCommandRequestStateUpdate(ApplicationCommandLocalSendData localSendData, Long interactionId) {
-        upsertApplicationCommandSendData(localSendData.copy((1791 & 1) != 0 ? localSendData.nonce : 0L, (1791 & 2) != 0 ? localSendData.channelId : 0L, (1791 & 4) != 0 ? localSendData.guildId : null, (1791 & 8) != 0 ? localSendData.commandGuildId : null, (1791 & 16) != 0 ? localSendData.application : null, (1791 & 32) != 0 ? localSendData.sessionId : null, (1791 & 64) != 0 ? localSendData.applicationCommandName : null, (1791 & 128) != 0 ? localSendData.applicationCommandId : null, (1791 & 256) != 0 ? localSendData.applicationCommandsValues : null, (1791 & 512) != 0 ? localSendData.version : null, (1791 & 1024) != 0 ? localSendData.interactionId : interactionId));
+    public final void fetchInteractionDataIfNonExisting(long interactionId, long channelId, long messageId, String messageNonce) {
+        ApplicationCommandLocalSendData applicationCommandLocalSendData;
+        State state = this.interactionData.get(Long.valueOf(interactionId));
+        if ((state instanceof State.Fetching) || (state instanceof State.Loaded)) {
+            return;
+        }
+        if (!(messageNonce == null || C12103t.isBlank(messageNonce)) && this.applicationCommandLocalSendDataSnapshot.containsKey(messageNonce) && (applicationCommandLocalSendData = this.applicationCommandLocalSendDataSnapshot.get(messageNonce)) != null) {
+            this.dispatcher.schedule(new C5722xe7ac5bbb(applicationCommandLocalSendData, this, interactionId));
+        } else {
+            this.dispatcher.schedule(new C57232(interactionId));
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getInteractionData(channelId, messageId), false, 1, null), (Class<?>) StoreApplicationInteractions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C57254(interactionId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57243(interactionId));
+        }
+    }
+
+    public final Map<Long, Map<Integer, InteractionSendState>> getComponentInteractionData() {
+        return this.interactionComponentSendStateSnapshot;
+    }
+
+    public final Map<String, ComponentLocation> getComponentInteractions() {
+        return this.componentInteractions;
+    }
+
+    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendState() {
+        return this.interactionComponentSendState;
+    }
+
+    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendStateSnapshot() {
+        return this.interactionComponentSendStateSnapshot;
+    }
+
+    public final State getInteractionData(long interactionId) {
+        return this.interactionDataSnapshot.get(Long.valueOf(interactionId));
+    }
+
+    public final LruCache<String, SentInteraction> getSentInteractions$app_productionGoogleRelease() {
+        return this.sentInteractions;
     }
 
     public static /* synthetic */ void handleApplicationCommandRequestStateUpdate$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, Long l, int i, Object obj) {
@@ -1048,6 +1081,22 @@ public final class StoreApplicationInteractions extends StoreV2 {
             l = null;
         }
         storeApplicationInteractions.handleApplicationCommandRequestStateUpdate(applicationCommandLocalSendData, l);
+    }
+
+    @StoreThread
+    private final void handleApplicationCommandRequestStateUpdate(ApplicationCommandLocalSendData localSendData, Long interactionId) {
+        upsertApplicationCommandSendData(localSendData.copy((1791 & 1) != 0 ? localSendData.nonce : 0L, (1791 & 2) != 0 ? localSendData.channelId : 0L, (1791 & 4) != 0 ? localSendData.guildId : null, (1791 & 8) != 0 ? localSendData.commandGuildId : null, (1791 & 16) != 0 ? localSendData.application : null, (1791 & 32) != 0 ? localSendData.sessionId : null, (1791 & 64) != 0 ? localSendData.applicationCommandName : null, (1791 & 128) != 0 ? localSendData.applicationCommandId : null, (1791 & 256) != 0 ? localSendData.applicationCommandsValues : null, (1791 & 512) != 0 ? localSendData.version : null, (1791 & 1024) != 0 ? localSendData.interactionId : interactionId));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void handleApplicationCommandResult$default(StoreApplicationInteractions storeApplicationInteractions, MessageResult messageResult, ApplicationCommandLocalSendData applicationCommandLocalSendData, Function0 function0, Function1 function1, int i, Object obj) {
+        if ((i & 4) != 0) {
+            function0 = null;
+        }
+        if ((i & 8) != 0) {
+            function1 = null;
+        }
+        storeApplicationInteractions.handleApplicationCommandResult(messageResult, applicationCommandLocalSendData, function0, function1);
     }
 
     @StoreThread
@@ -1078,19 +1127,35 @@ public final class StoreApplicationInteractions extends StoreV2 {
         }
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void handleApplicationCommandResult$default(StoreApplicationInteractions storeApplicationInteractions, MessageResult messageResult, ApplicationCommandLocalSendData applicationCommandLocalSendData, Function0 function0, Function1 function1, int i, Object obj) {
-        if ((i & 4) != 0) {
-            function0 = null;
-        }
-        if ((i & 8) != 0) {
-            function1 = null;
-        }
-        storeApplicationInteractions.handleApplicationCommandResult(messageResult, applicationCommandLocalSendData, function0, function1);
+    @StoreThread
+    public final void handleChannelSelected() {
+        clearComponentInteractionSendSuccessAndFailures();
     }
 
     private final void handleComponentInteractionMessage(ComponentLocation componentLocation) {
         addInteractionStateToComponent(componentLocation.getMessageId(), componentLocation.getComponentIndex(), InteractionSendState.Success.INSTANCE);
+    }
+
+    @StoreThread
+    public final void handleConnectionOpen(ModelPayload payload) {
+        C12238m.checkNotNullParameter(payload, "payload");
+        this.sessionId = payload.getSessionId();
+    }
+
+    @StoreThread
+    public final void handleConnectionReady(boolean connectionReady) {
+        if (connectionReady) {
+            markAllLocalApplicationCommandRequestsAsFailed();
+        }
+    }
+
+    @StoreThread
+    public final void handleInteractionCreate(InteractionStateUpdate interactionStateUpdate) {
+        C12238m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
+        ApplicationCommandLocalSendData applicationCommandLocalSendData = this.applicationCommandLocalSendDataSet.get(interactionStateUpdate.getNonce());
+        if (applicationCommandLocalSendData != null) {
+            handleApplicationCommandRequestStateUpdate(applicationCommandLocalSendData, interactionStateUpdate.getId());
+        }
     }
 
     @StoreThread
@@ -1116,163 +1181,6 @@ public final class StoreApplicationInteractions extends StoreV2 {
             l = null;
         }
         storeApplicationInteractions.handleInteractionFailure(applicationCommandLocalSendData, l);
-    }
-
-    @StoreThread
-    private final void handleSendApplicationCommandRequest(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments, Function0<Unit> onSuccess, Function1<? super Error, Unit> onFail) {
-        upsertApplicationCommandSendData(localSendData);
-        ObservableExtensionsKt.appSubscribe(sendApplicationCommandObservable(localSendData, attachments), (Class<?>) StoreApplicationInteractions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57261(localSendData, onSuccess, onFail));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void handleSendApplicationCommandRequest$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, List list, Function0 function0, Function1 function1, int i, Object obj) {
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        if ((i & 4) != 0) {
-            function0 = null;
-        }
-        if ((i & 8) != 0) {
-            function1 = null;
-        }
-        storeApplicationInteractions.handleSendApplicationCommandRequest(applicationCommandLocalSendData, list, function0, function1);
-    }
-
-    @StoreThread
-    private final void loadCachedApplicationCommandSendDataSet() {
-        Map<String, ApplicationCommandLocalSendData> linkedHashMap;
-        try {
-            String string = this.sharedPrefs.getString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, null);
-            if (string == null || C12103t.isBlank(string)) {
-                linkedHashMap = new LinkedHashMap<>();
-            } else {
-                Object objM9203g = this.gson.m9203g(string, new TypeToken<Map<String, ? extends ApplicationCommandLocalSendData>>() { // from class: com.discord.stores.StoreApplicationInteractions$loadCachedApplicationCommandSendDataSet$type$1
-                }.getType());
-                C12238m.checkNotNullExpressionValue(objM9203g, "gson.fromJson(cachedDataSet, type)");
-                linkedHashMap = (Map) objM9203g;
-            }
-            this.applicationCommandLocalSendDataSet = linkedHashMap;
-        } catch (Exception e) {
-            clearCache();
-            this.applicationCommandLocalSendDataSet.clear();
-            Logger.e$default(AppLog.f14950g, "Error restoring cached command send data", e, null, 4, null);
-        }
-        markChanged();
-    }
-
-    @StoreThread
-    private final void markAllLocalApplicationCommandRequestsAsFailed() {
-        for (ApplicationCommandLocalSendData applicationCommandLocalSendData : this.applicationCommandLocalSendDataSet.values()) {
-            this.storeStream.handleInteractionFailure(new InteractionStateUpdate(applicationCommandLocalSendData.getInteractionId(), applicationCommandLocalSendData.getNonceString()));
-        }
-    }
-
-    @StoreThread
-    private final void removeApplicationCommandSendData(String nonce) {
-        if (this.applicationCommandLocalSendDataSet.remove(nonce) != null) {
-            markChanged();
-        }
-    }
-
-    private final Observable<MessageResult> sendApplicationCommandObservable(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments) {
-        Message messageBuildApplicationCommandLocalMessage$default = buildApplicationCommandLocalMessage$default(this, localSendData, false, false, 6, null);
-        this.sentInteractions.put(localSendData.getNonceString(), new SentInteraction(localSendData.getChannelId(), null, localSendData.getGuildId(), null, 8, null));
-        return this.storeMessages.sendMessage(messageBuildApplicationCommandLocalMessage$default, localSendData, attachments);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Observable sendApplicationCommandObservable$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, List list, int i, Object obj) {
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        return storeApplicationInteractions.sendApplicationCommandObservable(applicationCommandLocalSendData, list);
-    }
-
-    private final User toUser(Application application) {
-        User bot = application.getBot();
-        if (bot != null) {
-            return bot;
-        }
-        long id2 = application.getId();
-        String name = application.getName();
-        String icon = application.getIcon();
-        return new User(id2, name, icon != null ? new NullSerializable.C5566b(icon) : new NullSerializable.C5565a(null, 1), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4194296);
-    }
-
-    @StoreThread
-    private final void upsertApplicationCommandSendData(ApplicationCommandLocalSendData localSendData) {
-        this.applicationCommandLocalSendDataSet.put(localSendData.getNonceString(), localSendData);
-        markChanged();
-    }
-
-    public final void fetchInteractionDataIfNonExisting(long interactionId, long channelId, long messageId, String messageNonce) {
-        ApplicationCommandLocalSendData applicationCommandLocalSendData;
-        State state = this.interactionData.get(Long.valueOf(interactionId));
-        if ((state instanceof State.Fetching) || (state instanceof State.Loaded)) {
-            return;
-        }
-        if (!(messageNonce == null || C12103t.isBlank(messageNonce)) && this.applicationCommandLocalSendDataSnapshot.containsKey(messageNonce) && (applicationCommandLocalSendData = this.applicationCommandLocalSendDataSnapshot.get(messageNonce)) != null) {
-            this.dispatcher.schedule(new C5722xe7ac5bbb(applicationCommandLocalSendData, this, interactionId));
-        } else {
-            this.dispatcher.schedule(new C57232(interactionId));
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getInteractionData(channelId, messageId), false, 1, null), (Class<?>) StoreApplicationInteractions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C57254(interactionId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57243(interactionId));
-        }
-    }
-
-    /* JADX INFO: renamed from: getApplicationCommandLocalSendDataSet$app_productionGoogleRelease */
-    public final Map<String, ApplicationCommandLocalSendData> m8506x27c7fac9() {
-        return this.applicationCommandLocalSendDataSet;
-    }
-
-    public final Map<Long, Map<Integer, InteractionSendState>> getComponentInteractionData() {
-        return this.interactionComponentSendStateSnapshot;
-    }
-
-    public final Map<String, ComponentLocation> getComponentInteractions() {
-        return this.componentInteractions;
-    }
-
-    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendState() {
-        return this.interactionComponentSendState;
-    }
-
-    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendStateSnapshot() {
-        return this.interactionComponentSendStateSnapshot;
-    }
-
-    public final State getInteractionData(long interactionId) {
-        return this.interactionDataSnapshot.get(Long.valueOf(interactionId));
-    }
-
-    public final LruCache<String, SentInteraction> getSentInteractions$app_productionGoogleRelease() {
-        return this.sentInteractions;
-    }
-
-    @StoreThread
-    public final void handleChannelSelected() {
-        clearComponentInteractionSendSuccessAndFailures();
-    }
-
-    @StoreThread
-    public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
-        this.sessionId = payload.getSessionId();
-    }
-
-    @StoreThread
-    public final void handleConnectionReady(boolean connectionReady) {
-        if (connectionReady) {
-            markAllLocalApplicationCommandRequestsAsFailed();
-        }
-    }
-
-    @StoreThread
-    public final void handleInteractionCreate(InteractionStateUpdate interactionStateUpdate) {
-        C12238m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
-        ApplicationCommandLocalSendData applicationCommandLocalSendData = this.applicationCommandLocalSendDataSet.get(interactionStateUpdate.getNonce());
-        if (applicationCommandLocalSendData != null) {
-            handleApplicationCommandRequestStateUpdate(applicationCommandLocalSendData, interactionStateUpdate.getId());
-        }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -1423,12 +1331,66 @@ public final class StoreApplicationInteractions extends StoreV2 {
         markChanged();
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void handleSendApplicationCommandRequest$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, List list, Function0 function0, Function1 function1, int i, Object obj) {
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        if ((i & 4) != 0) {
+            function0 = null;
+        }
+        if ((i & 8) != 0) {
+            function1 = null;
+        }
+        storeApplicationInteractions.handleSendApplicationCommandRequest(applicationCommandLocalSendData, list, function0, function1);
+    }
+
+    @StoreThread
+    private final void handleSendApplicationCommandRequest(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments, Function0<Unit> onSuccess, Function1<? super Error, Unit> onFail) {
+        upsertApplicationCommandSendData(localSendData);
+        ObservableExtensionsKt.appSubscribe(sendApplicationCommandObservable(localSendData, attachments), (Class<?>) StoreApplicationInteractions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57261(localSendData, onSuccess, onFail));
+    }
+
     @Override // com.discord.stores.Store
     @StoreThread
     public void init(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         super.init(context);
         loadCachedApplicationCommandSendDataSet();
+    }
+
+    @StoreThread
+    private final void loadCachedApplicationCommandSendDataSet() {
+        Map<String, ApplicationCommandLocalSendData> linkedHashMap;
+        try {
+            String string = this.sharedPrefs.getString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, null);
+            if (string == null || C12103t.isBlank(string)) {
+                linkedHashMap = new LinkedHashMap<>();
+            } else {
+                Object objM9203g = this.gson.m9203g(string, new TypeToken<Map<String, ? extends ApplicationCommandLocalSendData>>() { // from class: com.discord.stores.StoreApplicationInteractions$loadCachedApplicationCommandSendDataSet$type$1
+                }.getType());
+                C12238m.checkNotNullExpressionValue(objM9203g, "gson.fromJson(cachedDataSet, type)");
+                linkedHashMap = (Map) objM9203g;
+            }
+            this.applicationCommandLocalSendDataSet = linkedHashMap;
+        } catch (Exception e) {
+            clearCache();
+            this.applicationCommandLocalSendDataSet.clear();
+            Logger.e$default(AppLog.f14950g, "Error restoring cached command send data", e, null, 4, null);
+        }
+        markChanged();
+    }
+
+    /* JADX INFO: renamed from: getApplicationCommandLocalSendDataSet$app_productionGoogleRelease */
+    public final Map<String, ApplicationCommandLocalSendData> m8506x27c7fac9() {
+        return this.applicationCommandLocalSendDataSet;
+    }
+
+    @StoreThread
+    private final void markAllLocalApplicationCommandRequestsAsFailed() {
+        for (ApplicationCommandLocalSendData applicationCommandLocalSendData : this.applicationCommandLocalSendDataSet.values()) {
+            this.storeStream.handleInteractionFailure(new InteractionStateUpdate(applicationCommandLocalSendData.getInteractionId(), applicationCommandLocalSendData.getNonceString()));
+        }
     }
 
     public final Observable<Map<Long, Map<Integer, InteractionSendState>>> observeComponentInteractionState() {
@@ -1453,6 +1415,13 @@ public final class StoreApplicationInteractions extends StoreV2 {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{SentInteractionsUpdate}, false, null, null, new C57301(), 14, null);
     }
 
+    @StoreThread
+    private final void removeApplicationCommandSendData(String nonce) {
+        if (this.applicationCommandLocalSendDataSet.remove(nonce) != null) {
+            markChanged();
+        }
+    }
+
     public final void resendApplicationCommand(Message message) {
         String nonce;
         ApplicationCommandLocalSendData applicationCommandLocalSendData;
@@ -1469,6 +1438,20 @@ public final class StoreApplicationInteractions extends StoreV2 {
         C12238m.checkNotNullParameter(onSuccess, "onSuccess");
         C12238m.checkNotNullParameter(onFail, "onFail");
         this.dispatcher.schedule(new C57321(new ApplicationCommandLocalSendData(this.nonceGenerator.nonce(), channelId, guildId, data.getApplicationCommand().getGuildId(), data.getApplication(), this.sessionId, data.getApplicationCommand().getName(), data.getApplicationCommand().getId(), data.getValues(), version, null, 1024, null), attachments, onSuccess, onFail));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ Observable sendApplicationCommandObservable$default(StoreApplicationInteractions storeApplicationInteractions, ApplicationCommandLocalSendData applicationCommandLocalSendData, List list, int i, Object obj) {
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        return storeApplicationInteractions.sendApplicationCommandObservable(applicationCommandLocalSendData, list);
+    }
+
+    private final Observable<MessageResult> sendApplicationCommandObservable(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments) {
+        Message messageBuildApplicationCommandLocalMessage$default = buildApplicationCommandLocalMessage$default(this, localSendData, false, false, 6, null);
+        this.sentInteractions.put(localSendData.getNonceString(), new SentInteraction(localSendData.getChannelId(), null, localSendData.getGuildId(), null, 8, null));
+        return this.storeMessages.sendMessage(messageBuildApplicationCommandLocalMessage$default, localSendData, attachments);
     }
 
     public final void sendComponentInteraction(long applicationId, Long guildId, long channelId, long messageId, int componentIndex, RestAPIParams.ComponentInteractionData data, Long messageFlags) {
@@ -1511,6 +1494,23 @@ public final class StoreApplicationInteractions extends StoreV2 {
         C12238m.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, strM9209m);
         editorEdit.apply();
+    }
+
+    private final User toUser(Application application) {
+        User bot = application.getBot();
+        if (bot != null) {
+            return bot;
+        }
+        long id2 = application.getId();
+        String name = application.getName();
+        String icon = application.getIcon();
+        return new User(id2, name, icon != null ? new NullSerializable.C5566b(icon) : new NullSerializable.C5565a(null, 1), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4194296);
+    }
+
+    @StoreThread
+    private final void upsertApplicationCommandSendData(ApplicationCommandLocalSendData localSendData) {
+        this.applicationCommandLocalSendDataSet.put(localSendData.getNonceString(), localSendData);
+        markChanged();
     }
 
     public StoreApplicationInteractions(StoreStream storeStream, Dispatcher dispatcher, StoreMessages storeMessages, StoreLocalActionComponentState storeLocalActionComponentState, StoreUser storeUser, Clock clock, SharedPreferences sharedPreferences, ObservationDeck observationDeck, RestAPI restAPI, NonceGenerator nonceGenerator) {

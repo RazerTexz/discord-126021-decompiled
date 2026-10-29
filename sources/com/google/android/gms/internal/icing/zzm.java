@@ -12,13 +12,13 @@ import p007b.p225i.p226a.p288f.p313h.p324k.C3571p;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzm extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzm> CREATOR = new C3571p();
 
     /* JADX INFO: renamed from: j */
     public final int f20597j;
 
     /* JADX INFO: renamed from: k */
     public final Bundle f20598k;
+    public static final Parcelable.Creator<zzm> CREATOR = new C3571p();
 
     public zzm(int i, Bundle bundle) {
         this.f20597j = i;

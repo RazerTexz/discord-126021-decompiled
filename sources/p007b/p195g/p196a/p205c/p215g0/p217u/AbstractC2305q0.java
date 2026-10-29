@@ -25,11 +25,11 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2391i;
 /* JADX INFO: compiled from: StdSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2305q0<T> extends AbstractC2364n<T> implements Serializable {
+    public final Class<T> _handledType;
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: j */
     public static final Object f4860j = new Object();
-    private static final long serialVersionUID = 1;
-    public final Class<T> _handledType;
 
     public AbstractC2305q0(Class<T> cls) {
         this._handledType = cls;
@@ -38,12 +38,6 @@ public abstract class AbstractC2305q0<T> extends AbstractC2364n<T> implements Se
     /* JADX INFO: renamed from: j */
     public static final boolean m2072j(Object obj, Object obj2) {
         return (obj == null || obj2 == null) ? false : true;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: c */
-    public Class<T> mo2041c() {
-        return this._handledType;
     }
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */
@@ -130,6 +124,12 @@ public abstract class AbstractC2305q0<T> extends AbstractC2364n<T> implements Se
         }
         int i = JsonMappingException.f19661j;
         throw JsonMappingException.m8741f(th, new JsonMappingException.C10677a(obj, str));
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: c */
+    public Class<T> mo2041c() {
+        return this._handledType;
     }
 
     public AbstractC2305q0(AbstractC2360j abstractC2360j) {

@@ -10,13 +10,13 @@ public final class C12744n<E> {
         super(i);
     }
 
+    public boolean isEmpty() {
+        return m10845j() == m10844i();
+    }
+
     /* JADX INFO: renamed from: i */
     public final long m10844i() {
         return C12755y.f27357a.getLongVolatile(this, AbstractC12745o.f27342q);
-    }
-
-    public boolean isEmpty() {
-        return m10845j() == m10844i();
     }
 
     /* JADX INFO: renamed from: j */

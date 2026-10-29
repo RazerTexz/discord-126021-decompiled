@@ -36,6 +36,7 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.Lazy;
@@ -81,27 +82,9 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(long guildId, String source, Context context) {
-            C12238m.checkNotNullParameter(source, "source");
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId).putExtra("com.discord.intent.extra.EXTRA_SOURCE", source);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…nts.EXTRA_SOURCE, source)");
-            C0870j.m156d(context, WidgetChangeGuildIdentity.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetChangeGuildIdentity$configureAvatar$1 */
     /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
-    public static final class C87621 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C87621 extends AbstractC12240o implements Function1<String, Unit> {
         public C87621() {
             super(1);
         }
@@ -121,7 +104,7 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetChangeGuildIdentity$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
-    public static final class C87711 extends AbstractC12240o implements Function1<WidgetChangeGuildIdentityViewModel.ViewState, Unit> {
+    public final class C87711 extends AbstractC12240o implements Function1<WidgetChangeGuildIdentityViewModel.ViewState, Unit> {
         public C87711() {
             super(1);
         }
@@ -141,7 +124,7 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetChangeGuildIdentity$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
-    public static final class C87722 extends AbstractC12240o implements Function1<WidgetChangeGuildIdentityViewModel.Event, Unit> {
+    public final class C87722 extends AbstractC12240o implements Function1<WidgetChangeGuildIdentityViewModel.Event, Unit> {
         public C87722() {
             super(1);
         }
@@ -182,6 +165,24 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(long guildId, String source, Context context) {
+            C12238m.checkNotNullParameter(source, "source");
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId).putExtra("com.discord.intent.extra.EXTRA_SOURCE", source);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…nts.EXTRA_SOURCE, source)");
+            C0870j.m156d(context, WidgetChangeGuildIdentity.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetChangeGuildIdentity() {
         super(C5419R.layout.widget_change_guild_identity);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChangeGuildIdentity$binding$2.INSTANCE, null, 2, null);
@@ -207,7 +208,7 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetChangeGuildIdentity$configureAvatar$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -367,13 +368,8 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
         bVar.m117a(parentFragmentManager, premiumUpsellType, C5419R.drawable.per_guild_identity_modal_image, string, C1107b.m211c(resources2, C5419R.string.guild_member_avatar_upsell_body, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null).toString(), Traits.Location.Page.GUILD_CHANNEL, "Change Per Server Identity Modal", "Nitro upsell button");
     }
 
-    private final void showToast(@StringRes int text) {
-        C0876m.m171i(this, text, 0, 4);
-    }
-
     @Override // com.discord.app.AppFragment
-    public void onImageChosen(Uri uri, String mimeType) {
-        Object widgetChangeGuildIdentity$sam$rx_functions_Action1$0;
+    public void onImageChosen(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
@@ -387,16 +383,15 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
         }
         Context context = getContext();
         Function1<? super String, Unit> function1 = this.imageSelectedResult;
+        Object widgetChangeGuildIdentity$sam$rx_functions_Action1$0 = function1;
         if (function1 != null) {
-            widgetChangeGuildIdentity$sam$rx_functions_Action1$0 = function1;
             widgetChangeGuildIdentity$sam$rx_functions_Action1$0 = new WidgetChangeGuildIdentity$sam$rx_functions_Action1$0(function1);
         }
-        widgetChangeGuildIdentity$sam$rx_functions_Action1$0 = function1;
         MGImages.requestDataUrl(context, uri, mimeType, (Action1) widgetChangeGuildIdentity$sam$rx_functions_Action1$0);
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
@@ -439,6 +434,10 @@ public final class WidgetChangeGuildIdentity extends AppFragment {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChangeGuildIdentity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87711());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChangeGuildIdentity.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87722());
+    }
+
+    private final void showToast(@StringRes int text) {
+        C0876m.m171i(this, text, 0, 4);
     }
 
     private final void showToast(String text) {

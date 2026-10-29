@@ -26,8 +26,109 @@ public final class StorePendingReplies extends StoreV2 {
     private final SnowflakePartitionMap.CopiablePartitionMap<PendingReply> pendingReplies;
     private Map<Long, PendingReply> pendingRepliesSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$observePendingReply$1 */
     /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public static final /* data */ class PendingReply {
+    public final class C63251 extends AbstractC12240o implements Function0<PendingReply> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63251(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final PendingReply invoke() {
+            return StorePendingReplies.this.getPendingReply(this.$channelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onCreatePendingReply$1 */
+    /* JADX INFO: compiled from: StorePendingReplies.kt */
+    public final class C63261 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ Message $message;
+        public final /* synthetic */ boolean $shouldMention;
+        public final /* synthetic */ boolean $showMentionToggle;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63261(Channel channel, Message message, boolean z2, boolean z3) {
+            super(0);
+            this.$channel = channel;
+            this.$message = message;
+            this.$shouldMention = z2;
+            this.$showMentionToggle = z3;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StorePendingReplies.this.pendingReplies.put(Long.valueOf(this.$channel.getId()), new PendingReply(new MessageReference(ChannelUtils.m7667B(this.$channel) ? null : Long.valueOf(this.$channel.getGuildId()), Long.valueOf(this.$channel.getId()), Long.valueOf(this.$message.getId())), this.$message, this.$shouldMention, this.$showMentionToggle));
+            StorePendingReplies.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onDeletePendingReply$1 */
+    /* JADX INFO: compiled from: StorePendingReplies.kt */
+    public final class C63271 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63271(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StorePendingReplies.this.pendingReplies.remove(Long.valueOf(this.$channelId));
+            StorePendingReplies.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onSetPendingReplyShouldMention$1 */
+    /* JADX INFO: compiled from: StorePendingReplies.kt */
+    public final class C63281 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ boolean $shouldMention;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63281(long j, boolean z2) {
+            super(0);
+            this.$channelId = j;
+            this.$shouldMention = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            PendingReply pendingReply = (PendingReply) StorePendingReplies.this.pendingReplies.get(Long.valueOf(this.$channelId));
+            if (pendingReply != null) {
+                StorePendingReplies.this.pendingReplies.put(Long.valueOf(this.$channelId), PendingReply.copy$default(pendingReply, null, null, this.$shouldMention, false, 11, null));
+                StorePendingReplies.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StorePendingReplies.kt */
+    public final /* data */ class PendingReply {
         private final MessageReference messageReference;
         private final Message originalMessage;
         private boolean shouldMention;
@@ -58,26 +159,6 @@ public final class StorePendingReplies extends StoreV2 {
             return pendingReply.copy(messageReference, message, z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MessageReference getMessageReference() {
-            return this.messageReference;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Message getOriginalMessage() {
-            return this.originalMessage;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShouldMention() {
-            return this.shouldMention;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getShowMentionToggle() {
-            return this.showMentionToggle;
-        }
-
         public final PendingReply copy(MessageReference messageReference, Message originalMessage, boolean shouldMention, boolean showMentionToggle) {
             C12238m.checkNotNullParameter(messageReference, "messageReference");
             C12238m.checkNotNullParameter(originalMessage, "originalMessage");
@@ -95,16 +176,36 @@ public final class StorePendingReplies extends StoreV2 {
             return C12238m.areEqual(this.messageReference, pendingReply.messageReference) && C12238m.areEqual(this.originalMessage, pendingReply.originalMessage) && this.shouldMention == pendingReply.shouldMention && this.showMentionToggle == pendingReply.showMentionToggle;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MessageReference getMessageReference() {
             return this.messageReference;
+        }
+
+        public final MessageReference getMessageReference() {
+            return this.messageReference;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Message getOriginalMessage() {
+            return this.originalMessage;
         }
 
         public final Message getOriginalMessage() {
             return this.originalMessage;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getShouldMention() {
             return this.shouldMention;
+        }
+
+        public final boolean getShouldMention() {
+            return this.shouldMention;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getShowMentionToggle() {
+            return this.showMentionToggle;
         }
 
         public final boolean getShowMentionToggle() {
@@ -151,119 +252,8 @@ public final class StorePendingReplies extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$observePendingReply$1 */
-    /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public static final class C63251 extends AbstractC12240o implements Function0<PendingReply> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63251(long j) {
-            super(0);
-            this.$channelId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final PendingReply invoke() {
-            return StorePendingReplies.this.getPendingReply(this.$channelId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onCreatePendingReply$1 */
-    /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public static final class C63261 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Channel $channel;
-        public final /* synthetic */ Message $message;
-        public final /* synthetic */ boolean $shouldMention;
-        public final /* synthetic */ boolean $showMentionToggle;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63261(Channel channel, Message message, boolean z2, boolean z3) {
-            super(0);
-            this.$channel = channel;
-            this.$message = message;
-            this.$shouldMention = z2;
-            this.$showMentionToggle = z3;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StorePendingReplies.this.pendingReplies.put(Long.valueOf(this.$channel.getId()), new PendingReply(new MessageReference(ChannelUtils.m7667B(this.$channel) ? null : Long.valueOf(this.$channel.getGuildId()), Long.valueOf(this.$channel.getId()), Long.valueOf(this.$message.getId())), this.$message, this.$shouldMention, this.$showMentionToggle));
-            StorePendingReplies.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onDeletePendingReply$1 */
-    /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public static final class C63271 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63271(long j) {
-            super(0);
-            this.$channelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StorePendingReplies.this.pendingReplies.remove(Long.valueOf(this.$channelId));
-            StorePendingReplies.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onSetPendingReplyShouldMention$1 */
-    /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public static final class C63281 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ boolean $shouldMention;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63281(long j, boolean z2) {
-            super(0);
-            this.$channelId = j;
-            this.$shouldMention = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            PendingReply pendingReply = (PendingReply) StorePendingReplies.this.pendingReplies.get(Long.valueOf(this.$channelId));
-            if (pendingReply != null) {
-                StorePendingReplies.this.pendingReplies.put(Long.valueOf(this.$channelId), PendingReply.copy$default(pendingReply, null, null, this.$shouldMention, false, 11, null));
-                StorePendingReplies.this.markChanged();
-            }
-        }
-    }
-
     public /* synthetic */ StorePendingReplies(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
-    }
-
-    public static /* synthetic */ void onCreatePendingReply$default(StorePendingReplies storePendingReplies, Channel channel, Message message, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = true;
-        }
-        if ((i & 8) != 0) {
-            z3 = true;
-        }
-        storePendingReplies.onCreatePendingReply(channel, message, z2, z3);
     }
 
     public final PendingReply getPendingReply(long channelId) {
@@ -289,6 +279,16 @@ public final class StorePendingReplies extends StoreV2 {
 
     public final Observable<PendingReply> observePendingReply(long channelId) {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C63251(channelId), 14, null);
+    }
+
+    public static /* synthetic */ void onCreatePendingReply$default(StorePendingReplies storePendingReplies, Channel channel, Message message, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = true;
+        }
+        if ((i & 8) != 0) {
+            z3 = true;
+        }
+        storePendingReplies.onCreatePendingReply(channel, message, z2, z3);
     }
 
     public final void onCreatePendingReply(Channel channel, Message message, boolean shouldMention, boolean showMentionToggle) {

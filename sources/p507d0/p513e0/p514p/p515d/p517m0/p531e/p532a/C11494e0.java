@@ -66,11 +66,11 @@ public class C11494e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.e0$a */
     /* JADX INFO: compiled from: SpecialGenericSignatures.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.e0$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: SpecialGenericSignatures.kt */
-        public static final class C13309a {
+        public final class C13309a {
 
             /* JADX INFO: renamed from: a */
             public final C11716e f23207a;
@@ -195,7 +195,7 @@ public class C11494e0 {
     /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.e0$c */
     /* JADX INFO: compiled from: SpecialGenericSignatures.kt */
-    public static final class c {
+    public class c {
 
         /* JADX INFO: renamed from: j */
         public static final c f23213j;
@@ -215,7 +215,7 @@ public class C11494e0 {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.e0$c$a */
         /* JADX INFO: compiled from: SpecialGenericSignatures.kt */
-        public static final class a extends c {
+        public final class a extends c {
             public a(String str, int i) {
                 super(str, i, null, null);
             }

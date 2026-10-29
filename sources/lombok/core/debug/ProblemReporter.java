@@ -12,12 +12,12 @@ public class ProblemReporter {
     private static ErrorLogger logger;
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/ProblemReporter$ErrorLogger.SCL.lombok */
-    private interface ErrorLogger {
+    interface ErrorLogger {
+        void error(String str, Throwable th);
+
         void info(String str, Throwable th);
 
         void warning(String str, Throwable th);
-
-        void error(String str, Throwable th);
     }
 
     public static void info(String msg, Throwable ex) {
@@ -62,7 +62,7 @@ public class ProblemReporter {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/ProblemReporter$TerminalLogger.SCL.lombok */
-    private static class TerminalLogger implements ErrorLogger {
+    class TerminalLogger implements ErrorLogger {
         private TerminalLogger() {
         }
 
@@ -96,7 +96,7 @@ public class ProblemReporter {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/ProblemReporter$EclipseWorkspaceLogger.SCL.lombok */
-    private static class EclipseWorkspaceLogger implements ErrorLogger {
+    class EclipseWorkspaceLogger implements ErrorLogger {
         private static final int MAX_LOG = 200;
         private static final long SQUELCH_TIMEOUT = TimeUnit.HOURS.toMillis(1);
         private static final AtomicInteger counter = new AtomicInteger();

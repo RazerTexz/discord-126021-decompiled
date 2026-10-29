@@ -38,15 +38,15 @@ public class C5236b implements Comparable<C5236b> {
         return this.f14251j == c5236b.f14251j && this.f14252k == c5236b.f14252k;
     }
 
-    /* JADX INFO: renamed from: f */
-    public C5236b m7451f() {
-        return new C5236b(this.f14252k, this.f14251j);
-    }
-
     public int hashCode() {
         int i = this.f14252k;
         int i2 = this.f14251j;
         return i ^ ((i2 >>> 16) | (i2 << 16));
+    }
+
+    /* JADX INFO: renamed from: f */
+    public C5236b m7451f() {
+        return new C5236b(this.f14252k, this.f14251j);
     }
 
     @NonNull

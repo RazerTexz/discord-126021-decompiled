@@ -35,11 +35,6 @@ public class PrecomputedTextCompat implements Spannable {
     private static final char LINE_FEED = '\n';
 
     @NonNull
-    @GuardedBy("sLock")
-    private static Executor sExecutor;
-    private static final Object sLock = new Object();
-
-    @NonNull
     private final int[] mParagraphEnds;
 
     @NonNull
@@ -51,9 +46,14 @@ public class PrecomputedTextCompat implements Spannable {
     @Nullable
     private final PrecomputedText mWrapped;
 
-    public static class PrecomputedTextFutureTask extends FutureTask<PrecomputedTextCompat> {
+    @NonNull
+    @GuardedBy("sLock")
+    private static Executor sExecutor;
+    private static final Object sLock = new Object();
 
-        public static class PrecomputedTextCallback implements Callable<PrecomputedTextCompat> {
+    public class PrecomputedTextFutureTask extends FutureTask<PrecomputedTextCompat> {
+
+        public class PrecomputedTextCallback implements Callable<PrecomputedTextCompat> {
             private Params mParams;
             private CharSequence mText;
 
@@ -79,6 +79,11 @@ public class PrecomputedTextCompat implements Spannable {
         this.mParams = params;
         this.mParagraphEnds = iArr;
         this.mWrapped = null;
+    }
+
+    @Override // java.lang.CharSequence
+    public char charAt(int i) {
+        return this.mText.charAt(i);
     }
 
     @SuppressLint({"NewApi"})
@@ -112,26 +117,6 @@ public class PrecomputedTextCompat implements Spannable {
         } finally {
             TraceCompat.endSection();
         }
-    }
-
-    @UiThread
-    public static Future<PrecomputedTextCompat> getTextFuture(@NonNull CharSequence charSequence, @NonNull Params params, @Nullable Executor executor) {
-        PrecomputedTextFutureTask precomputedTextFutureTask = new PrecomputedTextFutureTask(params, charSequence);
-        if (executor == null) {
-            synchronized (sLock) {
-                if (sExecutor == null) {
-                    sExecutor = Executors.newFixedThreadPool(1);
-                }
-                executor = sExecutor;
-            }
-        }
-        executor.execute(precomputedTextFutureTask);
-        return precomputedTextFutureTask;
-    }
-
-    @Override // java.lang.CharSequence
-    public char charAt(int i) {
-        return this.mText.charAt(i);
     }
 
     @IntRange(from = 0)
@@ -197,6 +182,21 @@ public class PrecomputedTextCompat implements Spannable {
         return Build.VERSION.SDK_INT >= 29 ? (T[]) this.mWrapped.getSpans(i, i2, cls) : (T[]) this.mText.getSpans(i, i2, cls);
     }
 
+    @UiThread
+    public static Future<PrecomputedTextCompat> getTextFuture(@NonNull CharSequence charSequence, @NonNull Params params, @Nullable Executor executor) {
+        PrecomputedTextFutureTask precomputedTextFutureTask = new PrecomputedTextFutureTask(params, charSequence);
+        if (executor == null) {
+            synchronized (sLock) {
+                if (sExecutor == null) {
+                    sExecutor = Executors.newFixedThreadPool(1);
+                }
+                executor = sExecutor;
+            }
+        }
+        executor.execute(precomputedTextFutureTask);
+        return precomputedTextFutureTask;
+    }
+
     @Override // java.lang.CharSequence
     public int length() {
         return this.mText.length();
@@ -252,7 +252,7 @@ public class PrecomputedTextCompat implements Spannable {
         this.mWrapped = Build.VERSION.SDK_INT < 29 ? null : precomputedText;
     }
 
-    public static final class Params {
+    public final class Params {
         private final int mBreakStrategy;
         private final int mHyphenationFrequency;
 
@@ -263,7 +263,7 @@ public class PrecomputedTextCompat implements Spannable {
         private final TextDirectionHeuristic mTextDir;
         public final PrecomputedText.Params mWrapped;
 
-        public static class Builder {
+        public class Builder {
             private int mBreakStrategy;
             private int mHyphenationFrequency;
 

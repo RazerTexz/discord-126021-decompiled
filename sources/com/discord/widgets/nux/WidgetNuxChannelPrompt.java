@@ -66,31 +66,14 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
-    /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetNuxChannelPrompt.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxChannelPrompt$handleSubmit$1 */
     /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-    public static final class C91071 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C91071 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxChannelPrompt$handleSubmit$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Channel, TrackNetworkMetadataReceiver> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Channel, TrackNetworkMetadataReceiver> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -104,7 +87,7 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxChannelPrompt$handleSubmit$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Channel, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -156,7 +139,7 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxChannelPrompt$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-    public static final class C91081 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C91081 extends AbstractC12240o implements Function1<Guild, Unit> {
         public C91081() {
             super(1);
         }
@@ -175,7 +158,7 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetNuxChannelPrompt$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
-    public static final class C91125 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C91125 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C91125() {
             super(1);
         }
@@ -190,6 +173,23 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
         public final void invoke2(TextView textView) {
             C12238m.checkNotNullParameter(textView, "it");
             WidgetNuxChannelPrompt.this.getBinding().f17317b.performClick();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetNuxChannelPrompt.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetNuxChannelPrompt.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -218,8 +218,30 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
         return (WidgetNuxChannelPromptBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
+    }
+
+    public final void handleError(Error error) {
+        C12238m.checkNotNullParameter(error, "error");
+        getBinding().f17317b.setIsLoading(false);
+        Error.Response response = error.getResponse();
+        C12238m.checkNotNullExpressionValue(response, "error.response");
+        if (response.getMessages().isEmpty()) {
+            error.setShowErrorToasts(true);
+            return;
+        }
+        ValidationManager validationManager = getValidationManager();
+        Error.Response response2 = error.getResponse();
+        C12238m.checkNotNullExpressionValue(response2, "error.response");
+        Map<String, List<String>> messages = response2.getMessages();
+        C12238m.checkNotNullExpressionValue(messages, "error.response.messages");
+        error.setShowErrorToasts(!validationManager.setErrors(messages).isEmpty());
     }
 
     private final void handleGuild(Guild guild) {
@@ -257,28 +279,6 @@ public final class WidgetNuxChannelPrompt extends AppFragment {
 
     public static final void launch(Context context, long j) {
         INSTANCE.launch(context, j);
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
-    }
-
-    public final void handleError(Error error) {
-        C12238m.checkNotNullParameter(error, "error");
-        getBinding().f17317b.setIsLoading(false);
-        Error.Response response = error.getResponse();
-        C12238m.checkNotNullExpressionValue(response, "error.response");
-        if (response.getMessages().isEmpty()) {
-            error.setShowErrorToasts(true);
-            return;
-        }
-        ValidationManager validationManager = getValidationManager();
-        Error.Response response2 = error.getResponse();
-        C12238m.checkNotNullExpressionValue(response2, "error.response");
-        Map<String, List<String>> messages = response2.getMessages();
-        C12238m.checkNotNullExpressionValue(messages, "error.response.messages");
-        error.setShowErrorToasts(!validationManager.setErrors(messages).isEmpty());
     }
 
     @Override // com.discord.app.AppFragment

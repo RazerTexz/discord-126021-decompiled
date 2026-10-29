@@ -12,7 +12,6 @@ import p007b.p225i.p226a.p288f.p299e.p304k.C3387w;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zas extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zas> CREATOR = new C3387w();
 
     /* JADX INFO: renamed from: j */
     public final int f20546j;
@@ -26,6 +25,7 @@ public final class zas extends AbstractSafeParcelable {
     /* JADX INFO: renamed from: m */
     @Nullable
     public final GoogleSignInAccount f20549m;
+    public static final Parcelable.Creator<zas> CREATOR = new C3387w();
 
     public zas(int i, Account account, int i2, @Nullable GoogleSignInAccount googleSignInAccount) {
         this.f20546j = i;

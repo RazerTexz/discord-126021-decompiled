@@ -13,37 +13,23 @@ import org.objectweb.asm.Type;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/GeneratorAdapter.SCL.lombok */
 public class GeneratorAdapter extends LocalVariablesSorter {
-    private static final String CLASS_DESCRIPTOR = "Ljava/lang/Class;";
-    private static final Type BYTE_TYPE = Type.getObjectType("java/lang/Byte");
-    private static final Type BOOLEAN_TYPE = Type.getObjectType("java/lang/Boolean");
-    private static final Type SHORT_TYPE = Type.getObjectType("java/lang/Short");
-    private static final Type CHARACTER_TYPE = Type.getObjectType("java/lang/Character");
-    private static final Type INTEGER_TYPE = Type.getObjectType("java/lang/Integer");
-    private static final Type FLOAT_TYPE = Type.getObjectType("java/lang/Float");
-    private static final Type LONG_TYPE = Type.getObjectType("java/lang/Long");
-    private static final Type DOUBLE_TYPE = Type.getObjectType("java/lang/Double");
-    private static final Type NUMBER_TYPE = Type.getObjectType("java/lang/Number");
-    private static final Type OBJECT_TYPE = Type.getObjectType("java/lang/Object");
-    private static final Method BOOLEAN_VALUE = Method.getMethod("boolean booleanValue()");
-    private static final Method CHAR_VALUE = Method.getMethod("char charValue()");
-    private static final Method INT_VALUE = Method.getMethod("int intValue()");
-    private static final Method FLOAT_VALUE = Method.getMethod("float floatValue()");
-    private static final Method LONG_VALUE = Method.getMethod("long longValue()");
-    private static final Method DOUBLE_VALUE = Method.getMethod("double doubleValue()");
     public static final int ADD = 96;
-    public static final int SUB = 100;
-    public static final int MUL = 104;
+    public static final int AND = 126;
+    private static final String CLASS_DESCRIPTOR = "Ljava/lang/Class;";
     public static final int DIV = 108;
-    public static final int REM = 112;
+    public static final int MUL = 104;
     public static final int NEG = 116;
+    public static final int REM = 112;
     public static final int SHL = 120;
     public static final int SHR = 122;
+    public static final int SUB = 100;
     public static final int USHR = 124;
-    public static final int AND = 126;
+    public static final int XOR = 130;
+    private final int access;
+    private final Type[] argumentTypes;
 
     /* JADX INFO: renamed from: OR */
     public static final int f27604OR = 128;
-    public static final int XOR = 130;
 
     /* JADX INFO: renamed from: EQ */
     public static final int f27605EQ = 153;
@@ -62,11 +48,25 @@ public class GeneratorAdapter extends LocalVariablesSorter {
 
     /* JADX INFO: renamed from: LE */
     public static final int f27610LE = 158;
-    private final int access;
+    private final List<Type> localTypes;
     private final String name;
     private final Type returnType;
-    private final Type[] argumentTypes;
-    private final List<Type> localTypes;
+    private static final Type BYTE_TYPE = Type.getObjectType("java/lang/Byte");
+    private static final Type BOOLEAN_TYPE = Type.getObjectType("java/lang/Boolean");
+    private static final Type SHORT_TYPE = Type.getObjectType("java/lang/Short");
+    private static final Type CHARACTER_TYPE = Type.getObjectType("java/lang/Character");
+    private static final Type INTEGER_TYPE = Type.getObjectType("java/lang/Integer");
+    private static final Type FLOAT_TYPE = Type.getObjectType("java/lang/Float");
+    private static final Type LONG_TYPE = Type.getObjectType("java/lang/Long");
+    private static final Type DOUBLE_TYPE = Type.getObjectType("java/lang/Double");
+    private static final Type NUMBER_TYPE = Type.getObjectType("java/lang/Number");
+    private static final Type OBJECT_TYPE = Type.getObjectType("java/lang/Object");
+    private static final Method BOOLEAN_VALUE = Method.getMethod("boolean booleanValue()");
+    private static final Method CHAR_VALUE = Method.getMethod("char charValue()");
+    private static final Method INT_VALUE = Method.getMethod("int intValue()");
+    private static final Method FLOAT_VALUE = Method.getMethod("float floatValue()");
+    private static final Method LONG_VALUE = Method.getMethod("long longValue()");
+    private static final Method DOUBLE_VALUE = Method.getMethod("double doubleValue()");
 
     public GeneratorAdapter(MethodVisitor methodVisitor, int access, String name, String descriptor) {
         this(Opcodes.ASM9, methodVisitor, access, name, descriptor);

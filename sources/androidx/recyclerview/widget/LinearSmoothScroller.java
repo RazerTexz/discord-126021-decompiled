@@ -18,32 +18,16 @@ public class LinearSmoothScroller extends RecyclerView.SmoothScroller {
     private static final float TARGET_SEEK_EXTRA_SCROLL_RATIO = 1.2f;
     private static final int TARGET_SEEK_SCROLL_DISTANCE_PX = 10000;
     private final DisplayMetrics mDisplayMetrics;
+    public int mInterimTargetDy = 0;
     private float mMillisPerPixel;
     public PointF mTargetVector;
     public final LinearInterpolator mLinearInterpolator = new LinearInterpolator();
     public final DecelerateInterpolator mDecelerateInterpolator = new DecelerateInterpolator();
     private boolean mHasCalculatedMillisPerPixel = false;
     public int mInterimTargetDx = 0;
-    public int mInterimTargetDy = 0;
 
     public LinearSmoothScroller(Context context) {
         this.mDisplayMetrics = context.getResources().getDisplayMetrics();
-    }
-
-    private int clampApplyScroll(int i, int i2) {
-        int i3 = i - i2;
-        if (i * i3 <= 0) {
-            return 0;
-        }
-        return i3;
-    }
-
-    private float getSpeedPerPixel() {
-        if (!this.mHasCalculatedMillisPerPixel) {
-            this.mMillisPerPixel = calculateSpeedPerPixel(this.mDisplayMetrics);
-            this.mHasCalculatedMillisPerPixel = true;
-        }
-        return this.mMillisPerPixel;
     }
 
     public int calculateDtToFit(int i, int i2, int i3, int i4, int i5) {
@@ -97,6 +81,14 @@ public class LinearSmoothScroller extends RecyclerView.SmoothScroller {
         return (int) Math.ceil(Math.abs(i) * getSpeedPerPixel());
     }
 
+    private int clampApplyScroll(int i, int i2) {
+        int i3 = i - i2;
+        if (i * i3 <= 0) {
+            return 0;
+        }
+        return i3;
+    }
+
     public int getHorizontalSnapPreference() {
         PointF pointF = this.mTargetVector;
         if (pointF != null) {
@@ -106,6 +98,14 @@ public class LinearSmoothScroller extends RecyclerView.SmoothScroller {
             }
         }
         return 0;
+    }
+
+    private float getSpeedPerPixel() {
+        if (!this.mHasCalculatedMillisPerPixel) {
+            this.mMillisPerPixel = calculateSpeedPerPixel(this.mDisplayMetrics);
+            this.mHasCalculatedMillisPerPixel = true;
+        }
+        return this.mMillisPerPixel;
     }
 
     public int getVerticalSnapPreference() {

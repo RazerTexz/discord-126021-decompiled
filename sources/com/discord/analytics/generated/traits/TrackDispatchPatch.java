@@ -7,9 +7,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDispatchPatch.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDispatchPatch {
+    private final CharSequence patchType = null;
     private final Long targetBuildId = null;
     private final List<Long> targetManifestIds = null;
-    private final CharSequence patchType = null;
 
     public boolean equals(Object other) {
         if (this == other) {

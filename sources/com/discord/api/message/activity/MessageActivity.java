@@ -16,16 +16,6 @@ public final /* data */ class MessageActivity {
         this.partyId = str;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getPartyId() {
-        return this.partyId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final MessageActivityType getType() {
-        return this.type;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,6 +25,16 @@ public final /* data */ class MessageActivity {
         }
         MessageActivity messageActivity = (MessageActivity) other;
         return C12238m.areEqual(this.type, messageActivity.type) && C12238m.areEqual(this.partyId, messageActivity.partyId);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getPartyId() {
+        return this.partyId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final MessageActivityType getType() {
+        return this.type;
     }
 
     public int hashCode() {

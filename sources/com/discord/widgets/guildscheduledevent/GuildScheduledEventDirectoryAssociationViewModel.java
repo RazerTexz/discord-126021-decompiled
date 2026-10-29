@@ -22,7 +22,7 @@ public final class GuildScheduledEventDirectoryAssociationViewModel extends Abst
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventDirectoryAssociationViewModel$1 */
     /* JADX INFO: compiled from: GuildScheduledEventDirectoryAssociationViewModel.kt */
-    public static final class C88181 extends AbstractC12240o implements Function1<RestCallState<? extends GuildScheduledEventBroadcast>, Unit> {
+    public final class C88181 extends AbstractC12240o implements Function1<RestCallState<? extends GuildScheduledEventBroadcast>, Unit> {
         public C88181() {
             super(1);
         }

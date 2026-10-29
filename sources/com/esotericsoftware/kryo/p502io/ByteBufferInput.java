@@ -10,321 +10,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ByteBufferInput extends Input {
-    public static final ByteOrder nativeOrder = ByteOrder.nativeOrder();
     public ByteOrder byteOrder;
     public ByteBuffer niobuffer;
     public boolean varIntsEnabled;
+    public static final ByteOrder nativeOrder = ByteOrder.nativeOrder();
 
     public ByteBufferInput() {
         this.varIntsEnabled = true;
         this.byteOrder = ByteOrder.BIG_ENDIAN;
-    }
-
-    private boolean isNativeOrder() {
-        return this.byteOrder == nativeOrder;
-    }
-
-    private int optional(int i) throws KryoException {
-        int i2 = this.limit - this.position;
-        if (i2 >= i) {
-            return i;
-        }
-        int iMin = Math.min(i, this.capacity);
-        ByteBuffer byteBuffer = this.niobuffer;
-        int i3 = this.limit;
-        int iFill = fill(byteBuffer, i3, this.capacity - i3);
-        if (iFill == -1) {
-            if (i2 == 0) {
-                return -1;
-            }
-            return Math.min(i2, iMin);
-        }
-        int i4 = i2 + iFill;
-        if (i4 >= iMin) {
-            this.limit += iFill;
-            return iMin;
-        }
-        this.niobuffer.compact();
-        this.total += (long) this.position;
-        this.position = 0;
-        do {
-            int iFill2 = fill(this.niobuffer, i4, this.capacity - i4);
-            if (iFill2 == -1) {
-                break;
-            }
-            i4 += iFill2;
-        } while (i4 < iMin);
-        this.limit = i4;
-        this.niobuffer.position(this.position);
-        if (i4 == 0) {
-            return -1;
-        }
-        return Math.min(i4, iMin);
-    }
-
-    private String readAscii() {
-        int i = this.position;
-        int i2 = i - 1;
-        int i3 = this.limit;
-        while (i != i3) {
-            i++;
-            if ((this.niobuffer.get() & 128) != 0) {
-                ByteBuffer byteBuffer = this.niobuffer;
-                int i4 = i - 1;
-                byteBuffer.put(i4, (byte) (byteBuffer.get(i4) & 127));
-                int i5 = i - i2;
-                byte[] bArr = new byte[i5];
-                this.niobuffer.position(i2);
-                this.niobuffer.get(bArr);
-                String str = new String(bArr, 0, 0, i5);
-                ByteBuffer byteBuffer2 = this.niobuffer;
-                byteBuffer2.put(i4, (byte) (byteBuffer2.get(i4) | 128));
-                this.position = i;
-                this.niobuffer.position(i);
-                return str;
-            }
-        }
-        return readAscii_slow();
-    }
-
-    private String readAscii_slow() {
-        int i = this.position - 1;
-        this.position = i;
-        int i2 = this.limit;
-        int i3 = i2 - i;
-        if (i3 > this.chars.length) {
-            this.chars = new char[i3 * 2];
-        }
-        char[] cArr = this.chars;
-        int i4 = 0;
-        while (i < i2) {
-            cArr[i4] = (char) this.niobuffer.get(i);
-            i++;
-            i4++;
-        }
-        this.position = this.limit;
-        while (true) {
-            require(1);
-            this.position++;
-            byte b2 = this.niobuffer.get();
-            if (i3 == cArr.length) {
-                char[] cArr2 = new char[i3 * 2];
-                System.arraycopy(cArr, 0, cArr2, 0, i3);
-                this.chars = cArr2;
-                cArr = cArr2;
-            }
-            if ((b2 & 128) == 128) {
-                cArr[i3] = (char) (b2 & 127);
-                return new String(cArr, 0, i3 + 1);
-            }
-            cArr[i3] = (char) b2;
-            i3++;
-        }
-    }
-
-    private int readInt_slow(boolean z2) {
-        this.position++;
-        byte b2 = this.niobuffer.get();
-        int i = b2 & 127;
-        if ((b2 & 128) != 0) {
-            require(1);
-            this.position++;
-            byte b3 = this.niobuffer.get();
-            i |= (b3 & 127) << 7;
-            if ((b3 & 128) != 0) {
-                require(1);
-                this.position++;
-                byte b4 = this.niobuffer.get();
-                i |= (b4 & 127) << 14;
-                if ((b4 & 128) != 0) {
-                    require(1);
-                    this.position++;
-                    byte b5 = this.niobuffer.get();
-                    i |= (b5 & 127) << 21;
-                    if ((b5 & 128) != 0) {
-                        require(1);
-                        this.position++;
-                        i |= (this.niobuffer.get() & 127) << 28;
-                    }
-                }
-            }
-        }
-        return z2 ? i : (i >>> 1) ^ (-(i & 1));
-    }
-
-    private long readLong_slow(boolean z2) {
-        this.position++;
-        byte b2 = this.niobuffer.get();
-        long j = b2 & 127;
-        if ((b2 & 128) != 0) {
-            require(1);
-            this.position++;
-            byte b3 = this.niobuffer.get();
-            j |= (long) ((b3 & 127) << 7);
-            if ((b3 & 128) != 0) {
-                require(1);
-                this.position++;
-                byte b4 = this.niobuffer.get();
-                j |= (long) ((b4 & 127) << 14);
-                if ((b4 & 128) != 0) {
-                    require(1);
-                    this.position++;
-                    byte b5 = this.niobuffer.get();
-                    j |= (long) ((b5 & 127) << 21);
-                    if ((b5 & 128) != 0) {
-                        require(1);
-                        this.position++;
-                        byte b6 = this.niobuffer.get();
-                        j |= ((long) (b6 & 127)) << 28;
-                        if ((b6 & 128) != 0) {
-                            require(1);
-                            this.position++;
-                            byte b7 = this.niobuffer.get();
-                            j |= ((long) (b7 & 127)) << 35;
-                            if ((b7 & 128) != 0) {
-                                require(1);
-                                this.position++;
-                                byte b8 = this.niobuffer.get();
-                                j |= ((long) (b8 & 127)) << 42;
-                                if ((b8 & 128) != 0) {
-                                    require(1);
-                                    this.position++;
-                                    byte b9 = this.niobuffer.get();
-                                    j |= ((long) (b9 & 127)) << 49;
-                                    if ((b9 & 128) != 0) {
-                                        require(1);
-                                        this.position++;
-                                        j |= ((long) this.niobuffer.get()) << 56;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (z2) {
-            return j;
-        }
-        return (-(j & 1)) ^ (j >>> 1);
-    }
-
-    private void readUtf8(int i) {
-        char[] cArr = this.chars;
-        int iMin = Math.min(require(1), i);
-        int i2 = this.position;
-        int i3 = 0;
-        while (i3 < iMin) {
-            i2++;
-            byte b2 = this.niobuffer.get();
-            if (b2 < 0) {
-                i2--;
-                break;
-            } else {
-                cArr[i3] = (char) b2;
-                i3++;
-            }
-        }
-        this.position = i2;
-        if (i3 < i) {
-            this.niobuffer.position(i2);
-            readUtf8_slow(i, i3);
-        }
-    }
-
-    private int readUtf8Length(int i) {
-        int i2 = i & 63;
-        if ((i & 64) == 0) {
-            return i2;
-        }
-        this.position++;
-        byte b2 = this.niobuffer.get();
-        int i3 = i2 | ((b2 & 127) << 6);
-        if ((b2 & 128) == 0) {
-            return i3;
-        }
-        this.position++;
-        byte b3 = this.niobuffer.get();
-        int i4 = i3 | ((b3 & 127) << 13);
-        if ((b3 & 128) == 0) {
-            return i4;
-        }
-        this.position++;
-        byte b4 = this.niobuffer.get();
-        int i5 = i4 | ((b4 & 127) << 20);
-        if ((b4 & 128) == 0) {
-            return i5;
-        }
-        this.position++;
-        return i5 | ((this.niobuffer.get() & 127) << 27);
-    }
-
-    private int readUtf8Length_slow(int i) {
-        int i2 = i & 63;
-        if ((i & 64) == 0) {
-            return i2;
-        }
-        require(1);
-        this.position++;
-        byte b2 = this.niobuffer.get();
-        int i3 = i2 | ((b2 & 127) << 6);
-        if ((b2 & 128) == 0) {
-            return i3;
-        }
-        require(1);
-        this.position++;
-        byte b3 = this.niobuffer.get();
-        int i4 = i3 | ((b3 & 127) << 13);
-        if ((b3 & 128) == 0) {
-            return i4;
-        }
-        require(1);
-        this.position++;
-        byte b4 = this.niobuffer.get();
-        int i5 = i4 | ((b4 & 127) << 20);
-        if ((b4 & 128) == 0) {
-            return i5;
-        }
-        require(1);
-        this.position++;
-        return i5 | ((this.niobuffer.get() & 127) << 27);
-    }
-
-    private void readUtf8_slow(int i, int i2) {
-        char[] cArr = this.chars;
-        while (i2 < i) {
-            if (this.position == this.limit) {
-                require(1);
-            }
-            this.position++;
-            int i3 = this.niobuffer.get() & 255;
-            switch (i3 >> 4) {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                    cArr[i2] = (char) i3;
-                    break;
-                case 12:
-                case 13:
-                    if (this.position == this.limit) {
-                        require(1);
-                    }
-                    this.position++;
-                    cArr[i2] = (char) (((i3 & 31) << 6) | (this.niobuffer.get() & 63));
-                    break;
-                case 14:
-                    require(2);
-                    this.position += 2;
-                    cArr[i2] = (char) (((i3 & 15) << 12) | ((this.niobuffer.get() & 63) << 6) | (this.niobuffer.get() & 63));
-                    break;
-            }
-            i2++;
-        }
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Input
@@ -464,6 +157,48 @@ public class ByteBufferInput extends Input {
         return this.varIntsEnabled;
     }
 
+    private boolean isNativeOrder() {
+        return this.byteOrder == nativeOrder;
+    }
+
+    private int optional(int i) throws KryoException {
+        int i2 = this.limit - this.position;
+        if (i2 >= i) {
+            return i;
+        }
+        int iMin = Math.min(i, this.capacity);
+        ByteBuffer byteBuffer = this.niobuffer;
+        int i3 = this.limit;
+        int iFill = fill(byteBuffer, i3, this.capacity - i3);
+        if (iFill == -1) {
+            if (i2 == 0) {
+                return -1;
+            }
+            return Math.min(i2, iMin);
+        }
+        int i4 = i2 + iFill;
+        if (i4 >= iMin) {
+            this.limit += iFill;
+            return iMin;
+        }
+        this.niobuffer.compact();
+        this.total += (long) this.position;
+        this.position = 0;
+        do {
+            int iFill2 = fill(this.niobuffer, i4, this.capacity - i4);
+            if (iFill2 == -1) {
+                break;
+            }
+            i4 += iFill2;
+        } while (i4 < iMin);
+        this.limit = i4;
+        this.niobuffer.position(this.position);
+        if (i4 == 0) {
+            return -1;
+        }
+        return Math.min(i4, iMin);
+    }
+
     public ByteOrder order() {
         return this.byteOrder;
     }
@@ -476,6 +211,66 @@ public class ByteBufferInput extends Input {
         this.niobuffer.position(this.position);
         this.position++;
         return this.niobuffer.get() & 255;
+    }
+
+    private String readAscii() {
+        int i = this.position;
+        int i2 = i - 1;
+        int i3 = this.limit;
+        while (i != i3) {
+            i++;
+            if ((this.niobuffer.get() & 128) != 0) {
+                ByteBuffer byteBuffer = this.niobuffer;
+                int i4 = i - 1;
+                byteBuffer.put(i4, (byte) (byteBuffer.get(i4) & 127));
+                int i5 = i - i2;
+                byte[] bArr = new byte[i5];
+                this.niobuffer.position(i2);
+                this.niobuffer.get(bArr);
+                String str = new String(bArr, 0, 0, i5);
+                ByteBuffer byteBuffer2 = this.niobuffer;
+                byteBuffer2.put(i4, (byte) (byteBuffer2.get(i4) | 128));
+                this.position = i;
+                this.niobuffer.position(i);
+                return str;
+            }
+        }
+        return readAscii_slow();
+    }
+
+    private String readAscii_slow() {
+        int i = this.position - 1;
+        this.position = i;
+        int i2 = this.limit;
+        int i3 = i2 - i;
+        if (i3 > this.chars.length) {
+            this.chars = new char[i3 * 2];
+        }
+        char[] cArr = this.chars;
+        int i4 = 0;
+        while (i < i2) {
+            cArr[i4] = (char) this.niobuffer.get(i);
+            i++;
+            i4++;
+        }
+        this.position = this.limit;
+        while (true) {
+            require(1);
+            this.position++;
+            byte b2 = this.niobuffer.get();
+            if (i3 == cArr.length) {
+                char[] cArr2 = new char[i3 * 2];
+                System.arraycopy(cArr, 0, cArr2, 0, i3);
+                this.chars = cArr2;
+                cArr = cArr2;
+            }
+            if ((b2 & 128) == 128) {
+                cArr[i3] = (char) (b2 & 127);
+                return new String(cArr, 0, i3 + 1);
+            }
+            cArr[i3] = (char) b2;
+            i3++;
+        }
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Input
@@ -577,6 +372,36 @@ public class ByteBufferInput extends Input {
         return this.niobuffer.getInt();
     }
 
+    private int readInt_slow(boolean z2) {
+        this.position++;
+        byte b2 = this.niobuffer.get();
+        int i = b2 & 127;
+        if ((b2 & 128) != 0) {
+            require(1);
+            this.position++;
+            byte b3 = this.niobuffer.get();
+            i |= (b3 & 127) << 7;
+            if ((b3 & 128) != 0) {
+                require(1);
+                this.position++;
+                byte b4 = this.niobuffer.get();
+                i |= (b4 & 127) << 14;
+                if ((b4 & 128) != 0) {
+                    require(1);
+                    this.position++;
+                    byte b5 = this.niobuffer.get();
+                    i |= (b5 & 127) << 21;
+                    if ((b5 & 128) != 0) {
+                        require(1);
+                        this.position++;
+                        i |= (this.niobuffer.get() & 127) << 28;
+                    }
+                }
+            }
+        }
+        return z2 ? i : (i >>> 1) ^ (-(i & 1));
+    }
+
     @Override // com.esotericsoftware.kryo.p502io.Input
     public int[] readInts(int i) throws KryoException {
         int i2 = i * 4;
@@ -596,6 +421,63 @@ public class ByteBufferInput extends Input {
         require(8);
         this.position += 8;
         return this.niobuffer.getLong();
+    }
+
+    private long readLong_slow(boolean z2) {
+        this.position++;
+        byte b2 = this.niobuffer.get();
+        long j = b2 & 127;
+        if ((b2 & 128) != 0) {
+            require(1);
+            this.position++;
+            byte b3 = this.niobuffer.get();
+            j |= (long) ((b3 & 127) << 7);
+            if ((b3 & 128) != 0) {
+                require(1);
+                this.position++;
+                byte b4 = this.niobuffer.get();
+                j |= (long) ((b4 & 127) << 14);
+                if ((b4 & 128) != 0) {
+                    require(1);
+                    this.position++;
+                    byte b5 = this.niobuffer.get();
+                    j |= (long) ((b5 & 127) << 21);
+                    if ((b5 & 128) != 0) {
+                        require(1);
+                        this.position++;
+                        byte b6 = this.niobuffer.get();
+                        j |= ((long) (b6 & 127)) << 28;
+                        if ((b6 & 128) != 0) {
+                            require(1);
+                            this.position++;
+                            byte b7 = this.niobuffer.get();
+                            j |= ((long) (b7 & 127)) << 35;
+                            if ((b7 & 128) != 0) {
+                                require(1);
+                                this.position++;
+                                byte b8 = this.niobuffer.get();
+                                j |= ((long) (b8 & 127)) << 42;
+                                if ((b8 & 128) != 0) {
+                                    require(1);
+                                    this.position++;
+                                    byte b9 = this.niobuffer.get();
+                                    j |= ((long) (b9 & 127)) << 49;
+                                    if ((b9 & 128) != 0) {
+                                        require(1);
+                                        this.position++;
+                                        j |= ((long) this.niobuffer.get()) << 56;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (z2) {
+            return j;
+        }
+        return (-(j & 1)) ^ (j >>> 1);
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Input
@@ -688,6 +570,124 @@ public class ByteBufferInput extends Input {
         StringBuilder sb = new StringBuilder(i);
         sb.append(this.chars, 0, i);
         return sb;
+    }
+
+    private void readUtf8(int i) {
+        char[] cArr = this.chars;
+        int iMin = Math.min(require(1), i);
+        int i2 = this.position;
+        int i3 = 0;
+        while (i3 < iMin) {
+            i2++;
+            byte b2 = this.niobuffer.get();
+            if (b2 < 0) {
+                i2--;
+                break;
+            } else {
+                cArr[i3] = (char) b2;
+                i3++;
+            }
+        }
+        this.position = i2;
+        if (i3 < i) {
+            this.niobuffer.position(i2);
+            readUtf8_slow(i, i3);
+        }
+    }
+
+    private int readUtf8Length(int i) {
+        int i2 = i & 63;
+        if ((i & 64) == 0) {
+            return i2;
+        }
+        this.position++;
+        byte b2 = this.niobuffer.get();
+        int i3 = i2 | ((b2 & 127) << 6);
+        if ((b2 & 128) == 0) {
+            return i3;
+        }
+        this.position++;
+        byte b3 = this.niobuffer.get();
+        int i4 = i3 | ((b3 & 127) << 13);
+        if ((b3 & 128) == 0) {
+            return i4;
+        }
+        this.position++;
+        byte b4 = this.niobuffer.get();
+        int i5 = i4 | ((b4 & 127) << 20);
+        if ((b4 & 128) == 0) {
+            return i5;
+        }
+        this.position++;
+        return i5 | ((this.niobuffer.get() & 127) << 27);
+    }
+
+    private int readUtf8Length_slow(int i) {
+        int i2 = i & 63;
+        if ((i & 64) == 0) {
+            return i2;
+        }
+        require(1);
+        this.position++;
+        byte b2 = this.niobuffer.get();
+        int i3 = i2 | ((b2 & 127) << 6);
+        if ((b2 & 128) == 0) {
+            return i3;
+        }
+        require(1);
+        this.position++;
+        byte b3 = this.niobuffer.get();
+        int i4 = i3 | ((b3 & 127) << 13);
+        if ((b3 & 128) == 0) {
+            return i4;
+        }
+        require(1);
+        this.position++;
+        byte b4 = this.niobuffer.get();
+        int i5 = i4 | ((b4 & 127) << 20);
+        if ((b4 & 128) == 0) {
+            return i5;
+        }
+        require(1);
+        this.position++;
+        return i5 | ((this.niobuffer.get() & 127) << 27);
+    }
+
+    private void readUtf8_slow(int i, int i2) {
+        char[] cArr = this.chars;
+        while (i2 < i) {
+            if (this.position == this.limit) {
+                require(1);
+            }
+            this.position++;
+            int i3 = this.niobuffer.get() & 255;
+            switch (i3 >> 4) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    cArr[i2] = (char) i3;
+                    break;
+                case 12:
+                case 13:
+                    if (this.position == this.limit) {
+                        require(1);
+                    }
+                    this.position++;
+                    cArr[i2] = (char) (((i3 & 31) << 6) | (this.niobuffer.get() & 63));
+                    break;
+                case 14:
+                    require(2);
+                    this.position += 2;
+                    cArr[i2] = (char) (((i3 & 15) << 12) | ((this.niobuffer.get() & 63) << 6) | (this.niobuffer.get() & 63));
+                    break;
+            }
+            i2++;
+        }
     }
 
     @Override // com.esotericsoftware.kryo.p502io.Input

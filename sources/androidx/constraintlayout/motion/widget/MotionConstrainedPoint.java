@@ -17,18 +17,18 @@ public class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint
     public static final boolean DEBUG = false;
     public static final int PERPENDICULAR = 1;
     public static final String TAG = "MotionPaths";
-    public static String[] names = {ModelAuditLogEntry.CHANGE_KEY_POSITION, "x", "y", "width", "height", "pathRotate"};
-    private float height;
-    private Easing mKeyFrameEasing;
-    private float position;
-    public int visibility;
-    private float width;
 
     /* JADX INFO: renamed from: x */
     private float f104x;
 
     /* JADX INFO: renamed from: y */
     private float f105y;
+    private float height;
+    private Easing mKeyFrameEasing;
+    private float position;
+    public int visibility;
+    private float width;
+    public static String[] names = {ModelAuditLogEntry.CHANGE_KEY_POSITION, "x", "y", "width", "height", "pathRotate"};
     private float alpha = 1.0f;
     public int mVisibilityMode = 0;
     private boolean applyElevation = false;
@@ -50,13 +50,6 @@ public class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint
     public int mMode = 0;
     public double[] mTempValue = new double[18];
     public double[] mTempDelta = new double[18];
-
-    private boolean diff(float f, float f2) {
-        if (Float.isNaN(f) || Float.isNaN(f2)) {
-            return Float.isNaN(f) != Float.isNaN(f2);
-        }
-        return Math.abs(f - f2) > 1.0E-6f;
-    }
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     public void addValues(HashMap<String, SplineSet> map, int i) {
@@ -215,6 +208,13 @@ public class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint
         this.translationX = view.getTranslationX();
         this.translationY = view.getTranslationY();
         this.translationZ = view.getTranslationZ();
+    }
+
+    private boolean diff(float f, float f2) {
+        if (Float.isNaN(f) || Float.isNaN(f2)) {
+            return Float.isNaN(f) != Float.isNaN(f2);
+        }
+        return Math.abs(f - f2) > 1.0E-6f;
     }
 
     public void different(MotionConstrainedPoint motionConstrainedPoint, HashSet<String> hashSet) {

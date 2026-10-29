@@ -38,41 +38,6 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
         init(context);
     }
 
-    private void init(Context context) {
-        try {
-            C2030b.m1527b();
-            if (this.mInitialised) {
-                return;
-            }
-            boolean z2 = true;
-            this.mInitialised = true;
-            this.mDraweeHolder = new DraweeHolder<>(null);
-            ColorStateList imageTintList = getImageTintList();
-            if (imageTintList == null) {
-                return;
-            }
-            setColorFilter(imageTintList.getDefaultColor());
-            if (!sGlobalLegacyVisibilityHandlingEnabled || context.getApplicationInfo().targetSdkVersion < 24) {
-                z2 = false;
-            }
-            this.mLegacyVisibilityHandlingEnabled = z2;
-        } finally {
-            C2030b.m1527b();
-        }
-    }
-
-    private void maybeOverrideVisibilityHandling() {
-        Drawable drawable;
-        if (!this.mLegacyVisibilityHandlingEnabled || (drawable = getDrawable()) == null) {
-            return;
-        }
-        drawable.setVisible(getVisibility() == 0, false);
-    }
-
-    public static void setGlobalLegacyVisibilityHandlingEnabled(boolean z2) {
-        sGlobalLegacyVisibilityHandlingEnabled = z2;
-    }
-
     public void doAttach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
         draweeHolder.f19530f.m1084a(C1751c.a.ON_HOLDER_ATTACH);
@@ -111,6 +76,37 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     public boolean hasHierarchy() {
         return this.mDraweeHolder.f19528d != null;
+    }
+
+    private void init(Context context) {
+        try {
+            C2030b.m1527b();
+            if (this.mInitialised) {
+                return;
+            }
+            boolean z2 = true;
+            this.mInitialised = true;
+            this.mDraweeHolder = new DraweeHolder<>(null);
+            ColorStateList imageTintList = getImageTintList();
+            if (imageTintList == null) {
+                return;
+            }
+            setColorFilter(imageTintList.getDefaultColor());
+            if (!sGlobalLegacyVisibilityHandlingEnabled || context.getApplicationInfo().targetSdkVersion < 24) {
+                z2 = false;
+            }
+            this.mLegacyVisibilityHandlingEnabled = z2;
+        } finally {
+            C2030b.m1527b();
+        }
+    }
+
+    private void maybeOverrideVisibilityHandling() {
+        Drawable drawable;
+        if (!this.mLegacyVisibilityHandlingEnabled || (drawable = getDrawable()) == null) {
+            return;
+        }
+        drawable.setVisible(getVisibility() == 0, false);
     }
 
     public void onAttach() {
@@ -203,6 +199,10 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     public void setController(DraweeController draweeController) {
         this.mDraweeHolder.m8693g(draweeController);
         super.setImageDrawable(this.mDraweeHolder.m8690d());
+    }
+
+    public static void setGlobalLegacyVisibilityHandlingEnabled(boolean z2) {
+        sGlobalLegacyVisibilityHandlingEnabled = z2;
     }
 
     public void setHierarchy(DH dh) {

@@ -9,21 +9,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppNoticePrimaryCtaOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppNoticePrimaryCtaOpened implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence noticeType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_notice_primary_cta_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAppNoticePrimaryCtaOpened) && C12238m.areEqual(this.noticeType, ((TrackAppNoticePrimaryCtaOpened) other).noticeType);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

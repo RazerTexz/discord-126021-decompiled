@@ -12,7 +12,7 @@ public interface InterfaceC3422a extends IInterface {
 
     /* JADX INFO: renamed from: b.i.a.f.f.a$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
-    public static abstract class a extends BinderC3482b implements InterfaceC3422a {
+    public abstract class a extends BinderC3482b implements InterfaceC3422a {
         public a() {
             super("com.google.android.gms.dynamic.IObjectWrapper");
         }

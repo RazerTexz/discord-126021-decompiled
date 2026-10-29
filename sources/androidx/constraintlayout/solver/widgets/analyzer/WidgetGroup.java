@@ -57,8 +57,51 @@ public class WidgetGroup {
         this.orientation = i;
     }
 
+    public boolean add(ConstraintWidget constraintWidget) {
+        if (this.widgets.contains(constraintWidget)) {
+            return false;
+        }
+        this.widgets.add(constraintWidget);
+        return true;
+    }
+
+    public void apply() {
+        if (this.results != null && this.authoritative) {
+            for (int i = 0; i < this.results.size(); i++) {
+                this.results.get(i).apply();
+            }
+        }
+    }
+
+    public void cleanup(ArrayList<WidgetGroup> arrayList) {
+        int size = this.widgets.size();
+        if (this.moveTo != -1 && size > 0) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                WidgetGroup widgetGroup = arrayList.get(i);
+                if (this.moveTo == widgetGroup.f123id) {
+                    moveTo(this.orientation, widgetGroup);
+                }
+            }
+        }
+        if (size == 0) {
+            arrayList.remove(this);
+        }
+    }
+
+    public void clear() {
+        this.widgets.clear();
+    }
+
     private boolean contains(ConstraintWidget constraintWidget) {
         return this.widgets.contains(constraintWidget);
+    }
+
+    public int getId() {
+        return this.f123id;
+    }
+
+    public int getOrientation() {
+        return this.orientation;
     }
 
     private String getOrientationString() {
@@ -72,12 +115,49 @@ public class WidgetGroup {
         return i == 2 ? "Both" : "Unknown";
     }
 
+    public boolean intersectWith(WidgetGroup widgetGroup) {
+        for (int i = 0; i < this.widgets.size(); i++) {
+            if (widgetGroup.contains(this.widgets.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isAuthoritative() {
+        return this.authoritative;
+    }
+
     private int measureWrap(int i, ConstraintWidget constraintWidget) {
         ConstraintWidget.DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(i);
         if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_PARENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED) {
             return i == 0 ? constraintWidget.getWidth() : constraintWidget.getHeight();
         }
         return -1;
+    }
+
+    public void moveTo(int i, WidgetGroup widgetGroup) {
+        for (ConstraintWidget constraintWidget : this.widgets) {
+            widgetGroup.add(constraintWidget);
+            if (i == 0) {
+                constraintWidget.horizontalGroup = widgetGroup.getId();
+            } else {
+                constraintWidget.verticalGroup = widgetGroup.getId();
+            }
+        }
+        this.moveTo = widgetGroup.f123id;
+    }
+
+    public void setAuthoritative(boolean z2) {
+        this.authoritative = z2;
+    }
+
+    public void setOrientation(int i) {
+        this.orientation = i;
+    }
+
+    public int size() {
+        return this.widgets.size();
     }
 
     private int solverMeasure(LinearSystem linearSystem, ArrayList<ConstraintWidget> arrayList, int i) {
@@ -114,86 +194,6 @@ public class WidgetGroup {
             linearSystem.reset();
         }
         return objectVariableValue2 - objectVariableValue;
-    }
-
-    public boolean add(ConstraintWidget constraintWidget) {
-        if (this.widgets.contains(constraintWidget)) {
-            return false;
-        }
-        this.widgets.add(constraintWidget);
-        return true;
-    }
-
-    public void apply() {
-        if (this.results != null && this.authoritative) {
-            for (int i = 0; i < this.results.size(); i++) {
-                this.results.get(i).apply();
-            }
-        }
-    }
-
-    public void cleanup(ArrayList<WidgetGroup> arrayList) {
-        int size = this.widgets.size();
-        if (this.moveTo != -1 && size > 0) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                WidgetGroup widgetGroup = arrayList.get(i);
-                if (this.moveTo == widgetGroup.f123id) {
-                    moveTo(this.orientation, widgetGroup);
-                }
-            }
-        }
-        if (size == 0) {
-            arrayList.remove(this);
-        }
-    }
-
-    public void clear() {
-        this.widgets.clear();
-    }
-
-    public int getId() {
-        return this.f123id;
-    }
-
-    public int getOrientation() {
-        return this.orientation;
-    }
-
-    public boolean intersectWith(WidgetGroup widgetGroup) {
-        for (int i = 0; i < this.widgets.size(); i++) {
-            if (widgetGroup.contains(this.widgets.get(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isAuthoritative() {
-        return this.authoritative;
-    }
-
-    public void moveTo(int i, WidgetGroup widgetGroup) {
-        for (ConstraintWidget constraintWidget : this.widgets) {
-            widgetGroup.add(constraintWidget);
-            if (i == 0) {
-                constraintWidget.horizontalGroup = widgetGroup.getId();
-            } else {
-                constraintWidget.verticalGroup = widgetGroup.getId();
-            }
-        }
-        this.moveTo = widgetGroup.f123id;
-    }
-
-    public void setAuthoritative(boolean z2) {
-        this.authoritative = z2;
-    }
-
-    public void setOrientation(int i) {
-        this.orientation = i;
-    }
-
-    public int size() {
-        return this.widgets.size();
     }
 
     public String toString() {

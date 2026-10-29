@@ -42,7 +42,7 @@ public final class ContentResizingCoordinatorLayout extends CoordinatorLayout {
 
     /* JADX INFO: renamed from: com.discord.utilities.views.ContentResizingCoordinatorLayout$onMeasure$3 */
     /* JADX INFO: compiled from: ContentResizingCoordinatorLayout.kt */
-    public static final class C70233 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
+    public final class C70233 extends AbstractC12240o implements Function2<Integer, Integer, Unit> {
         public final /* synthetic */ int $heightMeasureSpec;
         public final /* synthetic */ int $widthMeasureSpec;
 
@@ -77,26 +77,6 @@ public final class ContentResizingCoordinatorLayout extends CoordinatorLayout {
             C12238m.throwUninitializedPropertyAccessException("appBarLayout");
         }
         return appBarLayout;
-    }
-
-    private final void updateContentLayoutParams(int appBarVerticalOffset, int measuredAppBarHeight, int measuredContainerHeight, int widthMeasureSpec, int heightMeasureSpec) {
-        int i = measuredAppBarHeight + appBarVerticalOffset;
-        View view = this.content;
-        if (view == null) {
-            C12238m.throwUninitializedPropertyAccessException("content");
-        }
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.height = measuredContainerHeight - i;
-        View view2 = this.content;
-        if (view2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("content");
-        }
-        view2.setLayoutParams(layoutParams);
-        View view3 = this.content;
-        if (view3 == null) {
-            C12238m.throwUninitializedPropertyAccessException("content");
-        }
-        measureChild(view3, widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout, android.view.View
@@ -143,6 +123,26 @@ public final class ContentResizingCoordinatorLayout extends CoordinatorLayout {
             ViewExtensions.addOnHeightChangedListener(appBarLayout5, new C70233(widthMeasureSpec, heightMeasureSpec));
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    private final void updateContentLayoutParams(int appBarVerticalOffset, int measuredAppBarHeight, int measuredContainerHeight, int widthMeasureSpec, int heightMeasureSpec) {
+        int i = measuredAppBarHeight + appBarVerticalOffset;
+        View view = this.content;
+        if (view == null) {
+            C12238m.throwUninitializedPropertyAccessException("content");
+        }
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.height = measuredContainerHeight - i;
+        View view2 = this.content;
+        if (view2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("content");
+        }
+        view2.setLayoutParams(layoutParams);
+        View view3 = this.content;
+        if (view3 == null) {
+            C12238m.throwUninitializedPropertyAccessException("content");
+        }
+        measureChild(view3, widthMeasureSpec, heightMeasureSpec);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

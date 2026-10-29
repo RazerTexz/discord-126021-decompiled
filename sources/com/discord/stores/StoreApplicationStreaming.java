@@ -47,7 +47,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
     private final StoreVoiceChannelSelected voiceChannelSelectedStore;
 
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final /* data */ class ActiveApplicationStream {
+    public final /* data */ class ActiveApplicationStream {
         private final State state;
         private final ModelApplicationStream stream;
 
@@ -66,7 +66,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
             private static final Companion Companion;
 
             /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-            public static final class Companion {
+            public final class Companion {
                 private Companion() {
                 }
 
@@ -110,16 +110,6 @@ public final class StoreApplicationStreaming extends StoreV2 {
             return activeApplicationStream.copy(state, modelApplicationStream);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final State getState() {
-            return this.state;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelApplicationStream getStream() {
-            return this.stream;
-        }
-
         public final ActiveApplicationStream copy(State state, ModelApplicationStream stream) {
             C12238m.checkNotNullParameter(state, "state");
             C12238m.checkNotNullParameter(stream, "stream");
@@ -137,8 +127,18 @@ public final class StoreApplicationStreaming extends StoreV2 {
             return C12238m.areEqual(this.state, activeApplicationStream.state) && C12238m.areEqual(this.stream, activeApplicationStream.stream);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final State getState() {
             return this.state;
+        }
+
+        public final State getState() {
+            return this.state;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ModelApplicationStream getStream() {
+            return this.stream;
         }
 
         public final ModelApplicationStream getStream() {
@@ -162,34 +162,9 @@ public final class StoreApplicationStreaming extends StoreV2 {
         }
     }
 
-    /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class StreamViewerTracker {
-        private final Map<String, Integer> maxViewersByStream = new HashMap();
-
-        public final void clear() {
-            this.maxViewersByStream.clear();
-        }
-
-        public final Integer getMaxViewers(String streamKey) {
-            C12238m.checkNotNullParameter(streamKey, "streamKey");
-            return this.maxViewersByStream.get(streamKey);
-        }
-
-        public final void onStreamUpdated(String streamKey, int viewerCount) {
-            C12238m.checkNotNullParameter(streamKey, "streamKey");
-            Integer num = this.maxViewersByStream.get(streamKey);
-            this.maxViewersByStream.put(streamKey, Integer.valueOf(Math.max(num != null ? num.intValue() : 0, viewerCount)));
-        }
-
-        public final void remove(String streamKey) {
-            C12238m.checkNotNullParameter(streamKey, "streamKey");
-            this.maxViewersByStream.remove(streamKey);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$createStream$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57441 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57441 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ String $preferredRegion;
@@ -249,7 +224,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$observeActiveStream$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57451 extends AbstractC12240o implements Function0<ActiveApplicationStream> {
+    public final class C57451 extends AbstractC12240o implements Function0<ActiveApplicationStream> {
         public C57451() {
             super(0);
         }
@@ -263,7 +238,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$observeStreamSpectators$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57461 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends Long>>> {
+    public final class C57461 extends AbstractC12240o implements Function0<Map<String, ? extends List<? extends Long>>> {
         public C57461() {
             super(0);
         }
@@ -276,7 +251,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$observeStreamsByUser$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57471 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelApplicationStream>> {
+    public final class C57471 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelApplicationStream>> {
         public C57471() {
             super(0);
         }
@@ -289,7 +264,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$observeStreamsForGuild$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57481 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelApplicationStream>> {
+    public final class C57481 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelApplicationStream>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -314,7 +289,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$observeStreamsForUser$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57491 extends AbstractC12240o implements Function0<ModelApplicationStream> {
+    public final class C57491 extends AbstractC12240o implements Function0<ModelApplicationStream> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -332,7 +307,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$stopStream$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57501 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57501 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -355,7 +330,7 @@ public final class StoreApplicationStreaming extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreaming$targetStream$1 */
     /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
-    public static final class C57511 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57511 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $force;
         public final /* synthetic */ String $streamKey;
 
@@ -406,62 +381,15 @@ public final class StoreApplicationStreaming extends StoreV2 {
         storeApplicationStreaming.createStream(j, l, str);
     }
 
+    public final void createStream(long channelId, Long guildId, String preferredRegion) {
+        this.dispatcher.schedule(new C57441(channelId, guildId, preferredRegion));
+    }
+
     private final synchronized void dumpBreadcrumbs() {
         Iterator<String> it = this.breadCrumbs.iterator();
         while (it.hasNext()) {
             AppLog.f14950g.recordBreadcrumb(it.next(), "StoreApplicationStreaming");
         }
-    }
-
-    @StoreThread
-    private final void handleStreamCreateOrUpdate(String streamKey, boolean paused, List<Long> viewerIds) {
-        updateActiveApplicationStream(new ActiveApplicationStream(paused ? ActiveApplicationStream.State.PAUSED : ActiveApplicationStream.State.ACTIVE, ModelApplicationStream.INSTANCE.decodeStreamKey(streamKey)));
-        this.streamSpectators.put(streamKey, viewerIds);
-        this.streamViewerTracker.onStreamUpdated(streamKey, viewerIds.size());
-        markChanged();
-    }
-
-    public static /* synthetic */ void handleVoiceStateUpdate$default(StoreApplicationStreaming storeApplicationStreaming, VoiceState voiceState, long j, int i, Object obj) {
-        if ((i & 2) != 0) {
-            j = voiceState.getGuildId();
-        }
-        storeApplicationStreaming.handleVoiceStateUpdate(voiceState, j);
-    }
-
-    private final void stopStreamInternal(String streamKey) {
-        this.storeStream.handleStreamDelete(new StreamDelete(streamKey, StreamDelete.Reason.USER_REQUESTED, false), true);
-    }
-
-    public static /* synthetic */ void targetStream$default(StoreApplicationStreaming storeApplicationStreaming, String str, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        storeApplicationStreaming.targetStream(str, z2);
-    }
-
-    @StoreThread
-    private final void updateActiveApplicationStream(ActiveApplicationStream activeApplicationStream) {
-        boolean zIsScreenSharing = isScreenSharing(this.activeApplicationStream);
-        boolean zIsScreenSharing2 = isScreenSharing(activeApplicationStream);
-        if (zIsScreenSharing != zIsScreenSharing2) {
-            this.storeStream.handleIsScreenSharingChanged(zIsScreenSharing2);
-        }
-        this.activeApplicationStream = activeApplicationStream;
-    }
-
-    public final void createStream(long channelId, Long guildId, String preferredRegion) {
-        this.dispatcher.schedule(new C57441(channelId, guildId, preferredRegion));
-    }
-
-    @StoreThread
-    /* JADX INFO: renamed from: getActiveApplicationStreamKeyInternal$app_productionGoogleRelease */
-    public final String m8507xb25617db() {
-        ModelApplicationStream stream;
-        ActiveApplicationStream activeApplicationStream = this.activeApplicationStream;
-        if (activeApplicationStream == null || (stream = activeApplicationStream.getStream()) == null) {
-            return null;
-        }
-        return stream.getEncodedStreamKey();
     }
 
     @StoreThread
@@ -502,6 +430,14 @@ public final class StoreApplicationStreaming extends StoreV2 {
         C12238m.checkNotNullParameter(streamCreate, "streamCreate");
         this.streamViewerTracker.remove(streamCreate.getStreamKey());
         handleStreamCreateOrUpdate(streamCreate.getStreamKey(), streamCreate.getPaused(), streamCreate.getViewerIds());
+    }
+
+    @StoreThread
+    private final void handleStreamCreateOrUpdate(String streamKey, boolean paused, List<Long> viewerIds) {
+        updateActiveApplicationStream(new ActiveApplicationStream(paused ? ActiveApplicationStream.State.PAUSED : ActiveApplicationStream.State.ACTIVE, ModelApplicationStream.INSTANCE.decodeStreamKey(streamKey)));
+        this.streamSpectators.put(streamKey, viewerIds);
+        this.streamViewerTracker.onStreamUpdated(streamKey, viewerIds.size());
+        markChanged();
     }
 
     @StoreThread
@@ -590,6 +526,13 @@ public final class StoreApplicationStreaming extends StoreV2 {
         }
     }
 
+    public static /* synthetic */ void handleVoiceStateUpdate$default(StoreApplicationStreaming storeApplicationStreaming, VoiceState voiceState, long j, int i, Object obj) {
+        if ((i & 2) != 0) {
+            j = voiceState.getGuildId();
+        }
+        storeApplicationStreaming.handleVoiceStateUpdate(voiceState, j);
+    }
+
     @StoreThread
     public final void handleVoiceStateUpdate(VoiceState voiceState, long guildId) {
         C12238m.checkNotNullParameter(voiceState, "voiceState");
@@ -641,6 +584,17 @@ public final class StoreApplicationStreaming extends StoreV2 {
         return this.streamsByUser.containsKey(Long.valueOf(userId));
     }
 
+    @StoreThread
+    /* JADX INFO: renamed from: getActiveApplicationStreamKeyInternal$app_productionGoogleRelease */
+    public final String m8507xb25617db() {
+        ModelApplicationStream stream;
+        ActiveApplicationStream activeApplicationStream = this.activeApplicationStream;
+        if (activeApplicationStream == null || (stream = activeApplicationStream.getStream()) == null) {
+            return null;
+        }
+        return stream.getEncodedStreamKey();
+    }
+
     public final Observable<ActiveApplicationStream> observeActiveStream() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C57451(), 14, null);
     }
@@ -690,9 +644,55 @@ public final class StoreApplicationStreaming extends StoreV2 {
         this.dispatcher.schedule(new C57501(streamKey));
     }
 
+    private final void stopStreamInternal(String streamKey) {
+        this.storeStream.handleStreamDelete(new StreamDelete(streamKey, StreamDelete.Reason.USER_REQUESTED, false), true);
+    }
+
+    public static /* synthetic */ void targetStream$default(StoreApplicationStreaming storeApplicationStreaming, String str, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        storeApplicationStreaming.targetStream(str, z2);
+    }
+
     public final void targetStream(String streamKey, boolean force) {
         C12238m.checkNotNullParameter(streamKey, "streamKey");
         this.dispatcher.schedule(new C57511(streamKey, force));
+    }
+
+    @StoreThread
+    private final void updateActiveApplicationStream(ActiveApplicationStream activeApplicationStream) {
+        boolean zIsScreenSharing = isScreenSharing(this.activeApplicationStream);
+        boolean zIsScreenSharing2 = isScreenSharing(activeApplicationStream);
+        if (zIsScreenSharing != zIsScreenSharing2) {
+            this.storeStream.handleIsScreenSharingChanged(zIsScreenSharing2);
+        }
+        this.activeApplicationStream = activeApplicationStream;
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationStreaming.kt */
+    public final class StreamViewerTracker {
+        private final Map<String, Integer> maxViewersByStream = new HashMap();
+
+        public final void clear() {
+            this.maxViewersByStream.clear();
+        }
+
+        public final Integer getMaxViewers(String streamKey) {
+            C12238m.checkNotNullParameter(streamKey, "streamKey");
+            return this.maxViewersByStream.get(streamKey);
+        }
+
+        public final void onStreamUpdated(String streamKey, int viewerCount) {
+            C12238m.checkNotNullParameter(streamKey, "streamKey");
+            Integer num = this.maxViewersByStream.get(streamKey);
+            this.maxViewersByStream.put(streamKey, Integer.valueOf(Math.max(num != null ? num.intValue() : 0, viewerCount)));
+        }
+
+        public final void remove(String streamKey) {
+            C12238m.checkNotNullParameter(streamKey, "streamKey");
+            this.maxViewersByStream.remove(streamKey);
+        }
     }
 
     public StoreApplicationStreaming(StoreStream storeStream, Dispatcher dispatcher, StoreUser storeUser, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreRtcConnection storeRtcConnection, ObservationDeck observationDeck) {

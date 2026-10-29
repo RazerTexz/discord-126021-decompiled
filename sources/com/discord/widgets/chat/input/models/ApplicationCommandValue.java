@@ -24,6 +24,10 @@ public final /* data */ class ApplicationCommandValue {
         this.focused = bool;
     }
 
+    public final List<ApplicationCommandValue> component4() {
+        return this.options;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ApplicationCommandValue copy$default(ApplicationCommandValue applicationCommandValue, String str, Object obj, int i, List list, Boolean bool, int i2, Object obj2) {
         if ((i2 & 1) != 0) {
@@ -47,30 +51,6 @@ public final /* data */ class ApplicationCommandValue {
         return applicationCommandValue.copy(str, obj3, i3, list2, bool);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Object getValue() {
-        return this.value;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    public final List<ApplicationCommandValue> component4() {
-        return this.options;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Boolean getFocused() {
-        return this.focused;
-    }
-
     public final ApplicationCommandValue copy(String name, Object value, int type, List<ApplicationCommandValue> options, Boolean focused) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new ApplicationCommandValue(name, value, type, options, focused);
@@ -87,8 +67,18 @@ public final /* data */ class ApplicationCommandValue {
         return C12238m.areEqual(this.name, applicationCommandValue.name) && C12238m.areEqual(this.value, applicationCommandValue.value) && this.type == applicationCommandValue.type && C12238m.areEqual(this.options, applicationCommandValue.options) && C12238m.areEqual(this.focused, applicationCommandValue.focused);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final Boolean getFocused() {
         return this.focused;
+    }
+
+    public final Boolean getFocused() {
+        return this.focused;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {
@@ -99,8 +89,18 @@ public final /* data */ class ApplicationCommandValue {
         return this.options;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getType() {
         return this.type;
+    }
+
+    public final int getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Object getValue() {
+        return this.value;
     }
 
     public final Object getValue() {

@@ -17,7 +17,7 @@ public final /* data */ class ModelGuildFolder {
     private final String name;
 
     /* JADX INFO: compiled from: ModelGuildFolder.kt */
-    public static final class Parser implements Model.Parser<ModelGuildFolder> {
+    public final class Parser implements Model.Parser<ModelGuildFolder> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -84,6 +84,10 @@ public final /* data */ class ModelGuildFolder {
         this.name = str;
     }
 
+    public final List<Long> component2() {
+        return this.guildIds;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelGuildFolder copy$default(ModelGuildFolder modelGuildFolder, Long l, List list, Integer num, String str, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -99,25 +103,6 @@ public final /* data */ class ModelGuildFolder {
             str = modelGuildFolder.name;
         }
         return modelGuildFolder.copy(l, list, num, str);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getId() {
-        return this.id;
-    }
-
-    public final List<Long> component2() {
-        return this.guildIds;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Integer getColor() {
-        return this.color;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getName() {
-        return this.name;
     }
 
     public final ModelGuildFolder copy(Long id2, List<Long> guildIds, Integer color, String name) {
@@ -136,6 +121,11 @@ public final /* data */ class ModelGuildFolder {
         return C12238m.areEqual(this.id, modelGuildFolder.id) && C12238m.areEqual(this.guildIds, modelGuildFolder.guildIds) && C12238m.areEqual(this.color, modelGuildFolder.color) && C12238m.areEqual(this.name, modelGuildFolder.name);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Integer getColor() {
+        return this.color;
+    }
+
     public final Integer getColor() {
         return this.color;
     }
@@ -144,8 +134,18 @@ public final /* data */ class ModelGuildFolder {
         return this.guildIds;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Long getId() {
         return this.id;
+    }
+
+    public final Long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

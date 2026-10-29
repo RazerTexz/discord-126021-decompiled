@@ -22,6 +22,20 @@ public final class C2254d extends C2234c implements Serializable {
         this._views = clsArr;
     }
 
+    /* JADX INFO: renamed from: j */
+    public final boolean m2020j(Class<?> cls) {
+        if (cls == null) {
+            return true;
+        }
+        int length = this._views.length;
+        for (int i = 0; i < length; i++) {
+            if (this._views[i].isAssignableFrom(cls)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override // p007b.p195g.p196a.p205c.p215g0.C2234c
     /* JADX INFO: renamed from: e */
     public void mo1979e(AbstractC2364n<Object> abstractC2364n) {
@@ -64,19 +78,5 @@ public final class C2254d extends C2234c implements Serializable {
             Objects.requireNonNull(this._delegate);
             Objects.requireNonNull(abstractC2108d);
         }
-    }
-
-    /* JADX INFO: renamed from: j */
-    public final boolean m2020j(Class<?> cls) {
-        if (cls == null) {
-            return true;
-        }
-        int length = this._views.length;
-        for (int i = 0; i < length; i++) {
-            if (this._views[i].isAssignableFrom(cls)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

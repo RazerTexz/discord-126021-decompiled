@@ -23,6 +23,17 @@ public class C2225j implements InterfaceC2214f<C2225j> {
     public InterfaceC2070c0.a _includeAs;
     public String _typeProperty;
 
+    /* JADX INFO: renamed from: g */
+    public C2225j m1966g(InterfaceC2070c0.b bVar, InterfaceC2213e interfaceC2213e) {
+        if (bVar == null) {
+            throw new IllegalArgumentException("idType cannot be null");
+        }
+        this._idType = bVar;
+        this._customIdResolver = interfaceC2213e;
+        this._typeProperty = bVar.m1594f();
+        return this;
+    }
+
     @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2214f
     /* JADX INFO: renamed from: a */
     public InterfaceC2214f mo1949a(boolean z2) {
@@ -125,17 +136,6 @@ public class C2225j implements InterfaceC2214f<C2225j> {
             throw new IllegalArgumentException("includeAs cannot be null");
         }
         this._includeAs = aVar;
-        return this;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public C2225j m1966g(InterfaceC2070c0.b bVar, InterfaceC2213e interfaceC2213e) {
-        if (bVar == null) {
-            throw new IllegalArgumentException("idType cannot be null");
-        }
-        this._idType = bVar;
-        this._customIdResolver = interfaceC2213e;
-        this._typeProperty = bVar.m1594f();
         return this;
     }
 }

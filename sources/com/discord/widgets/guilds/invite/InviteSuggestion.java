@@ -11,7 +11,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class InviteSuggestion {
 
     /* JADX INFO: compiled from: InviteSuggestion.kt */
-    public static final /* data */ class ChannelItem extends InviteSuggestion {
+    public final /* data */ class ChannelItem extends InviteSuggestion {
         private final Channel channel;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -28,11 +28,6 @@ public abstract class InviteSuggestion {
             return channelItem.copy(channel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
         public final ChannelItem copy(Channel channel) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new ChannelItem(channel);
@@ -43,6 +38,11 @@ public abstract class InviteSuggestion {
                 return (other instanceof ChannelItem) && C12238m.areEqual(this.channel, ((ChannelItem) other).channel);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -66,7 +66,7 @@ public abstract class InviteSuggestion {
     }
 
     /* JADX INFO: compiled from: InviteSuggestion.kt */
-    public static final /* data */ class UserSuggestion extends InviteSuggestion {
+    public final /* data */ class UserSuggestion extends InviteSuggestion {
         private final User user;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -83,11 +83,6 @@ public abstract class InviteSuggestion {
             return userSuggestion.copy(user);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
         public final UserSuggestion copy(User user) {
             C12238m.checkNotNullParameter(user, "user");
             return new UserSuggestion(user);
@@ -98,6 +93,11 @@ public abstract class InviteSuggestion {
                 return (other instanceof UserSuggestion) && C12238m.areEqual(this.user, ((UserSuggestion) other).user);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

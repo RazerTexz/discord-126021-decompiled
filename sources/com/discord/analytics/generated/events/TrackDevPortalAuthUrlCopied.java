@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDevPortalAuthUrlCopied.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDevPortalAuthUrlCopied implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
-    private final Long botId = null;
     private final CharSequence applicationName = null;
+    private final Long botId = null;
     private final Boolean hasBot = null;
     private final Boolean hasRedirectUri = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "dev_portal_auth_url_copied";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackDevPortalAuthUrlCopied implements AnalyticsSc
         }
         TrackDevPortalAuthUrlCopied trackDevPortalAuthUrlCopied = (TrackDevPortalAuthUrlCopied) other;
         return C12238m.areEqual(this.applicationId, trackDevPortalAuthUrlCopied.applicationId) && C12238m.areEqual(this.botId, trackDevPortalAuthUrlCopied.botId) && C12238m.areEqual(this.applicationName, trackDevPortalAuthUrlCopied.applicationName) && C12238m.areEqual(this.hasBot, trackDevPortalAuthUrlCopied.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackDevPortalAuthUrlCopied.hasRedirectUri);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

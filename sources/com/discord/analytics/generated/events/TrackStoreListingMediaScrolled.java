@@ -13,18 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreListingMediaScrolled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreListingMediaScrolled implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver {
+    private final Long cardIndex = null;
+    private final CharSequence cardType = null;
     private TrackBase trackBase;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final Long cardIndex = null;
-    private final CharSequence cardType = null;
     private final transient String analyticsSchemaTypeName = "store_listing_media_scrolled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackStoreListingMediaScrolled implements Analytic
         }
         TrackStoreListingMediaScrolled trackStoreListingMediaScrolled = (TrackStoreListingMediaScrolled) other;
         return C12238m.areEqual(this.cardIndex, trackStoreListingMediaScrolled.cardIndex) && C12238m.areEqual(this.cardType, trackStoreListingMediaScrolled.cardType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

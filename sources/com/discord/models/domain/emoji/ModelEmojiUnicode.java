@@ -24,7 +24,6 @@ public class ModelEmojiUnicode implements Model, Emoji {
     private static final String FILENAME_FORMAT = "emoji_%s";
     private static final String SKIN_TONE_SUFFIX = "::skin-tone-";
     private static final String URI_FORMAT = "res:///%d";
-    private final AtomicReference<Object> codePoints = new AtomicReference<>();
     private List<ModelEmojiUnicode> diversityChildren;
     private boolean hasDiversity;
     private boolean hasDiversityParent;
@@ -55,87 +54,9 @@ public class ModelEmojiUnicode implements Model, Emoji {
             return new ModelEmojiUnicode[i];
         }
     };
-
-    public static class Bundle implements Model {
-        private Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = new HashMap();
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(final Model.JsonReader jsonReader) throws IOException {
-            EmojiCategory byString = EmojiCategory.getByString(jsonReader.nextName());
-            if (byString != null) {
-                this.emojis.put(byString, jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.h0.a
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelEmojiUnicode) jsonReader.parse(new ModelEmojiUnicode());
-                    }
-                }));
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Bundle;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Bundle)) {
-                return false;
-            }
-            Bundle bundle = (Bundle) obj;
-            if (!bundle.canEqual(this)) {
-                return false;
-            }
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis2 = bundle.getEmojis();
-            return emojis != null ? emojis.equals(emojis2) : emojis2 == null;
-        }
-
-        public Map<EmojiCategory, List<ModelEmojiUnicode>> getEmojis() {
-            return this.emojis;
-        }
-
-        public int hashCode() {
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
-            return 59 + (emojis == null ? 43 : emojis.hashCode());
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelEmojiUnicode.Bundle(emojis=");
-            sbM833U.append(getEmojis());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
+    private final AtomicReference<Object> codePoints = new AtomicReference<>();
 
     public ModelEmojiUnicode() {
-    }
-
-    private String toCodePoint() {
-        ArrayList arrayList = new ArrayList();
-        int i = 0;
-        while (true) {
-            char c = 0;
-            while (i < this.surrogates.length()) {
-                int i2 = i + 1;
-                char cCharAt = this.surrogates.charAt(i);
-                if (c != 0) {
-                    arrayList.add(Integer.toHexString((cCharAt - 56320) + ((c - 55296) << 10) + 65536));
-                    i = i2;
-                } else {
-                    if (55296 > cCharAt || cCharAt > 56319) {
-                        arrayList.add(Integer.toHexString(cCharAt));
-                    } else {
-                        c = cCharAt;
-                    }
-                    i = i2;
-                }
-            }
-            return TextUtils.join("_", arrayList);
-        }
     }
 
     @Override // com.discord.models.domain.Model
@@ -353,6 +274,30 @@ public class ModelEmojiUnicode implements Model, Emoji {
         return true;
     }
 
+    private String toCodePoint() {
+        ArrayList arrayList = new ArrayList();
+        int i = 0;
+        while (true) {
+            char c = 0;
+            while (i < this.surrogates.length()) {
+                int i2 = i + 1;
+                char cCharAt = this.surrogates.charAt(i);
+                if (c != 0) {
+                    arrayList.add(Integer.toHexString((cCharAt - 56320) + ((c - 55296) << 10) + 65536));
+                    i = i2;
+                } else {
+                    if (55296 > cCharAt || cCharAt > 56319) {
+                        arrayList.add(Integer.toHexString(cCharAt));
+                    } else {
+                        c = cCharAt;
+                    }
+                    i = i2;
+                }
+            }
+            return TextUtils.join("_", arrayList);
+        }
+    }
+
     public String toString() {
         StringBuilder sbM833U = C1643a.m833U("ModelEmojiUnicode(names=");
         sbM833U.append(getNames());
@@ -383,6 +328,61 @@ public class ModelEmojiUnicode implements Model, Emoji {
         parcel.writeInt(this.hasDiversityParent ? 1 : 0);
         parcel.writeInt(this.hasMultiDiversityParent ? 1 : 0);
         parcel.writeTypedList(this.diversityChildren);
+    }
+
+    public class Bundle implements Model {
+        private Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = new HashMap();
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(final Model.JsonReader jsonReader) throws IOException {
+            EmojiCategory byString = EmojiCategory.getByString(jsonReader.nextName());
+            if (byString != null) {
+                this.emojis.put(byString, jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.h0.a
+                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+                    public final Object get() {
+                        return (ModelEmojiUnicode) jsonReader.parse(new ModelEmojiUnicode());
+                    }
+                }));
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Bundle;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Bundle)) {
+                return false;
+            }
+            Bundle bundle = (Bundle) obj;
+            if (!bundle.canEqual(this)) {
+                return false;
+            }
+            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
+            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis2 = bundle.getEmojis();
+            return emojis != null ? emojis.equals(emojis2) : emojis2 == null;
+        }
+
+        public Map<EmojiCategory, List<ModelEmojiUnicode>> getEmojis() {
+            return this.emojis;
+        }
+
+        public int hashCode() {
+            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
+            return 59 + (emojis == null ? 43 : emojis.hashCode());
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ModelEmojiUnicode.Bundle(emojis=");
+            sbM833U.append(getEmojis());
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
     }
 
     @SuppressLint({"DefaultLocale"})

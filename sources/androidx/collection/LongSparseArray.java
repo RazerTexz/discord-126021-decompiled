@@ -5,35 +5,14 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public class LongSparseArray<E> implements Cloneable {
-    private static final Object DELETED = new Object();
     private boolean mGarbage;
     private long[] mKeys;
     private int mSize;
     private Object[] mValues;
+    private static final Object DELETED = new Object();
 
     public LongSparseArray() {
         this(10);
-    }
-
-    /* JADX INFO: renamed from: gc */
-    private void m80gc() {
-        int i = this.mSize;
-        long[] jArr = this.mKeys;
-        Object[] objArr = this.mValues;
-        int i2 = 0;
-        for (int i3 = 0; i3 < i; i3++) {
-            Object obj = objArr[i3];
-            if (obj != DELETED) {
-                if (i3 != i2) {
-                    jArr[i2] = jArr[i3];
-                    objArr[i2] = obj;
-                    objArr[i3] = null;
-                }
-                i2++;
-            }
-        }
-        this.mGarbage = false;
-        this.mSize = i2;
     }
 
     public void append(long j, E e) {
@@ -118,6 +97,27 @@ public class LongSparseArray<E> implements Cloneable {
             m80gc();
         }
         return this.mKeys[i];
+    }
+
+    /* JADX INFO: renamed from: gc */
+    private void m80gc() {
+        int i = this.mSize;
+        long[] jArr = this.mKeys;
+        Object[] objArr = this.mValues;
+        int i2 = 0;
+        for (int i3 = 0; i3 < i; i3++) {
+            Object obj = objArr[i3];
+            if (obj != DELETED) {
+                if (i3 != i2) {
+                    jArr[i2] = jArr[i3];
+                    objArr[i2] = obj;
+                    objArr[i3] = null;
+                }
+                i2++;
+            }
+        }
+        this.mGarbage = false;
+        this.mSize = i2;
     }
 
     public void put(long j, E e) {
@@ -272,6 +272,17 @@ public class LongSparseArray<E> implements Cloneable {
         }
     }
 
+    public E get(long j, E e) {
+        int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, j);
+        if (iBinarySearch >= 0) {
+            Object[] objArr = this.mValues;
+            if (objArr[iBinarySearch] != DELETED) {
+                return (E) objArr[iBinarySearch];
+            }
+        }
+        return e;
+    }
+
     /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
     public LongSparseArray<E> m11377clone() {
         try {
@@ -282,17 +293,6 @@ public class LongSparseArray<E> implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
         }
-    }
-
-    public E get(long j, E e) {
-        int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, j);
-        if (iBinarySearch >= 0) {
-            Object[] objArr = this.mValues;
-            if (objArr[iBinarySearch] != DELETED) {
-                return (E) objArr[iBinarySearch];
-            }
-        }
-        return e;
     }
 
     public boolean replace(long j, E e, E e2) {

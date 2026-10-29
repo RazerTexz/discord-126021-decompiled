@@ -20,81 +20,6 @@ import p007b.p225i.p226a.p242c.p260g3.C2777n;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2811j1 implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2811j1 f7125j = new b().m3277a();
-
-    /* JADX INFO: renamed from: k */
-    public static final InterfaceC2963w0.a<C2811j1> f7126k = new InterfaceC2963w0.a() { // from class: b.i.a.c.h0
-        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
-            C2811j1 c2811j1 = C2811j1.f7125j;
-            C2811j1.b bVar = new C2811j1.b();
-            if (bundle != null) {
-                ClassLoader classLoader = C2739f.class.getClassLoader();
-                int i = C2738e0.f6708a;
-                bundle.setClassLoader(classLoader);
-            }
-            int i2 = 0;
-            String string = bundle.getString(C2811j1.m3274d(0));
-            C2811j1 c2811j2 = C2811j1.f7125j;
-            bVar.f7163a = (String) C2811j1.m3273b(string, c2811j2.f7144l);
-            bVar.f7164b = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(1)), c2811j2.f7145m);
-            bVar.f7165c = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(2)), c2811j2.f7146n);
-            bVar.f7166d = bundle.getInt(C2811j1.m3274d(3), c2811j2.f7147o);
-            bVar.f7167e = bundle.getInt(C2811j1.m3274d(4), c2811j2.f7148p);
-            bVar.f7168f = bundle.getInt(C2811j1.m3274d(5), c2811j2.f7149q);
-            bVar.f7169g = bundle.getInt(C2811j1.m3274d(6), c2811j2.f7150r);
-            bVar.f7170h = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(7)), c2811j2.f7152t);
-            bVar.f7171i = (Metadata) C2811j1.m3273b((Metadata) bundle.getParcelable(C2811j1.m3274d(8)), c2811j2.f7153u);
-            bVar.f7172j = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(9)), c2811j2.f7154v);
-            bVar.f7173k = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(10)), c2811j2.f7155w);
-            bVar.f7174l = bundle.getInt(C2811j1.m3274d(11), c2811j2.f7156x);
-            ArrayList arrayList = new ArrayList();
-            while (true) {
-                String strM3274d = C2811j1.m3274d(12);
-                String string2 = Integer.toString(i2, 36);
-                StringBuilder sb = new StringBuilder(String.valueOf(string2).length() + String.valueOf(strM3274d).length() + 1);
-                sb.append(strM3274d);
-                sb.append("_");
-                sb.append(string2);
-                byte[] byteArray = bundle.getByteArray(sb.toString());
-                if (byteArray == null) {
-                    bVar.f7175m = arrayList;
-                    bVar.f7176n = (DrmInitData) bundle.getParcelable(C2811j1.m3274d(13));
-                    String strM3274d2 = C2811j1.m3274d(14);
-                    C2811j1 c2811j3 = C2811j1.f7125j;
-                    bVar.f7177o = bundle.getLong(strM3274d2, c2811j3.f7127A);
-                    bVar.f7178p = bundle.getInt(C2811j1.m3274d(15), c2811j3.f7128B);
-                    bVar.f7179q = bundle.getInt(C2811j1.m3274d(16), c2811j3.f7129C);
-                    bVar.f7180r = bundle.getFloat(C2811j1.m3274d(17), c2811j3.f7130D);
-                    bVar.f7181s = bundle.getInt(C2811j1.m3274d(18), c2811j3.f7131E);
-                    bVar.f7182t = bundle.getFloat(C2811j1.m3274d(19), c2811j3.f7132F);
-                    bVar.f7183u = bundle.getByteArray(C2811j1.m3274d(20));
-                    bVar.f7184v = bundle.getInt(C2811j1.m3274d(21), c2811j3.f7134H);
-                    int i3 = C2777n.f6843j;
-                    bVar.f7185w = (C2777n) C2739f.m3021c(new InterfaceC2963w0.a() { // from class: b.i.a.c.g3.a
-                        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
-                        /* JADX INFO: renamed from: a */
-                        public final InterfaceC2963w0 mo2576a(Bundle bundle2) {
-                            return new C2777n(bundle2.getInt(C2777n.m3125c(0), -1), bundle2.getInt(C2777n.m3125c(1), -1), bundle2.getInt(C2777n.m3125c(2), -1), bundle2.getByteArray(C2777n.m3125c(3)));
-                        }
-                    }, bundle.getBundle(C2811j1.m3274d(22)));
-                    bVar.f7186x = bundle.getInt(C2811j1.m3274d(23), c2811j3.f7136J);
-                    bVar.f7187y = bundle.getInt(C2811j1.m3274d(24), c2811j3.f7137K);
-                    bVar.f7188z = bundle.getInt(C2811j1.m3274d(25), c2811j3.f7138L);
-                    bVar.f7159A = bundle.getInt(C2811j1.m3274d(26), c2811j3.f7139M);
-                    bVar.f7160B = bundle.getInt(C2811j1.m3274d(27), c2811j3.f7140N);
-                    bVar.f7161C = bundle.getInt(C2811j1.m3274d(28), c2811j3.f7141O);
-                    bVar.f7162D = bundle.getInt(C2811j1.m3274d(29), c2811j3.f7142P);
-                    return bVar.m3277a();
-                }
-                arrayList.add(byteArray);
-                i2++;
-            }
-        }
-    };
-
     /* JADX INFO: renamed from: A */
     public final long f7127A;
 
@@ -201,6 +126,81 @@ public final class C2811j1 implements InterfaceC2963w0 {
     @Nullable
     public final DrmInitData f7158z;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2811j1 f7125j = new b().m3277a();
+
+    /* JADX INFO: renamed from: k */
+    public static final InterfaceC2963w0.a<C2811j1> f7126k = new InterfaceC2963w0.a() { // from class: b.i.a.c.h0
+        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC2963w0 mo2576a(Bundle bundle) {
+            C2811j1 c2811j1 = C2811j1.f7125j;
+            C2811j1.b bVar = new C2811j1.b();
+            if (bundle != null) {
+                ClassLoader classLoader = C2739f.class.getClassLoader();
+                int i = C2738e0.f6708a;
+                bundle.setClassLoader(classLoader);
+            }
+            int i2 = 0;
+            String string = bundle.getString(C2811j1.m3274d(0));
+            C2811j1 c2811j2 = C2811j1.f7125j;
+            bVar.f7163a = (String) C2811j1.m3273b(string, c2811j2.f7144l);
+            bVar.f7164b = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(1)), c2811j2.f7145m);
+            bVar.f7165c = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(2)), c2811j2.f7146n);
+            bVar.f7166d = bundle.getInt(C2811j1.m3274d(3), c2811j2.f7147o);
+            bVar.f7167e = bundle.getInt(C2811j1.m3274d(4), c2811j2.f7148p);
+            bVar.f7168f = bundle.getInt(C2811j1.m3274d(5), c2811j2.f7149q);
+            bVar.f7169g = bundle.getInt(C2811j1.m3274d(6), c2811j2.f7150r);
+            bVar.f7170h = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(7)), c2811j2.f7152t);
+            bVar.f7171i = (Metadata) C2811j1.m3273b((Metadata) bundle.getParcelable(C2811j1.m3274d(8)), c2811j2.f7153u);
+            bVar.f7172j = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(9)), c2811j2.f7154v);
+            bVar.f7173k = (String) C2811j1.m3273b(bundle.getString(C2811j1.m3274d(10)), c2811j2.f7155w);
+            bVar.f7174l = bundle.getInt(C2811j1.m3274d(11), c2811j2.f7156x);
+            ArrayList arrayList = new ArrayList();
+            while (true) {
+                String strM3274d = C2811j1.m3274d(12);
+                String string2 = Integer.toString(i2, 36);
+                StringBuilder sb = new StringBuilder(String.valueOf(string2).length() + String.valueOf(strM3274d).length() + 1);
+                sb.append(strM3274d);
+                sb.append("_");
+                sb.append(string2);
+                byte[] byteArray = bundle.getByteArray(sb.toString());
+                if (byteArray == null) {
+                    bVar.f7175m = arrayList;
+                    bVar.f7176n = (DrmInitData) bundle.getParcelable(C2811j1.m3274d(13));
+                    String strM3274d2 = C2811j1.m3274d(14);
+                    C2811j1 c2811j3 = C2811j1.f7125j;
+                    bVar.f7177o = bundle.getLong(strM3274d2, c2811j3.f7127A);
+                    bVar.f7178p = bundle.getInt(C2811j1.m3274d(15), c2811j3.f7128B);
+                    bVar.f7179q = bundle.getInt(C2811j1.m3274d(16), c2811j3.f7129C);
+                    bVar.f7180r = bundle.getFloat(C2811j1.m3274d(17), c2811j3.f7130D);
+                    bVar.f7181s = bundle.getInt(C2811j1.m3274d(18), c2811j3.f7131E);
+                    bVar.f7182t = bundle.getFloat(C2811j1.m3274d(19), c2811j3.f7132F);
+                    bVar.f7183u = bundle.getByteArray(C2811j1.m3274d(20));
+                    bVar.f7184v = bundle.getInt(C2811j1.m3274d(21), c2811j3.f7134H);
+                    int i3 = C2777n.f6843j;
+                    bVar.f7185w = (C2777n) C2739f.m3021c(new InterfaceC2963w0.a() { // from class: b.i.a.c.g3.a
+                        @Override // p007b.p225i.p226a.p242c.InterfaceC2963w0.a
+                        /* JADX INFO: renamed from: a */
+                        public final InterfaceC2963w0 mo2576a(Bundle bundle2) {
+                            return new C2777n(bundle2.getInt(C2777n.m3125c(0), -1), bundle2.getInt(C2777n.m3125c(1), -1), bundle2.getInt(C2777n.m3125c(2), -1), bundle2.getByteArray(C2777n.m3125c(3)));
+                        }
+                    }, bundle.getBundle(C2811j1.m3274d(22)));
+                    bVar.f7186x = bundle.getInt(C2811j1.m3274d(23), c2811j3.f7136J);
+                    bVar.f7187y = bundle.getInt(C2811j1.m3274d(24), c2811j3.f7137K);
+                    bVar.f7188z = bundle.getInt(C2811j1.m3274d(25), c2811j3.f7138L);
+                    bVar.f7159A = bundle.getInt(C2811j1.m3274d(26), c2811j3.f7139M);
+                    bVar.f7160B = bundle.getInt(C2811j1.m3274d(27), c2811j3.f7140N);
+                    bVar.f7161C = bundle.getInt(C2811j1.m3274d(28), c2811j3.f7141O);
+                    bVar.f7162D = bundle.getInt(C2811j1.m3274d(29), c2811j3.f7142P);
+                    return bVar.m3277a();
+                }
+                arrayList.add(byteArray);
+                i2++;
+            }
+        }
+    };
+
     public C2811j1(b bVar, a aVar) {
         this.f7144l = bVar.f7163a;
         this.f7145m = bVar.f7164b;
@@ -248,35 +248,6 @@ public final class C2811j1 implements InterfaceC2963w0 {
         }
     }
 
-    @Nullable
-    /* JADX INFO: renamed from: b */
-    public static <T> T m3273b(@Nullable T t, @Nullable T t2) {
-        return t != null ? t : t2;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public static String m3274d(int i) {
-        return Integer.toString(i, 36);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public b m3275a() {
-        return new b(this, null);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public boolean m3276c(C2811j1 c2811j1) {
-        if (this.f7157y.size() != c2811j1.f7157y.size()) {
-            return false;
-        }
-        for (int i = 0; i < this.f7157y.size(); i++) {
-            if (!Arrays.equals(this.f7157y.get(i), c2811j1.f7157y.get(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean equals(@Nullable Object obj) {
         int i;
         if (this == obj) {
@@ -308,6 +279,35 @@ public final class C2811j1 implements InterfaceC2963w0 {
             this.f7143Q = ((((((((((((((((Float.floatToIntBits(this.f7132F) + ((((Float.floatToIntBits(this.f7130D) + ((((((((((iHashCode6 + (str6 != null ? str6.hashCode() : 0)) * 31) + this.f7156x) * 31) + ((int) this.f7127A)) * 31) + this.f7128B) * 31) + this.f7129C) * 31)) * 31) + this.f7131E) * 31)) * 31) + this.f7134H) * 31) + this.f7136J) * 31) + this.f7137K) * 31) + this.f7138L) * 31) + this.f7139M) * 31) + this.f7140N) * 31) + this.f7141O) * 31) + this.f7142P;
         }
         return this.f7143Q;
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: b */
+    public static <T> T m3273b(@Nullable T t, @Nullable T t2) {
+        return t != null ? t : t2;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public static String m3274d(int i) {
+        return Integer.toString(i, 36);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public b m3275a() {
+        return new b(this, null);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public boolean m3276c(C2811j1 c2811j1) {
+        if (this.f7157y.size() != c2811j1.f7157y.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.f7157y.size(); i++) {
+            if (!Arrays.equals(this.f7157y.get(i), c2811j1.f7157y.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String toString() {
@@ -347,7 +347,7 @@ public final class C2811j1 implements InterfaceC2963w0 {
 
     /* JADX INFO: renamed from: b.i.a.c.j1$b */
     /* JADX INFO: compiled from: Format.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: A */
         public int f7159A;

@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackContactSyncToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackContactSyncToggled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean isEnabled = null;
     private final Boolean amDiscoverableEmail = null;
     private final Boolean amDiscoverablePhone = null;
+    private final Boolean isEnabled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "contact_sync_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackContactSyncToggled implements AnalyticsSchema
         }
         TrackContactSyncToggled trackContactSyncToggled = (TrackContactSyncToggled) other;
         return C12238m.areEqual(this.isEnabled, trackContactSyncToggled.isEnabled) && C12238m.areEqual(this.amDiscoverableEmail, trackContactSyncToggled.amDiscoverableEmail) && C12238m.areEqual(this.amDiscoverablePhone, trackContactSyncToggled.amDiscoverablePhone);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

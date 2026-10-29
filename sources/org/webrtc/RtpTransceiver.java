@@ -41,7 +41,7 @@ public class RtpTransceiver {
         }
     }
 
-    public static final class RtpTransceiverInit {
+    public final class RtpTransceiverInit {
         private final RtpTransceiverDirection direction;
         private final List<RtpParameters.Encoding> sendEncodings;
         private final List<String> streamIds;
@@ -93,26 +93,6 @@ public class RtpTransceiver {
         }
     }
 
-    private static native RtpTransceiverDirection nativeCurrentDirection(long j);
-
-    private static native RtpTransceiverDirection nativeDirection(long j);
-
-    private static native MediaStreamTrack.MediaType nativeGetMediaType(long j);
-
-    private static native String nativeGetMid(long j);
-
-    private static native RtpReceiver nativeGetReceiver(long j);
-
-    private static native RtpSender nativeGetSender(long j);
-
-    private static native boolean nativeSetDirection(long j, RtpTransceiverDirection rtpTransceiverDirection);
-
-    private static native void nativeStopInternal(long j);
-
-    private static native void nativeStopStandard(long j);
-
-    private static native boolean nativeStopped(long j);
-
     @CalledByNative
     public void dispose() {
         checkRtpTransceiverExists();
@@ -154,6 +134,26 @@ public class RtpTransceiver {
         checkRtpTransceiverExists();
         return nativeStopped(this.nativeRtpTransceiver);
     }
+
+    private static native RtpTransceiverDirection nativeCurrentDirection(long j);
+
+    private static native RtpTransceiverDirection nativeDirection(long j);
+
+    private static native MediaStreamTrack.MediaType nativeGetMediaType(long j);
+
+    private static native String nativeGetMid(long j);
+
+    private static native RtpReceiver nativeGetReceiver(long j);
+
+    private static native RtpSender nativeGetSender(long j);
+
+    private static native boolean nativeSetDirection(long j, RtpTransceiverDirection rtpTransceiverDirection);
+
+    private static native void nativeStopInternal(long j);
+
+    private static native void nativeStopStandard(long j);
+
+    private static native boolean nativeStopped(long j);
 
     public boolean setDirection(RtpTransceiverDirection rtpTransceiverDirection) {
         checkRtpTransceiverExists();

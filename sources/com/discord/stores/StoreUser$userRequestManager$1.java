@@ -14,7 +14,7 @@ public final class StoreUser$userRequestManager$1 extends AbstractC12240o implem
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUser$userRequestManager$1$1 */
     /* JADX INFO: compiled from: StoreUser.kt */
-    public static final class C65571 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65571 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ User $user;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -54,9 +54,6 @@ public final class C12272c {
     /* JADX INFO: renamed from: a */
     public static final byte[] f25397a;
 
-    /* JADX INFO: renamed from: b */
-    public static final Headers f25398b = Headers.INSTANCE.m10964c(new String[0]);
-
     /* JADX INFO: renamed from: c */
     public static final ResponseBody f25399c;
 
@@ -71,6 +68,9 @@ public final class C12272c {
 
     /* JADX INFO: renamed from: g */
     public static final String f25403g;
+
+    /* JADX INFO: renamed from: b */
+    public static final Headers f25398b = Headers.INSTANCE.m10964c(new String[0]);
 
     static {
         byte[] bArr = new byte[0];

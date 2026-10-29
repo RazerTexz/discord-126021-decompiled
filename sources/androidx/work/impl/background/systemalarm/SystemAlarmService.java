@@ -10,9 +10,9 @@ import androidx.work.impl.utils.WakeLocks;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemAlarmService extends LifecycleService implements SystemAlarmDispatcher.CommandsCompletedListener {
-    private static final String TAG = Logger.tagWithPrefix("SystemAlarmService");
     private SystemAlarmDispatcher mDispatcher;
     private boolean mIsShutdown;
+    private static final String TAG = Logger.tagWithPrefix("SystemAlarmService");
 
     @MainThread
     private void initializeDispatcher() {

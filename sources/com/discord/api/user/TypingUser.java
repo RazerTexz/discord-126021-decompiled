@@ -12,6 +12,17 @@ public final /* data */ class TypingUser {
     private final GuildMember member;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof TypingUser)) {
+            return false;
+        }
+        TypingUser typingUser = (TypingUser) other;
+        return this.userId == typingUser.userId && this.guildId == typingUser.guildId && this.channelId == typingUser.channelId && C12238m.areEqual(this.member, typingUser.member);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final long getChannelId() {
         return this.channelId;
@@ -30,17 +41,6 @@ public final /* data */ class TypingUser {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final long getUserId() {
         return this.userId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof TypingUser)) {
-            return false;
-        }
-        TypingUser typingUser = (TypingUser) other;
-        return this.userId == typingUser.userId && this.guildId == typingUser.guildId && this.channelId == typingUser.channelId && C12238m.areEqual(this.member, typingUser.member);
     }
 
     public int hashCode() {

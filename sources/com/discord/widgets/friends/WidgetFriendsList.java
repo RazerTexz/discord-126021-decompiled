@@ -65,6 +65,7 @@ import p658rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetFriendsList.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetFriendsList extends AppFragment implements OnTabSelectedListener {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFriendsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFriendsListBinding;", 0)};
     private static final String ANALYTICS_SOURCE = "Friends";
     private static final int VIEW_INDEX_EMPTY = 1;
     private static final int VIEW_INDEX_LOADING = 2;
@@ -79,11 +80,10 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFriendsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFriendsListBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$handleCaptchaError$1 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84001 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+    public final class C84001 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
         public final /* synthetic */ FriendsListViewModel.Event.CaptchaError $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -108,7 +108,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84011 extends AbstractC12240o implements Function2<View, User, Unit> {
+    public final class C84011 extends AbstractC12240o implements Function2<View, User, Unit> {
         public C84011() {
             super(2);
         }
@@ -133,7 +133,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$10 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C840210 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C840210 extends AbstractC12240o implements Function1<User, Unit> {
         public C840210() {
             super(1);
         }
@@ -153,7 +153,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$11 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final /* synthetic */ class C840311 extends C12236k implements Function1<Long, Unit> {
+    public final /* synthetic */ class C840311 extends C12236k implements Function1<Long, Unit> {
         public C840311(FriendsListViewModel friendsListViewModel) {
             super(1, friendsListViewModel, FriendsListViewModel.class, "ignoreSuggestion", "ignoreSuggestion(J)V", 0);
         }
@@ -171,7 +171,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84042 extends AbstractC12240o implements Function0<Unit> {
+    public final class C84042 extends AbstractC12240o implements Function0<Unit> {
         public C84042() {
             super(0);
         }
@@ -190,7 +190,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84053 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C84053 extends AbstractC12240o implements Function1<User, Unit> {
         public C84053() {
             super(1);
         }
@@ -210,7 +210,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84064 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C84064 extends AbstractC12240o implements Function1<User, Unit> {
         public C84064() {
             super(1);
         }
@@ -231,7 +231,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84075 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C84075 extends AbstractC12240o implements Function1<User, Unit> {
         public C84075() {
             super(1);
         }
@@ -251,7 +251,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$6 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84086 extends AbstractC12240o implements Function2<User, Integer, Unit> {
+    public final class C84086 extends AbstractC12240o implements Function2<User, Integer, Unit> {
         public C84086() {
             super(2);
         }
@@ -270,7 +270,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$7 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84097 extends AbstractC12240o implements Function0<Unit> {
+    public final class C84097 extends AbstractC12240o implements Function0<Unit> {
         public C84097() {
             super(0);
         }
@@ -291,7 +291,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$8 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84108 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C84108 extends AbstractC12240o implements Function1<View, Unit> {
         public C84108() {
             super(1);
         }
@@ -320,7 +320,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$9 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final class C84119 extends AbstractC12240o implements Function0<Unit> {
+    public final class C84119 extends AbstractC12240o implements Function0<Unit> {
         public C84119() {
             super(0);
         }
@@ -339,7 +339,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final /* synthetic */ class C84121 extends C12236k implements Function1<FriendsListViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C84121 extends C12236k implements Function1<FriendsListViewModel.ViewState, Unit> {
         public C84121(WidgetFriendsList widgetFriendsList) {
             super(1, widgetFriendsList, WidgetFriendsList.class, "configureUI", "configureUI(Lcom/discord/widgets/friends/FriendsListViewModel$ViewState;)V", 0);
         }
@@ -359,7 +359,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public static final /* synthetic */ class C84132 extends C12236k implements Function1<FriendsListViewModel.Event, Unit> {
+    public final /* synthetic */ class C84132 extends C12236k implements Function1<FriendsListViewModel.Event, Unit> {
         public C84132(WidgetFriendsList widgetFriendsList) {
             super(1, widgetFriendsList, WidgetFriendsList.class, "handleEvent", "handleEvent(Lcom/discord/widgets/friends/FriendsListViewModel$Event;)V", 0);
         }
@@ -496,27 +496,6 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         C0876m.m171i(this, event.getStringRes(), 0, 4);
     }
 
-    private final void showEmptyView(FriendsListViewModel.ViewState.Empty viewState) {
-        displayFlipperChild(1);
-        this.showContactSyncIcon = viewState.getShowContactSyncIcon();
-        configureToolbar();
-    }
-
-    private final void showLoadingView() {
-        displayFlipperChild(2);
-    }
-
-    private final void updateView(FriendsListViewModel.ViewState.Loaded viewState) {
-        displayFlipperChild(0);
-        WidgetFriendsListAdapter widgetFriendsListAdapter = this.adapter;
-        if (widgetFriendsListAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        widgetFriendsListAdapter.setData(viewState.getItems());
-        this.showContactSyncIcon = viewState.getShowContactSyncIcon();
-        configureToolbar();
-    }
-
     @Override // androidx.fragment.app.Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -620,5 +599,26 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetFriendsList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84121(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetFriendsList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84132(this));
+    }
+
+    private final void showEmptyView(FriendsListViewModel.ViewState.Empty viewState) {
+        displayFlipperChild(1);
+        this.showContactSyncIcon = viewState.getShowContactSyncIcon();
+        configureToolbar();
+    }
+
+    private final void showLoadingView() {
+        displayFlipperChild(2);
+    }
+
+    private final void updateView(FriendsListViewModel.ViewState.Loaded viewState) {
+        displayFlipperChild(0);
+        WidgetFriendsListAdapter widgetFriendsListAdapter = this.adapter;
+        if (widgetFriendsListAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        widgetFriendsListAdapter.setData(viewState.getItems());
+        this.showContactSyncIcon = viewState.getShowContactSyncIcon();
+        configureToolbar();
     }
 }

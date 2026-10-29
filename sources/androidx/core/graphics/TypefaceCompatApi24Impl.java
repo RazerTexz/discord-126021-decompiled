@@ -75,22 +75,6 @@ public class TypefaceCompatApi24Impl extends TypefaceCompatBaseImpl {
         }
     }
 
-    public static boolean isUsable() {
-        Method method = sAddFontWeightStyle;
-        if (method == null) {
-            Log.w(TAG, "Unable to collect necessary private methods.Fallback to legacy implementation.");
-        }
-        return method != null;
-    }
-
-    private static Object newFamily() {
-        try {
-            return sFontFamilyCtor.newInstance(new Object[0]);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            return null;
-        }
-    }
-
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     @Nullable
     public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i) {
@@ -131,5 +115,21 @@ public class TypefaceCompatApi24Impl extends TypefaceCompatBaseImpl {
             return null;
         }
         return Typeface.create(typefaceCreateFromFamiliesWithDefault, i);
+    }
+
+    public static boolean isUsable() {
+        Method method = sAddFontWeightStyle;
+        if (method == null) {
+            Log.w(TAG, "Unable to collect necessary private methods.Fallback to legacy implementation.");
+        }
+        return method != null;
+    }
+
+    private static Object newFamily() {
+        try {
+            return sFontFamilyCtor.newInstance(new Object[0]);
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
+            return null;
+        }
     }
 }

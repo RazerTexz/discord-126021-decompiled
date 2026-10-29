@@ -11,7 +11,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class CommandAutocompleteState {
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final /* data */ class Choices extends CommandAutocompleteState {
+    public final /* data */ class Choices extends CommandAutocompleteState {
         private final List<ApplicationCommandAutocompleteChoice> choices;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -21,16 +21,16 @@ public abstract class CommandAutocompleteState {
             this.choices = list;
         }
 
+        public final List<ApplicationCommandAutocompleteChoice> component1() {
+            return this.choices;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Choices copy$default(Choices choices, List list, int i, Object obj) {
             if ((i & 1) != 0) {
                 list = choices.choices;
             }
             return choices.copy(list);
-        }
-
-        public final List<ApplicationCommandAutocompleteChoice> component1() {
-            return this.choices;
         }
 
         public final Choices copy(List<ApplicationCommandAutocompleteChoice> choices) {
@@ -63,7 +63,7 @@ public abstract class CommandAutocompleteState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class Failed extends CommandAutocompleteState {
+    public final class Failed extends CommandAutocompleteState {
         public static final Failed INSTANCE = new Failed();
 
         private Failed() {
@@ -72,7 +72,7 @@ public abstract class CommandAutocompleteState {
     }
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class Loading extends CommandAutocompleteState {
+    public final class Loading extends CommandAutocompleteState {
         public static final Loading INSTANCE = new Loading();
 
         private Loading() {

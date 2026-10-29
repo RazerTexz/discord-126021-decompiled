@@ -122,154 +122,15 @@ public final /* data */ class Guild {
         this.hubType = guildHubType;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static Guild m7835a(Guild guild, List list, List list2, List list3, String str, String str2, Integer num, long j, String str3, long j2, String str4, GuildVerificationLevel guildVerificationLevel, GuildExplicitContentFilter guildExplicitContentFilter, List list4, List list5, List list6, List list7, boolean z2, int i, int i2, Long l, Long l2, List list8, int i3, String str5, String str6, int i4, int i5, int i6, String str7, Long l3, Long l4, String str8, GuildWelcomeScreen guildWelcomeScreen, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, String str9, int i7, int i8, Long l5, GuildHashes guildHashes, List list9, List list10, boolean z3, List list11, List list12, List list13, GuildHubType guildHubType, int i9, int i10) {
-        List list14 = (i9 & 1) != 0 ? guild.roles : list;
-        List list15 = (i9 & 2) != 0 ? guild.emojis : list2;
-        List list16 = (i9 & 4) != 0 ? guild.stickers : list3;
-        String str10 = (i9 & 8) != 0 ? guild.name : str;
-        String str11 = (i9 & 16) != 0 ? guild.description : str2;
-        Integer num2 = (i9 & 32) != 0 ? guild.defaultMessageNotifications : num;
-        long j3 = (i9 & 64) != 0 ? guild.id : j;
-        String str12 = (i9 & 128) != 0 ? guild.region : str3;
-        long j4 = (i9 & 256) != 0 ? guild.ownerId : j2;
-        String str13 = (i9 & 512) != 0 ? guild.icon : str4;
-        GuildVerificationLevel guildVerificationLevel2 = (i9 & 1024) != 0 ? guild.verificationLevel : guildVerificationLevel;
-        GuildExplicitContentFilter guildExplicitContentFilter2 = (i9 & 2048) != 0 ? guild.explicitContentFilter : guildExplicitContentFilter;
-        List list17 = (i9 & 4096) != 0 ? guild.presences : list4;
-        List list18 = (i9 & 8192) != 0 ? guild.channels : list5;
-        List list19 = (i9 & 16384) != 0 ? guild.members : list6;
-        List<VoiceState> list20 = (i9 & 32768) != 0 ? guild.voiceStates : null;
-        boolean z4 = (i9 & 65536) != 0 ? guild.unavailable : z2;
-        int i11 = (i9 & 131072) != 0 ? guild.mfaLevel : i;
-        int i12 = (i9 & 262144) != 0 ? guild.afkTimeout : i2;
-        Long l6 = (i9 & 524288) != 0 ? guild.afkChannelId : l;
-        Long l7 = (i9 & 1048576) != 0 ? guild.systemChannelId : l2;
-        List list21 = (i9 & 2097152) != 0 ? guild.features : list8;
-        String str14 = str13;
-        int i13 = (i9 & 4194304) != 0 ? guild.memberCount : i3;
-        String str15 = (i9 & 8388608) != 0 ? guild.banner : str5;
-        String str16 = (i9 & 16777216) != 0 ? guild.splash : str6;
-        int i14 = (i9 & 33554432) != 0 ? guild.premiumTier : i4;
-        int i15 = (i9 & 67108864) != 0 ? guild.premiumSubscriptionCount : i5;
-        int i16 = (i9 & 134217728) != 0 ? guild.systemChannelFlags : i6;
-        String str17 = (i9 & 268435456) != 0 ? guild.joinedAt : null;
-        Long l8 = (i9 & 536870912) != 0 ? guild.rulesChannelId : l3;
-        Long l9 = (i9 & BasicMeasure.EXACTLY) != 0 ? guild.publicUpdatesChannelId : l4;
-        String str18 = (i9 & Integer.MIN_VALUE) != 0 ? guild.preferredLocale : str8;
-        GuildWelcomeScreen guildWelcomeScreen2 = (i10 & 1) != 0 ? guild.welcomeScreen : null;
-        GuildMaxVideoChannelUsers guildMaxVideoChannelUsers2 = (i10 & 2) != 0 ? guild.maxVideoChannelUsers : guildMaxVideoChannelUsers;
-        String str19 = (i10 & 4) != 0 ? guild.vanityUrlCode : str9;
-        int i17 = (i10 & 8) != 0 ? guild.approximateMemberCount : i7;
-        int i18 = (i10 & 16) != 0 ? guild.approximatePresenceCount : i8;
-        Long l10 = (i10 & 32) != 0 ? guild.permissions : null;
-        GuildHashes guildHashes2 = (i10 & 64) != 0 ? guild.guildHashes : null;
-        List<Channel> list22 = (i10 & 128) != 0 ? guild.channelUpdates : null;
-        List<Channel> list23 = (i10 & 256) != 0 ? guild.threads : null;
-        boolean z5 = (i10 & 512) != 0 ? guild.nsfw : z3;
-        List<StageInstance> list24 = (i10 & 1024) != 0 ? guild.stageInstances : null;
-        List<GuildScheduledEvent> list25 = (i10 & 2048) != 0 ? guild.guildScheduledEvents : null;
-        List<EmbeddedActivityInGuild> list26 = (i10 & 4096) != 0 ? guild.embeddedActivities : null;
-        GuildHubType guildHubType2 = (i10 & 8192) != 0 ? guild.hubType : null;
-        Objects.requireNonNull(guild);
-        C12238m.checkNotNullParameter(str10, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list21, "features");
-        return new Guild(list14, list15, list16, str10, str11, num2, j3, str12, j4, str14, guildVerificationLevel2, guildExplicitContentFilter2, list17, list18, list19, list20, z4, i11, i12, l6, l7, list21, i13, str15, str16, i14, i15, i16, str17, l8, l9, str18, guildWelcomeScreen2, guildMaxVideoChannelUsers2, str19, i17, i18, l10, guildHashes2, list22, list23, z5, list24, list25, list26, guildHubType2);
-    }
-
-    /* JADX INFO: renamed from: A, reason: from getter */
-    public final String getPreferredLocale() {
-        return this.preferredLocale;
-    }
-
-    /* JADX INFO: renamed from: B, reason: from getter */
-    public final int getPremiumSubscriptionCount() {
-        return this.premiumSubscriptionCount;
-    }
-
-    /* JADX INFO: renamed from: C, reason: from getter */
-    public final int getPremiumTier() {
-        return this.premiumTier;
-    }
-
-    /* JADX INFO: renamed from: D */
-    public final List<Presence> m7839D() {
-        return this.presences;
-    }
-
-    /* JADX INFO: renamed from: E, reason: from getter */
-    public final Long getPublicUpdatesChannelId() {
-        return this.publicUpdatesChannelId;
-    }
-
-    /* JADX INFO: renamed from: F, reason: from getter */
-    public final String getRegion() {
-        return this.region;
-    }
-
-    /* JADX INFO: renamed from: G */
-    public final List<GuildRole> m7842G() {
-        return this.roles;
-    }
-
-    /* JADX INFO: renamed from: H, reason: from getter */
-    public final Long getRulesChannelId() {
-        return this.rulesChannelId;
-    }
-
-    /* JADX INFO: renamed from: I, reason: from getter */
-    public final String getSplash() {
-        return this.splash;
-    }
-
-    /* JADX INFO: renamed from: J */
-    public final List<StageInstance> m7845J() {
-        return this.stageInstances;
-    }
-
-    /* JADX INFO: renamed from: K */
-    public final List<Sticker> m7846K() {
-        return this.stickers;
-    }
-
-    /* JADX INFO: renamed from: L, reason: from getter */
-    public final int getSystemChannelFlags() {
-        return this.systemChannelFlags;
-    }
-
-    /* JADX INFO: renamed from: M, reason: from getter */
-    public final Long getSystemChannelId() {
-        return this.systemChannelId;
-    }
-
-    /* JADX INFO: renamed from: N */
-    public final List<Channel> m7849N() {
-        return this.threads;
-    }
-
-    /* JADX INFO: renamed from: O, reason: from getter */
-    public final boolean getUnavailable() {
-        return this.unavailable;
-    }
-
-    /* JADX INFO: renamed from: P, reason: from getter */
-    public final String getVanityUrlCode() {
-        return this.vanityUrlCode;
-    }
-
-    /* JADX INFO: renamed from: Q, reason: from getter */
-    public final GuildVerificationLevel getVerificationLevel() {
-        return this.verificationLevel;
-    }
-
-    /* JADX INFO: renamed from: R */
-    public final List<VoiceState> m7853R() {
-        return this.voiceStates;
-    }
-
-    /* JADX INFO: renamed from: S, reason: from getter */
-    public final GuildWelcomeScreen getWelcomeScreen() {
-        return this.welcomeScreen;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Guild)) {
+            return false;
+        }
+        Guild guild = (Guild) other;
+        return C12238m.areEqual(this.roles, guild.roles) && C12238m.areEqual(this.emojis, guild.emojis) && C12238m.areEqual(this.stickers, guild.stickers) && C12238m.areEqual(this.name, guild.name) && C12238m.areEqual(this.description, guild.description) && C12238m.areEqual(this.defaultMessageNotifications, guild.defaultMessageNotifications) && this.id == guild.id && C12238m.areEqual(this.region, guild.region) && this.ownerId == guild.ownerId && C12238m.areEqual(this.icon, guild.icon) && C12238m.areEqual(this.verificationLevel, guild.verificationLevel) && C12238m.areEqual(this.explicitContentFilter, guild.explicitContentFilter) && C12238m.areEqual(this.presences, guild.presences) && C12238m.areEqual(this.channels, guild.channels) && C12238m.areEqual(this.members, guild.members) && C12238m.areEqual(this.voiceStates, guild.voiceStates) && this.unavailable == guild.unavailable && this.mfaLevel == guild.mfaLevel && this.afkTimeout == guild.afkTimeout && C12238m.areEqual(this.afkChannelId, guild.afkChannelId) && C12238m.areEqual(this.systemChannelId, guild.systemChannelId) && C12238m.areEqual(this.features, guild.features) && this.memberCount == guild.memberCount && C12238m.areEqual(this.banner, guild.banner) && C12238m.areEqual(this.splash, guild.splash) && this.premiumTier == guild.premiumTier && this.premiumSubscriptionCount == guild.premiumSubscriptionCount && this.systemChannelFlags == guild.systemChannelFlags && C12238m.areEqual(this.joinedAt, guild.joinedAt) && C12238m.areEqual(this.rulesChannelId, guild.rulesChannelId) && C12238m.areEqual(this.publicUpdatesChannelId, guild.publicUpdatesChannelId) && C12238m.areEqual(this.preferredLocale, guild.preferredLocale) && C12238m.areEqual(this.welcomeScreen, guild.welcomeScreen) && C12238m.areEqual(this.maxVideoChannelUsers, guild.maxVideoChannelUsers) && C12238m.areEqual(this.vanityUrlCode, guild.vanityUrlCode) && this.approximateMemberCount == guild.approximateMemberCount && this.approximatePresenceCount == guild.approximatePresenceCount && C12238m.areEqual(this.permissions, guild.permissions) && C12238m.areEqual(this.guildHashes, guild.guildHashes) && C12238m.areEqual(this.channelUpdates, guild.channelUpdates) && C12238m.areEqual(this.threads, guild.threads) && this.nsfw == guild.nsfw && C12238m.areEqual(this.stageInstances, guild.stageInstances) && C12238m.areEqual(this.guildScheduledEvents, guild.guildScheduledEvents) && C12238m.areEqual(this.embeddedActivities, guild.embeddedActivities) && C12238m.areEqual(this.hubType, guild.hubType);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -292,30 +153,139 @@ public final /* data */ class Guild {
         return this.banner;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Guild)) {
-            return false;
-        }
-        Guild guild = (Guild) other;
-        return C12238m.areEqual(this.roles, guild.roles) && C12238m.areEqual(this.emojis, guild.emojis) && C12238m.areEqual(this.stickers, guild.stickers) && C12238m.areEqual(this.name, guild.name) && C12238m.areEqual(this.description, guild.description) && C12238m.areEqual(this.defaultMessageNotifications, guild.defaultMessageNotifications) && this.id == guild.id && C12238m.areEqual(this.region, guild.region) && this.ownerId == guild.ownerId && C12238m.areEqual(this.icon, guild.icon) && C12238m.areEqual(this.verificationLevel, guild.verificationLevel) && C12238m.areEqual(this.explicitContentFilter, guild.explicitContentFilter) && C12238m.areEqual(this.presences, guild.presences) && C12238m.areEqual(this.channels, guild.channels) && C12238m.areEqual(this.members, guild.members) && C12238m.areEqual(this.voiceStates, guild.voiceStates) && this.unavailable == guild.unavailable && this.mfaLevel == guild.mfaLevel && this.afkTimeout == guild.afkTimeout && C12238m.areEqual(this.afkChannelId, guild.afkChannelId) && C12238m.areEqual(this.systemChannelId, guild.systemChannelId) && C12238m.areEqual(this.features, guild.features) && this.memberCount == guild.memberCount && C12238m.areEqual(this.banner, guild.banner) && C12238m.areEqual(this.splash, guild.splash) && this.premiumTier == guild.premiumTier && this.premiumSubscriptionCount == guild.premiumSubscriptionCount && this.systemChannelFlags == guild.systemChannelFlags && C12238m.areEqual(this.joinedAt, guild.joinedAt) && C12238m.areEqual(this.rulesChannelId, guild.rulesChannelId) && C12238m.areEqual(this.publicUpdatesChannelId, guild.publicUpdatesChannelId) && C12238m.areEqual(this.preferredLocale, guild.preferredLocale) && C12238m.areEqual(this.welcomeScreen, guild.welcomeScreen) && C12238m.areEqual(this.maxVideoChannelUsers, guild.maxVideoChannelUsers) && C12238m.areEqual(this.vanityUrlCode, guild.vanityUrlCode) && this.approximateMemberCount == guild.approximateMemberCount && this.approximatePresenceCount == guild.approximatePresenceCount && C12238m.areEqual(this.permissions, guild.permissions) && C12238m.areEqual(this.guildHashes, guild.guildHashes) && C12238m.areEqual(this.channelUpdates, guild.channelUpdates) && C12238m.areEqual(this.threads, guild.threads) && this.nsfw == guild.nsfw && C12238m.areEqual(this.stageInstances, guild.stageInstances) && C12238m.areEqual(this.guildScheduledEvents, guild.guildScheduledEvents) && C12238m.areEqual(this.embeddedActivities, guild.embeddedActivities) && C12238m.areEqual(this.hubType, guild.hubType);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final List<Channel> m7859f() {
-        return this.channelUpdates;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final List<Channel> m7860g() {
-        return this.channels;
-    }
-
     /* JADX INFO: renamed from: h, reason: from getter */
     public final Integer getDefaultMessageNotifications() {
         return this.defaultMessageNotifications;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final String getDescription() {
+        return this.description;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final GuildExplicitContentFilter getExplicitContentFilter() {
+        return this.explicitContentFilter;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final GuildHashes getGuildHashes() {
+        return this.guildHashes;
+    }
+
+    /* JADX INFO: renamed from: p, reason: from getter */
+    public final GuildHubType getHubType() {
+        return this.hubType;
+    }
+
+    /* JADX INFO: renamed from: q, reason: from getter */
+    public final String getIcon() {
+        return this.icon;
+    }
+
+    /* JADX INFO: renamed from: r, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: s, reason: from getter */
+    public final String getJoinedAt() {
+        return this.joinedAt;
+    }
+
+    /* JADX INFO: renamed from: t, reason: from getter */
+    public final GuildMaxVideoChannelUsers getMaxVideoChannelUsers() {
+        return this.maxVideoChannelUsers;
+    }
+
+    /* JADX INFO: renamed from: u, reason: from getter */
+    public final int getMemberCount() {
+        return this.memberCount;
+    }
+
+    /* JADX INFO: renamed from: w, reason: from getter */
+    public final int getMfaLevel() {
+        return this.mfaLevel;
+    }
+
+    /* JADX INFO: renamed from: x, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: y, reason: from getter */
+    public final boolean getNsfw() {
+        return this.nsfw;
+    }
+
+    /* JADX INFO: renamed from: z, reason: from getter */
+    public final long getOwnerId() {
+        return this.ownerId;
+    }
+
+    /* JADX INFO: renamed from: A, reason: from getter */
+    public final String getPreferredLocale() {
+        return this.preferredLocale;
+    }
+
+    /* JADX INFO: renamed from: B, reason: from getter */
+    public final int getPremiumSubscriptionCount() {
+        return this.premiumSubscriptionCount;
+    }
+
+    /* JADX INFO: renamed from: C, reason: from getter */
+    public final int getPremiumTier() {
+        return this.premiumTier;
+    }
+
+    /* JADX INFO: renamed from: E, reason: from getter */
+    public final Long getPublicUpdatesChannelId() {
+        return this.publicUpdatesChannelId;
+    }
+
+    /* JADX INFO: renamed from: F, reason: from getter */
+    public final String getRegion() {
+        return this.region;
+    }
+
+    /* JADX INFO: renamed from: H, reason: from getter */
+    public final Long getRulesChannelId() {
+        return this.rulesChannelId;
+    }
+
+    /* JADX INFO: renamed from: I, reason: from getter */
+    public final String getSplash() {
+        return this.splash;
+    }
+
+    /* JADX INFO: renamed from: L, reason: from getter */
+    public final int getSystemChannelFlags() {
+        return this.systemChannelFlags;
+    }
+
+    /* JADX INFO: renamed from: M, reason: from getter */
+    public final Long getSystemChannelId() {
+        return this.systemChannelId;
+    }
+
+    /* JADX INFO: renamed from: O, reason: from getter */
+    public final boolean getUnavailable() {
+        return this.unavailable;
+    }
+
+    /* JADX INFO: renamed from: P, reason: from getter */
+    public final String getVanityUrlCode() {
+        return this.vanityUrlCode;
+    }
+
+    /* JADX INFO: renamed from: Q, reason: from getter */
+    public final GuildVerificationLevel getVerificationLevel() {
+        return this.verificationLevel;
+    }
+
+    /* JADX INFO: renamed from: S, reason: from getter */
+    public final GuildWelcomeScreen getWelcomeScreen() {
+        return this.welcomeScreen;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -408,9 +378,99 @@ public final /* data */ class Guild {
         return iHashCode33 + (guildHubType != null ? guildHubType.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final String getDescription() {
-        return this.description;
+    /* JADX INFO: renamed from: a */
+    public static Guild m7835a(Guild guild, List list, List list2, List list3, String str, String str2, Integer num, long j, String str3, long j2, String str4, GuildVerificationLevel guildVerificationLevel, GuildExplicitContentFilter guildExplicitContentFilter, List list4, List list5, List list6, List list7, boolean z2, int i, int i2, Long l, Long l2, List list8, int i3, String str5, String str6, int i4, int i5, int i6, String str7, Long l3, Long l4, String str8, GuildWelcomeScreen guildWelcomeScreen, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, String str9, int i7, int i8, Long l5, GuildHashes guildHashes, List list9, List list10, boolean z3, List list11, List list12, List list13, GuildHubType guildHubType, int i9, int i10) {
+        List list14 = (i9 & 1) != 0 ? guild.roles : list;
+        List list15 = (i9 & 2) != 0 ? guild.emojis : list2;
+        List list16 = (i9 & 4) != 0 ? guild.stickers : list3;
+        String str10 = (i9 & 8) != 0 ? guild.name : str;
+        String str11 = (i9 & 16) != 0 ? guild.description : str2;
+        Integer num2 = (i9 & 32) != 0 ? guild.defaultMessageNotifications : num;
+        long j3 = (i9 & 64) != 0 ? guild.id : j;
+        String str12 = (i9 & 128) != 0 ? guild.region : str3;
+        long j4 = (i9 & 256) != 0 ? guild.ownerId : j2;
+        String str13 = (i9 & 512) != 0 ? guild.icon : str4;
+        GuildVerificationLevel guildVerificationLevel2 = (i9 & 1024) != 0 ? guild.verificationLevel : guildVerificationLevel;
+        GuildExplicitContentFilter guildExplicitContentFilter2 = (i9 & 2048) != 0 ? guild.explicitContentFilter : guildExplicitContentFilter;
+        List list17 = (i9 & 4096) != 0 ? guild.presences : list4;
+        List list18 = (i9 & 8192) != 0 ? guild.channels : list5;
+        List list19 = (i9 & 16384) != 0 ? guild.members : list6;
+        List<VoiceState> list20 = (i9 & 32768) != 0 ? guild.voiceStates : null;
+        boolean z4 = (i9 & 65536) != 0 ? guild.unavailable : z2;
+        int i11 = (i9 & 131072) != 0 ? guild.mfaLevel : i;
+        int i12 = (i9 & 262144) != 0 ? guild.afkTimeout : i2;
+        Long l6 = (i9 & 524288) != 0 ? guild.afkChannelId : l;
+        Long l7 = (i9 & 1048576) != 0 ? guild.systemChannelId : l2;
+        List list21 = (i9 & 2097152) != 0 ? guild.features : list8;
+        String str14 = str13;
+        int i13 = (i9 & 4194304) != 0 ? guild.memberCount : i3;
+        String str15 = (i9 & 8388608) != 0 ? guild.banner : str5;
+        String str16 = (i9 & 16777216) != 0 ? guild.splash : str6;
+        int i14 = (i9 & 33554432) != 0 ? guild.premiumTier : i4;
+        int i15 = (i9 & 67108864) != 0 ? guild.premiumSubscriptionCount : i5;
+        int i16 = (i9 & 134217728) != 0 ? guild.systemChannelFlags : i6;
+        String str17 = (i9 & 268435456) != 0 ? guild.joinedAt : null;
+        Long l8 = (i9 & 536870912) != 0 ? guild.rulesChannelId : l3;
+        Long l9 = (i9 & BasicMeasure.EXACTLY) != 0 ? guild.publicUpdatesChannelId : l4;
+        String str18 = (i9 & Integer.MIN_VALUE) != 0 ? guild.preferredLocale : str8;
+        GuildWelcomeScreen guildWelcomeScreen2 = (i10 & 1) != 0 ? guild.welcomeScreen : null;
+        GuildMaxVideoChannelUsers guildMaxVideoChannelUsers2 = (i10 & 2) != 0 ? guild.maxVideoChannelUsers : guildMaxVideoChannelUsers;
+        String str19 = (i10 & 4) != 0 ? guild.vanityUrlCode : str9;
+        int i17 = (i10 & 8) != 0 ? guild.approximateMemberCount : i7;
+        int i18 = (i10 & 16) != 0 ? guild.approximatePresenceCount : i8;
+        Long l10 = (i10 & 32) != 0 ? guild.permissions : null;
+        GuildHashes guildHashes2 = (i10 & 64) != 0 ? guild.guildHashes : null;
+        List<Channel> list22 = (i10 & 128) != 0 ? guild.channelUpdates : null;
+        List<Channel> list23 = (i10 & 256) != 0 ? guild.threads : null;
+        boolean z5 = (i10 & 512) != 0 ? guild.nsfw : z3;
+        List<StageInstance> list24 = (i10 & 1024) != 0 ? guild.stageInstances : null;
+        List<GuildScheduledEvent> list25 = (i10 & 2048) != 0 ? guild.guildScheduledEvents : null;
+        List<EmbeddedActivityInGuild> list26 = (i10 & 4096) != 0 ? guild.embeddedActivities : null;
+        GuildHubType guildHubType2 = (i10 & 8192) != 0 ? guild.hubType : null;
+        Objects.requireNonNull(guild);
+        C12238m.checkNotNullParameter(str10, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        C12238m.checkNotNullParameter(list21, "features");
+        return new Guild(list14, list15, list16, str10, str11, num2, j3, str12, j4, str14, guildVerificationLevel2, guildExplicitContentFilter2, list17, list18, list19, list20, z4, i11, i12, l6, l7, list21, i13, str15, str16, i14, i15, i16, str17, l8, l9, str18, guildWelcomeScreen2, guildMaxVideoChannelUsers2, str19, i17, i18, l10, guildHashes2, list22, list23, z5, list24, list25, list26, guildHubType2);
+    }
+
+    /* JADX INFO: renamed from: D */
+    public final List<Presence> m7839D() {
+        return this.presences;
+    }
+
+    /* JADX INFO: renamed from: G */
+    public final List<GuildRole> m7842G() {
+        return this.roles;
+    }
+
+    /* JADX INFO: renamed from: J */
+    public final List<StageInstance> m7845J() {
+        return this.stageInstances;
+    }
+
+    /* JADX INFO: renamed from: K */
+    public final List<Sticker> m7846K() {
+        return this.stickers;
+    }
+
+    /* JADX INFO: renamed from: N */
+    public final List<Channel> m7849N() {
+        return this.threads;
+    }
+
+    /* JADX INFO: renamed from: R */
+    public final List<VoiceState> m7853R() {
+        return this.voiceStates;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final List<Channel> m7859f() {
+        return this.channelUpdates;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final List<Channel> m7860g() {
+        return this.channels;
     }
 
     /* JADX INFO: renamed from: j */
@@ -423,19 +483,9 @@ public final /* data */ class Guild {
         return this.emojis;
     }
 
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final GuildExplicitContentFilter getExplicitContentFilter() {
-        return this.explicitContentFilter;
-    }
-
     /* JADX INFO: renamed from: m */
     public final List<GuildFeature> m7866m() {
         return this.features;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final GuildHashes getGuildHashes() {
-        return this.guildHashes;
     }
 
     /* JADX INFO: renamed from: o */
@@ -443,29 +493,9 @@ public final /* data */ class Guild {
         return this.guildScheduledEvents;
     }
 
-    /* JADX INFO: renamed from: p, reason: from getter */
-    public final GuildHubType getHubType() {
-        return this.hubType;
-    }
-
-    /* JADX INFO: renamed from: q, reason: from getter */
-    public final String getIcon() {
-        return this.icon;
-    }
-
-    /* JADX INFO: renamed from: r, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: s, reason: from getter */
-    public final String getJoinedAt() {
-        return this.joinedAt;
-    }
-
-    /* JADX INFO: renamed from: t, reason: from getter */
-    public final GuildMaxVideoChannelUsers getMaxVideoChannelUsers() {
-        return this.maxVideoChannelUsers;
+    /* JADX INFO: renamed from: v */
+    public final List<GuildMember> m7875v() {
+        return this.members;
     }
 
     public String toString() {
@@ -563,35 +593,5 @@ public final /* data */ class Guild {
         sbM833U.append(this.hubType);
         sbM833U.append(")");
         return sbM833U.toString();
-    }
-
-    /* JADX INFO: renamed from: u, reason: from getter */
-    public final int getMemberCount() {
-        return this.memberCount;
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final List<GuildMember> m7875v() {
-        return this.members;
-    }
-
-    /* JADX INFO: renamed from: w, reason: from getter */
-    public final int getMfaLevel() {
-        return this.mfaLevel;
-    }
-
-    /* JADX INFO: renamed from: x, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: y, reason: from getter */
-    public final boolean getNsfw() {
-        return this.nsfw;
-    }
-
-    /* JADX INFO: renamed from: z, reason: from getter */
-    public final long getOwnerId() {
-        return this.ownerId;
     }
 }

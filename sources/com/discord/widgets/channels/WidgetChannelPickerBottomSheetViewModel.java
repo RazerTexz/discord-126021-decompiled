@@ -38,7 +38,7 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelPickerBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-    public static final class C73341 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C73341 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C73341() {
             super(1);
         }
@@ -58,7 +58,7 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -72,10 +72,10 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -84,7 +84,7 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-        public static final /* data */ class Loaded extends StoreState {
+        public final /* data */ class Loaded extends StoreState {
             private final List<Channel> channels;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -94,16 +94,16 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
                 this.channels = list;
             }
 
+            public final List<Channel> component1() {
+                return this.channels;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.channels;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<Channel> component1() {
-                return this.channels;
             }
 
             public final Loaded copy(List<Channel> channels) {
@@ -144,10 +144,10 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
     }
 
     /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final List<ChannelPickerAdapterItem> adapterItems;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -158,16 +158,16 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
                 this.adapterItems = list;
             }
 
+            public final List<ChannelPickerAdapterItem> component1() {
+                return this.adapterItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.adapterItems;
                 }
                 return loaded.copy(list);
-            }
-
-            public final List<ChannelPickerAdapterItem> component1() {
-                return this.adapterItems;
             }
 
             public final Loaded copy(List<? extends ChannelPickerAdapterItem> adapterItems) {
@@ -200,7 +200,7 @@ public final class WidgetChannelPickerBottomSheetViewModel extends AbstractC0859
         }
 
         /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {

@@ -36,7 +36,7 @@ public final class WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet extend
     private final Lazy guildId;
 
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,13 +62,13 @@ public final class WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheet extend
         return (WidgetGuildRoleSubscriptionOnboardingUpsellBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final long getGuildId() {
-        return ((Number) this.guildId.getValue()).longValue();
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_guild_role_subscription_onboarding_upsell_bottom_sheet;
+    }
+
+    private final long getGuildId() {
+        return ((Number) this.guildId.getValue()).longValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, com.discord.app.AppLogger.InterfaceC5455a

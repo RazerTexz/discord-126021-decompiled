@@ -28,17 +28,6 @@ public final class GifCategoryViewHolder extends RecyclerView.ViewHolder {
         this.itemView.setOnTouchListener(new ViewScalingOnTouchListener(0.9f));
     }
 
-    private final void setPreviewImage(String imageUrl) {
-        SimpleDraweeView simpleDraweeView = this.binding.f15101c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifCategoryItemPreview");
-        ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
-        int i = layoutParams.width;
-        int i2 = layoutParams.height;
-        SimpleDraweeView simpleDraweeView2 = this.binding.f15101c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.gifCategoryItemPreview");
-        MGImages.setImage$default(simpleDraweeView2, imageUrl, i, i2, false, null, null, 112, null);
-    }
-
     public final void configure(final GifCategoryItem gifCategoryItem, final Function1<? super GifCategoryItem, Unit> onSelectGifCategory) {
         C12238m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
         if (gifCategoryItem instanceof GifCategoryItem.Standard) {
@@ -73,5 +62,16 @@ public final class GifCategoryViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
+    }
+
+    private final void setPreviewImage(String imageUrl) {
+        SimpleDraweeView simpleDraweeView = this.binding.f15101c;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifCategoryItemPreview");
+        ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
+        int i = layoutParams.width;
+        int i2 = layoutParams.height;
+        SimpleDraweeView simpleDraweeView2 = this.binding.f15101c;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.gifCategoryItemPreview");
+        MGImages.setImage$default(simpleDraweeView2, imageUrl, i, i2, false, null, null, 112, null);
     }
 }

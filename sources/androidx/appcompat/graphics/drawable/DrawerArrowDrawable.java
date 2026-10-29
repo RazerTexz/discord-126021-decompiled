@@ -23,7 +23,6 @@ public class DrawerArrowDrawable extends Drawable {
     public static final int ARROW_DIRECTION_LEFT = 0;
     public static final int ARROW_DIRECTION_RIGHT = 1;
     public static final int ARROW_DIRECTION_START = 2;
-    private static final float ARROW_HEAD_ANGLE = (float) Math.toRadians(45.0d);
     private float mArrowHeadLength;
     private float mArrowShaftLength;
     private float mBarGap;
@@ -36,6 +35,7 @@ public class DrawerArrowDrawable extends Drawable {
     private final int mSize;
     private boolean mSpin;
     private boolean mVerticalMirror;
+    private static final float ARROW_HEAD_ANGLE = (float) Math.toRadians(45.0d);
 
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -62,10 +62,6 @@ public class DrawerArrowDrawable extends Drawable {
         this.mArrowHeadLength = Math.round(typedArrayObtainStyledAttributes.getDimension(C0051R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
         this.mArrowShaftLength = typedArrayObtainStyledAttributes.getDimension(C0051R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private static float lerp(float f, float f2, float f3) {
-        return C1643a.m839a(f2, f, f3, f);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -166,6 +162,10 @@ public class DrawerArrowDrawable extends Drawable {
 
     public boolean isSpinEnabled() {
         return this.mSpin;
+    }
+
+    private static float lerp(float f, float f2, float f3) {
+        return C1643a.m839a(f2, f, f3, f);
     }
 
     @Override // android.graphics.drawable.Drawable

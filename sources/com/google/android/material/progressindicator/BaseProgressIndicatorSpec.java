@@ -18,9 +18,6 @@ import com.google.android.material.resources.MaterialResources;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class BaseProgressIndicatorSpec {
     public int hideAnimationBehavior;
-
-    @NonNull
-    public int[] indicatorColors = new int[0];
     public int showAnimationBehavior;
 
     @ColorInt
@@ -32,6 +29,9 @@ public abstract class BaseProgressIndicatorSpec {
     @Px
     public int trackThickness;
 
+    @NonNull
+    public int[] indicatorColors = new int[0];
+
     public BaseProgressIndicatorSpec(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
         int dimensionPixelSize = context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_progress_track_thickness);
         TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.BaseProgressIndicator, i, i2, new int[0]);
@@ -42,6 +42,14 @@ public abstract class BaseProgressIndicatorSpec {
         loadIndicatorColors(context, typedArrayObtainStyledAttributes);
         loadTrackColor(context, typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
+    }
+
+    public boolean isHideAnimationEnabled() {
+        return this.hideAnimationBehavior != 0;
+    }
+
+    public boolean isShowAnimationEnabled() {
+        return this.showAnimationBehavior != 0;
     }
 
     private void loadIndicatorColors(@NonNull Context context, @NonNull TypedArray typedArray) {
@@ -72,14 +80,6 @@ public abstract class BaseProgressIndicatorSpec {
         float f = typedArrayObtainStyledAttributes.getFloat(0, 0.2f);
         typedArrayObtainStyledAttributes.recycle();
         this.trackColor = MaterialColors.compositeARGBWithAlpha(this.trackColor, (int) (f * 255.0f));
-    }
-
-    public boolean isHideAnimationEnabled() {
-        return this.hideAnimationBehavior != 0;
-    }
-
-    public boolean isShowAnimationEnabled() {
-        return this.showAnimationBehavior != 0;
     }
 
     public abstract void validateSpec();

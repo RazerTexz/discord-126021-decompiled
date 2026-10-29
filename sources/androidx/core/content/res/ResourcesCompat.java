@@ -42,7 +42,7 @@ public final class ResourcesCompat {
     private static final WeakHashMap<ColorStateListCacheKey, SparseArray<ColorStateListCacheEntry>> sColorStateCaches = new WeakHashMap<>(0);
     private static final Object sColorStateCacheLock = new Object();
 
-    public static class ColorStateListCacheEntry {
+    public class ColorStateListCacheEntry {
         public final Configuration mConfiguration;
         public final ColorStateList mValue;
 
@@ -52,7 +52,7 @@ public final class ResourcesCompat {
         }
     }
 
-    public static final class ColorStateListCacheKey {
+    public final class ColorStateListCacheKey {
         public final Resources mResources;
 
         @Nullable
@@ -79,13 +79,7 @@ public final class ResourcesCompat {
         }
     }
 
-    public static abstract class FontCallback {
-        @NonNull
-        @RestrictTo({RestrictTo.Scope.LIBRARY})
-        public static Handler getHandler(@Nullable Handler handler) {
-            return handler == null ? new Handler(Looper.getMainLooper()) : handler;
-        }
-
+    public abstract class FontCallback {
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         public final void callbackFailAsync(final int i, @Nullable Handler handler) {
             getHandler(handler).post(new Runnable() { // from class: androidx.core.content.res.ResourcesCompat.FontCallback.2
@@ -106,13 +100,19 @@ public final class ResourcesCompat {
             });
         }
 
+        @NonNull
+        @RestrictTo({RestrictTo.Scope.LIBRARY})
+        public static Handler getHandler(@Nullable Handler handler) {
+            return handler == null ? new Handler(Looper.getMainLooper()) : handler;
+        }
+
         public abstract void onFontRetrievalFailed(int i);
 
         public abstract void onFontRetrieved(@NonNull Typeface typeface);
     }
 
     @RequiresApi(29)
-    public static class ImplApi29 {
+    public class ImplApi29 {
         private ImplApi29() {
         }
 
@@ -121,10 +121,10 @@ public final class ResourcesCompat {
         }
     }
 
-    public static final class ThemeCompat {
+    public final class ThemeCompat {
 
         @RequiresApi(23)
-        public static class ImplApi23 {
+        public class ImplApi23 {
             private static Method sRebaseMethod;
             private static boolean sRebaseMethodFetched;
             private static final Object sRebaseMethodLock = new Object();
@@ -160,13 +160,12 @@ public final class ResourcesCompat {
                             }
                         }
                     }
-                    throw th;
                 }
             }
         }
 
         @RequiresApi(29)
-        public static class ImplApi29 {
+        public class ImplApi29 {
             private ImplApi29() {
             }
 

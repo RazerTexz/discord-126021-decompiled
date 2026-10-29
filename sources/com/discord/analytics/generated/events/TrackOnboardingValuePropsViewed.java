@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOnboardingValuePropsViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOnboardingValuePropsViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean skip = null;
-    private final Long propsViewed = null;
     private final Long bucket = null;
+    private final Long propsViewed = null;
+    private final Boolean skip = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "onboarding_value_props_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackOnboardingValuePropsViewed implements Analyti
         }
         TrackOnboardingValuePropsViewed trackOnboardingValuePropsViewed = (TrackOnboardingValuePropsViewed) other;
         return C12238m.areEqual(this.skip, trackOnboardingValuePropsViewed.skip) && C12238m.areEqual(this.propsViewed, trackOnboardingValuePropsViewed.propsViewed) && C12238m.areEqual(this.bucket, trackOnboardingValuePropsViewed.bucket);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

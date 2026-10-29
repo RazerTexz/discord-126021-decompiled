@@ -14,7 +14,7 @@ public final /* data */ class HubEmailArgs implements Parcelable {
     private final int guildMemberCount;
     private final String guildName;
 
-    public static class Creator implements Parcelable.Creator<HubEmailArgs> {
+    public final class Creator implements Parcelable.Creator<HubEmailArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubEmailArgs createFromParcel(Parcel parcel) {
@@ -54,21 +54,6 @@ public final /* data */ class HubEmailArgs implements Parcelable {
         return hubEmailArgs.copy(str, i, hubEmailEntryPoint);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getGuildName() {
-        return this.guildName;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getGuildMemberCount() {
-        return this.guildMemberCount;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final HubEmailEntryPoint getEntryPoint() {
-        return this.entryPoint;
-    }
-
     public final HubEmailArgs copy(String guildName, int guildMemberCount, HubEmailEntryPoint entryPoint) {
         C12238m.checkNotNullParameter(guildName, "guildName");
         C12238m.checkNotNullParameter(entryPoint, "entryPoint");
@@ -91,12 +76,27 @@ public final /* data */ class HubEmailArgs implements Parcelable {
         return C12238m.areEqual(this.guildName, hubEmailArgs.guildName) && this.guildMemberCount == hubEmailArgs.guildMemberCount && C12238m.areEqual(this.entryPoint, hubEmailArgs.entryPoint);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final HubEmailEntryPoint getEntryPoint() {
         return this.entryPoint;
     }
 
+    public final HubEmailEntryPoint getEntryPoint() {
+        return this.entryPoint;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final int getGuildMemberCount() {
         return this.guildMemberCount;
+    }
+
+    public final int getGuildMemberCount() {
+        return this.guildMemberCount;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getGuildName() {
+        return this.guildName;
     }
 
     public final String getGuildName() {

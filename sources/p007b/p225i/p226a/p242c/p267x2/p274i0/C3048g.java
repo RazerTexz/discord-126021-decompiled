@@ -144,7 +144,7 @@ public class C3048g implements InterfaceC3031h {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.i0.g$a */
     /* JADX INFO: compiled from: FragmentedMp4Extractor.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final long f8404a;
@@ -155,180 +155,6 @@ public class C3048g implements InterfaceC3031h {
         public a(long j, int i) {
             this.f8404a = j;
             this.f8405b = i;
-        }
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.x2.i0.g$b */
-    /* JADX INFO: compiled from: FragmentedMp4Extractor.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC3122w f8406a;
-
-        /* JADX INFO: renamed from: d */
-        public C3057p f8409d;
-
-        /* JADX INFO: renamed from: e */
-        public C3047f f8410e;
-
-        /* JADX INFO: renamed from: f */
-        public int f8411f;
-
-        /* JADX INFO: renamed from: g */
-        public int f8412g;
-
-        /* JADX INFO: renamed from: h */
-        public int f8413h;
-
-        /* JADX INFO: renamed from: i */
-        public int f8414i;
-
-        /* JADX INFO: renamed from: l */
-        public boolean f8417l;
-
-        /* JADX INFO: renamed from: b */
-        public final C3056o f8407b = new C3056o();
-
-        /* JADX INFO: renamed from: c */
-        public final C2757x f8408c = new C2757x();
-
-        /* JADX INFO: renamed from: j */
-        public final C2757x f8415j = new C2757x(1);
-
-        /* JADX INFO: renamed from: k */
-        public final C2757x f8416k = new C2757x();
-
-        public b(InterfaceC3122w interfaceC3122w, C3057p c3057p, C3047f c3047f) {
-            this.f8406a = interfaceC3122w;
-            this.f8409d = c3057p;
-            this.f8410e = c3047f;
-            this.f8409d = c3057p;
-            this.f8410e = c3047f;
-            interfaceC3122w.mo2526e(c3057p.f8493a.f8465f);
-            m3720e();
-        }
-
-        /* JADX INFO: renamed from: a */
-        public long m3716a() {
-            return !this.f8417l ? this.f8409d.f8495c[this.f8411f] : this.f8407b.f8481f[this.f8413h];
-        }
-
-        @Nullable
-        /* JADX INFO: renamed from: b */
-        public C3055n m3717b() {
-            if (!this.f8417l) {
-                return null;
-            }
-            C3056o c3056o = this.f8407b;
-            C3047f c3047f = c3056o.f8476a;
-            int i = C2738e0.f6708a;
-            int i2 = c3047f.f8367a;
-            C3055n c3055nM3731a = c3056o.f8488m;
-            if (c3055nM3731a == null) {
-                c3055nM3731a = this.f8409d.f8493a.m3731a(i2);
-            }
-            if (c3055nM3731a == null || !c3055nM3731a.f8471a) {
-                return null;
-            }
-            return c3055nM3731a;
-        }
-
-        /* JADX INFO: renamed from: c */
-        public boolean m3718c() {
-            this.f8411f++;
-            if (!this.f8417l) {
-                return false;
-            }
-            int i = this.f8412g + 1;
-            this.f8412g = i;
-            int[] iArr = this.f8407b.f8482g;
-            int i2 = this.f8413h;
-            if (i != iArr[i2]) {
-                return true;
-            }
-            this.f8413h = i2 + 1;
-            this.f8412g = 0;
-            return false;
-        }
-
-        /* JADX INFO: renamed from: d */
-        public int m3719d(int i, int i2) {
-            C2757x c2757x;
-            C3055n c3055nM3717b = m3717b();
-            if (c3055nM3717b == null) {
-                return 0;
-            }
-            int length = c3055nM3717b.f8474d;
-            if (length != 0) {
-                c2757x = this.f8407b.f8489n;
-            } else {
-                byte[] bArr = c3055nM3717b.f8475e;
-                int i3 = C2738e0.f6708a;
-                C2757x c2757x2 = this.f8416k;
-                int length2 = bArr.length;
-                c2757x2.f6793a = bArr;
-                c2757x2.f6795c = length2;
-                c2757x2.f6794b = 0;
-                length = bArr.length;
-                c2757x = c2757x2;
-            }
-            C3056o c3056o = this.f8407b;
-            boolean z2 = c3056o.f8486k && c3056o.f8487l[this.f8411f];
-            boolean z3 = z2 || i2 != 0;
-            C2757x c2757x3 = this.f8415j;
-            c2757x3.f6793a[0] = (byte) ((z3 ? 128 : 0) | length);
-            c2757x3.m3079E(0);
-            this.f8406a.mo2527f(this.f8415j, 1, 1);
-            this.f8406a.mo2527f(c2757x, length, 1);
-            if (!z3) {
-                return length + 1;
-            }
-            if (!z2) {
-                this.f8408c.m3075A(8);
-                C2757x c2757x4 = this.f8408c;
-                byte[] bArr2 = c2757x4.f6793a;
-                bArr2[0] = 0;
-                bArr2[1] = 1;
-                bArr2[2] = (byte) ((i2 >> 8) & 255);
-                bArr2[3] = (byte) (i2 & 255);
-                bArr2[4] = (byte) ((i >> 24) & 255);
-                bArr2[5] = (byte) ((i >> 16) & 255);
-                bArr2[6] = (byte) ((i >> 8) & 255);
-                bArr2[7] = (byte) (i & 255);
-                this.f8406a.mo2527f(c2757x4, 8, 1);
-                return length + 1 + 8;
-            }
-            C2757x c2757x5 = this.f8407b.f8489n;
-            int iM3105y = c2757x5.m3105y();
-            c2757x5.m3080F(-2);
-            int i4 = (iM3105y * 6) + 2;
-            if (i2 != 0) {
-                this.f8408c.m3075A(i4);
-                byte[] bArr3 = this.f8408c.f6793a;
-                c2757x5.m3085e(bArr3, 0, i4);
-                int i5 = (((bArr3[2] & 255) << 8) | (bArr3[3] & 255)) + i2;
-                bArr3[2] = (byte) ((i5 >> 8) & 255);
-                bArr3[3] = (byte) (i5 & 255);
-                c2757x5 = this.f8408c;
-            }
-            this.f8406a.mo2527f(c2757x5, i4, 1);
-            return length + 1 + i4;
-        }
-
-        /* JADX INFO: renamed from: e */
-        public void m3720e() {
-            C3056o c3056o = this.f8407b;
-            c3056o.f8479d = 0;
-            c3056o.f8491p = 0L;
-            c3056o.f8492q = false;
-            c3056o.f8486k = false;
-            c3056o.f8490o = false;
-            c3056o.f8488m = null;
-            this.f8411f = 0;
-            this.f8413h = 0;
-            this.f8412g = 0;
-            this.f8414i = 0;
-            this.f8417l = false;
         }
     }
 
@@ -430,12 +256,6 @@ public class C3048g implements InterfaceC3031h {
         c3056o.f8490o = false;
     }
 
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
-    /* JADX INFO: renamed from: b */
-    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
-        return C3053l.m3730a(interfaceC3041i, true, false);
-    }
-
     /* JADX INFO: renamed from: c */
     public final void m3713c() {
         this.f8392o = 0;
@@ -450,6 +270,614 @@ public class C3048g implements InterfaceC3031h {
         C3047f c3047f = sparseArray.get(i);
         Objects.requireNonNull(c3047f);
         return c3047f;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:141:0x035d  */
+    /* JADX WARN: Code duplicated, block: B:144:0x0370 A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:145:0x0372  */
+    /* JADX WARN: Code duplicated, block: B:146:0x037b  */
+    /* JADX WARN: Code duplicated, block: B:149:0x0384  */
+    /* JADX WARN: Code duplicated, block: B:150:0x038d  */
+    /* JADX WARN: Code duplicated, block: B:153:0x0396  */
+    /* JADX WARN: Code duplicated, block: B:154:0x039f  */
+    /* JADX WARN: Code duplicated, block: B:157:0x03a8  */
+    /* JADX WARN: Code duplicated, block: B:159:0x03ae  */
+    /* JADX WARN: Code duplicated, block: B:160:0x03b9  */
+    /* JADX WARN: Code duplicated, block: B:163:0x03d3  */
+    /* JADX WARN: Code duplicated, block: B:164:0x03e1  */
+    /* JADX WARN: Code duplicated, block: B:170:0x03f3  */
+    /* JADX WARN: Code duplicated, block: B:281:0x0680  */
+    /* JADX INFO: renamed from: j */
+    public final void m3715j(long j) throws ParserException {
+        C3048g c3048g;
+        byte[] bArr;
+        SparseArray<b> sparseArray;
+        AbstractC3045d.a aVar;
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        byte[] bArr2;
+        int i5;
+        C3056o c3056o;
+        int i6;
+        long j2;
+        int[] iArr;
+        long[] jArr;
+        boolean[] zArr;
+        boolean z2;
+        int i7;
+        long j3;
+        long j4;
+        int i8;
+        int iM3086f;
+        int iM3086f2;
+        int iM3086f3;
+        int iM3086f4;
+        boolean z3;
+        C3048g c3048g2 = this;
+        final C3048g c3048g3 = c3048g2;
+        while (!c3048g3.f8390m.isEmpty() && c3048g3.f8390m.peek().f8350b == j) {
+            AbstractC3045d.a aVarPop = c3048g3.f8390m.pop();
+            int i9 = aVarPop.f8349a;
+            int i10 = 12;
+            if (i9 == 1836019574) {
+                C1460d.m429E(true, "Unexpected moov box.");
+                DrmInitData drmInitDataM3711h = m3711h(aVarPop.f8351c);
+                AbstractC3045d.a aVarM3700b = aVarPop.m3700b(1836475768);
+                Objects.requireNonNull(aVarM3700b);
+                SparseArray<C3047f> sparseArray2 = new SparseArray<>();
+                int size = aVarM3700b.f8351c.size();
+                long jM3101u = -9223372036854775807L;
+                int i11 = 0;
+                while (i11 < size) {
+                    AbstractC3045d.b bVar = aVarM3700b.f8351c.get(i11);
+                    int i12 = bVar.f8349a;
+                    if (i12 == 1953654136) {
+                        C2757x c2757x = bVar.f8353b;
+                        c2757x.m3079E(i10);
+                        Pair pairCreate = Pair.create(Integer.valueOf(c2757x.m3086f()), new C3047f(c2757x.m3086f() - 1, c2757x.m3086f(), c2757x.m3086f(), c2757x.m3086f()));
+                        sparseArray2.put(((Integer) pairCreate.first).intValue(), (C3047f) pairCreate.second);
+                    } else {
+                        if (i12 == 1835362404) {
+                            C2757x c2757x2 = bVar.f8353b;
+                            c2757x2.m3079E(8);
+                            jM3101u = ((c2757x2.m3086f() >> 24) & 255) == 0 ? c2757x2.m3101u() : c2757x2.m3104x();
+                        }
+                        i11++;
+                        i10 = 12;
+                    }
+                    i11++;
+                    i10 = 12;
+                }
+                ArrayList arrayList = (ArrayList) C3046e.m3706e(aVarPop, new C3115p(), jM3101u, drmInitDataM3711h, (c3048g3.f8380c & 16) != 0, false, new InterfaceC4485e() { // from class: b.i.a.c.x2.i0.c
+                    @Override // p007b.p225i.p355b.p356a.InterfaceC4485e
+                    public final Object apply(Object obj) {
+                        C3054m c3054m = (C3054m) obj;
+                        Objects.requireNonNull(this.f8348a);
+                        return c3054m;
+                    }
+                });
+                int size2 = arrayList.size();
+                if (c3048g3.f8382e.size() == 0) {
+                    for (int i13 = 0; i13 < size2; i13++) {
+                        C3057p c3057p = (C3057p) arrayList.get(i13);
+                        C3054m c3054m = c3057p.f8493a;
+                        c3048g3.f8382e.put(c3054m.f8460a, new b(c3048g3.f8376D.mo2492p(i13, c3054m.f8461b), c3057p, c3048g3.m3714d(sparseArray2, c3054m.f8460a)));
+                        c3048g3.f8400w = Math.max(c3048g3.f8400w, c3054m.f8464e);
+                    }
+                    c3048g3.f8376D.mo2486j();
+                } else {
+                    C1460d.m426D(c3048g3.f8382e.size() == size2);
+                    for (int i14 = 0; i14 < size2; i14++) {
+                        C3057p c3057p2 = (C3057p) arrayList.get(i14);
+                        C3054m c3054m2 = c3057p2.f8493a;
+                        b bVar2 = c3048g3.f8382e.get(c3054m2.f8460a);
+                        C3047f c3047fM3714d = c3048g3.m3714d(sparseArray2, c3054m2.f8460a);
+                        bVar2.f8409d = c3057p2;
+                        bVar2.f8410e = c3047fM3714d;
+                        bVar2.f8406a.mo2526e(c3057p2.f8493a.f8465f);
+                        bVar2.m3720e();
+                    }
+                }
+                c3048g = c3048g2;
+            } else {
+                int i15 = 8;
+                if (i9 == 1836019558) {
+                    SparseArray<b> sparseArray3 = c3048g3.f8382e;
+                    int i16 = c3048g3.f8380c;
+                    byte[] bArr3 = c3048g3.f8386i;
+                    int size3 = aVarPop.f8352d.size();
+                    int i17 = 0;
+                    while (i17 < size3) {
+                        AbstractC3045d.a aVar2 = aVarPop.f8352d.get(i17);
+                        if (aVar2.f8349a == 1953653094) {
+                            AbstractC3045d.b bVarM3701c = aVar2.m3701c(1952868452);
+                            Objects.requireNonNull(bVarM3701c);
+                            C2757x c2757x3 = bVarM3701c.f8353b;
+                            c2757x3.m3079E(i15);
+                            int iM3086f5 = c2757x3.m3086f() & ViewCompat.MEASURED_SIZE_MASK;
+                            b bVar3 = sparseArray3.get(c2757x3.m3086f());
+                            if (bVar3 == null) {
+                                bVar3 = null;
+                            } else {
+                                if ((iM3086f5 & 1) != 0) {
+                                    long jM3104x = c2757x3.m3104x();
+                                    C3056o c3056o2 = bVar3.f8407b;
+                                    c3056o2.f8477b = jM3104x;
+                                    c3056o2.f8478c = jM3104x;
+                                }
+                                C3047f c3047f = bVar3.f8410e;
+                                bVar3.f8407b.f8476a = new C3047f((iM3086f5 & 2) != 0 ? c2757x3.m3086f() - 1 : c3047f.f8367a, (iM3086f5 & 8) != 0 ? c2757x3.m3086f() : c3047f.f8368b, (iM3086f5 & 16) != 0 ? c2757x3.m3086f() : c3047f.f8369c, (iM3086f5 & 32) != 0 ? c2757x3.m3086f() : c3047f.f8370d);
+                            }
+                            if (bVar3 == null) {
+                                bArr = bArr3;
+                                sparseArray = sparseArray3;
+                                aVar = aVarPop;
+                                i = i16;
+                                i2 = size3;
+                                i3 = i17;
+                            } else {
+                                C3056o c3056o3 = bVar3.f8407b;
+                                long j5 = c3056o3.f8491p;
+                                boolean z4 = c3056o3.f8492q;
+                                bVar3.m3720e();
+                                bVar3.f8417l = true;
+                                AbstractC3045d.b bVarM3701c2 = aVar2.m3701c(1952867444);
+                                if (bVarM3701c2 == null || (i16 & 2) != 0) {
+                                    c3056o3.f8491p = j5;
+                                    c3056o3.f8492q = z4;
+                                } else {
+                                    C2757x c2757x4 = bVarM3701c2.f8353b;
+                                    c2757x4.m3079E(i15);
+                                    c3056o3.f8491p = ((c2757x4.m3086f() >> 24) & 255) == 1 ? c2757x4.m3104x() : c2757x4.m3101u();
+                                    c3056o3.f8492q = true;
+                                }
+                                List<AbstractC3045d.b> list = aVar2.f8351c;
+                                int size4 = list.size();
+                                int i18 = 0;
+                                int i19 = 0;
+                                int i20 = 0;
+                                while (true) {
+                                    i4 = 1953658222;
+                                    if (i18 >= size4) {
+                                        break;
+                                    }
+                                    SparseArray<b> sparseArray4 = sparseArray3;
+                                    AbstractC3045d.b bVar4 = list.get(i18);
+                                    int i21 = size3;
+                                    if (bVar4.f8349a == 1953658222) {
+                                        C2757x c2757x5 = bVar4.f8353b;
+                                        c2757x5.m3079E(12);
+                                        int iM3103w = c2757x5.m3103w();
+                                        if (iM3103w > 0) {
+                                            i20 += iM3103w;
+                                            i19++;
+                                        }
+                                    }
+                                    i18++;
+                                    size3 = i21;
+                                    sparseArray3 = sparseArray4;
+                                }
+                                sparseArray = sparseArray3;
+                                i2 = size3;
+                                bVar3.f8413h = 0;
+                                bVar3.f8412g = 0;
+                                bVar3.f8411f = 0;
+                                C3056o c3056o4 = bVar3.f8407b;
+                                c3056o4.f8479d = i19;
+                                c3056o4.f8480e = i20;
+                                if (c3056o4.f8482g.length < i19) {
+                                    c3056o4.f8481f = new long[i19];
+                                    c3056o4.f8482g = new int[i19];
+                                }
+                                if (c3056o4.f8483h.length < i20) {
+                                    int i22 = (i20 * Opcodes.LUSHR) / 100;
+                                    c3056o4.f8483h = new int[i22];
+                                    c3056o4.f8484i = new long[i22];
+                                    c3056o4.f8485j = new boolean[i22];
+                                    c3056o4.f8487l = new boolean[i22];
+                                }
+                                int i23 = 0;
+                                int i24 = 0;
+                                int i25 = 0;
+                                while (i23 < size4) {
+                                    AbstractC3045d.b bVar5 = list.get(i23);
+                                    if (bVar5.f8349a == i4) {
+                                        int i26 = i25 + 1;
+                                        C2757x c2757x6 = bVar5.f8353b;
+                                        c2757x6.m3079E(8);
+                                        int iM3086f6 = c2757x6.m3086f() & ViewCompat.MEASURED_SIZE_MASK;
+                                        C3054m c3054m3 = bVar3.f8409d.f8493a;
+                                        C3056o c3056o5 = bVar3.f8407b;
+                                        C3047f c3047f2 = c3056o5.f8476a;
+                                        int i27 = C2738e0.f6708a;
+                                        c3056o5.f8482g[i25] = c2757x6.m3103w();
+                                        long[] jArr2 = c3056o5.f8481f;
+                                        jArr2[i25] = c3056o5.f8477b;
+                                        if ((iM3086f6 & 1) != 0) {
+                                            jArr2[i25] = jArr2[i25] + ((long) c2757x6.m3086f());
+                                        }
+                                        boolean z5 = (iM3086f6 & 4) != 0;
+                                        int iM3086f7 = c3047f2.f8370d;
+                                        if (z5) {
+                                            iM3086f7 = c2757x6.m3086f();
+                                        }
+                                        boolean z6 = (iM3086f6 & 256) != 0;
+                                        boolean z7 = (iM3086f6 & 512) != 0;
+                                        boolean z8 = (iM3086f6 & 1024) != 0;
+                                        boolean z9 = (iM3086f6 & 2048) != 0;
+                                        long[] jArr3 = c3054m3.f8467h;
+                                        if (jArr3 != null) {
+                                            i6 = iM3086f7;
+                                            c3056o = c3056o3;
+                                            if (jArr3.length == 1 && jArr3[0] == 0) {
+                                                j2 = c3054m3.f8468i[0];
+                                            }
+                                            iArr = c3056o5.f8483h;
+                                            jArr = c3056o5.f8484i;
+                                            zArr = c3056o5.f8485j;
+                                            if (c3054m3.f8461b == 2 || (i16 & 1) == 0) {
+                                                z2 = false;
+                                            } else {
+                                                z2 = true;
+                                            }
+                                            i7 = c3056o5.f8482g[i25] + i24;
+                                            j3 = c3054m3.f8462c;
+                                            j4 = c3056o5.f8491p;
+                                            i8 = i24;
+                                            while (i8 < i7) {
+                                                if (z6) {
+                                                    iM3086f = c2757x6.m3086f();
+                                                } else {
+                                                    iM3086f = c3047f2.f8368b;
+                                                }
+                                                m3710a(iM3086f);
+                                                if (z7) {
+                                                    iM3086f2 = c2757x6.m3086f();
+                                                } else {
+                                                    iM3086f2 = c3047f2.f8369c;
+                                                }
+                                                m3710a(iM3086f2);
+                                                if (z8) {
+                                                    iM3086f3 = c2757x6.m3086f();
+                                                } else if (i8 == 0 || !z5) {
+                                                    iM3086f3 = c3047f2.f8370d;
+                                                } else {
+                                                    iM3086f3 = i6;
+                                                }
+                                                if (z9) {
+                                                    iM3086f4 = c2757x6.m3086f();
+                                                } else {
+                                                    iM3086f4 = 0;
+                                                }
+                                                jArr[i8] = C2738e0.m2985F((((long) iM3086f4) + j4) - j2, 1000000L, j3);
+                                                if (!c3056o5.f8492q) {
+                                                    jArr[i8] = jArr[i8] + bVar3.f8409d.f8500h;
+                                                }
+                                                iArr[i8] = iM3086f2;
+                                                if (((iM3086f3 >> 16) & 1) == 0 || (z2 && i8 != 0)) {
+                                                    z3 = false;
+                                                } else {
+                                                    z3 = true;
+                                                }
+                                                zArr[i8] = z3;
+                                                j4 += (long) iM3086f;
+                                                i8++;
+                                                i7 = i7;
+                                                c2757x6 = c2757x6;
+                                                z6 = z6;
+                                                z7 = z7;
+                                                z5 = z5;
+                                                z8 = z8;
+                                                z9 = z9;
+                                            }
+                                            int i28 = i7;
+                                            c3056o5.f8491p = j4;
+                                            i25 = i26;
+                                            i24 = i28;
+                                        } else {
+                                            i6 = iM3086f7;
+                                            c3056o = c3056o3;
+                                        }
+                                        j2 = 0;
+                                        iArr = c3056o5.f8483h;
+                                        jArr = c3056o5.f8484i;
+                                        zArr = c3056o5.f8485j;
+                                        if (c3054m3.f8461b == 2) {
+                                            z2 = false;
+                                        } else {
+                                            z2 = false;
+                                        }
+                                        i7 = c3056o5.f8482g[i25] + i24;
+                                        j3 = c3054m3.f8462c;
+                                        j4 = c3056o5.f8491p;
+                                        i8 = i24;
+                                        while (i8 < i7) {
+                                            if (z6) {
+                                                iM3086f = c2757x6.m3086f();
+                                            } else {
+                                                iM3086f = c3047f2.f8368b;
+                                            }
+                                            m3710a(iM3086f);
+                                            if (z7) {
+                                                iM3086f2 = c2757x6.m3086f();
+                                            } else {
+                                                iM3086f2 = c3047f2.f8369c;
+                                            }
+                                            m3710a(iM3086f2);
+                                            if (z8) {
+                                                iM3086f3 = c2757x6.m3086f();
+                                            } else if (i8 == 0) {
+                                                iM3086f3 = c3047f2.f8370d;
+                                            } else {
+                                                iM3086f3 = c3047f2.f8370d;
+                                            }
+                                            if (z9) {
+                                                iM3086f4 = c2757x6.m3086f();
+                                            } else {
+                                                iM3086f4 = 0;
+                                            }
+                                            jArr[i8] = C2738e0.m2985F((((long) iM3086f4) + j4) - j2, 1000000L, j3);
+                                            if (!c3056o5.f8492q) {
+                                                jArr[i8] = jArr[i8] + bVar3.f8409d.f8500h;
+                                            }
+                                            iArr[i8] = iM3086f2;
+                                            if (((iM3086f3 >> 16) & 1) == 0) {
+                                                z3 = false;
+                                            } else {
+                                                z3 = false;
+                                            }
+                                            zArr[i8] = z3;
+                                            j4 += (long) iM3086f;
+                                            i8++;
+                                            i7 = i7;
+                                            c2757x6 = c2757x6;
+                                            z6 = z6;
+                                            z7 = z7;
+                                            z5 = z5;
+                                            z8 = z8;
+                                            z9 = z9;
+                                        }
+                                        int i29 = i7;
+                                        c3056o5.f8491p = j4;
+                                        i25 = i26;
+                                        i24 = i29;
+                                    } else {
+                                        bArr3 = bArr3;
+                                        i23 = i23;
+                                        aVarPop = aVarPop;
+                                        c3056o = c3056o3;
+                                    }
+                                    i23++;
+                                    i16 = i16;
+                                    list = list;
+                                    size4 = size4;
+                                    i17 = i17;
+                                    aVar2 = aVar2;
+                                    aVarPop = aVarPop;
+                                    bArr3 = bArr3;
+                                    c3056o3 = c3056o;
+                                    i4 = 1953658222;
+                                }
+                                byte[] bArr4 = bArr3;
+                                aVar = aVarPop;
+                                i = i16;
+                                i3 = i17;
+                                C3056o c3056o6 = c3056o3;
+                                C3054m c3054m4 = bVar3.f8409d.f8493a;
+                                C3047f c3047f3 = c3056o6.f8476a;
+                                Objects.requireNonNull(c3047f3);
+                                C3055n c3055nM3731a = c3054m4.m3731a(c3047f3.f8367a);
+                                AbstractC3045d.b bVarM3701c3 = aVar2.m3701c(1935763834);
+                                if (bVarM3701c3 != null) {
+                                    Objects.requireNonNull(c3055nM3731a);
+                                    C2757x c2757x7 = bVarM3701c3.f8353b;
+                                    int i30 = c3055nM3731a.f8474d;
+                                    c2757x7.m3079E(8);
+                                    if ((c2757x7.m3086f() & ViewCompat.MEASURED_SIZE_MASK & 1) == 1) {
+                                        c2757x7.m3080F(8);
+                                    }
+                                    int iM3100t = c2757x7.m3100t();
+                                    int iM3103w2 = c2757x7.m3103w();
+                                    int i31 = c3056o6.f8480e;
+                                    if (iM3103w2 > i31) {
+                                        throw ParserException.m8755a(C1643a.m853h(78, "Saiz sample count ", iM3103w2, " is greater than fragment sample count", i31), null);
+                                    }
+                                    if (iM3100t == 0) {
+                                        boolean[] zArr2 = c3056o6.f8487l;
+                                        i5 = 0;
+                                        for (int i32 = 0; i32 < iM3103w2; i32++) {
+                                            int iM3100t2 = c2757x7.m3100t();
+                                            i5 += iM3100t2;
+                                            zArr2[i32] = iM3100t2 > i30;
+                                        }
+                                    } else {
+                                        i5 = (iM3100t * iM3103w2) + 0;
+                                        Arrays.fill(c3056o6.f8487l, 0, iM3103w2, iM3100t > i30);
+                                    }
+                                    Arrays.fill(c3056o6.f8487l, iM3103w2, c3056o6.f8480e, false);
+                                    if (i5 > 0) {
+                                        C2757x c2757x8 = c3056o6.f8489n;
+                                        byte[] bArr5 = c2757x8.f6793a;
+                                        if (bArr5.length < i5) {
+                                            bArr5 = new byte[i5];
+                                        }
+                                        c2757x8.m3077C(bArr5, i5);
+                                        c3056o6.f8486k = true;
+                                        c3056o6.f8490o = true;
+                                    }
+                                }
+                                AbstractC3045d.b bVarM3701c4 = aVar2.m3701c(1935763823);
+                                if (bVarM3701c4 != null) {
+                                    C2757x c2757x9 = bVarM3701c4.f8353b;
+                                    c2757x9.m3079E(8);
+                                    int iM3086f8 = c2757x9.m3086f();
+                                    if ((16777215 & iM3086f8 & 1) == 1) {
+                                        c2757x9.m3080F(8);
+                                    }
+                                    int iM3103w3 = c2757x9.m3103w();
+                                    if (iM3103w3 != 1) {
+                                        throw C1643a.m884w0(40, "Unexpected saio entry count: ", iM3103w3, null);
+                                    }
+                                    c3056o6.f8478c += ((iM3086f8 >> 24) & 255) == 0 ? c2757x9.m3101u() : c2757x9.m3104x();
+                                }
+                                byte[] bArr6 = null;
+                                AbstractC3045d.b bVarM3701c5 = aVar2.m3701c(1936027235);
+                                if (bVarM3701c5 != null) {
+                                    m3712i(bVarM3701c5.f8353b, 0, c3056o6);
+                                }
+                                String str = c3055nM3731a != null ? c3055nM3731a.f8472b : null;
+                                C2757x c2757x10 = null;
+                                C2757x c2757x11 = null;
+                                for (int i33 = 0; i33 < aVar2.f8351c.size(); i33++) {
+                                    AbstractC3045d.b bVar6 = aVar2.f8351c.get(i33);
+                                    C2757x c2757x12 = bVar6.f8353b;
+                                    int i34 = bVar6.f8349a;
+                                    if (i34 == 1935828848) {
+                                        c2757x12.m3079E(12);
+                                        if (c2757x12.m3086f() == 1936025959) {
+                                            c2757x10 = c2757x12;
+                                        }
+                                    } else if (i34 == 1936158820) {
+                                        c2757x12.m3079E(12);
+                                        if (c2757x12.m3086f() == 1936025959) {
+                                            c2757x11 = c2757x12;
+                                        }
+                                    }
+                                }
+                                if (c2757x10 != null && c2757x11 != null) {
+                                    c2757x10.m3079E(8);
+                                    int iM3086f9 = (c2757x10.m3086f() >> 24) & 255;
+                                    c2757x10.m3080F(4);
+                                    if (iM3086f9 == 1) {
+                                        c2757x10.m3080F(4);
+                                    }
+                                    if (c2757x10.m3086f() != 1) {
+                                        throw ParserException.m8756b("Entry count in sbgp != 1 (unsupported).");
+                                    }
+                                    c2757x11.m3079E(8);
+                                    int iM3086f10 = (c2757x11.m3086f() >> 24) & 255;
+                                    c2757x11.m3080F(4);
+                                    if (iM3086f10 == 1) {
+                                        if (c2757x11.m3101u() == 0) {
+                                            throw ParserException.m8756b("Variable length description in sgpd found (unsupported)");
+                                        }
+                                    } else if (iM3086f10 >= 2) {
+                                        c2757x11.m3080F(4);
+                                    }
+                                    if (c2757x11.m3101u() != 1) {
+                                        throw ParserException.m8756b("Entry count in sgpd != 1 (unsupported).");
+                                    }
+                                    c2757x11.m3080F(1);
+                                    int iM3100t3 = c2757x11.m3100t();
+                                    int i35 = (iM3100t3 & 240) >> 4;
+                                    int i36 = iM3100t3 & 15;
+                                    boolean z10 = c2757x11.m3100t() == 1;
+                                    if (z10) {
+                                        int iM3100t4 = c2757x11.m3100t();
+                                        byte[] bArr7 = new byte[16];
+                                        System.arraycopy(c2757x11.f6793a, c2757x11.f6794b, bArr7, 0, 16);
+                                        c2757x11.f6794b += 16;
+                                        if (iM3100t4 == 0) {
+                                            int iM3100t5 = c2757x11.m3100t();
+                                            bArr6 = new byte[iM3100t5];
+                                            System.arraycopy(c2757x11.f6793a, c2757x11.f6794b, bArr6, 0, iM3100t5);
+                                            c2757x11.f6794b += iM3100t5;
+                                        }
+                                        c3056o6.f8486k = true;
+                                        c3056o6.f8488m = new C3055n(z10, str, iM3100t4, bArr7, i35, i36, bArr6);
+                                    }
+                                }
+                                int size5 = aVar2.f8351c.size();
+                                int i37 = 0;
+                                while (i37 < size5) {
+                                    AbstractC3045d.b bVar7 = aVar2.f8351c.get(i37);
+                                    if (bVar7.f8349a == 1970628964) {
+                                        C2757x c2757x13 = bVar7.f8353b;
+                                        c2757x13.m3079E(8);
+                                        bArr2 = bArr4;
+                                        System.arraycopy(c2757x13.f6793a, c2757x13.f6794b, bArr2, 0, 16);
+                                        c2757x13.f6794b += 16;
+                                        if (Arrays.equals(bArr2, f8371a)) {
+                                            m3712i(c2757x13, 16, c3056o6);
+                                        }
+                                    } else {
+                                        bArr2 = bArr4;
+                                    }
+                                    i37++;
+                                    bArr4 = bArr2;
+                                }
+                                bArr = bArr4;
+                            }
+                        } else {
+                            bArr = bArr3;
+                            sparseArray = sparseArray3;
+                            aVar = aVarPop;
+                            i = i16;
+                            i2 = size3;
+                            i3 = i17;
+                        }
+                        i17 = i3 + 1;
+                        i15 = 8;
+                        bArr3 = bArr;
+                        i16 = i;
+                        size3 = i2;
+                        sparseArray3 = sparseArray;
+                        aVarPop = aVar;
+                    }
+                    DrmInitData drmInitDataM3711h2 = m3711h(aVarPop.f8351c);
+                    c3048g = this;
+                    if (drmInitDataM3711h2 != null) {
+                        int size6 = c3048g.f8382e.size();
+                        for (int i38 = 0; i38 < size6; i38++) {
+                            b bVarValueAt = c3048g.f8382e.valueAt(i38);
+                            C3054m c3054m5 = bVarValueAt.f8409d.f8493a;
+                            C3047f c3047f4 = bVarValueAt.f8407b.f8476a;
+                            int i39 = C2738e0.f6708a;
+                            C3055n c3055nM3731a2 = c3054m5.m3731a(c3047f4.f8367a);
+                            DrmInitData drmInitDataM8835a = drmInitDataM3711h2.m8835a(c3055nM3731a2 != null ? c3055nM3731a2.f8472b : null);
+                            C2811j1.b bVarM3275a = bVarValueAt.f8409d.f8493a.f8465f.m3275a();
+                            bVarM3275a.f7176n = drmInitDataM8835a;
+                            bVarValueAt.f8406a.mo2526e(bVarM3275a.m3277a());
+                        }
+                    }
+                    if (c3048g.f8399v != -9223372036854775807L) {
+                        int size7 = c3048g.f8382e.size();
+                        for (int i40 = 0; i40 < size7; i40++) {
+                            b bVarValueAt2 = c3048g.f8382e.valueAt(i40);
+                            long j6 = c3048g.f8399v;
+                            int i41 = bVarValueAt2.f8411f;
+                            while (true) {
+                                C3056o c3056o7 = bVarValueAt2.f8407b;
+                                if (i41 >= c3056o7.f8480e || c3056o7.f8484i[i41] >= j6) {
+                                    break;
+                                }
+                                if (c3056o7.f8485j[i41]) {
+                                    bVarValueAt2.f8414i = i41;
+                                }
+                                i41++;
+                            }
+                        }
+                        c3048g.f8399v = -9223372036854775807L;
+                    }
+                    c3048g3 = c3048g;
+                } else {
+                    c3048g = c3048g2;
+                    if (!c3048g3.f8390m.isEmpty()) {
+                        c3048g3.f8390m.peek().f8352d.add(aVarPop);
+                    }
+                }
+            }
+            c3048g2 = c3048g;
+        }
+        m3713c();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
+    /* JADX INFO: renamed from: b */
+    public boolean mo3633b(InterfaceC3041i interfaceC3041i) throws IOException {
+        return C3053l.m3730a(interfaceC3041i, true, false);
     }
 
     /* JADX WARN: Code duplicated, block: B:100:0x01e1  */
@@ -1550,609 +1978,181 @@ public class C3048g implements InterfaceC3031h {
         m3713c();
     }
 
-    /* JADX WARN: Code duplicated, block: B:141:0x035d  */
-    /* JADX WARN: Code duplicated, block: B:144:0x0370 A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:145:0x0372  */
-    /* JADX WARN: Code duplicated, block: B:146:0x037b  */
-    /* JADX WARN: Code duplicated, block: B:149:0x0384  */
-    /* JADX WARN: Code duplicated, block: B:150:0x038d  */
-    /* JADX WARN: Code duplicated, block: B:153:0x0396  */
-    /* JADX WARN: Code duplicated, block: B:154:0x039f  */
-    /* JADX WARN: Code duplicated, block: B:157:0x03a8  */
-    /* JADX WARN: Code duplicated, block: B:159:0x03ae  */
-    /* JADX WARN: Code duplicated, block: B:160:0x03b9  */
-    /* JADX WARN: Code duplicated, block: B:163:0x03d3  */
-    /* JADX WARN: Code duplicated, block: B:164:0x03e1  */
-    /* JADX WARN: Code duplicated, block: B:170:0x03f3  */
-    /* JADX WARN: Code duplicated, block: B:281:0x0680  */
-    /* JADX INFO: renamed from: j */
-    public final void m3715j(long j) throws ParserException {
-        C3048g c3048g;
-        byte[] bArr;
-        SparseArray<b> sparseArray;
-        AbstractC3045d.a aVar;
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        byte[] bArr2;
-        int i5;
-        C3056o c3056o;
-        int i6;
-        long j2;
-        int[] iArr;
-        long[] jArr;
-        boolean[] zArr;
-        boolean z2;
-        int i7;
-        long j3;
-        long j4;
-        int i8;
-        int iM3086f;
-        int iM3086f2;
-        int iM3086f3;
-        int iM3086f4;
-        boolean z3;
-        C3048g c3048g2 = this;
-        final C3048g c3048g3 = c3048g2;
-        while (!c3048g3.f8390m.isEmpty() && c3048g3.f8390m.peek().f8350b == j) {
-            AbstractC3045d.a aVarPop = c3048g3.f8390m.pop();
-            int i9 = aVarPop.f8349a;
-            int i10 = 12;
-            if (i9 == 1836019574) {
-                C1460d.m429E(true, "Unexpected moov box.");
-                DrmInitData drmInitDataM3711h = m3711h(aVarPop.f8351c);
-                AbstractC3045d.a aVarM3700b = aVarPop.m3700b(1836475768);
-                Objects.requireNonNull(aVarM3700b);
-                SparseArray<C3047f> sparseArray2 = new SparseArray<>();
-                int size = aVarM3700b.f8351c.size();
-                long jM3101u = -9223372036854775807L;
-                int i11 = 0;
-                while (i11 < size) {
-                    AbstractC3045d.b bVar = aVarM3700b.f8351c.get(i11);
-                    int i12 = bVar.f8349a;
-                    if (i12 == 1953654136) {
-                        C2757x c2757x = bVar.f8353b;
-                        c2757x.m3079E(i10);
-                        Pair pairCreate = Pair.create(Integer.valueOf(c2757x.m3086f()), new C3047f(c2757x.m3086f() - 1, c2757x.m3086f(), c2757x.m3086f(), c2757x.m3086f()));
-                        sparseArray2.put(((Integer) pairCreate.first).intValue(), (C3047f) pairCreate.second);
-                    } else {
-                        if (i12 == 1835362404) {
-                            C2757x c2757x2 = bVar.f8353b;
-                            c2757x2.m3079E(8);
-                            jM3101u = ((c2757x2.m3086f() >> 24) & 255) == 0 ? c2757x2.m3101u() : c2757x2.m3104x();
-                        }
-                        i11++;
-                        i10 = 12;
-                    }
-                    i11++;
-                    i10 = 12;
-                }
-                ArrayList arrayList = (ArrayList) C3046e.m3706e(aVarPop, new C3115p(), jM3101u, drmInitDataM3711h, (c3048g3.f8380c & 16) != 0, false, new InterfaceC4485e() { // from class: b.i.a.c.x2.i0.c
-                    @Override // p007b.p225i.p355b.p356a.InterfaceC4485e
-                    public final Object apply(Object obj) {
-                        C3054m c3054m = (C3054m) obj;
-                        Objects.requireNonNull(this.f8348a);
-                        return c3054m;
-                    }
-                });
-                int size2 = arrayList.size();
-                if (c3048g3.f8382e.size() == 0) {
-                    for (int i13 = 0; i13 < size2; i13++) {
-                        C3057p c3057p = (C3057p) arrayList.get(i13);
-                        C3054m c3054m = c3057p.f8493a;
-                        c3048g3.f8382e.put(c3054m.f8460a, new b(c3048g3.f8376D.mo2492p(i13, c3054m.f8461b), c3057p, c3048g3.m3714d(sparseArray2, c3054m.f8460a)));
-                        c3048g3.f8400w = Math.max(c3048g3.f8400w, c3054m.f8464e);
-                    }
-                    c3048g3.f8376D.mo2486j();
-                } else {
-                    C1460d.m426D(c3048g3.f8382e.size() == size2);
-                    for (int i14 = 0; i14 < size2; i14++) {
-                        C3057p c3057p2 = (C3057p) arrayList.get(i14);
-                        C3054m c3054m2 = c3057p2.f8493a;
-                        b bVar2 = c3048g3.f8382e.get(c3054m2.f8460a);
-                        C3047f c3047fM3714d = c3048g3.m3714d(sparseArray2, c3054m2.f8460a);
-                        bVar2.f8409d = c3057p2;
-                        bVar2.f8410e = c3047fM3714d;
-                        bVar2.f8406a.mo2526e(c3057p2.f8493a.f8465f);
-                        bVar2.m3720e();
-                    }
-                }
-                c3048g = c3048g2;
-            } else {
-                int i15 = 8;
-                if (i9 == 1836019558) {
-                    SparseArray<b> sparseArray3 = c3048g3.f8382e;
-                    int i16 = c3048g3.f8380c;
-                    byte[] bArr3 = c3048g3.f8386i;
-                    int size3 = aVarPop.f8352d.size();
-                    int i17 = 0;
-                    while (i17 < size3) {
-                        AbstractC3045d.a aVar2 = aVarPop.f8352d.get(i17);
-                        if (aVar2.f8349a == 1953653094) {
-                            AbstractC3045d.b bVarM3701c = aVar2.m3701c(1952868452);
-                            Objects.requireNonNull(bVarM3701c);
-                            C2757x c2757x3 = bVarM3701c.f8353b;
-                            c2757x3.m3079E(i15);
-                            int iM3086f5 = c2757x3.m3086f() & ViewCompat.MEASURED_SIZE_MASK;
-                            b bVar3 = sparseArray3.get(c2757x3.m3086f());
-                            if (bVar3 == null) {
-                                bVar3 = null;
-                            } else {
-                                if ((iM3086f5 & 1) != 0) {
-                                    long jM3104x = c2757x3.m3104x();
-                                    C3056o c3056o2 = bVar3.f8407b;
-                                    c3056o2.f8477b = jM3104x;
-                                    c3056o2.f8478c = jM3104x;
-                                }
-                                C3047f c3047f = bVar3.f8410e;
-                                bVar3.f8407b.f8476a = new C3047f((iM3086f5 & 2) != 0 ? c2757x3.m3086f() - 1 : c3047f.f8367a, (iM3086f5 & 8) != 0 ? c2757x3.m3086f() : c3047f.f8368b, (iM3086f5 & 16) != 0 ? c2757x3.m3086f() : c3047f.f8369c, (iM3086f5 & 32) != 0 ? c2757x3.m3086f() : c3047f.f8370d);
-                            }
-                            if (bVar3 == null) {
-                                bArr = bArr3;
-                                sparseArray = sparseArray3;
-                                aVar = aVarPop;
-                                i = i16;
-                                i2 = size3;
-                                i3 = i17;
-                            } else {
-                                C3056o c3056o3 = bVar3.f8407b;
-                                long j5 = c3056o3.f8491p;
-                                boolean z4 = c3056o3.f8492q;
-                                bVar3.m3720e();
-                                bVar3.f8417l = true;
-                                AbstractC3045d.b bVarM3701c2 = aVar2.m3701c(1952867444);
-                                if (bVarM3701c2 == null || (i16 & 2) != 0) {
-                                    c3056o3.f8491p = j5;
-                                    c3056o3.f8492q = z4;
-                                } else {
-                                    C2757x c2757x4 = bVarM3701c2.f8353b;
-                                    c2757x4.m3079E(i15);
-                                    c3056o3.f8491p = ((c2757x4.m3086f() >> 24) & 255) == 1 ? c2757x4.m3104x() : c2757x4.m3101u();
-                                    c3056o3.f8492q = true;
-                                }
-                                List<AbstractC3045d.b> list = aVar2.f8351c;
-                                int size4 = list.size();
-                                int i18 = 0;
-                                int i19 = 0;
-                                int i20 = 0;
-                                while (true) {
-                                    i4 = 1953658222;
-                                    if (i18 >= size4) {
-                                        break;
-                                    }
-                                    SparseArray<b> sparseArray4 = sparseArray3;
-                                    AbstractC3045d.b bVar4 = list.get(i18);
-                                    int i21 = size3;
-                                    if (bVar4.f8349a == 1953658222) {
-                                        C2757x c2757x5 = bVar4.f8353b;
-                                        c2757x5.m3079E(12);
-                                        int iM3103w = c2757x5.m3103w();
-                                        if (iM3103w > 0) {
-                                            i20 += iM3103w;
-                                            i19++;
-                                        }
-                                    }
-                                    i18++;
-                                    size3 = i21;
-                                    sparseArray3 = sparseArray4;
-                                }
-                                sparseArray = sparseArray3;
-                                i2 = size3;
-                                bVar3.f8413h = 0;
-                                bVar3.f8412g = 0;
-                                bVar3.f8411f = 0;
-                                C3056o c3056o4 = bVar3.f8407b;
-                                c3056o4.f8479d = i19;
-                                c3056o4.f8480e = i20;
-                                if (c3056o4.f8482g.length < i19) {
-                                    c3056o4.f8481f = new long[i19];
-                                    c3056o4.f8482g = new int[i19];
-                                }
-                                if (c3056o4.f8483h.length < i20) {
-                                    int i22 = (i20 * Opcodes.LUSHR) / 100;
-                                    c3056o4.f8483h = new int[i22];
-                                    c3056o4.f8484i = new long[i22];
-                                    c3056o4.f8485j = new boolean[i22];
-                                    c3056o4.f8487l = new boolean[i22];
-                                }
-                                int i23 = 0;
-                                int i24 = 0;
-                                int i25 = 0;
-                                while (i23 < size4) {
-                                    AbstractC3045d.b bVar5 = list.get(i23);
-                                    if (bVar5.f8349a == i4) {
-                                        int i26 = i25 + 1;
-                                        C2757x c2757x6 = bVar5.f8353b;
-                                        c2757x6.m3079E(8);
-                                        int iM3086f6 = c2757x6.m3086f() & ViewCompat.MEASURED_SIZE_MASK;
-                                        C3054m c3054m3 = bVar3.f8409d.f8493a;
-                                        C3056o c3056o5 = bVar3.f8407b;
-                                        C3047f c3047f2 = c3056o5.f8476a;
-                                        int i27 = C2738e0.f6708a;
-                                        c3056o5.f8482g[i25] = c2757x6.m3103w();
-                                        long[] jArr2 = c3056o5.f8481f;
-                                        jArr2[i25] = c3056o5.f8477b;
-                                        if ((iM3086f6 & 1) != 0) {
-                                            jArr2[i25] = jArr2[i25] + ((long) c2757x6.m3086f());
-                                        }
-                                        boolean z5 = (iM3086f6 & 4) != 0;
-                                        int iM3086f7 = c3047f2.f8370d;
-                                        if (z5) {
-                                            iM3086f7 = c2757x6.m3086f();
-                                        }
-                                        boolean z6 = (iM3086f6 & 256) != 0;
-                                        boolean z7 = (iM3086f6 & 512) != 0;
-                                        boolean z8 = (iM3086f6 & 1024) != 0;
-                                        boolean z9 = (iM3086f6 & 2048) != 0;
-                                        long[] jArr3 = c3054m3.f8467h;
-                                        if (jArr3 != null) {
-                                            i6 = iM3086f7;
-                                            c3056o = c3056o3;
-                                            if (jArr3.length == 1 && jArr3[0] == 0) {
-                                                j2 = c3054m3.f8468i[0];
-                                            }
-                                            iArr = c3056o5.f8483h;
-                                            jArr = c3056o5.f8484i;
-                                            zArr = c3056o5.f8485j;
-                                            if (c3054m3.f8461b == 2 || (i16 & 1) == 0) {
-                                                z2 = false;
-                                            } else {
-                                                z2 = true;
-                                            }
-                                            i7 = c3056o5.f8482g[i25] + i24;
-                                            j3 = c3054m3.f8462c;
-                                            j4 = c3056o5.f8491p;
-                                            i8 = i24;
-                                            while (i8 < i7) {
-                                                if (z6) {
-                                                    iM3086f = c2757x6.m3086f();
-                                                } else {
-                                                    iM3086f = c3047f2.f8368b;
-                                                }
-                                                m3710a(iM3086f);
-                                                if (z7) {
-                                                    iM3086f2 = c2757x6.m3086f();
-                                                } else {
-                                                    iM3086f2 = c3047f2.f8369c;
-                                                }
-                                                m3710a(iM3086f2);
-                                                if (z8) {
-                                                    iM3086f3 = c2757x6.m3086f();
-                                                } else if (i8 == 0 || !z5) {
-                                                    iM3086f3 = c3047f2.f8370d;
-                                                } else {
-                                                    iM3086f3 = i6;
-                                                }
-                                                if (z9) {
-                                                    iM3086f4 = c2757x6.m3086f();
-                                                } else {
-                                                    iM3086f4 = 0;
-                                                }
-                                                jArr[i8] = C2738e0.m2985F((((long) iM3086f4) + j4) - j2, 1000000L, j3);
-                                                if (!c3056o5.f8492q) {
-                                                    jArr[i8] = jArr[i8] + bVar3.f8409d.f8500h;
-                                                }
-                                                iArr[i8] = iM3086f2;
-                                                if (((iM3086f3 >> 16) & 1) == 0 || (z2 && i8 != 0)) {
-                                                    z3 = false;
-                                                } else {
-                                                    z3 = true;
-                                                }
-                                                zArr[i8] = z3;
-                                                j4 += (long) iM3086f;
-                                                i8++;
-                                                i7 = i7;
-                                                c2757x6 = c2757x6;
-                                                z6 = z6;
-                                                z7 = z7;
-                                                z5 = z5;
-                                                z8 = z8;
-                                                z9 = z9;
-                                            }
-                                            int i28 = i7;
-                                            c3056o5.f8491p = j4;
-                                            i25 = i26;
-                                            i24 = i28;
-                                        } else {
-                                            i6 = iM3086f7;
-                                            c3056o = c3056o3;
-                                        }
-                                        j2 = 0;
-                                        iArr = c3056o5.f8483h;
-                                        jArr = c3056o5.f8484i;
-                                        zArr = c3056o5.f8485j;
-                                        if (c3054m3.f8461b == 2) {
-                                            z2 = false;
-                                        } else {
-                                            z2 = false;
-                                        }
-                                        i7 = c3056o5.f8482g[i25] + i24;
-                                        j3 = c3054m3.f8462c;
-                                        j4 = c3056o5.f8491p;
-                                        i8 = i24;
-                                        while (i8 < i7) {
-                                            if (z6) {
-                                                iM3086f = c2757x6.m3086f();
-                                            } else {
-                                                iM3086f = c3047f2.f8368b;
-                                            }
-                                            m3710a(iM3086f);
-                                            if (z7) {
-                                                iM3086f2 = c2757x6.m3086f();
-                                            } else {
-                                                iM3086f2 = c3047f2.f8369c;
-                                            }
-                                            m3710a(iM3086f2);
-                                            if (z8) {
-                                                iM3086f3 = c2757x6.m3086f();
-                                            } else if (i8 == 0) {
-                                                iM3086f3 = c3047f2.f8370d;
-                                            } else {
-                                                iM3086f3 = c3047f2.f8370d;
-                                            }
-                                            if (z9) {
-                                                iM3086f4 = c2757x6.m3086f();
-                                            } else {
-                                                iM3086f4 = 0;
-                                            }
-                                            jArr[i8] = C2738e0.m2985F((((long) iM3086f4) + j4) - j2, 1000000L, j3);
-                                            if (!c3056o5.f8492q) {
-                                                jArr[i8] = jArr[i8] + bVar3.f8409d.f8500h;
-                                            }
-                                            iArr[i8] = iM3086f2;
-                                            if (((iM3086f3 >> 16) & 1) == 0) {
-                                                z3 = false;
-                                            } else {
-                                                z3 = false;
-                                            }
-                                            zArr[i8] = z3;
-                                            j4 += (long) iM3086f;
-                                            i8++;
-                                            i7 = i7;
-                                            c2757x6 = c2757x6;
-                                            z6 = z6;
-                                            z7 = z7;
-                                            z5 = z5;
-                                            z8 = z8;
-                                            z9 = z9;
-                                        }
-                                        int i29 = i7;
-                                        c3056o5.f8491p = j4;
-                                        i25 = i26;
-                                        i24 = i29;
-                                    } else {
-                                        bArr3 = bArr3;
-                                        i23 = i23;
-                                        aVarPop = aVarPop;
-                                        c3056o = c3056o3;
-                                    }
-                                    i23++;
-                                    i16 = i16;
-                                    list = list;
-                                    size4 = size4;
-                                    i17 = i17;
-                                    aVar2 = aVar2;
-                                    aVarPop = aVarPop;
-                                    bArr3 = bArr3;
-                                    c3056o3 = c3056o;
-                                    i4 = 1953658222;
-                                }
-                                byte[] bArr4 = bArr3;
-                                aVar = aVarPop;
-                                i = i16;
-                                i3 = i17;
-                                C3056o c3056o6 = c3056o3;
-                                C3054m c3054m4 = bVar3.f8409d.f8493a;
-                                C3047f c3047f3 = c3056o6.f8476a;
-                                Objects.requireNonNull(c3047f3);
-                                C3055n c3055nM3731a = c3054m4.m3731a(c3047f3.f8367a);
-                                AbstractC3045d.b bVarM3701c3 = aVar2.m3701c(1935763834);
-                                if (bVarM3701c3 != null) {
-                                    Objects.requireNonNull(c3055nM3731a);
-                                    C2757x c2757x7 = bVarM3701c3.f8353b;
-                                    int i30 = c3055nM3731a.f8474d;
-                                    c2757x7.m3079E(8);
-                                    if ((c2757x7.m3086f() & ViewCompat.MEASURED_SIZE_MASK & 1) == 1) {
-                                        c2757x7.m3080F(8);
-                                    }
-                                    int iM3100t = c2757x7.m3100t();
-                                    int iM3103w2 = c2757x7.m3103w();
-                                    int i31 = c3056o6.f8480e;
-                                    if (iM3103w2 > i31) {
-                                        throw ParserException.m8755a(C1643a.m853h(78, "Saiz sample count ", iM3103w2, " is greater than fragment sample count", i31), null);
-                                    }
-                                    if (iM3100t == 0) {
-                                        boolean[] zArr2 = c3056o6.f8487l;
-                                        i5 = 0;
-                                        for (int i32 = 0; i32 < iM3103w2; i32++) {
-                                            int iM3100t2 = c2757x7.m3100t();
-                                            i5 += iM3100t2;
-                                            zArr2[i32] = iM3100t2 > i30;
-                                        }
-                                    } else {
-                                        i5 = (iM3100t * iM3103w2) + 0;
-                                        Arrays.fill(c3056o6.f8487l, 0, iM3103w2, iM3100t > i30);
-                                    }
-                                    Arrays.fill(c3056o6.f8487l, iM3103w2, c3056o6.f8480e, false);
-                                    if (i5 > 0) {
-                                        C2757x c2757x8 = c3056o6.f8489n;
-                                        byte[] bArr5 = c2757x8.f6793a;
-                                        if (bArr5.length < i5) {
-                                            bArr5 = new byte[i5];
-                                        }
-                                        c2757x8.m3077C(bArr5, i5);
-                                        c3056o6.f8486k = true;
-                                        c3056o6.f8490o = true;
-                                    }
-                                }
-                                AbstractC3045d.b bVarM3701c4 = aVar2.m3701c(1935763823);
-                                if (bVarM3701c4 != null) {
-                                    C2757x c2757x9 = bVarM3701c4.f8353b;
-                                    c2757x9.m3079E(8);
-                                    int iM3086f8 = c2757x9.m3086f();
-                                    if ((16777215 & iM3086f8 & 1) == 1) {
-                                        c2757x9.m3080F(8);
-                                    }
-                                    int iM3103w3 = c2757x9.m3103w();
-                                    if (iM3103w3 != 1) {
-                                        throw C1643a.m884w0(40, "Unexpected saio entry count: ", iM3103w3, null);
-                                    }
-                                    c3056o6.f8478c += ((iM3086f8 >> 24) & 255) == 0 ? c2757x9.m3101u() : c2757x9.m3104x();
-                                }
-                                byte[] bArr6 = null;
-                                AbstractC3045d.b bVarM3701c5 = aVar2.m3701c(1936027235);
-                                if (bVarM3701c5 != null) {
-                                    m3712i(bVarM3701c5.f8353b, 0, c3056o6);
-                                }
-                                String str = c3055nM3731a != null ? c3055nM3731a.f8472b : null;
-                                C2757x c2757x10 = null;
-                                C2757x c2757x11 = null;
-                                for (int i33 = 0; i33 < aVar2.f8351c.size(); i33++) {
-                                    AbstractC3045d.b bVar6 = aVar2.f8351c.get(i33);
-                                    C2757x c2757x12 = bVar6.f8353b;
-                                    int i34 = bVar6.f8349a;
-                                    if (i34 == 1935828848) {
-                                        c2757x12.m3079E(12);
-                                        if (c2757x12.m3086f() == 1936025959) {
-                                            c2757x10 = c2757x12;
-                                        }
-                                    } else if (i34 == 1936158820) {
-                                        c2757x12.m3079E(12);
-                                        if (c2757x12.m3086f() == 1936025959) {
-                                            c2757x11 = c2757x12;
-                                        }
-                                    }
-                                }
-                                if (c2757x10 != null && c2757x11 != null) {
-                                    c2757x10.m3079E(8);
-                                    int iM3086f9 = (c2757x10.m3086f() >> 24) & 255;
-                                    c2757x10.m3080F(4);
-                                    if (iM3086f9 == 1) {
-                                        c2757x10.m3080F(4);
-                                    }
-                                    if (c2757x10.m3086f() != 1) {
-                                        throw ParserException.m8756b("Entry count in sbgp != 1 (unsupported).");
-                                    }
-                                    c2757x11.m3079E(8);
-                                    int iM3086f10 = (c2757x11.m3086f() >> 24) & 255;
-                                    c2757x11.m3080F(4);
-                                    if (iM3086f10 == 1) {
-                                        if (c2757x11.m3101u() == 0) {
-                                            throw ParserException.m8756b("Variable length description in sgpd found (unsupported)");
-                                        }
-                                    } else if (iM3086f10 >= 2) {
-                                        c2757x11.m3080F(4);
-                                    }
-                                    if (c2757x11.m3101u() != 1) {
-                                        throw ParserException.m8756b("Entry count in sgpd != 1 (unsupported).");
-                                    }
-                                    c2757x11.m3080F(1);
-                                    int iM3100t3 = c2757x11.m3100t();
-                                    int i35 = (iM3100t3 & 240) >> 4;
-                                    int i36 = iM3100t3 & 15;
-                                    boolean z10 = c2757x11.m3100t() == 1;
-                                    if (z10) {
-                                        int iM3100t4 = c2757x11.m3100t();
-                                        byte[] bArr7 = new byte[16];
-                                        System.arraycopy(c2757x11.f6793a, c2757x11.f6794b, bArr7, 0, 16);
-                                        c2757x11.f6794b += 16;
-                                        if (iM3100t4 == 0) {
-                                            int iM3100t5 = c2757x11.m3100t();
-                                            bArr6 = new byte[iM3100t5];
-                                            System.arraycopy(c2757x11.f6793a, c2757x11.f6794b, bArr6, 0, iM3100t5);
-                                            c2757x11.f6794b += iM3100t5;
-                                        }
-                                        c3056o6.f8486k = true;
-                                        c3056o6.f8488m = new C3055n(z10, str, iM3100t4, bArr7, i35, i36, bArr6);
-                                    }
-                                }
-                                int size5 = aVar2.f8351c.size();
-                                int i37 = 0;
-                                while (i37 < size5) {
-                                    AbstractC3045d.b bVar7 = aVar2.f8351c.get(i37);
-                                    if (bVar7.f8349a == 1970628964) {
-                                        C2757x c2757x13 = bVar7.f8353b;
-                                        c2757x13.m3079E(8);
-                                        bArr2 = bArr4;
-                                        System.arraycopy(c2757x13.f6793a, c2757x13.f6794b, bArr2, 0, 16);
-                                        c2757x13.f6794b += 16;
-                                        if (Arrays.equals(bArr2, f8371a)) {
-                                            m3712i(c2757x13, 16, c3056o6);
-                                        }
-                                    } else {
-                                        bArr2 = bArr4;
-                                    }
-                                    i37++;
-                                    bArr4 = bArr2;
-                                }
-                                bArr = bArr4;
-                            }
-                        } else {
-                            bArr = bArr3;
-                            sparseArray = sparseArray3;
-                            aVar = aVarPop;
-                            i = i16;
-                            i2 = size3;
-                            i3 = i17;
-                        }
-                        i17 = i3 + 1;
-                        i15 = 8;
-                        bArr3 = bArr;
-                        i16 = i;
-                        size3 = i2;
-                        sparseArray3 = sparseArray;
-                        aVarPop = aVar;
-                    }
-                    DrmInitData drmInitDataM3711h2 = m3711h(aVarPop.f8351c);
-                    c3048g = this;
-                    if (drmInitDataM3711h2 != null) {
-                        int size6 = c3048g.f8382e.size();
-                        for (int i38 = 0; i38 < size6; i38++) {
-                            b bVarValueAt = c3048g.f8382e.valueAt(i38);
-                            C3054m c3054m5 = bVarValueAt.f8409d.f8493a;
-                            C3047f c3047f4 = bVarValueAt.f8407b.f8476a;
-                            int i39 = C2738e0.f6708a;
-                            C3055n c3055nM3731a2 = c3054m5.m3731a(c3047f4.f8367a);
-                            DrmInitData drmInitDataM8835a = drmInitDataM3711h2.m8835a(c3055nM3731a2 != null ? c3055nM3731a2.f8472b : null);
-                            C2811j1.b bVarM3275a = bVarValueAt.f8409d.f8493a.f8465f.m3275a();
-                            bVarM3275a.f7176n = drmInitDataM8835a;
-                            bVarValueAt.f8406a.mo2526e(bVarM3275a.m3277a());
-                        }
-                    }
-                    if (c3048g.f8399v != -9223372036854775807L) {
-                        int size7 = c3048g.f8382e.size();
-                        for (int i40 = 0; i40 < size7; i40++) {
-                            b bVarValueAt2 = c3048g.f8382e.valueAt(i40);
-                            long j6 = c3048g.f8399v;
-                            int i41 = bVarValueAt2.f8411f;
-                            while (true) {
-                                C3056o c3056o7 = bVarValueAt2.f8407b;
-                                if (i41 >= c3056o7.f8480e || c3056o7.f8484i[i41] >= j6) {
-                                    break;
-                                }
-                                if (c3056o7.f8485j[i41]) {
-                                    bVarValueAt2.f8414i = i41;
-                                }
-                                i41++;
-                            }
-                        }
-                        c3048g.f8399v = -9223372036854775807L;
-                    }
-                    c3048g3 = c3048g;
-                } else {
-                    c3048g = c3048g2;
-                    if (!c3048g3.f8390m.isEmpty()) {
-                        c3048g3.f8390m.peek().f8352d.add(aVarPop);
-                    }
-                }
-            }
-            c3048g2 = c3048g;
-        }
-        m3713c();
-    }
-
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3031h
     public void release() {
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.i0.g$b */
+    /* JADX INFO: compiled from: FragmentedMp4Extractor.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC3122w f8406a;
+
+        /* JADX INFO: renamed from: d */
+        public C3057p f8409d;
+
+        /* JADX INFO: renamed from: e */
+        public C3047f f8410e;
+
+        /* JADX INFO: renamed from: f */
+        public int f8411f;
+
+        /* JADX INFO: renamed from: g */
+        public int f8412g;
+
+        /* JADX INFO: renamed from: h */
+        public int f8413h;
+
+        /* JADX INFO: renamed from: i */
+        public int f8414i;
+
+        /* JADX INFO: renamed from: l */
+        public boolean f8417l;
+
+        /* JADX INFO: renamed from: b */
+        public final C3056o f8407b = new C3056o();
+
+        /* JADX INFO: renamed from: c */
+        public final C2757x f8408c = new C2757x();
+
+        /* JADX INFO: renamed from: j */
+        public final C2757x f8415j = new C2757x(1);
+
+        /* JADX INFO: renamed from: k */
+        public final C2757x f8416k = new C2757x();
+
+        public b(InterfaceC3122w interfaceC3122w, C3057p c3057p, C3047f c3047f) {
+            this.f8406a = interfaceC3122w;
+            this.f8409d = c3057p;
+            this.f8410e = c3047f;
+            this.f8409d = c3057p;
+            this.f8410e = c3047f;
+            interfaceC3122w.mo2526e(c3057p.f8493a.f8465f);
+            m3720e();
+        }
+
+        /* JADX INFO: renamed from: a */
+        public long m3716a() {
+            return !this.f8417l ? this.f8409d.f8495c[this.f8411f] : this.f8407b.f8481f[this.f8413h];
+        }
+
+        @Nullable
+        /* JADX INFO: renamed from: b */
+        public C3055n m3717b() {
+            if (!this.f8417l) {
+                return null;
+            }
+            C3056o c3056o = this.f8407b;
+            C3047f c3047f = c3056o.f8476a;
+            int i = C2738e0.f6708a;
+            int i2 = c3047f.f8367a;
+            C3055n c3055nM3731a = c3056o.f8488m;
+            if (c3055nM3731a == null) {
+                c3055nM3731a = this.f8409d.f8493a.m3731a(i2);
+            }
+            if (c3055nM3731a == null || !c3055nM3731a.f8471a) {
+                return null;
+            }
+            return c3055nM3731a;
+        }
+
+        /* JADX INFO: renamed from: c */
+        public boolean m3718c() {
+            this.f8411f++;
+            if (!this.f8417l) {
+                return false;
+            }
+            int i = this.f8412g + 1;
+            this.f8412g = i;
+            int[] iArr = this.f8407b.f8482g;
+            int i2 = this.f8413h;
+            if (i != iArr[i2]) {
+                return true;
+            }
+            this.f8413h = i2 + 1;
+            this.f8412g = 0;
+            return false;
+        }
+
+        /* JADX INFO: renamed from: d */
+        public int m3719d(int i, int i2) {
+            C2757x c2757x;
+            C3055n c3055nM3717b = m3717b();
+            if (c3055nM3717b == null) {
+                return 0;
+            }
+            int length = c3055nM3717b.f8474d;
+            if (length != 0) {
+                c2757x = this.f8407b.f8489n;
+            } else {
+                byte[] bArr = c3055nM3717b.f8475e;
+                int i3 = C2738e0.f6708a;
+                C2757x c2757x2 = this.f8416k;
+                int length2 = bArr.length;
+                c2757x2.f6793a = bArr;
+                c2757x2.f6795c = length2;
+                c2757x2.f6794b = 0;
+                length = bArr.length;
+                c2757x = c2757x2;
+            }
+            C3056o c3056o = this.f8407b;
+            boolean z2 = c3056o.f8486k && c3056o.f8487l[this.f8411f];
+            boolean z3 = z2 || i2 != 0;
+            C2757x c2757x3 = this.f8415j;
+            c2757x3.f6793a[0] = (byte) ((z3 ? 128 : 0) | length);
+            c2757x3.m3079E(0);
+            this.f8406a.mo2527f(this.f8415j, 1, 1);
+            this.f8406a.mo2527f(c2757x, length, 1);
+            if (!z3) {
+                return length + 1;
+            }
+            if (!z2) {
+                this.f8408c.m3075A(8);
+                C2757x c2757x4 = this.f8408c;
+                byte[] bArr2 = c2757x4.f6793a;
+                bArr2[0] = 0;
+                bArr2[1] = 1;
+                bArr2[2] = (byte) ((i2 >> 8) & 255);
+                bArr2[3] = (byte) (i2 & 255);
+                bArr2[4] = (byte) ((i >> 24) & 255);
+                bArr2[5] = (byte) ((i >> 16) & 255);
+                bArr2[6] = (byte) ((i >> 8) & 255);
+                bArr2[7] = (byte) (i & 255);
+                this.f8406a.mo2527f(c2757x4, 8, 1);
+                return length + 1 + 8;
+            }
+            C2757x c2757x5 = this.f8407b.f8489n;
+            int iM3105y = c2757x5.m3105y();
+            c2757x5.m3080F(-2);
+            int i4 = (iM3105y * 6) + 2;
+            if (i2 != 0) {
+                this.f8408c.m3075A(i4);
+                byte[] bArr3 = this.f8408c.f6793a;
+                c2757x5.m3085e(bArr3, 0, i4);
+                int i5 = (((bArr3[2] & 255) << 8) | (bArr3[3] & 255)) + i2;
+                bArr3[2] = (byte) ((i5 >> 8) & 255);
+                bArr3[3] = (byte) (i5 & 255);
+                c2757x5 = this.f8408c;
+            }
+            this.f8406a.mo2527f(c2757x5, i4, 1);
+            return length + 1 + i4;
+        }
+
+        /* JADX INFO: renamed from: e */
+        public void m3720e() {
+            C3056o c3056o = this.f8407b;
+            c3056o.f8479d = 0;
+            c3056o.f8491p = 0L;
+            c3056o.f8492q = false;
+            c3056o.f8486k = false;
+            c3056o.f8490o = false;
+            c3056o.f8488m = null;
+            this.f8411f = 0;
+            this.f8413h = 0;
+            this.f8412g = 0;
+            this.f8414i = 0;
+            this.f8417l = false;
+        }
     }
 }

@@ -72,8 +72,232 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
     private final LoggingConfig loggingConfig;
     private String phone;
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$1 */
     /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class Companion {
+    public final class C72071 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, TrackNetworkMetadataReceiver> {
+        public static final C72071 INSTANCE = new C72071();
+
+        public C72071() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final TrackNetworkMetadataReceiver invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
+            return new TrackNetworkActionUserVerifyPhone();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$2 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72082 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, Unit> {
+        public C72082() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
+            invoke2(modelPhoneVerificationToken);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelPhoneVerificationToken modelPhoneVerificationToken) {
+            C12238m.checkNotNullParameter(modelPhoneVerificationToken, "it");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetAuthPhoneVerify.RESULT_EXTRA_TOKEN, modelPhoneVerificationToken.getToken());
+            AppActivity appActivity = WidgetAuthPhoneVerify.this.getAppActivity();
+            if (appActivity != null) {
+                appActivity.setResult(-1, intent);
+            }
+            AppActivity appActivity2 = WidgetAuthPhoneVerify.this.getAppActivity();
+            if (appActivity2 != null) {
+                appActivity2.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$3 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72093 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C72093() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Phone Verification", "response_error", C12145m.listOf(ModelAuditLogEntry.CHANGE_KEY_CODE));
+            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$1 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72101 extends AbstractC12240o implements Function1<String, Unit> {
+        public static final C72101 INSTANCE = new C72101();
+
+        public C72101() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$2 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final /* synthetic */ class C72112 extends C12236k implements Function1<String, Unit> {
+        public C72112(WidgetAuthPhoneVerify widgetAuthPhoneVerify) {
+            super(1, widgetAuthPhoneVerify, WidgetAuthPhoneVerify.class, "evaluateCode", "evaluateCode(Ljava/lang/String;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "p1");
+            ((WidgetAuthPhoneVerify) this.receiver).evaluateCode(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$3 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72123 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C72123() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            WidgetAuthPhoneVerify widgetAuthPhoneVerify = WidgetAuthPhoneVerify.this;
+            widgetAuthPhoneVerify.evaluateCode(widgetAuthPhoneVerify.getBinding().f15697c.getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onResume$1 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72131 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public C72131() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            WidgetAuthPhoneVerify.this.tryPasteCodeFromClipboard();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72163 extends AbstractC12240o implements Function1<String, Unit> {
+        public C72163() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            WidgetAuthPhoneVerify.this.evaluateCode(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final /* synthetic */ class C72174 extends C12236k implements Function1<String, Unit> {
+        public C72174(WidgetAuthPhoneVerify widgetAuthPhoneVerify) {
+            super(1, widgetAuthPhoneVerify, WidgetAuthPhoneVerify.class, "inputCode", "inputCode(Ljava/lang/String;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "p1");
+            ((WidgetAuthPhoneVerify) this.receiver).inputCode(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$resendCode$1 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72181 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C72181() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$resendCode$2 */
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class C72192 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C72192() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -120,10 +344,10 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static abstract class Result {
+    public abstract class Result {
 
         /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-        public static final class Cancelled extends Result {
+        public final class Cancelled extends Result {
             public static final Cancelled INSTANCE = new Cancelled();
 
             private Cancelled() {
@@ -132,7 +356,7 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
         }
 
         /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-        public static final /* data */ class Token extends Result {
+        public final /* data */ class Token extends Result {
             private final String token;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -149,11 +373,6 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
                 return token.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getToken() {
-                return this.token;
-            }
-
             public final Token copy(String token) {
                 C12238m.checkNotNullParameter(token, "token");
                 return new Token(token);
@@ -164,6 +383,11 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
                     return (other instanceof Token) && C12238m.areEqual(this.token, ((Token) other).token);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getToken() {
+                return this.token;
             }
 
             public final String getToken() {
@@ -188,230 +412,6 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
 
         public /* synthetic */ Result(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$1 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72071 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, TrackNetworkMetadataReceiver> {
-        public static final C72071 INSTANCE = new C72071();
-
-        public C72071() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final TrackNetworkMetadataReceiver invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
-            return new TrackNetworkActionUserVerifyPhone();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$2 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72082 extends AbstractC12240o implements Function1<ModelPhoneVerificationToken, Unit> {
-        public C72082() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelPhoneVerificationToken modelPhoneVerificationToken) {
-            invoke2(modelPhoneVerificationToken);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelPhoneVerificationToken modelPhoneVerificationToken) {
-            C12238m.checkNotNullParameter(modelPhoneVerificationToken, "it");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetAuthPhoneVerify.RESULT_EXTRA_TOKEN, modelPhoneVerificationToken.getToken());
-            AppActivity appActivity = WidgetAuthPhoneVerify.this.getAppActivity();
-            if (appActivity != null) {
-                appActivity.setResult(-1, intent);
-            }
-            AppActivity appActivity2 = WidgetAuthPhoneVerify.this.getAppActivity();
-            if (appActivity2 != null) {
-                appActivity2.finish();
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$evaluateCode$3 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72093 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C72093() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Phone Verification", "response_error", C12145m.listOf(ModelAuditLogEntry.CHANGE_KEY_CODE));
-            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$1 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72101 extends AbstractC12240o implements Function1<String, Unit> {
-        public static final C72101 INSTANCE = new C72101();
-
-        public C72101() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$2 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final /* synthetic */ class C72112 extends C12236k implements Function1<String, Unit> {
-        public C72112(WidgetAuthPhoneVerify widgetAuthPhoneVerify) {
-            super(1, widgetAuthPhoneVerify, WidgetAuthPhoneVerify.class, "evaluateCode", "evaluateCode(Ljava/lang/String;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "p1");
-            ((WidgetAuthPhoneVerify) this.receiver).evaluateCode(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$inputCode$3 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72123 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C72123() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            WidgetAuthPhoneVerify widgetAuthPhoneVerify = WidgetAuthPhoneVerify.this;
-            widgetAuthPhoneVerify.evaluateCode(widgetAuthPhoneVerify.getBinding().f15697c.getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onResume$1 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72131 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C72131() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            WidgetAuthPhoneVerify.this.tryPasteCodeFromClipboard();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72163 extends AbstractC12240o implements Function1<String, Unit> {
-        public C72163() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
-            WidgetAuthPhoneVerify.this.evaluateCode(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final /* synthetic */ class C72174 extends C12236k implements Function1<String, Unit> {
-        public C72174(WidgetAuthPhoneVerify widgetAuthPhoneVerify) {
-            super(1, widgetAuthPhoneVerify, WidgetAuthPhoneVerify.class, "inputCode", "inputCode(Ljava/lang/String;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "p1");
-            ((WidgetAuthPhoneVerify) this.receiver).inputCode(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$resendCode$1 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72181 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C72181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthPhoneVerify$resendCode$2 */
-    /* JADX INFO: compiled from: WidgetAuthPhoneVerify.kt */
-    public static final class C72192 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C72192() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetAuthPhoneVerify.this.getBinding().f15697c.m8538b();
         }
     }
 
@@ -452,6 +452,11 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
         return (WidgetAuthPhoneVerifyBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final void inputCode(String code) {
         if (getView() != null) {
             getBinding().f15697c.setOnCodeEntered(C72101.INSTANCE);
@@ -461,45 +466,6 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
             C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n        .time…L, TimeUnit.MILLISECONDS)");
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11068d0, this, null, 2, null), (Class<?>) WidgetAuthPhoneVerify.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72123());
         }
-    }
-
-    private final void resendCode() {
-        RestAPI api = RestAPI.INSTANCE.getApi();
-        String str = this.phone;
-        if (str == null) {
-            C12238m.throwUninitializedPropertyAccessException("phone");
-        }
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.phoneVerificationsResend(new RestAPIParams.VerificationCodeResend(str)), false, 1, null), this, null, 2, null), getBinding().f15701g, 0L, 2, null), (Class<?>) WidgetAuthPhoneVerify.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72192()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72181());
-    }
-
-    private final void tryPasteCodeFromClipboard() {
-        ClipData primaryClip;
-        Context context = getContext();
-        if (context != null) {
-            C12238m.checkNotNullExpressionValue(context, "context ?: return");
-            Object systemService = context.getSystemService("clipboard");
-            if (!(systemService instanceof ClipboardManager)) {
-                systemService = null;
-            }
-            ClipboardManager clipboardManager = (ClipboardManager) systemService;
-            if (clipboardManager == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
-                return;
-            }
-            C12238m.checkNotNullExpressionValue(primaryClip, "clipboard.primaryClip ?: return");
-            if (primaryClip.getItemCount() >= 1) {
-                CharSequence charSequenceCoerceToText = primaryClip.getItemAt(0).coerceToText(context);
-                C12238m.checkNotNullExpressionValue(charSequenceCoerceToText, "clipData.getItemAt(0).coerceToText(context)");
-                String strReplace = new Regex(" ").replace(charSequenceCoerceToText, "");
-                if (strReplace.length() == 6 && TextUtils.isDigitsOnly(strReplace)) {
-                    inputCode(strReplace);
-                }
-            }
-        }
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -589,5 +555,39 @@ public final class WidgetAuthPhoneVerify extends AppFragment {
         getBinding().f15697c.setOnCodeEntered(new C72163());
         registerForContextMenu(getBinding().f15697c);
         SmsListener.INSTANCE.startSmsListener(new C72174(this));
+    }
+
+    private final void resendCode() {
+        RestAPI api = RestAPI.INSTANCE.getApi();
+        String str = this.phone;
+        if (str == null) {
+            C12238m.throwUninitializedPropertyAccessException("phone");
+        }
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.phoneVerificationsResend(new RestAPIParams.VerificationCodeResend(str)), false, 1, null), this, null, 2, null), getBinding().f15701g, 0L, 2, null), (Class<?>) WidgetAuthPhoneVerify.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72192()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C72181());
+    }
+
+    private final void tryPasteCodeFromClipboard() {
+        ClipData primaryClip;
+        Context context = getContext();
+        if (context != null) {
+            C12238m.checkNotNullExpressionValue(context, "context ?: return");
+            Object systemService = context.getSystemService("clipboard");
+            if (!(systemService instanceof ClipboardManager)) {
+                systemService = null;
+            }
+            ClipboardManager clipboardManager = (ClipboardManager) systemService;
+            if (clipboardManager == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
+                return;
+            }
+            C12238m.checkNotNullExpressionValue(primaryClip, "clipboard.primaryClip ?: return");
+            if (primaryClip.getItemCount() >= 1) {
+                CharSequence charSequenceCoerceToText = primaryClip.getItemAt(0).coerceToText(context);
+                C12238m.checkNotNullExpressionValue(charSequenceCoerceToText, "clipData.getItemAt(0).coerceToText(context)");
+                String strReplace = new Regex(" ").replace(charSequenceCoerceToText, "");
+                if (strReplace.length() == 6 && TextUtils.isDigitsOnly(strReplace)) {
+                    inputCode(strReplace);
+                }
+            }
+        }
     }
 }

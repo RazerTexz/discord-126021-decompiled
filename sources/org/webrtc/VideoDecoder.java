@@ -7,7 +7,7 @@ public interface VideoDecoder {
         void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2);
     }
 
-    public static class DecodeInfo {
+    public class DecodeInfo {
         public final boolean isMissingFrames;
         public final long renderTimeMs;
 
@@ -17,7 +17,7 @@ public interface VideoDecoder {
         }
     }
 
-    public static class Settings {
+    public class Settings {
         public final int height;
         public final int numberOfCores;
         public final int width;

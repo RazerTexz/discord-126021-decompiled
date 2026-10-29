@@ -14,7 +14,7 @@ public final /* data */ class ModelSpotifyAlbum {
     private final String name;
 
     /* JADX INFO: compiled from: ModelSpotifyAlbum.kt */
-    public static final /* data */ class AlbumImage {
+    public final /* data */ class AlbumImage {
         private final String url;
 
         public AlbumImage(String str) {
@@ -28,11 +28,6 @@ public final /* data */ class ModelSpotifyAlbum {
             return albumImage.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getUrl() {
-            return this.url;
-        }
-
         public final AlbumImage copy(String url) {
             return new AlbumImage(url);
         }
@@ -42,6 +37,11 @@ public final /* data */ class ModelSpotifyAlbum {
                 return (other instanceof AlbumImage) && C12238m.areEqual(this.url, ((AlbumImage) other).url);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getUrl() {
+            return this.url;
         }
 
         public final String getUrl() {
@@ -72,6 +72,10 @@ public final /* data */ class ModelSpotifyAlbum {
         this.name = str3;
     }
 
+    public final List<AlbumImage> component3() {
+        return this.images;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelSpotifyAlbum copy$default(ModelSpotifyAlbum modelSpotifyAlbum, String str, String str2, List list, String str3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -87,25 +91,6 @@ public final /* data */ class ModelSpotifyAlbum {
             str3 = modelSpotifyAlbum.name;
         }
         return modelSpotifyAlbum.copy(str, str2, list, str3);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getAlbumType() {
-        return this.albumType;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    public final List<AlbumImage> component3() {
-        return this.images;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getName() {
-        return this.name;
     }
 
     public final ModelSpotifyAlbum copy(String albumType, String id2, List<AlbumImage> images, String name) {
@@ -127,8 +112,18 @@ public final /* data */ class ModelSpotifyAlbum {
         return C12238m.areEqual(this.albumType, modelSpotifyAlbum.albumType) && C12238m.areEqual(this.id, modelSpotifyAlbum.id) && C12238m.areEqual(this.images, modelSpotifyAlbum.images) && C12238m.areEqual(this.name, modelSpotifyAlbum.name);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getAlbumType() {
         return this.albumType;
+    }
+
+    public final String getAlbumType() {
+        return this.albumType;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getId() {
+        return this.id;
     }
 
     public final String getId() {
@@ -137,6 +132,11 @@ public final /* data */ class ModelSpotifyAlbum {
 
     public final List<AlbumImage> getImages() {
         return this.images;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

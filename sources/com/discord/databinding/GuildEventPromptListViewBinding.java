@@ -36,6 +36,12 @@ public final class GuildEventPromptListViewBinding implements ViewBinding {
         this.f15120d = guildEventPromptView3;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15117a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static GuildEventPromptListViewBinding m8384a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -57,11 +63,5 @@ public final class GuildEventPromptListViewBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15117a;
     }
 }

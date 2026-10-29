@@ -44,7 +44,7 @@ public final class C12369m {
 
     /* JADX INFO: renamed from: f0.m$a */
     /* JADX INFO: compiled from: ConnectionSpec.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public boolean f25938a;
@@ -198,6 +198,31 @@ public final class C12369m {
         this.f25937h = strArr2;
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof C12369m)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        boolean z2 = this.f25934e;
+        C12369m c12369m = (C12369m) obj;
+        if (z2 != c12369m.f25934e) {
+            return false;
+        }
+        return !z2 || (Arrays.equals(this.f25936g, c12369m.f25936g) && Arrays.equals(this.f25937h, c12369m.f25937h) && this.f25935f == c12369m.f25935f);
+    }
+
+    public int hashCode() {
+        if (!this.f25934e) {
+            return 17;
+        }
+        String[] strArr = this.f25936g;
+        int iHashCode = (527 + (strArr != null ? Arrays.hashCode(strArr) : 0)) * 31;
+        String[] strArr2 = this.f25937h;
+        return ((iHashCode + (strArr2 != null ? Arrays.hashCode(strArr2) : 0)) * 31) + (!this.f25935f ? 1 : 0);
+    }
+
     /* JADX INFO: renamed from: a */
     public final List<C12366j> m10375a() {
         String[] strArr = this.f25936g;
@@ -242,31 +267,6 @@ public final class C12369m {
             arrayList.add(EnumC12268d0.f25393p.m10110a(str));
         }
         return C12163u.toList(arrayList);
-    }
-
-    public boolean equals(Object obj) {
-        if (!(obj instanceof C12369m)) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        boolean z2 = this.f25934e;
-        C12369m c12369m = (C12369m) obj;
-        if (z2 != c12369m.f25934e) {
-            return false;
-        }
-        return !z2 || (Arrays.equals(this.f25936g, c12369m.f25936g) && Arrays.equals(this.f25937h, c12369m.f25937h) && this.f25935f == c12369m.f25935f);
-    }
-
-    public int hashCode() {
-        if (!this.f25934e) {
-            return 17;
-        }
-        String[] strArr = this.f25936g;
-        int iHashCode = (527 + (strArr != null ? Arrays.hashCode(strArr) : 0)) * 31;
-        String[] strArr2 = this.f25937h;
-        return ((iHashCode + (strArr2 != null ? Arrays.hashCode(strArr2) : 0)) * 31) + (!this.f25935f ? 1 : 0);
     }
 
     public String toString() {

@@ -32,6 +32,19 @@ public final class BinderC3214q extends BinderC3453b implements IInterface {
         this.f9240a = context;
     }
 
+    /* JADX INFO: renamed from: g */
+    public final void m3995g() {
+        if (C3404f.m4199D0(this.f9240a, Binder.getCallingUid())) {
+            return;
+        }
+        int callingUid = Binder.getCallingUid();
+        StringBuilder sb = new StringBuilder(52);
+        sb.append("Calling UID ");
+        sb.append(callingUid);
+        sb.append(" is not Google Play services.");
+        throw new SecurityException(sb.toString());
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p316c.BinderC3453b
     /* JADX INFO: renamed from: c */
     public final boolean mo3994c(int i, Parcel parcel, Parcel parcel2, int i2) {
@@ -96,18 +109,5 @@ public final class BinderC3214q extends BinderC3453b implements IInterface {
         }
         C3363k.m4164a(basePendingResultMo4049b2);
         return true;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final void m3995g() {
-        if (C3404f.m4199D0(this.f9240a, Binder.getCallingUid())) {
-            return;
-        }
-        int callingUid = Binder.getCallingUid();
-        StringBuilder sb = new StringBuilder(52);
-        sb.append("Calling UID ");
-        sb.append(callingUid);
-        sb.append(" is not Google Play services.");
-        throw new SecurityException(sb.toString());
     }
 }

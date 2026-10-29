@@ -22,63 +22,9 @@ public class C12587b extends Scheduler {
     /* JADX INFO: renamed from: a */
     public final Handler f26703a;
 
-    /* JADX INFO: renamed from: j0.j.b.b$a */
-    /* JADX INFO: compiled from: LooperScheduler.java */
-    public static class a extends Scheduler.Worker {
-
-        /* JADX INFO: renamed from: j */
-        public final Handler f26704j;
-
-        /* JADX INFO: renamed from: k */
-        public final C12585b f26705k = C12584a.f26698a.m10737a();
-
-        /* JADX INFO: renamed from: l */
-        public volatile boolean f26706l;
-
-        public a(Handler handler) {
-            this.f26704j = handler;
-        }
-
-        @Override // rx.Scheduler.Worker
-        /* JADX INFO: renamed from: a */
-        public Subscription mo10740a(Action0 action0) {
-            return mo10741b(action0, 0L, TimeUnit.MILLISECONDS);
-        }
-
-        @Override // rx.Scheduler.Worker
-        /* JADX INFO: renamed from: b */
-        public Subscription mo10741b(Action0 action0, long j, TimeUnit timeUnit) {
-            if (this.f26706l) {
-                return C12787c.f27422a;
-            }
-            Objects.requireNonNull(this.f26705k);
-            Handler handler = this.f26704j;
-            b bVar = new b(action0, handler);
-            Message messageObtain = Message.obtain(handler, bVar);
-            messageObtain.obj = this;
-            this.f26704j.sendMessageDelayed(messageObtain, timeUnit.toMillis(j));
-            if (!this.f26706l) {
-                return bVar;
-            }
-            this.f26704j.removeCallbacks(bVar);
-            return C12787c.f27422a;
-        }
-
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.f26706l;
-        }
-
-        @Override // p658rx.Subscription
-        public void unsubscribe() {
-            this.f26706l = true;
-            this.f26704j.removeCallbacksAndMessages(this);
-        }
-    }
-
     /* JADX INFO: renamed from: j0.j.b.b$b */
     /* JADX INFO: compiled from: LooperScheduler.java */
-    public static final class b implements Runnable, Subscription {
+    public final class b implements Runnable, Subscription {
 
         /* JADX INFO: renamed from: j */
         public final Action0 f26707j;
@@ -126,5 +72,59 @@ public class C12587b extends Scheduler {
     /* JADX INFO: renamed from: a */
     public Scheduler.Worker mo10739a() {
         return new a(this.f26703a);
+    }
+
+    /* JADX INFO: renamed from: j0.j.b.b$a */
+    /* JADX INFO: compiled from: LooperScheduler.java */
+    public class a extends Scheduler.Worker {
+
+        /* JADX INFO: renamed from: j */
+        public final Handler f26704j;
+
+        /* JADX INFO: renamed from: l */
+        public volatile boolean f26706l;
+
+        /* JADX INFO: renamed from: k */
+        public final C12585b f26705k = C12584a.f26698a.m10737a();
+
+        public a(Handler handler) {
+            this.f26704j = handler;
+        }
+
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f26706l;
+        }
+
+        @Override // rx.Scheduler.Worker
+        /* JADX INFO: renamed from: a */
+        public Subscription mo10740a(Action0 action0) {
+            return mo10741b(action0, 0L, TimeUnit.MILLISECONDS);
+        }
+
+        @Override // rx.Scheduler.Worker
+        /* JADX INFO: renamed from: b */
+        public Subscription mo10741b(Action0 action0, long j, TimeUnit timeUnit) {
+            if (this.f26706l) {
+                return C12787c.f27422a;
+            }
+            Objects.requireNonNull(this.f26705k);
+            Handler handler = this.f26704j;
+            b bVar = new b(action0, handler);
+            Message messageObtain = Message.obtain(handler, bVar);
+            messageObtain.obj = this;
+            this.f26704j.sendMessageDelayed(messageObtain, timeUnit.toMillis(j));
+            if (!this.f26706l) {
+                return bVar;
+            }
+            this.f26704j.removeCallbacks(bVar);
+            return C12787c.f27422a;
+        }
+
+        @Override // p658rx.Subscription
+        public void unsubscribe() {
+            this.f26706l = true;
+            this.f26704j.removeCallbacksAndMessages(this);
+        }
     }
 }

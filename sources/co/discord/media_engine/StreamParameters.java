@@ -28,46 +28,6 @@ public final /* data */ class StreamParameters {
         this.maxPixelCount = i5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final MediaType getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getRid() {
-        return this.rid;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getSsrc() {
-        return this.ssrc;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getRtxSsrc() {
-        return this.rtxSsrc;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getActive() {
-        return this.active;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getMaxBitrate() {
-        return this.maxBitrate;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getQuality() {
-        return this.quality;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final int getMaxPixelCount() {
-        return this.maxPixelCount;
-    }
-
     public final StreamParameters copy(MediaType type, String rid, int ssrc, int rtxSsrc, boolean active, int maxBitrate, int quality, int maxPixelCount) {
         C12238m.checkNotNullParameter(type, "type");
         C12238m.checkNotNullParameter(rid, "rid");
@@ -85,32 +45,72 @@ public final /* data */ class StreamParameters {
         return C12238m.areEqual(this.type, streamParameters.type) && C12238m.areEqual(this.rid, streamParameters.rid) && this.ssrc == streamParameters.ssrc && this.rtxSsrc == streamParameters.rtxSsrc && this.active == streamParameters.active && this.maxBitrate == streamParameters.maxBitrate && this.quality == streamParameters.quality && this.maxPixelCount == streamParameters.maxPixelCount;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getActive() {
         return this.active;
+    }
+
+    public final boolean getActive() {
+        return this.active;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getMaxBitrate() {
+        return this.maxBitrate;
     }
 
     public final int getMaxBitrate() {
         return this.maxBitrate;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final int getMaxPixelCount() {
         return this.maxPixelCount;
+    }
+
+    public final int getMaxPixelCount() {
+        return this.maxPixelCount;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getQuality() {
+        return this.quality;
     }
 
     public final int getQuality() {
         return this.quality;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getRid() {
         return this.rid;
+    }
+
+    public final String getRid() {
+        return this.rid;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getRtxSsrc() {
+        return this.rtxSsrc;
     }
 
     public final int getRtxSsrc() {
         return this.rtxSsrc;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getSsrc() {
         return this.ssrc;
+    }
+
+    public final int getSsrc() {
+        return this.ssrc;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final MediaType getType() {
+        return this.type;
     }
 
     public final MediaType getType() {

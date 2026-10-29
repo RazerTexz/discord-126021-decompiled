@@ -14,6 +14,16 @@ public class C2331j extends AbstractC2333l {
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj != null && obj.getClass() == C2331j.class) {
+        }
+        return false;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
     /* JADX INFO: renamed from: C */
     public AbstractC2360j mo2093C(Class<?> cls, C2334m c2334m, AbstractC2360j abstractC2360j, AbstractC2360j[] abstractC2360jArr) {
         return null;
@@ -29,41 +39,6 @@ public class C2331j extends AbstractC2333l {
     /* JADX INFO: renamed from: E */
     public AbstractC2360j mo2095E(Object obj) {
         return this;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: G */
-    public AbstractC2360j mo2129M() {
-        return this;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: H */
-    public AbstractC2360j mo2130N(Object obj) {
-        return this;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: I */
-    public AbstractC2360j mo2131O(Object obj) {
-        return this;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj != null && obj.getClass() == C2331j.class) {
-        }
-        return false;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p218h0.AbstractC2333l, p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: j */
-    public C2334m mo2136j() {
-        AbstractC2360j abstractC2360j = this._referencedType;
-        return abstractC2360j != null ? abstractC2360j.mo2136j() : this._bindings;
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2360j
@@ -84,6 +59,37 @@ public class C2331j extends AbstractC2333l {
         return sb;
     }
 
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: v */
+    public boolean mo2104v() {
+        return false;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: G */
+    public AbstractC2360j mo2129M() {
+        return this;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: H */
+    public AbstractC2360j mo2130N(Object obj) {
+        return this;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: I */
+    public AbstractC2360j mo2131O(Object obj) {
+        return this;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p218h0.AbstractC2333l, p007b.p195g.p196a.p205c.AbstractC2360j
+    /* JADX INFO: renamed from: j */
+    public C2334m mo2136j() {
+        AbstractC2360j abstractC2360j = this._referencedType;
+        return abstractC2360j != null ? abstractC2360j.mo2136j() : this._bindings;
+    }
+
     @Override // p007b.p195g.p196a.p205c.p218h0.AbstractC2333l, p007b.p195g.p196a.p205c.AbstractC2360j
     /* JADX INFO: renamed from: q */
     public AbstractC2360j mo2137q() {
@@ -101,11 +107,5 @@ public class C2331j extends AbstractC2333l {
             sb.append(abstractC2360j._class.getName());
         }
         return sb.toString();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2360j
-    /* JADX INFO: renamed from: v */
-    public boolean mo2104v() {
-        return false;
     }
 }

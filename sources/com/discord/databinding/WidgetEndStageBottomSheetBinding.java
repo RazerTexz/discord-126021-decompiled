@@ -34,6 +34,12 @@ public final class WidgetEndStageBottomSheetBinding implements ViewBinding {
         this.f16601d = screenTitleView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16598a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetEndStageBottomSheetBinding m8413a(@NonNull View view) {
@@ -51,11 +57,5 @@ public final class WidgetEndStageBottomSheetBinding implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16598a;
     }
 }

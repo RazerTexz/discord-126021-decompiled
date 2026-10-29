@@ -24,11 +24,6 @@ public final /* data */ class HeaderItem implements MGRecyclerDataPayload {
         return headerItem.copy(headerType);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final HeaderType getHeaderType() {
-        return this.headerType;
-    }
-
     public final HeaderItem copy(HeaderType headerType) {
         C12238m.checkNotNullParameter(headerType, "headerType");
         return new HeaderItem(headerType);
@@ -39,6 +34,11 @@ public final /* data */ class HeaderItem implements MGRecyclerDataPayload {
             return (other instanceof HeaderItem) && C12238m.areEqual(this.headerType, ((HeaderItem) other).headerType);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final HeaderType getHeaderType() {
+        return this.headerType;
     }
 
     public final HeaderType getHeaderType() {

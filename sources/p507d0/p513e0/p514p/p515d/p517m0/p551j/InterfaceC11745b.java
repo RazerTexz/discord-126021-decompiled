@@ -19,7 +19,7 @@ public interface InterfaceC11745b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.b$a */
     /* JADX INFO: compiled from: ClassifierNamePolicy.kt */
-    public static final class a implements InterfaceC11745b {
+    public final class a implements InterfaceC11745b {
 
         /* JADX INFO: renamed from: a */
         public static final a f24222a = new a();
@@ -41,7 +41,7 @@ public interface InterfaceC11745b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.b$b */
     /* JADX INFO: compiled from: ClassifierNamePolicy.kt */
-    public static final class b implements InterfaceC11745b {
+    public final class b implements InterfaceC11745b {
 
         /* JADX INFO: renamed from: a */
         public static final b f24223a = new b();
@@ -70,7 +70,7 @@ public interface InterfaceC11745b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.j.b$c */
     /* JADX INFO: compiled from: ClassifierNamePolicy.kt */
-    public static final class c implements InterfaceC11745b {
+    public final class c implements InterfaceC11745b {
 
         /* JADX INFO: renamed from: a */
         public static final c f24224a = new c();
@@ -98,7 +98,7 @@ public interface InterfaceC11745b {
             if (strRender == null || C12238m.areEqual(strRender, "")) {
                 return strRender2;
             }
-            return ((Object) strRender) + '.' + strRender2;
+            return "" + ((Object) strRender) + '.' + strRender2;
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p551j.InterfaceC11745b

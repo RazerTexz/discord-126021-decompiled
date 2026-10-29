@@ -19,6 +19,6 @@ public class AdjustTestOptions {
     public Boolean teardown;
     public Long timerIntervalInMilliseconds;
     public Long timerStartInMilliseconds;
-    public Boolean tryInstallReferrer = Boolean.FALSE;
     public Boolean useTestConnectionOptions;
+    public Boolean tryInstallReferrer = Boolean.FALSE;
 }

@@ -34,7 +34,7 @@ public final class WidgetChannelFollowSuccessDialog extends AppDialog {
     private final Integer[] successTextOptions;
 
     /* JADX INFO: compiled from: WidgetChannelFollowSuccessDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -59,10 +59,6 @@ public final class WidgetChannelFollowSuccessDialog extends AppDialog {
         return (WidgetChannelFollowSuccessDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    public static final void show(FragmentManager fragmentManager) {
-        INSTANCE.show(fragmentManager);
-    }
-
     @Override // com.discord.app.AppDialog
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -84,5 +80,9 @@ public final class WidgetChannelFollowSuccessDialog extends AppDialog {
                 WidgetChannelFollowSuccessDialog.this.dismiss();
             }
         });
+    }
+
+    public static final void show(FragmentManager fragmentManager) {
+        INSTANCE.show(fragmentManager);
     }
 }

@@ -10,18 +10,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoInputInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoInputInitialized implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Float activity = null;
     private final CharSequence deviceName = null;
     private final Long timeToFirstFrameMs = null;
     private final Boolean timedOut = null;
-    private final Float activity = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "video_input_initialized";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackVideoInputInitialized implements AnalyticsSch
         }
         TrackVideoInputInitialized trackVideoInputInitialized = (TrackVideoInputInitialized) other;
         return C12238m.areEqual(this.deviceName, trackVideoInputInitialized.deviceName) && C12238m.areEqual(this.timeToFirstFrameMs, trackVideoInputInitialized.timeToFirstFrameMs) && C12238m.areEqual(this.timedOut, trackVideoInputInitialized.timedOut) && C12238m.areEqual(this.activity, trackVideoInputInitialized.activity);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

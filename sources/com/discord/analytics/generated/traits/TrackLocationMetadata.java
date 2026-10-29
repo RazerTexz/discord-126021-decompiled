@@ -6,11 +6,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLocationMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLocationMetadata {
-    private final CharSequence locationPage = null;
-    private final CharSequence locationSection = null;
     private final CharSequence locationObject = null;
     private final CharSequence locationObjectType = null;
+    private final CharSequence locationPage = null;
     private final Long locationPromotionId = null;
+    private final CharSequence locationSection = null;
 
     public boolean equals(Object other) {
         if (this == other) {

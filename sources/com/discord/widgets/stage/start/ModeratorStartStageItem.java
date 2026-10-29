@@ -24,7 +24,7 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
     public static final int TYPE_WAITING = 3;
 
     /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-    public static final /* data */ class Continue extends ModeratorStartStageItem {
+    public final /* data */ class Continue extends ModeratorStartStageItem {
         private final String key;
         private final int type;
 
@@ -37,6 +37,14 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
             this((i2 & 1) != 0 ? 2 : i, (i2 & 2) != 0 ? "KEY_CREATE_STAGE_EVENT_CONTINUE" : str);
         }
 
+        public final int component1() {
+            return getType();
+        }
+
+        public final String component2() {
+            return getKey();
+        }
+
         public static /* synthetic */ Continue copy$default(Continue r0, int i, String str, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 i = r0.getType();
@@ -45,14 +53,6 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                 str = r0.getKey();
             }
             return r0.copy(i, str);
-        }
-
-        public final int component1() {
-            return getType();
-        }
-
-        public final String component2() {
-            return getKey();
         }
 
         public final Continue copy(int type, String key) {
@@ -106,7 +106,7 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-    public static final /* data */ class Header extends ModeratorStartStageItem {
+    public final /* data */ class Header extends ModeratorStartStageItem {
         private final String key;
         private final int type;
 
@@ -119,6 +119,14 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
             this((i2 & 1) != 0 ? 0 : i, (i2 & 2) != 0 ? "KEY_CREATE_STAGE_EVENT_HEADER" : str);
         }
 
+        public final int component1() {
+            return getType();
+        }
+
+        public final String component2() {
+            return getKey();
+        }
+
         public static /* synthetic */ Header copy$default(Header header, int i, String str, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 i = header.getType();
@@ -127,14 +135,6 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                 str = header.getKey();
             }
             return header.copy(i, str);
-        }
-
-        public final int component1() {
-            return getType();
-        }
-
-        public final String component2() {
-            return getKey();
         }
 
         public final Header copy(int type, String key) {
@@ -188,14 +188,14 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-    public static abstract class ListItem extends ModeratorStartStageItem {
+    public abstract class ListItem extends ModeratorStartStageItem {
         private final int iconBgColorRes;
         private final int iconRes;
         private final String key;
         private final int type;
 
         /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-        public static final /* data */ class Event extends ListItem {
+        public final /* data */ class Event extends ListItem {
             private final GuildScheduledEvent event;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -212,11 +212,6 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                 return event.copy(guildScheduledEvent);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildScheduledEvent getEvent() {
-                return this.event;
-            }
-
             public final Event copy(GuildScheduledEvent event) {
                 C12238m.checkNotNullParameter(event, "event");
                 return new Event(event);
@@ -227,6 +222,11 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                     return (other instanceof Event) && C12238m.areEqual(this.event, ((Event) other).event);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final GuildScheduledEvent getEvent() {
+                return this.event;
             }
 
             public final GuildScheduledEvent getEvent() {
@@ -250,7 +250,7 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
         }
 
         /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-        public static abstract class StaticOption extends ListItem {
+        public abstract class StaticOption extends ListItem {
             private final int iconBgColorRes;
             private final int iconRes;
             private final String key;
@@ -258,7 +258,7 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
             private final int titleRes;
 
             /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-            public static final /* data */ class ScheduleEvent extends StaticOption {
+            public final /* data */ class ScheduleEvent extends StaticOption {
                 private final String key;
 
                 /* JADX WARN: Multi-variable type inference failed */
@@ -270,15 +270,15 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                     this((i & 1) != 0 ? ModeratorStartStageItem.KEY_SCHEDULE_EVENT : str);
                 }
 
+                public final String component1() {
+                    return getKey();
+                }
+
                 public static /* synthetic */ ScheduleEvent copy$default(ScheduleEvent scheduleEvent, String str, int i, Object obj) {
                     if ((i & 1) != 0) {
                         str = scheduleEvent.getKey();
                     }
                     return scheduleEvent.copy(str);
-                }
-
-                public final String component1() {
-                    return getKey();
                 }
 
                 public final ScheduleEvent copy(String key) {
@@ -322,7 +322,7 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
             }
 
             /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-            public static final /* data */ class StartStage extends StaticOption {
+            public final /* data */ class StartStage extends StaticOption {
                 private final String key;
 
                 /* JADX WARN: Multi-variable type inference failed */
@@ -334,15 +334,15 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                     this((i & 1) != 0 ? ModeratorStartStageItem.KEY_START_STAGE : str);
                 }
 
+                public final String component1() {
+                    return getKey();
+                }
+
                 public static /* synthetic */ StartStage copy$default(StartStage startStage, String str, int i, Object obj) {
                     if ((i & 1) != 0) {
                         str = startStage.getKey();
                     }
                     return startStage.copy(str);
-                }
-
-                public final String component1() {
-                    return getKey();
                 }
 
                 public final StartStage copy(String key) {
@@ -454,13 +454,25 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ModeratorStartStageItem.kt */
-    public static final /* data */ class Waiting extends ModeratorStartStageItem {
+    public final /* data */ class Waiting extends ModeratorStartStageItem {
         private final String key;
         private final int type;
         private final List<UserGuildMember> users;
 
         public /* synthetic */ Waiting(int i, String str, List list, int i2, DefaultConstructorMarker defaultConstructorMarker) {
             this((i2 & 1) != 0 ? 3 : i, (i2 & 2) != 0 ? "KEY_CREATE_STAGE_EVENT_WAITING" : str, list);
+        }
+
+        public final int component1() {
+            return getType();
+        }
+
+        public final String component2() {
+            return getKey();
+        }
+
+        public final List<UserGuildMember> component3() {
+            return this.users;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -475,18 +487,6 @@ public abstract class ModeratorStartStageItem implements MGRecyclerDataPayload {
                 list = waiting.users;
             }
             return waiting.copy(i, str, list);
-        }
-
-        public final int component1() {
-            return getType();
-        }
-
-        public final String component2() {
-            return getKey();
-        }
-
-        public final List<UserGuildMember> component3() {
-            return this.users;
         }
 
         public final Waiting copy(int type, String key, List<UserGuildMember> users) {

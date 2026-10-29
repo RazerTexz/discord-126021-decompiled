@@ -14,7 +14,7 @@ public abstract class EmojiItem implements MGRecyclerDataPayload {
     private final int type;
 
     /* JADX INFO: compiled from: WidgetChatListActionsEmojisAdapter.kt */
-    public static final /* data */ class EmojiData extends EmojiItem {
+    public final /* data */ class EmojiData extends EmojiItem {
         private final Emoji emoji;
         private final String key;
 
@@ -23,7 +23,7 @@ public abstract class EmojiItem implements MGRecyclerDataPayload {
             super(0, null);
             C12238m.checkNotNullParameter(emoji, "emoji");
             this.emoji = emoji;
-            this.key = getType() + '_' + emoji.getUniqueId();
+            this.key = "" + getType() + '_' + emoji.getUniqueId();
         }
 
         public static /* synthetic */ EmojiData copy$default(EmojiData emojiData, Emoji emoji, int i, Object obj) {
@@ -31,11 +31,6 @@ public abstract class EmojiItem implements MGRecyclerDataPayload {
                 emoji = emojiData.emoji;
             }
             return emojiData.copy(emoji);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Emoji getEmoji() {
-            return this.emoji;
         }
 
         public final EmojiData copy(Emoji emoji) {
@@ -48,6 +43,11 @@ public abstract class EmojiItem implements MGRecyclerDataPayload {
                 return (other instanceof EmojiData) && C12238m.areEqual(this.emoji, ((EmojiData) other).emoji);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Emoji getEmoji() {
+            return this.emoji;
         }
 
         public final Emoji getEmoji() {
@@ -76,7 +76,7 @@ public abstract class EmojiItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: WidgetChatListActionsEmojisAdapter.kt */
-    public static final class MoreEmoji extends EmojiItem {
+    public final class MoreEmoji extends EmojiItem {
         public static final MoreEmoji INSTANCE;
         private static final String key;
 

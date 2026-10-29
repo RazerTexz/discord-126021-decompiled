@@ -95,19 +95,6 @@ public class C1991j1 implements InterfaceC2018w0<C1919e> {
         }
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
-    /* JADX INFO: renamed from: b */
-    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
-        if (interfaceC2020x0.mo1447e().f19592j == null) {
-            interfaceC1995l.mo1424b(null, 1);
-        } else {
-            if (m1480c(0, interfaceC1995l, interfaceC2020x0)) {
-                return;
-            }
-            interfaceC1995l.mo1424b(null, 1);
-        }
-    }
-
     /* JADX INFO: renamed from: c */
     public final boolean m1480c(int i, InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
         C1884e c1884e = interfaceC2020x0.mo1447e().f19592j;
@@ -127,5 +114,18 @@ public class C1991j1 implements InterfaceC2018w0<C1919e> {
         }
         this.f4111a[i].mo1417b(new a(interfaceC1995l, interfaceC2020x0, i), interfaceC2020x0);
         return true;
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC2018w0
+    /* JADX INFO: renamed from: b */
+    public void mo1417b(InterfaceC1995l<C1919e> interfaceC1995l, InterfaceC2020x0 interfaceC2020x0) {
+        if (interfaceC2020x0.mo1447e().f19592j == null) {
+            interfaceC1995l.mo1424b(null, 1);
+        } else {
+            if (m1480c(0, interfaceC1995l, interfaceC2020x0)) {
+                return;
+            }
+            interfaceC1995l.mo1424b(null, 1);
+        }
     }
 }

@@ -17,8 +17,145 @@ public final class StoreNux extends Store {
     private NuxState nuxState;
     private final BehaviorSubject<NuxState> nuxStateSubject;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$clearNux$1 */
     /* JADX INFO: compiled from: StoreNux.kt */
-    public static final /* data */ class NuxState {
+    public final class C63061 extends AbstractC12240o implements Function0<Unit> {
+        public C63061() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreNux.this.nuxState = new NuxState(false, false, false, false, false, null, 63, null);
+            StoreNux storeNux = StoreNux.this;
+            storeNux.publishNuxUpdated(storeNux.nuxState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setContactSyncCompleted$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63071 extends AbstractC12240o implements Function1<NuxState, NuxState> {
+        public final /* synthetic */ boolean $value;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63071(boolean z2) {
+            super(1);
+            this.$value = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final NuxState invoke(NuxState nuxState) {
+            C12238m.checkNotNullParameter(nuxState, "it");
+            return NuxState.copy$default(nuxState, false, false, this.$value, false, false, null, 59, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setFirstOpen$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63081 extends AbstractC12240o implements Function1<NuxState, NuxState> {
+        public final /* synthetic */ boolean $value;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63081(boolean z2) {
+            super(1);
+            this.$value = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final NuxState invoke(NuxState nuxState) {
+            C12238m.checkNotNullParameter(nuxState, "it");
+            return NuxState.copy$default(nuxState, false, false, false, this.$value, false, null, 55, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPostRegister$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63091 extends AbstractC12240o implements Function1<NuxState, NuxState> {
+        public final /* synthetic */ boolean $value;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63091(boolean z2) {
+            super(1);
+            this.$value = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final NuxState invoke(NuxState nuxState) {
+            C12238m.checkNotNullParameter(nuxState, "it");
+            return NuxState.copy$default(nuxState, this.$value, false, false, false, false, null, 62, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPostRegisterWithInvite$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63101 extends AbstractC12240o implements Function1<NuxState, NuxState> {
+        public final /* synthetic */ boolean $value;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63101(boolean z2) {
+            super(1);
+            this.$value = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final NuxState invoke(NuxState nuxState) {
+            C12238m.checkNotNullParameter(nuxState, "it");
+            return NuxState.copy$default(nuxState, false, this.$value, false, false, false, null, 61, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPremiumGuildHintGuildId$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63111 extends AbstractC12240o implements Function1<NuxState, NuxState> {
+        public final /* synthetic */ Long $value;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63111(Long l) {
+            super(1);
+            this.$value = l;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final NuxState invoke(NuxState nuxState) {
+            C12238m.checkNotNullParameter(nuxState, "it");
+            return NuxState.copy$default(nuxState, false, false, false, false, false, this.$value, 31, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNux$updateNux$1 */
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final class C63121 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Function1 $updateFunction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C63121(Function1 function1) {
+            super(0);
+            this.$updateFunction = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreNux storeNux = StoreNux.this;
+            storeNux.nuxState = (NuxState) this.$updateFunction.invoke(storeNux.nuxState);
+            StoreNux storeNux2 = StoreNux.this;
+            storeNux2.publishNuxUpdated(storeNux2.nuxState);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreNux.kt */
+    public final /* data */ class NuxState {
         private final boolean addGuildHint;
         private final boolean contactSyncCompleted;
         private final boolean firstOpen;
@@ -65,36 +202,6 @@ public final class StoreNux extends Store {
             return nuxState.copy(z2, z7, z8, z9, z10, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getPostRegister() {
-            return this.postRegister;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getPostRegisterWithInvite() {
-            return this.postRegisterWithInvite;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getContactSyncCompleted() {
-            return this.contactSyncCompleted;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getFirstOpen() {
-            return this.firstOpen;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getAddGuildHint() {
-            return this.addGuildHint;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getGuildBoostHintGuildId() {
-            return this.guildBoostHintGuildId;
-        }
-
         public final NuxState copy(boolean postRegister, boolean postRegisterWithInvite, boolean contactSyncCompleted, boolean firstOpen, boolean addGuildHint, Long guildBoostHintGuildId) {
             return new NuxState(postRegister, postRegisterWithInvite, contactSyncCompleted, firstOpen, addGuildHint, guildBoostHintGuildId);
         }
@@ -110,24 +217,54 @@ public final class StoreNux extends Store {
             return this.postRegister == nuxState.postRegister && this.postRegisterWithInvite == nuxState.postRegisterWithInvite && this.contactSyncCompleted == nuxState.contactSyncCompleted && this.firstOpen == nuxState.firstOpen && this.addGuildHint == nuxState.addGuildHint && C12238m.areEqual(this.guildBoostHintGuildId, nuxState.guildBoostHintGuildId);
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getAddGuildHint() {
             return this.addGuildHint;
+        }
+
+        public final boolean getAddGuildHint() {
+            return this.addGuildHint;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getContactSyncCompleted() {
+            return this.contactSyncCompleted;
         }
 
         public final boolean getContactSyncCompleted() {
             return this.contactSyncCompleted;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getFirstOpen() {
             return this.firstOpen;
+        }
+
+        public final boolean getFirstOpen() {
+            return this.firstOpen;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Long getGuildBoostHintGuildId() {
+            return this.guildBoostHintGuildId;
         }
 
         public final Long getGuildBoostHintGuildId() {
             return this.guildBoostHintGuildId;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getPostRegister() {
             return this.postRegister;
+        }
+
+        public final boolean getPostRegister() {
+            return this.postRegister;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getPostRegisterWithInvite() {
+            return this.postRegisterWithInvite;
         }
 
         public final boolean getPostRegisterWithInvite() {
@@ -205,153 +342,12 @@ public final class StoreNux extends Store {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$clearNux$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63061 extends AbstractC12240o implements Function0<Unit> {
-        public C63061() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreNux.this.nuxState = new NuxState(false, false, false, false, false, null, 63, null);
-            StoreNux storeNux = StoreNux.this;
-            storeNux.publishNuxUpdated(storeNux.nuxState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setContactSyncCompleted$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63071 extends AbstractC12240o implements Function1<NuxState, NuxState> {
-        public final /* synthetic */ boolean $value;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63071(boolean z2) {
-            super(1);
-            this.$value = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final NuxState invoke(NuxState nuxState) {
-            C12238m.checkNotNullParameter(nuxState, "it");
-            return NuxState.copy$default(nuxState, false, false, this.$value, false, false, null, 59, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setFirstOpen$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63081 extends AbstractC12240o implements Function1<NuxState, NuxState> {
-        public final /* synthetic */ boolean $value;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63081(boolean z2) {
-            super(1);
-            this.$value = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final NuxState invoke(NuxState nuxState) {
-            C12238m.checkNotNullParameter(nuxState, "it");
-            return NuxState.copy$default(nuxState, false, false, false, this.$value, false, null, 55, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPostRegister$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63091 extends AbstractC12240o implements Function1<NuxState, NuxState> {
-        public final /* synthetic */ boolean $value;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63091(boolean z2) {
-            super(1);
-            this.$value = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final NuxState invoke(NuxState nuxState) {
-            C12238m.checkNotNullParameter(nuxState, "it");
-            return NuxState.copy$default(nuxState, this.$value, false, false, false, false, null, 62, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPostRegisterWithInvite$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63101 extends AbstractC12240o implements Function1<NuxState, NuxState> {
-        public final /* synthetic */ boolean $value;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63101(boolean z2) {
-            super(1);
-            this.$value = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final NuxState invoke(NuxState nuxState) {
-            C12238m.checkNotNullParameter(nuxState, "it");
-            return NuxState.copy$default(nuxState, false, this.$value, false, false, false, null, 61, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$setPremiumGuildHintGuildId$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63111 extends AbstractC12240o implements Function1<NuxState, NuxState> {
-        public final /* synthetic */ Long $value;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63111(Long l) {
-            super(1);
-            this.$value = l;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final NuxState invoke(NuxState nuxState) {
-            C12238m.checkNotNullParameter(nuxState, "it");
-            return NuxState.copy$default(nuxState, false, false, false, false, false, this.$value, 31, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreNux$updateNux$1 */
-    /* JADX INFO: compiled from: StoreNux.kt */
-    public static final class C63121 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Function1 $updateFunction;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63121(Function1 function1) {
-            super(0);
-            this.$updateFunction = function1;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreNux storeNux = StoreNux.this;
-            storeNux.nuxState = (NuxState) this.$updateFunction.invoke(storeNux.nuxState);
-            StoreNux storeNux2 = StoreNux.this;
-            storeNux2.publishNuxUpdated(storeNux2.nuxState);
-        }
-    }
-
     public StoreNux(Dispatcher dispatcher) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         this.dispatcher = dispatcher;
         NuxState nuxState = new NuxState(false, false, false, false, false, null, 63, null);
         this.nuxState = nuxState;
         this.nuxStateSubject = BehaviorSubject.m11130l0(nuxState);
-    }
-
-    private final void publishNuxUpdated(NuxState nuxState) {
-        this.nuxStateSubject.onNext(nuxState);
     }
 
     public final void clearNux() {
@@ -380,6 +376,10 @@ public final class StoreNux extends Store {
         NuxState nuxStateCopy$default = NuxState.copy$default(this.nuxState, false, false, false, false, false, Long.valueOf(guildId), 31, null);
         this.nuxState = nuxStateCopy$default;
         publishNuxUpdated(nuxStateCopy$default);
+    }
+
+    private final void publishNuxUpdated(NuxState nuxState) {
+        this.nuxStateSubject.onNext(nuxState);
     }
 
     public final void setContactSyncCompleted(boolean value) {

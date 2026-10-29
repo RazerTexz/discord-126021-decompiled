@@ -8,6 +8,9 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1215g {
 
+    /* JADX INFO: renamed from: c */
+    public static final a f1662c = new a(null);
+
     /* JADX INFO: renamed from: d */
     public volatile boolean f1663d;
 
@@ -20,9 +23,6 @@ public final class C1215g {
     /* JADX INFO: renamed from: g */
     public final boolean f1666g;
 
-    /* JADX INFO: renamed from: c */
-    public static final a f1662c = new a(null);
-
     /* JADX INFO: renamed from: a */
     public static final C1215g f1660a = new C1215g(true, false, false);
 
@@ -31,7 +31,7 @@ public final class C1215g {
 
     /* JADX INFO: renamed from: b.a.q.k0.g$a */
     /* JADX INFO: compiled from: EchoCancellation.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

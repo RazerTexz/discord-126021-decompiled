@@ -40,12 +40,12 @@ public class NavigationMenuPresenter implements MenuPresenter {
     private static final String STATE_HIERARCHY = "android:menu:list";
     public C10930c adapter;
     private MenuPresenter.Callback callback;
-    public boolean hasCustomItemIconSize;
-    public LinearLayout headerLayout;
-    public ColorStateList iconTintList;
 
     /* JADX INFO: renamed from: id */
     private int f21030id;
+    public boolean hasCustomItemIconSize;
+    public LinearLayout headerLayout;
+    public ColorStateList iconTintList;
     public Drawable itemBackground;
     public int itemHorizontalPadding;
     public int itemIconPadding;
@@ -63,258 +63,26 @@ public class NavigationMenuPresenter implements MenuPresenter {
     private int overScrollMode = -1;
     public final View.OnClickListener onClickListener = new ViewOnClickListenerC10928a();
 
-    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$a */
-    public class ViewOnClickListenerC10928a implements View.OnClickListener {
-        public ViewOnClickListenerC10928a() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            boolean z2 = true;
-            NavigationMenuPresenter.this.setUpdateSuspended(true);
-            MenuItemImpl itemData = ((NavigationMenuItemView) view).getItemData();
-            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
-            boolean zPerformItemAction = navigationMenuPresenter.menu.performItemAction(itemData, navigationMenuPresenter, 0);
-            if (itemData != null && itemData.isCheckable() && zPerformItemAction) {
-                NavigationMenuPresenter.this.adapter.m9145b(itemData);
-            } else {
-                z2 = false;
-            }
-            NavigationMenuPresenter.this.setUpdateSuspended(false);
-            if (z2) {
-                NavigationMenuPresenter.this.updateMenuView(false);
-            }
+    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$l */
+    public abstract class AbstractC10939l extends RecyclerView.ViewHolder {
+        public AbstractC10939l(View view) {
+            super(view);
         }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$b */
-    public static class C10929b extends AbstractC10939l {
+    public class C10929b extends AbstractC10939l {
         public C10929b(View view) {
             super(view);
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$c */
-    public class C10930c extends RecyclerView.Adapter<AbstractC10939l> {
-
-        /* JADX INFO: renamed from: a */
-        public final ArrayList<InterfaceC10932e> f21032a = new ArrayList<>();
-
-        /* JADX INFO: renamed from: b */
-        public MenuItemImpl f21033b;
-
-        /* JADX INFO: renamed from: c */
-        public boolean f21034c;
-
-        public C10930c() {
-            m9144a();
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m9144a() {
-            if (this.f21034c) {
-                return;
-            }
-            this.f21034c = true;
-            this.f21032a.clear();
-            this.f21032a.add(new C10931d());
-            int i = -1;
-            int size = NavigationMenuPresenter.this.menu.getVisibleItems().size();
-            boolean z2 = false;
-            int i2 = 0;
-            boolean z3 = false;
-            int size2 = 0;
-            while (i2 < size) {
-                MenuItemImpl menuItemImpl = NavigationMenuPresenter.this.menu.getVisibleItems().get(i2);
-                if (menuItemImpl.isChecked()) {
-                    m9145b(menuItemImpl);
-                }
-                if (menuItemImpl.isCheckable()) {
-                    menuItemImpl.setExclusiveCheckable(z2);
-                }
-                if (menuItemImpl.hasSubMenu()) {
-                    SubMenu subMenu = menuItemImpl.getSubMenu();
-                    if (subMenu.hasVisibleItems()) {
-                        if (i2 != 0) {
-                            this.f21032a.add(new C10933f(NavigationMenuPresenter.this.paddingSeparator, z2 ? 1 : 0));
-                        }
-                        this.f21032a.add(new C10934g(menuItemImpl));
-                        int size3 = subMenu.size();
-                        int i3 = 0;
-                        boolean z4 = false;
-                        while (i3 < size3) {
-                            MenuItemImpl menuItemImpl2 = (MenuItemImpl) subMenu.getItem(i3);
-                            if (menuItemImpl2.isVisible()) {
-                                if (!z4 && menuItemImpl2.getIcon() != null) {
-                                    z4 = true;
-                                }
-                                if (menuItemImpl2.isCheckable()) {
-                                    menuItemImpl2.setExclusiveCheckable(z2);
-                                }
-                                if (menuItemImpl.isChecked()) {
-                                    m9145b(menuItemImpl);
-                                }
-                                this.f21032a.add(new C10934g(menuItemImpl2));
-                            }
-                            i3++;
-                            z2 = false;
-                        }
-                        if (z4) {
-                            int size4 = this.f21032a.size();
-                            for (int size5 = this.f21032a.size(); size5 < size4; size5++) {
-                                ((C10934g) this.f21032a.get(size5)).f21039b = true;
-                            }
-                        }
-                    }
-                } else {
-                    int groupId = menuItemImpl.getGroupId();
-                    if (groupId != i) {
-                        size2 = this.f21032a.size();
-                        z3 = menuItemImpl.getIcon() != null;
-                        if (i2 != 0) {
-                            size2++;
-                            ArrayList<InterfaceC10932e> arrayList = this.f21032a;
-                            int i4 = NavigationMenuPresenter.this.paddingSeparator;
-                            arrayList.add(new C10933f(i4, i4));
-                        }
-                    } else if (!z3 && menuItemImpl.getIcon() != null) {
-                        int size6 = this.f21032a.size();
-                        for (int i5 = size2; i5 < size6; i5++) {
-                            ((C10934g) this.f21032a.get(i5)).f21039b = true;
-                        }
-                        z3 = true;
-                    }
-                    C10934g c10934g = new C10934g(menuItemImpl);
-                    c10934g.f21039b = z3;
-                    this.f21032a.add(c10934g);
-                    i = groupId;
-                }
-                i2++;
-                z2 = false;
-            }
-            this.f21034c = false;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public void m9145b(@NonNull MenuItemImpl menuItemImpl) {
-            if (this.f21033b == menuItemImpl || !menuItemImpl.isCheckable()) {
-                return;
-            }
-            MenuItemImpl menuItemImpl2 = this.f21033b;
-            if (menuItemImpl2 != null) {
-                menuItemImpl2.setChecked(false);
-            }
-            this.f21033b = menuItemImpl;
-            menuItemImpl.setChecked(true);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        /* JADX INFO: renamed from: getItemCount */
-        public int getPageSize() {
-            return this.f21032a.size();
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        public int getItemViewType(int i) {
-            InterfaceC10932e interfaceC10932e = this.f21032a.get(i);
-            if (interfaceC10932e instanceof C10933f) {
-                return 2;
-            }
-            if (interfaceC10932e instanceof C10931d) {
-                return 3;
-            }
-            if (interfaceC10932e instanceof C10934g) {
-                return ((C10934g) interfaceC10932e).f21038a.hasSubMenu() ? 1 : 0;
-            }
-            throw new RuntimeException("Unknown item type.");
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-            AbstractC10939l abstractC10939l = (AbstractC10939l) viewHolder;
-            int itemViewType = getItemViewType(i);
-            if (itemViewType != 0) {
-                if (itemViewType == 1) {
-                    ((TextView) abstractC10939l.itemView).setText(((C10934g) this.f21032a.get(i)).f21038a.getTitle());
-                    return;
-                } else {
-                    if (itemViewType != 2) {
-                        return;
-                    }
-                    C10933f c10933f = (C10933f) this.f21032a.get(i);
-                    abstractC10939l.itemView.setPadding(0, c10933f.f21036a, 0, c10933f.f21037b);
-                    return;
-                }
-            }
-            NavigationMenuItemView navigationMenuItemView = (NavigationMenuItemView) abstractC10939l.itemView;
-            navigationMenuItemView.setIconTintList(NavigationMenuPresenter.this.iconTintList);
-            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
-            if (navigationMenuPresenter.textAppearanceSet) {
-                navigationMenuItemView.setTextAppearance(navigationMenuPresenter.textAppearance);
-            }
-            ColorStateList colorStateList = NavigationMenuPresenter.this.textColor;
-            if (colorStateList != null) {
-                navigationMenuItemView.setTextColor(colorStateList);
-            }
-            Drawable drawable = NavigationMenuPresenter.this.itemBackground;
-            ViewCompat.setBackground(navigationMenuItemView, drawable != null ? drawable.getConstantState().newDrawable() : null);
-            C10934g c10934g = (C10934g) this.f21032a.get(i);
-            navigationMenuItemView.setNeedsEmptyIcon(c10934g.f21039b);
-            navigationMenuItemView.setHorizontalPadding(NavigationMenuPresenter.this.itemHorizontalPadding);
-            navigationMenuItemView.setIconPadding(NavigationMenuPresenter.this.itemIconPadding);
-            NavigationMenuPresenter navigationMenuPresenter2 = NavigationMenuPresenter.this;
-            if (navigationMenuPresenter2.hasCustomItemIconSize) {
-                navigationMenuItemView.setIconSize(navigationMenuPresenter2.itemIconSize);
-            }
-            navigationMenuItemView.setMaxLines(NavigationMenuPresenter.this.itemMaxLines);
-            navigationMenuItemView.initialize(c10934g.f21038a, 0);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        @Nullable
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            RecyclerView.ViewHolder c10936i;
-            if (i == 0) {
-                NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
-                c10936i = new C10936i(navigationMenuPresenter.layoutInflater, viewGroup, navigationMenuPresenter.onClickListener);
-            } else if (i == 1) {
-                c10936i = new C10938k(NavigationMenuPresenter.this.layoutInflater, viewGroup);
-            } else {
-                if (i != 2) {
-                    if (i != 3) {
-                        return null;
-                    }
-                    return new C10929b(NavigationMenuPresenter.this.headerLayout);
-                }
-                c10936i = new C10937j(NavigationMenuPresenter.this.layoutInflater, viewGroup);
-            }
-            return c10936i;
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        public void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
-            AbstractC10939l abstractC10939l = (AbstractC10939l) viewHolder;
-            if (abstractC10939l instanceof C10936i) {
-                ((NavigationMenuItemView) abstractC10939l.itemView).recycle();
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$d */
-    public static class C10931d implements InterfaceC10932e {
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$e */
-    public interface InterfaceC10932e {
+    public class C10931d implements InterfaceC10932e {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$f */
-    public static class C10933f implements InterfaceC10932e {
+    public class C10933f implements InterfaceC10932e {
 
         /* JADX INFO: renamed from: a */
         public final int f21036a;
@@ -329,7 +97,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$g */
-    public static class C10934g implements InterfaceC10932e {
+    public class C10934g implements InterfaceC10932e {
 
         /* JADX INFO: renamed from: a */
         public final MenuItemImpl f21038a;
@@ -363,7 +131,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$i */
-    public static class C10936i extends AbstractC10939l {
+    public class C10936i extends AbstractC10939l {
         public C10936i(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, View.OnClickListener onClickListener) {
             super(layoutInflater.inflate(C10817R.layout.design_navigation_item, viewGroup, false));
             this.itemView.setOnClickListener(onClickListener);
@@ -371,30 +139,45 @@ public class NavigationMenuPresenter implements MenuPresenter {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$j */
-    public static class C10937j extends AbstractC10939l {
+    public class C10937j extends AbstractC10939l {
         public C10937j(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(C10817R.layout.design_navigation_item_separator, viewGroup, false));
         }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$k */
-    public static class C10938k extends AbstractC10939l {
+    public class C10938k extends AbstractC10939l {
         public C10938k(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(C10817R.layout.design_navigation_item_subheader, viewGroup, false));
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$l */
-    public static abstract class AbstractC10939l extends RecyclerView.ViewHolder {
-        public AbstractC10939l(View view) {
-            super(view);
-        }
+    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$e */
+    public interface InterfaceC10932e {
     }
 
-    private void updateTopPadding() {
-        int i = (this.headerLayout.getChildCount() == 0 && this.isBehindStatusBar) ? this.paddingTopDefault : 0;
-        NavigationMenuView navigationMenuView = this.menuView;
-        navigationMenuView.setPadding(0, i, 0, navigationMenuView.getPaddingBottom());
+    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$a */
+    public class ViewOnClickListenerC10928a implements View.OnClickListener {
+        public ViewOnClickListenerC10928a() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            boolean z2 = true;
+            NavigationMenuPresenter.this.setUpdateSuspended(true);
+            MenuItemImpl itemData = ((NavigationMenuItemView) view).getItemData();
+            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
+            boolean zPerformItemAction = navigationMenuPresenter.menu.performItemAction(itemData, navigationMenuPresenter, 0);
+            if (itemData != null && itemData.isCheckable() && zPerformItemAction) {
+                NavigationMenuPresenter.this.adapter.m9145b(itemData);
+            } else {
+                z2 = false;
+            }
+            NavigationMenuPresenter.this.setUpdateSuspended(false);
+            if (z2) {
+                NavigationMenuPresenter.this.updateMenuView(false);
+            }
+        }
     }
 
     public void addHeaderView(@NonNull View view) {
@@ -706,6 +489,223 @@ public class NavigationMenuPresenter implements MenuPresenter {
         if (c10930c != null) {
             c10930c.m9144a();
             c10930c.notifyDataSetChanged();
+        }
+    }
+
+    private void updateTopPadding() {
+        int i = (this.headerLayout.getChildCount() == 0 && this.isBehindStatusBar) ? this.paddingTopDefault : 0;
+        NavigationMenuView navigationMenuView = this.menuView;
+        navigationMenuView.setPadding(0, i, 0, navigationMenuView.getPaddingBottom());
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuPresenter$c */
+    public class C10930c extends RecyclerView.Adapter<AbstractC10939l> {
+
+        /* JADX INFO: renamed from: b */
+        public MenuItemImpl f21033b;
+
+        /* JADX INFO: renamed from: c */
+        public boolean f21034c;
+
+        /* JADX INFO: renamed from: a */
+        public final ArrayList<InterfaceC10932e> f21032a = new ArrayList<>();
+
+        public C10930c() {
+            m9144a();
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public int getItemViewType(int i) {
+            InterfaceC10932e interfaceC10932e = this.f21032a.get(i);
+            if (interfaceC10932e instanceof C10933f) {
+                return 2;
+            }
+            if (interfaceC10932e instanceof C10931d) {
+                return 3;
+            }
+            if (interfaceC10932e instanceof C10934g) {
+                return ((C10934g) interfaceC10932e).f21038a.hasSubMenu() ? 1 : 0;
+            }
+            throw new RuntimeException("Unknown item type.");
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        /* JADX INFO: renamed from: getItemCount */
+        public int getPageSize() {
+            return this.f21032a.size();
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m9144a() {
+            if (this.f21034c) {
+                return;
+            }
+            this.f21034c = true;
+            this.f21032a.clear();
+            this.f21032a.add(new C10931d());
+            int i = -1;
+            int size = NavigationMenuPresenter.this.menu.getVisibleItems().size();
+            boolean z2 = false;
+            int i2 = 0;
+            boolean z3 = false;
+            int size2 = 0;
+            while (i2 < size) {
+                MenuItemImpl menuItemImpl = NavigationMenuPresenter.this.menu.getVisibleItems().get(i2);
+                if (menuItemImpl.isChecked()) {
+                    m9145b(menuItemImpl);
+                }
+                if (menuItemImpl.isCheckable()) {
+                    menuItemImpl.setExclusiveCheckable(z2);
+                }
+                if (menuItemImpl.hasSubMenu()) {
+                    SubMenu subMenu = menuItemImpl.getSubMenu();
+                    if (subMenu.hasVisibleItems()) {
+                        if (i2 != 0) {
+                            this.f21032a.add(new C10933f(NavigationMenuPresenter.this.paddingSeparator, z2 ? 1 : 0));
+                        }
+                        this.f21032a.add(new C10934g(menuItemImpl));
+                        int size3 = subMenu.size();
+                        int i3 = 0;
+                        boolean z4 = false;
+                        while (i3 < size3) {
+                            MenuItemImpl menuItemImpl2 = (MenuItemImpl) subMenu.getItem(i3);
+                            if (menuItemImpl2.isVisible()) {
+                                if (!z4 && menuItemImpl2.getIcon() != null) {
+                                    z4 = true;
+                                }
+                                if (menuItemImpl2.isCheckable()) {
+                                    menuItemImpl2.setExclusiveCheckable(z2);
+                                }
+                                if (menuItemImpl.isChecked()) {
+                                    m9145b(menuItemImpl);
+                                }
+                                this.f21032a.add(new C10934g(menuItemImpl2));
+                            }
+                            i3++;
+                            z2 = false;
+                        }
+                        if (z4) {
+                            int size4 = this.f21032a.size();
+                            for (int size5 = this.f21032a.size(); size5 < size4; size5++) {
+                                ((C10934g) this.f21032a.get(size5)).f21039b = true;
+                            }
+                        }
+                    }
+                } else {
+                    int groupId = menuItemImpl.getGroupId();
+                    if (groupId != i) {
+                        size2 = this.f21032a.size();
+                        z3 = menuItemImpl.getIcon() != null;
+                        if (i2 != 0) {
+                            size2++;
+                            ArrayList<InterfaceC10932e> arrayList = this.f21032a;
+                            int i4 = NavigationMenuPresenter.this.paddingSeparator;
+                            arrayList.add(new C10933f(i4, i4));
+                        }
+                    } else if (!z3 && menuItemImpl.getIcon() != null) {
+                        int size6 = this.f21032a.size();
+                        for (int i5 = size2; i5 < size6; i5++) {
+                            ((C10934g) this.f21032a.get(i5)).f21039b = true;
+                        }
+                        z3 = true;
+                    }
+                    C10934g c10934g = new C10934g(menuItemImpl);
+                    c10934g.f21039b = z3;
+                    this.f21032a.add(c10934g);
+                    i = groupId;
+                }
+                i2++;
+                z2 = false;
+            }
+            this.f21034c = false;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public void m9145b(@NonNull MenuItemImpl menuItemImpl) {
+            if (this.f21033b == menuItemImpl || !menuItemImpl.isCheckable()) {
+                return;
+            }
+            MenuItemImpl menuItemImpl2 = this.f21033b;
+            if (menuItemImpl2 != null) {
+                menuItemImpl2.setChecked(false);
+            }
+            this.f21033b = menuItemImpl;
+            menuItemImpl.setChecked(true);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            AbstractC10939l abstractC10939l = (AbstractC10939l) viewHolder;
+            int itemViewType = getItemViewType(i);
+            if (itemViewType != 0) {
+                if (itemViewType == 1) {
+                    ((TextView) abstractC10939l.itemView).setText(((C10934g) this.f21032a.get(i)).f21038a.getTitle());
+                    return;
+                } else {
+                    if (itemViewType != 2) {
+                        return;
+                    }
+                    C10933f c10933f = (C10933f) this.f21032a.get(i);
+                    abstractC10939l.itemView.setPadding(0, c10933f.f21036a, 0, c10933f.f21037b);
+                    return;
+                }
+            }
+            NavigationMenuItemView navigationMenuItemView = (NavigationMenuItemView) abstractC10939l.itemView;
+            navigationMenuItemView.setIconTintList(NavigationMenuPresenter.this.iconTintList);
+            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
+            if (navigationMenuPresenter.textAppearanceSet) {
+                navigationMenuItemView.setTextAppearance(navigationMenuPresenter.textAppearance);
+            }
+            ColorStateList colorStateList = NavigationMenuPresenter.this.textColor;
+            if (colorStateList != null) {
+                navigationMenuItemView.setTextColor(colorStateList);
+            }
+            Drawable drawable = NavigationMenuPresenter.this.itemBackground;
+            ViewCompat.setBackground(navigationMenuItemView, drawable != null ? drawable.getConstantState().newDrawable() : null);
+            C10934g c10934g = (C10934g) this.f21032a.get(i);
+            navigationMenuItemView.setNeedsEmptyIcon(c10934g.f21039b);
+            navigationMenuItemView.setHorizontalPadding(NavigationMenuPresenter.this.itemHorizontalPadding);
+            navigationMenuItemView.setIconPadding(NavigationMenuPresenter.this.itemIconPadding);
+            NavigationMenuPresenter navigationMenuPresenter2 = NavigationMenuPresenter.this;
+            if (navigationMenuPresenter2.hasCustomItemIconSize) {
+                navigationMenuItemView.setIconSize(navigationMenuPresenter2.itemIconSize);
+            }
+            navigationMenuItemView.setMaxLines(NavigationMenuPresenter.this.itemMaxLines);
+            navigationMenuItemView.initialize(c10934g.f21038a, 0);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        @Nullable
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            RecyclerView.ViewHolder c10936i;
+            if (i == 0) {
+                NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
+                c10936i = new C10936i(navigationMenuPresenter.layoutInflater, viewGroup, navigationMenuPresenter.onClickListener);
+            } else if (i == 1) {
+                c10936i = new C10938k(NavigationMenuPresenter.this.layoutInflater, viewGroup);
+            } else {
+                if (i != 2) {
+                    if (i != 3) {
+                        return null;
+                    }
+                    return new C10929b(NavigationMenuPresenter.this.headerLayout);
+                }
+                c10936i = new C10937j(NavigationMenuPresenter.this.layoutInflater, viewGroup);
+            }
+            return c10936i;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
+            AbstractC10939l abstractC10939l = (AbstractC10939l) viewHolder;
+            if (abstractC10939l instanceof C10936i) {
+                ((NavigationMenuItemView) abstractC10939l.itemView).recycle();
+            }
         }
     }
 }

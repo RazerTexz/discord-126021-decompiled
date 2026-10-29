@@ -69,18 +69,18 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
     public static final int VIEW_TYPE_COMMAND_HEADER_ITEM = 1;
     public static final int VIEW_TYPE_COMMAND_LOADING_ITEM = 2;
     public static final int VIEW_TYPE_EMOJI_UPSELL_AUTOCOMPLETE = 3;
-    private List<? extends Autocompletable> data = C12147n.emptyList();
-    private List<Integer> headerPositions = C12147n.emptyList();
     private Function1<? super Autocompletable, Unit> onItemSelected;
     private RecyclerView.OnScrollListener onScrollListener;
     private Function2<? super Integer, ? super Integer, Unit> onScrollPositionListener;
     private RecyclerView recyclerView;
     private StickyHeaderManager stickyHeaderManager;
     private Subscription subscription;
+    private List<? extends Autocompletable> data = C12147n.emptyList();
+    private List<Integer> headerPositions = C12147n.emptyList();
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter$onCreateViewHolder$1 */
     /* JADX INFO: compiled from: ChatInputAutocompleteAdapter.kt */
-    public static final /* synthetic */ class C77931 extends C12236k implements Function1<Autocompletable, Unit> {
+    public final /* synthetic */ class C77931 extends C12236k implements Function1<Autocompletable, Unit> {
         public C77931(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter) {
             super(1, chatInputAutocompleteAdapter, ChatInputAutocompleteAdapter.class, "onAutocompletableSelected", "onAutocompletableSelected(Lcom/discord/widgets/chat/input/autocomplete/Autocompletable;)V", 0);
         }
@@ -100,7 +100,7 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter$onCreateViewHolder$2 */
     /* JADX INFO: compiled from: ChatInputAutocompleteAdapter.kt */
-    public static final /* synthetic */ class C77942 extends C12236k implements Function1<Autocompletable, Unit> {
+    public final /* synthetic */ class C77942 extends C12236k implements Function1<Autocompletable, Unit> {
         public C77942(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter) {
             super(1, chatInputAutocompleteAdapter, ChatInputAutocompleteAdapter.class, "onAutocompletableSelected", "onAutocompletableSelected(Lcom/discord/widgets/chat/input/autocomplete/Autocompletable;)V", 0);
         }
@@ -120,7 +120,7 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter$setupScrollObservables$2 */
     /* JADX INFO: compiled from: ChatInputAutocompleteAdapter.kt */
-    public static final class C77962 extends AbstractC12240o implements Function1<Object, Unit> {
+    public final class C77962 extends AbstractC12240o implements Function1<Object, Unit> {
         public final /* synthetic */ RecyclerView $recyclerView;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -163,93 +163,6 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
         return arrayList;
     }
 
-    private final int getDataHeightOrMax(List<? extends Autocompletable> data, int maxAllowedHeight) {
-        int i = 0;
-        for (Autocompletable autocompletable : data) {
-            i += autocompletable instanceof ApplicationPlaceholder ? 32 : autocompletable instanceof EmojiUpsellPlaceholder ? 52 : 44;
-            if (i >= maxAllowedHeight) {
-                return maxAllowedHeight;
-            }
-        }
-        return i;
-    }
-
-    private final void resizeRecyclerToData(List<? extends Autocompletable> data, boolean hasStickers, boolean sizeToMax) {
-        ViewGroup.LayoutParams layoutParams;
-        int dataHeightOrMax = hasStickers ? 132 : 176;
-        if (!sizeToMax) {
-            dataHeightOrMax = getDataHeightOrMax(data, dataHeightOrMax);
-        }
-        int iDpToPixels = DimenUtils.dpToPixels(dataHeightOrMax);
-        RecyclerView recyclerView = this.recyclerView;
-        if (recyclerView != null && (layoutParams = recyclerView.getLayoutParams()) != null) {
-            layoutParams.height = iDpToPixels;
-        }
-        RecyclerView recyclerView2 = this.recyclerView;
-        if (recyclerView2 != null) {
-            recyclerView2.requestLayout();
-        }
-    }
-
-    public static /* synthetic */ void scrollToPosition$default(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter, int i, int i2, boolean z2, int i3, Object obj) {
-        if ((i3 & 2) != 0) {
-            i2 = 0;
-        }
-        if ((i3 & 4) != 0) {
-            z2 = false;
-        }
-        chatInputAutocompleteAdapter.scrollToPosition(i, i2, z2);
-    }
-
-    public static /* synthetic */ void setData$default(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter, List list, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        if ((i & 4) != 0) {
-            z3 = false;
-        }
-        chatInputAutocompleteAdapter.setData(list, z2, z3);
-    }
-
-    private final void setupScrollObservables(RecyclerView recyclerView, AppComponent appComponent) {
-        Observable observableM11080o = Observable.m11080o(new Action1<Emitter<Object>>() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupScrollObservables.1
-            @Override // p658rx.functions.Action1
-            public final void call(final Emitter<Object> emitter) {
-                C12238m.checkNotNullParameter(emitter, "emitter");
-                ChatInputAutocompleteAdapter.this.onScrollListener = new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupScrollObservables.1.1
-                    @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
-                    public void onScrolled(RecyclerView recyclerView2, int dx, int dy) {
-                        C12238m.checkNotNullParameter(recyclerView2, "recyclerView");
-                        super.onScrolled(recyclerView2, dx, dy);
-                        emitter.onNext(0);
-                    }
-                };
-            }
-        }, Emitter.BackpressureMode.LATEST);
-        C12238m.checkNotNullExpressionValue(observableM11080o, "Observable\n        .crea….BackpressureMode.LATEST)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11080o, appComponent, null, 2, null), (Class<?>) ChatInputAutocompleteAdapter.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77962(recyclerView));
-        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
-        if (onScrollListener != null) {
-            recyclerView.addOnScrollListener(onScrollListener);
-        }
-    }
-
-    private final void setupStickyApplicationHeaders(final RecyclerView recyclerView) {
-        this.stickyHeaderManager = new StickyHeaderManager(recyclerView, this);
-        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupStickyApplicationHeaders.1
-            @Override // android.view.View.OnLayoutChangeListener
-            public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                StickyHeaderManager stickyHeaderManager = ChatInputAutocompleteAdapter.this.stickyHeaderManager;
-                if (stickyHeaderManager != null) {
-                    stickyHeaderManager.layoutViews(recyclerView);
-                }
-            }
-        });
-        StickyHeaderItemDecoration stickyHeaderItemDecoration = new StickyHeaderItemDecoration(this);
-        recyclerView.addItemDecoration(stickyHeaderItemDecoration);
-        stickyHeaderItemDecoration.blockClicks(recyclerView);
-    }
-
     public final void configureSubscriptions(AppComponent appComponent) {
         C12238m.checkNotNullParameter(appComponent, "appComponent");
         RecyclerView recyclerView = this.recyclerView;
@@ -277,6 +190,17 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
         return stickyHeaderHolder.getItemView();
     }
 
+    private final int getDataHeightOrMax(List<? extends Autocompletable> data, int maxAllowedHeight) {
+        int i = 0;
+        for (Autocompletable autocompletable : data) {
+            i += autocompletable instanceof ApplicationPlaceholder ? 32 : autocompletable instanceof EmojiUpsellPlaceholder ? 52 : 44;
+            if (i >= maxAllowedHeight) {
+                return maxAllowedHeight;
+            }
+        }
+        return i;
+    }
+
     @Override // com.discord.utilities.views.StickyHeaderItemDecoration.StickyHeaderAdapter
     public Integer getHeaderPositionForItem(int itemPosition) {
         int iIntValue;
@@ -293,12 +217,6 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
 
     public final Autocompletable getItem(int position) {
         return this.data.get(position);
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -354,6 +272,12 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
 
     public final Function1<Autocompletable, Unit> getOnItemSelected() {
         return this.onItemSelected;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     public final Subscription getSubscription() {
@@ -507,6 +431,33 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
         this.recyclerView = null;
     }
 
+    private final void resizeRecyclerToData(List<? extends Autocompletable> data, boolean hasStickers, boolean sizeToMax) {
+        ViewGroup.LayoutParams layoutParams;
+        int dataHeightOrMax = hasStickers ? 132 : 176;
+        if (!sizeToMax) {
+            dataHeightOrMax = getDataHeightOrMax(data, dataHeightOrMax);
+        }
+        int iDpToPixels = DimenUtils.dpToPixels(dataHeightOrMax);
+        RecyclerView recyclerView = this.recyclerView;
+        if (recyclerView != null && (layoutParams = recyclerView.getLayoutParams()) != null) {
+            layoutParams.height = iDpToPixels;
+        }
+        RecyclerView recyclerView2 = this.recyclerView;
+        if (recyclerView2 != null) {
+            recyclerView2.requestLayout();
+        }
+    }
+
+    public static /* synthetic */ void scrollToPosition$default(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter, int i, int i2, boolean z2, int i3, Object obj) {
+        if ((i3 & 2) != 0) {
+            i2 = 0;
+        }
+        if ((i3 & 4) != 0) {
+            z2 = false;
+        }
+        chatInputAutocompleteAdapter.scrollToPosition(i, i2, z2);
+    }
+
     public final void scrollToPosition(int position, int offset, boolean enableListeners) {
         RecyclerView.OnScrollListener onScrollListener;
         RecyclerView recyclerView;
@@ -524,6 +475,16 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
             return;
         }
         recyclerView.addOnScrollListener(onScrollListener);
+    }
+
+    public static /* synthetic */ void setData$default(ChatInputAutocompleteAdapter chatInputAutocompleteAdapter, List list, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        if ((i & 4) != 0) {
+            z3 = false;
+        }
+        chatInputAutocompleteAdapter.setData(list, z2, z3);
     }
 
     public final void setData(List<? extends Autocompletable> autocompletables, boolean hasStickers, boolean sizeToMax) {
@@ -545,5 +506,44 @@ public final class ChatInputAutocompleteAdapter extends RecyclerView.Adapter<Rec
     public final void setVisiblePositionListener(Function2<? super Integer, ? super Integer, Unit> onScrollVisibleDiscoveryCommands) {
         C12238m.checkNotNullParameter(onScrollVisibleDiscoveryCommands, "onScrollVisibleDiscoveryCommands");
         this.onScrollPositionListener = onScrollVisibleDiscoveryCommands;
+    }
+
+    private final void setupScrollObservables(RecyclerView recyclerView, AppComponent appComponent) {
+        Observable observableM11080o = Observable.m11080o(new Action1<Emitter<Object>>() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupScrollObservables.1
+            @Override // p658rx.functions.Action1
+            public final void call(final Emitter<Object> emitter) {
+                C12238m.checkNotNullParameter(emitter, "emitter");
+                ChatInputAutocompleteAdapter.this.onScrollListener = new RecyclerView.OnScrollListener() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupScrollObservables.1.1
+                    @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
+                    public void onScrolled(RecyclerView recyclerView2, int dx, int dy) {
+                        C12238m.checkNotNullParameter(recyclerView2, "recyclerView");
+                        super.onScrolled(recyclerView2, dx, dy);
+                        emitter.onNext(0);
+                    }
+                };
+            }
+        }, Emitter.BackpressureMode.LATEST);
+        C12238m.checkNotNullExpressionValue(observableM11080o, "Observable\n        .crea….BackpressureMode.LATEST)");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11080o, appComponent, null, 2, null), (Class<?>) ChatInputAutocompleteAdapter.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C77962(recyclerView));
+        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
+        if (onScrollListener != null) {
+            recyclerView.addOnScrollListener(onScrollListener);
+        }
+    }
+
+    private final void setupStickyApplicationHeaders(final RecyclerView recyclerView) {
+        this.stickyHeaderManager = new StickyHeaderManager(recyclerView, this);
+        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() { // from class: com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter.setupStickyApplicationHeaders.1
+            @Override // android.view.View.OnLayoutChangeListener
+            public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+                StickyHeaderManager stickyHeaderManager = ChatInputAutocompleteAdapter.this.stickyHeaderManager;
+                if (stickyHeaderManager != null) {
+                    stickyHeaderManager.layoutViews(recyclerView);
+                }
+            }
+        });
+        StickyHeaderItemDecoration stickyHeaderItemDecoration = new StickyHeaderItemDecoration(this);
+        recyclerView.addItemDecoration(stickyHeaderItemDecoration);
+        stickyHeaderItemDecoration.blockClicks(recyclerView);
     }
 }

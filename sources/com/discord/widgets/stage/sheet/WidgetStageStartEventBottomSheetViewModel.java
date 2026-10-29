@@ -42,7 +42,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100591 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C100591 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C100591() {
             super(1);
         }
@@ -60,8 +60,142 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$1 */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class Companion {
+    public final class C100611 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C100611() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusFailureEvent();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$2 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class C100622 extends AbstractC12240o implements Function1<StageInstance, Unit> {
+        public final /* synthetic */ boolean $microphonePermissionGranted;
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100622(boolean z2, ViewState.Loaded loaded) {
+            super(1);
+            this.$microphonePermissionGranted = z2;
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
+            invoke2(stageInstance);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StageInstance stageInstance) {
+            C12238m.checkNotNullParameter(stageInstance, "it");
+            if (this.$microphonePermissionGranted) {
+                WidgetStageStartEventBottomSheetViewModel.this.setSelfSpeaker();
+            }
+            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusSuccessEvent(this.$viewState.getChannel());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$3 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class C100633 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C100633() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusFailureEvent();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$4 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class C100644 extends AbstractC12240o implements Function1<StageInstance, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100644(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
+            invoke2(stageInstance);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StageInstance stageInstance) {
+            C12238m.checkNotNullParameter(stageInstance, "it");
+            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusSuccessEvent(this.$viewState.getChannel());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$1 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class C100651 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C100651 INSTANCE = new C100651();
+
+        public C100651() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$2 */
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class C100662 extends AbstractC12240o implements Function1<Error, Unit> {
+        public static final C100662 INSTANCE = new C100662();
+
+        public C100662() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -85,10 +219,10 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
     }
 
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-        public static final /* data */ class InvalidTopic extends Event {
+        public final /* data */ class InvalidTopic extends Event {
             private final int failureMessageStringRes;
 
             public InvalidTopic(int i) {
@@ -103,11 +237,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 return invalidTopic.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFailureMessageStringRes() {
-                return this.failureMessageStringRes;
-            }
-
             public final InvalidTopic copy(int failureMessageStringRes) {
                 return new InvalidTopic(failureMessageStringRes);
             }
@@ -117,6 +246,11 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                     return (other instanceof InvalidTopic) && this.failureMessageStringRes == ((InvalidTopic) other).failureMessageStringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getFailureMessageStringRes() {
+                return this.failureMessageStringRes;
             }
 
             public final int getFailureMessageStringRes() {
@@ -133,7 +267,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         }
 
         /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-        public static final /* data */ class SetTopicFailure extends Event {
+        public final /* data */ class SetTopicFailure extends Event {
             private final int failureMessageStringRes;
 
             public SetTopicFailure(int i) {
@@ -148,11 +282,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 return setTopicFailure.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFailureMessageStringRes() {
-                return this.failureMessageStringRes;
-            }
-
             public final SetTopicFailure copy(int failureMessageStringRes) {
                 return new SetTopicFailure(failureMessageStringRes);
             }
@@ -162,6 +291,11 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                     return (other instanceof SetTopicFailure) && this.failureMessageStringRes == ((SetTopicFailure) other).failureMessageStringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getFailureMessageStringRes() {
+                return this.failureMessageStringRes;
             }
 
             public final int getFailureMessageStringRes() {
@@ -178,7 +312,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         }
 
         /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-        public static final /* data */ class SetTopicSuccess extends Event {
+        public final /* data */ class SetTopicSuccess extends Event {
             private final Channel channel;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -195,11 +329,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 return setTopicSuccess.copy(channel);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
             public final SetTopicSuccess copy(Channel channel) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 return new SetTopicSuccess(channel);
@@ -210,6 +339,11 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                     return (other instanceof SetTopicSuccess) && C12238m.areEqual(this.channel, ((SetTopicSuccess) other).channel);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
@@ -241,7 +375,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
     }
 
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final StageInstance stageInstance;
 
@@ -261,16 +395,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
             return storeState.copy(channel, stageInstance);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StageInstance getStageInstance() {
-            return this.stageInstance;
-        }
-
         public final StoreState copy(Channel channel, StageInstance stageInstance) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new StoreState(channel, stageInstance);
@@ -287,8 +411,18 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
             return C12238m.areEqual(this.channel, storeState.channel) && C12238m.areEqual(this.stageInstance, storeState.stageInstance);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Channel getChannel() {
             return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StageInstance getStageInstance() {
+            return this.stageInstance;
         }
 
         public final StageInstance getStageInstance() {
@@ -313,10 +447,10 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
     }
 
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -325,7 +459,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         }
 
         /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Channel channel;
             private final StageInstance stageInstance;
             private final String topic;
@@ -353,21 +487,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 return loaded.copy(channel, str, stageInstance);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getTopic() {
-                return this.topic;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final StageInstance getStageInstance() {
-                return this.stageInstance;
-            }
-
             public final Loaded copy(Channel channel, String topic, StageInstance stageInstance) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 C12238m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
@@ -385,12 +504,27 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 return C12238m.areEqual(this.channel, loaded.channel) && C12238m.areEqual(this.topic, loaded.topic) && C12238m.areEqual(this.stageInstance, loaded.stageInstance);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getChannel() {
                 return this.channel;
             }
 
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final StageInstance getStageInstance() {
                 return this.stageInstance;
+            }
+
+            public final StageInstance getStageInstance() {
+                return this.stageInstance;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getTopic() {
+                return this.topic;
             }
 
             public final String getTopic() {
@@ -426,140 +560,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$1 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100611 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C100611() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusFailureEvent();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$2 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100622 extends AbstractC12240o implements Function1<StageInstance, Unit> {
-        public final /* synthetic */ boolean $microphonePermissionGranted;
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100622(boolean z2, ViewState.Loaded loaded) {
-            super(1);
-            this.$microphonePermissionGranted = z2;
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
-            invoke2(stageInstance);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StageInstance stageInstance) {
-            C12238m.checkNotNullParameter(stageInstance, "it");
-            if (this.$microphonePermissionGranted) {
-                WidgetStageStartEventBottomSheetViewModel.this.setSelfSpeaker();
-            }
-            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusSuccessEvent(this.$viewState.getChannel());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$3 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100633 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C100633() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusFailureEvent();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$4 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100644 extends AbstractC12240o implements Function1<StageInstance, Unit> {
-        public final /* synthetic */ ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100644(ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
-            invoke2(stageInstance);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StageInstance stageInstance) {
-            C12238m.checkNotNullParameter(stageInstance, "it");
-            WidgetStageStartEventBottomSheetViewModel.this.emitSetStatusSuccessEvent(this.$viewState.getChannel());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$1 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100651 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C100651 INSTANCE = new C100651();
-
-        public C100651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$2 */
-    /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public static final class C100662 extends AbstractC12240o implements Function1<Error, Unit> {
-        public static final C100662 INSTANCE = new C100662();
-
-        public C100662() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetStageStartEventBottomSheetViewModel(long j, StoreChannels storeChannels, StoreStageInstances storeStageInstances, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         StoreChannels channels = (i & 2) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels;
@@ -589,15 +589,6 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
         updateViewState(new ViewState.Loaded(channel, topic, storeState.getStageInstance()));
     }
 
-    private final void setSelfSpeaker() {
-        Channel channel;
-        StoreState storeState = this.storeState;
-        if (storeState == null || (channel = storeState.getChannel()) == null) {
-            return;
-        }
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, false), false, 1, null), (Class<?>) WidgetStageStartEventBottomSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C100662.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C100651.INSTANCE);
-    }
-
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -623,6 +614,15 @@ public final class WidgetStageStartEventBottomSheetViewModel extends AbstractC08
                 ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(StageChannelAPI.updateStageInstance$default(StageChannelAPI.INSTANCE, this.channelId, str, null, 4, null), false, 1, null), this, null, 2, null), (Class<?>) WidgetStageStartEventBottomSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C100633()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C100644(loaded));
             }
         }
+    }
+
+    private final void setSelfSpeaker() {
+        Channel channel;
+        StoreState storeState = this.storeState;
+        if (storeState == null || (channel = storeState.getChannel()) == null) {
+            return;
+        }
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, false), false, 1, null), (Class<?>) WidgetStageStartEventBottomSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : C100662.INSTANCE), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C100651.INSTANCE);
     }
 
     public final void setTopic(String topic) {

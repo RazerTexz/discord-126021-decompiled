@@ -20,6 +20,12 @@ public final class WidgetChannelMembersListItemPlaceholderHeaderBinding implemen
         this.f15861a = frameLayout;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f15861a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChannelMembersListItemPlaceholderHeaderBinding m8405a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -32,11 +38,5 @@ public final class WidgetChannelMembersListItemPlaceholderHeaderBinding implemen
             return new WidgetChannelMembersListItemPlaceholderHeaderBinding((FrameLayout) viewInflate, viewFindViewById);
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(C5419R.id.channel_members_list_item_header_placeholder)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15861a;
     }
 }

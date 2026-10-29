@@ -10,18 +10,18 @@ import p600f0.p601e0.C12272c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12297c {
 
-    /* JADX INFO: renamed from: a */
-    public static final a f25526a = new a();
-
     /* JADX INFO: renamed from: b */
     public static final String[] f25527b;
 
     /* JADX INFO: renamed from: c */
     public static final DateFormat[] f25528c;
 
+    /* JADX INFO: renamed from: a */
+    public static final a f25526a = new a();
+
     /* JADX INFO: renamed from: f0.e0.h.c$a */
     /* JADX INFO: compiled from: dates.kt */
-    public static final class a extends ThreadLocal<DateFormat> {
+    public final class a extends ThreadLocal<DateFormat> {
         @Override // java.lang.ThreadLocal
         public DateFormat initialValue() {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.US);

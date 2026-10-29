@@ -21,15 +21,12 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
-
-    /* JADX INFO: renamed from: j */
-    public static final C11683h f23816j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11683h> f23817k = new a();
     private List<C11683h> andArgument_;
     private int bitField0_;
     private c constantValue_;
+
+    /* JADX INFO: renamed from: j */
+    public static final C11683h f23816j;
     private int flags_;
     private int isInstanceTypeId_;
     private C11692q isInstanceType_;
@@ -39,9 +36,12 @@ public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
     private final AbstractC11723c unknownFields;
     private int valueParameterReference_;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11683h> f23817k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.h$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11683h> {
+    public final class a extends AbstractC11722b<C11683h> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11683h parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11683h(c11724d, c11725e, null);
@@ -50,7 +50,7 @@ public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.h$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.b<C11683h, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.b<C11683h, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: k */
         public int f23818k;
@@ -288,14 +288,6 @@ public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
         this.unknownFields = bVar.getUnknownFields();
     }
 
-    public static C11683h getDefaultInstance() {
-        return f23816j;
-    }
-
-    public static b newBuilder(C11683h c11683h) {
-        return newBuilder().mergeFrom(c11683h);
-    }
-
     public C11683h getAndArgument(int i) {
         return this.andArgument_.get(i);
     }
@@ -306,6 +298,10 @@ public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
 
     public c getConstantValue() {
         return this.constantValue_;
+    }
+
+    public static C11683h getDefaultInstance() {
+        return f23816j;
     }
 
     public int getFlags() {
@@ -420,6 +416,10 @@ public final class C11683h extends AbstractC11727g implements InterfaceC11735o {
         this.isInstanceTypeId_ = 0;
         this.andArgument_ = Collections.emptyList();
         this.orArgument_ = Collections.emptyList();
+    }
+
+    public static b newBuilder(C11683h c11683h) {
+        return newBuilder().mergeFrom(c11683h);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

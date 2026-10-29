@@ -23,11 +23,11 @@ public class LinearSystem {
     public static boolean USE_BASIC_SYNONYMS = true;
     public static boolean USE_DEPENDENCY_ORDERING = false;
     public static boolean USE_SYNONYMS = true;
-    public static Metrics sMetrics;
     public final Cache mCache;
     private Row mGoal;
     public ArrayRow[] mRows;
     private Row mTempGoal;
+    public static Metrics sMetrics;
     public boolean hasSimpleDefinition = false;
     public int mVariablesID = 0;
     private HashMap<String, SolverVariable> mVariables = null;
@@ -103,366 +103,6 @@ public class LinearSystem {
         this.mPoolVariablesCount = i4 + 1;
         solverVariableArr[i4] = solverVariableAcquire;
         return solverVariableAcquire;
-    }
-
-    private void addError(ArrayRow arrayRow) {
-        arrayRow.addError(this, 0);
-    }
-
-    private final void addRow(ArrayRow arrayRow) {
-        int i;
-        if (SIMPLIFY_SYNONYMS && arrayRow.isSimpleDefinition) {
-            arrayRow.variable.setFinalValue(this, arrayRow.constantValue);
-        } else {
-            ArrayRow[] arrayRowArr = this.mRows;
-            int i2 = this.mNumRows;
-            arrayRowArr[i2] = arrayRow;
-            SolverVariable solverVariable = arrayRow.variable;
-            solverVariable.definitionId = i2;
-            this.mNumRows = i2 + 1;
-            solverVariable.updateReferencesWithNewDefinition(this, arrayRow);
-        }
-        if (SIMPLIFY_SYNONYMS && this.hasSimpleDefinition) {
-            int i3 = 0;
-            while (i3 < this.mNumRows) {
-                if (this.mRows[i3] == null) {
-                    System.out.println("WTF");
-                }
-                ArrayRow[] arrayRowArr2 = this.mRows;
-                if (arrayRowArr2[i3] != null && arrayRowArr2[i3].isSimpleDefinition) {
-                    ArrayRow arrayRow2 = arrayRowArr2[i3];
-                    arrayRow2.variable.setFinalValue(this, arrayRow2.constantValue);
-                    if (OPTIMIZED_ENGINE) {
-                        this.mCache.optimizedArrayRowPool.release(arrayRow2);
-                    } else {
-                        this.mCache.arrayRowPool.release(arrayRow2);
-                    }
-                    this.mRows[i3] = null;
-                    int i4 = i3 + 1;
-                    int i5 = i4;
-                    while (true) {
-                        i = this.mNumRows;
-                        if (i4 >= i) {
-                            break;
-                        }
-                        ArrayRow[] arrayRowArr3 = this.mRows;
-                        int i6 = i4 - 1;
-                        arrayRowArr3[i6] = arrayRowArr3[i4];
-                        if (arrayRowArr3[i6].variable.definitionId == i4) {
-                            arrayRowArr3[i6].variable.definitionId = i6;
-                        }
-                        i5 = i4;
-                        i4++;
-                    }
-                    if (i5 < i) {
-                        this.mRows[i5] = null;
-                    }
-                    this.mNumRows = i - 1;
-                    i3--;
-                }
-                i3++;
-            }
-            this.hasSimpleDefinition = false;
-        }
-    }
-
-    private void addSingleError(ArrayRow arrayRow, int i) {
-        addSingleError(arrayRow, i, 0);
-    }
-
-    private void computeValues() {
-        for (int i = 0; i < this.mNumRows; i++) {
-            ArrayRow arrayRow = this.mRows[i];
-            arrayRow.variable.computedValue = arrayRow.constantValue;
-        }
-    }
-
-    public static ArrayRow createRowDimensionPercent(LinearSystem linearSystem, SolverVariable solverVariable, SolverVariable solverVariable2, float f) {
-        return linearSystem.createRow().createRowDimensionPercent(solverVariable, solverVariable2, f);
-    }
-
-    private SolverVariable createVariable(String str, SolverVariable.Type type) {
-        Metrics metrics = sMetrics;
-        if (metrics != null) {
-            metrics.variables++;
-        }
-        if (this.mNumColumns + 1 >= this.mMaxColumns) {
-            increaseTableSize();
-        }
-        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(type, null);
-        solverVariableAcquireSolverVariable.setName(str);
-        int i = this.mVariablesID + 1;
-        this.mVariablesID = i;
-        this.mNumColumns++;
-        solverVariableAcquireSolverVariable.f110id = i;
-        if (this.mVariables == null) {
-            this.mVariables = new HashMap<>();
-        }
-        this.mVariables.put(str, solverVariableAcquireSolverVariable);
-        this.mCache.mIndexedVariables[this.mVariablesID] = solverVariableAcquireSolverVariable;
-        return solverVariableAcquireSolverVariable;
-    }
-
-    private void displayRows() {
-        displaySolverVariables();
-        String strM883w = "";
-        for (int i = 0; i < this.mNumRows; i++) {
-            StringBuilder sbM833U = C1643a.m833U(strM883w);
-            sbM833U.append(this.mRows[i]);
-            strM883w = C1643a.m883w(sbM833U.toString(), "\n");
-        }
-        StringBuilder sbM833U2 = C1643a.m833U(strM883w);
-        sbM833U2.append(this.mGoal);
-        sbM833U2.append("\n");
-        System.out.println(sbM833U2.toString());
-    }
-
-    private void displaySolverVariables() {
-        StringBuilder sbM833U = C1643a.m833U("Display Rows (");
-        sbM833U.append(this.mNumRows);
-        sbM833U.append("x");
-        System.out.println(C1643a.m814B(sbM833U, this.mNumColumns, ")\n"));
-    }
-
-    private int enforceBFS(Row row) throws Exception {
-        boolean z2;
-        int i = 0;
-        while (true) {
-            if (i >= this.mNumRows) {
-                z2 = false;
-                break;
-            }
-            ArrayRow[] arrayRowArr = this.mRows;
-            if (arrayRowArr[i].variable.mType != SolverVariable.Type.UNRESTRICTED && arrayRowArr[i].constantValue < 0.0f) {
-                z2 = true;
-                break;
-            }
-            i++;
-        }
-        if (!z2) {
-            return 0;
-        }
-        boolean z3 = false;
-        int i2 = 0;
-        while (!z3) {
-            Metrics metrics = sMetrics;
-            if (metrics != null) {
-                metrics.bfs++;
-            }
-            i2++;
-            float f = Float.MAX_VALUE;
-            int i3 = -1;
-            int i4 = -1;
-            int i5 = 0;
-            for (int i6 = 0; i6 < this.mNumRows; i6++) {
-                ArrayRow arrayRow = this.mRows[i6];
-                if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.constantValue < 0.0f) {
-                    int i7 = 9;
-                    if (SKIP_COLUMNS) {
-                        int currentSize = arrayRow.variables.getCurrentSize();
-                        int i8 = 0;
-                        while (i8 < currentSize) {
-                            SolverVariable variable = arrayRow.variables.getVariable(i8);
-                            float f2 = arrayRow.variables.get(variable);
-                            if (f2 > 0.0f) {
-                                int i9 = 0;
-                                while (i9 < i7) {
-                                    float f3 = variable.strengthVector[i9] / f2;
-                                    if ((f3 < f && i9 == i5) || i9 > i5) {
-                                        i4 = variable.f110id;
-                                        i5 = i9;
-                                        i3 = i6;
-                                        f = f3;
-                                    }
-                                    i9++;
-                                    i7 = 9;
-                                }
-                            }
-                            i8++;
-                            i7 = 9;
-                        }
-                    } else {
-                        for (int i10 = 1; i10 < this.mNumColumns; i10++) {
-                            SolverVariable solverVariable = this.mCache.mIndexedVariables[i10];
-                            float f4 = arrayRow.variables.get(solverVariable);
-                            if (f4 > 0.0f) {
-                                for (int i11 = 0; i11 < 9; i11++) {
-                                    float f5 = solverVariable.strengthVector[i11] / f4;
-                                    if ((f5 < f && i11 == i5) || i11 > i5) {
-                                        i4 = i10;
-                                        i5 = i11;
-                                        i3 = i6;
-                                        f = f5;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (i3 != -1) {
-                ArrayRow arrayRow2 = this.mRows[i3];
-                arrayRow2.variable.definitionId = -1;
-                Metrics metrics2 = sMetrics;
-                if (metrics2 != null) {
-                    metrics2.pivots++;
-                }
-                arrayRow2.pivot(this.mCache.mIndexedVariables[i4]);
-                SolverVariable solverVariable2 = arrayRow2.variable;
-                solverVariable2.definitionId = i3;
-                solverVariable2.updateReferencesWithNewDefinition(this, arrayRow2);
-            } else {
-                z3 = true;
-            }
-            if (i2 > this.mNumColumns / 2) {
-                z3 = true;
-            }
-        }
-        return i2;
-    }
-
-    private String getDisplaySize(int i) {
-        int i2 = i * 4;
-        int i3 = i2 / 1024;
-        int i4 = i3 / 1024;
-        if (i4 > 0) {
-            return C1643a.m873r("", i4, " Mb");
-        }
-        return i3 > 0 ? C1643a.m873r("", i3, " Kb") : C1643a.m873r("", i2, " bytes");
-    }
-
-    private String getDisplayStrength(int i) {
-        if (i == 1) {
-            return "LOW";
-        }
-        if (i == 2) {
-            return "MEDIUM";
-        }
-        if (i == 3) {
-            return "HIGH";
-        }
-        if (i == 4) {
-            return "HIGHEST";
-        }
-        if (i == 5) {
-            return "EQUALITY";
-        }
-        if (i == 8) {
-            return "FIXED";
-        }
-        return i == 6 ? "BARRIER" : "NONE";
-    }
-
-    public static Metrics getMetrics() {
-        return sMetrics;
-    }
-
-    private void increaseTableSize() {
-        int i = this.TABLE_SIZE * 2;
-        this.TABLE_SIZE = i;
-        this.mRows = (ArrayRow[]) Arrays.copyOf(this.mRows, i);
-        Cache cache = this.mCache;
-        cache.mIndexedVariables = (SolverVariable[]) Arrays.copyOf(cache.mIndexedVariables, this.TABLE_SIZE);
-        int i2 = this.TABLE_SIZE;
-        this.mAlreadyTestedCandidates = new boolean[i2];
-        this.mMaxColumns = i2;
-        this.mMaxRows = i2;
-        Metrics metrics = sMetrics;
-        if (metrics != null) {
-            metrics.tableSizeIncrease++;
-            metrics.maxTableSize = Math.max(metrics.maxTableSize, i2);
-            Metrics metrics2 = sMetrics;
-            metrics2.lastTableSize = metrics2.maxTableSize;
-        }
-    }
-
-    private final int optimize(Row row, boolean z2) {
-        Metrics metrics = sMetrics;
-        if (metrics != null) {
-            metrics.optimize++;
-        }
-        for (int i = 0; i < this.mNumColumns; i++) {
-            this.mAlreadyTestedCandidates[i] = false;
-        }
-        boolean z3 = false;
-        int i2 = 0;
-        while (!z3) {
-            Metrics metrics2 = sMetrics;
-            if (metrics2 != null) {
-                metrics2.iterations++;
-            }
-            i2++;
-            if (i2 >= this.mNumColumns * 2) {
-                return i2;
-            }
-            if (row.getKey() != null) {
-                this.mAlreadyTestedCandidates[row.getKey().f110id] = true;
-            }
-            SolverVariable pivotCandidate = row.getPivotCandidate(this, this.mAlreadyTestedCandidates);
-            if (pivotCandidate != null) {
-                boolean[] zArr = this.mAlreadyTestedCandidates;
-                int i3 = pivotCandidate.f110id;
-                if (zArr[i3]) {
-                    return i2;
-                }
-                zArr[i3] = true;
-            }
-            if (pivotCandidate != null) {
-                float f = Float.MAX_VALUE;
-                int i4 = -1;
-                for (int i5 = 0; i5 < this.mNumRows; i5++) {
-                    ArrayRow arrayRow = this.mRows[i5];
-                    if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.hasVariable(pivotCandidate)) {
-                        float f2 = arrayRow.variables.get(pivotCandidate);
-                        if (f2 < 0.0f) {
-                            float f3 = (-arrayRow.constantValue) / f2;
-                            if (f3 < f) {
-                                i4 = i5;
-                                f = f3;
-                            }
-                        }
-                    }
-                }
-                if (i4 > -1) {
-                    ArrayRow arrayRow2 = this.mRows[i4];
-                    arrayRow2.variable.definitionId = -1;
-                    Metrics metrics3 = sMetrics;
-                    if (metrics3 != null) {
-                        metrics3.pivots++;
-                    }
-                    arrayRow2.pivot(pivotCandidate);
-                    SolverVariable solverVariable = arrayRow2.variable;
-                    solverVariable.definitionId = i4;
-                    solverVariable.updateReferencesWithNewDefinition(this, arrayRow2);
-                }
-            } else {
-                z3 = true;
-            }
-        }
-        return i2;
-    }
-
-    private void releaseRows() {
-        int i = 0;
-        if (OPTIMIZED_ENGINE) {
-            while (i < this.mNumRows) {
-                ArrayRow arrayRow = this.mRows[i];
-                if (arrayRow != null) {
-                    this.mCache.optimizedArrayRowPool.release(arrayRow);
-                }
-                this.mRows[i] = null;
-                i++;
-            }
-            return;
-        }
-        while (i < this.mNumRows) {
-            ArrayRow arrayRow2 = this.mRows[i];
-            if (arrayRow2 != null) {
-                this.mCache.arrayRowPool.release(arrayRow2);
-            }
-            this.mRows[i] = null;
-            i++;
-        }
     }
 
     public void addCenterPoint(ConstraintWidget constraintWidget, ConstraintWidget constraintWidget2, float f, int i) {
@@ -579,6 +219,10 @@ public class LinearSystem {
         return arrayRowCreateRow;
     }
 
+    private void addError(ArrayRow arrayRow) {
+        arrayRow.addError(this, 0);
+    }
+
     public void addGreaterBarrier(SolverVariable solverVariable, SolverVariable solverVariable2, int i, boolean z2) {
         ArrayRow arrayRowCreateRow = createRow();
         SolverVariable solverVariableCreateSlackVariable = createSlackVariable();
@@ -624,6 +268,67 @@ public class LinearSystem {
             arrayRowCreateRow.addError(this, i);
         }
         addConstraint(arrayRowCreateRow);
+    }
+
+    private final void addRow(ArrayRow arrayRow) {
+        int i;
+        if (SIMPLIFY_SYNONYMS && arrayRow.isSimpleDefinition) {
+            arrayRow.variable.setFinalValue(this, arrayRow.constantValue);
+        } else {
+            ArrayRow[] arrayRowArr = this.mRows;
+            int i2 = this.mNumRows;
+            arrayRowArr[i2] = arrayRow;
+            SolverVariable solverVariable = arrayRow.variable;
+            solverVariable.definitionId = i2;
+            this.mNumRows = i2 + 1;
+            solverVariable.updateReferencesWithNewDefinition(this, arrayRow);
+        }
+        if (SIMPLIFY_SYNONYMS && this.hasSimpleDefinition) {
+            int i3 = 0;
+            while (i3 < this.mNumRows) {
+                if (this.mRows[i3] == null) {
+                    System.out.println("WTF");
+                }
+                ArrayRow[] arrayRowArr2 = this.mRows;
+                if (arrayRowArr2[i3] != null && arrayRowArr2[i3].isSimpleDefinition) {
+                    ArrayRow arrayRow2 = arrayRowArr2[i3];
+                    arrayRow2.variable.setFinalValue(this, arrayRow2.constantValue);
+                    if (OPTIMIZED_ENGINE) {
+                        this.mCache.optimizedArrayRowPool.release(arrayRow2);
+                    } else {
+                        this.mCache.arrayRowPool.release(arrayRow2);
+                    }
+                    this.mRows[i3] = null;
+                    int i4 = i3 + 1;
+                    int i5 = i4;
+                    while (true) {
+                        i = this.mNumRows;
+                        if (i4 >= i) {
+                            break;
+                        }
+                        ArrayRow[] arrayRowArr3 = this.mRows;
+                        int i6 = i4 - 1;
+                        arrayRowArr3[i6] = arrayRowArr3[i4];
+                        if (arrayRowArr3[i6].variable.definitionId == i4) {
+                            arrayRowArr3[i6].variable.definitionId = i6;
+                        }
+                        i5 = i4;
+                        i4++;
+                    }
+                    if (i5 < i) {
+                        this.mRows[i5] = null;
+                    }
+                    this.mNumRows = i - 1;
+                    i3--;
+                }
+                i3++;
+            }
+            this.hasSimpleDefinition = false;
+        }
+    }
+
+    private void addSingleError(ArrayRow arrayRow, int i) {
+        addSingleError(arrayRow, i, 0);
     }
 
     public void addSynonym(SolverVariable solverVariable, SolverVariable solverVariable2, int i) {
@@ -674,6 +379,13 @@ public class LinearSystem {
                 }
             }
             i2++;
+        }
+    }
+
+    private void computeValues() {
+        for (int i = 0; i < this.mNumRows; i++) {
+            ArrayRow arrayRow = this.mRows[i];
+            arrayRow.variable.computedValue = arrayRow.constantValue;
         }
     }
 
@@ -767,6 +479,10 @@ public class LinearSystem {
         return arrayRowAcquire;
     }
 
+    public static ArrayRow createRowDimensionPercent(LinearSystem linearSystem, SolverVariable solverVariable, SolverVariable solverVariable2, float f) {
+        return linearSystem.createRow().createRowDimensionPercent(solverVariable, solverVariable2, f);
+    }
+
     public SolverVariable createSlackVariable() {
         Metrics metrics = sMetrics;
         if (metrics != null) {
@@ -781,6 +497,28 @@ public class LinearSystem {
         this.mNumColumns++;
         solverVariableAcquireSolverVariable.f110id = i;
         this.mCache.mIndexedVariables[i] = solverVariableAcquireSolverVariable;
+        return solverVariableAcquireSolverVariable;
+    }
+
+    private SolverVariable createVariable(String str, SolverVariable.Type type) {
+        Metrics metrics = sMetrics;
+        if (metrics != null) {
+            metrics.variables++;
+        }
+        if (this.mNumColumns + 1 >= this.mMaxColumns) {
+            increaseTableSize();
+        }
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(type, null);
+        solverVariableAcquireSolverVariable.setName(str);
+        int i = this.mVariablesID + 1;
+        this.mVariablesID = i;
+        this.mNumColumns++;
+        solverVariableAcquireSolverVariable.f110id = i;
+        if (this.mVariables == null) {
+            this.mVariables = new HashMap<>();
+        }
+        this.mVariables.put(str, solverVariableAcquireSolverVariable);
+        this.mCache.mIndexedVariables[this.mVariablesID] = solverVariableAcquireSolverVariable;
         return solverVariableAcquireSolverVariable;
     }
 
@@ -814,6 +552,27 @@ public class LinearSystem {
             strM883w2 = sbM836X.toString();
         }
         System.out.println(strM883w2);
+    }
+
+    private void displayRows() {
+        displaySolverVariables();
+        String strM883w = "";
+        for (int i = 0; i < this.mNumRows; i++) {
+            StringBuilder sbM833U = C1643a.m833U(strM883w);
+            sbM833U.append(this.mRows[i]);
+            strM883w = C1643a.m883w(sbM833U.toString(), "\n");
+        }
+        StringBuilder sbM833U2 = C1643a.m833U(strM883w);
+        sbM833U2.append(this.mGoal);
+        sbM833U2.append("\n");
+        System.out.println(sbM833U2.toString());
+    }
+
+    private void displaySolverVariables() {
+        StringBuilder sbM833U = C1643a.m833U("Display Rows (");
+        sbM833U.append(this.mNumRows);
+        sbM833U.append("x");
+        System.out.println(C1643a.m814B(sbM833U, this.mNumColumns, ")\n"));
     }
 
     public void displaySystemInformations() {
@@ -872,12 +631,141 @@ public class LinearSystem {
         System.out.println(sbM833U2.toString());
     }
 
+    private int enforceBFS(Row row) throws Exception {
+        boolean z2;
+        int i = 0;
+        while (true) {
+            if (i >= this.mNumRows) {
+                z2 = false;
+                break;
+            }
+            ArrayRow[] arrayRowArr = this.mRows;
+            if (arrayRowArr[i].variable.mType != SolverVariable.Type.UNRESTRICTED && arrayRowArr[i].constantValue < 0.0f) {
+                z2 = true;
+                break;
+            }
+            i++;
+        }
+        if (!z2) {
+            return 0;
+        }
+        boolean z3 = false;
+        int i2 = 0;
+        while (!z3) {
+            Metrics metrics = sMetrics;
+            if (metrics != null) {
+                metrics.bfs++;
+            }
+            i2++;
+            float f = Float.MAX_VALUE;
+            int i3 = -1;
+            int i4 = -1;
+            int i5 = 0;
+            for (int i6 = 0; i6 < this.mNumRows; i6++) {
+                ArrayRow arrayRow = this.mRows[i6];
+                if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.constantValue < 0.0f) {
+                    int i7 = 9;
+                    if (SKIP_COLUMNS) {
+                        int currentSize = arrayRow.variables.getCurrentSize();
+                        int i8 = 0;
+                        while (i8 < currentSize) {
+                            SolverVariable variable = arrayRow.variables.getVariable(i8);
+                            float f2 = arrayRow.variables.get(variable);
+                            if (f2 > 0.0f) {
+                                int i9 = 0;
+                                while (i9 < i7) {
+                                    float f3 = variable.strengthVector[i9] / f2;
+                                    if ((f3 < f && i9 == i5) || i9 > i5) {
+                                        i4 = variable.f110id;
+                                        i5 = i9;
+                                        i3 = i6;
+                                        f = f3;
+                                    }
+                                    i9++;
+                                    i7 = 9;
+                                }
+                            }
+                            i8++;
+                            i7 = 9;
+                        }
+                    } else {
+                        for (int i10 = 1; i10 < this.mNumColumns; i10++) {
+                            SolverVariable solverVariable = this.mCache.mIndexedVariables[i10];
+                            float f4 = arrayRow.variables.get(solverVariable);
+                            if (f4 > 0.0f) {
+                                for (int i11 = 0; i11 < 9; i11++) {
+                                    float f5 = solverVariable.strengthVector[i11] / f4;
+                                    if ((f5 < f && i11 == i5) || i11 > i5) {
+                                        i4 = i10;
+                                        i5 = i11;
+                                        i3 = i6;
+                                        f = f5;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (i3 != -1) {
+                ArrayRow arrayRow2 = this.mRows[i3];
+                arrayRow2.variable.definitionId = -1;
+                Metrics metrics2 = sMetrics;
+                if (metrics2 != null) {
+                    metrics2.pivots++;
+                }
+                arrayRow2.pivot(this.mCache.mIndexedVariables[i4]);
+                SolverVariable solverVariable2 = arrayRow2.variable;
+                solverVariable2.definitionId = i3;
+                solverVariable2.updateReferencesWithNewDefinition(this, arrayRow2);
+            } else {
+                z3 = true;
+            }
+            if (i2 > this.mNumColumns / 2) {
+                z3 = true;
+            }
+        }
+        return i2;
+    }
+
     public void fillMetrics(Metrics metrics) {
         sMetrics = metrics;
     }
 
     public Cache getCache() {
         return this.mCache;
+    }
+
+    private String getDisplaySize(int i) {
+        int i2 = i * 4;
+        int i3 = i2 / 1024;
+        int i4 = i3 / 1024;
+        if (i4 > 0) {
+            return C1643a.m873r("", i4, " Mb");
+        }
+        return i3 > 0 ? C1643a.m873r("", i3, " Kb") : C1643a.m873r("", i2, " bytes");
+    }
+
+    private String getDisplayStrength(int i) {
+        if (i == 1) {
+            return "LOW";
+        }
+        if (i == 2) {
+            return "MEDIUM";
+        }
+        if (i == 3) {
+            return "HIGH";
+        }
+        if (i == 4) {
+            return "HIGHEST";
+        }
+        if (i == 5) {
+            return "EQUALITY";
+        }
+        if (i == 8) {
+            return "FIXED";
+        }
+        return i == 6 ? "BARRIER" : "NONE";
     }
 
     public Row getGoal() {
@@ -893,6 +781,10 @@ public class LinearSystem {
             }
         }
         return iSizeInBytes;
+    }
+
+    public static Metrics getMetrics() {
+        return sMetrics;
     }
 
     public int getNumEquations() {
@@ -929,6 +821,25 @@ public class LinearSystem {
         }
         SolverVariable solverVariable = this.mVariables.get(str);
         return solverVariable == null ? createVariable(str, type) : solverVariable;
+    }
+
+    private void increaseTableSize() {
+        int i = this.TABLE_SIZE * 2;
+        this.TABLE_SIZE = i;
+        this.mRows = (ArrayRow[]) Arrays.copyOf(this.mRows, i);
+        Cache cache = this.mCache;
+        cache.mIndexedVariables = (SolverVariable[]) Arrays.copyOf(cache.mIndexedVariables, this.TABLE_SIZE);
+        int i2 = this.TABLE_SIZE;
+        this.mAlreadyTestedCandidates = new boolean[i2];
+        this.mMaxColumns = i2;
+        this.mMaxRows = i2;
+        Metrics metrics = sMetrics;
+        if (metrics != null) {
+            metrics.tableSizeIncrease++;
+            metrics.maxTableSize = Math.max(metrics.maxTableSize, i2);
+            Metrics metrics2 = sMetrics;
+            metrics2.lastTableSize = metrics2.maxTableSize;
+        }
     }
 
     public void minimize() throws Exception {
@@ -982,6 +893,95 @@ public class LinearSystem {
         enforceBFS(row);
         optimize(row, false);
         computeValues();
+    }
+
+    private final int optimize(Row row, boolean z2) {
+        Metrics metrics = sMetrics;
+        if (metrics != null) {
+            metrics.optimize++;
+        }
+        for (int i = 0; i < this.mNumColumns; i++) {
+            this.mAlreadyTestedCandidates[i] = false;
+        }
+        boolean z3 = false;
+        int i2 = 0;
+        while (!z3) {
+            Metrics metrics2 = sMetrics;
+            if (metrics2 != null) {
+                metrics2.iterations++;
+            }
+            i2++;
+            if (i2 >= this.mNumColumns * 2) {
+                return i2;
+            }
+            if (row.getKey() != null) {
+                this.mAlreadyTestedCandidates[row.getKey().f110id] = true;
+            }
+            SolverVariable pivotCandidate = row.getPivotCandidate(this, this.mAlreadyTestedCandidates);
+            if (pivotCandidate != null) {
+                boolean[] zArr = this.mAlreadyTestedCandidates;
+                int i3 = pivotCandidate.f110id;
+                if (zArr[i3]) {
+                    return i2;
+                }
+                zArr[i3] = true;
+            }
+            if (pivotCandidate != null) {
+                float f = Float.MAX_VALUE;
+                int i4 = -1;
+                for (int i5 = 0; i5 < this.mNumRows; i5++) {
+                    ArrayRow arrayRow = this.mRows[i5];
+                    if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.hasVariable(pivotCandidate)) {
+                        float f2 = arrayRow.variables.get(pivotCandidate);
+                        if (f2 < 0.0f) {
+                            float f3 = (-arrayRow.constantValue) / f2;
+                            if (f3 < f) {
+                                i4 = i5;
+                                f = f3;
+                            }
+                        }
+                    }
+                }
+                if (i4 > -1) {
+                    ArrayRow arrayRow2 = this.mRows[i4];
+                    arrayRow2.variable.definitionId = -1;
+                    Metrics metrics3 = sMetrics;
+                    if (metrics3 != null) {
+                        metrics3.pivots++;
+                    }
+                    arrayRow2.pivot(pivotCandidate);
+                    SolverVariable solverVariable = arrayRow2.variable;
+                    solverVariable.definitionId = i4;
+                    solverVariable.updateReferencesWithNewDefinition(this, arrayRow2);
+                }
+            } else {
+                z3 = true;
+            }
+        }
+        return i2;
+    }
+
+    private void releaseRows() {
+        int i = 0;
+        if (OPTIMIZED_ENGINE) {
+            while (i < this.mNumRows) {
+                ArrayRow arrayRow = this.mRows[i];
+                if (arrayRow != null) {
+                    this.mCache.optimizedArrayRowPool.release(arrayRow);
+                }
+                this.mRows[i] = null;
+                i++;
+            }
+            return;
+        }
+        while (i < this.mNumRows) {
+            ArrayRow arrayRow2 = this.mRows[i];
+            if (arrayRow2 != null) {
+                this.mCache.arrayRowPool.release(arrayRow2);
+            }
+            this.mRows[i] = null;
+            i++;
+        }
     }
 
     public void removeRow(ArrayRow arrayRow) {

@@ -26,12 +26,6 @@ public final class C3090k implements InterfaceC3094o {
     /* JADX INFO: renamed from: b */
     public final boolean f8700b;
 
-    /* JADX INFO: renamed from: c */
-    public final C2756w f8701c = new C2756w(new byte[7]);
-
-    /* JADX INFO: renamed from: d */
-    public final C2757x f8702d = new C2757x(Arrays.copyOf(f8699a, 10));
-
     /* JADX INFO: renamed from: e */
     @Nullable
     public final String f8703e;
@@ -87,6 +81,12 @@ public final class C3090k implements InterfaceC3094o {
     /* JADX INFO: renamed from: v */
     public long f8720v;
 
+    /* JADX INFO: renamed from: c */
+    public final C2756w f8701c = new C2756w(new byte[7]);
+
+    /* JADX INFO: renamed from: d */
+    public final C2757x f8702d = new C2757x(Arrays.copyOf(f8699a, 10));
+
     public C3090k(boolean z2, @Nullable String str) {
         m3773h();
         this.f8712n = -1;
@@ -110,6 +110,23 @@ public final class C3090k implements InterfaceC3094o {
         int i2 = this.f8708j + iMin;
         this.f8708j = i2;
         return i2 == i;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final void m3773h() {
+        this.f8707i = 0;
+        this.f8708j = 0;
+        this.f8709k = 256;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final boolean m3774i(C2757x c2757x, byte[] bArr, int i) {
+        if (c2757x.m3081a() < i) {
+            return false;
+        }
+        System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr, 0, i);
+        c2757x.f6794b += i;
+        return true;
     }
 
     /* JADX WARN: Code duplicated, block: B:109:0x0272  */
@@ -410,22 +427,5 @@ public final class C3090k implements InterfaceC3094o {
         if (j != -9223372036854775807L) {
             this.f8718t = j;
         }
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final void m3773h() {
-        this.f8707i = 0;
-        this.f8708j = 0;
-        this.f8709k = 256;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final boolean m3774i(C2757x c2757x, byte[] bArr, int i) {
-        if (c2757x.m3081a() < i) {
-            return false;
-        }
-        System.arraycopy(c2757x.f6793a, c2757x.f6794b, bArr, 0, i);
-        c2757x.f6794b += i;
-        return true;
     }
 }

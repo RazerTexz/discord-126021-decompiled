@@ -31,100 +31,18 @@ public final class StoreGuildVoiceRegions extends StoreV2 {
     private final HashMap<Long, State> guildVoiceRegionsState;
     private final ObservationDeck observationDeck;
 
-    /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-    public static abstract class State {
-
-        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-        public static final class Failure extends State {
-            public static final Failure INSTANCE = new Failure();
-
-            private Failure() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-        public static final class Fetching extends State {
-            public static final Fetching INSTANCE = new Fetching();
-
-            private Fetching() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-        public static final /* data */ class Loaded extends State {
-            private final List<ModelVoiceRegion> data;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            /* JADX WARN: Multi-variable type inference failed */
-            public Loaded(List<? extends ModelVoiceRegion> list) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "data");
-                this.data = list;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    list = loaded.data;
-                }
-                return loaded.copy(list);
-            }
-
-            public final List<ModelVoiceRegion> component1() {
-                return this.data;
-            }
-
-            public final Loaded copy(List<? extends ModelVoiceRegion> data) {
-                C12238m.checkNotNullParameter(data, "data");
-                return new Loaded(data);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.data, ((Loaded) other).data);
-                }
-                return true;
-            }
-
-            public final List<ModelVoiceRegion> getData() {
-                return this.data;
-            }
-
-            public int hashCode() {
-                List<ModelVoiceRegion> list = this.data;
-                if (list != null) {
-                    return list.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m824L(C1643a.m833U("Loaded(data="), this.data, ")");
-            }
-        }
-
-        private State() {
-        }
-
-        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$fetchIfNonexisting$1 */
     /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-    public static final class C60891 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60891 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$fetchIfNonexisting$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ModelVoiceRegion>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ModelVoiceRegion>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$fetchIfNonexisting$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-            public static final class C132581 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132581 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $voiceRegions;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -165,11 +83,11 @@ public final class StoreGuildVoiceRegions extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$fetchIfNonexisting$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$fetchIfNonexisting$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -229,7 +147,7 @@ public final class StoreGuildVoiceRegions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildVoiceRegions$observeGuildVoiceRegions$1 */
     /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
-    public static final class C60901 extends AbstractC12240o implements Function0<List<? extends ModelVoiceRegion>> {
+    public final class C60901 extends AbstractC12240o implements Function0<List<? extends ModelVoiceRegion>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -244,8 +162,99 @@ public final class StoreGuildVoiceRegions extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
+        public final class Failure extends State {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
+        public final class Fetching extends State {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildVoiceRegions.kt */
+        public final /* data */ class Loaded extends State {
+            private final List<ModelVoiceRegion> data;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public Loaded(List<? extends ModelVoiceRegion> list) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "data");
+                this.data = list;
+            }
+
+            public final List<ModelVoiceRegion> component1() {
+                return this.data;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.data;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<? extends ModelVoiceRegion> data) {
+                C12238m.checkNotNullParameter(data, "data");
+                return new Loaded(data);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.data, ((Loaded) other).data);
+                }
+                return true;
+            }
+
+            public final List<ModelVoiceRegion> getData() {
+                return this.data;
+            }
+
+            public int hashCode() {
+                List<ModelVoiceRegion> list = this.data;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m824L(C1643a.m833U("Loaded(data="), this.data, ")");
+            }
+        }
+
+        private State() {
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreGuildVoiceRegions(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
+    }
+
+    public final void fetchIfNonexisting(long guildId) {
+        this.dispatcher.schedule(new C60891(guildId));
+    }
+
+    public final List<ModelVoiceRegion> getGuildVoiceRegions(long guildId) {
+        List<ModelVoiceRegion> list = (List) this.guildVoiceRegionsSnapshot.get(Long.valueOf(guildId));
+        return list != null ? list : C12147n.emptyList();
     }
 
     @StoreThread
@@ -264,15 +273,6 @@ public final class StoreGuildVoiceRegions extends StoreV2 {
     private final void handleGuildVoiceRegionsFetchStart(long guildId) {
         this.guildVoiceRegionsState.put(Long.valueOf(guildId), State.Fetching.INSTANCE);
         markChanged();
-    }
-
-    public final void fetchIfNonexisting(long guildId) {
-        this.dispatcher.schedule(new C60891(guildId));
-    }
-
-    public final List<ModelVoiceRegion> getGuildVoiceRegions(long guildId) {
-        List<ModelVoiceRegion> list = (List) this.guildVoiceRegionsSnapshot.get(Long.valueOf(guildId));
-        return list != null ? list : C12147n.emptyList();
     }
 
     public final Observable<List<ModelVoiceRegion>> observeGuildVoiceRegions(long guildId) {

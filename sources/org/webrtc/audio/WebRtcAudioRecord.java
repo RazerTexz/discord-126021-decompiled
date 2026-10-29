@@ -39,7 +39,6 @@ public class WebRtcAudioRecord {
     public static final int DEFAULT_AUDIO_FORMAT = 2;
     public static final int DEFAULT_AUDIO_SOURCE = 7;
     private static final String TAG = "WebRtcAudioRecordExternal";
-    private static final AtomicInteger nextSchedulerId = new AtomicInteger(0);
     private final int audioFormat;
     private final AudioManager audioManager;
 
@@ -76,6 +75,7 @@ public class WebRtcAudioRecord {
 
     @Nullable
     private final JavaAudioDeviceModule.AudioRecordStateCallback stateCallback;
+    private static final AtomicInteger nextSchedulerId = new AtomicInteger(0);
 
     public class AudioRecordThread extends Thread {
         private volatile boolean keepAlive;
@@ -276,6 +276,31 @@ public class WebRtcAudioRecord {
         }
     }
 
+    @CalledByNative
+    public boolean isAcousticEchoCancelerSupported() {
+        return this.isAcousticEchoCancelerSupported;
+    }
+
+    @CalledByNative
+    public boolean isAudioConfigVerified() {
+        return this.audioSourceMatchesRecordingSessionRef.get() != null;
+    }
+
+    @CalledByNative
+    public boolean isAudioSourceMatchingRecordingSession() {
+        Boolean bool = this.audioSourceMatchesRecordingSessionRef.get();
+        if (bool != null) {
+            return bool.booleanValue();
+        }
+        Logging.m11031w(TAG, "Audio configuration has not yet been verified");
+        return false;
+    }
+
+    @CalledByNative
+    public boolean isNoiseSuppressorSupported() {
+        return this.isNoiseSuppressorSupported;
+    }
+
     @TargetApi(24)
     private static boolean logActiveRecordingConfigs(int i, List<AudioRecordingConfiguration> list) {
         assertTrue(!list.isEmpty());
@@ -371,6 +396,16 @@ public class WebRtcAudioRecord {
         return size;
     }
 
+    /* JADX INFO: renamed from: a */
+    public /* synthetic */ String m11054a(AudioRecord audioRecord) {
+        if (this.audioRecord == audioRecord) {
+            logRecordingConfigurations(audioRecord, true);
+            return "Scheduled task is done";
+        }
+        Logging.m11027d(TAG, "audio record has changed");
+        return "Scheduled task is done";
+    }
+
     private native void nativeCacheDirectBufferAddress(long j, ByteBuffer byteBuffer);
 
     private native void nativeDataIsRecorded(long j, int i);
@@ -445,6 +480,30 @@ public class WebRtcAudioRecord {
         this.future = this.executor.schedule(callable, 100L, TimeUnit.MILLISECONDS);
     }
 
+    public void setMicrophoneMute(boolean z2) {
+        Logging.m11031w(TAG, "setMicrophoneMute(" + z2 + ")");
+        this.microphoneMute = z2;
+    }
+
+    @CalledByNative
+    public void setNativeAudioRecord(long j) {
+        this.nativeAudioRecord = j;
+    }
+
+    @RequiresApi(23)
+    @TargetApi(23)
+    public void setPreferredDevice(@Nullable AudioDeviceInfo audioDeviceInfo) {
+        StringBuilder sbM833U = C1643a.m833U("setPreferredDevice ");
+        sbM833U.append(audioDeviceInfo != null ? Integer.valueOf(audioDeviceInfo.getId()) : null);
+        Logging.m11027d(TAG, sbM833U.toString());
+        this.preferredDevice = audioDeviceInfo;
+        AudioRecord audioRecord = this.audioRecord;
+        if (audioRecord == null || audioRecord.setPreferredDevice(audioDeviceInfo)) {
+            return;
+        }
+        Logging.m11028e(TAG, "setPreferredDevice failed");
+    }
+
     @CalledByNative
     private boolean startRecording() {
         Logging.m11027d(TAG, "startRecording");
@@ -509,65 +568,6 @@ public class WebRtcAudioRecord {
         }
         Logging.m11028e(TAG, "verifyAudioConfig: FAILED");
         return false;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ String m11054a(AudioRecord audioRecord) {
-        if (this.audioRecord == audioRecord) {
-            logRecordingConfigurations(audioRecord, true);
-            return "Scheduled task is done";
-        }
-        Logging.m11027d(TAG, "audio record has changed");
-        return "Scheduled task is done";
-    }
-
-    @CalledByNative
-    public boolean isAcousticEchoCancelerSupported() {
-        return this.isAcousticEchoCancelerSupported;
-    }
-
-    @CalledByNative
-    public boolean isAudioConfigVerified() {
-        return this.audioSourceMatchesRecordingSessionRef.get() != null;
-    }
-
-    @CalledByNative
-    public boolean isAudioSourceMatchingRecordingSession() {
-        Boolean bool = this.audioSourceMatchesRecordingSessionRef.get();
-        if (bool != null) {
-            return bool.booleanValue();
-        }
-        Logging.m11031w(TAG, "Audio configuration has not yet been verified");
-        return false;
-    }
-
-    @CalledByNative
-    public boolean isNoiseSuppressorSupported() {
-        return this.isNoiseSuppressorSupported;
-    }
-
-    public void setMicrophoneMute(boolean z2) {
-        Logging.m11031w(TAG, "setMicrophoneMute(" + z2 + ")");
-        this.microphoneMute = z2;
-    }
-
-    @CalledByNative
-    public void setNativeAudioRecord(long j) {
-        this.nativeAudioRecord = j;
-    }
-
-    @RequiresApi(23)
-    @TargetApi(23)
-    public void setPreferredDevice(@Nullable AudioDeviceInfo audioDeviceInfo) {
-        StringBuilder sbM833U = C1643a.m833U("setPreferredDevice ");
-        sbM833U.append(audioDeviceInfo != null ? Integer.valueOf(audioDeviceInfo.getId()) : null);
-        Logging.m11027d(TAG, sbM833U.toString());
-        this.preferredDevice = audioDeviceInfo;
-        AudioRecord audioRecord = this.audioRecord;
-        if (audioRecord == null || audioRecord.setPreferredDevice(audioDeviceInfo)) {
-            return;
-        }
-        Logging.m11028e(TAG, "setPreferredDevice failed");
     }
 
     public WebRtcAudioRecord(Context context, ScheduledExecutorService scheduledExecutorService, AudioManager audioManager, int i, int i2, @Nullable JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback, @Nullable JavaAudioDeviceModule.AudioRecordStateCallback audioRecordStateCallback, @Nullable JavaAudioDeviceModule.SamplesReadyCallback samplesReadyCallback, boolean z2, boolean z3) {

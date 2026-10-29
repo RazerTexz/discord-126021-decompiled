@@ -36,11 +36,11 @@ public final class StoreAccessibility extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$init$1 */
     /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public static final class C56701 extends AbstractC12240o implements Function1<AccessibilityState, Unit> {
+    public final class C56701 extends AbstractC12240o implements Function1<AccessibilityState, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$init$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreAccessibility.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ AccessibilityState $it;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -80,7 +80,7 @@ public final class StoreAccessibility extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeAccessibilityFeatures$1 */
     /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public static final class C56711 extends AbstractC12240o implements Function0<EnumSet<AccessibilityFeatureFlags>> {
+    public final class C56711 extends AbstractC12240o implements Function0<EnumSet<AccessibilityFeatureFlags>> {
         public C56711() {
             super(0);
         }
@@ -93,7 +93,7 @@ public final class StoreAccessibility extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeReducedMotionEnabled$1 */
     /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public static final class C56721 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C56721 extends AbstractC12240o implements Function0<Boolean> {
         public C56721() {
             super(0);
         }
@@ -111,7 +111,7 @@ public final class StoreAccessibility extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeScreenreaderEnabled$1 */
     /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public static final class C56731 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C56731 extends AbstractC12240o implements Function0<Boolean> {
         public C56731() {
             super(0);
         }
@@ -129,7 +129,7 @@ public final class StoreAccessibility extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$setReducedMotionEnabled$1 */
     /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public static final class C56741 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56741 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $enabled;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -155,14 +155,13 @@ public final class StoreAccessibility extends StoreV2 {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? AccessibilityMonitor.INSTANCE.getINSTANCE() : accessibilityMonitor);
     }
 
-    @StoreThread
-    private final void updateMonitoredAccessibilityState(AccessibilityState state) {
-        this.accessibilityFeatures = EnumSet.copyOf((EnumSet) state.getFeatures());
-        markChanged();
-    }
-
     public final EnumSet<AccessibilityFeatureFlags> getAccessibilityFeatures() {
         return this.accessibilityFeaturesSnapshot;
+    }
+
+    /* JADX INFO: renamed from: isReducedMotionEnabled, reason: from getter */
+    public final boolean getReducedMotionEnabled() {
+        return this.reducedMotionEnabled;
     }
 
     @Override // com.discord.stores.Store
@@ -170,11 +169,6 @@ public final class StoreAccessibility extends StoreV2 {
         C12238m.checkNotNullParameter(context, "context");
         this.reducedMotionEnabled = this.reducedMotionCache.get().booleanValue();
         ObservableExtensionsKt.appSubscribe(this.accessibilityMonitor.observeAccessibilityState(), (Class<?>) StoreAccessibility.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C56701());
-    }
-
-    /* JADX INFO: renamed from: isReducedMotionEnabled, reason: from getter */
-    public final boolean getReducedMotionEnabled() {
-        return this.reducedMotionEnabled;
     }
 
     public final boolean isScreenreaderEnabled() {
@@ -240,6 +234,12 @@ public final class StoreAccessibility extends StoreV2 {
             this.fontScaledUp = false;
             this.fontScaledDown = true;
         }
+        markChanged();
+    }
+
+    @StoreThread
+    private final void updateMonitoredAccessibilityState(AccessibilityState state) {
+        this.accessibilityFeatures = EnumSet.copyOf((EnumSet) state.getFeatures());
         markChanged();
     }
 

@@ -35,12 +35,12 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$1 */
     /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static final class C72651 extends AbstractC12240o implements Function1<ModelRemoteAuthHandshake, Unit> {
+    public final class C72651 extends AbstractC12240o implements Function1<ModelRemoteAuthHandshake, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
         @InterfaceC12188e(m10084c = "com.discord.widgets.auth.WidgetRemoteAuthViewModel$1$1", m10085f = "WidgetRemoteAuthViewModel.kt", m10086l = {54}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             public final /* synthetic */ ModelRemoteAuthHandshake $handshakeData;
             public int label;
 
@@ -62,7 +62,7 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
             }
 
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                 int i = this.label;
                 if (i == 0) {
@@ -114,7 +114,7 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$2 */
     /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static final class C72662 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C72662 extends AbstractC12240o implements Function1<Error, Unit> {
         public C72662() {
             super(1);
         }
@@ -137,11 +137,70 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$cancelLogin$1 */
     /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static abstract class ViewState {
+    public final class C72671 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C72671 INSTANCE = new C72671();
+
+        public C72671() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$remoteLogin$1 */
+    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
+    public final class C72681 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C72681() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetRemoteAuthViewModel.this.updateViewState(ViewState.Succeeded.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$remoteLogin$2 */
+    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
+    public final class C72692 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C72692() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            WidgetRemoteAuthViewModel.this.updateViewState(ViewState.Failed.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-        public static final class Failed extends ViewState {
+        public final class Failed extends ViewState {
             public static final Failed INSTANCE = new Failed();
 
             private Failed() {
@@ -150,7 +209,7 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final String handshakeToken;
             private final boolean isTemporary;
             private final boolean loginAllowed;
@@ -177,21 +236,6 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
                 return loaded.copy(str, z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getHandshakeToken() {
-                return this.handshakeToken;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsTemporary() {
-                return this.isTemporary;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getLoginAllowed() {
-                return this.loginAllowed;
-            }
-
             public final Loaded copy(String handshakeToken, boolean isTemporary, boolean loginAllowed) {
                 C12238m.checkNotNullParameter(handshakeToken, "handshakeToken");
                 return new Loaded(handshakeToken, isTemporary, loginAllowed);
@@ -208,8 +252,23 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
                 return C12238m.areEqual(this.handshakeToken, loaded.handshakeToken) && this.isTemporary == loaded.isTemporary && this.loginAllowed == loaded.loginAllowed;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final String getHandshakeToken() {
                 return this.handshakeToken;
+            }
+
+            public final String getHandshakeToken() {
+                return this.handshakeToken;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsTemporary() {
+                return this.isTemporary;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getLoginAllowed() {
+                return this.loginAllowed;
             }
 
             public final boolean getLoginAllowed() {
@@ -253,7 +312,7 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -262,7 +321,7 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
         }
 
         /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-        public static final class Succeeded extends ViewState {
+        public final class Succeeded extends ViewState {
             public static final Succeeded INSTANCE = new Succeeded();
 
             private Succeeded() {
@@ -275,65 +334,6 @@ public final class WidgetRemoteAuthViewModel extends AbstractC0859d0<ViewState> 
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$cancelLogin$1 */
-    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static final class C72671 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C72671 INSTANCE = new C72671();
-
-        public C72671() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$remoteLogin$1 */
-    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static final class C72681 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C72681() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetRemoteAuthViewModel.this.updateViewState(ViewState.Succeeded.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuthViewModel$remoteLogin$2 */
-    /* JADX INFO: compiled from: WidgetRemoteAuthViewModel.kt */
-    public static final class C72692 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C72692() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            WidgetRemoteAuthViewModel.this.updateViewState(ViewState.Failed.INSTANCE);
         }
     }
 

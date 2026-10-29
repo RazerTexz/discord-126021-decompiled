@@ -19,32 +19,6 @@ public final class C4491k {
     /* JADX INFO: renamed from: c */
     public final int f11960c;
 
-    /* JADX INFO: renamed from: b.i.b.a.k$a */
-    /* JADX INFO: compiled from: Splitter.java */
-    public static abstract class a extends AbstractC4481a<String> {
-
-        /* JADX INFO: renamed from: l */
-        public final CharSequence f11961l;
-
-        /* JADX INFO: renamed from: m */
-        public final AbstractC4482b f11962m;
-
-        /* JADX INFO: renamed from: p */
-        public int f11965p;
-
-        /* JADX INFO: renamed from: o */
-        public int f11964o = 0;
-
-        /* JADX INFO: renamed from: n */
-        public final boolean f11963n = false;
-
-        public a(C4491k c4491k, CharSequence charSequence) {
-            this.f11962m = c4491k.f11958a;
-            this.f11965p = c4491k.f11960c;
-            this.f11961l = charSequence;
-        }
-    }
-
     /* JADX INFO: renamed from: b.i.b.a.k$b */
     /* JADX INFO: compiled from: Splitter.java */
     public interface b {
@@ -68,5 +42,31 @@ public final class C4491k {
             arrayList.add(c4489i.next());
         }
         return Collections.unmodifiableList(arrayList);
+    }
+
+    /* JADX INFO: renamed from: b.i.b.a.k$a */
+    /* JADX INFO: compiled from: Splitter.java */
+    public abstract class a extends AbstractC4481a<String> {
+
+        /* JADX INFO: renamed from: l */
+        public final CharSequence f11961l;
+
+        /* JADX INFO: renamed from: m */
+        public final AbstractC4482b f11962m;
+
+        /* JADX INFO: renamed from: p */
+        public int f11965p;
+
+        /* JADX INFO: renamed from: o */
+        public int f11964o = 0;
+
+        /* JADX INFO: renamed from: n */
+        public final boolean f11963n = false;
+
+        public a(C4491k c4491k, CharSequence charSequence) {
+            this.f11962m = c4491k.f11958a;
+            this.f11965p = c4491k.f11960c;
+            this.f11961l = charSequence;
+        }
     }
 }

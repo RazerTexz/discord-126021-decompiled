@@ -15,7 +15,7 @@ public interface InterfaceC12177d extends CoroutineContext.Element {
 
     /* JADX INFO: renamed from: d0.w.d$a */
     /* JADX INFO: compiled from: ContinuationInterceptor.kt */
-    public static final class a {
+    public final class a {
         public static <E extends CoroutineContext.Element> E get(InterfaceC12177d interfaceC12177d, CoroutineContext.Key<E> key) {
             C12238m.checkNotNullParameter(key, "key");
             if (!(key instanceof AbstractC12175b)) {
@@ -50,7 +50,7 @@ public interface InterfaceC12177d extends CoroutineContext.Element {
 
     /* JADX INFO: renamed from: d0.w.d$b */
     /* JADX INFO: compiled from: ContinuationInterceptor.kt */
-    public static final class b implements CoroutineContext.Key<InterfaceC12177d> {
+    public final class b implements CoroutineContext.Key<InterfaceC12177d> {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ b f25236a = new b();

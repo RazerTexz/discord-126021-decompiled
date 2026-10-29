@@ -97,8 +97,205 @@ public final class WidgetGuildBoost extends AppFragment {
     private final Lazy viewModel;
     private boolean wasPagerPageSet;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$configureUI$2 */
     /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class Companion {
+    public final class C95072 extends AbstractC12240o implements Function0<Unit> {
+        public C95072() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, WidgetGuildBoost.this.requireContext(), null, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$handleEvent$1 */
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final class C95081 extends AbstractC12240o implements Function1<View, Unit> {
+        public C95081() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, WidgetGuildBoost.this.requireContext(), null, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$3 */
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final class C95113 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public static final C95113 INSTANCE = new C95113();
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetSettingsGuildBoost.Companion companion = WidgetSettingsGuildBoost.INSTANCE;
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "view.context");
+                companion.launch(context);
+            }
+        }
+
+        public C95113() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8423b("learnMore", AnonymousClass1.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final class C95124 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetSettingsPremium.Companion companion = WidgetSettingsPremium.INSTANCE;
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "view.context");
+                WidgetSettingsPremium.Companion.launch$default(companion, context, null, null, 6, null);
+            }
+        }
+
+        public C95124() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.boldColor = Integer.valueOf(ColorCompat.getColor(WidgetGuildBoost.this.requireContext(), C5419R.color.status_green_600));
+            renderContext.m8423b("onLearnMore", AnonymousClass1.INSTANCE);
+            renderContext.m8422a("protipHook", AnonymousClass2.INSTANCE);
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
+            public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Hook hook) {
+                C12238m.checkNotNullParameter(hook, "$receiver");
+                hook.styles.add(new StyleSpan(1));
+                hook.styles.add(new ForegroundColorSpan(-65536));
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+                invoke2(hook);
+                return Unit.f27425a;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final /* synthetic */ class C95151 extends C12236k implements Function1<GuildBoostViewModel.ViewState, Unit> {
+        public C95151(WidgetGuildBoost widgetGuildBoost) {
+            super(1, widgetGuildBoost, WidgetGuildBoost.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildBoostViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildBoost) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final /* synthetic */ class C95162 extends C12236k implements Function1<GuildBoostViewModel.Event, Unit> {
+        public C95162(WidgetGuildBoost widgetGuildBoost) {
+            super(1, widgetGuildBoost, WidgetGuildBoost.class, "handleEvent", "handleEvent(Lcom/discord/widgets/servers/guildboost/GuildBoostViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildBoostViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildBoost) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -115,7 +312,7 @@ public final class WidgetGuildBoost extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class PerksPagerAdapter extends PagerAdapter {
+    public final class PerksPagerAdapter extends PagerAdapter {
         private long guildId;
         private int premiumTier;
         private int subscriptionCount;
@@ -200,203 +397,6 @@ public final class WidgetGuildBoost extends AppFragment {
             guildBoostPerkView.setTag(Integer.valueOf(i));
             container.addView(guildBoostPerkView);
             return guildBoostPerkView;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class C95072 extends AbstractC12240o implements Function0<Unit> {
-        public C95072() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, WidgetGuildBoost.this.requireContext(), null, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$handleEvent$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class C95081 extends AbstractC12240o implements Function1<View, Unit> {
-        public C95081() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, WidgetGuildBoost.this.requireContext(), null, null, 6, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$3 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class C95113 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public static final C95113 INSTANCE = new C95113();
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetSettingsGuildBoost.Companion companion = WidgetSettingsGuildBoost.INSTANCE;
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "view.context");
-                companion.launch(context);
-            }
-        }
-
-        public C95113() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8423b("learnMore", AnonymousClass1.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final class C95124 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetSettingsPremium.Companion companion = WidgetSettingsPremium.INSTANCE;
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "view.context");
-                WidgetSettingsPremium.Companion.launch$default(companion, context, null, null, 6, null);
-            }
-        }
-
-        public C95124() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.boldColor = Integer.valueOf(ColorCompat.getColor(WidgetGuildBoost.this.requireContext(), C5419R.color.status_green_600));
-            renderContext.m8423b("onLearnMore", AnonymousClass1.INSTANCE);
-            renderContext.m8422a("protipHook", AnonymousClass2.INSTANCE);
-        }
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBound$4$2, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
-            public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
-
-            public AnonymousClass2() {
-                super(1);
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Hook hook) {
-                C12238m.checkNotNullParameter(hook, "$receiver");
-                hook.styles.add(new StyleSpan(1));
-                hook.styles.add(new ForegroundColorSpan(-65536));
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
-                invoke2(hook);
-                return Unit.f27425a;
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final /* synthetic */ class C95151 extends C12236k implements Function1<GuildBoostViewModel.ViewState, Unit> {
-        public C95151(WidgetGuildBoost widgetGuildBoost) {
-            super(1, widgetGuildBoost, WidgetGuildBoost.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/guildboost/GuildBoostViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildBoostViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildBoost) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.WidgetGuildBoost$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetGuildBoost.kt */
-    public static final /* synthetic */ class C95162 extends C12236k implements Function1<GuildBoostViewModel.Event, Unit> {
-        public C95162(WidgetGuildBoost widgetGuildBoost) {
-            super(1, widgetGuildBoost, WidgetGuildBoost.class, "handleEvent", "handleEvent(Lcom/discord/widgets/servers/guildboost/GuildBoostViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildBoostViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildBoostViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildBoost) this.receiver).handleEvent(event);
         }
     }
 

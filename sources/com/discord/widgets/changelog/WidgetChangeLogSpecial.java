@@ -78,8 +78,99 @@ public final class WidgetChangeLogSpecial extends AppFragment {
     private final WidgetChangeLogSpecial$thumbnailControllerListener$1 thumbnailControllerListener;
     private AbstractDraweeController<Object, Object> thumbnailDraweeController;
 
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$hideVideoOverlay$1 */
     /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
-    public static final class Companion {
+    public final class C73191 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C73191 INSTANCE = new C73191();
+
+        public C73191() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(2.0f);
+            viewPropertyAnimator.scaleY(2.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class C73201 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+        public C73201() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
+            invoke2(context, str, str2);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Context context, String str, String str2) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(str, "url");
+            WidgetChangeLogSpecial.track$default(WidgetChangeLogSpecial.this, "change_log_cta_clicked", C12134g0.mapOf(C12116o.m10073to("cta_type", "inline_link")), false, 4, null);
+            UriHandler.handle$default(UriHandler.INSTANCE, context, str, false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$1 */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class C73251 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C73251 INSTANCE = new C73251();
+
+        public C73251() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "view");
+            view.setScaleX(2.0f);
+            view.setScaleY(2.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$2 */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class C73262 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C73262 INSTANCE = new C73262();
+
+        public C73262() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(1.0f);
+            viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
         public enum ExitStyle {
@@ -109,97 +200,6 @@ public final class WidgetChangeLogSpecial extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$hideVideoOverlay$1 */
-    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
-    public static final class C73191 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C73191 INSTANCE = new C73191();
-
-        public C73191() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(2.0f);
-            viewPropertyAnimator.scaleY(2.0f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
-    public static final class C73201 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
-        public C73201() {
-            super(3);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
-            invoke2(context, str, str2);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Context context, String str, String str2) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(str, "url");
-            WidgetChangeLogSpecial.track$default(WidgetChangeLogSpecial.this, "change_log_cta_clicked", C12134g0.mapOf(C12116o.m10073to("cta_type", "inline_link")), false, 4, null);
-            UriHandler.handle$default(UriHandler.INSTANCE, context, str, false, false, null, 28, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$1 */
-    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
-    public static final class C73251 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C73251 INSTANCE = new C73251();
-
-        public C73251() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "view");
-            view.setScaleX(2.0f);
-            view.setScaleY(2.0f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$2 */
-    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
-    public static final class C73262 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C73262 INSTANCE = new C73262();
-
-        public C73262() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(1.0f);
-            viewPropertyAnimator.scaleY(1.0f);
         }
     }
 
@@ -300,49 +300,6 @@ public final class WidgetChangeLogSpecial extends AppFragment {
         INSTANCE.launch(context, str, str2, str3, str4, exitStyle, z2);
     }
 
-    private final void onViewBindingDestroy(WidgetChangeLogSpecialBinding binding) {
-        binding.f15828i.setOnPreparedListener(null);
-        binding.f15828i.setOnCompletionListener(null);
-        AbstractDraweeController<Object, Object> abstractDraweeController = this.thumbnailDraweeController;
-        if (abstractDraweeController != null) {
-            abstractDraweeController.m8647A(this.thumbnailControllerListener);
-        }
-    }
-
-    private final void showVideoOverlay() {
-        ViewExtensions.fadeIn$default(getBinding().f15829j, 200L, C73251.INSTANCE, C73262.INSTANCE, null, 8, null);
-    }
-
-    private final void track(String event, Map<String, ? extends Object> properties, boolean includeStats) {
-        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
-        if (stringExtra == null) {
-            stringExtra = getString(C5419R.string.change_log_md_date);
-        }
-        C12238m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
-        String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_REVISION);
-        if (stringExtra2 == null) {
-            stringExtra2 = getString(C5419R.string.change_log_md_revision);
-        }
-        C12238m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…g.change_log_md_revision)");
-        HashMap map = new HashMap();
-        if (includeStats) {
-            map.put("seconds_open", Long.valueOf((ClockFactory.get().currentTimeMillis() - this.openedTimestamp) / ((long) 1000)));
-            map.put("max_scrolled_percentage", Integer.valueOf(this.maxScrolledPercent));
-        }
-        AnalyticsTracker.INSTANCE.changeLogEvent(event, stringExtra, stringExtra2, C12136h0.plus(properties, map));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void track$default(WidgetChangeLogSpecial widgetChangeLogSpecial, String str, Map map, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            map = new HashMap();
-        }
-        if ((i & 4) != 0) {
-            z2 = true;
-        }
-        widgetChangeLogSpecial.track(str, map, z2);
-    }
-
     @Override // androidx.fragment.app.Fragment
     public void onDestroy() {
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
@@ -363,6 +320,15 @@ public final class WidgetChangeLogSpecial extends AppFragment {
             getBinding().f15828i.pause();
         }
         super.onPause();
+    }
+
+    private final void onViewBindingDestroy(WidgetChangeLogSpecialBinding binding) {
+        binding.f15828i.setOnPreparedListener(null);
+        binding.f15828i.setOnCompletionListener(null);
+        AbstractDraweeController<Object, Object> abstractDraweeController = this.thumbnailDraweeController;
+        if (abstractDraweeController != null) {
+            abstractDraweeController.m8647A(this.thumbnailControllerListener);
+        }
     }
 
     @Override // com.discord.app.AppFragment
@@ -443,5 +409,39 @@ public final class WidgetChangeLogSpecial extends AppFragment {
                 widgetChangeLogSpecial.maxScrolledPercent = C11226f.coerceAtLeast(i5, (i2 * 100) / C11226f.coerceAtLeast(height - nestedScrollView3.getHeight(), 1));
             }
         });
+    }
+
+    private final void showVideoOverlay() {
+        ViewExtensions.fadeIn$default(getBinding().f15829j, 200L, C73251.INSTANCE, C73262.INSTANCE, null, 8, null);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void track$default(WidgetChangeLogSpecial widgetChangeLogSpecial, String str, Map map, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            map = new HashMap();
+        }
+        if ((i & 4) != 0) {
+            z2 = true;
+        }
+        widgetChangeLogSpecial.track(str, map, z2);
+    }
+
+    private final void track(String event, Map<String, ? extends Object> properties, boolean includeStats) {
+        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
+        if (stringExtra == null) {
+            stringExtra = getString(C5419R.string.change_log_md_date);
+        }
+        C12238m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
+        String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_REVISION);
+        if (stringExtra2 == null) {
+            stringExtra2 = getString(C5419R.string.change_log_md_revision);
+        }
+        C12238m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…g.change_log_md_revision)");
+        HashMap map = new HashMap();
+        if (includeStats) {
+            map.put("seconds_open", Long.valueOf((ClockFactory.get().currentTimeMillis() - this.openedTimestamp) / ((long) 1000)));
+            map.put("max_scrolled_percentage", Integer.valueOf(this.maxScrolledPercent));
+        }
+        AnalyticsTracker.INSTANCE.changeLogEvent(event, stringExtra, stringExtra2, C12136h0.plus(properties, map));
     }
 }

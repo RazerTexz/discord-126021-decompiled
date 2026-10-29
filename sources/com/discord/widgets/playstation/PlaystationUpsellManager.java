@@ -29,6 +29,12 @@ public final class PlaystationUpsellManager {
         this.clock = clock;
     }
 
+    public final boolean canShow(User user, StoreUserConnections.State connectedAccountsState) {
+        C12238m.checkNotNullParameter(user, "user");
+        C12238m.checkNotNullParameter(connectedAccountsState, "connectedAccountsState");
+        return isAccountOldEnough(user) && isUserMissingPlaystationAccountIntegration(connectedAccountsState) && !hasBeenShown() && PlaystationExperimentUtilsKt.canSeePlaystationUpsells(this.experimentStore);
+    }
+
     private final boolean hasBeenShown() {
         return this.sharedPreferences.getBoolean(SHOWN_CACHE_KEY, false);
     }
@@ -56,12 +62,6 @@ public final class PlaystationUpsellManager {
             }
         }
         return false;
-    }
-
-    public final boolean canShow(User user, StoreUserConnections.State connectedAccountsState) {
-        C12238m.checkNotNullParameter(user, "user");
-        C12238m.checkNotNullParameter(connectedAccountsState, "connectedAccountsState");
-        return isAccountOldEnough(user) && isUserMissingPlaystationAccountIntegration(connectedAccountsState) && !hasBeenShown() && PlaystationExperimentUtilsKt.canSeePlaystationUpsells(this.experimentStore);
     }
 
     public final void setHasBeenShown() {

@@ -57,7 +57,7 @@ public final class WidgetHubAddName extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddName$configureUI$2 */
     /* JADX INFO: compiled from: WidgetHubAddName.kt */
-    public static final class C89872 extends AbstractC12240o implements Function1<Success<? extends Void>, Unit> {
+    public final class C89872 extends AbstractC12240o implements Function1<Success<? extends Void>, Unit> {
         public C89872() {
             super(1);
         }
@@ -82,7 +82,7 @@ public final class WidgetHubAddName extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddName$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubAddName.kt */
-    public static final class C89891 extends AbstractC12240o implements Function1<AddNameState, Unit> {
+    public final class C89891 extends AbstractC12240o implements Function1<AddNameState, Unit> {
         public C89891() {
             super(1);
         }
@@ -130,8 +130,20 @@ public final class WidgetHubAddName extends AppFragment {
         }
     }
 
+    public final HubAddNameArgs getArgs() {
+        return (HubAddNameArgs) this.args.getValue();
+    }
+
+    public final WidgetHubAddNameBinding getBinding() {
+        return (WidgetHubAddNameBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
+    }
+
+    public final WidgetHubAddNameViewModel getViewModel() {
+        return (WidgetHubAddNameViewModel) this.viewModel.getValue();
     }
 
     private final void maybeUpdateName() {
@@ -141,18 +153,6 @@ public final class WidgetHubAddName extends AppFragment {
             C12238m.checkNotNullExpressionValue(textInputEditText, "binding.discordHubAddNameInput");
             viewModel.setName(String.valueOf(textInputEditText.getText()));
         }
-    }
-
-    public final HubAddNameArgs getArgs() {
-        return (HubAddNameArgs) this.args.getValue();
-    }
-
-    public final WidgetHubAddNameBinding getBinding() {
-        return (WidgetHubAddNameBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public final WidgetHubAddNameViewModel getViewModel() {
-        return (WidgetHubAddNameViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment

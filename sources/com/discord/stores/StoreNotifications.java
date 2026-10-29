@@ -70,7 +70,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$configureNotificationClient$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final /* synthetic */ class C62941 extends C12236k implements Function1<String, Unit> {
+    public final /* synthetic */ class C62941 extends C12236k implements Function1<String, Unit> {
         public C62941(StoreNotifications storeNotifications) {
             super(1, storeNotifications, StoreNotifications.class, "handleRegistrationToken", "handleRegistrationToken(Ljava/lang/String;)V", 0);
         }
@@ -89,7 +89,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$configureNotificationClient$3 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C62963 extends AbstractC12240o implements Function1<Pair<? extends NotificationClient.SettingsV2, ? extends Boolean>, Unit> {
+    public final class C62963 extends AbstractC12240o implements Function1<Pair<? extends NotificationClient.SettingsV2, ? extends Boolean>, Unit> {
         public static final C62963 INSTANCE = new C62963();
 
         public C62963() {
@@ -115,7 +115,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$displayPopup$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C62991 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C62991 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Message $message;
 
@@ -147,7 +147,7 @@ public final class StoreNotifications extends Store {
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$handleChannelSelected$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
     @InterfaceC12188e(m10084c = "com.discord.stores.StoreNotifications$handleChannelSelected$1", m10085f = "StoreNotifications.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C63001 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C63001 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ long $channelId;
         public int label;
 
@@ -169,7 +169,7 @@ public final class StoreNotifications extends Store {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -182,7 +182,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$setEnabled$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C63011 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
+    public final class C63011 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
         public final /* synthetic */ boolean $enabled;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -200,7 +200,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$setNotificationLightDisabled$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C63021 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
+    public final class C63021 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
         public final /* synthetic */ boolean $notificationLightDisabled;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -218,7 +218,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$setNotificationSoundDisabled$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C63031 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
+    public final class C63031 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
         public final /* synthetic */ boolean $notificationSoundDisabled;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -236,7 +236,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$setNotificationsVibrateDisabled$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C63041 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
+    public final class C63041 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
         public final /* synthetic */ boolean $notificationsVibrateDisabled;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -254,7 +254,7 @@ public final class StoreNotifications extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNotifications$tryTokenPersist$1 */
     /* JADX INFO: compiled from: StoreNotifications.kt */
-    public static final class C63051 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C63051 extends AbstractC12240o implements Function1<Void, Unit> {
         public C63051() {
             super(1);
         }
@@ -349,33 +349,6 @@ public final class StoreNotifications extends Store {
         noticePopupChannel.enqueue(context, sbM833U.toString(), message, new C62991(channel, message));
     }
 
-    private final synchronized void handleRegistrationToken(String pushToken) {
-        this.pushToken = pushToken;
-        tryTokenPersist();
-    }
-
-    private final synchronized void handleRegistrationTokenPersisted(String pushToken) {
-        this.pushTokenPersisted = pushToken;
-    }
-
-    public static /* synthetic */ void setEnabledInApp$default(StoreNotifications storeNotifications, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z3 = true;
-        }
-        storeNotifications.setEnabledInApp(z2, z3);
-    }
-
-    private final void tryTokenPersist() {
-        String str = this.authToken;
-        if (str == null) {
-            this.pushTokenPersisted = null;
-        }
-        if (str == null || C12238m.areEqual(this.pushToken, this.pushTokenPersisted)) {
-            return;
-        }
-        ObservableExtensionsKt.computationBuffered(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userCreateDevice(new RestAPIParams.UserDevices(this.pushToken)), false, 1, null)).m11108k(C0879o.f566a.m184g(null, new C63051(), null));
-    }
-
     public final synchronized String getPushToken() {
         return this.pushToken;
     }
@@ -433,6 +406,15 @@ public final class StoreNotifications extends Store {
         Persister.set$default(this.notificationSettings, new NotificationClient.SettingsV2(false, false, false, false, false, false, null, null, null, FrameMetricsAggregator.EVERY_DURATION, null), false, 2, null);
     }
 
+    private final synchronized void handleRegistrationToken(String pushToken) {
+        this.pushToken = pushToken;
+        tryTokenPersist();
+    }
+
+    private final synchronized void handleRegistrationTokenPersisted(String pushToken) {
+        this.pushTokenPersisted = pushToken;
+    }
+
     public final void init(Application application) {
         C12238m.checkNotNullParameter(application, "application");
         super.init((Context) application);
@@ -443,6 +425,13 @@ public final class StoreNotifications extends Store {
     public final void setEnabled(boolean enabled) {
         this.notificationSettings.getAndSet(true, new C63011(enabled));
         AnalyticsTracker.INSTANCE.updateNotifications(enabled);
+    }
+
+    public static /* synthetic */ void setEnabledInApp$default(StoreNotifications storeNotifications, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z3 = true;
+        }
+        storeNotifications.setEnabledInApp(z2, z3);
     }
 
     public final void setEnabledInApp(boolean isEnabledInApp, boolean logToggle) {
@@ -463,5 +452,16 @@ public final class StoreNotifications extends Store {
 
     public final void setNotificationsVibrateDisabled(boolean notificationsVibrateDisabled) {
         this.notificationSettings.getAndSet(true, new C63041(notificationsVibrateDisabled));
+    }
+
+    private final void tryTokenPersist() {
+        String str = this.authToken;
+        if (str == null) {
+            this.pushTokenPersisted = null;
+        }
+        if (str == null || C12238m.areEqual(this.pushToken, this.pushTokenPersisted)) {
+            return;
+        }
+        ObservableExtensionsKt.computationBuffered(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userCreateDevice(new RestAPIParams.UserDevices(this.pushToken)), false, 1, null)).m11108k(C0879o.f566a.m184g(null, new C63051(), null));
     }
 }

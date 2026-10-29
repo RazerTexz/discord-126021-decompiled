@@ -34,7 +34,7 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
     private Function3<? super GooglePlaySku, ? super String, ? super SkuDetails, Unit> onClickPlan;
 
     /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-    public static final class DividerViewHolder extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
+    public final class DividerViewHolder extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public DividerViewHolder(WidgetChoosePlanAdapter widgetChoosePlanAdapter) {
             super(C5419R.layout.widget_choose_plan_adapter_divider_item, widgetChoosePlanAdapter);
@@ -43,7 +43,7 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
     }
 
     /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-    public static final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
+    public final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
         private final WidgetChoosePlanAdapterHeaderItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -71,14 +71,14 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
     }
 
     /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-    public static abstract class Item implements MGRecyclerDataPayload {
+    public abstract class Item implements MGRecyclerDataPayload {
         public static final int TYPE_DIVIDER = 2;
         public static final int TYPE_HEADER = 0;
         public static final int TYPE_PLAN = 1;
         private final int type;
 
         /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-        public static final class Divider extends Item {
+        public final class Divider extends Item {
             private final String key;
 
             public Divider() {
@@ -93,7 +93,7 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
         }
 
         /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-        public static final /* data */ class Header extends Item {
+        public final /* data */ class Header extends Item {
             private final String key;
             private final int titleStringResId;
 
@@ -108,11 +108,6 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
                     i = header.titleStringResId;
                 }
                 return header.copy(i);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getTitleStringResId() {
-                return this.titleStringResId;
             }
 
             public final Header copy(@StringRes int titleStringResId) {
@@ -131,6 +126,11 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
                 return this.key;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getTitleStringResId() {
+                return this.titleStringResId;
+            }
+
             public final int getTitleStringResId() {
                 return this.titleStringResId;
             }
@@ -145,7 +145,7 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
         }
 
         /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-        public static final /* data */ class Plan extends Item {
+        public final /* data */ class Plan extends Item {
             private final GooglePlaySku displaySku;
             private final boolean isCurrentPlan;
             private final String key;
@@ -184,36 +184,6 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
                 return plan.copy(googlePlaySku, skuDetails3, googlePlaySku3, str2, skuDetails4, z2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GooglePlaySku getDisplaySku() {
-                return this.displaySku;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final SkuDetails getSkuDetails() {
-                return this.skuDetails;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final GooglePlaySku getPurchaseSku() {
-                return this.purchaseSku;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getOldSkuName() {
-                return this.oldSkuName;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final SkuDetails getUpgradeSkuDetails() {
-                return this.upgradeSkuDetails;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsCurrentPlan() {
-                return this.isCurrentPlan;
-            }
-
             public final Plan copy(GooglePlaySku displaySku, SkuDetails skuDetails, GooglePlaySku purchaseSku, String oldSkuName, SkuDetails upgradeSkuDetails, boolean isCurrentPlan) {
                 C12238m.checkNotNullParameter(displaySku, "displaySku");
                 C12238m.checkNotNullParameter(skuDetails, "skuDetails");
@@ -231,8 +201,18 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
                 return C12238m.areEqual(this.displaySku, plan.displaySku) && C12238m.areEqual(this.skuDetails, plan.skuDetails) && C12238m.areEqual(this.purchaseSku, plan.purchaseSku) && C12238m.areEqual(this.oldSkuName, plan.oldSkuName) && C12238m.areEqual(this.upgradeSkuDetails, plan.upgradeSkuDetails) && this.isCurrentPlan == plan.isCurrentPlan;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final GooglePlaySku getDisplaySku() {
                 return this.displaySku;
+            }
+
+            public final GooglePlaySku getDisplaySku() {
+                return this.displaySku;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsCurrentPlan() {
+                return this.isCurrentPlan;
             }
 
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -240,16 +220,36 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
                 return this.key;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final String getOldSkuName() {
                 return this.oldSkuName;
+            }
+
+            public final String getOldSkuName() {
+                return this.oldSkuName;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final GooglePlaySku getPurchaseSku() {
+                return this.purchaseSku;
             }
 
             public final GooglePlaySku getPurchaseSku() {
                 return this.purchaseSku;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final SkuDetails getSkuDetails() {
                 return this.skuDetails;
+            }
+
+            public final SkuDetails getSkuDetails() {
+                return this.skuDetails;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final SkuDetails getUpgradeSkuDetails() {
+                return this.upgradeSkuDetails;
             }
 
             public final SkuDetails getUpgradeSkuDetails() {
@@ -329,7 +329,7 @@ public final class WidgetChoosePlanAdapter extends MGRecyclerAdapterSimple<Item>
     }
 
     /* JADX INFO: compiled from: WidgetChoosePlanAdapter.kt */
-    public static final class PlanViewHeader extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
+    public final class PlanViewHeader extends MGRecyclerViewHolder<WidgetChoosePlanAdapter, Item> {
         private final WidgetChoosePlanAdapterPlanItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

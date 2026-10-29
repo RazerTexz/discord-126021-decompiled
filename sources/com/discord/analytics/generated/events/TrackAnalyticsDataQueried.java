@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAnalyticsDataQueried.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
-    private final Long guildId = null;
-    private final CharSequence tableName = null;
-    private final Long dateRangeStart = null;
     private final Long dateRangeEnd = null;
+    private final Long dateRangeStart = null;
+    private final Long guildId = null;
     private final Long interval = null;
-    private final Boolean responseIsSuccessful = null;
     private final Boolean responseHasData = null;
+    private final Boolean responseIsSuccessful = null;
+    private final CharSequence tableName = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "analytics_data_queried";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
         }
         TrackAnalyticsDataQueried trackAnalyticsDataQueried = (TrackAnalyticsDataQueried) other;
         return C12238m.areEqual(this.applicationId, trackAnalyticsDataQueried.applicationId) && C12238m.areEqual(this.guildId, trackAnalyticsDataQueried.guildId) && C12238m.areEqual(this.tableName, trackAnalyticsDataQueried.tableName) && C12238m.areEqual(this.dateRangeStart, trackAnalyticsDataQueried.dateRangeStart) && C12238m.areEqual(this.dateRangeEnd, trackAnalyticsDataQueried.dateRangeEnd) && C12238m.areEqual(this.interval, trackAnalyticsDataQueried.interval) && C12238m.areEqual(this.responseIsSuccessful, trackAnalyticsDataQueried.responseIsSuccessful) && C12238m.areEqual(this.responseHasData, trackAnalyticsDataQueried.responseHasData);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -6,9 +6,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayClientMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayClientMetadata {
+    private final Long overlayAppId = null;
     private final Long overlayGameId = null;
     private final CharSequence overlayGameName = null;
-    private final Long overlayAppId = null;
 
     public boolean equals(Object other) {
         if (this == other) {

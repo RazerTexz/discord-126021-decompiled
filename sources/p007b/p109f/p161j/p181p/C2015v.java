@@ -27,7 +27,7 @@ public class C2015v implements InterfaceC2018w0<C1919e> {
 
     /* JADX INFO: renamed from: b.f.j.p.v$a */
     /* JADX INFO: compiled from: EncodedMemoryCacheProducer.java */
-    public static class a extends AbstractC2003p<C1919e, C1919e> {
+    public class a extends AbstractC2003p<C1919e, C1919e> {
 
         /* JADX INFO: renamed from: c */
         public final InterfaceC1876w<CacheKey, PooledByteBuffer> f4241c;

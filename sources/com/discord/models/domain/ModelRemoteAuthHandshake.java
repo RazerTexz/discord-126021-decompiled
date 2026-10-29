@@ -20,11 +20,6 @@ public final /* data */ class ModelRemoteAuthHandshake {
         return modelRemoteAuthHandshake.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getHandshakeToken() {
-        return this.handshakeToken;
-    }
-
     public final ModelRemoteAuthHandshake copy(String handshakeToken) {
         C12238m.checkNotNullParameter(handshakeToken, "handshakeToken");
         return new ModelRemoteAuthHandshake(handshakeToken);
@@ -35,6 +30,11 @@ public final /* data */ class ModelRemoteAuthHandshake {
             return (other instanceof ModelRemoteAuthHandshake) && C12238m.areEqual(this.handshakeToken, ((ModelRemoteAuthHandshake) other).handshakeToken);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getHandshakeToken() {
+        return this.handshakeToken;
     }
 
     public final String getHandshakeToken() {

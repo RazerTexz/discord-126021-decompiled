@@ -16,15 +16,15 @@ public final class C11710i {
     /* JADX INFO: renamed from: a */
     public static final a f24073a = new a(null);
 
-    /* JADX INFO: renamed from: b */
-    public static final C11710i f24074b = new C11710i(C12147n.emptyList());
-
     /* JADX INFO: renamed from: c */
     public final List<C11697v> f24075c;
 
+    /* JADX INFO: renamed from: b */
+    public static final C11710i f24074b = new C11710i(C12147n.emptyList());
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.i$a */
     /* JADX INFO: compiled from: VersionRequirement.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

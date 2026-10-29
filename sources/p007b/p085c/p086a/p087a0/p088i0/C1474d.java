@@ -14,29 +14,11 @@ import p615g0.InterfaceC12390g;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1474d extends AbstractC1473c {
 
-    /* JADX INFO: renamed from: o */
-    public static final ByteString f2254o = ByteString.m11006h("'\\");
-
-    /* JADX INFO: renamed from: p */
-    public static final ByteString f2255p = ByteString.m11006h("\"\\");
-
-    /* JADX INFO: renamed from: q */
-    public static final ByteString f2256q = ByteString.m11006h("{}[]:, \n\t\r\f/\\;#=");
-
-    /* JADX INFO: renamed from: r */
-    public static final ByteString f2257r = ByteString.m11006h("\n\r");
-
-    /* JADX INFO: renamed from: s */
-    public static final ByteString f2258s = ByteString.m11006h("*/");
-
     /* JADX INFO: renamed from: t */
     public final InterfaceC12390g f2259t;
 
     /* JADX INFO: renamed from: u */
     public final C12388e f2260u;
-
-    /* JADX INFO: renamed from: v */
-    public int f2261v = 0;
 
     /* JADX INFO: renamed from: w */
     public long f2262w;
@@ -48,6 +30,24 @@ public final class C1474d extends AbstractC1473c {
     @Nullable
     public String f2264y;
 
+    /* JADX INFO: renamed from: o */
+    public static final ByteString f2254o = ByteString.m11006h("'\\");
+
+    /* JADX INFO: renamed from: p */
+    public static final ByteString f2255p = ByteString.m11006h("\"\\");
+
+    /* JADX INFO: renamed from: v */
+    public int f2261v = 0;
+
+    /* JADX INFO: renamed from: q */
+    public static final ByteString f2256q = ByteString.m11006h("{}[]:, \n\t\r\f/\\;#=");
+
+    /* JADX INFO: renamed from: r */
+    public static final ByteString f2257r = ByteString.m11006h("\n\r");
+
+    /* JADX INFO: renamed from: s */
+    public static final ByteString f2258s = ByteString.m11006h("*/");
+
     public C1474d(InterfaceC12390g interfaceC12390g) {
         Objects.requireNonNull(interfaceC12390g, "source == null");
         this.f2259t = interfaceC12390g;
@@ -55,89 +55,14 @@ public final class C1474d extends AbstractC1473c {
         m614x(6);
     }
 
-    @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
-    /* JADX INFO: renamed from: A */
-    public void mo600A() throws IOException {
-        int iM618I = this.f2261v;
-        if (iM618I == 0) {
-            iM618I = m618I();
-        }
-        if (iM618I == 14) {
-            m626U();
-        } else if (iM618I == 13) {
-            m625T(f2255p);
-        } else if (iM618I == 12) {
-            m625T(f2254o);
-        } else if (iM618I != 15) {
-            StringBuilder sbM833U = C1643a.m833U("Expected a name but was ");
-            sbM833U.append(mo613u());
-            sbM833U.append(" at path ");
-            sbM833U.append(getPath());
-            throw new C1471a(sbM833U.toString());
-        }
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
         this.f2261v = 0;
-        this.f2239m[this.f2237k - 1] = "null";
-    }
-
-    @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
-    /* JADX INFO: renamed from: C */
-    public void mo601C() throws IOException {
-        int i = 0;
-        do {
-            int iM618I = this.f2261v;
-            if (iM618I == 0) {
-                iM618I = m618I();
-            }
-            if (iM618I == 3) {
-                m614x(1);
-            } else {
-                if (iM618I == 1) {
-                    m614x(3);
-                } else if (iM618I == 4) {
-                    i--;
-                    if (i < 0) {
-                        StringBuilder sbM833U = C1643a.m833U("Expected a value but was ");
-                        sbM833U.append(mo613u());
-                        sbM833U.append(" at path ");
-                        sbM833U.append(getPath());
-                        throw new C1471a(sbM833U.toString());
-                    }
-                    this.f2237k--;
-                } else if (iM618I == 2) {
-                    i--;
-                    if (i < 0) {
-                        StringBuilder sbM833U2 = C1643a.m833U("Expected a value but was ");
-                        sbM833U2.append(mo613u());
-                        sbM833U2.append(" at path ");
-                        sbM833U2.append(getPath());
-                        throw new C1471a(sbM833U2.toString());
-                    }
-                    this.f2237k--;
-                } else if (iM618I == 14 || iM618I == 10) {
-                    m626U();
-                } else if (iM618I == 9 || iM618I == 13) {
-                    m625T(f2255p);
-                } else if (iM618I == 8 || iM618I == 12) {
-                    m625T(f2254o);
-                } else if (iM618I == 17) {
-                    this.f2260u.skip(this.f2263x);
-                } else if (iM618I == 18) {
-                    StringBuilder sbM833U3 = C1643a.m833U("Expected a value but was ");
-                    sbM833U3.append(mo613u());
-                    sbM833U3.append(" at path ");
-                    sbM833U3.append(getPath());
-                    throw new C1471a(sbM833U3.toString());
-                }
-                this.f2261v = 0;
-            }
-            i++;
-            this.f2261v = 0;
-        } while (i != 0);
-        int[] iArr = this.f2240n;
-        int i2 = this.f2237k;
-        int i3 = i2 - 1;
-        iArr[i3] = iArr[i3] + 1;
-        this.f2239m[i2 - 1] = "null";
+        this.f2238l[0] = 8;
+        this.f2237k = 1;
+        C12388e c12388e = this.f2260u;
+        c12388e.skip(c12388e.f26080k);
+        this.f2259t.close();
     }
 
     /* JADX INFO: renamed from: H */
@@ -758,6 +683,91 @@ public final class C1474d extends AbstractC1473c {
     }
 
     @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
+    /* JADX INFO: renamed from: A */
+    public void mo600A() throws IOException {
+        int iM618I = this.f2261v;
+        if (iM618I == 0) {
+            iM618I = m618I();
+        }
+        if (iM618I == 14) {
+            m626U();
+        } else if (iM618I == 13) {
+            m625T(f2255p);
+        } else if (iM618I == 12) {
+            m625T(f2254o);
+        } else if (iM618I != 15) {
+            StringBuilder sbM833U = C1643a.m833U("Expected a name but was ");
+            sbM833U.append(mo613u());
+            sbM833U.append(" at path ");
+            sbM833U.append(getPath());
+            throw new C1471a(sbM833U.toString());
+        }
+        this.f2261v = 0;
+        this.f2239m[this.f2237k - 1] = "null";
+    }
+
+    @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
+    /* JADX INFO: renamed from: C */
+    public void mo601C() throws IOException {
+        int i = 0;
+        do {
+            int iM618I = this.f2261v;
+            if (iM618I == 0) {
+                iM618I = m618I();
+            }
+            if (iM618I == 3) {
+                m614x(1);
+            } else {
+                if (iM618I == 1) {
+                    m614x(3);
+                } else if (iM618I == 4) {
+                    i--;
+                    if (i < 0) {
+                        StringBuilder sbM833U = C1643a.m833U("Expected a value but was ");
+                        sbM833U.append(mo613u());
+                        sbM833U.append(" at path ");
+                        sbM833U.append(getPath());
+                        throw new C1471a(sbM833U.toString());
+                    }
+                    this.f2237k--;
+                } else if (iM618I == 2) {
+                    i--;
+                    if (i < 0) {
+                        StringBuilder sbM833U2 = C1643a.m833U("Expected a value but was ");
+                        sbM833U2.append(mo613u());
+                        sbM833U2.append(" at path ");
+                        sbM833U2.append(getPath());
+                        throw new C1471a(sbM833U2.toString());
+                    }
+                    this.f2237k--;
+                } else if (iM618I == 14 || iM618I == 10) {
+                    m626U();
+                } else if (iM618I == 9 || iM618I == 13) {
+                    m625T(f2255p);
+                } else if (iM618I == 8 || iM618I == 12) {
+                    m625T(f2254o);
+                } else if (iM618I == 17) {
+                    this.f2260u.skip(this.f2263x);
+                } else if (iM618I == 18) {
+                    StringBuilder sbM833U3 = C1643a.m833U("Expected a value but was ");
+                    sbM833U3.append(mo613u());
+                    sbM833U3.append(" at path ");
+                    sbM833U3.append(getPath());
+                    throw new C1471a(sbM833U3.toString());
+                }
+                this.f2261v = 0;
+            }
+            i++;
+            this.f2261v = 0;
+        } while (i != 0);
+        int[] iArr = this.f2240n;
+        int i2 = this.f2237k;
+        int i3 = i2 - 1;
+        iArr[i3] = iArr[i3] + 1;
+        this.f2239m[i2 - 1] = "null";
+    }
+
+    @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
     /* JADX INFO: renamed from: a */
     public void mo603a() throws IOException {
         int iM618I = this.f2261v;
@@ -816,16 +826,6 @@ public final class C1474d extends AbstractC1473c {
         int i2 = i - 1;
         iArr[i2] = iArr[i2] + 1;
         this.f2261v = 0;
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        this.f2261v = 0;
-        this.f2238l[0] = 8;
-        this.f2237k = 1;
-        C12388e c12388e = this.f2260u;
-        c12388e.skip(c12388e.f26080k);
-        this.f2259t.close();
     }
 
     @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
@@ -1074,13 +1074,6 @@ public final class C1474d extends AbstractC1473c {
         return strM10433H;
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("JsonReader(");
-        sbM833U.append(this.f2259t);
-        sbM833U.append(")");
-        return sbM833U.toString();
-    }
-
     @Override // p007b.p085c.p086a.p087a0.p088i0.AbstractC1473c
     /* JADX INFO: renamed from: u */
     public AbstractC1473c.b mo613u() throws IOException {
@@ -1150,5 +1143,12 @@ public final class C1474d extends AbstractC1473c {
             this.f2239m[this.f2237k - 1] = str;
         }
         return iM619J;
+    }
+
+    public String toString() {
+        StringBuilder sbM833U = C1643a.m833U("JsonReader(");
+        sbM833U.append(this.f2259t);
+        sbM833U.append(")");
+        return sbM833U.toString();
     }
 }

@@ -44,6 +44,24 @@ public final class StoreMediaSettings extends Store {
     private final VoiceConfigurationCache voiceConfigurationCache;
     private final SerializedSubject<VoiceConfiguration, VoiceConfiguration> voiceConfigurationSubject;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaSettings$init$2 */
+    /* JADX INFO: compiled from: StoreMediaSettings.kt */
+    public final /* synthetic */ class C61892 extends C12236k implements Function1<Boolean, Unit> {
+        public C61892(StoreMediaSettings storeMediaSettings) {
+            super(1, storeMediaSettings, StoreMediaSettings.class, "handleCanUseVad", "handleCanUseVad(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((StoreMediaSettings) this.receiver).handleCanUseVad(z2);
+        }
+    }
+
     /* JADX INFO: compiled from: StoreMediaSettings.kt */
     public enum NoiseProcessing {
         None,
@@ -65,14 +83,14 @@ public final class StoreMediaSettings extends Store {
     }
 
     /* JADX INFO: compiled from: StoreMediaSettings.kt */
-    public static final /* data */ class VoiceConfiguration {
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
+    public final /* data */ class VoiceConfiguration {
         private static final int DEFAULT_NOISE_PROCESSING;
         public static final float DEFAULT_OUTPUT_VOLUME = 100.0f;
         public static final float DEFAULT_SENSITIVITY = -50.0f;
         private static final VoiceConfiguration DEFAULT_VOICE_CONFIG;
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
         private final boolean automaticGainControl;
         private final boolean automaticVad;
         private final boolean echoCancellation;
@@ -90,7 +108,7 @@ public final class StoreMediaSettings extends Store {
         private final boolean voiceParticipantsHidden;
 
         /* JADX INFO: compiled from: StoreMediaSettings.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -141,21 +159,6 @@ public final class StoreMediaSettings extends Store {
             this.voiceParticipantsHidden = z8;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final boolean getIsSelfMuted() {
-            return this.isSelfMuted;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ VoiceConfiguration copy$default(VoiceConfiguration voiceConfiguration, boolean z2, boolean z3, boolean z4, VadUseKrisp vadUseKrisp, boolean z5, boolean z6, NoiseProcessing noiseProcessing, float f, MediaEngineConnection.InputMode inputMode, float f2, Map map, Map map2, Map map3, boolean z7, boolean z8, int i, Object obj) {
-            return voiceConfiguration.copy((i & 1) != 0 ? voiceConfiguration.isSelfMuted : z2, (i & 2) != 0 ? voiceConfiguration.isSelfDeafened : z3, (i & 4) != 0 ? voiceConfiguration.automaticVad : z4, (i & 8) != 0 ? voiceConfiguration.vadUseKrisp : vadUseKrisp, (i & 16) != 0 ? voiceConfiguration.automaticGainControl : z5, (i & 32) != 0 ? voiceConfiguration.echoCancellation : z6, (i & 64) != 0 ? voiceConfiguration.noiseProcessing : noiseProcessing, (i & 128) != 0 ? voiceConfiguration.sensitivity : f, (i & 256) != 0 ? voiceConfiguration.inputMode : inputMode, (i & 512) != 0 ? voiceConfiguration.outputVolume : f2, (i & 1024) != 0 ? voiceConfiguration.mutedUsers : map, (i & 2048) != 0 ? voiceConfiguration.userOutputVolumes : map2, (i & 4096) != 0 ? voiceConfiguration.offScreenUsers : map3, (i & 8192) != 0 ? voiceConfiguration.enableVideoHardwareScaling : z7, (i & 16384) != 0 ? voiceConfiguration.voiceParticipantsHidden : z8);
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final float getOutputVolume() {
-            return this.outputVolume;
-        }
-
         public final Map<Long, Boolean> component11() {
             return this.mutedUsers;
         }
@@ -168,54 +171,9 @@ public final class StoreMediaSettings extends Store {
             return this.offScreenUsers;
         }
 
-        /* JADX INFO: renamed from: component14, reason: from getter */
-        public final boolean getEnableVideoHardwareScaling() {
-            return this.enableVideoHardwareScaling;
-        }
-
-        /* JADX INFO: renamed from: component15, reason: from getter */
-        public final boolean getVoiceParticipantsHidden() {
-            return this.voiceParticipantsHidden;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsSelfDeafened() {
-            return this.isSelfDeafened;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getAutomaticVad() {
-            return this.automaticVad;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final VadUseKrisp getVadUseKrisp() {
-            return this.vadUseKrisp;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getAutomaticGainControl() {
-            return this.automaticGainControl;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getEchoCancellation() {
-            return this.echoCancellation;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final NoiseProcessing getNoiseProcessing() {
-            return this.noiseProcessing;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final float getSensitivity() {
-            return this.sensitivity;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final MediaEngineConnection.InputMode getInputMode() {
-            return this.inputMode;
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ VoiceConfiguration copy$default(VoiceConfiguration voiceConfiguration, boolean z2, boolean z3, boolean z4, VadUseKrisp vadUseKrisp, boolean z5, boolean z6, NoiseProcessing noiseProcessing, float f, MediaEngineConnection.InputMode inputMode, float f2, Map map, Map map2, Map map3, boolean z7, boolean z8, int i, Object obj) {
+            return voiceConfiguration.copy((i & 1) != 0 ? voiceConfiguration.isSelfMuted : z2, (i & 2) != 0 ? voiceConfiguration.isSelfDeafened : z3, (i & 4) != 0 ? voiceConfiguration.automaticVad : z4, (i & 8) != 0 ? voiceConfiguration.vadUseKrisp : vadUseKrisp, (i & 16) != 0 ? voiceConfiguration.automaticGainControl : z5, (i & 32) != 0 ? voiceConfiguration.echoCancellation : z6, (i & 64) != 0 ? voiceConfiguration.noiseProcessing : noiseProcessing, (i & 128) != 0 ? voiceConfiguration.sensitivity : f, (i & 256) != 0 ? voiceConfiguration.inputMode : inputMode, (i & 512) != 0 ? voiceConfiguration.outputVolume : f2, (i & 1024) != 0 ? voiceConfiguration.mutedUsers : map, (i & 2048) != 0 ? voiceConfiguration.userOutputVolumes : map2, (i & 4096) != 0 ? voiceConfiguration.offScreenUsers : map3, (i & 8192) != 0 ? voiceConfiguration.enableVideoHardwareScaling : z7, (i & 16384) != 0 ? voiceConfiguration.voiceParticipantsHidden : z8);
         }
 
         public final VoiceConfiguration copy(boolean isSelfMuted, boolean isSelfDeafened, boolean automaticVad, VadUseKrisp vadUseKrisp, boolean automaticGainControl, boolean echoCancellation, NoiseProcessing noiseProcessing, float sensitivity, MediaEngineConnection.InputMode inputMode, float outputVolume, Map<Long, Boolean> mutedUsers, Map<Long, Float> userOutputVolumes, Map<Long, Boolean> offScreenUsers, boolean enableVideoHardwareScaling, boolean voiceParticipantsHidden) {
@@ -239,28 +197,68 @@ public final class StoreMediaSettings extends Store {
             return this.isSelfMuted == voiceConfiguration.isSelfMuted && this.isSelfDeafened == voiceConfiguration.isSelfDeafened && this.automaticVad == voiceConfiguration.automaticVad && C12238m.areEqual(this.vadUseKrisp, voiceConfiguration.vadUseKrisp) && this.automaticGainControl == voiceConfiguration.automaticGainControl && this.echoCancellation == voiceConfiguration.echoCancellation && C12238m.areEqual(this.noiseProcessing, voiceConfiguration.noiseProcessing) && Float.compare(this.sensitivity, voiceConfiguration.sensitivity) == 0 && C12238m.areEqual(this.inputMode, voiceConfiguration.inputMode) && Float.compare(this.outputVolume, voiceConfiguration.outputVolume) == 0 && C12238m.areEqual(this.mutedUsers, voiceConfiguration.mutedUsers) && C12238m.areEqual(this.userOutputVolumes, voiceConfiguration.userOutputVolumes) && C12238m.areEqual(this.offScreenUsers, voiceConfiguration.offScreenUsers) && this.enableVideoHardwareScaling == voiceConfiguration.enableVideoHardwareScaling && this.voiceParticipantsHidden == voiceConfiguration.voiceParticipantsHidden;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getAutomaticGainControl() {
             return this.automaticGainControl;
+        }
+
+        public final boolean getAutomaticGainControl() {
+            return this.automaticGainControl;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getAutomaticVad() {
+            return this.automaticVad;
         }
 
         public final boolean getAutomaticVad() {
             return this.automaticVad;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final boolean getEchoCancellation() {
             return this.echoCancellation;
+        }
+
+        public final boolean getEchoCancellation() {
+            return this.echoCancellation;
+        }
+
+        /* JADX INFO: renamed from: component14, reason: from getter */
+        public final boolean getEnableVideoHardwareScaling() {
+            return this.enableVideoHardwareScaling;
         }
 
         public final boolean getEnableVideoHardwareScaling() {
             return this.enableVideoHardwareScaling;
         }
 
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final MediaEngineConnection.InputMode getInputMode() {
             return this.inputMode;
         }
 
+        public final MediaEngineConnection.InputMode getInputMode() {
+            return this.inputMode;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSelfDeafened() {
+            return this.isSelfDeafened;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final boolean getIsSelfMuted() {
+            return this.isSelfMuted;
+        }
+
         public final Map<Long, Boolean> getMutedUsers() {
             return this.mutedUsers;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final NoiseProcessing getNoiseProcessing() {
+            return this.noiseProcessing;
         }
 
         public final NoiseProcessing getNoiseProcessing() {
@@ -271,8 +269,18 @@ public final class StoreMediaSettings extends Store {
             return this.offScreenUsers;
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
         public final float getOutputVolume() {
             return this.outputVolume;
+        }
+
+        public final float getOutputVolume() {
+            return this.outputVolume;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final float getSensitivity() {
+            return this.sensitivity;
         }
 
         public final float getSensitivity() {
@@ -283,8 +291,18 @@ public final class StoreMediaSettings extends Store {
             return this.userOutputVolumes;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final VadUseKrisp getVadUseKrisp() {
             return this.vadUseKrisp;
+        }
+
+        public final VadUseKrisp getVadUseKrisp() {
+            return this.vadUseKrisp;
+        }
+
+        /* JADX INFO: renamed from: component15, reason: from getter */
+        public final boolean getVoiceParticipantsHidden() {
+            return this.voiceParticipantsHidden;
         }
 
         public final boolean getVoiceParticipantsHidden() {
@@ -440,47 +458,8 @@ public final class StoreMediaSettings extends Store {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreMediaSettings$init$2 */
-    /* JADX INFO: compiled from: StoreMediaSettings.kt */
-    public static final /* synthetic */ class C61892 extends C12236k implements Function1<Boolean, Unit> {
-        public C61892(StoreMediaSettings storeMediaSettings) {
-            super(1, storeMediaSettings, StoreMediaSettings.class, "handleCanUseVad", "handleCanUseVad(Z)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            ((StoreMediaSettings) this.receiver).handleCanUseVad(z2);
-        }
-    }
-
     public /* synthetic */ StoreMediaSettings(StoreVoiceChannelSelected storeVoiceChannelSelected, StoreChannels storeChannels, StorePermissions storePermissions, VoiceConfigurationCache voiceConfigurationCache, AppSoundManager appSoundManager, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeVoiceChannelSelected, storeChannels, storePermissions, (i & 8) != 0 ? new VoiceConfigurationCache(SharedPreferencesProvider.INSTANCE.get()) : voiceConfigurationCache, (i & 16) != 0 ? AppSoundManager.Provider.INSTANCE.get() : appSoundManager);
-    }
-
-    private final synchronized void handleCanUseVad(boolean canUseVad) {
-        this.canUseVad = canUseVad;
-        updateForceMute();
-    }
-
-    private final void setVoiceConfiguration(VoiceConfiguration voiceConfiguration) {
-        this.voiceConfiguration = voiceConfiguration;
-        this.voiceConfigurationSubject.f27653k.onNext(voiceConfiguration);
-        this.voiceConfigurationCache.write(voiceConfiguration);
-    }
-
-    private final void updateForceMute() {
-        this.forceSelfMuteReason = null;
-        if (!this.canUseVad && this.voiceConfiguration.getInputMode() == MediaEngineConnection.InputMode.VOICE_ACTIVITY) {
-            this.forceSelfMuteReason = SelfMuteFailure.CANNOT_USE_VAD;
-        }
-        if (this.forceSelfMuteReason != null) {
-            setVoiceConfiguration(VoiceConfiguration.copy$default(this.voiceConfiguration, true, false, false, null, false, false, null, 0.0f, null, 0.0f, null, null, null, false, false, 32766, null));
-        }
     }
 
     public final Observable<MediaEngineConnection.InputMode> getInputMode() {
@@ -555,6 +534,11 @@ public final class StoreMediaSettings extends Store {
 
     public final synchronized VoiceConfiguration getVoiceConfigurationBlocking() {
         return this.voiceConfiguration;
+    }
+
+    private final synchronized void handleCanUseVad(boolean canUseVad) {
+        this.canUseVad = canUseVad;
+        updateForceMute();
     }
 
     @StoreThread
@@ -688,6 +672,12 @@ public final class StoreMediaSettings extends Store {
         }
     }
 
+    private final void setVoiceConfiguration(VoiceConfiguration voiceConfiguration) {
+        this.voiceConfiguration = voiceConfiguration;
+        this.voiceConfigurationSubject.f27653k.onNext(voiceConfiguration);
+        this.voiceConfigurationCache.write(voiceConfiguration);
+    }
+
     public final synchronized void setVoiceInputMode(MediaEngineConnection.InputMode inputMode) {
         C12238m.checkNotNullParameter(inputMode, "inputMode");
         setVoiceConfiguration(VoiceConfiguration.copy$default(this.voiceConfiguration, false, false, false, null, false, false, null, 0.0f, inputMode, 0.0f, null, null, null, false, false, 32511, null));
@@ -761,6 +751,16 @@ public final class StoreMediaSettings extends Store {
             vadUseKrisp2 = VadUseKrisp.Disabled;
         }
         setVoiceConfiguration(VoiceConfiguration.copy$default(this.voiceConfiguration, false, false, false, vadUseKrisp2, false, false, null, 0.0f, null, 0.0f, null, null, null, false, false, 32759, null));
+    }
+
+    private final void updateForceMute() {
+        this.forceSelfMuteReason = null;
+        if (!this.canUseVad && this.voiceConfiguration.getInputMode() == MediaEngineConnection.InputMode.VOICE_ACTIVITY) {
+            this.forceSelfMuteReason = SelfMuteFailure.CANNOT_USE_VAD;
+        }
+        if (this.forceSelfMuteReason != null) {
+            setVoiceConfiguration(VoiceConfiguration.copy$default(this.voiceConfiguration, true, false, false, null, false, false, null, 0.0f, null, 0.0f, null, null, null, false, false, 32766, null));
+        }
     }
 
     public final synchronized void updateVoiceParticipantsHidden(boolean hidden) {

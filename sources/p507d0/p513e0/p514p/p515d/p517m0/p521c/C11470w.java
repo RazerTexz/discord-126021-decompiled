@@ -25,7 +25,7 @@ public final class C11470w {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.w$a */
     /* JADX INFO: compiled from: findClassInModule.kt */
-    public /* synthetic */ class a extends C12235j implements Function1<C11712a, C11712a> {
+    public final /* synthetic */ class a extends C12235j implements Function1<C11712a, C11712a> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23101j = new a();
@@ -58,7 +58,7 @@ public final class C11470w {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.w$b */
     /* JADX INFO: compiled from: findClassInModule.kt */
-    public static final class b extends AbstractC12240o implements Function1<C11712a, Integer> {
+    public final class b extends AbstractC12240o implements Function1<C11712a, Integer> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23102j = new b();
@@ -67,15 +67,15 @@ public final class C11470w {
             super(1);
         }
 
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Integer invoke(C11712a c11712a) {
+            return Integer.valueOf(invoke2(c11712a));
+        }
+
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final int invoke2(C11712a c11712a) {
             C12238m.checkNotNullParameter(c11712a, "it");
             return 0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Integer invoke(C11712a c11712a) {
-            return Integer.valueOf(invoke2(c11712a));
         }
     }
 

@@ -14,6 +14,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C1292r {
 
+    /* JADX INFO: renamed from: g */
+    public static final C1292r f1961g = null;
+
     /* JADX INFO: renamed from: a */
     public static final String[] f1955a = {"import|from|export|default|package", "class|enum", "function|super|extends|implements|arguments", "var|let|const|static|get|set|new", "return|break|continue|yield|void", "if|else|for|while|do|switch|async|await|case|try|catch|finally|delete|throw|NaN|Infinity", "of|in|instanceof|typeof", "debugger|with", "true|false|null|undefined", "type|as|interface|public|private|protected|module|declare|namespace", "abstract|keyof|readonly|is|asserts|infer|override|intrinsic"};
 
@@ -32,12 +35,9 @@ public final class C1292r {
     /* JADX INFO: renamed from: f */
     public static final Pattern f1960f = Pattern.compile("^('.*?(?<!\\\\)'|\".*?(?<!\\\\)\"|`[\\s\\S]*?(?<!\\\\)`)(?=\\W|\\s|$)");
 
-    /* JADX INFO: renamed from: g */
-    public static final C1292r f1961g = null;
-
     /* JADX INFO: renamed from: b.a.t.a.r$a */
     /* JADX INFO: compiled from: TypeScript.kt */
-    public static final class a<RC> extends Node.C5655a<RC> {
+    public final class a<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final C13216a f1963b = new C13216a(null);
@@ -47,7 +47,7 @@ public final class C1292r {
 
         /* JADX INFO: renamed from: b.a.t.a.r$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: TypeScript.kt */
-        public static final class C13216a {
+        public final class C13216a {
             public C13216a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -67,7 +67,7 @@ public final class C1292r {
 
     /* JADX INFO: renamed from: b.a.t.a.r$b */
     /* JADX INFO: compiled from: TypeScript.kt */
-    public static final class b<RC> extends Node.C5655a<RC> {
+    public final class b<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final a f1965b = new a(null);
@@ -77,7 +77,7 @@ public final class C1292r {
 
         /* JADX INFO: renamed from: b.a.t.a.r$b$a */
         /* JADX INFO: compiled from: TypeScript.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -93,7 +93,7 @@ public final class C1292r {
 
     /* JADX INFO: renamed from: b.a.t.a.r$c */
     /* JADX INFO: compiled from: TypeScript.kt */
-    public static final class c<RC> extends Node.C5655a<RC> {
+    public final class c<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final a f1967b = new a(null);
@@ -103,7 +103,7 @@ public final class C1292r {
 
         /* JADX INFO: renamed from: b.a.t.a.r$c$a */
         /* JADX INFO: compiled from: TypeScript.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -122,7 +122,7 @@ public final class C1292r {
 
     /* JADX INFO: renamed from: b.a.t.a.r$d */
     /* JADX INFO: compiled from: TypeScript.kt */
-    public static final class d<RC> extends Node.C5655a<RC> {
+    public final class d<RC> extends Node.C5655a<RC> {
 
         /* JADX INFO: renamed from: b */
         public static final a f1969b = new a(null);
@@ -132,7 +132,7 @@ public final class C1292r {
 
         /* JADX INFO: renamed from: b.a.t.a.r$d$a */
         /* JADX INFO: compiled from: TypeScript.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }

@@ -10,11 +10,6 @@ public final /* data */ class EnableMfaResponse {
     private final List<BackupCode> backupCodes;
     private final String token;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -24,6 +19,11 @@ public final /* data */ class EnableMfaResponse {
         }
         EnableMfaResponse enableMfaResponse = (EnableMfaResponse) other;
         return C12238m.areEqual(this.token, enableMfaResponse.token) && C12238m.areEqual(this.backupCodes, enableMfaResponse.backupCodes);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public int hashCode() {

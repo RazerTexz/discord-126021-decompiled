@@ -7,20 +7,10 @@ import java.util.Objects;
 /* JADX INFO: compiled from: ReverseNaturalOrdering.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4514k0 extends AbstractC4506g0<Comparable> implements Serializable {
+    private static final long serialVersionUID = 0;
 
     /* JADX INFO: renamed from: j */
     public static final C4514k0 f12038j = new C4514k0();
-    private static final long serialVersionUID = 0;
-
-    private Object readResolve() {
-        return f12038j;
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4506g0
-    /* JADX INFO: renamed from: b */
-    public <S extends Comparable> AbstractC4506g0<S> mo6236b() {
-        return C4504f0.f12005j;
-    }
 
     @Override // p007b.p225i.p355b.p357b.AbstractC4506g0, java.util.Comparator
     public int compare(Object obj, Object obj2) {
@@ -31,6 +21,16 @@ public final class C4514k0 extends AbstractC4506g0<Comparable> implements Serial
             return 0;
         }
         return comparable2.compareTo(comparable);
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4506g0
+    /* JADX INFO: renamed from: b */
+    public <S extends Comparable> AbstractC4506g0<S> mo6236b() {
+        return C4504f0.f12005j;
+    }
+
+    private Object readResolve() {
+        return f12038j;
     }
 
     public String toString() {

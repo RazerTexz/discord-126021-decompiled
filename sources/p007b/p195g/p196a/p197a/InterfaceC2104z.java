@@ -15,7 +15,7 @@ public @interface InterfaceC2104z {
 
     /* JADX INFO: renamed from: b.g.a.a.z$a */
     /* JADX INFO: compiled from: JsonSetter.java */
-    public static class a implements Serializable {
+    public class a implements Serializable {
 
         /* JADX INFO: renamed from: j */
         public static final a f4443j;
@@ -31,6 +31,21 @@ public @interface InterfaceC2104z {
         public a(EnumC2080h0 enumC2080h0, EnumC2080h0 enumC2080h1) {
             this._nulls = enumC2080h0;
             this._contentNulls = enumC2080h1;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || obj.getClass() != a.class) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return aVar._nulls == this._nulls && aVar._contentNulls == this._contentNulls;
+        }
+
+        public int hashCode() {
+            return this._nulls.ordinal() + (this._contentNulls.ordinal() << 2);
         }
 
         /* JADX INFO: renamed from: a */
@@ -49,21 +64,6 @@ public @interface InterfaceC2104z {
                 return null;
             }
             return enumC2080h0;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (obj == null || obj.getClass() != a.class) {
-                return false;
-            }
-            a aVar = (a) obj;
-            return aVar._nulls == this._nulls && aVar._contentNulls == this._contentNulls;
-        }
-
-        public int hashCode() {
-            return this._nulls.ordinal() + (this._contentNulls.ordinal() << 2);
         }
 
         public Object readResolve() {

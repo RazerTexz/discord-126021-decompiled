@@ -7,6 +7,6 @@ public abstract class AbstractC2361k<T> {
 
     /* JADX INFO: renamed from: b.g.a.c.k$a */
     /* JADX INFO: compiled from: JsonDeserializer.java */
-    public static abstract class a extends AbstractC2361k<Object> {
+    public abstract class a extends AbstractC2361k<Object> {
     }
 }

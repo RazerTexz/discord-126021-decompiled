@@ -25,7 +25,6 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ChipGroup extends FlowLayout {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ChipGroup;
 
     @IdRes
     private int checkedId;
@@ -45,6 +44,7 @@ public class ChipGroup extends FlowLayout {
     private boolean protectFromCheckedChange;
     private boolean selectionRequired;
     private boolean singleSelection;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ChipGroup;
 
     public class CheckedStateTracker implements CompoundButton.OnCheckedChangeListener {
         public CheckedStateTracker(C10875a c10875a) {
@@ -75,7 +75,7 @@ public class ChipGroup extends FlowLayout {
         }
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
         public LayoutParams(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
         }
@@ -137,29 +137,6 @@ public class ChipGroup extends FlowLayout {
 
     public ChipGroup(Context context) {
         this(context, null);
-    }
-
-    private int getChipCount() {
-        int i = 0;
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            if (getChildAt(i2) instanceof Chip) {
-                i++;
-            }
-        }
-        return i;
-    }
-
-    private void setCheckedId(int i) {
-        setCheckedId(i, true);
-    }
-
-    private void setCheckedStateForView(@IdRes int i, boolean z2) {
-        View viewFindViewById = findViewById(i);
-        if (viewFindViewById instanceof Chip) {
-            this.protectFromCheckedChange = true;
-            ((Chip) viewFindViewById).setChecked(z2);
-            this.protectFromCheckedChange = false;
-        }
     }
 
     @Override // android.view.ViewGroup
@@ -243,6 +220,16 @@ public class ChipGroup extends FlowLayout {
         return arrayList;
     }
 
+    private int getChipCount() {
+        int i = 0;
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            if (getChildAt(i2) instanceof Chip) {
+                i++;
+            }
+        }
+        return i;
+    }
+
     @Dimension
     public int getChipSpacingHorizontal() {
         return this.chipSpacingHorizontal;
@@ -296,6 +283,19 @@ public class ChipGroup extends FlowLayout {
     public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat.CollectionInfoCompat.obtain(getRowCount(), isSingleLine() ? getChipCount() : -1, false, isSingleSelection() ? 1 : 2));
+    }
+
+    private void setCheckedId(int i) {
+        setCheckedId(i, true);
+    }
+
+    private void setCheckedStateForView(@IdRes int i, boolean z2) {
+        View viewFindViewById = findViewById(i);
+        if (viewFindViewById instanceof Chip) {
+            this.protectFromCheckedChange = true;
+            ((Chip) viewFindViewById).setChecked(z2);
+            this.protectFromCheckedChange = false;
+        }
     }
 
     public void setChipSpacing(@Dimension int i) {
@@ -385,18 +385,18 @@ public class ChipGroup extends FlowLayout {
         this(context, attributeSet, C10817R.attr.chipGroupStyle);
     }
 
+    @Override // android.view.ViewGroup
+    @NonNull
+    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return new LayoutParams(layoutParams);
+    }
+
     private void setCheckedId(int i, boolean z2) {
         this.checkedId = i;
         OnCheckedChangeListener onCheckedChangeListener = this.onCheckedChangeListener;
         if (onCheckedChangeListener != null && this.singleSelection && z2) {
             onCheckedChangeListener.onCheckedChanged(this, i);
         }
-    }
-
-    @Override // android.view.ViewGroup
-    @NonNull
-    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return new LayoutParams(layoutParams);
     }
 
     public void setSingleLine(@BoolRes int i) {

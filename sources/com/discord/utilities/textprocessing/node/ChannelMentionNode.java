@@ -27,16 +27,9 @@ import p507d0.p592z.p594d.C12238m;
 public final class ChannelMentionNode<T extends RenderContext> extends Node<T> {
     private final long channelId;
 
-    /* JADX INFO: compiled from: ChannelMentionNode.kt */
-    public interface RenderContext extends BasicRenderContext {
-        Function1<Long, Unit> getChannelMentionOnClick();
-
-        Map<Long, String> getChannelNames();
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.node.ChannelMentionNode$render$1 */
     /* JADX INFO: compiled from: ChannelMentionNode.kt */
-    public static final class C69751 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C69751 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Function1 $onClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -56,6 +49,13 @@ public final class ChannelMentionNode<T extends RenderContext> extends Node<T> {
             C12238m.checkNotNullParameter(view, "it");
             this.$onClick.invoke(Long.valueOf(ChannelMentionNode.this.getChannelId()));
         }
+    }
+
+    /* JADX INFO: compiled from: ChannelMentionNode.kt */
+    public interface RenderContext extends BasicRenderContext {
+        Function1<Long, Unit> getChannelMentionOnClick();
+
+        Map<Long, String> getChannelNames();
     }
 
     public ChannelMentionNode(long j) {

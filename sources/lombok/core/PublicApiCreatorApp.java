@@ -155,7 +155,7 @@ public class PublicApiCreatorApp extends LombokApp {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/PublicApiCreatorApp$Fail.SCL.lombok */
-    private static class Fail extends Exception {
+    class Fail extends Exception {
         Fail(String message) {
             super(message);
         }

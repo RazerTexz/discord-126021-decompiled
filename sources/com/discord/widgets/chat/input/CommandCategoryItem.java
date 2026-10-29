@@ -26,16 +26,6 @@ public final /* data */ class CommandCategoryItem {
         return commandCategoryItem.copy(application, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsSelected() {
-        return this.isSelected;
-    }
-
     public final CommandCategoryItem copy(Application application, boolean isSelected) {
         C12238m.checkNotNullParameter(application, "application");
         return new CommandCategoryItem(application, isSelected);
@@ -52,8 +42,18 @@ public final /* data */ class CommandCategoryItem {
         return C12238m.areEqual(this.application, commandCategoryItem.application) && this.isSelected == commandCategoryItem.isSelected;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Application getApplication() {
         return this.application;
+    }
+
+    public final Application getApplication() {
+        return this.application;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsSelected() {
+        return this.isSelected;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

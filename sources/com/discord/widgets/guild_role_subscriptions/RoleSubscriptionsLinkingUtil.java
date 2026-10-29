@@ -61,10 +61,6 @@ public final class RoleSubscriptionsLinkingUtil {
         return HandoffEligibility.INELIGIBLE_FOR_ROLE_SUBSCRIPTIONS;
     }
 
-    private final boolean performHandoff(Context context, String url) {
-        return MobileWebHandoff.tryLaunchRedirectTo$default(new MobileWebHandoff(context, null, null, null, 14, null), url, false, true, 2, null);
-    }
-
     public final HandoffResult handoffToGuildRoleSubscriptions(Context context, long guildId) {
         C12238m.checkNotNullParameter(context, "context");
         int iOrdinal = getHandoffEligibility(guildId).ordinal();
@@ -87,6 +83,10 @@ public final class RoleSubscriptionsLinkingUtil {
             throw new NoWhenBranchMatchedException();
         }
         return HandoffResult.FAILURE;
+    }
+
+    private final boolean performHandoff(Context context, String url) {
+        return MobileWebHandoff.tryLaunchRedirectTo$default(new MobileWebHandoff(context, null, null, null, 14, null), url, false, true, 2, null);
     }
 
     public final boolean tryPerformHandoff(Context context, Uri uri) {

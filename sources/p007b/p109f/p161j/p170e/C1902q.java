@@ -153,13 +153,13 @@ public class C1902q {
     @VisibleForTesting
     public InterfaceC2018w0<CloseableReference<AbstractC1917c>> f3862w;
 
-    /* JADX INFO: renamed from: x */
-    @VisibleForTesting
-    public Map<InterfaceC2018w0<CloseableReference<AbstractC1917c>>, InterfaceC2018w0<CloseableReference<AbstractC1917c>>> f3863x = new HashMap();
-
     /* JADX INFO: renamed from: y */
     @VisibleForTesting
     public Map<InterfaceC2018w0<CloseableReference<AbstractC1917c>>, InterfaceC2018w0<CloseableReference<AbstractC1917c>>> f3864y;
+
+    /* JADX INFO: renamed from: x */
+    @VisibleForTesting
+    public Map<InterfaceC2018w0<CloseableReference<AbstractC1917c>>, InterfaceC2018w0<CloseableReference<AbstractC1917c>>> f3863x = new HashMap();
 
     public C1902q(ContentResolver contentResolver, C1901p c1901p, InterfaceC2002o0 interfaceC2002o0, boolean z2, boolean z3, InterfaceC1982g1 interfaceC1982g1, boolean z4, boolean z5, boolean z6, boolean z7, InterfaceC2033c interfaceC2033c, boolean z8, boolean z9, boolean z10) {
         this.f3840a = contentResolver;

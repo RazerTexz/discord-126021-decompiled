@@ -13,6 +13,17 @@ public final /* data */ class ForumTag {
     private final long id;
     private final String name;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ForumTag)) {
+            return false;
+        }
+        ForumTag forumTag = (ForumTag) other;
+        return this.id == forumTag.id && C12238m.areEqual(this.name, forumTag.name) && C12238m.areEqual(this.emojiId, forumTag.emojiId) && C12238m.areEqual(this.emojiName, forumTag.emojiName);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getCustomEmojiId() {
         return this.customEmojiId;
@@ -31,17 +42,6 @@ public final /* data */ class ForumTag {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ForumTag)) {
-            return false;
-        }
-        ForumTag forumTag = (ForumTag) other;
-        return this.id == forumTag.id && C12238m.areEqual(this.name, forumTag.name) && C12238m.areEqual(this.emojiId, forumTag.emojiId) && C12238m.areEqual(this.emojiName, forumTag.emojiName);
     }
 
     public int hashCode() {

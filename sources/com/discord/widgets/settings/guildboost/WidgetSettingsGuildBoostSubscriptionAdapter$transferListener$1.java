@@ -15,13 +15,13 @@ public final class WidgetSettingsGuildBoostSubscriptionAdapter$transferListener$
         super(2);
     }
 
+    public final void invoke(ModelGuildBoostSlot modelGuildBoostSlot, long j) {
+        C12238m.checkNotNullParameter(modelGuildBoostSlot, "<anonymous parameter 0>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(ModelGuildBoostSlot modelGuildBoostSlot, Long l) {
         invoke(modelGuildBoostSlot, l.longValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(ModelGuildBoostSlot modelGuildBoostSlot, long j) {
-        C12238m.checkNotNullParameter(modelGuildBoostSlot, "<anonymous parameter 0>");
     }
 }

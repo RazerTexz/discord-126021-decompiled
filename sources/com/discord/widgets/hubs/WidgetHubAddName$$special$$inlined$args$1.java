@@ -1,7 +1,6 @@
 package com.discord.widgets.hubs;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import com.discord.app.AppFragment;
 import kotlin.jvm.functions.Function0;
 import p007b.p100d.p104b.p105a.C1643a;
@@ -24,19 +23,16 @@ public final class WidgetHubAddName$$special$$inlined$args$1 extends AbstractC12
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
     public final HubAddNameArgs invoke() {
-        Parcelable parcelableExtra;
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
         HubAddNameArgs hubAddNameArgs = (HubAddNameArgs) (obj instanceof HubAddNameArgs ? obj : null);
-        HubAddNameArgs hubAddNameArgs2 = hubAddNameArgs;
+        HubAddNameArgs parcelableExtra = hubAddNameArgs;
         if (hubAddNameArgs == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
-        if (hubAddNameArgs2 != 0) {
-            hubAddNameArgs2 = parcelableExtra;
-            return hubAddNameArgs2;
+        if (parcelableExtra != 0) {
+            return parcelableExtra;
         }
-        hubAddNameArgs2 = parcelableExtra;
         StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
         C1643a.m862l0(HubAddNameArgs.class, sbM833U, " + key ");
         throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));

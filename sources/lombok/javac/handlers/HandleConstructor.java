@@ -135,7 +135,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleConstructor$HandleNoArgsConstructor.SCL.lombok */
-    public static class HandleNoArgsConstructor extends JavacAnnotationHandler<NoArgsConstructor> {
+    public class HandleNoArgsConstructor extends JavacAnnotationHandler<NoArgsConstructor> {
         private static final String NAME = NoArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 
@@ -160,7 +160,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleConstructor$HandleRequiredArgsConstructor.SCL.lombok */
-    public static class HandleRequiredArgsConstructor extends JavacAnnotationHandler<RequiredArgsConstructor> {
+    public class HandleRequiredArgsConstructor extends JavacAnnotationHandler<RequiredArgsConstructor> {
         private static final String NAME = RequiredArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 
@@ -217,7 +217,7 @@ public class HandleConstructor {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleConstructor$HandleAllArgsConstructor.SCL.lombok */
-    public static class HandleAllArgsConstructor extends JavacAnnotationHandler<AllArgsConstructor> {
+    public class HandleAllArgsConstructor extends JavacAnnotationHandler<AllArgsConstructor> {
         private static final String NAME = AllArgsConstructor.class.getSimpleName();
         private HandleConstructor handleConstructor = new HandleConstructor();
 

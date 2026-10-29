@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import com.discord.C5419R;
+import com.discord.api.guild.Guild;
 import com.discord.api.guild.GuildExplicitContentFilter;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.guild.GuildVerificationLevel;
@@ -14,7 +15,6 @@ import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetServerSettingsModerationBinding;
-import com.discord.models.guild.Guild;
 import com.discord.models.user.MeUser;
 import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
@@ -67,8 +67,47 @@ public final class WidgetServerSettingsModeration extends AppFragment {
     private RadioManager radioManagerExplicit;
     private RadioManager radioManagerVerification;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsModeration$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C92711 extends C12236k implements Function1<Model, Unit> {
+        public C92711(WidgetServerSettingsModeration widgetServerSettingsModeration) {
+            super(1, widgetServerSettingsModeration, WidgetServerSettingsModeration.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsModeration$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsModeration) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsModeration$updateGuild$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
+    public final class C92721 extends AbstractC12240o implements Function1<Guild, Unit> {
+        public C92721() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Guild guild) {
+            invoke2(guild);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Guild guild) {
+            C12238m.checkNotNullParameter(guild, "it");
+            C0876m.m171i(WidgetServerSettingsModeration.this, C5419R.string.server_settings_updated, 0, 4);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -86,22 +125,22 @@ public final class WidgetServerSettingsModeration extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
-        private final Guild guild;
+        private final com.discord.models.guild.Guild guild;
 
         /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
             public final Observable<Model> get(long guildId) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableM11075i = Observable.m11075i(companion.getGuilds().observeGuild(guildId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), new Func3<Guild, MeUser, Long, Model>() { // from class: com.discord.widgets.servers.WidgetServerSettingsModeration$Model$Companion$get$1
+                Observable observableM11075i = Observable.m11075i(companion.getGuilds().observeGuild(guildId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), new Func3<com.discord.models.guild.Guild, MeUser, Long, Model>() { // from class: com.discord.widgets.servers.WidgetServerSettingsModeration$Model$Companion$get$1
                     @Override // p658rx.functions.Func3
-                    public final WidgetServerSettingsModeration.Model call(Guild guild, MeUser meUser, Long l) {
+                    public final WidgetServerSettingsModeration.Model call(com.discord.models.guild.Guild guild, MeUser meUser, Long l) {
                         C12238m.checkNotNullParameter(meUser, "me");
                         if (guild == null) {
                             return null;
@@ -123,24 +162,19 @@ public final class WidgetServerSettingsModeration extends AppFragment {
             }
         }
 
-        public Model(Guild guild) {
+        public Model(com.discord.models.guild.Guild guild) {
             C12238m.checkNotNullParameter(guild, "guild");
             this.guild = guild;
         }
 
-        public static /* synthetic */ Model copy$default(Model model, Guild guild, int i, Object obj) {
+        public static /* synthetic */ Model copy$default(Model model, com.discord.models.guild.Guild guild, int i, Object obj) {
             if ((i & 1) != 0) {
                 guild = model.guild;
             }
             return model.copy(guild);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Model copy(Guild guild) {
+        public final Model copy(com.discord.models.guild.Guild guild) {
             C12238m.checkNotNullParameter(guild, "guild");
             return new Model(guild);
         }
@@ -152,12 +186,17 @@ public final class WidgetServerSettingsModeration extends AppFragment {
             return true;
         }
 
-        public final Guild getGuild() {
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final com.discord.models.guild.Guild getGuild() {
+            return this.guild;
+        }
+
+        public final com.discord.models.guild.Guild getGuild() {
             return this.guild;
         }
 
         public int hashCode() {
-            Guild guild = this.guild;
+            com.discord.models.guild.Guild guild = this.guild;
             if (guild != null) {
                 return guild.hashCode();
             }
@@ -169,45 +208,6 @@ public final class WidgetServerSettingsModeration extends AppFragment {
             sbM833U.append(this.guild);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsModeration$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
-    public static final /* synthetic */ class C92711 extends C12236k implements Function1<Model, Unit> {
-        public C92711(WidgetServerSettingsModeration widgetServerSettingsModeration) {
-            super(1, widgetServerSettingsModeration, WidgetServerSettingsModeration.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsModeration$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsModeration) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsModeration$updateGuild$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsModeration.kt */
-    public static final class C92721 extends AbstractC12240o implements Function1<com.discord.api.guild.Guild, Unit> {
-        public C92721() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(com.discord.api.guild.Guild guild) {
-            invoke2(guild);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(com.discord.api.guild.Guild guild) {
-            C12238m.checkNotNullParameter(guild, "it");
-            C0876m.m171i(WidgetServerSettingsModeration.this, C5419R.string.server_settings_updated, 0, 4);
         }
     }
 
@@ -292,6 +292,11 @@ public final class WidgetServerSettingsModeration extends AppFragment {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final List<CheckedSetting> getVerificationViews() {
         CheckedSetting checkedSetting = getBinding().f17718f;
         C12238m.checkNotNullExpressionValue(checkedSetting, "binding.serverSettingsModerationVerification1");
@@ -304,15 +309,6 @@ public final class WidgetServerSettingsModeration extends AppFragment {
         CheckedSetting checkedSetting5 = getBinding().f17722j;
         C12238m.checkNotNullExpressionValue(checkedSetting5, "binding.serverSettingsModerationVerification5");
         return C12147n.listOf((Object[]) new CheckedSetting[]{checkedSetting, checkedSetting2, checkedSetting3, checkedSetting4, checkedSetting5});
-    }
-
-    private final void updateGuild(long guildId, RestAPIParams.UpdateGuild updateGuild) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateGuild(guildId, updateGuild), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsModeration.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92721());
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment
@@ -337,5 +333,9 @@ public final class WidgetServerSettingsModeration extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getGuildId()), this, null, 2, null), (Class<?>) WidgetServerSettingsModeration.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92711(this));
+    }
+
+    private final void updateGuild(long guildId, RestAPIParams.UpdateGuild updateGuild) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateGuild(guildId, updateGuild), false, 1, null), this, null, 2, null), (Class<?>) WidgetServerSettingsModeration.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92721());
     }
 }

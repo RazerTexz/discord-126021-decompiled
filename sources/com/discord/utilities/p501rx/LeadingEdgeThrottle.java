@@ -75,7 +75,7 @@ public class LeadingEdgeThrottle<T> implements Observable.InterfaceC13006b<T, T>
         }
     }
 
-    public static final class DebounceState<T> {
+    public final class DebounceState<T> {
         public boolean emitting;
         public boolean hasValue;
         public int index;

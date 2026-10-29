@@ -32,12 +32,6 @@ public final /* data */ class TrackAccountLinkStep implements AnalyticsSchema, T
         this.analyticsSchemaTypeName = "account_link_step";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -47,6 +41,12 @@ public final /* data */ class TrackAccountLinkStep implements AnalyticsSchema, T
         }
         TrackAccountLinkStep trackAccountLinkStep = (TrackAccountLinkStep) other;
         return C12238m.areEqual(this.previousStep, trackAccountLinkStep.previousStep) && C12238m.areEqual(this.currentStep, trackAccountLinkStep.currentStep) && C12238m.areEqual(this.sessionId, trackAccountLinkStep.sessionId) && C12238m.areEqual(this.platformType, trackAccountLinkStep.platformType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -173,7 +173,7 @@ public class C2781r extends MediaCodecRenderer {
 
     /* JADX INFO: renamed from: b.i.a.c.g3.r$a */
     /* JADX INFO: compiled from: MediaCodecVideoRenderer.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f6905a;
@@ -208,6 +208,15 @@ public class C2781r extends MediaCodecRenderer {
             interfaceC3148t.mo3839f(this, handler);
         }
 
+        @Override // android.os.Handler.Callback
+        public boolean handleMessage(Message message) {
+            if (message.what != 0) {
+                return false;
+            }
+            m3175a((C2738e0.m2991L(message.arg1) << 32) | C2738e0.m2991L(message.arg2));
+            return true;
+        }
+
         /* JADX INFO: renamed from: a */
         public final void m3175a(long j) {
             C2781r c2781r = C2781r.this;
@@ -233,15 +242,6 @@ public class C2781r extends MediaCodecRenderer {
                 this.f6908j.sendMessageAtFrontOfQueue(Message.obtain(this.f6908j, 0, (int) (j >> 32), (int) j));
             }
         }
-
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(Message message) {
-            if (message.what != 0) {
-                return false;
-            }
-            m3175a((C2738e0.m2991L(message.arg1) << 32) | C2738e0.m2991L(message.arg2));
-            return true;
-        }
     }
 
     public C2781r(Context context, InterfaceC3148t.b bVar, InterfaceC3150v interfaceC3150v, long j, boolean z2, @Nullable Handler handler, @Nullable InterfaceC2787x interfaceC2787x, int i) {
@@ -260,6 +260,11 @@ public class C2781r extends MediaCodecRenderer {
         this.f6882c1 = 1;
         this.f6902w1 = 0;
         this.f6900u1 = null;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    public String getName() {
+        return "MediaCodecVideoRenderer";
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -400,93 +405,6 @@ public class C2781r extends MediaCodecRenderer {
         return j < -30000;
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: B */
-    public void mo2621B() {
-        final InterfaceC2787x.a aVar;
-        final C2957e c2957e;
-        this.f6900u1 = null;
-        m3138C0();
-        this.f6881b1 = false;
-        C2785v c2785v = this.f6871R0;
-        C2785v.b bVar = c2785v.f6927b;
-        if (bVar != null) {
-            bVar.unregister();
-            C2785v.e eVar = c2785v.f6928c;
-            Objects.requireNonNull(eVar);
-            eVar.f6948l.sendEmptyMessage(2);
-        }
-        this.f6903x1 = null;
-        try {
-            super.mo2621B();
-            aVar = this.f6872S0;
-            c2957e = this.f19877J0;
-            Objects.requireNonNull(aVar);
-            synchronized (c2957e) {
-            }
-        } finally {
-            aVar = this.f6872S0;
-            c2957e = this.f19877J0;
-            Objects.requireNonNull(aVar);
-            synchronized (c2957e) {
-                Handler handler = aVar.f6952a;
-                if (handler != null) {
-                    handler.post(new Runnable() { // from class: b.i.a.c.g3.c
-                        @Override // java.lang.Runnable
-                        public final void run() {
-                            InterfaceC2787x.a aVar2 = aVar;
-                            C2957e c2957e2 = c2957e;
-                            Objects.requireNonNull(aVar2);
-                            synchronized (c2957e2) {
-                            }
-                            InterfaceC2787x interfaceC2787x = aVar2.f6953b;
-                            int i = C2738e0.f6708a;
-                            interfaceC2787x.mo3191Z(c2957e2);
-                        }
-                    });
-                }
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: C */
-    public void mo3137C(boolean z2, boolean z3) throws ExoPlaybackException {
-        this.f19877J0 = new C2957e();
-        C2804h2 c2804h2 = this.f7891l;
-        Objects.requireNonNull(c2804h2);
-        boolean z4 = c2804h2.f7118b;
-        C1460d.m426D((z4 && this.f6902w1 == 0) ? false : true);
-        if (this.f6901v1 != z4) {
-            this.f6901v1 = z4;
-            m8855o0();
-        }
-        final InterfaceC2787x.a aVar = this.f6872S0;
-        final C2957e c2957e = this.f19877J0;
-        Handler handler = aVar.f6952a;
-        if (handler != null) {
-            handler.post(new Runnable() { // from class: b.i.a.c.g3.f
-                @Override // java.lang.Runnable
-                public final void run() {
-                    InterfaceC2787x.a aVar2 = aVar;
-                    C2957e c2957e2 = c2957e;
-                    InterfaceC2787x interfaceC2787x = aVar2.f6953b;
-                    int i = C2738e0.f6708a;
-                    interfaceC2787x.mo3188P(c2957e2);
-                }
-            });
-        }
-        C2785v c2785v = this.f6871R0;
-        if (c2785v.f6927b != null) {
-            C2785v.e eVar = c2785v.f6928c;
-            Objects.requireNonNull(eVar);
-            eVar.f6948l.sendEmptyMessage(1);
-            c2785v.f6927b.mo3183a(new C2765b(c2785v));
-        }
-        this.f6884e1 = z3;
-        this.f6885f1 = false;
-    }
-
     /* JADX INFO: renamed from: C0 */
     public final void m3138C0() {
         InterfaceC3148t interfaceC3148t;
@@ -495,22 +413,6 @@ public class C2781r extends MediaCodecRenderer {
             return;
         }
         this.f6903x1 = new b(interfaceC3148t);
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: D */
-    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
-        super.mo2622D(j, z2);
-        m3138C0();
-        this.f6871R0.m3179b();
-        this.f6892m1 = -9223372036854775807L;
-        this.f6886g1 = -9223372036854775807L;
-        this.f6890k1 = 0;
-        if (z2) {
-            m3153R0();
-        } else {
-            this.f6887h1 = -9223372036854775807L;
-        }
     }
 
     /* JADX INFO: renamed from: D0 */
@@ -525,75 +427,6 @@ public class C2781r extends MediaCodecRenderer {
             }
         }
         return f6869P0;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    @TargetApi(17)
-    /* JADX INFO: renamed from: E */
-    public void mo3140E() {
-        try {
-            try {
-                m8841M();
-                m8855o0();
-                m8859u0(null);
-                if (this.f6880a1 != null) {
-                    m3150O0();
-                }
-            } catch (Throwable th) {
-                m8859u0(null);
-                throw th;
-            }
-        } catch (Throwable th2) {
-            if (this.f6880a1 != null) {
-                m3150O0();
-            }
-            throw th2;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: F */
-    public void mo3141F() {
-        this.f6889j1 = 0;
-        this.f6888i1 = SystemClock.elapsedRealtime();
-        this.f6893n1 = SystemClock.elapsedRealtime() * 1000;
-        this.f6894o1 = 0L;
-        this.f6895p1 = 0;
-        C2785v c2785v = this.f6871R0;
-        c2785v.f6929d = true;
-        c2785v.m3179b();
-        c2785v.m3181d(false);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
-    /* JADX INFO: renamed from: G */
-    public void mo3142G() {
-        this.f6887h1 = -9223372036854775807L;
-        m3143J0();
-        final int i = this.f6895p1;
-        if (i != 0) {
-            final InterfaceC2787x.a aVar = this.f6872S0;
-            final long j = this.f6894o1;
-            Handler handler = aVar.f6952a;
-            if (handler != null) {
-                handler.post(new Runnable() { // from class: b.i.a.c.g3.l
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        InterfaceC2787x.a aVar2 = aVar;
-                        long j2 = j;
-                        int i2 = i;
-                        InterfaceC2787x interfaceC2787x = aVar2.f6953b;
-                        int i3 = C2738e0.f6708a;
-                        interfaceC2787x.mo3193h0(j2, i2);
-                    }
-                });
-            }
-            this.f6894o1 = 0L;
-            this.f6895p1 = 0;
-        }
-        C2785v c2785v = this.f6871R0;
-        c2785v.f6929d = false;
-        c2785v.m3178a();
     }
 
     /* JADX INFO: renamed from: J0 */
@@ -622,23 +455,6 @@ public class C2781r extends MediaCodecRenderer {
         }
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    /* JADX INFO: renamed from: K */
-    public C2959g mo3144K(C3149u c3149u, C2811j1 c2811j1, C2811j1 c2811j2) {
-        C2959g c2959gM3865c = c3149u.m3865c(c2811j1, c2811j2);
-        int i = c2959gM3865c.f7930e;
-        int i2 = c2811j2.f7128B;
-        a aVar = this.f6876W0;
-        if (i2 > aVar.f6905a || c2811j2.f7129C > aVar.f6906b) {
-            i |= 256;
-        }
-        if (m3135H0(c3149u, c2811j2) > this.f6876W0.f6907c) {
-            i |= 64;
-        }
-        int i3 = i;
-        return new C2959g(c3149u.f9112a, c2811j1, c2811j2, i3 != 0 ? 0 : c2959gM3865c.f7929d, i3);
-    }
-
     /* JADX INFO: renamed from: K0 */
     public void m3145K0() {
         this.f6885f1 = true;
@@ -652,12 +468,6 @@ public class C2781r extends MediaCodecRenderer {
             aVar.f6952a.post(new RunnableC2770g(aVar, surface, SystemClock.elapsedRealtime()));
         }
         this.f6881b1 = true;
-    }
-
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    /* JADX INFO: renamed from: L */
-    public MediaCodecDecoderException mo3146L(Throwable th, @Nullable C3149u c3149u) {
-        return new MediaCodecVideoDecoderException(th, c3149u, this.f6879Z0);
     }
 
     /* JADX INFO: renamed from: L0 */
@@ -755,12 +565,6 @@ public class C2781r extends MediaCodecRenderer {
         this.f19877J0.f7919f++;
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    /* JADX INFO: renamed from: U */
-    public boolean mo3156U() {
-        return this.f6901v1 && C2738e0.f6708a < 23;
-    }
-
     /* JADX INFO: renamed from: U0 */
     public void m3157U0(int i) {
         C2957e c2957e = this.f19877J0;
@@ -774,6 +578,380 @@ public class C2781r extends MediaCodecRenderer {
             return;
         }
         m3143J0();
+    }
+
+    /* JADX INFO: renamed from: V0 */
+    public void m3159V0(long j) {
+        C2957e c2957e = this.f19877J0;
+        c2957e.f7923j += j;
+        c2957e.f7924k++;
+        this.f6894o1 += j;
+        this.f6895p1++;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r0v4, types: [b.i.a.c.y2.t] */
+    /* JADX WARN: Type inference failed for: r2v2 */
+    /* JADX WARN: Type inference failed for: r2v3, types: [android.view.Surface] */
+    /* JADX WARN: Type inference failed for: r2v7 */
+    /* JADX WARN: Type inference failed for: r6v1 */
+    /* JADX WARN: Type inference failed for: r6v10 */
+    /* JADX WARN: Type inference failed for: r6v19 */
+    /* JADX WARN: Type inference failed for: r6v2 */
+    /* JADX WARN: Type inference failed for: r6v3, types: [android.view.Surface] */
+    /* JADX WARN: Type inference failed for: r6v9, types: [com.google.android.exoplayer2.video.DummySurface] */
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
+    /* JADX INFO: renamed from: r */
+    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
+        InterfaceC2787x.a aVar;
+        Handler handler;
+        InterfaceC2787x.a aVar2;
+        Handler handler2;
+        if (i != 1) {
+            if (i == 7) {
+                this.f6904y1 = (InterfaceC2784u) obj;
+                return;
+            }
+            if (i == 10) {
+                int iIntValue = ((Integer) obj).intValue();
+                if (this.f6902w1 != iIntValue) {
+                    this.f6902w1 = iIntValue;
+                    if (this.f6901v1) {
+                        m8855o0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (i == 4) {
+                int iIntValue2 = ((Integer) obj).intValue();
+                this.f6882c1 = iIntValue2;
+                InterfaceC3148t interfaceC3148t = this.f19889S;
+                if (interfaceC3148t != null) {
+                    interfaceC3148t.mo3840g(iIntValue2);
+                    return;
+                }
+                return;
+            }
+            if (i != 5) {
+                return;
+            }
+            C2785v c2785v = this.f6871R0;
+            int iIntValue3 = ((Integer) obj).intValue();
+            if (c2785v.f6935j == iIntValue3) {
+                return;
+            }
+            c2785v.f6935j = iIntValue3;
+            c2785v.m3181d(true);
+            return;
+        }
+        ?? M8952c = obj instanceof Surface ? (Surface) obj : 0;
+        if (M8952c == 0) {
+            DummySurface dummySurface = this.f6880a1;
+            if (dummySurface != null) {
+                M8952c = dummySurface;
+            } else {
+                C3149u c3149u = this.f19896Z;
+                if (c3149u != null && m3154S0(c3149u)) {
+                    M8952c = DummySurface.m8952c(this.f6870Q0, c3149u.f9117f);
+                    this.f6880a1 = M8952c;
+                }
+            }
+        }
+        if (this.f6879Z0 == M8952c) {
+            if (M8952c == 0 || M8952c == this.f6880a1) {
+                return;
+            }
+            C2788y c2788y = this.f6900u1;
+            if (c2788y != null && (handler = (aVar = this.f6872S0).f6952a) != null) {
+                handler.post(new RunnableC2773j(aVar, c2788y));
+            }
+            if (this.f6881b1) {
+                InterfaceC2787x.a aVar3 = this.f6872S0;
+                Surface surface = this.f6879Z0;
+                if (aVar3.f6952a != null) {
+                    aVar3.f6952a.post(new RunnableC2770g(aVar3, surface, SystemClock.elapsedRealtime()));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        this.f6879Z0 = M8952c;
+        C2785v c2785v2 = this.f6871R0;
+        Objects.requireNonNull(c2785v2);
+        ?? r2 = M8952c instanceof DummySurface ? 0 : M8952c;
+        if (c2785v2.f6930e != r2) {
+            c2785v2.m3178a();
+            c2785v2.f6930e = r2;
+            c2785v2.m3181d(true);
+        }
+        this.f6881b1 = false;
+        int i2 = this.f7893n;
+        ?? r0 = this.f19889S;
+        if (r0 != 0) {
+            if (C2738e0.f6708a < 23 || M8952c == 0 || this.f6877X0) {
+                m8855o0();
+                m8851b0();
+            } else {
+                r0.mo3842i(M8952c);
+            }
+        }
+        if (M8952c == 0 || M8952c == this.f6880a1) {
+            this.f6900u1 = null;
+            m3138C0();
+            return;
+        }
+        C2788y c2788y2 = this.f6900u1;
+        if (c2788y2 != null && (handler2 = (aVar2 = this.f6872S0).f6952a) != null) {
+            handler2.post(new RunnableC2773j(aVar2, c2788y2));
+        }
+        m3138C0();
+        if (i2 == 2) {
+            m3153R0();
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: B */
+    public void mo2621B() {
+        final InterfaceC2787x.a aVar;
+        final C2957e c2957e;
+        this.f6900u1 = null;
+        m3138C0();
+        this.f6881b1 = false;
+        C2785v c2785v = this.f6871R0;
+        C2785v.b bVar = c2785v.f6927b;
+        if (bVar != null) {
+            bVar.unregister();
+            C2785v.e eVar = c2785v.f6928c;
+            Objects.requireNonNull(eVar);
+            eVar.f6948l.sendEmptyMessage(2);
+        }
+        this.f6903x1 = null;
+        try {
+            super.mo2621B();
+            aVar = this.f6872S0;
+            c2957e = this.f19877J0;
+            Objects.requireNonNull(aVar);
+            synchronized (c2957e) {
+            }
+        } finally {
+            aVar = this.f6872S0;
+            c2957e = this.f19877J0;
+            Objects.requireNonNull(aVar);
+            synchronized (c2957e) {
+                Handler handler = aVar.f6952a;
+                if (handler != null) {
+                    handler.post(new Runnable() { // from class: b.i.a.c.g3.c
+                        @Override // java.lang.Runnable
+                        public final void run() {
+                            InterfaceC2787x.a aVar2 = aVar;
+                            C2957e c2957e2 = c2957e;
+                            Objects.requireNonNull(aVar2);
+                            synchronized (c2957e2) {
+                            }
+                            InterfaceC2787x interfaceC2787x = aVar2.f6953b;
+                            int i = C2738e0.f6708a;
+                            interfaceC2787x.mo3191Z(c2957e2);
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: D */
+    public void mo2622D(long j, boolean z2) throws ExoPlaybackException {
+        super.mo2622D(j, z2);
+        m3138C0();
+        this.f6871R0.m3179b();
+        this.f6892m1 = -9223372036854775807L;
+        this.f6886g1 = -9223372036854775807L;
+        this.f6890k1 = 0;
+        if (z2) {
+            m3153R0();
+        } else {
+            this.f6887h1 = -9223372036854775807L;
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: d */
+    public boolean mo2632d() {
+        DummySurface dummySurface;
+        if (super.mo2632d() && (this.f6883d1 || (((dummySurface = this.f6880a1) != null && this.f6879Z0 == dummySurface) || this.f19889S == null || this.f6901v1))) {
+            this.f6887h1 = -9223372036854775807L;
+            return true;
+        }
+        if (this.f6887h1 == -9223372036854775807L) {
+            return false;
+        }
+        if (SystemClock.elapsedRealtime() < this.f6887h1) {
+            return true;
+        }
+        this.f6887h1 = -9223372036854775807L;
+        return false;
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
+    /* JADX INFO: renamed from: n */
+    public void mo2939n(float f, float f2) throws ExoPlaybackException {
+        this.f19887Q = f;
+        this.f19888R = f2;
+        m8861z0(this.f19890T);
+        C2785v c2785v = this.f6871R0;
+        c2785v.f6934i = f;
+        c2785v.m3179b();
+        c2785v.m3181d(false);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: C */
+    public void mo3137C(boolean z2, boolean z3) throws ExoPlaybackException {
+        this.f19877J0 = new C2957e();
+        C2804h2 c2804h2 = this.f7891l;
+        Objects.requireNonNull(c2804h2);
+        boolean z4 = c2804h2.f7118b;
+        C1460d.m426D((z4 && this.f6902w1 == 0) ? false : true);
+        if (this.f6901v1 != z4) {
+            this.f6901v1 = z4;
+            m8855o0();
+        }
+        final InterfaceC2787x.a aVar = this.f6872S0;
+        final C2957e c2957e = this.f19877J0;
+        Handler handler = aVar.f6952a;
+        if (handler != null) {
+            handler.post(new Runnable() { // from class: b.i.a.c.g3.f
+                @Override // java.lang.Runnable
+                public final void run() {
+                    InterfaceC2787x.a aVar2 = aVar;
+                    C2957e c2957e2 = c2957e;
+                    InterfaceC2787x interfaceC2787x = aVar2.f6953b;
+                    int i = C2738e0.f6708a;
+                    interfaceC2787x.mo3188P(c2957e2);
+                }
+            });
+        }
+        C2785v c2785v = this.f6871R0;
+        if (c2785v.f6927b != null) {
+            C2785v.e eVar = c2785v.f6928c;
+            Objects.requireNonNull(eVar);
+            eVar.f6948l.sendEmptyMessage(1);
+            c2785v.f6927b.mo3183a(new C2765b(c2785v));
+        }
+        this.f6884e1 = z3;
+        this.f6885f1 = false;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    @TargetApi(17)
+    /* JADX INFO: renamed from: E */
+    public void mo3140E() {
+        try {
+            try {
+                m8841M();
+                m8855o0();
+                m8859u0(null);
+                if (this.f6880a1 != null) {
+                    m3150O0();
+                }
+            } catch (Throwable th) {
+                m8859u0(null);
+                throw th;
+            }
+        } catch (Throwable th2) {
+            if (this.f6880a1 != null) {
+                m3150O0();
+            }
+            throw th2;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: F */
+    public void mo3141F() {
+        this.f6889j1 = 0;
+        this.f6888i1 = SystemClock.elapsedRealtime();
+        this.f6893n1 = SystemClock.elapsedRealtime() * 1000;
+        this.f6894o1 = 0L;
+        this.f6895p1 = 0;
+        C2785v c2785v = this.f6871R0;
+        c2785v.f6929d = true;
+        c2785v.m3179b();
+        c2785v.m3181d(false);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
+    /* JADX INFO: renamed from: G */
+    public void mo3142G() {
+        this.f6887h1 = -9223372036854775807L;
+        m3143J0();
+        final int i = this.f6895p1;
+        if (i != 0) {
+            final InterfaceC2787x.a aVar = this.f6872S0;
+            final long j = this.f6894o1;
+            Handler handler = aVar.f6952a;
+            if (handler != null) {
+                handler.post(new Runnable() { // from class: b.i.a.c.g3.l
+                    @Override // java.lang.Runnable
+                    public final void run() {
+                        InterfaceC2787x.a aVar2 = aVar;
+                        long j2 = j;
+                        int i2 = i;
+                        InterfaceC2787x interfaceC2787x = aVar2.f6953b;
+                        int i3 = C2738e0.f6708a;
+                        interfaceC2787x.mo3193h0(j2, i2);
+                    }
+                });
+            }
+            this.f6894o1 = 0L;
+            this.f6895p1 = 0;
+        }
+        C2785v c2785v = this.f6871R0;
+        c2785v.f6929d = false;
+        c2785v.m3178a();
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
+    /* JADX INFO: renamed from: K */
+    public C2959g mo3144K(C3149u c3149u, C2811j1 c2811j1, C2811j1 c2811j2) {
+        C2959g c2959gM3865c = c3149u.m3865c(c2811j1, c2811j2);
+        int i = c2959gM3865c.f7930e;
+        int i2 = c2811j2.f7128B;
+        a aVar = this.f6876W0;
+        if (i2 > aVar.f6905a || c2811j2.f7129C > aVar.f6906b) {
+            i |= 256;
+        }
+        if (m3135H0(c3149u, c2811j2) > this.f6876W0.f6907c) {
+            i |= 64;
+        }
+        int i3 = i;
+        return new C2959g(c3149u.f9112a, c2811j1, c2811j2, i3 != 0 ? 0 : c2959gM3865c.f7929d, i3);
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
+    /* JADX INFO: renamed from: L */
+    public MediaCodecDecoderException mo3146L(Throwable th, @Nullable C3149u c3149u) {
+        return new MediaCodecVideoDecoderException(th, c3149u, this.f6879Z0);
+    }
+
+    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
+    /* JADX INFO: renamed from: U */
+    public boolean mo3156U() {
+        return this.f6901v1 && C2738e0.f6708a < 23;
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -790,15 +968,6 @@ public class C2781r extends MediaCodecRenderer {
             return -1.0f;
         }
         return fMax * f;
-    }
-
-    /* JADX INFO: renamed from: V0 */
-    public void m3159V0(long j) {
-        C2957e c2957e = this.f19877J0;
-        c2957e.f7923j += j;
-        c2957e.f7924k++;
-        this.f6894o1 += j;
-        this.f6895p1++;
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -1018,24 +1187,6 @@ public class C2781r extends MediaCodecRenderer {
         }
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: d */
-    public boolean mo2632d() {
-        DummySurface dummySurface;
-        if (super.mo2632d() && (this.f6883d1 || (((dummySurface = this.f6880a1) != null && this.f6879Z0 == dummySurface) || this.f19889S == null || this.f6901v1))) {
-            this.f6887h1 = -9223372036854775807L;
-            return true;
-        }
-        if (this.f6887h1 == -9223372036854775807L) {
-            return false;
-        }
-        if (SystemClock.elapsedRealtime() < this.f6887h1) {
-            return true;
-        }
-        this.f6887h1 = -9223372036854775807L;
-        return false;
-    }
-
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     /* JADX INFO: renamed from: d0 */
     public void mo3163d0(final Exception exc) {
@@ -1138,11 +1289,6 @@ public class C2781r extends MediaCodecRenderer {
             });
         }
         return c2959gMo3166g0;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    public String getName() {
-        return "MediaCodecVideoRenderer";
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -1432,169 +1578,12 @@ public class C2781r extends MediaCodecRenderer {
         return true;
     }
 
-    @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.InterfaceC2728f2
-    /* JADX INFO: renamed from: n */
-    public void mo2939n(float f, float f2) throws ExoPlaybackException {
-        this.f19887Q = f;
-        this.f19888R = f2;
-        m8861z0(this.f19890T);
-        C2785v c2785v = this.f6871R0;
-        c2785v.f6934i = f;
-        c2785v.m3179b();
-        c2785v.m3181d(false);
-    }
-
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     @CallSuper
     /* JADX INFO: renamed from: q0 */
     public void mo3172q0() {
         super.mo3172q0();
         this.f6891l1 = 0;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r0v4, types: [b.i.a.c.y2.t] */
-    /* JADX WARN: Type inference failed for: r2v2 */
-    /* JADX WARN: Type inference failed for: r2v3, types: [android.view.Surface] */
-    /* JADX WARN: Type inference failed for: r2v7 */
-    /* JADX WARN: Type inference failed for: r6v1 */
-    /* JADX WARN: Type inference failed for: r6v10 */
-    /* JADX WARN: Type inference failed for: r6v19 */
-    /* JADX WARN: Type inference failed for: r6v2 */
-    /* JADX WARN: Type inference failed for: r6v3, types: [android.view.Surface] */
-    /* JADX WARN: Type inference failed for: r6v9, types: [com.google.android.exoplayer2.video.DummySurface] */
-    /* JADX WARN: Type inference fix 'apply assigned field type' failed
-    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
-    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-     */
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
-    /* JADX INFO: renamed from: r */
-    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
-        ?? M8952c;
-        InterfaceC2787x.a aVar;
-        Handler handler;
-        InterfaceC2787x.a aVar2;
-        Handler handler2;
-        Surface surface;
-        if (i != 1) {
-            if (i == 7) {
-                this.f6904y1 = (InterfaceC2784u) obj;
-                return;
-            }
-            if (i == 10) {
-                int iIntValue = ((Integer) obj).intValue();
-                if (this.f6902w1 != iIntValue) {
-                    this.f6902w1 = iIntValue;
-                    if (this.f6901v1) {
-                        m8855o0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            if (i == 4) {
-                int iIntValue2 = ((Integer) obj).intValue();
-                this.f6882c1 = iIntValue2;
-                InterfaceC3148t interfaceC3148t = this.f19889S;
-                if (interfaceC3148t != null) {
-                    interfaceC3148t.mo3840g(iIntValue2);
-                    return;
-                }
-                return;
-            }
-            if (i != 5) {
-                return;
-            }
-            C2785v c2785v = this.f6871R0;
-            int iIntValue3 = ((Integer) obj).intValue();
-            if (c2785v.f6935j == iIntValue3) {
-                return;
-            }
-            c2785v.f6935j = iIntValue3;
-            c2785v.m3181d(true);
-            return;
-        }
-        if (obj instanceof Surface) {
-            surface = (Surface) obj;
-        } else {
-            M8952c = 0;
-        }
-        if (M8952c == 0) {
-            DummySurface dummySurface = this.f6880a1;
-            if (dummySurface != null) {
-                M8952c = surface;
-                M8952c = dummySurface;
-            } else {
-                C3149u c3149u = this.f19896Z;
-                if (c3149u != null && m3154S0(c3149u)) {
-                    M8952c = surface;
-                    M8952c = DummySurface.m8952c(this.f6870Q0, c3149u.f9117f);
-                    this.f6880a1 = M8952c;
-                }
-            }
-        }
-        M8952c = surface;
-        M8952c = surface;
-        M8952c = surface;
-        if (this.f6879Z0 == M8952c) {
-            if (M8952c == 0 || M8952c == this.f6880a1) {
-                return;
-            }
-            C2788y c2788y = this.f6900u1;
-            if (c2788y != null && (handler = (aVar = this.f6872S0).f6952a) != null) {
-                handler.post(new RunnableC2773j(aVar, c2788y));
-            }
-            if (this.f6881b1) {
-                InterfaceC2787x.a aVar3 = this.f6872S0;
-                Surface surface2 = this.f6879Z0;
-                if (aVar3.f6952a != null) {
-                    aVar3.f6952a.post(new RunnableC2770g(aVar3, surface2, SystemClock.elapsedRealtime()));
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        this.f6879Z0 = M8952c;
-        C2785v c2785v2 = this.f6871R0;
-        Objects.requireNonNull(c2785v2);
-        ?? r2 = M8952c instanceof DummySurface ? 0 : M8952c;
-        if (c2785v2.f6930e != r2) {
-            c2785v2.m3178a();
-            c2785v2.f6930e = r2;
-            c2785v2.m3181d(true);
-        }
-        this.f6881b1 = false;
-        int i2 = this.f7893n;
-        ?? r0 = this.f19889S;
-        if (r0 != 0) {
-            if (C2738e0.f6708a < 23 || M8952c == 0 || this.f6877X0) {
-                m8855o0();
-                m8851b0();
-            } else {
-                r0.mo3842i(M8952c);
-            }
-        }
-        if (M8952c == 0 || M8952c == this.f6880a1) {
-            this.f6900u1 = null;
-            m3138C0();
-            return;
-        }
-        C2788y c2788y2 = this.f6900u1;
-        if (c2788y2 != null && (handler2 = (aVar2 = this.f6872S0).f6952a) != null) {
-            handler2.post(new RunnableC2773j(aVar2, c2788y2));
-        }
-        m3138C0();
-        if (i2 == 2) {
-            m3153R0();
-        }
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer

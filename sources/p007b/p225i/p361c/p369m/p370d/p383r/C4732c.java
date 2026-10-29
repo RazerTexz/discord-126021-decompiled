@@ -12,6 +12,9 @@ import p007b.p225i.p361c.p369m.p370d.p375m.p376x.C4704h;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4732c {
 
+    /* JADX INFO: renamed from: e */
+    public final InterfaceC2411f<AbstractC4695v> f12727e;
+
     /* JADX INFO: renamed from: a */
     public static final C4704h f12723a = new C4704h();
 
@@ -28,9 +31,6 @@ public class C4732c {
             return C4732c.f12723a.m6620g((AbstractC4695v) obj).getBytes(Charset.forName(Constants.ENCODING));
         }
     };
-
-    /* JADX INFO: renamed from: e */
-    public final InterfaceC2411f<AbstractC4695v> f12727e;
 
     public C4732c(InterfaceC2411f<AbstractC4695v> interfaceC2411f, InterfaceC2410e<AbstractC4695v, byte[]> interfaceC2410e) {
         this.f12727e = interfaceC2411f;

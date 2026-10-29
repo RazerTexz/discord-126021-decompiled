@@ -17,6 +17,14 @@ import p007b.p225i.p226a.p242c.p266w2.InterfaceC2988s;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2551l implements InterfaceC2530a0 {
 
+    /* JADX INFO: renamed from: e */
+    @Nullable
+    public Looper f5637e;
+
+    /* JADX INFO: renamed from: f */
+    @Nullable
+    public AbstractC2832o2 f5638f;
+
     /* JADX INFO: renamed from: a */
     public final ArrayList<InterfaceC2530a0.b> f5633a = new ArrayList<>(1);
 
@@ -29,13 +37,14 @@ public abstract class AbstractC2551l implements InterfaceC2530a0 {
     /* JADX INFO: renamed from: d */
     public final InterfaceC2988s.a f5636d = new InterfaceC2988s.a();
 
-    /* JADX INFO: renamed from: e */
-    @Nullable
-    public Looper f5637e;
-
-    /* JADX INFO: renamed from: f */
-    @Nullable
-    public AbstractC2832o2 f5638f;
+    /* JADX INFO: renamed from: r */
+    public final void m2553r(AbstractC2832o2 abstractC2832o2) {
+        this.f5638f = abstractC2832o2;
+        Iterator<InterfaceC2530a0.b> it = this.f5633a.iterator();
+        while (it.hasNext()) {
+            it.next().mo2445a(this, abstractC2832o2);
+        }
+    }
 
     @Override // p007b.p225i.p226a.p242c.p243a3.InterfaceC2530a0
     /* JADX INFO: renamed from: a */
@@ -140,6 +149,12 @@ public abstract class AbstractC2551l implements InterfaceC2530a0 {
         }
     }
 
+    /* JADX INFO: renamed from: q */
+    public abstract void mo2509q(@Nullable InterfaceC2680a0 interfaceC2680a0);
+
+    /* JADX INFO: renamed from: s */
+    public abstract void mo2510s();
+
     /* JADX INFO: renamed from: o */
     public void mo2551o() {
     }
@@ -147,19 +162,4 @@ public abstract class AbstractC2551l implements InterfaceC2530a0 {
     /* JADX INFO: renamed from: p */
     public void mo2552p() {
     }
-
-    /* JADX INFO: renamed from: q */
-    public abstract void mo2509q(@Nullable InterfaceC2680a0 interfaceC2680a0);
-
-    /* JADX INFO: renamed from: r */
-    public final void m2553r(AbstractC2832o2 abstractC2832o2) {
-        this.f5638f = abstractC2832o2;
-        Iterator<InterfaceC2530a0.b> it = this.f5633a.iterator();
-        while (it.hasNext()) {
-            it.next().mo2445a(this, abstractC2832o2);
-        }
-    }
-
-    /* JADX INFO: renamed from: s */
-    public abstract void mo2510s();
 }

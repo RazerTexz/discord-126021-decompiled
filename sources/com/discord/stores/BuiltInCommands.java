@@ -25,7 +25,7 @@ public final class BuiltInCommands implements BuiltInCommandsProvider {
 
     /* JADX INFO: renamed from: com.discord.stores.BuiltInCommands$createAppendToEndSlashCommand$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C56621 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, String> {
+    public final class C56621 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, String> {
         public final /* synthetic */ String $replacement;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -51,7 +51,7 @@ public final class BuiltInCommands implements BuiltInCommandsProvider {
 
     /* JADX INFO: renamed from: com.discord.stores.BuiltInCommands$createWrappedSlashCommand$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C56631 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, String> {
+    public final class C56631 extends AbstractC12240o implements Function1<Map<String, ? extends Object>, String> {
         public final /* synthetic */ String $wrapper;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

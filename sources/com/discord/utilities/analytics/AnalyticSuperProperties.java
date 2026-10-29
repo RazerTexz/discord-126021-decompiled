@@ -95,20 +95,6 @@ public final class AnalyticSuperProperties {
     private AnalyticSuperProperties() {
     }
 
-    private final void setBaselineProperties() {
-        String string = Locale.getDefault().toString();
-        C12238m.checkNotNullExpressionValue(string, "Locale.getDefault().toString()");
-        updateSuperProperties(C12136h0.mapOf(C12116o.m10073to(PROPERTY_BROWSER, "Discord Android"), C12116o.m10073to(PROPERTY_BROWSER_USER_AGENT, BuildConfig.USER_AGENT), C12116o.m10073to(PROPERTY_CLIENT_BUILD_NUMBER, Integer.valueOf(BuildConfig.VERSION_CODE)), C12116o.m10073to(PROPERTY_CLIENT_VERSION, BuildConfig.VERSION_NAME), C12116o.m10073to(PROPERTY_DEVICE, Build.MODEL + ", " + Build.PRODUCT), C12116o.m10073to(PROPERTY_OS, "Android"), C12116o.m10073to(PROPERTY_OS_SDK_VERSION, String.valueOf(Build.VERSION.SDK_INT)), C12116o.m10073to(PROPERTY_OS_VERSION, Build.VERSION.RELEASE), C12116o.m10073to(PROPERTY_SYSTEM_LOCALE, C12103t.replace$default(string, "_", "-", false, 4, (Object) null))));
-    }
-
-    private final void setSuperProperties(Map<String, ? extends Object> map) {
-        superProperties.setValue(this, $$delegatedProperties[0], map);
-    }
-
-    private final synchronized void updateSuperProperties(Map<String, ? extends Object> extraSuperProperties) {
-        setSuperProperties(C12136h0.plus(getSuperProperties(), extraSuperProperties));
-    }
-
     public final Map<String, Object> getSuperProperties() {
         return (Map) superProperties.getValue(this, $$delegatedProperties[0]);
     }
@@ -134,6 +120,12 @@ public final class AnalyticSuperProperties {
     public final void setAdvertiserId(String advertiserId) {
         C12238m.checkNotNullParameter(advertiserId, "advertiserId");
         updateSuperProperties(C12134g0.mapOf(C12116o.m10073to(PROPERTY_DEVICE_ADVERTISER_ID, advertiserId)));
+    }
+
+    private final void setBaselineProperties() {
+        String string = Locale.getDefault().toString();
+        C12238m.checkNotNullExpressionValue(string, "Locale.getDefault().toString()");
+        updateSuperProperties(C12136h0.mapOf(C12116o.m10073to(PROPERTY_BROWSER, "Discord Android"), C12116o.m10073to(PROPERTY_BROWSER_USER_AGENT, BuildConfig.USER_AGENT), C12116o.m10073to(PROPERTY_CLIENT_BUILD_NUMBER, Integer.valueOf(BuildConfig.VERSION_CODE)), C12116o.m10073to(PROPERTY_CLIENT_VERSION, BuildConfig.VERSION_NAME), C12116o.m10073to(PROPERTY_DEVICE, Build.MODEL + ", " + Build.PRODUCT), C12116o.m10073to(PROPERTY_OS, "Android"), C12116o.m10073to(PROPERTY_OS_SDK_VERSION, String.valueOf(Build.VERSION.SDK_INT)), C12116o.m10073to(PROPERTY_OS_VERSION, Build.VERSION.RELEASE), C12116o.m10073to(PROPERTY_SYSTEM_LOCALE, C12103t.replace$default(string, "_", "-", false, 4, (Object) null))));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -185,5 +177,13 @@ public final class AnalyticSuperProperties {
 
     public final void setClientPerformanceProperties(int cpu, long memoryKb, int cpuCoreCount) {
         updateSuperProperties(C12136h0.mapOf(C12116o.m10073to(PROPERTY_CLIENT_PERFORMANCE_CPU, Integer.valueOf(cpu)), C12116o.m10073to(PROPERTY_CLIENT_PERFORMANCE_MEMORY, Long.valueOf(memoryKb)), C12116o.m10073to(PROPERTY_CPU_CORE_COUNT, Integer.valueOf(cpuCoreCount))));
+    }
+
+    private final void setSuperProperties(Map<String, ? extends Object> map) {
+        superProperties.setValue(this, $$delegatedProperties[0], map);
+    }
+
+    private final synchronized void updateSuperProperties(Map<String, ? extends Object> extraSuperProperties) {
+        setSuperProperties(C12136h0.plus(getSuperProperties(), extraSuperProperties));
     }
 }

@@ -11,6 +11,17 @@ public final /* data */ class GuildHashes {
     private final GuildHash roles;
     private final int version;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildHashes)) {
+            return false;
+        }
+        GuildHashes guildHashes = (GuildHashes) other;
+        return C12238m.areEqual(this.metadata, guildHashes.metadata) && C12238m.areEqual(this.channels, guildHashes.channels) && C12238m.areEqual(this.roles, guildHashes.roles) && this.version == guildHashes.version;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final GuildHash getChannels() {
         return this.channels;
@@ -29,17 +40,6 @@ public final /* data */ class GuildHashes {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final int getVersion() {
         return this.version;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildHashes)) {
-            return false;
-        }
-        GuildHashes guildHashes = (GuildHashes) other;
-        return C12238m.areEqual(this.metadata, guildHashes.metadata) && C12238m.areEqual(this.channels, guildHashes.channels) && C12238m.areEqual(this.roles, guildHashes.roles) && this.version == guildHashes.version;
     }
 
     public int hashCode() {

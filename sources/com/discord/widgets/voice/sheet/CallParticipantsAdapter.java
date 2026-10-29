@@ -76,10 +76,10 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     private final boolean quantizeUserAvatars;
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static abstract class ListItem implements MGRecyclerDataPayload {
+    public abstract class ListItem implements MGRecyclerDataPayload {
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final class Divider extends ListItem {
+        public final class Divider extends ListItem {
             public static final Divider INSTANCE = new Divider();
             private static final int type = 3;
             private static final String key = String.valueOf(3);
@@ -100,7 +100,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final /* data */ class EmbeddedActivityItem extends ListItem {
+        public final /* data */ class EmbeddedActivityItem extends ListItem {
             private final Application application;
             private final EmbeddedActivity embeddedActivity;
             private final String key;
@@ -120,6 +120,10 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 this.key = String.valueOf(embeddedActivity.getApplicationId());
             }
 
+            public final List<UserGuildMember> component2() {
+                return this.participants;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ EmbeddedActivityItem copy$default(EmbeddedActivityItem embeddedActivityItem, EmbeddedActivity embeddedActivity, List list, Application application, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -132,20 +136,6 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                     application = embeddedActivityItem.application;
                 }
                 return embeddedActivityItem.copy(embeddedActivity, list, application);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final EmbeddedActivity getEmbeddedActivity() {
-                return this.embeddedActivity;
-            }
-
-            public final List<UserGuildMember> component2() {
-                return this.participants;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Application getApplication() {
-                return this.application;
             }
 
             public final EmbeddedActivityItem copy(EmbeddedActivity embeddedActivity, List<UserGuildMember> participants, Application application) {
@@ -166,8 +156,18 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return C12238m.areEqual(this.embeddedActivity, embeddedActivityItem.embeddedActivity) && C12238m.areEqual(this.participants, embeddedActivityItem.participants) && C12238m.areEqual(this.application, embeddedActivityItem.application);
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final Application getApplication() {
                 return this.application;
+            }
+
+            public final Application getApplication() {
+                return this.application;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final EmbeddedActivity getEmbeddedActivity() {
+                return this.embeddedActivity;
             }
 
             public final EmbeddedActivity getEmbeddedActivity() {
@@ -210,7 +210,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final /* data */ class Event extends ListItem {
+        public final /* data */ class Event extends ListItem {
             private final boolean canStartEvent;
             private final GuildScheduledEvent event;
             private final boolean isCurrentUserInCall;
@@ -241,21 +241,6 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return event.copy(guildScheduledEvent, z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildScheduledEvent getEvent() {
-                return this.event;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanStartEvent() {
-                return this.canStartEvent;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsCurrentUserInCall() {
-                return this.isCurrentUserInCall;
-            }
-
             public final Event copy(GuildScheduledEvent event, boolean canStartEvent, boolean isCurrentUserInCall) {
                 C12238m.checkNotNullParameter(event, "event");
                 return new Event(event, canStartEvent, isCurrentUserInCall);
@@ -272,12 +257,27 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return C12238m.areEqual(this.event, event.event) && this.canStartEvent == event.canStartEvent && this.isCurrentUserInCall == event.isCurrentUserInCall;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getCanStartEvent() {
                 return this.canStartEvent;
             }
 
+            public final boolean getCanStartEvent() {
+                return this.canStartEvent;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final GuildScheduledEvent getEvent() {
                 return this.event;
+            }
+
+            public final GuildScheduledEvent getEvent() {
+                return this.event;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsCurrentUserInCall() {
+                return this.isCurrentUserInCall;
             }
 
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -327,7 +327,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final /* data */ class Header extends ListItem {
+        public final /* data */ class Header extends ListItem {
             private final String key;
             private final int stringResId;
             private final int type;
@@ -346,11 +346,6 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return header.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getStringResId() {
-                return this.stringResId;
-            }
-
             public final Header copy(@StringRes int stringResId) {
                 return new Header(stringResId);
             }
@@ -365,6 +360,11 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getStringResId() {
+                return this.stringResId;
             }
 
             public final int getStringResId() {
@@ -386,7 +386,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final class Invite extends ListItem {
+        public final class Invite extends ListItem {
             public static final Invite INSTANCE = new Invite();
             private static final int type = 4;
             private static final String key = String.valueOf(4);
@@ -407,7 +407,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final /* data */ class SpectatorsHeader extends ListItem {
+        public final /* data */ class SpectatorsHeader extends ListItem {
             private final String key;
             private final String streamerName;
             private final int type;
@@ -428,11 +428,6 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return spectatorsHeader.copy(str);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getStreamerName() {
-                return this.streamerName;
-            }
-
             public final SpectatorsHeader copy(String streamerName) {
                 C12238m.checkNotNullParameter(streamerName, "streamerName");
                 return new SpectatorsHeader(streamerName);
@@ -448,6 +443,11 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getStreamerName() {
+                return this.streamerName;
             }
 
             public final String getStreamerName() {
@@ -473,7 +473,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
         }
 
         /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-        public static final /* data */ class VoiceUser extends ListItem {
+        public final /* data */ class VoiceUser extends ListItem {
             private final boolean canRing;
             private final boolean isSpectatingSameStream;
             private final String key;
@@ -503,21 +503,6 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return voiceUser.copy(voiceUser2, z2, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreVoiceParticipants.VoiceUser getParticipant() {
-                return this.participant;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanRing() {
-                return this.canRing;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsSpectatingSameStream() {
-                return this.isSpectatingSameStream;
-            }
-
             public final VoiceUser copy(StoreVoiceParticipants.VoiceUser participant, boolean canRing, boolean isSpectatingSameStream) {
                 C12238m.checkNotNullParameter(participant, "participant");
                 return new VoiceUser(participant, canRing, isSpectatingSameStream);
@@ -534,13 +519,28 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
                 return C12238m.areEqual(this.participant, voiceUser.participant) && this.canRing == voiceUser.canRing && this.isSpectatingSameStream == voiceUser.isSpectatingSameStream;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getCanRing() {
                 return this.canRing;
+            }
+
+            public final boolean getCanRing() {
+                return this.canRing;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsSpectatingSameStream() {
+                return this.isSpectatingSameStream;
             }
 
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final StoreVoiceParticipants.VoiceUser getParticipant() {
+                return this.participant;
             }
 
             public final StoreVoiceParticipants.VoiceUser getParticipant() {
@@ -597,7 +597,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderDivider extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderDivider extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ViewHolderDivider(CallParticipantsAdapter callParticipantsAdapter) {
             super(C5419R.layout.voice_user_list_item_divider, callParticipantsAdapter);
@@ -606,7 +606,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderEmbeddedActivity extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderEmbeddedActivity extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         private final VoiceUserListItemEmbeddedActivityBinding binding;
         private final MGImages.DistinctChangeDetector distinctChangeDetector;
         private final boolean isCallPreview;
@@ -698,7 +698,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderEvent extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderEvent extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         private final VoiceUserListItemEventBinding binding;
         private final boolean isCallPreview;
 
@@ -743,7 +743,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderHeader extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderHeader extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         private final VoiceUserListItemHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -777,7 +777,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderInvite extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderInvite extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         private final VoiceUserListItemInviteBinding binding;
         private final boolean isCallPreview;
 
@@ -821,7 +821,7 @@ public final class CallParticipantsAdapter extends MGRecyclerAdapterSimple<MGRec
     }
 
     /* JADX INFO: compiled from: CallParticipantsAdapter.kt */
-    public static final class ViewHolderUser extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
+    public final class ViewHolderUser extends MGRecyclerViewHolder<CallParticipantsAdapter, MGRecyclerDataPayload> {
         private final VoiceUserListItemUserBinding binding;
         private final boolean isCallPreview;
         private final boolean quantizeUserAvatar;

@@ -9,38 +9,32 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackQuickswitcherResultSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackQuickswitcherResultSelected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence selectedType = null;
-    private final Float selectedScore = null;
-    private final Long selectedIndex = null;
-    private final Long selectedGuildId = null;
-    private final Long selectedChannelId = null;
-    private final Long selectedUserId = null;
     private final Long currentChannelId = null;
     private final Long currentChannelType = null;
     private final Long currentGuildId = null;
-    private final CharSequence queryMode = null;
-    private final Long queryLength = null;
-    private final Long maxQueryLength = null;
-    private final CharSequence topResultType = null;
-    private final Float topResultScore = null;
-    private final Long numResultsTotal = null;
-    private final Long numResultsUsers = null;
-    private final Long numResultsTextChannels = null;
-    private final Long numResultsVoiceChannels = null;
-    private final Long numResultsGuilds = null;
-    private final Long numResultsGroupDms = null;
     private final Boolean isEmailLike = null;
     private final Boolean isPhoneLike = null;
     private final Boolean isUsernameLike = null;
+    private final Long maxQueryLength = null;
+    private final Long numResultsGroupDms = null;
+    private final Long numResultsGuilds = null;
+    private final Long numResultsTextChannels = null;
+    private final Long numResultsTotal = null;
+    private final Long numResultsUsers = null;
+    private final Long numResultsVoiceChannels = null;
     private final CharSequence query = null;
+    private final Long queryLength = null;
+    private final CharSequence queryMode = null;
+    private final Long selectedChannelId = null;
+    private final Long selectedGuildId = null;
+    private final Long selectedIndex = null;
+    private final Float selectedScore = null;
+    private final CharSequence selectedType = null;
+    private final Long selectedUserId = null;
+    private final Float topResultScore = null;
+    private final CharSequence topResultType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "quickswitcher_result_selected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -51,6 +45,12 @@ public final /* data */ class TrackQuickswitcherResultSelected implements Analyt
         }
         TrackQuickswitcherResultSelected trackQuickswitcherResultSelected = (TrackQuickswitcherResultSelected) other;
         return C12238m.areEqual(this.selectedType, trackQuickswitcherResultSelected.selectedType) && C12238m.areEqual(this.selectedScore, trackQuickswitcherResultSelected.selectedScore) && C12238m.areEqual(this.selectedIndex, trackQuickswitcherResultSelected.selectedIndex) && C12238m.areEqual(this.selectedGuildId, trackQuickswitcherResultSelected.selectedGuildId) && C12238m.areEqual(this.selectedChannelId, trackQuickswitcherResultSelected.selectedChannelId) && C12238m.areEqual(this.selectedUserId, trackQuickswitcherResultSelected.selectedUserId) && C12238m.areEqual(this.currentChannelId, trackQuickswitcherResultSelected.currentChannelId) && C12238m.areEqual(this.currentChannelType, trackQuickswitcherResultSelected.currentChannelType) && C12238m.areEqual(this.currentGuildId, trackQuickswitcherResultSelected.currentGuildId) && C12238m.areEqual(this.queryMode, trackQuickswitcherResultSelected.queryMode) && C12238m.areEqual(this.queryLength, trackQuickswitcherResultSelected.queryLength) && C12238m.areEqual(this.maxQueryLength, trackQuickswitcherResultSelected.maxQueryLength) && C12238m.areEqual(this.topResultType, trackQuickswitcherResultSelected.topResultType) && C12238m.areEqual(this.topResultScore, trackQuickswitcherResultSelected.topResultScore) && C12238m.areEqual(this.numResultsTotal, trackQuickswitcherResultSelected.numResultsTotal) && C12238m.areEqual(this.numResultsUsers, trackQuickswitcherResultSelected.numResultsUsers) && C12238m.areEqual(this.numResultsTextChannels, trackQuickswitcherResultSelected.numResultsTextChannels) && C12238m.areEqual(this.numResultsVoiceChannels, trackQuickswitcherResultSelected.numResultsVoiceChannels) && C12238m.areEqual(this.numResultsGuilds, trackQuickswitcherResultSelected.numResultsGuilds) && C12238m.areEqual(this.numResultsGroupDms, trackQuickswitcherResultSelected.numResultsGroupDms) && C12238m.areEqual(this.isEmailLike, trackQuickswitcherResultSelected.isEmailLike) && C12238m.areEqual(this.isPhoneLike, trackQuickswitcherResultSelected.isPhoneLike) && C12238m.areEqual(this.isUsernameLike, trackQuickswitcherResultSelected.isUsernameLike) && C12238m.areEqual(this.query, trackQuickswitcherResultSelected.query);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

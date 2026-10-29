@@ -23,6 +23,43 @@ public final /* data */ class ApplicationCommandValue {
         this.focused = bool;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ApplicationCommandValue)) {
+            return false;
+        }
+        ApplicationCommandValue applicationCommandValue = (ApplicationCommandValue) other;
+        return C12238m.areEqual(this.name, applicationCommandValue.name) && C12238m.areEqual(this.value, applicationCommandValue.value) && this.type == applicationCommandValue.type && C12238m.areEqual(this.options, applicationCommandValue.options) && C12238m.areEqual(this.focused, applicationCommandValue.focused);
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public final int getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final Object getValue() {
+        return this.value;
+    }
+
+    public int hashCode() {
+        String str = this.name;
+        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+        Object obj = this.value;
+        int iHashCode2 = (((iHashCode + (obj != null ? obj.hashCode() : 0)) * 31) + this.type) * 31;
+        List<ApplicationCommandValue> list = this.options;
+        int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
+        Boolean bool = this.focused;
+        return iHashCode3 + (bool != null ? bool.hashCode() : 0);
+    }
+
     /* JADX INFO: renamed from: a */
     public static ApplicationCommandValue m7739a(ApplicationCommandValue applicationCommandValue, String str, Object obj, int i, List list, Boolean bool, int i2) {
         String str2 = (i2 & 1) != 0 ? applicationCommandValue.name : null;
@@ -40,46 +77,9 @@ public final /* data */ class ApplicationCommandValue {
         return new ApplicationCommandValue(str2, obj2, i3, list2, bool2);
     }
 
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
     /* JADX INFO: renamed from: c */
     public final List<ApplicationCommandValue> m7741c() {
         return this.options;
-    }
-
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final Object getValue() {
-        return this.value;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ApplicationCommandValue)) {
-            return false;
-        }
-        ApplicationCommandValue applicationCommandValue = (ApplicationCommandValue) other;
-        return C12238m.areEqual(this.name, applicationCommandValue.name) && C12238m.areEqual(this.value, applicationCommandValue.value) && this.type == applicationCommandValue.type && C12238m.areEqual(this.options, applicationCommandValue.options) && C12238m.areEqual(this.focused, applicationCommandValue.focused);
-    }
-
-    public int hashCode() {
-        String str = this.name;
-        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        Object obj = this.value;
-        int iHashCode2 = (((iHashCode + (obj != null ? obj.hashCode() : 0)) * 31) + this.type) * 31;
-        List<ApplicationCommandValue> list = this.options;
-        int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
-        Boolean bool = this.focused;
-        return iHashCode3 + (bool != null ? bool.hashCode() : 0);
     }
 
     public String toString() {

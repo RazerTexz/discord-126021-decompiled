@@ -22,7 +22,7 @@ public final class C12686x1<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.x1$a */
     /* JADX INFO: compiled from: OperatorSubscribeOn.java */
-    public static final class a<T> extends Subscriber<T> implements Action0 {
+    public final class a<T> extends Subscriber<T> implements Action0 {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f27111j;

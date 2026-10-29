@@ -71,7 +71,7 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetChatListModel.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -102,8 +102,27 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
     }
 
     /* JADX INFO: compiled from: WidgetChatListModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Observable<WidgetChatListModel> get() {
+            Observable observableM11099Y = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().m11099Y(new InterfaceC12589b<StoreChannelsSelected.ResolvedSelectedChannel, Observable<? extends WidgetChatListModel>>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$Companion$get$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetChatListModel> call(StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel) {
+                    if (resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel) {
+                        StoreChannelsSelected.ResolvedSelectedChannel.Channel channel = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
+                        return ChannelUtils.m7691o(channel.getChannel()) ? new C12721k(null) : WidgetChatListModel.INSTANCE.getChannel(channel.getChannel());
+                    }
+                    if (!(resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft)) {
+                        return new C12721k(null);
+                    }
+                    StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft = (StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) resolvedSelectedChannel;
+                    return WidgetChatListModel.INSTANCE.getThreadDraft(threadDraft.getParentChannel(), threadDraft.getStarterMessageId());
+                }
+            });
+            C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n          .g…            }\n          }");
+            return observableM11099Y;
         }
 
         private final Observable<WidgetChatListModel> getChannel(final Channel channel) {
@@ -180,9 +199,7 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         }
 
         private final Observable<WidgetChatListModel> getThreadDraft(final Channel parentChannel, final Long parentMessageId) {
-            Object obj;
             Observable observableM11076j;
-            Object obj2;
             final long guildId = parentChannel.getGuildId();
             StoreStream.Companion companion = StoreStream.INSTANCE;
             Observable<Map<Long, String>> observableObserveNames = companion.getChannels().observeNames();
@@ -195,32 +212,30 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
                 Observable<Message> observableObserveMessagesForChannel = companion.getMessages().observeMessagesForChannel(parentChannel.getId(), parentMessageId.longValue());
                 Observable<List<ChatListEntry>> singleMessage = WidgetChatListModelMessages.INSTANCE.getSingleMessage(parentChannel, parentMessageId.longValue());
                 final WidgetChatListModel$Companion$getThreadDraft$1 widgetChatListModel$Companion$getThreadDraft$1 = WidgetChatListModel$Companion$getThreadDraft$1.INSTANCE;
+                Object obj = widgetChatListModel$Companion$getThreadDraft$1;
                 if (widgetChatListModel$Companion$getThreadDraft$1 != null) {
-                    obj2 = widgetChatListModel$Companion$getThreadDraft$1;
-                    obj2 = new Func2() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$sam$rx_functions_Func2$0
+                    obj = new Func2() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$sam$rx_functions_Func2$0
                         @Override // p658rx.functions.Func2
-                        public final /* synthetic */ Object call(Object obj3, Object obj4) {
-                            return widgetChatListModel$Companion$getThreadDraft$1.invoke(obj3, obj4);
+                        public final /* synthetic */ Object call(Object obj2, Object obj3) {
+                            return widgetChatListModel$Companion$getThreadDraft$1.invoke(obj2, obj3);
                         }
                     };
                 }
-                obj2 = widgetChatListModel$Companion$getThreadDraft$1;
-                observableM11076j = Observable.m11076j(observableObserveMessagesForChannel, singleMessage, (Func2) obj2);
+                observableM11076j = Observable.m11076j(observableObserveMessagesForChannel, singleMessage, (Func2) obj);
             } else {
                 C12721k c12721k = new C12721k(null);
                 C12721k c12721k2 = new C12721k(new ArrayList());
                 final WidgetChatListModel$Companion$getThreadDraft$2 widgetChatListModel$Companion$getThreadDraft$2 = WidgetChatListModel$Companion$getThreadDraft$2.INSTANCE;
+                Object obj2 = widgetChatListModel$Companion$getThreadDraft$2;
                 if (widgetChatListModel$Companion$getThreadDraft$2 != null) {
-                    obj = widgetChatListModel$Companion$getThreadDraft$2;
-                    obj = new Func2() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$sam$rx_functions_Func2$0
+                    obj2 = new Func2() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$sam$rx_functions_Func2$0
                         @Override // p658rx.functions.Func2
                         public final /* synthetic */ Object call(Object obj3, Object obj4) {
                             return widgetChatListModel$Companion$getThreadDraft$2.invoke(obj3, obj4);
                         }
                     };
                 }
-                obj = widgetChatListModel$Companion$getThreadDraft$2;
-                observableM11076j = Observable.m11076j(c12721k, c12721k2, (Func2) obj);
+                observableM11076j = Observable.m11076j(c12721k, c12721k2, (Func2) obj2);
             }
             Observable<WidgetChatListModel> observableM11069e = Observable.m11069e(observableObserveNames, observableObserveMeId, observableObserveComputed, observableObserveGuild, observableObserveDraftState, observableObservePermissionsForChannel, observableM11076j, new Func7<Map<Long, ? extends String>, Long, Map<Long, ? extends GuildMember>, Guild, StoreThreadDraft.ThreadDraftState, Long, Pair<? extends Message, ? extends List<? extends ChatListEntry>>, WidgetChatListModel>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$Companion$getThreadDraft$3
                 @Override // p658rx.functions.Func7
@@ -271,25 +286,6 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
             return false;
         }
 
-        public final Observable<WidgetChatListModel> get() {
-            Observable observableM11099Y = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().m11099Y(new InterfaceC12589b<StoreChannelsSelected.ResolvedSelectedChannel, Observable<? extends WidgetChatListModel>>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModel$Companion$get$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetChatListModel> call(StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel) {
-                    if (resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel) {
-                        StoreChannelsSelected.ResolvedSelectedChannel.Channel channel = (StoreChannelsSelected.ResolvedSelectedChannel.Channel) resolvedSelectedChannel;
-                        return ChannelUtils.m7691o(channel.getChannel()) ? new C12721k(null) : WidgetChatListModel.INSTANCE.getChannel(channel.getChannel());
-                    }
-                    if (!(resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft)) {
-                        return new C12721k(null);
-                    }
-                    StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft = (StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) resolvedSelectedChannel;
-                    return WidgetChatListModel.INSTANCE.getThreadDraft(threadDraft.getParentChannel(), threadDraft.getStarterMessageId());
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "StoreStream\n          .g…            }\n          }");
-            return observableM11099Y;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
@@ -316,16 +312,6 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
 
     public final long component1() {
         return getUserId();
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final long getNewestKnownMessageId() {
-        return this.newestKnownMessageId;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final boolean getIsLoadingMessages() {
-        return this.isLoadingMessages;
     }
 
     public final long component2() {
@@ -398,6 +384,17 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         return this.guildId;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
+    public final boolean getIsLoadingMessages() {
+        return this.isLoadingMessages;
+    }
+
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
+    /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
+    public boolean getIsSpoilerClickAllowed() {
+        return this.isSpoilerClickAllowed;
+    }
+
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public List<ChatListEntry> getList() {
         return this.list;
@@ -411,6 +408,11 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getNewMessagesMarkerMessageId() {
         return this.newMessagesMarkerMessageId;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final long getNewestKnownMessageId() {
+        return this.newestKnownMessageId;
     }
 
     public final long getNewestKnownMessageId() {
@@ -452,12 +454,6 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
 
     public final boolean isLoadingMessages() {
         return this.isLoadingMessages;
-    }
-
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
-    /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
-    public boolean getIsSpoilerClickAllowed() {
-        return this.isSpoilerClickAllowed;
     }
 
     public String toString() {

@@ -16,7 +16,7 @@ public abstract class AbstractC13079a<T> implements InterfaceC13082d<T> {
     /* JADX INFO: renamed from: s.a.d2.a$a */
     /* JADX INFO: compiled from: Flow.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.flow.AbstractFlow", m10085f = "Flow.kt", m10086l = {212}, m10087m = "collect")
-    public static final class a extends AbstractC12187d {
+    public final class a extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public Object L$2;

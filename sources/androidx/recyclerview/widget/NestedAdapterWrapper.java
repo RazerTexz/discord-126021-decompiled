@@ -8,6 +8,14 @@ import androidx.core.util.Preconditions;
 /* JADX INFO: loaded from: classes.dex */
 public class NestedAdapterWrapper {
     public final RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    public int mCachedItemCount;
+    public final Callback mCallback;
+
+    @NonNull
+    private final StableIdStorage.StableIdLookup mStableIdLookup;
+
+    @NonNull
+    private final ViewTypeStorage.ViewTypeLookup mViewTypeLookup;
     private RecyclerView.AdapterDataObserver mAdapterObserver = new RecyclerView.AdapterDataObserver() { // from class: androidx.recyclerview.widget.NestedAdapterWrapper.1
         @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
         public void onChanged() {
@@ -68,14 +76,6 @@ public class NestedAdapterWrapper {
             nestedAdapterWrapper.mCallback.onItemRangeChanged(nestedAdapterWrapper, i, i2, obj);
         }
     };
-    public int mCachedItemCount;
-    public final Callback mCallback;
-
-    @NonNull
-    private final StableIdStorage.StableIdLookup mStableIdLookup;
-
-    @NonNull
-    private final ViewTypeStorage.ViewTypeLookup mViewTypeLookup;
 
     public interface Callback {
         void onChanged(@NonNull NestedAdapterWrapper nestedAdapterWrapper);

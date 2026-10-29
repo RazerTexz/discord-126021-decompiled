@@ -28,6 +28,66 @@ public final class InviteGenerator implements Closeable {
     private final Observable<InviteGenerationState> generationState;
     private final BehaviorSubject<InviteGenerationState> generationStateSubject;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generate$1 */
+    /* JADX INFO: compiled from: InviteGenerator.kt */
+    public final /* synthetic */ class C86281 extends C12236k implements Function1<ModelInvite, Unit> {
+        public C86281(InviteGenerator inviteGenerator) {
+            super(1, inviteGenerator, InviteGenerator.class, "handleGeneratedInvite", "handleGeneratedInvite(Lcom/discord/models/domain/ModelInvite;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
+            invoke2(modelInvite);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelInvite modelInvite) {
+            C12238m.checkNotNullParameter(modelInvite, "p1");
+            ((InviteGenerator) this.receiver).handleGeneratedInvite(modelInvite);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generateForAppComponent$1 */
+    /* JADX INFO: compiled from: InviteGenerator.kt */
+    public final class C86301 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
+        public C86301() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
+            invoke2(modelInvite);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelInvite modelInvite) {
+            C12238m.checkNotNullParameter(modelInvite, "invite");
+            InviteGenerator.this.handleGeneratedInvite(modelInvite);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generateForAppComponent$2 */
+    /* JADX INFO: compiled from: InviteGenerator.kt */
+    public final class C86312 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C86312() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "<anonymous parameter 0>");
+            InviteGenerator.this.handleRestCallFailed();
+        }
+    }
+
     /* JADX INFO: compiled from: InviteGenerator.kt */
     public enum GenerationState {
         INIT,
@@ -37,7 +97,7 @@ public final class InviteGenerator implements Closeable {
     }
 
     /* JADX INFO: compiled from: InviteGenerator.kt */
-    public static final /* data */ class InviteGenerationState {
+    public final /* data */ class InviteGenerationState {
         private final ModelInvite lastGeneratedInvite;
         private final GenerationState state;
 
@@ -62,16 +122,6 @@ public final class InviteGenerator implements Closeable {
             return inviteGenerationState.copy(modelInvite, generationState);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelInvite getLastGeneratedInvite() {
-            return this.lastGeneratedInvite;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GenerationState getState() {
-            return this.state;
-        }
-
         public final InviteGenerationState copy(ModelInvite lastGeneratedInvite, GenerationState state) {
             C12238m.checkNotNullParameter(state, "state");
             return new InviteGenerationState(lastGeneratedInvite, state);
@@ -88,8 +138,18 @@ public final class InviteGenerator implements Closeable {
             return C12238m.areEqual(this.lastGeneratedInvite, inviteGenerationState.lastGeneratedInvite) && C12238m.areEqual(this.state, inviteGenerationState.state);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final ModelInvite getLastGeneratedInvite() {
             return this.lastGeneratedInvite;
+        }
+
+        public final ModelInvite getLastGeneratedInvite() {
+            return this.lastGeneratedInvite;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final GenerationState getState() {
+            return this.state;
         }
 
         public final GenerationState getState() {
@@ -117,66 +177,6 @@ public final class InviteGenerator implements Closeable {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generate$1 */
-    /* JADX INFO: compiled from: InviteGenerator.kt */
-    public static final /* synthetic */ class C86281 extends C12236k implements Function1<ModelInvite, Unit> {
-        public C86281(InviteGenerator inviteGenerator) {
-            super(1, inviteGenerator, InviteGenerator.class, "handleGeneratedInvite", "handleGeneratedInvite(Lcom/discord/models/domain/ModelInvite;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
-            invoke2(modelInvite);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelInvite modelInvite) {
-            C12238m.checkNotNullParameter(modelInvite, "p1");
-            ((InviteGenerator) this.receiver).handleGeneratedInvite(modelInvite);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generateForAppComponent$1 */
-    /* JADX INFO: compiled from: InviteGenerator.kt */
-    public static final class C86301 extends AbstractC12240o implements Function1<ModelInvite, Unit> {
-        public C86301() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
-            invoke2(modelInvite);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelInvite modelInvite) {
-            C12238m.checkNotNullParameter(modelInvite, "invite");
-            InviteGenerator.this.handleGeneratedInvite(modelInvite);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.InviteGenerator$generateForAppComponent$2 */
-    /* JADX INFO: compiled from: InviteGenerator.kt */
-    public static final class C86312 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C86312() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "<anonymous parameter 0>");
-            InviteGenerator.this.handleRestCallFailed();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public InviteGenerator() {
         BehaviorSubject<InviteGenerationState> behaviorSubjectM11130l0 = BehaviorSubject.m11130l0(new InviteGenerationState(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0));
@@ -184,16 +184,6 @@ public final class InviteGenerator implements Closeable {
         Observable<InviteGenerationState> observableM11112r = behaviorSubjectM11130l0.m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "generationStateSubject.distinctUntilChanged()");
         this.generationState = observableM11112r;
-    }
-
-    private final void handleGeneratedInvite(ModelInvite invite) {
-        this.generationStateSubject.onNext(new InviteGenerationState(invite, GenerationState.SUCCESS));
-    }
-
-    private final void handleRestCallFailed() {
-        BehaviorSubject<InviteGenerationState> behaviorSubject = this.generationStateSubject;
-        C12238m.checkNotNullExpressionValue(behaviorSubject, "generationStateSubject");
-        this.generationStateSubject.onNext(InviteGenerationState.copy$default(behaviorSubject.m11132n0(), null, GenerationState.FAILURE, 1, null));
     }
 
     @Override // java.io.Closeable, java.lang.AutoCloseable
@@ -224,5 +214,15 @@ public final class InviteGenerator implements Closeable {
 
     public final Observable<InviteGenerationState> getGenerationState() {
         return this.generationState;
+    }
+
+    private final void handleGeneratedInvite(ModelInvite invite) {
+        this.generationStateSubject.onNext(new InviteGenerationState(invite, GenerationState.SUCCESS));
+    }
+
+    private final void handleRestCallFailed() {
+        BehaviorSubject<InviteGenerationState> behaviorSubject = this.generationStateSubject;
+        C12238m.checkNotNullExpressionValue(behaviorSubject, "generationStateSubject");
+        this.generationStateSubject.onNext(InviteGenerationState.copy$default(behaviorSubject.m11132n0(), null, GenerationState.FAILURE, 1, null));
     }
 }

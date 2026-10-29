@@ -79,103 +79,9 @@ public final class WidgetChannelTopic extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
-    public static final /* data */ class RenderedTopic {
-        public static final int MAX_LINES = 40;
-        public static final int MIN_LINES = 2;
-        private final int autoLinkMask;
-        private final CharSequence channelName;
-        private final CharSequence topic;
-
-        public RenderedTopic() {
-            this(null, null, 0, 7, null);
-        }
-
-        public RenderedTopic(CharSequence charSequence, CharSequence charSequence2, int i) {
-            this.channelName = charSequence;
-            this.topic = charSequence2;
-            this.autoLinkMask = i;
-        }
-
-        public static /* synthetic */ RenderedTopic copy$default(RenderedTopic renderedTopic, CharSequence charSequence, CharSequence charSequence2, int i, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                charSequence = renderedTopic.channelName;
-            }
-            if ((i2 & 2) != 0) {
-                charSequence2 = renderedTopic.topic;
-            }
-            if ((i2 & 4) != 0) {
-                i = renderedTopic.autoLinkMask;
-            }
-            return renderedTopic.copy(charSequence, charSequence2, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getChannelName() {
-            return this.channelName;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getTopic() {
-            return this.topic;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getAutoLinkMask() {
-            return this.autoLinkMask;
-        }
-
-        public final RenderedTopic copy(CharSequence channelName, CharSequence topic, int autoLinkMask) {
-            return new RenderedTopic(channelName, topic, autoLinkMask);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof RenderedTopic)) {
-                return false;
-            }
-            RenderedTopic renderedTopic = (RenderedTopic) other;
-            return C12238m.areEqual(this.channelName, renderedTopic.channelName) && C12238m.areEqual(this.topic, renderedTopic.topic) && this.autoLinkMask == renderedTopic.autoLinkMask;
-        }
-
-        public final int getAutoLinkMask() {
-            return this.autoLinkMask;
-        }
-
-        public final CharSequence getChannelName() {
-            return this.channelName;
-        }
-
-        public final CharSequence getTopic() {
-            return this.topic;
-        }
-
-        public int hashCode() {
-            CharSequence charSequence = this.channelName;
-            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
-            CharSequence charSequence2 = this.topic;
-            return ((iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31) + this.autoLinkMask;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("RenderedTopic(channelName=");
-            sbM833U.append(this.channelName);
-            sbM833U.append(", topic=");
-            sbM833U.append(this.topic);
-            sbM833U.append(", autoLinkMask=");
-            return C1643a.m814B(sbM833U, this.autoLinkMask, ")");
-        }
-
-        public /* synthetic */ RenderedTopic(String str, CharSequence charSequence, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i2 & 1) != 0 ? "" : str, (i2 & 2) != 0 ? null : charSequence, (i2 & 4) != 0 ? 0 : i);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onToggleTopicExpansionState$1 */
     /* JADX INFO: compiled from: WidgetChannelTopic.kt */
-    public static final class C73531 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C73531 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C73531() {
             super(1);
         }
@@ -218,7 +124,7 @@ public final class WidgetChannelTopic extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChannelTopic.kt */
-    public static final class C73561 extends AbstractC12240o implements Function1<WidgetChannelTopicViewModel.Event, Unit> {
+    public final class C73561 extends AbstractC12240o implements Function1<WidgetChannelTopicViewModel.Event, Unit> {
         public C73561() {
             super(1);
         }
@@ -238,7 +144,7 @@ public final class WidgetChannelTopic extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChannelTopic.kt */
-    public static final class C73572 extends AbstractC12240o implements Function1<WidgetChannelTopicViewModel.ViewState, Unit> {
+    public final class C73572 extends AbstractC12240o implements Function1<WidgetChannelTopicViewModel.ViewState, Unit> {
         public C73572() {
             super(1);
         }
@@ -254,6 +160,100 @@ public final class WidgetChannelTopic extends AppFragment {
             WidgetChannelTopic widgetChannelTopic = WidgetChannelTopic.this;
             C12238m.checkNotNullExpressionValue(viewState, "viewState");
             widgetChannelTopic.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final /* data */ class RenderedTopic {
+        public static final int MAX_LINES = 40;
+        public static final int MIN_LINES = 2;
+        private final int autoLinkMask;
+        private final CharSequence channelName;
+        private final CharSequence topic;
+
+        public RenderedTopic() {
+            this(null, null, 0, 7, null);
+        }
+
+        public RenderedTopic(CharSequence charSequence, CharSequence charSequence2, int i) {
+            this.channelName = charSequence;
+            this.topic = charSequence2;
+            this.autoLinkMask = i;
+        }
+
+        public static /* synthetic */ RenderedTopic copy$default(RenderedTopic renderedTopic, CharSequence charSequence, CharSequence charSequence2, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                charSequence = renderedTopic.channelName;
+            }
+            if ((i2 & 2) != 0) {
+                charSequence2 = renderedTopic.topic;
+            }
+            if ((i2 & 4) != 0) {
+                i = renderedTopic.autoLinkMask;
+            }
+            return renderedTopic.copy(charSequence, charSequence2, i);
+        }
+
+        public final RenderedTopic copy(CharSequence channelName, CharSequence topic, int autoLinkMask) {
+            return new RenderedTopic(channelName, topic, autoLinkMask);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof RenderedTopic)) {
+                return false;
+            }
+            RenderedTopic renderedTopic = (RenderedTopic) other;
+            return C12238m.areEqual(this.channelName, renderedTopic.channelName) && C12238m.areEqual(this.topic, renderedTopic.topic) && this.autoLinkMask == renderedTopic.autoLinkMask;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getAutoLinkMask() {
+            return this.autoLinkMask;
+        }
+
+        public final int getAutoLinkMask() {
+            return this.autoLinkMask;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getChannelName() {
+            return this.channelName;
+        }
+
+        public final CharSequence getChannelName() {
+            return this.channelName;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getTopic() {
+            return this.topic;
+        }
+
+        public final CharSequence getTopic() {
+            return this.topic;
+        }
+
+        public int hashCode() {
+            CharSequence charSequence = this.channelName;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            CharSequence charSequence2 = this.topic;
+            return ((iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31) + this.autoLinkMask;
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("RenderedTopic(channelName=");
+            sbM833U.append(this.channelName);
+            sbM833U.append(", topic=");
+            sbM833U.append(this.topic);
+            sbM833U.append(", autoLinkMask=");
+            return C1643a.m814B(sbM833U, this.autoLinkMask, ")");
+        }
+
+        public /* synthetic */ RenderedTopic(String str, CharSequence charSequence, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i2 & 1) != 0 ? "" : str, (i2 & 2) != 0 ? null : charSequence, (i2 & 4) != 0 ? 0 : i);
         }
     }
 
@@ -486,6 +486,30 @@ public final class WidgetChannelTopic extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        getBinding().f15967g.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.channels.WidgetChannelTopic.onViewBound.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetChannelTopic.this.onToggleTopicExpansionState();
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), (Class<?>) WidgetChannelTopic.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73561());
+        Observable<WidgetChannelTopicViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetChannelTopic.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73572());
+        LinkifiedTextView linkifiedTextView = getBinding().f15967g;
+        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
+        linkifiedTextView.setMaxLines(2);
+    }
+
     private final void setChannelIcon(@DrawableRes int channelIconResource) {
         getBinding().f15963c.setImageResource(channelIconResource);
         SimpleDraweeView simpleDraweeView = getBinding().f15963c;
@@ -506,6 +530,13 @@ public final class WidgetChannelTopic extends AppFragment {
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
         marginLayoutParams.setMargins(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, DimenUtils.dpToPixels(8), marginLayoutParams.bottomMargin);
+    }
+
+    public static /* synthetic */ void showContextMenu$default(WidgetChannelTopic widgetChannelTopic, boolean z2, long j, CharSequence charSequence, boolean z3, int i, Object obj) {
+        if ((i & 4) != 0) {
+            charSequence = null;
+        }
+        widgetChannelTopic.showContextMenu(z2, j, charSequence, (i & 8) != 0 ? false : z3);
     }
 
     private final void showContextMenu(boolean isGroup, final long channelId, final CharSequence channelTitle, boolean developerModeEnabled) {
@@ -547,7 +578,7 @@ public final class WidgetChannelTopic extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$4$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetChannelTopic.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
                     public AnonymousClass1() {
                         super(1);
                     }
@@ -588,36 +619,5 @@ public final class WidgetChannelTopic extends AppFragment {
             });
         }
         popupMenu.show();
-    }
-
-    public static /* synthetic */ void showContextMenu$default(WidgetChannelTopic widgetChannelTopic, boolean z2, long j, CharSequence charSequence, boolean z3, int i, Object obj) {
-        if ((i & 4) != 0) {
-            charSequence = null;
-        }
-        widgetChannelTopic.showContextMenu(z2, j, charSequence, (i & 8) != 0 ? false : z3);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        getBinding().f15967g.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.channels.WidgetChannelTopic.onViewBound.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetChannelTopic.this.onToggleTopicExpansionState();
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), (Class<?>) WidgetChannelTopic.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73561());
-        Observable<WidgetChannelTopicViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetChannelTopic.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73572());
-        LinkifiedTextView linkifiedTextView = getBinding().f15967g;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
-        linkifiedTextView.setMaxLines(2);
     }
 }

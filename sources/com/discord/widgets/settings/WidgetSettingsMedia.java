@@ -47,28 +47,13 @@ public final class WidgetSettingsMedia extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private StoreUserSettings userSettings;
 
-    /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsMedia.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsMedia$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
-    public static final class C96483 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C96483 extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsMedia$onViewBound$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -103,6 +88,21 @@ public final class WidgetSettingsMedia extends AppFragment {
         public final void invoke2(RenderContext renderContext) {
             C12238m.checkNotNullParameter(renderContext, "$receiver");
             renderContext.m8423b("getNitro", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsMedia.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

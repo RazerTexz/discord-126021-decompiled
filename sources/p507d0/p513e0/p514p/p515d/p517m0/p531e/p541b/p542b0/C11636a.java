@@ -60,7 +60,7 @@ public final class C11636a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.b0.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: KotlinClassHeader.kt */
-        public static final class C13314a {
+        public final class C13314a {
             public C13314a(DefaultConstructorMarker defaultConstructorMarker) {
             }
 
@@ -88,16 +88,16 @@ public final class C11636a {
             return f23557j.getById(i);
         }
 
+        public final int getId() {
+            return this.f23566id;
+        }
+
         /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
         public static a[] valuesCustom() {
             a[] aVarArrValuesCustom = values();
             a[] aVarArr = new a[aVarArrValuesCustom.length];
             System.arraycopy(aVarArrValuesCustom, 0, aVarArr, 0, aVarArrValuesCustom.length);
             return aVarArr;
-        }
-
-        public final int getId() {
-            return this.f23566id;
         }
     }
 
@@ -112,11 +112,6 @@ public final class C11636a {
         this.f23554e = strArr3;
         this.f23555f = str;
         this.f23556g = i;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final boolean m9538a(int i, int i2) {
-        return (i & i2) != 0;
     }
 
     public final String[] getData() {
@@ -166,6 +161,11 @@ public final class C11636a {
 
     public final boolean isUnstableJvmIrBinary() {
         return m9538a(this.f23556g, 16) && !m9538a(this.f23556g, 32);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m9538a(int i, int i2) {
+        return (i & i2) != 0;
     }
 
     public String toString() {

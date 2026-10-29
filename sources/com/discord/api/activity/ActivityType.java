@@ -19,7 +19,7 @@ public enum ActivityType {
     private final int apiInt;
 
     /* JADX INFO: compiled from: ActivityType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

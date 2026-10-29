@@ -49,9 +49,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final List<Feature> genericFeatureAreas = C12145m.listOf(new Feature(NotificationClient.NOTIF_GENERAL, "Android", null));
-    private static final List<Sticker> sendingStickers;
-    private static final List<Sticker> successStickers;
     private RestCallState<BugReportConfig> bugReportConfig;
     private final PublishSubject<Event> eventSubject;
     private Feature feature;
@@ -63,13 +60,139 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
     private final String screenshotName;
     private final Uri screenshotUri;
     private final Sticker sendingSticker;
+    private static final List<Sticker> sendingStickers;
     private final int stickerCharacterIndex;
     private boolean stickersPrefetched;
     private final Sticker successSticker;
+    private static final List<Sticker> successStickers;
     private boolean useScreenshot;
+    private static final List<Feature> genericFeatureAreas = C12145m.listOf(new Feature(NotificationClient.NOTIF_GENERAL, "Android", null));
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$dismissAfterDelay$1 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72831 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C72831() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            BugReportViewModel.this.eventSubject.f27650k.onNext((T) Event.CloseReport.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$loadFeatures$1 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72841 extends AbstractC12240o implements Function1<RestCallState<? extends BugReportConfig>, Unit> {
+        public C72841() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends BugReportConfig> restCallState) {
+            invoke2((RestCallState<BugReportConfig>) restCallState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<BugReportConfig> restCallState) {
+            C12238m.checkNotNullParameter(restCallState, "it");
+            BugReportViewModel.this.bugReportConfig = restCallState;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$prefetchStickers$1 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72851 extends AbstractC12240o implements Function1<DownloadUtils.DownloadState, Unit> {
+        public static final C72851 INSTANCE = new C72851();
+
+        public C72851() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(DownloadUtils.DownloadState downloadState) {
+            invoke2(downloadState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(DownloadUtils.DownloadState downloadState) {
+            C12238m.checkNotNullParameter(downloadState, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$prefetchStickers$2 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72862 extends AbstractC12240o implements Function1<DownloadUtils.DownloadState, Unit> {
+        public static final C72862 INSTANCE = new C72862();
+
+        public C72862() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(DownloadUtils.DownloadState downloadState) {
+            invoke2(downloadState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(DownloadUtils.DownloadState downloadState) {
+            C12238m.checkNotNullParameter(downloadState, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$sendReport$1 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72871 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public C72871() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            BugReportViewModel bugReportViewModel = BugReportViewModel.this;
+            bugReportViewModel.updateViewState(new ViewState.Success(bugReportViewModel.getSuccessSticker()));
+            BugReportViewModel.this.dismissAfterDelay();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$sendReport$2 */
+    /* JADX INFO: compiled from: BugReportViewModel.kt */
+    public final class C72882 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C72882() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            BugReportViewModel.this.showReport(error);
+        }
+    }
 
     /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -91,10 +214,10 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: BugReportViewModel.kt */
-        public static final class CloseReport extends Event {
+        public final class CloseReport extends Event {
             public static final CloseReport INSTANCE = new CloseReport();
 
             private CloseReport() {
@@ -111,10 +234,10 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: BugReportViewModel.kt */
-        public static final /* data */ class Report extends ViewState {
+        public final /* data */ class Report extends ViewState {
             private final Error error;
             private final Feature feature;
             private final Integer priority;
@@ -157,41 +280,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return report.copy(uri, str3, str4, num2, feature2, z3, error);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Uri getScreenshotUri() {
-                return this.screenshotUri;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getReportName() {
-                return this.reportName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getReportDescription() {
-                return this.reportDescription;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Integer getPriority() {
-                return this.priority;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Feature getFeature() {
-                return this.feature;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getUseScreenshot() {
-                return this.useScreenshot;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Error getError() {
-                return this.error;
-            }
-
             public final Report copy(Uri screenshotUri, String reportName, String reportDescription, Integer priority, Feature feature, boolean useScreenshot, Error error) {
                 C12238m.checkNotNullParameter(screenshotUri, "screenshotUri");
                 return new Report(screenshotUri, reportName, reportDescription, priority, feature, useScreenshot, error);
@@ -208,28 +296,63 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return C12238m.areEqual(this.screenshotUri, report.screenshotUri) && C12238m.areEqual(this.reportName, report.reportName) && C12238m.areEqual(this.reportDescription, report.reportDescription) && C12238m.areEqual(this.priority, report.priority) && C12238m.areEqual(this.feature, report.feature) && this.useScreenshot == report.useScreenshot && C12238m.areEqual(this.error, report.error);
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
             public final Error getError() {
                 return this.error;
+            }
+
+            public final Error getError() {
+                return this.error;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final Feature getFeature() {
+                return this.feature;
             }
 
             public final Feature getFeature() {
                 return this.feature;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final Integer getPriority() {
                 return this.priority;
+            }
+
+            public final Integer getPriority() {
+                return this.priority;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getReportDescription() {
+                return this.reportDescription;
             }
 
             public final String getReportDescription() {
                 return this.reportDescription;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getReportName() {
                 return this.reportName;
             }
 
+            public final String getReportName() {
+                return this.reportName;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Uri getScreenshotUri() {
                 return this.screenshotUri;
+            }
+
+            public final Uri getScreenshotUri() {
+                return this.screenshotUri;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getUseScreenshot() {
+                return this.useScreenshot;
             }
 
             public final boolean getUseScreenshot() {
@@ -296,7 +419,7 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: BugReportViewModel.kt */
-        public static final /* data */ class SelectFeature extends ViewState {
+        public final /* data */ class SelectFeature extends ViewState {
             private final List<Feature> features;
             private final boolean loadingFeatures;
             private final String query;
@@ -307,6 +430,10 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
 
             public /* synthetic */ SelectFeature(String str, boolean z2, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this((i & 1) != 0 ? null : str, (i & 2) != 0 ? true : z2, (i & 4) != 0 ? C12147n.emptyList() : list);
+            }
+
+            public final List<Feature> component3() {
+                return this.features;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -321,20 +448,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                     list = selectFeature.features;
                 }
                 return selectFeature.copy(str, z2, list);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getQuery() {
-                return this.query;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getLoadingFeatures() {
-                return this.loadingFeatures;
-            }
-
-            public final List<Feature> component3() {
-                return this.features;
             }
 
             public final SelectFeature copy(String query, boolean loadingFeatures, List<Feature> features) {
@@ -357,8 +470,18 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return this.features;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final boolean getLoadingFeatures() {
                 return this.loadingFeatures;
+            }
+
+            public final boolean getLoadingFeatures() {
+                return this.loadingFeatures;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getQuery() {
+                return this.query;
             }
 
             public final String getQuery() {
@@ -403,7 +526,7 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: BugReportViewModel.kt */
-        public static final /* data */ class Sending extends ViewState {
+        public final /* data */ class Sending extends ViewState {
             private final Sticker sendingSticker;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -420,11 +543,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return sending.copy(sticker);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Sticker getSendingSticker() {
-                return this.sendingSticker;
-            }
-
             public final Sending copy(Sticker sendingSticker) {
                 C12238m.checkNotNullParameter(sendingSticker, "sendingSticker");
                 return new Sending(sendingSticker);
@@ -435,6 +553,11 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof Sending) && C12238m.areEqual(this.sendingSticker, ((Sending) other).sendingSticker);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Sticker getSendingSticker() {
+                return this.sendingSticker;
             }
 
             public final Sticker getSendingSticker() {
@@ -458,7 +581,7 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: BugReportViewModel.kt */
-        public static final /* data */ class Success extends ViewState {
+        public final /* data */ class Success extends ViewState {
             private final Sticker successSticker;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -475,11 +598,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return success.copy(sticker);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Sticker getSuccessSticker() {
-                return this.successSticker;
-            }
-
             public final Success copy(Sticker successSticker) {
                 C12238m.checkNotNullParameter(successSticker, "successSticker");
                 return new Success(successSticker);
@@ -490,6 +608,11 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof Success) && C12238m.areEqual(this.successSticker, ((Success) other).successSticker);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Sticker getSuccessSticker() {
+                return this.successSticker;
             }
 
             public final Sticker getSuccessSticker() {
@@ -517,129 +640,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$dismissAfterDelay$1 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72831 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C72831() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            BugReportViewModel.this.eventSubject.f27650k.onNext((T) Event.CloseReport.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$loadFeatures$1 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72841 extends AbstractC12240o implements Function1<RestCallState<? extends BugReportConfig>, Unit> {
-        public C72841() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends BugReportConfig> restCallState) {
-            invoke2((RestCallState<BugReportConfig>) restCallState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RestCallState<BugReportConfig> restCallState) {
-            C12238m.checkNotNullParameter(restCallState, "it");
-            BugReportViewModel.this.bugReportConfig = restCallState;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$prefetchStickers$1 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72851 extends AbstractC12240o implements Function1<DownloadUtils.DownloadState, Unit> {
-        public static final C72851 INSTANCE = new C72851();
-
-        public C72851() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(DownloadUtils.DownloadState downloadState) {
-            invoke2(downloadState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(DownloadUtils.DownloadState downloadState) {
-            C12238m.checkNotNullParameter(downloadState, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$prefetchStickers$2 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72862 extends AbstractC12240o implements Function1<DownloadUtils.DownloadState, Unit> {
-        public static final C72862 INSTANCE = new C72862();
-
-        public C72862() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(DownloadUtils.DownloadState downloadState) {
-            invoke2(downloadState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(DownloadUtils.DownloadState downloadState) {
-            C12238m.checkNotNullParameter(downloadState, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$sendReport$1 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72871 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C72871() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            BugReportViewModel bugReportViewModel = BugReportViewModel.this;
-            bugReportViewModel.updateViewState(new ViewState.Success(bugReportViewModel.getSuccessSticker()));
-            BugReportViewModel.this.dismissAfterDelay();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportViewModel$sendReport$2 */
-    /* JADX INFO: compiled from: BugReportViewModel.kt */
-    public static final class C72882 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C72882() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            BugReportViewModel.this.showReport(error);
         }
     }
 
@@ -682,13 +682,6 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
             }
         }
         return arrayList;
-    }
-
-    public static /* synthetic */ void showReport$default(BugReportViewModel bugReportViewModel, Error error, int i, Object obj) {
-        if ((i & 1) != 0) {
-            error = null;
-        }
-        bugReportViewModel.showReport(error);
     }
 
     public final Feature getFeature() {
@@ -812,6 +805,13 @@ public final class BugReportViewModel extends AbstractC0859d0<ViewState> {
                 return C12169a.compareValues(feature.getSquad() + feature.getName(), feature2.getSquad() + feature2.getName());
             }
         })));
+    }
+
+    public static /* synthetic */ void showReport$default(BugReportViewModel bugReportViewModel, Error error, int i, Object obj) {
+        if ((i & 1) != 0) {
+            error = null;
+        }
+        bugReportViewModel.showReport(error);
     }
 
     public final void showReport(Error error) {

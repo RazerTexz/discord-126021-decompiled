@@ -23,7 +23,7 @@ public final /* data */ class DiscoverCommands {
     private final LoadState loadState;
 
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -54,41 +54,6 @@ public final /* data */ class DiscoverCommands {
         return this.commands;
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getCurrentStartOffset() {
-        return this.currentStartOffset;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getCurrentEndOffset() {
-        return this.currentEndOffset;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getHasMoreBefore() {
-        return this.hasMoreBefore;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getHasMoreAfter() {
-        return this.hasMoreAfter;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getJumpedSequenceId() {
-        return this.jumpedSequenceId;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Long getJumpedApplicationId() {
-        return this.jumpedApplicationId;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final LoadState getLoadState() {
-        return this.loadState;
-    }
-
     public final DiscoverCommands copy(List<? extends ApplicationCommand> commands, int currentStartOffset, int currentEndOffset, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
         C12238m.checkNotNullParameter(commands, "commands");
         C12238m.checkNotNullParameter(loadState, "loadState");
@@ -110,28 +75,63 @@ public final /* data */ class DiscoverCommands {
         return this.commands;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getCurrentEndOffset() {
         return this.currentEndOffset;
+    }
+
+    public final int getCurrentEndOffset() {
+        return this.currentEndOffset;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getCurrentStartOffset() {
+        return this.currentStartOffset;
     }
 
     public final int getCurrentStartOffset() {
         return this.currentStartOffset;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getHasMoreAfter() {
         return this.hasMoreAfter;
+    }
+
+    public final boolean getHasMoreAfter() {
+        return this.hasMoreAfter;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getHasMoreBefore() {
+        return this.hasMoreBefore;
     }
 
     public final boolean getHasMoreBefore() {
         return this.hasMoreBefore;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final Long getJumpedApplicationId() {
         return this.jumpedApplicationId;
     }
 
+    public final Long getJumpedApplicationId() {
+        return this.jumpedApplicationId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getJumpedSequenceId() {
         return this.jumpedSequenceId;
+    }
+
+    public final int getJumpedSequenceId() {
+        return this.jumpedSequenceId;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final LoadState getLoadState() {
+        return this.loadState;
     }
 
     public final LoadState getLoadState() {

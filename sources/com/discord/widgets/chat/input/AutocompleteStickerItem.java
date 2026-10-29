@@ -22,6 +22,14 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
         this.type = i;
     }
 
+    public final String component2() {
+        return getKey();
+    }
+
+    public final int component3() {
+        return getType();
+    }
+
     public static /* synthetic */ AutocompleteStickerItem copy$default(AutocompleteStickerItem autocompleteStickerItem, Sticker sticker, String str, int i, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             sticker = autocompleteStickerItem.sticker;
@@ -33,19 +41,6 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
             i = autocompleteStickerItem.getType();
         }
         return autocompleteStickerItem.copy(sticker, str, i);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Sticker getSticker() {
-        return this.sticker;
-    }
-
-    public final String component2() {
-        return getKey();
-    }
-
-    public final int component3() {
-        return getType();
     }
 
     public final AutocompleteStickerItem copy(Sticker sticker, String key, int type) {
@@ -68,6 +63,11 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Sticker getSticker() {
+        return this.sticker;
     }
 
     public final Sticker getSticker() {

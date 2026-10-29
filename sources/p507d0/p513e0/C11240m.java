@@ -16,14 +16,14 @@ public final /* synthetic */ class C11240m extends C12236k implements Function1<
         super(1, Class.class, "getComponentType", "getComponentType()Ljava/lang/Class;", 0);
     }
 
+    @Override // kotlin.jvm.functions.Function1
+    public /* bridge */ /* synthetic */ Class<?> invoke(Class<? extends Object> cls) {
+        return invoke2((Class<?>) cls);
+    }
+
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final Class<?> invoke2(Class<?> cls) {
         C12238m.checkNotNullParameter(cls, "p1");
         return cls.getComponentType();
-    }
-
-    @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Class<?> invoke(Class<? extends Object> cls) {
-        return invoke2((Class<?>) cls);
     }
 }

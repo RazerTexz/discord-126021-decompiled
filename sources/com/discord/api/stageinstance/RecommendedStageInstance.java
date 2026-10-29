@@ -16,26 +16,6 @@ public final /* data */ class RecommendedStageInstance {
     private final int source;
     private final List<Long> speakers;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final StageInstance getInstance() {
-        return this.instance;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final int getParticipantCount() {
-        return this.participantCount;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<GuildMember> m8219c() {
-        return this.sampleSpeakerMembers;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<Long> m8220d() {
-        return this.speakers;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -45,6 +25,16 @@ public final /* data */ class RecommendedStageInstance {
         }
         RecommendedStageInstance recommendedStageInstance = (RecommendedStageInstance) other;
         return C12238m.areEqual(this.guild, recommendedStageInstance.guild) && C12238m.areEqual(this.instance, recommendedStageInstance.instance) && C12238m.areEqual(this.speakers, recommendedStageInstance.speakers) && C12238m.areEqual(this.sampleSpeakerMembers, recommendedStageInstance.sampleSpeakerMembers) && this.participantCount == recommendedStageInstance.participantCount && this.source == recommendedStageInstance.source && Double.compare(this.score, recommendedStageInstance.score) == 0;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final StageInstance getInstance() {
+        return this.instance;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final int getParticipantCount() {
+        return this.participantCount;
     }
 
     public int hashCode() {
@@ -58,6 +48,16 @@ public final /* data */ class RecommendedStageInstance {
         int iHashCode4 = (((((iHashCode3 + (list2 != null ? list2.hashCode() : 0)) * 31) + this.participantCount) * 31) + this.source) * 31;
         long jDoubleToLongBits = Double.doubleToLongBits(this.score);
         return iHashCode4 + ((int) (jDoubleToLongBits ^ (jDoubleToLongBits >>> 32)));
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<GuildMember> m8219c() {
+        return this.sampleSpeakerMembers;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Long> m8220d() {
+        return this.speakers;
     }
 
     public String toString() {

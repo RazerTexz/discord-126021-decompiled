@@ -25,10 +25,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildScheduledEventUpsellBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildScheduledEventUpsellBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventUpsellBottomSheetBinding;", 0)};
+    public static final String GUILD_EVENT_UPSELL_CACHE_KEY = "GUILD_EVENT_UPSELL_CACHE_KEY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    public static final String GUILD_EVENT_UPSELL_CACHE_KEY = "GUILD_EVENT_UPSELL_CACHE_KEY";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -37,7 +37,7 @@ public final class WidgetGuildScheduledEventUpsellBottomSheet extends AppBottomS
     private final Lazy guildId;
 
     /* JADX INFO: compiled from: WidgetGuildScheduledEventUpsellBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -65,13 +65,13 @@ public final class WidgetGuildScheduledEventUpsellBottomSheet extends AppBottomS
         return (WidgetGuildScheduledEventUpsellBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final long getGuildId() {
-        return ((Number) this.guildId.getValue()).longValue();
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_guild_scheduled_event_upsell_bottom_sheet;
+    }
+
+    private final long getGuildId() {
+        return ((Number) this.guildId.getValue()).longValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

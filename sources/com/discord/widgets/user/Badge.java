@@ -21,9 +21,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: Badge.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Badge {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final int GUILD_BOOST_LEVEL_1_MONTHS = 1;
     private static final int GUILD_BOOST_LEVEL_2_MONTHS = 2;
     private static final int GUILD_BOOST_LEVEL_3_MONTHS = 3;
@@ -33,6 +30,9 @@ public final /* data */ class Badge {
     private static final int GUILD_BOOST_LEVEL_7_MONTHS = 15;
     private static final int GUILD_BOOST_LEVEL_8_MONTHS = 18;
     private static final int GUILD_BOOST_LEVEL_9_MONTHS = 24;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int icon;
     private final String objectType;
     private final boolean showPremiumUpSell;
@@ -40,7 +40,7 @@ public final /* data */ class Badge {
     private final CharSequence tooltip;
 
     /* JADX INFO: compiled from: Badge.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -157,35 +157,6 @@ public final /* data */ class Badge {
         return badge.copy(i, charSequence3, charSequence4, z3, str);
     }
 
-    public static final Function1<Badge, Unit> onBadgeClick(FragmentManager fragmentManager, Context context) {
-        return INSTANCE.onBadgeClick(fragmentManager, context);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getIcon() {
-        return this.icon;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final CharSequence getText() {
-        return this.text;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final CharSequence getTooltip() {
-        return this.tooltip;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getShowPremiumUpSell() {
-        return this.showPremiumUpSell;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getObjectType() {
-        return this.objectType;
-    }
-
     public final Badge copy(@DrawableRes int icon, CharSequence text, CharSequence tooltip, boolean showPremiumUpSell, String objectType) {
         return new Badge(icon, text, tooltip, showPremiumUpSell, objectType);
     }
@@ -201,20 +172,45 @@ public final /* data */ class Badge {
         return this.icon == badge.icon && C12238m.areEqual(this.text, badge.text) && C12238m.areEqual(this.tooltip, badge.tooltip) && this.showPremiumUpSell == badge.showPremiumUpSell && C12238m.areEqual(this.objectType, badge.objectType);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getIcon() {
         return this.icon;
+    }
+
+    public final int getIcon() {
+        return this.icon;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getObjectType() {
+        return this.objectType;
     }
 
     public final String getObjectType() {
         return this.objectType;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getShowPremiumUpSell() {
         return this.showPremiumUpSell;
     }
 
+    public final boolean getShowPremiumUpSell() {
+        return this.showPremiumUpSell;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final CharSequence getText() {
         return this.text;
+    }
+
+    public final CharSequence getText() {
+        return this.text;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final CharSequence getTooltip() {
+        return this.tooltip;
     }
 
     public final CharSequence getTooltip() {
@@ -240,6 +236,10 @@ public final /* data */ class Badge {
         int i2 = (iHashCode2 + r1) * 31;
         String str = this.objectType;
         return i2 + (str != null ? str.hashCode() : 0);
+    }
+
+    public static final Function1<Badge, Unit> onBadgeClick(FragmentManager fragmentManager, Context context) {
+        return INSTANCE.onBadgeClick(fragmentManager, context);
     }
 
     public String toString() {

@@ -20,7 +20,7 @@ public interface InterfaceC3148t {
 
     /* JADX INFO: renamed from: b.i.a.c.y2.t$a */
     /* JADX INFO: compiled from: MediaCodecAdapter.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C3149u f9107a;
@@ -60,6 +60,10 @@ public interface InterfaceC3148t {
     public interface c {
     }
 
+    void flush();
+
+    MediaFormat getOutputFormat();
+
     /* JADX INFO: renamed from: a */
     boolean mo3834a();
 
@@ -80,12 +84,8 @@ public interface InterfaceC3148t {
     /* JADX INFO: renamed from: f */
     void mo3839f(c cVar, Handler handler);
 
-    void flush();
-
     /* JADX INFO: renamed from: g */
     void mo3840g(int i);
-
-    MediaFormat getOutputFormat();
 
     @Nullable
     /* JADX INFO: renamed from: h */

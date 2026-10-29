@@ -107,8 +107,563 @@ public final class WidgetSettingsPrivacy extends AppFragment {
     private RadioManager radioManagerExplicit;
     private final StoreUserSettings userSettings;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1 */
     /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class Companion {
+    public final class C96611 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public C96611() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+            public final class C132901 extends AbstractC12240o implements Function1<View, Unit> {
+                public static final C132901 INSTANCE = new C132901();
+
+                public C132901() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                    invoke2(view);
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2(View view) {
+                    C12238m.checkNotNullParameter(view, "it");
+                    UriHandler uriHandler = UriHandler.INSTANCE;
+                    Context context = view.getContext();
+                    C12238m.checkNotNullExpressionValue(context, "it.context");
+                    UriHandler.handle$default(uriHandler, context, C0862f.f507a.m149a(360061878534L, null), false, false, null, 28, null);
+                }
+            }
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Hook hook) {
+                C12238m.checkNotNullParameter(hook, "$receiver");
+                hook.styles.add(new ClickableSpan(Integer.valueOf(ColorCompat.getColor(WidgetSettingsPrivacy.this.getContext(), C5419R.color.link)), false, null, C132901.INSTANCE, 4, null));
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+                invoke2(hook);
+                return Unit.f27425a;
+            }
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8422a("onClick", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96711<T> implements Action1<Boolean> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function5<AlertDialog, TextView, TextView, TextView, TextView, Unit> {
+            public final /* synthetic */ Boolean $consented;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Boolean bool) {
+                super(5);
+                this.$consented = bool;
+            }
+
+            @Override // kotlin.jvm.functions.Function5
+            public /* bridge */ /* synthetic */ Unit invoke(AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
+                invoke2(alertDialog, textView, textView2, textView3, textView4);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(final AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
+                C12238m.checkNotNullParameter(alertDialog, "dialog");
+                C12238m.checkNotNullParameter(textView, "dialogHeader");
+                C12238m.checkNotNullParameter(textView2, "dialogBody");
+                C12238m.checkNotNullParameter(textView3, "dialogCancel");
+                C12238m.checkNotNullParameter(textView4, "dialogConfirm");
+                textView.setText(C5419R.string.usage_statistics_disable_modal_title);
+                textView2.setText(C5419R.string.usage_statistics_disable_modal_body);
+                textView3.setText(C5419R.string.usage_statistics_disable_modal_cancel);
+                textView3.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.1.1.1
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        alertDialog.dismiss();
+                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
+                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
+                        checkedSetting.setChecked(true);
+                        CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18075z;
+                        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyStatistics");
+                        checkedSetting2.setEnabled(true);
+                    }
+                });
+                textView4.setText(C5419R.string.usage_statistics_disable_modal_confirm);
+                textView4.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.1.1.2
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        alertDialog.dismiss();
+                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                        WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
+                        Boolean bool = anonymousClass1.$consented;
+                        C12238m.checkNotNullExpressionValue(bool, "consented");
+                        boolean zBooleanValue = bool.booleanValue();
+                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
+                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
+                        widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.USAGE_STATS, checkedSetting);
+                    }
+                });
+            }
+        }
+
+        public C96711(Context context) {
+            this.$context = context;
+        }
+
+        @Override // p658rx.functions.Action1
+        public final void call(Boolean bool) {
+            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
+            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
+            checkedSetting.setEnabled(false);
+            C12238m.checkNotNullExpressionValue(bool, "consented");
+            if (!bool.booleanValue()) {
+                WidgetSettingsPrivacy.this.confirmConsent(this.$context, new AnonymousClass1(bool));
+                return;
+            }
+            WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
+            boolean zBooleanValue = bool.booleanValue();
+            CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18075z;
+            C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyStatistics");
+            widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.USAGE_STATS, checkedSetting2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96722<T> implements Action1<Boolean> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function5<AlertDialog, TextView, TextView, TextView, TextView, Unit> {
+            public final /* synthetic */ Boolean $consented;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Boolean bool) {
+                super(5);
+                this.$consented = bool;
+            }
+
+            @Override // kotlin.jvm.functions.Function5
+            public /* bridge */ /* synthetic */ Unit invoke(AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
+                invoke2(alertDialog, textView, textView2, textView3, textView4);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(final AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
+                C12238m.checkNotNullParameter(alertDialog, "dialog");
+                C12238m.checkNotNullParameter(textView, "dialogHeader");
+                C12238m.checkNotNullParameter(textView2, "dialogBody");
+                C12238m.checkNotNullParameter(textView3, "dialogCancel");
+                C12238m.checkNotNullParameter(textView4, "dialogConfirm");
+                textView.setText(C5419R.string.personalization_disable_modal_title);
+                textView2.setText(C5419R.string.personalization_disable_modal_body);
+                textView3.setText(C5419R.string.personalization_disable_modal_cancel);
+                textView3.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.2.1.1
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        alertDialog.dismiss();
+                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
+                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
+                        checkedSetting.setChecked(true);
+                        CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18071v;
+                        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
+                        checkedSetting2.setEnabled(true);
+                    }
+                });
+                textView4.setText(C5419R.string.personalization_disable_modal_confirm);
+                textView4.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.2.1.2
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        alertDialog.dismiss();
+                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                        WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
+                        Boolean bool = anonymousClass1.$consented;
+                        C12238m.checkNotNullExpressionValue(bool, "consented");
+                        boolean zBooleanValue = bool.booleanValue();
+                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
+                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
+                        widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.PERSONALIZATION, checkedSetting);
+                    }
+                });
+            }
+        }
+
+        public C96722(Context context) {
+            this.$context = context;
+        }
+
+        @Override // p658rx.functions.Action1
+        public final void call(Boolean bool) {
+            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
+            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
+            checkedSetting.setEnabled(false);
+            C12238m.checkNotNullExpressionValue(bool, "consented");
+            if (!bool.booleanValue()) {
+                WidgetSettingsPrivacy.this.confirmConsent(this.$context, new AnonymousClass1(bool));
+                return;
+            }
+            WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
+            boolean zBooleanValue = bool.booleanValue();
+            CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18071v;
+            C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
+            widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.PERSONALIZATION, checkedSetting2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96741 extends AbstractC12240o implements Function1<Harvest, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96741(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Harvest harvest) {
+            invoke2(harvest);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Harvest harvest) {
+            C12238m.checkNotNullParameter(harvest, "requestedHarvest");
+            WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_success_title).setMessage(C5419R.string.data_privacy_controls_request_data_success_body), C5419R.string.okay, (Function1) null, 2, (Object) null);
+            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            positiveButton$default.show(parentFragmentManager);
+            WidgetSettingsPrivacy.this.configureRequestDataButton(true, new RestAPI.HarvestState.LastRequested(harvest));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96752 extends AbstractC12240o implements Function1<String, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96752(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        public static /* synthetic */ void invoke$default(C96752 c96752, String str, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = null;
+            }
+            c96752.invoke2(str);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            WidgetNoticeDialog.Builder title = new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_failure_title);
+            CharSequence charSequenceM216h = str;
+            if (str == null) {
+                charSequenceM216h = C1107b.m216h(this.$context, C5419R.string.data_privacy_controls_request_data_failure_body, new Object[0], null, 4);
+            }
+            WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(title.setMessage(charSequenceM216h), C5419R.string.okay, (Function1) null, 2, (Object) null);
+            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            positiveButton$default.show(parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96763 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ C96752 $handleRequestError$2;
+        public final /* synthetic */ C96741 $handleRequestSuccess$1;
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                C12238m.checkNotNullParameter(error, "it");
+                C96752 c96752 = C96763.this.$handleRequestError$2;
+                Error.Response response = error.getResponse();
+                C12238m.checkNotNullExpressionValue(response, "it.response");
+                c96752.invoke2(response.getMessage());
+                error.setShowErrorToasts(false);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Harvest, Unit> {
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Harvest harvest) {
+                invoke2(harvest);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Harvest harvest) {
+                if (harvest != null) {
+                    C96763.this.$handleRequestSuccess$1.invoke2(harvest);
+                } else {
+                    C96752.invoke$default(C96763.this.$handleRequestError$2, null, 1, null);
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96763(Context context, C96752 c96752, C96741 c96741) {
+            super(0);
+            this.$context = context;
+            this.$handleRequestError$2 = c96752;
+            this.$handleRequestSuccess$1 = c96741;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn(RestAPI.INSTANCE.getApi().requestHarvest(), false)), WidgetSettingsPrivacy.this.getBinding().f18056g, 100L), (Class<?>) WidgetSettingsPrivacy.this.getClass(), (58 & 2) != 0 ? null : this.$context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new AnonymousClass1()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass2());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$4 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96774 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ C96763 $requestHarvest$3;
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "it");
+                C96774.this.$requestHarvest$3.invoke2();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96774(Context context, C96763 c96763) {
+            super(0);
+            this.$context = context;
+            this.$requestHarvest$3 = c96763;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetNoticeDialog.Builder negativeButton$default = WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_download).setMessage(C5419R.string.data_privacy_controls_request_data_modal_note).setPositiveButton(C5419R.string.okay, new AnonymousClass1()), C5419R.string.cancel, (Function1) null, 2, (Object) null);
+            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            negativeButton$default.show(parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96782 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public static final C96782 INSTANCE = new C96782();
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "it");
+                UriHandler uriHandler = UriHandler.INSTANCE;
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "it.context");
+                UriHandler.handle$default(uriHandler, context, C0862f.f507a.m149a(360004066391L, null), false, false, null, 28, null);
+            }
+        }
+
+        public C96782() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8423b("onClick", AnonymousClass1.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final /* synthetic */ class C96811 extends C12236k implements Function1<Model, Unit> {
+        public C96811(WidgetSettingsPrivacy widgetSettingsPrivacy) {
+            super(1, widgetSettingsPrivacy, WidgetSettingsPrivacy.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsPrivacy$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetSettingsPrivacy) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96822 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C96822() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18074y;
+            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyScreenreaderDetection");
+            checkedSetting.setChecked(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$toggleConsent$1 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96851 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final /* synthetic */ CheckedSetting $toggle;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96851(CheckedSetting checkedSetting) {
+            super(1);
+            this.$toggle = checkedSetting;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            this.$toggle.setEnabled(true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$updateDefaultGuildsRestricted$2 */
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class C96882 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
+        public final /* synthetic */ boolean $defaultGuildsRestricted;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C96882(boolean z2) {
+            super(1);
+            this.$defaultGuildsRestricted = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
+            invoke2((Set<Long>) set);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Set<Long> set) {
+            StoreStream.INSTANCE.getUserSettings().setDefaultGuildsRestricted(WidgetSettingsPrivacy.this.getAppActivity(), this.$defaultGuildsRestricted, set);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -123,7 +678,7 @@ public final class WidgetSettingsPrivacy extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final /* data */ class LocalState {
+    public final /* data */ class LocalState {
         private final ConnectedAccount contactSyncConnection;
         private final Experiment contactSyncExperiment;
         private final boolean defaultRestrictedGuilds;
@@ -173,41 +728,6 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             return localState.copy(meUser, i4, z3, friendSourceFlags2, connectedAccount2, experiment2, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getExplicitContentFilter() {
-            return this.explicitContentFilter;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getDefaultRestrictedGuilds() {
-            return this.defaultRestrictedGuilds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
-            return this.friendSourceFlags;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final ConnectedAccount getContactSyncConnection() {
-            return this.contactSyncConnection;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Experiment getContactSyncExperiment() {
-            return this.contactSyncExperiment;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final int getUserDiscoveryFlags() {
-            return this.userDiscoveryFlags;
-        }
-
         public final LocalState copy(MeUser me2, int explicitContentFilter, boolean defaultRestrictedGuilds, ModelUserSettings.FriendSourceFlags friendSourceFlags, ConnectedAccount contactSyncConnection, Experiment contactSyncExperiment, int userDiscoveryFlags) {
             C12238m.checkNotNullParameter(me2, "me");
             return new LocalState(me2, explicitContentFilter, defaultRestrictedGuilds, friendSourceFlags, contactSyncConnection, contactSyncExperiment, userDiscoveryFlags);
@@ -224,28 +744,63 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             return C12238m.areEqual(this.me, localState.me) && this.explicitContentFilter == localState.explicitContentFilter && this.defaultRestrictedGuilds == localState.defaultRestrictedGuilds && C12238m.areEqual(this.friendSourceFlags, localState.friendSourceFlags) && C12238m.areEqual(this.contactSyncConnection, localState.contactSyncConnection) && C12238m.areEqual(this.contactSyncExperiment, localState.contactSyncExperiment) && this.userDiscoveryFlags == localState.userDiscoveryFlags;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final ConnectedAccount getContactSyncConnection() {
             return this.contactSyncConnection;
+        }
+
+        public final ConnectedAccount getContactSyncConnection() {
+            return this.contactSyncConnection;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Experiment getContactSyncExperiment() {
+            return this.contactSyncExperiment;
         }
 
         public final Experiment getContactSyncExperiment() {
             return this.contactSyncExperiment;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getDefaultRestrictedGuilds() {
             return this.defaultRestrictedGuilds;
+        }
+
+        public final boolean getDefaultRestrictedGuilds() {
+            return this.defaultRestrictedGuilds;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getExplicitContentFilter() {
+            return this.explicitContentFilter;
         }
 
         public final int getExplicitContentFilter() {
             return this.explicitContentFilter;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
             return this.friendSourceFlags;
         }
 
+        public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
+            return this.friendSourceFlags;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMe() {
             return this.me;
+        }
+
+        public final MeUser getMe() {
+            return this.me;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final int getUserDiscoveryFlags() {
+            return this.userDiscoveryFlags;
         }
 
         public final int getUserDiscoveryFlags() {
@@ -293,7 +848,7 @@ public final class WidgetSettingsPrivacy extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -308,7 +863,7 @@ public final class WidgetSettingsPrivacy extends AppFragment {
         private final int userDiscoveryFlags;
 
         /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -411,51 +966,6 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             this.harvestState = harvestState;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getExplicitContentFilter() {
-            return this.explicitContentFilter;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getDefaultRestrictedGuilds() {
-            return this.defaultRestrictedGuilds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
-            return this.friendSourceFlags;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getUserDiscoveryFlags() {
-            return this.userDiscoveryFlags;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final ConnectedAccount getContactSyncConnection() {
-            return this.contactSyncConnection;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getShowContactSync() {
-            return this.showContactSync;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Consents getConsents() {
-            return this.consents;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final RestAPI.HarvestState getHarvestState() {
-            return this.harvestState;
-        }
-
         public final Model copy(MeUser me2, int explicitContentFilter, boolean defaultRestrictedGuilds, ModelUserSettings.FriendSourceFlags friendSourceFlags, int userDiscoveryFlags, ConnectedAccount contactSyncConnection, boolean showContactSync, Consents consents, RestAPI.HarvestState harvestState) {
             C12238m.checkNotNullParameter(me2, "me");
             C12238m.checkNotNullParameter(consents, "consents");
@@ -473,36 +983,81 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             return C12238m.areEqual(this.me, model.me) && this.explicitContentFilter == model.explicitContentFilter && this.defaultRestrictedGuilds == model.defaultRestrictedGuilds && C12238m.areEqual(this.friendSourceFlags, model.friendSourceFlags) && this.userDiscoveryFlags == model.userDiscoveryFlags && C12238m.areEqual(this.contactSyncConnection, model.contactSyncConnection) && this.showContactSync == model.showContactSync && C12238m.areEqual(this.consents, model.consents) && C12238m.areEqual(this.harvestState, model.harvestState);
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final Consents getConsents() {
             return this.consents;
+        }
+
+        public final Consents getConsents() {
+            return this.consents;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final ConnectedAccount getContactSyncConnection() {
+            return this.contactSyncConnection;
         }
 
         public final ConnectedAccount getContactSyncConnection() {
             return this.contactSyncConnection;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getDefaultRestrictedGuilds() {
             return this.defaultRestrictedGuilds;
+        }
+
+        public final boolean getDefaultRestrictedGuilds() {
+            return this.defaultRestrictedGuilds;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getExplicitContentFilter() {
+            return this.explicitContentFilter;
         }
 
         public final int getExplicitContentFilter() {
             return this.explicitContentFilter;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
             return this.friendSourceFlags;
+        }
+
+        public final ModelUserSettings.FriendSourceFlags getFriendSourceFlags() {
+            return this.friendSourceFlags;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final RestAPI.HarvestState getHarvestState() {
+            return this.harvestState;
         }
 
         public final RestAPI.HarvestState getHarvestState() {
             return this.harvestState;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMe() {
             return this.me;
         }
 
+        public final MeUser getMe() {
+            return this.me;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final boolean getShowContactSync() {
             return this.showContactSync;
+        }
+
+        public final boolean getShowContactSync() {
+            return this.showContactSync;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getUserDiscoveryFlags() {
+            return this.userDiscoveryFlags;
         }
 
         public final int getUserDiscoveryFlags() {
@@ -559,561 +1114,6 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             sbM833U.append(this.harvestState);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96611 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public C96611() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
-
-            /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configureContactSyncOptions$1$1$1, reason: invalid class name and collision with other inner class name */
-            /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-            public static final class C132901 extends AbstractC12240o implements Function1<View, Unit> {
-                public static final C132901 INSTANCE = new C132901();
-
-                public C132901() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                    invoke2(view);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(View view) {
-                    C12238m.checkNotNullParameter(view, "it");
-                    UriHandler uriHandler = UriHandler.INSTANCE;
-                    Context context = view.getContext();
-                    C12238m.checkNotNullExpressionValue(context, "it.context");
-                    UriHandler.handle$default(uriHandler, context, C0862f.f507a.m149a(360061878534L, null), false, false, null, 28, null);
-                }
-            }
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Hook hook) {
-                C12238m.checkNotNullParameter(hook, "$receiver");
-                hook.styles.add(new ClickableSpan(Integer.valueOf(ColorCompat.getColor(WidgetSettingsPrivacy.this.getContext(), C5419R.color.link)), false, null, C132901.INSTANCE, 4, null));
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
-                invoke2(hook);
-                return Unit.f27425a;
-            }
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8422a("onClick", new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96711<T> implements Action1<Boolean> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function5<AlertDialog, TextView, TextView, TextView, TextView, Unit> {
-            public final /* synthetic */ Boolean $consented;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(Boolean bool) {
-                super(5);
-                this.$consented = bool;
-            }
-
-            @Override // kotlin.jvm.functions.Function5
-            public /* bridge */ /* synthetic */ Unit invoke(AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
-                invoke2(alertDialog, textView, textView2, textView3, textView4);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(final AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
-                C12238m.checkNotNullParameter(alertDialog, "dialog");
-                C12238m.checkNotNullParameter(textView, "dialogHeader");
-                C12238m.checkNotNullParameter(textView2, "dialogBody");
-                C12238m.checkNotNullParameter(textView3, "dialogCancel");
-                C12238m.checkNotNullParameter(textView4, "dialogConfirm");
-                textView.setText(C5419R.string.usage_statistics_disable_modal_title);
-                textView2.setText(C5419R.string.usage_statistics_disable_modal_body);
-                textView3.setText(C5419R.string.usage_statistics_disable_modal_cancel);
-                textView3.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.1.1.1
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        alertDialog.dismiss();
-                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
-                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
-                        checkedSetting.setChecked(true);
-                        CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18075z;
-                        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyStatistics");
-                        checkedSetting2.setEnabled(true);
-                    }
-                });
-                textView4.setText(C5419R.string.usage_statistics_disable_modal_confirm);
-                textView4.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.1.1.2
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        alertDialog.dismiss();
-                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                        WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
-                        Boolean bool = anonymousClass1.$consented;
-                        C12238m.checkNotNullExpressionValue(bool, "consented");
-                        boolean zBooleanValue = bool.booleanValue();
-                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
-                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
-                        widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.USAGE_STATS, checkedSetting);
-                    }
-                });
-            }
-        }
-
-        public C96711(Context context) {
-            this.$context = context;
-        }
-
-        @Override // p658rx.functions.Action1
-        public final void call(Boolean bool) {
-            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18075z;
-            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyStatistics");
-            checkedSetting.setEnabled(false);
-            C12238m.checkNotNullExpressionValue(bool, "consented");
-            if (!bool.booleanValue()) {
-                WidgetSettingsPrivacy.this.confirmConsent(this.$context, new AnonymousClass1(bool));
-                return;
-            }
-            WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
-            boolean zBooleanValue = bool.booleanValue();
-            CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18075z;
-            C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyStatistics");
-            widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.USAGE_STATS, checkedSetting2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96722<T> implements Action1<Boolean> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$configurePrivacyControls$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function5<AlertDialog, TextView, TextView, TextView, TextView, Unit> {
-            public final /* synthetic */ Boolean $consented;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(Boolean bool) {
-                super(5);
-                this.$consented = bool;
-            }
-
-            @Override // kotlin.jvm.functions.Function5
-            public /* bridge */ /* synthetic */ Unit invoke(AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
-                invoke2(alertDialog, textView, textView2, textView3, textView4);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(final AlertDialog alertDialog, TextView textView, TextView textView2, TextView textView3, TextView textView4) {
-                C12238m.checkNotNullParameter(alertDialog, "dialog");
-                C12238m.checkNotNullParameter(textView, "dialogHeader");
-                C12238m.checkNotNullParameter(textView2, "dialogBody");
-                C12238m.checkNotNullParameter(textView3, "dialogCancel");
-                C12238m.checkNotNullParameter(textView4, "dialogConfirm");
-                textView.setText(C5419R.string.personalization_disable_modal_title);
-                textView2.setText(C5419R.string.personalization_disable_modal_body);
-                textView3.setText(C5419R.string.personalization_disable_modal_cancel);
-                textView3.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.2.1.1
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        alertDialog.dismiss();
-                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
-                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
-                        checkedSetting.setChecked(true);
-                        CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18071v;
-                        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
-                        checkedSetting2.setEnabled(true);
-                    }
-                });
-                textView4.setText(C5419R.string.personalization_disable_modal_confirm);
-                textView4.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.configurePrivacyControls.2.1.2
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        alertDialog.dismiss();
-                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                        WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
-                        Boolean bool = anonymousClass1.$consented;
-                        C12238m.checkNotNullExpressionValue(bool, "consented");
-                        boolean zBooleanValue = bool.booleanValue();
-                        CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
-                        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
-                        widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.PERSONALIZATION, checkedSetting);
-                    }
-                });
-            }
-        }
-
-        public C96722(Context context) {
-            this.$context = context;
-        }
-
-        @Override // p658rx.functions.Action1
-        public final void call(Boolean bool) {
-            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18071v;
-            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyPersonalization");
-            checkedSetting.setEnabled(false);
-            C12238m.checkNotNullExpressionValue(bool, "consented");
-            if (!bool.booleanValue()) {
-                WidgetSettingsPrivacy.this.confirmConsent(this.$context, new AnonymousClass1(bool));
-                return;
-            }
-            WidgetSettingsPrivacy widgetSettingsPrivacy = WidgetSettingsPrivacy.this;
-            boolean zBooleanValue = bool.booleanValue();
-            CheckedSetting checkedSetting2 = WidgetSettingsPrivacy.this.getBinding().f18071v;
-            C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
-            widgetSettingsPrivacy.toggleConsent(zBooleanValue, RestAPIParams.Consents.Type.PERSONALIZATION, checkedSetting2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96741 extends AbstractC12240o implements Function1<Harvest, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96741(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Harvest harvest) {
-            invoke2(harvest);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Harvest harvest) {
-            C12238m.checkNotNullParameter(harvest, "requestedHarvest");
-            WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_success_title).setMessage(C5419R.string.data_privacy_controls_request_data_success_body), C5419R.string.okay, (Function1) null, 2, (Object) null);
-            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            positiveButton$default.show(parentFragmentManager);
-            WidgetSettingsPrivacy.this.configureRequestDataButton(true, new RestAPI.HarvestState.LastRequested(harvest));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96752 extends AbstractC12240o implements Function1<String, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96752(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        public static /* synthetic */ void invoke$default(C96752 c96752, String str, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = null;
-            }
-            c96752.invoke2(str);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            WidgetNoticeDialog.Builder title = new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_failure_title);
-            CharSequence charSequenceM216h = str;
-            if (str == null) {
-                charSequenceM216h = C1107b.m216h(this.$context, C5419R.string.data_privacy_controls_request_data_failure_body, new Object[0], null, 4);
-            }
-            WidgetNoticeDialog.Builder positiveButton$default = WidgetNoticeDialog.Builder.setPositiveButton$default(title.setMessage(charSequenceM216h), C5419R.string.okay, (Function1) null, 2, (Object) null);
-            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            positiveButton$default.show(parentFragmentManager);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96763 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ C96752 $handleRequestError$2;
-        public final /* synthetic */ C96741 $handleRequestSuccess$1;
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-                invoke2(error);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Error error) {
-                C12238m.checkNotNullParameter(error, "it");
-                C96752 c96752 = C96763.this.$handleRequestError$2;
-                Error.Response response = error.getResponse();
-                C12238m.checkNotNullExpressionValue(response, "it.response");
-                c96752.invoke2(response.getMessage());
-                error.setShowErrorToasts(false);
-            }
-        }
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$3$2, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Harvest, Unit> {
-            public AnonymousClass2() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(Harvest harvest) {
-                invoke2(harvest);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(Harvest harvest) {
-                if (harvest != null) {
-                    C96763.this.$handleRequestSuccess$1.invoke2(harvest);
-                } else {
-                    C96752.invoke$default(C96763.this.$handleRequestError$2, null, 1, null);
-                }
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96763(Context context, C96752 c96752, C96741 c96741) {
-            super(0);
-            this.$context = context;
-            this.$handleRequestError$2 = c96752;
-            this.$handleRequestSuccess$1 = c96741;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.m8518ui(ObservableExtensionsKt.restSubscribeOn(RestAPI.INSTANCE.getApi().requestHarvest(), false)), WidgetSettingsPrivacy.this.getBinding().f18056g, 100L), (Class<?>) WidgetSettingsPrivacy.this.getClass(), (58 & 2) != 0 ? null : this.$context, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new AnonymousClass1()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass2());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$4 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96774 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ C96763 $requestHarvest$3;
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onRequestDataClick$4$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "it");
-                C96774.this.$requestHarvest$3.invoke2();
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96774(Context context, C96763 c96763) {
-            super(0);
-            this.$context = context;
-            this.$requestHarvest$3 = c96763;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetNoticeDialog.Builder negativeButton$default = WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(this.$context).setTitle(C5419R.string.data_privacy_controls_request_data_download).setMessage(C5419R.string.data_privacy_controls_request_data_modal_note).setPositiveButton(C5419R.string.okay, new AnonymousClass1()), C5419R.string.cancel, (Function1) null, 2, (Object) null);
-            FragmentManager parentFragmentManager = WidgetSettingsPrivacy.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            negativeButton$default.show(parentFragmentManager);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96782 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public static final C96782 INSTANCE = new C96782();
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "it");
-                UriHandler uriHandler = UriHandler.INSTANCE;
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "it.context");
-                UriHandler.handle$default(uriHandler, context, C0862f.f507a.m149a(360004066391L, null), false, false, null, 28, null);
-            }
-        }
-
-        public C96782() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8423b("onClick", AnonymousClass1.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final /* synthetic */ class C96811 extends C12236k implements Function1<Model, Unit> {
-        public C96811(WidgetSettingsPrivacy widgetSettingsPrivacy) {
-            super(1, widgetSettingsPrivacy, WidgetSettingsPrivacy.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsPrivacy$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetSettingsPrivacy) this.receiver).configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96822 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C96822() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            CheckedSetting checkedSetting = WidgetSettingsPrivacy.this.getBinding().f18074y;
-            C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsPrivacyScreenreaderDetection");
-            checkedSetting.setChecked(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$toggleConsent$1 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96851 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ CheckedSetting $toggle;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96851(CheckedSetting checkedSetting) {
-            super(1);
-            this.$toggle = checkedSetting;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            this.$toggle.setEnabled(true);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsPrivacy$updateDefaultGuildsRestricted$2 */
-    /* JADX INFO: compiled from: WidgetSettingsPrivacy.kt */
-    public static final class C96882 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
-        public final /* synthetic */ boolean $defaultGuildsRestricted;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C96882(boolean z2) {
-            super(1);
-            this.$defaultGuildsRestricted = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
-            invoke2((Set<Long>) set);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Set<Long> set) {
-            StoreStream.INSTANCE.getUserSettings().setDefaultGuildsRestricted(WidgetSettingsPrivacy.this.getAppActivity(), this.$defaultGuildsRestricted, set);
         }
     }
 
@@ -1386,6 +1386,15 @@ public final class WidgetSettingsPrivacy extends AppFragment {
         INSTANCE.launch(context);
     }
 
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onPause() {
+        super.onPause();
+        AlertDialog alertDialog = this.dialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+    }
+
     private final void onRequestDataClick(Context context, RestAPI.HarvestState harvestState) {
         C96774 c96774 = new C96774(context, new C96763(context, new C96752(context), new C96741(context)));
         if (harvestState instanceof RestAPI.HarvestState.NeverRequested) {
@@ -1400,6 +1409,84 @@ public final class WidgetSettingsPrivacy extends AppFragment {
                 showNextAvailableRequestAlert(data.nextAvailableRequestInMillis());
             }
         }
+    }
+
+    @Override // com.discord.app.AppFragment
+    @SuppressLint({"SetTextI18n"})
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        setActionBarSubtitle(C5419R.string.user_settings);
+        setActionBarTitle(C5419R.string.privacy_and_safety);
+        this.radioManagerExplicit = new RadioManager(getExplicitContentRadios());
+        CheckedSetting checkedSetting = getBinding().f18071v;
+        CheckedSetting checkedSetting2 = getBinding().f18071v;
+        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
+        C0862f c0862f = C0862f.f507a;
+        checkedSetting.m8530h(C1107b.m212d(checkedSetting2, C5419R.string.data_privacy_controls_personalization_note_learn_more, new Object[]{c0862f.m149a(360004109911L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
+        CheckedSetting checkedSetting3 = getBinding().f18074y;
+        CheckedSetting checkedSetting4 = getBinding().f18074y;
+        C12238m.checkNotNullExpressionValue(checkedSetting4, "binding.settingsPrivacyScreenreaderDetection");
+        checkedSetting3.m8530h(C1107b.m212d(checkedSetting4, C5419R.string.data_privacy_controls_allow_accessibility_detection_note, new Object[]{c0862f.m149a(360035966492L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
+        final CheckedSetting checkedSetting5 = getBinding().f18074y;
+        checkedSetting5.setOnCheckedListener(new Action1<Boolean>() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$$inlined$apply$lambda$1
+            @Override // p658rx.functions.Action1
+            public final void call(Boolean bool) {
+                StoreUserSettings storeUserSettings = this.userSettings;
+                C12238m.checkNotNullExpressionValue(bool, "checked");
+                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(storeUserSettings.setIsAccessibilityDetectionAllowed(bool.booleanValue()), false, 1, null), (Class<?>) checkedSetting5.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), WidgetSettingsPrivacy$onViewBound$1$1$1.INSTANCE);
+            }
+        });
+        getBinding().f18058i.setButtonVisibility(false);
+        CheckedSetting checkedSetting6 = getBinding().f18058i;
+        CheckedSetting checkedSetting7 = getBinding().f18058i;
+        C12238m.checkNotNullExpressionValue(checkedSetting7, "binding.settingsPrivacyBasicService");
+        checkedSetting6.m8530h(C1107b.m212d(checkedSetting7, C5419R.string.data_privacy_controls_basic_service_note, new Object[0], C96782.INSTANCE), true);
+        getBinding().f18058i.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.onViewBound.3
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetSettingsAccount.Companion companion = WidgetSettingsAccount.INSTANCE;
+                C12238m.checkNotNullExpressionValue(view2, "it");
+                Context context = view2.getContext();
+                C12238m.checkNotNullExpressionValue(context, "it.context");
+                WidgetSettingsAccount.Companion.launch$default(companion, context, true, null, 4, null);
+            }
+        });
+        final String strM149a = c0862f.m149a(360004027692L, null);
+        TextView textView = getBinding().f18057h;
+        C12238m.checkNotNullExpressionValue(textView, "binding.requestDataLink");
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        TextView textView2 = getBinding().f18057h;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.requestDataLink");
+        sb.append(C1107b.m212d(textView2, C5419R.string.notice_whats_this, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null));
+        sb.append("](");
+        sb.append(strM149a);
+        sb.append(')');
+        textView.setText(C1107b.m215g(sb.toString(), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null));
+        getBinding().f18057h.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.onViewBound.4
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                UriHandler.handle$default(UriHandler.INSTANCE, C1643a.m885x(view2, "it", "it.context"), strM149a, false, false, null, 28, null);
+            }
+        });
+        CheckedSetting checkedSetting8 = getBinding().f18075z;
+        CheckedSetting checkedSetting9 = getBinding().f18075z;
+        C12238m.checkNotNullExpressionValue(checkedSetting9, "binding.settingsPrivacyStatistics");
+        checkedSetting8.m8530h(C1107b.m212d(checkedSetting9, C5419R.string.data_privacy_controls_usage_statistics_note, new Object[]{c0862f.m149a(360004109911L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
+        for (TextView textView3 : C12147n.listOf((Object[]) new TextView[]{getBinding().f18073x, getBinding().f18063n, getBinding().f18070u, getBinding().f18061l})) {
+            AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
+            C12238m.checkNotNullExpressionValue(textView3, "header");
+            accessibilityUtils.setViewIsHeading(textView3);
+        }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(), this, null, 2, null), (Class<?>) WidgetSettingsPrivacy.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96811(this));
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(this.userSettings.observeIsAccessibilityDetectionAllowed(), this, null, 2, null), (Class<?>) WidgetSettingsPrivacy.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96822());
     }
 
     private final void showDefaultGuildsRestrictedExistingServers(final boolean defaultGuildsRestricted) {
@@ -1522,92 +1609,5 @@ public final class WidgetSettingsPrivacy extends AppFragment {
             z2 = true;
         }
         StoreStream.INSTANCE.getUserSettings().setFriendSourceFlags(getAppActivity(), Boolean.valueOf(z2), Boolean.valueOf(zIsChecked3), Boolean.valueOf(zIsChecked2));
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onPause() {
-        super.onPause();
-        AlertDialog alertDialog = this.dialog;
-        if (alertDialog != null) {
-            alertDialog.dismiss();
-        }
-    }
-
-    @Override // com.discord.app.AppFragment
-    @SuppressLint({"SetTextI18n"})
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarSubtitle(C5419R.string.user_settings);
-        setActionBarTitle(C5419R.string.privacy_and_safety);
-        this.radioManagerExplicit = new RadioManager(getExplicitContentRadios());
-        CheckedSetting checkedSetting = getBinding().f18071v;
-        CheckedSetting checkedSetting2 = getBinding().f18071v;
-        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsPrivacyPersonalization");
-        C0862f c0862f = C0862f.f507a;
-        checkedSetting.m8530h(C1107b.m212d(checkedSetting2, C5419R.string.data_privacy_controls_personalization_note_learn_more, new Object[]{c0862f.m149a(360004109911L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
-        CheckedSetting checkedSetting3 = getBinding().f18074y;
-        CheckedSetting checkedSetting4 = getBinding().f18074y;
-        C12238m.checkNotNullExpressionValue(checkedSetting4, "binding.settingsPrivacyScreenreaderDetection");
-        checkedSetting3.m8530h(C1107b.m212d(checkedSetting4, C5419R.string.data_privacy_controls_allow_accessibility_detection_note, new Object[]{c0862f.m149a(360035966492L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
-        final CheckedSetting checkedSetting5 = getBinding().f18074y;
-        checkedSetting5.setOnCheckedListener(new Action1<Boolean>() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy$onViewBound$$inlined$apply$lambda$1
-            @Override // p658rx.functions.Action1
-            public final void call(Boolean bool) {
-                StoreUserSettings storeUserSettings = this.userSettings;
-                C12238m.checkNotNullExpressionValue(bool, "checked");
-                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(storeUserSettings.setIsAccessibilityDetectionAllowed(bool.booleanValue()), false, 1, null), (Class<?>) checkedSetting5.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), WidgetSettingsPrivacy$onViewBound$1$1$1.INSTANCE);
-            }
-        });
-        getBinding().f18058i.setButtonVisibility(false);
-        CheckedSetting checkedSetting6 = getBinding().f18058i;
-        CheckedSetting checkedSetting7 = getBinding().f18058i;
-        C12238m.checkNotNullExpressionValue(checkedSetting7, "binding.settingsPrivacyBasicService");
-        checkedSetting6.m8530h(C1107b.m212d(checkedSetting7, C5419R.string.data_privacy_controls_basic_service_note, new Object[0], C96782.INSTANCE), true);
-        getBinding().f18058i.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.onViewBound.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetSettingsAccount.Companion companion = WidgetSettingsAccount.INSTANCE;
-                C12238m.checkNotNullExpressionValue(view2, "it");
-                Context context = view2.getContext();
-                C12238m.checkNotNullExpressionValue(context, "it.context");
-                WidgetSettingsAccount.Companion.launch$default(companion, context, true, null, 4, null);
-            }
-        });
-        final String strM149a = c0862f.m149a(360004027692L, null);
-        TextView textView = getBinding().f18057h;
-        C12238m.checkNotNullExpressionValue(textView, "binding.requestDataLink");
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
-        TextView textView2 = getBinding().f18057h;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.requestDataLink");
-        sb.append(C1107b.m212d(textView2, C5419R.string.notice_whats_this, new Object[0], (4 & 4) != 0 ? C1107b.c.f1492j : null));
-        sb.append("](");
-        sb.append(strM149a);
-        sb.append(')');
-        textView.setText(C1107b.m215g(sb.toString(), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null));
-        getBinding().f18057h.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.WidgetSettingsPrivacy.onViewBound.4
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                UriHandler.handle$default(UriHandler.INSTANCE, C1643a.m885x(view2, "it", "it.context"), strM149a, false, false, null, 28, null);
-            }
-        });
-        CheckedSetting checkedSetting8 = getBinding().f18075z;
-        CheckedSetting checkedSetting9 = getBinding().f18075z;
-        C12238m.checkNotNullExpressionValue(checkedSetting9, "binding.settingsPrivacyStatistics");
-        checkedSetting8.m8530h(C1107b.m212d(checkedSetting9, C5419R.string.data_privacy_controls_usage_statistics_note, new Object[]{c0862f.m149a(360004109911L, null)}, (4 & 4) != 0 ? C1107b.c.f1492j : null), true);
-        for (TextView textView3 : C12147n.listOf((Object[]) new TextView[]{getBinding().f18073x, getBinding().f18063n, getBinding().f18070u, getBinding().f18061l})) {
-            AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
-            C12238m.checkNotNullExpressionValue(textView3, "header");
-            accessibilityUtils.setViewIsHeading(textView3);
-        }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(), this, null, 2, null), (Class<?>) WidgetSettingsPrivacy.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96811(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(this.userSettings.observeIsAccessibilityDetectionAllowed(), this, null, 2, null), (Class<?>) WidgetSettingsPrivacy.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C96822());
     }
 }

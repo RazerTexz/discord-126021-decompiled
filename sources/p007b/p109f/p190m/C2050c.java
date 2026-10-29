@@ -30,12 +30,6 @@ public class C2050c extends AbstractC2059l {
         this.f4320b = i;
     }
 
-    @Override // p007b.p109f.p190m.AbstractC2059l
-    /* JADX INFO: renamed from: a */
-    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
-        return m1572c(str, i, this.f4319a, threadPolicy);
-    }
-
     /* JADX INFO: renamed from: c */
     public int m1572c(String str, int i, File file, StrictMode.ThreadPolicy threadPolicy) throws Throwable {
         File file2 = new File(file, str);
@@ -108,6 +102,12 @@ public class C2050c extends AbstractC2059l {
             Log.d("SoLoader", "Corrupted lib file detected");
             return 3;
         }
+    }
+
+    @Override // p007b.p109f.p190m.AbstractC2059l
+    /* JADX INFO: renamed from: a */
+    public int mo1568a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
+        return m1572c(str, i, this.f4319a, threadPolicy);
     }
 
     @Override // p007b.p109f.p190m.AbstractC2059l

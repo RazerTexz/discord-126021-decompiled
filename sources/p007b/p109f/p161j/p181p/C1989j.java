@@ -38,7 +38,7 @@ public class C1989j implements InterfaceC2018w0<CloseableReference<AbstractC1917
 
     /* JADX INFO: renamed from: b.f.j.p.j$a */
     /* JADX INFO: compiled from: BitmapProbeProducer.java */
-    public static class a extends AbstractC2003p<CloseableReference<AbstractC1917c>, CloseableReference<AbstractC1917c>> {
+    public class a extends AbstractC2003p<CloseableReference<AbstractC1917c>, CloseableReference<AbstractC1917c>> {
 
         /* JADX INFO: renamed from: c */
         public final InterfaceC2020x0 f4096c;

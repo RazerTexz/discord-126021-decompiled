@@ -7,21 +7,21 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3730l0 extends AbstractC3851u4<C3730l0, a> implements InterfaceC3626d6 {
-    private static final C3730l0 zzl;
-    private static volatile InterfaceC3710j6<C3730l0> zzm;
     private int zzc;
     private int zzd;
-    private String zze = "";
-    private InterfaceC3597b5<C3743m0> zzf = C3749m6.f10094k;
     private boolean zzg;
     private C3756n0 zzh;
     private boolean zzi;
     private boolean zzj;
     private boolean zzk;
+    private static final C3730l0 zzl;
+    private static volatile InterfaceC3710j6<C3730l0> zzm;
+    private String zze = "";
+    private InterfaceC3597b5<C3743m0> zzf = C3749m6.f10094k;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.l0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3730l0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3730l0, a> implements InterfaceC3626d6 {
         public a() {
             super(C3730l0.zzl);
         }
@@ -102,6 +102,26 @@ public final class C3730l0 extends AbstractC3851u4<C3730l0, a> implements Interf
         return this.zzk;
     }
 
+    /* JADX INFO: renamed from: u */
+    public final C3743m0 m5043u(int i) {
+        return this.zzf.get(i);
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final boolean m5044x() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final int m5045y() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final String m5046z() {
+        return this.zze;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -134,25 +154,5 @@ public final class C3730l0 extends AbstractC3851u4<C3730l0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final C3743m0 m5043u(int i) {
-        return this.zzf.get(i);
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final boolean m5044x() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final int m5045y() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final String m5046z() {
-        return this.zze;
     }
 }

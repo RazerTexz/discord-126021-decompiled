@@ -109,7 +109,7 @@ class CommentCollectingTokenizer extends JavaTokenizer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/java8/CommentCollectingTokenizer$PositionUnicodeReader.SCL.lombok */
-    static class PositionUnicodeReader extends UnicodeReader {
+    class PositionUnicodeReader extends UnicodeReader {
         protected PositionUnicodeReader(ScannerFactory sf, char[] input, int inputLength) {
             super(sf, input, inputLength);
         }

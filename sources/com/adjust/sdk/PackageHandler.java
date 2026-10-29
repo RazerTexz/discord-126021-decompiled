@@ -44,69 +44,6 @@ public class PackageHandler implements IPackageHandler {
         writePackageQueueI();
     }
 
-    public static Boolean deletePackageQueue(Context context) {
-        return Boolean.valueOf(context.deleteFile(PACKAGE_QUEUE_FILENAME));
-    }
-
-    public static void deleteState(Context context) {
-        deletePackageQueue(context);
-    }
-
-    private void flushI() {
-        this.packageQueue.clear();
-        writePackageQueueI();
-    }
-
-    private void initI() {
-        this.requestHandler = AdjustFactory.getRequestHandler(this.activityHandlerWeakRef.get(), this);
-        this.isSending = new AtomicBoolean();
-        readPackageQueueI();
-    }
-
-    private void readPackageQueueI() {
-        try {
-            this.packageQueue = (List) Util.readObject(this.context, PACKAGE_QUEUE_FILENAME, PACKAGE_QUEUE_NAME, List.class);
-        } catch (Exception e) {
-            this.logger.error("Failed to read %s file (%s)", PACKAGE_QUEUE_NAME, e.getMessage());
-            this.packageQueue = null;
-        }
-        List<ActivityPackage> list = this.packageQueue;
-        if (list != null) {
-            this.logger.debug("Package handler read %d packages", Integer.valueOf(list.size()));
-        } else {
-            this.packageQueue = new ArrayList();
-        }
-    }
-
-    private void sendFirstI() {
-        if (this.packageQueue.isEmpty()) {
-            return;
-        }
-        if (this.paused) {
-            this.logger.debug("Package handler is paused", new Object[0]);
-        } else if (this.isSending.getAndSet(true)) {
-            this.logger.verbose("Package handler is already sending", new Object[0]);
-        } else {
-            this.requestHandler.sendPackage(this.packageQueue.get(0), this.packageQueue.size() - 1);
-        }
-    }
-
-    private void sendNextI() {
-        if (this.packageQueue.isEmpty()) {
-            return;
-        }
-        this.packageQueue.remove(0);
-        writePackageQueueI();
-        this.isSending.set(false);
-        this.logger.verbose("Package handler can send", new Object[0]);
-        sendFirstI();
-    }
-
-    private void writePackageQueueI() {
-        Util.writeObject(this.packageQueue, this.context, PACKAGE_QUEUE_FILENAME, PACKAGE_QUEUE_NAME);
-        this.logger.debug("Package handler wrote %d packages", Integer.valueOf(this.packageQueue.size()));
-    }
-
     @Override // com.adjust.sdk.IPackageHandler
     public void addPackage(final ActivityPackage activityPackage) {
         this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.2
@@ -142,6 +79,14 @@ public class PackageHandler implements IPackageHandler {
         this.scheduler.schedule(runnable, waitingTime);
     }
 
+    public static Boolean deletePackageQueue(Context context) {
+        return Boolean.valueOf(context.deleteFile(PACKAGE_QUEUE_FILENAME));
+    }
+
+    public static void deleteState(Context context) {
+        deletePackageQueue(context);
+    }
+
     @Override // com.adjust.sdk.IPackageHandler
     public void flush() {
         this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.7
@@ -150,6 +95,11 @@ public class PackageHandler implements IPackageHandler {
                 PackageHandler.this.flushI();
             }
         });
+    }
+
+    private void flushI() {
+        this.packageQueue.clear();
+        writePackageQueueI();
     }
 
     @Override // com.adjust.sdk.IPackageHandler
@@ -177,14 +127,48 @@ public class PackageHandler implements IPackageHandler {
         this.subscriptionPath = iActivityHandler.getSubscriptionPath();
     }
 
+    private void initI() {
+        this.requestHandler = AdjustFactory.getRequestHandler(this.activityHandlerWeakRef.get(), this);
+        this.isSending = new AtomicBoolean();
+        readPackageQueueI();
+    }
+
     @Override // com.adjust.sdk.IPackageHandler
     public void pauseSending() {
         this.paused = true;
     }
 
+    private void readPackageQueueI() {
+        try {
+            this.packageQueue = (List) Util.readObject(this.context, PACKAGE_QUEUE_FILENAME, PACKAGE_QUEUE_NAME, List.class);
+        } catch (Exception e) {
+            this.logger.error("Failed to read %s file (%s)", PACKAGE_QUEUE_NAME, e.getMessage());
+            this.packageQueue = null;
+        }
+        List<ActivityPackage> list = this.packageQueue;
+        if (list != null) {
+            this.logger.debug("Package handler read %d packages", Integer.valueOf(list.size()));
+        } else {
+            this.packageQueue = new ArrayList();
+        }
+    }
+
     @Override // com.adjust.sdk.IPackageHandler
     public void resumeSending() {
         this.paused = false;
+    }
+
+    private void sendFirstI() {
+        if (this.packageQueue.isEmpty()) {
+            return;
+        }
+        if (this.paused) {
+            this.logger.debug("Package handler is paused", new Object[0]);
+        } else if (this.isSending.getAndSet(true)) {
+            this.logger.verbose("Package handler is already sending", new Object[0]);
+        } else {
+            this.requestHandler.sendPackage(this.packageQueue.get(0), this.packageQueue.size() - 1);
+        }
     }
 
     @Override // com.adjust.sdk.IPackageHandler
@@ -195,6 +179,17 @@ public class PackageHandler implements IPackageHandler {
                 PackageHandler.this.sendFirstI();
             }
         });
+    }
+
+    private void sendNextI() {
+        if (this.packageQueue.isEmpty()) {
+            return;
+        }
+        this.packageQueue.remove(0);
+        writePackageQueueI();
+        this.isSending.set(false);
+        this.logger.verbose("Package handler can send", new Object[0]);
+        sendFirstI();
     }
 
     @Override // com.adjust.sdk.IPackageHandler
@@ -264,5 +259,10 @@ public class PackageHandler implements IPackageHandler {
             PackageBuilder.addMapJson(parameters, Constants.PARTNER_PARAMETERS, Util.mergeParameters(sessionParameters.partnerParameters, activityPackage.getPartnerParameters(), "Partner"));
         }
         writePackageQueueI();
+    }
+
+    private void writePackageQueueI() {
+        Util.writeObject(this.packageQueue, this.context, PACKAGE_QUEUE_FILENAME, PACKAGE_QUEUE_NAME);
+        this.logger.debug("Package handler wrote %d packages", Integer.valueOf(this.packageQueue.size()));
     }
 }

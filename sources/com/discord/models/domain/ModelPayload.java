@@ -55,7 +55,7 @@ public class ModelPayload implements Model {
     /* JADX INFO: renamed from: v */
     private int f18574v;
 
-    public static class Hello implements Model {
+    public class Hello implements Model {
         private int heartbeatInterval;
         private List<String> trace;
 
@@ -121,7 +121,7 @@ public class ModelPayload implements Model {
         }
     }
 
-    public static class MergedPresences implements Model {
+    public class MergedPresences implements Model {
         private List<Presence> friends;
         private List<List<Presence>> guilds;
 
@@ -204,7 +204,7 @@ public class ModelPayload implements Model {
         }
     }
 
-    public static abstract class VersionedModel<T> implements Model {
+    public abstract class VersionedModel<T> implements Model {
         public static final int DEFAULT_VERSION = -1;
         private List<T> entries;
         private boolean partial;
@@ -289,7 +289,7 @@ public class ModelPayload implements Model {
         }
     }
 
-    public static class VersionedReadStates extends VersionedModel<ModelReadState> {
+    public class VersionedReadStates extends VersionedModel<ModelReadState> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.discord.models.domain.ModelPayload.VersionedModel
         public ModelReadState parseEntry(Model.JsonReader jsonReader) {
@@ -297,7 +297,7 @@ public class ModelPayload implements Model {
         }
     }
 
-    public static class VersionedUserGuildSettings extends VersionedModel<ModelNotificationSettings> {
+    public class VersionedUserGuildSettings extends VersionedModel<ModelNotificationSettings> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.discord.models.domain.ModelPayload.VersionedModel
         public ModelNotificationSettings parseEntry(Model.JsonReader jsonReader) throws IOException {
@@ -306,20 +306,6 @@ public class ModelPayload implements Model {
     }
 
     public ModelPayload() {
-    }
-
-    private Object getTraces(final Model.JsonReader jsonReader) throws IOException {
-        jsonReader.getClass();
-        List listNextList = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.g0
-            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-            public final Object get() {
-                return jsonReader.nextStringOrNull();
-            }
-        });
-        if (listNextList.size() <= 0 || listNextList.get(0) == null) {
-            return null;
-        }
-        return new Gson().m9202f((String) listNextList.get(0), Object.class);
     }
 
     @Override // com.discord.models.domain.Model
@@ -685,6 +671,20 @@ public class ModelPayload implements Model {
 
     public Object getTrace() {
         return this.trace;
+    }
+
+    private Object getTraces(final Model.JsonReader jsonReader) throws IOException {
+        jsonReader.getClass();
+        List listNextList = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.g0
+            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+            public final Object get() {
+                return jsonReader.nextStringOrNull();
+            }
+        });
+        if (listNextList.size() <= 0 || listNextList.get(0) == null) {
+            return null;
+        }
+        return new Gson().m9202f((String) listNextList.get(0), Object.class);
     }
 
     public VersionedUserGuildSettings getUserGuildSettings() {

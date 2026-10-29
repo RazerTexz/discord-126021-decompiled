@@ -47,6 +47,7 @@ import com.discord.widgets.user.profile.UserProfileHeaderView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.Lazy;
@@ -101,42 +102,9 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void launch$default(Companion companion, Context context, AppTransitionActivity.Transition transition, Long l, int i, Object obj) {
-            if ((i & 2) != 0) {
-                transition = null;
-            }
-            if ((i & 4) != 0) {
-                l = null;
-            }
-            companion.launch(context, transition, l);
-        }
-
-        public final void launch(Context context, AppTransitionActivity.Transition transition, Long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            if (transition != null) {
-                intent.putExtra("transition", transition);
-            }
-            if (guildId != null) {
-                intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId.longValue());
-            }
-            C0870j.m156d(context, WidgetEditUserOrGuildMemberProfile.class, intent);
-            StoreAnalytics.onUserSettingsPaneViewed$default(StoreStream.INSTANCE.getAnalytics(), "User Profile", null, 2, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureAvatarSelect$1 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99691 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C99691 extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ SettingsUserProfileViewModel.ViewState.Loaded $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -167,12 +135,12 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureAvatarSelect$2 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99702 extends AbstractC12240o implements Function0<Unit> {
+    public final class C99702 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $avatarSheetOptions;
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureAvatarSelect$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Integer, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -220,7 +188,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$1 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99711 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C99711 extends AbstractC12240o implements Function1<String, Unit> {
         public C99711() {
             super(1);
         }
@@ -240,37 +208,16 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99722 extends AbstractC12240o implements Function0<Unit> {
+    public final class C99722 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ SettingsUserProfileViewModel.ViewState.Loaded $viewState;
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
-
-            /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2$1$1, reason: invalid class name and collision with other inner class name */
-            /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-            public static final class C132931 extends AbstractC12240o implements Function0<Unit> {
-                public C132931() {
-                    super(0);
-                }
-
-                @Override // kotlin.jvm.functions.Function0
-                public /* bridge */ /* synthetic */ Unit invoke() {
-                    invoke2();
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2() {
-                    WidgetEditUserOrGuildMemberProfile widgetEditUserOrGuildMemberProfile = WidgetEditUserOrGuildMemberProfile.this;
-                    widgetEditUserOrGuildMemberProfile.imageSelectedResult = widgetEditUserOrGuildMemberProfile.bannerSelectedResult;
-                    WidgetEditUserOrGuildMemberProfile.this.openMediaChooser();
-                }
-            }
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -289,7 +236,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2$1$3, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-            public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Integer, Unit> {
+            public final class AnonymousClass3 extends AbstractC12240o implements Function1<Integer, Unit> {
                 public AnonymousClass3() {
                     super(1);
                 }
@@ -309,6 +256,27 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
                         colorHexFromColorInt = null;
                     }
                     WidgetEditUserOrGuildMemberProfile.this.getViewModel().updateBannerColor(colorHexFromColorInt);
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$configureBannerSelect$2$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
+            public final class C132931 extends AbstractC12240o implements Function0<Unit> {
+                public C132931() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    WidgetEditUserOrGuildMemberProfile widgetEditUserOrGuildMemberProfile = WidgetEditUserOrGuildMemberProfile.this;
+                    widgetEditUserOrGuildMemberProfile.imageSelectedResult = widgetEditUserOrGuildMemberProfile.bannerSelectedResult;
+                    WidgetEditUserOrGuildMemberProfile.this.openMediaChooser();
                 }
             }
 
@@ -357,7 +325,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99792 extends AbstractC12240o implements Function1<MotionEvent, Boolean> {
+    public final class C99792 extends AbstractC12240o implements Function1<MotionEvent, Boolean> {
         public C99792() {
             super(1);
         }
@@ -400,7 +368,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99814 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C99814 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C99814() {
             super(1);
         }
@@ -418,7 +386,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99825 extends AbstractC12240o implements Function1<Badge, Unit> {
+    public final class C99825 extends AbstractC12240o implements Function1<Badge, Unit> {
         public C99825() {
             super(1);
         }
@@ -441,7 +409,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99831 extends AbstractC12240o implements Function1<SettingsUserProfileViewModel.ViewState, Unit> {
+    public final class C99831 extends AbstractC12240o implements Function1<SettingsUserProfileViewModel.ViewState, Unit> {
         public C99831() {
             super(1);
         }
@@ -462,7 +430,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
-    public static final class C99842 extends AbstractC12240o implements Function1<SettingsUserProfileViewModel.Event, Unit> {
+    public final class C99842 extends AbstractC12240o implements Function1<SettingsUserProfileViewModel.Event, Unit> {
         public C99842() {
             super(1);
         }
@@ -477,6 +445,39 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
         public final void invoke2(SettingsUserProfileViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetEditUserOrGuildMemberProfile.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, AppTransitionActivity.Transition transition, Long l, int i, Object obj) {
+            if ((i & 2) != 0) {
+                transition = null;
+            }
+            if ((i & 4) != 0) {
+                l = null;
+            }
+            companion.launch(context, transition, l);
+        }
+
+        public final void launch(Context context, AppTransitionActivity.Transition transition, Long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            if (transition != null) {
+                intent.putExtra("transition", transition);
+            }
+            if (guildId != null) {
+                intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId.longValue());
+            }
+            C0870j.m156d(context, WidgetEditUserOrGuildMemberProfile.class, intent);
+            StoreAnalytics.onUserSettingsPaneViewed$default(StoreStream.INSTANCE.getAnalytics(), "User Profile", null, 2, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -685,17 +686,8 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
         }
     }
 
-    private final void setCurrentBioFromEditor() {
-        TextInputEditText textInputEditText = getBinding().f18078c;
-        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.bioEditorTextInputField");
-        getViewModel().updateBio(String.valueOf(textInputEditText.getText()));
-        getViewModel().updateIsEditingBio(false);
-        getBinding().f18079d.clearFocus();
-        hideKeyboard(getBinding().f18079d);
-    }
-
     @Override // com.discord.app.AppFragment
-    public void onImageChosen(Uri uri, String mimeType) {
+    public void onImageChosen(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
@@ -722,7 +714,7 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
@@ -779,5 +771,14 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
         C12238m.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSettingsProfileHeaderView");
         companion.bind(userProfileHeaderView, this, getViewModel().observeHeaderViewState());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetEditUserOrGuildMemberProfile.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99842());
+    }
+
+    private final void setCurrentBioFromEditor() {
+        TextInputEditText textInputEditText = getBinding().f18078c;
+        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.bioEditorTextInputField");
+        getViewModel().updateBio(String.valueOf(textInputEditText.getText()));
+        getViewModel().updateIsEditingBio(false);
+        getBinding().f18079d.clearFocus();
+        hideKeyboard(getBinding().f18079d);
     }
 }

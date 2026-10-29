@@ -12,9 +12,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: CameraEnumeratorProvider.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class CameraEnumeratorProvider {
-    public static final CameraEnumeratorProvider INSTANCE = new CameraEnumeratorProvider();
     private static final String TAG = "CameraEnumeratorProvider";
     private static CameraEnumerator enumerator;
+    public static final CameraEnumeratorProvider INSTANCE = new CameraEnumeratorProvider();
 
     private CameraEnumeratorProvider() {
     }
@@ -39,14 +39,6 @@ public final class CameraEnumeratorProvider {
     }
 
     @AnyThread
-    public static final synchronized void maybeInit(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        if (enumerator == null) {
-            INSTANCE.init(context, false);
-        }
-    }
-
-    @AnyThread
     public final synchronized void init(Context context, boolean forceCamera1) {
         CameraEnumerator camera1Enumerator;
         C12238m.checkNotNullParameter(context, "context");
@@ -61,5 +53,13 @@ public final class CameraEnumeratorProvider {
             camera1Enumerator = new Camera1Enumerator();
         }
         enumerator = camera1Enumerator;
+    }
+
+    @AnyThread
+    public static final synchronized void maybeInit(Context context) {
+        C12238m.checkNotNullParameter(context, "context");
+        if (enumerator == null) {
+            INSTANCE.init(context, false);
+        }
     }
 }

@@ -16,7 +16,7 @@ public final class LongRange extends C11223c implements InterfaceC11221a<Long> {
 
     /* JADX INFO: renamed from: kotlin.ranges.LongRange$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: Ranges.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

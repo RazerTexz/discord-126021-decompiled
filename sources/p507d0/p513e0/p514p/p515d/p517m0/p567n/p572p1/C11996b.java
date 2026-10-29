@@ -37,7 +37,7 @@ public final class C11996b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.p1.b$a */
     /* JADX INFO: compiled from: CapturedTypeApproximation.kt */
-    public static final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24858j = new a();
@@ -51,46 +51,6 @@ public final class C11996b {
             C12238m.checkNotNullExpressionValue(abstractC11932i1, "it");
             return Boolean.valueOf(C11806d.isCaptured(abstractC11932i1));
         }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:29:0x00a5  */
-    /* JADX INFO: renamed from: a */
-    public static final AbstractC11913c0 m10023a(AbstractC11913c0 abstractC11913c0, List<C11998d> list) {
-        C12016y0 c12016y0;
-        abstractC11913c0.getArguments().size();
-        list.size();
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
-        for (C11998d c11998d : list) {
-            EnumC11935j1 enumC11935j1 = EnumC11935j1.OUT_VARIANCE;
-            EnumC11935j1 enumC11935j2 = EnumC11935j1.INVARIANT;
-            c11998d.isConsistent();
-            if (C12238m.areEqual(c11998d.getInProjection(), c11998d.getOutProjection())) {
-                c12016y0 = new C12016y0(c11998d.getInProjection());
-            } else {
-                EnumC11935j1 variance = c11998d.getTypeParameter().getVariance();
-                EnumC11935j1 enumC11935j3 = EnumC11935j1.IN_VARIANCE;
-                if (variance == enumC11935j3) {
-                    c12016y0 = new C12016y0(c11998d.getInProjection());
-                } else if (AbstractC11288h.isNothing(c11998d.getInProjection()) && c11998d.getTypeParameter().getVariance() != enumC11935j3) {
-                    if (enumC11935j1 == c11998d.getTypeParameter().getVariance()) {
-                        enumC11935j1 = enumC11935j2;
-                    }
-                    c12016y0 = new C12016y0(enumC11935j1, c11998d.getOutProjection());
-                } else if (AbstractC11288h.isNullableAny(c11998d.getOutProjection())) {
-                    if (enumC11935j3 != c11998d.getTypeParameter().getVariance()) {
-                        enumC11935j2 = enumC11935j3;
-                    }
-                    c12016y0 = new C12016y0(enumC11935j2, c11998d.getInProjection());
-                } else {
-                    if (enumC11935j1 == c11998d.getTypeParameter().getVariance()) {
-                        enumC11935j1 = enumC11935j2;
-                    }
-                    c12016y0 = new C12016y0(enumC11935j1, c11998d.getOutProjection());
-                }
-            }
-            arrayList.add(c12016y0);
-        }
-        return C11908a1.replace$default(abstractC11913c0, arrayList, null, null, 6, null);
     }
 
     public static final C11995a<AbstractC11913c0> approximateCapturedTypes(AbstractC11913c0 abstractC11913c0) {
@@ -219,5 +179,45 @@ public final class C11996b {
         C11914c1 c11914c1Create = C11914c1.create(new C11997c());
         C12238m.checkNotNullExpressionValue(c11914c1Create, "create(object : TypeConstructorSubstitution() {\n        override fun get(key: TypeConstructor): TypeProjection? {\n            val capturedTypeConstructor = key as? CapturedTypeConstructor ?: return null\n            if (capturedTypeConstructor.projection.isStarProjection) {\n                return TypeProjectionImpl(Variance.OUT_VARIANCE, capturedTypeConstructor.projection.type)\n            }\n            return capturedTypeConstructor.projection\n        }\n    })");
         return c11914c1Create.substituteWithoutApproximation(interfaceC12012w0);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:29:0x00a5  */
+    /* JADX INFO: renamed from: a */
+    public static final AbstractC11913c0 m10023a(AbstractC11913c0 abstractC11913c0, List<C11998d> list) {
+        C12016y0 c12016y0;
+        abstractC11913c0.getArguments().size();
+        list.size();
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
+        for (C11998d c11998d : list) {
+            EnumC11935j1 enumC11935j1 = EnumC11935j1.OUT_VARIANCE;
+            EnumC11935j1 enumC11935j2 = EnumC11935j1.INVARIANT;
+            c11998d.isConsistent();
+            if (C12238m.areEqual(c11998d.getInProjection(), c11998d.getOutProjection())) {
+                c12016y0 = new C12016y0(c11998d.getInProjection());
+            } else {
+                EnumC11935j1 variance = c11998d.getTypeParameter().getVariance();
+                EnumC11935j1 enumC11935j3 = EnumC11935j1.IN_VARIANCE;
+                if (variance == enumC11935j3) {
+                    c12016y0 = new C12016y0(c11998d.getInProjection());
+                } else if (AbstractC11288h.isNothing(c11998d.getInProjection()) && c11998d.getTypeParameter().getVariance() != enumC11935j3) {
+                    if (enumC11935j1 == c11998d.getTypeParameter().getVariance()) {
+                        enumC11935j1 = enumC11935j2;
+                    }
+                    c12016y0 = new C12016y0(enumC11935j1, c11998d.getOutProjection());
+                } else if (AbstractC11288h.isNullableAny(c11998d.getOutProjection())) {
+                    if (enumC11935j3 != c11998d.getTypeParameter().getVariance()) {
+                        enumC11935j2 = enumC11935j3;
+                    }
+                    c12016y0 = new C12016y0(enumC11935j2, c11998d.getInProjection());
+                } else {
+                    if (enumC11935j1 == c11998d.getTypeParameter().getVariance()) {
+                        enumC11935j1 = enumC11935j2;
+                    }
+                    c12016y0 = new C12016y0(enumC11935j1, c11998d.getOutProjection());
+                }
+            }
+            arrayList.add(c12016y0);
+        }
+        return C11908a1.replace$default(abstractC11913c0, arrayList, null, null, 6, null);
     }
 }

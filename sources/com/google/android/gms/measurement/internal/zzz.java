@@ -9,7 +9,6 @@ import p007b.p225i.p226a.p288f.p330i.p332b.C4075ia;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzz extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzz> CREATOR = new C4075ia();
 
     /* JADX INFO: renamed from: j */
     public String f20700j;
@@ -43,6 +42,7 @@ public final class zzz extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: t */
     public zzaq f20710t;
+    public static final Parcelable.Creator<zzz> CREATOR = new C4075ia();
 
     public zzz(zzz zzzVar) {
         this.f20700j = zzzVar.f20700j;

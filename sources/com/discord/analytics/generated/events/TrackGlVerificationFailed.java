@@ -13,18 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGlVerificationFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGlVerificationFailed implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver, TrackDispatchPatchReceiver {
+    private final Long attemptNumber = null;
+    private final Long corruptChunks = null;
     private TrackBase trackBase;
     private TrackDispatchBase trackDispatchBase;
     private TrackDispatchPatch trackDispatchPatch;
-    private final Long corruptChunks = null;
-    private final Long attemptNumber = null;
     private final transient String analyticsSchemaTypeName = "gl_verification_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackGlVerificationFailed implements AnalyticsSche
         }
         TrackGlVerificationFailed trackGlVerificationFailed = (TrackGlVerificationFailed) other;
         return C12238m.areEqual(this.corruptChunks, trackGlVerificationFailed.corruptChunks) && C12238m.areEqual(this.attemptNumber, trackGlVerificationFailed.attemptNumber);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

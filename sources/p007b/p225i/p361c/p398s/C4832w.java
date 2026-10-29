@@ -34,10 +34,7 @@ public class C4832w {
 
     /* JADX INFO: renamed from: b.i.c.s.w$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
-    public static class a {
-
-        /* JADX INFO: renamed from: a */
-        public static final long f12904a = TimeUnit.DAYS.toMillis(7);
+    public class a {
 
         /* JADX INFO: renamed from: b */
         public static final /* synthetic */ int f12905b = 0;
@@ -50,6 +47,9 @@ public class C4832w {
 
         /* JADX INFO: renamed from: e */
         public final long f12908e;
+
+        /* JADX INFO: renamed from: a */
+        public static final long f12904a = TimeUnit.DAYS.toMillis(7);
 
         public a(String str, String str2, long j) {
             this.f12906c = str;

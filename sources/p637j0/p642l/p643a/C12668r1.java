@@ -13,7 +13,7 @@ public final class C12668r1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.r1$a */
     /* JADX INFO: compiled from: OperatorSingle.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12668r1<?> f27024a = new C12668r1<>();
@@ -21,7 +21,7 @@ public final class C12668r1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.r1$b */
     /* JADX INFO: compiled from: OperatorSingle.java */
-    public static final class b<T> extends Subscriber<T> {
+    public final class b<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f27025j;

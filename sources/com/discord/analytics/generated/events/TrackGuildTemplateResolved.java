@@ -11,22 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildTemplateResolved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildTemplateResolved implements AnalyticsSchema, TrackBaseReceiver, TrackGuildTemplateReceiver {
+    private final Boolean resolved = null;
     private TrackBase trackBase;
     private TrackGuildTemplate trackGuildTemplate;
-    private final Boolean resolved = null;
     private final transient String analyticsSchemaTypeName = "guild_template_resolved";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGuildTemplateResolved) && C12238m.areEqual(this.resolved, ((TrackGuildTemplateResolved) other).resolved);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

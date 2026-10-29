@@ -9,7 +9,7 @@ import java.nio.FloatBuffer;
 /* JADX INFO: loaded from: classes3.dex */
 public class GlUtil {
 
-    public static class GlOutOfMemoryException extends RuntimeException {
+    public class GlOutOfMemoryException extends RuntimeException {
         public GlOutOfMemoryException(String str) {
             super(str);
         }

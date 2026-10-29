@@ -12,9 +12,6 @@ import p007b.p225i.p361c.p369m.p370d.p377n.C4706b;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC4607a {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f12252a = Pattern.compile("http(s?)://[^\\/]+", 2);
-
     /* JADX INFO: renamed from: b */
     public final String f12253b;
 
@@ -26,6 +23,9 @@ public abstract class AbstractC4607a {
 
     /* JADX INFO: renamed from: e */
     public final String f12256e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f12252a = Pattern.compile("http(s?)://[^\\/]+", 2);
 
     public AbstractC4607a(String str, String str2, C4706b c4706b, int i) {
         if (str2 == null) {

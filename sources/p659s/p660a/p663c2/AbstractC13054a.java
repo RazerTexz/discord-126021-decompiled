@@ -33,106 +33,9 @@ import p659s.p660a.p661a.C13037t;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements InterfaceC13059f<E> {
 
-    /* JADX INFO: renamed from: s.a.c2.a$a */
-    /* JADX INFO: compiled from: AbstractChannel.kt */
-    public static final class a<E> implements InterfaceC13060g<E> {
-
-        /* JADX INFO: renamed from: a */
-        public Object f27729a = C13055b.f27742d;
-
-        /* JADX INFO: renamed from: b */
-        public final AbstractC13054a<E> f27730b;
-
-        public a(AbstractC13054a<E> abstractC13054a) {
-            this.f27730b = abstractC13054a;
-        }
-
-        @Override // p659s.p660a.p663c2.InterfaceC13060g
-        /* JADX INFO: renamed from: a */
-        public Object mo11207a(Continuation<? super Boolean> continuation) {
-            Object obj = this.f27729a;
-            C13037t c13037t = C13055b.f27742d;
-            if (obj != c13037t) {
-                return C12185b.boxBoolean(m11208b(obj));
-            }
-            Object objMo11206v = this.f27730b.mo11206v();
-            this.f27729a = objMo11206v;
-            if (objMo11206v != c13037t) {
-                return C12185b.boxBoolean(m11208b(objMo11206v));
-            }
-            C13126l c13126lM4324o0 = C3404f.m4324o0(C12182b.intercepted(continuation));
-            d dVar = new d(this, c13126lM4324o0);
-            while (true) {
-                if (this.f27730b.mo11202r(dVar)) {
-                    AbstractC13054a<E> abstractC13054a = this.f27730b;
-                    Objects.requireNonNull(abstractC13054a);
-                    c13126lM4324o0.mo10902f(abstractC13054a.new e(dVar));
-                    break;
-                }
-                Object objMo11206v2 = this.f27730b.mo11206v();
-                this.f27729a = objMo11206v2;
-                if (objMo11206v2 instanceof C13062i) {
-                    C13062i c13062i = (C13062i) objMo11206v2;
-                    if (c13062i.f27763m != null) {
-                        Throwable thM11233v = c13062i.m11233v();
-                        C12112k.a aVar = C12112k.f25169j;
-                        c13126lM4324o0.resumeWith(C12112k.m11474constructorimpl(C12113l.createFailure(thM11233v)));
-                        break;
-                    }
-                    Boolean boolBoxBoolean = C12185b.boxBoolean(false);
-                    C12112k.a aVar2 = C12112k.f25169j;
-                    c13126lM4324o0.resumeWith(C12112k.m11474constructorimpl(boolBoxBoolean));
-                    break;
-                }
-                if (objMo11206v2 != C13055b.f27742d) {
-                    Boolean boolBoxBoolean2 = C12185b.boxBoolean(true);
-                    Function1<E, Unit> function1 = this.f27730b.f27747l;
-                    c13126lM4324o0.m11330y(boolBoxBoolean2, c13126lM4324o0.f27864l, function1 != null ? new C13032o(function1, objMo11206v2, c13126lM4324o0.f27871o) : null);
-                    break;
-                }
-            }
-            Object objM11326u = c13126lM4324o0.m11326u();
-            if (objM11326u == C12183c.getCOROUTINE_SUSPENDED()) {
-                C12190g.probeCoroutineSuspended(continuation);
-            }
-            return objM11326u;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final boolean m11208b(Object obj) throws Throwable {
-            if (!(obj instanceof C13062i)) {
-                return true;
-            }
-            C13062i c13062i = (C13062i) obj;
-            if (c13062i.f27763m == null) {
-                return false;
-            }
-            Throwable thM11233v = c13062i.m11233v();
-            String str = C13036s.f27703a;
-            throw thM11233v;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // p659s.p660a.p663c2.InterfaceC13060g
-        public E next() throws Throwable {
-            E e = (E) this.f27729a;
-            if (e instanceof C13062i) {
-                Throwable thM11233v = ((C13062i) e).m11233v();
-                String str = C13036s.f27703a;
-                throw thM11233v;
-            }
-            C13037t c13037t = C13055b.f27742d;
-            if (e == c13037t) {
-                throw new IllegalStateException("'hasNext' should be called prior to 'next' invocation");
-            }
-            this.f27729a = c13037t;
-            return e;
-        }
-    }
-
     /* JADX INFO: renamed from: s.a.c2.a$b */
     /* JADX INFO: compiled from: AbstractChannel.kt */
-    public static class b<E> extends AbstractC13067n<E> {
+    public class b<E> extends AbstractC13067n<E> {
 
         /* JADX INFO: renamed from: m */
         public final CancellableContinuation<Object> f27731m;
@@ -194,7 +97,7 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
 
     /* JADX INFO: renamed from: s.a.c2.a$c */
     /* JADX INFO: compiled from: AbstractChannel.kt */
-    public static final class c<E> extends b<E> {
+    public final class c<E> extends b<E> {
 
         /* JADX INFO: renamed from: o */
         public final Function1<E, Unit> f27733o;
@@ -214,7 +117,7 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
 
     /* JADX INFO: renamed from: s.a.c2.a$d */
     /* JADX INFO: compiled from: AbstractChannel.kt */
-    public static class d<E> extends AbstractC13067n<E> {
+    public class d<E> extends AbstractC13067n<E> {
 
         /* JADX INFO: renamed from: m */
         public final a<E> f27734m;
@@ -245,16 +148,6 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
         }
 
         @Override // p659s.p660a.p663c2.AbstractC13067n
-        /* JADX INFO: renamed from: q */
-        public Function1<Throwable, Unit> mo11212q(E e) {
-            Function1<E, Unit> function1 = this.f27734m.f27730b.f27747l;
-            if (function1 != null) {
-                return new C13032o(function1, e, this.f27735n.getContext());
-            }
-            return null;
-        }
-
-        @Override // p659s.p660a.p663c2.AbstractC13067n
         /* JADX INFO: renamed from: r */
         public void mo11211r(C13062i<?> c13062i) {
             Object objMo10901c = c13062i.f27763m == null ? this.f27735n.mo10901c(Boolean.FALSE, null) : this.f27735n.mo10903g(c13062i.m11233v());
@@ -262,6 +155,16 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
                 this.f27734m.f27729a = c13062i;
                 this.f27735n.mo10907r(objMo10901c);
             }
+        }
+
+        @Override // p659s.p660a.p663c2.AbstractC13067n
+        /* JADX INFO: renamed from: q */
+        public Function1<Throwable, Unit> mo11212q(E e) {
+            Function1<E, Unit> function1 = this.f27734m.f27730b.f27747l;
+            if (function1 != null) {
+                return new C13032o(function1, e, this.f27735n.getContext());
+            }
+            return null;
         }
 
         @Override // p659s.p660a.p661a.C13028k
@@ -283,20 +186,20 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
             this.f27736j = abstractC13067n;
         }
 
-        @Override // p659s.p660a.AbstractC13123k
-        /* JADX INFO: renamed from: a */
-        public void mo11193a(Throwable th) {
-            if (this.f27736j.mo11151n()) {
-                Objects.requireNonNull(AbstractC13054a.this);
-            }
-        }
-
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Throwable th) {
             if (this.f27736j.mo11151n()) {
                 Objects.requireNonNull(AbstractC13054a.this);
             }
             return Unit.f27425a;
+        }
+
+        @Override // p659s.p660a.AbstractC13123k
+        /* JADX INFO: renamed from: a */
+        public void mo11193a(Throwable th) {
+            if (this.f27736j.mo11151n()) {
+                Objects.requireNonNull(AbstractC13054a.this);
+            }
         }
 
         public String toString() {
@@ -309,7 +212,7 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
 
     /* JADX INFO: renamed from: s.a.c2.a$f */
     /* JADX INFO: compiled from: LockFreeLinkedList.kt */
-    public static final class f extends C13028k.a {
+    public final class f extends C13028k.a {
 
         /* JADX INFO: renamed from: d */
         public final /* synthetic */ AbstractC13054a f27738d;
@@ -333,7 +236,7 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
     /* JADX INFO: renamed from: s.a.c2.a$g */
     /* JADX INFO: compiled from: AbstractChannel.kt */
     @InterfaceC12188e(m10084c = "kotlinx.coroutines.channels.AbstractChannel", m10085f = "AbstractChannel.kt", m10086l = {624}, m10087m = "receiveOrClosed-ZYPwvRU")
-    public static final class g extends AbstractC12187d {
+    public final class g extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public int label;
@@ -356,6 +259,11 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
     }
 
     @Override // p659s.p660a.p663c2.InterfaceC13068o
+    public final InterfaceC13060g<E> iterator() {
+        return new a(this);
+    }
+
+    @Override // p659s.p660a.p663c2.InterfaceC13068o
     /* JADX INFO: renamed from: b */
     public final void mo11199b(CancellationException cancellationException) {
         if (cancellationException == null) {
@@ -364,16 +272,11 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
         mo11205u(mo11221j(cancellationException));
     }
 
-    @Override // p659s.p660a.p663c2.InterfaceC13068o
-    public final InterfaceC13060g<E> iterator() {
-        return new a(this);
-    }
-
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX WARN: Multi-variable type inference failed */
     @Override // p659s.p660a.p663c2.InterfaceC13068o
     /* JADX INFO: renamed from: m */
-    public final Object mo11200m(Continuation<? super C13075v<? extends E>> continuation) {
+    public final Object mo11200m(Continuation<? super C13075v<? extends E>> continuation) throws Throwable {
         g gVar;
         if (continuation instanceof g) {
             gVar = (g) continuation;
@@ -527,6 +430,103 @@ public abstract class AbstractC13054a<E> extends AbstractC13056c<E> implements I
                 return abstractC13071rM11226q.mo11228r();
             }
             abstractC13071rM11226q.mo11241u();
+        }
+    }
+
+    /* JADX INFO: renamed from: s.a.c2.a$a */
+    /* JADX INFO: compiled from: AbstractChannel.kt */
+    public final class a<E> implements InterfaceC13060g<E> {
+
+        /* JADX INFO: renamed from: b */
+        public final AbstractC13054a<E> f27730b;
+
+        /* JADX INFO: renamed from: a */
+        public Object f27729a = C13055b.f27742d;
+
+        public a(AbstractC13054a<E> abstractC13054a) {
+            this.f27730b = abstractC13054a;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final boolean m11208b(Object obj) throws Throwable {
+            if (!(obj instanceof C13062i)) {
+                return true;
+            }
+            C13062i c13062i = (C13062i) obj;
+            if (c13062i.f27763m == null) {
+                return false;
+            }
+            Throwable thM11233v = c13062i.m11233v();
+            String str = C13036s.f27703a;
+            throw thM11233v;
+        }
+
+        @Override // p659s.p660a.p663c2.InterfaceC13060g
+        /* JADX INFO: renamed from: a */
+        public Object mo11207a(Continuation<? super Boolean> continuation) throws Throwable {
+            Object obj = this.f27729a;
+            C13037t c13037t = C13055b.f27742d;
+            if (obj != c13037t) {
+                return C12185b.boxBoolean(m11208b(obj));
+            }
+            Object objMo11206v = this.f27730b.mo11206v();
+            this.f27729a = objMo11206v;
+            if (objMo11206v != c13037t) {
+                return C12185b.boxBoolean(m11208b(objMo11206v));
+            }
+            C13126l c13126lM4324o0 = C3404f.m4324o0(C12182b.intercepted(continuation));
+            d dVar = new d(this, c13126lM4324o0);
+            while (true) {
+                if (this.f27730b.mo11202r(dVar)) {
+                    AbstractC13054a<E> abstractC13054a = this.f27730b;
+                    Objects.requireNonNull(abstractC13054a);
+                    c13126lM4324o0.mo10902f(abstractC13054a.new e(dVar));
+                    break;
+                }
+                Object objMo11206v2 = this.f27730b.mo11206v();
+                this.f27729a = objMo11206v2;
+                if (objMo11206v2 instanceof C13062i) {
+                    C13062i c13062i = (C13062i) objMo11206v2;
+                    if (c13062i.f27763m != null) {
+                        Throwable thM11233v = c13062i.m11233v();
+                        C12112k.a aVar = C12112k.f25169j;
+                        c13126lM4324o0.resumeWith(C12112k.m11474constructorimpl(C12113l.createFailure(thM11233v)));
+                        break;
+                    }
+                    Boolean boolBoxBoolean = C12185b.boxBoolean(false);
+                    C12112k.a aVar2 = C12112k.f25169j;
+                    c13126lM4324o0.resumeWith(C12112k.m11474constructorimpl(boolBoxBoolean));
+                    break;
+                }
+                if (objMo11206v2 != C13055b.f27742d) {
+                    Boolean boolBoxBoolean2 = C12185b.boxBoolean(true);
+                    Function1<E, Unit> function1 = this.f27730b.f27747l;
+                    c13126lM4324o0.m11330y(boolBoxBoolean2, c13126lM4324o0.f27864l, function1 != null ? new C13032o(function1, objMo11206v2, c13126lM4324o0.f27871o) : null);
+                    break;
+                }
+            }
+            Object objM11326u = c13126lM4324o0.m11326u();
+            if (objM11326u == C12183c.getCOROUTINE_SUSPENDED()) {
+                C12190g.probeCoroutineSuspended(continuation);
+            }
+            return objM11326u;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // p659s.p660a.p663c2.InterfaceC13060g
+        public E next() throws Throwable {
+            E e = (E) this.f27729a;
+            if (e instanceof C13062i) {
+                Throwable thM11233v = ((C13062i) e).m11233v();
+                String str = C13036s.f27703a;
+                throw thM11233v;
+            }
+            C13037t c13037t = C13055b.f27742d;
+            if (e == c13037t) {
+                throw new IllegalStateException("'hasNext' should be called prior to 'next' invocation");
+            }
+            this.f27729a = c13037t;
+            return e;
         }
     }
 }

@@ -38,15 +38,15 @@ public final class StoreGuildJoinRequest extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1 */
     /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-    public static final class C60281 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60281 extends AbstractC12240o implements Function0<Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends com.discord.api.guild.Guild>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends com.discord.api.guild.Guild>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-            public static final class C132541 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132541 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $results;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -127,7 +127,7 @@ public final class StoreGuildJoinRequest extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observeGuildJoinRequest$1 */
     /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-    public static final class C60291 extends AbstractC12240o implements Function0<GuildJoinRequest> {
+    public final class C60291 extends AbstractC12240o implements Function0<GuildJoinRequest> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -145,7 +145,7 @@ public final class StoreGuildJoinRequest extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observeGuildJoinRequests$1 */
     /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-    public static final class C60301 extends AbstractC12240o implements Function0<Map<Long, ? extends GuildJoinRequest>> {
+    public final class C60301 extends AbstractC12240o implements Function0<Map<Long, ? extends GuildJoinRequest>> {
         public C60301() {
             super(0);
         }
@@ -158,7 +158,7 @@ public final class StoreGuildJoinRequest extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observePendingGuilds$1 */
     /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
-    public static final class C60311 extends AbstractC12240o implements Function0<Map<Long, ? extends Guild>> {
+    public final class C60311 extends AbstractC12240o implements Function0<Map<Long, ? extends Guild>> {
         public C60311() {
             super(0);
         }
@@ -184,13 +184,6 @@ public final class StoreGuildJoinRequest extends StoreV2 {
         this.guildJoinRequestsSnapshot = C12136h0.emptyMap();
     }
 
-    private final void handleGuildJoinRequestApproved(long guildId) {
-        Guild guild = this.guildsStore.getGuild(guildId);
-        if ((guild != null ? guild.getName() : null) != null) {
-            MemberVerificationSuccessDialog.INSTANCE.enqueue(guildId);
-        }
-    }
-
     public final void fetchPendingGuilds() {
         this.dispatcher.schedule(new C60281());
     }
@@ -212,6 +205,13 @@ public final class StoreGuildJoinRequest extends StoreV2 {
             }
         }
         markChanged();
+    }
+
+    private final void handleGuildJoinRequestApproved(long guildId) {
+        Guild guild = this.guildsStore.getGuild(guildId);
+        if ((guild != null ? guild.getName() : null) != null) {
+            MemberVerificationSuccessDialog.INSTANCE.enqueue(guildId);
+        }
     }
 
     @StoreThread

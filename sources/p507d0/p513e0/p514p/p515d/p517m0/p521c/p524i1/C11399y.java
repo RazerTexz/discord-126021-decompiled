@@ -69,7 +69,7 @@ public final class C11399y extends AbstractC11381k implements InterfaceC11325c0 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.y$a */
     /* JADX INFO: compiled from: ModuleDescriptorImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<C11379j> {
+    public final class a extends AbstractC12240o implements Function0<C11379j> {
         public a() {
             super(0);
         }
@@ -104,7 +104,7 @@ public final class C11399y extends AbstractC11381k implements InterfaceC11325c0 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.y$b */
     /* JADX INFO: compiled from: ModuleDescriptorImpl.kt */
-    public static final class b extends AbstractC12240o implements Function1<C11713b, InterfaceC11402j0> {
+    public final class b extends AbstractC12240o implements Function1<C11713b, InterfaceC11402j0> {
         public b() {
             super(1);
         }
@@ -129,26 +129,19 @@ public final class C11399y extends AbstractC11381k implements InterfaceC11325c0 
         this(c11716e, interfaceC11905o, abstractC11288h, (i & 8) != 0 ? null : c11720a, (i & 16) != 0 ? C12136h0.emptyMap() : map, (i & 32) != 0 ? null : c11716e2);
     }
 
-    public static final boolean access$isInitialized(C11399y c11399y) {
-        return c11399y.f22994p != null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
     public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
         return (R) InterfaceC11325c0.a.accept(this, interfaceC11454o, d);
+    }
+
+    public static final boolean access$isInitialized(C11399y c11399y) {
+        return c11399y.f22994p != null;
     }
 
     public void assertValid() {
         if (!isValid()) {
             throw new InvalidModuleException(C12238m.stringPlus("Accessing invalid module descriptor ", this));
         }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final String m9430b() {
-        String string = getName().toString();
-        C12238m.checkNotNullExpressionValue(string, "name.toString()");
-        return string;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0
@@ -206,6 +199,13 @@ public final class C11399y extends AbstractC11381k implements InterfaceC11325c0 
 
     public boolean isValid() {
         return this.f22995q;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final String m9430b() {
+        String string = getName().toString();
+        C12238m.checkNotNullExpressionValue(string, "name.toString()");
+        return string;
     }
 
     public final void setDependencies(InterfaceC11397w interfaceC11397w) {

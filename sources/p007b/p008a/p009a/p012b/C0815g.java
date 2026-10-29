@@ -26,28 +26,28 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0815g extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f301j = {C1643a.m846d0(C0815g.class, "binding", "getBinding()Lcom/discord/databinding/PremiumAndGuildBoostActivatedDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public Function0<Unit> onDismiss;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f301j = {C1643a.m846d0(C0815g.class, "binding", "getBinding()Lcom/discord/databinding/PremiumAndGuildBoostActivatedDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public Function0<Unit> onDismiss;
+
     /* JADX INFO: renamed from: b.a.a.b.g$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: PremiumAndGuildBoostActivatedDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.b.g$b */
     /* JADX INFO: compiled from: PremiumAndGuildBoostActivatedDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C0945e1> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C0945e1> {
 
         /* JADX INFO: renamed from: j */
         public static final b f305j = new b();
@@ -75,7 +75,7 @@ public final class C0815g extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.b.g$c */
     /* JADX INFO: compiled from: PremiumAndGuildBoostActivatedDialog.kt */
-    public static final class c implements View.OnClickListener {
+    public final class c implements View.OnClickListener {
         public c() {
         }
 

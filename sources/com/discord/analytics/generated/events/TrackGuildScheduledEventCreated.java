@@ -17,41 +17,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildScheduledEventCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildScheduledEventCreated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackGuildScheduledEventReceiver {
+    private final CharSequence description = null;
+    private final Long endTime = null;
+    private final Long guildScheduledEventEntityType = null;
+    private final CharSequence guildScheduledEventExternalLocation = null;
+    private final Long guildScheduledEventId = null;
+    private final Long guildScheduledEventInterestedCount = null;
+    private final Long guildScheduledEventStatus = null;
+    private final CharSequence name = null;
+    private final Long privacyLevel = null;
+    private final List<Long> skuIds = null;
+    private final Long startTime = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private TrackGuildScheduledEvent trackGuildScheduledEvent;
-    private final Long guildScheduledEventId = null;
-    private final CharSequence name = null;
-    private final Long startTime = null;
-    private final Long endTime = null;
-    private final List<Long> skuIds = null;
-    private final Long guildScheduledEventStatus = null;
-    private final Long privacyLevel = null;
-    private final Long guildScheduledEventEntityType = null;
-    private final CharSequence guildScheduledEventExternalLocation = null;
-    private final Long guildScheduledEventInterestedCount = null;
-    private final CharSequence description = null;
     private final Long updaterId = null;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_created";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -62,6 +44,18 @@ public final /* data */ class TrackGuildScheduledEventCreated implements Analyti
         }
         TrackGuildScheduledEventCreated trackGuildScheduledEventCreated = (TrackGuildScheduledEventCreated) other;
         return C12238m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventCreated.guildScheduledEventId) && C12238m.areEqual(this.name, trackGuildScheduledEventCreated.name) && C12238m.areEqual(this.startTime, trackGuildScheduledEventCreated.startTime) && C12238m.areEqual(this.endTime, trackGuildScheduledEventCreated.endTime) && C12238m.areEqual(this.skuIds, trackGuildScheduledEventCreated.skuIds) && C12238m.areEqual(this.guildScheduledEventStatus, trackGuildScheduledEventCreated.guildScheduledEventStatus) && C12238m.areEqual(this.privacyLevel, trackGuildScheduledEventCreated.privacyLevel) && C12238m.areEqual(this.guildScheduledEventEntityType, trackGuildScheduledEventCreated.guildScheduledEventEntityType) && C12238m.areEqual(this.guildScheduledEventExternalLocation, trackGuildScheduledEventCreated.guildScheduledEventExternalLocation) && C12238m.areEqual(this.guildScheduledEventInterestedCount, trackGuildScheduledEventCreated.guildScheduledEventInterestedCount) && C12238m.areEqual(this.description, trackGuildScheduledEventCreated.description) && C12238m.areEqual(this.updaterId, trackGuildScheduledEventCreated.updaterId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -89,6 +83,12 @@ public final /* data */ class TrackGuildScheduledEventCreated implements Analyti
         int iHashCode11 = (iHashCode10 + (charSequence3 != null ? charSequence3.hashCode() : 0)) * 31;
         Long l8 = this.updaterId;
         return iHashCode11 + (l8 != null ? l8.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

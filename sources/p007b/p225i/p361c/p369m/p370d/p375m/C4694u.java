@@ -15,13 +15,6 @@ public final class C4694u extends AbstractC4695v.d.f {
         this.f12646a = str;
     }
 
-    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.f
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public String mo6611a() {
-        return this.f12646a;
-    }
-
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -34,6 +27,13 @@ public final class C4694u extends AbstractC4695v.d.f {
 
     public int hashCode() {
         return this.f12646a.hashCode() ^ 1000003;
+    }
+
+    @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.f
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public String mo6611a() {
+        return this.f12646a;
     }
 
     public String toString() {

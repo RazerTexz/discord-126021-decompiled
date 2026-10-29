@@ -18,7 +18,6 @@ import androidx.cardview.C0159R;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CardView extends FrameLayout {
-    private static final int[] COLOR_BACKGROUND_ATTR = {R.attr.colorBackground};
     private static final CardViewImpl IMPL;
     private final CardViewDelegate mCardViewDelegate;
     private boolean mCompatPadding;
@@ -27,6 +26,7 @@ public class CardView extends FrameLayout {
     public final Rect mShadowBounds;
     public int mUserSetMinHeight;
     public int mUserSetMinWidth;
+    private static final int[] COLOR_BACKGROUND_ATTR = {R.attr.colorBackground};
 
     static {
         CardViewApi21Impl cardViewApi21Impl = new CardViewApi21Impl();

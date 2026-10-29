@@ -10,40 +10,34 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackScreenshareFinished.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackScreenshareFinished implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
+    private final Float activity = null;
     private final Long channelId = null;
     private final CharSequence context = null;
-    private final Long screenshareFrames = null;
-    private final Long videohookFrames = null;
-    private final Long hybridDxgiFrames = null;
-    private final Long hybridGdiFrames = null;
-    private final Long hybridVideohookFrames = null;
-    private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
-    private final Long shareGameId = null;
-    private final CharSequence desktopCapturerType = null;
-    private final Long screens = null;
-    private final Long windows = null;
     private final CharSequence cpu = null;
-    private final CharSequence gpu = null;
     private final CharSequence cpuBrand = null;
-    private final CharSequence cpuVendor = null;
     private final Long cpuMemory = null;
+    private final CharSequence cpuVendor = null;
+    private final CharSequence desktopCapturerType = null;
+    private final CharSequence gpu = null;
     private final CharSequence gpuBrand = null;
     private final Long gpuCount = null;
     private final Long gpuMemory = null;
+    private final Long guildId = null;
+    private final Long hybridDxgiFrames = null;
+    private final Long hybridGdiFrames = null;
+    private final Long hybridVideohookFrames = null;
     private final CharSequence mediaSessionId = null;
-    private final CharSequence rtcConnectionId = null;
     private final Long quartzFrames = null;
-    private final Float activity = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long screens = null;
+    private final Long screenshareFrames = null;
+    private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
+    private final CharSequence soundshareSession = null;
+    private TrackBase trackBase;
+    private final Long videohookFrames = null;
+    private final Long windows = null;
     private final transient String analyticsSchemaTypeName = "screenshare_finished";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -54,6 +48,12 @@ public final /* data */ class TrackScreenshareFinished implements AnalyticsSchem
         }
         TrackScreenshareFinished trackScreenshareFinished = (TrackScreenshareFinished) other;
         return C12238m.areEqual(this.guildId, trackScreenshareFinished.guildId) && C12238m.areEqual(this.channelId, trackScreenshareFinished.channelId) && C12238m.areEqual(this.context, trackScreenshareFinished.context) && C12238m.areEqual(this.screenshareFrames, trackScreenshareFinished.screenshareFrames) && C12238m.areEqual(this.videohookFrames, trackScreenshareFinished.videohookFrames) && C12238m.areEqual(this.hybridDxgiFrames, trackScreenshareFinished.hybridDxgiFrames) && C12238m.areEqual(this.hybridGdiFrames, trackScreenshareFinished.hybridGdiFrames) && C12238m.areEqual(this.hybridVideohookFrames, trackScreenshareFinished.hybridVideohookFrames) && C12238m.areEqual(this.soundshareSession, trackScreenshareFinished.soundshareSession) && C12238m.areEqual(this.shareGameName, trackScreenshareFinished.shareGameName) && C12238m.areEqual(this.shareGameId, trackScreenshareFinished.shareGameId) && C12238m.areEqual(this.desktopCapturerType, trackScreenshareFinished.desktopCapturerType) && C12238m.areEqual(this.screens, trackScreenshareFinished.screens) && C12238m.areEqual(this.windows, trackScreenshareFinished.windows) && C12238m.areEqual(this.cpu, trackScreenshareFinished.cpu) && C12238m.areEqual(this.gpu, trackScreenshareFinished.gpu) && C12238m.areEqual(this.cpuBrand, trackScreenshareFinished.cpuBrand) && C12238m.areEqual(this.cpuVendor, trackScreenshareFinished.cpuVendor) && C12238m.areEqual(this.cpuMemory, trackScreenshareFinished.cpuMemory) && C12238m.areEqual(this.gpuBrand, trackScreenshareFinished.gpuBrand) && C12238m.areEqual(this.gpuCount, trackScreenshareFinished.gpuCount) && C12238m.areEqual(this.gpuMemory, trackScreenshareFinished.gpuMemory) && C12238m.areEqual(this.mediaSessionId, trackScreenshareFinished.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackScreenshareFinished.rtcConnectionId) && C12238m.areEqual(this.quartzFrames, trackScreenshareFinished.quartzFrames) && C12238m.areEqual(this.activity, trackScreenshareFinished.activity);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

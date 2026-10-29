@@ -19,6 +19,17 @@ public final /* data */ class Feature {
         this.asanaInboxId = l;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Feature)) {
+            return false;
+        }
+        Feature feature = (Feature) other;
+        return C12238m.areEqual(this.name, feature.name) && C12238m.areEqual(this.squad, feature.squad) && C12238m.areEqual(this.asanaInboxId, feature.asanaInboxId);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getAsanaInboxId() {
         return this.asanaInboxId;
@@ -32,17 +43,6 @@ public final /* data */ class Feature {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getSquad() {
         return this.squad;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Feature)) {
-            return false;
-        }
-        Feature feature = (Feature) other;
-        return C12238m.areEqual(this.name, feature.name) && C12238m.areEqual(this.squad, feature.squad) && C12238m.areEqual(this.asanaInboxId, feature.asanaInboxId);
     }
 
     public int hashCode() {

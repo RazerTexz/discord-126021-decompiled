@@ -18,7 +18,7 @@ public final class StoreVoiceSpeaking extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreVoiceSpeaking$observeSpeakingUsers$1 */
     /* JADX INFO: compiled from: StoreVoiceSpeaking.kt */
-    public static final class C66271 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C66271 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public C66271() {
             super(0);
         }

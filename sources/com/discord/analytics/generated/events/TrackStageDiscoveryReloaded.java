@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStageDiscoveryReloaded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStageDiscoveryReloaded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean hasScrolled = null;
+    private final Long lastVisibleIndex = null;
+    private final Long lastVisibleIndexAtLoad = null;
     private final CharSequence loadId = null;
     private final CharSequence stageInstanceRecommendations = null;
-    private final Long lastVisibleIndexAtLoad = null;
-    private final Long lastVisibleIndex = null;
-    private final Boolean hasScrolled = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "stage_discovery_reloaded";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackStageDiscoveryReloaded implements AnalyticsSc
         }
         TrackStageDiscoveryReloaded trackStageDiscoveryReloaded = (TrackStageDiscoveryReloaded) other;
         return C12238m.areEqual(this.loadId, trackStageDiscoveryReloaded.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryReloaded.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryReloaded.lastVisibleIndexAtLoad) && C12238m.areEqual(this.lastVisibleIndex, trackStageDiscoveryReloaded.lastVisibleIndex) && C12238m.areEqual(this.hasScrolled, trackStageDiscoveryReloaded.hasScrolled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

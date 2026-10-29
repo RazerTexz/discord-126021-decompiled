@@ -26,25 +26,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0841r extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f423j = {C1643a.m846d0(C0841r.class, "binding", "getBinding()Lcom/discord/databinding/WidgetBlockRussianPurchasesDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f423j = {C1643a.m846d0(C0841r.class, "binding", "getBinding()Lcom/discord/databinding/WidgetBlockRussianPurchasesDialogBinding;", 0)};
+
     /* JADX INFO: renamed from: b.a.a.r$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: WidgetBlockRussianPurchasesDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.r$b */
     /* JADX INFO: compiled from: WidgetBlockRussianPurchasesDialog.kt */
-    public static final /* synthetic */ class b extends C12236k implements Function1<View, C1021o4> {
+    public final /* synthetic */ class b extends C12236k implements Function1<View, C1021o4> {
 
         /* JADX INFO: renamed from: j */
         public static final b f426j = new b();
@@ -84,7 +84,7 @@ public final class C0841r extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.r$c */
     /* JADX INFO: compiled from: WidgetBlockRussianPurchasesDialog.kt */
-    public static final class c implements View.OnClickListener {
+    public final class c implements View.OnClickListener {
         public c() {
         }
 

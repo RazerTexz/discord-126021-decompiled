@@ -41,7 +41,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeActiveThreadsForChannel$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65351 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65351 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ long $guildId;
 
@@ -60,7 +60,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeActiveThreadsForGuild$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65361 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65361 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,7 +77,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeAllActiveForumThreadsById$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65371 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65371 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public C65371() {
             super(0);
         }
@@ -90,7 +90,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeAllActiveThreadsById$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65381 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
+    public final class C65381 extends AbstractC12240o implements Function0<Map<Long, ? extends Channel>> {
         public C65381() {
             super(0);
         }
@@ -103,7 +103,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeChannelsWithActiveThreadsByGuild$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65391 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C65391 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -120,7 +120,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeIsThreadSyncedGuild$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65401 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C65401 extends AbstractC12240o implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -142,7 +142,7 @@ public final class StoreThreadsActive extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActive$observeThreadSyncedGuilds$1 */
     /* JADX INFO: compiled from: StoreThreadsActive.kt */
-    public static final class C65411 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C65411 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public C65411() {
             super(0);
         }
@@ -203,58 +203,6 @@ public final class StoreThreadsActive extends StoreV2 {
         return map != null ? map : C12136h0.emptyMap();
     }
 
-    private final Set<Long> getChannelsWithActiveThreadsByGuild(long guildId) {
-        Map<Long, Channel> mapEmptyMap = this.threadsByGuildSnapshot.get(Long.valueOf(guildId));
-        if (mapEmptyMap == null) {
-            mapEmptyMap = C12136h0.emptyMap();
-        }
-        ArrayList arrayList = new ArrayList(mapEmptyMap.size());
-        Iterator<Map.Entry<Long, Channel>> it = mapEmptyMap.entrySet().iterator();
-        while (it.hasNext()) {
-            arrayList.add(Long.valueOf(it.next().getValue().getParentId()));
-        }
-        return C12163u.toSet(arrayList);
-    }
-
-    @StoreThread
-    private final void rebuildThreadByIdMaps() {
-        this.threadsById.clear();
-        this.forumThreadsById.clear();
-        for (Map.Entry<Long, Map<Long, Channel>> entry : this.threadsByGuild.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            for (Map.Entry<Long, Channel> entry2 : entry.getValue().entrySet()) {
-                long jLongValue2 = entry2.getKey().longValue();
-                Channel value = entry2.getValue();
-                this.threadsById.put(Long.valueOf(jLongValue2), value);
-                if (ChannelUtils.m7694r(value, this.storeChannels.getChannelInternal$app_productionGoogleRelease(jLongValue, value.getParentId()))) {
-                    this.forumThreadsById.put(Long.valueOf(jLongValue2), value);
-                }
-            }
-        }
-    }
-
-    @StoreThread
-    private final void syncThreadsFromChannelStore() {
-        ThreadMetadata threadMetadata;
-        this.threadsByGuild.clear();
-        for (Map.Entry<Long, Channel> entry : this.storeChannels.getThreadsByIdInternal$app_productionGoogleRelease().entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            Channel value = entry.getValue();
-            if (ChannelUtils.m7673H(value) && ((threadMetadata = value.getThreadMetadata()) == null || !threadMetadata.getArchived())) {
-                Map<Long, Map<Long, Channel>> map = this.threadsByGuild;
-                Long lValueOf = Long.valueOf(value.getGuildId());
-                Map<Long, Channel> map2 = map.get(lValueOf);
-                if (map2 == null) {
-                    map2 = new HashMap<>();
-                    map.put(lValueOf, map2);
-                }
-                map2.put(Long.valueOf(jLongValue), value);
-            }
-        }
-        rebuildThreadByIdMaps();
-        markChanged();
-    }
-
     @StoreThread
     public final Map<Long, Channel> getAllActiveThreadsByIdInternal$app_productionGoogleRelease() {
         return this.threadsById;
@@ -268,6 +216,19 @@ public final class StoreThreadsActive extends StoreV2 {
     @StoreThread
     public final Map<Long, Channel> getAllForumThreadsByIdInternal$app_productionGoogleRelease() {
         return this.forumThreadsById;
+    }
+
+    private final Set<Long> getChannelsWithActiveThreadsByGuild(long guildId) {
+        Map<Long, Channel> mapEmptyMap = this.threadsByGuildSnapshot.get(Long.valueOf(guildId));
+        if (mapEmptyMap == null) {
+            mapEmptyMap = C12136h0.emptyMap();
+        }
+        ArrayList arrayList = new ArrayList(mapEmptyMap.size());
+        Iterator<Map.Entry<Long, Channel>> it = mapEmptyMap.entrySet().iterator();
+        while (it.hasNext()) {
+            arrayList.add(Long.valueOf(it.next().getValue().getParentId()));
+        }
+        return C12163u.toSet(arrayList);
     }
 
     @StoreThread
@@ -410,6 +371,23 @@ public final class StoreThreadsActive extends StoreV2 {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65411(), 14, null);
     }
 
+    @StoreThread
+    private final void rebuildThreadByIdMaps() {
+        this.threadsById.clear();
+        this.forumThreadsById.clear();
+        for (Map.Entry<Long, Map<Long, Channel>> entry : this.threadsByGuild.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            for (Map.Entry<Long, Channel> entry2 : entry.getValue().entrySet()) {
+                long jLongValue2 = entry2.getKey().longValue();
+                Channel value = entry2.getValue();
+                this.threadsById.put(Long.valueOf(jLongValue2), value);
+                if (ChannelUtils.m7694r(value, this.storeChannels.getChannelInternal$app_productionGoogleRelease(jLongValue, value.getParentId()))) {
+                    this.forumThreadsById.put(Long.valueOf(jLongValue2), value);
+                }
+            }
+        }
+    }
+
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
@@ -424,6 +402,28 @@ public final class StoreThreadsActive extends StoreV2 {
         }
         this.threadsByGuildSnapshot = linkedHashMap;
         this.threadSyncedGuildsSnapshot = C12163u.toSet(this.threadSyncedGuilds);
+    }
+
+    @StoreThread
+    private final void syncThreadsFromChannelStore() {
+        ThreadMetadata threadMetadata;
+        this.threadsByGuild.clear();
+        for (Map.Entry<Long, Channel> entry : this.storeChannels.getThreadsByIdInternal$app_productionGoogleRelease().entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            Channel value = entry.getValue();
+            if (ChannelUtils.m7673H(value) && ((threadMetadata = value.getThreadMetadata()) == null || !threadMetadata.getArchived())) {
+                Map<Long, Map<Long, Channel>> map = this.threadsByGuild;
+                Long lValueOf = Long.valueOf(value.getGuildId());
+                Map<Long, Channel> map2 = map.get(lValueOf);
+                if (map2 == null) {
+                    map2 = new HashMap<>();
+                    map.put(lValueOf, map2);
+                }
+                map2.put(Long.valueOf(jLongValue), value);
+            }
+        }
+        rebuildThreadByIdMaps();
+        markChanged();
     }
 
     public StoreThreadsActive(StoreChannels storeChannels, ObservationDeck observationDeck) {

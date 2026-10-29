@@ -11,16 +11,6 @@ public final /* data */ class GuildWelcomeScreen {
     private final String description;
     private final List<GuildWelcomeChannel> welcomeChannels;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getDescription() {
-        return this.description;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<GuildWelcomeChannel> m7899b() {
-        return this.welcomeChannels;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,11 +22,21 @@ public final /* data */ class GuildWelcomeScreen {
         return C12238m.areEqual(this.description, guildWelcomeScreen.description) && C12238m.areEqual(this.welcomeChannels, guildWelcomeScreen.welcomeChannels);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getDescription() {
+        return this.description;
+    }
+
     public int hashCode() {
         String str = this.description;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         List<GuildWelcomeChannel> list = this.welcomeChannels;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<GuildWelcomeChannel> m7899b() {
+        return this.welcomeChannels;
     }
 
     public String toString() {

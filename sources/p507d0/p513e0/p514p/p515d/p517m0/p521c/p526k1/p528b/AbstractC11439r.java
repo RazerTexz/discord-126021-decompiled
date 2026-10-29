@@ -22,48 +22,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ReflectJavaMember.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC11439r extends AbstractC11435n implements InterfaceC11427f, InterfaceC11441t, InterfaceC11584q {
-    /* JADX INFO: renamed from: a */
-    public final List<InterfaceC11565a0> m9436a(Type[] typeArr, Annotation[][] annotationArr, boolean z2) throws IllegalAccessException, InvocationTargetException {
-        String str;
-        C12238m.checkNotNullParameter(typeArr, "parameterTypes");
-        C12238m.checkNotNullParameter(annotationArr, "parameterAnnotations");
-        ArrayList arrayList = new ArrayList(typeArr.length);
-        List<String> listLoadParameterNames = C11422a.f23028a.loadParameterNames(getMember());
-        Integer numValueOf = listLoadParameterNames == null ? null : Integer.valueOf(listLoadParameterNames.size());
-        int iIntValue = numValueOf == null ? 0 : numValueOf.intValue() - typeArr.length;
-        int length = typeArr.length - 1;
-        if (length >= 0) {
-            int i = 0;
-            while (true) {
-                int i2 = i + 1;
-                AbstractC11444w abstractC11444wCreate = AbstractC11444w.f23065a.create(typeArr[i]);
-                if (listLoadParameterNames == null) {
-                    str = null;
-                } else {
-                    str = (String) C12163u.getOrNull(listLoadParameterNames, i + iIntValue);
-                    if (str == null) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append("No parameter with index ");
-                        sb.append(i);
-                        sb.append('+');
-                        sb.append(iIntValue);
-                        sb.append(" (name=");
-                        sb.append(getName());
-                        sb.append(" type=");
-                        sb.append(abstractC11444wCreate);
-                        sb.append(") in ");
-                        throw new IllegalStateException(C1643a.m824L(sb, listLoadParameterNames, "@ReflectJavaMember").toString());
-                    }
-                }
-                arrayList.add(new C11446y(abstractC11444wCreate, annotationArr[i], str, z2 && i == C12141k.getLastIndex(typeArr)));
-                if (i2 <= length) {
-                    i = i2;
-                }
-            }
-        }
-        return arrayList;
-    }
-
     public boolean equals(Object obj) {
         return (obj instanceof AbstractC11439r) && C12238m.areEqual(getMember(), ((AbstractC11439r) obj).getMember());
     }
@@ -124,6 +82,48 @@ public abstract class AbstractC11439r extends AbstractC11435n implements Interfa
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p532a.p539k0.InterfaceC11586s
     public boolean isStatic() {
         return InterfaceC11441t.a.isStatic(this);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<InterfaceC11565a0> m9436a(Type[] typeArr, Annotation[][] annotationArr, boolean z2) throws IllegalAccessException, InvocationTargetException {
+        String str;
+        C12238m.checkNotNullParameter(typeArr, "parameterTypes");
+        C12238m.checkNotNullParameter(annotationArr, "parameterAnnotations");
+        ArrayList arrayList = new ArrayList(typeArr.length);
+        List<String> listLoadParameterNames = C11422a.f23028a.loadParameterNames(getMember());
+        Integer numValueOf = listLoadParameterNames == null ? null : Integer.valueOf(listLoadParameterNames.size());
+        int iIntValue = numValueOf == null ? 0 : numValueOf.intValue() - typeArr.length;
+        int length = typeArr.length - 1;
+        if (length >= 0) {
+            int i = 0;
+            while (true) {
+                int i2 = i + 1;
+                AbstractC11444w abstractC11444wCreate = AbstractC11444w.f23065a.create(typeArr[i]);
+                if (listLoadParameterNames == null) {
+                    str = null;
+                } else {
+                    str = (String) C12163u.getOrNull(listLoadParameterNames, i + iIntValue);
+                    if (str == null) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("No parameter with index ");
+                        sb.append(i);
+                        sb.append('+');
+                        sb.append(iIntValue);
+                        sb.append(" (name=");
+                        sb.append(getName());
+                        sb.append(" type=");
+                        sb.append(abstractC11444wCreate);
+                        sb.append(") in ");
+                        throw new IllegalStateException(C1643a.m824L(sb, listLoadParameterNames, "@ReflectJavaMember").toString());
+                    }
+                }
+                arrayList.add(new C11446y(abstractC11444wCreate, annotationArr[i], str, z2 && i == C12141k.getLastIndex(typeArr)));
+                if (i2 <= length) {
+                    i = i2;
+                }
+            }
+        }
+        return arrayList;
     }
 
     public String toString() {

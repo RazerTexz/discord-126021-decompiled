@@ -31,6 +31,21 @@ public final class C4415a extends AbstractC4420f<CircularProgressIndicatorSpec> 
         this.f11713c = 1;
     }
 
+    /* JADX INFO: renamed from: f */
+    public final void m6122f(Canvas canvas, Paint paint, float f, float f2, float f3, boolean z2, RectF rectF) {
+        float f4 = z2 ? -1.0f : 1.0f;
+        canvas.save();
+        canvas.rotate(f3);
+        float f5 = f / 2.0f;
+        float f6 = f4 * f2;
+        canvas.drawRect((this.f11716f - f5) + f2, Math.min(0.0f, this.f11713c * f6), (this.f11716f + f5) - f2, Math.max(0.0f, f6 * this.f11713c), paint);
+        canvas.translate((this.f11716f - f5) + f2, 0.0f);
+        canvas.drawArc(rectF, 180.0f, (-f4) * 90.0f * this.f11713c, true, paint);
+        canvas.translate(f - (f2 * 2.0f), 0.0f);
+        canvas.drawArc(rectF, 0.0f, f4 * 90.0f * this.f11713c, true, paint);
+        canvas.restore();
+    }
+
     @Override // p007b.p225i.p226a.p341g.p348g.AbstractC4420f
     /* JADX INFO: renamed from: a */
     public void mo6117a(@NonNull Canvas canvas, @FloatRange(from = 0.0d, m75to = 1.0d) float f) {
@@ -109,20 +124,5 @@ public final class C4415a extends AbstractC4420f<CircularProgressIndicatorSpec> 
     public int mo6121e() {
         CircularProgressIndicatorSpec circularProgressIndicatorSpec = (CircularProgressIndicatorSpec) this.f11734a;
         return (circularProgressIndicatorSpec.indicatorInset * 2) + circularProgressIndicatorSpec.indicatorSize;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m6122f(Canvas canvas, Paint paint, float f, float f2, float f3, boolean z2, RectF rectF) {
-        float f4 = z2 ? -1.0f : 1.0f;
-        canvas.save();
-        canvas.rotate(f3);
-        float f5 = f / 2.0f;
-        float f6 = f4 * f2;
-        canvas.drawRect((this.f11716f - f5) + f2, Math.min(0.0f, this.f11713c * f6), (this.f11716f + f5) - f2, Math.max(0.0f, f6 * this.f11713c), paint);
-        canvas.translate((this.f11716f - f5) + f2, 0.0f);
-        canvas.drawArc(rectF, 180.0f, (-f4) * 90.0f * this.f11713c, true, paint);
-        canvas.translate(f - (f2 * 2.0f), 0.0f);
-        canvas.drawArc(rectF, 0.0f, f4 * 90.0f * this.f11713c, true, paint);
-        canvas.restore();
     }
 }

@@ -18,14 +18,14 @@ public final class AsyncDifferConfig<T> {
     @Nullable
     private final Executor mMainThreadExecutor;
 
-    public static final class Builder<T> {
-        private static Executor sDiffExecutor;
-        private static final Object sExecutorLock = new Object();
+    public final class Builder<T> {
         private Executor mBackgroundThreadExecutor;
         private final DiffUtil.ItemCallback<T> mDiffCallback;
 
         @Nullable
         private Executor mMainThreadExecutor;
+        private static Executor sDiffExecutor;
+        private static final Object sExecutorLock = new Object();
 
         public Builder(@NonNull DiffUtil.ItemCallback<T> itemCallback) {
             this.mDiffCallback = itemCallback;

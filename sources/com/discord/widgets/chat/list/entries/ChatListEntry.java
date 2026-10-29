@@ -54,9 +54,6 @@ public abstract class ChatListEntry implements MGRecyclerDataPayload {
     public static final int BLOCKED_MESSAGES = 10;
     public static final int BOT_UI_COMPONENT = 36;
     public static final int CALL_MESSAGE = 19;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final int DIVIDER = 15;
     public static final int EMPTY_PINS = 16;
     public static final int EPHEMERAL_MESSAGE = 34;
@@ -66,6 +63,9 @@ public abstract class ChatListEntry implements MGRecyclerDataPayload {
     public static final int GUILD_SCHEDULED_EVENT_INVITE = 43;
     public static final int GUILD_TEMPLATE = 30;
     public static final int GUILD_WELCOME = 25;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int INVITE = 24;
     public static final int LOAD_INDICATOR = 2;
     public static final int MENTION_FOOTER = 18;
@@ -99,35 +99,8 @@ public abstract class ChatListEntry implements MGRecyclerDataPayload {
     private boolean shouldShowThreadSpine;
 
     /* JADX INFO: compiled from: ChatListEntry.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final ChatListEntry createEntryForInvite(Message message, String inviteCode, String eventId, InviteEmbedModel inviteEmbedModel) {
-            if (eventId != null) {
-                ModelInvite modelInviteResolveInviteForGuildScheduledEvent = inviteEmbedModel.resolveInviteForGuildScheduledEvent(inviteCode, eventId);
-                if ((modelInviteResolveInviteForGuildScheduledEvent != null ? modelInviteResolveInviteForGuildScheduledEvent.getGuildScheduledEvent() : null) != null) {
-                    GuildScheduledEvent guildScheduledEvent = modelInviteResolveInviteForGuildScheduledEvent.getGuildScheduledEvent();
-                    C12238m.checkNotNull(guildScheduledEvent);
-                    C12238m.checkNotNullExpressionValue(guildScheduledEvent, "eventInvite.guildScheduledEvent!!");
-                    return new GuildScheduledEventInviteEntry(modelInviteResolveInviteForGuildScheduledEvent, inviteCode, guildScheduledEvent);
-                }
-            }
-            ModelInvite modelInviteResolveInviteCodeForPublicStage = inviteEmbedModel.resolveInviteCodeForPublicStage(inviteCode);
-            if (modelInviteResolveInviteCodeForPublicStage != null) {
-                User author = message.getAuthor();
-                C12238m.checkNotNull(author);
-                long id2 = author.getId();
-                long id3 = message.getId();
-                Long guildId = message.getGuildId();
-                return new StageInviteEntry(id2, id3, inviteCode, modelInviteResolveInviteCodeForPublicStage, guildId != null ? guildId.longValue() : 0L);
-            }
-            User author2 = message.getAuthor();
-            C12238m.checkNotNull(author2);
-            long id4 = author2.getId();
-            long id5 = message.getId();
-            Long guildId2 = message.getGuildId();
-            return new InviteEntry(id4, id5, inviteCode, guildId2 != null ? guildId2.longValue() : 0L, eventId);
         }
 
         public final Collection<ChatListEntry> createBotComponentEntries(Message message, long guildId, ComponentChatListState.ComponentStoreState componentStoreState, boolean animateEmojis) {
@@ -200,6 +173,33 @@ public abstract class ChatListEntry implements MGRecyclerDataPayload {
                 }
             }
             return arrayList2;
+        }
+
+        private final ChatListEntry createEntryForInvite(Message message, String inviteCode, String eventId, InviteEmbedModel inviteEmbedModel) {
+            if (eventId != null) {
+                ModelInvite modelInviteResolveInviteForGuildScheduledEvent = inviteEmbedModel.resolveInviteForGuildScheduledEvent(inviteCode, eventId);
+                if ((modelInviteResolveInviteForGuildScheduledEvent != null ? modelInviteResolveInviteForGuildScheduledEvent.getGuildScheduledEvent() : null) != null) {
+                    GuildScheduledEvent guildScheduledEvent = modelInviteResolveInviteForGuildScheduledEvent.getGuildScheduledEvent();
+                    C12238m.checkNotNull(guildScheduledEvent);
+                    C12238m.checkNotNullExpressionValue(guildScheduledEvent, "eventInvite.guildScheduledEvent!!");
+                    return new GuildScheduledEventInviteEntry(modelInviteResolveInviteForGuildScheduledEvent, inviteCode, guildScheduledEvent);
+                }
+            }
+            ModelInvite modelInviteResolveInviteCodeForPublicStage = inviteEmbedModel.resolveInviteCodeForPublicStage(inviteCode);
+            if (modelInviteResolveInviteCodeForPublicStage != null) {
+                User author = message.getAuthor();
+                C12238m.checkNotNull(author);
+                long id2 = author.getId();
+                long id3 = message.getId();
+                Long guildId = message.getGuildId();
+                return new StageInviteEntry(id2, id3, inviteCode, modelInviteResolveInviteCodeForPublicStage, guildId != null ? guildId.longValue() : 0L);
+            }
+            User author2 = message.getAuthor();
+            C12238m.checkNotNull(author2);
+            long id4 = author2.getId();
+            long id5 = message.getId();
+            Long guildId2 = message.getGuildId();
+            return new InviteEntry(id4, id5, inviteCode, guildId2 != null ? guildId2.longValue() : 0L, eventId);
         }
 
         public final List<ChatListEntry> createGameInviteEntries(Message message) {

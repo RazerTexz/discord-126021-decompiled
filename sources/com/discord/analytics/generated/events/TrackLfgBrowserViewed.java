@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLfgBrowserViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLfgBrowserViewed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long gameId = null;
     private final CharSequence gameName = null;
     private final Boolean isRefresh = null;
     private final Long numGroups = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "lfg_browser_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackLfgBrowserViewed implements AnalyticsSchema, 
         }
         TrackLfgBrowserViewed trackLfgBrowserViewed = (TrackLfgBrowserViewed) other;
         return C12238m.areEqual(this.gameId, trackLfgBrowserViewed.gameId) && C12238m.areEqual(this.gameName, trackLfgBrowserViewed.gameName) && C12238m.areEqual(this.isRefresh, trackLfgBrowserViewed.isRefresh) && C12238m.areEqual(this.numGroups, trackLfgBrowserViewed.numGroups);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -22,7 +22,7 @@ public class DiffUtil {
         }
     };
 
-    public static abstract class Callback {
+    public abstract class Callback {
         public abstract boolean areContentsTheSame(int i, int i2);
 
         public abstract boolean areItemsTheSame(int i, int i2);
@@ -37,7 +37,7 @@ public class DiffUtil {
         public abstract int getOldListSize();
     }
 
-    public static class CenteredArray {
+    public class CenteredArray {
         private final int[] mData;
         private final int mMid;
 
@@ -64,7 +64,7 @@ public class DiffUtil {
         }
     }
 
-    public static class Diagonal {
+    public class Diagonal {
         public final int size;
 
         /* JADX INFO: renamed from: x */
@@ -88,7 +88,7 @@ public class DiffUtil {
         }
     }
 
-    public static class DiffResult {
+    public class DiffResult {
         private static final int FLAG_CHANGED = 2;
         private static final int FLAG_MASK = 15;
         private static final int FLAG_MOVED = 12;
@@ -125,6 +125,36 @@ public class DiffUtil {
                 this.mDiagonals.add(0, new Diagonal(0, 0, 0));
             }
             this.mDiagonals.add(new Diagonal(this.mOldListSize, this.mNewListSize, 0));
+        }
+
+        public int convertNewPositionToOld(@IntRange(from = 0) int i) {
+            if (i < 0 || i >= this.mNewListSize) {
+                StringBuilder sbM834V = C1643a.m834V("Index out of bounds - passed position = ", i, ", new list size = ");
+                sbM834V.append(this.mNewListSize);
+                throw new IndexOutOfBoundsException(sbM834V.toString());
+            }
+            int i2 = this.mNewItemStatuses[i];
+            if ((i2 & 15) == 0) {
+                return -1;
+            }
+            return i2 >> 4;
+        }
+
+        public int convertOldPositionToNew(@IntRange(from = 0) int i) {
+            if (i < 0 || i >= this.mOldListSize) {
+                StringBuilder sbM834V = C1643a.m834V("Index out of bounds - passed position = ", i, ", old list size = ");
+                sbM834V.append(this.mOldListSize);
+                throw new IndexOutOfBoundsException(sbM834V.toString());
+            }
+            int i2 = this.mOldItemStatuses[i];
+            if ((i2 & 15) == 0) {
+                return -1;
+            }
+            return i2 >> 4;
+        }
+
+        public void dispatchUpdatesTo(@NonNull RecyclerView.Adapter adapter) {
+            dispatchUpdatesTo(new AdapterListUpdateCallback(adapter));
         }
 
         private void findMatchingAddition(int i) {
@@ -199,36 +229,6 @@ public class DiffUtil {
             return next;
         }
 
-        public int convertNewPositionToOld(@IntRange(from = 0) int i) {
-            if (i < 0 || i >= this.mNewListSize) {
-                StringBuilder sbM834V = C1643a.m834V("Index out of bounds - passed position = ", i, ", new list size = ");
-                sbM834V.append(this.mNewListSize);
-                throw new IndexOutOfBoundsException(sbM834V.toString());
-            }
-            int i2 = this.mNewItemStatuses[i];
-            if ((i2 & 15) == 0) {
-                return -1;
-            }
-            return i2 >> 4;
-        }
-
-        public int convertOldPositionToNew(@IntRange(from = 0) int i) {
-            if (i < 0 || i >= this.mOldListSize) {
-                StringBuilder sbM834V = C1643a.m834V("Index out of bounds - passed position = ", i, ", old list size = ");
-                sbM834V.append(this.mOldListSize);
-                throw new IndexOutOfBoundsException(sbM834V.toString());
-            }
-            int i2 = this.mOldItemStatuses[i];
-            if ((i2 & 15) == 0) {
-                return -1;
-            }
-            return i2 >> 4;
-        }
-
-        public void dispatchUpdatesTo(@NonNull RecyclerView.Adapter adapter) {
-            dispatchUpdatesTo(new AdapterListUpdateCallback(adapter));
-        }
-
         public void dispatchUpdatesTo(@NonNull ListUpdateCallback listUpdateCallback) {
             int i;
             BatchingListUpdateCallback batchingListUpdateCallback = listUpdateCallback instanceof BatchingListUpdateCallback ? (BatchingListUpdateCallback) listUpdateCallback : new BatchingListUpdateCallback(listUpdateCallback);
@@ -298,7 +298,7 @@ public class DiffUtil {
         }
     }
 
-    public static abstract class ItemCallback<T> {
+    public abstract class ItemCallback<T> {
         public abstract boolean areContentsTheSame(@NonNull T t, @NonNull T t2);
 
         public abstract boolean areItemsTheSame(@NonNull T t, @NonNull T t2);
@@ -309,7 +309,7 @@ public class DiffUtil {
         }
     }
 
-    public static class PostponedUpdate {
+    public class PostponedUpdate {
         public int currentPos;
         public int posInOwnerList;
         public boolean removal;
@@ -321,7 +321,7 @@ public class DiffUtil {
         }
     }
 
-    public static class Range {
+    public class Range {
         public int newListEnd;
         public int newListStart;
         public int oldListEnd;
@@ -346,7 +346,7 @@ public class DiffUtil {
         }
     }
 
-    public static class Snake {
+    public class Snake {
         public int endX;
         public int endY;
         public boolean reverse;

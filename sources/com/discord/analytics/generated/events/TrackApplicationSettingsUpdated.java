@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final Boolean hiddenEnabled = null;
-    private final Boolean overlayDisabled = null;
-    private final Boolean privateEnabled = null;
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
-    private final Long skuId = null;
+    private final Boolean hiddenEnabled = null;
     private final CharSequence launcherPlatform = null;
+    private final Boolean overlayDisabled = null;
+    private final Boolean privateEnabled = null;
+    private final Long skuId = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "application_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackApplicationSettingsUpdated implements Analyti
         }
         TrackApplicationSettingsUpdated trackApplicationSettingsUpdated = (TrackApplicationSettingsUpdated) other;
         return C12238m.areEqual(this.hiddenEnabled, trackApplicationSettingsUpdated.hiddenEnabled) && C12238m.areEqual(this.overlayDisabled, trackApplicationSettingsUpdated.overlayDisabled) && C12238m.areEqual(this.privateEnabled, trackApplicationSettingsUpdated.privateEnabled) && C12238m.areEqual(this.applicationId, trackApplicationSettingsUpdated.applicationId) && C12238m.areEqual(this.applicationName, trackApplicationSettingsUpdated.applicationName) && C12238m.areEqual(this.skuId, trackApplicationSettingsUpdated.skuId) && C12238m.areEqual(this.launcherPlatform, trackApplicationSettingsUpdated.launcherPlatform);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -31,6 +31,7 @@ import com.discord.widgets.settings.WidgetMuteSettingsSheet;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -67,26 +68,9 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void create(long channelId, Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent().putExtra(WidgetChannelGroupDMSettings.INTENT_EXTRA_CHANNEL_ID, channelId);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT…RA_CHANNEL_ID, channelId)");
-            C0870j.m156d(context, WidgetChannelGroupDMSettings.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureIcon$2 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75762 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C75762 extends AbstractC12240o implements Function1<String, Unit> {
         public C75762() {
             super(1);
         }
@@ -106,7 +90,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$3 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75803 extends AbstractC12240o implements Function0<Unit> {
+    public final class C75803 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -133,7 +117,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$4 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75814 extends AbstractC12240o implements Function0<Unit> {
+    public final class C75814 extends AbstractC12240o implements Function0<Unit> {
         public C75814() {
             super(0);
         }
@@ -152,7 +136,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$confirmLeave$1 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75821 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C75821 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Function0 $confirmed;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -176,7 +160,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75831 extends AbstractC12240o implements Function1<ChannelGroupDMSettingsViewModel.ViewState, Unit> {
+    public final class C75831 extends AbstractC12240o implements Function1<ChannelGroupDMSettingsViewModel.ViewState, Unit> {
         public C75831() {
             super(1);
         }
@@ -196,7 +180,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-    public static final class C75842 extends AbstractC12240o implements Function1<ChannelGroupDMSettingsViewModel.Event, Unit> {
+    public final class C75842 extends AbstractC12240o implements Function1<ChannelGroupDMSettingsViewModel.Event, Unit> {
         public C75842() {
             super(1);
         }
@@ -211,6 +195,23 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         public final void invoke2(ChannelGroupDMSettingsViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetChannelGroupDMSettings.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(long channelId, Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra(WidgetChannelGroupDMSettings.INTENT_EXTRA_CHANNEL_ID, channelId);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT…RA_CHANNEL_ID, channelId)");
+            C0870j.m156d(context, WidgetChannelGroupDMSettings.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -283,7 +284,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$1$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }
@@ -351,13 +352,6 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         return (ChannelGroupDMSettingsViewModel) this.viewModel.getValue();
     }
 
-    private final void handleSettingsSaved() {
-        C0876m.m171i(this, C5419R.string.saved_settings, 0, 4);
-        StatefulViews.clear$default(this.state, false, 1, null);
-        AppFragment.hideKeyboard$default(this, null, 1, null);
-        getBinding().f15849e.fullScroll(33);
-    }
-
     public final void handleEvent(ChannelGroupDMSettingsViewModel.Event event) {
         C12238m.checkNotNullParameter(event, "event");
         if (!C12238m.areEqual(event, ChannelGroupDMSettingsViewModel.Event.LeaveGroupSuccess.INSTANCE)) {
@@ -370,6 +364,13 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
                 appActivity.finish();
             }
         }
+    }
+
+    private final void handleSettingsSaved() {
+        C0876m.m171i(this, C5419R.string.saved_settings, 0, 4);
+        StatefulViews.clear$default(this.state, false, 1, null);
+        AppFragment.hideKeyboard$default(this, null, 1, null);
+        getBinding().f15849e.fullScroll(33);
     }
 
     @Override // com.discord.app.AppFragment
@@ -388,7 +389,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);

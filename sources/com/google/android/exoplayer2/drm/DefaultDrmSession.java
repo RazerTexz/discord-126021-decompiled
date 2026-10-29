@@ -133,18 +133,30 @@ public class DefaultDrmSession implements DrmSession {
     @Nullable
     public InterfaceC2966a0.d f19806w;
 
-    public static final class UnexpectedDrmSessionException extends IOException {
-        public UnexpectedDrmSessionException(@Nullable Throwable th) {
-            super(th);
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$d */
+    public final class C10702d {
+
+        /* JADX INFO: renamed from: a */
+        public final long f19809a;
+
+        /* JADX INFO: renamed from: b */
+        public final boolean f19810b;
+
+        /* JADX INFO: renamed from: c */
+        public final long f19811c;
+
+        /* JADX INFO: renamed from: d */
+        public final Object f19812d;
+
+        /* JADX INFO: renamed from: e */
+        public int f19813e;
+
+        public C10702d(long j, boolean z2, long j2, Object obj) {
+            this.f19809a = j;
+            this.f19810b = z2;
+            this.f19811c = j2;
+            this.f19812d = obj;
         }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$a */
-    public interface InterfaceC10699a {
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$b */
-    public interface InterfaceC10700b {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$c */
@@ -157,11 +169,6 @@ public class DefaultDrmSession implements DrmSession {
 
         public HandlerC10701c(Looper looper) {
             super(looper);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m8824a(int i, Object obj, boolean z2) {
-            obtainMessage(i, new C10702d(C2566t.f5703a.getAndIncrement(), z2, SystemClock.elapsedRealtime(), obj)).sendToTarget();
         }
 
         /* JADX WARN: Code duplicated, block: B:17:0x004a  */
@@ -253,31 +260,10 @@ public class DefaultDrmSession implements DrmSession {
                 }
             }
         }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$d */
-    public static final class C10702d {
 
         /* JADX INFO: renamed from: a */
-        public final long f19809a;
-
-        /* JADX INFO: renamed from: b */
-        public final boolean f19810b;
-
-        /* JADX INFO: renamed from: c */
-        public final long f19811c;
-
-        /* JADX INFO: renamed from: d */
-        public final Object f19812d;
-
-        /* JADX INFO: renamed from: e */
-        public int f19813e;
-
-        public C10702d(long j, boolean z2, long j2, Object obj) {
-            this.f19809a = j;
-            this.f19810b = z2;
-            this.f19811c = j2;
-            this.f19812d = obj;
+        public void m8824a(int i, Object obj, boolean z2) {
+            obtainMessage(i, new C10702d(C2566t.f5703a.getAndIncrement(), z2, SystemClock.elapsedRealtime(), obj)).sendToTarget();
         }
     }
 
@@ -370,6 +356,20 @@ public class DefaultDrmSession implements DrmSession {
         }
     }
 
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$a */
+    public interface InterfaceC10699a {
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.drm.DefaultDrmSession$b */
+    public interface InterfaceC10700b {
+    }
+
+    public final class UnexpectedDrmSessionException extends IOException {
+        public UnexpectedDrmSessionException(@Nullable Throwable th) {
+            super(th);
+        }
+    }
+
     public DefaultDrmSession(UUID uuid, InterfaceC2966a0 interfaceC2966a0, InterfaceC10699a interfaceC10699a, InterfaceC10700b interfaceC10700b, @Nullable List<DrmInitData.SchemeData> list, int i, boolean z2, boolean z3, @Nullable byte[] bArr, HashMap<String, String> map, InterfaceC2974e0 interfaceC2974e0, Looper looper, InterfaceC2721w interfaceC2721w) {
         if (i == 1 || i == 3) {
             Objects.requireNonNull(bArr);
@@ -394,231 +394,6 @@ public class DefaultDrmSession implements DrmSession {
         this.f19793j = interfaceC2721w;
         this.f19797n = 2;
         this.f19796m = new HandlerC10703e(looper);
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    /* JADX INFO: renamed from: a */
-    public void mo3606a(@Nullable InterfaceC2988s.a aVar) {
-        int i = this.f19798o;
-        if (i < 0) {
-            StringBuilder sb = new StringBuilder(51);
-            sb.append("Session reference count less than zero: ");
-            sb.append(i);
-            Log.e("DefaultDrmSession", sb.toString());
-            this.f19798o = 0;
-        }
-        if (aVar != null) {
-            C2745l<InterfaceC2988s.a> c2745l = this.f19792i;
-            synchronized (c2745l.f6729j) {
-                ArrayList arrayList = new ArrayList(c2745l.f6732m);
-                arrayList.add(aVar);
-                c2745l.f6732m = Collections.unmodifiableList(arrayList);
-                Integer num = c2745l.f6730k.get(aVar);
-                if (num == null) {
-                    HashSet hashSet = new HashSet(c2745l.f6731l);
-                    hashSet.add(aVar);
-                    c2745l.f6731l = Collections.unmodifiableSet(hashSet);
-                }
-                c2745l.f6730k.put(aVar, Integer.valueOf(num != null ? num.intValue() + 1 : 1));
-            }
-        }
-        int i2 = this.f19798o + 1;
-        this.f19798o = i2;
-        if (i2 == 1) {
-            C1460d.m426D(this.f19797n == 2);
-            HandlerThread handlerThread = new HandlerThread("ExoPlayer:DrmRequestHandler");
-            this.f19799p = handlerThread;
-            handlerThread.start();
-            this.f19800q = new HandlerC10701c(this.f19799p.getLooper());
-            if (m8820m()) {
-                m8816i(true);
-            }
-        } else if (aVar != null && m8817j() && this.f19792i.m3027c(aVar) == 1) {
-            aVar.m3590d(this.f19797n);
-        }
-        DefaultDrmSessionManager.C10709f c10709f = (DefaultDrmSessionManager.C10709f) this.f19787d;
-        DefaultDrmSessionManager defaultDrmSessionManager = DefaultDrmSessionManager.this;
-        if (defaultDrmSessionManager.f19825l != -9223372036854775807L) {
-            defaultDrmSessionManager.f19828o.remove(this);
-            Handler handler = DefaultDrmSessionManager.this.f19834u;
-            Objects.requireNonNull(handler);
-            handler.removeCallbacksAndMessages(this);
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:43:0x00da A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:44:0x00dc  */
-    /* JADX WARN: Code duplicated, block: B:46:0x00e9  */
-    /* JADX WARN: Code duplicated, block: B:49:0x00ef  */
-    /* JADX WARN: Code duplicated, block: B:52:0x00fc  */
-    /* JADX WARN: Code duplicated, block: B:54:0x0106  */
-    /* JADX WARN: Code duplicated, block: B:57:0x011f  */
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    /* JADX INFO: renamed from: b */
-    public void mo3607b(@Nullable InterfaceC2988s.a aVar) {
-        DefaultDrmSessionManager defaultDrmSessionManager;
-        DefaultDrmSessionManager.C10708e c10708e;
-        DefaultDrmSessionManager defaultDrmSessionManager2;
-        int i = this.f19798o;
-        if (i <= 0) {
-            Log.e("DefaultDrmSession", "release() called on a session that's already fully released.");
-            return;
-        }
-        int i2 = i - 1;
-        this.f19798o = i2;
-        if (i2 == 0) {
-            this.f19797n = 0;
-            HandlerC10703e handlerC10703e = this.f19796m;
-            int i3 = C2738e0.f6708a;
-            handlerC10703e.removeCallbacksAndMessages(null);
-            HandlerC10701c handlerC10701c = this.f19800q;
-            synchronized (handlerC10701c) {
-                handlerC10701c.removeCallbacksAndMessages(null);
-                handlerC10701c.f19807a = true;
-            }
-            this.f19800q = null;
-            this.f19799p.quit();
-            this.f19799p = null;
-            this.f19801r = null;
-            this.f19802s = null;
-            this.f19805v = null;
-            this.f19806w = null;
-            byte[] bArr = this.f19803t;
-            if (bArr != null) {
-                this.f19785b.mo3575g(bArr);
-                this.f19803t = null;
-            }
-        }
-        if (aVar != null) {
-            C2745l<InterfaceC2988s.a> c2745l = this.f19792i;
-            synchronized (c2745l.f6729j) {
-                Integer num = c2745l.f6730k.get(aVar);
-                if (num != null) {
-                    ArrayList arrayList = new ArrayList(c2745l.f6732m);
-                    arrayList.remove(aVar);
-                    c2745l.f6732m = Collections.unmodifiableList(arrayList);
-                    if (num.intValue() == 1) {
-                        c2745l.f6730k.remove(aVar);
-                        HashSet hashSet = new HashSet(c2745l.f6731l);
-                        hashSet.remove(aVar);
-                        c2745l.f6731l = Collections.unmodifiableSet(hashSet);
-                    } else {
-                        c2745l.f6730k.put(aVar, Integer.valueOf(num.intValue() - 1));
-                    }
-                }
-            }
-            if (this.f19792i.m3027c(aVar) == 0) {
-                aVar.m3592f();
-            }
-        }
-        InterfaceC10700b interfaceC10700b = this.f19787d;
-        int i4 = this.f19798o;
-        DefaultDrmSessionManager.C10709f c10709f = (DefaultDrmSessionManager.C10709f) interfaceC10700b;
-        if (i4 == 1) {
-            DefaultDrmSessionManager defaultDrmSessionManager3 = DefaultDrmSessionManager.this;
-            if (defaultDrmSessionManager3.f19829p > 0 && defaultDrmSessionManager3.f19825l != -9223372036854775807L) {
-                defaultDrmSessionManager3.f19828o.add(this);
-                Handler handler = DefaultDrmSessionManager.this.f19834u;
-                Objects.requireNonNull(handler);
-                handler.postAtTime(new Runnable() { // from class: b.i.a.c.w2.f
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        this.f7988j.mo3607b(null);
-                    }
-                }, this, SystemClock.uptimeMillis() + DefaultDrmSessionManager.this.f19825l);
-            } else if (i4 == 0) {
-                DefaultDrmSessionManager.this.f19826m.remove(this);
-                defaultDrmSessionManager = DefaultDrmSessionManager.this;
-                if (defaultDrmSessionManager.f19831r == this) {
-                    defaultDrmSessionManager.f19831r = null;
-                }
-                if (defaultDrmSessionManager.f19832s == this) {
-                    defaultDrmSessionManager.f19832s = null;
-                }
-                c10708e = defaultDrmSessionManager.f19822i;
-                c10708e.f19844a.remove(this);
-                if (c10708e.f19845b == this) {
-                    c10708e.f19845b = null;
-                    if (!c10708e.f19844a.isEmpty()) {
-                        DefaultDrmSession next = c10708e.f19844a.iterator().next();
-                        c10708e.f19845b = next;
-                        next.m8822o();
-                    }
-                }
-                defaultDrmSessionManager2 = DefaultDrmSessionManager.this;
-                if (defaultDrmSessionManager2.f19825l != -9223372036854775807L) {
-                    Handler handler2 = defaultDrmSessionManager2.f19834u;
-                    Objects.requireNonNull(handler2);
-                    handler2.removeCallbacksAndMessages(this);
-                    DefaultDrmSessionManager.this.f19828o.remove(this);
-                }
-            }
-        } else if (i4 == 0) {
-            DefaultDrmSessionManager.this.f19826m.remove(this);
-            defaultDrmSessionManager = DefaultDrmSessionManager.this;
-            if (defaultDrmSessionManager.f19831r == this) {
-                defaultDrmSessionManager.f19831r = null;
-            }
-            if (defaultDrmSessionManager.f19832s == this) {
-                defaultDrmSessionManager.f19832s = null;
-            }
-            c10708e = defaultDrmSessionManager.f19822i;
-            c10708e.f19844a.remove(this);
-            if (c10708e.f19845b == this) {
-                c10708e.f19845b = null;
-                if (!c10708e.f19844a.isEmpty()) {
-                    DefaultDrmSession next2 = c10708e.f19844a.iterator().next();
-                    c10708e.f19845b = next2;
-                    next2.m8822o();
-                }
-            }
-            defaultDrmSessionManager2 = DefaultDrmSessionManager.this;
-            if (defaultDrmSessionManager2.f19825l != -9223372036854775807L) {
-                Handler handler3 = defaultDrmSessionManager2.f19834u;
-                Objects.requireNonNull(handler3);
-                handler3.removeCallbacksAndMessages(this);
-                DefaultDrmSessionManager.this.f19828o.remove(this);
-            }
-        }
-        DefaultDrmSessionManager.this.m8831k();
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    /* JADX INFO: renamed from: c */
-    public final UUID mo3608c() {
-        return this.f19795l;
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    /* JADX INFO: renamed from: d */
-    public boolean mo3609d() {
-        return this.f19789f;
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    /* JADX INFO: renamed from: e */
-    public boolean mo3610e(String str) {
-        InterfaceC2966a0 interfaceC2966a0 = this.f19785b;
-        byte[] bArr = this.f19803t;
-        C1460d.m438H(bArr);
-        return interfaceC2966a0.mo3573e(bArr, str);
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    @Nullable
-    /* JADX INFO: renamed from: f */
-    public final DrmSession.DrmSessionException mo3611f() {
-        if (this.f19797n == 1) {
-            return this.f19802s;
-        }
-        return null;
-    }
-
-    @Override // com.google.android.exoplayer2.drm.DrmSession
-    @Nullable
-    /* JADX INFO: renamed from: g */
-    public final InterfaceC2954b mo3612g() {
-        return this.f19801r;
     }
 
     @Override // com.google.android.exoplayer2.drm.DrmSession
@@ -872,5 +647,230 @@ public class DefaultDrmSession implements DrmSession {
             return null;
         }
         return this.f19785b.mo3569a(bArr);
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    /* JADX INFO: renamed from: a */
+    public void mo3606a(@Nullable InterfaceC2988s.a aVar) {
+        int i = this.f19798o;
+        if (i < 0) {
+            StringBuilder sb = new StringBuilder(51);
+            sb.append("Session reference count less than zero: ");
+            sb.append(i);
+            Log.e("DefaultDrmSession", sb.toString());
+            this.f19798o = 0;
+        }
+        if (aVar != null) {
+            C2745l<InterfaceC2988s.a> c2745l = this.f19792i;
+            synchronized (c2745l.f6729j) {
+                ArrayList arrayList = new ArrayList(c2745l.f6732m);
+                arrayList.add(aVar);
+                c2745l.f6732m = Collections.unmodifiableList(arrayList);
+                Integer num = c2745l.f6730k.get(aVar);
+                if (num == null) {
+                    HashSet hashSet = new HashSet(c2745l.f6731l);
+                    hashSet.add(aVar);
+                    c2745l.f6731l = Collections.unmodifiableSet(hashSet);
+                }
+                c2745l.f6730k.put(aVar, Integer.valueOf(num != null ? num.intValue() + 1 : 1));
+            }
+        }
+        int i2 = this.f19798o + 1;
+        this.f19798o = i2;
+        if (i2 == 1) {
+            C1460d.m426D(this.f19797n == 2);
+            HandlerThread handlerThread = new HandlerThread("ExoPlayer:DrmRequestHandler");
+            this.f19799p = handlerThread;
+            handlerThread.start();
+            this.f19800q = new HandlerC10701c(this.f19799p.getLooper());
+            if (m8820m()) {
+                m8816i(true);
+            }
+        } else if (aVar != null && m8817j() && this.f19792i.m3027c(aVar) == 1) {
+            aVar.m3590d(this.f19797n);
+        }
+        DefaultDrmSessionManager.C10709f c10709f = (DefaultDrmSessionManager.C10709f) this.f19787d;
+        DefaultDrmSessionManager defaultDrmSessionManager = DefaultDrmSessionManager.this;
+        if (defaultDrmSessionManager.f19825l != -9223372036854775807L) {
+            defaultDrmSessionManager.f19828o.remove(this);
+            Handler handler = DefaultDrmSessionManager.this.f19834u;
+            Objects.requireNonNull(handler);
+            handler.removeCallbacksAndMessages(this);
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:43:0x00da A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:44:0x00dc  */
+    /* JADX WARN: Code duplicated, block: B:46:0x00e9  */
+    /* JADX WARN: Code duplicated, block: B:49:0x00ef  */
+    /* JADX WARN: Code duplicated, block: B:52:0x00fc  */
+    /* JADX WARN: Code duplicated, block: B:54:0x0106  */
+    /* JADX WARN: Code duplicated, block: B:57:0x011f  */
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    /* JADX INFO: renamed from: b */
+    public void mo3607b(@Nullable InterfaceC2988s.a aVar) {
+        DefaultDrmSessionManager defaultDrmSessionManager;
+        DefaultDrmSessionManager.C10708e c10708e;
+        DefaultDrmSessionManager defaultDrmSessionManager2;
+        int i = this.f19798o;
+        if (i <= 0) {
+            Log.e("DefaultDrmSession", "release() called on a session that's already fully released.");
+            return;
+        }
+        int i2 = i - 1;
+        this.f19798o = i2;
+        if (i2 == 0) {
+            this.f19797n = 0;
+            HandlerC10703e handlerC10703e = this.f19796m;
+            int i3 = C2738e0.f6708a;
+            handlerC10703e.removeCallbacksAndMessages(null);
+            HandlerC10701c handlerC10701c = this.f19800q;
+            synchronized (handlerC10701c) {
+                handlerC10701c.removeCallbacksAndMessages(null);
+                handlerC10701c.f19807a = true;
+            }
+            this.f19800q = null;
+            this.f19799p.quit();
+            this.f19799p = null;
+            this.f19801r = null;
+            this.f19802s = null;
+            this.f19805v = null;
+            this.f19806w = null;
+            byte[] bArr = this.f19803t;
+            if (bArr != null) {
+                this.f19785b.mo3575g(bArr);
+                this.f19803t = null;
+            }
+        }
+        if (aVar != null) {
+            C2745l<InterfaceC2988s.a> c2745l = this.f19792i;
+            synchronized (c2745l.f6729j) {
+                Integer num = c2745l.f6730k.get(aVar);
+                if (num != null) {
+                    ArrayList arrayList = new ArrayList(c2745l.f6732m);
+                    arrayList.remove(aVar);
+                    c2745l.f6732m = Collections.unmodifiableList(arrayList);
+                    if (num.intValue() == 1) {
+                        c2745l.f6730k.remove(aVar);
+                        HashSet hashSet = new HashSet(c2745l.f6731l);
+                        hashSet.remove(aVar);
+                        c2745l.f6731l = Collections.unmodifiableSet(hashSet);
+                    } else {
+                        c2745l.f6730k.put(aVar, Integer.valueOf(num.intValue() - 1));
+                    }
+                }
+            }
+            if (this.f19792i.m3027c(aVar) == 0) {
+                aVar.m3592f();
+            }
+        }
+        InterfaceC10700b interfaceC10700b = this.f19787d;
+        int i4 = this.f19798o;
+        DefaultDrmSessionManager.C10709f c10709f = (DefaultDrmSessionManager.C10709f) interfaceC10700b;
+        if (i4 == 1) {
+            DefaultDrmSessionManager defaultDrmSessionManager3 = DefaultDrmSessionManager.this;
+            if (defaultDrmSessionManager3.f19829p > 0 && defaultDrmSessionManager3.f19825l != -9223372036854775807L) {
+                defaultDrmSessionManager3.f19828o.add(this);
+                Handler handler = DefaultDrmSessionManager.this.f19834u;
+                Objects.requireNonNull(handler);
+                handler.postAtTime(new Runnable() { // from class: b.i.a.c.w2.f
+                    @Override // java.lang.Runnable
+                    public final void run() {
+                        this.f7988j.mo3607b(null);
+                    }
+                }, this, SystemClock.uptimeMillis() + DefaultDrmSessionManager.this.f19825l);
+            } else if (i4 == 0) {
+                DefaultDrmSessionManager.this.f19826m.remove(this);
+                defaultDrmSessionManager = DefaultDrmSessionManager.this;
+                if (defaultDrmSessionManager.f19831r == this) {
+                    defaultDrmSessionManager.f19831r = null;
+                }
+                if (defaultDrmSessionManager.f19832s == this) {
+                    defaultDrmSessionManager.f19832s = null;
+                }
+                c10708e = defaultDrmSessionManager.f19822i;
+                c10708e.f19844a.remove(this);
+                if (c10708e.f19845b == this) {
+                    c10708e.f19845b = null;
+                    if (!c10708e.f19844a.isEmpty()) {
+                        DefaultDrmSession next = c10708e.f19844a.iterator().next();
+                        c10708e.f19845b = next;
+                        next.m8822o();
+                    }
+                }
+                defaultDrmSessionManager2 = DefaultDrmSessionManager.this;
+                if (defaultDrmSessionManager2.f19825l != -9223372036854775807L) {
+                    Handler handler2 = defaultDrmSessionManager2.f19834u;
+                    Objects.requireNonNull(handler2);
+                    handler2.removeCallbacksAndMessages(this);
+                    DefaultDrmSessionManager.this.f19828o.remove(this);
+                }
+            }
+        } else if (i4 == 0) {
+            DefaultDrmSessionManager.this.f19826m.remove(this);
+            defaultDrmSessionManager = DefaultDrmSessionManager.this;
+            if (defaultDrmSessionManager.f19831r == this) {
+                defaultDrmSessionManager.f19831r = null;
+            }
+            if (defaultDrmSessionManager.f19832s == this) {
+                defaultDrmSessionManager.f19832s = null;
+            }
+            c10708e = defaultDrmSessionManager.f19822i;
+            c10708e.f19844a.remove(this);
+            if (c10708e.f19845b == this) {
+                c10708e.f19845b = null;
+                if (!c10708e.f19844a.isEmpty()) {
+                    DefaultDrmSession next2 = c10708e.f19844a.iterator().next();
+                    c10708e.f19845b = next2;
+                    next2.m8822o();
+                }
+            }
+            defaultDrmSessionManager2 = DefaultDrmSessionManager.this;
+            if (defaultDrmSessionManager2.f19825l != -9223372036854775807L) {
+                Handler handler3 = defaultDrmSessionManager2.f19834u;
+                Objects.requireNonNull(handler3);
+                handler3.removeCallbacksAndMessages(this);
+                DefaultDrmSessionManager.this.f19828o.remove(this);
+            }
+        }
+        DefaultDrmSessionManager.this.m8831k();
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    /* JADX INFO: renamed from: c */
+    public final UUID mo3608c() {
+        return this.f19795l;
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    /* JADX INFO: renamed from: d */
+    public boolean mo3609d() {
+        return this.f19789f;
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    /* JADX INFO: renamed from: e */
+    public boolean mo3610e(String str) {
+        InterfaceC2966a0 interfaceC2966a0 = this.f19785b;
+        byte[] bArr = this.f19803t;
+        C1460d.m438H(bArr);
+        return interfaceC2966a0.mo3573e(bArr, str);
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    @Nullable
+    /* JADX INFO: renamed from: f */
+    public final DrmSession.DrmSessionException mo3611f() {
+        if (this.f19797n == 1) {
+            return this.f19802s;
+        }
+        return null;
+    }
+
+    @Override // com.google.android.exoplayer2.drm.DrmSession
+    @Nullable
+    /* JADX INFO: renamed from: g */
+    public final InterfaceC2954b mo3612g() {
+        return this.f19801r;
     }
 }

@@ -30,25 +30,6 @@ public class MotionTiming {
         this.duration = j2;
     }
 
-    @NonNull
-    public static MotionTiming createFromAnimator(@NonNull ValueAnimator valueAnimator) {
-        MotionTiming motionTiming = new MotionTiming(valueAnimator.getStartDelay(), valueAnimator.getDuration(), getInterpolatorCompat(valueAnimator));
-        motionTiming.repeatCount = valueAnimator.getRepeatCount();
-        motionTiming.repeatMode = valueAnimator.getRepeatMode();
-        return motionTiming;
-    }
-
-    private static TimeInterpolator getInterpolatorCompat(@NonNull ValueAnimator valueAnimator) {
-        TimeInterpolator interpolator = valueAnimator.getInterpolator();
-        if ((interpolator instanceof AccelerateDecelerateInterpolator) || interpolator == null) {
-            return AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR;
-        }
-        if (interpolator instanceof AccelerateInterpolator) {
-            return AnimationUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR;
-        }
-        return interpolator instanceof DecelerateInterpolator ? AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR : interpolator;
-    }
-
     public void apply(@NonNull Animator animator) {
         animator.setStartDelay(getDelay());
         animator.setDuration(getDuration());
@@ -58,6 +39,14 @@ public class MotionTiming {
             valueAnimator.setRepeatCount(getRepeatCount());
             valueAnimator.setRepeatMode(getRepeatMode());
         }
+    }
+
+    @NonNull
+    public static MotionTiming createFromAnimator(@NonNull ValueAnimator valueAnimator) {
+        MotionTiming motionTiming = new MotionTiming(valueAnimator.getStartDelay(), valueAnimator.getDuration(), getInterpolatorCompat(valueAnimator));
+        motionTiming.repeatCount = valueAnimator.getRepeatCount();
+        motionTiming.repeatMode = valueAnimator.getRepeatMode();
+        return motionTiming;
     }
 
     public boolean equals(@Nullable Object obj) {
@@ -86,6 +75,17 @@ public class MotionTiming {
     public TimeInterpolator getInterpolator() {
         TimeInterpolator timeInterpolator = this.interpolator;
         return timeInterpolator != null ? timeInterpolator : AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR;
+    }
+
+    private static TimeInterpolator getInterpolatorCompat(@NonNull ValueAnimator valueAnimator) {
+        TimeInterpolator interpolator = valueAnimator.getInterpolator();
+        if ((interpolator instanceof AccelerateDecelerateInterpolator) || interpolator == null) {
+            return AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR;
+        }
+        if (interpolator instanceof AccelerateInterpolator) {
+            return AnimationUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR;
+        }
+        return interpolator instanceof DecelerateInterpolator ? AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR : interpolator;
     }
 
     public int getRepeatCount() {

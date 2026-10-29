@@ -16,9 +16,6 @@ import p007b.p452o.p453a.p454m.EnumC5120g;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5203d extends View {
 
-    /* JADX INFO: renamed from: j */
-    public static final int f14110j = Color.argb(Opcodes.IF_ICMPNE, 255, 255, 255);
-
     /* JADX INFO: renamed from: k */
     public EnumC5120g f14111k;
 
@@ -34,12 +31,24 @@ public class C5203d extends View {
     /* JADX INFO: renamed from: o */
     public final float f14115o;
 
+    /* JADX INFO: renamed from: j */
+    public static final int f14110j = Color.argb(Opcodes.IF_ICMPNE, 255, 255, 255);
+
     public C5203d(@NonNull Context context) {
         super(context, null);
         this.f14112l = f14110j;
         this.f14113m = new ColorDrawable(this.f14112l);
         this.f14114n = new ColorDrawable(this.f14112l);
         this.f14115o = TypedValue.applyDimension(1, 0.9f, context.getResources().getDisplayMetrics());
+    }
+
+    public int getGridColor() {
+        return this.f14112l;
+    }
+
+    @NonNull
+    public EnumC5120g getGridMode() {
+        return this.f14111k;
     }
 
     private int getLineCount() {
@@ -51,15 +60,6 @@ public class C5203d extends View {
             return iOrdinal != 3 ? 0 : 2;
         }
         return 3;
-    }
-
-    public int getGridColor() {
-        return this.f14112l;
-    }
-
-    @NonNull
-    public EnumC5120g getGridMode() {
-        return this.f14111k;
     }
 
     @Override // android.view.View

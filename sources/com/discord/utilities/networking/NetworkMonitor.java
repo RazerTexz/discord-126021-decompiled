@@ -25,16 +25,9 @@ public final class NetworkMonitor {
     private Logger logger;
     private final BehaviorSubject<State> networkStateSubject;
 
-    /* JADX INFO: compiled from: NetworkMonitor.kt */
-    public enum State {
-        ONLINE,
-        OFFLINE,
-        OFFLINE_AIRPLANE_MODE
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.networking.NetworkMonitor$registerConnectivityNetworkMonitor$1 */
     /* JADX INFO: compiled from: NetworkMonitor.kt */
-    public static final class C68231 extends AbstractC12240o implements Function0<Unit> {
+    public final class C68231 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ ConnectivityManager $connectivityManager;
         public final /* synthetic */ C6824xb4e4af5a $networkCallback;
 
@@ -61,12 +54,26 @@ public final class NetworkMonitor {
         }
     }
 
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public enum State {
+        ONLINE,
+        OFFLINE,
+        OFFLINE_AIRPLANE_MODE
+    }
+
     public NetworkMonitor(Context context, Logger logger) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(logger, "logger");
         this.logger = logger;
         this.networkStateSubject = BehaviorSubject.m11130l0(getState$default(this, context, null, 2, null));
         registerConnectivityNetworkMonitor(context);
+    }
+
+    public static /* synthetic */ State getState$default(NetworkMonitor networkMonitor, Context context, Intent intent, int i, Object obj) {
+        if ((i & 2) != 0) {
+            intent = null;
+        }
+        return networkMonitor.getState(context, intent);
     }
 
     private final State getState(Context context, Intent intent) {
@@ -81,11 +88,21 @@ public final class NetworkMonitor {
         return state;
     }
 
-    public static /* synthetic */ State getState$default(NetworkMonitor networkMonitor, Context context, Intent intent, int i, Object obj) {
-        if ((i & 2) != 0) {
-            intent = null;
-        }
-        return networkMonitor.getState(context, intent);
+    public final Observable<Boolean> observeIsConnected() {
+        Observable<Boolean> observableM11112r = observeState().m11083G(new InterfaceC12589b<State, Boolean>() { // from class: com.discord.utilities.networking.NetworkMonitor.observeIsConnected.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Boolean call(State state) {
+                return Boolean.valueOf(state == State.ONLINE);
+            }
+        }).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "observeState().map { sta… }.distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public final Observable<State> observeState() {
+        Observable<State> observableM11112r = this.networkStateSubject.m11085K().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "networkStateSubject.onBa…().distinctUntilChanged()");
+        return observableM11112r;
     }
 
     private final void registerBroadcastAirplaneMode(Context context) {
@@ -165,10 +182,6 @@ public final class NetworkMonitor {
         }
     }
 
-    private final void updateNetworkState(Context context, Intent intent) {
-        this.networkStateSubject.onNext(getState(context, intent));
-    }
-
     public static /* synthetic */ void updateNetworkState$default(NetworkMonitor networkMonitor, Context context, Intent intent, int i, Object obj) {
         if ((i & 2) != 0) {
             intent = null;
@@ -176,20 +189,7 @@ public final class NetworkMonitor {
         networkMonitor.updateNetworkState(context, intent);
     }
 
-    public final Observable<Boolean> observeIsConnected() {
-        Observable<Boolean> observableM11112r = observeState().m11083G(new InterfaceC12589b<State, Boolean>() { // from class: com.discord.utilities.networking.NetworkMonitor.observeIsConnected.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(State state) {
-                return Boolean.valueOf(state == State.ONLINE);
-            }
-        }).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observeState().map { sta… }.distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final Observable<State> observeState() {
-        Observable<State> observableM11112r = this.networkStateSubject.m11085K().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "networkStateSubject.onBa…().distinctUntilChanged()");
-        return observableM11112r;
+    private final void updateNetworkState(Context context, Intent intent) {
+        this.networkStateSubject.onNext(getState(context, intent));
     }
 }

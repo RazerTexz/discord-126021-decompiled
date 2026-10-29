@@ -4,15 +4,15 @@ package p007b.p225i.p226a.p288f.p313h.p325l;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3593b1 extends AbstractC3851u4<C3593b1, a> implements InterfaceC3626d6 {
+    private int zzc;
+    private long zze;
     private static final C3593b1 zzf;
     private static volatile InterfaceC3710j6<C3593b1> zzg;
-    private int zzc;
     private String zzd = "";
-    private long zze;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.b1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3593b1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3593b1, a> implements InterfaceC3626d6 {
         public a(C3718k1 c3718k1) {
             super(C3593b1.zzf);
         }

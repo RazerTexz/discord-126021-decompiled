@@ -21,7 +21,7 @@ public final class C11509h extends C11494e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.h$a */
     /* JADX INFO: compiled from: specialBuiltinMembers.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
         public a() {
             super(1);
         }
@@ -40,7 +40,7 @@ public final class C11509h extends C11494e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.h$b */
     /* JADX INFO: compiled from: specialBuiltinMembers.kt */
-    public static final class b extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
+    public final class b extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
         public b() {
             super(1);
         }
@@ -73,6 +73,11 @@ public final class C11509h extends C11494e0 {
         return null;
     }
 
+    public final boolean getSameAsBuiltinMethodWithErasedValueParameters(C11716e c11716e) {
+        C12238m.checkNotNullParameter(c11716e, "<this>");
+        return C11494e0.f23195a.getERASED_VALUE_PARAMETERS_SHORT_NAMES().contains(c11716e);
+    }
+
     public static final C11494e0.b getSpecialSignatureInfo(InterfaceC11321b interfaceC11321b) {
         C12238m.checkNotNullParameter(interfaceC11321b, "<this>");
         C11494e0.a aVar = C11494e0.f23195a;
@@ -85,10 +90,5 @@ public final class C11509h extends C11494e0 {
             return null;
         }
         return aVar.getSpecialSignatureInfo(strComputeJvmSignature);
-    }
-
-    public final boolean getSameAsBuiltinMethodWithErasedValueParameters(C11716e c11716e) {
-        C12238m.checkNotNullParameter(c11716e, "<this>");
-        return C11494e0.f23195a.getERASED_VALUE_PARAMETERS_SHORT_NAMES().contains(c11716e);
     }
 }

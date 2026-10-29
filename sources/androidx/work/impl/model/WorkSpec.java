@@ -28,21 +28,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class WorkSpec {
     public static final long SCHEDULE_NOT_REQUESTED_YET = -1;
-    private static final String TAG = Logger.tagWithPrefix("WorkSpec");
-    public static final Function<List<WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new Function<List<WorkInfoPojo>, List<WorkInfo>>() { // from class: androidx.work.impl.model.WorkSpec.1
-        @Override // androidx.arch.core.util.Function
-        public List<WorkInfo> apply(List<WorkInfoPojo> list) {
-            if (list == null) {
-                return null;
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            Iterator<WorkInfoPojo> it = list.iterator();
-            while (it.hasNext()) {
-                arrayList.add(it.next().toWorkInfo());
-            }
-            return arrayList;
-        }
-    };
 
     @ColumnInfo(name = "backoff_delay_duration")
     public long backoffDelayDuration;
@@ -55,14 +40,14 @@ public final class WorkSpec {
     @Embedded
     public Constraints constraints;
 
-    @ColumnInfo(name = "flex_duration")
-    public long flexDuration;
-
     /* JADX INFO: renamed from: id */
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
     public String f163id;
+
+    @ColumnInfo(name = "flex_duration")
+    public long flexDuration;
 
     @ColumnInfo(name = "initial_delay")
     public long initialDelay;
@@ -104,8 +89,23 @@ public final class WorkSpec {
     @NonNull
     @ColumnInfo(name = "worker_class_name")
     public String workerClassName;
+    private static final String TAG = Logger.tagWithPrefix("WorkSpec");
+    public static final Function<List<WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new Function<List<WorkInfoPojo>, List<WorkInfo>>() { // from class: androidx.work.impl.model.WorkSpec.1
+        @Override // androidx.arch.core.util.Function
+        public List<WorkInfo> apply(List<WorkInfoPojo> list) {
+            if (list == null) {
+                return null;
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            Iterator<WorkInfoPojo> it = list.iterator();
+            while (it.hasNext()) {
+                arrayList.add(it.next().toWorkInfo());
+            }
+            return arrayList;
+        }
+    };
 
-    public static class IdAndState {
+    public class IdAndState {
 
         /* JADX INFO: renamed from: id */
         @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
@@ -133,7 +133,7 @@ public final class WorkSpec {
         }
     }
 
-    public static class WorkInfoPojo {
+    public class WorkInfoPojo {
 
         /* JADX INFO: renamed from: id */
         @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)

@@ -80,85 +80,6 @@ public class C5307c extends AppCompatImageView {
         this(context, attributeSet, 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public float m7484a(@NonNull Matrix matrix) {
-        matrix.getValues(this.f14486l);
-        float[] fArr = this.f14486l;
-        double d = fArr[1];
-        matrix.getValues(fArr);
-        return (float) (-(Math.atan2(d, this.f14486l[0]) * 57.29577951308232d));
-    }
-
-    /* JADX INFO: renamed from: b */
-    public float m7485b(@NonNull Matrix matrix) {
-        matrix.getValues(this.f14486l);
-        double dPow = Math.pow(this.f14486l[0], 2.0d);
-        matrix.getValues(this.f14486l);
-        return (float) Math.sqrt(Math.pow(this.f14486l[3], 2.0d) + dPow);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void mo7486c() {
-        setScaleType(ImageView.ScaleType.MATRIX);
-    }
-
-    /* JADX INFO: renamed from: d */
-    public void mo7477d() {
-        Drawable drawable = getDrawable();
-        if (drawable == null) {
-            return;
-        }
-        float intrinsicWidth = drawable.getIntrinsicWidth();
-        float intrinsicHeight = drawable.getIntrinsicHeight();
-        Log.d("TransformImageView", String.format("Image size: [%d:%d]", Integer.valueOf((int) intrinsicWidth), Integer.valueOf((int) intrinsicHeight)));
-        RectF rectF = new RectF(0.0f, 0.0f, intrinsicWidth, intrinsicHeight);
-        this.f14491q = C3404f.m4288f0(rectF);
-        this.f14492r = C3404f.m4280d0(rectF);
-        this.f14494t = true;
-        a aVar = this.f14490p;
-        if (aVar != null) {
-            UCropActivity.C11200a c11200a = (UCropActivity.C11200a) aVar;
-            UCropActivity.this.f22193v.animate().alpha(1.0f).setDuration(300L).setInterpolator(new AccelerateInterpolator());
-            UCropActivity.this.f22175H.setClickable(false);
-            UCropActivity uCropActivity = UCropActivity.this;
-            uCropActivity.f22192u = false;
-            uCropActivity.supportInvalidateOptionsMenu();
-        }
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7487e(float f, float f2, float f3) {
-        if (f != 0.0f) {
-            this.f14487m.postRotate(f, f2, f3);
-            setImageMatrix(this.f14487m);
-            a aVar = this.f14490p;
-            if (aVar != null) {
-                ((UCropActivity.C11200a) aVar).m9322a(m7484a(this.f14487m));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: f */
-    public void mo7478f(float f, float f2, float f3) {
-        if (f != 0.0f) {
-            this.f14487m.postScale(f, f, f2, f3);
-            setImageMatrix(this.f14487m);
-            a aVar = this.f14490p;
-            if (aVar != null) {
-                ((UCropActivity.C11200a) aVar).m9323b(m7485b(this.f14487m));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: g */
-    public void m7488g(float f, float f2) {
-        if (f == 0.0f && f2 == 0.0f) {
-            return;
-        }
-        this.f14487m.postTranslate(f, f2);
-        setImageMatrix(this.f14487m);
-    }
-
     public float getCurrentAngle() {
         return m7484a(this.f14487m);
     }
@@ -215,6 +136,85 @@ public class C5307c extends AppCompatImageView {
             return null;
         }
         return ((C5301a) getDrawable()).f14436b;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public float m7484a(@NonNull Matrix matrix) {
+        matrix.getValues(this.f14486l);
+        float[] fArr = this.f14486l;
+        double d = fArr[1];
+        matrix.getValues(fArr);
+        return (float) (-(Math.atan2(d, this.f14486l[0]) * 57.29577951308232d));
+    }
+
+    /* JADX INFO: renamed from: b */
+    public float m7485b(@NonNull Matrix matrix) {
+        matrix.getValues(this.f14486l);
+        double dPow = Math.pow(this.f14486l[0], 2.0d);
+        matrix.getValues(this.f14486l);
+        return (float) Math.sqrt(Math.pow(this.f14486l[3], 2.0d) + dPow);
+    }
+
+    /* JADX INFO: renamed from: e */
+    public void m7487e(float f, float f2, float f3) {
+        if (f != 0.0f) {
+            this.f14487m.postRotate(f, f2, f3);
+            setImageMatrix(this.f14487m);
+            a aVar = this.f14490p;
+            if (aVar != null) {
+                ((UCropActivity.C11200a) aVar).m9322a(m7484a(this.f14487m));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: g */
+    public void m7488g(float f, float f2) {
+        if (f == 0.0f && f2 == 0.0f) {
+            return;
+        }
+        this.f14487m.postTranslate(f, f2);
+        setImageMatrix(this.f14487m);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public void mo7477d() {
+        Drawable drawable = getDrawable();
+        if (drawable == null) {
+            return;
+        }
+        float intrinsicWidth = drawable.getIntrinsicWidth();
+        float intrinsicHeight = drawable.getIntrinsicHeight();
+        Log.d("TransformImageView", String.format("Image size: [%d:%d]", Integer.valueOf((int) intrinsicWidth), Integer.valueOf((int) intrinsicHeight)));
+        RectF rectF = new RectF(0.0f, 0.0f, intrinsicWidth, intrinsicHeight);
+        this.f14491q = C3404f.m4288f0(rectF);
+        this.f14492r = C3404f.m4280d0(rectF);
+        this.f14494t = true;
+        a aVar = this.f14490p;
+        if (aVar != null) {
+            UCropActivity.C11200a c11200a = (UCropActivity.C11200a) aVar;
+            UCropActivity.this.f22193v.animate().alpha(1.0f).setDuration(300L).setInterpolator(new AccelerateInterpolator());
+            UCropActivity.this.f22175H.setClickable(false);
+            UCropActivity uCropActivity = UCropActivity.this;
+            uCropActivity.f22192u = false;
+            uCropActivity.supportInvalidateOptionsMenu();
+        }
+    }
+
+    /* JADX INFO: renamed from: f */
+    public void mo7478f(float f, float f2, float f3) {
+        if (f != 0.0f) {
+            this.f14487m.postScale(f, f, f2, f3);
+            setImageMatrix(this.f14487m);
+            a aVar = this.f14490p;
+            if (aVar != null) {
+                ((UCropActivity.C11200a) aVar).m9323b(m7485b(this.f14487m));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public void mo7486c() {
+        setScaleType(ImageView.ScaleType.MATRIX);
     }
 
     @Override // android.view.View

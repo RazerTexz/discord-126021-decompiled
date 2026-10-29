@@ -44,44 +44,6 @@ public class ActivityState implements Serializable, Cloneable {
         serialPersistentFields = new ObjectStreamField[]{new ObjectStreamField("uuid", String.class), new ObjectStreamField("enabled", cls), new ObjectStreamField("isGdprForgotten", cls), new ObjectStreamField("isThirdPartySharingDisabled", cls), new ObjectStreamField("askingAttribution", cls), new ObjectStreamField("eventCount", cls2), new ObjectStreamField("sessionCount", cls2), new ObjectStreamField("subsessionCount", cls2), new ObjectStreamField("sessionLength", cls3), new ObjectStreamField("timeSpent", cls3), new ObjectStreamField("lastActivity", cls3), new ObjectStreamField("lastInterval", cls3), new ObjectStreamField("updatePackages", cls), new ObjectStreamField("orderIds", LinkedList.class), new ObjectStreamField("pushToken", String.class), new ObjectStreamField("adid", String.class), new ObjectStreamField("clickTime", cls3), new ObjectStreamField("installBegin", cls3), new ObjectStreamField("installReferrer", String.class), new ObjectStreamField("clickTimeHuawei", cls3), new ObjectStreamField("installBeginHuawei", cls3), new ObjectStreamField("installReferrerHuawei", String.class)};
     }
 
-    private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
-        ObjectInputStream.GetField fields = objectInputStream.readFields();
-        this.eventCount = Util.readIntField(fields, "eventCount", 0);
-        this.sessionCount = Util.readIntField(fields, "sessionCount", 0);
-        this.subsessionCount = Util.readIntField(fields, "subsessionCount", -1);
-        this.sessionLength = Util.readLongField(fields, "sessionLength", -1L);
-        this.timeSpent = Util.readLongField(fields, "timeSpent", -1L);
-        this.lastActivity = Util.readLongField(fields, "lastActivity", -1L);
-        this.lastInterval = Util.readLongField(fields, "lastInterval", -1L);
-        this.uuid = Util.readStringField(fields, "uuid", null);
-        this.enabled = Util.readBooleanField(fields, "enabled", true);
-        this.isGdprForgotten = Util.readBooleanField(fields, "isGdprForgotten", false);
-        this.isThirdPartySharingDisabled = Util.readBooleanField(fields, "isThirdPartySharingDisabled", false);
-        this.askingAttribution = Util.readBooleanField(fields, "askingAttribution", false);
-        this.updatePackages = Util.readBooleanField(fields, "updatePackages", false);
-        this.orderIds = (LinkedList) Util.readObjectField(fields, "orderIds", null);
-        this.pushToken = Util.readStringField(fields, "pushToken", null);
-        this.adid = Util.readStringField(fields, "adid", null);
-        this.clickTime = Util.readLongField(fields, "clickTime", -1L);
-        this.installBegin = Util.readLongField(fields, "installBegin", -1L);
-        this.installReferrer = Util.readStringField(fields, "installReferrer", null);
-        this.clickTimeHuawei = Util.readLongField(fields, "clickTimeHuawei", -1L);
-        this.installBeginHuawei = Util.readLongField(fields, "installBeginHuawei", -1L);
-        this.installReferrerHuawei = Util.readStringField(fields, "installReferrerHuawei", null);
-        if (this.uuid == null) {
-            this.uuid = Util.createUuid();
-        }
-    }
-
-    private static String stamp(long j) {
-        Calendar.getInstance().setTimeInMillis(j);
-        return Util.formatString("%02d:%02d:%02d", 11, 12, 13);
-    }
-
-    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
-        objectOutputStream.defaultWriteObject();
-    }
-
     public void addOrderId(String str) {
         if (this.orderIds == null) {
             this.orderIds = new LinkedList<>();
@@ -115,6 +77,35 @@ public class ActivityState implements Serializable, Cloneable {
         return Util.hashString(this.installReferrerHuawei) + ((Util.hashLong(Long.valueOf(this.installBeginHuawei)) + ((Util.hashLong(Long.valueOf(this.clickTimeHuawei)) + ((Util.hashString(this.installReferrer) + ((Util.hashLong(Long.valueOf(this.installBegin)) + ((Util.hashLong(Long.valueOf(this.clickTime)) + ((Util.hashString(this.adid) + ((Util.hashString(this.pushToken) + ((Util.hashObject(this.orderIds) + ((Util.hashBoolean(Boolean.valueOf(this.updatePackages)) + ((Util.hashLong(Long.valueOf(this.lastInterval)) + ((Util.hashLong(Long.valueOf(this.timeSpent)) + ((Util.hashLong(Long.valueOf(this.sessionLength)) + ((((((((Util.hashBoolean(Boolean.valueOf(this.askingAttribution)) + ((Util.hashBoolean(Boolean.valueOf(this.isThirdPartySharingDisabled)) + ((Util.hashBoolean(Boolean.valueOf(this.isGdprForgotten)) + ((Util.hashBoolean(Boolean.valueOf(this.enabled)) + ((Util.hashString(this.uuid) + 629) * 37)) * 37)) * 37)) * 37)) * 37) + this.eventCount) * 37) + this.sessionCount) * 37) + this.subsessionCount) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37)) * 37);
     }
 
+    private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
+        ObjectInputStream.GetField fields = objectInputStream.readFields();
+        this.eventCount = Util.readIntField(fields, "eventCount", 0);
+        this.sessionCount = Util.readIntField(fields, "sessionCount", 0);
+        this.subsessionCount = Util.readIntField(fields, "subsessionCount", -1);
+        this.sessionLength = Util.readLongField(fields, "sessionLength", -1L);
+        this.timeSpent = Util.readLongField(fields, "timeSpent", -1L);
+        this.lastActivity = Util.readLongField(fields, "lastActivity", -1L);
+        this.lastInterval = Util.readLongField(fields, "lastInterval", -1L);
+        this.uuid = Util.readStringField(fields, "uuid", null);
+        this.enabled = Util.readBooleanField(fields, "enabled", true);
+        this.isGdprForgotten = Util.readBooleanField(fields, "isGdprForgotten", false);
+        this.isThirdPartySharingDisabled = Util.readBooleanField(fields, "isThirdPartySharingDisabled", false);
+        this.askingAttribution = Util.readBooleanField(fields, "askingAttribution", false);
+        this.updatePackages = Util.readBooleanField(fields, "updatePackages", false);
+        this.orderIds = (LinkedList) Util.readObjectField(fields, "orderIds", null);
+        this.pushToken = Util.readStringField(fields, "pushToken", null);
+        this.adid = Util.readStringField(fields, "adid", null);
+        this.clickTime = Util.readLongField(fields, "clickTime", -1L);
+        this.installBegin = Util.readLongField(fields, "installBegin", -1L);
+        this.installReferrer = Util.readStringField(fields, "installReferrer", null);
+        this.clickTimeHuawei = Util.readLongField(fields, "clickTimeHuawei", -1L);
+        this.installBeginHuawei = Util.readLongField(fields, "installBeginHuawei", -1L);
+        this.installReferrerHuawei = Util.readStringField(fields, "installReferrerHuawei", null);
+        if (this.uuid == null) {
+            this.uuid = Util.createUuid();
+        }
+    }
+
     public void resetSessionAttributes(long j) {
         this.subsessionCount = 1;
         this.sessionLength = 0L;
@@ -123,7 +114,16 @@ public class ActivityState implements Serializable, Cloneable {
         this.lastInterval = -1L;
     }
 
+    private static String stamp(long j) {
+        Calendar.getInstance().setTimeInMillis(j);
+        return Util.formatString("%02d:%02d:%02d", 11, 12, 13);
+    }
+
     public String toString() {
         return Util.formatString("ec:%d sc:%d ssc:%d sl:%.1f ts:%.1f la:%s uuid:%s", Integer.valueOf(this.eventCount), Integer.valueOf(this.sessionCount), Integer.valueOf(this.subsessionCount), Double.valueOf(this.sessionLength / 1000.0d), Double.valueOf(this.timeSpent / 1000.0d), stamp(this.lastActivity), this.uuid);
+    }
+
+    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+        objectOutputStream.defaultWriteObject();
     }
 }

@@ -96,7 +96,7 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
         void showForSystem();
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
         public LayoutParams(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
         }
@@ -166,50 +166,6 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
         return z6;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    private DecorToolbar getDecorToolbar(View view) {
-        if (view instanceof DecorToolbar) {
-            return (DecorToolbar) view;
-        }
-        if (view instanceof Toolbar) {
-            return ((Toolbar) view).getWrapper();
-        }
-        StringBuilder sbM833U = C1643a.m833U("Can't make a decor toolbar out of ");
-        sbM833U.append(view.getClass().getSimpleName());
-        throw new IllegalStateException(sbM833U.toString());
-    }
-
-    private void init(Context context) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().getTheme().obtainStyledAttributes(ATTRS);
-        this.mActionBarHeight = typedArrayObtainStyledAttributes.getDimensionPixelSize(0, 0);
-        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(1);
-        this.mWindowContentOverlay = drawable;
-        setWillNotDraw(drawable == null);
-        typedArrayObtainStyledAttributes.recycle();
-        this.mIgnoreWindowContentOverlay = context.getApplicationInfo().targetSdkVersion < 19;
-        this.mFlingEstimator = new OverScroller(context);
-    }
-
-    private void postAddActionBarHideOffset() {
-        haltActionBarHideOffsetAnimations();
-        postDelayed(this.mAddActionBarHideOffset, 600L);
-    }
-
-    private void postRemoveActionBarHideOffset() {
-        haltActionBarHideOffsetAnimations();
-        postDelayed(this.mRemoveActionBarHideOffset, 600L);
-    }
-
-    private void removeActionBarHideOffset() {
-        haltActionBarHideOffsetAnimations();
-        this.mRemoveActionBarHideOffset.run();
-    }
-
-    private boolean shouldHideActionBarOnFling(float f) {
-        this.mFlingEstimator.fling(0, 0, 0, (int) f, 0, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        return this.mFlingEstimator.getFinalY() > this.mActionBarTop.getHeight();
-    }
-
     @Override // androidx.appcompat.widget.DecorContentParent
     public boolean canShowOverflowMenu() {
         pullChildren();
@@ -256,6 +212,19 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
         return 0;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    private DecorToolbar getDecorToolbar(View view) {
+        if (view instanceof DecorToolbar) {
+            return (DecorToolbar) view;
+        }
+        if (view instanceof Toolbar) {
+            return ((Toolbar) view).getWrapper();
+        }
+        StringBuilder sbM833U = C1643a.m833U("Can't make a decor toolbar out of ");
+        sbM833U.append(view.getClass().getSimpleName());
+        throw new IllegalStateException(sbM833U.toString());
+    }
+
     @Override // android.view.ViewGroup, androidx.core.view.NestedScrollingParent
     public int getNestedScrollAxes() {
         return this.mParentHelper.getNestedScrollAxes();
@@ -292,6 +261,17 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
     public boolean hideOverflowMenu() {
         pullChildren();
         return this.mDecorToolbar.hideOverflowMenu();
+    }
+
+    private void init(Context context) {
+        TypedArray typedArrayObtainStyledAttributes = getContext().getTheme().obtainStyledAttributes(ATTRS);
+        this.mActionBarHeight = typedArrayObtainStyledAttributes.getDimensionPixelSize(0, 0);
+        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(1);
+        this.mWindowContentOverlay = drawable;
+        setWillNotDraw(drawable == null);
+        typedArrayObtainStyledAttributes.recycle();
+        this.mIgnoreWindowContentOverlay = context.getApplicationInfo().targetSdkVersion < 19;
+        this.mFlingEstimator = new OverScroller(context);
     }
 
     @Override // androidx.appcompat.widget.DecorContentParent
@@ -516,12 +496,27 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
         }
     }
 
+    private void postAddActionBarHideOffset() {
+        haltActionBarHideOffsetAnimations();
+        postDelayed(this.mAddActionBarHideOffset, 600L);
+    }
+
+    private void postRemoveActionBarHideOffset() {
+        haltActionBarHideOffsetAnimations();
+        postDelayed(this.mRemoveActionBarHideOffset, 600L);
+    }
+
     public void pullChildren() {
         if (this.mContent == null) {
             this.mContent = (ContentFrameLayout) findViewById(C0051R.id.action_bar_activity_content);
             this.mActionBarTop = (ActionBarContainer) findViewById(C0051R.id.action_bar_container);
             this.mDecorToolbar = getDecorToolbar(findViewById(C0051R.id.action_bar));
         }
+    }
+
+    private void removeActionBarHideOffset() {
+        haltActionBarHideOffsetAnimations();
+        this.mRemoveActionBarHideOffset.run();
     }
 
     @Override // androidx.appcompat.widget.DecorContentParent
@@ -619,6 +614,11 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
     @Override // android.view.ViewGroup
     public boolean shouldDelayChildPressedState() {
         return false;
+    }
+
+    private boolean shouldHideActionBarOnFling(float f) {
+        this.mFlingEstimator.fling(0, 0, 0, (int) f, 0, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return this.mFlingEstimator.getFinalY() > this.mActionBarTop.getHeight();
     }
 
     @Override // androidx.appcompat.widget.DecorContentParent

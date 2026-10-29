@@ -19,10 +19,6 @@ import p007b.p225i.p361c.p407x.InterfaceC4896h;
 /* JADX INFO: loaded from: classes3.dex */
 @Keep
 public class FirebaseInstallationsRegistrar implements InterfaceC4575g {
-    public static /* synthetic */ InterfaceC4843g lambda$getComponents$0(InterfaceC4573e interfaceC4573e) {
-        return new C4842f((C4542c) interfaceC4573e.mo6346a(C4542c.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class));
-    }
-
     @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
     public List<C4572d<?>> getComponents() {
         C4572d.b bVarM6348a = C4572d.m6348a(InterfaceC4843g.class);
@@ -37,5 +33,9 @@ public class FirebaseInstallationsRegistrar implements InterfaceC4575g {
             }
         });
         return Arrays.asList(bVarM6348a.m6352b(), C3404f.m4228N("fire-installations", "16.3.4"));
+    }
+
+    public static /* synthetic */ InterfaceC4843g lambda$getComponents$0(InterfaceC4573e interfaceC4573e) {
+        return new C4842f((C4542c) interfaceC4573e.mo6346a(C4542c.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class));
     }
 }

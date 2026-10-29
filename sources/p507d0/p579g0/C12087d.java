@@ -30,10 +30,7 @@ public final class C12087d implements Sequence<IntRange> {
 
     /* JADX INFO: renamed from: d0.g0.d$a */
     /* JADX INFO: compiled from: Strings.kt */
-    public static final class a implements Iterator<IntRange>, InterfaceC12228a {
-
-        /* JADX INFO: renamed from: j */
-        public int f25144j = -1;
+    public final class a implements Iterator<IntRange>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: k */
         public int f25145k;
@@ -47,10 +44,21 @@ public final class C12087d implements Sequence<IntRange> {
         /* JADX INFO: renamed from: n */
         public int f25148n;
 
+        /* JADX INFO: renamed from: j */
+        public int f25144j = -1;
+
         public a() {
             int iCoerceIn = C11226f.coerceIn(C12087d.this.f25141b, 0, C12087d.this.f25140a.length());
             this.f25145k = iCoerceIn;
             this.f25146l = iCoerceIn;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            if (this.f25144j == -1) {
+                m10067a();
+            }
+            return this.f25144j == 1;
         }
 
         /* JADX WARN: Code duplicated, block: B:11:0x0031 A[ADDED_TO_REGION, REMOVE] */
@@ -93,14 +101,6 @@ public final class C12087d implements Sequence<IntRange> {
                 this.f25146l = i3 + (iIntValue4 == 0 ? 1 : 0);
             }
             this.f25144j = 1;
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            if (this.f25144j == -1) {
-                m10067a();
-            }
-            return this.f25144j == 1;
         }
 
         @Override // java.util.Iterator

@@ -6,19 +6,19 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3769o0 extends AbstractC3851u4<C3769o0, a> implements InterfaceC3626d6 {
-    private static final C3769o0 zzj;
-    private static volatile InterfaceC3710j6<C3769o0> zzk;
     private int zzc;
     private int zzd;
-    private String zze = "";
     private C3743m0 zzf;
     private boolean zzg;
     private boolean zzh;
     private boolean zzi;
+    private static final C3769o0 zzj;
+    private static volatile InterfaceC3710j6<C3769o0> zzk;
+    private String zze = "";
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.o0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3769o0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3769o0, a> implements InterfaceC3626d6 {
         public a() {
             super(C3769o0.zzj);
         }
@@ -62,6 +62,32 @@ public final class C3769o0 extends AbstractC3851u4<C3769o0, a> implements Interf
         return this.zzi;
     }
 
+    /* JADX INFO: renamed from: v */
+    public final boolean m5147v() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final int m5148w() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final String m5149x() {
+        return this.zze;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final C3743m0 m5150y() {
+        C3743m0 c3743m0 = this.zzf;
+        return c3743m0 == null ? C3743m0.m5059D() : c3743m0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final boolean m5151z() {
+        return this.zzg;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -94,31 +120,5 @@ public final class C3769o0 extends AbstractC3851u4<C3769o0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final boolean m5147v() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final int m5148w() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final String m5149x() {
-        return this.zze;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final C3743m0 m5150y() {
-        C3743m0 c3743m0 = this.zzf;
-        return c3743m0 == null ? C3743m0.m5059D() : c3743m0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final boolean m5151z() {
-        return this.zzg;
     }
 }

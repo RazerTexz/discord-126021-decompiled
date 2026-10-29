@@ -132,35 +132,6 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements C3266
         this.f20444y = str3;
     }
 
-    @Nullable
-    /* JADX INFO: renamed from: x0 */
-    public static GoogleSignInOptions m9012x0(@Nullable String str) throws JSONException {
-        if (TextUtils.isEmpty(str)) {
-            return null;
-        }
-        JSONObject jSONObject = new JSONObject(str);
-        HashSet hashSet = new HashSet();
-        JSONArray jSONArray = jSONObject.getJSONArray("scopes");
-        int length = jSONArray.length();
-        for (int i = 0; i < length; i++) {
-            hashSet.add(new Scope(jSONArray.getString(i)));
-        }
-        String strOptString = jSONObject.has("accountName") ? jSONObject.optString("accountName") : null;
-        return new GoogleSignInOptions(3, new ArrayList(hashSet), !TextUtils.isEmpty(strOptString) ? new Account(strOptString, "com.google") : null, jSONObject.getBoolean("idTokenRequested"), jSONObject.getBoolean("serverAuthRequested"), jSONObject.getBoolean("forceCodeForRefreshToken"), jSONObject.has("serverClientId") ? jSONObject.optString("serverClientId") : null, jSONObject.has("hostedDomain") ? jSONObject.optString("hostedDomain") : null, new HashMap(), null);
-    }
-
-    /* JADX INFO: renamed from: y0 */
-    public static Map<Integer, GoogleSignInOptionsExtensionParcelable> m9013y0(@Nullable List<GoogleSignInOptionsExtensionParcelable> list) {
-        HashMap map = new HashMap();
-        if (list == null) {
-            return map;
-        }
-        for (GoogleSignInOptionsExtensionParcelable googleSignInOptionsExtensionParcelable : list) {
-            map.put(Integer.valueOf(googleSignInOptionsExtensionParcelable.f20459k), googleSignInOptionsExtensionParcelable);
-        }
-        return map;
-    }
-
     /* JADX WARN: Code duplicated, block: B:24:0x004d A[Catch: ClassCastException -> 0x007e, TryCatch #0 {ClassCastException -> 0x007e, blocks: (B:5:0x0004, B:7:0x000e, B:10:0x0017, B:12:0x0027, B:15:0x0034, B:17:0x0038, B:22:0x0045, B:24:0x004d, B:29:0x0060, B:31:0x0066, B:33:0x006c, B:35:0x0072, B:27:0x0056, B:20:0x003d), top: B:41:0x0004 }] */
     /* JADX WARN: Code duplicated, block: B:26:0x0055  */
     /* JADX WARN: Code duplicated, block: B:27:0x0056 A[Catch: ClassCastException -> 0x007e, TryCatch #0 {ClassCastException -> 0x007e, blocks: (B:5:0x0004, B:7:0x000e, B:10:0x0017, B:12:0x0027, B:15:0x0034, B:17:0x0038, B:22:0x0045, B:24:0x004d, B:29:0x0060, B:31:0x0066, B:33:0x006c, B:35:0x0072, B:27:0x0056, B:20:0x003d), top: B:41:0x0004 }] */
@@ -224,6 +195,35 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements C3266
         return (iHashCode3 * 31) + (str2 != null ? str2.hashCode() : 0);
     }
 
+    @Nullable
+    /* JADX INFO: renamed from: x0 */
+    public static GoogleSignInOptions m9012x0(@Nullable String str) throws JSONException {
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        JSONObject jSONObject = new JSONObject(str);
+        HashSet hashSet = new HashSet();
+        JSONArray jSONArray = jSONObject.getJSONArray("scopes");
+        int length = jSONArray.length();
+        for (int i = 0; i < length; i++) {
+            hashSet.add(new Scope(jSONArray.getString(i)));
+        }
+        String strOptString = jSONObject.has("accountName") ? jSONObject.optString("accountName") : null;
+        return new GoogleSignInOptions(3, new ArrayList(hashSet), !TextUtils.isEmpty(strOptString) ? new Account(strOptString, "com.google") : null, jSONObject.getBoolean("idTokenRequested"), jSONObject.getBoolean("serverAuthRequested"), jSONObject.getBoolean("forceCodeForRefreshToken"), jSONObject.has("serverClientId") ? jSONObject.optString("serverClientId") : null, jSONObject.has("hostedDomain") ? jSONObject.optString("hostedDomain") : null, new HashMap(), null);
+    }
+
+    /* JADX INFO: renamed from: y0 */
+    public static Map<Integer, GoogleSignInOptionsExtensionParcelable> m9013y0(@Nullable List<GoogleSignInOptionsExtensionParcelable> list) {
+        HashMap map = new HashMap();
+        if (list == null) {
+            return map;
+        }
+        for (GoogleSignInOptionsExtensionParcelable googleSignInOptionsExtensionParcelable : list) {
+            map.put(Integer.valueOf(googleSignInOptionsExtensionParcelable.f20459k), googleSignInOptionsExtensionParcelable);
+        }
+        return map;
+    }
+
     /* JADX INFO: renamed from: w0 */
     public ArrayList<Scope> m9014w0() {
         return new ArrayList<>(this.f20436q);
@@ -255,7 +255,7 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements C3266
 
     /* JADX INFO: renamed from: com.google.android.gms.auth.api.signin.GoogleSignInOptions$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static final class C10794a {
+    public final class C10794a {
 
         /* JADX INFO: renamed from: a */
         public Set<Scope> f20446a;

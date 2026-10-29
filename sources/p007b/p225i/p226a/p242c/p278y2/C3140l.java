@@ -38,16 +38,16 @@ public final class C3140l implements InterfaceC3148t {
     /* JADX INFO: renamed from: e */
     public boolean f9063e;
 
-    /* JADX INFO: renamed from: f */
-    public int f9064f = 0;
-
     /* JADX INFO: renamed from: g */
     @Nullable
     public Surface f9065g;
 
+    /* JADX INFO: renamed from: f */
+    public int f9064f = 0;
+
     /* JADX INFO: renamed from: b.i.a.c.y2.l$b */
     /* JADX INFO: compiled from: AsynchronousMediaCodecAdapter.java */
-    public static final class b implements InterfaceC3148t.b {
+    public final class b implements InterfaceC3148t.b {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC4492l<HandlerThread> f9066a;
@@ -115,6 +115,66 @@ public final class C3140l implements InterfaceC3148t {
         this.f9062d = z2;
     }
 
+    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
+    public void flush() {
+        this.f9061c.m3851d();
+        this.f9059a.flush();
+        final C3143o c3143o = this.f9060b;
+        final MediaCodec mediaCodec = this.f9059a;
+        Objects.requireNonNull(mediaCodec);
+        final Runnable runnable = new Runnable() { // from class: b.i.a.c.y2.j
+            @Override // java.lang.Runnable
+            public final void run() {
+                mediaCodec.start();
+            }
+        };
+        synchronized (c3143o.f9083a) {
+            c3143o.f9093k++;
+            Handler handler = c3143o.f9085c;
+            int i = C2738e0.f6708a;
+            handler.post(new Runnable() { // from class: b.i.a.c.y2.d
+                @Override // java.lang.Runnable
+                public final void run() {
+                    C3143o c3143o2 = c3143o;
+                    Runnable runnable2 = runnable;
+                    synchronized (c3143o2.f9083a) {
+                        if (!c3143o2.f9094l) {
+                            long j = c3143o2.f9093k - 1;
+                            c3143o2.f9093k = j;
+                            if (j <= 0) {
+                                if (j < 0) {
+                                    c3143o2.m3855c(new IllegalStateException());
+                                } else {
+                                    c3143o2.m3853a();
+                                    try {
+                                        runnable2.run();
+                                    } catch (IllegalStateException e) {
+                                        c3143o2.m3855c(e);
+                                    } catch (Exception e2) {
+                                        c3143o2.m3855c(new IllegalStateException(e2));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
+    public MediaFormat getOutputFormat() {
+        MediaFormat mediaFormat;
+        C3143o c3143o = this.f9060b;
+        synchronized (c3143o.f9083a) {
+            mediaFormat = c3143o.f9090h;
+            if (mediaFormat == null) {
+                throw new IllegalStateException();
+            }
+        }
+        return mediaFormat;
+    }
+
     /* JADX INFO: renamed from: k */
     public static void m3832k(C3140l c3140l, MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i, boolean z2) {
         C3143o c3143o = c3140l.f9060b;
@@ -155,6 +215,18 @@ public final class C3140l implements InterfaceC3148t {
             sb.append(")");
         }
         return sb.toString();
+    }
+
+    /* JADX INFO: renamed from: m */
+    public final void m3844m() {
+        if (this.f9062d) {
+            try {
+                this.f9061c.m3850a();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            }
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
@@ -274,70 +346,10 @@ public final class C3140l implements InterfaceC3148t {
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
-    public void flush() {
-        this.f9061c.m3851d();
-        this.f9059a.flush();
-        final C3143o c3143o = this.f9060b;
-        final MediaCodec mediaCodec = this.f9059a;
-        Objects.requireNonNull(mediaCodec);
-        final Runnable runnable = new Runnable() { // from class: b.i.a.c.y2.j
-            @Override // java.lang.Runnable
-            public final void run() {
-                mediaCodec.start();
-            }
-        };
-        synchronized (c3143o.f9083a) {
-            c3143o.f9093k++;
-            Handler handler = c3143o.f9085c;
-            int i = C2738e0.f6708a;
-            handler.post(new Runnable() { // from class: b.i.a.c.y2.d
-                @Override // java.lang.Runnable
-                public final void run() {
-                    C3143o c3143o2 = c3143o;
-                    Runnable runnable2 = runnable;
-                    synchronized (c3143o2.f9083a) {
-                        if (!c3143o2.f9094l) {
-                            long j = c3143o2.f9093k - 1;
-                            c3143o2.f9093k = j;
-                            if (j <= 0) {
-                                if (j < 0) {
-                                    c3143o2.m3855c(new IllegalStateException());
-                                } else {
-                                    c3143o2.m3853a();
-                                    try {
-                                        runnable2.run();
-                                    } catch (IllegalStateException e) {
-                                        c3143o2.m3855c(e);
-                                    } catch (Exception e2) {
-                                        c3143o2.m3855c(new IllegalStateException(e2));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
     /* JADX INFO: renamed from: g */
     public void mo3840g(int i) {
         m3844m();
         this.f9059a.setVideoScalingMode(i);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
-    public MediaFormat getOutputFormat() {
-        MediaFormat mediaFormat;
-        C3143o c3143o = this.f9060b;
-        synchronized (c3143o.f9083a) {
-            mediaFormat = c3143o.f9090h;
-            if (mediaFormat == null) {
-                throw new IllegalStateException();
-            }
-        }
-        return mediaFormat;
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t
@@ -359,18 +371,6 @@ public final class C3140l implements InterfaceC3148t {
     /* JADX INFO: renamed from: j */
     public ByteBuffer mo3843j(int i) {
         return this.f9059a.getOutputBuffer(i);
-    }
-
-    /* JADX INFO: renamed from: m */
-    public final void m3844m() {
-        if (this.f9062d) {
-            try {
-                this.f9061c.m3850a();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new IllegalStateException(e);
-            }
-        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p278y2.InterfaceC3148t

@@ -36,18 +36,18 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private boolean hasTrackedOpenPopout;
     private final RestAPI restAPI;
     private final StoreUserPresence storePresences;
     private final StoreUserSettings storeUserSettings;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String[] CUSTOM_EMOJI_PLACEHOLDER_EMOJIS = {"grinning", "grimacing", "grin", "joy", "smiley", "smile", "sweat_smile", "laughing", "innocent", "wink", "blush", "slight_smile", "upside_down", "relaxed", "yum", "relieved", "heart_eyes", "kissing_heart", "kissing", "kissing_smiling_eyes", "kissing_closed_eyes", "stuck_out_tongue_winking_eye", "stuck_out_tongue_closed_eyes", "stuck_out_tongue", "money_mouth", "nerd", "sunglasses", "hugging", "smirk", "no_mouth", "neutral_face", "expressionless", "unamused", "rolling_eyes", "thinking", "flushed", "disappointed", "worried", "angry", "rage", "pensive", "confused", "slight_frown", "frowning2", "persevere", "confounded", "tired_face", "weary", "triumph", "open_mouth", "eggplant"};
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static final class C102461 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C102461 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C102461() {
             super(1);
         }
@@ -65,8 +65,50 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheetViewModel$clearCustomStatus$1 */
     /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static final class Companion {
+    public final class C102471 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+        public static final C102471 INSTANCE = new C102471();
+
+        public C102471() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+            invoke2(modelUserSettings);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserSettings modelUserSettings) {
+            C12238m.checkNotNullParameter(modelUserSettings, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheetViewModel$setStatus$1 */
+    /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
+    public final class C102481 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
+        public static final C102481 INSTANCE = new C102481();
+
+        public C102481() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+            invoke2(modelUserSettings);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserSettings modelUserSettings) {
+            C12238m.checkNotNullParameter(modelUserSettings, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -89,7 +131,7 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Activity customStatusActivity;
 
         public StoreState(Activity activity) {
@@ -103,11 +145,6 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
             return storeState.copy(activity);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Activity getCustomStatusActivity() {
-            return this.customStatusActivity;
-        }
-
         public final StoreState copy(Activity customStatusActivity) {
             return new StoreState(customStatusActivity);
         }
@@ -117,6 +154,11 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
                 return (other instanceof StoreState) && C12238m.areEqual(this.customStatusActivity, ((StoreState) other).customStatusActivity);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Activity getCustomStatusActivity() {
+            return this.customStatusActivity;
         }
 
         public final Activity getCustomStatusActivity() {
@@ -140,10 +182,10 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
     }
 
     /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final UserStatusPresenceCustomView.ViewState customStatusViewState;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -160,11 +202,6 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
                 return loaded.copy(viewState);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final UserStatusPresenceCustomView.ViewState getCustomStatusViewState() {
-                return this.customStatusViewState;
-            }
-
             public final Loaded copy(UserStatusPresenceCustomView.ViewState customStatusViewState) {
                 C12238m.checkNotNullParameter(customStatusViewState, "customStatusViewState");
                 return new Loaded(customStatusViewState);
@@ -175,6 +212,11 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
                     return (other instanceof Loaded) && C12238m.areEqual(this.customStatusViewState, ((Loaded) other).customStatusViewState);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final UserStatusPresenceCustomView.ViewState getCustomStatusViewState() {
+                return this.customStatusViewState;
             }
 
             public final UserStatusPresenceCustomView.ViewState getCustomStatusViewState() {
@@ -198,7 +240,7 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
         }
 
         /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -214,48 +256,6 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheetViewModel$clearCustomStatus$1 */
-    /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static final class C102471 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-        public static final C102471 INSTANCE = new C102471();
-
-        public C102471() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-            invoke2(modelUserSettings);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelUserSettings modelUserSettings) {
-            C12238m.checkNotNullParameter(modelUserSettings, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheetViewModel$setStatus$1 */
-    /* JADX INFO: compiled from: WidgetUserStatusSheetViewModel.kt */
-    public static final class C102481 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-        public static final C102481 INSTANCE = new C102481();
-
-        public C102481() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-            invoke2(modelUserSettings);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelUserSettings modelUserSettings) {
-            C12238m.checkNotNullParameter(modelUserSettings, "it");
-        }
-    }
-
     public WidgetUserStatusSheetViewModel() {
         this(null, null, null, null, 15, null);
     }
@@ -267,12 +267,28 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
         this(storeUserSettings, storeUserPresence, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? INSTANCE.observeStoreState(storeUserPresence) : observable);
     }
 
+    public final void clearCustomStatus() {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.storeUserSettings.updateCustomStatus(null), false, 1, null), (Class<?>) WidgetUserStatusSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C102471.INSTANCE);
+    }
+
     private final ModelEmojiUnicode getPlaceholderEmoji() {
         Map<String, ModelEmojiUnicode> unicodeEmojisNamesMap = StoreStream.INSTANCE.getEmojis().getUnicodeEmojisNamesMap();
         String[] strArr = CUSTOM_EMOJI_PLACEHOLDER_EMOJIS;
         AbstractC11216c.a aVar = AbstractC11216c.f22272k;
         ModelEmojiUnicode modelEmojiUnicode = unicodeEmojisNamesMap.get(C12141k.random(strArr, aVar));
         return modelEmojiUnicode != null ? modelEmojiUnicode : (ModelEmojiUnicode) C12163u.random(unicodeEmojisNamesMap.values(), aVar);
+    }
+
+    public final RestAPI getRestAPI() {
+        return this.restAPI;
+    }
+
+    public final StoreUserPresence getStorePresences() {
+        return this.storePresences;
+    }
+
+    public final StoreUserSettings getStoreUserSettings() {
+        return this.storeUserSettings;
     }
 
     private final void handleStoreState(StoreState storeState) {
@@ -295,29 +311,13 @@ public final class WidgetUserStatusSheetViewModel extends AbstractC0859d0<ViewSt
         updateViewState(new ViewState.Loaded(withPlaceholder));
     }
 
-    private final void trackOpen(StoreState storeState) {
-        AnalyticsTracker.INSTANCE.openUserStatusSheet(new Traits.Location(null, "Account Panel", "Avatar", null, null, 25, null), storeState.getCustomStatusActivity() != null);
-    }
-
-    public final void clearCustomStatus() {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.storeUserSettings.updateCustomStatus(null), false, 1, null), (Class<?>) WidgetUserStatusSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C102471.INSTANCE);
-    }
-
-    public final RestAPI getRestAPI() {
-        return this.restAPI;
-    }
-
-    public final StoreUserPresence getStorePresences() {
-        return this.storePresences;
-    }
-
-    public final StoreUserSettings getStoreUserSettings() {
-        return this.storeUserSettings;
-    }
-
     public final void setStatus(ClientStatus status) {
         C12238m.checkNotNullParameter(status, "status");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithStatus(status)), false, 1, null), (Class<?>) WidgetUserStatusSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C102481.INSTANCE);
+    }
+
+    private final void trackOpen(StoreState storeState) {
+        AnalyticsTracker.INSTANCE.openUserStatusSheet(new Traits.Location(null, "Account Panel", "Avatar", null, null, 25, null), storeState.getCustomStatusActivity() != null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

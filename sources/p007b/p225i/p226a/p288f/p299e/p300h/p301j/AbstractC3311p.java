@@ -22,7 +22,7 @@ public abstract class AbstractC3311p<A extends C3266a.b, ResultT> {
 
     /* JADX INFO: renamed from: b.i.a.f.e.h.j.p$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
-    public static class a<A extends C3266a.b, ResultT> {
+    public class a<A extends C3266a.b, ResultT> {
 
         /* JADX INFO: renamed from: a */
         public C3450j<A, TaskCompletionSource<ResultT>> f9440a;

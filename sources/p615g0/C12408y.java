@@ -11,9 +11,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12408y {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12408y f26133a = new a();
-
     /* JADX INFO: renamed from: b */
     public boolean f26134b;
 
@@ -23,9 +20,12 @@ public class C12408y {
     /* JADX INFO: renamed from: d */
     public long f26136d;
 
+    /* JADX INFO: renamed from: a */
+    public static final C12408y f26133a = new a();
+
     /* JADX INFO: renamed from: g0.y$a */
     /* JADX INFO: compiled from: Timeout.kt */
-    public static final class a extends C12408y {
+    public final class a extends C12408y {
         @Override // p615g0.C12408y
         /* JADX INFO: renamed from: d */
         public C12408y mo10481d(long j) {

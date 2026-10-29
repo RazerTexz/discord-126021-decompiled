@@ -6,8 +6,20 @@ import androidx.collection.LongSparseArray;
 /* JADX INFO: loaded from: classes.dex */
 public interface StableIdStorage {
 
-    public static class IsolatedStableIdStorage implements StableIdStorage {
+    public class IsolatedStableIdStorage implements StableIdStorage {
         public long mNextStableId = 0;
+
+        @Override // androidx.recyclerview.widget.StableIdStorage
+        @NonNull
+        public StableIdLookup createStableIdLookup() {
+            return new WrapperStableIdLookup();
+        }
+
+        public long obtainId() {
+            long j = this.mNextStableId;
+            this.mNextStableId = 1 + j;
+            return j;
+        }
 
         public class WrapperStableIdLookup implements StableIdLookup {
             private final LongSparseArray<Long> mLocalToGlobalLookup = new LongSparseArray<>();
@@ -25,21 +37,16 @@ public interface StableIdStorage {
                 return lValueOf.longValue();
             }
         }
-
-        @Override // androidx.recyclerview.widget.StableIdStorage
-        @NonNull
-        public StableIdLookup createStableIdLookup() {
-            return new WrapperStableIdLookup();
-        }
-
-        public long obtainId() {
-            long j = this.mNextStableId;
-            this.mNextStableId = 1 + j;
-            return j;
-        }
     }
 
-    public static class NoStableIdStorage implements StableIdStorage {
+    public interface StableIdLookup {
+        long localToGlobal(long j);
+    }
+
+    @NonNull
+    StableIdLookup createStableIdLookup();
+
+    public class NoStableIdStorage implements StableIdStorage {
         private final StableIdLookup mNoIdLookup = new StableIdLookup() { // from class: androidx.recyclerview.widget.StableIdStorage.NoStableIdStorage.1
             @Override // androidx.recyclerview.widget.StableIdStorage.StableIdLookup
             public long localToGlobal(long j) {
@@ -54,7 +61,7 @@ public interface StableIdStorage {
         }
     }
 
-    public static class SharedPoolStableIdStorage implements StableIdStorage {
+    public class SharedPoolStableIdStorage implements StableIdStorage {
         private final StableIdLookup mSameIdLookup = new StableIdLookup() { // from class: androidx.recyclerview.widget.StableIdStorage.SharedPoolStableIdStorage.1
             @Override // androidx.recyclerview.widget.StableIdStorage.StableIdLookup
             public long localToGlobal(long j) {
@@ -68,11 +75,4 @@ public interface StableIdStorage {
             return this.mSameIdLookup;
         }
     }
-
-    public interface StableIdLookup {
-        long localToGlobal(long j);
-    }
-
-    @NonNull
-    StableIdLookup createStableIdLookup();
 }

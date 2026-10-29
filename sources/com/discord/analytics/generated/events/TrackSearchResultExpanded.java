@@ -13,35 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSearchResultExpanded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSearchResultExpanded implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
-    private TrackBase trackBase;
-    private TrackChannel trackChannel;
-    private TrackGuild trackGuild;
-    private final CharSequence searchId = null;
-    private final Long messageId = null;
     private final Long limit = null;
+    private final Long messageId = null;
     private final Long offset = null;
     private final Long page = null;
     private final Long pageResults = null;
     private final Long resultIndex = null;
+    private final CharSequence searchId = null;
+    private TrackBase trackBase;
+    private TrackChannel trackChannel;
+    private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "search_result_expanded";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -52,6 +34,18 @@ public final /* data */ class TrackSearchResultExpanded implements AnalyticsSche
         }
         TrackSearchResultExpanded trackSearchResultExpanded = (TrackSearchResultExpanded) other;
         return C12238m.areEqual(this.searchId, trackSearchResultExpanded.searchId) && C12238m.areEqual(this.messageId, trackSearchResultExpanded.messageId) && C12238m.areEqual(this.limit, trackSearchResultExpanded.limit) && C12238m.areEqual(this.offset, trackSearchResultExpanded.offset) && C12238m.areEqual(this.page, trackSearchResultExpanded.page) && C12238m.areEqual(this.pageResults, trackSearchResultExpanded.pageResults) && C12238m.areEqual(this.resultIndex, trackSearchResultExpanded.resultIndex);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -69,6 +63,12 @@ public final /* data */ class TrackSearchResultExpanded implements AnalyticsSche
         int iHashCode6 = (iHashCode5 + (l5 != null ? l5.hashCode() : 0)) * 31;
         Long l6 = this.resultIndex;
         return iHashCode6 + (l6 != null ? l6.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

@@ -11,7 +11,7 @@ import androidx.annotation.RestrictTo;
 public class AudioAttributesImplApi26 extends AudioAttributesImplApi21 {
 
     @RequiresApi(26)
-    public static class Builder extends AudioAttributesImplApi21.Builder {
+    public class Builder extends AudioAttributesImplApi21.Builder {
         public Builder() {
         }
 

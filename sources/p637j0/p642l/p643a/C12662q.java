@@ -19,7 +19,7 @@ public final class C12662q<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.q$a */
     /* JADX INFO: compiled from: OnSubscribeFromIterable.java */
-    public static final class a<T> extends AtomicLong implements Producer {
+    public final class a<T> extends AtomicLong implements Producer {
         private static final long serialVersionUID = -8730475647105475802L;
 
         /* JADX INFO: renamed from: it */

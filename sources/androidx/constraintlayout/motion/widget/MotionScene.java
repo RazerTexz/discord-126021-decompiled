@@ -77,211 +77,6 @@ public class MotionScene {
         this.mMotionLayout = motionLayout;
     }
 
-    private int getId(Context context, String str) {
-        int identifier;
-        if (str.contains(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) {
-            identifier = context.getResources().getIdentifier(str.substring(str.indexOf(47) + 1), ModelAuditLogEntry.CHANGE_KEY_ID, context.getPackageName());
-            if (this.DEBUG_DESKTOP) {
-                System.out.println("id getMap res = " + identifier);
-            }
-        } else {
-            identifier = -1;
-        }
-        if (identifier != -1) {
-            return identifier;
-        }
-        if (str.length() > 1) {
-            return Integer.parseInt(str.substring(1));
-        }
-        Log.e(TAG, "error in parsing id");
-        return identifier;
-    }
-
-    private int getIndex(Transition transition) {
-        int i = transition.mId;
-        if (i == -1) {
-            throw new IllegalArgumentException("The transition must have an id");
-        }
-        for (int i2 = 0; i2 < this.mTransitionList.size(); i2++) {
-            if (this.mTransitionList.get(i2).mId == i) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
-    private int getRealID(int i) {
-        int iStateGetConstraintID;
-        StateSet stateSet = this.mStateSet;
-        return (stateSet == null || (iStateGetConstraintID = stateSet.stateGetConstraintID(i, -1, -1)) == -1) ? i : iStateGetConstraintID;
-    }
-
-    private boolean hasCycleDependency(int i) {
-        int i2 = this.mDeriveMap.get(i);
-        int size = this.mDeriveMap.size();
-        while (i2 > 0) {
-            if (i2 == i) {
-                return true;
-            }
-            int i3 = size - 1;
-            if (size < 0) {
-                return true;
-            }
-            i2 = this.mDeriveMap.get(i2);
-            size = i3;
-        }
-        return false;
-    }
-
-    private boolean isProcessingTouch() {
-        return this.mVelocityTracker != null;
-    }
-
-    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code duplicated, block: B:38:0x0084  */
-    private void load(Context context, int i) {
-        XmlResourceParser xml = context.getResources().getXml(i);
-        Transition transition = null;
-        try {
-            int eventType = xml.getEventType();
-            while (true) {
-                if (eventType == 1) {
-                    return;
-                }
-                if (eventType == 0) {
-                    xml.getName();
-                } else if (eventType == 2) {
-                    String name = xml.getName();
-                    if (this.DEBUG_DESKTOP) {
-                        System.out.println("parsing = " + name);
-                    }
-                    switch (name) {
-                        case "MotionScene":
-                            parseMotionSceneTags(context, xml);
-                            break;
-                        case "Transition":
-                            ArrayList<Transition> arrayList = this.mTransitionList;
-                            Transition transition2 = new Transition(this, context, xml);
-                            arrayList.add(transition2);
-                            if (this.mCurrentTransition == null && !transition2.mIsAbstract) {
-                                this.mCurrentTransition = transition2;
-                                if (transition2.mTouchResponse != null) {
-                                    this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
-                                }
-                            }
-                            if (transition2.mIsAbstract) {
-                                if (transition2.mConstraintSetEnd == -1) {
-                                    this.mDefaultTransition = transition2;
-                                } else {
-                                    this.mAbstractTransitionList.add(transition2);
-                                }
-                                this.mTransitionList.remove(transition2);
-                            }
-                            transition = transition2;
-                            break;
-                        case "OnSwipe":
-                            if (transition == null) {
-                                Log.v(TAG, " OnSwipe (" + context.getResources().getResourceEntryName(i) + ".xml:" + xml.getLineNumber() + ")");
-                            }
-                            transition.mTouchResponse = new TouchResponse(context, this.mMotionLayout, xml);
-                            break;
-                        case "OnClick":
-                            transition.addOnClick(context, xml);
-                            break;
-                        case "StateSet":
-                            this.mStateSet = new StateSet(context, xml);
-                            break;
-                        case "ConstraintSet":
-                            parseConstraintSet(context, xml);
-                            break;
-                        case "KeyFrameSet":
-                            transition.mKeyFramesList.add(new KeyFrames(context, xml));
-                            break;
-                        default:
-                            Log.v(TAG, "WARNING UNKNOWN ATTRIBUTE " + name);
-                            break;
-                    }
-                }
-                eventType = xml.next();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e2) {
-            e2.printStackTrace();
-        }
-    }
-
-    private void parseConstraintSet(Context context, XmlPullParser xmlPullParser) {
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.setForceId(false);
-        int attributeCount = xmlPullParser.getAttributeCount();
-        int id2 = -1;
-        int id3 = -1;
-        for (int i = 0; i < attributeCount; i++) {
-            String attributeName = xmlPullParser.getAttributeName(i);
-            String attributeValue = xmlPullParser.getAttributeValue(i);
-            if (this.DEBUG_DESKTOP) {
-                System.out.println("id string = " + attributeValue);
-            }
-            attributeName.hashCode();
-            if (attributeName.equals("deriveConstraintsFrom")) {
-                id3 = getId(context, attributeValue);
-            } else if (attributeName.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
-                id2 = getId(context, attributeValue);
-                this.mConstraintSetIdMap.put(stripID(attributeValue), Integer.valueOf(id2));
-            }
-        }
-        if (id2 != -1) {
-            if (this.mMotionLayout.mDebugPath != 0) {
-                constraintSet.setValidateOnParse(true);
-            }
-            constraintSet.load(context, xmlPullParser);
-            if (id3 != -1) {
-                this.mDeriveMap.put(id2, id3);
-            }
-            this.mConstraintSetMap.put(id2, constraintSet);
-        }
-    }
-
-    private void parseMotionSceneTags(Context context, XmlPullParser xmlPullParser) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0201R.styleable.MotionScene);
-        int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
-        for (int i = 0; i < indexCount; i++) {
-            int index = typedArrayObtainStyledAttributes.getIndex(i);
-            if (index == C0201R.styleable.MotionScene_defaultDuration) {
-                this.mDefaultDuration = typedArrayObtainStyledAttributes.getInt(index, this.mDefaultDuration);
-            } else if (index == C0201R.styleable.MotionScene_layoutDuringTransition) {
-                this.mLayoutDuringTransition = typedArrayObtainStyledAttributes.getInteger(index, 0);
-            }
-        }
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private void readConstraintChain(int i) {
-        int i2 = this.mDeriveMap.get(i);
-        if (i2 > 0) {
-            readConstraintChain(this.mDeriveMap.get(i));
-            ConstraintSet constraintSet = this.mConstraintSetMap.get(i);
-            ConstraintSet constraintSet2 = this.mConstraintSetMap.get(i2);
-            if (constraintSet2 != null) {
-                constraintSet.readFallback(constraintSet2);
-                this.mDeriveMap.put(i, -1);
-            } else {
-                StringBuilder sbM833U = C1643a.m833U("ERROR! invalid deriveConstraintsFrom: @id/");
-                sbM833U.append(Debug.getName(this.mMotionLayout.getContext(), i2));
-                Log.e(TAG, sbM833U.toString());
-            }
-        }
-    }
-
-    public static String stripID(String str) {
-        if (str == null) {
-            return "";
-        }
-        int iIndexOf = str.indexOf(47);
-        return iIndexOf < 0 ? str : str.substring(iIndexOf + 1);
-    }
-
     public void addOnClickListeners(MotionLayout motionLayout, int i) {
         for (Transition transition : this.mTransitionList) {
             if (transition.mOnClicks.size() > 0) {
@@ -459,6 +254,39 @@ public class MotionScene {
         return transition.mConstraintSetEnd;
     }
 
+    private int getId(Context context, String str) {
+        int identifier;
+        if (str.contains(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) {
+            identifier = context.getResources().getIdentifier(str.substring(str.indexOf(47) + 1), ModelAuditLogEntry.CHANGE_KEY_ID, context.getPackageName());
+            if (this.DEBUG_DESKTOP) {
+                System.out.println("id getMap res = " + identifier);
+            }
+        } else {
+            identifier = -1;
+        }
+        if (identifier != -1) {
+            return identifier;
+        }
+        if (str.length() > 1) {
+            return Integer.parseInt(str.substring(1));
+        }
+        Log.e(TAG, "error in parsing id");
+        return identifier;
+    }
+
+    private int getIndex(Transition transition) {
+        int i = transition.mId;
+        if (i == -1) {
+            throw new IllegalArgumentException("The transition must have an id");
+        }
+        for (int i2 = 0; i2 < this.mTransitionList.size(); i2++) {
+            if (this.mTransitionList.get(i2).mId == i) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
     public Interpolator getInterpolator() {
         int i = this.mCurrentTransition.mDefaultInterpolator;
         if (i == -2) {
@@ -564,6 +392,12 @@ public class MotionScene {
         return this.mCurrentTransition.mTouchResponse.getProgressDirection(f, f2);
     }
 
+    private int getRealID(int i) {
+        int iStateGetConstraintID;
+        StateSet stateSet = this.mStateSet;
+        return (stateSet == null || (iStateGetConstraintID = stateSet.stateGetConstraintID(i, -1, -1)) == -1) ? i : iStateGetConstraintID;
+    }
+
     public float getStaggered() {
         Transition transition = this.mCurrentTransition;
         if (transition != null) {
@@ -610,6 +444,23 @@ public class MotionScene {
         return arrayList;
     }
 
+    private boolean hasCycleDependency(int i) {
+        int i2 = this.mDeriveMap.get(i);
+        int size = this.mDeriveMap.size();
+        while (i2 > 0) {
+            if (i2 == i) {
+                return true;
+            }
+            int i3 = size - 1;
+            if (size < 0) {
+                return true;
+            }
+            i2 = this.mDeriveMap.get(i2);
+            size = i3;
+        }
+        return false;
+    }
+
     public boolean hasKeyFramePosition(View view, int i) {
         Transition transition = this.mCurrentTransition;
         if (transition == null) {
@@ -627,6 +478,84 @@ public class MotionScene {
         return false;
     }
 
+    private boolean isProcessingTouch() {
+        return this.mVelocityTracker != null;
+    }
+
+    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Code duplicated, block: B:38:0x0084  */
+    private void load(Context context, int i) {
+        XmlResourceParser xml = context.getResources().getXml(i);
+        Transition transition = null;
+        try {
+            int eventType = xml.getEventType();
+            while (true) {
+                if (eventType == 1) {
+                    return;
+                }
+                if (eventType == 0) {
+                    xml.getName();
+                } else if (eventType == 2) {
+                    String name = xml.getName();
+                    if (this.DEBUG_DESKTOP) {
+                        System.out.println("parsing = " + name);
+                    }
+                    switch (name) {
+                        case "MotionScene":
+                            parseMotionSceneTags(context, xml);
+                            break;
+                        case "Transition":
+                            ArrayList<Transition> arrayList = this.mTransitionList;
+                            Transition transition2 = new Transition(this, context, xml);
+                            arrayList.add(transition2);
+                            if (this.mCurrentTransition == null && !transition2.mIsAbstract) {
+                                this.mCurrentTransition = transition2;
+                                if (transition2.mTouchResponse != null) {
+                                    this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
+                                }
+                            }
+                            if (transition2.mIsAbstract) {
+                                if (transition2.mConstraintSetEnd == -1) {
+                                    this.mDefaultTransition = transition2;
+                                } else {
+                                    this.mAbstractTransitionList.add(transition2);
+                                }
+                                this.mTransitionList.remove(transition2);
+                            }
+                            transition = transition2;
+                            break;
+                        case "OnSwipe":
+                            if (transition == null) {
+                                Log.v(TAG, " OnSwipe (" + context.getResources().getResourceEntryName(i) + ".xml:" + xml.getLineNumber() + ")");
+                            }
+                            transition.mTouchResponse = new TouchResponse(context, this.mMotionLayout, xml);
+                            break;
+                        case "OnClick":
+                            transition.addOnClick(context, xml);
+                            break;
+                        case "StateSet":
+                            this.mStateSet = new StateSet(context, xml);
+                            break;
+                        case "ConstraintSet":
+                            parseConstraintSet(context, xml);
+                            break;
+                        case "KeyFrameSet":
+                            transition.mKeyFramesList.add(new KeyFrames(context, xml));
+                            break;
+                        default:
+                            Log.v(TAG, "WARNING UNKNOWN ATTRIBUTE " + name);
+                            break;
+                    }
+                }
+                eventType = xml.next();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e2) {
+            e2.printStackTrace();
+        }
+    }
+
     public int lookUpConstraintId(String str) {
         return this.mConstraintSetIdMap.get(str).intValue();
     }
@@ -641,6 +570,52 @@ public class MotionScene {
     }
 
     public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+    }
+
+    private void parseConstraintSet(Context context, XmlPullParser xmlPullParser) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.setForceId(false);
+        int attributeCount = xmlPullParser.getAttributeCount();
+        int id2 = -1;
+        int id3 = -1;
+        for (int i = 0; i < attributeCount; i++) {
+            String attributeName = xmlPullParser.getAttributeName(i);
+            String attributeValue = xmlPullParser.getAttributeValue(i);
+            if (this.DEBUG_DESKTOP) {
+                System.out.println("id string = " + attributeValue);
+            }
+            attributeName.hashCode();
+            if (attributeName.equals("deriveConstraintsFrom")) {
+                id3 = getId(context, attributeValue);
+            } else if (attributeName.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
+                id2 = getId(context, attributeValue);
+                this.mConstraintSetIdMap.put(stripID(attributeValue), Integer.valueOf(id2));
+            }
+        }
+        if (id2 != -1) {
+            if (this.mMotionLayout.mDebugPath != 0) {
+                constraintSet.setValidateOnParse(true);
+            }
+            constraintSet.load(context, xmlPullParser);
+            if (id3 != -1) {
+                this.mDeriveMap.put(id2, id3);
+            }
+            this.mConstraintSetMap.put(id2, constraintSet);
+        }
+    }
+
+    private void parseMotionSceneTags(Context context, XmlPullParser xmlPullParser) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0201R.styleable.MotionScene);
+        int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
+        for (int i = 0; i < indexCount; i++) {
+            int index = typedArrayObtainStyledAttributes.getIndex(i);
+            if (index == C0201R.styleable.MotionScene_defaultDuration) {
+                this.mDefaultDuration = typedArrayObtainStyledAttributes.getInt(index, this.mDefaultDuration);
+            } else if (index == C0201R.styleable.MotionScene_layoutDuringTransition) {
+                this.mLayoutDuringTransition = typedArrayObtainStyledAttributes.getInteger(index, 0);
+            }
+        }
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     public void processScrollMove(float f, float f2) {
@@ -728,6 +703,23 @@ public class MotionScene {
         int i2 = motionLayout.mCurrentState;
         if (i2 != -1) {
             autoTransition(motionLayout, i2);
+        }
+    }
+
+    private void readConstraintChain(int i) {
+        int i2 = this.mDeriveMap.get(i);
+        if (i2 > 0) {
+            readConstraintChain(this.mDeriveMap.get(i));
+            ConstraintSet constraintSet = this.mConstraintSetMap.get(i);
+            ConstraintSet constraintSet2 = this.mConstraintSetMap.get(i2);
+            if (constraintSet2 != null) {
+                constraintSet.readFallback(constraintSet2);
+                this.mDeriveMap.put(i, -1);
+            } else {
+                StringBuilder sbM833U = C1643a.m833U("ERROR! invalid deriveConstraintsFrom: @id/");
+                sbM833U.append(Debug.getName(this.mMotionLayout.getContext(), i2));
+                Log.e(TAG, sbM833U.toString());
+            }
         }
     }
 
@@ -879,6 +871,14 @@ public class MotionScene {
         this.mCurrentTransition.mTouchResponse.setupTouch();
     }
 
+    public static String stripID(String str) {
+        if (str == null) {
+            return "";
+        }
+        int iIndexOf = str.indexOf(47);
+        return iIndexOf < 0 ? str : str.substring(iIndexOf + 1);
+    }
+
     public boolean supportTouch() {
         Iterator<Transition> it = this.mTransitionList.iterator();
         while (it.hasNext()) {
@@ -939,7 +939,7 @@ public class MotionScene {
         this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
     }
 
-    public static class Transition {
+    public class Transition {
         public static final int AUTO_ANIMATE_TO_END = 4;
         public static final int AUTO_ANIMATE_TO_START = 3;
         public static final int AUTO_JUMP_TO_END = 2;
@@ -965,7 +965,7 @@ public class MotionScene {
         private TouchResponse mTouchResponse;
         private int mTransitionFlags;
 
-        public static class TransitionOnClick implements View.OnClickListener {
+        public class TransitionOnClick implements View.OnClickListener {
             public static final int ANIM_TOGGLE = 17;
             public static final int ANIM_TO_END = 1;
             public static final int ANIM_TO_START = 16;
@@ -993,15 +993,12 @@ public class MotionScene {
             }
 
             public void addOnClickListeners(MotionLayout motionLayout, int i, Transition transition) {
-                boolean z2;
-                View viewFindViewById;
                 int i2 = this.mTargetId;
-                View view = motionLayout;
+                View viewFindViewById = motionLayout;
                 if (i2 != -1) {
                     viewFindViewById = motionLayout.findViewById(i2);
                 }
-                if (view == null) {
-                    view = viewFindViewById;
+                if (viewFindViewById == null) {
                     StringBuilder sbM833U = C1643a.m833U("OnClick could not find id ");
                     sbM833U.append(this.mTargetId);
                     Log.e(MotionScene.TAG, sbM833U.toString());
@@ -1010,24 +1007,17 @@ public class MotionScene {
                 int i3 = transition.mConstraintSetStart;
                 int i4 = transition.mConstraintSetEnd;
                 if (i3 == -1) {
-                    view = viewFindViewById;
-                    view.setOnClickListener(this);
+                    viewFindViewById.setOnClickListener(this);
                     return;
                 }
                 int i5 = this.mMode;
-                boolean z3 = false;
-                if ((i5 & 1) == 0 || i != i3) {
-                    view = viewFindViewById;
-                    z2 = false;
-                } else {
+                boolean z2 = false;
+                boolean z3 = ((i5 & 1) != 0 && i == i3) | ((i5 & 1) != 0 && i == i3) | ((i5 & 256) != 0 && i == i3) | ((i5 & 16) != 0 && i == i4);
+                if ((i5 & 4096) != 0 && i == i4) {
                     z2 = true;
                 }
-                boolean z4 = ((i5 & 1) != 0 && i == i3) | z2 | ((i5 & 256) != 0 && i == i3) | ((i5 & 16) != 0 && i == i4);
-                if ((i5 & 4096) != 0 && i == i4) {
-                    z3 = true;
-                }
-                if (z4 || z3) {
-                    view.setOnClickListener(this);
+                if (z3 || z2) {
+                    viewFindViewById.setOnClickListener(this);
                 }
             }
 
@@ -1150,6 +1140,20 @@ public class MotionScene {
             }
         }
 
+        public void addOnClick(Context context, XmlPullParser xmlPullParser) {
+            this.mOnClicks.add(new TransitionOnClick(context, this, xmlPullParser));
+        }
+
+        public String debugString(Context context) {
+            String resourceEntryName = this.mConstraintSetStart == -1 ? "null" : context.getResources().getResourceEntryName(this.mConstraintSetStart);
+            if (this.mConstraintSetEnd == -1) {
+                return C1643a.m883w(resourceEntryName, " -> null");
+            }
+            StringBuilder sbM836X = C1643a.m836X(resourceEntryName, " -> ");
+            sbM836X.append(context.getResources().getResourceEntryName(this.mConstraintSetEnd));
+            return sbM836X.toString();
+        }
+
         private void fill(MotionScene motionScene, Context context, TypedArray typedArray) {
             int indexCount = typedArray.getIndexCount();
             for (int i = 0; i < indexCount; i++) {
@@ -1215,20 +1219,6 @@ public class MotionScene {
             TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0201R.styleable.Transition);
             fill(motionScene, context, typedArrayObtainStyledAttributes);
             typedArrayObtainStyledAttributes.recycle();
-        }
-
-        public void addOnClick(Context context, XmlPullParser xmlPullParser) {
-            this.mOnClicks.add(new TransitionOnClick(context, this, xmlPullParser));
-        }
-
-        public String debugString(Context context) {
-            String resourceEntryName = this.mConstraintSetStart == -1 ? "null" : context.getResources().getResourceEntryName(this.mConstraintSetStart);
-            if (this.mConstraintSetEnd == -1) {
-                return C1643a.m883w(resourceEntryName, " -> null");
-            }
-            StringBuilder sbM836X = C1643a.m836X(resourceEntryName, " -> ");
-            sbM836X.append(context.getResources().getResourceEntryName(this.mConstraintSetEnd));
-            return sbM836X.toString();
         }
 
         public int getAutoTransition() {

@@ -50,9 +50,6 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 public class WorkManagerImpl extends WorkManager {
     public static final int MAX_PRE_JOB_SCHEDULER_API_LEVEL = 22;
     public static final int MIN_JOB_SCHEDULER_API_LEVEL = 23;
-    private static WorkManagerImpl sDefaultInstance;
-    private static WorkManagerImpl sDelegatedInstance;
-    private static final Object sLock = new Object();
     private Configuration mConfiguration;
     private Context mContext;
     private boolean mForceStopRunnableCompleted;
@@ -62,67 +59,13 @@ public class WorkManagerImpl extends WorkManager {
     private List<Scheduler> mSchedulers;
     private WorkDatabase mWorkDatabase;
     private TaskExecutor mWorkTaskExecutor;
+    private static WorkManagerImpl sDefaultInstance;
+    private static WorkManagerImpl sDelegatedInstance;
+    private static final Object sLock = new Object();
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public WorkManagerImpl(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor) {
         this(context, configuration, taskExecutor, context.getResources().getBoolean(C0719R.bool.workmanager_test_configuration));
-    }
-
-    private WorkContinuationImpl createWorkContinuationForUniquePeriodicWork(@NonNull String str, @NonNull ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy, @NonNull PeriodicWorkRequest periodicWorkRequest) {
-        return new WorkContinuationImpl(this, str, existingPeriodicWorkPolicy == ExistingPeriodicWorkPolicy.KEEP ? ExistingWorkPolicy.KEEP : ExistingWorkPolicy.REPLACE, Collections.singletonList(periodicWorkRequest));
-    }
-
-    @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    @Deprecated
-    public static WorkManagerImpl getInstance() {
-        synchronized (sLock) {
-            WorkManagerImpl workManagerImpl = sDelegatedInstance;
-            if (workManagerImpl != null) {
-                return workManagerImpl;
-            }
-            return sDefaultInstance;
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static void initialize(@NonNull Context context, @NonNull Configuration configuration) {
-        synchronized (sLock) {
-            WorkManagerImpl workManagerImpl = sDelegatedInstance;
-            if (workManagerImpl != null && sDefaultInstance != null) {
-                throw new IllegalStateException("WorkManager is already initialized.  Did you try to initialize it manually without disabling WorkManagerInitializer? See WorkManager#initialize(Context, Configuration) or the class level Javadoc for more information.");
-            }
-            if (workManagerImpl == null) {
-                Context applicationContext = context.getApplicationContext();
-                if (sDefaultInstance == null) {
-                    sDefaultInstance = new WorkManagerImpl(applicationContext, configuration, new WorkManagerTaskExecutor(configuration.getTaskExecutor()));
-                }
-                sDelegatedInstance = sDefaultInstance;
-            }
-        }
-    }
-
-    private void internalInit(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull WorkDatabase workDatabase, @NonNull List<Scheduler> list, @NonNull Processor processor) {
-        Context applicationContext = context.getApplicationContext();
-        this.mContext = applicationContext;
-        this.mConfiguration = configuration;
-        this.mWorkTaskExecutor = taskExecutor;
-        this.mWorkDatabase = workDatabase;
-        this.mSchedulers = list;
-        this.mProcessor = processor;
-        this.mPreferenceUtils = new PreferenceUtils(workDatabase);
-        this.mForceStopRunnableCompleted = false;
-        if (Build.VERSION.SDK_INT >= 24 && applicationContext.isDeviceProtectedStorage()) {
-            throw new IllegalStateException("Cannot initialize WorkManager in direct boot mode");
-        }
-        this.mWorkTaskExecutor.executeOnBackgroundThread(new ForceStopRunnable(applicationContext, this));
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static void setDelegate(@Nullable WorkManagerImpl workManagerImpl) {
-        synchronized (sLock) {
-            sDelegatedInstance = workManagerImpl;
-        }
     }
 
     @Override // androidx.work.WorkManager
@@ -187,6 +130,10 @@ public class WorkManagerImpl extends WorkManager {
         return Arrays.asList(Schedulers.createBestAvailableBackgroundScheduler(context, this), new GreedyScheduler(context, configuration, taskExecutor, this));
     }
 
+    private WorkContinuationImpl createWorkContinuationForUniquePeriodicWork(@NonNull String str, @NonNull ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy, @NonNull PeriodicWorkRequest periodicWorkRequest) {
+        return new WorkContinuationImpl(this, str, existingPeriodicWorkPolicy == ExistingPeriodicWorkPolicy.KEEP ? ExistingWorkPolicy.KEEP : ExistingWorkPolicy.REPLACE, Collections.singletonList(periodicWorkRequest));
+    }
+
     @Override // androidx.work.WorkManager
     @NonNull
     public Operation enqueue(@NonNull List<? extends WorkRequest> list) {
@@ -218,6 +165,19 @@ public class WorkManagerImpl extends WorkManager {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public Configuration getConfiguration() {
         return this.mConfiguration;
+    }
+
+    @Nullable
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @Deprecated
+    public static WorkManagerImpl getInstance() {
+        synchronized (sLock) {
+            WorkManagerImpl workManagerImpl = sDelegatedInstance;
+            if (workManagerImpl != null) {
+                return workManagerImpl;
+            }
+            return sDefaultInstance;
+        }
     }
 
     @Override // androidx.work.WorkManager
@@ -343,6 +303,39 @@ public class WorkManagerImpl extends WorkManager {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static void initialize(@NonNull Context context, @NonNull Configuration configuration) {
+        synchronized (sLock) {
+            WorkManagerImpl workManagerImpl = sDelegatedInstance;
+            if (workManagerImpl != null && sDefaultInstance != null) {
+                throw new IllegalStateException("WorkManager is already initialized.  Did you try to initialize it manually without disabling WorkManagerInitializer? See WorkManager#initialize(Context, Configuration) or the class level Javadoc for more information.");
+            }
+            if (workManagerImpl == null) {
+                Context applicationContext = context.getApplicationContext();
+                if (sDefaultInstance == null) {
+                    sDefaultInstance = new WorkManagerImpl(applicationContext, configuration, new WorkManagerTaskExecutor(configuration.getTaskExecutor()));
+                }
+                sDelegatedInstance = sDefaultInstance;
+            }
+        }
+    }
+
+    private void internalInit(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull WorkDatabase workDatabase, @NonNull List<Scheduler> list, @NonNull Processor processor) {
+        Context applicationContext = context.getApplicationContext();
+        this.mContext = applicationContext;
+        this.mConfiguration = configuration;
+        this.mWorkTaskExecutor = taskExecutor;
+        this.mWorkDatabase = workDatabase;
+        this.mSchedulers = list;
+        this.mProcessor = processor;
+        this.mPreferenceUtils = new PreferenceUtils(workDatabase);
+        this.mForceStopRunnableCompleted = false;
+        if (Build.VERSION.SDK_INT >= 24 && applicationContext.isDeviceProtectedStorage()) {
+            throw new IllegalStateException("Cannot initialize WorkManager in direct boot mode");
+        }
+        this.mWorkTaskExecutor.executeOnBackgroundThread(new ForceStopRunnable(applicationContext, this));
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void onForceStopRunnableCompleted() {
         synchronized (sLock) {
             this.mForceStopRunnableCompleted = true;
@@ -368,6 +361,13 @@ public class WorkManagerImpl extends WorkManager {
         }
         getWorkDatabase().workSpecDao().resetScheduledState();
         Schedulers.schedule(getConfiguration(), getWorkDatabase(), getSchedulers());
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static void setDelegate(@Nullable WorkManagerImpl workManagerImpl) {
+        synchronized (sLock) {
+            sDelegatedInstance = workManagerImpl;
+        }
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

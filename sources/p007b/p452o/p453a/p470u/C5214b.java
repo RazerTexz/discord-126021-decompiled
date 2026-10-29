@@ -15,9 +15,6 @@ import p007b.p452o.p475b.p481f.C5269b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5214b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14147a = new C5103b(C5214b.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public InterfaceC5213a f14148b;
 
@@ -32,6 +29,9 @@ public class C5214b {
 
     /* JADX INFO: renamed from: g */
     public final Object f14153g = new Object();
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14147a = new C5103b(C5214b.class.getSimpleName());
 
     /* JADX INFO: renamed from: e */
     @VisibleForTesting

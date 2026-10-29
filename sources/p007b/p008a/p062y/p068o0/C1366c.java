@@ -17,7 +17,7 @@ public final class C1366c extends MGRecyclerAdapterSimple<AbstractC1367d> {
 
     /* JADX INFO: renamed from: b.a.y.o0.c$a */
     /* JADX INFO: compiled from: SpeakersAdapter.kt */
-    public static final class a extends GridLayoutManager.SpanSizeLookup {
+    public final class a extends GridLayoutManager.SpanSizeLookup {
         @Override // androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
         public int getSpanSize(int i) {
             return 1;

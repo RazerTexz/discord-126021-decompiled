@@ -25,7 +25,7 @@ public final class WithLifecycleStateKt {
     /* JADX INFO: Add missing generic type declarations: [R] */
     /* JADX INFO: renamed from: androidx.lifecycle.WithLifecycleStateKt$withStateAtLeastUnchecked$2 */
     /* JADX INFO: compiled from: WithLifecycleState.kt */
-    public static final class C04572<R> extends AbstractC12240o implements Function0<R> {
+    public final class C04572<R> extends AbstractC12240o implements Function0<R> {
         public final /* synthetic */ Function0 $block;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -42,7 +42,7 @@ public final class WithLifecycleStateKt {
 
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r15v0, types: [androidx.lifecycle.LifecycleObserver, androidx.lifecycle.WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1] */
-    public static final <R> Object suspendWithStateAtLeastUnchecked(final Lifecycle lifecycle, final Lifecycle.State state, final boolean z2, final CoroutineDispatcher coroutineDispatcher, final Function0<? extends R> function0, Continuation<? super R> continuation) {
+    public static final <R> Object suspendWithStateAtLeastUnchecked(final Lifecycle lifecycle, final Lifecycle.State state, final boolean z2, final CoroutineDispatcher coroutineDispatcher, final Function0<? extends R> function0, Continuation<? super R> continuation) throws Throwable {
         final C13126l c13126l = new C13126l(C12182b.intercepted(continuation), 1);
         c13126l.m11318A();
         final ?? r15 = new LifecycleEventObserver() { // from class: androidx.lifecycle.WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1
@@ -93,22 +93,6 @@ public final class WithLifecycleStateKt {
         return objM11326u;
     }
 
-    public static final <R> Object withCreated(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
-        Lifecycle.State state = Lifecycle.State.CREATED;
-        CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
-        AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
-        boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
-        if (!zIsDispatchNeeded) {
-            if (lifecycle.getCurrentState() == Lifecycle.State.DESTROYED) {
-                throw new LifecycleDestroyedException();
-            }
-            if (lifecycle.getCurrentState().compareTo(state) >= 0) {
-                return function0.invoke();
-            }
-        }
-        return suspendWithStateAtLeastUnchecked(lifecycle, state, zIsDispatchNeeded, abstractC13128l1Mo11194H, new C04572(function0), continuation);
-    }
-
     private static final Object withCreated$$forInline(Lifecycle lifecycle, Function0 function0, Continuation continuation) {
         Lifecycle.State state = Lifecycle.State.CREATED;
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
@@ -117,8 +101,8 @@ public final class WithLifecycleStateKt {
         throw null;
     }
 
-    public static final <R> Object withResumed(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
-        Lifecycle.State state = Lifecycle.State.RESUMED;
+    public static final <R> Object withCreated(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
+        Lifecycle.State state = Lifecycle.State.CREATED;
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
         AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
         boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
@@ -141,8 +125,8 @@ public final class WithLifecycleStateKt {
         throw null;
     }
 
-    public static final <R> Object withStarted(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
-        Lifecycle.State state = Lifecycle.State.STARTED;
+    public static final <R> Object withResumed(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
+        Lifecycle.State state = Lifecycle.State.RESUMED;
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
         AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
         boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
@@ -165,10 +149,8 @@ public final class WithLifecycleStateKt {
         throw null;
     }
 
-    public static final <R> Object withStateAtLeast(Lifecycle lifecycle, Lifecycle.State state, Function0<? extends R> function0, Continuation<? super R> continuation) {
-        if (!(state.compareTo(Lifecycle.State.CREATED) >= 0)) {
-            throw new IllegalArgumentException(("target state must be CREATED or greater, found " + state).toString());
-        }
+    public static final <R> Object withStarted(Lifecycle lifecycle, Function0<? extends R> function0, Continuation<? super R> continuation) {
+        Lifecycle.State state = Lifecycle.State.STARTED;
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
         AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
         boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
@@ -193,7 +175,10 @@ public final class WithLifecycleStateKt {
         throw new IllegalArgumentException(("target state must be CREATED or greater, found " + state).toString());
     }
 
-    public static final <R> Object withStateAtLeastUnchecked(Lifecycle lifecycle, Lifecycle.State state, Function0<? extends R> function0, Continuation<? super R> continuation) {
+    public static final <R> Object withStateAtLeast(Lifecycle lifecycle, Lifecycle.State state, Function0<? extends R> function0, Continuation<? super R> continuation) {
+        if (!(state.compareTo(Lifecycle.State.CREATED) >= 0)) {
+            throw new IllegalArgumentException(("target state must be CREATED or greater, found " + state).toString());
+        }
         CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
         AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
         boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
@@ -213,6 +198,21 @@ public final class WithLifecycleStateKt {
         C13031n.f27700b.mo11194H();
         C12237l.mark(3);
         throw null;
+    }
+
+    public static final <R> Object withStateAtLeastUnchecked(Lifecycle lifecycle, Lifecycle.State state, Function0<? extends R> function0, Continuation<? super R> continuation) {
+        CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
+        AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
+        boolean zIsDispatchNeeded = abstractC13128l1Mo11194H.isDispatchNeeded(continuation.getContext());
+        if (!zIsDispatchNeeded) {
+            if (lifecycle.getCurrentState() == Lifecycle.State.DESTROYED) {
+                throw new LifecycleDestroyedException();
+            }
+            if (lifecycle.getCurrentState().compareTo(state) >= 0) {
+                return function0.invoke();
+            }
+        }
+        return suspendWithStateAtLeastUnchecked(lifecycle, state, zIsDispatchNeeded, abstractC13128l1Mo11194H, new C04572(function0), continuation);
     }
 
     private static final Object withCreated$$forInline(LifecycleOwner lifecycleOwner, Function0 function0, Continuation continuation) {

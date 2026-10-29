@@ -56,36 +56,6 @@ public final /* data */ class StageMediaParticipant {
         return stageMediaParticipant.copy(str, voiceUser2, channel2, z4, z5, mediaType);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final StoreVoiceParticipants.VoiceUser getVoiceUser() {
-        return this.voiceUser;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsModerator() {
-        return this.isModerator;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getIsBlocked() {
-        return this.isBlocked;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StageCallItem.MediaType getMediaType() {
-        return this.mediaType;
-    }
-
     public final StageMediaParticipant copy(String id2, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, boolean isBlocked, StageCallItem.MediaType mediaType) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(voiceUser, "voiceUser");
@@ -105,16 +75,46 @@ public final /* data */ class StageMediaParticipant {
         return C12238m.areEqual(this.id, stageMediaParticipant.id) && C12238m.areEqual(this.voiceUser, stageMediaParticipant.voiceUser) && C12238m.areEqual(this.channel, stageMediaParticipant.channel) && this.isModerator == stageMediaParticipant.isModerator && this.isBlocked == stageMediaParticipant.isBlocked && C12238m.areEqual(this.mediaType, stageMediaParticipant.mediaType);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getId() {
+        return this.id;
     }
 
     public final String getId() {
         return this.id;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getIsBlocked() {
+        return this.isBlocked;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsModerator() {
+        return this.isModerator;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final StageCallItem.MediaType getMediaType() {
         return this.mediaType;
+    }
+
+    public final StageCallItem.MediaType getMediaType() {
+        return this.mediaType;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final StoreVoiceParticipants.VoiceUser getVoiceUser() {
+        return this.voiceUser;
     }
 
     public final StoreVoiceParticipants.VoiceUser getVoiceUser() {

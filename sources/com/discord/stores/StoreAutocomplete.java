@@ -16,7 +16,7 @@ public final class StoreAutocomplete extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAutocomplete$observeAutocompleteVisibility$1 */
     /* JADX INFO: compiled from: StoreAutocomplete.kt */
-    public static final class C57921 extends AbstractC12240o implements Function0<Boolean> {
+    public final class C57921 extends AbstractC12240o implements Function0<Boolean> {
         public C57921() {
             super(0);
         }
@@ -34,7 +34,7 @@ public final class StoreAutocomplete extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAutocomplete$setAutocompleteVisible$1 */
     /* JADX INFO: compiled from: StoreAutocomplete.kt */
-    public static final class C57931 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57931 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $visible;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

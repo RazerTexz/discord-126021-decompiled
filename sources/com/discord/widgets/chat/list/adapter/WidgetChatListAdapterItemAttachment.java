@@ -58,8 +58,111 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
     private Subscription subscription;
     private final StoreUserSettings userSettings;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureFileData$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final class Companion {
+    public final class C80111 extends AbstractC12240o implements Function1<View, Unit> {
+        public static final C80111 INSTANCE = new C80111();
+
+        public C80111() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            TextView textView = (TextView) view;
+            Context context = textView.getContext();
+            C12238m.checkNotNullExpressionValue(context, "it.context");
+            CharSequence text = textView.getText();
+            C12238m.checkNotNullExpressionValue(text, "it.text");
+            C0876m.m165c(context, text, 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class C80131 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C80131 INSTANCE = new C80131();
+
+        public C80131() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(1.0f);
+            viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class C80142 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C80142 INSTANCE = new C80142();
+
+        public C80142() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(0.9f);
+            viewPropertyAnimator.scaleY(0.9f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$3 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class C80153 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ AttachmentEntry $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80153(AttachmentEntry attachmentEntry) {
+            super(1);
+            this.$data = attachmentEntry;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler();
+            Message message = this.$data.getMessage();
+            String content = this.$data.getMessage().getContent();
+            if (content == null) {
+                content = "";
+            }
+            eventHandler.onMessageLongClicked(message, content, this.$data.isThreadStarterMessage());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -91,109 +194,6 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureFileData$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final class C80111 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C80111 INSTANCE = new C80111();
-
-        public C80111() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            TextView textView = (TextView) view;
-            Context context = textView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "it.context");
-            CharSequence text = textView.getText();
-            C12238m.checkNotNullExpressionValue(text, "it.text");
-            C0876m.m165c(context, text, 0, 4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final class C80131 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C80131 INSTANCE = new C80131();
-
-        public C80131() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(1.0f);
-            viewPropertyAnimator.scaleY(1.0f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final class C80142 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C80142 INSTANCE = new C80142();
-
-        public C80142() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(0.9f);
-            viewPropertyAnimator.scaleY(0.9f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$3 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final class C80153 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ AttachmentEntry $data;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80153(AttachmentEntry attachmentEntry) {
-            super(1);
-            this.$data = attachmentEntry;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler();
-            Message message = this.$data.getMessage();
-            String content = this.$data.getMessage().getContent();
-            if (content == null) {
-                content = "";
-            }
-            eventHandler.onMessageLongClicked(message, content, this.$data.isThreadStarterMessage());
         }
     }
 
@@ -300,7 +300,7 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
 
     /* JADX WARN: Code duplicated, block: B:17:0x00a3  */
     /* JADX WARN: Code duplicated, block: B:23:0x00b8  */
-    private final void configureUI(final Model model) {
+    private final void configureUI(final Model model) throws CloneNotSupportedException {
         boolean z2;
         boolean z3;
         final AttachmentEntry attachmentEntry = model.getAttachmentEntry();
@@ -402,17 +402,17 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
     }
 
     @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
-    public void onPause() {
+    public void onPause() throws CloneNotSupportedException {
         this.binding.f16151h.onPause();
     }
 
     @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
-    public void onResume() {
+    public void onResume() throws CloneNotSupportedException {
         this.binding.f16151h.onResume();
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
         private final AttachmentEntry attachmentEntry;
         private final Map<Long, String> channelNames;
         private final boolean isSpoilerHidden;
@@ -428,6 +428,18 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
             this.roles = map3;
             this.myId = j;
             this.isSpoilerHidden = attachmentEntry.getAttachment().m8071h() && !isSpoilerEmbedRevealed(attachmentEntry);
+        }
+
+        public final Map<Long, String> component2() {
+            return this.channelNames;
+        }
+
+        public final Map<Long, String> component3() {
+            return this.userNames;
+        }
+
+        public final Map<Long, GuildRole> component4() {
+            return this.roles;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -453,34 +465,6 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
             return model.copy(attachmentEntry, map4, map5, map6, j);
         }
 
-        private final boolean isSpoilerEmbedRevealed(AttachmentEntry attachmentEntry) {
-            Map<Integer, Set<String>> visibleSpoilerEmbedMap;
-            StoreMessageState.State messageState = attachmentEntry.getMessageState();
-            return (messageState == null || (visibleSpoilerEmbedMap = messageState.getVisibleSpoilerEmbedMap()) == null || !visibleSpoilerEmbedMap.containsKey(Integer.valueOf(attachmentEntry.getEmbedIndex()))) ? false : true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final AttachmentEntry getAttachmentEntry() {
-            return this.attachmentEntry;
-        }
-
-        public final Map<Long, String> component2() {
-            return this.channelNames;
-        }
-
-        public final Map<Long, String> component3() {
-            return this.userNames;
-        }
-
-        public final Map<Long, GuildRole> component4() {
-            return this.roles;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final long getMyId() {
-            return this.myId;
-        }
-
         public final Model copy(AttachmentEntry attachmentEntry, Map<Long, String> channelNames, Map<Long, String> userNames, Map<Long, GuildRole> roles, long myId) {
             C12238m.checkNotNullParameter(attachmentEntry, "attachmentEntry");
             return new Model(attachmentEntry, channelNames, userNames, roles, myId);
@@ -503,12 +487,27 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
             return C12238m.areEqual(this.attachmentEntry, model.attachmentEntry) && C12238m.areEqual(this.channelNames, model.channelNames) && C12238m.areEqual(this.userNames, model.userNames) && C12238m.areEqual(this.roles, model.roles) && this.myId == model.myId;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final AttachmentEntry getAttachmentEntry() {
+            return this.attachmentEntry;
+        }
+
         public final AttachmentEntry getAttachmentEntry() {
             return this.attachmentEntry;
         }
 
         public final Map<Long, String> getChannelNames() {
             return this.channelNames;
+        }
+
+        /* JADX INFO: renamed from: isSpoilerHidden, reason: from getter */
+        public final boolean getIsSpoilerHidden() {
+            return this.isSpoilerHidden;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getMyId() {
+            return this.myId;
         }
 
         public final long getMyId() {
@@ -534,9 +533,10 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
             return C0002b.m3a(this.myId) + ((iHashCode3 + (map3 != null ? map3.hashCode() : 0)) * 31);
         }
 
-        /* JADX INFO: renamed from: isSpoilerHidden, reason: from getter */
-        public final boolean getIsSpoilerHidden() {
-            return this.isSpoilerHidden;
+        private final boolean isSpoilerEmbedRevealed(AttachmentEntry attachmentEntry) {
+            Map<Integer, Set<String>> visibleSpoilerEmbedMap;
+            StoreMessageState.State messageState = attachmentEntry.getMessageState();
+            return (messageState == null || (visibleSpoilerEmbedMap = messageState.getVisibleSpoilerEmbedMap()) == null || !visibleSpoilerEmbedMap.containsKey(Integer.valueOf(attachmentEntry.getEmbedIndex()))) ? false : true;
         }
 
         public String toString() {
@@ -559,7 +559,7 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public void onConfigure(int position, ChatListEntry data) {
+    public void onConfigure(int position, ChatListEntry data) throws CloneNotSupportedException {
         C12238m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         AttachmentEntry attachmentEntry = (AttachmentEntry) data;

@@ -21,6 +21,10 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         this.guildId = l;
     }
 
+    public final List<ModelMemberVerificationForm.FormField> component3() {
+        return this.formResponses;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelMemberVerificationFormResponse copy$default(ModelMemberVerificationFormResponse modelMemberVerificationFormResponse, String str, ApplicationStatus applicationStatus, List list, Long l, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -36,25 +40,6 @@ public final /* data */ class ModelMemberVerificationFormResponse {
             l = modelMemberVerificationFormResponse.guildId;
         }
         return modelMemberVerificationFormResponse.copy(str, applicationStatus, list, l);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getLastSeen() {
-        return this.lastSeen;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ApplicationStatus getApplicationStatus() {
-        return this.applicationStatus;
-    }
-
-    public final List<ModelMemberVerificationForm.FormField> component3() {
-        return this.formResponses;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
     }
 
     public final ModelMemberVerificationFormResponse copy(String lastSeen, ApplicationStatus applicationStatus, List<ModelMemberVerificationForm.FormField> formResponses, Long guildId) {
@@ -73,6 +58,11 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         return C12238m.areEqual(this.lastSeen, modelMemberVerificationFormResponse.lastSeen) && C12238m.areEqual(this.applicationStatus, modelMemberVerificationFormResponse.applicationStatus) && C12238m.areEqual(this.formResponses, modelMemberVerificationFormResponse.formResponses) && C12238m.areEqual(this.guildId, modelMemberVerificationFormResponse.guildId);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final ApplicationStatus getApplicationStatus() {
+        return this.applicationStatus;
+    }
+
     public final ApplicationStatus getApplicationStatus() {
         return this.applicationStatus;
     }
@@ -81,8 +71,18 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         return this.formResponses;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getLastSeen() {
+        return this.lastSeen;
     }
 
     public final String getLastSeen() {

@@ -32,21 +32,6 @@ public final /* data */ class ReceiverReport {
         return receiverReport.copy(str, j, i);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getBitrate() {
-        return this.bitrate;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getFractionLost() {
-        return this.fractionLost;
-    }
-
     public final ReceiverReport copy(String id2, long bitrate, int fractionLost) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         return new ReceiverReport(id2, bitrate, fractionLost);
@@ -63,12 +48,27 @@ public final /* data */ class ReceiverReport {
         return C12238m.areEqual(this.id, receiverReport.id) && this.bitrate == receiverReport.bitrate && this.fractionLost == receiverReport.fractionLost;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getBitrate() {
         return this.bitrate;
     }
 
+    public final long getBitrate() {
+        return this.bitrate;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getFractionLost() {
         return this.fractionLost;
+    }
+
+    public final int getFractionLost() {
+        return this.fractionLost;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getId() {
+        return this.id;
     }
 
     public final String getId() {

@@ -61,6 +61,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -109,7 +110,7 @@ public final class WidgetServerSettingsOverview extends AppFragment {
     private final StatefulViews state;
 
     /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class AfkBottomSheet extends AppBottomSheet {
+    public final class AfkBottomSheet extends AppBottomSheet {
         public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(AfkBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsOverviewAfkTimeoutBinding;", 0)};
 
         /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -124,6 +125,11 @@ public final class WidgetServerSettingsOverview extends AppFragment {
             return (WidgetServerSettingsOverviewAfkTimeoutBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
         }
 
+        @Override // com.discord.app.AppBottomSheet
+        public int getContentViewResId() {
+            return C5419R.layout.widget_server_settings_overview_afk_timeout;
+        }
+
         private final List<TextView> getTimeouts() {
             TextView textView = getBinding().f17725b;
             C12238m.checkNotNullExpressionValue(textView, "binding.serverSettingsOverviewAfkTimeout01");
@@ -136,11 +142,6 @@ public final class WidgetServerSettingsOverview extends AppFragment {
             TextView textView5 = getBinding().f17729f;
             C12238m.checkNotNullExpressionValue(textView5, "binding.serverSettingsOverviewAfkTimeout60");
             return C12147n.listOf((Object[]) new TextView[]{textView, textView2, textView3, textView4, textView5});
-        }
-
-        @Override // com.discord.app.AppBottomSheet
-        public int getContentViewResId() {
-            return C5419R.layout.widget_server_settings_overview_afk_timeout;
         }
 
         @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -190,8 +191,165 @@ public final class WidgetServerSettingsOverview extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureBannerSection$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class Companion {
+    public final class C92781 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Guild $guild;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureBannerSection$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "view.context");
+                companion.create(context, C92781.this.$guild.getId());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92781(Guild guild) {
+            super(1);
+            this.$guild = guild;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8423b("tierStatus", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureSplashSection$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class C92851 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Guild $guild;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureSplashSection$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
+                Context context = view.getContext();
+                C12238m.checkNotNullExpressionValue(context, "view.context");
+                companion.create(context, C92851.this.$guild.getId());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C92851(Guild guild) {
+            super(1);
+            this.$guild = guild;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8423b("tierInfo", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class C92941 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C92941() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            Channel channel = StoreStream.INSTANCE.getChannels().getChannel(j);
+            WidgetServerSettingsOverview.this.state.put(C5419R.id.afk_channel, channel);
+            WidgetServerSettingsOverview.this.state.configureSaveActionView(WidgetServerSettingsOverview.this.getBinding().f17734e);
+            WidgetServerSettingsOverview.this.configureAfkChannel(channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class C92952 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C92952() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            Channel channel = StoreStream.INSTANCE.getChannels().getChannel(j);
+            WidgetServerSettingsOverview.this.state.put(C5419R.id.system_channel, channel);
+            WidgetServerSettingsOverview.this.state.configureSaveActionView(WidgetServerSettingsOverview.this.getBinding().f17734e);
+            WidgetServerSettingsOverview.this.configureSystemChannel(channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class C92961 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C92961() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetServerSettingsOverview.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -216,7 +374,7 @@ public final class WidgetServerSettingsOverview extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -229,7 +387,7 @@ public final class WidgetServerSettingsOverview extends AppFragment {
         private final Channel systemChannelModel;
 
         /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -329,10 +487,6 @@ public final class WidgetServerSettingsOverview extends AppFragment {
             return this.guild;
         }
 
-        public final Channel getSystemChannelModel() {
-            return this.systemChannelModel;
-        }
-
         /* JADX INFO: renamed from: isAboveNotifyAllSize, reason: from getter */
         public final boolean getIsAboveNotifyAllSize() {
             return this.isAboveNotifyAllSize;
@@ -342,162 +496,9 @@ public final class WidgetServerSettingsOverview extends AppFragment {
         public final boolean getIsOwner() {
             return this.isOwner;
         }
-    }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureBannerSection$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class C92781 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public final /* synthetic */ Guild $guild;
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureBannerSection$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "view.context");
-                companion.create(context, C92781.this.$guild.getId());
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92781(Guild guild) {
-            super(1);
-            this.$guild = guild;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8423b("tierStatus", new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureSplashSection$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class C92851 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-        public final /* synthetic */ Guild $guild;
-
-        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureSplashSection$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
-                Context context = view.getContext();
-                C12238m.checkNotNullExpressionValue(context, "view.context");
-                companion.create(context, C92851.this.$guild.getId());
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C92851(Guild guild) {
-            super(1);
-            this.$guild = guild;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8423b("tierInfo", new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class C92941 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C92941() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            Channel channel = StoreStream.INSTANCE.getChannels().getChannel(j);
-            WidgetServerSettingsOverview.this.state.put(C5419R.id.afk_channel, channel);
-            WidgetServerSettingsOverview.this.state.configureSaveActionView(WidgetServerSettingsOverview.this.getBinding().f17734e);
-            WidgetServerSettingsOverview.this.configureAfkChannel(channel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class C92952 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C92952() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            Channel channel = StoreStream.INSTANCE.getChannels().getChannel(j);
-            WidgetServerSettingsOverview.this.state.put(C5419R.id.system_channel, channel);
-            WidgetServerSettingsOverview.this.state.configureSaveActionView(WidgetServerSettingsOverview.this.getBinding().f17734e);
-            WidgetServerSettingsOverview.this.configureSystemChannel(channel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-    public static final class C92961 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C92961() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetServerSettingsOverview.this.configureUI(model);
+        public final Channel getSystemChannelModel() {
+            return this.systemChannelModel;
         }
     }
 
@@ -556,7 +557,7 @@ public final class WidgetServerSettingsOverview extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$configureBannerImage$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -1105,17 +1106,6 @@ public final class WidgetServerSettingsOverview extends AppFragment {
         return (WidgetServerSettingsOverviewBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void openAvatarPicker(final String guildShortName, final String iconOriginal) {
-        this.hasOpenedAvatarPicker = true;
-        this.imageSelectedResult = new Action1<String>() { // from class: com.discord.widgets.servers.WidgetServerSettingsOverview.openAvatarPicker.1
-            @Override // p658rx.functions.Action1
-            public final void call(String str) {
-                WidgetServerSettingsOverview.this.configureIcon(guildShortName, iconOriginal, str, true);
-            }
-        };
-        openMediaChooser();
-    }
-
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
@@ -1132,7 +1122,7 @@ public final class WidgetServerSettingsOverview extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
         C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         C12238m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
@@ -1180,5 +1170,16 @@ public final class WidgetServerSettingsOverview extends AppFragment {
         super.onViewBoundOrOnResume();
         setActionBarTitle(C5419R.string.overview);
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), (Class<?>) WidgetServerSettingsOverview.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92961());
+    }
+
+    private final void openAvatarPicker(final String guildShortName, final String iconOriginal) {
+        this.hasOpenedAvatarPicker = true;
+        this.imageSelectedResult = new Action1<String>() { // from class: com.discord.widgets.servers.WidgetServerSettingsOverview.openAvatarPicker.1
+            @Override // p658rx.functions.Action1
+            public final void call(String str) {
+                WidgetServerSettingsOverview.this.configureIcon(guildShortName, iconOriginal, str, true);
+            }
+        };
+        openMediaChooser();
     }
 }

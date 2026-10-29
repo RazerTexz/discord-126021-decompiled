@@ -22,13 +22,13 @@ public abstract class AbstractC3509e extends C3506d {
         this.f9685k = true;
     }
 
-    /* JADX INFO: renamed from: L */
-    public abstract void mo4414L();
-
     /* JADX INFO: renamed from: N */
     public final void m4444N() {
         if (!m4442I()) {
             throw new IllegalStateException("Not initialized");
         }
     }
+
+    /* JADX INFO: renamed from: L */
+    public abstract void mo4414L();
 }

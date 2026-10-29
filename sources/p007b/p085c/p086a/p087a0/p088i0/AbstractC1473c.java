@@ -13,11 +13,11 @@ import p615g0.C12398o;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractC1473c implements Closeable {
 
-    /* JADX INFO: renamed from: j */
-    public static final String[] f2236j = new String[128];
-
     /* JADX INFO: renamed from: k */
     public int f2237k;
+
+    /* JADX INFO: renamed from: j */
+    public static final String[] f2236j = new String[128];
 
     /* JADX INFO: renamed from: l */
     public int[] f2238l = new int[32];
@@ -30,7 +30,7 @@ public abstract class AbstractC1473c implements Closeable {
 
     /* JADX INFO: renamed from: b.c.a.a0.i0.c$a */
     /* JADX INFO: compiled from: JsonReader.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final String[] f2241a;
@@ -123,37 +123,6 @@ public abstract class AbstractC1473c implements Closeable {
         strArr[12] = "\\f";
     }
 
-    /* JADX INFO: renamed from: A */
-    public abstract void mo600A() throws IOException;
-
-    /* JADX INFO: renamed from: C */
-    public abstract void mo601C() throws IOException;
-
-    /* JADX INFO: renamed from: D */
-    public final C1472b m602D(String str) throws C1472b {
-        StringBuilder sbM836X = C1643a.m836X(str, " at path ");
-        sbM836X.append(getPath());
-        throw new C1472b(sbM836X.toString());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public abstract void mo603a() throws IOException;
-
-    /* JADX INFO: renamed from: b */
-    public abstract void mo604b() throws IOException;
-
-    /* JADX INFO: renamed from: c */
-    public abstract void mo605c() throws IOException;
-
-    /* JADX INFO: renamed from: d */
-    public abstract void mo606d() throws IOException;
-
-    /* JADX INFO: renamed from: e */
-    public abstract boolean mo607e() throws IOException;
-
-    /* JADX INFO: renamed from: f */
-    public abstract boolean mo608f() throws IOException;
-
     public final String getPath() {
         int i = this.f2237k;
         int[] iArr = this.f2238l;
@@ -176,20 +145,12 @@ public abstract class AbstractC1473c implements Closeable {
         return sbM829Q.toString();
     }
 
-    /* JADX INFO: renamed from: n */
-    public abstract double mo609n() throws IOException;
-
-    /* JADX INFO: renamed from: q */
-    public abstract int mo610q() throws IOException;
-
-    /* JADX INFO: renamed from: s */
-    public abstract String mo611s() throws IOException;
-
-    /* JADX INFO: renamed from: t */
-    public abstract String mo612t() throws IOException;
-
-    /* JADX INFO: renamed from: u */
-    public abstract b mo613u() throws IOException;
+    /* JADX INFO: renamed from: D */
+    public final C1472b m602D(String str) throws C1472b {
+        StringBuilder sbM836X = C1643a.m836X(str, " at path ");
+        sbM836X.append(getPath());
+        throw new C1472b(sbM836X.toString());
+    }
 
     /* JADX INFO: renamed from: x */
     public final void m614x(int i) {
@@ -212,6 +173,45 @@ public abstract class AbstractC1473c implements Closeable {
         this.f2237k = i3 + 1;
         iArr3[i3] = i;
     }
+
+    /* JADX INFO: renamed from: A */
+    public abstract void mo600A() throws IOException;
+
+    /* JADX INFO: renamed from: C */
+    public abstract void mo601C() throws IOException;
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo603a() throws IOException;
+
+    /* JADX INFO: renamed from: b */
+    public abstract void mo604b() throws IOException;
+
+    /* JADX INFO: renamed from: c */
+    public abstract void mo605c() throws IOException;
+
+    /* JADX INFO: renamed from: d */
+    public abstract void mo606d() throws IOException;
+
+    /* JADX INFO: renamed from: e */
+    public abstract boolean mo607e() throws IOException;
+
+    /* JADX INFO: renamed from: f */
+    public abstract boolean mo608f() throws IOException;
+
+    /* JADX INFO: renamed from: n */
+    public abstract double mo609n() throws IOException;
+
+    /* JADX INFO: renamed from: q */
+    public abstract int mo610q() throws IOException;
+
+    /* JADX INFO: renamed from: s */
+    public abstract String mo611s() throws IOException;
+
+    /* JADX INFO: renamed from: t */
+    public abstract String mo612t() throws IOException;
+
+    /* JADX INFO: renamed from: u */
+    public abstract b mo613u() throws IOException;
 
     /* JADX INFO: renamed from: y */
     public abstract int mo615y(a aVar) throws IOException;

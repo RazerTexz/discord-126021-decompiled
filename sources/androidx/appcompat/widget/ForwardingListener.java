@@ -18,8 +18,8 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
     private final float mScaledTouchSlop;
     public final View mSrc;
     private final int mTapTimeout;
-    private final int[] mTmpLocation = new int[2];
     private Runnable mTriggerLongPress;
+    private final int[] mTmpLocation = new int[2];
 
     public class DisallowIntercept implements Runnable {
         public DisallowIntercept() {
@@ -63,73 +63,6 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         if (runnable2 != null) {
             this.mSrc.removeCallbacks(runnable2);
         }
-    }
-
-    private boolean onTouchForwarded(MotionEvent motionEvent) {
-        DropDownListView dropDownListView;
-        View view = this.mSrc;
-        ShowableListMenu popup = getPopup();
-        if (popup == null || !popup.isShowing() || (dropDownListView = (DropDownListView) popup.getListView()) == null || !dropDownListView.isShown()) {
-            return false;
-        }
-        MotionEvent motionEventObtainNoHistory = MotionEvent.obtainNoHistory(motionEvent);
-        toGlobalMotionEvent(view, motionEventObtainNoHistory);
-        toLocalMotionEvent(dropDownListView, motionEventObtainNoHistory);
-        boolean zOnForwardedEvent = dropDownListView.onForwardedEvent(motionEventObtainNoHistory, this.mActivePointerId);
-        motionEventObtainNoHistory.recycle();
-        int actionMasked = motionEvent.getActionMasked();
-        return zOnForwardedEvent && (actionMasked != 1 && actionMasked != 3);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:20:0x003d  */
-    private boolean onTouchObserved(MotionEvent motionEvent) {
-        View view = this.mSrc;
-        if (!view.isEnabled()) {
-            return false;
-        }
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            this.mActivePointerId = motionEvent.getPointerId(0);
-            if (this.mDisallowIntercept == null) {
-                this.mDisallowIntercept = new DisallowIntercept();
-            }
-            view.postDelayed(this.mDisallowIntercept, this.mTapTimeout);
-            if (this.mTriggerLongPress == null) {
-                this.mTriggerLongPress = new TriggerLongPress();
-            }
-            view.postDelayed(this.mTriggerLongPress, this.mLongPressTimeout);
-        } else if (actionMasked == 1) {
-            clearCallbacks();
-        } else if (actionMasked == 2) {
-            int iFindPointerIndex = motionEvent.findPointerIndex(this.mActivePointerId);
-            if (iFindPointerIndex >= 0 && !pointInView(view, motionEvent.getX(iFindPointerIndex), motionEvent.getY(iFindPointerIndex), this.mScaledTouchSlop)) {
-                clearCallbacks();
-                view.getParent().requestDisallowInterceptTouchEvent(true);
-                return true;
-            }
-        } else if (actionMasked == 3) {
-            clearCallbacks();
-        }
-        return false;
-    }
-
-    private static boolean pointInView(View view, float f, float f2, float f3) {
-        float f4 = -f3;
-        return f >= f4 && f2 >= f4 && f < ((float) (view.getRight() - view.getLeft())) + f3 && f2 < ((float) (view.getBottom() - view.getTop())) + f3;
-    }
-
-    private boolean toGlobalMotionEvent(View view, MotionEvent motionEvent) {
-        int[] iArr = this.mTmpLocation;
-        view.getLocationOnScreen(iArr);
-        motionEvent.offsetLocation(iArr[0], iArr[1]);
-        return true;
-    }
-
-    private boolean toLocalMotionEvent(View view, MotionEvent motionEvent) {
-        int[] iArr = this.mTmpLocation;
-        view.getLocationOnScreen(iArr);
-        motionEvent.offsetLocation(-iArr[0], -iArr[1]);
-        return true;
     }
 
     public abstract ShowableListMenu getPopup();
@@ -184,6 +117,54 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         return z2 || z3;
     }
 
+    private boolean onTouchForwarded(MotionEvent motionEvent) {
+        DropDownListView dropDownListView;
+        View view = this.mSrc;
+        ShowableListMenu popup = getPopup();
+        if (popup == null || !popup.isShowing() || (dropDownListView = (DropDownListView) popup.getListView()) == null || !dropDownListView.isShown()) {
+            return false;
+        }
+        MotionEvent motionEventObtainNoHistory = MotionEvent.obtainNoHistory(motionEvent);
+        toGlobalMotionEvent(view, motionEventObtainNoHistory);
+        toLocalMotionEvent(dropDownListView, motionEventObtainNoHistory);
+        boolean zOnForwardedEvent = dropDownListView.onForwardedEvent(motionEventObtainNoHistory, this.mActivePointerId);
+        motionEventObtainNoHistory.recycle();
+        int actionMasked = motionEvent.getActionMasked();
+        return zOnForwardedEvent && (actionMasked != 1 && actionMasked != 3);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:20:0x003d  */
+    private boolean onTouchObserved(MotionEvent motionEvent) {
+        View view = this.mSrc;
+        if (!view.isEnabled()) {
+            return false;
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            this.mActivePointerId = motionEvent.getPointerId(0);
+            if (this.mDisallowIntercept == null) {
+                this.mDisallowIntercept = new DisallowIntercept();
+            }
+            view.postDelayed(this.mDisallowIntercept, this.mTapTimeout);
+            if (this.mTriggerLongPress == null) {
+                this.mTriggerLongPress = new TriggerLongPress();
+            }
+            view.postDelayed(this.mTriggerLongPress, this.mLongPressTimeout);
+        } else if (actionMasked == 1) {
+            clearCallbacks();
+        } else if (actionMasked == 2) {
+            int iFindPointerIndex = motionEvent.findPointerIndex(this.mActivePointerId);
+            if (iFindPointerIndex >= 0 && !pointInView(view, motionEvent.getX(iFindPointerIndex), motionEvent.getY(iFindPointerIndex), this.mScaledTouchSlop)) {
+                clearCallbacks();
+                view.getParent().requestDisallowInterceptTouchEvent(true);
+                return true;
+            }
+        } else if (actionMasked == 3) {
+            clearCallbacks();
+        }
+        return false;
+    }
+
     @Override // android.view.View.OnAttachStateChangeListener
     public void onViewAttachedToWindow(View view) {
     }
@@ -196,5 +177,24 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         if (runnable != null) {
             this.mSrc.removeCallbacks(runnable);
         }
+    }
+
+    private static boolean pointInView(View view, float f, float f2, float f3) {
+        float f4 = -f3;
+        return f >= f4 && f2 >= f4 && f < ((float) (view.getRight() - view.getLeft())) + f3 && f2 < ((float) (view.getBottom() - view.getTop())) + f3;
+    }
+
+    private boolean toGlobalMotionEvent(View view, MotionEvent motionEvent) {
+        int[] iArr = this.mTmpLocation;
+        view.getLocationOnScreen(iArr);
+        motionEvent.offsetLocation(iArr[0], iArr[1]);
+        return true;
+    }
+
+    private boolean toLocalMotionEvent(View view, MotionEvent motionEvent) {
+        int[] iArr = this.mTmpLocation;
+        view.getLocationOnScreen(iArr);
+        motionEvent.offsetLocation(-iArr[0], -iArr[1]);
+        return true;
     }
 }

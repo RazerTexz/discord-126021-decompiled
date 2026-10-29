@@ -15,9 +15,15 @@ public final /* data */ class ThreadMembersUpdate {
     private final List<Long> memberIdsPreview;
     private final List<Long> removedMemberIds;
 
-    /* JADX INFO: renamed from: a */
-    public final List<AugmentedThreadMember> m8275a() {
-        return this.addedMembers;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ThreadMembersUpdate)) {
+            return false;
+        }
+        ThreadMembersUpdate threadMembersUpdate = (ThreadMembersUpdate) other;
+        return this.id == threadMembersUpdate.id && this.guildId == threadMembersUpdate.guildId && this.memberCount == threadMembersUpdate.memberCount && C12238m.areEqual(this.removedMemberIds, threadMembersUpdate.removedMemberIds) && C12238m.areEqual(this.memberIdsPreview, threadMembersUpdate.memberIdsPreview) && C12238m.areEqual(this.addedMembers, threadMembersUpdate.addedMembers);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -30,22 +36,6 @@ public final /* data */ class ThreadMembersUpdate {
         return this.id;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final List<Long> m8278d() {
-        return this.removedMemberIds;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ThreadMembersUpdate)) {
-            return false;
-        }
-        ThreadMembersUpdate threadMembersUpdate = (ThreadMembersUpdate) other;
-        return this.id == threadMembersUpdate.id && this.guildId == threadMembersUpdate.guildId && this.memberCount == threadMembersUpdate.memberCount && C12238m.areEqual(this.removedMemberIds, threadMembersUpdate.removedMemberIds) && C12238m.areEqual(this.memberIdsPreview, threadMembersUpdate.memberIdsPreview) && C12238m.areEqual(this.addedMembers, threadMembersUpdate.addedMembers);
-    }
-
     public int hashCode() {
         long j = this.id;
         long j2 = this.guildId;
@@ -56,6 +46,16 @@ public final /* data */ class ThreadMembersUpdate {
         int iHashCode2 = (iHashCode + (list2 != null ? list2.hashCode() : 0)) * 31;
         List<AugmentedThreadMember> list3 = this.addedMembers;
         return iHashCode2 + (list3 != null ? list3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<AugmentedThreadMember> m8275a() {
+        return this.addedMembers;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Long> m8278d() {
+        return this.removedMemberIds;
     }
 
     public String toString() {

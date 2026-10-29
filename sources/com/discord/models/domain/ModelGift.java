@@ -36,61 +36,6 @@ public final /* data */ class ModelGift {
         this.giftStyle = num;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getSkuId() {
-        return this.skuId;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final SubscriptionPlan getSubscriptionPlan() {
-        return this.subscriptionPlan;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final Integer getGiftStyle() {
-        return this.giftStyle;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getRedeemed() {
-        return this.redeemed;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getExpiresAt() {
-        return this.expiresAt;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCode() {
-        return this.code;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getUses() {
-        return this.uses;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final ModelStoreListing getStoreListing() {
-        return this.storeListing;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getMaxUses() {
-        return this.maxUses;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Long getSubscriptionPlanId() {
-        return this.subscriptionPlanId;
-    }
-
     public final ModelGift copy(long skuId, boolean redeemed, String expiresAt, String code, int uses, ModelStoreListing storeListing, int maxUses, User user, Long subscriptionPlanId, SubscriptionPlan subscriptionPlan, Integer giftStyle) {
         C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
         return new ModelGift(skuId, redeemed, expiresAt, code, uses, storeListing, maxUses, user, subscriptionPlanId, subscriptionPlan, giftStyle);
@@ -107,8 +52,18 @@ public final /* data */ class ModelGift {
         return this.skuId == modelGift.skuId && this.redeemed == modelGift.redeemed && C12238m.areEqual(this.expiresAt, modelGift.expiresAt) && C12238m.areEqual(this.code, modelGift.code) && this.uses == modelGift.uses && C12238m.areEqual(this.storeListing, modelGift.storeListing) && this.maxUses == modelGift.maxUses && C12238m.areEqual(this.user, modelGift.user) && C12238m.areEqual(this.subscriptionPlanId, modelGift.subscriptionPlanId) && C12238m.areEqual(this.subscriptionPlan, modelGift.subscriptionPlan) && C12238m.areEqual(this.giftStyle, modelGift.giftStyle);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCode() {
         return this.code;
+    }
+
+    public final String getCode() {
+        return this.code;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getExpiresAt() {
+        return this.expiresAt;
     }
 
     public final String getExpiresAt() {
@@ -123,36 +78,81 @@ public final /* data */ class ModelGift {
         return 0L;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final Integer getGiftStyle() {
         return this.giftStyle;
+    }
+
+    public final Integer getGiftStyle() {
+        return this.giftStyle;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getMaxUses() {
+        return this.maxUses;
     }
 
     public final int getMaxUses() {
         return this.maxUses;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getRedeemed() {
         return this.redeemed;
+    }
+
+    public final boolean getRedeemed() {
+        return this.redeemed;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getSkuId() {
+        return this.skuId;
     }
 
     public final long getSkuId() {
         return this.skuId;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final ModelStoreListing getStoreListing() {
         return this.storeListing;
+    }
+
+    public final ModelStoreListing getStoreListing() {
+        return this.storeListing;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final SubscriptionPlan getSubscriptionPlan() {
+        return this.subscriptionPlan;
     }
 
     public final SubscriptionPlan getSubscriptionPlan() {
         return this.subscriptionPlan;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final Long getSubscriptionPlanId() {
         return this.subscriptionPlanId;
     }
 
+    public final Long getSubscriptionPlanId() {
+        return this.subscriptionPlanId;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final User getUser() {
         return this.user;
+    }
+
+    public final User getUser() {
+        return this.user;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final int getUses() {
+        return this.uses;
     }
 
     public final int getUses() {

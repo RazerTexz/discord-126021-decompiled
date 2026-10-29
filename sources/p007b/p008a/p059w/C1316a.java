@@ -15,7 +15,7 @@ public final class C1316a {
 
     /* JADX INFO: renamed from: b.a.w.a$a */
     /* JADX INFO: compiled from: TypeTokens.kt */
-    public static final class a extends TypeToken<List<? extends String>> {
+    public final class a extends TypeToken<List<? extends String>> {
     }
 
     static {

@@ -21,7 +21,7 @@ public final class C11890z {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.z$a */
     /* JADX INFO: compiled from: ProtoEnumFlags.kt */
-    public /* synthetic */ class a {
+    public final /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f24701a;

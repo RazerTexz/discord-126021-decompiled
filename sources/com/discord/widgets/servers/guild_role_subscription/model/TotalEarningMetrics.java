@@ -21,6 +21,10 @@ public final /* data */ class TotalEarningMetrics {
         this.previousPeriods = list;
     }
 
+    public final List<TotalPayoutsForPeriod> component3() {
+        return this.previousPeriods;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ TotalEarningMetrics copy$default(TotalEarningMetrics totalEarningMetrics, CurrentMonthEarningMetrics currentMonthEarningMetrics, TotalPayoutsForPeriod totalPayoutsForPeriod, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -33,20 +37,6 @@ public final /* data */ class TotalEarningMetrics {
             list = totalEarningMetrics.previousPeriods;
         }
         return totalEarningMetrics.copy(currentMonthEarningMetrics, totalPayoutsForPeriod, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final CurrentMonthEarningMetrics getCurrentMonthEarningMetrics() {
-        return this.currentMonthEarningMetrics;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final TotalPayoutsForPeriod getCurrentPeriod() {
-        return this.currentPeriod;
-    }
-
-    public final List<TotalPayoutsForPeriod> component3() {
-        return this.previousPeriods;
     }
 
     public final TotalEarningMetrics copy(CurrentMonthEarningMetrics currentMonthEarningMetrics, TotalPayoutsForPeriod currentPeriod, List<TotalPayoutsForPeriod> previousPeriods) {
@@ -66,8 +56,18 @@ public final /* data */ class TotalEarningMetrics {
         return C12238m.areEqual(this.currentMonthEarningMetrics, totalEarningMetrics.currentMonthEarningMetrics) && C12238m.areEqual(this.currentPeriod, totalEarningMetrics.currentPeriod) && C12238m.areEqual(this.previousPeriods, totalEarningMetrics.previousPeriods);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final CurrentMonthEarningMetrics getCurrentMonthEarningMetrics() {
         return this.currentMonthEarningMetrics;
+    }
+
+    public final CurrentMonthEarningMetrics getCurrentMonthEarningMetrics() {
+        return this.currentMonthEarningMetrics;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final TotalPayoutsForPeriod getCurrentPeriod() {
+        return this.currentPeriod;
     }
 
     public final TotalPayoutsForPeriod getCurrentPeriod() {

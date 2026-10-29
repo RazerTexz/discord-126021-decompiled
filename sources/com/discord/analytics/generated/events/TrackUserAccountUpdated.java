@@ -9,35 +9,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserAccountUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserAccountUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean isUserSetDiscriminator = null;
-    private final Long oldDiscriminator = null;
-    private final Long newDiscriminator = null;
-    private final CharSequence oldUsername = null;
-    private final CharSequence newUsername = null;
-    private final CharSequence oldEmail = null;
-    private final CharSequence newEmail = null;
+    private final Long bioCustomEmojiCount = null;
+    private final Boolean hasAnimatedAvatar = null;
+    private final Boolean hasAvatar = null;
     private final Boolean hasBanner = null;
     private final Boolean hasBannerColor = null;
     private final Boolean hasBio = null;
     private final Boolean hasPremium = null;
-    private final Boolean hasAvatar = null;
-    private final Boolean hasAnimatedAvatar = null;
-    private final Boolean updatedBio = null;
+    private final Boolean hasPronouns = null;
+    private final Boolean isUserSetDiscriminator = null;
+    private final Long newDiscriminator = null;
+    private final CharSequence newEmail = null;
+    private final CharSequence newUsername = null;
+    private final Long oldDiscriminator = null;
+    private final CharSequence oldEmail = null;
+    private final CharSequence oldUsername = null;
+    private TrackBase trackBase;
+    private final Boolean updatedAvatar = null;
     private final Boolean updatedBanner = null;
     private final Boolean updatedBannerColor = null;
-    private final Boolean updatedAvatar = null;
-    private final Long bioCustomEmojiCount = null;
-    private final Boolean hasPronouns = null;
-    private final Boolean updatedPronouns = null;
+    private final Boolean updatedBio = null;
     private final Boolean updatedPassword = null;
+    private final Boolean updatedPronouns = null;
     private final transient String analyticsSchemaTypeName = "user_account_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +42,12 @@ public final /* data */ class TrackUserAccountUpdated implements AnalyticsSchema
         }
         TrackUserAccountUpdated trackUserAccountUpdated = (TrackUserAccountUpdated) other;
         return C12238m.areEqual(this.isUserSetDiscriminator, trackUserAccountUpdated.isUserSetDiscriminator) && C12238m.areEqual(this.oldDiscriminator, trackUserAccountUpdated.oldDiscriminator) && C12238m.areEqual(this.newDiscriminator, trackUserAccountUpdated.newDiscriminator) && C12238m.areEqual(this.oldUsername, trackUserAccountUpdated.oldUsername) && C12238m.areEqual(this.newUsername, trackUserAccountUpdated.newUsername) && C12238m.areEqual(this.oldEmail, trackUserAccountUpdated.oldEmail) && C12238m.areEqual(this.newEmail, trackUserAccountUpdated.newEmail) && C12238m.areEqual(this.hasBanner, trackUserAccountUpdated.hasBanner) && C12238m.areEqual(this.hasBannerColor, trackUserAccountUpdated.hasBannerColor) && C12238m.areEqual(this.hasBio, trackUserAccountUpdated.hasBio) && C12238m.areEqual(this.hasPremium, trackUserAccountUpdated.hasPremium) && C12238m.areEqual(this.hasAvatar, trackUserAccountUpdated.hasAvatar) && C12238m.areEqual(this.hasAnimatedAvatar, trackUserAccountUpdated.hasAnimatedAvatar) && C12238m.areEqual(this.updatedBio, trackUserAccountUpdated.updatedBio) && C12238m.areEqual(this.updatedBanner, trackUserAccountUpdated.updatedBanner) && C12238m.areEqual(this.updatedBannerColor, trackUserAccountUpdated.updatedBannerColor) && C12238m.areEqual(this.updatedAvatar, trackUserAccountUpdated.updatedAvatar) && C12238m.areEqual(this.bioCustomEmojiCount, trackUserAccountUpdated.bioCustomEmojiCount) && C12238m.areEqual(this.hasPronouns, trackUserAccountUpdated.hasPronouns) && C12238m.areEqual(this.updatedPronouns, trackUserAccountUpdated.updatedPronouns) && C12238m.areEqual(this.updatedPassword, trackUserAccountUpdated.updatedPassword);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

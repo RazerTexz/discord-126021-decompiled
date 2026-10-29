@@ -30,7 +30,7 @@ public final class WidgetUnknownStickerSheet extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetUnknownStickerSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -58,10 +58,6 @@ public final class WidgetUnknownStickerSheet extends AppBottomSheet {
         return (WidgetUnknownStickerSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    public static final void show(FragmentManager fragmentManager, StickerPartial stickerPartial) {
-        INSTANCE.show(fragmentManager, stickerPartial);
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_unknown_sticker_sheet;
@@ -78,5 +74,9 @@ public final class WidgetUnknownStickerSheet extends AppBottomSheet {
         TextView textView = getBinding().f18314c;
         C12238m.checkNotNullExpressionValue(textView, "binding.unknownStickerSheetStickerName");
         textView.setText(stickerPartial.getName());
+    }
+
+    public static final void show(FragmentManager fragmentManager, StickerPartial stickerPartial) {
+        INSTANCE.show(fragmentManager, stickerPartial);
     }
 }

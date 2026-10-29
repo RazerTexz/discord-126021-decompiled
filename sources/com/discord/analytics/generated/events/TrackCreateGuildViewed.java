@@ -13,23 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreateGuildViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreateGuildViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildTemplateReceiver, TrackLocationMetadataReceiver {
+    private final CharSequence flowStep = null;
     private TrackBase trackBase;
     private TrackGuildTemplate trackGuildTemplate;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence flowStep = null;
     private final transient String analyticsSchemaTypeName = "create_guild_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackCreateGuildViewed) && C12238m.areEqual(this.flowStep, ((TrackCreateGuildViewed) other).flowStep);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

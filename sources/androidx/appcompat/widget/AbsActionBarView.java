@@ -28,47 +28,8 @@ public abstract class AbsActionBarView extends ViewGroup {
     public final VisibilityAnimListener mVisAnimListener;
     public ViewPropertyAnimatorCompat mVisibilityAnim;
 
-    public class VisibilityAnimListener implements ViewPropertyAnimatorListener {
-        private boolean mCanceled = false;
-        public int mFinalVisibility;
-
-        public VisibilityAnimListener() {
-        }
-
-        @Override // androidx.core.view.ViewPropertyAnimatorListener
-        public void onAnimationCancel(View view) {
-            this.mCanceled = true;
-        }
-
-        @Override // androidx.core.view.ViewPropertyAnimatorListener
-        public void onAnimationEnd(View view) {
-            if (this.mCanceled) {
-                return;
-            }
-            AbsActionBarView absActionBarView = AbsActionBarView.this;
-            absActionBarView.mVisibilityAnim = null;
-            AbsActionBarView.super.setVisibility(this.mFinalVisibility);
-        }
-
-        @Override // androidx.core.view.ViewPropertyAnimatorListener
-        public void onAnimationStart(View view) {
-            AbsActionBarView.super.setVisibility(0);
-            this.mCanceled = false;
-        }
-
-        public VisibilityAnimListener withFinalVisibility(ViewPropertyAnimatorCompat viewPropertyAnimatorCompat, int i) {
-            AbsActionBarView.this.mVisibilityAnim = viewPropertyAnimatorCompat;
-            this.mFinalVisibility = i;
-            return this;
-        }
-    }
-
     public AbsActionBarView(@NonNull Context context) {
         this(context, null);
-    }
-
-    public static int next(int i, int i2, boolean z2) {
-        return z2 ? i - i2 : i + i2;
     }
 
     public void animateToVisibility(int i) {
@@ -126,6 +87,10 @@ public abstract class AbsActionBarView extends ViewGroup {
     public int measureChildView(View view, int i, int i2, int i3) {
         view.measure(View.MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE), i2);
         return Math.max(0, (i - view.getMeasuredWidth()) - i3);
+    }
+
+    public static int next(int i, int i2, boolean z2) {
+        return z2 ? i - i2 : i + i2;
     }
 
     @Override // android.view.View
@@ -239,6 +204,41 @@ public abstract class AbsActionBarView extends ViewGroup {
             return actionMenuPresenter.showOverflowMenu();
         }
         return false;
+    }
+
+    public class VisibilityAnimListener implements ViewPropertyAnimatorListener {
+        public int mFinalVisibility;
+        private boolean mCanceled = false;
+
+        public VisibilityAnimListener() {
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationCancel(View view) {
+            this.mCanceled = true;
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationEnd(View view) {
+            if (this.mCanceled) {
+                return;
+            }
+            AbsActionBarView absActionBarView = AbsActionBarView.this;
+            absActionBarView.mVisibilityAnim = null;
+            AbsActionBarView.super.setVisibility(this.mFinalVisibility);
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationStart(View view) {
+            AbsActionBarView.super.setVisibility(0);
+            this.mCanceled = false;
+        }
+
+        public VisibilityAnimListener withFinalVisibility(ViewPropertyAnimatorCompat viewPropertyAnimatorCompat, int i) {
+            AbsActionBarView.this.mVisibilityAnim = viewPropertyAnimatorCompat;
+            this.mFinalVisibility = i;
+            return this;
+        }
     }
 
     public AbsActionBarView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

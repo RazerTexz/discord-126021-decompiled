@@ -17,12 +17,6 @@ import p007b.p225i.p408d.C4907k;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4940b extends JsonWriter {
 
-    /* JADX INFO: renamed from: u */
-    public static final Writer f13136u = new a();
-
-    /* JADX INFO: renamed from: v */
-    public static final C4907k f13137v = new C4907k("closed");
-
     /* JADX INFO: renamed from: w */
     public final List<JsonElement> f13138w;
 
@@ -31,6 +25,12 @@ public final class C4940b extends JsonWriter {
 
     /* JADX INFO: renamed from: y */
     public JsonElement f13140y;
+
+    /* JADX INFO: renamed from: u */
+    public static final Writer f13136u = new a();
+
+    /* JADX INFO: renamed from: v */
+    public static final C4907k f13137v = new C4907k("closed");
 
     /* JADX INFO: renamed from: b.i.d.q.x.b$a */
     /* JADX INFO: compiled from: JsonTreeWriter.java */
@@ -55,6 +55,55 @@ public final class C4940b extends JsonWriter {
         super(f13136u);
         this.f13138w = new ArrayList();
         this.f13140y = C4906j.f13106a;
+    }
+
+    @Override // com.google.gson.stream.JsonWriter, java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws IOException {
+        if (!this.f13138w.isEmpty()) {
+            throw new IOException("Incomplete document");
+        }
+        this.f13138w.add(f13137v);
+    }
+
+    @Override // com.google.gson.stream.JsonWriter, java.io.Flushable
+    public void flush() throws IOException {
+    }
+
+    /* JADX INFO: renamed from: L */
+    public JsonElement m6897L() {
+        if (this.f13138w.isEmpty()) {
+            return this.f13140y;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Expected one JSON element but was ");
+        sbM833U.append(this.f13138w);
+        throw new IllegalStateException(sbM833U.toString());
+    }
+
+    /* JADX INFO: renamed from: N */
+    public final JsonElement m6898N() {
+        List<JsonElement> list = this.f13138w;
+        return list.get(list.size() - 1);
+    }
+
+    /* JADX INFO: renamed from: O */
+    public final void m6899O(JsonElement jsonElement) {
+        if (this.f13139x != null) {
+            if (!(jsonElement instanceof C4906j) || this.f21662t) {
+                JsonObject jsonObject = (JsonObject) m6898N();
+                jsonObject.f21481a.put(this.f13139x, jsonElement);
+            }
+            this.f13139x = null;
+            return;
+        }
+        if (this.f13138w.isEmpty()) {
+            this.f13140y = jsonElement;
+            return;
+        }
+        JsonElement jsonElementM6898N = m6898N();
+        if (!(jsonElementM6898N instanceof C4903g)) {
+            throw new IllegalStateException();
+        }
+        ((C4903g) jsonElementM6898N).f13105j.add(jsonElement);
     }
 
     @Override // com.google.gson.stream.JsonWriter
@@ -110,43 +159,6 @@ public final class C4940b extends JsonWriter {
         return this;
     }
 
-    /* JADX INFO: renamed from: L */
-    public JsonElement m6897L() {
-        if (this.f13138w.isEmpty()) {
-            return this.f13140y;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Expected one JSON element but was ");
-        sbM833U.append(this.f13138w);
-        throw new IllegalStateException(sbM833U.toString());
-    }
-
-    /* JADX INFO: renamed from: N */
-    public final JsonElement m6898N() {
-        List<JsonElement> list = this.f13138w;
-        return list.get(list.size() - 1);
-    }
-
-    /* JADX INFO: renamed from: O */
-    public final void m6899O(JsonElement jsonElement) {
-        if (this.f13139x != null) {
-            if (!(jsonElement instanceof C4906j) || this.f21662t) {
-                JsonObject jsonObject = (JsonObject) m6898N();
-                jsonObject.f21481a.put(this.f13139x, jsonElement);
-            }
-            this.f13139x = null;
-            return;
-        }
-        if (this.f13138w.isEmpty()) {
-            this.f13140y = jsonElement;
-            return;
-        }
-        JsonElement jsonElementM6898N = m6898N();
-        if (!(jsonElementM6898N instanceof C4903g)) {
-            throw new IllegalStateException();
-        }
-        ((C4903g) jsonElementM6898N).f13105j.add(jsonElement);
-    }
-
     @Override // com.google.gson.stream.JsonWriter
     /* JADX INFO: renamed from: b */
     public JsonWriter mo6900b() throws IOException {
@@ -163,14 +175,6 @@ public final class C4940b extends JsonWriter {
         m6899O(jsonObject);
         this.f13138w.add(jsonObject);
         return this;
-    }
-
-    @Override // com.google.gson.stream.JsonWriter, java.io.Closeable, java.lang.AutoCloseable
-    public void close() throws IOException {
-        if (!this.f13138w.isEmpty()) {
-            throw new IOException("Incomplete document");
-        }
-        this.f13138w.add(f13137v);
     }
 
     @Override // com.google.gson.stream.JsonWriter
@@ -199,10 +203,6 @@ public final class C4940b extends JsonWriter {
         List<JsonElement> list = this.f13138w;
         list.remove(list.size() - 1);
         return this;
-    }
-
-    @Override // com.google.gson.stream.JsonWriter, java.io.Flushable
-    public void flush() throws IOException {
     }
 
     @Override // com.google.gson.stream.JsonWriter

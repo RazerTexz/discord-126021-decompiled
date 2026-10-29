@@ -57,7 +57,7 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheetViewModel$1 */
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static final class C74111 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C74111 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C74111() {
             super(1);
         }
@@ -77,7 +77,7 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheetViewModel$2 */
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static final class C74122 extends AbstractC12240o implements Function1<CharSequence, Unit> {
+    public final class C74122 extends AbstractC12240o implements Function1<CharSequence, Unit> {
         public C74122() {
             super(1);
         }
@@ -97,7 +97,7 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -151,10 +151,10 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-        public static final class ChannelFull extends Event {
+        public final class ChannelFull extends Event {
             public static final ChannelFull INSTANCE = new ChannelFull();
 
             private ChannelFull() {
@@ -171,7 +171,7 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Channel channel;
         private final Map<Long, User> friendUsersMap;
 
@@ -187,6 +187,10 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
             this.channel = channel;
         }
 
+        public final Map<Long, User> component1() {
+            return this.friendUsersMap;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ StoreState copy$default(StoreState storeState, Map map, Channel channel, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -196,15 +200,6 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
                 channel = storeState.channel;
             }
             return storeState.copy(map, channel);
-        }
-
-        public final Map<Long, User> component1() {
-            return this.friendUsersMap;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
         }
 
         public final StoreState copy(Map<Long, ? extends User> friendUsersMap, Channel channel) {
@@ -221,6 +216,11 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
             }
             StoreState storeState = (StoreState) other;
             return C12238m.areEqual(this.friendUsersMap, storeState.friendUsersMap) && C12238m.areEqual(this.channel, storeState.channel);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -253,7 +253,7 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: GroupInviteFriendsSheetViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final HashSet<User> checkedUsers;
         private final List<GroupInviteFriendsSheetAdapter.FriendItem> friendItems;
         private final boolean showSearchIcon;
@@ -264,6 +264,14 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
             this.checkedUsers = hashSet;
             this.friendItems = list;
             this.showSearchIcon = z2;
+        }
+
+        public final HashSet<User> component1() {
+            return this.checkedUsers;
+        }
+
+        public final List<GroupInviteFriendsSheetAdapter.FriendItem> component2() {
+            return this.friendItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -278,19 +286,6 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
                 z2 = viewState.showSearchIcon;
             }
             return viewState.copy(hashSet, list, z2);
-        }
-
-        public final HashSet<User> component1() {
-            return this.checkedUsers;
-        }
-
-        public final List<GroupInviteFriendsSheetAdapter.FriendItem> component2() {
-            return this.friendItems;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowSearchIcon() {
-            return this.showSearchIcon;
         }
 
         public final ViewState copy(HashSet<User> checkedUsers, List<GroupInviteFriendsSheetAdapter.FriendItem> friendItems, boolean showSearchIcon) {
@@ -316,6 +311,11 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
 
         public final List<GroupInviteFriendsSheetAdapter.FriendItem> getFriendItems() {
             return this.friendItems;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getShowSearchIcon() {
+            return this.showSearchIcon;
         }
 
         public final boolean getShowSearchIcon() {
@@ -407,23 +407,6 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
         updateViewState(new ViewState(hashSet, arrayListCreateItems, viewState != null ? viewState.getShowSearchIcon() : true));
     }
 
-    private final void onSearch(CharSequence searchText) {
-        Collection<User> collectionValues = this.currentStoreState.getFriendUsersMap().values();
-        ArrayList arrayList = new ArrayList();
-        Iterator<T> it = collectionValues.iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                break;
-            }
-            Object next = it.next();
-            if (C12106w.contains((CharSequence) ((User) next).getUsername(), searchText, true)) {
-                arrayList.add(next);
-            }
-        }
-        HashSet<User> hashSet = this.checkedUsers;
-        updateViewState(new ViewState(hashSet, GroupInviteFriendsSheetAdapter.FriendItem.INSTANCE.createItems(arrayList, hashSet), (searchText.length() == 0) && this.checkedUsers.isEmpty()));
-    }
-
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
         C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
@@ -450,6 +433,23 @@ public final class GroupInviteFriendsSheetViewModel extends AbstractC0859d0<View
             HashSet<User> hashSet = this.checkedUsers;
             updateViewState(ViewState.copy$default(viewState, hashSet, GroupInviteFriendsSheetAdapter.FriendItem.INSTANCE.createItems(arrayList, hashSet), false, 4, null));
         }
+    }
+
+    private final void onSearch(CharSequence searchText) {
+        Collection<User> collectionValues = this.currentStoreState.getFriendUsersMap().values();
+        ArrayList arrayList = new ArrayList();
+        Iterator<T> it = collectionValues.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                break;
+            }
+            Object next = it.next();
+            if (C12106w.contains((CharSequence) ((User) next).getUsername(), searchText, true)) {
+                arrayList.add(next);
+            }
+        }
+        HashSet<User> hashSet = this.checkedUsers;
+        updateViewState(new ViewState(hashSet, GroupInviteFriendsSheetAdapter.FriendItem.INSTANCE.createItems(arrayList, hashSet), (searchText.length() == 0) && this.checkedUsers.isEmpty()));
     }
 
     public final void onSearchTextChanged(CharSequence searchText) {

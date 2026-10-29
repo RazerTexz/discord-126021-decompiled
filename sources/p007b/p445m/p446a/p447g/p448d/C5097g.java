@@ -23,15 +23,6 @@ public final class C5097g implements InterfaceC5096f {
     }
 
     @Override // p007b.p445m.p446a.p447g.p448d.InterfaceC5096f
-    /* JADX INFO: renamed from: a */
-    public void mo7149a(C5095e.b bVar) {
-        C12238m.checkParameterIsNotNull(bVar, "response");
-        this.f13656a.mo7138f(bVar.f13652a);
-        this.f13656a.mo7133a(bVar.f13653b);
-        this.f13656a.mo7134b(bVar.f13654c);
-    }
-
-    @Override // p007b.p445m.p446a.p447g.p448d.InterfaceC5096f
     public void clear() {
         this.f13656a.clear();
     }
@@ -45,5 +36,14 @@ public final class C5097g implements InterfaceC5096f {
             return null;
         }
         return new C5095e.b(jMo7137e, jMo7135c, jMo7136d, this.f13657b);
+    }
+
+    @Override // p007b.p445m.p446a.p447g.p448d.InterfaceC5096f
+    /* JADX INFO: renamed from: a */
+    public void mo7149a(C5095e.b bVar) {
+        C12238m.checkParameterIsNotNull(bVar, "response");
+        this.f13656a.mo7138f(bVar.f13652a);
+        this.f13656a.mo7133a(bVar.f13653b);
+        this.f13656a.mo7134b(bVar.f13654c);
     }
 }

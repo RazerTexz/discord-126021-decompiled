@@ -33,6 +33,10 @@ public final /* data */ class AudioDecoder {
         this.paramsValues = (String[]) array2;
     }
 
+    public final Map<String, String> component5() {
+        return this.params;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AudioDecoder copy$default(AudioDecoder audioDecoder, int i, String str, int i2, int i3, Map map, int i4, Object obj) {
         if ((i4 & 1) != 0) {
@@ -56,30 +60,6 @@ public final /* data */ class AudioDecoder {
         return audioDecoder.copy(i, str2, i5, i6, map);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getFreq() {
-        return this.freq;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getChannels() {
-        return this.channels;
-    }
-
-    public final Map<String, String> component5() {
-        return this.params;
-    }
-
     public final AudioDecoder copy(int type, String name, int freq, int channels, Map<String, String> params) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(params, "params");
@@ -97,12 +77,27 @@ public final /* data */ class AudioDecoder {
         return this.type == audioDecoder.type && C12238m.areEqual(this.name, audioDecoder.name) && this.freq == audioDecoder.freq && this.channels == audioDecoder.channels && C12238m.areEqual(this.params, audioDecoder.params);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getChannels() {
         return this.channels;
     }
 
+    public final int getChannels() {
+        return this.channels;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getFreq() {
         return this.freq;
+    }
+
+    public final int getFreq() {
+        return this.freq;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {
@@ -119,6 +114,11 @@ public final /* data */ class AudioDecoder {
 
     public final String[] getParamsValues() {
         return this.paramsValues;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

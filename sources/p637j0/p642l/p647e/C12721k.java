@@ -21,11 +21,11 @@ import p658rx.functions.Action0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12721k<T> extends Observable<T> {
 
-    /* JADX INFO: renamed from: k */
-    public static final boolean f27287k = Boolean.valueOf(System.getProperty("rx.just.strong-mode", "false")).booleanValue();
-
     /* JADX INFO: renamed from: l */
     public final T f27288l;
+
+    /* JADX INFO: renamed from: k */
+    public static final boolean f27287k = Boolean.valueOf(System.getProperty("rx.just.strong-mode", "false")).booleanValue();
 
     /* JADX INFO: renamed from: j0.l.e.k$a */
     /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
@@ -90,7 +90,7 @@ public final class C12721k<T> extends Observable<T> {
 
     /* JADX INFO: renamed from: j0.l.e.k$d */
     /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
-    public static final class d<T> implements Observable.InterfaceC13005a<T> {
+    public final class d<T> implements Observable.InterfaceC13005a<T> {
 
         /* JADX INFO: renamed from: j */
         public final T f27293j;
@@ -109,7 +109,7 @@ public final class C12721k<T> extends Observable<T> {
 
     /* JADX INFO: renamed from: j0.l.e.k$e */
     /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
-    public static final class e<T> implements Observable.InterfaceC13005a<T> {
+    public final class e<T> implements Observable.InterfaceC13005a<T> {
 
         /* JADX INFO: renamed from: j */
         public final T f27294j;
@@ -131,7 +131,7 @@ public final class C12721k<T> extends Observable<T> {
 
     /* JADX INFO: renamed from: j0.l.e.k$f */
     /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
-    public static final class f<T> extends AtomicBoolean implements Producer, Action0 {
+    public final class f<T> extends AtomicBoolean implements Producer, Action0 {
         private static final long serialVersionUID = -2466317989629281651L;
         public final Subscriber<? super T> actual;
         public final InterfaceC12589b<Action0, Subscription> onSchedule;
@@ -186,7 +186,7 @@ public final class C12721k<T> extends Observable<T> {
 
     /* JADX INFO: renamed from: j0.l.e.k$g */
     /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
-    public static final class g<T> implements Producer {
+    public final class g<T> implements Producer {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f27296j;

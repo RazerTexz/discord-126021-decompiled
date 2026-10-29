@@ -26,41 +26,6 @@ public final /* data */ class Transport {
         this.receiverReports = receiverReportArr;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getAvailableOutgoingBitrate() {
-        return this.availableOutgoingBitrate;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getBytesReceived() {
-        return this.bytesReceived;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getBytesSent() {
-        return this.bytesSent;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getPing() {
-        return this.ping;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Integer getDecryptionFailures() {
-        return this.decryptionFailures;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getLocalAddress() {
-        return this.localAddress;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final ReceiverReport[] getReceiverReports() {
-        return this.receiverReports;
-    }
-
     public final Transport copy(int availableOutgoingBitrate, long bytesReceived, long bytesSent, int ping, Integer decryptionFailures, String localAddress, ReceiverReport[] receiverReports) {
         return new Transport(availableOutgoingBitrate, bytesReceived, bytesSent, ping, decryptionFailures, localAddress, receiverReports);
     }
@@ -76,28 +41,63 @@ public final /* data */ class Transport {
         return this.availableOutgoingBitrate == transport.availableOutgoingBitrate && this.bytesReceived == transport.bytesReceived && this.bytesSent == transport.bytesSent && this.ping == transport.ping && C12238m.areEqual(this.decryptionFailures, transport.decryptionFailures) && C12238m.areEqual(this.localAddress, transport.localAddress) && C12238m.areEqual(this.receiverReports, transport.receiverReports);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getAvailableOutgoingBitrate() {
         return this.availableOutgoingBitrate;
+    }
+
+    public final int getAvailableOutgoingBitrate() {
+        return this.availableOutgoingBitrate;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getBytesReceived() {
+        return this.bytesReceived;
     }
 
     public final long getBytesReceived() {
         return this.bytesReceived;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final long getBytesSent() {
         return this.bytesSent;
+    }
+
+    public final long getBytesSent() {
+        return this.bytesSent;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final Integer getDecryptionFailures() {
+        return this.decryptionFailures;
     }
 
     public final Integer getDecryptionFailures() {
         return this.decryptionFailures;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final String getLocalAddress() {
         return this.localAddress;
     }
 
+    public final String getLocalAddress() {
+        return this.localAddress;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getPing() {
         return this.ping;
+    }
+
+    public final int getPing() {
+        return this.ping;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final ReceiverReport[] getReceiverReports() {
+        return this.receiverReports;
     }
 
     public final ReceiverReport[] getReceiverReports() {

@@ -8,6 +8,27 @@ import p007b.p195g.p196a.p198b.p204t.C2146h;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC2110f implements Closeable {
 
+    /* JADX INFO: renamed from: b.g.a.b.f$b */
+    /* JADX INFO: compiled from: JsonParser.java */
+    public enum b {
+        INT,
+        LONG,
+        BIG_INTEGER,
+        FLOAT,
+        DOUBLE,
+        BIG_DECIMAL
+    }
+
+    static {
+        C2146h.m1734a(EnumC2116l.values());
+    }
+
+    public AbstractC2110f() {
+    }
+
+    /* JADX INFO: renamed from: a */
+    public abstract C2109e mo1671a();
+
     /* JADX INFO: renamed from: b.g.a.b.f$a */
     /* JADX INFO: compiled from: JsonParser.java */
     public enum a {
@@ -47,27 +68,6 @@ public abstract class AbstractC2110f implements Closeable {
             return i;
         }
     }
-
-    /* JADX INFO: renamed from: b.g.a.b.f$b */
-    /* JADX INFO: compiled from: JsonParser.java */
-    public enum b {
-        INT,
-        LONG,
-        BIG_INTEGER,
-        FLOAT,
-        DOUBLE,
-        BIG_DECIMAL
-    }
-
-    static {
-        C2146h.m1734a(EnumC2116l.values());
-    }
-
-    public AbstractC2110f() {
-    }
-
-    /* JADX INFO: renamed from: a */
-    public abstract C2109e mo1671a();
 
     public AbstractC2110f(int i) {
     }

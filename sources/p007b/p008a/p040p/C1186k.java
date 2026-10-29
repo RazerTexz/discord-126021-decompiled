@@ -35,7 +35,7 @@ public final class C1186k implements InterfaceC3128y1.e {
 
     /* JADX INFO: renamed from: b.a.p.k$a */
     /* JADX INFO: compiled from: RxPlayerEventListener.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final boolean f1593a;
@@ -66,7 +66,7 @@ public final class C1186k implements InterfaceC3128y1.e {
 
     /* JADX INFO: renamed from: b.a.p.k$b */
     /* JADX INFO: compiled from: RxPlayerEventListener.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final PlaybackException f1594a;
@@ -101,7 +101,7 @@ public final class C1186k implements InterfaceC3128y1.e {
 
     /* JADX INFO: renamed from: b.a.p.k$c */
     /* JADX INFO: compiled from: RxPlayerEventListener.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f1595a;

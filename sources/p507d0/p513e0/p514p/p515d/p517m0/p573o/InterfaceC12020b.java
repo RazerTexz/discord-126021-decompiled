@@ -10,7 +10,7 @@ public interface InterfaceC12020b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.b$a */
     /* JADX INFO: compiled from: modifierChecks.kt */
-    public static final class a {
+    public final class a {
         public static String invoke(InterfaceC12020b interfaceC12020b, InterfaceC11472x interfaceC11472x) {
             C12238m.checkNotNullParameter(interfaceC12020b, "this");
             C12238m.checkNotNullParameter(interfaceC11472x, "functionDescriptor");

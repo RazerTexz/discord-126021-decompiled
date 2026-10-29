@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLaunchGame.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLaunchGame implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence customName = null;
+    private final CharSequence distributor = null;
+    private final Boolean elevated = null;
     private final CharSequence game = null;
     private final Long gameId = null;
-    private final Boolean verified = null;
-    private final Boolean elevated = null;
-    private final CharSequence customName = null;
-    private final CharSequence platformType = null;
     private final CharSequence gamePlatform = null;
-    private final CharSequence distributor = null;
+    private final CharSequence platformType = null;
+    private TrackBase trackBase;
+    private final Boolean verified = null;
     private final transient String analyticsSchemaTypeName = "launch_game";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackLaunchGame implements AnalyticsSchema, TrackB
         }
         TrackLaunchGame trackLaunchGame = (TrackLaunchGame) other;
         return C12238m.areEqual(this.game, trackLaunchGame.game) && C12238m.areEqual(this.gameId, trackLaunchGame.gameId) && C12238m.areEqual(this.verified, trackLaunchGame.verified) && C12238m.areEqual(this.elevated, trackLaunchGame.elevated) && C12238m.areEqual(this.customName, trackLaunchGame.customName) && C12238m.areEqual(this.platformType, trackLaunchGame.platformType) && C12238m.areEqual(this.gamePlatform, trackLaunchGame.gamePlatform) && C12238m.areEqual(this.distributor, trackLaunchGame.distributor);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

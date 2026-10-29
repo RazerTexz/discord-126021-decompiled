@@ -46,7 +46,7 @@ public final class C1303e {
     /* JADX INFO: Add missing generic type declarations: [R, S] */
     /* JADX INFO: renamed from: b.a.t.b.b.e$a */
     /* JADX INFO: compiled from: SimpleMarkdownRules.kt */
-    public static final class a<R, S> extends Rule<R, Node<R>, S> {
+    public final class a<R, S> extends Rule<R, Node<R>, S> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Function0 f1989a;
@@ -72,7 +72,7 @@ public final class C1303e {
     /* JADX INFO: Add missing generic type declarations: [R, S] */
     /* JADX INFO: renamed from: b.a.t.b.b.e$b */
     /* JADX INFO: compiled from: SimpleMarkdownRules.kt */
-    public static final class b<R, S> extends Rule<R, Node<R>, S> {
+    public final class b<R, S> extends Rule<R, Node<R>, S> {
         public b(C1303e c1303e, Pattern pattern) {
             super(pattern);
         }

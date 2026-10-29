@@ -22,7 +22,7 @@ public class C12041i<E> extends AbstractList<E> implements RandomAccess {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.i$b */
     /* JADX INFO: compiled from: SmartList.java */
-    public static class b<T> implements Iterator<T> {
+    public class b<T> implements Iterator<T> {
 
         /* JADX INFO: renamed from: j */
         public static final b f24999j = new b();
@@ -81,7 +81,7 @@ public class C12041i<E> extends AbstractList<E> implements RandomAccess {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.i$d */
     /* JADX INFO: compiled from: SmartList.java */
-    public static abstract class d<T> implements Iterator<T> {
+    public abstract class d<T> implements Iterator<T> {
 
         /* JADX INFO: renamed from: j */
         public boolean f25002j;
@@ -89,13 +89,13 @@ public class C12041i<E> extends AbstractList<E> implements RandomAccess {
         public d(a aVar) {
         }
 
-        /* JADX INFO: renamed from: a */
-        public abstract void mo10048a();
-
         @Override // java.util.Iterator
         public final boolean hasNext() {
             return !this.f25002j;
         }
+
+        /* JADX INFO: renamed from: a */
+        public abstract void mo10048a();
 
         @Override // java.util.Iterator
         public final T next() {
@@ -106,53 +106,6 @@ public class C12041i<E> extends AbstractList<E> implements RandomAccess {
             mo10048a();
             return (T) C12041i.this.f24998k;
         }
-    }
-
-    /* JADX INFO: renamed from: c */
-    public static /* synthetic */ void m10044c(int i) {
-        String str = (i == 2 || i == 3 || i == 5 || i == 6 || i == 7) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-        Object[] objArr = new Object[(i == 2 || i == 3 || i == 5 || i == 6 || i == 7) ? 2 : 3];
-        switch (i) {
-            case 2:
-            case 3:
-            case 5:
-            case 6:
-            case 7:
-                objArr[0] = "kotlin/reflect/jvm/internal/impl/utils/SmartList";
-                break;
-            case 4:
-                objArr[0] = "a";
-                break;
-            default:
-                objArr[0] = "elements";
-                break;
-        }
-        if (i == 2 || i == 3) {
-            objArr[1] = "iterator";
-        } else if (i == 5 || i == 6 || i == 7) {
-            objArr[1] = "toArray";
-        } else {
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/utils/SmartList";
-        }
-        switch (i) {
-            case 2:
-            case 3:
-            case 5:
-            case 6:
-            case 7:
-                break;
-            case 4:
-                objArr[2] = "toArray";
-                break;
-            default:
-                objArr[2] = "<init>";
-                break;
-        }
-        String str2 = String.format(str, objArr);
-        if (i != 2 && i != 3 && i != 5 && i != 6 && i != 7) {
-            throw new IllegalArgumentException(str2);
-        }
-        throw new IllegalStateException(str2);
     }
 
     @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
@@ -221,6 +174,53 @@ public class C12041i<E> extends AbstractList<E> implements RandomAccess {
         }
         m10044c(3);
         throw null;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public static /* synthetic */ void m10044c(int i) {
+        String str = (i == 2 || i == 3 || i == 5 || i == 6 || i == 7) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+        Object[] objArr = new Object[(i == 2 || i == 3 || i == 5 || i == 6 || i == 7) ? 2 : 3];
+        switch (i) {
+            case 2:
+            case 3:
+            case 5:
+            case 6:
+            case 7:
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/utils/SmartList";
+                break;
+            case 4:
+                objArr[0] = "a";
+                break;
+            default:
+                objArr[0] = "elements";
+                break;
+        }
+        if (i == 2 || i == 3) {
+            objArr[1] = "iterator";
+        } else if (i == 5 || i == 6 || i == 7) {
+            objArr[1] = "toArray";
+        } else {
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/utils/SmartList";
+        }
+        switch (i) {
+            case 2:
+            case 3:
+            case 5:
+            case 6:
+            case 7:
+                break;
+            case 4:
+                objArr[2] = "toArray";
+                break;
+            default:
+                objArr[2] = "<init>";
+                break;
+        }
+        String str2 = String.format(str, objArr);
+        if (i != 2 && i != 3 && i != 5 && i != 6 && i != 7) {
+            throw new IllegalArgumentException(str2);
+        }
+        throw new IllegalStateException(str2);
     }
 
     @Override // java.util.AbstractList, java.util.List

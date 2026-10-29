@@ -71,24 +71,9 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsGuildBoost.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$onViewBound$3 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98583 extends AbstractC12240o implements Function2<Long, String, Unit> {
+    public final class C98583 extends AbstractC12240o implements Function2<Long, String, Unit> {
         public C98583() {
             super(2);
         }
@@ -107,7 +92,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98591 extends AbstractC12240o implements Function1<SettingsGuildBoostViewModel.ViewState, Unit> {
+    public final class C98591 extends AbstractC12240o implements Function1<SettingsGuildBoostViewModel.ViewState, Unit> {
         public C98591() {
             super(1);
         }
@@ -132,7 +117,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$showContent$1 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98601 extends AbstractC12240o implements Function2<ModelGuildBoostSlot, Long, Unit> {
+    public final class C98601 extends AbstractC12240o implements Function2<ModelGuildBoostSlot, Long, Unit> {
         public C98601() {
             super(2);
         }
@@ -152,7 +137,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$showContent$2 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98612 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
+    public final class C98612 extends AbstractC12240o implements Function2<Long, Boolean, Unit> {
         public C98612() {
             super(2);
         }
@@ -170,7 +155,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$showContent$3 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98623 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C98623 extends AbstractC12240o implements Function1<Long, Unit> {
         public C98623() {
             super(1);
         }
@@ -189,7 +174,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$showContent$4 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final /* synthetic */ class C98634 extends C12236k implements Function1<Long, Unit> {
+    public final /* synthetic */ class C98634 extends C12236k implements Function1<Long, Unit> {
         public C98634(WidgetSettingsGuildBoost widgetSettingsGuildBoost) {
             super(1, widgetSettingsGuildBoost, WidgetSettingsGuildBoost.class, "handleSampleGuildSelected", "handleSampleGuildSelected(J)V", 0);
         }
@@ -207,7 +192,7 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost$showContent$7 */
     /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
-    public static final class C98647 extends AbstractC12240o implements Function0<Unit> {
+    public final class C98647 extends AbstractC12240o implements Function0<Unit> {
         public C98647() {
             super(0);
         }
@@ -221,6 +206,21 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, WidgetSettingsGuildBoost.this.requireContext(), null, null, 6, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsGuildBoost.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsGuildBoost.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -262,6 +262,48 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
 
     public static final void launch(Context context) {
         INSTANCE.launch(context);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        setActionBarSubtitle(C5419R.string.user_settings);
+        setActionBarTitle(C5419R.string.premium_guild_subscription_title);
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
+        RecyclerView recyclerView = getBinding().f17924e;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.settingsBoostRecycler");
+        this.guildBoostSubscriptionsAdapter = (WidgetSettingsGuildBoostSubscriptionAdapter) companion.configure(new WidgetSettingsGuildBoostSubscriptionAdapter(recyclerView));
+        RecyclerView recyclerView2 = getBinding().f17926g;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.settingsBoostSampleGuilds");
+        this.sampleGuildsAdapter = (SettingsGuildBoostSampleGuildAdapter) companion.configure(new SettingsGuildBoostSampleGuildAdapter(recyclerView2));
+        final String strM149a = C0862f.f507a.m149a(360028038352L, null);
+        LinkifiedTextView linkifiedTextView = getBinding().f17927h;
+        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingsBoostSubtext");
+        C1107b.m221m(linkifiedTextView, C5419R.string.premium_guild_subscription_subtitle_mobile_2, new Object[]{strM149a}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+        getBinding().f17927h.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost.onViewBound.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                UriHandler.handle$default(UriHandler.INSTANCE, C1643a.m885x(view2, "it", "it.context"), strM149a, false, false, null, 28, null);
+            }
+        });
+        getBinding().f17925f.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost.onViewBound.2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetSettingsGuildBoost.this.getViewModel().retryClicked();
+            }
+        });
+        getBinding().f17924e.setHasFixedSize(false);
+        WidgetGuildSelector.Companion.registerForResult$default(WidgetGuildSelector.INSTANCE, this, null, false, new C98583(), 6, null);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<SettingsGuildBoostViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98591());
     }
 
     private final void showContent(SettingsGuildBoostViewModel.ViewState.Loaded viewState) {
@@ -343,47 +385,5 @@ public final class WidgetSettingsGuildBoost extends AppFragment {
         AppViewFlipper appViewFlipper = getBinding().f17922c;
         C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.settingsBoostFlipper");
         appViewFlipper.setDisplayedChild(0);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarSubtitle(C5419R.string.user_settings);
-        setActionBarTitle(C5419R.string.premium_guild_subscription_title);
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f17924e;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.settingsBoostRecycler");
-        this.guildBoostSubscriptionsAdapter = (WidgetSettingsGuildBoostSubscriptionAdapter) companion.configure(new WidgetSettingsGuildBoostSubscriptionAdapter(recyclerView));
-        RecyclerView recyclerView2 = getBinding().f17926g;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.settingsBoostSampleGuilds");
-        this.sampleGuildsAdapter = (SettingsGuildBoostSampleGuildAdapter) companion.configure(new SettingsGuildBoostSampleGuildAdapter(recyclerView2));
-        final String strM149a = C0862f.f507a.m149a(360028038352L, null);
-        LinkifiedTextView linkifiedTextView = getBinding().f17927h;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingsBoostSubtext");
-        C1107b.m221m(linkifiedTextView, C5419R.string.premium_guild_subscription_subtitle_mobile_2, new Object[]{strM149a}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
-        getBinding().f17927h.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost.onViewBound.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                UriHandler.handle$default(UriHandler.INSTANCE, C1643a.m885x(view2, "it", "it.context"), strM149a, false, false, null, 28, null);
-            }
-        });
-        getBinding().f17925f.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost.onViewBound.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetSettingsGuildBoost.this.getViewModel().retryClicked();
-            }
-        });
-        getBinding().f17924e.setHasFixedSize(false);
-        WidgetGuildSelector.Companion.registerForResult$default(WidgetGuildSelector.INSTANCE, this, null, false, new C98583(), 6, null);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<SettingsGuildBoostViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetSettingsPremium.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C98591());
     }
 }

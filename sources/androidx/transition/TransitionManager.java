@@ -15,23 +15,18 @@ import java.util.Iterator;
 public class TransitionManager {
     private static final String LOG_TAG = "TransitionManager";
     private static Transition sDefaultTransition = new AutoTransition();
-    private static ThreadLocal<WeakReference<ArrayMap<ViewGroup, ArrayList<Transition>>>> sRunningTransitions = new ThreadLocal<>();
-    public static ArrayList<ViewGroup> sPendingTransitions = new ArrayList<>();
     private ArrayMap<Scene, Transition> mSceneTransitions = new ArrayMap<>();
+    private static ThreadLocal<WeakReference<ArrayMap<ViewGroup, ArrayList<Transition>>>> sRunningTransitions = new ThreadLocal<>();
     private ArrayMap<Scene, ArrayMap<Scene, Transition>> mScenePairTransitions = new ArrayMap<>();
+    public static ArrayList<ViewGroup> sPendingTransitions = new ArrayList<>();
 
-    public static class MultiListener implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
+    public class MultiListener implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
         public ViewGroup mSceneRoot;
         public Transition mTransition;
 
         public MultiListener(Transition transition, ViewGroup viewGroup) {
             this.mTransition = transition;
             this.mSceneRoot = viewGroup;
-        }
-
-        private void removeListeners() {
-            this.mSceneRoot.getViewTreeObserver().removeOnPreDrawListener(this);
-            this.mSceneRoot.removeOnAttachStateChangeListener(this);
         }
 
         @Override // android.view.ViewTreeObserver.OnPreDrawListener
@@ -85,6 +80,11 @@ public class TransitionManager {
                 }
             }
             this.mTransition.clearValues(true);
+        }
+
+        private void removeListeners() {
+            this.mSceneRoot.getViewTreeObserver().removeOnPreDrawListener(this);
+            this.mSceneRoot.removeOnAttachStateChangeListener(this);
         }
     }
 

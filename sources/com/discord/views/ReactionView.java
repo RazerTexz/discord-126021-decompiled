@@ -81,23 +81,8 @@ public final class ReactionView extends LinearLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i3)));
     }
 
-    private final void setIsMe(boolean isMe) {
-        setActivated(isMe);
-        setSelected(isMe);
-        TextView textView = this.binding.f942b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.counterText1");
-        textView.setActivated(isMe);
-        TextView textView2 = this.binding.f943c;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.counterText2");
-        textView2.setActivated(isMe);
-    }
-
-    private final void setTextColor(boolean isMe) {
-        ColorStateList colorStateList = isMe ? this.meTextColor : this.textColor;
-        if (colorStateList != null) {
-            this.binding.f942b.setTextColor(colorStateList);
-            this.binding.f943c.setTextColor(colorStateList);
-        }
+    public final MessageReaction getReaction() {
+        return this.reaction;
     }
 
     /* JADX INFO: renamed from: a */
@@ -138,12 +123,27 @@ public final class ReactionView extends LinearLayout {
         this.curMessageId = Long.valueOf(messageId);
     }
 
-    public final MessageReaction getReaction() {
-        return this.reaction;
+    private final void setIsMe(boolean isMe) {
+        setActivated(isMe);
+        setSelected(isMe);
+        TextView textView = this.binding.f942b;
+        C12238m.checkNotNullExpressionValue(textView, "binding.counterText1");
+        textView.setActivated(isMe);
+        TextView textView2 = this.binding.f943c;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.counterText2");
+        textView2.setActivated(isMe);
     }
 
     public final void setMeTextColor(ColorStateList color) {
         C12238m.checkNotNullParameter(color, ModelAuditLogEntry.CHANGE_KEY_COLOR);
         this.meTextColor = color;
+    }
+
+    private final void setTextColor(boolean isMe) {
+        ColorStateList colorStateList = isMe ? this.meTextColor : this.textColor;
+        if (colorStateList != null) {
+            this.binding.f942b.setTextColor(colorStateList);
+            this.binding.f943c.setTextColor(colorStateList);
+        }
     }
 }

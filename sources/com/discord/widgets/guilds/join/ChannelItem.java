@@ -16,7 +16,7 @@ public abstract class ChannelItem {
     private final int type;
 
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheetChannelAdapter.kt */
-    public static final /* data */ class ChannelData extends ChannelItem {
+    public final /* data */ class ChannelData extends ChannelItem {
         private final Function0<Unit> dismissSheet;
         private final Function2<Long, Integer, Unit> goToChannel;
         private final long guildId;
@@ -35,6 +35,14 @@ public abstract class ChannelItem {
             this.guildId = j;
             this.goToChannel = function2;
             this.index = i;
+        }
+
+        public final Function0<Unit> component2() {
+            return this.dismissSheet;
+        }
+
+        public final Function2<Long, Integer, Unit> component4() {
+            return this.goToChannel;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -58,29 +66,6 @@ public abstract class ChannelItem {
                 i = channelData.index;
             }
             return channelData.copy(guildWelcomeChannel, function1, j2, function3, i);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildWelcomeChannel getWelcomeChannel() {
-            return this.welcomeChannel;
-        }
-
-        public final Function0<Unit> component2() {
-            return this.dismissSheet;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public final Function2<Long, Integer, Unit> component4() {
-            return this.goToChannel;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getIndex() {
-            return this.index;
         }
 
         public final ChannelData copy(GuildWelcomeChannel welcomeChannel, Function0<Unit> dismissSheet, long guildId, Function2<? super Long, ? super Integer, Unit> goToChannel, int index) {
@@ -109,12 +94,27 @@ public abstract class ChannelItem {
             return this.goToChannel;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
         }
 
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final int getIndex() {
             return this.index;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildWelcomeChannel getWelcomeChannel() {
+            return this.welcomeChannel;
         }
 
         public final GuildWelcomeChannel getWelcomeChannel() {

@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserPhoneUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserPhoneUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean didRequireVerifiedPhone = null;
     private final Boolean phoneNumberChanged = null;
     private final Boolean smsBackupEnabled = null;
-    private final Boolean didRequireVerifiedPhone = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_phone_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackUserPhoneUpdated implements AnalyticsSchema, 
         }
         TrackUserPhoneUpdated trackUserPhoneUpdated = (TrackUserPhoneUpdated) other;
         return C12238m.areEqual(this.phoneNumberChanged, trackUserPhoneUpdated.phoneNumberChanged) && C12238m.areEqual(this.smsBackupEnabled, trackUserPhoneUpdated.smsBackupEnabled) && C12238m.areEqual(this.didRequireVerifiedPhone, trackUserPhoneUpdated.didRequireVerifiedPhone);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

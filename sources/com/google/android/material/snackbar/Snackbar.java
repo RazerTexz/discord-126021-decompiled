@@ -36,7 +36,7 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     private BaseTransientBottomBar.BaseCallback<Snackbar> callback;
     private boolean hasAction;
 
-    public static class Callback extends BaseTransientBottomBar.BaseCallback<Snackbar> {
+    public class Callback extends BaseTransientBottomBar.BaseCallback<Snackbar> {
         public static final int DISMISS_EVENT_ACTION = 1;
         public static final int DISMISS_EVENT_CONSECUTIVE = 4;
         public static final int DISMISS_EVENT_MANUAL = 3;
@@ -53,7 +53,7 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static final class SnackbarLayout extends BaseTransientBottomBar.SnackbarBaseLayout {
+    public final class SnackbarLayout extends BaseTransientBottomBar.SnackbarBaseLayout {
         public SnackbarLayout(Context context) {
             super(context);
         }
@@ -129,6 +129,11 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         this.accessibilityManager = (AccessibilityManager) viewGroup.getContext().getSystemService("accessibility");
     }
 
+    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
+    public void dismiss() {
+        super.dismiss();
+    }
+
     @Nullable
     private static ViewGroup findSuitableParent(View view) {
         ViewGroup viewGroup = null;
@@ -150,6 +155,21 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         return (ViewGroup) view;
     }
 
+    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
+    public int getDuration() {
+        int duration = super.getDuration();
+        if (duration == -2) {
+            return -2;
+        }
+        if (Build.VERSION.SDK_INT >= 29) {
+            return this.accessibilityManager.getRecommendedTimeoutMillis(duration, (this.hasAction ? 4 : 0) | 1 | 2);
+        }
+        if (this.hasAction && this.accessibilityManager.isTouchExplorationEnabled()) {
+            return -2;
+        }
+        return duration;
+    }
+
     @Deprecated
     public static boolean hasSnackbarButtonStyleAttr(@NonNull Context context) {
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(SNACKBAR_BUTTON_STYLE_ATTR);
@@ -164,6 +184,11 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         int resourceId2 = typedArrayObtainStyledAttributes.getResourceId(1, -1);
         typedArrayObtainStyledAttributes.recycle();
         return (resourceId == -1 || resourceId2 == -1) ? false : true;
+    }
+
+    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
+    public boolean isShown() {
+        return super.isShown();
     }
 
     @NonNull
@@ -185,31 +210,6 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         snackbar.setText(charSequence);
         snackbar.setDuration(i);
         return snackbar;
-    }
-
-    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
-    public void dismiss() {
-        super.dismiss();
-    }
-
-    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
-    public int getDuration() {
-        int duration = super.getDuration();
-        if (duration == -2) {
-            return -2;
-        }
-        if (Build.VERSION.SDK_INT >= 29) {
-            return this.accessibilityManager.getRecommendedTimeoutMillis(duration, (this.hasAction ? 4 : 0) | 1 | 2);
-        }
-        if (this.hasAction && this.accessibilityManager.isTouchExplorationEnabled()) {
-            return -2;
-        }
-        return duration;
-    }
-
-    @Override // com.google.android.material.snackbar.BaseTransientBottomBar
-    public boolean isShown() {
-        return super.isShown();
     }
 
     @NonNull

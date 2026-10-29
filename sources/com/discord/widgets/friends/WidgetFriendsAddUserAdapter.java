@@ -43,7 +43,7 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
     private Function2<? super String, ? super Integer, Unit> sendHandler;
 
     /* JADX INFO: compiled from: WidgetFriendsAddUserAdapter.kt */
-    public static final class UserViewHolder extends MGRecyclerViewHolder<WidgetFriendsAddUserAdapter, ItemUser> {
+    public final class UserViewHolder extends MGRecyclerViewHolder<WidgetFriendsAddUserAdapter, ItemUser> {
         private final WidgetAddFriendUserListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -225,7 +225,7 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
     }
 
     /* JADX INFO: compiled from: WidgetFriendsAddUserAdapter.kt */
-    public static final /* data */ class ItemUser implements MGRecyclerDataPayload {
+    public final /* data */ class ItemUser implements MGRecyclerDataPayload {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -237,7 +237,7 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
         private final User user;
 
         /* JADX INFO: compiled from: WidgetFriendsAddUserAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -263,6 +263,10 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
             this.key = String.valueOf(user.getId());
         }
 
+        public final List<CharSequence> component2() {
+            return this.aliases;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ItemUser copy$default(ItemUser itemUser, User user, List list, Presence presence, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -278,25 +282,6 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
                 z2 = itemUser.isFriend;
             }
             return itemUser.copy(user, list, presence, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        public final List<CharSequence> component2() {
-            return this.aliases;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsFriend() {
-            return this.isFriend;
         }
 
         public final ItemUser copy(User user, List<? extends CharSequence> aliases, Presence presence, boolean isFriend) {
@@ -320,9 +305,19 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
             return this.aliases;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsFriend() {
+            return this.isFriend;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
         }
 
         public final Presence getPresence() {
@@ -332,6 +327,11 @@ public final class WidgetFriendsAddUserAdapter extends MGRecyclerAdapterSimple<I
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

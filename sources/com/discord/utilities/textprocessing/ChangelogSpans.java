@@ -18,12 +18,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ChangelogSpans.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ChangelogSpans {
-    public static final ChangelogSpans INSTANCE = new ChangelogSpans();
     private static final int MARKDOWN_BULLET_RADIUS = 8;
+    public static final ChangelogSpans INSTANCE = new ChangelogSpans();
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.ChangelogSpans$createChangelogSpecialHeaderPaddingSpansProvider$1 */
     /* JADX INFO: compiled from: ChangelogSpans.kt */
-    public static final class C69391 extends AbstractC12240o implements Function0<List<? extends VerticalPaddingSpan>> {
+    public final class C69391 extends AbstractC12240o implements Function0<List<? extends VerticalPaddingSpan>> {
         public final /* synthetic */ int $headerBottomPx;
         public final /* synthetic */ int $headerTopPx;
 
@@ -42,7 +42,7 @@ public final class ChangelogSpans {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.ChangelogSpans$createHeaderClassSpanProvider$1 */
     /* JADX INFO: compiled from: ChangelogSpans.kt */
-    public static final class C69401 extends AbstractC12240o implements Function1<String, Object> {
+    public final class C69401 extends AbstractC12240o implements Function1<String, Object> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ int $marginTopPx;
 
@@ -97,7 +97,7 @@ public final class ChangelogSpans {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.ChangelogSpans$createHeaderPaddingSpansProvider$1 */
     /* JADX INFO: compiled from: ChangelogSpans.kt */
-    public static final class C69411 extends AbstractC12240o implements Function0<List<? extends VerticalPaddingSpan>> {
+    public final class C69411 extends AbstractC12240o implements Function0<List<? extends VerticalPaddingSpan>> {
         public final /* synthetic */ int $headerBottomPx;
         public final /* synthetic */ int $headerTopPx;
 
@@ -116,7 +116,7 @@ public final class ChangelogSpans {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.ChangelogSpans$createHeaderStyleSpanProvider$1 */
     /* JADX INFO: compiled from: ChangelogSpans.kt */
-    public static final class C69421 extends AbstractC12240o implements Function1<Integer, CharacterStyle> {
+    public final class C69421 extends AbstractC12240o implements Function1<Integer, CharacterStyle> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -140,7 +140,7 @@ public final class ChangelogSpans {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.ChangelogSpans$createSpecialHeaderStyleSpanProvider$1 */
     /* JADX INFO: compiled from: ChangelogSpans.kt */
-    public static final class C69431 extends AbstractC12240o implements Function1<Integer, CharacterStyle> {
+    public final class C69431 extends AbstractC12240o implements Function1<Integer, CharacterStyle> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

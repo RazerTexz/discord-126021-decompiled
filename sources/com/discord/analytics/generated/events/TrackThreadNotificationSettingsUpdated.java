@@ -13,29 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackThreadNotificationSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackThreadNotificationSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackThreadReceiver, TrackLocationMetadataReceiver {
+    private final Long channelId = null;
+    private final Long channelType = null;
+    private final Long guildId = null;
+    private final Boolean hasInteractedWithThread = null;
+    private final Boolean newThreadIsMuted = null;
+    private final Long newThreadMutedUntil = null;
+    private final CharSequence newThreadNotificationSetting = null;
+    private final Boolean oldThreadIsMuted = null;
+    private final Long oldThreadMutedUntil = null;
+    private final CharSequence oldThreadNotificationSetting = null;
+    private final Long parentId = null;
+    private final Boolean parentIsMuted = null;
+    private final CharSequence parentNotificationSetting = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackThread trackThread;
-    private final Long channelId = null;
-    private final Long parentId = null;
-    private final Long guildId = null;
-    private final Long channelType = null;
-    private final Boolean hasInteractedWithThread = null;
-    private final Boolean parentIsMuted = null;
-    private final CharSequence oldThreadNotificationSetting = null;
-    private final CharSequence newThreadNotificationSetting = null;
-    private final CharSequence parentNotificationSetting = null;
-    private final Boolean oldThreadIsMuted = null;
-    private final Boolean newThreadIsMuted = null;
-    private final Long oldThreadMutedUntil = null;
-    private final Long newThreadMutedUntil = null;
     private final transient String analyticsSchemaTypeName = "thread_notification_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -46,6 +40,12 @@ public final /* data */ class TrackThreadNotificationSettingsUpdated implements 
         }
         TrackThreadNotificationSettingsUpdated trackThreadNotificationSettingsUpdated = (TrackThreadNotificationSettingsUpdated) other;
         return C12238m.areEqual(this.channelId, trackThreadNotificationSettingsUpdated.channelId) && C12238m.areEqual(this.parentId, trackThreadNotificationSettingsUpdated.parentId) && C12238m.areEqual(this.guildId, trackThreadNotificationSettingsUpdated.guildId) && C12238m.areEqual(this.channelType, trackThreadNotificationSettingsUpdated.channelType) && C12238m.areEqual(this.hasInteractedWithThread, trackThreadNotificationSettingsUpdated.hasInteractedWithThread) && C12238m.areEqual(this.parentIsMuted, trackThreadNotificationSettingsUpdated.parentIsMuted) && C12238m.areEqual(this.oldThreadNotificationSetting, trackThreadNotificationSettingsUpdated.oldThreadNotificationSetting) && C12238m.areEqual(this.newThreadNotificationSetting, trackThreadNotificationSettingsUpdated.newThreadNotificationSetting) && C12238m.areEqual(this.parentNotificationSetting, trackThreadNotificationSettingsUpdated.parentNotificationSetting) && C12238m.areEqual(this.oldThreadIsMuted, trackThreadNotificationSettingsUpdated.oldThreadIsMuted) && C12238m.areEqual(this.newThreadIsMuted, trackThreadNotificationSettingsUpdated.newThreadIsMuted) && C12238m.areEqual(this.oldThreadMutedUntil, trackThreadNotificationSettingsUpdated.oldThreadMutedUntil) && C12238m.areEqual(this.newThreadMutedUntil, trackThreadNotificationSettingsUpdated.newThreadMutedUntil);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

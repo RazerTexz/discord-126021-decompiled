@@ -52,7 +52,7 @@ public final class C11290j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.j$a */
     /* JADX INFO: compiled from: ReflectionTypes.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f22487a;
@@ -70,7 +70,7 @@ public final class C11290j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.j$b */
     /* JADX INFO: compiled from: ReflectionTypes.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -92,7 +92,7 @@ public final class C11290j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.j$c */
     /* JADX INFO: compiled from: ReflectionTypes.kt */
-    public static final class c extends AbstractC12240o implements Function0<InterfaceC11770i> {
+    public final class c extends AbstractC12240o implements Function0<InterfaceC11770i> {
         public final /* synthetic */ InterfaceC11325c0 $module;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -26,7 +26,6 @@ public final class InstallReferrer {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(InstallReferrer$Companion$INSTANCE$2.INSTANCE);
     private static final int MAX_ATTEMPTS = 10;
     private final Context context;
     private final Logger logger;
@@ -34,9 +33,10 @@ public final class InstallReferrer {
 
     /* JADX INFO: renamed from: sharedPreferences$delegate, reason: from kotlin metadata */
     private final Lazy sharedPreferences;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(InstallReferrer$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: compiled from: InstallReferrer.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -108,6 +108,28 @@ public final class InstallReferrer {
         return (SharedPreferences) this.sharedPreferences.getValue();
     }
 
+    public final void init(Function1<? super String, Unit> onReceivedInstallReferrer) {
+        C12238m.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
+        if (shouldFetchInstallReferrer()) {
+            try {
+                InstallReferrerClient installReferrerClientBuild = InstallReferrerClient.newBuilder(this.context).build();
+                C12238m.checkNotNullExpressionValue(installReferrerClientBuild, "InstallReferrerClient.newBuilder(context).build()");
+                this.referrerClient = installReferrerClientBuild;
+                if (installReferrerClientBuild == null) {
+                    try {
+                        C12238m.throwUninitializedPropertyAccessException("referrerClient");
+                    } catch (Exception e) {
+                        this.logger.mo8367i("Unable to start connection to referrer client.", e);
+                        return;
+                    }
+                }
+                installReferrerClientBuild.startConnection(createReferrerStateListener(onReceivedInstallReferrer));
+            } catch (Exception e2) {
+                this.logger.mo8367i("Unable to initialize referrer client.", e2);
+            }
+        }
+    }
+
     private final void setFetchInstallReferrerFailed(Exception e) {
         int i = SharedPreferencesProvider.INSTANCE.get().getInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, 0);
         this.logger.mo8367i("Unable to resolve referrer details, " + i + " attempt.", e);
@@ -133,28 +155,6 @@ public final class InstallReferrer {
 
     private final boolean shouldFetchInstallReferrer() {
         return !getSharedPreferences().getBoolean(CACHE_KEY_HAS_EXECUTED, false) && getSharedPreferences().getInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, 0) < 10;
-    }
-
-    public final void init(Function1<? super String, Unit> onReceivedInstallReferrer) {
-        C12238m.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
-        if (shouldFetchInstallReferrer()) {
-            try {
-                InstallReferrerClient installReferrerClientBuild = InstallReferrerClient.newBuilder(this.context).build();
-                C12238m.checkNotNullExpressionValue(installReferrerClientBuild, "InstallReferrerClient.newBuilder(context).build()");
-                this.referrerClient = installReferrerClientBuild;
-                if (installReferrerClientBuild == null) {
-                    try {
-                        C12238m.throwUninitializedPropertyAccessException("referrerClient");
-                    } catch (Exception e) {
-                        this.logger.mo8367i("Unable to start connection to referrer client.", e);
-                        return;
-                    }
-                }
-                installReferrerClientBuild.startConnection(createReferrerStateListener(onReceivedInstallReferrer));
-            } catch (Exception e2) {
-                this.logger.mo8367i("Unable to initialize referrer client.", e2);
-            }
-        }
     }
 
     public /* synthetic */ InstallReferrer(Logger logger, Context context, int i, DefaultConstructorMarker defaultConstructorMarker) {

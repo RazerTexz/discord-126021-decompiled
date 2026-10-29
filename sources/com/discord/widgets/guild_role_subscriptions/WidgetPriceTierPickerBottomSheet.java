@@ -39,7 +39,11 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetPriceTierPickerBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPriceTierPickerBottomSheetBinding;", 0)};
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int PRICE_TIER_PICKER_VIEW_FLIPPER_LOADING_STATE = 0;
     private static final int PRICE_TIER_PICKER_VIEW_FLIPPER_RESULT = 1;
     private static final String RESULT_EXTRA_PRICE_TIER = "RESULT_EXTRA_PRICE_TIER";
@@ -51,13 +55,30 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetPriceTierPickerBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPriceTierPickerBottomSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.WidgetPriceTierPickerBottomSheet$bindSubscriptions$1 */
+    /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
+    public final class C84421 extends AbstractC12240o implements Function1<PriceTierPickerBottomSheetViewModel.ViewState, Unit> {
+        public C84421() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+            WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet = WidgetPriceTierPickerBottomSheet.this;
+            C12238m.checkNotNullExpressionValue(viewState, "it");
+            widgetPriceTierPickerBottomSheet.configureUI(viewState);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -83,27 +104,6 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.WidgetPriceTierPickerBottomSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
-    public static final class C84421 extends AbstractC12240o implements Function1<PriceTierPickerBottomSheetViewModel.ViewState, Unit> {
-        public C84421() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
-            WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet = WidgetPriceTierPickerBottomSheet.this;
-            C12238m.checkNotNullExpressionValue(viewState, "it");
-            widgetPriceTierPickerBottomSheet.configureUI(viewState);
-        }
-    }
-
     public WidgetPriceTierPickerBottomSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetPriceTierPickerBottomSheet$binding$2.INSTANCE, null, 2, null);
@@ -111,6 +111,15 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
         C0865g0 c0865g0 = new C0865g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(PriceTierPickerBottomSheetViewModel.class), new C8441x829b24a0(c0865g0), new C0869i0(widgetPriceTierPickerBottomSheet$viewModel$2));
         this.itemClickListener = new WidgetPriceTierPickerBottomSheet$itemClickListener$1(this);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        Observable<PriceTierPickerBottomSheetViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetPriceTierPickerBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84421());
     }
 
     private final void configureUI(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
@@ -142,22 +151,13 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
         return (WidgetPriceTierPickerBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final PriceTierPickerBottomSheetViewModel getViewModel() {
-        return (PriceTierPickerBottomSheetViewModel) this.viewModel.getValue();
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        Observable<PriceTierPickerBottomSheetViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetPriceTierPickerBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84421());
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_price_tier_picker_bottom_sheet;
+    }
+
+    private final PriceTierPickerBottomSheetViewModel getViewModel() {
+        return (PriceTierPickerBottomSheetViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

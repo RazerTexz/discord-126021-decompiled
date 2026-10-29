@@ -16,14 +16,24 @@ import androidx.work.Logger;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemForegroundService extends LifecycleService implements SystemForegroundDispatcher.Callback {
-    private static final String TAG = Logger.tagWithPrefix("SystemFgService");
-
-    @Nullable
-    private static SystemForegroundService sForegroundService = null;
     public SystemForegroundDispatcher mDispatcher;
     private Handler mHandler;
     private boolean mIsShutdown;
     public NotificationManager mNotificationManager;
+    private static final String TAG = Logger.tagWithPrefix("SystemFgService");
+
+    @Nullable
+    private static SystemForegroundService sForegroundService = null;
+
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
+    public void cancelNotification(final int i) {
+        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.4
+            @Override // java.lang.Runnable
+            public void run() {
+                SystemForegroundService.this.mNotificationManager.cancel(i);
+            }
+        });
+    }
 
     @Nullable
     public static SystemForegroundService getInstance() {
@@ -37,16 +47,6 @@ public class SystemForegroundService extends LifecycleService implements SystemF
         SystemForegroundDispatcher systemForegroundDispatcher = new SystemForegroundDispatcher(getApplicationContext());
         this.mDispatcher = systemForegroundDispatcher;
         systemForegroundDispatcher.setCallback(this);
-    }
-
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
-    public void cancelNotification(final int i) {
-        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.4
-            @Override // java.lang.Runnable
-            public void run() {
-                SystemForegroundService.this.mNotificationManager.cancel(i);
-            }
-        });
     }
 
     @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback

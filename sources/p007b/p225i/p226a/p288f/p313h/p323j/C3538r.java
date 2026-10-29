@@ -71,14 +71,6 @@ public final class C3538r extends AbstractC3509e {
         this.f9789s = new C3542t(this, c3515g);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
-        this.f9783m.m4443J();
-        this.f9784n.m4443J();
-        this.f9786p.m4443J();
-    }
-
     /* JADX INFO: renamed from: O */
     public final void m4487O() {
         C3180f.m3967b();
@@ -549,5 +541,13 @@ public final class C3538r extends AbstractC3509e {
     /* JADX INFO: renamed from: b0 */
     public final boolean m4495b0(String str) {
         return C3411b.m4376a(this.f9684j.f9722b).f9605a.checkCallingOrSelfPermission(str) == 0;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
+        this.f9783m.m4443J();
+        this.f9784n.m4443J();
+        this.f9786p.m4443J();
     }
 }

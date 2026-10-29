@@ -72,14 +72,6 @@ public final class GuildView extends FrameLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
-    private final void setRoundingParams(C1795c roundingParams) {
-        SimpleDraweeView simpleDraweeView = this.binding.f999b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildAvatar");
-        GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
-        C12238m.checkNotNullExpressionValue(hierarchy, "binding.guildAvatar.hierarchy");
-        hierarchy.m8683s(roundingParams);
-    }
-
     /* JADX INFO: renamed from: a */
     public final void m8545a(String iconUrl, String shortGuildName) {
         boolean z2 = iconUrl != null;
@@ -104,5 +96,13 @@ public final class GuildView extends FrameLayout {
         C1795c c1795cM1124a = C1795c.m1124a(getResources().getDimensionPixelSize(C5419R.dimen.guild_icon_radius));
         C12238m.checkNotNullExpressionValue(c1795cM1124a, "RoundingParams.fromCorne…d_icon_radius).toFloat())");
         setRoundingParams(c1795cM1124a);
+    }
+
+    private final void setRoundingParams(C1795c roundingParams) {
+        SimpleDraweeView simpleDraweeView = this.binding.f999b;
+        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildAvatar");
+        GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
+        C12238m.checkNotNullExpressionValue(hierarchy, "binding.guildAvatar.hierarchy");
+        hierarchy.m8683s(roundingParams);
     }
 }

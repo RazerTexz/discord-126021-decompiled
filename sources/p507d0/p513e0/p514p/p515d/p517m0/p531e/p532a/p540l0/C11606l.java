@@ -90,7 +90,7 @@ public final class C11606l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$a */
     /* JADX INFO: compiled from: signatureEnhancement.kt */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11913c0 f23475a;
@@ -123,7 +123,7 @@ public final class C11606l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$c */
     /* JADX INFO: compiled from: signatureEnhancement.kt */
-    public static final class c extends a {
+    public final class c extends a {
 
         /* JADX INFO: renamed from: d */
         public final boolean f23487d;
@@ -142,7 +142,7 @@ public final class C11606l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$d */
     /* JADX INFO: compiled from: signatureEnhancement.kt */
-    public static final class d extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+    public final class d extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final d f23488j = new d();
@@ -170,103 +170,6 @@ public final class C11606l {
         this.f23472a = c11489c;
         this.f23473b = c12037e;
         this.f23474c = c11598d;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:25:0x0058  */
-    /* JADX WARN: Code duplicated, block: B:59:0x00e2  */
-    /* JADX INFO: renamed from: a */
-    public final C11603i m9509a(InterfaceC11340c interfaceC11340c, boolean z2, boolean z3) {
-        C11603i c11603i;
-        C11603i c11603i2;
-        C11603i c11603i3;
-        EnumC11602h enumC11602h = EnumC11602h.FORCE_FLEXIBILITY;
-        EnumC11602h enumC11602h2 = EnumC11602h.NULLABLE;
-        C11713b fqName = interfaceC11340c.getFqName();
-        if (fqName == null) {
-            return null;
-        }
-        boolean z4 = (interfaceC11340c instanceof C11538e) && (((C11538e) interfaceC11340c).isFreshlySupportedTypeUseAnnotation() || z3) && !z2;
-        if (this.f23473b.getJspecifyReportLevel() != EnumC12040h.IGNORE) {
-            boolean z5 = this.f23473b.getJspecifyReportLevel() == EnumC12040h.WARN;
-            if (C12238m.areEqual(fqName, C11488b0.getJSPECIFY_NULLABLE())) {
-                c11603i = new C11603i(enumC11602h2, z5);
-            } else if (C12238m.areEqual(fqName, C11488b0.getJSPECIFY_NULLNESS_UNKNOWN())) {
-                c11603i = new C11603i(enumC11602h, z5);
-            } else {
-                c11603i = null;
-            }
-        } else {
-            c11603i = null;
-        }
-        if (c11603i == null) {
-            EnumC11602h enumC11602h3 = EnumC11602h.NOT_NULL;
-            if (C11488b0.getNULLABLE_ANNOTATIONS().contains(fqName)) {
-                c11603i = new C11603i(enumC11602h2, z4);
-            } else {
-                if (C11488b0.getNOT_NULL_ANNOTATIONS().contains(fqName)) {
-                    c11603i3 = new C11603i(enumC11602h3, z4);
-                } else if (C12238m.areEqual(fqName, C11488b0.getJAVAX_NONNULL_ANNOTATION())) {
-                    AbstractC11815g<?> abstractC11815gFirstArgument = C11836a.firstArgument(interfaceC11340c);
-                    C11818j c11818j = abstractC11815gFirstArgument instanceof C11818j ? (C11818j) abstractC11815gFirstArgument : null;
-                    if (c11818j != null) {
-                        switch (c11818j.getEnumEntryName().asString()) {
-                            case "MAYBE":
-                            case "NEVER":
-                                c11603i = new C11603i(enumC11602h2, z4);
-                                break;
-                            case "UNKNOWN":
-                                c11603i = new C11603i(enumC11602h, z4);
-                                break;
-                            case "ALWAYS":
-                                c11603i3 = new C11603i(enumC11602h3, z4);
-                                break;
-                            default:
-                                c11603i = null;
-                                break;
-                        }
-                    } else {
-                        c11603i3 = new C11603i(enumC11602h3, z4);
-                    }
-                } else if (C12238m.areEqual(fqName, C11488b0.getCOMPATQUAL_NULLABLE_ANNOTATION()) && this.f23473b.getEnableCompatqualCheckerFrameworkAnnotations()) {
-                    c11603i = new C11603i(enumC11602h2, z4);
-                } else if (C12238m.areEqual(fqName, C11488b0.getCOMPATQUAL_NONNULL_ANNOTATION()) && this.f23473b.getEnableCompatqualCheckerFrameworkAnnotations()) {
-                    c11603i3 = new C11603i(enumC11602h3, z4);
-                } else {
-                    if (C12238m.areEqual(fqName, C11488b0.getANDROIDX_RECENTLY_NON_NULL_ANNOTATION())) {
-                        c11603i2 = new C11603i(enumC11602h3, true);
-                    } else if (C12238m.areEqual(fqName, C11488b0.getANDROIDX_RECENTLY_NULLABLE_ANNOTATION())) {
-                        c11603i2 = new C11603i(enumC11602h2, true);
-                    } else {
-                        c11603i = null;
-                    }
-                    c11603i = c11603i2;
-                }
-                c11603i = c11603i3;
-            }
-            if (c11603i == null) {
-                return null;
-            }
-        }
-        return (!c11603i.isForWarningOnly() && (interfaceC11340c instanceof InterfaceC11518i) && ((InterfaceC11518i) interfaceC11340c).isIdeExternalAnnotation()) ? C11603i.copy$default(c11603i, null, true, 1, null) : c11603i;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final b m9510b(InterfaceC11321b interfaceC11321b, InterfaceC11338a interfaceC11338a, boolean z2, C11529g c11529g, EnumC11485a enumC11485a, Function1<? super InterfaceC11321b, ? extends AbstractC11913c0> function1) {
-        AbstractC11913c0 abstractC11913c0Invoke = function1.invoke(interfaceC11321b);
-        Collection<? extends InterfaceC11321b> overriddenDescriptors = interfaceC11321b.getOverriddenDescriptors();
-        C12238m.checkNotNullExpressionValue(overriddenDescriptors, "this.overriddenDescriptors");
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(overriddenDescriptors, 10));
-        for (InterfaceC11321b interfaceC11321b2 : overriddenDescriptors) {
-            C12238m.checkNotNullExpressionValue(interfaceC11321b2, "it");
-            arrayList.add(function1.invoke(interfaceC11321b2));
-        }
-        return new b(interfaceC11338a, abstractC11913c0Invoke, arrayList, z2, C11523a.copyWithNewDefaultTypeQualifiers(c11529g, function1.invoke(interfaceC11321b).getAnnotations()), enumC11485a, false, 64, null);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final b m9511c(InterfaceC11321b interfaceC11321b, InterfaceC11326c1 interfaceC11326c1, C11529g c11529g, Function1<? super InterfaceC11321b, ? extends AbstractC11913c0> function1) {
-        C11529g c11529gCopyWithNewDefaultTypeQualifiers;
-        return m9510b(interfaceC11321b, interfaceC11326c1, false, (interfaceC11326c1 == null || (c11529gCopyWithNewDefaultTypeQualifiers = C11523a.copyWithNewDefaultTypeQualifiers(c11529g, interfaceC11326c1.getAnnotations())) == null) ? c11529g : c11529gCopyWithNewDefaultTypeQualifiers, EnumC11485a.VALUE_PARAMETER, function1);
     }
 
     /* JADX WARN: Code duplicated, block: B:126:0x022b  */
@@ -477,6 +380,103 @@ public final class C11606l {
         return C11603i.copy$default(c11603iM9509a, null, enumC12040hResolveJsr305AnnotationState.isWarning(), 1, null);
     }
 
+    /* JADX WARN: Code duplicated, block: B:25:0x0058  */
+    /* JADX WARN: Code duplicated, block: B:59:0x00e2  */
+    /* JADX INFO: renamed from: a */
+    public final C11603i m9509a(InterfaceC11340c interfaceC11340c, boolean z2, boolean z3) {
+        C11603i c11603i;
+        C11603i c11603i2;
+        C11603i c11603i3;
+        EnumC11602h enumC11602h = EnumC11602h.FORCE_FLEXIBILITY;
+        EnumC11602h enumC11602h2 = EnumC11602h.NULLABLE;
+        C11713b fqName = interfaceC11340c.getFqName();
+        if (fqName == null) {
+            return null;
+        }
+        boolean z4 = (interfaceC11340c instanceof C11538e) && (((C11538e) interfaceC11340c).isFreshlySupportedTypeUseAnnotation() || z3) && !z2;
+        if (this.f23473b.getJspecifyReportLevel() != EnumC12040h.IGNORE) {
+            boolean z5 = this.f23473b.getJspecifyReportLevel() == EnumC12040h.WARN;
+            if (C12238m.areEqual(fqName, C11488b0.getJSPECIFY_NULLABLE())) {
+                c11603i = new C11603i(enumC11602h2, z5);
+            } else if (C12238m.areEqual(fqName, C11488b0.getJSPECIFY_NULLNESS_UNKNOWN())) {
+                c11603i = new C11603i(enumC11602h, z5);
+            } else {
+                c11603i = null;
+            }
+        } else {
+            c11603i = null;
+        }
+        if (c11603i == null) {
+            EnumC11602h enumC11602h3 = EnumC11602h.NOT_NULL;
+            if (C11488b0.getNULLABLE_ANNOTATIONS().contains(fqName)) {
+                c11603i = new C11603i(enumC11602h2, z4);
+            } else {
+                if (C11488b0.getNOT_NULL_ANNOTATIONS().contains(fqName)) {
+                    c11603i3 = new C11603i(enumC11602h3, z4);
+                } else if (C12238m.areEqual(fqName, C11488b0.getJAVAX_NONNULL_ANNOTATION())) {
+                    AbstractC11815g<?> abstractC11815gFirstArgument = C11836a.firstArgument(interfaceC11340c);
+                    C11818j c11818j = abstractC11815gFirstArgument instanceof C11818j ? (C11818j) abstractC11815gFirstArgument : null;
+                    if (c11818j != null) {
+                        switch (c11818j.getEnumEntryName().asString()) {
+                            case "MAYBE":
+                            case "NEVER":
+                                c11603i = new C11603i(enumC11602h2, z4);
+                                break;
+                            case "UNKNOWN":
+                                c11603i = new C11603i(enumC11602h, z4);
+                                break;
+                            case "ALWAYS":
+                                c11603i3 = new C11603i(enumC11602h3, z4);
+                                break;
+                            default:
+                                c11603i = null;
+                                break;
+                        }
+                    } else {
+                        c11603i3 = new C11603i(enumC11602h3, z4);
+                    }
+                } else if (C12238m.areEqual(fqName, C11488b0.getCOMPATQUAL_NULLABLE_ANNOTATION()) && this.f23473b.getEnableCompatqualCheckerFrameworkAnnotations()) {
+                    c11603i = new C11603i(enumC11602h2, z4);
+                } else if (C12238m.areEqual(fqName, C11488b0.getCOMPATQUAL_NONNULL_ANNOTATION()) && this.f23473b.getEnableCompatqualCheckerFrameworkAnnotations()) {
+                    c11603i3 = new C11603i(enumC11602h3, z4);
+                } else {
+                    if (C12238m.areEqual(fqName, C11488b0.getANDROIDX_RECENTLY_NON_NULL_ANNOTATION())) {
+                        c11603i2 = new C11603i(enumC11602h3, true);
+                    } else if (C12238m.areEqual(fqName, C11488b0.getANDROIDX_RECENTLY_NULLABLE_ANNOTATION())) {
+                        c11603i2 = new C11603i(enumC11602h2, true);
+                    } else {
+                        c11603i = null;
+                    }
+                    c11603i = c11603i2;
+                }
+                c11603i = c11603i3;
+            }
+            if (c11603i == null) {
+                return null;
+            }
+        }
+        return (!c11603i.isForWarningOnly() && (interfaceC11340c instanceof InterfaceC11518i) && ((InterfaceC11518i) interfaceC11340c).isIdeExternalAnnotation()) ? C11603i.copy$default(c11603i, null, true, 1, null) : c11603i;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final b m9510b(InterfaceC11321b interfaceC11321b, InterfaceC11338a interfaceC11338a, boolean z2, C11529g c11529g, EnumC11485a enumC11485a, Function1<? super InterfaceC11321b, ? extends AbstractC11913c0> function1) {
+        AbstractC11913c0 abstractC11913c0Invoke = function1.invoke(interfaceC11321b);
+        Collection<? extends InterfaceC11321b> overriddenDescriptors = interfaceC11321b.getOverriddenDescriptors();
+        C12238m.checkNotNullExpressionValue(overriddenDescriptors, "this.overriddenDescriptors");
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(overriddenDescriptors, 10));
+        for (InterfaceC11321b interfaceC11321b2 : overriddenDescriptors) {
+            C12238m.checkNotNullExpressionValue(interfaceC11321b2, "it");
+            arrayList.add(function1.invoke(interfaceC11321b2));
+        }
+        return new b(interfaceC11338a, abstractC11913c0Invoke, arrayList, z2, C11523a.copyWithNewDefaultTypeQualifiers(c11529g, function1.invoke(interfaceC11321b).getAnnotations()), enumC11485a, false, 64, null);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final b m9511c(InterfaceC11321b interfaceC11321b, InterfaceC11326c1 interfaceC11326c1, C11529g c11529g, Function1<? super InterfaceC11321b, ? extends AbstractC11913c0> function1) {
+        C11529g c11529gCopyWithNewDefaultTypeQualifiers;
+        return m9510b(interfaceC11321b, interfaceC11326c1, false, (interfaceC11326c1 == null || (c11529gCopyWithNewDefaultTypeQualifiers = C11523a.copyWithNewDefaultTypeQualifiers(c11529g, interfaceC11326c1.getAnnotations())) == null) ? c11529g : c11529gCopyWithNewDefaultTypeQualifiers, EnumC11485a.VALUE_PARAMETER, function1);
+    }
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$b */
     /* JADX INFO: compiled from: signatureEnhancement.kt */
     public final class b {
@@ -502,32 +502,9 @@ public final class C11606l {
         /* JADX INFO: renamed from: g */
         public final boolean f23484g;
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$b$a */
-        /* JADX INFO: compiled from: signatureEnhancement.kt */
-        public static final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
-
-            /* JADX INFO: renamed from: j */
-            public static final a f23486j = new a();
-
-            public a() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final Boolean invoke(AbstractC11932i1 abstractC11932i1) {
-                InterfaceC11352h declarationDescriptor = abstractC11932i1.getConstructor().getDeclarationDescriptor();
-                if (declarationDescriptor == null) {
-                    return Boolean.FALSE;
-                }
-                C11716e name = declarationDescriptor.getName();
-                C11303c c11303c = C11303c.f22614a;
-                return Boolean.valueOf(C12238m.areEqual(name, c11303c.getFUNCTION_N_FQ_NAME().shortName()) && C12238m.areEqual(C11836a.fqNameOrNull(declarationDescriptor), c11303c.getFUNCTION_N_FQ_NAME()));
-            }
-        }
-
         /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: signatureEnhancement.kt */
-        public static final class C13312b extends AbstractC12240o implements Function1<Integer, C11599e> {
+        public final class C13312b extends AbstractC12240o implements Function1<Integer, C11599e> {
             public final /* synthetic */ C11617w $predefined;
             public final /* synthetic */ Function1<Integer, C11599e> $qualifiers;
 
@@ -550,6 +527,29 @@ public final class C11606l {
             }
         }
 
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.l$b$a */
+        /* JADX INFO: compiled from: signatureEnhancement.kt */
+        public final class a extends AbstractC12240o implements Function1<AbstractC11932i1, Boolean> {
+
+            /* JADX INFO: renamed from: j */
+            public static final a f23486j = new a();
+
+            public a() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final Boolean invoke(AbstractC11932i1 abstractC11932i1) {
+                InterfaceC11352h declarationDescriptor = abstractC11932i1.getConstructor().getDeclarationDescriptor();
+                if (declarationDescriptor == null) {
+                    return Boolean.FALSE;
+                }
+                C11716e name = declarationDescriptor.getName();
+                C11303c c11303c = C11303c.f22614a;
+                return Boolean.valueOf(C12238m.areEqual(name, c11303c.getFUNCTION_N_FQ_NAME().shortName()) && C12238m.areEqual(C11836a.fqNameOrNull(declarationDescriptor), c11303c.getFUNCTION_N_FQ_NAME()));
+            }
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public b(C11606l c11606l, InterfaceC11338a interfaceC11338a, AbstractC11913c0 abstractC11913c0, Collection<? extends AbstractC11913c0> collection, boolean z2, C11529g c11529g, EnumC11485a enumC11485a, boolean z3) {
             C12238m.checkNotNullParameter(c11606l, "this$0");
@@ -567,164 +567,11 @@ public final class C11606l {
             this.f23484g = z3;
         }
 
-        /* JADX INFO: renamed from: c */
-        public static final <T> T m9512c(List<C11713b> list, InterfaceC11344g interfaceC11344g, T t) {
-            boolean z2 = false;
-            if (!(list instanceof Collection) || !list.isEmpty()) {
-                Iterator<T> it = list.iterator();
-                while (it.hasNext()) {
-                    if (interfaceC11344g.findAnnotation((C11713b) it.next()) != null) {
-                        z2 = true;
-                        break;
-                    }
-                }
-            }
-            if (z2) {
-                return t;
-            }
-            return null;
-        }
-
-        /* JADX INFO: renamed from: d */
-        public static final void m9513d(b bVar, ArrayList<C11613s> arrayList, AbstractC11913c0 abstractC11913c0, C11529g c11529g, InterfaceC11477z0 interfaceC11477z0) {
-            C11529g c11529gCopyWithNewDefaultTypeQualifiers = C11523a.copyWithNewDefaultTypeQualifiers(c11529g, abstractC11913c0.getAnnotations());
-            C11631y defaultTypeQualifiers = c11529gCopyWithNewDefaultTypeQualifiers.getDefaultTypeQualifiers();
-            C11627u c11627u = defaultTypeQualifiers == null ? null : defaultTypeQualifiers.get(bVar.f23484g ? EnumC11485a.TYPE_PARAMETER_BOUNDS : EnumC11485a.TYPE_USE);
-            arrayList.add(new C11613s(abstractC11913c0, c11627u, interfaceC11477z0, false));
-            List<InterfaceC12012w0> arguments = abstractC11913c0.getArguments();
-            List<InterfaceC11477z0> parameters = abstractC11913c0.getConstructor().getParameters();
-            C12238m.checkNotNullExpressionValue(parameters, "type.constructor.parameters");
-            for (Pair pair : C12163u.zip(arguments, parameters)) {
-                InterfaceC12012w0 interfaceC12012w0 = (InterfaceC12012w0) pair.component1();
-                InterfaceC11477z0 interfaceC11477z1 = (InterfaceC11477z0) pair.component2();
-                if (interfaceC12012w0.isStarProjection()) {
-                    AbstractC11913c0 type = interfaceC12012w0.getType();
-                    C12238m.checkNotNullExpressionValue(type, "arg.type");
-                    arrayList.add(new C11613s(type, c11627u, interfaceC11477z1, true));
-                } else {
-                    AbstractC11913c0 type2 = interfaceC12012w0.getType();
-                    C12238m.checkNotNullExpressionValue(type2, "arg.type");
-                    m9513d(bVar, arrayList, type2, c11529gCopyWithNewDefaultTypeQualifiers, interfaceC11477z1);
-                }
-            }
-        }
-
         public static /* synthetic */ a enhance$default(b bVar, C11617w c11617w, int i, Object obj) {
             if ((i & 1) != 0) {
                 c11617w = null;
             }
             return bVar.enhance(c11617w);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final EnumC11602h m9514a(InterfaceC11477z0 interfaceC11477z0) {
-            boolean z2;
-            boolean z3;
-            if (!(interfaceC11477z0 instanceof C11552s)) {
-                return null;
-            }
-            C11552s c11552s = (C11552s) interfaceC11477z0;
-            List<AbstractC11913c0> upperBounds = c11552s.getUpperBounds();
-            C12238m.checkNotNullExpressionValue(upperBounds, "upperBounds");
-            boolean z4 = false;
-            if (!(upperBounds instanceof Collection) || !upperBounds.isEmpty()) {
-                Iterator<T> it = upperBounds.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        z2 = true;
-                        break;
-                    }
-                    if (!C11919e0.isError((AbstractC11913c0) it.next())) {
-                        z2 = false;
-                        break;
-                    }
-                }
-            } else {
-                z2 = true;
-                break;
-            }
-            if (z2) {
-                return null;
-            }
-            List<AbstractC11913c0> upperBounds2 = c11552s.getUpperBounds();
-            C12238m.checkNotNullExpressionValue(upperBounds2, "upperBounds");
-            if (!(upperBounds2 instanceof Collection) || !upperBounds2.isEmpty()) {
-                Iterator<T> it2 = upperBounds2.iterator();
-                while (true) {
-                    if (!it2.hasNext()) {
-                        z3 = true;
-                        break;
-                    }
-                    if (!C11612r.access$isNullabilityFlexible((AbstractC11913c0) it2.next())) {
-                        z3 = false;
-                        break;
-                    }
-                }
-            } else {
-                z3 = true;
-                break;
-            }
-            if (z3) {
-                return null;
-            }
-            List<AbstractC11913c0> upperBounds3 = c11552s.getUpperBounds();
-            C12238m.checkNotNullExpressionValue(upperBounds3, "upperBounds");
-            if (!(upperBounds3 instanceof Collection) || !upperBounds3.isEmpty()) {
-                for (AbstractC11913c0 abstractC11913c0 : upperBounds3) {
-                    C12238m.checkNotNullExpressionValue(abstractC11913c0, "it");
-                    if (!C11919e0.isNullable(abstractC11913c0)) {
-                        z4 = true;
-                        break;
-                    }
-                }
-            }
-            return z4 ? EnumC11602h.NOT_NULL : EnumC11602h.NULLABLE;
-        }
-
-        /* JADX WARN: Code duplicated, block: B:16:0x0048  */
-        /* JADX WARN: Code duplicated, block: B:17:0x004b  */
-        /* JADX WARN: Code duplicated, block: B:19:0x0051  */
-        /* JADX WARN: Code duplicated, block: B:20:0x0054  */
-        /* JADX INFO: renamed from: b */
-        public final C11599e m9515b(AbstractC11913c0 abstractC11913c0) {
-            Pair pair;
-            EnumC11602h enumC11602h;
-            EnumC11602h enumC11602h2;
-            EnumC11600f enumC11600f;
-            if (C12015y.isFlexible(abstractC11913c0)) {
-                AbstractC12009v abstractC12009vAsFlexibleType = C12015y.asFlexibleType(abstractC11913c0);
-                pair = new Pair(abstractC12009vAsFlexibleType.getLowerBound(), abstractC12009vAsFlexibleType.getUpperBound());
-            } else {
-                pair = new Pair(abstractC11913c0, abstractC11913c0);
-            }
-            AbstractC11913c0 abstractC11913c1 = (AbstractC11913c0) pair.component1();
-            AbstractC11913c0 abstractC11913c2 = (AbstractC11913c0) pair.component2();
-            C11304d c11304d = C11304d.f22630a;
-            if (!abstractC11913c1.isMarkedNullable()) {
-                if (abstractC11913c2.isMarkedNullable()) {
-                    enumC11602h = null;
-                } else {
-                    enumC11602h2 = EnumC11602h.NOT_NULL;
-                }
-                if (c11304d.isReadOnly(abstractC11913c1)) {
-                    enumC11600f = EnumC11600f.READ_ONLY;
-                } else if (c11304d.isMutable(abstractC11913c2)) {
-                    enumC11600f = EnumC11600f.MUTABLE;
-                } else {
-                    enumC11600f = null;
-                }
-                return new C11599e(enumC11602h, enumC11600f, abstractC11913c0.unwrap() instanceof C11601g, false, 8, null);
-            }
-            enumC11602h2 = EnumC11602h.NULLABLE;
-            enumC11602h = enumC11602h2;
-            if (c11304d.isReadOnly(abstractC11913c1)) {
-                enumC11600f = EnumC11600f.READ_ONLY;
-            } else if (c11304d.isMutable(abstractC11913c2)) {
-                enumC11600f = EnumC11600f.MUTABLE;
-            } else {
-                enumC11600f = null;
-            }
-            return new C11599e(enumC11602h, enumC11600f, abstractC11913c0.unwrap() instanceof C11601g, false, 8, null);
         }
 
         /* JADX WARN: Code duplicated, block: B:101:0x0227  */
@@ -818,8 +665,6 @@ public final class C11606l {
         public final a enhance(C11617w c11617w) {
             Object obj;
             boolean z2;
-            a aVar;
-            ?? r6;
             C11627u c11627u;
             InterfaceC11344g annotations;
             InterfaceC11338a interfaceC11338a;
@@ -1604,17 +1449,161 @@ public final class C11606l {
                 r2 = c13312b;
             }
             AbstractC11913c0 abstractC11913c0Enhance = r4.enhance(abstractC11913c2, r2);
-            if (abstractC11913c0Enhance == null) {
-                r6 = obj3;
+            ?? aVar = abstractC11913c0Enhance == null ? obj3 : new a(abstractC11913c0Enhance, true, zContains);
+            return aVar == 0 ? new a(this.f23479b, false, zContains) : aVar;
+        }
+
+        /* JADX INFO: renamed from: c */
+        public static final <T> T m9512c(List<C11713b> list, InterfaceC11344g interfaceC11344g, T t) {
+            boolean z2 = false;
+            if (!(list instanceof Collection) || !list.isEmpty()) {
+                Iterator<T> it = list.iterator();
+                while (it.hasNext()) {
+                    if (interfaceC11344g.findAnnotation((C11713b) it.next()) != null) {
+                        z2 = true;
+                        break;
+                    }
+                }
+            }
+            if (z2) {
+                return t;
+            }
+            return null;
+        }
+
+        /* JADX INFO: renamed from: d */
+        public static final void m9513d(b bVar, ArrayList<C11613s> arrayList, AbstractC11913c0 abstractC11913c0, C11529g c11529g, InterfaceC11477z0 interfaceC11477z0) {
+            C11529g c11529gCopyWithNewDefaultTypeQualifiers = C11523a.copyWithNewDefaultTypeQualifiers(c11529g, abstractC11913c0.getAnnotations());
+            C11631y defaultTypeQualifiers = c11529gCopyWithNewDefaultTypeQualifiers.getDefaultTypeQualifiers();
+            C11627u c11627u = defaultTypeQualifiers == null ? null : defaultTypeQualifiers.get(bVar.f23484g ? EnumC11485a.TYPE_PARAMETER_BOUNDS : EnumC11485a.TYPE_USE);
+            arrayList.add(new C11613s(abstractC11913c0, c11627u, interfaceC11477z0, false));
+            List<InterfaceC12012w0> arguments = abstractC11913c0.getArguments();
+            List<InterfaceC11477z0> parameters = abstractC11913c0.getConstructor().getParameters();
+            C12238m.checkNotNullExpressionValue(parameters, "type.constructor.parameters");
+            for (Pair pair : C12163u.zip(arguments, parameters)) {
+                InterfaceC12012w0 interfaceC12012w0 = (InterfaceC12012w0) pair.component1();
+                InterfaceC11477z0 interfaceC11477z1 = (InterfaceC11477z0) pair.component2();
+                if (interfaceC12012w0.isStarProjection()) {
+                    AbstractC11913c0 type = interfaceC12012w0.getType();
+                    C12238m.checkNotNullExpressionValue(type, "arg.type");
+                    arrayList.add(new C11613s(type, c11627u, interfaceC11477z1, true));
+                } else {
+                    AbstractC11913c0 type2 = interfaceC12012w0.getType();
+                    C12238m.checkNotNullExpressionValue(type2, "arg.type");
+                    m9513d(bVar, arrayList, type2, c11529gCopyWithNewDefaultTypeQualifiers, interfaceC11477z1);
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final EnumC11602h m9514a(InterfaceC11477z0 interfaceC11477z0) {
+            boolean z2;
+            boolean z3;
+            if (!(interfaceC11477z0 instanceof C11552s)) {
+                return null;
+            }
+            C11552s c11552s = (C11552s) interfaceC11477z0;
+            List<AbstractC11913c0> upperBounds = c11552s.getUpperBounds();
+            C12238m.checkNotNullExpressionValue(upperBounds, "upperBounds");
+            boolean z4 = false;
+            if (!(upperBounds instanceof Collection) || !upperBounds.isEmpty()) {
+                Iterator<T> it = upperBounds.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        z2 = true;
+                        break;
+                    }
+                    if (!C11919e0.isError((AbstractC11913c0) it.next())) {
+                        z2 = false;
+                        break;
+                    }
+                }
             } else {
-                aVar = new a(abstractC11913c0Enhance, true, zContains);
+                z2 = true;
+                break;
             }
-            if (r6 == 0) {
-                r6 = aVar;
-                return new a(this.f23479b, false, zContains);
+            if (z2) {
+                return null;
             }
-            r6 = aVar;
-            return r6;
+            List<AbstractC11913c0> upperBounds2 = c11552s.getUpperBounds();
+            C12238m.checkNotNullExpressionValue(upperBounds2, "upperBounds");
+            if (!(upperBounds2 instanceof Collection) || !upperBounds2.isEmpty()) {
+                Iterator<T> it2 = upperBounds2.iterator();
+                while (true) {
+                    if (!it2.hasNext()) {
+                        z3 = true;
+                        break;
+                    }
+                    if (!C11612r.access$isNullabilityFlexible((AbstractC11913c0) it2.next())) {
+                        z3 = false;
+                        break;
+                    }
+                }
+            } else {
+                z3 = true;
+                break;
+            }
+            if (z3) {
+                return null;
+            }
+            List<AbstractC11913c0> upperBounds3 = c11552s.getUpperBounds();
+            C12238m.checkNotNullExpressionValue(upperBounds3, "upperBounds");
+            if (!(upperBounds3 instanceof Collection) || !upperBounds3.isEmpty()) {
+                for (AbstractC11913c0 abstractC11913c0 : upperBounds3) {
+                    C12238m.checkNotNullExpressionValue(abstractC11913c0, "it");
+                    if (!C11919e0.isNullable(abstractC11913c0)) {
+                        z4 = true;
+                        break;
+                    }
+                }
+            }
+            return z4 ? EnumC11602h.NOT_NULL : EnumC11602h.NULLABLE;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:16:0x0048  */
+        /* JADX WARN: Code duplicated, block: B:17:0x004b  */
+        /* JADX WARN: Code duplicated, block: B:19:0x0051  */
+        /* JADX WARN: Code duplicated, block: B:20:0x0054  */
+        /* JADX INFO: renamed from: b */
+        public final C11599e m9515b(AbstractC11913c0 abstractC11913c0) {
+            Pair pair;
+            EnumC11602h enumC11602h;
+            EnumC11602h enumC11602h2;
+            EnumC11600f enumC11600f;
+            if (C12015y.isFlexible(abstractC11913c0)) {
+                AbstractC12009v abstractC12009vAsFlexibleType = C12015y.asFlexibleType(abstractC11913c0);
+                pair = new Pair(abstractC12009vAsFlexibleType.getLowerBound(), abstractC12009vAsFlexibleType.getUpperBound());
+            } else {
+                pair = new Pair(abstractC11913c0, abstractC11913c0);
+            }
+            AbstractC11913c0 abstractC11913c1 = (AbstractC11913c0) pair.component1();
+            AbstractC11913c0 abstractC11913c2 = (AbstractC11913c0) pair.component2();
+            C11304d c11304d = C11304d.f22630a;
+            if (!abstractC11913c1.isMarkedNullable()) {
+                if (abstractC11913c2.isMarkedNullable()) {
+                    enumC11602h = null;
+                } else {
+                    enumC11602h2 = EnumC11602h.NOT_NULL;
+                }
+                if (c11304d.isReadOnly(abstractC11913c1)) {
+                    enumC11600f = EnumC11600f.READ_ONLY;
+                } else if (c11304d.isMutable(abstractC11913c2)) {
+                    enumC11600f = EnumC11600f.MUTABLE;
+                } else {
+                    enumC11600f = null;
+                }
+                return new C11599e(enumC11602h, enumC11600f, abstractC11913c0.unwrap() instanceof C11601g, false, 8, null);
+            }
+            enumC11602h2 = EnumC11602h.NULLABLE;
+            enumC11602h = enumC11602h2;
+            if (c11304d.isReadOnly(abstractC11913c1)) {
+                enumC11600f = EnumC11600f.READ_ONLY;
+            } else if (c11304d.isMutable(abstractC11913c2)) {
+                enumC11600f = EnumC11600f.MUTABLE;
+            } else {
+                enumC11600f = null;
+            }
+            return new C11599e(enumC11602h, enumC11600f, abstractC11913c0.unwrap() instanceof C11601g, false, 8, null);
         }
 
         public /* synthetic */ b(InterfaceC11338a interfaceC11338a, AbstractC11913c0 abstractC11913c0, Collection collection, boolean z2, C11529g c11529g, EnumC11485a enumC11485a, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {

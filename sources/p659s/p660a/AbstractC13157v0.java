@@ -22,40 +22,6 @@ public abstract class AbstractC13157v0 extends ExecutorCoroutineDispatcher imple
     /* JADX INFO: renamed from: j */
     public boolean f27911j;
 
-    /* JADX INFO: renamed from: I */
-    public final ScheduledFuture<?> m11350I(Runnable runnable, CoroutineContext coroutineContext, long j) {
-        try {
-            Executor executorMo10908H = mo10908H();
-            if (!(executorMo10908H instanceof ScheduledExecutorService)) {
-                executorMo10908H = null;
-            }
-            ScheduledExecutorService scheduledExecutorService = (ScheduledExecutorService) executorMo10908H;
-            if (scheduledExecutorService != null) {
-                return scheduledExecutorService.schedule(runnable, j, TimeUnit.MILLISECONDS);
-            }
-            return null;
-        } catch (RejectedExecutionException e) {
-            CancellationException cancellationExceptionM4267a = C3404f.m4267a("The task was rejected", e);
-            Job job = (Job) coroutineContext.get(Job.INSTANCE);
-            if (job == null) {
-                return null;
-            }
-            job.mo10911b(cancellationExceptionM4267a);
-            return null;
-        }
-    }
-
-    @Override // p659s.p660a.InterfaceC13115h0
-    /* JADX INFO: renamed from: c */
-    public void mo11195c(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
-        ScheduledFuture<?> scheduledFutureM11350I = this.f27911j ? m11350I(new RunnableC13149s1(this, cancellableContinuation), ((C13126l) cancellableContinuation).f27871o, j) : null;
-        if (scheduledFutureM11350I != null) {
-            ((C13126l) cancellableContinuation).mo10902f(new C13117i(scheduledFutureM11350I));
-        } else {
-            RunnableC13077d0.f27779q.mo11195c(j, cancellableContinuation);
-        }
-    }
-
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public void close() {
         Executor executorMo10908H = mo10908H();
@@ -90,9 +56,38 @@ public abstract class AbstractC13157v0 extends ExecutorCoroutineDispatcher imple
         return System.identityHashCode(mo10908H());
     }
 
-    @Override // kotlinx.coroutines.CoroutineDispatcher
-    public String toString() {
-        return mo10908H().toString();
+    /* JADX INFO: renamed from: I */
+    public final ScheduledFuture<?> m11350I(Runnable runnable, CoroutineContext coroutineContext, long j) {
+        try {
+            Executor executorMo10908H = mo10908H();
+            if (!(executorMo10908H instanceof ScheduledExecutorService)) {
+                executorMo10908H = null;
+            }
+            ScheduledExecutorService scheduledExecutorService = (ScheduledExecutorService) executorMo10908H;
+            if (scheduledExecutorService != null) {
+                return scheduledExecutorService.schedule(runnable, j, TimeUnit.MILLISECONDS);
+            }
+            return null;
+        } catch (RejectedExecutionException e) {
+            CancellationException cancellationExceptionM4267a = C3404f.m4267a("The task was rejected", e);
+            Job job = (Job) coroutineContext.get(Job.INSTANCE);
+            if (job == null) {
+                return null;
+            }
+            job.mo10911b(cancellationExceptionM4267a);
+            return null;
+        }
+    }
+
+    @Override // p659s.p660a.InterfaceC13115h0
+    /* JADX INFO: renamed from: c */
+    public void mo11195c(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
+        ScheduledFuture<?> scheduledFutureM11350I = this.f27911j ? m11350I(new RunnableC13149s1(this, cancellableContinuation), ((C13126l) cancellableContinuation).f27871o, j) : null;
+        if (scheduledFutureM11350I != null) {
+            ((C13126l) cancellableContinuation).mo10902f(new C13117i(scheduledFutureM11350I));
+        } else {
+            RunnableC13077d0.f27779q.mo11195c(j, cancellableContinuation);
+        }
     }
 
     @Override // p659s.p660a.InterfaceC13115h0
@@ -100,5 +95,10 @@ public abstract class AbstractC13157v0 extends ExecutorCoroutineDispatcher imple
     public InterfaceC13130m0 mo11196x(long j, Runnable runnable, CoroutineContext coroutineContext) {
         ScheduledFuture<?> scheduledFutureM11350I = this.f27911j ? m11350I(runnable, coroutineContext, j) : null;
         return scheduledFutureM11350I != null ? new C13127l0(scheduledFutureM11350I) : RunnableC13077d0.f27779q.mo11196x(j, runnable, coroutineContext);
+    }
+
+    @Override // kotlinx.coroutines.CoroutineDispatcher
+    public String toString() {
+        return mo10908H().toString();
     }
 }

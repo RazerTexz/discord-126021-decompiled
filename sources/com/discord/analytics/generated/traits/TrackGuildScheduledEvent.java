@@ -6,8 +6,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildScheduledEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildScheduledEvent {
-    private final Boolean isEveryoneRoleVisible = null;
     private final Boolean associatedToDirectoryChannel = null;
+    private final Boolean isEveryoneRoleVisible = null;
 
     public boolean equals(Object other) {
         if (this == other) {

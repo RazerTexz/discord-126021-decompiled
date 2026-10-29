@@ -87,7 +87,7 @@ public final class C11885u {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.u$b */
     /* JADX INFO: compiled from: MemberDeserializer.kt */
-    public static final class b extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class b extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public final /* synthetic */ EnumC11846b $kind;
         public final /* synthetic */ InterfaceC11734n $proto;
 
@@ -114,7 +114,7 @@ public final class C11885u {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.u$c */
     /* JADX INFO: compiled from: MemberDeserializer.kt */
-    public static final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class c extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public final /* synthetic */ boolean $isDelegate;
         public final /* synthetic */ C11689n $proto;
 
@@ -144,7 +144,7 @@ public final class C11885u {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.u$d */
     /* JADX INFO: compiled from: MemberDeserializer.kt */
-    public static final class d extends AbstractC12240o implements Function0<AbstractC11815g<?>> {
+    public final class d extends AbstractC12240o implements Function0<AbstractC11815g<?>> {
         public final /* synthetic */ C11865j $property;
         public final /* synthetic */ C11689n $proto;
 
@@ -171,7 +171,7 @@ public final class C11885u {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.u$e */
     /* JADX INFO: compiled from: MemberDeserializer.kt */
-    public static final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
+    public final class e extends AbstractC12240o implements Function0<List<? extends InterfaceC11340c>> {
         public final /* synthetic */ InterfaceC11734n $callable;
         public final /* synthetic */ AbstractC11889y $containerOfCallable;
 
@@ -200,6 +200,228 @@ public final class C11885u {
         C12238m.checkNotNullParameter(c11876l, "c");
         this.f24683a = c11876l;
         this.f24684b = new C11855e(c11876l.getComponents().getModuleDescriptor(), c11876l.getComponents().getNotFoundClasses());
+    }
+
+    public final InterfaceC11327d loadConstructor(C11679d c11679d, boolean z2) {
+        InterfaceC11862g.a aVarM9970c;
+        C11849c0 typeDeserializer;
+        C12238m.checkNotNullParameter(c11679d, "proto");
+        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) this.f24683a.getContainingDeclaration();
+        int flags = c11679d.getFlags();
+        EnumC11846b enumC11846b = EnumC11846b.FUNCTION;
+        C11858c c11858c = new C11858c(interfaceC11330e, null, m9972e(c11679d, flags, enumC11846b), z2, InterfaceC11321b.a.DECLARATION, c11679d, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource(), null, 1024, null);
+        C11885u memberDeserializer = C11876l.childContext$default(this.f24683a, c11858c, C12147n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer();
+        List<C11696u> valueParameterList = c11679d.getValueParameterList();
+        C12238m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
+        c11858c.initialize(memberDeserializer.m9975h(valueParameterList, c11679d, enumC11846b), C11845a0.descriptorVisibility(C11890z.f24700a, C11703b.f24032c.get(c11679d.getFlags())));
+        c11858c.setReturnType(interfaceC11330e.getDefaultType());
+        c11858c.setHasStableParameterNames(!C11703b.f24042m.get(c11679d.getFlags()).booleanValue());
+        InterfaceC11450m containingDeclaration = this.f24683a.getContainingDeclaration();
+        Boolean boolValueOf = null;
+        C11859d c11859d = containingDeclaration instanceof C11859d ? (C11859d) containingDeclaration : null;
+        C11876l c2 = c11859d == null ? null : c11859d.getC();
+        if (c2 != null && (typeDeserializer = c2.getTypeDeserializer()) != null) {
+            boolValueOf = Boolean.valueOf(typeDeserializer.getExperimentalSuspendFunctionTypeEncountered());
+        }
+        if (C12238m.areEqual(boolValueOf, Boolean.TRUE) && m9976i(c11858c)) {
+            aVarM9970c = InterfaceC11862g.a.INCOMPATIBLE;
+        } else {
+            Collection<? extends InterfaceC11326c1> valueParameters = c11858c.getValueParameters();
+            C12238m.checkNotNullExpressionValue(valueParameters, "descriptor.valueParameters");
+            Collection<? extends InterfaceC11477z0> typeParameters = c11858c.getTypeParameters();
+            C12238m.checkNotNullExpressionValue(typeParameters, "descriptor.typeParameters");
+            aVarM9970c = m9970c(c11858c, null, valueParameters, typeParameters, c11858c.getReturnType(), false);
+        }
+        c11858c.setCoroutinesExperimentalCompatibilityMode$deserialization(aVarM9970c);
+        return c11858c;
+    }
+
+    public final InterfaceC11465t0 loadFunction(C11684i c11684i) {
+        int flags;
+        AbstractC11913c0 abstractC11913c0Type;
+        C12238m.checkNotNullParameter(c11684i, "proto");
+        if (c11684i.hasFlags()) {
+            flags = c11684i.getFlags();
+        } else {
+            int oldFlags = c11684i.getOldFlags();
+            flags = ((oldFlags >> 8) << 6) + (oldFlags & 63);
+        }
+        int i = flags;
+        EnumC11846b enumC11846b = EnumC11846b.FUNCTION;
+        InterfaceC11344g interfaceC11344gM9972e = m9972e(c11684i, i, enumC11846b);
+        InterfaceC11344g c11856a = C11707f.hasReceiver(c11684i) ? new C11856a(this.f24683a.getStorageManager(), new C11886v(this, c11684i, enumC11846b)) : InterfaceC11344g.f22735f.getEMPTY();
+        C11710i empty = C12238m.areEqual(C11836a.getFqNameSafe(this.f24683a.getContainingDeclaration()).child(C11887w.getName(this.f24683a.getNameResolver(), c11684i.getName())), C11847b0.f24502a) ? C11710i.f24073a.getEMPTY() : this.f24683a.getVersionRequirementTable();
+        C11716e name = C11887w.getName(this.f24683a.getNameResolver(), c11684i.getName());
+        C11890z c11890z = C11890z.f24700a;
+        C11866k c11866k = new C11866k(this.f24683a.getContainingDeclaration(), null, interfaceC11344gM9972e, name, C11845a0.memberKind(c11890z, C11703b.f24043n.get(i)), c11684i, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), empty, this.f24683a.getContainerSource(), null, 1024, null);
+        C11876l c11876l = this.f24683a;
+        List<C11694s> typeParameterList = c11684i.getTypeParameterList();
+        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
+        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11866k, typeParameterList, null, null, null, null, 60, null);
+        C11692q c11692qReceiverType = C11707f.receiverType(c11684i, this.f24683a.getTypeTable());
+        InterfaceC11459q0 interfaceC11459q0CreateExtensionReceiverParameterForCallable = (c11692qReceiverType == null || (abstractC11913c0Type = c11876lChildContext$default.getTypeDeserializer().type(c11692qReceiverType)) == null) ? null : C11786d.createExtensionReceiverParameterForCallable(c11866k, abstractC11913c0Type, c11856a);
+        InterfaceC11459q0 interfaceC11459q0M9973f = m9973f();
+        List<InterfaceC11477z0> ownTypeParameters = c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters();
+        C11885u memberDeserializer = c11876lChildContext$default.getMemberDeserializer();
+        List<C11696u> valueParameterList = c11684i.getValueParameterList();
+        C12238m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
+        List<InterfaceC11326c1> listM9975h = memberDeserializer.m9975h(valueParameterList, c11684i, enumC11846b);
+        AbstractC11913c0 abstractC11913c0Type2 = c11876lChildContext$default.getTypeDeserializer().type(C11707f.returnType(c11684i, this.f24683a.getTypeTable()));
+        EnumC11476z enumC11476zModality = c11890z.modality(C11703b.f24033d.get(i));
+        AbstractC11466u abstractC11466uDescriptorVisibility = C11845a0.descriptorVisibility(c11890z, C11703b.f24032c.get(i));
+        Map<? extends InterfaceC11318a.a<?>, ?> mapEmptyMap = C12136h0.emptyMap();
+        C11703b.b bVar = C11703b.f24049t;
+        c11866k.initialize(interfaceC11459q0CreateExtensionReceiverParameterForCallable, interfaceC11459q0M9973f, ownTypeParameters, listM9975h, abstractC11913c0Type2, enumC11476zModality, abstractC11466uDescriptorVisibility, mapEmptyMap, m9970c(c11866k, interfaceC11459q0CreateExtensionReceiverParameterForCallable, listM9975h, ownTypeParameters, abstractC11913c0Type2, C1643a.m880u0(bVar, i, "IS_SUSPEND.get(flags)")));
+        Boolean bool = C11703b.f24044o.get(i);
+        C12238m.checkNotNullExpressionValue(bool, "IS_OPERATOR.get(flags)");
+        c11866k.setOperator(bool.booleanValue());
+        Boolean bool2 = C11703b.f24045p.get(i);
+        C12238m.checkNotNullExpressionValue(bool2, "IS_INFIX.get(flags)");
+        c11866k.setInfix(bool2.booleanValue());
+        Boolean bool3 = C11703b.f24048s.get(i);
+        C12238m.checkNotNullExpressionValue(bool3, "IS_EXTERNAL_FUNCTION.get(flags)");
+        c11866k.setExternal(bool3.booleanValue());
+        Boolean bool4 = C11703b.f24046q.get(i);
+        C12238m.checkNotNullExpressionValue(bool4, "IS_INLINE.get(flags)");
+        c11866k.setInline(bool4.booleanValue());
+        Boolean bool5 = C11703b.f24047r.get(i);
+        C12238m.checkNotNullExpressionValue(bool5, "IS_TAILREC.get(flags)");
+        c11866k.setTailrec(bool5.booleanValue());
+        Boolean bool6 = bVar.get(i);
+        C12238m.checkNotNullExpressionValue(bool6, "IS_SUSPEND.get(flags)");
+        c11866k.setSuspend(bool6.booleanValue());
+        Boolean bool7 = C11703b.f24050u.get(i);
+        C12238m.checkNotNullExpressionValue(bool7, "IS_EXPECT_FUNCTION.get(flags)");
+        c11866k.setExpect(bool7.booleanValue());
+        c11866k.setHasStableParameterNames(!C11703b.f24051v.get(i).booleanValue());
+        Pair<InterfaceC11318a.a<?>, Object> pairDeserializeContractFromFunction = this.f24683a.getComponents().getContractDeserializer().deserializeContractFromFunction(c11684i, c11866k, this.f24683a.getTypeTable(), c11876lChildContext$default.getTypeDeserializer());
+        if (pairDeserializeContractFromFunction != null) {
+            c11866k.putInUserDataMap(pairDeserializeContractFromFunction.getFirst(), pairDeserializeContractFromFunction.getSecond());
+        }
+        return c11866k;
+    }
+
+    public final InterfaceC11453n0 loadProperty(C11689n c11689n) {
+        int flags;
+        C11689n c11689n2;
+        EnumC11846b enumC11846b;
+        InterfaceC11344g empty;
+        InterfaceC11459q0 interfaceC11459q0CreateExtensionReceiverParameterForCallable;
+        C11865j c11865j;
+        C11890z c11890z;
+        C11368d0 c11368d0;
+        C11370e0 c11370e0;
+        C11368d0 c11368d0CreateDefaultGetter;
+        AbstractC11913c0 abstractC11913c0Type;
+        EnumC11846b enumC11846b2 = EnumC11846b.PROPERTY_GETTER;
+        C12238m.checkNotNullParameter(c11689n, "proto");
+        if (c11689n.hasFlags()) {
+            flags = c11689n.getFlags();
+        } else {
+            int oldFlags = c11689n.getOldFlags();
+            flags = ((oldFlags >> 8) << 6) + (oldFlags & 63);
+        }
+        int i = flags;
+        InterfaceC11450m containingDeclaration = this.f24683a.getContainingDeclaration();
+        InterfaceC11344g interfaceC11344gM9972e = m9972e(c11689n, i, EnumC11846b.PROPERTY);
+        C11890z c11890z2 = C11890z.f24700a;
+        C11703b.d<EnumC11686k> dVar = C11703b.f24033d;
+        EnumC11476z enumC11476zModality = c11890z2.modality(dVar.get(i));
+        C11703b.d<EnumC11699x> dVar2 = C11703b.f24032c;
+        C11865j c11865j2 = new C11865j(containingDeclaration, null, interfaceC11344gM9972e, enumC11476zModality, C11845a0.descriptorVisibility(c11890z2, dVar2.get(i)), C1643a.m880u0(C11703b.f24052w, i, "IS_VAR.get(flags)"), C11887w.getName(this.f24683a.getNameResolver(), c11689n.getName()), C11845a0.memberKind(c11890z2, C11703b.f24043n.get(i)), C1643a.m880u0(C11703b.f24017A, i, "IS_LATEINIT.get(flags)"), C1643a.m880u0(C11703b.f24055z, i, "IS_CONST.get(flags)"), C1643a.m880u0(C11703b.f24019C, i, "IS_EXTERNAL_PROPERTY.get(flags)"), C1643a.m880u0(C11703b.f24020D, i, "IS_DELEGATED.get(flags)"), C1643a.m880u0(C11703b.f24021E, i, "IS_EXPECT_PROPERTY.get(flags)"), c11689n, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource());
+        C11876l c11876l = this.f24683a;
+        List<C11694s> typeParameterList = c11689n.getTypeParameterList();
+        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
+        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11865j2, typeParameterList, null, null, null, null, 60, null);
+        boolean zM880u0 = C1643a.m880u0(C11703b.f24053x, i, "HAS_GETTER.get(flags)");
+        if (zM880u0 && C11707f.hasReceiver(c11689n)) {
+            c11689n2 = c11689n;
+            enumC11846b = enumC11846b2;
+            empty = new C11856a(this.f24683a.getStorageManager(), new C11886v(this, c11689n2, enumC11846b));
+        } else {
+            c11689n2 = c11689n;
+            enumC11846b = enumC11846b2;
+            empty = InterfaceC11344g.f22735f.getEMPTY();
+        }
+        AbstractC11913c0 abstractC11913c0Type2 = c11876lChildContext$default.getTypeDeserializer().type(C11707f.returnType(c11689n2, this.f24683a.getTypeTable()));
+        List<InterfaceC11477z0> ownTypeParameters = c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters();
+        InterfaceC11459q0 interfaceC11459q0M9973f = m9973f();
+        C11692q c11692qReceiverType = C11707f.receiverType(c11689n2, this.f24683a.getTypeTable());
+        if (c11692qReceiverType == null || (abstractC11913c0Type = c11876lChildContext$default.getTypeDeserializer().type(c11692qReceiverType)) == null) {
+            interfaceC11459q0CreateExtensionReceiverParameterForCallable = null;
+            c11865j = c11865j2;
+        } else {
+            c11865j = c11865j2;
+            interfaceC11459q0CreateExtensionReceiverParameterForCallable = C11786d.createExtensionReceiverParameterForCallable(c11865j, abstractC11913c0Type, empty);
+        }
+        c11865j.setType(abstractC11913c0Type2, ownTypeParameters, interfaceC11459q0M9973f, interfaceC11459q0CreateExtensionReceiverParameterForCallable);
+        int accessorFlags = C11703b.getAccessorFlags(C1643a.m880u0(C11703b.f24031b, i, "HAS_ANNOTATIONS.get(flags)"), dVar2.get(i), dVar.get(i), false, false, false);
+        if (zM880u0) {
+            int getterFlags = c11689n.hasGetterFlags() ? c11689n.getGetterFlags() : accessorFlags;
+            boolean zM880u1 = C1643a.m880u0(C11703b.f24025I, getterFlags, "IS_NOT_DEFAULT.get(getterFlags)");
+            boolean zM880u2 = C1643a.m880u0(C11703b.f24026J, getterFlags, "IS_EXTERNAL_ACCESSOR.get(getterFlags)");
+            boolean zM880u3 = C1643a.m880u0(C11703b.f24027K, getterFlags, "IS_INLINE_ACCESSOR.get(getterFlags)");
+            InterfaceC11344g interfaceC11344gM9972e2 = m9972e(c11689n2, getterFlags, enumC11846b);
+            if (zM880u1) {
+                c11890z = c11890z2;
+                c11368d0CreateDefaultGetter = new C11368d0(c11865j, interfaceC11344gM9972e2, c11890z2.modality(dVar.get(getterFlags)), C11845a0.descriptorVisibility(c11890z2, dVar2.get(getterFlags)), !zM880u1, zM880u2, zM880u3, c11865j.getKind(), null, InterfaceC11467u0.f23099a);
+            } else {
+                c11890z = c11890z2;
+                c11368d0CreateDefaultGetter = C11786d.createDefaultGetter(c11865j, interfaceC11344gM9972e2);
+                C12238m.checkNotNullExpressionValue(c11368d0CreateDefaultGetter, "{\n                DescriptorFactory.createDefaultGetter(property, annotations)\n            }");
+            }
+            c11368d0CreateDefaultGetter.initialize(c11865j.getReturnType());
+            c11368d0 = c11368d0CreateDefaultGetter;
+        } else {
+            c11890z = c11890z2;
+            c11368d0 = null;
+        }
+        if (C1643a.m880u0(C11703b.f24054y, i, "HAS_SETTER.get(flags)")) {
+            if (c11689n.hasSetterFlags()) {
+                accessorFlags = c11689n.getSetterFlags();
+            }
+            boolean zM880u4 = C1643a.m880u0(C11703b.f24025I, accessorFlags, "IS_NOT_DEFAULT.get(setterFlags)");
+            boolean zM880u5 = C1643a.m880u0(C11703b.f24026J, accessorFlags, "IS_EXTERNAL_ACCESSOR.get(setterFlags)");
+            boolean zM880u6 = C1643a.m880u0(C11703b.f24027K, accessorFlags, "IS_INLINE_ACCESSOR.get(setterFlags)");
+            EnumC11846b enumC11846b3 = EnumC11846b.PROPERTY_SETTER;
+            InterfaceC11344g interfaceC11344gM9972e3 = m9972e(c11689n2, accessorFlags, enumC11846b3);
+            if (zM880u4) {
+                C11370e0 c11370e1 = new C11370e0(c11865j, interfaceC11344gM9972e3, c11890z.modality(dVar.get(accessorFlags)), C11845a0.descriptorVisibility(c11890z, dVar2.get(accessorFlags)), !zM880u4, zM880u5, zM880u6, c11865j.getKind(), null, InterfaceC11467u0.f23099a);
+                c11370e1.initialize((InterfaceC11326c1) C12163u.single((List) C11876l.childContext$default(c11876lChildContext$default, c11370e1, C12147n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer().m9975h(C12145m.listOf(c11689n.getSetterValueParameter()), c11689n2, enumC11846b3)));
+                c11370e0 = c11370e1;
+            } else {
+                C11370e0 c11370e0CreateDefaultSetter = C11786d.createDefaultSetter(c11865j, interfaceC11344gM9972e3, InterfaceC11344g.f22735f.getEMPTY());
+                C12238m.checkNotNullExpressionValue(c11370e0CreateDefaultSetter, "{\n                DescriptorFactory.createDefaultSetter(\n                    property, annotations,\n                    Annotations.EMPTY /* Otherwise the setter is not default, see DescriptorResolver.resolvePropertySetterDescriptor */\n                )\n            }");
+                c11370e0 = c11370e0CreateDefaultSetter;
+            }
+        } else {
+            c11370e0 = null;
+        }
+        if (C1643a.m880u0(C11703b.f24018B, i, "HAS_CONSTANT.get(flags)")) {
+            c11865j.setCompileTimeInitializer(this.f24683a.getStorageManager().createNullableLazyValue(new d(c11689n2, c11865j)));
+        }
+        c11865j.initialize(c11368d0, c11370e0, new C11390p(m9974g(c11689n2, false), c11865j), new C11390p(m9974g(c11689n2, true), c11865j), m9969b(c11865j, c11876lChildContext$default.getTypeDeserializer()));
+        return c11865j;
+    }
+
+    public final InterfaceC11475y0 loadTypeAlias(C11693r c11693r) {
+        C12238m.checkNotNullParameter(c11693r, "proto");
+        InterfaceC11344g.a aVar = InterfaceC11344g.f22735f;
+        List<C11677b> annotationList = c11693r.getAnnotationList();
+        C12238m.checkNotNullExpressionValue(annotationList, "proto.annotationList");
+        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(annotationList, 10));
+        for (C11677b c11677b : annotationList) {
+            C11855e c11855e = this.f24684b;
+            C12238m.checkNotNullExpressionValue(c11677b, "it");
+            arrayList.add(c11855e.deserializeAnnotation(c11677b, this.f24683a.getNameResolver()));
+        }
+        C11867l c11867l = new C11867l(this.f24683a.getStorageManager(), this.f24683a.getContainingDeclaration(), aVar.create(arrayList), C11887w.getName(this.f24683a.getNameResolver(), c11693r.getName()), C11845a0.descriptorVisibility(C11890z.f24700a, C11703b.f24032c.get(c11693r.getFlags())), c11693r, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource());
+        C11876l c11876l = this.f24683a;
+        List<C11694s> typeParameterList = c11693r.getTypeParameterList();
+        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
+        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11867l, typeParameterList, null, null, null, null, 60, null);
+        c11867l.initialize(c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters(), c11876lChildContext$default.getTypeDeserializer().simpleType(C11707f.underlyingType(c11693r, this.f24683a.getTypeTable()), false), c11876lChildContext$default.getTypeDeserializer().simpleType(C11707f.expandedType(c11693r, this.f24683a.getTypeTable()), false), m9969b(c11867l, c11876lChildContext$default.getTypeDeserializer()));
+        return c11867l;
     }
 
     /* JADX INFO: renamed from: a */
@@ -429,227 +651,5 @@ public final class C11885u {
             z2 = true;
         }
         return z2;
-    }
-
-    public final InterfaceC11327d loadConstructor(C11679d c11679d, boolean z2) {
-        InterfaceC11862g.a aVarM9970c;
-        C11849c0 typeDeserializer;
-        C12238m.checkNotNullParameter(c11679d, "proto");
-        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) this.f24683a.getContainingDeclaration();
-        int flags = c11679d.getFlags();
-        EnumC11846b enumC11846b = EnumC11846b.FUNCTION;
-        C11858c c11858c = new C11858c(interfaceC11330e, null, m9972e(c11679d, flags, enumC11846b), z2, InterfaceC11321b.a.DECLARATION, c11679d, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource(), null, 1024, null);
-        C11885u memberDeserializer = C11876l.childContext$default(this.f24683a, c11858c, C12147n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer();
-        List<C11696u> valueParameterList = c11679d.getValueParameterList();
-        C12238m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
-        c11858c.initialize(memberDeserializer.m9975h(valueParameterList, c11679d, enumC11846b), C11845a0.descriptorVisibility(C11890z.f24700a, C11703b.f24032c.get(c11679d.getFlags())));
-        c11858c.setReturnType(interfaceC11330e.getDefaultType());
-        c11858c.setHasStableParameterNames(!C11703b.f24042m.get(c11679d.getFlags()).booleanValue());
-        InterfaceC11450m containingDeclaration = this.f24683a.getContainingDeclaration();
-        Boolean boolValueOf = null;
-        C11859d c11859d = containingDeclaration instanceof C11859d ? (C11859d) containingDeclaration : null;
-        C11876l c2 = c11859d == null ? null : c11859d.getC();
-        if (c2 != null && (typeDeserializer = c2.getTypeDeserializer()) != null) {
-            boolValueOf = Boolean.valueOf(typeDeserializer.getExperimentalSuspendFunctionTypeEncountered());
-        }
-        if (C12238m.areEqual(boolValueOf, Boolean.TRUE) && m9976i(c11858c)) {
-            aVarM9970c = InterfaceC11862g.a.INCOMPATIBLE;
-        } else {
-            Collection<? extends InterfaceC11326c1> valueParameters = c11858c.getValueParameters();
-            C12238m.checkNotNullExpressionValue(valueParameters, "descriptor.valueParameters");
-            Collection<? extends InterfaceC11477z0> typeParameters = c11858c.getTypeParameters();
-            C12238m.checkNotNullExpressionValue(typeParameters, "descriptor.typeParameters");
-            aVarM9970c = m9970c(c11858c, null, valueParameters, typeParameters, c11858c.getReturnType(), false);
-        }
-        c11858c.setCoroutinesExperimentalCompatibilityMode$deserialization(aVarM9970c);
-        return c11858c;
-    }
-
-    public final InterfaceC11465t0 loadFunction(C11684i c11684i) {
-        int flags;
-        AbstractC11913c0 abstractC11913c0Type;
-        C12238m.checkNotNullParameter(c11684i, "proto");
-        if (c11684i.hasFlags()) {
-            flags = c11684i.getFlags();
-        } else {
-            int oldFlags = c11684i.getOldFlags();
-            flags = ((oldFlags >> 8) << 6) + (oldFlags & 63);
-        }
-        int i = flags;
-        EnumC11846b enumC11846b = EnumC11846b.FUNCTION;
-        InterfaceC11344g interfaceC11344gM9972e = m9972e(c11684i, i, enumC11846b);
-        InterfaceC11344g c11856a = C11707f.hasReceiver(c11684i) ? new C11856a(this.f24683a.getStorageManager(), new C11886v(this, c11684i, enumC11846b)) : InterfaceC11344g.f22735f.getEMPTY();
-        C11710i empty = C12238m.areEqual(C11836a.getFqNameSafe(this.f24683a.getContainingDeclaration()).child(C11887w.getName(this.f24683a.getNameResolver(), c11684i.getName())), C11847b0.f24502a) ? C11710i.f24073a.getEMPTY() : this.f24683a.getVersionRequirementTable();
-        C11716e name = C11887w.getName(this.f24683a.getNameResolver(), c11684i.getName());
-        C11890z c11890z = C11890z.f24700a;
-        C11866k c11866k = new C11866k(this.f24683a.getContainingDeclaration(), null, interfaceC11344gM9972e, name, C11845a0.memberKind(c11890z, C11703b.f24043n.get(i)), c11684i, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), empty, this.f24683a.getContainerSource(), null, 1024, null);
-        C11876l c11876l = this.f24683a;
-        List<C11694s> typeParameterList = c11684i.getTypeParameterList();
-        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
-        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11866k, typeParameterList, null, null, null, null, 60, null);
-        C11692q c11692qReceiverType = C11707f.receiverType(c11684i, this.f24683a.getTypeTable());
-        InterfaceC11459q0 interfaceC11459q0CreateExtensionReceiverParameterForCallable = (c11692qReceiverType == null || (abstractC11913c0Type = c11876lChildContext$default.getTypeDeserializer().type(c11692qReceiverType)) == null) ? null : C11786d.createExtensionReceiverParameterForCallable(c11866k, abstractC11913c0Type, c11856a);
-        InterfaceC11459q0 interfaceC11459q0M9973f = m9973f();
-        List<InterfaceC11477z0> ownTypeParameters = c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters();
-        C11885u memberDeserializer = c11876lChildContext$default.getMemberDeserializer();
-        List<C11696u> valueParameterList = c11684i.getValueParameterList();
-        C12238m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
-        List<InterfaceC11326c1> listM9975h = memberDeserializer.m9975h(valueParameterList, c11684i, enumC11846b);
-        AbstractC11913c0 abstractC11913c0Type2 = c11876lChildContext$default.getTypeDeserializer().type(C11707f.returnType(c11684i, this.f24683a.getTypeTable()));
-        EnumC11476z enumC11476zModality = c11890z.modality(C11703b.f24033d.get(i));
-        AbstractC11466u abstractC11466uDescriptorVisibility = C11845a0.descriptorVisibility(c11890z, C11703b.f24032c.get(i));
-        Map<? extends InterfaceC11318a.a<?>, ?> mapEmptyMap = C12136h0.emptyMap();
-        C11703b.b bVar = C11703b.f24049t;
-        c11866k.initialize(interfaceC11459q0CreateExtensionReceiverParameterForCallable, interfaceC11459q0M9973f, ownTypeParameters, listM9975h, abstractC11913c0Type2, enumC11476zModality, abstractC11466uDescriptorVisibility, mapEmptyMap, m9970c(c11866k, interfaceC11459q0CreateExtensionReceiverParameterForCallable, listM9975h, ownTypeParameters, abstractC11913c0Type2, C1643a.m880u0(bVar, i, "IS_SUSPEND.get(flags)")));
-        Boolean bool = C11703b.f24044o.get(i);
-        C12238m.checkNotNullExpressionValue(bool, "IS_OPERATOR.get(flags)");
-        c11866k.setOperator(bool.booleanValue());
-        Boolean bool2 = C11703b.f24045p.get(i);
-        C12238m.checkNotNullExpressionValue(bool2, "IS_INFIX.get(flags)");
-        c11866k.setInfix(bool2.booleanValue());
-        Boolean bool3 = C11703b.f24048s.get(i);
-        C12238m.checkNotNullExpressionValue(bool3, "IS_EXTERNAL_FUNCTION.get(flags)");
-        c11866k.setExternal(bool3.booleanValue());
-        Boolean bool4 = C11703b.f24046q.get(i);
-        C12238m.checkNotNullExpressionValue(bool4, "IS_INLINE.get(flags)");
-        c11866k.setInline(bool4.booleanValue());
-        Boolean bool5 = C11703b.f24047r.get(i);
-        C12238m.checkNotNullExpressionValue(bool5, "IS_TAILREC.get(flags)");
-        c11866k.setTailrec(bool5.booleanValue());
-        Boolean bool6 = bVar.get(i);
-        C12238m.checkNotNullExpressionValue(bool6, "IS_SUSPEND.get(flags)");
-        c11866k.setSuspend(bool6.booleanValue());
-        Boolean bool7 = C11703b.f24050u.get(i);
-        C12238m.checkNotNullExpressionValue(bool7, "IS_EXPECT_FUNCTION.get(flags)");
-        c11866k.setExpect(bool7.booleanValue());
-        c11866k.setHasStableParameterNames(!C11703b.f24051v.get(i).booleanValue());
-        Pair<InterfaceC11318a.a<?>, Object> pairDeserializeContractFromFunction = this.f24683a.getComponents().getContractDeserializer().deserializeContractFromFunction(c11684i, c11866k, this.f24683a.getTypeTable(), c11876lChildContext$default.getTypeDeserializer());
-        if (pairDeserializeContractFromFunction != null) {
-            c11866k.putInUserDataMap(pairDeserializeContractFromFunction.getFirst(), pairDeserializeContractFromFunction.getSecond());
-        }
-        return c11866k;
-    }
-
-    public final InterfaceC11453n0 loadProperty(C11689n c11689n) {
-        int flags;
-        C11689n c11689n2;
-        EnumC11846b enumC11846b;
-        InterfaceC11344g empty;
-        InterfaceC11459q0 interfaceC11459q0CreateExtensionReceiverParameterForCallable;
-        C11865j c11865j;
-        C11890z c11890z;
-        C11368d0 c11368d0;
-        C11370e0 c11370e0;
-        C11368d0 c11368d0CreateDefaultGetter;
-        AbstractC11913c0 abstractC11913c0Type;
-        EnumC11846b enumC11846b2 = EnumC11846b.PROPERTY_GETTER;
-        C12238m.checkNotNullParameter(c11689n, "proto");
-        if (c11689n.hasFlags()) {
-            flags = c11689n.getFlags();
-        } else {
-            int oldFlags = c11689n.getOldFlags();
-            flags = ((oldFlags >> 8) << 6) + (oldFlags & 63);
-        }
-        int i = flags;
-        InterfaceC11450m containingDeclaration = this.f24683a.getContainingDeclaration();
-        InterfaceC11344g interfaceC11344gM9972e = m9972e(c11689n, i, EnumC11846b.PROPERTY);
-        C11890z c11890z2 = C11890z.f24700a;
-        C11703b.d<EnumC11686k> dVar = C11703b.f24033d;
-        EnumC11476z enumC11476zModality = c11890z2.modality(dVar.get(i));
-        C11703b.d<EnumC11699x> dVar2 = C11703b.f24032c;
-        C11865j c11865j2 = new C11865j(containingDeclaration, null, interfaceC11344gM9972e, enumC11476zModality, C11845a0.descriptorVisibility(c11890z2, dVar2.get(i)), C1643a.m880u0(C11703b.f24052w, i, "IS_VAR.get(flags)"), C11887w.getName(this.f24683a.getNameResolver(), c11689n.getName()), C11845a0.memberKind(c11890z2, C11703b.f24043n.get(i)), C1643a.m880u0(C11703b.f24017A, i, "IS_LATEINIT.get(flags)"), C1643a.m880u0(C11703b.f24055z, i, "IS_CONST.get(flags)"), C1643a.m880u0(C11703b.f24019C, i, "IS_EXTERNAL_PROPERTY.get(flags)"), C1643a.m880u0(C11703b.f24020D, i, "IS_DELEGATED.get(flags)"), C1643a.m880u0(C11703b.f24021E, i, "IS_EXPECT_PROPERTY.get(flags)"), c11689n, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource());
-        C11876l c11876l = this.f24683a;
-        List<C11694s> typeParameterList = c11689n.getTypeParameterList();
-        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
-        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11865j2, typeParameterList, null, null, null, null, 60, null);
-        boolean zM880u0 = C1643a.m880u0(C11703b.f24053x, i, "HAS_GETTER.get(flags)");
-        if (zM880u0 && C11707f.hasReceiver(c11689n)) {
-            c11689n2 = c11689n;
-            enumC11846b = enumC11846b2;
-            empty = new C11856a(this.f24683a.getStorageManager(), new C11886v(this, c11689n2, enumC11846b));
-        } else {
-            c11689n2 = c11689n;
-            enumC11846b = enumC11846b2;
-            empty = InterfaceC11344g.f22735f.getEMPTY();
-        }
-        AbstractC11913c0 abstractC11913c0Type2 = c11876lChildContext$default.getTypeDeserializer().type(C11707f.returnType(c11689n2, this.f24683a.getTypeTable()));
-        List<InterfaceC11477z0> ownTypeParameters = c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters();
-        InterfaceC11459q0 interfaceC11459q0M9973f = m9973f();
-        C11692q c11692qReceiverType = C11707f.receiverType(c11689n2, this.f24683a.getTypeTable());
-        if (c11692qReceiverType == null || (abstractC11913c0Type = c11876lChildContext$default.getTypeDeserializer().type(c11692qReceiverType)) == null) {
-            interfaceC11459q0CreateExtensionReceiverParameterForCallable = null;
-            c11865j = c11865j2;
-        } else {
-            c11865j = c11865j2;
-            interfaceC11459q0CreateExtensionReceiverParameterForCallable = C11786d.createExtensionReceiverParameterForCallable(c11865j, abstractC11913c0Type, empty);
-        }
-        c11865j.setType(abstractC11913c0Type2, ownTypeParameters, interfaceC11459q0M9973f, interfaceC11459q0CreateExtensionReceiverParameterForCallable);
-        int accessorFlags = C11703b.getAccessorFlags(C1643a.m880u0(C11703b.f24031b, i, "HAS_ANNOTATIONS.get(flags)"), dVar2.get(i), dVar.get(i), false, false, false);
-        if (zM880u0) {
-            int getterFlags = c11689n.hasGetterFlags() ? c11689n.getGetterFlags() : accessorFlags;
-            boolean zM880u1 = C1643a.m880u0(C11703b.f24025I, getterFlags, "IS_NOT_DEFAULT.get(getterFlags)");
-            boolean zM880u2 = C1643a.m880u0(C11703b.f24026J, getterFlags, "IS_EXTERNAL_ACCESSOR.get(getterFlags)");
-            boolean zM880u3 = C1643a.m880u0(C11703b.f24027K, getterFlags, "IS_INLINE_ACCESSOR.get(getterFlags)");
-            InterfaceC11344g interfaceC11344gM9972e2 = m9972e(c11689n2, getterFlags, enumC11846b);
-            if (zM880u1) {
-                c11890z = c11890z2;
-                c11368d0CreateDefaultGetter = new C11368d0(c11865j, interfaceC11344gM9972e2, c11890z2.modality(dVar.get(getterFlags)), C11845a0.descriptorVisibility(c11890z2, dVar2.get(getterFlags)), !zM880u1, zM880u2, zM880u3, c11865j.getKind(), null, InterfaceC11467u0.f23099a);
-            } else {
-                c11890z = c11890z2;
-                c11368d0CreateDefaultGetter = C11786d.createDefaultGetter(c11865j, interfaceC11344gM9972e2);
-                C12238m.checkNotNullExpressionValue(c11368d0CreateDefaultGetter, "{\n                DescriptorFactory.createDefaultGetter(property, annotations)\n            }");
-            }
-            c11368d0CreateDefaultGetter.initialize(c11865j.getReturnType());
-            c11368d0 = c11368d0CreateDefaultGetter;
-        } else {
-            c11890z = c11890z2;
-            c11368d0 = null;
-        }
-        if (C1643a.m880u0(C11703b.f24054y, i, "HAS_SETTER.get(flags)")) {
-            if (c11689n.hasSetterFlags()) {
-                accessorFlags = c11689n.getSetterFlags();
-            }
-            boolean zM880u4 = C1643a.m880u0(C11703b.f24025I, accessorFlags, "IS_NOT_DEFAULT.get(setterFlags)");
-            boolean zM880u5 = C1643a.m880u0(C11703b.f24026J, accessorFlags, "IS_EXTERNAL_ACCESSOR.get(setterFlags)");
-            boolean zM880u6 = C1643a.m880u0(C11703b.f24027K, accessorFlags, "IS_INLINE_ACCESSOR.get(setterFlags)");
-            EnumC11846b enumC11846b3 = EnumC11846b.PROPERTY_SETTER;
-            InterfaceC11344g interfaceC11344gM9972e3 = m9972e(c11689n2, accessorFlags, enumC11846b3);
-            if (zM880u4) {
-                C11370e0 c11370e1 = new C11370e0(c11865j, interfaceC11344gM9972e3, c11890z.modality(dVar.get(accessorFlags)), C11845a0.descriptorVisibility(c11890z, dVar2.get(accessorFlags)), !zM880u4, zM880u5, zM880u6, c11865j.getKind(), null, InterfaceC11467u0.f23099a);
-                c11370e1.initialize((InterfaceC11326c1) C12163u.single((List) C11876l.childContext$default(c11876lChildContext$default, c11370e1, C12147n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer().m9975h(C12145m.listOf(c11689n.getSetterValueParameter()), c11689n2, enumC11846b3)));
-                c11370e0 = c11370e1;
-            } else {
-                C11370e0 c11370e0CreateDefaultSetter = C11786d.createDefaultSetter(c11865j, interfaceC11344gM9972e3, InterfaceC11344g.f22735f.getEMPTY());
-                C12238m.checkNotNullExpressionValue(c11370e0CreateDefaultSetter, "{\n                DescriptorFactory.createDefaultSetter(\n                    property, annotations,\n                    Annotations.EMPTY /* Otherwise the setter is not default, see DescriptorResolver.resolvePropertySetterDescriptor */\n                )\n            }");
-                c11370e0 = c11370e0CreateDefaultSetter;
-            }
-        } else {
-            c11370e0 = null;
-        }
-        if (C1643a.m880u0(C11703b.f24018B, i, "HAS_CONSTANT.get(flags)")) {
-            c11865j.setCompileTimeInitializer(this.f24683a.getStorageManager().createNullableLazyValue(new d(c11689n2, c11865j)));
-        }
-        c11865j.initialize(c11368d0, c11370e0, new C11390p(m9974g(c11689n2, false), c11865j), new C11390p(m9974g(c11689n2, true), c11865j), m9969b(c11865j, c11876lChildContext$default.getTypeDeserializer()));
-        return c11865j;
-    }
-
-    public final InterfaceC11475y0 loadTypeAlias(C11693r c11693r) {
-        C12238m.checkNotNullParameter(c11693r, "proto");
-        InterfaceC11344g.a aVar = InterfaceC11344g.f22735f;
-        List<C11677b> annotationList = c11693r.getAnnotationList();
-        C12238m.checkNotNullExpressionValue(annotationList, "proto.annotationList");
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(annotationList, 10));
-        for (C11677b c11677b : annotationList) {
-            C11855e c11855e = this.f24684b;
-            C12238m.checkNotNullExpressionValue(c11677b, "it");
-            arrayList.add(c11855e.deserializeAnnotation(c11677b, this.f24683a.getNameResolver()));
-        }
-        C11867l c11867l = new C11867l(this.f24683a.getStorageManager(), this.f24683a.getContainingDeclaration(), aVar.create(arrayList), C11887w.getName(this.f24683a.getNameResolver(), c11693r.getName()), C11845a0.descriptorVisibility(C11890z.f24700a, C11703b.f24032c.get(c11693r.getFlags())), c11693r, this.f24683a.getNameResolver(), this.f24683a.getTypeTable(), this.f24683a.getVersionRequirementTable(), this.f24683a.getContainerSource());
-        C11876l c11876l = this.f24683a;
-        List<C11694s> typeParameterList = c11693r.getTypeParameterList();
-        C12238m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
-        C11876l c11876lChildContext$default = C11876l.childContext$default(c11876l, c11867l, typeParameterList, null, null, null, null, 60, null);
-        c11867l.initialize(c11876lChildContext$default.getTypeDeserializer().getOwnTypeParameters(), c11876lChildContext$default.getTypeDeserializer().simpleType(C11707f.underlyingType(c11693r, this.f24683a.getTypeTable()), false), c11876lChildContext$default.getTypeDeserializer().simpleType(C11707f.expandedType(c11693r, this.f24683a.getTypeTable()), false), m9969b(c11867l, c11876lChildContext$default.getTypeDeserializer()));
-        return c11867l;
     }
 }

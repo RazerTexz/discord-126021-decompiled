@@ -26,13 +26,6 @@ public final class C4526q0<E> extends AbstractC4527r<E> {
         return this.f12055m.equals(obj);
     }
 
-    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
-    /* JADX INFO: renamed from: d */
-    public int mo6242d(Object[] objArr, int i) {
-        objArr[i] = this.f12055m;
-        return i + 1;
-    }
-
     @Override // p007b.p225i.p355b.p357b.AbstractC4527r, java.util.Collection, java.util.Set
     public final int hashCode() {
         int i = this.f12056n;
@@ -44,16 +37,23 @@ public final class C4526q0<E> extends AbstractC4527r<E> {
         return iHashCode;
     }
 
-    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
-    /* JADX INFO: renamed from: i */
-    public boolean mo6246i() {
-        return false;
-    }
-
     @Override // p007b.p225i.p355b.p357b.AbstractC4527r, p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
     /* JADX INFO: renamed from: j */
     public AbstractC4530s0<E> iterator() {
         return new C4529s(this.f12055m);
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
+    /* JADX INFO: renamed from: d */
+    public int mo6242d(Object[] objArr, int i) {
+        objArr[i] = this.f12055m;
+        return i + 1;
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4519n
+    /* JADX INFO: renamed from: i */
+    public boolean mo6246i() {
+        return false;
     }
 
     @Override // p007b.p225i.p355b.p357b.AbstractC4527r

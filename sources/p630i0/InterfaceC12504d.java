@@ -8,6 +8,10 @@ import retrofit2.Response;
 /* JADX INFO: compiled from: Call.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC12504d<T> extends Cloneable {
+    void cancel();
+
+    Response<T> execute() throws IOException;
+
     /* JADX INFO: renamed from: C */
     void mo10697C(InterfaceC12527f<T> interfaceC12527f);
 
@@ -17,10 +21,6 @@ public interface InterfaceC12504d<T> extends Cloneable {
     /* JADX INFO: renamed from: c */
     Request mo10699c();
 
-    void cancel();
-
     /* JADX INFO: renamed from: d */
     boolean mo10700d();
-
-    Response<T> execute() throws IOException;
 }

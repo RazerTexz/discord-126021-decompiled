@@ -20,7 +20,7 @@ public class YearGridAdapter extends RecyclerView.Adapter<ViewHolder> {
     /* JADX INFO: renamed from: a */
     public final MaterialCalendar<?> f21006a;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView textView;
 
         public ViewHolder(TextView textView) {
@@ -33,14 +33,14 @@ public class YearGridAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.f21006a = materialCalendar;
     }
 
-    /* JADX INFO: renamed from: a */
-    public int m9142a(int i) {
-        return i - this.f21006a.getCalendarConstraints().getStart().f20986l;
-    }
-
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
         return this.f21006a.getCalendarConstraints().getYearSpan();
+    }
+
+    /* JADX INFO: renamed from: a */
+    public int m9142a(int i) {
+        return i - this.f21006a.getCalendarConstraints().getStart().f20986l;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

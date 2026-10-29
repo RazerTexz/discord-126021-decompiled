@@ -27,7 +27,7 @@ public class FragmentTransition {
         void onStart(@NonNull Fragment fragment, @NonNull CancellationSignal cancellationSignal);
     }
 
-    public static class FragmentContainerTransition {
+    public class FragmentContainerTransition {
         public Fragment firstOut;
         public boolean firstOutIsPop;
         public BackStackRecord firstOutTransaction;

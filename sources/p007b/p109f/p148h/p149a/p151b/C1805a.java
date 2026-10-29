@@ -71,108 +71,9 @@ public class C1805a implements InterfaceC1801a, C1803c.b {
         m1150n();
     }
 
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: a */
-    public int mo1142a() {
-        return this.f3498c.mo1142a();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: b */
-    public int mo1143b() {
-        return this.f3498c.mo1143b();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.C1803c.b
-    /* JADX INFO: renamed from: c */
-    public void mo1146c() {
-        this.f3497b.clear();
-    }
-
     @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
     public void clear() {
         this.f3497b.clear();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: d */
-    public void mo1136d(ColorFilter colorFilter) {
-        this.f3502g.setColorFilter(colorFilter);
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
-    /* JADX INFO: renamed from: e */
-    public int mo1144e(int i) {
-        return this.f3498c.mo1144e(i);
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: f */
-    public void mo1137f(@IntRange(from = 0, m76to = 255) int i) {
-        this.f3502g.setAlpha(i);
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: g */
-    public int mo1138g() {
-        return this.f3505j;
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: h */
-    public void mo1139h(Rect rect) {
-        this.f3503h = rect;
-        C1817b c1817b = (C1817b) this.f3499d;
-        C1845a c1845a = (C1845a) c1817b.f3528b;
-        if (!C1845a.m1195a(c1845a.f3626c, rect).equals(c1845a.f3627d)) {
-            c1845a = new C1845a(c1845a.f3624a, c1845a.f3625b, rect, c1845a.f3632i);
-        }
-        if (c1845a != c1817b.f3528b) {
-            c1817b.f3528b = c1845a;
-            c1817b.f3529c = new C1848d(c1845a, c1817b.f3530d);
-        }
-        m1150n();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: i */
-    public int mo1140i() {
-        return this.f3504i;
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
-    /* JADX INFO: renamed from: j */
-    public boolean mo1141j(Drawable drawable, Canvas canvas, int i) {
-        InterfaceC1813b interfaceC1813b;
-        int i2 = i;
-        boolean zM1148l = m1148l(canvas, i2, 0);
-        InterfaceC1812a interfaceC1812a = this.f3500e;
-        if (interfaceC1812a != null && (interfaceC1813b = this.f3501f) != null) {
-            InterfaceC1806b interfaceC1806b = this.f3497b;
-            C1815d c1815d = (C1815d) interfaceC1812a;
-            int i3 = 1;
-            while (i3 <= c1815d.f3525a) {
-                int iMo1142a = (i2 + i3) % mo1142a();
-                C1691a.m980h(2);
-                C1814c c1814c = (C1814c) interfaceC1813b;
-                Objects.requireNonNull(c1814c);
-                int iHashCode = (hashCode() * 31) + iMo1142a;
-                synchronized (c1814c.f3519e) {
-                    if (c1814c.f3519e.get(iHashCode) != null) {
-                        int i4 = C1691a.f3102a;
-                    } else if (interfaceC1806b.mo1153c(iMo1142a)) {
-                        int i5 = C1691a.f3102a;
-                    } else {
-                        C1814c.a aVar = c1814c.new a(this, interfaceC1806b, iMo1142a, iHashCode);
-                        c1814c.f3519e.put(iHashCode, aVar);
-                        c1814c.f3518d.execute(aVar);
-                    }
-                }
-                i3++;
-                i2 = i;
-            }
-        }
-        return zM1148l;
     }
 
     /* JADX INFO: renamed from: k */
@@ -282,5 +183,104 @@ public class C1805a implements InterfaceC1801a, C1803c.b {
             Rect rect2 = this.f3503h;
             this.f3505j = rect2 != null ? rect2.height() : -1;
         }
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: d */
+    public void mo1136d(ColorFilter colorFilter) {
+        this.f3502g.setColorFilter(colorFilter);
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: f */
+    public void mo1137f(@IntRange(from = 0, m76to = 255) int i) {
+        this.f3502g.setAlpha(i);
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: g */
+    public int mo1138g() {
+        return this.f3505j;
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: h */
+    public void mo1139h(Rect rect) {
+        this.f3503h = rect;
+        C1817b c1817b = (C1817b) this.f3499d;
+        C1845a c1845a = (C1845a) c1817b.f3528b;
+        if (!C1845a.m1195a(c1845a.f3626c, rect).equals(c1845a.f3627d)) {
+            c1845a = new C1845a(c1845a.f3624a, c1845a.f3625b, rect, c1845a.f3632i);
+        }
+        if (c1845a != c1817b.f3528b) {
+            c1817b.f3528b = c1845a;
+            c1817b.f3529c = new C1848d(c1845a, c1817b.f3530d);
+        }
+        m1150n();
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: i */
+    public int mo1140i() {
+        return this.f3504i;
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1801a
+    /* JADX INFO: renamed from: j */
+    public boolean mo1141j(Drawable drawable, Canvas canvas, int i) {
+        InterfaceC1813b interfaceC1813b;
+        int i2 = i;
+        boolean zM1148l = m1148l(canvas, i2, 0);
+        InterfaceC1812a interfaceC1812a = this.f3500e;
+        if (interfaceC1812a != null && (interfaceC1813b = this.f3501f) != null) {
+            InterfaceC1806b interfaceC1806b = this.f3497b;
+            C1815d c1815d = (C1815d) interfaceC1812a;
+            int i3 = 1;
+            while (i3 <= c1815d.f3525a) {
+                int iMo1142a = (i2 + i3) % mo1142a();
+                C1691a.m980h(2);
+                C1814c c1814c = (C1814c) interfaceC1813b;
+                Objects.requireNonNull(c1814c);
+                int iHashCode = (hashCode() * 31) + iMo1142a;
+                synchronized (c1814c.f3519e) {
+                    if (c1814c.f3519e.get(iHashCode) != null) {
+                        int i4 = C1691a.f3102a;
+                    } else if (interfaceC1806b.mo1153c(iMo1142a)) {
+                        int i5 = C1691a.f3102a;
+                    } else {
+                        C1814c.a aVar = c1814c.new a(this, interfaceC1806b, iMo1142a, iHashCode);
+                        c1814c.f3519e.put(iHashCode, aVar);
+                        c1814c.f3518d.execute(aVar);
+                    }
+                }
+                i3++;
+                i2 = i;
+            }
+        }
+        return zM1148l;
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: a */
+    public int mo1142a() {
+        return this.f3498c.mo1142a();
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: b */
+    public int mo1143b() {
+        return this.f3498c.mo1143b();
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.InterfaceC1804d
+    /* JADX INFO: renamed from: e */
+    public int mo1144e(int i) {
+        return this.f3498c.mo1144e(i);
+    }
+
+    @Override // p007b.p109f.p148h.p149a.p150a.C1803c.b
+    /* JADX INFO: renamed from: c */
+    public void mo1146c() {
+        this.f3497b.clear();
     }
 }

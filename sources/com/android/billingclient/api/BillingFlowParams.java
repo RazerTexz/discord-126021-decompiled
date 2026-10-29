@@ -31,7 +31,7 @@ public class BillingFlowParams {
 
     /* JADX INFO: renamed from: com.android.billingclient.api.BillingFlowParams$a */
     /* JADX INFO: compiled from: com.android.billingclient:billing@@4.0.0 */
-    public static class C5412a {
+    public class C5412a {
 
         /* JADX INFO: renamed from: a */
         public String f14553a;

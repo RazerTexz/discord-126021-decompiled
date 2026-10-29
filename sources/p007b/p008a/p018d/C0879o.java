@@ -29,7 +29,7 @@ public final class C0879o {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: b.a.d.o$a */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final class a<T> extends AbstractC12240o implements Function1<T, T> {
+    public final class a<T> extends AbstractC12240o implements Function1<T, T> {
 
         /* JADX INFO: renamed from: j */
         public static final a f567j = new a();
@@ -48,7 +48,7 @@ public final class C0879o {
     /* JADX INFO: Add missing generic type declarations: [V, K, V1] */
     /* JADX INFO: renamed from: b.a.d.o$b */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final class b<T, R, K, V, V1> implements Observable.InterfaceC13007c<Map<K, ? extends V>, Map<K, ? extends V1>> {
+    public final class b<T, R, K, V, V1> implements Observable.InterfaceC13007c<Map<K, ? extends V>, Map<K, ? extends V1>> {
 
         /* JADX INFO: renamed from: j */
         public static final b f568j = new b();
@@ -62,7 +62,7 @@ public final class C0879o {
     /* JADX INFO: Add missing generic type declarations: [V, K, V1] */
     /* JADX INFO: renamed from: b.a.d.o$c */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final class c<T, R, K, V, V1> implements Observable.InterfaceC13007c<Map<K, ? extends V>, Map<K, ? extends V1>> {
+    public final class c<T, R, K, V, V1> implements Observable.InterfaceC13007c<Map<K, ? extends V>, Map<K, ? extends V1>> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Collection f569j;
@@ -83,7 +83,7 @@ public final class C0879o {
 
     /* JADX INFO: renamed from: b.a.d.o$d */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final class d<T, R> implements Observable.InterfaceC13007c<T, T> {
+    public final class d<T, R> implements Observable.InterfaceC13007c<T, T> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Function1 f571j;
@@ -113,7 +113,7 @@ public final class C0879o {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: b.a.d.o$e */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final /* synthetic */ class e<T> extends C12236k implements Function1<T, Unit> {
+    public final /* synthetic */ class e<T> extends C12236k implements Function1<T, Unit> {
         public e(Action1 action1) {
             super(1, action1, Action1.class, NotificationCompat.CATEGORY_CALL, "call(Ljava/lang/Object;)V", 0);
         }
@@ -128,7 +128,7 @@ public final class C0879o {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: b.a.d.o$f */
     /* JADX INFO: compiled from: AppTransformers.kt */
-    public static final /* synthetic */ class f<T> extends C12236k implements Function1<T, Unit> {
+    public final /* synthetic */ class f<T> extends C12236k implements Function1<T, Unit> {
         public f(Action1 action1) {
             super(1, action1, Action1.class, NotificationCompat.CATEGORY_CALL, "call(Ljava/lang/Object;)V", 0);
         }

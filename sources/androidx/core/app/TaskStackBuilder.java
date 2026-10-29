@@ -17,8 +17,8 @@ import java.util.Iterator;
 /* JADX INFO: loaded from: classes.dex */
 public final class TaskStackBuilder implements Iterable<Intent> {
     private static final String TAG = "TaskStackBuilder";
-    private final ArrayList<Intent> mIntents = new ArrayList<>();
     private final Context mSourceContext;
+    private final ArrayList<Intent> mIntents = new ArrayList<>();
 
     public interface SupportParentable {
         @Nullable
@@ -27,16 +27,6 @@ public final class TaskStackBuilder implements Iterable<Intent> {
 
     private TaskStackBuilder(Context context) {
         this.mSourceContext = context;
-    }
-
-    @NonNull
-    public static TaskStackBuilder create(@NonNull Context context) {
-        return new TaskStackBuilder(context);
-    }
-
-    @Deprecated
-    public static TaskStackBuilder from(Context context) {
-        return create(context);
     }
 
     @NonNull
@@ -76,9 +66,19 @@ public final class TaskStackBuilder implements Iterable<Intent> {
         return this;
     }
 
+    @NonNull
+    public static TaskStackBuilder create(@NonNull Context context) {
+        return new TaskStackBuilder(context);
+    }
+
     @Nullable
     public Intent editIntentAt(int i) {
         return this.mIntents.get(i);
+    }
+
+    @Deprecated
+    public static TaskStackBuilder from(Context context) {
+        return create(context);
     }
 
     @Deprecated

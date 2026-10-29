@@ -34,7 +34,7 @@ public class RunnableC4833x implements Runnable {
 
     /* JADX INFO: renamed from: b.i.c.s.x$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
-    public static class a extends BroadcastReceiver {
+    public class a extends BroadcastReceiver {
 
         /* JADX INFO: renamed from: a */
         public RunnableC4833x f12913a;

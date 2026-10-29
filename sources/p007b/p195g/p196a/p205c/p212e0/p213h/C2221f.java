@@ -25,18 +25,6 @@ public class C2221f extends AbstractC2226k {
         super(abstractC2360j, c2335n);
     }
 
-    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
-    /* JADX INFO: renamed from: a */
-    public String mo1946a(Object obj) {
-        return m1964d(obj, obj.getClass(), this.f4774a);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
-    /* JADX INFO: renamed from: c */
-    public String mo1948c(Object obj, Class<?> cls) {
-        return m1964d(obj, cls, this.f4774a);
-    }
-
     /* JADX INFO: renamed from: d */
     public String m1964d(Object obj, Class<?> cls, C2335n c2335n) {
         Class<?> declaringClass;
@@ -153,5 +141,17 @@ public class C2221f extends AbstractC2226k {
             }
         }
         return c2328g.mo2106K();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
+    /* JADX INFO: renamed from: a */
+    public String mo1946a(Object obj) {
+        return m1964d(obj, obj.getClass(), this.f4774a);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p212e0.InterfaceC2213e
+    /* JADX INFO: renamed from: c */
+    public String mo1948c(Object obj, Class<?> cls) {
+        return m1964d(obj, cls, this.f4774a);
     }
 }

@@ -36,7 +36,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     private final LoadState loadState;
 
     /* JADX INFO: compiled from: WidgetChatInputDiscoveryCommandsModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -133,6 +133,10 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         this.loadState = loadState;
     }
 
+    public final List<Pair<Application, List<Autocompletable>>> component1() {
+        return this.commandsByApplication;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ WidgetChatInputDiscoveryCommandsModel copy$default(WidgetChatInputDiscoveryCommandsModel widgetChatInputDiscoveryCommandsModel, List list, boolean z2, boolean z3, int i, Long l, LoadState loadState, int i2, Object obj) {
         if ((i2 & 1) != 0) {
@@ -158,39 +162,6 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
             loadState = widgetChatInputDiscoveryCommandsModel.loadState;
         }
         return widgetChatInputDiscoveryCommandsModel.copy(list, z4, z5, i3, l2, loadState);
-    }
-
-    public static final WidgetChatInputDiscoveryCommandsModel parseModelDiscoveryCommands(long j, List<Long> list, List<Application> list2, DiscoverCommands discoverCommands, boolean z2, int i, List<? extends ApplicationCommand> list3) {
-        return INSTANCE.parseModelDiscoveryCommands(j, list, list2, discoverCommands, z2, i, list3);
-    }
-
-    public final List<Pair<Application, List<Autocompletable>>> component1() {
-        return this.commandsByApplication;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getHasMoreBefore() {
-        return this.hasMoreBefore;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getHasMoreAfter() {
-        return this.hasMoreAfter;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getJumpedSequenceId() {
-        return this.jumpedSequenceId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final Long getJumpedApplicationId() {
-        return this.jumpedApplicationId;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final LoadState getLoadState() {
-        return this.loadState;
     }
 
     public final WidgetChatInputDiscoveryCommandsModel copy(List<? extends Pair<Application, ? extends List<? extends Autocompletable>>> commandsByApplication, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
@@ -223,20 +194,45 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         return arrayList;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getHasMoreAfter() {
         return this.hasMoreAfter;
+    }
+
+    public final boolean getHasMoreAfter() {
+        return this.hasMoreAfter;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getHasMoreBefore() {
+        return this.hasMoreBefore;
     }
 
     public final boolean getHasMoreBefore() {
         return this.hasMoreBefore;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final Long getJumpedApplicationId() {
         return this.jumpedApplicationId;
     }
 
+    public final Long getJumpedApplicationId() {
+        return this.jumpedApplicationId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final int getJumpedSequenceId() {
         return this.jumpedSequenceId;
+    }
+
+    public final int getJumpedSequenceId() {
+        return this.jumpedSequenceId;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final LoadState getLoadState() {
+        return this.loadState;
     }
 
     public final LoadState getLoadState() {
@@ -265,6 +261,10 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         int iHashCode2 = (i2 + (l != null ? l.hashCode() : 0)) * 31;
         LoadState loadState = this.loadState;
         return iHashCode2 + (loadState != null ? loadState.hashCode() : 0);
+    }
+
+    public static final WidgetChatInputDiscoveryCommandsModel parseModelDiscoveryCommands(long j, List<Long> list, List<Application> list2, DiscoverCommands discoverCommands, boolean z2, int i, List<? extends ApplicationCommand> list3) {
+        return INSTANCE.parseModelDiscoveryCommands(j, list, list2, discoverCommands, z2, i, list3);
     }
 
     public String toString() {

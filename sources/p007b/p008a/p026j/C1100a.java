@@ -31,7 +31,7 @@ public final class C1100a {
 
     /* JADX INFO: renamed from: b.a.j.a$a */
     /* JADX INFO: compiled from: FloatingViewManager.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final View f1457a;
@@ -54,7 +54,7 @@ public final class C1100a {
 
     /* JADX INFO: renamed from: b.a.j.a$b */
     /* JADX INFO: compiled from: FloatingViewManager.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public static WeakReference<C1100a> f1460a;

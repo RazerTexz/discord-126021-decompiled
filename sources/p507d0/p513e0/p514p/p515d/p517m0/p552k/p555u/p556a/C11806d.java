@@ -29,7 +29,7 @@ public final class C11806d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.u.a.d$a */
     /* JADX INFO: compiled from: CapturedTypeConstructor.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
         public final /* synthetic */ InterfaceC12012w0 $this_createCapturedIfNeeded;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -49,7 +49,7 @@ public final class C11806d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.u.a.d$b */
     /* JADX INFO: compiled from: CapturedTypeConstructor.kt */
-    public static final class b extends C11939l {
+    public final class b extends C11939l {
 
         /* JADX INFO: renamed from: c */
         public final /* synthetic */ boolean f24434c;
@@ -77,6 +77,16 @@ public final class C11806d {
         }
     }
 
+    public static final AbstractC11913c0 createCapturedType(InterfaceC12012w0 interfaceC12012w0) {
+        C12238m.checkNotNullParameter(interfaceC12012w0, "typeProjection");
+        return new C11803a(interfaceC12012w0, null, false, null, 14, null);
+    }
+
+    public static final boolean isCaptured(AbstractC11913c0 abstractC11913c0) {
+        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
+        return abstractC11913c0.getConstructor() instanceof InterfaceC11804b;
+    }
+
     /* JADX INFO: renamed from: a */
     public static final InterfaceC12012w0 m9941a(InterfaceC12012w0 interfaceC12012w0, InterfaceC11477z0 interfaceC11477z0) {
         if (interfaceC11477z0 == null || interfaceC12012w0.getProjectionKind() == EnumC11935j1.INVARIANT) {
@@ -93,14 +103,11 @@ public final class C11806d {
         return new C12016y0(new C11922f0(interfaceC11905o, new a(interfaceC12012w0)));
     }
 
-    public static final AbstractC11913c0 createCapturedType(InterfaceC12012w0 interfaceC12012w0) {
-        C12238m.checkNotNullParameter(interfaceC12012w0, "typeProjection");
-        return new C11803a(interfaceC12012w0, null, false, null, 14, null);
-    }
-
-    public static final boolean isCaptured(AbstractC11913c0 abstractC11913c0) {
-        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
-        return abstractC11913c0.getConstructor() instanceof InterfaceC11804b;
+    public static /* synthetic */ AbstractC12018z0 wrapWithCapturingSubstitution$default(AbstractC12018z0 abstractC12018z0, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return wrapWithCapturingSubstitution(abstractC12018z0, z2);
     }
 
     public static final AbstractC12018z0 wrapWithCapturingSubstitution(AbstractC12018z0 abstractC12018z0, boolean z2) {
@@ -118,12 +125,5 @@ public final class C11806d {
         Object[] array = arrayList.toArray(new InterfaceC12012w0[0]);
         Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
         return new C12017z(parameters, (InterfaceC12012w0[]) array, z2);
-    }
-
-    public static /* synthetic */ AbstractC12018z0 wrapWithCapturingSubstitution$default(AbstractC12018z0 abstractC12018z0, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return wrapWithCapturingSubstitution(abstractC12018z0, z2);
     }
 }

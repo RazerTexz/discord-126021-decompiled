@@ -23,9 +23,19 @@ public final class C12698c extends Scheduler {
     /* JADX INFO: renamed from: a */
     public final Executor f27203a;
 
+    public C12698c(Executor executor) {
+        this.f27203a = executor;
+    }
+
+    @Override // p658rx.Scheduler
+    /* JADX INFO: renamed from: a */
+    public Scheduler.Worker mo10739a() {
+        return new a(this.f27203a);
+    }
+
     /* JADX INFO: renamed from: j0.l.c.c$a */
     /* JADX INFO: compiled from: ExecutorScheduler.java */
-    public static final class a extends Scheduler.Worker implements Runnable {
+    public final class a extends Scheduler.Worker implements Runnable {
 
         /* JADX INFO: renamed from: j */
         public final Executor f27204j;
@@ -106,6 +116,11 @@ public final class C12698c extends Scheduler {
             this.f27208n = scheduledExecutorService;
         }
 
+        @Override // p658rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f27205k.f27656k;
+        }
+
         @Override // rx.Scheduler.Worker
         /* JADX INFO: renamed from: a */
         public Subscription mo10740a(Action0 action0) {
@@ -164,11 +179,6 @@ public final class C12698c extends Scheduler {
             }
         }
 
-        @Override // p658rx.Subscription
-        public boolean isUnsubscribed() {
-            return this.f27205k.f27656k;
-        }
-
         @Override // java.lang.Runnable
         public void run() {
             while (!this.f27205k.f27656k) {
@@ -195,15 +205,5 @@ public final class C12698c extends Scheduler {
             this.f27205k.unsubscribe();
             this.f27206l.clear();
         }
-    }
-
-    public C12698c(Executor executor) {
-        this.f27203a = executor;
-    }
-
-    @Override // p658rx.Scheduler
-    /* JADX INFO: renamed from: a */
-    public Scheduler.Worker mo10739a() {
-        return new a(this.f27203a);
     }
 }

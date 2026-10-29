@@ -10,16 +10,6 @@ public final /* data */ class BackupCode {
     private final String code;
     private final boolean consumed;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getCode() {
-        return this.code;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final boolean getConsumed() {
-        return this.consumed;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,16 @@ public final /* data */ class BackupCode {
         }
         BackupCode backupCode = (BackupCode) other;
         return C12238m.areEqual(this.code, backupCode.code) && this.consumed == backupCode.consumed;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getCode() {
+        return this.code;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final boolean getConsumed() {
+        return this.consumed;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

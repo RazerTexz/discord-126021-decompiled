@@ -27,14 +27,6 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
         this(roomDatabase, RoomSQLiteQuery.copyFrom(supportSQLiteQuery), z2, strArr);
     }
 
-    private RoomSQLiteQuery getSQLiteQuery(int i, int i2) {
-        RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire(this.mLimitOffsetQuery, this.mSourceQuery.getArgCount() + 2);
-        roomSQLiteQueryAcquire.copyArgumentsFrom(this.mSourceQuery);
-        roomSQLiteQueryAcquire.bindLong(roomSQLiteQueryAcquire.getArgCount() - 1, i2);
-        roomSQLiteQueryAcquire.bindLong(roomSQLiteQueryAcquire.getArgCount(), i);
-        return roomSQLiteQueryAcquire;
-    }
-
     public abstract List<T> convertRows(Cursor cursor);
 
     public int countItems() {
@@ -50,6 +42,14 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
             cursorQuery.close();
             roomSQLiteQueryAcquire.release();
         }
+    }
+
+    private RoomSQLiteQuery getSQLiteQuery(int i, int i2) {
+        RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire(this.mLimitOffsetQuery, this.mSourceQuery.getArgCount() + 2);
+        roomSQLiteQueryAcquire.copyArgumentsFrom(this.mSourceQuery);
+        roomSQLiteQueryAcquire.bindLong(roomSQLiteQueryAcquire.getArgCount() - 1, i2);
+        roomSQLiteQueryAcquire.bindLong(roomSQLiteQueryAcquire.getArgCount(), i);
+        return roomSQLiteQueryAcquire;
     }
 
     public boolean isInvalid() {

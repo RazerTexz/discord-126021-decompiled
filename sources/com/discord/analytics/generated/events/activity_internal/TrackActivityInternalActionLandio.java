@@ -11,28 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionLandio.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionLandio implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
-    private final Long ping = null;
-    private final CharSequence server = null;
-    private final Long pingPeak = null;
     private final Long frame = null;
     private final Long framePeak = null;
     private final Long numPlayers = null;
-    private final Long numVotesYes = null;
     private final Long numVotesNo = null;
-    private final Long turnLifespan = null;
-    private final Long turnKills = null;
-    private final Long turnClaimed = null;
+    private final Long numVotesYes = null;
+    private final Long ping = null;
+    private final Long pingPeak = null;
+    private final CharSequence server = null;
     private final Boolean toggleEnable = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
+    private final Long turnClaimed = null;
+    private final Long turnKills = null;
+    private final Long turnLifespan = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_landio";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -43,6 +37,12 @@ public final /* data */ class TrackActivityInternalActionLandio implements Analy
         }
         TrackActivityInternalActionLandio trackActivityInternalActionLandio = (TrackActivityInternalActionLandio) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionLandio.actionName) && C12238m.areEqual(this.ping, trackActivityInternalActionLandio.ping) && C12238m.areEqual(this.server, trackActivityInternalActionLandio.server) && C12238m.areEqual(this.pingPeak, trackActivityInternalActionLandio.pingPeak) && C12238m.areEqual(this.frame, trackActivityInternalActionLandio.frame) && C12238m.areEqual(this.framePeak, trackActivityInternalActionLandio.framePeak) && C12238m.areEqual(this.numPlayers, trackActivityInternalActionLandio.numPlayers) && C12238m.areEqual(this.numVotesYes, trackActivityInternalActionLandio.numVotesYes) && C12238m.areEqual(this.numVotesNo, trackActivityInternalActionLandio.numVotesNo) && C12238m.areEqual(this.turnLifespan, trackActivityInternalActionLandio.turnLifespan) && C12238m.areEqual(this.turnKills, trackActivityInternalActionLandio.turnKills) && C12238m.areEqual(this.turnClaimed, trackActivityInternalActionLandio.turnClaimed) && C12238m.areEqual(this.toggleEnable, trackActivityInternalActionLandio.toggleEnable);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -47,27 +47,9 @@ public final class WidgetUserStatusSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetUserStatusSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Fragment fragment) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            WidgetUserStatusSheet widgetUserStatusSheet = new WidgetUserStatusSheet();
-            FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
-            widgetUserStatusSheet.show(parentFragmentManager, "javaClass");
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetUserStatusSheet.kt */
-    public static final /* synthetic */ class C102391 extends C12236k implements Function1<WidgetUserStatusSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C102391 extends C12236k implements Function1<WidgetUserStatusSheetViewModel.ViewState, Unit> {
         public C102391(WidgetUserStatusSheet widgetUserStatusSheet) {
             super(1, widgetUserStatusSheet, WidgetUserStatusSheet.class, "updateView", "updateView(Lcom/discord/widgets/user/WidgetUserStatusSheetViewModel$ViewState;)V", 0);
         }
@@ -87,7 +69,7 @@ public final class WidgetUserStatusSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserStatusSheet$onViewCreated$6 */
     /* JADX INFO: compiled from: WidgetUserStatusSheet.kt */
-    public static final class C102456 extends AbstractC12240o implements Function0<Unit> {
+    public final class C102456 extends AbstractC12240o implements Function0<Unit> {
         public C102456() {
             super(0);
         }
@@ -101,6 +83,24 @@ public final class WidgetUserStatusSheet extends AppBottomSheet {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             WidgetUserStatusSheet.this.clearCustomStatus();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserStatusSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Fragment fragment) {
+            C12238m.checkNotNullParameter(fragment, "fragment");
+            WidgetUserStatusSheet widgetUserStatusSheet = new WidgetUserStatusSheet();
+            FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
+            C12238m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            widgetUserStatusSheet.show(parentFragmentManager, "javaClass");
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -121,32 +121,13 @@ public final class WidgetUserStatusSheet extends AppBottomSheet {
         return (WidgetUserStatusUpdateBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetUserStatusSheetViewModel getViewModel() {
-        return (WidgetUserStatusSheetViewModel) this.viewModel.getValue();
-    }
-
-    @MainThread
-    private final void openCustomStatusAndDismiss(Context context) {
-        AnalyticsTracker.INSTANCE.openModal("Custom Status Modal", new Traits.Source(null, "Account Panel", "Avatar", null, null, 25, null));
-        WidgetUserSetCustomStatus.INSTANCE.launch(context);
-        dismiss();
-    }
-
-    @MainThread
-    private final void updateStateAndDismiss(ClientStatus status) {
-        getViewModel().setStatus(status);
-        dismiss();
-    }
-
-    private final void updateView(WidgetUserStatusSheetViewModel.ViewState viewState) {
-        if (viewState instanceof WidgetUserStatusSheetViewModel.ViewState.Loaded) {
-            getBinding().f18432b.updateViewState(((WidgetUserStatusSheetViewModel.ViewState.Loaded) viewState).getCustomStatusViewState());
-        }
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_user_status_update;
+    }
+
+    private final WidgetUserStatusSheetViewModel getViewModel() {
+        return (WidgetUserStatusSheetViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -218,5 +199,24 @@ public final class WidgetUserStatusSheet extends AppBottomSheet {
             }
         });
         getBinding().f18432b.setOnClear(new C102456());
+    }
+
+    @MainThread
+    private final void openCustomStatusAndDismiss(Context context) {
+        AnalyticsTracker.INSTANCE.openModal("Custom Status Modal", new Traits.Source(null, "Account Panel", "Avatar", null, null, 25, null));
+        WidgetUserSetCustomStatus.INSTANCE.launch(context);
+        dismiss();
+    }
+
+    @MainThread
+    private final void updateStateAndDismiss(ClientStatus status) {
+        getViewModel().setStatus(status);
+        dismiss();
+    }
+
+    private final void updateView(WidgetUserStatusSheetViewModel.ViewState viewState) {
+        if (viewState instanceof WidgetUserStatusSheetViewModel.ViewState.Loaded) {
+            getBinding().f18432b.updateViewState(((WidgetUserStatusSheetViewModel.ViewState.Loaded) viewState).getCustomStatusViewState());
+        }
     }
 }

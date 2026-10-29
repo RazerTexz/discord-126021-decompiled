@@ -226,7 +226,8 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
     }
 
     @SuppressLint({"BanParcelableUsage"})
-    public static class SavedState implements Parcelable {
+    public class SavedState implements Parcelable {
+        public int openSubMenuId;
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.appcompat.widget.ActionMenuPresenter.SavedState.1
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
@@ -240,7 +241,6 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
                 return new SavedState[i];
             }
         };
-        public int openSubMenuId;
 
         public SavedState() {
         }
@@ -266,22 +266,6 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
         this.mPopupPresenterCallback = new PopupPresenterCallback();
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    private View findViewForItem(MenuItem menuItem) {
-        ViewGroup viewGroup = (ViewGroup) this.mMenuView;
-        if (viewGroup == null) {
-            return null;
-        }
-        int childCount = viewGroup.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = viewGroup.getChildAt(i);
-            if ((childAt instanceof MenuView.ItemView) && ((MenuView.ItemView) childAt).getItemData() == menuItem) {
-                return childAt;
-            }
-        }
-        return null;
-    }
-
     @Override // androidx.appcompat.view.menu.BaseMenuPresenter
     public void bindItemView(MenuItemImpl menuItemImpl, MenuView.ItemView itemView) {
         itemView.initialize(menuItemImpl, 0);
@@ -303,6 +287,22 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
             return false;
         }
         return super.filterLeftoverView(viewGroup, i);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private View findViewForItem(MenuItem menuItem) {
+        ViewGroup viewGroup = (ViewGroup) this.mMenuView;
+        if (viewGroup == null) {
+            return null;
+        }
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = viewGroup.getChildAt(i);
+            if ((childAt instanceof MenuView.ItemView) && ((MenuView.ItemView) childAt).getItemData() == menuItem) {
+                return childAt;
+            }
+        }
+        return null;
     }
 
     @Override // androidx.appcompat.view.menu.BaseMenuPresenter, androidx.appcompat.view.menu.MenuPresenter

@@ -11,24 +11,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalLetterLeagueAction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalLetterLeagueAction implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
     private final CharSequence bag = null;
-    private final CharSequence scoringMode = null;
+    private final Long durationS = null;
     private final Long numPlayers = null;
     private final Long numSpectators = null;
     private final CharSequence phase = null;
-    private final Long durationS = null;
     private final Long score = null;
+    private final CharSequence scoringMode = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final CharSequence turnType = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_letter_league_action";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackActivityInternalLetterLeagueAction implements
         }
         TrackActivityInternalLetterLeagueAction trackActivityInternalLetterLeagueAction = (TrackActivityInternalLetterLeagueAction) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalLetterLeagueAction.actionName) && C12238m.areEqual(this.bag, trackActivityInternalLetterLeagueAction.bag) && C12238m.areEqual(this.scoringMode, trackActivityInternalLetterLeagueAction.scoringMode) && C12238m.areEqual(this.numPlayers, trackActivityInternalLetterLeagueAction.numPlayers) && C12238m.areEqual(this.numSpectators, trackActivityInternalLetterLeagueAction.numSpectators) && C12238m.areEqual(this.phase, trackActivityInternalLetterLeagueAction.phase) && C12238m.areEqual(this.durationS, trackActivityInternalLetterLeagueAction.durationS) && C12238m.areEqual(this.score, trackActivityInternalLetterLeagueAction.score) && C12238m.areEqual(this.turnType, trackActivityInternalLetterLeagueAction.turnType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

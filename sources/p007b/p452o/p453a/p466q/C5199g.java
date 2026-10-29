@@ -45,12 +45,6 @@ public class C5199g extends AbstractC5195c {
         gestureDetector.setIsLongpressEnabled(true);
     }
 
-    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
-    /* JADX INFO: renamed from: b */
-    public float mo7393b(float f, float f2, float f3) {
-        return 0.0f;
-    }
-
     /* JADX INFO: renamed from: c */
     public boolean m7396c(@NonNull MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
@@ -63,5 +57,11 @@ public class C5199g extends AbstractC5195c {
         this.f14083c[0].x = motionEvent.getX();
         this.f14083c[0].y = motionEvent.getY();
         return true;
+    }
+
+    @Override // p007b.p452o.p453a.p466q.AbstractC5195c
+    /* JADX INFO: renamed from: b */
+    public float mo7393b(float f, float f2, float f3) {
+        return 0.0f;
     }
 }

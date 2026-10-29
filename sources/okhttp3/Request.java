@@ -106,7 +106,7 @@ public final class Request {
 
     /* JADX INFO: renamed from: okhttp3.Request$a */
     /* JADX INFO: compiled from: Request.kt */
-    public static class C12935a {
+    public class C12935a {
 
         /* JADX INFO: renamed from: a */
         public C12379w f27543a;

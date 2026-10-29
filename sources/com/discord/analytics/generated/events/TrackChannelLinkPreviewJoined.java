@@ -13,33 +13,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackChannelLinkPreviewJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackChannelLinkPreviewJoined implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+    private final CharSequence authorId = null;
+    private final CharSequence linkChannelId = null;
+    private final Long linkChannelType = null;
+    private final CharSequence linkGuildId = null;
+    private final CharSequence linkMessageId = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
-    private final CharSequence authorId = null;
-    private final CharSequence linkGuildId = null;
-    private final CharSequence linkChannelId = null;
-    private final CharSequence linkMessageId = null;
-    private final Long linkChannelType = null;
     private final transient String analyticsSchemaTypeName = "channel_link_preview_joined";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +32,18 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
         }
         TrackChannelLinkPreviewJoined trackChannelLinkPreviewJoined = (TrackChannelLinkPreviewJoined) other;
         return C12238m.areEqual(this.authorId, trackChannelLinkPreviewJoined.authorId) && C12238m.areEqual(this.linkGuildId, trackChannelLinkPreviewJoined.linkGuildId) && C12238m.areEqual(this.linkChannelId, trackChannelLinkPreviewJoined.linkChannelId) && C12238m.areEqual(this.linkMessageId, trackChannelLinkPreviewJoined.linkMessageId) && C12238m.areEqual(this.linkChannelType, trackChannelLinkPreviewJoined.linkChannelType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -63,6 +57,12 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
         int iHashCode4 = (iHashCode3 + (charSequence4 != null ? charSequence4.hashCode() : 0)) * 31;
         Long l = this.linkChannelType;
         return iHashCode4 + (l != null ? l.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

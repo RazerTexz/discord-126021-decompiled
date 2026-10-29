@@ -6,7 +6,7 @@ public class NativeLibrary {
     private static boolean libraryLoaded;
     private static Object lock = new Object();
 
-    public static class DefaultLoader implements NativeLibraryLoader {
+    public class DefaultLoader implements NativeLibraryLoader {
         @Override // org.webrtc.NativeLibraryLoader
         public boolean load(String str) {
             Logging.m11027d(NativeLibrary.TAG, "Loading library: " + str);

@@ -53,21 +53,6 @@ public class MenuPopupHelper implements MenuHelper {
         return cascadingMenuPopup;
     }
 
-    private void showPopup(int i, int i2, boolean z2, boolean z3) {
-        MenuPopup popup = getPopup();
-        popup.setShowTitle(z3);
-        if (z2) {
-            if ((GravityCompat.getAbsoluteGravity(this.mDropDownGravity, ViewCompat.getLayoutDirection(this.mAnchorView)) & 7) == 5) {
-                i -= this.mAnchorView.getWidth();
-            }
-            popup.setHorizontalOffset(i);
-            popup.setVerticalOffset(i2);
-            int i3 = (int) ((this.mContext.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
-            popup.setEpicenterBounds(new Rect(i - i3, i2 - i3, i + i3, i2 + i3));
-        }
-        popup.show();
-    }
-
     @Override // androidx.appcompat.view.menu.MenuHelper
     public void dismiss() {
         if (isShowing()) {
@@ -137,6 +122,21 @@ public class MenuPopupHelper implements MenuHelper {
         if (!tryShow()) {
             throw new IllegalStateException("MenuPopupHelper cannot be used without an anchor");
         }
+    }
+
+    private void showPopup(int i, int i2, boolean z2, boolean z3) {
+        MenuPopup popup = getPopup();
+        popup.setShowTitle(z3);
+        if (z2) {
+            if ((GravityCompat.getAbsoluteGravity(this.mDropDownGravity, ViewCompat.getLayoutDirection(this.mAnchorView)) & 7) == 5) {
+                i -= this.mAnchorView.getWidth();
+            }
+            popup.setHorizontalOffset(i);
+            popup.setVerticalOffset(i2);
+            int i3 = (int) ((this.mContext.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
+            popup.setEpicenterBounds(new Rect(i - i3, i2 - i3, i + i3, i2 + i3));
+        }
+        popup.show();
     }
 
     public boolean tryShow() {

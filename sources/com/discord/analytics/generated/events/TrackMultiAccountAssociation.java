@@ -10,16 +10,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMultiAccountAssociation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMultiAccountAssociation implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long lastUserId = null;
     private final List<Long> linkedUserIds = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "multi_account_association";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackMultiAccountAssociation implements AnalyticsS
         }
         TrackMultiAccountAssociation trackMultiAccountAssociation = (TrackMultiAccountAssociation) other;
         return C12238m.areEqual(this.lastUserId, trackMultiAccountAssociation.lastUserId) && C12238m.areEqual(this.linkedUserIds, trackMultiAccountAssociation.linkedUserIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

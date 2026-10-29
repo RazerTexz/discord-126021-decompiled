@@ -8,7 +8,6 @@ import android.os.ParcelFileDescriptor;
 import androidx.core.app.NotificationCompat;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -66,7 +65,7 @@ public final class C5311b extends AbstractC12194k implements Function2<Coroutine
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-    public final Object invokeSuspend(Object obj) throws IOException {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         String string;
         C12183c.getCOROUTINE_SUSPENDED();
         if (this.label != 0) {

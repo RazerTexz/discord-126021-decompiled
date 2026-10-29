@@ -46,67 +46,6 @@ public final class AuthInviteInfoView extends RelativeLayout {
         this(context, (i2 & 2) != 0 ? null : attributeSet, (i2 & 4) != 0 ? 0 : i);
     }
 
-    /* JADX WARN: Code duplicated, block: B:29:0x0060 A[DONT_INVERT] */
-    /* JADX WARN: Code duplicated, block: B:31:0x0073  */
-    /* JADX WARN: Code duplicated, block: B:33:0x0082  */
-    /* JADX WARN: Code duplicated, block: B:34:0x0087  */
-    private final CharSequence getIntroText(ModelInvite modelInvite) {
-        User inviter;
-        String username;
-        User inviter2 = modelInvite.getInviter();
-        String username2 = inviter2 != null ? inviter2.getUsername() : null;
-        boolean z2 = username2 != null && (C12103t.isBlank(username2) ^ true);
-        if (modelInvite.getChannel() == null && modelInvite.guild == null && z2) {
-            Context context = getContext();
-            C12238m.checkNotNullExpressionValue(context, "context");
-            return C1107b.m216h(context, C5419R.string.instant_invite_you_have_been_invited_to_chat_with, new Object[0], null, 4);
-        }
-        Channel channel = modelInvite.getChannel();
-        if (channel == null || !ChannelUtils.m7702z(channel)) {
-            if (modelInvite.getApproximateMemberCount() >= 200 || !z2) {
-                Context context2 = getContext();
-                C12238m.checkNotNullExpressionValue(context2, "context");
-                return C1107b.m216h(context2, C5419R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4);
-            }
-            Context context3 = getContext();
-            C12238m.checkNotNullExpressionValue(context3, "context");
-            return C1107b.m216h(context3, C5419R.string.auth_message_invited_by, new Object[]{username2}, null, 4);
-        }
-        Channel channel2 = modelInvite.getChannel();
-        if (channel2 != null) {
-            if (!(ChannelUtils.m7679c(channel2).length() == 0)) {
-                if (z2) {
-                    Context context4 = getContext();
-                    C12238m.checkNotNullExpressionValue(context4, "context");
-                    Object[] objArr = new Object[1];
-                    inviter = modelInvite.getInviter();
-                    if (inviter != null) {
-                        username = inviter.getUsername();
-                    } else {
-                        username = null;
-                    }
-                    objArr[0] = username;
-                    return C1107b.m216h(context4, C5419R.string.auth_message_invited_by, objArr, null, 4);
-                }
-            }
-        } else if (z2) {
-            Context context5 = getContext();
-            C12238m.checkNotNullExpressionValue(context5, "context");
-            Object[] objArr2 = new Object[1];
-            inviter = modelInvite.getInviter();
-            if (inviter != null) {
-                username = inviter.getUsername();
-            } else {
-                username = null;
-            }
-            objArr2[0] = username;
-            return C1107b.m216h(context5, C5419R.string.auth_message_invited_by, objArr2, null, 4);
-        }
-        Context context6 = getContext();
-        C12238m.checkNotNullExpressionValue(context6, "context");
-        return C1107b.m216h(context6, C5419R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
-    }
-
     public final void configureGuildTemplate(ModelGuildTemplate guildTemplate) {
         C12238m.checkNotNullParameter(guildTemplate, "guildTemplate");
         SimpleDraweeView simpleDraweeView = this.binding.f15375b;
@@ -202,6 +141,67 @@ public final class AuthInviteInfoView extends RelativeLayout {
             C12238m.checkNotNullExpressionValue(textView6, "binding.authInviteInfoGuildName");
             textView6.setText(string);
         }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:29:0x0060 A[DONT_INVERT] */
+    /* JADX WARN: Code duplicated, block: B:31:0x0073  */
+    /* JADX WARN: Code duplicated, block: B:33:0x0082  */
+    /* JADX WARN: Code duplicated, block: B:34:0x0087  */
+    private final CharSequence getIntroText(ModelInvite modelInvite) {
+        User inviter;
+        String username;
+        User inviter2 = modelInvite.getInviter();
+        String username2 = inviter2 != null ? inviter2.getUsername() : null;
+        boolean z2 = username2 != null && (C12103t.isBlank(username2) ^ true);
+        if (modelInvite.getChannel() == null && modelInvite.guild == null && z2) {
+            Context context = getContext();
+            C12238m.checkNotNullExpressionValue(context, "context");
+            return C1107b.m216h(context, C5419R.string.instant_invite_you_have_been_invited_to_chat_with, new Object[0], null, 4);
+        }
+        Channel channel = modelInvite.getChannel();
+        if (channel == null || !ChannelUtils.m7702z(channel)) {
+            if (modelInvite.getApproximateMemberCount() >= 200 || !z2) {
+                Context context2 = getContext();
+                C12238m.checkNotNullExpressionValue(context2, "context");
+                return C1107b.m216h(context2, C5419R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4);
+            }
+            Context context3 = getContext();
+            C12238m.checkNotNullExpressionValue(context3, "context");
+            return C1107b.m216h(context3, C5419R.string.auth_message_invited_by, new Object[]{username2}, null, 4);
+        }
+        Channel channel2 = modelInvite.getChannel();
+        if (channel2 != null) {
+            if (!(ChannelUtils.m7679c(channel2).length() == 0)) {
+                if (z2) {
+                    Context context4 = getContext();
+                    C12238m.checkNotNullExpressionValue(context4, "context");
+                    Object[] objArr = new Object[1];
+                    inviter = modelInvite.getInviter();
+                    if (inviter != null) {
+                        username = inviter.getUsername();
+                    } else {
+                        username = null;
+                    }
+                    objArr[0] = username;
+                    return C1107b.m216h(context4, C5419R.string.auth_message_invited_by, objArr, null, 4);
+                }
+            }
+        } else if (z2) {
+            Context context5 = getContext();
+            C12238m.checkNotNullExpressionValue(context5, "context");
+            Object[] objArr2 = new Object[1];
+            inviter = modelInvite.getInviter();
+            if (inviter != null) {
+                username = inviter.getUsername();
+            } else {
+                username = null;
+            }
+            objArr2[0] = username;
+            return C1107b.m216h(context5, C5419R.string.auth_message_invited_by, objArr2, null, 4);
+        }
+        Context context6 = getContext();
+        C12238m.checkNotNullExpressionValue(context6, "context");
+        return C1107b.m216h(context6, C5419R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

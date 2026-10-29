@@ -21,7 +21,7 @@ public final class GuildJoinHelperKt {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.join.GuildJoinHelperKt$joinGuild$1 */
     /* JADX INFO: compiled from: GuildJoinHelper.kt */
-    public static final class C87161 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C87161 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ Long $directoryChannelId;
         public final /* synthetic */ Class $errorClass;

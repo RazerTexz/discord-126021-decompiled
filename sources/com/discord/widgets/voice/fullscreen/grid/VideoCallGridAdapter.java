@@ -48,7 +48,7 @@ public final class VideoCallGridAdapter extends RecyclerView.Adapter<VideoCallGr
     private final GridLayoutManager.SpanSizeLookup spanSizeLookup;
 
     /* JADX INFO: compiled from: VideoCallGridAdapter.kt */
-    public static final /* data */ class CallUiInsets {
+    public final /* data */ class CallUiInsets {
         private final int bottom;
         private final int left;
         private final int right;
@@ -77,26 +77,6 @@ public final class VideoCallGridAdapter extends RecyclerView.Adapter<VideoCallGr
             return callUiInsets.copy(i, i2, i3, i4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getTop() {
-            return this.top;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getBottom() {
-            return this.bottom;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getLeft() {
-            return this.left;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getRight() {
-            return this.right;
-        }
-
         public final CallUiInsets copy(int top, int bottom, int left, int right) {
             return new CallUiInsets(top, bottom, left, right);
         }
@@ -112,16 +92,36 @@ public final class VideoCallGridAdapter extends RecyclerView.Adapter<VideoCallGr
             return this.top == callUiInsets.top && this.bottom == callUiInsets.bottom && this.left == callUiInsets.left && this.right == callUiInsets.right;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getBottom() {
             return this.bottom;
+        }
+
+        public final int getBottom() {
+            return this.bottom;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getLeft() {
+            return this.left;
         }
 
         public final int getLeft() {
             return this.left;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getRight() {
             return this.right;
+        }
+
+        public final int getRight() {
+            return this.right;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getTop() {
+            return this.top;
         }
 
         public final int getTop() {
@@ -207,12 +207,6 @@ public final class VideoCallGridAdapter extends RecyclerView.Adapter<VideoCallGr
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public long getItemId(int position) {
         CallParticipant callParticipant = this.data.get(position);
         if (!(callParticipant instanceof CallParticipant.UserOrStreamParticipant)) {
@@ -242,6 +236,12 @@ public final class VideoCallGridAdapter extends RecyclerView.Adapter<VideoCallGr
             return 1;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     public final GridLayoutManager.SpanSizeLookup getSpanSizeLookup() {

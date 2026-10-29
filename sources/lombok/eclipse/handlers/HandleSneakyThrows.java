@@ -89,7 +89,7 @@ public class HandleSneakyThrows extends EclipseAnnotationHandler<SneakyThrows> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleSneakyThrows$DeclaredException.SCL.lombok */
-    private static class DeclaredException {
+    class DeclaredException {
         final String exceptionName;
         final ASTNode node;
 

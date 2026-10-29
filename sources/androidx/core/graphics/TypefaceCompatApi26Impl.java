@@ -104,30 +104,6 @@ public class TypefaceCompatApi26Impl extends TypefaceCompatApi21Impl {
         }
     }
 
-    private boolean freeze(Object obj) {
-        try {
-            return ((Boolean) this.mFreeze.invoke(obj, new Object[0])).booleanValue();
-        } catch (IllegalAccessException | InvocationTargetException unused) {
-            return false;
-        }
-    }
-
-    private boolean isFontFamilyPrivateAPIAvailable() {
-        if (this.mAddFontFromAssetManager == null) {
-            Log.w(TAG, "Unable to collect necessary private methods. Fallback to legacy implementation.");
-        }
-        return this.mAddFontFromAssetManager != null;
-    }
-
-    @Nullable
-    private Object newFamily() {
-        try {
-            return this.mFontFamilyCtor.newInstance(new Object[0]);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            return null;
-        }
-    }
-
     @Nullable
     public Typeface createFromFamiliesWithDefault(Object obj) {
         try {
@@ -238,6 +214,30 @@ public class TypefaceCompatApi26Impl extends TypefaceCompatApi21Impl {
             return createFromFamiliesWithDefault(objNewFamily);
         }
         return null;
+    }
+
+    private boolean freeze(Object obj) {
+        try {
+            return ((Boolean) this.mFreeze.invoke(obj, new Object[0])).booleanValue();
+        } catch (IllegalAccessException | InvocationTargetException unused) {
+            return false;
+        }
+    }
+
+    private boolean isFontFamilyPrivateAPIAvailable() {
+        if (this.mAddFontFromAssetManager == null) {
+            Log.w(TAG, "Unable to collect necessary private methods. Fallback to legacy implementation.");
+        }
+        return this.mAddFontFromAssetManager != null;
+    }
+
+    @Nullable
+    private Object newFamily() {
+        try {
+            return this.mFontFamilyCtor.newInstance(new Object[0]);
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
+            return null;
+        }
     }
 
     public Method obtainAbortCreationMethod(Class<?> cls) throws NoSuchMethodException {

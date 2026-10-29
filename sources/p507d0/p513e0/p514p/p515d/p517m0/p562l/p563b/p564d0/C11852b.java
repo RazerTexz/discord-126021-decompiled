@@ -44,7 +44,7 @@ public final class C11852b implements InterfaceC11281a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.d0.b$a */
     /* JADX INFO: compiled from: BuiltInsLoaderImpl.kt */
-    public /* synthetic */ class a extends C12235j implements Function1<String, InputStream> {
+    public final /* synthetic */ class a extends C12235j implements Function1<String, InputStream> {
         public a(C11854d c11854d) {
             super(1, c11854d);
         }

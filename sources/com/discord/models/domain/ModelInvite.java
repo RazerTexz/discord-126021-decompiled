@@ -47,7 +47,7 @@ public class ModelInvite implements Serializable {
         }
     }
 
-    public static class Settings {
+    public class Settings {
         public static final int NEVER = 0;
         public static final int ONE_DAY = 86400;
         public static final int ONE_HOUR = 3600;
@@ -135,32 +135,16 @@ public class ModelInvite implements Serializable {
         this.isStatic = str != null;
     }
 
+    public boolean canEqual(Object obj) {
+        return obj instanceof ModelInvite;
+    }
+
     public static ModelInvite createForStaticUrl(String str, Guild guild) {
         return new ModelInvite(null, str, guild);
     }
 
     public static ModelInvite createForTesting(Channel channel) {
         return new ModelInvite(channel, null, null);
-    }
-
-    public static String getInviteStoreKey(String str, Long l) {
-        if (l == null) {
-            return str;
-        }
-        return str + "?event=" + l;
-    }
-
-    private boolean isMultiUserDm(Channel channel) {
-        return channel.getType() == 3;
-    }
-
-    private boolean isPublic(Channel channel) {
-        int type = channel.getType();
-        return (type == 1 || type == 3) ? false : true;
-    }
-
-    public boolean canEqual(Object obj) {
-        return obj instanceof ModelInvite;
     }
 
     public boolean equals(Object obj) {
@@ -239,6 +223,13 @@ public class ModelInvite implements Serializable {
         return this.guildScheduledEvent;
     }
 
+    public static String getInviteStoreKey(String str, Long l) {
+        if (l == null) {
+            return str;
+        }
+        return str + "?event=" + l;
+    }
+
     public String getInviteType() {
         if (this.channel == null) {
             return null;
@@ -310,8 +301,17 @@ public class ModelInvite implements Serializable {
         return (i3 * 59) + (code != null ? code.hashCode() : 43);
     }
 
+    private boolean isMultiUserDm(Channel channel) {
+        return channel.getType() == 3;
+    }
+
     public boolean isNewMember() {
         return this.newMember;
+    }
+
+    private boolean isPublic(Channel channel) {
+        int type = channel.getType();
+        return (type == 1 || type == 3) ? false : true;
     }
 
     public boolean isRevoked() {

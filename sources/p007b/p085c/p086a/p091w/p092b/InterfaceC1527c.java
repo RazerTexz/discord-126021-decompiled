@@ -6,8 +6,8 @@ import java.util.List;
 /* JADX INFO: compiled from: Content.java */
 /* JADX INFO: loaded from: classes.dex */
 public interface InterfaceC1527c {
+    String getName();
+
     /* JADX INFO: renamed from: b */
     void mo710b(List<InterfaceC1527c> list, List<InterfaceC1527c> list2);
-
-    String getName();
 }

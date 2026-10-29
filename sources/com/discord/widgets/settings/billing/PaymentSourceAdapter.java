@@ -35,23 +35,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final class PaymentSourceAddItem implements Item {
-        private final int type = 1;
-        private final String key = "AddPaymentSource";
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-    }
-
-    /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final class PaymentSourceAddViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
+    public final class PaymentSourceAddViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PaymentSourceAddViewHolder(PaymentSourceAdapter paymentSourceAdapter) {
             super(C5419R.layout.payment_method_list_add_item, paymentSourceAdapter);
@@ -75,7 +59,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final /* data */ class PaymentSourceHeader implements Item {
+    public final /* data */ class PaymentSourceHeader implements Item {
         private final Type headerType;
         private final String key;
         private final int type;
@@ -100,11 +84,6 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
             return paymentSourceHeader.copy(type);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Type getHeaderType() {
-            return this.headerType;
-        }
-
         public final PaymentSourceHeader copy(Type headerType) {
             C12238m.checkNotNullParameter(headerType, "headerType");
             return new PaymentSourceHeader(headerType);
@@ -115,6 +94,11 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
                 return (other instanceof PaymentSourceHeader) && C12238m.areEqual(this.headerType, ((PaymentSourceHeader) other).headerType);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Type getHeaderType() {
+            return this.headerType;
         }
 
         public final Type getHeaderType() {
@@ -148,7 +132,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final class PaymentSourceHeaderViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
+    public final class PaymentSourceHeaderViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -189,7 +173,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final /* data */ class PaymentSourceItem implements Item {
+    public final /* data */ class PaymentSourceItem implements Item {
         private final boolean isPremium;
         private final String key;
         private final ModelPaymentSource paymentSource;
@@ -212,16 +196,6 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
             return paymentSourceItem.copy(modelPaymentSource, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelPaymentSource getPaymentSource() {
-            return this.paymentSource;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsPremium() {
-            return this.isPremium;
-        }
-
         public final PaymentSourceItem copy(ModelPaymentSource paymentSource, boolean isPremium) {
             C12238m.checkNotNullParameter(paymentSource, "paymentSource");
             return new PaymentSourceItem(paymentSource, isPremium);
@@ -238,9 +212,19 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
             return C12238m.areEqual(this.paymentSource, paymentSourceItem.paymentSource) && this.isPremium == paymentSourceItem.isPremium;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsPremium() {
+            return this.isPremium;
+        }
+
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelPaymentSource getPaymentSource() {
+            return this.paymentSource;
         }
 
         public final ModelPaymentSource getPaymentSource() {
@@ -281,7 +265,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     }
 
     /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
-    public static final class PaymentSourceItemViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
+    public final class PaymentSourceItemViewHolder extends MGRecyclerViewHolder<PaymentSourceAdapter, Item> {
         private final PaymentMethodListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -332,6 +316,22 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         C12238m.checkNotNullParameter(function1, "onEditPaymentSource");
         this.onAddClick = function0;
         this.onEditPaymentSource = function1;
+    }
+
+    /* JADX INFO: compiled from: PaymentSourceAdapter.kt */
+    public final class PaymentSourceAddItem implements Item {
+        private final int type = 1;
+        private final String key = "AddPaymentSource";
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

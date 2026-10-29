@@ -31,21 +31,6 @@ public final /* data */ class DirectoryEntryData {
         return directoryEntryData.copy(directoryEntryGuild, z2, z3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final DirectoryEntryGuild getEntry() {
-        return this.entry;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getHasJoinedGuild() {
-        return this.hasJoinedGuild;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getHasEditPermissions() {
-        return this.hasEditPermissions;
-    }
-
     public final DirectoryEntryData copy(DirectoryEntryGuild entry, boolean hasJoinedGuild, boolean hasEditPermissions) {
         C12238m.checkNotNullParameter(entry, "entry");
         return new DirectoryEntryData(entry, hasJoinedGuild, hasEditPermissions);
@@ -62,12 +47,27 @@ public final /* data */ class DirectoryEntryData {
         return C12238m.areEqual(this.entry, directoryEntryData.entry) && this.hasJoinedGuild == directoryEntryData.hasJoinedGuild && this.hasEditPermissions == directoryEntryData.hasEditPermissions;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final DirectoryEntryGuild getEntry() {
         return this.entry;
     }
 
+    public final DirectoryEntryGuild getEntry() {
+        return this.entry;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final boolean getHasEditPermissions() {
         return this.hasEditPermissions;
+    }
+
+    public final boolean getHasEditPermissions() {
+        return this.hasEditPermissions;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getHasJoinedGuild() {
+        return this.hasJoinedGuild;
     }
 
     public final boolean getHasJoinedGuild() {

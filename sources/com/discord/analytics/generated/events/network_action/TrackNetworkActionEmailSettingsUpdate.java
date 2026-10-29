@@ -14,26 +14,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkActionEmailSettingsUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
+    private final List<CharSequence> categories = null;
+    private final CharSequence category = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackNetworkMetadata trackNetworkMetadata;
-    private final CharSequence category = null;
     private final Boolean value = null;
-    private final List<CharSequence> categories = null;
     private final List<Boolean> values = null;
     private final transient String analyticsSchemaTypeName = "network_action_email_settings_update";
-
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -46,6 +34,12 @@ public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements A
         return C12238m.areEqual(this.category, trackNetworkActionEmailSettingsUpdate.category) && C12238m.areEqual(this.value, trackNetworkActionEmailSettingsUpdate.value) && C12238m.areEqual(this.categories, trackNetworkActionEmailSettingsUpdate.categories) && C12238m.areEqual(this.values, trackNetworkActionEmailSettingsUpdate.values);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.category;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
@@ -55,6 +49,12 @@ public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements A
         int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
         List<Boolean> list2 = this.values;
         return iHashCode3 + (list2 != null ? list2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

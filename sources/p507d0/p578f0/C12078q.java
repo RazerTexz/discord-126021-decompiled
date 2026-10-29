@@ -32,7 +32,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.q$a */
     /* JADX INFO: compiled from: Iterables.kt */
-    public static final class a<T> implements Iterable<T>, InterfaceC12228a {
+    public final class a<T> implements Iterable<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Sequence f25109j;
@@ -50,7 +50,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.q$b */
     /* JADX INFO: compiled from: _Sequences.kt */
-    public static final class b<T> extends AbstractC12240o implements Function1<T, T> {
+    public final class b<T> extends AbstractC12240o implements Function1<T, T> {
 
         /* JADX INFO: renamed from: j */
         public static final b f25110j = new b();
@@ -68,7 +68,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.q$c */
     /* JADX INFO: compiled from: _Sequences.kt */
-    public static final class c<T> extends AbstractC12240o implements Function1<T, Boolean> {
+    public final class c<T> extends AbstractC12240o implements Function1<T, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final c f25111j = new c();
@@ -92,7 +92,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [R] */
     /* JADX INFO: renamed from: d0.f0.q$d */
     /* JADX INFO: compiled from: _Sequences.kt */
-    public static final /* synthetic */ class d<R> extends C12236k implements Function1<Sequence<? extends R>, Iterator<? extends R>> {
+    public final /* synthetic */ class d<R> extends C12236k implements Function1<Sequence<? extends R>, Iterator<? extends R>> {
 
         /* JADX INFO: renamed from: j */
         public static final d f25112j = new d();
@@ -111,7 +111,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.q$e */
     /* JADX INFO: compiled from: _Sequences.kt */
-    public static final class e<T> implements Sequence<T> {
+    public final class e<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Sequence f25113a;
@@ -131,7 +131,7 @@ public class C12078q extends C12077p {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: d0.f0.q$f */
     /* JADX INFO: compiled from: _Sequences.kt */
-    public static final class f<T> implements Sequence<T> {
+    public final class f<T> implements Sequence<T> {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ Sequence f25114a;
@@ -259,17 +259,6 @@ public class C12078q extends C12077p {
         return a2;
     }
 
-    public static final <T> String joinToString(Sequence<? extends T> sequence, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
-        C12238m.checkNotNullParameter(sequence, "$this$joinToString");
-        C12238m.checkNotNullParameter(charSequence, "separator");
-        C12238m.checkNotNullParameter(charSequence2, "prefix");
-        C12238m.checkNotNullParameter(charSequence3, "postfix");
-        C12238m.checkNotNullParameter(charSequence4, "truncated");
-        String string = ((StringBuilder) joinTo(sequence, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
-        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
-        return string;
-    }
-
     public static /* synthetic */ String joinToString$default(Sequence sequence, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
@@ -285,6 +274,17 @@ public class C12078q extends C12077p {
             function1 = null;
         }
         return joinToString(sequence, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+    }
+
+    public static final <T> String joinToString(Sequence<? extends T> sequence, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) {
+        C12238m.checkNotNullParameter(sequence, "$this$joinToString");
+        C12238m.checkNotNullParameter(charSequence, "separator");
+        C12238m.checkNotNullParameter(charSequence2, "prefix");
+        C12238m.checkNotNullParameter(charSequence3, "postfix");
+        C12238m.checkNotNullParameter(charSequence4, "truncated");
+        String string = ((StringBuilder) joinTo(sequence, new StringBuilder(), charSequence, charSequence2, charSequence3, i, charSequence4, function1)).toString();
+        C12238m.checkNotNullExpressionValue(string, "joinTo(StringBuilder(), …ed, transform).toString()");
+        return string;
     }
 
     public static final <T> T last(Sequence<? extends T> sequence) {

@@ -20,16 +20,16 @@ public final /* data */ class AccessibilityState {
         this.features = enumSet;
     }
 
+    public final EnumSet<AccessibilityFeatureFlags> component1() {
+        return this.features;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AccessibilityState copy$default(AccessibilityState accessibilityState, EnumSet enumSet, int i, Object obj) {
         if ((i & 1) != 0) {
             enumSet = accessibilityState.features;
         }
         return accessibilityState.copy(enumSet);
-    }
-
-    public final EnumSet<AccessibilityFeatureFlags> component1() {
-        return this.features;
     }
 
     public final AccessibilityState copy(EnumSet<AccessibilityFeatureFlags> features) {

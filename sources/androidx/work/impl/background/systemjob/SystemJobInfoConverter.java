@@ -23,11 +23,11 @@ import java.util.Iterator;
 public class SystemJobInfoConverter {
     public static final String EXTRA_IS_PERIODIC = "EXTRA_IS_PERIODIC";
     public static final String EXTRA_WORK_SPEC_ID = "EXTRA_WORK_SPEC_ID";
-    private static final String TAG = Logger.tagWithPrefix("SystemJobInfoConverter");
     private final ComponentName mWorkServiceComponent;
+    private static final String TAG = Logger.tagWithPrefix("SystemJobInfoConverter");
 
     /* JADX INFO: renamed from: androidx.work.impl.background.systemjob.SystemJobInfoConverter$1 */
-    public static /* synthetic */ class C07381 {
+    public /* synthetic */ class C07381 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$work$NetworkType;
 
         static {
@@ -62,33 +62,6 @@ public class SystemJobInfoConverter {
         this.mWorkServiceComponent = new ComponentName(context.getApplicationContext(), (Class<?>) SystemJobService.class);
     }
 
-    @RequiresApi(24)
-    private static JobInfo.TriggerContentUri convertContentUriTrigger(ContentUriTriggers.Trigger trigger) {
-        return new JobInfo.TriggerContentUri(trigger.getUri(), trigger.shouldTriggerForDescendants() ? 1 : 0);
-    }
-
-    public static int convertNetworkType(NetworkType networkType) {
-        int iOrdinal = networkType.ordinal();
-        if (iOrdinal == 0) {
-            return 0;
-        }
-        if (iOrdinal == 1) {
-            return 1;
-        }
-        if (iOrdinal == 2) {
-            return 2;
-        }
-        if (iOrdinal != 3) {
-            if (iOrdinal == 4 && Build.VERSION.SDK_INT >= 26) {
-                return 4;
-            }
-        } else if (Build.VERSION.SDK_INT >= 24) {
-            return 3;
-        }
-        Logger.get().debug(TAG, String.format("API version too low. Cannot convert network type value %s", networkType), new Throwable[0]);
-        return 1;
-    }
-
     public JobInfo convert(WorkSpec workSpec, int i) {
         Constraints constraints = workSpec.constraints;
         int iConvertNetworkType = convertNetworkType(constraints.getRequiredNetworkType());
@@ -120,5 +93,32 @@ public class SystemJobInfoConverter {
             extras.setRequiresStorageNotLow(constraints.requiresStorageNotLow());
         }
         return extras.build();
+    }
+
+    @RequiresApi(24)
+    private static JobInfo.TriggerContentUri convertContentUriTrigger(ContentUriTriggers.Trigger trigger) {
+        return new JobInfo.TriggerContentUri(trigger.getUri(), trigger.shouldTriggerForDescendants() ? 1 : 0);
+    }
+
+    public static int convertNetworkType(NetworkType networkType) {
+        int iOrdinal = networkType.ordinal();
+        if (iOrdinal == 0) {
+            return 0;
+        }
+        if (iOrdinal == 1) {
+            return 1;
+        }
+        if (iOrdinal == 2) {
+            return 2;
+        }
+        if (iOrdinal != 3) {
+            if (iOrdinal == 4 && Build.VERSION.SDK_INT >= 26) {
+                return 4;
+            }
+        } else if (Build.VERSION.SDK_INT >= 24) {
+            return 3;
+        }
+        Logger.get().debug(TAG, String.format("API version too low. Cannot convert network type value %s", networkType), new Throwable[0]);
+        return 1;
     }
 }

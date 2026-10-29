@@ -73,15 +73,6 @@ public final class StreamContextService {
         this.applicationStreamPreviewStore = storeApplicationStreamPreviews;
     }
 
-    private final Observable<? extends StoreApplicationStreamPreviews.StreamPreview> getPreviewObservable(ModelApplicationStream stream, boolean includePreview, StoreApplicationStreamPreviews applicationStreamPreviewStore) {
-        if (includePreview) {
-            return applicationStreamPreviewStore.observeStreamPreview(stream);
-        }
-        C12721k c12721k = new C12721k(null);
-        C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(null)");
-        return c12721k;
-    }
-
     public final Observable<StreamContext> getForActiveStream() {
         Observable observableM11099Y = this.applicationStreamingStore.observeActiveStream().m11099Y(new InterfaceC12589b<StoreApplicationStreaming.ActiveApplicationStream, Observable<? extends StreamContext>>() { // from class: com.discord.utilities.streams.StreamContextService.getForActiveStream.1
             @Override // p637j0.p641k.InterfaceC12589b
@@ -146,7 +137,7 @@ public final class StreamContextService {
 
             /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForUser$1$3, reason: invalid class name */
             /* JADX INFO: compiled from: StreamContextService.kt */
-            public static final class AnonymousClass3 extends AbstractC12240o implements Function10<Guild, StoreApplicationStreamPreviews.StreamPreview, Long, User, MeUser, String, Map<Long, ? extends VoiceState>, Channel, Long, StoreApplicationStreaming.ActiveApplicationStream, StreamContext> {
+            public final class AnonymousClass3 extends AbstractC12240o implements Function10<Guild, StoreApplicationStreamPreviews.StreamPreview, Long, User, MeUser, String, Map<Long, ? extends VoiceState>, Channel, Long, StoreApplicationStreaming.ActiveApplicationStream, StreamContext> {
                 public final /* synthetic */ ModelApplicationStream $stream;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -226,6 +217,15 @@ public final class StreamContextService {
         });
         C12238m.checkNotNullExpressionValue(observableM11099Y, "applicationStreamingStor…  }\n          }\n        }");
         return observableM11099Y;
+    }
+
+    private final Observable<? extends StoreApplicationStreamPreviews.StreamPreview> getPreviewObservable(ModelApplicationStream stream, boolean includePreview, StoreApplicationStreamPreviews applicationStreamPreviewStore) {
+        if (includePreview) {
+            return applicationStreamPreviewStore.observeStreamPreview(stream);
+        }
+        C12721k c12721k = new C12721k(null);
+        C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(null)");
+        return c12721k;
     }
 
     public /* synthetic */ StreamContextService(StoreApplicationStreaming storeApplicationStreaming, StoreGuilds storeGuilds, StorePermissions storePermissions, StoreUser storeUser, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreVoiceStates storeVoiceStates, StoreChannels storeChannels, StoreApplicationStreamPreviews storeApplicationStreamPreviews, int i, DefaultConstructorMarker defaultConstructorMarker) {

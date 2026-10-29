@@ -47,7 +47,7 @@ public final class UdpDataSource extends AbstractC2705g {
     /* JADX INFO: renamed from: m */
     public int f20262m;
 
-    public static final class UdpDataSourceException extends DataSourceException {
+    public final class UdpDataSourceException extends DataSourceException {
         public UdpDataSourceException(Throwable th, int i) {
             super(th, i);
         }
@@ -59,6 +59,32 @@ public final class UdpDataSource extends AbstractC2705g {
         byte[] bArr = new byte[2000];
         this.f20255f = bArr;
         this.f20256g = new DatagramPacket(bArr, 0, 2000);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    public void close() {
+        this.f20257h = null;
+        MulticastSocket multicastSocket = this.f20259j;
+        if (multicastSocket != null) {
+            try {
+                InetAddress inetAddress = this.f20260k;
+                Objects.requireNonNull(inetAddress);
+                multicastSocket.leaveGroup(inetAddress);
+            } catch (IOException unused) {
+            }
+            this.f20259j = null;
+        }
+        DatagramSocket datagramSocket = this.f20258i;
+        if (datagramSocket != null) {
+            datagramSocket.close();
+            this.f20258i = null;
+        }
+        this.f20260k = null;
+        this.f20262m = 0;
+        if (this.f20261l) {
+            this.f20261l = false;
+            m2849q();
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
@@ -89,32 +115,6 @@ public final class UdpDataSource extends AbstractC2705g {
             throw new UdpDataSourceException(e, 2001);
         } catch (SecurityException e2) {
             throw new UdpDataSourceException(e2, 2006);
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    public void close() {
-        this.f20257h = null;
-        MulticastSocket multicastSocket = this.f20259j;
-        if (multicastSocket != null) {
-            try {
-                InetAddress inetAddress = this.f20260k;
-                Objects.requireNonNull(inetAddress);
-                multicastSocket.leaveGroup(inetAddress);
-            } catch (IOException unused) {
-            }
-            this.f20259j = null;
-        }
-        DatagramSocket datagramSocket = this.f20258i;
-        if (datagramSocket != null) {
-            datagramSocket.close();
-            this.f20258i = null;
-        }
-        this.f20260k = null;
-        this.f20262m = 0;
-        if (this.f20261l) {
-            this.f20261l = false;
-            m2849q();
         }
     }
 

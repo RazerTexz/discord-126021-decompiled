@@ -31,7 +31,7 @@ public final class C4587s extends AbstractC4569a {
 
     /* JADX INFO: renamed from: b.i.c.l.s$a */
     /* JADX INFO: compiled from: RestrictedComponentContainer.java */
-    public static class a implements InterfaceC4798c {
+    public class a implements InterfaceC4798c {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC4798c f12218a;
@@ -80,6 +80,15 @@ public final class C4587s extends AbstractC4569a {
         return !cls.equals(InterfaceC4798c.class) ? t : (T) new a(this.f12216e, (InterfaceC4798c) t);
     }
 
+    @Override // p007b.p225i.p361c.p368l.AbstractC4569a, p007b.p225i.p361c.p368l.InterfaceC4573e
+    /* JADX INFO: renamed from: d */
+    public <T> Set<T> mo6347d(Class<T> cls) {
+        if (this.f12214c.contains(cls)) {
+            return this.f12217f.mo6347d(cls);
+        }
+        throw new IllegalArgumentException(String.format("Attempting to request an undeclared dependency Set<%s>.", cls));
+    }
+
     @Override // p007b.p225i.p361c.p368l.InterfaceC4573e
     /* JADX INFO: renamed from: b */
     public <T> InterfaceC4836a<T> mo6355b(Class<T> cls) {
@@ -96,14 +105,5 @@ public final class C4587s extends AbstractC4569a {
             return this.f12217f.mo6356c(cls);
         }
         throw new IllegalArgumentException(String.format("Attempting to request an undeclared dependency Provider<Set<%s>>.", cls));
-    }
-
-    @Override // p007b.p225i.p361c.p368l.AbstractC4569a, p007b.p225i.p361c.p368l.InterfaceC4573e
-    /* JADX INFO: renamed from: d */
-    public <T> Set<T> mo6347d(Class<T> cls) {
-        if (this.f12214c.contains(cls)) {
-            return this.f12217f.mo6347d(cls);
-        }
-        throw new IllegalArgumentException(String.format("Attempting to request an undeclared dependency Set<%s>.", cls));
     }
 }

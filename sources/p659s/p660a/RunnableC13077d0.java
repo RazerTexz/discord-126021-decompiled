@@ -33,6 +33,35 @@ public final class RunnableC13077d0 extends AbstractC13145r0 implements Runnable
         f27778p = timeUnit.toNanos(l.longValue());
     }
 
+    /* JADX INFO: renamed from: X */
+    public final synchronized void m11244X() {
+        if (m11245b0()) {
+            debugStatus = 3;
+            this._queue = null;
+            this._delayed = null;
+            notifyAll();
+        }
+    }
+
+    /* JADX INFO: renamed from: b0 */
+    public final boolean m11245b0() {
+        int i = debugStatus;
+        return i == 2 || i == 3;
+    }
+
+    @Override // p659s.p660a.AbstractC13145r0, p659s.p660a.InterfaceC13115h0
+    /* JADX INFO: renamed from: x */
+    public InterfaceC13130m0 mo11196x(long j, Runnable runnable, CoroutineContext coroutineContext) {
+        long jM11348a = C13151t0.m11348a(j);
+        if (jM11348a >= 4611686018427387903L) {
+            return C13137o1.f27880j;
+        }
+        long jNanoTime = System.nanoTime();
+        AbstractC13145r0.b bVar = new AbstractC13145r0.b(jM11348a + jNanoTime, runnable);
+        m11344W(jNanoTime, bVar);
+        return bVar;
+    }
+
     @Override // p659s.p660a.AbstractC13148s0
     /* JADX INFO: renamed from: S */
     public Thread mo11243S() {
@@ -49,22 +78,6 @@ public final class RunnableC13077d0 extends AbstractC13145r0 implements Runnable
             }
         }
         return thread;
-    }
-
-    /* JADX INFO: renamed from: X */
-    public final synchronized void m11244X() {
-        if (m11245b0()) {
-            debugStatus = 3;
-            this._queue = null;
-            this._delayed = null;
-            notifyAll();
-        }
-    }
-
-    /* JADX INFO: renamed from: b0 */
-    public final boolean m11245b0() {
-        int i = debugStatus;
-        return i == 2 || i == 3;
     }
 
     @Override // java.lang.Runnable
@@ -135,18 +148,5 @@ public final class RunnableC13077d0 extends AbstractC13145r0 implements Runnable
             }
             throw th;
         }
-    }
-
-    @Override // p659s.p660a.AbstractC13145r0, p659s.p660a.InterfaceC13115h0
-    /* JADX INFO: renamed from: x */
-    public InterfaceC13130m0 mo11196x(long j, Runnable runnable, CoroutineContext coroutineContext) {
-        long jM11348a = C13151t0.m11348a(j);
-        if (jM11348a >= 4611686018427387903L) {
-            return C13137o1.f27880j;
-        }
-        long jNanoTime = System.nanoTime();
-        AbstractC13145r0.b bVar = new AbstractC13145r0.b(jM11348a + jNanoTime, runnable);
-        m11344W(jNanoTime, bVar);
-        return bVar;
     }
 }

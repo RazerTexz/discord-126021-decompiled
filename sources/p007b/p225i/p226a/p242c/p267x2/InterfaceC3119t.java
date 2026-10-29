@@ -10,7 +10,7 @@ public interface InterfaceC3119t {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.t$b */
     /* JADX INFO: compiled from: SeekMap.java */
-    public static class b implements InterfaceC3119t {
+    public class b implements InterfaceC3119t {
 
         /* JADX INFO: renamed from: a */
         public final long f8995a;
@@ -53,7 +53,7 @@ public interface InterfaceC3119t {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.t$a */
     /* JADX INFO: compiled from: SeekMap.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final C3120u f8993a;

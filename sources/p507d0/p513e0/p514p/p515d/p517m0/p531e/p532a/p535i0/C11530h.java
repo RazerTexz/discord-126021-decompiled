@@ -34,7 +34,7 @@ public final class C11530h implements InterfaceC11533k {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.h$a */
     /* JADX INFO: compiled from: resolvers.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11592y, C11552s> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11592y, C11552s> {
         public a() {
             super(1);
         }

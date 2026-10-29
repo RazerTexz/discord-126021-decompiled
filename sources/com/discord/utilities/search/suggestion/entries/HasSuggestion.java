@@ -17,7 +17,7 @@ public final /* data */ class HasSuggestion implements SearchSuggestion {
     private final HasAnswerOption hasAnswerOption;
 
     /* JADX INFO: compiled from: HasSuggestion.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -46,11 +46,6 @@ public final /* data */ class HasSuggestion implements SearchSuggestion {
         return hasSuggestion.copy(hasAnswerOption);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final HasAnswerOption getHasAnswerOption() {
-        return this.hasAnswerOption;
-    }
-
     public final HasSuggestion copy(HasAnswerOption hasAnswerOption) {
         C12238m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
         return new HasSuggestion(hasAnswerOption);
@@ -66,6 +61,11 @@ public final /* data */ class HasSuggestion implements SearchSuggestion {
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
     public SearchSuggestion.Category getCategory() {
         return this.category;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final HasAnswerOption getHasAnswerOption() {
+        return this.hasAnswerOption;
     }
 
     public final HasAnswerOption getHasAnswerOption() {

@@ -44,21 +44,21 @@ import p658rx.subjects.Subject;
 /* JADX INFO: compiled from: Persister.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class Persister<T> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static Clock clock;
 
     @SuppressLint({"StaticFieldLeak"})
     private static Context context;
-    private static boolean initialized;
-    private static Preloader preferencesPreloader;
     private final T defaultValue;
+    private static boolean initialized;
     private final String key;
+    private static Preloader preferencesPreloader;
     private T value;
     private boolean valueDirty;
     private Subject<T, T> valueSubject;
     private boolean valueUnset;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static Function3<? super Integer, ? super String, ? super Exception, Unit> logger = Persister$Companion$logger$1.INSTANCE;
     private static Function1<? super Kryo, Unit> kryoConfig = Persister$Companion$kryoConfig$1.INSTANCE;
     private static final Persister$Companion$kryos$1 kryos = new ThreadLocal<Kryo>() { // from class: com.discord.utilities.persister.Persister$Companion$kryos$1
@@ -72,8 +72,48 @@ public final class Persister<T> {
     };
     private static final List<WeakReference<Persister<?>>> preferences = new CopyOnWriteArrayList();
 
+    /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1 */
     /* JADX INFO: compiled from: Persister.kt */
-    public static final class Companion {
+    public final class C68321 extends AbstractC12240o implements Function0<Subject<T, T>> {
+
+        /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: Persister.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1 {
+            public final /* synthetic */ SerializedSubject $subject;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(SerializedSubject serializedSubject) {
+                super(1);
+                this.$subject = serializedSubject;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+                invoke((Void) obj);
+                return Unit.f27425a;
+            }
+
+            public final void invoke(Void r2) {
+                this.$subject.f27653k.onNext((T) Persister.this.get());
+            }
+        }
+
+        public C68321() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Subject<T, T> invoke() {
+            SerializedSubject serializedSubject = new SerializedSubject(BehaviorSubject.m11129k0());
+            C12721k c12721k = new C12721k(null);
+            C12238m.checkNotNullExpressionValue(c12721k, "Observable\n          .just(null)");
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(c12721k), (Class<?>) Persister.this.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1(serializedSubject));
+            return serializedSubject;
+        }
+    }
+
+    /* JADX INFO: compiled from: Persister.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -93,15 +133,6 @@ public final class Persister<T> {
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             return memoryInfo.availMem;
-        }
-
-        private final void persistAll() {
-            Iterator<T> it = Persister.preferences.iterator();
-            while (it.hasNext()) {
-                C12721k c12721k = new C12721k(((WeakReference) it.next()).get());
-                C12238m.checkNotNullExpressionValue(c12721k, "Observable\n          .just(weakPreference.get())");
-                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(c12721k), (Class<?>) Persister.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), Persister$Companion$persistAll$1$1.INSTANCE);
-            }
         }
 
         public final Function1<Kryo, Unit> getKryoConfig() {
@@ -141,6 +172,15 @@ public final class Persister<T> {
             return preloader.isPreloaded();
         }
 
+        private final void persistAll() {
+            Iterator<T> it = Persister.preferences.iterator();
+            while (it.hasNext()) {
+                C12721k c12721k = new C12721k(((WeakReference) it.next()).get());
+                C12238m.checkNotNullExpressionValue(c12721k, "Observable\n          .just(weakPreference.get())");
+                ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(c12721k), (Class<?>) Persister.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), Persister$Companion$persistAll$1$1.INSTANCE);
+            }
+        }
+
         public final void reset() {
             Iterator<T> it = Persister.preferences.iterator();
             while (it.hasNext()) {
@@ -167,14 +207,14 @@ public final class Persister<T> {
     }
 
     /* JADX INFO: compiled from: Persister.kt */
-    public static final class Preloader {
+    public final class Preloader {
         private final List<String> preloadCacheKeys;
         private final SerializedSubject<Persister<?>, Persister<?>> preloadSubject;
         private final TimeElapsed preloadTime;
 
         /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$Preloader$2 */
         /* JADX INFO: compiled from: Persister.kt */
-        public static final class C68312 extends AbstractC12240o implements Function1<Persister<?>, Unit> {
+        public final class C68312 extends AbstractC12240o implements Function1<Persister<?>, Unit> {
             public C68312() {
                 super(1);
             }
@@ -239,46 +279,6 @@ public final class Persister<T> {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1 */
-    /* JADX INFO: compiled from: Persister.kt */
-    public static final class C68321 extends AbstractC12240o implements Function0<Subject<T, T>> {
-
-        /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: Persister.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1 {
-            public final /* synthetic */ SerializedSubject $subject;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(SerializedSubject serializedSubject) {
-                super(1);
-                this.$subject = serializedSubject;
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Object invoke(Object obj) {
-                invoke((Void) obj);
-                return Unit.f27425a;
-            }
-
-            public final void invoke(Void r2) {
-                this.$subject.f27653k.onNext((T) Persister.this.get());
-            }
-        }
-
-        public C68321() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Subject<T, T> invoke() {
-            SerializedSubject serializedSubject = new SerializedSubject(BehaviorSubject.m11129k0());
-            C12721k c12721k = new C12721k(null);
-            C12238m.checkNotNullExpressionValue(c12721k, "Observable\n          .just(null)");
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.computationBuffered(c12721k), (Class<?>) Persister.this.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1(serializedSubject));
-            return serializedSubject;
-        }
-    }
-
     public Persister(String str, T t) {
         C12238m.checkNotNullParameter(str, "key");
         C12238m.checkNotNullParameter(t, "defaultValue");
@@ -301,11 +301,36 @@ public final class Persister<T> {
         return persister.clear(z2);
     }
 
+    public final T clear() {
+        return (T) clear$default(this, false, 1, null);
+    }
+
+    public final T clear(boolean persist) {
+        return set(this.defaultValue, persist);
+    }
+
+    public final synchronized T get() {
+        if (this.valueUnset) {
+            this.valueUnset = false;
+            this.value = getFileValue();
+        }
+        return this.value;
+    }
+
     public static /* synthetic */ Object getAndSet$default(Persister persister, boolean z2, Function1 function1, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
         }
         return persister.getAndSet(z2, function1);
+    }
+
+    public final T getAndSet(Function1<? super T, ? extends T> function1) {
+        return (T) getAndSet$default(this, false, function1, 1, null);
+    }
+
+    public final synchronized T getAndSet(boolean persist, Function1<? super T, ? extends T> setter) {
+        C12238m.checkNotNullParameter(setter, "setter");
+        return set(setter.invoke(get()), persist);
     }
 
     private final File getFileInput() {
@@ -336,6 +361,9 @@ public final class Persister<T> {
         FileOutputStream fileOutputStreamOpenFileOutput = context2.openFileOutput(this.key, 0);
         C12238m.checkNotNullExpressionValue(fileOutputStreamOpenFileOutput, "context.openFileOutput(key, Context.MODE_PRIVATE)");
         return fileOutputStreamOpenFileOutput;
+    }
+
+    private static /* synthetic */ void getFileValue$annotations() {
     }
 
     private final T getFileValue() {
@@ -384,74 +412,6 @@ public final class Persister<T> {
         }
     }
 
-    private static /* synthetic */ void getFileValue$annotations() {
-    }
-
-    public static final Observable<Boolean> isPreloaded() {
-        return INSTANCE.isPreloaded();
-    }
-
-    private final synchronized void persist() {
-        if (this.valueDirty) {
-            this.valueDirty = false;
-            try {
-                Output output = new Output(getFileOutput());
-                try {
-                    Kryo kryo = kryos.get();
-                    if (kryo != null) {
-                        kryo.writeClassAndObject(output, this.value);
-                    }
-                    C12201b.closeFinally(output, null);
-                } catch (Throwable th) {
-                    try {
-                        throw th;
-                    } catch (Throwable th2) {
-                        C12201b.closeFinally(output, th);
-                        throw th2;
-                    }
-                }
-            } catch (Exception e) {
-                logger.invoke(5, "Unable to serialize preference " + this.key + '.', new Exception(this.key, e));
-            }
-        }
-    }
-
-    public static final void reset() {
-        INSTANCE.reset();
-    }
-
-    public static /* synthetic */ Object set$default(Persister persister, Object obj, boolean z2, int i, Object obj2) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        return persister.set(obj, z2);
-    }
-
-    public final T clear() {
-        return (T) clear$default(this, false, 1, null);
-    }
-
-    public final T clear(boolean persist) {
-        return set(this.defaultValue, persist);
-    }
-
-    public final synchronized T get() {
-        if (this.valueUnset) {
-            this.valueUnset = false;
-            this.value = getFileValue();
-        }
-        return this.value;
-    }
-
-    public final T getAndSet(Function1<? super T, ? extends T> function1) {
-        return (T) getAndSet$default(this, false, function1, 1, null);
-    }
-
-    public final synchronized T getAndSet(boolean persist, Function1<? super T, ? extends T> setter) {
-        C12238m.checkNotNullParameter(setter, "setter");
-        return set(setter.invoke(get()), persist);
-    }
-
     public final String getKey() {
         return this.key;
     }
@@ -465,6 +425,50 @@ public final class Persister<T> {
             this.valueSubject = subjectInvoke;
         }
         return subjectInvoke;
+    }
+
+    public static final Observable<Boolean> isPreloaded() {
+        return INSTANCE.isPreloaded();
+    }
+
+    private final synchronized void persist() {
+        try {
+            if (this.valueDirty) {
+                this.valueDirty = false;
+                try {
+                    Output output = new Output(getFileOutput());
+                    try {
+                        Kryo kryo = kryos.get();
+                        if (kryo != null) {
+                            kryo.writeClassAndObject(output, this.value);
+                        }
+                        C12201b.closeFinally(output, null);
+                    } catch (Throwable th) {
+                        try {
+                            throw th;
+                        } catch (Throwable th2) {
+                            C12201b.closeFinally(output, th);
+                            throw th2;
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.invoke(5, "Unable to serialize preference " + this.key + '.', new Exception(this.key, e));
+                }
+            }
+        } catch (Throwable th3) {
+            throw th3;
+        }
+    }
+
+    public static final void reset() {
+        INSTANCE.reset();
+    }
+
+    public static /* synthetic */ Object set$default(Persister persister, Object obj, boolean z2, int i, Object obj2) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        return persister.set(obj, z2);
     }
 
     public final T set(T t) {

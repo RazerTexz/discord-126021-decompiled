@@ -23,14 +23,14 @@ public final class WidgetGuildWelcomeSheetChannelAdapter extends RecyclerView.Ad
     private List<? extends ChannelItem> data = C12147n.emptyList();
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* JADX INFO: renamed from: getItemCount */
-    public int getPageSize() {
-        return this.data.size();
+    public int getItemViewType(int position) {
+        return this.data.get(position).getType();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public int getItemViewType(int position) {
-        return this.data.get(position).getType();
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
     public final void setData(List<? extends ChannelItem> data) {

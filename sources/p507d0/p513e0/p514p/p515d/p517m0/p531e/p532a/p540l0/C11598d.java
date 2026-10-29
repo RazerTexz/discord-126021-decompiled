@@ -37,7 +37,7 @@ public final class C11598d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.d$a */
     /* JADX INFO: compiled from: typeEnhancement.kt */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final AbstractC11913c0 f23446a;
@@ -78,7 +78,7 @@ public final class C11598d {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.d$b */
     /* JADX INFO: compiled from: typeEnhancement.kt */
-    public static final class b extends a {
+    public final class b extends a {
 
         /* JADX INFO: renamed from: d */
         public final AbstractC11934j0 f23449d;
@@ -101,9 +101,14 @@ public final class C11598d {
         this.f23445a = interfaceC11525c;
     }
 
+    public final AbstractC11913c0 enhance(AbstractC11913c0 abstractC11913c0, Function1<? super Integer, C11599e> function1) {
+        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
+        C12238m.checkNotNullParameter(function1, "qualifiers");
+        return m9507b(abstractC11913c0.unwrap(), function1, 0).getTypeIfChanged();
+    }
+
     /* JADX INFO: renamed from: a */
     public final b m9506a(AbstractC11934j0 abstractC11934j0, Function1<? super Integer, C11599e> function1, int i, EnumC11614t enumC11614t, boolean z2) {
-        AbstractC11932i1 abstractC11932i1WrapEnhancement;
         int subtreeSize;
         InterfaceC12012w0 interfaceC12012w0CreateProjection;
         if (!C11615u.shouldEnhance(enumC11614t) && abstractC11934j0.getArguments().isEmpty()) {
@@ -165,14 +170,9 @@ public final class C11598d {
         InterfaceC11344g interfaceC11344gAccess$compositeAnnotationsOrSingle = C11618x.access$compositeAnnotationsOrSingle(C12147n.listOfNotNull((Object[]) new InterfaceC11344g[]{abstractC11934j0.getAnnotations(), interfaceC11344gComponent2, interfaceC11344gComponent3}));
         C11916d0 c11916d0 = C11916d0.f24748a;
         AbstractC11934j0 abstractC11934j0SimpleType$default = C11916d0.simpleType$default(interfaceC11344gAccess$compositeAnnotationsOrSingle, typeConstructor, arrayList, zBooleanValue, null, 16, null);
+        AbstractC11932i1 abstractC11932i1WrapEnhancement = abstractC11934j0SimpleType$default;
         if (c11599eInvoke.isNotNullTypeParameter()) {
-            if (this.f23445a.getCorrectNullabilityForNotNullTypeParameter()) {
-                abstractC11932i1WrapEnhancement = abstractC11934j0SimpleType$default;
-                abstractC11932i1WrapEnhancement = C11968m0.makeSimpleTypeDefinitelyNotNullOrNotNull(abstractC11934j0SimpleType$default, true);
-            } else {
-                abstractC11932i1WrapEnhancement = abstractC11934j0SimpleType$default;
-                abstractC11932i1WrapEnhancement = new C11601g(abstractC11934j0SimpleType$default);
-            }
+            abstractC11932i1WrapEnhancement = this.f23445a.getCorrectNullabilityForNotNullTypeParameter() ? C11968m0.makeSimpleTypeDefinitelyNotNullOrNotNull(abstractC11934j0SimpleType$default, true) : new C11601g(abstractC11934j0SimpleType$default);
         }
         if (interfaceC11344gComponent3 != null && c11599eInvoke.isNullabilityQualifierForWarning()) {
             z4 = true;
@@ -230,11 +230,5 @@ public final class C11598d {
             abstractC11932i1 = C11926g1.wrapEnhancement(abstractC11932i1FlexibleType, enhancement2);
         }
         return new a(abstractC11932i1, bVarM9506a.getSubtreeSize(), z3);
-    }
-
-    public final AbstractC11913c0 enhance(AbstractC11913c0 abstractC11913c0, Function1<? super Integer, C11599e> function1) {
-        C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
-        C12238m.checkNotNullParameter(function1, "qualifiers");
-        return m9507b(abstractC11913c0.unwrap(), function1, 0).getTypeIfChanged();
     }
 }

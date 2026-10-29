@@ -39,24 +39,9 @@ public final class WidgetSettingsNotifications extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final StoreNotifications notificationStore;
 
-    /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsNotifications.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsNotifications$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
-    public static final class C96531 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, Unit> {
+    public final class C96531 extends AbstractC12240o implements Function1<NotificationClient.SettingsV2, Unit> {
         public C96531() {
             super(1);
         }
@@ -88,6 +73,21 @@ public final class WidgetSettingsNotifications extends AppFragment {
             CheckedSetting checkedSetting5 = WidgetSettingsNotifications.this.getBinding().f18026e;
             C12238m.checkNotNullExpressionValue(checkedSetting5, "binding.settingsNotificationsMuteAll");
             checkedSetting5.setChecked(settingsV2.isDisableSound());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsNotifications.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

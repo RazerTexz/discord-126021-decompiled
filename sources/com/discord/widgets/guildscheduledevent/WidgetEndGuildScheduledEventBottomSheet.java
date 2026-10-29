@@ -32,10 +32,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEndGuildScheduledEventBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetEndGuildScheduledEventBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEndStageBottomSheetBinding;", 0)};
+    private static final String EXTRA_REQUEST_KEY = "INTENT_EXTRA_REQUEST_KEY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_REQUEST_KEY = "INTENT_EXTRA_REQUEST_KEY";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -49,8 +49,29 @@ public final class WidgetEndGuildScheduledEventBottomSheet extends AppBottomShee
     /* JADX INFO: renamed from: requestKey$delegate, reason: from kotlin metadata */
     private final Lazy requestKey;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetEndGuildScheduledEventBottomSheet$onConfirmEnd$1 */
     /* JADX INFO: compiled from: WidgetEndGuildScheduledEventBottomSheet.kt */
-    public static final class Companion {
+    public final class C88411 extends AbstractC12240o implements Function1<Unit, Unit> {
+        public static final C88411 INSTANCE = new C88411();
+
+        public C88411() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            C12238m.checkNotNullParameter(unit, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEndGuildScheduledEventBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -74,27 +95,6 @@ public final class WidgetEndGuildScheduledEventBottomSheet extends AppBottomShee
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetEndGuildScheduledEventBottomSheet$onConfirmEnd$1 */
-    /* JADX INFO: compiled from: WidgetEndGuildScheduledEventBottomSheet.kt */
-    public static final class C88411 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public static final C88411 INSTANCE = new C88411();
-
-        public C88411() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            C12238m.checkNotNullParameter(unit, "it");
-        }
-    }
-
     public WidgetEndGuildScheduledEventBottomSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEndGuildScheduledEventBottomSheet$binding$2.INSTANCE, null, 2, null);
@@ -113,6 +113,11 @@ public final class WidgetEndGuildScheduledEventBottomSheet extends AppBottomShee
         return (WidgetEndStageBottomSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_end_stage_bottom_sheet;
+    }
+
     private final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
@@ -127,11 +132,6 @@ public final class WidgetEndGuildScheduledEventBottomSheet extends AppBottomShee
 
     private final void onConfirmEnd() {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(GuildScheduledEventAPI.INSTANCE.endEvent(getGuildId(), getGuildScheduledEventId()), false, 1, null), (Class<?>) WidgetEndGuildScheduledEventBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C88411.INSTANCE);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_end_stage_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

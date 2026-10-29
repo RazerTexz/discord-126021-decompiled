@@ -57,7 +57,7 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         AbstractC12072k abstractC12072k;
         ViewGroup viewGroup;
         int i;

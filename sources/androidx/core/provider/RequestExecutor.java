@@ -20,11 +20,11 @@ import java.util.concurrent.TimeoutException;
 /* JADX INFO: loaded from: classes.dex */
 public class RequestExecutor {
 
-    public static class DefaultThreadFactory implements ThreadFactory {
+    public class DefaultThreadFactory implements ThreadFactory {
         private int mPriority;
         private String mThreadName;
 
-        public static class ProcessPriorityThread extends Thread {
+        public class ProcessPriorityThread extends Thread {
             private final int mPriority;
 
             public ProcessPriorityThread(Runnable runnable, String str, int i) {
@@ -50,7 +50,7 @@ public class RequestExecutor {
         }
     }
 
-    public static class HandlerExecutor implements Executor {
+    public class HandlerExecutor implements Executor {
         private final Handler mHandler;
 
         public HandlerExecutor(@NonNull Handler handler) {
@@ -66,7 +66,7 @@ public class RequestExecutor {
         }
     }
 
-    public static class ReplyRunnable<T> implements Runnable {
+    public class ReplyRunnable<T> implements Runnable {
 
         @NonNull
         private Callable<T> mCallable;

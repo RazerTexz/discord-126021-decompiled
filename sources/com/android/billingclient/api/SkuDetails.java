@@ -29,6 +29,20 @@ public class SkuDetails {
         }
     }
 
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof SkuDetails) {
+            return TextUtils.equals(this.f14566a, ((SkuDetails) obj).f14566a);
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        return this.f14566a.hashCode();
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public String m7500a() {
@@ -58,24 +72,10 @@ public class SkuDetails {
         return this.f14567b.optString("type");
     }
 
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof SkuDetails) {
-            return TextUtils.equals(this.f14566a, ((SkuDetails) obj).f14566a);
-        }
-        return false;
-    }
-
     @NonNull
     /* JADX INFO: renamed from: f */
     public final String m7505f() {
         return this.f14567b.optString("packageName");
-    }
-
-    public int hashCode() {
-        return this.f14566a.hashCode();
     }
 
     @NonNull

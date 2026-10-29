@@ -102,79 +102,13 @@ import p007b.p195g.p196a.p205c.p221z.C2397o;
 /* JADX INFO: compiled from: BeanSerializerFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2237f extends AbstractC2233b implements Serializable {
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: l */
     public static final C2237f f4805l = new C2237f(null);
-    private static final long serialVersionUID = 1;
 
     public C2237f(C2397o c2397o) {
         super(null);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2248q
-    /* JADX INFO: renamed from: b */
-    public AbstractC2364n<Object> mo1991b(AbstractC2374x abstractC2374x, AbstractC2360j abstractC2360j) throws JsonMappingException {
-        AbstractC2360j abstractC2360jMo1780e0;
-        Object objMo1752H;
-        C2372v c2372v = abstractC2374x._config;
-        AbstractC2172c abstractC2172cM2236u = c2372v.m2236u(abstractC2360j);
-        AbstractC2364n<?> abstractC2364nM1975f = m1975f(abstractC2374x, ((C2196q) abstractC2172cM2236u).f4736f);
-        if (abstractC2364nM1975f != null) {
-            return abstractC2364nM1975f;
-        }
-        AbstractC2165b abstractC2165bM2267e = c2372v.m2267e();
-        boolean z2 = false;
-        InterfaceC2343e interfaceC2343e = null;
-        if (abstractC2165bM2267e == null) {
-            abstractC2360jMo1780e0 = abstractC2360j;
-        } else {
-            try {
-                abstractC2360jMo1780e0 = abstractC2165bM2267e.mo1780e0(c2372v, ((C2196q) abstractC2172cM2236u).f4736f, abstractC2360j);
-            } catch (JsonMappingException e) {
-                abstractC2374x.m2242F(abstractC2172cM2236u, e.getMessage(), new Object[0]);
-                throw null;
-            }
-        }
-        if (abstractC2360jMo1780e0 != abstractC2360j) {
-            if (!abstractC2360jMo1780e0.m2218t(abstractC2360j._class)) {
-                abstractC2172cM2236u = c2372v.m2236u(abstractC2360jMo1780e0);
-            }
-            z2 = true;
-        }
-        C2196q c2196q = (C2196q) abstractC2172cM2236u;
-        AbstractC2165b abstractC2165b = c2196q.f4735e;
-        if (abstractC2165b != null && (objMo1752H = abstractC2165b.mo1752H(c2196q.f4736f)) != null) {
-            if (objMo1752H instanceof InterfaceC2343e) {
-                interfaceC2343e = (InterfaceC2343e) objMo1752H;
-            } else {
-                if (!(objMo1752H instanceof Class)) {
-                    StringBuilder sbM833U = C1643a.m833U("AnnotationIntrospector returned Converter definition of type ");
-                    sbM833U.append(objMo1752H.getClass().getName());
-                    sbM833U.append("; expected type Converter or Class<Converter> instead");
-                    throw new IllegalStateException(sbM833U.toString());
-                }
-                Class cls = (Class) objMo1752H;
-                if (cls != InterfaceC2343e.a.class && !C2342d.m2184p(cls)) {
-                    if (!InterfaceC2343e.class.isAssignableFrom(cls)) {
-                        throw new IllegalStateException(C1643a.m867o(cls, C1643a.m833U("AnnotationIntrospector returned Class "), "; expected Class<Converter>"));
-                    }
-                    Objects.requireNonNull(c2196q.f4734d._base);
-                    interfaceC2343e = (InterfaceC2343e) C2342d.m2175g(cls, c2196q.f4734d.m2265b());
-                }
-            }
-        }
-        if (interfaceC2343e == null) {
-            return m1993i(abstractC2374x, abstractC2360jMo1780e0, abstractC2172cM2236u, z2);
-        }
-        AbstractC2360j abstractC2360jM2197a = interfaceC2343e.m2197a(abstractC2374x.mo1940d());
-        if (!abstractC2360jM2197a.m2218t(abstractC2360jMo1780e0._class)) {
-            abstractC2172cM2236u = c2372v.m2236u(abstractC2360jM2197a);
-            abstractC2364nM1975f = m1975f(abstractC2374x, ((C2196q) abstractC2172cM2236u).f4736f);
-        }
-        if (abstractC2364nM1975f == null && !abstractC2360jM2197a.m2221y()) {
-            abstractC2364nM1975f = m1993i(abstractC2374x, abstractC2360jM2197a, abstractC2172cM2236u, true);
-        }
-        return new C2291j0(interfaceC2343e, abstractC2360jM2197a, abstractC2364nM1975f);
     }
 
     /* JADX WARN: Code duplicated, block: B:121:0x0259  */
@@ -540,6 +474,9 @@ public class C2237f extends AbstractC2233b implements Serializable {
 
     /* JADX WARN: Code duplicated, block: B:164:0x02f3 A[PHI: r4
       0x02f3: PHI (r4v88 b.g.a.c.n<?>) = (r4v87 b.g.a.c.n<?>), (r4v89 b.g.a.c.n<?>), (r4v91 b.g.a.c.n<?>) binds: [B:131:0x0273, B:133:0x0279, B:161:0x02e8] A[DONT_GENERATE, DONT_INLINE]] */
+    /* JADX WARN: Code duplicated, block: B:203:0x03c6  */
+    /* JADX WARN: Code duplicated, block: B:205:0x03ca  */
+    /* JADX WARN: Code duplicated, block: B:206:0x03cd  */
     /* JADX WARN: Code duplicated, block: B:215:0x0404 A[PHI: r11 r12 r13 r14 r15
       0x0404: PHI (r11v5 java.lang.Class<java.lang.Enum>) = (r11v4 java.lang.Class<java.lang.Enum>), (r11v10 java.lang.Class<java.lang.Enum>) binds: [B:189:0x0384, B:135:0x0284] A[DONT_GENERATE, DONT_INLINE]
       0x0404: PHI (r12v4 b.g.a.c.c) = (r12v3 b.g.a.c.c), (r12v10 b.g.a.c.c) binds: [B:189:0x0384, B:135:0x0284] A[DONT_GENERATE, DONT_INLINE]
@@ -738,17 +675,8 @@ public class C2237f extends AbstractC2233b implements Serializable {
         int i3;
         char c;
         int iOrdinal;
-        C2311t0 c2311t0;
-        C2314v c2314v;
-        C2311t0 c2311t1;
-        C2309s0 c2309s0;
-        C2304q c2304q;
-        C2302p c2302p;
-        C2284g c2284g;
         Object objM572t1;
         boolean zMo1999B2;
-        C2292k c2292k;
-        C2286h c2286h;
         String str;
         boolean z3;
         String str2;
@@ -800,7 +728,7 @@ public class C2237f extends AbstractC2233b implements Serializable {
         int i6;
         Class<?> cls3;
         boolean z6;
-        C2311t0 c2311t2;
+        C2311t0 c2311t0;
         AbstractC2360j[] abstractC2360jArrM2167i;
         AbstractC2360j abstractC2360jM2158k;
         boolean z7;
@@ -826,17 +754,14 @@ public class C2237f extends AbstractC2233b implements Serializable {
         AbstractC2364n<Object> abstractC2364nM2259x;
         C2296m c2296m;
         Class<? extends AbstractC2364n<?>> cls4;
-        AbstractC2364n abstractC2364n;
         boolean z8;
-        AbstractC2364n<?> abstractC2364nM1974e;
         boolean z9;
         AbstractC2215g abstractC2215g2;
-        AbstractC2364n<Object> abstractC2364n2;
+        AbstractC2364n<Object> abstractC2364n;
         AbstractC2239h c2290j;
         InterfaceC2081i.c cVar2;
-        AbstractC2364n<?> abstractC2364nM1974e2;
         C2372v c2372v3;
-        AbstractC2364n<Object> abstractC2364n3;
+        AbstractC2364n<Object> abstractC2364n2;
         C2196q c2196q2;
         boolean z10;
         AbstractC2215g abstractC2215g3;
@@ -872,35 +797,35 @@ public class C2237f extends AbstractC2233b implements Serializable {
                     } else {
                         C2372v c2372v6 = abstractC2374x._config;
                         C2340b c2340b4 = (C2340b) m1994j();
-                        AbstractC2364n<?> abstractC2364nM1974e3 = null;
+                        AbstractC2364n<?> abstractC2364nM1974e = null;
                         while (true) {
                             if (!c2340b4.hasNext()) {
                                 cVar2 = cVar3;
                                 c2372v3 = c2372v6;
-                                abstractC2364n3 = abstractC2364nMo2000H;
+                                abstractC2364n2 = abstractC2364nMo2000H;
                                 c2196q2 = c2196q3;
                                 z10 = z13;
                                 abstractC2215g3 = abstractC2215gMo1972c2;
                                 break;
                             }
                             c2372v3 = c2372v6;
-                            abstractC2364n3 = abstractC2364nMo2000H;
+                            abstractC2364n2 = abstractC2364nMo2000H;
                             cVar2 = cVar3;
                             c2196q2 = c2196q3;
                             z10 = z13;
                             abstractC2215g3 = abstractC2215gMo1972c2;
-                            abstractC2364nM1974e3 = ((InterfaceC2249r) c2340b4.next()).m2012c(c2372v6, c2328g, abstractC2172c, abstractC2364nMo2000H2, abstractC2215gMo1972c2, abstractC2364n3);
-                            if (abstractC2364nM1974e3 != null) {
+                            abstractC2364nM1974e = ((InterfaceC2249r) c2340b4.next()).m2012c(c2372v6, c2328g, abstractC2172c, abstractC2364nMo2000H2, abstractC2215gMo1972c2, abstractC2364n2);
+                            if (abstractC2364nM1974e != null) {
                                 break;
                             }
                             c2372v6 = c2372v3;
                             c2196q3 = c2196q2;
                             z13 = z10;
                             abstractC2215gMo1972c2 = abstractC2215g3;
-                            abstractC2364nMo2000H = abstractC2364n3;
+                            abstractC2364nMo2000H = abstractC2364n2;
                             cVar3 = cVar2;
                         }
-                        if (abstractC2364nM1974e3 == null && (abstractC2364nM1974e3 = m1974e(abstractC2374x, c2328g, abstractC2172c3)) == null) {
+                        if (abstractC2364nM1974e == null && (abstractC2364nM1974e = m1974e(abstractC2374x, c2328g, abstractC2172c3)) == null) {
                             Object objMo1783g = c2372v3.m2267e().mo1783g(c2196q2.f4736f);
                             C2372v c2372v7 = c2372v3;
                             InterfaceC2091n.a aVarM2280s2 = c2372v7.m2280s(Map.class, c2196q2.f4736f);
@@ -908,7 +833,7 @@ public class C2237f extends AbstractC2233b implements Serializable {
                             C2177c c2177c4 = c2196q2.f4736f;
                             AbstractC2165b abstractC2165bM2267e3 = c2372v7.m2267e();
                             InterfaceC2095q.a aVarMo1745A2 = abstractC2165bM2267e3 == null ? null : abstractC2165bM2267e3.mo1745A(c2372v7, c2177c4);
-                            C2310t c2310tM2082s = C2310t.m2082s(setM1617d2, aVarMo1745A2 == null ? null : aVarMo1745A2._included, c2328g, z10, abstractC2215g3, abstractC2364nMo2000H2, abstractC2364n3, objMo1783g);
+                            C2310t c2310tM2082s = C2310t.m2082s(setM1617d2, aVarMo1745A2 == null ? null : aVarMo1745A2._included, c2328g, z10, abstractC2215g3, abstractC2364nMo2000H2, abstractC2364n2, objMo1783g);
                             AbstractC2360j abstractC2360j2 = c2310tM2082s._valueType;
                             InterfaceC2094p.b bVarM1973d = m1973d(abstractC2374x, abstractC2172c3, abstractC2360j2, Map.class);
                             InterfaceC2094p.a aVar5 = bVarM1973d == null ? aVar4 : bVarM1973d._contentInclusion;
@@ -947,7 +872,7 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                 M1974e = c2310tM2082s.m2086v(objM572t2, zMo1999B3);
                             }
                         } else {
-                            M1974e = abstractC2364nM1974e3;
+                            M1974e = abstractC2364nM1974e;
                         }
                         if (this._factoryConfig.m2282a()) {
                             C2340b c2340b5 = (C2340b) this._factoryConfig.m2283b();
@@ -968,21 +893,14 @@ public class C2237f extends AbstractC2233b implements Serializable {
                         }
                         c2327f = c2327f2;
                     }
-                    if (abstractC2364nM2015f == null) {
-                        abstractC2364nM1974e2 = m1974e(abstractC2374x, abstractC2360j, abstractC2172c);
-                    } else {
-                        M1974e = abstractC2364nM2015f;
-                    }
+                    M1974e = abstractC2364nM2015f == null ? m1974e(abstractC2374x, abstractC2360j, abstractC2172c) : abstractC2364nM2015f;
                     if (M1974e != 0 && this._factoryConfig.m2282a()) {
-                        M1974e = abstractC2364nM1974e2;
                         C2340b c2340b7 = (C2340b) this._factoryConfig.m2283b();
                         while (c2340b7.hasNext()) {
                             Objects.requireNonNull((AbstractC2238g) c2340b7.next());
                         }
                     }
                 }
-                M1974e = abstractC2364nM1974e2;
-                M1974e = abstractC2364nM1974e2;
                 aVar = aVar4;
                 aVar2 = aVar3;
                 cls = cls5;
@@ -991,7 +909,7 @@ public class C2237f extends AbstractC2233b implements Serializable {
             } else {
                 InterfaceC2081i.c cVar4 = cVar3;
                 boolean z14 = z13;
-                AbstractC2364n<?> abstractC2364nM1974e4 = null;
+                AbstractC2364n<?> abstractC2364nM1974e2 = null;
                 if (abstractC2360j.mo2111u()) {
                     C2325d c2325d = (C2325d) abstractC2360j;
                     if (c2325d instanceof C2326e) {
@@ -1016,8 +934,8 @@ public class C2237f extends AbstractC2233b implements Serializable {
                             cls = cls5;
                             C2340b c2340b9 = c2340b8;
                             abstractC2172c2 = abstractC2172c3;
-                            abstractC2364nM1974e4 = interfaceC2249r.m2016g(c2372v9, c2326e, abstractC2172c, abstractC2215gMo1972c2, abstractC2364nMo2000H);
-                            if (abstractC2364nM1974e4 != null) {
+                            abstractC2364nM1974e2 = interfaceC2249r.m2016g(c2372v9, c2326e, abstractC2172c, abstractC2215gMo1972c2, abstractC2364nMo2000H);
+                            if (abstractC2364nM1974e2 != null) {
                                 break;
                             }
                             cls5 = cls;
@@ -1028,8 +946,8 @@ public class C2237f extends AbstractC2233b implements Serializable {
                             c2372v8 = c2372v10;
                             c2340b8 = c2340b9;
                         }
-                        if (abstractC2364nM1974e4 != null || (abstractC2364nM1974e4 = m1974e(abstractC2374x, c2326e, abstractC2172c2)) != null) {
-                            M1974e = abstractC2364nM1974e4;
+                        if (abstractC2364nM1974e2 != null || (abstractC2364nM1974e2 = m1974e(abstractC2374x, c2326e, abstractC2172c2)) != null) {
+                            M1974e = abstractC2364nM1974e2;
                         } else if (abstractC2172c2.mo1812a(null).m1601e() == cVar) {
                             M1974e = 0;
                         } else {
@@ -1045,27 +963,27 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                 if (!RandomAccess.class.isAssignableFrom(cls6)) {
                                     z9 = z14;
                                     abstractC2215g2 = abstractC2215gMo1972c2;
-                                    abstractC2364n2 = abstractC2364nMo2000H;
-                                    if (cls7 == String.class && C2342d.m2187s(abstractC2364n2)) {
-                                        abstractC2364nM1974e4 = C2265o.f4844k;
+                                    abstractC2364n = abstractC2364nMo2000H;
+                                    if (cls7 == String.class && C2342d.m2187s(abstractC2364n)) {
+                                        abstractC2364nM1974e2 = C2265o.f4844k;
                                     }
                                 } else if (cls7 == String.class) {
                                     if (C2342d.m2187s(abstractC2364nMo2000H)) {
-                                        abstractC2364nM1974e4 = C2257g.f4817k;
+                                        abstractC2364nM1974e2 = C2257g.f4817k;
                                     }
                                     z9 = z14;
                                     abstractC2215g2 = abstractC2215gMo1972c2;
-                                    abstractC2364n2 = abstractC2364nMo2000H;
+                                    abstractC2364n = abstractC2364nMo2000H;
                                 } else {
                                     z9 = z14;
                                     abstractC2215g2 = abstractC2215gMo1972c2;
-                                    abstractC2364n2 = abstractC2364nMo2000H;
-                                    abstractC2364nM1974e4 = new C2256f(c2326e._elementType, z9, abstractC2215g2, abstractC2364n2);
+                                    abstractC2364n = abstractC2364nMo2000H;
+                                    abstractC2364nM1974e2 = new C2256f(c2326e._elementType, z9, abstractC2215g2, abstractC2364n);
                                 }
-                                if (abstractC2364nM1974e4 == null) {
-                                    c2290j = new C2290j(c2326e._elementType, z9, abstractC2215g2, abstractC2364n2);
+                                if (abstractC2364nM1974e2 == null) {
+                                    c2290j = new C2290j(c2326e._elementType, z9, abstractC2215g2, abstractC2364n);
                                 } else {
-                                    M1974e = abstractC2364nM1974e4;
+                                    M1974e = abstractC2364nM1974e2;
                                 }
                             }
                             M1974e = c2290j;
@@ -1082,29 +1000,24 @@ public class C2237f extends AbstractC2233b implements Serializable {
                         cls = cls5;
                         abstractC2172c2 = abstractC2172c3;
                         AbstractC2215g abstractC2215g4 = abstractC2215gMo1972c2;
-                        AbstractC2364n<Object> abstractC2364n4 = abstractC2364nMo2000H;
+                        AbstractC2364n<Object> abstractC2364n3 = abstractC2364nMo2000H;
                         cVar = cVar4;
                         C2340b c2340b11 = (C2340b) m1994j();
                         AbstractC2364n<?> abstractC2364nM2013d = null;
                         while (c2340b11.hasNext()) {
                             C2372v c2372v11 = c2372v5;
-                            AbstractC2364n<Object> abstractC2364n5 = abstractC2364n4;
+                            AbstractC2364n<Object> abstractC2364n4 = abstractC2364n3;
                             AbstractC2215g abstractC2215g5 = abstractC2215g4;
-                            abstractC2364nM2013d = ((InterfaceC2249r) c2340b11.next()).m2013d(c2372v11, c2325d, abstractC2172c, abstractC2215g4, abstractC2364n5);
+                            abstractC2364nM2013d = ((InterfaceC2249r) c2340b11.next()).m2013d(c2372v11, c2325d, abstractC2172c, abstractC2215g4, abstractC2364n4);
                             if (abstractC2364nM2013d != null) {
                                 break;
                             }
                             c2372v5 = c2372v11;
                             abstractC2215g4 = abstractC2215g5;
-                            abstractC2364n4 = abstractC2364n5;
+                            abstractC2364n3 = abstractC2364n4;
                         }
-                        if (abstractC2364nM2013d == null) {
-                            abstractC2364nM1974e = m1974e(abstractC2374x, abstractC2360j, abstractC2172c);
-                        } else {
-                            M1974e = abstractC2364nM2013d;
-                        }
+                        M1974e = abstractC2364nM2013d == null ? m1974e(abstractC2374x, abstractC2360j, abstractC2172c) : abstractC2364nM2013d;
                         if (M1974e != 0 && this._factoryConfig.m2282a()) {
-                            M1974e = abstractC2364nM1974e;
                             C2340b c2340b12 = (C2340b) this._factoryConfig.m2283b();
                             while (c2340b12.hasNext()) {
                                 Objects.requireNonNull((AbstractC2238g) c2340b12.next());
@@ -1141,9 +1054,19 @@ public class C2237f extends AbstractC2233b implements Serializable {
                         }
                         if (M1974e == 0) {
                             Class<?> cls8 = c2322a._class;
-                            if (abstractC2364nMo2000H == null || C2342d.m2187s(abstractC2364nMo2000H)) {
+                            if (abstractC2364nMo2000H != null) {
                                 M1974e = M1974e;
-                                M1974e = String[].class == cls8 ? C2264n.f4843k : C2289i0.f4855a.get(cls8.getName());
+                                if (C2342d.m2187s(abstractC2364nMo2000H)) {
+                                    if (String[].class == cls8) {
+                                        M1974e = C2264n.f4843k;
+                                    } else {
+                                        M1974e = C2289i0.f4855a.get(cls8.getName());
+                                    }
+                                }
+                            } else if (String[].class == cls8) {
+                                M1974e = C2264n.f4843k;
+                            } else {
+                                M1974e = C2289i0.f4855a.get(cls8.getName());
                             }
                             if (M1974e == 0) {
                                 M1974e = new C2279d0(c2322a._componentType, z8, abstractC2215gMo1972c2, abstractC2364nMo2000H);
@@ -1180,21 +1103,21 @@ public class C2237f extends AbstractC2233b implements Serializable {
                     abstractC2215gMo1972c3 = mo1972c(c2372v15, abstractC2360j4);
                 }
                 AbstractC2215g abstractC2215g6 = abstractC2215gMo1972c3;
-                AbstractC2364n<Object> abstractC2364n6 = (AbstractC2364n) abstractC2360j4._valueHandler;
+                AbstractC2364n<Object> abstractC2364n5 = (AbstractC2364n) abstractC2360j4._valueHandler;
                 C2340b c2340b15 = (C2340b) m1994j();
                 while (true) {
                     if (c2340b15.hasNext()) {
-                        AbstractC2364n<Object> abstractC2364n7 = abstractC2364n6;
+                        AbstractC2364n<Object> abstractC2364n6 = abstractC2364n5;
                         AbstractC2215g abstractC2215g7 = abstractC2215g6;
                         C2372v c2372v16 = c2372v15;
-                        abstractC2364nM2010a = ((InterfaceC2249r) c2340b15.next()).m2010a(c2372v15, c2330i, abstractC2172c, abstractC2215g6, abstractC2364n7);
+                        abstractC2364nM2010a = ((InterfaceC2249r) c2340b15.next()).m2010a(c2372v15, c2330i, abstractC2172c, abstractC2215g6, abstractC2364n6);
                         if (abstractC2364nM2010a == null) {
-                            abstractC2364n6 = abstractC2364n7;
+                            abstractC2364n5 = abstractC2364n6;
                             abstractC2215g6 = abstractC2215g7;
                             c2372v15 = c2372v16;
                         }
                     } else {
-                        AbstractC2364n<Object> abstractC2364n8 = abstractC2364n6;
+                        AbstractC2364n<Object> abstractC2364n7 = abstractC2364n5;
                         AbstractC2215g abstractC2215g8 = abstractC2215g6;
                         if (c2330i.m2216B(AtomicReference.class)) {
                             AbstractC2360j abstractC2360j5 = c2330i._referencedType;
@@ -1234,7 +1157,7 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                     zMo1999B = true;
                                 }
                             }
-                            AbstractC2283f0<AtomicReference<?>> abstractC2283f0Mo2049t = new C2276c(c2330i, z11, abstractC2215g8, abstractC2364n8).mo2049t(objM572t0, zMo1999B);
+                            AbstractC2283f0<AtomicReference<?>> abstractC2283f0Mo2049t = new C2276c(c2330i, z11, abstractC2215g8, abstractC2364n7).mo2049t(objM572t0, zMo1999B);
                             i = i2;
                             M1974e = abstractC2283f0Mo2049t;
                             break;
@@ -1258,20 +1181,19 @@ public class C2237f extends AbstractC2233b implements Serializable {
         }
         if (M1974e == 0) {
             String name = abstractC2360j._class.getName();
-            AbstractC2364n<?> abstractC2364n9 = AbstractC2233b.f4788j.get(name);
-            if (abstractC2364n9 != null || (cls4 = AbstractC2233b.f4789k.get(name)) == null) {
-                M1974e = abstractC2364n9;
+            AbstractC2364n<?> abstractC2364n8 = AbstractC2233b.f4788j.get(name);
+            if (abstractC2364n8 != null || (cls4 = AbstractC2233b.f4789k.get(name)) == null) {
+                M1974e = abstractC2364n8;
                 i3 = 0;
             } else {
                 i3 = 0;
-                abstractC2364n = (AbstractC2364n) C2342d.m2175g(cls4, false);
+                M1974e = (AbstractC2364n) C2342d.m2175g(cls4, false);
             }
             if (M1974e == 0) {
                 if (abstractC2360j.m2219w()) {
                     C2372v c2372v17 = abstractC2374x._config;
                     InterfaceC2081i.d dVarMo1812a = abstractC2172c2.mo1812a(null);
                     if (dVarMo1812a.m1601e() == cVar) {
-                        M1974e = abstractC2364n;
                         Iterator<AbstractC2198s> it4 = ((C2196q) abstractC2172c2).m1919d().iterator();
                         while (it4.hasNext()) {
                             if (it4.next().mo1858p().equals("declaringClass")) {
@@ -1285,13 +1207,11 @@ public class C2237f extends AbstractC2233b implements Serializable {
                         int i7 = C2296m.f4857k;
                         C2296m c2296m2 = new C2296m(C2344f.m2198a(c2372v17, cls9), C2296m.m2068p(cls9, dVarMo1812a, true, null));
                         if (this._factoryConfig.m2282a()) {
-                            M1974e = abstractC2364n;
                             C2340b c2340b17 = (C2340b) this._factoryConfig.m2283b();
                             while (c2340b17.hasNext()) {
                                 Objects.requireNonNull((AbstractC2238g) c2340b17.next());
                             }
                         }
-                        M1974e = abstractC2364n;
                         c2296m = c2296m2;
                     }
                     c = 1;
@@ -1301,12 +1221,11 @@ public class C2237f extends AbstractC2233b implements Serializable {
                     Class<?> cls10 = abstractC2360j._class;
                     ?? M1809a = C2171f.f4625l.m1809a(abstractC2374x._config, abstractC2360j, abstractC2172c2);
                     if (M1809a != 0) {
-                        M1974e = abstractC2364n;
                         M1974e = M1809a;
                     } else if (Calendar.class.isAssignableFrom(cls10)) {
-                        c2286h = C2286h.f4854k;
+                        M1974e = C2286h.f4854k;
                     } else if (Date.class.isAssignableFrom(cls10)) {
-                        c2292k = C2292k.f4856k;
+                        M1974e = C2292k.f4856k;
                     } else if (Map.Entry.class.isAssignableFrom(cls10)) {
                         AbstractC2360j abstractC2360jMo2144i = abstractC2360j.mo2144i(Map.Entry.class);
                         AbstractC2360j abstractC2360jM2217h = abstractC2360jMo2144i.m2217h(i3);
@@ -1314,10 +1233,8 @@ public class C2237f extends AbstractC2233b implements Serializable {
                         InterfaceC2081i.d dVarMo2271i = abstractC2374x._config.mo2271i(Map.Entry.class);
                         InterfaceC2081i.d dVarMo1812a2 = abstractC2172c2.mo1812a(null);
                         if (dVarMo1812a2 != null) {
-                            M1974e = abstractC2364n;
                             dVarMo2271i = dVarMo1812a2.m1607k(dVarMo2271i);
                         }
-                        M1974e = abstractC2364n;
                         if (dVarMo2271i.m1601e() == cVar) {
                             M1809a = 0;
                         } else {
@@ -1357,48 +1274,24 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                 }
                             }
                         }
-                        M1974e = abstractC2364n;
                         M1974e = M1809a;
                     } else if (ByteBuffer.class.isAssignableFrom(cls10)) {
-                        c2284g = new C2284g();
+                        M1974e = new C2284g();
                     } else if (InetAddress.class.isAssignableFrom(cls10)) {
-                        c2302p = new C2302p();
+                        M1974e = new C2302p();
                     } else if (InetSocketAddress.class.isAssignableFrom(cls10)) {
-                        c2304q = new C2304q();
+                        M1974e = new C2304q();
                     } else if (TimeZone.class.isAssignableFrom(cls10)) {
-                        c2309s0 = new C2309s0();
+                        M1974e = new C2309s0();
                     } else if (Charset.class.isAssignableFrom(cls10)) {
-                        c2311t1 = C2311t0.f4866k;
+                        M1974e = C2311t0.f4866k;
                     } else if (!Number.class.isAssignableFrom(cls10) || (iOrdinal = abstractC2172c2.mo1812a(null).m1601e().ordinal()) == i || iOrdinal == 4) {
-                        M1974e = abstractC2364n;
-                        M1974e = abstractC2364n;
-                        M1974e = abstractC2364n;
                         M1974e = 0;
-                    } else if (iOrdinal != 8) {
-                        c2314v = C2314v.f4868k;
                     } else {
-                        c2311t0 = C2311t0.f4866k;
+                        M1974e = iOrdinal != 8 ? C2314v.f4868k : C2311t0.f4866k;
                     }
                 }
                 if (M1974e == 0) {
-                    M1974e = abstractC2364n;
-                    M1974e = c2311t0;
-                    M1974e = abstractC2364n;
-                    M1974e = c2314v;
-                    M1974e = abstractC2364n;
-                    M1974e = c2311t1;
-                    M1974e = abstractC2364n;
-                    M1974e = c2309s0;
-                    M1974e = abstractC2364n;
-                    M1974e = c2304q;
-                    M1974e = abstractC2364n;
-                    M1974e = c2302p;
-                    M1974e = abstractC2364n;
-                    M1974e = c2284g;
-                    M1974e = abstractC2364n;
-                    M1974e = c2292k;
-                    M1974e = abstractC2364n;
-                    M1974e = c2286h;
                     Class<?> cls11 = abstractC2360j._class;
                     Annotation[] annotationArr = C2342d.f4944a;
                     if (cls11.isAnnotation()) {
@@ -1753,11 +1646,11 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                                         M1974e = new C2306r(abstractC2360jM2158k, z6, mo1972c(c2372v, abstractC2360jM2158k));
                                                     } else {
                                                         if (CharSequence.class.isAssignableFrom(cls3)) {
-                                                            c2311t2 = C2311t0.f4866k;
+                                                            c2311t0 = C2311t0.f4866k;
                                                         } else {
-                                                            c2311t2 = null;
+                                                            c2311t0 = null;
                                                         }
-                                                        M1974e = c2311t2;
+                                                        M1974e = c2311t0;
                                                     }
                                                 }
                                                 if (M1974e == 0) {
@@ -2093,11 +1986,11 @@ public class C2237f extends AbstractC2233b implements Serializable {
                                                 M1974e = new C2306r(abstractC2360jM2158k, z6, mo1972c(c2372v, abstractC2360jM2158k));
                                             } else {
                                                 if (CharSequence.class.isAssignableFrom(cls3)) {
-                                                    c2311t2 = C2311t0.f4866k;
+                                                    c2311t0 = C2311t0.f4866k;
                                                 } else {
-                                                    c2311t2 = null;
+                                                    c2311t0 = null;
                                                 }
-                                                M1974e = c2311t2;
+                                                M1974e = c2311t0;
                                             }
                                         }
                                         if (M1974e == 0) {
@@ -2139,5 +2032,71 @@ public class C2237f extends AbstractC2233b implements Serializable {
     /* JADX INFO: renamed from: j */
     public Iterable<InterfaceC2249r> m1994j() {
         return new C2340b(this._factoryConfig._additionalSerializers);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2248q
+    /* JADX INFO: renamed from: b */
+    public AbstractC2364n<Object> mo1991b(AbstractC2374x abstractC2374x, AbstractC2360j abstractC2360j) throws JsonMappingException {
+        AbstractC2360j abstractC2360jMo1780e0;
+        Object objMo1752H;
+        C2372v c2372v = abstractC2374x._config;
+        AbstractC2172c abstractC2172cM2236u = c2372v.m2236u(abstractC2360j);
+        AbstractC2364n<?> abstractC2364nM1975f = m1975f(abstractC2374x, ((C2196q) abstractC2172cM2236u).f4736f);
+        if (abstractC2364nM1975f != null) {
+            return abstractC2364nM1975f;
+        }
+        AbstractC2165b abstractC2165bM2267e = c2372v.m2267e();
+        boolean z2 = false;
+        InterfaceC2343e interfaceC2343e = null;
+        if (abstractC2165bM2267e == null) {
+            abstractC2360jMo1780e0 = abstractC2360j;
+        } else {
+            try {
+                abstractC2360jMo1780e0 = abstractC2165bM2267e.mo1780e0(c2372v, ((C2196q) abstractC2172cM2236u).f4736f, abstractC2360j);
+            } catch (JsonMappingException e) {
+                abstractC2374x.m2242F(abstractC2172cM2236u, e.getMessage(), new Object[0]);
+                throw null;
+            }
+        }
+        if (abstractC2360jMo1780e0 != abstractC2360j) {
+            if (!abstractC2360jMo1780e0.m2218t(abstractC2360j._class)) {
+                abstractC2172cM2236u = c2372v.m2236u(abstractC2360jMo1780e0);
+            }
+            z2 = true;
+        }
+        C2196q c2196q = (C2196q) abstractC2172cM2236u;
+        AbstractC2165b abstractC2165b = c2196q.f4735e;
+        if (abstractC2165b != null && (objMo1752H = abstractC2165b.mo1752H(c2196q.f4736f)) != null) {
+            if (objMo1752H instanceof InterfaceC2343e) {
+                interfaceC2343e = (InterfaceC2343e) objMo1752H;
+            } else {
+                if (!(objMo1752H instanceof Class)) {
+                    StringBuilder sbM833U = C1643a.m833U("AnnotationIntrospector returned Converter definition of type ");
+                    sbM833U.append(objMo1752H.getClass().getName());
+                    sbM833U.append("; expected type Converter or Class<Converter> instead");
+                    throw new IllegalStateException(sbM833U.toString());
+                }
+                Class cls = (Class) objMo1752H;
+                if (cls != InterfaceC2343e.a.class && !C2342d.m2184p(cls)) {
+                    if (!InterfaceC2343e.class.isAssignableFrom(cls)) {
+                        throw new IllegalStateException(C1643a.m867o(cls, C1643a.m833U("AnnotationIntrospector returned Class "), "; expected Class<Converter>"));
+                    }
+                    Objects.requireNonNull(c2196q.f4734d._base);
+                    interfaceC2343e = (InterfaceC2343e) C2342d.m2175g(cls, c2196q.f4734d.m2265b());
+                }
+            }
+        }
+        if (interfaceC2343e == null) {
+            return m1993i(abstractC2374x, abstractC2360jMo1780e0, abstractC2172cM2236u, z2);
+        }
+        AbstractC2360j abstractC2360jM2197a = interfaceC2343e.m2197a(abstractC2374x.mo1940d());
+        if (!abstractC2360jM2197a.m2218t(abstractC2360jMo1780e0._class)) {
+            abstractC2172cM2236u = c2372v.m2236u(abstractC2360jM2197a);
+            abstractC2364nM1975f = m1975f(abstractC2374x, ((C2196q) abstractC2172cM2236u).f4736f);
+        }
+        if (abstractC2364nM1975f == null && !abstractC2360jM2197a.m2221y()) {
+            abstractC2364nM1975f = m1993i(abstractC2374x, abstractC2360jM2197a, abstractC2172cM2236u, true);
+        }
+        return new C2291j0(interfaceC2343e, abstractC2360jM2197a, abstractC2364nM1975f);
     }
 }

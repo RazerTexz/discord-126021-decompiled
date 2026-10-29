@@ -12,7 +12,7 @@ public interface InterfaceC11402j0 extends InterfaceC11450m {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.j0$a */
     /* JADX INFO: compiled from: PackageViewDescriptor.kt */
-    public static final class a {
+    public final class a {
         public static boolean isEmpty(InterfaceC11402j0 interfaceC11402j0) {
             C12238m.checkNotNullParameter(interfaceC11402j0, "this");
             return interfaceC11402j0.getFragments().isEmpty();

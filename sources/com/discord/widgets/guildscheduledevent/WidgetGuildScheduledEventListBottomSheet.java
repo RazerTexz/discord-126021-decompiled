@@ -63,8 +63,128 @@ public final class WidgetGuildScheduledEventListBottomSheet extends AppBottomShe
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C88861 extends C12236k implements Function1<GuildScheduledEventListViewModel.ViewState, Unit> {
+        public C88861(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).configureUi(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$1 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final /* synthetic */ class C88871 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
+        public C88871(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onEventCardClicked", "onEventCardClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListItem.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onEventCardClicked(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$2 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final /* synthetic */ class C88882 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
+        public C88882(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onRsvpClicked", "onRsvpClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListItem.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onRsvpClicked(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$3 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final /* synthetic */ class C88893 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
+        public C88893(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onEventStartClicked", "onEventStartClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListItem.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onEventStartClicked(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$4 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final /* synthetic */ class C88904 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
+        public C88904(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onJoinClicked", "onJoinClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListItem.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onJoinClicked(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$5 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final /* synthetic */ class C88915 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
+        public C88915(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
+            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onShareClicked", "onShareClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEventListItem.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onShareClicked(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -88,126 +208,6 @@ public final class WidgetGuildScheduledEventListBottomSheet extends AppBottomShe
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88861 extends C12236k implements Function1<GuildScheduledEventListViewModel.ViewState, Unit> {
-        public C88861(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).configureUi(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88871 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
-        public C88871(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onEventCardClicked", "onEventCardClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListItem.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onEventCardClicked(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$2 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88882 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
-        public C88882(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onRsvpClicked", "onRsvpClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListItem.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onRsvpClicked(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$3 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88893 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
-        public C88893(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onEventStartClicked", "onEventStartClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListItem.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onEventStartClicked(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$4 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88904 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
-        public C88904(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onJoinClicked", "onJoinClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListItem.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onJoinClicked(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet$onViewCreated$5 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventListBottomSheet.kt */
-    public static final /* synthetic */ class C88915 extends C12236k implements Function1<GuildScheduledEventListItem.Event, Unit> {
-        public C88915(WidgetGuildScheduledEventListBottomSheet widgetGuildScheduledEventListBottomSheet) {
-            super(1, widgetGuildScheduledEventListBottomSheet, WidgetGuildScheduledEventListBottomSheet.class, "onShareClicked", "onShareClicked(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListItem$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEventListItem.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildScheduledEventListItem.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildScheduledEventListBottomSheet) this.receiver).onShareClicked(event);
         }
     }
 
@@ -255,6 +255,11 @@ public final class WidgetGuildScheduledEventListBottomSheet extends AppBottomShe
         return (Long) this.channelId.getValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_scheduled_event_list_bottom_sheet;
+    }
+
     private final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
@@ -287,6 +292,12 @@ public final class WidgetGuildScheduledEventListBottomSheet extends AppBottomShe
         }
     }
 
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildScheduledEventListBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88861(this));
+    }
+
     private final void onRsvpClicked(GuildScheduledEventListItem.Event item) {
         if (!item.isRsvped()) {
             C0876m.m169g(getContext(), C5419R.string.guild_event_interested_notification, 0, null, 12);
@@ -296,17 +307,6 @@ public final class WidgetGuildScheduledEventListBottomSheet extends AppBottomShe
 
     private final void onShareClicked(GuildScheduledEventListItem.Event item) {
         getViewModel().onShareClicked(item.getEvent(), new WeakReference<>(requireContext()), new WeakReference<>(this));
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_scheduled_event_list_bottom_sheet;
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildScheduledEventListBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88861(this));
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

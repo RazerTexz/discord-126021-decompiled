@@ -39,7 +39,7 @@ public final class StoreRtcRegion {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$fetchRtcLatencyTestRegionsIps$1 */
     /* JADX INFO: compiled from: StoreRtcRegion.kt */
-    public static final class C63741 extends AbstractC12240o implements Function1<List<? extends ModelRtcLatencyRegion>, Unit> {
+    public final class C63741 extends AbstractC12240o implements Function1<List<? extends ModelRtcLatencyRegion>, Unit> {
         public C63741() {
             super(1);
         }
@@ -59,12 +59,12 @@ public final class StoreRtcRegion {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1 */
     /* JADX INFO: compiled from: StoreRtcRegion.kt */
-    public static final class C63751 extends AbstractC12240o implements Function0<Unit> {
+    public final class C63751 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $regionsWithIps;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreRtcRegion.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends String>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends String>, Unit> {
             public final /* synthetic */ List $newGeoRankedRegions;
             public final /* synthetic */ long $timeNowMs;
 
@@ -161,19 +161,6 @@ public final class StoreRtcRegion {
         }
     }
 
-    private final void maybePerformLatencyTest(List<ModelRtcLatencyRegion> regionsWithIps) {
-        this.dispatcher.schedule(new C63751(regionsWithIps));
-    }
-
-    private final boolean shouldPerformLatencyTest(List<String> newGeoRankedRegions, long timeNowMs) {
-        return this.lastTestResult.getLatencyRankedRegions().isEmpty() || !areStringListsEqual(newGeoRankedRegions, this.lastTestResult.getGeoRankedRegions()) || timeNowMs - this.lastTestResult.getLastTestTimestampMs() >= ((long) LATENCY_TEST_CACHE_TTL_MS);
-    }
-
-    private final void updateLastTestResult(RtcLatencyTestResult lastTestResult) {
-        this.lastTestResult = lastTestResult;
-        this.lastTestResultCache.set(lastTestResult, true);
-    }
-
     @StoreThread
     public final String getPreferredRegion() {
         if (!this.lastTestResult.getLatencyRankedRegions().isEmpty()) {
@@ -193,9 +180,22 @@ public final class StoreRtcRegion {
         this.lastTestResult = this.lastTestResultCache.get();
     }
 
+    private final void maybePerformLatencyTest(List<ModelRtcLatencyRegion> regionsWithIps) {
+        this.dispatcher.schedule(new C63751(regionsWithIps));
+    }
+
     @StoreThread
     public final boolean shouldIncludePreferredRegion(Long guildId) {
         return getPreferredRegion() != null;
+    }
+
+    private final boolean shouldPerformLatencyTest(List<String> newGeoRankedRegions, long timeNowMs) {
+        return this.lastTestResult.getLatencyRankedRegions().isEmpty() || !areStringListsEqual(newGeoRankedRegions, this.lastTestResult.getGeoRankedRegions()) || timeNowMs - this.lastTestResult.getLastTestTimestampMs() >= ((long) LATENCY_TEST_CACHE_TTL_MS);
+    }
+
+    private final void updateLastTestResult(RtcLatencyTestResult lastTestResult) {
+        this.lastTestResult = lastTestResult;
+        this.lastTestResultCache.set(lastTestResult, true);
     }
 
     public /* synthetic */ StoreRtcRegion(Dispatcher dispatcher, Clock clock, StoreMediaEngine storeMediaEngine, StoreExperiments storeExperiments, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {

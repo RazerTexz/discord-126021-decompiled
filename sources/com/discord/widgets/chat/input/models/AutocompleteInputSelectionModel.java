@@ -49,6 +49,18 @@ public final /* data */ class AutocompleteInputSelectionModel {
         this.stickerMatches = list;
     }
 
+    public final Map<LeadingIdentifier, List<Autocompletable>> component2() {
+        return this.filteredAutocompletables;
+    }
+
+    public final Set<ApplicationCommandOption> component4() {
+        return this.showErrorsForOptions;
+    }
+
+    public final List<Sticker> component5() {
+        return this.stickerMatches;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AutocompleteInputSelectionModel copy$default(AutocompleteInputSelectionModel autocompleteInputSelectionModel, MentionToken mentionToken, Map map, InputSelectionModel inputSelectionModel, Set set, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -72,28 +84,6 @@ public final /* data */ class AutocompleteInputSelectionModel {
         return autocompleteInputSelectionModel.copy(mentionToken, map2, inputSelectionModel2, set2, list);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final MentionToken getAutocompleteToken() {
-        return this.autocompleteToken;
-    }
-
-    public final Map<LeadingIdentifier, List<Autocompletable>> component2() {
-        return this.filteredAutocompletables;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final InputSelectionModel getInputSelectionModel() {
-        return this.inputSelectionModel;
-    }
-
-    public final Set<ApplicationCommandOption> component4() {
-        return this.showErrorsForOptions;
-    }
-
-    public final List<Sticker> component5() {
-        return this.stickerMatches;
-    }
-
     public final AutocompleteInputSelectionModel copy(MentionToken autocompleteToken, Map<LeadingIdentifier, ? extends List<? extends Autocompletable>> filteredAutocompletables, InputSelectionModel inputSelectionModel, Set<ApplicationCommandOption> showErrorsForOptions, List<Sticker> stickerMatches) {
         C12238m.checkNotNullParameter(filteredAutocompletables, "filteredAutocompletables");
         C12238m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
@@ -111,6 +101,11 @@ public final /* data */ class AutocompleteInputSelectionModel {
         }
         AutocompleteInputSelectionModel autocompleteInputSelectionModel = (AutocompleteInputSelectionModel) other;
         return C12238m.areEqual(this.autocompleteToken, autocompleteInputSelectionModel.autocompleteToken) && C12238m.areEqual(this.filteredAutocompletables, autocompleteInputSelectionModel.filteredAutocompletables) && C12238m.areEqual(this.inputSelectionModel, autocompleteInputSelectionModel.inputSelectionModel) && C12238m.areEqual(this.showErrorsForOptions, autocompleteInputSelectionModel.showErrorsForOptions) && C12238m.areEqual(this.stickerMatches, autocompleteInputSelectionModel.stickerMatches);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final MentionToken getAutocompleteToken() {
+        return this.autocompleteToken;
     }
 
     public final MentionToken getAutocompleteToken() {
@@ -154,6 +149,11 @@ public final /* data */ class AutocompleteInputSelectionModel {
 
     public final Map<LeadingIdentifier, List<Autocompletable>> getFilteredAutocompletables() {
         return this.filteredAutocompletables;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final InputSelectionModel getInputSelectionModel() {
+        return this.inputSelectionModel;
     }
 
     public final InputSelectionModel getInputSelectionModel() {

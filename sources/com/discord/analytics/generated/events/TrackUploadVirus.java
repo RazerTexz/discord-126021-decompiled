@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUploadVirus.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUploadVirus implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
-    private final Long messageId = null;
-    private final CharSequence fileName = null;
     private final CharSequence fileHash = null;
-    private final CharSequence virusName = null;
+    private final CharSequence fileName = null;
     private final CharSequence hit = null;
+    private final Long messageId = null;
+    private TrackBase trackBase;
+    private final CharSequence virusName = null;
     private final transient String analyticsSchemaTypeName = "upload_virus";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackUploadVirus implements AnalyticsSchema, Track
         }
         TrackUploadVirus trackUploadVirus = (TrackUploadVirus) other;
         return C12238m.areEqual(this.channelId, trackUploadVirus.channelId) && C12238m.areEqual(this.messageId, trackUploadVirus.messageId) && C12238m.areEqual(this.fileName, trackUploadVirus.fileName) && C12238m.areEqual(this.fileHash, trackUploadVirus.fileHash) && C12238m.areEqual(this.virusName, trackUploadVirus.virusName) && C12238m.areEqual(this.hit, trackUploadVirus.hit);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationCommandValidationFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationCommandValidationFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long applicationId = null;
-    private final Long commandId = null;
     private final CharSequence argumentType = null;
+    private final Long commandId = null;
     private final Boolean isRequired = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "application_command_validation_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackApplicationCommandValidationFailed implements
         }
         TrackApplicationCommandValidationFailed trackApplicationCommandValidationFailed = (TrackApplicationCommandValidationFailed) other;
         return C12238m.areEqual(this.applicationId, trackApplicationCommandValidationFailed.applicationId) && C12238m.areEqual(this.commandId, trackApplicationCommandValidationFailed.commandId) && C12238m.areEqual(this.argumentType, trackApplicationCommandValidationFailed.argumentType) && C12238m.areEqual(this.isRequired, trackApplicationCommandValidationFailed.isRequired);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

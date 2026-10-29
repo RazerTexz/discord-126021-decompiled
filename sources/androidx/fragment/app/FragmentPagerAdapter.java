@@ -28,10 +28,6 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
         this(fragmentManager, 0);
     }
 
-    private static String makeFragmentName(int i, long j) {
-        return "android:switcher:" + i + ":" + j;
-    }
-
     @Override // androidx.viewpager.widget.PagerAdapter
     public void destroyItem(@NonNull ViewGroup viewGroup, int i, @NonNull Object obj) {
         Fragment fragment = (Fragment) obj;
@@ -97,6 +93,10 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
     @Override // androidx.viewpager.widget.PagerAdapter
     public boolean isViewFromObject(@NonNull View view, @NonNull Object obj) {
         return ((Fragment) obj).getView() == view;
+    }
+
+    private static String makeFragmentName(int i, long j) {
+        return "android:switcher:" + i + ":" + j;
     }
 
     @Override // androidx.viewpager.widget.PagerAdapter

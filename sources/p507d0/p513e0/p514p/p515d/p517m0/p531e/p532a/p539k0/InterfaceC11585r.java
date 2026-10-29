@@ -10,7 +10,7 @@ public interface InterfaceC11585r extends InterfaceC11584q, InterfaceC11593z {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.k0.r$a */
     /* JADX INFO: compiled from: javaElements.kt */
-    public static final class a {
+    public final class a {
         public static boolean getHasAnnotationParameterDefaultValue(InterfaceC11585r interfaceC11585r) {
             C12238m.checkNotNullParameter(interfaceC11585r, "this");
             return interfaceC11585r.getAnnotationParameterDefaultValue() != null;

@@ -27,7 +27,7 @@ public abstract class AbstractC11277i implements InterfaceC11272d<Method> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.i$a */
     /* JADX INFO: compiled from: InternalUnderlyingValOfInlineClass.kt */
-    public static final class a extends AbstractC11277i implements InterfaceC11271c {
+    public final class a extends AbstractC11277i implements InterfaceC11271c {
 
         /* JADX INFO: renamed from: d */
         public final Object f22445d;
@@ -51,7 +51,7 @@ public abstract class AbstractC11277i implements InterfaceC11272d<Method> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.i$b */
     /* JADX INFO: compiled from: InternalUnderlyingValOfInlineClass.kt */
-    public static final class b extends AbstractC11277i {
+    public final class b extends AbstractC11277i {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(Method method) {
             super(method, C12145m.listOf(method.getDeclaringClass()), null);
@@ -90,12 +90,6 @@ public abstract class AbstractC11277i implements InterfaceC11272d<Method> {
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
-    /* JADX INFO: renamed from: getMember */
-    public final Method mo11457getMember() {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public final List<Type> getParameterTypes() {
         return this.f22444c;
     }
@@ -103,5 +97,11 @@ public abstract class AbstractC11277i implements InterfaceC11272d<Method> {
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public final Type getReturnType() {
         return this.f22442a;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
+    /* JADX INFO: renamed from: getMember */
+    public final Method mo11457getMember() {
+        return null;
     }
 }

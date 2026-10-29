@@ -15,12 +15,6 @@ public final class C2920e0 implements AudioProcessor {
     /* JADX INFO: renamed from: b */
     public int f7727b;
 
-    /* JADX INFO: renamed from: c */
-    public float f7728c = 1.0f;
-
-    /* JADX INFO: renamed from: d */
-    public float f7729d = 1.0f;
-
     /* JADX INFO: renamed from: e */
     public AudioProcessor.C10685a f7730e;
 
@@ -58,6 +52,12 @@ public final class C2920e0 implements AudioProcessor {
     /* JADX INFO: renamed from: p */
     public boolean f7741p;
 
+    /* JADX INFO: renamed from: c */
+    public float f7728c = 1.0f;
+
+    /* JADX INFO: renamed from: d */
+    public float f7729d = 1.0f;
+
     public C2920e0() {
         AudioProcessor.C10685a c10685a = AudioProcessor.C10685a.f19695a;
         this.f7730e = c10685a;
@@ -69,90 +69,6 @@ public final class C2920e0 implements AudioProcessor {
         this.f7737l = byteBuffer.asShortBuffer();
         this.f7738m = byteBuffer;
         this.f7727b = -1;
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: a */
-    public boolean mo3472a() {
-        return this.f7731f.f19696b != -1 && (Math.abs(this.f7728c - 1.0f) >= 1.0E-4f || Math.abs(this.f7729d - 1.0f) >= 1.0E-4f || this.f7731f.f19696b != this.f7730e.f19696b);
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: b */
-    public boolean mo3485b() {
-        C2918d0 c2918d0;
-        return this.f7741p && ((c2918d0 = this.f7735j) == null || (c2918d0.f7714m * c2918d0.f7703b) * 2 == 0);
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: c */
-    public void mo3470c(ByteBuffer byteBuffer) {
-        if (byteBuffer.hasRemaining()) {
-            C2918d0 c2918d0 = this.f7735j;
-            Objects.requireNonNull(c2918d0);
-            ShortBuffer shortBufferAsShortBuffer = byteBuffer.asShortBuffer();
-            int iRemaining = byteBuffer.remaining();
-            this.f7739n += (long) iRemaining;
-            int iRemaining2 = shortBufferAsShortBuffer.remaining();
-            int i = c2918d0.f7703b;
-            int i2 = iRemaining2 / i;
-            short[] sArrM3482c = c2918d0.m3482c(c2918d0.f7711j, c2918d0.f7712k, i2);
-            c2918d0.f7711j = sArrM3482c;
-            shortBufferAsShortBuffer.get(sArrM3482c, c2918d0.f7712k * c2918d0.f7703b, ((i * i2) * 2) / 2);
-            c2918d0.f7712k += i2;
-            c2918d0.m3484f();
-            byteBuffer.position(byteBuffer.position() + iRemaining);
-        }
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: d */
-    public AudioProcessor.C10685a mo3486d(AudioProcessor.C10685a c10685a) throws AudioProcessor.UnhandledAudioFormatException {
-        if (c10685a.f19698d != 2) {
-            throw new AudioProcessor.UnhandledAudioFormatException(c10685a);
-        }
-        int i = this.f7727b;
-        if (i == -1) {
-            i = c10685a.f19696b;
-        }
-        this.f7730e = c10685a;
-        AudioProcessor.C10685a c10685a2 = new AudioProcessor.C10685a(i, c10685a.f19697c, 2);
-        this.f7731f = c10685a2;
-        this.f7734i = true;
-        return c10685a2;
-    }
-
-    @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    /* JADX INFO: renamed from: e */
-    public void mo3487e() {
-        int i;
-        C2918d0 c2918d0 = this.f7735j;
-        if (c2918d0 != null) {
-            int i2 = c2918d0.f7712k;
-            float f = c2918d0.f7704c;
-            float f2 = c2918d0.f7705d;
-            int i3 = c2918d0.f7714m + ((int) ((((i2 / (f / f2)) + c2918d0.f7716o) / (c2918d0.f7706e * f2)) + 0.5f));
-            c2918d0.f7711j = c2918d0.m3482c(c2918d0.f7711j, i2, (c2918d0.f7709h * 2) + i2);
-            int i4 = 0;
-            while (true) {
-                i = c2918d0.f7709h * 2;
-                int i5 = c2918d0.f7703b;
-                if (i4 >= i * i5) {
-                    break;
-                }
-                c2918d0.f7711j[(i5 * i2) + i4] = 0;
-                i4++;
-            }
-            c2918d0.f7712k = i + c2918d0.f7712k;
-            c2918d0.m3484f();
-            if (c2918d0.f7714m > i3) {
-                c2918d0.f7714m = i3;
-            }
-            c2918d0.f7712k = 0;
-            c2918d0.f7719r = 0;
-            c2918d0.f7716o = 0;
-        }
-        this.f7741p = true;
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
@@ -214,6 +130,90 @@ public final class C2920e0 implements AudioProcessor {
         ByteBuffer byteBuffer = this.f7738m;
         this.f7738m = AudioProcessor.f19694a;
         return byteBuffer;
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: c */
+    public void mo3470c(ByteBuffer byteBuffer) {
+        if (byteBuffer.hasRemaining()) {
+            C2918d0 c2918d0 = this.f7735j;
+            Objects.requireNonNull(c2918d0);
+            ShortBuffer shortBufferAsShortBuffer = byteBuffer.asShortBuffer();
+            int iRemaining = byteBuffer.remaining();
+            this.f7739n += (long) iRemaining;
+            int iRemaining2 = shortBufferAsShortBuffer.remaining();
+            int i = c2918d0.f7703b;
+            int i2 = iRemaining2 / i;
+            short[] sArrM3482c = c2918d0.m3482c(c2918d0.f7711j, c2918d0.f7712k, i2);
+            c2918d0.f7711j = sArrM3482c;
+            shortBufferAsShortBuffer.get(sArrM3482c, c2918d0.f7712k * c2918d0.f7703b, ((i * i2) * 2) / 2);
+            c2918d0.f7712k += i2;
+            c2918d0.m3484f();
+            byteBuffer.position(byteBuffer.position() + iRemaining);
+        }
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: a */
+    public boolean mo3472a() {
+        return this.f7731f.f19696b != -1 && (Math.abs(this.f7728c - 1.0f) >= 1.0E-4f || Math.abs(this.f7729d - 1.0f) >= 1.0E-4f || this.f7731f.f19696b != this.f7730e.f19696b);
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: b */
+    public boolean mo3485b() {
+        C2918d0 c2918d0;
+        return this.f7741p && ((c2918d0 = this.f7735j) == null || (c2918d0.f7714m * c2918d0.f7703b) * 2 == 0);
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: d */
+    public AudioProcessor.C10685a mo3486d(AudioProcessor.C10685a c10685a) throws AudioProcessor.UnhandledAudioFormatException {
+        if (c10685a.f19698d != 2) {
+            throw new AudioProcessor.UnhandledAudioFormatException(c10685a);
+        }
+        int i = this.f7727b;
+        if (i == -1) {
+            i = c10685a.f19696b;
+        }
+        this.f7730e = c10685a;
+        AudioProcessor.C10685a c10685a2 = new AudioProcessor.C10685a(i, c10685a.f19697c, 2);
+        this.f7731f = c10685a2;
+        this.f7734i = true;
+        return c10685a2;
+    }
+
+    @Override // com.google.android.exoplayer2.audio.AudioProcessor
+    /* JADX INFO: renamed from: e */
+    public void mo3487e() {
+        int i;
+        C2918d0 c2918d0 = this.f7735j;
+        if (c2918d0 != null) {
+            int i2 = c2918d0.f7712k;
+            float f = c2918d0.f7704c;
+            float f2 = c2918d0.f7705d;
+            int i3 = c2918d0.f7714m + ((int) ((((i2 / (f / f2)) + c2918d0.f7716o) / (c2918d0.f7706e * f2)) + 0.5f));
+            c2918d0.f7711j = c2918d0.m3482c(c2918d0.f7711j, i2, (c2918d0.f7709h * 2) + i2);
+            int i4 = 0;
+            while (true) {
+                i = c2918d0.f7709h * 2;
+                int i5 = c2918d0.f7703b;
+                if (i4 >= i * i5) {
+                    break;
+                }
+                c2918d0.f7711j[(i5 * i2) + i4] = 0;
+                i4++;
+            }
+            c2918d0.f7712k = i + c2918d0.f7712k;
+            c2918d0.m3484f();
+            if (c2918d0.f7714m > i3) {
+                c2918d0.f7714m = i3;
+            }
+            c2918d0.f7712k = 0;
+            c2918d0.f7719r = 0;
+            c2918d0.f7716o = 0;
+        }
+        this.f7741p = true;
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor

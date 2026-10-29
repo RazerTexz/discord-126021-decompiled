@@ -59,45 +59,12 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.i$a */
     /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
         public final Regex getLOCAL_PROPERTY_SIGNATURE$kotlin_reflection() {
             return AbstractC11262i.f22379k;
-        }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.i$b */
-    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public abstract class b {
-
-        /* JADX INFO: renamed from: a */
-        public static final /* synthetic */ KProperty[] f22381a = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(b.class), "moduleData", "getModuleData()Lorg/jetbrains/kotlin/descriptors/runtime/components/RuntimeModuleData;"))};
-
-        /* JADX INFO: renamed from: b */
-        public final C11251c0.a f22382b = C11251c0.lazySoft(new a());
-
-        /* JADX INFO: renamed from: d0.e0.p.d.i$b$a */
-        /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-        public static final class a extends AbstractC12240o implements Function0<C11418k> {
-            public a() {
-                super(0);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // kotlin.jvm.functions.Function0
-            public final C11418k invoke() {
-                return C11249b0.getOrCreateModule(AbstractC11262i.this.getJClass());
-            }
-        }
-
-        public b() {
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public final C11418k getModuleData() {
-            return (C11418k) this.f22382b.getValue(this, f22381a[0]);
         }
     }
 
@@ -117,7 +84,7 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.i$d */
     /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public static final class d extends AbstractC12240o implements Function1<InterfaceC11472x, CharSequence> {
+    public final class d extends AbstractC12240o implements Function1<InterfaceC11472x, CharSequence> {
 
         /* JADX INFO: renamed from: j */
         public static final d f22387j = new d();
@@ -135,7 +102,7 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.i$e */
     /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public static final class e extends AbstractC12240o implements Function1<InterfaceC11453n0, CharSequence> {
+    public final class e extends AbstractC12240o implements Function1<InterfaceC11453n0, CharSequence> {
 
         /* JADX INFO: renamed from: j */
         public static final e f22388j = new e();
@@ -153,7 +120,7 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.i$f */
     /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public static final class f<T> implements Comparator<AbstractC11466u> {
+    public final class f<T> implements Comparator<AbstractC11466u> {
 
         /* JADX INFO: renamed from: j */
         public static final f f22389j = new f();
@@ -170,7 +137,7 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.i$g */
     /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
-    public static final class g extends C11246a {
+    public final class g extends C11246a {
         public g(AbstractC11262i abstractC11262i, AbstractC11262i abstractC11262i2) {
             super(abstractC11262i2);
         }
@@ -181,118 +148,6 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
             C12238m.checkNotNullParameter(unit, "data");
             throw new IllegalStateException("No constructors should appear here: " + interfaceC11448l);
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m9340a(List<Class<?>> list, String str, boolean z2) {
-        List<Class<?>> listM9343d = m9343d(str);
-        list.addAll(listM9343d);
-        int size = ((((ArrayList) listM9343d).size() + 32) - 1) / 32;
-        for (int i = 0; i < size; i++) {
-            Class<?> cls = Integer.TYPE;
-            C12238m.checkNotNullExpressionValue(cls, "Integer.TYPE");
-            list.add(cls);
-        }
-        Class<?> cls2 = z2 ? f22378j : Object.class;
-        C12238m.checkNotNullExpressionValue(cls2, "if (isConstructor) DEFAU…RKER else Any::class.java");
-        list.add(cls2);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:12:0x004e  */
-    /* JADX INFO: renamed from: b */
-    public final Collection<AbstractC11256f<?>> m9341b(InterfaceC11770i interfaceC11770i, c cVar) {
-        AbstractC11256f abstractC11256f;
-        C12238m.checkNotNullParameter(interfaceC11770i, "scope");
-        C12238m.checkNotNullParameter(cVar, "belonginess");
-        g gVar = new g(this, this);
-        Collection<InterfaceC11450m> contributedDescriptors$default = InterfaceC11773l.a.getContributedDescriptors$default(interfaceC11770i, null, null, 3, null);
-        ArrayList arrayList = new ArrayList();
-        for (InterfaceC11450m interfaceC11450m : contributedDescriptors$default) {
-            if (interfaceC11450m instanceof InterfaceC11321b) {
-                InterfaceC11321b interfaceC11321b = (InterfaceC11321b) interfaceC11450m;
-                if ((!C12238m.areEqual(interfaceC11321b.getVisibility(), C11464t.f23090h)) && cVar.accept(interfaceC11321b)) {
-                    abstractC11256f = (AbstractC11256f) interfaceC11450m.accept(gVar, Unit.f27425a);
-                } else {
-                    abstractC11256f = null;
-                }
-            } else {
-                abstractC11256f = null;
-            }
-            if (abstractC11256f != null) {
-                arrayList.add(abstractC11256f);
-            }
-        }
-        return C12163u.toList(arrayList);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public Class<?> mo9342c() {
-        Class<?> wrapperByPrimitive = C11423b.getWrapperByPrimitive(getJClass());
-        return wrapperByPrimitive != null ? wrapperByPrimitive : getJClass();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<Class<?>> m9343d(String str) {
-        ArrayList arrayList = new ArrayList();
-        int i = 1;
-        while (str.charAt(i) != ')') {
-            int iIndexOf$default = i;
-            while (str.charAt(iIndexOf$default) == '[') {
-                iIndexOf$default++;
-            }
-            char cCharAt = str.charAt(iIndexOf$default);
-            if (!C12106w.contains$default((CharSequence) "VZCBSIFJD", cCharAt, false, 2, (Object) null)) {
-                if (cCharAt != 'L') {
-                    throw new C11247a0(C1643a.m883w("Unknown type prefix in the method signature: ", str));
-                }
-                iIndexOf$default = C12106w.indexOf$default((CharSequence) str, ';', i, false, 4, (Object) null);
-            }
-            int i2 = iIndexOf$default + 1;
-            arrayList.add(m9346g(str, i, i2));
-            i = i2;
-        }
-        return arrayList;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final Class<?> m9344e(String str) {
-        return m9346g(str, C12106w.indexOf$default((CharSequence) str, ')', 0, false, 6, (Object) null) + 1, str.length());
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final Method m9345f(Class<?> cls, String str, Class<?>[] clsArr, Class<?> cls2, boolean z2) {
-        Method methodM9345f;
-        if (z2) {
-            clsArr[0] = cls;
-        }
-        Method methodM9348i = m9348i(cls, str, clsArr, cls2);
-        if (methodM9348i != null) {
-            return methodM9348i;
-        }
-        Class<? super Object> superclass = cls.getSuperclass();
-        if (superclass != null && (methodM9345f = m9345f(superclass, str, clsArr, cls2, z2)) != null) {
-            return methodM9345f;
-        }
-        for (Class<?> cls3 : cls.getInterfaces()) {
-            C12238m.checkNotNullExpressionValue(cls3, "superInterface");
-            Method methodM9345f2 = m9345f(cls3, str, clsArr, cls2, z2);
-            if (methodM9345f2 != null) {
-                return methodM9345f2;
-            }
-            if (z2) {
-                Class<?> clsTryLoadClass = C11412e.tryLoadClass(C11423b.getSafeClassLoader(cls3), cls3.getName() + "$DefaultImpls");
-                if (clsTryLoadClass != null) {
-                    clsArr[0] = cls3;
-                    Method methodM9348i2 = m9348i(clsTryLoadClass, str, clsArr, cls2);
-                    if (methodM9348i2 != null) {
-                        return methodM9348i2;
-                    }
-                } else {
-                    continue;
-                }
-            }
-        }
-        return null;
     }
 
     public final Constructor<?> findConstructorBySignature(String str) {
@@ -442,6 +297,120 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
         throw new C11247a0(sb.toString());
     }
 
+    public abstract Collection<InterfaceC11448l> getConstructorDescriptors();
+
+    public abstract Collection<InterfaceC11472x> getFunctions(C11716e c11716e);
+
+    public abstract InterfaceC11453n0 getLocalProperty(int i);
+
+    public abstract Collection<InterfaceC11453n0> getProperties(C11716e c11716e);
+
+    /* JADX INFO: renamed from: a */
+    public final void m9340a(List<Class<?>> list, String str, boolean z2) {
+        List<Class<?>> listM9343d = m9343d(str);
+        list.addAll(listM9343d);
+        int size = ((((ArrayList) listM9343d).size() + 32) - 1) / 32;
+        for (int i = 0; i < size; i++) {
+            Class<?> cls = Integer.TYPE;
+            C12238m.checkNotNullExpressionValue(cls, "Integer.TYPE");
+            list.add(cls);
+        }
+        Class<?> cls2 = z2 ? f22378j : Object.class;
+        C12238m.checkNotNullExpressionValue(cls2, "if (isConstructor) DEFAU…RKER else Any::class.java");
+        list.add(cls2);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:12:0x004e  */
+    /* JADX INFO: renamed from: b */
+    public final Collection<AbstractC11256f<?>> m9341b(InterfaceC11770i interfaceC11770i, c cVar) {
+        AbstractC11256f abstractC11256f;
+        C12238m.checkNotNullParameter(interfaceC11770i, "scope");
+        C12238m.checkNotNullParameter(cVar, "belonginess");
+        g gVar = new g(this, this);
+        Collection<InterfaceC11450m> contributedDescriptors$default = InterfaceC11773l.a.getContributedDescriptors$default(interfaceC11770i, null, null, 3, null);
+        ArrayList arrayList = new ArrayList();
+        for (InterfaceC11450m interfaceC11450m : contributedDescriptors$default) {
+            if (interfaceC11450m instanceof InterfaceC11321b) {
+                InterfaceC11321b interfaceC11321b = (InterfaceC11321b) interfaceC11450m;
+                if ((!C12238m.areEqual(interfaceC11321b.getVisibility(), C11464t.f23090h)) && cVar.accept(interfaceC11321b)) {
+                    abstractC11256f = (AbstractC11256f) interfaceC11450m.accept(gVar, Unit.f27425a);
+                } else {
+                    abstractC11256f = null;
+                }
+            } else {
+                abstractC11256f = null;
+            }
+            if (abstractC11256f != null) {
+                arrayList.add(abstractC11256f);
+            }
+        }
+        return C12163u.toList(arrayList);
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Class<?>> m9343d(String str) {
+        ArrayList arrayList = new ArrayList();
+        int i = 1;
+        while (str.charAt(i) != ')') {
+            int iIndexOf$default = i;
+            while (str.charAt(iIndexOf$default) == '[') {
+                iIndexOf$default++;
+            }
+            char cCharAt = str.charAt(iIndexOf$default);
+            if (!C12106w.contains$default((CharSequence) "VZCBSIFJD", cCharAt, false, 2, (Object) null)) {
+                if (cCharAt != 'L') {
+                    throw new C11247a0(C1643a.m883w("Unknown type prefix in the method signature: ", str));
+                }
+                iIndexOf$default = C12106w.indexOf$default((CharSequence) str, ';', i, false, 4, (Object) null);
+            }
+            int i2 = iIndexOf$default + 1;
+            arrayList.add(m9346g(str, i, i2));
+            i = i2;
+        }
+        return arrayList;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final Class<?> m9344e(String str) {
+        return m9346g(str, C12106w.indexOf$default((CharSequence) str, ')', 0, false, 6, (Object) null) + 1, str.length());
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final Method m9345f(Class<?> cls, String str, Class<?>[] clsArr, Class<?> cls2, boolean z2) {
+        Method methodM9345f;
+        if (z2) {
+            clsArr[0] = cls;
+        }
+        Method methodM9348i = m9348i(cls, str, clsArr, cls2);
+        if (methodM9348i != null) {
+            return methodM9348i;
+        }
+        Class<? super Object> superclass = cls.getSuperclass();
+        if (superclass != null && (methodM9345f = m9345f(superclass, str, clsArr, cls2, z2)) != null) {
+            return methodM9345f;
+        }
+        for (Class<?> cls3 : cls.getInterfaces()) {
+            C12238m.checkNotNullExpressionValue(cls3, "superInterface");
+            Method methodM9345f2 = m9345f(cls3, str, clsArr, cls2, z2);
+            if (methodM9345f2 != null) {
+                return methodM9345f2;
+            }
+            if (z2) {
+                Class<?> clsTryLoadClass = C11412e.tryLoadClass(C11423b.getSafeClassLoader(cls3), cls3.getName() + "$DefaultImpls");
+                if (clsTryLoadClass != null) {
+                    clsArr[0] = cls3;
+                    Method methodM9348i2 = m9348i(clsTryLoadClass, str, clsArr, cls2);
+                    if (methodM9348i2 != null) {
+                        return methodM9348i2;
+                    }
+                } else {
+                    continue;
+                }
+            }
+        }
+        return null;
+    }
+
     /* JADX INFO: renamed from: g */
     public final Class<?> m9346g(String str, int i, int i2) throws ClassNotFoundException {
         char cCharAt = str.charAt(i);
@@ -487,14 +456,6 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
                 throw new C11247a0(C1643a.m883w("Unknown type prefix in the method signature: ", str));
         }
     }
-
-    public abstract Collection<InterfaceC11448l> getConstructorDescriptors();
-
-    public abstract Collection<InterfaceC11472x> getFunctions(C11716e c11716e);
-
-    public abstract InterfaceC11453n0 getLocalProperty(int i);
-
-    public abstract Collection<InterfaceC11453n0> getProperties(C11716e c11716e);
 
     /* JADX INFO: renamed from: h */
     public final Constructor<?> m9347h(Class<?> cls, List<? extends Class<?>> list) {
@@ -542,6 +503,45 @@ public abstract class AbstractC11262i implements InterfaceC12223e {
             return null;
         } catch (NoSuchMethodException unused) {
             return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: c */
+    public Class<?> mo9342c() {
+        Class<?> wrapperByPrimitive = C11423b.getWrapperByPrimitive(getJClass());
+        return wrapperByPrimitive != null ? wrapperByPrimitive : getJClass();
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.i$b */
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public abstract class b {
+
+        /* JADX INFO: renamed from: a */
+        public static final /* synthetic */ KProperty[] f22381a = {C12216a0.property1(new C12250y(C12216a0.getOrCreateKotlinClass(b.class), "moduleData", "getModuleData()Lorg/jetbrains/kotlin/descriptors/runtime/components/RuntimeModuleData;"))};
+
+        /* JADX INFO: renamed from: b */
+        public final C11251c0.a f22382b = C11251c0.lazySoft(new a());
+
+        /* JADX INFO: renamed from: d0.e0.p.d.i$b$a */
+        /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+        public final class a extends AbstractC12240o implements Function0<C11418k> {
+            public a() {
+                super(0);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final C11418k invoke() {
+                return C11249b0.getOrCreateModule(AbstractC11262i.this.getJClass());
+            }
+        }
+
+        public b() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public final C11418k getModuleData() {
+            return (C11418k) this.f22382b.getValue(this, f22381a[0]);
         }
     }
 }

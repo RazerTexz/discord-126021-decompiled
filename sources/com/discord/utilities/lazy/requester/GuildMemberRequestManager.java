@@ -21,6 +21,27 @@ public final class GuildMemberRequestManager {
     private final HashMap<Long, GuildMemberRequestState> guildRequestStates;
     private final Function2<Long, List<Long>, Unit> onFlush;
 
+    /* JADX INFO: renamed from: com.discord.utilities.lazy.requester.GuildMemberRequestManager$getGuildRequestState$1 */
+    /* JADX INFO: compiled from: GuildMemberRequestManager.kt */
+    public final class C67901 extends AbstractC12240o implements Function1<Long, Boolean> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C67901(long j) {
+            super(1);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Long l) {
+            return Boolean.valueOf(invoke(l.longValue()));
+        }
+
+        public final boolean invoke(long j) {
+            return ((Boolean) GuildMemberRequestManager.this.guildMemberExists.invoke(Long.valueOf(this.$guildId), Long.valueOf(j))).booleanValue();
+        }
+    }
+
     /* JADX INFO: compiled from: GuildMemberRequestManager.kt */
     public final class GuildMemberRequestState {
         private final long guildId;
@@ -103,27 +124,6 @@ public final class GuildMemberRequestManager {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.lazy.requester.GuildMemberRequestManager$getGuildRequestState$1 */
-    /* JADX INFO: compiled from: GuildMemberRequestManager.kt */
-    public static final class C67901 extends AbstractC12240o implements Function1<Long, Boolean> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67901(long j) {
-            super(1);
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(Long l) {
-            return Boolean.valueOf(invoke(l.longValue()));
-        }
-
-        public final boolean invoke(long j) {
-            return ((Boolean) GuildMemberRequestManager.this.guildMemberExists.invoke(Long.valueOf(this.$guildId), Long.valueOf(j))).booleanValue();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public GuildMemberRequestManager(Function2<? super Long, ? super Long, Boolean> function2, Function2<? super Long, ? super List<Long>, Unit> function3) {
         C12238m.checkNotNullParameter(function2, "guildMemberExists");
@@ -131,16 +131,6 @@ public final class GuildMemberRequestManager {
         this.guildMemberExists = function2;
         this.onFlush = function3;
         this.guildRequestStates = new HashMap<>();
-    }
-
-    private final GuildMemberRequestState getGuildRequestState(long guildId) {
-        GuildMemberRequestState guildMemberRequestState = this.guildRequestStates.get(Long.valueOf(guildId));
-        if (guildMemberRequestState != null) {
-            return guildMemberRequestState;
-        }
-        GuildMemberRequestState guildMemberRequestState2 = new GuildMemberRequestState(this, guildId, new C67901(guildId));
-        this.guildRequestStates.put(Long.valueOf(guildId), guildMemberRequestState2);
-        return guildMemberRequestState2;
     }
 
     public final void acknowledge(long guildId, long userId) {
@@ -152,6 +142,16 @@ public final class GuildMemberRequestManager {
         while (it.hasNext()) {
             it.next().flushRequests();
         }
+    }
+
+    private final GuildMemberRequestState getGuildRequestState(long guildId) {
+        GuildMemberRequestState guildMemberRequestState = this.guildRequestStates.get(Long.valueOf(guildId));
+        if (guildMemberRequestState != null) {
+            return guildMemberRequestState;
+        }
+        GuildMemberRequestState guildMemberRequestState2 = new GuildMemberRequestState(this, guildId, new C67901(guildId));
+        this.guildRequestStates.put(Long.valueOf(guildId), guildMemberRequestState2);
+        return guildMemberRequestState2;
     }
 
     public final void queueRequest(long guildId, long userId) {

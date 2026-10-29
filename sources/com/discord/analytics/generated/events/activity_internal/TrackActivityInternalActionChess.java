@@ -11,27 +11,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionChess.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionChess implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
-    private final CharSequence phase = null;
-    private final CharSequence moveType = null;
-    private final Boolean lockedGame = null;
-    private final Boolean timedGame = null;
     private final Boolean againstBot = null;
     private final CharSequence background = null;
-    private final CharSequence pieceSet = null;
-    private final Long numSpectators = null;
-    private final CharSequence playerColor = null;
     private final CharSequence lastScreen = null;
+    private final Boolean lockedGame = null;
+    private final CharSequence moveType = null;
+    private final Long numSpectators = null;
+    private final CharSequence phase = null;
+    private final CharSequence pieceSet = null;
+    private final CharSequence playerColor = null;
     private final Long reconnectTime = null;
+    private final Boolean timedGame = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_chess";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -42,6 +36,12 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
         }
         TrackActivityInternalActionChess trackActivityInternalActionChess = (TrackActivityInternalActionChess) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionChess.actionName) && C12238m.areEqual(this.phase, trackActivityInternalActionChess.phase) && C12238m.areEqual(this.moveType, trackActivityInternalActionChess.moveType) && C12238m.areEqual(this.lockedGame, trackActivityInternalActionChess.lockedGame) && C12238m.areEqual(this.timedGame, trackActivityInternalActionChess.timedGame) && C12238m.areEqual(this.againstBot, trackActivityInternalActionChess.againstBot) && C12238m.areEqual(this.background, trackActivityInternalActionChess.background) && C12238m.areEqual(this.pieceSet, trackActivityInternalActionChess.pieceSet) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionChess.numSpectators) && C12238m.areEqual(this.playerColor, trackActivityInternalActionChess.playerColor) && C12238m.areEqual(this.lastScreen, trackActivityInternalActionChess.lastScreen) && C12238m.areEqual(this.reconnectTime, trackActivityInternalActionChess.reconnectTime);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

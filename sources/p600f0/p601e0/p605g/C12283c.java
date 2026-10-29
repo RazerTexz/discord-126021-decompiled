@@ -75,15 +75,6 @@ public final class C12283c {
             this.f25446m = j;
         }
 
-        /* JADX INFO: renamed from: a */
-        public final <E extends IOException> E m10174a(E e) {
-            if (this.f25443j) {
-                return e;
-            }
-            this.f25443j = true;
-            return (E) this.f25447n.m10167a(this.f25444k, false, true, e);
-        }
-
         @Override // p615g0.AbstractC12392i, p615g0.InterfaceC12405v, java.io.Closeable, java.lang.AutoCloseable
         public void close() throws IOException {
             if (this.f25445l) {
@@ -109,6 +100,15 @@ public final class C12283c {
             } catch (IOException e) {
                 throw m10174a(e);
             }
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final <E extends IOException> E m10174a(E e) {
+            if (this.f25443j) {
+                return e;
+            }
+            this.f25443j = true;
+            return (E) this.f25447n.m10167a(this.f25444k, false, true, e);
         }
 
         @Override // p615g0.AbstractC12392i, p615g0.InterfaceC12405v
@@ -169,6 +169,20 @@ public final class C12283c {
             }
         }
 
+        @Override // p615g0.AbstractC12393j, p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            if (this.f25451n) {
+                return;
+            }
+            this.f25451n = true;
+            try {
+                this.f26093j.close();
+                m10175a(null);
+            } catch (IOException e) {
+                throw m10175a(e);
+            }
+        }
+
         /* JADX INFO: renamed from: a */
         public final <E extends IOException> E m10175a(E e) {
             if (this.f25450m) {
@@ -184,20 +198,6 @@ public final class C12283c {
                 C12238m.checkParameterIsNotNull(c12285e, NotificationCompat.CATEGORY_CALL);
             }
             return (E) this.f25453p.m10167a(this.f25448k, true, false, e);
-        }
-
-        @Override // p615g0.AbstractC12393j, p615g0.InterfaceC12407x, java.io.Closeable, java.lang.AutoCloseable
-        public void close() throws IOException {
-            if (this.f25451n) {
-                return;
-            }
-            this.f25451n = true;
-            try {
-                this.f26093j.close();
-                m10175a(null);
-            } catch (IOException e) {
-                throw m10175a(e);
-            }
         }
 
         @Override // p615g0.InterfaceC12407x

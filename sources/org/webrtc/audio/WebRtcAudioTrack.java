@@ -23,7 +23,6 @@ public class WebRtcAudioTrack {
     private static final int BITS_PER_SAMPLE = 16;
     private static final int BUFFERS_PER_SECOND = 100;
     private static final int CALLBACK_BUFFER_SIZE_MS = 10;
-    private static final int DEFAULT_USAGE = getDefaultUsageAttribute();
     private static final String TAG = "WebRtcAudioTrackExternal";
 
     @Nullable
@@ -50,6 +49,7 @@ public class WebRtcAudioTrack {
     private final ThreadUtils.ThreadChecker threadChecker;
     private boolean useLowLatency;
     private final VolumeLogger volumeLogger;
+    private static final int DEFAULT_USAGE = getDefaultUsageAttribute();
 
     public class AudioTrackThread extends Thread {
         private LowLatencyAudioBufferManager bufferManager;
@@ -59,10 +59,6 @@ public class WebRtcAudioTrack {
             super(str);
             this.keepAlive = true;
             this.bufferManager = new LowLatencyAudioBufferManager();
-        }
-
-        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
-            return audioTrack.write(byteBuffer, i, 0);
         }
 
         @Override // java.lang.Thread, java.lang.Runnable
@@ -98,6 +94,10 @@ public class WebRtcAudioTrack {
         public void stopThread() {
             Logging.m11027d(WebRtcAudioTrack.TAG, "stopThread");
             this.keepAlive = false;
+        }
+
+        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
+            return audioTrack.write(byteBuffer, i, 0);
         }
     }
 
@@ -358,6 +358,16 @@ public class WebRtcAudioTrack {
     }
 
     @CalledByNative
+    public void setNativeAudioTrack(long j) {
+        this.nativeAudioTrack = j;
+    }
+
+    public void setSpeakerMute(boolean z2) {
+        Logging.m11031w(TAG, "setSpeakerMute(" + z2 + ")");
+        this.speakerMute = z2;
+    }
+
+    @CalledByNative
     private boolean setStreamVolume(int i) {
         this.threadChecker.checkIsOnValidThread();
         Logging.m11027d(TAG, "setStreamVolume(" + i + ")");
@@ -430,16 +440,6 @@ public class WebRtcAudioTrack {
         }
         releaseAudioResources();
         return true;
-    }
-
-    @CalledByNative
-    public void setNativeAudioTrack(long j) {
-        this.nativeAudioTrack = j;
-    }
-
-    public void setSpeakerMute(boolean z2) {
-        Logging.m11031w(TAG, "setSpeakerMute(" + z2 + ")");
-        this.speakerMute = z2;
     }
 
     public WebRtcAudioTrack(Context context, AudioManager audioManager, @Nullable AudioAttributes audioAttributes, @Nullable JavaAudioDeviceModule.AudioTrackErrorCallback audioTrackErrorCallback, @Nullable JavaAudioDeviceModule.AudioTrackStateCallback audioTrackStateCallback, boolean z2) {

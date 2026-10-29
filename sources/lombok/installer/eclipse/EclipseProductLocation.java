@@ -21,12 +21,12 @@ import lombok.installer.UninstallException;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductLocation.SCL.lombok */
 public final class EclipseProductLocation extends IdeLocation {
-    private final EclipseProductDescriptor descriptor;
-    private final String name;
-    private final File eclipseIniPath;
-    private final String pathToLombokJarPrefix;
-    private final boolean hasLombok;
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS;
+    private final EclipseProductDescriptor descriptor;
+    private final File eclipseIniPath;
+    private final boolean hasLombok;
+    private final String name;
+    private final String pathToLombokJarPrefix;
     private static final String OS_NEWLINE = OsUtils.getOS().getLineEnding();
     private static final Pattern JAVA_AGENT_LINE_MATCHER = Pattern.compile("^\\-javaagent\\:.*lombok.*\\.jar$", 2);
     private static final Pattern BOOTCLASSPATH_LINE_MATCHER = Pattern.compile("^\\-Xbootclasspath\\/a\\:(.*lombok.*\\.jar.*)$", 2);

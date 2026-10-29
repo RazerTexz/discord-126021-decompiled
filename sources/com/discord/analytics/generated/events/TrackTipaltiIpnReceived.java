@@ -9,26 +9,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackTipaltiIpnReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackTipaltiIpnReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence key = null;
-    private final CharSequence cDate = null;
-    private final CharSequence type = null;
-    private final Long payeeId = null;
-    private final CharSequence refCode = null;
-    private final Boolean isPayable = null;
-    private final CharSequence complianceReviewStatus = null;
-    private final CharSequence payeeStatus = null;
-    private final CharSequence groupPayments = null;
-    private final CharSequence submittedDate = null;
     private final CharSequence approvalDate = null;
+    private final CharSequence cDate = null;
+    private final CharSequence complianceReviewStatus = null;
     private final CharSequence declinedDate = null;
+    private final CharSequence groupPayments = null;
+    private final Boolean isPayable = null;
+    private final CharSequence key = null;
+    private final Long payeeId = null;
+    private final CharSequence payeeStatus = null;
+    private final CharSequence refCode = null;
+    private final CharSequence submittedDate = null;
+    private TrackBase trackBase;
+    private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "tipalti_ipn_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackTipaltiIpnReceived implements AnalyticsSchema
         }
         TrackTipaltiIpnReceived trackTipaltiIpnReceived = (TrackTipaltiIpnReceived) other;
         return C12238m.areEqual(this.key, trackTipaltiIpnReceived.key) && C12238m.areEqual(this.cDate, trackTipaltiIpnReceived.cDate) && C12238m.areEqual(this.type, trackTipaltiIpnReceived.type) && C12238m.areEqual(this.payeeId, trackTipaltiIpnReceived.payeeId) && C12238m.areEqual(this.refCode, trackTipaltiIpnReceived.refCode) && C12238m.areEqual(this.isPayable, trackTipaltiIpnReceived.isPayable) && C12238m.areEqual(this.complianceReviewStatus, trackTipaltiIpnReceived.complianceReviewStatus) && C12238m.areEqual(this.payeeStatus, trackTipaltiIpnReceived.payeeStatus) && C12238m.areEqual(this.groupPayments, trackTipaltiIpnReceived.groupPayments) && C12238m.areEqual(this.submittedDate, trackTipaltiIpnReceived.submittedDate) && C12238m.areEqual(this.approvalDate, trackTipaltiIpnReceived.approvalDate) && C12238m.areEqual(this.declinedDate, trackTipaltiIpnReceived.declinedDate);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

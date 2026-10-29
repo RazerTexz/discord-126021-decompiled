@@ -10,20 +10,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserAgeSubmitted implements AnalyticsSchema, TrackBaseReceiver {
     private final CharSequence ageBucket = null;
-    private final transient String analyticsSchemaTypeName = "user_age_submitted";
     private TrackBase trackBase;
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
+    private final transient String analyticsSchemaTypeName = "user_age_submitted";
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackUserAgeSubmitted) && C12238m.areEqual(this.ageBucket, ((TrackUserAgeSubmitted) other).ageBucket);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -21,16 +21,13 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11678c extends AbstractC11727g.d<C11678c> implements InterfaceC11735o {
-
-    /* JADX INFO: renamed from: j */
-    public static final C11678c f23760j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11678c> f23761k = new a();
     private int bitField0_;
     private int companionObjectName_;
     private List<C11679d> constructor_;
     private List<C11682g> enumEntry_;
+
+    /* JADX INFO: renamed from: j */
+    public static final C11678c f23760j;
     private int flags_;
     private int fqName_;
     private List<C11684i> function_;
@@ -51,9 +48,12 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
     private C11698w versionRequirementTable_;
     private List<Integer> versionRequirement_;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11678c> f23761k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.c$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11678c> {
+    public final class a extends AbstractC11722b<C11678c> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11678c parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11678c(c11724d, c11725e);
@@ -62,7 +62,7 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.c$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.c<C11678c, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.c<C11678c, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: m */
         public int f23765m;
@@ -478,38 +478,6 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
         this.unknownFields = cVar.getUnknownFields();
     }
 
-    public static C11678c getDefaultInstance() {
-        return f23760j;
-    }
-
-    public static b newBuilder(C11678c c11678c) {
-        return newBuilder().mergeFrom(c11678c);
-    }
-
-    public static C11678c parseFrom(InputStream inputStream, C11725e c11725e) throws IOException {
-        return (C11678c) ((AbstractC11722b) f23761k).m11467parseFrom(inputStream, c11725e);
-    }
-
-    /* JADX INFO: renamed from: K */
-    public final void m9640K() {
-        this.flags_ = 6;
-        this.fqName_ = 0;
-        this.companionObjectName_ = 0;
-        this.typeParameter_ = Collections.emptyList();
-        this.supertype_ = Collections.emptyList();
-        this.supertypeId_ = Collections.emptyList();
-        this.nestedClassName_ = Collections.emptyList();
-        this.constructor_ = Collections.emptyList();
-        this.function_ = Collections.emptyList();
-        this.property_ = Collections.emptyList();
-        this.typeAlias_ = Collections.emptyList();
-        this.enumEntry_ = Collections.emptyList();
-        this.sealedSubclassFqName_ = Collections.emptyList();
-        this.typeTable_ = C11695t.getDefaultInstance();
-        this.versionRequirement_ = Collections.emptyList();
-        this.versionRequirementTable_ = C11698w.getDefaultInstance();
-    }
-
     public int getCompanionObjectName() {
         return this.companionObjectName_;
     }
@@ -524,6 +492,10 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
 
     public List<C11679d> getConstructorList() {
         return this.constructor_;
+    }
+
+    public static C11678c getDefaultInstance() {
+        return f23760j;
     }
 
     public C11682g getEnumEntry(int i) {
@@ -794,6 +766,34 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
         return false;
     }
 
+    /* JADX INFO: renamed from: K */
+    public final void m9640K() {
+        this.flags_ = 6;
+        this.fqName_ = 0;
+        this.companionObjectName_ = 0;
+        this.typeParameter_ = Collections.emptyList();
+        this.supertype_ = Collections.emptyList();
+        this.supertypeId_ = Collections.emptyList();
+        this.nestedClassName_ = Collections.emptyList();
+        this.constructor_ = Collections.emptyList();
+        this.function_ = Collections.emptyList();
+        this.property_ = Collections.emptyList();
+        this.typeAlias_ = Collections.emptyList();
+        this.enumEntry_ = Collections.emptyList();
+        this.sealedSubclassFqName_ = Collections.emptyList();
+        this.typeTable_ = C11695t.getDefaultInstance();
+        this.versionRequirement_ = Collections.emptyList();
+        this.versionRequirementTable_ = C11698w.getDefaultInstance();
+    }
+
+    public static b newBuilder(C11678c c11678c) {
+        return newBuilder().mergeFrom(c11678c);
+    }
+
+    public static C11678c parseFrom(InputStream inputStream, C11725e c11725e) throws IOException {
+        return (C11678c) ((AbstractC11722b) f23761k).m11467parseFrom(inputStream, c11725e);
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
@@ -862,13 +862,13 @@ public final class C11678c extends AbstractC11727g.d<C11678c> implements Interfa
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
-    public static b newBuilder() {
-        return new b();
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11735o
     public C11678c getDefaultInstanceForType() {
         return f23760j;
+    }
+
+    public static b newBuilder() {
+        return new b();
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

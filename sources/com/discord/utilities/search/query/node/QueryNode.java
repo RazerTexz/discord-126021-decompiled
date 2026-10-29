@@ -22,7 +22,7 @@ public abstract class QueryNode extends Node<Context> {
 
     /* JADX INFO: renamed from: com.discord.utilities.search.query.node.QueryNode$Preprocessor, reason: from kotlin metadata */
     /* JADX INFO: compiled from: QueryNode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

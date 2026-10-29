@@ -10,13 +10,13 @@ import p007b.p225i.p226a.p288f.p337l.p338b.C4344i;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zak extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zak> CREATOR = new C4344i();
 
     /* JADX INFO: renamed from: j */
     public final int f20839j;
 
     /* JADX INFO: renamed from: k */
     public final zas f20840k;
+    public static final Parcelable.Creator<zak> CREATOR = new C4344i();
 
     public zak(int i, zas zasVar) {
         this.f20839j = i;

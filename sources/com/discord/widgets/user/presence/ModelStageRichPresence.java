@@ -46,7 +46,7 @@ public final /* data */ class ModelStageRichPresence {
     private final boolean userIsSpeaker;
 
     /* JADX INFO: compiled from: ModelStageRichPresence.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -63,7 +63,7 @@ public final /* data */ class ModelStageRichPresence {
 
                 /* JADX INFO: renamed from: com.discord.widgets.user.presence.ModelStageRichPresence$Companion$observeStageRichPresence$1$1 */
                 /* JADX INFO: compiled from: ModelStageRichPresence.kt */
-                public static final class C102731 extends AbstractC12240o implements Function1<Long, ModelStageRichPresence> {
+                public final class C102731 extends AbstractC12240o implements Function1<Long, ModelStageRichPresence> {
                     public final /* synthetic */ Map $userPresences;
 
                     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -152,67 +152,12 @@ public final /* data */ class ModelStageRichPresence {
         this.audienceSize = j5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
     public final Set<Long> component10() {
         return this.knownUserIds;
     }
 
     public final Set<Long> component11() {
         return this.speakerIds;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final long getSpeakerCount() {
-        return this.speakerCount;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final long getAudienceSize() {
-        return this.audienceSize;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getStageInstanceId() {
-        return this.stageInstanceId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getUserIsSpeaker() {
-        return this.userIsSpeaker;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getGuildIsPartnered() {
-        return this.guildIsPartnered;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getGuildIsVerified() {
-        return this.guildIsVerified;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final String getGuildName() {
-        return this.guildName;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final String getGuildIcon() {
-        return this.guildIcon;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final String getTopic() {
-        return this.topic;
     }
 
     public final ModelStageRichPresence copy(long channelId, long stageInstanceId, boolean userIsSpeaker, long guildId, boolean guildIsPartnered, boolean guildIsVerified, String guildName, String guildIcon, String topic, Set<Long> knownUserIds, Set<Long> speakerIds, long speakerCount, long audienceSize) {
@@ -234,28 +179,63 @@ public final /* data */ class ModelStageRichPresence {
         return this.channelId == modelStageRichPresence.channelId && this.stageInstanceId == modelStageRichPresence.stageInstanceId && this.userIsSpeaker == modelStageRichPresence.userIsSpeaker && this.guildId == modelStageRichPresence.guildId && this.guildIsPartnered == modelStageRichPresence.guildIsPartnered && this.guildIsVerified == modelStageRichPresence.guildIsVerified && C12238m.areEqual(this.guildName, modelStageRichPresence.guildName) && C12238m.areEqual(this.guildIcon, modelStageRichPresence.guildIcon) && C12238m.areEqual(this.topic, modelStageRichPresence.topic) && C12238m.areEqual(this.knownUserIds, modelStageRichPresence.knownUserIds) && C12238m.areEqual(this.speakerIds, modelStageRichPresence.speakerIds) && this.speakerCount == modelStageRichPresence.speakerCount && this.audienceSize == modelStageRichPresence.audienceSize;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final long getAudienceSize() {
         return this.audienceSize;
+    }
+
+    public final long getAudienceSize() {
+        return this.audienceSize;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {
         return this.channelId;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final String getGuildIcon() {
         return this.guildIcon;
+    }
+
+    public final String getGuildIcon() {
+        return this.guildIcon;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {
         return this.guildId;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getGuildIsPartnered() {
         return this.guildIsPartnered;
     }
 
+    public final boolean getGuildIsPartnered() {
+        return this.guildIsPartnered;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getGuildIsVerified() {
         return this.guildIsVerified;
+    }
+
+    public final boolean getGuildIsVerified() {
+        return this.guildIsVerified;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final String getGuildName() {
+        return this.guildName;
     }
 
     public final String getGuildName() {
@@ -266,6 +246,11 @@ public final /* data */ class ModelStageRichPresence {
         return this.knownUserIds;
     }
 
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final long getSpeakerCount() {
+        return this.speakerCount;
+    }
+
     public final long getSpeakerCount() {
         return this.speakerCount;
     }
@@ -274,12 +259,27 @@ public final /* data */ class ModelStageRichPresence {
         return this.speakerIds;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getStageInstanceId() {
         return this.stageInstanceId;
     }
 
+    public final long getStageInstanceId() {
+        return this.stageInstanceId;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final String getTopic() {
         return this.topic;
+    }
+
+    public final String getTopic() {
+        return this.topic;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getUserIsSpeaker() {
+        return this.userIsSpeaker;
     }
 
     public final boolean getUserIsSpeaker() {

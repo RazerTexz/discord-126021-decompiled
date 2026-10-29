@@ -33,7 +33,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$activate$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C58991 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58991 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -56,7 +56,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deactivate$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C59001 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59001 extends AbstractC12240o implements Function0<Unit> {
         public C59001() {
             super(0);
         }
@@ -75,7 +75,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deleteEmoji$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C59011 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59011 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $emojiId;
         public final /* synthetic */ long $guildId;
 
@@ -113,7 +113,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$fetchGuildEmoji$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C59021 extends AbstractC12240o implements Function1<List<? extends ModelEmojiGuild>, Unit> {
+    public final class C59021 extends AbstractC12240o implements Function1<List<? extends ModelEmojiGuild>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -137,7 +137,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$handleGuildEmojisLoaded$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C59031 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59031 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $emojis;
         public final /* synthetic */ long $guildId;
 
@@ -163,7 +163,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$observeGuildEmoji$1 */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public static final class C59041 extends AbstractC12240o implements Function0<List<? extends ModelEmojiGuild>> {
+    public final class C59041 extends AbstractC12240o implements Function0<List<? extends ModelEmojiGuild>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -188,11 +188,6 @@ public final class StoreEmojiGuild extends StoreV2 {
         this.guildEmoji = new LinkedHashMap();
         this.guildEmojiSnapshot = C12136h0.emptyMap();
         this.activeGuildId = -1L;
-    }
-
-    @StoreThread
-    private final void handleGuildEmojisLoaded(long guildId, List<ModelEmojiGuild> emojis) {
-        this.dispatcher.schedule(new C59031(emojis, guildId));
     }
 
     public final void activate(long guildId) {
@@ -223,6 +218,11 @@ public final class StoreEmojiGuild extends StoreV2 {
         if (guildId == j) {
             fetchGuildEmoji(j);
         }
+    }
+
+    @StoreThread
+    private final void handleGuildEmojisLoaded(long guildId, List<ModelEmojiGuild> emojis) {
+        this.dispatcher.schedule(new C59031(emojis, guildId));
     }
 
     public final Observable<List<ModelEmojiGuild>> observeGuildEmoji(long guildId) {

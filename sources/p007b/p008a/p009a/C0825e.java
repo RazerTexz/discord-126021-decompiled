@@ -32,24 +32,43 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0825e extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f344j = {C1643a.m846d0(C0825e.class, "binding", "getBinding()Lcom/discord/databinding/SimpleConfirmationDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final Lazy args;
 
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public View.OnClickListener positiveClickListener;
-
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f344j = {C1643a.m846d0(C0825e.class, "binding", "getBinding()Lcom/discord/databinding/SimpleConfirmationDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public View.OnClickListener positiveClickListener;
+
+    /* JADX INFO: renamed from: b.a.a.e$c, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: SimpleConfirmationDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final C0825e m128a(FragmentManager fragmentManager, SimpleConfirmationDialogArgs simpleConfirmationDialogArgs, View.OnClickListener onClickListener) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(simpleConfirmationDialogArgs, "args");
+            C12238m.checkNotNullParameter(onClickListener, "positiveClickListener");
+            C0825e c0825e = new C0825e();
+            c0825e.setArguments(C1460d.m514e2(simpleConfirmationDialogArgs));
+            c0825e.positiveClickListener = onClickListener;
+            c0825e.show(fragmentManager, C12216a0.getOrCreateKotlinClass(C0825e.class).toString());
+            return c0825e;
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.e$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f349j;
@@ -82,7 +101,7 @@ public final class C0825e extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.e$b */
     /* JADX INFO: compiled from: ArgUtils.kt */
-    public static final class b extends AbstractC12240o implements Function0<SimpleConfirmationDialogArgs> {
+    public final class b extends AbstractC12240o implements Function0<SimpleConfirmationDialogArgs> {
         public final /* synthetic */ String $argsKey;
         public final /* synthetic */ AppDialog $this_args;
 
@@ -107,28 +126,9 @@ public final class C0825e extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.e$c, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: SimpleConfirmationDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final C0825e m128a(FragmentManager fragmentManager, SimpleConfirmationDialogArgs simpleConfirmationDialogArgs, View.OnClickListener onClickListener) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(simpleConfirmationDialogArgs, "args");
-            C12238m.checkNotNullParameter(onClickListener, "positiveClickListener");
-            C0825e c0825e = new C0825e();
-            c0825e.setArguments(C1460d.m514e2(simpleConfirmationDialogArgs));
-            c0825e.positiveClickListener = onClickListener;
-            c0825e.show(fragmentManager, C12216a0.getOrCreateKotlinClass(C0825e.class).toString());
-            return c0825e;
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.e$d */
     /* JADX INFO: compiled from: SimpleConfirmationDialog.kt */
-    public static final /* synthetic */ class d extends C12236k implements Function1<View, C1018o1> {
+    public final /* synthetic */ class d extends C12236k implements Function1<View, C1018o1> {
 
         /* JADX INFO: renamed from: j */
         public static final d f351j = new d();

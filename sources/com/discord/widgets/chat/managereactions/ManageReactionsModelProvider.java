@@ -56,7 +56,7 @@ public final class ManageReactionsModelProvider {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.managereactions.ManageReactionsModelProvider$get$1 */
     /* JADX INFO: compiled from: ManageReactionsModel.kt */
-    public static final class C81781 extends AbstractC12240o implements Function1<Boolean, Observable<Boolean>> {
+    public final class C81781 extends AbstractC12240o implements Function1<Boolean, Observable<Boolean>> {
         public C81781() {
             super(1);
         }
@@ -81,14 +81,14 @@ public final class ManageReactionsModelProvider {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.managereactions.ManageReactionsModelProvider$get$2 */
     /* JADX INFO: compiled from: ManageReactionsModel.kt */
-    public static final class C81792<T, R> implements InterfaceC12589b<MeUser, Observable<? extends ManageReactionsModel>> {
+    public final class C81792<T, R> implements InterfaceC12589b<MeUser, Observable<? extends ManageReactionsModel>> {
         public final /* synthetic */ C81781 $getCanManageMessagesObs$1;
         public final /* synthetic */ Observable $guildMembersObservable;
         public final /* synthetic */ Observable $reactionsObs;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.managereactions.ManageReactionsModelProvider$get$2$2, reason: invalid class name */
         /* JADX INFO: compiled from: ManageReactionsModel.kt */
-        public static final class AnonymousClass2<T, R> implements InterfaceC12589b<Triple<? extends Boolean, ? extends List<? extends MessageReaction>, ? extends Map<Long, ? extends GuildMember>>, Observable<? extends ManageReactionsModel>> {
+        public final class AnonymousClass2<T, R> implements InterfaceC12589b<Triple<? extends Boolean, ? extends List<? extends MessageReaction>, ? extends Map<Long, ? extends GuildMember>>, Observable<? extends ManageReactionsModel>> {
             public final /* synthetic */ MeUser $me;
 
             public AnonymousClass2(MeUser meUser) {
@@ -218,10 +218,6 @@ public final class ManageReactionsModelProvider {
         return new ManageReactionsModel(arrayList, listListOf);
     }
 
-    private final Observable<StoreMessageReactions.EmojiResults> getUsersForReaction(MessageReactionEmoji targetedEmoji) {
-        return StoreStream.INSTANCE.getMessageReactions().observeMessageReactions(this.channelId, this.messageId, targetedEmoji);
-    }
-
     public final Observable<ManageReactionsModel> get() {
         C81781 c81781 = new C81781();
         StoreStream.Companion companion = StoreStream.INSTANCE;
@@ -262,6 +258,10 @@ public final class ManageReactionsModelProvider {
 
     public final long getMessageId() {
         return this.messageId;
+    }
+
+    private final Observable<StoreMessageReactions.EmojiResults> getUsersForReaction(MessageReactionEmoji targetedEmoji) {
+        return StoreStream.INSTANCE.getMessageReactions().observeMessageReactions(this.channelId, this.messageId, targetedEmoji);
     }
 
     public final void onEmojiTargeted(String emojiKey) {

@@ -34,7 +34,7 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildWelcomeSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-    public static final class C87241 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C87241 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C87241() {
             super(1);
         }
@@ -53,7 +53,7 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -75,7 +75,7 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Guild guild;
         private final StoreGuildWelcomeScreens.State guildWelcomeScreen;
 
@@ -94,16 +94,6 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
             return storeState.copy(guild, state);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreGuildWelcomeScreens.State getGuildWelcomeScreen() {
-            return this.guildWelcomeScreen;
-        }
-
         public final StoreState copy(Guild guild, StoreGuildWelcomeScreens.State guildWelcomeScreen) {
             return new StoreState(guild, guildWelcomeScreen);
         }
@@ -119,8 +109,18 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
             return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.guildWelcomeScreen, storeState.guildWelcomeScreen);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreGuildWelcomeScreens.State getGuildWelcomeScreen() {
+            return this.guildWelcomeScreen;
         }
 
         public final StoreGuildWelcomeScreens.State getGuildWelcomeScreen() {
@@ -145,10 +145,10 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -157,7 +157,7 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
         }
 
         /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final String guildDescription;
             private final String guildIcon;
             private final long guildId;
@@ -176,31 +176,6 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
                 this.guildIcon = str3;
                 this.guildDescription = str4;
                 this.welcomeChannelsData = list;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getGuildShortName() {
-                return this.guildShortName;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getGuildIcon() {
-                return this.guildIcon;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getGuildDescription() {
-                return this.guildDescription;
             }
 
             public final List<GuildWelcomeChannel> component6() {
@@ -224,20 +199,45 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
                 return this.guildId == loaded.guildId && C12238m.areEqual(this.guildName, loaded.guildName) && C12238m.areEqual(this.guildShortName, loaded.guildShortName) && C12238m.areEqual(this.guildIcon, loaded.guildIcon) && C12238m.areEqual(this.guildDescription, loaded.guildDescription) && C12238m.areEqual(this.welcomeChannelsData, loaded.welcomeChannelsData);
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final String getGuildDescription() {
                 return this.guildDescription;
+            }
+
+            public final String getGuildDescription() {
+                return this.guildDescription;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getGuildIcon() {
+                return this.guildIcon;
             }
 
             public final String getGuildIcon() {
                 return this.guildIcon;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getGuildId() {
                 return this.guildId;
             }
 
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final String getGuildName() {
                 return this.guildName;
+            }
+
+            public final String getGuildName() {
+                return this.guildName;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getGuildShortName() {
+                return this.guildShortName;
             }
 
             public final String getGuildShortName() {
@@ -279,7 +279,7 @@ public final class WidgetGuildWelcomeSheetViewModel extends AbstractC0859d0<View
         }
 
         /* JADX INFO: compiled from: WidgetGuildWelcomeSheetViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {

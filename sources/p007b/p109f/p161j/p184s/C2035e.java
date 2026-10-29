@@ -28,19 +28,6 @@ public class C2035e implements InterfaceC2033c {
         this.f4272d = z3;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final InterfaceC2032b m1535a(C1832c c1832c, boolean z2) {
-        int i = this.f4269a;
-        boolean z3 = this.f4272d;
-        try {
-            Class<?> cls = Class.forName("com.facebook.imagepipeline.nativecode.NativeJpegTranscoderFactory");
-            Class<?> cls2 = Boolean.TYPE;
-            return ((InterfaceC2033c) cls.getConstructor(Integer.TYPE, cls2, cls2).newInstance(Integer.valueOf(i), Boolean.FALSE, Boolean.valueOf(z3))).createImageTranscoder(c1832c, z2);
-        } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
-            throw new RuntimeException("Dependency ':native-imagetranscoder' is needed to use the default native image transcoder.", e);
-        }
-    }
-
     @Override // p007b.p109f.p161j.p184s.InterfaceC2033c
     public InterfaceC2032b createImageTranscoder(C1832c c1832c, boolean z2) {
         InterfaceC2033c interfaceC2033c = this.f4270b;
@@ -65,5 +52,18 @@ public class C2035e implements InterfaceC2033c {
             interfaceC2032bCreateImageTranscoder = m1535a(c1832c, z2);
         }
         return interfaceC2032bCreateImageTranscoder == null ? new C2036f(z2, this.f4269a) : interfaceC2032bCreateImageTranscoder;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final InterfaceC2032b m1535a(C1832c c1832c, boolean z2) {
+        int i = this.f4269a;
+        boolean z3 = this.f4272d;
+        try {
+            Class<?> cls = Class.forName("com.facebook.imagepipeline.nativecode.NativeJpegTranscoderFactory");
+            Class<?> cls2 = Boolean.TYPE;
+            return ((InterfaceC2033c) cls.getConstructor(Integer.TYPE, cls2, cls2).newInstance(Integer.valueOf(i), Boolean.FALSE, Boolean.valueOf(z3))).createImageTranscoder(c1832c, z2);
+        } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
+            throw new RuntimeException("Dependency ':native-imagetranscoder' is needed to use the default native image transcoder.", e);
+        }
     }
 }

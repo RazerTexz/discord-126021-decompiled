@@ -53,11 +53,11 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-    public static final class Adapter extends MGRecyclerAdapterSimple<PlatformItem> {
+    public final class Adapter extends MGRecyclerAdapterSimple<PlatformItem> {
         private final Function0<Unit> dialogDismissCallback;
 
         /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-        public static final class ViewHolder extends MGRecyclerViewHolder<Adapter, PlatformItem> {
+        public final class ViewHolder extends MGRecyclerViewHolder<Adapter, PlatformItem> {
             private final WidgetSettingsItemAddConnectedAccountBinding binding;
             private final Function0<Unit> dialogDismissCallback;
 
@@ -152,8 +152,30 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAdd$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-    public static final class Companion {
+    public final class C98351 extends AbstractC12240o implements Function0<Unit> {
+        public C98351() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Dialog dialog = WidgetSettingsUserConnectionsAdd.this.getDialog();
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -171,7 +193,7 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-    public static final /* data */ class PlatformItem implements MGRecyclerDataPayload {
+    public final /* data */ class PlatformItem implements MGRecyclerDataPayload {
         private final String key;
         private final Platform platform;
         private final int type;
@@ -189,11 +211,6 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
             return platformItem.copy(platform);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Platform getPlatform() {
-            return this.platform;
-        }
-
         public final PlatformItem copy(Platform platform) {
             C12238m.checkNotNullParameter(platform, "platform");
             return new PlatformItem(platform);
@@ -209,6 +226,11 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Platform getPlatform() {
+            return this.platform;
         }
 
         public final Platform getPlatform() {
@@ -233,28 +255,6 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
             sbM833U.append(this.platform);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAdd$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-    public static final class C98351 extends AbstractC12240o implements Function0<Unit> {
-        public C98351() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Dialog dialog = WidgetSettingsUserConnectionsAdd.this.getDialog();
-            if (dialog != null) {
-                dialog.dismiss();
-            }
         }
     }
 

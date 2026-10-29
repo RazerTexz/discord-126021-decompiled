@@ -10,7 +10,7 @@ import lombok.core.SpiLoadUtil;
 public interface ConfigurationKeysLoader {
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationKeysLoader$LoaderLoader.SCL.lombok */
-    public static class LoaderLoader {
+    public class LoaderLoader {
         private static final AtomicBoolean alreadyLoaded = new AtomicBoolean(false);
 
         private LoaderLoader() {

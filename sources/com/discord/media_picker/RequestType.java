@@ -19,7 +19,7 @@ public enum RequestType {
 
     /* JADX INFO: renamed from: com.discord.media_picker.RequestType$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: RequestType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

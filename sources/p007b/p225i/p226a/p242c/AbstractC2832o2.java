@@ -26,15 +26,21 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
     /* JADX INFO: compiled from: Timeline.java */
     public class a extends AbstractC2832o2 {
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: b */
-        public int mo2554b(Object obj) {
-            return -1;
-        }
-
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
         /* JADX INFO: renamed from: g */
         public b mo2513g(int i, b bVar, boolean z2) {
             throw new IndexOutOfBoundsException();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: o */
+        public c mo2514o(int i, c cVar, long j) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
+        /* JADX INFO: renamed from: b */
+        public int mo2554b(Object obj) {
+            return -1;
         }
 
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
@@ -50,140 +56,15 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         }
 
         @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
-        /* JADX INFO: renamed from: o */
-        public c mo2514o(int i, c cVar, long j) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        @Override // p007b.p225i.p226a.p242c.AbstractC2832o2
         /* JADX INFO: renamed from: p */
         public int mo2557p() {
             return 0;
         }
     }
 
-    /* JADX INFO: renamed from: b.i.a.c.o2$b */
-    /* JADX INFO: compiled from: Timeline.java */
-    public static final class b implements InterfaceC2963w0 {
-
-        /* JADX INFO: renamed from: j */
-        @Nullable
-        public Object f7338j;
-
-        /* JADX INFO: renamed from: k */
-        @Nullable
-        public Object f7339k;
-
-        /* JADX INFO: renamed from: l */
-        public int f7340l;
-
-        /* JADX INFO: renamed from: m */
-        public long f7341m;
-
-        /* JADX INFO: renamed from: n */
-        public long f7342n;
-
-        /* JADX INFO: renamed from: o */
-        public boolean f7343o;
-
-        /* JADX INFO: renamed from: p */
-        public C2562c f7344p = C2562c.f5680j;
-
-        /* JADX INFO: renamed from: a */
-        public long m3332a(int i, int i2) {
-            C2562c.a aVarM2578a = this.f7344p.m2578a(i);
-            if (aVarM2578a.f5691l != -1) {
-                return aVarM2578a.f5694o[i2];
-            }
-            return -9223372036854775807L;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public int m3333b(long j) {
-            C2562c c2562c = this.f7344p;
-            long j2 = this.f7341m;
-            Objects.requireNonNull(c2562c);
-            if (j == Long.MIN_VALUE) {
-                return -1;
-            }
-            if (j2 != -9223372036854775807L && j >= j2) {
-                return -1;
-            }
-            int i = c2562c.f5687q;
-            while (i < c2562c.f5684n) {
-                if (c2562c.m2578a(i).f5690k == Long.MIN_VALUE || c2562c.m2578a(i).f5690k > j) {
-                    C2562c.a aVarM2578a = c2562c.m2578a(i);
-                    if (aVarM2578a.f5691l == -1 || aVarM2578a.m2580a(-1) < aVarM2578a.f5691l) {
-                        break;
-                    }
-                }
-                i++;
-            }
-            if (i < c2562c.f5684n) {
-                return i;
-            }
-            return -1;
-        }
-
-        /* JADX INFO: renamed from: c */
-        public long m3334c(int i) {
-            return this.f7344p.m2578a(i).f5690k;
-        }
-
-        /* JADX INFO: renamed from: d */
-        public int m3335d(int i) {
-            return this.f7344p.m2578a(i).m2580a(-1);
-        }
-
-        /* JADX INFO: renamed from: e */
-        public boolean m3336e(int i) {
-            return this.f7344p.m2578a(i).f5696q;
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || !b.class.equals(obj.getClass())) {
-                return false;
-            }
-            b bVar = (b) obj;
-            return C2738e0.m2993a(this.f7338j, bVar.f7338j) && C2738e0.m2993a(this.f7339k, bVar.f7339k) && this.f7340l == bVar.f7340l && this.f7341m == bVar.f7341m && this.f7342n == bVar.f7342n && this.f7343o == bVar.f7343o && C2738e0.m2993a(this.f7344p, bVar.f7344p);
-        }
-
-        /* JADX INFO: renamed from: f */
-        public b m3337f(@Nullable Object obj, @Nullable Object obj2, int i, long j, long j2, C2562c c2562c, boolean z2) {
-            this.f7338j = obj;
-            this.f7339k = obj2;
-            this.f7340l = i;
-            this.f7341m = j;
-            this.f7342n = j2;
-            this.f7344p = c2562c;
-            this.f7343o = z2;
-            return this;
-        }
-
-        public int hashCode() {
-            Object obj = this.f7338j;
-            int iHashCode = (217 + (obj == null ? 0 : obj.hashCode())) * 31;
-            Object obj2 = this.f7339k;
-            int iHashCode2 = (((iHashCode + (obj2 != null ? obj2.hashCode() : 0)) * 31) + this.f7340l) * 31;
-            long j = this.f7341m;
-            int i = (iHashCode2 + ((int) (j ^ (j >>> 32)))) * 31;
-            long j2 = this.f7342n;
-            return this.f7344p.hashCode() + ((((i + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (this.f7343o ? 1 : 0)) * 31);
-        }
-    }
-
     /* JADX INFO: renamed from: b.i.a.c.o2$c */
     /* JADX INFO: compiled from: Timeline.java */
-    public static final class c implements InterfaceC2963w0 {
-
-        /* JADX INFO: renamed from: j */
-        public static final Object f7345j = new Object();
-
-        /* JADX INFO: renamed from: k */
-        public static final Object f7346k = new Object();
+    public final class c implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: l */
         public static final C2831o1 f7347l;
@@ -241,6 +122,12 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         /* JADX INFO: renamed from: z */
         public long f7365z;
 
+        /* JADX INFO: renamed from: j */
+        public static final Object f7345j = new Object();
+
+        /* JADX INFO: renamed from: k */
+        public static final Object f7346k = new Object();
+
         /* JADX INFO: renamed from: n */
         public Object f7353n = f7345j;
 
@@ -289,6 +176,37 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
             };
         }
 
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || !c.class.equals(obj.getClass())) {
+                return false;
+            }
+            c cVar = (c) obj;
+            return C2738e0.m2993a(this.f7353n, cVar.f7353n) && C2738e0.m2993a(this.f7355p, cVar.f7355p) && C2738e0.m2993a(this.f7356q, cVar.f7356q) && C2738e0.m2993a(this.f7363x, cVar.f7363x) && this.f7357r == cVar.f7357r && this.f7358s == cVar.f7358s && this.f7359t == cVar.f7359t && this.f7360u == cVar.f7360u && this.f7361v == cVar.f7361v && this.f7364y == cVar.f7364y && this.f7365z == cVar.f7365z && this.f7349A == cVar.f7349A && this.f7350B == cVar.f7350B && this.f7351C == cVar.f7351C && this.f7352D == cVar.f7352D;
+        }
+
+        public int hashCode() {
+            int iHashCode = (this.f7355p.hashCode() + ((this.f7353n.hashCode() + 217) * 31)) * 31;
+            Object obj = this.f7356q;
+            int iHashCode2 = (iHashCode + (obj == null ? 0 : obj.hashCode())) * 31;
+            C2831o1.g gVar = this.f7363x;
+            int iHashCode3 = (iHashCode2 + (gVar != null ? gVar.hashCode() : 0)) * 31;
+            long j = this.f7357r;
+            int i = (iHashCode3 + ((int) (j ^ (j >>> 32)))) * 31;
+            long j2 = this.f7358s;
+            int i2 = (i + ((int) (j2 ^ (j2 >>> 32)))) * 31;
+            long j3 = this.f7359t;
+            int i3 = (((((((i2 + ((int) (j3 ^ (j3 >>> 32)))) * 31) + (this.f7360u ? 1 : 0)) * 31) + (this.f7361v ? 1 : 0)) * 31) + (this.f7364y ? 1 : 0)) * 31;
+            long j4 = this.f7365z;
+            int i4 = (i3 + ((int) (j4 ^ (j4 >>> 32)))) * 31;
+            long j5 = this.f7349A;
+            int i5 = (((((i4 + ((int) (j5 ^ (j5 >>> 32)))) * 31) + this.f7350B) * 31) + this.f7351C) * 31;
+            long j6 = this.f7352D;
+            return i5 + ((int) (j6 ^ (j6 >>> 32)));
+        }
+
         /* JADX INFO: renamed from: d */
         public static String m3338d(int i) {
             return Integer.toString(i, 36);
@@ -332,83 +250,6 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
             this.f7364y = false;
             return this;
         }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || !c.class.equals(obj.getClass())) {
-                return false;
-            }
-            c cVar = (c) obj;
-            return C2738e0.m2993a(this.f7353n, cVar.f7353n) && C2738e0.m2993a(this.f7355p, cVar.f7355p) && C2738e0.m2993a(this.f7356q, cVar.f7356q) && C2738e0.m2993a(this.f7363x, cVar.f7363x) && this.f7357r == cVar.f7357r && this.f7358s == cVar.f7358s && this.f7359t == cVar.f7359t && this.f7360u == cVar.f7360u && this.f7361v == cVar.f7361v && this.f7364y == cVar.f7364y && this.f7365z == cVar.f7365z && this.f7349A == cVar.f7349A && this.f7350B == cVar.f7350B && this.f7351C == cVar.f7351C && this.f7352D == cVar.f7352D;
-        }
-
-        public int hashCode() {
-            int iHashCode = (this.f7355p.hashCode() + ((this.f7353n.hashCode() + 217) * 31)) * 31;
-            Object obj = this.f7356q;
-            int iHashCode2 = (iHashCode + (obj == null ? 0 : obj.hashCode())) * 31;
-            C2831o1.g gVar = this.f7363x;
-            int iHashCode3 = (iHashCode2 + (gVar != null ? gVar.hashCode() : 0)) * 31;
-            long j = this.f7357r;
-            int i = (iHashCode3 + ((int) (j ^ (j >>> 32)))) * 31;
-            long j2 = this.f7358s;
-            int i2 = (i + ((int) (j2 ^ (j2 >>> 32)))) * 31;
-            long j3 = this.f7359t;
-            int i3 = (((((((i2 + ((int) (j3 ^ (j3 >>> 32)))) * 31) + (this.f7360u ? 1 : 0)) * 31) + (this.f7361v ? 1 : 0)) * 31) + (this.f7364y ? 1 : 0)) * 31;
-            long j4 = this.f7365z;
-            int i4 = (i3 + ((int) (j4 ^ (j4 >>> 32)))) * 31;
-            long j5 = this.f7349A;
-            int i5 = (((((i4 + ((int) (j5 ^ (j5 >>> 32)))) * 31) + this.f7350B) * 31) + this.f7351C) * 31;
-            long j6 = this.f7352D;
-            return i5 + ((int) (j6 ^ (j6 >>> 32)));
-        }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public int mo2582a(boolean z2) {
-        return m3331q() ? -1 : 0;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public abstract int mo2554b(Object obj);
-
-    /* JADX INFO: renamed from: c */
-    public int mo2583c(boolean z2) {
-        if (m3331q()) {
-            return -1;
-        }
-        return mo2557p() - 1;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final int m3325d(int i, b bVar, c cVar, int i2, boolean z2) {
-        int i3 = mo2513g(i, bVar, false).f7340l;
-        if (m3330n(i3, cVar).f7351C != i) {
-            return i + 1;
-        }
-        int iMo2584e = mo2584e(i3, i2, z2);
-        if (iMo2584e == -1) {
-            return -1;
-        }
-        return m3330n(iMo2584e, cVar).f7350B;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public int mo2584e(int i, int i2, boolean z2) {
-        if (i2 == 0) {
-            if (i == mo2583c(z2)) {
-                return -1;
-            }
-            return i + 1;
-        }
-        if (i2 == 1) {
-            return i;
-        }
-        if (i2 == 2) {
-            return i == mo2583c(z2) ? mo2582a(z2) : i + 1;
-        }
-        throw new IllegalStateException();
     }
 
     public boolean equals(@Nullable Object obj) {
@@ -439,19 +280,6 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         return true;
     }
 
-    /* JADX INFO: renamed from: f */
-    public final b m3326f(int i, b bVar) {
-        return mo2513g(i, bVar, false);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public abstract b mo2513g(int i, b bVar, boolean z2);
-
-    /* JADX INFO: renamed from: h */
-    public b mo3327h(Object obj, b bVar) {
-        return mo2513g(mo2554b(obj), bVar, true);
-    }
-
     public int hashCode() {
         c cVar = new c();
         b bVar = new b();
@@ -466,8 +294,23 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         return iMo2555i;
     }
 
-    /* JADX INFO: renamed from: i */
-    public abstract int mo2555i();
+    /* JADX INFO: renamed from: d */
+    public final int m3325d(int i, b bVar, c cVar, int i2, boolean z2) {
+        int i3 = mo2513g(i, bVar, false).f7340l;
+        if (m3330n(i3, cVar).f7351C != i) {
+            return i + 1;
+        }
+        int iMo2584e = mo2584e(i3, i2, z2);
+        if (iMo2584e == -1) {
+            return -1;
+        }
+        return m3330n(iMo2584e, cVar).f7350B;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final b m3326f(int i, b bVar) {
+        return mo2513g(i, bVar, false);
+    }
 
     @InlineMe(replacement = "this.getPeriodPositionUs(window, period, windowIndex, windowPositionUs)")
     @Deprecated
@@ -512,6 +355,64 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         return Pair.create(obj, Long.valueOf(jMax));
     }
 
+    /* JADX INFO: renamed from: n */
+    public final c m3330n(int i, c cVar) {
+        return mo2514o(i, cVar, 0L);
+    }
+
+    /* JADX INFO: renamed from: q */
+    public final boolean m3331q() {
+        return mo2557p() == 0;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public abstract b mo2513g(int i, b bVar, boolean z2);
+
+    /* JADX INFO: renamed from: o */
+    public abstract c mo2514o(int i, c cVar, long j);
+
+    /* JADX INFO: renamed from: b */
+    public abstract int mo2554b(Object obj);
+
+    /* JADX INFO: renamed from: i */
+    public abstract int mo2555i();
+
+    /* JADX INFO: renamed from: m */
+    public abstract Object mo2556m(int i);
+
+    /* JADX INFO: renamed from: p */
+    public abstract int mo2557p();
+
+    /* JADX INFO: renamed from: a */
+    public int mo2582a(boolean z2) {
+        return m3331q() ? -1 : 0;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public int mo2583c(boolean z2) {
+        if (m3331q()) {
+            return -1;
+        }
+        return mo2557p() - 1;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public int mo2584e(int i, int i2, boolean z2) {
+        if (i2 == 0) {
+            if (i == mo2583c(z2)) {
+                return -1;
+            }
+            return i + 1;
+        }
+        if (i2 == 1) {
+            return i;
+        }
+        if (i2 == 2) {
+            return i == mo2583c(z2) ? mo2582a(z2) : i + 1;
+        }
+        throw new IllegalStateException();
+    }
+
     /* JADX INFO: renamed from: l */
     public int mo2585l(int i, int i2, boolean z2) {
         if (i2 == 0) {
@@ -529,22 +430,121 @@ public abstract class AbstractC2832o2 implements InterfaceC2963w0 {
         throw new IllegalStateException();
     }
 
-    /* JADX INFO: renamed from: m */
-    public abstract Object mo2556m(int i);
-
-    /* JADX INFO: renamed from: n */
-    public final c m3330n(int i, c cVar) {
-        return mo2514o(i, cVar, 0L);
+    /* JADX INFO: renamed from: h */
+    public b mo3327h(Object obj, b bVar) {
+        return mo2513g(mo2554b(obj), bVar, true);
     }
 
-    /* JADX INFO: renamed from: o */
-    public abstract c mo2514o(int i, c cVar, long j);
+    /* JADX INFO: renamed from: b.i.a.c.o2$b */
+    /* JADX INFO: compiled from: Timeline.java */
+    public final class b implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: p */
-    public abstract int mo2557p();
+        /* JADX INFO: renamed from: j */
+        @Nullable
+        public Object f7338j;
 
-    /* JADX INFO: renamed from: q */
-    public final boolean m3331q() {
-        return mo2557p() == 0;
+        /* JADX INFO: renamed from: k */
+        @Nullable
+        public Object f7339k;
+
+        /* JADX INFO: renamed from: l */
+        public int f7340l;
+
+        /* JADX INFO: renamed from: m */
+        public long f7341m;
+
+        /* JADX INFO: renamed from: n */
+        public long f7342n;
+
+        /* JADX INFO: renamed from: o */
+        public boolean f7343o;
+
+        /* JADX INFO: renamed from: p */
+        public C2562c f7344p = C2562c.f5680j;
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || !b.class.equals(obj.getClass())) {
+                return false;
+            }
+            b bVar = (b) obj;
+            return C2738e0.m2993a(this.f7338j, bVar.f7338j) && C2738e0.m2993a(this.f7339k, bVar.f7339k) && this.f7340l == bVar.f7340l && this.f7341m == bVar.f7341m && this.f7342n == bVar.f7342n && this.f7343o == bVar.f7343o && C2738e0.m2993a(this.f7344p, bVar.f7344p);
+        }
+
+        public int hashCode() {
+            Object obj = this.f7338j;
+            int iHashCode = (217 + (obj == null ? 0 : obj.hashCode())) * 31;
+            Object obj2 = this.f7339k;
+            int iHashCode2 = (((iHashCode + (obj2 != null ? obj2.hashCode() : 0)) * 31) + this.f7340l) * 31;
+            long j = this.f7341m;
+            int i = (iHashCode2 + ((int) (j ^ (j >>> 32)))) * 31;
+            long j2 = this.f7342n;
+            return this.f7344p.hashCode() + ((((i + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (this.f7343o ? 1 : 0)) * 31);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public long m3332a(int i, int i2) {
+            C2562c.a aVarM2578a = this.f7344p.m2578a(i);
+            if (aVarM2578a.f5691l != -1) {
+                return aVarM2578a.f5694o[i2];
+            }
+            return -9223372036854775807L;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public int m3333b(long j) {
+            C2562c c2562c = this.f7344p;
+            long j2 = this.f7341m;
+            Objects.requireNonNull(c2562c);
+            if (j == Long.MIN_VALUE) {
+                return -1;
+            }
+            if (j2 != -9223372036854775807L && j >= j2) {
+                return -1;
+            }
+            int i = c2562c.f5687q;
+            while (i < c2562c.f5684n) {
+                if (c2562c.m2578a(i).f5690k == Long.MIN_VALUE || c2562c.m2578a(i).f5690k > j) {
+                    C2562c.a aVarM2578a = c2562c.m2578a(i);
+                    if (aVarM2578a.f5691l == -1 || aVarM2578a.m2580a(-1) < aVarM2578a.f5691l) {
+                        break;
+                    }
+                }
+                i++;
+            }
+            if (i < c2562c.f5684n) {
+                return i;
+            }
+            return -1;
+        }
+
+        /* JADX INFO: renamed from: c */
+        public long m3334c(int i) {
+            return this.f7344p.m2578a(i).f5690k;
+        }
+
+        /* JADX INFO: renamed from: d */
+        public int m3335d(int i) {
+            return this.f7344p.m2578a(i).m2580a(-1);
+        }
+
+        /* JADX INFO: renamed from: e */
+        public boolean m3336e(int i) {
+            return this.f7344p.m2578a(i).f5696q;
+        }
+
+        /* JADX INFO: renamed from: f */
+        public b m3337f(@Nullable Object obj, @Nullable Object obj2, int i, long j, long j2, C2562c c2562c, boolean z2) {
+            this.f7338j = obj;
+            this.f7339k = obj2;
+            this.f7340l = i;
+            this.f7341m = j;
+            this.f7342n = j2;
+            this.f7344p = c2562c;
+            this.f7343o = z2;
+            return this;
+        }
     }
 }

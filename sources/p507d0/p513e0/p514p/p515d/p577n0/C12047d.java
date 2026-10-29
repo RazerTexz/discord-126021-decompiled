@@ -5,11 +5,11 @@ package p507d0.p513e0.p514p.p515d.p577n0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12047d<V> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C12047d<Object> f25032a = new C12047d<>(C12046c.f25026a);
-
     /* JADX INFO: renamed from: b */
     public final C12046c<V> f25033b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C12047d<Object> f25032a = new C12047d<>(C12046c.f25026a);
 
     public C12047d(C12046c<V> c12046c) {
         this.f25033b = c12046c;

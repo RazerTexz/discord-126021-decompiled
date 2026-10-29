@@ -19,7 +19,7 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
     private float stickyHeaderBottom;
 
     /* JADX INFO: compiled from: StickyHeaderItemDecoration.kt */
-    public static final class LayoutManager {
+    public final class LayoutManager {
         public static final LayoutManager INSTANCE = new LayoutManager();
 
         private LayoutManager() {
@@ -47,50 +47,6 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
     public StickyHeaderItemDecoration(StickyHeaderAdapter stickyHeaderAdapter) {
         C12238m.checkNotNullParameter(stickyHeaderAdapter, "adapter");
         this.adapter = stickyHeaderAdapter;
-    }
-
-    private final void drawHeader(Canvas c, View header, float offsetY) {
-        c.save();
-        if (offsetY != 0.0f) {
-            c.translate(0.0f, offsetY);
-        }
-        this.stickyHeaderBottom = header.getBottom() - offsetY;
-        header.draw(c);
-        c.restore();
-    }
-
-    public static /* synthetic */ void drawHeader$default(StickyHeaderItemDecoration stickyHeaderItemDecoration, Canvas canvas, View view, float f, int i, Object obj) {
-        if ((i & 4) != 0) {
-            f = 0.0f;
-        }
-        stickyHeaderItemDecoration.drawHeader(canvas, view, f);
-    }
-
-    private final View getAndBindHeaderViewForItem(int itemPosition) {
-        Integer headerPositionForItem = this.adapter.getHeaderPositionForItem(itemPosition);
-        if (headerPositionForItem == null) {
-            return null;
-        }
-        return this.adapter.getAndBindHeaderView(headerPositionForItem.intValue());
-    }
-
-    private final View getOverlappingView(RecyclerView parent, int contactPoint) {
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = parent.getChildAt(i);
-            C12238m.checkNotNullExpressionValue(childAt, "child");
-            int top = childAt.getTop();
-            int bottom = childAt.getBottom();
-            if (top <= contactPoint && bottom > contactPoint) {
-                return childAt;
-            }
-        }
-        return null;
-    }
-
-    private final void resetActionDownCoordinates() {
-        this.actionDownRawX = null;
-        this.actionDownRawY = null;
     }
 
     public final void blockClicks(RecyclerView parent) {
@@ -133,6 +89,45 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
         });
     }
 
+    public static /* synthetic */ void drawHeader$default(StickyHeaderItemDecoration stickyHeaderItemDecoration, Canvas canvas, View view, float f, int i, Object obj) {
+        if ((i & 4) != 0) {
+            f = 0.0f;
+        }
+        stickyHeaderItemDecoration.drawHeader(canvas, view, f);
+    }
+
+    private final void drawHeader(Canvas c, View header, float offsetY) {
+        c.save();
+        if (offsetY != 0.0f) {
+            c.translate(0.0f, offsetY);
+        }
+        this.stickyHeaderBottom = header.getBottom() - offsetY;
+        header.draw(c);
+        c.restore();
+    }
+
+    private final View getAndBindHeaderViewForItem(int itemPosition) {
+        Integer headerPositionForItem = this.adapter.getHeaderPositionForItem(itemPosition);
+        if (headerPositionForItem == null) {
+            return null;
+        }
+        return this.adapter.getAndBindHeaderView(headerPositionForItem.intValue());
+    }
+
+    private final View getOverlappingView(RecyclerView parent, int contactPoint) {
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = parent.getChildAt(i);
+            C12238m.checkNotNullExpressionValue(childAt, "child");
+            int top = childAt.getTop();
+            int bottom = childAt.getBottom();
+            if (top <= contactPoint && bottom > contactPoint) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
     @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
     public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
         int childAdapterPosition;
@@ -162,5 +157,10 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
             top = overlappingView.getTop() - andBindHeaderViewForItem.getHeight();
         }
         drawHeader(canvas, andBindHeaderViewForItem, top);
+    }
+
+    private final void resetActionDownCoordinates() {
+        this.actionDownRawX = null;
+        this.actionDownRawY = null;
     }
 }

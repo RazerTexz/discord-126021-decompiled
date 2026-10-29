@@ -39,9 +39,6 @@ public class C3227b {
     /* JADX INFO: renamed from: b */
     public static PendingIntent f9244b;
 
-    /* JADX INFO: renamed from: c */
-    public static final Executor f9245c = ExecutorC3251z.f9295j;
-
     /* JADX INFO: renamed from: e */
     public final Context f9247e;
 
@@ -56,6 +53,9 @@ public class C3227b {
 
     /* JADX INFO: renamed from: j */
     public zza f9252j;
+
+    /* JADX INFO: renamed from: c */
+    public static final Executor f9245c = ExecutorC3251z.f9295j;
 
     /* JADX INFO: renamed from: d */
     public final SimpleArrayMap<String, TaskCompletionSource<Bundle>> f9246d = new SimpleArrayMap<>();

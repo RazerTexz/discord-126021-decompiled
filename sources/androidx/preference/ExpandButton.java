@@ -17,11 +17,22 @@ public final class ExpandButton extends Preference {
         this.mId = j + 1000000;
     }
 
+    @Override // androidx.preference.Preference
+    public long getId() {
+        return this.mId;
+    }
+
     private void initLayout() {
         setLayoutResource(C0525R.layout.expand_button);
         setIcon(C0525R.drawable.ic_arrow_down_24dp);
         setTitle(C0525R.string.expand_button_title);
         setOrder(RoomDatabase.MAX_BIND_PARAMETER_CNT);
+    }
+
+    @Override // androidx.preference.Preference
+    public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
+        super.onBindViewHolder(preferenceViewHolder);
+        preferenceViewHolder.setDividerAllowedAbove(false);
     }
 
     private void setSummary(List<Preference> list) {
@@ -42,16 +53,5 @@ public final class ExpandButton extends Preference {
             }
         }
         setSummary(string);
-    }
-
-    @Override // androidx.preference.Preference
-    public long getId() {
-        return this.mId;
-    }
-
-    @Override // androidx.preference.Preference
-    public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
-        super.onBindViewHolder(preferenceViewHolder);
-        preferenceViewHolder.setDividerAllowedAbove(false);
     }
 }

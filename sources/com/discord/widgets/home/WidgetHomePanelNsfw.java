@@ -46,19 +46,9 @@ public final class WidgetHomePanelNsfw {
     private Subscription hidePanelSubscription;
     private boolean stubInflated;
 
-    /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelNsfw$toggleContainerVisibility$2 */
     /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
-    public static final class C89772 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C89772 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C89772() {
             super(1);
         }
@@ -78,7 +68,7 @@ public final class WidgetHomePanelNsfw {
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelNsfw$toggleContainerVisibility$3 */
     /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
-    public static final class C89783 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C89783 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Function1 $onToggleNsfw;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -99,10 +89,65 @@ public final class WidgetHomePanelNsfw {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetHomePanelNsfw(AppComponent appComponent) {
         C12238m.checkNotNullParameter(appComponent, "appComponent");
         this.appComponent = appComponent;
         this.guildsNsfwStore = StoreStream.INSTANCE.getGuildsNsfw();
+    }
+
+    @MainThread
+    public final void configureUI(final long guildId, boolean isChannelNsfw, boolean isNsfwUnconsented, NsfwAllowance nsfwAllowed, ViewStub viewStub, final Function1<? super Boolean, Unit> onToggleNsfw, final Function0<Unit> onDenyNsfw) {
+        MaterialButton materialButton;
+        MaterialButton materialButton2;
+        C12238m.checkNotNullParameter(onToggleNsfw, "onToggleNsfw");
+        Subscription subscription = this.hidePanelSubscription;
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+        toggleContainerVisibility(isChannelNsfw, isNsfwUnconsented, nsfwAllowed, viewStub, onToggleNsfw);
+        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding = this.binding;
+        if (widgetHomePanelCenterNsfwBinding != null && (materialButton2 = widgetHomePanelCenterNsfwBinding.f17135d) != null) {
+            materialButton2.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomePanelNsfw.configureUI.1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(View view) {
+                    WidgetHomePanelNsfw.this.guildsNsfwStore.deny(guildId);
+                    Function0 function0 = onDenyNsfw;
+                    if (function0 != null) {
+                    }
+                }
+            });
+        }
+        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding2 = this.binding;
+        if (widgetHomePanelCenterNsfwBinding2 == null || (materialButton = widgetHomePanelCenterNsfwBinding2.f17134c) == null) {
+            return;
+        }
+        materialButton.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomePanelNsfw.configureUI.2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                WidgetHomePanelNsfw.this.guildsNsfwStore.allow(guildId);
+                WidgetHomePanelNsfw.this.setContainerViewHidden(true, onToggleNsfw);
+            }
+        });
+    }
+
+    public final void dispatchApplyWindowInsets(WindowInsetsCompat insets) {
+        LinearLayout linearLayout;
+        C12238m.checkNotNullParameter(insets, "insets");
+        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding = this.binding;
+        if (widgetHomePanelCenterNsfwBinding == null || (linearLayout = widgetHomePanelCenterNsfwBinding.f17132a) == null) {
+            return;
+        }
+        ViewCompat.dispatchApplyWindowInsets(linearLayout, insets);
     }
 
     private final void setContainerViewHidden(boolean isHidden, Function1<? super Boolean, Unit> onToggleNsfw) {
@@ -211,50 +256,5 @@ public final class WidgetHomePanelNsfw {
             }
         }
         setContainerViewHidden(false, onToggleNsfw);
-    }
-
-    @MainThread
-    public final void configureUI(final long guildId, boolean isChannelNsfw, boolean isNsfwUnconsented, NsfwAllowance nsfwAllowed, ViewStub viewStub, final Function1<? super Boolean, Unit> onToggleNsfw, final Function0<Unit> onDenyNsfw) {
-        MaterialButton materialButton;
-        MaterialButton materialButton2;
-        C12238m.checkNotNullParameter(onToggleNsfw, "onToggleNsfw");
-        Subscription subscription = this.hidePanelSubscription;
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
-        toggleContainerVisibility(isChannelNsfw, isNsfwUnconsented, nsfwAllowed, viewStub, onToggleNsfw);
-        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding = this.binding;
-        if (widgetHomePanelCenterNsfwBinding != null && (materialButton2 = widgetHomePanelCenterNsfwBinding.f17135d) != null) {
-            materialButton2.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomePanelNsfw.configureUI.1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    WidgetHomePanelNsfw.this.guildsNsfwStore.deny(guildId);
-                    Function0 function0 = onDenyNsfw;
-                    if (function0 != null) {
-                    }
-                }
-            });
-        }
-        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding2 = this.binding;
-        if (widgetHomePanelCenterNsfwBinding2 == null || (materialButton = widgetHomePanelCenterNsfwBinding2.f17134c) == null) {
-            return;
-        }
-        materialButton.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.home.WidgetHomePanelNsfw.configureUI.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetHomePanelNsfw.this.guildsNsfwStore.allow(guildId);
-                WidgetHomePanelNsfw.this.setContainerViewHidden(true, onToggleNsfw);
-            }
-        });
-    }
-
-    public final void dispatchApplyWindowInsets(WindowInsetsCompat insets) {
-        LinearLayout linearLayout;
-        C12238m.checkNotNullParameter(insets, "insets");
-        WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding = this.binding;
-        if (widgetHomePanelCenterNsfwBinding == null || (linearLayout = widgetHomePanelCenterNsfwBinding.f17132a) == null) {
-            return;
-        }
-        ViewCompat.dispatchApplyWindowInsets(linearLayout, insets);
     }
 }

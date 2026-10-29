@@ -29,10 +29,6 @@ public final class C12404u extends ByteString {
         this.f26130o = iArr;
     }
 
-    private final Object writeReplace() {
-        return m10512u();
-    }
-
     @Override // okio.ByteString
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -45,33 +41,6 @@ public final class C12404u extends ByteString {
             }
         }
         return false;
-    }
-
-    @Override // okio.ByteString
-    /* JADX INFO: renamed from: f */
-    public String mo10500f() {
-        return m10512u().mo10500f();
-    }
-
-    @Override // okio.ByteString
-    /* JADX INFO: renamed from: g */
-    public ByteString mo10501g(String str) throws NoSuchAlgorithmException {
-        C12238m.checkParameterIsNotNull(str, "algorithm");
-        MessageDigest messageDigest = MessageDigest.getInstance(str);
-        int length = this.f26129n.length;
-        int i = 0;
-        int i2 = 0;
-        while (i < length) {
-            int[] iArr = this.f26130o;
-            int i3 = iArr[length + i];
-            int i4 = iArr[i];
-            messageDigest.update(this.f26129n[i], i3, i4 - i2);
-            i++;
-            i2 = i4;
-        }
-        byte[] bArrDigest = messageDigest.digest();
-        C12238m.checkExpressionValueIsNotNull(bArrDigest, "digest.digest()");
-        return new ByteString(bArrDigest);
     }
 
     @Override // okio.ByteString
@@ -99,6 +68,58 @@ public final class C12404u extends ByteString {
         }
         this.hashCode = i3;
         return i3;
+    }
+
+    /* JADX INFO: renamed from: t */
+    public byte[] m10511t() {
+        byte[] bArr = new byte[mo10502j()];
+        int length = this.f26129n.length;
+        int i = 0;
+        int i2 = 0;
+        int i3 = 0;
+        while (i < length) {
+            int[] iArr = this.f26130o;
+            int i4 = iArr[length + i];
+            int i5 = iArr[i];
+            int i6 = i5 - i2;
+            C12139j.copyInto(this.f26129n[i], bArr, i3, i4, i4 + i6);
+            i3 += i6;
+            i++;
+            i2 = i5;
+        }
+        return bArr;
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final ByteString m10512u() {
+        return new ByteString(m10511t());
+    }
+
+    @Override // okio.ByteString
+    /* JADX INFO: renamed from: f */
+    public String mo10500f() {
+        return m10512u().mo10500f();
+    }
+
+    @Override // okio.ByteString
+    /* JADX INFO: renamed from: g */
+    public ByteString mo10501g(String str) throws NoSuchAlgorithmException {
+        C12238m.checkParameterIsNotNull(str, "algorithm");
+        MessageDigest messageDigest = MessageDigest.getInstance(str);
+        int length = this.f26129n.length;
+        int i = 0;
+        int i2 = 0;
+        while (i < length) {
+            int[] iArr = this.f26130o;
+            int i3 = iArr[length + i];
+            int i4 = iArr[i];
+            messageDigest.update(this.f26129n[i], i3, i4 - i2);
+            i++;
+            i2 = i4;
+        }
+        byte[] bArrDigest = messageDigest.digest();
+        C12238m.checkExpressionValueIsNotNull(bArrDigest, "digest.digest()");
+        return new ByteString(bArrDigest);
     }
 
     @Override // okio.ByteString
@@ -235,33 +256,12 @@ public final class C12404u extends ByteString {
         c12388e.f26080k += (long) mo10502j();
     }
 
-    /* JADX INFO: renamed from: t */
-    public byte[] m10511t() {
-        byte[] bArr = new byte[mo10502j()];
-        int length = this.f26129n.length;
-        int i = 0;
-        int i2 = 0;
-        int i3 = 0;
-        while (i < length) {
-            int[] iArr = this.f26130o;
-            int i4 = iArr[length + i];
-            int i5 = iArr[i];
-            int i6 = i5 - i2;
-            C12139j.copyInto(this.f26129n[i], bArr, i3, i4, i4 + i6);
-            i3 += i6;
-            i++;
-            i2 = i5;
-        }
-        return bArr;
-    }
-
     @Override // okio.ByteString
     public String toString() {
         return m10512u().toString();
     }
 
-    /* JADX INFO: renamed from: u */
-    public final ByteString m10512u() {
-        return new ByteString(m10511t());
+    private final Object writeReplace() {
+        return m10512u();
     }
 }

@@ -69,7 +69,7 @@ public class DocCommentIntegrator {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/DocCommentIntegrator$CommentAttacher_8.SCL.lombok */
-    private static class CommentAttacher_8 {
+    class CommentAttacher_8 {
         private CommentAttacher_8() {
         }
 

@@ -2,6 +2,7 @@ package p600f0.p601e0.p613n;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 import okio.BufferedSink;
 import okio.ByteString;
@@ -66,6 +67,14 @@ public final class C12360i implements Closeable {
         this.f25884k = bufferedSink.mo10457g();
         this.f25887n = z2 ? new byte[4] : null;
         this.f25888o = z2 ? new C12388e.a() : null;
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public void close() throws Throwable {
+        C12352a c12352a = this.f25886m;
+        if (c12352a != null) {
+            c12352a.f25814l.close();
+        }
     }
 
     /* JADX INFO: renamed from: a */
@@ -141,7 +150,7 @@ public final class C12360i implements Closeable {
     }
 
     /* JADX INFO: renamed from: c */
-    public final void m10365c(int i, ByteString byteString) throws IOException {
+    public final void m10365c(int i, ByteString byteString) throws IllegalAccessException, IOException, InvocationTargetException {
         C12238m.checkParameterIsNotNull(byteString, "data");
         if (this.f25885l) {
             throw new IOException("closed");
@@ -258,13 +267,5 @@ public final class C12360i implements Closeable {
         }
         this.f25884k.write(this.f25883j, j2);
         this.f25890q.mo10462p();
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        C12352a c12352a = this.f25886m;
-        if (c12352a != null) {
-            c12352a.f25814l.close();
-        }
     }
 }

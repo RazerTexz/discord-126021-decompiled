@@ -18,7 +18,7 @@ public interface Job extends CoroutineContext.Element {
 
     /* JADX INFO: renamed from: kotlinx.coroutines.Job$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: Job.kt */
-    public static final class Companion implements CoroutineContext.Key<Job> {
+    public final class Companion implements CoroutineContext.Key<Job> {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ Companion f27463a = new Companion();
@@ -46,8 +46,8 @@ public interface Job extends CoroutineContext.Element {
     /* JADX INFO: renamed from: q */
     CancellationException mo10914q();
 
-    boolean start();
-
     /* JADX INFO: renamed from: u */
     InterfaceC13130m0 mo10915u(Function1<? super Throwable, Unit> handler);
+
+    boolean start();
 }

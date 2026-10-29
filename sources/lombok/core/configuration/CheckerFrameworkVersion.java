@@ -5,15 +5,15 @@ import java.util.regex.Pattern;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/CheckerFrameworkVersion.SCL.lombok */
 public final class CheckerFrameworkVersion implements ConfigurationValueType {
-    private final int version;
     private static final int DEFAULT = 3200;
     private static final int MAX_SUPPORTED = 4000;
-    public static final String NAME__SIDE_EFFECT_FREE = "org.checkerframework.dataflow.qual.SideEffectFree";
-    public static final String NAME__PURE = "org.checkerframework.dataflow.qual.Pure";
-    public static final String NAME__UNIQUE = "org.checkerframework.common.aliasing.qual.Unique";
-    public static final String NAME__RETURNS_RECEIVER = "org.checkerframework.common.returnsreceiver.qual.This";
-    public static final String NAME__NOT_CALLED = "org.checkerframework.checker.calledmethods.qual.NotCalledMethods";
     public static final String NAME__CALLED = "org.checkerframework.checker.calledmethods.qual.CalledMethods";
+    public static final String NAME__NOT_CALLED = "org.checkerframework.checker.calledmethods.qual.NotCalledMethods";
+    public static final String NAME__PURE = "org.checkerframework.dataflow.qual.Pure";
+    public static final String NAME__RETURNS_RECEIVER = "org.checkerframework.common.returnsreceiver.qual.This";
+    public static final String NAME__SIDE_EFFECT_FREE = "org.checkerframework.dataflow.qual.SideEffectFree";
+    public static final String NAME__UNIQUE = "org.checkerframework.common.aliasing.qual.Unique";
+    private final int version;
     public static final CheckerFrameworkVersion NONE = new CheckerFrameworkVersion(0);
     private static final Pattern VERSION = Pattern.compile("^(\\d+)(?:\\.(\\d+))?(?:\\.\\d+)*$");
 

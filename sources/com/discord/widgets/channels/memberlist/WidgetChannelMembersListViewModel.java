@@ -66,7 +66,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$2 */
     /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class C74952 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C74952 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C74952() {
             super(1);
         }
@@ -84,9 +84,101 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$1 */
     /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class Companion {
+    public final class C75011 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C75011() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            PublishSubject publishSubject = WidgetChannelMembersListViewModel.this.eventSubject;
+            Error.Response response = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response, "error.response");
+            publishSubject.f27650k.onNext((T) new Event.Error(response.getCode()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$2 */
+    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
+    public final class C75022 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C75022 INSTANCE = new C75022();
+
+        public C75022() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$3 */
+    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
+    public final class C75033 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C75033() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "error");
+            PublishSubject publishSubject = WidgetChannelMembersListViewModel.this.eventSubject;
+            Error.Response response = error.getResponse();
+            C12238m.checkNotNullExpressionValue(response, "error.response");
+            publishSubject.f27650k.onNext((T) new Event.Error(response.getCode()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$4 */
+    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
+    public final class C75044 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C75044 INSTANCE = new C75044();
+
+        public C75044() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
+    public final class Companion {
         private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreGuilds storeGuilds, StoreChannelMembers storeChannelMembers, StoreThreadMembers storeThreadMembers, StoreChannelsSelected storeChannelsSelected, StoreNavigation storeNavigation, PrivateChannelMemberListService privateChannelMemberListService, StorePermissions storePermissions, StoreUserRelationships storeUserRelationships, StoreChannels storeChannels, StoreUser storeUser, StoreUserPresence storeUserPresence, StoreApplicationStreaming storeApplicationStreaming, StoreThreadsJoined storeThreadsJoined, int i, Object obj) {
+            return companion.observeStoreState((i & 1) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 2) != 0 ? StoreStream.INSTANCE.getChannelMembers() : storeChannelMembers, (i & 4) != 0 ? StoreStream.INSTANCE.getThreadMembers() : storeThreadMembers, (i & 8) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected, (i & 16) != 0 ? StoreStream.INSTANCE.getNavigation() : storeNavigation, (i & 32) != 0 ? new PrivateChannelMemberListService(null, null, null, 7, null) : privateChannelMemberListService, (i & 64) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions, (i & 128) != 0 ? StoreStream.INSTANCE.getUserRelationships() : storeUserRelationships, (i & 256) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 512) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 1024) != 0 ? StoreStream.INSTANCE.getPresences() : storeUserPresence, (i & 2048) != 0 ? StoreStream.INSTANCE.getApplicationStreaming() : storeApplicationStreaming, (i & 4096) != 0 ? StoreStream.INSTANCE.getThreadsJoined() : storeThreadsJoined);
         }
 
         private final Observable<StoreState> observeStoreState(final StoreGuilds storeGuilds, final StoreChannelMembers storeChannelMembers, final StoreThreadMembers storeThreadMembers, StoreChannelsSelected storeChannelsSelected, StoreNavigation storeNavigation, final PrivateChannelMemberListService privateChannelMemberListService, final StorePermissions storePermissions, final StoreUserRelationships storeUserRelationships, final StoreChannels storeChannels, final StoreUser storeUser, final StoreUserPresence storePresence, final StoreApplicationStreaming storeApplicationStreaming, final StoreThreadsJoined storeThreadsJoined) {
@@ -196,20 +288,16 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
             return observableM11099Y;
         }
 
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreGuilds storeGuilds, StoreChannelMembers storeChannelMembers, StoreThreadMembers storeThreadMembers, StoreChannelsSelected storeChannelsSelected, StoreNavigation storeNavigation, PrivateChannelMemberListService privateChannelMemberListService, StorePermissions storePermissions, StoreUserRelationships storeUserRelationships, StoreChannels storeChannels, StoreUser storeUser, StoreUserPresence storeUserPresence, StoreApplicationStreaming storeApplicationStreaming, StoreThreadsJoined storeThreadsJoined, int i, Object obj) {
-            return companion.observeStoreState((i & 1) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 2) != 0 ? StoreStream.INSTANCE.getChannelMembers() : storeChannelMembers, (i & 4) != 0 ? StoreStream.INSTANCE.getThreadMembers() : storeThreadMembers, (i & 8) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected, (i & 16) != 0 ? StoreStream.INSTANCE.getNavigation() : storeNavigation, (i & 32) != 0 ? new PrivateChannelMemberListService(null, null, null, 7, null) : privateChannelMemberListService, (i & 64) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions, (i & 128) != 0 ? StoreStream.INSTANCE.getUserRelationships() : storeUserRelationships, (i & 256) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 512) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 1024) != 0 ? StoreStream.INSTANCE.getPresences() : storeUserPresence, (i & 2048) != 0 ? StoreStream.INSTANCE.getApplicationStreaming() : storeApplicationStreaming, (i & 4096) != 0 ? StoreStream.INSTANCE.getThreadsJoined() : storeThreadsJoined);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class Error extends Event {
+        public final /* data */ class Error extends Event {
             private final int code;
 
             public Error(int i) {
@@ -224,11 +312,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return error.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getCode() {
-                return this.code;
-            }
-
             public final Error copy(int code) {
                 return new Error(code);
             }
@@ -238,6 +321,11 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                     return (other instanceof Error) && this.code == ((Error) other).code;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getCode() {
+                return this.code;
             }
 
             public final int getCode() {
@@ -254,7 +342,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final class ScrollToTop extends Event {
+        public final class ScrollToTop extends Event {
             public static final ScrollToTop INSTANCE = new ScrollToTop();
 
             private ScrollToTop() {
@@ -263,7 +351,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final class UpdateRanges extends Event {
+        public final class UpdateRanges extends Event {
             public static final UpdateRanges INSTANCE = new UpdateRanges();
 
             private UpdateRanges() {
@@ -293,11 +381,11 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         public static final Companion INSTANCE = Companion.$$INSTANCE;
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final class Companion {
+        public final class Companion {
             public static final /* synthetic */ Companion $$INSTANCE = new Companion();
             private static final MemberList EMPTY = new MemberList() { // from class: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$MemberList$Companion$EMPTY$1
-                private final String listId = "";
                 private final int size;
+                private final String listId = "";
 
                 @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.MemberList
                 public ChannelMembersListAdapter.Item get(int index) {
@@ -338,12 +426,12 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
         private final Channel channel;
         private final boolean isPanelOpen;
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class Guild extends StoreState {
+        public final /* data */ class Guild extends StoreState {
             private final Channel channel;
             private final ChannelMemberList channelMembers;
             private final Long channelPermissions;
@@ -363,6 +451,18 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 this.channelMembers = channelMemberList;
                 this.channelPermissions = l;
                 this.guildRoles = map;
+            }
+
+            public final boolean component1() {
+                return getIsPanelOpen();
+            }
+
+            public final Channel component2() {
+                return getChannel();
+            }
+
+            public final Map<Long, GuildRole> component6() {
+                return this.guildRoles;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -392,33 +492,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return guild.copy(z2, channel2, guild3, channelMemberList2, l2, map);
             }
 
-            public final boolean component1() {
-                return getIsPanelOpen();
-            }
-
-            public final Channel component2() {
-                return getChannel();
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final com.discord.models.guild.Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final ChannelMemberList getChannelMembers() {
-                return this.channelMembers;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Long getChannelPermissions() {
-                return this.channelPermissions;
-            }
-
-            public final Map<Long, GuildRole> component6() {
-                return this.guildRoles;
-            }
-
             public final Guild copy(boolean isPanelOpen, Channel channel, com.discord.models.guild.Guild guild, ChannelMemberList channelMembers, Long channelPermissions, Map<Long, GuildRole> guildRoles) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 C12238m.checkNotNullParameter(channelMembers, "channelMembers");
@@ -442,12 +515,27 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return this.channel;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final ChannelMemberList getChannelMembers() {
                 return this.channelMembers;
             }
 
+            public final ChannelMemberList getChannelMembers() {
+                return this.channelMembers;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final Long getChannelPermissions() {
                 return this.channelPermissions;
+            }
+
+            public final Long getChannelPermissions() {
+                return this.channelPermissions;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final com.discord.models.guild.Guild getGuild() {
+                return this.guild;
             }
 
             public final com.discord.models.guild.Guild getGuild() {
@@ -456,6 +544,12 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
 
             public final Map<Long, GuildRole> getGuildRoles() {
                 return this.guildRoles;
+            }
+
+            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
+            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
+            public boolean getIsPanelOpen() {
+                return this.isPanelOpen;
             }
 
             public int hashCode() {
@@ -477,12 +571,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return iHashCode4 + (map != null ? map.hashCode() : 0);
             }
 
-            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
-            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
-            public boolean getIsPanelOpen() {
-                return this.isPanelOpen;
-            }
-
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("Guild(isPanelOpen=");
                 sbM833U.append(getIsPanelOpen());
@@ -500,7 +588,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class None extends StoreState {
+        public final /* data */ class None extends StoreState {
             private final boolean isPanelOpen;
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -509,15 +597,15 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 this.isPanelOpen = z2;
             }
 
+            public final boolean component1() {
+                return getIsPanelOpen();
+            }
+
             public static /* synthetic */ None copy$default(None none, boolean z2, int i, Object obj) {
                 if ((i & 1) != 0) {
                     z2 = none.getIsPanelOpen();
                 }
                 return none.copy(z2);
-            }
-
-            public final boolean component1() {
-                return getIsPanelOpen();
             }
 
             public final None copy(boolean isPanelOpen) {
@@ -531,18 +619,18 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return true;
             }
 
+            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
+            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
+            public boolean getIsPanelOpen() {
+                return this.isPanelOpen;
+            }
+
             public int hashCode() {
                 boolean isPanelOpen = getIsPanelOpen();
                 if (isPanelOpen) {
                     return 1;
                 }
                 return isPanelOpen ? 1 : 0;
-            }
-
-            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
-            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
-            public boolean getIsPanelOpen() {
-                return this.isPanelOpen;
             }
 
             public String toString() {
@@ -554,7 +642,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class Private extends StoreState {
+        public final /* data */ class Private extends StoreState {
             private final Map<Long, ModelApplicationStream> applicationStreams;
             private final Channel channel;
             private final boolean isPanelOpen;
@@ -577,6 +665,30 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 this.presences = map2;
                 this.applicationStreams = map3;
                 this.relationships = map4;
+            }
+
+            public final boolean component1() {
+                return getIsPanelOpen();
+            }
+
+            public final Channel component2() {
+                return getChannel();
+            }
+
+            public final Map<Long, User> component3() {
+                return this.users;
+            }
+
+            public final Map<Long, Presence> component4() {
+                return this.presences;
+            }
+
+            public final Map<Long, ModelApplicationStream> component5() {
+                return this.applicationStreams;
+            }
+
+            public final Map<Long, Integer> component6() {
+                return this.relationships;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -606,30 +718,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return r4.copy(z2, channel2, map5, map6, map7, map4);
             }
 
-            public final boolean component1() {
-                return getIsPanelOpen();
-            }
-
-            public final Channel component2() {
-                return getChannel();
-            }
-
-            public final Map<Long, User> component3() {
-                return this.users;
-            }
-
-            public final Map<Long, Presence> component4() {
-                return this.presences;
-            }
-
-            public final Map<Long, ModelApplicationStream> component5() {
-                return this.applicationStreams;
-            }
-
-            public final Map<Long, Integer> component6() {
-                return this.relationships;
-            }
-
             public final Private copy(boolean isPanelOpen, Channel channel, Map<Long, ? extends User> users, Map<Long, Presence> presences, Map<Long, ? extends ModelApplicationStream> applicationStreams, Map<Long, Integer> relationships) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 C12238m.checkNotNullParameter(users, "users");
@@ -657,6 +745,12 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
             @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
             public Channel getChannel() {
                 return this.channel;
+            }
+
+            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
+            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
+            public boolean getIsPanelOpen() {
+                return this.isPanelOpen;
             }
 
             public final Map<Long, Presence> getPresences() {
@@ -690,12 +784,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return iHashCode4 + (map4 != null ? map4.hashCode() : 0);
             }
 
-            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
-            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
-            public boolean getIsPanelOpen() {
-                return this.isPanelOpen;
-            }
-
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("Private(isPanelOpen=");
                 sbM833U.append(getIsPanelOpen());
@@ -713,7 +801,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class Thread extends StoreState {
+        public final /* data */ class Thread extends StoreState {
             private final Channel channel;
             private final com.discord.models.guild.Guild guild;
             private final Map<Long, GuildMember> guildMembers;
@@ -758,23 +846,8 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return this.threadMembers;
             }
 
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final StoreThreadsJoined.JoinedThread getJoinedThread() {
-                return this.joinedThread;
-            }
-
             public final Channel component2() {
                 return getChannel();
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Channel getParentChannel() {
-                return this.parentChannel;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final com.discord.models.guild.Guild getGuild() {
-                return this.guild;
             }
 
             public final Map<Long, GuildRole> component5() {
@@ -824,6 +897,11 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return this.channel;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final com.discord.models.guild.Guild getGuild() {
+                return this.guild;
+            }
+
             public final com.discord.models.guild.Guild getGuild() {
                 return this.guild;
             }
@@ -832,8 +910,24 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return this.guildMembers;
             }
 
+            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
+            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
+            public boolean getIsPanelOpen() {
+                return this.isPanelOpen;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
             public final StoreThreadsJoined.JoinedThread getJoinedThread() {
                 return this.joinedThread;
+            }
+
+            public final StoreThreadsJoined.JoinedThread getJoinedThread() {
+                return this.joinedThread;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Channel getParentChannel() {
+                return this.parentChannel;
             }
 
             public final Channel getParentChannel() {
@@ -889,12 +983,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return iHashCode9 + (joinedThread != null ? joinedThread.hashCode() : 0);
             }
 
-            @Override // com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel.StoreState
-            /* JADX INFO: renamed from: isPanelOpen, reason: from getter */
-            public boolean getIsPanelOpen() {
-                return this.isPanelOpen;
-            }
-
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("Thread(isPanelOpen=");
                 sbM833U.append(getIsPanelOpen());
@@ -943,11 +1031,11 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final String listId;
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final class Empty extends ViewState {
+        public final class Empty extends ViewState {
             public static final Empty INSTANCE = new Empty();
 
             private Empty() {
@@ -956,7 +1044,7 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Channel channel;
             private final boolean isOpen;
             private final boolean isThreadJoined;
@@ -988,26 +1076,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return loaded.copy(memberList, z2, channel, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MemberList getListItems() {
-                return this.listItems;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsOpen() {
-                return this.isOpen;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsThreadJoined() {
-                return this.isThreadJoined;
-            }
-
             public final Loaded copy(MemberList listItems, boolean isOpen, Channel channel, boolean isThreadJoined) {
                 C12238m.checkNotNullParameter(listItems, "listItems");
                 return new Loaded(listItems, isOpen, channel, isThreadJoined);
@@ -1024,8 +1092,28 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
                 return C12238m.areEqual(this.listItems, loaded.listItems) && this.isOpen == loaded.isOpen && C12238m.areEqual(this.channel, loaded.channel) && this.isThreadJoined == loaded.isThreadJoined;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final Channel getChannel() {
                 return this.channel;
+            }
+
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsOpen() {
+                return this.isOpen;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsThreadJoined() {
+                return this.isThreadJoined;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final MemberList getListItems() {
+                return this.listItems;
             }
 
             public final MemberList getListItems() {
@@ -1086,94 +1174,6 @@ public final class WidgetChannelMembersListViewModel extends AbstractC0859d0<Vie
 
         public /* synthetic */ ViewState(String str, DefaultConstructorMarker defaultConstructorMarker) {
             this(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$1 */
-    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class C75011 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C75011() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            PublishSubject publishSubject = WidgetChannelMembersListViewModel.this.eventSubject;
-            Error.Response response = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response, "error.response");
-            publishSubject.f27650k.onNext((T) new Event.Error(response.getCode()));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$2 */
-    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class C75022 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C75022 INSTANCE = new C75022();
-
-        public C75022() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$3 */
-    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class C75033 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C75033() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            PublishSubject publishSubject = WidgetChannelMembersListViewModel.this.eventSubject;
-            Error.Response response = error.getResponse();
-            C12238m.checkNotNullExpressionValue(response, "error.response");
-            publishSubject.f27650k.onNext((T) new Event.Error(response.getCode()));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersListViewModel$onThreadJoinLeaveClicked$4 */
-    /* JADX INFO: compiled from: WidgetChannelMembersListViewModel.kt */
-    public static final class C75044 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C75044 INSTANCE = new C75044();
-
-        public C75044() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
         }
     }
 

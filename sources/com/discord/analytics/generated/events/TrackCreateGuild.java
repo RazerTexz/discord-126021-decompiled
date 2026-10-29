@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreateGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreateGuild implements AnalyticsSchema, TrackBaseReceiver, TrackGuildTemplateReceiver {
-    private TrackBase trackBase;
-    private TrackGuildTemplate trackGuildTemplate;
     private final Long guildId = null;
     private final CharSequence guildName = null;
+    private TrackBase trackBase;
+    private TrackGuildTemplate trackGuildTemplate;
     private final transient String analyticsSchemaTypeName = "create_guild";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackCreateGuild implements AnalyticsSchema, Track
         }
         TrackCreateGuild trackCreateGuild = (TrackCreateGuild) other;
         return C12238m.areEqual(this.guildId, trackCreateGuild.guildId) && C12238m.areEqual(this.guildName, trackCreateGuild.guildName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

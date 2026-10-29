@@ -25,7 +25,7 @@ public class C12331f extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.f$a */
     /* JADX INFO: compiled from: Jdk9Platform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

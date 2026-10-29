@@ -10,13 +10,13 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class AppInfoTable implements Metadata.Entry {
-    public static final Parcelable.Creator<AppInfoTable> CREATOR = new C10720a();
 
     /* JADX INFO: renamed from: j */
     public final int f19937j;
 
     /* JADX INFO: renamed from: k */
     public final String f19938k;
+    public static final Parcelable.Creator<AppInfoTable> CREATOR = new C10720a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.dvbsi.AppInfoTable$a */
     public class C10720a implements Parcelable.Creator<AppInfoTable> {
@@ -55,6 +55,12 @@ public final class AppInfoTable implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         int i = this.f19937j;
         String str = this.f19938k;
@@ -71,11 +77,5 @@ public final class AppInfoTable implements Metadata.Entry {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.f19938k);
         parcel.writeInt(this.f19937j);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 }

@@ -19,7 +19,7 @@ public class AudioAttributesImplApi21 implements AudioAttributesImpl {
     public int mLegacyStreamType;
 
     @RequiresApi(21)
-    public static class Builder implements AudioAttributesImpl.Builder {
+    public class Builder implements AudioAttributesImpl.Builder {
         public final AudioAttributes.Builder mFwkBuilder;
 
         public Builder() {

@@ -38,7 +38,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$a */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class a extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class a extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final a f1490j = new a();
@@ -56,7 +56,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$b */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class b extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class b extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final b f1491j = new b();
@@ -74,7 +74,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$c */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class c extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class c extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final c f1492j = new c();
@@ -92,7 +92,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$d */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class d extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class d extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final d f1493j = new d();
@@ -110,7 +110,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$e */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class e extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class e extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final e f1494j = new e();
@@ -128,7 +128,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$f */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class f extends AbstractC12240o implements Function1<MatchResult, CharSequence> {
+    public final class f extends AbstractC12240o implements Function1<MatchResult, CharSequence> {
         public final /* synthetic */ Map $namedArgs;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -148,7 +148,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$g */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class g extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class g extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final g f1495j = new g();
@@ -166,7 +166,7 @@ public final class C1107b {
 
     /* JADX INFO: renamed from: b.a.k.b$h */
     /* JADX INFO: compiled from: FormatUtils.kt */
-    public static final class h extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class h extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final h f1496j = new h();

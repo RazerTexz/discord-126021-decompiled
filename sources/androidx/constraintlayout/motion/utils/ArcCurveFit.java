@@ -14,10 +14,9 @@ public class ArcCurveFit extends CurveFit {
     public Arc[] mArcs;
     private final double[] mTime;
 
-    public static class Arc {
+    public class Arc {
         private static final double EPSILON = 0.001d;
         private static final String TAG = "Arc";
-        private static double[] ourPercent = new double[91];
         public boolean linear;
         public double mArcDistance;
         public double mArcVelocity;
@@ -36,6 +35,7 @@ public class ArcCurveFit extends CurveFit {
         public double mX2;
         public double mY1;
         public double mY2;
+        private static double[] ourPercent = new double[91];
 
         public Arc(int i, double d, double d2, double d3, double d4, double d5, double d6) {
             this.linear = false;

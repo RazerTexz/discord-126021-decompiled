@@ -17,9 +17,9 @@ public interface Operation {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static final State.SUCCESS SUCCESS;
 
-    public static abstract class State {
+    public abstract class State {
 
-        public static final class FAILURE extends State {
+        public final class FAILURE extends State {
             private final Throwable mThrowable;
 
             public FAILURE(@NonNull Throwable th) {
@@ -37,7 +37,7 @@ public interface Operation {
             }
         }
 
-        public static final class IN_PROGRESS extends State {
+        public final class IN_PROGRESS extends State {
             @NonNull
             public String toString() {
                 return "IN_PROGRESS";
@@ -47,7 +47,7 @@ public interface Operation {
             }
         }
 
-        public static final class SUCCESS extends State {
+        public final class SUCCESS extends State {
             @NonNull
             public String toString() {
                 return "SUCCESS";

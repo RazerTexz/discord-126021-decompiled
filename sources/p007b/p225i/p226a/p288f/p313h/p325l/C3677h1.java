@@ -6,15 +6,15 @@ import java.util.List;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3677h1 extends AbstractC3851u4<C3677h1, a> implements InterfaceC3626d6 {
-    private static final C3677h1 zzf;
-    private static volatile InterfaceC3710j6<C3677h1> zzg;
     private int zzc;
     private int zzd;
+    private static final C3677h1 zzf;
+    private static volatile InterfaceC3710j6<C3677h1> zzg;
     private InterfaceC3611c5 zze = C3800q5.f10271k;
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.h1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3677h1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3677h1, a> implements InterfaceC3626d6 {
         public a() {
             super(C3677h1.zzf);
         }
@@ -56,6 +56,28 @@ public final class C3677h1 extends AbstractC3851u4<C3677h1, a> implements Interf
         return ((C3800q5) this.zze).size();
     }
 
+    /* JADX INFO: renamed from: u */
+    public final long m4929u(int i) {
+        C3800q5 c3800q5 = (C3800q5) this.zze;
+        c3800q5.m5189h(i);
+        return c3800q5.f10272l[i];
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final boolean m4930x() {
+        return (this.zzc & 1) != 0;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final int m4931y() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final List<Long> m4932z() {
+        return this.zze;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -88,27 +110,5 @@ public final class C3677h1 extends AbstractC3851u4<C3677h1, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final long m4929u(int i) {
-        C3800q5 c3800q5 = (C3800q5) this.zze;
-        c3800q5.m5189h(i);
-        return c3800q5.f10272l[i];
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final boolean m4930x() {
-        return (this.zzc & 1) != 0;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final int m4931y() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final List<Long> m4932z() {
-        return this.zze;
     }
 }

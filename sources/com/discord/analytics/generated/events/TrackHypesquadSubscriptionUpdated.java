@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackHypesquadSubscriptionUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackHypesquadSubscriptionUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long houseId = null;
     private final Boolean subscribed = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "hypesquad_subscription_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackHypesquadSubscriptionUpdated implements Analy
         }
         TrackHypesquadSubscriptionUpdated trackHypesquadSubscriptionUpdated = (TrackHypesquadSubscriptionUpdated) other;
         return C12238m.areEqual(this.houseId, trackHypesquadSubscriptionUpdated.houseId) && C12238m.areEqual(this.subscribed, trackHypesquadSubscriptionUpdated.subscribed);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

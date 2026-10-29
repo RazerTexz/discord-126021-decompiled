@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSoundshareEnable.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSoundshareEnable implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long statusCode = null;
     private final CharSequence message = null;
+    private final Long statusCode = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "soundshare_enable";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackSoundshareEnable implements AnalyticsSchema, 
         }
         TrackSoundshareEnable trackSoundshareEnable = (TrackSoundshareEnable) other;
         return C12238m.areEqual(this.statusCode, trackSoundshareEnable.statusCode) && C12238m.areEqual(this.message, trackSoundshareEnable.message);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

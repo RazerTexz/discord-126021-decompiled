@@ -22,20 +22,33 @@ public final class StoreVideoStreams extends StoreV2 {
     private final HashMap<Long, UserStreams> userStreamsByUser;
     private Map<Long, UserStreams> userStreamsByUserSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreVideoStreams$observeUserStreams$1 */
     /* JADX INFO: compiled from: StoreVideoStreams.kt */
-    public static final /* data */ class UserStreams {
+    public final class C66171 extends AbstractC12240o implements Function0<Map<Long, ? extends UserStreams>> {
+        public C66171() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends UserStreams> invoke() {
+            return StoreVideoStreams.this.userStreamsByUserSnapshot;
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreVideoStreams.kt */
+    public final /* data */ class UserStreams {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
-        private static final UserStreams Empty = new UserStreams(null, null, null, null);
         private final Integer applicationStreamId;
         private final VideoMetadata applicationStreamMetadata;
         private final Integer callStreamId;
         private final VideoMetadata callStreamMetadata;
+        private static final UserStreams Empty = new UserStreams(null, null, null, null);
         private final boolean isEmpty = C12238m.areEqual(this, Empty);
 
         /* JADX INFO: compiled from: StoreVideoStreams.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -71,26 +84,6 @@ public final class StoreVideoStreams extends StoreV2 {
             return userStreams.copy(num, videoMetadata, num2, videoMetadata2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Integer getCallStreamId() {
-            return this.callStreamId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final VideoMetadata getCallStreamMetadata() {
-            return this.callStreamMetadata;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getApplicationStreamId() {
-            return this.applicationStreamId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final VideoMetadata getApplicationStreamMetadata() {
-            return this.applicationStreamMetadata;
-        }
-
         public final UserStreams copy(Integer callStreamId, VideoMetadata callStreamMetadata, Integer applicationStreamId, VideoMetadata applicationStreamMetadata) {
             return new UserStreams(callStreamId, callStreamMetadata, applicationStreamId, applicationStreamMetadata);
         }
@@ -106,20 +99,45 @@ public final class StoreVideoStreams extends StoreV2 {
             return C12238m.areEqual(this.callStreamId, userStreams.callStreamId) && C12238m.areEqual(this.callStreamMetadata, userStreams.callStreamMetadata) && C12238m.areEqual(this.applicationStreamId, userStreams.applicationStreamId) && C12238m.areEqual(this.applicationStreamMetadata, userStreams.applicationStreamMetadata);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Integer getApplicationStreamId() {
             return this.applicationStreamId;
+        }
+
+        public final Integer getApplicationStreamId() {
+            return this.applicationStreamId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final VideoMetadata getApplicationStreamMetadata() {
+            return this.applicationStreamMetadata;
         }
 
         public final VideoMetadata getApplicationStreamMetadata() {
             return this.applicationStreamMetadata;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Integer getCallStreamId() {
             return this.callStreamId;
         }
 
+        public final Integer getCallStreamId() {
+            return this.callStreamId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final VideoMetadata getCallStreamMetadata() {
             return this.callStreamMetadata;
+        }
+
+        public final VideoMetadata getCallStreamMetadata() {
+            return this.callStreamMetadata;
+        }
+
+        /* JADX INFO: renamed from: isEmpty, reason: from getter */
+        public final boolean getIsEmpty() {
+            return this.isEmpty;
         }
 
         public int hashCode() {
@@ -131,11 +149,6 @@ public final class StoreVideoStreams extends StoreV2 {
             int iHashCode3 = (iHashCode2 + (num2 != null ? num2.hashCode() : 0)) * 31;
             VideoMetadata videoMetadata2 = this.applicationStreamMetadata;
             return iHashCode3 + (videoMetadata2 != null ? videoMetadata2.hashCode() : 0);
-        }
-
-        /* JADX INFO: renamed from: isEmpty, reason: from getter */
-        public final boolean getIsEmpty() {
-            return this.isEmpty;
         }
 
         public String toString() {
@@ -152,19 +165,6 @@ public final class StoreVideoStreams extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreVideoStreams$observeUserStreams$1 */
-    /* JADX INFO: compiled from: StoreVideoStreams.kt */
-    public static final class C66171 extends AbstractC12240o implements Function0<Map<Long, ? extends UserStreams>> {
-        public C66171() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends UserStreams> invoke() {
-            return StoreVideoStreams.this.userStreamsByUserSnapshot;
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public StoreVideoStreams() {
         this(null, 1, 0 == true ? 1 : 0);
@@ -177,15 +177,6 @@ public final class StoreVideoStreams extends StoreV2 {
     private final UserStreams currentUserStreams(long userId) {
         UserStreams userStreams = this.userStreamsByUser.get(Long.valueOf(userId));
         return userStreams != null ? userStreams : UserStreams.INSTANCE.getEmpty();
-    }
-
-    private final void setUserStreams(long userId, UserStreams userStreams) {
-        if (userStreams.getIsEmpty()) {
-            this.userStreamsByUser.remove(Long.valueOf(userId));
-        } else {
-            this.userStreamsByUser.put(Long.valueOf(userId), userStreams);
-        }
-        markChanged();
     }
 
     @StoreThread
@@ -242,6 +233,15 @@ public final class StoreVideoStreams extends StoreV2 {
 
     public final Observable<Map<Long, UserStreams>> observeUserStreams() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C66171(), 14, null);
+    }
+
+    private final void setUserStreams(long userId, UserStreams userStreams) {
+        if (userStreams.getIsEmpty()) {
+            this.userStreamsByUser.remove(Long.valueOf(userId));
+        } else {
+            this.userStreamsByUser.put(Long.valueOf(userId), userStreams);
+        }
+        markChanged();
     }
 
     @Override // com.discord.stores.StoreV2

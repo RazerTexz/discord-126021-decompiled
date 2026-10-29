@@ -10,9 +10,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C1935g<T> {
 
-    /* JADX INFO: renamed from: a */
-    public final SparseArray<b<T>> f3931a = new SparseArray<>();
-
     /* JADX INFO: renamed from: b */
     @VisibleForTesting
     public b<T> f3932b;
@@ -21,32 +18,8 @@ public class C1935g<T> {
     @VisibleForTesting
     public b<T> f3933c;
 
-    /* JADX INFO: renamed from: b.f.j.l.g$b */
-    /* JADX INFO: compiled from: BucketMap.java */
-    @VisibleForTesting
-    public static class b<I> {
-
-        /* JADX INFO: renamed from: b */
-        public int f3935b;
-
-        /* JADX INFO: renamed from: c */
-        public LinkedList<I> f3936c;
-
-        /* JADX INFO: renamed from: a */
-        public b<I> f3934a = null;
-
-        /* JADX INFO: renamed from: d */
-        public b<I> f3937d = null;
-
-        public b(b bVar, int i, LinkedList linkedList, b bVar2, a aVar) {
-            this.f3935b = i;
-            this.f3936c = linkedList;
-        }
-
-        public String toString() {
-            return C1643a.m814B(C1643a.m833U("LinkedEntry(key: "), this.f3935b, ")");
-        }
-    }
+    /* JADX INFO: renamed from: a */
+    public final SparseArray<b<T>> f3931a = new SparseArray<>();
 
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX INFO: renamed from: a */
@@ -83,6 +56,33 @@ public class C1935g<T> {
         }
         if (bVar == this.f3933c) {
             this.f3933c = bVar2;
+        }
+    }
+
+    /* JADX INFO: renamed from: b.f.j.l.g$b */
+    /* JADX INFO: compiled from: BucketMap.java */
+    @VisibleForTesting
+    public class b<I> {
+
+        /* JADX INFO: renamed from: b */
+        public int f3935b;
+
+        /* JADX INFO: renamed from: c */
+        public LinkedList<I> f3936c;
+
+        /* JADX INFO: renamed from: a */
+        public b<I> f3934a = null;
+
+        /* JADX INFO: renamed from: d */
+        public b<I> f3937d = null;
+
+        public b(b bVar, int i, LinkedList linkedList, b bVar2, a aVar) {
+            this.f3935b = i;
+            this.f3936c = linkedList;
+        }
+
+        public String toString() {
+            return C1643a.m814B(C1643a.m833U("LinkedEntry(key: "), this.f3935b, ")");
         }
     }
 }

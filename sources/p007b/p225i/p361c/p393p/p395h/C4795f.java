@@ -21,9 +21,6 @@ import p007b.p225i.p361c.p393p.InterfaceC4787f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4795f implements InterfaceC4785d, InterfaceC4787f {
 
-    /* JADX INFO: renamed from: a */
-    public boolean f12827a = true;
-
     /* JADX INFO: renamed from: b */
     public final JsonWriter f12828b;
 
@@ -39,63 +36,15 @@ public final class C4795f implements InterfaceC4785d, InterfaceC4787f {
     /* JADX INFO: renamed from: f */
     public final boolean f12832f;
 
+    /* JADX INFO: renamed from: a */
+    public boolean f12827a = true;
+
     public C4795f(@NonNull Writer writer, @NonNull Map<Class<?>, InterfaceC4784c<?>> map, @NonNull Map<Class<?>, InterfaceC4786e<?>> map2, InterfaceC4784c<Object> interfaceC4784c, boolean z2) {
         this.f12828b = new JsonWriter(writer);
         this.f12829c = map;
         this.f12830d = map2;
         this.f12831e = interfaceC4784c;
         this.f12832f = z2;
-    }
-
-    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public InterfaceC4785d mo6705a(@NonNull String str, boolean z2) throws IOException {
-        m6715i();
-        this.f12828b.name(str);
-        m6715i();
-        this.f12828b.value(z2);
-        return this;
-    }
-
-    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
-    @NonNull
-    /* JADX INFO: renamed from: b */
-    public InterfaceC4785d mo6706b(@NonNull String str, long j) throws IOException {
-        m6715i();
-        this.f12828b.name(str);
-        m6715i();
-        this.f12828b.value(j);
-        return this;
-    }
-
-    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
-    @NonNull
-    /* JADX INFO: renamed from: c */
-    public InterfaceC4785d mo6707c(@NonNull String str, int i) throws IOException {
-        m6715i();
-        this.f12828b.name(str);
-        m6715i();
-        this.f12828b.value(i);
-        return this;
-    }
-
-    @Override // p007b.p225i.p361c.p393p.InterfaceC4787f
-    @NonNull
-    /* JADX INFO: renamed from: d */
-    public InterfaceC4787f mo6709d(@Nullable String str) throws IOException {
-        m6715i();
-        this.f12828b.value(str);
-        return this;
-    }
-
-    @Override // p007b.p225i.p361c.p393p.InterfaceC4787f
-    @NonNull
-    /* JADX INFO: renamed from: e */
-    public InterfaceC4787f mo6710e(boolean z2) throws IOException {
-        m6715i();
-        this.f12828b.value(z2);
-        return this;
     }
 
     @NonNull
@@ -221,6 +170,46 @@ public final class C4795f implements InterfaceC4785d, InterfaceC4787f {
         return this;
     }
 
+    /* JADX INFO: renamed from: i */
+    public final void m6715i() throws IOException {
+        if (!this.f12827a) {
+            throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");
+        }
+    }
+
+    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public InterfaceC4785d mo6705a(@NonNull String str, boolean z2) throws IOException {
+        m6715i();
+        this.f12828b.name(str);
+        m6715i();
+        this.f12828b.value(z2);
+        return this;
+    }
+
+    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
+    @NonNull
+    /* JADX INFO: renamed from: b */
+    public InterfaceC4785d mo6706b(@NonNull String str, long j) throws IOException {
+        m6715i();
+        this.f12828b.name(str);
+        m6715i();
+        this.f12828b.value(j);
+        return this;
+    }
+
+    @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
+    @NonNull
+    /* JADX INFO: renamed from: c */
+    public InterfaceC4785d mo6707c(@NonNull String str, int i) throws IOException {
+        m6715i();
+        this.f12828b.name(str);
+        m6715i();
+        this.f12828b.value(i);
+        return this;
+    }
+
     @Override // p007b.p225i.p361c.p393p.InterfaceC4785d
     @NonNull
     /* JADX INFO: renamed from: h, reason: merged with bridge method [inline-methods] */
@@ -242,10 +231,21 @@ public final class C4795f implements InterfaceC4785d, InterfaceC4787f {
         return this;
     }
 
-    /* JADX INFO: renamed from: i */
-    public final void m6715i() throws IOException {
-        if (!this.f12827a) {
-            throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");
-        }
+    @Override // p007b.p225i.p361c.p393p.InterfaceC4787f
+    @NonNull
+    /* JADX INFO: renamed from: d */
+    public InterfaceC4787f mo6709d(@Nullable String str) throws IOException {
+        m6715i();
+        this.f12828b.value(str);
+        return this;
+    }
+
+    @Override // p007b.p225i.p361c.p393p.InterfaceC4787f
+    @NonNull
+    /* JADX INFO: renamed from: e */
+    public InterfaceC4787f mo6710e(boolean z2) throws IOException {
+        m6715i();
+        this.f12828b.value(z2);
+        return this;
     }
 }

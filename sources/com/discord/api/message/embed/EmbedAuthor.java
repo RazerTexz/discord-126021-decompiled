@@ -12,6 +12,17 @@ public final /* data */ class EmbedAuthor {
     private final String proxyIconUrl;
     private final String url;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmbedAuthor)) {
+            return false;
+        }
+        EmbedAuthor embedAuthor = (EmbedAuthor) other;
+        return C12238m.areEqual(this.name, embedAuthor.name) && C12238m.areEqual(this.url, embedAuthor.url) && C12238m.areEqual(this.iconUrl, embedAuthor.iconUrl) && C12238m.areEqual(this.proxyIconUrl, embedAuthor.proxyIconUrl);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getName() {
         return this.name;
@@ -25,17 +36,6 @@ public final /* data */ class EmbedAuthor {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getUrl() {
         return this.url;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof EmbedAuthor)) {
-            return false;
-        }
-        EmbedAuthor embedAuthor = (EmbedAuthor) other;
-        return C12238m.areEqual(this.name, embedAuthor.name) && C12238m.areEqual(this.url, embedAuthor.url) && C12238m.areEqual(this.iconUrl, embedAuthor.iconUrl) && C12238m.areEqual(this.proxyIconUrl, embedAuthor.proxyIconUrl);
     }
 
     public int hashCode() {

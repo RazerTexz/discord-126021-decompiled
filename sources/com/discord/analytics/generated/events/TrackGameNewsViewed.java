@@ -13,18 +13,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGameNewsViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGameNewsViewed implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver {
+    private final Long newsIndex = null;
+    private final CharSequence newsUrl = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackBase trackBase;
-    private final CharSequence newsUrl = null;
-    private final Long newsIndex = null;
     private final transient String analyticsSchemaTypeName = "game_news_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackGameNewsViewed implements AnalyticsSchema, Tr
         }
         TrackGameNewsViewed trackGameNewsViewed = (TrackGameNewsViewed) other;
         return C12238m.areEqual(this.newsUrl, trackGameNewsViewed.newsUrl) && C12238m.areEqual(this.newsIndex, trackGameNewsViewed.newsIndex);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -32,7 +32,7 @@ public class AgentLauncher {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher$AgentInfo.SCL.lombok */
-    private static abstract class AgentInfo {
+    abstract class AgentInfo {
         abstract String className();
 
         private AgentInfo() {
@@ -60,7 +60,7 @@ public class AgentLauncher {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher$EclipsePatcherInfo.SCL.lombok */
-    private static class EclipsePatcherInfo extends AgentInfo {
+    class EclipsePatcherInfo extends AgentInfo {
         private EclipsePatcherInfo() {
             super(null);
         }

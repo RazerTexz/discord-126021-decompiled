@@ -7,13 +7,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalMetadata {
     private final Long activityApplicationId = null;
-    private final CharSequence groupSessionId = null;
-    private final CharSequence userSessionId = null;
+    private final Long activityGuildId = null;
     private final CharSequence activityInstanceId = null;
     private final CharSequence activityVersion = null;
+    private final CharSequence groupSessionId = null;
     private final Long numConcurrentUsers = null;
-    private final Long activityGuildId = null;
     private final CharSequence participationMode = null;
+    private final CharSequence userSessionId = null;
 
     public boolean equals(Object other) {
         if (this == other) {

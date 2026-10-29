@@ -15,7 +15,7 @@ public final /* data */ class GuildExperimentPopulationDto {
     private final List<GuildExperimentFilter> filters;
 
     /* JADX INFO: compiled from: GuildExperimentDto.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -63,6 +63,14 @@ public final /* data */ class GuildExperimentPopulationDto {
         this.filters = list2;
     }
 
+    public final List<GuildExperimentBucketDto> component1() {
+        return this.buckets;
+    }
+
+    public final List<GuildExperimentFilter> component2() {
+        return this.filters;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ GuildExperimentPopulationDto copy$default(GuildExperimentPopulationDto guildExperimentPopulationDto, List list, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -72,14 +80,6 @@ public final /* data */ class GuildExperimentPopulationDto {
             list2 = guildExperimentPopulationDto.filters;
         }
         return guildExperimentPopulationDto.copy(list, list2);
-    }
-
-    public final List<GuildExperimentBucketDto> component1() {
-        return this.buckets;
-    }
-
-    public final List<GuildExperimentFilter> component2() {
-        return this.filters;
     }
 
     public final GuildExperimentPopulationDto copy(List<GuildExperimentBucketDto> buckets, List<? extends GuildExperimentFilter> filters) {

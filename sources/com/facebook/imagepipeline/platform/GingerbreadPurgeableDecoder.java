@@ -90,18 +90,6 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
         }
     }
 
-    @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    /* JADX INFO: renamed from: c */
-    public Bitmap mo8710c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options) {
-        return m8716h(closeableReference, closeableReference.m8642u().size(), null, options);
-    }
-
-    @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    /* JADX INFO: renamed from: d */
-    public Bitmap mo8711d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options) {
-        return m8716h(closeableReference, i, DalvikPurgeableDecoder.m8709e(closeableReference, i) ? null : DalvikPurgeableDecoder.f19566a, options);
-    }
-
     /* JADX WARN: Code duplicated, block: B:24:0x003c  */
     /* JADX INFO: renamed from: h */
     public final Bitmap m8716h(CloseableReference<PooledByteBuffer> closeableReference, int i, byte[] bArr, BitmapFactory.Options options) throws Throwable {
@@ -170,5 +158,17 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
             C1690m.m972a(e);
             throw new RuntimeException(e);
         }
+    }
+
+    @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
+    /* JADX INFO: renamed from: c */
+    public Bitmap mo8710c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options) {
+        return m8716h(closeableReference, closeableReference.m8642u().size(), null, options);
+    }
+
+    @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
+    /* JADX INFO: renamed from: d */
+    public Bitmap mo8711d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options) {
+        return m8716h(closeableReference, i, DalvikPurgeableDecoder.m8709e(closeableReference, i) ? null : DalvikPurgeableDecoder.f19566a, options);
     }
 }

@@ -9,26 +9,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence activitySessionId = null;
     private final Long applicationId = null;
+    private final Boolean hasImages = null;
+    private final Boolean hasJoinSecret = null;
     private final Boolean hasMatchSecret = null;
     private final Boolean hasSpectateSecret = null;
-    private final Boolean hasJoinSecret = null;
-    private final Boolean hasImages = null;
-    private final Long partyMax = null;
     private final CharSequence partyId = null;
-    private final CharSequence platform = null;
+    private final Long partyMax = null;
     private final CharSequence partyPlatform = null;
+    private final CharSequence platform = null;
+    private TrackBase trackBase;
     private final CharSequence trackId = null;
     private final Long type = null;
-    private final CharSequence activitySessionId = null;
     private final transient String analyticsSchemaTypeName = "activity_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -39,6 +33,12 @@ public final /* data */ class TrackActivityUpdated implements AnalyticsSchema, T
         }
         TrackActivityUpdated trackActivityUpdated = (TrackActivityUpdated) other;
         return C12238m.areEqual(this.applicationId, trackActivityUpdated.applicationId) && C12238m.areEqual(this.hasMatchSecret, trackActivityUpdated.hasMatchSecret) && C12238m.areEqual(this.hasSpectateSecret, trackActivityUpdated.hasSpectateSecret) && C12238m.areEqual(this.hasJoinSecret, trackActivityUpdated.hasJoinSecret) && C12238m.areEqual(this.hasImages, trackActivityUpdated.hasImages) && C12238m.areEqual(this.partyMax, trackActivityUpdated.partyMax) && C12238m.areEqual(this.partyId, trackActivityUpdated.partyId) && C12238m.areEqual(this.platform, trackActivityUpdated.platform) && C12238m.areEqual(this.partyPlatform, trackActivityUpdated.partyPlatform) && C12238m.areEqual(this.trackId, trackActivityUpdated.trackId) && C12238m.areEqual(this.type, trackActivityUpdated.type) && C12238m.areEqual(this.activitySessionId, trackActivityUpdated.activitySessionId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -30,7 +30,7 @@ public final class WidgetAuthResetPassword extends AppFragment {
     private String token;
 
     /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

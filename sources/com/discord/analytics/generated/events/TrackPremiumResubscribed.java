@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumResubscribed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumResubscribed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean success = null;
     private final CharSequence errorCode = null;
-    private final CharSequence plan = null;
     private final CharSequence paymentGateway = null;
+    private final CharSequence plan = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "premium_resubscribed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackPremiumResubscribed implements AnalyticsSchem
         }
         TrackPremiumResubscribed trackPremiumResubscribed = (TrackPremiumResubscribed) other;
         return C12238m.areEqual(this.success, trackPremiumResubscribed.success) && C12238m.areEqual(this.errorCode, trackPremiumResubscribed.errorCode) && C12238m.areEqual(this.plan, trackPremiumResubscribed.plan) && C12238m.areEqual(this.paymentGateway, trackPremiumResubscribed.paymentGateway);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

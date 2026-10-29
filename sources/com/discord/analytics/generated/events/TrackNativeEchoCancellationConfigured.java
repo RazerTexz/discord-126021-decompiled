@@ -9,23 +9,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNativeEchoCancellationConfigured.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNativeEchoCancellationConfigured implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean aecEnabledByDefault = null;
+    private final Boolean aecEnabledInNativeConfig = null;
+    private final Boolean aecEnabledInSettings = null;
+    private final Boolean aecMobileMode = null;
+    private final Boolean aecMobileModeByDefault = null;
+    private final Boolean builtinAecEnabled = null;
+    private final Boolean builtinAecRequested = null;
     private final Boolean builtinAecSupportedJava = null;
     private final Boolean builtinAecSupportedNative = null;
-    private final Boolean builtinAecRequested = null;
-    private final Boolean builtinAecEnabled = null;
-    private final Boolean aecEnabledInSettings = null;
-    private final Boolean aecEnabledInNativeConfig = null;
-    private final Boolean aecMobileMode = null;
-    private final Boolean aecEnabledByDefault = null;
-    private final Boolean aecMobileModeByDefault = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "native_echo_cancellation_configured";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -36,6 +30,12 @@ public final /* data */ class TrackNativeEchoCancellationConfigured implements A
         }
         TrackNativeEchoCancellationConfigured trackNativeEchoCancellationConfigured = (TrackNativeEchoCancellationConfigured) other;
         return C12238m.areEqual(this.builtinAecSupportedJava, trackNativeEchoCancellationConfigured.builtinAecSupportedJava) && C12238m.areEqual(this.builtinAecSupportedNative, trackNativeEchoCancellationConfigured.builtinAecSupportedNative) && C12238m.areEqual(this.builtinAecRequested, trackNativeEchoCancellationConfigured.builtinAecRequested) && C12238m.areEqual(this.builtinAecEnabled, trackNativeEchoCancellationConfigured.builtinAecEnabled) && C12238m.areEqual(this.aecEnabledInSettings, trackNativeEchoCancellationConfigured.aecEnabledInSettings) && C12238m.areEqual(this.aecEnabledInNativeConfig, trackNativeEchoCancellationConfigured.aecEnabledInNativeConfig) && C12238m.areEqual(this.aecMobileMode, trackNativeEchoCancellationConfigured.aecMobileMode) && C12238m.areEqual(this.aecEnabledByDefault, trackNativeEchoCancellationConfigured.aecEnabledByDefault) && C12238m.areEqual(this.aecMobileModeByDefault, trackNativeEchoCancellationConfigured.aecMobileModeByDefault);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

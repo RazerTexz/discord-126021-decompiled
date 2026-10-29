@@ -49,7 +49,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$a */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f5926a;
@@ -73,7 +73,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$b */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f5930a;
@@ -105,7 +105,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$c */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final int f5936a;
@@ -129,7 +129,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$d */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final int f5940a;
@@ -149,7 +149,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$e */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class e {
+    public final class e {
 
         /* JADX INFO: renamed from: a */
         public final int f5943a;
@@ -165,7 +165,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$f */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class f {
+    public final class f {
 
         /* JADX INFO: renamed from: a */
         public final int f5945a;
@@ -213,7 +213,7 @@ public final class C2597b {
 
     /* JADX INFO: renamed from: b.i.a.c.b3.o.b$g */
     /* JADX INFO: compiled from: DvbParser.java */
-    public static final class g {
+    public final class g {
 
         /* JADX INFO: renamed from: a */
         public final int f5955a;
@@ -224,45 +224,6 @@ public final class C2597b {
         public g(int i, int i2, int i3, int i4, int i5, int i6) {
             this.f5955a = i3;
             this.f5956b = i4;
-        }
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.b3.o.b$h */
-    /* JADX INFO: compiled from: DvbParser.java */
-    public static final class h {
-
-        /* JADX INFO: renamed from: a */
-        public final int f5957a;
-
-        /* JADX INFO: renamed from: b */
-        public final int f5958b;
-
-        /* JADX INFO: renamed from: c */
-        public final SparseArray<f> f5959c = new SparseArray<>();
-
-        /* JADX INFO: renamed from: d */
-        public final SparseArray<a> f5960d = new SparseArray<>();
-
-        /* JADX INFO: renamed from: e */
-        public final SparseArray<c> f5961e = new SparseArray<>();
-
-        /* JADX INFO: renamed from: f */
-        public final SparseArray<a> f5962f = new SparseArray<>();
-
-        /* JADX INFO: renamed from: g */
-        public final SparseArray<c> f5963g = new SparseArray<>();
-
-        /* JADX INFO: renamed from: h */
-        @Nullable
-        public b f5964h;
-
-        /* JADX INFO: renamed from: i */
-        @Nullable
-        public d f5965i;
-
-        public h(int i, int i2) {
-            this.f5957a = i;
-            this.f5958b = i2;
         }
     }
 
@@ -732,5 +693,44 @@ public final class C2597b {
         c2756w.m3073m(c2756w.m3067g(8) * 16);
         bArr = bArr2;
         return new c(iM3067g, zM3066f, bArr2, bArr);
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.o.b$h */
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class h {
+
+        /* JADX INFO: renamed from: a */
+        public final int f5957a;
+
+        /* JADX INFO: renamed from: b */
+        public final int f5958b;
+
+        /* JADX INFO: renamed from: h */
+        @Nullable
+        public b f5964h;
+
+        /* JADX INFO: renamed from: i */
+        @Nullable
+        public d f5965i;
+
+        /* JADX INFO: renamed from: c */
+        public final SparseArray<f> f5959c = new SparseArray<>();
+
+        /* JADX INFO: renamed from: d */
+        public final SparseArray<a> f5960d = new SparseArray<>();
+
+        /* JADX INFO: renamed from: e */
+        public final SparseArray<c> f5961e = new SparseArray<>();
+
+        /* JADX INFO: renamed from: f */
+        public final SparseArray<a> f5962f = new SparseArray<>();
+
+        /* JADX INFO: renamed from: g */
+        public final SparseArray<c> f5963g = new SparseArray<>();
+
+        public h(int i, int i2) {
+            this.f5957a = i;
+            this.f5958b = i2;
+        }
     }
 }

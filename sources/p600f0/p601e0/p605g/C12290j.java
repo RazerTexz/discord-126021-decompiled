@@ -143,21 +143,6 @@ public final class C12290j extends C12311e.c implements InterfaceC12367k {
         this.f25505p = RecyclerView.FOREVER_NS;
     }
 
-    @Override // p600f0.p601e0.p608j.C12311e.c
-    /* JADX INFO: renamed from: a */
-    public synchronized void mo10192a(C12311e c12311e, C12325s c12325s) {
-        C12238m.checkParameterIsNotNull(c12311e, "connection");
-        C12238m.checkParameterIsNotNull(c12325s, "settings");
-        this.f25503n = (c12325s.f25752a & 16) != 0 ? c12325s.f25753b[4] : Integer.MAX_VALUE;
-    }
-
-    @Override // p600f0.p601e0.p608j.C12311e.c
-    /* JADX INFO: renamed from: b */
-    public void mo10193b(C12320n c12320n) throws IOException {
-        C12238m.checkParameterIsNotNull(c12320n, "stream");
-        c12320n.m10284c(EnumC12307a.REFUSED_STREAM, null);
-    }
-
     /* JADX WARN: Code duplicated, block: B:49:0x00e8  */
     /* JADX WARN: Code duplicated, block: B:52:0x00ef  */
     /* JADX WARN: Code duplicated, block: B:55:0x011c  */
@@ -918,6 +903,21 @@ public final class C12290j extends C12311e.c implements InterfaceC12367k {
         C12279c c12279cM10162f = c12280d.m10162f();
         String str2 = c12311e.f25633o;
         c12279cM10162f.m10154c(new C12278b(c12311e.f25628L, str2, true, str2, true), 0L);
+    }
+
+    @Override // p600f0.p601e0.p608j.C12311e.c
+    /* JADX INFO: renamed from: a */
+    public synchronized void mo10192a(C12311e c12311e, C12325s c12325s) {
+        C12238m.checkParameterIsNotNull(c12311e, "connection");
+        C12238m.checkParameterIsNotNull(c12325s, "settings");
+        this.f25503n = (c12325s.f25752a & 16) != 0 ? c12325s.f25753b[4] : Integer.MAX_VALUE;
+    }
+
+    @Override // p600f0.p601e0.p608j.C12311e.c
+    /* JADX INFO: renamed from: b */
+    public void mo10193b(C12320n c12320n) throws IOException {
+        C12238m.checkParameterIsNotNull(c12320n, "stream");
+        c12320n.m10284c(EnumC12307a.REFUSED_STREAM, null);
     }
 
     public String toString() {

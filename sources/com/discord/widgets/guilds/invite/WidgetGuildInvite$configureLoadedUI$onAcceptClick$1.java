@@ -31,7 +31,7 @@ public final class WidgetGuildInvite$configureLoadedUI$onAcceptClick$1 extends A
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInvite$configureLoadedUI$onAcceptClick$1$1 */
     /* JADX INFO: compiled from: WidgetGuildInvite.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.WidgetGuildInvite$configureLoadedUI$onAcceptClick$1$1", m10085f = "WidgetGuildInvite.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C86461 extends AbstractC12194k implements Function2<Error, Continuation<? super Unit>, Object> {
+    public final class C86461 extends AbstractC12194k implements Function2<Error, Continuation<? super Unit>, Object> {
         private /* synthetic */ Object L$0;
         public int label;
 
@@ -53,7 +53,7 @@ public final class WidgetGuildInvite$configureLoadedUI$onAcceptClick$1 extends A
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -67,7 +67,7 @@ public final class WidgetGuildInvite$configureLoadedUI$onAcceptClick$1 extends A
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInvite$configureLoadedUI$onAcceptClick$1$2 */
     /* JADX INFO: compiled from: WidgetGuildInvite.kt */
     @InterfaceC12188e(m10084c = "com.discord.widgets.guilds.invite.WidgetGuildInvite$configureLoadedUI$onAcceptClick$1$2", m10085f = "WidgetGuildInvite.kt", m10086l = {}, m10087m = "invokeSuspend")
-    public static final class C86472 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    public final class C86472 extends AbstractC12194k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         private /* synthetic */ Object L$0;
         public int label;
 
@@ -89,7 +89,7 @@ public final class WidgetGuildInvite$configureLoadedUI$onAcceptClick$1 extends A
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             C12183c.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");

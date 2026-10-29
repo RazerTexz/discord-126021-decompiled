@@ -36,9 +36,90 @@ public final class FailedUploadList extends LinearLayout {
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final C0938d2 binding;
 
+    /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b */
+    /* JADX INFO: compiled from: FailedUploadList.kt */
+    public abstract class AbstractC7077b {
+
+        /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b$a */
+        /* JADX INFO: compiled from: FailedUploadList.kt */
+        public final class a extends AbstractC7077b {
+
+            /* JADX INFO: renamed from: a */
+            public final List<C7076a> f19067a;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(List<C7076a> list) {
+                super(null);
+                C12238m.checkNotNullParameter(list, "uploads");
+                this.f19067a = list;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof a) && C12238m.areEqual(this.f19067a, ((a) obj).f19067a);
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                List<C7076a> list = this.f19067a;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return C1643a.m824L(C1643a.m833U("FewFailedUploads(uploads="), this.f19067a, ")");
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b$b */
+        /* JADX INFO: compiled from: FailedUploadList.kt */
+        public final class b extends AbstractC7077b {
+
+            /* JADX INFO: renamed from: a */
+            public final int f19068a;
+
+            /* JADX INFO: renamed from: b */
+            public final long f19069b;
+
+            public b(int i, long j) {
+                super(null);
+                this.f19068a = i;
+                this.f19069b = j;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (!(obj instanceof b)) {
+                    return false;
+                }
+                b bVar = (b) obj;
+                return this.f19068a == bVar.f19068a && this.f19069b == bVar.f19069b;
+            }
+
+            public int hashCode() {
+                return C0002b.m3a(this.f19069b) + (this.f19068a * 31);
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("ManyFailedUploads(uploadCount=");
+                sbM833U.append(this.f19068a);
+                sbM833U.append(", sizeBytes=");
+                return C1643a.m815C(sbM833U, this.f19069b, ")");
+            }
+        }
+
+        public AbstractC7077b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: com.discord.views.FailedUploadList$a */
     /* JADX INFO: compiled from: FailedUploadList.kt */
-    public static final class C7076a {
+    public final class C7076a {
 
         /* JADX INFO: renamed from: a */
         public final String f19064a;
@@ -82,87 +163,6 @@ public final class FailedUploadList extends LinearLayout {
             sbM833U.append(this.f19065b);
             sbM833U.append(", mimeType=");
             return C1643a.m822J(sbM833U, this.f19066c, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b */
-    /* JADX INFO: compiled from: FailedUploadList.kt */
-    public static abstract class AbstractC7077b {
-
-        /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b$a */
-        /* JADX INFO: compiled from: FailedUploadList.kt */
-        public static final class a extends AbstractC7077b {
-
-            /* JADX INFO: renamed from: a */
-            public final List<C7076a> f19067a;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public a(List<C7076a> list) {
-                super(null);
-                C12238m.checkNotNullParameter(list, "uploads");
-                this.f19067a = list;
-            }
-
-            public boolean equals(Object obj) {
-                if (this != obj) {
-                    return (obj instanceof a) && C12238m.areEqual(this.f19067a, ((a) obj).f19067a);
-                }
-                return true;
-            }
-
-            public int hashCode() {
-                List<C7076a> list = this.f19067a;
-                if (list != null) {
-                    return list.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                return C1643a.m824L(C1643a.m833U("FewFailedUploads(uploads="), this.f19067a, ")");
-            }
-        }
-
-        /* JADX INFO: renamed from: com.discord.views.FailedUploadList$b$b */
-        /* JADX INFO: compiled from: FailedUploadList.kt */
-        public static final class b extends AbstractC7077b {
-
-            /* JADX INFO: renamed from: a */
-            public final int f19068a;
-
-            /* JADX INFO: renamed from: b */
-            public final long f19069b;
-
-            public b(int i, long j) {
-                super(null);
-                this.f19068a = i;
-                this.f19069b = j;
-            }
-
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                if (!(obj instanceof b)) {
-                    return false;
-                }
-                b bVar = (b) obj;
-                return this.f19068a == bVar.f19068a && this.f19069b == bVar.f19069b;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.f19069b) + (this.f19068a * 31);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("ManyFailedUploads(uploadCount=");
-                sbM833U.append(this.f19068a);
-                sbM833U.append(", sizeBytes=");
-                return C1643a.m815C(sbM833U, this.f19069b, ")");
-            }
-        }
-
-        public AbstractC7077b(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 

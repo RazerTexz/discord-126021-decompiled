@@ -87,43 +87,6 @@ public class C1757a extends Drawable implements InterfaceC1759b {
         m1089c();
     }
 
-    /* JADX INFO: renamed from: b */
-    public static String m1087b(String str, Object... objArr) {
-        return String.format(Locale.US, str, objArr);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m1088a(Canvas canvas, String str, String str2, int i) {
-        String strM883w = C1643a.m883w(str, ": ");
-        float fMeasureText = this.f3312s.measureText(strM883w);
-        float fMeasureText2 = this.f3312s.measureText(str2);
-        this.f3312s.setColor(1711276032);
-        int i2 = this.f3319z;
-        int i3 = this.f3299A;
-        canvas.drawRect(i2 - 4, i3 + 8, i2 + fMeasureText + fMeasureText2 + 4.0f, i3 + this.f3318y + 8, this.f3312s);
-        this.f3312s.setColor(-1);
-        canvas.drawText(strM883w, this.f3319z, this.f3299A, this.f3312s);
-        this.f3312s.setColor(i);
-        canvas.drawText(str2, this.f3319z + fMeasureText, this.f3299A, this.f3312s);
-        this.f3299A += this.f3318y;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void m1089c() {
-        this.f3304k = -1;
-        this.f3305l = -1;
-        this.f3306m = -1;
-        this.f3308o = new HashMap<>();
-        this.f3309p = -1;
-        this.f3310q = -1;
-        this.f3303j = "none";
-        invalidateSelf();
-        this.f3300B = -1L;
-        this.f3301C = null;
-        this.f3302D = -1;
-        invalidateSelf();
-    }
-
     /* JADX WARN: Code duplicated, block: B:21:0x013d  */
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
@@ -217,6 +180,43 @@ public class C1757a extends Drawable implements InterfaceC1759b {
     @Override // android.graphics.drawable.Drawable
     public int getOpacity() {
         return -3;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static String m1087b(String str, Object... objArr) {
+        return String.format(Locale.US, str, objArr);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m1088a(Canvas canvas, String str, String str2, int i) {
+        String strM883w = C1643a.m883w(str, ": ");
+        float fMeasureText = this.f3312s.measureText(strM883w);
+        float fMeasureText2 = this.f3312s.measureText(str2);
+        this.f3312s.setColor(1711276032);
+        int i2 = this.f3319z;
+        int i3 = this.f3299A;
+        canvas.drawRect(i2 - 4, i3 + 8, i2 + fMeasureText + fMeasureText2 + 4.0f, i3 + this.f3318y + 8, this.f3312s);
+        this.f3312s.setColor(-1);
+        canvas.drawText(strM883w, this.f3319z, this.f3299A, this.f3312s);
+        this.f3312s.setColor(i);
+        canvas.drawText(str2, this.f3319z + fMeasureText, this.f3299A, this.f3312s);
+        this.f3299A += this.f3318y;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public void m1089c() {
+        this.f3304k = -1;
+        this.f3305l = -1;
+        this.f3306m = -1;
+        this.f3308o = new HashMap<>();
+        this.f3309p = -1;
+        this.f3310q = -1;
+        this.f3303j = "none";
+        invalidateSelf();
+        this.f3300B = -1L;
+        this.f3301C = null;
+        this.f3302D = -1;
+        invalidateSelf();
     }
 
     @Override // android.graphics.drawable.Drawable

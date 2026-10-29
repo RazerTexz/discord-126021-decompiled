@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlaySettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final Boolean enabled = null;
+    private final CharSequence hotkey = null;
     private final Boolean notificationsEnabled = null;
     private final CharSequence notificationsPosition = null;
-    private final CharSequence textNotificationsMode = null;
-    private final CharSequence hotkey = null;
     private final CharSequence textActivationHotkey = null;
+    private final CharSequence textNotificationsMode = null;
     private final Long textOpacitySlider = null;
+    private TrackBase trackBase;
+    private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final transient String analyticsSchemaTypeName = "overlay_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
         }
         TrackOverlaySettingsUpdated trackOverlaySettingsUpdated = (TrackOverlaySettingsUpdated) other;
         return C12238m.areEqual(this.enabled, trackOverlaySettingsUpdated.enabled) && C12238m.areEqual(this.notificationsEnabled, trackOverlaySettingsUpdated.notificationsEnabled) && C12238m.areEqual(this.notificationsPosition, trackOverlaySettingsUpdated.notificationsPosition) && C12238m.areEqual(this.textNotificationsMode, trackOverlaySettingsUpdated.textNotificationsMode) && C12238m.areEqual(this.hotkey, trackOverlaySettingsUpdated.hotkey) && C12238m.areEqual(this.textActivationHotkey, trackOverlaySettingsUpdated.textActivationHotkey) && C12238m.areEqual(this.textOpacitySlider, trackOverlaySettingsUpdated.textOpacitySlider);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

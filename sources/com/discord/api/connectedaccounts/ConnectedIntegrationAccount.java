@@ -10,11 +10,6 @@ public final /* data */ class ConnectedIntegrationAccount {
     private final String id;
     private final String name;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -24,6 +19,11 @@ public final /* data */ class ConnectedIntegrationAccount {
         }
         ConnectedIntegrationAccount connectedIntegrationAccount = (ConnectedIntegrationAccount) other;
         return C12238m.areEqual(this.id, connectedIntegrationAccount.id) && C12238m.areEqual(this.name, connectedIntegrationAccount.name);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public int hashCode() {

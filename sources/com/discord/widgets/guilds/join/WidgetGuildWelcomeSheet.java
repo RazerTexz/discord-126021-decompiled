@@ -59,8 +59,28 @@ public final class WidgetGuildWelcomeSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildWelcomeSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetGuildWelcomeSheet.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C87231 extends C12236k implements Function1<WidgetGuildWelcomeSheetViewModel.ViewState, Unit> {
+        public C87231(WidgetGuildWelcomeSheet widgetGuildWelcomeSheet) {
+            super(1, widgetGuildWelcomeSheet, WidgetGuildWelcomeSheet.class, "handleViewState", "handleViewState(Lcom/discord/widgets/guilds/join/WidgetGuildWelcomeSheetViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildWelcomeSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildWelcomeSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildWelcomeSheet) this.receiver).handleViewState(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildWelcomeSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -84,26 +104,6 @@ public final class WidgetGuildWelcomeSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildWelcomeSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetGuildWelcomeSheet.kt */
-    public static final /* synthetic */ class C87231 extends C12236k implements Function1<WidgetGuildWelcomeSheetViewModel.ViewState, Unit> {
-        public C87231(WidgetGuildWelcomeSheet widgetGuildWelcomeSheet) {
-            super(1, widgetGuildWelcomeSheet, WidgetGuildWelcomeSheet.class, "handleViewState", "handleViewState(Lcom/discord/widgets/guilds/join/WidgetGuildWelcomeSheetViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildWelcomeSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildWelcomeSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildWelcomeSheet) this.receiver).handleViewState(viewState);
         }
     }
 
@@ -184,8 +184,22 @@ public final class WidgetGuildWelcomeSheet extends AppBottomSheet {
         this.channelsAdapter.setData(arrayList);
     }
 
+    @Override // com.discord.app.AppBottomSheet, com.google.android.material.bottomsheet.BottomSheetDialogFragment, androidx.fragment.app.DialogFragment
+    public void dismiss() {
+        super.dismiss();
+        long j = getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", 0L);
+        if (j != 0) {
+            WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE.enqueue(j);
+        }
+    }
+
     private final WidgetGuildWelcomeSheetBinding getBinding() {
         return (WidgetGuildWelcomeSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_welcome_sheet;
     }
 
     private final WidgetGuildWelcomeSheetViewModel getViewModel() {
@@ -205,6 +219,16 @@ public final class WidgetGuildWelcomeSheet extends AppBottomSheet {
         }
     }
 
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildWelcomeSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87231(this));
+        RecyclerView recyclerView = getBinding().f17086b;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.guildWelcomeSheetChannels");
+        recyclerView.setAdapter(this.channelsAdapter);
+    }
+
     public static final void show(FragmentManager fragmentManager, long j, Long l) {
         INSTANCE.show(fragmentManager, j, l);
     }
@@ -220,29 +244,5 @@ public final class WidgetGuildWelcomeSheet extends AppBottomSheet {
         C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.guildWelcomeSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
         configureUI(viewState);
-    }
-
-    @Override // com.discord.app.AppBottomSheet, com.google.android.material.bottomsheet.BottomSheetDialogFragment, androidx.fragment.app.DialogFragment
-    public void dismiss() {
-        super.dismiss();
-        long j = getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", 0L);
-        if (j != 0) {
-            WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE.enqueue(j);
-        }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_welcome_sheet;
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildWelcomeSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C87231(this));
-        RecyclerView recyclerView = getBinding().f17086b;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.guildWelcomeSheetChannels");
-        recyclerView.setAdapter(this.channelsAdapter);
     }
 }

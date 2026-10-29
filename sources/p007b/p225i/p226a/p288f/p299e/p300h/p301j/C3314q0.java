@@ -54,14 +54,6 @@ public final class C3314q0<ResultT> extends AbstractC3306m0 {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
-    /* JADX INFO: renamed from: d */
-    public final void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
-        TaskCompletionSource<ResultT> taskCompletionSource = this.f9445c;
-        c3328x0.f9465b.put(taskCompletionSource, Boolean.valueOf(z2));
-        taskCompletionSource.f20845a.mo6007b(new C3330y0(c3328x0, taskCompletionSource));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
     /* JADX INFO: renamed from: e */
     public final void mo4074e(@NonNull Exception exc) {
         this.f9445c.m9125a(exc);
@@ -78,5 +70,13 @@ public final class C3314q0<ResultT> extends AbstractC3306m0 {
     /* JADX INFO: renamed from: g */
     public final boolean mo4112g(C3293g.a<?> aVar) {
         return this.f9444b.f9439b;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3317s
+    /* JADX INFO: renamed from: d */
+    public final void mo4113d(@NonNull C3328x0 c3328x0, boolean z2) {
+        TaskCompletionSource<ResultT> taskCompletionSource = this.f9445c;
+        c3328x0.f9465b.put(taskCompletionSource, Boolean.valueOf(z2));
+        taskCompletionSource.f20845a.mo6007b(new C3330y0(c3328x0, taskCompletionSource));
     }
 }

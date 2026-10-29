@@ -52,14 +52,14 @@ public final class C4998l extends AbstractC5002p {
     }
 
     @Override // p007b.p225i.p414e.p426q.AbstractC5002p
-    /* JADX INFO: renamed from: k */
-    public Result mo7001k(int i, C4962a c4962a, int[] iArr, Map<EnumC4949d, ?> map) throws NotFoundException, ChecksumException, FormatException {
-        return m7000o(this.f13380h.mo7001k(i, c4962a, iArr, map));
-    }
-
-    @Override // p007b.p225i.p414e.p426q.AbstractC5002p
     /* JADX INFO: renamed from: n */
     public EnumC4946a mo6990n() {
         return EnumC4946a.UPC_A;
+    }
+
+    @Override // p007b.p225i.p414e.p426q.AbstractC5002p
+    /* JADX INFO: renamed from: k */
+    public Result mo7001k(int i, C4962a c4962a, int[] iArr, Map<EnumC4949d, ?> map) throws NotFoundException, ChecksumException, FormatException {
+        return m7000o(this.f13380h.mo7001k(i, c4962a, iArr, map));
     }
 }

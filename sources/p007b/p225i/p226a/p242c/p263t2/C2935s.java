@@ -30,31 +30,6 @@ public final class C2935s {
     /* JADX INFO: renamed from: f */
     public long f7797f;
 
-    /* JADX INFO: renamed from: b.i.a.c.t2.s$a */
-    /* JADX INFO: compiled from: AudioTimestampPoller.java */
-    @RequiresApi(19)
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final AudioTrack f7798a;
-
-        /* JADX INFO: renamed from: b */
-        public final AudioTimestamp f7799b = new AudioTimestamp();
-
-        /* JADX INFO: renamed from: c */
-        public long f7800c;
-
-        /* JADX INFO: renamed from: d */
-        public long f7801d;
-
-        /* JADX INFO: renamed from: e */
-        public long f7802e;
-
-        public a(AudioTrack audioTrack) {
-            this.f7798a = audioTrack;
-        }
-    }
-
     public C2935s(AudioTrack audioTrack) {
         if (C2738e0.f6708a >= 19) {
             this.f7792a = new a(audioTrack);
@@ -93,6 +68,31 @@ public final class C2935s {
                 throw new IllegalStateException();
             }
             this.f7795d = 500000L;
+        }
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.t2.s$a */
+    /* JADX INFO: compiled from: AudioTimestampPoller.java */
+    @RequiresApi(19)
+    public final class a {
+
+        /* JADX INFO: renamed from: a */
+        public final AudioTrack f7798a;
+
+        /* JADX INFO: renamed from: c */
+        public long f7800c;
+
+        /* JADX INFO: renamed from: d */
+        public long f7801d;
+
+        /* JADX INFO: renamed from: e */
+        public long f7802e;
+
+        /* JADX INFO: renamed from: b */
+        public final AudioTimestamp f7799b = new AudioTimestamp();
+
+        public a(AudioTrack audioTrack) {
+            this.f7798a = audioTrack;
         }
     }
 }

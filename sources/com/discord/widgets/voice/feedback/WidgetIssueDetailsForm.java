@@ -41,41 +41,22 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetIssueDetailsForm extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetIssueDetailsForm.class, "binding", "getBinding()Lcom/discord/databinding/WidgetIssueDetailsFormBinding;", 0)};
     public static final String ARG_PENDING_VOICE_FEEDBACK = "ARG_PENDING_VOICE_FEEDBACK";
     public static final String ARG_SHOW_CX_PROMPT = "ARG_SHOW_CX_PROMPT";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetIssueDetailsForm.class, "binding", "getBinding()Lcom/discord/databinding/WidgetIssueDetailsFormBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, PendingFeedback pendingFeedback, boolean showCxPrompt) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetIssueDetailsForm.ARG_PENDING_VOICE_FEEDBACK, pendingFeedback);
-            intent.putExtra(WidgetIssueDetailsForm.ARG_SHOW_CX_PROMPT, showCxPrompt);
-            C0870j.m156d(context, WidgetIssueDetailsForm.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.WidgetIssueDetailsForm$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
-    public static final class C104512 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C104512 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C104512() {
             super(1);
         }
@@ -97,7 +78,7 @@ public final class WidgetIssueDetailsForm extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.WidgetIssueDetailsForm$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
-    public static final class C104521 extends AbstractC12240o implements Function1<IssueDetailsFormViewModel.Event, Unit> {
+    public final class C104521 extends AbstractC12240o implements Function1<IssueDetailsFormViewModel.Event, Unit> {
         public C104521() {
             super(1);
         }
@@ -112,6 +93,25 @@ public final class WidgetIssueDetailsForm extends AppFragment {
         public final void invoke2(IssueDetailsFormViewModel.Event event) {
             C12238m.checkNotNullParameter(event, "event");
             WidgetIssueDetailsForm.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, PendingFeedback pendingFeedback, boolean showCxPrompt) {
+            C12238m.checkNotNullParameter(context, "context");
+            C12238m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetIssueDetailsForm.ARG_PENDING_VOICE_FEEDBACK, pendingFeedback);
+            intent.putExtra(WidgetIssueDetailsForm.ARG_SHOW_CX_PROMPT, showCxPrompt);
+            C0870j.m156d(context, WidgetIssueDetailsForm.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -148,10 +148,6 @@ public final class WidgetIssueDetailsForm extends AppFragment {
         }
     }
 
-    private final boolean shouldShowCxPrompt() {
-        return getMostRecentIntent().getBooleanExtra(ARG_SHOW_CX_PROMPT, false);
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -186,5 +182,9 @@ public final class WidgetIssueDetailsForm extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetIssueDetailsForm.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C104521());
+    }
+
+    private final boolean shouldShowCxPrompt() {
+        return getMostRecentIntent().getBooleanExtra(ARG_SHOW_CX_PROMPT, false);
     }
 }

@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackUserAttributionReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackUserAttributionReceived implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence adjustTrackerToken = null;
-    private final CharSequence adjustTrackerName = null;
-    private final CharSequence attributionNetwork = null;
-    private final CharSequence attributionCampaign = null;
-    private final CharSequence attributionAdgroup = null;
-    private final CharSequence attributionCreative = null;
     private final CharSequence adjustAdid = null;
+    private final CharSequence adjustTrackerName = null;
+    private final CharSequence adjustTrackerToken = null;
+    private final CharSequence attributionAdgroup = null;
+    private final CharSequence attributionCampaign = null;
+    private final CharSequence attributionCreative = null;
+    private final CharSequence attributionNetwork = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_attribution_received";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackUserAttributionReceived implements AnalyticsS
         }
         TrackUserAttributionReceived trackUserAttributionReceived = (TrackUserAttributionReceived) other;
         return C12238m.areEqual(this.adjustTrackerToken, trackUserAttributionReceived.adjustTrackerToken) && C12238m.areEqual(this.adjustTrackerName, trackUserAttributionReceived.adjustTrackerName) && C12238m.areEqual(this.attributionNetwork, trackUserAttributionReceived.attributionNetwork) && C12238m.areEqual(this.attributionCampaign, trackUserAttributionReceived.attributionCampaign) && C12238m.areEqual(this.attributionAdgroup, trackUserAttributionReceived.attributionAdgroup) && C12238m.areEqual(this.attributionCreative, trackUserAttributionReceived.attributionCreative) && C12238m.areEqual(this.adjustAdid, trackUserAttributionReceived.adjustAdid);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

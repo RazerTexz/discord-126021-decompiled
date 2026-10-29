@@ -89,6 +89,39 @@ public class FirebaseMessagingService extends EnhancedIntentService {
         return stringExtra == null ? intent.getStringExtra("message_id") : stringExtra;
     }
 
+    @Override // com.google.firebase.messaging.EnhancedIntentService
+    public Intent getStartCommandIntent(Intent intent) {
+        return C4831v.m6735a().f12900e.poll();
+    }
+
+    @Override // com.google.firebase.messaging.EnhancedIntentService
+    public void handleIntent(Intent intent) {
+        String action = intent.getAction();
+        if ("com.google.android.c2dm.intent.RECEIVE".equals(action) || ACTION_DIRECT_BOOT_REMOTE_INTENT.equals(action)) {
+            handleMessageIntent(intent);
+            return;
+        }
+        if ("com.google.firebase.messaging.NOTIFICATION_DISMISS".equals(action)) {
+            if (C4879q.m6819c(intent)) {
+                C4879q.m6818b("_nd", intent);
+            }
+        } else if ("com.google.firebase.messaging.NEW_TOKEN".equals(action)) {
+            onNewToken(intent.getStringExtra("token"));
+        } else {
+            String strValueOf = String.valueOf(intent.getAction());
+            Log.d("FirebaseMessaging", strValueOf.length() != 0 ? "Unknown intent action: ".concat(strValueOf) : new String("Unknown intent action: "));
+        }
+    }
+
+    @Override // com.google.firebase.messaging.EnhancedIntentService
+    public boolean handleIntentOnMainThread(Intent intent) {
+        if (!"com.google.firebase.messaging.NOTIFICATION_OPEN".equals(intent.getAction())) {
+            return false;
+        }
+        handleNotificationOpen(intent);
+        return true;
+    }
+
     private void handleMessageIntent(Intent intent) {
         if (alreadyReceivedMessage(intent.getStringExtra("google.message_id"))) {
             return;
@@ -123,6 +156,26 @@ public class FirebaseMessagingService extends EnhancedIntentService {
             }
             C4879q.m6818b("_no", intent);
         }
+    }
+
+    @WorkerThread
+    public void onDeletedMessages() {
+    }
+
+    @WorkerThread
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+    }
+
+    @WorkerThread
+    public void onMessageSent(@NonNull String str) {
+    }
+
+    @WorkerThread
+    public void onNewToken(@NonNull String str) {
+    }
+
+    @WorkerThread
+    public void onSendError(@NonNull String str, @NonNull Exception exc) {
     }
 
     private void passMessageIntentToSdk(Intent intent) {
@@ -189,58 +242,5 @@ public class FirebaseMessagingService extends EnhancedIntentService {
                 Log.w("FirebaseMessaging", stringExtra.length() != 0 ? "Received message with unknown type: ".concat(stringExtra) : new String("Received message with unknown type: "));
                 break;
         }
-    }
-
-    @Override // com.google.firebase.messaging.EnhancedIntentService
-    public Intent getStartCommandIntent(Intent intent) {
-        return C4831v.m6735a().f12900e.poll();
-    }
-
-    @Override // com.google.firebase.messaging.EnhancedIntentService
-    public void handleIntent(Intent intent) {
-        String action = intent.getAction();
-        if ("com.google.android.c2dm.intent.RECEIVE".equals(action) || ACTION_DIRECT_BOOT_REMOTE_INTENT.equals(action)) {
-            handleMessageIntent(intent);
-            return;
-        }
-        if ("com.google.firebase.messaging.NOTIFICATION_DISMISS".equals(action)) {
-            if (C4879q.m6819c(intent)) {
-                C4879q.m6818b("_nd", intent);
-            }
-        } else if ("com.google.firebase.messaging.NEW_TOKEN".equals(action)) {
-            onNewToken(intent.getStringExtra("token"));
-        } else {
-            String strValueOf = String.valueOf(intent.getAction());
-            Log.d("FirebaseMessaging", strValueOf.length() != 0 ? "Unknown intent action: ".concat(strValueOf) : new String("Unknown intent action: "));
-        }
-    }
-
-    @Override // com.google.firebase.messaging.EnhancedIntentService
-    public boolean handleIntentOnMainThread(Intent intent) {
-        if (!"com.google.firebase.messaging.NOTIFICATION_OPEN".equals(intent.getAction())) {
-            return false;
-        }
-        handleNotificationOpen(intent);
-        return true;
-    }
-
-    @WorkerThread
-    public void onDeletedMessages() {
-    }
-
-    @WorkerThread
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-    }
-
-    @WorkerThread
-    public void onMessageSent(@NonNull String str) {
-    }
-
-    @WorkerThread
-    public void onNewToken(@NonNull String str) {
-    }
-
-    @WorkerThread
-    public void onSendError(@NonNull String str, @NonNull Exception exc) {
     }
 }

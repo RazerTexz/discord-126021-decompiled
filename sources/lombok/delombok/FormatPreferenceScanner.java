@@ -30,9 +30,9 @@ public class FormatPreferenceScanner {
         }
         try {
             return scan_(preferences, new Reader(source) { // from class: lombok.delombok.FormatPreferenceScanner.1
-                int pos = 0;
                 int max;
                 private final /* synthetic */ CharSequence val$source;
+                int pos = 0;
 
                 {
                     this.val$source = source;

@@ -10,24 +10,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPoggermodeSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPoggermodeSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean enabled = null;
     private final Boolean combosEnabled = null;
     private final Long combosRequiredCount = null;
-    private final Boolean screenshakeEnabled = null;
-    private final Long shakeIntensity = null;
-    private final List<CharSequence> screenshakeEnabledLocations = null;
-    private final Boolean confettiEnabled = null;
-    private final Long confettiSize = null;
     private final Long confettiCount = null;
+    private final Boolean confettiEnabled = null;
     private final List<CharSequence> confettiEnabledLocations = null;
+    private final Long confettiSize = null;
+    private final Boolean enabled = null;
+    private final Boolean screenshakeEnabled = null;
+    private final List<CharSequence> screenshakeEnabledLocations = null;
+    private final Long shakeIntensity = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "poggermode_settings_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackPoggermodeSettingsUpdated implements Analytic
         }
         TrackPoggermodeSettingsUpdated trackPoggermodeSettingsUpdated = (TrackPoggermodeSettingsUpdated) other;
         return C12238m.areEqual(this.enabled, trackPoggermodeSettingsUpdated.enabled) && C12238m.areEqual(this.combosEnabled, trackPoggermodeSettingsUpdated.combosEnabled) && C12238m.areEqual(this.combosRequiredCount, trackPoggermodeSettingsUpdated.combosRequiredCount) && C12238m.areEqual(this.screenshakeEnabled, trackPoggermodeSettingsUpdated.screenshakeEnabled) && C12238m.areEqual(this.shakeIntensity, trackPoggermodeSettingsUpdated.shakeIntensity) && C12238m.areEqual(this.screenshakeEnabledLocations, trackPoggermodeSettingsUpdated.screenshakeEnabledLocations) && C12238m.areEqual(this.confettiEnabled, trackPoggermodeSettingsUpdated.confettiEnabled) && C12238m.areEqual(this.confettiSize, trackPoggermodeSettingsUpdated.confettiSize) && C12238m.areEqual(this.confettiCount, trackPoggermodeSettingsUpdated.confettiCount) && C12238m.areEqual(this.confettiEnabledLocations, trackPoggermodeSettingsUpdated.confettiEnabledLocations);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

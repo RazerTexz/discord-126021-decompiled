@@ -16,23 +16,17 @@ public enum GiftStyle {
     WumpusBox(2, C5419R.drawable.gift_wumpus_box, C5419R.raw.anim_gift_wumpus_box),
     WumpusLatte(3, C5419R.drawable.gift_wumpus_latte, C5419R.raw.anim_gift_wumpus_latte);
 
-    private final int animRes;
-    private final int id;
-    private final int staticRes;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final int animRes;
+    private final int id;
+    private final int staticRes;
     private static final Lazy values$delegate = C12083g.lazy(GiftStyle$Companion$values$2.INSTANCE);
 
     /* JADX INFO: compiled from: GiftStyle.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
-        }
-
-        private final GiftStyle[] getValues() {
-            Lazy lazy = GiftStyle.values$delegate;
-            Companion companion = GiftStyle.INSTANCE;
-            return (GiftStyle[]) lazy.getValue();
         }
 
         public final GiftStyle from(ModelGift gift) {
@@ -45,6 +39,12 @@ public enum GiftStyle {
                 }
             }
             return null;
+        }
+
+        private final GiftStyle[] getValues() {
+            Lazy lazy = GiftStyle.values$delegate;
+            Companion companion = GiftStyle.INSTANCE;
+            return (GiftStyle[]) lazy.getValue();
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {

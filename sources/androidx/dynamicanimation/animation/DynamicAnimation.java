@@ -201,7 +201,7 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         }
     };
 
-    public static class MassState {
+    public class MassState {
         public float mValue;
         public float mVelocity;
     }
@@ -214,7 +214,7 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2);
     }
 
-    public static abstract class ViewProperty extends FloatPropertyCompat<View> {
+    public abstract class ViewProperty extends FloatPropertyCompat<View> {
         private ViewProperty(String str) {
             super(str);
         }
@@ -243,53 +243,6 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
             }
         };
         this.mMinVisibleChange = 1.0f;
-    }
-
-    private void endAnimationInternal(boolean z2) {
-        this.mRunning = false;
-        AnimationHandler.getInstance().removeCallback(this);
-        this.mLastFrameTime = 0L;
-        this.mStartValueIsSet = false;
-        for (int i = 0; i < this.mEndListeners.size(); i++) {
-            if (this.mEndListeners.get(i) != null) {
-                this.mEndListeners.get(i).onAnimationEnd(this, z2, this.mValue, this.mVelocity);
-            }
-        }
-        removeNullEntries(this.mEndListeners);
-    }
-
-    private float getPropertyValue() {
-        return this.mProperty.getValue(this.mTarget);
-    }
-
-    private static <T> void removeEntry(ArrayList<T> arrayList, T t) {
-        int iIndexOf = arrayList.indexOf(t);
-        if (iIndexOf >= 0) {
-            arrayList.set(iIndexOf, null);
-        }
-    }
-
-    private static <T> void removeNullEntries(ArrayList<T> arrayList) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (arrayList.get(size) == null) {
-                arrayList.remove(size);
-            }
-        }
-    }
-
-    private void startAnimationInternal() {
-        if (this.mRunning) {
-            return;
-        }
-        this.mRunning = true;
-        if (!this.mStartValueIsSet) {
-            this.mValue = getPropertyValue();
-        }
-        float f = this.mValue;
-        if (f > this.mMaxValue || f < this.mMinValue) {
-            throw new IllegalArgumentException("Starting value need to be in between min value and max value");
-        }
-        AnimationHandler.getInstance().addAnimationFrameCallback(this, 0L);
     }
 
     public T addEndListener(OnAnimationEndListener onAnimationEndListener) {
@@ -341,10 +294,27 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         return zUpdateValueAndVelocity;
     }
 
+    private void endAnimationInternal(boolean z2) {
+        this.mRunning = false;
+        AnimationHandler.getInstance().removeCallback(this);
+        this.mLastFrameTime = 0L;
+        this.mStartValueIsSet = false;
+        for (int i = 0; i < this.mEndListeners.size(); i++) {
+            if (this.mEndListeners.get(i) != null) {
+                this.mEndListeners.get(i).onAnimationEnd(this, z2, this.mValue, this.mVelocity);
+            }
+        }
+        removeNullEntries(this.mEndListeners);
+    }
+
     public abstract float getAcceleration(float f, float f2);
 
     public float getMinimumVisibleChange() {
         return this.mMinVisibleChange;
+    }
+
+    private float getPropertyValue() {
+        return this.mProperty.getValue(this.mTarget);
     }
 
     public float getValueThreshold() {
@@ -359,6 +329,21 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
 
     public void removeEndListener(OnAnimationEndListener onAnimationEndListener) {
         removeEntry(this.mEndListeners, onAnimationEndListener);
+    }
+
+    private static <T> void removeEntry(ArrayList<T> arrayList, T t) {
+        int iIndexOf = arrayList.indexOf(t);
+        if (iIndexOf >= 0) {
+            arrayList.set(iIndexOf, null);
+        }
+    }
+
+    private static <T> void removeNullEntries(ArrayList<T> arrayList) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (arrayList.get(size) == null) {
+                arrayList.remove(size);
+            }
+        }
     }
 
     public void removeUpdateListener(OnAnimationUpdateListener onAnimationUpdateListener) {
@@ -416,6 +401,21 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
             return;
         }
         startAnimationInternal();
+    }
+
+    private void startAnimationInternal() {
+        if (this.mRunning) {
+            return;
+        }
+        this.mRunning = true;
+        if (!this.mStartValueIsSet) {
+            this.mValue = getPropertyValue();
+        }
+        float f = this.mValue;
+        if (f > this.mMaxValue || f < this.mMinValue) {
+            throw new IllegalArgumentException("Starting value need to be in between min value and max value");
+        }
+        AnimationHandler.getInstance().addAnimationFrameCallback(this, 0L);
     }
 
     public abstract boolean updateValueAndVelocity(long j);

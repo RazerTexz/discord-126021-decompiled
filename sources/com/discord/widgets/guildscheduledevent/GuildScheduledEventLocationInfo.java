@@ -20,7 +20,7 @@ public abstract class GuildScheduledEventLocationInfo {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: GuildScheduledEventLocationInfo.kt */
-    public static final /* data */ class ChannelLocation extends GuildScheduledEventLocationInfo {
+    public final /* data */ class ChannelLocation extends GuildScheduledEventLocationInfo {
         private final Channel channel;
 
         public ChannelLocation(Channel channel) {
@@ -35,11 +35,6 @@ public abstract class GuildScheduledEventLocationInfo {
             return channelLocation.copy(channel);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
         public final ChannelLocation copy(Channel channel) {
             return new ChannelLocation(channel);
         }
@@ -49,6 +44,11 @@ public abstract class GuildScheduledEventLocationInfo {
                 return (other instanceof ChannelLocation) && C12238m.areEqual(this.channel, ((ChannelLocation) other).channel);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -72,7 +72,7 @@ public abstract class GuildScheduledEventLocationInfo {
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventLocationInfo.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -108,7 +108,7 @@ public abstract class GuildScheduledEventLocationInfo {
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventLocationInfo.kt */
-    public static final /* data */ class ExternalLocation extends GuildScheduledEventLocationInfo {
+    public final /* data */ class ExternalLocation extends GuildScheduledEventLocationInfo {
         private final String location;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -125,11 +125,6 @@ public abstract class GuildScheduledEventLocationInfo {
             return externalLocation.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getLocation() {
-            return this.location;
-        }
-
         public final ExternalLocation copy(String location) {
             C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
             return new ExternalLocation(location);
@@ -140,6 +135,11 @@ public abstract class GuildScheduledEventLocationInfo {
                 return (other instanceof ExternalLocation) && C12238m.areEqual(this.location, ((ExternalLocation) other).location);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getLocation() {
+            return this.location;
         }
 
         public final String getLocation() {

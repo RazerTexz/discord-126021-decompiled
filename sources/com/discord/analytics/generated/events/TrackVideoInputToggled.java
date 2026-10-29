@@ -10,36 +10,30 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoInputToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoInputToggled implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long guildId = null;
-    private final CharSequence nonce = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
-    private final CharSequence gameName = null;
+    private final List<CharSequence> enabledInputs = null;
     private final CharSequence gameExeName = null;
     private final Long gameId = null;
-    private final CharSequence videoInputType = null;
-    private final Long videoInputResolution = null;
-    private final Long videoInputFrameRate = null;
-    private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
-    private final Long shareGameId = null;
+    private final CharSequence gameName = null;
     private final CharSequence gamePlatform = null;
-    private final CharSequence source = null;
-    private final CharSequence videoToggleSource = null;
+    private final Long guildId = null;
     private final CharSequence mediaSessionId = null;
-    private final List<CharSequence> enabledInputs = null;
+    private final CharSequence nonce = null;
     private final Boolean previewEnabled = null;
+    private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
+    private final CharSequence soundshareSession = null;
+    private final CharSequence source = null;
+    private TrackBase trackBase;
+    private final Boolean videoEnabled = null;
+    private final Long videoInputFrameRate = null;
+    private final Long videoInputResolution = null;
+    private final CharSequence videoInputType = null;
+    private final Long videoStreamCount = null;
+    private final CharSequence videoToggleSource = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "video_input_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -50,6 +44,12 @@ public final /* data */ class TrackVideoInputToggled implements AnalyticsSchema,
         }
         TrackVideoInputToggled trackVideoInputToggled = (TrackVideoInputToggled) other;
         return C12238m.areEqual(this.channelId, trackVideoInputToggled.channelId) && C12238m.areEqual(this.channelType, trackVideoInputToggled.channelType) && C12238m.areEqual(this.guildId, trackVideoInputToggled.guildId) && C12238m.areEqual(this.nonce, trackVideoInputToggled.nonce) && C12238m.areEqual(this.voiceStateCount, trackVideoInputToggled.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackVideoInputToggled.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackVideoInputToggled.videoEnabled) && C12238m.areEqual(this.gameName, trackVideoInputToggled.gameName) && C12238m.areEqual(this.gameExeName, trackVideoInputToggled.gameExeName) && C12238m.areEqual(this.gameId, trackVideoInputToggled.gameId) && C12238m.areEqual(this.videoInputType, trackVideoInputToggled.videoInputType) && C12238m.areEqual(this.videoInputResolution, trackVideoInputToggled.videoInputResolution) && C12238m.areEqual(this.videoInputFrameRate, trackVideoInputToggled.videoInputFrameRate) && C12238m.areEqual(this.soundshareSession, trackVideoInputToggled.soundshareSession) && C12238m.areEqual(this.shareGameName, trackVideoInputToggled.shareGameName) && C12238m.areEqual(this.shareGameId, trackVideoInputToggled.shareGameId) && C12238m.areEqual(this.gamePlatform, trackVideoInputToggled.gamePlatform) && C12238m.areEqual(this.source, trackVideoInputToggled.source) && C12238m.areEqual(this.videoToggleSource, trackVideoInputToggled.videoToggleSource) && C12238m.areEqual(this.mediaSessionId, trackVideoInputToggled.mediaSessionId) && C12238m.areEqual(this.enabledInputs, trackVideoInputToggled.enabledInputs) && C12238m.areEqual(this.previewEnabled, trackVideoInputToggled.previewEnabled);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -11,16 +11,6 @@ public final /* data */ class MessageCall {
     private final UtcDateTime endedTimestamp;
     private final List<Long> participants;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final UtcDateTime getEndedTimestamp() {
-        return this.endedTimestamp;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Long> m8075b() {
-        return this.participants;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,11 +22,21 @@ public final /* data */ class MessageCall {
         return C12238m.areEqual(this.participants, messageCall.participants) && C12238m.areEqual(this.endedTimestamp, messageCall.endedTimestamp);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final UtcDateTime getEndedTimestamp() {
+        return this.endedTimestamp;
+    }
+
     public int hashCode() {
         List<Long> list = this.participants;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         UtcDateTime utcDateTime = this.endedTimestamp;
         return iHashCode + (utcDateTime != null ? utcDateTime.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<Long> m8075b() {
+        return this.participants;
     }
 
     public String toString() {

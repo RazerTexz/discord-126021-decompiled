@@ -7,15 +7,6 @@ import p617h0.p628c.C12487s0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
-    public static VideoCodecInfo[] supportedCodecs() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
-        if (LibvpxVp9Encoder.nativeIsSupported()) {
-            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
-        }
-        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
-    }
-
     @Override // org.webrtc.VideoEncoderFactory
     @Nullable
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
@@ -41,5 +32,14 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     @Override // org.webrtc.VideoEncoderFactory
     public VideoCodecInfo[] getSupportedCodecs() {
         return supportedCodecs();
+    }
+
+    public static VideoCodecInfo[] supportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
+        if (LibvpxVp9Encoder.nativeIsSupported()) {
+            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
+        }
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 }

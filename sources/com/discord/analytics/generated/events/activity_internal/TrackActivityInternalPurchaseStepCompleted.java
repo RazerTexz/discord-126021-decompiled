@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalPurchaseStepCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalPurchaseStepCompleted implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+    private final Long activityDurationMs = null;
+    private final CharSequence nextStep = null;
+    private final CharSequence purchaseName = null;
+    private final CharSequence purchaseType = null;
+    private final Long skuId = null;
+    private final CharSequence step = null;
+    private final Boolean success = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
     private TrackBase trackBase;
-    private final CharSequence step = null;
-    private final CharSequence nextStep = null;
-    private final CharSequence purchaseType = null;
-    private final CharSequence purchaseName = null;
-    private final Long skuId = null;
-    private final Long activityDurationMs = null;
-    private final Boolean success = null;
     private final transient String analyticsSchemaTypeName = "activity_internal_purchase_step_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
         }
         TrackActivityInternalPurchaseStepCompleted trackActivityInternalPurchaseStepCompleted = (TrackActivityInternalPurchaseStepCompleted) other;
         return C12238m.areEqual(this.step, trackActivityInternalPurchaseStepCompleted.step) && C12238m.areEqual(this.nextStep, trackActivityInternalPurchaseStepCompleted.nextStep) && C12238m.areEqual(this.purchaseType, trackActivityInternalPurchaseStepCompleted.purchaseType) && C12238m.areEqual(this.purchaseName, trackActivityInternalPurchaseStepCompleted.purchaseName) && C12238m.areEqual(this.skuId, trackActivityInternalPurchaseStepCompleted.skuId) && C12238m.areEqual(this.activityDurationMs, trackActivityInternalPurchaseStepCompleted.activityDurationMs) && C12238m.areEqual(this.success, trackActivityInternalPurchaseStepCompleted.success);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

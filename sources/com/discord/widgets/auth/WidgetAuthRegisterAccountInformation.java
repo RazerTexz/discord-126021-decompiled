@@ -73,7 +73,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$configureUI$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72201 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C72201 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C72201() {
             super(1);
         }
@@ -93,7 +93,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72221 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C72221 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C72221() {
             super(1);
         }
@@ -116,7 +116,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72232 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C72232 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C72232() {
             super(1);
         }
@@ -139,7 +139,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$register$1 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72241 extends AbstractC12240o implements Function1<RegisterResponse, Unit> {
+    public final class C72241 extends AbstractC12240o implements Function1<RegisterResponse, Unit> {
         public static final C72241 INSTANCE = new C72241();
 
         public C72241() {
@@ -162,7 +162,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$register$2 */
     /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
-    public static final class C72252 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C72252 extends AbstractC12240o implements Function1<Error, Unit> {
         public C72252() {
             super(1);
         }
@@ -222,6 +222,11 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
 
     private final WidgetAuthRegisterAccountInformationBinding getBinding() {
         return (WidgetAuthRegisterAccountInformationBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
     }
 
     private final ValidationManager getValidationManager() {
@@ -291,43 +296,6 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
             }
         }
         return true;
-    }
-
-    private final void register(CaptchaHelper.CaptchaPayload captchaPayload) {
-        if (this.shouldValidateInputs && !ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Information", "input_error", null, 4, null);
-            return;
-        }
-        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
-        if (companion.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
-            RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Information", "success", null, 4, null);
-            AnalyticsTracker.openModal$default("Enter Your Birthday", "Register", null, 4, null);
-            WidgetAuthBirthday.INSTANCE.launch(requireContext(), this.birthdayLauncher);
-            return;
-        }
-        String uTCDateTime = companion.getINSTANCE().getBirthday() != null ? TimeUtils.toUTCDateTime(companion.getINSTANCE().getBirthday(), TimeUtils.UTCFormat.SHORT) : null;
-        getBinding().f15704c.setIsLoading(true);
-        StoreAuthentication authentication = StoreStream.INSTANCE.getAuthentication();
-        TextInputLayout textInputLayout = getBinding().f15706e;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationUsernameWrap");
-        String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
-        String email = companion.getINSTANCE().getEmail();
-        String phoneToken = companion.getINSTANCE().getPhoneToken();
-        TextInputLayout textInputLayout2 = getBinding().f15705d;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.authRegisterAccountInformationPasswordWrap");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(authentication.register(textOrEmpty, email, phoneToken, ViewExtensions.getTextOrEmpty(textInputLayout2), captchaPayload, isConsented(), uTCDateTime), this, null, 2, null), (Class<?>) WidgetAuthRegisterAccountInformation.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72252()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C72241.INSTANCE);
-    }
-
-    public static /* synthetic */ void register$default(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 1) != 0) {
-            captchaPayload = null;
-        }
-        widgetAuthRegisterAccountInformation.register(captchaPayload);
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment
@@ -400,5 +368,37 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
             }
         }
         configureUI();
+    }
+
+    public static /* synthetic */ void register$default(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 1) != 0) {
+            captchaPayload = null;
+        }
+        widgetAuthRegisterAccountInformation.register(captchaPayload);
+    }
+
+    private final void register(CaptchaHelper.CaptchaPayload captchaPayload) {
+        if (this.shouldValidateInputs && !ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
+            RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Information", "input_error", null, 4, null);
+            return;
+        }
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        if (companion.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
+            RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Information", "success", null, 4, null);
+            AnalyticsTracker.openModal$default("Enter Your Birthday", "Register", null, 4, null);
+            WidgetAuthBirthday.INSTANCE.launch(requireContext(), this.birthdayLauncher);
+            return;
+        }
+        String uTCDateTime = companion.getINSTANCE().getBirthday() != null ? TimeUtils.toUTCDateTime(companion.getINSTANCE().getBirthday(), TimeUtils.UTCFormat.SHORT) : null;
+        getBinding().f15704c.setIsLoading(true);
+        StoreAuthentication authentication = StoreStream.INSTANCE.getAuthentication();
+        TextInputLayout textInputLayout = getBinding().f15706e;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationUsernameWrap");
+        String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+        String email = companion.getINSTANCE().getEmail();
+        String phoneToken = companion.getINSTANCE().getPhoneToken();
+        TextInputLayout textInputLayout2 = getBinding().f15705d;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.authRegisterAccountInformationPasswordWrap");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(authentication.register(textOrEmpty, email, phoneToken, ViewExtensions.getTextOrEmpty(textInputLayout2), captchaPayload, isConsented(), uTCDateTime), this, null, 2, null), (Class<?>) WidgetAuthRegisterAccountInformation.class, (58 & 2) != 0 ? null : getContext(), (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C72252()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C72241.INSTANCE);
     }
 }

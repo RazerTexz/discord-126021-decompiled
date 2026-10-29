@@ -43,7 +43,7 @@ public final class C8132x8c0e5d01 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$autoModRenderContext$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -64,11 +64,11 @@ public final class C8132x8c0e5d01 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$autoModRenderContext$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$autoModRenderContext$1$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, String> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, String> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {

@@ -42,7 +42,7 @@ public class JavacTransformer {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacTransformer$AnnotationVisitor.SCL.lombok */
-    private class AnnotationVisitor extends JavacASTAdapter {
+    class AnnotationVisitor extends JavacASTAdapter {
         private final long priority;
 
         AnnotationVisitor(long priority) {

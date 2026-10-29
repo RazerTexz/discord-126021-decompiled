@@ -26,12 +26,6 @@ import p007b.p085c.p086a.p095y.p098m.AbstractC1603b;
 /* JADX INFO: loaded from: classes.dex */
 public class C1540p implements InterfaceC1529e, InterfaceC1537m, InterfaceC1534j, AbstractC1544a.b, InterfaceC1535k {
 
-    /* JADX INFO: renamed from: a */
-    public final Matrix f2569a = new Matrix();
-
-    /* JADX INFO: renamed from: b */
-    public final Path f2570b = new Path();
-
     /* JADX INFO: renamed from: c */
     public final C1511j f2571c;
 
@@ -56,6 +50,12 @@ public class C1540p implements InterfaceC1529e, InterfaceC1537m, InterfaceC1534j
     /* JADX INFO: renamed from: j */
     public C1528d f2578j;
 
+    /* JADX INFO: renamed from: a */
+    public final Matrix f2569a = new Matrix();
+
+    /* JADX INFO: renamed from: b */
+    public final Path f2570b = new Path();
+
     public C1540p(C1511j c1511j, AbstractC1603b abstractC1603b, C1595j c1595j) {
         this.f2571c = c1511j;
         this.f2572d = abstractC1603b;
@@ -75,6 +75,24 @@ public class C1540p implements InterfaceC1529e, InterfaceC1537m, InterfaceC1534j
         this.f2577i = c1558o;
         c1558o.m743a(abstractC1603b);
         c1558o.m744b(this);
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2573e;
+    }
+
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
+    public Path getPath() {
+        Path path = this.f2578j.getPath();
+        this.f2570b.reset();
+        float fFloatValue = this.f2575g.mo727e().floatValue();
+        float fFloatValue2 = this.f2576h.mo727e().floatValue();
+        for (int i = ((int) fFloatValue) - 1; i >= 0; i--) {
+            this.f2569a.set(this.f2577i.m748f(i + fFloatValue2));
+            this.f2570b.addPath(path, this.f2569a);
+        }
+        return this.f2570b;
     }
 
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
@@ -99,23 +117,6 @@ public class C1540p implements InterfaceC1529e, InterfaceC1537m, InterfaceC1534j
     /* JADX INFO: renamed from: d */
     public void mo712d(RectF rectF, Matrix matrix, boolean z2) {
         this.f2578j.mo712d(rectF, matrix, z2);
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1534j
-    /* JADX INFO: renamed from: e */
-    public void mo721e(ListIterator<InterfaceC1527c> listIterator) {
-        if (this.f2578j != null) {
-            return;
-        }
-        while (listIterator.hasPrevious() && listIterator.previous() != this) {
-        }
-        ArrayList arrayList = new ArrayList();
-        while (listIterator.hasPrevious()) {
-            arrayList.add(listIterator.previous());
-            listIterator.remove();
-        }
-        Collections.reverse(arrayList);
-        this.f2578j = new C1528d(this.f2571c, this.f2572d, "Repeater", this.f2574f, arrayList, null);
     }
 
     @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1529e
@@ -151,21 +152,20 @@ public class C1540p implements InterfaceC1529e, InterfaceC1537m, InterfaceC1534j
         }
     }
 
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2573e;
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
-    public Path getPath() {
-        Path path = this.f2578j.getPath();
-        this.f2570b.reset();
-        float fFloatValue = this.f2575g.mo727e().floatValue();
-        float fFloatValue2 = this.f2576h.mo727e().floatValue();
-        for (int i = ((int) fFloatValue) - 1; i >= 0; i--) {
-            this.f2569a.set(this.f2577i.m748f(i + fFloatValue2));
-            this.f2570b.addPath(path, this.f2569a);
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1534j
+    /* JADX INFO: renamed from: e */
+    public void mo721e(ListIterator<InterfaceC1527c> listIterator) {
+        if (this.f2578j != null) {
+            return;
         }
-        return this.f2570b;
+        while (listIterator.hasPrevious() && listIterator.previous() != this) {
+        }
+        ArrayList arrayList = new ArrayList();
+        while (listIterator.hasPrevious()) {
+            arrayList.add(listIterator.previous());
+            listIterator.remove();
+        }
+        Collections.reverse(arrayList);
+        this.f2578j = new C1528d(this.f2571c, this.f2572d, "Repeater", this.f2574f, arrayList, null);
     }
 }

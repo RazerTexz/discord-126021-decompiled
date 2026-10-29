@@ -58,7 +58,7 @@ public final class C11537d implements InterfaceC11770i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.d$a */
     /* JADX INFO: compiled from: JvmPackageScope.kt */
-    public static final class a extends AbstractC12240o implements Function0<InterfaceC11770i[]> {
+    public final class a extends AbstractC12240o implements Function0<InterfaceC11770i[]> {
         public a() {
             super(0);
         }
@@ -89,11 +89,6 @@ public final class C11537d implements InterfaceC11770i {
         this.f23331d = c11542i;
         this.f23332e = new C11543j(c11529g, interfaceC11588u, c11542i);
         this.f23333f = c11529g.getStorageManager().createLazyValue(new a());
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final InterfaceC11770i[] m9462a() {
-        return (InterfaceC11770i[]) C11904n.getValue(this.f23333f, this, (KProperty<?>) f23329b[0]);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
@@ -214,6 +209,11 @@ public final class C11537d implements InterfaceC11770i {
         }
         linkedHashSet.addAll(getJavaScope$descriptors_jvm().getVariableNames());
         return linkedHashSet;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final InterfaceC11770i[] m9462a() {
+        return (InterfaceC11770i[]) C11904n.getValue(this.f23333f, this, (KProperty<?>) f23329b[0]);
     }
 
     public void recordLookup(C11716e c11716e, InterfaceC11480b interfaceC11480b) {

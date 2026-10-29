@@ -14,7 +14,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
     public static final int TYPE_EVENT = 0;
 
     /* JADX INFO: compiled from: GuildScheduledEventListItem.kt */
-    public static final /* data */ class Event extends GuildScheduledEventListItem {
+    public final /* data */ class Event extends GuildScheduledEventListItem {
         private final boolean canConnect;
         private final boolean canShare;
         private final boolean canStartEvent;
@@ -41,46 +41,6 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
             this.key = String.valueOf(guildScheduledEvent.getId());
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final GuildScheduledEvent getEvent() {
-            return this.event;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final UserGuildMember getCreator() {
-            return this.creator;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsRsvped() {
-            return this.isRsvped;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getCanStartEvent() {
-            return this.canStartEvent;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getCanShare() {
-            return this.canShare;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsConnected() {
-            return this.isConnected;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getCanConnect() {
-            return this.canConnect;
-        }
-
         public final Event copy(GuildScheduledEvent event, Channel channel, UserGuildMember creator, boolean isRsvped, boolean canStartEvent, boolean canShare, boolean isConnected, boolean canConnect) {
             C12238m.checkNotNullParameter(event, "event");
             return new Event(event, channel, creator, isRsvped, canStartEvent, canShare, isConnected, canConnect);
@@ -97,28 +57,68 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
             return C12238m.areEqual(this.event, event.event) && C12238m.areEqual(this.channel, event.channel) && C12238m.areEqual(this.creator, event.creator) && this.isRsvped == event.isRsvped && this.canStartEvent == event.canStartEvent && this.canShare == event.canShare && this.isConnected == event.isConnected && this.canConnect == event.canConnect;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final boolean getCanConnect() {
             return this.canConnect;
+        }
+
+        public final boolean getCanConnect() {
+            return this.canConnect;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getCanShare() {
+            return this.canShare;
         }
 
         public final boolean getCanShare() {
             return this.canShare;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getCanStartEvent() {
             return this.canStartEvent;
+        }
+
+        public final boolean getCanStartEvent() {
+            return this.canStartEvent;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final UserGuildMember getCreator() {
             return this.creator;
         }
 
+        public final UserGuildMember getCreator() {
+            return this.creator;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final GuildScheduledEvent getEvent() {
             return this.event;
+        }
+
+        public final GuildScheduledEvent getEvent() {
+            return this.event;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsConnected() {
+            return this.isConnected;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsRsvped() {
+            return this.isRsvped;
         }
 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

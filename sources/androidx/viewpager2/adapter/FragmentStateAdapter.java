@@ -41,7 +41,7 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
     public final Lifecycle mLifecycle;
     private final LongSparseArray<Fragment.SavedState> mSavedStates;
 
-    public static abstract class DataSetChangeObserver extends RecyclerView.AdapterDataObserver {
+    public abstract class DataSetChangeObserver extends RecyclerView.AdapterDataObserver {
         private DataSetChangeObserver() {
         }
 
@@ -74,12 +74,309 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
         }
     }
 
+    public FragmentStateAdapter(@NonNull FragmentActivity fragmentActivity) {
+        this(fragmentActivity.getSupportFragmentManager(), fragmentActivity.getLifecycle());
+    }
+
+    public void addViewToContainer(@NonNull View view, @NonNull FrameLayout frameLayout) {
+        if (frameLayout.getChildCount() > 1) {
+            throw new IllegalStateException("Design assumption violated.");
+        }
+        if (view.getParent() == frameLayout) {
+            return;
+        }
+        if (frameLayout.getChildCount() > 0) {
+            frameLayout.removeAllViews();
+        }
+        if (view.getParent() != null) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
+        frameLayout.addView(view);
+    }
+
+    public boolean containsItem(long j) {
+        return j >= 0 && j < ((long) getPageSize());
+    }
+
+    @NonNull
+    public abstract Fragment createFragment(int i);
+
+    @NonNull
+    private static String createKey(@NonNull String str, long j) {
+        return C1643a.m877t(str, j);
+    }
+
+    private void ensureFragment(int i) {
+        long itemId = getItemId(i);
+        if (this.mFragments.containsKey(itemId)) {
+            return;
+        }
+        Fragment fragmentCreateFragment = createFragment(i);
+        fragmentCreateFragment.setInitialSavedState(this.mSavedStates.get(itemId));
+        this.mFragments.put(itemId, fragmentCreateFragment);
+    }
+
+    public void gcFragments() {
+        if (!this.mHasStaleFragments || shouldDelayFragmentTransactions()) {
+            return;
+        }
+        ArraySet arraySet = new ArraySet();
+        for (int i = 0; i < this.mFragments.size(); i++) {
+            long jKeyAt = this.mFragments.keyAt(i);
+            if (!containsItem(jKeyAt)) {
+                arraySet.add(Long.valueOf(jKeyAt));
+                this.mItemIdToViewHolder.remove(jKeyAt);
+            }
+        }
+        if (!this.mIsInGracePeriod) {
+            this.mHasStaleFragments = false;
+            for (int i2 = 0; i2 < this.mFragments.size(); i2++) {
+                long jKeyAt2 = this.mFragments.keyAt(i2);
+                if (!isFragmentViewBound(jKeyAt2)) {
+                    arraySet.add(Long.valueOf(jKeyAt2));
+                }
+            }
+        }
+        Iterator<E> it = arraySet.iterator();
+        while (it.hasNext()) {
+            removeFragment(((Long) it.next()).longValue());
+        }
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public long getItemId(int i) {
+        return i;
+    }
+
+    private boolean isFragmentViewBound(long j) {
+        View view;
+        if (this.mItemIdToViewHolder.containsKey(j)) {
+            return true;
+        }
+        Fragment fragment = this.mFragments.get(j);
+        return (fragment == null || (view = fragment.getView()) == null || view.getParent() == null) ? false : true;
+    }
+
+    private static boolean isValidKey(@NonNull String str, @NonNull String str2) {
+        return str.startsWith(str2) && str.length() > str2.length();
+    }
+
+    private Long itemForViewHolder(int i) {
+        Long lValueOf = null;
+        for (int i2 = 0; i2 < this.mItemIdToViewHolder.size(); i2++) {
+            if (this.mItemIdToViewHolder.valueAt(i2).intValue() == i) {
+                if (lValueOf != null) {
+                    throw new IllegalStateException("Design assumption violated: a ViewHolder can only be bound to one item at a time.");
+                }
+                lValueOf = Long.valueOf(this.mItemIdToViewHolder.keyAt(i2));
+            }
+        }
+        return lValueOf;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    @CallSuper
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        Preconditions.checkArgument(this.mFragmentMaxLifecycleEnforcer == null);
+        FragmentMaxLifecycleEnforcer fragmentMaxLifecycleEnforcer = new FragmentMaxLifecycleEnforcer();
+        this.mFragmentMaxLifecycleEnforcer = fragmentMaxLifecycleEnforcer;
+        fragmentMaxLifecycleEnforcer.register(recyclerView);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    @CallSuper
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        this.mFragmentMaxLifecycleEnforcer.unregister(recyclerView);
+        this.mFragmentMaxLifecycleEnforcer = null;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public final boolean onFailedToRecycleView(@NonNull FragmentViewHolder fragmentViewHolder) {
+        return true;
+    }
+
+    private static long parseIdFromKey(@NonNull String str, @NonNull String str2) {
+        return Long.parseLong(str.substring(str2.length()));
+    }
+
+    public void placeFragmentInViewHolder(@NonNull final FragmentViewHolder fragmentViewHolder) {
+        Fragment fragment = this.mFragments.get(fragmentViewHolder.getItemId());
+        if (fragment == null) {
+            throw new IllegalStateException("Design assumption violated.");
+        }
+        FrameLayout container = fragmentViewHolder.getContainer();
+        View view = fragment.getView();
+        if (!fragment.isAdded() && view != null) {
+            throw new IllegalStateException("Design assumption violated.");
+        }
+        if (fragment.isAdded() && view == null) {
+            scheduleViewAttach(fragment, container);
+            return;
+        }
+        if (fragment.isAdded() && view.getParent() != null) {
+            if (view.getParent() != container) {
+                addViewToContainer(view, container);
+            }
+        } else {
+            if (fragment.isAdded()) {
+                addViewToContainer(view, container);
+                return;
+            }
+            if (shouldDelayFragmentTransactions()) {
+                if (this.mFragmentManager.isDestroyed()) {
+                    return;
+                }
+                this.mLifecycle.addObserver(new LifecycleEventObserver() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.2
+                    @Override // androidx.view.LifecycleEventObserver
+                    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+                        if (FragmentStateAdapter.this.shouldDelayFragmentTransactions()) {
+                            return;
+                        }
+                        lifecycleOwner.getLifecycle().removeObserver(this);
+                        if (ViewCompat.isAttachedToWindow(fragmentViewHolder.getContainer())) {
+                            FragmentStateAdapter.this.placeFragmentInViewHolder(fragmentViewHolder);
+                        }
+                    }
+                });
+            } else {
+                scheduleViewAttach(fragment, container);
+                FragmentTransaction fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
+                StringBuilder sbM833U = C1643a.m833U("f");
+                sbM833U.append(fragmentViewHolder.getItemId());
+                fragmentTransactionBeginTransaction.add(fragment, sbM833U.toString()).setMaxLifecycle(fragment, Lifecycle.State.STARTED).commitNow();
+                this.mFragmentMaxLifecycleEnforcer.updateFragmentMaxLifecycle(false);
+            }
+        }
+    }
+
+    private void removeFragment(long j) {
+        ViewParent parent;
+        Fragment fragment = this.mFragments.get(j);
+        if (fragment == null) {
+            return;
+        }
+        if (fragment.getView() != null && (parent = fragment.getView().getParent()) != null) {
+            ((FrameLayout) parent).removeAllViews();
+        }
+        if (!containsItem(j)) {
+            this.mSavedStates.remove(j);
+        }
+        if (!fragment.isAdded()) {
+            this.mFragments.remove(j);
+            return;
+        }
+        if (shouldDelayFragmentTransactions()) {
+            this.mHasStaleFragments = true;
+            return;
+        }
+        if (fragment.isAdded() && containsItem(j)) {
+            this.mSavedStates.put(j, this.mFragmentManager.saveFragmentInstanceState(fragment));
+        }
+        this.mFragmentManager.beginTransaction().remove(fragment).commitNow();
+        this.mFragments.remove(j);
+    }
+
+    @Override // androidx.viewpager2.adapter.StatefulAdapter
+    public final void restoreState(@NonNull Parcelable parcelable) {
+        if (!this.mSavedStates.isEmpty() || !this.mFragments.isEmpty()) {
+            throw new IllegalStateException("Expected the adapter to be 'fresh' while restoring state.");
+        }
+        Bundle bundle = (Bundle) parcelable;
+        if (bundle.getClassLoader() == null) {
+            bundle.setClassLoader(getClass().getClassLoader());
+        }
+        for (String str : bundle.keySet()) {
+            if (isValidKey(str, KEY_PREFIX_FRAGMENT)) {
+                this.mFragments.put(parseIdFromKey(str, KEY_PREFIX_FRAGMENT), this.mFragmentManager.getFragment(bundle, str));
+            } else {
+                if (!isValidKey(str, KEY_PREFIX_STATE)) {
+                    throw new IllegalArgumentException(C1643a.m883w("Unexpected key in savedState: ", str));
+                }
+                long idFromKey = parseIdFromKey(str, KEY_PREFIX_STATE);
+                Fragment.SavedState savedState = (Fragment.SavedState) bundle.getParcelable(str);
+                if (containsItem(idFromKey)) {
+                    this.mSavedStates.put(idFromKey, savedState);
+                }
+            }
+        }
+        if (this.mFragments.isEmpty()) {
+            return;
+        }
+        this.mHasStaleFragments = true;
+        this.mIsInGracePeriod = true;
+        gcFragments();
+        scheduleGracePeriodEnd();
+    }
+
+    @Override // androidx.viewpager2.adapter.StatefulAdapter
+    @NonNull
+    public final Parcelable saveState() {
+        Bundle bundle = new Bundle(this.mSavedStates.size() + this.mFragments.size());
+        for (int i = 0; i < this.mFragments.size(); i++) {
+            long jKeyAt = this.mFragments.keyAt(i);
+            Fragment fragment = this.mFragments.get(jKeyAt);
+            if (fragment != null && fragment.isAdded()) {
+                this.mFragmentManager.putFragment(bundle, createKey(KEY_PREFIX_FRAGMENT, jKeyAt), fragment);
+            }
+        }
+        for (int i2 = 0; i2 < this.mSavedStates.size(); i2++) {
+            long jKeyAt2 = this.mSavedStates.keyAt(i2);
+            if (containsItem(jKeyAt2)) {
+                bundle.putParcelable(createKey(KEY_PREFIX_STATE, jKeyAt2), this.mSavedStates.get(jKeyAt2));
+            }
+        }
+        return bundle;
+    }
+
+    private void scheduleGracePeriodEnd() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        final Runnable runnable = new Runnable() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.4
+            @Override // java.lang.Runnable
+            public void run() {
+                FragmentStateAdapter fragmentStateAdapter = FragmentStateAdapter.this;
+                fragmentStateAdapter.mIsInGracePeriod = false;
+                fragmentStateAdapter.gcFragments();
+            }
+        };
+        this.mLifecycle.addObserver(new LifecycleEventObserver() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.5
+            @Override // androidx.view.LifecycleEventObserver
+            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+                if (event == Lifecycle.Event.ON_DESTROY) {
+                    handler.removeCallbacks(runnable);
+                    lifecycleOwner.getLifecycle().removeObserver(this);
+                }
+            }
+        });
+        handler.postDelayed(runnable, 10000L);
+    }
+
+    private void scheduleViewAttach(final Fragment fragment, @NonNull final FrameLayout frameLayout) {
+        this.mFragmentManager.registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.3
+            @Override // androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
+            public void onFragmentViewCreated(@NonNull FragmentManager fragmentManager, @NonNull Fragment fragment2, @NonNull View view, @Nullable Bundle bundle) {
+                if (fragment2 == fragment) {
+                    fragmentManager.unregisterFragmentLifecycleCallbacks(this);
+                    FragmentStateAdapter.this.addViewToContainer(view, frameLayout);
+                }
+            }
+        }, false);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public final void setHasStableIds(boolean z2) {
+        throw new UnsupportedOperationException("Stable Ids are required for the adapter to function properly, and the adapter takes care of setting the flag.");
+    }
+
+    public boolean shouldDelayFragmentTransactions() {
+        return this.mFragmentManager.isStateSaved();
+    }
+
     public class FragmentMaxLifecycleEnforcer {
         private RecyclerView.AdapterDataObserver mDataObserver;
         private LifecycleEventObserver mLifecycleObserver;
         private ViewPager2.OnPageChangeCallback mPageChangeCallback;
-        private long mPrimaryItemId = -1;
         private ViewPager2 mViewPager;
+        private long mPrimaryItemId = -1;
 
         public FragmentMaxLifecycleEnforcer() {
         }
@@ -165,303 +462,6 @@ public abstract class FragmentStateAdapter extends RecyclerView.Adapter<Fragment
                 fragmentTransactionBeginTransaction.commitNow();
             }
         }
-    }
-
-    public FragmentStateAdapter(@NonNull FragmentActivity fragmentActivity) {
-        this(fragmentActivity.getSupportFragmentManager(), fragmentActivity.getLifecycle());
-    }
-
-    @NonNull
-    private static String createKey(@NonNull String str, long j) {
-        return C1643a.m877t(str, j);
-    }
-
-    private void ensureFragment(int i) {
-        long itemId = getItemId(i);
-        if (this.mFragments.containsKey(itemId)) {
-            return;
-        }
-        Fragment fragmentCreateFragment = createFragment(i);
-        fragmentCreateFragment.setInitialSavedState(this.mSavedStates.get(itemId));
-        this.mFragments.put(itemId, fragmentCreateFragment);
-    }
-
-    private boolean isFragmentViewBound(long j) {
-        View view;
-        if (this.mItemIdToViewHolder.containsKey(j)) {
-            return true;
-        }
-        Fragment fragment = this.mFragments.get(j);
-        return (fragment == null || (view = fragment.getView()) == null || view.getParent() == null) ? false : true;
-    }
-
-    private static boolean isValidKey(@NonNull String str, @NonNull String str2) {
-        return str.startsWith(str2) && str.length() > str2.length();
-    }
-
-    private Long itemForViewHolder(int i) {
-        Long lValueOf = null;
-        for (int i2 = 0; i2 < this.mItemIdToViewHolder.size(); i2++) {
-            if (this.mItemIdToViewHolder.valueAt(i2).intValue() == i) {
-                if (lValueOf != null) {
-                    throw new IllegalStateException("Design assumption violated: a ViewHolder can only be bound to one item at a time.");
-                }
-                lValueOf = Long.valueOf(this.mItemIdToViewHolder.keyAt(i2));
-            }
-        }
-        return lValueOf;
-    }
-
-    private static long parseIdFromKey(@NonNull String str, @NonNull String str2) {
-        return Long.parseLong(str.substring(str2.length()));
-    }
-
-    private void removeFragment(long j) {
-        ViewParent parent;
-        Fragment fragment = this.mFragments.get(j);
-        if (fragment == null) {
-            return;
-        }
-        if (fragment.getView() != null && (parent = fragment.getView().getParent()) != null) {
-            ((FrameLayout) parent).removeAllViews();
-        }
-        if (!containsItem(j)) {
-            this.mSavedStates.remove(j);
-        }
-        if (!fragment.isAdded()) {
-            this.mFragments.remove(j);
-            return;
-        }
-        if (shouldDelayFragmentTransactions()) {
-            this.mHasStaleFragments = true;
-            return;
-        }
-        if (fragment.isAdded() && containsItem(j)) {
-            this.mSavedStates.put(j, this.mFragmentManager.saveFragmentInstanceState(fragment));
-        }
-        this.mFragmentManager.beginTransaction().remove(fragment).commitNow();
-        this.mFragments.remove(j);
-    }
-
-    private void scheduleGracePeriodEnd() {
-        final Handler handler = new Handler(Looper.getMainLooper());
-        final Runnable runnable = new Runnable() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.4
-            @Override // java.lang.Runnable
-            public void run() {
-                FragmentStateAdapter fragmentStateAdapter = FragmentStateAdapter.this;
-                fragmentStateAdapter.mIsInGracePeriod = false;
-                fragmentStateAdapter.gcFragments();
-            }
-        };
-        this.mLifecycle.addObserver(new LifecycleEventObserver() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.5
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                if (event == Lifecycle.Event.ON_DESTROY) {
-                    handler.removeCallbacks(runnable);
-                    lifecycleOwner.getLifecycle().removeObserver(this);
-                }
-            }
-        });
-        handler.postDelayed(runnable, 10000L);
-    }
-
-    private void scheduleViewAttach(final Fragment fragment, @NonNull final FrameLayout frameLayout) {
-        this.mFragmentManager.registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.3
-            @Override // androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
-            public void onFragmentViewCreated(@NonNull FragmentManager fragmentManager, @NonNull Fragment fragment2, @NonNull View view, @Nullable Bundle bundle) {
-                if (fragment2 == fragment) {
-                    fragmentManager.unregisterFragmentLifecycleCallbacks(this);
-                    FragmentStateAdapter.this.addViewToContainer(view, frameLayout);
-                }
-            }
-        }, false);
-    }
-
-    public void addViewToContainer(@NonNull View view, @NonNull FrameLayout frameLayout) {
-        if (frameLayout.getChildCount() > 1) {
-            throw new IllegalStateException("Design assumption violated.");
-        }
-        if (view.getParent() == frameLayout) {
-            return;
-        }
-        if (frameLayout.getChildCount() > 0) {
-            frameLayout.removeAllViews();
-        }
-        if (view.getParent() != null) {
-            ((ViewGroup) view.getParent()).removeView(view);
-        }
-        frameLayout.addView(view);
-    }
-
-    public boolean containsItem(long j) {
-        return j >= 0 && j < ((long) getPageSize());
-    }
-
-    @NonNull
-    public abstract Fragment createFragment(int i);
-
-    public void gcFragments() {
-        if (!this.mHasStaleFragments || shouldDelayFragmentTransactions()) {
-            return;
-        }
-        ArraySet arraySet = new ArraySet();
-        for (int i = 0; i < this.mFragments.size(); i++) {
-            long jKeyAt = this.mFragments.keyAt(i);
-            if (!containsItem(jKeyAt)) {
-                arraySet.add(Long.valueOf(jKeyAt));
-                this.mItemIdToViewHolder.remove(jKeyAt);
-            }
-        }
-        if (!this.mIsInGracePeriod) {
-            this.mHasStaleFragments = false;
-            for (int i2 = 0; i2 < this.mFragments.size(); i2++) {
-                long jKeyAt2 = this.mFragments.keyAt(i2);
-                if (!isFragmentViewBound(jKeyAt2)) {
-                    arraySet.add(Long.valueOf(jKeyAt2));
-                }
-            }
-        }
-        Iterator<E> it = arraySet.iterator();
-        while (it.hasNext()) {
-            removeFragment(((Long) it.next()).longValue());
-        }
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    @CallSuper
-    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        Preconditions.checkArgument(this.mFragmentMaxLifecycleEnforcer == null);
-        FragmentMaxLifecycleEnforcer fragmentMaxLifecycleEnforcer = new FragmentMaxLifecycleEnforcer();
-        this.mFragmentMaxLifecycleEnforcer = fragmentMaxLifecycleEnforcer;
-        fragmentMaxLifecycleEnforcer.register(recyclerView);
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    @CallSuper
-    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
-        this.mFragmentMaxLifecycleEnforcer.unregister(recyclerView);
-        this.mFragmentMaxLifecycleEnforcer = null;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public final boolean onFailedToRecycleView(@NonNull FragmentViewHolder fragmentViewHolder) {
-        return true;
-    }
-
-    public void placeFragmentInViewHolder(@NonNull final FragmentViewHolder fragmentViewHolder) {
-        Fragment fragment = this.mFragments.get(fragmentViewHolder.getItemId());
-        if (fragment == null) {
-            throw new IllegalStateException("Design assumption violated.");
-        }
-        FrameLayout container = fragmentViewHolder.getContainer();
-        View view = fragment.getView();
-        if (!fragment.isAdded() && view != null) {
-            throw new IllegalStateException("Design assumption violated.");
-        }
-        if (fragment.isAdded() && view == null) {
-            scheduleViewAttach(fragment, container);
-            return;
-        }
-        if (fragment.isAdded() && view.getParent() != null) {
-            if (view.getParent() != container) {
-                addViewToContainer(view, container);
-            }
-        } else {
-            if (fragment.isAdded()) {
-                addViewToContainer(view, container);
-                return;
-            }
-            if (shouldDelayFragmentTransactions()) {
-                if (this.mFragmentManager.isDestroyed()) {
-                    return;
-                }
-                this.mLifecycle.addObserver(new LifecycleEventObserver() { // from class: androidx.viewpager2.adapter.FragmentStateAdapter.2
-                    @Override // androidx.view.LifecycleEventObserver
-                    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                        if (FragmentStateAdapter.this.shouldDelayFragmentTransactions()) {
-                            return;
-                        }
-                        lifecycleOwner.getLifecycle().removeObserver(this);
-                        if (ViewCompat.isAttachedToWindow(fragmentViewHolder.getContainer())) {
-                            FragmentStateAdapter.this.placeFragmentInViewHolder(fragmentViewHolder);
-                        }
-                    }
-                });
-            } else {
-                scheduleViewAttach(fragment, container);
-                FragmentTransaction fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
-                StringBuilder sbM833U = C1643a.m833U("f");
-                sbM833U.append(fragmentViewHolder.getItemId());
-                fragmentTransactionBeginTransaction.add(fragment, sbM833U.toString()).setMaxLifecycle(fragment, Lifecycle.State.STARTED).commitNow();
-                this.mFragmentMaxLifecycleEnforcer.updateFragmentMaxLifecycle(false);
-            }
-        }
-    }
-
-    @Override // androidx.viewpager2.adapter.StatefulAdapter
-    public final void restoreState(@NonNull Parcelable parcelable) {
-        if (!this.mSavedStates.isEmpty() || !this.mFragments.isEmpty()) {
-            throw new IllegalStateException("Expected the adapter to be 'fresh' while restoring state.");
-        }
-        Bundle bundle = (Bundle) parcelable;
-        if (bundle.getClassLoader() == null) {
-            bundle.setClassLoader(getClass().getClassLoader());
-        }
-        for (String str : bundle.keySet()) {
-            if (isValidKey(str, KEY_PREFIX_FRAGMENT)) {
-                this.mFragments.put(parseIdFromKey(str, KEY_PREFIX_FRAGMENT), this.mFragmentManager.getFragment(bundle, str));
-            } else {
-                if (!isValidKey(str, KEY_PREFIX_STATE)) {
-                    throw new IllegalArgumentException(C1643a.m883w("Unexpected key in savedState: ", str));
-                }
-                long idFromKey = parseIdFromKey(str, KEY_PREFIX_STATE);
-                Fragment.SavedState savedState = (Fragment.SavedState) bundle.getParcelable(str);
-                if (containsItem(idFromKey)) {
-                    this.mSavedStates.put(idFromKey, savedState);
-                }
-            }
-        }
-        if (this.mFragments.isEmpty()) {
-            return;
-        }
-        this.mHasStaleFragments = true;
-        this.mIsInGracePeriod = true;
-        gcFragments();
-        scheduleGracePeriodEnd();
-    }
-
-    @Override // androidx.viewpager2.adapter.StatefulAdapter
-    @NonNull
-    public final Parcelable saveState() {
-        Bundle bundle = new Bundle(this.mSavedStates.size() + this.mFragments.size());
-        for (int i = 0; i < this.mFragments.size(); i++) {
-            long jKeyAt = this.mFragments.keyAt(i);
-            Fragment fragment = this.mFragments.get(jKeyAt);
-            if (fragment != null && fragment.isAdded()) {
-                this.mFragmentManager.putFragment(bundle, createKey(KEY_PREFIX_FRAGMENT, jKeyAt), fragment);
-            }
-        }
-        for (int i2 = 0; i2 < this.mSavedStates.size(); i2++) {
-            long jKeyAt2 = this.mSavedStates.keyAt(i2);
-            if (containsItem(jKeyAt2)) {
-                bundle.putParcelable(createKey(KEY_PREFIX_STATE, jKeyAt2), this.mSavedStates.get(jKeyAt2));
-            }
-        }
-        return bundle;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public final void setHasStableIds(boolean z2) {
-        throw new UnsupportedOperationException("Stable Ids are required for the adapter to function properly, and the adapter takes care of setting the flag.");
-    }
-
-    public boolean shouldDelayFragmentTransactions() {
-        return this.mFragmentManager.isStateSaved();
     }
 
     public FragmentStateAdapter(@NonNull Fragment fragment) {

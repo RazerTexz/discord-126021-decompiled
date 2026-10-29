@@ -41,15 +41,9 @@ public final class ContentDataSource extends AbstractC2705g {
     /* JADX INFO: renamed from: j */
     public boolean f20223j;
 
-    public static class ContentDataSourceException extends DataSourceException {
-        public ContentDataSourceException(@Nullable IOException iOException, int i) {
-            super(iOException, i);
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.upstream.ContentDataSource$a */
     @RequiresApi(31)
-    public static final class C10764a {
+    public final class C10764a {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static void m8934a(Bundle bundle) {
@@ -57,9 +51,56 @@ public final class ContentDataSource extends AbstractC2705g {
         }
     }
 
+    public class ContentDataSourceException extends DataSourceException {
+        public ContentDataSourceException(@Nullable IOException iOException, int i) {
+            super(iOException, i);
+        }
+    }
+
     public ContentDataSource(Context context) {
         super(false);
         this.f20218e = context.getContentResolver();
+    }
+
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0037 */
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0055 */
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    public void close() throws ContentDataSourceException {
+        this.f20219f = null;
+        try {
+            FileInputStream fileInputStream = this.f20221h;
+            if (fileInputStream != null) {
+                fileInputStream.close();
+            }
+            this.f20221h = null;
+            try {
+                try {
+                    AssetFileDescriptor assetFileDescriptor = this.f20220g;
+                    if (assetFileDescriptor != null) {
+                        assetFileDescriptor.close();
+                    }
+                    this.f20220g = null;
+                    if (this.f20223j) {
+                        this.f20223j = false;
+                        m2849q();
+                    }
+                } catch (IOException e) {
+                    throw new ContentDataSourceException(e, 2000);
+                }
+            } catch (Throwable th) {
+                this.f20220g = null;
+                if (this.f20223j) {
+                    this.f20223j = false;
+                    m2849q();
+                }
+                throw th;
+            }
+        } catch (IOException e2) {
+            throw new ContentDataSourceException(e2, 2000);
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
@@ -133,47 +174,6 @@ public final class ContentDataSource extends AbstractC2705g {
             throw e;
         } catch (IOException e2) {
             throw new ContentDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
-        }
-    }
-
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0037 */
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0055 */
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public void close() throws ContentDataSourceException {
-        this.f20219f = null;
-        try {
-            FileInputStream fileInputStream = this.f20221h;
-            if (fileInputStream != null) {
-                fileInputStream.close();
-            }
-            this.f20221h = null;
-            try {
-                try {
-                    AssetFileDescriptor assetFileDescriptor = this.f20220g;
-                    if (assetFileDescriptor != null) {
-                        assetFileDescriptor.close();
-                    }
-                    this.f20220g = null;
-                    if (this.f20223j) {
-                        this.f20223j = false;
-                        m2849q();
-                    }
-                } catch (IOException e) {
-                    throw new ContentDataSourceException(e, 2000);
-                }
-            } catch (Throwable th) {
-                this.f20220g = null;
-                if (this.f20223j) {
-                    this.f20223j = false;
-                    m2849q();
-                }
-                throw th;
-            }
-        } catch (IOException e2) {
-            throw new ContentDataSourceException(e2, 2000);
         }
     }
 

@@ -78,7 +78,7 @@ public final class C5080a extends Drawable implements Animatable2Compat {
 
     /* JADX INFO: renamed from: b.l.a.a$a */
     /* JADX INFO: compiled from: ApngDrawable.kt */
-    public static final class a extends Drawable.ConstantState {
+    public final class a extends Drawable.ConstantState {
 
         /* JADX INFO: renamed from: a */
         public final Apng f13633a;
@@ -97,7 +97,7 @@ public final class C5080a extends Drawable implements Animatable2Compat {
 
         /* JADX INFO: renamed from: b.l.a.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: ApngDrawable.kt */
-        public static final class C13240a extends AbstractC12240o implements Function0<Long> {
+        public final class C13240a extends AbstractC12240o implements Function0<Long> {
 
             /* JADX INFO: renamed from: j */
             public static final C13240a f13638j = new C13240a();
@@ -168,63 +168,9 @@ public final class C5080a extends Drawable implements Animatable2Compat {
         bounds.set(0, 0, aVar3.f13634b, aVar3.f13635c);
     }
 
-    @WorkerThread
-    /* JADX INFO: renamed from: a */
-    public static final C5080a m7121a(InputStream inputStream, @IntRange(from = 1, m76to = 2147483647L) Integer num, @IntRange(from = 1, m76to = 2147483647L) Integer num2) throws ApngException {
-        C12238m.checkNotNullParameter(inputStream, "stream");
-        boolean z2 = true;
-        if (!(!((num == null) ^ (num2 == null)))) {
-            throw new IllegalArgumentException(("Can not specify only one side of size. width = " + num + ", height = " + num2).toString());
-        }
-        if (!(num == null || num.intValue() > 0)) {
-            throw new IllegalArgumentException(("Can not specify 0 or negative as width value. width = " + num).toString());
-        }
-        if (num2 != null && num2.intValue() <= 0) {
-            z2 = false;
-        }
-        if (z2) {
-            int i = (num == null && num2 == null) ? Opcodes.IF_ICMPNE : 0;
-            Apng apngDecode = Apng.INSTANCE.decode(inputStream);
-            return new C5080a(new a(apngDecode, num != null ? num.intValue() : apngDecode.getWidth(), num2 != null ? num2.intValue() : apngDecode.getHeight(), i, a.C13240a.f13638j));
-        }
-        throw new IllegalArgumentException(("Can not specify 0 or negative as height value. height = " + num2).toString());
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final boolean m7122b() {
-        return this.f13622n != 0 && m7124d() > this.f13622n - 1;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final int m7123c() {
-        int i;
-        int i2 = 0;
-        long j = (this.f13630v % ((long) this.f13618j)) + ((long) (m7122b() ? this.f13618j : 0));
-        int i3 = this.f13619k - 1;
-        while (true) {
-            i = (i2 + i3) / 2;
-            int[] iArr = this.f13626r;
-            int i4 = i + 1;
-            if (iArr.length > i4 && j >= iArr[i4]) {
-                i2 = i4;
-            } else {
-                if (i2 == i3 || j >= iArr[i]) {
-                    break;
-                }
-                i3 = i;
-            }
-        }
-        return i;
-    }
-
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
     public void clearAnimationCallbacks() {
         this.f13624p.clear();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final int m7124d() {
-        return (int) (this.f13630v / ((long) this.f13618j));
     }
 
     /* JADX WARN: Code duplicated, block: B:29:0x006f  */
@@ -332,6 +278,60 @@ public final class C5080a extends Drawable implements Animatable2Compat {
     @Override // android.graphics.drawable.Animatable
     public boolean isRunning() {
         return this.f13629u;
+    }
+
+    @WorkerThread
+    /* JADX INFO: renamed from: a */
+    public static final C5080a m7121a(InputStream inputStream, @IntRange(from = 1, m76to = 2147483647L) Integer num, @IntRange(from = 1, m76to = 2147483647L) Integer num2) throws ApngException {
+        C12238m.checkNotNullParameter(inputStream, "stream");
+        boolean z2 = true;
+        if (!(!((num == null) ^ (num2 == null)))) {
+            throw new IllegalArgumentException(("Can not specify only one side of size. width = " + num + ", height = " + num2).toString());
+        }
+        if (!(num == null || num.intValue() > 0)) {
+            throw new IllegalArgumentException(("Can not specify 0 or negative as width value. width = " + num).toString());
+        }
+        if (num2 != null && num2.intValue() <= 0) {
+            z2 = false;
+        }
+        if (z2) {
+            int i = (num == null && num2 == null) ? Opcodes.IF_ICMPNE : 0;
+            Apng apngDecode = Apng.INSTANCE.decode(inputStream);
+            return new C5080a(new a(apngDecode, num != null ? num.intValue() : apngDecode.getWidth(), num2 != null ? num2.intValue() : apngDecode.getHeight(), i, a.C13240a.f13638j));
+        }
+        throw new IllegalArgumentException(("Can not specify 0 or negative as height value. height = " + num2).toString());
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final boolean m7122b() {
+        return this.f13622n != 0 && m7124d() > this.f13622n - 1;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final int m7123c() {
+        int i;
+        int i2 = 0;
+        long j = (this.f13630v % ((long) this.f13618j)) + ((long) (m7122b() ? this.f13618j : 0));
+        int i3 = this.f13619k - 1;
+        while (true) {
+            i = (i2 + i3) / 2;
+            int[] iArr = this.f13626r;
+            int i4 = i + 1;
+            if (iArr.length > i4 && j >= iArr[i4]) {
+                i2 = i4;
+            } else {
+                if (i2 == i3 || j >= iArr[i]) {
+                    break;
+                }
+                i3 = i;
+            }
+        }
+        return i;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final int m7124d() {
+        return (int) (this.f13630v / ((long) this.f13618j));
     }
 
     @Override // android.graphics.drawable.Drawable

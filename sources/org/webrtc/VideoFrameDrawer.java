@@ -10,19 +10,19 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoFrameDrawer {
     public static final String TAG = "VideoFrameDrawer";
-    public static final float[] srcPoints = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
 
     @Nullable
     private VideoFrame lastI420Frame;
     private int renderHeight;
     private int renderWidth;
+    public static final float[] srcPoints = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
     private final float[] dstPoints = new float[6];
     private final Point renderSize = new Point();
     private final YuvUploader yuvUploader = new YuvUploader(null);
     private final Matrix renderMatrix = new Matrix();
 
     /* JADX INFO: renamed from: org.webrtc.VideoFrameDrawer$1 */
-    public static /* synthetic */ class C129961 {
+    public /* synthetic */ class C129961 {
         public static final /* synthetic */ int[] $SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type;
 
         static {
@@ -40,7 +40,7 @@ public class VideoFrameDrawer {
         }
     }
 
-    public static class YuvUploader {
+    public class YuvUploader {
 
         @Nullable
         private ByteBuffer copyBuffer;
@@ -137,6 +137,10 @@ public class VideoFrameDrawer {
         return (int) Math.round(Math.hypot(f3 - f, f4 - f2));
     }
 
+    public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer) {
+        drawFrame(videoFrame, glDrawer, null);
+    }
+
     public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i, int i2, int i3, int i4, int i5, int i6) {
         Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
         matrix2.preConcat(matrix);
@@ -150,10 +154,6 @@ public class VideoFrameDrawer {
             }
             glDrawer.drawRgb(textureBuffer.getTextureId(), fArrConvertMatrixFromAndroidGraphicsMatrix, i, i2, i3, i4, i5, i6);
         }
-    }
-
-    public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer) {
-        drawFrame(videoFrame, glDrawer, null);
     }
 
     public VideoFrame.Buffer prepareBufferForViewportSize(VideoFrame.Buffer buffer, int i, int i2) {

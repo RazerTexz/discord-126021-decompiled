@@ -25,7 +25,7 @@ public final class SimpleMembersAdapter extends MGRecyclerAdapterSimple<MemberIt
     private Function1<? super User, Unit> onUserClickedListener;
 
     /* JADX INFO: compiled from: SimpleMembersAdapter.kt */
-    public static final class MemberAdapterItem extends MGRecyclerViewHolder<SimpleMembersAdapter, MemberItem> {
+    public final class MemberAdapterItem extends MGRecyclerViewHolder<SimpleMembersAdapter, MemberItem> {
         private final SimpleMemberListItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -64,7 +64,7 @@ public final class SimpleMembersAdapter extends MGRecyclerAdapterSimple<MemberIt
     }
 
     /* JADX INFO: compiled from: SimpleMembersAdapter.kt */
-    public static final /* data */ class MemberItem implements MGRecyclerDataPayload {
+    public final /* data */ class MemberItem implements MGRecyclerDataPayload {
         public static final int TYPE_MEMBER = 0;
         private final GuildMember guildMember;
         private final String key;
@@ -88,16 +88,6 @@ public final class SimpleMembersAdapter extends MGRecyclerAdapterSimple<MemberIt
             return memberItem.copy(user, guildMember);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final User getUser() {
-            return this.user;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final GuildMember getGuildMember() {
-            return this.guildMember;
-        }
-
         public final MemberItem copy(User user, GuildMember guildMember) {
             C12238m.checkNotNullParameter(user, "user");
             return new MemberItem(user, guildMember);
@@ -114,6 +104,11 @@ public final class SimpleMembersAdapter extends MGRecyclerAdapterSimple<MemberIt
             return C12238m.areEqual(this.user, memberItem.user) && C12238m.areEqual(this.guildMember, memberItem.guildMember);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final GuildMember getGuildMember() {
+            return this.guildMember;
+        }
+
         public final GuildMember getGuildMember() {
             return this.guildMember;
         }
@@ -126,6 +121,11 @@ public final class SimpleMembersAdapter extends MGRecyclerAdapterSimple<MemberIt
         @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
         public int getType() {
             return this.type;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
         }
 
         public final User getUser() {

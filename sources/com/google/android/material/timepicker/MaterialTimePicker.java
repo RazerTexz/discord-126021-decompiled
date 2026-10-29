@@ -72,7 +72,7 @@ public final class MaterialTimePicker extends DialogFragment {
     private int titleResId = 0;
     private int inputMode = 0;
 
-    public static final class Builder {
+    public final class Builder {
         private int inputMode;
         private CharSequence titleText;
         private TimeModel time = new TimeModel(0, 0, 10, 0);
@@ -181,6 +181,38 @@ public final class MaterialTimePicker extends DialogFragment {
         }
     }
 
+    public boolean addOnCancelListener(@NonNull DialogInterface.OnCancelListener onCancelListener) {
+        return this.cancelListeners.add(onCancelListener);
+    }
+
+    public boolean addOnDismissListener(@NonNull DialogInterface.OnDismissListener onDismissListener) {
+        return this.dismissListeners.add(onDismissListener);
+    }
+
+    public boolean addOnNegativeButtonClickListener(@NonNull View.OnClickListener onClickListener) {
+        return this.negativeButtonListeners.add(onClickListener);
+    }
+
+    public boolean addOnPositiveButtonClickListener(@NonNull View.OnClickListener onClickListener) {
+        return this.positiveButtonListeners.add(onClickListener);
+    }
+
+    public void clearOnCancelListeners() {
+        this.cancelListeners.clear();
+    }
+
+    public void clearOnDismissListeners() {
+        this.dismissListeners.clear();
+    }
+
+    public void clearOnNegativeButtonClickListeners() {
+        this.negativeButtonListeners.clear();
+    }
+
+    public void clearOnPositiveButtonClickListeners() {
+        this.positiveButtonListeners.clear();
+    }
+
     private Pair<Integer, Integer> dataForMode(int i) {
         if (i == 0) {
             return new Pair<>(Integer.valueOf(this.keyboardIcon), Integer.valueOf(C10817R.string.material_timepicker_text_input_mode_description));
@@ -189,6 +221,25 @@ public final class MaterialTimePicker extends DialogFragment {
             return new Pair<>(Integer.valueOf(this.clockIcon), Integer.valueOf(C10817R.string.material_timepicker_clock_mode_description));
         }
         throw new IllegalArgumentException(C1643a.m871q("no icon for mode: ", i));
+    }
+
+    @IntRange(from = 0, m76to = 23)
+    public int getHour() {
+        return this.time.f21223m % 24;
+    }
+
+    public int getInputMode() {
+        return this.inputMode;
+    }
+
+    @IntRange(from = 0, m76to = 60)
+    public int getMinute() {
+        return this.time.f21224n;
+    }
+
+    @Nullable
+    public C4451f getTimePickerClockPresenter() {
+        return this.timePickerClockPresenter;
     }
 
     private InterfaceC4452g initializeOrRetrieveActivePresenterForMode(int i) {
@@ -223,85 +274,6 @@ public final class MaterialTimePicker extends DialogFragment {
         }
         materialTimePicker.setArguments(bundle);
         return materialTimePicker;
-    }
-
-    private void restoreState(@Nullable Bundle bundle) {
-        if (bundle == null) {
-            return;
-        }
-        TimeModel timeModel = (TimeModel) bundle.getParcelable(TIME_MODEL_EXTRA);
-        this.time = timeModel;
-        if (timeModel == null) {
-            this.time = new TimeModel(0, 0, 10, 0);
-        }
-        this.inputMode = bundle.getInt(INPUT_MODE_EXTRA, 0);
-        this.titleResId = bundle.getInt(TITLE_RES_EXTRA, 0);
-        this.titleText = bundle.getString(TITLE_TEXT_EXTRA);
-    }
-
-    private void updateInputMode(MaterialButton materialButton) {
-        InterfaceC4452g interfaceC4452g = this.activePresenter;
-        if (interfaceC4452g != null) {
-            interfaceC4452g.mo6173c();
-        }
-        InterfaceC4452g interfaceC4452gInitializeOrRetrieveActivePresenterForMode = initializeOrRetrieveActivePresenterForMode(this.inputMode);
-        this.activePresenter = interfaceC4452gInitializeOrRetrieveActivePresenterForMode;
-        interfaceC4452gInitializeOrRetrieveActivePresenterForMode.show();
-        this.activePresenter.mo6171a();
-        Pair<Integer, Integer> pairDataForMode = dataForMode(this.inputMode);
-        materialButton.setIconResource(((Integer) pairDataForMode.first).intValue());
-        materialButton.setContentDescription(getResources().getString(((Integer) pairDataForMode.second).intValue()));
-    }
-
-    public boolean addOnCancelListener(@NonNull DialogInterface.OnCancelListener onCancelListener) {
-        return this.cancelListeners.add(onCancelListener);
-    }
-
-    public boolean addOnDismissListener(@NonNull DialogInterface.OnDismissListener onDismissListener) {
-        return this.dismissListeners.add(onDismissListener);
-    }
-
-    public boolean addOnNegativeButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.negativeButtonListeners.add(onClickListener);
-    }
-
-    public boolean addOnPositiveButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.positiveButtonListeners.add(onClickListener);
-    }
-
-    public void clearOnCancelListeners() {
-        this.cancelListeners.clear();
-    }
-
-    public void clearOnDismissListeners() {
-        this.dismissListeners.clear();
-    }
-
-    public void clearOnNegativeButtonClickListeners() {
-        this.negativeButtonListeners.clear();
-    }
-
-    public void clearOnPositiveButtonClickListeners() {
-        this.positiveButtonListeners.clear();
-    }
-
-    @IntRange(from = 0, m76to = 23)
-    public int getHour() {
-        return this.time.f21223m % 24;
-    }
-
-    public int getInputMode() {
-        return this.inputMode;
-    }
-
-    @IntRange(from = 0, m76to = 60)
-    public int getMinute() {
-        return this.time.f21224n;
-    }
-
-    @Nullable
-    public C4451f getTimePickerClockPresenter() {
-        return this.timePickerClockPresenter;
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
@@ -405,5 +377,33 @@ public final class MaterialTimePicker extends DialogFragment {
 
     public boolean removeOnPositiveButtonClickListener(@NonNull View.OnClickListener onClickListener) {
         return this.positiveButtonListeners.remove(onClickListener);
+    }
+
+    private void restoreState(@Nullable Bundle bundle) {
+        if (bundle == null) {
+            return;
+        }
+        TimeModel timeModel = (TimeModel) bundle.getParcelable(TIME_MODEL_EXTRA);
+        this.time = timeModel;
+        if (timeModel == null) {
+            this.time = new TimeModel(0, 0, 10, 0);
+        }
+        this.inputMode = bundle.getInt(INPUT_MODE_EXTRA, 0);
+        this.titleResId = bundle.getInt(TITLE_RES_EXTRA, 0);
+        this.titleText = bundle.getString(TITLE_TEXT_EXTRA);
+    }
+
+    private void updateInputMode(MaterialButton materialButton) {
+        InterfaceC4452g interfaceC4452g = this.activePresenter;
+        if (interfaceC4452g != null) {
+            interfaceC4452g.mo6173c();
+        }
+        InterfaceC4452g interfaceC4452gInitializeOrRetrieveActivePresenterForMode = initializeOrRetrieveActivePresenterForMode(this.inputMode);
+        this.activePresenter = interfaceC4452gInitializeOrRetrieveActivePresenterForMode;
+        interfaceC4452gInitializeOrRetrieveActivePresenterForMode.show();
+        this.activePresenter.mo6171a();
+        Pair<Integer, Integer> pairDataForMode = dataForMode(this.inputMode);
+        materialButton.setIconResource(((Integer) pairDataForMode.first).intValue());
+        materialButton.setContentDescription(getResources().getString(((Integer) pairDataForMode.second).intValue()));
     }
 }

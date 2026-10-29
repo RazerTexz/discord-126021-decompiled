@@ -9,41 +9,35 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCallReportProblem.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCallReportProblem implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final CharSequence audioInputMode = null;
+    private final Float audioInputSensitivity = null;
+    private final CharSequence audioMode = null;
+    private final CharSequence audioOutputMode = null;
+    private final Boolean automaticAudioInputSensitivityEnabled = null;
+    private final Boolean automaticGainControlEnabled = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long guildId = null;
-    private final CharSequence rtcConnectionId = null;
     private final Long duration = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
-    private final CharSequence mediaSessionId = null;
-    private final CharSequence rating = null;
+    private final Boolean echoCancellationEnabled = null;
     private final CharSequence feedback = null;
+    private final Long guildId = null;
+    private final CharSequence inputDeviceName = null;
+    private final CharSequence mediaSessionId = null;
+    private final Boolean noiseCancellationEnabled = null;
+    private final Boolean noiseSuppressionEnabled = null;
+    private final CharSequence outputDeviceName = null;
+    private final CharSequence rating = null;
     private final Long reasonCode = null;
     private final CharSequence reasonDescription = null;
-    private final CharSequence audioInputMode = null;
-    private final Boolean automaticAudioInputSensitivityEnabled = null;
-    private final Float audioInputSensitivity = null;
-    private final Boolean echoCancellationEnabled = null;
-    private final Boolean noiseSuppressionEnabled = null;
-    private final Boolean noiseCancellationEnabled = null;
-    private final Boolean automaticGainControlEnabled = null;
-    private final CharSequence audioOutputMode = null;
-    private final Float voiceOutputVolume = null;
-    private final Boolean videoHardwareScalingEnabled = null;
-    private final CharSequence audioMode = null;
-    private final CharSequence inputDeviceName = null;
-    private final CharSequence outputDeviceName = null;
+    private final CharSequence rtcConnectionId = null;
+    private TrackBase trackBase;
     private final CharSequence videoDeviceName = null;
+    private final Boolean videoEnabled = null;
+    private final Boolean videoHardwareScalingEnabled = null;
+    private final Long videoStreamCount = null;
+    private final Float voiceOutputVolume = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "call_report_problem";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -54,6 +48,12 @@ public final /* data */ class TrackCallReportProblem implements AnalyticsSchema,
         }
         TrackCallReportProblem trackCallReportProblem = (TrackCallReportProblem) other;
         return C12238m.areEqual(this.channelId, trackCallReportProblem.channelId) && C12238m.areEqual(this.channelType, trackCallReportProblem.channelType) && C12238m.areEqual(this.guildId, trackCallReportProblem.guildId) && C12238m.areEqual(this.rtcConnectionId, trackCallReportProblem.rtcConnectionId) && C12238m.areEqual(this.duration, trackCallReportProblem.duration) && C12238m.areEqual(this.voiceStateCount, trackCallReportProblem.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackCallReportProblem.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackCallReportProblem.videoEnabled) && C12238m.areEqual(this.mediaSessionId, trackCallReportProblem.mediaSessionId) && C12238m.areEqual(this.rating, trackCallReportProblem.rating) && C12238m.areEqual(this.feedback, trackCallReportProblem.feedback) && C12238m.areEqual(this.reasonCode, trackCallReportProblem.reasonCode) && C12238m.areEqual(this.reasonDescription, trackCallReportProblem.reasonDescription) && C12238m.areEqual(this.audioInputMode, trackCallReportProblem.audioInputMode) && C12238m.areEqual(this.automaticAudioInputSensitivityEnabled, trackCallReportProblem.automaticAudioInputSensitivityEnabled) && C12238m.areEqual(this.audioInputSensitivity, trackCallReportProblem.audioInputSensitivity) && C12238m.areEqual(this.echoCancellationEnabled, trackCallReportProblem.echoCancellationEnabled) && C12238m.areEqual(this.noiseSuppressionEnabled, trackCallReportProblem.noiseSuppressionEnabled) && C12238m.areEqual(this.noiseCancellationEnabled, trackCallReportProblem.noiseCancellationEnabled) && C12238m.areEqual(this.automaticGainControlEnabled, trackCallReportProblem.automaticGainControlEnabled) && C12238m.areEqual(this.audioOutputMode, trackCallReportProblem.audioOutputMode) && C12238m.areEqual(this.voiceOutputVolume, trackCallReportProblem.voiceOutputVolume) && C12238m.areEqual(this.videoHardwareScalingEnabled, trackCallReportProblem.videoHardwareScalingEnabled) && C12238m.areEqual(this.audioMode, trackCallReportProblem.audioMode) && C12238m.areEqual(this.inputDeviceName, trackCallReportProblem.inputDeviceName) && C12238m.areEqual(this.outputDeviceName, trackCallReportProblem.outputDeviceName) && C12238m.areEqual(this.videoDeviceName, trackCallReportProblem.videoDeviceName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

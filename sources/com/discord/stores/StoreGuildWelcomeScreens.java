@@ -32,99 +32,18 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
     private final HashMap<Long, State> guildWelcomeScreensState;
     private final ObservationDeck observationDeck;
 
-    /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-    public static abstract class State {
-
-        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-        public static final class Failure extends State {
-            public static final Failure INSTANCE = new Failure();
-
-            private Failure() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-        public static final class Fetching extends State {
-            public static final Fetching INSTANCE = new Fetching();
-
-            private Fetching() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-        public static final /* data */ class Loaded extends State {
-            private final GuildWelcomeScreen data;
-
-            public Loaded(GuildWelcomeScreen guildWelcomeScreen) {
-                super(null);
-                this.data = guildWelcomeScreen;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, GuildWelcomeScreen guildWelcomeScreen, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    guildWelcomeScreen = loaded.data;
-                }
-                return loaded.copy(guildWelcomeScreen);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildWelcomeScreen getData() {
-                return this.data;
-            }
-
-            public final Loaded copy(GuildWelcomeScreen data) {
-                return new Loaded(data);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.data, ((Loaded) other).data);
-                }
-                return true;
-            }
-
-            public final GuildWelcomeScreen getData() {
-                return this.data;
-            }
-
-            public int hashCode() {
-                GuildWelcomeScreen guildWelcomeScreen = this.data;
-                if (guildWelcomeScreen != null) {
-                    return guildWelcomeScreen.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(data=");
-                sbM833U.append(this.data);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        private State() {
-        }
-
-        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$fetchIfNonexisting$1 */
     /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-    public static final class C60911 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60911 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$fetchIfNonexisting$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<GuildWelcomeScreen, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<GuildWelcomeScreen, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$fetchIfNonexisting$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-            public static final class C132591 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132591 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ GuildWelcomeScreen $guildWelcomeScreen;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -165,11 +84,11 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$fetchIfNonexisting$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$fetchIfNonexisting$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -229,7 +148,7 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$markWelcomeScreenShown$1 */
     /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-    public static final class C60921 extends AbstractC12240o implements Function0<Unit> {
+    public final class C60921 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -256,7 +175,7 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildWelcomeScreens$observeGuildWelcomeScreen$1 */
     /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
-    public static final class C60931 extends AbstractC12240o implements Function0<State> {
+    public final class C60931 extends AbstractC12240o implements Function0<State> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -272,8 +191,101 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
+        public final class Failure extends State {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
+        public final class Fetching extends State {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreGuildWelcomeScreens.kt */
+        public final /* data */ class Loaded extends State {
+            private final GuildWelcomeScreen data;
+
+            public Loaded(GuildWelcomeScreen guildWelcomeScreen) {
+                super(null);
+                this.data = guildWelcomeScreen;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, GuildWelcomeScreen guildWelcomeScreen, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    guildWelcomeScreen = loaded.data;
+                }
+                return loaded.copy(guildWelcomeScreen);
+            }
+
+            public final Loaded copy(GuildWelcomeScreen data) {
+                return new Loaded(data);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.data, ((Loaded) other).data);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final GuildWelcomeScreen getData() {
+                return this.data;
+            }
+
+            public final GuildWelcomeScreen getData() {
+                return this.data;
+            }
+
+            public int hashCode() {
+                GuildWelcomeScreen guildWelcomeScreen = this.data;
+                if (guildWelcomeScreen != null) {
+                    return guildWelcomeScreen.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(data=");
+                sbM833U.append(this.data);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        private State() {
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ StoreGuildWelcomeScreens(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
+    }
+
+    public final void fetchIfNonexisting(long guildId) {
+        this.dispatcher.schedule(new C60911(guildId));
+    }
+
+    public final State getGuildWelcomeScreen(long guildId) {
+        return this.guildWelcomeScreensSnapshot.get(Long.valueOf(guildId));
+    }
+
+    public final void handleGuildJoined(long guildId, GuildWelcomeScreen guildWelcomeScreen) {
+        handleGuildWelcomeScreen(guildId, guildWelcomeScreen);
     }
 
     @StoreThread
@@ -292,18 +304,6 @@ public final class StoreGuildWelcomeScreens extends StoreV2 {
     private final void handleGuildWelcomeScreenFetchStart(long guildId) {
         this.guildWelcomeScreensState.put(Long.valueOf(guildId), State.Fetching.INSTANCE);
         markChanged();
-    }
-
-    public final void fetchIfNonexisting(long guildId) {
-        this.dispatcher.schedule(new C60911(guildId));
-    }
-
-    public final State getGuildWelcomeScreen(long guildId) {
-        return this.guildWelcomeScreensSnapshot.get(Long.valueOf(guildId));
-    }
-
-    public final void handleGuildJoined(long guildId, GuildWelcomeScreen guildWelcomeScreen) {
-        handleGuildWelcomeScreen(guildId, guildWelcomeScreen);
     }
 
     public final boolean hasWelcomeScreenBeenSeen(long guildId) {

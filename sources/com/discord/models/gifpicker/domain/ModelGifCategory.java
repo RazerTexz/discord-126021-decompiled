@@ -27,16 +27,6 @@ public final /* data */ class ModelGifCategory implements Serializable {
         return modelGifCategory.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getCategoryName() {
-        return this.categoryName;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getGifPreviewUrl() {
-        return this.gifPreviewUrl;
-    }
-
     public final ModelGifCategory copy(String categoryName, String gifPreviewUrl) {
         C12238m.checkNotNullParameter(categoryName, "categoryName");
         C12238m.checkNotNullParameter(gifPreviewUrl, "gifPreviewUrl");
@@ -54,8 +44,18 @@ public final /* data */ class ModelGifCategory implements Serializable {
         return C12238m.areEqual(this.categoryName, modelGifCategory.categoryName) && C12238m.areEqual(this.gifPreviewUrl, modelGifCategory.gifPreviewUrl);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getCategoryName() {
         return this.categoryName;
+    }
+
+    public final String getCategoryName() {
+        return this.categoryName;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getGifPreviewUrl() {
+        return this.gifPreviewUrl;
     }
 
     public final String getGifPreviewUrl() {

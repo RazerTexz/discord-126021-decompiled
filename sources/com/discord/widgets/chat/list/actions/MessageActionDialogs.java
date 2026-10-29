@@ -29,7 +29,7 @@ public final class MessageActionDialogs {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.actions.MessageActionDialogs$showDeleteMessageConfirmation$1 */
     /* JADX INFO: compiled from: MessageActionDialogs.kt */
-    public static final class C79581 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C79581 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Message $message;
         public final /* synthetic */ Function0 $onSuccess;
 
@@ -56,7 +56,7 @@ public final class MessageActionDialogs {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.actions.MessageActionDialogs$showPinMessageConfirmation$1 */
     /* JADX INFO: compiled from: MessageActionDialogs.kt */
-    public static final class C79591 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C79591 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ AppComponent $appComponent;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ boolean $isPinned;
@@ -65,7 +65,7 @@ public final class MessageActionDialogs {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.actions.MessageActionDialogs$showPinMessageConfirmation$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: MessageActionDialogs.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
             public AnonymousClass1() {
                 super(1);
             }

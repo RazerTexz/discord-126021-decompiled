@@ -36,13 +36,12 @@ import p658rx.functions.Action2;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEmojisEdit extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsEmojisEdit.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEmojisEditBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private static final Regex EMOJI_RE = new Regex("[^A-Za-z0-9_]");
     private static final String EXTRA_EMOJI_ALIAS = "EXTRA_EMOJI_ALIAS";
     private static final String EXTRA_EMOJI_ID = "EXTRA_EMOJI_ID";
     private static final String EXTRA_GUILD_ID = "EXTRA_GUILD_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -50,9 +49,10 @@ public final class WidgetServerSettingsEmojisEdit extends AppFragment {
     private String emojiName;
     private long guildId;
     private final StatefulViews state;
+    private static final Regex EMOJI_RE = new Regex("[^A-Za-z0-9_]");
 
     /* JADX INFO: compiled from: WidgetServerSettingsEmojisEdit.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -148,14 +148,6 @@ public final class WidgetServerSettingsEmojisEdit extends AppFragment {
         C0876m.m172j(this, getString(C5419R.string.save_media_success_mobile), 0, 4);
     }
 
-    private final String sanitizeEmojiName(String name) {
-        String strReplace = EMOJI_RE.replace(name, "");
-        while (strReplace.length() < 2) {
-            strReplace = strReplace + '_';
-        }
-        return strReplace;
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -195,5 +187,13 @@ public final class WidgetServerSettingsEmojisEdit extends AppFragment {
         TextInputLayout textInputLayout4 = getBinding().f17641b;
         C12238m.checkNotNullExpressionValue(textInputLayout4, "binding.serverSettingsEmojisEditAlias");
         showKeyboard(textInputLayout4);
+    }
+
+    private final String sanitizeEmojiName(String name) {
+        String strReplace = EMOJI_RE.replace(name, "");
+        while (strReplace.length() < 2) {
+            strReplace = strReplace + '_';
+        }
+        return strReplace;
     }
 }

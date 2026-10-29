@@ -7,6 +7,8 @@ import com.facebook.common.references.CloseableReference;
 /* JADX INFO: compiled from: BitmapFrameCache.java */
 /* JADX INFO: loaded from: classes.dex */
 public interface InterfaceC1806b {
+    void clear();
+
     /* JADX INFO: renamed from: a */
     CloseableReference<Bitmap> mo1151a(int i, int i2, int i3);
 
@@ -15,8 +17,6 @@ public interface InterfaceC1806b {
 
     /* JADX INFO: renamed from: c */
     boolean mo1153c(int i);
-
-    void clear();
 
     /* JADX INFO: renamed from: d */
     CloseableReference<Bitmap> mo1154d(int i);

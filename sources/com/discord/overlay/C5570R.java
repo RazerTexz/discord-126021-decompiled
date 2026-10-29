@@ -5,7 +5,7 @@ package com.discord.overlay;
 public final class C5570R {
 
     /* JADX INFO: renamed from: com.discord.overlay.R$a */
-    public static final class a {
+    public final class a {
         public static final int design_appbar_state_list_animator = 2130837504;
         public static final int design_fab_hide_motion_spec = 2130837505;
         public static final int design_fab_show_motion_spec = 2130837506;
@@ -42,7 +42,7 @@ public final class C5570R {
     }
 
     /* JADX INFO: renamed from: com.discord.overlay.R$b */
-    public static final class b {
+    public final class b {
         public static final int abc_action_bar_content_inset_material = 2131165184;
         public static final int abc_action_bar_content_inset_with_nav = 2131165185;
         public static final int abc_action_bar_default_height_material = 2131165186;
@@ -448,7 +448,7 @@ public final class C5570R {
     }
 
     /* JADX INFO: renamed from: com.discord.overlay.R$c */
-    public static final class c {
+    public final class c {
         public static final int abc_ab_share_pack_mtrl_alpha = 2131230859;
         public static final int abc_action_bar_item_background_material = 2131230860;
         public static final int abc_btn_borderless_material = 2131230861;
@@ -625,7 +625,7 @@ public final class C5570R {
     }
 
     /* JADX INFO: renamed from: com.discord.overlay.R$d */
-    public static final class d {
+    public final class d {
         public static final int BOTTOM_END = 2131361793;
         public static final int BOTTOM_START = 2131361794;
         public static final int NO_DEBUG = 2131361798;
@@ -1036,7 +1036,7 @@ public final class C5570R {
     }
 
     /* JADX INFO: renamed from: com.discord.overlay.R$e */
-    public static final class e {
+    public final class e {
         public static final int abc_action_bar_title_item = 2131558400;
         public static final int abc_action_bar_up_container = 2131558401;
         public static final int abc_action_menu_item_layout = 2131558402;

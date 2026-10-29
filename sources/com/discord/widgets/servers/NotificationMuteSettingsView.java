@@ -24,7 +24,7 @@ public final class NotificationMuteSettingsView extends LinearLayout {
     private final NotificationMuteSettingsViewBinding binding;
 
     /* JADX INFO: compiled from: NotificationMuteSettingsView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isMuted;
         private final CharSequence muteDescriptionText;
         private final String muteEndTime;
@@ -75,41 +75,6 @@ public final class NotificationMuteSettingsView extends LinearLayout {
             return viewState.copy(z2, str2, charSequence5, charSequence6, charSequence7, i3, charSequence4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getMuteEndTime() {
-            return this.muteEndTime;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final CharSequence getRawMuteText() {
-            return this.rawMuteText;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final CharSequence getRawUnmuteText() {
-            return this.rawUnmuteText;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final CharSequence getRawMutedStatusText() {
-            return this.rawMutedStatusText;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final int getRawMutedUntilStatusResId() {
-            return this.rawMutedUntilStatusResId;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final CharSequence getMuteDescriptionText() {
-            return this.muteDescriptionText;
-        }
-
         public final ViewState copy(boolean isMuted, String muteEndTime, CharSequence rawMuteText, CharSequence rawUnmuteText, CharSequence rawMutedStatusText, @StringRes int rawMutedUntilStatusResId, CharSequence muteDescriptionText) {
             C12238m.checkNotNullParameter(rawMuteText, "rawMuteText");
             C12238m.checkNotNullParameter(rawMutedStatusText, "rawMutedStatusText");
@@ -127,24 +92,59 @@ public final class NotificationMuteSettingsView extends LinearLayout {
             return this.isMuted == viewState.isMuted && C12238m.areEqual(this.muteEndTime, viewState.muteEndTime) && C12238m.areEqual(this.rawMuteText, viewState.rawMuteText) && C12238m.areEqual(this.rawUnmuteText, viewState.rawUnmuteText) && C12238m.areEqual(this.rawMutedStatusText, viewState.rawMutedStatusText) && this.rawMutedUntilStatusResId == viewState.rawMutedUntilStatusResId && C12238m.areEqual(this.muteDescriptionText, viewState.muteDescriptionText);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
         public final CharSequence getMuteDescriptionText() {
             return this.muteDescriptionText;
+        }
+
+        public final CharSequence getMuteDescriptionText() {
+            return this.muteDescriptionText;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getMuteEndTime() {
+            return this.muteEndTime;
         }
 
         public final String getMuteEndTime() {
             return this.muteEndTime;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final CharSequence getRawMuteText() {
             return this.rawMuteText;
+        }
+
+        public final CharSequence getRawMuteText() {
+            return this.rawMuteText;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final CharSequence getRawMutedStatusText() {
+            return this.rawMutedStatusText;
         }
 
         public final CharSequence getRawMutedStatusText() {
             return this.rawMutedStatusText;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final int getRawMutedUntilStatusResId() {
             return this.rawMutedUntilStatusResId;
+        }
+
+        public final int getRawMutedUntilStatusResId() {
+            return this.rawMutedUntilStatusResId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final CharSequence getRawUnmuteText() {
+            return this.rawUnmuteText;
         }
 
         public final CharSequence getRawUnmuteText() {

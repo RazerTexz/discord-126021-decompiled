@@ -54,6 +54,16 @@ public final class SavedStateHandle {
         this.mRegular = new HashMap(map);
     }
 
+    @MainThread
+    public void clearSavedStateProvider(@NonNull String str) {
+        this.mSavedStateProviders.remove(str);
+    }
+
+    @MainThread
+    public boolean contains(@NonNull String str) {
+        return this.mRegular.containsKey(str);
+    }
+
     public static SavedStateHandle createHandle(@Nullable Bundle bundle, @Nullable Bundle bundle2) {
         if (bundle == null && bundle2 == null) {
             return new SavedStateHandle();
@@ -78,6 +88,18 @@ public final class SavedStateHandle {
         return new SavedStateHandle(map);
     }
 
+    @Nullable
+    @MainThread
+    public <T> T get(@NonNull String str) {
+        return (T) this.mRegular.get(str);
+    }
+
+    @NonNull
+    @MainThread
+    public <T> MutableLiveData<T> getLiveData(@NonNull String str) {
+        return getLiveDataInternal(str, false, null);
+    }
+
     @NonNull
     private <T> MutableLiveData<T> getLiveDataInternal(@NonNull String str, boolean z2, @Nullable T t) {
         SavingStateLiveData<?> savingStateLiveData;
@@ -92,43 +114,6 @@ public final class SavedStateHandle {
         }
         this.mLiveDatas.put(str, savingStateLiveData);
         return savingStateLiveData;
-    }
-
-    private static void validateValue(Object obj) {
-        if (obj == null) {
-            return;
-        }
-        for (Class cls : ACCEPTABLE_CLASSES) {
-            if (cls.isInstance(obj)) {
-                return;
-            }
-        }
-        StringBuilder sbM833U = C1643a.m833U("Can't put value with type ");
-        sbM833U.append(obj.getClass());
-        sbM833U.append(" into saved state");
-        throw new IllegalArgumentException(sbM833U.toString());
-    }
-
-    @MainThread
-    public void clearSavedStateProvider(@NonNull String str) {
-        this.mSavedStateProviders.remove(str);
-    }
-
-    @MainThread
-    public boolean contains(@NonNull String str) {
-        return this.mRegular.containsKey(str);
-    }
-
-    @Nullable
-    @MainThread
-    public <T> T get(@NonNull String str) {
-        return (T) this.mRegular.get(str);
-    }
-
-    @NonNull
-    @MainThread
-    public <T> MutableLiveData<T> getLiveData(@NonNull String str) {
-        return getLiveDataInternal(str, false, null);
     }
 
     @NonNull
@@ -172,13 +157,28 @@ public final class SavedStateHandle {
         this.mSavedStateProviders.put(str, savedStateProvider);
     }
 
+    private static void validateValue(Object obj) {
+        if (obj == null) {
+            return;
+        }
+        for (Class cls : ACCEPTABLE_CLASSES) {
+            if (cls.isInstance(obj)) {
+                return;
+            }
+        }
+        StringBuilder sbM833U = C1643a.m833U("Can't put value with type ");
+        sbM833U.append(obj.getClass());
+        sbM833U.append(" into saved state");
+        throw new IllegalArgumentException(sbM833U.toString());
+    }
+
     @NonNull
     @MainThread
     public <T> MutableLiveData<T> getLiveData(@NonNull String str, @SuppressLint({"UnknownNullness"}) T t) {
         return getLiveDataInternal(str, true, t);
     }
 
-    public static class SavingStateLiveData<T> extends MutableLiveData<T> {
+    public class SavingStateLiveData<T> extends MutableLiveData<T> {
         private SavedStateHandle mHandle;
         private String mKey;
 

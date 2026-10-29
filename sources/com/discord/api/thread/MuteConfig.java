@@ -8,16 +8,16 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class MuteConfig {
     private final String endTime;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getEndTime() {
-        return this.endTime;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof MuteConfig) && C12238m.areEqual(this.endTime, ((MuteConfig) other).endTime);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getEndTime() {
+        return this.endTime;
     }
 
     public int hashCode() {

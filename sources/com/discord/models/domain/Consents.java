@@ -11,12 +11,12 @@ public final /* data */ class Consents {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Consents DEFAULT = new Consents(new Consent(false, null, 3, null), new Consent(false, null, 3, null));
     private final Consent personalization;
     private final Consent usageStatistics;
+    private static final Consents DEFAULT = new Consents(new Consent(false, null, 3, null), new Consent(false, null, 3, null));
 
     /* JADX INFO: compiled from: ModelUserConsents.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -46,16 +46,6 @@ public final /* data */ class Consents {
         return consents.copy(consent, consent2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Consent getUsageStatistics() {
-        return this.usageStatistics;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Consent getPersonalization() {
-        return this.personalization;
-    }
-
     public final Consents copy(Consent usageStatistics, Consent personalization) {
         C12238m.checkNotNullParameter(usageStatistics, "usageStatistics");
         C12238m.checkNotNullParameter(personalization, RestAPIParams.Consents.Type.PERSONALIZATION);
@@ -73,8 +63,18 @@ public final /* data */ class Consents {
         return C12238m.areEqual(this.usageStatistics, consents.usageStatistics) && C12238m.areEqual(this.personalization, consents.personalization);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Consent getPersonalization() {
         return this.personalization;
+    }
+
+    public final Consent getPersonalization() {
+        return this.personalization;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Consent getUsageStatistics() {
+        return this.usageStatistics;
     }
 
     public final Consent getUsageStatistics() {

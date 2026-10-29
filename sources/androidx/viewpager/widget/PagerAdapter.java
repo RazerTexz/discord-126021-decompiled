@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 public abstract class PagerAdapter {
     public static final int POSITION_NONE = -2;
     public static final int POSITION_UNCHANGED = -1;
-    private final DataSetObservable mObservable = new DataSetObservable();
     private DataSetObserver mViewPagerObserver;
+    private final DataSetObservable mObservable = new DataSetObservable();
 
     public void destroyItem(@NonNull ViewGroup viewGroup, int i, @NonNull Object obj) {
         destroyItem((View) viewGroup, i, obj);

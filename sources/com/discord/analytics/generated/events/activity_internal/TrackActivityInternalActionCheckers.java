@@ -11,29 +11,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionCheckers.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionCheckers implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
-    private final CharSequence phase = null;
-    private final CharSequence moveType = null;
-    private final CharSequence interestingMoveType = null;
-    private final Boolean lockedGame = null;
-    private final Boolean timedGame = null;
     private final Boolean againstBot = null;
     private final CharSequence background = null;
-    private final CharSequence pieceSet = null;
-    private final Long numSpectators = null;
-    private final CharSequence playerColor = null;
-    private final CharSequence lastScreen = null;
+    private final CharSequence interestingMoveType = null;
     private final Long jumpCount = null;
+    private final CharSequence lastScreen = null;
+    private final Boolean lockedGame = null;
+    private final CharSequence moveType = null;
+    private final Long numSpectators = null;
+    private final CharSequence phase = null;
+    private final CharSequence pieceSet = null;
+    private final CharSequence playerColor = null;
     private final Long reconnectTime = null;
+    private final Boolean timedGame = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_checkers";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -44,6 +38,12 @@ public final /* data */ class TrackActivityInternalActionCheckers implements Ana
         }
         TrackActivityInternalActionCheckers trackActivityInternalActionCheckers = (TrackActivityInternalActionCheckers) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionCheckers.actionName) && C12238m.areEqual(this.phase, trackActivityInternalActionCheckers.phase) && C12238m.areEqual(this.moveType, trackActivityInternalActionCheckers.moveType) && C12238m.areEqual(this.interestingMoveType, trackActivityInternalActionCheckers.interestingMoveType) && C12238m.areEqual(this.lockedGame, trackActivityInternalActionCheckers.lockedGame) && C12238m.areEqual(this.timedGame, trackActivityInternalActionCheckers.timedGame) && C12238m.areEqual(this.againstBot, trackActivityInternalActionCheckers.againstBot) && C12238m.areEqual(this.background, trackActivityInternalActionCheckers.background) && C12238m.areEqual(this.pieceSet, trackActivityInternalActionCheckers.pieceSet) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionCheckers.numSpectators) && C12238m.areEqual(this.playerColor, trackActivityInternalActionCheckers.playerColor) && C12238m.areEqual(this.lastScreen, trackActivityInternalActionCheckers.lastScreen) && C12238m.areEqual(this.jumpCount, trackActivityInternalActionCheckers.jumpCount) && C12238m.areEqual(this.reconnectTime, trackActivityInternalActionCheckers.reconnectTime);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

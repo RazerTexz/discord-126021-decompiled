@@ -35,17 +35,17 @@ public class C1845a implements InterfaceC1834a {
     /* JADX INFO: renamed from: f */
     public final C1835b[] f3629f;
 
-    /* JADX INFO: renamed from: g */
-    public final Rect f3630g = new Rect();
-
-    /* JADX INFO: renamed from: h */
-    public final Rect f3631h = new Rect();
-
     /* JADX INFO: renamed from: i */
     public final boolean f3632i;
 
     /* JADX INFO: renamed from: j */
     public Bitmap f3633j;
+
+    /* JADX INFO: renamed from: g */
+    public final Rect f3630g = new Rect();
+
+    /* JADX INFO: renamed from: h */
+    public final Rect f3631h = new Rect();
 
     public C1845a(C1849a c1849a, C1838e c1838e, Rect rect, boolean z2) {
         this.f3624a = c1849a;

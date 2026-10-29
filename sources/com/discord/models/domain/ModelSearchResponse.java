@@ -47,16 +47,6 @@ public final /* data */ class ModelSearchResponse {
         this.hits = C12083g.lazy(new ModelSearchResponse$hits$2(this));
     }
 
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    private final Integer getRetryAfter() {
-        return this.retryAfter;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getTotalResults() {
-        return this.totalResults;
-    }
-
     public final List<List<Message>> component2() {
         return this.messages;
     }
@@ -67,26 +57,6 @@ public final /* data */ class ModelSearchResponse {
 
     public final List<ThreadMember> component4() {
         return this.members;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getAnalyticsId() {
-        return this.analyticsId;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final String getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final Integer getErrorCode() {
-        return this.errorCode;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final Integer getDocumentIndexed() {
-        return this.documentIndexed;
     }
 
     public final ModelSearchResponse copy(int totalResults, List<? extends List<Message>> messages, List<Channel> threads, List<? extends ThreadMember> members, String analyticsId, String message, Integer errorCode, Integer documentIndexed, Integer retryAfter) {
@@ -104,12 +74,27 @@ public final /* data */ class ModelSearchResponse {
         return this.totalResults == modelSearchResponse.totalResults && C12238m.areEqual(this.messages, modelSearchResponse.messages) && C12238m.areEqual(this.threads, modelSearchResponse.threads) && C12238m.areEqual(this.members, modelSearchResponse.members) && C12238m.areEqual(this.analyticsId, modelSearchResponse.analyticsId) && C12238m.areEqual(this.message, modelSearchResponse.message) && C12238m.areEqual(this.errorCode, modelSearchResponse.errorCode) && C12238m.areEqual(this.documentIndexed, modelSearchResponse.documentIndexed) && C12238m.areEqual(this.retryAfter, modelSearchResponse.retryAfter);
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final String getAnalyticsId() {
         return this.analyticsId;
     }
 
+    public final String getAnalyticsId() {
+        return this.analyticsId;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final Integer getDocumentIndexed() {
         return this.documentIndexed;
+    }
+
+    public final Integer getDocumentIndexed() {
+        return this.documentIndexed;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final Integer getErrorCode() {
+        return this.errorCode;
     }
 
     public final Integer getErrorCode() {
@@ -124,6 +109,11 @@ public final /* data */ class ModelSearchResponse {
         return this.members;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final String getMessage() {
+        return this.message;
+    }
+
     public final String getMessage() {
         return this.message;
     }
@@ -132,12 +122,22 @@ public final /* data */ class ModelSearchResponse {
         return this.messages;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    private final Integer getRetryAfter() {
+        return this.retryAfter;
+    }
+
     public final long getRetryMillis() {
         return this.retryMillis;
     }
 
     public final List<Channel> getThreads() {
         return this.threads;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getTotalResults() {
+        return this.totalResults;
     }
 
     public final int getTotalResults() {

@@ -41,10 +41,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetCaptcha extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetCaptcha.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBinding;", 0)};
+    private static final String EXTRA_CAPTCHA_ERROR_BODY = "EXTRA_CAPTCHA_ERROR_BODY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_CAPTCHA_ERROR_BODY = "EXTRA_CAPTCHA_ERROR_BODY";
     private static final String RESULT_EXTRA_RQTOKEN = "RESULT_EXTRA_RQTOKEN";
     private static final String RESULT_EXTRA_TOKEN = "RESULT_EXTRA_TOKEN";
 
@@ -52,7 +52,7 @@ public class WidgetCaptcha extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetCaptcha.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -127,17 +127,6 @@ public class WidgetCaptcha extends AppFragment {
         return (WidgetCaptchaBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void trackTransition$default(WidgetCaptcha widgetCaptcha, String str, List list, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: trackTransition");
-        }
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        widgetCaptcha.trackTransition(str, list);
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
@@ -175,7 +164,7 @@ public class WidgetCaptcha extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -198,7 +187,7 @@ public class WidgetCaptcha extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
                 public AnonymousClass2() {
                     super(1);
                 }
@@ -234,7 +223,7 @@ public class WidgetCaptcha extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -259,6 +248,17 @@ public class WidgetCaptcha extends AppFragment {
                 CaptchaHelper.INSTANCE.showCaptchaHelpDialog(WidgetCaptcha.this.getAppActivity(), new AnonymousClass1());
             }
         });
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void trackTransition$default(WidgetCaptcha widgetCaptcha, String str, List list, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: trackTransition");
+        }
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        widgetCaptcha.trackTransition(str, list);
     }
 
     public void trackTransition(String action, List<String> details) {

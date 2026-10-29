@@ -34,7 +34,6 @@ import com.google.android.material.badge.BadgeUtils;
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class BottomNavigationItemView extends FrameLayout implements MenuView.ItemView {
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
     public static final int INVALID_ITEM_POSITION = -1;
 
     @Nullable
@@ -62,6 +61,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
 
     @Nullable
     private Drawable wrappedIconDrawable;
+    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
 
     /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationItemView$a */
     public class ViewOnLayoutChangeListenerC10846a implements View.OnLayoutChangeListener {
@@ -88,12 +88,26 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
     }
 
     @Nullable
+    public BadgeDrawable getBadge() {
+        return this.badgeDrawable;
+    }
+
+    @Nullable
     private FrameLayout getCustomParentForBadge(View view) {
         ImageView imageView = this.icon;
         if (view == imageView && BadgeUtils.USE_COMPAT_PARENT) {
             return (FrameLayout) imageView.getParent();
         }
         return null;
+    }
+
+    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    public MenuItemImpl getItemData() {
+        return this.itemData;
+    }
+
+    public int getItemPosition() {
+        return this.itemPosition;
     }
 
     private int getItemVisiblePosition() {
@@ -111,62 +125,6 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
 
     private boolean hasBadge() {
         return this.badgeDrawable != null;
-    }
-
-    private static void setViewLayoutParams(@NonNull View view, int i, int i2) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-        layoutParams.topMargin = i;
-        layoutParams.gravity = i2;
-        view.setLayoutParams(layoutParams);
-    }
-
-    private static void setViewScaleValues(@NonNull View view, float f, float f2, int i) {
-        view.setScaleX(f);
-        view.setScaleY(f2);
-        view.setVisibility(i);
-    }
-
-    private void tryAttachBadgeToAnchor(@Nullable View view) {
-        if (hasBadge() && view != null) {
-            setClipChildren(false);
-            setClipToPadding(false);
-            BadgeUtils.attachBadgeDrawable(this.badgeDrawable, view, getCustomParentForBadge(view));
-        }
-    }
-
-    private void tryRemoveBadgeFromAnchor(@Nullable View view) {
-        if (hasBadge()) {
-            if (view != null) {
-                setClipChildren(true);
-                setClipToPadding(true);
-                BadgeUtils.detachBadgeDrawable(this.badgeDrawable, view);
-            }
-            this.badgeDrawable = null;
-        }
-    }
-
-    private void tryUpdateBadgeBounds(View view) {
-        if (hasBadge()) {
-            BadgeUtils.setBadgeDrawableBounds(this.badgeDrawable, view, getCustomParentForBadge(view));
-        }
-    }
-
-    private static void updateViewPaddingBottom(@NonNull View view, int i) {
-        view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), i);
-    }
-
-    @Nullable
-    public BadgeDrawable getBadge() {
-        return this.badgeDrawable;
-    }
-
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
-    public MenuItemImpl getItemData() {
-        return this.itemData;
-    }
-
-    public int getItemPosition() {
-        return this.itemPosition;
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
@@ -430,9 +388,51 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         TooltipCompat.setTooltipText(this, charSequence);
     }
 
+    private static void setViewLayoutParams(@NonNull View view, int i, int i2) {
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.topMargin = i;
+        layoutParams.gravity = i2;
+        view.setLayoutParams(layoutParams);
+    }
+
+    private static void setViewScaleValues(@NonNull View view, float f, float f2, int i) {
+        view.setScaleX(f);
+        view.setScaleY(f2);
+        view.setVisibility(i);
+    }
+
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
     public boolean showsIcon() {
         return true;
+    }
+
+    private void tryAttachBadgeToAnchor(@Nullable View view) {
+        if (hasBadge() && view != null) {
+            setClipChildren(false);
+            setClipToPadding(false);
+            BadgeUtils.attachBadgeDrawable(this.badgeDrawable, view, getCustomParentForBadge(view));
+        }
+    }
+
+    private void tryRemoveBadgeFromAnchor(@Nullable View view) {
+        if (hasBadge()) {
+            if (view != null) {
+                setClipChildren(true);
+                setClipToPadding(true);
+                BadgeUtils.detachBadgeDrawable(this.badgeDrawable, view);
+            }
+            this.badgeDrawable = null;
+        }
+    }
+
+    private void tryUpdateBadgeBounds(View view) {
+        if (hasBadge()) {
+            BadgeUtils.setBadgeDrawableBounds(this.badgeDrawable, view, getCustomParentForBadge(view));
+        }
+    }
+
+    private static void updateViewPaddingBottom(@NonNull View view, int i) {
+        view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), i);
     }
 
     public BottomNavigationItemView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

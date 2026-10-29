@@ -24,14 +24,14 @@ public class MaterialStyledDatePickerDialog extends DatePickerDialog {
     @AttrRes
     private static final int DEF_STYLE_ATTR = 16843612;
 
-    @StyleRes
-    private static final int DEF_STYLE_RES = C10817R.style.MaterialAlertDialog_MaterialComponents_Picker_Date_Spinner;
-
     @NonNull
     private final Drawable background;
 
     @NonNull
     private final Rect backgroundInsets;
+
+    @StyleRes
+    private static final int DEF_STYLE_RES = C10817R.style.MaterialAlertDialog_MaterialComponents_Picker_Date_Spinner;
 
     public MaterialStyledDatePickerDialog(@NonNull Context context) {
         this(context, 0);

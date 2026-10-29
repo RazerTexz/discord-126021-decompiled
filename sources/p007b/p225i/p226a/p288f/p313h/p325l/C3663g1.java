@@ -16,7 +16,7 @@ public final class C3663g1 extends AbstractC3851u4<C3663g1, a> implements Interf
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.g1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3663g1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3663g1, a> implements InterfaceC3626d6 {
         public a() {
             super(C3663g1.zzg);
         }
@@ -154,6 +154,21 @@ public final class C3663g1 extends AbstractC3851u4<C3663g1, a> implements Interf
         return this.zzf.size();
     }
 
+    /* JADX INFO: renamed from: u */
+    public final C3912z0 m4906u(int i) {
+        return this.zze.get(i);
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final List<Long> m4907v() {
+        return this.zzc;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final int m4908z() {
+        return ((C3800q5) this.zzc).size();
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -186,20 +201,5 @@ public final class C3663g1 extends AbstractC3851u4<C3663g1, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final C3912z0 m4906u(int i) {
-        return this.zze.get(i);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final List<Long> m4907v() {
-        return this.zzc;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final int m4908z() {
-        return ((C3800q5) this.zzc).size();
     }
 }

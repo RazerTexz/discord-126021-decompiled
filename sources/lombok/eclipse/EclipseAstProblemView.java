@@ -33,7 +33,7 @@ public class EclipseAstProblemView {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/EclipseAstProblemView$LombokProblem.SCL.lombok */
-    private static class LombokProblem extends DefaultProblem {
+    class LombokProblem extends DefaultProblem {
         private static final String MARKER_ID = "org.eclipse.jdt.apt.pluggable.core.compileProblem";
 
         public LombokProblem(char[] originatingFileName, String message, int id2, String[] stringArguments, int severity, int startPosition, int endPosition, int line, int column) {

@@ -35,20 +35,40 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ConfirmRemovePermissionDialog extends AppDialog {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(ConfirmRemovePermissionDialog.class, "binding", "getBinding()Lcom/discord/databinding/ConfirmRemovePermissionDialogBinding;", 0)};
     private static final String ARG_PERMISSION_OWNER = "ARG_PERMISSION_OWNER";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(ConfirmRemovePermissionDialog.class, "binding", "getBinding()Lcom/discord/databinding/ConfirmRemovePermissionDialogBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialog$onResume$1 */
+    /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
+    public final class C75191 extends AbstractC12240o implements Function1<ConfirmRemovePermissionDialogViewModel.ViewState, Unit> {
+        public C75191() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            ConfirmRemovePermissionDialog.this.configureUI(viewState);
+        }
+    }
 
     /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -65,26 +85,6 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialog$onResume$1 */
-    /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
-    public static final class C75191 extends AbstractC12240o implements Function1<ConfirmRemovePermissionDialogViewModel.ViewState, Unit> {
-        public C75191() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            ConfirmRemovePermissionDialog.this.configureUI(viewState);
         }
     }
 

@@ -21,7 +21,7 @@ public class C12182b {
 
     /* JADX INFO: renamed from: d0.w.h.b$a */
     /* JADX INFO: compiled from: IntrinsicsJvm.kt */
-    public static final class a extends AbstractC12192i {
+    public final class a extends AbstractC12192i {
         public final /* synthetic */ Continuation $completion;
         public final /* synthetic */ Object $receiver$inlined;
         public final /* synthetic */ Function2 $this_createCoroutineUnintercepted$inlined;
@@ -36,7 +36,7 @@ public class C12182b {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public Object invokeSuspend(Object obj) {
+        public Object invokeSuspend(Object obj) throws Throwable {
             int i = this.label;
             if (i != 0) {
                 if (i != 1) {
@@ -56,7 +56,7 @@ public class C12182b {
 
     /* JADX INFO: renamed from: d0.w.h.b$b */
     /* JADX INFO: compiled from: IntrinsicsJvm.kt */
-    public static final class b extends AbstractC12187d {
+    public final class b extends AbstractC12187d {
         public final /* synthetic */ Continuation $completion;
         public final /* synthetic */ CoroutineContext $context;
         public final /* synthetic */ Object $receiver$inlined;
@@ -73,7 +73,7 @@ public class C12182b {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public Object invokeSuspend(Object obj) {
+        public Object invokeSuspend(Object obj) throws Throwable {
             int i = this.label;
             if (i != 0) {
                 if (i != 1) {

@@ -8,14 +8,14 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3120u {
 
-    /* JADX INFO: renamed from: a */
-    public static final C3120u f8997a = new C3120u(0, 0);
-
     /* JADX INFO: renamed from: b */
     public final long f8998b;
 
     /* JADX INFO: renamed from: c */
     public final long f8999c;
+
+    /* JADX INFO: renamed from: a */
+    public static final C3120u f8997a = new C3120u(0, 0);
 
     public C3120u(long j, long j2) {
         this.f8998b = j;

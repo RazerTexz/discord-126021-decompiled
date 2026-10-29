@@ -56,7 +56,7 @@ public final class Platform {
     private final Integer whitePlatformImage;
 
     /* JADX INFO: compiled from: Platform.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -216,14 +216,6 @@ public final class Platform {
         return INSTANCE.from(str);
     }
 
-    public static Platform valueOf(String str) {
-        return (Platform) Enum.valueOf(Platform.class, str);
-    }
-
-    public static Platform[] values() {
-        return (Platform[]) $VALUES.clone();
-    }
-
     public final boolean getCanShowActivity() {
         return this.canShowActivity;
     }
@@ -294,6 +286,14 @@ public final class Platform {
 
     public final Integer getWhitePlatformImage() {
         return this.whitePlatformImage;
+    }
+
+    public static Platform valueOf(String str) {
+        return (Platform) Enum.valueOf(Platform.class, str);
+    }
+
+    public static Platform[] values() {
+        return (Platform[]) $VALUES.clone();
     }
 
     public /* synthetic */ Platform(String str, int i, String str2, Integer num, Integer num2, Integer num3, boolean z2, boolean z3, boolean z4, int i2, DefaultConstructorMarker defaultConstructorMarker) {

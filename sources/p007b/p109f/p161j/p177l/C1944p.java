@@ -10,9 +10,6 @@ import p007b.p109f.p115d.p122g.InterfaceC1696c;
 /* JADX INFO: loaded from: classes3.dex */
 public class C1944p implements InterfaceC1932d {
 
-    /* JADX INFO: renamed from: a */
-    public final AbstractC1945q<Bitmap> f3945a = new C1933e();
-
     /* JADX INFO: renamed from: b */
     public final int f3946b;
 
@@ -24,6 +21,9 @@ public class C1944p implements InterfaceC1932d {
 
     /* JADX INFO: renamed from: e */
     public int f3949e;
+
+    /* JADX INFO: renamed from: a */
+    public final AbstractC1945q<Bitmap> f3945a = new C1933e();
 
     public C1944p(int i, int i2, InterfaceC1954z interfaceC1954z, InterfaceC1696c interfaceC1696c) {
         this.f3946b = i;

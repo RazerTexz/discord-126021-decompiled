@@ -51,9 +51,6 @@ public class C11703b {
     /* JADX INFO: renamed from: M */
     public static final b f24029M;
 
-    /* JADX INFO: renamed from: a */
-    public static final b f24030a = d.booleanFirst();
-
     /* JADX INFO: renamed from: b */
     public static final b f24031b;
 
@@ -129,9 +126,12 @@ public class C11703b {
     /* JADX INFO: renamed from: z */
     public static final b f24055z;
 
+    /* JADX INFO: renamed from: a */
+    public static final b f24030a = d.booleanFirst();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.b$b */
     /* JADX INFO: compiled from: Flags.java */
-    public static class b extends d<Boolean> {
+    public class b extends d<Boolean> {
         public b(int i) {
             super(i, 1, null);
         }
@@ -157,7 +157,7 @@ public class C11703b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.b$c */
     /* JADX INFO: compiled from: Flags.java */
-    public static class c<E extends C11728h.a> extends d<E> {
+    public class c<E extends C11728h.a> extends d<E> {
 
         /* JADX INFO: renamed from: c */
         public final E[] f24056c;
@@ -204,7 +204,7 @@ public class C11703b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.b$d */
     /* JADX INFO: compiled from: Flags.java */
-    public static abstract class d<E> {
+    public abstract class d<E> {
 
         /* JADX INFO: renamed from: a */
         public final int f24057a;
@@ -308,6 +308,18 @@ public class C11703b {
         f24029M = d.booleanFirst();
     }
 
+    public static int getAccessorFlags(boolean z2, EnumC11699x enumC11699x, EnumC11686k enumC11686k, boolean z3, boolean z4, boolean z5) {
+        if (enumC11699x == null) {
+            m9814a(10);
+            throw null;
+        }
+        if (enumC11686k != null) {
+            return f24031b.toFlags(Boolean.valueOf(z2)) | f24033d.toFlags(enumC11686k) | f24032c.toFlags(enumC11699x) | f24025I.toFlags(Boolean.valueOf(z3)) | f24026J.toFlags(Boolean.valueOf(z4)) | f24027K.toFlags(Boolean.valueOf(z5));
+        }
+        m9814a(11);
+        throw null;
+    }
+
     /* JADX WARN: Code duplicated, block: B:16:0x0021  */
     /* JADX WARN: Code duplicated, block: B:18:0x002b  */
     /* JADX INFO: renamed from: a */
@@ -354,17 +366,5 @@ public class C11703b {
                 break;
         }
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-    }
-
-    public static int getAccessorFlags(boolean z2, EnumC11699x enumC11699x, EnumC11686k enumC11686k, boolean z3, boolean z4, boolean z5) {
-        if (enumC11699x == null) {
-            m9814a(10);
-            throw null;
-        }
-        if (enumC11686k != null) {
-            return f24031b.toFlags(Boolean.valueOf(z2)) | f24033d.toFlags(enumC11686k) | f24032c.toFlags(enumC11699x) | f24025I.toFlags(Boolean.valueOf(z3)) | f24026J.toFlags(Boolean.valueOf(z4)) | f24027K.toFlags(Boolean.valueOf(z5));
-        }
-        m9814a(11);
-        throw null;
     }
 }

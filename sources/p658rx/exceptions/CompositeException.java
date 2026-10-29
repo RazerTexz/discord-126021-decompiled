@@ -17,8 +17,17 @@ public final class CompositeException extends RuntimeException {
     private final List<Throwable> exceptions;
     private final String message;
 
+    /* JADX INFO: renamed from: rx.exceptions.CompositeException$b */
+    public abstract class AbstractC13010b {
+        /* JADX INFO: renamed from: a */
+        public abstract Object mo11124a();
+
+        /* JADX INFO: renamed from: b */
+        public abstract void mo11125b(Object obj);
+    }
+
     /* JADX INFO: renamed from: rx.exceptions.CompositeException$a */
-    public static final class C13009a extends RuntimeException {
+    public final class C13009a extends RuntimeException {
         private static final long serialVersionUID = 3875212506787802066L;
 
         @Override // java.lang.Throwable
@@ -27,17 +36,8 @@ public final class CompositeException extends RuntimeException {
         }
     }
 
-    /* JADX INFO: renamed from: rx.exceptions.CompositeException$b */
-    public static abstract class AbstractC13010b {
-        /* JADX INFO: renamed from: a */
-        public abstract Object mo11124a();
-
-        /* JADX INFO: renamed from: b */
-        public abstract void mo11125b(Object obj);
-    }
-
     /* JADX INFO: renamed from: rx.exceptions.CompositeException$c */
-    public static final class C13011c extends AbstractC13010b {
+    public final class C13011c extends AbstractC13010b {
 
         /* JADX INFO: renamed from: a */
         public final PrintStream f27641a;
@@ -60,7 +60,7 @@ public final class CompositeException extends RuntimeException {
     }
 
     /* JADX INFO: renamed from: rx.exceptions.CompositeException$d */
-    public static final class C13012d extends AbstractC13010b {
+    public final class C13012d extends AbstractC13010b {
 
         /* JADX INFO: renamed from: a */
         public final PrintWriter f27642a;
@@ -102,50 +102,6 @@ public final class CompositeException extends RuntimeException {
         List<Throwable> listUnmodifiableList = Collections.unmodifiableList(arrayList);
         this.exceptions = listUnmodifiableList;
         this.message = listUnmodifiableList.size() + " exceptions occurred. ";
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m11121a(StringBuilder sb, Throwable th, String str) {
-        sb.append(str);
-        sb.append(th);
-        sb.append('\n');
-        for (StackTraceElement stackTraceElement : th.getStackTrace()) {
-            sb.append("\t\tat ");
-            sb.append(stackTraceElement);
-            sb.append('\n');
-        }
-        if (th.getCause() != null) {
-            sb.append("\tCaused by: ");
-            m11121a(sb, th.getCause(), "");
-        }
-    }
-
-    /* JADX INFO: renamed from: b */
-    public List<Throwable> m11122b() {
-        return this.exceptions;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final void m11123c(AbstractC13010b abstractC13010b) {
-        StringBuilder sb = new StringBuilder(128);
-        sb.append(this);
-        sb.append('\n');
-        for (StackTraceElement stackTraceElement : getStackTrace()) {
-            sb.append("\tat ");
-            sb.append(stackTraceElement);
-            sb.append('\n');
-        }
-        int i = 1;
-        for (Throwable th : this.exceptions) {
-            sb.append("  ComposedException ");
-            sb.append(i);
-            sb.append(" :\n");
-            m11121a(sb, th, "\t");
-            i++;
-        }
-        synchronized (abstractC13010b.mo11124a()) {
-            abstractC13010b.mo11125b(sb.toString());
-        }
     }
 
     @Override // java.lang.Throwable
@@ -205,6 +161,50 @@ public final class CompositeException extends RuntimeException {
     @Override // java.lang.Throwable
     public String getMessage() {
         return this.message;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m11121a(StringBuilder sb, Throwable th, String str) {
+        sb.append(str);
+        sb.append(th);
+        sb.append('\n');
+        for (StackTraceElement stackTraceElement : th.getStackTrace()) {
+            sb.append("\t\tat ");
+            sb.append(stackTraceElement);
+            sb.append('\n');
+        }
+        if (th.getCause() != null) {
+            sb.append("\tCaused by: ");
+            m11121a(sb, th.getCause(), "");
+        }
+    }
+
+    /* JADX INFO: renamed from: b */
+    public List<Throwable> m11122b() {
+        return this.exceptions;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final void m11123c(AbstractC13010b abstractC13010b) {
+        StringBuilder sb = new StringBuilder(128);
+        sb.append(this);
+        sb.append('\n');
+        for (StackTraceElement stackTraceElement : getStackTrace()) {
+            sb.append("\tat ");
+            sb.append(stackTraceElement);
+            sb.append('\n');
+        }
+        int i = 1;
+        for (Throwable th : this.exceptions) {
+            sb.append("  ComposedException ");
+            sb.append(i);
+            sb.append(" :\n");
+            m11121a(sb, th, "\t");
+            i++;
+        }
+        synchronized (abstractC13010b.mo11124a()) {
+            abstractC13010b.mo11125b(sb.toString());
+        }
     }
 
     @Override // java.lang.Throwable

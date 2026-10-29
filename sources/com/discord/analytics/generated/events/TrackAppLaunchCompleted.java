@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppLaunchCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppLaunchCompleted implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence loadId = null;
-    private final CharSequence screenName = null;
     private final Long durationMsSinceAppOpened = null;
     private final Boolean hasCachedData = null;
+    private final CharSequence loadId = null;
     private final CharSequence manifest = null;
+    private final CharSequence screenName = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_launch_completed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackAppLaunchCompleted implements AnalyticsSchema
         }
         TrackAppLaunchCompleted trackAppLaunchCompleted = (TrackAppLaunchCompleted) other;
         return C12238m.areEqual(this.loadId, trackAppLaunchCompleted.loadId) && C12238m.areEqual(this.screenName, trackAppLaunchCompleted.screenName) && C12238m.areEqual(this.durationMsSinceAppOpened, trackAppLaunchCompleted.durationMsSinceAppOpened) && C12238m.areEqual(this.hasCachedData, trackAppLaunchCompleted.hasCachedData) && C12238m.areEqual(this.manifest, trackAppLaunchCompleted.manifest);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

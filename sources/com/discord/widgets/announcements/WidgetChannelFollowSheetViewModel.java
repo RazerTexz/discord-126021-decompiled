@@ -55,7 +55,7 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
 
     /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel$1 */
     /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-    public static final class C71451 extends AbstractC12240o implements Function1<ViewState.Loaded, Unit> {
+    public final class C71451 extends AbstractC12240o implements Function1<ViewState.Loaded, Unit> {
         public C71451() {
             super(1);
         }
@@ -73,11 +73,51 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel$followChannel$1 */
     /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-    public static abstract class Event {
+    public final /* synthetic */ class C71471 extends C12236k implements Function1<Error, Unit> {
+        public C71471(WidgetChannelFollowSheetViewModel widgetChannelFollowSheetViewModel) {
+            super(1, widgetChannelFollowSheetViewModel, WidgetChannelFollowSheetViewModel.class, "handleChannelFollowError", "handleChannelFollowError(Lcom/discord/utilities/error/Error;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "p1");
+            ((WidgetChannelFollowSheetViewModel) this.receiver).handleChannelFollowError(error);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel$followChannel$2 */
+    /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
+    public final class C71482 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C71482() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r2) {
+            WidgetChannelFollowSheetViewModel.this.eventSubject.f27650k.onNext((T) Event.FollowSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-        public static final class FollowSuccess extends Event {
+        public final class FollowSuccess extends Event {
             public static final FollowSuccess INSTANCE = new FollowSuccess();
 
             private FollowSuccess() {
@@ -94,10 +134,10 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
     }
 
     /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final Set<Long> availableChannels;
             private final Set<Long> availableGuilds;
             private final Integer errorTextRes;
@@ -108,6 +148,14 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
 
             public /* synthetic */ Loaded(Channel channel, Guild guild, Guild guild2, Channel channel2, Set set, Set set2, Integer num, int i, DefaultConstructorMarker defaultConstructorMarker) {
                 this(channel, guild, guild2, channel2, set, set2, (i & 64) != 0 ? null : num);
+            }
+
+            public final Set<Long> component5() {
+                return this.availableGuilds;
+            }
+
+            public final Set<Long> component6() {
+                return this.availableChannels;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -141,39 +189,6 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
                 return loaded.copy(channel, guild3, guild4, channel3, set3, set4, num);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getSourceChannel() {
-                return this.sourceChannel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Guild getSourceGuild() {
-                return this.sourceGuild;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Guild getSelectedGuild() {
-                return this.selectedGuild;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Channel getSelectedChannel() {
-                return this.selectedChannel;
-            }
-
-            public final Set<Long> component5() {
-                return this.availableGuilds;
-            }
-
-            public final Set<Long> component6() {
-                return this.availableChannels;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Integer getErrorTextRes() {
-                return this.errorTextRes;
-            }
-
             public final Loaded copy(Channel sourceChannel, Guild sourceGuild, Guild selectedGuild, Channel selectedChannel, Set<Long> availableGuilds, Set<Long> availableChannels, Integer errorTextRes) {
                 C12238m.checkNotNullParameter(availableGuilds, "availableGuilds");
                 C12238m.checkNotNullParameter(availableChannels, "availableChannels");
@@ -199,20 +214,45 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
                 return this.availableGuilds;
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
             public final Integer getErrorTextRes() {
                 return this.errorTextRes;
+            }
+
+            public final Integer getErrorTextRes() {
+                return this.errorTextRes;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final Channel getSelectedChannel() {
+                return this.selectedChannel;
             }
 
             public final Channel getSelectedChannel() {
                 return this.selectedChannel;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final Guild getSelectedGuild() {
                 return this.selectedGuild;
             }
 
+            public final Guild getSelectedGuild() {
+                return this.selectedGuild;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getSourceChannel() {
                 return this.sourceChannel;
+            }
+
+            public final Channel getSourceChannel() {
+                return this.sourceChannel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Guild getSourceGuild() {
+                return this.sourceGuild;
             }
 
             public final Guild getSourceGuild() {
@@ -269,7 +309,7 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
         }
 
         /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-        public static final class Uninitialized extends ViewState {
+        public final class Uninitialized extends ViewState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -282,46 +322,6 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel$followChannel$1 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-    public static final /* synthetic */ class C71471 extends C12236k implements Function1<Error, Unit> {
-        public C71471(WidgetChannelFollowSheetViewModel widgetChannelFollowSheetViewModel) {
-            super(1, widgetChannelFollowSheetViewModel, WidgetChannelFollowSheetViewModel.class, "handleChannelFollowError", "handleChannelFollowError(Lcom/discord/utilities/error/Error;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "p1");
-            ((WidgetChannelFollowSheetViewModel) this.receiver).handleChannelFollowError(error);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel$followChannel$2 */
-    /* JADX INFO: compiled from: WidgetChannelFollowSheetViewModel.kt */
-    public static final class C71482 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C71482() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetChannelFollowSheetViewModel.this.eventSubject.f27650k.onNext((T) Event.FollowSuccess.INSTANCE);
         }
     }
 
@@ -385,6 +385,22 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
         });
     }
 
+    public final void followChannel(long webhookChannelId) {
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().createChannelFollower(this.sourceChannelId, new RestAPIParams.ChannelFollowerPost(webhookChannelId)), false, 1, null), this, null, 2, null), (Class<?>) WidgetChannelFollowSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C71471(this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71482());
+    }
+
+    public final StoreChannels getStoreChannels() {
+        return this.storeChannels;
+    }
+
+    public final StoreGuilds getStoreGuilds() {
+        return this.storeGuilds;
+    }
+
+    public final StorePermissions getStorePermissions() {
+        return this.storePermissions;
+    }
+
     private final void handleChannelFollowError(Error error) {
         Error.Response response = error.getResponse();
         C12238m.checkNotNullExpressionValue(response, "error.response");
@@ -392,6 +408,12 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
         ViewState viewState = getViewState();
         Objects.requireNonNull(viewState, "null cannot be cast to non-null type com.discord.widgets.announcements.WidgetChannelFollowSheetViewModel.ViewState.Loaded");
         updateViewState(ViewState.Loaded.copy$default((ViewState.Loaded) viewState, null, null, null, null, null, null, Integer.valueOf(i), 63, null));
+    }
+
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
     }
 
     private final Observable<ViewState.Loaded> observeViewStateFromStores() {
@@ -437,28 +459,6 @@ public final class WidgetChannelFollowSheetViewModel extends AbstractC0859d0<Vie
         });
         C12238m.checkNotNullExpressionValue(observableM11072g, "Observable.combineLatest…  )\n\n      expected\n    }");
         return observableM11072g;
-    }
-
-    public final void followChannel(long webhookChannelId) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().createChannelFollower(this.sourceChannelId, new RestAPIParams.ChannelFollowerPost(webhookChannelId)), false, 1, null), this, null, 2, null), (Class<?>) WidgetChannelFollowSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C71471(this)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C71482());
-    }
-
-    public final StoreChannels getStoreChannels() {
-        return this.storeChannels;
-    }
-
-    public final StoreGuilds getStoreGuilds() {
-        return this.storeGuilds;
-    }
-
-    public final StorePermissions getStorePermissions() {
-        return this.storePermissions;
-    }
-
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
     }
 
     public final void selectChannel(long channelId) {

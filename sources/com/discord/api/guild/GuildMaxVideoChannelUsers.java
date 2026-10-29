@@ -8,7 +8,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public abstract class GuildMaxVideoChannelUsers {
 
     /* JADX INFO: compiled from: GuildMaxVideoChannelUsers.kt */
-    public static final /* data */ class Limited extends GuildMaxVideoChannelUsers {
+    public final /* data */ class Limited extends GuildMaxVideoChannelUsers {
         private final int limit;
 
         public Limited(int i) {
@@ -16,16 +16,16 @@ public abstract class GuildMaxVideoChannelUsers {
             this.limit = i;
         }
 
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final int getLimit() {
-            return this.limit;
-        }
-
         public boolean equals(Object other) {
             if (this != other) {
                 return (other instanceof Limited) && this.limit == ((Limited) other).limit;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final int getLimit() {
+            return this.limit;
         }
 
         public int hashCode() {
@@ -38,7 +38,7 @@ public abstract class GuildMaxVideoChannelUsers {
     }
 
     /* JADX INFO: compiled from: GuildMaxVideoChannelUsers.kt */
-    public static final class Unlimited extends GuildMaxVideoChannelUsers {
+    public final class Unlimited extends GuildMaxVideoChannelUsers {
         public static final Unlimited INSTANCE = new Unlimited();
 
         public Unlimited() {

@@ -68,7 +68,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
     public @interface AttributeUsage {
     }
 
-    public static abstract class AudioManagerHidden {
+    public abstract class AudioManagerHidden {
         public static final int STREAM_ACCESSIBILITY = 10;
         public static final int STREAM_BLUETOOTH_SCO = 6;
         public static final int STREAM_SYSTEM_ENFORCED = 7;
@@ -94,9 +94,53 @@ public class AudioAttributesCompat implements VersionedParcelable {
     public AudioAttributesCompat() {
     }
 
+    public boolean equals(Object obj) {
+        if (!(obj instanceof AudioAttributesCompat)) {
+            return false;
+        }
+        AudioAttributesCompat audioAttributesCompat = (AudioAttributesCompat) obj;
+        AudioAttributesImpl audioAttributesImpl = this.mImpl;
+        if (audioAttributesImpl == null) {
+            return audioAttributesCompat.mImpl == null;
+        }
+        return audioAttributesImpl.equals(audioAttributesCompat.mImpl);
+    }
+
+    public int getContentType() {
+        return this.mImpl.getContentType();
+    }
+
+    public int getFlags() {
+        return this.mImpl.getFlags();
+    }
+
+    public int getLegacyStreamType() {
+        return this.mImpl.getLegacyStreamType();
+    }
+
+    public int getRawLegacyStreamType() {
+        return this.mImpl.getRawLegacyStreamType();
+    }
+
+    public int getUsage() {
+        return this.mImpl.getUsage();
+    }
+
+    public int getVolumeControlStream() {
+        return this.mImpl.getVolumeControlStream();
+    }
+
+    public int hashCode() {
+        return this.mImpl.hashCode();
+    }
+
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public static void setForceLegacyBehavior(boolean z2) {
         sForceLegacyBehavior = z2;
+    }
+
+    public String toString() {
+        return this.mImpl.toString();
     }
 
     public static int toVolumeStreamType(boolean z2, int i, int i2) {
@@ -138,6 +182,11 @@ public class AudioAttributesCompat implements VersionedParcelable {
                 }
                 return 3;
         }
+    }
+
+    @Nullable
+    public Object unwrap() {
+        return this.mImpl.getAudioAttributes();
     }
 
     public static String usageToString(int i) {
@@ -188,60 +237,11 @@ public class AudioAttributesCompat implements VersionedParcelable {
         return Build.VERSION.SDK_INT >= 26 ? new AudioAttributesCompat(new AudioAttributesImplApi26((AudioAttributes) obj)) : new AudioAttributesCompat(new AudioAttributesImplApi21((AudioAttributes) obj));
     }
 
-    public boolean equals(Object obj) {
-        if (!(obj instanceof AudioAttributesCompat)) {
-            return false;
-        }
-        AudioAttributesCompat audioAttributesCompat = (AudioAttributesCompat) obj;
-        AudioAttributesImpl audioAttributesImpl = this.mImpl;
-        if (audioAttributesImpl == null) {
-            return audioAttributesCompat.mImpl == null;
-        }
-        return audioAttributesImpl.equals(audioAttributesCompat.mImpl);
-    }
-
-    public int getContentType() {
-        return this.mImpl.getContentType();
-    }
-
-    public int getFlags() {
-        return this.mImpl.getFlags();
-    }
-
-    public int getLegacyStreamType() {
-        return this.mImpl.getLegacyStreamType();
-    }
-
-    public int getRawLegacyStreamType() {
-        return this.mImpl.getRawLegacyStreamType();
-    }
-
-    public int getUsage() {
-        return this.mImpl.getUsage();
-    }
-
-    public int getVolumeControlStream() {
-        return this.mImpl.getVolumeControlStream();
-    }
-
-    public int hashCode() {
-        return this.mImpl.hashCode();
-    }
-
-    public String toString() {
-        return this.mImpl.toString();
-    }
-
-    @Nullable
-    public Object unwrap() {
-        return this.mImpl.getAudioAttributes();
-    }
-
     public AudioAttributesCompat(AudioAttributesImpl audioAttributesImpl) {
         this.mImpl = audioAttributesImpl;
     }
 
-    public static class Builder {
+    public class Builder {
         public final AudioAttributesImpl.Builder mBuilderImpl;
 
         public Builder() {

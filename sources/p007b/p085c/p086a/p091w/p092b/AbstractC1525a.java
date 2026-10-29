@@ -77,22 +77,6 @@ public abstract class AbstractC1525a implements AbstractC1544a.b, InterfaceC1535
     /* JADX INFO: renamed from: g */
     public final List<b> f2471g = new ArrayList();
 
-    /* JADX INFO: renamed from: b.c.a.w.b.a$b */
-    /* JADX INFO: compiled from: BaseStrokeContent.java */
-    public static final class b {
-
-        /* JADX INFO: renamed from: a */
-        public final List<InterfaceC1537m> f2479a = new ArrayList();
-
-        /* JADX INFO: renamed from: b */
-        @Nullable
-        public final C1543s f2480b;
-
-        public b(C1543s c1543s, a aVar) {
-            this.f2480b = c1543s;
-        }
-    }
-
     public AbstractC1525a(C1511j c1511j, AbstractC1603b abstractC1603b, Paint.Cap cap, Paint.Join join, float f, C1575d c1575d, C1573b c1573b, List<C1573b> list, C1573b c1573b2) {
         C1524a c1524a = new C1524a(1);
         this.f2473i = c1524a;
@@ -373,6 +357,22 @@ public abstract class AbstractC1525a implements AbstractC1544a.b, InterfaceC1535
             this.f2478n = c1559p;
             c1559p.f2596a.add(this);
             this.f2470f.m777e(this.f2478n);
+        }
+    }
+
+    /* JADX INFO: renamed from: b.c.a.w.b.a$b */
+    /* JADX INFO: compiled from: BaseStrokeContent.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: b */
+        @Nullable
+        public final C1543s f2480b;
+
+        /* JADX INFO: renamed from: a */
+        public final List<InterfaceC1537m> f2479a = new ArrayList();
+
+        public b(C1543s c1543s, a aVar) {
+            this.f2480b = c1543s;
         }
     }
 }

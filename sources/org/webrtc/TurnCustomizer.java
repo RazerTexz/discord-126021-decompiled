@@ -14,8 +14,6 @@ public class TurnCustomizer {
         }
     }
 
-    private static native void nativeFreeTurnCustomizer(long j);
-
     public void dispose() {
         checkTurnCustomizerExists();
         nativeFreeTurnCustomizer(this.nativeTurnCustomizer);
@@ -27,4 +25,6 @@ public class TurnCustomizer {
         checkTurnCustomizerExists();
         return this.nativeTurnCustomizer;
     }
+
+    private static native void nativeFreeTurnCustomizer(long j);
 }

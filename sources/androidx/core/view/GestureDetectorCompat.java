@@ -22,7 +22,7 @@ public final class GestureDetectorCompat {
         void setOnDoubleTapListener(GestureDetector.OnDoubleTapListener onDoubleTapListener);
     }
 
-    public static class GestureDetectorCompatImplBase implements GestureDetectorCompatImpl {
+    public class GestureDetectorCompatImplBase implements GestureDetectorCompatImpl {
         private static final int LONG_PRESS = 2;
         private static final int SHOW_PRESS = 1;
         private static final int TAP = 3;
@@ -92,6 +92,13 @@ public final class GestureDetectorCompat {
             }
         }
 
+        public void dispatchLongPress() {
+            this.mHandler.removeMessages(3);
+            this.mDeferConfirmSingleTap = false;
+            this.mInLongPress = true;
+            this.mListener.onLongPress(this.mCurrentDownEvent);
+        }
+
         private void init(Context context) {
             if (context == null) {
                 throw new IllegalArgumentException("Context must not be null");
@@ -116,13 +123,6 @@ public final class GestureDetectorCompat {
             int x2 = ((int) motionEvent.getX()) - ((int) motionEvent3.getX());
             int y2 = ((int) motionEvent.getY()) - ((int) motionEvent3.getY());
             return (y2 * y2) + (x2 * x2) < this.mDoubleTapSlopSquare;
-        }
-
-        public void dispatchLongPress() {
-            this.mHandler.removeMessages(3);
-            this.mDeferConfirmSingleTap = false;
-            this.mInLongPress = true;
-            this.mListener.onLongPress(this.mCurrentDownEvent);
         }
 
         @Override // androidx.core.view.GestureDetectorCompat.GestureDetectorCompatImpl
@@ -356,7 +356,7 @@ public final class GestureDetectorCompat {
         }
     }
 
-    public static class GestureDetectorCompatImplJellybeanMr2 implements GestureDetectorCompatImpl {
+    public class GestureDetectorCompatImplJellybeanMr2 implements GestureDetectorCompatImpl {
         private final GestureDetector mDetector;
 
         public GestureDetectorCompatImplJellybeanMr2(Context context, GestureDetector.OnGestureListener onGestureListener, Handler handler) {

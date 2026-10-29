@@ -7,10 +7,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildWelcomeScreen.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildWelcomeScreen {
-    private final List<CharSequence> options = null;
-    private final List<Long> optionsChannelIds = null;
     private final CharSequence guildDescription = null;
     private final Boolean hasCustomEmojis = null;
+    private final List<CharSequence> options = null;
+    private final List<Long> optionsChannelIds = null;
 
     public boolean equals(Object other) {
         if (this == other) {

@@ -24,24 +24,24 @@ import p615g0.p616z.C12410b;
 /* JADX INFO: compiled from: ByteString.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class ByteString implements Serializable, Comparable<ByteString> {
-    private static final long serialVersionUID = 1;
+
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final byte[] data;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public transient int hashCode;
+    private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public transient String utf8;
-
-    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: j */
     public static final ByteString f27592j = new ByteString(new byte[0]);
 
     /* JADX INFO: renamed from: okio.ByteString$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: ByteString.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -99,44 +99,6 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         this.data = bArr;
     }
 
-    /* JADX INFO: renamed from: h */
-    public static final ByteString m11006h(String str) {
-        C12238m.checkParameterIsNotNull(str, "$this$encodeUtf8");
-        C12238m.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
-        byte[] bytes = str.getBytes(C12086c.f25136a);
-        C12238m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
-        ByteString byteString = new ByteString(bytes);
-        byteString.utf8 = str;
-        return byteString;
-    }
-
-    private final void readObject(ObjectInputStream in) throws IllegalAccessException, NoSuchFieldException, IOException {
-        int i = in.readInt();
-        C12238m.checkParameterIsNotNull(in, "$this$readByteString");
-        int i2 = 0;
-        if (!(i >= 0)) {
-            throw new IllegalArgumentException(C1643a.m871q("byteCount < 0: ", i).toString());
-        }
-        byte[] bArr = new byte[i];
-        while (i2 < i) {
-            int i3 = in.read(bArr, i2, i - i2);
-            if (i3 == -1) {
-                throw new EOFException();
-            }
-            i2 += i3;
-        }
-        ByteString byteString = new ByteString(bArr);
-        Field declaredField = ByteString.class.getDeclaredField("data");
-        C12238m.checkExpressionValueIsNotNull(declaredField, "field");
-        declaredField.setAccessible(true);
-        declaredField.set(this, byteString.data);
-    }
-
-    private final void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeInt(this.data.length);
-        out.write(this.data);
-    }
-
     /* JADX WARN: Code duplicated, block: B:12:0x0030 A[RETURN, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:13:0x0032 A[ORIG_RETURN, RETURN] */
     @Override // java.lang.Comparable
@@ -178,6 +140,45 @@ public class ByteString implements Serializable, Comparable<ByteString> {
             }
         }
         return false;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final byte[] getData() {
+        return this.data;
+    }
+
+    public int hashCode() {
+        int i = this.hashCode;
+        if (i != 0) {
+            return i;
+        }
+        int iHashCode = Arrays.hashCode(this.data);
+        this.hashCode = iHashCode;
+        return iHashCode;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public static final ByteString m11006h(String str) {
+        C12238m.checkParameterIsNotNull(str, "$this$encodeUtf8");
+        C12238m.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
+        byte[] bytes = str.getBytes(C12086c.f25136a);
+        C12238m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+        ByteString byteString = new ByteString(bytes);
+        byteString.utf8 = str;
+        return byteString;
+    }
+
+    /* JADX INFO: renamed from: q */
+    public String m11008q() {
+        String str = this.utf8;
+        if (str != null) {
+            return str;
+        }
+        byte[] bArrMo10504l = mo10504l();
+        C12238m.checkParameterIsNotNull(bArrMo10504l, "$this$toUtf8String");
+        String str2 = new String(bArrMo10504l, C12086c.f25136a);
+        this.utf8 = str2;
+        return str2;
     }
 
     /* JADX INFO: renamed from: f */
@@ -239,21 +240,6 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         byte[] bArrDigest = MessageDigest.getInstance(algorithm).digest(this.data);
         C12238m.checkExpressionValueIsNotNull(bArrDigest, "MessageDigest.getInstance(algorithm).digest(data)");
         return new ByteString(bArrDigest);
-    }
-
-    public int hashCode() {
-        int i = this.hashCode;
-        if (i != 0) {
-            return i;
-        }
-        int iHashCode = Arrays.hashCode(this.data);
-        this.hashCode = iHashCode;
-        return iHashCode;
-    }
-
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final byte[] getData() {
-        return this.data;
     }
 
     /* JADX INFO: renamed from: j */
@@ -331,19 +317,6 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         }
     }
 
-    /* JADX INFO: renamed from: q */
-    public String m11008q() {
-        String str = this.utf8;
-        if (str != null) {
-            return str;
-        }
-        byte[] bArrMo10504l = mo10504l();
-        C12238m.checkParameterIsNotNull(bArrMo10504l, "$this$toUtf8String");
-        String str2 = new String(bArrMo10504l, C12086c.f25136a);
-        this.utf8 = str2;
-        return str2;
-    }
-
     /* JADX INFO: renamed from: r */
     public void mo10509r(OutputStream out) throws IOException {
         C12238m.checkParameterIsNotNull(out, "out");
@@ -356,6 +329,28 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         C12238m.checkParameterIsNotNull(this, "$this$commonWrite");
         C12238m.checkParameterIsNotNull(buffer, "buffer");
         buffer.m10443S(this.data, offset, byteCount);
+    }
+
+    private final void readObject(ObjectInputStream in) throws IllegalAccessException, NoSuchFieldException, IOException {
+        int i = in.readInt();
+        C12238m.checkParameterIsNotNull(in, "$this$readByteString");
+        int i2 = 0;
+        if (!(i >= 0)) {
+            throw new IllegalArgumentException(C1643a.m871q("byteCount < 0: ", i).toString());
+        }
+        byte[] bArr = new byte[i];
+        while (i2 < i) {
+            int i3 = in.read(bArr, i2, i - i2);
+            if (i3 == -1) {
+                throw new EOFException();
+            }
+            i2 += i3;
+        }
+        ByteString byteString = new ByteString(bArr);
+        Field declaredField = ByteString.class.getDeclaredField("data");
+        C12238m.checkExpressionValueIsNotNull(declaredField, "field");
+        declaredField.setAccessible(true);
+        declaredField.set(this, byteString.data);
     }
 
     /* JADX WARN: Code duplicated, block: B:138:0x0142  */
@@ -723,5 +718,10 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         sbM833U3.append(strReplace$default);
         sbM833U3.append("…]");
         return sbM833U3.toString();
+    }
+
+    private final void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeInt(this.data.length);
+        out.write(this.data);
     }
 }

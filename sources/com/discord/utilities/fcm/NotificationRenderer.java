@@ -37,6 +37,7 @@ import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.home.WidgetHome;
 import com.discord.widgets.notice.NoticePopup;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -76,43 +77,15 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: NotificationRenderer.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class NotificationRenderer {
-    public static final NotificationRenderer INSTANCE = new NotificationRenderer();
     private static final String NON_ADAPTIVE_NOTIFICATION_ICON = "com.discord.utilities.NON_ADAPTIVE_NOTIFICATION_ICON ";
     private static final long NOTIFICATION_AUTO_DISMISS = 3000;
     private static final long NOTIFICATION_ICON_FETCH_DELAY_MS = 250;
     private static final int NOTIFICATION_LIGHT_PERIOD = 1500;
-
-    /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final class NotificationDisplaySubscriptionManager {
-        public static final NotificationDisplaySubscriptionManager INSTANCE = new NotificationDisplaySubscriptionManager();
-        private static final HashMap<Integer, Subscription> notificationDisplaySubscriptions = new HashMap<>();
-
-        private NotificationDisplaySubscriptionManager() {
-        }
-
-        public final void add(int displayPayloadId, Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
-            synchronized (map) {
-                INSTANCE.cancel(displayPayloadId);
-                map.put(Integer.valueOf(displayPayloadId), subscription);
-            }
-        }
-
-        public final void cancel(int displayPayloadId) {
-            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
-            synchronized (map) {
-                Subscription subscriptionRemove = map.remove(Integer.valueOf(displayPayloadId));
-                if (subscriptionRemove != null) {
-                    subscriptionRemove.unsubscribe();
-                }
-            }
-        }
-    }
+    public static final NotificationRenderer INSTANCE = new NotificationRenderer();
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$clear$1 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final class C67481 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C67481 extends AbstractC12240o implements Function1<Integer, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -137,7 +110,7 @@ public final class NotificationRenderer {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$4 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final /* synthetic */ class C67494 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C67494 extends C12236k implements Function1<Subscription, Unit> {
         public C67494(CompositeSubscription compositeSubscription) {
             super(1, compositeSubscription, CompositeSubscription.class, "add", "add(Lrx/Subscription;)V", 0);
         }
@@ -156,7 +129,7 @@ public final class NotificationRenderer {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$5 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final class C67505 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C67505 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ NotificationData.DisplayPayload $displayPayload;
         public final /* synthetic */ NotificationData $notification;
@@ -187,7 +160,7 @@ public final class NotificationRenderer {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$6 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final /* synthetic */ class C67516 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C67516 extends C12236k implements Function1<Subscription, Unit> {
         public C67516(CompositeSubscription compositeSubscription) {
             super(1, compositeSubscription, CompositeSubscription.class, "add", "add(Lrx/Subscription;)V", 0);
         }
@@ -206,7 +179,7 @@ public final class NotificationRenderer {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$7 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final class C67527 extends AbstractC12240o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
+    public final class C67527 extends AbstractC12240o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ NotificationData.DisplayPayload $displayPayload;
         public final /* synthetic */ List $displayPayloadExtras;
@@ -224,13 +197,13 @@ public final class NotificationRenderer {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IOException {
+        public /* bridge */ /* synthetic */ Unit invoke(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IllegalAccessException, IOException, InvocationTargetException {
             invoke2(closeableBitmaps);
             return Unit.f27425a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IOException {
+        public final void invoke2(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IllegalAccessException, IOException, InvocationTargetException {
             IconCompat iconCompatCreateWithBitmap;
             C12238m.checkNotNullParameter(closeableBitmaps, "bitmapsForIconUris");
             try {
@@ -268,7 +241,7 @@ public final class NotificationRenderer {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayInApp$1 */
     /* JADX INFO: compiled from: NotificationRenderer.kt */
-    public static final class C67531 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C67531 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ NotificationData $notificationData;
 
@@ -292,6 +265,34 @@ public final class NotificationRenderer {
         }
     }
 
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class NotificationDisplaySubscriptionManager {
+        public static final NotificationDisplaySubscriptionManager INSTANCE = new NotificationDisplaySubscriptionManager();
+        private static final HashMap<Integer, Subscription> notificationDisplaySubscriptions = new HashMap<>();
+
+        private NotificationDisplaySubscriptionManager() {
+        }
+
+        public final void add(int displayPayloadId, Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
+            synchronized (map) {
+                INSTANCE.cancel(displayPayloadId);
+                map.put(Integer.valueOf(displayPayloadId), subscription);
+            }
+        }
+
+        public final void cancel(int displayPayloadId) {
+            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
+            synchronized (map) {
+                Subscription subscriptionRemove = map.remove(Integer.valueOf(displayPayloadId));
+                if (subscriptionRemove != null) {
+                    subscriptionRemove.unsubscribe();
+                }
+            }
+        }
+    }
+
     private NotificationRenderer() {
     }
 
@@ -300,6 +301,21 @@ public final class NotificationRenderer {
         Object systemService = context.getSystemService(NotificationCompat.CATEGORY_ALARM);
         Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.app.AlarmManager");
         ((AlarmManager) systemService).set(2, SystemClock.elapsedRealtime() + NOTIFICATION_AUTO_DISMISS, broadcast);
+    }
+
+    public final void clear(Context context, long channelId, boolean isAckRequest) {
+        NotificationCache.INSTANCE.remove(channelId, isAckRequest, new C67481(context));
+    }
+
+    public final void display(Context context, NotificationData notificationData, NotificationClient.SettingsV2 settings) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(notificationData, "notificationData");
+        C12238m.checkNotNullParameter(settings, "settings");
+        try {
+            displayAndUpdateCache(context, notificationData, settings);
+        } catch (Exception e) {
+            Logger.e$default(AppLog.f14950g, "Unable to display notification.", e, null, 4, null);
+        }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -368,12 +384,45 @@ public final class NotificationRenderer {
         notificationDisplaySubscriptionManager.add(andUpdate.getId(), compositeSubscription);
     }
 
+    public final void displayInApp(Context context, NotificationData notificationData) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(notificationData, "notificationData");
+        if (notificationData.canDisplayInApp()) {
+            CharSequence title = notificationData.getTitle(context);
+            CharSequence content = notificationData.getContent(context);
+            if (content == null) {
+                content = "";
+            }
+            CharSequence charSequence = content;
+            if (C12103t.isBlank(title) && C12103t.isBlank(charSequence)) {
+                return;
+            }
+            NoticePopup noticePopup = NoticePopup.INSTANCE;
+            StringBuilder sbM833U = C1643a.m833U("InAppNotif#");
+            sbM833U.append(ClockFactory.get().currentTimeMillis());
+            noticePopup.enqueue(sbM833U.toString(), title, (16116 & 4) != 0 ? null : null, charSequence, (16116 & 16) != 0 ? null : null, (16116 & 32) != 0 ? null : null, (16116 & 64) != 0 ? null : null, (16116 & 128) != 0 ? null : null, (16116 & 256) != 0 ? null : notificationData.getIconUrl(), (16116 & 512) != 0 ? null : null, (16116 & 1024) != 0 ? null : null, (16116 & 2048) != 0 ? 5 : null, (16116 & 4096) != 0 ? C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)) : null, (16116 & 8192) != 0 ? NoticePopup.C90901.INSTANCE : null, new C67531(notificationData, context));
+        }
+    }
+
     private final void displayNotification(Context context, int payloadId, NotificationCompat.Builder notificationBuilder) {
         try {
             NotificationManagerCompat.from(context).notify(payloadId, notificationBuilder.build());
         } catch (IllegalStateException e) {
             Logger.e$default(AppLog.f14950g, "NotifyError", e, null, 4, null);
         }
+    }
+
+    public final void displaySent(Context context, long channelId, CharSequence channelName, boolean success, int notificationId) {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(channelName, "channelName");
+        int i = success ? C5419R.string.notification_reply_success : C5419R.string.notification_reply_failed;
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.INSTANCE.delete(context, channelId), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
+        Intent intentSelectChannel$default = IntentUtils.RouteBuilders.selectChannel$default(channelId, 0L, null, 6, null);
+        intentSelectChannel$default.setClass(context, AppActivity.Main.class);
+        Notification notificationBuild = new NotificationCompat.Builder(context, NotificationClient.NOTIF_CHANNEL_MESSAGES).setAutoCancel(true).setSmallIcon(C5419R.drawable.ic_notification_message_24dp).setCategory(NotificationCompat.CATEGORY_MESSAGE).setContentText(C1107b.m216h(context, i, new Object[]{channelName}, null, 4)).setDeleteIntent(broadcast).setContentIntent(PendingIntent.getActivity(context, 0, intentSelectChannel$default, PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728))).build();
+        C12238m.checkNotNullExpressionValue(notificationBuild, "NotificationCompat.Build…ent)\n            .build()");
+        NotificationManagerCompat.from(context).notify(notificationId, notificationBuild);
+        autoDismissNotification(context, notificationId);
     }
 
     private final NotificationCompat.MessagingStyle getMessageStyle(Context context, NotificationData notification, List<NotificationData> lines, Map<String, Bitmap> bitmapsForIconUris) {
@@ -394,6 +443,34 @@ public final class NotificationRenderer {
     private final int getNotificationDefaults(boolean disableSound, boolean disableVibrate) {
         int i = !disableSound ? 1 : 0;
         return !disableVibrate ? i | 2 : i;
+    }
+
+    @RequiresApi(26)
+    public final void initNotificationChannels(Application context) {
+        C12238m.checkNotNullParameter(context, "context");
+        NotificationChannel notificationChannel = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_CALLS, context.getString(C5419R.string.call), 4);
+        NotificationChannel notificationChannel2 = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MEDIA_CONNECTIONS, context.getString(C5419R.string.voice), 2);
+        List<NotificationChannel> listListOf = C12147n.listOf((Object[]) new NotificationChannel[]{notificationChannel, notificationChannel2, new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES, context.getString(C5419R.string.messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES_DIRECT, context.getString(C5419R.string.direct_messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_FORUM_POST_CREATE, context.getString(C5419R.string.forum_channel_thread_created_push_description_mobile), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_SOCIAL, context.getString(C5419R.string.friends), 2), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_GAME_DETECTION, context.getString(C5419R.string.game_detection_service), 1), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_STAGE_START, context.getString(C5419R.string.stage_start_notification_category), 4), new NotificationChannel(NotificationClient.NOTIF_GUILD_SCHEDULED_EVENT_START, context.getString(C5419R.string.guild_scheduled_event_live), 4), new NotificationChannel(NotificationClient.NOTIF_GENERAL, context.getString(C5419R.string.other), 2), new NotificationChannel(NotificationClient.NOTIF_GENERAL_HIGH_PRIO, context.getString(C5419R.string.other_high_priority), 4)});
+        for (NotificationChannel notificationChannel3 : listListOf) {
+            notificationChannel3.setShowBadge(true);
+            notificationChannel3.enableVibration(true);
+            notificationChannel3.enableLights(true);
+            notificationChannel3.setLightColor(ColorCompat.getThemedColor(context, C5419R.attr.color_brand));
+        }
+        notificationChannel.setDescription(context.getString(C5419R.string.call));
+        notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        notificationChannel.setShowBadge(false);
+        StringBuilder sb = new StringBuilder();
+        sb.append("android.resource://");
+        sb.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.INSTANCE.getSOUND_CALL_RINGING().getResId());
+        String string = sb.toString();
+        C12238m.checkNotNullExpressionValue(string, "StringBuilder()\n        …)\n            .toString()");
+        notificationChannel.setSound(Uri.parse(string), new AudioAttributes.Builder().setUsage(7).setContentType(2).build());
+        notificationChannel2.setShowBadge(false);
+        notificationChannel2.enableVibration(false);
+        Object systemService = context.getSystemService("notification");
+        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.app.NotificationManager");
+        ((NotificationManager) systemService).createNotificationChannels(listListOf);
     }
 
     private final Pair<Integer, Observable<MGImagesBitmap.CloseableBitmaps>> loadNotificationBitmaps(NotificationData.DisplayPayload displayPayload, final NotificationData notification) {
@@ -425,11 +502,6 @@ public final class NotificationRenderer {
         }));
     }
 
-    private final void pushShortcut(Context context, NotificationData notification, NotificationCompat.Builder notificationBuilder, IconCompat icon) {
-        ShareUtils shareUtils = ShareUtils.INSTANCE;
-        shareUtils.addShortcut(context, ShareUtils.toShortcutInfo$default(shareUtils, context, notification.getChannelId(), notification.getTitle(context), null, icon, null, 0, 104, null), notificationBuilder);
-    }
-
     public static /* synthetic */ void pushShortcut$default(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, NotificationCompat.Builder builder, IconCompat iconCompat, int i, Object obj) {
         if ((i & 8) != 0) {
             iconCompat = null;
@@ -437,79 +509,8 @@ public final class NotificationRenderer {
         notificationRenderer.pushShortcut(context, notificationData, builder, iconCompat);
     }
 
-    public final void clear(Context context, long channelId, boolean isAckRequest) {
-        NotificationCache.INSTANCE.remove(channelId, isAckRequest, new C67481(context));
-    }
-
-    public final void display(Context context, NotificationData notificationData, NotificationClient.SettingsV2 settings) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(notificationData, "notificationData");
-        C12238m.checkNotNullParameter(settings, "settings");
-        try {
-            displayAndUpdateCache(context, notificationData, settings);
-        } catch (Exception e) {
-            Logger.e$default(AppLog.f14950g, "Unable to display notification.", e, null, 4, null);
-        }
-    }
-
-    public final void displayInApp(Context context, NotificationData notificationData) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(notificationData, "notificationData");
-        if (notificationData.canDisplayInApp()) {
-            CharSequence title = notificationData.getTitle(context);
-            CharSequence content = notificationData.getContent(context);
-            if (content == null) {
-                content = "";
-            }
-            CharSequence charSequence = content;
-            if (C12103t.isBlank(title) && C12103t.isBlank(charSequence)) {
-                return;
-            }
-            NoticePopup noticePopup = NoticePopup.INSTANCE;
-            StringBuilder sbM833U = C1643a.m833U("InAppNotif#");
-            sbM833U.append(ClockFactory.get().currentTimeMillis());
-            noticePopup.enqueue(sbM833U.toString(), title, (16116 & 4) != 0 ? null : null, charSequence, (16116 & 16) != 0 ? null : null, (16116 & 32) != 0 ? null : null, (16116 & 64) != 0 ? null : null, (16116 & 128) != 0 ? null : null, (16116 & 256) != 0 ? null : notificationData.getIconUrl(), (16116 & 512) != 0 ? null : null, (16116 & 1024) != 0 ? null : null, (16116 & 2048) != 0 ? 5 : null, (16116 & 4096) != 0 ? C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)) : null, (16116 & 8192) != 0 ? NoticePopup.C90901.INSTANCE : null, new C67531(notificationData, context));
-        }
-    }
-
-    public final void displaySent(Context context, long channelId, CharSequence channelName, boolean success, int notificationId) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(channelName, "channelName");
-        int i = success ? C5419R.string.notification_reply_success : C5419R.string.notification_reply_failed;
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.INSTANCE.delete(context, channelId), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
-        Intent intentSelectChannel$default = IntentUtils.RouteBuilders.selectChannel$default(channelId, 0L, null, 6, null);
-        intentSelectChannel$default.setClass(context, AppActivity.Main.class);
-        Notification notificationBuild = new NotificationCompat.Builder(context, NotificationClient.NOTIF_CHANNEL_MESSAGES).setAutoCancel(true).setSmallIcon(C5419R.drawable.ic_notification_message_24dp).setCategory(NotificationCompat.CATEGORY_MESSAGE).setContentText(C1107b.m216h(context, i, new Object[]{channelName}, null, 4)).setDeleteIntent(broadcast).setContentIntent(PendingIntent.getActivity(context, 0, intentSelectChannel$default, PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728))).build();
-        C12238m.checkNotNullExpressionValue(notificationBuild, "NotificationCompat.Build…ent)\n            .build()");
-        NotificationManagerCompat.from(context).notify(notificationId, notificationBuild);
-        autoDismissNotification(context, notificationId);
-    }
-
-    @RequiresApi(26)
-    public final void initNotificationChannels(Application context) {
-        C12238m.checkNotNullParameter(context, "context");
-        NotificationChannel notificationChannel = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_CALLS, context.getString(C5419R.string.call), 4);
-        NotificationChannel notificationChannel2 = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MEDIA_CONNECTIONS, context.getString(C5419R.string.voice), 2);
-        List<NotificationChannel> listListOf = C12147n.listOf((Object[]) new NotificationChannel[]{notificationChannel, notificationChannel2, new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES, context.getString(C5419R.string.messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES_DIRECT, context.getString(C5419R.string.direct_messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_FORUM_POST_CREATE, context.getString(C5419R.string.forum_channel_thread_created_push_description_mobile), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_SOCIAL, context.getString(C5419R.string.friends), 2), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_GAME_DETECTION, context.getString(C5419R.string.game_detection_service), 1), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_STAGE_START, context.getString(C5419R.string.stage_start_notification_category), 4), new NotificationChannel(NotificationClient.NOTIF_GUILD_SCHEDULED_EVENT_START, context.getString(C5419R.string.guild_scheduled_event_live), 4), new NotificationChannel(NotificationClient.NOTIF_GENERAL, context.getString(C5419R.string.other), 2), new NotificationChannel(NotificationClient.NOTIF_GENERAL_HIGH_PRIO, context.getString(C5419R.string.other_high_priority), 4)});
-        for (NotificationChannel notificationChannel3 : listListOf) {
-            notificationChannel3.setShowBadge(true);
-            notificationChannel3.enableVibration(true);
-            notificationChannel3.enableLights(true);
-            notificationChannel3.setLightColor(ColorCompat.getThemedColor(context, C5419R.attr.color_brand));
-        }
-        notificationChannel.setDescription(context.getString(C5419R.string.call));
-        notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-        notificationChannel.setShowBadge(false);
-        StringBuilder sb = new StringBuilder();
-        sb.append("android.resource://");
-        sb.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.INSTANCE.getSOUND_CALL_RINGING().getResId());
-        String string = sb.toString();
-        C12238m.checkNotNullExpressionValue(string, "StringBuilder()\n        …)\n            .toString()");
-        notificationChannel.setSound(Uri.parse(string), new AudioAttributes.Builder().setUsage(7).setContentType(2).build());
-        notificationChannel2.setShowBadge(false);
-        notificationChannel2.enableVibration(false);
-        Object systemService = context.getSystemService("notification");
-        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.app.NotificationManager");
-        ((NotificationManager) systemService).createNotificationChannels(listListOf);
+    private final void pushShortcut(Context context, NotificationData notification, NotificationCompat.Builder notificationBuilder, IconCompat icon) {
+        ShareUtils shareUtils = ShareUtils.INSTANCE;
+        shareUtils.addShortcut(context, ShareUtils.toShortcutInfo$default(shareUtils, context, notification.getChannelId(), notification.getTitle(context), null, icon, null, 0, 104, null), notificationBuilder);
     }
 }

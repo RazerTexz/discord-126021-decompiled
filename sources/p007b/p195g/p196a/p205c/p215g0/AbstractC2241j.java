@@ -51,7 +51,7 @@ public abstract class AbstractC2241j extends AbstractC2374x implements Serializa
 
     /* JADX INFO: renamed from: b.g.a.c.g0.j$a */
     /* JADX INFO: compiled from: DefaultSerializerProvider.java */
-    public static final class a extends AbstractC2241j {
+    public final class a extends AbstractC2241j {
         private static final long serialVersionUID = 1;
 
         public a() {
@@ -69,64 +69,6 @@ public abstract class AbstractC2241j extends AbstractC2374x implements Serializa
     }
 
     public AbstractC2241j() {
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
-    /* JADX INFO: renamed from: A */
-    public Object mo1998A(AbstractC2198s abstractC2198s, Class<?> cls) {
-        if (cls == null) {
-            return null;
-        }
-        Objects.requireNonNull(this._config._base);
-        return C2342d.m2175g(cls, this._config.m2265b());
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
-    /* JADX INFO: renamed from: B */
-    public boolean mo1999B(Object obj) throws JsonMappingException {
-        try {
-            return obj.equals(null);
-        } catch (Throwable th) {
-            InvalidDefinitionException invalidDefinitionException = new InvalidDefinitionException(this.f4808o, String.format("Problem determining whether filter of type '%s' should filter out `null` values: (%s) %s", obj.getClass().getName(), th.getClass().getName(), C2342d.m2176h(th)), m1938b(obj.getClass()));
-            invalidDefinitionException.initCause(th);
-            throw invalidDefinitionException;
-        }
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
-    /* JADX INFO: renamed from: H */
-    public AbstractC2364n<Object> mo2000H(AbstractC2175b abstractC2175b, Object obj) throws JsonMappingException {
-        AbstractC2364n<Object> abstractC2364n;
-        if (obj instanceof AbstractC2364n) {
-            abstractC2364n = (AbstractC2364n) obj;
-        } else {
-            if (!(obj instanceof Class)) {
-                AbstractC2360j abstractC2360jMo1821e = abstractC2175b.mo1821e();
-                StringBuilder sbM833U = C1643a.m833U("AnnotationIntrospector returned serializer definition of type ");
-                sbM833U.append(obj.getClass().getName());
-                sbM833U.append("; expected type JsonSerializer or Class<JsonSerializer> instead");
-                mo1942f(abstractC2360jMo1821e, sbM833U.toString());
-                throw null;
-            }
-            Class cls = (Class) obj;
-            if (cls == AbstractC2364n.a.class || C2342d.m2184p(cls)) {
-                return null;
-            }
-            if (!AbstractC2364n.class.isAssignableFrom(cls)) {
-                AbstractC2360j abstractC2360jMo1821e2 = abstractC2175b.mo1821e();
-                StringBuilder sbM833U2 = C1643a.m833U("AnnotationIntrospector returned Class ");
-                sbM833U2.append(cls.getName());
-                sbM833U2.append("; expected Class<JsonSerializer>");
-                mo1942f(abstractC2360jMo1821e2, sbM833U2.toString());
-                throw null;
-            }
-            Objects.requireNonNull(this._config._base);
-            abstractC2364n = (AbstractC2364n) C2342d.m2175g(cls, this._config.m2265b());
-        }
-        if (abstractC2364n instanceof InterfaceC2246o) {
-            ((InterfaceC2246o) abstractC2364n).mo2007b(this);
-        }
-        return abstractC2364n;
     }
 
     /* JADX INFO: renamed from: I */
@@ -161,9 +103,6 @@ public abstract class AbstractC2241j extends AbstractC2374x implements Serializa
         }
         return new JsonMappingException(abstractC2108d, strM2176h, exc);
     }
-
-    /* JADX INFO: renamed from: K */
-    public abstract AbstractC2241j mo2003K(C2372v c2372v, AbstractC2248q abstractC2248q);
 
     /* JADX INFO: renamed from: L */
     public void m2004L(AbstractC2108d abstractC2108d, Object obj) throws IOException {
@@ -267,6 +206,67 @@ public abstract class AbstractC2241j extends AbstractC2374x implements Serializa
             throw m2002J(abstractC2108d, e2);
         }
     }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
+    /* JADX INFO: renamed from: A */
+    public Object mo1998A(AbstractC2198s abstractC2198s, Class<?> cls) {
+        if (cls == null) {
+            return null;
+        }
+        Objects.requireNonNull(this._config._base);
+        return C2342d.m2175g(cls, this._config.m2265b());
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
+    /* JADX INFO: renamed from: B */
+    public boolean mo1999B(Object obj) throws JsonMappingException {
+        try {
+            return obj.equals(null);
+        } catch (Throwable th) {
+            InvalidDefinitionException invalidDefinitionException = new InvalidDefinitionException(this.f4808o, String.format("Problem determining whether filter of type '%s' should filter out `null` values: (%s) %s", obj.getClass().getName(), th.getClass().getName(), C2342d.m2176h(th)), m1938b(obj.getClass()));
+            invalidDefinitionException.initCause(th);
+            throw invalidDefinitionException;
+        }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2374x
+    /* JADX INFO: renamed from: H */
+    public AbstractC2364n<Object> mo2000H(AbstractC2175b abstractC2175b, Object obj) throws JsonMappingException {
+        AbstractC2364n<Object> abstractC2364n;
+        if (obj instanceof AbstractC2364n) {
+            abstractC2364n = (AbstractC2364n) obj;
+        } else {
+            if (!(obj instanceof Class)) {
+                AbstractC2360j abstractC2360jMo1821e = abstractC2175b.mo1821e();
+                StringBuilder sbM833U = C1643a.m833U("AnnotationIntrospector returned serializer definition of type ");
+                sbM833U.append(obj.getClass().getName());
+                sbM833U.append("; expected type JsonSerializer or Class<JsonSerializer> instead");
+                mo1942f(abstractC2360jMo1821e, sbM833U.toString());
+                throw null;
+            }
+            Class cls = (Class) obj;
+            if (cls == AbstractC2364n.a.class || C2342d.m2184p(cls)) {
+                return null;
+            }
+            if (!AbstractC2364n.class.isAssignableFrom(cls)) {
+                AbstractC2360j abstractC2360jMo1821e2 = abstractC2175b.mo1821e();
+                StringBuilder sbM833U2 = C1643a.m833U("AnnotationIntrospector returned Class ");
+                sbM833U2.append(cls.getName());
+                sbM833U2.append("; expected Class<JsonSerializer>");
+                mo1942f(abstractC2360jMo1821e2, sbM833U2.toString());
+                throw null;
+            }
+            Objects.requireNonNull(this._config._base);
+            abstractC2364n = (AbstractC2364n) C2342d.m2175g(cls, this._config.m2265b());
+        }
+        if (abstractC2364n instanceof InterfaceC2246o) {
+            ((InterfaceC2246o) abstractC2364n).mo2007b(this);
+        }
+        return abstractC2364n;
+    }
+
+    /* JADX INFO: renamed from: K */
+    public abstract AbstractC2241j mo2003K(C2372v c2372v, AbstractC2248q abstractC2248q);
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2374x
     /* JADX INFO: renamed from: p */

@@ -14,11 +14,11 @@ import p007b.p452o.p453a.C5103b;
 @RequiresApi(21)
 public class C5201b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14103a = new C5103b("FpsRangeValidator");
-
     /* JADX INFO: renamed from: b */
     public static final Map<String, List<Range<Integer>>> f14104b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14103a = new C5103b("FpsRangeValidator");
 
     static {
         HashMap map = new HashMap();

@@ -32,51 +32,6 @@ public final /* data */ class HubGuildScheduledEventData {
         this.isInGuild = z7;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getDirectoryChannelId() {
-        return this.directoryChannelId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildScheduledEvent getEvent() {
-        return this.event;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsRsvped() {
-        return this.isRsvped;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanShare() {
-        return this.canShare;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getCanStartEvent() {
-        return this.canStartEvent;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getCanConnect() {
-        return this.canConnect;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsConnected() {
-        return this.isConnected;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsInGuild() {
-        return this.isInGuild;
-    }
-
     public final HubGuildScheduledEventData copy(long directoryChannelId, GuildScheduledEvent event, Channel channel, boolean isRsvped, boolean canShare, boolean canStartEvent, boolean canConnect, boolean isConnected, boolean isInGuild) {
         C12238m.checkNotNullParameter(event, "event");
         return new HubGuildScheduledEventData(directoryChannelId, event, channel, isRsvped, canShare, canStartEvent, canConnect, isConnected, isInGuild);
@@ -93,28 +48,73 @@ public final /* data */ class HubGuildScheduledEventData {
         return this.directoryChannelId == hubGuildScheduledEventData.directoryChannelId && C12238m.areEqual(this.event, hubGuildScheduledEventData.event) && C12238m.areEqual(this.channel, hubGuildScheduledEventData.channel) && this.isRsvped == hubGuildScheduledEventData.isRsvped && this.canShare == hubGuildScheduledEventData.canShare && this.canStartEvent == hubGuildScheduledEventData.canStartEvent && this.canConnect == hubGuildScheduledEventData.canConnect && this.isConnected == hubGuildScheduledEventData.isConnected && this.isInGuild == hubGuildScheduledEventData.isInGuild;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getCanConnect() {
         return this.canConnect;
+    }
+
+    public final boolean getCanConnect() {
+        return this.canConnect;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getCanShare() {
+        return this.canShare;
     }
 
     public final boolean getCanShare() {
         return this.canShare;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getCanStartEvent() {
         return this.canStartEvent;
+    }
+
+    public final boolean getCanStartEvent() {
+        return this.canStartEvent;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final Channel getChannel() {
+        return this.channel;
     }
 
     public final Channel getChannel() {
         return this.channel;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getDirectoryChannelId() {
         return this.directoryChannelId;
     }
 
+    public final long getDirectoryChannelId() {
+        return this.directoryChannelId;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final GuildScheduledEvent getEvent() {
         return this.event;
+    }
+
+    public final GuildScheduledEvent getEvent() {
+        return this.event;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsConnected() {
+        return this.isConnected;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsInGuild() {
+        return this.isInGuild;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsRsvped() {
+        return this.isRsvped;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

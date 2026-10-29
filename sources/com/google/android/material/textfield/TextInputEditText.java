@@ -48,25 +48,6 @@ public class TextInputEditText extends AppCompatEditText {
         return sb.toString();
     }
 
-    @Nullable
-    private CharSequence getHintFromLayout() {
-        TextInputLayout textInputLayout = getTextInputLayout();
-        if (textInputLayout != null) {
-            return textInputLayout.getHint();
-        }
-        return null;
-    }
-
-    @Nullable
-    private TextInputLayout getTextInputLayout() {
-        for (ViewParent parent = getParent(); parent instanceof View; parent = parent.getParent()) {
-            if (parent instanceof TextInputLayout) {
-                return (TextInputLayout) parent;
-            }
-        }
-        return null;
-    }
-
     @Override // android.widget.TextView, android.view.View
     public void getFocusedRect(@Nullable Rect rect) {
         super.getFocusedRect(rect);
@@ -94,6 +75,25 @@ public class TextInputEditText extends AppCompatEditText {
     public CharSequence getHint() {
         TextInputLayout textInputLayout = getTextInputLayout();
         return (textInputLayout == null || !textInputLayout.isProvidingHint()) ? super.getHint() : textInputLayout.getHint();
+    }
+
+    @Nullable
+    private CharSequence getHintFromLayout() {
+        TextInputLayout textInputLayout = getTextInputLayout();
+        if (textInputLayout != null) {
+            return textInputLayout.getHint();
+        }
+        return null;
+    }
+
+    @Nullable
+    private TextInputLayout getTextInputLayout() {
+        for (ViewParent parent = getParent(); parent instanceof View; parent = parent.getParent()) {
+            if (parent instanceof TextInputLayout) {
+                return (TextInputLayout) parent;
+            }
+        }
+        return null;
     }
 
     public boolean isTextInputLayoutFocusedRectEnabled() {

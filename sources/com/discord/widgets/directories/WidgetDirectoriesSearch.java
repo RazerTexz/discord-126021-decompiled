@@ -68,7 +68,7 @@ public final class WidgetDirectoriesSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesSearch$configureUI$2 */
     /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
-    public static final class C82712 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C82712 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C82712() {
             super(1);
         }
@@ -88,11 +88,11 @@ public final class WidgetDirectoriesSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesSearch$configureUI$3 */
     /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
-    public static final class C82723 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C82723 extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesSearch$configureUI$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -129,7 +129,7 @@ public final class WidgetDirectoriesSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesSearch$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
-    public static final class C82754 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C82754 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C82754() {
             super(1);
         }
@@ -149,7 +149,7 @@ public final class WidgetDirectoriesSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesSearch$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
-    public static final class C82761 extends AbstractC12240o implements Function1<WidgetDirectoriesSearchViewModel.ViewState, Unit> {
+    public final class C82761 extends AbstractC12240o implements Function1<WidgetDirectoriesSearchViewModel.ViewState, Unit> {
         public C82761() {
             super(1);
         }
@@ -216,24 +216,6 @@ public final class WidgetDirectoriesSearch extends AppFragment {
             Editable text2 = textInputEditText3.getText();
             textView.setVisibility((text2 == null || C12103t.isBlank(text2)) ^ true ? 0 : 8);
         }
-    }
-
-    private final void searchForDirectories() {
-        WidgetDirectoriesSearchViewModel viewModel = getViewModel();
-        long channelId = getArgs().getChannelId();
-        TextInputEditText textInputEditText = getBinding().f16458h;
-        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchBarText");
-        viewModel.searchForDirectories(channelId, String.valueOf(textInputEditText.getText()));
-        hideKeyboard(getView());
-    }
-
-    private final void toggleList(boolean showList) {
-        RecyclerView recyclerView = getBinding().f16455e;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
-        recyclerView.setVisibility(showList ? 0 : 8);
-        LinearLayout linearLayout = getBinding().f16453c;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.emptyState");
-        linearLayout.setVisibility(showList ^ true ? 0 : 8);
     }
 
     public final WidgetDirectoryChannelAdapter getAdapter() {
@@ -307,5 +289,23 @@ public final class WidgetDirectoriesSearch extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(ObservableExtensionsKt.m8518ui(getViewModel().observeViewState()), this, null, 2, null), (Class<?>) WidgetDirectoriesSearch.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82761());
+    }
+
+    private final void searchForDirectories() {
+        WidgetDirectoriesSearchViewModel viewModel = getViewModel();
+        long channelId = getArgs().getChannelId();
+        TextInputEditText textInputEditText = getBinding().f16458h;
+        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchBarText");
+        viewModel.searchForDirectories(channelId, String.valueOf(textInputEditText.getText()));
+        hideKeyboard(getView());
+    }
+
+    private final void toggleList(boolean showList) {
+        RecyclerView recyclerView = getBinding().f16455e;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        recyclerView.setVisibility(showList ? 0 : 8);
+        LinearLayout linearLayout = getBinding().f16453c;
+        C12238m.checkNotNullExpressionValue(linearLayout, "binding.emptyState");
+        linearLayout.setVisibility(showList ^ true ? 0 : 8);
     }
 }

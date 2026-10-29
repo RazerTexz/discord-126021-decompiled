@@ -23,7 +23,7 @@ public final class C2737e {
 
     /* JADX INFO: renamed from: b.i.a.c.f3.e$a */
     /* JADX INFO: compiled from: AtomicFile.java */
-    public static final class a extends OutputStream {
+    public final class a extends OutputStream {
 
         /* JADX INFO: renamed from: j */
         public final FileOutputStream f6706j;

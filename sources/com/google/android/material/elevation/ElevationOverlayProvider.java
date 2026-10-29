@@ -27,10 +27,6 @@ public class ElevationOverlayProvider {
         this.displayDensity = context.getResources().getDisplayMetrics().density;
     }
 
-    private boolean isThemeSurfaceColor(@ColorInt int i) {
-        return ColorUtils.setAlphaComponent(i, 255) == this.colorSurface;
-    }
-
     public int calculateOverlayAlpha(float f) {
         return Math.round(calculateOverlayAlphaFraction(f) * 255.0f);
     }
@@ -74,6 +70,10 @@ public class ElevationOverlayProvider {
 
     public boolean isThemeElevationOverlayEnabled() {
         return this.elevationOverlayEnabled;
+    }
+
+    private boolean isThemeSurfaceColor(@ColorInt int i) {
+        return ColorUtils.setAlphaComponent(i, 255) == this.colorSurface;
     }
 
     @ColorInt

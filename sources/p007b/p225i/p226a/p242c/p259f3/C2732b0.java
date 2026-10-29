@@ -13,16 +13,16 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2732b0 implements InterfaceC2748o {
 
+    /* JADX INFO: renamed from: b */
+    public final Handler f6691b;
+
     /* JADX INFO: renamed from: a */
     @GuardedBy("messagePool")
     public static final List<b> f6690a = new ArrayList(50);
 
-    /* JADX INFO: renamed from: b */
-    public final Handler f6691b;
-
     /* JADX INFO: renamed from: b.i.a.c.f3.b0$b */
     /* JADX INFO: compiled from: SystemHandlerWrapper.java */
-    public static final class b implements InterfaceC2748o.a {
+    public final class b implements InterfaceC2748o.a {
 
         /* JADX INFO: renamed from: a */
         @Nullable

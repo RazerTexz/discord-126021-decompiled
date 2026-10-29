@@ -21,7 +21,7 @@ public final class WidgetSettingsGifting$onViewBound$chooseGiftCallback$1 extend
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$chooseGiftCallback$1$1 */
     /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
-    public static final class C99141 extends AbstractC12240o implements Function0<Unit> {
+    public final class C99141 extends AbstractC12240o implements Function0<Unit> {
         public C99141() {
             super(0);
         }

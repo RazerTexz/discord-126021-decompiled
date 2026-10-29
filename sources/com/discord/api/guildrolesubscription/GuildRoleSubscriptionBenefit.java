@@ -25,6 +25,17 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
         this.refId = l2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildRoleSubscriptionBenefit)) {
+            return false;
+        }
+        GuildRoleSubscriptionBenefit guildRoleSubscriptionBenefit = (GuildRoleSubscriptionBenefit) other;
+        return C12238m.areEqual(this.emojiId, guildRoleSubscriptionBenefit.emojiId) && C12238m.areEqual(this.emojiName, guildRoleSubscriptionBenefit.emojiName) && C12238m.areEqual(this.name, guildRoleSubscriptionBenefit.name) && C12238m.areEqual(this.refType, guildRoleSubscriptionBenefit.refType) && C12238m.areEqual(this.description, guildRoleSubscriptionBenefit.description) && C12238m.areEqual(this.refId, guildRoleSubscriptionBenefit.refId);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getDescription() {
         return this.description;
@@ -48,17 +59,6 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final Long getRefId() {
         return this.refId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildRoleSubscriptionBenefit)) {
-            return false;
-        }
-        GuildRoleSubscriptionBenefit guildRoleSubscriptionBenefit = (GuildRoleSubscriptionBenefit) other;
-        return C12238m.areEqual(this.emojiId, guildRoleSubscriptionBenefit.emojiId) && C12238m.areEqual(this.emojiName, guildRoleSubscriptionBenefit.emojiName) && C12238m.areEqual(this.name, guildRoleSubscriptionBenefit.name) && C12238m.areEqual(this.refType, guildRoleSubscriptionBenefit.refType) && C12238m.areEqual(this.description, guildRoleSubscriptionBenefit.description) && C12238m.areEqual(this.refId, guildRoleSubscriptionBenefit.refId);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

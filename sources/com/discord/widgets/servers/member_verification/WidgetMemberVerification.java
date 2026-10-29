@@ -68,8 +68,142 @@ public final class WidgetMemberVerification extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$configureVerificationBanner$1 */
     /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class Companion {
+    public final class C95591 extends AbstractC12240o implements Function0<Unit> {
+        public C95591() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserEmailVerify.INSTANCE.launch(WidgetMemberVerification.this.requireContext(), WidgetUserAccountVerifyBase.Mode.UNFORCED);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$configureVerificationBanner$2 */
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final class C95602 extends AbstractC12240o implements Function0<Unit> {
+        public C95602() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserPhoneManage.INSTANCE.launch(WidgetMemberVerification.this.requireContext(), WidgetUserAccountVerifyBase.Mode.UNFORCED, WidgetUserPhoneManage.Companion.Source.GUILD_PHONE_REQUIRED);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final class C95611 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C95611() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetMemberVerification.this.getViewModel().updateTermsApproval(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final class C95622 extends AbstractC12240o implements Function2<Integer, Object, Unit> {
+        public C95622() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Object obj) {
+            invoke(num.intValue(), obj);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i, Object obj) {
+            C12238m.checkNotNullParameter(obj, "value");
+            WidgetMemberVerification.this.getViewModel().updateFormValidation(i, obj);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final /* synthetic */ class C95631 extends C12236k implements Function1<WidgetMemberVerificationViewModel.ViewState, Unit> {
+        public C95631(WidgetMemberVerification widgetMemberVerification) {
+            super(1, widgetMemberVerification, WidgetMemberVerification.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/WidgetMemberVerificationViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetMemberVerificationViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetMemberVerificationViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetMemberVerification) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final class C95642 extends AbstractC12240o implements Function1<WidgetMemberVerificationViewModel.Event, Unit> {
+        public C95642() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetMemberVerificationViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetMemberVerificationViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "event");
+            if (!(event instanceof WidgetMemberVerificationViewModel.Event.Success)) {
+                if (event instanceof WidgetMemberVerificationViewModel.Event.Error) {
+                    C0876m.m171i(WidgetMemberVerification.this, C5419R.string.guild_settings_public_update_failed, 0, 4);
+                    return;
+                }
+                return;
+            }
+            WidgetMemberVerification.this.requireActivity().finish();
+            WidgetMemberVerificationViewModel.Event.Success success = (WidgetMemberVerificationViewModel.Event.Success) event;
+            int iOrdinal = success.getApplicationStatus().ordinal();
+            if (iOrdinal == 1) {
+                if (success.getGuildId() == null || success.getGuildName() == null) {
+                    return;
+                }
+                MemberVerificationPendingDialog.INSTANCE.enqueue(success.getGuildId().longValue(), MemberVerificationPendingViewModel.DialogState.PENDING);
+                return;
+            }
+            if (iOrdinal == 3 && success.getGuildId() != null && success.getGuildName() != null && success.getLastSeen() == null) {
+                MemberVerificationSuccessDialog.INSTANCE.enqueue(success.getGuildId().longValue());
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -112,140 +246,6 @@ public final class WidgetMemberVerification extends AppFragment {
             $EnumSwitchMapping$1 = iArr2;
             iArr2[WidgetMemberVerificationViewModel.VerificationType.EMAIL.ordinal()] = 1;
             iArr2[WidgetMemberVerificationViewModel.VerificationType.PHONE.ordinal()] = 2;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$configureVerificationBanner$1 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class C95591 extends AbstractC12240o implements Function0<Unit> {
-        public C95591() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserEmailVerify.INSTANCE.launch(WidgetMemberVerification.this.requireContext(), WidgetUserAccountVerifyBase.Mode.UNFORCED);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$configureVerificationBanner$2 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class C95602 extends AbstractC12240o implements Function0<Unit> {
-        public C95602() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetUserPhoneManage.INSTANCE.launch(WidgetMemberVerification.this.requireContext(), WidgetUserAccountVerifyBase.Mode.UNFORCED, WidgetUserPhoneManage.Companion.Source.GUILD_PHONE_REQUIRED);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class C95611 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C95611() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            WidgetMemberVerification.this.getViewModel().updateTermsApproval(z2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class C95622 extends AbstractC12240o implements Function2<Integer, Object, Unit> {
-        public C95622() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Object obj) {
-            invoke(num.intValue(), obj);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i, Object obj) {
-            C12238m.checkNotNullParameter(obj, "value");
-            WidgetMemberVerification.this.getViewModel().updateFormValidation(i, obj);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final /* synthetic */ class C95631 extends C12236k implements Function1<WidgetMemberVerificationViewModel.ViewState, Unit> {
-        public C95631(WidgetMemberVerification widgetMemberVerification) {
-            super(1, widgetMemberVerification, WidgetMemberVerification.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/WidgetMemberVerificationViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetMemberVerificationViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetMemberVerificationViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetMemberVerification) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.WidgetMemberVerification$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetMemberVerification.kt */
-    public static final class C95642 extends AbstractC12240o implements Function1<WidgetMemberVerificationViewModel.Event, Unit> {
-        public C95642() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetMemberVerificationViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetMemberVerificationViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            if (!(event instanceof WidgetMemberVerificationViewModel.Event.Success)) {
-                if (event instanceof WidgetMemberVerificationViewModel.Event.Error) {
-                    C0876m.m171i(WidgetMemberVerification.this, C5419R.string.guild_settings_public_update_failed, 0, 4);
-                    return;
-                }
-                return;
-            }
-            WidgetMemberVerification.this.requireActivity().finish();
-            WidgetMemberVerificationViewModel.Event.Success success = (WidgetMemberVerificationViewModel.Event.Success) event;
-            int iOrdinal = success.getApplicationStatus().ordinal();
-            if (iOrdinal == 1) {
-                if (success.getGuildId() == null || success.getGuildName() == null) {
-                    return;
-                }
-                MemberVerificationPendingDialog.INSTANCE.enqueue(success.getGuildId().longValue(), MemberVerificationPendingViewModel.DialogState.PENDING);
-                return;
-            }
-            if (iOrdinal == 3 && success.getGuildId() != null && success.getGuildName() != null && success.getLastSeen() == null) {
-                MemberVerificationSuccessDialog.INSTANCE.enqueue(success.getGuildId().longValue());
-            }
         }
     }
 
@@ -350,15 +350,6 @@ public final class WidgetMemberVerification extends AppFragment {
         return (WidgetMemberVerificationViewModel) this.viewModel.getValue();
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    private final Guild parseInviteGuild() {
-        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_INVITE_GUILD);
-        if (stringExtra == 0) {
-            return (Guild) stringExtra;
-        }
-        return (Guild) C3404f.m4203E1(Guild.class).cast(new Gson().m9203g(stringExtra, Guild.class));
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -394,5 +385,14 @@ public final class WidgetMemberVerification extends AppFragment {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetMemberVerification.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95631(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetMemberVerification.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95642());
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private final Guild parseInviteGuild() {
+        String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_INVITE_GUILD);
+        if (stringExtra == 0) {
+            return (Guild) stringExtra;
+        }
+        return (Guild) C3404f.m4203E1(Guild.class).cast(new Gson().m9203g(stringExtra, Guild.class));
     }
 }

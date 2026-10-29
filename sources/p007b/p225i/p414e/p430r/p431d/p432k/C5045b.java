@@ -5,9 +5,6 @@ package p007b.p225i.p414e.p430r.p431d.p432k;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C5045b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5045b f13497a = new C5045b(929, 3);
-
     /* JADX INFO: renamed from: b */
     public final int[] f13498b;
 
@@ -19,6 +16,9 @@ public final class C5045b {
 
     /* JADX INFO: renamed from: e */
     public final C5046c f13501e;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5045b f13497a = new C5045b(929, 3);
 
     public C5045b(int i, int i2) {
         this.f13498b = new int[i];

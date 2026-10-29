@@ -8,18 +8,6 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes.dex */
 public class C1653c implements CacheKey {
     @Override // com.facebook.cache.common.CacheKey
-    /* JADX INFO: renamed from: a */
-    public boolean mo929a() {
-        return false;
-    }
-
-    @Override // com.facebook.cache.common.CacheKey
-    /* JADX INFO: renamed from: b */
-    public String mo930b() {
-        throw null;
-    }
-
-    @Override // com.facebook.cache.common.CacheKey
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -33,6 +21,18 @@ public class C1653c implements CacheKey {
 
     @Override // com.facebook.cache.common.CacheKey
     public int hashCode() {
+        throw null;
+    }
+
+    @Override // com.facebook.cache.common.CacheKey
+    /* JADX INFO: renamed from: a */
+    public boolean mo929a() {
+        return false;
+    }
+
+    @Override // com.facebook.cache.common.CacheKey
+    /* JADX INFO: renamed from: b */
+    public String mo930b() {
         throw null;
     }
 

@@ -125,7 +125,7 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80451 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C80451 extends AbstractC12240o implements Function1<TextView, Unit> {
         public static final C80451 INSTANCE = new C80451();
 
         public C80451() {
@@ -155,8 +155,241 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedDescription$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class Companion {
+    public final class C80481 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+        public final /* synthetic */ int $embedIndex;
+        public final /* synthetic */ long $messageId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80481(long j, int i) {
+            super(1);
+            this.$messageId = j;
+            this.$embedIndex = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
+            invoke2(spoilerNode);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(SpoilerNode<?> spoilerNode) {
+            C12238m.checkNotNullParameter(spoilerNode, "node");
+            StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
+            long j = this.$messageId;
+            int i = this.$embedIndex;
+            StringBuilder sbM833U = C1643a.m833U("desc:");
+            sbM833U.append(spoilerNode.getId());
+            messageState.revealSpoilerEmbedData(j, i, sbM833U.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedFields$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80491 extends AbstractC12240o implements Function2<Collection<? extends Node<MessageRenderContext>>, String, DraweeSpanStringBuilder> {
+        public final /* synthetic */ int $embedIndex;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ Model $model;
+        public final /* synthetic */ MessageRenderContext $renderContext;
+        public final /* synthetic */ Map $visibleSpoilerEmbedMap;
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedFields$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+            public final /* synthetic */ String $prefixKey;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(String str) {
+                super(1);
+                this.$prefixKey = str;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
+                invoke2(spoilerNode);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(SpoilerNode<?> spoilerNode) {
+                C12238m.checkNotNullParameter(spoilerNode, "node");
+                StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
+                C80491 c80491 = C80491.this;
+                messageState.revealSpoilerEmbedData(c80491.$messageId, c80491.$embedIndex, this.$prefixKey + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + spoilerNode.getId());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80491(Model model, Map map, int i, MessageRenderContext messageRenderContext, long j) {
+            super(2);
+            this.$model = model;
+            this.$visibleSpoilerEmbedMap = map;
+            this.$embedIndex = i;
+            this.$renderContext = messageRenderContext;
+            this.$messageId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final DraweeSpanStringBuilder invoke(Collection<? extends Node<MessageRenderContext>> collection, String str) {
+            C12238m.checkNotNullParameter(collection, "$this$toDraweeSpanStringBuilder");
+            C12238m.checkNotNullParameter(str, "prefixKey");
+            long myId = this.$model.getMyId();
+            Map map = this.$visibleSpoilerEmbedMap;
+            new MessagePreprocessor(myId, map != null ? WidgetChatListAdapterItemEmbed.INSTANCE.getEmbedFieldVisibleIndices(map, this.$embedIndex, str) : null, null, false, null, 28, null).process(collection);
+            MessageRenderContext messageRenderContext = this.$renderContext;
+            return AstRenderer.render(collection, messageRenderContext.copy((14335 & 1) != 0 ? messageRenderContext.getContext() : null, (14335 & 2) != 0 ? messageRenderContext.getMyId() : 0L, (14335 & 4) != 0 ? messageRenderContext.getIsAnimationEnabled() : false, (14335 & 8) != 0 ? messageRenderContext.getUserNames() : null, (14335 & 16) != 0 ? messageRenderContext.getChannelNames() : null, (14335 & 32) != 0 ? messageRenderContext.getRoles() : null, (14335 & 64) != 0 ? messageRenderContext.getLinkColorAttrResId() : 0, (14335 & 128) != 0 ? messageRenderContext.getOnClickUrl() : null, (14335 & 256) != 0 ? messageRenderContext.getOnLongPressUrl() : null, (14335 & 512) != 0 ? messageRenderContext.getSpoilerColorRes() : 0, (14335 & 1024) != 0 ? messageRenderContext.getSpoilerRevealedColorRes() : 0, (14335 & 2048) != 0 ? messageRenderContext.getSpoilerOnClick() : new AnonymousClass1(str), (14335 & 4096) != 0 ? messageRenderContext.getUserMentionOnClick() : null, (14335 & 8192) != 0 ? messageRenderContext.getChannelMentionOnClick() : null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedTitle$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80511 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+        public final /* synthetic */ int $embedIndex;
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80511(Model model, int i) {
+            super(1);
+            this.$model = model;
+            this.$embedIndex = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
+            invoke2(spoilerNode);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(SpoilerNode<?> spoilerNode) {
+            C12238m.checkNotNullParameter(spoilerNode, "node");
+            StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
+            long id2 = this.$model.getEmbedEntry().getMessage().getId();
+            int i = this.$embedIndex;
+            StringBuilder sbM833U = C1643a.m833U("title:");
+            sbM833U.append(spoilerNode.getId());
+            messageState.revealSpoilerEmbedData(id2, i, sbM833U.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureUI$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80531 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C80531 INSTANCE = new C80531();
+
+        public C80531() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(1.0f);
+            viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureUI$2 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80542 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final C80542 INSTANCE = new C80542();
+
+        public C80542() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(0.9f);
+            viewPropertyAnimator.scaleY(0.9f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$1 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80561 extends AbstractC12240o implements Function1<View, Unit> {
+        public final /* synthetic */ ChatListEntry $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C80561(ChatListEntry chatListEntry) {
+            super(1);
+            this.$data = chatListEntry;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            C12238m.checkNotNullParameter(view, "it");
+            WidgetChatListAdapterItemEmbed.access$getAdapter$p(WidgetChatListAdapterItemEmbed.this).getEventHandler().onMessageLongClicked(((EmbedEntry) this.$data).getMessage(), "", ((EmbedEntry) this.$data).isThreadStarterMessage());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$3 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80583 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C80583() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemEmbed.this.subscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$4 */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class C80594 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C80594() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            MessageRenderContext messageRenderContextCreateRenderContext = model.createRenderContext(C1643a.m885x(WidgetChatListAdapterItemEmbed.this.itemView, "itemView", "itemView.context"), WidgetChatListAdapterItemEmbed.access$getAdapter$p(WidgetChatListAdapterItemEmbed.this).getEventHandler());
+            WidgetChatListAdapterItemEmbed widgetChatListAdapterItemEmbed = WidgetChatListAdapterItemEmbed.this;
+            C12238m.checkNotNullExpressionValue(model, "model");
+            widgetChatListAdapterItemEmbed.configureEmbedTitle(model, messageRenderContextCreateRenderContext);
+            WidgetChatListAdapterItemEmbed.this.configureEmbedDescription(model, messageRenderContextCreateRenderContext);
+            WidgetChatListAdapterItemEmbed.this.configureEmbedFields(model, messageRenderContextCreateRenderContext);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -171,6 +404,10 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
             } else {
                 view.setOnClickListener(null);
             }
+        }
+
+        public final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> createTitlesParser() {
+            return DiscordParser.createParser$default(false, false, false, false, false, 28, null);
         }
 
         private final List<Integer> getEmbedFieldVisibleIndices(Map<Integer, ? extends Set<String>> map, int i, String str) {
@@ -262,10 +499,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
             return observableM11112r;
         }
 
-        public final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> createTitlesParser() {
-            return DiscordParser.createParser$default(false, false, false, false, false, 28, null);
-        }
-
         public final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> getUI_THREAD_TITLES_PARSER() {
             return WidgetChatListAdapterItemEmbed.UI_THREAD_TITLES_PARSER;
         }
@@ -276,239 +509,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedDescription$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80481 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
-        public final /* synthetic */ int $embedIndex;
-        public final /* synthetic */ long $messageId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80481(long j, int i) {
-            super(1);
-            this.$messageId = j;
-            this.$embedIndex = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
-            invoke2(spoilerNode);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(SpoilerNode<?> spoilerNode) {
-            C12238m.checkNotNullParameter(spoilerNode, "node");
-            StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
-            long j = this.$messageId;
-            int i = this.$embedIndex;
-            StringBuilder sbM833U = C1643a.m833U("desc:");
-            sbM833U.append(spoilerNode.getId());
-            messageState.revealSpoilerEmbedData(j, i, sbM833U.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedFields$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80491 extends AbstractC12240o implements Function2<Collection<? extends Node<MessageRenderContext>>, String, DraweeSpanStringBuilder> {
-        public final /* synthetic */ int $embedIndex;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ Model $model;
-        public final /* synthetic */ MessageRenderContext $renderContext;
-        public final /* synthetic */ Map $visibleSpoilerEmbedMap;
-
-        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedFields$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
-            public final /* synthetic */ String $prefixKey;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(String str) {
-                super(1);
-                this.$prefixKey = str;
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
-                invoke2(spoilerNode);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(SpoilerNode<?> spoilerNode) {
-                C12238m.checkNotNullParameter(spoilerNode, "node");
-                StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
-                C80491 c80491 = C80491.this;
-                messageState.revealSpoilerEmbedData(c80491.$messageId, c80491.$embedIndex, this.$prefixKey + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + spoilerNode.getId());
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80491(Model model, Map map, int i, MessageRenderContext messageRenderContext, long j) {
-            super(2);
-            this.$model = model;
-            this.$visibleSpoilerEmbedMap = map;
-            this.$embedIndex = i;
-            this.$renderContext = messageRenderContext;
-            this.$messageId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public final DraweeSpanStringBuilder invoke(Collection<? extends Node<MessageRenderContext>> collection, String str) {
-            C12238m.checkNotNullParameter(collection, "$this$toDraweeSpanStringBuilder");
-            C12238m.checkNotNullParameter(str, "prefixKey");
-            long myId = this.$model.getMyId();
-            Map map = this.$visibleSpoilerEmbedMap;
-            new MessagePreprocessor(myId, map != null ? WidgetChatListAdapterItemEmbed.INSTANCE.getEmbedFieldVisibleIndices(map, this.$embedIndex, str) : null, null, false, null, 28, null).process(collection);
-            MessageRenderContext messageRenderContext = this.$renderContext;
-            return AstRenderer.render(collection, messageRenderContext.copy((14335 & 1) != 0 ? messageRenderContext.getContext() : null, (14335 & 2) != 0 ? messageRenderContext.getMyId() : 0L, (14335 & 4) != 0 ? messageRenderContext.getIsAnimationEnabled() : false, (14335 & 8) != 0 ? messageRenderContext.getUserNames() : null, (14335 & 16) != 0 ? messageRenderContext.getChannelNames() : null, (14335 & 32) != 0 ? messageRenderContext.getRoles() : null, (14335 & 64) != 0 ? messageRenderContext.getLinkColorAttrResId() : 0, (14335 & 128) != 0 ? messageRenderContext.getOnClickUrl() : null, (14335 & 256) != 0 ? messageRenderContext.getOnLongPressUrl() : null, (14335 & 512) != 0 ? messageRenderContext.getSpoilerColorRes() : 0, (14335 & 1024) != 0 ? messageRenderContext.getSpoilerRevealedColorRes() : 0, (14335 & 2048) != 0 ? messageRenderContext.getSpoilerOnClick() : new AnonymousClass1(str), (14335 & 4096) != 0 ? messageRenderContext.getUserMentionOnClick() : null, (14335 & 8192) != 0 ? messageRenderContext.getChannelMentionOnClick() : null));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureEmbedTitle$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80511 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
-        public final /* synthetic */ int $embedIndex;
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80511(Model model, int i) {
-            super(1);
-            this.$model = model;
-            this.$embedIndex = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(SpoilerNode<?> spoilerNode) {
-            invoke2(spoilerNode);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(SpoilerNode<?> spoilerNode) {
-            C12238m.checkNotNullParameter(spoilerNode, "node");
-            StoreMessageState messageState = StoreStream.INSTANCE.getMessageState();
-            long id2 = this.$model.getEmbedEntry().getMessage().getId();
-            int i = this.$embedIndex;
-            StringBuilder sbM833U = C1643a.m833U("title:");
-            sbM833U.append(spoilerNode.getId());
-            messageState.revealSpoilerEmbedData(id2, i, sbM833U.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80531 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C80531 INSTANCE = new C80531();
-
-        public C80531() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(1.0f);
-            viewPropertyAnimator.scaleY(1.0f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80542 extends AbstractC12240o implements Function1<ViewPropertyAnimator, Unit> {
-        public static final C80542 INSTANCE = new C80542();
-
-        public C80542() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
-            invoke2(viewPropertyAnimator);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
-            C12238m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
-            viewPropertyAnimator.scaleX(0.9f);
-            viewPropertyAnimator.scaleY(0.9f);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80561 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ ChatListEntry $data;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C80561(ChatListEntry chatListEntry) {
-            super(1);
-            this.$data = chatListEntry;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetChatListAdapterItemEmbed.access$getAdapter$p(WidgetChatListAdapterItemEmbed.this).getEventHandler().onMessageLongClicked(((EmbedEntry) this.$data).getMessage(), "", ((EmbedEntry) this.$data).isThreadStarterMessage());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$3 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80583 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C80583() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetChatListAdapterItemEmbed.this.subscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemEmbed$onConfigure$4 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final class C80594 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C80594() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            MessageRenderContext messageRenderContextCreateRenderContext = model.createRenderContext(C1643a.m885x(WidgetChatListAdapterItemEmbed.this.itemView, "itemView", "itemView.context"), WidgetChatListAdapterItemEmbed.access$getAdapter$p(WidgetChatListAdapterItemEmbed.this).getEventHandler());
-            WidgetChatListAdapterItemEmbed widgetChatListAdapterItemEmbed = WidgetChatListAdapterItemEmbed.this;
-            C12238m.checkNotNullExpressionValue(model, "model");
-            widgetChatListAdapterItemEmbed.configureEmbedTitle(model, messageRenderContextCreateRenderContext);
-            WidgetChatListAdapterItemEmbed.this.configureEmbedDescription(model, messageRenderContextCreateRenderContext);
-            WidgetChatListAdapterItemEmbed.this.configureEmbedFields(model, messageRenderContextCreateRenderContext);
         }
     }
 
@@ -759,6 +759,13 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
         }
     }
 
+    public static /* synthetic */ void configureEmbedImage$default(WidgetChatListAdapterItemEmbed widgetChatListAdapterItemEmbed, EmbedThumbnail embedThumbnail, ImageView imageView, int i, int i2, int i3, Object obj) {
+        if ((i3 & 8) != 0) {
+            i2 = 0;
+        }
+        widgetChatListAdapterItemEmbed.configureEmbedImage(embedThumbnail, imageView, i, i2);
+    }
+
     private final void configureEmbedImage(final MessageEmbed embed) {
         Integer num;
         EmbedResourceUtils embedResourceUtils = EmbedResourceUtils.INSTANCE;
@@ -803,13 +810,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
                 }
             }
         });
-    }
-
-    public static /* synthetic */ void configureEmbedImage$default(WidgetChatListAdapterItemEmbed widgetChatListAdapterItemEmbed, EmbedThumbnail embedThumbnail, ImageView imageView, int i, int i2, int i3, Object obj) {
-        if ((i3 & 8) != 0) {
-            i2 = 0;
-        }
-        widgetChatListAdapterItemEmbed.configureEmbedImage(embedThumbnail, imageView, i, i2);
     }
 
     private final void configureEmbedProvider(MessageEmbed embed, MessageRenderContext context) {
@@ -919,7 +919,7 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
     }
 
     /* JADX WARN: Code duplicated, block: B:27:0x0061  */
-    private final void configureInlineEmbed(final MessageEmbed embed, boolean autoPlayGifs) {
+    private final void configureInlineEmbed(final MessageEmbed embed, boolean autoPlayGifs) throws CloneNotSupportedException {
         RenderableEmbedMedia previewImage;
         boolean z2;
         if (!shouldRenderMedia()) {
@@ -1075,6 +1075,21 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
         }
     }
 
+    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+    public Subscription getSubscription() {
+        return this.subscription;
+    }
+
+    @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
+    public void onPause() throws CloneNotSupportedException {
+        this.binding.f16199t.onPause();
+    }
+
+    @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
+    public void onResume() throws CloneNotSupportedException {
+        this.binding.f16199t.onResume();
+    }
+
     private final List<Model.ParsedField> parseFields(List<EmbedField> fields, Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> nameParser, Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> valueParser) {
         if (fields == null) {
             return null;
@@ -1090,21 +1105,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
 
     private final boolean shouldRenderMedia() {
         return this.userSettings.getIsEmbedMediaInlined() && this.userSettings.getIsRenderEmbedsEnabled();
-    }
-
-    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public Subscription getSubscription() {
-        return this.subscription;
-    }
-
-    @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
-    public void onPause() {
-        this.binding.f16199t.onPause();
-    }
-
-    @Override // com.discord.widgets.chat.list.FragmentLifecycleListener
-    public void onResume() {
-        this.binding.f16199t.onResume();
     }
 
     public static /* synthetic */ void configureEmbedImage$default(WidgetChatListAdapterItemEmbed widgetChatListAdapterItemEmbed, ImageView imageView, int i, int i2, int i3, String str, int i4, int i5, Object obj) {
@@ -1141,7 +1141,7 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
     }
 
     /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
         private final Map<Long, String> channelNames;
         private final EmbedEntry embedEntry;
         private final boolean isEmbedUrlFoundInVisibleSpoilerNode;
@@ -1154,7 +1154,7 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
         private final Map<Long, String> userNames;
 
         /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
-        public static final /* data */ class ParsedField {
+        public final /* data */ class ParsedField {
             private final Collection<Node<MessageRenderContext>> parsedName;
             private final Collection<Node<MessageRenderContext>> parsedValue;
 
@@ -1166,6 +1166,14 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
                 this.parsedValue = collection2;
             }
 
+            public final Collection<Node<MessageRenderContext>> component1() {
+                return this.parsedName;
+            }
+
+            public final Collection<Node<MessageRenderContext>> component2() {
+                return this.parsedValue;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ ParsedField copy$default(ParsedField parsedField, Collection collection, Collection collection2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -1175,14 +1183,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
                     collection2 = parsedField.parsedValue;
                 }
                 return parsedField.copy(collection, collection2);
-            }
-
-            public final Collection<Node<MessageRenderContext>> component1() {
-                return this.parsedName;
-            }
-
-            public final Collection<Node<MessageRenderContext>> component2() {
-                return this.parsedValue;
             }
 
             public final ParsedField copy(Collection<? extends Node<MessageRenderContext>> parsedName, Collection<? extends Node<MessageRenderContext>> parsedValue) {
@@ -1286,44 +1286,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
             this.isSpoilerHidden = !isSpoilerEmbedRevealed(this.embedEntry) && isSpoilerEmbed();
         }
 
-        private final boolean isSpoilerEmbed() {
-            boolean z2;
-            List<SpoilerNode<?>> list = this.spoilers;
-            if (list != null) {
-                if (!list.isEmpty()) {
-                    Iterator<T> it = list.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
-                            z2 = false;
-                            break;
-                        }
-                        if (C12106w.contains$default((CharSequence) ((SpoilerNode) it.next()).getContent(), (CharSequence) "http", false, 2, (Object) null)) {
-                            z2 = true;
-                            break;
-                        }
-                    }
-                } else {
-                    z2 = false;
-                    break;
-                }
-                if (z2 && !this.isEmbedUrlFoundInVisibleSpoilerNode) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private final boolean isSpoilerEmbedRevealed(EmbedEntry embedEntry) {
-            Map<Integer, Set<String>> visibleSpoilerEmbedMap;
-            StoreMessageState.State messageState = embedEntry.getMessageState();
-            return (messageState == null || (visibleSpoilerEmbedMap = messageState.getVisibleSpoilerEmbedMap()) == null || !visibleSpoilerEmbedMap.containsKey(Integer.valueOf(embedEntry.getEmbedIndex()))) ? false : true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final EmbedEntry getEmbedEntry() {
-            return this.embedEntry;
-        }
-
         public final Collection<Node<MessageRenderContext>> component2() {
             return this.parsedDescription;
         }
@@ -1342,11 +1304,6 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
 
         public final Map<Long, GuildRole> component6() {
             return this.roles;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final long getMyId() {
-            return this.myId;
         }
 
         public final Model copy(EmbedEntry embedEntry, Collection<? extends Node<MessageRenderContext>> parsedDescription, List<ParsedField> parsedFields, Map<Long, String> channelNames, Map<Long, String> userNames, Map<Long, GuildRole> roles, long myId) {
@@ -1375,8 +1332,23 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
             return this.channelNames;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final EmbedEntry getEmbedEntry() {
             return this.embedEntry;
+        }
+
+        public final EmbedEntry getEmbedEntry() {
+            return this.embedEntry;
+        }
+
+        /* JADX INFO: renamed from: isSpoilerHidden, reason: from getter */
+        public final boolean getIsSpoilerHidden() {
+            return this.isSpoilerHidden;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final long getMyId() {
+            return this.myId;
         }
 
         public final long getMyId() {
@@ -1414,9 +1386,37 @@ public final class WidgetChatListAdapterItemEmbed extends WidgetChatListItem imp
             return C0002b.m3a(this.myId) + ((iHashCode5 + (map3 != null ? map3.hashCode() : 0)) * 31);
         }
 
-        /* JADX INFO: renamed from: isSpoilerHidden, reason: from getter */
-        public final boolean getIsSpoilerHidden() {
-            return this.isSpoilerHidden;
+        private final boolean isSpoilerEmbed() {
+            boolean z2;
+            List<SpoilerNode<?>> list = this.spoilers;
+            if (list != null) {
+                if (!list.isEmpty()) {
+                    Iterator<T> it = list.iterator();
+                    while (true) {
+                        if (!it.hasNext()) {
+                            z2 = false;
+                            break;
+                        }
+                        if (C12106w.contains$default((CharSequence) ((SpoilerNode) it.next()).getContent(), (CharSequence) "http", false, 2, (Object) null)) {
+                            z2 = true;
+                            break;
+                        }
+                    }
+                } else {
+                    z2 = false;
+                    break;
+                }
+                if (z2 && !this.isEmbedUrlFoundInVisibleSpoilerNode) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private final boolean isSpoilerEmbedRevealed(EmbedEntry embedEntry) {
+            Map<Integer, Set<String>> visibleSpoilerEmbedMap;
+            StoreMessageState.State messageState = embedEntry.getMessageState();
+            return (messageState == null || (visibleSpoilerEmbedMap = messageState.getVisibleSpoilerEmbedMap()) == null || !visibleSpoilerEmbedMap.containsKey(Integer.valueOf(embedEntry.getEmbedIndex()))) ? false : true;
         }
 
         public String toString() {

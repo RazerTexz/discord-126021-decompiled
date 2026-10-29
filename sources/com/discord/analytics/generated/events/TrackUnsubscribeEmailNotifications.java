@@ -13,17 +13,17 @@ public final /* data */ class TrackUnsubscribeEmailNotifications implements Anal
     private final CharSequence trackingPixelUuid = null;
     private final transient String analyticsSchemaTypeName = "unsubscribe_email_notifications";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackUnsubscribeEmailNotifications) && C12238m.areEqual(this.trackingPixelUuid, ((TrackUnsubscribeEmailNotifications) other).trackingPixelUuid);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

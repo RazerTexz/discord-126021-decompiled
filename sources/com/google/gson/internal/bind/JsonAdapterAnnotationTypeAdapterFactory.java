@@ -20,6 +20,15 @@ public final class JsonAdapterAnnotationTypeAdapterFactory implements InterfaceC
         this.f21518j = c4922g;
     }
 
+    @Override // p007b.p225i.p408d.InterfaceC4911o
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
+        InterfaceC4912a interfaceC4912a = (InterfaceC4912a) typeToken.getRawType().getAnnotation(InterfaceC4912a.class);
+        if (interfaceC4912a == null) {
+            return null;
+        }
+        return (TypeAdapter<T>) m9232a(this.f21518j, gson, typeToken, interfaceC4912a);
+    }
+
     /* JADX INFO: renamed from: a */
     public TypeAdapter<?> m9232a(C4922g c4922g, Gson gson, TypeToken<?> typeToken, InterfaceC4912a interfaceC4912a) {
         TypeAdapter<?> treeTypeAdapter;
@@ -41,14 +50,5 @@ public final class JsonAdapterAnnotationTypeAdapterFactory implements InterfaceC
             treeTypeAdapter = new TreeTypeAdapter<>(z2 ? (InterfaceC4909m) objMo6869a : null, objMo6869a instanceof InterfaceC4905i ? (InterfaceC4905i) objMo6869a : null, gson, typeToken, null);
         }
         return (treeTypeAdapter == null || !interfaceC4912a.nullSafe()) ? treeTypeAdapter : treeTypeAdapter.nullSafe();
-    }
-
-    @Override // p007b.p225i.p408d.InterfaceC4911o
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
-        InterfaceC4912a interfaceC4912a = (InterfaceC4912a) typeToken.getRawType().getAnnotation(InterfaceC4912a.class);
-        if (interfaceC4912a == null) {
-            return null;
-        }
-        return (TypeAdapter<T>) m9232a(this.f21518j, gson, typeToken, interfaceC4912a);
     }
 }

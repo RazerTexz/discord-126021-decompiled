@@ -7,7 +7,6 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildTemplateAnalytics {
     private static final String FLOW_TYPE_POST_REG = "Mobile NUX Post Reg";
-    public static final GuildTemplateAnalytics INSTANCE = new GuildTemplateAnalytics();
     public static final String IN_APP_LOCATION_TEMPLATE = "Create or Join Guild Modal";
     public static final String STEP_CREATION_INTENT = "Server Intent Discovery";
     private static final String STEP_FRIENDS_LIST = "Friends List";
@@ -15,6 +14,7 @@ public final class GuildTemplateAnalytics {
     public static final String STEP_GUILD_JOIN = "Guild Join";
     public static final String STEP_GUILD_TEMPLATE = "Guild Template";
     public static final String STEP_REGISTRATION = "Registration";
+    public static final GuildTemplateAnalytics INSTANCE = new GuildTemplateAnalytics();
 
     private GuildTemplateAnalytics() {
     }

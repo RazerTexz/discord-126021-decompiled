@@ -31,10 +31,6 @@ public abstract class AbstractC4384b extends C4385c<View> {
         this.verticalLayoutGap = 0;
     }
 
-    private static int resolveGravity(int i) {
-        return i == 0 ? BadgeDrawable.TOP_START : i;
-    }
-
     @Nullable
     public abstract View findFirstDependency(List<View> list);
 
@@ -107,6 +103,10 @@ public abstract class AbstractC4384b extends C4385c<View> {
         }
         coordinatorLayout.onMeasureChild(view, i, i2, View.MeasureSpec.makeMeasureSpec(scrollRange, i5 == -1 ? BasicMeasure.EXACTLY : Integer.MIN_VALUE), i4);
         return true;
+    }
+
+    private static int resolveGravity(int i) {
+        return i == 0 ? BadgeDrawable.TOP_START : i;
     }
 
     public final void setOverlayTop(int i) {

@@ -43,8 +43,12 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetVoiceSettingsBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceSettingsBottomSheetBinding;", 0)};
     private static final String ANALYTICS_SOURCE = "Voice Call";
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -54,13 +58,29 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetVoiceSettingsBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceSettingsBottomSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheet$onResume$1 */
+    /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
+    public final class C106141 extends AbstractC12240o implements Function1<WidgetVoiceSettingsBottomSheetViewModel.ViewState, Unit> {
+        public C106141() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceSettingsBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetVoiceSettingsBottomSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetVoiceSettingsBottomSheet.this.configureUI(viewState);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -104,26 +124,6 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
         boolean getShowVoiceParticipants();
 
         boolean getShowVoiceParticipantsToggle();
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheet$onResume$1 */
-    /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
-    public static final class C106141 extends AbstractC12240o implements Function1<WidgetVoiceSettingsBottomSheetViewModel.ViewState, Unit> {
-        public C106141() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceSettingsBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetVoiceSettingsBottomSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetVoiceSettingsBottomSheet.this.configureUI(viewState);
-        }
     }
 
     public WidgetVoiceSettingsBottomSheet() {
@@ -236,13 +236,13 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
-    private final WidgetVoiceSettingsBottomSheetViewModel getViewModel() {
-        return (WidgetVoiceSettingsBottomSheetViewModel) this.viewModel.getValue();
-    }
-
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
         return C5419R.layout.widget_voice_settings_bottom_sheet;
+    }
+
+    private final WidgetVoiceSettingsBottomSheetViewModel getViewModel() {
+        return (WidgetVoiceSettingsBottomSheetViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

@@ -10,31 +10,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCaptchaSolved.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCaptchaSolved implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean success = null;
-    private final Boolean forceBad = null;
-    private final Long challengeTs = null;
-    private final CharSequence hostname = null;
-    private final CharSequence scopedUid0 = null;
-    private final CharSequence scopedUid1 = null;
-    private final CharSequence sitekey = null;
-    private final Float score = null;
-    private final List<CharSequence> scoreReason = null;
-    private final List<CharSequence> errorCodes = null;
-    private final CharSequence userFlow = null;
-    private final CharSequence captchaService = null;
     private final Boolean captchaRequired = null;
-    private final Long locationGuildId = null;
+    private final CharSequence captchaService = null;
+    private final Long challengeTs = null;
+    private final List<CharSequence> errorCodes = null;
+    private final Boolean forceBad = null;
+    private final CharSequence hostname = null;
     private final Long locationChannelId = null;
     private final Long locationChannelType = null;
+    private final Long locationGuildId = null;
     private final Long locationMessageId = null;
+    private final CharSequence scopedUid0 = null;
+    private final CharSequence scopedUid1 = null;
+    private final Float score = null;
+    private final List<CharSequence> scoreReason = null;
+    private final CharSequence sitekey = null;
+    private final Boolean success = null;
+    private TrackBase trackBase;
+    private final CharSequence userFlow = null;
     private final transient String analyticsSchemaTypeName = "captcha_solved";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -45,6 +39,12 @@ public final /* data */ class TrackCaptchaSolved implements AnalyticsSchema, Tra
         }
         TrackCaptchaSolved trackCaptchaSolved = (TrackCaptchaSolved) other;
         return C12238m.areEqual(this.success, trackCaptchaSolved.success) && C12238m.areEqual(this.forceBad, trackCaptchaSolved.forceBad) && C12238m.areEqual(this.challengeTs, trackCaptchaSolved.challengeTs) && C12238m.areEqual(this.hostname, trackCaptchaSolved.hostname) && C12238m.areEqual(this.scopedUid0, trackCaptchaSolved.scopedUid0) && C12238m.areEqual(this.scopedUid1, trackCaptchaSolved.scopedUid1) && C12238m.areEqual(this.sitekey, trackCaptchaSolved.sitekey) && C12238m.areEqual(this.score, trackCaptchaSolved.score) && C12238m.areEqual(this.scoreReason, trackCaptchaSolved.scoreReason) && C12238m.areEqual(this.errorCodes, trackCaptchaSolved.errorCodes) && C12238m.areEqual(this.userFlow, trackCaptchaSolved.userFlow) && C12238m.areEqual(this.captchaService, trackCaptchaSolved.captchaService) && C12238m.areEqual(this.captchaRequired, trackCaptchaSolved.captchaRequired) && C12238m.areEqual(this.locationGuildId, trackCaptchaSolved.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackCaptchaSolved.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackCaptchaSolved.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackCaptchaSolved.locationMessageId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

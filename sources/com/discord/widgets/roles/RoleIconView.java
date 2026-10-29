@@ -37,7 +37,7 @@ public final class RoleIconView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.roles.RoleIconView$showRoleIconToast$1 */
     /* JADX INFO: compiled from: RoleIconView.kt */
-    public static final class C91251 extends AbstractC12240o implements Function3<Boolean, Integer, Context, String> {
+    public final class C91251 extends AbstractC12240o implements Function3<Boolean, Integer, Context, String> {
         public final /* synthetic */ GuildRole $role;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -116,6 +116,37 @@ public final class RoleIconView extends FrameLayout {
         }
     }
 
+    public final void setRole(final GuildRole role, Long guildId) {
+        Guild guild = guildId != null ? StoreStream.INSTANCE.getGuilds().getGuild(guildId.longValue()) : null;
+        if (role == null || !hasIconOrUnicodeEmoji(role) || guild == null || !RoleIconUtils.INSTANCE.canUseRoleIcons(guild, role)) {
+            setVisibility(8);
+            return;
+        }
+        setVisibility(0);
+        setIcon(role);
+        Context context = getContext();
+        C12238m.checkNotNullExpressionValue(context, "context");
+        setContentDescription(C1107b.m216h(context, C5419R.string.role_icon_alt_text, new Object[]{role.getName()}, null, 4));
+        setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.roles.RoleIconView.setRole.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                RoleIconView roleIconView = RoleIconView.this;
+                Context context2 = roleIconView.getContext();
+                C12238m.checkNotNullExpressionValue(context2, "context");
+                roleIconView.showRoleIconToast(context2, role);
+            }
+        });
+    }
+
+    public final void setRoleIconPreview(GuildRole guildRole) {
+        if (guildRole == null || !hasIconOrUnicodeEmoji(guildRole)) {
+            setVisibility(8);
+        } else {
+            setVisibility(0);
+            setIcon(guildRole);
+        }
+    }
+
     private final void showRoleIconToast(final Context context, GuildRole role) {
         EmojiNode emojiNodeFrom;
         ModelEmojiUnicode modelEmojiUnicode;
@@ -159,37 +190,6 @@ public final class RoleIconView extends FrameLayout {
         Set setSingleton = Collections.singleton(emojiNodeFrom);
         C12238m.checkNotNullExpressionValue(setSingleton, "Collections.singleton(iconNode)");
         ToastManager.show$default(new ToastManager(), context, AstRenderer.render(setSingleton, renderContext).append((CharSequence) " ").append(C1107b.m216h(context, C5419R.string.role_icon_toast_message, new Object[]{role.getName()}, null, 4)), 0, 4, (Object) null);
-    }
-
-    public final void setRole(final GuildRole role, Long guildId) {
-        Guild guild = guildId != null ? StoreStream.INSTANCE.getGuilds().getGuild(guildId.longValue()) : null;
-        if (role == null || !hasIconOrUnicodeEmoji(role) || guild == null || !RoleIconUtils.INSTANCE.canUseRoleIcons(guild, role)) {
-            setVisibility(8);
-            return;
-        }
-        setVisibility(0);
-        setIcon(role);
-        Context context = getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        setContentDescription(C1107b.m216h(context, C5419R.string.role_icon_alt_text, new Object[]{role.getName()}, null, 4));
-        setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.roles.RoleIconView.setRole.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                RoleIconView roleIconView = RoleIconView.this;
-                Context context2 = roleIconView.getContext();
-                C12238m.checkNotNullExpressionValue(context2, "context");
-                roleIconView.showRoleIconToast(context2, role);
-            }
-        });
-    }
-
-    public final void setRoleIconPreview(GuildRole guildRole) {
-        if (guildRole == null || !hasIconOrUnicodeEmoji(guildRole)) {
-            setVisibility(8);
-        } else {
-            setVisibility(0);
-            setIcon(guildRole);
-        }
     }
 
     public final void setRoleIconPreview(String icon) {

@@ -41,7 +41,7 @@ public final class C11275g<M extends Member> implements InterfaceC11272d<M> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.g$a */
     /* JADX INFO: compiled from: InlineClassAwareCaller.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final IntRange f22439a;
@@ -200,12 +200,6 @@ public final class C11275g<M extends Member> implements InterfaceC11272d<M> {
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
-    /* JADX INFO: renamed from: getMember */
-    public M mo11457getMember() {
-        return (M) this.f22437b.mo11457getMember();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public List<Type> getParameterTypes() {
         return this.f22437b.getParameterTypes();
     }
@@ -213,5 +207,11 @@ public final class C11275g<M extends Member> implements InterfaceC11272d<M> {
     @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
     public Type getReturnType() {
         return this.f22437b.getReturnType();
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p516l0.InterfaceC11272d
+    /* JADX INFO: renamed from: getMember */
+    public M mo11457getMember() {
+        return (M) this.f22437b.mo11457getMember();
     }
 }

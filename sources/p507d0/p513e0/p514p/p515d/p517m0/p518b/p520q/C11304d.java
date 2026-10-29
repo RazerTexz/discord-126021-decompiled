@@ -23,13 +23,6 @@ public final class C11304d {
     /* JADX INFO: renamed from: a */
     public static final C11304d f22630a = new C11304d();
 
-    public static /* synthetic */ InterfaceC11330e mapJavaToKotlin$default(C11304d c11304d, C11713b c11713b, AbstractC11288h abstractC11288h, Integer num, int i, Object obj) {
-        if ((i & 4) != 0) {
-            num = null;
-        }
-        return c11304d.mapJavaToKotlin(c11713b, abstractC11288h, num);
-    }
-
     public final InterfaceC11330e convertMutableToReadOnly(InterfaceC11330e interfaceC11330e) {
         C12238m.checkNotNullParameter(interfaceC11330e, "mutable");
         C11713b c11713bMutableToReadOnly = C11303c.f22614a.mutableToReadOnly(C11787e.getFqName(interfaceC11330e));
@@ -60,6 +53,13 @@ public final class C11304d {
     public final boolean isReadOnly(InterfaceC11330e interfaceC11330e) {
         C12238m.checkNotNullParameter(interfaceC11330e, "readOnly");
         return C11303c.f22614a.isReadOnly(C11787e.getFqName(interfaceC11330e));
+    }
+
+    public static /* synthetic */ InterfaceC11330e mapJavaToKotlin$default(C11304d c11304d, C11713b c11713b, AbstractC11288h abstractC11288h, Integer num, int i, Object obj) {
+        if ((i & 4) != 0) {
+            num = null;
+        }
+        return c11304d.mapJavaToKotlin(c11713b, abstractC11288h, num);
     }
 
     public final InterfaceC11330e mapJavaToKotlin(C11713b c11713b, AbstractC11288h abstractC11288h, Integer num) {

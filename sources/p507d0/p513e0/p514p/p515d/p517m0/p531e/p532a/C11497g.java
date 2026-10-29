@@ -25,7 +25,7 @@ public final class C11497g extends C11494e0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g$a */
     /* JADX INFO: compiled from: specialBuiltinMembers.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11321b, Boolean> {
         public final /* synthetic */ InterfaceC11465t0 $functionDescriptor;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

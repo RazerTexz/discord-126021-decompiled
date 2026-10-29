@@ -18,9 +18,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4671c implements Closeable {
 
-    /* JADX INFO: renamed from: j */
-    public static final Logger f12474j = Logger.getLogger(C4671c.class.getName());
-
     /* JADX INFO: renamed from: k */
     public final RandomAccessFile f12475k;
 
@@ -36,47 +33,24 @@ public class C4671c implements Closeable {
     /* JADX INFO: renamed from: o */
     public b f12479o;
 
+    /* JADX INFO: renamed from: j */
+    public static final Logger f12474j = Logger.getLogger(C4671c.class.getName());
+
     /* JADX INFO: renamed from: p */
     public final byte[] f12480p = new byte[16];
 
-    /* JADX INFO: renamed from: b.i.c.m.d.l.c$a */
-    /* JADX INFO: compiled from: QueueFile.java */
-    public class a implements d {
-
-        /* JADX INFO: renamed from: a */
-        public boolean f12481a = true;
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ StringBuilder f12482b;
-
-        public a(C4671c c4671c, StringBuilder sb) {
-            this.f12482b = sb;
-        }
-
-        @Override // p007b.p225i.p361c.p369m.p370d.p374l.C4671c.d
-        /* JADX INFO: renamed from: a */
-        public void mo6512a(InputStream inputStream, int i) throws IOException {
-            if (this.f12481a) {
-                this.f12481a = false;
-            } else {
-                this.f12482b.append(", ");
-            }
-            this.f12482b.append(i);
-        }
-    }
-
     /* JADX INFO: renamed from: b.i.c.m.d.l.c$b */
     /* JADX INFO: compiled from: QueueFile.java */
-    public static class b {
-
-        /* JADX INFO: renamed from: a */
-        public static final b f12483a = new b(0, 0);
+    public class b {
 
         /* JADX INFO: renamed from: b */
         public final int f12484b;
 
         /* JADX INFO: renamed from: c */
         public final int f12485c;
+
+        /* JADX INFO: renamed from: a */
+        public static final b f12483a = new b(0, 0);
 
         public b(int i, int i2) {
             this.f12484b = i;
@@ -142,6 +116,11 @@ public class C4671c implements Closeable {
         int iM6499q3 = m6499q(this.f12480p, 12);
         this.f12478n = m6506n(iM6499q2);
         this.f12479o = m6506n(iM6499q3);
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() throws IOException {
+        this.f12475k.close();
     }
 
     /* JADX INFO: renamed from: C */
@@ -219,11 +198,6 @@ public class C4671c implements Closeable {
             this.f12475k.getChannel().force(true);
         }
         this.f12476l = 4096;
-    }
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public synchronized void close() throws IOException {
-        this.f12475k.close();
     }
 
     /* JADX INFO: renamed from: d */
@@ -322,28 +296,6 @@ public class C4671c implements Closeable {
         this.f12475k.readFully(bArr, i2 + i5, i3 - i5);
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(C4671c.class.getSimpleName());
-        sb.append('[');
-        sb.append("fileLength=");
-        sb.append(this.f12476l);
-        sb.append(", size=");
-        sb.append(this.f12477m);
-        sb.append(", first=");
-        sb.append(this.f12478n);
-        sb.append(", last=");
-        sb.append(this.f12479o);
-        sb.append(", element lengths=[");
-        try {
-            m6504e(new a(this, sb));
-        } catch (IOException e) {
-            f12474j.log(Level.WARNING, "read error", (Throwable) e);
-        }
-        sb.append("]]");
-        return sb.toString();
-    }
-
     /* JADX INFO: renamed from: u */
     public final void m6509u(int i, byte[] bArr, int i2, int i3) throws IOException {
         int i4 = this.f12476l;
@@ -377,6 +329,54 @@ public class C4671c implements Closeable {
     public final int m6511y(int i) {
         int i2 = this.f12476l;
         return i < i2 ? i : (i + 16) - i2;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(C4671c.class.getSimpleName());
+        sb.append('[');
+        sb.append("fileLength=");
+        sb.append(this.f12476l);
+        sb.append(", size=");
+        sb.append(this.f12477m);
+        sb.append(", first=");
+        sb.append(this.f12478n);
+        sb.append(", last=");
+        sb.append(this.f12479o);
+        sb.append(", element lengths=[");
+        try {
+            m6504e(new a(this, sb));
+        } catch (IOException e) {
+            f12474j.log(Level.WARNING, "read error", (Throwable) e);
+        }
+        sb.append("]]");
+        return sb.toString();
+    }
+
+    /* JADX INFO: renamed from: b.i.c.m.d.l.c$a */
+    /* JADX INFO: compiled from: QueueFile.java */
+    public class a implements d {
+
+        /* JADX INFO: renamed from: b */
+        public final /* synthetic */ StringBuilder f12482b;
+
+        /* JADX INFO: renamed from: a */
+        public boolean f12481a = true;
+
+        public a(C4671c c4671c, StringBuilder sb) {
+            this.f12482b = sb;
+        }
+
+        @Override // p007b.p225i.p361c.p369m.p370d.p374l.C4671c.d
+        /* JADX INFO: renamed from: a */
+        public void mo6512a(InputStream inputStream, int i) throws IOException {
+            if (this.f12481a) {
+                this.f12481a = false;
+            } else {
+                this.f12482b.append(", ");
+            }
+            this.f12482b.append(i);
+        }
     }
 
     /* JADX INFO: renamed from: b.i.c.m.d.l.c$c */

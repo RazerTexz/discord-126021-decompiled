@@ -76,32 +76,23 @@ public final class C11667a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$b */
     /* JADX INFO: compiled from: JvmProtoBuf.java */
-    public static final class b extends AbstractC11727g implements InterfaceC11735o {
+    public final class b extends AbstractC11727g implements InterfaceC11735o {
+        private int bitField0_;
+        private int desc_;
 
         /* JADX INFO: renamed from: j */
         public static final b f23665j;
-
-        /* JADX INFO: renamed from: k */
-        public static InterfaceC11736p<b> f23666k = new a();
-        private int bitField0_;
-        private int desc_;
         private byte memoizedIsInitialized;
         private int memoizedSerializedSize;
         private int name_;
         private final AbstractC11723c unknownFields;
 
-        /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$b$a */
-        /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static class a extends AbstractC11722b<b> {
-            @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
-            public b parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
-                return new b(c11724d, c11725e, null);
-            }
-        }
+        /* JADX INFO: renamed from: k */
+        public static InterfaceC11736p<b> f23666k = new a();
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static final class C13317b extends AbstractC11727g.b<b, C13317b> implements InterfaceC11735o {
+        public final class C13317b extends AbstractC11727g.b<b, C13317b> implements InterfaceC11735o {
 
             /* JADX INFO: renamed from: k */
             public int f23667k;
@@ -201,6 +192,15 @@ public final class C11667a {
             }
         }
 
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$b$a */
+        /* JADX INFO: compiled from: JvmProtoBuf.java */
+        public final class a extends AbstractC11722b<b> {
+            @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
+            public b parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
+                return new b(c11724d, c11725e, null);
+            }
+        }
+
         static {
             b bVar = new b();
             f23665j = bVar;
@@ -217,10 +217,6 @@ public final class C11667a {
 
         public static b getDefaultInstance() {
             return f23665j;
-        }
-
-        public static C13317b newBuilder(b bVar) {
-            return newBuilder().mergeFrom(bVar);
         }
 
         public int getDesc() {
@@ -265,6 +261,10 @@ public final class C11667a {
             }
             this.memoizedIsInitialized = (byte) 1;
             return true;
+        }
+
+        public static C13317b newBuilder(b bVar) {
+            return newBuilder().mergeFrom(bVar);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
@@ -350,23 +350,23 @@ public final class C11667a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$c */
     /* JADX INFO: compiled from: JvmProtoBuf.java */
-    public static final class c extends AbstractC11727g implements InterfaceC11735o {
+    public final class c extends AbstractC11727g implements InterfaceC11735o {
+        private int bitField0_;
+        private int desc_;
 
         /* JADX INFO: renamed from: j */
         public static final c f23670j;
-
-        /* JADX INFO: renamed from: k */
-        public static InterfaceC11736p<c> f23671k = new a();
-        private int bitField0_;
-        private int desc_;
         private byte memoizedIsInitialized;
         private int memoizedSerializedSize;
         private int name_;
         private final AbstractC11723c unknownFields;
 
+        /* JADX INFO: renamed from: k */
+        public static InterfaceC11736p<c> f23671k = new a();
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$c$a */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static class a extends AbstractC11722b<c> {
+        public final class a extends AbstractC11722b<c> {
             @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
             public c parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
                 return new c(c11724d, c11725e, null);
@@ -375,7 +375,7 @@ public final class C11667a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$c$b */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static final class b extends AbstractC11727g.b<c, b> implements InterfaceC11735o {
+        public final class b extends AbstractC11727g.b<c, b> implements InterfaceC11735o {
 
             /* JADX INFO: renamed from: k */
             public int f23672k;
@@ -493,10 +493,6 @@ public final class C11667a {
             return f23670j;
         }
 
-        public static b newBuilder(c cVar) {
-            return newBuilder().mergeFrom(cVar);
-        }
-
         public int getDesc() {
             return this.desc_;
         }
@@ -539,6 +535,10 @@ public final class C11667a {
             }
             this.memoizedIsInitialized = (byte) 1;
             return true;
+        }
+
+        public static b newBuilder(c cVar) {
+            return newBuilder().mergeFrom(cVar);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
@@ -624,14 +624,11 @@ public final class C11667a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$d */
     /* JADX INFO: compiled from: JvmProtoBuf.java */
-    public static final class d extends AbstractC11727g implements InterfaceC11735o {
+    public final class d extends AbstractC11727g implements InterfaceC11735o {
+        private int bitField0_;
 
         /* JADX INFO: renamed from: j */
         public static final d f23675j;
-
-        /* JADX INFO: renamed from: k */
-        public static InterfaceC11736p<d> f23676k = new a();
-        private int bitField0_;
         private b field_;
         private c getter_;
         private byte memoizedIsInitialized;
@@ -640,9 +637,12 @@ public final class C11667a {
         private c syntheticMethod_;
         private final AbstractC11723c unknownFields;
 
+        /* JADX INFO: renamed from: k */
+        public static InterfaceC11736p<d> f23676k = new a();
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$d$a */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static class a extends AbstractC11722b<d> {
+        public final class a extends AbstractC11722b<d> {
             @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
             public d parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
                 return new d(c11724d, c11725e, null);
@@ -651,7 +651,7 @@ public final class C11667a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$d$b */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static final class b extends AbstractC11727g.b<d, b> implements InterfaceC11735o {
+        public final class b extends AbstractC11727g.b<d, b> implements InterfaceC11735o {
 
             /* JADX INFO: renamed from: k */
             public int f23677k;
@@ -816,18 +816,6 @@ public final class C11667a {
             return f23675j;
         }
 
-        public static b newBuilder(d dVar) {
-            return newBuilder().mergeFrom(dVar);
-        }
-
-        /* JADX INFO: renamed from: g */
-        public final void m9565g() {
-            this.field_ = b.getDefaultInstance();
-            this.syntheticMethod_ = c.getDefaultInstance();
-            this.getter_ = c.getDefaultInstance();
-            this.setter_ = c.getDefaultInstance();
-        }
-
         public b getField() {
             return this.field_;
         }
@@ -892,6 +880,18 @@ public final class C11667a {
             }
             this.memoizedIsInitialized = (byte) 1;
             return true;
+        }
+
+        /* JADX INFO: renamed from: g */
+        public final void m9565g() {
+            this.field_ = b.getDefaultInstance();
+            this.syntheticMethod_ = c.getDefaultInstance();
+            this.getter_ = c.getDefaultInstance();
+            this.setter_ = c.getDefaultInstance();
+        }
+
+        public static b newBuilder(d dVar) {
+            return newBuilder().mergeFrom(dVar);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
@@ -1012,13 +1012,10 @@ public final class C11667a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e */
     /* JADX INFO: compiled from: JvmProtoBuf.java */
-    public static final class e extends AbstractC11727g implements InterfaceC11735o {
+    public final class e extends AbstractC11727g implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: j */
         public static final e f23682j;
-
-        /* JADX INFO: renamed from: k */
-        public static InterfaceC11736p<e> f23683k = new a();
         private int localNameMemoizedSerializedSize;
         private List<Integer> localName_;
         private byte memoizedIsInitialized;
@@ -1026,9 +1023,12 @@ public final class C11667a {
         private List<c> record_;
         private final AbstractC11723c unknownFields;
 
+        /* JADX INFO: renamed from: k */
+        public static InterfaceC11736p<e> f23683k = new a();
+
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$a */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static class a extends AbstractC11722b<e> {
+        public final class a extends AbstractC11722b<e> {
             @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
             public e parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
                 return new e(c11724d, c11725e, null);
@@ -1037,7 +1037,7 @@ public final class C11667a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$b */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static final class b extends AbstractC11727g.b<e, b> implements InterfaceC11735o {
+        public final class b extends AbstractC11727g.b<e, b> implements InterfaceC11735o {
 
             /* JADX INFO: renamed from: k */
             public int f23684k;
@@ -1147,14 +1147,11 @@ public final class C11667a {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$c */
         /* JADX INFO: compiled from: JvmProtoBuf.java */
-        public static final class c extends AbstractC11727g implements InterfaceC11735o {
+        public final class c extends AbstractC11727g implements InterfaceC11735o {
+            private int bitField0_;
 
             /* JADX INFO: renamed from: j */
             public static final c f23687j;
-
-            /* JADX INFO: renamed from: k */
-            public static InterfaceC11736p<c> f23688k = new a();
-            private int bitField0_;
             private byte memoizedIsInitialized;
             private int memoizedSerializedSize;
             private EnumC13318c operation_;
@@ -1167,9 +1164,44 @@ public final class C11667a {
             private List<Integer> substringIndex_;
             private final AbstractC11723c unknownFields;
 
+            /* JADX INFO: renamed from: k */
+            public static InterfaceC11736p<c> f23688k = new a();
+
+            /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$c$c, reason: collision with other inner class name */
+            /* JADX INFO: compiled from: JvmProtoBuf.java */
+            public enum EnumC13318c implements C11728h.a {
+                NONE(0),
+                INTERNAL_TO_CLASS_ID(1),
+                DESC_TO_CLASS_ID(2);
+
+                private final int value;
+
+                EnumC13318c(int i) {
+                    this.value = i;
+                }
+
+                @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.C11728h.a
+                public final int getNumber() {
+                    return this.value;
+                }
+
+                public static EnumC13318c valueOf(int i) {
+                    if (i == 0) {
+                        return NONE;
+                    }
+                    if (i == 1) {
+                        return INTERNAL_TO_CLASS_ID;
+                    }
+                    if (i != 2) {
+                        return null;
+                    }
+                    return DESC_TO_CLASS_ID;
+                }
+            }
+
             /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$c$a */
             /* JADX INFO: compiled from: JvmProtoBuf.java */
-            public static class a extends AbstractC11722b<c> {
+            public final class a extends AbstractC11722b<c> {
                 @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
                 public c parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
                     return new c(c11724d, c11725e, null);
@@ -1178,7 +1210,7 @@ public final class C11667a {
 
             /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$c$b */
             /* JADX INFO: compiled from: JvmProtoBuf.java */
-            public static final class b extends AbstractC11727g.b<c, b> implements InterfaceC11735o {
+            public final class b extends AbstractC11727g.b<c, b> implements InterfaceC11735o {
 
                 /* JADX INFO: renamed from: k */
                 public int f23689k;
@@ -1346,38 +1378,6 @@ public final class C11667a {
                 }
             }
 
-            /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.a$e$c$c, reason: collision with other inner class name */
-            /* JADX INFO: compiled from: JvmProtoBuf.java */
-            public enum EnumC13318c implements C11728h.a {
-                NONE(0),
-                INTERNAL_TO_CLASS_ID(1),
-                DESC_TO_CLASS_ID(2);
-
-                private final int value;
-
-                EnumC13318c(int i) {
-                    this.value = i;
-                }
-
-                @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.C11728h.a
-                public final int getNumber() {
-                    return this.value;
-                }
-
-                public static EnumC13318c valueOf(int i) {
-                    if (i == 0) {
-                        return NONE;
-                    }
-                    if (i == 1) {
-                        return INTERNAL_TO_CLASS_ID;
-                    }
-                    if (i != 2) {
-                        return null;
-                    }
-                    return DESC_TO_CLASS_ID;
-                }
-            }
-
             static {
                 c cVar = new c();
                 f23687j = cVar;
@@ -1395,10 +1395,6 @@ public final class C11667a {
 
             public static c getDefaultInstance() {
                 return f23687j;
-            }
-
-            public static b newBuilder(c cVar) {
-                return newBuilder().mergeFrom(cVar);
             }
 
             public EnumC13318c getOperation() {
@@ -1528,6 +1524,10 @@ public final class C11667a {
                 this.operation_ = EnumC13318c.NONE;
                 this.substringIndex_ = Collections.emptyList();
                 this.replaceChar_ = Collections.emptyList();
+            }
+
+            public static b newBuilder(c cVar) {
+                return newBuilder().mergeFrom(cVar);
             }
 
             @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
@@ -1712,14 +1712,6 @@ public final class C11667a {
             return f23682j;
         }
 
-        public static b newBuilder(e eVar) {
-            return newBuilder().mergeFrom(eVar);
-        }
-
-        public static e parseDelimitedFrom(InputStream inputStream, C11725e c11725e) throws IOException {
-            return (e) ((AbstractC11722b) f23683k).m11466parseDelimitedFrom(inputStream, c11725e);
-        }
-
         public List<Integer> getLocalNameList() {
             return this.localName_;
         }
@@ -1763,6 +1755,14 @@ public final class C11667a {
             }
             this.memoizedIsInitialized = (byte) 1;
             return true;
+        }
+
+        public static b newBuilder(e eVar) {
+            return newBuilder().mergeFrom(eVar);
+        }
+
+        public static e parseDelimitedFrom(InputStream inputStream, C11725e c11725e) throws IOException {
+            return (e) ((AbstractC11722b) f23683k).m11466parseDelimitedFrom(inputStream, c11725e);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

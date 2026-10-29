@@ -62,7 +62,7 @@ public abstract class WorkRequest {
         return this.mWorkSpec;
     }
 
-    public static abstract class Builder<B extends Builder<?, ?>, W extends WorkRequest> {
+    public abstract class Builder<B extends Builder<?, ?>, W extends WorkRequest> {
         public WorkSpec mWorkSpec;
         public Class<? extends ListenableWorker> mWorkerClass;
         public boolean mBackoffCriteriaSet = false;

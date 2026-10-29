@@ -6,9 +6,9 @@ import java.util.ArrayList;
 /* JADX INFO: loaded from: classes.dex */
 public class HelperReference {
     private HelperWidget mHelperWidget;
-    public ArrayList<Object> mReferences = new ArrayList<>();
     public final State mState;
     public final State.Helper mType;
+    public ArrayList<Object> mReferences = new ArrayList<>();
 
     public HelperReference(State state, State.Helper helper) {
         this.mState = state;

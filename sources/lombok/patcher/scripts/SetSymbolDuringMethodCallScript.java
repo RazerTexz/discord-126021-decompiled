@@ -85,7 +85,7 @@ public class SetSymbolDuringMethodCallScript extends MethodLevelPatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/SetSymbolDuringMethodCallScript$WrapWithSymbol.SCL.lombok */
-    private class WrapWithSymbol extends MethodVisitor {
+    class WrapWithSymbol extends MethodVisitor {
         private final String selfMethodName;
         private final String selfTypeName;
         private final List<WrapperMethodDescriptor> descriptors;

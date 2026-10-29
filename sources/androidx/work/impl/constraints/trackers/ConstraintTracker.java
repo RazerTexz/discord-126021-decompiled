@@ -14,10 +14,10 @@ import java.util.Set;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public abstract class ConstraintTracker<T> {
-    private static final String TAG = Logger.tagWithPrefix("ConstraintTracker");
     public final Context mAppContext;
     public T mCurrentState;
     public final TaskExecutor mTaskExecutor;
+    private static final String TAG = Logger.tagWithPrefix("ConstraintTracker");
     private final Object mLock = new Object();
     private final Set<ConstraintListener<T>> mListeners = new LinkedHashSet();
 

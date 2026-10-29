@@ -13,15 +13,35 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC3837t3 implements Serializable, Iterable<Byte> {
 
-    /* JADX INFO: renamed from: j */
-    public static final AbstractC3837t3 f10322j = new C3915z3(C3877w4.f10380b);
-
     /* JADX INFO: renamed from: k */
     public static final InterfaceC3889x3 f10323k;
+
+    /* JADX INFO: renamed from: j */
+    public static final AbstractC3837t3 f10322j = new C3915z3(C3877w4.f10380b);
     private int zzc = 0;
 
     static {
         f10323k = C3798q3.m5185a() ? new C3610c4(null) : new C3876w3(null);
+    }
+
+    public abstract boolean equals(Object obj);
+
+    public final int hashCode() {
+        int iMo5283e = this.zzc;
+        if (iMo5283e == 0) {
+            int iMo5282d = mo5282d();
+            iMo5283e = mo5283e(iMo5282d, 0, iMo5282d);
+            if (iMo5283e == 0) {
+                iMo5283e = 1;
+            }
+            this.zzc = iMo5283e;
+        }
+        return iMo5283e;
+    }
+
+    @Override // java.lang.Iterable
+    public /* synthetic */ Iterator<Byte> iterator() {
+        return new C3863v3(this);
     }
 
     /* JADX INFO: renamed from: h */
@@ -49,6 +69,11 @@ public abstract class AbstractC3837t3 implements Serializable, Iterable<Byte> {
         throw new IndexOutOfBoundsException(sb.toString());
     }
 
+    /* JADX INFO: renamed from: n */
+    public final int m5289n() {
+        return this.zzc;
+    }
+
     /* JADX INFO: renamed from: c */
     public abstract byte mo5281c(int i);
 
@@ -58,31 +83,11 @@ public abstract class AbstractC3837t3 implements Serializable, Iterable<Byte> {
     /* JADX INFO: renamed from: e */
     public abstract int mo5283e(int i, int i2, int i3);
 
-    public abstract boolean equals(Object obj);
-
     /* JADX INFO: renamed from: g */
     public abstract AbstractC3837t3 mo5284g(int i, int i2);
 
-    public final int hashCode() {
-        int iMo5283e = this.zzc;
-        if (iMo5283e == 0) {
-            int iMo5282d = mo5282d();
-            iMo5283e = mo5283e(iMo5282d, 0, iMo5282d);
-            if (iMo5283e == 0) {
-                iMo5283e = 1;
-            }
-            this.zzc = iMo5283e;
-        }
-        return iMo5283e;
-    }
-
     /* JADX INFO: renamed from: i */
     public abstract String mo5285i(Charset charset);
-
-    @Override // java.lang.Iterable
-    public /* synthetic */ Iterator<Byte> iterator() {
-        return new C3863v3(this);
-    }
 
     /* JADX INFO: renamed from: j */
     public abstract void mo5286j(AbstractC3850u3 abstractC3850u3) throws IOException;
@@ -92,11 +97,6 @@ public abstract class AbstractC3837t3 implements Serializable, Iterable<Byte> {
 
     /* JADX INFO: renamed from: m */
     public abstract boolean mo5288m();
-
-    /* JADX INFO: renamed from: n */
-    public final int m5289n() {
-        return this.zzc;
-    }
 
     public final String toString() {
         Locale locale = Locale.ROOT;

@@ -12,12 +12,6 @@ import p637j0.p642l.p647e.C12723m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12728e<T> implements Queue<T> {
 
-    /* JADX INFO: renamed from: j */
-    public static final int f27310j = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
-
-    /* JADX INFO: renamed from: k */
-    public static final Object f27311k = new Object();
-
     /* JADX INFO: renamed from: l */
     public final AtomicLong f27312l;
 
@@ -41,6 +35,12 @@ public final class C12728e<T> implements Queue<T> {
 
     /* JADX INFO: renamed from: s */
     public final AtomicLong f27319s;
+
+    /* JADX INFO: renamed from: j */
+    public static final int f27310j = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
+
+    /* JADX INFO: renamed from: k */
+    public static final Object f27311k = new Object();
 
     public C12728e(int i) {
         int iM10823b = C12723m.m10823b(i);
@@ -66,11 +66,6 @@ public final class C12728e<T> implements Queue<T> {
         throw new UnsupportedOperationException();
     }
 
-    /* JADX INFO: renamed from: c */
-    public final long m10828c() {
-        return this.f27319s.get();
-    }
-
     @Override // java.util.Collection
     public void clear() {
         while (true) {
@@ -88,6 +83,26 @@ public final class C12728e<T> implements Queue<T> {
     @Override // java.util.Collection
     public boolean containsAll(Collection<?> collection) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Queue
+    public T element() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Collection
+    public boolean isEmpty() {
+        return m10829d() == m10828c();
+    }
+
+    @Override // java.util.Collection, java.lang.Iterable
+    public Iterator<T> iterator() {
+        throw new UnsupportedOperationException();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final long m10828c() {
+        return this.f27319s.get();
     }
 
     /* JADX INFO: renamed from: d */
@@ -117,21 +132,6 @@ public final class C12728e<T> implements Queue<T> {
         atomicReferenceArray.lazySet(i3, f27311k);
         this.f27312l.lazySet(j);
         return true;
-    }
-
-    @Override // java.util.Queue
-    public T element() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override // java.util.Collection
-    public boolean isEmpty() {
-        return m10829d() == m10828c();
-    }
-
-    @Override // java.util.Collection, java.lang.Iterable
-    public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
     }
 
     @Override // java.util.Queue

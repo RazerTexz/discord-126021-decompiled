@@ -25,9 +25,9 @@ public class CommandHandler implements ExecutionListener {
     public static final String ACTION_STOP_WORK = "ACTION_STOP_WORK";
     private static final String KEY_NEEDS_RESCHEDULE = "KEY_NEEDS_RESCHEDULE";
     private static final String KEY_WORKSPEC_ID = "KEY_WORKSPEC_ID";
-    private static final String TAG = Logger.tagWithPrefix("CommandHandler");
     public static final long WORK_PROCESSING_TIME_IN_MS = 600000;
     private final Context mContext;
+    private static final String TAG = Logger.tagWithPrefix("CommandHandler");
     private final Map<String, ExecutionListener> mPendingDelayMet = new HashMap();
     private final Object mLock = new Object();
 

@@ -17,14 +17,14 @@ public class C12649m2<T> extends Subscriber<T> {
     /* JADX INFO: renamed from: j */
     public boolean f26912j;
 
-    /* JADX INFO: renamed from: k */
-    public List<T> f26913k = new LinkedList();
-
     /* JADX INFO: renamed from: l */
     public final /* synthetic */ C12694b f26914l;
 
     /* JADX INFO: renamed from: m */
     public final /* synthetic */ Subscriber f26915m;
+
+    /* JADX INFO: renamed from: k */
+    public List<T> f26913k = new LinkedList();
 
     public C12649m2(C12653n2 c12653n2, C12694b c12694b, Subscriber subscriber) {
         this.f26914l = c12694b;

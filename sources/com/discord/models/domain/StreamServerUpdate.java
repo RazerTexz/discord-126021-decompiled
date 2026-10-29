@@ -14,7 +14,7 @@ public final /* data */ class StreamServerUpdate {
     private final String token;
 
     /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public static final class Parser implements Model.Parser<StreamServerUpdate> {
+    public final class Parser implements Model.Parser<StreamServerUpdate> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -84,21 +84,6 @@ public final /* data */ class StreamServerUpdate {
         return streamServerUpdate.copy(str, str2, str3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getStreamKey() {
-        return this.streamKey;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getEndpoint() {
-        return this.endpoint;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
     public final StreamServerUpdate copy(String streamKey, String endpoint, String token) {
         C12238m.checkNotNullParameter(streamKey, "streamKey");
         return new StreamServerUpdate(streamKey, endpoint, token);
@@ -115,12 +100,27 @@ public final /* data */ class StreamServerUpdate {
         return C12238m.areEqual(this.streamKey, streamServerUpdate.streamKey) && C12238m.areEqual(this.endpoint, streamServerUpdate.endpoint) && C12238m.areEqual(this.token, streamServerUpdate.token);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getEndpoint() {
         return this.endpoint;
     }
 
+    public final String getEndpoint() {
+        return this.endpoint;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getStreamKey() {
         return this.streamKey;
+    }
+
+    public final String getStreamKey() {
+        return this.streamKey;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {

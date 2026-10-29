@@ -214,6 +214,16 @@ public final class CollapsingTextHelper {
         setInterpolatedTextSize(f);
     }
 
+    public float calculateCollapsedTextWidth() {
+        if (this.text == null) {
+            return 0.0f;
+        }
+        getTextPaintCollapsed(this.tmpPaint);
+        TextPaint textPaint = this.tmpPaint;
+        CharSequence charSequence = this.text;
+        return textPaint.measureText(charSequence, 0, charSequence.length());
+    }
+
     private void calculateCurrentOffsets() {
         calculateOffsets(this.expandedFraction);
     }
@@ -327,6 +337,37 @@ public final class CollapsingTextHelper {
         return (StaticLayout) Preconditions.checkNotNull(staticLayoutM6116a);
     }
 
+    public void draw(@NonNull Canvas canvas) {
+        int iSave = canvas.save();
+        if (this.textToDraw == null || !this.drawTitle) {
+            return;
+        }
+        boolean z2 = false;
+        float lineLeft = (this.textLayout.getLineLeft(0) + this.currentDrawX) - (this.expandedFirstLineDrawX * 2.0f);
+        this.textPaint.setTextSize(this.currentTextSize);
+        float f = this.currentDrawX;
+        float f2 = this.currentDrawY;
+        if (this.useTexture && this.expandedTitleTexture != null) {
+            z2 = true;
+        }
+        float f3 = this.scale;
+        if (f3 != 1.0f) {
+            canvas.scale(f3, f3, f, f2);
+        }
+        if (z2) {
+            canvas.drawBitmap(this.expandedTitleTexture, f, f2, this.texturePaint);
+            canvas.restoreToCount(iSave);
+            return;
+        }
+        if (shouldDrawMultiline()) {
+            drawMultinlineTransition(canvas, lineLeft, f2);
+        } else {
+            canvas.translate(f, f2);
+            this.textLayout.draw(canvas);
+        }
+        canvas.restoreToCount(iSave);
+    }
+
     private void drawMultinlineTransition(@NonNull Canvas canvas, float f, float f2) {
         int alpha = this.textPaint.getAlpha();
         canvas.translate(f, f2);
@@ -364,6 +405,27 @@ public final class CollapsingTextHelper {
         }
     }
 
+    public void getCollapsedTextActualBounds(@NonNull RectF rectF, int i, int i2) {
+        this.isRtl = calculateIsRtl(this.text);
+        rectF.left = getCollapsedTextLeftBound(i, i2);
+        rectF.top = this.collapsedBounds.top;
+        rectF.right = getCollapsedTextRightBound(rectF, i, i2);
+        rectF.bottom = getCollapsedTextHeight() + this.collapsedBounds.top;
+    }
+
+    public ColorStateList getCollapsedTextColor() {
+        return this.collapsedTextColor;
+    }
+
+    public int getCollapsedTextGravity() {
+        return this.collapsedTextGravity;
+    }
+
+    public float getCollapsedTextHeight() {
+        getTextPaintCollapsed(this.tmpPaint);
+        return -this.tmpPaint.ascent();
+    }
+
     private float getCollapsedTextLeftBound(int i, int i2) {
         if (i2 == 17 || (i2 & 7) == 1) {
             return (i / 2.0f) - (calculateCollapsedTextWidth() / 2.0f);
@@ -387,168 +449,6 @@ public final class CollapsingTextHelper {
         return this.collapsedBounds.right;
     }
 
-    @ColorInt
-    private int getCurrentColor(@Nullable ColorStateList colorStateList) {
-        if (colorStateList == null) {
-            return 0;
-        }
-        int[] iArr = this.state;
-        return iArr != null ? colorStateList.getColorForState(iArr, 0) : colorStateList.getDefaultColor();
-    }
-
-    @ColorInt
-    private int getCurrentExpandedTextColor() {
-        return getCurrentColor(this.expandedTextColor);
-    }
-
-    private void getTextPaintCollapsed(@NonNull TextPaint textPaint) {
-        textPaint.setTextSize(this.collapsedTextSize);
-        textPaint.setTypeface(this.collapsedTypeface);
-        textPaint.setLetterSpacing(this.collapsedLetterSpacing);
-    }
-
-    private void getTextPaintExpanded(@NonNull TextPaint textPaint) {
-        textPaint.setTextSize(this.expandedTextSize);
-        textPaint.setTypeface(this.expandedTypeface);
-        textPaint.setLetterSpacing(this.expandedLetterSpacing);
-    }
-
-    private void interpolateBounds(float f) {
-        this.currentBounds.left = lerp(this.expandedBounds.left, this.collapsedBounds.left, f, this.positionInterpolator);
-        this.currentBounds.top = lerp(this.expandedDrawY, this.collapsedDrawY, f, this.positionInterpolator);
-        this.currentBounds.right = lerp(this.expandedBounds.right, this.collapsedBounds.right, f, this.positionInterpolator);
-        this.currentBounds.bottom = lerp(this.expandedBounds.bottom, this.collapsedBounds.bottom, f, this.positionInterpolator);
-    }
-
-    private static boolean isClose(float f, float f2) {
-        return Math.abs(f - f2) < 0.001f;
-    }
-
-    private boolean isDefaultIsRtl() {
-        return ViewCompat.getLayoutDirection(this.view) == 1;
-    }
-
-    private static float lerp(float f, float f2, float f3, @Nullable TimeInterpolator timeInterpolator) {
-        if (timeInterpolator != null) {
-            f3 = timeInterpolator.getInterpolation(f3);
-        }
-        return AnimationUtils.lerp(f, f2, f3);
-    }
-
-    private static boolean rectEquals(@NonNull Rect rect, int i, int i2, int i3, int i4) {
-        return rect.left == i && rect.top == i2 && rect.right == i3 && rect.bottom == i4;
-    }
-
-    private void setCollapsedTextBlend(float f) {
-        this.collapsedTextBlend = f;
-        ViewCompat.postInvalidateOnAnimation(this.view);
-    }
-
-    private boolean setCollapsedTypefaceInternal(Typeface typeface) {
-        CancelableFontCallback cancelableFontCallback = this.collapsedFontCallback;
-        if (cancelableFontCallback != null) {
-            cancelableFontCallback.cancel();
-        }
-        if (this.collapsedTypeface == typeface) {
-            return false;
-        }
-        this.collapsedTypeface = typeface;
-        return true;
-    }
-
-    private void setExpandedTextBlend(float f) {
-        this.expandedTextBlend = f;
-        ViewCompat.postInvalidateOnAnimation(this.view);
-    }
-
-    private boolean setExpandedTypefaceInternal(Typeface typeface) {
-        CancelableFontCallback cancelableFontCallback = this.expandedFontCallback;
-        if (cancelableFontCallback != null) {
-            cancelableFontCallback.cancel();
-        }
-        if (this.expandedTypeface == typeface) {
-            return false;
-        }
-        this.expandedTypeface = typeface;
-        return true;
-    }
-
-    private void setInterpolatedTextSize(float f) {
-        calculateUsingTextSize(f);
-        boolean z2 = USE_SCALING_TEXTURE && this.scale != 1.0f;
-        this.useTexture = z2;
-        if (z2) {
-            ensureExpandedTexture();
-        }
-        ViewCompat.postInvalidateOnAnimation(this.view);
-    }
-
-    private boolean shouldDrawMultiline() {
-        return (this.maxLines <= 1 || this.isRtl || this.useTexture) ? false : true;
-    }
-
-    public float calculateCollapsedTextWidth() {
-        if (this.text == null) {
-            return 0.0f;
-        }
-        getTextPaintCollapsed(this.tmpPaint);
-        TextPaint textPaint = this.tmpPaint;
-        CharSequence charSequence = this.text;
-        return textPaint.measureText(charSequence, 0, charSequence.length());
-    }
-
-    public void draw(@NonNull Canvas canvas) {
-        int iSave = canvas.save();
-        if (this.textToDraw == null || !this.drawTitle) {
-            return;
-        }
-        boolean z2 = false;
-        float lineLeft = (this.textLayout.getLineLeft(0) + this.currentDrawX) - (this.expandedFirstLineDrawX * 2.0f);
-        this.textPaint.setTextSize(this.currentTextSize);
-        float f = this.currentDrawX;
-        float f2 = this.currentDrawY;
-        if (this.useTexture && this.expandedTitleTexture != null) {
-            z2 = true;
-        }
-        float f3 = this.scale;
-        if (f3 != 1.0f) {
-            canvas.scale(f3, f3, f, f2);
-        }
-        if (z2) {
-            canvas.drawBitmap(this.expandedTitleTexture, f, f2, this.texturePaint);
-            canvas.restoreToCount(iSave);
-            return;
-        }
-        if (shouldDrawMultiline()) {
-            drawMultinlineTransition(canvas, lineLeft, f2);
-        } else {
-            canvas.translate(f, f2);
-            this.textLayout.draw(canvas);
-        }
-        canvas.restoreToCount(iSave);
-    }
-
-    public void getCollapsedTextActualBounds(@NonNull RectF rectF, int i, int i2) {
-        this.isRtl = calculateIsRtl(this.text);
-        rectF.left = getCollapsedTextLeftBound(i, i2);
-        rectF.top = this.collapsedBounds.top;
-        rectF.right = getCollapsedTextRightBound(rectF, i, i2);
-        rectF.bottom = getCollapsedTextHeight() + this.collapsedBounds.top;
-    }
-
-    public ColorStateList getCollapsedTextColor() {
-        return this.collapsedTextColor;
-    }
-
-    public int getCollapsedTextGravity() {
-        return this.collapsedTextGravity;
-    }
-
-    public float getCollapsedTextHeight() {
-        getTextPaintCollapsed(this.tmpPaint);
-        return -this.tmpPaint.ascent();
-    }
-
     public float getCollapsedTextSize() {
         return this.collapsedTextSize;
     }
@@ -561,6 +461,20 @@ public final class CollapsingTextHelper {
     @ColorInt
     public int getCurrentCollapsedTextColor() {
         return getCurrentColor(this.collapsedTextColor);
+    }
+
+    @ColorInt
+    private int getCurrentColor(@Nullable ColorStateList colorStateList) {
+        if (colorStateList == null) {
+            return 0;
+        }
+        int[] iArr = this.state;
+        return iArr != null ? colorStateList.getColorForState(iArr, 0) : colorStateList.getDefaultColor();
+    }
+
+    @ColorInt
+    private int getCurrentExpandedTextColor() {
+        return getCurrentColor(this.expandedTextColor);
     }
 
     public ColorStateList getExpandedTextColor() {
@@ -598,10 +512,44 @@ public final class CollapsingTextHelper {
         return this.text;
     }
 
+    private void getTextPaintCollapsed(@NonNull TextPaint textPaint) {
+        textPaint.setTextSize(this.collapsedTextSize);
+        textPaint.setTypeface(this.collapsedTypeface);
+        textPaint.setLetterSpacing(this.collapsedLetterSpacing);
+    }
+
+    private void getTextPaintExpanded(@NonNull TextPaint textPaint) {
+        textPaint.setTextSize(this.expandedTextSize);
+        textPaint.setTypeface(this.expandedTypeface);
+        textPaint.setLetterSpacing(this.expandedLetterSpacing);
+    }
+
+    private void interpolateBounds(float f) {
+        this.currentBounds.left = lerp(this.expandedBounds.left, this.collapsedBounds.left, f, this.positionInterpolator);
+        this.currentBounds.top = lerp(this.expandedDrawY, this.collapsedDrawY, f, this.positionInterpolator);
+        this.currentBounds.right = lerp(this.expandedBounds.right, this.collapsedBounds.right, f, this.positionInterpolator);
+        this.currentBounds.bottom = lerp(this.expandedBounds.bottom, this.collapsedBounds.bottom, f, this.positionInterpolator);
+    }
+
+    private static boolean isClose(float f, float f2) {
+        return Math.abs(f - f2) < 0.001f;
+    }
+
+    private boolean isDefaultIsRtl() {
+        return ViewCompat.getLayoutDirection(this.view) == 1;
+    }
+
     public final boolean isStateful() {
         ColorStateList colorStateList;
         ColorStateList colorStateList2 = this.collapsedTextColor;
         return (colorStateList2 != null && colorStateList2.isStateful()) || ((colorStateList = this.expandedTextColor) != null && colorStateList.isStateful());
+    }
+
+    private static float lerp(float f, float f2, float f3, @Nullable TimeInterpolator timeInterpolator) {
+        if (timeInterpolator != null) {
+            f3 = timeInterpolator.getInterpolation(f3);
+        }
+        return AnimationUtils.lerp(f, f2, f3);
     }
 
     public void onBoundsChanged() {
@@ -614,6 +562,10 @@ public final class CollapsingTextHelper {
         }
         calculateBaseOffsets();
         calculateCurrentOffsets();
+    }
+
+    private static boolean rectEquals(@NonNull Rect rect, int i, int i2, int i3, int i4) {
+        return rect.left == i && rect.top == i2 && rect.right == i3 && rect.bottom == i4;
     }
 
     public void setCollapsedBounds(int i, int i2, int i3, int i4) {
@@ -652,6 +604,11 @@ public final class CollapsingTextHelper {
         recalculate();
     }
 
+    private void setCollapsedTextBlend(float f) {
+        this.collapsedTextBlend = f;
+        ViewCompat.postInvalidateOnAnimation(this.view);
+    }
+
     public void setCollapsedTextColor(ColorStateList colorStateList) {
         if (this.collapsedTextColor != colorStateList) {
             this.collapsedTextColor = colorStateList;
@@ -677,6 +634,18 @@ public final class CollapsingTextHelper {
         if (setCollapsedTypefaceInternal(typeface)) {
             recalculate();
         }
+    }
+
+    private boolean setCollapsedTypefaceInternal(Typeface typeface) {
+        CancelableFontCallback cancelableFontCallback = this.collapsedFontCallback;
+        if (cancelableFontCallback != null) {
+            cancelableFontCallback.cancel();
+        }
+        if (this.collapsedTypeface == typeface) {
+            return false;
+        }
+        this.collapsedTypeface = typeface;
+        return true;
     }
 
     public void setExpandedBounds(int i, int i2, int i3, int i4) {
@@ -715,6 +684,11 @@ public final class CollapsingTextHelper {
         recalculate();
     }
 
+    private void setExpandedTextBlend(float f) {
+        this.expandedTextBlend = f;
+        ViewCompat.postInvalidateOnAnimation(this.view);
+    }
+
     public void setExpandedTextColor(ColorStateList colorStateList) {
         if (this.expandedTextColor != colorStateList) {
             this.expandedTextColor = colorStateList;
@@ -742,12 +716,34 @@ public final class CollapsingTextHelper {
         }
     }
 
+    private boolean setExpandedTypefaceInternal(Typeface typeface) {
+        CancelableFontCallback cancelableFontCallback = this.expandedFontCallback;
+        if (cancelableFontCallback != null) {
+            cancelableFontCallback.cancel();
+        }
+        if (this.expandedTypeface == typeface) {
+            return false;
+        }
+        this.expandedTypeface = typeface;
+        return true;
+    }
+
     public void setExpansionFraction(float f) {
         float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
         if (fClamp != this.expandedFraction) {
             this.expandedFraction = fClamp;
             calculateCurrentOffsets();
         }
+    }
+
+    private void setInterpolatedTextSize(float f) {
+        calculateUsingTextSize(f);
+        boolean z2 = USE_SCALING_TEXTURE && this.scale != 1.0f;
+        this.useTexture = z2;
+        if (z2) {
+            ensureExpandedTexture();
+        }
+        ViewCompat.postInvalidateOnAnimation(this.view);
     }
 
     public void setMaxLines(int i) {
@@ -792,6 +788,10 @@ public final class CollapsingTextHelper {
         if (collapsedTypefaceInternal || expandedTypefaceInternal) {
             recalculate();
         }
+    }
+
+    private boolean shouldDrawMultiline() {
+        return (this.maxLines <= 1 || this.isRtl || this.useTexture) ? false : true;
     }
 
     public void setCollapsedBounds(@NonNull Rect rect) {

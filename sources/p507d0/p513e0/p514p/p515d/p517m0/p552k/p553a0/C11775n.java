@@ -44,7 +44,7 @@ public final class C11775n implements InterfaceC11770i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.n$a */
     /* JADX INFO: compiled from: SubstitutingScope.kt */
-    public static final class a extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
+    public final class a extends AbstractC12240o implements Function0<Collection<? extends InterfaceC11450m>> {
         public a() {
             super(0);
         }
@@ -64,44 +64,6 @@ public final class C11775n implements InterfaceC11770i {
         C12238m.checkNotNullExpressionValue(substitution, "givenSubstitutor.substitution");
         this.f24378c = C11806d.wrapWithCapturingSubstitution$default(substitution, false, 1, null).buildSubstitutor();
         this.f24380e = C12083g.lazy(new a());
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX INFO: renamed from: a */
-    public final <D extends InterfaceC11450m> Collection<D> m9912a(Collection<? extends D> collection) {
-        if (this.f24378c.isEmpty() || collection.isEmpty()) {
-            return collection;
-        }
-        LinkedHashSet linkedHashSetNewLinkedHashSetWithExpectedSize = C12033a.newLinkedHashSetWithExpectedSize(collection.size());
-        Iterator it = collection.iterator();
-        while (it.hasNext()) {
-            linkedHashSetNewLinkedHashSetWithExpectedSize.add(m9913b((InterfaceC11450m) it.next()));
-        }
-        return linkedHashSetNewLinkedHashSetWithExpectedSize;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final <D extends InterfaceC11450m> D m9913b(D d) {
-        if (this.f24378c.isEmpty()) {
-            return d;
-        }
-        if (this.f24379d == null) {
-            this.f24379d = new HashMap();
-        }
-        Map<InterfaceC11450m, InterfaceC11450m> map = this.f24379d;
-        C12238m.checkNotNull(map);
-        InterfaceC11450m interfaceC11450mSubstitute = map.get(d);
-        if (interfaceC11450mSubstitute == null) {
-            if (!(d instanceof InterfaceC11471w0)) {
-                throw new IllegalStateException(C12238m.stringPlus("Unknown descriptor in scope: ", d).toString());
-            }
-            interfaceC11450mSubstitute = ((InterfaceC11471w0) d).substitute(this.f24378c);
-            if (interfaceC11450mSubstitute == null) {
-                throw new AssertionError("We expect that no conflict should happen while substitution is guaranteed to generate invariant projection, but " + d + " substitution fails");
-            }
-            map.put(d, interfaceC11450mSubstitute);
-        }
-        return (D) interfaceC11450mSubstitute;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
@@ -149,5 +111,43 @@ public final class C11775n implements InterfaceC11770i {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11770i
     public Set<C11716e> getVariableNames() {
         return this.f24377b.getVariableNames();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: a */
+    public final <D extends InterfaceC11450m> Collection<D> m9912a(Collection<? extends D> collection) {
+        if (this.f24378c.isEmpty() || collection.isEmpty()) {
+            return collection;
+        }
+        LinkedHashSet linkedHashSetNewLinkedHashSetWithExpectedSize = C12033a.newLinkedHashSetWithExpectedSize(collection.size());
+        Iterator it = collection.iterator();
+        while (it.hasNext()) {
+            linkedHashSetNewLinkedHashSetWithExpectedSize.add(m9913b((InterfaceC11450m) it.next()));
+        }
+        return linkedHashSetNewLinkedHashSetWithExpectedSize;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final <D extends InterfaceC11450m> D m9913b(D d) {
+        if (this.f24378c.isEmpty()) {
+            return d;
+        }
+        if (this.f24379d == null) {
+            this.f24379d = new HashMap();
+        }
+        Map<InterfaceC11450m, InterfaceC11450m> map = this.f24379d;
+        C12238m.checkNotNull(map);
+        InterfaceC11450m interfaceC11450mSubstitute = map.get(d);
+        if (interfaceC11450mSubstitute == null) {
+            if (!(d instanceof InterfaceC11471w0)) {
+                throw new IllegalStateException(C12238m.stringPlus("Unknown descriptor in scope: ", d).toString());
+            }
+            interfaceC11450mSubstitute = ((InterfaceC11471w0) d).substitute(this.f24378c);
+            if (interfaceC11450mSubstitute == null) {
+                throw new AssertionError("We expect that no conflict should happen while substitution is guaranteed to generate invariant projection, but " + d + " substitution fails");
+            }
+            map.put(d, interfaceC11450mSubstitute);
+        }
+        return (D) interfaceC11450mSubstitute;
     }
 }

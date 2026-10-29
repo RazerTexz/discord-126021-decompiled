@@ -15,13 +15,13 @@ public final class WidgetFriendsListAdapter$onClickDeclineFriend$1 extends Abstr
         super(2);
     }
 
+    public final void invoke(User user, int i) {
+        C12238m.checkNotNullParameter(user, "<anonymous parameter 0>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(User user, Integer num) {
         invoke(user, num.intValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(User user, int i) {
-        C12238m.checkNotNullParameter(user, "<anonymous parameter 0>");
     }
 }

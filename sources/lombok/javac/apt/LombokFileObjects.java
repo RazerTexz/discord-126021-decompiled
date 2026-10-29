@@ -73,9 +73,9 @@ final class LombokFileObjects {
             }
         };
 
-        JavaFileObject wrap(LombokFileObject lombokFileObject);
-
         Method getDecoderMethod();
+
+        JavaFileObject wrap(LombokFileObject lombokFileObject);
     }
 
     static Method getDecoderMethod(String className) {

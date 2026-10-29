@@ -72,7 +72,6 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int TAB_LAYOUT_MARGINS = DimenUtils.dpToPixels(48);
     private final ActivityResultLauncher<Intent> activityResult;
 
     /* JADX INFO: renamed from: adapter$delegate, reason: from kotlin metadata */
@@ -84,24 +83,11 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-
-    /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final int getTAB_LAYOUT_MARGINS() {
-            return WidgetDirectoryChannel.TAB_LAYOUT_MARGINS;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final int TAB_LAYOUT_MARGINS = DimenUtils.dpToPixels(48);
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$initializeUI$5 */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public static final class C82955 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C82955 extends AbstractC12240o implements Function1<Long, Unit> {
         public C82955() {
             super(1);
         }
@@ -134,7 +120,7 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public static final class C82972 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class C82972 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public C82972() {
             super(1);
         }
@@ -153,7 +139,7 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$4 */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public static final class C82994 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class C82994 extends AbstractC12240o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public C82994() {
             super(1);
         }
@@ -172,6 +158,20 @@ public final class WidgetDirectoryChannel extends AppFragment {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final int getTAB_LAYOUT_MARGINS() {
+            return WidgetDirectoryChannel.TAB_LAYOUT_MARGINS;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetDirectoryChannel() {
         super(C5419R.layout.widget_directory_channel);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetDirectoryChannel$binding$2.INSTANCE, new WidgetDirectoryChannel$binding$3(this));
@@ -185,6 +185,36 @@ public final class WidgetDirectoryChannel extends AppFragment {
             widgetDirectoryChannelBinding = null;
         }
         widgetDirectoryChannel.bindGestureObservers(z2, widgetDirectoryChannelBinding);
+    }
+
+    public final void bindGestureObservers(boolean bind, WidgetDirectoryChannelBinding binding) {
+        if (binding == null) {
+            binding = getBinding();
+        }
+        if (!this.hasBound && bind) {
+            ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a = ViewOnLayoutChangeListenerC1175b.b.m232a();
+            TabLayout tabLayout = binding.f16464d;
+            C12238m.checkNotNullExpressionValue(tabLayout, "nonNullBinding.tabs");
+            viewOnLayoutChangeListenerC1175bM232a.m230b(tabLayout);
+            ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a2 = ViewOnLayoutChangeListenerC1175b.b.m232a();
+            ViewPager2 viewPager2 = binding.f16465e;
+            C12238m.checkNotNullExpressionValue(viewPager2, "nonNullBinding.viewPager");
+            viewOnLayoutChangeListenerC1175bM232a2.m230b(viewPager2);
+            this.hasBound = true;
+            return;
+        }
+        if (bind) {
+            return;
+        }
+        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a3 = ViewOnLayoutChangeListenerC1175b.b.m232a();
+        TabLayout tabLayout2 = binding.f16464d;
+        C12238m.checkNotNullExpressionValue(tabLayout2, "nonNullBinding.tabs");
+        viewOnLayoutChangeListenerC1175bM232a3.m231c(tabLayout2);
+        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a4 = ViewOnLayoutChangeListenerC1175b.b.m232a();
+        ViewPager2 viewPager3 = binding.f16465e;
+        C12238m.checkNotNullExpressionValue(viewPager3, "nonNullBinding.viewPager");
+        viewOnLayoutChangeListenerC1175bM232a4.m231c(viewPager3);
+        this.hasBound = false;
     }
 
     private final void configureUi(final WidgetDirectoriesViewModel.ViewState state) {
@@ -246,58 +276,6 @@ public final class WidgetDirectoryChannel extends AppFragment {
         adapter.setTabs(C12163u.toList(arrayList));
     }
 
-    private final void onViewBindingDestroy(WidgetDirectoryChannelBinding binding) {
-        bindGestureObservers(false, binding);
-    }
-
-    private final void toggleHeaderMargins(boolean showTabLayout) {
-        int i = showTabLayout ? TAB_LAYOUT_MARGINS : 0;
-        ServerDiscoveryHeader serverDiscoveryHeader = getBinding().f16463c;
-        C12238m.checkNotNullExpressionValue(serverDiscoveryHeader, "binding.header");
-        ViewGroup.LayoutParams layoutParams = serverDiscoveryHeader.getLayoutParams();
-        Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-        marginLayoutParams.bottomMargin = i;
-        serverDiscoveryHeader.setLayoutParams(marginLayoutParams);
-        Toolbar toolbar = getBinding().f16462b;
-        C12238m.checkNotNullExpressionValue(toolbar, "binding.actionBarToolbar");
-        ViewGroup.LayoutParams layoutParams2 = toolbar.getLayoutParams();
-        Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) layoutParams2;
-        marginLayoutParams2.bottomMargin = i;
-        toolbar.setLayoutParams(marginLayoutParams2);
-    }
-
-    public final void bindGestureObservers(boolean bind, WidgetDirectoryChannelBinding binding) {
-        if (binding == null) {
-            binding = getBinding();
-        }
-        if (!this.hasBound && bind) {
-            ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a = ViewOnLayoutChangeListenerC1175b.b.m232a();
-            TabLayout tabLayout = binding.f16464d;
-            C12238m.checkNotNullExpressionValue(tabLayout, "nonNullBinding.tabs");
-            viewOnLayoutChangeListenerC1175bM232a.m230b(tabLayout);
-            ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a2 = ViewOnLayoutChangeListenerC1175b.b.m232a();
-            ViewPager2 viewPager2 = binding.f16465e;
-            C12238m.checkNotNullExpressionValue(viewPager2, "nonNullBinding.viewPager");
-            viewOnLayoutChangeListenerC1175bM232a2.m230b(viewPager2);
-            this.hasBound = true;
-            return;
-        }
-        if (bind) {
-            return;
-        }
-        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a3 = ViewOnLayoutChangeListenerC1175b.b.m232a();
-        TabLayout tabLayout2 = binding.f16464d;
-        C12238m.checkNotNullExpressionValue(tabLayout2, "nonNullBinding.tabs");
-        viewOnLayoutChangeListenerC1175bM232a3.m231c(tabLayout2);
-        ViewOnLayoutChangeListenerC1175b viewOnLayoutChangeListenerC1175bM232a4 = ViewOnLayoutChangeListenerC1175b.b.m232a();
-        ViewPager2 viewPager3 = binding.f16465e;
-        C12238m.checkNotNullExpressionValue(viewPager3, "nonNullBinding.viewPager");
-        viewOnLayoutChangeListenerC1175bM232a4.m231c(viewPager3);
-        this.hasBound = false;
-    }
-
     public final WidgetDirectoryChannelViewPagerAdapter getAdapter() {
         return (WidgetDirectoryChannelViewPagerAdapter) this.adapter.getValue();
     }
@@ -334,6 +312,10 @@ public final class WidgetDirectoryChannel extends AppFragment {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.m8518ui(observableM11083G), (Class<?>) WidgetDirectoryChannel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82955());
     }
 
+    private final void onViewBindingDestroy(WidgetDirectoryChannelBinding binding) {
+        bindGestureObservers(false, binding);
+    }
+
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
@@ -353,5 +335,23 @@ public final class WidgetDirectoryChannel extends AppFragment {
         });
         C12238m.checkNotNullExpressionValue(observableM11118y, "viewModel\n        .obser…   .filter { it != null }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11118y, this, null, 2, null), (Class<?>) WidgetDirectoryChannel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C82994());
+    }
+
+    private final void toggleHeaderMargins(boolean showTabLayout) {
+        int i = showTabLayout ? TAB_LAYOUT_MARGINS : 0;
+        ServerDiscoveryHeader serverDiscoveryHeader = getBinding().f16463c;
+        C12238m.checkNotNullExpressionValue(serverDiscoveryHeader, "binding.header");
+        ViewGroup.LayoutParams layoutParams = serverDiscoveryHeader.getLayoutParams();
+        Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.bottomMargin = i;
+        serverDiscoveryHeader.setLayoutParams(marginLayoutParams);
+        Toolbar toolbar = getBinding().f16462b;
+        C12238m.checkNotNullExpressionValue(toolbar, "binding.actionBarToolbar");
+        ViewGroup.LayoutParams layoutParams2 = toolbar.getLayoutParams();
+        Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
+        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) layoutParams2;
+        marginLayoutParams2.bottomMargin = i;
+        toolbar.setLayoutParams(marginLayoutParams2);
     }
 }

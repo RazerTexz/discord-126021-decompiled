@@ -67,10 +67,6 @@ public class NavigationView extends ScrimInsetsFrameLayout {
     private static final int[] DISABLED_STATE_SET = {-16842910};
     private static final int DEF_STYLE_RES = C10817R.style.Widget_Design_NavigationView;
 
-    public interface OnNavigationItemSelectedListener {
-        boolean onNavigationItemSelected(@NonNull MenuItem menuItem);
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.navigation.NavigationView$a */
     public class C10953a implements MenuBuilder.Callback {
         public C10953a() {
@@ -84,6 +80,53 @@ public class NavigationView extends ScrimInsetsFrameLayout {
 
         @Override // androidx.appcompat.view.menu.MenuBuilder.Callback
         public void onMenuModeChange(MenuBuilder menuBuilder) {
+        }
+    }
+
+    public interface OnNavigationItemSelectedListener {
+        boolean onNavigationItemSelected(@NonNull MenuItem menuItem);
+    }
+
+    public class SavedState extends AbsSavedState {
+
+        @Nullable
+        public Bundle menuState;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C10952a();
+
+        /* JADX INFO: renamed from: com.google.android.material.navigation.NavigationView$SavedState$a */
+        public final class C10952a implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public Object[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @Nullable
+            public Object createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+        }
+
+        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.menuState = parcel.readBundle(classLoader);
+        }
+
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeBundle(this.menuState);
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
         }
     }
 
@@ -110,6 +153,10 @@ public class NavigationView extends ScrimInsetsFrameLayout {
         this(context, null);
     }
 
+    public void addHeaderView(@NonNull View view) {
+        this.presenter.addHeaderView(view);
+    }
+
     @Nullable
     private ColorStateList createDefaultColorStateList(int i) {
         TypedValue typedValue = new TypedValue();
@@ -131,26 +178,6 @@ public class NavigationView extends ScrimInsetsFrameLayout {
         MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(ShapeAppearanceModel.builder(getContext(), tintTypedArray.getResourceId(C10817R.styleable.NavigationView_itemShapeAppearance, 0), tintTypedArray.getResourceId(C10817R.styleable.NavigationView_itemShapeAppearanceOverlay, 0)).build());
         materialShapeDrawable.setFillColor(MaterialResources.getColorStateList(getContext(), tintTypedArray, C10817R.styleable.NavigationView_itemShapeFillColor));
         return new InsetDrawable((Drawable) materialShapeDrawable, tintTypedArray.getDimensionPixelSize(C10817R.styleable.NavigationView_itemShapeInsetStart, 0), tintTypedArray.getDimensionPixelSize(C10817R.styleable.NavigationView_itemShapeInsetTop, 0), tintTypedArray.getDimensionPixelSize(C10817R.styleable.NavigationView_itemShapeInsetEnd, 0), tintTypedArray.getDimensionPixelSize(C10817R.styleable.NavigationView_itemShapeInsetBottom, 0));
-    }
-
-    private MenuInflater getMenuInflater() {
-        if (this.menuInflater == null) {
-            this.menuInflater = new SupportMenuInflater(getContext());
-        }
-        return this.menuInflater;
-    }
-
-    private boolean hasShapeAppearance(@NonNull TintTypedArray tintTypedArray) {
-        return tintTypedArray.hasValue(C10817R.styleable.NavigationView_itemShapeAppearance) || tintTypedArray.hasValue(C10817R.styleable.NavigationView_itemShapeAppearanceOverlay);
-    }
-
-    private void setupInsetScrimsListener() {
-        this.onGlobalLayoutListener = new ViewTreeObserverOnGlobalLayoutListenerC10954b();
-        getViewTreeObserver().addOnGlobalLayoutListener(this.onGlobalLayoutListener);
-    }
-
-    public void addHeaderView(@NonNull View view) {
-        this.presenter.addHeaderView(view);
     }
 
     @Nullable
@@ -198,6 +225,17 @@ public class NavigationView extends ScrimInsetsFrameLayout {
     @NonNull
     public Menu getMenu() {
         return this.menu;
+    }
+
+    private MenuInflater getMenuInflater() {
+        if (this.menuInflater == null) {
+            this.menuInflater = new SupportMenuInflater(getContext());
+        }
+        return this.menuInflater;
+    }
+
+    private boolean hasShapeAppearance(@NonNull TintTypedArray tintTypedArray) {
+        return tintTypedArray.hasValue(C10817R.styleable.NavigationView_itemShapeAppearance) || tintTypedArray.hasValue(C10817R.styleable.NavigationView_itemShapeAppearanceOverlay);
     }
 
     public View inflateHeaderView(@LayoutRes int i) {
@@ -334,47 +372,9 @@ public class NavigationView extends ScrimInsetsFrameLayout {
         }
     }
 
-    public static class SavedState extends AbsSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10952a();
-
-        @Nullable
-        public Bundle menuState;
-
-        /* JADX INFO: renamed from: com.google.android.material.navigation.NavigationView$SavedState$a */
-        public static class C10952a implements Parcelable.ClassLoaderCreator<SavedState> {
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            @NonNull
-            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @Nullable
-            public Object createFromParcel(@NonNull Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-        }
-
-        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
-            super(parcel, classLoader);
-            this.menuState = parcel.readBundle(classLoader);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeBundle(this.menuState);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
+    private void setupInsetScrimsListener() {
+        this.onGlobalLayoutListener = new ViewTreeObserverOnGlobalLayoutListenerC10954b();
+        getViewTreeObserver().addOnGlobalLayoutListener(this.onGlobalLayoutListener);
     }
 
     public NavigationView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

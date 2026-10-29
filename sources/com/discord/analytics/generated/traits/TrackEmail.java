@@ -6,10 +6,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackEmail.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackEmail {
+    private final CharSequence category = null;
+    private final CharSequence emailId = null;
     private final CharSequence emailType = null;
     private final CharSequence subjectType = null;
-    private final CharSequence emailId = null;
-    private final CharSequence category = null;
     private final CharSequence version = null;
 
     public boolean equals(Object other) {

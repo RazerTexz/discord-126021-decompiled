@@ -9,13 +9,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class ExpandableWidgetHelper {
+
+    @NonNull
+    private final View widget;
     private boolean expanded = false;
 
     @IdRes
     private int expandedComponentIdHint = 0;
-
-    @NonNull
-    private final View widget;
 
     /* JADX WARN: Multi-variable type inference failed */
     public ExpandableWidgetHelper(ExpandableWidget expandableWidget) {

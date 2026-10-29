@@ -16,12 +16,12 @@ public @interface InterfaceC2095q {
 
     /* JADX INFO: renamed from: b.g.a.a.q$a */
     /* JADX INFO: compiled from: JsonIncludeProperties.java */
-    public static class a implements Serializable {
+    public class a implements Serializable {
+        public final Set<String> _included;
+        private static final long serialVersionUID = 1;
 
         /* JADX INFO: renamed from: j */
         public static final a f4437j = new a(null);
-        private static final long serialVersionUID = 1;
-        public final Set<String> _included;
 
         public a(Set<String> set) {
             this._included = set;

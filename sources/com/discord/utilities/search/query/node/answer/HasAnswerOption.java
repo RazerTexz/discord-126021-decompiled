@@ -25,7 +25,7 @@ public enum HasAnswerOption {
     private final String restParamValue;
 
     /* JADX INFO: compiled from: HasNode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

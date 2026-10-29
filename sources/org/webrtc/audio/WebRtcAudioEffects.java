@@ -10,22 +10,22 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class WebRtcAudioEffects {
-    private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
-    private static final UUID AOSP_NOISE_SUPPRESSOR = UUID.fromString("c06c8400-8e06-11e0-9cb6-0002a5d5c51b");
     private static final boolean DEBUG = false;
     private static final String TAG = "WebRtcAudioEffectsExternal";
 
     @Nullable
-    private static AudioEffect.Descriptor[] cachedEffects;
+    private AcousticEchoCanceler aec;
 
     @Nullable
-    private AcousticEchoCanceler aec;
+    private static AudioEffect.Descriptor[] cachedEffects;
 
     /* JADX INFO: renamed from: ns */
     @Nullable
     private NoiseSuppressor f27621ns;
     private boolean shouldEnableAec;
     private boolean shouldEnableNs;
+    private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
+    private static final UUID AOSP_NOISE_SUPPRESSOR = UUID.fromString("c06c8400-8e06-11e0-9cb6-0002a5d5c51b");
 
     public WebRtcAudioEffects() {
         StringBuilder sbM833U = C1643a.m833U("ctor");
@@ -41,38 +41,6 @@ public class WebRtcAudioEffects {
 
     private boolean effectTypeIsVoIP(UUID uuid) {
         return (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) || (AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported());
-    }
-
-    @Nullable
-    private static AudioEffect.Descriptor[] getAvailableEffects() {
-        AudioEffect.Descriptor[] descriptorArr = cachedEffects;
-        if (descriptorArr != null) {
-            return descriptorArr;
-        }
-        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
-        cachedEffects = descriptorArrQueryEffects;
-        return descriptorArrQueryEffects;
-    }
-
-    public static boolean isAcousticEchoCancelerSupported() {
-        return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_AEC, AOSP_ACOUSTIC_ECHO_CANCELER);
-    }
-
-    private static boolean isEffectTypeAvailable(UUID uuid, UUID uuid2) {
-        AudioEffect.Descriptor[] availableEffects = getAvailableEffects();
-        if (availableEffects == null) {
-            return false;
-        }
-        for (AudioEffect.Descriptor descriptor : availableEffects) {
-            if (descriptor.type.equals(uuid)) {
-                return !descriptor.uuid.equals(uuid2);
-            }
-        }
-        return false;
-    }
-
-    public static boolean isNoiseSuppressorSupported() {
-        return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS, AOSP_NOISE_SUPPRESSOR);
     }
 
     public void enable(int i) {
@@ -119,6 +87,38 @@ public class WebRtcAudioEffects {
             sbM833U2.append(this.f27621ns.getEnabled() ? "enabled" : "disabled");
             Logging.m11027d(TAG, sbM833U2.toString());
         }
+    }
+
+    @Nullable
+    private static AudioEffect.Descriptor[] getAvailableEffects() {
+        AudioEffect.Descriptor[] descriptorArr = cachedEffects;
+        if (descriptorArr != null) {
+            return descriptorArr;
+        }
+        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
+        cachedEffects = descriptorArrQueryEffects;
+        return descriptorArrQueryEffects;
+    }
+
+    public static boolean isAcousticEchoCancelerSupported() {
+        return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_AEC, AOSP_ACOUSTIC_ECHO_CANCELER);
+    }
+
+    private static boolean isEffectTypeAvailable(UUID uuid, UUID uuid2) {
+        AudioEffect.Descriptor[] availableEffects = getAvailableEffects();
+        if (availableEffects == null) {
+            return false;
+        }
+        for (AudioEffect.Descriptor descriptor : availableEffects) {
+            if (descriptor.type.equals(uuid)) {
+                return !descriptor.uuid.equals(uuid2);
+            }
+        }
+        return false;
+    }
+
+    public static boolean isNoiseSuppressorSupported() {
+        return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS, AOSP_NOISE_SUPPRESSOR);
     }
 
     public void release() {

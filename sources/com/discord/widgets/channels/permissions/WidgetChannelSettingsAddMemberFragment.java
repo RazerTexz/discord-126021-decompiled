@@ -40,7 +40,6 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION = "EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION";
 
     /* JADX INFO: renamed from: adapter$delegate, reason: from kotlin metadata */
     private final Lazy adapter;
@@ -58,26 +57,11 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetChannelSettingsAddMemberFragment create(long channelId, boolean showRolesWithGuildPermission) {
-            WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment = new WidgetChannelSettingsAddMemberFragment();
-            widgetChannelSettingsAddMemberFragment.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), C12116o.m10073to(WidgetChannelSettingsAddMemberFragment.EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION, Boolean.valueOf(showRolesWithGuildPermission))));
-            return widgetChannelSettingsAddMemberFragment;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final String EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION = "EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION";
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public static final class C75241 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C75241 extends AbstractC12240o implements Function1<String, Unit> {
         public C75241() {
             super(1);
         }
@@ -98,7 +82,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public static final class C75252 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C75252 extends AbstractC12240o implements Function1<String, Unit> {
         public C75252() {
             super(1);
         }
@@ -118,7 +102,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public static final class C75263 extends AbstractC12240o implements Function2<Long, PermissionOverwrite.Type, Unit> {
+    public final class C75263 extends AbstractC12240o implements Function2<Long, PermissionOverwrite.Type, Unit> {
         public C75263() {
             super(2);
         }
@@ -137,7 +121,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$4 */
     /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public static final class C75274 extends AbstractC12240o implements Function1<WidgetChannelSettingsAddMemberFragmentViewModel.ViewState, Unit> {
+    public final class C75274 extends AbstractC12240o implements Function1<WidgetChannelSettingsAddMemberFragmentViewModel.ViewState, Unit> {
         public C75274() {
             super(1);
         }
@@ -153,6 +137,22 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
             C12238m.checkNotNullParameter(viewState, "viewState");
             WidgetChannelSettingsAddMemberFragment.this.configureUI(viewState);
             WidgetChannelSettingsAddMemberFragment.this.selectedSubject.onNext(viewState.getSelected());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetChannelSettingsAddMemberFragment create(long channelId, boolean showRolesWithGuildPermission) {
+            WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment = new WidgetChannelSettingsAddMemberFragment();
+            widgetChannelSettingsAddMemberFragment.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), C12116o.m10073to(WidgetChannelSettingsAddMemberFragment.EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION, Boolean.valueOf(showRolesWithGuildPermission))));
+            return widgetChannelSettingsAddMemberFragment;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -184,16 +184,16 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    public final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> getSelectedItemsSubject() {
+        return this.selectedSubject;
+    }
+
     private final boolean getShowRolesWithGuildPermission() {
         return ((Boolean) this.showRolesWithGuildPermission.getValue()).booleanValue();
     }
 
     private final WidgetChannelSettingsAddMemberFragmentViewModel getViewModel() {
         return (WidgetChannelSettingsAddMemberFragmentViewModel) this.viewModel.getValue();
-    }
-
-    public final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> getSelectedItemsSubject() {
-        return this.selectedSubject;
     }
 
     @Override // com.discord.app.AppFragment

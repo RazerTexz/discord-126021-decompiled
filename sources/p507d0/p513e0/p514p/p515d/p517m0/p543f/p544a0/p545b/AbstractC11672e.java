@@ -12,7 +12,7 @@ public abstract class AbstractC11672e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.b.e$a */
     /* JADX INFO: compiled from: JvmMemberSignature.kt */
-    public static final class a extends AbstractC11672e {
+    public final class a extends AbstractC11672e {
 
         /* JADX INFO: renamed from: a */
         public final String f23707a;
@@ -70,7 +70,7 @@ public abstract class AbstractC11672e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.a0.b.e$b */
     /* JADX INFO: compiled from: JvmMemberSignature.kt */
-    public static final class b extends AbstractC11672e {
+    public final class b extends AbstractC11672e {
 
         /* JADX INFO: renamed from: a */
         public final String f23709a;

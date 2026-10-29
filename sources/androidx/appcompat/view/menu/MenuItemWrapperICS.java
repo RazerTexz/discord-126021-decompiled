@@ -97,7 +97,7 @@ public class MenuItemWrapperICS extends BaseMenuWrapper implements MenuItem {
         }
     }
 
-    public static class CollapsibleActionViewWrapper extends FrameLayout implements CollapsibleActionView {
+    public class CollapsibleActionViewWrapper extends FrameLayout implements CollapsibleActionView {
         public final android.view.CollapsibleActionView mWrappedView;
 
         /* JADX WARN: Multi-variable type inference failed */

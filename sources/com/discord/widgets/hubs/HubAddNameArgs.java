@@ -12,7 +12,7 @@ public final /* data */ class HubAddNameArgs implements Parcelable {
     public static final Parcelable.Creator<HubAddNameArgs> CREATOR = new Creator();
     private final long guildId;
 
-    public static class Creator implements Parcelable.Creator<HubAddNameArgs> {
+    public final class Creator implements Parcelable.Creator<HubAddNameArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubAddNameArgs createFromParcel(Parcel parcel) {
@@ -38,11 +38,6 @@ public final /* data */ class HubAddNameArgs implements Parcelable {
         return hubAddNameArgs.copy(j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
     public final HubAddNameArgs copy(long guildId) {
         return new HubAddNameArgs(guildId);
     }
@@ -57,6 +52,11 @@ public final /* data */ class HubAddNameArgs implements Parcelable {
             return (other instanceof HubAddNameArgs) && this.guildId == ((HubAddNameArgs) other).guildId;
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
     }
 
     public final long getGuildId() {

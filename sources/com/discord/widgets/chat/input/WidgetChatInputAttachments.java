@@ -62,56 +62,9 @@ import p658rx.functions.Func0;
 public final class WidgetChatInputAttachments {
     private final FlexInputFragment flexInputFragment;
 
-    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class DiscordFilesFragment extends FilesFragment {
-        @Override // com.lytefast.flexinput.fragment.FilesFragment
-        public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
-            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
-            return new PermissionsEmptyListAdapter(C5419R.layout.widget_chat_input_perm_req_files, C5419R.id.action_btn, onClickListener);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class DiscordMediaFragment extends MediaFragment {
-        @Override // com.lytefast.flexinput.fragment.MediaFragment
-        public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
-            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
-            return new PermissionsEmptyListAdapter(C5419R.layout.widget_chat_input_perm_req_files, C5419R.id.action_btn, onClickListener);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class PermissionsEmptyListAdapter extends EmptyListAdapter {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public PermissionsEmptyListAdapter(@LayoutRes int i, @IdRes int i2, View.OnClickListener onClickListener) {
-            super(i, i2, onClickListener);
-            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
-        }
-
-        @Override // com.lytefast.flexinput.adapters.EmptyListAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
-        public EmptyListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            C12238m.checkNotNullParameter(parent, "parent");
-            EmptyListAdapter.ViewHolder viewHolderOnCreateViewHolder = super.onCreateViewHolder(parent, viewType);
-            View view = viewHolderOnCreateViewHolder.itemView;
-            int i = C5419R.id.action_btn;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.action_btn);
-            if (materialButton != null) {
-                i = C5419R.id.perm_req_text;
-                TextView textView = (TextView) view.findViewById(C5419R.id.perm_req_text);
-                if (textView != null) {
-                    C12238m.checkNotNullExpressionValue(new C1077w4((LinearLayout) view, materialButton, textView), "WidgetChatInputPermReqFi…ing.bind(holder.itemView)");
-                    C12238m.checkNotNullExpressionValue(textView, "binding.permReqText");
-                    C1107b.m221m(textView, C5419R.string.system_permission_request_files, new Object[0], (4 & 4) != 0 ? C1107b.g.f1495j : null);
-                    return viewHolderOnCreateViewHolder;
-                }
-            }
-            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$addExternalAttachment$1 */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class C77351 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77351 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Attachment $attachment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -134,7 +87,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$configureFlexInputContentPages$1 */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class C77361 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77361 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $canCreateThread;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -202,7 +155,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$configureFlexInputFragment$1 */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class C77411 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77411 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ AppFragment $fragment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -267,7 +220,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createAndConfigureExpressionFragment$1 */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class C77451 extends AbstractC12240o implements Function0<Unit> {
+    public final class C77451 extends AbstractC12240o implements Function0<Unit> {
         public C77451() {
             super(0);
         }
@@ -290,30 +243,18 @@ public final class WidgetChatInputAttachments {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$1 */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public static final class C77491<T> extends AbstractC12240o implements Function1<AttachmentPreviewAdapter<T>, SelectionAggregator<T>> {
+    public final class C77491<T> extends AbstractC12240o implements Function1<AttachmentPreviewAdapter<T>, SelectionAggregator<T>> {
         public final /* synthetic */ Context $context;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-        public static final class AnonymousClass1 extends SelectionAggregator<T> {
+        public final class AnonymousClass1 extends SelectionAggregator<T> {
             public final /* synthetic */ AttachmentPreviewAdapter $previewAdapter;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public AnonymousClass1(AttachmentPreviewAdapter attachmentPreviewAdapter, AttachmentPreviewAdapter attachmentPreviewAdapter2) {
                 super(attachmentPreviewAdapter2, null, null, null, 14, null);
                 this.$previewAdapter = attachmentPreviewAdapter;
-            }
-
-            /* JADX WARN: Incorrect types in method signature: (TT;)V */
-            private final void track(Attachment attachment) {
-                String source = attachment instanceof SourcedAttachment ? ((SourcedAttachment) attachment).getSource() : AnalyticsTracker.ATTACHMENT_SOURCE_PICKER;
-                try {
-                    int size = WidgetChatInputAttachments.this.flexInputFragment.mo396b().getSize();
-                    Context context = C77491.this.$context;
-                    AnalyticsTracker.addAttachment(source, AttachmentUtilsKt.getMimeType(attachment, context != null ? context.getContentResolver() : null), size);
-                } catch (Throwable th) {
-                    AppLog.f14950g.mo8367i("Analytic error on attachment update", th);
-                }
             }
 
             @Override // com.lytefast.flexinput.utils.SelectionAggregator
@@ -353,6 +294,18 @@ public final class WidgetChatInputAttachments {
                 C12238m.checkNotNullParameter(itemSelectionListener2, "<set-?>");
                 selectionCoordinator.itemSelectionListener = itemSelectionListener2;
             }
+
+            /* JADX WARN: Incorrect types in method signature: (TT;)V */
+            private final void track(Attachment attachment) {
+                String source = attachment instanceof SourcedAttachment ? ((SourcedAttachment) attachment).getSource() : AnalyticsTracker.ATTACHMENT_SOURCE_PICKER;
+                try {
+                    int size = WidgetChatInputAttachments.this.flexInputFragment.mo396b().getSize();
+                    Context context = C77491.this.$context;
+                    AnalyticsTracker.addAttachment(source, AttachmentUtilsKt.getMimeType(attachment, context != null ? context.getContentResolver() : null), size);
+                } catch (Throwable th) {
+                    AppLog.f14950g.mo8367i("Analytic error on attachment update", th);
+                }
+            }
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -368,9 +321,78 @@ public final class WidgetChatInputAttachments {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
+    public final class DiscordFilesFragment extends FilesFragment {
+        @Override // com.lytefast.flexinput.fragment.FilesFragment
+        public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
+            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
+            return new PermissionsEmptyListAdapter(C5419R.layout.widget_chat_input_perm_req_files, C5419R.id.action_btn, onClickListener);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
+    public final class DiscordMediaFragment extends MediaFragment {
+        @Override // com.lytefast.flexinput.fragment.MediaFragment
+        public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
+            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
+            return new PermissionsEmptyListAdapter(C5419R.layout.widget_chat_input_perm_req_files, C5419R.id.action_btn, onClickListener);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
+    public final class PermissionsEmptyListAdapter extends EmptyListAdapter {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public PermissionsEmptyListAdapter(@LayoutRes int i, @IdRes int i2, View.OnClickListener onClickListener) {
+            super(i, i2, onClickListener);
+            C12238m.checkNotNullParameter(onClickListener, "onClickListener");
+        }
+
+        @Override // com.lytefast.flexinput.adapters.EmptyListAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
+        public EmptyListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            C12238m.checkNotNullParameter(parent, "parent");
+            EmptyListAdapter.ViewHolder viewHolderOnCreateViewHolder = super.onCreateViewHolder(parent, viewType);
+            View view = viewHolderOnCreateViewHolder.itemView;
+            int i = C5419R.id.action_btn;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.action_btn);
+            if (materialButton != null) {
+                i = C5419R.id.perm_req_text;
+                TextView textView = (TextView) view.findViewById(C5419R.id.perm_req_text);
+                if (textView != null) {
+                    C12238m.checkNotNullExpressionValue(new C1077w4((LinearLayout) view, materialButton, textView), "WidgetChatInputPermReqFi…ing.bind(holder.itemView)");
+                    C12238m.checkNotNullExpressionValue(textView, "binding.permReqText");
+                    C1107b.m221m(textView, C5419R.string.system_permission_request_files, new Object[0], (4 & 4) != 0 ? C1107b.g.f1495j : null);
+                    return viewHolderOnCreateViewHolder;
+                }
+            }
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+        }
+    }
+
     public WidgetChatInputAttachments(FlexInputFragment flexInputFragment) {
         C12238m.checkNotNullParameter(flexInputFragment, "flexInputFragment");
         this.flexInputFragment = flexInputFragment;
+    }
+
+    public final void addExternalAttachment(Attachment<? extends Object> attachment) {
+        C12238m.checkNotNullParameter(attachment, "attachment");
+        this.flexInputFragment.m9290i(new C77351(attachment));
+    }
+
+    public final void configureFlexInputContentPages(boolean canCreateThread) {
+        this.flexInputFragment.m9290i(new C77361(canCreateThread));
+    }
+
+    public final void configureFlexInputFragment(AppFragment fragment) {
+        C12238m.checkNotNullParameter(fragment, "fragment");
+        this.flexInputFragment.m9290i(new C77411(fragment));
+        fragment.setOnBackPressed(new Func0<Boolean>() { // from class: com.discord.widgets.chat.input.WidgetChatInputAttachments.configureFlexInputFragment.2
+            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
+            public final Boolean call() {
+                FlexInputViewModel flexInputViewModel = WidgetChatInputAttachments.this.flexInputFragment.viewModel;
+                Boolean boolValueOf = flexInputViewModel != null ? Boolean.valueOf(flexInputViewModel.hideExpressionTray()) : null;
+                return boolValueOf != null ? boolValueOf : Boolean.FALSE;
+            }
+        }, 1);
     }
 
     private final Fragment createAndConfigureExpressionFragment(FragmentManager fragmentManager, final TextView chatInput) {
@@ -431,28 +453,6 @@ public final class WidgetChatInputAttachments {
         if (contentResolver != null) {
             this.flexInputFragment.mo397f(new SourcedAttachment(Attachment.INSTANCE.m9297c(inputContentInfoCompat, contentResolver, true, C1107b.m216h(context, C5419R.string.attachment_filename_unknown, new Object[0], null, 4).toString()), AnalyticsTracker.ATTACHMENT_SOURCE_KEYBOARD));
         }
-    }
-
-    public final void addExternalAttachment(Attachment<? extends Object> attachment) {
-        C12238m.checkNotNullParameter(attachment, "attachment");
-        this.flexInputFragment.m9290i(new C77351(attachment));
-    }
-
-    public final void configureFlexInputContentPages(boolean canCreateThread) {
-        this.flexInputFragment.m9290i(new C77361(canCreateThread));
-    }
-
-    public final void configureFlexInputFragment(AppFragment fragment) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        this.flexInputFragment.m9290i(new C77411(fragment));
-        fragment.setOnBackPressed(new Func0<Boolean>() { // from class: com.discord.widgets.chat.input.WidgetChatInputAttachments.configureFlexInputFragment.2
-            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
-            public final Boolean call() {
-                FlexInputViewModel flexInputViewModel = WidgetChatInputAttachments.this.flexInputFragment.viewModel;
-                Boolean boolValueOf = flexInputViewModel != null ? Boolean.valueOf(flexInputViewModel.hideExpressionTray()) : null;
-                return boolValueOf != null ? boolValueOf : Boolean.FALSE;
-            }
-        }, 1);
     }
 
     public final void setInputListener(FlexInputListener inputListener) {

@@ -101,7 +101,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$getMessageRenderContext$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81011 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
+    public final class C81011 extends AbstractC12240o implements Function3<Context, String, String, Unit> {
         public static final C81011 INSTANCE = new C81011();
 
         public C81011() {
@@ -124,7 +124,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$getMessageRenderContext$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81022 extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C81022 extends AbstractC12240o implements Function1<String, Unit> {
         public C81022() {
             super(1);
         }
@@ -144,7 +144,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$getMessageRenderContext$3 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81033 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C81033 extends AbstractC12240o implements Function1<Long, Unit> {
         public C81033() {
             super(1);
         }
@@ -163,7 +163,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$getMessageRenderContext$4 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81044 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C81044 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -185,7 +185,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$getSpoilerClickHandler$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81051 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
+    public final class C81051 extends AbstractC12240o implements Function1<SpoilerNode<?>, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -210,7 +210,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$onConfigure$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81072 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C81072 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -234,7 +234,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$onConfigure$4 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81094 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C81094 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ boolean $isThreadStarterMessage;
         public final /* synthetic */ Message $message;
 
@@ -260,7 +260,7 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$onConfigure$6 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class C81116 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C81116 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -688,6 +688,13 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
         configureReplyText(new SpannableString(C1107b.m216h(context, MessageUtils.INSTANCE.getSystemMessageUserJoin(context, repliedMessageEntry.getMessage().getId()), new Object[]{str}, null, 4).toString()), 0.64f);
     }
 
+    public static /* synthetic */ void configureReplyText$default(WidgetChatListAdapterItemMessage widgetChatListAdapterItemMessage, Spannable spannable, float f, int i, Object obj) {
+        if ((i & 2) != 0) {
+            f = 1.0f;
+        }
+        widgetChatListAdapterItemMessage.configureReplyText(spannable, f);
+    }
+
     private final void configureReplyText(Spannable content, float alpha) {
         if (this.replyText == null || this.replyLeadingViewsHolder == null) {
             return;
@@ -696,13 +703,6 @@ public final class WidgetChatListAdapterItemMessage extends WidgetChatListItem {
         this.replyText.setAlpha(alpha);
         this.replyText.setText(content);
         configureReplyLayoutDirection();
-    }
-
-    public static /* synthetic */ void configureReplyText$default(WidgetChatListAdapterItemMessage widgetChatListAdapterItemMessage, Spannable spannable, float f, int i, Object obj) {
-        if ((i & 2) != 0) {
-            f = 1.0f;
-        }
-        widgetChatListAdapterItemMessage.configureReplyText(spannable, f);
     }
 
     private final void configureThreadSpine(Message message, boolean isThreadStarterMessage) {

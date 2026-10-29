@@ -13,13 +13,13 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-    private static final int[] ATTRS = {R.attr.listDivider};
     public static final int HORIZONTAL = 0;
     private static final String TAG = "DividerItem";
     public static final int VERTICAL = 1;
-    private final Rect mBounds = new Rect();
     private Drawable mDivider;
     private int mOrientation;
+    private static final int[] ATTRS = {R.attr.listDivider};
+    private final Rect mBounds = new Rect();
 
     public DividerItemDecoration(Context context, int i) {
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(ATTRS);

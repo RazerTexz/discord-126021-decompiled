@@ -78,8 +78,101 @@ public final class WidgetServerNotifications extends AppFragment {
     private RadioManager notificationSettingsRadioManager;
     private NotificationsOverridesAdapter overrideAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$configureUI$1 */
     /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final class Companion {
+    public final class C91581 extends AbstractC12240o implements Function1<Integer, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C91581(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(int i) {
+            StoreUserGuildSettings userGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
+            NotificationHighlightsSettingsView notificationHighlightsSettingsView = WidgetServerNotifications.this.getBinding().f17498j;
+            C12238m.checkNotNullExpressionValue(notificationHighlightsSettingsView, "binding.serverNotificationsHighlights");
+            Context context = notificationHighlightsSettingsView.getContext();
+            C12238m.checkNotNullExpressionValue(context, "binding.serverNotificationsHighlights.context");
+            userGuildSettings.setNotifyHighlights(context, this.$model.getGuild(), i);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
+    public final class C91631 extends AbstractC12240o implements Function2<View, NotificationsOverridesAdapter.Item, Unit> {
+        public static final C91631 INSTANCE = new C91631();
+
+        public C91631() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(View view, NotificationsOverridesAdapter.Item item) {
+            invoke2(view, item);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view, NotificationsOverridesAdapter.Item item) {
+            C12238m.checkNotNullParameter(view, "itemView");
+            C12238m.checkNotNullParameter(item, "item");
+            WidgetChannelNotificationSettings.Companion companion = WidgetChannelNotificationSettings.INSTANCE;
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "itemView.context");
+            WidgetChannelNotificationSettings.Companion.launch$default(companion, context, item.getChannel().getId(), false, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
+    public final class C91651 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C91651() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) throws Exception {
+            WidgetServerNotifications.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
+    public final class C91662 extends AbstractC12240o implements Function1<List<? extends NotificationsOverridesAdapter.Item>, Unit> {
+        public C91662() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends NotificationsOverridesAdapter.Item> list) {
+            invoke2((List<NotificationsOverridesAdapter.Item>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<NotificationsOverridesAdapter.Item> list) {
+            NotificationsOverridesAdapter notificationsOverridesAdapterAccess$getOverrideAdapter$p = WidgetServerNotifications.access$getOverrideAdapter$p(WidgetServerNotifications.this);
+            C12238m.checkNotNullExpressionValue(list, "it");
+            notificationsOverridesAdapterAccess$getOverrideAdapter$p.setData(list);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -154,7 +247,7 @@ public final class WidgetServerNotifications extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -168,7 +261,7 @@ public final class WidgetServerNotifications extends AppFragment {
         private final int notificationsSetting;
 
         /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -227,21 +320,6 @@ public final class WidgetServerNotifications extends AppFragment {
             return model.copy(guild, modelNotificationSettings, guildProfileData);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelNotificationSettings getGuildSettings() {
-            return this.guildSettings;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
-            return this.guildProfile;
-        }
-
         public final Model copy(Guild guild, ModelNotificationSettings guildSettings, StoreGuildProfiles.GuildProfileData guildProfile) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(guildSettings, "guildSettings");
@@ -259,12 +337,27 @@ public final class WidgetServerNotifications extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.guildSettings, model.guildSettings) && C12238m.areEqual(this.guildProfile, model.guildProfile);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
         }
 
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
             return this.guildProfile;
+        }
+
+        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
+            return this.guildProfile;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ModelNotificationSettings getGuildSettings() {
+            return this.guildSettings;
         }
 
         public final ModelNotificationSettings getGuildSettings() {
@@ -273,6 +366,16 @@ public final class WidgetServerNotifications extends AppFragment {
 
         public final boolean getHighlightsEnabled() {
             return this.highlightsEnabled;
+        }
+
+        /* JADX INFO: renamed from: isAboveHighlightsSize, reason: from getter */
+        public final boolean getIsAboveHighlightsSize() {
+            return this.isAboveHighlightsSize;
+        }
+
+        /* JADX INFO: renamed from: isAboveNotifyAllSize, reason: from getter */
+        public final boolean getIsAboveNotifyAllSize() {
+            return this.isAboveNotifyAllSize;
         }
 
         public final int getNotificationsSetting() {
@@ -288,16 +391,6 @@ public final class WidgetServerNotifications extends AppFragment {
             return iHashCode2 + (guildProfileData != null ? guildProfileData.hashCode() : 0);
         }
 
-        /* JADX INFO: renamed from: isAboveHighlightsSize, reason: from getter */
-        public final boolean getIsAboveHighlightsSize() {
-            return this.isAboveHighlightsSize;
-        }
-
-        /* JADX INFO: renamed from: isAboveNotifyAllSize, reason: from getter */
-        public final boolean getIsAboveNotifyAllSize() {
-            return this.isAboveNotifyAllSize;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("Model(guild=");
             sbM833U.append(this.guild);
@@ -307,99 +400,6 @@ public final class WidgetServerNotifications extends AppFragment {
             sbM833U.append(this.guildProfile);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final class C91581 extends AbstractC12240o implements Function1<Integer, Unit> {
-        public final /* synthetic */ Model $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C91581(Model model) {
-            super(1);
-            this.$model = model;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
-            invoke(num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(int i) {
-            StoreUserGuildSettings userGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
-            NotificationHighlightsSettingsView notificationHighlightsSettingsView = WidgetServerNotifications.this.getBinding().f17498j;
-            C12238m.checkNotNullExpressionValue(notificationHighlightsSettingsView, "binding.serverNotificationsHighlights");
-            Context context = notificationHighlightsSettingsView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "binding.serverNotificationsHighlights.context");
-            userGuildSettings.setNotifyHighlights(context, this.$model.getGuild(), i);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final class C91631 extends AbstractC12240o implements Function2<View, NotificationsOverridesAdapter.Item, Unit> {
-        public static final C91631 INSTANCE = new C91631();
-
-        public C91631() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(View view, NotificationsOverridesAdapter.Item item) {
-            invoke2(view, item);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view, NotificationsOverridesAdapter.Item item) {
-            C12238m.checkNotNullParameter(view, "itemView");
-            C12238m.checkNotNullParameter(item, "item");
-            WidgetChannelNotificationSettings.Companion companion = WidgetChannelNotificationSettings.INSTANCE;
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "itemView.context");
-            WidgetChannelNotificationSettings.Companion.launch$default(companion, context, item.getChannel().getId(), false, 4, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final class C91651 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C91651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) throws Exception {
-            WidgetServerNotifications.this.configureUI(model);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotifications$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetServerNotifications.kt */
-    public static final class C91662 extends AbstractC12240o implements Function1<List<? extends NotificationsOverridesAdapter.Item>, Unit> {
-        public C91662() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends NotificationsOverridesAdapter.Item> list) {
-            invoke2((List<NotificationsOverridesAdapter.Item>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<NotificationsOverridesAdapter.Item> list) {
-            NotificationsOverridesAdapter notificationsOverridesAdapterAccess$getOverrideAdapter$p = WidgetServerNotifications.access$getOverrideAdapter$p(WidgetServerNotifications.this);
-            C12238m.checkNotNullExpressionValue(list, "it");
-            notificationsOverridesAdapterAccess$getOverrideAdapter$p.setData(list);
         }
     }
 

@@ -11,21 +11,21 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11236i {
 
+    /* JADX INFO: renamed from: b */
+    public static final a f22301b = new a(null);
+
     /* JADX INFO: renamed from: c */
     public final EnumC11237j f22302c;
 
     /* JADX INFO: renamed from: d */
     public final KType f22303d;
 
-    /* JADX INFO: renamed from: b */
-    public static final a f22301b = new a(null);
-
     /* JADX INFO: renamed from: a */
     public static final C11236i f22300a = new C11236i(null, null);
 
     /* JADX INFO: renamed from: d0.e0.i$a */
     /* JADX INFO: compiled from: KTypeProjection.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

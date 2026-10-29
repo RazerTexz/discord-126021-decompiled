@@ -33,7 +33,6 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ShapeableImageView extends AppCompatImageView implements Shapeable {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ShapeableImageView;
     private static final int UNDEFINED_PADDING = Integer.MIN_VALUE;
     private final Paint borderPaint;
 
@@ -71,30 +70,7 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
 
     @Dimension
     private int topContentPadding;
-
-    /* JADX INFO: renamed from: com.google.android.material.imageview.ShapeableImageView$a */
-    @TargetApi(21)
-    public class C10922a extends ViewOutlineProvider {
-
-        /* JADX INFO: renamed from: a */
-        public final Rect f21023a = new Rect();
-
-        public C10922a() {
-        }
-
-        @Override // android.view.ViewOutlineProvider
-        public void getOutline(View view, Outline outline) {
-            if (ShapeableImageView.this.shapeAppearanceModel == null) {
-                return;
-            }
-            if (ShapeableImageView.this.shadowDrawable == null) {
-                ShapeableImageView.this.shadowDrawable = new MaterialShapeDrawable(ShapeableImageView.this.shapeAppearanceModel);
-            }
-            ShapeableImageView.this.destination.round(this.f21023a);
-            ShapeableImageView.this.shadowDrawable.setBounds(this.f21023a);
-            ShapeableImageView.this.shadowDrawable.getOutline(outline);
-        }
-    }
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ShapeableImageView;
 
     public ShapeableImageView(Context context) {
         this(context, null, 0);
@@ -111,23 +87,6 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
         }
         this.borderPaint.setColor(colorForState);
         canvas.drawPath(this.path, this.borderPaint);
-    }
-
-    private boolean isContentPaddingRelative() {
-        return (this.startContentPadding == Integer.MIN_VALUE && this.endContentPadding == Integer.MIN_VALUE) ? false : true;
-    }
-
-    private boolean isRtl() {
-        return getLayoutDirection() == 1;
-    }
-
-    private void updateShapeMask(int i, int i2) {
-        this.destination.set(getPaddingLeft(), getPaddingTop(), i - getPaddingRight(), i2 - getPaddingBottom());
-        this.pathProvider.calculatePath(this.shapeAppearanceModel, 1.0f, this.destination, this.path);
-        this.maskPath.rewind();
-        this.maskPath.addPath(this.path);
-        this.maskRect.set(0.0f, 0.0f, i, i2);
-        this.maskPath.addRect(this.maskRect, Path.Direction.CCW);
     }
 
     @Dimension
@@ -240,6 +199,14 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
         return this.strokeWidth;
     }
 
+    private boolean isContentPaddingRelative() {
+        return (this.startContentPadding == Integer.MIN_VALUE && this.endContentPadding == Integer.MIN_VALUE) ? false : true;
+    }
+
+    private boolean isRtl() {
+        return getLayoutDirection() == 1;
+    }
+
     @Override // android.widget.ImageView, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -340,6 +307,39 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
 
     public void setStrokeWidthResource(@DimenRes int i) {
         setStrokeWidth(getResources().getDimensionPixelSize(i));
+    }
+
+    private void updateShapeMask(int i, int i2) {
+        this.destination.set(getPaddingLeft(), getPaddingTop(), i - getPaddingRight(), i2 - getPaddingBottom());
+        this.pathProvider.calculatePath(this.shapeAppearanceModel, 1.0f, this.destination, this.path);
+        this.maskPath.rewind();
+        this.maskPath.addPath(this.path);
+        this.maskRect.set(0.0f, 0.0f, i, i2);
+        this.maskPath.addRect(this.maskRect, Path.Direction.CCW);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.imageview.ShapeableImageView$a */
+    @TargetApi(21)
+    public class C10922a extends ViewOutlineProvider {
+
+        /* JADX INFO: renamed from: a */
+        public final Rect f21023a = new Rect();
+
+        public C10922a() {
+        }
+
+        @Override // android.view.ViewOutlineProvider
+        public void getOutline(View view, Outline outline) {
+            if (ShapeableImageView.this.shapeAppearanceModel == null) {
+                return;
+            }
+            if (ShapeableImageView.this.shadowDrawable == null) {
+                ShapeableImageView.this.shadowDrawable = new MaterialShapeDrawable(ShapeableImageView.this.shapeAppearanceModel);
+            }
+            ShapeableImageView.this.destination.round(this.f21023a);
+            ShapeableImageView.this.shadowDrawable.setBounds(this.f21023a);
+            ShapeableImageView.this.shadowDrawable.getOutline(outline);
+        }
     }
 
     public ShapeableImageView(Context context, @Nullable AttributeSet attributeSet) {

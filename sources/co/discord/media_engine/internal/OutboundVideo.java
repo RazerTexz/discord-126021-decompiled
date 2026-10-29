@@ -49,91 +49,6 @@ public final /* data */ class OutboundVideo {
         this.targetMediaBitrate = i9;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getCodecName() {
-        return this.codecName;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final int getInputFrameRate() {
-        return this.inputFrameRate;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final int getMediaBitrate() {
-        return this.mediaBitrate;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final int getNumberOfCPUAdaptChanges() {
-        return this.numberOfCPUAdaptChanges;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final int getNumberOfQualityAdaptChanges() {
-        return this.numberOfQualityAdaptChanges;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final long getQpSum() {
-        return this.qpSum;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final Substream[] getSubstreams() {
-        return this.substreams;
-    }
-
-    /* JADX INFO: renamed from: component16, reason: from getter */
-    public final boolean getSuspended() {
-        return this.suspended;
-    }
-
-    /* JADX INFO: renamed from: component17, reason: from getter */
-    public final int getTargetMediaBitrate() {
-        return this.targetMediaBitrate;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getCodecPayloadType() {
-        return this.codecPayloadType;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getAvgEncodeTime() {
-        return this.avgEncodeTime;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getBwLimitedResolution() {
-        return this.bwLimitedResolution;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCpuLimitedResolution() {
-        return this.cpuLimitedResolution;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getEncodeFrameRate() {
-        return this.encodeFrameRate;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getEncodeUsage() {
-        return this.encodeUsage;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final String getEncoderImplementationName() {
-        return this.encoderImplementationName;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final long getFramesEncoded() {
-        return this.framesEncoded;
-    }
-
     public final OutboundVideo copy(String codecName, int codecPayloadType, int avgEncodeTime, boolean bwLimitedResolution, boolean cpuLimitedResolution, int encodeFrameRate, int encodeUsage, String encoderImplementationName, long framesEncoded, int inputFrameRate, int mediaBitrate, int numberOfCPUAdaptChanges, int numberOfQualityAdaptChanges, long qpSum, Substream[] substreams, boolean suspended, int targetMediaBitrate) {
         C12238m.checkNotNullParameter(codecName, "codecName");
         C12238m.checkNotNullParameter(encoderImplementationName, "encoderImplementationName");
@@ -152,68 +67,153 @@ public final /* data */ class OutboundVideo {
         return C12238m.areEqual(this.codecName, outboundVideo.codecName) && this.codecPayloadType == outboundVideo.codecPayloadType && this.avgEncodeTime == outboundVideo.avgEncodeTime && this.bwLimitedResolution == outboundVideo.bwLimitedResolution && this.cpuLimitedResolution == outboundVideo.cpuLimitedResolution && this.encodeFrameRate == outboundVideo.encodeFrameRate && this.encodeUsage == outboundVideo.encodeUsage && C12238m.areEqual(this.encoderImplementationName, outboundVideo.encoderImplementationName) && this.framesEncoded == outboundVideo.framesEncoded && this.inputFrameRate == outboundVideo.inputFrameRate && this.mediaBitrate == outboundVideo.mediaBitrate && this.numberOfCPUAdaptChanges == outboundVideo.numberOfCPUAdaptChanges && this.numberOfQualityAdaptChanges == outboundVideo.numberOfQualityAdaptChanges && this.qpSum == outboundVideo.qpSum && C12238m.areEqual(this.substreams, outboundVideo.substreams) && this.suspended == outboundVideo.suspended && this.targetMediaBitrate == outboundVideo.targetMediaBitrate;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getAvgEncodeTime() {
         return this.avgEncodeTime;
+    }
+
+    public final int getAvgEncodeTime() {
+        return this.avgEncodeTime;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getBwLimitedResolution() {
+        return this.bwLimitedResolution;
     }
 
     public final boolean getBwLimitedResolution() {
         return this.bwLimitedResolution;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getCodecName() {
         return this.codecName;
+    }
+
+    public final String getCodecName() {
+        return this.codecName;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getCodecPayloadType() {
+        return this.codecPayloadType;
     }
 
     public final int getCodecPayloadType() {
         return this.codecPayloadType;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCpuLimitedResolution() {
         return this.cpuLimitedResolution;
+    }
+
+    public final boolean getCpuLimitedResolution() {
+        return this.cpuLimitedResolution;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getEncodeFrameRate() {
+        return this.encodeFrameRate;
     }
 
     public final int getEncodeFrameRate() {
         return this.encodeFrameRate;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final int getEncodeUsage() {
         return this.encodeUsage;
+    }
+
+    public final int getEncodeUsage() {
+        return this.encodeUsage;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final String getEncoderImplementationName() {
+        return this.encoderImplementationName;
     }
 
     public final String getEncoderImplementationName() {
         return this.encoderImplementationName;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final long getFramesEncoded() {
         return this.framesEncoded;
+    }
+
+    public final long getFramesEncoded() {
+        return this.framesEncoded;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final int getInputFrameRate() {
+        return this.inputFrameRate;
     }
 
     public final int getInputFrameRate() {
         return this.inputFrameRate;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final int getMediaBitrate() {
         return this.mediaBitrate;
+    }
+
+    public final int getMediaBitrate() {
+        return this.mediaBitrate;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final int getNumberOfCPUAdaptChanges() {
+        return this.numberOfCPUAdaptChanges;
     }
 
     public final int getNumberOfCPUAdaptChanges() {
         return this.numberOfCPUAdaptChanges;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final int getNumberOfQualityAdaptChanges() {
         return this.numberOfQualityAdaptChanges;
+    }
+
+    public final int getNumberOfQualityAdaptChanges() {
+        return this.numberOfQualityAdaptChanges;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
+    public final long getQpSum() {
+        return this.qpSum;
     }
 
     public final long getQpSum() {
         return this.qpSum;
     }
 
+    /* JADX INFO: renamed from: component15, reason: from getter */
     public final Substream[] getSubstreams() {
         return this.substreams;
     }
 
+    public final Substream[] getSubstreams() {
+        return this.substreams;
+    }
+
+    /* JADX INFO: renamed from: component16, reason: from getter */
     public final boolean getSuspended() {
         return this.suspended;
+    }
+
+    public final boolean getSuspended() {
+        return this.suspended;
+    }
+
+    /* JADX INFO: renamed from: component17, reason: from getter */
+    public final int getTargetMediaBitrate() {
+        return this.targetMediaBitrate;
     }
 
     public final int getTargetMediaBitrate() {

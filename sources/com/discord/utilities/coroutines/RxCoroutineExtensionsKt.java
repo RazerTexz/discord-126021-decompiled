@@ -31,7 +31,7 @@ public final class RxCoroutineExtensionsKt {
     /* JADX INFO: renamed from: com.discord.utilities.coroutines.RxCoroutineExtensionsKt$appAwaitSingle$2 */
     /* JADX INFO: compiled from: RxCoroutineExtensions.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.coroutines.RxCoroutineExtensionsKt$appAwaitSingle$2", m10085f = "RxCoroutineExtensions.kt", m10086l = {35, 40}, m10087m = "invokeSuspend")
-    public static final class C67402<T> extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super T>, Object> {
+    public final class C67402<T> extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super T>, Object> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ Boolean $suppressToast;
         public final /* synthetic */ Observable $this_appAwaitSingle;
@@ -42,7 +42,7 @@ public final class RxCoroutineExtensionsKt {
         /* JADX INFO: renamed from: com.discord.utilities.coroutines.RxCoroutineExtensionsKt$appAwaitSingle$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: RxCoroutineExtensions.kt */
         @InterfaceC12188e(m10084c = "com.discord.utilities.coroutines.RxCoroutineExtensionsKt$appAwaitSingle$2$1", m10085f = "RxCoroutineExtensions.kt", m10086l = {}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
 
             /* JADX INFO: renamed from: $e */
             public final /* synthetic */ Throwable f18979$e;
@@ -105,7 +105,7 @@ public final class RxCoroutineExtensionsKt {
         /* JADX WARN: Code duplicated, block: B:29:0x009a A[RETURN] */
         /* JADX WARN: Code duplicated, block: B:30:0x009b  */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             T t;
             Throwable th;
             Ref$ObjectRef ref$ObjectRef;
@@ -187,12 +187,6 @@ public final class RxCoroutineExtensionsKt {
         }
     }
 
-    public static final <T> Object appAwaitFirst(Observable<T> observable, Context context, Continuation<? super T> continuation) {
-        Observable<T> observableM11119z = observable.m11119z();
-        C12238m.checkNotNullExpressionValue(observableM11119z, "first()");
-        return appAwaitSingle$default(observableM11119z, context, null, continuation, 2, null);
-    }
-
     public static /* synthetic */ Object appAwaitFirst$default(Observable observable, Context context, Continuation continuation, int i, Object obj) {
         if ((i & 1) != 0) {
             context = null;
@@ -200,8 +194,10 @@ public final class RxCoroutineExtensionsKt {
         return appAwaitFirst(observable, context, continuation);
     }
 
-    public static final <T> Object appAwaitSingle(Observable<T> observable, Context context, Boolean bool, Continuation<? super T> continuation) {
-        return C3404f.m4225M(new C67402(observable, context, bool, null), continuation);
+    public static final <T> Object appAwaitFirst(Observable<T> observable, Context context, Continuation<? super T> continuation) {
+        Observable<T> observableM11119z = observable.m11119z();
+        C12238m.checkNotNullExpressionValue(observableM11119z, "first()");
+        return appAwaitSingle$default(observableM11119z, context, null, continuation, 2, null);
     }
 
     public static /* synthetic */ Object appAwaitSingle$default(Observable observable, Context context, Boolean bool, Continuation continuation, int i, Object obj) {
@@ -212,5 +208,9 @@ public final class RxCoroutineExtensionsKt {
             bool = Boolean.FALSE;
         }
         return appAwaitSingle(observable, context, bool, continuation);
+    }
+
+    public static final <T> Object appAwaitSingle(Observable<T> observable, Context context, Boolean bool, Continuation<? super T> continuation) {
+        return C3404f.m4225M(new C67402(observable, context, bool, null), continuation);
     }
 }

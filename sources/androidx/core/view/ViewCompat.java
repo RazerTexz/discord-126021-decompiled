@@ -65,6 +65,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"PrivateConstructorForUtilityClass"})
 public class ViewCompat {
+    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {C0205R.id.accessibility_custom_action_0, C0205R.id.accessibility_custom_action_1, C0205R.id.accessibility_custom_action_2, C0205R.id.accessibility_custom_action_3, C0205R.id.accessibility_custom_action_4, C0205R.id.accessibility_custom_action_5, C0205R.id.accessibility_custom_action_6, C0205R.id.accessibility_custom_action_7, C0205R.id.accessibility_custom_action_8, C0205R.id.accessibility_custom_action_9, C0205R.id.accessibility_custom_action_10, C0205R.id.accessibility_custom_action_11, C0205R.id.accessibility_custom_action_12, C0205R.id.accessibility_custom_action_13, C0205R.id.accessibility_custom_action_14, C0205R.id.accessibility_custom_action_15, C0205R.id.accessibility_custom_action_16, C0205R.id.accessibility_custom_action_17, C0205R.id.accessibility_custom_action_18, C0205R.id.accessibility_custom_action_19, C0205R.id.accessibility_custom_action_20, C0205R.id.accessibility_custom_action_21, C0205R.id.accessibility_custom_action_22, C0205R.id.accessibility_custom_action_23, C0205R.id.accessibility_custom_action_24, C0205R.id.accessibility_custom_action_25, C0205R.id.accessibility_custom_action_26, C0205R.id.accessibility_custom_action_27, C0205R.id.accessibility_custom_action_28, C0205R.id.accessibility_custom_action_29, C0205R.id.accessibility_custom_action_30, C0205R.id.accessibility_custom_action_31};
     public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2;
     public static final int ACCESSIBILITY_LIVE_REGION_NONE = 0;
     public static final int ACCESSIBILITY_LIVE_REGION_POLITE = 1;
@@ -132,7 +133,6 @@ public class ViewCompat {
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
     private static WeakHashMap<View, ViewPropertyAnimatorCompat> sViewPropertyAnimatorMap = null;
     private static boolean sAccessibilityDelegateCheckFailed = false;
-    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {C0205R.id.accessibility_custom_action_0, C0205R.id.accessibility_custom_action_1, C0205R.id.accessibility_custom_action_2, C0205R.id.accessibility_custom_action_3, C0205R.id.accessibility_custom_action_4, C0205R.id.accessibility_custom_action_5, C0205R.id.accessibility_custom_action_6, C0205R.id.accessibility_custom_action_7, C0205R.id.accessibility_custom_action_8, C0205R.id.accessibility_custom_action_9, C0205R.id.accessibility_custom_action_10, C0205R.id.accessibility_custom_action_11, C0205R.id.accessibility_custom_action_12, C0205R.id.accessibility_custom_action_13, C0205R.id.accessibility_custom_action_14, C0205R.id.accessibility_custom_action_15, C0205R.id.accessibility_custom_action_16, C0205R.id.accessibility_custom_action_17, C0205R.id.accessibility_custom_action_18, C0205R.id.accessibility_custom_action_19, C0205R.id.accessibility_custom_action_20, C0205R.id.accessibility_custom_action_21, C0205R.id.accessibility_custom_action_22, C0205R.id.accessibility_custom_action_23, C0205R.id.accessibility_custom_action_24, C0205R.id.accessibility_custom_action_25, C0205R.id.accessibility_custom_action_26, C0205R.id.accessibility_custom_action_27, C0205R.id.accessibility_custom_action_28, C0205R.id.accessibility_custom_action_29, C0205R.id.accessibility_custom_action_30, C0205R.id.accessibility_custom_action_31};
     private static final OnReceiveContentViewBehavior NO_OP_ON_RECEIVE_CONTENT_VIEW_BEHAVIOR = new OnReceiveContentViewBehavior() { // from class: androidx.core.view.ViewCompat.1
         @Override // androidx.core.view.OnReceiveContentViewBehavior
         public ContentInfoCompat onReceiveContent(@NonNull ContentInfoCompat contentInfoCompat) {
@@ -141,66 +141,7 @@ public class ViewCompat {
     };
     private static AccessibilityPaneVisibilityManager sAccessibilityPaneVisibilityManager = new AccessibilityPaneVisibilityManager();
 
-    public static class AccessibilityPaneVisibilityManager implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener {
-        private WeakHashMap<View, Boolean> mPanesToVisible = new WeakHashMap<>();
-
-        @RequiresApi(19)
-        private void checkPaneVisibility(View view, boolean z2) {
-            boolean z3 = view.getVisibility() == 0;
-            if (z2 != z3) {
-                ViewCompat.notifyViewAccessibilityStateChangedIfNeeded(view, z3 ? 16 : 32);
-                this.mPanesToVisible.put(view, Boolean.valueOf(z3));
-            }
-        }
-
-        @RequiresApi(19)
-        private void registerForLayoutCallback(View view) {
-            view.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        }
-
-        @RequiresApi(19)
-        private void unregisterForLayoutCallback(View view) {
-            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        }
-
-        @RequiresApi(19)
-        public void addAccessibilityPane(View view) {
-            this.mPanesToVisible.put(view, Boolean.valueOf(view.getVisibility() == 0));
-            view.addOnAttachStateChangeListener(this);
-            if (view.isAttachedToWindow()) {
-                registerForLayoutCallback(view);
-            }
-        }
-
-        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
-        @RequiresApi(19)
-        public void onGlobalLayout() {
-            if (Build.VERSION.SDK_INT < 28) {
-                for (Map.Entry<View, Boolean> entry : this.mPanesToVisible.entrySet()) {
-                    checkPaneVisibility(entry.getKey(), entry.getValue().booleanValue());
-                }
-            }
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        @RequiresApi(19)
-        public void onViewAttachedToWindow(View view) {
-            registerForLayoutCallback(view);
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewDetachedFromWindow(View view) {
-        }
-
-        @RequiresApi(19)
-        public void removeAccessibilityPane(View view) {
-            this.mPanesToVisible.remove(view);
-            view.removeOnAttachStateChangeListener(this);
-            unregisterForLayoutCallback(view);
-        }
-    }
-
-    public static abstract class AccessibilityViewProperty<T> {
+    public abstract class AccessibilityViewProperty<T> {
         private final int mContentChangeType;
         private final int mFrameworkMinimumSdk;
         private final int mTagKey;
@@ -210,16 +151,16 @@ public class ViewCompat {
             this(i, cls, 0, i2);
         }
 
+        public boolean booleanNullToFalseEquals(Boolean bool, Boolean bool2) {
+            return (bool == null ? false : bool.booleanValue()) == (bool2 == null ? false : bool2.booleanValue());
+        }
+
         private boolean extrasAvailable() {
             return true;
         }
 
         private boolean frameworkAvailable() {
             return Build.VERSION.SDK_INT >= this.mFrameworkMinimumSdk;
-        }
-
-        public boolean booleanNullToFalseEquals(Boolean bool, Boolean bool2) {
-            return (bool == null ? false : bool.booleanValue()) == (bool2 == null ? false : bool2.booleanValue());
         }
 
         public abstract T frameworkGet(View view);
@@ -263,7 +204,7 @@ public class ViewCompat {
     }
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 
@@ -322,7 +263,7 @@ public class ViewCompat {
     }
 
     @RequiresApi(23)
-    public static class Api23Impl {
+    public class Api23Impl {
         private Api23Impl() {
         }
 
@@ -340,7 +281,7 @@ public class ViewCompat {
     }
 
     @RequiresApi(29)
-    public static class Api29Impl {
+    public class Api29Impl {
         private Api29Impl() {
         }
 
@@ -350,7 +291,7 @@ public class ViewCompat {
     }
 
     @RequiresApi(30)
-    public static class Api30Impl {
+    public class Api30Impl {
         private Api30Impl() {
         }
 
@@ -365,7 +306,7 @@ public class ViewCompat {
     }
 
     @RequiresApi(28)
-    public static class CompatImplApi28 {
+    public class CompatImplApi28 {
         private CompatImplApi28() {
         }
 
@@ -430,7 +371,7 @@ public class ViewCompat {
     public @interface ScrollIndicators {
     }
 
-    public static class UnhandledKeyEventManager {
+    public class UnhandledKeyEventManager {
         private static final ArrayList<WeakReference<View>> sViewsWithListeners = new ArrayList<>();
 
         @Nullable
@@ -438,16 +379,18 @@ public class ViewCompat {
         private SparseArray<WeakReference<View>> mCapturedKeys = null;
         private WeakReference<KeyEvent> mLastDispatchedPreViewKeyEvent = null;
 
-        /* JADX INFO: renamed from: at */
-        public static UnhandledKeyEventManager m89at(View view) {
-            int i = C0205R.id.tag_unhandled_key_event_manager;
-            UnhandledKeyEventManager unhandledKeyEventManager = (UnhandledKeyEventManager) view.getTag(i);
-            if (unhandledKeyEventManager != null) {
-                return unhandledKeyEventManager;
+        public boolean dispatch(View view, KeyEvent keyEvent) {
+            if (keyEvent.getAction() == 0) {
+                recalcViewsWithUnhandled();
             }
-            UnhandledKeyEventManager unhandledKeyEventManager2 = new UnhandledKeyEventManager();
-            view.setTag(i, unhandledKeyEventManager2);
-            return unhandledKeyEventManager2;
+            View viewDispatchInOrder = dispatchInOrder(view, keyEvent);
+            if (keyEvent.getAction() == 0) {
+                int keyCode = keyEvent.getKeyCode();
+                if (viewDispatchInOrder != null && !KeyEvent.isModifierKey(keyCode)) {
+                    getCapturedKeys().put(keyCode, new WeakReference<>(viewDispatchInOrder));
+                }
+            }
+            return viewDispatchInOrder != null;
         }
 
         @Nullable
@@ -477,6 +420,18 @@ public class ViewCompat {
             return this.mCapturedKeys;
         }
 
+        /* JADX INFO: renamed from: at */
+        public static UnhandledKeyEventManager m89at(View view) {
+            int i = C0205R.id.tag_unhandled_key_event_manager;
+            UnhandledKeyEventManager unhandledKeyEventManager = (UnhandledKeyEventManager) view.getTag(i);
+            if (unhandledKeyEventManager != null) {
+                return unhandledKeyEventManager;
+            }
+            UnhandledKeyEventManager unhandledKeyEventManager2 = new UnhandledKeyEventManager();
+            view.setTag(i, unhandledKeyEventManager2);
+            return unhandledKeyEventManager2;
+        }
+
         private boolean onUnhandledKeyEvent(@NonNull View view, @NonNull KeyEvent keyEvent) {
             ArrayList arrayList = (ArrayList) view.getTag(C0205R.id.tag_unhandled_key_listeners);
             if (arrayList == null) {
@@ -488,6 +443,32 @@ public class ViewCompat {
                 }
             }
             return false;
+        }
+
+        public boolean preDispatch(KeyEvent keyEvent) {
+            int iIndexOfKey;
+            WeakReference<KeyEvent> weakReference = this.mLastDispatchedPreViewKeyEvent;
+            if (weakReference != null && weakReference.get() == keyEvent) {
+                return false;
+            }
+            this.mLastDispatchedPreViewKeyEvent = new WeakReference<>(keyEvent);
+            WeakReference<View> weakReferenceValueAt = null;
+            SparseArray<WeakReference<View>> capturedKeys = getCapturedKeys();
+            if (keyEvent.getAction() == 1 && (iIndexOfKey = capturedKeys.indexOfKey(keyEvent.getKeyCode())) >= 0) {
+                weakReferenceValueAt = capturedKeys.valueAt(iIndexOfKey);
+                capturedKeys.removeAt(iIndexOfKey);
+            }
+            if (weakReferenceValueAt == null) {
+                weakReferenceValueAt = capturedKeys.get(keyEvent.getKeyCode());
+            }
+            if (weakReferenceValueAt == null) {
+                return false;
+            }
+            View view = weakReferenceValueAt.get();
+            if (view != null && ViewCompat.isAttachedToWindow(view)) {
+                onUnhandledKeyEvent(view, keyEvent);
+            }
+            return true;
         }
 
         private void recalcViewsWithUnhandled() {
@@ -546,46 +527,6 @@ public class ViewCompat {
                     i++;
                 }
             }
-        }
-
-        public boolean dispatch(View view, KeyEvent keyEvent) {
-            if (keyEvent.getAction() == 0) {
-                recalcViewsWithUnhandled();
-            }
-            View viewDispatchInOrder = dispatchInOrder(view, keyEvent);
-            if (keyEvent.getAction() == 0) {
-                int keyCode = keyEvent.getKeyCode();
-                if (viewDispatchInOrder != null && !KeyEvent.isModifierKey(keyCode)) {
-                    getCapturedKeys().put(keyCode, new WeakReference<>(viewDispatchInOrder));
-                }
-            }
-            return viewDispatchInOrder != null;
-        }
-
-        public boolean preDispatch(KeyEvent keyEvent) {
-            int iIndexOfKey;
-            WeakReference<KeyEvent> weakReference = this.mLastDispatchedPreViewKeyEvent;
-            if (weakReference != null && weakReference.get() == keyEvent) {
-                return false;
-            }
-            this.mLastDispatchedPreViewKeyEvent = new WeakReference<>(keyEvent);
-            WeakReference<View> weakReferenceValueAt = null;
-            SparseArray<WeakReference<View>> capturedKeys = getCapturedKeys();
-            if (keyEvent.getAction() == 1 && (iIndexOfKey = capturedKeys.indexOfKey(keyEvent.getKeyCode())) >= 0) {
-                weakReferenceValueAt = capturedKeys.valueAt(iIndexOfKey);
-                capturedKeys.removeAt(iIndexOfKey);
-            }
-            if (weakReferenceValueAt == null) {
-                weakReferenceValueAt = capturedKeys.get(keyEvent.getKeyCode());
-            }
-            if (weakReferenceValueAt == null) {
-                return false;
-            }
-            View view = weakReferenceValueAt.get();
-            if (view != null && ViewCompat.isAttachedToWindow(view)) {
-                onUnhandledKeyEvent(view, keyEvent);
-            }
-            return true;
         }
     }
 
@@ -1880,6 +1821,65 @@ public class ViewCompat {
     public static void updateDragShadow(@NonNull View view, View.DragShadowBuilder dragShadowBuilder) {
         if (Build.VERSION.SDK_INT >= 24) {
             view.updateDragShadow(dragShadowBuilder);
+        }
+    }
+
+    public class AccessibilityPaneVisibilityManager implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener {
+        private WeakHashMap<View, Boolean> mPanesToVisible = new WeakHashMap<>();
+
+        @RequiresApi(19)
+        public void addAccessibilityPane(View view) {
+            this.mPanesToVisible.put(view, Boolean.valueOf(view.getVisibility() == 0));
+            view.addOnAttachStateChangeListener(this);
+            if (view.isAttachedToWindow()) {
+                registerForLayoutCallback(view);
+            }
+        }
+
+        @RequiresApi(19)
+        private void checkPaneVisibility(View view, boolean z2) {
+            boolean z3 = view.getVisibility() == 0;
+            if (z2 != z3) {
+                ViewCompat.notifyViewAccessibilityStateChangedIfNeeded(view, z3 ? 16 : 32);
+                this.mPanesToVisible.put(view, Boolean.valueOf(z3));
+            }
+        }
+
+        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
+        @RequiresApi(19)
+        public void onGlobalLayout() {
+            if (Build.VERSION.SDK_INT < 28) {
+                for (Map.Entry<View, Boolean> entry : this.mPanesToVisible.entrySet()) {
+                    checkPaneVisibility(entry.getKey(), entry.getValue().booleanValue());
+                }
+            }
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        @RequiresApi(19)
+        public void onViewAttachedToWindow(View view) {
+            registerForLayoutCallback(view);
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+        }
+
+        @RequiresApi(19)
+        private void registerForLayoutCallback(View view) {
+            view.getViewTreeObserver().addOnGlobalLayoutListener(this);
+        }
+
+        @RequiresApi(19)
+        public void removeAccessibilityPane(View view) {
+            this.mPanesToVisible.remove(view);
+            view.removeOnAttachStateChangeListener(this);
+            unregisterForLayoutCallback(view);
+        }
+
+        @RequiresApi(19)
+        private void unregisterForLayoutCallback(View view) {
+            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
     }
 

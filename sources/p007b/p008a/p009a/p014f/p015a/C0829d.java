@@ -25,11 +25,11 @@ public final class C0829d extends AbstractC0859d0<a> {
 
     /* JADX INFO: renamed from: b.a.a.f.a.d$a */
     /* JADX INFO: compiled from: AudioOutputSelectionDialogViewModel.kt */
-    public static abstract class a {
+    public abstract class a {
 
         /* JADX INFO: renamed from: b.a.a.f.a.d$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: AudioOutputSelectionDialogViewModel.kt */
-        public static final class C13208a extends a {
+        public final class C13208a extends a {
 
             /* JADX INFO: renamed from: a */
             public final DiscordAudioManager.DeviceTypes f361a;
@@ -134,7 +134,7 @@ public final class C0829d extends AbstractC0859d0<a> {
 
         /* JADX INFO: renamed from: b.a.a.f.a.d$a$b */
         /* JADX INFO: compiled from: AudioOutputSelectionDialogViewModel.kt */
-        public static final class b extends a {
+        public final class b extends a {
 
             /* JADX INFO: renamed from: a */
             public static final b f367a = new b();

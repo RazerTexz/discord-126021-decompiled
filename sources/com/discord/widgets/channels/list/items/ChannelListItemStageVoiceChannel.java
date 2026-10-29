@@ -32,53 +32,15 @@ public final /* data */ class ChannelListItemStageVoiceChannel implements Channe
         this.isGuildRoleSubscriptionLockedChannel = z5;
         this.isGuildRoleSubscriptionChannel = z6;
         this.type = 13;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(getChannel().getId());
-        this.key = sb.toString();
+        this.key = "" + getType() + getChannel().getId();
     }
 
     public final Channel component1() {
         return getChannel();
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Long getPermission() {
-        return this.permission;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getIsLocked() {
-        return this.isLocked;
-    }
-
     public final int component5() {
         return getNumUsersConnected();
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StageInstance getStageInstance() {
-        return this.stageInstance;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getHasSpeakers() {
-        return this.hasSpeakers;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
-        return this.isGuildRoleSubscriptionLockedChannel;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsGuildRoleSubscriptionChannel() {
-        return this.isGuildRoleSubscriptionChannel;
     }
 
     public final ChannelListItemStageVoiceChannel copy(Channel channel, boolean selected, Long permission, boolean isLocked, int numUsersConnected, StageInstance stageInstance, boolean hasSpeakers, boolean isGuildRoleSubscriptionLockedChannel, boolean isGuildRoleSubscriptionChannel) {
@@ -106,8 +68,28 @@ public final /* data */ class ChannelListItemStageVoiceChannel implements Channe
         return this.stageInstance != null;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getHasSpeakers() {
         return this.hasSpeakers;
+    }
+
+    public final boolean getHasSpeakers() {
+        return this.hasSpeakers;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionChannel() {
+        return this.isGuildRoleSubscriptionChannel;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsGuildRoleSubscriptionLockedChannel() {
+        return this.isGuildRoleSubscriptionLockedChannel;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final boolean getIsLocked() {
+        return this.isLocked;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -120,12 +102,27 @@ public final /* data */ class ChannelListItemStageVoiceChannel implements Channe
         return this.numUsersConnected;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final Long getPermission() {
         return this.permission;
     }
 
+    public final Long getPermission() {
+        return this.permission;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getSelected() {
         return this.selected;
+    }
+
+    public final boolean getSelected() {
+        return this.selected;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final StageInstance getStageInstance() {
+        return this.stageInstance;
     }
 
     public final StageInstance getStageInstance() {

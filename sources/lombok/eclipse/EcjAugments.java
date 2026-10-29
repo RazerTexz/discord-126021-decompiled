@@ -21,7 +21,7 @@ public final class EcjAugments {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/EcjAugments$EclipseAugments.SCL.lombok */
-    public static final class EclipseAugments {
+    public final class EclipseAugments {
         public static final FieldAugment<CompilationUnit, Map<String, String>> CompilationUnit_javadoc = FieldAugment.augment(CompilationUnit.class, Map.class, "$javadoc");
         public static final FieldAugment<CompilationUnit, ConcurrentMap<String, List<SourceMethod>>> CompilationUnit_delegateMethods = FieldAugment.augment(CompilationUnit.class, ConcurrentMap.class, "$delegateMethods");
 

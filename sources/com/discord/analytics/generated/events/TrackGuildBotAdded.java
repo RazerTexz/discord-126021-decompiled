@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildBotAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildBotAdded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long applicationId = null;
     private final Long botId = null;
     private final CharSequence botName = null;
     private final Long botPermissions = null;
     private final Long guildId = null;
     private final CharSequence guildName = null;
     private final Long guildOwnerId = null;
-    private final Long applicationId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "guild_bot_added";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackGuildBotAdded implements AnalyticsSchema, Tra
         }
         TrackGuildBotAdded trackGuildBotAdded = (TrackGuildBotAdded) other;
         return C12238m.areEqual(this.botId, trackGuildBotAdded.botId) && C12238m.areEqual(this.botName, trackGuildBotAdded.botName) && C12238m.areEqual(this.botPermissions, trackGuildBotAdded.botPermissions) && C12238m.areEqual(this.guildId, trackGuildBotAdded.guildId) && C12238m.areEqual(this.guildName, trackGuildBotAdded.guildName) && C12238m.areEqual(this.guildOwnerId, trackGuildBotAdded.guildOwnerId) && C12238m.areEqual(this.applicationId, trackGuildBotAdded.applicationId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -27,7 +27,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GuildExperimentFilter {
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final /* data */ class GuildHasFeatureFilter extends GuildExperimentFilter {
+    public final /* data */ class GuildHasFeatureFilter extends GuildExperimentFilter {
         private final Set<GuildFeature> features;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -38,16 +38,16 @@ public abstract class GuildExperimentFilter {
             this.features = set;
         }
 
+        public final Set<GuildFeature> component1() {
+            return this.features;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ GuildHasFeatureFilter copy$default(GuildHasFeatureFilter guildHasFeatureFilter, Set set, int i, Object obj) {
             if ((i & 1) != 0) {
                 set = guildHasFeatureFilter.features;
             }
             return guildHasFeatureFilter.copy(set);
-        }
-
-        public final Set<GuildFeature> component1() {
-            return this.features;
         }
 
         public final GuildHasFeatureFilter copy(Set<? extends GuildFeature> features) {
@@ -80,7 +80,7 @@ public abstract class GuildExperimentFilter {
     }
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final /* data */ class GuildHubTypesFeatureFilter extends GuildExperimentFilter {
+    public final /* data */ class GuildHubTypesFeatureFilter extends GuildExperimentFilter {
         private final Set<GuildHubType> hubTypes;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -91,16 +91,16 @@ public abstract class GuildExperimentFilter {
             this.hubTypes = set;
         }
 
+        public final Set<GuildHubType> component1() {
+            return this.hubTypes;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ GuildHubTypesFeatureFilter copy$default(GuildHubTypesFeatureFilter guildHubTypesFeatureFilter, Set set, int i, Object obj) {
             if ((i & 1) != 0) {
                 set = guildHubTypesFeatureFilter.hubTypes;
             }
             return guildHubTypesFeatureFilter.copy(set);
-        }
-
-        public final Set<GuildHubType> component1() {
-            return this.hubTypes;
         }
 
         public final GuildHubTypesFeatureFilter copy(Set<? extends GuildHubType> hubTypes) {
@@ -133,7 +133,7 @@ public abstract class GuildExperimentFilter {
     }
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final /* data */ class GuildIdRangeFilter extends GuildExperimentFilter {
+    public final /* data */ class GuildIdRangeFilter extends GuildExperimentFilter {
         private final LongRange range;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -150,11 +150,6 @@ public abstract class GuildExperimentFilter {
             return guildIdRangeFilter.copy(longRange);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final LongRange getRange() {
-            return this.range;
-        }
-
         public final GuildIdRangeFilter copy(LongRange range) {
             C12238m.checkNotNullParameter(range, "range");
             return new GuildIdRangeFilter(range);
@@ -165,6 +160,11 @@ public abstract class GuildExperimentFilter {
                 return (other instanceof GuildIdRangeFilter) && C12238m.areEqual(this.range, ((GuildIdRangeFilter) other).range);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final LongRange getRange() {
+            return this.range;
         }
 
         public final LongRange getRange() {
@@ -188,7 +188,7 @@ public abstract class GuildExperimentFilter {
     }
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final /* data */ class GuildIdsFilter extends GuildExperimentFilter {
+    public final /* data */ class GuildIdsFilter extends GuildExperimentFilter {
         private final Set<Long> guildIds;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -198,16 +198,16 @@ public abstract class GuildExperimentFilter {
             this.guildIds = set;
         }
 
+        public final Set<Long> component1() {
+            return this.guildIds;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ GuildIdsFilter copy$default(GuildIdsFilter guildIdsFilter, Set set, int i, Object obj) {
             if ((i & 1) != 0) {
                 set = guildIdsFilter.guildIds;
             }
             return guildIdsFilter.copy(set);
-        }
-
-        public final Set<Long> component1() {
-            return this.guildIds;
         }
 
         public final GuildIdsFilter copy(Set<Long> guildIds) {
@@ -240,7 +240,7 @@ public abstract class GuildExperimentFilter {
     }
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final /* data */ class GuildMemberCountRangeFilter extends GuildExperimentFilter {
+    public final /* data */ class GuildMemberCountRangeFilter extends GuildExperimentFilter {
         private final LongRange range;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -257,11 +257,6 @@ public abstract class GuildExperimentFilter {
             return guildMemberCountRangeFilter.copy(longRange);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final LongRange getRange() {
-            return this.range;
-        }
-
         public final GuildMemberCountRangeFilter copy(LongRange range) {
             C12238m.checkNotNullParameter(range, "range");
             return new GuildMemberCountRangeFilter(range);
@@ -272,6 +267,11 @@ public abstract class GuildExperimentFilter {
                 return (other instanceof GuildMemberCountRangeFilter) && C12238m.areEqual(this.range, ((GuildMemberCountRangeFilter) other).range);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final LongRange getRange() {
+            return this.range;
         }
 
         public final LongRange getRange() {
@@ -295,7 +295,7 @@ public abstract class GuildExperimentFilter {
     }
 
     /* JADX INFO: compiled from: GuildExperimentFilter.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE;
         private static final long MAX_ID_HASH;
         private static final long MIN_ID_HASH;
@@ -311,6 +311,45 @@ public abstract class GuildExperimentFilter {
         }
 
         private Parser() {
+        }
+
+        public final Map<Long, Function1<Model.JsonReader, GuildExperimentFilter>> getParsers() {
+            return parsers;
+        }
+
+        public final List<GuildExperimentFilter> parseFilters(final Model.JsonReader reader) throws IOException {
+            C12238m.checkNotNullParameter(reader, "reader");
+            final ArrayList arrayList = new ArrayList();
+            reader.nextList(new Model.JsonReader.ItemFactory<Unit>() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1
+                @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+                public /* bridge */ /* synthetic */ Unit get() throws IOException {
+                    get2();
+                    return Unit.f27425a;
+                }
+
+                /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+                public final void get2() throws IOException {
+                    final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
+                    ref$ObjectRef.element = null;
+                    reader.nextListIndexed(new Runnable() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1.1
+                        @Override // java.lang.Runnable
+                        public final void run() {
+                            ref$ObjectRef.element = (T) reader.nextLongOrNull();
+                        }
+                    }, new Runnable() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1.2
+                        @Override // java.lang.Runnable
+                        public final void run() {
+                            GuildExperimentFilter guildExperimentFilterInvoke;
+                            Function1<Model.JsonReader, GuildExperimentFilter> function1 = GuildExperimentFilter.Parser.INSTANCE.getParsers().get((Long) ref$ObjectRef.element);
+                            if (function1 != null && (guildExperimentFilterInvoke = function1.invoke(reader)) != null) {
+                                arrayList.add(guildExperimentFilterInvoke);
+                            }
+                            ref$ObjectRef.element = null;
+                        }
+                    });
+                }
+            });
+            return arrayList;
         }
 
         /* JADX WARN: Type inference failed for: r1v0, types: [T, java.util.Set] */
@@ -394,45 +433,6 @@ public abstract class GuildExperimentFilter {
             long jLongValue = l != null ? l.longValue() : 0L;
             Long l2 = (Long) ref$ObjectRef2.element;
             return new LongRange(jLongValue, l2 != null ? l2.longValue() : RecyclerView.FOREVER_NS);
-        }
-
-        public final Map<Long, Function1<Model.JsonReader, GuildExperimentFilter>> getParsers() {
-            return parsers;
-        }
-
-        public final List<GuildExperimentFilter> parseFilters(final Model.JsonReader reader) throws IOException {
-            C12238m.checkNotNullParameter(reader, "reader");
-            final ArrayList arrayList = new ArrayList();
-            reader.nextList(new Model.JsonReader.ItemFactory<Unit>() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1
-                @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                public /* bridge */ /* synthetic */ Unit get() throws IOException {
-                    get2();
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
-                public final void get2() throws IOException {
-                    final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
-                    ref$ObjectRef.element = null;
-                    reader.nextListIndexed(new Runnable() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1.1
-                        @Override // java.lang.Runnable
-                        public final void run() {
-                            ref$ObjectRef.element = (T) reader.nextLongOrNull();
-                        }
-                    }, new Runnable() { // from class: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseFilters$1.2
-                        @Override // java.lang.Runnable
-                        public final void run() {
-                            GuildExperimentFilter guildExperimentFilterInvoke;
-                            Function1<Model.JsonReader, GuildExperimentFilter> function1 = GuildExperimentFilter.Parser.INSTANCE.getParsers().get((Long) ref$ObjectRef.element);
-                            if (function1 != null && (guildExperimentFilterInvoke = function1.invoke(reader)) != null) {
-                                arrayList.add(guildExperimentFilterInvoke);
-                            }
-                            ref$ObjectRef.element = null;
-                        }
-                    });
-                }
-            });
-            return arrayList;
         }
     }
 

@@ -57,7 +57,7 @@ public class C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.h$a */
     /* JADX INFO: compiled from: Platform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -490,15 +490,34 @@ public class C12333h {
         c12333h.m10330i(str, i, null);
     }
 
-    /* JADX INFO: renamed from: a */
-    public void mo10328a(SSLSocket sSLSocket) {
-        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+    /* JADX INFO: renamed from: i */
+    public void m10330i(String str, int i, Throwable th) {
+        C12238m.checkParameterIsNotNull(str, "message");
+        f25784b.log(i == 5 ? Level.WARNING : Level.INFO, str, th);
     }
 
     /* JADX INFO: renamed from: b */
     public AbstractC12349c mo10315b(X509TrustManager x509TrustManager) {
         C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
         return new C12347a(mo10319c(x509TrustManager));
+    }
+
+    /* JADX INFO: renamed from: d */
+    public void mo10316d(SSLSocket sSLSocket, String str, List<EnumC12381y> list) {
+        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+        C12238m.checkParameterIsNotNull(list, "protocols");
+    }
+
+    /* JADX INFO: renamed from: f */
+    public String mo10317f(SSLSocket sSLSocket) {
+        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+        return null;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public boolean mo10318h(String str) {
+        C12238m.checkParameterIsNotNull(str, "hostname");
+        return true;
     }
 
     /* JADX INFO: renamed from: c */
@@ -509,23 +528,11 @@ public class C12333h {
         return new C12348b((X509Certificate[]) Arrays.copyOf(acceptedIssuers, acceptedIssuers.length));
     }
 
-    /* JADX INFO: renamed from: d */
-    public void mo10316d(SSLSocket sSLSocket, String str, List<EnumC12381y> list) {
-        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
-        C12238m.checkParameterIsNotNull(list, "protocols");
-    }
-
     /* JADX INFO: renamed from: e */
     public void mo10320e(Socket socket, InetSocketAddress inetSocketAddress, int i) throws IOException {
         C12238m.checkParameterIsNotNull(socket, "socket");
         C12238m.checkParameterIsNotNull(inetSocketAddress, "address");
         socket.connect(inetSocketAddress, i);
-    }
-
-    /* JADX INFO: renamed from: f */
-    public String mo10317f(SSLSocket sSLSocket) {
-        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
-        return null;
     }
 
     /* JADX INFO: renamed from: g */
@@ -535,18 +542,6 @@ public class C12333h {
             return new Throwable(str);
         }
         return null;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public boolean mo10318h(String str) {
-        C12238m.checkParameterIsNotNull(str, "hostname");
-        return true;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public void m10330i(String str, int i, Throwable th) {
-        C12238m.checkParameterIsNotNull(str, "message");
-        f25784b.log(i == 5 ? Level.WARNING : Level.INFO, str, th);
     }
 
     /* JADX INFO: renamed from: k */
@@ -563,20 +558,6 @@ public class C12333h {
         SSLContext sSLContext = SSLContext.getInstance("TLS");
         C12238m.checkExpressionValueIsNotNull(sSLContext, "SSLContext.getInstance(\"TLS\")");
         return sSLContext;
-    }
-
-    /* JADX INFO: renamed from: m */
-    public SSLSocketFactory mo10326m(X509TrustManager x509TrustManager) {
-        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
-        try {
-            SSLContext sSLContextMo10324l = mo10324l();
-            sSLContextMo10324l.init(null, new TrustManager[]{x509TrustManager}, null);
-            SSLSocketFactory socketFactory = sSLContextMo10324l.getSocketFactory();
-            C12238m.checkExpressionValueIsNotNull(socketFactory, "newSSLContext().apply {\n…ll)\n      }.socketFactory");
-            return socketFactory;
-        } catch (GeneralSecurityException e) {
-            throw new AssertionError("No System TLS: " + e, e);
-        }
     }
 
     /* JADX INFO: renamed from: n */
@@ -600,6 +581,25 @@ public class C12333h {
         C12238m.checkExpressionValueIsNotNull(string, "java.util.Arrays.toString(this)");
         sbM833U.append(string);
         throw new IllegalStateException(sbM833U.toString().toString());
+    }
+
+    /* JADX INFO: renamed from: m */
+    public SSLSocketFactory mo10326m(X509TrustManager x509TrustManager) {
+        C12238m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+        try {
+            SSLContext sSLContextMo10324l = mo10324l();
+            sSLContextMo10324l.init(null, new TrustManager[]{x509TrustManager}, null);
+            SSLSocketFactory socketFactory = sSLContextMo10324l.getSocketFactory();
+            C12238m.checkExpressionValueIsNotNull(socketFactory, "newSSLContext().apply {\n…ll)\n      }.socketFactory");
+            return socketFactory;
+        } catch (GeneralSecurityException e) {
+            throw new AssertionError("No System TLS: " + e, e);
+        }
+    }
+
+    /* JADX INFO: renamed from: a */
+    public void mo10328a(SSLSocket sSLSocket) {
+        C12238m.checkParameterIsNotNull(sSLSocket, "sslSocket");
     }
 
     public String toString() {

@@ -27,6 +27,34 @@ public class C2252b extends AbstractC2278d {
         this._defaultSerializer = abstractC2278d;
     }
 
+    /* JADX INFO: renamed from: z */
+    public final void m2019z(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        C2234c[] c2234cArr = this._filteredProps;
+        if (c2234cArr == null || abstractC2374x._serializationView == null) {
+            c2234cArr = this._props;
+        }
+        int i = 0;
+        try {
+            int length = c2234cArr.length;
+            while (i < length) {
+                C2234c c2234c = c2234cArr[i];
+                if (c2234c == null) {
+                    abstractC2108d.mo1631A();
+                } else {
+                    c2234c.mo1982h(obj, abstractC2108d, abstractC2374x);
+                }
+                i++;
+            }
+        } catch (Exception e) {
+            m2077o(abstractC2374x, e, obj, i != c2234cArr.length ? c2234cArr[i]._name._value : "[anySetter]");
+            throw null;
+        } catch (StackOverflowError e2) {
+            JsonMappingException jsonMappingException = new JsonMappingException(abstractC2108d, "Infinite recursion (StackOverflowError)", e2);
+            jsonMappingException.m8743e(new JsonMappingException.C10677a(obj, i != c2234cArr.length ? c2234cArr[i]._name._value : "[anySetter]"));
+            throw jsonMappingException;
+        }
+    }
+
     @Override // p007b.p195g.p196a.p205c.AbstractC2364n
     /* JADX INFO: renamed from: f */
     public final void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
@@ -71,12 +99,6 @@ public class C2252b extends AbstractC2278d {
         return this;
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("BeanAsArraySerializer for ");
-        sbM833U.append(this._handledType.getName());
-        return sbM833U.toString();
-    }
-
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2278d
     /* JADX INFO: renamed from: v */
     public AbstractC2278d mo1986v(Set set, Set set2) {
@@ -101,32 +123,10 @@ public class C2252b extends AbstractC2278d {
         return this;
     }
 
-    /* JADX INFO: renamed from: z */
-    public final void m2019z(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        C2234c[] c2234cArr = this._filteredProps;
-        if (c2234cArr == null || abstractC2374x._serializationView == null) {
-            c2234cArr = this._props;
-        }
-        int i = 0;
-        try {
-            int length = c2234cArr.length;
-            while (i < length) {
-                C2234c c2234c = c2234cArr[i];
-                if (c2234c == null) {
-                    abstractC2108d.mo1631A();
-                } else {
-                    c2234c.mo1982h(obj, abstractC2108d, abstractC2374x);
-                }
-                i++;
-            }
-        } catch (Exception e) {
-            m2077o(abstractC2374x, e, obj, i != c2234cArr.length ? c2234cArr[i]._name._value : "[anySetter]");
-            throw null;
-        } catch (StackOverflowError e2) {
-            JsonMappingException jsonMappingException = new JsonMappingException(abstractC2108d, "Infinite recursion (StackOverflowError)", e2);
-            jsonMappingException.m8743e(new JsonMappingException.C10677a(obj, i != c2234cArr.length ? c2234cArr[i]._name._value : "[anySetter]"));
-            throw jsonMappingException;
-        }
+    public String toString() {
+        StringBuilder sbM833U = C1643a.m833U("BeanAsArraySerializer for ");
+        sbM833U.append(this._handledType.getName());
+        return sbM833U.toString();
     }
 
     public C2252b(AbstractC2278d abstractC2278d, C2260j c2260j, Object obj) {

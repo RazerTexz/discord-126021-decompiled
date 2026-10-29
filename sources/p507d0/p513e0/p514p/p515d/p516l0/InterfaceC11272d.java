@@ -13,7 +13,7 @@ public interface InterfaceC11272d<M extends Member> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.l0.d$a */
     /* JADX INFO: compiled from: Caller.kt */
-    public static final class a {
+    public final class a {
         public static <M extends Member> void checkArguments(InterfaceC11272d<? extends M> interfaceC11272d, Object[] objArr) {
             C12238m.checkNotNullParameter(objArr, "args");
             if (C11274f.getArity(interfaceC11272d) == objArr.length) {
@@ -28,10 +28,10 @@ public interface InterfaceC11272d<M extends Member> {
 
     Object call(Object[] objArr);
 
-    /* JADX INFO: renamed from: getMember */
-    M mo11457getMember();
-
     List<Type> getParameterTypes();
 
     Type getReturnType();
+
+    /* JADX INFO: renamed from: getMember */
+    M mo11457getMember();
 }

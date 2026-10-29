@@ -16,13 +16,27 @@ import p007b.p225i.p226a.p242c.p279z2.C3155a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class SlowMotionData implements Metadata.Entry {
-    public static final Parcelable.Creator<SlowMotionData> CREATOR = new C10740a();
 
     /* JADX INFO: renamed from: j */
     public final List<Segment> f20013j;
+    public static final Parcelable.Creator<SlowMotionData> CREATOR = new C10740a();
 
-    public static final class Segment implements Parcelable {
-        public static final Parcelable.Creator<Segment> CREATOR = new C10739a();
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.mp4.SlowMotionData$a */
+    public class C10740a implements Parcelable.Creator<SlowMotionData> {
+        @Override // android.os.Parcelable.Creator
+        public SlowMotionData createFromParcel(Parcel parcel) {
+            ArrayList arrayList = new ArrayList();
+            parcel.readList(arrayList, Segment.class.getClassLoader());
+            return new SlowMotionData(arrayList);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public SlowMotionData[] newArray(int i) {
+            return new SlowMotionData[i];
+        }
+    }
+
+    public final class Segment implements Parcelable {
 
         /* JADX INFO: renamed from: j */
         public final long f20014j;
@@ -32,6 +46,7 @@ public final class SlowMotionData implements Metadata.Entry {
 
         /* JADX INFO: renamed from: l */
         public final int f20016l;
+        public static final Parcelable.Creator<Segment> CREATOR = new C10739a();
 
         /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.mp4.SlowMotionData$Segment$a */
         public class C10739a implements Parcelable.Creator<Segment> {
@@ -85,21 +100,6 @@ public final class SlowMotionData implements Metadata.Entry {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.mp4.SlowMotionData$a */
-    public class C10740a implements Parcelable.Creator<SlowMotionData> {
-        @Override // android.os.Parcelable.Creator
-        public SlowMotionData createFromParcel(Parcel parcel) {
-            ArrayList arrayList = new ArrayList();
-            parcel.readList(arrayList, Segment.class.getClassLoader());
-            return new SlowMotionData(arrayList);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public SlowMotionData[] newArray(int i) {
-            return new SlowMotionData[i];
-        }
-    }
-
     public SlowMotionData(List<Segment> list) {
         this.f20013j = list;
         boolean z2 = false;
@@ -147,6 +147,12 @@ public final class SlowMotionData implements Metadata.Entry {
         return C3155a.m3892a(this);
     }
 
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    /* JADX INFO: renamed from: y */
+    public /* synthetic */ C2811j1 mo8880y() {
+        return C3155a.m3893b(this);
+    }
+
     public String toString() {
         String strValueOf = String.valueOf(this.f20013j);
         return C1643a.m857j(strValueOf.length() + 21, "SlowMotion: segments=", strValueOf);
@@ -155,11 +161,5 @@ public final class SlowMotionData implements Metadata.Entry {
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeList(this.f20013j);
-    }
-
-    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: y */
-    public /* synthetic */ C2811j1 mo8880y() {
-        return C3155a.m3893b(this);
     }
 }

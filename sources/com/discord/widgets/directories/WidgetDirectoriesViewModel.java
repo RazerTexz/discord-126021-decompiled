@@ -57,7 +57,7 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesViewModel$2 */
     /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final /* synthetic */ class C82812 extends C12236k implements Function1<ViewState, Unit> {
+    public final /* synthetic */ class C82812 extends C12236k implements Function1<ViewState, Unit> {
         public C82812(WidgetDirectoriesViewModel widgetDirectoriesViewModel) {
             super(1, widgetDirectoriesViewModel, WidgetDirectoriesViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
         }
@@ -77,7 +77,7 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesViewModel$4 */
     /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final class C82834 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C82834 extends AbstractC12240o implements Function1<Channel, Unit> {
         public C82834() {
             super(1);
         }
@@ -98,7 +98,7 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesViewModel$6 */
     /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final class C82856 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C82856 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ StoreReadStates $readStatesStore;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -119,23 +119,9 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
         }
     }
 
-    /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final Observable<ViewState> observeStores(ObservationDeck observationDeck, StoreGuilds guildsStore, StoreGuildSelected guildSelectedStore, StoreChannelsSelected channelsSelectedStore, StoreDirectories directoriesStore, StorePermissions permissionsStore) {
-            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{guildsStore, guildSelectedStore, directoriesStore, channelsSelectedStore, permissionsStore}, false, null, null, new WidgetDirectoriesViewModel$Companion$observeStores$1(channelsSelectedStore, guildSelectedStore, guildsStore, permissionsStore, directoriesStore), 14, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoriesViewModel$joinGuild$1 */
     /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final class C82861 extends AbstractC12240o implements Function1<Guild, Unit> {
+    public final class C82861 extends AbstractC12240o implements Function1<Guild, Unit> {
         public static final C82861 INSTANCE = new C82861();
 
         public C82861() {
@@ -151,6 +137,20 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Guild guild) {
             C12238m.checkNotNullParameter(guild, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final Observable<ViewState> observeStores(ObservationDeck observationDeck, StoreGuilds guildsStore, StoreGuildSelected guildSelectedStore, StoreChannelsSelected channelsSelectedStore, StoreDirectories directoriesStore, StorePermissions permissionsStore) {
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{guildsStore, guildSelectedStore, directoriesStore, channelsSelectedStore, permissionsStore}, false, null, null, new WidgetDirectoriesViewModel$Companion$observeStores$1(channelsSelectedStore, guildSelectedStore, guildsStore, permissionsStore, directoriesStore), 14, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -198,7 +198,7 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
     }
 
     /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final Set<Long> adminGuildIds;
 
         /* JADX INFO: renamed from: allDirectoryEntryData$delegate, reason: from kotlin metadata */
@@ -238,6 +238,22 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
             this.mappedTabs = C12083g.lazy(new WidgetDirectoriesViewModel$ViewState$mappedTabs$2(this));
         }
 
+        public final Set<Long> component3() {
+            return this.joinedGuildIds;
+        }
+
+        public final Set<Long> component4() {
+            return this.adminGuildIds;
+        }
+
+        public final RestCallState<List<DirectoryEntryGuild>> component6() {
+            return this.directories;
+        }
+
+        public final RestCallState<Map<Integer, Integer>> component7() {
+            return this.tabs;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ ViewState copy$default(ViewState viewState, com.discord.models.guild.Guild guild, Channel channel, Set set, Set set2, boolean z2, RestCallState restCallState, RestCallState restCallState2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -269,37 +285,6 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
             return viewState.copy(guild, channel2, set3, set4, z3, restCallState3, restCallState2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final com.discord.models.guild.Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        public final Set<Long> component3() {
-            return this.joinedGuildIds;
-        }
-
-        public final Set<Long> component4() {
-            return this.adminGuildIds;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getHasAddGuildPermissions() {
-            return this.hasAddGuildPermissions;
-        }
-
-        public final RestCallState<List<DirectoryEntryGuild>> component6() {
-            return this.directories;
-        }
-
-        public final RestCallState<Map<Integer, Integer>> component7() {
-            return this.tabs;
-        }
-
         public final ViewState copy(com.discord.models.guild.Guild guild, Channel channel, Set<Long> joinedGuildIds, Set<Long> adminGuildIds, boolean hasAddGuildPermissions, RestCallState<? extends List<DirectoryEntryGuild>> directories, RestCallState<? extends Map<Integer, Integer>> tabs) {
             C12238m.checkNotNullParameter(joinedGuildIds, "joinedGuildIds");
             C12238m.checkNotNullParameter(adminGuildIds, "adminGuildIds");
@@ -327,6 +312,11 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
             return (List) this.allDirectoryEntryData.getValue();
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
         public final Channel getChannel() {
             return this.channel;
         }
@@ -339,8 +329,18 @@ public final class WidgetDirectoriesViewModel extends AbstractC0859d0<ViewState>
             return (Map) this.directoryEntryData.getValue();
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final com.discord.models.guild.Guild getGuild() {
             return this.guild;
+        }
+
+        public final com.discord.models.guild.Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getHasAddGuildPermissions() {
+            return this.hasAddGuildPermissions;
         }
 
         public final boolean getHasAddGuildPermissions() {

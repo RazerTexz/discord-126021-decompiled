@@ -58,16 +58,6 @@ public final class ComplexColorCompat {
         return new ComplexColorCompat(shader, null, 0);
     }
 
-    @Nullable
-    public static ComplexColorCompat inflate(@NonNull Resources resources, @ColorRes int i, @Nullable Resources.Theme theme) {
-        try {
-            return createFromXml(resources, i, theme);
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Failed to inflate ComplexColor.", e);
-            return null;
-        }
-    }
-
     @ColorInt
     public int getColor() {
         return this.mColor;
@@ -76,6 +66,16 @@ public final class ComplexColorCompat {
     @Nullable
     public Shader getShader() {
         return this.mShader;
+    }
+
+    @Nullable
+    public static ComplexColorCompat inflate(@NonNull Resources resources, @ColorRes int i, @Nullable Resources.Theme theme) {
+        try {
+            return createFromXml(resources, i, theme);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Failed to inflate ComplexColor.", e);
+            return null;
+        }
     }
 
     public boolean isGradient() {

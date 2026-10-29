@@ -24,6 +24,19 @@ public class C1926c implements InterfaceC1928e {
         }
     }
 
+    @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
+    /* JADX INFO: renamed from: e */
+    public void mo1062e(String str, String str2, boolean z2) {
+        int size = this.f3913a.size();
+        for (int i = 0; i < size; i++) {
+            try {
+                this.f3913a.get(i).mo1062e(str, str2, z2);
+            } catch (Exception e) {
+                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onProducerFinishWithSuccess", e);
+            }
+        }
+    }
+
     @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
     /* JADX INFO: renamed from: a */
     public void mo1079a(ImageRequest imageRequest, Object obj, String str, boolean z2) {
@@ -37,19 +50,6 @@ public class C1926c implements InterfaceC1928e {
         }
     }
 
-    @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
-    /* JADX INFO: renamed from: b */
-    public void mo1348b(String str, String str2) {
-        int size = this.f3913a.size();
-        for (int i = 0; i < size; i++) {
-            try {
-                this.f3913a.get(i).mo1348b(str, str2);
-            } catch (Exception e) {
-                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onProducerStart", e);
-            }
-        }
-    }
-
     @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
     /* JADX INFO: renamed from: c */
     public void mo1080c(ImageRequest imageRequest, String str, boolean z2) {
@@ -59,6 +59,45 @@ public class C1926c implements InterfaceC1928e {
                 this.f3913a.get(i).mo1080c(imageRequest, str, z2);
             } catch (Exception e) {
                 C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onRequestSuccess", e);
+            }
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
+    /* JADX INFO: renamed from: g */
+    public void mo1081g(ImageRequest imageRequest, String str, Throwable th, boolean z2) {
+        int size = this.f3913a.size();
+        for (int i = 0; i < size; i++) {
+            try {
+                this.f3913a.get(i).mo1081g(imageRequest, str, th, z2);
+            } catch (Exception e) {
+                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onRequestFailure", e);
+            }
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
+    /* JADX INFO: renamed from: k */
+    public void mo1082k(String str) {
+        int size = this.f3913a.size();
+        for (int i = 0; i < size; i++) {
+            try {
+                this.f3913a.get(i).mo1082k(str);
+            } catch (Exception e) {
+                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onRequestCancellation", e);
+            }
+        }
+    }
+
+    @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
+    /* JADX INFO: renamed from: b */
+    public void mo1348b(String str, String str2) {
+        int size = this.f3913a.size();
+        for (int i = 0; i < size; i++) {
+            try {
+                this.f3913a.get(i).mo1348b(str, str2);
+            } catch (Exception e) {
+                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onProducerStart", e);
             }
         }
     }
@@ -77,19 +116,6 @@ public class C1926c implements InterfaceC1928e {
     }
 
     @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
-    /* JADX INFO: renamed from: e */
-    public void mo1062e(String str, String str2, boolean z2) {
-        int size = this.f3913a.size();
-        for (int i = 0; i < size; i++) {
-            try {
-                this.f3913a.get(i).mo1062e(str, str2, z2);
-            } catch (Exception e) {
-                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onProducerFinishWithSuccess", e);
-            }
-        }
-    }
-
-    @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
     /* JADX INFO: renamed from: f */
     public boolean mo1350f(String str) {
         int size = this.f3913a.size();
@@ -99,19 +125,6 @@ public class C1926c implements InterfaceC1928e {
             }
         }
         return false;
-    }
-
-    @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
-    /* JADX INFO: renamed from: g */
-    public void mo1081g(ImageRequest imageRequest, String str, Throwable th, boolean z2) {
-        int size = this.f3913a.size();
-        for (int i = 0; i < size; i++) {
-            try {
-                this.f3913a.get(i).mo1081g(imageRequest, str, th, z2);
-            } catch (Exception e) {
-                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onRequestFailure", e);
-            }
-        }
     }
 
     @Override // p007b.p109f.p161j.p181p.InterfaceC1964a1
@@ -149,19 +162,6 @@ public class C1926c implements InterfaceC1928e {
                 this.f3913a.get(i).mo1353j(str, str2, th, map);
             } catch (Exception e) {
                 C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onProducerFinishWithFailure", e);
-            }
-        }
-    }
-
-    @Override // p007b.p109f.p161j.p176k.InterfaceC1928e
-    /* JADX INFO: renamed from: k */
-    public void mo1082k(String str) {
-        int size = this.f3913a.size();
-        for (int i = 0; i < size; i++) {
-            try {
-                this.f3913a.get(i).mo1082k(str);
-            } catch (Exception e) {
-                C1691a.m978f("ForwardingRequestListener", "InternalListener exception in onRequestCancellation", e);
             }
         }
     }

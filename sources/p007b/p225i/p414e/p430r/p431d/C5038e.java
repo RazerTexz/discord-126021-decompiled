@@ -9,14 +9,14 @@ import p007b.p085c.p086a.p095y.C1563b;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C5038e {
 
+    /* JADX INFO: renamed from: c */
+    public static final BigInteger[] f13486c;
+
     /* JADX INFO: renamed from: a */
     public static final char[] f13484a = ";<>@[\\]_`~!\r\t,:\n-.$/\"|*()?{}'".toCharArray();
 
     /* JADX INFO: renamed from: b */
     public static final char[] f13485b = "0123456789&\r\t,:#-.$/+%*=^".toCharArray();
-
-    /* JADX INFO: renamed from: c */
-    public static final BigInteger[] f13486c;
 
     static {
         BigInteger[] bigIntegerArr = new BigInteger[16];

@@ -14,7 +14,7 @@ public interface InterfaceC11880p {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.p$a */
     /* JADX INFO: compiled from: ErrorReporter.java */
-    public static class a implements InterfaceC11880p {
+    public final class a implements InterfaceC11880p {
         /* JADX INFO: renamed from: a */
         public static /* synthetic */ void m9967a(int i) {
             Object[] objArr = new Object[3];

@@ -131,17 +131,28 @@ public final class WidgetCreateChannel extends AppFragment {
     /* JADX INFO: renamed from: type$delegate, reason: from kotlin metadata */
     private final Lazy type;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetCreateChannel$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-    public static final class Companion {
-        private Companion() {
+    public final /* synthetic */ class C73711 extends C12236k implements Function1<Model, Unit> {
+        public C73711(WidgetCreateChannel widgetCreateChannel) {
+            super(1, widgetCreateChannel, WidgetCreateChannel.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/WidgetCreateChannel$Model;)V", 0);
         }
 
-        public static /* synthetic */ void show$default(Companion companion, Context context, long j, int i, Long l, int i2, Object obj) {
-            int i3 = (i2 & 4) != 0 ? 0 : i;
-            if ((i2 & 8) != 0) {
-                l = null;
-            }
-            companion.show(context, j, i3, l);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetCreateChannel) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCreateChannel.kt */
+    public final class Companion {
+        private Companion() {
         }
 
         public final void launch(Context context, ActivityResultLauncher<Intent> launcher, long guildId, int type, Long categoryId, boolean shouldChannelDefaultPrivate, boolean provideResultOnly, boolean disablePrivateSwitch, boolean disableAnnouncementChannelType) {
@@ -185,6 +196,14 @@ public final class WidgetCreateChannel extends AppFragment {
             return activityResultLauncherRegisterForActivityResult;
         }
 
+        public static /* synthetic */ void show$default(Companion companion, Context context, long j, int i, Long l, int i2, Object obj) {
+            int i3 = (i2 & 4) != 0 ? 0 : i;
+            if ((i2 & 8) != 0) {
+                l = null;
+            }
+            companion.show(context, j, i3, l);
+        }
+
         public final void show(Context context, long guildId, int type, Long categoryId) {
             C12238m.checkNotNullParameter(context, "context");
             Intent intent = new Intent();
@@ -200,7 +219,7 @@ public final class WidgetCreateChannel extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -211,7 +230,7 @@ public final class WidgetCreateChannel extends AppFragment {
         private final List<SingleTypePayload<GuildRole>> roleItems;
 
         /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -288,11 +307,11 @@ public final class WidgetCreateChannel extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-    public static final class RolesAdapter extends MGRecyclerAdapterSimple<SingleTypePayload<GuildRole>> {
+    public final class RolesAdapter extends MGRecyclerAdapterSimple<SingleTypePayload<GuildRole>> {
         private final Map<Long, Integer> checkedRoles;
 
         /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-        public static final class RoleListItem extends MGRecyclerViewHolder<RolesAdapter, SingleTypePayload<GuildRole>> {
+        public final class RoleListItem extends MGRecyclerViewHolder<RolesAdapter, SingleTypePayload<GuildRole>> {
             private final ViewCheckableRoleListItemThemedBinding binding;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -345,6 +364,10 @@ public final class WidgetCreateChannel extends AppFragment {
             this.checkedRoles = new HashMap();
         }
 
+        public final Map<Long, Integer> getCheckedRoles() {
+            return this.checkedRoles;
+        }
+
         private final void onRoleClicked(boolean checked, int position, long roleId) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(Integer.valueOf(position));
@@ -362,10 +385,6 @@ public final class WidgetCreateChannel extends AppFragment {
             }
         }
 
-        public final Map<Long, Integer> getCheckedRoles() {
-            return this.checkedRoles;
-        }
-
         @Override // com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple
         public void setData(List<SingleTypePayload<GuildRole>> data) {
             C12238m.checkNotNullParameter(data, "data");
@@ -377,25 +396,6 @@ public final class WidgetCreateChannel extends AppFragment {
         public MGRecyclerViewHolder<?, SingleTypePayload<GuildRole>> onCreateViewHolder(ViewGroup parent, int viewType) {
             C12238m.checkNotNullParameter(parent, "parent");
             return new RoleListItem(this);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetCreateChannel$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-    public static final /* synthetic */ class C73711 extends C12236k implements Function1<Model, Unit> {
-        public C73711(WidgetCreateChannel widgetCreateChannel) {
-            super(1, widgetCreateChannel, WidgetCreateChannel.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/WidgetCreateChannel$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetCreateChannel) this.receiver).configureUI(model);
         }
     }
 
@@ -446,7 +446,7 @@ public final class WidgetCreateChannel extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetCreateChannel$configureUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Channel, TrackNetworkMetadataReceiver> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Channel, TrackNetworkMetadataReceiver> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -460,7 +460,7 @@ public final class WidgetCreateChannel extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetCreateChannel$configureUI$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetCreateChannel.kt */
-            public static final /* synthetic */ class AnonymousClass2 extends C12236k implements Function1<Channel, Unit> {
+            public final /* synthetic */ class AnonymousClass2 extends C12236k implements Function1<Channel, Unit> {
                 public AnonymousClass2(WidgetCreateChannel widgetCreateChannel) {
                     super(1, widgetCreateChannel, WidgetCreateChannel.class, "onChannelCreated", "onChannelCreated(Lcom/discord/api/channel/Channel;)V", 0);
                 }
@@ -558,6 +558,11 @@ public final class WidgetCreateChannel extends AppFragment {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     /* JADX WARN: Code duplicated, block: B:10:0x0020  */
     private final List<RestAPIParams.ChannelPermissionOverwrites> getPermissionOverwrites() {
         Map<Long, Integer> checkedRoles;
@@ -625,11 +630,6 @@ public final class WidgetCreateChannel extends AppFragment {
             WidgetCreateChannelAddMember.INSTANCE.create(requireContext(), channel.getId());
         }
         finishActivity();
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
     }
 
     @Override // com.discord.app.AppFragment

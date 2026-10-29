@@ -26,6 +26,10 @@ public final /* data */ class FilterNode extends QueryNode {
         this.text = charSequence;
     }
 
+    public final CharSequence component2() {
+        return getText();
+    }
+
     public static /* synthetic */ FilterNode copy$default(FilterNode filterNode, FilterType filterType, CharSequence charSequence, int i, Object obj) {
         if ((i & 1) != 0) {
             filterType = filterNode.filterType;
@@ -34,15 +38,6 @@ public final /* data */ class FilterNode extends QueryNode {
             charSequence = filterNode.getText();
         }
         return filterNode.copy(filterType, charSequence);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final FilterType getFilterType() {
-        return this.filterType;
-    }
-
-    public final CharSequence component2() {
-        return getText();
     }
 
     public final FilterNode copy(FilterType filterType, CharSequence text) {
@@ -60,6 +55,11 @@ public final /* data */ class FilterNode extends QueryNode {
         }
         FilterNode filterNode = (FilterNode) other;
         return C12238m.areEqual(this.filterType, filterNode.filterType) && C12238m.areEqual(getText(), filterNode.getText());
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final FilterType getFilterType() {
+        return this.filterType;
     }
 
     public final FilterType getFilterType() {
@@ -94,10 +94,7 @@ public final /* data */ class FilterNode extends QueryNode {
         Typeface themedFont = FontUtils.INSTANCE.getThemedFont(renderContext, C5419R.attr.font_primary_bold);
         TypefaceSpanCompat typefaceSpanCompat = themedFont != null ? new TypefaceSpanCompat(themedFont) : null;
         int length = builder.length();
-        StringBuilder sb = new StringBuilder();
-        sb.append(getText());
-        sb.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
-        builder.append((CharSequence) sb.toString());
+        builder.append((CharSequence) ("" + getText() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR));
         builder.setSpan(typefaceSpanCompat, length, builder.length(), 33);
     }
 }

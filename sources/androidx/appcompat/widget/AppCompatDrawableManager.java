@@ -19,10 +19,10 @@ import androidx.core.graphics.ColorUtils;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public final class AppCompatDrawableManager {
     private static final boolean DEBUG = false;
-    private static final PorterDuff.Mode DEFAULT_MODE = PorterDuff.Mode.SRC_IN;
     private static AppCompatDrawableManager INSTANCE = null;
     private static final String TAG = "AppCompatDrawableManag";
     private ResourceManagerInternal mResourceManager;
+    private static final PorterDuff.Mode DEFAULT_MODE = PorterDuff.Mode.SRC_IN;
 
     public static synchronized AppCompatDrawableManager get() {
         if (INSTANCE == null) {
@@ -31,8 +31,24 @@ public final class AppCompatDrawableManager {
         return INSTANCE;
     }
 
+    public synchronized Drawable getDrawable(@NonNull Context context, @DrawableRes int i) {
+        return this.mResourceManager.getDrawable(context, i);
+    }
+
     public static synchronized PorterDuffColorFilter getPorterDuffColorFilter(int i, PorterDuff.Mode mode) {
         return ResourceManagerInternal.getPorterDuffColorFilter(i, mode);
+    }
+
+    public synchronized ColorStateList getTintList(@NonNull Context context, @DrawableRes int i) {
+        return this.mResourceManager.getTintList(context, i);
+    }
+
+    public synchronized void onConfigurationChanged(@NonNull Context context) {
+        this.mResourceManager.onConfigurationChanged(context);
+    }
+
+    public synchronized Drawable onDrawableLoadedFromResources(@NonNull Context context, @NonNull VectorEnabledTintResources vectorEnabledTintResources, @DrawableRes int i) {
+        return this.mResourceManager.onDrawableLoadedFromResources(context, vectorEnabledTintResources, i);
     }
 
     public static synchronized void preload() {
@@ -41,12 +57,12 @@ public final class AppCompatDrawableManager {
             INSTANCE = appCompatDrawableManager;
             appCompatDrawableManager.mResourceManager = ResourceManagerInternal.get();
             INSTANCE.mResourceManager.setHooks(new ResourceManagerInternal.ResourceManagerHooks() { // from class: androidx.appcompat.widget.AppCompatDrawableManager.1
-                private final int[] COLORFILTER_TINT_COLOR_CONTROL_NORMAL = {C0051R.drawable.abc_textfield_search_default_mtrl_alpha, C0051R.drawable.abc_textfield_default_mtrl_alpha, C0051R.drawable.abc_ab_share_pack_mtrl_alpha};
-                private final int[] TINT_COLOR_CONTROL_NORMAL = {C0051R.drawable.abc_ic_commit_search_api_mtrl_alpha, C0051R.drawable.abc_seekbar_tick_mark_material, C0051R.drawable.abc_ic_menu_share_mtrl_alpha, C0051R.drawable.abc_ic_menu_copy_mtrl_am_alpha, C0051R.drawable.abc_ic_menu_cut_mtrl_alpha, C0051R.drawable.abc_ic_menu_selectall_mtrl_alpha, C0051R.drawable.abc_ic_menu_paste_mtrl_am_alpha};
-                private final int[] COLORFILTER_COLOR_CONTROL_ACTIVATED = {C0051R.drawable.abc_textfield_activated_mtrl_alpha, C0051R.drawable.abc_textfield_search_activated_mtrl_alpha, C0051R.drawable.abc_cab_background_top_mtrl_alpha, C0051R.drawable.abc_text_cursor_material, C0051R.drawable.abc_text_select_handle_left_mtrl_dark, C0051R.drawable.abc_text_select_handle_middle_mtrl_dark, C0051R.drawable.abc_text_select_handle_right_mtrl_dark, C0051R.drawable.abc_text_select_handle_left_mtrl_light, C0051R.drawable.abc_text_select_handle_middle_mtrl_light, C0051R.drawable.abc_text_select_handle_right_mtrl_light};
                 private final int[] COLORFILTER_COLOR_BACKGROUND_MULTIPLY = {C0051R.drawable.abc_popup_background_mtrl_mult, C0051R.drawable.abc_cab_background_internal_bg, C0051R.drawable.abc_menu_hardkey_panel_mtrl_mult};
-                private final int[] TINT_COLOR_CONTROL_STATE_LIST = {C0051R.drawable.abc_tab_indicator_material, C0051R.drawable.abc_textfield_search_material};
+                private final int[] COLORFILTER_COLOR_CONTROL_ACTIVATED = {C0051R.drawable.abc_textfield_activated_mtrl_alpha, C0051R.drawable.abc_textfield_search_activated_mtrl_alpha, C0051R.drawable.abc_cab_background_top_mtrl_alpha, C0051R.drawable.abc_text_cursor_material, C0051R.drawable.abc_text_select_handle_left_mtrl_dark, C0051R.drawable.abc_text_select_handle_middle_mtrl_dark, C0051R.drawable.abc_text_select_handle_right_mtrl_dark, C0051R.drawable.abc_text_select_handle_left_mtrl_light, C0051R.drawable.abc_text_select_handle_middle_mtrl_light, C0051R.drawable.abc_text_select_handle_right_mtrl_light};
+                private final int[] COLORFILTER_TINT_COLOR_CONTROL_NORMAL = {C0051R.drawable.abc_textfield_search_default_mtrl_alpha, C0051R.drawable.abc_textfield_default_mtrl_alpha, C0051R.drawable.abc_ab_share_pack_mtrl_alpha};
                 private final int[] TINT_CHECKABLE_BUTTON_LIST = {C0051R.drawable.abc_btn_check_material, C0051R.drawable.abc_btn_radio_material, C0051R.drawable.abc_btn_check_material_anim, C0051R.drawable.abc_btn_radio_material_anim};
+                private final int[] TINT_COLOR_CONTROL_NORMAL = {C0051R.drawable.abc_ic_commit_search_api_mtrl_alpha, C0051R.drawable.abc_seekbar_tick_mark_material, C0051R.drawable.abc_ic_menu_share_mtrl_alpha, C0051R.drawable.abc_ic_menu_copy_mtrl_am_alpha, C0051R.drawable.abc_ic_menu_cut_mtrl_alpha, C0051R.drawable.abc_ic_menu_selectall_mtrl_alpha, C0051R.drawable.abc_ic_menu_paste_mtrl_am_alpha};
+                private final int[] TINT_COLOR_CONTROL_STATE_LIST = {C0051R.drawable.abc_tab_indicator_material, C0051R.drawable.abc_textfield_search_material};
 
                 private boolean arrayContains(int[] iArr, int i) {
                     for (int i2 : iArr) {
@@ -74,6 +90,14 @@ public final class AppCompatDrawableManager {
                     return createButtonColorStateList(context, ThemeUtils.getThemeAttrColor(context, C0051R.attr.colorButtonNormal));
                 }
 
+                @Override // androidx.appcompat.widget.ResourceManagerInternal.ResourceManagerHooks
+                public Drawable createDrawableFor(@NonNull ResourceManagerInternal resourceManagerInternal, @NonNull Context context, int i) {
+                    if (i == C0051R.drawable.abc_cab_background_top_material) {
+                        return new LayerDrawable(new Drawable[]{resourceManagerInternal.getDrawable(context, C0051R.drawable.abc_cab_background_internal_bg), resourceManagerInternal.getDrawable(context, C0051R.drawable.abc_cab_background_top_mtrl_alpha)});
+                    }
+                    return null;
+                }
+
                 private ColorStateList createSwitchThumbColorStateList(Context context) {
                     int[][] iArr = new int[3][];
                     int[] iArr2 = new int[3];
@@ -95,24 +119,6 @@ public final class AppCompatDrawableManager {
                         iArr2[2] = themeAttrColorStateList.getDefaultColor();
                     }
                     return new ColorStateList(iArr, iArr2);
-                }
-
-                private void setPorterDuffColorFilter(Drawable drawable, int i, PorterDuff.Mode mode) {
-                    if (DrawableUtils.canSafelyMutateDrawable(drawable)) {
-                        drawable = drawable.mutate();
-                    }
-                    if (mode == null) {
-                        mode = AppCompatDrawableManager.DEFAULT_MODE;
-                    }
-                    drawable.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(i, mode));
-                }
-
-                @Override // androidx.appcompat.widget.ResourceManagerInternal.ResourceManagerHooks
-                public Drawable createDrawableFor(@NonNull ResourceManagerInternal resourceManagerInternal, @NonNull Context context, int i) {
-                    if (i == C0051R.drawable.abc_cab_background_top_material) {
-                        return new LayerDrawable(new Drawable[]{resourceManagerInternal.getDrawable(context, C0051R.drawable.abc_cab_background_internal_bg), resourceManagerInternal.getDrawable(context, C0051R.drawable.abc_cab_background_top_mtrl_alpha)});
-                    }
-                    return null;
                 }
 
                 @Override // androidx.appcompat.widget.ResourceManagerInternal.ResourceManagerHooks
@@ -159,6 +165,16 @@ public final class AppCompatDrawableManager {
                         return PorterDuff.Mode.MULTIPLY;
                     }
                     return null;
+                }
+
+                private void setPorterDuffColorFilter(Drawable drawable, int i, PorterDuff.Mode mode) {
+                    if (DrawableUtils.canSafelyMutateDrawable(drawable)) {
+                        drawable = drawable.mutate();
+                    }
+                    if (mode == null) {
+                        mode = AppCompatDrawableManager.DEFAULT_MODE;
+                    }
+                    drawable.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(i, mode));
                 }
 
                 @Override // androidx.appcompat.widget.ResourceManagerInternal.ResourceManagerHooks
@@ -244,22 +260,6 @@ public final class AppCompatDrawableManager {
 
     public static void tintDrawable(Drawable drawable, TintInfo tintInfo, int[] iArr) {
         ResourceManagerInternal.tintDrawable(drawable, tintInfo, iArr);
-    }
-
-    public synchronized Drawable getDrawable(@NonNull Context context, @DrawableRes int i) {
-        return this.mResourceManager.getDrawable(context, i);
-    }
-
-    public synchronized ColorStateList getTintList(@NonNull Context context, @DrawableRes int i) {
-        return this.mResourceManager.getTintList(context, i);
-    }
-
-    public synchronized void onConfigurationChanged(@NonNull Context context) {
-        this.mResourceManager.onConfigurationChanged(context);
-    }
-
-    public synchronized Drawable onDrawableLoadedFromResources(@NonNull Context context, @NonNull VectorEnabledTintResources vectorEnabledTintResources, @DrawableRes int i) {
-        return this.mResourceManager.onDrawableLoadedFromResources(context, vectorEnabledTintResources, i);
     }
 
     public boolean tintDrawableUsingColorFilter(@NonNull Context context, @DrawableRes int i, @NonNull Drawable drawable) {

@@ -25,12 +25,6 @@ public final /* data */ class TrackWelcomeCtaClicked implements AnalyticsSchema,
         this.analyticsSchemaTypeName = "welcome_cta_clicked";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -40,6 +34,12 @@ public final /* data */ class TrackWelcomeCtaClicked implements AnalyticsSchema,
         }
         TrackWelcomeCtaClicked trackWelcomeCtaClicked = (TrackWelcomeCtaClicked) other;
         return C12238m.areEqual(this.isReply, trackWelcomeCtaClicked.isReply) && C12238m.areEqual(this.stickerId, trackWelcomeCtaClicked.stickerId) && C12238m.areEqual(this.targetUser, trackWelcomeCtaClicked.targetUser) && C12238m.areEqual(this.sender, trackWelcomeCtaClicked.sender);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

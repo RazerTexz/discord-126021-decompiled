@@ -53,7 +53,7 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$2 */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public static final class C63892 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C63892 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C63892() {
             super(1);
         }
@@ -71,23 +71,9 @@ public final class StoreSearchInput {
         }
     }
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            FilterType.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[FilterType.FROM.ordinal()] = 1;
-            iArr[FilterType.MENTIONS.ordinal()] = 2;
-            iArr[FilterType.IN.ordinal()] = 3;
-            iArr[FilterType.HAS.ordinal()] = 4;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$2 */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public static final /* synthetic */ class C63912 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C63912 extends C12236k implements Function1<Subscription, Unit> {
         public C63912(StoreSearchInput storeSearchInput) {
             super(1, storeSearchInput, StoreSearchInput.class, "handleInputSubscription", "handleInputSubscription(Lrx/Subscription;)V", 0);
         }
@@ -106,7 +92,7 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$3 */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public static final /* synthetic */ class C63923 extends C12236k implements Function1<List<? extends QueryNode>, Unit> {
+    public final /* synthetic */ class C63923 extends C12236k implements Function1<List<? extends QueryNode>, Unit> {
         public C63923(SerializedSubject serializedSubject) {
             super(1, serializedSubject, SerializedSubject.class, "onNext", "onNext(Ljava/lang/Object;)V", 0);
         }
@@ -121,6 +107,20 @@ public final class StoreSearchInput {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends QueryNode> list) {
             ((SerializedSubject) this.receiver).f27653k.onNext((T) list);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FilterType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FilterType.FROM.ordinal()] = 1;
+            iArr[FilterType.MENTIONS.ordinal()] = 2;
+            iArr[FilterType.IN.ordinal()] = 3;
+            iArr[FilterType.HAS.ordinal()] = 4;
         }
     }
 
@@ -158,6 +158,11 @@ public final class StoreSearchInput {
         ObservableExtensionsKt.appSubscribe(observableM11098X, (117 & 1) != 0 ? null : null, "validateSearchInput", (Function1<? super Subscription, Unit>) ((117 & 4) != 0 ? null : null), new C63892(), (Function1<? super Error, Unit>) ((117 & 16) != 0 ? null : null), (Function0<Unit>) ((117 & 32) != 0 ? ObservableExtensionsKt.C68813.INSTANCE : null), (Function0<Unit>) ((117 & 64) != 0 ? ObservableExtensionsKt.C68824.INSTANCE : null));
     }
 
+    public final void clear() {
+        handleInputSubscription(null);
+        this.inputSubject.f27653k.onNext("");
+    }
+
     private final int getAnswerReplacementStart(List<? extends QueryNode> query) {
         if (query.size() <= 1) {
             return 0;
@@ -175,34 +180,20 @@ public final class StoreSearchInput {
         return -1;
     }
 
-    private final synchronized void handleInputSubscription(Subscription subscription) {
-        Subscription subscription2 = this.inputSubscription;
-        if (subscription2 != null) {
-            subscription2.unsubscribe();
-        }
-        this.inputSubscription = subscription;
-    }
-
-    private final void replaceAndPublish(int replacementIndex, List<? extends QueryNode> replacement, List<QueryNode> query) {
-        if (replacementIndex < 0 || replacementIndex > query.size()) {
-            return;
-        }
-        query.subList(replacementIndex, query.size()).clear();
-        query.addAll(replacementIndex, replacement);
-        this.forcedInputSubject.f27650k.onNext(query);
-    }
-
-    public final void clear() {
-        handleInputSubscription(null);
-        this.inputSubject.f27653k.onNext("");
-    }
-
     public final Observable<List<QueryNode>> getCurrentParsedInput() {
         return this.currentParsedInput;
     }
 
     public final Observable<List<QueryNode>> getForcedInput() {
         return this.forcedInput;
+    }
+
+    private final synchronized void handleInputSubscription(Subscription subscription) {
+        Subscription subscription2 = this.inputSubscription;
+        if (subscription2 != null) {
+            subscription2.unsubscribe();
+        }
+        this.inputSubscription = subscription;
     }
 
     public final void init(SearchStringProvider searchStringProvider) {
@@ -283,6 +274,15 @@ public final class StoreSearchInput {
 
     public final void onQueryClicked(List<? extends QueryNode> query) {
         C12238m.checkNotNullParameter(query, "query");
+        this.forcedInputSubject.f27650k.onNext(query);
+    }
+
+    private final void replaceAndPublish(int replacementIndex, List<? extends QueryNode> replacement, List<QueryNode> query) {
+        if (replacementIndex < 0 || replacementIndex > query.size()) {
+            return;
+        }
+        query.subList(replacementIndex, query.size()).clear();
+        query.addAll(replacementIndex, replacement);
         this.forcedInputSubject.f27650k.onNext(query);
     }
 

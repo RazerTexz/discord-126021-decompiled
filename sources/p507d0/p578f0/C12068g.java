@@ -21,21 +21,43 @@ public final class C12068g<T> implements Sequence<T> {
     /* JADX INFO: renamed from: c */
     public final Function1<T, Boolean> f25084c;
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public C12068g(Sequence<? extends T> sequence, boolean z2, Function1<? super T, Boolean> function1) {
+        C12238m.checkNotNullParameter(sequence, "sequence");
+        C12238m.checkNotNullParameter(function1, "predicate");
+        this.f25082a = sequence;
+        this.f25083b = z2;
+        this.f25084c = function1;
+    }
+
+    @Override // kotlin.sequences.Sequence
+    public Iterator<T> iterator() {
+        return new a();
+    }
+
     /* JADX INFO: renamed from: d0.f0.g$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a implements Iterator<T>, InterfaceC12228a {
+    public final class a implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final Iterator<T> f25085j;
 
-        /* JADX INFO: renamed from: k */
-        public int f25086k = -1;
-
         /* JADX INFO: renamed from: l */
         public T f25087l;
 
+        /* JADX INFO: renamed from: k */
+        public int f25086k = -1;
+
         public a() {
             this.f25085j = C12068g.this.f25082a.iterator();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            if (this.f25086k == -1) {
+                m10061a();
+            }
+            return this.f25086k == 1;
         }
 
         /* JADX INFO: renamed from: a */
@@ -49,14 +71,6 @@ public final class C12068g<T> implements Sequence<T> {
                 }
             }
             this.f25086k = 0;
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            if (this.f25086k == -1) {
-                m10061a();
-            }
-            return this.f25086k == 1;
         }
 
         @Override // java.util.Iterator
@@ -77,19 +91,5 @@ public final class C12068g<T> implements Sequence<T> {
         public void remove() {
             throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public C12068g(Sequence<? extends T> sequence, boolean z2, Function1<? super T, Boolean> function1) {
-        C12238m.checkNotNullParameter(sequence, "sequence");
-        C12238m.checkNotNullParameter(function1, "predicate");
-        this.f25082a = sequence;
-        this.f25083b = z2;
-        this.f25084c = function1;
-    }
-
-    @Override // kotlin.sequences.Sequence
-    public Iterator<T> iterator() {
-        return new a();
     }
 }

@@ -13,7 +13,7 @@ public interface InterfaceC2871h1 {
 
     /* JADX INFO: renamed from: b.i.a.c.s2.h1$a */
     /* JADX INFO: compiled from: AnalyticsListener.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final long f7567a;

@@ -23,11 +23,6 @@ public final /* data */ class MemberVerificationItemHeader implements MemberVeri
         return memberVerificationItemHeader.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getTitle() {
-        return this.title;
-    }
-
     public final MemberVerificationItemHeader copy(String title) {
         C12238m.checkNotNullParameter(title, "title");
         return new MemberVerificationItemHeader(title);
@@ -43,6 +38,11 @@ public final /* data */ class MemberVerificationItemHeader implements MemberVeri
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getTitle() {
+        return this.title;
     }
 
     public final String getTitle() {

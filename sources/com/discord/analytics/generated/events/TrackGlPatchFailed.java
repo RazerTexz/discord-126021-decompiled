@@ -15,24 +15,24 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGlPatchFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGlPatchFailed implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver, TrackDispatchPatchReceiver, TrackDispatchStatsReceiver {
+    private final Long errorCode = null;
     private TrackBase trackBase;
     private TrackDispatchBase trackDispatchBase;
     private TrackDispatchPatch trackDispatchPatch;
     private TrackDispatchStats trackDispatchStats;
-    private final Long errorCode = null;
     private final transient String analyticsSchemaTypeName = "gl_patch_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGlPatchFailed) && C12238m.areEqual(this.errorCode, ((TrackGlPatchFailed) other).errorCode);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

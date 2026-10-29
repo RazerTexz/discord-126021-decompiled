@@ -43,13 +43,13 @@ import lombok.javac.ResolutionResetNeeded;
 @HandlerPriority(65536)
 @ResolutionResetNeeded
 public class HandleDelegate extends JavacAnnotationHandler<Delegate> {
-    private static final List<String> METHODS_IN_OBJECT = Collections.unmodifiableList(Arrays.asList("hashCode()", "canEqual(java.lang.Object)", "equals(java.lang.Object)", "wait()", "wait(long)", "wait(long, int)", "notify()", "notifyAll()", "toString()", "getClass()", "clone()", "finalize()"));
+    public static final int HANDLE_DELEGATE_PRIORITY = 65536;
     private static final String LEGALITY_OF_DELEGATE = "@Delegate is legal only on instance fields or no-argument instance methods.";
     private static final String RECURSION_NOT_ALLOWED = "@Delegate does not support recursion (delegating to a type that itself has @Delegate members). Member \"%s\" is @Delegate in type \"%s\"";
-    public static final int HANDLE_DELEGATE_PRIORITY = 65536;
+    private static final List<String> METHODS_IN_OBJECT = Collections.unmodifiableList(Arrays.asList("hashCode()", "canEqual(java.lang.Object)", "equals(java.lang.Object)", "wait()", "wait(long)", "wait(long, int)", "notify()", "notifyAll()", "toString()", "getClass()", "clone()", "finalize()"));
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleDelegate$CantMakeDelegates.SCL.lombok */
-    public static class CantMakeDelegates extends Exception {
+    public class CantMakeDelegates extends Exception {
         Set<String> conflicted;
     }
 
@@ -278,7 +278,7 @@ public class HandleDelegate extends JavacAnnotationHandler<Delegate> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleDelegate$DelegateRecursion.SCL.lombok */
-    private static class DelegateRecursion extends Throwable {
+    class DelegateRecursion extends Throwable {
         final String type;
         final String member;
 
@@ -324,7 +324,7 @@ public class HandleDelegate extends JavacAnnotationHandler<Delegate> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleDelegate$MethodSig.SCL.lombok */
-    public static class MethodSig {
+    public class MethodSig {
         final Name name;
         final ExecutableType type;
         final boolean isDeprecated;
@@ -404,7 +404,7 @@ public class HandleDelegate extends JavacAnnotationHandler<Delegate> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleDelegate$Unannotated.SCL.lombok */
-    private static class Unannotated {
+    class Unannotated {
         private static final Method unannotated;
 
         private Unannotated() {

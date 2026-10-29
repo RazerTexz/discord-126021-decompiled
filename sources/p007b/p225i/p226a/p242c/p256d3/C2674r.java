@@ -64,7 +64,7 @@ public final class C2674r extends FrameLayout implements SubtitleView.InterfaceC
 
     /* JADX INFO: renamed from: b.i.a.c.d3.r$a */
     /* JADX INFO: compiled from: WebViewSubtitleOutput.java */
-    public static /* synthetic */ class a {
+    public /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f6409a;
@@ -121,31 +121,6 @@ public final class C2674r extends FrameLayout implements SubtitleView.InterfaceC
             return i != 2 ? "center" : "end";
         }
         return "start";
-    }
-
-    @Override // com.google.android.exoplayer2.p505ui.SubtitleView.InterfaceC10760a
-    /* JADX INFO: renamed from: a */
-    public void mo2758a(List<C2578b> list, C2667k c2667k, float f, int i, float f2) {
-        this.f6405m = c2667k;
-        this.f6406n = f;
-        this.f6407o = i;
-        this.f6408p = f2;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        for (int i2 = 0; i2 < list.size(); i2++) {
-            C2578b c2578b = list.get(i2);
-            if (c2578b.f5761o != null) {
-                arrayList.add(c2578b);
-            } else {
-                arrayList2.add(c2578b);
-            }
-        }
-        if (!this.f6404l.isEmpty() || !arrayList2.isEmpty()) {
-            this.f6404l = arrayList2;
-            m2769e();
-        }
-        this.f6402j.mo2758a(arrayList, c2667k, f, i, f2);
-        invalidate();
     }
 
     /* JADX INFO: renamed from: d */
@@ -668,6 +643,31 @@ public final class C2674r extends FrameLayout implements SubtitleView.InterfaceC
         sb6.append("</style></head>");
         sb.insert(0, sb6.toString());
         this.f6403k.loadData(Base64.encodeToString(sb.toString().getBytes(C4483c.f11945c), 1), "text/html", "base64");
+    }
+
+    @Override // com.google.android.exoplayer2.p505ui.SubtitleView.InterfaceC10760a
+    /* JADX INFO: renamed from: a */
+    public void mo2758a(List<C2578b> list, C2667k c2667k, float f, int i, float f2) {
+        this.f6405m = c2667k;
+        this.f6406n = f;
+        this.f6407o = i;
+        this.f6408p = f2;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        for (int i2 = 0; i2 < list.size(); i2++) {
+            C2578b c2578b = list.get(i2);
+            if (c2578b.f5761o != null) {
+                arrayList.add(c2578b);
+            } else {
+                arrayList2.add(c2578b);
+            }
+        }
+        if (!this.f6404l.isEmpty() || !arrayList2.isEmpty()) {
+            this.f6404l = arrayList2;
+            m2769e();
+        }
+        this.f6402j.mo2758a(arrayList, c2667k, f, i, f2);
+        invalidate();
     }
 
     @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View

@@ -26,12 +26,6 @@ public class C3279b0 extends AbstractDialogInterfaceOnCancelListenerC3320t0 {
         interfaceC3299j.mo4069a("GmsAvailabilityHelper", this);
     }
 
-    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
-    /* JADX INFO: renamed from: f */
-    public void mo4063f() {
-        this.f9348o.m9125a(new CancellationException("Host activity was destroyed before Google Play services could be made available."));
-    }
-
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractDialogInterfaceOnCancelListenerC3320t0
     /* JADX INFO: renamed from: k */
     public final void mo4061k() {
@@ -56,5 +50,11 @@ public class C3279b0 extends AbstractDialogInterfaceOnCancelListenerC3320t0 {
     public final void mo4062l(ConnectionResult connectionResult, int i) {
         TaskCompletionSource<Void> taskCompletionSource = this.f9348o;
         taskCompletionSource.f20845a.m6025t(C1460d.m540l0(new Status(connectionResult.f20474l, connectionResult.f20476n, connectionResult.f20475m)));
+    }
+
+    @Override // com.google.android.gms.common.api.internal.LifecycleCallback
+    /* JADX INFO: renamed from: f */
+    public void mo4063f() {
+        this.f9348o.m9125a(new CancellationException("Host activity was destroyed before Google Play services could be made available."));
     }
 }

@@ -105,41 +105,6 @@ public final class AutocompleteCommandUtils {
         return autocompleteCommandUtils.appendParam(charSequence, applicationCommandOption, num);
     }
 
-    private final Number asSafeNumberOrNull(Number number) {
-        if (number == null || !INSTANCE.isSafeNumber(number)) {
-            return null;
-        }
-        return number;
-    }
-
-    public static /* synthetic */ InputCommandContext getInputCommandContext$default(AutocompleteCommandUtils autocompleteCommandUtils, CharSequence charSequence, long j, List list, AutocompleteApplicationCommands autocompleteApplicationCommands, ApplicationCommand applicationCommand, int i, Object obj) {
-        if ((i & 16) != 0) {
-            applicationCommand = null;
-        }
-        return autocompleteCommandUtils.getInputCommandContext(charSequence, j, list, autocompleteApplicationCommands, applicationCommand);
-    }
-
-    private final boolean isSafeNumber(Number number) {
-        double dDoubleValue = number.doubleValue();
-        return dDoubleValue >= ((double) (-9007199254740991L)) && dDoubleValue <= ((double) 9007199254740991L);
-    }
-
-    private final Number parseNumber(String str) {
-        if (str == null) {
-            return null;
-        }
-        try {
-            ParsePosition parsePosition = new ParsePosition(0);
-            Number number = NumberFormat.getInstance().parse(str, parsePosition);
-            if (parsePosition.getIndex() != str.length() || parsePosition.getIndex() == 0) {
-                throw new ParseException("Invalid input", parsePosition.getIndex());
-            }
-            return number;
-        } catch (ParseException unused) {
-            return null;
-        }
-    }
-
     /* JADX WARN: Code duplicated, block: B:17:0x004f  */
     @MainThread
     public final InputEditTextAction.InsertText appendParam(CharSequence input, ApplicationCommandOption applicationCommandsOption, Integer insertIndex) {
@@ -179,6 +144,13 @@ public final class AutocompleteCommandUtils {
             }
         }
         return new InputEditTextAction.None(model.getInput());
+    }
+
+    private final Number asSafeNumberOrNull(Number number) {
+        if (number == null || !INSTANCE.isSafeNumber(number)) {
+            return null;
+        }
+        return number;
     }
 
     public final Map<ApplicationCommandOption, OptionRange> findOptionRanges(CharSequence charSequence, ApplicationCommand applicationCommand, Map<ApplicationCommandOption, ? extends Attachment<?>> map) {
@@ -312,6 +284,13 @@ public final class AutocompleteCommandUtils {
             }
         }
         return linkedHashSet;
+    }
+
+    public static /* synthetic */ InputCommandContext getInputCommandContext$default(AutocompleteCommandUtils autocompleteCommandUtils, CharSequence charSequence, long j, List list, AutocompleteApplicationCommands autocompleteApplicationCommands, ApplicationCommand applicationCommand, int i, Object obj) {
+        if ((i & 16) != 0) {
+            applicationCommand = null;
+        }
+        return autocompleteCommandUtils.getInputCommandContext(charSequence, j, list, autocompleteApplicationCommands, applicationCommand);
     }
 
     /* JADX WARN: Code duplicated, block: B:108:0x00b6 A[SYNTHETIC] */
@@ -654,6 +633,11 @@ public final class AutocompleteCommandUtils {
         return null;
     }
 
+    private final boolean isSafeNumber(Number number) {
+        double dDoubleValue = number.doubleValue();
+        return dDoubleValue >= ((double) (-9007199254740991L)) && dDoubleValue <= ((double) 9007199254740991L);
+    }
+
     /* JADX WARN: Code duplicated, block: B:17:0x009c  */
     /* JADX WARN: Code duplicated, block: B:19:0x00a2  */
     /* JADX WARN: Code duplicated, block: B:22:0x00ac  */
@@ -708,6 +692,22 @@ public final class AutocompleteCommandUtils {
             To view this dump add '--comments-level debug' option
         */
         throw new UnsupportedOperationException("Method not decompiled: com.discord.widgets.chat.input.autocomplete.commands.AutocompleteCommandUtils.parseCommandOptions(java.lang.CharSequence, com.discord.models.commands.ApplicationCommand, com.discord.widgets.chat.input.models.ChatInputMentionsMap, java.util.Map):java.util.Map");
+    }
+
+    private final Number parseNumber(String str) {
+        if (str == null) {
+            return null;
+        }
+        try {
+            ParsePosition parsePosition = new ParsePosition(0);
+            Number number = NumberFormat.getInstance().parse(str, parsePosition);
+            if (parsePosition.getIndex() != str.length() || parsePosition.getIndex() == 0) {
+                throw new ParseException("Invalid input", parsePosition.getIndex());
+            }
+            return number;
+        } catch (ParseException unused) {
+            return null;
+        }
     }
 
     public final String transformParameterSpannableString(String str) {

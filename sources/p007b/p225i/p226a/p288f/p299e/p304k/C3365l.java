@@ -22,12 +22,12 @@ import p007b.p225i.p226a.p288f.p299e.p310p.C3411b;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3365l {
 
-    /* JADX INFO: renamed from: a */
-    public static final SimpleArrayMap<String, String> f9534a = new SimpleArrayMap<>();
-
     /* JADX INFO: renamed from: b */
     @Nullable
     public static Locale f9535b;
+
+    /* JADX INFO: renamed from: a */
+    public static final SimpleArrayMap<String, String> f9534a = new SimpleArrayMap<>();
 
     @Nullable
     /* JADX INFO: renamed from: a */

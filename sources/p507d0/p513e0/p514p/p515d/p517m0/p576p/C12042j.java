@@ -33,7 +33,7 @@ public final class C12042j<T> extends AbstractSet<T> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.j$a */
     /* JADX INFO: compiled from: SmartSet.kt */
-    public static final class a<T> implements Iterator<T>, InterfaceC12228a {
+    public final class a<T> implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final Iterator<T> f25006j;
@@ -61,7 +61,7 @@ public final class C12042j<T> extends AbstractSet<T> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.j$b */
     /* JADX INFO: compiled from: SmartSet.kt */
-    public static final class b {
+    public final class b {
         public b(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -79,7 +79,7 @@ public final class C12042j<T> extends AbstractSet<T> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.p.j$c */
     /* JADX INFO: compiled from: SmartSet.kt */
-    public static final class c<T> implements Iterator<T>, InterfaceC12228a {
+    public final class c<T> implements Iterator<T>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final T f25007j;
@@ -112,10 +112,6 @@ public final class C12042j<T> extends AbstractSet<T> {
     }
 
     public C12042j() {
-    }
-
-    public static final <T> C12042j<T> create() {
-        return f25003j.create();
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
@@ -181,6 +177,10 @@ public final class C12042j<T> extends AbstractSet<T> {
         Object obj3 = this.f25004k;
         Objects.requireNonNull(obj3, "null cannot be cast to non-null type kotlin.collections.Set<T of org.jetbrains.kotlin.utils.SmartSet>");
         return ((Set) obj3).contains(obj);
+    }
+
+    public static final <T> C12042j<T> create() {
+        return f25003j.create();
     }
 
     public int getSize() {

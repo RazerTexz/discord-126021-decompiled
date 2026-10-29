@@ -10,8 +10,6 @@ public class VideoEncoderFallback extends WrappedNativeVideoEncoder {
         this.primary = videoEncoder2;
     }
 
-    private static native long nativeCreateEncoder(VideoEncoder videoEncoder, VideoEncoder videoEncoder2);
-
     @Override // org.webrtc.WrappedNativeVideoEncoder, org.webrtc.VideoEncoder
     public long createNativeVideoEncoder() {
         return nativeCreateEncoder(this.fallback, this.primary);
@@ -21,4 +19,6 @@ public class VideoEncoderFallback extends WrappedNativeVideoEncoder {
     public boolean isHardwareEncoder() {
         return this.primary.isHardwareEncoder();
     }
+
+    private static native long nativeCreateEncoder(VideoEncoder videoEncoder, VideoEncoder videoEncoder2);
 }

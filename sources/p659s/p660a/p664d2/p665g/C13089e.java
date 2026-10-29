@@ -30,7 +30,7 @@ public final class C13089e<T> extends AbstractC12187d implements InterfaceC13083
 
     /* JADX INFO: renamed from: s.a.d2.g.e$a */
     /* JADX INFO: compiled from: SafeCollector.kt */
-    public static final class a extends AbstractC12240o implements Function2<Integer, CoroutineContext.Element, Integer> {
+    public final class a extends AbstractC12240o implements Function2<Integer, CoroutineContext.Element, Integer> {
 
         /* JADX INFO: renamed from: j */
         public static final a f27791j = new a();
@@ -51,40 +51,6 @@ public final class C13089e<T> extends AbstractC12187d implements InterfaceC13083
         this.collector = interfaceC13083e;
         this.collectContext = coroutineContext;
         this.collectContextSize = ((Number) coroutineContext.fold(0, a.f27791j)).intValue();
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final Object m11249b(Continuation<? super Unit> continuation, T t) {
-        CoroutineContext context = continuation.getContext();
-        Job job = (Job) context.get(Job.INSTANCE);
-        if (job != null && !job.mo10910a()) {
-            throw job.mo10914q();
-        }
-        CoroutineContext coroutineContext = this.lastEmissionContext;
-        if (coroutineContext != context) {
-            if (coroutineContext instanceof C13087c) {
-                StringBuilder sbM833U = C1643a.m833U("\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception ");
-                sbM833U.append(((C13087c) coroutineContext).f27789k);
-                sbM833U.append(", but then emission attempt of value '");
-                sbM833U.append(t);
-                sbM833U.append("' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ");
-                throw new IllegalStateException(C12096m.trimIndent(sbM833U.toString()).toString());
-            }
-            if (((Number) context.fold(0, new C13091g(this))).intValue() != this.collectContextSize) {
-                StringBuilder sbM836X = C1643a.m836X("Flow invariant is violated:\n", "\t\tFlow was collected in ");
-                sbM836X.append(this.collectContext);
-                sbM836X.append(",\n");
-                sbM836X.append("\t\tbut emission happened in ");
-                sbM836X.append(context);
-                throw new IllegalStateException(C1643a.m822J(sbM836X, ".\n", "\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
-            }
-            this.lastEmissionContext = context;
-        }
-        this.completion = continuation;
-        Function3<InterfaceC13083e<Object>, Object, Continuation<? super Unit>, Object> function3 = C13090f.f27792a;
-        InterfaceC13083e<T> interfaceC13083e = this.collector;
-        Objects.requireNonNull(interfaceC13083e, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
-        return function3.invoke(interfaceC13083e, t, this);
     }
 
     @Override // p659s.p660a.p664d2.InterfaceC13083e
@@ -133,6 +99,40 @@ public final class C13089e<T> extends AbstractC12187d implements InterfaceC13083
             continuation.resumeWith(obj);
         }
         return C12183c.getCOROUTINE_SUSPENDED();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final Object m11249b(Continuation<? super Unit> continuation, T t) {
+        CoroutineContext context = continuation.getContext();
+        Job job = (Job) context.get(Job.INSTANCE);
+        if (job != null && !job.mo10910a()) {
+            throw job.mo10914q();
+        }
+        CoroutineContext coroutineContext = this.lastEmissionContext;
+        if (coroutineContext != context) {
+            if (coroutineContext instanceof C13087c) {
+                StringBuilder sbM833U = C1643a.m833U("\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception ");
+                sbM833U.append(((C13087c) coroutineContext).f27789k);
+                sbM833U.append(", but then emission attempt of value '");
+                sbM833U.append(t);
+                sbM833U.append("' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ");
+                throw new IllegalStateException(C12096m.trimIndent(sbM833U.toString()).toString());
+            }
+            if (((Number) context.fold(0, new C13091g(this))).intValue() != this.collectContextSize) {
+                StringBuilder sbM836X = C1643a.m836X("Flow invariant is violated:\n", "\t\tFlow was collected in ");
+                sbM836X.append(this.collectContext);
+                sbM836X.append(",\n");
+                sbM836X.append("\t\tbut emission happened in ");
+                sbM836X.append(context);
+                throw new IllegalStateException(C1643a.m822J(sbM836X, ".\n", "\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+            }
+            this.lastEmissionContext = context;
+        }
+        this.completion = continuation;
+        Function3<InterfaceC13083e<Object>, Object, Continuation<? super Unit>, Object> function3 = C13090f.f27792a;
+        InterfaceC13083e<T> interfaceC13083e = this.collector;
+        Objects.requireNonNull(interfaceC13083e, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
+        return function3.invoke(interfaceC13083e, t, this);
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12187d, p507d0.p584w.p586i.p587a.AbstractC12184a

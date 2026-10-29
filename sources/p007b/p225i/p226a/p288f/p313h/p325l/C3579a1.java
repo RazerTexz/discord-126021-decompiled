@@ -8,18 +8,18 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3579a1 extends AbstractC3851u4<C3579a1, a> implements InterfaceC3626d6 {
-    private static final C3579a1 zzi;
-    private static volatile InterfaceC3710j6<C3579a1> zzj;
     private int zzc;
-    private InterfaceC3597b5<C3607c1> zzd = C3749m6.f10094k;
-    private String zze = "";
     private long zzf;
     private long zzg;
     private int zzh;
+    private static final C3579a1 zzi;
+    private static volatile InterfaceC3710j6<C3579a1> zzj;
+    private InterfaceC3597b5<C3607c1> zzd = C3749m6.f10094k;
+    private String zze = "";
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.a1$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3579a1, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3579a1, a> implements InterfaceC3626d6 {
         public a() {
             super(C3579a1.zzi);
         }
@@ -223,6 +223,16 @@ public final class C3579a1 extends AbstractC3851u4<C3579a1, a> implements Interf
         this.zzd = AbstractC3851u4.m5310n(interfaceC3597b5);
     }
 
+    /* JADX INFO: renamed from: u */
+    public final C3607c1 m4542u(int i) {
+        return this.zzd.get(i);
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final List<C3607c1> m4543v() {
+        return this.zzd;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
     /* JADX INFO: renamed from: p */
     public final Object mo4541p(int i, Object obj, Object obj2) {
@@ -255,15 +265,5 @@ public final class C3579a1 extends AbstractC3851u4<C3579a1, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final C3607c1 m4542u(int i) {
-        return this.zzd.get(i);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final List<C3607c1> m4543v() {
-        return this.zzd;
     }
 }

@@ -11,7 +11,6 @@ import p007b.p225i.p361c.p391o.p392b.C4768a;
 /* JADX INFO: compiled from: com.google.firebase:firebase-dynamic-links@@19.1.1 */
 /* JADX INFO: loaded from: classes3.dex */
 public class DynamicLinkData extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<DynamicLinkData> CREATOR = new C4768a();
 
     /* JADX INFO: renamed from: j */
     public String f21422j;
@@ -30,6 +29,7 @@ public class DynamicLinkData extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: o */
     public Uri f21427o;
+    public static final Parcelable.Creator<DynamicLinkData> CREATOR = new C4768a();
 
     public DynamicLinkData(String str, String str2, int i, long j, Bundle bundle, Uri uri) {
         this.f21425m = 0L;

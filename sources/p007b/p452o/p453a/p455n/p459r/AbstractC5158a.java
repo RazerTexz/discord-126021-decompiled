@@ -14,9 +14,6 @@ import p007b.p452o.p453a.p455n.p456o.InterfaceC5143c;
 @RequiresApi(21)
 public abstract class AbstractC5158a extends AbstractC5145e {
 
-    /* JADX INFO: renamed from: e */
-    public static final C5103b f13965e = new C5103b(AbstractC5158a.class.getSimpleName());
-
     /* JADX INFO: renamed from: f */
     public final List<MeteringRectangle> f13966f;
 
@@ -25,6 +22,9 @@ public abstract class AbstractC5158a extends AbstractC5145e {
 
     /* JADX INFO: renamed from: h */
     public boolean f13968h;
+
+    /* JADX INFO: renamed from: e */
+    public static final C5103b f13965e = new C5103b(AbstractC5158a.class.getSimpleName());
 
     public AbstractC5158a(@NonNull List<MeteringRectangle> list, boolean z2) {
         this.f13966f = list;

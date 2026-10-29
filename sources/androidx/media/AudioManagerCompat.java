@@ -17,7 +17,7 @@ public final class AudioManagerCompat {
     private static final String TAG = "AudioManCompat";
 
     @RequiresApi(26)
-    public static class Api26Impl {
+    public class Api26Impl {
         private Api26Impl() {
         }
 
@@ -33,7 +33,7 @@ public final class AudioManagerCompat {
     }
 
     @RequiresApi(28)
-    public static class Api28Impl {
+    public class Api28Impl {
         private Api28Impl() {
         }
 

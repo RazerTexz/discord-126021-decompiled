@@ -18,7 +18,6 @@ import com.google.android.material.C10817R;
 /* JADX INFO: loaded from: classes3.dex */
 @Deprecated
 public class ShadowDrawableWrapper extends DrawableWrapper {
-    public static final double COS_45 = Math.cos(Math.toRadians(45.0d));
     public static final float SHADOW_BOTTOM_SCALE = 1.0f;
     public static final float SHADOW_HORIZ_SCALE = 0.5f;
     public static final float SHADOW_MULTIPLIER = 1.5f;
@@ -45,6 +44,7 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
     private final int shadowMiddleColor;
     public float shadowSize;
     private final int shadowStartColor;
+    public static final double COS_45 = Math.cos(Math.toRadians(45.0d));
 
     public ShadowDrawableWrapper(Context context, Drawable drawable, float f, float f2, float f3) {
         super(drawable);
@@ -116,6 +116,16 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         return (float) (((1.0d - COS_45) * ((double) f2)) + ((double) (f * 1.5f)));
     }
 
+    @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
+    public void draw(@NonNull Canvas canvas) {
+        if (this.dirty) {
+            buildComponents(getBounds());
+            this.dirty = false;
+        }
+        drawShadow(canvas);
+        super.draw(canvas);
+    }
+
     private void drawShadow(@NonNull Canvas canvas) {
         int iSave = canvas.save();
         canvas.rotate(this.rotation, this.contentBounds.centerX(), this.contentBounds.centerY());
@@ -172,21 +182,6 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         }
         canvas.restoreToCount(iSave5);
         canvas.restoreToCount(iSave);
-    }
-
-    private static int toEven(float f) {
-        int iRound = Math.round(f);
-        return iRound % 2 == 1 ? iRound - 1 : iRound;
-    }
-
-    @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-    public void draw(@NonNull Canvas canvas) {
-        if (this.dirty) {
-            buildComponents(getBounds());
-            this.dirty = false;
-        }
-        drawShadow(canvas);
-        super.draw(canvas);
     }
 
     public float getCornerRadius() {
@@ -283,6 +278,11 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         this.maxShadowSize = even2;
         this.dirty = true;
         invalidateSelf();
+    }
+
+    private static int toEven(float f) {
+        int iRound = Math.round(f);
+        return iRound % 2 == 1 ? iRound - 1 : iRound;
     }
 
     public void setShadowSize(float f) {

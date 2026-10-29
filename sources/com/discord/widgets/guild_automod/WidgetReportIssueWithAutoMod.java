@@ -50,27 +50,9 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long channelId, long messageId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_MESSAGE_ID", messageId);
-            C0870j.m156d(context, WidgetReportIssueWithAutoMod.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod$onResume$1 */
     /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
-    public static final class C84181 extends AbstractC12240o implements Function1<ReportIssueWithAutoModViewModel.ViewState, Unit> {
+    public final class C84181 extends AbstractC12240o implements Function1<ReportIssueWithAutoModViewModel.ViewState, Unit> {
         public C84181() {
             super(1);
         }
@@ -85,6 +67,24 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
         public final void invoke2(ReportIssueWithAutoModViewModel.ViewState viewState) {
             C12238m.checkNotNullParameter(viewState, "viewState");
             WidgetReportIssueWithAutoMod.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long channelId, long messageId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            intent.putExtra("com.discord.intent.extra.EXTRA_MESSAGE_ID", messageId);
+            C0870j.m156d(context, WidgetReportIssueWithAutoMod.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -108,22 +108,6 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
         });
     }
 
-    private final WidgetReportIssueWithAutomodBinding getBinding() {
-        return (WidgetReportIssueWithAutomodBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final long getChannelId() {
-        return ((Number) this.channelId.getValue()).longValue();
-    }
-
-    private final long getMessageId() {
-        return ((Number) this.messageId.getValue()).longValue();
-    }
-
-    private final ReportIssueWithAutoModViewModel getViewModel() {
-        return (ReportIssueWithAutoModViewModel) this.viewModel.getValue();
-    }
-
     public final void configureUI(ReportIssueWithAutoModViewModel.ViewState viewState) {
         C12238m.checkNotNullParameter(viewState, "viewState");
         getBinding().f17412b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod.configureUI.1
@@ -139,7 +123,7 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod$configureUI$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -173,6 +157,22 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
             C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.option2");
             configureOption(valid, checkedSetting2, FeedbackType.BUG);
         }
+    }
+
+    private final WidgetReportIssueWithAutomodBinding getBinding() {
+        return (WidgetReportIssueWithAutomodBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    private final long getChannelId() {
+        return ((Number) this.channelId.getValue()).longValue();
+    }
+
+    private final long getMessageId() {
+        return ((Number) this.messageId.getValue()).longValue();
+    }
+
+    private final ReportIssueWithAutoModViewModel getViewModel() {
+        return (ReportIssueWithAutoModViewModel) this.viewModel.getValue();
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment

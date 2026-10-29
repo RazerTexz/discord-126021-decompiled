@@ -358,6 +358,191 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         this.f13771d0 = C5156a.m7346a();
     }
 
+    /* JADX INFO: renamed from: b1 */
+    public final void m7204b1(@NonNull Camera.Parameters parameters) {
+        parameters.setRecordingHint(this.f13882Q == EnumC5122i.VIDEO);
+        m7206c1(parameters);
+        m7209e1(parameters, EnumC5119f.OFF);
+        m7213g1(parameters);
+        m7216j1(parameters, EnumC5126m.AUTO);
+        m7211f1(parameters, EnumC5121h.OFF);
+        m7218k1(parameters, 0.0f);
+        m7208d1(parameters, 0.0f);
+        m7214h1(this.f13871F);
+        m7215i1(parameters, 0.0f);
+    }
+
+    /* JADX INFO: renamed from: c1 */
+    public final void m7206c1(@NonNull Camera.Parameters parameters) {
+        List<String> supportedFocusModes = parameters.getSupportedFocusModes();
+        if (this.f13882Q == EnumC5122i.VIDEO && supportedFocusModes.contains("continuous-video")) {
+            parameters.setFocusMode("continuous-video");
+            return;
+        }
+        if (supportedFocusModes.contains("continuous-picture")) {
+            parameters.setFocusMode("continuous-picture");
+        } else if (supportedFocusModes.contains("infinity")) {
+            parameters.setFocusMode("infinity");
+        } else if (supportedFocusModes.contains("fixed")) {
+            parameters.setFocusMode("fixed");
+        }
+    }
+
+    /* JADX INFO: renamed from: d1 */
+    public final boolean m7208d1(@NonNull Camera.Parameters parameters, float f2) {
+        AbstractC5104c abstractC5104c = this.f13896p;
+        if (!abstractC5104c.f13693l) {
+            this.f13870E = f2;
+            return false;
+        }
+        float f3 = abstractC5104c.f13695n;
+        float f4 = abstractC5104c.f13694m;
+        float f5 = this.f13870E;
+        if (f5 < f4) {
+            f3 = f4;
+        } else if (f5 <= f3) {
+            f3 = f5;
+        }
+        this.f13870E = f3;
+        parameters.setExposureCompensation((int) (f3 / parameters.getExposureCompensationStep()));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: e1 */
+    public final boolean m7209e1(@NonNull Camera.Parameters parameters, @NonNull EnumC5119f enumC5119f) {
+        if (!this.f13896p.m7163c(this.f13903w)) {
+            this.f13903w = enumC5119f;
+            return false;
+        }
+        C5156a c5156a = this.f13771d0;
+        EnumC5119f enumC5119f2 = this.f13903w;
+        Objects.requireNonNull(c5156a);
+        parameters.setFlashMode(C5156a.f13957b.get(enumC5119f2));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: f1 */
+    public final boolean m7211f1(@NonNull Camera.Parameters parameters, @NonNull EnumC5121h enumC5121h) {
+        if (!this.f13896p.m7163c(this.f13866A)) {
+            this.f13866A = enumC5121h;
+            return false;
+        }
+        C5156a c5156a = this.f13771d0;
+        EnumC5121h enumC5121h2 = this.f13866A;
+        Objects.requireNonNull(c5156a);
+        parameters.setSceneMode(C5156a.f13960e.get(enumC5121h2));
+        return true;
+    }
+
+    /* JADX INFO: renamed from: g1 */
+    public final boolean m7213g1(@NonNull Camera.Parameters parameters) {
+        Location location = this.f13868C;
+        if (location == null) {
+            return true;
+        }
+        parameters.setGpsLatitude(location.getLatitude());
+        parameters.setGpsLongitude(this.f13868C.getLongitude());
+        parameters.setGpsAltitude(this.f13868C.getAltitude());
+        parameters.setGpsTimestamp(this.f13868C.getTime());
+        parameters.setGpsProcessingMethod(this.f13868C.getProvider());
+        return true;
+    }
+
+    @TargetApi(17)
+    /* JADX INFO: renamed from: h1 */
+    public final boolean m7214h1(boolean z2) {
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        Camera.getCameraInfo(this.f13773f0, cameraInfo);
+        if (cameraInfo.canDisableShutterSound) {
+            try {
+                return this.f13772e0.enableShutterSound(this.f13871F);
+            } catch (RuntimeException unused) {
+                return false;
+            }
+        }
+        if (this.f13871F) {
+            return true;
+        }
+        this.f13871F = z2;
+        return false;
+    }
+
+    /* JADX INFO: renamed from: i1 */
+    public final boolean m7215i1(@NonNull Camera.Parameters parameters, float f2) {
+        List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
+        if (!this.f13875J || this.f13874I == 0.0f) {
+            Collections.sort(supportedPreviewFpsRange, new C5127a(this));
+        } else {
+            Collections.sort(supportedPreviewFpsRange, new C5129c(this));
+        }
+        float f3 = this.f13874I;
+        if (f3 == 0.0f) {
+            for (int[] iArr : supportedPreviewFpsRange) {
+                float f4 = iArr[0] / 1000.0f;
+                float f5 = iArr[1] / 1000.0f;
+                if ((f4 <= 30.0f && 30.0f <= f5) || (f4 <= 24.0f && 24.0f <= f5)) {
+                    parameters.setPreviewFpsRange(iArr[0], iArr[1]);
+                    return true;
+                }
+            }
+        } else {
+            float fMin = Math.min(f3, this.f13896p.f13698q);
+            this.f13874I = fMin;
+            this.f13874I = Math.max(fMin, this.f13896p.f13697p);
+            for (int[] iArr2 : supportedPreviewFpsRange) {
+                float f6 = iArr2[0] / 1000.0f;
+                float f7 = iArr2[1] / 1000.0f;
+                float fRound = Math.round(this.f13874I);
+                if (f6 <= fRound && fRound <= f7) {
+                    parameters.setPreviewFpsRange(iArr2[0], iArr2[1]);
+                    return true;
+                }
+            }
+        }
+        this.f13874I = f2;
+        return false;
+    }
+
+    /* JADX INFO: renamed from: j1 */
+    public final boolean m7216j1(@NonNull Camera.Parameters parameters, @NonNull EnumC5126m enumC5126m) {
+        if (!this.f13896p.m7163c(this.f13904x)) {
+            this.f13904x = enumC5126m;
+            return false;
+        }
+        C5156a c5156a = this.f13771d0;
+        EnumC5126m enumC5126m2 = this.f13904x;
+        Objects.requireNonNull(c5156a);
+        parameters.setWhiteBalance(C5156a.f13958c.get(enumC5126m2));
+        parameters.remove("auto-whitebalance-lock");
+        return true;
+    }
+
+    /* JADX INFO: renamed from: k1 */
+    public final boolean m7218k1(@NonNull Camera.Parameters parameters, float f2) {
+        if (!this.f13896p.f13692k) {
+            this.f13869D = f2;
+            return false;
+        }
+        parameters.setZoom((int) (this.f13869D * parameters.getMaxZoom()));
+        this.f13772e0.setParameters(parameters);
+        return true;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: l1 */
+    public C5188a m7220l1() {
+        return (C5188a) m7273S0();
+    }
+
+    /* JADX INFO: renamed from: m1 */
+    public void m7222m1(@NonNull byte[] bArr) {
+        EnumC5178e enumC5178e = this.f13922n.f14028f;
+        EnumC5178e enumC5178e2 = EnumC5178e.ENGINE;
+        if (enumC5178e.m7367f(enumC5178e2) && this.f13922n.f14029g.m7367f(enumC5178e2)) {
+            this.f13772e0.addCallbackBuffer(bArr);
+        }
+    }
+
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: F0 */
     public void mo7190F0(@NonNull EnumC5126m enumC5126m) {
@@ -637,20 +822,6 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         c5103b.m7159a(1, "onTakePictureSnapshot:", "executed.");
     }
 
-    /* JADX INFO: renamed from: b1 */
-    public final void m7204b1(@NonNull Camera.Parameters parameters) {
-        parameters.setRecordingHint(this.f13882Q == EnumC5122i.VIDEO);
-        m7206c1(parameters);
-        m7209e1(parameters, EnumC5119f.OFF);
-        m7213g1(parameters);
-        m7216j1(parameters, EnumC5126m.AUTO);
-        m7211f1(parameters, EnumC5121h.OFF);
-        m7218k1(parameters, 0.0f);
-        m7208d1(parameters, 0.0f);
-        m7214h1(this.f13871F);
-        m7215i1(parameters, 0.0f);
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: c */
     public boolean mo7205c(@NonNull EnumC5118e enumC5118e) {
@@ -670,22 +841,6 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         return false;
     }
 
-    /* JADX INFO: renamed from: c1 */
-    public final void m7206c1(@NonNull Camera.Parameters parameters) {
-        List<String> supportedFocusModes = parameters.getSupportedFocusModes();
-        if (this.f13882Q == EnumC5122i.VIDEO && supportedFocusModes.contains("continuous-video")) {
-            parameters.setFocusMode("continuous-video");
-            return;
-        }
-        if (supportedFocusModes.contains("continuous-picture")) {
-            parameters.setFocusMode("continuous-picture");
-        } else if (supportedFocusModes.contains("infinity")) {
-            parameters.setFocusMode("infinity");
-        } else if (supportedFocusModes.contains("fixed")) {
-            parameters.setFocusMode("fixed");
-        }
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: d0 */
     public void mo7207d0(float f2, @NonNull float[] fArr, @Nullable PointF[] pointFArr, boolean z2) {
@@ -694,39 +849,6 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         this.f13922n.m7366e("exposure correction", 20);
         C5179f c5179f = this.f13922n;
         c5179f.m7363b("exposure correction", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new g(f3, z2, fArr, pointFArr)));
-    }
-
-    /* JADX INFO: renamed from: d1 */
-    public final boolean m7208d1(@NonNull Camera.Parameters parameters, float f2) {
-        AbstractC5104c abstractC5104c = this.f13896p;
-        if (!abstractC5104c.f13693l) {
-            this.f13870E = f2;
-            return false;
-        }
-        float f3 = abstractC5104c.f13695n;
-        float f4 = abstractC5104c.f13694m;
-        float f5 = this.f13870E;
-        if (f5 < f4) {
-            f3 = f4;
-        } else if (f5 <= f3) {
-            f3 = f5;
-        }
-        this.f13870E = f3;
-        parameters.setExposureCompensation((int) (f3 / parameters.getExposureCompensationStep()));
-        return true;
-    }
-
-    /* JADX INFO: renamed from: e1 */
-    public final boolean m7209e1(@NonNull Camera.Parameters parameters, @NonNull EnumC5119f enumC5119f) {
-        if (!this.f13896p.m7163c(this.f13903w)) {
-            this.f13903w = enumC5119f;
-            return false;
-        }
-        C5156a c5156a = this.f13771d0;
-        EnumC5119f enumC5119f2 = this.f13903w;
-        Objects.requireNonNull(c5156a);
-        parameters.setFlashMode(C5156a.f13957b.get(enumC5119f2));
-        return true;
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
@@ -738,123 +860,16 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         c5179f.m7363b("flash (" + enumC5119f + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new b(enumC5119f2)));
     }
 
-    /* JADX INFO: renamed from: f1 */
-    public final boolean m7211f1(@NonNull Camera.Parameters parameters, @NonNull EnumC5121h enumC5121h) {
-        if (!this.f13896p.m7163c(this.f13866A)) {
-            this.f13866A = enumC5121h;
-            return false;
-        }
-        C5156a c5156a = this.f13771d0;
-        EnumC5121h enumC5121h2 = this.f13866A;
-        Objects.requireNonNull(c5156a);
-        parameters.setSceneMode(C5156a.f13960e.get(enumC5121h2));
-        return true;
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: g0 */
     public void mo7212g0(int i2) {
         this.f13901u = 17;
     }
 
-    /* JADX INFO: renamed from: g1 */
-    public final boolean m7213g1(@NonNull Camera.Parameters parameters) {
-        Location location = this.f13868C;
-        if (location == null) {
-            return true;
-        }
-        parameters.setGpsLatitude(location.getLatitude());
-        parameters.setGpsLongitude(this.f13868C.getLongitude());
-        parameters.setGpsAltitude(this.f13868C.getAltitude());
-        parameters.setGpsTimestamp(this.f13868C.getTime());
-        parameters.setGpsProcessingMethod(this.f13868C.getProvider());
-        return true;
-    }
-
-    @TargetApi(17)
-    /* JADX INFO: renamed from: h1 */
-    public final boolean m7214h1(boolean z2) {
-        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-        Camera.getCameraInfo(this.f13773f0, cameraInfo);
-        if (cameraInfo.canDisableShutterSound) {
-            try {
-                return this.f13772e0.enableShutterSound(this.f13871F);
-            } catch (RuntimeException unused) {
-                return false;
-            }
-        }
-        if (this.f13871F) {
-            return true;
-        }
-        this.f13871F = z2;
-        return false;
-    }
-
-    /* JADX INFO: renamed from: i1 */
-    public final boolean m7215i1(@NonNull Camera.Parameters parameters, float f2) {
-        List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
-        if (!this.f13875J || this.f13874I == 0.0f) {
-            Collections.sort(supportedPreviewFpsRange, new C5127a(this));
-        } else {
-            Collections.sort(supportedPreviewFpsRange, new C5129c(this));
-        }
-        float f3 = this.f13874I;
-        if (f3 == 0.0f) {
-            for (int[] iArr : supportedPreviewFpsRange) {
-                float f4 = iArr[0] / 1000.0f;
-                float f5 = iArr[1] / 1000.0f;
-                if ((f4 <= 30.0f && 30.0f <= f5) || (f4 <= 24.0f && 24.0f <= f5)) {
-                    parameters.setPreviewFpsRange(iArr[0], iArr[1]);
-                    return true;
-                }
-            }
-        } else {
-            float fMin = Math.min(f3, this.f13896p.f13698q);
-            this.f13874I = fMin;
-            this.f13874I = Math.max(fMin, this.f13896p.f13697p);
-            for (int[] iArr2 : supportedPreviewFpsRange) {
-                float f6 = iArr2[0] / 1000.0f;
-                float f7 = iArr2[1] / 1000.0f;
-                float fRound = Math.round(this.f13874I);
-                if (f6 <= fRound && fRound <= f7) {
-                    parameters.setPreviewFpsRange(iArr2[0], iArr2[1]);
-                    return true;
-                }
-            }
-        }
-        this.f13874I = f2;
-        return false;
-    }
-
-    /* JADX INFO: renamed from: j1 */
-    public final boolean m7216j1(@NonNull Camera.Parameters parameters, @NonNull EnumC5126m enumC5126m) {
-        if (!this.f13896p.m7163c(this.f13904x)) {
-            this.f13904x = enumC5126m;
-            return false;
-        }
-        C5156a c5156a = this.f13771d0;
-        EnumC5126m enumC5126m2 = this.f13904x;
-        Objects.requireNonNull(c5156a);
-        parameters.setWhiteBalance(C5156a.f13958c.get(enumC5126m2));
-        parameters.remove("auto-whitebalance-lock");
-        return true;
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: k0 */
     public void mo7217k0(boolean z2) {
         this.f13902v = z2;
-    }
-
-    /* JADX INFO: renamed from: k1 */
-    public final boolean m7218k1(@NonNull Camera.Parameters parameters, float f2) {
-        if (!this.f13896p.f13692k) {
-            this.f13869D = f2;
-            return false;
-        }
-        parameters.setZoom((int) (this.f13869D * parameters.getMaxZoom()));
-        this.f13772e0.setParameters(parameters);
-        return true;
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
@@ -866,12 +881,6 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         c5179f.m7363b("hdr (" + enumC5121h + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new e(enumC5121h2)));
     }
 
-    @NonNull
-    /* JADX INFO: renamed from: l1 */
-    public C5188a m7220l1() {
-        return (C5188a) m7273S0();
-    }
-
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
     /* JADX INFO: renamed from: m0 */
     public void mo7221m0(@Nullable Location location) {
@@ -879,29 +888,6 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         this.f13868C = location;
         C5179f c5179f = this.f13922n;
         c5179f.m7363b(ModelAuditLogEntry.CHANGE_KEY_LOCATION, true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new c(location2)));
-    }
-
-    /* JADX INFO: renamed from: m1 */
-    public void m7222m1(@NonNull byte[] bArr) {
-        EnumC5178e enumC5178e = this.f13922n.f14028f;
-        EnumC5178e enumC5178e2 = EnumC5178e.ENGINE;
-        if (enumC5178e.m7367f(enumC5178e2) && this.f13922n.f14029g.m7367f(enumC5178e2)) {
-            this.f13772e0.addCallbackBuffer(bArr);
-        }
-    }
-
-    @Override // android.hardware.Camera.ErrorCallback
-    public void onError(int i2, Camera camera) {
-        throw new CameraException(new RuntimeException(AbstractC5135i.f13918j.m7159a(3, "Internal Camera1 error.", Integer.valueOf(i2))), (i2 == 1 || i2 == 2 || i2 == 100) ? 3 : 0);
-    }
-
-    @Override // android.hardware.Camera.PreviewCallback
-    public void onPreviewFrame(byte[] bArr, Camera camera) {
-        C5189b c5189bM7385a;
-        if (bArr == null || (c5189bM7385a = m7220l1().m7385a(bArr, System.currentTimeMillis())) == null) {
-            return;
-        }
-        ((CameraView.C11195b) this.f13921m).m9312b(c5189bM7385a);
     }
 
     @Override // p007b.p452o.p453a.p455n.AbstractC5135i
@@ -929,5 +915,19 @@ public class C5128b extends AbstractC5133g implements Camera.PreviewCallback, Ca
         this.f13874I = f2;
         C5179f c5179f = this.f13922n;
         c5179f.m7363b("preview fps (" + f2 + ")", true, new RunnableC5181h(c5179f, EnumC5178e.ENGINE, new i(f2)));
+    }
+
+    @Override // android.hardware.Camera.ErrorCallback
+    public void onError(int i2, Camera camera) {
+        throw new CameraException(new RuntimeException(AbstractC5135i.f13918j.m7159a(3, "Internal Camera1 error.", Integer.valueOf(i2))), (i2 == 1 || i2 == 2 || i2 == 100) ? 3 : 0);
+    }
+
+    @Override // android.hardware.Camera.PreviewCallback
+    public void onPreviewFrame(byte[] bArr, Camera camera) {
+        C5189b c5189bM7385a;
+        if (bArr == null || (c5189bM7385a = m7220l1().m7385a(bArr, System.currentTimeMillis())) == null) {
+            return;
+        }
+        ((CameraView.C11195b) this.f13921m).m9312b(c5189bM7385a);
     }
 }

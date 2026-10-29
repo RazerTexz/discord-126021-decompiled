@@ -50,55 +50,6 @@ public class Layer extends ConstraintHelper {
         this.mShiftY = 0.0f;
     }
 
-    private void reCacheViews() {
-        int i;
-        if (this.mContainer == null || (i = this.mCount) == 0) {
-            return;
-        }
-        View[] viewArr = this.mViews;
-        if (viewArr == null || viewArr.length != i) {
-            this.mViews = new View[i];
-        }
-        for (int i2 = 0; i2 < this.mCount; i2++) {
-            this.mViews[i2] = this.mContainer.getViewById(this.mIds[i2]);
-        }
-    }
-
-    private void transform() {
-        if (this.mContainer == null) {
-            return;
-        }
-        if (this.mViews == null) {
-            reCacheViews();
-        }
-        calcCenters();
-        double radians = Float.isNaN(this.mGroupRotateAngle) ? 0.0d : Math.toRadians(this.mGroupRotateAngle);
-        float fSin = (float) Math.sin(radians);
-        float fCos = (float) Math.cos(radians);
-        float f = this.mScaleX;
-        float f2 = f * fCos;
-        float f3 = this.mScaleY;
-        float f4 = (-f3) * fSin;
-        float f5 = f * fSin;
-        float f6 = f3 * fCos;
-        for (int i = 0; i < this.mCount; i++) {
-            View view = this.mViews[i];
-            int right = (view.getRight() + view.getLeft()) / 2;
-            int bottom = (view.getBottom() + view.getTop()) / 2;
-            float f7 = right - this.mComputedCenterX;
-            float f8 = bottom - this.mComputedCenterY;
-            float f9 = (((f4 * f8) + (f2 * f7)) - f7) + this.mShiftX;
-            float f10 = (((f6 * f8) + (f7 * f5)) - f8) + this.mShiftY;
-            view.setTranslationX(f9);
-            view.setTranslationY(f10);
-            view.setScaleY(this.mScaleY);
-            view.setScaleX(this.mScaleX);
-            if (!Float.isNaN(this.mGroupRotateAngle)) {
-                view.setRotation(this.mGroupRotateAngle);
-            }
-        }
-    }
-
     public void calcCenters() {
         if (this.mContainer == null) {
             return;
@@ -178,6 +129,20 @@ public class Layer extends ConstraintHelper {
         }
     }
 
+    private void reCacheViews() {
+        int i;
+        if (this.mContainer == null || (i = this.mCount) == 0) {
+            return;
+        }
+        View[] viewArr = this.mViews;
+        if (viewArr == null || viewArr.length != i) {
+            this.mViews = new View[i];
+        }
+        for (int i2 = 0; i2 < this.mCount; i2++) {
+            this.mViews[i2] = this.mContainer.getViewById(this.mIds[i2]);
+        }
+    }
+
     @Override // android.view.View
     public void setElevation(float f) {
         super.setElevation(f);
@@ -230,6 +195,41 @@ public class Layer extends ConstraintHelper {
     public void setVisibility(int i) {
         super.setVisibility(i);
         applyLayoutFeatures();
+    }
+
+    private void transform() {
+        if (this.mContainer == null) {
+            return;
+        }
+        if (this.mViews == null) {
+            reCacheViews();
+        }
+        calcCenters();
+        double radians = Float.isNaN(this.mGroupRotateAngle) ? 0.0d : Math.toRadians(this.mGroupRotateAngle);
+        float fSin = (float) Math.sin(radians);
+        float fCos = (float) Math.cos(radians);
+        float f = this.mScaleX;
+        float f2 = f * fCos;
+        float f3 = this.mScaleY;
+        float f4 = (-f3) * fSin;
+        float f5 = f * fSin;
+        float f6 = f3 * fCos;
+        for (int i = 0; i < this.mCount; i++) {
+            View view = this.mViews[i];
+            int right = (view.getRight() + view.getLeft()) / 2;
+            int bottom = (view.getBottom() + view.getTop()) / 2;
+            float f7 = right - this.mComputedCenterX;
+            float f8 = bottom - this.mComputedCenterY;
+            float f9 = (((f4 * f8) + (f2 * f7)) - f7) + this.mShiftX;
+            float f10 = (((f6 * f8) + (f7 * f5)) - f8) + this.mShiftY;
+            view.setTranslationX(f9);
+            view.setTranslationY(f10);
+            view.setScaleY(this.mScaleY);
+            view.setScaleX(this.mScaleX);
+            if (!Float.isNaN(this.mGroupRotateAngle)) {
+                view.setRotation(this.mGroupRotateAngle);
+            }
+        }
     }
 
     @Override // androidx.constraintlayout.widget.ConstraintHelper

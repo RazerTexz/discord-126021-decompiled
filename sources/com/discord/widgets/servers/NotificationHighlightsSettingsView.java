@@ -25,7 +25,7 @@ public final class NotificationHighlightsSettingsView extends LinearLayout {
     private final NotificationHighlightsSettingsViewBinding binding;
 
     /* JADX INFO: compiled from: NotificationHighlightsSettingsView.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean isMuted;
         private final int notifyHighlights;
         private final boolean serverTooLarge;
@@ -49,21 +49,6 @@ public final class NotificationHighlightsSettingsView extends LinearLayout {
             return viewState.copy(z2, i, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsMuted() {
-            return this.isMuted;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getNotifyHighlights() {
-            return this.notifyHighlights;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getServerTooLarge() {
-            return this.serverTooLarge;
-        }
-
         public final ViewState copy(boolean isMuted, int notifyHighlights, boolean serverTooLarge) {
             return new ViewState(isMuted, notifyHighlights, serverTooLarge);
         }
@@ -79,8 +64,23 @@ public final class NotificationHighlightsSettingsView extends LinearLayout {
             return this.isMuted == viewState.isMuted && this.notifyHighlights == viewState.notifyHighlights && this.serverTooLarge == viewState.serverTooLarge;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsMuted() {
+            return this.isMuted;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getNotifyHighlights() {
             return this.notifyHighlights;
+        }
+
+        public final int getNotifyHighlights() {
+            return this.notifyHighlights;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getServerTooLarge() {
+            return this.serverTooLarge;
         }
 
         public final boolean getServerTooLarge() {

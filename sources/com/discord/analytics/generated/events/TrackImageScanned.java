@@ -9,24 +9,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackImageScanned.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackImageScanned implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence scanUuid = null;
+    private final Long guildId = null;
+    private final Float openNsfwNsfw = null;
+    private final Float openNsfwSfw = null;
     private final CharSequence provider = null;
     private final CharSequence safeSearchAdultLikelihood = null;
     private final CharSequence safeSearchMedicalLikelihood = null;
     private final CharSequence safeSearchRacyLikelihood = null;
     private final CharSequence safeSearchSpoofLikelihood = null;
     private final CharSequence safeSearchViolenceLikelihood = null;
-    private final Float openNsfwSfw = null;
-    private final Float openNsfwNsfw = null;
-    private final Long guildId = null;
+    private final CharSequence scanUuid = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "image_scanned";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackImageScanned implements AnalyticsSchema, Trac
         }
         TrackImageScanned trackImageScanned = (TrackImageScanned) other;
         return C12238m.areEqual(this.scanUuid, trackImageScanned.scanUuid) && C12238m.areEqual(this.provider, trackImageScanned.provider) && C12238m.areEqual(this.safeSearchAdultLikelihood, trackImageScanned.safeSearchAdultLikelihood) && C12238m.areEqual(this.safeSearchMedicalLikelihood, trackImageScanned.safeSearchMedicalLikelihood) && C12238m.areEqual(this.safeSearchRacyLikelihood, trackImageScanned.safeSearchRacyLikelihood) && C12238m.areEqual(this.safeSearchSpoofLikelihood, trackImageScanned.safeSearchSpoofLikelihood) && C12238m.areEqual(this.safeSearchViolenceLikelihood, trackImageScanned.safeSearchViolenceLikelihood) && C12238m.areEqual(this.openNsfwSfw, trackImageScanned.openNsfwSfw) && C12238m.areEqual(this.openNsfwNsfw, trackImageScanned.openNsfwNsfw) && C12238m.areEqual(this.guildId, trackImageScanned.guildId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

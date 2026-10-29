@@ -18,6 +18,16 @@ public final class MaterialFadeThrough extends AbstractC4477h<FadeThroughProvide
         super(createPrimaryAnimatorProvider(), createSecondaryAnimatorProvider());
     }
 
+    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
+    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
+        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
+    }
+
+    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
+    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
+        super.clearAdditionalAnimatorProvider();
+    }
+
     private static FadeThroughProvider createPrimaryAnimatorProvider() {
         return new FadeThroughProvider();
     }
@@ -27,16 +37,6 @@ public final class MaterialFadeThrough extends AbstractC4477h<FadeThroughProvide
         scaleProvider.setScaleOnDisappear(false);
         scaleProvider.setIncomingStartScale(DEFAULT_START_SCALE);
         return scaleProvider;
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
-    public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
-        super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h
-    public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
-        super.clearAdditionalAnimatorProvider();
     }
 
     @Override // p007b.p225i.p226a.p341g.p353l.p354l.AbstractC4477h

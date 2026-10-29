@@ -19,13 +19,7 @@ import p507d0.p592z.p594d.C12238m;
 public final /* data */ class Channel {
     public static final int ANNOUNCEMENT_THREAD = 10;
     public static final int CATEGORY = 4;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     public static final int DIRECTORY = 14;
-
-    /* JADX INFO: renamed from: DM */
-    public static final int f14853DM = 1;
     public static final long FLAGS_NONE = 0;
     public static final long FLAG_PINNED = 2;
     public static final int GROUP_DM = 3;
@@ -35,6 +29,9 @@ public final /* data */ class Channel {
     public static final int GUILD_STORE = 6;
     public static final int GUILD_TEXT = 0;
     public static final int GUILD_VOICE = 2;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int PRIVATE_THREAD = 12;
     public static final int PUBLIC_THREAD = 11;
     private final long applicationId;
@@ -42,6 +39,9 @@ public final /* data */ class Channel {
     private final List<ForumTag> availableTags;
     private final int bitrate;
     private final Integer defaultAutoArchiveDuration;
+
+    /* JADX INFO: renamed from: DM */
+    public static final int f14853DM = 1;
     private final Long flags;
     private transient GuildHashes guildHashes;
     private final long guildId;
@@ -71,7 +71,7 @@ public final /* data */ class Channel {
     private final int userLimit;
 
     /* JADX INFO: compiled from: Channel.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 
@@ -114,45 +114,110 @@ public final /* data */ class Channel {
         this.member = threadMember;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static Channel m7629a(Channel channel, String str, int i, long j, String str2, long j2, long j3, long j4, List list, List list2, int i2, List list3, int i3, int i4, String str3, long j5, long j6, List list4, boolean z2, long j7, String str4, int i5, Integer num, String str5, Long l, GuildHashes guildHashes, List list5, List list6, ThreadMetadata threadMetadata, Integer num2, Integer num3, List list7, ThreadMember threadMember, int i6) {
-        String str6 = (i6 & 1) != 0 ? channel.topic : null;
-        int i7 = (i6 & 2) != 0 ? channel.type : i;
-        long j8 = (i6 & 4) != 0 ? channel.guildId : j;
-        String str7 = (i6 & 8) != 0 ? channel.name : null;
-        long j9 = (i6 & 16) != 0 ? channel.lastMessageId : j2;
-        long j10 = (i6 & 32) != 0 ? channel.id : j3;
-        long j11 = (i6 & 64) != 0 ? channel.ownerId : j4;
-        List<Long> list8 = (i6 & 128) != 0 ? channel.recipientIds : null;
-        List list9 = (i6 & 256) != 0 ? channel.recipients : list2;
-        int i8 = (i6 & 512) != 0 ? channel.position : i2;
-        List<PermissionOverwrite> list10 = (i6 & 1024) != 0 ? channel.permissionOverwrites : null;
-        int i9 = (i6 & 2048) != 0 ? channel.userLimit : i3;
-        int i10 = (i6 & 4096) != 0 ? channel.bitrate : i4;
-        String str8 = (i6 & 8192) != 0 ? channel.icon : null;
-        List<Long> list11 = list8;
-        List list12 = list9;
-        long j12 = (i6 & 16384) != 0 ? channel.originChannelId : j5;
-        long j13 = (32768 & i6) != 0 ? channel.applicationId : j6;
-        List list13 = (65536 & i6) != 0 ? channel.nicks : list4;
-        boolean z3 = (i6 & 131072) != 0 ? channel.nsfw : z2;
-        long j14 = j13;
-        long j15 = (i6 & 262144) != 0 ? channel.parentId : j7;
-        String str9 = (i6 & 524288) != 0 ? channel.memberListId : null;
-        int i11 = (1048576 & i6) != 0 ? channel.rateLimitPerUser : i5;
-        Integer num4 = (i6 & 2097152) != 0 ? channel.defaultAutoArchiveDuration : null;
-        String str10 = (i6 & 4194304) != 0 ? channel.rtcRegion : null;
-        Long l2 = (i6 & 8388608) != 0 ? channel.flags : null;
-        GuildHashes guildHashes2 = (i6 & 16777216) != 0 ? channel.guildHashes : null;
-        List<ForumTag> list14 = (i6 & 33554432) != 0 ? channel.availableTags : null;
-        List<Long> list15 = (i6 & 67108864) != 0 ? channel.appliedTags : null;
-        ThreadMetadata threadMetadata2 = (i6 & 134217728) != 0 ? channel.threadMetadata : null;
-        Integer num5 = (i6 & 268435456) != 0 ? channel.messageCount : null;
-        Integer num6 = (i6 & 536870912) != 0 ? channel.memberCount : null;
-        List<Long> list16 = (i6 & BasicMeasure.EXACTLY) != 0 ? channel.memberIdsPreview : null;
-        ThreadMember threadMember2 = (i6 & Integer.MIN_VALUE) != 0 ? channel.member : null;
-        Objects.requireNonNull(channel);
-        return new Channel(str6, i7, j8, str7, j9, j10, j11, list11, list12, i8, list10, i9, i10, str8, j12, j14, list13, z3, j15, str9, i11, num4, str10, l2, guildHashes2, list14, list15, threadMetadata2, num5, num6, list16, threadMember2);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Channel)) {
+            return false;
+        }
+        Channel channel = (Channel) other;
+        return C12238m.areEqual(this.topic, channel.topic) && this.type == channel.type && this.guildId == channel.guildId && C12238m.areEqual(this.name, channel.name) && this.lastMessageId == channel.lastMessageId && this.id == channel.id && this.ownerId == channel.ownerId && C12238m.areEqual(this.recipientIds, channel.recipientIds) && C12238m.areEqual(this.recipients, channel.recipients) && this.position == channel.position && C12238m.areEqual(this.permissionOverwrites, channel.permissionOverwrites) && this.userLimit == channel.userLimit && this.bitrate == channel.bitrate && C12238m.areEqual(this.icon, channel.icon) && this.originChannelId == channel.originChannelId && this.applicationId == channel.applicationId && C12238m.areEqual(this.nicks, channel.nicks) && this.nsfw == channel.nsfw && this.parentId == channel.parentId && C12238m.areEqual(this.memberListId, channel.memberListId) && this.rateLimitPerUser == channel.rateLimitPerUser && C12238m.areEqual(this.defaultAutoArchiveDuration, channel.defaultAutoArchiveDuration) && C12238m.areEqual(this.rtcRegion, channel.rtcRegion) && C12238m.areEqual(this.flags, channel.flags) && C12238m.areEqual(this.guildHashes, channel.guildHashes) && C12238m.areEqual(this.availableTags, channel.availableTags) && C12238m.areEqual(this.appliedTags, channel.appliedTags) && C12238m.areEqual(this.threadMetadata, channel.threadMetadata) && C12238m.areEqual(this.messageCount, channel.messageCount) && C12238m.areEqual(this.memberCount, channel.memberCount) && C12238m.areEqual(this.memberIdsPreview, channel.memberIdsPreview) && C12238m.areEqual(this.member, channel.member);
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: e, reason: from getter */
+    public final int getBitrate() {
+        return this.bitrate;
+    }
+
+    /* JADX INFO: renamed from: f, reason: from getter */
+    public final Integer getDefaultAutoArchiveDuration() {
+        return this.defaultAutoArchiveDuration;
+    }
+
+    /* JADX INFO: renamed from: g, reason: from getter */
+    public final Long getFlags() {
+        return this.flags;
+    }
+
+    /* JADX INFO: renamed from: h, reason: from getter */
+    public final GuildHashes getGuildHashes() {
+        return this.guildHashes;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final String getIcon() {
+        return this.icon;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final long getLastMessageId() {
+        return this.lastMessageId;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final ThreadMember getMember() {
+        return this.member;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final String getMemberListId() {
+        return this.memberListId;
+    }
+
+    /* JADX INFO: renamed from: o, reason: from getter */
+    public final Integer getMessageCount() {
+        return this.messageCount;
+    }
+
+    /* JADX INFO: renamed from: p, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: r, reason: from getter */
+    public final boolean getNsfw() {
+        return this.nsfw;
+    }
+
+    /* JADX INFO: renamed from: s, reason: from getter */
+    public final long getOriginChannelId() {
+        return this.originChannelId;
+    }
+
+    /* JADX INFO: renamed from: t, reason: from getter */
+    public final long getOwnerId() {
+        return this.ownerId;
+    }
+
+    /* JADX INFO: renamed from: u, reason: from getter */
+    public final long getParentId() {
+        return this.parentId;
+    }
+
+    /* JADX INFO: renamed from: w, reason: from getter */
+    public final int getPosition() {
+        return this.position;
+    }
+
+    /* JADX INFO: renamed from: x, reason: from getter */
+    public final int getRateLimitPerUser() {
+        return this.rateLimitPerUser;
     }
 
     /* JADX INFO: renamed from: A, reason: from getter */
@@ -178,52 +243,6 @@ public final /* data */ class Channel {
     /* JADX INFO: renamed from: E, reason: from getter */
     public final int getUserLimit() {
         return this.userLimit;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Long> m7636c() {
-        return this.appliedTags;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<ForumTag> m7637d() {
-        return this.availableTags;
-    }
-
-    /* JADX INFO: renamed from: e, reason: from getter */
-    public final int getBitrate() {
-        return this.bitrate;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Channel)) {
-            return false;
-        }
-        Channel channel = (Channel) other;
-        return C12238m.areEqual(this.topic, channel.topic) && this.type == channel.type && this.guildId == channel.guildId && C12238m.areEqual(this.name, channel.name) && this.lastMessageId == channel.lastMessageId && this.id == channel.id && this.ownerId == channel.ownerId && C12238m.areEqual(this.recipientIds, channel.recipientIds) && C12238m.areEqual(this.recipients, channel.recipients) && this.position == channel.position && C12238m.areEqual(this.permissionOverwrites, channel.permissionOverwrites) && this.userLimit == channel.userLimit && this.bitrate == channel.bitrate && C12238m.areEqual(this.icon, channel.icon) && this.originChannelId == channel.originChannelId && this.applicationId == channel.applicationId && C12238m.areEqual(this.nicks, channel.nicks) && this.nsfw == channel.nsfw && this.parentId == channel.parentId && C12238m.areEqual(this.memberListId, channel.memberListId) && this.rateLimitPerUser == channel.rateLimitPerUser && C12238m.areEqual(this.defaultAutoArchiveDuration, channel.defaultAutoArchiveDuration) && C12238m.areEqual(this.rtcRegion, channel.rtcRegion) && C12238m.areEqual(this.flags, channel.flags) && C12238m.areEqual(this.guildHashes, channel.guildHashes) && C12238m.areEqual(this.availableTags, channel.availableTags) && C12238m.areEqual(this.appliedTags, channel.appliedTags) && C12238m.areEqual(this.threadMetadata, channel.threadMetadata) && C12238m.areEqual(this.messageCount, channel.messageCount) && C12238m.areEqual(this.memberCount, channel.memberCount) && C12238m.areEqual(this.memberIdsPreview, channel.memberIdsPreview) && C12238m.areEqual(this.member, channel.member);
-    }
-
-    /* JADX INFO: renamed from: f, reason: from getter */
-    public final Integer getDefaultAutoArchiveDuration() {
-        return this.defaultAutoArchiveDuration;
-    }
-
-    /* JADX INFO: renamed from: g, reason: from getter */
-    public final Long getFlags() {
-        return this.flags;
-    }
-
-    /* JADX INFO: renamed from: h, reason: from getter */
-    public final GuildHashes getGuildHashes() {
-        return this.guildHashes;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -292,44 +311,55 @@ public final /* data */ class Channel {
         return iHashCode18 + (threadMember != null ? threadMember.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
+    /* JADX INFO: renamed from: a */
+    public static Channel m7629a(Channel channel, String str, int i, long j, String str2, long j2, long j3, long j4, List list, List list2, int i2, List list3, int i3, int i4, String str3, long j5, long j6, List list4, boolean z2, long j7, String str4, int i5, Integer num, String str5, Long l, GuildHashes guildHashes, List list5, List list6, ThreadMetadata threadMetadata, Integer num2, Integer num3, List list7, ThreadMember threadMember, int i6) {
+        String str6 = (i6 & 1) != 0 ? channel.topic : null;
+        int i7 = (i6 & 2) != 0 ? channel.type : i;
+        long j8 = (i6 & 4) != 0 ? channel.guildId : j;
+        String str7 = (i6 & 8) != 0 ? channel.name : null;
+        long j9 = (i6 & 16) != 0 ? channel.lastMessageId : j2;
+        long j10 = (i6 & 32) != 0 ? channel.id : j3;
+        long j11 = (i6 & 64) != 0 ? channel.ownerId : j4;
+        List<Long> list8 = (i6 & 128) != 0 ? channel.recipientIds : null;
+        List list9 = (i6 & 256) != 0 ? channel.recipients : list2;
+        int i8 = (i6 & 512) != 0 ? channel.position : i2;
+        List<PermissionOverwrite> list10 = (i6 & 1024) != 0 ? channel.permissionOverwrites : null;
+        int i9 = (i6 & 2048) != 0 ? channel.userLimit : i3;
+        int i10 = (i6 & 4096) != 0 ? channel.bitrate : i4;
+        String str8 = (i6 & 8192) != 0 ? channel.icon : null;
+        List<Long> list11 = list8;
+        List list12 = list9;
+        long j12 = (i6 & 16384) != 0 ? channel.originChannelId : j5;
+        long j13 = (32768 & i6) != 0 ? channel.applicationId : j6;
+        List list13 = (65536 & i6) != 0 ? channel.nicks : list4;
+        boolean z3 = (i6 & 131072) != 0 ? channel.nsfw : z2;
+        long j14 = j13;
+        long j15 = (i6 & 262144) != 0 ? channel.parentId : j7;
+        String str9 = (i6 & 524288) != 0 ? channel.memberListId : null;
+        int i11 = (1048576 & i6) != 0 ? channel.rateLimitPerUser : i5;
+        Integer num4 = (i6 & 2097152) != 0 ? channel.defaultAutoArchiveDuration : null;
+        String str10 = (i6 & 4194304) != 0 ? channel.rtcRegion : null;
+        Long l2 = (i6 & 8388608) != 0 ? channel.flags : null;
+        GuildHashes guildHashes2 = (i6 & 16777216) != 0 ? channel.guildHashes : null;
+        List<ForumTag> list14 = (i6 & 33554432) != 0 ? channel.availableTags : null;
+        List<Long> list15 = (i6 & 67108864) != 0 ? channel.appliedTags : null;
+        ThreadMetadata threadMetadata2 = (i6 & 134217728) != 0 ? channel.threadMetadata : null;
+        Integer num5 = (i6 & 268435456) != 0 ? channel.messageCount : null;
+        Integer num6 = (i6 & 536870912) != 0 ? channel.memberCount : null;
+        List<Long> list16 = (i6 & BasicMeasure.EXACTLY) != 0 ? channel.memberIdsPreview : null;
+        ThreadMember threadMember2 = (i6 & Integer.MIN_VALUE) != 0 ? channel.member : null;
+        Objects.requireNonNull(channel);
+        return new Channel(str6, i7, j8, str7, j9, j10, j11, list11, list12, i8, list10, i9, i10, str8, j12, j14, list13, z3, j15, str9, i11, num4, str10, l2, guildHashes2, list14, list15, threadMetadata2, num5, num6, list16, threadMember2);
     }
 
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final String getIcon() {
-        return this.icon;
+    /* JADX INFO: renamed from: c */
+    public final List<Long> m7636c() {
+        return this.appliedTags;
     }
 
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final long getLastMessageId() {
-        return this.lastMessageId;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final ThreadMember getMember() {
-        return this.member;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final String getMemberListId() {
-        return this.memberListId;
-    }
-
-    /* JADX INFO: renamed from: o, reason: from getter */
-    public final Integer getMessageCount() {
-        return this.messageCount;
-    }
-
-    /* JADX INFO: renamed from: p, reason: from getter */
-    public final String getName() {
-        return this.name;
+    /* JADX INFO: renamed from: d */
+    public final List<ForumTag> m7637d() {
+        return this.availableTags;
     }
 
     /* JADX INFO: renamed from: q */
@@ -337,19 +367,19 @@ public final /* data */ class Channel {
         return this.nicks;
     }
 
-    /* JADX INFO: renamed from: r, reason: from getter */
-    public final boolean getNsfw() {
-        return this.nsfw;
+    /* JADX INFO: renamed from: v */
+    public final List<PermissionOverwrite> m7655v() {
+        return this.permissionOverwrites;
     }
 
-    /* JADX INFO: renamed from: s, reason: from getter */
-    public final long getOriginChannelId() {
-        return this.originChannelId;
+    /* JADX INFO: renamed from: y */
+    public final List<Long> m7658y() {
+        return this.recipientIds;
     }
 
-    /* JADX INFO: renamed from: t, reason: from getter */
-    public final long getOwnerId() {
-        return this.ownerId;
+    /* JADX INFO: renamed from: z */
+    public final List<User> m7659z() {
+        return this.recipients;
     }
 
     public String toString() {
@@ -419,35 +449,5 @@ public final /* data */ class Channel {
         sbM833U.append(this.member);
         sbM833U.append(")");
         return sbM833U.toString();
-    }
-
-    /* JADX INFO: renamed from: u, reason: from getter */
-    public final long getParentId() {
-        return this.parentId;
-    }
-
-    /* JADX INFO: renamed from: v */
-    public final List<PermissionOverwrite> m7655v() {
-        return this.permissionOverwrites;
-    }
-
-    /* JADX INFO: renamed from: w, reason: from getter */
-    public final int getPosition() {
-        return this.position;
-    }
-
-    /* JADX INFO: renamed from: x, reason: from getter */
-    public final int getRateLimitPerUser() {
-        return this.rateLimitPerUser;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final List<Long> m7658y() {
-        return this.recipientIds;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final List<User> m7659z() {
-        return this.recipients;
     }
 }

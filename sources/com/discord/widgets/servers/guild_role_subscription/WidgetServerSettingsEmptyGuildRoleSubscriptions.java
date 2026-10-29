@@ -39,14 +39,14 @@ public final class WidgetServerSettingsEmptyGuildRoleSubscriptions extends AppFr
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+
     /* JADX INFO: renamed from: SERVER_SETTINGS_EMPTY_GUILD_ROLE_SUBSCRIPTIONS_VIEW_FLIPPER_LOADED_STATE */
     private static final int f19391x695af06c = 1;
 
     /* JADX INFO: renamed from: SERVER_SETTINGS_EMPTY_GUILD_ROLE_SUBSCRIPTIONS_VIEW_FLIPPER_LOADING_STATE */
     private static final int f19392x40bf7979 = 0;
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
@@ -54,26 +54,9 @@ public final class WidgetServerSettingsEmptyGuildRoleSubscriptions extends AppFr
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsEmptyGuildRoleSubscriptions.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetServerSettingsEmptyGuildRoleSubscriptions.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.WidgetServerSettingsEmptyGuildRoleSubscriptions$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsEmptyGuildRoleSubscriptions.kt */
-    public static final class C94531 extends AbstractC12240o implements Function1<ServerSettingsEmptyGuildRoleSubscriptionsViewModel.ViewState, Unit> {
+    public final class C94531 extends AbstractC12240o implements Function1<ServerSettingsEmptyGuildRoleSubscriptionsViewModel.ViewState, Unit> {
         public C94531() {
             super(1);
         }
@@ -89,6 +72,23 @@ public final class WidgetServerSettingsEmptyGuildRoleSubscriptions extends AppFr
             WidgetServerSettingsEmptyGuildRoleSubscriptions widgetServerSettingsEmptyGuildRoleSubscriptions = WidgetServerSettingsEmptyGuildRoleSubscriptions.this;
             C12238m.checkNotNullExpressionValue(viewState, "it");
             widgetServerSettingsEmptyGuildRoleSubscriptions.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsEmptyGuildRoleSubscriptions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetServerSettingsEmptyGuildRoleSubscriptions.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

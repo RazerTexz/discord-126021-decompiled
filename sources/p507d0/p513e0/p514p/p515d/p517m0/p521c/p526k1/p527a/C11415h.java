@@ -15,6 +15,6 @@ public final class C11415h {
         if (c11712a.getPackageFqName().isRoot()) {
             return strReplace$default;
         }
-        return c11712a.getPackageFqName() + '.' + strReplace$default;
+        return "" + c11712a.getPackageFqName() + '.' + strReplace$default;
     }
 }

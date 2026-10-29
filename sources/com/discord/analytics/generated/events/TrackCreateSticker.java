@@ -10,17 +10,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCreateSticker.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCreateSticker implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long id = null;
-    private final Long guildId = null;
     private final Long formatType = null;
+    private final Long guildId = null;
+    private final Long id = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "create_sticker";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackCreateSticker implements AnalyticsSchema, Tra
         }
         TrackCreateSticker trackCreateSticker = (TrackCreateSticker) other;
         return C12238m.areEqual(this.id, trackCreateSticker.id) && C12238m.areEqual(this.guildId, trackCreateSticker.guildId) && C12238m.areEqual(this.formatType, trackCreateSticker.formatType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

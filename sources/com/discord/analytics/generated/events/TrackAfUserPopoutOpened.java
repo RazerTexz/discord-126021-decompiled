@@ -15,19 +15,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfUserPopoutOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfUserPopoutOpened implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver, TrackAfPartyReceiver {
+    private final Long avatarPosition = null;
+    private final Long popoutUserId = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackAfParty trackAfParty;
     private TrackBase trackBase;
-    private final Long popoutUserId = null;
-    private final Long avatarPosition = null;
     private final transient String analyticsSchemaTypeName = "af_user_popout_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackAfUserPopoutOpened implements AnalyticsSchema
         }
         TrackAfUserPopoutOpened trackAfUserPopoutOpened = (TrackAfUserPopoutOpened) other;
         return C12238m.areEqual(this.popoutUserId, trackAfUserPopoutOpened.popoutUserId) && C12238m.areEqual(this.avatarPosition, trackAfUserPopoutOpened.avatarPosition);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

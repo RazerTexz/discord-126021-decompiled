@@ -19,12 +19,12 @@ import p007b.p452o.p453a.p473x.C5236b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5200a {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14100a = new C5103b(C5200a.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     @SuppressLint({"UseSparseArrays"})
     public static Map<C5236b, Integer> f14101b;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14100a = new C5103b(C5200a.class.getSimpleName());
 
     /* JADX INFO: renamed from: b.o.a.r.a$a */
     /* JADX INFO: compiled from: CamcorderProfiles.java */

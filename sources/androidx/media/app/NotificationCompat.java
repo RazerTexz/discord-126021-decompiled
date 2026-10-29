@@ -18,7 +18,7 @@ import androidx.media.C0499R;
 public class NotificationCompat {
 
     @RequiresApi(15)
-    public static class Api15Impl {
+    public class Api15Impl {
         private Api15Impl() {
         }
 
@@ -29,7 +29,7 @@ public class NotificationCompat {
     }
 
     @RequiresApi(21)
-    public static class Api21Impl {
+    public class Api21Impl {
         private Api21Impl() {
         }
 
@@ -66,7 +66,7 @@ public class NotificationCompat {
     }
 
     @RequiresApi(24)
-    public static class Api24Impl {
+    public class Api24Impl {
         private Api24Impl() {
         }
 
@@ -76,11 +76,7 @@ public class NotificationCompat {
         }
     }
 
-    public static class DecoratedMediaCustomViewStyle extends MediaStyle {
-        private void setBackgroundColor(RemoteViews remoteViews) {
-            remoteViews.setInt(C0499R.id.status_bar_latest_event_content, "setBackgroundColor", this.mBuilder.getColor() != 0 ? this.mBuilder.getColor() : this.mBuilder.mContext.getResources().getColor(C0499R.color.notification_material_background_media_default_color));
-        }
-
+    public class DecoratedMediaCustomViewStyle extends MediaStyle {
         @Override // androidx.media.app.NotificationCompat.MediaStyle, androidx.core.app.NotificationCompat.Style
         @RestrictTo({RestrictTo.Scope.LIBRARY})
         public void apply(NotificationBuilderWithBuilderAccessor notificationBuilderWithBuilderAccessor) {
@@ -154,41 +150,24 @@ public class NotificationCompat {
             setBackgroundColor(remoteViewsGenerateBigContentView);
             return remoteViewsGenerateBigContentView;
         }
+
+        private void setBackgroundColor(RemoteViews remoteViews) {
+            remoteViews.setInt(C0499R.id.status_bar_latest_event_content, "setBackgroundColor", this.mBuilder.getColor() != 0 ? this.mBuilder.getColor() : this.mBuilder.mContext.getResources().getColor(C0499R.color.notification_material_background_media_default_color));
+        }
     }
 
     private NotificationCompat() {
     }
 
-    public static class MediaStyle extends androidx.core.app.NotificationCompat.Style {
+    public class MediaStyle extends androidx.core.app.NotificationCompat.Style {
         private static final int MAX_MEDIA_BUTTONS = 5;
         private static final int MAX_MEDIA_BUTTONS_IN_COMPACT = 3;
-        public int[] mActionsToShowInCompact = null;
         public PendingIntent mCancelButtonIntent;
         public boolean mShowCancelButton;
         public MediaSessionCompat.Token mToken;
+        public int[] mActionsToShowInCompact = null;
 
         public MediaStyle() {
-        }
-
-        private RemoteViews generateMediaActionButton(androidx.core.app.NotificationCompat.Action action) {
-            boolean z2 = action.getActionIntent() == null;
-            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), C0499R.layout.notification_media_action);
-            int i = C0499R.id.action0;
-            remoteViews.setImageViewResource(i, action.getIcon());
-            if (!z2) {
-                remoteViews.setOnClickPendingIntent(i, action.getActionIntent());
-            }
-            Api15Impl.setContentDescription(remoteViews, i, action.getTitle());
-            return remoteViews;
-        }
-
-        public static MediaSessionCompat.Token getMediaSession(Notification notification) {
-            Parcelable parcelable;
-            Bundle extras = androidx.core.app.NotificationCompat.getExtras(notification);
-            if (extras == null || (parcelable = extras.getParcelable(androidx.core.app.NotificationCompat.EXTRA_MEDIA_SESSION)) == null) {
-                return null;
-            }
-            return MediaSessionCompat.Token.m45a(parcelable, null);
         }
 
         @Override // androidx.core.app.NotificationCompat.Style
@@ -244,12 +223,33 @@ public class NotificationCompat {
             return remoteViewsApplyStandardTemplate;
         }
 
+        private RemoteViews generateMediaActionButton(androidx.core.app.NotificationCompat.Action action) {
+            boolean z2 = action.getActionIntent() == null;
+            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), C0499R.layout.notification_media_action);
+            int i = C0499R.id.action0;
+            remoteViews.setImageViewResource(i, action.getIcon());
+            if (!z2) {
+                remoteViews.setOnClickPendingIntent(i, action.getActionIntent());
+            }
+            Api15Impl.setContentDescription(remoteViews, i, action.getTitle());
+            return remoteViews;
+        }
+
         public int getBigContentViewLayoutResource(int i) {
             return i <= 3 ? C0499R.layout.notification_template_big_media_narrow : C0499R.layout.notification_template_big_media;
         }
 
         public int getContentViewLayoutResource() {
             return C0499R.layout.notification_template_media;
+        }
+
+        public static MediaSessionCompat.Token getMediaSession(Notification notification) {
+            Parcelable parcelable;
+            Bundle extras = androidx.core.app.NotificationCompat.getExtras(notification);
+            if (extras == null || (parcelable = extras.getParcelable(androidx.core.app.NotificationCompat.EXTRA_MEDIA_SESSION)) == null) {
+                return null;
+            }
+            return MediaSessionCompat.Token.m45a(parcelable, null);
         }
 
         @Override // androidx.core.app.NotificationCompat.Style

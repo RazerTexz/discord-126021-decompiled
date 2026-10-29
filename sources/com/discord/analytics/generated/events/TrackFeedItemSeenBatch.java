@@ -12,31 +12,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFeedItemSeenBatch.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+    private final List<Long> additionalSeenTimeMillis = null;
+    private final List<CharSequence> feedItemIds = null;
+    private final CharSequence homeSessionId = null;
+    private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
-    private final CharSequence loadId = null;
-    private final List<CharSequence> feedItemIds = null;
-    private final List<Long> additionalSeenTimeMillis = null;
-    private final CharSequence homeSessionId = null;
     private final transient String analyticsSchemaTypeName = "feed_item_seen_batch";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -49,6 +31,18 @@ public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema,
         return C12238m.areEqual(this.loadId, trackFeedItemSeenBatch.loadId) && C12238m.areEqual(this.feedItemIds, trackFeedItemSeenBatch.feedItemIds) && C12238m.areEqual(this.additionalSeenTimeMillis, trackFeedItemSeenBatch.additionalSeenTimeMillis) && C12238m.areEqual(this.homeSessionId, trackFeedItemSeenBatch.homeSessionId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.loadId;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
@@ -58,6 +52,12 @@ public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema,
         int iHashCode3 = (iHashCode2 + (list2 != null ? list2.hashCode() : 0)) * 31;
         CharSequence charSequence2 = this.homeSessionId;
         return iHashCode3 + (charSequence2 != null ? charSequence2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

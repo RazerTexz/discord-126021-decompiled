@@ -41,12 +41,6 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         this.mediaProjectionCallback = callback;
     }
 
-    private void checkNotDisposed() {
-        if (this.isDisposed) {
-            throw new RuntimeException("capturer is disposed.");
-        }
-    }
-
     @Override // org.webrtc.VideoCapturer
     public synchronized void changeCaptureFormat(int i, int i2, int i3) {
         checkNotDisposed();
@@ -62,6 +56,12 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
                 ScreenCapturerAndroid.this.createVirtualDisplay();
             }
         });
+    }
+
+    private void checkNotDisposed() {
+        if (this.isDisposed) {
+            throw new RuntimeException("capturer is disposed.");
+        }
     }
 
     public void createVirtualDisplay() {

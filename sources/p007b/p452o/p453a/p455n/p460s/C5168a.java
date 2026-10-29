@@ -16,14 +16,14 @@ import p007b.p452o.p453a.p473x.C5236b;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5168a implements InterfaceC5212c<Camera.Area> {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f13985a = new C5103b(C5168a.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public final int f13986b;
 
     /* JADX INFO: renamed from: c */
     public final C5236b f13987c;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f13985a = new C5103b(C5168a.class.getSimpleName());
 
     public C5168a(@NonNull C5170a c5170a, @NonNull C5236b c5236b) {
         this.f13986b = -c5170a.m7358c(EnumC5171b.SENSOR, EnumC5171b.VIEW, 1);

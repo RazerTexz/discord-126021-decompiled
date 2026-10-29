@@ -100,7 +100,7 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
 
     /* JADX INFO: renamed from: i0.p$b */
     /* JADX INFO: compiled from: OkHttpCall.java */
-    public static final class b extends ResponseBody {
+    public final class b extends ResponseBody {
 
         /* JADX INFO: renamed from: l */
         public final ResponseBody f26561l;
@@ -138,6 +138,11 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
             this.f26562m = new C12401r(aVar);
         }
 
+        @Override // okhttp3.ResponseBody, java.io.Closeable, java.lang.AutoCloseable
+        public void close() {
+            this.f26561l.close();
+        }
+
         @Override // okhttp3.ResponseBody
         /* JADX INFO: renamed from: a */
         public long mo10103a() {
@@ -155,16 +160,11 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
         public InterfaceC12390g mo10105c() {
             return this.f26562m;
         }
-
-        @Override // okhttp3.ResponseBody, java.io.Closeable, java.lang.AutoCloseable
-        public void close() {
-            this.f26561l.close();
-        }
     }
 
     /* JADX INFO: renamed from: i0.p$c */
     /* JADX INFO: compiled from: OkHttpCall.java */
-    public static final class c extends ResponseBody {
+    public final class c extends ResponseBody {
 
         /* JADX INFO: renamed from: l */
         public final MediaType f26565l;
@@ -204,43 +204,41 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
     }
 
     @Override // p630i0.InterfaceC12504d
-    /* JADX INFO: renamed from: C */
-    public void mo10697C(InterfaceC12527f<T> interfaceC12527f) {
+    public void cancel() {
         InterfaceC12269e interfaceC12269e;
-        Throwable th;
+        this.f26555n = true;
         synchronized (this) {
-            if (this.f26558q) {
-                throw new IllegalStateException("Already executed.");
-            }
-            this.f26558q = true;
             interfaceC12269e = this.f26556o;
-            th = this.f26557p;
-            if (interfaceC12269e == null && th == null) {
-                try {
-                    InterfaceC12269e interfaceC12269eM10712b = m10712b();
-                    this.f26556o = interfaceC12269eM10712b;
-                    interfaceC12269e = interfaceC12269eM10712b;
-                } catch (Throwable th2) {
-                    th = th2;
-                    C12503c0.m10695o(th);
-                    this.f26557p = th;
-                }
-            }
         }
-        if (th != null) {
-            interfaceC12527f.mo10708a(this, th);
-            return;
-        }
-        if (this.f26555n) {
+        if (interfaceC12269e != null) {
             interfaceC12269e.cancel();
         }
-        interfaceC12269e.mo10113e(new a(interfaceC12527f));
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return new C12562p(this.f26551j, this.f26552k, this.f26553l, this.f26554m);
     }
 
     @Override // p630i0.InterfaceC12504d
     /* JADX INFO: renamed from: L */
     public InterfaceC12504d clone() {
         return new C12562p(this.f26551j, this.f26552k, this.f26553l, this.f26554m);
+    }
+
+    @Override // p630i0.InterfaceC12504d
+    public retrofit2.Response<T> execute() throws IOException {
+        InterfaceC12269e interfaceC12269eM10713f;
+        synchronized (this) {
+            if (this.f26558q) {
+                throw new IllegalStateException("Already executed.");
+            }
+            this.f26558q = true;
+            interfaceC12269eM10713f = m10713f();
+        }
+        if (this.f26555n) {
+            interfaceC12269eM10713f.cancel();
+        }
+        return m10714g(interfaceC12269eM10713f.execute());
     }
 
     /* JADX INFO: renamed from: b */
@@ -313,64 +311,6 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
         InterfaceC12269e interfaceC12269eMo10114b = aVar.mo10114b(c12935a.m10978a());
         Objects.requireNonNull(interfaceC12269eMo10114b, "Call.Factory returned null.");
         return interfaceC12269eMo10114b;
-    }
-
-    @Override // p630i0.InterfaceC12504d
-    /* JADX INFO: renamed from: c */
-    public synchronized Request mo10699c() {
-        try {
-        } catch (IOException e) {
-            throw new RuntimeException("Unable to create request.", e);
-        }
-        return m10713f().mo10111c();
-    }
-
-    @Override // p630i0.InterfaceC12504d
-    public void cancel() {
-        InterfaceC12269e interfaceC12269e;
-        this.f26555n = true;
-        synchronized (this) {
-            interfaceC12269e = this.f26556o;
-        }
-        if (interfaceC12269e != null) {
-            interfaceC12269e.cancel();
-        }
-    }
-
-    public Object clone() throws CloneNotSupportedException {
-        return new C12562p(this.f26551j, this.f26552k, this.f26553l, this.f26554m);
-    }
-
-    @Override // p630i0.InterfaceC12504d
-    /* JADX INFO: renamed from: d */
-    public boolean mo10700d() {
-        boolean z2 = true;
-        if (this.f26555n) {
-            return true;
-        }
-        synchronized (this) {
-            InterfaceC12269e interfaceC12269e = this.f26556o;
-            if (interfaceC12269e == null || !interfaceC12269e.mo10112d()) {
-                z2 = false;
-            }
-        }
-        return z2;
-    }
-
-    @Override // p630i0.InterfaceC12504d
-    public retrofit2.Response<T> execute() throws IOException {
-        InterfaceC12269e interfaceC12269eM10713f;
-        synchronized (this) {
-            if (this.f26558q) {
-                throw new IllegalStateException("Already executed.");
-            }
-            this.f26558q = true;
-            interfaceC12269eM10713f = m10713f();
-        }
-        if (this.f26555n) {
-            interfaceC12269eM10713f.cancel();
-        }
-        return m10714g(interfaceC12269eM10713f.execute());
     }
 
     /* JADX INFO: renamed from: f */
@@ -459,5 +399,65 @@ public final class C12562p<T> implements InterfaceC12504d<T> {
             }
             throw iOException;
         }
+    }
+
+    @Override // p630i0.InterfaceC12504d
+    /* JADX INFO: renamed from: C */
+    public void mo10697C(InterfaceC12527f<T> interfaceC12527f) {
+        InterfaceC12269e interfaceC12269e;
+        Throwable th;
+        synchronized (this) {
+            if (this.f26558q) {
+                throw new IllegalStateException("Already executed.");
+            }
+            this.f26558q = true;
+            interfaceC12269e = this.f26556o;
+            th = this.f26557p;
+            if (interfaceC12269e == null && th == null) {
+                try {
+                    InterfaceC12269e interfaceC12269eM10712b = m10712b();
+                    this.f26556o = interfaceC12269eM10712b;
+                    interfaceC12269e = interfaceC12269eM10712b;
+                } catch (Throwable th2) {
+                    th = th2;
+                    C12503c0.m10695o(th);
+                    this.f26557p = th;
+                }
+            }
+        }
+        if (th != null) {
+            interfaceC12527f.mo10708a(this, th);
+            return;
+        }
+        if (this.f26555n) {
+            interfaceC12269e.cancel();
+        }
+        interfaceC12269e.mo10113e(new a(interfaceC12527f));
+    }
+
+    @Override // p630i0.InterfaceC12504d
+    /* JADX INFO: renamed from: c */
+    public synchronized Request mo10699c() {
+        try {
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to create request.", e);
+        }
+        return m10713f().mo10111c();
+    }
+
+    @Override // p630i0.InterfaceC12504d
+    /* JADX INFO: renamed from: d */
+    public boolean mo10700d() {
+        boolean z2 = true;
+        if (this.f26555n) {
+            return true;
+        }
+        synchronized (this) {
+            InterfaceC12269e interfaceC12269e = this.f26556o;
+            if (interfaceC12269e == null || !interfaceC12269e.mo10112d()) {
+                z2 = false;
+            }
+        }
+        return z2;
     }
 }

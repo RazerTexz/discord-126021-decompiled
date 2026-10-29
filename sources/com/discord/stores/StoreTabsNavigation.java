@@ -22,7 +22,7 @@ public final class StoreTabsNavigation extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreTabsNavigation$observeSelectedTab$1 */
     /* JADX INFO: compiled from: StoreTabsNavigation.kt */
-    public static final class C65261 extends AbstractC12240o implements Function0<NavigationTab> {
+    public final class C65261 extends AbstractC12240o implements Function0<NavigationTab> {
         public C65261() {
             super(0);
         }
@@ -36,7 +36,7 @@ public final class StoreTabsNavigation extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreTabsNavigation$selectHomeTab$1 */
     /* JADX INFO: compiled from: StoreTabsNavigation.kt */
-    public static final class C65271 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65271 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $dismissTabsDialogs;
         public final /* synthetic */ StoreNavigation.PanelAction $panelAction;
 
@@ -65,7 +65,7 @@ public final class StoreTabsNavigation extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreTabsNavigation$selectTab$1 */
     /* JADX INFO: compiled from: StoreTabsNavigation.kt */
-    public static final class C65281 extends AbstractC12240o implements Function0<Unit> {
+    public final class C65281 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ boolean $dismissTabsDialogs;
         public final /* synthetic */ NavigationTab $navigationTab;
 
@@ -97,6 +97,15 @@ public final class StoreTabsNavigation extends StoreV2 {
         publishSubject.f27650k.onNext(Unit.f27425a);
     }
 
+    public final NavigationTab getSelectedTab() {
+        return this.selectedTab;
+    }
+
+    @StoreThread
+    public final void handlePreLogout() {
+        selectTabInternal$app_productionGoogleRelease$default(this, NavigationTab.HOME, false, 2, null);
+    }
+
     @StoreThread
     private final void handleTabSelection(NavigationTab navigationTab) {
         this.selectedTab = navigationTab;
@@ -106,36 +115,6 @@ public final class StoreTabsNavigation extends StoreV2 {
     @StoreThread
     private final void notifyHomeTabSelected(StoreNavigation.PanelAction panelAction) {
         this.storeStream.handleHomeTabSelected(panelAction);
-    }
-
-    public static /* synthetic */ void selectHomeTab$default(StoreTabsNavigation storeTabsNavigation, StoreNavigation.PanelAction panelAction, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        storeTabsNavigation.selectHomeTab(panelAction, z2);
-    }
-
-    public static /* synthetic */ void selectTab$default(StoreTabsNavigation storeTabsNavigation, NavigationTab navigationTab, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        storeTabsNavigation.selectTab(navigationTab, z2);
-    }
-
-    public static /* synthetic */ void selectTabInternal$app_productionGoogleRelease$default(StoreTabsNavigation storeTabsNavigation, NavigationTab navigationTab, boolean z2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        storeTabsNavigation.selectTabInternal$app_productionGoogleRelease(navigationTab, z2);
-    }
-
-    public final NavigationTab getSelectedTab() {
-        return this.selectedTab;
-    }
-
-    @StoreThread
-    public final void handlePreLogout() {
-        selectTabInternal$app_productionGoogleRelease$default(this, NavigationTab.HOME, false, 2, null);
     }
 
     public final Observable<Unit> observeDismissTabsDialogEvent() {
@@ -150,14 +129,35 @@ public final class StoreTabsNavigation extends StoreV2 {
         return observableM11112r;
     }
 
+    public static /* synthetic */ void selectHomeTab$default(StoreTabsNavigation storeTabsNavigation, StoreNavigation.PanelAction panelAction, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        storeTabsNavigation.selectHomeTab(panelAction, z2);
+    }
+
     public final void selectHomeTab(StoreNavigation.PanelAction panelAction, boolean dismissTabsDialogs) {
         C12238m.checkNotNullParameter(panelAction, "panelAction");
         this.dispatcher.schedule(new C65271(panelAction, dismissTabsDialogs));
     }
 
+    public static /* synthetic */ void selectTab$default(StoreTabsNavigation storeTabsNavigation, NavigationTab navigationTab, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        storeTabsNavigation.selectTab(navigationTab, z2);
+    }
+
     public final void selectTab(NavigationTab navigationTab, boolean dismissTabsDialogs) {
         C12238m.checkNotNullParameter(navigationTab, "navigationTab");
         this.dispatcher.schedule(new C65281(navigationTab, dismissTabsDialogs));
+    }
+
+    public static /* synthetic */ void selectTabInternal$app_productionGoogleRelease$default(StoreTabsNavigation storeTabsNavigation, NavigationTab navigationTab, boolean z2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        storeTabsNavigation.selectTabInternal$app_productionGoogleRelease(navigationTab, z2);
     }
 
     @StoreThread

@@ -11,18 +11,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: ForumBrowserItem.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_LOADING = 2;
     public static final int TYPE_POST = 1;
     private final String key;
     private final int type;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final Lazy postItemComparatorByMostRecent$delegate = C12083g.lazy(ForumBrowserItem$Companion$postItemComparatorByMostRecent$2.INSTANCE);
 
     /* JADX INFO: compiled from: ForumBrowserItem.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -38,7 +38,7 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ForumBrowserItem.kt */
-    public static final /* data */ class HeaderItem extends ForumBrowserItem {
+    public final /* data */ class HeaderItem extends ForumBrowserItem {
         private final int stringResId;
 
         public HeaderItem(int i) {
@@ -53,11 +53,6 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
             return headerItem.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getStringResId() {
-            return this.stringResId;
-        }
-
         public final HeaderItem copy(int stringResId) {
             return new HeaderItem(stringResId);
         }
@@ -67,6 +62,11 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
                 return (other instanceof HeaderItem) && this.stringResId == ((HeaderItem) other).stringResId;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getStringResId() {
+            return this.stringResId;
         }
 
         public final int getStringResId() {
@@ -83,7 +83,7 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ForumBrowserItem.kt */
-    public static final class LoadingItem extends ForumBrowserItem {
+    public final class LoadingItem extends ForumBrowserItem {
         public static final LoadingItem INSTANCE = new LoadingItem();
 
         private LoadingItem() {
@@ -92,7 +92,7 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: ForumBrowserItem.kt */
-    public static final /* data */ class PostItem extends ForumBrowserItem {
+    public final /* data */ class PostItem extends ForumBrowserItem {
         private final PostData post;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -109,11 +109,6 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
             return postItem.copy(postData);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PostData getPost() {
-            return this.post;
-        }
-
         public final PostItem copy(PostData post) {
             C12238m.checkNotNullParameter(post, "post");
             return new PostItem(post);
@@ -124,6 +119,11 @@ public abstract class ForumBrowserItem implements MGRecyclerDataPayload {
                 return (other instanceof PostItem) && C12238m.areEqual(this.post, ((PostItem) other).post);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final PostData getPost() {
+            return this.post;
         }
 
         public final PostData getPost() {

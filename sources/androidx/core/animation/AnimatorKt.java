@@ -13,7 +13,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addListener$1 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02061 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02061 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02061 INSTANCE = new C02061();
 
         public C02061() {
@@ -34,7 +34,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addListener$2 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02072 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02072 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02072 INSTANCE = new C02072();
 
         public C02072() {
@@ -55,7 +55,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addListener$3 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02083 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02083 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02083 INSTANCE = new C02083();
 
         public C02083() {
@@ -76,7 +76,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addListener$4 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02094 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02094 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02094 INSTANCE = new C02094();
 
         public C02094() {
@@ -97,7 +97,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addPauseListener$1 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02101 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02101 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02101 INSTANCE = new C02101();
 
         public C02101() {
@@ -118,7 +118,7 @@ public final class AnimatorKt {
 
     /* JADX INFO: renamed from: androidx.core.animation.AnimatorKt$addPauseListener$2 */
     /* JADX INFO: compiled from: Animator.kt */
-    public static final class C02112 extends AbstractC12240o implements Function1<Animator, Unit> {
+    public final class C02112 extends AbstractC12240o implements Function1<Animator, Unit> {
         public static final C02112 INSTANCE = new C02112();
 
         public C02112() {
@@ -135,17 +135,6 @@ public final class AnimatorKt {
         public final void invoke2(Animator animator) {
             C12238m.checkNotNullParameter(animator, "it");
         }
-    }
-
-    public static final Animator.AnimatorListener addListener(Animator animator, Function1<? super Animator, Unit> function1, Function1<? super Animator, Unit> function2, Function1<? super Animator, Unit> function3, Function1<? super Animator, Unit> function4) {
-        C12238m.checkNotNullParameter(animator, "<this>");
-        C12238m.checkNotNullParameter(function1, "onEnd");
-        C12238m.checkNotNullParameter(function2, "onStart");
-        C12238m.checkNotNullParameter(function3, "onCancel");
-        C12238m.checkNotNullParameter(function4, "onRepeat");
-        AnimatorKt$addListener$listener$1 animatorKt$addListener$listener$1 = new AnimatorKt$addListener$listener$1(function4, function1, function3, function2);
-        animator.addListener(animatorKt$addListener$listener$1);
-        return animatorKt$addListener$listener$1;
     }
 
     public static /* synthetic */ Animator.AnimatorListener addListener$default(Animator animator, Function1 function1, Function1 function2, Function1 function3, Function1 function4, int i, Object obj) {
@@ -171,14 +160,15 @@ public final class AnimatorKt {
         return animatorKt$addListener$listener$1;
     }
 
-    @RequiresApi(19)
-    public static final Animator.AnimatorPauseListener addPauseListener(Animator animator, Function1<? super Animator, Unit> function1, Function1<? super Animator, Unit> function2) {
+    public static final Animator.AnimatorListener addListener(Animator animator, Function1<? super Animator, Unit> function1, Function1<? super Animator, Unit> function2, Function1<? super Animator, Unit> function3, Function1<? super Animator, Unit> function4) {
         C12238m.checkNotNullParameter(animator, "<this>");
-        C12238m.checkNotNullParameter(function1, "onResume");
-        C12238m.checkNotNullParameter(function2, "onPause");
-        AnimatorKt$addPauseListener$listener$1 animatorKt$addPauseListener$listener$1 = new AnimatorKt$addPauseListener$listener$1(function2, function1);
-        animator.addPauseListener(animatorKt$addPauseListener$listener$1);
-        return animatorKt$addPauseListener$listener$1;
+        C12238m.checkNotNullParameter(function1, "onEnd");
+        C12238m.checkNotNullParameter(function2, "onStart");
+        C12238m.checkNotNullParameter(function3, "onCancel");
+        C12238m.checkNotNullParameter(function4, "onRepeat");
+        AnimatorKt$addListener$listener$1 animatorKt$addListener$listener$1 = new AnimatorKt$addListener$listener$1(function4, function1, function3, function2);
+        animator.addListener(animatorKt$addListener$listener$1);
+        return animatorKt$addListener$listener$1;
     }
 
     public static /* synthetic */ Animator.AnimatorPauseListener addPauseListener$default(Animator animator, Function1 function1, Function1 function2, int i, Object obj) {
@@ -188,6 +178,16 @@ public final class AnimatorKt {
         if ((i & 2) != 0) {
             function2 = C02112.INSTANCE;
         }
+        C12238m.checkNotNullParameter(animator, "<this>");
+        C12238m.checkNotNullParameter(function1, "onResume");
+        C12238m.checkNotNullParameter(function2, "onPause");
+        AnimatorKt$addPauseListener$listener$1 animatorKt$addPauseListener$listener$1 = new AnimatorKt$addPauseListener$listener$1(function2, function1);
+        animator.addPauseListener(animatorKt$addPauseListener$listener$1);
+        return animatorKt$addPauseListener$listener$1;
+    }
+
+    @RequiresApi(19)
+    public static final Animator.AnimatorPauseListener addPauseListener(Animator animator, Function1<? super Animator, Unit> function1, Function1<? super Animator, Unit> function2) {
         C12238m.checkNotNullParameter(animator, "<this>");
         C12238m.checkNotNullParameter(function1, "onResume");
         C12238m.checkNotNullParameter(function2, "onPause");

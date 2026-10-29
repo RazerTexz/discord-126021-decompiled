@@ -8,9 +8,6 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4512j0<E> extends AbstractC4527r<E> {
 
-    /* JADX INFO: renamed from: m */
-    public static final C4512j0<Object> f12032m = new C4512j0<>(new Object[0], 0, null, 0, 0);
-
     /* JADX INFO: renamed from: n */
     public final transient Object[] f12033n;
 
@@ -25,6 +22,9 @@ public final class C4512j0<E> extends AbstractC4527r<E> {
 
     /* JADX INFO: renamed from: r */
     public final transient int f12037r;
+
+    /* JADX INFO: renamed from: m */
+    public static final C4512j0<Object> f12032m = new C4512j0<>(new Object[0], 0, null, 0, 0);
 
     public C4512j0(Object[] objArr, int i, Object[] objArr2, int i2, int i3) {
         this.f12033n = objArr;
@@ -54,6 +54,17 @@ public final class C4512j0<E> extends AbstractC4527r<E> {
         }
     }
 
+    @Override // p007b.p225i.p355b.p357b.AbstractC4527r, java.util.Collection, java.util.Set
+    public int hashCode() {
+        return this.f12036q;
+    }
+
+    @Override // p007b.p225i.p355b.p357b.AbstractC4527r, p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+    /* JADX INFO: renamed from: j */
+    public AbstractC4530s0<E> iterator() {
+        return mo6253c().listIterator();
+    }
+
     @Override // p007b.p225i.p355b.p357b.AbstractC4519n
     /* JADX INFO: renamed from: d */
     public int mo6242d(Object[] objArr, int i) {
@@ -79,21 +90,10 @@ public final class C4512j0<E> extends AbstractC4527r<E> {
         return 0;
     }
 
-    @Override // p007b.p225i.p355b.p357b.AbstractC4527r, java.util.Collection, java.util.Set
-    public int hashCode() {
-        return this.f12036q;
-    }
-
     @Override // p007b.p225i.p355b.p357b.AbstractC4519n
     /* JADX INFO: renamed from: i */
     public boolean mo6246i() {
         return false;
-    }
-
-    @Override // p007b.p225i.p355b.p357b.AbstractC4527r, p007b.p225i.p355b.p357b.AbstractC4519n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    /* JADX INFO: renamed from: j */
-    public AbstractC4530s0<E> iterator() {
-        return mo6253c().listIterator();
     }
 
     @Override // p007b.p225i.p355b.p357b.AbstractC4527r

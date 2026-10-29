@@ -58,8 +58,12 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetForumBrowser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetForumBrowser extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetForumBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetForumBrowserBinding;", 0)};
     private static final String CLOSE_FORUM_GUIDELINES_NOOP_REQUEST_KEY = "CLOSE_FORUM_GUIDELINES_NOOP_REQUEST_KEY";
     private static final String CLOSE_FORUM_GUIDELINES_REQUEST_KEY = "CLOSE_FORUM_GUIDELINES_REQUEST_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final List<ForumBrowserItem> adapterDataReference;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -72,30 +76,10 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetForumBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetForumBrowserBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Context context) {
-            if (context != null) {
-                C0870j.m157e(context, WidgetForumBrowser.class, null, 4);
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$configureCreatePostButton$2 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final class C83392 extends AbstractC12240o implements Function2<Long, Long, Unit> {
+    public final class C83392 extends AbstractC12240o implements Function2<Long, Long, Unit> {
         public C83392() {
             super(2);
         }
@@ -113,7 +97,7 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$handleViewState$1 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final class C83411 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C83411 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public final /* synthetic */ WidgetForumBrowserViewModel.ViewState $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -140,7 +124,7 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onResume$1 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final class C83421 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.Event, Unit> {
+    public final class C83421 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.Event, Unit> {
         public C83421() {
             super(1);
         }
@@ -160,7 +144,7 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onResume$2 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final class C83432 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.ViewState, Unit> {
+    public final class C83432 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.ViewState, Unit> {
         public C83432() {
             super(1);
         }
@@ -180,7 +164,7 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final /* synthetic */ class C83441 extends C12236k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class C83441 extends C12236k implements Function1<Channel, Unit> {
         public C83441(WidgetForumBrowser widgetForumBrowser) {
             super(1, widgetForumBrowser, WidgetForumBrowser.class, "openForumPost", "openForumPost(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -200,7 +184,7 @@ public final class WidgetForumBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public static final /* synthetic */ class C83452 extends C12236k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class C83452 extends C12236k implements Function1<Channel, Unit> {
         public C83452(WidgetForumBrowser widgetForumBrowser) {
             super(1, widgetForumBrowser, WidgetForumBrowser.class, "openForumPostOptions", "openForumPostOptions(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -215,6 +199,22 @@ public final class WidgetForumBrowser extends AppFragment {
         public final void invoke2(Channel channel) {
             C12238m.checkNotNullParameter(channel, "p1");
             ((WidgetForumBrowser) this.receiver).openForumPostOptions(channel);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Context context) {
+            if (context != null) {
+                C0870j.m157e(context, WidgetForumBrowser.class, null, 4);
+            }
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -457,6 +457,45 @@ public final class WidgetForumBrowser extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onResume() {
+        super.onResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83421());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83432());
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
+        RecyclerView recyclerView = getBinding().f16638f;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        this.forumBrowserAdapter = (WidgetForumBrowserAdapter) companion.configure(new WidgetForumBrowserAdapter(recyclerView, new C83441(this), new C83452(this)));
+        RecyclerView recyclerView2 = getBinding().f16638f;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.recyclerView");
+        this.forumBrowserLayoutManager = new ForumBrowserLayoutManager(recyclerView2);
+        this.forumBrowserScrollListener = new ForumBrowserScrollListener();
+        RecyclerView recyclerView3 = getBinding().f16638f;
+        ForumBrowserLayoutManager forumBrowserLayoutManager = this.forumBrowserLayoutManager;
+        if (forumBrowserLayoutManager == null) {
+            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+        }
+        recyclerView3.setLayoutManager(forumBrowserLayoutManager);
+        ForumBrowserScrollListener forumBrowserScrollListener = this.forumBrowserScrollListener;
+        if (forumBrowserScrollListener == null) {
+            C12238m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
+        }
+        recyclerView3.addOnScrollListener(forumBrowserScrollListener);
+        WidgetForumBrowserAdapter widgetForumBrowserAdapter = this.forumBrowserAdapter;
+        if (widgetForumBrowserAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
+        }
+        recyclerView3.addItemDecoration(widgetForumBrowserAdapter.getItemDecoration());
+        setWindowInsetsListeners();
+        this.panelNsfw = new WidgetHomePanelNsfw(this);
+    }
+
     private final void openCreatePostScreen(long guildId, long channelId) {
         ChannelSelector.openCreateThread$default(ChannelSelector.INSTANCE.getInstance(), guildId, channelId, null, "Thread Browser Toolbar", 4, null);
     }
@@ -509,44 +548,5 @@ public final class WidgetForumBrowser extends AppFragment {
 
     public static final void show(Context context) {
         INSTANCE.show(context);
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onResume() {
-        super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83421());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83432());
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
-        this.forumBrowserAdapter = (WidgetForumBrowserAdapter) companion.configure(new WidgetForumBrowserAdapter(recyclerView, new C83441(this), new C83452(this)));
-        RecyclerView recyclerView2 = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.recyclerView");
-        this.forumBrowserLayoutManager = new ForumBrowserLayoutManager(recyclerView2);
-        this.forumBrowserScrollListener = new ForumBrowserScrollListener();
-        RecyclerView recyclerView3 = getBinding().f16638f;
-        ForumBrowserLayoutManager forumBrowserLayoutManager = this.forumBrowserLayoutManager;
-        if (forumBrowserLayoutManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
-        }
-        recyclerView3.setLayoutManager(forumBrowserLayoutManager);
-        ForumBrowserScrollListener forumBrowserScrollListener = this.forumBrowserScrollListener;
-        if (forumBrowserScrollListener == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
-        }
-        recyclerView3.addOnScrollListener(forumBrowserScrollListener);
-        WidgetForumBrowserAdapter widgetForumBrowserAdapter = this.forumBrowserAdapter;
-        if (widgetForumBrowserAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
-        }
-        recyclerView3.addItemDecoration(widgetForumBrowserAdapter.getItemDecoration());
-        setWindowInsetsListeners();
-        this.panelNsfw = new WidgetHomePanelNsfw(this);
     }
 }

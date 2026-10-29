@@ -22,7 +22,7 @@ public final class WidgetAuthBirthday$validationManager$2 extends AbstractC12240
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthBirthday$validationManager$2$2 */
     /* JADX INFO: compiled from: WidgetAuthBirthday.kt */
-    public static final class C71712 extends AbstractC12240o implements Function2<MaterialCheckBox, CharSequence, Boolean> {
+    public final class C71712 extends AbstractC12240o implements Function2<MaterialCheckBox, CharSequence, Boolean> {
         public static final C71712 INSTANCE = new C71712();
 
         public C71712() {

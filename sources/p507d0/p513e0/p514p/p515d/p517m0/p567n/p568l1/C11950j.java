@@ -45,7 +45,7 @@ public final class C11950j implements InterfaceC11804b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.j$a */
     /* JADX INFO: compiled from: NewCapturedType.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
         public final /* synthetic */ List<AbstractC11932i1> $supertypes;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -63,7 +63,7 @@ public final class C11950j implements InterfaceC11804b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.j$b */
     /* JADX INFO: compiled from: NewCapturedType.kt */
-    public static final class b extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
+    public final class b extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
         public b() {
             super(0);
         }
@@ -80,7 +80,7 @@ public final class C11950j implements InterfaceC11804b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.j$c */
     /* JADX INFO: compiled from: NewCapturedType.kt */
-    public static final class c extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
+    public final class c extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
         public final /* synthetic */ List<AbstractC11932i1> $supertypes;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -98,7 +98,7 @@ public final class C11950j implements InterfaceC11804b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.j$d */
     /* JADX INFO: compiled from: NewCapturedType.kt */
-    public static final class d extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
+    public final class d extends AbstractC12240o implements Function0<List<? extends AbstractC11932i1>> {
         public final /* synthetic */ AbstractC11947g $kotlinTypeRefiner;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -33,6 +33,12 @@ import p615g0.C12388e;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12379w {
 
+    /* JADX INFO: renamed from: a */
+    public static final char[] f25973a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    /* JADX INFO: renamed from: b */
+    public static final b f25974b = new b(null);
+
     /* JADX INFO: renamed from: c */
     public final boolean f25975c;
 
@@ -63,15 +69,447 @@ public final class C12379w {
     /* JADX INFO: renamed from: l */
     public final String f25984l;
 
-    /* JADX INFO: renamed from: b */
-    public static final b f25974b = new b(null);
+    /* JADX INFO: renamed from: f0.w$b */
+    /* JADX INFO: compiled from: HttpUrl.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static String m10413a(b bVar, String str, int i, int i2, String str2, boolean z2, boolean z3, boolean z4, boolean z5, Charset charset, int i3) {
+            int i4;
+            String str3;
+            boolean z6;
+            String str4;
+            int i5 = (i3 & 1) != 0 ? 0 : i;
+            int length = (i3 & 2) != 0 ? str.length() : i2;
+            boolean z7 = (i3 & 8) != 0 ? false : z2;
+            boolean z8 = (i3 & 16) != 0 ? false : z3;
+            boolean z9 = (i3 & 32) != 0 ? false : z4;
+            boolean z10 = (i3 & 64) != 0 ? false : z5;
+            Charset charset2 = (i3 & 128) != 0 ? null : charset;
+            C12238m.checkParameterIsNotNull(str, "$this$canonicalize");
+            C12238m.checkParameterIsNotNull(str2, "encodeSet");
+            int iCharCount = i5;
+            while (true) {
+                if (iCharCount >= length) {
+                    String strSubstring = str.substring(i5, length);
+                    C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                    return strSubstring;
+                }
+                int iCodePointAt = str.codePointAt(iCharCount);
+                i4 = 2;
+                if (iCodePointAt < 32 || iCodePointAt == 127 || (iCodePointAt >= 128 && !z10)) {
+                    str3 = "(this as java.lang.Strin…ing(startIndex, endIndex)";
+                    break;
+                }
+                str3 = "(this as java.lang.Strin…ing(startIndex, endIndex)";
+                if (C12106w.contains$default((CharSequence) str2, (char) iCodePointAt, false, 2, (Object) null) || ((iCodePointAt == 37 && (!z7 || (z8 && !bVar.m10416c(str, iCharCount, length)))) || (iCodePointAt == 43 && z9))) {
+                    break;
+                }
+                iCharCount += Character.charCount(iCodePointAt);
+            }
+            C12388e c12388e = new C12388e();
+            c12388e.m10453c0(str, i5, iCharCount);
+            C12388e c12388e2 = null;
+            while (iCharCount < length) {
+                int iCodePointAt2 = str.codePointAt(iCharCount);
+                if (z7 && (iCodePointAt2 == 9 || iCodePointAt2 == 10 || iCodePointAt2 == 12 || iCodePointAt2 == 13)) {
+                    z6 = z9;
+                    str4 = str3;
+                } else if (iCodePointAt2 == 43 && z9) {
+                    c12388e.m10452b0(z7 ? BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX : "%2B");
+                    z6 = z9;
+                    str4 = str3;
+                } else {
+                    if (iCodePointAt2 < 32 || iCodePointAt2 == 127 || (iCodePointAt2 >= 128 && !z10)) {
+                        z6 = z9;
+                    } else {
+                        z6 = z9;
+                        if (!C12106w.contains$default((CharSequence) str2, (char) iCodePointAt2, false, i4, (Object) null) && (iCodePointAt2 != 37 || (z7 && (!z8 || bVar.m10416c(str, iCharCount, length))))) {
+                            c12388e.m10454d0(iCodePointAt2);
+                            str4 = str3;
+                        }
+                    }
+                    if (c12388e2 == null) {
+                        c12388e2 = new C12388e();
+                    }
+                    if (charset2 == null || C12238m.areEqual(charset2, StandardCharsets.UTF_8)) {
+                        str4 = str3;
+                        c12388e2.m10454d0(iCodePointAt2);
+                    } else {
+                        int iCharCount2 = Character.charCount(iCodePointAt2) + iCharCount;
+                        C12238m.checkParameterIsNotNull(str, "string");
+                        C12238m.checkParameterIsNotNull(charset2, "charset");
+                        if (!(iCharCount >= 0)) {
+                            throw new IllegalArgumentException(C1643a.m871q("beginIndex < 0: ", iCharCount).toString());
+                        }
+                        if (!(iCharCount2 >= iCharCount)) {
+                            throw new IllegalArgumentException(C1643a.m875s("endIndex < beginIndex: ", iCharCount2, " < ", iCharCount).toString());
+                        }
+                        if (!(iCharCount2 <= str.length())) {
+                            StringBuilder sbM834V = C1643a.m834V("endIndex > string.length: ", iCharCount2, " > ");
+                            sbM834V.append(str.length());
+                            throw new IllegalArgumentException(sbM834V.toString().toString());
+                        }
+                        if (C12238m.areEqual(charset2, C12086c.f25136a)) {
+                            c12388e2.m10453c0(str, iCharCount, iCharCount2);
+                            str4 = str3;
+                        } else {
+                            String strSubstring2 = str.substring(iCharCount, iCharCount2);
+                            str4 = str3;
+                            C12238m.checkExpressionValueIsNotNull(strSubstring2, str4);
+                            if (strSubstring2 == null) {
+                                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+                            }
+                            byte[] bytes = strSubstring2.getBytes(charset2);
+                            C12238m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+                            c12388e2.m10443S(bytes, 0, bytes.length);
+                        }
+                    }
+                    while (!c12388e2.mo10472w()) {
+                        int i6 = c12388e2.readByte() & 255;
+                        c12388e.m10444T(37);
+                        char[] cArr = C12379w.f25973a;
+                        c12388e.m10444T(cArr[(i6 >> 4) & 15]);
+                        c12388e.m10444T(cArr[i6 & 15]);
+                    }
+                }
+                iCharCount += Character.charCount(iCodePointAt2);
+                i4 = 2;
+                z9 = z6;
+                str3 = str4;
+            }
+            return c12388e.m10429D();
+        }
+
+        /* JADX INFO: renamed from: d */
+        public static String m10414d(b bVar, String str, int i, int i2, boolean z2, int i3) {
+            int i4;
+            if ((i3 & 1) != 0) {
+                i = 0;
+            }
+            if ((i3 & 2) != 0) {
+                i2 = str.length();
+            }
+            if ((i3 & 4) != 0) {
+                z2 = false;
+            }
+            C12238m.checkParameterIsNotNull(str, "$this$percentDecode");
+            int iCharCount = i;
+            while (iCharCount < i2) {
+                char cCharAt = str.charAt(iCharCount);
+                if (cCharAt == '%' || (cCharAt == '+' && z2)) {
+                    C12388e c12388e = new C12388e();
+                    c12388e.m10453c0(str, i, iCharCount);
+                    while (iCharCount < i2) {
+                        int iCodePointAt = str.codePointAt(iCharCount);
+                        if (iCodePointAt == 37 && (i4 = iCharCount + 2) < i2) {
+                            int iM10137r = C12272c.m10137r(str.charAt(iCharCount + 1));
+                            int iM10137r2 = C12272c.m10137r(str.charAt(i4));
+                            if (iM10137r == -1 || iM10137r2 == -1) {
+                                c12388e.m10454d0(iCodePointAt);
+                                iCharCount += Character.charCount(iCodePointAt);
+                            } else {
+                                c12388e.m10444T((iM10137r << 4) + iM10137r2);
+                                iCharCount = Character.charCount(iCodePointAt) + i4;
+                            }
+                        } else if (iCodePointAt == 43 && z2) {
+                            c12388e.m10444T(32);
+                            iCharCount++;
+                        } else {
+                            c12388e.m10454d0(iCodePointAt);
+                            iCharCount += Character.charCount(iCodePointAt);
+                        }
+                    }
+                    return c12388e.m10429D();
+                }
+                iCharCount++;
+            }
+            String strSubstring = str.substring(i, i2);
+            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+            return strSubstring;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final int m10415b(String str) {
+            C12238m.checkParameterIsNotNull(str, "scheme");
+            int iHashCode = str.hashCode();
+            if (iHashCode != 3213448) {
+                if (iHashCode == 99617003 && str.equals(Constants.SCHEME)) {
+                    return 443;
+                }
+            } else if (str.equals("http")) {
+                return 80;
+            }
+            return -1;
+        }
+
+        /* JADX INFO: renamed from: c */
+        public final boolean m10416c(String str, int i, int i2) {
+            int i3 = i + 2;
+            return i3 < i2 && str.charAt(i) == '%' && C12272c.m10137r(str.charAt(i + 1)) != -1 && C12272c.m10137r(str.charAt(i3)) != -1;
+        }
+
+        /* JADX INFO: renamed from: e */
+        public final List<String> m10417e(String str) {
+            C12238m.checkParameterIsNotNull(str, "$this$toQueryNamesAndValues");
+            ArrayList arrayList = new ArrayList();
+            int i = 0;
+            while (i <= str.length()) {
+                int iIndexOf$default = C12106w.indexOf$default((CharSequence) str, '&', i, false, 4, (Object) null);
+                if (iIndexOf$default == -1) {
+                    iIndexOf$default = str.length();
+                }
+                int i2 = iIndexOf$default;
+                int iIndexOf$default2 = C12106w.indexOf$default((CharSequence) str, '=', i, false, 4, (Object) null);
+                if (iIndexOf$default2 == -1 || iIndexOf$default2 > i2) {
+                    String strSubstring = str.substring(i, i2);
+                    C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                    arrayList.add(strSubstring);
+                    arrayList.add(null);
+                } else {
+                    String strSubstring2 = str.substring(i, iIndexOf$default2);
+                    C12238m.checkExpressionValueIsNotNull(strSubstring2, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                    arrayList.add(strSubstring2);
+                    String strSubstring3 = str.substring(iIndexOf$default2 + 1, i2);
+                    C12238m.checkExpressionValueIsNotNull(strSubstring3, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                    arrayList.add(strSubstring3);
+                }
+                i = i2 + 1;
+            }
+            return arrayList;
+        }
+    }
+
+    public C12379w(String str, String str2, String str3, String str4, int i, List<String> list, List<String> list2, String str5, String str6) {
+        C12238m.checkParameterIsNotNull(str, "scheme");
+        C12238m.checkParameterIsNotNull(str2, "username");
+        C12238m.checkParameterIsNotNull(str3, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+        C12238m.checkParameterIsNotNull(str4, "host");
+        C12238m.checkParameterIsNotNull(list, "pathSegments");
+        C12238m.checkParameterIsNotNull(str6, "url");
+        this.f25976d = str;
+        this.f25977e = str2;
+        this.f25978f = str3;
+        this.f25979g = str4;
+        this.f25980h = i;
+        this.f25981i = list;
+        this.f25982j = list2;
+        this.f25983k = str5;
+        this.f25984l = str6;
+        this.f25975c = C12238m.areEqual(str, Constants.SCHEME);
+    }
+
+    public boolean equals(Object obj) {
+        return (obj instanceof C12379w) && C12238m.areEqual(((C12379w) obj).f25984l, this.f25984l);
+    }
+
+    public int hashCode() {
+        return this.f25984l.hashCode();
+    }
 
     /* JADX INFO: renamed from: a */
-    public static final char[] f25973a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public final String m10399a() {
+        if (this.f25978f.length() == 0) {
+            return "";
+        }
+        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR, this.f25976d.length() + 3, false, 4, (Object) null) + 1;
+        int iIndexOf$default2 = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.MENTIONS_CHAR, 0, false, 6, (Object) null);
+        String str = this.f25984l;
+        if (str == null) {
+            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+        }
+        String strSubstring = str.substring(iIndexOf$default, iIndexOf$default2);
+        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+        return strSubstring;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final String m10400b() {
+        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.SLASH_CHAR, this.f25976d.length() + 3, false, 4, (Object) null);
+        String str = this.f25984l;
+        int iM10126g = C12272c.m10126g(str, "?#", iIndexOf$default, str.length());
+        String str2 = this.f25984l;
+        if (str2 == null) {
+            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+        }
+        String strSubstring = str2.substring(iIndexOf$default, iM10126g);
+        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+        return strSubstring;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<String> m10401c() {
+        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.SLASH_CHAR, this.f25976d.length() + 3, false, 4, (Object) null);
+        String str = this.f25984l;
+        int iM10126g = C12272c.m10126g(str, "?#", iIndexOf$default, str.length());
+        ArrayList arrayList = new ArrayList();
+        while (iIndexOf$default < iM10126g) {
+            int i = iIndexOf$default + 1;
+            int iM10125f = C12272c.m10125f(this.f25984l, MentionUtilsKt.SLASH_CHAR, i, iM10126g);
+            String str2 = this.f25984l;
+            if (str2 == null) {
+                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+            }
+            String strSubstring = str2.substring(i, iM10125f);
+            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+            arrayList.add(strSubstring);
+            iIndexOf$default = iM10125f;
+        }
+        return arrayList;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final String m10402d() {
+        if (this.f25982j == null) {
+            return null;
+        }
+        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, '?', 0, false, 6, (Object) null) + 1;
+        String str = this.f25984l;
+        int iM10125f = C12272c.m10125f(str, MentionUtilsKt.CHANNELS_CHAR, iIndexOf$default, str.length());
+        String str2 = this.f25984l;
+        if (str2 == null) {
+            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+        }
+        String strSubstring = str2.substring(iIndexOf$default, iM10125f);
+        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+        return strSubstring;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final String m10403e() {
+        if (this.f25977e.length() == 0) {
+            return "";
+        }
+        int length = this.f25976d.length() + 3;
+        String str = this.f25984l;
+        int iM10126g = C12272c.m10126g(str, ":@", length, str.length());
+        String str2 = this.f25984l;
+        if (str2 == null) {
+            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+        }
+        String strSubstring = str2.substring(length, iM10126g);
+        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+        return strSubstring;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:13:0x0050  */
+    /* JADX INFO: renamed from: f */
+    public final a m10404f() {
+        int i;
+        String strSubstring;
+        a aVar = new a();
+        aVar.f25986b = this.f25976d;
+        String strM10403e = m10403e();
+        C12238m.checkParameterIsNotNull(strM10403e, "<set-?>");
+        aVar.f25987c = strM10403e;
+        String strM10399a = m10399a();
+        C12238m.checkParameterIsNotNull(strM10399a, "<set-?>");
+        aVar.f25988d = strM10399a;
+        aVar.f25989e = this.f25979g;
+        int i2 = this.f25980h;
+        String str = this.f25976d;
+        C12238m.checkParameterIsNotNull(str, "scheme");
+        int iHashCode = str.hashCode();
+        if (iHashCode != 3213448) {
+            if (iHashCode == 99617003 && str.equals(Constants.SCHEME)) {
+                i = 443;
+            } else {
+                i = -1;
+            }
+        } else if (str.equals("http")) {
+            i = 80;
+        } else {
+            i = -1;
+        }
+        aVar.f25990f = i2 != i ? this.f25980h : -1;
+        aVar.f25991g.clear();
+        aVar.f25991g.addAll(m10401c());
+        aVar.m10411d(m10402d());
+        if (this.f25983k == null) {
+            strSubstring = null;
+        } else {
+            int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.CHANNELS_CHAR, 0, false, 6, (Object) null) + 1;
+            String str2 = this.f25984l;
+            if (str2 == null) {
+                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+            }
+            strSubstring = str2.substring(iIndexOf$default);
+            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.String).substring(startIndex)");
+        }
+        aVar.f25993i = strSubstring;
+        return aVar;
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final a m10405g(String str) {
+        C12238m.checkParameterIsNotNull(str, "link");
+        try {
+            a aVar = new a();
+            aVar.m10412e(this, str);
+            return aVar;
+        } catch (IllegalArgumentException unused) {
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final String m10406h() {
+        a aVarM10405g = m10405g("/...");
+        if (aVarM10405g == null) {
+            C12238m.throwNpe();
+        }
+        Objects.requireNonNull(aVarM10405g);
+        C12238m.checkParameterIsNotNull("", "username");
+        b bVar = f25974b;
+        aVarM10405g.f25987c = b.m10413a(bVar, "", 0, 0, " \"':;<=>@[]^`{}|/\\?#", false, false, false, false, null, 251);
+        C12238m.checkParameterIsNotNull("", WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+        aVarM10405g.f25988d = b.m10413a(bVar, "", 0, 0, " \"':;<=>@[]^`{}|/\\?#", false, false, false, false, null, 251);
+        return aVarM10405g.m10409b().f25984l;
+    }
+
+    /* JADX INFO: renamed from: i */
+    public final URI m10407i() {
+        a aVarM10404f = m10404f();
+        String str = aVarM10404f.f25989e;
+        aVarM10404f.f25989e = str != null ? new Regex("[\"<>^`{|}]").replace(str, "") : null;
+        int size = aVarM10404f.f25991g.size();
+        for (int i = 0; i < size; i++) {
+            List<String> list = aVarM10404f.f25991g;
+            list.set(i, b.m10413a(f25974b, list.get(i), 0, 0, "[]", true, true, false, false, null, 227));
+        }
+        List<String> list2 = aVarM10404f.f25992h;
+        if (list2 != null) {
+            int size2 = list2.size();
+            for (int i2 = 0; i2 < size2; i2++) {
+                String str2 = list2.get(i2);
+                list2.set(i2, str2 != null ? b.m10413a(f25974b, str2, 0, 0, "\\^`{|}", true, true, true, false, null, Opcodes.MONITOREXIT) : null);
+            }
+        }
+        String str3 = aVarM10404f.f25993i;
+        aVarM10404f.f25993i = str3 != null ? b.m10413a(f25974b, str3, 0, 0, " \"#<>\\^`{|}", true, true, false, true, null, Opcodes.IF_ICMPGT) : null;
+        String string = aVarM10404f.toString();
+        try {
+            return new URI(string);
+        } catch (URISyntaxException e) {
+            try {
+                URI uriCreate = URI.create(new Regex("[\\u0000-\\u001F\\u007F-\\u009F\\p{javaWhitespace}]").replace(string, ""));
+                C12238m.checkExpressionValueIsNotNull(uriCreate, "URI.create(stripped)");
+                return uriCreate;
+            } catch (Exception unused) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public String toString() {
+        return this.f25984l;
+    }
 
     /* JADX INFO: renamed from: f0.w$a */
     /* JADX INFO: compiled from: HttpUrl.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C13345a f25985a = new C13345a(null);
@@ -102,7 +540,7 @@ public final class C12379w {
 
         /* JADX INFO: renamed from: f0.w$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: HttpUrl.kt */
-        public static final class C13345a {
+        public final class C13345a {
             public C13345a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -691,443 +1129,5 @@ public final class C12379w {
             C12238m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
             return string;
         }
-    }
-
-    /* JADX INFO: renamed from: f0.w$b */
-    /* JADX INFO: compiled from: HttpUrl.kt */
-    public static final class b {
-        public b(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static String m10413a(b bVar, String str, int i, int i2, String str2, boolean z2, boolean z3, boolean z4, boolean z5, Charset charset, int i3) {
-            int i4;
-            String str3;
-            boolean z6;
-            String str4;
-            int i5 = (i3 & 1) != 0 ? 0 : i;
-            int length = (i3 & 2) != 0 ? str.length() : i2;
-            boolean z7 = (i3 & 8) != 0 ? false : z2;
-            boolean z8 = (i3 & 16) != 0 ? false : z3;
-            boolean z9 = (i3 & 32) != 0 ? false : z4;
-            boolean z10 = (i3 & 64) != 0 ? false : z5;
-            Charset charset2 = (i3 & 128) != 0 ? null : charset;
-            C12238m.checkParameterIsNotNull(str, "$this$canonicalize");
-            C12238m.checkParameterIsNotNull(str2, "encodeSet");
-            int iCharCount = i5;
-            while (true) {
-                if (iCharCount >= length) {
-                    String strSubstring = str.substring(i5, length);
-                    C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-                    return strSubstring;
-                }
-                int iCodePointAt = str.codePointAt(iCharCount);
-                i4 = 2;
-                if (iCodePointAt < 32 || iCodePointAt == 127 || (iCodePointAt >= 128 && !z10)) {
-                    str3 = "(this as java.lang.Strin…ing(startIndex, endIndex)";
-                    break;
-                }
-                str3 = "(this as java.lang.Strin…ing(startIndex, endIndex)";
-                if (C12106w.contains$default((CharSequence) str2, (char) iCodePointAt, false, 2, (Object) null) || ((iCodePointAt == 37 && (!z7 || (z8 && !bVar.m10416c(str, iCharCount, length)))) || (iCodePointAt == 43 && z9))) {
-                    break;
-                }
-                iCharCount += Character.charCount(iCodePointAt);
-            }
-            C12388e c12388e = new C12388e();
-            c12388e.m10453c0(str, i5, iCharCount);
-            C12388e c12388e2 = null;
-            while (iCharCount < length) {
-                int iCodePointAt2 = str.codePointAt(iCharCount);
-                if (z7 && (iCodePointAt2 == 9 || iCodePointAt2 == 10 || iCodePointAt2 == 12 || iCodePointAt2 == 13)) {
-                    z6 = z9;
-                    str4 = str3;
-                } else if (iCodePointAt2 == 43 && z9) {
-                    c12388e.m10452b0(z7 ? BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX : "%2B");
-                    z6 = z9;
-                    str4 = str3;
-                } else {
-                    if (iCodePointAt2 < 32 || iCodePointAt2 == 127 || (iCodePointAt2 >= 128 && !z10)) {
-                        z6 = z9;
-                    } else {
-                        z6 = z9;
-                        if (!C12106w.contains$default((CharSequence) str2, (char) iCodePointAt2, false, i4, (Object) null) && (iCodePointAt2 != 37 || (z7 && (!z8 || bVar.m10416c(str, iCharCount, length))))) {
-                            c12388e.m10454d0(iCodePointAt2);
-                            str4 = str3;
-                        }
-                    }
-                    if (c12388e2 == null) {
-                        c12388e2 = new C12388e();
-                    }
-                    if (charset2 == null || C12238m.areEqual(charset2, StandardCharsets.UTF_8)) {
-                        str4 = str3;
-                        c12388e2.m10454d0(iCodePointAt2);
-                    } else {
-                        int iCharCount2 = Character.charCount(iCodePointAt2) + iCharCount;
-                        C12238m.checkParameterIsNotNull(str, "string");
-                        C12238m.checkParameterIsNotNull(charset2, "charset");
-                        if (!(iCharCount >= 0)) {
-                            throw new IllegalArgumentException(C1643a.m871q("beginIndex < 0: ", iCharCount).toString());
-                        }
-                        if (!(iCharCount2 >= iCharCount)) {
-                            throw new IllegalArgumentException(C1643a.m875s("endIndex < beginIndex: ", iCharCount2, " < ", iCharCount).toString());
-                        }
-                        if (!(iCharCount2 <= str.length())) {
-                            StringBuilder sbM834V = C1643a.m834V("endIndex > string.length: ", iCharCount2, " > ");
-                            sbM834V.append(str.length());
-                            throw new IllegalArgumentException(sbM834V.toString().toString());
-                        }
-                        if (C12238m.areEqual(charset2, C12086c.f25136a)) {
-                            c12388e2.m10453c0(str, iCharCount, iCharCount2);
-                            str4 = str3;
-                        } else {
-                            String strSubstring2 = str.substring(iCharCount, iCharCount2);
-                            str4 = str3;
-                            C12238m.checkExpressionValueIsNotNull(strSubstring2, str4);
-                            if (strSubstring2 == null) {
-                                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-                            }
-                            byte[] bytes = strSubstring2.getBytes(charset2);
-                            C12238m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
-                            c12388e2.m10443S(bytes, 0, bytes.length);
-                        }
-                    }
-                    while (!c12388e2.mo10472w()) {
-                        int i6 = c12388e2.readByte() & 255;
-                        c12388e.m10444T(37);
-                        char[] cArr = C12379w.f25973a;
-                        c12388e.m10444T(cArr[(i6 >> 4) & 15]);
-                        c12388e.m10444T(cArr[i6 & 15]);
-                    }
-                }
-                iCharCount += Character.charCount(iCodePointAt2);
-                i4 = 2;
-                z9 = z6;
-                str3 = str4;
-            }
-            return c12388e.m10429D();
-        }
-
-        /* JADX INFO: renamed from: d */
-        public static String m10414d(b bVar, String str, int i, int i2, boolean z2, int i3) {
-            int i4;
-            if ((i3 & 1) != 0) {
-                i = 0;
-            }
-            if ((i3 & 2) != 0) {
-                i2 = str.length();
-            }
-            if ((i3 & 4) != 0) {
-                z2 = false;
-            }
-            C12238m.checkParameterIsNotNull(str, "$this$percentDecode");
-            int iCharCount = i;
-            while (iCharCount < i2) {
-                char cCharAt = str.charAt(iCharCount);
-                if (cCharAt == '%' || (cCharAt == '+' && z2)) {
-                    C12388e c12388e = new C12388e();
-                    c12388e.m10453c0(str, i, iCharCount);
-                    while (iCharCount < i2) {
-                        int iCodePointAt = str.codePointAt(iCharCount);
-                        if (iCodePointAt == 37 && (i4 = iCharCount + 2) < i2) {
-                            int iM10137r = C12272c.m10137r(str.charAt(iCharCount + 1));
-                            int iM10137r2 = C12272c.m10137r(str.charAt(i4));
-                            if (iM10137r == -1 || iM10137r2 == -1) {
-                                c12388e.m10454d0(iCodePointAt);
-                                iCharCount += Character.charCount(iCodePointAt);
-                            } else {
-                                c12388e.m10444T((iM10137r << 4) + iM10137r2);
-                                iCharCount = Character.charCount(iCodePointAt) + i4;
-                            }
-                        } else if (iCodePointAt == 43 && z2) {
-                            c12388e.m10444T(32);
-                            iCharCount++;
-                        } else {
-                            c12388e.m10454d0(iCodePointAt);
-                            iCharCount += Character.charCount(iCodePointAt);
-                        }
-                    }
-                    return c12388e.m10429D();
-                }
-                iCharCount++;
-            }
-            String strSubstring = str.substring(i, i2);
-            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-            return strSubstring;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final int m10415b(String str) {
-            C12238m.checkParameterIsNotNull(str, "scheme");
-            int iHashCode = str.hashCode();
-            if (iHashCode != 3213448) {
-                if (iHashCode == 99617003 && str.equals(Constants.SCHEME)) {
-                    return 443;
-                }
-            } else if (str.equals("http")) {
-                return 80;
-            }
-            return -1;
-        }
-
-        /* JADX INFO: renamed from: c */
-        public final boolean m10416c(String str, int i, int i2) {
-            int i3 = i + 2;
-            return i3 < i2 && str.charAt(i) == '%' && C12272c.m10137r(str.charAt(i + 1)) != -1 && C12272c.m10137r(str.charAt(i3)) != -1;
-        }
-
-        /* JADX INFO: renamed from: e */
-        public final List<String> m10417e(String str) {
-            C12238m.checkParameterIsNotNull(str, "$this$toQueryNamesAndValues");
-            ArrayList arrayList = new ArrayList();
-            int i = 0;
-            while (i <= str.length()) {
-                int iIndexOf$default = C12106w.indexOf$default((CharSequence) str, '&', i, false, 4, (Object) null);
-                if (iIndexOf$default == -1) {
-                    iIndexOf$default = str.length();
-                }
-                int i2 = iIndexOf$default;
-                int iIndexOf$default2 = C12106w.indexOf$default((CharSequence) str, '=', i, false, 4, (Object) null);
-                if (iIndexOf$default2 == -1 || iIndexOf$default2 > i2) {
-                    String strSubstring = str.substring(i, i2);
-                    C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-                    arrayList.add(strSubstring);
-                    arrayList.add(null);
-                } else {
-                    String strSubstring2 = str.substring(i, iIndexOf$default2);
-                    C12238m.checkExpressionValueIsNotNull(strSubstring2, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-                    arrayList.add(strSubstring2);
-                    String strSubstring3 = str.substring(iIndexOf$default2 + 1, i2);
-                    C12238m.checkExpressionValueIsNotNull(strSubstring3, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-                    arrayList.add(strSubstring3);
-                }
-                i = i2 + 1;
-            }
-            return arrayList;
-        }
-    }
-
-    public C12379w(String str, String str2, String str3, String str4, int i, List<String> list, List<String> list2, String str5, String str6) {
-        C12238m.checkParameterIsNotNull(str, "scheme");
-        C12238m.checkParameterIsNotNull(str2, "username");
-        C12238m.checkParameterIsNotNull(str3, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
-        C12238m.checkParameterIsNotNull(str4, "host");
-        C12238m.checkParameterIsNotNull(list, "pathSegments");
-        C12238m.checkParameterIsNotNull(str6, "url");
-        this.f25976d = str;
-        this.f25977e = str2;
-        this.f25978f = str3;
-        this.f25979g = str4;
-        this.f25980h = i;
-        this.f25981i = list;
-        this.f25982j = list2;
-        this.f25983k = str5;
-        this.f25984l = str6;
-        this.f25975c = C12238m.areEqual(str, Constants.SCHEME);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final String m10399a() {
-        if (this.f25978f.length() == 0) {
-            return "";
-        }
-        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR, this.f25976d.length() + 3, false, 4, (Object) null) + 1;
-        int iIndexOf$default2 = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.MENTIONS_CHAR, 0, false, 6, (Object) null);
-        String str = this.f25984l;
-        if (str == null) {
-            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-        }
-        String strSubstring = str.substring(iIndexOf$default, iIndexOf$default2);
-        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-        return strSubstring;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final String m10400b() {
-        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.SLASH_CHAR, this.f25976d.length() + 3, false, 4, (Object) null);
-        String str = this.f25984l;
-        int iM10126g = C12272c.m10126g(str, "?#", iIndexOf$default, str.length());
-        String str2 = this.f25984l;
-        if (str2 == null) {
-            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-        }
-        String strSubstring = str2.substring(iIndexOf$default, iM10126g);
-        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-        return strSubstring;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<String> m10401c() {
-        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.SLASH_CHAR, this.f25976d.length() + 3, false, 4, (Object) null);
-        String str = this.f25984l;
-        int iM10126g = C12272c.m10126g(str, "?#", iIndexOf$default, str.length());
-        ArrayList arrayList = new ArrayList();
-        while (iIndexOf$default < iM10126g) {
-            int i = iIndexOf$default + 1;
-            int iM10125f = C12272c.m10125f(this.f25984l, MentionUtilsKt.SLASH_CHAR, i, iM10126g);
-            String str2 = this.f25984l;
-            if (str2 == null) {
-                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-            }
-            String strSubstring = str2.substring(i, iM10125f);
-            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-            arrayList.add(strSubstring);
-            iIndexOf$default = iM10125f;
-        }
-        return arrayList;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final String m10402d() {
-        if (this.f25982j == null) {
-            return null;
-        }
-        int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, '?', 0, false, 6, (Object) null) + 1;
-        String str = this.f25984l;
-        int iM10125f = C12272c.m10125f(str, MentionUtilsKt.CHANNELS_CHAR, iIndexOf$default, str.length());
-        String str2 = this.f25984l;
-        if (str2 == null) {
-            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-        }
-        String strSubstring = str2.substring(iIndexOf$default, iM10125f);
-        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-        return strSubstring;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final String m10403e() {
-        if (this.f25977e.length() == 0) {
-            return "";
-        }
-        int length = this.f25976d.length() + 3;
-        String str = this.f25984l;
-        int iM10126g = C12272c.m10126g(str, ":@", length, str.length());
-        String str2 = this.f25984l;
-        if (str2 == null) {
-            throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-        }
-        String strSubstring = str2.substring(length, iM10126g);
-        C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-        return strSubstring;
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof C12379w) && C12238m.areEqual(((C12379w) obj).f25984l, this.f25984l);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:13:0x0050  */
-    /* JADX INFO: renamed from: f */
-    public final a m10404f() {
-        int i;
-        String strSubstring;
-        a aVar = new a();
-        aVar.f25986b = this.f25976d;
-        String strM10403e = m10403e();
-        C12238m.checkParameterIsNotNull(strM10403e, "<set-?>");
-        aVar.f25987c = strM10403e;
-        String strM10399a = m10399a();
-        C12238m.checkParameterIsNotNull(strM10399a, "<set-?>");
-        aVar.f25988d = strM10399a;
-        aVar.f25989e = this.f25979g;
-        int i2 = this.f25980h;
-        String str = this.f25976d;
-        C12238m.checkParameterIsNotNull(str, "scheme");
-        int iHashCode = str.hashCode();
-        if (iHashCode != 3213448) {
-            if (iHashCode == 99617003 && str.equals(Constants.SCHEME)) {
-                i = 443;
-            } else {
-                i = -1;
-            }
-        } else if (str.equals("http")) {
-            i = 80;
-        } else {
-            i = -1;
-        }
-        aVar.f25990f = i2 != i ? this.f25980h : -1;
-        aVar.f25991g.clear();
-        aVar.f25991g.addAll(m10401c());
-        aVar.m10411d(m10402d());
-        if (this.f25983k == null) {
-            strSubstring = null;
-        } else {
-            int iIndexOf$default = C12106w.indexOf$default((CharSequence) this.f25984l, MentionUtilsKt.CHANNELS_CHAR, 0, false, 6, (Object) null) + 1;
-            String str2 = this.f25984l;
-            if (str2 == null) {
-                throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
-            }
-            strSubstring = str2.substring(iIndexOf$default);
-            C12238m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.String).substring(startIndex)");
-        }
-        aVar.f25993i = strSubstring;
-        return aVar;
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final a m10405g(String str) {
-        C12238m.checkParameterIsNotNull(str, "link");
-        try {
-            a aVar = new a();
-            aVar.m10412e(this, str);
-            return aVar;
-        } catch (IllegalArgumentException unused) {
-            return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final String m10406h() {
-        a aVarM10405g = m10405g("/...");
-        if (aVarM10405g == null) {
-            C12238m.throwNpe();
-        }
-        Objects.requireNonNull(aVarM10405g);
-        C12238m.checkParameterIsNotNull("", "username");
-        b bVar = f25974b;
-        aVarM10405g.f25987c = b.m10413a(bVar, "", 0, 0, " \"':;<=>@[]^`{}|/\\?#", false, false, false, false, null, 251);
-        C12238m.checkParameterIsNotNull("", WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
-        aVarM10405g.f25988d = b.m10413a(bVar, "", 0, 0, " \"':;<=>@[]^`{}|/\\?#", false, false, false, false, null, 251);
-        return aVarM10405g.m10409b().f25984l;
-    }
-
-    public int hashCode() {
-        return this.f25984l.hashCode();
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final URI m10407i() {
-        a aVarM10404f = m10404f();
-        String str = aVarM10404f.f25989e;
-        aVarM10404f.f25989e = str != null ? new Regex("[\"<>^`{|}]").replace(str, "") : null;
-        int size = aVarM10404f.f25991g.size();
-        for (int i = 0; i < size; i++) {
-            List<String> list = aVarM10404f.f25991g;
-            list.set(i, b.m10413a(f25974b, list.get(i), 0, 0, "[]", true, true, false, false, null, 227));
-        }
-        List<String> list2 = aVarM10404f.f25992h;
-        if (list2 != null) {
-            int size2 = list2.size();
-            for (int i2 = 0; i2 < size2; i2++) {
-                String str2 = list2.get(i2);
-                list2.set(i2, str2 != null ? b.m10413a(f25974b, str2, 0, 0, "\\^`{|}", true, true, true, false, null, Opcodes.MONITOREXIT) : null);
-            }
-        }
-        String str3 = aVarM10404f.f25993i;
-        aVarM10404f.f25993i = str3 != null ? b.m10413a(f25974b, str3, 0, 0, " \"#<>\\^`{|}", true, true, false, true, null, Opcodes.IF_ICMPGT) : null;
-        String string = aVarM10404f.toString();
-        try {
-            return new URI(string);
-        } catch (URISyntaxException e) {
-            try {
-                URI uriCreate = URI.create(new Regex("[\\u0000-\\u001F\\u007F-\\u009F\\p{javaWhitespace}]").replace(string, ""));
-                C12238m.checkExpressionValueIsNotNull(uriCreate, "URI.create(stripped)");
-                return uriCreate;
-            } catch (Exception unused) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public String toString() {
-        return this.f25984l;
     }
 }

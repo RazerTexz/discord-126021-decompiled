@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackStoreDirectoryFilterUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackStoreDirectoryFilterUpdated implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence loadId = null;
     private final CharSequence sort = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "store_directory_filter_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackStoreDirectoryFilterUpdated implements Analyt
         }
         TrackStoreDirectoryFilterUpdated trackStoreDirectoryFilterUpdated = (TrackStoreDirectoryFilterUpdated) other;
         return C12238m.areEqual(this.loadId, trackStoreDirectoryFilterUpdated.loadId) && C12238m.areEqual(this.sort, trackStoreDirectoryFilterUpdated.sort);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

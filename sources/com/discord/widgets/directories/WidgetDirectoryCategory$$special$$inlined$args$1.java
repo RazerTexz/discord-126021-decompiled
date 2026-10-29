@@ -1,7 +1,6 @@
 package com.discord.widgets.directories;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import com.discord.app.AppFragment;
 import kotlin.jvm.functions.Function0;
 import p007b.p100d.p104b.p105a.C1643a;
@@ -24,19 +23,16 @@ public final class WidgetDirectoryCategory$$special$$inlined$args$1 extends Abst
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
     public final DirectoryCategoryArgs invoke() {
-        Parcelable parcelableExtra;
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
         DirectoryCategoryArgs directoryCategoryArgs = (DirectoryCategoryArgs) (obj instanceof DirectoryCategoryArgs ? obj : null);
-        DirectoryCategoryArgs directoryCategoryArgs2 = directoryCategoryArgs;
+        DirectoryCategoryArgs parcelableExtra = directoryCategoryArgs;
         if (directoryCategoryArgs == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
-        if (directoryCategoryArgs2 != 0) {
-            directoryCategoryArgs2 = parcelableExtra;
-            return directoryCategoryArgs2;
+        if (parcelableExtra != 0) {
+            return parcelableExtra;
         }
-        directoryCategoryArgs2 = parcelableExtra;
         StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
         C1643a.m862l0(DirectoryCategoryArgs.class, sbM833U, " + key ");
         throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));

@@ -28,18 +28,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetOutboundPromoTerms.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetOutboundPromoTerms extends AppBottomSheet {
-    private static final String ARG_CONTENT = "ARG_CONTENT";
-
-    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
-    private final FragmentViewBindingDelegate binding;
-    private final Parser<UrlNode.RenderContext, Node<UrlNode.RenderContext>, MessageParseState> parser;
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetOutboundPromoTerms.class, "binding", "getBinding()Lcom/discord/databinding/WidgetOutboundPromoTermsBinding;", 0)};
+    private static final String ARG_CONTENT = "ARG_CONTENT";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
+    /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
+    private final FragmentViewBindingDelegate binding;
+    private final Parser<UrlNode.RenderContext, Node<UrlNode.RenderContext>, MessageParseState> parser;
+
     /* JADX INFO: compiled from: WidgetOutboundPromoTerms.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -70,12 +70,17 @@ public final class WidgetOutboundPromoTerms extends AppBottomSheet {
         return (WidgetOutboundPromoTermsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_outbound_promo_terms;
+    }
+
     private final UrlNode.RenderContext getRenderContext() {
         return new UrlNode.RenderContext() { // from class: com.discord.widgets.settings.premium.WidgetOutboundPromoTerms$renderContext$1
             private final Context context;
             private final int linkColorAttrResId;
-            private final Function3<Context, String, String, Unit> onClickUrl = WidgetOutboundPromoTerms$renderContext$1$onClickUrl$1.INSTANCE;
             private final Function1<String, Unit> onLongPressUrl;
+            private final Function3<Context, String, String, Unit> onClickUrl = WidgetOutboundPromoTerms$renderContext$1$onClickUrl$1.INSTANCE;
 
             {
                 Context contextRequireContext = this.this$0.requireContext();
@@ -105,11 +110,6 @@ public final class WidgetOutboundPromoTerms extends AppBottomSheet {
                 return this.onLongPressUrl;
             }
         };
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_outbound_promo_terms;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

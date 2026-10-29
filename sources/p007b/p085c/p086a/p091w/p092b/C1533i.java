@@ -81,6 +81,11 @@ public class C1533i extends AbstractC1525a {
         abstractC1603b.m777e(abstractC1544aMo773a3);
     }
 
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
+    public String getName() {
+        return this.f2529o;
+    }
+
     /* JADX INFO: renamed from: e */
     public final int[] m719e(int[] iArr) {
         C1559p c1559p = this.f2539y;
@@ -101,6 +106,18 @@ public class C1533i extends AbstractC1525a {
             }
         }
         return iArr;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public final int m720h() {
+        int iRound = Math.round(this.f2537w.f2599d * this.f2535u);
+        int iRound2 = Math.round(this.f2538x.f2599d * this.f2535u);
+        int iRound3 = Math.round(this.f2536v.f2599d * this.f2535u);
+        int i = iRound != 0 ? 527 * iRound : 17;
+        if (iRound2 != 0) {
+            i = i * 31 * iRound2;
+        }
+        return iRound3 != 0 ? i * 31 * iRound3 : i;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -171,22 +188,5 @@ public class C1533i extends AbstractC1525a {
             c1559p2.f2596a.add(this);
             this.f2470f.m777e(this.f2539y);
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1527c
-    public String getName() {
-        return this.f2529o;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final int m720h() {
-        int iRound = Math.round(this.f2537w.f2599d * this.f2535u);
-        int iRound2 = Math.round(this.f2538x.f2599d * this.f2535u);
-        int iRound3 = Math.round(this.f2536v.f2599d * this.f2535u);
-        int i = iRound != 0 ? 527 * iRound : 17;
-        if (iRound2 != 0) {
-            i = i * 31 * iRound2;
-        }
-        return iRound3 != 0 ? i * 31 * iRound3 : i;
     }
 }

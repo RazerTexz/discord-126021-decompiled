@@ -6,8 +6,8 @@ import p507d0.p580t.C12147n;
 /* JADX INFO: compiled from: ExperimentRegistry.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ExperimentRegistry {
-    public static final ExperimentRegistry INSTANCE = new ExperimentRegistry();
     private static final LinkedHashMap<String, RegisteredExperiment> registeredExperiments;
+    public static final ExperimentRegistry INSTANCE = new ExperimentRegistry();
 
     /* JADX WARN: Multi-variable type inference failed */
     static {

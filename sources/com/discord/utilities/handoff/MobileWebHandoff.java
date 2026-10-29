@@ -40,26 +40,10 @@ public final class MobileWebHandoff {
     private final Context context;
     private final RestAPI restAPI;
 
-    /* JADX INFO: compiled from: MobileWebHandoff.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final String generateNonce() {
-            String string = UUID.randomUUID().toString();
-            C12238m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
-            return string;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.handoff.MobileWebHandoff$redirectWithHandoffToken$1 */
     /* JADX INFO: compiled from: MobileWebHandoff.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.handoff.MobileWebHandoff", m10085f = "MobileWebHandoff.kt", m10086l = {44}, m10087m = "redirectWithHandoffToken")
-    public static final class C67701 extends AbstractC12187d {
+    public final class C67701 extends AbstractC12187d {
         public Object L$0;
         public Object L$1;
         public Object L$2;
@@ -83,7 +67,7 @@ public final class MobileWebHandoff {
     /* JADX INFO: renamed from: com.discord.utilities.handoff.MobileWebHandoff$tryLaunchRedirectTo$1 */
     /* JADX INFO: compiled from: MobileWebHandoff.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.handoff.MobileWebHandoff$tryLaunchRedirectTo$1", m10085f = "MobileWebHandoff.kt", m10086l = {36}, m10087m = "invokeSuspend")
-    public static final class C67721 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C67721 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ boolean $preventCustomTab;
         public final /* synthetic */ boolean $skipLoginRedirect;
         public final /* synthetic */ String $url;
@@ -109,7 +93,7 @@ public final class MobileWebHandoff {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -132,6 +116,22 @@ public final class MobileWebHandoff {
         }
     }
 
+    /* JADX INFO: compiled from: MobileWebHandoff.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final String generateNonce() {
+            String string = UUID.randomUUID().toString();
+            C12238m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
+            return string;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public MobileWebHandoff(Context context, RestAPI restAPI, AnalyticsUtils.Tracker tracker, StoreAuthentication storeAuthentication) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(restAPI, "restAPI");
@@ -143,20 +143,10 @@ public final class MobileWebHandoff {
         this.authStore = storeAuthentication;
     }
 
-    public static /* synthetic */ boolean tryLaunchRedirectTo$default(MobileWebHandoff mobileWebHandoff, String str, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 2) != 0) {
-            z2 = false;
-        }
-        if ((i & 4) != 0) {
-            z3 = false;
-        }
-        return mobileWebHandoff.tryLaunchRedirectTo(str, z2, z3);
-    }
-
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r2v2, types: [T, java.lang.String] */
-    public final /* synthetic */ Object redirectWithHandoffToken(String str, boolean z2, boolean z3, Continuation<? super Unit> continuation) {
+    public final /* synthetic */ Object redirectWithHandoffToken(String str, boolean z2, boolean z3, Continuation<? super Unit> continuation) throws Throwable {
         C67701 c67701;
         Ref$ObjectRef ref$ObjectRef;
         Object objWithCancellableProgressDialog;
@@ -227,6 +217,16 @@ public final class MobileWebHandoff {
         }
         UriHandler.handle$default(UriHandler.INSTANCE, mobileWebHandoff.context, uriBuild.toString(), true, z4, null, 16, null);
         return Unit.f27425a;
+    }
+
+    public static /* synthetic */ boolean tryLaunchRedirectTo$default(MobileWebHandoff mobileWebHandoff, String str, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 2) != 0) {
+            z2 = false;
+        }
+        if ((i & 4) != 0) {
+            z3 = false;
+        }
+        return mobileWebHandoff.tryLaunchRedirectTo(str, z2, z3);
     }
 
     public final boolean tryLaunchRedirectTo(String url, boolean skipLoginRedirect, boolean preventCustomTab) {

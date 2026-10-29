@@ -17,7 +17,7 @@ public final class WidgetHubDomainSearch$adapter$1 extends AbstractC12240o imple
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$adapter$1$1 */
     /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-    public static final /* synthetic */ class C90171 extends C12236k implements Function1<DomainGuildInfo, Unit> {
+    public final /* synthetic */ class C90171 extends C12236k implements Function1<DomainGuildInfo, Unit> {
         public C90171(WidgetHubDomainSearch widgetHubDomainSearch) {
             super(1, widgetHubDomainSearch, WidgetHubDomainSearch.class, "onServerClickListener", "onServerClickListener(Lcom/discord/widgets/hubs/DomainGuildInfo;)V", 0);
         }

@@ -20,46 +20,6 @@ public abstract class MapCollections<K, V> {
     @Nullable
     public MapCollections<K, V>.ValuesCollection mValues;
 
-    public final class ArrayIterator<T> implements Iterator<T> {
-        public boolean mCanRemove = false;
-        public int mIndex;
-        public final int mOffset;
-        public int mSize;
-
-        public ArrayIterator(int i) {
-            this.mOffset = i;
-            this.mSize = MapCollections.this.colGetSize();
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return this.mIndex < this.mSize;
-        }
-
-        @Override // java.util.Iterator
-        public T next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            T t = (T) MapCollections.this.colGetEntry(this.mIndex, this.mOffset);
-            this.mIndex++;
-            this.mCanRemove = true;
-            return t;
-        }
-
-        @Override // java.util.Iterator
-        public void remove() {
-            if (!this.mCanRemove) {
-                throw new IllegalStateException();
-            }
-            int i = this.mIndex - 1;
-            this.mIndex = i;
-            this.mSize--;
-            this.mCanRemove = false;
-            MapCollections.this.colRemoveAt(i);
-        }
-    }
-
     public final class EntrySet implements Set<Map.Entry<K, V>> {
         public EntrySet() {
         }
@@ -445,6 +405,24 @@ public abstract class MapCollections<K, V> {
         }
     }
 
+    public abstract void colClear();
+
+    public abstract Object colGetEntry(int i, int i2);
+
+    public abstract Map<K, V> colGetMap();
+
+    public abstract int colGetSize();
+
+    public abstract int colIndexOfKey(Object obj);
+
+    public abstract int colIndexOfValue(Object obj);
+
+    public abstract void colPut(K k, V v);
+
+    public abstract void colRemoveAt(int i);
+
+    public abstract V colSetValue(int i, V v);
+
     public static <K, V> boolean containsAllHelper(Map<K, V> map, Collection<?> collection) {
         Iterator<?> it = collection.iterator();
         while (it.hasNext()) {
@@ -469,44 +447,6 @@ public abstract class MapCollections<K, V> {
         return false;
     }
 
-    public static <K, V> boolean removeAllHelper(Map<K, V> map, Collection<?> collection) {
-        int size = map.size();
-        Iterator<?> it = collection.iterator();
-        while (it.hasNext()) {
-            map.remove(it.next());
-        }
-        return size != map.size();
-    }
-
-    public static <K, V> boolean retainAllHelper(Map<K, V> map, Collection<?> collection) {
-        int size = map.size();
-        Iterator<K> it = map.keySet().iterator();
-        while (it.hasNext()) {
-            if (!collection.contains(it.next())) {
-                it.remove();
-            }
-        }
-        return size != map.size();
-    }
-
-    public abstract void colClear();
-
-    public abstract Object colGetEntry(int i, int i2);
-
-    public abstract Map<K, V> colGetMap();
-
-    public abstract int colGetSize();
-
-    public abstract int colIndexOfKey(Object obj);
-
-    public abstract int colIndexOfValue(Object obj);
-
-    public abstract void colPut(K k, V v);
-
-    public abstract void colRemoveAt(int i);
-
-    public abstract V colSetValue(int i, V v);
-
     public Set<Map.Entry<K, V>> getEntrySet() {
         if (this.mEntrySet == null) {
             this.mEntrySet = new EntrySet();
@@ -528,6 +468,26 @@ public abstract class MapCollections<K, V> {
         return this.mValues;
     }
 
+    public static <K, V> boolean removeAllHelper(Map<K, V> map, Collection<?> collection) {
+        int size = map.size();
+        Iterator<?> it = collection.iterator();
+        while (it.hasNext()) {
+            map.remove(it.next());
+        }
+        return size != map.size();
+    }
+
+    public static <K, V> boolean retainAllHelper(Map<K, V> map, Collection<?> collection) {
+        int size = map.size();
+        Iterator<K> it = map.keySet().iterator();
+        while (it.hasNext()) {
+            if (!collection.contains(it.next())) {
+                it.remove();
+            }
+        }
+        return size != map.size();
+    }
+
     public Object[] toArrayHelper(int i) {
         int iColGetSize = colGetSize();
         Object[] objArr = new Object[iColGetSize];
@@ -535,6 +495,46 @@ public abstract class MapCollections<K, V> {
             objArr[i2] = colGetEntry(i2, i);
         }
         return objArr;
+    }
+
+    public final class ArrayIterator<T> implements Iterator<T> {
+        public int mIndex;
+        public final int mOffset;
+        public int mSize;
+        public boolean mCanRemove = false;
+
+        public ArrayIterator(int i) {
+            this.mOffset = i;
+            this.mSize = MapCollections.this.colGetSize();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.mIndex < this.mSize;
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T t = (T) MapCollections.this.colGetEntry(this.mIndex, this.mOffset);
+            this.mIndex++;
+            this.mCanRemove = true;
+            return t;
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            if (!this.mCanRemove) {
+                throw new IllegalStateException();
+            }
+            int i = this.mIndex - 1;
+            this.mIndex = i;
+            this.mSize--;
+            this.mCanRemove = false;
+            MapCollections.this.colRemoveAt(i);
+        }
     }
 
     public <T> T[] toArrayHelper(T[] tArr, int i) {

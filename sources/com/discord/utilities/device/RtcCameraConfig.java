@@ -25,7 +25,7 @@ public final class RtcCameraConfig {
 
     /* JADX INFO: renamed from: com.discord.utilities.device.RtcCameraConfig$init$1 */
     /* JADX INFO: compiled from: RtcCameraConfig.kt */
-    public static final class C67411 extends AbstractC12240o implements Function1<Experiment, Unit> {
+    public final class C67411 extends AbstractC12240o implements Function1<Experiment, Unit> {
         public static final C67411 INSTANCE = new C67411();
 
         public C67411() {
@@ -48,18 +48,18 @@ public final class RtcCameraConfig {
     private RtcCameraConfig() {
     }
 
+    @AnyThread
+    public final void init() {
+        if (initialized.compareAndSet(false, true)) {
+            ObservableExtensionsKt.appSubscribe(observeExperiment(StoreStream.INSTANCE.getExperiments()), (Class<?>) RtcCameraConfig.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C67411.INSTANCE);
+        }
+    }
+
     private final Observable<Experiment> observeExperiment(StoreExperiments storeExperiments) {
         Observable<R> observableM11083G = storeExperiments.observeUserExperiment("2021-02_android_webrtc_camera2", true).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
         C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
         Observable observableM11100Z = observableM11083G.m11100Z(1);
         C12238m.checkNotNullExpressionValue(observableM11100Z, "storeExperiments.observe…Null()\n          .take(1)");
         return ObservableExtensionsKt.computationLatest(observableM11100Z);
-    }
-
-    @AnyThread
-    public final void init() {
-        if (initialized.compareAndSet(false, true)) {
-            ObservableExtensionsKt.appSubscribe(observeExperiment(StoreStream.INSTANCE.getExperiments()), (Class<?>) RtcCameraConfig.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C67411.INSTANCE);
-        }
     }
 }

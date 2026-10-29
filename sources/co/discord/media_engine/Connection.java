@@ -24,7 +24,7 @@ public final class Connection {
     }
 
     /* JADX INFO: compiled from: Connection.kt */
-    public static final class GetStatsCallbackNative {
+    public final class GetStatsCallbackNative {
         private final GetStatsCallback callback;
 
         public GetStatsCallbackNative(GetStatsCallback getStatsCallback) {
@@ -52,7 +52,7 @@ public final class Connection {
     }
 
     /* JADX INFO: compiled from: Connection.kt */
-    public static final class StatsFilter {
+    public final class StatsFilter {
         public static final int ALL = -1;
         public static final int INBOUND = 4;
         public static final int OUTBOUND = 2;
@@ -67,8 +67,6 @@ public final class Connection {
     private Connection(long j) {
         this.nativeInstance = j;
     }
-
-    private final native void getStatsNative(GetStatsCallbackNative callback, int filter);
 
     public final native void connectUser(long userId, int audioSsrc, int videoSsrc, int rtxSsrc, boolean isMuted, float volume);
 
@@ -94,6 +92,8 @@ public final class Connection {
         C12238m.checkNotNullParameter(callback, "callback");
         getStatsNative(new GetStatsCallbackNative(callback), -1);
     }
+
+    private final native void getStatsNative(GetStatsCallbackNative callback, int filter);
 
     public final native void muteLocalUser(boolean willBeMuted);
 

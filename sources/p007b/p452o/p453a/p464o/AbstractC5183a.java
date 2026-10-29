@@ -27,19 +27,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC5183a implements InterfaceC5184b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14046a = new C5103b(AbstractC5183a.class.getSimpleName());
+    /* JADX INFO: renamed from: d */
+    @VisibleForTesting
+    public C5236b f14049d;
 
     /* JADX INFO: renamed from: b */
     @VisibleForTesting
     public C5265d f14047b = null;
 
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14046a = new C5103b(AbstractC5183a.class.getSimpleName());
+
     /* JADX INFO: renamed from: c */
     public AbstractC5254b f14048c = null;
-
-    /* JADX INFO: renamed from: d */
-    @VisibleForTesting
-    public C5236b f14049d;
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // p007b.p452o.p453a.p464o.InterfaceC5184b

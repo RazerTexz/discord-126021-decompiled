@@ -30,53 +30,53 @@ import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/Javac.SCL.lombok */
 public class Javac {
+    public static final JavacTreeMaker.TreeTag CTC_BITXOR;
+    public static final JavacTreeMaker.TypeTag CTC_BOOLEAN;
+    public static final JavacTreeMaker.TypeTag CTC_BOT;
+    public static final JavacTreeMaker.TypeTag CTC_BYTE;
+    public static final JavacTreeMaker.TypeTag CTC_CHAR;
+    public static final JavacTreeMaker.TypeTag CTC_CLASS;
+    public static final JavacTreeMaker.TreeTag CTC_COMPL;
+    public static final JavacTreeMaker.TreeTag CTC_DIV;
+    public static final JavacTreeMaker.TypeTag CTC_DOUBLE;
+    public static final JavacTreeMaker.TreeTag CTC_EQUAL;
+    public static final JavacTreeMaker.TypeTag CTC_ERROR;
+    public static final JavacTreeMaker.TypeTag CTC_FLOAT;
+    public static final JavacTreeMaker.TreeTag CTC_GREATER_OR_EQUAL;
+    public static final JavacTreeMaker.TreeTag CTC_GREATER_THAN;
+    public static final JavacTreeMaker.TypeTag CTC_INT;
+    public static final JavacTreeMaker.TreeTag CTC_LESS_OR_EQUAL;
+    public static final JavacTreeMaker.TreeTag CTC_LESS_THAN;
+    public static final JavacTreeMaker.TypeTag CTC_LONG;
+    public static final JavacTreeMaker.TreeTag CTC_MINUS;
+    public static final JavacTreeMaker.TreeTag CTC_MUL;
+    public static final JavacTreeMaker.TreeTag CTC_NEG;
+    public static final JavacTreeMaker.TypeTag CTC_NONE;
+    public static final JavacTreeMaker.TreeTag CTC_NOT;
+    public static final JavacTreeMaker.TreeTag CTC_NOT_EQUAL;
+    public static final JavacTreeMaker.TreeTag CTC_PLUS;
+    public static final JavacTreeMaker.TreeTag CTC_POS;
+    public static final JavacTreeMaker.TreeTag CTC_POSTDEC;
+    public static final JavacTreeMaker.TreeTag CTC_POSTINC;
+    public static final JavacTreeMaker.TreeTag CTC_PREDEC;
+    public static final JavacTreeMaker.TreeTag CTC_PREINC;
+    public static final JavacTreeMaker.TypeTag CTC_SHORT;
+    public static final JavacTreeMaker.TypeTag CTC_UNDETVAR;
+    public static final JavacTreeMaker.TypeTag CTC_UNKNOWN;
+    public static final JavacTreeMaker.TreeTag CTC_UNSIGNED_SHIFT_RIGHT;
+    public static final JavacTreeMaker.TypeTag CTC_VOID;
+    private static final Class<?> DOCCOMMENTTABLE_CLASS;
+    private static final Field JCCOMPILATIONUNIT_DOCCOMMENTS;
+    private static final Field JCCOMPILATIONUNIT_ENDPOSITIONS;
+    private static final Class<?> JC_NO_TYPE;
+    private static final Class<?> JC_VOID_TYPE;
+    private static final Method getEndPosition;
+    private static final Method getExtendsClause;
+    private static final Method storeEnd;
+    private static final Field symtabVoidType;
     private static final Pattern VERSION_PARSER = Pattern.compile("^(\\d{1,6})\\.?(\\d{1,6})?.*$");
     private static final Pattern SOURCE_PARSER = Pattern.compile("^JDK(\\d{1,6})_?(\\d{1,6})?.*$");
     private static final AtomicInteger compilerVersion = new AtomicInteger(-1);
-    private static final Class<?> DOCCOMMENTTABLE_CLASS;
-    public static final JavacTreeMaker.TypeTag CTC_BOOLEAN;
-    public static final JavacTreeMaker.TypeTag CTC_INT;
-    public static final JavacTreeMaker.TypeTag CTC_DOUBLE;
-    public static final JavacTreeMaker.TypeTag CTC_FLOAT;
-    public static final JavacTreeMaker.TypeTag CTC_SHORT;
-    public static final JavacTreeMaker.TypeTag CTC_BYTE;
-    public static final JavacTreeMaker.TypeTag CTC_LONG;
-    public static final JavacTreeMaker.TypeTag CTC_CHAR;
-    public static final JavacTreeMaker.TypeTag CTC_VOID;
-    public static final JavacTreeMaker.TypeTag CTC_NONE;
-    public static final JavacTreeMaker.TypeTag CTC_BOT;
-    public static final JavacTreeMaker.TypeTag CTC_ERROR;
-    public static final JavacTreeMaker.TypeTag CTC_UNKNOWN;
-    public static final JavacTreeMaker.TypeTag CTC_UNDETVAR;
-    public static final JavacTreeMaker.TypeTag CTC_CLASS;
-    public static final JavacTreeMaker.TreeTag CTC_NOT_EQUAL;
-    public static final JavacTreeMaker.TreeTag CTC_LESS_THAN;
-    public static final JavacTreeMaker.TreeTag CTC_GREATER_THAN;
-    public static final JavacTreeMaker.TreeTag CTC_LESS_OR_EQUAL;
-    public static final JavacTreeMaker.TreeTag CTC_GREATER_OR_EQUAL;
-    public static final JavacTreeMaker.TreeTag CTC_POS;
-    public static final JavacTreeMaker.TreeTag CTC_NEG;
-    public static final JavacTreeMaker.TreeTag CTC_NOT;
-    public static final JavacTreeMaker.TreeTag CTC_COMPL;
-    public static final JavacTreeMaker.TreeTag CTC_BITXOR;
-    public static final JavacTreeMaker.TreeTag CTC_UNSIGNED_SHIFT_RIGHT;
-    public static final JavacTreeMaker.TreeTag CTC_MUL;
-    public static final JavacTreeMaker.TreeTag CTC_DIV;
-    public static final JavacTreeMaker.TreeTag CTC_PLUS;
-    public static final JavacTreeMaker.TreeTag CTC_MINUS;
-    public static final JavacTreeMaker.TreeTag CTC_EQUAL;
-    public static final JavacTreeMaker.TreeTag CTC_PREINC;
-    public static final JavacTreeMaker.TreeTag CTC_PREDEC;
-    public static final JavacTreeMaker.TreeTag CTC_POSTINC;
-    public static final JavacTreeMaker.TreeTag CTC_POSTDEC;
-    private static final Method getExtendsClause;
-    private static final Method getEndPosition;
-    private static final Method storeEnd;
-    private static final Class<?> JC_VOID_TYPE;
-    private static final Class<?> JC_NO_TYPE;
-    private static final Field symtabVoidType;
-    private static final Field JCCOMPILATIONUNIT_ENDPOSITIONS;
-    private static final Field JCCOMPILATIONUNIT_DOCCOMMENTS;
 
     private Javac() {
     }
@@ -305,7 +305,7 @@ public class Javac {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/Javac$JavadocOps_8.SCL.lombok */
-    private static class JavadocOps_8 {
+    class JavadocOps_8 {
         private JavadocOps_8() {
         }
 
@@ -431,7 +431,7 @@ public class Javac {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/Javac$JCNoType.SCL.lombok */
-    private static class JCNoType extends Type implements NoType {
+    class JCNoType extends Type implements NoType {
         public JCNoType(int tag) {
             super(tag, (Symbol.TypeSymbol) null);
         }

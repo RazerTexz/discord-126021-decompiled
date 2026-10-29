@@ -68,20 +68,20 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleBuilder.SCL.lombok */
 @HandlerPriority(-1024)
 public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
+    static final String TO_BUILDER_METHOD_NAME_STRING = "toBuilder";
+    static final String TO_BUILDER_NOT_SUPPORTED = "@Builder(toBuilder=true) is only supported if you return your own type.";
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27467xb87c1847;
     private HandleConstructor handleConstructor = new HandleConstructor();
     static final char[] CLEAN_FIELD_NAME = "$lombokUnclean".toCharArray();
     static final char[] CLEAN_METHOD_NAME = "$lombokClean".toCharArray();
-    static final String TO_BUILDER_METHOD_NAME_STRING = "toBuilder";
     static final char[] TO_BUILDER_METHOD_NAME = TO_BUILDER_METHOD_NAME_STRING.toCharArray();
     static final char[] DEFAULT_PREFIX = {'$', 'd', 'e', 'f', 'a', 'u', 'l', 't', '$'};
     static final char[] SET_PREFIX = {'$', 's', 'e', 't'};
     static final char[] VALUE_PREFIX = {'$', 'v', 'a', 'l', 'u', 'e'};
     static final char[] BUILDER_TEMP_VAR = {'b', 'u', 'i', 'l', 'd', 'e', 'r'};
     static final AbstractMethodDeclaration[] EMPTY_METHODS = new AbstractMethodDeclaration[0];
-    static final String TO_BUILDER_NOT_SUPPORTED = "@Builder(toBuilder=true) is only supported if you return your own type.";
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27467xb87c1847;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
     static /* synthetic */ int[] m10929xb87c1847() {
@@ -120,7 +120,7 @@ public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleBuilder$BuilderJob.SCL.lombok */
-    static class BuilderJob {
+    class BuilderJob {
         CheckerFrameworkVersion checkerFramework;
         EclipseNode parentType;
         String builderMethodName;
@@ -218,18 +218,18 @@ public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleBuilder$BuilderFieldData.SCL.lombok */
-    static class BuilderFieldData {
+    class BuilderFieldData {
         Annotation[] annotations;
-        TypeReference type;
-        char[] rawName;
-        char[] name;
         char[] builderFieldName;
+        char[] name;
         char[] nameOfDefaultProvider;
         char[] nameOfSetFlag;
-        EclipseSingularsRecipes.SingularData singularData;
         Builder.ObtainVia obtainVia;
         EclipseNode obtainViaNode;
         EclipseNode originalFieldNode;
+        char[] rawName;
+        EclipseSingularsRecipes.SingularData singularData;
+        TypeReference type;
         List<EclipseNode> createdFields = new ArrayList();
 
         BuilderFieldData() {
@@ -318,7 +318,7 @@ public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
                     bfd.rawName = fieldNode.getName().toCharArray();
                     bfd.name = EclipseHandlerUtil.removePrefixFromField(fieldNode);
                     bfd.builderFieldName = bfd.name;
-                    bfd.annotations = EclipseHandlerUtil.copyAnnotations(fd, EclipseHandlerUtil.findCopyableAnnotations(fieldNode));
+                    bfd.annotations = EclipseHandlerUtil.copyAnnotations(fd, new Annotation[][]{EclipseHandlerUtil.findCopyableAnnotations(fieldNode)});
                     bfd.type = fd.type;
                     bfd.singularData = getSingularData(fieldNode, ast, annInstance.setterPrefix());
                     bfd.originalFieldNode = fieldNode;
@@ -474,7 +474,7 @@ public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
                         bfd2.rawName = arg.name;
                         bfd2.name = arg.name;
                         bfd2.builderFieldName = bfd2.name;
-                        bfd2.annotations = EclipseHandlerUtil.copyAnnotations(arg, copyableAnnotations);
+                        bfd2.annotations = EclipseHandlerUtil.copyAnnotations(arg, new Annotation[][]{copyableAnnotations});
                         bfd2.type = arg.type;
                         bfd2.singularData = getSingularData(param, ast, annInstance.setterPrefix());
                         bfd2.originalFieldNode = param;
@@ -1035,7 +1035,7 @@ public class HandleBuilder extends EclipseAnnotationHandler<Builder> {
             methodAnnsList = Arrays.asList(methodAnns);
         }
         ASTNode source = job.sourceNode.get();
-        MethodDeclaration setter = HandleSetter.createSetter(td, deprecate, fieldNode, setterName, bfd.name, bfd.nameOfSetFlag, job.oldChain, EclipseHandlerUtil.toEclipseModifier(job.accessInners), job.sourceNode, methodAnnsList, bfd.annotations != null ? Arrays.asList(EclipseHandlerUtil.copyAnnotations(source, bfd.annotations)) : Collections.emptyList());
+        MethodDeclaration setter = HandleSetter.createSetter(td, deprecate, fieldNode, setterName, bfd.name, bfd.nameOfSetFlag, job.oldChain, EclipseHandlerUtil.toEclipseModifier(job.accessInners), job.sourceNode, methodAnnsList, bfd.annotations != null ? Arrays.asList(EclipseHandlerUtil.copyAnnotations(source, new Annotation[][]{bfd.annotations})) : Collections.emptyList());
         if (job.checkerFramework.generateCalledMethods()) {
             setter.receiver = generateNotCalledReceiver(job, setterName);
         }

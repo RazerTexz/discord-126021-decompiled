@@ -20,9 +20,6 @@ import p007b.p195g.p196a.p205c.p221z.AbstractC2394l;
 /* JADX INFO: loaded from: classes3.dex */
 public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
 
-    /* JADX INFO: renamed from: k */
-    public static final AbstractC2165b.a f4671k = new AbstractC2165b.a(1, "");
-
     /* JADX INFO: renamed from: l */
     public final boolean f4672l;
 
@@ -55,6 +52,9 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
 
     /* JADX INFO: renamed from: v */
     public transient AbstractC2165b.a f4682v;
+
+    /* JADX INFO: renamed from: k */
+    public static final AbstractC2165b.a f4671k = new AbstractC2165b.a(1, "");
 
     /* JADX INFO: renamed from: b.g.a.c.c0.c0$a */
     /* JADX INFO: compiled from: POJOPropertyBuilder.java */
@@ -97,7 +97,7 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.c0$d */
     /* JADX INFO: compiled from: POJOPropertyBuilder.java */
-    public static final class d<T> {
+    public final class d<T> {
 
         /* JADX INFO: renamed from: a */
         public final T f4686a;
@@ -218,6 +218,19 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         this.f4672l = z2;
     }
 
+    @Override // java.lang.Comparable
+    public int compareTo(C2178c0 c2178c0) {
+        C2178c0 c2178c1 = c2178c0;
+        if (this.f4678r != null) {
+            if (c2178c1.f4678r == null) {
+                return -1;
+            }
+        } else if (c2178c1.f4678r != null) {
+            return 1;
+        }
+        return mo1858p().compareTo(c2178c1.mo1858p());
+    }
+
     /* JADX INFO: renamed from: N */
     public static <T> d<T> m1835N(d<T> dVar, d<T> dVar2) {
         if (dVar == null) {
@@ -270,9 +283,9 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
         	at jadx.core.codegen.MethodGen.addMethodArguments(MethodGen.java:215)
         	at jadx.core.codegen.MethodGen.addDefinition(MethodGen.java:150)
-        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:415)
-        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:345)
-        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$3(ClassGen.java:299)
+        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:443)
+        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:373)
+        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$4(ClassGen.java:305)
         	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
         	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
         	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:395)
@@ -284,19 +297,19 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
         	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
         	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
-        	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:295)
-        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:284)
-        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:268)
-        	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:160)
-        	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:104)
+        	at jadx.core.codegen.ClassGen.addInnerClsAndMethods(ClassGen.java:301)
+        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:287)
+        	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:271)
+        	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:163)
+        	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:107)
         	at jadx.core.codegen.CodeGen.wrapCodeGen(CodeGen.java:45)
         	at jadx.core.codegen.CodeGen.generateJavaCode(CodeGen.java:34)
         	at jadx.core.codegen.CodeGen.generate(CodeGen.java:22)
         	at jadx.core.ProcessClass.process(ProcessClass.java:89)
         	at jadx.core.ProcessClass.generateCode(ProcessClass.java:127)
-        	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:405)
-        	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:393)
-        	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:343)
+        	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:401)
+        	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:389)
+        	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:339)
         */
 
     /* JADX INFO: renamed from: C */
@@ -404,17 +417,49 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         return (tMo1869a != null || (dVar2 = this.f4677q) == null) ? tMo1869a : eVar.mo1869a(dVar2.f4686a);
     }
 
-    @Override // java.lang.Comparable
-    public int compareTo(C2178c0 c2178c0) {
-        C2178c0 c2178c1 = c2178c0;
-        if (this.f4678r != null) {
-            if (c2178c1.f4678r == null) {
-                return -1;
+    /* JADX INFO: renamed from: w */
+    public final <T> boolean m1865w(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.f4688c != null && dVar.f4689d) {
+                return true;
             }
-        } else if (c2178c1.f4678r != null) {
-            return 1;
+            dVar = dVar.f4687b;
         }
-        return mo1858p().compareTo(c2178c1.mo1858p());
+        return false;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final <T> boolean m1866x(d<T> dVar) {
+        while (dVar != null) {
+            C2370t c2370t = dVar.f4688c;
+            if (c2370t != null && c2370t.m2229c()) {
+                return true;
+            }
+            dVar = dVar.f4687b;
+        }
+        return false;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final <T> boolean m1867y(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.f4691f) {
+                return true;
+            }
+            dVar = dVar.f4687b;
+        }
+        return false;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final <T> boolean m1868z(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.f4690e) {
+                return true;
+            }
+            dVar = dVar.f4687b;
+        }
+        return false;
     }
 
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2198s
@@ -861,21 +906,6 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         return null;
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("[Property '");
-        sbM833U.append(this.f4675o);
-        sbM833U.append("'; ctors: ");
-        sbM833U.append(this.f4678r);
-        sbM833U.append(", field(s): ");
-        sbM833U.append(this.f4677q);
-        sbM833U.append(", getter(s): ");
-        sbM833U.append(this.f4679s);
-        sbM833U.append(", setter(s): ");
-        sbM833U.append(this.f4680t);
-        sbM833U.append("]");
-        return sbM833U.toString();
-    }
-
     @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2198s
     /* JADX INFO: renamed from: u */
     public boolean mo1863u() {
@@ -889,49 +919,19 @@ public class C2178c0 extends AbstractC2198s implements Comparable<C2178c0> {
         return bool != null && bool.booleanValue();
     }
 
-    /* JADX INFO: renamed from: w */
-    public final <T> boolean m1865w(d<T> dVar) {
-        while (dVar != null) {
-            if (dVar.f4688c != null && dVar.f4689d) {
-                return true;
-            }
-            dVar = dVar.f4687b;
-        }
-        return false;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final <T> boolean m1866x(d<T> dVar) {
-        while (dVar != null) {
-            C2370t c2370t = dVar.f4688c;
-            if (c2370t != null && c2370t.m2229c()) {
-                return true;
-            }
-            dVar = dVar.f4687b;
-        }
-        return false;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final <T> boolean m1867y(d<T> dVar) {
-        while (dVar != null) {
-            if (dVar.f4691f) {
-                return true;
-            }
-            dVar = dVar.f4687b;
-        }
-        return false;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final <T> boolean m1868z(d<T> dVar) {
-        while (dVar != null) {
-            if (dVar.f4690e) {
-                return true;
-            }
-            dVar = dVar.f4687b;
-        }
-        return false;
+    public String toString() {
+        StringBuilder sbM833U = C1643a.m833U("[Property '");
+        sbM833U.append(this.f4675o);
+        sbM833U.append("'; ctors: ");
+        sbM833U.append(this.f4678r);
+        sbM833U.append(", field(s): ");
+        sbM833U.append(this.f4677q);
+        sbM833U.append(", getter(s): ");
+        sbM833U.append(this.f4679s);
+        sbM833U.append(", setter(s): ");
+        sbM833U.append(this.f4680t);
+        sbM833U.append("]");
+        return sbM833U.toString();
     }
 
     public C2178c0(AbstractC2394l<?> abstractC2394l, AbstractC2165b abstractC2165b, boolean z2, C2370t c2370t, C2370t c2370t2) {

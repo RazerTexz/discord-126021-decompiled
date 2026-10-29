@@ -16,13 +16,13 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
     private final ViewType type;
 
     /* JADX INFO: compiled from: GifAdapterItem.kt */
-    public static abstract class SuggestedTermsItem extends GifAdapterItem {
+    public abstract class SuggestedTermsItem extends GifAdapterItem {
         private final List<String> terms;
         private final int titleResId;
         private final ViewType viewType;
 
         /* JADX INFO: compiled from: GifAdapterItem.kt */
-        public static final /* data */ class SuggestedTermsEmptyResults extends SuggestedTermsItem {
+        public final /* data */ class SuggestedTermsEmptyResults extends SuggestedTermsItem {
             private final List<String> terms;
             private final int titleResId;
 
@@ -34,6 +34,14 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
                 this.titleResId = i;
             }
 
+            public final List<String> component1() {
+                return getTerms();
+            }
+
+            public final int component2() {
+                return getTitleResId();
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ SuggestedTermsEmptyResults copy$default(SuggestedTermsEmptyResults suggestedTermsEmptyResults, List list, int i, int i2, Object obj) {
                 if ((i2 & 1) != 0) {
@@ -43,14 +51,6 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
                     i = suggestedTermsEmptyResults.getTitleResId();
                 }
                 return suggestedTermsEmptyResults.copy(list, i);
-            }
-
-            public final List<String> component1() {
-                return getTerms();
-            }
-
-            public final int component2() {
-                return getTitleResId();
             }
 
             public final SuggestedTermsEmptyResults copy(List<String> terms, int titleResId) {
@@ -95,7 +95,7 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
         }
 
         /* JADX INFO: compiled from: GifAdapterItem.kt */
-        public static final /* data */ class SuggestedTermsNonEmptyResults extends SuggestedTermsItem {
+        public final /* data */ class SuggestedTermsNonEmptyResults extends SuggestedTermsItem {
             private final List<String> terms;
             private final int titleResId;
 
@@ -107,6 +107,14 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
                 this.titleResId = i;
             }
 
+            public final List<String> component1() {
+                return getTerms();
+            }
+
+            public final int component2() {
+                return getTitleResId();
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ SuggestedTermsNonEmptyResults copy$default(SuggestedTermsNonEmptyResults suggestedTermsNonEmptyResults, List list, int i, int i2, Object obj) {
                 if ((i2 & 1) != 0) {
@@ -116,14 +124,6 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
                     i = suggestedTermsNonEmptyResults.getTitleResId();
                 }
                 return suggestedTermsNonEmptyResults.copy(list, i);
-            }
-
-            public final List<String> component1() {
-                return getTerms();
-            }
-
-            public final int component2() {
-                return getTitleResId();
             }
 
             public final SuggestedTermsNonEmptyResults copy(List<String> terms, int titleResId) {
@@ -208,7 +208,7 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
         private static final ViewType[] values = values();
 
         /* JADX INFO: compiled from: GifAdapterItem.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -231,7 +231,7 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: GifAdapterItem.kt */
-    public static final /* data */ class GifItem extends GifAdapterItem {
+    public final /* data */ class GifItem extends GifAdapterItem {
         private final ModelGif gif;
         private final String key;
         private final String query;
@@ -255,16 +255,6 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
             return gifItem.copy(modelGif, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ModelGif getGif() {
-            return this.gif;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getQuery() {
-            return this.query;
-        }
-
         public final GifItem copy(ModelGif gif, String query) {
             C12238m.checkNotNullParameter(gif, IconUtils.ANIMATED_IMAGE_EXTENSION);
             return new GifItem(gif, query);
@@ -281,6 +271,11 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
             return C12238m.areEqual(this.gif, gifItem.gif) && C12238m.areEqual(this.query, gifItem.query);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelGif getGif() {
+            return this.gif;
+        }
+
         public final ModelGif getGif() {
             return this.gif;
         }
@@ -288,6 +283,11 @@ public abstract class GifAdapterItem implements DiffKeyProvider {
         @Override // com.discord.utilities.recycler.DiffKeyProvider
         public String getKey() {
             return this.key;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getQuery() {
+            return this.query;
         }
 
         public final String getQuery() {

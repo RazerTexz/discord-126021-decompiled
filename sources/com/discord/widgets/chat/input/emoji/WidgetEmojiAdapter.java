@@ -57,7 +57,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     private final Function0<Unit> onGetPremiumCtaClicked;
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static final class EmojiViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> {
+    public final class EmojiViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> {
         private final EmojiPickerEmojiItemBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -128,11 +128,11 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     }
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static abstract class HeaderItem implements MGRecyclerDataPayload {
+    public abstract class HeaderItem implements MGRecyclerDataPayload {
         private final int type;
 
         /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-        public static final /* data */ class GuildHeaderItem extends HeaderItem {
+        public final /* data */ class GuildHeaderItem extends HeaderItem {
             private final String key;
             private final String text;
 
@@ -145,6 +145,10 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
                 this.key = str2;
             }
 
+            public final String component2() {
+                return getKey();
+            }
+
             public static /* synthetic */ GuildHeaderItem copy$default(GuildHeaderItem guildHeaderItem, String str, String str2, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = guildHeaderItem.text;
@@ -153,15 +157,6 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
                     str2 = guildHeaderItem.getKey();
                 }
                 return guildHeaderItem.copy(str, str2);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getText() {
-                return this.text;
-            }
-
-            public final String component2() {
-                return getKey();
             }
 
             public final GuildHeaderItem copy(String text, String key) {
@@ -184,6 +179,11 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getText() {
+                return this.text;
             }
 
             public final String getText() {
@@ -214,7 +214,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
         }
 
         /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-        public static final /* data */ class StandardHeaderItem extends HeaderItem {
+        public final /* data */ class StandardHeaderItem extends HeaderItem {
             private final EmojiCategory emojiCategory;
             private final String key;
 
@@ -233,11 +233,6 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
                 return standardHeaderItem.copy(emojiCategory);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final EmojiCategory getEmojiCategory() {
-                return this.emojiCategory;
-            }
-
             public final StandardHeaderItem copy(EmojiCategory emojiCategory) {
                 C12238m.checkNotNullParameter(emojiCategory, "emojiCategory");
                 return new StandardHeaderItem(emojiCategory);
@@ -248,6 +243,11 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
                     return (other instanceof StandardHeaderItem) && C12238m.areEqual(this.emojiCategory, ((StandardHeaderItem) other).emojiCategory);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final EmojiCategory getEmojiCategory() {
+                return this.emojiCategory;
             }
 
             public final EmojiCategory getEmojiCategory() {
@@ -276,7 +276,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
         }
 
         /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-        public static final /* data */ class StringHeaderItem extends HeaderItem {
+        public final /* data */ class StringHeaderItem extends HeaderItem {
             private final String key;
             private final int stringRes;
 
@@ -293,11 +293,6 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
                 return stringHeaderItem.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getStringRes() {
-                return this.stringRes;
-            }
-
             public final StringHeaderItem copy(@StringRes int stringRes) {
                 return new StringHeaderItem(stringRes);
             }
@@ -312,6 +307,11 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
             @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
             public String getKey() {
                 return this.key;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getStringRes() {
+                return this.stringRes;
             }
 
             public final int getStringRes() {
@@ -341,7 +341,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     }
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> implements WidgetExpressionPickerAdapter.StickyHeaderViewHolder {
+    public final class HeaderViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> implements WidgetExpressionPickerAdapter.StickyHeaderViewHolder {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -349,7 +349,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
         public HeaderItem boundItem;
 
         /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
 
             public final /* synthetic */ class WhenMappings {
                 public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -485,7 +485,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     }
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static final class PremiumEmojiUpsellViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> {
+    public final class PremiumEmojiUpsellViewHolder extends MGRecyclerViewHolder<WidgetEmojiAdapter, MGRecyclerDataPayload> {
         private final EmojiPickerPremiumUpsellBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -510,7 +510,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     }
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static final class UpsellItem implements MGRecyclerDataPayload {
+    public final class UpsellItem implements MGRecyclerDataPayload {
         private static final String key;
         public static final UpsellItem INSTANCE = new UpsellItem();
         private static final int type = 2;
@@ -606,7 +606,7 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
     }
 
     /* JADX INFO: compiled from: WidgetEmojiAdapter.kt */
-    public static final /* data */ class EmojiItem implements MGRecyclerDataPayload {
+    public final /* data */ class EmojiItem implements MGRecyclerDataPayload {
         private final boolean allowEmojisToAnimate;
         private final Emoji emoji;
         private final String emojiName;
@@ -643,26 +643,6 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
             return emojiItem.copy(str, emoji, str2, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getGuildName() {
-            return this.guildName;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Emoji getEmoji() {
-            return this.emoji;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getEmojiName() {
-            return this.emojiName;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getAllowEmojisToAnimate() {
-            return this.allowEmojisToAnimate;
-        }
-
         public final EmojiItem copy(String guildName, Emoji emoji, String emojiName, boolean allowEmojisToAnimate) {
             C12238m.checkNotNullParameter(emoji, "emoji");
             C12238m.checkNotNullParameter(emojiName, "emojiName");
@@ -680,16 +660,36 @@ public final class WidgetEmojiAdapter extends WidgetExpressionPickerAdapter {
             return C12238m.areEqual(this.guildName, emojiItem.guildName) && C12238m.areEqual(this.emoji, emojiItem.emoji) && C12238m.areEqual(this.emojiName, emojiItem.emojiName) && this.allowEmojisToAnimate == emojiItem.allowEmojisToAnimate;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getAllowEmojisToAnimate() {
             return this.allowEmojisToAnimate;
+        }
+
+        public final boolean getAllowEmojisToAnimate() {
+            return this.allowEmojisToAnimate;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Emoji getEmoji() {
+            return this.emoji;
         }
 
         public final Emoji getEmoji() {
             return this.emoji;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getEmojiName() {
             return this.emojiName;
+        }
+
+        public final String getEmojiName() {
+            return this.emojiName;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getGuildName() {
+            return this.guildName;
         }
 
         public final String getGuildName() {

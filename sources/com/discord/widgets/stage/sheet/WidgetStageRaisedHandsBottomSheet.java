@@ -67,27 +67,9 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetStageRaisedHandsBottomSheet show(FragmentManager fragmentManager, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetStageRaisedHandsBottomSheet widgetStageRaisedHandsBottomSheet = new WidgetStageRaisedHandsBottomSheet();
-            widgetStageRaisedHandsBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
-            widgetStageRaisedHandsBottomSheet.show(fragmentManager, WidgetStageRaisedHandsBottomSheet.class.getSimpleName());
-            return widgetStageRaisedHandsBottomSheet;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$onResume$1 */
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final class C100331 extends AbstractC12240o implements Function1<WidgetStageRaisedHandsBottomSheetViewModel.ViewState, Unit> {
+    public final class C100331 extends AbstractC12240o implements Function1<WidgetStageRaisedHandsBottomSheetViewModel.ViewState, Unit> {
         public C100331() {
             super(1);
         }
@@ -107,7 +89,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$onResume$2 */
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final class C100342 extends AbstractC12240o implements Function1<WidgetStageRaisedHandsBottomSheetViewModel.Event, Unit> {
+    public final class C100342 extends AbstractC12240o implements Function1<WidgetStageRaisedHandsBottomSheetViewModel.Event, Unit> {
         public C100342() {
             super(1);
         }
@@ -127,7 +109,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$onViewCreated$2 */
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final class C100352 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+    public final class C100352 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
         public C100352() {
             super(1);
         }
@@ -152,7 +134,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$onViewCreated$3 */
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final /* synthetic */ class C100363 extends C12236k implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+    public final /* synthetic */ class C100363 extends C12236k implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
         public C100363(WidgetStageRaisedHandsBottomSheetViewModel widgetStageRaisedHandsBottomSheetViewModel) {
             super(1, widgetStageRaisedHandsBottomSheetViewModel, WidgetStageRaisedHandsBottomSheetViewModel.class, "dismissRequestToSpeak", "dismissRequestToSpeak(Lcom/discord/stores/StoreVoiceParticipants$VoiceUser;)V", 0);
         }
@@ -172,7 +154,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$onViewCreated$4 */
     /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-    public static final /* synthetic */ class C100374 extends C12236k implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+    public final /* synthetic */ class C100374 extends C12236k implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
         public C100374(WidgetStageRaisedHandsBottomSheetViewModel widgetStageRaisedHandsBottomSheetViewModel) {
             super(1, widgetStageRaisedHandsBottomSheetViewModel, WidgetStageRaisedHandsBottomSheetViewModel.class, "inviteToSpeak", "inviteToSpeak(Lcom/discord/stores/StoreVoiceParticipants$VoiceUser;)V", 0);
         }
@@ -187,6 +169,24 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
         public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
             C12238m.checkNotNullParameter(voiceUser, "p1");
             ((WidgetStageRaisedHandsBottomSheetViewModel) this.receiver).inviteToSpeak(voiceUser);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetStageRaisedHandsBottomSheet show(FragmentManager fragmentManager, long channelId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetStageRaisedHandsBottomSheet widgetStageRaisedHandsBottomSheet = new WidgetStageRaisedHandsBottomSheet();
+            widgetStageRaisedHandsBottomSheet.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId))));
+            widgetStageRaisedHandsBottomSheet.show(fragmentManager, WidgetStageRaisedHandsBottomSheet.class.getSimpleName());
+            return widgetStageRaisedHandsBottomSheet;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -207,7 +207,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$configureToggleSpeakerState$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -226,7 +226,7 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
 
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet$configureToggleSpeakerState$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheet.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }
@@ -322,6 +322,11 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_stage_raised_hands_bottom_sheet;
+    }
+
     private final WidgetStageRaisedHandsBottomSheetViewModel getViewModel() {
         return (WidgetStageRaisedHandsBottomSheetViewModel) this.viewModel.getValue();
     }
@@ -332,11 +337,6 @@ public final class WidgetStageRaisedHandsBottomSheet extends AppBottomSheet {
         } else if (event instanceof WidgetStageRaisedHandsBottomSheetViewModel.Event.Error) {
             ((WidgetStageRaisedHandsBottomSheetViewModel.Event.Error) event).getError().showToasts(getContext());
         }
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_stage_raised_hands_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

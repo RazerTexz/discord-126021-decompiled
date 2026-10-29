@@ -58,15 +58,6 @@ import p658rx.subjects.SerializedSubject;
 /* JADX INFO: loaded from: classes.dex */
 public final class DiscordAudioManager {
 
-    /* JADX INFO: renamed from: a */
-    public static final Lazy f18826a = C12083g.lazy(C5623d.f18864j);
-
-    /* JADX INFO: renamed from: b */
-    public static final AudioDevice f18827b = new AudioDevice(null, false, null, null, 15);
-
-    /* JADX INFO: renamed from: c */
-    public static final List<DeviceTypes> f18828c = C12147n.listOf((Object[]) new DeviceTypes[]{DeviceTypes.EARPIECE, DeviceTypes.SPEAKERPHONE, DeviceTypes.BLUETOOTH_HEADSET, DeviceTypes.WIRED_HEADSET});
-
     /* JADX INFO: renamed from: d */
     public static final DiscordAudioManager f18829d = null;
 
@@ -148,8 +139,17 @@ public final class DiscordAudioManager {
     /* JADX INFO: renamed from: z */
     public DeviceTypes f18855z;
 
+    /* JADX INFO: renamed from: a */
+    public static final Lazy f18826a = C12083g.lazy(C5623d.f18864j);
+
+    /* JADX INFO: renamed from: b */
+    public static final AudioDevice f18827b = new AudioDevice(null, false, null, null, 15);
+
+    /* JADX INFO: renamed from: c */
+    public static final List<DeviceTypes> f18828c = C12147n.listOf((Object[]) new DeviceTypes[]{DeviceTypes.EARPIECE, DeviceTypes.SPEAKERPHONE, DeviceTypes.BLUETOOTH_HEADSET, DeviceTypes.WIRED_HEADSET});
+
     /* JADX INFO: compiled from: DiscordAudioManager.kt */
-    public static final /* data */ class AudioDevice {
+    public final /* data */ class AudioDevice {
 
         /* JADX INFO: renamed from: a, reason: from kotlin metadata */
         public final DeviceTypes type;
@@ -173,23 +173,6 @@ public final class DiscordAudioManager {
             this.isAvailable = z2;
             this.id = str;
             this.name = str2;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static AudioDevice m8493a(AudioDevice audioDevice, DeviceTypes deviceTypes, boolean z2, String str, String str2, int i) {
-            DeviceTypes deviceTypes2 = (i & 1) != 0 ? audioDevice.type : null;
-            if ((i & 2) != 0) {
-                z2 = audioDevice.isAvailable;
-            }
-            if ((i & 4) != 0) {
-                str = audioDevice.id;
-            }
-            if ((i & 8) != 0) {
-                str2 = audioDevice.name;
-            }
-            Objects.requireNonNull(audioDevice);
-            C12238m.checkNotNullParameter(deviceTypes2, "type");
-            return new AudioDevice(deviceTypes2, z2, str, str2);
         }
 
         public boolean equals(Object other) {
@@ -221,6 +204,23 @@ public final class DiscordAudioManager {
             int iHashCode2 = (i + (str != null ? str.hashCode() : 0)) * 31;
             String str2 = this.name;
             return iHashCode2 + (str2 != null ? str2.hashCode() : 0);
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static AudioDevice m8493a(AudioDevice audioDevice, DeviceTypes deviceTypes, boolean z2, String str, String str2, int i) {
+            DeviceTypes deviceTypes2 = (i & 1) != 0 ? audioDevice.type : null;
+            if ((i & 2) != 0) {
+                z2 = audioDevice.isAvailable;
+            }
+            if ((i & 4) != 0) {
+                str = audioDevice.id;
+            }
+            if ((i & 8) != 0) {
+                str2 = audioDevice.name;
+            }
+            Objects.requireNonNull(audioDevice);
+            C12238m.checkNotNullParameter(deviceTypes2, "type");
+            return new AudioDevice(deviceTypes2, z2, str, str2);
         }
 
         public String toString() {
@@ -263,97 +263,6 @@ public final class DiscordAudioManager {
 
         public final int getValue() {
             return this.value;
-        }
-    }
-
-    /* JADX INFO: compiled from: DiscordAudioManager.kt */
-    public enum DeviceTypes {
-        DEFAULT(-2),
-        INVALID(-1),
-        SPEAKERPHONE(0),
-        WIRED_HEADSET(1),
-        EARPIECE(2),
-        BLUETOOTH_HEADSET(3);
-
-        private final int value;
-
-        DeviceTypes(int i) {
-            this.value = i;
-        }
-
-        public final int getValue() {
-            return this.value;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.rtcconnection.audio.DiscordAudioManager$a */
-    /* JADX INFO: compiled from: DiscordAudioManager.kt */
-    public static final class RunnableC5620a implements Runnable {
-        public RunnableC5620a() {
-        }
-
-        @Override // java.lang.Runnable
-        public final void run() {
-            DiscordAudioManager discordAudioManager = DiscordAudioManager.this;
-            C1209a c1209a = discordAudioManager.f18842m;
-            Objects.requireNonNull(c1209a);
-            ThreadUtils.checkIsOnMainThread();
-            boolean profileProxy = false;
-            List listListOf = C12147n.listOf((Object[]) new AudioManagerBroadcastAction[]{AudioManagerBroadcastAction.HeadsetPlug, AudioManagerBroadcastAction.ScoAudioStateUpdated});
-            C1460d.m501b1("AudioManagerBroadcastReceiver", "registering for broadcasts with actions: " + listListOf);
-            IntentFilter intentFilter = new IntentFilter();
-            Iterator it = listListOf.iterator();
-            while (it.hasNext()) {
-                intentFilter.addAction(((AudioManagerBroadcastAction) it.next()).getAction());
-            }
-            c1209a.f1641b.registerReceiver(c1209a, intentFilter);
-            C1211c c1211c = discordAudioManager.f18841l;
-            Objects.requireNonNull(c1211c);
-            ThreadUtils.checkIsOnMainThread();
-            if (!c1211c.f1649l) {
-                StringBuilder sbM833U = C1643a.m833U("registering for broadcasts with actions: ");
-                Set<BluetoothBroadcastAction> set = C1211c.f1647j;
-                sbM833U.append(set);
-                C1460d.m501b1("BluetoothBroadcastReceiver", sbM833U.toString());
-                IntentFilter intentFilter2 = new IntentFilter();
-                Iterator<T> it2 = set.iterator();
-                while (it2.hasNext()) {
-                    intentFilter2.addAction(((BluetoothBroadcastAction) it2.next()).getAction());
-                }
-                c1211c.f1651n.registerReceiver(c1211c, intentFilter2);
-                C1212d c1212d = C1212d.f1655c;
-                Lazy lazy = C1212d.f1653a;
-                if (((String) lazy.getValue()) != null) {
-                    Context context = c1211c.f1651n;
-                    C12238m.checkNotNullParameter(context, "context");
-                    C12238m.checkNotNullParameter(c1211c, "receiver");
-                    try {
-                        String str = (String) lazy.getValue();
-                        if (str != null) {
-                            context.registerReceiver(c1211c, new IntentFilter(str));
-                        }
-                    } catch (Throwable unused) {
-                    }
-                }
-                try {
-                    BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
-                    if (defaultAdapter != null) {
-                        profileProxy = defaultAdapter.getProfileProxy(c1211c.f1651n, c1211c, 1);
-                    }
-                } catch (SecurityException e) {
-                    C1460d.m517f1("BluetoothBroadcastReceiver", "failed to get BluetoothHeadset profile: " + e);
-                }
-                if (profileProxy) {
-                    C1460d.m501b1("BluetoothBroadcastReceiver", "listening for HeadsetProfile proxy");
-                } else {
-                    C1460d.m505c1("BluetoothBroadcastReceiver", "listening for HeadsetProfile proxy failed", null);
-                }
-                c1211c.f1649l = true;
-            }
-            C1213e c1213e = new C1213e(discordAudioManager);
-            synchronized (discordAudioManager.f18838i) {
-                discordAudioManager.f18845p = c1213e;
-            }
         }
     }
 
@@ -600,7 +509,7 @@ public final class DiscordAudioManager {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.audio.DiscordAudioManager$d */
     /* JADX INFO: compiled from: DiscordAudioManager.kt */
-    public static final class C5623d extends AbstractC12240o implements Function0<DiscordAudioManager> {
+    public final class C5623d extends AbstractC12240o implements Function0<DiscordAudioManager> {
 
         /* JADX INFO: renamed from: j */
         public static final C5623d f18864j = new C5623d();
@@ -617,7 +526,7 @@ public final class DiscordAudioManager {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.audio.DiscordAudioManager$e */
     /* JADX INFO: compiled from: DiscordAudioManager.kt */
-    public static final class C5624e extends AbstractC12240o implements Function0<C1210b> {
+    public final class C5624e extends AbstractC12240o implements Function0<C1210b> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -629,6 +538,97 @@ public final class DiscordAudioManager {
         @Override // kotlin.jvm.functions.Function0
         public C1210b invoke() {
             return new C1210b(this.$context);
+        }
+    }
+
+    /* JADX INFO: compiled from: DiscordAudioManager.kt */
+    public enum DeviceTypes {
+        DEFAULT(-2),
+        INVALID(-1),
+        SPEAKERPHONE(0),
+        WIRED_HEADSET(1),
+        EARPIECE(2),
+        BLUETOOTH_HEADSET(3);
+
+        private final int value;
+
+        DeviceTypes(int i) {
+            this.value = i;
+        }
+
+        public final int getValue() {
+            return this.value;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.audio.DiscordAudioManager$a */
+    /* JADX INFO: compiled from: DiscordAudioManager.kt */
+    public final class RunnableC5620a implements Runnable {
+        public RunnableC5620a() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            DiscordAudioManager discordAudioManager = DiscordAudioManager.this;
+            C1209a c1209a = discordAudioManager.f18842m;
+            Objects.requireNonNull(c1209a);
+            ThreadUtils.checkIsOnMainThread();
+            boolean profileProxy = false;
+            List listListOf = C12147n.listOf((Object[]) new AudioManagerBroadcastAction[]{AudioManagerBroadcastAction.HeadsetPlug, AudioManagerBroadcastAction.ScoAudioStateUpdated});
+            C1460d.m501b1("AudioManagerBroadcastReceiver", "registering for broadcasts with actions: " + listListOf);
+            IntentFilter intentFilter = new IntentFilter();
+            Iterator it = listListOf.iterator();
+            while (it.hasNext()) {
+                intentFilter.addAction(((AudioManagerBroadcastAction) it.next()).getAction());
+            }
+            c1209a.f1641b.registerReceiver(c1209a, intentFilter);
+            C1211c c1211c = discordAudioManager.f18841l;
+            Objects.requireNonNull(c1211c);
+            ThreadUtils.checkIsOnMainThread();
+            if (!c1211c.f1649l) {
+                StringBuilder sbM833U = C1643a.m833U("registering for broadcasts with actions: ");
+                Set<BluetoothBroadcastAction> set = C1211c.f1647j;
+                sbM833U.append(set);
+                C1460d.m501b1("BluetoothBroadcastReceiver", sbM833U.toString());
+                IntentFilter intentFilter2 = new IntentFilter();
+                Iterator<T> it2 = set.iterator();
+                while (it2.hasNext()) {
+                    intentFilter2.addAction(((BluetoothBroadcastAction) it2.next()).getAction());
+                }
+                c1211c.f1651n.registerReceiver(c1211c, intentFilter2);
+                C1212d c1212d = C1212d.f1655c;
+                Lazy lazy = C1212d.f1653a;
+                if (((String) lazy.getValue()) != null) {
+                    Context context = c1211c.f1651n;
+                    C12238m.checkNotNullParameter(context, "context");
+                    C12238m.checkNotNullParameter(c1211c, "receiver");
+                    try {
+                        String str = (String) lazy.getValue();
+                        if (str != null) {
+                            context.registerReceiver(c1211c, new IntentFilter(str));
+                        }
+                    } catch (Throwable unused) {
+                    }
+                }
+                try {
+                    BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
+                    if (defaultAdapter != null) {
+                        profileProxy = defaultAdapter.getProfileProxy(c1211c.f1651n, c1211c, 1);
+                    }
+                } catch (SecurityException e) {
+                    C1460d.m517f1("BluetoothBroadcastReceiver", "failed to get BluetoothHeadset profile: " + e);
+                }
+                if (profileProxy) {
+                    C1460d.m501b1("BluetoothBroadcastReceiver", "listening for HeadsetProfile proxy");
+                } else {
+                    C1460d.m505c1("BluetoothBroadcastReceiver", "listening for HeadsetProfile proxy failed", null);
+                }
+                c1211c.f1649l = true;
+            }
+            C1213e c1213e = new C1213e(discordAudioManager);
+            synchronized (discordAudioManager.f18838i) {
+                discordAudioManager.f18845p = c1213e;
+            }
         }
     }
 

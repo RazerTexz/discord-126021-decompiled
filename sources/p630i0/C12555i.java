@@ -47,7 +47,7 @@ public final class C12555i extends InterfaceC12512e.a {
 
     /* JADX INFO: renamed from: i0.i$b */
     /* JADX INFO: compiled from: DefaultCallAdapterFactory.java */
-    public static final class b<T> implements InterfaceC12504d<T> {
+    public final class b<T> implements InterfaceC12504d<T> {
 
         /* JADX INFO: renamed from: j */
         public final Executor f26537j;
@@ -107,9 +107,8 @@ public final class C12555i extends InterfaceC12512e.a {
         }
 
         @Override // p630i0.InterfaceC12504d
-        /* JADX INFO: renamed from: C */
-        public void mo10697C(InterfaceC12527f<T> interfaceC12527f) {
-            this.f26538k.mo10697C(new a(interfaceC12527f));
+        public void cancel() {
+            this.f26538k.cancel();
         }
 
         @Override // p630i0.InterfaceC12504d
@@ -119,25 +118,26 @@ public final class C12555i extends InterfaceC12512e.a {
         }
 
         @Override // p630i0.InterfaceC12504d
+        public Response<T> execute() throws IOException {
+            return this.f26538k.execute();
+        }
+
+        @Override // p630i0.InterfaceC12504d
+        /* JADX INFO: renamed from: C */
+        public void mo10697C(InterfaceC12527f<T> interfaceC12527f) {
+            this.f26538k.mo10697C(new a(interfaceC12527f));
+        }
+
+        @Override // p630i0.InterfaceC12504d
         /* JADX INFO: renamed from: c */
         public Request mo10699c() {
             return this.f26538k.mo10699c();
         }
 
         @Override // p630i0.InterfaceC12504d
-        public void cancel() {
-            this.f26538k.cancel();
-        }
-
-        @Override // p630i0.InterfaceC12504d
         /* JADX INFO: renamed from: d */
         public boolean mo10700d() {
             return this.f26538k.mo10700d();
-        }
-
-        @Override // p630i0.InterfaceC12504d
-        public Response<T> execute() throws IOException {
-            return this.f26538k.execute();
         }
     }
 

@@ -88,14 +88,6 @@ public final class EnumC5194b {
         return null;
     }
 
-    public static EnumC5194b valueOf(String str) {
-        return (EnumC5194b) Enum.valueOf(EnumC5194b.class, str);
-    }
-
-    public static EnumC5194b[] values() {
-        return (EnumC5194b[]) f14080r.clone();
-    }
-
     @NonNull
     /* JADX INFO: renamed from: g */
     public EnumC5196d m7390g() {
@@ -105,5 +97,13 @@ public final class EnumC5194b {
     /* JADX INFO: renamed from: h */
     public int m7391h() {
         return this.value;
+    }
+
+    public static EnumC5194b valueOf(String str) {
+        return (EnumC5194b) Enum.valueOf(EnumC5194b.class, str);
+    }
+
+    public static EnumC5194b[] values() {
+        return (EnumC5194b[]) f14080r.clone();
     }
 }

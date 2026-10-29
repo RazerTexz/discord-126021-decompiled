@@ -16,76 +16,6 @@ public class PagerSnapHelper extends SnapHelper {
     @Nullable
     private OrientationHelper mVerticalHelper;
 
-    private int distanceToCenter(@NonNull View view, OrientationHelper orientationHelper) {
-        return ((orientationHelper.getDecoratedMeasurement(view) / 2) + orientationHelper.getDecoratedStart(view)) - ((orientationHelper.getTotalSpace() / 2) + orientationHelper.getStartAfterPadding());
-    }
-
-    @Nullable
-    private View findCenterView(RecyclerView.LayoutManager layoutManager, OrientationHelper orientationHelper) {
-        int childCount = layoutManager.getChildCount();
-        View view = null;
-        if (childCount == 0) {
-            return null;
-        }
-        int totalSpace = (orientationHelper.getTotalSpace() / 2) + orientationHelper.getStartAfterPadding();
-        int i = Integer.MAX_VALUE;
-        for (int i2 = 0; i2 < childCount; i2++) {
-            View childAt = layoutManager.getChildAt(i2);
-            int iAbs = Math.abs(((orientationHelper.getDecoratedMeasurement(childAt) / 2) + orientationHelper.getDecoratedStart(childAt)) - totalSpace);
-            if (iAbs < i) {
-                view = childAt;
-                i = iAbs;
-            }
-        }
-        return view;
-    }
-
-    @NonNull
-    private OrientationHelper getHorizontalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
-        OrientationHelper orientationHelper = this.mHorizontalHelper;
-        if (orientationHelper == null || orientationHelper.mLayoutManager != layoutManager) {
-            this.mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager);
-        }
-        return this.mHorizontalHelper;
-    }
-
-    @Nullable
-    private OrientationHelper getOrientationHelper(RecyclerView.LayoutManager layoutManager) {
-        if (layoutManager.canScrollVertically()) {
-            return getVerticalHelper(layoutManager);
-        }
-        if (layoutManager.canScrollHorizontally()) {
-            return getHorizontalHelper(layoutManager);
-        }
-        return null;
-    }
-
-    @NonNull
-    private OrientationHelper getVerticalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
-        OrientationHelper orientationHelper = this.mVerticalHelper;
-        if (orientationHelper == null || orientationHelper.mLayoutManager != layoutManager) {
-            this.mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager);
-        }
-        return this.mVerticalHelper;
-    }
-
-    private boolean isForwardFling(RecyclerView.LayoutManager layoutManager, int i, int i2) {
-        if (layoutManager.canScrollHorizontally()) {
-            return i > 0;
-        }
-        return i2 > 0;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private boolean isReverseLayout(RecyclerView.LayoutManager layoutManager) {
-        PointF pointFComputeScrollVectorForPosition;
-        int itemCount = layoutManager.getItemCount();
-        if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider) || (pointFComputeScrollVectorForPosition = ((RecyclerView.SmoothScroller.ScrollVectorProvider) layoutManager).computeScrollVectorForPosition(itemCount - 1)) == null) {
-            return false;
-        }
-        return pointFComputeScrollVectorForPosition.x < 0.0f || pointFComputeScrollVectorForPosition.y < 0.0f;
-    }
-
     @Override // androidx.recyclerview.widget.SnapHelper
     @Nullable
     public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View view) {
@@ -132,6 +62,30 @@ public class PagerSnapHelper extends SnapHelper {
             };
         }
         return null;
+    }
+
+    private int distanceToCenter(@NonNull View view, OrientationHelper orientationHelper) {
+        return ((orientationHelper.getDecoratedMeasurement(view) / 2) + orientationHelper.getDecoratedStart(view)) - ((orientationHelper.getTotalSpace() / 2) + orientationHelper.getStartAfterPadding());
+    }
+
+    @Nullable
+    private View findCenterView(RecyclerView.LayoutManager layoutManager, OrientationHelper orientationHelper) {
+        int childCount = layoutManager.getChildCount();
+        View view = null;
+        if (childCount == 0) {
+            return null;
+        }
+        int totalSpace = (orientationHelper.getTotalSpace() / 2) + orientationHelper.getStartAfterPadding();
+        int i = Integer.MAX_VALUE;
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = layoutManager.getChildAt(i2);
+            int iAbs = Math.abs(((orientationHelper.getDecoratedMeasurement(childAt) / 2) + orientationHelper.getDecoratedStart(childAt)) - totalSpace);
+            if (iAbs < i) {
+                view = childAt;
+                i = iAbs;
+            }
+        }
+        return view;
     }
 
     @Override // androidx.recyclerview.widget.SnapHelper
@@ -190,5 +144,51 @@ public class PagerSnapHelper extends SnapHelper {
             return -1;
         }
         return position;
+    }
+
+    @NonNull
+    private OrientationHelper getHorizontalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
+        OrientationHelper orientationHelper = this.mHorizontalHelper;
+        if (orientationHelper == null || orientationHelper.mLayoutManager != layoutManager) {
+            this.mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager);
+        }
+        return this.mHorizontalHelper;
+    }
+
+    @Nullable
+    private OrientationHelper getOrientationHelper(RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager.canScrollVertically()) {
+            return getVerticalHelper(layoutManager);
+        }
+        if (layoutManager.canScrollHorizontally()) {
+            return getHorizontalHelper(layoutManager);
+        }
+        return null;
+    }
+
+    @NonNull
+    private OrientationHelper getVerticalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
+        OrientationHelper orientationHelper = this.mVerticalHelper;
+        if (orientationHelper == null || orientationHelper.mLayoutManager != layoutManager) {
+            this.mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager);
+        }
+        return this.mVerticalHelper;
+    }
+
+    private boolean isForwardFling(RecyclerView.LayoutManager layoutManager, int i, int i2) {
+        if (layoutManager.canScrollHorizontally()) {
+            return i > 0;
+        }
+        return i2 > 0;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private boolean isReverseLayout(RecyclerView.LayoutManager layoutManager) {
+        PointF pointFComputeScrollVectorForPosition;
+        int itemCount = layoutManager.getItemCount();
+        if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider) || (pointFComputeScrollVectorForPosition = ((RecyclerView.SmoothScroller.ScrollVectorProvider) layoutManager).computeScrollVectorForPosition(itemCount - 1)) == null) {
+            return false;
+        }
+        return pointFComputeScrollVectorForPosition.x < 0.0f || pointFComputeScrollVectorForPosition.y < 0.0f;
     }
 }

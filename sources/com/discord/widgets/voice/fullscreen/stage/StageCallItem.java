@@ -26,7 +26,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     private final int type;
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class AudienceHeaderItem extends StageCallItem {
+    public final /* data */ class AudienceHeaderItem extends StageCallItem {
         private final int audienceSize;
 
         public AudienceHeaderItem(int i) {
@@ -41,11 +41,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return audienceHeaderItem.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getAudienceSize() {
-            return this.audienceSize;
-        }
-
         public final AudienceHeaderItem copy(int audienceSize) {
             return new AudienceHeaderItem(audienceSize);
         }
@@ -55,6 +50,11 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return (other instanceof AudienceHeaderItem) && this.audienceSize == ((AudienceHeaderItem) other).audienceSize;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getAudienceSize() {
+            return this.audienceSize;
         }
 
         public final int getAudienceSize() {
@@ -71,7 +71,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class AudienceItem extends StageCallItem implements StageCallParticipantItem, Comparable<AudienceItem> {
+    public final /* data */ class AudienceItem extends StageCallItem implements StageCallParticipantItem, Comparable<AudienceItem> {
         private final Channel channel;
         private final GuildRole hoistedGuildRole;
         private final boolean isBlocked;
@@ -88,6 +88,14 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             this.isBlocked = z2;
         }
 
+        public final StoreVoiceParticipants.VoiceUser component1() {
+            return getVoiceUser();
+        }
+
+        public final Channel component2() {
+            return getChannel();
+        }
+
         public static /* synthetic */ AudienceItem copy$default(AudienceItem audienceItem, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, GuildRole guildRole, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
                 voiceUser = audienceItem.getVoiceUser();
@@ -102,24 +110,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 z2 = audienceItem.isBlocked;
             }
             return audienceItem.copy(voiceUser, channel, guildRole, z2);
-        }
-
-        public final StoreVoiceParticipants.VoiceUser component1() {
-            return getVoiceUser();
-        }
-
-        public final Channel component2() {
-            return getChannel();
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildRole getHoistedGuildRole() {
-            return this.hoistedGuildRole;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsBlocked() {
-            return this.isBlocked;
         }
 
         public final AudienceItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, GuildRole hoistedGuildRole, boolean isBlocked) {
@@ -144,8 +134,18 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final GuildRole getHoistedGuildRole() {
             return this.hoistedGuildRole;
+        }
+
+        public final GuildRole getHoistedGuildRole() {
+            return this.hoistedGuildRole;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsBlocked() {
+            return this.isBlocked;
         }
 
         @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
@@ -196,7 +196,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class DetailsItem extends StageCallItem {
+    public final /* data */ class DetailsItem extends StageCallItem {
         private final String displayName;
         private final boolean isPublic;
         private final int numAudience;
@@ -248,41 +248,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return detailsItem.copy(str, str3, i6, i7, i8, i9, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getTopic() {
-            return this.topic;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDisplayName() {
-            return this.displayName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getNumUsersConnected() {
-            return this.numUsersConnected;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getNumSpeakers() {
-            return this.numSpeakers;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getNumAudience() {
-            return this.numAudience;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final int getNumBlocked() {
-            return this.numBlocked;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsPublic() {
-            return this.isPublic;
-        }
-
         public final DetailsItem copy(String topic, String displayName, int numUsersConnected, int numSpeakers, int numAudience, int numBlocked, boolean isPublic) {
             C12238m.checkNotNullParameter(displayName, "displayName");
             return new DetailsItem(topic, displayName, numUsersConnected, numSpeakers, numAudience, numBlocked, isPublic);
@@ -299,24 +264,59 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.topic, detailsItem.topic) && C12238m.areEqual(this.displayName, detailsItem.displayName) && this.numUsersConnected == detailsItem.numUsersConnected && this.numSpeakers == detailsItem.numSpeakers && this.numAudience == detailsItem.numAudience && this.numBlocked == detailsItem.numBlocked && this.isPublic == detailsItem.isPublic;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getDisplayName() {
             return this.displayName;
+        }
+
+        public final String getDisplayName() {
+            return this.displayName;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsPublic() {
+            return this.isPublic;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getNumAudience() {
+            return this.numAudience;
         }
 
         public final int getNumAudience() {
             return this.numAudience;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final int getNumBlocked() {
             return this.numBlocked;
+        }
+
+        public final int getNumBlocked() {
+            return this.numBlocked;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getNumSpeakers() {
+            return this.numSpeakers;
         }
 
         public final int getNumSpeakers() {
             return this.numSpeakers;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getNumUsersConnected() {
             return this.numUsersConnected;
+        }
+
+        public final int getNumUsersConnected() {
+            return this.numUsersConnected;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getTopic() {
+            return this.topic;
         }
 
         public final String getTopic() {
@@ -364,7 +364,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final class DividerItem extends StageCallItem {
+    public final class DividerItem extends StageCallItem {
         public static final DividerItem INSTANCE = new DividerItem();
 
         private DividerItem() {
@@ -373,7 +373,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class MediaItem extends StageCallItem implements StageCallParticipantItem {
+    public final /* data */ class MediaItem extends StageCallItem implements StageCallParticipantItem {
         private final Channel channel;
         private final boolean isBlocked;
         private final boolean isModerator;
@@ -396,6 +396,14 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             this.mediaType = mediaType;
             this.userOrStreamParticipant = userOrStreamParticipant;
             this.participantData = userOrStreamParticipant.getParticipantData();
+        }
+
+        public final StoreVoiceParticipants.VoiceUser component1() {
+            return getVoiceUser();
+        }
+
+        public final Channel component2() {
+            return getChannel();
         }
 
         public static /* synthetic */ MediaItem copy$default(MediaItem mediaItem, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, boolean z3, MediaType mediaType, CallParticipant.UserOrStreamParticipant userOrStreamParticipant, int i, Object obj) {
@@ -424,34 +432,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return mediaItem.copy(voiceUser, channel2, z4, z5, mediaType2, userOrStreamParticipant);
         }
 
-        public final StoreVoiceParticipants.VoiceUser component1() {
-            return getVoiceUser();
-        }
-
-        public final Channel component2() {
-            return getChannel();
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsBlocked() {
-            return this.isBlocked;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final MediaType getMediaType() {
-            return this.mediaType;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final CallParticipant.UserOrStreamParticipant getUserOrStreamParticipant() {
-            return this.userOrStreamParticipant;
-        }
-
         public final MediaItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, boolean isBlocked, MediaType mediaType, CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
             C12238m.checkNotNullParameter(voiceUser, "voiceUser");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -476,12 +456,32 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsBlocked() {
+            return this.isBlocked;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final MediaType getMediaType() {
+            return this.mediaType;
+        }
+
         public final MediaType getMediaType() {
             return this.mediaType;
         }
 
         public final VideoCallParticipantView.ParticipantData getParticipantData() {
             return this.participantData;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final CallParticipant.UserOrStreamParticipant getUserOrStreamParticipant() {
+            return this.userOrStreamParticipant;
         }
 
         public final CallParticipant.UserOrStreamParticipant getUserOrStreamParticipant() {
@@ -553,7 +553,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class PreStartDetailsItem extends StageCallItem {
+    public final /* data */ class PreStartDetailsItem extends StageCallItem {
         private final int numAudience;
         private final int numSpeakers;
         private final String subtitle;
@@ -586,26 +586,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return preStartDetailsItem.copy(str, str2, i, i2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getTitle() {
-            return this.title;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSubtitle() {
-            return this.subtitle;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getNumSpeakers() {
-            return this.numSpeakers;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getNumAudience() {
-            return this.numAudience;
-        }
-
         public final PreStartDetailsItem copy(String title, String subtitle, int numSpeakers, int numAudience) {
             C12238m.checkNotNullParameter(title, "title");
             C12238m.checkNotNullParameter(subtitle, "subtitle");
@@ -623,16 +603,36 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return C12238m.areEqual(this.title, preStartDetailsItem.title) && C12238m.areEqual(this.subtitle, preStartDetailsItem.subtitle) && this.numSpeakers == preStartDetailsItem.numSpeakers && this.numAudience == preStartDetailsItem.numAudience;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getNumAudience() {
             return this.numAudience;
+        }
+
+        public final int getNumAudience() {
+            return this.numAudience;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getNumSpeakers() {
+            return this.numSpeakers;
         }
 
         public final int getNumSpeakers() {
             return this.numSpeakers;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getSubtitle() {
             return this.subtitle;
+        }
+
+        public final String getSubtitle() {
+            return this.subtitle;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getTitle() {
+            return this.title;
         }
 
         public final String getTitle() {
@@ -659,7 +659,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public static final /* data */ class SpeakerItem extends StageCallItem implements StageCallParticipantItem {
+    public final /* data */ class SpeakerItem extends StageCallItem implements StageCallParticipantItem {
         private final Channel channel;
         private final boolean isBlocked;
         private final boolean isModerator;
@@ -679,6 +679,14 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             this.positionKey = str;
             this.speakersPerRow = i;
             this.isBlocked = z3;
+        }
+
+        public final StoreVoiceParticipants.VoiceUser component1() {
+            return getVoiceUser();
+        }
+
+        public final Channel component2() {
+            return getChannel();
         }
 
         public static /* synthetic */ SpeakerItem copy$default(SpeakerItem speakerItem, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, String str, int i, boolean z3, int i2, Object obj) {
@@ -707,34 +715,6 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return speakerItem.copy(voiceUser, channel2, z4, str2, i3, z3);
         }
 
-        public final StoreVoiceParticipants.VoiceUser component1() {
-            return getVoiceUser();
-        }
-
-        public final Channel component2() {
-            return getChannel();
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsModerator() {
-            return this.isModerator;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getPositionKey() {
-            return this.positionKey;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getSpeakersPerRow() {
-            return this.speakersPerRow;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsBlocked() {
-            return this.isBlocked;
-        }
-
         public final SpeakerItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, String positionKey, int speakersPerRow, boolean isBlocked) {
             C12238m.checkNotNullParameter(voiceUser, "voiceUser");
             C12238m.checkNotNullParameter(channel, "channel");
@@ -758,8 +738,28 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getIsBlocked() {
+            return this.isBlocked;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getPositionKey() {
             return this.positionKey;
+        }
+
+        public final String getPositionKey() {
+            return this.positionKey;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final int getSpeakersPerRow() {
+            return this.speakersPerRow;
         }
 
         public final int getSpeakersPerRow() {

@@ -26,18 +26,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: WidgetAuthUndeleteAccount.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAuthUndeleteAccount extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetAuthUndeleteAccount.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthUndeleteAccountBinding;", 0)};
     private static final String ARG_DISABLED_KEY = "ARG_DISABLED_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String RESULT_EXTRA_UNDELETE = "RESULT_EXTRA_UNDELETE";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetAuthUndeleteAccount.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthUndeleteAccountBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: WidgetAuthUndeleteAccount.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -30,8 +30,7 @@ public interface ChannelListItem extends MGRecyclerDataPayload {
     public static final int TYPE_THREAD = 12;
 
     /* JADX INFO: compiled from: ChannelListItem.kt */
-    public static final class Companion {
-        public static final /* synthetic */ Companion $$INSTANCE = new Companion();
+    public final class Companion {
         public static final int TYPE_ACTIVE_EVENT = 15;
         public static final int TYPE_ADD_SERVER = 18;
         public static final int TYPE_BOTTOM_NAV_SPACE = 11;
@@ -52,13 +51,14 @@ public interface ChannelListItem extends MGRecyclerDataPayload {
         public static final int TYPE_STAGE_AUDIENCE_COUNT = 16;
         public static final int TYPE_STAGE_EVENTS_SEPARATOR = 14;
         public static final int TYPE_THREAD = 12;
+        public static final /* synthetic */ Companion $$INSTANCE = new Companion();
 
         private Companion() {
         }
     }
 
     /* JADX INFO: compiled from: ChannelListItem.kt */
-    public static final class DefaultImpls {
+    public final class DefaultImpls {
         public static String getKey(ChannelListItem channelListItem) {
             return String.valueOf(channelListItem.getType());
         }

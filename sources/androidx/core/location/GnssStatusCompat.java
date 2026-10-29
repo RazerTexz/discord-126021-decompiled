@@ -38,7 +38,7 @@ public abstract class GnssStatusCompat {
     @SuppressLint({"InlinedApi"})
     public static final int CONSTELLATION_UNKNOWN = 0;
 
-    public static abstract class Callback {
+    public abstract class Callback {
         public void onFirstFix(@IntRange(from = 0) int i) {
         }
 
@@ -55,12 +55,6 @@ public abstract class GnssStatusCompat {
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public @interface ConstellationType {
-    }
-
-    @NonNull
-    @RequiresApi(24)
-    public static GnssStatusCompat wrap(@NonNull GnssStatus gnssStatus) {
-        return new GnssStatusWrapper(gnssStatus);
     }
 
     @FloatRange(from = 0.0d, m75to = 360.0d)
@@ -95,6 +89,12 @@ public abstract class GnssStatusCompat {
     public abstract boolean hasEphemerisData(@IntRange(from = 0) int i);
 
     public abstract boolean usedInFix(@IntRange(from = 0) int i);
+
+    @NonNull
+    @RequiresApi(24)
+    public static GnssStatusCompat wrap(@NonNull GnssStatus gnssStatus) {
+        return new GnssStatusWrapper(gnssStatus);
+    }
 
     @NonNull
     @SuppressLint({"ReferencesDeprecated"})

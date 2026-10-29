@@ -31,6 +31,10 @@ public final /* data */ class HubDescriptionState {
         this.addServerAsync = restCallState;
     }
 
+    public final RestCallState<DirectoryEntryGuild> component4() {
+        return this.addServerAsync;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubDescriptionState copy$default(HubDescriptionState hubDescriptionState, Channel channel, Integer num, String str, RestCallState restCallState, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -46,25 +50,6 @@ public final /* data */ class HubDescriptionState {
             restCallState = hubDescriptionState.addServerAsync;
         }
         return hubDescriptionState.copy(channel, num, str, restCallState);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Integer getPrimaryCategoryId() {
-        return this.primaryCategoryId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getGuildName() {
-        return this.guildName;
-    }
-
-    public final RestCallState<DirectoryEntryGuild> component4() {
-        return this.addServerAsync;
     }
 
     public final HubDescriptionState copy(Channel channel, Integer primaryCategoryId, String guildName, RestCallState<DirectoryEntryGuild> addServerAsync) {
@@ -88,12 +73,27 @@ public final /* data */ class HubDescriptionState {
         return this.addServerAsync;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
     }
 
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final String getGuildName() {
         return this.guildName;
+    }
+
+    public final String getGuildName() {
+        return this.guildName;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Integer getPrimaryCategoryId() {
+        return this.primaryCategoryId;
     }
 
     public final Integer getPrimaryCategoryId() {

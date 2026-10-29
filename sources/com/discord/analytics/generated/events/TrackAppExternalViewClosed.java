@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppExternalViewClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppExternalViewClosed implements AnalyticsSchema, TrackBaseReceiver {
+    private final Long durationOpenMs = null;
     private TrackBase trackBase;
     private final CharSequence type = null;
-    private final Long durationOpenMs = null;
     private final transient String analyticsSchemaTypeName = "app_external_view_closed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackAppExternalViewClosed implements AnalyticsSch
         }
         TrackAppExternalViewClosed trackAppExternalViewClosed = (TrackAppExternalViewClosed) other;
         return C12238m.areEqual(this.type, trackAppExternalViewClosed.type) && C12238m.areEqual(this.durationOpenMs, trackAppExternalViewClosed.durationOpenMs);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

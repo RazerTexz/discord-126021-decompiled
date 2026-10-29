@@ -7,6 +7,9 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: compiled from: AppSound.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AppSound {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final AppSound SOUND_MUTE;
     private static final AppSound SOUND_STREAM_ENDED;
     private static final AppSound SOUND_STREAM_STARTED;
@@ -17,9 +20,6 @@ public final /* data */ class AppSound {
     private final int resId;
     private final boolean shouldLoop;
     private final int usage;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final AppSound SOUND_DEAFEN = new AppSound(C5419R.raw.deafen, false, 4, 13, 2, null);
     private static final AppSound SOUND_UNDEAFEN = new AppSound(C5419R.raw.undeafen, false, 4, 13, 2, null);
     private static final AppSound SOUND_CALL_RINGING = new AppSound(C5419R.raw.call_ringing, true, 4, 7);
@@ -30,7 +30,7 @@ public final /* data */ class AppSound {
     private static final AppSound SOUND_USER_MOVED = new AppSound(C5419R.raw.user_moved, false, 4, 13, 2, null);
 
     /* JADX INFO: compiled from: AppSound.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -137,26 +137,6 @@ public final /* data */ class AppSound {
         return appSound.copy(i, z2, i2, i3);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getResId() {
-        return this.resId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getShouldLoop() {
-        return this.shouldLoop;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getContentType() {
-        return this.contentType;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final int getUsage() {
-        return this.usage;
-    }
-
     public final AppSound copy(int resId, boolean shouldLoop, int contentType, int usage) {
         return new AppSound(resId, shouldLoop, contentType, usage);
     }
@@ -172,16 +152,36 @@ public final /* data */ class AppSound {
         return this.resId == appSound.resId && this.shouldLoop == appSound.shouldLoop && this.contentType == appSound.contentType && this.usage == appSound.usage;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final int getContentType() {
         return this.contentType;
+    }
+
+    public final int getContentType() {
+        return this.contentType;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getResId() {
+        return this.resId;
     }
 
     public final int getResId() {
         return this.resId;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final boolean getShouldLoop() {
         return this.shouldLoop;
+    }
+
+    public final boolean getShouldLoop() {
+        return this.shouldLoop;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final int getUsage() {
+        return this.usage;
     }
 
     public final int getUsage() {

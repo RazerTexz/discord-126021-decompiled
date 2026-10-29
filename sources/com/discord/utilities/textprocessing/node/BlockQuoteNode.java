@@ -17,15 +17,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: BlockQuoteNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class BlockQuoteNode<T extends BasicRenderContext> extends Node<T> {
+    private static final int GAP_WIDTH;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final int GAP_WIDTH;
     private static final int STRIPE_WIDTH;
     private static final int TOTAL_LEFT_MARGIN;
 
     /* JADX INFO: compiled from: BlockQuoteNode.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

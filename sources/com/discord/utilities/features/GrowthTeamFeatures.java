@@ -12,38 +12,6 @@ public final class GrowthTeamFeatures {
     private GrowthTeamFeatures() {
     }
 
-    private final boolean isBucketEnabled(Integer num, String str, int i, boolean z2) {
-        AppLog.m8358i("Experiment triggered: " + str + " | Track Exposure: " + z2 + " | Assigned Bucket: " + num);
-        return num != null && num.intValue() == i;
-    }
-
-    public static /* synthetic */ boolean isBucketEnabled$default(GrowthTeamFeatures growthTeamFeatures, Integer num, String str, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 1;
-        }
-        return growthTeamFeatures.isBucketEnabled(num, str, i, z2);
-    }
-
-    private final boolean isGuildExperimentEnabled(String str, int i, long j, boolean z2) {
-        Experiment guildExperiment = StoreStream.INSTANCE.getExperiments().getGuildExperiment(str, j, z2);
-        return isBucketEnabled(guildExperiment != null ? Integer.valueOf(guildExperiment.getBucket()) : null, str, i, z2);
-    }
-
-    private final boolean isUserExperimentEnabled(String str, int i, boolean z2) {
-        Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment(str, z2);
-        return isBucketEnabled(userExperiment != null ? Integer.valueOf(userExperiment.getBucket()) : null, str, i, z2);
-    }
-
-    public static /* synthetic */ boolean isUserExperimentEnabled$default(GrowthTeamFeatures growthTeamFeatures, String str, int i, boolean z2, int i2, Object obj) {
-        if ((i2 & 1) != 0) {
-            i = 1;
-        }
-        if ((i2 & 2) != 0) {
-            z2 = true;
-        }
-        return growthTeamFeatures.isUserExperimentEnabled(str, i, z2);
-    }
-
     public final boolean hubEventsEnabled(long guildId, boolean trackExposure) {
         return isGuildExperimentEnabled("2021-11_hub_events", 1, guildId, trackExposure);
     }
@@ -58,6 +26,23 @@ public final class GrowthTeamFeatures {
 
     public final boolean isAndroidSmsAutofillEnabled() {
         return isUserExperimentEnabled$default(this, "2021-09_android_sms_autofill", 0, false, 3, null);
+    }
+
+    public static /* synthetic */ boolean isBucketEnabled$default(GrowthTeamFeatures growthTeamFeatures, Integer num, String str, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 1;
+        }
+        return growthTeamFeatures.isBucketEnabled(num, str, i, z2);
+    }
+
+    private final boolean isBucketEnabled(Integer num, String str, int i, boolean z2) {
+        AppLog.m8358i("Experiment triggered: " + str + " | Track Exposure: " + z2 + " | Assigned Bucket: " + num);
+        return num != null && num.intValue() == i;
+    }
+
+    private final boolean isGuildExperimentEnabled(String str, int i, long j, boolean z2) {
+        Experiment guildExperiment = StoreStream.INSTANCE.getExperiments().getGuildExperiment(str, j, z2);
+        return isBucketEnabled(guildExperiment != null ? Integer.valueOf(guildExperiment.getBucket()) : null, str, i, z2);
     }
 
     public final boolean isHighlightsSettingsEnabled() {
@@ -102,5 +87,20 @@ public final class GrowthTeamFeatures {
 
     public final boolean isPhoneVerifyCaptchaEnabled() {
         return isUserExperimentEnabled$default(this, "2021-11_phone_verify_captcha", 0, false, 3, null);
+    }
+
+    public static /* synthetic */ boolean isUserExperimentEnabled$default(GrowthTeamFeatures growthTeamFeatures, String str, int i, boolean z2, int i2, Object obj) {
+        if ((i2 & 1) != 0) {
+            i = 1;
+        }
+        if ((i2 & 2) != 0) {
+            z2 = true;
+        }
+        return growthTeamFeatures.isUserExperimentEnabled(str, i, z2);
+    }
+
+    private final boolean isUserExperimentEnabled(String str, int i, boolean z2) {
+        Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment(str, z2);
+        return isBucketEnabled(userExperiment != null ? Integer.valueOf(userExperiment.getBucket()) : null, str, i, z2);
     }
 }

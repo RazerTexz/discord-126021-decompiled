@@ -11,15 +11,15 @@ import p007b.p452o.p453a.p454m.EnumC5118e;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5170a {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f13995a = new C5103b(C5170a.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public EnumC5118e f13996b;
 
     /* JADX INFO: renamed from: c */
     @VisibleForTesting
     public int f13997c = 0;
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f13995a = new C5103b(C5170a.class.getSimpleName());
 
     /* JADX INFO: renamed from: d */
     @VisibleForTesting

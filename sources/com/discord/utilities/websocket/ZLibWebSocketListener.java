@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.util.zip.Inflater;
@@ -26,7 +27,7 @@ public final class ZLibWebSocketListener extends WebSocketListener {
     private final Inflater loggingInflater;
 
     /* JADX INFO: compiled from: ZLibWebSocketListener.kt */
-    public static abstract class Listener extends WebSocketListener {
+    public abstract class Listener extends WebSocketListener {
         private final RawMessageHandler rawMessageHandler;
 
         public RawMessageHandler getRawMessageHandler() {
@@ -53,7 +54,7 @@ public final class ZLibWebSocketListener extends WebSocketListener {
     }
 
     /* JADX INFO: compiled from: ZLibWebSocketListener.kt */
-    public static final class ZLibByteStream extends ByteArrayOutputStream {
+    public final class ZLibByteStream extends ByteArrayOutputStream {
         private static final int INFLATE_BUFFER_SIZE = 4096;
         private static final int INITIAL_BUFFER_SIZE_MULTIPLIER = 2;
         private static final CharsetDecoder UTF8_DECODER = Charset.forName(Constants.ENCODING).newDecoder();
@@ -78,11 +79,6 @@ public final class ZLibWebSocketListener extends WebSocketListener {
         this.listener = listener;
         this.loggingInflater = new Inflater();
         this.inflater = new Inflater();
-    }
-
-    private final void resetInflaters() {
-        this.inflater.reset();
-        this.loggingInflater.reset();
     }
 
     public final Listener getListener() {
@@ -128,8 +124,13 @@ public final class ZLibWebSocketListener extends WebSocketListener {
         this.listener.onOpen(webSocket, response);
     }
 
+    private final void resetInflaters() {
+        this.inflater.reset();
+        this.loggingInflater.reset();
+    }
+
     @Override // okhttp3.WebSocketListener
-    public void onMessage(okhttp3.WebSocket webSocket, ByteString bytes) throws IOException {
+    public void onMessage(okhttp3.WebSocket webSocket, ByteString bytes) throws IllegalAccessException, IOException, InvocationTargetException {
         C12238m.checkNotNullParameter(webSocket, "webSocket");
         C12238m.checkNotNullParameter(bytes, "bytes");
         if (this.listener.getRawMessageHandler() != null) {

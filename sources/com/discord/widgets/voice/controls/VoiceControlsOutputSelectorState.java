@@ -25,12 +25,12 @@ public enum VoiceControlsOutputSelectorState {
         return this.audioOutputIconRes;
     }
 
-    public final boolean getShowMoreOptions() {
-        return this.showMoreOptions;
-    }
-
     /* JADX INFO: renamed from: isButtonActive, reason: from getter */
     public final boolean getIsButtonActive() {
         return this.isButtonActive;
+    }
+
+    public final boolean getShowMoreOptions() {
+        return this.showMoreOptions;
     }
 }

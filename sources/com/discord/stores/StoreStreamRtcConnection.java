@@ -42,12 +42,12 @@ import p658rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrintable {
     public static final float MAX_STREAM_VOLUME = 300.0f;
-    private static int instanceCounter;
     private final StoreAnalytics analyticsStore;
     private final Clock clock;
     private final long debugDisplayId;
     private final Dispatcher dispatcher;
     private final DebugPrintableCollection dpc;
+    private static int instanceCounter;
     private final ListenerCollectionSubject<Listener> listenerSubject;
     private final ListenerCollection<Listener> listeners;
     private final Logger logger;
@@ -64,8 +64,108 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
     private float streamVolume;
     private final StoreUser userStore;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$createRtcConnection$1 */
     /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static abstract class DefaultListener implements Listener {
+    public final class C65191 extends AbstractC12240o implements Function1<Listener, Unit> {
+        public static final C65191 INSTANCE = new C65191();
+
+        public C65191() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            C12238m.checkNotNullParameter(listener, "it");
+            listener.onConnecting();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeConnectionQuality$1 */
+    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
+    public final class C65201 extends AbstractC12240o implements Function0<RtcConnection.Quality> {
+        public C65201() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final RtcConnection.Quality invoke() {
+            return StoreStreamRtcConnection.this.getState().getConnectionQuality();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeRtcConnection$1 */
+    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
+    public final class C65211 extends AbstractC12240o implements Function0<RtcConnection> {
+        public C65211() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final RtcConnection invoke() {
+            return StoreStreamRtcConnection.this.getState().getRtcConnection();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeStreamVolume$1 */
+    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
+    public final class C65221 extends AbstractC12240o implements Function0<Float> {
+        public C65221() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Float invoke() {
+            return Float.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final float invoke2() {
+            return StoreStreamRtcConnection.this.getStreamVolume();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$updateStreamVolume$1 */
+    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
+    public final class C65231 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ float $volume;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65231(float f) {
+            super(0);
+            this.$volume = f;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreStreamRtcConnection.this.streamVolume = this.$volume;
+            Long l = StoreStreamRtcConnection.this.streamOwner;
+            if (l != null) {
+                long jLongValue = l.longValue();
+                RtcConnection rtcConnection = StoreStreamRtcConnection.this.rtcConnection;
+                if (rtcConnection != null) {
+                    rtcConnection.m8479v(jLongValue, this.$volume);
+                }
+            }
+            StoreStreamRtcConnection.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
+    public abstract class DefaultListener implements Listener {
         @Override // com.discord.stores.StoreStreamRtcConnection.Listener
         public void onConnected() {
         }
@@ -171,7 +271,7 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
     }
 
     /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final RtcConnection.Quality connectionQuality;
         private final String mediaSessionId;
         private final RtcConnection rtcConnection;
@@ -201,26 +301,6 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
             return state.copy(state2, quality, str, rtcConnection);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final RtcConnection.State getRtcConnectionState() {
-            return this.rtcConnectionState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final RtcConnection.Quality getConnectionQuality() {
-            return this.connectionQuality;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final RtcConnection getRtcConnection() {
-            return this.rtcConnection;
-        }
-
         public final State copy(RtcConnection.State rtcConnectionState, RtcConnection.Quality connectionQuality, String mediaSessionId, RtcConnection rtcConnection) {
             C12238m.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
             return new State(rtcConnectionState, connectionQuality, mediaSessionId, rtcConnection);
@@ -237,16 +317,36 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
             return C12238m.areEqual(this.rtcConnectionState, state.rtcConnectionState) && C12238m.areEqual(this.connectionQuality, state.connectionQuality) && C12238m.areEqual(this.mediaSessionId, state.mediaSessionId) && C12238m.areEqual(this.rtcConnection, state.rtcConnection);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final RtcConnection.Quality getConnectionQuality() {
             return this.connectionQuality;
+        }
+
+        public final RtcConnection.Quality getConnectionQuality() {
+            return this.connectionQuality;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
         }
 
         public final String getMediaSessionId() {
             return this.mediaSessionId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final RtcConnection getRtcConnection() {
             return this.rtcConnection;
+        }
+
+        public final RtcConnection getRtcConnection() {
+            return this.rtcConnection;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final RtcConnection.State getRtcConnectionState() {
+            return this.rtcConnectionState;
         }
 
         public final RtcConnection.State getRtcConnectionState() {
@@ -278,106 +378,6 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$createRtcConnection$1 */
-    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final class C65191 extends AbstractC12240o implements Function1<Listener, Unit> {
-        public static final C65191 INSTANCE = new C65191();
-
-        public C65191() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
-            invoke2(listener);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Listener listener) {
-            C12238m.checkNotNullParameter(listener, "it");
-            listener.onConnecting();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeConnectionQuality$1 */
-    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final class C65201 extends AbstractC12240o implements Function0<RtcConnection.Quality> {
-        public C65201() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final RtcConnection.Quality invoke() {
-            return StoreStreamRtcConnection.this.getState().getConnectionQuality();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeRtcConnection$1 */
-    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final class C65211 extends AbstractC12240o implements Function0<RtcConnection> {
-        public C65211() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final RtcConnection invoke() {
-            return StoreStreamRtcConnection.this.getState().getRtcConnection();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$observeStreamVolume$1 */
-    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final class C65221 extends AbstractC12240o implements Function0<Float> {
-        public C65221() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Float invoke() {
-            return Float.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final float invoke2() {
-            return StoreStreamRtcConnection.this.getStreamVolume();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreStreamRtcConnection$updateStreamVolume$1 */
-    /* JADX INFO: compiled from: StoreStreamRtcConnection.kt */
-    public static final class C65231 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ float $volume;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65231(float f) {
-            super(0);
-            this.$volume = f;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreStreamRtcConnection.this.streamVolume = this.$volume;
-            Long l = StoreStreamRtcConnection.this.streamOwner;
-            if (l != null) {
-                long jLongValue = l.longValue();
-                RtcConnection rtcConnection = StoreStreamRtcConnection.this.rtcConnection;
-                if (rtcConnection != null) {
-                    rtcConnection.m8479v(jLongValue, this.$volume);
-                }
-            }
-            StoreStreamRtcConnection.this.markChanged();
-        }
-    }
-
     public /* synthetic */ StoreStreamRtcConnection(StoreMediaEngine storeMediaEngine, StoreUser storeUser, StoreStream storeStream, Dispatcher dispatcher, Clock clock, StoreAnalytics storeAnalytics, StoreRtcConnection storeRtcConnection, ObservationDeck observationDeck, Logger logger, DebugPrintableCollection debugPrintableCollection, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeMediaEngine, storeUser, storeStream, dispatcher, clock, storeAnalytics, storeRtcConnection, (i & 128) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 256) != 0 ? AppLog.f14950g : logger, (i & 512) != 0 ? SystemLogUtils.INSTANCE.getDebugPrintables$app_productionGoogleRelease() : debugPrintableCollection);
     }
@@ -406,79 +406,6 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
         return rtcConnection;
     }
 
-    @StoreThread
-    private final void destroyRtcConnection() {
-        if (this.rtcConnection != null) {
-            recordBreadcrumb("destroying stream rtc connection");
-            updateRtcConnection(null);
-            this.state = State.copy$default(this.state, null, null, null, null, 9, null);
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    private final void handleMediaSessionIdReceived() {
-        RtcConnection rtcConnection = this.rtcConnection;
-        this.state = State.copy$default(this.state, null, null, rtcConnection != null ? rtcConnection.mediaSessionId : null, null, 11, null);
-        markChanged();
-    }
-
-    @StoreThread
-    private final void handleQualityUpdate(RtcConnection.Quality quality) {
-        this.state = State.copy$default(this.state, null, quality, null, null, 13, null);
-        markChanged();
-    }
-
-    @StoreThread
-    private final void handleVideoStreamEndedAnalyticsEvent(Map<String, Object> properties) {
-        this.analyticsStore.trackVideoStreamEnded(properties);
-    }
-
-    private final void loge(String msg, Throwable e, Map<String, String> metadata) {
-        this.logger.mo8363e(this.loggingTag, msg, e, metadata);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void loge$default(StoreStreamRtcConnection storeStreamRtcConnection, String str, Throwable th, Map map, int i, Object obj) {
-        if ((i & 2) != 0) {
-            th = null;
-        }
-        if ((i & 4) != 0) {
-            map = null;
-        }
-        storeStreamRtcConnection.loge(str, th, map);
-    }
-
-    private final void logi(String msg, Throwable e) {
-        this.logger.mo8366i(this.loggingTag, msg, e);
-    }
-
-    public static /* synthetic */ void logi$default(StoreStreamRtcConnection storeStreamRtcConnection, String str, Throwable th, int i, Object obj) {
-        if ((i & 2) != 0) {
-            th = null;
-        }
-        storeStreamRtcConnection.logi(str, th);
-    }
-
-    private final void logw(String msg) {
-        Logger.w$default(this.logger, this.loggingTag, msg, null, 4, null);
-    }
-
-    private final void recordBreadcrumb(String message) {
-        this.logger.recordBreadcrumb(message, this.loggingTag);
-    }
-
-    @StoreThread
-    private final void updateRtcConnection(RtcConnection rtcConnection) {
-        RtcConnection rtcConnection2 = this.rtcConnection;
-        if (rtcConnection2 != null) {
-            rtcConnection2.m8464e();
-        }
-        this.rtcConnection = rtcConnection;
-        this.state = State.copy$default(this.state, null, null, null, rtcConnection, 7, null);
-        markChanged();
-    }
-
     @Override // com.discord.utilities.debug.DebugPrintable
     public void debugPrint(DebugPrintBuilder dp) {
         C12238m.checkNotNullParameter(dp, "dp");
@@ -487,6 +414,16 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
         dp.appendKeyValue("streamVolume", Float.valueOf(this.streamVolume));
         dp.appendKeyValue("state", this.state);
         dp.appendKeyValue("rtcConnection", (DebugPrintable) this.rtcConnection);
+    }
+
+    @StoreThread
+    private final void destroyRtcConnection() {
+        if (this.rtcConnection != null) {
+            recordBreadcrumb("destroying stream rtc connection");
+            updateRtcConnection(null);
+            this.state = State.copy$default(this.state, null, null, null, null, 9, null);
+            markChanged();
+        }
     }
 
     public final void finalize() {
@@ -509,6 +446,19 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
     public final void handleConnectionOpen(ModelPayload payload) {
         C12238m.checkNotNullParameter(payload, "payload");
         this.sessionId = payload.getSessionId();
+    }
+
+    @StoreThread
+    private final void handleMediaSessionIdReceived() {
+        RtcConnection rtcConnection = this.rtcConnection;
+        this.state = State.copy$default(this.state, null, null, rtcConnection != null ? rtcConnection.mediaSessionId : null, null, 11, null);
+        markChanged();
+    }
+
+    @StoreThread
+    private final void handleQualityUpdate(RtcConnection.Quality quality) {
+        this.state = State.copy$default(this.state, null, quality, null, null, 13, null);
+        markChanged();
     }
 
     @StoreThread
@@ -583,9 +533,44 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
         }
     }
 
+    @StoreThread
+    private final void handleVideoStreamEndedAnalyticsEvent(Map<String, Object> properties) {
+        this.analyticsStore.trackVideoStreamEnded(properties);
+    }
+
     public final void init(NetworkMonitor networkMonitor) {
         C12238m.checkNotNullParameter(networkMonitor, "networkMonitor");
         this.networkMonitor = networkMonitor;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void loge$default(StoreStreamRtcConnection storeStreamRtcConnection, String str, Throwable th, Map map, int i, Object obj) {
+        if ((i & 2) != 0) {
+            th = null;
+        }
+        if ((i & 4) != 0) {
+            map = null;
+        }
+        storeStreamRtcConnection.loge(str, th, map);
+    }
+
+    private final void loge(String msg, Throwable e, Map<String, String> metadata) {
+        this.logger.mo8363e(this.loggingTag, msg, e, metadata);
+    }
+
+    public static /* synthetic */ void logi$default(StoreStreamRtcConnection storeStreamRtcConnection, String str, Throwable th, int i, Object obj) {
+        if ((i & 2) != 0) {
+            th = null;
+        }
+        storeStreamRtcConnection.logi(str, th);
+    }
+
+    private final void logi(String msg, Throwable e) {
+        this.logger.mo8366i(this.loggingTag, msg, e);
+    }
+
+    private final void logw(String msg) {
+        Logger.w$default(this.logger, this.loggingTag, msg, null, 4, null);
     }
 
     public final Observable<RtcConnection.Quality> observeConnectionQuality() {
@@ -600,6 +585,10 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65221(), 14, null);
     }
 
+    private final void recordBreadcrumb(String message) {
+        this.logger.recordBreadcrumb(message, this.loggingTag);
+    }
+
     public final void updateFocusedParticipant(Long focusedParticipant) {
         MediaSinkWantsManager mediaSinkWantsManager;
         RtcConnection rtcConnection = this.rtcConnection;
@@ -607,6 +596,17 @@ public final class StoreStreamRtcConnection extends StoreV2 implements DebugPrin
             return;
         }
         mediaSinkWantsManager.m8454b(new C1206j(mediaSinkWantsManager, focusedParticipant));
+    }
+
+    @StoreThread
+    private final void updateRtcConnection(RtcConnection rtcConnection) {
+        RtcConnection rtcConnection2 = this.rtcConnection;
+        if (rtcConnection2 != null) {
+            rtcConnection2.m8464e();
+        }
+        this.rtcConnection = rtcConnection;
+        this.state = State.copy$default(this.state, null, null, null, rtcConnection, 7, null);
+        markChanged();
     }
 
     public final void updateStreamVolume(float volume) {

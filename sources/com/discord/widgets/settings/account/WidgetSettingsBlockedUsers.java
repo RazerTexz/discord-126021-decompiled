@@ -53,24 +53,9 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m157e(context, WidgetSettingsBlockedUsers.class, null, 4);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsers$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
-    public static final /* synthetic */ class C97741 extends C12236k implements Function1<WidgetSettingsBlockedUsersViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C97741 extends C12236k implements Function1<WidgetSettingsBlockedUsersViewModel.ViewState, Unit> {
         public C97741(WidgetSettingsBlockedUsers widgetSettingsBlockedUsers) {
             super(1, widgetSettingsBlockedUsers, WidgetSettingsBlockedUsers.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/account/WidgetSettingsBlockedUsersViewModel$ViewState;)V", 0);
         }
@@ -90,7 +75,7 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsers$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
-    public static final /* synthetic */ class C97752 extends C12236k implements Function1<WidgetSettingsBlockedUsersViewModel.Event, Unit> {
+    public final /* synthetic */ class C97752 extends C12236k implements Function1<WidgetSettingsBlockedUsersViewModel.Event, Unit> {
         public C97752(WidgetSettingsBlockedUsers widgetSettingsBlockedUsers) {
             super(1, widgetSettingsBlockedUsers, WidgetSettingsBlockedUsers.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/account/WidgetSettingsBlockedUsersViewModel$Event;)V", 0);
         }
@@ -110,7 +95,7 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsers$onViewCreated$2 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
-    public static final class C97762 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C97762 extends AbstractC12240o implements Function1<User, Unit> {
         public C97762() {
             super(1);
         }
@@ -130,7 +115,7 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsBlockedUsers$onViewCreated$3 */
     /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
-    public static final class C97773 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C97773 extends AbstractC12240o implements Function1<User, Unit> {
         public C97773() {
             super(1);
         }
@@ -149,6 +134,21 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
             FragmentManager parentFragmentManager = WidgetSettingsBlockedUsers.this.getParentFragmentManager();
             C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             WidgetUserSheet.Companion.show$default(companion, id2, null, parentFragmentManager, null, null, null, null, 122, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsBlockedUsers.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            C12238m.checkNotNullParameter(context, "context");
+            C0870j.m157e(context, WidgetSettingsBlockedUsers.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -193,23 +193,6 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
         C0876m.m171i(this, event.getStringRes(), 0, 4);
     }
 
-    private final void showBlockedUsers(WidgetSettingsBlockedUsersViewModel.ViewState.Loaded viewState) {
-        AppViewFlipper appViewFlipper = getBinding().f17918b;
-        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.blockedUsersFlipper");
-        appViewFlipper.setDisplayedChild(0);
-        WidgetSettingsBlockedUsersAdapter widgetSettingsBlockedUsersAdapter = this.adapter;
-        if (widgetSettingsBlockedUsersAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        widgetSettingsBlockedUsersAdapter.setData(viewState.getItems());
-    }
-
-    private final void showEmptyView() {
-        AppViewFlipper appViewFlipper = getBinding().f17918b;
-        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.blockedUsersFlipper");
-        appViewFlipper.setDisplayedChild(1);
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
@@ -237,5 +220,22 @@ public final class WidgetSettingsBlockedUsers extends AppFragment {
             C12238m.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSettingsBlockedUsersAdapter2.setOnClickUserProfile(new C97773());
+    }
+
+    private final void showBlockedUsers(WidgetSettingsBlockedUsersViewModel.ViewState.Loaded viewState) {
+        AppViewFlipper appViewFlipper = getBinding().f17918b;
+        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.blockedUsersFlipper");
+        appViewFlipper.setDisplayedChild(0);
+        WidgetSettingsBlockedUsersAdapter widgetSettingsBlockedUsersAdapter = this.adapter;
+        if (widgetSettingsBlockedUsersAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        widgetSettingsBlockedUsersAdapter.setData(viewState.getItems());
+    }
+
+    private final void showEmptyView() {
+        AppViewFlipper appViewFlipper = getBinding().f17918b;
+        C12238m.checkNotNullExpressionValue(appViewFlipper, "binding.blockedUsersFlipper");
+        appViewFlipper.setDisplayedChild(1);
     }
 }

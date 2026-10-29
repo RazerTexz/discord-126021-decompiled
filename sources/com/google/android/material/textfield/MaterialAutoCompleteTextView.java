@@ -69,6 +69,13 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
         return null;
     }
 
+    @Override // android.widget.TextView
+    @Nullable
+    public CharSequence getHint() {
+        TextInputLayout textInputLayoutFindTextInputLayoutAncestor = findTextInputLayoutAncestor();
+        return (textInputLayoutFindTextInputLayoutAncestor == null || !textInputLayoutFindTextInputLayoutAncestor.isProvidingHint()) ? super.getHint() : textInputLayoutFindTextInputLayoutAncestor.getHint();
+    }
+
     private int measureContentWidth() {
         ListAdapter adapter = getAdapter();
         TextInputLayout textInputLayoutFindTextInputLayoutAncestor = findTextInputLayoutAncestor();
@@ -103,17 +110,6 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
         return textInputLayoutFindTextInputLayoutAncestor.getEndIconView().getMeasuredWidth() + iMax;
     }
 
-    private <T extends ListAdapter & Filterable> void updateText(Object obj) {
-        setText(convertSelectionToString(obj), false);
-    }
-
-    @Override // android.widget.TextView
-    @Nullable
-    public CharSequence getHint() {
-        TextInputLayout textInputLayoutFindTextInputLayoutAncestor = findTextInputLayoutAncestor();
-        return (textInputLayoutFindTextInputLayoutAncestor == null || !textInputLayoutFindTextInputLayoutAncestor.isProvidingHint()) ? super.getHint() : textInputLayoutFindTextInputLayoutAncestor.getHint();
-    }
-
     @Override // android.widget.AutoCompleteTextView, android.widget.TextView, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -145,6 +141,10 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
         } else {
             this.modalListPopup.show();
         }
+    }
+
+    private <T extends ListAdapter & Filterable> void updateText(Object obj) {
+        setText(convertSelectionToString(obj), false);
     }
 
     public MaterialAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

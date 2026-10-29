@@ -16,7 +16,7 @@ public final class StageRoles {
     private final int rolesFlags;
 
     /* JADX INFO: compiled from: StageRoles.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -64,6 +64,18 @@ public final class StageRoles {
 
     private /* synthetic */ StageRoles(int i) {
         this.rolesFlags = i;
+    }
+
+    public boolean equals(Object obj) {
+        return m11404equalsimpl(this.rolesFlags, obj);
+    }
+
+    public final int getRolesFlags() {
+        return this.rolesFlags;
+    }
+
+    public int hashCode() {
+        return m11406hashCodeimpl(this.rolesFlags);
     }
 
     /* JADX INFO: renamed from: box-impl, reason: not valid java name */
@@ -116,24 +128,12 @@ public final class StageRoles {
         return C1643a.m873r("StageRoles(rolesFlags=", i, ")");
     }
 
-    public boolean equals(Object obj) {
-        return m11404equalsimpl(this.rolesFlags, obj);
-    }
-
-    public final int getRolesFlags() {
+    /* JADX INFO: renamed from: unbox-impl, reason: not valid java name */
+    public final /* synthetic */ int m11412unboximpl() {
         return this.rolesFlags;
-    }
-
-    public int hashCode() {
-        return m11406hashCodeimpl(this.rolesFlags);
     }
 
     public String toString() {
         return m11411toStringimpl(this.rolesFlags);
-    }
-
-    /* JADX INFO: renamed from: unbox-impl, reason: not valid java name */
-    public final /* synthetic */ int m11412unboximpl() {
-        return this.rolesFlags;
     }
 }

@@ -15,7 +15,7 @@ public final class WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4$1 */
     /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
-    public static final class C99191 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C99191 extends AbstractC12240o implements Function1<View, Unit> {
         public C99191() {
             super(1);
         }

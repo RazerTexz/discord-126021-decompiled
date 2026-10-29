@@ -44,25 +44,25 @@ public final class C3774o5 extends AbstractC3748m5 {
                 c3722k5.addAll(c3722k5.size(), (C3641e7) list4);
                 C3711j7.m4981f(obj, j, c3722k5);
                 list = c3722k5;
-            } else if ((list4 instanceof InterfaceC3736l6) && (list4 instanceof InterfaceC3597b5)) {
-                InterfaceC3597b5 interfaceC3597b5 = (InterfaceC3597b5) list4;
-                if (!interfaceC3597b5.mo4568a()) {
+            } else {
+                boolean z2 = list4 instanceof InterfaceC3736l6;
+                list2 = list4;
+                if (z2) {
+                    boolean z3 = list4 instanceof InterfaceC3597b5;
                     list2 = list4;
-                    list2 = list4;
-                    list2 = list4;
-                    InterfaceC3597b5<E> interfaceC3597b5Mo4569f = interfaceC3597b5.mo4569f(list4.size() + size);
-                    C3711j7.m4981f(obj, j, interfaceC3597b5Mo4569f);
-                    list2 = interfaceC3597b5Mo4569f;
+                    if (z3) {
+                        InterfaceC3597b5 interfaceC3597b5 = (InterfaceC3597b5) list4;
+                        list2 = list4;
+                        if (!interfaceC3597b5.mo4568a()) {
+                            InterfaceC3597b5<E> interfaceC3597b5Mo4569f = interfaceC3597b5.mo4569f(list4.size() + size);
+                            C3711j7.m4981f(obj, j, interfaceC3597b5Mo4569f);
+                            list2 = interfaceC3597b5Mo4569f;
+                        }
+                    }
                 }
             }
             list2 = list;
         }
-        list2 = list4;
-        list2 = list4;
-        list2 = list4;
-        list2 = list4;
-        list2 = list4;
-        list2 = list4;
         int size2 = list2.size();
         int size3 = list3.size();
         if (size2 > 0 && size3 > 0) {

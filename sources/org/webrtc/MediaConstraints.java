@@ -10,7 +10,7 @@ public class MediaConstraints {
     public final List<KeyValuePair> mandatory = new ArrayList();
     public final List<KeyValuePair> optional = new ArrayList();
 
-    public static class KeyValuePair {
+    public class KeyValuePair {
         private final String key;
         private final String value;
 
@@ -49,6 +49,16 @@ public class MediaConstraints {
         }
     }
 
+    @CalledByNative
+    public List<KeyValuePair> getMandatory() {
+        return this.mandatory;
+    }
+
+    @CalledByNative
+    public List<KeyValuePair> getOptional() {
+        return this.optional;
+    }
+
     private static String stringifyKeyValuePairList(List<KeyValuePair> list) {
         StringBuilder sb = new StringBuilder("[");
         for (KeyValuePair keyValuePair : list) {
@@ -59,16 +69,6 @@ public class MediaConstraints {
         }
         sb.append("]");
         return sb.toString();
-    }
-
-    @CalledByNative
-    public List<KeyValuePair> getMandatory() {
-        return this.mandatory;
-    }
-
-    @CalledByNative
-    public List<KeyValuePair> getOptional() {
-        return this.optional;
     }
 
     public String toString() {

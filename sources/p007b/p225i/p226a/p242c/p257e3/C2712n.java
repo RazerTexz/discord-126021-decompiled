@@ -50,7 +50,7 @@ public final class C2712n {
 
     /* JADX INFO: renamed from: b.i.a.c.e3.n$b */
     /* JADX INFO: compiled from: DataSpec.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         @Nullable

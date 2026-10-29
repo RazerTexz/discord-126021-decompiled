@@ -6,6 +6,18 @@ import p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11913c0;
 /* JADX INFO: compiled from: TypeCheckingProcedure.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C11960t {
+    public static AbstractC11913c0 findCorrespondingSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1) {
+        if (abstractC11913c0 == null) {
+            m10014a(0);
+            throw null;
+        }
+        if (abstractC11913c1 != null) {
+            return findCorrespondingSupertype(abstractC11913c0, abstractC11913c1, new C11959s());
+        }
+        m10014a(1);
+        throw null;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m10014a(int i) {
         String str = (i == 7 || i == 10) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -107,18 +119,6 @@ public class C11960t {
             throw new IllegalArgumentException(str2);
         }
         throw new IllegalStateException(str2);
-    }
-
-    public static AbstractC11913c0 findCorrespondingSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1) {
-        if (abstractC11913c0 == null) {
-            m10014a(0);
-            throw null;
-        }
-        if (abstractC11913c1 != null) {
-            return findCorrespondingSupertype(abstractC11913c0, abstractC11913c1, new C11959s());
-        }
-        m10014a(1);
-        throw null;
     }
 
     public static AbstractC11913c0 findCorrespondingSupertype(AbstractC11913c0 abstractC11913c0, AbstractC11913c0 abstractC11913c1, InterfaceC11961u interfaceC11961u) {

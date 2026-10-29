@@ -15,7 +15,7 @@ public final class HandlerCompat {
     private static final String TAG = "HandlerCompat";
 
     @RequiresApi(28)
-    public static class Api28Impl {
+    public class Api28Impl {
         private Api28Impl() {
         }
 
@@ -33,7 +33,7 @@ public final class HandlerCompat {
     }
 
     @RequiresApi(29)
-    public static class Api29Impl {
+    public class Api29Impl {
         private Api29Impl() {
         }
 

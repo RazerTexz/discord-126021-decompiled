@@ -15,14 +15,14 @@ public final class WidgetGlobalSearchAdapter$onSelectedListener$1 extends Abstra
         super(4);
     }
 
+    public final void invoke(View view, int i, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2) {
+        C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
+        C12238m.checkNotNullParameter(itemDataPayload, "<anonymous parameter 2>");
+    }
+
     @Override // kotlin.jvm.functions.Function4
     public /* bridge */ /* synthetic */ Unit invoke(View view, Integer num, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, Boolean bool) {
         invoke(view, num.intValue(), itemDataPayload, bool.booleanValue());
         return Unit.f27425a;
-    }
-
-    public final void invoke(View view, int i, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2) {
-        C12238m.checkNotNullParameter(view, "<anonymous parameter 0>");
-        C12238m.checkNotNullParameter(itemDataPayload, "<anonymous parameter 2>");
     }
 }

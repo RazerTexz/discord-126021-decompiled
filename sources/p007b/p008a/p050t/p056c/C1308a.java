@@ -45,7 +45,7 @@ public final class C1308a {
 
     /* JADX INFO: renamed from: b.a.t.c.a$c */
     /* JADX INFO: compiled from: MarkdownRules.kt */
-    public static class c<R, S> extends Rule.BlockRule<R, Node<R>, S> {
+    public class c<R, S> extends Rule.BlockRule<R, Node<R>, S> {
         private final Function1<Integer, CharacterStyle> styleSpanProvider;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -102,7 +102,7 @@ public final class C1308a {
 
     /* JADX INFO: renamed from: b.a.t.c.a$a */
     /* JADX INFO: compiled from: MarkdownRules.kt */
-    public static class a<RC, T, S> extends b<RC, S> {
+    public class a<RC, T, S> extends b<RC, S> {
         private final Function1<String, T> classSpanProvider;
         private final List<Rule<RC, Node<RC>, S>> innerRules;
 
@@ -177,7 +177,7 @@ public final class C1308a {
 
     /* JADX INFO: renamed from: b.a.t.c.a$b */
     /* JADX INFO: compiled from: MarkdownRules.kt */
-    public static class b<R, S> extends c<R, S> {
+    public class b<R, S> extends c<R, S> {
         /* JADX WARN: Illegal instructions before constructor call */
         public b(Pattern pattern, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
             if ((i & 1) != 0) {

@@ -44,25 +44,15 @@ public final /* data */ class GuildMember {
         this.communicationDisabledUntil = utcDateTime2;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static GuildMember m7915a(GuildMember guildMember, long j, User user, List list, String str, String str2, UtcDateTime utcDateTime, boolean z2, Presence presence, Long l, String str3, String str4, String str5, UtcDateTime utcDateTime2, int i) {
-        long j2 = (i & 1) != 0 ? guildMember.guildId : j;
-        User user2 = (i & 2) != 0 ? guildMember.user : user;
-        List<Long> list2 = (i & 4) != 0 ? guildMember.roles : null;
-        String str6 = (i & 8) != 0 ? guildMember.nick : null;
-        String str7 = (i & 16) != 0 ? guildMember.premiumSince : null;
-        UtcDateTime utcDateTime3 = (i & 32) != 0 ? guildMember.joinedAt : null;
-        boolean z3 = (i & 64) != 0 ? guildMember.pending : z2;
-        Presence presence2 = (i & 128) != 0 ? guildMember.presence : null;
-        Long l2 = (i & 256) != 0 ? guildMember.userId : null;
-        String str8 = (i & 512) != 0 ? guildMember.avatar : null;
-        String str9 = (i & 1024) != 0 ? guildMember.bio : str4;
-        String str10 = (i & 2048) != 0 ? guildMember.banner : str5;
-        UtcDateTime utcDateTime4 = (i & 4096) != 0 ? guildMember.communicationDisabledUntil : null;
-        Objects.requireNonNull(guildMember);
-        C12238m.checkNotNullParameter(user2, "user");
-        C12238m.checkNotNullParameter(list2, "roles");
-        return new GuildMember(j2, user2, list2, str6, str7, utcDateTime3, z3, presence2, l2, str8, str9, str10, utcDateTime4);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof GuildMember)) {
+            return false;
+        }
+        GuildMember guildMember = (GuildMember) other;
+        return this.guildId == guildMember.guildId && C12238m.areEqual(this.user, guildMember.user) && C12238m.areEqual(this.roles, guildMember.roles) && C12238m.areEqual(this.nick, guildMember.nick) && C12238m.areEqual(this.premiumSince, guildMember.premiumSince) && C12238m.areEqual(this.joinedAt, guildMember.joinedAt) && this.pending == guildMember.pending && C12238m.areEqual(this.presence, guildMember.presence) && C12238m.areEqual(this.userId, guildMember.userId) && C12238m.areEqual(this.avatar, guildMember.avatar) && C12238m.areEqual(this.bio, guildMember.bio) && C12238m.areEqual(this.banner, guildMember.banner) && C12238m.areEqual(this.communicationDisabledUntil, guildMember.communicationDisabledUntil);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -85,17 +75,6 @@ public final /* data */ class GuildMember {
         return this.communicationDisabledUntil;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof GuildMember)) {
-            return false;
-        }
-        GuildMember guildMember = (GuildMember) other;
-        return this.guildId == guildMember.guildId && C12238m.areEqual(this.user, guildMember.user) && C12238m.areEqual(this.roles, guildMember.roles) && C12238m.areEqual(this.nick, guildMember.nick) && C12238m.areEqual(this.premiumSince, guildMember.premiumSince) && C12238m.areEqual(this.joinedAt, guildMember.joinedAt) && this.pending == guildMember.pending && C12238m.areEqual(this.presence, guildMember.presence) && C12238m.areEqual(this.userId, guildMember.userId) && C12238m.areEqual(this.avatar, guildMember.avatar) && C12238m.areEqual(this.bio, guildMember.bio) && C12238m.areEqual(this.banner, guildMember.banner) && C12238m.areEqual(this.communicationDisabledUntil, guildMember.communicationDisabledUntil);
-    }
-
     /* JADX INFO: renamed from: f, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
@@ -109,6 +88,31 @@ public final /* data */ class GuildMember {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final String getNick() {
         return this.nick;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final boolean getPending() {
+        return this.pending;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final String getPremiumSince() {
+        return this.premiumSince;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final Presence getPresence() {
+        return this.presence;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final User getUser() {
+        return this.user;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final Long getUserId() {
+        return this.userId;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -149,34 +153,30 @@ public final /* data */ class GuildMember {
         return iHashCode10 + (utcDateTime2 != null ? utcDateTime2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final boolean getPending() {
-        return this.pending;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final String getPremiumSince() {
-        return this.premiumSince;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final Presence getPresence() {
-        return this.presence;
+    /* JADX INFO: renamed from: a */
+    public static GuildMember m7915a(GuildMember guildMember, long j, User user, List list, String str, String str2, UtcDateTime utcDateTime, boolean z2, Presence presence, Long l, String str3, String str4, String str5, UtcDateTime utcDateTime2, int i) {
+        long j2 = (i & 1) != 0 ? guildMember.guildId : j;
+        User user2 = (i & 2) != 0 ? guildMember.user : user;
+        List<Long> list2 = (i & 4) != 0 ? guildMember.roles : null;
+        String str6 = (i & 8) != 0 ? guildMember.nick : null;
+        String str7 = (i & 16) != 0 ? guildMember.premiumSince : null;
+        UtcDateTime utcDateTime3 = (i & 32) != 0 ? guildMember.joinedAt : null;
+        boolean z3 = (i & 64) != 0 ? guildMember.pending : z2;
+        Presence presence2 = (i & 128) != 0 ? guildMember.presence : null;
+        Long l2 = (i & 256) != 0 ? guildMember.userId : null;
+        String str8 = (i & 512) != 0 ? guildMember.avatar : null;
+        String str9 = (i & 1024) != 0 ? guildMember.bio : str4;
+        String str10 = (i & 2048) != 0 ? guildMember.banner : str5;
+        UtcDateTime utcDateTime4 = (i & 4096) != 0 ? guildMember.communicationDisabledUntil : null;
+        Objects.requireNonNull(guildMember);
+        C12238m.checkNotNullParameter(user2, "user");
+        C12238m.checkNotNullParameter(list2, "roles");
+        return new GuildMember(j2, user2, list2, str6, str7, utcDateTime3, z3, presence2, l2, str8, str9, str10, utcDateTime4);
     }
 
     /* JADX INFO: renamed from: l */
     public final List<Long> m7926l() {
         return this.roles;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final Long getUserId() {
-        return this.userId;
     }
 
     public String toString() {

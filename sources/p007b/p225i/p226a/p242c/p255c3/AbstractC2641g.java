@@ -71,6 +71,44 @@ public abstract class AbstractC2641g implements InterfaceC2644j {
         }
     }
 
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        AbstractC2641g abstractC2641g = (AbstractC2641g) obj;
+        return this.f6187a == abstractC2641g.f6187a && Arrays.equals(this.f6189c, abstractC2641g.f6189c);
+    }
+
+    public int hashCode() {
+        if (this.f6191e == 0) {
+            this.f6191e = Arrays.hashCode(this.f6189c) + (System.identityHashCode(this.f6187a) * 31);
+        }
+        return this.f6191e;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2647m
+    public final int length() {
+        return this.f6189c.length;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
+    /* JADX INFO: renamed from: e */
+    public void mo2724e() {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
+    /* JADX INFO: renamed from: g */
+    public void mo2725g() {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
+    /* JADX INFO: renamed from: i */
+    public void mo2726i(float f) {
+    }
+
     @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2647m
     /* JADX INFO: renamed from: a */
     public final C2556n0 mo2727a() {
@@ -89,22 +127,6 @@ public abstract class AbstractC2641g implements InterfaceC2644j {
         return this.f6190d[i];
     }
 
-    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
-    /* JADX INFO: renamed from: e */
-    public void mo2724e() {
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        AbstractC2641g abstractC2641g = (AbstractC2641g) obj;
-        return this.f6187a == abstractC2641g.f6187a && Arrays.equals(this.f6189c, abstractC2641g.f6189c);
-    }
-
     @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2647m
     /* JADX INFO: renamed from: f */
     public final int mo2730f(int i) {
@@ -112,26 +134,9 @@ public abstract class AbstractC2641g implements InterfaceC2644j {
     }
 
     @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
-    /* JADX INFO: renamed from: g */
-    public void mo2725g() {
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
     /* JADX INFO: renamed from: h */
     public final C2811j1 mo2731h() {
         return this.f6190d[mo2723b()];
-    }
-
-    public int hashCode() {
-        if (this.f6191e == 0) {
-            this.f6191e = Arrays.hashCode(this.f6189c) + (System.identityHashCode(this.f6187a) * 31);
-        }
-        return this.f6191e;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
-    /* JADX INFO: renamed from: i */
-    public void mo2726i(float f) {
     }
 
     @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2644j
@@ -155,10 +160,5 @@ public abstract class AbstractC2641g implements InterfaceC2644j {
             }
         }
         return -1;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p255c3.InterfaceC2647m
-    public final int length() {
-        return this.f6189c.length;
     }
 }

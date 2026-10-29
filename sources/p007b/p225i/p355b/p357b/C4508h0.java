@@ -7,18 +7,24 @@ import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4508h0<E> extends AbstractC4523p<E> {
 
-    /* JADX INFO: renamed from: l */
-    public static final AbstractC4523p<Object> f12012l = new C4508h0(new Object[0], 0);
-
     /* JADX INFO: renamed from: m */
     public final transient Object[] f12013m;
 
     /* JADX INFO: renamed from: n */
     public final transient int f12014n;
 
+    /* JADX INFO: renamed from: l */
+    public static final AbstractC4523p<Object> f12012l = new C4508h0(new Object[0], 0);
+
     public C4508h0(Object[] objArr, int i) {
         this.f12013m = objArr;
         this.f12014n = i;
+    }
+
+    @Override // java.util.List
+    public E get(int i) {
+        C3404f.m4359x(i, this.f12014n);
+        return (E) this.f12013m[i];
     }
 
     @Override // p007b.p225i.p355b.p357b.AbstractC4523p, p007b.p225i.p355b.p357b.AbstractC4519n
@@ -38,12 +44,6 @@ public class C4508h0<E> extends AbstractC4523p<E> {
     /* JADX INFO: renamed from: g */
     public int mo6244g() {
         return this.f12014n;
-    }
-
-    @Override // java.util.List
-    public E get(int i) {
-        C3404f.m4359x(i, this.f12014n);
-        return (E) this.f12013m[i];
     }
 
     @Override // p007b.p225i.p355b.p357b.AbstractC4519n

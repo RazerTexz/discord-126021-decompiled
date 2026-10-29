@@ -32,15 +32,6 @@ public class ActionBarContainer extends FrameLayout {
         this(context, null);
     }
 
-    private int getMeasuredHeightWithMargins(View view) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-        return view.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
-    }
-
-    private boolean isCollapsed(View view) {
-        return view == null || view.getVisibility() == 8 || view.getMeasuredHeight() == 0;
-    }
-
     @Override // android.view.ViewGroup, android.view.View
     public void drawableStateChanged() {
         super.drawableStateChanged();
@@ -59,8 +50,17 @@ public class ActionBarContainer extends FrameLayout {
         this.mSplitBackground.setState(getDrawableState());
     }
 
+    private int getMeasuredHeightWithMargins(View view) {
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+        return view.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+    }
+
     public View getTabContainer() {
         return this.mTabContainer;
+    }
+
+    private boolean isCollapsed(View view) {
+        return view == null || view.getVisibility() == 8 || view.getMeasuredHeight() == 0;
     }
 
     @Override // android.view.ViewGroup, android.view.View

@@ -21,23 +21,6 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
         this.mContentView = view;
     }
 
-    private void startAnimation(final boolean z2) {
-        float f = z2 ? 0.0f : 1.0f;
-        float f2 = z2 ? 1.0f : 0.0f;
-        long j = z2 ? ENTER_ANIMATION_DURATION_MS : 150L;
-        this.mContentView.setScaleX(f);
-        this.mContentView.setScaleY(f);
-        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new AnimatorListenerAdapter() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuDialog.1
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator) {
-                if (z2) {
-                    return;
-                }
-                BrowserActionsFallbackMenuDialog.super.dismiss();
-            }
-        }).start();
-    }
-
     @Override // android.app.Dialog, android.content.DialogInterface
     public void dismiss() {
         startAnimation(false);
@@ -57,5 +40,22 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
         getWindow().setBackgroundDrawable(new ColorDrawable(0));
         startAnimation(true);
         super.show();
+    }
+
+    private void startAnimation(final boolean z2) {
+        float f = z2 ? 0.0f : 1.0f;
+        float f2 = z2 ? 1.0f : 0.0f;
+        long j = z2 ? ENTER_ANIMATION_DURATION_MS : 150L;
+        this.mContentView.setScaleX(f);
+        this.mContentView.setScaleY(f);
+        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new AnimatorListenerAdapter() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuDialog.1
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationEnd(Animator animator) {
+                if (z2) {
+                    return;
+                }
+                BrowserActionsFallbackMenuDialog.super.dismiss();
+            }
+        }).start();
     }
 }

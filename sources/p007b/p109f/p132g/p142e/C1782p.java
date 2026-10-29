@@ -50,17 +50,6 @@ public class C1782p extends C1772g {
         this.f3435n = scalingUtils$ScaleType;
     }
 
-    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
-    /* JADX INFO: renamed from: d */
-    public void mo1096d(Matrix matrix) {
-        m1103n(matrix);
-        m1119q();
-        Matrix matrix2 = this.f3440s;
-        if (matrix2 != null) {
-            matrix.preConcat(matrix2);
-        }
-    }
-
     @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         m1119q();
@@ -80,19 +69,6 @@ public class C1782p extends C1772g {
             drawable2.draw(canvas);
         }
         canvas.restoreToCount(iSave);
-    }
-
-    @Override // p007b.p109f.p132g.p142e.C1772g
-    /* JADX INFO: renamed from: o */
-    public Drawable mo1104o(Drawable drawable) {
-        Drawable drawableMo1104o = super.mo1104o(drawable);
-        m1118p();
-        return drawableMo1104o;
-    }
-
-    @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
-    public void onBoundsChange(Rect rect) {
-        m1118p();
     }
 
     @VisibleForTesting
@@ -170,5 +146,29 @@ public class C1782p extends C1772g {
         this.f3436o = null;
         m1118p();
         invalidateSelf();
+    }
+
+    @Override // p007b.p109f.p132g.p142e.C1772g, p007b.p109f.p132g.p142e.InterfaceC1769e0
+    /* JADX INFO: renamed from: d */
+    public void mo1096d(Matrix matrix) {
+        m1103n(matrix);
+        m1119q();
+        Matrix matrix2 = this.f3440s;
+        if (matrix2 != null) {
+            matrix.preConcat(matrix2);
+        }
+    }
+
+    @Override // p007b.p109f.p132g.p142e.C1772g
+    /* JADX INFO: renamed from: o */
+    public Drawable mo1104o(Drawable drawable) {
+        Drawable drawableMo1104o = super.mo1104o(drawable);
+        m1118p();
+        return drawableMo1104o;
+    }
+
+    @Override // p007b.p109f.p132g.p142e.C1772g, android.graphics.drawable.Drawable
+    public void onBoundsChange(Rect rect) {
+        m1118p();
     }
 }

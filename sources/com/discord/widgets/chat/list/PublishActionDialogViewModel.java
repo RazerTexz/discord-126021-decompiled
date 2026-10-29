@@ -33,7 +33,7 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$1 */
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static final class C79461 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C79461 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C79461() {
             super(1);
         }
@@ -51,8 +51,47 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$1 */
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static final class Companion {
+    public final class C79481 extends AbstractC12240o implements Function1<Void, Unit> {
+        public C79481() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            PublishActionDialogViewModel.this.emitSuccessActionEvent();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$2 */
+    /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
+    public final class C79492 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C79492() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            PublishActionDialogViewModel.this.emitFailureEvent();
+        }
+    }
+
+    /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -73,10 +112,10 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-        public static final /* data */ class Failure extends Event {
+        public final /* data */ class Failure extends Event {
             private final int failureMessageStringRes;
 
             public Failure(int i) {
@@ -91,11 +130,6 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                 return failure.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getFailureMessageStringRes() {
-                return this.failureMessageStringRes;
-            }
-
             public final Failure copy(int failureMessageStringRes) {
                 return new Failure(failureMessageStringRes);
             }
@@ -105,6 +139,11 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                     return (other instanceof Failure) && this.failureMessageStringRes == ((Failure) other).failureMessageStringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getFailureMessageStringRes() {
+                return this.failureMessageStringRes;
             }
 
             public final int getFailureMessageStringRes() {
@@ -121,7 +160,7 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
         }
 
         /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-        public static final /* data */ class Success extends Event {
+        public final /* data */ class Success extends Event {
             private final int successMessageStringRes;
 
             public Success(int i) {
@@ -136,11 +175,6 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                 return success.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getSuccessMessageStringRes() {
-                return this.successMessageStringRes;
-            }
-
             public final Success copy(int successMessageStringRes) {
                 return new Success(successMessageStringRes);
             }
@@ -150,6 +184,11 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                     return (other instanceof Success) && this.successMessageStringRes == ((Success) other).successMessageStringRes;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getSuccessMessageStringRes() {
+                return this.successMessageStringRes;
             }
 
             public final int getSuccessMessageStringRes() {
@@ -174,7 +213,7 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static final class StoreState {
+    public final class StoreState {
         private final ModelChannelFollowerStats followerStats;
 
         public StoreState(ModelChannelFollowerStats modelChannelFollowerStats) {
@@ -187,10 +226,10 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
     }
 
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-        public static final /* data */ class LoadedHasFollowers extends ViewState {
+        public final /* data */ class LoadedHasFollowers extends ViewState {
             private final ModelChannelFollowerStats followerStats;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -207,11 +246,6 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                 return loadedHasFollowers.copy(modelChannelFollowerStats);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelChannelFollowerStats getFollowerStats() {
-                return this.followerStats;
-            }
-
             public final LoadedHasFollowers copy(ModelChannelFollowerStats followerStats) {
                 C12238m.checkNotNullParameter(followerStats, "followerStats");
                 return new LoadedHasFollowers(followerStats);
@@ -222,6 +256,11 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
                     return (other instanceof LoadedHasFollowers) && C12238m.areEqual(this.followerStats, ((LoadedHasFollowers) other).followerStats);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelChannelFollowerStats getFollowerStats() {
+                return this.followerStats;
             }
 
             public final ModelChannelFollowerStats getFollowerStats() {
@@ -245,7 +284,7 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
         }
 
         /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-        public static final class LoadedNoFollowers extends ViewState {
+        public final class LoadedNoFollowers extends ViewState {
             public static final LoadedNoFollowers INSTANCE = new LoadedNoFollowers();
 
             private LoadedNoFollowers() {
@@ -254,7 +293,7 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
         }
 
         /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -267,45 +306,6 @@ public final class PublishActionDialogViewModel extends AbstractC0859d0<ViewStat
 
         public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$1 */
-    /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static final class C79481 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C79481() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            PublishActionDialogViewModel.this.emitSuccessActionEvent();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$2 */
-    /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public static final class C79492 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C79492() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            PublishActionDialogViewModel.this.emitFailureEvent();
         }
     }
 

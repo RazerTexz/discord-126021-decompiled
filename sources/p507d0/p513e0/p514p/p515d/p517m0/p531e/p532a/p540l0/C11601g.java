@@ -26,12 +26,6 @@ public final class C11601g extends AbstractC11967m implements InterfaceC11933j {
         this.f23459k = abstractC11934j0;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final AbstractC11934j0 m9508a(AbstractC11934j0 abstractC11934j0) {
-        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = abstractC11934j0.makeNullableAsSpecified(false);
-        return !C11992a.isTypeParameter(abstractC11934j0) ? abstractC11934j0MakeNullableAsSpecified : new C11601g(abstractC11934j0MakeNullableAsSpecified);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11967m
     public AbstractC11934j0 getDelegate() {
         return this.f23459k;
@@ -45,6 +39,12 @@ public final class C11601g extends AbstractC11967m implements InterfaceC11933j {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC11933j
     public boolean isTypeVariable() {
         return true;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final AbstractC11934j0 m9508a(AbstractC11934j0 abstractC11934j0) {
+        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = abstractC11934j0.makeNullableAsSpecified(false);
+        return !C11992a.isTypeParameter(abstractC11934j0) ? abstractC11934j0MakeNullableAsSpecified : new C11601g(abstractC11934j0MakeNullableAsSpecified);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11932i1

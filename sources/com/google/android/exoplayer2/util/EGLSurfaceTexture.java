@@ -18,9 +18,6 @@ public final class EGLSurfaceTexture implements SurfaceTexture.OnFrameAvailableL
     /* JADX INFO: renamed from: k */
     public final Handler f20274k;
 
-    /* JADX INFO: renamed from: l */
-    public final int[] f20275l = new int[1];
-
     /* JADX INFO: renamed from: m */
     @Nullable
     public EGLDisplay f20276m;
@@ -37,7 +34,10 @@ public final class EGLSurfaceTexture implements SurfaceTexture.OnFrameAvailableL
     @Nullable
     public SurfaceTexture f20279p;
 
-    public static final class GlException extends RuntimeException {
+    /* JADX INFO: renamed from: l */
+    public final int[] f20275l = new int[1];
+
+    public final class GlException extends RuntimeException {
         public GlException(String str, C10775a c10775a) {
             super(str);
         }

@@ -37,24 +37,6 @@ public final /* data */ class TrackImpressionInviteAccept implements AnalyticsSc
         this.analyticsSchemaTypeName = "impression_invite_accept";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -66,11 +48,29 @@ public final /* data */ class TrackImpressionInviteAccept implements AnalyticsSc
         return C12238m.areEqual(this.inviteCode, trackImpressionInviteAccept.inviteCode) && C12238m.areEqual(this.deeplinkAttemptId, trackImpressionInviteAccept.deeplinkAttemptId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.inviteCode;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
         CharSequence charSequence2 = this.deeplinkAttemptId;
         return iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

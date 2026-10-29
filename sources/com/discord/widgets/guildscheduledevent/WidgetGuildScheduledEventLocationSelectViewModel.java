@@ -49,7 +49,7 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelectViewModel$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-    public static final class C89051 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C89051 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C89051() {
             super(1);
         }
@@ -69,7 +69,7 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
     }
 
     /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -83,7 +83,7 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
     }
 
     /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Map<Long, Long> channelPermissions;
         private final Map<Long, Channel> channels;
         private final GuildScheduledEvent existingGuildScheduledEvent;
@@ -98,6 +98,14 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
             this.channelPermissions = map2;
             this.guildPermissions = l;
             this.existingGuildScheduledEvent = guildScheduledEvent;
+        }
+
+        public final Map<Long, Channel> component2() {
+            return this.channels;
+        }
+
+        public final Map<Long, Long> component3() {
+            return this.channelPermissions;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -121,29 +129,6 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
                 guildScheduledEvent = storeState.existingGuildScheduledEvent;
             }
             return storeState.copy(guild, map3, map4, l2, guildScheduledEvent);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Map<Long, Channel> component2() {
-            return this.channels;
-        }
-
-        public final Map<Long, Long> component3() {
-            return this.channelPermissions;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getGuildPermissions() {
-            return this.guildPermissions;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildScheduledEvent getExistingGuildScheduledEvent() {
-            return this.existingGuildScheduledEvent;
         }
 
         public final StoreState copy(Guild guild, Map<Long, Channel> channels, Map<Long, Long> channelPermissions, Long guildPermissions, GuildScheduledEvent existingGuildScheduledEvent) {
@@ -171,12 +156,27 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
             return this.channels;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final GuildScheduledEvent getExistingGuildScheduledEvent() {
             return this.existingGuildScheduledEvent;
         }
 
+        public final GuildScheduledEvent getExistingGuildScheduledEvent() {
+            return this.existingGuildScheduledEvent;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Long getGuildPermissions() {
+            return this.guildPermissions;
         }
 
         public final Long getGuildPermissions() {
@@ -213,10 +213,10 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
     }
 
     /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -225,7 +225,7 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
         }
 
         /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelectViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final Map<Long, Channel> availableChannels;
             private final Set<Long> availableStageChannelIds;
             private final Set<Long> availableVoiceChannelIds;
@@ -255,26 +255,6 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
                 this.canChangeChannel = z4;
             }
 
-            /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Valid copy$default(Valid valid, GuildScheduledEventEntityType guildScheduledEventEntityType, Channel channel, String str, Map map, Set set, Set set2, boolean z2, boolean z3, boolean z4, int i, Object obj) {
-                return valid.copy((i & 1) != 0 ? valid.selectedLocationOption : guildScheduledEventEntityType, (i & 2) != 0 ? valid.selectedChannel : channel, (i & 4) != 0 ? valid.externalLocation : str, (i & 8) != 0 ? valid.availableChannels : map, (i & 16) != 0 ? valid.availableVoiceChannelIds : set, (i & 32) != 0 ? valid.availableStageChannelIds : set2, (i & 64) != 0 ? valid.canCreateExternalEvent : z2, (i & 128) != 0 ? valid.showStageOptionIfUnavailable : z3, (i & 256) != 0 ? valid.canChangeChannel : z4);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final GuildScheduledEventEntityType getSelectedLocationOption() {
-                return this.selectedLocationOption;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Channel getSelectedChannel() {
-                return this.selectedChannel;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getExternalLocation() {
-                return this.externalLocation;
-            }
-
             public final Map<Long, Channel> component4() {
                 return this.availableChannels;
             }
@@ -287,19 +267,9 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
                 return this.availableStageChannelIds;
             }
 
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getCanCreateExternalEvent() {
-                return this.canCreateExternalEvent;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getShowStageOptionIfUnavailable() {
-                return this.showStageOptionIfUnavailable;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getCanChangeChannel() {
-                return this.canChangeChannel;
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Valid copy$default(Valid valid, GuildScheduledEventEntityType guildScheduledEventEntityType, Channel channel, String str, Map map, Set set, Set set2, boolean z2, boolean z3, boolean z4, int i, Object obj) {
+                return valid.copy((i & 1) != 0 ? valid.selectedLocationOption : guildScheduledEventEntityType, (i & 2) != 0 ? valid.selectedChannel : channel, (i & 4) != 0 ? valid.externalLocation : str, (i & 8) != 0 ? valid.availableChannels : map, (i & 16) != 0 ? valid.availableVoiceChannelIds : set, (i & 32) != 0 ? valid.availableStageChannelIds : set2, (i & 64) != 0 ? valid.canCreateExternalEvent : z2, (i & 128) != 0 ? valid.showStageOptionIfUnavailable : z3, (i & 256) != 0 ? valid.canChangeChannel : z4);
             }
 
             public final Valid copy(GuildScheduledEventEntityType selectedLocationOption, Channel selectedChannel, String externalLocation, Map<Long, Channel> availableChannels, Set<Long> availableVoiceChannelIds, Set<Long> availableStageChannelIds, boolean canCreateExternalEvent, boolean showStageOptionIfUnavailable, boolean canChangeChannel) {
@@ -334,24 +304,54 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
                 return this.availableVoiceChannelIds;
             }
 
+            /* JADX INFO: renamed from: component9, reason: from getter */
             public final boolean getCanChangeChannel() {
                 return this.canChangeChannel;
+            }
+
+            public final boolean getCanChangeChannel() {
+                return this.canChangeChannel;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final boolean getCanCreateExternalEvent() {
+                return this.canCreateExternalEvent;
             }
 
             public final boolean getCanCreateExternalEvent() {
                 return this.canCreateExternalEvent;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getExternalLocation() {
                 return this.externalLocation;
+            }
+
+            public final String getExternalLocation() {
+                return this.externalLocation;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Channel getSelectedChannel() {
+                return this.selectedChannel;
             }
 
             public final Channel getSelectedChannel() {
                 return this.selectedChannel;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final GuildScheduledEventEntityType getSelectedLocationOption() {
                 return this.selectedLocationOption;
+            }
+
+            public final GuildScheduledEventEntityType getSelectedLocationOption() {
+                return this.selectedLocationOption;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final boolean getShowStageOptionIfUnavailable() {
+                return this.showStageOptionIfUnavailable;
             }
 
             public final boolean getShowStageOptionIfUnavailable() {
@@ -437,6 +437,10 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
         StorePermissions permissions = (i & 32) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions;
         StoreGuildScheduledEvents guildScheduledEvents = (i & 64) != 0 ? StoreStream.INSTANCE.getGuildScheduledEvents() : storeGuildScheduledEvents;
         this(j, l, l2, channels, guilds, permissions, guildScheduledEvents, (i & 128) != 0 ? INSTANCE.observeStores(j, l2, guilds, channels, permissions, guildScheduledEvents) : observable);
+    }
+
+    public final StoreState getCurrentStoreState() {
+        return this.currentStoreState;
     }
 
     private final GuildScheduledEventEntityType getEntityTypeForChannel(Channel channel) {
@@ -527,10 +531,6 @@ public final class WidgetGuildScheduledEventLocationSelectViewModel extends Abst
             externalLocation = "";
         }
         updateViewState(new ViewState.Valid(guildScheduledEventEntityType, channel2, externalLocation, linkedHashMap, hashSet2, hashSet, zCanCreateExternalEvent, zContains, z2));
-    }
-
-    public final StoreState getCurrentStoreState() {
-        return this.currentStoreState;
     }
 
     public final void selectChannel(long channelId) {

@@ -22,6 +22,17 @@ public final class CallFeedbackSheetNavigator {
     private CallFeedbackSheetNavigator() {
     }
 
+    public final void enqueueNotice(long channelId, String rtcConnectionId, String mediaSessionId, Long callDurationMs, int triggerRateDenominator) {
+        if (triggerRateDenominator < 1 || random.nextInt(triggerRateDenominator) != 0) {
+            return;
+        }
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StoreNotices notices = companion.getNotices();
+        String noticeName = getNoticeName(rtcConnectionId);
+        long jCurrentTimeMillis = clock.currentTimeMillis();
+        companion.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new C10453x54df9117(jCurrentTimeMillis, channelId, rtcConnectionId, mediaSessionId, callDurationMs, notices, noticeName), Opcodes.GETSTATIC, null));
+    }
+
     private final String getNoticeName(String rtcConnectionId) {
         return C1643a.m883w("Call feedback notice for rtcConnectionId: ", rtcConnectionId);
     }
@@ -33,16 +44,5 @@ public final class CallFeedbackSheetNavigator {
         C12238m.checkNotNull(arguments);
         arguments.putParcelable(WidgetFeedbackSheet.ARG_CALL_FEEDBACK_CONFIG, config);
         widgetFeedbackSheetNewInstance.show(fragmentManager, WidgetFeedbackSheet.class.getName());
-    }
-
-    public final void enqueueNotice(long channelId, String rtcConnectionId, String mediaSessionId, Long callDurationMs, int triggerRateDenominator) {
-        if (triggerRateDenominator < 1 || random.nextInt(triggerRateDenominator) != 0) {
-            return;
-        }
-        StoreStream.Companion companion = StoreStream.INSTANCE;
-        StoreNotices notices = companion.getNotices();
-        String noticeName = getNoticeName(rtcConnectionId);
-        long jCurrentTimeMillis = clock.currentTimeMillis();
-        companion.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new C10453x54df9117(jCurrentTimeMillis, channelId, rtcConnectionId, mediaSessionId, callDurationMs, notices, noticeName), Opcodes.GETSTATIC, null));
     }
 }

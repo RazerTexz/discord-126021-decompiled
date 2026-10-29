@@ -35,7 +35,7 @@ public final class C12002r0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.r0$a */
     /* JADX INFO: compiled from: TypeAliasExpansion.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

@@ -48,8 +48,48 @@ public final class WidgetUserEmailUpdate extends WidgetUserAccountVerifyBase {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.email.WidgetUserEmailUpdate$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetUserEmailUpdate.kt */
-    public static final class Companion {
+    public final class C102531 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C102531() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetUserEmailUpdate.this.handleTextChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.email.WidgetUserEmailUpdate$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetUserEmailUpdate.kt */
+    public final class C102542 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C102542() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetUserEmailUpdate.this.handleTextChanged();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserEmailUpdate.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -90,46 +130,6 @@ public final class WidgetUserEmailUpdate extends WidgetUserAccountVerifyBase {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.email.WidgetUserEmailUpdate$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetUserEmailUpdate.kt */
-    public static final class C102531 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C102531() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetUserEmailUpdate.this.handleTextChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.email.WidgetUserEmailUpdate$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetUserEmailUpdate.kt */
-    public static final class C102542 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C102542() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetUserEmailUpdate.this.handleTextChanged();
         }
     }
 

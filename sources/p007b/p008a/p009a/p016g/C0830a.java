@@ -31,18 +31,25 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0830a extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f368j = {C1643a.m846d0(C0830a.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMaskedLinksDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f368j = {C1643a.m846d0(C0830a.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMaskedLinksDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: b.a.a.g.a$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: WidgetMaskedLinksDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.g.a$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f371j;
@@ -87,16 +94,9 @@ public final class C0830a extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.g.a$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: WidgetMaskedLinksDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.g.a$c */
     /* JADX INFO: compiled from: WidgetMaskedLinksDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1036q5> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1036q5> {
 
         /* JADX INFO: renamed from: j */
         public static final c f374j = new c();
@@ -136,7 +136,7 @@ public final class C0830a extends AppDialog {
 
     /* JADX INFO: renamed from: b.a.a.g.a$d */
     /* JADX INFO: compiled from: WidgetMaskedLinksDialog.kt */
-    public static final class d implements View.OnClickListener {
+    public final class d implements View.OnClickListener {
         public d() {
         }
 

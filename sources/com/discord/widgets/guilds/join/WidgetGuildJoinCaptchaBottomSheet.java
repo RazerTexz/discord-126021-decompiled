@@ -45,7 +45,11 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildJoinCaptchaBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildJoinCaptchaBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildJoinCaptchaBottomSheetBinding;", 0)};
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String NOTICE_NAME = "guild captcha notice";
     private static final String RESULT_EXTRA_CAPTCHA_RQTOKEN = "INTENT_EXTRA_CAPTCHA_RQTOKEN";
     private static final String RESULT_EXTRA_CAPTCHA_TOKEN = "INTENT_EXTRA_CAPTCHA_TOKEN";
@@ -58,13 +62,59 @@ public final class WidgetGuildJoinCaptchaBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: requestCode$delegate, reason: from kotlin metadata */
     private final Lazy requestCode;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildJoinCaptchaBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildJoinCaptchaBottomSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoinCaptchaBottomSheet$openCaptcha$1 */
+    /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
+    public final class C87211 extends AbstractC12240o implements Function1<String, Unit> {
+        public C87211() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            CaptchaHelper.INSTANCE.setCaptchaToken(str);
+            AppActivity appActivity = WidgetGuildJoinCaptchaBottomSheet.this.getAppActivity();
+            if (appActivity != null) {
+                WidgetGuildJoinCaptchaBottomSheet.this.finishIfCaptchaTokenReceived(appActivity);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoinCaptchaBottomSheet$openCaptcha$2 */
+    /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
+    public final class C87222 extends AbstractC12240o implements Function1<Error, Unit> {
+        public C87222() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            Throwable throwable = error.getThrowable();
+            if (!(throwable instanceof CaptchaHelper.Failure)) {
+                throwable = null;
+            }
+            CaptchaHelper.Failure failure = (CaptchaHelper.Failure) throwable;
+            if (failure != null) {
+                C0876m.m169g(WidgetGuildJoinCaptchaBottomSheet.this.getAppActivity(), failure.getErrorStringId(), 0, null, 12);
+            }
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -94,56 +144,6 @@ public final class WidgetGuildJoinCaptchaBottomSheet extends AppBottomSheet {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoinCaptchaBottomSheet$openCaptcha$1 */
-    /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
-    public static final class C87211 extends AbstractC12240o implements Function1<String, Unit> {
-        public C87211() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            CaptchaHelper.INSTANCE.setCaptchaToken(str);
-            AppActivity appActivity = WidgetGuildJoinCaptchaBottomSheet.this.getAppActivity();
-            if (appActivity != null) {
-                WidgetGuildJoinCaptchaBottomSheet.this.finishIfCaptchaTokenReceived(appActivity);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoinCaptchaBottomSheet$openCaptcha$2 */
-    /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
-    public static final class C87222 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C87222() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            Throwable throwable = error.getThrowable();
-            if (!(throwable instanceof CaptchaHelper.Failure)) {
-                throwable = null;
-            }
-            CaptchaHelper.Failure failure = (CaptchaHelper.Failure) throwable;
-            if (failure != null) {
-                C0876m.m169g(WidgetGuildJoinCaptchaBottomSheet.this.getAppActivity(), failure.getErrorStringId(), 0, null, 12);
-            }
         }
     }
 
@@ -196,8 +196,20 @@ public final class WidgetGuildJoinCaptchaBottomSheet extends AppBottomSheet {
         return (CaptchaErrorBody) this.captchaErrorBody.getValue();
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_guild_join_captcha_bottom_sheet;
+    }
+
     private final String getRequestCode() {
         return (String) this.requestCode.getValue();
+    }
+
+    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        configureUI();
     }
 
     private final void openCaptcha() {
@@ -222,17 +234,5 @@ public final class WidgetGuildJoinCaptchaBottomSheet extends AppBottomSheet {
 
     public static final void show(FragmentManager fragmentManager, String str, CaptchaErrorBody captchaErrorBody) {
         INSTANCE.show(fragmentManager, str, captchaErrorBody);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_guild_join_captcha_bottom_sheet;
-    }
-
-    @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        configureUI();
     }
 }

@@ -11,26 +11,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationViewed implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final CharSequence notifType = null;
-    private final Long notifUserId = null;
-    private final Long messageId = null;
-    private final Long messageType = null;
-    private final Long guildId = null;
+    private final CharSequence activityName = null;
+    private final Long activityType = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long relType = null;
+    private final Long guildId = null;
+    private final Long messageId = null;
+    private final Long messageType = null;
+    private final CharSequence notifType = null;
+    private final Long notifUserId = null;
     private final CharSequence platformType = null;
-    private final Long activityType = null;
-    private final CharSequence activityName = null;
+    private final Long relType = null;
+    private TrackBase trackBase;
+    private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final transient String analyticsSchemaTypeName = "notification_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -41,6 +35,12 @@ public final /* data */ class TrackNotificationViewed implements AnalyticsSchema
         }
         TrackNotificationViewed trackNotificationViewed = (TrackNotificationViewed) other;
         return C12238m.areEqual(this.notifType, trackNotificationViewed.notifType) && C12238m.areEqual(this.notifUserId, trackNotificationViewed.notifUserId) && C12238m.areEqual(this.messageId, trackNotificationViewed.messageId) && C12238m.areEqual(this.messageType, trackNotificationViewed.messageType) && C12238m.areEqual(this.guildId, trackNotificationViewed.guildId) && C12238m.areEqual(this.channelId, trackNotificationViewed.channelId) && C12238m.areEqual(this.channelType, trackNotificationViewed.channelType) && C12238m.areEqual(this.relType, trackNotificationViewed.relType) && C12238m.areEqual(this.platformType, trackNotificationViewed.platformType) && C12238m.areEqual(this.activityType, trackNotificationViewed.activityType) && C12238m.areEqual(this.activityName, trackNotificationViewed.activityName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

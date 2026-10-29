@@ -51,7 +51,7 @@ public final /* data */ class GuildChannelsInfo {
     private final boolean unelevated;
 
     /* JADX INFO: compiled from: GuildChannelsInfo.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -121,57 +121,12 @@ public final /* data */ class GuildChannelsInfo {
         this.guildRoles = map2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Guild getGuild() {
-        return this.guild;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final boolean getCanChangeNickname() {
-        return this.canChangeNickname;
-    }
-
     public final Map<Long, GuildRole> component11() {
         return this.guildRoles;
     }
 
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildRole getEveryoneRole() {
-        return this.everyoneRole;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final ModelNotificationSettings getNotificationSettings() {
-        return this.notificationSettings;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getHideMutedChannels() {
-        return this.hideMutedChannels;
-    }
-
     public final Map<Long, Long> component5() {
         return this.channelPermissions;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getAbleToInstantInvite() {
-        return this.ableToInstantInvite;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getUnelevated() {
-        return this.unelevated;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getIsVerifiedServer() {
-        return this.isVerifiedServer;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final ManageGuildContext getManageGuildContext() {
-        return this.manageGuildContext;
     }
 
     public final GuildChannelsInfo copy(Guild guild, GuildRole everyoneRole, ModelNotificationSettings notificationSettings, boolean hideMutedChannels, Map<Long, Long> channelPermissions, boolean ableToInstantInvite, boolean unelevated, boolean isVerifiedServer, ManageGuildContext manageGuildContext, boolean canChangeNickname, Map<Long, GuildRole> guildRoles) {
@@ -192,8 +147,18 @@ public final /* data */ class GuildChannelsInfo {
         return C12238m.areEqual(this.guild, guildChannelsInfo.guild) && C12238m.areEqual(this.everyoneRole, guildChannelsInfo.everyoneRole) && C12238m.areEqual(this.notificationSettings, guildChannelsInfo.notificationSettings) && this.hideMutedChannels == guildChannelsInfo.hideMutedChannels && C12238m.areEqual(this.channelPermissions, guildChannelsInfo.channelPermissions) && this.ableToInstantInvite == guildChannelsInfo.ableToInstantInvite && this.unelevated == guildChannelsInfo.unelevated && this.isVerifiedServer == guildChannelsInfo.isVerifiedServer && C12238m.areEqual(this.manageGuildContext, guildChannelsInfo.manageGuildContext) && this.canChangeNickname == guildChannelsInfo.canChangeNickname && C12238m.areEqual(this.guildRoles, guildChannelsInfo.guildRoles);
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getAbleToInstantInvite() {
         return this.ableToInstantInvite;
+    }
+
+    public final boolean getAbleToInstantInvite() {
+        return this.ableToInstantInvite;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final boolean getCanChangeNickname() {
+        return this.canChangeNickname;
     }
 
     public final boolean getCanChangeNickname() {
@@ -204,8 +169,18 @@ public final /* data */ class GuildChannelsInfo {
         return this.channelPermissions;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final GuildRole getEveryoneRole() {
         return this.everyoneRole;
+    }
+
+    public final GuildRole getEveryoneRole() {
+        return this.everyoneRole;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Guild getGuild() {
+        return this.guild;
     }
 
     public final Guild getGuild() {
@@ -216,12 +191,32 @@ public final /* data */ class GuildChannelsInfo {
         return this.guildRoles;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getHideMutedChannels() {
         return this.hideMutedChannels;
     }
 
+    public final boolean getHideMutedChannels() {
+        return this.hideMutedChannels;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getIsVerifiedServer() {
+        return this.isVerifiedServer;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final ManageGuildContext getManageGuildContext() {
         return this.manageGuildContext;
+    }
+
+    public final ManageGuildContext getManageGuildContext() {
+        return this.manageGuildContext;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final ModelNotificationSettings getNotificationSettings() {
+        return this.notificationSettings;
     }
 
     public final ModelNotificationSettings getNotificationSettings() {
@@ -269,6 +264,11 @@ public final /* data */ class GuildChannelsInfo {
             C12160r.addAll(arrayList, arrayList2);
         }
         return arrayList;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getUnelevated() {
+        return this.unelevated;
     }
 
     public final boolean getUnelevated() {

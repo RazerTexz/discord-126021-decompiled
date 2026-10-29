@@ -9,11 +9,11 @@ import org.objectweb.asm.TypePath;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/LocalVariablesSorter.SCL.lombok */
 public class LocalVariablesSorter extends MethodVisitor {
-    private static final Type OBJECT_TYPE = Type.getObjectType("java/lang/Object");
-    private int[] remappedVariableIndices;
-    private Object[] remappedLocalTypes;
     protected final int firstLocal;
     protected int nextLocal;
+    private Object[] remappedLocalTypes;
+    private int[] remappedVariableIndices;
+    private static final Type OBJECT_TYPE = Type.getObjectType("java/lang/Object");
 
     public LocalVariablesSorter(int access, String descriptor, MethodVisitor methodVisitor) {
         this(Opcodes.ASM9, access, descriptor, methodVisitor);

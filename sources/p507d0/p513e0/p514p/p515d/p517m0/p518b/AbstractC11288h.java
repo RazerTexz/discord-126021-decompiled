@@ -54,9 +54,6 @@ import p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC11288h {
 
-    /* JADX INFO: renamed from: a */
-    public static final C11716e f22459a = C11716e.special("<built-ins module>");
-
     /* JADX INFO: renamed from: b */
     public C11399y f22460b;
 
@@ -68,6 +65,9 @@ public abstract class AbstractC11288h {
 
     /* JADX INFO: renamed from: e */
     public final InterfaceC11905o f22463e;
+
+    /* JADX INFO: renamed from: a */
+    public static final C11716e f22459a = C11716e.special("<built-ins module>");
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.h$a */
     /* JADX INFO: compiled from: KotlinBuiltIns.java */
@@ -157,7 +157,7 @@ public abstract class AbstractC11288h {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.b.h$e */
     /* JADX INFO: compiled from: KotlinBuiltIns.java */
-    public static class e {
+    public class e {
 
         /* JADX INFO: renamed from: a */
         public final Map<EnumC11289i, AbstractC11934j0> f22469a;
@@ -184,6 +184,665 @@ public abstract class AbstractC11288h {
         interfaceC11905o.createLazyValue(new a());
         this.f22461c = interfaceC11905o.createLazyValue(new b());
         this.f22462d = interfaceC11905o.createMemoizedFunction(new c());
+    }
+
+    public InterfaceC11330e getAny() {
+        return m9363f("Any");
+    }
+
+    public AbstractC11934j0 getAnyType() {
+        AbstractC11934j0 defaultType = getAny().getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(49);
+        throw null;
+    }
+
+    public InterfaceC11330e getArray() {
+        return m9363f("Array");
+    }
+
+    public AbstractC11913c0 getArrayElementType(AbstractC11913c0 abstractC11913c0) {
+        C11712a classId;
+        C11712a unsignedClassIdByArrayClassId;
+        InterfaceC11330e interfaceC11330eFindClassAcrossModuleDependencies;
+        AbstractC11934j0 defaultType = null;
+        if (abstractC11913c0 == null) {
+            m9355a(66);
+            throw null;
+        }
+        if (isArray(abstractC11913c0)) {
+            if (abstractC11913c0.getArguments().size() != 1) {
+                throw new IllegalStateException();
+            }
+            AbstractC11913c0 type = abstractC11913c0.getArguments().get(0).getType();
+            if (type != null) {
+                return type;
+            }
+            m9355a(67);
+            throw null;
+        }
+        AbstractC11913c0 abstractC11913c0MakeNotNullable = C11920e1.makeNotNullable(abstractC11913c0);
+        AbstractC11934j0 abstractC11934j0 = this.f22461c.invoke().f22471c.get(abstractC11913c0MakeNotNullable);
+        if (abstractC11934j0 != null) {
+            return abstractC11934j0;
+        }
+        InterfaceC11325c0 containingModuleOrNull = C11787e.getContainingModuleOrNull(abstractC11913c0MakeNotNullable);
+        if (containingModuleOrNull != null) {
+            if (abstractC11913c0MakeNotNullable == null) {
+                m9355a(70);
+                throw null;
+            }
+            InterfaceC11352h declarationDescriptor = abstractC11913c0MakeNotNullable.getConstructor().getDeclarationDescriptor();
+            if (declarationDescriptor != null) {
+                C11295o c11295o = C11295o.f22584a;
+                if (c11295o.isShortNameOfUnsignedArray(declarationDescriptor.getName()) && (classId = C11836a.getClassId(declarationDescriptor)) != null && (unsignedClassIdByArrayClassId = c11295o.getUnsignedClassIdByArrayClassId(classId)) != null && (interfaceC11330eFindClassAcrossModuleDependencies = C11470w.findClassAcrossModuleDependencies(containingModuleOrNull, unsignedClassIdByArrayClassId)) != null) {
+                    defaultType = interfaceC11330eFindClassAcrossModuleDependencies.getDefaultType();
+                }
+            }
+            if (defaultType != null) {
+                return defaultType;
+            }
+        }
+        throw new IllegalStateException("not array: " + abstractC11913c0);
+    }
+
+    public AbstractC11934j0 getArrayType(EnumC11935j1 enumC11935j1, AbstractC11913c0 abstractC11913c0, InterfaceC11344g interfaceC11344g) {
+        if (enumC11935j1 == null) {
+            m9355a(77);
+            throw null;
+        }
+        if (abstractC11913c0 == null) {
+            m9355a(78);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9355a(79);
+            throw null;
+        }
+        AbstractC11934j0 abstractC11934j0SimpleNotNullType = C11916d0.simpleNotNullType(interfaceC11344g, getArray(), Collections.singletonList(new C12016y0(enumC11935j1, abstractC11913c0)));
+        if (abstractC11934j0SimpleNotNullType != null) {
+            return abstractC11934j0SimpleNotNullType;
+        }
+        m9355a(80);
+        throw null;
+    }
+
+    public AbstractC11934j0 getBooleanType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.BOOLEAN);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(62);
+        throw null;
+    }
+
+    public InterfaceC11330e getBuiltInClassByFqName(C11713b c11713b) {
+        if (c11713b == null) {
+            m9355a(11);
+            throw null;
+        }
+        InterfaceC11330e interfaceC11330eResolveClassByFqName = C11462s.resolveClassByFqName(this.f22460b, c11713b, EnumC11482d.FROM_BUILTINS);
+        if (interfaceC11330eResolveClassByFqName != null) {
+            return interfaceC11330eResolveClassByFqName;
+        }
+        m9355a(12);
+        throw null;
+    }
+
+    public C11399y getBuiltInsModule() {
+        C11399y c11399y = this.f22460b;
+        if (c11399y != null) {
+            return c11399y;
+        }
+        m9355a(6);
+        throw null;
+    }
+
+    public InterfaceC11770i getBuiltInsPackageScope() {
+        InterfaceC11770i memberScope = this.f22460b.getPackage(C11291k.f22499l).getMemberScope();
+        if (memberScope != null) {
+            return memberScope;
+        }
+        m9355a(10);
+        throw null;
+    }
+
+    public AbstractC11934j0 getByteType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.BYTE);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(55);
+        throw null;
+    }
+
+    public AbstractC11934j0 getCharType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.CHAR);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(61);
+        throw null;
+    }
+
+    public InterfaceC11330e getCollection() {
+        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.a.f22513J);
+        if (builtInClassByFqName != null) {
+            return builtInClassByFqName;
+        }
+        m9355a(33);
+        throw null;
+    }
+
+    public InterfaceC11330e getComparable() {
+        return m9363f("Comparable");
+    }
+
+    public AbstractC11934j0 getDefaultBound() {
+        AbstractC11934j0 nullableAnyType = getNullableAnyType();
+        if (nullableAnyType != null) {
+            return nullableAnyType;
+        }
+        m9355a(51);
+        throw null;
+    }
+
+    public AbstractC11934j0 getDoubleType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.DOUBLE);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(60);
+        throw null;
+    }
+
+    public AbstractC11934j0 getFloatType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.FLOAT);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(59);
+        throw null;
+    }
+
+    public InterfaceC11330e getFunction(int i) {
+        return m9363f(C11291k.getFunctionName(i));
+    }
+
+    public AbstractC11934j0 getIntType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.INT);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(57);
+        throw null;
+    }
+
+    public InterfaceC11330e getKClass() {
+        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.a.f22527X.toSafe());
+        if (builtInClassByFqName != null) {
+            return builtInClassByFqName;
+        }
+        m9355a(20);
+        throw null;
+    }
+
+    public AbstractC11934j0 getLongType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.LONG);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(58);
+        throw null;
+    }
+
+    public InterfaceC11330e getNothing() {
+        return m9363f("Nothing");
+    }
+
+    public AbstractC11934j0 getNothingType() {
+        AbstractC11934j0 defaultType = getNothing().getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(47);
+        throw null;
+    }
+
+    public AbstractC11934j0 getNullableAnyType() {
+        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = getAnyType().makeNullableAsSpecified(true);
+        if (abstractC11934j0MakeNullableAsSpecified != null) {
+            return abstractC11934j0MakeNullableAsSpecified;
+        }
+        m9355a(50);
+        throw null;
+    }
+
+    public AbstractC11934j0 getNullableNothingType() {
+        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = getNothingType().makeNullableAsSpecified(true);
+        if (abstractC11934j0MakeNullableAsSpecified != null) {
+            return abstractC11934j0MakeNullableAsSpecified;
+        }
+        m9355a(48);
+        throw null;
+    }
+
+    public InterfaceC11330e getNumber() {
+        return m9363f("Number");
+    }
+
+    public AbstractC11934j0 getNumberType() {
+        AbstractC11934j0 defaultType = getNumber().getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(54);
+        throw null;
+    }
+
+    public AbstractC11934j0 getPrimitiveArrayKotlinType(EnumC11289i enumC11289i) {
+        if (enumC11289i == null) {
+            m9355a(72);
+            throw null;
+        }
+        AbstractC11934j0 abstractC11934j0 = this.f22461c.invoke().f22469a.get(enumC11289i);
+        if (abstractC11934j0 != null) {
+            return abstractC11934j0;
+        }
+        m9355a(73);
+        throw null;
+    }
+
+    public static EnumC11289i getPrimitiveArrayType(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9355a(76);
+            throw null;
+        }
+        if (C11291k.a.f22557n0.contains(interfaceC11450m.getName())) {
+            return C11291k.a.f22561p0.get(C11787e.getFqName(interfaceC11450m));
+        }
+        return null;
+    }
+
+    public AbstractC11934j0 getPrimitiveKotlinType(EnumC11289i enumC11289i) {
+        if (enumC11289i == null) {
+            m9355a(52);
+            throw null;
+        }
+        if (enumC11289i == null) {
+            m9355a(15);
+            throw null;
+        }
+        AbstractC11934j0 defaultType = m9363f(enumC11289i.getTypeName().asString()).getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(53);
+        throw null;
+    }
+
+    public static EnumC11289i getPrimitiveType(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9355a(75);
+            throw null;
+        }
+        if (C11291k.a.f22555m0.contains(interfaceC11450m.getName())) {
+            return C11291k.a.f22559o0.get(C11787e.getFqName(interfaceC11450m));
+        }
+        return null;
+    }
+
+    public AbstractC11934j0 getShortType() {
+        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.SHORT);
+        if (primitiveKotlinType != null) {
+            return primitiveKotlinType;
+        }
+        m9355a(56);
+        throw null;
+    }
+
+    public InterfaceC11330e getString() {
+        return m9363f("String");
+    }
+
+    public AbstractC11934j0 getStringType() {
+        AbstractC11934j0 defaultType = getString().getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(64);
+        throw null;
+    }
+
+    public InterfaceC11330e getSuspendFunction(int i) {
+        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.f22491d.child(C11716e.identifier(C11291k.getSuspendFunctionName(i))));
+        if (builtInClassByFqName != null) {
+            return builtInClassByFqName;
+        }
+        m9355a(17);
+        throw null;
+    }
+
+    public InterfaceC11330e getUnit() {
+        return m9363f("Unit");
+    }
+
+    public AbstractC11934j0 getUnitType() {
+        AbstractC11934j0 defaultType = getUnit().getDefaultType();
+        if (defaultType != null) {
+            return defaultType;
+        }
+        m9355a(63);
+        throw null;
+    }
+
+    public static boolean isAny(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e != null) {
+            return m9357c(interfaceC11330e, C11291k.a.f22532b);
+        }
+        m9355a(107);
+        throw null;
+    }
+
+    public static boolean isAnyOrNullableAny(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9358i(abstractC11913c0, C11291k.a.f22532b);
+        }
+        m9355a(Opcodes.L2D);
+        throw null;
+    }
+
+    public static boolean isArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9358i(abstractC11913c0, C11291k.a.f22544h);
+        }
+        m9355a(87);
+        throw null;
+    }
+
+    public static boolean isArrayOrPrimitiveArray(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e != null) {
+            return m9357c(interfaceC11330e, C11291k.a.f22544h) || getPrimitiveArrayType(interfaceC11330e) != null;
+        }
+        m9355a(88);
+        throw null;
+    }
+
+    public static boolean isBoolean(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22546i);
+        }
+        m9355a(109);
+        throw null;
+    }
+
+    public static boolean isBuiltIn(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m != null) {
+            return C11787e.getParentOfType(interfaceC11450m, InterfaceC11282b.class, false) != null;
+        }
+        m9355a(8);
+        throw null;
+    }
+
+    public static boolean isByte(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22550k);
+        }
+        m9355a(116);
+        throw null;
+    }
+
+    public static boolean isChar(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22548j);
+        }
+        m9355a(113);
+        throw null;
+    }
+
+    public static boolean isDefaultBound(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isNullableAny(abstractC11913c0);
+        }
+        m9355a(Opcodes.F2L);
+        throw null;
+    }
+
+    public static boolean isDeprecated(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9355a(158);
+            throw null;
+        }
+        if (interfaceC11450m.getOriginal().getAnnotations().hasAnnotation(C11291k.a.f22566u)) {
+            return true;
+        }
+        if (!(interfaceC11450m instanceof InterfaceC11453n0)) {
+            return false;
+        }
+        InterfaceC11453n0 interfaceC11453n0 = (InterfaceC11453n0) interfaceC11450m;
+        boolean zIsVar = interfaceC11453n0.isVar();
+        InterfaceC11455o0 getter = interfaceC11453n0.getGetter();
+        InterfaceC11457p0 setter = interfaceC11453n0.getSetter();
+        if (getter != null && isDeprecated(getter)) {
+            if (!zIsVar) {
+                return true;
+            }
+            if (setter != null && isDeprecated(setter)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDouble(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isDoubleOrNullableDouble(abstractC11913c0) && !abstractC11913c0.isMarkedNullable();
+        }
+        m9355a(122);
+        throw null;
+    }
+
+    public static boolean isDoubleOrNullableDouble(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9358i(abstractC11913c0, C11291k.a.f22560p);
+        }
+        m9355a(Opcodes.IINC);
+        throw null;
+    }
+
+    public static boolean isFloat(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isFloatOrNullableFloat(abstractC11913c0) && !abstractC11913c0.isMarkedNullable();
+        }
+        m9355a(120);
+        throw null;
+    }
+
+    public static boolean isFloatOrNullableFloat(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9358i(abstractC11913c0, C11291k.a.f22558o);
+        }
+        m9355a(121);
+        throw null;
+    }
+
+    public static boolean isInt(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22554m);
+        }
+        m9355a(115);
+        throw null;
+    }
+
+    public static boolean isKClass(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e != null) {
+            return m9357c(interfaceC11330e, C11291k.a.f22527X);
+        }
+        m9355a(155);
+        throw null;
+    }
+
+    public static boolean isLong(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22556n);
+        }
+        m9355a(117);
+        throw null;
+    }
+
+    public static boolean isNothing(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isNothingOrNullableNothing(abstractC11913c0) && !C11920e1.isNullableType(abstractC11913c0);
+        }
+        m9355a(Opcodes.I2D);
+        throw null;
+    }
+
+    public static boolean isNothingOrNullableNothing(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9358i(abstractC11913c0, C11291k.a.f22534c);
+        }
+        m9355a(Opcodes.L2F);
+        throw null;
+    }
+
+    public static boolean isNullableAny(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isAnyOrNullableAny(abstractC11913c0) && abstractC11913c0.isMarkedNullable();
+        }
+        m9355a(Opcodes.F2I);
+        throw null;
+    }
+
+    public static boolean isPrimitiveArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
+            return (declarationDescriptor == null || getPrimitiveArrayType(declarationDescriptor) == null) ? false : true;
+        }
+        m9355a(90);
+        throw null;
+    }
+
+    public static boolean isPrimitiveClass(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e != null) {
+            return getPrimitiveType(interfaceC11330e) != null;
+        }
+        m9355a(95);
+        throw null;
+    }
+
+    public static boolean isPrimitiveType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return !abstractC11913c0.isMarkedNullable() && isPrimitiveTypeOrNullablePrimitiveType(abstractC11913c0);
+        }
+        m9355a(93);
+        throw null;
+    }
+
+    public static boolean isPrimitiveTypeOrNullablePrimitiveType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
+            return (declarationDescriptor instanceof InterfaceC11330e) && isPrimitiveClass((InterfaceC11330e) declarationDescriptor);
+        }
+        m9355a(94);
+        throw null;
+    }
+
+    public static boolean isShort(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22552l);
+        }
+        m9355a(119);
+        throw null;
+    }
+
+    public static boolean isSpecialClassWithNoSupertypes(InterfaceC11330e interfaceC11330e) {
+        if (interfaceC11330e != null) {
+            return m9357c(interfaceC11330e, C11291k.a.f22532b) || m9357c(interfaceC11330e, C11291k.a.f22534c);
+        }
+        m9355a(106);
+        throw null;
+    }
+
+    public static boolean isString(AbstractC11913c0 abstractC11913c0) {
+        return abstractC11913c0 != null && m9360k(abstractC11913c0, C11291k.a.f22542g);
+    }
+
+    public static boolean isTypeConstructorForGivenClass(InterfaceC12008u0 interfaceC12008u0, C11714c c11714c) {
+        if (interfaceC12008u0 == null) {
+            m9355a(100);
+            throw null;
+        }
+        if (c11714c != null) {
+            InterfaceC11352h declarationDescriptor = interfaceC12008u0.getDeclarationDescriptor();
+            return (declarationDescriptor instanceof InterfaceC11330e) && m9357c(declarationDescriptor, c11714c);
+        }
+        m9355a(101);
+        throw null;
+    }
+
+    public static boolean isUByteArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22547i0.toUnsafe());
+        }
+        m9355a(Opcodes.LAND);
+        throw null;
+    }
+
+    public static boolean isUIntArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22551k0.toUnsafe());
+        }
+        m9355a(Opcodes.LOR);
+        throw null;
+    }
+
+    public static boolean isULongArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22553l0.toUnsafe());
+        }
+        m9355a(130);
+        throw null;
+    }
+
+    public static boolean isUShortArray(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9359j(abstractC11913c0, C11291k.a.f22549j0.toUnsafe());
+        }
+        m9355a(128);
+        throw null;
+    }
+
+    public static boolean isUnderKotlinPackage(InterfaceC11450m interfaceC11450m) {
+        if (interfaceC11450m == null) {
+            m9355a(9);
+            throw null;
+        }
+        while (interfaceC11450m != null) {
+            if (interfaceC11450m instanceof InterfaceC11331e0) {
+                return ((InterfaceC11331e0) interfaceC11450m).getFqName().startsWith(C11291k.f22498k);
+            }
+            interfaceC11450m = interfaceC11450m.getContainingDeclaration();
+        }
+        return false;
+    }
+
+    public static boolean isUnit(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return m9360k(abstractC11913c0, C11291k.a.f22538e);
+        }
+        m9355a(Opcodes.F2D);
+        throw null;
+    }
+
+    public static boolean isUnsignedArrayType(AbstractC11913c0 abstractC11913c0) {
+        if (abstractC11913c0 != null) {
+            return isUByteArray(abstractC11913c0) || isUShortArray(abstractC11913c0) || isUIntArray(abstractC11913c0) || isULongArray(abstractC11913c0);
+        }
+        m9355a(Opcodes.LXOR);
+        throw null;
     }
 
     /* JADX INFO: renamed from: a */
@@ -1225,28 +1884,6 @@ public abstract class AbstractC11288h {
         throw null;
     }
 
-    public static EnumC11289i getPrimitiveArrayType(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9355a(76);
-            throw null;
-        }
-        if (C11291k.a.f22557n0.contains(interfaceC11450m.getName())) {
-            return C11291k.a.f22561p0.get(C11787e.getFqName(interfaceC11450m));
-        }
-        return null;
-    }
-
-    public static EnumC11289i getPrimitiveType(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9355a(75);
-            throw null;
-        }
-        if (C11291k.a.f22555m0.contains(interfaceC11450m.getName())) {
-            return C11291k.a.f22559o0.get(C11787e.getFqName(interfaceC11450m));
-        }
-        return null;
-    }
-
     /* JADX INFO: renamed from: i */
     public static boolean m9358i(AbstractC11913c0 abstractC11913c0, C11714c c11714c) {
         if (abstractC11913c0 == null) {
@@ -1257,313 +1894,6 @@ public abstract class AbstractC11288h {
             return isTypeConstructorForGivenClass(abstractC11913c0.getConstructor(), c11714c);
         }
         m9355a(97);
-        throw null;
-    }
-
-    public static boolean isAny(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e != null) {
-            return m9357c(interfaceC11330e, C11291k.a.f22532b);
-        }
-        m9355a(107);
-        throw null;
-    }
-
-    public static boolean isAnyOrNullableAny(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9358i(abstractC11913c0, C11291k.a.f22532b);
-        }
-        m9355a(Opcodes.L2D);
-        throw null;
-    }
-
-    public static boolean isArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9358i(abstractC11913c0, C11291k.a.f22544h);
-        }
-        m9355a(87);
-        throw null;
-    }
-
-    public static boolean isArrayOrPrimitiveArray(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e != null) {
-            return m9357c(interfaceC11330e, C11291k.a.f22544h) || getPrimitiveArrayType(interfaceC11330e) != null;
-        }
-        m9355a(88);
-        throw null;
-    }
-
-    public static boolean isBoolean(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22546i);
-        }
-        m9355a(109);
-        throw null;
-    }
-
-    public static boolean isBuiltIn(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m != null) {
-            return C11787e.getParentOfType(interfaceC11450m, InterfaceC11282b.class, false) != null;
-        }
-        m9355a(8);
-        throw null;
-    }
-
-    public static boolean isByte(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22550k);
-        }
-        m9355a(116);
-        throw null;
-    }
-
-    public static boolean isChar(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22548j);
-        }
-        m9355a(113);
-        throw null;
-    }
-
-    public static boolean isDefaultBound(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isNullableAny(abstractC11913c0);
-        }
-        m9355a(Opcodes.F2L);
-        throw null;
-    }
-
-    public static boolean isDeprecated(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9355a(158);
-            throw null;
-        }
-        if (interfaceC11450m.getOriginal().getAnnotations().hasAnnotation(C11291k.a.f22566u)) {
-            return true;
-        }
-        if (!(interfaceC11450m instanceof InterfaceC11453n0)) {
-            return false;
-        }
-        InterfaceC11453n0 interfaceC11453n0 = (InterfaceC11453n0) interfaceC11450m;
-        boolean zIsVar = interfaceC11453n0.isVar();
-        InterfaceC11455o0 getter = interfaceC11453n0.getGetter();
-        InterfaceC11457p0 setter = interfaceC11453n0.getSetter();
-        if (getter != null && isDeprecated(getter)) {
-            if (!zIsVar) {
-                return true;
-            }
-            if (setter != null && isDeprecated(setter)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isDouble(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isDoubleOrNullableDouble(abstractC11913c0) && !abstractC11913c0.isMarkedNullable();
-        }
-        m9355a(122);
-        throw null;
-    }
-
-    public static boolean isDoubleOrNullableDouble(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9358i(abstractC11913c0, C11291k.a.f22560p);
-        }
-        m9355a(Opcodes.IINC);
-        throw null;
-    }
-
-    public static boolean isFloat(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isFloatOrNullableFloat(abstractC11913c0) && !abstractC11913c0.isMarkedNullable();
-        }
-        m9355a(120);
-        throw null;
-    }
-
-    public static boolean isFloatOrNullableFloat(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9358i(abstractC11913c0, C11291k.a.f22558o);
-        }
-        m9355a(121);
-        throw null;
-    }
-
-    public static boolean isInt(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22554m);
-        }
-        m9355a(115);
-        throw null;
-    }
-
-    public static boolean isKClass(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e != null) {
-            return m9357c(interfaceC11330e, C11291k.a.f22527X);
-        }
-        m9355a(155);
-        throw null;
-    }
-
-    public static boolean isLong(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22556n);
-        }
-        m9355a(117);
-        throw null;
-    }
-
-    public static boolean isNothing(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isNothingOrNullableNothing(abstractC11913c0) && !C11920e1.isNullableType(abstractC11913c0);
-        }
-        m9355a(Opcodes.I2D);
-        throw null;
-    }
-
-    public static boolean isNothingOrNullableNothing(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9358i(abstractC11913c0, C11291k.a.f22534c);
-        }
-        m9355a(Opcodes.L2F);
-        throw null;
-    }
-
-    public static boolean isNullableAny(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isAnyOrNullableAny(abstractC11913c0) && abstractC11913c0.isMarkedNullable();
-        }
-        m9355a(Opcodes.F2I);
-        throw null;
-    }
-
-    public static boolean isPrimitiveArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
-            return (declarationDescriptor == null || getPrimitiveArrayType(declarationDescriptor) == null) ? false : true;
-        }
-        m9355a(90);
-        throw null;
-    }
-
-    public static boolean isPrimitiveClass(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e != null) {
-            return getPrimitiveType(interfaceC11330e) != null;
-        }
-        m9355a(95);
-        throw null;
-    }
-
-    public static boolean isPrimitiveType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return !abstractC11913c0.isMarkedNullable() && isPrimitiveTypeOrNullablePrimitiveType(abstractC11913c0);
-        }
-        m9355a(93);
-        throw null;
-    }
-
-    public static boolean isPrimitiveTypeOrNullablePrimitiveType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
-            return (declarationDescriptor instanceof InterfaceC11330e) && isPrimitiveClass((InterfaceC11330e) declarationDescriptor);
-        }
-        m9355a(94);
-        throw null;
-    }
-
-    public static boolean isShort(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22552l);
-        }
-        m9355a(119);
-        throw null;
-    }
-
-    public static boolean isSpecialClassWithNoSupertypes(InterfaceC11330e interfaceC11330e) {
-        if (interfaceC11330e != null) {
-            return m9357c(interfaceC11330e, C11291k.a.f22532b) || m9357c(interfaceC11330e, C11291k.a.f22534c);
-        }
-        m9355a(106);
-        throw null;
-    }
-
-    public static boolean isString(AbstractC11913c0 abstractC11913c0) {
-        return abstractC11913c0 != null && m9360k(abstractC11913c0, C11291k.a.f22542g);
-    }
-
-    public static boolean isTypeConstructorForGivenClass(InterfaceC12008u0 interfaceC12008u0, C11714c c11714c) {
-        if (interfaceC12008u0 == null) {
-            m9355a(100);
-            throw null;
-        }
-        if (c11714c != null) {
-            InterfaceC11352h declarationDescriptor = interfaceC12008u0.getDeclarationDescriptor();
-            return (declarationDescriptor instanceof InterfaceC11330e) && m9357c(declarationDescriptor, c11714c);
-        }
-        m9355a(101);
-        throw null;
-    }
-
-    public static boolean isUByteArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22547i0.toUnsafe());
-        }
-        m9355a(Opcodes.LAND);
-        throw null;
-    }
-
-    public static boolean isUIntArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22551k0.toUnsafe());
-        }
-        m9355a(Opcodes.LOR);
-        throw null;
-    }
-
-    public static boolean isULongArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22553l0.toUnsafe());
-        }
-        m9355a(130);
-        throw null;
-    }
-
-    public static boolean isUShortArray(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9359j(abstractC11913c0, C11291k.a.f22549j0.toUnsafe());
-        }
-        m9355a(128);
-        throw null;
-    }
-
-    public static boolean isUnderKotlinPackage(InterfaceC11450m interfaceC11450m) {
-        if (interfaceC11450m == null) {
-            m9355a(9);
-            throw null;
-        }
-        while (interfaceC11450m != null) {
-            if (interfaceC11450m instanceof InterfaceC11331e0) {
-                return ((InterfaceC11331e0) interfaceC11450m).getFqName().startsWith(C11291k.f22498k);
-            }
-            interfaceC11450m = interfaceC11450m.getContainingDeclaration();
-        }
-        return false;
-    }
-
-    public static boolean isUnit(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return m9360k(abstractC11913c0, C11291k.a.f22538e);
-        }
-        m9355a(Opcodes.F2D);
-        throw null;
-    }
-
-    public static boolean isUnsignedArrayType(AbstractC11913c0 abstractC11913c0) {
-        if (abstractC11913c0 != null) {
-            return isUByteArray(abstractC11913c0) || isUShortArray(abstractC11913c0) || isUIntArray(abstractC11913c0) || isULongArray(abstractC11913c0);
-        }
-        m9355a(Opcodes.LXOR);
         throw null;
     }
 
@@ -1602,11 +1932,6 @@ public abstract class AbstractC11288h {
         c11399y2.setDependencies(c11399y2);
     }
 
-    /* JADX INFO: renamed from: e */
-    public InterfaceC11354a mo9362e() {
-        return InterfaceC11354a.a.f22796a;
-    }
-
     /* JADX INFO: renamed from: f */
     public final InterfaceC11330e m9363f(String str) {
         if (str == null) {
@@ -1621,6 +1946,11 @@ public abstract class AbstractC11288h {
         throw null;
     }
 
+    /* JADX INFO: renamed from: e */
+    public InterfaceC11354a mo9362e() {
+        return InterfaceC11354a.a.f22796a;
+    }
+
     /* JADX INFO: renamed from: g */
     public Iterable<InterfaceC11355b> mo9364g() {
         List listSingletonList = Collections.singletonList(new C11296a(this.f22463e, this.f22460b));
@@ -1628,336 +1958,6 @@ public abstract class AbstractC11288h {
             return listSingletonList;
         }
         m9355a(4);
-        throw null;
-    }
-
-    public InterfaceC11330e getAny() {
-        return m9363f("Any");
-    }
-
-    public AbstractC11934j0 getAnyType() {
-        AbstractC11934j0 defaultType = getAny().getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(49);
-        throw null;
-    }
-
-    public InterfaceC11330e getArray() {
-        return m9363f("Array");
-    }
-
-    public AbstractC11913c0 getArrayElementType(AbstractC11913c0 abstractC11913c0) {
-        C11712a classId;
-        C11712a unsignedClassIdByArrayClassId;
-        InterfaceC11330e interfaceC11330eFindClassAcrossModuleDependencies;
-        AbstractC11934j0 defaultType = null;
-        if (abstractC11913c0 == null) {
-            m9355a(66);
-            throw null;
-        }
-        if (isArray(abstractC11913c0)) {
-            if (abstractC11913c0.getArguments().size() != 1) {
-                throw new IllegalStateException();
-            }
-            AbstractC11913c0 type = abstractC11913c0.getArguments().get(0).getType();
-            if (type != null) {
-                return type;
-            }
-            m9355a(67);
-            throw null;
-        }
-        AbstractC11913c0 abstractC11913c0MakeNotNullable = C11920e1.makeNotNullable(abstractC11913c0);
-        AbstractC11934j0 abstractC11934j0 = this.f22461c.invoke().f22471c.get(abstractC11913c0MakeNotNullable);
-        if (abstractC11934j0 != null) {
-            return abstractC11934j0;
-        }
-        InterfaceC11325c0 containingModuleOrNull = C11787e.getContainingModuleOrNull(abstractC11913c0MakeNotNullable);
-        if (containingModuleOrNull != null) {
-            if (abstractC11913c0MakeNotNullable == null) {
-                m9355a(70);
-                throw null;
-            }
-            InterfaceC11352h declarationDescriptor = abstractC11913c0MakeNotNullable.getConstructor().getDeclarationDescriptor();
-            if (declarationDescriptor != null) {
-                C11295o c11295o = C11295o.f22584a;
-                if (c11295o.isShortNameOfUnsignedArray(declarationDescriptor.getName()) && (classId = C11836a.getClassId(declarationDescriptor)) != null && (unsignedClassIdByArrayClassId = c11295o.getUnsignedClassIdByArrayClassId(classId)) != null && (interfaceC11330eFindClassAcrossModuleDependencies = C11470w.findClassAcrossModuleDependencies(containingModuleOrNull, unsignedClassIdByArrayClassId)) != null) {
-                    defaultType = interfaceC11330eFindClassAcrossModuleDependencies.getDefaultType();
-                }
-            }
-            if (defaultType != null) {
-                return defaultType;
-            }
-        }
-        throw new IllegalStateException("not array: " + abstractC11913c0);
-    }
-
-    public AbstractC11934j0 getArrayType(EnumC11935j1 enumC11935j1, AbstractC11913c0 abstractC11913c0, InterfaceC11344g interfaceC11344g) {
-        if (enumC11935j1 == null) {
-            m9355a(77);
-            throw null;
-        }
-        if (abstractC11913c0 == null) {
-            m9355a(78);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9355a(79);
-            throw null;
-        }
-        AbstractC11934j0 abstractC11934j0SimpleNotNullType = C11916d0.simpleNotNullType(interfaceC11344g, getArray(), Collections.singletonList(new C12016y0(enumC11935j1, abstractC11913c0)));
-        if (abstractC11934j0SimpleNotNullType != null) {
-            return abstractC11934j0SimpleNotNullType;
-        }
-        m9355a(80);
-        throw null;
-    }
-
-    public AbstractC11934j0 getBooleanType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.BOOLEAN);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(62);
-        throw null;
-    }
-
-    public InterfaceC11330e getBuiltInClassByFqName(C11713b c11713b) {
-        if (c11713b == null) {
-            m9355a(11);
-            throw null;
-        }
-        InterfaceC11330e interfaceC11330eResolveClassByFqName = C11462s.resolveClassByFqName(this.f22460b, c11713b, EnumC11482d.FROM_BUILTINS);
-        if (interfaceC11330eResolveClassByFqName != null) {
-            return interfaceC11330eResolveClassByFqName;
-        }
-        m9355a(12);
-        throw null;
-    }
-
-    public C11399y getBuiltInsModule() {
-        C11399y c11399y = this.f22460b;
-        if (c11399y != null) {
-            return c11399y;
-        }
-        m9355a(6);
-        throw null;
-    }
-
-    public InterfaceC11770i getBuiltInsPackageScope() {
-        InterfaceC11770i memberScope = this.f22460b.getPackage(C11291k.f22499l).getMemberScope();
-        if (memberScope != null) {
-            return memberScope;
-        }
-        m9355a(10);
-        throw null;
-    }
-
-    public AbstractC11934j0 getByteType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.BYTE);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(55);
-        throw null;
-    }
-
-    public AbstractC11934j0 getCharType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.CHAR);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(61);
-        throw null;
-    }
-
-    public InterfaceC11330e getCollection() {
-        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.a.f22513J);
-        if (builtInClassByFqName != null) {
-            return builtInClassByFqName;
-        }
-        m9355a(33);
-        throw null;
-    }
-
-    public InterfaceC11330e getComparable() {
-        return m9363f("Comparable");
-    }
-
-    public AbstractC11934j0 getDefaultBound() {
-        AbstractC11934j0 nullableAnyType = getNullableAnyType();
-        if (nullableAnyType != null) {
-            return nullableAnyType;
-        }
-        m9355a(51);
-        throw null;
-    }
-
-    public AbstractC11934j0 getDoubleType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.DOUBLE);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(60);
-        throw null;
-    }
-
-    public AbstractC11934j0 getFloatType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.FLOAT);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(59);
-        throw null;
-    }
-
-    public InterfaceC11330e getFunction(int i) {
-        return m9363f(C11291k.getFunctionName(i));
-    }
-
-    public AbstractC11934j0 getIntType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.INT);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(57);
-        throw null;
-    }
-
-    public InterfaceC11330e getKClass() {
-        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.a.f22527X.toSafe());
-        if (builtInClassByFqName != null) {
-            return builtInClassByFqName;
-        }
-        m9355a(20);
-        throw null;
-    }
-
-    public AbstractC11934j0 getLongType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.LONG);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(58);
-        throw null;
-    }
-
-    public InterfaceC11330e getNothing() {
-        return m9363f("Nothing");
-    }
-
-    public AbstractC11934j0 getNothingType() {
-        AbstractC11934j0 defaultType = getNothing().getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(47);
-        throw null;
-    }
-
-    public AbstractC11934j0 getNullableAnyType() {
-        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = getAnyType().makeNullableAsSpecified(true);
-        if (abstractC11934j0MakeNullableAsSpecified != null) {
-            return abstractC11934j0MakeNullableAsSpecified;
-        }
-        m9355a(50);
-        throw null;
-    }
-
-    public AbstractC11934j0 getNullableNothingType() {
-        AbstractC11934j0 abstractC11934j0MakeNullableAsSpecified = getNothingType().makeNullableAsSpecified(true);
-        if (abstractC11934j0MakeNullableAsSpecified != null) {
-            return abstractC11934j0MakeNullableAsSpecified;
-        }
-        m9355a(48);
-        throw null;
-    }
-
-    public InterfaceC11330e getNumber() {
-        return m9363f("Number");
-    }
-
-    public AbstractC11934j0 getNumberType() {
-        AbstractC11934j0 defaultType = getNumber().getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(54);
-        throw null;
-    }
-
-    public AbstractC11934j0 getPrimitiveArrayKotlinType(EnumC11289i enumC11289i) {
-        if (enumC11289i == null) {
-            m9355a(72);
-            throw null;
-        }
-        AbstractC11934j0 abstractC11934j0 = this.f22461c.invoke().f22469a.get(enumC11289i);
-        if (abstractC11934j0 != null) {
-            return abstractC11934j0;
-        }
-        m9355a(73);
-        throw null;
-    }
-
-    public AbstractC11934j0 getPrimitiveKotlinType(EnumC11289i enumC11289i) {
-        if (enumC11289i == null) {
-            m9355a(52);
-            throw null;
-        }
-        if (enumC11289i == null) {
-            m9355a(15);
-            throw null;
-        }
-        AbstractC11934j0 defaultType = m9363f(enumC11289i.getTypeName().asString()).getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(53);
-        throw null;
-    }
-
-    public AbstractC11934j0 getShortType() {
-        AbstractC11934j0 primitiveKotlinType = getPrimitiveKotlinType(EnumC11289i.SHORT);
-        if (primitiveKotlinType != null) {
-            return primitiveKotlinType;
-        }
-        m9355a(56);
-        throw null;
-    }
-
-    public InterfaceC11330e getString() {
-        return m9363f("String");
-    }
-
-    public AbstractC11934j0 getStringType() {
-        AbstractC11934j0 defaultType = getString().getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(64);
-        throw null;
-    }
-
-    public InterfaceC11330e getSuspendFunction(int i) {
-        InterfaceC11330e builtInClassByFqName = getBuiltInClassByFqName(C11291k.f22491d.child(C11716e.identifier(C11291k.getSuspendFunctionName(i))));
-        if (builtInClassByFqName != null) {
-            return builtInClassByFqName;
-        }
-        m9355a(17);
-        throw null;
-    }
-
-    public InterfaceC11330e getUnit() {
-        return m9363f("Unit");
-    }
-
-    public AbstractC11934j0 getUnitType() {
-        AbstractC11934j0 defaultType = getUnit().getDefaultType();
-        if (defaultType != null) {
-            return defaultType;
-        }
-        m9355a(63);
         throw null;
     }
 

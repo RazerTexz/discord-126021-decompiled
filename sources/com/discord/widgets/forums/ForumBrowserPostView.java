@@ -191,6 +191,50 @@ public final class ForumBrowserPostView extends ConstraintLayout {
         }
     }
 
+    public final void configurePost(PostData post) {
+        C12238m.checkNotNullParameter(post, "post");
+        TextView textView = this.binding.f15081b;
+        C12238m.checkNotNullExpressionValue(textView, "binding.formPostTitle");
+        textView.setText(post.getChannel().getName());
+        Message firstMessage = post.getFirstMessage();
+        String content = firstMessage != null ? firstMessage.getContent() : null;
+        ForumUtils forumUtils = ForumUtils.INSTANCE;
+        Context context = getContext();
+        C12238m.checkNotNullExpressionValue(context, "context");
+        CharSequence activeAgoTimestamp = forumUtils.getActiveAgoTimestamp(context, post.getMostRecentMessageTimestamp());
+        TextView textView2 = this.binding.f15092m;
+        C12238m.checkNotNullExpressionValue(textView2, "binding.timestamp");
+        ViewExtensions.setTextAndVisibilityBy(textView2, activeAgoTimestamp);
+        configureFirstMessage(post, firstMessage, content);
+        configurePostOwner(post);
+        configureAttachments(firstMessage != null ? firstMessage.getAttachments() : null);
+        configureReaction(post.getMostCommonReaction(), post.isDefaultReaction(), firstMessage != null ? Long.valueOf(firstMessage.getId()) : null);
+        configureMessageCount(post);
+        configureTag(post.getTag());
+        configureReadState(post);
+        boolean z2 = !post.getTypingUsers().isEmpty();
+        if (z2) {
+            configureTypingIndicator(post.getTypingUsers());
+        }
+        ImageView imageView = this.binding.f15090k;
+        C12238m.checkNotNullExpressionValue(imageView, "binding.pinnedIcon");
+        imageView.setVisibility(ChannelUtils.m7666A(post.getChannel()) ? 0 : 8);
+        TextView textView3 = this.binding.f15092m;
+        C12238m.checkNotNullExpressionValue(textView3, "binding.timestamp");
+        textView3.setVisibility(z2 ^ true ? 0 : 8);
+        UserSummaryView userSummaryView = this.binding.f15094o;
+        C12238m.checkNotNullExpressionValue(userSummaryView, "binding.typingUserSummary");
+        userSummaryView.setVisibility(z2 ? 0 : 8);
+        TypingDots typingDots = this.binding.f15093n;
+        C12238m.checkNotNullExpressionValue(typingDots, "binding.typingIndicator");
+        typingDots.setVisibility(z2 ? 0 : 8);
+        if (Build.VERSION.SDK_INT >= 23) {
+            View view = this.binding.f15080a;
+            C12238m.checkNotNullExpressionValue(view, "binding.root");
+            view.setForeground(getCardPressHighlight());
+        }
+    }
+
     private final void configurePostOwner(PostData post) {
         String username;
         User owner = post.getOwner();
@@ -286,50 +330,6 @@ public final class ForumBrowserPostView extends ConstraintLayout {
 
     private final ColorStateList getReactionMeTextColor() {
         return (ColorStateList) this.reactionMeTextColor.getValue();
-    }
-
-    public final void configurePost(PostData post) {
-        C12238m.checkNotNullParameter(post, "post");
-        TextView textView = this.binding.f15081b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.formPostTitle");
-        textView.setText(post.getChannel().getName());
-        Message firstMessage = post.getFirstMessage();
-        String content = firstMessage != null ? firstMessage.getContent() : null;
-        ForumUtils forumUtils = ForumUtils.INSTANCE;
-        Context context = getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        CharSequence activeAgoTimestamp = forumUtils.getActiveAgoTimestamp(context, post.getMostRecentMessageTimestamp());
-        TextView textView2 = this.binding.f15092m;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.timestamp");
-        ViewExtensions.setTextAndVisibilityBy(textView2, activeAgoTimestamp);
-        configureFirstMessage(post, firstMessage, content);
-        configurePostOwner(post);
-        configureAttachments(firstMessage != null ? firstMessage.getAttachments() : null);
-        configureReaction(post.getMostCommonReaction(), post.isDefaultReaction(), firstMessage != null ? Long.valueOf(firstMessage.getId()) : null);
-        configureMessageCount(post);
-        configureTag(post.getTag());
-        configureReadState(post);
-        boolean z2 = !post.getTypingUsers().isEmpty();
-        if (z2) {
-            configureTypingIndicator(post.getTypingUsers());
-        }
-        ImageView imageView = this.binding.f15090k;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.pinnedIcon");
-        imageView.setVisibility(ChannelUtils.m7666A(post.getChannel()) ? 0 : 8);
-        TextView textView3 = this.binding.f15092m;
-        C12238m.checkNotNullExpressionValue(textView3, "binding.timestamp");
-        textView3.setVisibility(z2 ^ true ? 0 : 8);
-        UserSummaryView userSummaryView = this.binding.f15094o;
-        C12238m.checkNotNullExpressionValue(userSummaryView, "binding.typingUserSummary");
-        userSummaryView.setVisibility(z2 ? 0 : 8);
-        TypingDots typingDots = this.binding.f15093n;
-        C12238m.checkNotNullExpressionValue(typingDots, "binding.typingIndicator");
-        typingDots.setVisibility(z2 ? 0 : 8);
-        if (Build.VERSION.SDK_INT >= 23) {
-            View view = this.binding.f15080a;
-            C12238m.checkNotNullExpressionValue(view, "binding.root");
-            view.setForeground(getCardPressHighlight());
-        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

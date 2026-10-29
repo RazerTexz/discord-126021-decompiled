@@ -37,20 +37,9 @@ public class C2202w extends AbstractC2173a {
         boolean m1932a(char c, String str, int i);
     }
 
-    /* JADX INFO: renamed from: b.g.a.c.c0.w$b */
-    /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
-    public static class b extends AbstractC2173a.a implements Serializable {
-        private static final long serialVersionUID = 1;
-        public final String _setterPrefix = "set";
-        public final String _withPrefix = "with";
-        public final String _getterPrefix = "get";
-        public final String _isGetterPrefix = "is";
-        public final a _baseNameValidator = null;
-    }
-
     /* JADX INFO: renamed from: b.g.a.c.c0.w$c */
     /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
-    public static class c extends C2202w {
+    public class c extends C2202w {
 
         /* JADX INFO: renamed from: f */
         public final Set<String> f4756f;
@@ -99,54 +88,6 @@ public class C2202w extends AbstractC2173a {
         this.f4753c = str2;
         this.f4754d = str3;
         this.f4751a = aVar;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
-    /* JADX INFO: renamed from: a */
-    public String mo1815a(C2189j c2189j, String str) {
-        if (this.f4754d == null) {
-            return null;
-        }
-        Class<?> clsMo1820d = c2189j.mo1820d();
-        if ((clsMo1820d == Boolean.class || clsMo1820d == Boolean.TYPE) && str.startsWith(this.f4754d)) {
-            return this.f4752b ? m1931e(str, 2) : m1930d(str, 2);
-        }
-        return null;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
-    /* JADX INFO: renamed from: b */
-    public String mo1816b(C2189j c2189j, String str) {
-        String str2 = this.f4755e;
-        if (str2 == null || !str.startsWith(str2)) {
-            return null;
-        }
-        return this.f4752b ? m1931e(str, this.f4755e.length()) : m1930d(str, this.f4755e.length());
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
-    /* JADX INFO: renamed from: c */
-    public String mo1817c(C2189j c2189j, String str) {
-        String str2 = this.f4753c;
-        if (str2 == null || !str.startsWith(str2)) {
-            return null;
-        }
-        if ("getCallbacks".equals(str)) {
-            Class<?> clsMo1820d = c2189j.mo1820d();
-            boolean z2 = false;
-            if (clsMo1820d.isArray()) {
-                String name = clsMo1820d.getComponentType().getName();
-                if (name.contains(".cglib") && (name.startsWith("net.sf.cglib") || name.startsWith("org.hibernate.repackage.cglib") || name.startsWith("org.springframework.cglib"))) {
-                    z2 = true;
-                }
-            }
-            if (z2) {
-                return null;
-            }
-        } else if ("getMetaClass".equals(str) && c2189j.mo1820d().getName().startsWith("groovy.lang")) {
-            return null;
-        }
-        return this.f4752b ? m1931e(str, this.f4753c.length()) : m1930d(str, this.f4753c.length());
     }
 
     /* JADX INFO: renamed from: d */
@@ -205,5 +146,64 @@ public class C2202w extends AbstractC2173a {
         sb.append(lowerCase);
         sb.append((CharSequence) str, i2, length);
         return sb.toString();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
+    /* JADX INFO: renamed from: a */
+    public String mo1815a(C2189j c2189j, String str) {
+        if (this.f4754d == null) {
+            return null;
+        }
+        Class<?> clsMo1820d = c2189j.mo1820d();
+        if ((clsMo1820d == Boolean.class || clsMo1820d == Boolean.TYPE) && str.startsWith(this.f4754d)) {
+            return this.f4752b ? m1931e(str, 2) : m1930d(str, 2);
+        }
+        return null;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
+    /* JADX INFO: renamed from: b */
+    public String mo1816b(C2189j c2189j, String str) {
+        String str2 = this.f4755e;
+        if (str2 == null || !str.startsWith(str2)) {
+            return null;
+        }
+        return this.f4752b ? m1931e(str, this.f4755e.length()) : m1930d(str, this.f4755e.length());
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p210c0.AbstractC2173a
+    /* JADX INFO: renamed from: c */
+    public String mo1817c(C2189j c2189j, String str) {
+        String str2 = this.f4753c;
+        if (str2 == null || !str.startsWith(str2)) {
+            return null;
+        }
+        if ("getCallbacks".equals(str)) {
+            Class<?> clsMo1820d = c2189j.mo1820d();
+            boolean z2 = false;
+            if (clsMo1820d.isArray()) {
+                String name = clsMo1820d.getComponentType().getName();
+                if (name.contains(".cglib") && (name.startsWith("net.sf.cglib") || name.startsWith("org.hibernate.repackage.cglib") || name.startsWith("org.springframework.cglib"))) {
+                    z2 = true;
+                }
+            }
+            if (z2) {
+                return null;
+            }
+        } else if ("getMetaClass".equals(str) && c2189j.mo1820d().getName().startsWith("groovy.lang")) {
+            return null;
+        }
+        return this.f4752b ? m1931e(str, this.f4753c.length()) : m1930d(str, this.f4753c.length());
+    }
+
+    /* JADX INFO: renamed from: b.g.a.c.c0.w$b */
+    /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
+    public class b extends AbstractC2173a.a implements Serializable {
+        private static final long serialVersionUID = 1;
+        public final String _setterPrefix = "set";
+        public final String _withPrefix = "with";
+        public final String _getterPrefix = "get";
+        public final String _isGetterPrefix = "is";
+        public final a _baseNameValidator = null;
     }
 }

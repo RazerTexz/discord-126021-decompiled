@@ -43,16 +43,6 @@ public final /* data */ class EmojiAutocompletable extends Autocompletable {
         return emojiAutocompletable.copy(emoji, z2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Emoji getEmoji() {
-        return this.emoji;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getAnimationsEnabled() {
-        return this.animationsEnabled;
-    }
-
     public final EmojiAutocompletable copy(Emoji emoji, boolean animationsEnabled) {
         C12238m.checkNotNullParameter(emoji, "emoji");
         return new EmojiAutocompletable(emoji, animationsEnabled);
@@ -69,6 +59,11 @@ public final /* data */ class EmojiAutocompletable extends Autocompletable {
         return C12238m.areEqual(this.emoji, emojiAutocompletable.emoji) && this.animationsEnabled == emojiAutocompletable.animationsEnabled;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getAnimationsEnabled() {
+        return this.animationsEnabled;
+    }
+
     public final boolean getAnimationsEnabled() {
         return this.animationsEnabled;
     }
@@ -76,6 +71,11 @@ public final /* data */ class EmojiAutocompletable extends Autocompletable {
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getAutocompleteTextMatchers() {
         return null;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Emoji getEmoji() {
+        return this.emoji;
     }
 
     public final Emoji getEmoji() {

@@ -44,9 +44,6 @@ import p615g0.InterfaceC12390g;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12355d implements WebSocket, C12359h.a {
 
-    /* JADX INFO: renamed from: a */
-    public static final List<EnumC12381y> f25821a = C12145m.listOf(EnumC12381y.HTTP_1_1);
-
     /* JADX INFO: renamed from: b */
     public final String f25822b;
 
@@ -122,9 +119,12 @@ public final class C12355d implements WebSocket, C12359h.a {
     /* JADX INFO: renamed from: z */
     public long f25846z;
 
+    /* JADX INFO: renamed from: a */
+    public static final List<EnumC12381y> f25821a = C12145m.listOf(EnumC12381y.HTTP_1_1);
+
     /* JADX INFO: renamed from: f0.e0.n.d$a */
     /* JADX INFO: compiled from: RealWebSocket.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f25847a;
@@ -144,7 +144,7 @@ public final class C12355d implements WebSocket, C12359h.a {
 
     /* JADX INFO: renamed from: f0.e0.n.d$b */
     /* JADX INFO: compiled from: RealWebSocket.kt */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f25850a;
@@ -161,7 +161,7 @@ public final class C12355d implements WebSocket, C12359h.a {
 
     /* JADX INFO: renamed from: f0.e0.n.d$c */
     /* JADX INFO: compiled from: RealWebSocket.kt */
-    public static abstract class c implements Closeable {
+    public abstract class c implements Closeable {
 
         /* JADX INFO: renamed from: j */
         public final boolean f25852j;
@@ -202,7 +202,7 @@ public final class C12355d implements WebSocket, C12359h.a {
 
     /* JADX INFO: renamed from: f0.e0.n.d$e */
     /* JADX INFO: compiled from: TaskQueue.kt */
-    public static final class e extends AbstractC12277a {
+    public final class e extends AbstractC12277a {
 
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ long f25856e;
@@ -251,7 +251,7 @@ public final class C12355d implements WebSocket, C12359h.a {
 
     /* JADX INFO: renamed from: f0.e0.n.d$f */
     /* JADX INFO: compiled from: TaskQueue.kt */
-    public static final class f extends AbstractC12277a {
+    public final class f extends AbstractC12277a {
 
         /* JADX INFO: renamed from: e */
         public final /* synthetic */ C12355d f25858e;
@@ -298,201 +298,6 @@ public final class C12355d implements WebSocket, C12359h.a {
         byte[] bArr = new byte[16];
         random.nextBytes(bArr);
         this.f25822b = ByteString.Companion.m11009d(companion, bArr, 0, 0, 3).mo10500f();
-    }
-
-    @Override // okhttp3.WebSocket
-    /* JADX INFO: renamed from: a */
-    public boolean mo10345a(String str) {
-        C12238m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-        ByteString byteStringM11012c = ByteString.INSTANCE.m11012c(str);
-        synchronized (this) {
-            if (!this.f25836p && !this.f25833m) {
-                if (this.f25832l + ((long) byteStringM11012c.mo10502j()) > Permission.MOVE_MEMBERS) {
-                    mo10349e(PointerIconCompat.TYPE_CONTEXT_MENU, null);
-                    return false;
-                }
-                this.f25832l += (long) byteStringM11012c.mo10502j();
-                this.f25831k.add(new b(1, byteStringM11012c));
-                m10356l();
-                return true;
-            }
-            return false;
-        }
-    }
-
-    @Override // p600f0.p601e0.p613n.C12359h.a
-    /* JADX INFO: renamed from: b */
-    public void mo10346b(ByteString byteString) throws IOException {
-        C12238m.checkParameterIsNotNull(byteString, "bytes");
-        this.f25842v.onMessage(this, byteString);
-    }
-
-    @Override // p600f0.p601e0.p613n.C12359h.a
-    /* JADX INFO: renamed from: c */
-    public void mo10347c(String str) throws IOException {
-        C12238m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-        this.f25842v.onMessage(this, str);
-    }
-
-    @Override // p600f0.p601e0.p613n.C12359h.a
-    /* JADX INFO: renamed from: d */
-    public synchronized void mo10348d(ByteString byteString) {
-        C12238m.checkParameterIsNotNull(byteString, "payload");
-        if (!this.f25836p && (!this.f25833m || !this.f25831k.isEmpty())) {
-            this.f25830j.add(byteString);
-            m10356l();
-            this.f25838r++;
-        }
-    }
-
-    @Override // okhttp3.WebSocket
-    /* JADX INFO: renamed from: e */
-    public boolean mo10349e(int i, String str) {
-        String str2;
-        synchronized (this) {
-            ByteString byteStringM11012c = null;
-            try {
-                if (i < 1000 || i >= 5000) {
-                    str2 = "Code must be in range [1000,5000): " + i;
-                } else if ((1004 > i || 1006 < i) && (1015 > i || 2999 < i)) {
-                    str2 = null;
-                } else {
-                    str2 = "Code " + i + " is reserved and may not be used.";
-                }
-                if (!(str2 == null)) {
-                    if (str2 == null) {
-                        C12238m.throwNpe();
-                    }
-                    throw new IllegalArgumentException(str2.toString());
-                }
-                if (str != null) {
-                    byteStringM11012c = ByteString.INSTANCE.m11012c(str);
-                    if (!(((long) byteStringM11012c.mo10502j()) <= 123)) {
-                        throw new IllegalArgumentException(("reason.size() > 123: " + str).toString());
-                    }
-                }
-                if (!this.f25836p && !this.f25833m) {
-                    this.f25833m = true;
-                    this.f25831k.add(new a(i, byteStringM11012c, 60000L));
-                    m10356l();
-                    return true;
-                }
-                return false;
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-    }
-
-    @Override // p600f0.p601e0.p613n.C12359h.a
-    /* JADX INFO: renamed from: f */
-    public synchronized void mo10350f(ByteString byteString) {
-        C12238m.checkParameterIsNotNull(byteString, "payload");
-        this.f25839s++;
-        this.f25840t = false;
-    }
-
-    @Override // p600f0.p601e0.p613n.C12359h.a
-    /* JADX INFO: renamed from: g */
-    public void mo10351g(int i, String str) {
-        c cVar;
-        C12359h c12359h;
-        C12360i c12360i;
-        C12238m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
-        if (!(i != -1)) {
-            throw new IllegalArgumentException("Failed requirement.".toString());
-        }
-        synchronized (this) {
-            if (!(this.f25834n == -1)) {
-                throw new IllegalStateException("already closed".toString());
-            }
-            this.f25834n = i;
-            this.f25835o = str;
-            cVar = null;
-            if (this.f25833m && this.f25831k.isEmpty()) {
-                c cVar2 = this.f25829i;
-                this.f25829i = null;
-                c12359h = this.f25825e;
-                this.f25825e = null;
-                c12360i = this.f25826f;
-                this.f25826f = null;
-                this.f25827g.m10156f();
-                cVar = cVar2;
-            } else {
-                c12359h = null;
-                c12360i = null;
-            }
-        }
-        try {
-            this.f25842v.onClosing(this, i, str);
-            if (cVar != null) {
-                this.f25842v.onClosed(this, i, str);
-            }
-            if (cVar != null) {
-                byte[] bArr = C12272c.f25397a;
-                C12238m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
-                try {
-                    cVar.close();
-                } catch (RuntimeException e2) {
-                    throw e2;
-                } catch (Exception unused) {
-                }
-            }
-            if (c12359h != null) {
-                byte[] bArr2 = C12272c.f25397a;
-                C12238m.checkParameterIsNotNull(c12359h, "$this$closeQuietly");
-                try {
-                    c12359h.close();
-                } catch (RuntimeException e3) {
-                    throw e3;
-                } catch (Exception unused2) {
-                }
-            }
-            if (c12360i != null) {
-                byte[] bArr3 = C12272c.f25397a;
-                C12238m.checkParameterIsNotNull(c12360i, "$this$closeQuietly");
-                try {
-                    c12360i.close();
-                } catch (RuntimeException e4) {
-                    throw e4;
-                } catch (Exception unused3) {
-                }
-            }
-        } catch (Throwable th) {
-            if (cVar != null) {
-                byte[] bArr4 = C12272c.f25397a;
-                C12238m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
-                try {
-                    cVar.close();
-                } catch (RuntimeException e5) {
-                    throw e5;
-                } catch (Exception unused4) {
-                }
-            }
-            if (c12359h != null) {
-                byte[] bArr5 = C12272c.f25397a;
-                C12238m.checkParameterIsNotNull(c12359h, "$this$closeQuietly");
-                try {
-                    c12359h.close();
-                } catch (RuntimeException e6) {
-                    throw e6;
-                } catch (Exception unused5) {
-                }
-            }
-            if (c12360i == null) {
-                throw th;
-            }
-            byte[] bArr6 = C12272c.f25397a;
-            C12238m.checkParameterIsNotNull(c12360i, "$this$closeQuietly");
-            try {
-                c12360i.close();
-                throw th;
-            } catch (RuntimeException e7) {
-                throw e7;
-            } catch (Exception unused6) {
-                throw th;
-            }
-        }
     }
 
     /* JADX INFO: renamed from: h */
@@ -985,6 +790,201 @@ public final class C12355d implements WebSocket, C12359h.a {
                 ref$ObjectRef11 = ref$ObjectRef;
                 ref$ObjectRef3 = ref$ObjectRef2;
                 ref$ObjectRef4 = ref$ObjectRef8;
+            }
+        }
+    }
+
+    @Override // okhttp3.WebSocket
+    /* JADX INFO: renamed from: a */
+    public boolean mo10345a(String str) {
+        C12238m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        ByteString byteStringM11012c = ByteString.INSTANCE.m11012c(str);
+        synchronized (this) {
+            if (!this.f25836p && !this.f25833m) {
+                if (this.f25832l + ((long) byteStringM11012c.mo10502j()) > Permission.MOVE_MEMBERS) {
+                    mo10349e(PointerIconCompat.TYPE_CONTEXT_MENU, null);
+                    return false;
+                }
+                this.f25832l += (long) byteStringM11012c.mo10502j();
+                this.f25831k.add(new b(1, byteStringM11012c));
+                m10356l();
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override // p600f0.p601e0.p613n.C12359h.a
+    /* JADX INFO: renamed from: b */
+    public void mo10346b(ByteString byteString) throws IOException {
+        C12238m.checkParameterIsNotNull(byteString, "bytes");
+        this.f25842v.onMessage(this, byteString);
+    }
+
+    @Override // p600f0.p601e0.p613n.C12359h.a
+    /* JADX INFO: renamed from: c */
+    public void mo10347c(String str) throws IOException {
+        C12238m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        this.f25842v.onMessage(this, str);
+    }
+
+    @Override // p600f0.p601e0.p613n.C12359h.a
+    /* JADX INFO: renamed from: d */
+    public synchronized void mo10348d(ByteString byteString) {
+        C12238m.checkParameterIsNotNull(byteString, "payload");
+        if (!this.f25836p && (!this.f25833m || !this.f25831k.isEmpty())) {
+            this.f25830j.add(byteString);
+            m10356l();
+            this.f25838r++;
+        }
+    }
+
+    @Override // okhttp3.WebSocket
+    /* JADX INFO: renamed from: e */
+    public boolean mo10349e(int i, String str) {
+        String str2;
+        synchronized (this) {
+            ByteString byteStringM11012c = null;
+            try {
+                if (i < 1000 || i >= 5000) {
+                    str2 = "Code must be in range [1000,5000): " + i;
+                } else if ((1004 > i || 1006 < i) && (1015 > i || 2999 < i)) {
+                    str2 = null;
+                } else {
+                    str2 = "Code " + i + " is reserved and may not be used.";
+                }
+                if (!(str2 == null)) {
+                    if (str2 == null) {
+                        C12238m.throwNpe();
+                    }
+                    throw new IllegalArgumentException(str2.toString());
+                }
+                if (str != null) {
+                    byteStringM11012c = ByteString.INSTANCE.m11012c(str);
+                    if (!(((long) byteStringM11012c.mo10502j()) <= 123)) {
+                        throw new IllegalArgumentException(("reason.size() > 123: " + str).toString());
+                    }
+                }
+                if (!this.f25836p && !this.f25833m) {
+                    this.f25833m = true;
+                    this.f25831k.add(new a(i, byteStringM11012c, 60000L));
+                    m10356l();
+                    return true;
+                }
+                return false;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
+
+    @Override // p600f0.p601e0.p613n.C12359h.a
+    /* JADX INFO: renamed from: f */
+    public synchronized void mo10350f(ByteString byteString) {
+        C12238m.checkParameterIsNotNull(byteString, "payload");
+        this.f25839s++;
+        this.f25840t = false;
+    }
+
+    @Override // p600f0.p601e0.p613n.C12359h.a
+    /* JADX INFO: renamed from: g */
+    public void mo10351g(int i, String str) {
+        c cVar;
+        C12359h c12359h;
+        C12360i c12360i;
+        C12238m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
+        if (!(i != -1)) {
+            throw new IllegalArgumentException("Failed requirement.".toString());
+        }
+        synchronized (this) {
+            if (!(this.f25834n == -1)) {
+                throw new IllegalStateException("already closed".toString());
+            }
+            this.f25834n = i;
+            this.f25835o = str;
+            cVar = null;
+            if (this.f25833m && this.f25831k.isEmpty()) {
+                c cVar2 = this.f25829i;
+                this.f25829i = null;
+                c12359h = this.f25825e;
+                this.f25825e = null;
+                c12360i = this.f25826f;
+                this.f25826f = null;
+                this.f25827g.m10156f();
+                cVar = cVar2;
+            } else {
+                c12359h = null;
+                c12360i = null;
+            }
+        }
+        try {
+            this.f25842v.onClosing(this, i, str);
+            if (cVar != null) {
+                this.f25842v.onClosed(this, i, str);
+            }
+            if (cVar != null) {
+                byte[] bArr = C12272c.f25397a;
+                C12238m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
+                try {
+                    cVar.close();
+                } catch (RuntimeException e2) {
+                    throw e2;
+                } catch (Exception unused) {
+                }
+            }
+            if (c12359h != null) {
+                byte[] bArr2 = C12272c.f25397a;
+                C12238m.checkParameterIsNotNull(c12359h, "$this$closeQuietly");
+                try {
+                    c12359h.close();
+                } catch (RuntimeException e3) {
+                    throw e3;
+                } catch (Exception unused2) {
+                }
+            }
+            if (c12360i != null) {
+                byte[] bArr3 = C12272c.f25397a;
+                C12238m.checkParameterIsNotNull(c12360i, "$this$closeQuietly");
+                try {
+                    c12360i.close();
+                } catch (RuntimeException e4) {
+                    throw e4;
+                } catch (Exception unused3) {
+                }
+            }
+        } catch (Throwable th) {
+            if (cVar != null) {
+                byte[] bArr4 = C12272c.f25397a;
+                C12238m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
+                try {
+                    cVar.close();
+                } catch (RuntimeException e5) {
+                    throw e5;
+                } catch (Exception unused4) {
+                }
+            }
+            if (c12359h != null) {
+                byte[] bArr5 = C12272c.f25397a;
+                C12238m.checkParameterIsNotNull(c12359h, "$this$closeQuietly");
+                try {
+                    c12359h.close();
+                } catch (RuntimeException e6) {
+                    throw e6;
+                } catch (Exception unused5) {
+                }
+            }
+            if (c12360i == null) {
+                throw th;
+            }
+            byte[] bArr6 = C12272c.f25397a;
+            C12238m.checkParameterIsNotNull(c12360i, "$this$closeQuietly");
+            try {
+                c12360i.close();
+                throw th;
+            } catch (RuntimeException e7) {
+                throw e7;
+            } catch (Exception unused6) {
+                throw th;
             }
         }
     }

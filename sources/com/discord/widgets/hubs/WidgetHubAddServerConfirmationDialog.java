@@ -38,7 +38,7 @@ public final class WidgetHubAddServerConfirmationDialog extends AppDialog {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetHubAddServerConfirmationDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

@@ -33,35 +33,35 @@ public final class C0847x extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.x$a */
     /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: b.a.a.x$b */
     /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-    public static abstract class b {
-
-        /* JADX INFO: renamed from: b.a.a.x$b$a */
-        /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-        public static final class a extends b {
-
-            /* JADX INFO: renamed from: a */
-            public static final a f449a = new a();
-
-            public a() {
-                super(null);
-            }
-        }
+    public abstract class b {
 
         /* JADX INFO: renamed from: b.a.a.x$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-        public static final class C13210b extends b {
+        public final class C13210b extends b {
 
             /* JADX INFO: renamed from: a */
             public static final C13210b f450a = new C13210b();
 
             public C13210b() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: renamed from: b.a.a.x$b$a */
+        /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
+        public final class a extends b {
+
+            /* JADX INFO: renamed from: a */
+            public static final a f449a = new a();
+
+            public a() {
                 super(null);
             }
         }
@@ -75,7 +75,7 @@ public final class C0847x extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.x$c */
     /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-    public static final class c {
+    public final class c {
 
         /* JADX INFO: renamed from: a */
         public final User f451a;
@@ -110,7 +110,7 @@ public final class C0847x extends AbstractC0859d0<d> {
 
     /* JADX INFO: renamed from: b.a.a.x$d */
     /* JADX INFO: compiled from: WidgetUrgentMessageDialogViewModel.kt */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final Integer f452a;

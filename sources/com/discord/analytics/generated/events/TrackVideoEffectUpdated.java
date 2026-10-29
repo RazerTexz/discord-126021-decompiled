@@ -11,26 +11,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoEffectUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence effectType = null;
-    private final CharSequence effectDetail = null;
-    private final CharSequence effectState = null;
     private final Long channelId = null;
     private final Long channelType = null;
+    private final CharSequence effectDetail = null;
+    private final CharSequence effectState = null;
+    private final CharSequence effectType = null;
     private final Long guildId = null;
-    private final Long videoStreamCount = null;
-    private final Long voiceStateCount = null;
+    private final Boolean isAnimated = null;
     private final CharSequence mediaSessionId = null;
     private final CharSequence rtcConnectionId = null;
-    private final Boolean isAnimated = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
+    private final Long videoStreamCount = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "video_effect_updated";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -41,6 +35,12 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
         }
         TrackVideoEffectUpdated trackVideoEffectUpdated = (TrackVideoEffectUpdated) other;
         return C12238m.areEqual(this.effectType, trackVideoEffectUpdated.effectType) && C12238m.areEqual(this.effectDetail, trackVideoEffectUpdated.effectDetail) && C12238m.areEqual(this.effectState, trackVideoEffectUpdated.effectState) && C12238m.areEqual(this.channelId, trackVideoEffectUpdated.channelId) && C12238m.areEqual(this.channelType, trackVideoEffectUpdated.channelType) && C12238m.areEqual(this.guildId, trackVideoEffectUpdated.guildId) && C12238m.areEqual(this.videoStreamCount, trackVideoEffectUpdated.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVideoEffectUpdated.voiceStateCount) && C12238m.areEqual(this.mediaSessionId, trackVideoEffectUpdated.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackVideoEffectUpdated.rtcConnectionId) && C12238m.areEqual(this.isAnimated, trackVideoEffectUpdated.isAnimated);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

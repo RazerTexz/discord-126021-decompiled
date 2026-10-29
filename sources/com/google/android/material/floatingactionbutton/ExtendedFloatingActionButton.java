@@ -39,6 +39,7 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     private static final int ANIM_STATE_HIDING = 1;
     private static final int ANIM_STATE_NONE = 0;
     private static final int ANIM_STATE_SHOWING = 2;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ExtendedFloatingActionButton_Icon;
     private int animState;
     private boolean animateShowBeforeLayout;
 
@@ -61,184 +62,14 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
 
     @NonNull
     private final InterfaceC4412j shrinkStrategy;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ExtendedFloatingActionButton_Icon;
     public static final Property<View, Float> WIDTH = new C10911d(Float.class, "width");
     public static final Property<View, Float> HEIGHT = new C10912e(Float.class, "height");
     public static final Property<View, Float> PADDING_START = new C10913f(Float.class, "paddingStart");
     public static final Property<View, Float> PADDING_END = new C10914g(Float.class, "paddingEnd");
 
-    public static class ExtendedFloatingActionButtonBehavior<T extends ExtendedFloatingActionButton> extends CoordinatorLayout.Behavior<T> {
-        private static final boolean AUTO_HIDE_DEFAULT = false;
-        private static final boolean AUTO_SHRINK_DEFAULT = true;
-        private boolean autoHideEnabled;
-        private boolean autoShrinkEnabled;
-
-        @Nullable
-        private OnChangedCallback internalAutoHideCallback;
-
-        @Nullable
-        private OnChangedCallback internalAutoShrinkCallback;
-        private Rect tmpRect;
-
-        public ExtendedFloatingActionButtonBehavior() {
-            this.autoHideEnabled = false;
-            this.autoShrinkEnabled = true;
-        }
-
-        private static boolean isBottomSheet(@NonNull View view) {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
-                return ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior() instanceof BottomSheetBehavior;
-            }
-            return false;
-        }
-
-        private boolean shouldUpdateVisibility(@NonNull View view, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
-            return (this.autoHideEnabled || this.autoShrinkEnabled) && ((CoordinatorLayout.LayoutParams) extendedFloatingActionButton.getLayoutParams()).getAnchorId() == view.getId();
-        }
-
-        private boolean updateFabVisibilityForAppBarLayout(CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
-            if (!shouldUpdateVisibility(appBarLayout, extendedFloatingActionButton)) {
-                return false;
-            }
-            if (this.tmpRect == null) {
-                this.tmpRect = new Rect();
-            }
-            Rect rect = this.tmpRect;
-            DescendantOffsetUtils.getDescendantRect(coordinatorLayout, appBarLayout, rect);
-            if (rect.bottom <= appBarLayout.getMinimumHeightForVisibleOverlappingContent()) {
-                shrinkOrHide(extendedFloatingActionButton);
-                return true;
-            }
-            extendOrShow(extendedFloatingActionButton);
-            return true;
-        }
-
-        private boolean updateFabVisibilityForBottomSheet(@NonNull View view, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
-            if (!shouldUpdateVisibility(view, extendedFloatingActionButton)) {
-                return false;
-            }
-            if (view.getTop() < (extendedFloatingActionButton.getHeight() / 2) + ((ViewGroup.MarginLayoutParams) ((CoordinatorLayout.LayoutParams) extendedFloatingActionButton.getLayoutParams())).topMargin) {
-                shrinkOrHide(extendedFloatingActionButton);
-                return true;
-            }
-            extendOrShow(extendedFloatingActionButton);
-            return true;
-        }
-
-        public void extendOrShow(@NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
-            boolean z2 = this.autoShrinkEnabled;
-            extendedFloatingActionButton.performMotion(z2 ? extendedFloatingActionButton.extendStrategy : extendedFloatingActionButton.showStrategy, z2 ? this.internalAutoShrinkCallback : this.internalAutoHideCallback);
-        }
-
-        public boolean isAutoHideEnabled() {
-            return this.autoHideEnabled;
-        }
-
-        public boolean isAutoShrinkEnabled() {
-            return this.autoShrinkEnabled;
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onAttachedToLayoutParams(@NonNull CoordinatorLayout.LayoutParams layoutParams) {
-            if (layoutParams.dodgeInsetEdges == 0) {
-                layoutParams.dodgeInsetEdges = 80;
-            }
-        }
-
-        public void setAutoHideEnabled(boolean z2) {
-            this.autoHideEnabled = z2;
-        }
-
-        public void setAutoShrinkEnabled(boolean z2) {
-            this.autoShrinkEnabled = z2;
-        }
-
-        @VisibleForTesting
-        public void setInternalAutoHideCallback(@Nullable OnChangedCallback onChangedCallback) {
-            this.internalAutoHideCallback = onChangedCallback;
-        }
-
-        @VisibleForTesting
-        public void setInternalAutoShrinkCallback(@Nullable OnChangedCallback onChangedCallback) {
-            this.internalAutoShrinkCallback = onChangedCallback;
-        }
-
-        public void shrinkOrHide(@NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
-            boolean z2 = this.autoShrinkEnabled;
-            extendedFloatingActionButton.performMotion(z2 ? extendedFloatingActionButton.shrinkStrategy : extendedFloatingActionButton.hideStrategy, z2 ? this.internalAutoShrinkCallback : this.internalAutoHideCallback);
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean getInsetDodgeRect(@NonNull CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, @NonNull Rect rect) {
-            return super.getInsetDodgeRect(coordinatorLayout, extendedFloatingActionButton, rect);
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onDependentViewChanged(CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, View view) {
-            if (view instanceof AppBarLayout) {
-                updateFabVisibilityForAppBarLayout(coordinatorLayout, (AppBarLayout) view, extendedFloatingActionButton);
-                return false;
-            }
-            if (!isBottomSheet(view)) {
-                return false;
-            }
-            updateFabVisibilityForBottomSheet(view, extendedFloatingActionButton);
-            return false;
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, int i) {
-            List<View> dependencies = coordinatorLayout.getDependencies(extendedFloatingActionButton);
-            int size = dependencies.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                View view = dependencies.get(i2);
-                if (!(view instanceof AppBarLayout)) {
-                    if (isBottomSheet(view) && updateFabVisibilityForBottomSheet(view, extendedFloatingActionButton)) {
-                        break;
-                    }
-                } else {
-                    if (updateFabVisibilityForAppBarLayout(coordinatorLayout, (AppBarLayout) view, extendedFloatingActionButton)) {
-                        break;
-                    }
-                }
-            }
-            coordinatorLayout.onLayoutChild(extendedFloatingActionButton, i);
-            return true;
-        }
-
-        public ExtendedFloatingActionButtonBehavior(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-            super(context, attributeSet);
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout);
-            this.autoHideEnabled = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout_behavior_autoHide, false);
-            this.autoShrinkEnabled = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout_behavior_autoShrink, true);
-            typedArrayObtainStyledAttributes.recycle();
-        }
-    }
-
-    public static abstract class OnChangedCallback {
-        public void onExtended(ExtendedFloatingActionButton extendedFloatingActionButton) {
-        }
-
-        public void onHidden(ExtendedFloatingActionButton extendedFloatingActionButton) {
-        }
-
-        public void onShown(ExtendedFloatingActionButton extendedFloatingActionButton) {
-        }
-
-        public void onShrunken(ExtendedFloatingActionButton extendedFloatingActionButton) {
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$a */
     public class C10908a implements InterfaceC10918k {
         public C10908a() {
-        }
-
-        @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
-        /* JADX INFO: renamed from: a */
-        public ViewGroup.LayoutParams mo9143a() {
-            return new ViewGroup.LayoutParams(-2, -2);
         }
 
         @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
@@ -260,17 +91,17 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         public int getWidth() {
             return ExtendedFloatingActionButton.this.extendedPaddingEnd + ExtendedFloatingActionButton.this.extendedPaddingStart + (ExtendedFloatingActionButton.this.getMeasuredWidth() - (ExtendedFloatingActionButton.this.getCollapsedPadding() * 2));
         }
+
+        @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
+        /* JADX INFO: renamed from: a */
+        public ViewGroup.LayoutParams mo9143a() {
+            return new ViewGroup.LayoutParams(-2, -2);
+        }
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$b */
     public class C10909b implements InterfaceC10918k {
         public C10909b() {
-        }
-
-        @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
-        /* JADX INFO: renamed from: a */
-        public ViewGroup.LayoutParams mo9143a() {
-            return new ViewGroup.LayoutParams(ExtendedFloatingActionButton.this.getCollapsedSize(), ExtendedFloatingActionButton.this.getCollapsedSize());
         }
 
         @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
@@ -291,6 +122,12 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
         public int getWidth() {
             return ExtendedFloatingActionButton.this.getCollapsedSize();
+        }
+
+        @Override // com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.InterfaceC10918k
+        /* JADX INFO: renamed from: a */
+        public ViewGroup.LayoutParams mo9143a() {
+            return new ViewGroup.LayoutParams(ExtendedFloatingActionButton.this.getCollapsedSize(), ExtendedFloatingActionButton.this.getCollapsedSize());
         }
     }
 
@@ -334,7 +171,7 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$d */
-    public static class C10911d extends Property<View, Float> {
+    public final class C10911d extends Property<View, Float> {
         public C10911d(Class cls, String str) {
             super(cls, str);
         }
@@ -354,7 +191,7 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$e */
-    public static class C10912e extends Property<View, Float> {
+    public final class C10912e extends Property<View, Float> {
         public C10912e(Class cls, String str) {
             super(cls, str);
         }
@@ -374,7 +211,7 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$f */
-    public static class C10913f extends Property<View, Float> {
+    public final class C10913f extends Property<View, Float> {
         public C10913f(Class cls, String str) {
             super(cls, str);
         }
@@ -393,7 +230,7 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     }
 
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$g */
-    public static class C10914g extends Property<View, Float> {
+    public final class C10914g extends Property<View, Float> {
         public C10914g(Class cls, String str) {
             super(cls, str);
         }
@@ -424,32 +261,6 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
             super(ExtendedFloatingActionButton.this, c4403a);
             this.f21012g = interfaceC10918k;
             this.f21013h = z2;
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-        /* JADX INFO: renamed from: b */
-        public int mo6112b() {
-            return this.f21013h ? C10817R.animator.mtrl_extended_fab_change_size_expand_motion_spec : C10817R.animator.mtrl_extended_fab_change_size_collapse_motion_spec;
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-        /* JADX INFO: renamed from: c */
-        public void mo6113c() {
-            ExtendedFloatingActionButton.this.isExtended = this.f21013h;
-            ViewGroup.LayoutParams layoutParams = ExtendedFloatingActionButton.this.getLayoutParams();
-            if (layoutParams == null) {
-                return;
-            }
-            layoutParams.width = this.f21012g.mo9143a().width;
-            layoutParams.height = this.f21012g.mo9143a().height;
-            ViewCompat.setPaddingRelative(ExtendedFloatingActionButton.this, this.f21012g.getPaddingStart(), ExtendedFloatingActionButton.this.getPaddingTop(), this.f21012g.getPaddingEnd(), ExtendedFloatingActionButton.this.getPaddingBottom());
-            ExtendedFloatingActionButton.this.requestLayout();
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-        /* JADX INFO: renamed from: d */
-        public boolean mo6114d() {
-            return this.f21013h == ExtendedFloatingActionButton.this.isExtended || ExtendedFloatingActionButton.this.getIcon() == null || TextUtils.isEmpty(ExtendedFloatingActionButton.this.getText());
         }
 
         @Override // p007b.p225i.p226a.p341g.p346e.AbstractC4404b, p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
@@ -501,6 +312,32 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         }
 
         @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+        /* JADX INFO: renamed from: b */
+        public int mo6112b() {
+            return this.f21013h ? C10817R.animator.mtrl_extended_fab_change_size_expand_motion_spec : C10817R.animator.mtrl_extended_fab_change_size_collapse_motion_spec;
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+        /* JADX INFO: renamed from: c */
+        public void mo6113c() {
+            ExtendedFloatingActionButton.this.isExtended = this.f21013h;
+            ViewGroup.LayoutParams layoutParams = ExtendedFloatingActionButton.this.getLayoutParams();
+            if (layoutParams == null) {
+                return;
+            }
+            layoutParams.width = this.f21012g.mo9143a().width;
+            layoutParams.height = this.f21012g.mo9143a().height;
+            ViewCompat.setPaddingRelative(ExtendedFloatingActionButton.this, this.f21012g.getPaddingStart(), ExtendedFloatingActionButton.this.getPaddingTop(), this.f21012g.getPaddingEnd(), ExtendedFloatingActionButton.this.getPaddingBottom());
+            ExtendedFloatingActionButton.this.requestLayout();
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+        /* JADX INFO: renamed from: d */
+        public boolean mo6114d() {
+            return this.f21013h == ExtendedFloatingActionButton.this.isExtended || ExtendedFloatingActionButton.this.getIcon() == null || TextUtils.isEmpty(ExtendedFloatingActionButton.this.getText());
+        }
+
+        @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
         /* JADX INFO: renamed from: g */
         public void mo6115g(@Nullable OnChangedCallback onChangedCallback) {
             if (onChangedCallback == null) {
@@ -544,6 +381,17 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
             this.f21015g = true;
         }
 
+        @Override // p007b.p225i.p226a.p341g.p346e.AbstractC4404b, p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+        /* JADX INFO: renamed from: e */
+        public void mo6079e() {
+            super.mo6079e();
+            ExtendedFloatingActionButton.this.animState = 0;
+            if (this.f21015g) {
+                return;
+            }
+            ExtendedFloatingActionButton.this.setVisibility(8);
+        }
+
         @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
         /* JADX INFO: renamed from: b */
         public int mo6112b() {
@@ -560,17 +408,6 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         /* JADX INFO: renamed from: d */
         public boolean mo6114d() {
             return ExtendedFloatingActionButton.this.isOrWillBeHidden();
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p346e.AbstractC4404b, p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-        /* JADX INFO: renamed from: e */
-        public void mo6079e() {
-            super.mo6079e();
-            ExtendedFloatingActionButton.this.animState = 0;
-            if (this.f21015g) {
-                return;
-            }
-            ExtendedFloatingActionButton.this.setVisibility(8);
         }
 
         @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
@@ -601,6 +438,13 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
             super(ExtendedFloatingActionButton.this, c4403a);
         }
 
+        @Override // p007b.p225i.p226a.p341g.p346e.AbstractC4404b, p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
+        /* JADX INFO: renamed from: e */
+        public void mo6079e() {
+            super.mo6079e();
+            ExtendedFloatingActionButton.this.animState = 0;
+        }
+
         @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
         /* JADX INFO: renamed from: b */
         public int mo6112b() {
@@ -620,13 +464,6 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         /* JADX INFO: renamed from: d */
         public boolean mo6114d() {
             return ExtendedFloatingActionButton.this.isOrWillBeShown();
-        }
-
-        @Override // p007b.p225i.p226a.p341g.p346e.AbstractC4404b, p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
-        /* JADX INFO: renamed from: e */
-        public void mo6079e() {
-            super.mo6079e();
-            ExtendedFloatingActionButton.this.animState = 0;
         }
 
         @Override // p007b.p225i.p226a.p341g.p346e.InterfaceC4412j
@@ -650,11 +487,157 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         }
     }
 
+    public class ExtendedFloatingActionButtonBehavior<T extends ExtendedFloatingActionButton> extends CoordinatorLayout.Behavior<T> {
+        private static final boolean AUTO_HIDE_DEFAULT = false;
+        private static final boolean AUTO_SHRINK_DEFAULT = true;
+        private boolean autoHideEnabled;
+        private boolean autoShrinkEnabled;
+
+        @Nullable
+        private OnChangedCallback internalAutoHideCallback;
+
+        @Nullable
+        private OnChangedCallback internalAutoShrinkCallback;
+        private Rect tmpRect;
+
+        public ExtendedFloatingActionButtonBehavior() {
+            this.autoHideEnabled = false;
+            this.autoShrinkEnabled = true;
+        }
+
+        public void extendOrShow(@NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
+            boolean z2 = this.autoShrinkEnabled;
+            extendedFloatingActionButton.performMotion(z2 ? extendedFloatingActionButton.extendStrategy : extendedFloatingActionButton.showStrategy, z2 ? this.internalAutoShrinkCallback : this.internalAutoHideCallback);
+        }
+
+        public boolean isAutoHideEnabled() {
+            return this.autoHideEnabled;
+        }
+
+        public boolean isAutoShrinkEnabled() {
+            return this.autoShrinkEnabled;
+        }
+
+        private static boolean isBottomSheet(@NonNull View view) {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
+                return ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior() instanceof BottomSheetBehavior;
+            }
+            return false;
+        }
+
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public void onAttachedToLayoutParams(@NonNull CoordinatorLayout.LayoutParams layoutParams) {
+            if (layoutParams.dodgeInsetEdges == 0) {
+                layoutParams.dodgeInsetEdges = 80;
+            }
+        }
+
+        public void setAutoHideEnabled(boolean z2) {
+            this.autoHideEnabled = z2;
+        }
+
+        public void setAutoShrinkEnabled(boolean z2) {
+            this.autoShrinkEnabled = z2;
+        }
+
+        @VisibleForTesting
+        public void setInternalAutoHideCallback(@Nullable OnChangedCallback onChangedCallback) {
+            this.internalAutoHideCallback = onChangedCallback;
+        }
+
+        @VisibleForTesting
+        public void setInternalAutoShrinkCallback(@Nullable OnChangedCallback onChangedCallback) {
+            this.internalAutoShrinkCallback = onChangedCallback;
+        }
+
+        private boolean shouldUpdateVisibility(@NonNull View view, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
+            return (this.autoHideEnabled || this.autoShrinkEnabled) && ((CoordinatorLayout.LayoutParams) extendedFloatingActionButton.getLayoutParams()).getAnchorId() == view.getId();
+        }
+
+        public void shrinkOrHide(@NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
+            boolean z2 = this.autoShrinkEnabled;
+            extendedFloatingActionButton.performMotion(z2 ? extendedFloatingActionButton.shrinkStrategy : extendedFloatingActionButton.hideStrategy, z2 ? this.internalAutoShrinkCallback : this.internalAutoHideCallback);
+        }
+
+        private boolean updateFabVisibilityForAppBarLayout(CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
+            if (!shouldUpdateVisibility(appBarLayout, extendedFloatingActionButton)) {
+                return false;
+            }
+            if (this.tmpRect == null) {
+                this.tmpRect = new Rect();
+            }
+            Rect rect = this.tmpRect;
+            DescendantOffsetUtils.getDescendantRect(coordinatorLayout, appBarLayout, rect);
+            if (rect.bottom <= appBarLayout.getMinimumHeightForVisibleOverlappingContent()) {
+                shrinkOrHide(extendedFloatingActionButton);
+                return true;
+            }
+            extendOrShow(extendedFloatingActionButton);
+            return true;
+        }
+
+        private boolean updateFabVisibilityForBottomSheet(@NonNull View view, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton) {
+            if (!shouldUpdateVisibility(view, extendedFloatingActionButton)) {
+                return false;
+            }
+            if (view.getTop() < (extendedFloatingActionButton.getHeight() / 2) + ((ViewGroup.MarginLayoutParams) ((CoordinatorLayout.LayoutParams) extendedFloatingActionButton.getLayoutParams())).topMargin) {
+                shrinkOrHide(extendedFloatingActionButton);
+                return true;
+            }
+            extendOrShow(extendedFloatingActionButton);
+            return true;
+        }
+
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public boolean getInsetDodgeRect(@NonNull CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, @NonNull Rect rect) {
+            return super.getInsetDodgeRect(coordinatorLayout, extendedFloatingActionButton, rect);
+        }
+
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public boolean onDependentViewChanged(CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, View view) {
+            if (view instanceof AppBarLayout) {
+                updateFabVisibilityForAppBarLayout(coordinatorLayout, (AppBarLayout) view, extendedFloatingActionButton);
+                return false;
+            }
+            if (!isBottomSheet(view)) {
+                return false;
+            }
+            updateFabVisibilityForBottomSheet(view, extendedFloatingActionButton);
+            return false;
+        }
+
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, int i) {
+            List<View> dependencies = coordinatorLayout.getDependencies(extendedFloatingActionButton);
+            int size = dependencies.size();
+            for (int i2 = 0; i2 < size; i2++) {
+                View view = dependencies.get(i2);
+                if (!(view instanceof AppBarLayout)) {
+                    if (isBottomSheet(view) && updateFabVisibilityForBottomSheet(view, extendedFloatingActionButton)) {
+                        break;
+                    }
+                } else {
+                    if (updateFabVisibilityForAppBarLayout(coordinatorLayout, (AppBarLayout) view, extendedFloatingActionButton)) {
+                        break;
+                    }
+                }
+            }
+            coordinatorLayout.onLayoutChild(extendedFloatingActionButton, i);
+            return true;
+        }
+
+        public ExtendedFloatingActionButtonBehavior(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+            super(context, attributeSet);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout);
+            this.autoHideEnabled = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout_behavior_autoHide, false);
+            this.autoShrinkEnabled = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.ExtendedFloatingActionButton_Behavior_Layout_behavior_autoShrink, true);
+            typedArrayObtainStyledAttributes.recycle();
+        }
+    }
+
     /* JADX INFO: renamed from: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$k */
     public interface InterfaceC10918k {
-        /* JADX INFO: renamed from: a */
-        ViewGroup.LayoutParams mo9143a();
-
         int getHeight();
 
         int getPaddingEnd();
@@ -662,51 +645,27 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         int getPaddingStart();
 
         int getWidth();
+
+        /* JADX INFO: renamed from: a */
+        ViewGroup.LayoutParams mo9143a();
+    }
+
+    public abstract class OnChangedCallback {
+        public void onExtended(ExtendedFloatingActionButton extendedFloatingActionButton) {
+        }
+
+        public void onHidden(ExtendedFloatingActionButton extendedFloatingActionButton) {
+        }
+
+        public void onShown(ExtendedFloatingActionButton extendedFloatingActionButton) {
+        }
+
+        public void onShrunken(ExtendedFloatingActionButton extendedFloatingActionButton) {
+        }
     }
 
     public ExtendedFloatingActionButton(@NonNull Context context) {
         this(context, null);
-    }
-
-    private boolean isOrWillBeHidden() {
-        if (getVisibility() == 0) {
-            return this.animState == 1;
-        }
-        return this.animState != 2;
-    }
-
-    private boolean isOrWillBeShown() {
-        if (getVisibility() != 0) {
-            return this.animState == 2;
-        }
-        return this.animState != 1;
-    }
-
-    private void performMotion(@NonNull InterfaceC4412j interfaceC4412j, @Nullable OnChangedCallback onChangedCallback) {
-        if (interfaceC4412j.mo6114d()) {
-            return;
-        }
-        if (!shouldAnimateVisibilityChange()) {
-            interfaceC4412j.mo6113c();
-            interfaceC4412j.mo6115g(onChangedCallback);
-            return;
-        }
-        measure(0, 0);
-        AnimatorSet animatorSetMo6080f = interfaceC4412j.mo6080f();
-        animatorSetMo6080f.addListener(new C10910c(this, interfaceC4412j, onChangedCallback));
-        Iterator<Animator.AnimatorListener> it = ((AbstractC4404b) interfaceC4412j).f11623c.iterator();
-        while (it.hasNext()) {
-            animatorSetMo6080f.addListener(it.next());
-        }
-        animatorSetMo6080f.start();
-    }
-
-    private void saveOriginalTextCsl() {
-        this.originalTextCsl = getTextColors();
-    }
-
-    private boolean shouldAnimateVisibilityChange() {
-        return (ViewCompat.isLaidOut(this) || (!isOrWillBeShown() && this.animateShowBeforeLayout)) && !isInEditMode();
     }
 
     public void addOnExtendAnimationListener(@NonNull Animator.AnimatorListener animatorListener) {
@@ -773,6 +732,20 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
         return this.isExtended;
     }
 
+    private boolean isOrWillBeHidden() {
+        if (getVisibility() == 0) {
+            return this.animState == 1;
+        }
+        return this.animState != 2;
+    }
+
+    private boolean isOrWillBeShown() {
+        if (getVisibility() != 0) {
+            return this.animState == 2;
+        }
+        return this.animState != 1;
+    }
+
     @Override // com.google.android.material.button.MaterialButton, android.widget.TextView, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -780,6 +753,25 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
             this.isExtended = false;
             this.shrinkStrategy.mo6113c();
         }
+    }
+
+    private void performMotion(@NonNull InterfaceC4412j interfaceC4412j, @Nullable OnChangedCallback onChangedCallback) {
+        if (interfaceC4412j.mo6114d()) {
+            return;
+        }
+        if (!shouldAnimateVisibilityChange()) {
+            interfaceC4412j.mo6113c();
+            interfaceC4412j.mo6115g(onChangedCallback);
+            return;
+        }
+        measure(0, 0);
+        AnimatorSet animatorSetMo6080f = interfaceC4412j.mo6080f();
+        animatorSetMo6080f.addListener(new C10910c(this, interfaceC4412j, onChangedCallback));
+        Iterator<Animator.AnimatorListener> it = ((AbstractC4404b) interfaceC4412j).f11623c.iterator();
+        while (it.hasNext()) {
+            animatorSetMo6080f.addListener(it.next());
+        }
+        animatorSetMo6080f.start();
     }
 
     public void removeOnExtendAnimationListener(@NonNull Animator.AnimatorListener animatorListener) {
@@ -796,6 +788,10 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
 
     public void removeOnShrinkAnimationListener(@NonNull Animator.AnimatorListener animatorListener) {
         ((AbstractC4404b) this.shrinkStrategy).f11623c.remove(animatorListener);
+    }
+
+    private void saveOriginalTextCsl() {
+        this.originalTextCsl = getTextColors();
     }
 
     public void setAnimateShowBeforeLayout(boolean z2) {
@@ -869,6 +865,10 @@ public class ExtendedFloatingActionButton extends MaterialButton implements Coor
     public void setTextColor(int i) {
         super.setTextColor(i);
         saveOriginalTextCsl();
+    }
+
+    private boolean shouldAnimateVisibilityChange() {
+        return (ViewCompat.isLaidOut(this) || (!isOrWillBeShown() && this.animateShowBeforeLayout)) && !isInEditMode();
     }
 
     public void show() {

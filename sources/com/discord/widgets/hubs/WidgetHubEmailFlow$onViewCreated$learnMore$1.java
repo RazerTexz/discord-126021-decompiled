@@ -20,7 +20,7 @@ public final class WidgetHubEmailFlow$onViewCreated$learnMore$1 extends Abstract
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailFlow$onViewCreated$learnMore$1$1 */
     /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
-    public static final class C90381 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C90381 extends AbstractC12240o implements Function1<View, Unit> {
         public C90381() {
             super(1);
         }

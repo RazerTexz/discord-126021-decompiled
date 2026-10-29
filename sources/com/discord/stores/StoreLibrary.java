@@ -29,11 +29,11 @@ public final class StoreLibrary extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$1 */
     /* JADX INFO: compiled from: StoreLibrary.kt */
-    public static final class C61401 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C61401 extends AbstractC12240o implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreLibrary.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -70,11 +70,11 @@ public final class StoreLibrary extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$2 */
     /* JADX INFO: compiled from: StoreLibrary.kt */
-    public static final class C61412 extends AbstractC12240o implements Function1<List<? extends ModelLibraryApplication>, Unit> {
+    public final class C61412 extends AbstractC12240o implements Function1<List<? extends ModelLibraryApplication>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreLibrary.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $libraryApps;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -120,7 +120,7 @@ public final class StoreLibrary extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$observeApplications$1 */
     /* JADX INFO: compiled from: StoreLibrary.kt */
-    public static final class C61421 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelLibraryApplication>> {
+    public final class C61421 extends AbstractC12240o implements Function0<Map<Long, ? extends ModelLibraryApplication>> {
         public C61421() {
             super(0);
         }

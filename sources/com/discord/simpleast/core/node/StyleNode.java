@@ -17,24 +17,9 @@ public class StyleNode<RC, T> extends Node.C5655a<RC> {
     public static final Companion INSTANCE = new Companion(null);
     private final List<T> styles;
 
-    /* JADX INFO: compiled from: StyleNode.kt */
-    public static final class Companion {
-        public Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.simpleast.core.node.StyleNode$a */
-    /* JADX INFO: compiled from: StyleNode.kt */
-    public interface InterfaceC5656a<RC> {
-        Iterable<?> get(RC rc);
-    }
-
     /* JADX INFO: renamed from: com.discord.simpleast.core.node.StyleNode$b */
     /* JADX INFO: compiled from: StyleNode.kt */
-    public static final class C5657b<RC> extends C1298a<RC> {
+    public final class C5657b<RC> extends C1298a<RC> {
 
         /* JADX INFO: renamed from: a */
         public final InterfaceC5656a<RC> f18952a;
@@ -59,21 +44,27 @@ public class StyleNode<RC, T> extends Node.C5655a<RC> {
         }
     }
 
+    /* JADX INFO: compiled from: StyleNode.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.simpleast.core.node.StyleNode$a */
+    /* JADX INFO: compiled from: StyleNode.kt */
+    public interface InterfaceC5656a<RC> {
+        Iterable<?> get(RC rc);
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
     public StyleNode(List<? extends T> list) {
         super(new Node[0]);
         C12238m.checkNotNullParameter(list, "styles");
         this.styles = list;
-    }
-
-    public static final <RC, T> StyleNode<RC, T> wrapText(String str, List<? extends T> list) {
-        Objects.requireNonNull(INSTANCE);
-        C12238m.checkNotNullParameter(str, "content");
-        C12238m.checkNotNullParameter(list, "styles");
-        StyleNode<RC, T> styleNode = new StyleNode<>(list);
-        styleNode.addChild(new C1298a(str));
-        return styleNode;
     }
 
     public final List<T> getStyles() {
@@ -89,5 +80,14 @@ public class StyleNode<RC, T> extends Node.C5655a<RC> {
         while (it.hasNext()) {
             builder.setSpan(it.next(), length, builder.length(), 33);
         }
+    }
+
+    public static final <RC, T> StyleNode<RC, T> wrapText(String str, List<? extends T> list) {
+        Objects.requireNonNull(INSTANCE);
+        C12238m.checkNotNullParameter(str, "content");
+        C12238m.checkNotNullParameter(list, "styles");
+        StyleNode<RC, T> styleNode = new StyleNode<>(list);
+        styleNode.addChild(new C1298a(str));
+        return styleNode;
     }
 }

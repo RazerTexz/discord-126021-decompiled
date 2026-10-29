@@ -36,7 +36,7 @@ public final class StageChannelUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.stage.StageChannelUtils$connectToStageChannel$2 */
     /* JADX INFO: compiled from: StageChannelUtils.kt */
-    public static final class C69172 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69172 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ FragmentManager $fragmentManager;
@@ -77,25 +77,6 @@ public final class StageChannelUtils {
         return C1460d.m439H0(Long.valueOf(permissionUtils.computeChannelOverwrite(meId, guildId, map != null ? map.get(Long.valueOf(meId)) : null, channel.m7655v())), Permission.MANAGE_ROLES);
     }
 
-    public static /* synthetic */ boolean shouldShowEndStageBottomSheet$default(StageChannelUtils stageChannelUtils, long j, StoreChannels storeChannels, StoreStageChannels storeStageChannels, StoreStageInstances storeStageInstances, StoreUser storeUser, int i, Object obj) {
-        if ((i & 2) != 0) {
-            storeChannels = StoreStream.INSTANCE.getChannels();
-        }
-        StoreChannels storeChannels2 = storeChannels;
-        if ((i & 4) != 0) {
-            storeStageChannels = StoreStream.INSTANCE.getStageChannels();
-        }
-        StoreStageChannels storeStageChannels2 = storeStageChannels;
-        if ((i & 8) != 0) {
-            storeStageInstances = StoreStream.INSTANCE.getStageInstances();
-        }
-        StoreStageInstances storeStageInstances2 = storeStageInstances;
-        if ((i & 16) != 0) {
-            storeUser = StoreStream.INSTANCE.getUsers();
-        }
-        return stageChannelUtils.shouldShowEndStageBottomSheet(j, storeChannels2, storeStageChannels2, storeStageInstances2, storeUser);
-    }
-
     public final void connectToStageChannel(Channel channel, Context context, FragmentManager fragmentManager) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(context, "context");
@@ -115,6 +96,25 @@ public final class StageChannelUtils {
             return;
         }
         WidgetModeratorStartStage.INSTANCE.launch(context, channel.getId(), channel.getGuildId());
+    }
+
+    public static /* synthetic */ boolean shouldShowEndStageBottomSheet$default(StageChannelUtils stageChannelUtils, long j, StoreChannels storeChannels, StoreStageChannels storeStageChannels, StoreStageInstances storeStageInstances, StoreUser storeUser, int i, Object obj) {
+        if ((i & 2) != 0) {
+            storeChannels = StoreStream.INSTANCE.getChannels();
+        }
+        StoreChannels storeChannels2 = storeChannels;
+        if ((i & 4) != 0) {
+            storeStageChannels = StoreStream.INSTANCE.getStageChannels();
+        }
+        StoreStageChannels storeStageChannels2 = storeStageChannels;
+        if ((i & 8) != 0) {
+            storeStageInstances = StoreStream.INSTANCE.getStageInstances();
+        }
+        StoreStageInstances storeStageInstances2 = storeStageInstances;
+        if ((i & 16) != 0) {
+            storeUser = StoreStream.INSTANCE.getUsers();
+        }
+        return stageChannelUtils.shouldShowEndStageBottomSheet(j, storeChannels2, storeStageChannels2, storeStageInstances2, storeUser);
     }
 
     public final boolean shouldShowEndStageBottomSheet(long channelId, StoreChannels channelsStore, StoreStageChannels stageChannelsStore, StoreStageInstances stageInstanceStore, StoreUser userStore) {

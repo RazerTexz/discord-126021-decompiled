@@ -56,7 +56,7 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.call.CallFeedbackSheetViewModel$1 */
     /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-    public static final class C104541 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C104541 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C104541() {
             super(1);
         }
@@ -75,12 +75,20 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
     }
 
     /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final List<FeedbackIssue> getISSUES_UI_OPTIONS() {
+            return CallFeedbackSheetViewModel.ISSUES_UI_OPTIONS;
         }
 
         @VisibleForTesting
         public static /* synthetic */ void getREASON_CODES$annotations() {
+        }
+
+        public final Map<FeedbackIssue, Integer> getREASON_CODES() {
+            return CallFeedbackSheetViewModel.REASON_CODES;
         }
 
         private final Observable<StoreState> observeStoreState(StoreExperiments storeExperiments) {
@@ -94,21 +102,13 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
             return observableM11083G;
         }
 
-        public final List<FeedbackIssue> getISSUES_UI_OPTIONS() {
-            return CallFeedbackSheetViewModel.ISSUES_UI_OPTIONS;
-        }
-
-        public final Map<FeedbackIssue, Integer> getREASON_CODES() {
-            return CallFeedbackSheetViewModel.REASON_CODES;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-    public static final /* data */ class Config implements Parcelable {
+    public final /* data */ class Config implements Parcelable {
 
         /* JADX INFO: renamed from: CREATOR, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -119,7 +119,7 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.call.CallFeedbackSheetViewModel$Config$CREATOR, reason: from kotlin metadata */
         /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-        public static final class Companion implements Parcelable.Creator<Config> {
+        public final class Companion implements Parcelable.Creator<Config> {
             private Companion() {
             }
 
@@ -167,26 +167,6 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
             return config.copy(j2, str3, str4, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getRtcConnectionId() {
-            return this.rtcConnectionId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getCallDurationMs() {
-            return this.callDurationMs;
-        }
-
         public final Config copy(long channelId, String rtcConnectionId, String mediaSessionId, Long callDurationMs) {
             return new Config(channelId, rtcConnectionId, mediaSessionId, callDurationMs);
         }
@@ -207,16 +187,36 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
             return this.channelId == config.channelId && C12238m.areEqual(this.rtcConnectionId, config.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, config.mediaSessionId) && C12238m.areEqual(this.callDurationMs, config.callDurationMs);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Long getCallDurationMs() {
             return this.callDurationMs;
+        }
+
+        public final Long getCallDurationMs() {
+            return this.callDurationMs;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
         }
 
         public final long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getMediaSessionId() {
             return this.mediaSessionId;
+        }
+
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getRtcConnectionId() {
+            return this.rtcConnectionId;
         }
 
         public final String getRtcConnectionId() {
@@ -265,7 +265,7 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
     }
 
     /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final boolean shouldShowCxLinkForIssueDetails;
 
         public StoreState(boolean z2) {
@@ -279,11 +279,6 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
             return storeState.copy(z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShouldShowCxLinkForIssueDetails() {
-            return this.shouldShowCxLinkForIssueDetails;
-        }
-
         public final StoreState copy(boolean shouldShowCxLinkForIssueDetails) {
             return new StoreState(shouldShowCxLinkForIssueDetails);
         }
@@ -293,6 +288,11 @@ public final class CallFeedbackSheetViewModel extends AbstractC0859d0<FeedbackSh
                 return (other instanceof StoreState) && this.shouldShowCxLinkForIssueDetails == ((StoreState) other).shouldShowCxLinkForIssueDetails;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getShouldShowCxLinkForIssueDetails() {
+            return this.shouldShowCxLinkForIssueDetails;
         }
 
         public final boolean getShouldShowCxLinkForIssueDetails() {

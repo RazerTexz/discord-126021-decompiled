@@ -47,17 +47,98 @@ import p658rx.functions.Action1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsAccountEmailEditConfirm extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsAccountEmailEditConfirm.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountEmailEditConfirmBinding;", 0)};
+    private static final String EXTRA_EMAIL = "extra_email";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_EMAIL = "extra_email";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final ActivityResultLauncher<Intent> passwordVerifyLauncher;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$configureUI$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
-    public static final class Companion {
+    public final class C97631 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$configureUI$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                C12238m.checkNotNullParameter(view, "it");
+                WidgetSettingsAccountEmailEditConfirm.this.resendVerificationCode();
+            }
+        }
+
+        public C97631() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            C12238m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.m8423b("onResend", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$onViewBound$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
+    public final class C97641 extends AbstractC12240o implements Function1<TextView, Unit> {
+        public C97641() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            C12238m.checkNotNullParameter(textView, "it");
+            WidgetSettingsAccountEmailEditConfirm.this.submitVerificationCode();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
+    public final class C97661 extends AbstractC12240o implements Function1<MeUser, Unit> {
+        public C97661() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            C12238m.checkNotNullParameter(meUser, "it");
+            WidgetSettingsAccountEmailEditConfirm.this.configureUI(meUser);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -97,87 +178,6 @@ public final class WidgetSettingsAccountEmailEditConfirm extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
-    public static final class C97631 extends AbstractC12240o implements Function1<RenderContext, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$configureUI$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(View view) {
-                invoke2(view);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(View view) {
-                C12238m.checkNotNullParameter(view, "it");
-                WidgetSettingsAccountEmailEditConfirm.this.resendVerificationCode();
-            }
-        }
-
-        public C97631() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
-            invoke2(renderContext);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RenderContext renderContext) {
-            C12238m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.m8423b("onResend", new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
-    public static final class C97641 extends AbstractC12240o implements Function1<TextView, Unit> {
-        public C97641() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
-            invoke2(textView);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(TextView textView) {
-            C12238m.checkNotNullParameter(textView, "it");
-            WidgetSettingsAccountEmailEditConfirm.this.submitVerificationCode();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccountEmailEditConfirm.kt */
-    public static final class C97661 extends AbstractC12240o implements Function1<MeUser, Unit> {
-        public C97661() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
-            invoke2(meUser);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MeUser meUser) {
-            C12238m.checkNotNullParameter(meUser, "it");
-            WidgetSettingsAccountEmailEditConfirm.this.configureUI(meUser);
-        }
-    }
-
     public WidgetSettingsAccountEmailEditConfirm() {
         super(C5419R.layout.widget_settings_account_email_edit_confirm);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsAccountEmailEditConfirm$binding$2.INSTANCE, null, 2, null);
@@ -195,26 +195,6 @@ public final class WidgetSettingsAccountEmailEditConfirm extends AppFragment {
 
     private final WidgetSettingsAccountEmailEditConfirmBinding getBinding() {
         return (WidgetSettingsAccountEmailEditConfirmBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final void resendVerificationCode() {
-        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmail(), false, 1, null), this, null, 2, null).m11108k(C0879o.m183j(new Action1<Void>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm.resendVerificationCode.1
-            @Override // p658rx.functions.Action1
-            public final void call(Void r5) {
-                C0876m.m169g(WidgetSettingsAccountEmailEditConfirm.this.requireContext(), C5419R.string.user_settings_account_change_email_confirm_code_sent, 0, null, 12);
-            }
-        }, requireContext(), null, 4));
-    }
-
-    private final void submitVerificationCode() {
-        TextInputLayout textInputLayout = getBinding().f17842c;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountCodeWrap");
-        ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmailVerifyCode(new RestAPIParams.UserEmailConfirmCode(ViewExtensions.getTextOrEmpty(textInputLayout))), false, 1, null), this, null, 2, null), getBinding().f17841b, 0L, 2, null).m11108k(C0879o.m183j(new Action1<ModelEmailChangeConfirm>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm.submitVerificationCode.1
-            @Override // p658rx.functions.Action1
-            public final void call(ModelEmailChangeConfirm modelEmailChangeConfirm) {
-                WidgetUserPasswordVerify.INSTANCE.launchUpdateAccountSettings(WidgetSettingsAccountEmailEditConfirm.this.requireContext(), WidgetSettingsAccountEmailEditConfirm.this.passwordVerifyLauncher, (56 & 4) != 0 ? null : WidgetSettingsAccountEmailEditConfirm.this.getMostRecentIntent().getStringExtra(WidgetSettingsAccountEmailEditConfirm.EXTRA_EMAIL), (56 & 8) != 0 ? null : null, (56 & 16) != 0 ? null : null, (56 & 32) != 0 ? null : modelEmailChangeConfirm != null ? modelEmailChangeConfirm.getToken() : null);
-            }
-        }, requireContext(), null, 4));
     }
 
     @Override // com.discord.app.AppFragment
@@ -239,5 +219,25 @@ public final class WidgetSettingsAccountEmailEditConfirm extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), (Class<?>) WidgetSettingsAccountEmailEditConfirm.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97661());
+    }
+
+    private final void resendVerificationCode() {
+        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmail(), false, 1, null), this, null, 2, null).m11108k(C0879o.m183j(new Action1<Void>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm.resendVerificationCode.1
+            @Override // p658rx.functions.Action1
+            public final void call(Void r5) {
+                C0876m.m169g(WidgetSettingsAccountEmailEditConfirm.this.requireContext(), C5419R.string.user_settings_account_change_email_confirm_code_sent, 0, null, 12);
+            }
+        }, requireContext(), null, 4));
+    }
+
+    private final void submitVerificationCode() {
+        TextInputLayout textInputLayout = getBinding().f17842c;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountCodeWrap");
+        ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userEmailVerifyCode(new RestAPIParams.UserEmailConfirmCode(ViewExtensions.getTextOrEmpty(textInputLayout))), false, 1, null), this, null, 2, null), getBinding().f17841b, 0L, 2, null).m11108k(C0879o.m183j(new Action1<ModelEmailChangeConfirm>() { // from class: com.discord.widgets.settings.account.WidgetSettingsAccountEmailEditConfirm.submitVerificationCode.1
+            @Override // p658rx.functions.Action1
+            public final void call(ModelEmailChangeConfirm modelEmailChangeConfirm) {
+                WidgetUserPasswordVerify.INSTANCE.launchUpdateAccountSettings(WidgetSettingsAccountEmailEditConfirm.this.requireContext(), WidgetSettingsAccountEmailEditConfirm.this.passwordVerifyLauncher, (56 & 4) != 0 ? null : WidgetSettingsAccountEmailEditConfirm.this.getMostRecentIntent().getStringExtra(WidgetSettingsAccountEmailEditConfirm.EXTRA_EMAIL), (56 & 8) != 0 ? null : null, (56 & 16) != 0 ? null : null, (56 & 32) != 0 ? null : modelEmailChangeConfirm != null ? modelEmailChangeConfirm.getToken() : null);
+            }
+        }, requireContext(), null, 4));
     }
 }

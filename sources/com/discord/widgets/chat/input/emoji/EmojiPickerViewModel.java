@@ -72,7 +72,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.emoji.EmojiPickerViewModel$1 */
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static final class C78121 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78121 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78121() {
             super(1);
         }
@@ -91,22 +91,22 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static abstract class EmojiItems {
+        public abstract class EmojiItems {
 
             /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-            public static final /* data */ class Partitioned extends EmojiItems {
+            public final /* data */ class Partitioned extends EmojiItems {
 
                 /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
                 public static final Companion INSTANCE = new Companion(null);
-                private static final Partitioned Empty = new Partitioned(C12147n.emptyList(), C12147n.emptyList());
                 private final List<MGRecyclerDataPayload> premiumItems;
                 private final List<MGRecyclerDataPayload> regularItems;
+                private static final Partitioned Empty = new Partitioned(C12147n.emptyList(), C12147n.emptyList());
 
                 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-                public static final class Companion {
+                public final class Companion {
                     private Companion() {
                     }
 
@@ -129,6 +129,14 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                     this.premiumItems = list2;
                 }
 
+                public final List<MGRecyclerDataPayload> component1() {
+                    return this.regularItems;
+                }
+
+                public final List<MGRecyclerDataPayload> component2() {
+                    return this.premiumItems;
+                }
+
                 /* JADX WARN: Multi-variable type inference failed */
                 public static /* synthetic */ Partitioned copy$default(Partitioned partitioned, List list, List list2, int i, Object obj) {
                     if ((i & 1) != 0) {
@@ -138,14 +146,6 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                         list2 = partitioned.premiumItems;
                     }
                     return partitioned.copy(list, list2);
-                }
-
-                public final List<MGRecyclerDataPayload> component1() {
-                    return this.regularItems;
-                }
-
-                public final List<MGRecyclerDataPayload> component2() {
-                    return this.premiumItems;
                 }
 
                 public final Partitioned copy(List<? extends MGRecyclerDataPayload> regularItems, List<? extends MGRecyclerDataPayload> premiumItems) {
@@ -195,15 +195,15 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
             }
 
             /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-            public static final /* data */ class Regular extends EmojiItems {
+            public final /* data */ class Regular extends EmojiItems {
 
                 /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
                 public static final Companion INSTANCE = new Companion(null);
-                private static final Regular Empty = new Regular(C12147n.emptyList());
                 private final List<MGRecyclerDataPayload> items;
+                private static final Regular Empty = new Regular(C12147n.emptyList());
 
                 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-                public static final class Companion {
+                public final class Companion {
                     private Companion() {
                     }
 
@@ -224,16 +224,16 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                     this.items = list;
                 }
 
+                public final List<MGRecyclerDataPayload> component1() {
+                    return this.items;
+                }
+
                 /* JADX WARN: Multi-variable type inference failed */
                 public static /* synthetic */ Regular copy$default(Regular regular, List list, int i, Object obj) {
                     if ((i & 1) != 0) {
                         list = regular.items;
                     }
                     return regular.copy(list);
-                }
-
-                public final List<MGRecyclerDataPayload> component1() {
-                    return this.items;
                 }
 
                 public final Regular copy(List<? extends MGRecyclerDataPayload> items) {
@@ -315,6 +315,13 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
             return partition ? EmojiItems.Partitioned.INSTANCE.getEmpty() : EmojiItems.Regular.INSTANCE.getEmpty();
         }
 
+        public static /* synthetic */ Observable getEmojiContextObservable$default(Companion companion, EmojiPickerContextType emojiPickerContextType, StoreChannelsSelected storeChannelsSelected, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeChannelsSelected = StoreStream.INSTANCE.getChannelsSelected();
+            }
+            return companion.getEmojiContextObservable(emojiPickerContextType, storeChannelsSelected);
+        }
+
         private final Observable<StoreEmoji.EmojiContext> getEmojiContextObservable(EmojiPickerContextType emojiPickerContextType, StoreChannelsSelected storeChannelsSelected) {
             if (C12238m.areEqual(emojiPickerContextType, EmojiPickerContextType.Global.INSTANCE)) {
                 C12721k c12721k = new C12721k(StoreEmoji.EmojiContext.Global.INSTANCE);
@@ -338,13 +345,6 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
             });
             C12238m.checkNotNullExpressionValue(observableM11083G, "storeChannelsSelected.ob…      }\n                }");
             return observableM11083G;
-        }
-
-        public static /* synthetic */ Observable getEmojiContextObservable$default(Companion companion, EmojiPickerContextType emojiPickerContextType, StoreChannelsSelected storeChannelsSelected, int i, Object obj) {
-            if ((i & 2) != 0) {
-                storeChannelsSelected = StoreStream.INSTANCE.getChannelsSelected();
-            }
-            return companion.getEmojiContextObservable(emojiPickerContextType, storeChannelsSelected);
         }
 
         public static /* synthetic */ Observable observeStoreState$default(Companion companion, Observable observable, BehaviorSubject behaviorSubject, BehaviorSubject behaviorSubject2, StoreEmoji storeEmoji, StoreGuildsSorted storeGuildsSorted, StoreUserSettings storeUserSettings, StoreAccessibility storeAccessibility, int i, Object obj) {
@@ -393,10 +393,10 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final /* data */ class ScrollToEmojiListPosition extends Event {
+        public final /* data */ class ScrollToEmojiListPosition extends Event {
             private final int position;
 
             public ScrollToEmojiListPosition(int i) {
@@ -411,11 +411,6 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 return scrollToEmojiListPosition.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getPosition() {
-                return this.position;
-            }
-
             public final ScrollToEmojiListPosition copy(int position) {
                 return new ScrollToEmojiListPosition(position);
             }
@@ -425,6 +420,11 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ScrollToEmojiListPosition) && this.position == ((ScrollToEmojiListPosition) other).position;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getPosition() {
+                return this.position;
             }
 
             public final int getPosition() {
@@ -441,7 +441,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final /* data */ class ShowPremiumUpsellDialog extends Event {
+        public final /* data */ class ShowPremiumUpsellDialog extends Event {
             private final int body;
             private final int header;
             private final int pageNumber;
@@ -487,36 +487,6 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 return showPremiumUpsellDialog.copy(i, i5, i6, str2, z4, z3);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getPageNumber() {
-                return this.pageNumber;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getHeader() {
-                return this.header;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getBody() {
-                return this.body;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getSectionName() {
-                return this.sectionName;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getShowOtherPages() {
-                return this.showOtherPages;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getShowLearnMore() {
-                return this.showLearnMore;
-            }
-
             public final ShowPremiumUpsellDialog copy(int pageNumber, @StringRes int header, @StringRes int body, String sectionName, boolean showOtherPages, boolean showLearnMore) {
                 C12238m.checkNotNullParameter(sectionName, "sectionName");
                 return new ShowPremiumUpsellDialog(pageNumber, header, body, sectionName, showOtherPages, showLearnMore);
@@ -533,24 +503,54 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.pageNumber == showPremiumUpsellDialog.pageNumber && this.header == showPremiumUpsellDialog.header && this.body == showPremiumUpsellDialog.body && C12238m.areEqual(this.sectionName, showPremiumUpsellDialog.sectionName) && this.showOtherPages == showPremiumUpsellDialog.showOtherPages && this.showLearnMore == showPremiumUpsellDialog.showLearnMore;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final int getBody() {
                 return this.body;
+            }
+
+            public final int getBody() {
+                return this.body;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getHeader() {
+                return this.header;
             }
 
             public final int getHeader() {
                 return this.header;
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final int getPageNumber() {
                 return this.pageNumber;
+            }
+
+            public final int getPageNumber() {
+                return this.pageNumber;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final String getSectionName() {
+                return this.sectionName;
             }
 
             public final String getSectionName() {
                 return this.sectionName;
             }
 
+            /* JADX INFO: renamed from: component6, reason: from getter */
             public final boolean getShowLearnMore() {
                 return this.showLearnMore;
+            }
+
+            public final boolean getShowLearnMore() {
+                return this.showLearnMore;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getShowOtherPages() {
+                return this.showOtherPages;
             }
 
             public final boolean getShowOtherPages() {
@@ -605,7 +605,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static final class Inline extends EmojiPickerViewModel {
+    public final class Inline extends EmojiPickerViewModel {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Inline(EmojiPickerContextType emojiPickerContextType, Locale locale) {
             super(emojiPickerContextType, locale, null, null, null, null, 60, null);
@@ -615,7 +615,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static final class Sheet extends EmojiPickerViewModel {
+    public final class Sheet extends EmojiPickerViewModel {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Sheet(EmojiPickerContextType emojiPickerContextType, Locale locale) {
             super(emojiPickerContextType, locale, null, null, null, null, 60, null);
@@ -625,10 +625,10 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final /* data */ class Emoji extends StoreState {
+        public final /* data */ class Emoji extends StoreState {
             private final LinkedHashMap<Long, Guild> allGuilds;
             private final boolean allowEmojisToAnimate;
             private final StoreEmoji.EmojiContext emojiContext;
@@ -655,33 +655,8 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.favoriteEmoji = set;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final EmojiSet getEmojiSet() {
-                return this.emojiSet;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final StoreEmoji.EmojiContext getEmojiContext() {
-                return this.emojiContext;
-            }
-
             public final LinkedHashMap<Long, Guild> component3() {
                 return this.allGuilds;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getSearchInputStringUpper() {
-                return this.searchInputStringUpper;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getAllowEmojisToAnimate() {
-                return this.allowEmojisToAnimate;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final long getSelectedCategoryItemId() {
-                return this.selectedCategoryItemId;
             }
 
             public final Set<com.discord.models.domain.emoji.Emoji> component7() {
@@ -712,12 +687,27 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.allGuilds;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final boolean getAllowEmojisToAnimate() {
                 return this.allowEmojisToAnimate;
             }
 
+            public final boolean getAllowEmojisToAnimate() {
+                return this.allowEmojisToAnimate;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final StoreEmoji.EmojiContext getEmojiContext() {
                 return this.emojiContext;
+            }
+
+            public final StoreEmoji.EmojiContext getEmojiContext() {
+                return this.emojiContext;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final EmojiSet getEmojiSet() {
+                return this.emojiSet;
             }
 
             public final EmojiSet getEmojiSet() {
@@ -728,8 +718,18 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.favoriteEmoji;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final String getSearchInputStringUpper() {
                 return this.searchInputStringUpper;
+            }
+
+            public final String getSearchInputStringUpper() {
+                return this.searchInputStringUpper;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final long getSelectedCategoryItemId() {
+                return this.selectedCategoryItemId;
             }
 
             public final long getSelectedCategoryItemId() {
@@ -779,7 +779,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final class Uninitialized extends StoreState {
+        public final class Uninitialized extends StoreState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -796,11 +796,11 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final String searchQuery;
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final /* data */ class EmptySearch extends ViewState {
+        public final /* data */ class EmptySearch extends ViewState {
             private final String searchQuery;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -810,15 +810,15 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.searchQuery = str;
             }
 
+            public final String component1() {
+                return getSearchQuery();
+            }
+
             public static /* synthetic */ EmptySearch copy$default(EmptySearch emptySearch, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
                     str = emptySearch.getSearchQuery();
                 }
                 return emptySearch.copy(str);
-            }
-
-            public final String component1() {
-                return getSearchQuery();
             }
 
             public final EmptySearch copy(String searchQuery) {
@@ -855,7 +855,7 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
-        public static final /* data */ class Results extends ViewState {
+        public final /* data */ class Results extends ViewState {
             private final List<EmojiCategoryItem> categoryItems;
 
             /* JADX INFO: renamed from: firstUnicodeEmojiCategoryItem$delegate, reason: from kotlin metadata */
@@ -876,6 +876,18 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.firstUnicodeEmojiCategoryItem = C12083g.lazy(new C7815xf92f8d5e(this));
             }
 
+            public final String component1() {
+                return getSearchQuery();
+            }
+
+            public final List<MGRecyclerDataPayload> component2() {
+                return this.resultItems;
+            }
+
+            public final List<EmojiCategoryItem> component3() {
+                return this.categoryItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Results copy$default(Results results, String str, List list, List list2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -888,18 +900,6 @@ public class EmojiPickerViewModel extends AbstractC0859d0<ViewState> {
                     list2 = results.categoryItems;
                 }
                 return results.copy(str, list, list2);
-            }
-
-            public final String component1() {
-                return getSearchQuery();
-            }
-
-            public final List<MGRecyclerDataPayload> component2() {
-                return this.resultItems;
-            }
-
-            public final List<EmojiCategoryItem> component3() {
-                return this.categoryItems;
             }
 
             public final Results copy(String searchQuery, List<? extends MGRecyclerDataPayload> resultItems, List<? extends EmojiCategoryItem> categoryItems) {

@@ -148,16 +148,16 @@ public interface RestAPIInterface {
     public static final Companion INSTANCE = Companion.$$INSTANCE;
 
     /* JADX INFO: compiled from: RestAPIInterface.kt */
-    public static final class Companion {
-        public static final /* synthetic */ Companion $$INSTANCE = new Companion();
+    public final class Companion {
         private static final String X_CONTEXT_PROPERTIES = "X-Context-Properties";
+        public static final /* synthetic */ Companion $$INSTANCE = new Companion();
 
         private Companion() {
         }
     }
 
     /* JADX INFO: compiled from: RestAPIInterface.kt */
-    public static final class DefaultImpls {
+    public final class DefaultImpls {
         public static /* synthetic */ Observable getInviteCode$default(RestAPIInterface restAPIInterface, String str, boolean z2, Long l, int i, Object obj) {
             if (obj != null) {
                 throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getInviteCode");

@@ -16,10 +16,10 @@ import p507d0.p592z.p594d.C12238m;
 public final class RoundedCornerViewCoordinator {
     private float bottomLeftRadius;
     private float bottomRightRadius;
-    private Path path = new Path();
-    private final float[] radii = new float[8];
     private float topLeftRadius;
     private float topRightRadius;
+    private Path path = new Path();
+    private final float[] radii = new float[8];
 
     /* JADX INFO: compiled from: RoundedCornerViewCoordinator.kt */
     public enum Corner {

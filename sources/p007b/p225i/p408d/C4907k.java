@@ -18,24 +18,6 @@ public final class C4907k extends JsonElement {
         this.f13107a = bool;
     }
 
-    /* JADX INFO: renamed from: j */
-    public static boolean m6857j(C4907k c4907k) {
-        Object obj = c4907k.f13107a;
-        if (obj instanceof Number) {
-            Number number = (Number) obj;
-            if ((number instanceof BigInteger) || (number instanceof Long) || (number instanceof Integer) || (number instanceof Short) || (number instanceof Byte)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override // com.google.gson.JsonElement
-    /* JADX INFO: renamed from: c */
-    public int mo6854c() {
-        return this.f13107a instanceof Number ? m6859i().intValue() : Integer.parseInt(mo6855g());
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -62,22 +44,6 @@ public final class C4907k extends JsonElement {
         return true;
     }
 
-    @Override // com.google.gson.JsonElement
-    /* JADX INFO: renamed from: g */
-    public String mo6855g() {
-        Object obj = this.f13107a;
-        if (obj instanceof Number) {
-            return m6859i().toString();
-        }
-        return obj instanceof Boolean ? ((Boolean) obj).toString() : (String) obj;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public boolean m6858h() {
-        Object obj = this.f13107a;
-        return obj instanceof Boolean ? ((Boolean) obj).booleanValue() : Boolean.parseBoolean(mo6855g());
-    }
-
     public int hashCode() {
         long jDoubleToLongBits;
         if (this.f13107a == null) {
@@ -95,10 +61,44 @@ public final class C4907k extends JsonElement {
         return (int) ((jDoubleToLongBits >>> 32) ^ jDoubleToLongBits);
     }
 
+    /* JADX INFO: renamed from: j */
+    public static boolean m6857j(C4907k c4907k) {
+        Object obj = c4907k.f13107a;
+        if (obj instanceof Number) {
+            Number number = (Number) obj;
+            if ((number instanceof BigInteger) || (number instanceof Long) || (number instanceof Integer) || (number instanceof Short) || (number instanceof Byte)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* JADX INFO: renamed from: h */
+    public boolean m6858h() {
+        Object obj = this.f13107a;
+        return obj instanceof Boolean ? ((Boolean) obj).booleanValue() : Boolean.parseBoolean(mo6855g());
+    }
+
     /* JADX INFO: renamed from: i */
     public Number m6859i() {
         Object obj = this.f13107a;
         return obj instanceof String ? new C4932q((String) this.f13107a) : (Number) obj;
+    }
+
+    @Override // com.google.gson.JsonElement
+    /* JADX INFO: renamed from: c */
+    public int mo6854c() {
+        return this.f13107a instanceof Number ? m6859i().intValue() : Integer.parseInt(mo6855g());
+    }
+
+    @Override // com.google.gson.JsonElement
+    /* JADX INFO: renamed from: g */
+    public String mo6855g() {
+        Object obj = this.f13107a;
+        if (obj instanceof Number) {
+            return m6859i().toString();
+        }
+        return obj instanceof Boolean ? ((Boolean) obj).toString() : (String) obj;
     }
 
     public C4907k(Number number) {

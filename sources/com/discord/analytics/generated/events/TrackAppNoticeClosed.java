@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppNoticeClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppNoticeClosed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence noticeType = null;
     private final CharSequence action = null;
-    private final CharSequence surveyId = null;
     private final Boolean dismissed = null;
+    private final CharSequence noticeType = null;
+    private final CharSequence surveyId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "app_notice_closed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackAppNoticeClosed implements AnalyticsSchema, T
         }
         TrackAppNoticeClosed trackAppNoticeClosed = (TrackAppNoticeClosed) other;
         return C12238m.areEqual(this.noticeType, trackAppNoticeClosed.noticeType) && C12238m.areEqual(this.action, trackAppNoticeClosed.action) && C12238m.areEqual(this.surveyId, trackAppNoticeClosed.surveyId) && C12238m.areEqual(this.dismissed, trackAppNoticeClosed.dismissed);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

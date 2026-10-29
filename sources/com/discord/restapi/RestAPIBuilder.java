@@ -47,15 +47,15 @@ public final class RestAPIBuilder {
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String CONTENT_TYPE_TEXT = "text/plain";
     private static final long DEFAULT_TIMEOUT_MILLIS = 10000;
-    private final String baseApiUrl;
-    private final InterfaceC12372p cookieJar;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
+    private final String baseApiUrl;
+    private final InterfaceC12372p cookieJar;
     private static Function2<? super String, ? super C12380x, Unit> clientCallback = RestAPIBuilder$Companion$clientCallback$1.INSTANCE;
 
     /* JADX INFO: compiled from: RestAPIBuilder.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -82,6 +82,16 @@ public final class RestAPIBuilder {
         C12238m.checkNotNullParameter(interfaceC12372p, "cookieJar");
         this.baseApiUrl = str;
         this.cookieJar = interfaceC12372p;
+    }
+
+    public final <T> T build(Class<T> apiDefinition, boolean serializeNulls, long timeoutMillis, List<? extends Interceptor> interceptors, String clientName, boolean addVersion, String contentType) {
+        C12238m.checkNotNullParameter(apiDefinition, "apiDefinition");
+        C12238m.checkNotNullParameter(contentType, "contentType");
+        C12380x c12380xBuildOkHttpClient = buildOkHttpClient(Long.valueOf(timeoutMillis), interceptors);
+        if (clientName != null) {
+            clientCallback.invoke(clientName, c12380xBuildOkHttpClient);
+        }
+        return (T) buildApi(c12380xBuildOkHttpClient, apiDefinition, this.baseApiUrl, serializeNulls, addVersion, contentType);
     }
 
     private final <T> T buildApi(C12380x client, Class<T> api, String baseApiUrl, boolean serializeNulls, boolean addVersion, String contentType) {
@@ -155,6 +165,17 @@ public final class RestAPIBuilder {
         return (T) Proxy.newProxyInstance(api.getClassLoader(), new Class[]{api}, new C12570x(c12571y, api));
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ C12380x buildOkHttpClient$default(RestAPIBuilder restAPIBuilder, Long l, List list, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        if ((i & 2) != 0) {
+            list = null;
+        }
+        return restAPIBuilder.buildOkHttpClient(l, list);
+    }
+
     private final C12380x buildOkHttpClient(Long timeoutMillis, List<? extends Interceptor> interceptors) {
         C12380x.a aVar = new C12380x.a();
         if (interceptors != null) {
@@ -178,26 +199,5 @@ public final class RestAPIBuilder {
         C12238m.checkParameterIsNotNull(interfaceC12372p, "cookieJar");
         aVar.f26038j = interfaceC12372p;
         return new C12380x(aVar);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ C12380x buildOkHttpClient$default(RestAPIBuilder restAPIBuilder, Long l, List list, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        if ((i & 2) != 0) {
-            list = null;
-        }
-        return restAPIBuilder.buildOkHttpClient(l, list);
-    }
-
-    public final <T> T build(Class<T> apiDefinition, boolean serializeNulls, long timeoutMillis, List<? extends Interceptor> interceptors, String clientName, boolean addVersion, String contentType) {
-        C12238m.checkNotNullParameter(apiDefinition, "apiDefinition");
-        C12238m.checkNotNullParameter(contentType, "contentType");
-        C12380x c12380xBuildOkHttpClient = buildOkHttpClient(Long.valueOf(timeoutMillis), interceptors);
-        if (clientName != null) {
-            clientCallback.invoke(clientName, c12380xBuildOkHttpClient);
-        }
-        return (T) buildApi(c12380xBuildOkHttpClient, apiDefinition, this.baseApiUrl, serializeNulls, addVersion, contentType);
     }
 }

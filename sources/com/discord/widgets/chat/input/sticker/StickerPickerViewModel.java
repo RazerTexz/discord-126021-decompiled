@@ -83,7 +83,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerPickerViewModel$1 */
     /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-    public static final class C78941 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C78941 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C78941() {
             super(1);
         }
@@ -103,7 +103,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -158,12 +158,16 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
             return arrayList;
         }
 
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, BehaviorSubject behaviorSubject, BehaviorSubject behaviorSubject2, StoreGuildsSorted storeGuildsSorted, StoreGuildStickers storeGuildStickers, StoreStickers storeStickers, StoreUserSettings storeUserSettings, StoreUser storeUser, StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StorePermissions storePermissions, StoreSlowMode storeSlowMode, StoreGuilds storeGuilds, int i, Object obj) {
+            return companion.observeStoreState(behaviorSubject, behaviorSubject2, (i & 4) != 0 ? StoreStream.INSTANCE.getGuildsSorted() : storeGuildsSorted, (i & 8) != 0 ? StoreStream.INSTANCE.getGuildStickers() : storeGuildStickers, (i & 16) != 0 ? StoreStream.INSTANCE.getStickers() : storeStickers, (i & 32) != 0 ? StoreStream.INSTANCE.getUserSettings() : storeUserSettings, (i & 64) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 128) != 0 ? StoreStream.INSTANCE.getExpressionPickerNavigation() : storeExpressionPickerNavigation, (i & 256) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected, (i & 512) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions, (i & 1024) != 0 ? StoreStream.INSTANCE.getSlowMode() : storeSlowMode, (i & 2048) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds);
+        }
+
         private final Observable<StoreState> observeStoreState(final BehaviorSubject<String> searchSubject, final BehaviorSubject<Long> selectedPackIdSubject, final StoreGuildsSorted storeGuildsSorted, final StoreGuildStickers storeGuildStickers, final StoreStickers storeStickers, final StoreUserSettings storeUserSettings, final StoreUser storeUser, final StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelSelected, final StorePermissions storePermissions, final StoreSlowMode storeSlowMode, final StoreGuilds storeGuilds) {
             Observable observableM11099Y = storeChannelSelected.observeResolvedSelectedChannel().m11099Y(new InterfaceC12589b<StoreChannelsSelected.ResolvedSelectedChannel, Observable<? extends StoreState>>() { // from class: com.discord.widgets.chat.input.sticker.StickerPickerViewModel$Companion$observeStoreState$1
 
                 /* JADX INFO: renamed from: com.discord.widgets.chat.input.sticker.StickerPickerViewModel$Companion$observeStoreState$1$2 */
                 /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-                public static final class C78962 extends AbstractC12240o implements Function11<LinkedHashMap<Long, Guild>, Map<Long, ? extends Map<Long, ? extends Sticker>>, List<? extends ModelStickerPack>, List<? extends Long>, String, Integer, Long, MeUser, ExpressionTrayTab, Map<Long, ? extends Long>, Integer, StickerPickerViewModel.StoreState.Loaded> {
+                public final class C78962 extends AbstractC12240o implements Function11<LinkedHashMap<Long, Guild>, Map<Long, ? extends Map<Long, ? extends Sticker>>, List<? extends ModelStickerPack>, List<? extends Long>, String, Integer, Long, MeUser, ExpressionTrayTab, Map<Long, ? extends Long>, Integer, StickerPickerViewModel.StoreState.Loaded> {
                     public final /* synthetic */ Channel $channel;
 
                     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -235,20 +239,16 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
             return observableM11099Y;
         }
 
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, BehaviorSubject behaviorSubject, BehaviorSubject behaviorSubject2, StoreGuildsSorted storeGuildsSorted, StoreGuildStickers storeGuildStickers, StoreStickers storeStickers, StoreUserSettings storeUserSettings, StoreUser storeUser, StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StorePermissions storePermissions, StoreSlowMode storeSlowMode, StoreGuilds storeGuilds, int i, Object obj) {
-            return companion.observeStoreState(behaviorSubject, behaviorSubject2, (i & 4) != 0 ? StoreStream.INSTANCE.getGuildsSorted() : storeGuildsSorted, (i & 8) != 0 ? StoreStream.INSTANCE.getGuildStickers() : storeGuildStickers, (i & 16) != 0 ? StoreStream.INSTANCE.getStickers() : storeStickers, (i & 32) != 0 ? StoreStream.INSTANCE.getUserSettings() : storeUserSettings, (i & 64) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 128) != 0 ? StoreStream.INSTANCE.getExpressionPickerNavigation() : storeExpressionPickerNavigation, (i & 256) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected, (i & 512) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions, (i & 1024) != 0 ? StoreStream.INSTANCE.getSlowMode() : storeSlowMode, (i & 2048) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final /* data */ class ScrollToStickerItemPosition extends Event {
+        public final /* data */ class ScrollToStickerItemPosition extends Event {
             private final int position;
 
             public ScrollToStickerItemPosition(int i) {
@@ -263,11 +263,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 return scrollToStickerItemPosition.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getPosition() {
-                return this.position;
-            }
-
             public final ScrollToStickerItemPosition copy(int position) {
                 return new ScrollToStickerItemPosition(position);
             }
@@ -277,6 +272,11 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                     return (other instanceof ScrollToStickerItemPosition) && this.position == ((ScrollToStickerItemPosition) other).position;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getPosition() {
+                return this.position;
             }
 
             public final int getPosition() {
@@ -293,7 +293,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final class ShowStickerPremiumUpsell extends Event {
+        public final class ShowStickerPremiumUpsell extends Event {
             public static final ShowStickerPremiumUpsell INSTANCE = new ShowStickerPremiumUpsell();
 
             private ShowStickerPremiumUpsell() {
@@ -302,7 +302,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final class SlowMode extends Event {
+        public final class SlowMode extends Event {
             public static final SlowMode INSTANCE = new SlowMode();
 
             private SlowMode() {
@@ -319,10 +319,10 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final /* data */ class Loaded extends StoreState {
+        public final /* data */ class Loaded extends StoreState {
             private final LinkedHashMap<Long, Guild> allGuilds;
             private final Channel currentChannel;
             private final long currentChannelPermissions;
@@ -373,21 +373,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.allGuilds;
             }
 
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final Channel getCurrentChannel() {
-                return this.currentChannel;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final long getCurrentChannelPermissions() {
-                return this.currentChannelPermissions;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getIsOnCooldown() {
-                return this.isOnCooldown;
-            }
-
             public final Map<Long, Map<Long, Sticker>> component2() {
                 return this.guildStickers;
             }
@@ -398,31 +383,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
 
             public final List<Long> component4() {
                 return this.frequentlyUsedStickerIds;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getSearchInputStringUpper() {
-                return this.searchInputStringUpper;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final int getStickerAnimationSettings() {
-                return this.stickerAnimationSettings;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Long getSelectedCategoryId() {
-                return this.selectedCategoryId;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsStickersSelectedTab() {
-                return this.isStickersSelectedTab;
             }
 
             public final Loaded copy(LinkedHashMap<Long, Guild> allGuilds, Map<Long, ? extends Map<Long, Sticker>> guildStickers, List<ModelStickerPack> enabledStickerPacks, List<Long> frequentlyUsedStickerIds, String searchInputStringUpper, int stickerAnimationSettings, Long selectedCategoryId, MeUser meUser, boolean isStickersSelectedTab, Channel currentChannel, long currentChannelPermissions, boolean isOnCooldown) {
@@ -450,8 +410,18 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.allGuilds;
             }
 
+            /* JADX INFO: renamed from: component10, reason: from getter */
             public final Channel getCurrentChannel() {
                 return this.currentChannel;
+            }
+
+            public final Channel getCurrentChannel() {
+                return this.currentChannel;
+            }
+
+            /* JADX INFO: renamed from: component11, reason: from getter */
+            public final long getCurrentChannelPermissions() {
+                return this.currentChannelPermissions;
             }
 
             public final long getCurrentChannelPermissions() {
@@ -470,16 +440,46 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 return this.guildStickers;
             }
 
+            /* JADX INFO: renamed from: component12, reason: from getter */
+            public final boolean getIsOnCooldown() {
+                return this.isOnCooldown;
+            }
+
+            /* JADX INFO: renamed from: component9, reason: from getter */
+            public final boolean getIsStickersSelectedTab() {
+                return this.isStickersSelectedTab;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
             public final MeUser getMeUser() {
                 return this.meUser;
+            }
+
+            public final MeUser getMeUser() {
+                return this.meUser;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final String getSearchInputStringUpper() {
+                return this.searchInputStringUpper;
             }
 
             public final String getSearchInputStringUpper() {
                 return this.searchInputStringUpper;
             }
 
+            /* JADX INFO: renamed from: component7, reason: from getter */
             public final Long getSelectedCategoryId() {
                 return this.selectedCategoryId;
+            }
+
+            public final Long getSelectedCategoryId() {
+                return this.selectedCategoryId;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final int getStickerAnimationSettings() {
+                return this.stickerAnimationSettings;
             }
 
             public final int getStickerAnimationSettings() {
@@ -558,7 +558,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final class Uninitialized extends StoreState {
+        public final class Uninitialized extends StoreState {
             public static final Uninitialized INSTANCE = new Uninitialized();
 
             private Uninitialized() {
@@ -575,11 +575,11 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final String searchQuery;
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final /* data */ class EmptyNonPremium extends ViewState {
+        public final /* data */ class EmptyNonPremium extends ViewState {
             private final List<Sticker> emptyStateStickers;
             private final boolean isStickersSelectedTab;
 
@@ -591,6 +591,10 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.isStickersSelectedTab = z2;
             }
 
+            public final List<Sticker> component1() {
+                return this.emptyStateStickers;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ EmptyNonPremium copy$default(EmptyNonPremium emptyNonPremium, List list, boolean z2, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -600,15 +604,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                     z2 = emptyNonPremium.isStickersSelectedTab;
                 }
                 return emptyNonPremium.copy(list, z2);
-            }
-
-            public final List<Sticker> component1() {
-                return this.emptyStateStickers;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsStickersSelectedTab() {
-                return this.isStickersSelectedTab;
             }
 
             public final EmptyNonPremium copy(List<Sticker> emptyStateStickers, boolean isStickersSelectedTab) {
@@ -629,6 +624,11 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
 
             public final List<Sticker> getEmptyStateStickers() {
                 return this.emptyStateStickers;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getIsStickersSelectedTab() {
+                return this.isStickersSelectedTab;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -660,7 +660,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final /* data */ class EmptySearchResults extends ViewState {
+        public final /* data */ class EmptySearchResults extends ViewState {
             private final List<StickerCategoryItem> categoryItems;
             private final String searchQuery;
 
@@ -674,6 +674,14 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.categoryItems = list;
             }
 
+            public final String component1() {
+                return getSearchQuery();
+            }
+
+            public final List<StickerCategoryItem> component2() {
+                return this.categoryItems;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ EmptySearchResults copy$default(EmptySearchResults emptySearchResults, String str, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -683,14 +691,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                     list = emptySearchResults.categoryItems;
                 }
                 return emptySearchResults.copy(str, list);
-            }
-
-            public final String component1() {
-                return getSearchQuery();
-            }
-
-            public final List<StickerCategoryItem> component2() {
-                return this.categoryItems;
             }
 
             public final EmptySearchResults copy(String searchQuery, List<? extends StickerCategoryItem> categoryItems) {
@@ -735,7 +735,7 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
         }
 
         /* JADX INFO: compiled from: StickerPickerViewModel.kt */
-        public static final /* data */ class Stickers extends ViewState {
+        public final /* data */ class Stickers extends ViewState {
             private final List<StickerCategoryItem> categoryItems;
             private final boolean isOnCooldown;
             private final boolean isStickersSelectedTab;
@@ -754,6 +754,18 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 this.categoryItems = list2;
                 this.isStickersSelectedTab = z2;
                 this.isOnCooldown = z3;
+            }
+
+            public final String component1() {
+                return getSearchQuery();
+            }
+
+            public final List<MGRecyclerDataPayload> component2() {
+                return this.stickerItems;
+            }
+
+            public final List<StickerCategoryItem> component3() {
+                return this.categoryItems;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -779,28 +791,6 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
                 return stickers.copy(str, list3, list4, z4, z3);
             }
 
-            public final String component1() {
-                return getSearchQuery();
-            }
-
-            public final List<MGRecyclerDataPayload> component2() {
-                return this.stickerItems;
-            }
-
-            public final List<StickerCategoryItem> component3() {
-                return this.categoryItems;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getIsStickersSelectedTab() {
-                return this.isStickersSelectedTab;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsOnCooldown() {
-                return this.isOnCooldown;
-            }
-
             public final Stickers copy(String searchQuery, List<? extends MGRecyclerDataPayload> stickerItems, List<? extends StickerCategoryItem> categoryItems, boolean isStickersSelectedTab, boolean isOnCooldown) {
                 C12238m.checkNotNullParameter(searchQuery, "searchQuery");
                 C12238m.checkNotNullParameter(stickerItems, "stickerItems");
@@ -821,6 +811,16 @@ public class StickerPickerViewModel extends AbstractC0859d0<ViewState> {
 
             public final List<StickerCategoryItem> getCategoryItems() {
                 return this.categoryItems;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getIsOnCooldown() {
+                return this.isOnCooldown;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsStickersSelectedTab() {
+                return this.isStickersSelectedTab;
             }
 
             @Override // com.discord.widgets.chat.input.sticker.StickerPickerViewModel.ViewState

@@ -50,101 +50,9 @@ public final class StoreSearch {
     private final StoreStream stream;
     private Subscription subscription;
 
-    /* JADX INFO: compiled from: StoreSearch.kt */
-    public enum DisplayState {
-        SUGGESTIONS,
-        RESULTS
-    }
-
-    /* JADX INFO: compiled from: StoreSearch.kt */
-    public static final /* data */ class SearchTarget {
-        private final long id;
-        private final Type type;
-
-        /* JADX INFO: compiled from: StoreSearch.kt */
-        public enum Type {
-            GUILD,
-            CHANNEL
-        }
-
-        public SearchTarget(Type type, long j) {
-            C12238m.checkNotNullParameter(type, "type");
-            this.type = type;
-            this.id = j;
-        }
-
-        public static /* synthetic */ SearchTarget copy$default(SearchTarget searchTarget, Type type, long j, int i, Object obj) {
-            if ((i & 1) != 0) {
-                type = searchTarget.type;
-            }
-            if ((i & 2) != 0) {
-                j = searchTarget.id;
-            }
-            return searchTarget.copy(type, j);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getId() {
-            return this.id;
-        }
-
-        public final SearchTarget copy(Type type, long id2) {
-            C12238m.checkNotNullParameter(type, "type");
-            return new SearchTarget(type, id2);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof SearchTarget)) {
-                return false;
-            }
-            SearchTarget searchTarget = (SearchTarget) other;
-            return C12238m.areEqual(this.type, searchTarget.type) && this.id == searchTarget.id;
-        }
-
-        public final long getId() {
-            return this.id;
-        }
-
-        public final Type getType() {
-            return this.type;
-        }
-
-        public int hashCode() {
-            Type type = this.type;
-            return C0002b.m3a(this.id) + ((type != null ? type.hashCode() : 0) * 31);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("SearchTarget(type=");
-            sbM833U.append(this.type);
-            sbM833U.append(", id=");
-            return C1643a.m815C(sbM833U, this.id, ")");
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            SearchTarget.Type.values();
-            int[] iArr = new int[2];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[SearchTarget.Type.GUILD.ordinal()] = 1;
-            iArr[SearchTarget.Type.CHANNEL.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreSearch$init$4 */
     /* JADX INFO: compiled from: StoreSearch.kt */
-    public static final /* synthetic */ class C63804 extends C12236k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class C63804 extends C12236k implements Function1<Subscription, Unit> {
         public C63804(StoreSearch storeSearch) {
             super(1, storeSearch, StoreSearch.class, "handleSubscription", "handleSubscription(Lrx/Subscription;)V", 0);
         }
@@ -163,7 +71,7 @@ public final class StoreSearch {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearch$init$5 */
     /* JADX INFO: compiled from: StoreSearch.kt */
-    public static final class C63815 extends AbstractC12240o implements Function1<DisplayState, Unit> {
+    public final class C63815 extends AbstractC12240o implements Function1<DisplayState, Unit> {
         public C63815() {
             super(1);
         }
@@ -187,11 +95,11 @@ public final class StoreSearch {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearch$init$6 */
     /* JADX INFO: compiled from: StoreSearch.kt */
-    public static final class C63826 extends AbstractC12240o implements Function1<SearchState, Unit> {
+    public final class C63826 extends AbstractC12240o implements Function1<SearchState, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreSearch$init$6$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreSearch.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ SearchState $searchState;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -229,6 +137,98 @@ public final class StoreSearch {
         }
     }
 
+    /* JADX INFO: compiled from: StoreSearch.kt */
+    public enum DisplayState {
+        SUGGESTIONS,
+        RESULTS
+    }
+
+    /* JADX INFO: compiled from: StoreSearch.kt */
+    public final /* data */ class SearchTarget {
+        private final long id;
+        private final Type type;
+
+        /* JADX INFO: compiled from: StoreSearch.kt */
+        public enum Type {
+            GUILD,
+            CHANNEL
+        }
+
+        public SearchTarget(Type type, long j) {
+            C12238m.checkNotNullParameter(type, "type");
+            this.type = type;
+            this.id = j;
+        }
+
+        public static /* synthetic */ SearchTarget copy$default(SearchTarget searchTarget, Type type, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                type = searchTarget.type;
+            }
+            if ((i & 2) != 0) {
+                j = searchTarget.id;
+            }
+            return searchTarget.copy(type, j);
+        }
+
+        public final SearchTarget copy(Type type, long id2) {
+            C12238m.checkNotNullParameter(type, "type");
+            return new SearchTarget(type, id2);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SearchTarget)) {
+                return false;
+            }
+            SearchTarget searchTarget = (SearchTarget) other;
+            return C12238m.areEqual(this.type, searchTarget.type) && this.id == searchTarget.id;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getId() {
+            return this.id;
+        }
+
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Type getType() {
+            return this.type;
+        }
+
+        public final Type getType() {
+            return this.type;
+        }
+
+        public int hashCode() {
+            Type type = this.type;
+            return C0002b.m3a(this.id) + ((type != null ? type.hashCode() : 0) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("SearchTarget(type=");
+            sbM833U.append(this.type);
+            sbM833U.append(", id=");
+            return C1643a.m815C(sbM833U, this.id, ")");
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            SearchTarget.Type.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[SearchTarget.Type.GUILD.ordinal()] = 1;
+            iArr[SearchTarget.Type.CHANNEL.ordinal()] = 2;
+        }
+    }
+
     public StoreSearch(StoreSearchData storeSearchData, StoreSearchInput storeSearchInput, StoreSearchQuery storeSearchQuery, StoreStream storeStream, Dispatcher dispatcher, StoreGuildsNsfw storeGuildsNsfw, StoreUser storeUser, SearchHistoryCache searchHistoryCache) {
         C12238m.checkNotNullParameter(storeSearchData, "storeSearchData");
         C12238m.checkNotNullParameter(storeSearchInput, "storeSearchInput");
@@ -248,6 +248,52 @@ public final class StoreSearch {
         this.historyCache = searchHistoryCache;
         this.displayStateSubject = new SerializedSubject<>(BehaviorSubject.m11130l0(DisplayState.SUGGESTIONS));
         this.searchTargetSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
+    }
+
+    public final synchronized void clear() {
+        updateTarget(null);
+        handleSubscription(null);
+        onStateChanged(DisplayState.SUGGESTIONS);
+        this.storeSearchQuery.clear();
+        this.storeSearchInput.clear();
+        this.storeSearchData.clear();
+    }
+
+    public final void clearHistory() {
+        SearchHistoryCache searchHistoryCache = this.historyCache;
+        SearchTarget searchTarget = this.searchTarget;
+        if (searchTarget != null) {
+            searchHistoryCache.clear(searchTarget);
+        }
+    }
+
+    public final Observable<DisplayState> getDisplayState() {
+        Observable<DisplayState> observableM11112r = ObservableExtensionsKt.computationLatest(this.displayStateSubject).m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "displayStateSubject\n    …  .distinctUntilChanged()");
+        return observableM11112r;
+    }
+
+    public final Observable<Collection<List<QueryNode>>> getHistory() {
+        Observable observableM11099Y = this.searchTargetSubject.m11099Y(new InterfaceC12589b<SearchTarget, Observable<? extends Collection<? extends List<? extends QueryNode>>>>() { // from class: com.discord.stores.StoreSearch.getHistory.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Observable<? extends Collection<List<QueryNode>>> call(SearchTarget searchTarget) {
+                return searchTarget != null ? StoreSearch.this.historyCache.getHistory(searchTarget) : new C12721k(C12147n.emptyList());
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11099Y, "searchTargetSubject\n    …())\n          }\n        }");
+        return observableM11099Y;
+    }
+
+    public final StoreSearchData getStoreSearchData() {
+        return this.storeSearchData;
+    }
+
+    public final StoreSearchInput getStoreSearchInput() {
+        return this.storeSearchInput;
+    }
+
+    public final StoreSearchQuery getStoreSearchQuery() {
+        return this.storeSearchQuery;
     }
 
     private final synchronized void handleSubscription(Subscription subscription) {
@@ -300,61 +346,6 @@ public final class StoreSearch {
         ObservableExtensionsKt.appSubscribe(this.storeSearchQuery.getState(), (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C63826());
     }
 
-    private final void onStateChanged(DisplayState displayState) {
-        this.displayStateSubject.f27653k.onNext(displayState);
-    }
-
-    private final synchronized void updateTarget(SearchTarget searchTarget) {
-        this.searchTarget = searchTarget;
-        this.searchTargetSubject.f27653k.onNext(searchTarget);
-    }
-
-    public final synchronized void clear() {
-        updateTarget(null);
-        handleSubscription(null);
-        onStateChanged(DisplayState.SUGGESTIONS);
-        this.storeSearchQuery.clear();
-        this.storeSearchInput.clear();
-        this.storeSearchData.clear();
-    }
-
-    public final void clearHistory() {
-        SearchHistoryCache searchHistoryCache = this.historyCache;
-        SearchTarget searchTarget = this.searchTarget;
-        if (searchTarget != null) {
-            searchHistoryCache.clear(searchTarget);
-        }
-    }
-
-    public final Observable<DisplayState> getDisplayState() {
-        Observable<DisplayState> observableM11112r = ObservableExtensionsKt.computationLatest(this.displayStateSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "displayStateSubject\n    …  .distinctUntilChanged()");
-        return observableM11112r;
-    }
-
-    public final Observable<Collection<List<QueryNode>>> getHistory() {
-        Observable observableM11099Y = this.searchTargetSubject.m11099Y(new InterfaceC12589b<SearchTarget, Observable<? extends Collection<? extends List<? extends QueryNode>>>>() { // from class: com.discord.stores.StoreSearch.getHistory.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Observable<? extends Collection<List<QueryNode>>> call(SearchTarget searchTarget) {
-                return searchTarget != null ? StoreSearch.this.historyCache.getHistory(searchTarget) : new C12721k(C12147n.emptyList());
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11099Y, "searchTargetSubject\n    …())\n          }\n        }");
-        return observableM11099Y;
-    }
-
-    public final StoreSearchData getStoreSearchData() {
-        return this.storeSearchData;
-    }
-
-    public final StoreSearchInput getStoreSearchInput() {
-        return this.storeSearchInput;
-    }
-
-    public final StoreSearchQuery getStoreSearchQuery() {
-        return this.storeSearchQuery;
-    }
-
     public final void initForChannel(long channelId, SearchStringProvider searchStringProvider) {
         C12238m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
         init(new SearchTarget(SearchTarget.Type.CHANNEL, channelId), searchStringProvider);
@@ -383,10 +374,19 @@ public final class StoreSearch {
         }
     }
 
+    private final void onStateChanged(DisplayState displayState) {
+        this.displayStateSubject.f27653k.onNext(displayState);
+    }
+
     public final void persistQuery$app_productionGoogleRelease(SearchTarget searchTarget, List<? extends QueryNode> query) {
         C12238m.checkNotNullParameter(searchTarget, "searchTarget");
         C12238m.checkNotNullParameter(query, "query");
         this.historyCache.persistQuery(searchTarget, query);
+    }
+
+    private final synchronized void updateTarget(SearchTarget searchTarget) {
+        this.searchTarget = searchTarget;
+        this.searchTargetSubject.f27653k.onNext(searchTarget);
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */

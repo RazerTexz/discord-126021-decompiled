@@ -15,15 +15,15 @@ public class C3680h4 {
     /* JADX INFO: renamed from: b */
     public static volatile C3680h4 f9985b;
 
-    /* JADX INFO: renamed from: c */
-    public static final C3680h4 f9986c = new C3680h4(true);
-
     /* JADX INFO: renamed from: d */
     public final Map<a, AbstractC3851u4.f<?, ?>> f9987d;
 
+    /* JADX INFO: renamed from: c */
+    public static final C3680h4 f9986c = new C3680h4(true);
+
     /* JADX INFO: renamed from: b.i.a.f.h.l.h4$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final Object f9988a;

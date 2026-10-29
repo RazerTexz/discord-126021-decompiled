@@ -5,8 +5,8 @@ import p007b.p106e.p107a.C1644a;
 /* JADX INFO: loaded from: classes.dex */
 public class FieldSerializerConfig implements Cloneable {
     private boolean fixedFieldTypes;
-    private boolean fieldsCanBeNull = true;
     private boolean setFieldsAsAccessible = true;
+    private boolean fieldsCanBeNull = true;
     private boolean ignoreSyntheticFields = true;
     private boolean copyTransient = true;
     private boolean serializeTransient = false;

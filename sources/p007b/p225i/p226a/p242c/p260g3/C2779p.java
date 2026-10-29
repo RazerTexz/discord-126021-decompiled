@@ -22,9 +22,14 @@ public final class C2779p {
     /* JADX INFO: renamed from: d */
     public long f6853d = -9223372036854775807L;
 
+    /* JADX INFO: renamed from: a */
+    public boolean m3127a() {
+        return this.f6850a.m3128a();
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.g3.p$a */
     /* JADX INFO: compiled from: FixedFrameRateEstimator.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public long f6855a;
@@ -44,11 +49,11 @@ public final class C2779p {
         /* JADX INFO: renamed from: f */
         public long f6860f;
 
-        /* JADX INFO: renamed from: g */
-        public final boolean[] f6861g = new boolean[15];
-
         /* JADX INFO: renamed from: h */
         public int f6862h;
+
+        /* JADX INFO: renamed from: g */
+        public final boolean[] f6861g = new boolean[15];
 
         /* JADX INFO: renamed from: a */
         public boolean m3128a() {
@@ -96,10 +101,5 @@ public final class C2779p {
             this.f6862h = 0;
             Arrays.fill(this.f6861g, false);
         }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public boolean m3127a() {
-        return this.f6850a.m3128a();
     }
 }

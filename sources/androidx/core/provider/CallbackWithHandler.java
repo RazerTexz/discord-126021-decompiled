@@ -28,6 +28,14 @@ public class CallbackWithHandler {
         });
     }
 
+    public void onTypefaceResult(@NonNull FontRequestWorker.TypefaceResult typefaceResult) {
+        if (typefaceResult.isSuccess()) {
+            onTypefaceRetrieved(typefaceResult.mTypeface);
+        } else {
+            onTypefaceRequestFailed(typefaceResult.mResult);
+        }
+    }
+
     private void onTypefaceRetrieved(@NonNull final Typeface typeface) {
         final FontsContractCompat.FontRequestCallback fontRequestCallback = this.mCallback;
         this.mCallbackHandler.post(new Runnable() { // from class: androidx.core.provider.CallbackWithHandler.1
@@ -36,14 +44,6 @@ public class CallbackWithHandler {
                 fontRequestCallback.onTypefaceRetrieved(typeface);
             }
         });
-    }
-
-    public void onTypefaceResult(@NonNull FontRequestWorker.TypefaceResult typefaceResult) {
-        if (typefaceResult.isSuccess()) {
-            onTypefaceRetrieved(typefaceResult.mTypeface);
-        } else {
-            onTypefaceRequestFailed(typefaceResult.mResult);
-        }
     }
 
     public CallbackWithHandler(@NonNull FontsContractCompat.FontRequestCallback fontRequestCallback) {

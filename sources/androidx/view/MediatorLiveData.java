@@ -12,33 +12,6 @@ import java.util.Map;
 public class MediatorLiveData<T> extends MutableLiveData<T> {
     private SafeIterableMap<LiveData<?>, Source<?>> mSources = new SafeIterableMap<>();
 
-    public static class Source<V> implements Observer<V> {
-        public final LiveData<V> mLiveData;
-        public final Observer<? super V> mObserver;
-        public int mVersion = -1;
-
-        public Source(LiveData<V> liveData, Observer<? super V> observer) {
-            this.mLiveData = liveData;
-            this.mObserver = observer;
-        }
-
-        @Override // androidx.view.Observer
-        public void onChanged(@Nullable V v) {
-            if (this.mVersion != this.mLiveData.getVersion()) {
-                this.mVersion = this.mLiveData.getVersion();
-                this.mObserver.onChanged(v);
-            }
-        }
-
-        public void plug() {
-            this.mLiveData.observeForever(this);
-        }
-
-        public void unplug() {
-            this.mLiveData.removeObserver(this);
-        }
-    }
-
     @MainThread
     public <S> void addSource(@NonNull LiveData<S> liveData, @NonNull Observer<? super S> observer) {
         Source<?> source = new Source<>(liveData, observer);
@@ -74,6 +47,33 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
         Source<?> sourceRemove = this.mSources.remove(liveData);
         if (sourceRemove != null) {
             sourceRemove.unplug();
+        }
+    }
+
+    public class Source<V> implements Observer<V> {
+        public final LiveData<V> mLiveData;
+        public final Observer<? super V> mObserver;
+        public int mVersion = -1;
+
+        public Source(LiveData<V> liveData, Observer<? super V> observer) {
+            this.mLiveData = liveData;
+            this.mObserver = observer;
+        }
+
+        @Override // androidx.view.Observer
+        public void onChanged(@Nullable V v) {
+            if (this.mVersion != this.mLiveData.getVersion()) {
+                this.mVersion = this.mLiveData.getVersion();
+                this.mObserver.onChanged(v);
+            }
+        }
+
+        public void plug() {
+            this.mLiveData.observeForever(this);
+        }
+
+        public void unplug() {
+            this.mLiveData.removeObserver(this);
         }
     }
 }

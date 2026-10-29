@@ -33,7 +33,7 @@ public abstract class AbstractC2165b implements Serializable {
 
     /* JADX INFO: renamed from: b.g.a.c.b$a */
     /* JADX INFO: compiled from: AnnotationIntrospector.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public final int f4619a;

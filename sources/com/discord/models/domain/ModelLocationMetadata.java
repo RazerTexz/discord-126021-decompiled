@@ -24,16 +24,6 @@ public final /* data */ class ModelLocationMetadata {
         return modelLocationMetadata.copy(z2, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getConsentRequired() {
-        return this.consentRequired;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getCountryCode() {
-        return this.countryCode;
-    }
-
     public final ModelLocationMetadata copy(boolean consentRequired, String countryCode) {
         return new ModelLocationMetadata(consentRequired, countryCode);
     }
@@ -49,8 +39,18 @@ public final /* data */ class ModelLocationMetadata {
         return this.consentRequired == modelLocationMetadata.consentRequired && C12238m.areEqual(this.countryCode, modelLocationMetadata.countryCode);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final boolean getConsentRequired() {
         return this.consentRequired;
+    }
+
+    public final boolean getConsentRequired() {
+        return this.consentRequired;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getCountryCode() {
+        return this.countryCode;
     }
 
     public final String getCountryCode() {

@@ -15,28 +15,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackApplicationOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackApplicationOpened implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver, TrackLocationMetadataReceiver {
+    private final Long applicationId = null;
+    private final CharSequence applicationName = null;
+    private final CharSequence distributor = null;
+    private final Long listIndex = null;
+    private final CharSequence listSort = null;
+    private final Long messageId = null;
+    private final Long numLauncherApplications = null;
+    private final Long otherUserId = null;
+    private final CharSequence partyId = null;
+    private final CharSequence source = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private final CharSequence type = null;
-    private final CharSequence source = null;
-    private final Long applicationId = null;
-    private final CharSequence applicationName = null;
-    private final CharSequence partyId = null;
-    private final Long otherUserId = null;
-    private final Long messageId = null;
-    private final Long numLauncherApplications = null;
-    private final CharSequence distributor = null;
-    private final CharSequence listSort = null;
-    private final Long listIndex = null;
     private final transient String analyticsSchemaTypeName = "application_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,6 +41,12 @@ public final /* data */ class TrackApplicationOpened implements AnalyticsSchema,
         }
         TrackApplicationOpened trackApplicationOpened = (TrackApplicationOpened) other;
         return C12238m.areEqual(this.type, trackApplicationOpened.type) && C12238m.areEqual(this.source, trackApplicationOpened.source) && C12238m.areEqual(this.applicationId, trackApplicationOpened.applicationId) && C12238m.areEqual(this.applicationName, trackApplicationOpened.applicationName) && C12238m.areEqual(this.partyId, trackApplicationOpened.partyId) && C12238m.areEqual(this.otherUserId, trackApplicationOpened.otherUserId) && C12238m.areEqual(this.messageId, trackApplicationOpened.messageId) && C12238m.areEqual(this.numLauncherApplications, trackApplicationOpened.numLauncherApplications) && C12238m.areEqual(this.distributor, trackApplicationOpened.distributor) && C12238m.areEqual(this.listSort, trackApplicationOpened.listSort) && C12238m.areEqual(this.listIndex, trackApplicationOpened.listIndex);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

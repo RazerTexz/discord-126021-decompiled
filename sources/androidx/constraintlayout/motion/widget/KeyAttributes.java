@@ -35,7 +35,7 @@ public class KeyAttributes extends Key {
     private float mTranslationZ = Float.NaN;
     private float mProgress = Float.NaN;
 
-    public static class Loader {
+    public class Loader {
         private static final int ANDROID_ALPHA = 1;
         private static final int ANDROID_ELEVATION = 2;
         private static final int ANDROID_PIVOT_X = 19;

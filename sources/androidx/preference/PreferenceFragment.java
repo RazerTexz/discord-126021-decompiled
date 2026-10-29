@@ -68,76 +68,6 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
         }
     };
 
-    public class DividerDecoration extends RecyclerView.ItemDecoration {
-        private boolean mAllowDividerAfterLastItem = true;
-        private Drawable mDivider;
-        private int mDividerHeight;
-
-        public DividerDecoration() {
-        }
-
-        private boolean shouldDrawDividerBelow(View view, RecyclerView recyclerView) {
-            RecyclerView.ViewHolder childViewHolder = recyclerView.getChildViewHolder(view);
-            boolean z2 = false;
-            if (!((childViewHolder instanceof PreferenceViewHolder) && ((PreferenceViewHolder) childViewHolder).isDividerAllowedBelow())) {
-                return false;
-            }
-            boolean z3 = this.mAllowDividerAfterLastItem;
-            int iIndexOfChild = recyclerView.indexOfChild(view);
-            if (iIndexOfChild >= recyclerView.getChildCount() - 1) {
-                return z3;
-            }
-            RecyclerView.ViewHolder childViewHolder2 = recyclerView.getChildViewHolder(recyclerView.getChildAt(iIndexOfChild + 1));
-            if ((childViewHolder2 instanceof PreferenceViewHolder) && ((PreferenceViewHolder) childViewHolder2).isDividerAllowedAbove()) {
-                z2 = true;
-            }
-            return z2;
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-            if (shouldDrawDividerBelow(view, recyclerView)) {
-                rect.bottom = this.mDividerHeight;
-            }
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-        public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
-            if (this.mDivider == null) {
-                return;
-            }
-            int childCount = recyclerView.getChildCount();
-            int width = recyclerView.getWidth();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = recyclerView.getChildAt(i);
-                if (shouldDrawDividerBelow(childAt, recyclerView)) {
-                    int height = childAt.getHeight() + ((int) childAt.getY());
-                    this.mDivider.setBounds(0, height, width, this.mDividerHeight + height);
-                    this.mDivider.draw(canvas);
-                }
-            }
-        }
-
-        public void setAllowDividerAfterLastItem(boolean z2) {
-            this.mAllowDividerAfterLastItem = z2;
-        }
-
-        public void setDivider(Drawable drawable) {
-            if (drawable != null) {
-                this.mDividerHeight = drawable.getIntrinsicHeight();
-            } else {
-                this.mDividerHeight = 0;
-            }
-            this.mDivider = drawable;
-            PreferenceFragment.this.mList.invalidateItemDecorations();
-        }
-
-        public void setDividerHeight(int i) {
-            this.mDividerHeight = i;
-            PreferenceFragment.this.mList.invalidateItemDecorations();
-        }
-    }
-
     public interface OnPreferenceDisplayDialogCallback {
         boolean onPreferenceDisplayDialog(@NonNull PreferenceFragment preferenceFragment, Preference preference);
     }
@@ -150,7 +80,7 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
         boolean onPreferenceStartScreen(PreferenceFragment preferenceFragment, PreferenceScreen preferenceScreen);
     }
 
-    public static class ScrollToPreferenceObserver extends RecyclerView.AdapterDataObserver {
+    public class ScrollToPreferenceObserver extends RecyclerView.AdapterDataObserver {
         private final RecyclerView.Adapter mAdapter;
         private final String mKey;
         private final RecyclerView mList;
@@ -161,15 +91,6 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
             this.mList = recyclerView;
             this.mPreference = preference;
             this.mKey = str;
-        }
-
-        private void scrollToPreference() {
-            this.mAdapter.unregisterAdapterDataObserver(this);
-            Preference preference = this.mPreference;
-            int preferenceAdapterPosition = preference != null ? ((PreferenceGroup.PreferencePositionCallback) this.mAdapter).getPreferenceAdapterPosition(preference) : ((PreferenceGroup.PreferencePositionCallback) this.mAdapter).getPreferenceAdapterPosition(this.mKey);
-            if (preferenceAdapterPosition != -1) {
-                this.mList.scrollToPosition(preferenceAdapterPosition);
-            }
         }
 
         @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
@@ -197,59 +118,19 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
             scrollToPreference();
         }
 
+        private void scrollToPreference() {
+            this.mAdapter.unregisterAdapterDataObserver(this);
+            Preference preference = this.mPreference;
+            int preferenceAdapterPosition = preference != null ? ((PreferenceGroup.PreferencePositionCallback) this.mAdapter).getPreferenceAdapterPosition(preference) : ((PreferenceGroup.PreferencePositionCallback) this.mAdapter).getPreferenceAdapterPosition(this.mKey);
+            if (preferenceAdapterPosition != -1) {
+                this.mList.scrollToPosition(preferenceAdapterPosition);
+            }
+        }
+
         @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
         public void onItemRangeChanged(int i, int i2, Object obj) {
             scrollToPreference();
         }
-    }
-
-    private void postBindPreferences() {
-        if (this.mHandler.hasMessages(1)) {
-            return;
-        }
-        this.mHandler.obtainMessage(1).sendToTarget();
-    }
-
-    private void requirePreferenceManager() {
-        if (this.mPreferenceManager == null) {
-            throw new RuntimeException("This should be called after super.onCreate.");
-        }
-    }
-
-    private void scrollToPreferenceInternal(final Preference preference, final String str) {
-        Runnable runnable = new Runnable() { // from class: androidx.preference.PreferenceFragment.3
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.lang.Runnable
-            public void run() {
-                RecyclerView.Adapter adapter = PreferenceFragment.this.mList.getAdapter();
-                if (!(adapter instanceof PreferenceGroup.PreferencePositionCallback)) {
-                    if (adapter != 0) {
-                        throw new IllegalStateException("Adapter must implement PreferencePositionCallback");
-                    }
-                    return;
-                }
-                Preference preference2 = preference;
-                int preferenceAdapterPosition = preference2 != null ? ((PreferenceGroup.PreferencePositionCallback) adapter).getPreferenceAdapterPosition(preference2) : ((PreferenceGroup.PreferencePositionCallback) adapter).getPreferenceAdapterPosition(str);
-                if (preferenceAdapterPosition != -1) {
-                    PreferenceFragment.this.mList.scrollToPosition(preferenceAdapterPosition);
-                } else {
-                    adapter.registerAdapterDataObserver(new ScrollToPreferenceObserver(adapter, PreferenceFragment.this.mList, preference, str));
-                }
-            }
-        };
-        if (this.mList == null) {
-            this.mSelectPreferenceRunnable = runnable;
-        } else {
-            runnable.run();
-        }
-    }
-
-    private void unbindPreferences() {
-        PreferenceScreen preferenceScreen = getPreferenceScreen();
-        if (preferenceScreen != null) {
-            preferenceScreen.onDetached();
-        }
-        onUnbindPreferences();
     }
 
     @Deprecated
@@ -479,9 +360,50 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
         this.mInitDone = true;
     }
 
+    private void postBindPreferences() {
+        if (this.mHandler.hasMessages(1)) {
+            return;
+        }
+        this.mHandler.obtainMessage(1).sendToTarget();
+    }
+
+    private void requirePreferenceManager() {
+        if (this.mPreferenceManager == null) {
+            throw new RuntimeException("This should be called after super.onCreate.");
+        }
+    }
+
     @Deprecated
     public void scrollToPreference(String str) {
         scrollToPreferenceInternal(null, str);
+    }
+
+    private void scrollToPreferenceInternal(final Preference preference, final String str) {
+        Runnable runnable = new Runnable() { // from class: androidx.preference.PreferenceFragment.3
+            /* JADX WARN: Multi-variable type inference failed */
+            @Override // java.lang.Runnable
+            public void run() {
+                RecyclerView.Adapter adapter = PreferenceFragment.this.mList.getAdapter();
+                if (!(adapter instanceof PreferenceGroup.PreferencePositionCallback)) {
+                    if (adapter != 0) {
+                        throw new IllegalStateException("Adapter must implement PreferencePositionCallback");
+                    }
+                    return;
+                }
+                Preference preference2 = preference;
+                int preferenceAdapterPosition = preference2 != null ? ((PreferenceGroup.PreferencePositionCallback) adapter).getPreferenceAdapterPosition(preference2) : ((PreferenceGroup.PreferencePositionCallback) adapter).getPreferenceAdapterPosition(str);
+                if (preferenceAdapterPosition != -1) {
+                    PreferenceFragment.this.mList.scrollToPosition(preferenceAdapterPosition);
+                } else {
+                    adapter.registerAdapterDataObserver(new ScrollToPreferenceObserver(adapter, PreferenceFragment.this.mList, preference, str));
+                }
+            }
+        };
+        if (this.mList == null) {
+            this.mSelectPreferenceRunnable = runnable;
+        } else {
+            runnable.run();
+        }
     }
 
     @Deprecated
@@ -508,19 +430,96 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
 
     @Deprecated
     public void setPreferencesFromResource(@XmlRes int i, @Nullable String str) {
-        Preference preferenceFindPreference;
         requirePreferenceManager();
         PreferenceScreen preferenceScreenInflateFromResource = this.mPreferenceManager.inflateFromResource(this.mStyledContext, i, null);
         Preference preference = preferenceScreenInflateFromResource;
         if (str != null) {
-            preferenceFindPreference = preferenceScreenInflateFromResource.findPreference(str);
-            if (!(preferenceFindPreference instanceof PreferenceScreen)) {
-                preference = preferenceFindPreference;
+            Preference preferenceFindPreference = preferenceScreenInflateFromResource.findPreference(str);
+            boolean z2 = preferenceFindPreference instanceof PreferenceScreen;
+            preference = preferenceFindPreference;
+            if (!z2) {
                 throw new IllegalArgumentException(C1643a.m886y("Preference object with key ", str, " is not a PreferenceScreen"));
             }
         }
-        preference = preferenceFindPreference;
         setPreferenceScreen((PreferenceScreen) preference);
+    }
+
+    private void unbindPreferences() {
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        if (preferenceScreen != null) {
+            preferenceScreen.onDetached();
+        }
+        onUnbindPreferences();
+    }
+
+    public class DividerDecoration extends RecyclerView.ItemDecoration {
+        private Drawable mDivider;
+        private int mDividerHeight;
+        private boolean mAllowDividerAfterLastItem = true;
+
+        public DividerDecoration() {
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+            if (shouldDrawDividerBelow(view, recyclerView)) {
+                rect.bottom = this.mDividerHeight;
+            }
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+        public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
+            if (this.mDivider == null) {
+                return;
+            }
+            int childCount = recyclerView.getChildCount();
+            int width = recyclerView.getWidth();
+            for (int i = 0; i < childCount; i++) {
+                View childAt = recyclerView.getChildAt(i);
+                if (shouldDrawDividerBelow(childAt, recyclerView)) {
+                    int height = childAt.getHeight() + ((int) childAt.getY());
+                    this.mDivider.setBounds(0, height, width, this.mDividerHeight + height);
+                    this.mDivider.draw(canvas);
+                }
+            }
+        }
+
+        public void setAllowDividerAfterLastItem(boolean z2) {
+            this.mAllowDividerAfterLastItem = z2;
+        }
+
+        public void setDivider(Drawable drawable) {
+            if (drawable != null) {
+                this.mDividerHeight = drawable.getIntrinsicHeight();
+            } else {
+                this.mDividerHeight = 0;
+            }
+            this.mDivider = drawable;
+            PreferenceFragment.this.mList.invalidateItemDecorations();
+        }
+
+        public void setDividerHeight(int i) {
+            this.mDividerHeight = i;
+            PreferenceFragment.this.mList.invalidateItemDecorations();
+        }
+
+        private boolean shouldDrawDividerBelow(View view, RecyclerView recyclerView) {
+            RecyclerView.ViewHolder childViewHolder = recyclerView.getChildViewHolder(view);
+            boolean z2 = false;
+            if (!((childViewHolder instanceof PreferenceViewHolder) && ((PreferenceViewHolder) childViewHolder).isDividerAllowedBelow())) {
+                return false;
+            }
+            boolean z3 = this.mAllowDividerAfterLastItem;
+            int iIndexOfChild = recyclerView.indexOfChild(view);
+            if (iIndexOfChild >= recyclerView.getChildCount() - 1) {
+                return z3;
+            }
+            RecyclerView.ViewHolder childViewHolder2 = recyclerView.getChildViewHolder(recyclerView.getChildAt(iIndexOfChild + 1));
+            if ((childViewHolder2 instanceof PreferenceViewHolder) && ((PreferenceViewHolder) childViewHolder2).isDividerAllowedAbove()) {
+                z2 = true;
+            }
+            return z2;
+        }
     }
 
     @Deprecated

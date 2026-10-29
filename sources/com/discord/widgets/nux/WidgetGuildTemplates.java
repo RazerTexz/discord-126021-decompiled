@@ -46,7 +46,7 @@ public class WidgetGuildTemplates extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -102,18 +102,6 @@ public class WidgetGuildTemplates extends AppFragment {
         return (WidgetNuxGuildTemplateBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void trackPostRegistrationSkip() {
-        if (getArgs().isNux()) {
-            GuildTemplateAnalytics.INSTANCE.postRegistrationSkip$app_productionGoogleRelease(GuildTemplateAnalytics.STEP_GUILD_TEMPLATE);
-        }
-    }
-
-    private final void trackPostRegistrationTransition(String fromStep, String toStep) {
-        if (getArgs().isNux()) {
-            GuildTemplateAnalytics.INSTANCE.postRegistrationTransition$app_productionGoogleRelease(fromStep, toStep);
-        }
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -157,5 +145,17 @@ public class WidgetGuildTemplates extends AppFragment {
         LinearLayout linearLayout = getBinding().f17325c;
         C12238m.checkNotNullExpressionValue(linearLayout, "binding.nuxGuildTemplateSectionBottom");
         linearLayout.setVisibility(getArgs().getGuildTemplate().getShowInvitePrompt() ? 0 : 8);
+    }
+
+    private final void trackPostRegistrationSkip() {
+        if (getArgs().isNux()) {
+            GuildTemplateAnalytics.INSTANCE.postRegistrationSkip$app_productionGoogleRelease(GuildTemplateAnalytics.STEP_GUILD_TEMPLATE);
+        }
+    }
+
+    private final void trackPostRegistrationTransition(String fromStep, String toStep) {
+        if (getArgs().isNux()) {
+            GuildTemplateAnalytics.INSTANCE.postRegistrationTransition$app_productionGoogleRelease(fromStep, toStep);
+        }
     }
 }

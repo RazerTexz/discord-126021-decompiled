@@ -214,33 +214,6 @@ public class C1970c1 implements InterfaceC2018w0<C1919e> {
             interfaceC2020x0.mo1448f(new b(C1970c1.this, interfaceC1995l));
         }
 
-        /* JADX WARN: Type inference fix 'apply assigned field type' failed
-        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
-        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
-        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
-        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
-        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
-         */
-        /*  JADX ERROR: JadxRuntimeException in pass: FinishTypeInference
-            jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r10v10 boolean
-            	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
-            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.lambda$visit$0(FinishTypeInference.java:27)
-            	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.visit(FinishTypeInference.java:22)
-            */
-        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
-        /* JADX INFO: renamed from: i */
-        public void mo1320i(java.lang.Object r10, int r11) {
-            /*
-                Method dump skipped, instruction units count: 258
-                To view this dump add '--comments-level debug' option
-            */
-            throw new UnsupportedOperationException("Method not decompiled: p007b.p109f.p161j.p181p.C1970c1.a.mo1320i(java.lang.Object, int):void");
-        }
-
         /* JADX INFO: renamed from: n */
         public final Map<String, String> m1437n(C1919e c1919e, C1884e c1884e, C2031a c2031a, String str) {
             String str2;
@@ -273,6 +246,33 @@ public class C1970c1 implements InterfaceC2018w0<C1919e> {
             map.put("Transcoder id", str);
             map.put("Transcoding result", String.valueOf(c2031a));
             return new C1683f(map);
+        }
+
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        /*  JADX ERROR: JadxRuntimeException in pass: FinishTypeInference
+            jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r10v10 boolean
+            	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
+            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.lambda$visit$0(FinishTypeInference.java:27)
+            	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.visit(FinishTypeInference.java:22)
+            */
+        @Override // p007b.p109f.p161j.p181p.AbstractC1965b
+        /* JADX INFO: renamed from: i */
+        public void mo1320i(java.lang.Object r10, int r11) {
+            /*
+                Method dump skipped, instruction units count: 258
+                To view this dump add '--comments-level debug' option
+            */
+            throw new UnsupportedOperationException("Method not decompiled: p007b.p109f.p161j.p181p.C1970c1.a.mo1320i(java.lang.Object, int):void");
         }
     }
 

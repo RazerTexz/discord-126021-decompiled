@@ -36,7 +36,7 @@ public final class C12623g0<T> implements Observable.InterfaceC13005a<T> {
 
     /* JADX INFO: renamed from: j0.l.a.g0$a */
     /* JADX INFO: compiled from: OnSubscribeTimeoutTimedWithFallback.java */
-    public static final class a<T> extends Subscriber<T> {
+    public final class a<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f26796j;
@@ -70,9 +70,27 @@ public final class C12623g0<T> implements Observable.InterfaceC13005a<T> {
         }
     }
 
+    public C12623g0(Observable<T> observable, long j, TimeUnit timeUnit, Scheduler scheduler, Observable<? extends T> observable2) {
+        this.f26791j = observable;
+        this.f26792k = j;
+        this.f26793l = timeUnit;
+        this.f26794m = scheduler;
+        this.f26795n = observable2;
+    }
+
+    @Override // p658rx.functions.Action1
+    public void call(Object obj) {
+        Subscriber subscriber = (Subscriber) obj;
+        b bVar = new b(subscriber, this.f26792k, this.f26793l, this.f26794m.mo10739a(), this.f26795n);
+        subscriber.add(bVar.f26806r);
+        subscriber.setProducer(bVar.f26803o);
+        bVar.f26805q.m10809a(bVar.f26801m.mo10741b(new b.a(0L), bVar.f26799k, bVar.f26800l));
+        this.f26791j.m11095U(bVar);
+    }
+
     /* JADX INFO: renamed from: j0.l.a.g0$b */
     /* JADX INFO: compiled from: OnSubscribeTimeoutTimedWithFallback.java */
-    public static final class b<T> extends Subscriber<T> {
+    public final class b<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super T> f26798j;
@@ -89,12 +107,6 @@ public final class C12623g0<T> implements Observable.InterfaceC13005a<T> {
         /* JADX INFO: renamed from: n */
         public final Observable<? extends T> f26802n;
 
-        /* JADX INFO: renamed from: o */
-        public final C12693a f26803o = new C12693a();
-
-        /* JADX INFO: renamed from: p */
-        public final AtomicLong f26804p = new AtomicLong();
-
         /* JADX INFO: renamed from: q */
         public final C12709a f26805q;
 
@@ -103,6 +115,12 @@ public final class C12623g0<T> implements Observable.InterfaceC13005a<T> {
 
         /* JADX INFO: renamed from: s */
         public long f26807s;
+
+        /* JADX INFO: renamed from: o */
+        public final C12693a f26803o = new C12693a();
+
+        /* JADX INFO: renamed from: p */
+        public final AtomicLong f26804p = new AtomicLong();
 
         /* JADX INFO: renamed from: j0.l.a.g0$b$a */
         /* JADX INFO: compiled from: OnSubscribeTimeoutTimedWithFallback.java */
@@ -190,23 +208,5 @@ public final class C12623g0<T> implements Observable.InterfaceC13005a<T> {
         public void setProducer(Producer producer) {
             this.f26803o.m10797c(producer);
         }
-    }
-
-    public C12623g0(Observable<T> observable, long j, TimeUnit timeUnit, Scheduler scheduler, Observable<? extends T> observable2) {
-        this.f26791j = observable;
-        this.f26792k = j;
-        this.f26793l = timeUnit;
-        this.f26794m = scheduler;
-        this.f26795n = observable2;
-    }
-
-    @Override // p658rx.functions.Action1
-    public void call(Object obj) {
-        Subscriber subscriber = (Subscriber) obj;
-        b bVar = new b(subscriber, this.f26792k, this.f26793l, this.f26794m.mo10739a(), this.f26795n);
-        subscriber.add(bVar.f26806r);
-        subscriber.setProducer(bVar.f26803o);
-        bVar.f26805q.m10809a(bVar.f26801m.mo10741b(new b.a(0L), bVar.f26799k, bVar.f26800l));
-        this.f26791j.m11095U(bVar);
     }
 }

@@ -68,7 +68,7 @@ public final class ViewOnTouchListenerC5282l implements View.OnTouchListener {
 
     /* JADX INFO: renamed from: b.p.a.l$b */
     /* JADX INFO: compiled from: SwipeDismissTouchListener.kt */
-    public static final class b extends AnimatorListenerAdapter {
+    public final class b extends AnimatorListenerAdapter {
         public b(MotionEvent motionEvent, View view) {
         }
 

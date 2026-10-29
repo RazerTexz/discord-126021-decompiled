@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInfraApiHttpRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long statusCode = null;
     private final Long count = null;
+    private final Long statusCode = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "infra_api_http_request";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchem
         }
         TrackInfraApiHttpRequest trackInfraApiHttpRequest = (TrackInfraApiHttpRequest) other;
         return C12238m.areEqual(this.statusCode, trackInfraApiHttpRequest.statusCode) && C12238m.areEqual(this.count, trackInfraApiHttpRequest.count);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

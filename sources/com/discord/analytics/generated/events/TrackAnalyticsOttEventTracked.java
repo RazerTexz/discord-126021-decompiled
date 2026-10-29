@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAnalyticsOttEventTracked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAnalyticsOttEventTracked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence kpi = null;
     private final CharSequence fpc = null;
+    private final CharSequence kpi = null;
     private final CharSequence pip = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "analytics_ott_event_tracked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackAnalyticsOttEventTracked implements Analytics
         }
         TrackAnalyticsOttEventTracked trackAnalyticsOttEventTracked = (TrackAnalyticsOttEventTracked) other;
         return C12238m.areEqual(this.kpi, trackAnalyticsOttEventTracked.kpi) && C12238m.areEqual(this.fpc, trackAnalyticsOttEventTracked.fpc) && C12238m.areEqual(this.pip, trackAnalyticsOttEventTracked.pip);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

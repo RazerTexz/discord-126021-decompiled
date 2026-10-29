@@ -12,7 +12,7 @@ public abstract class AbstractC2429l {
     /* JADX INFO: renamed from: b.i.a.b.i.e.l$a */
     /* JADX INFO: compiled from: LogEvent.java */
     @AutoValue.Builder
-    public static abstract class a {
+    public abstract class a {
     }
 
     @Nullable

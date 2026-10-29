@@ -31,12 +31,6 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class C4389a {
 
-    /* JADX INFO: renamed from: a */
-    public static final int[] f11557a = {R.attr.state_checked};
-
-    /* JADX INFO: renamed from: b */
-    public static final double f11558b = Math.cos(Math.toRadians(45.0d));
-
     /* JADX INFO: renamed from: c */
     @NonNull
     public final MaterialCardView f11559c;
@@ -103,6 +97,12 @@ public class C4389a {
 
     /* JADX INFO: renamed from: u */
     public boolean f11577u;
+
+    /* JADX INFO: renamed from: a */
+    public static final int[] f11557a = {R.attr.state_checked};
+
+    /* JADX INFO: renamed from: b */
+    public static final double f11558b = Math.cos(Math.toRadians(45.0d));
 
     /* JADX INFO: renamed from: d */
     @NonNull

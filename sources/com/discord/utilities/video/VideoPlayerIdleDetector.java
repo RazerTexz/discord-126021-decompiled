@@ -27,7 +27,7 @@ public final class VideoPlayerIdleDetector {
 
     /* JADX INFO: renamed from: com.discord.utilities.video.VideoPlayerIdleDetector$beginIdleDetectionTimer$1 */
     /* JADX INFO: compiled from: VideoPlayerIdleDetector.kt */
-    public static final class C69871 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C69871 extends AbstractC12240o implements Function1<Long, Unit> {
         public C69871() {
             super(1);
         }
@@ -46,7 +46,7 @@ public final class VideoPlayerIdleDetector {
 
     /* JADX INFO: renamed from: com.discord.utilities.video.VideoPlayerIdleDetector$beginIdleDetectionTimer$2 */
     /* JADX INFO: compiled from: VideoPlayerIdleDetector.kt */
-    public static final class C69882 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C69882 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C69882() {
             super(1);
         }
@@ -75,6 +75,13 @@ public final class VideoPlayerIdleDetector {
         this.onIdleStateChanged = function1;
     }
 
+    public final void beginIdleDetection() {
+        if (this.idleDetectionSubscription == null) {
+            setIdle(false);
+            beginIdleDetectionTimer();
+        }
+    }
+
     private final void beginIdleDetectionTimer() {
         cancelIdleDetectionTimer();
         Observable<Long> observableM11084J = Observable.m11070e0(this.idleDetectionMs, TimeUnit.MILLISECONDS, this.backgroundThreadScheduler).m11084J(this.idleDetectionScheduler);
@@ -88,27 +95,6 @@ public final class VideoPlayerIdleDetector {
             subscription.unsubscribe();
         }
         this.idleDetectionSubscription = null;
-    }
-
-    public static /* synthetic */ void onInteraction$default(VideoPlayerIdleDetector videoPlayerIdleDetector, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        videoPlayerIdleDetector.onInteraction(z2);
-    }
-
-    private final void setIdle(boolean isIdle) {
-        if (isIdle != this.isIdle) {
-            this.isIdle = isIdle;
-            this.onIdleStateChanged.invoke(Boolean.valueOf(isIdle));
-        }
-    }
-
-    public final void beginIdleDetection() {
-        if (this.idleDetectionSubscription == null) {
-            setIdle(false);
-            beginIdleDetectionTimer();
-        }
     }
 
     public final void dispose() {
@@ -126,6 +112,13 @@ public final class VideoPlayerIdleDetector {
         return this.isIdle;
     }
 
+    public static /* synthetic */ void onInteraction$default(VideoPlayerIdleDetector videoPlayerIdleDetector, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        videoPlayerIdleDetector.onInteraction(z2);
+    }
+
     public final void onInteraction(boolean otherIsIdle) {
         if ((this.isIdle || otherIsIdle) ? false : true) {
             cancelIdleDetectionTimer();
@@ -140,6 +133,13 @@ public final class VideoPlayerIdleDetector {
         setIdle(false);
         if (this.idleDetectionSubscription != null) {
             beginIdleDetectionTimer();
+        }
+    }
+
+    private final void setIdle(boolean isIdle) {
+        if (isIdle != this.isIdle) {
+            this.isIdle = isIdle;
+            this.onIdleStateChanged.invoke(Boolean.valueOf(isIdle));
         }
     }
 

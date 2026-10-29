@@ -24,13 +24,6 @@ public abstract class AbstractC4567e extends AbstractC3311p<C3562g, Void> implem
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
-    /* JADX INFO: renamed from: a */
-    public void mo4067a(Status status) {
-        C1460d.m551o(!status.m9030w0(), "Failed result must not be success.");
-        this.f12172c.f20845a.m6025t(C3404f.m4242R1(status, status.f20496q));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
     /* JADX INFO: renamed from: b */
     public void mo3989b(Object obj) {
         Status status = (Status) obj;
@@ -40,6 +33,13 @@ public abstract class AbstractC4567e extends AbstractC3311p<C3562g, Void> implem
         }
         TaskCompletionSource<Void> taskCompletionSource = this.f12172c;
         taskCompletionSource.f20845a.m6025t(C3404f.m4242R1(status, "User Action indexing error, please try again."));
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
+    /* JADX INFO: renamed from: a */
+    public void mo4067a(Status status) {
+        C1460d.m551o(!status.m9030w0(), "Failed result must not be success.");
+        this.f12172c.f20845a.m6025t(C3404f.m4242R1(status, status.f20496q));
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.AbstractC3311p

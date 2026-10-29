@@ -17,7 +17,7 @@ public final class TextWatcherKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.text.TextWatcherKt$addLifecycleAwareTextWatcher$1 */
     /* JADX INFO: compiled from: TextWatcher.kt */
-    public static final class C70131 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C70131 extends AbstractC12240o implements Function1<Editable, Unit> {
         public final /* synthetic */ Function1 $afterTextChanged;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

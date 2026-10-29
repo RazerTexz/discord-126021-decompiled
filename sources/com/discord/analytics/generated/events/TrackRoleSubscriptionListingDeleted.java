@@ -12,30 +12,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRoleSubscriptionListingDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRoleSubscriptionListingDeleted implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
-    private TrackBase trackBase;
-    private TrackGuild trackGuild;
-    private final Long roleSubscriptionListingId = null;
     private final CharSequence name = null;
     private final Long roleSubscriptionGroupListingId = null;
+    private final Long roleSubscriptionListingId = null;
+    private TrackBase trackBase;
+    private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_listing_deleted";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -48,6 +30,18 @@ public final /* data */ class TrackRoleSubscriptionListingDeleted implements Ana
         return C12238m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionListingId) && C12238m.areEqual(this.name, trackRoleSubscriptionListingDeleted.name) && C12238m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionGroupListingId);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
+    }
+
     public int hashCode() {
         Long l = this.roleSubscriptionListingId;
         int iHashCode = (l != null ? l.hashCode() : 0) * 31;
@@ -55,6 +49,12 @@ public final /* data */ class TrackRoleSubscriptionListingDeleted implements Ana
         int iHashCode2 = (iHashCode + (charSequence != null ? charSequence.hashCode() : 0)) * 31;
         Long l2 = this.roleSubscriptionGroupListingId;
         return iHashCode2 + (l2 != null ? l2.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

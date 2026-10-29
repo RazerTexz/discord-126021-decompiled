@@ -12,7 +12,7 @@ public interface InterfaceC11663x<T> {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.b.x$a */
     /* JADX INFO: compiled from: descriptorBasedTypeSignatureMapping.kt */
-    public static final class a {
+    public final class a {
         public static <T> String getPredefinedFullInternalNameForClass(InterfaceC11663x<? extends T> interfaceC11663x, InterfaceC11330e interfaceC11330e) {
             C12238m.checkNotNullParameter(interfaceC11663x, "this");
             C12238m.checkNotNullParameter(interfaceC11330e, "classDescriptor");

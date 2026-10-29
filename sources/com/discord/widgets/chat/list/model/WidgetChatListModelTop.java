@@ -45,8 +45,32 @@ public final /* data */ class WidgetChatListModelTop {
     private final ChatListEntry item;
 
     /* JADX INFO: compiled from: WidgetChatListModelTop.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
+        }
+
+        public final Observable<WidgetChatListModelTop> get(final Channel channel) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            Observable<WidgetChatListModelTop> observableM11112r = StoreStream.INSTANCE.getMessagesLoader().getMessagesLoadedState(channel.getId()).m11099Y(new InterfaceC12589b<StoreMessagesLoader.ChannelLoadedState, Observable<? extends WidgetChatListModelTop>>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModelTop$Companion$get$1
+                @Override // p637j0.p641k.InterfaceC12589b
+                public final Observable<? extends WidgetChatListModelTop> call(StoreMessagesLoader.ChannelLoadedState channelLoadedState) {
+                    Observable c12721k;
+                    if (channelLoadedState.isOldestMessagesLoaded()) {
+                        c12721k = WidgetChatListModelTop.INSTANCE.getWelcomeEntry(channel);
+                    } else {
+                        c12721k = (channelLoadedState.isTouchedSinceLastJump() || !channelLoadedState.isInitialMessagesLoaded()) ? new C12721k(new LoadingEntry()) : new C12721k(new SpacerEntry(channel.getId()));
+                    }
+                    return c12721k.m11083G(new InterfaceC12589b<ChatListEntry, WidgetChatListModelTop>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModelTop$Companion$get$1.1
+                        @Override // p637j0.p641k.InterfaceC12589b
+                        public final WidgetChatListModelTop call(ChatListEntry chatListEntry) {
+                            C12238m.checkNotNullExpressionValue(chatListEntry, "it");
+                            return new WidgetChatListModelTop(chatListEntry);
+                        }
+                    });
+                }
+            }).m11112r();
+            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n          .g…  .distinctUntilChanged()");
+            return observableM11112r;
         }
 
         private final Observable<ChatListEntry> getWelcomeEntry(final Channel channel) {
@@ -116,30 +140,6 @@ public final /* data */ class WidgetChatListModelTop {
             return ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(observableObserveGuildMember, 1L, TimeUnit.SECONDS));
         }
 
-        public final Observable<WidgetChatListModelTop> get(final Channel channel) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            Observable<WidgetChatListModelTop> observableM11112r = StoreStream.INSTANCE.getMessagesLoader().getMessagesLoadedState(channel.getId()).m11099Y(new InterfaceC12589b<StoreMessagesLoader.ChannelLoadedState, Observable<? extends WidgetChatListModelTop>>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModelTop$Companion$get$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetChatListModelTop> call(StoreMessagesLoader.ChannelLoadedState channelLoadedState) {
-                    Observable c12721k;
-                    if (channelLoadedState.isOldestMessagesLoaded()) {
-                        c12721k = WidgetChatListModelTop.INSTANCE.getWelcomeEntry(channel);
-                    } else {
-                        c12721k = (channelLoadedState.isTouchedSinceLastJump() || !channelLoadedState.isInitialMessagesLoaded()) ? new C12721k(new LoadingEntry()) : new C12721k(new SpacerEntry(channel.getId()));
-                    }
-                    return c12721k.m11083G(new InterfaceC12589b<ChatListEntry, WidgetChatListModelTop>() { // from class: com.discord.widgets.chat.list.model.WidgetChatListModelTop$Companion$get$1.1
-                        @Override // p637j0.p641k.InterfaceC12589b
-                        public final WidgetChatListModelTop call(ChatListEntry chatListEntry) {
-                            C12238m.checkNotNullExpressionValue(chatListEntry, "it");
-                            return new WidgetChatListModelTop(chatListEntry);
-                        }
-                    });
-                }
-            }).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "StoreStream\n          .g…  .distinctUntilChanged()");
-            return observableM11112r;
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
@@ -157,15 +157,6 @@ public final /* data */ class WidgetChatListModelTop {
         return widgetChatListModelTop.copy(chatListEntry);
     }
 
-    public static final Observable<WidgetChatListModelTop> get(Channel channel) {
-        return INSTANCE.get(channel);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ChatListEntry getItem() {
-        return this.item;
-    }
-
     public final WidgetChatListModelTop copy(ChatListEntry item) {
         C12238m.checkNotNullParameter(item, "item");
         return new WidgetChatListModelTop(item);
@@ -176,6 +167,15 @@ public final /* data */ class WidgetChatListModelTop {
             return (other instanceof WidgetChatListModelTop) && C12238m.areEqual(this.item, ((WidgetChatListModelTop) other).item);
         }
         return true;
+    }
+
+    public static final Observable<WidgetChatListModelTop> get(Channel channel) {
+        return INSTANCE.get(channel);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ChatListEntry getItem() {
+        return this.item;
     }
 
     public final ChatListEntry getItem() {

@@ -17,16 +17,6 @@ public final /* data */ class CommandChoice {
         this.value = str2;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final String getValue() {
-        return this.value;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,6 +26,16 @@ public final /* data */ class CommandChoice {
         }
         CommandChoice commandChoice = (CommandChoice) other;
         return C12238m.areEqual(this.name, commandChoice.name) && C12238m.areEqual(this.value, commandChoice.value);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final String getValue() {
+        return this.value;
     }
 
     public int hashCode() {

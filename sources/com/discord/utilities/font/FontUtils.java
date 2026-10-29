@@ -15,10 +15,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: FontUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FontUtils {
-    public static final FontUtils INSTANCE = new FontUtils();
     public static final int MAX_FONT_SCALING = 150;
     public static final int MIN_FONT_SCALING = 80;
     public static final int USE_SYSTEM_FONT_SCALE = -1;
+    public static final FontUtils INSTANCE = new FontUtils();
 
     private FontUtils() {
     }

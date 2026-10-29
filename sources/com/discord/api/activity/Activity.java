@@ -50,6 +50,17 @@ public final /* data */ class Activity {
         this.buttons = null;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Activity)) {
+            return false;
+        }
+        Activity activity = (Activity) other;
+        return C12238m.areEqual(this.name, activity.name) && C12238m.areEqual(this.type, activity.type) && C12238m.areEqual(this.url, activity.url) && this.createdAt == activity.createdAt && C12238m.areEqual(this.timestamps, activity.timestamps) && C12238m.areEqual(this.applicationId, activity.applicationId) && C12238m.areEqual(this.details, activity.details) && C12238m.areEqual(this.state, activity.state) && C12238m.areEqual(this.emoji, activity.emoji) && C12238m.areEqual(this.party, activity.party) && C12238m.areEqual(this.assets, activity.assets) && C12238m.areEqual(this.flags, activity.flags) && C12238m.areEqual(this.syncId, activity.syncId) && C12238m.areEqual(this.sessionId, activity.sessionId) && C12238m.areEqual(this.metadata, activity.metadata) && C12238m.areEqual(this.platform, activity.platform) && C12238m.areEqual(this.supportedPlatforms, activity.supportedPlatforms) && C12238m.areEqual(this.buttons, activity.buttons);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final Long getApplicationId() {
         return this.applicationId;
@@ -60,11 +71,6 @@ public final /* data */ class Activity {
         return this.assets;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final List<String> m7534c() {
-        return this.buttons;
-    }
-
     /* JADX INFO: renamed from: d, reason: from getter */
     public final long getCreatedAt() {
         return this.createdAt;
@@ -73,17 +79,6 @@ public final /* data */ class Activity {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getDetails() {
         return this.details;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Activity)) {
-            return false;
-        }
-        Activity activity = (Activity) other;
-        return C12238m.areEqual(this.name, activity.name) && C12238m.areEqual(this.type, activity.type) && C12238m.areEqual(this.url, activity.url) && this.createdAt == activity.createdAt && C12238m.areEqual(this.timestamps, activity.timestamps) && C12238m.areEqual(this.applicationId, activity.applicationId) && C12238m.areEqual(this.details, activity.details) && C12238m.areEqual(this.state, activity.state) && C12238m.areEqual(this.emoji, activity.emoji) && C12238m.areEqual(this.party, activity.party) && C12238m.areEqual(this.assets, activity.assets) && C12238m.areEqual(this.flags, activity.flags) && C12238m.areEqual(this.syncId, activity.syncId) && C12238m.areEqual(this.sessionId, activity.sessionId) && C12238m.areEqual(this.metadata, activity.metadata) && C12238m.areEqual(this.platform, activity.platform) && C12238m.areEqual(this.supportedPlatforms, activity.supportedPlatforms) && C12238m.areEqual(this.buttons, activity.buttons);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -99,6 +94,41 @@ public final /* data */ class Activity {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final ActivityParty getParty() {
+        return this.party;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final ActivityPlatform getPlatform() {
+        return this.platform;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final String getSessionId() {
+        return this.sessionId;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final String getState() {
+        return this.state;
+    }
+
+    /* JADX INFO: renamed from: n, reason: from getter */
+    public final String getSyncId() {
+        return this.syncId;
+    }
+
+    /* JADX INFO: renamed from: o, reason: from getter */
+    public final ActivityTimestamps getTimestamps() {
+        return this.timestamps;
+    }
+
+    /* JADX INFO: renamed from: p, reason: from getter */
+    public final ActivityType getType() {
+        return this.type;
     }
 
     public int hashCode() {
@@ -140,44 +170,14 @@ public final /* data */ class Activity {
         return iHashCode16 + (list2 != null ? list2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final ActivityParty getParty() {
-        return this.party;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final ActivityPlatform getPlatform() {
-        return this.platform;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final String getSessionId() {
-        return this.sessionId;
-    }
-
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final String getState() {
-        return this.state;
+    /* JADX INFO: renamed from: c */
+    public final List<String> m7534c() {
+        return this.buttons;
     }
 
     /* JADX INFO: renamed from: m */
     public final List<ActivityPlatform> m7544m() {
         return this.supportedPlatforms;
-    }
-
-    /* JADX INFO: renamed from: n, reason: from getter */
-    public final String getSyncId() {
-        return this.syncId;
-    }
-
-    /* JADX INFO: renamed from: o, reason: from getter */
-    public final ActivityTimestamps getTimestamps() {
-        return this.timestamps;
-    }
-
-    /* JADX INFO: renamed from: p, reason: from getter */
-    public final ActivityType getType() {
-        return this.type;
     }
 
     public String toString() {

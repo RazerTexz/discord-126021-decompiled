@@ -20,7 +20,7 @@ public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
     private final boolean mUseNoBackupDirectory;
     private boolean mWriteAheadLoggingEnabled;
 
-    public static class OpenHelper extends SQLiteOpenHelper {
+    public class OpenHelper extends SQLiteOpenHelper {
         public final SupportSQLiteOpenHelper.Callback mCallback;
         public final FrameworkSQLiteDatabase[] mDbRef;
         private boolean mMigrated;
@@ -109,6 +109,16 @@ public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
         this(context, str, callback, false);
     }
 
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper, java.io.Closeable, java.lang.AutoCloseable
+    public void close() {
+        getDelegate().close();
+    }
+
+    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
+    public String getDatabaseName() {
+        return this.mName;
+    }
+
     private OpenHelper getDelegate() {
         OpenHelper openHelper;
         synchronized (this.mLock) {
@@ -124,16 +134,6 @@ public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
             openHelper = this.mDelegate;
         }
         return openHelper;
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper, java.io.Closeable, java.lang.AutoCloseable
-    public void close() {
-        getDelegate().close();
-    }
-
-    @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper
-    public String getDatabaseName() {
-        return this.mName;
     }
 
     @Override // androidx.sqlite.p006db.SupportSQLiteOpenHelper

@@ -11,20 +11,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayPinToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayPinToggled implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final Boolean pinned = null;
-    private final Long guildId = null;
     private final Long channelId = null;
     private final Long channelType = null;
+    private final Long guildId = null;
+    private final Boolean pinned = null;
+    private TrackBase trackBase;
+    private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final CharSequence widgetType = null;
     private final transient String analyticsSchemaTypeName = "overlay_pin_toggled";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackOverlayPinToggled implements AnalyticsSchema,
         }
         TrackOverlayPinToggled trackOverlayPinToggled = (TrackOverlayPinToggled) other;
         return C12238m.areEqual(this.pinned, trackOverlayPinToggled.pinned) && C12238m.areEqual(this.guildId, trackOverlayPinToggled.guildId) && C12238m.areEqual(this.channelId, trackOverlayPinToggled.channelId) && C12238m.areEqual(this.channelType, trackOverlayPinToggled.channelType) && C12238m.areEqual(this.widgetType, trackOverlayPinToggled.widgetType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

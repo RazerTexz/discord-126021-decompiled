@@ -16,11 +16,16 @@ public final class FragmentViewBindingDelegateKt {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt$viewBinding$1 */
     /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
-    public static final class C70161<T> extends AbstractC12240o implements Function1<T, Unit> {
+    public final class C70161<T> extends AbstractC12240o implements Function1<T, Unit> {
         public static final C70161 INSTANCE = new C70161();
 
         public C70161() {
             super(1);
+        }
+
+        /* JADX WARN: Incorrect types in method signature: (TT;)V */
+        public final void invoke(ViewBinding viewBinding) {
+            C12238m.checkNotNullParameter(viewBinding, "it");
         }
 
         @Override // kotlin.jvm.functions.Function1
@@ -28,18 +33,6 @@ public final class FragmentViewBindingDelegateKt {
             invoke((ViewBinding) obj);
             return Unit.f27425a;
         }
-
-        /* JADX WARN: Incorrect types in method signature: (TT;)V */
-        public final void invoke(ViewBinding viewBinding) {
-            C12238m.checkNotNullParameter(viewBinding, "it");
-        }
-    }
-
-    public static final <T extends ViewBinding> FragmentViewBindingDelegate<T> viewBinding(Fragment fragment, Function1<? super View, ? extends T> function1, Function1<? super T, Unit> function2) {
-        C12238m.checkNotNullParameter(fragment, "$this$viewBinding");
-        C12238m.checkNotNullParameter(function1, "viewBindingFactory");
-        C12238m.checkNotNullParameter(function2, "onViewBindingDestroy");
-        return new FragmentViewBindingDelegate<>(fragment, function1, function2);
     }
 
     public static /* synthetic */ FragmentViewBindingDelegate viewBinding$default(Fragment fragment, Function1 function1, Function1 function2, int i, Object obj) {
@@ -47,5 +40,12 @@ public final class FragmentViewBindingDelegateKt {
             function2 = C70161.INSTANCE;
         }
         return viewBinding(fragment, function1, function2);
+    }
+
+    public static final <T extends ViewBinding> FragmentViewBindingDelegate<T> viewBinding(Fragment fragment, Function1<? super View, ? extends T> function1, Function1<? super T, Unit> function2) {
+        C12238m.checkNotNullParameter(fragment, "$this$viewBinding");
+        C12238m.checkNotNullParameter(function1, "viewBindingFactory");
+        C12238m.checkNotNullParameter(function2, "onViewBindingDestroy");
+        return new FragmentViewBindingDelegate<>(fragment, function1, function2);
     }
 }

@@ -43,7 +43,7 @@ public final class C4003ca {
     /* JADX WARN: Type inference failed for: r6v4, types: [android.database.Cursor] */
     /* JADX WARN: Type inference failed for: r6v5 */
     /* JADX INFO: renamed from: a */
-    public final C3579a1 m5561a(String str, C3579a1 c3579a1) {
+    public final C3579a1 m5561a(String str, C3579a1 c3579a1) throws Throwable {
         C4040g c4040gM5686q;
         ?? r6;
         Cursor cursorRawQuery;

@@ -151,47 +151,6 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
         return arrayList;
     }
 
-    private void createCachedFields(IntArray intArray, List<Field> list, List<CachedField> list2, int i) {
-        if (!this.config.isUseAsm() && this.useMemRegions) {
-            this.unsafeUtil.createUnsafeCacheFieldsAndRegions(list, list2, i, intArray);
-            return;
-        }
-        int size = list.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            Field field = list.get(i2);
-            int iM911h = -1;
-            if (this.access != null && intArray.get(i + i2) == 1) {
-                iM911h = ((AbstractC1647c) this.access).m911h(field.getName());
-            }
-            list2.add(newCachedField(field, list2.size(), iM911h));
-        }
-    }
-
-    private CachedFieldFactory getAsmFieldFactory() {
-        if (asmFieldFactory == null) {
-            asmFieldFactory = new AsmCachedFieldFactory();
-        }
-        return asmFieldFactory;
-    }
-
-    private CachedFieldFactory getObjectFieldFactory() {
-        if (objectFieldFactory == null) {
-            objectFieldFactory = new ObjectCachedFieldFactory();
-        }
-        return objectFieldFactory;
-    }
-
-    private CachedFieldFactory getUnsafeFieldFactory() {
-        if (unsafeFieldFactory == null) {
-            try {
-                unsafeFieldFactory = (CachedFieldFactory) getClass().getClassLoader().loadClass("com.esotericsoftware.kryo.serializers.UnsafeCachedFieldFactory").newInstance();
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot create UnsafeFieldFactory", e);
-            }
-        }
-        return unsafeFieldFactory;
-    }
-
     @Override // com.esotericsoftware.kryo.Serializer
     public T copy(Kryo kryo, T t) {
         T tCreateCopy = createCopy(kryo, t);
@@ -213,8 +172,31 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
         return (T) kryo.newInstance(cls);
     }
 
+    private void createCachedFields(IntArray intArray, List<Field> list, List<CachedField> list2, int i) {
+        if (!this.config.isUseAsm() && this.useMemRegions) {
+            this.unsafeUtil.createUnsafeCacheFieldsAndRegions(list, list2, i, intArray);
+            return;
+        }
+        int size = list.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            Field field = list.get(i2);
+            int iM911h = -1;
+            if (this.access != null && intArray.get(i + i2) == 1) {
+                iM911h = ((AbstractC1647c) this.access).m911h(field.getName());
+            }
+            list2.add(newCachedField(field, list2.size(), iM911h));
+        }
+    }
+
     public T createCopy(Kryo kryo, T t) {
         return (T) kryo.newInstance(t.getClass());
+    }
+
+    private CachedFieldFactory getAsmFieldFactory() {
+        if (asmFieldFactory == null) {
+            asmFieldFactory = new AsmCachedFieldFactory();
+        }
+        return asmFieldFactory;
     }
 
     public String getCachedFieldName(CachedField cachedField) {
@@ -252,6 +234,13 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
         return this.kryo;
     }
 
+    private CachedFieldFactory getObjectFieldFactory() {
+        if (objectFieldFactory == null) {
+            objectFieldFactory = new ObjectCachedFieldFactory();
+        }
+        return objectFieldFactory;
+    }
+
     public boolean getSerializeTransient() {
         return this.config.isSerializeTransient();
     }
@@ -262,6 +251,17 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
 
     public Class getType() {
         return this.type;
+    }
+
+    private CachedFieldFactory getUnsafeFieldFactory() {
+        if (unsafeFieldFactory == null) {
+            try {
+                unsafeFieldFactory = (CachedFieldFactory) getClass().getClassLoader().loadClass("com.esotericsoftware.kryo.serializers.UnsafeCachedFieldFactory").newInstance();
+            } catch (Exception e) {
+                throw new RuntimeException("Cannot create UnsafeFieldFactory", e);
+            }
+        }
+        return unsafeFieldFactory;
     }
 
     public boolean getUseAsmEnabled() {
@@ -478,7 +478,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
         kryo.getGenericsResolver().popScope();
     }
 
-    public static abstract class CachedField<X> {
+    public abstract class CachedField<X> {
         public AbstractC1647c access;
         public boolean canBeNull;
         public Field field;
@@ -568,18 +568,19 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Cach
             }
             ObjectMap context = this.kryo.getContext();
             List<Field> listAsList = arrayList;
-            if (this.useMemRegions && !this.config.isUseAsm() && unsafeAvailable) {
-                try {
+            if (this.useMemRegions) {
+                listAsList = arrayList;
+                if (!this.config.isUseAsm()) {
                     listAsList = arrayList;
-                    listAsList = arrayList;
-                    listAsList = Arrays.asList((Field[]) sortFieldsByOffsetMethod.invoke(null, arrayList));
-                } catch (Exception e) {
-                    throw new RuntimeException("Cannot invoke UnsafeUtil.sortFieldsByOffset()", e);
+                    if (unsafeAvailable) {
+                        try {
+                            listAsList = Arrays.asList((Field[]) sortFieldsByOffsetMethod.invoke(null, arrayList));
+                        } catch (Exception e) {
+                            throw new RuntimeException("Cannot invoke UnsafeUtil.sortFieldsByOffset()", e);
+                        }
+                    }
                 }
             }
-            listAsList = arrayList;
-            listAsList = arrayList;
-            listAsList = arrayList;
             listBuildValidFieldsFromCachedFields = buildValidFields(false, listAsList, context, intArray);
             listBuildValidFieldsFromCachedFields2 = buildValidFields(true, listAsList, context, intArray);
             if (this.config.isUseAsm() && !Util.IS_ANDROID && Modifier.isPublic(this.type.getModifiers()) && intArray.indexOf(1) != -1) {

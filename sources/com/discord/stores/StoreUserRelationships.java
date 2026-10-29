@@ -32,11 +32,47 @@ public final class StoreUserRelationships extends StoreV2 {
     private UserRelationshipsState relationshipsState;
     private UserRelationshipsState relationshipsStateSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserRelationships$observe$1 */
     /* JADX INFO: compiled from: StoreUserRelationships.kt */
-    public static abstract class UserRelationshipsState {
+    public final class C65911 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
+        public C65911() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends Integer> invoke() {
+            UserRelationshipsState userRelationshipsState = StoreUserRelationships.this.relationshipsStateSnapshot;
+            if (C12238m.areEqual(userRelationshipsState, UserRelationshipsState.Unloaded.INSTANCE)) {
+                return C12136h0.emptyMap();
+            }
+            if (!(userRelationshipsState instanceof UserRelationshipsState.Loaded)) {
+                throw new NoWhenBranchMatchedException();
+            }
+            UserRelationshipsState userRelationshipsState2 = StoreUserRelationships.this.relationshipsStateSnapshot;
+            Objects.requireNonNull(userRelationshipsState2, "null cannot be cast to non-null type com.discord.stores.StoreUserRelationships.UserRelationshipsState.Loaded");
+            return ((UserRelationshipsState.Loaded) userRelationshipsState2).getRelationships();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserRelationships$observeUserRelationshipsState$1 */
+    /* JADX INFO: compiled from: StoreUserRelationships.kt */
+    public final class C65951 extends AbstractC12240o implements Function0<UserRelationshipsState> {
+        public C65951() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final UserRelationshipsState invoke() {
+            return StoreUserRelationships.this.getRelationshipsStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserRelationships.kt */
+    public abstract class UserRelationshipsState {
 
         /* JADX INFO: compiled from: StoreUserRelationships.kt */
-        public static final /* data */ class Loaded extends UserRelationshipsState {
+        public final /* data */ class Loaded extends UserRelationshipsState {
             private final Map<Long, Integer> relationships;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -46,16 +82,16 @@ public final class StoreUserRelationships extends StoreV2 {
                 this.relationships = map;
             }
 
+            public final Map<Long, Integer> component1() {
+                return this.relationships;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, int i, Object obj) {
                 if ((i & 1) != 0) {
                     map = loaded.relationships;
                 }
                 return loaded.copy(map);
-            }
-
-            public final Map<Long, Integer> component1() {
-                return this.relationships;
             }
 
             public final Loaded copy(Map<Long, Integer> relationships) {
@@ -88,7 +124,7 @@ public final class StoreUserRelationships extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreUserRelationships.kt */
-        public static final class Unloaded extends UserRelationshipsState {
+        public final class Unloaded extends UserRelationshipsState {
             public static final Unloaded INSTANCE = new Unloaded();
 
             private Unloaded() {
@@ -101,42 +137,6 @@ public final class StoreUserRelationships extends StoreV2 {
 
         public /* synthetic */ UserRelationshipsState(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserRelationships$observe$1 */
-    /* JADX INFO: compiled from: StoreUserRelationships.kt */
-    public static final class C65911 extends AbstractC12240o implements Function0<Map<Long, ? extends Integer>> {
-        public C65911() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends Integer> invoke() {
-            UserRelationshipsState userRelationshipsState = StoreUserRelationships.this.relationshipsStateSnapshot;
-            if (C12238m.areEqual(userRelationshipsState, UserRelationshipsState.Unloaded.INSTANCE)) {
-                return C12136h0.emptyMap();
-            }
-            if (!(userRelationshipsState instanceof UserRelationshipsState.Loaded)) {
-                throw new NoWhenBranchMatchedException();
-            }
-            UserRelationshipsState userRelationshipsState2 = StoreUserRelationships.this.relationshipsStateSnapshot;
-            Objects.requireNonNull(userRelationshipsState2, "null cannot be cast to non-null type com.discord.stores.StoreUserRelationships.UserRelationshipsState.Loaded");
-            return ((UserRelationshipsState.Loaded) userRelationshipsState2).getRelationships();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserRelationships$observeUserRelationshipsState$1 */
-    /* JADX INFO: compiled from: StoreUserRelationships.kt */
-    public static final class C65951 extends AbstractC12240o implements Function0<UserRelationshipsState> {
-        public C65951() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final UserRelationshipsState invoke() {
-            return StoreUserRelationships.this.getRelationshipsStateSnapshot();
         }
     }
 

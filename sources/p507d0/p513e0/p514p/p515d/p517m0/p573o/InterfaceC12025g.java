@@ -10,7 +10,7 @@ public interface InterfaceC12025g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.o.g$a */
     /* JADX INFO: compiled from: ModuleVisibilityHelper.kt */
-    public static final class a implements InterfaceC12025g {
+    public final class a implements InterfaceC12025g {
 
         /* JADX INFO: renamed from: a */
         public static final a f24915a = new a();

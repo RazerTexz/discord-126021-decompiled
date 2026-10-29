@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFooterNavigation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFooterNavigation implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+    private final Boolean googleanalytics = null;
+    private final CharSequence linkclicked = null;
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
-    private final CharSequence linkclicked = null;
-    private final Boolean googleanalytics = null;
     private final transient String analyticsSchemaTypeName = "footer_navigation";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackFooterNavigation implements AnalyticsSchema, 
         }
         TrackFooterNavigation trackFooterNavigation = (TrackFooterNavigation) other;
         return C12238m.areEqual(this.linkclicked, trackFooterNavigation.linkclicked) && C12238m.areEqual(this.googleanalytics, trackFooterNavigation.googleanalytics);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -70,7 +70,7 @@ public final class ViewEmbedGameInvite extends LinearLayout {
     private final WidgetCollapsedUsersListAdapter userAdapter;
 
     /* JADX INFO: compiled from: ViewEmbedGameInvite.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -87,7 +87,7 @@ public final class ViewEmbedGameInvite extends LinearLayout {
         private final List<CollapsedUser> users;
 
         /* JADX INFO: compiled from: ViewEmbedGameInvite.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -251,40 +251,6 @@ public final class ViewEmbedGameInvite extends LinearLayout {
             this.isPartyMatch = zEquals;
         }
 
-        private final String getPartyId() {
-            return this.messageActivity.getPartyId();
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getCreatorId() {
-            return this.creatorId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getCreationTime() {
-            return this.creationTime;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Application getApplication() {
-            return this.application;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final MessageActivity getMessageActivity() {
-            return this.messageActivity;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Activity getActivity() {
-            return this.activity;
-        }
-
         public final List<CollapsedUser> component7() {
             return this.users;
         }
@@ -308,8 +274,18 @@ public final class ViewEmbedGameInvite extends LinearLayout {
             return C12238m.areEqual(this.meUser, model.meUser) && this.creatorId == model.creatorId && this.creationTime == model.creationTime && C12238m.areEqual(this.application, model.application) && C12238m.areEqual(this.messageActivity, model.messageActivity) && C12238m.areEqual(this.activity, model.activity) && C12238m.areEqual(this.users, model.users);
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Activity getActivity() {
             return this.activity;
+        }
+
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Application getApplication() {
+            return this.application;
         }
 
         public final Application getApplication() {
@@ -320,8 +296,18 @@ public final class ViewEmbedGameInvite extends LinearLayout {
             return this.canJoin;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getCreationTime() {
             return this.creationTime;
+        }
+
+        public final long getCreationTime() {
+            return this.creationTime;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getCreatorId() {
+            return this.creatorId;
         }
 
         public final long getCreatorId() {
@@ -332,12 +318,36 @@ public final class ViewEmbedGameInvite extends LinearLayout {
             return this.gPlayPackageNames;
         }
 
+        /* JADX INFO: renamed from: isInParty, reason: from getter */
+        public final boolean getIsInParty() {
+            return this.isInParty;
+        }
+
+        /* JADX INFO: renamed from: isPartyMatch, reason: from getter */
+        public final boolean getIsPartyMatch() {
+            return this.isPartyMatch;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final MeUser getMeUser() {
             return this.meUser;
         }
 
+        public final MeUser getMeUser() {
+            return this.meUser;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final MessageActivity getMessageActivity() {
             return this.messageActivity;
+        }
+
+        public final MessageActivity getMessageActivity() {
+            return this.messageActivity;
+        }
+
+        private final String getPartyId() {
+            return this.messageActivity.getPartyId();
         }
 
         public final List<CollapsedUser> getUsers() {
@@ -363,16 +373,6 @@ public final class ViewEmbedGameInvite extends LinearLayout {
 
         public final boolean isExpiredInvite(long now) {
             return now > this.creationTime + ViewEmbedGameInvite.EMBED_LIFETIME_MILLIS;
-        }
-
-        /* JADX INFO: renamed from: isInParty, reason: from getter */
-        public final boolean getIsInParty() {
-            return this.isInParty;
-        }
-
-        /* JADX INFO: renamed from: isPartyMatch, reason: from getter */
-        public final boolean getIsPartyMatch() {
-            return this.isPartyMatch;
         }
 
         public String toString() {
@@ -405,6 +405,12 @@ public final class ViewEmbedGameInvite extends LinearLayout {
         RecyclerView recyclerView = viewChatEmbedGameInviteBindingM8392a.f15393h;
         C12238m.checkNotNullExpressionValue(recyclerView, "binding.itemGameInviteRecycler");
         this.userAdapter = (WidgetCollapsedUsersListAdapter) companion.configure(new WidgetCollapsedUsersListAdapter(recyclerView));
+    }
+
+    public final void bind(Model model, Clock clock) {
+        C12238m.checkNotNullParameter(model, "model");
+        C12238m.checkNotNullParameter(clock, "clock");
+        configureUI(model, clock);
     }
 
     private final void configureActivityImages(Model model, boolean z2) {
@@ -503,6 +509,10 @@ public final class ViewEmbedGameInvite extends LinearLayout {
         this.userAdapter.setData(model.getUsers());
     }
 
+    public final Function2<View, Model, Unit> getOnActionButtonClick() {
+        return this.onActionButtonClick;
+    }
+
     private final void onConfigureActionButton(final Model model, boolean z2, boolean z3) {
         MaterialButton materialButton = this.binding.f15387b;
         C12238m.checkNotNullExpressionValue(materialButton, "binding.itemGameInviteActionBtn");
@@ -539,16 +549,6 @@ public final class ViewEmbedGameInvite extends LinearLayout {
                 }
             }
         });
-    }
-
-    public final void bind(Model model, Clock clock) {
-        C12238m.checkNotNullParameter(model, "model");
-        C12238m.checkNotNullParameter(clock, "clock");
-        configureUI(model, clock);
-    }
-
-    public final Function2<View, Model, Unit> getOnActionButtonClick() {
-        return this.onActionButtonClick;
     }
 
     public final void setOnActionButtonClick(Function2<? super View, ? super Model, Unit> function2) {

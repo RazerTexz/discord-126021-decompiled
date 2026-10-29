@@ -37,46 +37,6 @@ public final class C3017f implements InterfaceC3106l {
     /* JADX INFO: renamed from: b */
     public static final a f8152b = new a();
 
-    /* JADX INFO: renamed from: b.i.a.c.x2.f$a */
-    /* JADX INFO: compiled from: DefaultExtractorsFactory.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final AtomicBoolean f8153a = new AtomicBoolean(false);
-
-        /* JADX INFO: renamed from: b */
-        @Nullable
-        @GuardedBy("extensionLoaded")
-        public Constructor<? extends InterfaceC3031h> f8154b;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3106l
-    /* JADX INFO: renamed from: a */
-    public synchronized InterfaceC3031h[] mo3630a() {
-        return mo3631b(Uri.EMPTY, new HashMap());
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3106l
-    /* JADX INFO: renamed from: b */
-    public synchronized InterfaceC3031h[] mo3631b(Uri uri, Map<String, List<String>> map) {
-        ArrayList arrayList;
-        arrayList = new ArrayList(14);
-        int iM460O0 = C1460d.m460O0(map);
-        if (iM460O0 != -1) {
-            m3664c(iM460O0, arrayList);
-        }
-        int iM463P0 = C1460d.m463P0(uri);
-        if (iM463P0 != -1 && iM463P0 != iM460O0) {
-            m3664c(iM463P0, arrayList);
-        }
-        for (int i : f8151a) {
-            if (i != iM460O0 && i != iM463P0) {
-                m3664c(i, arrayList);
-            }
-        }
-        return (InterfaceC3031h[]) arrayList.toArray(new InterfaceC3031h[arrayList.size()]);
-    }
-
     /* JADX INFO: renamed from: c */
     public final void m3664c(int i, List<InterfaceC3031h> list) {
         InterfaceC3031h interfaceC3031hNewInstance;
@@ -160,5 +120,45 @@ public final class C3017f implements InterfaceC3106l {
                 list.add(new C3018a());
                 return;
         }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3106l
+    /* JADX INFO: renamed from: a */
+    public synchronized InterfaceC3031h[] mo3630a() {
+        return mo3631b(Uri.EMPTY, new HashMap());
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3106l
+    /* JADX INFO: renamed from: b */
+    public synchronized InterfaceC3031h[] mo3631b(Uri uri, Map<String, List<String>> map) {
+        ArrayList arrayList;
+        arrayList = new ArrayList(14);
+        int iM460O0 = C1460d.m460O0(map);
+        if (iM460O0 != -1) {
+            m3664c(iM460O0, arrayList);
+        }
+        int iM463P0 = C1460d.m463P0(uri);
+        if (iM463P0 != -1 && iM463P0 != iM460O0) {
+            m3664c(iM463P0, arrayList);
+        }
+        for (int i : f8151a) {
+            if (i != iM460O0 && i != iM463P0) {
+                m3664c(i, arrayList);
+            }
+        }
+        return (InterfaceC3031h[]) arrayList.toArray(new InterfaceC3031h[arrayList.size()]);
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.x2.f$a */
+    /* JADX INFO: compiled from: DefaultExtractorsFactory.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: b */
+        @Nullable
+        @GuardedBy("extensionLoaded")
+        public Constructor<? extends InterfaceC3031h> f8154b;
+
+        /* JADX INFO: renamed from: a */
+        public final AtomicBoolean f8153a = new AtomicBoolean(false);
     }
 }

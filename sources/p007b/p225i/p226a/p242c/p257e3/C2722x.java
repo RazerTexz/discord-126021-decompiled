@@ -35,7 +35,7 @@ public class C2722x {
 
     /* JADX INFO: renamed from: b.i.a.c.e3.x$b */
     /* JADX INFO: compiled from: SlidingPercentile.java */
-    public static class b {
+    public class b {
 
         /* JADX INFO: renamed from: a */
         public int f6638a;

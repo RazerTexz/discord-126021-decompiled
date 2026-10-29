@@ -15,7 +15,7 @@ public class ModelSession implements Model {
     private String sessionId;
     private String status;
 
-    public static class ClientInfo implements Model {
+    public class ClientInfo implements Model {
         private String client;
         private int number;
 

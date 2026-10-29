@@ -17,8 +17,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class WorkTypeConverters {
 
+    public interface BackoffPolicyIds {
+        public static final int EXPONENTIAL = 0;
+        public static final int LINEAR = 1;
+    }
+
     /* JADX INFO: renamed from: androidx.work.impl.model.WorkTypeConverters$1 */
-    public static /* synthetic */ class C07701 {
+    public /* synthetic */ class C07701 {
         public static final /* synthetic */ int[] $SwitchMap$androidx$work$BackoffPolicy;
         public static final /* synthetic */ int[] $SwitchMap$androidx$work$NetworkType;
         public static final /* synthetic */ int[] $SwitchMap$androidx$work$WorkInfo$State;
@@ -86,11 +91,6 @@ public class WorkTypeConverters {
             } catch (NoSuchFieldError unused13) {
             }
         }
-    }
-
-    public interface BackoffPolicyIds {
-        public static final int EXPONENTIAL = 0;
-        public static final int LINEAR = 1;
     }
 
     public interface NetworkTypeIds {

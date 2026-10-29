@@ -18,32 +18,6 @@ public class RawDocumentFile extends DocumentFile {
         this.mFile = file;
     }
 
-    private static boolean deleteContents(File file) {
-        File[] fileArrListFiles = file.listFiles();
-        boolean zDeleteContents = true;
-        if (fileArrListFiles != null) {
-            for (File file2 : fileArrListFiles) {
-                if (file2.isDirectory()) {
-                    zDeleteContents &= deleteContents(file2);
-                }
-                if (!file2.delete()) {
-                    Log.w(DocumentFile.TAG, "Failed to delete " + file2);
-                    zDeleteContents = false;
-                }
-            }
-        }
-        return zDeleteContents;
-    }
-
-    private static String getTypeForName(String str) {
-        int iLastIndexOf = str.lastIndexOf(46);
-        if (iLastIndexOf < 0) {
-            return "application/octet-stream";
-        }
-        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(str.substring(iLastIndexOf + 1).toLowerCase());
-        return mimeTypeFromExtension != null ? mimeTypeFromExtension : "application/octet-stream";
-    }
-
     @Override // androidx.documentfile.provider.DocumentFile
     public boolean canRead() {
         return this.mFile.canRead();
@@ -87,6 +61,23 @@ public class RawDocumentFile extends DocumentFile {
         return this.mFile.delete();
     }
 
+    private static boolean deleteContents(File file) {
+        File[] fileArrListFiles = file.listFiles();
+        boolean zDeleteContents = true;
+        if (fileArrListFiles != null) {
+            for (File file2 : fileArrListFiles) {
+                if (file2.isDirectory()) {
+                    zDeleteContents &= deleteContents(file2);
+                }
+                if (!file2.delete()) {
+                    Log.w(DocumentFile.TAG, "Failed to delete " + file2);
+                    zDeleteContents = false;
+                }
+            }
+        }
+        return zDeleteContents;
+    }
+
     @Override // androidx.documentfile.provider.DocumentFile
     public boolean exists() {
         return this.mFile.exists();
@@ -104,6 +95,15 @@ public class RawDocumentFile extends DocumentFile {
             return null;
         }
         return getTypeForName(this.mFile.getName());
+    }
+
+    private static String getTypeForName(String str) {
+        int iLastIndexOf = str.lastIndexOf(46);
+        if (iLastIndexOf < 0) {
+            return "application/octet-stream";
+        }
+        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(str.substring(iLastIndexOf + 1).toLowerCase());
+        return mimeTypeFromExtension != null ? mimeTypeFromExtension : "application/octet-stream";
     }
 
     @Override // androidx.documentfile.provider.DocumentFile

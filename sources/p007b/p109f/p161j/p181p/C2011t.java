@@ -24,7 +24,7 @@ public class C2011t implements InterfaceC2018w0<C1919e> {
 
     /* JADX INFO: renamed from: b.f.j.p.t$b */
     /* JADX INFO: compiled from: DiskCacheWriteProducer.java */
-    public static class b extends AbstractC2003p<C1919e, C1919e> {
+    public class b extends AbstractC2003p<C1919e, C1919e> {
 
         /* JADX INFO: renamed from: c */
         public final InterfaceC2020x0 f4217c;

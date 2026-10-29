@@ -23,7 +23,7 @@ public final class CustomAppBarLayout extends AppBarLayout {
 
     /* JADX INFO: renamed from: com.discord.views.CustomAppBarLayout$a */
     /* JADX INFO: compiled from: CustomAppBarLayout.kt */
-    public static final class C7073a extends AbstractC12240o implements Function1<Float, Unit> {
+    public final class C7073a extends AbstractC12240o implements Function1<Float, Unit> {
 
         /* JADX INFO: renamed from: j */
         public static final C7073a f19048j = new C7073a();
@@ -41,7 +41,7 @@ public final class CustomAppBarLayout extends AppBarLayout {
 
     /* JADX INFO: renamed from: com.discord.views.CustomAppBarLayout$b */
     /* JADX INFO: compiled from: CustomAppBarLayout.kt */
-    public static final class C7074b implements AppBarLayout.OnOffsetChangedListener {
+    public final class C7074b implements AppBarLayout.OnOffsetChangedListener {
         public C7074b() {
         }
 

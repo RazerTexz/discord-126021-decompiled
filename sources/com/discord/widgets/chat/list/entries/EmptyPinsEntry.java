@@ -25,11 +25,6 @@ public final /* data */ class EmptyPinsEntry extends ChatListEntry {
         return emptyPinsEntry.copy(str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getText() {
-        return this.text;
-    }
-
     public final EmptyPinsEntry copy(String text) {
         C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new EmptyPinsEntry(text);
@@ -45,6 +40,11 @@ public final /* data */ class EmptyPinsEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getText() {
+        return this.text;
     }
 
     public final String getText() {

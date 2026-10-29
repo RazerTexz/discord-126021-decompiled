@@ -14,7 +14,7 @@ public class C12195a {
 
     /* JADX INFO: renamed from: d0.x.a$a */
     /* JADX INFO: compiled from: PlatformImplementations.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final Method f25251a;

@@ -64,17 +64,17 @@ public final class RouteHandlers {
     public static final RouteHandlers INSTANCE = new RouteHandlers();
 
     /* JADX INFO: compiled from: RouteHandlers.kt */
-    public static final class AnalyticsMetadata {
+    public final class AnalyticsMetadata {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
-        private static final AnalyticsMetadata UNKNOWN = new AnalyticsMetadata(EnvironmentCompat.MEDIA_UNKNOWN, null, null, 6, null);
         private final Long channelId;
         private final Long guildId;
         private final String type;
+        private static final AnalyticsMetadata UNKNOWN = new AnalyticsMetadata(EnvironmentCompat.MEDIA_UNKNOWN, null, null, 6, null);
 
         /* JADX INFO: compiled from: RouteHandlers.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -111,20 +111,9 @@ public final class RouteHandlers {
         }
     }
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StaticChannelRoutes.values();
-            int[] iArr = new int[1];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StaticChannelRoutes.ROLE_SUBSCRIPTIONS.ordinal()] = 1;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$handleQuery$1 */
     /* JADX INFO: compiled from: RouteHandlers.kt */
-    public static final class C67851 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C67851 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public final /* synthetic */ String $query;
         public final /* synthetic */ String $queryMessageText;
 
@@ -157,7 +146,7 @@ public final class RouteHandlers {
 
     /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$selectFeature$1 */
     /* JADX INFO: compiled from: RouteHandlers.kt */
-    public static final class C67861 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C67861 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public final /* synthetic */ Map $settingMap;
         public final /* synthetic */ String $settingsSubPath;
 
@@ -186,7 +175,7 @@ public final class RouteHandlers {
 
     /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$voiceConnect$1 */
     /* JADX INFO: compiled from: RouteHandlers.kt */
-    public static final class C67871 extends AbstractC12240o implements Function1<Channel, Unit> {
+    public final class C67871 extends AbstractC12240o implements Function1<Channel, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ boolean $isServicePermissionDeniedRedirect;
         public final /* synthetic */ WeakReference $weakContext;
@@ -222,12 +211,12 @@ public final class RouteHandlers {
 
     /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$wildCardMatcher$1 */
     /* JADX INFO: compiled from: RouteHandlers.kt */
-    public static final class C67881 extends AbstractC12240o implements Function1<String, KFunction<? extends AnalyticsMetadata>> {
+    public final class C67881 extends AbstractC12240o implements Function1<String, KFunction<? extends AnalyticsMetadata>> {
         public static final C67881 INSTANCE = new C67881();
 
         /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$wildCardMatcher$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: RouteHandlers.kt */
-        public static final /* synthetic */ class AnonymousClass1 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
+        public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
             public AnonymousClass1(RouteHandlers routeHandlers) {
                 super(3, routeHandlers, RouteHandlers.class, "acceptGift", "acceptGift(Landroid/net/Uri;Lkotlin/text/MatchResult;Landroid/content/Context;)Lcom/discord/utilities/intent/RouteHandlers$AnalyticsMetadata;", 0);
             }
@@ -242,7 +231,7 @@ public final class RouteHandlers {
 
         /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$wildCardMatcher$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: RouteHandlers.kt */
-        public static final /* synthetic */ class AnonymousClass2 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
+        public final /* synthetic */ class AnonymousClass2 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
             public AnonymousClass2(RouteHandlers routeHandlers) {
                 super(3, routeHandlers, RouteHandlers.class, "useInvite", "useInvite(Landroid/net/Uri;Lkotlin/text/MatchResult;Landroid/content/Context;)Lcom/discord/utilities/intent/RouteHandlers$AnalyticsMetadata;", 0);
             }
@@ -257,7 +246,7 @@ public final class RouteHandlers {
 
         /* JADX INFO: renamed from: com.discord.utilities.intent.RouteHandlers$wildCardMatcher$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: RouteHandlers.kt */
-        public static final /* synthetic */ class AnonymousClass3 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
+        public final /* synthetic */ class AnonymousClass3 extends C12236k implements Function3<Uri, MatchResult, Context, AnalyticsMetadata> {
             public AnonymousClass3(RouteHandlers routeHandlers) {
                 super(3, routeHandlers, RouteHandlers.class, "useGuildTemplate", "useGuildTemplate(Landroid/net/Uri;Lkotlin/text/MatchResult;Landroid/content/Context;)Lcom/discord/utilities/intent/RouteHandlers$AnalyticsMetadata;", 0);
             }
@@ -337,6 +326,17 @@ public final class RouteHandlers {
         }
     }
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            StaticChannelRoutes.values();
+            int[] iArr = new int[1];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StaticChannelRoutes.ROLE_SUBSCRIPTIONS.ordinal()] = 1;
+        }
+    }
+
     private RouteHandlers() {
     }
 
@@ -360,45 +360,6 @@ public final class RouteHandlers {
             C0805c.INSTANCE.m107a(str2, str, 0L);
         }
         return new AnalyticsMetadata("gift", null, null, 6, null);
-    }
-
-    private final AnalyticsMetadata useGuildTemplate(Uri uri, MatchResult matchResult, Context context) {
-        List<String> groupValues;
-        String str = (matchResult == null || (groupValues = matchResult.getGroupValues()) == null) ? null : (String) C12163u.last((List) groupValues);
-        if (str != null) {
-            StoreStream.INSTANCE.getGuildTemplates().setDynamicLinkGuildTemplateCode(str);
-        }
-        return new AnalyticsMetadata("guild_template", null, null, 6, null);
-    }
-
-    /* JADX WARN: Code duplicated, block: B:20:0x003a  */
-    private final AnalyticsMetadata useInvite(Uri uri, MatchResult matchResult, Context context) {
-        List<String> groupValues;
-        String str = (matchResult == null || (groupValues = matchResult.getGroupValues()) == null) ? null : (String) C12163u.last((List) groupValues);
-        if (!(!C12238m.areEqual(str, "invite"))) {
-            str = null;
-        }
-        String queryParameter = uri.getQueryParameter("source");
-        if (queryParameter != null) {
-            C12238m.checkNotNullExpressionValue(queryParameter, "it");
-            if (!(!C12103t.isBlank(queryParameter))) {
-                queryParameter = null;
-            }
-            if (queryParameter == null) {
-                queryParameter = StoreInviteSettings.LOCATION_DEEPLINK;
-            }
-        } else {
-            queryParameter = StoreInviteSettings.LOCATION_DEEPLINK;
-        }
-        C12238m.checkNotNullExpressionValue(queryParameter, "uri.getQueryParameter(\"s…        ?: inviteLocation");
-        String queryParameter2 = uri.getQueryParameter("event");
-        Long snowflake = queryParameter2 != null ? SnowflakeUtils.INSTANCE.toSnowflake(queryParameter2) : null;
-        if (str != null) {
-            StoreStream.INSTANCE.getInviteSettings().setInviteCode(str, queryParameter, snowflake);
-        } else {
-            WidgetGuildJoin.INSTANCE.show(context, StoreInviteSettings.LOCATION_DEEPLINK);
-        }
-        return new AnalyticsMetadata("invite", null, null, 6, null);
     }
 
     public final AnalyticsMetadata authorize(Uri uri, MatchResult matchResult, Context context) {
@@ -655,6 +616,45 @@ public final class RouteHandlers {
             WidgetUserSheet.INSTANCE.enqueueNotice(longOrNull.longValue(), queryParameter);
         }
         return new AnalyticsMetadata("profile", null, null, 6, null);
+    }
+
+    private final AnalyticsMetadata useGuildTemplate(Uri uri, MatchResult matchResult, Context context) {
+        List<String> groupValues;
+        String str = (matchResult == null || (groupValues = matchResult.getGroupValues()) == null) ? null : (String) C12163u.last((List) groupValues);
+        if (str != null) {
+            StoreStream.INSTANCE.getGuildTemplates().setDynamicLinkGuildTemplateCode(str);
+        }
+        return new AnalyticsMetadata("guild_template", null, null, 6, null);
+    }
+
+    /* JADX WARN: Code duplicated, block: B:20:0x003a  */
+    private final AnalyticsMetadata useInvite(Uri uri, MatchResult matchResult, Context context) {
+        List<String> groupValues;
+        String str = (matchResult == null || (groupValues = matchResult.getGroupValues()) == null) ? null : (String) C12163u.last((List) groupValues);
+        if (!(!C12238m.areEqual(str, "invite"))) {
+            str = null;
+        }
+        String queryParameter = uri.getQueryParameter("source");
+        if (queryParameter != null) {
+            C12238m.checkNotNullExpressionValue(queryParameter, "it");
+            if (!(!C12103t.isBlank(queryParameter))) {
+                queryParameter = null;
+            }
+            if (queryParameter == null) {
+                queryParameter = StoreInviteSettings.LOCATION_DEEPLINK;
+            }
+        } else {
+            queryParameter = StoreInviteSettings.LOCATION_DEEPLINK;
+        }
+        C12238m.checkNotNullExpressionValue(queryParameter, "uri.getQueryParameter(\"s…        ?: inviteLocation");
+        String queryParameter2 = uri.getQueryParameter("event");
+        Long snowflake = queryParameter2 != null ? SnowflakeUtils.INSTANCE.toSnowflake(queryParameter2) : null;
+        if (str != null) {
+            StoreStream.INSTANCE.getInviteSettings().setInviteCode(str, queryParameter, snowflake);
+        } else {
+            WidgetGuildJoin.INSTANCE.show(context, StoreInviteSettings.LOCATION_DEEPLINK);
+        }
+        return new AnalyticsMetadata("invite", null, null, 6, null);
     }
 
     public final AnalyticsMetadata voiceConnect(Uri uri, MatchResult matchResult, Context context) {

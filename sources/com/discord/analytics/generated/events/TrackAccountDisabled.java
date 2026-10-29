@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackAccountDisabled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackAccountDisabled implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "account_disabled";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "account_disabled";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

@@ -32,43 +32,8 @@ public final /* data */ class ModelEmojiGuild {
         this.available = z5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getManaged() {
-        return this.managed;
-    }
-
     public final List<Long> component4() {
         return this.roles;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getRequiredColons() {
-        return this.requiredColons;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getAnimated() {
-        return this.animated;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getAvailable() {
-        return this.available;
     }
 
     public final ModelEmojiGuild copy(long id2, String name, boolean managed, List<Long> roles, boolean requiredColons, User user, boolean animated, boolean available) {
@@ -89,24 +54,54 @@ public final /* data */ class ModelEmojiGuild {
         return this.id == modelEmojiGuild.id && C12238m.areEqual(this.name, modelEmojiGuild.name) && this.managed == modelEmojiGuild.managed && C12238m.areEqual(this.roles, modelEmojiGuild.roles) && this.requiredColons == modelEmojiGuild.requiredColons && C12238m.areEqual(this.user, modelEmojiGuild.user) && this.animated == modelEmojiGuild.animated && this.available == modelEmojiGuild.available;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getAnimated() {
         return this.animated;
+    }
+
+    public final boolean getAnimated() {
+        return this.animated;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getAvailable() {
+        return this.available;
     }
 
     public final boolean getAvailable() {
         return this.available;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getManaged() {
+        return this.managed;
     }
 
     public final boolean getManaged() {
         return this.managed;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getRequiredColons() {
+        return this.requiredColons;
     }
 
     public final boolean getRequiredColons() {
@@ -115,6 +110,11 @@ public final /* data */ class ModelEmojiGuild {
 
     public final List<Long> getRoles() {
         return this.roles;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

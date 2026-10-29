@@ -14,36 +14,30 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRegisterAttempted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRegisterAttempted implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver, TrackGuildTemplateReceiver {
+    private final Long cfClientTrustScore = null;
+    private final CharSequence discordAiModelVersion = null;
+    private final Float discordAiSpamLikelihood = null;
+    private final Long discriminatorAttempts = null;
+    private final CharSequence email = null;
+    private final Boolean full = null;
+    private final Boolean hasInvalidFingerprint = null;
+    private final CharSequence identityType = null;
+    private final Boolean instantInvite = null;
+    private final Long inviteChannelId = null;
+    private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
+    private final Long inviteInviterId = null;
+    private final Boolean ipBlacklisted = null;
+    private final CharSequence phone = null;
+    private final CharSequence phoneCarrierName = null;
+    private final CharSequence phoneCountry = null;
+    private final CharSequence registrationSource = null;
     private TrackBase trackBase;
     private TrackGiftCodeMetadata trackGiftCodeMetadata;
     private TrackGuildTemplate trackGuildTemplate;
-    private final CharSequence registrationSource = null;
-    private final Boolean full = null;
-    private final Boolean instantInvite = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
-    private final Long inviteChannelId = null;
-    private final Long inviteChannelType = null;
-    private final Long inviteInviterId = null;
-    private final Boolean ipBlacklisted = null;
-    private final Boolean hasInvalidFingerprint = null;
-    private final Long discriminatorAttempts = null;
-    private final Long cfClientTrustScore = null;
     private final CharSequence username = null;
-    private final CharSequence email = null;
-    private final CharSequence phone = null;
-    private final CharSequence identityType = null;
-    private final Float discordAiSpamLikelihood = null;
-    private final CharSequence discordAiModelVersion = null;
-    private final CharSequence phoneCarrierName = null;
-    private final CharSequence phoneCountry = null;
     private final transient String analyticsSchemaTypeName = "register_attempted";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -54,6 +48,12 @@ public final /* data */ class TrackRegisterAttempted implements AnalyticsSchema,
         }
         TrackRegisterAttempted trackRegisterAttempted = (TrackRegisterAttempted) other;
         return C12238m.areEqual(this.registrationSource, trackRegisterAttempted.registrationSource) && C12238m.areEqual(this.full, trackRegisterAttempted.full) && C12238m.areEqual(this.instantInvite, trackRegisterAttempted.instantInvite) && C12238m.areEqual(this.inviteCode, trackRegisterAttempted.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterAttempted.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterAttempted.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterAttempted.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterAttempted.inviteInviterId) && C12238m.areEqual(this.ipBlacklisted, trackRegisterAttempted.ipBlacklisted) && C12238m.areEqual(this.hasInvalidFingerprint, trackRegisterAttempted.hasInvalidFingerprint) && C12238m.areEqual(this.discriminatorAttempts, trackRegisterAttempted.discriminatorAttempts) && C12238m.areEqual(this.cfClientTrustScore, trackRegisterAttempted.cfClientTrustScore) && C12238m.areEqual(this.username, trackRegisterAttempted.username) && C12238m.areEqual(this.email, trackRegisterAttempted.email) && C12238m.areEqual(this.phone, trackRegisterAttempted.phone) && C12238m.areEqual(this.identityType, trackRegisterAttempted.identityType) && C12238m.areEqual(this.discordAiSpamLikelihood, trackRegisterAttempted.discordAiSpamLikelihood) && C12238m.areEqual(this.discordAiModelVersion, trackRegisterAttempted.discordAiModelVersion) && C12238m.areEqual(this.phoneCarrierName, trackRegisterAttempted.phoneCarrierName) && C12238m.areEqual(this.phoneCountry, trackRegisterAttempted.phoneCountry);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

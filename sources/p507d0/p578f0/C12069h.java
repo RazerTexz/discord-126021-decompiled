@@ -23,7 +23,7 @@ public final class C12069h<T, R, E> implements Sequence<E> {
 
     /* JADX INFO: renamed from: d0.f0.h$a */
     /* JADX INFO: compiled from: Sequences.kt */
-    public static final class a implements Iterator<E>, InterfaceC12228a {
+    public final class a implements Iterator<E>, InterfaceC12228a {
 
         /* JADX INFO: renamed from: j */
         public final Iterator<T> f25092j;
@@ -33,6 +33,11 @@ public final class C12069h<T, R, E> implements Sequence<E> {
 
         public a() {
             this.f25092j = C12069h.this.f25089a.iterator();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return m10062a();
         }
 
         /* JADX INFO: renamed from: a */
@@ -52,11 +57,6 @@ public final class C12069h<T, R, E> implements Sequence<E> {
                 }
             }
             return true;
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return m10062a();
         }
 
         @Override // java.util.Iterator

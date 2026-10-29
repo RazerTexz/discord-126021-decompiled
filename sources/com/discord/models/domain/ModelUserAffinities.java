@@ -17,6 +17,14 @@ public final /* data */ class ModelUserAffinities {
         this.inverseUserAffinities = list2;
     }
 
+    public final List<ModelUserAffinity> component1() {
+        return this.userAffinities;
+    }
+
+    public final List<ModelUserAffinity> component2() {
+        return this.inverseUserAffinities;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ ModelUserAffinities copy$default(ModelUserAffinities modelUserAffinities, List list, List list2, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -26,14 +34,6 @@ public final /* data */ class ModelUserAffinities {
             list2 = modelUserAffinities.inverseUserAffinities;
         }
         return modelUserAffinities.copy(list, list2);
-    }
-
-    public final List<ModelUserAffinity> component1() {
-        return this.userAffinities;
-    }
-
-    public final List<ModelUserAffinity> component2() {
-        return this.inverseUserAffinities;
     }
 
     public final ModelUserAffinities copy(List<ModelUserAffinity> userAffinities, List<ModelUserAffinity> inverseUserAffinities) {

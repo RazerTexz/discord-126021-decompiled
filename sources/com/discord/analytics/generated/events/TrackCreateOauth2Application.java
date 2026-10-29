@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackCreateOauth2Application.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackCreateOauth2Application implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "create_oauth2_application";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "create_oauth2_application";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

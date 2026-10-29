@@ -40,7 +40,7 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$1 */
     /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
-    public static final /* synthetic */ class C90141 extends C12215a implements Function1<HubDescriptionState, Unit> {
+    public final /* synthetic */ class C90141 extends C12215a implements Function1<HubDescriptionState, Unit> {
         public C90141(WidgetHubDescriptionViewModel widgetHubDescriptionViewModel) {
             super(1, widgetHubDescriptionViewModel, WidgetHubDescriptionViewModel.class, "handleStoreUpdate", "handleStoreUpdate(Lcom/discord/widgets/hubs/HubDescriptionState;)Lkotlin/Unit;", 8);
         }
@@ -58,26 +58,9 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
         }
     }
 
-    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final Observable<HubDescriptionState> observeStores(long channelId, long guildId, ObservationDeck observationDeck, StoreChannels channelStore, StoreGuilds guildStore) {
-            C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-            C12238m.checkNotNullParameter(channelStore, "channelStore");
-            C12238m.checkNotNullParameter(guildStore, "guildStore");
-            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{channelStore, guildStore}, false, null, null, new WidgetHubDescriptionViewModel$Companion$observeStores$1(channelStore, channelId, guildStore, guildId), 14, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$addServer$1 */
     /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
-    public static final class C90151 extends AbstractC12240o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
+    public final class C90151 extends AbstractC12240o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
         public final /* synthetic */ DirectoryEntryCategory $category;
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
@@ -98,7 +81,7 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$addServer$2 */
     /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
-    public static final class C90162 extends AbstractC12240o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
+    public final class C90162 extends AbstractC12240o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
         public final /* synthetic */ HubDescriptionState $state;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -120,6 +103,23 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
         }
     }
 
+    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Observable<HubDescriptionState> observeStores(long channelId, long guildId, ObservationDeck observationDeck, StoreChannels channelStore, StoreGuilds guildStore) {
+            C12238m.checkNotNullParameter(observationDeck, "observationDeck");
+            C12238m.checkNotNullParameter(channelStore, "channelStore");
+            C12238m.checkNotNullParameter(guildStore, "guildStore");
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{channelStore, guildStore}, false, null, null, new WidgetHubDescriptionViewModel$Companion$observeStores$1(channelStore, channelId, guildStore, guildId), 14, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetHubDescriptionViewModel(long j, long j2, boolean z2, Integer num, RestAPI restAPI, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Observable observableObserveStores;
@@ -133,15 +133,6 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
             observableObserveStores = observable;
         }
         this(j, j2, z2, num, api, observableObserveStores);
-    }
-
-    private final Unit handleStoreUpdate(HubDescriptionState state) {
-        HubDescriptionState viewState = getViewState();
-        if (viewState == null) {
-            return null;
-        }
-        updateViewState(HubDescriptionState.copy$default(viewState, state.getChannel(), null, state.getGuildName(), null, 10, null));
-        return Unit.f27425a;
     }
 
     public final void addServer(long channelId, long guildId, String description) {
@@ -170,13 +161,22 @@ public final class WidgetHubDescriptionViewModel extends AbstractC0859d0<HubDesc
         return this.guildId;
     }
 
+    /* JADX INFO: renamed from: isEditing, reason: from getter */
+    public final boolean getIsEditing() {
+        return this.isEditing;
+    }
+
     public final RestAPI getRestAPI() {
         return this.restAPI;
     }
 
-    /* JADX INFO: renamed from: isEditing, reason: from getter */
-    public final boolean getIsEditing() {
-        return this.isEditing;
+    private final Unit handleStoreUpdate(HubDescriptionState state) {
+        HubDescriptionState viewState = getViewState();
+        if (viewState == null) {
+            return null;
+        }
+        updateViewState(HubDescriptionState.copy$default(viewState, state.getChannel(), null, state.getGuildName(), null, 10, null));
+        return Unit.f27425a;
     }
 
     public final Unit setCategory(int key) {

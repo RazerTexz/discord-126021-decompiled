@@ -27,7 +27,7 @@ public final class AppCompatResources {
     private static final WeakHashMap<Context, SparseArray<ColorStateListCacheEntry>> sColorStateCaches = new WeakHashMap<>(0);
     private static final Object sColorStateCacheLock = new Object();
 
-    public static class ColorStateListCacheEntry {
+    public class ColorStateListCacheEntry {
         public final Configuration configuration;
         public final ColorStateList value;
 

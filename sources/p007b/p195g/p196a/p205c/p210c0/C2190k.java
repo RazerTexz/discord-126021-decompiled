@@ -24,7 +24,7 @@ public class C2190k extends C2200u {
 
     /* JADX INFO: renamed from: b.g.a.c.c0.k$a */
     /* JADX INFO: compiled from: AnnotatedMethodCollector.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public InterfaceC2182e0 f4721a;

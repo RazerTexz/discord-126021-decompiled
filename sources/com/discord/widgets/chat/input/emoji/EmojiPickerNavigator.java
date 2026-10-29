@@ -15,16 +15,16 @@ public final class EmojiPickerNavigator {
     private EmojiPickerNavigator() {
     }
 
-    public static final void launchBottomSheet(FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0<Unit> onCancel) {
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
-        WidgetEmojiPickerSheet.INSTANCE.show(fragmentManager, emojiPickerListener, emojiPickerContextType, onCancel);
-    }
-
     public static /* synthetic */ void launchBottomSheet$default(FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0 function0, int i, Object obj) {
         if ((i & 8) != 0) {
             function0 = null;
         }
         launchBottomSheet(fragmentManager, emojiPickerListener, emojiPickerContextType, function0);
+    }
+
+    public static final void launchBottomSheet(FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0<Unit> onCancel) {
+        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        C12238m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
+        WidgetEmojiPickerSheet.INSTANCE.show(fragmentManager, emojiPickerListener, emojiPickerContextType, onCancel);
     }
 }

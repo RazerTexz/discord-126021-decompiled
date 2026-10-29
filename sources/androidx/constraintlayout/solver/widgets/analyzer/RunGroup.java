@@ -10,10 +10,10 @@ public class RunGroup {
     public static final int BASELINE = 2;
     public static final int END = 1;
     public static final int START = 0;
-    public static int index;
     public int direction;
     public WidgetRun firstRun;
     public int groupIndex;
+    public static int index;
     public WidgetRun lastRun;
     public int position = 0;
     public boolean dual = false;
@@ -29,89 +29,6 @@ public class RunGroup {
         this.firstRun = widgetRun;
         this.lastRun = widgetRun;
         this.direction = i;
-    }
-
-    private boolean defineTerminalWidget(WidgetRun widgetRun, int i) {
-        DependencyNode dependencyNode;
-        WidgetRun widgetRun2;
-        DependencyNode dependencyNode2;
-        WidgetRun widgetRun3;
-        if (!widgetRun.widget.isTerminalWidget[i]) {
-            return false;
-        }
-        for (Dependency dependency : widgetRun.start.dependencies) {
-            if ((dependency instanceof DependencyNode) && (widgetRun3 = (dependencyNode2 = (DependencyNode) dependency).run) != widgetRun && dependencyNode2 == widgetRun3.start) {
-                if (widgetRun instanceof ChainRun) {
-                    Iterator<WidgetRun> it = ((ChainRun) widgetRun).widgets.iterator();
-                    while (it.hasNext()) {
-                        defineTerminalWidget(it.next(), i);
-                    }
-                } else if (!(widgetRun instanceof HelperReferences)) {
-                    widgetRun.widget.isTerminalWidget[i] = false;
-                }
-                defineTerminalWidget(dependencyNode2.run, i);
-            }
-        }
-        for (Dependency dependency2 : widgetRun.end.dependencies) {
-            if ((dependency2 instanceof DependencyNode) && (widgetRun2 = (dependencyNode = (DependencyNode) dependency2).run) != widgetRun && dependencyNode == widgetRun2.start) {
-                if (widgetRun instanceof ChainRun) {
-                    Iterator<WidgetRun> it2 = ((ChainRun) widgetRun).widgets.iterator();
-                    while (it2.hasNext()) {
-                        defineTerminalWidget(it2.next(), i);
-                    }
-                } else if (!(widgetRun instanceof HelperReferences)) {
-                    widgetRun.widget.isTerminalWidget[i] = false;
-                }
-                defineTerminalWidget(dependencyNode.run, i);
-            }
-        }
-        return false;
-    }
-
-    private long traverseEnd(DependencyNode dependencyNode, long j) {
-        WidgetRun widgetRun = dependencyNode.run;
-        if (widgetRun instanceof HelperReferences) {
-            return j;
-        }
-        int size = dependencyNode.dependencies.size();
-        long jMin = j;
-        for (int i = 0; i < size; i++) {
-            Dependency dependency = dependencyNode.dependencies.get(i);
-            if (dependency instanceof DependencyNode) {
-                DependencyNode dependencyNode2 = (DependencyNode) dependency;
-                if (dependencyNode2.run != widgetRun) {
-                    jMin = Math.min(jMin, traverseEnd(dependencyNode2, ((long) dependencyNode2.margin) + j));
-                }
-            }
-        }
-        if (dependencyNode != widgetRun.end) {
-            return jMin;
-        }
-        long wrapDimension = j - widgetRun.getWrapDimension();
-        return Math.min(Math.min(jMin, traverseEnd(widgetRun.start, wrapDimension)), wrapDimension - ((long) widgetRun.start.margin));
-    }
-
-    private long traverseStart(DependencyNode dependencyNode, long j) {
-        WidgetRun widgetRun = dependencyNode.run;
-        if (widgetRun instanceof HelperReferences) {
-            return j;
-        }
-        int size = dependencyNode.dependencies.size();
-        long jMax = j;
-        for (int i = 0; i < size; i++) {
-            Dependency dependency = dependencyNode.dependencies.get(i);
-            if (dependency instanceof DependencyNode) {
-                DependencyNode dependencyNode2 = (DependencyNode) dependency;
-                if (dependencyNode2.run != widgetRun) {
-                    jMax = Math.max(jMax, traverseStart(dependencyNode2, ((long) dependencyNode2.margin) + j));
-                }
-            }
-        }
-        if (dependencyNode != widgetRun.start) {
-            return jMax;
-        }
-        long wrapDimension = j + widgetRun.getWrapDimension();
-        return Math.max(Math.max(jMax, traverseStart(widgetRun.end, wrapDimension)), wrapDimension - ((long) widgetRun.end.margin));
     }
 
     public void add(WidgetRun widgetRun) {
@@ -173,6 +90,43 @@ public class RunGroup {
         return (((long) widgetRun4.start.margin) + jM839a) - ((long) widgetRun4.end.margin);
     }
 
+    private boolean defineTerminalWidget(WidgetRun widgetRun, int i) {
+        DependencyNode dependencyNode;
+        WidgetRun widgetRun2;
+        DependencyNode dependencyNode2;
+        WidgetRun widgetRun3;
+        if (!widgetRun.widget.isTerminalWidget[i]) {
+            return false;
+        }
+        for (Dependency dependency : widgetRun.start.dependencies) {
+            if ((dependency instanceof DependencyNode) && (widgetRun3 = (dependencyNode2 = (DependencyNode) dependency).run) != widgetRun && dependencyNode2 == widgetRun3.start) {
+                if (widgetRun instanceof ChainRun) {
+                    Iterator<WidgetRun> it = ((ChainRun) widgetRun).widgets.iterator();
+                    while (it.hasNext()) {
+                        defineTerminalWidget(it.next(), i);
+                    }
+                } else if (!(widgetRun instanceof HelperReferences)) {
+                    widgetRun.widget.isTerminalWidget[i] = false;
+                }
+                defineTerminalWidget(dependencyNode2.run, i);
+            }
+        }
+        for (Dependency dependency2 : widgetRun.end.dependencies) {
+            if ((dependency2 instanceof DependencyNode) && (widgetRun2 = (dependencyNode = (DependencyNode) dependency2).run) != widgetRun && dependencyNode == widgetRun2.start) {
+                if (widgetRun instanceof ChainRun) {
+                    Iterator<WidgetRun> it2 = ((ChainRun) widgetRun).widgets.iterator();
+                    while (it2.hasNext()) {
+                        defineTerminalWidget(it2.next(), i);
+                    }
+                } else if (!(widgetRun instanceof HelperReferences)) {
+                    widgetRun.widget.isTerminalWidget[i] = false;
+                }
+                defineTerminalWidget(dependencyNode.run, i);
+            }
+        }
+        return false;
+    }
+
     public void defineTerminalWidgets(boolean z2, boolean z3) {
         if (z2) {
             WidgetRun widgetRun = this.firstRun;
@@ -186,5 +140,51 @@ public class RunGroup {
                 defineTerminalWidget(widgetRun2, 1);
             }
         }
+    }
+
+    private long traverseEnd(DependencyNode dependencyNode, long j) {
+        WidgetRun widgetRun = dependencyNode.run;
+        if (widgetRun instanceof HelperReferences) {
+            return j;
+        }
+        int size = dependencyNode.dependencies.size();
+        long jMin = j;
+        for (int i = 0; i < size; i++) {
+            Dependency dependency = dependencyNode.dependencies.get(i);
+            if (dependency instanceof DependencyNode) {
+                DependencyNode dependencyNode2 = (DependencyNode) dependency;
+                if (dependencyNode2.run != widgetRun) {
+                    jMin = Math.min(jMin, traverseEnd(dependencyNode2, ((long) dependencyNode2.margin) + j));
+                }
+            }
+        }
+        if (dependencyNode != widgetRun.end) {
+            return jMin;
+        }
+        long wrapDimension = j - widgetRun.getWrapDimension();
+        return Math.min(Math.min(jMin, traverseEnd(widgetRun.start, wrapDimension)), wrapDimension - ((long) widgetRun.start.margin));
+    }
+
+    private long traverseStart(DependencyNode dependencyNode, long j) {
+        WidgetRun widgetRun = dependencyNode.run;
+        if (widgetRun instanceof HelperReferences) {
+            return j;
+        }
+        int size = dependencyNode.dependencies.size();
+        long jMax = j;
+        for (int i = 0; i < size; i++) {
+            Dependency dependency = dependencyNode.dependencies.get(i);
+            if (dependency instanceof DependencyNode) {
+                DependencyNode dependencyNode2 = (DependencyNode) dependency;
+                if (dependencyNode2.run != widgetRun) {
+                    jMax = Math.max(jMax, traverseStart(dependencyNode2, ((long) dependencyNode2.margin) + j));
+                }
+            }
+        }
+        if (dependencyNode != widgetRun.start) {
+            return jMax;
+        }
+        long wrapDimension = j + widgetRun.getWrapDimension();
+        return Math.max(Math.max(jMax, traverseStart(widgetRun.end, wrapDimension)), wrapDimension - ((long) widgetRun.end.margin));
     }
 }

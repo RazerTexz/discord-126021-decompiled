@@ -32,16 +32,6 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
         return channelListItemGuildJoinRequest.copy(guildJoinRequest, guildMember);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final GuildJoinRequest getGuildJoinRequest() {
-        return this.guildJoinRequest;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildMember getMember() {
-        return this.member;
-    }
-
     public final ChannelListItemGuildJoinRequest copy(GuildJoinRequest guildJoinRequest, GuildMember member) {
         C12238m.checkNotNullParameter(guildJoinRequest, "guildJoinRequest");
         C12238m.checkNotNullParameter(member, "member");
@@ -59,6 +49,11 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
         return C12238m.areEqual(this.guildJoinRequest, channelListItemGuildJoinRequest.guildJoinRequest) && C12238m.areEqual(this.member, channelListItemGuildJoinRequest.member);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final GuildJoinRequest getGuildJoinRequest() {
+        return this.guildJoinRequest;
+    }
+
     public final GuildJoinRequest getGuildJoinRequest() {
         return this.guildJoinRequest;
     }
@@ -66,6 +61,11 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final GuildMember getMember() {
+        return this.member;
     }
 
     public final GuildMember getMember() {

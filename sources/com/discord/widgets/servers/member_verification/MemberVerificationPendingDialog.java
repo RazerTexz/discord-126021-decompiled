@@ -57,8 +57,50 @@ public final class MemberVerificationPendingDialog extends AppDialog {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationPendingDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C95361 extends C12236k implements Function1<MemberVerificationPendingViewModel.ViewState, Unit> {
+        public C95361(MemberVerificationPendingDialog memberVerificationPendingDialog) {
+            super(1, memberVerificationPendingDialog, MemberVerificationPendingDialog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/MemberVerificationPendingViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MemberVerificationPendingViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MemberVerificationPendingViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((MemberVerificationPendingDialog) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationPendingDialog$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
+    public final class C95372 extends AbstractC12240o implements Function1<MemberVerificationPendingViewModel.Event, Unit> {
+        public C95372() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MemberVerificationPendingViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MemberVerificationPendingViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "event");
+            if (!(event instanceof MemberVerificationPendingViewModel.Event.Success) && (event instanceof MemberVerificationPendingViewModel.Event.Error)) {
+                C0876m.m171i(MemberVerificationPendingDialog.this, C5419R.string.guild_settings_public_update_failed, 0, 4);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -69,17 +111,17 @@ public final class MemberVerificationPendingDialog extends AppDialog {
             companion.enqueue(j, dialogState);
         }
 
+        public final void enqueue(long guildId, MemberVerificationPendingViewModel.DialogState dialogState) {
+            StoreNotices notices = StoreStream.INSTANCE.getNotices();
+            String strM877t = C1643a.m877t("MEMBERVERIFICATION-", guildId);
+            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C9523x538e5ec1(guildId, dialogState, notices, strM877t), 150, null));
+        }
+
         public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, long j, MemberVerificationPendingViewModel.DialogState dialogState, int i, Object obj) {
             if ((i & 4) != 0) {
                 dialogState = null;
             }
             companion.show(fragmentManager, j, dialogState);
-        }
-
-        public final void enqueue(long guildId, MemberVerificationPendingViewModel.DialogState dialogState) {
-            StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            String strM877t = C1643a.m877t("MEMBERVERIFICATION-", guildId);
-            notices.requestToShow(new StoreNotices.Notice(strM877t, null, 0L, 0, false, C12145m.listOf(C12216a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new C9523x538e5ec1(guildId, dialogState, notices, strM877t), 150, null));
         }
 
         public final void show(FragmentManager supportFragmentManager, long guildId, MemberVerificationPendingViewModel.DialogState dialogState) {
@@ -117,48 +159,6 @@ public final class MemberVerificationPendingDialog extends AppDialog {
             iArr2[MemberVerificationPendingViewModel.DialogState.REJECTED.ordinal()] = 3;
             iArr2[dialogState2.ordinal()] = 4;
             iArr2[MemberVerificationPendingViewModel.DialogState.UPGRADE.ordinal()] = 5;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationPendingDialog$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
-    public static final /* synthetic */ class C95361 extends C12236k implements Function1<MemberVerificationPendingViewModel.ViewState, Unit> {
-        public C95361(MemberVerificationPendingDialog memberVerificationPendingDialog) {
-            super(1, memberVerificationPendingDialog, MemberVerificationPendingDialog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/MemberVerificationPendingViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MemberVerificationPendingViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MemberVerificationPendingViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((MemberVerificationPendingDialog) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationPendingDialog$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
-    public static final class C95372 extends AbstractC12240o implements Function1<MemberVerificationPendingViewModel.Event, Unit> {
-        public C95372() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(MemberVerificationPendingViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(MemberVerificationPendingViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            if (!(event instanceof MemberVerificationPendingViewModel.Event.Success) && (event instanceof MemberVerificationPendingViewModel.Event.Error)) {
-                C0876m.m171i(MemberVerificationPendingDialog.this, C5419R.string.guild_settings_public_update_failed, 0, 4);
-            }
         }
     }
 
@@ -376,10 +376,6 @@ public final class MemberVerificationPendingDialog extends AppDialog {
         return (MemberVerificationPendingViewModel) this.viewModel.getValue();
     }
 
-    public static final void show(FragmentManager fragmentManager, long j, MemberVerificationPendingViewModel.DialogState dialogState) {
-        INSTANCE.show(fragmentManager, j, dialogState);
-    }
-
     @Override // com.discord.app.AppDialog
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
@@ -387,5 +383,9 @@ public final class MemberVerificationPendingDialog extends AppDialog {
         C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) MemberVerificationPendingDialog.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95361(this));
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) MemberVerificationPendingDialog.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95372());
+    }
+
+    public static final void show(FragmentManager fragmentManager, long j, MemberVerificationPendingViewModel.DialogState dialogState) {
+        INSTANCE.show(fragmentManager, j, dialogState);
     }
 }

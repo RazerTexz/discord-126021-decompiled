@@ -36,6 +36,19 @@ public final class C2793e extends AbstractC2951v0 {
         this.f6964v = new C2757x();
     }
 
+    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
+    public String getName() {
+        return "CameraMotionRenderer";
+    }
+
+    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
+    /* JADX INFO: renamed from: r */
+    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
+        if (i == 8) {
+            this.f6966x = (InterfaceC2792d) obj;
+        }
+    }
+
     @Override // p007b.p225i.p226a.p242c.AbstractC2951v0
     /* JADX INFO: renamed from: B */
     public void mo2621B() {
@@ -79,11 +92,6 @@ public final class C2793e extends AbstractC2951v0 {
         return true;
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2, p007b.p225i.p226a.p242c.InterfaceC2763g2
-    public String getName() {
-        return "CameraMotionRenderer";
-    }
-
     @Override // p007b.p225i.p226a.p242c.InterfaceC2728f2
     /* JADX INFO: renamed from: q */
     public void mo2633q(long j, long j2) {
@@ -114,14 +122,6 @@ public final class C2793e extends AbstractC2951v0 {
                     this.f6966x.mo3196a(this.f6967y - this.f6965w, fArr);
                 }
             }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.AbstractC2951v0, p007b.p225i.p226a.p242c.C2576b2.b
-    /* JADX INFO: renamed from: r */
-    public void mo2603r(int i, @Nullable Object obj) throws ExoPlaybackException {
-        if (i == 8) {
-            this.f6966x = (InterfaceC2792d) obj;
         }
     }
 }

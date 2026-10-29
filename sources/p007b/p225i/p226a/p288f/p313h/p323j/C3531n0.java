@@ -12,9 +12,6 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3531n0 extends BroadcastReceiver {
 
-    /* JADX INFO: renamed from: a */
-    public static final String f9764a = C3531n0.class.getName();
-
     /* JADX INFO: renamed from: b */
     public final C3515g f9765b;
 
@@ -23,6 +20,9 @@ public class C3531n0 extends BroadcastReceiver {
 
     /* JADX INFO: renamed from: d */
     public boolean f9767d;
+
+    /* JADX INFO: renamed from: a */
+    public static final String f9764a = C3531n0.class.getName();
 
     public C3531n0(C3515g c3515g) {
         Objects.requireNonNull(c3515g, "null reference");

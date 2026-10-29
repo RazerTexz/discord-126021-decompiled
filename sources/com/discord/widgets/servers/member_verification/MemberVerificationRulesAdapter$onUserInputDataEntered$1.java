@@ -14,13 +14,13 @@ public final class MemberVerificationRulesAdapter$onUserInputDataEntered$1 exten
         super(2);
     }
 
+    public final void invoke(int i, Object obj) {
+        C12238m.checkNotNullParameter(obj, "<anonymous parameter 1>");
+    }
+
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(Integer num, Object obj) {
         invoke(num.intValue(), obj);
         return Unit.f27425a;
-    }
-
-    public final void invoke(int i, Object obj) {
-        C12238m.checkNotNullParameter(obj, "<anonymous parameter 1>");
     }
 }

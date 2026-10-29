@@ -34,48 +34,8 @@ public final /* data */ class ModelInvoicePreview {
         this.total = i3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getCurrency() {
-        return this.currency;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
     public final List<ModelInvoiceItem> component3() {
         return this.invoiceItems;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getSubscriptionPeriodEnd() {
-        return this.subscriptionPeriodEnd;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final String getSubscriptionPeriodStart() {
-        return this.subscriptionPeriodStart;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getSubtotal() {
-        return this.subtotal;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final int getTax() {
-        return this.tax;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getTaxInclusive() {
-        return this.taxInclusive;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final int getTotal() {
-        return this.total;
     }
 
     public final ModelInvoicePreview copy(String currency, long id2, List<ModelInvoiceItem> invoiceItems, String subscriptionPeriodEnd, String subscriptionPeriodStart, int subtotal, int tax, boolean taxInclusive, int total) {
@@ -97,8 +57,18 @@ public final /* data */ class ModelInvoicePreview {
         return C12238m.areEqual(this.currency, modelInvoicePreview.currency) && this.id == modelInvoicePreview.id && C12238m.areEqual(this.invoiceItems, modelInvoicePreview.invoiceItems) && C12238m.areEqual(this.subscriptionPeriodEnd, modelInvoicePreview.subscriptionPeriodEnd) && C12238m.areEqual(this.subscriptionPeriodStart, modelInvoicePreview.subscriptionPeriodStart) && this.subtotal == modelInvoicePreview.subtotal && this.tax == modelInvoicePreview.tax && this.taxInclusive == modelInvoicePreview.taxInclusive && this.total == modelInvoicePreview.total;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getCurrency() {
         return this.currency;
+    }
+
+    public final String getCurrency() {
+        return this.currency;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getId() {
+        return this.id;
     }
 
     public final long getId() {
@@ -109,24 +79,54 @@ public final /* data */ class ModelInvoicePreview {
         return this.invoiceItems;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getSubscriptionPeriodEnd() {
         return this.subscriptionPeriodEnd;
+    }
+
+    public final String getSubscriptionPeriodEnd() {
+        return this.subscriptionPeriodEnd;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final String getSubscriptionPeriodStart() {
+        return this.subscriptionPeriodStart;
     }
 
     public final String getSubscriptionPeriodStart() {
         return this.subscriptionPeriodStart;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final int getSubtotal() {
         return this.subtotal;
+    }
+
+    public final int getSubtotal() {
+        return this.subtotal;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final int getTax() {
+        return this.tax;
     }
 
     public final int getTax() {
         return this.tax;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final boolean getTaxInclusive() {
         return this.taxInclusive;
+    }
+
+    public final boolean getTaxInclusive() {
+        return this.taxInclusive;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final int getTotal() {
+        return this.total;
     }
 
     public final int getTotal() {

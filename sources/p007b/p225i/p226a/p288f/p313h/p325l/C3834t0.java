@@ -6,17 +6,17 @@ import java.util.Objects;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3834t0 extends AbstractC3851u4<C3834t0, a> implements InterfaceC3626d6 {
-    private static final C3834t0 zzh;
-    private static volatile InterfaceC3710j6<C3834t0> zzi;
     private int zzc;
-    private String zzd = "";
     private boolean zze;
     private boolean zzf;
     private int zzg;
+    private static final C3834t0 zzh;
+    private static volatile InterfaceC3710j6<C3834t0> zzi;
+    private String zzd = "";
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.t0$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class a extends AbstractC3851u4.b<C3834t0, a> implements InterfaceC3626d6 {
+    public final class a extends AbstractC3851u4.b<C3834t0, a> implements InterfaceC3626d6 {
         public a() {
             super(C3834t0.zzh);
         }
@@ -48,6 +48,31 @@ public final class C3834t0 extends AbstractC3851u4<C3834t0, a> implements Interf
         str.getClass();
         c3834t0.zzc |= 1;
         c3834t0.zzd = str;
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final String m5270u() {
+        return this.zzd;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final boolean m5271w() {
+        return this.zze;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final boolean m5272x() {
+        return this.zzf;
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final boolean m5273y() {
+        return (this.zzc & 8) != 0;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final int m5274z() {
+        return this.zzg;
     }
 
     @Override // p007b.p225i.p226a.p288f.p313h.p325l.AbstractC3851u4
@@ -82,30 +107,5 @@ public final class C3834t0 extends AbstractC3851u4<C3834t0, a> implements Interf
             default:
                 throw new UnsupportedOperationException();
         }
-    }
-
-    /* JADX INFO: renamed from: u */
-    public final String m5270u() {
-        return this.zzd;
-    }
-
-    /* JADX INFO: renamed from: w */
-    public final boolean m5271w() {
-        return this.zze;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final boolean m5272x() {
-        return this.zzf;
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final boolean m5273y() {
-        return (this.zzc & 8) != 0;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final int m5274z() {
-        return this.zzg;
     }
 }

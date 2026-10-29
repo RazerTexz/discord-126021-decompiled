@@ -53,7 +53,7 @@ public class C1847c {
     /* JADX INFO: renamed from: b.f.j.a.c.c$b */
     /* JADX INFO: compiled from: AnimatedFrameCache.java */
     @VisibleForTesting
-    public static class b implements CacheKey {
+    public class b implements CacheKey {
 
         /* JADX INFO: renamed from: a */
         public final CacheKey f3639a;
@@ -64,18 +64,6 @@ public class C1847c {
         public b(CacheKey cacheKey, int i) {
             this.f3639a = cacheKey;
             this.f3640b = i;
-        }
-
-        @Override // com.facebook.cache.common.CacheKey
-        /* JADX INFO: renamed from: a */
-        public boolean mo929a() {
-            return false;
-        }
-
-        @Override // com.facebook.cache.common.CacheKey
-        /* JADX INFO: renamed from: b */
-        public String mo930b() {
-            return null;
         }
 
         @Override // com.facebook.cache.common.CacheKey
@@ -93,6 +81,18 @@ public class C1847c {
         @Override // com.facebook.cache.common.CacheKey
         public int hashCode() {
             return (this.f3639a.hashCode() * PointerIconCompat.TYPE_ALL_SCROLL) + this.f3640b;
+        }
+
+        @Override // com.facebook.cache.common.CacheKey
+        /* JADX INFO: renamed from: a */
+        public boolean mo929a() {
+            return false;
+        }
+
+        @Override // com.facebook.cache.common.CacheKey
+        /* JADX INFO: renamed from: b */
+        public String mo930b() {
+            return null;
         }
 
         public String toString() {

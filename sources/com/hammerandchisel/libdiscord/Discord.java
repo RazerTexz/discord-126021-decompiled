@@ -41,7 +41,7 @@ public class Discord {
         void onConnectToServer(@NonNull ConnectionInfo connectionInfo, @NonNull String str);
     }
 
-    public static class ConnectionInfo {
+    public class ConnectionInfo {
         public boolean isConnected;
 
         @NonNull
@@ -110,10 +110,6 @@ public class Discord {
         this.nativeInstance = nativeConstructor(context, SharedEglBaseContext.getEglContext(), i);
     }
 
-    private native long nativeConstructor(@NonNull Context context, @NonNull EglBase.Context context2, int i);
-
-    private native void setLocalVoiceLevelChangedCallbackNative(boolean z2);
-
     @NonNull
     public native Connection connectToServer(int i, long j, @NonNull String str, int i2, @NonNull StreamParameters[] streamParametersArr, @NonNull ConnectToServerCallback connectToServerCallback);
 
@@ -138,6 +134,8 @@ public class Discord {
 
     public native void getVideoInputDevices(@NonNull GetVideoInputDevicesCallback getVideoInputDevicesCallback);
 
+    private native long nativeConstructor(@NonNull Context context, @NonNull EglBase.Context context2, int i);
+
     public native void setAudioInputEnabled(boolean z2);
 
     public native void setAutomaticGainControl(boolean z2);
@@ -153,6 +151,8 @@ public class Discord {
         this.localVoiceLevelChangedCallback = localVoiceLevelChangedCallback;
         setLocalVoiceLevelChangedCallbackNative(localVoiceLevelChangedCallback != null);
     }
+
+    private native void setLocalVoiceLevelChangedCallbackNative(boolean z2);
 
     public native void setMicVolume(float f);
 

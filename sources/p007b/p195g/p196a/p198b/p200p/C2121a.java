@@ -30,7 +30,7 @@ public final class C2121a {
 
     /* JADX INFO: renamed from: b.g.a.b.p.a$a */
     /* JADX INFO: compiled from: CharTypes.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public static final a f4543a = new a();

@@ -40,14 +40,8 @@ public final class MediaCodecUtil {
     /* JADX INFO: renamed from: c */
     public static int f19930c = -1;
 
-    public static class DecoderQueryException extends Exception {
-        public DecoderQueryException(Throwable th, C10713a c10713a) {
-            super("Failed to query underlying media codecs", th);
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$b */
-    public static final class C10714b {
+    public final class C10714b {
 
         /* JADX INFO: renamed from: a */
         public final String f19931a;
@@ -80,26 +74,8 @@ public final class MediaCodecUtil {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$c */
-    public interface InterfaceC10715c {
-        /* JADX INFO: renamed from: a */
-        MediaCodecInfo mo8872a(int i);
-
-        /* JADX INFO: renamed from: b */
-        boolean mo8873b(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
-
-        /* JADX INFO: renamed from: c */
-        boolean mo8874c(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
-
-        /* JADX INFO: renamed from: d */
-        int mo8875d();
-
-        /* JADX INFO: renamed from: e */
-        boolean mo8876e();
-    }
-
     /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$d */
-    public static final class C10716d implements InterfaceC10715c {
+    public final class C10716d implements InterfaceC10715c {
         public C10716d(C10713a c10713a) {
         }
 
@@ -136,7 +112,7 @@ public final class MediaCodecUtil {
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$e */
     @RequiresApi(21)
-    public static final class C10717e implements InterfaceC10715c {
+    public final class C10717e implements InterfaceC10715c {
 
         /* JADX INFO: renamed from: a */
         public final int f19934a;
@@ -184,6 +160,30 @@ public final class MediaCodecUtil {
         public boolean mo8876e() {
             return true;
         }
+    }
+
+    public class DecoderQueryException extends Exception {
+        public DecoderQueryException(Throwable th, C10713a c10713a) {
+            super("Failed to query underlying media codecs", th);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$c */
+    public interface InterfaceC10715c {
+        /* JADX INFO: renamed from: a */
+        MediaCodecInfo mo8872a(int i);
+
+        /* JADX INFO: renamed from: b */
+        boolean mo8873b(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+
+        /* JADX INFO: renamed from: c */
+        boolean mo8874c(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+
+        /* JADX INFO: renamed from: d */
+        int mo8875d();
+
+        /* JADX INFO: renamed from: e */
+        boolean mo8876e();
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.mediacodec.MediaCodecUtil$f */

@@ -9,11 +9,11 @@ import android.os.RemoteException;
 /* JADX INFO: loaded from: classes.dex */
 public interface IMultiInstanceInvalidationCallback extends IInterface {
 
-    public static abstract class Stub extends Binder implements IMultiInstanceInvalidationCallback {
+    public abstract class Stub extends Binder implements IMultiInstanceInvalidationCallback {
         private static final String DESCRIPTOR = "androidx.room.IMultiInstanceInvalidationCallback";
         public static final int TRANSACTION_onInvalidation = 1;
 
-        public static class Proxy implements IMultiInstanceInvalidationCallback {
+        public class Proxy implements IMultiInstanceInvalidationCallback {
             private IBinder mRemote;
 
             public Proxy(IBinder iBinder) {
@@ -46,17 +46,17 @@ public interface IMultiInstanceInvalidationCallback extends IInterface {
             attachInterface(this, DESCRIPTOR);
         }
 
+        @Override // android.os.IInterface
+        public IBinder asBinder() {
+            return this;
+        }
+
         public static IMultiInstanceInvalidationCallback asInterface(IBinder iBinder) {
             if (iBinder == null) {
                 return null;
             }
             IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
             return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IMultiInstanceInvalidationCallback)) ? new Proxy(iBinder) : (IMultiInstanceInvalidationCallback) iInterfaceQueryLocalInterface;
-        }
-
-        @Override // android.os.IInterface
-        public IBinder asBinder() {
-            return this;
         }
 
         @Override // android.os.Binder

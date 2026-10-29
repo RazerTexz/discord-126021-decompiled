@@ -13,15 +13,15 @@ public class C1906d<T> extends AbstractC1904b<CloseableReference<T>> {
         super(interfaceC2018w0, c1973d1, interfaceC1927d);
     }
 
+    @Override // p007b.p109f.p129e.AbstractC1723c, com.facebook.datasource.DataSource
+    public Object getResult() {
+        return CloseableReference.m8636n((CloseableReference) super.getResult());
+    }
+
     @Override // p007b.p109f.p129e.AbstractC1723c
     /* JADX INFO: renamed from: g */
     public void mo1023g(Object obj) {
         Class<CloseableReference> cls = CloseableReference.f19438j;
         ((CloseableReference) obj).close();
-    }
-
-    @Override // p007b.p109f.p129e.AbstractC1723c, com.facebook.datasource.DataSource
-    public Object getResult() {
-        return CloseableReference.m8636n((CloseableReference) super.getResult());
     }
 }

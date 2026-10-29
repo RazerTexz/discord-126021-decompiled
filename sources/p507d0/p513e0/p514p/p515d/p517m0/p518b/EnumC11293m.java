@@ -64,6 +64,10 @@ public final class EnumC11293m {
         this.typeName = shortClassName;
     }
 
+    public final C11716e getTypeName() {
+        return this.typeName;
+    }
+
     public static EnumC11293m valueOf(String str) {
         C12238m.checkNotNullParameter(str, "value");
         return (EnumC11293m) Enum.valueOf(EnumC11293m.class, str);
@@ -74,9 +78,5 @@ public final class EnumC11293m {
         EnumC11293m[] enumC11293mArr2 = new EnumC11293m[enumC11293mArr.length];
         System.arraycopy(enumC11293mArr, 0, enumC11293mArr2, 0, enumC11293mArr.length);
         return enumC11293mArr2;
-    }
-
-    public final C11716e getTypeName() {
-        return this.typeName;
     }
 }

@@ -11,6 +11,12 @@ import p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3063e {
 
+    /* JADX INFO: renamed from: d */
+    public int f8528d;
+
+    /* JADX INFO: renamed from: e */
+    public boolean f8529e;
+
     /* JADX INFO: renamed from: a */
     public final C3064f f8525a = new C3064f();
 
@@ -19,12 +25,6 @@ public final class C3063e {
 
     /* JADX INFO: renamed from: c */
     public int f8527c = -1;
-
-    /* JADX INFO: renamed from: d */
-    public int f8528d;
-
-    /* JADX INFO: renamed from: e */
-    public boolean f8529e;
 
     /* JADX INFO: renamed from: a */
     public final int m3741a(int i) {

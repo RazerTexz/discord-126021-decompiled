@@ -20,40 +20,9 @@ public enum BluetoothProfileConnectionState {
     public static final Companion INSTANCE = new Companion(null);
     private final int value;
 
-    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothProfileConnectionState$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: BluetoothProfileConnectionState.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final BluetoothProfileConnectionState m8496a(int i) {
-            BluetoothProfileConnectionState[] bluetoothProfileConnectionStateArrValues = BluetoothProfileConnectionState.values();
-            for (int i2 = 0; i2 < 4; i2++) {
-                BluetoothProfileConnectionState bluetoothProfileConnectionState = bluetoothProfileConnectionStateArrValues[i2];
-                if (bluetoothProfileConnectionState.getValue() == i) {
-                    return bluetoothProfileConnectionState;
-                }
-            }
-            return null;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final C5635b m8497b(Intent intent) {
-            C12238m.checkNotNullParameter(intent, "intent");
-            if (!C12238m.areEqual(intent.getAction(), "android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED")) {
-                throw new IllegalArgumentException("Failed requirement.".toString());
-            }
-            Integer numM588x0 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.PREVIOUS_STATE");
-            BluetoothProfileConnectionState bluetoothProfileConnectionStateM8496a = numM588x0 != null ? BluetoothProfileConnectionState.INSTANCE.m8496a(numM588x0.intValue()) : null;
-            Integer numM588x1 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.STATE");
-            return new C5635b(bluetoothProfileConnectionStateM8496a, numM588x1 != null ? BluetoothProfileConnectionState.INSTANCE.m8496a(numM588x1.intValue()) : null, (BluetoothDevice) intent.getParcelableExtra("android.bluetooth.device.extra.DEVICE"));
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothProfileConnectionState$b */
     /* JADX INFO: compiled from: BluetoothProfileConnectionState.kt */
-    public static final class C5635b {
+    public final class C5635b {
 
         /* JADX INFO: renamed from: a */
         public final BluetoothProfileConnectionState f18871a;
@@ -99,6 +68,37 @@ public enum BluetoothProfileConnectionState {
             sbM833U.append(this.f18873c);
             sbM833U.append(")");
             return sbM833U.toString();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothProfileConnectionState$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: BluetoothProfileConnectionState.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final BluetoothProfileConnectionState m8496a(int i) {
+            BluetoothProfileConnectionState[] bluetoothProfileConnectionStateArrValues = BluetoothProfileConnectionState.values();
+            for (int i2 = 0; i2 < 4; i2++) {
+                BluetoothProfileConnectionState bluetoothProfileConnectionState = bluetoothProfileConnectionStateArrValues[i2];
+                if (bluetoothProfileConnectionState.getValue() == i) {
+                    return bluetoothProfileConnectionState;
+                }
+            }
+            return null;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final C5635b m8497b(Intent intent) {
+            C12238m.checkNotNullParameter(intent, "intent");
+            if (!C12238m.areEqual(intent.getAction(), "android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED")) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            Integer numM588x0 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.PREVIOUS_STATE");
+            BluetoothProfileConnectionState bluetoothProfileConnectionStateM8496a = numM588x0 != null ? BluetoothProfileConnectionState.INSTANCE.m8496a(numM588x0.intValue()) : null;
+            Integer numM588x1 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.STATE");
+            return new C5635b(bluetoothProfileConnectionStateM8496a, numM588x1 != null ? BluetoothProfileConnectionState.INSTANCE.m8496a(numM588x1.intValue()) : null, (BluetoothDevice) intent.getParcelableExtra("android.bluetooth.device.extra.DEVICE"));
         }
     }
 

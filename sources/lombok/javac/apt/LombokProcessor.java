@@ -46,23 +46,23 @@ import lombok.permit.Permit;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/apt/LombokProcessor.SCL.lombok */
 @SupportedAnnotationTypes({"*"})
 public class LombokProcessor extends AbstractProcessor {
-    private ProcessingEnvironment processingEnv;
-    private JavacProcessingEnvironment javacProcessingEnv;
+    private static final String JPE = "com.sun.tools.javac.processing.JavacProcessingEnvironment";
     private JavacFiler javacFiler;
-    private JavacTransformer transformer;
-    private Trees trees;
+    private JavacProcessingEnvironment javacProcessingEnv;
     private long[] priorityLevels;
     private Set<Long> priorityLevelsRequiringResolutionReset;
-    private static final String JPE = "com.sun.tools.javac.processing.JavacProcessingEnvironment";
+    private ProcessingEnvironment processingEnv;
+    private JavacTransformer transformer;
+    private Trees trees;
+    private boolean lombokDisabled = false;
     private static final Field javacProcessingEnvironment_discoveredProcs = getFieldAccessor(JPE, "discoveredProcs");
     private static final Field discoveredProcessors_procStateList = getFieldAccessor("com.sun.tools.javac.processing.JavacProcessingEnvironment$DiscoveredProcessors", "procStateList");
     private static final Field processorState_processor = getFieldAccessor("com.sun.tools.javac.processing.JavacProcessingEnvironment$processor", "processor");
-    private static Class<?> qualifiedNamableClass = null;
-    private static Method qualifiedNamableQualifiedNameMethod = null;
-    private boolean lombokDisabled = false;
     private final IdentityHashMap<JCTree.JCCompilationUnit, Long> roots = new IdentityHashMap<>();
     private CleanupRegistry cleanup = new CleanupRegistry();
     private int dummyCount = 0;
+    private static Class<?> qualifiedNamableClass = null;
+    private static Method qualifiedNamableQualifiedNameMethod = null;
 
     public void init(ProcessingEnvironment procEnv) {
         super.init(procEnv);

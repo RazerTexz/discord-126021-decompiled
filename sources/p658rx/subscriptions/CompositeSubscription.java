@@ -17,6 +17,11 @@ public final class CompositeSubscription implements Subscription {
     /* JADX INFO: renamed from: k */
     public volatile boolean f27656k;
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.f27656k;
+    }
+
     /* JADX INFO: renamed from: d */
     public static void m11135d(Collection<Subscription> collection) {
         if (collection == null) {
@@ -84,11 +89,6 @@ public final class CompositeSubscription implements Subscription {
                 }
             }
         }
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.f27656k;
     }
 
     @Override // p658rx.Subscription

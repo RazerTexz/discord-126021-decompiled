@@ -25,11 +25,11 @@ public final class C8164x8e57eda6 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -93,7 +93,7 @@ public final class C8164x8e57eda6 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class AnonymousClass3 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass3 extends AbstractC12240o implements Function1<Hook, Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -123,7 +123,7 @@ public final class C8164x8e57eda6 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
         public AnonymousClass2() {
             super(1);
         }

@@ -15,6 +15,14 @@ public final class AnalyticsService extends Service implements InterfaceC3551x0 
     /* JADX INFO: renamed from: j */
     public C3543t0<AnalyticsService> f20388j;
 
+    /* JADX INFO: renamed from: c */
+    public final C3543t0<AnalyticsService> m9008c() {
+        if (this.f20388j == null) {
+            this.f20388j = new C3543t0<>(this);
+        }
+        return this.f20388j;
+    }
+
     @Override // p007b.p225i.p226a.p288f.p313h.p323j.InterfaceC3551x0
     /* JADX INFO: renamed from: a */
     public final void mo4503a(JobParameters jobParameters, boolean z2) {
@@ -25,14 +33,6 @@ public final class AnalyticsService extends Service implements InterfaceC3551x0 
     /* JADX INFO: renamed from: b */
     public final boolean mo4504b(int i) {
         return stopSelfResult(i);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final C3543t0<AnalyticsService> m9008c() {
-        if (this.f20388j == null) {
-            this.f20388j = new C3543t0<>(this);
-        }
-        return this.f20388j;
     }
 
     @Override // android.app.Service

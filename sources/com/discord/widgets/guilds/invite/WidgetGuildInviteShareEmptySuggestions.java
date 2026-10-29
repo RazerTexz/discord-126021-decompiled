@@ -55,7 +55,7 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$initBottomSheet$1 */
     /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
-    public static final class C86851 extends AbstractC12240o implements Function0<Unit> {
+    public final class C86851 extends AbstractC12240o implements Function0<Unit> {
         public C86851() {
             super(0);
         }
@@ -74,7 +74,7 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
-    public static final class C86911 extends AbstractC12240o implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
+    public final class C86911 extends AbstractC12240o implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
         public C86911() {
             super(1);
         }
@@ -111,6 +111,10 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
 
     private final WidgetGuildInviteShareEmptySuggestionsBinding getBinding() {
         return (WidgetGuildInviteShareEmptySuggestionsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+    }
+
+    public final long getGuildId() {
+        return ((Number) this.guildId.getValue()).longValue();
     }
 
     private final CharSequence getHoursExpirationString(int hours, CharSequence maxUses) {
@@ -152,6 +156,72 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
                 ViewExtensions.fadeBy$default(WidgetGuildInviteShareEmptySuggestions.this.getBinding().f16826b, newState != 5, 0L, 2, null);
             }
         });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        if (getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_GUILD_ID", 0L) <= 0) {
+            requireActivity().finish();
+            return;
+        }
+        long longExtra = getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", 0L);
+        if (longExtra != 0) {
+            getViewModel().selectChannel(longExtra);
+        }
+        final boolean booleanExtra = getMostRecentIntent().getBooleanExtra(WidgetGuildInviteShare.INTENT_IS_NUX_FLOW, false);
+        setActionBarDisplayHomeAsUpEnabled(true, booleanExtra ? Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.ic_close_24dp, 0, 2, (Object) null)) : null, booleanExtra ? Integer.valueOf(C5419R.string.close) : null);
+        AppFragment.setOnBackPressed$default(this, new Func0<Boolean>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions.onViewBound.1
+            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
+            public final Boolean call() {
+                if (WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).getState() != 5) {
+                    WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
+                    return Boolean.TRUE;
+                }
+                if (!booleanExtra) {
+                    return Boolean.FALSE;
+                }
+                C0870j.m155c(WidgetGuildInviteShareEmptySuggestions.this.requireContext(), false, null, 6);
+                return Boolean.TRUE;
+            }
+        }, 0, 2, null);
+        BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehaviorFrom = BottomSheetBehavior.from(getBinding().f16831g);
+        C12238m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…nviteSettingsBottomSheet)");
+        this.bottomSheetBehavior = bottomSheetBehaviorFrom;
+        if (bottomSheetBehaviorFrom == null) {
+            C12238m.throwUninitializedPropertyAccessException("bottomSheetBehavior");
+        }
+        initBottomSheetBehavior(bottomSheetBehaviorFrom);
+        initBottomSheet();
+        getBinding().f16826b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions.onViewBound.2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
+            }
+        });
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<WidgetGuildInviteShareViewModel.ViewState> observableM11085K = getViewModel().observeViewState().m11085K();
+        C12238m.checkNotNullExpressionValue(observableM11085K, "viewModel.observeViewSta…  .onBackpressureBuffer()");
+        Observable<R> observableM11083G = observableM11085K.m11118y(new InterfaceC12589b<Object, Boolean>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Boolean call(Object obj) {
+                return Boolean.valueOf(obj instanceof WidgetGuildInviteShareViewModel.ViewState.Loaded);
+            }
+        }).m11083G(new InterfaceC12589b<Object, T>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$2
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final T call(Object obj) {
+                Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.guilds.invite.WidgetGuildInviteShareViewModel.ViewState.Loaded");
+                return (T) ((WidgetGuildInviteShareViewModel.ViewState.Loaded) obj);
+            }
+        });
+        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11083G, this, null, 2, null), (Class<?>) WidgetGuildInviteShareEmptySuggestions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86911());
     }
 
     private final void updateUi(WidgetGuildInviteShareViewModel.ViewState.Loaded viewState) {
@@ -254,75 +324,5 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
             C12238m.checkNotNullExpressionValue(resources7, "resources");
             textView8.setText(C1107b.m211c(resources7, C5419R.string.invite_settings_expired_description, new Object[]{quantityString4, quantityString}, (4 & 4) != 0 ? C1107b.d.f1493j : null));
         }
-    }
-
-    public final long getGuildId() {
-        return ((Number) this.guildId.getValue()).longValue();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        if (getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_GUILD_ID", 0L) <= 0) {
-            requireActivity().finish();
-            return;
-        }
-        long longExtra = getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", 0L);
-        if (longExtra != 0) {
-            getViewModel().selectChannel(longExtra);
-        }
-        final boolean booleanExtra = getMostRecentIntent().getBooleanExtra(WidgetGuildInviteShare.INTENT_IS_NUX_FLOW, false);
-        setActionBarDisplayHomeAsUpEnabled(true, booleanExtra ? Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.ic_close_24dp, 0, 2, (Object) null)) : null, booleanExtra ? Integer.valueOf(C5419R.string.close) : null);
-        AppFragment.setOnBackPressed$default(this, new Func0<Boolean>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions.onViewBound.1
-            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
-            public final Boolean call() {
-                if (WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).getState() != 5) {
-                    WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
-                    return Boolean.TRUE;
-                }
-                if (!booleanExtra) {
-                    return Boolean.FALSE;
-                }
-                C0870j.m155c(WidgetGuildInviteShareEmptySuggestions.this.requireContext(), false, null, 6);
-                return Boolean.TRUE;
-            }
-        }, 0, 2, null);
-        BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehaviorFrom = BottomSheetBehavior.from(getBinding().f16831g);
-        C12238m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…nviteSettingsBottomSheet)");
-        this.bottomSheetBehavior = bottomSheetBehaviorFrom;
-        if (bottomSheetBehaviorFrom == null) {
-            C12238m.throwUninitializedPropertyAccessException("bottomSheetBehavior");
-        }
-        initBottomSheetBehavior(bottomSheetBehaviorFrom);
-        initBottomSheet();
-        getBinding().f16826b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions.onViewBound.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
-            }
-        });
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<WidgetGuildInviteShareViewModel.ViewState> observableM11085K = getViewModel().observeViewState().m11085K();
-        C12238m.checkNotNullExpressionValue(observableM11085K, "viewModel.observeViewSta…  .onBackpressureBuffer()");
-        Observable<R> observableM11083G = observableM11085K.m11118y(new InterfaceC12589b<Object, Boolean>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(Object obj) {
-                return Boolean.valueOf(obj instanceof WidgetGuildInviteShareViewModel.ViewState.Loaded);
-            }
-        }).m11083G(new InterfaceC12589b<Object, T>() { // from class: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final T call(Object obj) {
-                Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.guilds.invite.WidgetGuildInviteShareViewModel.ViewState.Loaded");
-                return (T) ((WidgetGuildInviteShareViewModel.ViewState.Loaded) obj);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11083G, this, null, 2, null), (Class<?>) WidgetGuildInviteShareEmptySuggestions.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86911());
     }
 }

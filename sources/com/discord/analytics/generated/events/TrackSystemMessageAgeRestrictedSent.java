@@ -10,16 +10,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSystemMessageAgeRestrictedSent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSystemMessageAgeRestrictedSent implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final List<Long> guildIds = null;
     private final CharSequence messageType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "system_message_age_restricted_sent";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackSystemMessageAgeRestrictedSent implements Ana
         }
         TrackSystemMessageAgeRestrictedSent trackSystemMessageAgeRestrictedSent = (TrackSystemMessageAgeRestrictedSent) other;
         return C12238m.areEqual(this.guildIds, trackSystemMessageAgeRestrictedSent.guildIds) && C12238m.areEqual(this.messageType, trackSystemMessageAgeRestrictedSent.messageType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

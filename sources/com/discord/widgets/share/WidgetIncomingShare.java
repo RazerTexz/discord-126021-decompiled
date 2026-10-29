@@ -124,14 +124,14 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetIncomingShare extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetIncomingShare.class, "binding", "getBinding()Lcom/discord/databinding/WidgetIncomingShareBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String EXTRA_RECIPIENT = "EXTRA_RECIPIENT";
     private static final int FLIPPER_RESULTS = 0;
     private static final int FLIPPER_RESULTS_EMPTY = 1;
     private static final int FLIPPER_SEARCH = 0;
     private static final int FLIPPER_SELECTED = 1;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -151,7 +151,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$Adapter$1 */
         /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-        public static final class C99851 extends AbstractC12240o implements Function1<Uri, Unit> {
+        public final class C99851 extends AbstractC12240o implements Function1<Uri, Unit> {
             public static final C99851 INSTANCE = new C99851();
 
             public C99851() {
@@ -240,274 +240,34 @@ public final class WidgetIncomingShare extends AppFragment {
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class Companion {
-        private Companion() {
+    public final class C100002 extends AbstractC12240o implements Function1<Model, Unit> {
+        public final /* synthetic */ Clock $clock;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C100002(Clock clock) {
+            super(1);
+            this.$clock = clock;
         }
 
-        public static /* synthetic */ void launch$default(Companion companion, Context context, String str, String str2, int i, Object obj) {
-            if ((i & 2) != 0) {
-                str = null;
-            }
-            if ((i & 4) != 0) {
-                str2 = null;
-            }
-            companion.launch(context, str, str2);
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
         }
 
-        public final void launch(Context context, String text, String recipient) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intentPutExtra = new Intent().putExtra("android.intent.extra.TEXT", text).putExtra(WidgetIncomingShare.EXTRA_RECIPIENT, recipient);
-            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…TRA_RECIPIENT, recipient)");
-            C0870j.m156d(context, WidgetIncomingShare.class, intentPutExtra);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final /* data */ class ContentModel {
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private final Activity activity;
-        private final Uri activityActionUri;
-        private final Long preselectedRecipientChannel;
-        private final String recipient;
-        private final CharSequence sharedText;
-        private final List<Uri> uris;
-
-        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-        public static final class Companion {
-            private Companion() {
-            }
-
-            public final ContentModel get(Intent recentIntent) {
-                C12238m.checkNotNullParameter(recentIntent, "recentIntent");
-                ShareUtils.SharedContent sharedContent = ShareUtils.INSTANCE.getSharedContent(recentIntent, false);
-                Long directShareId = IntentUtils.INSTANCE.getDirectShareId(recentIntent);
-                String stringExtra = recentIntent.getStringExtra(WidgetIncomingShare.EXTRA_RECIPIENT);
-                String action = recentIntent.getAction();
-                Uri data = (action != null && action.hashCode() == -1103390587 && action.equals("com.discord.intent.action.SDK")) ? recentIntent.getData() : null;
-                String stringExtra2 = recentIntent.getStringExtra("com.discord.intent.extra.EXTRA_ACTIVITY");
-                return new ContentModel(sharedContent.getText(), sharedContent.getUris(), directShareId, stringExtra, data, stringExtra2 != null ? (Activity) InboundGatewayGsonParser.fromJson(new com.discord.models.domain.Model.JsonReader(new StringReader(stringExtra2)), Activity.class) : null);
-            }
-
-            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-
-        public ContentModel() {
-            this(null, null, null, null, null, null, 63, null);
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public ContentModel(CharSequence charSequence, List<? extends Uri> list, Long l, String str, Uri uri, Activity activity) {
-            this.sharedText = charSequence;
-            this.uris = list;
-            this.preselectedRecipientChannel = l;
-            this.recipient = str;
-            this.activityActionUri = uri;
-            this.activity = activity;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ContentModel copy$default(ContentModel contentModel, CharSequence charSequence, List list, Long l, String str, Uri uri, Activity activity, int i, Object obj) {
-            if ((i & 1) != 0) {
-                charSequence = contentModel.sharedText;
-            }
-            if ((i & 2) != 0) {
-                list = contentModel.uris;
-            }
-            List list2 = list;
-            if ((i & 4) != 0) {
-                l = contentModel.preselectedRecipientChannel;
-            }
-            Long l2 = l;
-            if ((i & 8) != 0) {
-                str = contentModel.recipient;
-            }
-            String str2 = str;
-            if ((i & 16) != 0) {
-                uri = contentModel.activityActionUri;
-            }
-            Uri uri2 = uri;
-            if ((i & 32) != 0) {
-                activity = contentModel.activity;
-            }
-            return contentModel.copy(charSequence, list2, l2, str2, uri2, activity);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getSharedText() {
-            return this.sharedText;
-        }
-
-        public final List<Uri> component2() {
-            return this.uris;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getPreselectedRecipientChannel() {
-            return this.preselectedRecipientChannel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getRecipient() {
-            return this.recipient;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Uri getActivityActionUri() {
-            return this.activityActionUri;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Activity getActivity() {
-            return this.activity;
-        }
-
-        public final ContentModel copy(CharSequence sharedText, List<? extends Uri> uris, Long preselectedRecipientChannel, String recipient, Uri activityActionUri, Activity activity) {
-            return new ContentModel(sharedText, uris, preselectedRecipientChannel, recipient, activityActionUri, activity);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ContentModel)) {
-                return false;
-            }
-            ContentModel contentModel = (ContentModel) other;
-            return C12238m.areEqual(this.sharedText, contentModel.sharedText) && C12238m.areEqual(this.uris, contentModel.uris) && C12238m.areEqual(this.preselectedRecipientChannel, contentModel.preselectedRecipientChannel) && C12238m.areEqual(this.recipient, contentModel.recipient) && C12238m.areEqual(this.activityActionUri, contentModel.activityActionUri) && C12238m.areEqual(this.activity, contentModel.activity);
-        }
-
-        public final Activity getActivity() {
-            return this.activity;
-        }
-
-        public final Uri getActivityActionUri() {
-            return this.activityActionUri;
-        }
-
-        public final Long getPreselectedRecipientChannel() {
-            return this.preselectedRecipientChannel;
-        }
-
-        public final String getRecipient() {
-            return this.recipient;
-        }
-
-        public final CharSequence getSharedText() {
-            return this.sharedText;
-        }
-
-        public final List<Uri> getUris() {
-            return this.uris;
-        }
-
-        public int hashCode() {
-            CharSequence charSequence = this.sharedText;
-            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
-            List<Uri> list = this.uris;
-            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
-            Long l = this.preselectedRecipientChannel;
-            int iHashCode3 = (iHashCode2 + (l != null ? l.hashCode() : 0)) * 31;
-            String str = this.recipient;
-            int iHashCode4 = (iHashCode3 + (str != null ? str.hashCode() : 0)) * 31;
-            Uri uri = this.activityActionUri;
-            int iHashCode5 = (iHashCode4 + (uri != null ? uri.hashCode() : 0)) * 31;
-            Activity activity = this.activity;
-            return iHashCode5 + (activity != null ? activity.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ContentModel(sharedText=");
-            sbM833U.append(this.sharedText);
-            sbM833U.append(", uris=");
-            sbM833U.append(this.uris);
-            sbM833U.append(", preselectedRecipientChannel=");
-            sbM833U.append(this.preselectedRecipientChannel);
-            sbM833U.append(", recipient=");
-            sbM833U.append(this.recipient);
-            sbM833U.append(", activityActionUri=");
-            sbM833U.append(this.activityActionUri);
-            sbM833U.append(", activity=");
-            sbM833U.append(this.activity);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-
-        public /* synthetic */ ContentModel(String str, List list, Long l, String str2, Uri uri, Activity activity, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? null : list, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : uri, (i & 32) == 0 ? activity : null);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class Model {
-        private final String comment;
-        private final ContentModel contentModel;
-        private final ViewEmbedGameInvite.Model gameInviteModel;
-        private final boolean isOnCooldown;
-        private final boolean isUserPremium;
-        private final int maxFileSizeMB;
-        private final WidgetGlobalSearchModel.ItemDataPayload receiver;
-        private final WidgetGlobalSearchModel searchModel;
-
-        public Model(ContentModel contentModel, ViewEmbedGameInvite.Model model, String str, WidgetGlobalSearchModel widgetGlobalSearchModel, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2, int i, boolean z3) {
-            C12238m.checkNotNullParameter(contentModel, "contentModel");
-            C12238m.checkNotNullParameter(widgetGlobalSearchModel, "searchModel");
-            this.contentModel = contentModel;
-            this.gameInviteModel = model;
-            this.comment = str;
-            this.searchModel = widgetGlobalSearchModel;
-            this.receiver = itemDataPayload;
-            this.isOnCooldown = z2;
-            this.maxFileSizeMB = i;
-            this.isUserPremium = z3;
-        }
-
-        public final String getComment() {
-            return this.comment;
-        }
-
-        public final ContentModel getContentModel() {
-            return this.contentModel;
-        }
-
-        public final ViewEmbedGameInvite.Model getGameInviteModel() {
-            return this.gameInviteModel;
-        }
-
-        public final int getMaxFileSizeMB() {
-            return this.maxFileSizeMB;
-        }
-
-        public final WidgetGlobalSearchModel.ItemDataPayload getReceiver() {
-            return this.receiver;
-        }
-
-        public final WidgetGlobalSearchModel getSearchModel() {
-            return this.searchModel;
-        }
-
-        /* JADX INFO: renamed from: isOnCooldown, reason: from getter */
-        public final boolean getIsOnCooldown() {
-            return this.isOnCooldown;
-        }
-
-        /* JADX INFO: renamed from: isUserPremium, reason: from getter */
-        public final boolean getIsUserPremium() {
-            return this.isUserPremium;
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetIncomingShare widgetIncomingShare = WidgetIncomingShare.this;
+            C12238m.checkNotNullExpressionValue(model, "it");
+            widgetIncomingShare.configureUi(model, this.$clock);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$configureUi$1 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99871 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
+    public final class C99871 extends AbstractC12240o implements Function3<TextView, Integer, KeyEvent, Boolean> {
         public final /* synthetic */ Model $this_configureUi;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -538,7 +298,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$configureUi$5 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99895 extends AbstractC12240o implements Function1<Uri, Unit> {
+    public final class C99895 extends AbstractC12240o implements Function1<Uri, Unit> {
         public final /* synthetic */ ContentModel $this_configureUi;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -574,7 +334,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99933 extends AbstractC12240o implements Function1<Pair<? extends MeUser, ? extends MessageResult>, Unit> {
+    public final class C99933 extends AbstractC12240o implements Function1<Pair<? extends MeUser, ? extends MessageResult>, Unit> {
         public final /* synthetic */ ContentModel $contentModel;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ List $data;
@@ -589,7 +349,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
             public AnonymousClass2() {
                 super(2);
             }
@@ -611,7 +371,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3$3, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ MeUser $me;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -713,7 +473,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99941 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C99941 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C99941() {
             super(1);
         }
@@ -733,7 +493,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99952 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C99952 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C99952() {
             super(1);
         }
@@ -753,7 +513,7 @@ public final class WidgetIncomingShare extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C99985 extends AbstractC12240o implements Function1<Intent, Unit> {
+    public final class C99985 extends AbstractC12240o implements Function1<Intent, Unit> {
         public C99985() {
             super(1);
         }
@@ -772,28 +532,268 @@ public final class WidgetIncomingShare extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetIncomingShare.kt */
-    public static final class C100002 extends AbstractC12240o implements Function1<Model, Unit> {
-        public final /* synthetic */ Clock $clock;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C100002(Clock clock) {
-            super(1);
-            this.$clock = clock;
+    public final class Companion {
+        private Companion() {
         }
 
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
+        public static /* synthetic */ void launch$default(Companion companion, Context context, String str, String str2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                str = null;
+            }
+            if ((i & 4) != 0) {
+                str2 = null;
+            }
+            companion.launch(context, str, str2);
         }
 
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            WidgetIncomingShare widgetIncomingShare = WidgetIncomingShare.this;
-            C12238m.checkNotNullExpressionValue(model, "it");
-            widgetIncomingShare.configureUi(model, this.$clock);
+        public final void launch(Context context, String text, String recipient) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra("android.intent.extra.TEXT", text).putExtra(WidgetIncomingShare.EXTRA_RECIPIENT, recipient);
+            C12238m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…TRA_RECIPIENT, recipient)");
+            C0870j.m156d(context, WidgetIncomingShare.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final /* data */ class ContentModel {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Activity activity;
+        private final Uri activityActionUri;
+        private final Long preselectedRecipientChannel;
+        private final String recipient;
+        private final CharSequence sharedText;
+        private final List<Uri> uris;
+
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final ContentModel get(Intent recentIntent) {
+                C12238m.checkNotNullParameter(recentIntent, "recentIntent");
+                ShareUtils.SharedContent sharedContent = ShareUtils.INSTANCE.getSharedContent(recentIntent, false);
+                Long directShareId = IntentUtils.INSTANCE.getDirectShareId(recentIntent);
+                String stringExtra = recentIntent.getStringExtra(WidgetIncomingShare.EXTRA_RECIPIENT);
+                String action = recentIntent.getAction();
+                Uri data = (action != null && action.hashCode() == -1103390587 && action.equals("com.discord.intent.action.SDK")) ? recentIntent.getData() : null;
+                String stringExtra2 = recentIntent.getStringExtra("com.discord.intent.extra.EXTRA_ACTIVITY");
+                return new ContentModel(sharedContent.getText(), sharedContent.getUris(), directShareId, stringExtra, data, stringExtra2 != null ? (Activity) InboundGatewayGsonParser.fromJson(new com.discord.models.domain.Model.JsonReader(new StringReader(stringExtra2)), Activity.class) : null);
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public ContentModel() {
+            this(null, null, null, null, null, null, 63, null);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public ContentModel(CharSequence charSequence, List<? extends Uri> list, Long l, String str, Uri uri, Activity activity) {
+            this.sharedText = charSequence;
+            this.uris = list;
+            this.preselectedRecipientChannel = l;
+            this.recipient = str;
+            this.activityActionUri = uri;
+            this.activity = activity;
+        }
+
+        public final List<Uri> component2() {
+            return this.uris;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ContentModel copy$default(ContentModel contentModel, CharSequence charSequence, List list, Long l, String str, Uri uri, Activity activity, int i, Object obj) {
+            if ((i & 1) != 0) {
+                charSequence = contentModel.sharedText;
+            }
+            if ((i & 2) != 0) {
+                list = contentModel.uris;
+            }
+            List list2 = list;
+            if ((i & 4) != 0) {
+                l = contentModel.preselectedRecipientChannel;
+            }
+            Long l2 = l;
+            if ((i & 8) != 0) {
+                str = contentModel.recipient;
+            }
+            String str2 = str;
+            if ((i & 16) != 0) {
+                uri = contentModel.activityActionUri;
+            }
+            Uri uri2 = uri;
+            if ((i & 32) != 0) {
+                activity = contentModel.activity;
+            }
+            return contentModel.copy(charSequence, list2, l2, str2, uri2, activity);
+        }
+
+        public final ContentModel copy(CharSequence sharedText, List<? extends Uri> uris, Long preselectedRecipientChannel, String recipient, Uri activityActionUri, Activity activity) {
+            return new ContentModel(sharedText, uris, preselectedRecipientChannel, recipient, activityActionUri, activity);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ContentModel)) {
+                return false;
+            }
+            ContentModel contentModel = (ContentModel) other;
+            return C12238m.areEqual(this.sharedText, contentModel.sharedText) && C12238m.areEqual(this.uris, contentModel.uris) && C12238m.areEqual(this.preselectedRecipientChannel, contentModel.preselectedRecipientChannel) && C12238m.areEqual(this.recipient, contentModel.recipient) && C12238m.areEqual(this.activityActionUri, contentModel.activityActionUri) && C12238m.areEqual(this.activity, contentModel.activity);
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Uri getActivityActionUri() {
+            return this.activityActionUri;
+        }
+
+        public final Uri getActivityActionUri() {
+            return this.activityActionUri;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getPreselectedRecipientChannel() {
+            return this.preselectedRecipientChannel;
+        }
+
+        public final Long getPreselectedRecipientChannel() {
+            return this.preselectedRecipientChannel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getRecipient() {
+            return this.recipient;
+        }
+
+        public final String getRecipient() {
+            return this.recipient;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getSharedText() {
+            return this.sharedText;
+        }
+
+        public final CharSequence getSharedText() {
+            return this.sharedText;
+        }
+
+        public final List<Uri> getUris() {
+            return this.uris;
+        }
+
+        public int hashCode() {
+            CharSequence charSequence = this.sharedText;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            List<Uri> list = this.uris;
+            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
+            Long l = this.preselectedRecipientChannel;
+            int iHashCode3 = (iHashCode2 + (l != null ? l.hashCode() : 0)) * 31;
+            String str = this.recipient;
+            int iHashCode4 = (iHashCode3 + (str != null ? str.hashCode() : 0)) * 31;
+            Uri uri = this.activityActionUri;
+            int iHashCode5 = (iHashCode4 + (uri != null ? uri.hashCode() : 0)) * 31;
+            Activity activity = this.activity;
+            return iHashCode5 + (activity != null ? activity.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("ContentModel(sharedText=");
+            sbM833U.append(this.sharedText);
+            sbM833U.append(", uris=");
+            sbM833U.append(this.uris);
+            sbM833U.append(", preselectedRecipientChannel=");
+            sbM833U.append(this.preselectedRecipientChannel);
+            sbM833U.append(", recipient=");
+            sbM833U.append(this.recipient);
+            sbM833U.append(", activityActionUri=");
+            sbM833U.append(this.activityActionUri);
+            sbM833U.append(", activity=");
+            sbM833U.append(this.activity);
+            sbM833U.append(")");
+            return sbM833U.toString();
+        }
+
+        public /* synthetic */ ContentModel(String str, List list, Long l, String str2, Uri uri, Activity activity, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? null : list, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : uri, (i & 32) == 0 ? activity : null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class Model {
+        private final String comment;
+        private final ContentModel contentModel;
+        private final ViewEmbedGameInvite.Model gameInviteModel;
+        private final boolean isOnCooldown;
+        private final boolean isUserPremium;
+        private final int maxFileSizeMB;
+        private final WidgetGlobalSearchModel.ItemDataPayload receiver;
+        private final WidgetGlobalSearchModel searchModel;
+
+        public Model(ContentModel contentModel, ViewEmbedGameInvite.Model model, String str, WidgetGlobalSearchModel widgetGlobalSearchModel, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2, int i, boolean z3) {
+            C12238m.checkNotNullParameter(contentModel, "contentModel");
+            C12238m.checkNotNullParameter(widgetGlobalSearchModel, "searchModel");
+            this.contentModel = contentModel;
+            this.gameInviteModel = model;
+            this.comment = str;
+            this.searchModel = widgetGlobalSearchModel;
+            this.receiver = itemDataPayload;
+            this.isOnCooldown = z2;
+            this.maxFileSizeMB = i;
+            this.isUserPremium = z3;
+        }
+
+        public final String getComment() {
+            return this.comment;
+        }
+
+        public final ContentModel getContentModel() {
+            return this.contentModel;
+        }
+
+        public final ViewEmbedGameInvite.Model getGameInviteModel() {
+            return this.gameInviteModel;
+        }
+
+        /* JADX INFO: renamed from: isOnCooldown, reason: from getter */
+        public final boolean getIsOnCooldown() {
+            return this.isOnCooldown;
+        }
+
+        /* JADX INFO: renamed from: isUserPremium, reason: from getter */
+        public final boolean getIsUserPremium() {
+            return this.isUserPremium;
+        }
+
+        public final int getMaxFileSizeMB() {
+            return this.maxFileSizeMB;
+        }
+
+        public final WidgetGlobalSearchModel.ItemDataPayload getReceiver() {
+            return this.receiver;
+        }
+
+        public final WidgetGlobalSearchModel getSearchModel() {
+            return this.searchModel;
         }
     }
 
@@ -957,6 +957,10 @@ public final class WidgetIncomingShare extends AppFragment {
         }
     }
 
+    public static /* synthetic */ void onSendClicked$default(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, ViewEmbedGameInvite.Model model, ContentModel contentModel, boolean z2, int i, boolean z3, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
+        widgetIncomingShare.onSendClicked(context, itemDataPayload, model, contentModel, z2, i, z3, (i2 & 128) != 0 ? null : captchaPayload);
+    }
+
     private final void onSendClicked(Context context, WidgetGlobalSearchModel.ItemDataPayload receiver, final ViewEmbedGameInvite.Model gameInviteModel, ContentModel contentModel, boolean isOnCooldown, int maxFileSizeMB, boolean isUserPremium, final CaptchaHelper.CaptchaPayload captchaPayload) {
         Observable.InterfaceC13007c interfaceC13007cM178d;
         final List listEmptyList;
@@ -1113,10 +1117,6 @@ public final class WidgetIncomingShare extends AppFragment {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.m8519ui(observableM11082A, this, widgetGlobalSearchAdapter), getBinding().f17193b, 0L), (Class<?>) WidgetIncomingShare.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C99933(listEmptyList, context, receiver, gameInviteModel, contentModel, isOnCooldown, maxFileSizeMB, isUserPremium, z2, z3, z4));
     }
 
-    public static /* synthetic */ void onSendClicked$default(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, ViewEmbedGameInvite.Model model, ContentModel contentModel, boolean z2, int i, boolean z3, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
-        widgetIncomingShare.onSendClicked(context, itemDataPayload, model, contentModel, z2, i, z3, (i2 & 128) != 0 ? null : captchaPayload);
-    }
-
     private final void onSendCompleted() {
         Context context = getContext();
         if (context != null) {
@@ -1172,7 +1172,7 @@ public final class WidgetIncomingShare extends AppFragment {
             /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$4$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetIncomingShare.kt */
             @InterfaceC12188e(m10084c = "com.discord.widgets.share.WidgetIncomingShare$onViewBound$4$1", m10085f = "WidgetIncomingShare.kt", m10086l = {Opcodes.L2D}, m10087m = "invokeSuspend")
-            public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+            public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
                 public int label;
 
                 public AnonymousClass1(Continuation continuation) {
@@ -1191,7 +1191,7 @@ public final class WidgetIncomingShare extends AppFragment {
                 }
 
                 @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-                public final Object invokeSuspend(Object obj) {
+                public final Object invokeSuspend(Object obj) throws Throwable {
                     Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
                     int i = this.label;
                     if (i == 0) {

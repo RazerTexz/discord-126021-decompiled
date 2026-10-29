@@ -20,14 +20,11 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p;
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11684i extends AbstractC11727g.d<C11684i> implements InterfaceC11735o {
+    private int bitField0_;
+    private C11680e contract_;
 
     /* JADX INFO: renamed from: j */
     public static final C11684i f23830j;
-
-    /* JADX INFO: renamed from: k */
-    public static InterfaceC11736p<C11684i> f23831k = new a();
-    private int bitField0_;
-    private C11680e contract_;
     private int flags_;
     private byte memoizedIsInitialized;
     private int memoizedSerializedSize;
@@ -43,9 +40,12 @@ public final class C11684i extends AbstractC11727g.d<C11684i> implements Interfa
     private List<C11696u> valueParameter_;
     private List<Integer> versionRequirement_;
 
+    /* JADX INFO: renamed from: k */
+    public static InterfaceC11736p<C11684i> f23831k = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.i$a */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static class a extends AbstractC11722b<C11684i> {
+    public final class a extends AbstractC11722b<C11684i> {
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11736p
         public C11684i parsePartialFrom(C11724d c11724d, C11725e c11725e) throws InvalidProtocolBufferException {
             return new C11684i(c11724d, c11725e, null);
@@ -54,7 +54,7 @@ public final class C11684i extends AbstractC11727g.d<C11684i> implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.i$b */
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public static final class b extends AbstractC11727g.c<C11684i, b> implements InterfaceC11735o {
+    public final class b extends AbstractC11727g.c<C11684i, b> implements InterfaceC11735o {
 
         /* JADX INFO: renamed from: m */
         public int f23832m;
@@ -356,20 +356,12 @@ public final class C11684i extends AbstractC11727g.d<C11684i> implements Interfa
         this.unknownFields = cVar.getUnknownFields();
     }
 
-    public static C11684i getDefaultInstance() {
-        return f23830j;
-    }
-
-    public static b newBuilder(C11684i c11684i) {
-        return newBuilder().mergeFrom(c11684i);
-    }
-
-    public static C11684i parseFrom(InputStream inputStream, C11725e c11725e) throws IOException {
-        return (C11684i) ((AbstractC11722b) f23831k).m11467parseFrom(inputStream, c11725e);
-    }
-
     public C11680e getContract() {
         return this.contract_;
+    }
+
+    public static C11684i getDefaultInstance() {
+        return f23830j;
     }
 
     public int getFlags() {
@@ -564,6 +556,30 @@ public final class C11684i extends AbstractC11727g.d<C11684i> implements Interfa
         return false;
     }
 
+    /* JADX INFO: renamed from: y */
+    public final void m9691y() {
+        this.flags_ = 6;
+        this.oldFlags_ = 6;
+        this.name_ = 0;
+        this.returnType_ = C11692q.getDefaultInstance();
+        this.returnTypeId_ = 0;
+        this.typeParameter_ = Collections.emptyList();
+        this.receiverType_ = C11692q.getDefaultInstance();
+        this.receiverTypeId_ = 0;
+        this.valueParameter_ = Collections.emptyList();
+        this.typeTable_ = C11695t.getDefaultInstance();
+        this.versionRequirement_ = Collections.emptyList();
+        this.contract_ = C11680e.getDefaultInstance();
+    }
+
+    public static b newBuilder(C11684i c11684i) {
+        return newBuilder().mergeFrom(c11684i);
+    }
+
+    public static C11684i parseFrom(InputStream inputStream, C11725e c11725e) throws IOException {
+        return (C11684i) ((AbstractC11722b) f23831k).m11467parseFrom(inputStream, c11725e);
+    }
+
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
@@ -608,29 +624,13 @@ public final class C11684i extends AbstractC11727g.d<C11684i> implements Interfa
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
-    /* JADX INFO: renamed from: y */
-    public final void m9691y() {
-        this.flags_ = 6;
-        this.oldFlags_ = 6;
-        this.name_ = 0;
-        this.returnType_ = C11692q.getDefaultInstance();
-        this.returnTypeId_ = 0;
-        this.typeParameter_ = Collections.emptyList();
-        this.receiverType_ = C11692q.getDefaultInstance();
-        this.receiverTypeId_ = 0;
-        this.valueParameter_ = Collections.emptyList();
-        this.typeTable_ = C11695t.getDefaultInstance();
-        this.versionRequirement_ = Collections.emptyList();
-        this.contract_ = C11680e.getDefaultInstance();
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11735o
+    public C11684i getDefaultInstanceForType() {
+        return f23830j;
     }
 
     public static b newBuilder() {
         return new b();
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11735o
-    public C11684i getDefaultInstanceForType() {
-        return f23830j;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11734n

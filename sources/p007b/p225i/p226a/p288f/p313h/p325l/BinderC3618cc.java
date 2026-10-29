@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 public final class BinderC3618cc extends AbstractBinderC3702ic {
 
-    /* JADX INFO: renamed from: a */
-    public final AtomicReference<Bundle> f9888a = new AtomicReference<>();
-
     /* JADX INFO: renamed from: b */
     public boolean f9889b;
+
+    /* JADX INFO: renamed from: a */
+    public final AtomicReference<Bundle> f9888a = new AtomicReference<>();
 
     /* JADX WARN: Code restructure failed: missing block: B:3:0x0002, code lost:
     
@@ -36,21 +36,6 @@ public final class BinderC3618cc extends AbstractBinderC3702ic {
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3660fc
-    /* JADX INFO: renamed from: f */
-    public final void mo4619f(Bundle bundle) {
-        synchronized (this.f9888a) {
-            try {
-                this.f9888a.set(bundle);
-                this.f9889b = true;
-                this.f9888a.notify();
-            } catch (Throwable th) {
-                this.f9888a.notify();
-                throw th;
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: i */
     public final String m4620i(long j) {
         return (String) m4618g(m4621t0(j), String.class);
@@ -70,5 +55,20 @@ public final class BinderC3618cc extends AbstractBinderC3702ic {
             bundle = this.f9888a.get();
         }
         return bundle;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3660fc
+    /* JADX INFO: renamed from: f */
+    public final void mo4619f(Bundle bundle) {
+        synchronized (this.f9888a) {
+            try {
+                this.f9888a.set(bundle);
+                this.f9889b = true;
+                this.f9888a.notify();
+            } catch (Throwable th) {
+                this.f9888a.notify();
+                throw th;
+            }
+        }
     }
 }

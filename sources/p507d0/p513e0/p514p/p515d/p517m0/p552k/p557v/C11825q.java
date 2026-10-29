@@ -25,11 +25,6 @@ public final class C11825q implements InterfaceC12008u0 {
         return (InterfaceC11352h) m11471getDeclarationDescriptor();
     }
 
-    /* JADX INFO: renamed from: getDeclarationDescriptor, reason: collision with other method in class */
-    public Void m11471getDeclarationDescriptor() {
-        return null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
     public List<InterfaceC11477z0> getParameters() {
         return C12147n.emptyList();
@@ -43,6 +38,11 @@ public final class C11825q implements InterfaceC12008u0 {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
     public boolean isDenotable() {
         return false;
+    }
+
+    /* JADX INFO: renamed from: getDeclarationDescriptor, reason: collision with other method in class */
+    public Void m11471getDeclarationDescriptor() {
+        return null;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0

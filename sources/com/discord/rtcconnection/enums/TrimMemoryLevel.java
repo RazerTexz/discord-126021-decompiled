@@ -20,7 +20,7 @@ public enum TrimMemoryLevel {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.TrimMemoryLevel$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: TrimMemoryLevel.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

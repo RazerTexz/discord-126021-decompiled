@@ -51,6 +51,12 @@ public final class C0921b1 implements ViewBinding {
         this.f701f = recyclerView;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f696a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static C0921b1 m196a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
@@ -81,11 +87,5 @@ public final class C0921b1 implements ViewBinding {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f696a;
     }
 }

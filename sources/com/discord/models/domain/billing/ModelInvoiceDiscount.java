@@ -23,16 +23,6 @@ public final /* data */ class ModelInvoiceDiscount {
         return modelInvoiceDiscount.copy(i, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getAmount() {
-        return this.amount;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getType() {
-        return this.type;
-    }
-
     public final ModelInvoiceDiscount copy(int amount, int type) {
         return new ModelInvoiceDiscount(amount, type);
     }
@@ -48,8 +38,18 @@ public final /* data */ class ModelInvoiceDiscount {
         return this.amount == modelInvoiceDiscount.amount && this.type == modelInvoiceDiscount.type;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getAmount() {
         return this.amount;
+    }
+
+    public final int getAmount() {
+        return this.amount;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getType() {
+        return this.type;
     }
 
     public final int getType() {

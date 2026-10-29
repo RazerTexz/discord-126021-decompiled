@@ -16,7 +16,7 @@ public enum GuildRoleSubscriptionBenefitType {
     private final int apiValue;
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

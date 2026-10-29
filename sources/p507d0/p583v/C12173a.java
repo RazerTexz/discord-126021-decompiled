@@ -11,7 +11,7 @@ public final class C12173a {
 
     /* JADX INFO: renamed from: d0.v.a$a */
     /* JADX INFO: compiled from: Thread.kt */
-    public static final class a extends Thread {
+    public final class a extends Thread {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ Function0 f25231j;

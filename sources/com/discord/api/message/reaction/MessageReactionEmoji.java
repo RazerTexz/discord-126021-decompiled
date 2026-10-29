@@ -17,6 +17,17 @@ public final /* data */ class MessageReactionEmoji {
         this.animated = z2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageReactionEmoji)) {
+            return false;
+        }
+        MessageReactionEmoji messageReactionEmoji = (MessageReactionEmoji) other;
+        return C12238m.areEqual(this.id, messageReactionEmoji.id) && C12238m.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getAnimated() {
         return this.animated;
@@ -27,36 +38,9 @@ public final /* data */ class MessageReactionEmoji {
         return this.id;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final String m8116c() {
-        String str = this.id;
-        if (str != null) {
-            return str;
-        }
-        String str2 = this.name;
-        C12238m.checkNotNull(str2);
-        return str2;
-    }
-
     /* JADX INFO: renamed from: d, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final boolean m8118e() {
-        return this.id != null;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageReactionEmoji)) {
-            return false;
-        }
-        MessageReactionEmoji messageReactionEmoji = (MessageReactionEmoji) other;
-        return C12238m.areEqual(this.id, messageReactionEmoji.id) && C12238m.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -75,6 +59,22 @@ public final /* data */ class MessageReactionEmoji {
             r1 = 1;
         }
         return iHashCode2 + r1;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final String m8116c() {
+        String str = this.id;
+        if (str != null) {
+            return str;
+        }
+        String str2 = this.name;
+        C12238m.checkNotNull(str2);
+        return str2;
+    }
+
+    /* JADX INFO: renamed from: e */
+    public final boolean m8118e() {
+        return this.id != null;
     }
 
     public String toString() {

@@ -69,7 +69,7 @@ public final class C11855e {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.e$a */
     /* JADX INFO: compiled from: AnnotationDeserializer.kt */
-    public /* synthetic */ class a {
+    public final /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f24520a;
@@ -85,43 +85,6 @@ public final class C11855e {
         C12238m.checkNotNullParameter(c11328d0, "notFoundClasses");
         this.f24518a = interfaceC11325c0;
         this.f24519b = c11328d0;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final boolean m9952a(AbstractC11815g<?> abstractC11815g, AbstractC11913c0 abstractC11913c0, C11677b.b.c cVar) {
-        C11677b.b.c.EnumC13321c type = cVar.getType();
-        int i = type == null ? -1 : a.f24520a[type.ordinal()];
-        if (i != 10) {
-            if (i != 13) {
-                return C12238m.areEqual(abstractC11815g.getType(this.f24518a), abstractC11913c0);
-            }
-            if (!((abstractC11815g instanceof C11809b) && ((C11809b) abstractC11815g).getValue().size() == cVar.getArrayElementList().size())) {
-                throw new IllegalStateException(C12238m.stringPlus("Deserialized ArrayValue should have the same number of elements as the original array value: ", abstractC11815g).toString());
-            }
-            AbstractC11913c0 arrayElementType = this.f24518a.getBuiltIns().getArrayElementType(abstractC11913c0);
-            C12238m.checkNotNullExpressionValue(arrayElementType, "builtIns.getArrayElementType(expectedType)");
-            C11809b c11809b = (C11809b) abstractC11815g;
-            Iterable indices = C12147n.getIndices(c11809b.getValue());
-            if ((indices instanceof Collection) && ((Collection) indices).isEmpty()) {
-                return true;
-            }
-            Iterator it = indices.iterator();
-            while (it.hasNext()) {
-                int iNextInt = ((AbstractC12126c0) it).nextInt();
-                AbstractC11815g<?> abstractC11815g2 = c11809b.getValue().get(iNextInt);
-                C11677b.b.c arrayElement = cVar.getArrayElement(iNextInt);
-                C12238m.checkNotNullExpressionValue(arrayElement, "value.getArrayElement(i)");
-                if (!m9952a(abstractC11815g2, arrayElementType, arrayElement)) {
-                }
-            }
-            return true;
-        }
-        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
-        InterfaceC11330e interfaceC11330e = declarationDescriptor instanceof InterfaceC11330e ? (InterfaceC11330e) declarationDescriptor : null;
-        if (interfaceC11330e == null || AbstractC11288h.isKClass(interfaceC11330e)) {
-            return true;
-        }
-        return false;
     }
 
     public final InterfaceC11340c deserializeAnnotation(C11677b c11677b, InterfaceC11704c interfaceC11704c) {
@@ -172,6 +135,43 @@ public final class C11855e {
             }
         }
         return new C11341d(interfaceC11330eFindNonGenericClassAcrossDependencies.getDefaultType(), mapEmptyMap, InterfaceC11467u0.f23099a);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m9952a(AbstractC11815g<?> abstractC11815g, AbstractC11913c0 abstractC11913c0, C11677b.b.c cVar) {
+        C11677b.b.c.EnumC13321c type = cVar.getType();
+        int i = type == null ? -1 : a.f24520a[type.ordinal()];
+        if (i != 10) {
+            if (i != 13) {
+                return C12238m.areEqual(abstractC11815g.getType(this.f24518a), abstractC11913c0);
+            }
+            if (!((abstractC11815g instanceof C11809b) && ((C11809b) abstractC11815g).getValue().size() == cVar.getArrayElementList().size())) {
+                throw new IllegalStateException(C12238m.stringPlus("Deserialized ArrayValue should have the same number of elements as the original array value: ", abstractC11815g).toString());
+            }
+            AbstractC11913c0 arrayElementType = this.f24518a.getBuiltIns().getArrayElementType(abstractC11913c0);
+            C12238m.checkNotNullExpressionValue(arrayElementType, "builtIns.getArrayElementType(expectedType)");
+            C11809b c11809b = (C11809b) abstractC11815g;
+            Iterable indices = C12147n.getIndices(c11809b.getValue());
+            if ((indices instanceof Collection) && ((Collection) indices).isEmpty()) {
+                return true;
+            }
+            Iterator it = indices.iterator();
+            while (it.hasNext()) {
+                int iNextInt = ((AbstractC12126c0) it).nextInt();
+                AbstractC11815g<?> abstractC11815g2 = c11809b.getValue().get(iNextInt);
+                C11677b.b.c arrayElement = cVar.getArrayElement(iNextInt);
+                C12238m.checkNotNullExpressionValue(arrayElement, "value.getArrayElement(i)");
+                if (!m9952a(abstractC11815g2, arrayElementType, arrayElement)) {
+                }
+            }
+            return true;
+        }
+        InterfaceC11352h declarationDescriptor = abstractC11913c0.getConstructor().getDeclarationDescriptor();
+        InterfaceC11330e interfaceC11330e = declarationDescriptor instanceof InterfaceC11330e ? (InterfaceC11330e) declarationDescriptor : null;
+        if (interfaceC11330e == null || AbstractC11288h.isKClass(interfaceC11330e)) {
+            return true;
+        }
+        return false;
     }
 
     public final AbstractC11815g<?> resolveValue(AbstractC11913c0 abstractC11913c0, C11677b.b.c cVar, InterfaceC11704c interfaceC11704c) {

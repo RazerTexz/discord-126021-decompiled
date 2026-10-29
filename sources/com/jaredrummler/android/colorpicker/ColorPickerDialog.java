@@ -81,9 +81,6 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     /* JADX INFO: renamed from: J */
     public int f21717J;
 
-    /* JADX INFO: renamed from: K */
-    public final View.OnTouchListener f21718K = new ViewOnTouchListenerC11154b();
-
     /* JADX INFO: renamed from: k */
     public InterfaceC5079f f21719k;
 
@@ -133,38 +130,32 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     /* JADX INFO: renamed from: z */
     public EditText f21734z;
 
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$a */
-    public class ViewOnLongClickListenerC11153a implements View.OnLongClickListener {
+    /* JADX INFO: renamed from: K */
+    public final View.OnTouchListener f21718K = new ViewOnTouchListenerC11154b();
 
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ ColorPanelView f21735j;
-
-        public ViewOnLongClickListenerC11153a(ColorPickerDialog colorPickerDialog, ColorPanelView colorPanelView) {
-            this.f21735j = colorPanelView;
-        }
-
-        @Override // android.view.View.OnLongClickListener
-        public boolean onLongClick(View view) {
-            this.f21735j.m9266a();
-            return true;
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$h */
+    public class C11160h implements C5075b.a {
+        public C11160h() {
         }
     }
 
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$b */
-    public class ViewOnTouchListenerC11154b implements View.OnTouchListener {
-        public ViewOnTouchListenerC11154b() {
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$i */
+    public class RunnableC11161i implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ ColorPanelView f21743j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ int f21744k;
+
+        public RunnableC11161i(ColorPickerDialog colorPickerDialog, ColorPanelView colorPanelView, int i) {
+            this.f21743j = colorPanelView;
+            this.f21744k = i;
         }
 
-        @Override // android.view.View.OnTouchListener
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            EditText editText = ColorPickerDialog.this.f21708A;
-            if (view == editText || !editText.hasFocus()) {
-                return false;
-            }
-            ColorPickerDialog.this.f21708A.clearFocus();
-            ((InputMethodManager) ColorPickerDialog.this.m95e().getSystemService("input_method")).hideSoftInputFromWindow(ColorPickerDialog.this.f21708A.getWindowToken(), 0);
-            ColorPickerDialog.this.f21708A.clearFocus();
-            return true;
+        @Override // java.lang.Runnable
+        public void run() {
+            this.f21743j.setColor(this.f21744k);
         }
     }
 
@@ -257,45 +248,6 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
         }
     }
 
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$g */
-    public class ViewOnFocusChangeListenerC11159g implements View.OnFocusChangeListener {
-        public ViewOnFocusChangeListenerC11159g() {
-        }
-
-        @Override // android.view.View.OnFocusChangeListener
-        public void onFocusChange(View view, boolean z2) {
-            if (z2) {
-                ((InputMethodManager) ColorPickerDialog.this.m95e().getSystemService("input_method")).showSoftInput(ColorPickerDialog.this.f21708A, 1);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$h */
-    public class C11160h implements C5075b.a {
-        public C11160h() {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$i */
-    public class RunnableC11161i implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ ColorPanelView f21743j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ int f21744k;
-
-        public RunnableC11161i(ColorPickerDialog colorPickerDialog, ColorPanelView colorPanelView, int i) {
-            this.f21743j = colorPanelView;
-            this.f21744k = i;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            this.f21743j.setColor(this.f21744k);
-        }
-    }
-
     /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$j */
     public class ViewOnClickListenerC11162j implements View.OnClickListener {
 
@@ -333,152 +285,51 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
         }
     }
 
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$k */
-    public static final class C11163k {
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$g */
+    public class ViewOnFocusChangeListenerC11159g implements View.OnFocusChangeListener {
+        public ViewOnFocusChangeListenerC11159g() {
+        }
 
-        /* JADX INFO: renamed from: a */
-        @StringRes
-        public int f21747a = C11167R.e.cpv_default_title;
-
-        /* JADX INFO: renamed from: b */
-        @StringRes
-        public int f21748b = C11167R.e.cpv_presets;
-
-        /* JADX INFO: renamed from: c */
-        @StringRes
-        public int f21749c = C11167R.e.cpv_custom;
-
-        /* JADX INFO: renamed from: d */
-        @StringRes
-        public int f21750d = C11167R.e.cpv_select;
-
-        /* JADX INFO: renamed from: e */
-        @StringRes
-        public int f21751e = 0;
-
-        /* JADX INFO: renamed from: f */
-        public int f21752f = 1;
-
-        /* JADX INFO: renamed from: g */
-        public int[] f21753g = ColorPickerDialog.f21707j;
-
-        /* JADX INFO: renamed from: h */
-        @ColorInt
-        public int f21754h = ViewCompat.MEASURED_STATE_MASK;
-
-        /* JADX INFO: renamed from: i */
-        public boolean f21755i = false;
-
-        /* JADX INFO: renamed from: j */
-        public boolean f21756j = true;
-
-        /* JADX INFO: renamed from: k */
-        public boolean f21757k = true;
-
-        /* JADX INFO: renamed from: l */
-        public boolean f21758l = true;
-
-        /* JADX INFO: renamed from: m */
-        public boolean f21759m = true;
-
-        /* JADX INFO: renamed from: n */
-        public int f21760n = 1;
-
-        /* JADX INFO: renamed from: o */
-        @ColorInt
-        public int f21761o = 0;
-
-        /* JADX INFO: renamed from: p */
-        @ColorInt
-        public int f21762p = 0;
-
-        /* JADX INFO: renamed from: q */
-        @ColorInt
-        public int f21763q = 0;
-
-        /* JADX INFO: renamed from: r */
-        @ColorInt
-        public int f21764r = 0;
-
-        /* JADX INFO: renamed from: s */
-        @ColorInt
-        public int f21765s = 0;
-
-        /* JADX INFO: renamed from: t */
-        @ColorInt
-        public int f21766t = 0;
-
-        /* JADX INFO: renamed from: u */
-        @DrawableRes
-        public int f21767u = 0;
-
-        /* JADX INFO: renamed from: v */
-        @ColorInt
-        public int f21768v = 0;
-
-        /* JADX INFO: renamed from: w */
-        @ColorInt
-        public int f21769w = 0;
-
-        /* JADX INFO: renamed from: x */
-        @FontRes
-        public int f21770x = 0;
-
-        /* JADX INFO: renamed from: y */
-        @FontRes
-        public int f21771y = 0;
-
-        /* JADX INFO: renamed from: z */
-        @FontRes
-        public int f21772z = 0;
-
-        /* JADX INFO: renamed from: a */
-        public ColorPickerDialog m9275a() {
-            ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
-            Bundle bundle = new Bundle();
-            bundle.putInt(ModelAuditLogEntry.CHANGE_KEY_ID, 0);
-            bundle.putInt("dialogType", this.f21752f);
-            bundle.putInt(ModelAuditLogEntry.CHANGE_KEY_COLOR, this.f21754h);
-            bundle.putIntArray("presets", this.f21753g);
-            bundle.putBoolean(Key.ALPHA, this.f21755i);
-            bundle.putBoolean("allowCustom", this.f21757k);
-            bundle.putBoolean("allowPresets", this.f21756j);
-            bundle.putBoolean("allowReset", this.f21758l);
-            bundle.putInt("dialogTitle", this.f21747a);
-            bundle.putBoolean("showColorShades", this.f21759m);
-            bundle.putInt("colorShape", this.f21760n);
-            bundle.putInt("presetsButtonText", this.f21748b);
-            bundle.putInt("customButtonText", this.f21749c);
-            bundle.putInt("customButtonColor", this.f21761o);
-            bundle.putInt("customButtonTextColor", this.f21768v);
-            bundle.putInt("selectedButtonText", this.f21750d);
-            bundle.putInt("selectedButtonColor", this.f21762p);
-            bundle.putInt("selectedButtonTextColor", this.f21769w);
-            bundle.putInt("resetButtonText", this.f21751e);
-            bundle.putInt("buttonFont", this.f21771y);
-            bundle.putInt("titleTextColor", this.f21764r);
-            bundle.putInt("titleFont", this.f21770x);
-            bundle.putInt("dividerColor", this.f21763q);
-            bundle.putInt("backgroundColor", this.f21765s);
-            bundle.putInt("inputTextColor", this.f21766t);
-            bundle.putInt("inputBackground", this.f21767u);
-            bundle.putInt("inputFont", this.f21772z);
-            colorPickerDialog.setArguments(bundle);
-            return colorPickerDialog;
+        @Override // android.view.View.OnFocusChangeListener
+        public void onFocusChange(View view, boolean z2) {
+            if (z2) {
+                ((InputMethodManager) ColorPickerDialog.this.m95e().getSystemService("input_method")).showSoftInput(ColorPickerDialog.this.f21708A, 1);
+            }
         }
     }
 
-    /* JADX INFO: renamed from: g */
-    public static void m9267g(ColorPickerDialog colorPickerDialog, int i) {
-        if (colorPickerDialog.f21719k != null) {
-            Log.w("ColorPickerDialog", "Using deprecated listener which may be remove in future releases");
-            colorPickerDialog.f21719k.onColorSelected(colorPickerDialog.f21725q, i);
-        } else {
-            KeyEventDispatcher.Component componentM95e = colorPickerDialog.m95e();
-            if (!(componentM95e instanceof InterfaceC5079f)) {
-                throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$a */
+    public class ViewOnLongClickListenerC11153a implements View.OnLongClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ ColorPanelView f21735j;
+
+        public ViewOnLongClickListenerC11153a(ColorPickerDialog colorPickerDialog, ColorPanelView colorPanelView) {
+            this.f21735j = colorPanelView;
+        }
+
+        @Override // android.view.View.OnLongClickListener
+        public boolean onLongClick(View view) {
+            this.f21735j.m9266a();
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$b */
+    public class ViewOnTouchListenerC11154b implements View.OnTouchListener {
+        public ViewOnTouchListenerC11154b() {
+        }
+
+        @Override // android.view.View.OnTouchListener
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            EditText editText = ColorPickerDialog.this.f21708A;
+            if (view == editText || !editText.hasFocus()) {
+                return false;
             }
-            ((InterfaceC5079f) componentM95e).onColorSelected(colorPickerDialog.f21725q, i);
+            ColorPickerDialog.this.f21708A.clearFocus();
+            ((InputMethodManager) ColorPickerDialog.this.m95e().getSystemService("input_method")).hideSoftInputFromWindow(ColorPickerDialog.this.f21708A.getWindowToken(), 0);
+            ColorPickerDialog.this.f21708A.clearFocus();
+            return true;
         }
     }
 
@@ -570,6 +421,20 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
 
     @Override // android.text.TextWatcher
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    /* JADX INFO: renamed from: g */
+    public static void m9267g(ColorPickerDialog colorPickerDialog, int i) {
+        if (colorPickerDialog.f21719k != null) {
+            Log.w("ColorPickerDialog", "Using deprecated listener which may be remove in future releases");
+            colorPickerDialog.f21719k.onColorSelected(colorPickerDialog.f21725q, i);
+        } else {
+            KeyEventDispatcher.Component componentM95e = colorPickerDialog.m95e();
+            if (!(componentM95e instanceof InterfaceC5079f)) {
+                throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
+            }
+            ((InterfaceC5079f) componentM95e).onColorSelected(colorPickerDialog.f21725q, i);
+        }
     }
 
     /* JADX INFO: renamed from: h */
@@ -962,5 +827,140 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
             this.f21713F.setTypeface(ResourcesCompat.getFont(requireContext(), i12));
         }
         this.f21711D.setOnClickListener(new ViewOnClickListenerC11157e());
+    }
+
+    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerDialog$k */
+    public final class C11163k {
+
+        /* JADX INFO: renamed from: a */
+        @StringRes
+        public int f21747a = C11167R.e.cpv_default_title;
+
+        /* JADX INFO: renamed from: b */
+        @StringRes
+        public int f21748b = C11167R.e.cpv_presets;
+
+        /* JADX INFO: renamed from: c */
+        @StringRes
+        public int f21749c = C11167R.e.cpv_custom;
+
+        /* JADX INFO: renamed from: d */
+        @StringRes
+        public int f21750d = C11167R.e.cpv_select;
+
+        /* JADX INFO: renamed from: e */
+        @StringRes
+        public int f21751e = 0;
+
+        /* JADX INFO: renamed from: f */
+        public int f21752f = 1;
+
+        /* JADX INFO: renamed from: g */
+        public int[] f21753g = ColorPickerDialog.f21707j;
+
+        /* JADX INFO: renamed from: h */
+        @ColorInt
+        public int f21754h = ViewCompat.MEASURED_STATE_MASK;
+
+        /* JADX INFO: renamed from: i */
+        public boolean f21755i = false;
+
+        /* JADX INFO: renamed from: j */
+        public boolean f21756j = true;
+
+        /* JADX INFO: renamed from: k */
+        public boolean f21757k = true;
+
+        /* JADX INFO: renamed from: l */
+        public boolean f21758l = true;
+
+        /* JADX INFO: renamed from: m */
+        public boolean f21759m = true;
+
+        /* JADX INFO: renamed from: n */
+        public int f21760n = 1;
+
+        /* JADX INFO: renamed from: o */
+        @ColorInt
+        public int f21761o = 0;
+
+        /* JADX INFO: renamed from: p */
+        @ColorInt
+        public int f21762p = 0;
+
+        /* JADX INFO: renamed from: q */
+        @ColorInt
+        public int f21763q = 0;
+
+        /* JADX INFO: renamed from: r */
+        @ColorInt
+        public int f21764r = 0;
+
+        /* JADX INFO: renamed from: s */
+        @ColorInt
+        public int f21765s = 0;
+
+        /* JADX INFO: renamed from: t */
+        @ColorInt
+        public int f21766t = 0;
+
+        /* JADX INFO: renamed from: u */
+        @DrawableRes
+        public int f21767u = 0;
+
+        /* JADX INFO: renamed from: v */
+        @ColorInt
+        public int f21768v = 0;
+
+        /* JADX INFO: renamed from: w */
+        @ColorInt
+        public int f21769w = 0;
+
+        /* JADX INFO: renamed from: x */
+        @FontRes
+        public int f21770x = 0;
+
+        /* JADX INFO: renamed from: y */
+        @FontRes
+        public int f21771y = 0;
+
+        /* JADX INFO: renamed from: z */
+        @FontRes
+        public int f21772z = 0;
+
+        /* JADX INFO: renamed from: a */
+        public ColorPickerDialog m9275a() {
+            ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
+            Bundle bundle = new Bundle();
+            bundle.putInt(ModelAuditLogEntry.CHANGE_KEY_ID, 0);
+            bundle.putInt("dialogType", this.f21752f);
+            bundle.putInt(ModelAuditLogEntry.CHANGE_KEY_COLOR, this.f21754h);
+            bundle.putIntArray("presets", this.f21753g);
+            bundle.putBoolean(Key.ALPHA, this.f21755i);
+            bundle.putBoolean("allowCustom", this.f21757k);
+            bundle.putBoolean("allowPresets", this.f21756j);
+            bundle.putBoolean("allowReset", this.f21758l);
+            bundle.putInt("dialogTitle", this.f21747a);
+            bundle.putBoolean("showColorShades", this.f21759m);
+            bundle.putInt("colorShape", this.f21760n);
+            bundle.putInt("presetsButtonText", this.f21748b);
+            bundle.putInt("customButtonText", this.f21749c);
+            bundle.putInt("customButtonColor", this.f21761o);
+            bundle.putInt("customButtonTextColor", this.f21768v);
+            bundle.putInt("selectedButtonText", this.f21750d);
+            bundle.putInt("selectedButtonColor", this.f21762p);
+            bundle.putInt("selectedButtonTextColor", this.f21769w);
+            bundle.putInt("resetButtonText", this.f21751e);
+            bundle.putInt("buttonFont", this.f21771y);
+            bundle.putInt("titleTextColor", this.f21764r);
+            bundle.putInt("titleFont", this.f21770x);
+            bundle.putInt("dividerColor", this.f21763q);
+            bundle.putInt("backgroundColor", this.f21765s);
+            bundle.putInt("inputTextColor", this.f21766t);
+            bundle.putInt("inputBackground", this.f21767u);
+            bundle.putInt("inputFont", this.f21772z);
+            colorPickerDialog.setArguments(bundle);
+            return colorPickerDialog;
+        }
     }
 }

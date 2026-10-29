@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMediaDeviceChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence deviceFromName = null;
+    private final Boolean deviceIsCertified = null;
     private final CharSequence deviceToName = null;
     private final CharSequence deviceType = null;
-    private final Boolean deviceIsCertified = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "media_device_changed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema
         }
         TrackMediaDeviceChanged trackMediaDeviceChanged = (TrackMediaDeviceChanged) other;
         return C12238m.areEqual(this.deviceFromName, trackMediaDeviceChanged.deviceFromName) && C12238m.areEqual(this.deviceToName, trackMediaDeviceChanged.deviceToName) && C12238m.areEqual(this.deviceType, trackMediaDeviceChanged.deviceType) && C12238m.areEqual(this.deviceIsCertified, trackMediaDeviceChanged.deviceIsCertified);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

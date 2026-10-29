@@ -27,7 +27,7 @@ public final class FlowLiveDataConversions {
     /* JADX INFO: renamed from: androidx.lifecycle.FlowLiveDataConversions$asFlow$1 */
     /* JADX INFO: compiled from: FlowLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.FlowLiveDataConversions$asFlow$1", m10085f = "FlowLiveData.kt", m10086l = {96, 100, 101}, m10087m = "invokeSuspend")
-    public static final class C04331<T> extends AbstractC12194k implements Function2<InterfaceC13083e<? super T>, Continuation<? super Unit>, Object> {
+    public final class C04331<T> extends AbstractC12194k implements Function2<InterfaceC13083e<? super T>, Continuation<? super Unit>, Object> {
         public final /* synthetic */ LiveData $this_asFlow;
         private /* synthetic */ Object L$0;
         public Object L$1;
@@ -37,7 +37,7 @@ public final class FlowLiveDataConversions {
         /* JADX INFO: renamed from: androidx.lifecycle.FlowLiveDataConversions$asFlow$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: FlowLiveData.kt */
         @InterfaceC12188e(m10084c = "androidx.lifecycle.FlowLiveDataConversions$asFlow$1$1", m10085f = "FlowLiveData.kt", m10086l = {}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             public final /* synthetic */ Observer $observer;
             public int label;
 
@@ -59,7 +59,7 @@ public final class FlowLiveDataConversions {
             }
 
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 C12183c.getCOROUTINE_SUSPENDED();
                 if (this.label != 0) {
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -73,7 +73,7 @@ public final class FlowLiveDataConversions {
         /* JADX INFO: renamed from: androidx.lifecycle.FlowLiveDataConversions$asFlow$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: FlowLiveData.kt */
         @InterfaceC12188e(m10084c = "androidx.lifecycle.FlowLiveDataConversions$asFlow$1$2", m10085f = "FlowLiveData.kt", m10086l = {}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass2 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass2 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             public final /* synthetic */ Observer $observer;
             public int label;
 
@@ -95,7 +95,7 @@ public final class FlowLiveDataConversions {
             }
 
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 C12183c.getCOROUTINE_SUSPENDED();
                 if (this.label != 0) {
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -170,7 +170,7 @@ public final class FlowLiveDataConversions {
     /* JADX INFO: renamed from: androidx.lifecycle.FlowLiveDataConversions$asLiveData$1 */
     /* JADX INFO: compiled from: FlowLiveData.kt */
     @InterfaceC12188e(m10084c = "androidx.lifecycle.FlowLiveDataConversions$asLiveData$1", m10085f = "FlowLiveData.kt", m10086l = {Opcodes.FCMPL}, m10087m = "invokeSuspend")
-    public static final class C04341<T> extends AbstractC12194k implements Function2<LiveDataScope<T>, Continuation<? super Unit>, Object> {
+    public final class C04341<T> extends AbstractC12194k implements Function2<LiveDataScope<T>, Continuation<? super Unit>, Object> {
         public final /* synthetic */ InterfaceC13082d $this_asLiveData;
         private /* synthetic */ Object L$0;
         public int label;
@@ -195,7 +195,7 @@ public final class FlowLiveDataConversions {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
@@ -228,6 +228,16 @@ public final class FlowLiveDataConversions {
         return new C13084f(new C04331(liveData, null));
     }
 
+    public static /* synthetic */ LiveData asLiveData$default(InterfaceC13082d interfaceC13082d, CoroutineContext coroutineContext, long j, int i, Object obj) {
+        if ((i & 1) != 0) {
+            coroutineContext = C12179f.f25237j;
+        }
+        if ((i & 2) != 0) {
+            j = 5000;
+        }
+        return asLiveData(interfaceC13082d, coroutineContext, j);
+    }
+
     public static final <T> LiveData<T> asLiveData(InterfaceC13082d<? extends T> interfaceC13082d) {
         return asLiveData$default(interfaceC13082d, (CoroutineContext) null, 0L, 3, (Object) null);
     }
@@ -240,16 +250,6 @@ public final class FlowLiveDataConversions {
         C12238m.checkNotNullParameter(interfaceC13082d, "$this$asLiveData");
         C12238m.checkNotNullParameter(coroutineContext, "context");
         return CoroutineLiveDataKt.liveData(coroutineContext, j, new C04341(interfaceC13082d, null));
-    }
-
-    public static /* synthetic */ LiveData asLiveData$default(InterfaceC13082d interfaceC13082d, CoroutineContext coroutineContext, long j, int i, Object obj) {
-        if ((i & 1) != 0) {
-            coroutineContext = C12179f.f25237j;
-        }
-        if ((i & 2) != 0) {
-            j = 5000;
-        }
-        return asLiveData(interfaceC13082d, coroutineContext, j);
     }
 
     @RequiresApi(26)

@@ -23,6 +23,15 @@ public class ContentLoadingProgressBar extends ProgressBar {
         this(context, null);
     }
 
+    public void hide() {
+        post(new Runnable() { // from class: y.b.b.b
+            @Override // java.lang.Runnable
+            public final void run() {
+                this.f27957j.hideOnUiThread();
+            }
+        });
+    }
+
     @UiThread
     private void hideOnUiThread() {
         this.mDismissed = true;
@@ -42,9 +51,30 @@ public class ContentLoadingProgressBar extends ProgressBar {
         }
     }
 
+    @Override // android.widget.ProgressBar, android.view.View
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        removeCallbacks();
+    }
+
+    @Override // android.widget.ProgressBar, android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks();
+    }
+
     private void removeCallbacks() {
         removeCallbacks(this.mDelayedHide);
         removeCallbacks(this.mDelayedShow);
+    }
+
+    public void show() {
+        post(new Runnable() { // from class: y.b.b.d
+            @Override // java.lang.Runnable
+            public final void run() {
+                this.f27959j.showOnUiThread();
+            }
+        });
     }
 
     @UiThread
@@ -58,36 +88,6 @@ public class ContentLoadingProgressBar extends ProgressBar {
         }
         postDelayed(this.mDelayedShow, 500L);
         this.mPostedShow = true;
-    }
-
-    public void hide() {
-        post(new Runnable() { // from class: y.b.b.b
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27957j.hideOnUiThread();
-            }
-        });
-    }
-
-    @Override // android.widget.ProgressBar, android.view.View
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        removeCallbacks();
-    }
-
-    @Override // android.widget.ProgressBar, android.view.View
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        removeCallbacks();
-    }
-
-    public void show() {
-        post(new Runnable() { // from class: y.b.b.d
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27959j.showOnUiThread();
-            }
-        });
     }
 
     public ContentLoadingProgressBar(@NonNull Context context, @Nullable AttributeSet attributeSet) {

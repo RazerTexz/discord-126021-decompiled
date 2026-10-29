@@ -56,7 +56,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$backgroundUploadContacts$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58581 extends AbstractC12240o implements Function1<BulkFriendSuggestions, TrackNetworkMetadataReceiver> {
+    public final class C58581 extends AbstractC12240o implements Function1<BulkFriendSuggestions, TrackNetworkMetadataReceiver> {
         public static final C58581 INSTANCE = new C58581();
 
         public C58581() {
@@ -71,7 +71,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$clearDismissStates$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58591 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58591 extends AbstractC12240o implements Function0<Unit> {
         public C58591() {
             super(0);
         }
@@ -91,7 +91,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$createContactSyncNotice$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58601 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+    public final class C58601 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
         public static final C58601 INSTANCE = new C58601();
 
         public C58601() {
@@ -118,7 +118,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$dismissFriendsListUpsell$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58611 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58611 extends AbstractC12240o implements Function0<Unit> {
         public C58611() {
             super(0);
         }
@@ -138,7 +138,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$dismissUpsell$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58621 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58621 extends AbstractC12240o implements Function0<Unit> {
         public C58621() {
             super(0);
         }
@@ -158,7 +158,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$handleConnectionOpen$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58631 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58631 extends AbstractC12240o implements Function0<Unit> {
         public C58631() {
             super(0);
         }
@@ -177,7 +177,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$setContactSyncUploadTimestamp$1 */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public static final class C58641 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58641 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $timestamp;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -222,10 +222,6 @@ public final class StoreContactSync extends StoreV2 {
         this.dismissState = new HashMap<>();
     }
 
-    private final StoreNotices.Notice createContactSyncNotice() {
-        return new StoreNotices.Notice("CONTACT_SYNC_UPSELL", null, 1336L, 0, true, null, 0L, false, 0L, C58601.INSTANCE, 482, null);
-    }
-
     public final void backgroundUploadContacts() {
         ContactsFetcher contactsFetcher = this.contactsFetcher;
         if (contactsFetcher == null) {
@@ -244,6 +240,10 @@ public final class StoreContactSync extends StoreV2 {
         this.dismissStateCache.clear(true);
         getPrefsSessionDurable().edit().remove("CONTACT_SYNC_DISMISS_UPSELL").apply();
         this.dispatcher.schedule(new C58591());
+    }
+
+    private final StoreNotices.Notice createContactSyncNotice() {
+        return new StoreNotices.Notice("CONTACT_SYNC_UPSELL", null, 1336L, 0, true, null, 0L, false, 0L, C58601.INSTANCE, 482, null);
     }
 
     public final void dismissFriendsListUpsell() {

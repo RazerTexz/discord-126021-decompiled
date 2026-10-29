@@ -26,18 +26,6 @@ public final /* data */ class TrackNetworkActionGuildCreate implements Analytics
         this.analyticsSchemaTypeName = "network_action_guild_create";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -49,11 +37,23 @@ public final /* data */ class TrackNetworkActionGuildCreate implements Analytics
         return C12238m.areEqual(this.templateName, trackNetworkActionGuildCreate.templateName) && C12238m.areEqual(this.isCommunityIntent, trackNetworkActionGuildCreate.isCommunityIntent);
     }
 
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.templateName;
         int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
         Boolean bool = this.isCommunityIntent;
         return iHashCode + (bool != null ? bool.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    /* JADX INFO: renamed from: b */
+    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 
     public String toString() {

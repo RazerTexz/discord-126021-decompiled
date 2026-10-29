@@ -19,42 +19,9 @@ public enum BluetoothHeadsetAudioState {
     public static final Companion INSTANCE = new Companion(null);
     private final int value;
 
-    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothHeadsetAudioState$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: BluetoothHeadsetAudioState.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final BluetoothHeadsetAudioState m8494a(int i) {
-            BluetoothHeadsetAudioState[] bluetoothHeadsetAudioStateArrValues = BluetoothHeadsetAudioState.values();
-            for (int i2 = 0; i2 < 3; i2++) {
-                BluetoothHeadsetAudioState bluetoothHeadsetAudioState = bluetoothHeadsetAudioStateArrValues[i2];
-                if (bluetoothHeadsetAudioState.getValue() == i) {
-                    return bluetoothHeadsetAudioState;
-                }
-            }
-            return null;
-        }
-
-        /* JADX INFO: renamed from: b */
-        public final C5633b m8495b(Intent intent) {
-            C12238m.checkNotNullParameter(intent, "intent");
-            if (!C12238m.areEqual(intent.getAction(), "android.bluetooth.headset.profile.action.AUDIO_STATE_CHANGED")) {
-                throw new IllegalArgumentException("Failed requirement.".toString());
-            }
-            C12238m.checkNotNullParameter(intent, "$this$getBluetoothDeviceExtra");
-            BluetoothDevice bluetoothDevice = (BluetoothDevice) intent.getParcelableExtra("android.bluetooth.device.extra.DEVICE");
-            Integer numM588x0 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.PREVIOUS_STATE");
-            BluetoothHeadsetAudioState bluetoothHeadsetAudioStateM8494a = numM588x0 != null ? BluetoothHeadsetAudioState.INSTANCE.m8494a(numM588x0.intValue()) : null;
-            Integer numM588x1 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.STATE");
-            return new C5633b(numM588x1 != null ? BluetoothHeadsetAudioState.INSTANCE.m8494a(numM588x1.intValue()) : null, bluetoothHeadsetAudioStateM8494a, bluetoothDevice);
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothHeadsetAudioState$b */
     /* JADX INFO: compiled from: BluetoothHeadsetAudioState.kt */
-    public static final class C5633b {
+    public final class C5633b {
 
         /* JADX INFO: renamed from: a */
         public final BluetoothHeadsetAudioState f18868a;
@@ -100,6 +67,39 @@ public enum BluetoothHeadsetAudioState {
             sbM833U.append(this.f18870c);
             sbM833U.append(")");
             return sbM833U.toString();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.BluetoothHeadsetAudioState$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: BluetoothHeadsetAudioState.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final BluetoothHeadsetAudioState m8494a(int i) {
+            BluetoothHeadsetAudioState[] bluetoothHeadsetAudioStateArrValues = BluetoothHeadsetAudioState.values();
+            for (int i2 = 0; i2 < 3; i2++) {
+                BluetoothHeadsetAudioState bluetoothHeadsetAudioState = bluetoothHeadsetAudioStateArrValues[i2];
+                if (bluetoothHeadsetAudioState.getValue() == i) {
+                    return bluetoothHeadsetAudioState;
+                }
+            }
+            return null;
+        }
+
+        /* JADX INFO: renamed from: b */
+        public final C5633b m8495b(Intent intent) {
+            C12238m.checkNotNullParameter(intent, "intent");
+            if (!C12238m.areEqual(intent.getAction(), "android.bluetooth.headset.profile.action.AUDIO_STATE_CHANGED")) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            C12238m.checkNotNullParameter(intent, "$this$getBluetoothDeviceExtra");
+            BluetoothDevice bluetoothDevice = (BluetoothDevice) intent.getParcelableExtra("android.bluetooth.device.extra.DEVICE");
+            Integer numM588x0 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.PREVIOUS_STATE");
+            BluetoothHeadsetAudioState bluetoothHeadsetAudioStateM8494a = numM588x0 != null ? BluetoothHeadsetAudioState.INSTANCE.m8494a(numM588x0.intValue()) : null;
+            Integer numM588x1 = C1460d.m588x0(intent, "android.bluetooth.profile.extra.STATE");
+            return new C5633b(numM588x1 != null ? BluetoothHeadsetAudioState.INSTANCE.m8494a(numM588x1.intValue()) : null, bluetoothHeadsetAudioStateM8494a, bluetoothDevice);
         }
     }
 

@@ -6,9 +6,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfGame.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfGame {
+    private final Boolean afNews = null;
     private final Long gameId = null;
     private final CharSequence gameName = null;
-    private final Boolean afNews = null;
     private final CharSequence gamePlatform = null;
 
     public boolean equals(Object other) {

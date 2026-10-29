@@ -10,26 +10,20 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRegisterTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRegisterTransition implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence step = null;
+    private final List<CharSequence> actionDetails = null;
     private final CharSequence actionType = null;
     private final List<CharSequence> actionTypeDetails = null;
-    private final List<CharSequence> actionDetails = null;
     private final CharSequence identityType = null;
-    private final CharSequence registrationSource = null;
-    private final Boolean isUnclaimed = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
     private final Long inviteChannelId = null;
     private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
     private final Long inviteInviterId = null;
+    private final Boolean isUnclaimed = null;
+    private final CharSequence registrationSource = null;
+    private final CharSequence step = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "register_transition";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackRegisterTransition implements AnalyticsSchema
         }
         TrackRegisterTransition trackRegisterTransition = (TrackRegisterTransition) other;
         return C12238m.areEqual(this.step, trackRegisterTransition.step) && C12238m.areEqual(this.actionType, trackRegisterTransition.actionType) && C12238m.areEqual(this.actionTypeDetails, trackRegisterTransition.actionTypeDetails) && C12238m.areEqual(this.actionDetails, trackRegisterTransition.actionDetails) && C12238m.areEqual(this.identityType, trackRegisterTransition.identityType) && C12238m.areEqual(this.registrationSource, trackRegisterTransition.registrationSource) && C12238m.areEqual(this.isUnclaimed, trackRegisterTransition.isUnclaimed) && C12238m.areEqual(this.inviteCode, trackRegisterTransition.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterTransition.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterTransition.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterTransition.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterTransition.inviteInviterId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

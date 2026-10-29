@@ -17,6 +17,17 @@ public final /* data */ class OutboundPromotion {
     private final String outboundTitle;
     private final UtcDateTime startDate;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof OutboundPromotion)) {
+            return false;
+        }
+        OutboundPromotion outboundPromotion = (OutboundPromotion) other;
+        return this.id == outboundPromotion.id && C12238m.areEqual(this.startDate, outboundPromotion.startDate) && C12238m.areEqual(this.endDate, outboundPromotion.endDate) && C12238m.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && C12238m.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && C12238m.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && C12238m.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && C12238m.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final UtcDateTime getEndDate() {
         return this.endDate;
@@ -40,17 +51,6 @@ public final /* data */ class OutboundPromotion {
     /* JADX INFO: renamed from: e, reason: from getter */
     public final String getOutboundRedemptionUrlFormat() {
         return this.outboundRedemptionUrlFormat;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof OutboundPromotion)) {
-            return false;
-        }
-        OutboundPromotion outboundPromotion = (OutboundPromotion) other;
-        return this.id == outboundPromotion.id && C12238m.areEqual(this.startDate, outboundPromotion.startDate) && C12238m.areEqual(this.endDate, outboundPromotion.endDate) && C12238m.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && C12238m.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && C12238m.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && C12238m.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && C12238m.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */

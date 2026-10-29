@@ -21,17 +21,24 @@ public class ChainHead {
     private int mOrientation;
     public int mTotalMargins;
     public int mTotalSize;
-    public float mTotalWeight = 0.0f;
     public int mVisibleWidgets;
     public ArrayList<ConstraintWidget> mWeightedMatchConstraintsWidgets;
     public int mWidgetsCount;
     public int mWidgetsMatchCount;
+    public float mTotalWeight = 0.0f;
 
     public ChainHead(ConstraintWidget constraintWidget, int i, boolean z2) {
         this.mIsRtl = false;
         this.mFirst = constraintWidget;
         this.mOrientation = i;
         this.mIsRtl = z2;
+    }
+
+    public void define() {
+        if (!this.mDefined) {
+            defineChainProperties();
+        }
+        this.mDefined = true;
     }
 
     private void defineChainProperties() {
@@ -144,23 +151,6 @@ public class ChainHead {
         this.mHasComplexMatchWeights = this.mHasDefinedWeights && this.mHasUndefinedWeights;
     }
 
-    private static boolean isMatchConstraintEqualityCandidate(ConstraintWidget constraintWidget, int i) {
-        if (constraintWidget.getVisibility() != 8 && constraintWidget.mListDimensionBehaviors[i] == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
-            int[] iArr = constraintWidget.mResolvedMatchConstraintDefault;
-            if (iArr[i] == 0 || iArr[i] == 3) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void define() {
-        if (!this.mDefined) {
-            defineChainProperties();
-        }
-        this.mDefined = true;
-    }
-
     public ConstraintWidget getFirst() {
         return this.mFirst;
     }
@@ -191,5 +181,15 @@ public class ChainHead {
 
     public float getTotalWeight() {
         return this.mTotalWeight;
+    }
+
+    private static boolean isMatchConstraintEqualityCandidate(ConstraintWidget constraintWidget, int i) {
+        if (constraintWidget.getVisibility() != 8 && constraintWidget.mListDimensionBehaviors[i] == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+            int[] iArr = constraintWidget.mResolvedMatchConstraintDefault;
+            if (iArr[i] == 0 || iArr[i] == 3) {
+                return true;
+            }
+        }
+        return false;
     }
 }

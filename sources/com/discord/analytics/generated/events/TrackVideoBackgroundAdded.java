@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoBackgroundAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoBackgroundAdded implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Boolean isAnimated = null;
-    private final Boolean isVideo = null;
     private final Boolean isFromTenor = null;
+    private final Boolean isVideo = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "video_background_added";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackVideoBackgroundAdded implements AnalyticsSche
         }
         TrackVideoBackgroundAdded trackVideoBackgroundAdded = (TrackVideoBackgroundAdded) other;
         return C12238m.areEqual(this.isAnimated, trackVideoBackgroundAdded.isAnimated) && C12238m.areEqual(this.isVideo, trackVideoBackgroundAdded.isVideo) && C12238m.areEqual(this.isFromTenor, trackVideoBackgroundAdded.isFromTenor);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

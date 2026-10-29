@@ -11,20 +11,12 @@ public class ViewModelProvider {
     private final Factory mFactory;
     private final ViewModelStore mViewModelStore;
 
-    public static class AndroidViewModelFactory extends NewInstanceFactory {
+    public class AndroidViewModelFactory extends NewInstanceFactory {
         private static AndroidViewModelFactory sInstance;
         private Application mApplication;
 
         public AndroidViewModelFactory(@NonNull Application application) {
             this.mApplication = application;
-        }
-
-        @NonNull
-        public static AndroidViewModelFactory getInstance(@NonNull Application application) {
-            if (sInstance == null) {
-                sInstance = new AndroidViewModelFactory(application);
-            }
-            return sInstance;
         }
 
         @Override // androidx.lifecycle.ViewModelProvider.NewInstanceFactory, androidx.lifecycle.ViewModelProvider.Factory
@@ -45,6 +37,14 @@ public class ViewModelProvider {
                 throw new RuntimeException("Cannot create an instance of " + cls, e4);
             }
         }
+
+        @NonNull
+        public static AndroidViewModelFactory getInstance(@NonNull Application application) {
+            if (sInstance == null) {
+                sInstance = new AndroidViewModelFactory(application);
+            }
+            return sInstance;
+        }
     }
 
     public interface Factory {
@@ -52,7 +52,7 @@ public class ViewModelProvider {
         <T extends ViewModel> T create(@NonNull Class<T> cls);
     }
 
-    public static abstract class KeyedFactory extends OnRequeryFactory implements Factory {
+    public abstract class KeyedFactory extends OnRequeryFactory implements Factory {
         @NonNull
         public <T extends ViewModel> T create(@NonNull Class<T> cls) {
             throw new UnsupportedOperationException("create(String, Class<?>) must be called on implementaions of KeyedFactory");
@@ -62,16 +62,8 @@ public class ViewModelProvider {
         public abstract <T extends ViewModel> T create(@NonNull String str, @NonNull Class<T> cls);
     }
 
-    public static class NewInstanceFactory implements Factory {
+    public class NewInstanceFactory implements Factory {
         private static NewInstanceFactory sInstance;
-
-        @NonNull
-        public static NewInstanceFactory getInstance() {
-            if (sInstance == null) {
-                sInstance = new NewInstanceFactory();
-            }
-            return sInstance;
-        }
 
         @Override // androidx.lifecycle.ViewModelProvider.Factory
         @NonNull
@@ -84,9 +76,17 @@ public class ViewModelProvider {
                 throw new RuntimeException("Cannot create an instance of " + cls, e2);
             }
         }
+
+        @NonNull
+        public static NewInstanceFactory getInstance() {
+            if (sInstance == null) {
+                sInstance = new NewInstanceFactory();
+            }
+            return sInstance;
+        }
     }
 
-    public static class OnRequeryFactory {
+    public class OnRequeryFactory {
         public void onRequery(@NonNull ViewModel viewModel) {
         }
     }

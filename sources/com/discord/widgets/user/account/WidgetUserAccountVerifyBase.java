@@ -43,8 +43,26 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     private boolean isPhoneAllowed;
     public Mode mode;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C102511 extends C12236k implements Function1<Boolean, Unit> {
+        public C102511(WidgetUserAccountVerifyBase widgetUserAccountVerifyBase) {
+            super(1, widgetUserAccountVerifyBase, WidgetUserAccountVerifyBase.class, "handleIsAuthorized", "handleIsAuthorized(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((WidgetUserAccountVerifyBase) this.receiver).handleIsAuthorized(z2);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,24 +85,6 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         UNFORCED,
         FORCED,
         NO_HISTORY_FROM_USER_SETTINGS
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
-    public static final /* synthetic */ class C102511 extends C12236k implements Function1<Boolean, Unit> {
-        public C102511(WidgetUserAccountVerifyBase widgetUserAccountVerifyBase) {
-            super(1, widgetUserAccountVerifyBase, WidgetUserAccountVerifyBase.class, "handleIsAuthorized", "handleIsAuthorized(Z)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            ((WidgetUserAccountVerifyBase) this.receiver).handleIsAuthorized(z2);
-        }
     }
 
     public WidgetUserAccountVerifyBase(@LayoutRes int i) {
@@ -114,8 +114,26 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         return (isMissingPhone || isMissingEmailOrUnverified) && requiredAction == RequiredAction.REQUIRE_VERIFIED_EMAIL;
     }
 
+    /* JADX INFO: renamed from: isEmailAllowed, reason: from getter */
+    public final boolean getIsEmailAllowed() {
+        return this.isEmailAllowed;
+    }
+
+    /* JADX INFO: renamed from: isPhoneAllowed, reason: from getter */
+    public final boolean getIsPhoneAllowed() {
+        return this.isPhoneAllowed;
+    }
+
     public static final Intent getLaunchIntent(Mode mode, boolean z2, boolean z3) {
         return INSTANCE.getLaunchIntent(mode, z2, z3);
+    }
+
+    public final Mode getMode() {
+        Mode mode = this.mode;
+        if (mode == null) {
+            C12238m.throwUninitializedPropertyAccessException("mode");
+        }
+        return mode;
     }
 
     private final Observable<Boolean> getShouldDismissObservable() {
@@ -159,47 +177,12 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         }
     }
 
-    private final void setOptionsMenu() {
-        Mode mode = this.mode;
-        if (mode == null) {
-            C12238m.throwUninitializedPropertyAccessException("mode");
-        }
-        AppFragment.setActionBarOptionsMenu$default(this, mode == Mode.FORCED ? C5419R.menu.menu_settings_logout : C5419R.menu.menu_empty, new Action2<MenuItem, Context>() { // from class: com.discord.widgets.user.account.WidgetUserAccountVerifyBase.setOptionsMenu.1
-            @Override // p658rx.functions.Action2
-            public final void call(MenuItem menuItem, Context context) {
-                C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
-                if (menuItem.getItemId() != C5419R.id.menu_settings_log_out) {
-                    return;
-                }
-                StoreStream.INSTANCE.getAuthentication().logout();
-            }
-        }, null, 4, null);
-    }
-
-    public final Mode getMode() {
-        Mode mode = this.mode;
-        if (mode == null) {
-            C12238m.throwUninitializedPropertyAccessException("mode");
-        }
-        return mode;
-    }
-
-    /* JADX INFO: renamed from: isEmailAllowed, reason: from getter */
-    public final boolean getIsEmailAllowed() {
-        return this.isEmailAllowed;
-    }
-
     public final boolean isForced() {
         Mode mode = this.mode;
         if (mode == null) {
             C12238m.throwUninitializedPropertyAccessException("mode");
         }
         return mode == Mode.FORCED;
-    }
-
-    /* JADX INFO: renamed from: isPhoneAllowed, reason: from getter */
-    public final boolean getIsPhoneAllowed() {
-        return this.isPhoneAllowed;
     }
 
     @Override // com.discord.app.AppFragment
@@ -238,6 +221,23 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     public final void setMode(Mode mode) {
         C12238m.checkNotNullParameter(mode, "<set-?>");
         this.mode = mode;
+    }
+
+    private final void setOptionsMenu() {
+        Mode mode = this.mode;
+        if (mode == null) {
+            C12238m.throwUninitializedPropertyAccessException("mode");
+        }
+        AppFragment.setActionBarOptionsMenu$default(this, mode == Mode.FORCED ? C5419R.menu.menu_settings_logout : C5419R.menu.menu_empty, new Action2<MenuItem, Context>() { // from class: com.discord.widgets.user.account.WidgetUserAccountVerifyBase.setOptionsMenu.1
+            @Override // p658rx.functions.Action2
+            public final void call(MenuItem menuItem, Context context) {
+                C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
+                if (menuItem.getItemId() != C5419R.id.menu_settings_log_out) {
+                    return;
+                }
+                StoreStream.INSTANCE.getAuthentication().logout();
+            }
+        }, null, 4, null);
     }
 
     public final void setPhoneAllowed(boolean z2) {

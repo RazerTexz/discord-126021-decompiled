@@ -20,6 +20,11 @@ public class C1576e implements InterfaceC1584m<PointF, PointF> {
     }
 
     @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
+    public boolean isStatic() {
+        return this.f2722a.size() == 1 && this.f2722a.get(0).m667d();
+    }
+
+    @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
     /* JADX INFO: renamed from: a */
     public AbstractC1544a<PointF, PointF> mo773a() {
         return this.f2722a.get(0).m667d() ? new C1553j(this.f2722a) : new C1552i(this.f2722a);
@@ -29,10 +34,5 @@ public class C1576e implements InterfaceC1584m<PointF, PointF> {
     /* JADX INFO: renamed from: b */
     public List<C1501a<PointF>> mo774b() {
         return this.f2722a;
-    }
-
-    @Override // p007b.p085c.p086a.p095y.p096k.InterfaceC1584m
-    public boolean isStatic() {
-        return this.f2722a.size() == 1 && this.f2722a.get(0).m667d();
     }
 }

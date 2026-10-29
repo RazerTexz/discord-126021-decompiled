@@ -229,7 +229,7 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/JSRInlinerAdapter$Instantiation.SCL.lombok */
-    private class Instantiation extends AbstractMap<LabelNode, LabelNode> {
+    class Instantiation extends AbstractMap<LabelNode, LabelNode> {
         final Instantiation parent;
         final BitSet subroutineInsns;
         final Map<LabelNode, LabelNode> clonedLabels;

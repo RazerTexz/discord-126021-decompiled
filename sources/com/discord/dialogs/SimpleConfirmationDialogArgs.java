@@ -23,7 +23,7 @@ public final class SimpleConfirmationDialogArgs implements Parcelable {
     public final String f18507m;
 
     /* JADX INFO: renamed from: com.discord.dialogs.SimpleConfirmationDialogArgs$a */
-    public static class C5479a implements Parcelable.Creator<SimpleConfirmationDialogArgs> {
+    public final class C5479a implements Parcelable.Creator<SimpleConfirmationDialogArgs> {
         @Override // android.os.Parcelable.Creator
         public SimpleConfirmationDialogArgs createFromParcel(Parcel parcel) {
             C12238m.checkNotNullParameter(parcel, "in");

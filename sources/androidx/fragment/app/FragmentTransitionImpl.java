@@ -19,6 +19,12 @@ import java.util.Map;
 @SuppressLint({"UnknownNullness"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public abstract class FragmentTransitionImpl {
+    public abstract void addTarget(Object obj, View view);
+
+    public abstract void addTargets(Object obj, ArrayList<View> arrayList);
+
+    public abstract void beginDelayedTransition(ViewGroup viewGroup, Object obj);
+
     public static void bfsAddViewChildren(List<View> list, View view) {
         int size = list.size();
         if (containedBeforeIndex(list, view, size)) {
@@ -39,34 +45,6 @@ public abstract class FragmentTransitionImpl {
             }
         }
     }
-
-    private static boolean containedBeforeIndex(List<View> list, View view, int i) {
-        for (int i2 = 0; i2 < i; i2++) {
-            if (list.get(i2) == view) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static String findKeyForValue(Map<String, String> map, String str) {
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (str.equals(entry.getValue())) {
-                return entry.getKey();
-            }
-        }
-        return null;
-    }
-
-    public static boolean isNullOrEmpty(List list) {
-        return list == null || list.isEmpty();
-    }
-
-    public abstract void addTarget(Object obj, View view);
-
-    public abstract void addTargets(Object obj, ArrayList<View> arrayList);
-
-    public abstract void beginDelayedTransition(ViewGroup viewGroup, Object obj);
 
     public abstract boolean canHandle(Object obj);
 
@@ -89,6 +67,24 @@ public abstract class FragmentTransitionImpl {
     }
 
     public abstract Object cloneTransition(Object obj);
+
+    private static boolean containedBeforeIndex(List<View> list, View view, int i) {
+        for (int i2 = 0; i2 < i; i2++) {
+            if (list.get(i2) == view) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String findKeyForValue(Map<String, String> map, String str) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            if (str.equals(entry.getValue())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
 
     public void findNamedViews(Map<String, View> map, @NonNull View view) {
         if (view.getVisibility() == 0) {
@@ -125,6 +121,10 @@ public abstract class FragmentTransitionImpl {
             rectF.offset(iArr[0], iArr[1]);
             rect.set(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right), Math.round(rectF.bottom));
         }
+    }
+
+    public static boolean isNullOrEmpty(List list) {
+        return list == null || list.isEmpty();
     }
 
     public abstract Object mergeTransitionsInSequence(Object obj, Object obj2, Object obj3);

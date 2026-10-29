@@ -255,249 +255,6 @@ public class DependencyGraph {
         return false;
     }
 
-    private int computeWrap(ConstraintWidgetContainer constraintWidgetContainer, int i) {
-        int size = this.mGroups.size();
-        long jMax = 0;
-        for (int i2 = 0; i2 < size; i2++) {
-            jMax = Math.max(jMax, this.mGroups.get(i2).computeWrapSize(constraintWidgetContainer, i));
-        }
-        return (int) jMax;
-    }
-
-    private void displayGraph() {
-        Iterator<WidgetRun> it = this.mRuns.iterator();
-        String strGenerateDisplayGraph = "digraph {\n";
-        while (it.hasNext()) {
-            strGenerateDisplayGraph = generateDisplayGraph(it.next(), strGenerateDisplayGraph);
-        }
-        String strM883w = C1643a.m883w(strGenerateDisplayGraph, "\n}\n");
-        System.out.println("content:<<\n" + strM883w + "\n>>");
-    }
-
-    private void findGroup(WidgetRun widgetRun, int i, ArrayList<RunGroup> arrayList) {
-        for (Dependency dependency : widgetRun.start.dependencies) {
-            if (dependency instanceof DependencyNode) {
-                applyGroup((DependencyNode) dependency, i, 0, widgetRun.end, arrayList, null);
-            } else if (dependency instanceof WidgetRun) {
-                applyGroup(((WidgetRun) dependency).start, i, 0, widgetRun.end, arrayList, null);
-            }
-        }
-        for (Dependency dependency2 : widgetRun.end.dependencies) {
-            if (dependency2 instanceof DependencyNode) {
-                applyGroup((DependencyNode) dependency2, i, 1, widgetRun.start, arrayList, null);
-            } else if (dependency2 instanceof WidgetRun) {
-                applyGroup(((WidgetRun) dependency2).end, i, 1, widgetRun.start, arrayList, null);
-            }
-        }
-        if (i == 1) {
-            for (Dependency dependency3 : ((VerticalWidgetRun) widgetRun).baseline.dependencies) {
-                if (dependency3 instanceof DependencyNode) {
-                    applyGroup((DependencyNode) dependency3, i, 2, null, arrayList, null);
-                }
-            }
-        }
-    }
-
-    private String generateChainDisplayGraph(ChainRun chainRun, String str) {
-        int i = chainRun.orientation;
-        StringBuilder sbM833U = C1643a.m833U("cluster_");
-        sbM833U.append(chainRun.widget.getDebugName());
-        String string = sbM833U.toString();
-        String strM886y = C1643a.m886y("subgraph ", i == 0 ? C1643a.m883w(string, "_h") : C1643a.m883w(string, "_v"), " {\n");
-        String strGenerateDisplayGraph = "";
-        for (WidgetRun widgetRun : chainRun.widgets) {
-            String debugName = widgetRun.widget.getDebugName();
-            strM886y = C1643a.m886y(strM886y, i == 0 ? C1643a.m883w(debugName, "_HORIZONTAL") : C1643a.m883w(debugName, "_VERTICAL"), ";\n");
-            strGenerateDisplayGraph = generateDisplayGraph(widgetRun, strGenerateDisplayGraph);
-        }
-        return C1643a.m886y(str, strGenerateDisplayGraph, C1643a.m883w(strM886y, "}\n"));
-    }
-
-    private String generateDisplayGraph(WidgetRun widgetRun, String str) {
-        boolean z2;
-        DependencyNode dependencyNode = widgetRun.start;
-        DependencyNode dependencyNode2 = widgetRun.end;
-        if (!(widgetRun instanceof HelperReferences) && dependencyNode.dependencies.isEmpty() && (dependencyNode2.dependencies.isEmpty() && dependencyNode.targets.isEmpty()) && dependencyNode2.targets.isEmpty()) {
-            return str;
-        }
-        StringBuilder sbM833U = C1643a.m833U(str);
-        sbM833U.append(nodeDefinition(widgetRun));
-        String string = sbM833U.toString();
-        boolean zIsCenteredConnection = isCenteredConnection(dependencyNode, dependencyNode2);
-        String strGenerateDisplayNode = generateDisplayNode(dependencyNode2, zIsCenteredConnection, generateDisplayNode(dependencyNode, zIsCenteredConnection, string));
-        boolean z3 = widgetRun instanceof VerticalWidgetRun;
-        if (z3) {
-            strGenerateDisplayNode = generateDisplayNode(((VerticalWidgetRun) widgetRun).baseline, zIsCenteredConnection, strGenerateDisplayNode);
-        }
-        if ((widgetRun instanceof HorizontalWidgetRun) || (((z2 = widgetRun instanceof ChainRun)) && ((ChainRun) widgetRun).orientation == 0)) {
-            ConstraintWidget.DimensionBehaviour horizontalDimensionBehaviour = widgetRun.widget.getHorizontalDimensionBehaviour();
-            if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED || horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                if (!dependencyNode.targets.isEmpty() && dependencyNode2.targets.isEmpty()) {
-                    StringBuilder sbM833U2 = C1643a.m833U("\n");
-                    sbM833U2.append(dependencyNode2.name());
-                    sbM833U2.append(" -> ");
-                    sbM833U2.append(dependencyNode.name());
-                    sbM833U2.append("\n");
-                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U2.toString());
-                } else if (dependencyNode.targets.isEmpty() && !dependencyNode2.targets.isEmpty()) {
-                    StringBuilder sbM833U3 = C1643a.m833U("\n");
-                    sbM833U3.append(dependencyNode.name());
-                    sbM833U3.append(" -> ");
-                    sbM833U3.append(dependencyNode2.name());
-                    sbM833U3.append("\n");
-                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U3.toString());
-                }
-            } else if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun.widget.getDimensionRatio() > 0.0f) {
-                widgetRun.widget.getDebugName();
-            }
-        } else if (z3 || (z2 && ((ChainRun) widgetRun).orientation == 1)) {
-            ConstraintWidget.DimensionBehaviour verticalDimensionBehaviour = widgetRun.widget.getVerticalDimensionBehaviour();
-            if (verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED || verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                if (!dependencyNode.targets.isEmpty() && dependencyNode2.targets.isEmpty()) {
-                    StringBuilder sbM833U4 = C1643a.m833U("\n");
-                    sbM833U4.append(dependencyNode2.name());
-                    sbM833U4.append(" -> ");
-                    sbM833U4.append(dependencyNode.name());
-                    sbM833U4.append("\n");
-                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U4.toString());
-                } else if (dependencyNode.targets.isEmpty() && !dependencyNode2.targets.isEmpty()) {
-                    StringBuilder sbM833U5 = C1643a.m833U("\n");
-                    sbM833U5.append(dependencyNode.name());
-                    sbM833U5.append(" -> ");
-                    sbM833U5.append(dependencyNode2.name());
-                    sbM833U5.append("\n");
-                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U5.toString());
-                }
-            } else if (verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun.widget.getDimensionRatio() > 0.0f) {
-                widgetRun.widget.getDebugName();
-            }
-        }
-        return widgetRun instanceof ChainRun ? generateChainDisplayGraph((ChainRun) widgetRun, strGenerateDisplayNode) : strGenerateDisplayNode;
-    }
-
-    private String generateDisplayNode(DependencyNode dependencyNode, boolean z2, String str) {
-        for (DependencyNode dependencyNode2 : dependencyNode.targets) {
-            StringBuilder sbM833U = C1643a.m833U("\n");
-            sbM833U.append(dependencyNode.name());
-            StringBuilder sbM836X = C1643a.m836X(sbM833U.toString(), " -> ");
-            sbM836X.append(dependencyNode2.name());
-            String string = sbM836X.toString();
-            if (dependencyNode.margin > 0 || z2 || (dependencyNode.run instanceof HelperReferences)) {
-                String strM883w = C1643a.m883w(string, "[");
-                if (dependencyNode.margin > 0) {
-                    strM883w = C1643a.m814B(C1643a.m836X(strM883w, "label=\""), dependencyNode.margin, "\"");
-                    if (z2) {
-                        strM883w = C1643a.m883w(strM883w, ",");
-                    }
-                }
-                if (z2) {
-                    strM883w = C1643a.m883w(strM883w, " style=dashed ");
-                }
-                if (dependencyNode.run instanceof HelperReferences) {
-                    strM883w = C1643a.m883w(strM883w, " style=bold,color=gray ");
-                }
-                string = C1643a.m883w(strM883w, "]");
-            }
-            str = C1643a.m883w(str, C1643a.m883w(string, "\n"));
-        }
-        return str;
-    }
-
-    private boolean isCenteredConnection(DependencyNode dependencyNode, DependencyNode dependencyNode2) {
-        Iterator<DependencyNode> it = dependencyNode.targets.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            if (it.next() != dependencyNode2) {
-                i++;
-            }
-        }
-        Iterator<DependencyNode> it2 = dependencyNode2.targets.iterator();
-        int i2 = 0;
-        while (it2.hasNext()) {
-            if (it2.next() != dependencyNode) {
-                i2++;
-            }
-        }
-        return i > 0 && i2 > 0;
-    }
-
-    private void measure(ConstraintWidget constraintWidget, ConstraintWidget.DimensionBehaviour dimensionBehaviour, int i, ConstraintWidget.DimensionBehaviour dimensionBehaviour2, int i2) {
-        BasicMeasure.Measure measure = this.mMeasure;
-        measure.horizontalBehavior = dimensionBehaviour;
-        measure.verticalBehavior = dimensionBehaviour2;
-        measure.horizontalDimension = i;
-        measure.verticalDimension = i2;
-        this.mMeasurer.measure(constraintWidget, measure);
-        constraintWidget.setWidth(this.mMeasure.measuredWidth);
-        constraintWidget.setHeight(this.mMeasure.measuredHeight);
-        constraintWidget.setHasBaseline(this.mMeasure.measuredHasBaseline);
-        constraintWidget.setBaselineDistance(this.mMeasure.measuredBaseline);
-    }
-
-    private String nodeDefinition(WidgetRun widgetRun) {
-        String strM883w;
-        String strM814B;
-        String strM883w2;
-        boolean z2 = widgetRun instanceof VerticalWidgetRun;
-        String debugName = widgetRun.widget.getDebugName();
-        ConstraintWidget constraintWidget = widgetRun.widget;
-        ConstraintWidget.DimensionBehaviour horizontalDimensionBehaviour = !z2 ? constraintWidget.getHorizontalDimensionBehaviour() : constraintWidget.getVerticalDimensionBehaviour();
-        RunGroup runGroup = widgetRun.runGroup;
-        String strM883w3 = C1643a.m883w(C1643a.m883w(C1643a.m883w(!z2 ? C1643a.m883w(debugName, "_HORIZONTAL") : C1643a.m883w(debugName, "_VERTICAL"), " [shape=none, label=<"), "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"2\">"), "  <TR>");
-        if (z2) {
-            String strM883w4 = C1643a.m883w(strM883w3, "    <TD ");
-            if (widgetRun.start.resolved) {
-                strM883w4 = C1643a.m883w(strM883w4, " BGCOLOR=\"green\"");
-            }
-            strM883w = C1643a.m883w(strM883w4, " PORT=\"TOP\" BORDER=\"1\">T</TD>");
-        } else {
-            String strM883w5 = C1643a.m883w(strM883w3, "    <TD ");
-            if (widgetRun.start.resolved) {
-                strM883w5 = C1643a.m883w(strM883w5, " BGCOLOR=\"green\"");
-            }
-            strM883w = C1643a.m883w(strM883w5, " PORT=\"LEFT\" BORDER=\"1\">L</TD>");
-        }
-        String strM883w6 = C1643a.m883w(strM883w, "    <TD BORDER=\"1\" ");
-        boolean z3 = widgetRun.dimension.resolved;
-        if (z3 && !widgetRun.widget.measured) {
-            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"green\" ");
-        } else if (z3 && widgetRun.widget.measured) {
-            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"lightgray\" ");
-        } else if (!z3 && widgetRun.widget.measured) {
-            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"yellow\" ");
-        }
-        if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
-            strM883w6 = C1643a.m883w(strM883w6, "style=\"dashed\"");
-        }
-        if (runGroup != null) {
-            StringBuilder sbM833U = C1643a.m833U(" [");
-            sbM833U.append(runGroup.groupIndex + 1);
-            sbM833U.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-            strM814B = C1643a.m814B(sbM833U, RunGroup.index, "]");
-        } else {
-            strM814B = "";
-        }
-        String str = strM883w6 + ">" + debugName + strM814B + " </TD>";
-        if (z2) {
-            String strM883w7 = C1643a.m883w(str, "    <TD ");
-            if ((widgetRun instanceof VerticalWidgetRun) && ((VerticalWidgetRun) widgetRun).baseline.resolved) {
-                strM883w7 = C1643a.m883w(strM883w7, " BGCOLOR=\"green\"");
-            }
-            String strM883w8 = C1643a.m883w(C1643a.m883w(strM883w7, " PORT=\"BASELINE\" BORDER=\"1\">b</TD>"), "    <TD ");
-            if (widgetRun.end.resolved) {
-                strM883w8 = C1643a.m883w(strM883w8, " BGCOLOR=\"green\"");
-            }
-            strM883w2 = C1643a.m883w(strM883w8, " PORT=\"BOTTOM\" BORDER=\"1\">B</TD>");
-        } else {
-            String strM883w9 = C1643a.m883w(str, "    <TD ");
-            if (widgetRun.end.resolved) {
-                strM883w9 = C1643a.m883w(strM883w9, " BGCOLOR=\"green\"");
-            }
-            strM883w2 = C1643a.m883w(strM883w9, " PORT=\"RIGHT\" BORDER=\"1\">R</TD>");
-        }
-        return C1643a.m883w(C1643a.m883w(strM883w2, "  </TR></TABLE>"), ">];\n");
-    }
-
     public void buildGraph() {
         buildGraph(this.mRuns);
         this.mGroups.clear();
@@ -505,6 +262,15 @@ public class DependencyGraph {
         findGroup(this.container.horizontalRun, 0, this.mGroups);
         findGroup(this.container.verticalRun, 1, this.mGroups);
         this.mNeedBuildGraph = false;
+    }
+
+    private int computeWrap(ConstraintWidgetContainer constraintWidgetContainer, int i) {
+        int size = this.mGroups.size();
+        long jMax = 0;
+        for (int i2 = 0; i2 < size; i2++) {
+            jMax = Math.max(jMax, this.mGroups.get(i2).computeWrapSize(constraintWidgetContainer, i));
+        }
+        return (int) jMax;
     }
 
     public void defineTerminalWidgets(ConstraintWidget.DimensionBehaviour dimensionBehaviour, ConstraintWidget.DimensionBehaviour dimensionBehaviour2) {
@@ -739,12 +505,182 @@ public class DependencyGraph {
         return z4;
     }
 
+    private void displayGraph() {
+        Iterator<WidgetRun> it = this.mRuns.iterator();
+        String strGenerateDisplayGraph = "digraph {\n";
+        while (it.hasNext()) {
+            strGenerateDisplayGraph = generateDisplayGraph(it.next(), strGenerateDisplayGraph);
+        }
+        String strM883w = C1643a.m883w(strGenerateDisplayGraph, "\n}\n");
+        System.out.println("content:<<\n" + strM883w + "\n>>");
+    }
+
+    private void findGroup(WidgetRun widgetRun, int i, ArrayList<RunGroup> arrayList) {
+        for (Dependency dependency : widgetRun.start.dependencies) {
+            if (dependency instanceof DependencyNode) {
+                applyGroup((DependencyNode) dependency, i, 0, widgetRun.end, arrayList, null);
+            } else if (dependency instanceof WidgetRun) {
+                applyGroup(((WidgetRun) dependency).start, i, 0, widgetRun.end, arrayList, null);
+            }
+        }
+        for (Dependency dependency2 : widgetRun.end.dependencies) {
+            if (dependency2 instanceof DependencyNode) {
+                applyGroup((DependencyNode) dependency2, i, 1, widgetRun.start, arrayList, null);
+            } else if (dependency2 instanceof WidgetRun) {
+                applyGroup(((WidgetRun) dependency2).end, i, 1, widgetRun.start, arrayList, null);
+            }
+        }
+        if (i == 1) {
+            for (Dependency dependency3 : ((VerticalWidgetRun) widgetRun).baseline.dependencies) {
+                if (dependency3 instanceof DependencyNode) {
+                    applyGroup((DependencyNode) dependency3, i, 2, null, arrayList, null);
+                }
+            }
+        }
+    }
+
+    private String generateChainDisplayGraph(ChainRun chainRun, String str) {
+        int i = chainRun.orientation;
+        StringBuilder sbM833U = C1643a.m833U("cluster_");
+        sbM833U.append(chainRun.widget.getDebugName());
+        String string = sbM833U.toString();
+        String strM886y = C1643a.m886y("subgraph ", i == 0 ? C1643a.m883w(string, "_h") : C1643a.m883w(string, "_v"), " {\n");
+        String strGenerateDisplayGraph = "";
+        for (WidgetRun widgetRun : chainRun.widgets) {
+            String debugName = widgetRun.widget.getDebugName();
+            strM886y = C1643a.m886y(strM886y, i == 0 ? C1643a.m883w(debugName, "_HORIZONTAL") : C1643a.m883w(debugName, "_VERTICAL"), ";\n");
+            strGenerateDisplayGraph = generateDisplayGraph(widgetRun, strGenerateDisplayGraph);
+        }
+        return C1643a.m886y(str, strGenerateDisplayGraph, C1643a.m883w(strM886y, "}\n"));
+    }
+
+    private String generateDisplayGraph(WidgetRun widgetRun, String str) {
+        boolean z2;
+        DependencyNode dependencyNode = widgetRun.start;
+        DependencyNode dependencyNode2 = widgetRun.end;
+        if (!(widgetRun instanceof HelperReferences) && dependencyNode.dependencies.isEmpty() && (dependencyNode2.dependencies.isEmpty() && dependencyNode.targets.isEmpty()) && dependencyNode2.targets.isEmpty()) {
+            return str;
+        }
+        StringBuilder sbM833U = C1643a.m833U(str);
+        sbM833U.append(nodeDefinition(widgetRun));
+        String string = sbM833U.toString();
+        boolean zIsCenteredConnection = isCenteredConnection(dependencyNode, dependencyNode2);
+        String strGenerateDisplayNode = generateDisplayNode(dependencyNode2, zIsCenteredConnection, generateDisplayNode(dependencyNode, zIsCenteredConnection, string));
+        boolean z3 = widgetRun instanceof VerticalWidgetRun;
+        if (z3) {
+            strGenerateDisplayNode = generateDisplayNode(((VerticalWidgetRun) widgetRun).baseline, zIsCenteredConnection, strGenerateDisplayNode);
+        }
+        if ((widgetRun instanceof HorizontalWidgetRun) || (((z2 = widgetRun instanceof ChainRun)) && ((ChainRun) widgetRun).orientation == 0)) {
+            ConstraintWidget.DimensionBehaviour horizontalDimensionBehaviour = widgetRun.widget.getHorizontalDimensionBehaviour();
+            if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED || horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
+                if (!dependencyNode.targets.isEmpty() && dependencyNode2.targets.isEmpty()) {
+                    StringBuilder sbM833U2 = C1643a.m833U("\n");
+                    sbM833U2.append(dependencyNode2.name());
+                    sbM833U2.append(" -> ");
+                    sbM833U2.append(dependencyNode.name());
+                    sbM833U2.append("\n");
+                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U2.toString());
+                } else if (dependencyNode.targets.isEmpty() && !dependencyNode2.targets.isEmpty()) {
+                    StringBuilder sbM833U3 = C1643a.m833U("\n");
+                    sbM833U3.append(dependencyNode.name());
+                    sbM833U3.append(" -> ");
+                    sbM833U3.append(dependencyNode2.name());
+                    sbM833U3.append("\n");
+                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U3.toString());
+                }
+            } else if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun.widget.getDimensionRatio() > 0.0f) {
+                widgetRun.widget.getDebugName();
+            }
+        } else if (z3 || (z2 && ((ChainRun) widgetRun).orientation == 1)) {
+            ConstraintWidget.DimensionBehaviour verticalDimensionBehaviour = widgetRun.widget.getVerticalDimensionBehaviour();
+            if (verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED || verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
+                if (!dependencyNode.targets.isEmpty() && dependencyNode2.targets.isEmpty()) {
+                    StringBuilder sbM833U4 = C1643a.m833U("\n");
+                    sbM833U4.append(dependencyNode2.name());
+                    sbM833U4.append(" -> ");
+                    sbM833U4.append(dependencyNode.name());
+                    sbM833U4.append("\n");
+                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U4.toString());
+                } else if (dependencyNode.targets.isEmpty() && !dependencyNode2.targets.isEmpty()) {
+                    StringBuilder sbM833U5 = C1643a.m833U("\n");
+                    sbM833U5.append(dependencyNode.name());
+                    sbM833U5.append(" -> ");
+                    sbM833U5.append(dependencyNode2.name());
+                    sbM833U5.append("\n");
+                    strGenerateDisplayNode = C1643a.m883w(strGenerateDisplayNode, sbM833U5.toString());
+                }
+            } else if (verticalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun.widget.getDimensionRatio() > 0.0f) {
+                widgetRun.widget.getDebugName();
+            }
+        }
+        return widgetRun instanceof ChainRun ? generateChainDisplayGraph((ChainRun) widgetRun, strGenerateDisplayNode) : strGenerateDisplayNode;
+    }
+
+    private String generateDisplayNode(DependencyNode dependencyNode, boolean z2, String str) {
+        for (DependencyNode dependencyNode2 : dependencyNode.targets) {
+            StringBuilder sbM833U = C1643a.m833U("\n");
+            sbM833U.append(dependencyNode.name());
+            StringBuilder sbM836X = C1643a.m836X(sbM833U.toString(), " -> ");
+            sbM836X.append(dependencyNode2.name());
+            String string = sbM836X.toString();
+            if (dependencyNode.margin > 0 || z2 || (dependencyNode.run instanceof HelperReferences)) {
+                String strM883w = C1643a.m883w(string, "[");
+                if (dependencyNode.margin > 0) {
+                    strM883w = C1643a.m814B(C1643a.m836X(strM883w, "label=\""), dependencyNode.margin, "\"");
+                    if (z2) {
+                        strM883w = C1643a.m883w(strM883w, ",");
+                    }
+                }
+                if (z2) {
+                    strM883w = C1643a.m883w(strM883w, " style=dashed ");
+                }
+                if (dependencyNode.run instanceof HelperReferences) {
+                    strM883w = C1643a.m883w(strM883w, " style=bold,color=gray ");
+                }
+                string = C1643a.m883w(strM883w, "]");
+            }
+            str = C1643a.m883w(str, C1643a.m883w(string, "\n"));
+        }
+        return str;
+    }
+
     public void invalidateGraph() {
         this.mNeedBuildGraph = true;
     }
 
     public void invalidateMeasures() {
         this.mNeedRedoMeasures = true;
+    }
+
+    private boolean isCenteredConnection(DependencyNode dependencyNode, DependencyNode dependencyNode2) {
+        Iterator<DependencyNode> it = dependencyNode.targets.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            if (it.next() != dependencyNode2) {
+                i++;
+            }
+        }
+        Iterator<DependencyNode> it2 = dependencyNode2.targets.iterator();
+        int i2 = 0;
+        while (it2.hasNext()) {
+            if (it2.next() != dependencyNode) {
+                i2++;
+            }
+        }
+        return i > 0 && i2 > 0;
+    }
+
+    private void measure(ConstraintWidget constraintWidget, ConstraintWidget.DimensionBehaviour dimensionBehaviour, int i, ConstraintWidget.DimensionBehaviour dimensionBehaviour2, int i2) {
+        BasicMeasure.Measure measure = this.mMeasure;
+        measure.horizontalBehavior = dimensionBehaviour;
+        measure.verticalBehavior = dimensionBehaviour2;
+        measure.horizontalDimension = i;
+        measure.verticalDimension = i2;
+        this.mMeasurer.measure(constraintWidget, measure);
+        constraintWidget.setWidth(this.mMeasure.measuredWidth);
+        constraintWidget.setHeight(this.mMeasure.measuredHeight);
+        constraintWidget.setHasBaseline(this.mMeasure.measuredHasBaseline);
+        constraintWidget.setBaselineDistance(this.mMeasure.measuredBaseline);
     }
 
     public void measureWidgets() {
@@ -792,6 +728,70 @@ public class DependencyGraph {
                 }
             }
         }
+    }
+
+    private String nodeDefinition(WidgetRun widgetRun) {
+        String strM883w;
+        String strM814B;
+        String strM883w2;
+        boolean z2 = widgetRun instanceof VerticalWidgetRun;
+        String debugName = widgetRun.widget.getDebugName();
+        ConstraintWidget constraintWidget = widgetRun.widget;
+        ConstraintWidget.DimensionBehaviour horizontalDimensionBehaviour = !z2 ? constraintWidget.getHorizontalDimensionBehaviour() : constraintWidget.getVerticalDimensionBehaviour();
+        RunGroup runGroup = widgetRun.runGroup;
+        String strM883w3 = C1643a.m883w(C1643a.m883w(C1643a.m883w(!z2 ? C1643a.m883w(debugName, "_HORIZONTAL") : C1643a.m883w(debugName, "_VERTICAL"), " [shape=none, label=<"), "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"2\">"), "  <TR>");
+        if (z2) {
+            String strM883w4 = C1643a.m883w(strM883w3, "    <TD ");
+            if (widgetRun.start.resolved) {
+                strM883w4 = C1643a.m883w(strM883w4, " BGCOLOR=\"green\"");
+            }
+            strM883w = C1643a.m883w(strM883w4, " PORT=\"TOP\" BORDER=\"1\">T</TD>");
+        } else {
+            String strM883w5 = C1643a.m883w(strM883w3, "    <TD ");
+            if (widgetRun.start.resolved) {
+                strM883w5 = C1643a.m883w(strM883w5, " BGCOLOR=\"green\"");
+            }
+            strM883w = C1643a.m883w(strM883w5, " PORT=\"LEFT\" BORDER=\"1\">L</TD>");
+        }
+        String strM883w6 = C1643a.m883w(strM883w, "    <TD BORDER=\"1\" ");
+        boolean z3 = widgetRun.dimension.resolved;
+        if (z3 && !widgetRun.widget.measured) {
+            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"green\" ");
+        } else if (z3 && widgetRun.widget.measured) {
+            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"lightgray\" ");
+        } else if (!z3 && widgetRun.widget.measured) {
+            strM883w6 = C1643a.m883w(strM883w6, " BGCOLOR=\"yellow\" ");
+        }
+        if (horizontalDimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+            strM883w6 = C1643a.m883w(strM883w6, "style=\"dashed\"");
+        }
+        if (runGroup != null) {
+            StringBuilder sbM833U = C1643a.m833U(" [");
+            sbM833U.append(runGroup.groupIndex + 1);
+            sbM833U.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+            strM814B = C1643a.m814B(sbM833U, RunGroup.index, "]");
+        } else {
+            strM814B = "";
+        }
+        String str = strM883w6 + ">" + debugName + strM814B + " </TD>";
+        if (z2) {
+            String strM883w7 = C1643a.m883w(str, "    <TD ");
+            if ((widgetRun instanceof VerticalWidgetRun) && ((VerticalWidgetRun) widgetRun).baseline.resolved) {
+                strM883w7 = C1643a.m883w(strM883w7, " BGCOLOR=\"green\"");
+            }
+            String strM883w8 = C1643a.m883w(C1643a.m883w(strM883w7, " PORT=\"BASELINE\" BORDER=\"1\">b</TD>"), "    <TD ");
+            if (widgetRun.end.resolved) {
+                strM883w8 = C1643a.m883w(strM883w8, " BGCOLOR=\"green\"");
+            }
+            strM883w2 = C1643a.m883w(strM883w8, " PORT=\"BOTTOM\" BORDER=\"1\">B</TD>");
+        } else {
+            String strM883w9 = C1643a.m883w(str, "    <TD ");
+            if (widgetRun.end.resolved) {
+                strM883w9 = C1643a.m883w(strM883w9, " BGCOLOR=\"green\"");
+            }
+            strM883w2 = C1643a.m883w(strM883w9, " PORT=\"RIGHT\" BORDER=\"1\">R</TD>");
+        }
+        return C1643a.m883w(C1643a.m883w(strM883w2, "  </TR></TABLE>"), ">];\n");
     }
 
     public void setMeasurer(BasicMeasure.Measurer measurer) {

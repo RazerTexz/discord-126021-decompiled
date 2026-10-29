@@ -18,7 +18,7 @@ public final class PublishSubject<T> extends Subject<T, T> {
     public final C13016b<T> f27650k;
 
     /* JADX INFO: renamed from: rx.subjects.PublishSubject$a */
-    public static final class C13015a<T> extends AtomicLong implements Producer, Subscription, InterfaceC12581g<T> {
+    public final class C13015a<T> extends AtomicLong implements Producer, Subscription, InterfaceC12581g<T> {
         private static final long serialVersionUID = 6451806817170721536L;
         public final Subscriber<? super T> actual;
         public final C13016b<T> parent;
@@ -86,53 +86,18 @@ public final class PublishSubject<T> extends Subject<T, T> {
     }
 
     /* JADX INFO: renamed from: rx.subjects.PublishSubject$b */
-    public static final class C13016b<T> extends AtomicReference<C13015a<T>[]> implements Observable.InterfaceC13005a<T>, InterfaceC12581g<T> {
+    public final class C13016b<T> extends AtomicReference<C13015a<T>[]> implements Observable.InterfaceC13005a<T>, InterfaceC12581g<T> {
+        public Throwable error;
+        private static final long serialVersionUID = -7568940796666027140L;
 
         /* JADX INFO: renamed from: j */
         public static final C13015a[] f27651j = new C13015a[0];
 
         /* JADX INFO: renamed from: k */
         public static final C13015a[] f27652k = new C13015a[0];
-        private static final long serialVersionUID = -7568940796666027140L;
-        public Throwable error;
 
         public C13016b() {
             lazySet(f27651j);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m11134a(C13015a<T> c13015a) {
-            C13015a<T>[] c13015aArr;
-            C13015a[] c13015aArr2;
-            do {
-                c13015aArr = get();
-                if (c13015aArr == f27652k || c13015aArr == f27651j) {
-                    return;
-                }
-                int length = c13015aArr.length;
-                int i = 0;
-                while (true) {
-                    if (i >= length) {
-                        i = -1;
-                        break;
-                    } else if (c13015aArr[i] == c13015a) {
-                        break;
-                    } else {
-                        i++;
-                    }
-                }
-                if (i < 0) {
-                    return;
-                }
-                if (length == 1) {
-                    c13015aArr2 = f27651j;
-                } else {
-                    C13015a[] c13015aArr3 = new C13015a[length - 1];
-                    System.arraycopy(c13015aArr, 0, c13015aArr3, 0, i);
-                    System.arraycopy(c13015aArr, i + 1, c13015aArr3, i, (length - i) - 1);
-                    c13015aArr2 = c13015aArr3;
-                }
-            } while (!compareAndSet(c13015aArr, c13015aArr2));
         }
 
         @Override // p658rx.functions.Action1
@@ -169,6 +134,41 @@ public final class PublishSubject<T> extends Subject<T, T> {
                     subscriber.onCompleted();
                 }
             }
+        }
+
+        /* JADX INFO: renamed from: a */
+        public void m11134a(C13015a<T> c13015a) {
+            C13015a<T>[] c13015aArr;
+            C13015a[] c13015aArr2;
+            do {
+                c13015aArr = get();
+                if (c13015aArr == f27652k || c13015aArr == f27651j) {
+                    return;
+                }
+                int length = c13015aArr.length;
+                int i = 0;
+                while (true) {
+                    if (i >= length) {
+                        i = -1;
+                        break;
+                    } else if (c13015aArr[i] == c13015a) {
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+                if (i < 0) {
+                    return;
+                }
+                if (length == 1) {
+                    c13015aArr2 = f27651j;
+                } else {
+                    C13015a[] c13015aArr3 = new C13015a[length - 1];
+                    System.arraycopy(c13015aArr, 0, c13015aArr3, 0, i);
+                    System.arraycopy(c13015aArr, i + 1, c13015aArr3, i, (length - i) - 1);
+                    c13015aArr2 = c13015aArr3;
+                }
+            } while (!compareAndSet(c13015aArr, c13015aArr2));
         }
 
         @Override // p637j0.InterfaceC12581g

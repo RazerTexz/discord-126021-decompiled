@@ -26,7 +26,7 @@ public final class PrivateChannelMemberListService {
     private final StoreUser storeUser;
 
     /* JADX INFO: compiled from: PrivateChannelMemberListService.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final Map<Long, ModelApplicationStream> applicationStreams;
         private final Channel channel;
         private final Map<Long, Presence> presences;
@@ -44,6 +44,18 @@ public final class PrivateChannelMemberListService {
             this.applicationStreams = map3;
         }
 
+        public final Map<Long, User> component2() {
+            return this.users;
+        }
+
+        public final Map<Long, Presence> component3() {
+            return this.presences;
+        }
+
+        public final Map<Long, ModelApplicationStream> component4() {
+            return this.applicationStreams;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ State copy$default(State state, Channel channel, Map map, Map map2, Map map3, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -59,23 +71,6 @@ public final class PrivateChannelMemberListService {
                 map3 = state.applicationStreams;
             }
             return state.copy(channel, map, map2, map3);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        public final Map<Long, User> component2() {
-            return this.users;
-        }
-
-        public final Map<Long, Presence> component3() {
-            return this.presences;
-        }
-
-        public final Map<Long, ModelApplicationStream> component4() {
-            return this.applicationStreams;
         }
 
         public final State copy(Channel channel, Map<Long, ? extends User> users, Map<Long, Presence> presences, Map<Long, ? extends ModelApplicationStream> applicationStreams) {
@@ -99,6 +94,11 @@ public final class PrivateChannelMemberListService {
 
         public final Map<Long, ModelApplicationStream> getApplicationStreams() {
             return this.applicationStreams;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {

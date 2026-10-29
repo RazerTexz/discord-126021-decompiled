@@ -24,6 +24,17 @@ public final /* data */ class MessageEmbed {
     private final String url;
     private final EmbedVideo video;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageEmbed)) {
+            return false;
+        }
+        MessageEmbed messageEmbed = (MessageEmbed) other;
+        return C12238m.areEqual(this.title, messageEmbed.title) && C12238m.areEqual(this.type, messageEmbed.type) && C12238m.areEqual(this.description, messageEmbed.description) && C12238m.areEqual(this.url, messageEmbed.url) && C12238m.areEqual(this.timestamp, messageEmbed.timestamp) && C12238m.areEqual(this.color, messageEmbed.color) && C12238m.areEqual(this.footer, messageEmbed.footer) && C12238m.areEqual(this.image, messageEmbed.image) && C12238m.areEqual(this.thumbnail, messageEmbed.thumbnail) && C12238m.areEqual(this.video, messageEmbed.video) && C12238m.areEqual(this.provider, messageEmbed.provider) && C12238m.areEqual(this.author, messageEmbed.author) && C12238m.areEqual(this.fields, messageEmbed.fields);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final EmbedAuthor getAuthor() {
         return this.author;
@@ -39,25 +50,9 @@ public final /* data */ class MessageEmbed {
         return this.description;
     }
 
-    /* JADX INFO: renamed from: d */
-    public final List<EmbedField> m8101d() {
-        return this.fields;
-    }
-
     /* JADX INFO: renamed from: e, reason: from getter */
     public final EmbedFooter getFooter() {
         return this.footer;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageEmbed)) {
-            return false;
-        }
-        MessageEmbed messageEmbed = (MessageEmbed) other;
-        return C12238m.areEqual(this.title, messageEmbed.title) && C12238m.areEqual(this.type, messageEmbed.type) && C12238m.areEqual(this.description, messageEmbed.description) && C12238m.areEqual(this.url, messageEmbed.url) && C12238m.areEqual(this.timestamp, messageEmbed.timestamp) && C12238m.areEqual(this.color, messageEmbed.color) && C12238m.areEqual(this.footer, messageEmbed.footer) && C12238m.areEqual(this.image, messageEmbed.image) && C12238m.areEqual(this.thumbnail, messageEmbed.thumbnail) && C12238m.areEqual(this.video, messageEmbed.video) && C12238m.areEqual(this.provider, messageEmbed.provider) && C12238m.areEqual(this.author, messageEmbed.author) && C12238m.areEqual(this.fields, messageEmbed.fields);
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
@@ -73,6 +68,31 @@ public final /* data */ class MessageEmbed {
     /* JADX INFO: renamed from: h, reason: from getter */
     public final EmbedThumbnail getThumbnail() {
         return this.thumbnail;
+    }
+
+    /* JADX INFO: renamed from: i, reason: from getter */
+    public final UtcDateTime getTimestamp() {
+        return this.timestamp;
+    }
+
+    /* JADX INFO: renamed from: j, reason: from getter */
+    public final String getTitle() {
+        return this.title;
+    }
+
+    /* JADX INFO: renamed from: k, reason: from getter */
+    public final EmbedType getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: l, reason: from getter */
+    public final String getUrl() {
+        return this.url;
+    }
+
+    /* JADX INFO: renamed from: m, reason: from getter */
+    public final EmbedVideo getVideo() {
+        return this.video;
     }
 
     public int hashCode() {
@@ -104,29 +124,9 @@ public final /* data */ class MessageEmbed {
         return iHashCode12 + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: i, reason: from getter */
-    public final UtcDateTime getTimestamp() {
-        return this.timestamp;
-    }
-
-    /* JADX INFO: renamed from: j, reason: from getter */
-    public final String getTitle() {
-        return this.title;
-    }
-
-    /* JADX INFO: renamed from: k, reason: from getter */
-    public final EmbedType getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: l, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
-    /* JADX INFO: renamed from: m, reason: from getter */
-    public final EmbedVideo getVideo() {
-        return this.video;
+    /* JADX INFO: renamed from: d */
+    public final List<EmbedField> m8101d() {
+        return this.fields;
     }
 
     public String toString() {

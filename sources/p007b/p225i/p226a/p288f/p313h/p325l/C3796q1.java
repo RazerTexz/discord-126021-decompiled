@@ -6,13 +6,13 @@ import com.discord.widgets.chat.input.MentionUtilsKt;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3796q1 extends AbstractC3851u4<C3796q1, b> implements InterfaceC3626d6 {
-    private static final C3796q1 zzk;
-    private static volatile InterfaceC3710j6<C3796q1> zzl;
     private int zzc;
     private int zzd;
     private boolean zzf;
     private long zzg;
     private double zzh;
+    private static final C3796q1 zzk;
+    private static volatile InterfaceC3710j6<C3796q1> zzl;
     private String zze = "";
     private InterfaceC3597b5<C3796q1> zzi = C3749m6.f10094k;
     private String zzj = "";
@@ -46,7 +46,7 @@ public final class C3796q1 extends AbstractC3851u4<C3796q1, b> implements Interf
 
     /* JADX INFO: renamed from: b.i.a.f.h.l.q1$b */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
-    public static final class b extends AbstractC3851u4.b<C3796q1, b> implements InterfaceC3626d6 {
+    public final class b extends AbstractC3851u4.b<C3796q1, b> implements InterfaceC3626d6 {
         public b(C3809r1 c3809r1) {
             super(C3796q1.zzk);
         }

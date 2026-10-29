@@ -88,8 +88,94 @@ public final class WidgetServerSettingsMembers extends AppFragment {
     private final Subject<String, String> nameFilterPublisher;
     private final Subject<Long, Long> roleFilterPublisher;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$configureUI$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
-    public static final class Companion {
+    public final class C95902 extends AbstractC12240o implements Function2<Long, List<? extends Long>, Unit> {
+        public final /* synthetic */ WidgetServerSettingsMembersModel $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C95902(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) {
+            super(2);
+            this.$model = widgetServerSettingsMembersModel;
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, List<? extends Long> list) {
+            invoke(l.longValue(), (List<Long>) list);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, List<Long> list) {
+            C12238m.checkNotNullParameter(list, "userRoles");
+            boolean z2 = j == this.$model.getMeUser().getId();
+            if (this.$model.getGuild().getOwnerId() == j && !z2) {
+                C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_is_owner, 0, 4);
+                return;
+            }
+            GuildRole highestRole = RoleUtils.getHighestRole(this.$model.getRoles(), list);
+            if (!RoleUtils.rankIsHigher(this.$model.getMyHighestRole(), highestRole) && !this.$model.getGuild().isOwner(this.$model.getMeUser().getId()) && !z2) {
+                if (RoleUtils.rankEquals(this.$model.getMyHighestRole(), highestRole)) {
+                    C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_same_rank, 0, 4);
+                    return;
+                } else {
+                    C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_higher_rank, 0, 4);
+                    return;
+                }
+            }
+            WidgetServerSettingsEditMember.Companion companion = WidgetServerSettingsEditMember.INSTANCE;
+            long id2 = this.$model.getGuild().getId();
+            WidgetServerSettingsMembersBinding binding = WidgetServerSettingsMembers.this.getBinding();
+            C12238m.checkNotNullExpressionValue(binding, "binding");
+            CoordinatorLayout coordinatorLayout = binding.f17708a;
+            C12238m.checkNotNullExpressionValue(coordinatorLayout, "binding.root");
+            Context context = coordinatorLayout.getContext();
+            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
+            companion.launch(id2, j, context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
+    public final class C95922 extends AbstractC12240o implements Function1<String, Unit> {
+        public C95922() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullExpressionValue(str, "filterString");
+            Long longOrNull = C12102s.toLongOrNull(str);
+            StoreGatewayConnection.requestGuildMembers$default(StoreStream.INSTANCE.getGatewaySocket(), WidgetServerSettingsMembers.this.getGuildId(), str, longOrNull != null ? C12145m.listOf(Long.valueOf(longOrNull.longValue())) : null, null, 8, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$onViewBoundOrOnResume$3 */
+    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
+    public final class C95933 extends AbstractC12240o implements Function1<WidgetServerSettingsMembersModel, Unit> {
+        public C95933() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) throws Exception {
+            invoke2(widgetServerSettingsMembersModel);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) throws Exception {
+            WidgetServerSettingsMembers.this.configureUI(widgetServerSettingsMembersModel);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -107,7 +193,7 @@ public final class WidgetServerSettingsMembers extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
-    public static final class RolesSpinnerAdapter extends ArrayAdapter<GuildRole> {
+    public final class RolesSpinnerAdapter extends ArrayAdapter<GuildRole> {
         private final ArrayList<GuildRole> roles;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -188,92 +274,6 @@ public final class WidgetServerSettingsMembers extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$configureUI$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
-    public static final class C95902 extends AbstractC12240o implements Function2<Long, List<? extends Long>, Unit> {
-        public final /* synthetic */ WidgetServerSettingsMembersModel $model;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C95902(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) {
-            super(2);
-            this.$model = widgetServerSettingsMembersModel;
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, List<? extends Long> list) {
-            invoke(l.longValue(), (List<Long>) list);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, List<Long> list) {
-            C12238m.checkNotNullParameter(list, "userRoles");
-            boolean z2 = j == this.$model.getMeUser().getId();
-            if (this.$model.getGuild().getOwnerId() == j && !z2) {
-                C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_is_owner, 0, 4);
-                return;
-            }
-            GuildRole highestRole = RoleUtils.getHighestRole(this.$model.getRoles(), list);
-            if (!RoleUtils.rankIsHigher(this.$model.getMyHighestRole(), highestRole) && !this.$model.getGuild().isOwner(this.$model.getMeUser().getId()) && !z2) {
-                if (RoleUtils.rankEquals(this.$model.getMyHighestRole(), highestRole)) {
-                    C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_same_rank, 0, 4);
-                    return;
-                } else {
-                    C0876m.m171i(WidgetServerSettingsMembers.this, C5419R.string.cannot_manage_higher_rank, 0, 4);
-                    return;
-                }
-            }
-            WidgetServerSettingsEditMember.Companion companion = WidgetServerSettingsEditMember.INSTANCE;
-            long id2 = this.$model.getGuild().getId();
-            WidgetServerSettingsMembersBinding binding = WidgetServerSettingsMembers.this.getBinding();
-            C12238m.checkNotNullExpressionValue(binding, "binding");
-            CoordinatorLayout coordinatorLayout = binding.f17708a;
-            C12238m.checkNotNullExpressionValue(coordinatorLayout, "binding.root");
-            Context context = coordinatorLayout.getContext();
-            C12238m.checkNotNullExpressionValue(context, "binding.root.context");
-            companion.launch(id2, j, context);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
-    public static final class C95922 extends AbstractC12240o implements Function1<String, Unit> {
-        public C95922() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullExpressionValue(str, "filterString");
-            Long longOrNull = C12102s.toLongOrNull(str);
-            StoreGatewayConnection.requestGuildMembers$default(StoreStream.INSTANCE.getGatewaySocket(), WidgetServerSettingsMembers.this.getGuildId(), str, longOrNull != null ? C12145m.listOf(Long.valueOf(longOrNull.longValue())) : null, null, 8, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers$onViewBoundOrOnResume$3 */
-    /* JADX INFO: compiled from: WidgetServerSettingsMembers.kt */
-    public static final class C95933 extends AbstractC12240o implements Function1<WidgetServerSettingsMembersModel, Unit> {
-        public C95933() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) throws Exception {
-            invoke2(widgetServerSettingsMembersModel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetServerSettingsMembersModel widgetServerSettingsMembersModel) throws Exception {
-            WidgetServerSettingsMembers.this.configureUI(widgetServerSettingsMembersModel);
-        }
-    }
-
     public WidgetServerSettingsMembers() {
         super(C5419R.layout.widget_server_settings_members);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsMembers$binding$2.INSTANCE, null, 2, null);
@@ -333,34 +333,6 @@ public final class WidgetServerSettingsMembers extends AppFragment {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
-    private final void setupRolesSpinner(long everyoneRoleId, Map<Long, GuildRole> guildRoles) {
-        ArrayList arrayList = new ArrayList(guildRoles.size());
-        for (GuildRole guildRole : guildRoles.values()) {
-            if (guildRole.getId() != everyoneRoleId) {
-                arrayList.add(guildRole);
-            } else {
-                arrayList.add(0, guildRole);
-            }
-        }
-        final RolesSpinnerAdapter rolesSpinnerAdapter = new RolesSpinnerAdapter(requireContext(), arrayList);
-        Spinner spinner = getBinding().f17711d;
-        C12238m.checkNotNullExpressionValue(spinner, "binding.serverSettingsMembersRolesSpinner");
-        spinner.setAdapter((SpinnerAdapter) rolesSpinnerAdapter);
-        Spinner spinner2 = getBinding().f17711d;
-        C12238m.checkNotNullExpressionValue(spinner2, "binding.serverSettingsMembersRolesSpinner");
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers.setupRolesSpinner.1
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
-                C12238m.checkNotNullParameter(view, "view");
-                WidgetServerSettingsMembers.this.roleFilterPublisher.onNext(Long.valueOf(rolesSpinnerAdapter.getItem(position).getId()));
-            }
-
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
@@ -405,5 +377,33 @@ public final class WidgetServerSettingsMembers extends AppFragment {
         C12238m.checkNotNullExpressionValue(observableM11110p, "nameFilterPublisher\n    …0, TimeUnit.MILLISECONDS)");
         ObservableExtensionsKt.appSubscribe(observableM11110p, (Class<?>) WidgetServerSettingsMembers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95922());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(WidgetServerSettingsMembersModel.INSTANCE.get(getGuildId(), this.nameFilterPublisher, this.roleFilterPublisher), this, null, 2, null), (Class<?>) WidgetServerSettingsMembers.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C95933());
+    }
+
+    private final void setupRolesSpinner(long everyoneRoleId, Map<Long, GuildRole> guildRoles) {
+        ArrayList arrayList = new ArrayList(guildRoles.size());
+        for (GuildRole guildRole : guildRoles.values()) {
+            if (guildRole.getId() != everyoneRoleId) {
+                arrayList.add(guildRole);
+            } else {
+                arrayList.add(0, guildRole);
+            }
+        }
+        final RolesSpinnerAdapter rolesSpinnerAdapter = new RolesSpinnerAdapter(requireContext(), arrayList);
+        Spinner spinner = getBinding().f17711d;
+        C12238m.checkNotNullExpressionValue(spinner, "binding.serverSettingsMembersRolesSpinner");
+        spinner.setAdapter((SpinnerAdapter) rolesSpinnerAdapter);
+        Spinner spinner2 = getBinding().f17711d;
+        C12238m.checkNotNullExpressionValue(spinner2, "binding.serverSettingsMembersRolesSpinner");
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // from class: com.discord.widgets.servers.settings.members.WidgetServerSettingsMembers.setupRolesSpinner.1
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id2) {
+                C12238m.checkNotNullParameter(view, "view");
+                WidgetServerSettingsMembers.this.roleFilterPublisher.onNext(Long.valueOf(rolesSpinnerAdapter.getItem(position).getId()));
+            }
+
+            @Override // android.widget.AdapterView.OnItemSelectedListener
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 }

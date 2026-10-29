@@ -10,11 +10,11 @@ public final class C11671d {
     /* JADX INFO: renamed from: a */
     public static final C11671d f23704a = new C11671d();
 
-    /* JADX INFO: renamed from: b */
-    public static final C11703b.b f23705b = C11703b.d.booleanFirst();
-
     /* JADX INFO: renamed from: c */
     public static final C11703b.b f23706c;
+
+    /* JADX INFO: renamed from: b */
+    public static final C11703b.b f23705b = C11703b.d.booleanFirst();
 
     static {
         C11703b.b bVarBooleanFirst = C11703b.d.booleanFirst();

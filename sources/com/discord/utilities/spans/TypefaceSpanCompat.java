@@ -13,7 +13,7 @@ public final class TypefaceSpanCompat extends MetricAffectingSpan {
     private final Typeface typeface;
 
     /* JADX INFO: compiled from: TypefaceSpanCompat.kt */
-    public static final class Monospace extends TypefaceSpan {
+    public final class Monospace extends TypefaceSpan {
         public Monospace() {
             super("monospace");
         }

@@ -17,14 +17,14 @@ public interface InterfaceC3169a extends IInterface {
 
     /* JADX INFO: renamed from: b.i.a.d.a.a$a */
     /* JADX INFO: compiled from: IGetInstallReferrerService.java */
-    public static abstract class a extends BinderC2404b implements InterfaceC3169a {
+    public abstract class a extends BinderC2404b implements InterfaceC3169a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int f9162a = 0;
 
         /* JADX INFO: renamed from: b.i.a.d.a.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: IGetInstallReferrerService.java */
-        public static class C13227a extends C2403a implements InterfaceC3169a {
+        public class C13227a extends C2403a implements InterfaceC3169a {
             public C13227a(IBinder iBinder) {
                 super(iBinder);
             }

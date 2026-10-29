@@ -27,16 +27,6 @@ public final class C11414g implements InterfaceC11653n {
         this.f23019b = new C11854d();
     }
 
-    /* JADX INFO: renamed from: a */
-    public final InterfaceC11653n.a m9435a(String str) {
-        C11413f c11413fCreate;
-        Class<?> clsTryLoadClass = C11412e.tryLoadClass(this.f23018a, str);
-        if (clsTryLoadClass == null || (c11413fCreate = C11413f.f23015a.create(clsTryLoadClass)) == null) {
-            return null;
-        }
-        return new InterfaceC11653n.a.b(c11413fCreate, null, 2, null);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.InterfaceC11883s
     public InputStream findBuiltInsData(C11713b c11713b) {
         C12238m.checkNotNullParameter(c11713b, "packageFqName");
@@ -50,6 +40,16 @@ public final class C11414g implements InterfaceC11653n {
     public InterfaceC11653n.a findKotlinClassOrContent(C11712a c11712a) {
         C12238m.checkNotNullParameter(c11712a, "classId");
         return m9435a(C11415h.access$toRuntimeFqName(c11712a));
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final InterfaceC11653n.a m9435a(String str) {
+        C11413f c11413fCreate;
+        Class<?> clsTryLoadClass = C11412e.tryLoadClass(this.f23018a, str);
+        if (clsTryLoadClass == null || (c11413fCreate = C11413f.f23015a.create(clsTryLoadClass)) == null) {
+            return null;
+        }
+        return new InterfaceC11653n.a.b(c11413fCreate, null, 2, null);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p531e.p541b.InterfaceC11653n

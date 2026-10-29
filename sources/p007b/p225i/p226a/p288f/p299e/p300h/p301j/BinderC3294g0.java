@@ -23,9 +23,6 @@ import p007b.p225i.p226a.p288f.p337l.p338b.BinderC4339d;
 /* JADX INFO: loaded from: classes3.dex */
 public final class BinderC3294g0 extends BinderC4339d implements AbstractC3268c.a, AbstractC3268c.b {
 
-    /* JADX INFO: renamed from: a */
-    public static C3266a.a<? extends InterfaceC4349f, C4335a> f9413a = C4346c.f11456c;
-
     /* JADX INFO: renamed from: b */
     public final Context f9414b;
 
@@ -47,6 +44,9 @@ public final class BinderC3294g0 extends BinderC4339d implements AbstractC3268c.
     /* JADX INFO: renamed from: h */
     public InterfaceC3296h0 f9420h;
 
+    /* JADX INFO: renamed from: a */
+    public static C3266a.a<? extends InterfaceC4349f, C4335a> f9413a = C4346c.f11456c;
+
     @WorkerThread
     public BinderC3294g0(Context context, Handler handler, @NonNull C3347c c3347c) {
         C3266a.a<? extends InterfaceC4349f, C4335a> aVar = f9413a;
@@ -65,17 +65,17 @@ public final class BinderC3294g0 extends BinderC4339d implements AbstractC3268c.
         this.f9419g.mo4036h();
     }
 
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3303l
-    @WorkerThread
-    /* JADX INFO: renamed from: g */
-    public final void mo4087g(@NonNull ConnectionResult connectionResult) {
-        ((C3293g.b) this.f9420h).m4104b(connectionResult);
-    }
-
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3290f
     @WorkerThread
     /* JADX INFO: renamed from: i */
     public final void mo4077i(@Nullable Bundle bundle) {
         this.f9419g.mo5998d(this);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3303l
+    @WorkerThread
+    /* JADX INFO: renamed from: g */
+    public final void mo4087g(@NonNull ConnectionResult connectionResult) {
+        ((C3293g.b) this.f9420h).m4104b(connectionResult);
     }
 }

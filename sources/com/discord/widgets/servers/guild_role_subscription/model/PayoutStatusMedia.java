@@ -25,16 +25,6 @@ public final /* data */ class PayoutStatusMedia {
         return payoutStatusMedia.copy(i, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getIconDrawableRes() {
-        return this.iconDrawableRes;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getStatusStringRes() {
-        return this.statusStringRes;
-    }
-
     public final PayoutStatusMedia copy(@DrawableRes int iconDrawableRes, @StringRes int statusStringRes) {
         return new PayoutStatusMedia(iconDrawableRes, statusStringRes);
     }
@@ -50,8 +40,18 @@ public final /* data */ class PayoutStatusMedia {
         return this.iconDrawableRes == payoutStatusMedia.iconDrawableRes && this.statusStringRes == payoutStatusMedia.statusStringRes;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getIconDrawableRes() {
         return this.iconDrawableRes;
+    }
+
+    public final int getIconDrawableRes() {
+        return this.iconDrawableRes;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getStatusStringRes() {
+        return this.statusStringRes;
     }
 
     public final int getStatusStringRes() {

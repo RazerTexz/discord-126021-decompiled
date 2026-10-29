@@ -12,18 +12,18 @@ public final /* data */ class UtcDateTime implements Comparable<UtcDateTime> {
         this.dateTimeMillis = j;
     }
 
-    public boolean equals(Object other) {
-        if (this != other) {
-            return (other instanceof UtcDateTime) && this.dateTimeMillis == ((UtcDateTime) other).dateTimeMillis;
-        }
-        return true;
-    }
-
     @Override // java.lang.Comparable
     /* JADX INFO: renamed from: f, reason: merged with bridge method [inline-methods] */
     public int compareTo(UtcDateTime other) {
         C12238m.checkNotNullParameter(other, "other");
         return (this.dateTimeMillis > other.dateTimeMillis ? 1 : (this.dateTimeMillis == other.dateTimeMillis ? 0 : -1));
+    }
+
+    public boolean equals(Object other) {
+        if (this != other) {
+            return (other instanceof UtcDateTime) && this.dateTimeMillis == ((UtcDateTime) other).dateTimeMillis;
+        }
+        return true;
     }
 
     /* JADX INFO: renamed from: g, reason: from getter */

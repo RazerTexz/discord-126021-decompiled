@@ -26,19 +26,24 @@ public final class C12652n1<T> implements Observable.InterfaceC13006b<T, T> {
 
     /* JADX INFO: renamed from: j0.l.a.n1$a */
     /* JADX INFO: compiled from: OperatorSampleWithTime.java */
-    public static final class a<T> extends Subscriber<T> implements Action0 {
-
-        /* JADX INFO: renamed from: j */
-        public static final Object f26951j = new Object();
+    public final class a<T> extends Subscriber<T> implements Action0 {
 
         /* JADX INFO: renamed from: k */
         public final Subscriber<? super T> f26952k;
+
+        /* JADX INFO: renamed from: j */
+        public static final Object f26951j = new Object();
 
         /* JADX INFO: renamed from: l */
         public final AtomicReference<Object> f26953l = new AtomicReference<>(f26951j);
 
         public a(Subscriber<? super T> subscriber) {
             this.f26952k = subscriber;
+        }
+
+        @Override // p658rx.functions.Action0
+        public void call() {
+            m10775a();
         }
 
         /* JADX INFO: renamed from: a */
@@ -54,11 +59,6 @@ public final class C12652n1<T> implements Observable.InterfaceC13006b<T, T> {
                     onError(th);
                 }
             }
-        }
-
-        @Override // p658rx.functions.Action0
-        public void call() {
-            m10775a();
         }
 
         @Override // p637j0.InterfaceC12581g

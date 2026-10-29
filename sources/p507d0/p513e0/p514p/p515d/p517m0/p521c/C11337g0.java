@@ -21,7 +21,7 @@ public final class C11337g0 implements InterfaceC11360i0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g0$a */
     /* JADX INFO: compiled from: PackageFragmentProviderImpl.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11331e0, C11713b> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11331e0, C11713b> {
 
         /* JADX INFO: renamed from: j */
         public static final a f22715j = new a();
@@ -39,7 +39,7 @@ public final class C11337g0 implements InterfaceC11360i0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g0$b */
     /* JADX INFO: compiled from: PackageFragmentProviderImpl.kt */
-    public static final class b extends AbstractC12240o implements Function1<C11713b, Boolean> {
+    public final class b extends AbstractC12240o implements Function1<C11713b, Boolean> {
         public final /* synthetic */ C11713b $fqName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -105,10 +105,10 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
     public static final String COMMAND_DISCOVER_TOKEN = "/";
+    public static final int DEFAULT_PLACEHOLDER_COUNT = 3;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    public static final int DEFAULT_PLACEHOLDER_COUNT = 3;
     private final BehaviorSubject<AutocompleteInputSelectionModel> autocompleteInputSelectionModelSubject;
     private final Long channelId;
     private final Map<ApplicationCommandOption, Attachment<?>> commandAttachments;
@@ -133,7 +133,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel$11 */
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final class C776511 extends AbstractC12240o implements Function1<Pair<? extends ApplicationCommandOption, ? extends String>, Unit> {
+    public final class C776511 extends AbstractC12240o implements Function1<Pair<? extends ApplicationCommandOption, ? extends String>, Unit> {
         public C776511() {
             super(1);
         }
@@ -152,7 +152,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel$2 */
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* synthetic */ class C77672 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C77672 extends C12236k implements Function1<StoreState, Unit> {
         public C77672(AutocompleteViewModel autocompleteViewModel) {
             super(1, autocompleteViewModel, AutocompleteViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/autocomplete/AutocompleteViewModel$StoreState;)V", 0);
         }
@@ -172,7 +172,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel$5 */
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* synthetic */ class C77705 extends C12236k implements Function1<InputSelectionModel, Unit> {
+    public final /* synthetic */ class C77705 extends C12236k implements Function1<InputSelectionModel, Unit> {
         public C77705(AutocompleteViewModel autocompleteViewModel) {
             super(1, autocompleteViewModel, AutocompleteViewModel.class, "handleInputSelectionModel", "handleInputSelectionModel(Lcom/discord/widgets/chat/input/models/InputSelectionModel;)V", 0);
         }
@@ -192,7 +192,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel$7 */
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* synthetic */ class C77727 extends C12236k implements Function1<AutocompleteInputSelectionModel, Unit> {
+    public final /* synthetic */ class C77727 extends C12236k implements Function1<AutocompleteInputSelectionModel, Unit> {
         public C77727(AutocompleteViewModel autocompleteViewModel) {
             super(1, autocompleteViewModel, AutocompleteViewModel.class, "handleAutocompleteInputSelectionModel", "handleAutocompleteInputSelectionModel(Lcom/discord/widgets/chat/input/models/AutocompleteInputSelectionModel;)V", 0);
         }
@@ -211,7 +211,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -268,7 +268,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class InputState {
+    public final /* data */ class InputState {
         private Map<Long, Integer> applicationsPosition;
         private final CharSequence currentInput;
         private final Map<IntRange, Autocompletable> inputAutocompleteMap;
@@ -289,6 +289,14 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             this.applicationsPosition = map;
             this.showErrorForOption = applicationCommandOption;
             this.inputAutocompleteMap = map2;
+        }
+
+        public final Map<Long, Integer> component3() {
+            return this.applicationsPosition;
+        }
+
+        public final Map<IntRange, Autocompletable> component5() {
+            return this.inputAutocompleteMap;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -314,29 +322,6 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return inputState.copy(charSequence, applicationCommand2, map3, applicationCommandOption2, map2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getCurrentInput() {
-            return this.currentInput;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ApplicationCommand getSelectedCommand() {
-            return this.selectedCommand;
-        }
-
-        public final Map<Long, Integer> component3() {
-            return this.applicationsPosition;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final ApplicationCommandOption getShowErrorForOption() {
-            return this.showErrorForOption;
-        }
-
-        public final Map<IntRange, Autocompletable> component5() {
-            return this.inputAutocompleteMap;
-        }
-
         public final InputState copy(CharSequence currentInput, ApplicationCommand selectedCommand, Map<Long, Integer> applicationsPosition, ApplicationCommandOption showErrorForOption, Map<IntRange, ? extends Autocompletable> inputAutocompleteMap) {
             C12238m.checkNotNullParameter(currentInput, "currentInput");
             C12238m.checkNotNullParameter(applicationsPosition, "applicationsPosition");
@@ -359,6 +344,11 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return this.applicationsPosition;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getCurrentInput() {
+            return this.currentInput;
+        }
+
         public final CharSequence getCurrentInput() {
             return this.currentInput;
         }
@@ -367,8 +357,18 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return this.inputAutocompleteMap;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ApplicationCommand getSelectedCommand() {
             return this.selectedCommand;
+        }
+
+        public final ApplicationCommand getSelectedCommand() {
+            return this.selectedCommand;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final ApplicationCommandOption getShowErrorForOption() {
+            return this.showErrorForOption;
         }
 
         public final ApplicationCommandOption getShowErrorForOption() {
@@ -412,7 +412,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class SelectionState {
+    public final /* data */ class SelectionState {
         private final String input;
         private final IntRange selection;
 
@@ -433,16 +433,6 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return selectionState.copy(str, intRange);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getInput() {
-            return this.input;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final IntRange getSelection() {
-            return this.selection;
-        }
-
         public final SelectionState copy(String input, IntRange selection) {
             C12238m.checkNotNullParameter(input, "input");
             C12238m.checkNotNullParameter(selection, "selection");
@@ -460,8 +450,18 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return C12238m.areEqual(this.input, selectionState.input) && C12238m.areEqual(this.selection, selectionState.selection);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getInput() {
             return this.input;
+        }
+
+        public final String getInput() {
+            return this.input;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final IntRange getSelection() {
+            return this.selection;
         }
 
         public final IntRange getSelection() {
@@ -486,7 +486,7 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
     }
 
     /* JADX INFO: compiled from: AutocompleteViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final List<Application> applications;
         private final Map<LeadingIdentifier, Set<Autocompletable>> autocompletables;
         private final WidgetChatInputDiscoveryCommandsModel browserCommands;
@@ -520,22 +520,12 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             this.frecencyCommands = list5;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
         public final List<ApplicationCommand> component10() {
             return this.frecencyCommands;
         }
 
         public final List<Long> component2() {
             return this.userRoles;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
         }
 
         public final List<ApplicationCommand> component4() {
@@ -552,11 +542,6 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
         public final Map<LeadingIdentifier, Set<Autocompletable>> component7() {
             return this.autocompletables;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final WidgetChatInputDiscoveryCommandsModel getBrowserCommands() {
-            return this.browserCommands;
         }
 
         public final List<String> component9() {
@@ -594,8 +579,18 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return this.autocompletables;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final WidgetChatInputDiscoveryCommandsModel getBrowserCommands() {
             return this.browserCommands;
+        }
+
+        public final WidgetChatInputDiscoveryCommandsModel getBrowserCommands() {
+            return this.browserCommands;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
@@ -616,6 +611,11 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
         public final List<ApplicationCommand> getQueriedCommands() {
             return this.queriedCommands;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserId() {
+            return this.userId;
         }
 
         public final long getUserId() {
@@ -730,6 +730,25 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
         return new InputEditTextAction.ReplacePillSpans(model.getInput(), linkedHashMap);
     }
 
+    public final void checkEmojiAutocompleteUpsellViewed(List<? extends Autocompletable> visibleItems) {
+        Autocompletable autocompletablePrevious;
+        C12238m.checkNotNullParameter(visibleItems, "visibleItems");
+        if (this.emojiAutocompleteUpsellEnabled && this.logEmojiAutocompleteUpsellViewed) {
+            ListIterator<? extends Autocompletable> listIterator = visibleItems.listIterator(visibleItems.size());
+            do {
+                if (!listIterator.hasPrevious()) {
+                    autocompletablePrevious = null;
+                    break;
+                }
+                autocompletablePrevious = listIterator.previous();
+            } while (!(autocompletablePrevious instanceof EmojiUpsellPlaceholder));
+            if (autocompletablePrevious != null) {
+                this.logEmojiAutocompleteUpsellViewed = false;
+                StoreStream.INSTANCE.getAnalytics().emojiAutocompleteUpsellInlineViewed();
+            }
+        }
+    }
+
     private final void checkForCommandsToQuery(CharSequence input, CharSequence previousInput, Channel channel) {
         AutocompleteCommandUtils autocompleteCommandUtils = AutocompleteCommandUtils.INSTANCE;
         String commandPrefix = autocompleteCommandUtils.getCommandPrefix(input);
@@ -782,11 +801,52 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
         return new InputEditTextAction.ReplaceCharacterStyleSpans(model.getInput(), linkedHashMap);
     }
 
+    @MainThread
+    public final AutocompleteViewState getApplicationCommandsBrowserViewState() {
+        Experiment userExperiment;
+        StoreState storeState = this.storeState;
+        if (storeState == null || storeState.getBrowserCommands() == null) {
+            return AutocompleteViewState.Hidden.INSTANCE;
+        }
+        boolean z2 = (storeState.getFrecencyCommands().isEmpty() ^ true) && (userExperiment = this.storeExperiments.getUserExperiment("2021-09_android_app_commands_frecency", true)) != null && userExperiment.getBucket() == 1;
+        List<ApplicationCommand> frecencyCommands = z2 ? storeState.getFrecencyCommands() : C12147n.emptyList();
+        List<Application> applications = storeState.getApplications();
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : applications) {
+            Application application = (Application) obj;
+            if (application.getCommandCount() > 0 || (z2 && application.getId() == -2 && (storeState.getFrecencyCommands().isEmpty() ^ true))) {
+                arrayList.add(obj);
+            }
+        }
+        return new AutocompleteViewState.CommandBrowser(frecencyCommands, arrayList, storeState.getBrowserCommands());
+    }
+
     public static /* synthetic */ ApplicationCommandData getApplicationSendData$default(AutocompleteViewModel autocompleteViewModel, ApplicationCommandOption applicationCommandOption, int i, Object obj) {
         if ((i & 1) != 0) {
             applicationCommandOption = null;
         }
         return autocompleteViewModel.getApplicationSendData(applicationCommandOption);
+    }
+
+    public final ApplicationCommandData getApplicationSendData(ApplicationCommandOption focusedOption) {
+        AutocompleteModelUtils autocompleteModelUtils = AutocompleteModelUtils.INSTANCE;
+        AutocompleteInputSelectionModel autocompleteInputSelectionModel = this.lastAutocompleteInputSelectionModel;
+        StoreState storeState = this.storeState;
+        List<Application> applications = storeState != null ? storeState.getApplications() : null;
+        if (applications == null) {
+            applications = C12147n.emptyList();
+        }
+        List<Application> list = applications;
+        StoreState storeState2 = this.storeState;
+        List<ApplicationCommand> queriedCommands = storeState2 != null ? storeState2.getQueriedCommands() : null;
+        return autocompleteModelUtils.getApplicationSendData(autocompleteInputSelectionModel, focusedOption, list, queriedCommands != null ? queriedCommands : C12147n.emptyList(), this.commandAttachments);
+    }
+
+    public static /* synthetic */ AutocompleteViewState getAutocompleteViewState$default(AutocompleteViewModel autocompleteViewModel, String str, List list, List list2, boolean z2, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z2 = false;
+        }
+        return autocompleteViewModel.getAutocompleteViewState(str, list, list2, z2);
     }
 
     private final AutocompleteViewState getAutocompleteViewState(String token, List<? extends Autocompletable> autocompletables, List<AutocompleteStickerItem> stickers, boolean isAutocompletable) {
@@ -815,13 +875,6 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
         return (isAutocompletable || (mutableList.isEmpty() ^ true) || (stickers.isEmpty() ^ true)) ? new AutocompleteViewState.Autocomplete(false, false, isAutocompletable, mutableList, stickers, token, 2, null) : AutocompleteViewState.Hidden.INSTANCE;
     }
 
-    public static /* synthetic */ AutocompleteViewState getAutocompleteViewState$default(AutocompleteViewModel autocompleteViewModel, String str, List list, List list2, boolean z2, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z2 = false;
-        }
-        return autocompleteViewModel.getAutocompleteViewState(str, list, list2, z2);
-    }
-
     private final User getChannelBot(Channel channel) {
         User userM7677a = ChannelUtils.m7677a(channel);
         if (userM7677a == null) {
@@ -831,6 +884,68 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             userM7677a = null;
         }
         return userM7677a;
+    }
+
+    public final Long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Map<ApplicationCommandOption, Attachment<?>> getCommandAttachments() {
+        return C12272c.m10116A(this.commandAttachments);
+    }
+
+    @MainThread
+    public final Map<Long, Integer> getCommandBrowserCommandPositions(WidgetChatInputDiscoveryCommandsModel discoveryCommands) {
+        C12238m.checkNotNullParameter(discoveryCommands, "discoveryCommands");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        int size = 0;
+        for (Pair<Application, List<Autocompletable>> pair : discoveryCommands.getCommandsByApplication()) {
+            Application applicationComponent1 = pair.component1();
+            List<Autocompletable> listComponent2 = pair.component2();
+            Iterator<Autocompletable> it = listComponent2.iterator();
+            int i = 0;
+            while (true) {
+                if (!it.hasNext()) {
+                    i = -1;
+                    break;
+                }
+                if (!(it.next() instanceof ApplicationCommandLoadingPlaceholder)) {
+                    break;
+                }
+                i++;
+            }
+            linkedHashMap.put(Long.valueOf(applicationComponent1.getId()), Integer.valueOf(C11226f.coerceAtLeast(i, 0) + size));
+            size += listComponent2.size();
+        }
+        return linkedHashMap;
+    }
+
+    public final int getCommandOptionErrorColor() {
+        return this.commandOptionErrorColor;
+    }
+
+    public final int getDefaultCommandOptionBackgroundColor() {
+        return this.defaultCommandOptionBackgroundColor;
+    }
+
+    public final int getDefaultMentionColor() {
+        return this.defaultMentionColor;
+    }
+
+    public final boolean getEmojiAutocompleteUpsellEnabled() {
+        return this.emojiAutocompleteUpsellEnabled;
+    }
+
+    public final AppFlexInputViewModel getFlexInputViewModel() {
+        return this.flexInputViewModel;
+    }
+
+    public final InputState getInputState() {
+        return this.inputState;
+    }
+
+    public final int getLastJumpedSequenceId() {
+        return this.lastJumpedSequenceId;
     }
 
     private final SelectedCommandViewState getSelectedCommandViewState(AutocompleteInputSelectionModel model) {
@@ -844,6 +959,14 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             return SelectedCommandViewState.Hidden.INSTANCE;
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    public final StoreApplicationCommands getStoreApplicationCommands() {
+        return this.storeApplicationCommands;
+    }
+
+    public final StoreState getStoreState() {
+        return this.storeState;
     }
 
     @MainThread
@@ -1125,254 +1248,6 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
         return null;
     }
 
-    private final void onCommandCleared() {
-        this.commandAttachments.clear();
-        this.flexInputViewModel.onAttachmentsUpdated(C12147n.emptyList());
-    }
-
-    private final void onNewCommandSelected(ApplicationCommand newSelectedCommand) {
-        this.commandAttachments.clear();
-        this.flexInputViewModel.onAttachmentsUpdated(C12147n.emptyList());
-        StoreStream.Companion companion = StoreStream.INSTANCE;
-        StoreAnalytics analytics = companion.getAnalytics();
-        long id2 = companion.getChannelsSelected().getId();
-        long applicationId = newSelectedCommand.getApplicationId();
-        Long longOrNull = C12102s.toLongOrNull(newSelectedCommand.getId());
-        analytics.trackApplicationCommandSelected(id2, applicationId, longOrNull != null ? longOrNull.longValue() : 0L);
-    }
-
-    @MainThread
-    private final InputEditTextAction onPreAutocompleteCompute(CharSequence input) {
-        return replacementSpanCommandParamDeletion(input);
-    }
-
-    @MainThread
-    private final void queryCommandsFromCommandPrefixToken(String commandPrefix, Channel channel) {
-        User channelBot = getChannelBot(channel);
-        Long lValueOf = channelBot != null ? Long.valueOf(channelBot.getId()) : null;
-        long guildId = channel.getGuildId();
-        if (commandPrefix.length() <= 1 && lValueOf == null) {
-            this.storeApplicationCommands.clearQueryCommands();
-        }
-        if (commandPrefix.length() == 1) {
-            this.storeApplicationCommands.requestInitialApplicationCommands(Long.valueOf(guildId), lValueOf, true);
-            return;
-        }
-        if (commandPrefix.length() <= 1 || lValueOf != null) {
-            return;
-        }
-        StoreApplicationCommands storeApplicationCommands = this.storeApplicationCommands;
-        Long lValueOf2 = Long.valueOf(guildId);
-        String strSubstring = commandPrefix.substring(1);
-        C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
-        storeApplicationCommands.requestApplicationCommandsQuery(lValueOf2, strSubstring);
-    }
-
-    private final void removeAttachment(ApplicationCommandOption commandOption) {
-        MentionInputModel inputModel;
-        CharSequence input;
-        InputSelectionModel inputSelectionModel;
-        ApplicationCommand selectedCommand;
-        OptionRange optionRange;
-        Attachment<?> attachment = this.commandAttachments.get(commandOption);
-        if (attachment != null) {
-            this.commandAttachments.remove(commandOption);
-            this.flexInputViewModel.removeAttachment(attachment);
-            InputSelectionModel inputSelectionModel2 = this.lastChatInputModel;
-            if (inputSelectionModel2 == null || (inputModel = inputSelectionModel2.getInputModel()) == null || (input = inputModel.getInput()) == null || (inputSelectionModel = this.lastChatInputModel) == null || (selectedCommand = InputSelectionModelKt.getSelectedCommand(inputSelectionModel)) == null || (optionRange = AutocompleteCommandUtils.INSTANCE.findOptionRanges(input, selectedCommand, this.commandAttachments).get(commandOption)) == null) {
-                return;
-            }
-            this.editTextAction.onNext(new InputEditTextAction.RemoveText(input, new IntRange(optionRange.getParam().getFirst(), optionRange.getValue().getLast()), optionRange.getParam().getFirst()));
-        }
-    }
-
-    @MainThread
-    private final InputEditTextAction replacementSpanCommandParamDeletion(CharSequence input) {
-        String string = input.toString();
-        SpannedString spannedStringValueOf = SpannedString.valueOf(input);
-        C12238m.checkNotNullExpressionValue(spannedStringValueOf, "valueOf(this)");
-        Object[] spans = spannedStringValueOf.getSpans(0, input.length(), SimpleRoundedBackgroundSpan.class);
-        C12238m.checkNotNullExpressionValue(spans, "getSpans(start, end, T::class.java)");
-        for (SimpleRoundedBackgroundSpan simpleRoundedBackgroundSpan : (SimpleRoundedBackgroundSpan[]) spans) {
-            IntRange intRange = new IntRange(spannedStringValueOf.getSpanStart(simpleRoundedBackgroundSpan), spannedStringValueOf.getSpanEnd(simpleRoundedBackgroundSpan));
-            Character orNull = C12108y.getOrNull(string, intRange.getLast());
-            boolean z2 = orNull != null && orNull.charValue() == ':';
-            int first = intRange.getFirst();
-            int last = intRange.getLast();
-            Objects.requireNonNull(string, "null cannot be cast to non-null type java.lang.String");
-            String strSubstring = string.substring(first, last);
-            C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-            if (simpleRoundedBackgroundSpan instanceof ApplicationCommandSpan) {
-                ApplicationCommandSpan applicationCommandSpan = (ApplicationCommandSpan) simpleRoundedBackgroundSpan;
-                if (applicationCommandSpan.getCommandOption().getType() == ApplicationCommandType.ATTACHMENT) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(applicationCommandSpan.getCommandOption().getName());
-                    sb.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
-                    Attachment<?> attachment = this.commandAttachments.get(applicationCommandSpan.getCommandOption());
-                    sb.append(attachment != null ? attachment.getDisplayName() : null);
-                    if (!C12106w.contains$default((CharSequence) strSubstring, (CharSequence) sb.toString(), false, 2, (Object) null)) {
-                        removeAttachment(applicationCommandSpan.getCommandOption());
-                        return new InputEditTextAction.RemoveText(string, new IntRange(intRange.getFirst(), intRange.getLast()), Math.min(intRange.getFirst() + 1, string.length() - (intRange.getLast() - intRange.getFirst())));
-                    }
-                }
-            }
-            if (!C12106w.contains$default((CharSequence) strSubstring, MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR, false, 2, (Object) null) && !z2) {
-                return new InputEditTextAction.RemoveText(string, new IntRange(intRange.getFirst(), intRange.getLast()), intRange.getFirst());
-            }
-        }
-        return new InputEditTextAction.None(input);
-    }
-
-    private final void selectAttachmentOption(ApplicationCommandOption applicationCommandsOption) {
-        Attachment<?> attachment = this.commandAttachments.get(applicationCommandsOption);
-        if (attachment != null) {
-            this.selectedOptionForAttachment = applicationCommandsOption;
-            this.events.onNext(new Event.PreviewAttachment(attachment));
-        } else {
-            this.selectedOptionForAttachment = applicationCommandsOption;
-            this.events.onNext(new Event.PickAttachment(applicationCommandsOption));
-        }
-    }
-
-    @MainThread
-    private final void selectFirstInvalidCommandOption() {
-        InputSelectionModel inputSelectionModel = this.lastChatInputModel;
-        MentionInputModel inputModel = inputSelectionModel != null ? inputSelectionModel.getInputModel() : null;
-        if (inputModel instanceof MentionInputModel.VerifiedCommandInputModel) {
-            Map<ApplicationCommandOption, Boolean> inputCommandOptionValidity = ((MentionInputModel.VerifiedCommandInputModel) inputModel).getInputCommandOptionValidity();
-            for (ApplicationCommandOption applicationCommandOption : inputCommandOptionValidity.keySet()) {
-                if (C12238m.areEqual(inputCommandOptionValidity.get(applicationCommandOption), Boolean.FALSE)) {
-                    this.inputState = InputState.copy$default(this.inputState, null, null, null, applicationCommandOption, null, 23, null);
-                    selectCommandOption(applicationCommandOption);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void checkEmojiAutocompleteUpsellViewed(List<? extends Autocompletable> visibleItems) {
-        Autocompletable autocompletablePrevious;
-        C12238m.checkNotNullParameter(visibleItems, "visibleItems");
-        if (this.emojiAutocompleteUpsellEnabled && this.logEmojiAutocompleteUpsellViewed) {
-            ListIterator<? extends Autocompletable> listIterator = visibleItems.listIterator(visibleItems.size());
-            do {
-                if (!listIterator.hasPrevious()) {
-                    autocompletablePrevious = null;
-                    break;
-                }
-                autocompletablePrevious = listIterator.previous();
-            } while (!(autocompletablePrevious instanceof EmojiUpsellPlaceholder));
-            if (autocompletablePrevious != null) {
-                this.logEmojiAutocompleteUpsellViewed = false;
-                StoreStream.INSTANCE.getAnalytics().emojiAutocompleteUpsellInlineViewed();
-            }
-        }
-    }
-
-    @MainThread
-    public final AutocompleteViewState getApplicationCommandsBrowserViewState() {
-        Experiment userExperiment;
-        StoreState storeState = this.storeState;
-        if (storeState == null || storeState.getBrowserCommands() == null) {
-            return AutocompleteViewState.Hidden.INSTANCE;
-        }
-        boolean z2 = (storeState.getFrecencyCommands().isEmpty() ^ true) && (userExperiment = this.storeExperiments.getUserExperiment("2021-09_android_app_commands_frecency", true)) != null && userExperiment.getBucket() == 1;
-        List<ApplicationCommand> frecencyCommands = z2 ? storeState.getFrecencyCommands() : C12147n.emptyList();
-        List<Application> applications = storeState.getApplications();
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : applications) {
-            Application application = (Application) obj;
-            if (application.getCommandCount() > 0 || (z2 && application.getId() == -2 && (storeState.getFrecencyCommands().isEmpty() ^ true))) {
-                arrayList.add(obj);
-            }
-        }
-        return new AutocompleteViewState.CommandBrowser(frecencyCommands, arrayList, storeState.getBrowserCommands());
-    }
-
-    public final ApplicationCommandData getApplicationSendData(ApplicationCommandOption focusedOption) {
-        AutocompleteModelUtils autocompleteModelUtils = AutocompleteModelUtils.INSTANCE;
-        AutocompleteInputSelectionModel autocompleteInputSelectionModel = this.lastAutocompleteInputSelectionModel;
-        StoreState storeState = this.storeState;
-        List<Application> applications = storeState != null ? storeState.getApplications() : null;
-        if (applications == null) {
-            applications = C12147n.emptyList();
-        }
-        List<Application> list = applications;
-        StoreState storeState2 = this.storeState;
-        List<ApplicationCommand> queriedCommands = storeState2 != null ? storeState2.getQueriedCommands() : null;
-        return autocompleteModelUtils.getApplicationSendData(autocompleteInputSelectionModel, focusedOption, list, queriedCommands != null ? queriedCommands : C12147n.emptyList(), this.commandAttachments);
-    }
-
-    public final Long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Map<ApplicationCommandOption, Attachment<?>> getCommandAttachments() {
-        return C12272c.m10116A(this.commandAttachments);
-    }
-
-    @MainThread
-    public final Map<Long, Integer> getCommandBrowserCommandPositions(WidgetChatInputDiscoveryCommandsModel discoveryCommands) {
-        C12238m.checkNotNullParameter(discoveryCommands, "discoveryCommands");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        int size = 0;
-        for (Pair<Application, List<Autocompletable>> pair : discoveryCommands.getCommandsByApplication()) {
-            Application applicationComponent1 = pair.component1();
-            List<Autocompletable> listComponent2 = pair.component2();
-            Iterator<Autocompletable> it = listComponent2.iterator();
-            int i = 0;
-            while (true) {
-                if (!it.hasNext()) {
-                    i = -1;
-                    break;
-                }
-                if (!(it.next() instanceof ApplicationCommandLoadingPlaceholder)) {
-                    break;
-                }
-                i++;
-            }
-            linkedHashMap.put(Long.valueOf(applicationComponent1.getId()), Integer.valueOf(C11226f.coerceAtLeast(i, 0) + size));
-            size += listComponent2.size();
-        }
-        return linkedHashMap;
-    }
-
-    public final int getCommandOptionErrorColor() {
-        return this.commandOptionErrorColor;
-    }
-
-    public final int getDefaultCommandOptionBackgroundColor() {
-        return this.defaultCommandOptionBackgroundColor;
-    }
-
-    public final int getDefaultMentionColor() {
-        return this.defaultMentionColor;
-    }
-
-    public final boolean getEmojiAutocompleteUpsellEnabled() {
-        return this.emojiAutocompleteUpsellEnabled;
-    }
-
-    public final AppFlexInputViewModel getFlexInputViewModel() {
-        return this.flexInputViewModel;
-    }
-
-    public final InputState getInputState() {
-        return this.inputState;
-    }
-
-    public final int getLastJumpedSequenceId() {
-        return this.lastJumpedSequenceId;
-    }
-
-    public final StoreApplicationCommands getStoreApplicationCommands() {
-        return this.storeApplicationCommands;
-    }
-
-    public final StoreState getStoreState() {
-        return this.storeState;
-    }
-
     public final Observable<InputEditTextAction> observeEditTextActions() {
         BehaviorSubject<InputEditTextAction> behaviorSubject = this.editTextAction;
         C12238m.checkNotNullExpressionValue(behaviorSubject, "editTextAction");
@@ -1424,6 +1299,11 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
 
     public final void onAutocompleteItemsUpdated() {
         this.logEmojiAutocompleteUpsellViewed = true;
+    }
+
+    private final void onCommandCleared() {
+        this.commandAttachments.clear();
+        this.flexInputViewModel.onAttachmentsUpdated(C12147n.emptyList());
     }
 
     public final void onCommandsBrowserScroll(int firstVisibleItemPosition, int lastVisibleItemPosition, int totalItems) {
@@ -1503,9 +1383,65 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
         return onDataUpdated(InputState.copy$default(inputState, spannableStringValueOf, null, null, null, null, 30, null), this.storeState);
     }
 
+    private final void onNewCommandSelected(ApplicationCommand newSelectedCommand) {
+        this.commandAttachments.clear();
+        this.flexInputViewModel.onAttachmentsUpdated(C12147n.emptyList());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StoreAnalytics analytics = companion.getAnalytics();
+        long id2 = companion.getChannelsSelected().getId();
+        long applicationId = newSelectedCommand.getApplicationId();
+        Long longOrNull = C12102s.toLongOrNull(newSelectedCommand.getId());
+        analytics.trackApplicationCommandSelected(id2, applicationId, longOrNull != null ? longOrNull.longValue() : 0L);
+    }
+
+    @MainThread
+    private final InputEditTextAction onPreAutocompleteCompute(CharSequence input) {
+        return replacementSpanCommandParamDeletion(input);
+    }
+
     public final void onSelectionChanged(String input, int start, int finish) {
         C12238m.checkNotNullParameter(input, "input");
         this.inputSelectionSubject.onNext(new SelectionState(input, new IntRange(start, finish)));
+    }
+
+    @MainThread
+    private final void queryCommandsFromCommandPrefixToken(String commandPrefix, Channel channel) {
+        User channelBot = getChannelBot(channel);
+        Long lValueOf = channelBot != null ? Long.valueOf(channelBot.getId()) : null;
+        long guildId = channel.getGuildId();
+        if (commandPrefix.length() <= 1 && lValueOf == null) {
+            this.storeApplicationCommands.clearQueryCommands();
+        }
+        if (commandPrefix.length() == 1) {
+            this.storeApplicationCommands.requestInitialApplicationCommands(Long.valueOf(guildId), lValueOf, true);
+            return;
+        }
+        if (commandPrefix.length() <= 1 || lValueOf != null) {
+            return;
+        }
+        StoreApplicationCommands storeApplicationCommands = this.storeApplicationCommands;
+        Long lValueOf2 = Long.valueOf(guildId);
+        String strSubstring = commandPrefix.substring(1);
+        C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
+        storeApplicationCommands.requestApplicationCommandsQuery(lValueOf2, strSubstring);
+    }
+
+    private final void removeAttachment(ApplicationCommandOption commandOption) {
+        MentionInputModel inputModel;
+        CharSequence input;
+        InputSelectionModel inputSelectionModel;
+        ApplicationCommand selectedCommand;
+        OptionRange optionRange;
+        Attachment<?> attachment = this.commandAttachments.get(commandOption);
+        if (attachment != null) {
+            this.commandAttachments.remove(commandOption);
+            this.flexInputViewModel.removeAttachment(attachment);
+            InputSelectionModel inputSelectionModel2 = this.lastChatInputModel;
+            if (inputSelectionModel2 == null || (inputModel = inputSelectionModel2.getInputModel()) == null || (input = inputModel.getInput()) == null || (inputSelectionModel = this.lastChatInputModel) == null || (selectedCommand = InputSelectionModelKt.getSelectedCommand(inputSelectionModel)) == null || (optionRange = AutocompleteCommandUtils.INSTANCE.findOptionRanges(input, selectedCommand, this.commandAttachments).get(commandOption)) == null) {
+                return;
+            }
+            this.editTextAction.onNext(new InputEditTextAction.RemoveText(input, new IntRange(optionRange.getParam().getFirst(), optionRange.getValue().getLast()), optionRange.getParam().getFirst()));
+        }
     }
 
     public final MessageContent replaceAutocompletableDataWithServerValues(String content) {
@@ -1540,6 +1476,54 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             }
         }
         return new MessageContent(strReplaceAutocompleteDataWithServerValues.subSequence(i, length + 1).toString(), arrayList);
+    }
+
+    @MainThread
+    private final InputEditTextAction replacementSpanCommandParamDeletion(CharSequence input) {
+        String string = input.toString();
+        SpannedString spannedStringValueOf = SpannedString.valueOf(input);
+        C12238m.checkNotNullExpressionValue(spannedStringValueOf, "valueOf(this)");
+        Object[] spans = spannedStringValueOf.getSpans(0, input.length(), SimpleRoundedBackgroundSpan.class);
+        C12238m.checkNotNullExpressionValue(spans, "getSpans(start, end, T::class.java)");
+        for (SimpleRoundedBackgroundSpan simpleRoundedBackgroundSpan : (SimpleRoundedBackgroundSpan[]) spans) {
+            IntRange intRange = new IntRange(spannedStringValueOf.getSpanStart(simpleRoundedBackgroundSpan), spannedStringValueOf.getSpanEnd(simpleRoundedBackgroundSpan));
+            Character orNull = C12108y.getOrNull(string, intRange.getLast());
+            boolean z2 = orNull != null && orNull.charValue() == ':';
+            int first = intRange.getFirst();
+            int last = intRange.getLast();
+            Objects.requireNonNull(string, "null cannot be cast to non-null type java.lang.String");
+            String strSubstring = string.substring(first, last);
+            C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+            if (simpleRoundedBackgroundSpan instanceof ApplicationCommandSpan) {
+                ApplicationCommandSpan applicationCommandSpan = (ApplicationCommandSpan) simpleRoundedBackgroundSpan;
+                if (applicationCommandSpan.getCommandOption().getType() == ApplicationCommandType.ATTACHMENT) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(applicationCommandSpan.getCommandOption().getName());
+                    sb.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+                    Attachment<?> attachment = this.commandAttachments.get(applicationCommandSpan.getCommandOption());
+                    sb.append(attachment != null ? attachment.getDisplayName() : null);
+                    if (!C12106w.contains$default((CharSequence) strSubstring, (CharSequence) sb.toString(), false, 2, (Object) null)) {
+                        removeAttachment(applicationCommandSpan.getCommandOption());
+                        return new InputEditTextAction.RemoveText(string, new IntRange(intRange.getFirst(), intRange.getLast()), Math.min(intRange.getFirst() + 1, string.length() - (intRange.getLast() - intRange.getFirst())));
+                    }
+                }
+            }
+            if (!C12106w.contains$default((CharSequence) strSubstring, MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR, false, 2, (Object) null) && !z2) {
+                return new InputEditTextAction.RemoveText(string, new IntRange(intRange.getFirst(), intRange.getLast()), intRange.getFirst());
+            }
+        }
+        return new InputEditTextAction.None(input);
+    }
+
+    private final void selectAttachmentOption(ApplicationCommandOption applicationCommandsOption) {
+        Attachment<?> attachment = this.commandAttachments.get(applicationCommandsOption);
+        if (attachment != null) {
+            this.selectedOptionForAttachment = applicationCommandsOption;
+            this.events.onNext(new Event.PreviewAttachment(attachment));
+        } else {
+            this.selectedOptionForAttachment = applicationCommandsOption;
+            this.events.onNext(new Event.PickAttachment(applicationCommandsOption));
+        }
     }
 
     @MainThread
@@ -1656,6 +1640,22 @@ public final class AutocompleteViewModel extends AbstractC0859d0<ViewState> {
             inputEditTextActionAppendParam$default = AutocompleteCommandUtils.appendParam$default(AutocompleteCommandUtils.INSTANCE, commandInputSelectionModel.getInputModel().getInput(), applicationCommandsOption, null, 4, null);
         }
         this.editTextAction.onNext(inputEditTextActionAppendParam$default);
+    }
+
+    @MainThread
+    private final void selectFirstInvalidCommandOption() {
+        InputSelectionModel inputSelectionModel = this.lastChatInputModel;
+        MentionInputModel inputModel = inputSelectionModel != null ? inputSelectionModel.getInputModel() : null;
+        if (inputModel instanceof MentionInputModel.VerifiedCommandInputModel) {
+            Map<ApplicationCommandOption, Boolean> inputCommandOptionValidity = ((MentionInputModel.VerifiedCommandInputModel) inputModel).getInputCommandOptionValidity();
+            for (ApplicationCommandOption applicationCommandOption : inputCommandOptionValidity.keySet()) {
+                if (C12238m.areEqual(inputCommandOptionValidity.get(applicationCommandOption), Boolean.FALSE)) {
+                    this.inputState = InputState.copy$default(this.inputState, null, null, null, applicationCommandOption, null, 23, null);
+                    selectCommandOption(applicationCommandOption);
+                    return;
+                }
+            }
+        }
     }
 
     @MainThread

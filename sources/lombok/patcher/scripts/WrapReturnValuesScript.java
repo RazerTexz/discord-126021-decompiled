@@ -74,7 +74,7 @@ public final class WrapReturnValuesScript extends MethodLevelPatchScript {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/WrapReturnValuesScript$WrapReturnValues.SCL.lombok */
-    private class WrapReturnValues extends MethodVisitor {
+    class WrapReturnValues extends MethodVisitor {
         private final MethodLogistics logistics;
         private final String ownClassSpec;
         private final String returnValueDesc;

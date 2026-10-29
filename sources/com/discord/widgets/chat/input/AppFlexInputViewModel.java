@@ -76,7 +76,7 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$1 */
     /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final /* synthetic */ class C76771 extends C12236k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class C76771 extends C12236k implements Function1<StoreState, Unit> {
         public C76771(AppFlexInputViewModel appFlexInputViewModel) {
             super(1, appFlexInputViewModel, AppFlexInputViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/AppFlexInputViewModel$StoreState;)V", 0);
         }
@@ -94,8 +94,70 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$getMatchingStickers$1 */
     /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final class Companion {
+    public final class C76791 extends AbstractC12240o implements Function1<String, Set<? extends Sticker>> {
+        public static final C76791 INSTANCE = new C76791();
+
+        public C76791() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final Set<Sticker> invoke(String str) {
+            C12238m.checkNotNullParameter(str, "inputText");
+            StickerUtils stickerUtils = StickerUtils.INSTANCE;
+            return StickerUtils.findStickerMatches$default(stickerUtils, str, StickerUtils.getStickersForAutocomplete$default(stickerUtils, null, null, null, null, null, 31, null), false, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onGiftButtonClicked$1 */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class C76801 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+        public static final C76801 INSTANCE = new C76801();
+
+        public C76801() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(FragmentActivity fragmentActivity) {
+            return Boolean.valueOf(invoke2(fragmentActivity));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(FragmentActivity fragmentActivity) {
+            C12238m.checkNotNullParameter(fragmentActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Channel channelFindChannelById = companion.getChannels().findChannelById(companion.getChannelsSelected().getId());
+            WidgetSettingsGifting.INSTANCE.launch(fragmentActivity, new Traits.Location((channelFindChannelById == null || channelFindChannelById.getGuildId() != 0) ? Traits.Location.Page.GUILD_CHANNEL : "DM Channel", Traits.Location.Section.CHANNEL_TEXT_AREA, "Button Icon", "gift", null, 16, null));
+            StoreNotices.markSeen$default(companion.getNotices(), AppFlexInputViewModel.CHAT_GIFTING_NOTICE, 0L, 2, null);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onSendButtonClicked$1 */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class C76811 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C76811() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(boolean z2) {
+            if (z2) {
+                AppFlexInputViewModel.clean$default(AppFlexInputViewModel.this, false, 1, null);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -139,7 +201,7 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
     }
 
     /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final Long channelPermission;
         private final boolean isThreadCreation;
         private final PanelState leftPanelState;
@@ -190,41 +252,6 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
             return storeState.copy(panelState, panelState3, channel2, l2, notice2, z4, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final PanelState getLeftPanelState() {
-            return this.leftPanelState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final PanelState getRightPanelState() {
-            return this.rightPanelState;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Channel getSelectedChannel() {
-            return this.selectedChannel;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getChannelPermission() {
-            return this.channelPermission;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final StoreNotices.Notice getNotice() {
-            return this.notice;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getStickerSuggestionsEnabled() {
-            return this.stickerSuggestionsEnabled;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsThreadCreation() {
-            return this.isThreadCreation;
-        }
-
         public final StoreState copy(PanelState leftPanelState, PanelState rightPanelState, Channel selectedChannel, Long channelPermission, StoreNotices.Notice notice, boolean stickerSuggestionsEnabled, boolean isThreadCreation) {
             C12238m.checkNotNullParameter(leftPanelState, "leftPanelState");
             C12238m.checkNotNullParameter(rightPanelState, "rightPanelState");
@@ -242,24 +269,59 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
             return C12238m.areEqual(this.leftPanelState, storeState.leftPanelState) && C12238m.areEqual(this.rightPanelState, storeState.rightPanelState) && C12238m.areEqual(this.selectedChannel, storeState.selectedChannel) && C12238m.areEqual(this.channelPermission, storeState.channelPermission) && C12238m.areEqual(this.notice, storeState.notice) && this.stickerSuggestionsEnabled == storeState.stickerSuggestionsEnabled && this.isThreadCreation == storeState.isThreadCreation;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Long getChannelPermission() {
             return this.channelPermission;
+        }
+
+        public final Long getChannelPermission() {
+            return this.channelPermission;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsThreadCreation() {
+            return this.isThreadCreation;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
         }
 
         public final PanelState getLeftPanelState() {
             return this.leftPanelState;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final StoreNotices.Notice getNotice() {
             return this.notice;
+        }
+
+        public final StoreNotices.Notice getNotice() {
+            return this.notice;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final PanelState getRightPanelState() {
+            return this.rightPanelState;
         }
 
         public final PanelState getRightPanelState() {
             return this.rightPanelState;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Channel getSelectedChannel() {
             return this.selectedChannel;
+        }
+
+        public final Channel getSelectedChannel() {
+            return this.selectedChannel;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getStickerSuggestionsEnabled() {
+            return this.stickerSuggestionsEnabled;
         }
 
         public final boolean getStickerSuggestionsEnabled() {
@@ -318,68 +380,6 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$getMatchingStickers$1 */
-    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final class C76791 extends AbstractC12240o implements Function1<String, Set<? extends Sticker>> {
-        public static final C76791 INSTANCE = new C76791();
-
-        public C76791() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final Set<Sticker> invoke(String str) {
-            C12238m.checkNotNullParameter(str, "inputText");
-            StickerUtils stickerUtils = StickerUtils.INSTANCE;
-            return StickerUtils.findStickerMatches$default(stickerUtils, str, StickerUtils.getStickersForAutocomplete$default(stickerUtils, null, null, null, null, null, 31, null), false, 4, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onGiftButtonClicked$1 */
-    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final class C76801 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
-        public static final C76801 INSTANCE = new C76801();
-
-        public C76801() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Boolean invoke(FragmentActivity fragmentActivity) {
-            return Boolean.valueOf(invoke2(fragmentActivity));
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2(FragmentActivity fragmentActivity) {
-            C12238m.checkNotNullParameter(fragmentActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Channel channelFindChannelById = companion.getChannels().findChannelById(companion.getChannelsSelected().getId());
-            WidgetSettingsGifting.INSTANCE.launch(fragmentActivity, new Traits.Location((channelFindChannelById == null || channelFindChannelById.getGuildId() != 0) ? Traits.Location.Page.GUILD_CHANNEL : "DM Channel", Traits.Location.Section.CHANNEL_TEXT_AREA, "Button Icon", "gift", null, 16, null));
-            StoreNotices.markSeen$default(companion.getNotices(), AppFlexInputViewModel.CHAT_GIFTING_NOTICE, 0L, 2, null);
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onSendButtonClicked$1 */
-    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
-    public static final class C76811 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C76811() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            if (z2) {
-                AppFlexInputViewModel.clean$default(AppFlexInputViewModel.this, false, 1, null);
-            }
-        }
-    }
-
     public /* synthetic */ AppFlexInputViewModel(AppPermissionsRequests appPermissionsRequests, FlexInputState flexInputState, Observable observable, StoreStickers storeStickers, StoreAnalytics storeAnalytics, StoreExpressionSuggestions storeExpressionSuggestions, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(appPermissionsRequests, (i & 2) != 0 ? new FlexInputState(null, false, null, false, false, null, false, false, false, false, false, null, null, 8191) : flexInputState, (i & 4) != 0 ? INSTANCE.observeStores() : observable, (i & 8) != 0 ? StoreStream.INSTANCE.getStickers() : storeStickers, (i & 16) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics, (i & 32) != 0 ? StoreStream.INSTANCE.getExpressionSuggestions() : storeExpressionSuggestions);
     }
@@ -389,6 +389,38 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
             z2 = true;
         }
         appFlexInputViewModel.clean(z2);
+    }
+
+    @MainThread
+    public final void clean(boolean clearText) {
+        FlexInputState viewState = getViewState();
+        if (viewState != null) {
+            updateViewState(FlexInputState.m9302a(viewState, clearText ? "" : viewState.inputText, true, C12147n.emptyList(), false, false, null, false, false, false, false, false, null, null, 8152));
+        }
+    }
+
+    public final void focus() {
+        PublishSubject<AbstractC1451a> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(AbstractC1451a.a.f2202a);
+    }
+
+    public final boolean getAttachmentView() {
+        return this.attachmentView;
+    }
+
+    public final List<Sticker> getMatchingStickers(String inputText) {
+        C12238m.checkNotNullParameter(inputText, "inputText");
+        C76791 c76791 = C76791.INSTANCE;
+        int length = inputText.length();
+        return C12163u.toList(3 <= length && 50 >= length ? c76791.invoke(inputText) : C12148n0.emptySet());
+    }
+
+    public final FlexInputAttachmentListener getSingleAttachmentSelectedListener() {
+        return this.singleAttachmentSelectedListener;
+    }
+
+    public final boolean getSingleSelectMode() {
+        return this.singleSelectMode;
     }
 
     private final void handleStoreState(StoreState storeState) {
@@ -422,43 +454,6 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
             z3 = z7;
         }
         updateViewState(FlexInputState.m9302a(flexInputStateRequireViewState, null, false, null, false, false, null, z2, z6, z3, false, storeState.getStickerSuggestionsEnabled(), selectedChannel != null ? Long.valueOf(selectedChannel.getId()) : null, selectedChannel != null ? Long.valueOf(selectedChannel.getGuildId()) : null, 575));
-    }
-
-    private final void showKeyboard() {
-        PublishSubject<AbstractC1451a> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(AbstractC1451a.c.f2204a);
-    }
-
-    @MainThread
-    public final void clean(boolean clearText) {
-        FlexInputState viewState = getViewState();
-        if (viewState != null) {
-            updateViewState(FlexInputState.m9302a(viewState, clearText ? "" : viewState.inputText, true, C12147n.emptyList(), false, false, null, false, false, false, false, false, null, null, 8152));
-        }
-    }
-
-    public final void focus() {
-        PublishSubject<AbstractC1451a> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(AbstractC1451a.a.f2202a);
-    }
-
-    public final boolean getAttachmentView() {
-        return this.attachmentView;
-    }
-
-    public final List<Sticker> getMatchingStickers(String inputText) {
-        C12238m.checkNotNullParameter(inputText, "inputText");
-        C76791 c76791 = C76791.INSTANCE;
-        int length = inputText.length();
-        return C12163u.toList(3 <= length && 50 >= length ? c76791.invoke(inputText) : C12148n0.emptySet());
-    }
-
-    public final FlexInputAttachmentListener getSingleAttachmentSelectedListener() {
-        return this.singleAttachmentSelectedListener;
-    }
-
-    public final boolean getSingleSelectMode() {
-        return this.singleSelectMode;
     }
 
     @Override // com.lytefast.flexinput.viewmodel.FlexInputViewModel
@@ -763,6 +758,11 @@ public final class AppFlexInputViewModel extends AbstractC0859d0<FlexInputState>
         }
         updateViewState(FlexInputState.m9302a(viewState, null, false, null, false, false, null, false, false, true, false, false, null, null, 7935));
         return true;
+    }
+
+    private final void showKeyboard() {
+        PublishSubject<AbstractC1451a> publishSubject = this.eventSubject;
+        publishSubject.f27650k.onNext(AbstractC1451a.c.f2204a);
     }
 
     public final void showKeyboardAndHideExpressionTray() {

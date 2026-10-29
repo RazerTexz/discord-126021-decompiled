@@ -12,13 +12,13 @@ import p007b.p225i.p226a.p288f.p292c.p293a.p296f.p297b.C3216s;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class SignInConfiguration extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<SignInConfiguration> CREATOR = new C3216s();
 
     /* JADX INFO: renamed from: j */
     public final String f20461j;
 
     /* JADX INFO: renamed from: k */
     public GoogleSignInOptions f20462k;
+    public static final Parcelable.Creator<SignInConfiguration> CREATOR = new C3216s();
 
     public SignInConfiguration(String str, GoogleSignInOptions googleSignInOptions) {
         C1460d.m583w(str);

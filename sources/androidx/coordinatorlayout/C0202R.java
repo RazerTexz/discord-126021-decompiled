@@ -7,7 +7,7 @@ import com.discord.C5419R;
 public final class C0202R {
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$attr */
-    public static final class attr {
+    public final class attr {
         public static final int alpha = 2130968635;
         public static final int coordinatorLayoutStyle = 2130969117;
         public static final int font = 2130969378;
@@ -35,7 +35,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$color */
-    public static final class color {
+    public final class color {
         public static final int notification_action_color_filter = 2131100115;
         public static final int notification_icon_bg_color = 2131100116;
         public static final int ripple_material_light = 2131100271;
@@ -46,7 +46,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$dimen */
-    public static final class dimen {
+    public final class dimen {
         public static final int compat_button_inset_horizontal_material = 2131165325;
         public static final int compat_button_inset_vertical_material = 2131165326;
         public static final int compat_button_padding_horizontal_material = 2131165327;
@@ -75,7 +75,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$drawable */
-    public static final class drawable {
+    public final class drawable {
         public static final int notification_action_background = 2131232491;
         public static final int notification_bg = 2131232492;
         public static final int notification_bg_low = 2131232493;
@@ -94,7 +94,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$id */
-    public static final class id {
+    public final class id {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -175,7 +175,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$integer */
-    public static final class integer {
+    public final class integer {
         public static final int status_bar_notification_info_maxnum = 2131427355;
 
         private integer() {
@@ -183,7 +183,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$layout */
-    public static final class layout {
+    public final class layout {
         public static final int custom_dialog = 2131558460;
         public static final int notification_action = 2131558626;
         public static final int notification_action_tombstone = 2131558627;
@@ -197,7 +197,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$string */
-    public static final class string {
+    public final class string {
         public static final int status_bar_notification_info_overflow = 2131895909;
 
         private string() {
@@ -205,7 +205,7 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$style */
-    public static final class style {
+    public final class style {
         public static final int TextAppearance_Compat_Notification = 2131952217;
         public static final int TextAppearance_Compat_Notification_Info = 2131952218;
         public static final int TextAppearance_Compat_Notification_Line2 = 2131952220;
@@ -220,10 +220,13 @@ public final class C0202R {
     }
 
     /* JADX INFO: renamed from: androidx.coordinatorlayout.R$styleable */
-    public static final class styleable {
+    public final class styleable {
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
+        public static final int[] CoordinatorLayout_Layout = {android.R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
         public static final int CoordinatorLayout_Layout_android_layout_gravity = 0;
         public static final int CoordinatorLayout_Layout_layout_anchor = 1;
         public static final int CoordinatorLayout_Layout_layout_anchorGravity = 2;
@@ -233,6 +236,8 @@ public final class C0202R {
         public static final int CoordinatorLayout_Layout_layout_keyline = 6;
         public static final int CoordinatorLayout_keylines = 0;
         public static final int CoordinatorLayout_statusBarBackground = 1;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -250,6 +255,8 @@ public final class C0202R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -264,13 +271,6 @@ public final class C0202R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
-        public static final int[] CoordinatorLayout_Layout = {android.R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
-        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
 
         private styleable() {
         }

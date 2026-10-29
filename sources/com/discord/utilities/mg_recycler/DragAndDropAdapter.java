@@ -34,25 +34,6 @@ public abstract class DragAndDropAdapter<T extends Payload> extends MGRecyclerAd
         this.origPositions = new HashMap();
     }
 
-    private final void computeOriginalPositions(List<? extends T> data) {
-        this.origPositions.clear();
-        IntRange indices = C12147n.getIndices(data);
-        ArrayList<Payload> arrayList = new ArrayList(C12149o.collectionSizeOrDefault(indices, 10));
-        Iterator<Integer> it = indices.iterator();
-        while (it.hasNext()) {
-            arrayList.add(data.get(((AbstractC12126c0) it).nextInt()));
-        }
-        for (Payload payload : arrayList) {
-            this.origPositions.put(payload.getKey(), Integer.valueOf(payload.getPosition()));
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    private final void setAndCopyData(List<? extends T> data) {
-        super.setData(data);
-        this.dataCopy = new ArrayList(data);
-    }
-
     public Map<String, Integer> computeChangedPositions() {
         HashMap map = new HashMap();
         int size = this.dataCopy.size();
@@ -64,6 +45,19 @@ public abstract class DragAndDropAdapter<T extends Payload> extends MGRecyclerAd
             }
         }
         return map;
+    }
+
+    private final void computeOriginalPositions(List<? extends T> data) {
+        this.origPositions.clear();
+        IntRange indices = C12147n.getIndices(data);
+        ArrayList<Payload> arrayList = new ArrayList(C12149o.collectionSizeOrDefault(indices, 10));
+        Iterator<Integer> it = indices.iterator();
+        while (it.hasNext()) {
+            arrayList.add(data.get(((AbstractC12126c0) it).nextInt()));
+        }
+        for (Payload payload : arrayList) {
+            this.origPositions.put(payload.getKey(), Integer.valueOf(payload.getPosition()));
+        }
     }
 
     public final List<T> getDataCopy() {
@@ -101,6 +95,12 @@ public abstract class DragAndDropAdapter<T extends Payload> extends MGRecyclerAd
     }
 
     public abstract void onNewPositions(Map<String, Integer> newPositions);
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private final void setAndCopyData(List<? extends T> data) {
+        super.setData(data);
+        this.dataCopy = new ArrayList(data);
+    }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple
     public void setData(List<? extends T> data) {

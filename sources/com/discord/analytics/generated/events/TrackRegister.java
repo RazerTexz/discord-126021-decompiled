@@ -14,35 +14,29 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRegister.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver, TrackGuildTemplateReceiver {
+    private final Float captchaScore = null;
+    private final CharSequence email = null;
+    private final Boolean full = null;
+    private final CharSequence identityType = null;
+    private final Boolean instantInvite = null;
+    private final Long inviteChannelId = null;
+    private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
+    private final Long inviteInviterId = null;
+    private final CharSequence phone = null;
+    private final CharSequence phoneCarrierName = null;
+    private final CharSequence phoneCountry = null;
+    private final CharSequence registrationSource = null;
+    private final Boolean requireVerifiedEmail = null;
+    private final Boolean requireVerifiedPhone = null;
+    private final Boolean requireVerifiedPhoneThenEmail = null;
+    private final Boolean smiteCaptchaRequested = null;
+    private final Boolean solvedCaptcha = null;
     private TrackBase trackBase;
     private TrackGiftCodeMetadata trackGiftCodeMetadata;
     private TrackGuildTemplate trackGuildTemplate;
-    private final CharSequence registrationSource = null;
-    private final Boolean full = null;
-    private final Boolean instantInvite = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
-    private final Long inviteChannelId = null;
-    private final Long inviteChannelType = null;
-    private final Long inviteInviterId = null;
-    private final Boolean smiteCaptchaRequested = null;
-    private final Boolean solvedCaptcha = null;
-    private final Float captchaScore = null;
-    private final Boolean requireVerifiedPhone = null;
-    private final Boolean requireVerifiedEmail = null;
-    private final Boolean requireVerifiedPhoneThenEmail = null;
-    private final CharSequence email = null;
-    private final CharSequence phone = null;
-    private final CharSequence identityType = null;
-    private final CharSequence phoneCarrierName = null;
-    private final CharSequence phoneCountry = null;
     private final transient String analyticsSchemaTypeName = "register";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -53,6 +47,12 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
         }
         TrackRegister trackRegister = (TrackRegister) other;
         return C12238m.areEqual(this.registrationSource, trackRegister.registrationSource) && C12238m.areEqual(this.full, trackRegister.full) && C12238m.areEqual(this.instantInvite, trackRegister.instantInvite) && C12238m.areEqual(this.inviteCode, trackRegister.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegister.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegister.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegister.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegister.inviteInviterId) && C12238m.areEqual(this.smiteCaptchaRequested, trackRegister.smiteCaptchaRequested) && C12238m.areEqual(this.solvedCaptcha, trackRegister.solvedCaptcha) && C12238m.areEqual(this.captchaScore, trackRegister.captchaScore) && C12238m.areEqual(this.requireVerifiedPhone, trackRegister.requireVerifiedPhone) && C12238m.areEqual(this.requireVerifiedEmail, trackRegister.requireVerifiedEmail) && C12238m.areEqual(this.requireVerifiedPhoneThenEmail, trackRegister.requireVerifiedPhoneThenEmail) && C12238m.areEqual(this.email, trackRegister.email) && C12238m.areEqual(this.phone, trackRegister.phone) && C12238m.areEqual(this.identityType, trackRegister.identityType) && C12238m.areEqual(this.phoneCarrierName, trackRegister.phoneCarrierName) && C12238m.areEqual(this.phoneCountry, trackRegister.phoneCountry);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

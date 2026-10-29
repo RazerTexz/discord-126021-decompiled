@@ -21,18 +21,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
     private static final int DEFAULT_DISTANCE = -1;
+    private int slideEdge;
 
     @Px
     private int slideDistance = -1;
-    private int slideEdge;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface GravityFlag {
-    }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.SlideDistanceProvider$a */
-    public static class C11049a extends AnimatorListenerAdapter {
+    public final class C11049a extends AnimatorListenerAdapter {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f21322a;
@@ -52,7 +47,7 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
     }
 
     /* JADX INFO: renamed from: com.google.android.material.transition.SlideDistanceProvider$b */
-    public static class C11050b extends AnimatorListenerAdapter {
+    public final class C11050b extends AnimatorListenerAdapter {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ View f21324a;
@@ -71,8 +66,25 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
         }
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface GravityFlag {
+    }
+
     public SlideDistanceProvider(int i) {
         this.slideEdge = i;
+    }
+
+    @Override // com.google.android.material.transition.VisibilityAnimatorProvider
+    @Nullable
+    public Animator createAppear(@NonNull ViewGroup viewGroup, @NonNull View view) {
+        return createTranslationAppearAnimator(viewGroup, view, this.slideEdge, getSlideDistanceOrDefault(view.getContext()));
+    }
+
+    @Override // com.google.android.material.transition.VisibilityAnimatorProvider
+    @Nullable
+    public Animator createDisappear(@NonNull ViewGroup viewGroup, @NonNull View view) {
+        return createTranslationDisappearAnimator(viewGroup, view, this.slideEdge, getSlideDistanceOrDefault(view.getContext()));
     }
 
     private static Animator createTranslationAppearAnimator(View view, View view2, int i, @Px int i2) {
@@ -135,34 +147,22 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
         return objectAnimatorOfPropertyValuesHolder;
     }
 
-    private int getSlideDistanceOrDefault(Context context) {
-        int i = this.slideDistance;
-        return i != -1 ? i : context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_transition_shared_axis_slide_distance);
-    }
-
-    private static boolean isRtl(View view) {
-        return ViewCompat.getLayoutDirection(view) == 1;
-    }
-
-    @Override // com.google.android.material.transition.VisibilityAnimatorProvider
-    @Nullable
-    public Animator createAppear(@NonNull ViewGroup viewGroup, @NonNull View view) {
-        return createTranslationAppearAnimator(viewGroup, view, this.slideEdge, getSlideDistanceOrDefault(view.getContext()));
-    }
-
-    @Override // com.google.android.material.transition.VisibilityAnimatorProvider
-    @Nullable
-    public Animator createDisappear(@NonNull ViewGroup viewGroup, @NonNull View view) {
-        return createTranslationDisappearAnimator(viewGroup, view, this.slideEdge, getSlideDistanceOrDefault(view.getContext()));
-    }
-
     @Px
     public int getSlideDistance() {
         return this.slideDistance;
     }
 
+    private int getSlideDistanceOrDefault(Context context) {
+        int i = this.slideDistance;
+        return i != -1 ? i : context.getResources().getDimensionPixelSize(C10817R.dimen.mtrl_transition_shared_axis_slide_distance);
+    }
+
     public int getSlideEdge() {
         return this.slideEdge;
+    }
+
+    private static boolean isRtl(View view) {
+        return ViewCompat.getLayoutDirection(view) == 1;
     }
 
     public void setSlideDistance(@Px int i) {

@@ -53,7 +53,7 @@ public class C11534a implements InterfaceC11535b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.a$a */
     /* JADX INFO: compiled from: DeclaredMemberIndex.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11585r, Boolean> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11585r, Boolean> {
         public a() {
             super(1);
         }

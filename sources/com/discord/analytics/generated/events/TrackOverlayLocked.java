@@ -16,17 +16,17 @@ public final /* data */ class TrackOverlayLocked implements AnalyticsSchema, Tra
     private final Long unlockedDuration = null;
     private final transient String analyticsSchemaTypeName = "overlay_locked";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackOverlayLocked) && C12238m.areEqual(this.unlockedDuration, ((TrackOverlayLocked) other).unlockedDuration);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

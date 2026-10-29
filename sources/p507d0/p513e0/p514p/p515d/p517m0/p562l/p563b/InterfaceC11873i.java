@@ -17,7 +17,7 @@ public interface InterfaceC11873i {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.i$a */
     /* JADX INFO: compiled from: ContractDeserializer.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ a f24636a = new a();
@@ -27,7 +27,7 @@ public interface InterfaceC11873i {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.i$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: ContractDeserializer.kt */
-        public static final class C13334a implements InterfaceC11873i {
+        public final class C13334a implements InterfaceC11873i {
             @Override // p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.InterfaceC11873i
             public Pair deserializeContractFromFunction(C11684i c11684i, InterfaceC11472x interfaceC11472x, C11708g c11708g, C11849c0 c11849c0) {
                 C12238m.checkNotNullParameter(c11684i, "proto");

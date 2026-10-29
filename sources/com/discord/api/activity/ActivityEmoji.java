@@ -17,6 +17,17 @@ public final /* data */ class ActivityEmoji {
         this.animated = z2;
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ActivityEmoji)) {
+            return false;
+        }
+        ActivityEmoji activityEmoji = (ActivityEmoji) other;
+        return C12238m.areEqual(this.id, activityEmoji.id) && C12238m.areEqual(this.name, activityEmoji.name) && this.animated == activityEmoji.animated;
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final boolean getAnimated() {
         return this.animated;
@@ -30,17 +41,6 @@ public final /* data */ class ActivityEmoji {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final String getName() {
         return this.name;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ActivityEmoji)) {
-            return false;
-        }
-        ActivityEmoji activityEmoji = (ActivityEmoji) other;
-        return C12238m.areEqual(this.id, activityEmoji.id) && C12238m.areEqual(this.name, activityEmoji.name) && this.animated == activityEmoji.animated;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

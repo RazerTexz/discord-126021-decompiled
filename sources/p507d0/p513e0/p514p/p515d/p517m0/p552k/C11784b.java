@@ -28,7 +28,7 @@ public final class C11784b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.b$a */
     /* JADX INFO: compiled from: DescriptorEquivalenceForOverrides.kt */
-    public static final class a extends AbstractC12240o implements Function2<InterfaceC11450m, InterfaceC11450m, Boolean> {
+    public final class a extends AbstractC12240o implements Function2<InterfaceC11450m, InterfaceC11450m, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final a f24392j = new a();
@@ -50,7 +50,7 @@ public final class C11784b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.b$b */
     /* JADX INFO: compiled from: DescriptorEquivalenceForOverrides.kt */
-    public static final class b implements InterfaceC11946f.a {
+    public final class b implements InterfaceC11946f.a {
 
         /* JADX INFO: renamed from: b */
         public final /* synthetic */ boolean f24394b;
@@ -63,7 +63,7 @@ public final class C11784b {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.k.b$b$a */
         /* JADX INFO: compiled from: DescriptorEquivalenceForOverrides.kt */
-        public static final class a extends AbstractC12240o implements Function2<InterfaceC11450m, InterfaceC11450m, Boolean> {
+        public final class a extends AbstractC12240o implements Function2<InterfaceC11450m, InterfaceC11450m, Boolean> {
 
             /* JADX INFO: renamed from: $a */
             public final /* synthetic */ InterfaceC11318a f24397$a;
@@ -115,21 +115,6 @@ public final class C11784b {
         return c11784b.areCallableDescriptorsEquivalent(interfaceC11318a, interfaceC11318a2, z2, (i & 8) != 0 ? true : z3, (i & 16) != 0 ? false : z4, abstractC11947g);
     }
 
-    public static /* synthetic */ boolean areEquivalent$default(C11784b c11784b, InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z3 = true;
-        }
-        return c11784b.areEquivalent(interfaceC11450m, interfaceC11450m2, z2, z3);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final boolean m9917a(InterfaceC11477z0 interfaceC11477z0, InterfaceC11477z0 interfaceC11477z1, boolean z2, Function2<? super InterfaceC11450m, ? super InterfaceC11450m, Boolean> function2) {
-        if (C12238m.areEqual(interfaceC11477z0, interfaceC11477z1)) {
-            return true;
-        }
-        return !C12238m.areEqual(interfaceC11477z0.getContainingDeclaration(), interfaceC11477z1.getContainingDeclaration()) && m9918b(interfaceC11477z0, interfaceC11477z1, function2, z2) && interfaceC11477z0.getIndex() == interfaceC11477z1.getIndex();
-    }
-
     public final boolean areCallableDescriptorsEquivalent(InterfaceC11318a interfaceC11318a, InterfaceC11318a interfaceC11318a2, boolean z2, boolean z3, boolean z4, AbstractC11947g abstractC11947g) {
         C12238m.checkNotNullParameter(interfaceC11318a, "a");
         C12238m.checkNotNullParameter(interfaceC11318a2, "b");
@@ -153,6 +138,13 @@ public final class C11784b {
         return result == aVar && c11793kCreate.isOverridableBy(interfaceC11318a2, interfaceC11318a, null, z4 ^ true).getResult() == aVar;
     }
 
+    public static /* synthetic */ boolean areEquivalent$default(C11784b c11784b, InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z3 = true;
+        }
+        return c11784b.areEquivalent(interfaceC11450m, interfaceC11450m2, z2, z3);
+    }
+
     public final boolean areEquivalent(InterfaceC11450m interfaceC11450m, InterfaceC11450m interfaceC11450m2, boolean z2, boolean z3) {
         if ((interfaceC11450m instanceof InterfaceC11330e) && (interfaceC11450m2 instanceof InterfaceC11330e)) {
             return C12238m.areEqual(((InterfaceC11330e) interfaceC11450m).getTypeConstructor(), ((InterfaceC11330e) interfaceC11450m2).getTypeConstructor());
@@ -164,6 +156,14 @@ public final class C11784b {
             return areCallableDescriptorsEquivalent$default(this, (InterfaceC11318a) interfaceC11450m, (InterfaceC11318a) interfaceC11450m2, z2, z3, false, AbstractC11947g.a.f24807a, 16, null);
         }
         return ((interfaceC11450m instanceof InterfaceC11331e0) && (interfaceC11450m2 instanceof InterfaceC11331e0)) ? C12238m.areEqual(((InterfaceC11331e0) interfaceC11450m).getFqName(), ((InterfaceC11331e0) interfaceC11450m2).getFqName()) : C12238m.areEqual(interfaceC11450m, interfaceC11450m2);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m9917a(InterfaceC11477z0 interfaceC11477z0, InterfaceC11477z0 interfaceC11477z1, boolean z2, Function2<? super InterfaceC11450m, ? super InterfaceC11450m, Boolean> function2) {
+        if (C12238m.areEqual(interfaceC11477z0, interfaceC11477z1)) {
+            return true;
+        }
+        return !C12238m.areEqual(interfaceC11477z0.getContainingDeclaration(), interfaceC11477z1.getContainingDeclaration()) && m9918b(interfaceC11477z0, interfaceC11477z1, function2, z2) && interfaceC11477z0.getIndex() == interfaceC11477z1.getIndex();
     }
 
     /* JADX INFO: renamed from: b */

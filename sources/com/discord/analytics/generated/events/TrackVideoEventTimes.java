@@ -23,12 +23,6 @@ public final /* data */ class TrackVideoEventTimes implements AnalyticsSchema, T
     private final Long videoFirstFrame;
     private final Long voiceConnection;
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -38,6 +32,12 @@ public final /* data */ class TrackVideoEventTimes implements AnalyticsSchema, T
         }
         TrackVideoEventTimes trackVideoEventTimes = (TrackVideoEventTimes) other;
         return C12238m.areEqual(this.gatewayConnection, trackVideoEventTimes.gatewayConnection) && C12238m.areEqual(this.gatewayHello, trackVideoEventTimes.gatewayHello) && C12238m.areEqual(this.voiceConnection, trackVideoEventTimes.voiceConnection) && C12238m.areEqual(this.streamRequested, trackVideoEventTimes.streamRequested) && C12238m.areEqual(this.streamConnection, trackVideoEventTimes.streamConnection) && C12238m.areEqual(this.streamFirstFrame, trackVideoEventTimes.streamFirstFrame) && C12238m.areEqual(this.videoFirstFrame, trackVideoEventTimes.videoFirstFrame) && C12238m.areEqual(this.mediaEngineConnection, trackVideoEventTimes.mediaEngineConnection) && C12238m.areEqual(this.connectionVideoFirstFrame, trackVideoEventTimes.connectionVideoFirstFrame) && C12238m.areEqual(this.connectionStreamFirstFrame, trackVideoEventTimes.connectionStreamFirstFrame) && C12238m.areEqual(this.eventTimeName, trackVideoEventTimes.eventTimeName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

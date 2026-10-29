@@ -13,14 +13,14 @@ public interface InterfaceC13183b extends IInterface {
 
     /* JADX INFO: renamed from: x.a.b.b.a.b$a */
     /* JADX INFO: compiled from: IMediaSession.java */
-    public static abstract class a extends Binder implements InterfaceC13183b {
+    public abstract class a extends Binder implements InterfaceC13183b {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int f27943a = 0;
 
         /* JADX INFO: renamed from: x.a.b.b.a.b$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: IMediaSession.java */
-        public static class C13361a implements InterfaceC13183b {
+        public class C13361a implements InterfaceC13183b {
 
             /* JADX INFO: renamed from: a */
             public IBinder f27944a;

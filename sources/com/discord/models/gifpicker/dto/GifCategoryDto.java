@@ -27,16 +27,6 @@ public final /* data */ class GifCategoryDto {
         return gifCategoryDto.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getSrc() {
-        return this.src;
-    }
-
     public final GifCategoryDto copy(String name, String src) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(src, "src");
@@ -54,8 +44,18 @@ public final /* data */ class GifCategoryDto {
         return C12238m.areEqual(this.name, gifCategoryDto.name) && C12238m.areEqual(this.src, gifCategoryDto.src);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getName() {
         return this.name;
+    }
+
+    public final String getName() {
+        return this.name;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getSrc() {
+        return this.src;
     }
 
     public final String getSrc() {

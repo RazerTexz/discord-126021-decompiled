@@ -43,8 +43,25 @@ public final class ReadyPayloadUtils {
     public static final ReadyPayloadUtils INSTANCE = new ReadyPayloadUtils();
     private static final HashMap<Long, GuildCache> cache = new HashMap<>();
 
+    /* JADX INFO: renamed from: com.discord.stores.ReadyPayloadUtils$hydrateGuild$6 */
     /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-    public static final /* data */ class GuildCache {
+    public final class C56696 extends AbstractC12240o implements Function2<Channel, Channel, Channel> {
+        public static final C56696 INSTANCE = new C56696();
+
+        public C56696() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Channel invoke(Channel channel, Channel channel2) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            C12238m.checkNotNullParameter(channel2, "channelUpdate");
+            return ReadyPayloadUtils.INSTANCE.hydrate(channel, channel2);
+        }
+    }
+
+    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+    public final /* data */ class GuildCache {
         private final List<Channel> channels;
         private final List<GuildEmoji> emojis;
         private final Guild guild;
@@ -58,6 +75,22 @@ public final class ReadyPayloadUtils {
             this.stickers = list2;
             this.channels = list3;
             this.roles = list4;
+        }
+
+        public final List<GuildEmoji> component2() {
+            return this.emojis;
+        }
+
+        public final List<Sticker> component3() {
+            return this.stickers;
+        }
+
+        public final List<Channel> component4() {
+            return this.channels;
+        }
+
+        public final List<GuildRole> component5() {
+            return this.roles;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -83,27 +116,6 @@ public final class ReadyPayloadUtils {
             return guildCache.copy(guild, list5, list6, list7, list4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final List<GuildEmoji> component2() {
-            return this.emojis;
-        }
-
-        public final List<Sticker> component3() {
-            return this.stickers;
-        }
-
-        public final List<Channel> component4() {
-            return this.channels;
-        }
-
-        public final List<GuildRole> component5() {
-            return this.roles;
-        }
-
         public final GuildCache copy(Guild guild, List<GuildEmoji> emojis, List<Sticker> stickers, List<Channel> channels, List<GuildRole> roles) {
             C12238m.checkNotNullParameter(guild, "guild");
             return new GuildCache(guild, emojis, stickers, channels, roles);
@@ -126,6 +138,11 @@ public final class ReadyPayloadUtils {
 
         public final List<GuildEmoji> getEmojis() {
             return this.emojis;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
         }
 
         public final Guild getGuild() {
@@ -168,10 +185,10 @@ public final class ReadyPayloadUtils {
     }
 
     /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-    public static abstract class HydrateGuildResult {
+    public abstract class HydrateGuildResult {
 
         /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-        public static final class Error extends HydrateGuildResult {
+        public final class Error extends HydrateGuildResult {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -180,7 +197,7 @@ public final class ReadyPayloadUtils {
         }
 
         /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-        public static final /* data */ class Success extends HydrateGuildResult {
+        public final /* data */ class Success extends HydrateGuildResult {
             private final Guild guild;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -197,11 +214,6 @@ public final class ReadyPayloadUtils {
                 return success.copy(guild);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
             public final Success copy(Guild guild) {
                 C12238m.checkNotNullParameter(guild, "guild");
                 return new Success(guild);
@@ -212,6 +224,11 @@ public final class ReadyPayloadUtils {
                     return (other instanceof Success) && C12238m.areEqual(this.guild, ((Success) other).guild);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
             }
 
             public final Guild getGuild() {
@@ -243,10 +260,10 @@ public final class ReadyPayloadUtils {
     }
 
     /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-    public static abstract class HydrateResult {
+    public abstract class HydrateResult {
 
         /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-        public static final class Error extends HydrateResult {
+        public final class Error extends HydrateResult {
             public static final Error INSTANCE = new Error();
 
             private Error() {
@@ -255,7 +272,7 @@ public final class ReadyPayloadUtils {
         }
 
         /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-        public static final /* data */ class Success extends HydrateResult {
+        public final /* data */ class Success extends HydrateResult {
             private final ModelPayload payload;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -272,11 +289,6 @@ public final class ReadyPayloadUtils {
                 return success.copy(modelPayload);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelPayload getPayload() {
-                return this.payload;
-            }
-
             public final Success copy(ModelPayload payload) {
                 C12238m.checkNotNullParameter(payload, "payload");
                 return new Success(payload);
@@ -287,6 +299,11 @@ public final class ReadyPayloadUtils {
                     return (other instanceof Success) && C12238m.areEqual(this.payload, ((Success) other).payload);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelPayload getPayload() {
+                return this.payload;
             }
 
             public final ModelPayload getPayload() {
@@ -317,24 +334,11 @@ public final class ReadyPayloadUtils {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.ReadyPayloadUtils$hydrateGuild$6 */
-    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
-    public static final class C56696 extends AbstractC12240o implements Function2<Channel, Channel, Channel> {
-        public static final C56696 INSTANCE = new C56696();
-
-        public C56696() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public final Channel invoke(Channel channel, Channel channel2) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            C12238m.checkNotNullParameter(channel2, "channelUpdate");
-            return ReadyPayloadUtils.INSTANCE.hydrate(channel, channel2);
-        }
+    private ReadyPayloadUtils() {
     }
 
-    private ReadyPayloadUtils() {
+    public final HashMap<Long, GuildCache> getCache() {
+        return cache;
     }
 
     private final Channel hydrate(Channel channel, Channel channel2) {
@@ -350,16 +354,6 @@ public final class ReadyPayloadUtils {
             map = null;
         }
         return readyPayloadUtils.hydrateGuild(guild, list, map);
-    }
-
-    private final Presence hydratePresence(Presence presence, Map<Long, User> users) {
-        User user;
-        Long lM8158g = presence.getUserId();
-        return (lM8158g == null || (user = users.get(lM8158g)) == null) ? Presence.m8152a(presence, null, null, null, null, null, null, 47) : Presence.m8152a(presence, null, null, null, user, null, null, 39);
-    }
-
-    public final HashMap<Long, GuildCache> getCache() {
-        return cache;
     }
 
     /* JADX WARN: Code duplicated, block: B:37:0x00a2  */
@@ -458,6 +452,12 @@ public final class ReadyPayloadUtils {
         C12238m.checkNotNullParameter(guildMember, "guildMember");
         C12238m.checkNotNullParameter(users, "users");
         return (guildMember.getUserId() == null || (user = users.get(guildMember.getUserId())) == null) ? guildMember : GuildMember.m7915a(guildMember, 0L, user, null, null, null, null, false, null, null, null, null, null, null, 7933);
+    }
+
+    private final Presence hydratePresence(Presence presence, Map<Long, User> users) {
+        User user;
+        Long lM8158g = presence.getUserId();
+        return (lM8158g == null || (user = users.get(lM8158g)) == null) ? Presence.m8152a(presence, null, null, null, null, null, null, 47) : Presence.m8152a(presence, null, null, null, user, null, null, 39);
     }
 
     @StoreThread

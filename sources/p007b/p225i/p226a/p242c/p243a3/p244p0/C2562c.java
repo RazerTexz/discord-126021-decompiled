@@ -16,18 +16,11 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2562c implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2562c f5680j = new C2562c(null, new a[0], 0, -9223372036854775807L, 0);
-
     /* JADX INFO: renamed from: k */
     public static final a f5681k;
 
     /* JADX INFO: renamed from: l */
     public static final InterfaceC2963w0.a<C2562c> f5682l;
-
-    /* JADX INFO: renamed from: m */
-    @Nullable
-    public final Object f5683m = null;
 
     /* JADX INFO: renamed from: n */
     public final int f5684n;
@@ -44,9 +37,16 @@ public final class C2562c implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: r */
     public final a[] f5688r;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2562c f5680j = new C2562c(null, new a[0], 0, -9223372036854775807L, 0);
+
+    /* JADX INFO: renamed from: m */
+    @Nullable
+    public final Object f5683m = null;
+
     /* JADX INFO: renamed from: b.i.a.c.a3.p0.c$a */
     /* JADX INFO: compiled from: AdPlaybackState.java */
-    public static final class a implements InterfaceC2963w0 {
+    public final class a implements InterfaceC2963w0 {
 
         /* JADX INFO: renamed from: j */
         public static final /* synthetic */ int f5689j = 0;
@@ -83,6 +83,25 @@ public final class C2562c implements InterfaceC2963w0 {
             this.f5696q = z2;
         }
 
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || a.class != obj.getClass()) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return this.f5690k == aVar.f5690k && this.f5691l == aVar.f5691l && Arrays.equals(this.f5692m, aVar.f5692m) && Arrays.equals(this.f5693n, aVar.f5693n) && Arrays.equals(this.f5694o, aVar.f5694o) && this.f5695p == aVar.f5695p && this.f5696q == aVar.f5696q;
+        }
+
+        public int hashCode() {
+            int i = this.f5691l * 31;
+            long j = this.f5690k;
+            int iHashCode = (Arrays.hashCode(this.f5694o) + ((Arrays.hashCode(this.f5693n) + ((((i + ((int) (j ^ (j >>> 32)))) * 31) + Arrays.hashCode(this.f5692m)) * 31)) * 31)) * 31;
+            long j2 = this.f5695p;
+            return ((iHashCode + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (this.f5696q ? 1 : 0);
+        }
+
         /* JADX INFO: renamed from: c */
         public static String m2579c(int i) {
             return Integer.toString(i, 36);
@@ -113,25 +132,6 @@ public final class C2562c implements InterfaceC2963w0 {
                 }
             }
             return false;
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || a.class != obj.getClass()) {
-                return false;
-            }
-            a aVar = (a) obj;
-            return this.f5690k == aVar.f5690k && this.f5691l == aVar.f5691l && Arrays.equals(this.f5692m, aVar.f5692m) && Arrays.equals(this.f5693n, aVar.f5693n) && Arrays.equals(this.f5694o, aVar.f5694o) && this.f5695p == aVar.f5695p && this.f5696q == aVar.f5696q;
-        }
-
-        public int hashCode() {
-            int i = this.f5691l * 31;
-            long j = this.f5690k;
-            int iHashCode = (Arrays.hashCode(this.f5694o) + ((Arrays.hashCode(this.f5693n) + ((((i + ((int) (j ^ (j >>> 32)))) * 31) + Arrays.hashCode(this.f5692m)) * 31)) * 31)) * 31;
-            long j2 = this.f5695p;
-            return ((iHashCode + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (this.f5696q ? 1 : 0);
         }
     }
 
@@ -177,17 +177,6 @@ public final class C2562c implements InterfaceC2963w0 {
         this.f5687q = i;
     }
 
-    /* JADX INFO: renamed from: b */
-    public static String m2577b(int i) {
-        return Integer.toString(i, 36);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public a m2578a(@IntRange(from = 0) int i) {
-        int i2 = this.f5687q;
-        return i < i2 ? f5681k : this.f5688r[i - i2];
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -203,6 +192,17 @@ public final class C2562c implements InterfaceC2963w0 {
         int i = this.f5684n * 31;
         Object obj = this.f5683m;
         return ((((((((i + (obj == null ? 0 : obj.hashCode())) * 31) + ((int) this.f5685o)) * 31) + ((int) this.f5686p)) * 31) + this.f5687q) * 31) + Arrays.hashCode(this.f5688r);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public static String m2577b(int i) {
+        return Integer.toString(i, 36);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public a m2578a(@IntRange(from = 0) int i) {
+        int i2 = this.f5687q;
+        return i < i2 ? f5681k : this.f5688r[i - i2];
     }
 
     public String toString() {

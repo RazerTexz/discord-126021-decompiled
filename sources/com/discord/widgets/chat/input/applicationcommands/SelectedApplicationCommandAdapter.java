@@ -50,9 +50,6 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         };
     }
 
-    private final void configureVerified() {
-    }
-
     public final void clear() {
         setData(C12147n.emptyList());
         this.paramPositions.clear();
@@ -72,6 +69,9 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
             getItem(iIntValue).setHighlighted(false);
             notifyItemChanged(iIntValue);
         }
+    }
+
+    private final void configureVerified() {
     }
 
     public final Function1<ApplicationCommandOption, Unit> getOnClickApplicationCommandOption() {

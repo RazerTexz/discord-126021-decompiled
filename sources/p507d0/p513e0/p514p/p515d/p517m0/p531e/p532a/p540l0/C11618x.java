@@ -26,7 +26,7 @@ public final class C11618x {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.l0.x$a */
     /* JADX INFO: compiled from: typeEnhancement.kt */
-    public /* synthetic */ class a {
+    public final /* synthetic */ class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ int[] f23510a;
@@ -49,11 +49,6 @@ public final class C11618x {
         C11713b c11713b2 = C11486a0.f23162p;
         C12238m.checkNotNullExpressionValue(c11713b2, "ENHANCED_MUTABILITY_ANNOTATION");
         f23509b = new C11596b(c11713b2);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static final <T> C11597c<T> m9516a(T t) {
-        return new C11597c<>(t, null);
     }
 
     public static final InterfaceC11344g access$compositeAnnotationsOrSingle(List list) {
@@ -113,5 +108,10 @@ public final class C11618x {
     public static final boolean hasEnhancedNullability(AbstractC11913c0 abstractC11913c0) {
         C12238m.checkNotNullParameter(abstractC11913c0, "<this>");
         return C11616v.hasEnhancedNullability(C11956p.f24827a, abstractC11913c0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static final <T> C11597c<T> m9516a(T t) {
+        return new C11597c<>(t, null);
     }
 }

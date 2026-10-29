@@ -36,7 +36,7 @@ public final class StoreThreadMembers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadMembers$observeThreadMembers$1 */
     /* JADX INFO: compiled from: StoreThreadMembers.kt */
-    public static final class C65321 extends AbstractC12240o implements Function0<Set<? extends Long>> {
+    public final class C65321 extends AbstractC12240o implements Function0<Set<? extends Long>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

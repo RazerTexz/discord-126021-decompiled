@@ -51,28 +51,9 @@ public final class WidgetCallFailed extends AppDialog {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetCallFailed.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long userId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetCallFailed widgetCallFailed = new WidgetCallFailed();
-            Bundle bundle = new Bundle();
-            bundle.putLong(WidgetCallFailed.INTENT_USER_ID, userId);
-            widgetCallFailed.setArguments(bundle);
-            widgetCallFailed.show(fragmentManager, WidgetCallFailed.class.getSimpleName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetCallFailed.kt */
-    public static final class C104121 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C104121 extends AbstractC12240o implements Function1<User, Unit> {
         public C104121() {
             super(1);
         }
@@ -91,18 +72,18 @@ public final class WidgetCallFailed extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$sendFriendRequest$2 */
     /* JADX INFO: compiled from: WidgetCallFailed.kt */
-    public static final class C104142<T> implements Action1<Error> {
+    public final class C104142<T> implements Action1<Error> {
         public final /* synthetic */ long $userId;
         public final /* synthetic */ String $username;
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$sendFriendRequest$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetCallFailed.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ Error $error;
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$sendFriendRequest$2$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetCallFailed.kt */
-            public static final class C132971 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+            public final class C132971 extends AbstractC12240o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
                 public C132971() {
                     super(2);
                 }
@@ -170,6 +151,25 @@ public final class WidgetCallFailed extends AppDialog {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetCallFailed.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long userId) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetCallFailed widgetCallFailed = new WidgetCallFailed();
+            Bundle bundle = new Bundle();
+            bundle.putLong(WidgetCallFailed.INTENT_USER_ID, userId);
+            widgetCallFailed.setArguments(bundle);
+            widgetCallFailed.show(fragmentManager, WidgetCallFailed.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetCallFailed() {
         super(C5419R.layout.view_dialog_confirmation);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetCallFailed$binding$2.INSTANCE, null, 2, null);
@@ -193,23 +193,6 @@ public final class WidgetCallFailed extends AppDialog {
 
     private final ViewDialogConfirmationBinding getBinding() {
         return (ViewDialogConfirmationBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    private final void sendFriendRequest(long userId, String username, CaptchaHelper.CaptchaPayload captchaPayload) {
-        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().addRelationship("Call", userId, (28 & 4) != 0 ? null : null, (28 & 8) != 0 ? null : null, (28 & 16) != 0 ? null : captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.voice.call.WidgetCallFailed.sendFriendRequest.1
-            @Override // p658rx.functions.Action1
-            public final void call(Void r4) {
-                C0876m.m171i(WidgetCallFailed.this, C5419R.string.friend_request_sent, 0, 4);
-                WidgetCallFailed.this.dismiss();
-            }
-        }, getAppActivity(), new C104142(userId, username)));
-    }
-
-    public static /* synthetic */ void sendFriendRequest$default(WidgetCallFailed widgetCallFailed, long j, String str, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
-        if ((i & 4) != 0) {
-            captchaPayload = null;
-        }
-        widgetCallFailed.sendFriendRequest(j, str, captchaPayload);
     }
 
     @Override // com.discord.app.AppDialog
@@ -237,5 +220,22 @@ public final class WidgetCallFailed extends AppDialog {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getUsers().observeUser(getArgumentsOrDefault().getLong(INTENT_USER_ID)), this, null, 2, null), (Class<?>) WidgetCallFailed.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C104121());
+    }
+
+    public static /* synthetic */ void sendFriendRequest$default(WidgetCallFailed widgetCallFailed, long j, String str, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        if ((i & 4) != 0) {
+            captchaPayload = null;
+        }
+        widgetCallFailed.sendFriendRequest(j, str, captchaPayload);
+    }
+
+    private final void sendFriendRequest(long userId, String username, CaptchaHelper.CaptchaPayload captchaPayload) {
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().addRelationship("Call", userId, (28 & 4) != 0 ? null : null, (28 & 8) != 0 ? null : null, (28 & 16) != 0 ? null : captchaPayload), this, null, 2, null).m11108k(C0879o.m181h(new Action1<Void>() { // from class: com.discord.widgets.voice.call.WidgetCallFailed.sendFriendRequest.1
+            @Override // p658rx.functions.Action1
+            public final void call(Void r4) {
+                C0876m.m171i(WidgetCallFailed.this, C5419R.string.friend_request_sent, 0, 4);
+                WidgetCallFailed.this.dismiss();
+            }
+        }, getAppActivity(), new C104142(userId, username)));
     }
 }

@@ -12,18 +12,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildDiscoveryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildDiscoveryExited implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+    private final List<Long> guildIdsViewed = null;
+    private final CharSequence loadId = null;
+    private final CharSequence recommendationsSource = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
-    private final CharSequence loadId = null;
-    private final List<Long> guildIdsViewed = null;
-    private final CharSequence recommendationsSource = null;
     private final transient String analyticsSchemaTypeName = "guild_discovery_exited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackGuildDiscoveryExited implements AnalyticsSche
         }
         TrackGuildDiscoveryExited trackGuildDiscoveryExited = (TrackGuildDiscoveryExited) other;
         return C12238m.areEqual(this.loadId, trackGuildDiscoveryExited.loadId) && C12238m.areEqual(this.guildIdsViewed, trackGuildDiscoveryExited.guildIdsViewed) && C12238m.areEqual(this.recommendationsSource, trackGuildDiscoveryExited.recommendationsSource);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

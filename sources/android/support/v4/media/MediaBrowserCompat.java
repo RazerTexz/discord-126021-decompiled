@@ -38,60 +38,15 @@ import p668x.p669a.p672b.p674b.p675a.InterfaceC13183b;
 /* JADX INFO: loaded from: classes.dex */
 public final class MediaBrowserCompat {
 
-    /* JADX INFO: renamed from: a */
-    public static final boolean f5a = Log.isLoggable("MediaBrowserCompat", 3);
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC0007d f6b;
 
-    public static class CustomActionResultReceiver extends ResultReceiver {
-        @Override // android.support.v4.os.ResultReceiver
-        /* JADX INFO: renamed from: a */
-        public void mo4a(int i, Bundle bundle) {
-        }
-    }
-
-    public static class ItemReceiver extends ResultReceiver {
-        @Override // android.support.v4.os.ResultReceiver
-        /* JADX INFO: renamed from: a */
-        public void mo4a(int i, Bundle bundle) {
-            if (bundle != null) {
-                bundle = MediaSessionCompat.m41b(bundle);
-            }
-            if (i != 0 || bundle == null || !bundle.containsKey(MediaBrowserServiceCompat.KEY_MEDIA_ITEM)) {
-                throw null;
-            }
-            Parcelable parcelable = bundle.getParcelable(MediaBrowserServiceCompat.KEY_MEDIA_ITEM);
-            if (parcelable != null && !(parcelable instanceof MediaItem)) {
-                throw null;
-            }
-            throw null;
-        }
-    }
-
-    public static class SearchResultReceiver extends ResultReceiver {
-        @Override // android.support.v4.os.ResultReceiver
-        /* JADX INFO: renamed from: a */
-        public void mo4a(int i, Bundle bundle) {
-            if (bundle != null) {
-                bundle = MediaSessionCompat.m41b(bundle);
-            }
-            if (i != 0 || bundle == null || !bundle.containsKey(MediaBrowserServiceCompat.KEY_SEARCH_RESULTS)) {
-                throw null;
-            }
-            Parcelable[] parcelableArray = bundle.getParcelableArray(MediaBrowserServiceCompat.KEY_SEARCH_RESULTS);
-            Objects.requireNonNull(parcelableArray);
-            ArrayList arrayList = new ArrayList();
-            for (Parcelable parcelable : parcelableArray) {
-                arrayList.add((MediaItem) parcelable);
-            }
-            throw null;
-        }
-    }
+    /* JADX INFO: renamed from: a */
+    public static final boolean f5a = Log.isLoggable("MediaBrowserCompat", 3);
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$a */
     @RequiresApi(21)
-    public static class C0004a {
+    public class C0004a {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static MediaDescription m6a(MediaBrowser.MediaItem mediaItem) {
@@ -105,8 +60,56 @@ public final class MediaBrowserCompat {
         }
     }
 
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$f */
+    @RequiresApi(23)
+    public class C0009f extends C0008e {
+        public C0009f(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
+            super(context, componentName, c0006c, bundle);
+        }
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$g */
+    @RequiresApi(26)
+    public class C0010g extends C0009f {
+        public C0010g(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
+            super(context, componentName, c0006c, bundle);
+        }
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$i */
+    public class C0012i {
+
+        /* JADX INFO: renamed from: a */
+        public Messenger f20a;
+
+        /* JADX INFO: renamed from: b */
+        public Bundle f21b;
+
+        public C0012i(IBinder iBinder, Bundle bundle) {
+            this.f20a = new Messenger(iBinder);
+            this.f21b = bundle;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m12a(int i, Bundle bundle, Messenger messenger) throws RemoteException {
+            Message messageObtain = Message.obtain();
+            messageObtain.what = i;
+            messageObtain.arg1 = 1;
+            messageObtain.setData(bundle);
+            messageObtain.replyTo = messenger;
+            this.f20a.send(messageObtain);
+        }
+    }
+
+    public class CustomActionResultReceiver extends ResultReceiver {
+        @Override // android.support.v4.os.ResultReceiver
+        /* JADX INFO: renamed from: a */
+        public void mo4a(int i, Bundle bundle) {
+        }
+    }
+
     /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$b */
-    public static class HandlerC0005b extends Handler {
+    public class HandlerC0005b extends Handler {
 
         /* JADX INFO: renamed from: a */
         public final WeakReference<InterfaceC0011h> f9a;
@@ -116,11 +119,6 @@ public final class MediaBrowserCompat {
 
         public HandlerC0005b(InterfaceC0011h interfaceC0011h) {
             this.f9a = new WeakReference<>(interfaceC0011h);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public void m8a(Messenger messenger) {
-            this.f10b = new WeakReference<>(messenger);
         }
 
         @Override // android.os.Handler
@@ -157,12 +155,214 @@ public final class MediaBrowserCompat {
                 }
             }
         }
+
+        /* JADX INFO: renamed from: a */
+        public void m8a(Messenger messenger) {
+            this.f10b = new WeakReference<>(messenger);
+        }
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$d */
+    public interface InterfaceC0007d {
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$h */
+    public interface InterfaceC0011h {
+        /* JADX INFO: renamed from: b */
+        void mo10b(Messenger messenger, String str, List<MediaItem> list, Bundle bundle, Bundle bundle2);
+
+        /* JADX INFO: renamed from: c */
+        void mo11c(Messenger messenger);
+
+        /* JADX INFO: renamed from: a */
+        void mo9a(Messenger messenger, String str, MediaSessionCompat.Token token, Bundle bundle);
+    }
+
+    public class ItemReceiver extends ResultReceiver {
+        @Override // android.support.v4.os.ResultReceiver
+        /* JADX INFO: renamed from: a */
+        public void mo4a(int i, Bundle bundle) {
+            if (bundle != null) {
+                bundle = MediaSessionCompat.m41b(bundle);
+            }
+            if (i != 0 || bundle == null || !bundle.containsKey(MediaBrowserServiceCompat.KEY_MEDIA_ITEM)) {
+                throw null;
+            }
+            Parcelable parcelable = bundle.getParcelable(MediaBrowserServiceCompat.KEY_MEDIA_ITEM);
+            if (parcelable != null && !(parcelable instanceof MediaItem)) {
+                throw null;
+            }
+            throw null;
+        }
+    }
+
+    @SuppressLint({"BanParcelableUsage"})
+    public class MediaItem implements Parcelable {
+
+        /* JADX INFO: renamed from: j */
+        public final int f7j;
+
+        /* JADX INFO: renamed from: k */
+        public final MediaDescriptionCompat f8k;
+        public static final Parcelable.Creator<MediaItem> CREATOR = new C0003a();
+
+        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$MediaItem$a */
+        public class C0003a implements Parcelable.Creator<MediaItem> {
+            @Override // android.os.Parcelable.Creator
+            public MediaItem createFromParcel(Parcel parcel) {
+                return new MediaItem(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public MediaItem[] newArray(int i) {
+                return new MediaItem[i];
+            }
+        }
+
+        public MediaItem(@NonNull MediaDescriptionCompat mediaDescriptionCompat, int i) {
+            if (mediaDescriptionCompat == null) {
+                throw new IllegalArgumentException("description cannot be null");
+            }
+            if (TextUtils.isEmpty(mediaDescriptionCompat.f27j)) {
+                throw new IllegalArgumentException("description must have a non-empty media id");
+            }
+            this.f7j = i;
+            this.f8k = mediaDescriptionCompat;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static List<MediaItem> m5a(List<?> list) {
+            MediaItem mediaItem;
+            if (list == null) {
+                return null;
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            for (Object obj : list) {
+                if (obj != null) {
+                    MediaBrowser.MediaItem mediaItem2 = (MediaBrowser.MediaItem) obj;
+                    mediaItem = new MediaItem(MediaDescriptionCompat.m14a(C0004a.m6a(mediaItem2)), C0004a.m7b(mediaItem2));
+                } else {
+                    mediaItem = null;
+                }
+                arrayList.add(mediaItem);
+            }
+            return arrayList;
+        }
+
+        @NonNull
+        public String toString() {
+            return "MediaItem{mFlags=" + this.f7j + ", mDescription=" + this.f8k + '}';
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeInt(this.f7j);
+            this.f8k.writeToParcel(parcel, i);
+        }
+
+        public MediaItem(Parcel parcel) {
+            this.f7j = parcel.readInt();
+            this.f8k = MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
+        }
+    }
+
+    public class SearchResultReceiver extends ResultReceiver {
+        @Override // android.support.v4.os.ResultReceiver
+        /* JADX INFO: renamed from: a */
+        public void mo4a(int i, Bundle bundle) {
+            if (bundle != null) {
+                bundle = MediaSessionCompat.m41b(bundle);
+            }
+            if (i != 0 || bundle == null || !bundle.containsKey(MediaBrowserServiceCompat.KEY_SEARCH_RESULTS)) {
+                throw null;
+            }
+            Parcelable[] parcelableArray = bundle.getParcelableArray(MediaBrowserServiceCompat.KEY_SEARCH_RESULTS);
+            Objects.requireNonNull(parcelableArray);
+            ArrayList arrayList = new ArrayList();
+            for (Parcelable parcelable : parcelableArray) {
+                arrayList.add((MediaItem) parcelable);
+            }
+            throw null;
+        }
+    }
+
+    public MediaBrowserCompat(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 26) {
+            this.f6b = new C0010g(context, componentName, c0006c, null);
+        } else if (i >= 23) {
+            this.f6b = new C0009f(context, componentName, c0006c, null);
+        } else {
+            this.f6b = new C0008e(context, componentName, c0006c, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k */
+    public abstract class AbstractC0014k {
+
+        /* JADX INFO: renamed from: a */
+        public final IBinder f24a = new Binder();
+
+        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k$a */
+        @RequiresApi(21)
+        public class a extends MediaBrowser.SubscriptionCallback {
+            public a() {
+            }
+
+            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
+            public void onChildrenLoaded(@NonNull String str, List<MediaBrowser.MediaItem> list) {
+                Objects.requireNonNull(AbstractC0014k.this);
+                AbstractC0014k abstractC0014k = AbstractC0014k.this;
+                MediaItem.m5a(list);
+                Objects.requireNonNull(abstractC0014k);
+            }
+
+            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
+            public void onError(@NonNull String str) {
+                Objects.requireNonNull(AbstractC0014k.this);
+            }
+        }
+
+        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k$b */
+        @RequiresApi(26)
+        public class b extends a {
+            public b() {
+                super();
+            }
+
+            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
+            public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaBrowser.MediaItem> list, @NonNull Bundle bundle) {
+                MediaSessionCompat.m40a(bundle);
+                AbstractC0014k abstractC0014k = AbstractC0014k.this;
+                MediaItem.m5a(list);
+                Objects.requireNonNull(abstractC0014k);
+            }
+
+            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
+            public void onError(@NonNull String str, @NonNull Bundle bundle) {
+                MediaSessionCompat.m40a(bundle);
+                Objects.requireNonNull(AbstractC0014k.this);
+            }
+        }
+
+        public AbstractC0014k() {
+            if (Build.VERSION.SDK_INT >= 26) {
+                new b();
+            } else {
+                new a();
+            }
+        }
     }
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$c */
-    public static class C0006c {
-        public final MediaBrowser.ConnectionCallback mConnectionCallbackFwk = new a();
+    public class C0006c {
         public b mConnectionCallbackInternal;
+        public final MediaBrowser.ConnectionCallback mConnectionCallbackFwk = new a();
 
         /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$c$a */
         @RequiresApi(21)
@@ -256,13 +456,9 @@ public final class MediaBrowserCompat {
         }
     }
 
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$d */
-    public interface InterfaceC0007d {
-    }
-
     /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$e */
     @RequiresApi(21)
-    public static class C0008e implements InterfaceC0007d, InterfaceC0011h, C0006c.b {
+    public class C0008e implements InterfaceC0007d, InterfaceC0011h, C0006c.b {
 
         /* JADX INFO: renamed from: a */
         public final Context f12a;
@@ -273,12 +469,6 @@ public final class MediaBrowserCompat {
         /* JADX INFO: renamed from: c */
         public final Bundle f14c;
 
-        /* JADX INFO: renamed from: d */
-        public final HandlerC0005b f15d = new HandlerC0005b(this);
-
-        /* JADX INFO: renamed from: e */
-        public final ArrayMap<String, C0013j> f16e = new ArrayMap<>();
-
         /* JADX INFO: renamed from: f */
         public C0012i f17f;
 
@@ -288,6 +478,12 @@ public final class MediaBrowserCompat {
         /* JADX INFO: renamed from: h */
         public MediaSessionCompat.Token f19h;
 
+        /* JADX INFO: renamed from: d */
+        public final HandlerC0005b f15d = new HandlerC0005b(this);
+
+        /* JADX INFO: renamed from: e */
+        public final ArrayMap<String, C0013j> f16e = new ArrayMap<>();
+
         public C0008e(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
             this.f12a = context;
             Bundle bundle2 = bundle != null ? new Bundle(bundle) : new Bundle();
@@ -296,11 +492,6 @@ public final class MediaBrowserCompat {
             bundle2.putInt(MediaBrowserProtocol.EXTRA_CALLING_PID, Process.myPid());
             c0006c.setInternalConnectionCallback(this);
             this.f13b = new MediaBrowser(context, componentName, c0006c.mConnectionCallbackFwk, bundle2);
-        }
-
-        @Override // android.support.v4.media.MediaBrowserCompat.InterfaceC0011h
-        /* JADX INFO: renamed from: a */
-        public void mo9a(Messenger messenger, String str, MediaSessionCompat.Token token, Bundle bundle) {
         }
 
         @Override // android.support.v4.media.MediaBrowserCompat.InterfaceC0011h
@@ -321,63 +512,15 @@ public final class MediaBrowserCompat {
         /* JADX INFO: renamed from: c */
         public void mo11c(Messenger messenger) {
         }
-    }
 
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$f */
-    @RequiresApi(23)
-    public static class C0009f extends C0008e {
-        public C0009f(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
-            super(context, componentName, c0006c, bundle);
-        }
-    }
-
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$g */
-    @RequiresApi(26)
-    public static class C0010g extends C0009f {
-        public C0010g(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
-            super(context, componentName, c0006c, bundle);
-        }
-    }
-
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$h */
-    public interface InterfaceC0011h {
+        @Override // android.support.v4.media.MediaBrowserCompat.InterfaceC0011h
         /* JADX INFO: renamed from: a */
-        void mo9a(Messenger messenger, String str, MediaSessionCompat.Token token, Bundle bundle);
-
-        /* JADX INFO: renamed from: b */
-        void mo10b(Messenger messenger, String str, List<MediaItem> list, Bundle bundle, Bundle bundle2);
-
-        /* JADX INFO: renamed from: c */
-        void mo11c(Messenger messenger);
-    }
-
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$i */
-    public static class C0012i {
-
-        /* JADX INFO: renamed from: a */
-        public Messenger f20a;
-
-        /* JADX INFO: renamed from: b */
-        public Bundle f21b;
-
-        public C0012i(IBinder iBinder, Bundle bundle) {
-            this.f20a = new Messenger(iBinder);
-            this.f21b = bundle;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m12a(int i, Bundle bundle, Messenger messenger) throws RemoteException {
-            Message messageObtain = Message.obtain();
-            messageObtain.what = i;
-            messageObtain.arg1 = 1;
-            messageObtain.setData(bundle);
-            messageObtain.replyTo = messenger;
-            this.f20a.send(messageObtain);
+        public void mo9a(Messenger messenger, String str, MediaSessionCompat.Token token, Bundle bundle) {
         }
     }
 
     /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$j */
-    public static class C0013j {
+    public class C0013j {
 
         /* JADX INFO: renamed from: a */
         public final List<AbstractC0014k> f22a = new ArrayList();
@@ -393,149 +536,6 @@ public final class MediaBrowserCompat {
                 }
             }
             return null;
-        }
-    }
-
-    /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k */
-    public static abstract class AbstractC0014k {
-
-        /* JADX INFO: renamed from: a */
-        public final IBinder f24a = new Binder();
-
-        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k$a */
-        @RequiresApi(21)
-        public class a extends MediaBrowser.SubscriptionCallback {
-            public a() {
-            }
-
-            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
-            public void onChildrenLoaded(@NonNull String str, List<MediaBrowser.MediaItem> list) {
-                Objects.requireNonNull(AbstractC0014k.this);
-                AbstractC0014k abstractC0014k = AbstractC0014k.this;
-                MediaItem.m5a(list);
-                Objects.requireNonNull(abstractC0014k);
-            }
-
-            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
-            public void onError(@NonNull String str) {
-                Objects.requireNonNull(AbstractC0014k.this);
-            }
-        }
-
-        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$k$b */
-        @RequiresApi(26)
-        public class b extends a {
-            public b() {
-                super();
-            }
-
-            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
-            public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaBrowser.MediaItem> list, @NonNull Bundle bundle) {
-                MediaSessionCompat.m40a(bundle);
-                AbstractC0014k abstractC0014k = AbstractC0014k.this;
-                MediaItem.m5a(list);
-                Objects.requireNonNull(abstractC0014k);
-            }
-
-            @Override // android.media.browse.MediaBrowser.SubscriptionCallback
-            public void onError(@NonNull String str, @NonNull Bundle bundle) {
-                MediaSessionCompat.m40a(bundle);
-                Objects.requireNonNull(AbstractC0014k.this);
-            }
-        }
-
-        public AbstractC0014k() {
-            if (Build.VERSION.SDK_INT >= 26) {
-                new b();
-            } else {
-                new a();
-            }
-        }
-    }
-
-    public MediaBrowserCompat(Context context, ComponentName componentName, C0006c c0006c, Bundle bundle) {
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 26) {
-            this.f6b = new C0010g(context, componentName, c0006c, null);
-        } else if (i >= 23) {
-            this.f6b = new C0009f(context, componentName, c0006c, null);
-        } else {
-            this.f6b = new C0008e(context, componentName, c0006c, null);
-        }
-    }
-
-    @SuppressLint({"BanParcelableUsage"})
-    public static class MediaItem implements Parcelable {
-        public static final Parcelable.Creator<MediaItem> CREATOR = new C0003a();
-
-        /* JADX INFO: renamed from: j */
-        public final int f7j;
-
-        /* JADX INFO: renamed from: k */
-        public final MediaDescriptionCompat f8k;
-
-        /* JADX INFO: renamed from: android.support.v4.media.MediaBrowserCompat$MediaItem$a */
-        public class C0003a implements Parcelable.Creator<MediaItem> {
-            @Override // android.os.Parcelable.Creator
-            public MediaItem createFromParcel(Parcel parcel) {
-                return new MediaItem(parcel);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public MediaItem[] newArray(int i) {
-                return new MediaItem[i];
-            }
-        }
-
-        public MediaItem(@NonNull MediaDescriptionCompat mediaDescriptionCompat, int i) {
-            if (mediaDescriptionCompat == null) {
-                throw new IllegalArgumentException("description cannot be null");
-            }
-            if (TextUtils.isEmpty(mediaDescriptionCompat.f27j)) {
-                throw new IllegalArgumentException("description must have a non-empty media id");
-            }
-            this.f7j = i;
-            this.f8k = mediaDescriptionCompat;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static List<MediaItem> m5a(List<?> list) {
-            MediaItem mediaItem;
-            if (list == null) {
-                return null;
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            for (Object obj : list) {
-                if (obj != null) {
-                    MediaBrowser.MediaItem mediaItem2 = (MediaBrowser.MediaItem) obj;
-                    mediaItem = new MediaItem(MediaDescriptionCompat.m14a(C0004a.m6a(mediaItem2)), C0004a.m7b(mediaItem2));
-                } else {
-                    mediaItem = null;
-                }
-                arrayList.add(mediaItem);
-            }
-            return arrayList;
-        }
-
-        @Override // android.os.Parcelable
-        public int describeContents() {
-            return 0;
-        }
-
-        @NonNull
-        public String toString() {
-            return "MediaItem{mFlags=" + this.f7j + ", mDescription=" + this.f8k + '}';
-        }
-
-        @Override // android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeInt(this.f7j);
-            this.f8k.writeToParcel(parcel, i);
-        }
-
-        public MediaItem(Parcel parcel) {
-            this.f7j = parcel.readInt();
-            this.f8k = MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
         }
     }
 }

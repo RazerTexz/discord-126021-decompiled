@@ -22,18 +22,18 @@ import p007b.p225i.p226a.p288f.p313h.p325l.InterfaceC3801q6;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class zzhi extends AbstractC3850u3 {
 
+    /* JADX INFO: renamed from: c */
+    public C3666g4 f20630c;
+
     /* JADX INFO: renamed from: a */
     public static final Logger f20628a = Logger.getLogger(zzhi.class.getName());
 
     /* JADX INFO: renamed from: b */
     public static final boolean f20629b = C3711j7.f10038g;
 
-    /* JADX INFO: renamed from: c */
-    public C3666g4 f20630c;
-
     /* JADX INFO: renamed from: com.google.android.gms.internal.measurement.zzhi$a */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static class C10804a extends zzhi {
+    public final class C10804a extends zzhi {
 
         /* JADX INFO: renamed from: d */
         public final byte[] f20631d;
@@ -52,6 +52,62 @@ public abstract class zzhi extends AbstractC3850u3 {
             this.f20631d = bArr;
             this.f20633f = 0;
             this.f20632e = i;
+        }
+
+        /* JADX INFO: renamed from: W */
+        public final void m9099W(AbstractC3837t3 abstractC3837t3) throws IOException {
+            mo9094r(abstractC3837t3.mo5282d());
+            abstractC3837t3.mo5286j(this);
+        }
+
+        /* JADX INFO: renamed from: X */
+        public final void m9100X(InterfaceC3612c6 interfaceC3612c6) throws IOException {
+            mo9094r(interfaceC3612c6.mo4606g());
+            interfaceC3612c6.mo4608i(this);
+        }
+
+        /* JADX INFO: renamed from: Y */
+        public final void m9101Y(String str) throws IOException {
+            int i = this.f20633f;
+            try {
+                int iM9059L = zzhi.m9059L(str.length() * 3);
+                int iM9059L2 = zzhi.m9059L(str.length());
+                if (iM9059L2 != iM9059L) {
+                    mo9094r(C3724k7.m5021a(str));
+                    this.f20633f = C3724k7.f10058a.mo5056b(str, this.f20631d, this.f20633f, mo9083a());
+                    return;
+                }
+                int i2 = i + iM9059L2;
+                this.f20633f = i2;
+                int iMo5056b = C3724k7.f10058a.mo5056b(str, this.f20631d, i2, mo9083a());
+                this.f20633f = i;
+                mo9094r((iMo5056b - i) - iM9059L2);
+                this.f20633f = iMo5056b;
+            } catch (C3776o7 e) {
+                this.f20633f = i;
+                zzhi.f20628a.logp(Level.WARNING, "com.google.protobuf.CodedOutputStream", "inefficientWriteStringNoTag", "Converting ill-formed UTF-16. Your Protocol Buffer will not round trip correctly!", (Throwable) e);
+                byte[] bytes = str.getBytes(C3877w4.f10379a);
+                try {
+                    mo9094r(bytes.length);
+                    m9102Z(bytes, 0, bytes.length);
+                } catch (zza e2) {
+                    throw e2;
+                } catch (IndexOutOfBoundsException e3) {
+                    throw new zza(e3);
+                }
+            } catch (IndexOutOfBoundsException e4) {
+                throw new zza(e4);
+            }
+        }
+
+        /* JADX INFO: renamed from: Z */
+        public final void m9102Z(byte[] bArr, int i, int i2) throws IOException {
+            try {
+                System.arraycopy(bArr, i, this.f20631d, this.f20633f, i2);
+                this.f20633f += i2;
+            } catch (IndexOutOfBoundsException e) {
+                throw new zza(String.format("Pos: %d, limit: %d, len: %d", Integer.valueOf(this.f20633f), Integer.valueOf(this.f20632e), Integer.valueOf(i2)), e);
+            }
         }
 
         @Override // com.google.android.gms.internal.measurement.zzhi
@@ -115,62 +171,6 @@ public abstract class zzhi extends AbstractC3850u3 {
         public final void mo9082G(int i, int i2) throws IOException {
             mo9094r((i << 3) | 5);
             mo9081C(i2);
-        }
-
-        /* JADX INFO: renamed from: W */
-        public final void m9099W(AbstractC3837t3 abstractC3837t3) throws IOException {
-            mo9094r(abstractC3837t3.mo5282d());
-            abstractC3837t3.mo5286j(this);
-        }
-
-        /* JADX INFO: renamed from: X */
-        public final void m9100X(InterfaceC3612c6 interfaceC3612c6) throws IOException {
-            mo9094r(interfaceC3612c6.mo4606g());
-            interfaceC3612c6.mo4608i(this);
-        }
-
-        /* JADX INFO: renamed from: Y */
-        public final void m9101Y(String str) throws IOException {
-            int i = this.f20633f;
-            try {
-                int iM9059L = zzhi.m9059L(str.length() * 3);
-                int iM9059L2 = zzhi.m9059L(str.length());
-                if (iM9059L2 != iM9059L) {
-                    mo9094r(C3724k7.m5021a(str));
-                    this.f20633f = C3724k7.f10058a.mo5056b(str, this.f20631d, this.f20633f, mo9083a());
-                    return;
-                }
-                int i2 = i + iM9059L2;
-                this.f20633f = i2;
-                int iMo5056b = C3724k7.f10058a.mo5056b(str, this.f20631d, i2, mo9083a());
-                this.f20633f = i;
-                mo9094r((iMo5056b - i) - iM9059L2);
-                this.f20633f = iMo5056b;
-            } catch (C3776o7 e) {
-                this.f20633f = i;
-                zzhi.f20628a.logp(Level.WARNING, "com.google.protobuf.CodedOutputStream", "inefficientWriteStringNoTag", "Converting ill-formed UTF-16. Your Protocol Buffer will not round trip correctly!", (Throwable) e);
-                byte[] bytes = str.getBytes(C3877w4.f10379a);
-                try {
-                    mo9094r(bytes.length);
-                    m9102Z(bytes, 0, bytes.length);
-                } catch (zza e2) {
-                    throw e2;
-                } catch (IndexOutOfBoundsException e3) {
-                    throw new zza(e3);
-                }
-            } catch (IndexOutOfBoundsException e4) {
-                throw new zza(e4);
-            }
-        }
-
-        /* JADX INFO: renamed from: Z */
-        public final void m9102Z(byte[] bArr, int i, int i2) throws IOException {
-            try {
-                System.arraycopy(bArr, i, this.f20631d, this.f20633f, i2);
-                this.f20633f += i2;
-            } catch (IndexOutOfBoundsException e) {
-                throw new zza(String.format("Pos: %d, limit: %d, len: %d", Integer.valueOf(this.f20633f), Integer.valueOf(this.f20632e), Integer.valueOf(i2)), e);
-            }
         }
 
         @Override // com.google.android.gms.internal.measurement.zzhi
@@ -404,7 +404,7 @@ public abstract class zzhi extends AbstractC3850u3 {
     }
 
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
-    public static class zza extends IOException {
+    public final class zza extends IOException {
         public zza() {
             super("CodedOutputStream was writing to a flat byte array and ran out of space.");
         }

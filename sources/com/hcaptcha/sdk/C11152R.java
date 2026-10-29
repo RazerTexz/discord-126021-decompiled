@@ -5,7 +5,7 @@ package com.hcaptcha.sdk;
 public final class C11152R {
 
     /* JADX INFO: renamed from: com.hcaptcha.sdk.R$a */
-    public static final class a {
+    public final class a {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -160,7 +160,7 @@ public final class C11152R {
     }
 
     /* JADX INFO: renamed from: com.hcaptcha.sdk.R$b */
-    public static final class b {
+    public final class b {
         public static final int abc_action_bar_title_item = 2131558400;
         public static final int abc_action_bar_up_container = 2131558401;
         public static final int abc_action_menu_item_layout = 2131558402;
@@ -207,7 +207,7 @@ public final class C11152R {
     }
 
     /* JADX INFO: renamed from: com.hcaptcha.sdk.R$c */
-    public static final class c {
+    public final class c {
         public static final int AlertDialog_AppCompat = 2131951617;
         public static final int AlertDialog_AppCompat_Light = 2131951618;
         public static final int Animation_AppCompat_Dialog = 2131951625;

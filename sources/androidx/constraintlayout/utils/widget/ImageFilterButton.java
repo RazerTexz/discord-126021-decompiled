@@ -38,6 +38,38 @@ public class ImageFilterButton extends AppCompatImageButton {
         init(context, null);
     }
 
+    @Override // android.view.View
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        if (0 != 0) {
+            canvas.restore();
+        }
+    }
+
+    public float getContrast() {
+        return this.mImageMatrix.mContrast;
+    }
+
+    public float getCrossfade() {
+        return this.mCrossfade;
+    }
+
+    public float getRound() {
+        return this.mRound;
+    }
+
+    public float getRoundPercent() {
+        return this.mRoundPercent;
+    }
+
+    public float getSaturation() {
+        return this.mImageMatrix.mSaturation;
+    }
+
+    public float getWarmth() {
+        return this.mImageMatrix.mWarmth;
+    }
+
     private void init(Context context, AttributeSet attributeSet) {
         setPadding(0, 0, 0, 0);
         if (attributeSet != null) {
@@ -76,42 +108,6 @@ public class ImageFilterButton extends AppCompatImageButton {
         }
     }
 
-    private void setOverlay(boolean z2) {
-        this.mOverlay = z2;
-    }
-
-    @Override // android.view.View
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        if (0 != 0) {
-            canvas.restore();
-        }
-    }
-
-    public float getContrast() {
-        return this.mImageMatrix.mContrast;
-    }
-
-    public float getCrossfade() {
-        return this.mCrossfade;
-    }
-
-    public float getRound() {
-        return this.mRound;
-    }
-
-    public float getRoundPercent() {
-        return this.mRoundPercent;
-    }
-
-    public float getSaturation() {
-        return this.mImageMatrix.mSaturation;
-    }
-
-    public float getWarmth() {
-        return this.mImageMatrix.mWarmth;
-    }
-
     public void setBrightness(float f) {
         ImageFilterView.ImageMatrix imageMatrix = this.mImageMatrix;
         imageMatrix.mBrightness = f;
@@ -133,6 +129,10 @@ public class ImageFilterButton extends AppCompatImageButton {
             this.mLayer.getDrawable(1).setAlpha((int) (this.mCrossfade * 255.0f));
             super.setImageDrawable(this.mLayer);
         }
+    }
+
+    private void setOverlay(boolean z2) {
+        this.mOverlay = z2;
     }
 
     @RequiresApi(21)

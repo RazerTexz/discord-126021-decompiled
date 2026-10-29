@@ -35,7 +35,7 @@ public abstract class ActivityResultRegistry {
     public final Map<String, Object> mParsedPendingResults = new HashMap();
     public final Bundle mPendingResults = new Bundle();
 
-    public static class CallbackAndContract<O> {
+    public class CallbackAndContract<O> {
         public final ActivityResultCallback<O> mCallback;
         public final ActivityResultContract<?, O> mContract;
 
@@ -45,31 +45,19 @@ public abstract class ActivityResultRegistry {
         }
     }
 
-    public static class LifecycleContainer {
-        public final Lifecycle mLifecycle;
-        private final ArrayList<LifecycleEventObserver> mObservers = new ArrayList<>();
-
-        public LifecycleContainer(@NonNull Lifecycle lifecycle) {
-            this.mLifecycle = lifecycle;
-        }
-
-        public void addObserver(@NonNull LifecycleEventObserver lifecycleEventObserver) {
-            this.mLifecycle.addObserver(lifecycleEventObserver);
-            this.mObservers.add(lifecycleEventObserver);
-        }
-
-        public void clearObservers() {
-            Iterator<LifecycleEventObserver> it = this.mObservers.iterator();
-            while (it.hasNext()) {
-                this.mLifecycle.removeObserver(it.next());
-            }
-            this.mObservers.clear();
-        }
-    }
-
     private void bindRcKey(int i, String str) {
         this.mRcToKey.put(Integer.valueOf(i), str);
         this.mKeyToRc.put(str, Integer.valueOf(i));
+    }
+
+    @MainThread
+    public final boolean dispatchResult(int i, int i2, @Nullable Intent intent) {
+        String str = this.mRcToKey.get(Integer.valueOf(i));
+        if (str == null) {
+            return false;
+        }
+        doDispatch(str, i2, intent, this.mKeyToCallback.get(str));
+        return true;
     }
 
     private <O> void doDispatch(String str, int i, @Nullable Intent intent, @Nullable CallbackAndContract<O> callbackAndContract) {
@@ -91,26 +79,6 @@ public abstract class ActivityResultRegistry {
             }
             iNextInt = this.mRandom.nextInt(2147418112);
         }
-    }
-
-    private int registerKey(String str) {
-        Integer num = this.mKeyToRc.get(str);
-        if (num != null) {
-            return num.intValue();
-        }
-        int iGenerateRandomNumber = generateRandomNumber();
-        bindRcKey(iGenerateRandomNumber, str);
-        return iGenerateRandomNumber;
-    }
-
-    @MainThread
-    public final boolean dispatchResult(int i, int i2, @Nullable Intent intent) {
-        String str = this.mRcToKey.get(Integer.valueOf(i));
-        if (str == null) {
-            return false;
-        }
-        doDispatch(str, i2, intent, this.mKeyToCallback.get(str));
-        return true;
     }
 
     @MainThread
@@ -199,6 +167,16 @@ public abstract class ActivityResultRegistry {
         };
     }
 
+    private int registerKey(String str) {
+        Integer num = this.mKeyToRc.get(str);
+        if (num != null) {
+            return num.intValue();
+        }
+        int iGenerateRandomNumber = generateRandomNumber();
+        bindRcKey(iGenerateRandomNumber, str);
+        return iGenerateRandomNumber;
+    }
+
     @MainThread
     public final void unregister(@NonNull String str) {
         Integer numRemove = this.mKeyToRc.remove(str);
@@ -222,6 +200,28 @@ public abstract class ActivityResultRegistry {
         if (lifecycleContainer != null) {
             lifecycleContainer.clearObservers();
             this.mKeyToLifecycleContainers.remove(str);
+        }
+    }
+
+    public class LifecycleContainer {
+        public final Lifecycle mLifecycle;
+        private final ArrayList<LifecycleEventObserver> mObservers = new ArrayList<>();
+
+        public LifecycleContainer(@NonNull Lifecycle lifecycle) {
+            this.mLifecycle = lifecycle;
+        }
+
+        public void addObserver(@NonNull LifecycleEventObserver lifecycleEventObserver) {
+            this.mLifecycle.addObserver(lifecycleEventObserver);
+            this.mObservers.add(lifecycleEventObserver);
+        }
+
+        public void clearObservers() {
+            Iterator<LifecycleEventObserver> it = this.mObservers.iterator();
+            while (it.hasNext()) {
+                this.mLifecycle.removeObserver(it.next());
+            }
+            this.mObservers.clear();
         }
     }
 

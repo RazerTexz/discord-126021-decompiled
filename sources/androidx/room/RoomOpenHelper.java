@@ -29,7 +29,7 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper.Callback {
     private final String mLegacyHash;
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static abstract class Delegate {
+    public abstract class Delegate {
         public final int version;
 
         public Delegate(int i) {
@@ -63,7 +63,7 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper.Callback {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static class ValidationResult {
+    public class ValidationResult {
 
         @Nullable
         public final String expectedFoundMsg;
@@ -139,11 +139,6 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper.Callback {
         }
     }
 
-    private void updateIdentity(SupportSQLiteDatabase supportSQLiteDatabase) {
-        createMasterTableIfNotExists(supportSQLiteDatabase);
-        supportSQLiteDatabase.execSQL(RoomMasterTable.createInsertQuery(this.mIdentityHash));
-    }
-
     @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onConfigure(SupportSQLiteDatabase supportSQLiteDatabase) {
         super.onConfigure(supportSQLiteDatabase);
@@ -211,6 +206,11 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper.Callback {
             return;
         }
         throw new IllegalStateException("A migration from " + i + " to " + i2 + " was required but not found. Please provide the necessary Migration path via RoomDatabase.Builder.addMigration(Migration ...) or allow for destructive migrations via one of the RoomDatabase.Builder.fallbackToDestructiveMigration* methods.");
+    }
+
+    private void updateIdentity(SupportSQLiteDatabase supportSQLiteDatabase) {
+        createMasterTableIfNotExists(supportSQLiteDatabase);
+        supportSQLiteDatabase.execSQL(RoomMasterTable.createInsertQuery(this.mIdentityHash));
     }
 
     public RoomOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration, @NonNull Delegate delegate, @NonNull String str) {

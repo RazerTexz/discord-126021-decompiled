@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSoundshareAttached.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSoundshareAttached implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence soundshareSession = null;
-    private final CharSequence shareGameName = null;
     private final Long shareGameId = null;
+    private final CharSequence shareGameName = null;
+    private final CharSequence soundshareSession = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "soundshare_attached";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackSoundshareAttached implements AnalyticsSchema
         }
         TrackSoundshareAttached trackSoundshareAttached = (TrackSoundshareAttached) other;
         return C12238m.areEqual(this.soundshareSession, trackSoundshareAttached.soundshareSession) && C12238m.areEqual(this.shareGameName, trackSoundshareAttached.shareGameName) && C12238m.areEqual(this.shareGameId, trackSoundshareAttached.shareGameId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

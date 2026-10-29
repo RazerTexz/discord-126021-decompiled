@@ -83,7 +83,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
     private final Lazy viewModel;
 
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final /* data */ class AddGuildHint {
+    public final /* data */ class AddGuildHint {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -91,7 +91,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         private final boolean isEligible;
 
         /* JADX INFO: compiled from: WidgetGuildsList.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -168,16 +168,6 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
             return addGuildHint.copy(z2, z3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsEligible() {
-            return this.isEligible;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsAddGuildHint() {
-            return this.isAddGuildHint;
-        }
-
         public final AddGuildHint copy(boolean isEligible, boolean isAddGuildHint) {
             return new AddGuildHint(isEligible, isAddGuildHint);
         }
@@ -191,6 +181,16 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
             }
             AddGuildHint addGuildHint = (AddGuildHint) other;
             return this.isEligible == addGuildHint.isEligible && this.isAddGuildHint == addGuildHint.isAddGuildHint;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsAddGuildHint() {
+            return this.isAddGuildHint;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsEligible() {
+            return this.isEligible;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -234,7 +234,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$configureAddGuildHint$1 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87451 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+    public final class C87451 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
         public static final C87451 INSTANCE = new C87451();
 
         public C87451() {
@@ -250,7 +250,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$configureBottomNavSpace$1 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87461 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C87461 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C87461() {
             super(1);
         }
@@ -277,7 +277,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87471 extends AbstractC12240o implements Function1<WidgetGuildsListViewModel.ViewState, Unit> {
+    public final class C87471 extends AbstractC12240o implements Function1<WidgetGuildsListViewModel.ViewState, Unit> {
         public C87471() {
             super(1);
         }
@@ -297,7 +297,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$2 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87482 extends AbstractC12240o implements Function1<WidgetGuildsListViewModel.Event, Unit> {
+    public final class C87482 extends AbstractC12240o implements Function1<WidgetGuildsListViewModel.Event, Unit> {
         public C87482() {
             super(1);
         }
@@ -317,7 +317,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$3 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87493 extends AbstractC12240o implements Function1<AddGuildHint, Unit> {
+    public final class C87493 extends AbstractC12240o implements Function1<AddGuildHint, Unit> {
         public C87493() {
             super(1);
         }
@@ -337,7 +337,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$4 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87504 extends AbstractC12240o implements Function1<Boolean, Unit> {
+    public final class C87504 extends AbstractC12240o implements Function1<Boolean, Unit> {
         public C87504() {
             super(1);
         }
@@ -357,7 +357,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87511 extends AbstractC12240o implements Function0<Integer> {
+    public final class C87511 extends AbstractC12240o implements Function0<Integer> {
         public C87511() {
             super(0);
         }
@@ -375,7 +375,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onViewBound$2 */
     /* JADX INFO: compiled from: WidgetGuildsList.kt */
-    public static final class C87522 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C87522 extends AbstractC12240o implements Function1<View, Unit> {
         public C87522() {
             super(1);
         }
@@ -530,77 +530,6 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         }
     }
 
-    private final void setupRecycler() {
-        RecyclerView recyclerView = getBinding().f17093b;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.guildList");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext(), 1, false);
-        WidgetGuildListAdapter widgetGuildListAdapter = new WidgetGuildListAdapter(linearLayoutManager, this);
-        this.adapter = widgetGuildListAdapter;
-        if (widgetGuildListAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        widgetGuildListAdapter.setHasStableIds(true);
-        RecyclerView recyclerView2 = getBinding().f17093b;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.guildList");
-        recyclerView2.setItemAnimator(null);
-        RecyclerView recyclerView3 = getBinding().f17093b;
-        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.guildList");
-        recyclerView3.setLayoutManager(linearLayoutManager);
-        RecyclerView recyclerView4 = getBinding().f17093b;
-        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.guildList");
-        WidgetGuildListAdapter widgetGuildListAdapter2 = this.adapter;
-        if (widgetGuildListAdapter2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        recyclerView4.setAdapter(widgetGuildListAdapter2);
-        WidgetGuildListAdapter widgetGuildListAdapter3 = this.adapter;
-        if (widgetGuildListAdapter3 == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
-        }
-        new ItemTouchHelper(new GuildsDragAndDropCallback(widgetGuildListAdapter3)).attachToRecyclerView(getBinding().f17093b);
-        RecyclerView recyclerView5 = getBinding().f17093b;
-        Drawable drawable = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_no_children, 0, 2, (Object) null));
-        C12238m.checkNotNull(drawable);
-        C12238m.checkNotNullExpressionValue(drawable, "ContextCompat.getDrawabl…children)\n            )!!");
-        Drawable drawable2 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_tintable_no_children, 0, 2, (Object) null));
-        C12238m.checkNotNull(drawable2);
-        C12238m.checkNotNullExpressionValue(drawable2, "ContextCompat.getDrawabl…children)\n            )!!");
-        Drawable drawable3 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_with_children, 0, 2, (Object) null));
-        C12238m.checkNotNull(drawable3);
-        C12238m.checkNotNullExpressionValue(drawable3, "ContextCompat.getDrawabl…children)\n            )!!");
-        recyclerView5.addItemDecoration(new FolderItemDecoration(drawable, drawable2, drawable3, requireContext().getResources().getDimensionPixelSize(C5419R.dimen.avatar_size_large)));
-    }
-
-    private final void showChannelActions(long channelId) {
-        WidgetChannelsListItemChannelActions.Companion companion = WidgetChannelsListItemChannelActions.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager, channelId);
-    }
-
-    private final void showCreateGuild() {
-        dismissAddGuildHint(true);
-        WidgetGuildTemplates.INSTANCE.launch(requireContext(), CreateGuildTrigger.IN_APP, false);
-    }
-
-    private final void showHelp() {
-        dismissAddGuildHint(true);
-        WidgetNavigationHelp.Companion companion = WidgetNavigationHelp.INSTANCE;
-        FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager);
-    }
-
-    private final void showHubVerification() {
-        C0870j.m156d(requireContext(), WidgetHubEmailFlow.class, new HubEmailArgs(null, 0, null, 7, null));
-    }
-
-    private final void showUnavailableGuildsToast(int unavailableGuildCount) {
-        Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        C0876m.m170h(getContext(), C1107b.m215g(StringResourceUtilsKt.getQuantityString(resources, requireContext(), C5419R.plurals.partial_outage_count, unavailableGuildCount, Integer.valueOf(unavailableGuildCount)), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null), 0, null, 12);
-    }
-
     @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
     public boolean onDrop() {
         return getViewModel().onDrop();
@@ -708,5 +637,76 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         if (widgetHome != null) {
             widgetHome.setOnGuildListAddHintCreate(new C87522());
         }
+    }
+
+    private final void setupRecycler() {
+        RecyclerView recyclerView = getBinding().f17093b;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.guildList");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext(), 1, false);
+        WidgetGuildListAdapter widgetGuildListAdapter = new WidgetGuildListAdapter(linearLayoutManager, this);
+        this.adapter = widgetGuildListAdapter;
+        if (widgetGuildListAdapter == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        widgetGuildListAdapter.setHasStableIds(true);
+        RecyclerView recyclerView2 = getBinding().f17093b;
+        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.guildList");
+        recyclerView2.setItemAnimator(null);
+        RecyclerView recyclerView3 = getBinding().f17093b;
+        C12238m.checkNotNullExpressionValue(recyclerView3, "binding.guildList");
+        recyclerView3.setLayoutManager(linearLayoutManager);
+        RecyclerView recyclerView4 = getBinding().f17093b;
+        C12238m.checkNotNullExpressionValue(recyclerView4, "binding.guildList");
+        WidgetGuildListAdapter widgetGuildListAdapter2 = this.adapter;
+        if (widgetGuildListAdapter2 == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        recyclerView4.setAdapter(widgetGuildListAdapter2);
+        WidgetGuildListAdapter widgetGuildListAdapter3 = this.adapter;
+        if (widgetGuildListAdapter3 == null) {
+            C12238m.throwUninitializedPropertyAccessException("adapter");
+        }
+        new ItemTouchHelper(new GuildsDragAndDropCallback(widgetGuildListAdapter3)).attachToRecyclerView(getBinding().f17093b);
+        RecyclerView recyclerView5 = getBinding().f17093b;
+        Drawable drawable = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_no_children, 0, 2, (Object) null));
+        C12238m.checkNotNull(drawable);
+        C12238m.checkNotNullExpressionValue(drawable, "ContextCompat.getDrawabl…children)\n            )!!");
+        Drawable drawable2 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_tintable_no_children, 0, 2, (Object) null));
+        C12238m.checkNotNull(drawable2);
+        C12238m.checkNotNullExpressionValue(drawable2, "ContextCompat.getDrawabl…children)\n            )!!");
+        Drawable drawable3 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), C5419R.attr.bg_folder_with_children, 0, 2, (Object) null));
+        C12238m.checkNotNull(drawable3);
+        C12238m.checkNotNullExpressionValue(drawable3, "ContextCompat.getDrawabl…children)\n            )!!");
+        recyclerView5.addItemDecoration(new FolderItemDecoration(drawable, drawable2, drawable3, requireContext().getResources().getDimensionPixelSize(C5419R.dimen.avatar_size_large)));
+    }
+
+    private final void showChannelActions(long channelId) {
+        WidgetChannelsListItemChannelActions.Companion companion = WidgetChannelsListItemChannelActions.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager, channelId);
+    }
+
+    private final void showCreateGuild() {
+        dismissAddGuildHint(true);
+        WidgetGuildTemplates.INSTANCE.launch(requireContext(), CreateGuildTrigger.IN_APP, false);
+    }
+
+    private final void showHelp() {
+        dismissAddGuildHint(true);
+        WidgetNavigationHelp.Companion companion = WidgetNavigationHelp.INSTANCE;
+        FragmentManager parentFragmentManager = getParentFragmentManager();
+        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        companion.show(parentFragmentManager);
+    }
+
+    private final void showHubVerification() {
+        C0870j.m156d(requireContext(), WidgetHubEmailFlow.class, new HubEmailArgs(null, 0, null, 7, null));
+    }
+
+    private final void showUnavailableGuildsToast(int unavailableGuildCount) {
+        Resources resources = getResources();
+        C12238m.checkNotNullExpressionValue(resources, "resources");
+        C0876m.m170h(getContext(), C1107b.m215g(StringResourceUtilsKt.getQuantityString(resources, requireContext(), C5419R.plurals.partial_outage_count, unavailableGuildCount, Integer.valueOf(unavailableGuildCount)), new Object[0], (2 & 2) != 0 ? C1107b.e.f1494j : null), 0, null, 12);
     }
 }

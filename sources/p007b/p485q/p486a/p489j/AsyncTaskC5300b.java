@@ -65,6 +65,164 @@ public class AsyncTaskC5300b extends AsyncTask<Void, Void, a> {
         this.f14431f = interfaceC5293b;
     }
 
+    @Override // android.os.AsyncTask
+    @NonNull
+    public a doInBackground(Void[] voidArr) {
+        int i;
+        int iM7475a;
+        int i2;
+        boolean z2;
+        if (this.f14427b == null) {
+            return new a(new NullPointerException("Input Uri cannot be null"));
+        }
+        try {
+            m7474c();
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            int i3 = this.f14429d;
+            int i4 = this.f14430e;
+            int i5 = options.outHeight;
+            int i6 = options.outWidth;
+            if (i5 > i4 || i6 > i3) {
+                int i7 = 1;
+                while (true) {
+                    if (i5 / i7 <= i4 && i6 / i7 <= i3) {
+                        break;
+                    }
+                    i7 *= 2;
+                }
+                i = i7;
+            } else {
+                i = 1;
+            }
+            options.inSampleSize = i;
+            options.inJustDecodeBounds = false;
+            boolean z3 = false;
+            Bitmap bitmapDecodeStream = null;
+            while (true) {
+                int i8 = -1;
+                if (z3) {
+                    if (bitmapDecodeStream == null) {
+                        StringBuilder sbM833U = C1643a.m833U("Bitmap could not be decoded from the Uri: [");
+                        sbM833U.append(this.f14427b);
+                        sbM833U.append("]");
+                        return new a(new IllegalArgumentException(sbM833U.toString()));
+                    }
+                    Context context = this.f14426a;
+                    Uri uri = this.f14427b;
+                    try {
+                        InputStream inputStreamOpenInputStream = context.getContentResolver().openInputStream(uri);
+                        if (inputStreamOpenInputStream == null) {
+                            iM7475a = 0;
+                        } else {
+                            iM7475a = new C5302b(inputStreamOpenInputStream).m7475a();
+                            try {
+                                inputStreamOpenInputStream.close();
+                            } catch (IOException unused) {
+                            }
+                        }
+                    } catch (IOException e) {
+                        StringBuilder sbM833U2 = C1643a.m833U("getExifOrientation: ");
+                        sbM833U2.append(uri.toString());
+                        Log.e("BitmapLoadUtils", sbM833U2.toString(), e);
+                    }
+                    switch (iM7475a) {
+                        case 3:
+                        case 4:
+                            i2 = 180;
+                            break;
+                        case 5:
+                        case 6:
+                            i2 = 90;
+                            break;
+                        case 7:
+                        case 8:
+                            i2 = 270;
+                            break;
+                        default:
+                            i2 = 0;
+                            break;
+                    }
+                    if (iM7475a != 2 && iM7475a != 7 && iM7475a != 4 && iM7475a != 5) {
+                        i8 = 1;
+                    }
+                    C5297b c5297b = new C5297b(iM7475a, i2, i8);
+                    Matrix matrix = new Matrix();
+                    if (i2 != 0) {
+                        matrix.preRotate(i2);
+                    }
+                    if (i8 != 1) {
+                        matrix.postScale(i8, 1.0f);
+                    }
+                    if (matrix.isIdentity()) {
+                        return new a(bitmapDecodeStream, c5297b);
+                    }
+                    try {
+                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeStream, 0, 0, bitmapDecodeStream.getWidth(), bitmapDecodeStream.getHeight(), matrix, true);
+                        if (!bitmapDecodeStream.sameAs(bitmapCreateBitmap)) {
+                            bitmapDecodeStream = bitmapCreateBitmap;
+                        }
+                    } catch (OutOfMemoryError e2) {
+                        Log.e("BitmapLoadUtils", "transformBitmap: ", e2);
+                    }
+                    return new a(bitmapDecodeStream, c5297b);
+                }
+                try {
+                    try {
+                        InputStream inputStreamOpenInputStream2 = this.f14426a.getContentResolver().openInputStream(this.f14427b);
+                        try {
+                            bitmapDecodeStream = BitmapFactory.decodeStream(inputStreamOpenInputStream2, null, options);
+                            if (options.outWidth == -1 || options.outHeight == -1) {
+                                a aVar = new a(new IllegalArgumentException("Bounds for bitmap could not be retrieved from the Uri: [" + this.f14427b + "]"));
+                                if (inputStreamOpenInputStream2 != null) {
+                                    try {
+                                        inputStreamOpenInputStream2.close();
+                                    } catch (IOException unused2) {
+                                    }
+                                }
+                                return aVar;
+                            }
+                            if (inputStreamOpenInputStream2 != null) {
+                                try {
+                                    inputStreamOpenInputStream2.close();
+                                } catch (IOException unused3) {
+                                }
+                            }
+                            if ((bitmapDecodeStream != null ? bitmapDecodeStream.getByteCount() : 0) > 104857600) {
+                                options.inSampleSize *= 2;
+                                z2 = true;
+                            } else {
+                                z2 = false;
+                            }
+                            if (!z2) {
+                                z3 = true;
+                            }
+                        } catch (Throwable th) {
+                            if (inputStreamOpenInputStream2 != null) {
+                                try {
+                                    inputStreamOpenInputStream2.close();
+                                } catch (IOException unused4) {
+                                }
+                            }
+                            throw th;
+                        }
+                    } catch (IOException e3) {
+                        Log.e("BitmapWorkerTask", "doInBackground: ImageDecoder.createSource: ", e3);
+                        StringBuilder sbM833U3 = C1643a.m833U("Bitmap could not be decoded from the Uri: [");
+                        sbM833U3.append(this.f14427b);
+                        sbM833U3.append("]");
+                        return new a(new IllegalArgumentException(sbM833U3.toString(), e3));
+                    }
+                } catch (OutOfMemoryError e4) {
+                    Log.e("BitmapWorkerTask", "doInBackground: BitmapFactory.decodeFileDescriptor: ", e4);
+                    options.inSampleSize *= 2;
+                }
+            }
+        } catch (IOException | NullPointerException e5) {
+            return new a(e5);
+        }
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m7472a(@NonNull Uri uri, @Nullable Uri uri2) throws Throwable {
         InputStream inputStreamOpenInputStream;
@@ -253,164 +411,6 @@ public class AsyncTaskC5300b extends AsyncTask<Void, Void, a> {
     }
 
     @Override // android.os.AsyncTask
-    @NonNull
-    public a doInBackground(Void[] voidArr) {
-        int i;
-        int iM7475a;
-        int i2;
-        boolean z2;
-        if (this.f14427b == null) {
-            return new a(new NullPointerException("Input Uri cannot be null"));
-        }
-        try {
-            m7474c();
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            int i3 = this.f14429d;
-            int i4 = this.f14430e;
-            int i5 = options.outHeight;
-            int i6 = options.outWidth;
-            if (i5 > i4 || i6 > i3) {
-                int i7 = 1;
-                while (true) {
-                    if (i5 / i7 <= i4 && i6 / i7 <= i3) {
-                        break;
-                    }
-                    i7 *= 2;
-                }
-                i = i7;
-            } else {
-                i = 1;
-            }
-            options.inSampleSize = i;
-            options.inJustDecodeBounds = false;
-            boolean z3 = false;
-            Bitmap bitmapDecodeStream = null;
-            while (true) {
-                int i8 = -1;
-                if (z3) {
-                    if (bitmapDecodeStream == null) {
-                        StringBuilder sbM833U = C1643a.m833U("Bitmap could not be decoded from the Uri: [");
-                        sbM833U.append(this.f14427b);
-                        sbM833U.append("]");
-                        return new a(new IllegalArgumentException(sbM833U.toString()));
-                    }
-                    Context context = this.f14426a;
-                    Uri uri = this.f14427b;
-                    try {
-                        InputStream inputStreamOpenInputStream = context.getContentResolver().openInputStream(uri);
-                        if (inputStreamOpenInputStream == null) {
-                            iM7475a = 0;
-                        } else {
-                            iM7475a = new C5302b(inputStreamOpenInputStream).m7475a();
-                            try {
-                                inputStreamOpenInputStream.close();
-                            } catch (IOException unused) {
-                            }
-                        }
-                    } catch (IOException e) {
-                        StringBuilder sbM833U2 = C1643a.m833U("getExifOrientation: ");
-                        sbM833U2.append(uri.toString());
-                        Log.e("BitmapLoadUtils", sbM833U2.toString(), e);
-                    }
-                    switch (iM7475a) {
-                        case 3:
-                        case 4:
-                            i2 = 180;
-                            break;
-                        case 5:
-                        case 6:
-                            i2 = 90;
-                            break;
-                        case 7:
-                        case 8:
-                            i2 = 270;
-                            break;
-                        default:
-                            i2 = 0;
-                            break;
-                    }
-                    if (iM7475a != 2 && iM7475a != 7 && iM7475a != 4 && iM7475a != 5) {
-                        i8 = 1;
-                    }
-                    C5297b c5297b = new C5297b(iM7475a, i2, i8);
-                    Matrix matrix = new Matrix();
-                    if (i2 != 0) {
-                        matrix.preRotate(i2);
-                    }
-                    if (i8 != 1) {
-                        matrix.postScale(i8, 1.0f);
-                    }
-                    if (matrix.isIdentity()) {
-                        return new a(bitmapDecodeStream, c5297b);
-                    }
-                    try {
-                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeStream, 0, 0, bitmapDecodeStream.getWidth(), bitmapDecodeStream.getHeight(), matrix, true);
-                        if (!bitmapDecodeStream.sameAs(bitmapCreateBitmap)) {
-                            bitmapDecodeStream = bitmapCreateBitmap;
-                        }
-                    } catch (OutOfMemoryError e2) {
-                        Log.e("BitmapLoadUtils", "transformBitmap: ", e2);
-                    }
-                    return new a(bitmapDecodeStream, c5297b);
-                }
-                try {
-                    try {
-                        InputStream inputStreamOpenInputStream2 = this.f14426a.getContentResolver().openInputStream(this.f14427b);
-                        try {
-                            bitmapDecodeStream = BitmapFactory.decodeStream(inputStreamOpenInputStream2, null, options);
-                            if (options.outWidth == -1 || options.outHeight == -1) {
-                                a aVar = new a(new IllegalArgumentException("Bounds for bitmap could not be retrieved from the Uri: [" + this.f14427b + "]"));
-                                if (inputStreamOpenInputStream2 != null) {
-                                    try {
-                                        inputStreamOpenInputStream2.close();
-                                    } catch (IOException unused2) {
-                                    }
-                                }
-                                return aVar;
-                            }
-                            if (inputStreamOpenInputStream2 != null) {
-                                try {
-                                    inputStreamOpenInputStream2.close();
-                                } catch (IOException unused3) {
-                                }
-                            }
-                            if ((bitmapDecodeStream != null ? bitmapDecodeStream.getByteCount() : 0) > 104857600) {
-                                options.inSampleSize *= 2;
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            if (!z2) {
-                                z3 = true;
-                            }
-                        } catch (Throwable th) {
-                            if (inputStreamOpenInputStream2 != null) {
-                                try {
-                                    inputStreamOpenInputStream2.close();
-                                } catch (IOException unused4) {
-                                }
-                            }
-                            throw th;
-                        }
-                    } catch (IOException e3) {
-                        Log.e("BitmapWorkerTask", "doInBackground: ImageDecoder.createSource: ", e3);
-                        StringBuilder sbM833U3 = C1643a.m833U("Bitmap could not be decoded from the Uri: [");
-                        sbM833U3.append(this.f14427b);
-                        sbM833U3.append("]");
-                        return new a(new IllegalArgumentException(sbM833U3.toString(), e3));
-                    }
-                } catch (OutOfMemoryError e4) {
-                    Log.e("BitmapWorkerTask", "doInBackground: BitmapFactory.decodeFileDescriptor: ", e4);
-                    options.inSampleSize *= 2;
-                }
-            }
-        } catch (IOException | NullPointerException e5) {
-            return new a(e5);
-        }
-    }
-
-    @Override // android.os.AsyncTask
     public void onPostExecute(@NonNull a aVar) {
         a aVar2 = aVar;
         Exception exc = aVar2.f14434c;
@@ -443,7 +443,7 @@ public class AsyncTaskC5300b extends AsyncTask<Void, Void, a> {
 
     /* JADX INFO: renamed from: b.q.a.j.b$a */
     /* JADX INFO: compiled from: BitmapLoadTask.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public Bitmap f14432a;

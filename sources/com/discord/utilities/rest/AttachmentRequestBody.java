@@ -7,6 +7,7 @@ import com.lytefast.flexinput.model.Attachment;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.BufferedSink;
@@ -34,15 +35,15 @@ public final class AttachmentRequestBody extends RequestBody {
     }
 
     @Override // okhttp3.RequestBody
-    /* JADX INFO: renamed from: contentLength, reason: from getter */
-    public long getSize() {
-        return this.size;
-    }
-
-    @Override // okhttp3.RequestBody
     public MediaType contentType() {
         MediaType.Companion companion = MediaType.INSTANCE;
         return MediaType.Companion.m10968b(AttachmentUtilsKt.getMimeType(this.attachment, this.contentResolver));
+    }
+
+    @Override // okhttp3.RequestBody
+    /* JADX INFO: renamed from: contentLength, reason: from getter */
+    public long getSize() {
+        return this.size;
     }
 
     public String toString() {
@@ -55,7 +56,7 @@ public final class AttachmentRequestBody extends RequestBody {
     }
 
     @Override // okhttp3.RequestBody
-    public void writeTo(BufferedSink sink) throws IOException {
+    public void writeTo(BufferedSink sink) throws IllegalAccessException, IOException, InvocationTargetException {
         C12238m.checkNotNullParameter(sink, "sink");
         try {
             InputStream inputStreamOpenInputStream = this.contentResolver.openInputStream(this.attachment.getUri());

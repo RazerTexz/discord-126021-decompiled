@@ -10,7 +10,7 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 public final class OneTimeWorkRequest extends WorkRequest {
 
-    public static final class Builder extends WorkRequest.Builder<Builder, OneTimeWorkRequest> {
+    public final class Builder extends WorkRequest.Builder<Builder, OneTimeWorkRequest> {
         public Builder(@NonNull Class<? extends ListenableWorker> cls) {
             super(cls);
             this.mWorkSpec.inputMergerClassName = OverwritingInputMerger.class.getName();

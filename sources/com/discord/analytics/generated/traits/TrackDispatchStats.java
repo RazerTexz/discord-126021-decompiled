@@ -6,8 +6,8 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDispatchStats.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDispatchStats {
-    private final CharSequence stage = null;
     private final Long progressPercent = null;
+    private final CharSequence stage = null;
 
     public boolean equals(Object other) {
         if (this == other) {

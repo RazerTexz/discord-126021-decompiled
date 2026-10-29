@@ -11,17 +11,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackOverlayInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackOverlayInitialized implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
+    private final Boolean textWidgetConnected = null;
     private TrackBase trackBase;
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final Boolean voiceWidgetConnected = null;
-    private final Boolean textWidgetConnected = null;
     private final transient String analyticsSchemaTypeName = "overlay_initialized";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackOverlayInitialized implements AnalyticsSchema
         }
         TrackOverlayInitialized trackOverlayInitialized = (TrackOverlayInitialized) other;
         return C12238m.areEqual(this.voiceWidgetConnected, trackOverlayInitialized.voiceWidgetConnected) && C12238m.areEqual(this.textWidgetConnected, trackOverlayInitialized.textWidgetConnected);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

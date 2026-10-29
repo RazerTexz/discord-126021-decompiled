@@ -31,10 +31,6 @@ public final class TabLayoutMediator {
     @NonNull
     private final ViewPager2 viewPager;
 
-    public interface TabConfigurationStrategy {
-        void onConfigureTab(@NonNull TabLayout.Tab tab, int i);
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayoutMediator$a */
     public class C11010a extends RecyclerView.AdapterDataObserver {
         public C11010a() {
@@ -71,51 +67,8 @@ public final class TabLayoutMediator {
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayoutMediator$b */
-    public static class C11011b extends ViewPager2.OnPageChangeCallback {
-
-        /* JADX INFO: renamed from: a */
-        @NonNull
-        public final WeakReference<TabLayout> f21166a;
-
-        /* JADX INFO: renamed from: c */
-        public int f21168c = 0;
-
-        /* JADX INFO: renamed from: b */
-        public int f21167b = 0;
-
-        public C11011b(TabLayout tabLayout) {
-            this.f21166a = new WeakReference<>(tabLayout);
-        }
-
-        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-        public void onPageScrollStateChanged(int i) {
-            this.f21167b = this.f21168c;
-            this.f21168c = i;
-        }
-
-        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-        public void onPageScrolled(int i, float f, int i2) {
-            TabLayout tabLayout = this.f21166a.get();
-            if (tabLayout != null) {
-                int i3 = this.f21168c;
-                tabLayout.setScrollPosition(i, f, i3 != 2 || this.f21167b == 1, (i3 == 2 && this.f21167b == 0) ? false : true);
-            }
-        }
-
-        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-        public void onPageSelected(int i) {
-            TabLayout tabLayout = this.f21166a.get();
-            if (tabLayout == null || tabLayout.getSelectedTabPosition() == i || i >= tabLayout.getTabCount()) {
-                return;
-            }
-            int i2 = this.f21168c;
-            tabLayout.selectTab(tabLayout.getTabAt(i), i2 == 0 || (i2 == 2 && this.f21167b == 0));
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayoutMediator$c */
-    public static class C11012c implements TabLayout.OnTabSelectedListener {
+    public class C11012c implements TabLayout.OnTabSelectedListener {
 
         /* JADX INFO: renamed from: a */
         public final ViewPager2 f21169a;
@@ -140,6 +93,10 @@ public final class TabLayoutMediator {
         @Override // com.google.android.material.tabs.TabLayout.BaseOnTabSelectedListener
         public void onTabUnselected(TabLayout.Tab tab) {
         }
+    }
+
+    public interface TabConfigurationStrategy {
+        void onConfigureTab(@NonNull TabLayout.Tab tab, int i);
     }
 
     public TabLayoutMediator(@NonNull TabLayout tabLayout, @NonNull ViewPager2 viewPager2, @NonNull TabConfigurationStrategy tabConfigurationStrategy) {
@@ -211,6 +168,49 @@ public final class TabLayoutMediator {
 
     public TabLayoutMediator(@NonNull TabLayout tabLayout, @NonNull ViewPager2 viewPager2, boolean z2, @NonNull TabConfigurationStrategy tabConfigurationStrategy) {
         this(tabLayout, viewPager2, z2, true, tabConfigurationStrategy);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.tabs.TabLayoutMediator$b */
+    public class C11011b extends ViewPager2.OnPageChangeCallback {
+
+        /* JADX INFO: renamed from: a */
+        @NonNull
+        public final WeakReference<TabLayout> f21166a;
+
+        /* JADX INFO: renamed from: b */
+        public int f21167b = 0;
+
+        /* JADX INFO: renamed from: c */
+        public int f21168c = 0;
+
+        public C11011b(TabLayout tabLayout) {
+            this.f21166a = new WeakReference<>(tabLayout);
+        }
+
+        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+        public void onPageScrollStateChanged(int i) {
+            this.f21167b = this.f21168c;
+            this.f21168c = i;
+        }
+
+        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+        public void onPageScrolled(int i, float f, int i2) {
+            TabLayout tabLayout = this.f21166a.get();
+            if (tabLayout != null) {
+                int i3 = this.f21168c;
+                tabLayout.setScrollPosition(i, f, i3 != 2 || this.f21167b == 1, (i3 == 2 && this.f21167b == 0) ? false : true);
+            }
+        }
+
+        @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+        public void onPageSelected(int i) {
+            TabLayout tabLayout = this.f21166a.get();
+            if (tabLayout == null || tabLayout.getSelectedTabPosition() == i || i >= tabLayout.getTabCount()) {
+                return;
+            }
+            int i2 = this.f21168c;
+            tabLayout.selectTab(tabLayout.getTabAt(i), i2 == 0 || (i2 == 2 && this.f21167b == 0));
+        }
     }
 
     public TabLayoutMediator(@NonNull TabLayout tabLayout, @NonNull ViewPager2 viewPager2, boolean z2, boolean z3, @NonNull TabConfigurationStrategy tabConfigurationStrategy) {

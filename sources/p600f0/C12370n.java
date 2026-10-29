@@ -23,6 +23,9 @@ import p600f0.p601e0.p606h.C12297c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C12370n {
 
+    /* JADX INFO: renamed from: e */
+    public static final a f25946e = new a(null);
+
     /* JADX INFO: renamed from: f */
     public final String f25947f;
 
@@ -50,9 +53,6 @@ public final class C12370n {
     /* JADX INFO: renamed from: n */
     public final boolean f25955n;
 
-    /* JADX INFO: renamed from: e */
-    public static final a f25946e = new a(null);
-
     /* JADX INFO: renamed from: a */
     public static final Pattern f25942a = Pattern.compile("(\\d{2,4})[^\\d]*");
 
@@ -67,7 +67,7 @@ public final class C12370n {
 
     /* JADX INFO: renamed from: f0.n$a */
     /* JADX INFO: compiled from: Cookie.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -199,6 +199,21 @@ public final class C12370n {
         this.f25955n = z5;
     }
 
+    public boolean equals(Object obj) {
+        if (obj instanceof C12370n) {
+            C12370n c12370n = (C12370n) obj;
+            if (C12238m.areEqual(c12370n.f25947f, this.f25947f) && C12238m.areEqual(c12370n.f25948g, this.f25948g) && c12370n.f25949h == this.f25949h && C12238m.areEqual(c12370n.f25950i, this.f25950i) && C12238m.areEqual(c12370n.f25951j, this.f25951j) && c12370n.f25952k == this.f25952k && c12370n.f25953l == this.f25953l && c12370n.f25954m == this.f25954m && c12370n.f25955n == this.f25955n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @IgnoreJRERequirement
+    public int hashCode() {
+        return C0897c.m186a(this.f25955n) + ((C0897c.m186a(this.f25954m) + ((C0897c.m186a(this.f25953l) + ((C0897c.m186a(this.f25952k) + C1643a.m863m(this.f25951j, C1643a.m863m(this.f25950i, (C0002b.m3a(this.f25949h) + C1643a.m863m(this.f25948g, C1643a.m863m(this.f25947f, 527, 31), 31)) * 31, 31), 31)) * 31)) * 31)) * 31);
+    }
+
     /* JADX WARN: Code duplicated, block: B:14:0x0048  */
     /* JADX INFO: renamed from: a */
     public final boolean m10384a(C12379w c12379w) {
@@ -231,21 +246,6 @@ public final class C12370n {
             return !this.f25952k || c12379w.f25975c;
         }
         return false;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj instanceof C12370n) {
-            C12370n c12370n = (C12370n) obj;
-            if (C12238m.areEqual(c12370n.f25947f, this.f25947f) && C12238m.areEqual(c12370n.f25948g, this.f25948g) && c12370n.f25949h == this.f25949h && C12238m.areEqual(c12370n.f25950i, this.f25950i) && C12238m.areEqual(c12370n.f25951j, this.f25951j) && c12370n.f25952k == this.f25952k && c12370n.f25953l == this.f25953l && c12370n.f25954m == this.f25954m && c12370n.f25955n == this.f25955n) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @IgnoreJRERequirement
-    public int hashCode() {
-        return C0897c.m186a(this.f25955n) + ((C0897c.m186a(this.f25954m) + ((C0897c.m186a(this.f25953l) + ((C0897c.m186a(this.f25952k) + C1643a.m863m(this.f25951j, C1643a.m863m(this.f25950i, (C0002b.m3a(this.f25949h) + C1643a.m863m(this.f25948g, C1643a.m863m(this.f25947f, 527, 31), 31)) * 31, 31), 31)) * 31)) * 31)) * 31);
     }
 
     public String toString() {

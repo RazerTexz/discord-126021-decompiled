@@ -50,7 +50,7 @@ public final class LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob
     }
 
     @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         CoroutineScope coroutineScope;
         View view;
         Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();

@@ -2,11 +2,11 @@ package com.discord.utilities.search.validation;
 
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
+import com.discord.api.user.User;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.MeUser;
-import com.discord.models.user.User;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,13 +26,9 @@ public final /* data */ class SearchData {
     private final Map<Long, UserGuildMember> users;
 
     /* JADX INFO: compiled from: SearchData.kt */
-    public static final class Builder {
-        private final String getUsernameWithDiscrim(User user) {
-            return user.getUsername() + user.getDiscriminator();
-        }
-
+    public final class Builder {
         public final SearchData buildForChannel(Channel channel, MeUser meUser, Map<Long, GuildMember> guildMembers) {
-            List<com.discord.api.user.User> listM7659z;
+            List<User> listM7659z;
             C12238m.checkNotNullParameter(meUser, "meUser");
             C12238m.checkNotNullParameter(guildMembers, "guildMembers");
             HashMap map = new HashMap();
@@ -41,14 +37,14 @@ public final /* data */ class SearchData {
             if (channel != null && (listM7659z = channel.m7659z()) != null) {
                 Iterator<T> it = listM7659z.iterator();
                 while (it.hasNext()) {
-                    searchData$Builder$buildForChannel$1.invoke2((User) new CoreUser((com.discord.api.user.User) it.next()));
+                    searchData$Builder$buildForChannel$1.invoke2((com.discord.models.user.User) new CoreUser((User) it.next()));
                 }
             }
-            searchData$Builder$buildForChannel$1.invoke2((User) meUser);
+            searchData$Builder$buildForChannel$1.invoke2((com.discord.models.user.User) meUser);
             return new SearchData(map2, null, map, null, null, 26, null);
         }
 
-        public final SearchData buildForGuild(Map<Long, GuildMember> guildMembers, Map<Long, ? extends User> allUsers, Map<Long, Channel> guildSearchableChannels, Map<Long, Long> guildChannelPermissions) {
+        public final SearchData buildForGuild(Map<Long, GuildMember> guildMembers, Map<Long, ? extends com.discord.models.user.User> allUsers, Map<Long, Channel> guildSearchableChannels, Map<Long, Long> guildChannelPermissions) {
             C12238m.checkNotNullParameter(guildMembers, "guildMembers");
             C12238m.checkNotNullParameter(allUsers, "allUsers");
             C12238m.checkNotNullParameter(guildSearchableChannels, "guildSearchableChannels");
@@ -63,13 +59,17 @@ public final /* data */ class SearchData {
             while (it.hasNext()) {
                 long jLongValue = it.next().longValue();
                 GuildMember guildMember = guildMembers.get(Long.valueOf(jLongValue));
-                User user = allUsers.get(Long.valueOf(jLongValue));
+                com.discord.models.user.User user = allUsers.get(Long.valueOf(jLongValue));
                 if (guildMember != null && user != null) {
                     map2.put(Long.valueOf(jLongValue), new UserGuildMember(user, guildMember));
                     map3.put(getUsernameWithDiscrim(user), Long.valueOf(jLongValue));
                 }
             }
             return new SearchData(map3, map, map2, guildSearchableChannels, guildChannelPermissions);
+        }
+
+        private final String getUsernameWithDiscrim(com.discord.models.user.User user) {
+            return user.getUsername() + user.getDiscriminator();
         }
     }
 
@@ -94,6 +94,22 @@ public final /* data */ class SearchData {
         return this.usernameAndDiscriminatorIndex;
     }
 
+    public final Map<String, Long> component2() {
+        return this.channelNameIndex;
+    }
+
+    public final Map<Long, UserGuildMember> component3() {
+        return this.users;
+    }
+
+    public final Map<Long, Channel> component4() {
+        return this.channels;
+    }
+
+    public final Map<Long, Long> component5() {
+        return this.channelPermissions;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ SearchData copy$default(SearchData searchData, Map map, Map map2, Map map3, Map map4, Map map5, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -115,22 +131,6 @@ public final /* data */ class SearchData {
             map5 = searchData.channelPermissions;
         }
         return searchData.copy(map, map6, map7, map8, map5);
-    }
-
-    public final Map<String, Long> component2() {
-        return this.channelNameIndex;
-    }
-
-    public final Map<Long, UserGuildMember> component3() {
-        return this.users;
-    }
-
-    public final Map<Long, Channel> component4() {
-        return this.channels;
-    }
-
-    public final Map<Long, Long> component5() {
-        return this.channelPermissions;
     }
 
     public final SearchData copy(Map<String, Long> usernameAndDiscriminatorIndex, Map<String, Long> channelNameIndex, Map<Long, UserGuildMember> users, Map<Long, Channel> channels, Map<Long, Long> channelPermissions) {

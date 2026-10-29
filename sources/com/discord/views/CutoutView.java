@@ -21,26 +21,26 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public class CutoutView extends FrameLayout {
 
+    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
+    public Path drawBounds;
+
+    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+    public boolean isCutoutEnabled;
+
+    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
+    public int lastHeight;
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public int lastWidth;
+
+    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+    public InterfaceC7075a style;
+
     /* JADX INFO: renamed from: j */
     public static final int f19050j = DimenUtils.dpToPixels(14);
 
     /* JADX INFO: renamed from: k */
     public static final int f19051k = DimenUtils.dpToPixels(8);
-
-    /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public InterfaceC7075a style;
-
-    /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-    public boolean isCutoutEnabled;
-
-    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public Path drawBounds;
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public int lastWidth;
-
-    /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public int lastHeight;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CutoutView(Context context, AttributeSet attributeSet) {
@@ -132,7 +132,7 @@ public class CutoutView extends FrameLayout {
 
         /* JADX INFO: renamed from: com.discord.views.CutoutView$a$b */
         /* JADX INFO: compiled from: CutoutView.kt */
-        public static final class b implements InterfaceC7075a {
+        public final class b implements InterfaceC7075a {
 
             /* JADX INFO: renamed from: a */
             public final int f19059a;
@@ -143,6 +143,21 @@ public class CutoutView extends FrameLayout {
             public b(@IntRange(from = 0) int i, @IntRange(from = 0) int i2) {
                 this.f19059a = i;
                 this.f19060b = i2;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (!(obj instanceof b)) {
+                    return false;
+                }
+                b bVar = (b) obj;
+                return this.f19059a == bVar.f19059a && this.f19060b == bVar.f19060b;
+            }
+
+            public int hashCode() {
+                return (this.f19059a * 31) + this.f19060b;
             }
 
             @Override // com.discord.views.CutoutView.InterfaceC7075a
@@ -176,21 +191,6 @@ public class CutoutView extends FrameLayout {
                 return path2;
             }
 
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                if (!(obj instanceof b)) {
-                    return false;
-                }
-                b bVar = (b) obj;
-                return this.f19059a == bVar.f19059a && this.f19060b == bVar.f19060b;
-            }
-
-            public int hashCode() {
-                return (this.f19059a * 31) + this.f19060b;
-            }
-
             public String toString() {
                 StringBuilder sbM833U = C1643a.m833U("End(cutCurveRadiusPx=");
                 sbM833U.append(this.f19059a);
@@ -201,13 +201,24 @@ public class CutoutView extends FrameLayout {
 
         /* JADX INFO: renamed from: com.discord.views.CutoutView$a$c */
         /* JADX INFO: compiled from: CutoutView.kt */
-        public static final class c implements InterfaceC7075a {
+        public final class c implements InterfaceC7075a {
 
             /* JADX INFO: renamed from: a */
             public final int f19061a;
 
             public c(int i) {
                 this.f19061a = i;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof c) && this.f19061a == ((c) obj).f19061a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return this.f19061a;
             }
 
             @Override // com.discord.views.CutoutView.InterfaceC7075a
@@ -241,17 +252,6 @@ public class CutoutView extends FrameLayout {
                 return path2;
             }
 
-            public boolean equals(Object obj) {
-                if (this != obj) {
-                    return (obj instanceof c) && this.f19061a == ((c) obj).f19061a;
-                }
-                return true;
-            }
-
-            public int hashCode() {
-                return this.f19061a;
-            }
-
             public String toString() {
                 return C1643a.m814B(C1643a.m833U("EndOverlap(offsetDp="), this.f19061a, ")");
             }
@@ -259,7 +259,7 @@ public class CutoutView extends FrameLayout {
 
         /* JADX INFO: renamed from: com.discord.views.CutoutView$a$d */
         /* JADX INFO: compiled from: CutoutView.kt */
-        public static final class d implements InterfaceC7075a {
+        public final class d implements InterfaceC7075a {
 
             /* JADX INFO: renamed from: a */
             public static final d f19062a = new d();
@@ -277,7 +277,7 @@ public class CutoutView extends FrameLayout {
 
         /* JADX INFO: renamed from: com.discord.views.CutoutView$a$a */
         /* JADX INFO: compiled from: CutoutView.kt */
-        public static final class a implements InterfaceC7075a {
+        public final class a implements InterfaceC7075a {
 
             /* JADX INFO: renamed from: a */
             public final int f19057a;
@@ -290,19 +290,6 @@ public class CutoutView extends FrameLayout {
                 int i2 = CutoutView.f19051k;
                 this.f19057a = i;
                 this.f19058b = i2;
-            }
-
-            @Override // com.discord.views.CutoutView.InterfaceC7075a
-            /* JADX INFO: renamed from: a */
-            public Path mo8543a(Context context, int i, int i2) {
-                C12238m.checkNotNullParameter(context, "context");
-                Path path = new Path();
-                path.addRect(0.0f, 0.0f, i, i2, Path.Direction.CW);
-                Path path2 = new Path();
-                path2.addCircle(C1460d.m478U0(context) ? i - this.f19058b : this.f19058b, this.f19058b, this.f19057a, Path.Direction.CW);
-                Path path3 = new Path(path);
-                path3.op(path2, Path.Op.DIFFERENCE);
-                return path3;
             }
 
             public boolean equals(Object obj) {
@@ -318,6 +305,19 @@ public class CutoutView extends FrameLayout {
 
             public int hashCode() {
                 return (this.f19057a * 31) + this.f19058b;
+            }
+
+            @Override // com.discord.views.CutoutView.InterfaceC7075a
+            /* JADX INFO: renamed from: a */
+            public Path mo8543a(Context context, int i, int i2) {
+                C12238m.checkNotNullParameter(context, "context");
+                Path path = new Path();
+                path.addRect(0.0f, 0.0f, i, i2, Path.Direction.CW);
+                Path path2 = new Path();
+                path2.addCircle(C1460d.m478U0(context) ? i - this.f19058b : this.f19058b, this.f19058b, this.f19057a, Path.Direction.CW);
+                Path path3 = new Path(path);
+                path3.op(path2, Path.Op.DIFFERENCE);
+                return path3;
             }
 
             public String toString() {

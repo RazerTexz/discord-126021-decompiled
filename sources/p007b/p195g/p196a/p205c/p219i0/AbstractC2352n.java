@@ -13,7 +13,7 @@ public abstract class AbstractC2352n {
 
     /* JADX INFO: renamed from: b.g.a.c.i0.n$a */
     /* JADX INFO: compiled from: NameTransformer.java */
-    public static class a extends AbstractC2352n implements Serializable {
+    public class a extends AbstractC2352n implements Serializable {
         private static final long serialVersionUID = 1;
         public final AbstractC2352n _t1;
         public final AbstractC2352n _t2;
@@ -41,7 +41,7 @@ public abstract class AbstractC2352n {
 
     /* JADX INFO: renamed from: b.g.a.c.i0.n$b */
     /* JADX INFO: compiled from: NameTransformer.java */
-    public static final class b extends AbstractC2352n implements Serializable {
+    public final class b extends AbstractC2352n implements Serializable {
         private static final long serialVersionUID = 1;
 
         @Override // p007b.p195g.p196a.p205c.p219i0.AbstractC2352n

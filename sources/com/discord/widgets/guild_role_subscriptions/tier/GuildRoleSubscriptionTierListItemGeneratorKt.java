@@ -11,6 +11,19 @@ import p507d0.p580t.C12147n;
 /* JADX INFO: compiled from: GuildRoleSubscriptionTierListItemGenerator.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionTierListItemGeneratorKt {
+    public static /* synthetic */ List generateGuildRoleSubscriptionReviewListItems$default(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean bool, Integer num, String str, String str2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            num = null;
+        }
+        if ((i & 8) != 0) {
+            str = null;
+        }
+        if ((i & 16) != 0) {
+            str2 = null;
+        }
+        return generateGuildRoleSubscriptionReviewListItems(guildRoleSubscriptionTier, bool, num, str, str2);
+    }
+
     public static final List<GuildRoleSubscriptionTierAdapterItem> generateGuildRoleSubscriptionReviewListItems(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean bool, Integer num, String str, String str2) {
         ArrayList arrayList = new ArrayList();
         int i = 0;
@@ -54,18 +67,5 @@ public final class GuildRoleSubscriptionTierListItemGeneratorKt {
             }
         }
         return arrayList;
-    }
-
-    public static /* synthetic */ List generateGuildRoleSubscriptionReviewListItems$default(GuildRoleSubscriptionTier guildRoleSubscriptionTier, Boolean bool, Integer num, String str, String str2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            num = null;
-        }
-        if ((i & 8) != 0) {
-            str = null;
-        }
-        if ((i & 16) != 0) {
-            str2 = null;
-        }
-        return generateGuildRoleSubscriptionReviewListItems(guildRoleSubscriptionTier, bool, num, str, str2);
     }
 }

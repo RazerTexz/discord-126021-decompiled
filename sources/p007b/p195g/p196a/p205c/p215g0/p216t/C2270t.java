@@ -78,12 +78,6 @@ public class C2270t extends AbstractC2278d implements Serializable {
         return this;
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("UnwrappingBeanSerializer for ");
-        sbM833U.append(this._handledType.getName());
-        return sbM833U.toString();
-    }
-
     @Override // p007b.p195g.p196a.p205c.p215g0.p217u.AbstractC2278d
     /* JADX INFO: renamed from: v */
     public AbstractC2278d mo1986v(Set<String> set, Set<String> set2) {
@@ -106,6 +100,12 @@ public class C2270t extends AbstractC2278d implements Serializable {
     /* JADX INFO: renamed from: y */
     public AbstractC2278d mo1989y(C2234c[] c2234cArr, C2234c[] c2234cArr2) {
         return new C2270t(this, c2234cArr, c2234cArr2);
+    }
+
+    public String toString() {
+        StringBuilder sbM833U = C1643a.m833U("UnwrappingBeanSerializer for ");
+        sbM833U.append(this._handledType.getName());
+        return sbM833U.toString();
     }
 
     public C2270t(C2270t c2270t, Set<String> set, Set<String> set2) {

@@ -15,35 +15,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackCustomStatusUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
+    private final CharSequence clearAfter = null;
+    private final CharSequence emojiType = null;
+    private final Boolean hasEmoji = null;
+    private final Long textLen = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackSourceMetadata trackSourceMetadata;
-    private final Boolean hasEmoji = null;
-    private final CharSequence emojiType = null;
-    private final Long textLen = null;
-    private final CharSequence clearAfter = null;
     private final Long voiceChannelId = null;
     private final Long voiceChannelVoiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "custom_status_updated";
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -54,6 +36,18 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
         }
         TrackCustomStatusUpdated trackCustomStatusUpdated = (TrackCustomStatusUpdated) other;
         return C12238m.areEqual(this.hasEmoji, trackCustomStatusUpdated.hasEmoji) && C12238m.areEqual(this.emojiType, trackCustomStatusUpdated.emojiType) && C12238m.areEqual(this.textLen, trackCustomStatusUpdated.textLen) && C12238m.areEqual(this.clearAfter, trackCustomStatusUpdated.clearAfter) && C12238m.areEqual(this.voiceChannelId, trackCustomStatusUpdated.voiceChannelId) && C12238m.areEqual(this.voiceChannelVoiceStateCount, trackCustomStatusUpdated.voiceChannelVoiceStateCount);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -69,6 +63,12 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
         int iHashCode5 = (iHashCode4 + (l2 != null ? l2.hashCode() : 0)) * 31;
         Long l3 = this.voiceChannelVoiceStateCount;
         return iHashCode5 + (l3 != null ? l3.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

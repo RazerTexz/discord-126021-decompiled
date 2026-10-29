@@ -32,24 +32,6 @@ public final class C3504c0 extends AbstractC3509e {
         this.f9681n = (AlarmManager) this.f9684j.f9722b.getSystemService(NotificationCompat.CATEGORY_ALARM);
     }
 
-    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
-    /* JADX INFO: renamed from: L */
-    public final void mo4414L() {
-        try {
-            m4421O();
-            if (C3554z.m4508b() > 0) {
-                Context context = this.f9684j.f9722b;
-                ActivityInfo receiverInfo = context.getPackageManager().getReceiverInfo(new ComponentName(context, "com.google.android.gms.analytics.AnalyticsReceiver"), 0);
-                if (receiverInfo == null || !receiverInfo.enabled) {
-                    return;
-                }
-                m4427C("Receiver registered for local dispatch.");
-                this.f9679l = true;
-            }
-        } catch (PackageManager.NameNotFoundException unused) {
-        }
-    }
-
     /* JADX INFO: renamed from: O */
     public final void m4421O() {
         this.f9680m = false;
@@ -75,5 +57,23 @@ public final class C3504c0 extends AbstractC3509e {
     public final PendingIntent m4423S() {
         Context context = this.f9684j.f9722b;
         return PendingIntent.getBroadcast(context, 0, new Intent("com.google.android.gms.analytics.ANALYTICS_DISPATCH").setComponent(new ComponentName(context, "com.google.android.gms.analytics.AnalyticsReceiver")), 0);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p313h.p323j.AbstractC3509e
+    /* JADX INFO: renamed from: L */
+    public final void mo4414L() {
+        try {
+            m4421O();
+            if (C3554z.m4508b() > 0) {
+                Context context = this.f9684j.f9722b;
+                ActivityInfo receiverInfo = context.getPackageManager().getReceiverInfo(new ComponentName(context, "com.google.android.gms.analytics.AnalyticsReceiver"), 0);
+                if (receiverInfo == null || !receiverInfo.enabled) {
+                    return;
+                }
+                m4427C("Receiver registered for local dispatch.");
+                this.f9679l = true;
+            }
+        } catch (PackageManager.NameNotFoundException unused) {
+        }
     }
 }

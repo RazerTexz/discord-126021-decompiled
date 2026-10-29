@@ -28,7 +28,7 @@ public final class CoroutineLiveData<T> extends MediatorLiveData<T> {
 
     /* JADX INFO: renamed from: androidx.lifecycle.CoroutineLiveData$1 */
     /* JADX INFO: compiled from: CoroutineLiveData.kt */
-    public static final class C04291 extends AbstractC12240o implements Function0<Unit> {
+    public final class C04291 extends AbstractC12240o implements Function0<Unit> {
         public C04291() {
             super(0);
         }
@@ -50,7 +50,7 @@ public final class CoroutineLiveData<T> extends MediatorLiveData<T> {
     }
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
-    public final Object clearSource$lifecycle_livedata_ktx_release(Continuation<? super Unit> continuation) {
+    public final Object clearSource$lifecycle_livedata_ktx_release(Continuation<? super Unit> continuation) throws Throwable {
         CoroutineLiveData$clearSource$1 coroutineLiveData$clearSource$1;
         CoroutineLiveData<T> coroutineLiveData;
         if (continuation instanceof CoroutineLiveData$clearSource$1) {
@@ -90,7 +90,7 @@ public final class CoroutineLiveData<T> extends MediatorLiveData<T> {
     }
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
-    public final Object emitSource$lifecycle_livedata_ktx_release(LiveData<T> liveData, Continuation<? super InterfaceC13130m0> continuation) {
+    public final Object emitSource$lifecycle_livedata_ktx_release(LiveData<T> liveData, Continuation<? super InterfaceC13130m0> continuation) throws Throwable {
         CoroutineLiveData$emitSource$1 coroutineLiveData$emitSource$1;
         LiveData<T> liveData2;
         CoroutineLiveData coroutineLiveData;

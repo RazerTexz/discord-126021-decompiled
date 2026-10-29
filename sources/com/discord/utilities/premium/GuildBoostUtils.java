@@ -48,6 +48,37 @@ public final class GuildBoostUtils {
     private GuildBoostUtils() {
     }
 
+    public final List<ModelSubscription.SubscriptionAdditionalPlan> calculateAdditionalPlansWithGuildBoostAdjustment(ModelSubscription subscription, int guildBoostAdjustment) {
+        Object next;
+        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan;
+        C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+        ModelSubscription.SubscriptionRenewalMutations renewalMutations = subscription.getRenewalMutations();
+        List<ModelSubscription.SubscriptionAdditionalPlan> premiumAdditionalPlans = renewalMutations == null ? subscription.getPremiumAdditionalPlans() : renewalMutations.getPremiumAdditionalPlans();
+        Iterator<T> it = premiumAdditionalPlans.iterator();
+        do {
+            if (!it.hasNext()) {
+                next = null;
+                break;
+            }
+            next = it.next();
+            subscriptionAdditionalPlan = (ModelSubscription.SubscriptionAdditionalPlan) next;
+        } while (!(subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()));
+        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan2 = (ModelSubscription.SubscriptionAdditionalPlan) next;
+        int quantity = (subscriptionAdditionalPlan2 != null ? subscriptionAdditionalPlan2.getQuantity() : 0) + guildBoostAdjustment;
+        if (quantity < 0 || subscriptionAdditionalPlan2 == null) {
+            Logger.e$default(AppLog.f14950g, "Error calculating additional_plans adjustment, new sub count:" + quantity, null, null, 6, null);
+            return subscription.getPremiumAdditionalPlans();
+        }
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : premiumAdditionalPlans) {
+            ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan3 = (ModelSubscription.SubscriptionAdditionalPlan) obj;
+            if ((subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()) ? false : true) {
+                arrayList.add(obj);
+            }
+        }
+        return quantity == 0 ? arrayList : C12163u.plus((Collection) arrayList, (Iterable) C12145m.listOf(new ModelSubscription.SubscriptionAdditionalPlan(subscriptionAdditionalPlan2.getPlanId(), quantity)));
+    }
+
     public static /* synthetic */ int calculatePercentToNextTier$default(GuildBoostUtils guildBoostUtils, long j, int i, int i2, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i3, Object obj) {
         if ((i3 & 8) != 0) {
             storeExperiments = StoreStream.INSTANCE.getExperiments();
@@ -57,6 +88,16 @@ public final class GuildBoostUtils {
             storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.calculatePercentToNextTier(j, i, i2, storeExperiments2, storeGuilds);
+    }
+
+    public final int calculatePercentToNextTier(long guildId, int premiumTier, int subscriptionCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
+        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        if (premiumTier >= 3) {
+            return 100;
+        }
+        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
+        return C11210a.roundToInt(((subscriptionCount - getCurrentTierSubs(boostTierAmounts, premiumTier)) / getNextTierSubs(boostTierAmounts, premiumTier)) * 100);
     }
 
     public static /* synthetic */ int calculateTotalProgress$default(GuildBoostUtils guildBoostUtils, long j, int i, int i2, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i3, Object obj) {
@@ -70,6 +111,25 @@ public final class GuildBoostUtils {
         return guildBoostUtils.calculateTotalProgress(j, i, i2, storeExperiments2, storeGuilds);
     }
 
+    public final int calculateTotalProgress(long guildId, int premiumTier, int subscriptionCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
+        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        if (premiumTier >= 3) {
+            return 100;
+        }
+        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
+        int nextTierSubs = getNextTierSubs(boostTierAmounts, premiumTier);
+        int currentTierSubs = getCurrentTierSubs(boostTierAmounts, premiumTier);
+        return C11210a.roundToInt((((subscriptionCount - currentTierSubs) / (nextTierSubs - currentTierSubs)) * 33.3f) + (premiumTier * 33.3f));
+    }
+
+    public final Observable<ModifyGuildBoostSlotResult> cancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
+        C12238m.checkNotNullParameter(api, "api");
+        C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+        C12238m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
+        return modifyGuildBoostSlot(api, slotId, subscription, true, storeGuildBoost);
+    }
+
     public static /* synthetic */ int getBoostTier$default(GuildBoostUtils guildBoostUtils, long j, int i, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i2, Object obj) {
         if ((i2 & 4) != 0) {
             storeExperiments = StoreStream.INSTANCE.getExperiments();
@@ -79,6 +139,19 @@ public final class GuildBoostUtils {
             storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.getBoostTier(j, i, storeExperiments2, storeGuilds);
+    }
+
+    public final int getBoostTier(long guildId, int guildBoostCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
+        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
+        if (guildBoostCount >= boostTierAmounts.getTier3Boosts()) {
+            return 3;
+        }
+        if (guildBoostCount >= boostTierAmounts.getTier2Boosts()) {
+            return 2;
+        }
+        return guildBoostCount >= boostTierAmounts.getTier1Boosts() ? 1 : 0;
     }
 
     private final GuildBoostTierAmounts getBoostTierAmounts(long guildId, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
@@ -106,6 +179,22 @@ public final class GuildBoostUtils {
             storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.getBoostsRequiredForTier(j, i, storeExperiments2, storeGuilds);
+    }
+
+    public final int getBoostsRequiredForTier(long guildId, int tier, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
+        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
+        if (tier == 1) {
+            return boostTierAmounts.getTier1Boosts();
+        }
+        if (tier == 2) {
+            return boostTierAmounts.getTier2Boosts();
+        }
+        if (tier != 3) {
+            return 0;
+        }
+        return boostTierAmounts.getTier3Boosts();
     }
 
     private final int getCurrentTierSubs(GuildBoostTierAmounts boostTierAmounts, int premiumTier) {
@@ -173,95 +262,6 @@ public final class GuildBoostUtils {
         });
         C12238m.checkNotNullExpressionValue(observableM11082A, "apiObs\n        .subscrib…N }\n          }\n        }");
         return observableM11082A;
-    }
-
-    public final List<ModelSubscription.SubscriptionAdditionalPlan> calculateAdditionalPlansWithGuildBoostAdjustment(ModelSubscription subscription, int guildBoostAdjustment) {
-        Object next;
-        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan;
-        C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-        ModelSubscription.SubscriptionRenewalMutations renewalMutations = subscription.getRenewalMutations();
-        List<ModelSubscription.SubscriptionAdditionalPlan> premiumAdditionalPlans = renewalMutations == null ? subscription.getPremiumAdditionalPlans() : renewalMutations.getPremiumAdditionalPlans();
-        Iterator<T> it = premiumAdditionalPlans.iterator();
-        do {
-            if (!it.hasNext()) {
-                next = null;
-                break;
-            }
-            next = it.next();
-            subscriptionAdditionalPlan = (ModelSubscription.SubscriptionAdditionalPlan) next;
-        } while (!(subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()));
-        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan2 = (ModelSubscription.SubscriptionAdditionalPlan) next;
-        int quantity = (subscriptionAdditionalPlan2 != null ? subscriptionAdditionalPlan2.getQuantity() : 0) + guildBoostAdjustment;
-        if (quantity < 0 || subscriptionAdditionalPlan2 == null) {
-            Logger.e$default(AppLog.f14950g, "Error calculating additional_plans adjustment, new sub count:" + quantity, null, null, 6, null);
-            return subscription.getPremiumAdditionalPlans();
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : premiumAdditionalPlans) {
-            ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan3 = (ModelSubscription.SubscriptionAdditionalPlan) obj;
-            if ((subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()) ? false : true) {
-                arrayList.add(obj);
-            }
-        }
-        return quantity == 0 ? arrayList : C12163u.plus((Collection) arrayList, (Iterable) C12145m.listOf(new ModelSubscription.SubscriptionAdditionalPlan(subscriptionAdditionalPlan2.getPlanId(), quantity)));
-    }
-
-    public final int calculatePercentToNextTier(long guildId, int premiumTier, int subscriptionCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        if (premiumTier >= 3) {
-            return 100;
-        }
-        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
-        return C11210a.roundToInt(((subscriptionCount - getCurrentTierSubs(boostTierAmounts, premiumTier)) / getNextTierSubs(boostTierAmounts, premiumTier)) * 100);
-    }
-
-    public final int calculateTotalProgress(long guildId, int premiumTier, int subscriptionCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        if (premiumTier >= 3) {
-            return 100;
-        }
-        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
-        int nextTierSubs = getNextTierSubs(boostTierAmounts, premiumTier);
-        int currentTierSubs = getCurrentTierSubs(boostTierAmounts, premiumTier);
-        return C11210a.roundToInt((((subscriptionCount - currentTierSubs) / (nextTierSubs - currentTierSubs)) * 33.3f) + (premiumTier * 33.3f));
-    }
-
-    public final Observable<ModifyGuildBoostSlotResult> cancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
-        C12238m.checkNotNullParameter(api, "api");
-        C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-        C12238m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
-        return modifyGuildBoostSlot(api, slotId, subscription, true, storeGuildBoost);
-    }
-
-    public final int getBoostTier(long guildId, int guildBoostCount, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
-        if (guildBoostCount >= boostTierAmounts.getTier3Boosts()) {
-            return 3;
-        }
-        if (guildBoostCount >= boostTierAmounts.getTier2Boosts()) {
-            return 2;
-        }
-        return guildBoostCount >= boostTierAmounts.getTier1Boosts() ? 1 : 0;
-    }
-
-    public final int getBoostsRequiredForTier(long guildId, int tier, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        GuildBoostTierAmounts boostTierAmounts = getBoostTierAmounts(guildId, storeExperiments, storeGuilds);
-        if (tier == 1) {
-            return boostTierAmounts.getTier1Boosts();
-        }
-        if (tier == 2) {
-            return boostTierAmounts.getTier2Boosts();
-        }
-        if (tier != 3) {
-            return 0;
-        }
-        return boostTierAmounts.getTier3Boosts();
     }
 
     public final Observable<ModifyGuildBoostSlotResult> uncancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {

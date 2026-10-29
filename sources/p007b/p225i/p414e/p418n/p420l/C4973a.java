@@ -7,12 +7,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4973a {
 
-    /* JADX INFO: renamed from: a */
-    public static final C4973a f13299a = new C4973a(4201, 4096, 1);
-
-    /* JADX INFO: renamed from: b */
-    public static final C4973a f13300b = new C4973a(1033, 1024, 1);
-
     /* JADX INFO: renamed from: c */
     public static final C4973a f13301c;
 
@@ -51,6 +45,12 @@ public final class C4973a {
 
     /* JADX INFO: renamed from: o */
     public final int f13313o;
+
+    /* JADX INFO: renamed from: a */
+    public static final C4973a f13299a = new C4973a(4201, 4096, 1);
+
+    /* JADX INFO: renamed from: b */
+    public static final C4973a f13300b = new C4973a(1033, 1024, 1);
 
     static {
         C4973a c4973a = new C4973a(67, 64, 1);

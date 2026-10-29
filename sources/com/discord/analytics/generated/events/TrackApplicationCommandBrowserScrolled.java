@@ -7,8 +7,8 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackApplicationCommandBrowserScrolled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackApplicationCommandBrowserScrolled implements AnalyticsSchema, TrackBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "application_command_browser_scrolled";
     private TrackBase trackBase;
+    private final transient String analyticsSchemaTypeName = "application_command_browser_scrolled";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

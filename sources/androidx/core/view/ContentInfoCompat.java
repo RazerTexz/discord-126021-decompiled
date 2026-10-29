@@ -68,21 +68,6 @@ public final class ContentInfoCompat {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static String sourceToString(int i) {
-        if (i == 0) {
-            return "SOURCE_APP";
-        }
-        if (i == 1) {
-            return "SOURCE_CLIPBOARD";
-        }
-        if (i != 2) {
-            return i != 3 ? String.valueOf(i) : "SOURCE_DRAG_AND_DROP";
-        }
-        return "SOURCE_INPUT_METHOD";
-    }
-
-    @NonNull
     public ClipData getClip() {
         return this.mClip;
     }
@@ -128,6 +113,21 @@ public final class ContentInfoCompat {
     }
 
     @NonNull
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public static String sourceToString(int i) {
+        if (i == 0) {
+            return "SOURCE_APP";
+        }
+        if (i == 1) {
+            return "SOURCE_CLIPBOARD";
+        }
+        if (i != 2) {
+            return i != 3 ? String.valueOf(i) : "SOURCE_DRAG_AND_DROP";
+        }
+        return "SOURCE_INPUT_METHOD";
+    }
+
+    @NonNull
     public String toString() {
         String string;
         StringBuilder sbM833U = C1643a.m833U("ContentInfoCompat{clip=");
@@ -148,7 +148,7 @@ public final class ContentInfoCompat {
         return C1643a.m822J(sbM833U, this.mExtras != null ? ", hasExtras" : "", "}");
     }
 
-    public static final class Builder {
+    public final class Builder {
 
         @NonNull
         public ClipData mClip;

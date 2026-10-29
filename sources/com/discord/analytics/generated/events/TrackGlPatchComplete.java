@@ -13,23 +13,23 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGlPatchComplete.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGlPatchComplete implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver, TrackDispatchPatchReceiver {
+    private final Long bytesDownloaded = null;
     private TrackBase trackBase;
     private TrackDispatchBase trackDispatchBase;
     private TrackDispatchPatch trackDispatchPatch;
-    private final Long bytesDownloaded = null;
     private final transient String analyticsSchemaTypeName = "gl_patch_complete";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackGlPatchComplete) && C12238m.areEqual(this.bytesDownloaded, ((TrackGlPatchComplete) other).bytesDownloaded);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

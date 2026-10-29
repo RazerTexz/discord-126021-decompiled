@@ -36,33 +36,12 @@ import p007b.p225i.p355b.p357b.AbstractC4525q;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2714p implements InterfaceC2704f, InterfaceC2680a0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final AbstractC4523p<Long> f6569a = AbstractC4523p.m6267v(5400000L, 3300000L, 2000000L, 1300000L, 760000L);
-
-    /* JADX INFO: renamed from: b */
-    public static final AbstractC4523p<Long> f6570b = AbstractC4523p.m6267v(1700000L, 820000L, 450000L, 180000L, 130000L);
-
-    /* JADX INFO: renamed from: c */
-    public static final AbstractC4523p<Long> f6571c = AbstractC4523p.m6267v(2300000L, 1300000L, 1000000L, 820000L, 570000L);
-
-    /* JADX INFO: renamed from: d */
-    public static final AbstractC4523p<Long> f6572d = AbstractC4523p.m6267v(3400000L, 2000000L, 1400000L, 1000000L, 620000L);
-
-    /* JADX INFO: renamed from: e */
-    public static final AbstractC4523p<Long> f6573e = AbstractC4523p.m6267v(7500000L, 5200000L, 3700000L, Long.valueOf(StoreGuildScheduledEvents.FETCH_GUILD_EVENTS_THRESHOLD), 1100000L);
-
-    /* JADX INFO: renamed from: f */
-    public static final AbstractC4523p<Long> f6574f = AbstractC4523p.m6267v(3300000L, 1900000L, 1700000L, 1500000L, 1200000L);
-
     /* JADX INFO: renamed from: g */
     @Nullable
     public static C2714p f6575g;
 
     /* JADX INFO: renamed from: h */
     public final AbstractC4525q<Integer, Long> f6576h;
-
-    /* JADX INFO: renamed from: i */
-    public final InterfaceC2704f.a.C13224a f6577i = new InterfaceC2704f.a.C13224a();
 
     /* JADX INFO: renamed from: j */
     public final C2722x f6578j;
@@ -97,9 +76,30 @@ public final class C2714p implements InterfaceC2704f, InterfaceC2680a0 {
     /* JADX INFO: renamed from: t */
     public long f6588t;
 
+    /* JADX INFO: renamed from: a */
+    public static final AbstractC4523p<Long> f6569a = AbstractC4523p.m6267v(5400000L, 3300000L, 2000000L, 1300000L, 760000L);
+
+    /* JADX INFO: renamed from: b */
+    public static final AbstractC4523p<Long> f6570b = AbstractC4523p.m6267v(1700000L, 820000L, 450000L, 180000L, 130000L);
+
+    /* JADX INFO: renamed from: f */
+    public static final AbstractC4523p<Long> f6574f = AbstractC4523p.m6267v(3300000L, 1900000L, 1700000L, 1500000L, 1200000L);
+
+    /* JADX INFO: renamed from: c */
+    public static final AbstractC4523p<Long> f6571c = AbstractC4523p.m6267v(2300000L, 1300000L, 1000000L, 820000L, 570000L);
+
+    /* JADX INFO: renamed from: i */
+    public final InterfaceC2704f.a.C13224a f6577i = new InterfaceC2704f.a.C13224a();
+
+    /* JADX INFO: renamed from: d */
+    public static final AbstractC4523p<Long> f6572d = AbstractC4523p.m6267v(3400000L, 2000000L, 1400000L, 1000000L, 620000L);
+
+    /* JADX INFO: renamed from: e */
+    public static final AbstractC4523p<Long> f6573e = AbstractC4523p.m6267v(7500000L, 5200000L, 3700000L, Long.valueOf(StoreGuildScheduledEvents.FETCH_GUILD_EVENTS_THRESHOLD), 1100000L);
+
     /* JADX INFO: renamed from: b.i.a.c.e3.p$b */
     /* JADX INFO: compiled from: DefaultBandwidthMeter.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         @Nullable
@@ -1986,75 +1986,6 @@ public final class C2714p implements InterfaceC2704f, InterfaceC2680a0 {
         return z2 && !c2712n.m2856c(8);
     }
 
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
-    /* JADX INFO: renamed from: a */
-    public synchronized void mo2773a(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
-        if (m2861i(c2712n, z2)) {
-            C1460d.m426D(this.f6581m > 0);
-            long jMo2952d = this.f6579k.mo2952d();
-            int i = (int) (jMo2952d - this.f6582n);
-            this.f6585q += (long) i;
-            long j = this.f6586r;
-            long j2 = this.f6583o;
-            this.f6586r = j + j2;
-            if (i > 0) {
-                this.f6578j.m2875a((int) Math.sqrt(j2), (j2 * 8000.0f) / i);
-                if (this.f6585q >= 2000 || this.f6586r >= Permission.VIEW_GUILD_ANALYTICS) {
-                    this.f6587s = (long) this.f6578j.m2876b(0.5f);
-                }
-                m2863j(i, this.f6583o, this.f6587s);
-                this.f6582n = jMo2952d;
-                this.f6583o = 0L;
-            }
-            this.f6581m--;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
-    /* JADX INFO: renamed from: b */
-    public synchronized void mo2774b(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
-        if (m2861i(c2712n, z2)) {
-            if (this.f6581m == 0) {
-                this.f6582n = this.f6579k.mo2952d();
-            }
-            this.f6581m++;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
-    /* JADX INFO: renamed from: c */
-    public InterfaceC2680a0 mo2844c() {
-        return this;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
-    /* JADX INFO: renamed from: d */
-    public void mo2845d(InterfaceC2704f.a aVar) {
-        this.f6577i.m2847a(aVar);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
-    /* JADX INFO: renamed from: e */
-    public synchronized void mo2775e(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2, int i) {
-        if (m2861i(c2712n, z2)) {
-            this.f6583o += (long) i;
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
-    /* JADX INFO: renamed from: f */
-    public void mo2846f(Handler handler, InterfaceC2704f.a aVar) {
-        InterfaceC2704f.a.C13224a c13224a = this.f6577i;
-        Objects.requireNonNull(c13224a);
-        c13224a.m2847a(aVar);
-        c13224a.f6524a.add(new InterfaceC2704f.a.C13224a.C13225a(handler, aVar));
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
-    /* JADX INFO: renamed from: g */
-    public void mo2776g(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
-    }
-
     /* JADX INFO: renamed from: h */
     public final long m2862h(int i) {
         Long l = this.f6576h.get(Integer.valueOf(i));
@@ -2120,5 +2051,74 @@ public final class C2714p implements InterfaceC2704f, InterfaceC2680a0 {
                 });
             }
         }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
+    /* JADX INFO: renamed from: a */
+    public synchronized void mo2773a(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
+        if (m2861i(c2712n, z2)) {
+            C1460d.m426D(this.f6581m > 0);
+            long jMo2952d = this.f6579k.mo2952d();
+            int i = (int) (jMo2952d - this.f6582n);
+            this.f6585q += (long) i;
+            long j = this.f6586r;
+            long j2 = this.f6583o;
+            this.f6586r = j + j2;
+            if (i > 0) {
+                this.f6578j.m2875a((int) Math.sqrt(j2), (j2 * 8000.0f) / i);
+                if (this.f6585q >= 2000 || this.f6586r >= Permission.VIEW_GUILD_ANALYTICS) {
+                    this.f6587s = (long) this.f6578j.m2876b(0.5f);
+                }
+                m2863j(i, this.f6583o, this.f6587s);
+                this.f6582n = jMo2952d;
+                this.f6583o = 0L;
+            }
+            this.f6581m--;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
+    /* JADX INFO: renamed from: b */
+    public synchronized void mo2774b(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
+        if (m2861i(c2712n, z2)) {
+            if (this.f6581m == 0) {
+                this.f6582n = this.f6579k.mo2952d();
+            }
+            this.f6581m++;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
+    /* JADX INFO: renamed from: e */
+    public synchronized void mo2775e(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2, int i) {
+        if (m2861i(c2712n, z2)) {
+            this.f6583o += (long) i;
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2680a0
+    /* JADX INFO: renamed from: g */
+    public void mo2776g(InterfaceC2710l interfaceC2710l, C2712n c2712n, boolean z2) {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
+    /* JADX INFO: renamed from: c */
+    public InterfaceC2680a0 mo2844c() {
+        return this;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
+    /* JADX INFO: renamed from: d */
+    public void mo2845d(InterfaceC2704f.a aVar) {
+        this.f6577i.m2847a(aVar);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2704f
+    /* JADX INFO: renamed from: f */
+    public void mo2846f(Handler handler, InterfaceC2704f.a aVar) {
+        InterfaceC2704f.a.C13224a c13224a = this.f6577i;
+        Objects.requireNonNull(c13224a);
+        c13224a.m2847a(aVar);
+        c13224a.f6524a.add(new InterfaceC2704f.a.C13224a.C13225a(handler, aVar));
     }
 }

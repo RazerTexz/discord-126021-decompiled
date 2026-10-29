@@ -33,14 +33,14 @@ import p658rx.subjects.SerializedSubject;
 /* JADX INFO: loaded from: classes.dex */
 public final class AppLog extends Logger {
 
-    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
-    public static boolean initCalled;
-
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
     public static SharedPreferences cache;
 
     /* JADX INFO: renamed from: e, reason: from kotlin metadata */
     public static boolean hasReportedTombstone;
+
+    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
+    public static boolean initCalled;
 
     /* JADX INFO: renamed from: g */
     public static final AppLog f14950g = new AppLog();
@@ -54,82 +54,16 @@ public final class AppLog extends Logger {
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public static final String[] PACKAGE_MARKERS = {BuildConfig.APPLICATION_ID, "co.discord"};
 
-    /* JADX INFO: compiled from: AppLog.kt */
-    public static final /* data */ class LoggedItem implements MGRecyclerDataPayload {
-
-        /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-        public final String key;
-
-        /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-        public final int priority;
-
-        /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-        public final String message;
-
-        /* JADX INFO: renamed from: m, reason: from kotlin metadata */
-        public final Throwable throwable;
-
-        public LoggedItem(int i, String str, Throwable th) {
-            C12238m.checkNotNullParameter(str, "message");
-            this.priority = i;
-            this.message = str;
-            this.throwable = th;
-            String string = UUID.randomUUID().toString();
-            C12238m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
-            this.key = string;
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof LoggedItem)) {
-                return false;
-            }
-            LoggedItem loggedItem = (LoggedItem) other;
-            return this.priority == loggedItem.priority && C12238m.areEqual(this.message, loggedItem.message) && C12238m.areEqual(this.throwable, loggedItem.throwable);
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return 0;
-        }
-
-        public int hashCode() {
-            int i = this.priority * 31;
-            String str = this.message;
-            int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
-            Throwable th = this.throwable;
-            return iHashCode + (th != null ? th.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("LoggedItem(priority=");
-            sbM833U.append(this.priority);
-            sbM833U.append(", message=");
-            sbM833U.append(this.message);
-            sbM833U.append(", throwable=");
-            sbM833U.append(this.throwable);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.app.AppLog$a */
     /* JADX INFO: compiled from: AppLog.kt */
-    public static final class C5452a extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C5452a extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ Map $metadata;
         public final /* synthetic */ int $priority;
         public final /* synthetic */ Throwable $throwable;
 
         /* JADX INFO: renamed from: com.discord.app.AppLog$a$a */
         /* JADX INFO: compiled from: AppLog.kt */
-        public static final class a extends AbstractC12240o implements Function2<String, Integer, Unit> {
+        public final class a extends AbstractC12240o implements Function2<String, Integer, Unit> {
             public a() {
                 super(2);
             }
@@ -182,7 +116,7 @@ public final class AppLog extends Logger {
 
     /* JADX INFO: renamed from: com.discord.app.AppLog$b */
     /* JADX INFO: compiled from: AppLog.kt */
-    public static final class C5453b extends AbstractC12240o implements Function1<String, Unit> {
+    public final class C5453b extends AbstractC12240o implements Function1<String, Unit> {
         public final /* synthetic */ Map $metadata;
         public final /* synthetic */ Throwable $throwable;
 
@@ -247,7 +181,7 @@ public final class AppLog extends Logger {
 
     /* JADX INFO: renamed from: com.discord.app.AppLog$c */
     /* JADX INFO: compiled from: AppLog.kt */
-    public static final /* synthetic */ class C5454c extends C12236k implements Function2<String, Throwable, Unit> {
+    public final /* synthetic */ class C5454c extends C12236k implements Function2<String, Throwable, Unit> {
         public C5454c(AppLog appLog) {
             super(2, appLog, AppLog.class, "v", "v(Ljava/lang/String;Ljava/lang/Throwable;)V", 0);
         }
@@ -258,6 +192,72 @@ public final class AppLog extends Logger {
             C12238m.checkNotNullParameter(str2, "p1");
             ((AppLog) this.receiver).mo8368v(str2, th);
             return Unit.f27425a;
+        }
+    }
+
+    /* JADX INFO: compiled from: AppLog.kt */
+    public final /* data */ class LoggedItem implements MGRecyclerDataPayload {
+
+        /* JADX INFO: renamed from: j, reason: from kotlin metadata */
+        public final String key;
+
+        /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+        public final int priority;
+
+        /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+        public final String message;
+
+        /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+        public final Throwable throwable;
+
+        public LoggedItem(int i, String str, Throwable th) {
+            C12238m.checkNotNullParameter(str, "message");
+            this.priority = i;
+            this.message = str;
+            this.throwable = th;
+            String string = UUID.randomUUID().toString();
+            C12238m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
+            this.key = string;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof LoggedItem)) {
+                return false;
+            }
+            LoggedItem loggedItem = (LoggedItem) other;
+            return this.priority == loggedItem.priority && C12238m.areEqual(this.message, loggedItem.message) && C12238m.areEqual(this.throwable, loggedItem.throwable);
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return 0;
+        }
+
+        public int hashCode() {
+            int i = this.priority * 31;
+            String str = this.message;
+            int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
+            Throwable th = this.throwable;
+            return iHashCode + (th != null ? th.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("LoggedItem(priority=");
+            sbM833U.append(this.priority);
+            sbM833U.append(", message=");
+            sbM833U.append(this.message);
+            sbM833U.append(", throwable=");
+            sbM833U.append(this.throwable);
+            sbM833U.append(")");
+            return sbM833U.toString();
         }
     }
 
@@ -410,6 +410,13 @@ public final class AppLog extends Logger {
         }
     }
 
+    /* JADX INFO: renamed from: f */
+    public final void m8365f(String from, String to) {
+        C12238m.checkNotNullParameter(from, "from");
+        C12238m.checkNotNullParameter(to, "to");
+        recordBreadcrumb("Navigation [" + from + "] > [" + to + ']', NotificationCompat.CATEGORY_NAVIGATION);
+    }
+
     @Override // com.discord.utilities.logging.Logger
     /* JADX INFO: renamed from: d */
     public void mo8361d(String tag, String message, Throwable throwable) {
@@ -425,26 +432,12 @@ public final class AppLog extends Logger {
         m8359b(message, 6, throwable, metadata);
     }
 
-    /* JADX INFO: renamed from: f */
-    public final void m8365f(String from, String to) {
-        C12238m.checkNotNullParameter(from, "from");
-        C12238m.checkNotNullParameter(to, "to");
-        recordBreadcrumb("Navigation [" + from + "] > [" + to + ']', NotificationCompat.CATEGORY_NAVIGATION);
-    }
-
     @Override // com.discord.utilities.logging.Logger
     /* JADX INFO: renamed from: i */
     public void mo8366i(String tag, String message, Throwable throwable) {
         C12238m.checkNotNullParameter(tag, "tag");
         C12238m.checkNotNullParameter(message, "message");
         mo8367i(tag + " -> " + message, throwable);
-    }
-
-    @Override // com.discord.utilities.logging.Logger
-    public void recordBreadcrumb(String message, String category) {
-        C12238m.checkNotNullParameter(message, "message");
-        C12238m.checkNotNullParameter(category, "category");
-        m8360c(message, category, null, new C5454c(this));
     }
 
     @Override // com.discord.utilities.logging.Logger
@@ -460,6 +453,13 @@ public final class AppLog extends Logger {
         C12238m.checkNotNullParameter(tag, "tag");
         C12238m.checkNotNullParameter(message, "message");
         mo8370w(tag + " -> " + message, throwable);
+    }
+
+    @Override // com.discord.utilities.logging.Logger
+    public void recordBreadcrumb(String message, String category) {
+        C12238m.checkNotNullParameter(message, "message");
+        C12238m.checkNotNullParameter(category, "category");
+        m8360c(message, category, null, new C5454c(this));
     }
 
     /* JADX INFO: renamed from: i */

@@ -92,8 +92,126 @@ public final class WidgetGuildRoleSubscriptionTierBenefit extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForChannelBenefit$1 */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class Companion {
+    public final class C85291 extends AbstractC12240o implements Function3<Long, String, Integer, Unit> {
+        public C85291() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str, Integer num) {
+            invoke(l.longValue(), str, num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str, int i) {
+            C12238m.checkNotNullParameter(str, "channelName");
+            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateChannel(j, str, Integer.valueOf(i));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForChannelBenefit$2 */
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class C85302 extends AbstractC12240o implements Function0<Unit> {
+        public C85302() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCreateChannel.INSTANCE.launch(WidgetGuildRoleSubscriptionTierBenefit.this.requireContext(), WidgetGuildRoleSubscriptionTierBenefit.this.createChannelLauncher, WidgetGuildRoleSubscriptionTierBenefit.this.getGuildId(), (24 & 8) != 0 ? 0 : 0, (24 & 16) != 0 ? null : null, (24 & 32) != 0 ? false : true, (24 & 64) != 0 ? false : true, (24 & 128) != 0 ? false : true, (24 & 256) != 0 ? false : true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForIntangibleBenefit$1 */
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class C85311 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C85311() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateName(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class C85354 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C85354() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "it");
+            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateDescription(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class C85371 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierBenefitViewModel.ViewState, Unit> {
+        public C85371() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierBenefitViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionTierBenefitViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "it");
+            WidgetGuildRoleSubscriptionTierBenefit.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class C85382 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierBenefitViewModel.Event, Unit> {
+        public C85382() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierBenefitViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildRoleSubscriptionTierBenefitViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "it");
+            WidgetGuildRoleSubscriptionTierBenefit.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -148,124 +266,6 @@ public final class WidgetGuildRoleSubscriptionTierBenefit extends AppFragment {
             iArr[GuildRoleSubscriptionBenefitType.CHANNEL.ordinal()] = 1;
             iArr[GuildRoleSubscriptionBenefitType.INTANGIBLE.ordinal()] = 2;
             iArr[GuildRoleSubscriptionBenefitType.UNKNOWN.ordinal()] = 3;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForChannelBenefit$1 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85291 extends AbstractC12240o implements Function3<Long, String, Integer, Unit> {
-        public C85291() {
-            super(3);
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str, Integer num) {
-            invoke(l.longValue(), str, num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str, int i) {
-            C12238m.checkNotNullParameter(str, "channelName");
-            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateChannel(j, str, Integer.valueOf(i));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForChannelBenefit$2 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85302 extends AbstractC12240o implements Function0<Unit> {
-        public C85302() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetCreateChannel.INSTANCE.launch(WidgetGuildRoleSubscriptionTierBenefit.this.requireContext(), WidgetGuildRoleSubscriptionTierBenefit.this.createChannelLauncher, WidgetGuildRoleSubscriptionTierBenefit.this.getGuildId(), (24 & 8) != 0 ? 0 : 0, (24 & 16) != 0 ? null : null, (24 & 32) != 0 ? false : true, (24 & 64) != 0 ? false : true, (24 & 128) != 0 ? false : true, (24 & 256) != 0 ? false : true);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUIForIntangibleBenefit$1 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85311 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C85311() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateName(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85354 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C85354() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "it");
-            WidgetGuildRoleSubscriptionTierBenefit.this.getViewModel().updateDescription(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85371 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierBenefitViewModel.ViewState, Unit> {
-        public C85371() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierBenefitViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionTierBenefitViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "it");
-            WidgetGuildRoleSubscriptionTierBenefit.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-    public static final class C85382 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierBenefitViewModel.Event, Unit> {
-        public C85382() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildRoleSubscriptionTierBenefitViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildRoleSubscriptionTierBenefitViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "it");
-            WidgetGuildRoleSubscriptionTierBenefit.this.handleEvent(event);
         }
     }
 
@@ -327,7 +327,7 @@ public final class WidgetGuildRoleSubscriptionTierBenefit extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$configureUI$1$1, reason: invalid class name */
                 /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-                public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+                public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                     public AnonymousClass1() {
                         super(0);
                     }
@@ -482,7 +482,7 @@ public final class WidgetGuildRoleSubscriptionTierBenefit extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.benefits.WidgetGuildRoleSubscriptionTierBenefit$onViewBound$3$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass2() {
                     super(0);
                 }

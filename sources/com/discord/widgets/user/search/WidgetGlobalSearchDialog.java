@@ -38,44 +38,9 @@ public final class WidgetGlobalSearchDialog extends AppDialog {
     /* JADX INFO: renamed from: dismissViewModel$delegate, reason: from kotlin metadata */
     private final Lazy dismissViewModel;
 
-    /* JADX INFO: compiled from: WidgetGlobalSearchDialog.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, int i, Object obj) {
-            if ((i & 2) != 0) {
-                str = null;
-            }
-            companion.show(fragmentManager, str);
-        }
-
-        public final void dismiss(FragmentManager fragmentManager) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            Fragment fragmentFindFragmentByTag = fragmentManager.findFragmentByTag("javaClass");
-            if (fragmentFindFragmentByTag == null || !(fragmentFindFragmentByTag instanceof WidgetGlobalSearchDialog)) {
-                return;
-            }
-            ((WidgetGlobalSearchDialog) fragmentFindFragmentByTag).dismiss();
-        }
-
-        public final void show(FragmentManager fragmentManager, String searchText) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            dismiss(fragmentManager);
-            WidgetGlobalSearchDialog widgetGlobalSearchDialog = new WidgetGlobalSearchDialog();
-            widgetGlobalSearchDialog.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetGlobalSearch.EXTRA_SEARCH_TEXT, searchText)));
-            widgetGlobalSearchDialog.show(fragmentManager, "javaClass");
-            AnalyticsTracker.INSTANCE.quickSwitcherOpen();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearchDialog$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetGlobalSearchDialog.kt */
-    public static final class C103251 extends AbstractC12240o implements Function1<Unit, Unit> {
+    public final class C103251 extends AbstractC12240o implements Function1<Unit, Unit> {
         public C103251() {
             super(1);
         }
@@ -95,7 +60,7 @@ public final class WidgetGlobalSearchDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearchDialog$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetGlobalSearchDialog.kt */
-    public static final class C103262 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C103262 extends AbstractC12240o implements Function1<Long, Unit> {
         public C103262() {
             super(1);
         }
@@ -112,9 +77,50 @@ public final class WidgetGlobalSearchDialog extends AppDialog {
         }
     }
 
+    /* JADX INFO: compiled from: WidgetGlobalSearchDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void dismiss(FragmentManager fragmentManager) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Fragment fragmentFindFragmentByTag = fragmentManager.findFragmentByTag("javaClass");
+            if (fragmentFindFragmentByTag == null || !(fragmentFindFragmentByTag instanceof WidgetGlobalSearchDialog)) {
+                return;
+            }
+            ((WidgetGlobalSearchDialog) fragmentFindFragmentByTag).dismiss();
+        }
+
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, int i, Object obj) {
+            if ((i & 2) != 0) {
+                str = null;
+            }
+            companion.show(fragmentManager, str);
+        }
+
+        public final void show(FragmentManager fragmentManager, String searchText) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            dismiss(fragmentManager);
+            WidgetGlobalSearchDialog widgetGlobalSearchDialog = new WidgetGlobalSearchDialog();
+            widgetGlobalSearchDialog.setArguments(BundleKt.bundleOf(C12116o.m10073to(WidgetGlobalSearch.EXTRA_SEARCH_TEXT, searchText)));
+            widgetGlobalSearchDialog.show(fragmentManager, "javaClass");
+            AnalyticsTracker.INSTANCE.quickSwitcherOpen();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetGlobalSearchDialog() {
         super(C5419R.layout.widget_global_search_dialog);
         this.dismissViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetGlobalSearchDismissModel.class), new WidgetGlobalSearchDialog$$special$$inlined$activityViewModels$1(this), new WidgetGlobalSearchDialog$$special$$inlined$activityViewModels$2(this));
+    }
+
+    @Override // com.discord.app.AppDialog, androidx.fragment.app.DialogFragment
+    public void dismiss() {
+        super.dismiss();
+        getFragment().onDismiss();
     }
 
     private final WidgetGlobalSearchDismissModel getDismissViewModel() {
@@ -125,12 +131,6 @@ public final class WidgetGlobalSearchDialog extends AppDialog {
         Fragment fragmentFindFragmentById = getChildFragmentManager().findFragmentById(C5419R.id.widget_global_search_container);
         Objects.requireNonNull(fragmentFindFragmentById, "null cannot be cast to non-null type com.discord.widgets.user.search.WidgetGlobalSearch");
         return (WidgetGlobalSearch) fragmentFindFragmentById;
-    }
-
-    @Override // com.discord.app.AppDialog, androidx.fragment.app.DialogFragment
-    public void dismiss() {
-        super.dismiss();
-        getFragment().onDismiss();
     }
 
     @Override // com.discord.app.AppDialog, androidx.fragment.app.DialogFragment

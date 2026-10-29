@@ -43,81 +43,6 @@ public final /* data */ class OutboundRtpAudio {
         this.voiceActivityDetectorProcessTime = j7;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getType() {
-        return this.type;
-    }
-
-    /* JADX INFO: renamed from: component10, reason: from getter */
-    public final long getFramesCaptured() {
-        return this.framesCaptured;
-    }
-
-    /* JADX INFO: renamed from: component11, reason: from getter */
-    public final long getFramesRendered() {
-        return this.framesRendered;
-    }
-
-    /* JADX INFO: renamed from: component12, reason: from getter */
-    public final boolean getNoiseCancellerIsEnabled() {
-        return this.noiseCancellerIsEnabled;
-    }
-
-    /* JADX INFO: renamed from: component13, reason: from getter */
-    public final long getNoiseCancellerProcessTime() {
-        return this.noiseCancellerProcessTime;
-    }
-
-    /* JADX INFO: renamed from: component14, reason: from getter */
-    public final boolean getVoiceActivityDetectorIsEnabled() {
-        return this.voiceActivityDetectorIsEnabled;
-    }
-
-    /* JADX INFO: renamed from: component15, reason: from getter */
-    public final long getVoiceActivityDetectorProcessTime() {
-        return this.voiceActivityDetectorProcessTime;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getSsrc() {
-        return this.ssrc;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StatsCodec getCodec() {
-        return this.codec;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getBytesSent() {
-        return this.bytesSent;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getPacketsSent() {
-        return this.packetsSent;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final int getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final float getFractionLost() {
-        return this.fractionLost;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final float getAudioLevel() {
-        return this.audioLevel;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getAudioDetected() {
-        return this.audioDetected;
-    }
-
     public final OutboundRtpAudio copy(String type, long ssrc, StatsCodec codec, long bytesSent, long packetsSent, int packetsLost, float fractionLost, float audioLevel, boolean audioDetected, long framesCaptured, long framesRendered, boolean noiseCancellerIsEnabled, long noiseCancellerProcessTime, boolean voiceActivityDetectorIsEnabled, long voiceActivityDetectorProcessTime) {
         C12238m.checkNotNullParameter(type, "type");
         C12238m.checkNotNullParameter(codec, "codec");
@@ -135,60 +60,135 @@ public final /* data */ class OutboundRtpAudio {
         return C12238m.areEqual(this.type, outboundRtpAudio.type) && this.ssrc == outboundRtpAudio.ssrc && C12238m.areEqual(this.codec, outboundRtpAudio.codec) && this.bytesSent == outboundRtpAudio.bytesSent && this.packetsSent == outboundRtpAudio.packetsSent && this.packetsLost == outboundRtpAudio.packetsLost && Float.compare(this.fractionLost, outboundRtpAudio.fractionLost) == 0 && Float.compare(this.audioLevel, outboundRtpAudio.audioLevel) == 0 && this.audioDetected == outboundRtpAudio.audioDetected && this.framesCaptured == outboundRtpAudio.framesCaptured && this.framesRendered == outboundRtpAudio.framesRendered && this.noiseCancellerIsEnabled == outboundRtpAudio.noiseCancellerIsEnabled && this.noiseCancellerProcessTime == outboundRtpAudio.noiseCancellerProcessTime && this.voiceActivityDetectorIsEnabled == outboundRtpAudio.voiceActivityDetectorIsEnabled && this.voiceActivityDetectorProcessTime == outboundRtpAudio.voiceActivityDetectorProcessTime;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
     public final boolean getAudioDetected() {
         return this.audioDetected;
+    }
+
+    public final boolean getAudioDetected() {
+        return this.audioDetected;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final float getAudioLevel() {
+        return this.audioLevel;
     }
 
     public final float getAudioLevel() {
         return this.audioLevel;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getBytesSent() {
         return this.bytesSent;
+    }
+
+    public final long getBytesSent() {
+        return this.bytesSent;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final StatsCodec getCodec() {
+        return this.codec;
     }
 
     public final StatsCodec getCodec() {
         return this.codec;
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final float getFractionLost() {
         return this.fractionLost;
+    }
+
+    public final float getFractionLost() {
+        return this.fractionLost;
+    }
+
+    /* JADX INFO: renamed from: component10, reason: from getter */
+    public final long getFramesCaptured() {
+        return this.framesCaptured;
     }
 
     public final long getFramesCaptured() {
         return this.framesCaptured;
     }
 
+    /* JADX INFO: renamed from: component11, reason: from getter */
     public final long getFramesRendered() {
         return this.framesRendered;
+    }
+
+    public final long getFramesRendered() {
+        return this.framesRendered;
+    }
+
+    /* JADX INFO: renamed from: component12, reason: from getter */
+    public final boolean getNoiseCancellerIsEnabled() {
+        return this.noiseCancellerIsEnabled;
     }
 
     public final boolean getNoiseCancellerIsEnabled() {
         return this.noiseCancellerIsEnabled;
     }
 
+    /* JADX INFO: renamed from: component13, reason: from getter */
     public final long getNoiseCancellerProcessTime() {
         return this.noiseCancellerProcessTime;
+    }
+
+    public final long getNoiseCancellerProcessTime() {
+        return this.noiseCancellerProcessTime;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final int getPacketsLost() {
+        return this.packetsLost;
     }
 
     public final int getPacketsLost() {
         return this.packetsLost;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getPacketsSent() {
         return this.packetsSent;
+    }
+
+    public final long getPacketsSent() {
+        return this.packetsSent;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getSsrc() {
+        return this.ssrc;
     }
 
     public final long getSsrc() {
         return this.ssrc;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getType() {
         return this.type;
     }
 
+    public final String getType() {
+        return this.type;
+    }
+
+    /* JADX INFO: renamed from: component14, reason: from getter */
     public final boolean getVoiceActivityDetectorIsEnabled() {
         return this.voiceActivityDetectorIsEnabled;
+    }
+
+    public final boolean getVoiceActivityDetectorIsEnabled() {
+        return this.voiceActivityDetectorIsEnabled;
+    }
+
+    /* JADX INFO: renamed from: component15, reason: from getter */
+    public final long getVoiceActivityDetectorProcessTime() {
+        return this.voiceActivityDetectorProcessTime;
     }
 
     public final long getVoiceActivityDetectorProcessTime() {

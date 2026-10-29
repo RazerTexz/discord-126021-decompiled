@@ -33,7 +33,7 @@ public final class AssetDataSource extends AbstractC2705g {
     /* JADX INFO: renamed from: i */
     public boolean f20217i;
 
-    public static final class AssetDataSourceException extends DataSourceException {
+    public final class AssetDataSourceException extends DataSourceException {
         public AssetDataSourceException(@Nullable Throwable th, int i) {
             super(th, i);
         }
@@ -42,6 +42,28 @@ public final class AssetDataSource extends AbstractC2705g {
     public AssetDataSource(Context context) {
         super(false);
         this.f20213e = context.getAssets();
+    }
+
+    /* JADX WARN: Bottom block not found for handler: all -> 0x0017 */
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    public void close() throws AssetDataSourceException {
+        this.f20214f = null;
+        try {
+            InputStream inputStream = this.f20215g;
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            this.f20215g = null;
+            if (this.f20217i) {
+                this.f20217i = false;
+                m2849q();
+            }
+        } catch (IOException e) {
+            throw new AssetDataSourceException(e, 2000);
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
@@ -80,28 +102,6 @@ public final class AssetDataSource extends AbstractC2705g {
             throw e;
         } catch (IOException e2) {
             throw new AssetDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
-        }
-    }
-
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0017 */
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public void close() throws AssetDataSourceException {
-        this.f20214f = null;
-        try {
-            InputStream inputStream = this.f20215g;
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            this.f20215g = null;
-            if (this.f20217i) {
-                this.f20217i = false;
-                m2849q();
-            }
-        } catch (IOException e) {
-            throw new AssetDataSourceException(e, 2000);
         }
     }
 

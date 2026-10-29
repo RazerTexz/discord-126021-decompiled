@@ -34,6 +34,12 @@ public final class WidgetChannelsListItemDirectoryBinding implements ViewBinding
         this.f16040d = textView2;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16037a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChannelsListItemDirectoryBinding m8406a(@NonNull View view) {
@@ -51,11 +57,5 @@ public final class WidgetChannelsListItemDirectoryBinding implements ViewBinding
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16037a;
     }
 }

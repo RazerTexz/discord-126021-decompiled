@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackScreenshareFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackScreenshareFailed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence sourceId = null;
     private final Long screens = null;
+    private final CharSequence sourceId = null;
+    private TrackBase trackBase;
     private final Long windows = null;
     private final transient String analyticsSchemaTypeName = "screenshare_failed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackScreenshareFailed implements AnalyticsSchema,
         }
         TrackScreenshareFailed trackScreenshareFailed = (TrackScreenshareFailed) other;
         return C12238m.areEqual(this.sourceId, trackScreenshareFailed.sourceId) && C12238m.areEqual(this.screens, trackScreenshareFailed.screens) && C12238m.areEqual(this.windows, trackScreenshareFailed.windows);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -12,22 +12,14 @@ import java.util.RandomAccess;
 /* JADX INFO: loaded from: classes3.dex */
 public class C11731k extends AbstractList<String> implements RandomAccess, InterfaceC11732l {
 
-    /* JADX INFO: renamed from: j */
-    public static final InterfaceC11732l f24147j = new C11731k().getUnmodifiableView();
-
     /* JADX INFO: renamed from: k */
     public final List<Object> f24148k;
 
+    /* JADX INFO: renamed from: j */
+    public static final InterfaceC11732l f24147j = new C11731k().getUnmodifiableView();
+
     public C11731k() {
         this.f24148k = new ArrayList();
-    }
-
-    /* JADX INFO: renamed from: c */
-    public static String m9856c(Object obj) {
-        if (obj instanceof String) {
-            return (String) obj;
-        }
-        return obj instanceof AbstractC11723c ? ((AbstractC11723c) obj).toStringUtf8() : C11728h.toStringUtf8((byte[]) obj);
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
@@ -64,6 +56,14 @@ public class C11731k extends AbstractList<String> implements RandomAccess, Inter
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p550i.InterfaceC11732l
     public InterfaceC11732l getUnmodifiableView() {
         return new C11741u(this);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public static String m9856c(Object obj) {
+        if (obj instanceof String) {
+            return (String) obj;
+        }
+        return obj instanceof AbstractC11723c ? ((AbstractC11723c) obj).toStringUtf8() : C11728h.toStringUtf8((byte[]) obj);
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.List

@@ -11,7 +11,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class ServerSettingsGuildRoleSubscriptionTierAdapterItem implements DiffKeyProvider {
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public static final class AddTier extends ServerSettingsGuildRoleSubscriptionTierAdapterItem {
+    public final class AddTier extends ServerSettingsGuildRoleSubscriptionTierAdapterItem {
         public static final AddTier INSTANCE = new AddTier();
         private static final String key = "AddTierItem";
 
@@ -26,7 +26,7 @@ public abstract class ServerSettingsGuildRoleSubscriptionTierAdapterItem impleme
     }
 
     /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierAdapter.kt */
-    public static final /* data */ class Tier extends ServerSettingsGuildRoleSubscriptionTierAdapterItem {
+    public final /* data */ class Tier extends ServerSettingsGuildRoleSubscriptionTierAdapterItem {
         private final long applicationId;
         private final boolean isPublished;
         private final String key;
@@ -48,36 +48,6 @@ public abstract class ServerSettingsGuildRoleSubscriptionTierAdapterItem impleme
             this.key = String.valueOf(j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getTierListingId() {
-            return this.tierListingId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getTierName() {
-            return this.tierName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getTierPrice() {
-            return this.tierPrice;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getApplicationId() {
-            return this.applicationId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getIsPublished() {
-            return this.isPublished;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Long getTierImageAssetId() {
-            return this.tierImageAssetId;
-        }
-
         public final Tier copy(long tierListingId, String tierName, int tierPrice, long applicationId, boolean isPublished, Long tierImageAssetId) {
             C12238m.checkNotNullParameter(tierName, "tierName");
             return new Tier(tierListingId, tierName, tierPrice, applicationId, isPublished, tierImageAssetId);
@@ -94,8 +64,18 @@ public abstract class ServerSettingsGuildRoleSubscriptionTierAdapterItem impleme
             return this.tierListingId == tier.tierListingId && C12238m.areEqual(this.tierName, tier.tierName) && this.tierPrice == tier.tierPrice && this.applicationId == tier.applicationId && this.isPublished == tier.isPublished && C12238m.areEqual(this.tierImageAssetId, tier.tierImageAssetId);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final long getApplicationId() {
             return this.applicationId;
+        }
+
+        public final long getApplicationId() {
+            return this.applicationId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getIsPublished() {
+            return this.isPublished;
         }
 
         @Override // com.discord.utilities.recycler.DiffKeyProvider
@@ -103,16 +83,36 @@ public abstract class ServerSettingsGuildRoleSubscriptionTierAdapterItem impleme
             return this.key;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Long getTierImageAssetId() {
             return this.tierImageAssetId;
+        }
+
+        public final Long getTierImageAssetId() {
+            return this.tierImageAssetId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getTierListingId() {
+            return this.tierListingId;
         }
 
         public final long getTierListingId() {
             return this.tierListingId;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getTierName() {
             return this.tierName;
+        }
+
+        public final String getTierName() {
+            return this.tierName;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getTierPrice() {
+            return this.tierPrice;
         }
 
         public final int getTierPrice() {

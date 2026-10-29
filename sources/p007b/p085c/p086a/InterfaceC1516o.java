@@ -21,30 +21,6 @@ public interface InterfaceC1516o {
     /* JADX INFO: renamed from: D */
     public static final Integer[] f2422D;
 
-    /* JADX INFO: renamed from: a */
-    public static final Integer f2423a = 1;
-
-    /* JADX INFO: renamed from: b */
-    public static final Integer f2424b = 2;
-
-    /* JADX INFO: renamed from: c */
-    public static final Integer f2425c = 3;
-
-    /* JADX INFO: renamed from: d */
-    public static final Integer f2426d = 4;
-
-    /* JADX INFO: renamed from: e */
-    public static final PointF f2427e = new PointF();
-
-    /* JADX INFO: renamed from: f */
-    public static final PointF f2428f = new PointF();
-
-    /* JADX INFO: renamed from: g */
-    public static final PointF f2429g = new PointF();
-
-    /* JADX INFO: renamed from: h */
-    public static final PointF f2430h = new PointF();
-
     /* JADX INFO: renamed from: i */
     public static final Float f2431i;
 
@@ -98,6 +74,30 @@ public interface InterfaceC1516o {
 
     /* JADX INFO: renamed from: z */
     public static final Float f2448z;
+
+    /* JADX INFO: renamed from: a */
+    public static final Integer f2423a = 1;
+
+    /* JADX INFO: renamed from: b */
+    public static final Integer f2424b = 2;
+
+    /* JADX INFO: renamed from: c */
+    public static final Integer f2425c = 3;
+
+    /* JADX INFO: renamed from: d */
+    public static final Integer f2426d = 4;
+
+    /* JADX INFO: renamed from: e */
+    public static final PointF f2427e = new PointF();
+
+    /* JADX INFO: renamed from: f */
+    public static final PointF f2428f = new PointF();
+
+    /* JADX INFO: renamed from: g */
+    public static final PointF f2429g = new PointF();
+
+    /* JADX INFO: renamed from: h */
+    public static final PointF f2430h = new PointF();
 
     static {
         Float fValueOf = Float.valueOf(0.0f);

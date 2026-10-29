@@ -17,7 +17,7 @@ public enum ApplicationType {
     private final int apiValue;
 
     /* JADX INFO: compiled from: ApplicationType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion() {
         }
 

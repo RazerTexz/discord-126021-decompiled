@@ -46,21 +46,21 @@ import p658rx.Subscription;
 /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetFolderContextMenu extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFolderContextMenu.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFolderContextMenuBinding;", 0)};
     private static final String FRAGMENT_TAG = "WidgetFolderContextMenu";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String VIEW_CONTAINER_TAG = "WidgetFolderContextMenuViewContainer";
-    private static boolean isShowingContextMenu;
     private AnimationState animationState;
     private Animator animator;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
+    private static boolean isShowingContextMenu;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetFolderContextMenu.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFolderContextMenuBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final int SCREEN_BOTTOM_BUFFER = DimenUtils.dpToPixels(96);
 
     /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
@@ -69,8 +69,48 @@ public final class WidgetFolderContextMenu extends AppFragment {
         ANIMATING_OUT
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu$onResume$1 */
     /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C85911 extends C12236k implements Function1<FolderContextMenuViewModel.ViewState, Unit> {
+        public C85911(WidgetFolderContextMenu widgetFolderContextMenu) {
+            super(1, widgetFolderContextMenu, WidgetFolderContextMenu.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FolderContextMenuViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FolderContextMenuViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetFolderContextMenu) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu$onResume$2 */
+    /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
+    public final /* synthetic */ class C85922 extends C12236k implements Function1<FolderContextMenuViewModel.Event, Unit> {
+        public C85922(WidgetFolderContextMenu widgetFolderContextMenu) {
+            super(1, widgetFolderContextMenu, WidgetFolderContextMenu.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(FolderContextMenuViewModel.Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(FolderContextMenuViewModel.Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetFolderContextMenu) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -81,13 +121,6 @@ public final class WidgetFolderContextMenu extends AppFragment {
             C12238m.checkNotNullExpressionValue(cardView, "WidgetFolderContextMenuB…ntext), null, false).root");
             cardView.measure(0, 0);
             return cardView.getMeasuredHeight();
-        }
-
-        private final WidgetFolderContextMenu newInstance(long folderId) {
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId);
-            WidgetFolderContextMenu widgetFolderContextMenu = new WidgetFolderContextMenu();
-            widgetFolderContextMenu.setArguments(bundleM832T);
-            return widgetFolderContextMenu;
         }
 
         public final void hide(FragmentActivity activity, boolean animate) {
@@ -120,6 +153,13 @@ public final class WidgetFolderContextMenu extends AppFragment {
                 }
                 WidgetFolderContextMenu.isShowingContextMenu = false;
             }
+        }
+
+        private final WidgetFolderContextMenu newInstance(long folderId) {
+            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId);
+            WidgetFolderContextMenu widgetFolderContextMenu = new WidgetFolderContextMenu();
+            widgetFolderContextMenu.setArguments(bundleM832T);
+            return widgetFolderContextMenu;
         }
 
         public final void show(final FragmentActivity activity, PointF absolutePosition, long folderId) {
@@ -159,46 +199,6 @@ public final class WidgetFolderContextMenu extends AppFragment {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu$onResume$1 */
-    /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
-    public static final /* synthetic */ class C85911 extends C12236k implements Function1<FolderContextMenuViewModel.ViewState, Unit> {
-        public C85911(WidgetFolderContextMenu widgetFolderContextMenu) {
-            super(1, widgetFolderContextMenu, WidgetFolderContextMenu.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FolderContextMenuViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FolderContextMenuViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetFolderContextMenu) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu$onResume$2 */
-    /* JADX INFO: compiled from: WidgetFolderContextMenu.kt */
-    public static final /* synthetic */ class C85922 extends C12236k implements Function1<FolderContextMenuViewModel.Event, Unit> {
-        public C85922(WidgetFolderContextMenu widgetFolderContextMenu) {
-            super(1, widgetFolderContextMenu, WidgetFolderContextMenu.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(FolderContextMenuViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(FolderContextMenuViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetFolderContextMenu) this.receiver).handleEvent(event);
         }
     }
 

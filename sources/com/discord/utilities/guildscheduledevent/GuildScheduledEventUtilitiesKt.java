@@ -70,6 +70,16 @@ public final class GuildScheduledEventUtilitiesKt {
         return (getEventTiming(guildScheduledEvent) == GuildScheduledEventTiming.LIVE || guildScheduledEvent.getStatus() == GuildScheduledEventStatus.COMPLETED) ? false : true;
     }
 
+    public static /* synthetic */ UserGuildMember getCreatorUserGuildMember$default(GuildScheduledEvent guildScheduledEvent, StoreGuilds storeGuilds, StoreUser storeUser, int i, Object obj) {
+        if ((i & 1) != 0) {
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
+        }
+        if ((i & 2) != 0) {
+            storeUser = StoreStream.INSTANCE.getUsers();
+        }
+        return getCreatorUserGuildMember(guildScheduledEvent, storeGuilds, storeUser);
+    }
+
     public static final UserGuildMember getCreatorUserGuildMember(GuildScheduledEvent guildScheduledEvent, StoreGuilds storeGuilds, StoreUser storeUser) {
         C12238m.checkNotNullParameter(guildScheduledEvent, "$this$getCreatorUserGuildMember");
         C12238m.checkNotNullParameter(storeGuilds, "guildsStore");
@@ -84,16 +94,6 @@ public final class GuildScheduledEventUtilitiesKt {
             return new UserGuildMember(user, storeGuilds.getMember(guildScheduledEvent.getGuildId(), jLongValue));
         }
         return null;
-    }
-
-    public static /* synthetic */ UserGuildMember getCreatorUserGuildMember$default(GuildScheduledEvent guildScheduledEvent, StoreGuilds storeGuilds, StoreUser storeUser, int i, Object obj) {
-        if ((i & 1) != 0) {
-            storeGuilds = StoreStream.INSTANCE.getGuilds();
-        }
-        if ((i & 2) != 0) {
-            storeUser = StoreStream.INSTANCE.getUsers();
-        }
-        return getCreatorUserGuildMember(guildScheduledEvent, storeGuilds, storeUser);
     }
 
     public static final CharSequence getEventEndingTimeString(Context context, long j, long j2, GuildScheduledEventStatus guildScheduledEventStatus) {

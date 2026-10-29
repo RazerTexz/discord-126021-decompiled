@@ -45,7 +45,7 @@ public final class WidgetHubEventsViewModel extends AbstractC0859d0<WidgetHubEve
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsViewModel$1 */
     /* JADX INFO: compiled from: WidgetHubEventsViewModel.kt */
-    public static final /* synthetic */ class C90551 extends C12236k implements Function1<WidgetHubEventsState, Unit> {
+    public final /* synthetic */ class C90551 extends C12236k implements Function1<WidgetHubEventsState, Unit> {
         public C90551(WidgetHubEventsViewModel widgetHubEventsViewModel) {
             super(1, widgetHubEventsViewModel, WidgetHubEventsViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
         }
@@ -65,7 +65,7 @@ public final class WidgetHubEventsViewModel extends AbstractC0859d0<WidgetHubEve
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsViewModel$getObservableFromStores$1 */
     /* JADX INFO: compiled from: WidgetHubEventsViewModel.kt */
-    public static final class C90561 extends AbstractC12240o implements Function0<WidgetHubEventsState> {
+    public final class C90561 extends AbstractC12240o implements Function0<WidgetHubEventsState> {
         public final /* synthetic */ StoreChannels $channelsStore;
         public final /* synthetic */ StoreDirectories $directoriesStore;
         public final /* synthetic */ long $directoryChannelId;
@@ -142,10 +142,6 @@ public final class WidgetHubEventsViewModel extends AbstractC0859d0<WidgetHubEve
         return widgetHubEventsViewModel.getViewState();
     }
 
-    private final Observable<WidgetHubEventsState> getObservableFromStores(ObservationDeck observationDeck, StoreDirectories directoriesStore, StoreGuilds guildsStore, StoreChannels channelsStore, StoreVoiceChannelSelected voiceChannelSelectedStore, StoreGuildScheduledEvents guildScheduledEventsStore, StorePermissions permissionsStore, long directoryChannelId) {
-        return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{directoriesStore, guildsStore, channelsStore, voiceChannelSelectedStore, guildScheduledEventsStore, permissionsStore}, false, null, null, new C90561(directoriesStore, directoryChannelId, channelsStore, guildScheduledEventsStore, voiceChannelSelectedStore, permissionsStore, guildsStore), 14, null);
-    }
-
     public final void dismissHeader() {
         WidgetHubEventsState viewState = getViewState();
         if (viewState != null) {
@@ -160,6 +156,10 @@ public final class WidgetHubEventsViewModel extends AbstractC0859d0<WidgetHubEve
 
     public final StoreGuildScheduledEvents getGuildScheduledEventsStore() {
         return this.guildScheduledEventsStore;
+    }
+
+    private final Observable<WidgetHubEventsState> getObservableFromStores(ObservationDeck observationDeck, StoreDirectories directoriesStore, StoreGuilds guildsStore, StoreChannels channelsStore, StoreVoiceChannelSelected voiceChannelSelectedStore, StoreGuildScheduledEvents guildScheduledEventsStore, StorePermissions permissionsStore, long directoryChannelId) {
+        return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{directoriesStore, guildsStore, channelsStore, voiceChannelSelectedStore, guildScheduledEventsStore, permissionsStore}, false, null, null, new C90561(directoriesStore, directoryChannelId, channelsStore, guildScheduledEventsStore, voiceChannelSelectedStore, permissionsStore, guildsStore), 14, null);
     }
 
     public final void reset() {

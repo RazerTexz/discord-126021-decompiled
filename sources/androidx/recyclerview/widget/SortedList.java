@@ -26,7 +26,7 @@ public class SortedList<T> {
     private int mSize;
     private final Class<T> mTClass;
 
-    public static class BatchedCallback<T2> extends Callback<T2> {
+    public class BatchedCallback<T2> extends Callback<T2> {
         private final BatchingListUpdateCallback mBatchingListUpdateCallback;
         public final Callback<T2> mWrappedCallback;
 
@@ -86,7 +86,7 @@ public class SortedList<T> {
         }
     }
 
-    public static abstract class Callback<T2> implements Comparator<T2>, ListUpdateCallback {
+    public abstract class Callback<T2> implements Comparator<T2>, ListUpdateCallback {
         public abstract boolean areContentsTheSame(T2 t2, T2 t3);
 
         public abstract boolean areItemsTheSame(T2 t2, T2 t3);
@@ -108,6 +108,23 @@ public class SortedList<T> {
 
     public SortedList(@NonNull Class<T> cls, @NonNull Callback<T> callback) {
         this(cls, callback, 10);
+    }
+
+    public int add(T t) {
+        throwIfInMutationOperation();
+        return add(t, true);
+    }
+
+    public void addAll(@NonNull T[] tArr, boolean z2) {
+        throwIfInMutationOperation();
+        if (tArr.length == 0) {
+            return;
+        }
+        if (z2) {
+            addAllInternal(tArr);
+        } else {
+            addAllInternal(copyArray(tArr));
+        }
     }
 
     private void addAllInternal(T[] tArr) {
@@ -145,10 +162,46 @@ public class SortedList<T> {
         this.mSize++;
     }
 
+    public void beginBatchedUpdates() {
+        throwIfInMutationOperation();
+        Callback callback = this.mCallback;
+        if (callback instanceof BatchedCallback) {
+            return;
+        }
+        if (this.mBatchedCallback == null) {
+            this.mBatchedCallback = new BatchedCallback(callback);
+        }
+        this.mCallback = this.mBatchedCallback;
+    }
+
+    public void clear() {
+        throwIfInMutationOperation();
+        int i = this.mSize;
+        if (i == 0) {
+            return;
+        }
+        Arrays.fill(this.mData, 0, i, (Object) null);
+        this.mSize = 0;
+        this.mCallback.onRemoved(0, i);
+    }
+
     private T[] copyArray(T[] tArr) {
         T[] tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) this.mTClass, tArr.length));
         System.arraycopy(tArr, 0, tArr2, 0, tArr.length);
         return tArr2;
+    }
+
+    public void endBatchedUpdates() {
+        throwIfInMutationOperation();
+        Callback callback = this.mCallback;
+        if (callback instanceof BatchedCallback) {
+            ((BatchedCallback) callback).dispatchLastEvent();
+        }
+        Callback callback2 = this.mCallback;
+        BatchedCallback batchedCallback = this.mBatchedCallback;
+        if (callback2 == batchedCallback) {
+            this.mCallback = batchedCallback.mWrappedCallback;
+        }
     }
 
     private int findIndexOf(T t, T[] tArr, int i, int i2, int i3) {
@@ -181,6 +234,32 @@ public class SortedList<T> {
                 return i;
             }
             i++;
+        }
+        return -1;
+    }
+
+    public T get(int i) throws IndexOutOfBoundsException {
+        int i2;
+        if (i < this.mSize && i >= 0) {
+            T[] tArr = this.mOldData;
+            return (tArr == null || i < (i2 = this.mNewDataStart)) ? this.mData[i] : tArr[(i - i2) + this.mOldDataStart];
+        }
+        StringBuilder sbM834V = C1643a.m834V("Asked to get item at ", i, " but size is ");
+        sbM834V.append(this.mSize);
+        throw new IndexOutOfBoundsException(sbM834V.toString());
+    }
+
+    public int indexOf(T t) {
+        if (this.mOldData == null) {
+            return findIndexOf(t, this.mData, 0, this.mSize, 4);
+        }
+        int iFindIndexOf = findIndexOf(t, this.mData, 0, this.mNewDataStart, 4);
+        if (iFindIndexOf != -1) {
+            return iFindIndexOf;
+        }
+        int iFindIndexOf2 = findIndexOf(t, this.mOldData, this.mOldDataStart, this.mOldDataSize, 4);
+        if (iFindIndexOf2 != -1) {
+            return (iFindIndexOf2 - this.mOldDataStart) + this.mNewDataStart;
         }
         return -1;
     }
@@ -279,6 +358,28 @@ public class SortedList<T> {
         }
     }
 
+    public void recalculatePositionOfItemAt(int i) {
+        throwIfInMutationOperation();
+        T t = get(i);
+        removeItemAtIndex(i, false);
+        int iAdd = add(t, false);
+        if (i != iAdd) {
+            this.mCallback.onMoved(i, iAdd);
+        }
+    }
+
+    public boolean remove(T t) {
+        throwIfInMutationOperation();
+        return remove(t, true);
+    }
+
+    public T removeItemAt(int i) {
+        throwIfInMutationOperation();
+        T t = get(i);
+        removeItemAtIndex(i, true);
+        return t;
+    }
+
     private void removeItemAtIndex(int i, boolean z2) {
         T[] tArr = this.mData;
         System.arraycopy(tArr, i + 1, tArr, i, (this.mSize - i) - 1);
@@ -287,6 +388,15 @@ public class SortedList<T> {
         this.mData[i2] = null;
         if (z2) {
             this.mCallback.onRemoved(i, 1);
+        }
+    }
+
+    public void replaceAll(@NonNull T[] tArr, boolean z2) {
+        throwIfInMutationOperation();
+        if (z2) {
+            replaceAllInternal(tArr);
+        } else {
+            replaceAllInternal(copyArray(tArr));
         }
     }
 
@@ -366,6 +476,10 @@ public class SortedList<T> {
         this.mCallback.onRemoved(this.mNewDataStart, 1);
     }
 
+    public int size() {
+        return this.mSize;
+    }
+
     private int sortAndDedup(@NonNull T[] tArr) {
         if (tArr.length == 0) {
             return 0;
@@ -400,120 +514,6 @@ public class SortedList<T> {
         if (this.mOldData != null) {
             throw new IllegalStateException("Data cannot be mutated in the middle of a batch update operation such as addAll or replaceAll.");
         }
-    }
-
-    public int add(T t) {
-        throwIfInMutationOperation();
-        return add(t, true);
-    }
-
-    public void addAll(@NonNull T[] tArr, boolean z2) {
-        throwIfInMutationOperation();
-        if (tArr.length == 0) {
-            return;
-        }
-        if (z2) {
-            addAllInternal(tArr);
-        } else {
-            addAllInternal(copyArray(tArr));
-        }
-    }
-
-    public void beginBatchedUpdates() {
-        throwIfInMutationOperation();
-        Callback callback = this.mCallback;
-        if (callback instanceof BatchedCallback) {
-            return;
-        }
-        if (this.mBatchedCallback == null) {
-            this.mBatchedCallback = new BatchedCallback(callback);
-        }
-        this.mCallback = this.mBatchedCallback;
-    }
-
-    public void clear() {
-        throwIfInMutationOperation();
-        int i = this.mSize;
-        if (i == 0) {
-            return;
-        }
-        Arrays.fill(this.mData, 0, i, (Object) null);
-        this.mSize = 0;
-        this.mCallback.onRemoved(0, i);
-    }
-
-    public void endBatchedUpdates() {
-        throwIfInMutationOperation();
-        Callback callback = this.mCallback;
-        if (callback instanceof BatchedCallback) {
-            ((BatchedCallback) callback).dispatchLastEvent();
-        }
-        Callback callback2 = this.mCallback;
-        BatchedCallback batchedCallback = this.mBatchedCallback;
-        if (callback2 == batchedCallback) {
-            this.mCallback = batchedCallback.mWrappedCallback;
-        }
-    }
-
-    public T get(int i) throws IndexOutOfBoundsException {
-        int i2;
-        if (i < this.mSize && i >= 0) {
-            T[] tArr = this.mOldData;
-            return (tArr == null || i < (i2 = this.mNewDataStart)) ? this.mData[i] : tArr[(i - i2) + this.mOldDataStart];
-        }
-        StringBuilder sbM834V = C1643a.m834V("Asked to get item at ", i, " but size is ");
-        sbM834V.append(this.mSize);
-        throw new IndexOutOfBoundsException(sbM834V.toString());
-    }
-
-    public int indexOf(T t) {
-        if (this.mOldData == null) {
-            return findIndexOf(t, this.mData, 0, this.mSize, 4);
-        }
-        int iFindIndexOf = findIndexOf(t, this.mData, 0, this.mNewDataStart, 4);
-        if (iFindIndexOf != -1) {
-            return iFindIndexOf;
-        }
-        int iFindIndexOf2 = findIndexOf(t, this.mOldData, this.mOldDataStart, this.mOldDataSize, 4);
-        if (iFindIndexOf2 != -1) {
-            return (iFindIndexOf2 - this.mOldDataStart) + this.mNewDataStart;
-        }
-        return -1;
-    }
-
-    public void recalculatePositionOfItemAt(int i) {
-        throwIfInMutationOperation();
-        T t = get(i);
-        removeItemAtIndex(i, false);
-        int iAdd = add(t, false);
-        if (i != iAdd) {
-            this.mCallback.onMoved(i, iAdd);
-        }
-    }
-
-    public boolean remove(T t) {
-        throwIfInMutationOperation();
-        return remove(t, true);
-    }
-
-    public T removeItemAt(int i) {
-        throwIfInMutationOperation();
-        T t = get(i);
-        removeItemAtIndex(i, true);
-        return t;
-    }
-
-    public void replaceAll(@NonNull T[] tArr, boolean z2) {
-        throwIfInMutationOperation();
-        if (z2) {
-            replaceAllInternal(tArr);
-        } else {
-            replaceAllInternal(copyArray(tArr));
-        }
-    }
-
-    public int size() {
-        return this.mSize;
     }
 
     public void updateItemAt(int i, T t) {

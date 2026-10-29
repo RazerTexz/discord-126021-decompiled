@@ -50,14 +50,6 @@ public class AppCompatBackgroundHelper {
         return true;
     }
 
-    private boolean shouldApplyFrameworkTintUsingColorFilter() {
-        int i = Build.VERSION.SDK_INT;
-        if (i > 21) {
-            return this.mInternalBackgroundTint != null;
-        }
-        return i == 21;
-    }
-
     public void applySupportBackgroundTint() {
         Drawable background = this.mView.getBackground();
         if (background != null) {
@@ -165,5 +157,13 @@ public class AppCompatBackgroundHelper {
         tintInfo.mTintMode = mode;
         tintInfo.mHasTintMode = true;
         applySupportBackgroundTint();
+    }
+
+    private boolean shouldApplyFrameworkTintUsingColorFilter() {
+        int i = Build.VERSION.SDK_INT;
+        if (i > 21) {
+            return this.mInternalBackgroundTint != null;
+        }
+        return i == 21;
     }
 }

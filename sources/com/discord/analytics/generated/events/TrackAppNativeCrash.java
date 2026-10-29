@@ -11,28 +11,22 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAppNativeCrash.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAppNativeCrash implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackOverlayClientMetadata trackOverlayClientMetadata;
-    private final Boolean didCrash = null;
-    private final CharSequence rendererCrashReason = null;
-    private final CharSequence minidumpExceptionType = null;
-    private final CharSequence exitReason = null;
-    private final CharSequence exitDescription = null;
-    private final CharSequence tombstoneHash = null;
-    private final CharSequence tombstoneCause = null;
-    private final Long signal = null;
-    private final Long exceptionType = null;
-    private final Long exceptionCode = null;
-    private final CharSequence terminationReason = null;
     private final CharSequence binaryName = null;
     private final CharSequence callstackHash = null;
+    private final Boolean didCrash = null;
+    private final Long exceptionCode = null;
+    private final Long exceptionType = null;
+    private final CharSequence exitDescription = null;
+    private final CharSequence exitReason = null;
+    private final CharSequence minidumpExceptionType = null;
+    private final CharSequence rendererCrashReason = null;
+    private final Long signal = null;
+    private final CharSequence terminationReason = null;
+    private final CharSequence tombstoneCause = null;
+    private final CharSequence tombstoneHash = null;
+    private TrackBase trackBase;
+    private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final transient String analyticsSchemaTypeName = "app_native_crash";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -43,6 +37,12 @@ public final /* data */ class TrackAppNativeCrash implements AnalyticsSchema, Tr
         }
         TrackAppNativeCrash trackAppNativeCrash = (TrackAppNativeCrash) other;
         return C12238m.areEqual(this.didCrash, trackAppNativeCrash.didCrash) && C12238m.areEqual(this.rendererCrashReason, trackAppNativeCrash.rendererCrashReason) && C12238m.areEqual(this.minidumpExceptionType, trackAppNativeCrash.minidumpExceptionType) && C12238m.areEqual(this.exitReason, trackAppNativeCrash.exitReason) && C12238m.areEqual(this.exitDescription, trackAppNativeCrash.exitDescription) && C12238m.areEqual(this.tombstoneHash, trackAppNativeCrash.tombstoneHash) && C12238m.areEqual(this.tombstoneCause, trackAppNativeCrash.tombstoneCause) && C12238m.areEqual(this.signal, trackAppNativeCrash.signal) && C12238m.areEqual(this.exceptionType, trackAppNativeCrash.exceptionType) && C12238m.areEqual(this.exceptionCode, trackAppNativeCrash.exceptionCode) && C12238m.areEqual(this.terminationReason, trackAppNativeCrash.terminationReason) && C12238m.areEqual(this.binaryName, trackAppNativeCrash.binaryName) && C12238m.areEqual(this.callstackHash, trackAppNativeCrash.callstackHash);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

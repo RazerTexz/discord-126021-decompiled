@@ -42,7 +42,7 @@ public final class C11343f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.g1.f$a */
     /* JADX INFO: compiled from: annotationUtil.kt */
-    public static final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function1<InterfaceC11325c0, AbstractC11913c0> {
         public final /* synthetic */ AbstractC11288h $this_createDeprecatedAnnotation;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -78,6 +78,16 @@ public final class C11343f {
         f22734e = c11716eIdentifier5;
     }
 
+    public static /* synthetic */ InterfaceC11340c createDeprecatedAnnotation$default(AbstractC11288h abstractC11288h, String str, String str2, String str3, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str2 = "";
+        }
+        if ((i & 4) != 0) {
+            str3 = "WARNING";
+        }
+        return createDeprecatedAnnotation(abstractC11288h, str, str2, str3);
+    }
+
     public static final InterfaceC11340c createDeprecatedAnnotation(AbstractC11288h abstractC11288h, String str, String str2, String str3) {
         C12238m.checkNotNullParameter(abstractC11288h, "<this>");
         C12238m.checkNotNullParameter(str, "message");
@@ -91,15 +101,5 @@ public final class C11343f {
         C11716e c11716eIdentifier = C11716e.identifier(str3);
         C12238m.checkNotNullExpressionValue(c11716eIdentifier, "identifier(level)");
         return new C11347j(abstractC11288h, c11713b, C12136h0.mapOf(C12116o.m10073to(f22730a, new C11831w(str)), C12116o.m10073to(f22731b, new C11807a(c11347j)), C12116o.m10073to(c11716e, new C11818j(c11712a, c11716eIdentifier))));
-    }
-
-    public static /* synthetic */ InterfaceC11340c createDeprecatedAnnotation$default(AbstractC11288h abstractC11288h, String str, String str2, String str3, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str2 = "";
-        }
-        if ((i & 4) != 0) {
-            str3 = "WARNING";
-        }
-        return createDeprecatedAnnotation(abstractC11288h, str, str2, str3);
     }
 }

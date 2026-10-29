@@ -63,27 +63,9 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetCreateGuildRoleSubscriptionTier.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, long guildId, long groupListingId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            intent.putExtra(WidgetCreateGuildRoleSubscriptionTier.INTENT_EXTRA_GROUP_LISTING_ID, groupListingId);
-            C0870j.m156d(context, WidgetCreateGuildRoleSubscriptionTier.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetCreateGuildRoleSubscriptionTier$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetCreateGuildRoleSubscriptionTier.kt */
-    public static final class C84881 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C84881 extends AbstractC12240o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C84881() {
             super(1);
         }
@@ -104,7 +86,7 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetCreateGuildRoleSubscriptionTier$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetCreateGuildRoleSubscriptionTier.kt */
-    public static final class C84892 extends AbstractC12240o implements Function1<CreateGuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class C84892 extends AbstractC12240o implements Function1<CreateGuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public C84892() {
             super(1);
         }
@@ -125,7 +107,7 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetCreateGuildRoleSubscriptionTier$onViewBoundOrOnResume$3 */
     /* JADX INFO: compiled from: WidgetCreateGuildRoleSubscriptionTier.kt */
-    public static final class C84903 extends AbstractC12240o implements Function1<CreateGuildRoleSubscriptionTierViewModel.Event, Unit> {
+    public final class C84903 extends AbstractC12240o implements Function1<CreateGuildRoleSubscriptionTierViewModel.Event, Unit> {
         public C84903() {
             super(1);
         }
@@ -141,6 +123,24 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
             WidgetCreateGuildRoleSubscriptionTier widgetCreateGuildRoleSubscriptionTier = WidgetCreateGuildRoleSubscriptionTier.this;
             C12238m.checkNotNullExpressionValue(event, "it");
             widgetCreateGuildRoleSubscriptionTier.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCreateGuildRoleSubscriptionTier.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, long guildId, long groupListingId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
+            intent.putExtra(WidgetCreateGuildRoleSubscriptionTier.INTENT_EXTRA_GROUP_LISTING_ID, groupListingId);
+            C0870j.m156d(context, WidgetCreateGuildRoleSubscriptionTier.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -205,10 +205,6 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
         INSTANCE.launch(context, j, j2);
     }
 
-    private final void updateCreateTierViewModel(GuildRoleSubscriptionTierViewModel.ViewState viewState) {
-        getCreateTierViewModel().onTierUpdated(viewState.getGuildRoleSubscriptionTier());
-    }
-
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         C12238m.checkNotNullParameter(view, "view");
@@ -241,5 +237,9 @@ public final class WidgetCreateGuildRoleSubscriptionTier extends AppFragment {
         Observable<CreateGuildRoleSubscriptionTierViewModel.Event> observableM11112r3 = getCreateTierViewModel().observeEvents().m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r3, "createTierViewModel\n    …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r3, this, null, 2, null), (Class<?>) WidgetCreateGuildRoleSubscriptionTier.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C84903());
+    }
+
+    private final void updateCreateTierViewModel(GuildRoleSubscriptionTierViewModel.ViewState viewState) {
+        getCreateTierViewModel().onTierUpdated(viewState.getGuildRoleSubscriptionTier());
     }
 }

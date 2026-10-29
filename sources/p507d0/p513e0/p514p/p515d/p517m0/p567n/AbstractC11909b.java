@@ -32,6 +32,68 @@ public abstract class AbstractC11909b extends AbstractC11924g implements Interfa
         this.f24742b = 0;
     }
 
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof InterfaceC12008u0) || obj.hashCode() != hashCode()) {
+            return false;
+        }
+        InterfaceC12008u0 interfaceC12008u0 = (InterfaceC12008u0) obj;
+        if (interfaceC12008u0.getParameters().size() != getParameters().size()) {
+            return false;
+        }
+        InterfaceC11330e declarationDescriptor = getDeclarationDescriptor();
+        InterfaceC11352h declarationDescriptor2 = interfaceC12008u0.getDeclarationDescriptor();
+        if (!m9995h(declarationDescriptor) || ((declarationDescriptor2 != null && !m9995h(declarationDescriptor2)) || !(declarationDescriptor2 instanceof InterfaceC11330e))) {
+            return false;
+        }
+        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) declarationDescriptor2;
+        if (declarationDescriptor.getName().equals(interfaceC11330e.getName())) {
+            InterfaceC11450m containingDeclaration = declarationDescriptor.getContainingDeclaration();
+            for (InterfaceC11450m containingDeclaration2 = interfaceC11330e.getContainingDeclaration(); containingDeclaration != null && containingDeclaration2 != null; containingDeclaration2 = containingDeclaration2.getContainingDeclaration()) {
+                if (containingDeclaration instanceof InterfaceC11325c0) {
+                    return containingDeclaration2 instanceof InterfaceC11325c0;
+                }
+                if (!(containingDeclaration2 instanceof InterfaceC11325c0)) {
+                    if (containingDeclaration instanceof InterfaceC11331e0) {
+                        if ((containingDeclaration2 instanceof InterfaceC11331e0) && ((InterfaceC11331e0) containingDeclaration).getFqName().equals(((InterfaceC11331e0) containingDeclaration2).getFqName())) {
+                            return true;
+                        }
+                    } else if (!(containingDeclaration2 instanceof InterfaceC11331e0) && containingDeclaration.getName().equals(containingDeclaration2.getName())) {
+                        containingDeclaration = containingDeclaration.getContainingDeclaration();
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+    public AbstractC11288h getBuiltIns() {
+        AbstractC11288h builtIns = C11836a.getBuiltIns(getDeclarationDescriptor());
+        if (builtIns != null) {
+            return builtIns;
+        }
+        m9994g(1);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11924g, p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
+    public abstract InterfaceC11330e getDeclarationDescriptor();
+
+    public final int hashCode() {
+        int i = this.f24742b;
+        if (i != 0) {
+            return i;
+        }
+        InterfaceC11330e declarationDescriptor = getDeclarationDescriptor();
+        int iHashCode = m9995h(declarationDescriptor) ? C11787e.getFqName(declarationDescriptor).hashCode() : System.identityHashCode(this);
+        this.f24742b = iHashCode;
+        return iHashCode;
+    }
+
     /* JADX WARN: Code duplicated, block: B:21:0x002f  */
     /* JADX INFO: renamed from: g */
     public static /* synthetic */ void m9994g(int i) {
@@ -105,67 +167,5 @@ public abstract class AbstractC11909b extends AbstractC11924g implements Interfa
             c12041i.add(companionObjectDescriptor.getDefaultType());
         }
         return c12041i;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof InterfaceC12008u0) || obj.hashCode() != hashCode()) {
-            return false;
-        }
-        InterfaceC12008u0 interfaceC12008u0 = (InterfaceC12008u0) obj;
-        if (interfaceC12008u0.getParameters().size() != getParameters().size()) {
-            return false;
-        }
-        InterfaceC11330e declarationDescriptor = getDeclarationDescriptor();
-        InterfaceC11352h declarationDescriptor2 = interfaceC12008u0.getDeclarationDescriptor();
-        if (!m9995h(declarationDescriptor) || ((declarationDescriptor2 != null && !m9995h(declarationDescriptor2)) || !(declarationDescriptor2 instanceof InterfaceC11330e))) {
-            return false;
-        }
-        InterfaceC11330e interfaceC11330e = (InterfaceC11330e) declarationDescriptor2;
-        if (declarationDescriptor.getName().equals(interfaceC11330e.getName())) {
-            InterfaceC11450m containingDeclaration = declarationDescriptor.getContainingDeclaration();
-            for (InterfaceC11450m containingDeclaration2 = interfaceC11330e.getContainingDeclaration(); containingDeclaration != null && containingDeclaration2 != null; containingDeclaration2 = containingDeclaration2.getContainingDeclaration()) {
-                if (containingDeclaration instanceof InterfaceC11325c0) {
-                    return containingDeclaration2 instanceof InterfaceC11325c0;
-                }
-                if (!(containingDeclaration2 instanceof InterfaceC11325c0)) {
-                    if (containingDeclaration instanceof InterfaceC11331e0) {
-                        if ((containingDeclaration2 instanceof InterfaceC11331e0) && ((InterfaceC11331e0) containingDeclaration).getFqName().equals(((InterfaceC11331e0) containingDeclaration2).getFqName())) {
-                            return true;
-                        }
-                    } else if (!(containingDeclaration2 instanceof InterfaceC11331e0) && containingDeclaration.getName().equals(containingDeclaration2.getName())) {
-                        containingDeclaration = containingDeclaration.getContainingDeclaration();
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-    public AbstractC11288h getBuiltIns() {
-        AbstractC11288h builtIns = C11836a.getBuiltIns(getDeclarationDescriptor());
-        if (builtIns != null) {
-            return builtIns;
-        }
-        m9994g(1);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p567n.AbstractC11924g, p507d0.p513e0.p514p.p515d.p517m0.p567n.InterfaceC12008u0
-    public abstract InterfaceC11330e getDeclarationDescriptor();
-
-    public final int hashCode() {
-        int i = this.f24742b;
-        if (i != 0) {
-            return i;
-        }
-        InterfaceC11330e declarationDescriptor = getDeclarationDescriptor();
-        int iHashCode = m9995h(declarationDescriptor) ? C11787e.getFqName(declarationDescriptor).hashCode() : System.identityHashCode(this);
-        this.f24742b = iHashCode;
-        return iHashCode;
     }
 }

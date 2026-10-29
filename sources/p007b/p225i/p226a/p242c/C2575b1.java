@@ -32,11 +32,11 @@ public class C2575b1 implements InterfaceC2808i2 {
     /* JADX INFO: renamed from: a */
     public final Context f5739a;
 
-    /* JADX INFO: renamed from: b */
-    public final C3146r f5740b = new C3146r();
-
     /* JADX INFO: renamed from: c */
     public InterfaceC3150v f5741c;
+
+    /* JADX INFO: renamed from: b */
+    public final C3146r f5740b = new C3146r();
 
     public C2575b1(Context context) {
         this.f5739a = context;

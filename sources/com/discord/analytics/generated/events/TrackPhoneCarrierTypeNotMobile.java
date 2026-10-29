@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPhoneCarrierTypeNotMobile.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPhoneCarrierTypeNotMobile implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence carrierName = null;
     private final CharSequence carrierType = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "phone_carrier_type_not_mobile";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackPhoneCarrierTypeNotMobile implements Analytic
         }
         TrackPhoneCarrierTypeNotMobile trackPhoneCarrierTypeNotMobile = (TrackPhoneCarrierTypeNotMobile) other;
         return C12238m.areEqual(this.carrierName, trackPhoneCarrierTypeNotMobile.carrierName) && C12238m.areEqual(this.carrierType, trackPhoneCarrierTypeNotMobile.carrierType);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

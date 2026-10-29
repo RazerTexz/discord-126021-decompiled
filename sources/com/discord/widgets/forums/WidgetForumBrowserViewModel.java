@@ -110,7 +110,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$1 */
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static final class C83471 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C83471 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C83471() {
             super(1);
         }
@@ -129,8 +129,52 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$maybeFetchOlderPosts$1 */
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static final class Companion {
+    public final class C83501 extends AbstractC12240o implements Function0<Unit> {
+        public C83501() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetForumBrowserViewModel.this.isFetchingMoreOlderPosts = false;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$setupListViewState$1 */
+    /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
+    public final class C83511 extends AbstractC12240o implements Function1<Channel, ForumBrowserItem.PostItem> {
+        public final /* synthetic */ Set $seenChannelIds;
+        public final /* synthetic */ StoreState.Loaded $storeState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C83511(Set set, StoreState.Loaded loaded) {
+            super(1);
+            this.$seenChannelIds = set;
+            this.$storeState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final ForumBrowserItem.PostItem invoke(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "channel");
+            if (this.$seenChannelIds.contains(Long.valueOf(channel.getId()))) {
+                return null;
+            }
+            this.$seenChannelIds.add(Long.valueOf(channel.getId()));
+            WidgetForumBrowserViewModel.this.guildMemberRequester.queueRequest(channel.getGuildId(), channel.getOwnerId());
+            return WidgetForumBrowserViewModel.this.createPostItem(this.$storeState, channel);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -166,7 +210,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
                 /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$Companion$observeStoreState$1$1 */
                 /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-                public static final class C83491 extends AbstractC12240o implements Function17<MeUser, Map<Long, ? extends User>, ArchivedThreadsStore.ThreadListingState, Map<Long, ? extends String>, Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends Message>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends Integer>, Long, Map<Long, ? extends Long>, EmojiSet, Map<Long, ? extends ForumPostReadState>, Map<Long, ? extends Integer>, Set<? extends Long>, Boolean, Map<Long, ? extends Set<? extends Long>>, WidgetForumBrowserViewModel.StoreState.Loaded> {
+                public final class C83491 extends AbstractC12240o implements Function17<MeUser, Map<Long, ? extends User>, ArchivedThreadsStore.ThreadListingState, Map<Long, ? extends String>, Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends Message>, Map<Long, ? extends StoreThreadMessages.ThreadState>, Map<Long, ? extends Integer>, Long, Map<Long, ? extends Long>, EmojiSet, Map<Long, ? extends ForumPostReadState>, Map<Long, ? extends Integer>, Set<? extends Long>, Boolean, Map<Long, ? extends Set<? extends Long>>, WidgetForumBrowserViewModel.StoreState.Loaded> {
                     public final /* synthetic */ Map $activeThreads;
                     public final /* synthetic */ Channel $parentChannel;
 
@@ -252,10 +296,10 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final class ScrollToTop extends Event {
+        public final class ScrollToTop extends Event {
             public static final ScrollToTop INSTANCE = new ScrollToTop();
 
             private ScrollToTop() {
@@ -272,10 +316,10 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static abstract class MinimalStoreState {
+    public abstract class MinimalStoreState {
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final class Invalid extends MinimalStoreState {
+        public final class Invalid extends MinimalStoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -284,7 +328,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final /* data */ class Valid extends MinimalStoreState {
+        public final /* data */ class Valid extends MinimalStoreState {
             private final Map<Long, Channel> activeThreads;
             private final Channel channel;
 
@@ -297,6 +341,10 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 this.activeThreads = map;
             }
 
+            public final Map<Long, Channel> component2() {
+                return this.activeThreads;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Valid copy$default(Valid valid, Channel channel, Map map, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -306,15 +354,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                     map = valid.activeThreads;
                 }
                 return valid.copy(channel, map);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            public final Map<Long, Channel> component2() {
-                return this.activeThreads;
             }
 
             public final Valid copy(Channel channel, Map<Long, Channel> activeThreads) {
@@ -336,6 +375,11 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
             public final Map<Long, Channel> getActiveThreads() {
                 return this.activeThreads;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
@@ -366,7 +410,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static final /* data */ class NsfwPanelState {
+    public final /* data */ class NsfwPanelState {
         private final long guildId;
         private final boolean isChannelNsfw;
         private final boolean isNsfwUnconsented;
@@ -397,26 +441,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
             return nsfwPanelState.copy(z2, z4, nsfwAllowance2, j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsNsfwUnconsented() {
-            return this.isNsfwUnconsented;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsChannelNsfw() {
-            return this.isChannelNsfw;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final NsfwAllowance getNsfwAllowed() {
-            return this.nsfwAllowed;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final NsfwPanelState copy(boolean isNsfwUnconsented, boolean isChannelNsfw, NsfwAllowance nsfwAllowed, long guildId) {
             return new NsfwPanelState(isNsfwUnconsented, isChannelNsfw, nsfwAllowed, guildId);
         }
@@ -432,8 +456,28 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
             return this.isNsfwUnconsented == nsfwPanelState.isNsfwUnconsented && this.isChannelNsfw == nsfwPanelState.isChannelNsfw && C12238m.areEqual(this.nsfwAllowed, nsfwPanelState.nsfwAllowed) && this.guildId == nsfwPanelState.guildId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsChannelNsfw() {
+            return this.isChannelNsfw;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsNsfwUnconsented() {
+            return this.isNsfwUnconsented;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final NsfwAllowance getNsfwAllowed() {
+            return this.nsfwAllowed;
         }
 
         public final NsfwAllowance getNsfwAllowed() {
@@ -482,10 +526,10 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -494,7 +538,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final /* data */ class Loaded extends StoreState {
+        public final /* data */ class Loaded extends StoreState {
             private final Map<Long, Channel> activeThreads;
             private final ArchivedThreadsStore.ThreadListingState archivedThreadsState;
             private final boolean canCreateForumChannelPosts;
@@ -554,22 +598,12 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 this.typingUsers = map12;
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
             public final Map<Long, StoreThreadMessages.ThreadState> component10() {
                 return this.forumPostMessageCounts;
             }
 
             public final Set<Long> component11() {
                 return this.myBlockedUserIds;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getCanCreateForumChannelPosts() {
-                return this.canCreateForumChannelPosts;
             }
 
             public final Map<Long, Long> component13() {
@@ -588,22 +622,12 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 return this.forumPostUnreadCounts;
             }
 
-            /* JADX INFO: renamed from: component17, reason: from getter */
-            public final boolean getIsThreadSyncedGuild() {
-                return this.isThreadSyncedGuild;
-            }
-
             public final Map<Long, Set<Long>> component18() {
                 return this.typingUsers;
             }
 
             public final Map<Long, User> component2() {
                 return this.users;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final ArchivedThreadsStore.ThreadListingState getArchivedThreadsState() {
-                return this.archivedThreadsState;
             }
 
             public final Map<Long, Channel> component4() {
@@ -620,11 +644,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
             public final Map<Long, String> component7() {
                 return this.channelNames;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
             }
 
             public final Map<Long, Message> component9() {
@@ -666,12 +685,27 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 return this.activeThreads;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final ArchivedThreadsStore.ThreadListingState getArchivedThreadsState() {
                 return this.archivedThreadsState;
             }
 
+            public final ArchivedThreadsStore.ThreadListingState getArchivedThreadsState() {
+                return this.archivedThreadsState;
+            }
+
+            /* JADX INFO: renamed from: component12, reason: from getter */
             public final boolean getCanCreateForumChannelPosts() {
                 return this.canCreateForumChannelPosts;
+            }
+
+            public final boolean getCanCreateForumChannelPosts() {
+                return this.canCreateForumChannelPosts;
+            }
+
+            /* JADX INFO: renamed from: component8, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
             }
 
             public final Channel getChannel() {
@@ -708,6 +742,16 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
             public final Map<Long, GuildRole> getGuildRoles() {
                 return this.guildRoles;
+            }
+
+            /* JADX INFO: renamed from: component17, reason: from getter */
+            public final boolean getIsThreadSyncedGuild() {
+                return this.isThreadSyncedGuild;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final MeUser getMeUser() {
+                return this.meUser;
             }
 
             public final MeUser getMeUser() {
@@ -834,11 +878,11 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
         private final NsfwPanelState nsfwPanelState;
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean canCreateForumChannelPosts;
             private final long channelId;
             private final String channelName;
@@ -871,31 +915,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 return this.listItems;
             }
 
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getCanCreateForumChannelPosts() {
-                return this.canCreateForumChannelPosts;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getChannelName() {
-                return this.channelName;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getChannelTopic() {
-                return this.channelTopic;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
             public final Loaded copy(NsfwPanelState nsfwPanelState, List<? extends ForumBrowserItem> listItems, boolean canCreateForumChannelPosts, String channelName, String channelTopic, long channelId, long guildId) {
                 C12238m.checkNotNullParameter(nsfwPanelState, "nsfwPanelState");
                 C12238m.checkNotNullParameter(listItems, "listItems");
@@ -914,20 +933,45 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 return C12238m.areEqual(getNsfwPanelState(), loaded.getNsfwPanelState()) && C12238m.areEqual(this.listItems, loaded.listItems) && this.canCreateForumChannelPosts == loaded.canCreateForumChannelPosts && C12238m.areEqual(this.channelName, loaded.channelName) && C12238m.areEqual(this.channelTopic, loaded.channelTopic) && this.channelId == loaded.channelId && this.guildId == loaded.guildId;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final boolean getCanCreateForumChannelPosts() {
                 return this.canCreateForumChannelPosts;
+            }
+
+            public final boolean getCanCreateForumChannelPosts() {
+                return this.canCreateForumChannelPosts;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final long getChannelId() {
+                return this.channelId;
             }
 
             public final long getChannelId() {
                 return this.channelId;
             }
 
+            /* JADX INFO: renamed from: component4, reason: from getter */
             public final String getChannelName() {
                 return this.channelName;
             }
 
+            public final String getChannelName() {
+                return this.channelName;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final String getChannelTopic() {
                 return this.channelTopic;
+            }
+
+            public final String getChannelTopic() {
+                return this.channelTopic;
+            }
+
+            /* JADX INFO: renamed from: component7, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
             }
 
             public final long getGuildId() {
@@ -984,7 +1028,7 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-        public static final /* data */ class Loading extends ViewState {
+        public final /* data */ class Loading extends ViewState {
             private final NsfwPanelState nsfwPanelState;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -994,15 +1038,15 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
                 this.nsfwPanelState = nsfwPanelState;
             }
 
+            public final NsfwPanelState component1() {
+                return getNsfwPanelState();
+            }
+
             public static /* synthetic */ Loading copy$default(Loading loading, NsfwPanelState nsfwPanelState, int i, Object obj) {
                 if ((i & 1) != 0) {
                     nsfwPanelState = loading.getNsfwPanelState();
                 }
                 return loading.copy(nsfwPanelState);
-            }
-
-            public final NsfwPanelState component1() {
-                return getNsfwPanelState();
             }
 
             public final Loading copy(NsfwPanelState nsfwPanelState) {
@@ -1048,50 +1092,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
         public /* synthetic */ ViewState(NsfwPanelState nsfwPanelState, DefaultConstructorMarker defaultConstructorMarker) {
             this(nsfwPanelState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$maybeFetchOlderPosts$1 */
-    /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static final class C83501 extends AbstractC12240o implements Function0<Unit> {
-        public C83501() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetForumBrowserViewModel.this.isFetchingMoreOlderPosts = false;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowserViewModel$setupListViewState$1 */
-    /* JADX INFO: compiled from: WidgetForumBrowserViewModel.kt */
-    public static final class C83511 extends AbstractC12240o implements Function1<Channel, ForumBrowserItem.PostItem> {
-        public final /* synthetic */ Set $seenChannelIds;
-        public final /* synthetic */ StoreState.Loaded $storeState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C83511(Set set, StoreState.Loaded loaded) {
-            super(1);
-            this.$seenChannelIds = set;
-            this.$storeState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final ForumBrowserItem.PostItem invoke(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "channel");
-            if (this.$seenChannelIds.contains(Long.valueOf(channel.getId()))) {
-                return null;
-            }
-            this.$seenChannelIds.add(Long.valueOf(channel.getId()));
-            WidgetForumBrowserViewModel.this.guildMemberRequester.queueRequest(channel.getGuildId(), channel.getOwnerId());
-            return WidgetForumBrowserViewModel.this.createPostItem(this.$storeState, channel);
         }
     }
 
@@ -1207,6 +1207,13 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
         return new ForumBrowserItem.PostItem(new PostData(channel, user, storeState.getMeUser().getId(), storeState.getGuildMembers(), storeState.getGuildRoles(), storeState.getChannelNames(), message, z3, lValueOf2, numValueOf, postTagData, messageReactionMostCommonReaction, zIsDefaultPostReaction, forumPostReadState, (Integer) C1643a.m845d(channel, storeState.getForumPostUnreadCounts()), listEmptyList));
     }
 
+    @MainThread
+    public final void enqueueForumPostFirstMessageFetch(long channelId, long guildId, long postId) {
+        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
+            this.storeForumPostMessages.enqueueForumPostFirstMessageFetch(channelId, postId);
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:15:0x0033  */
     private final void handleStoreState(StoreState storeState) {
         boolean z2;
@@ -1244,6 +1251,40 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
             } else {
                 setupListViewState(loaded, nsfwPanelState);
             }
+        }
+    }
+
+    @MainThread
+    public final void maybeFetchForumPostFirstMessages(long channelId, long guildId, boolean isInitialFetch) {
+        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
+            if (isInitialFetch && this.initialChannelActivePostFirstMessageFetches.contains(Long.valueOf(channelId))) {
+                return;
+            }
+            if (isInitialFetch) {
+                this.initialChannelActivePostFirstMessageFetches.add(Long.valueOf(channelId));
+            }
+            this.storeForumPostMessages.flushForumPostFirstMessageQueue(channelId);
+        }
+    }
+
+    @MainThread
+    public final void maybeFetchOlderPosts(long channelId, long guildId) {
+        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null) && this.canFetchMoreOlderPosts && !this.isFetchingMoreOlderPosts) {
+            this.isFetchingMoreOlderPosts = true;
+            ArchivedThreadsStore.fetchGuildForumThreadListing$default(this.storeArchivedThreads, channelId, false, new C83501(), 2, null);
+        }
+    }
+
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        return publishSubject;
+    }
+
+    @MainThread
+    public final void requestForumUnreads(long channelId, long guildId) {
+        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
+            this.storeForumPostReadStates.requestForumUnreads(guildId, channelId);
         }
     }
 
@@ -1332,47 +1373,6 @@ public final class WidgetForumBrowserViewModel extends AbstractC0859d0<ViewState
 
     private final void setupLoadingViewState(NsfwPanelState nsfwPanelState) {
         updateViewState(new ViewState.Loading(nsfwPanelState));
-    }
-
-    @MainThread
-    public final void enqueueForumPostFirstMessageFetch(long channelId, long guildId, long postId) {
-        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
-            this.storeForumPostMessages.enqueueForumPostFirstMessageFetch(channelId, postId);
-        }
-    }
-
-    @MainThread
-    public final void maybeFetchForumPostFirstMessages(long channelId, long guildId, boolean isInitialFetch) {
-        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
-            if (isInitialFetch && this.initialChannelActivePostFirstMessageFetches.contains(Long.valueOf(channelId))) {
-                return;
-            }
-            if (isInitialFetch) {
-                this.initialChannelActivePostFirstMessageFetches.add(Long.valueOf(channelId));
-            }
-            this.storeForumPostMessages.flushForumPostFirstMessageQueue(channelId);
-        }
-    }
-
-    @MainThread
-    public final void maybeFetchOlderPosts(long channelId, long guildId) {
-        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null) && this.canFetchMoreOlderPosts && !this.isFetchingMoreOlderPosts) {
-            this.isFetchingMoreOlderPosts = true;
-            ArchivedThreadsStore.fetchGuildForumThreadListing$default(this.storeArchivedThreads, channelId, false, new C83501(), 2, null);
-        }
-    }
-
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
-        return publishSubject;
-    }
-
-    @MainThread
-    public final void requestForumUnreads(long channelId, long guildId) {
-        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, guildId, null, 2, null)) {
-            this.storeForumPostReadStates.requestForumUnreads(guildId, channelId);
-        }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -26,7 +26,7 @@ public final class WidgetChannelOnboarding extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetChannelOnboarding.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

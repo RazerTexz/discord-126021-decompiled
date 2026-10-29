@@ -11,22 +11,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRegisterViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackStoreSkuMetadata trackStoreSkuMetadata;
-    private final CharSequence registrationSource = null;
-    private final Boolean isUnclaimed = null;
-    private final CharSequence inviteCode = null;
-    private final Long inviteGuildId = null;
     private final Long inviteChannelId = null;
     private final Long inviteChannelType = null;
+    private final CharSequence inviteCode = null;
+    private final Long inviteGuildId = null;
     private final Long inviteInviterId = null;
+    private final Boolean isUnclaimed = null;
+    private final CharSequence registrationSource = null;
+    private TrackBase trackBase;
+    private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private final transient String analyticsSchemaTypeName = "register_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -37,6 +31,12 @@ public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, Tr
         }
         TrackRegisterViewed trackRegisterViewed = (TrackRegisterViewed) other;
         return C12238m.areEqual(this.registrationSource, trackRegisterViewed.registrationSource) && C12238m.areEqual(this.isUnclaimed, trackRegisterViewed.isUnclaimed) && C12238m.areEqual(this.inviteCode, trackRegisterViewed.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterViewed.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterViewed.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterViewed.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterViewed.inviteInviterId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

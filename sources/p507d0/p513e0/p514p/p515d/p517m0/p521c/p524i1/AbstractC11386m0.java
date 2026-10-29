@@ -43,6 +43,57 @@ public abstract class AbstractC11386m0 extends AbstractC11383l implements Interf
         this.f22906n = abstractC11913c0;
     }
 
+    public InterfaceC11459q0 getDispatchReceiverParameter() {
+        return null;
+    }
+
+    public InterfaceC11459q0 getExtensionReceiverParameter() {
+        return null;
+    }
+
+    public AbstractC11913c0 getReturnType() {
+        AbstractC11913c0 type = getType();
+        if (type != null) {
+            return type;
+        }
+        m9417a(9);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11323b1
+    public AbstractC11913c0 getType() {
+        AbstractC11913c0 abstractC11913c0 = this.f22906n;
+        if (abstractC11913c0 != null) {
+            return abstractC11913c0;
+        }
+        m9417a(4);
+        throw null;
+    }
+
+    public List<InterfaceC11477z0> getTypeParameters() {
+        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9417a(8);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11326c1> getValueParameters() {
+        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9417a(6);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return false;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9417a(int i) {
         String str;
@@ -143,57 +194,6 @@ public abstract class AbstractC11386m0 extends AbstractC11383l implements Interf
             default:
                 throw new IllegalArgumentException(str2);
         }
-    }
-
-    public InterfaceC11459q0 getDispatchReceiverParameter() {
-        return null;
-    }
-
-    public InterfaceC11459q0 getExtensionReceiverParameter() {
-        return null;
-    }
-
-    public AbstractC11913c0 getReturnType() {
-        AbstractC11913c0 type = getType();
-        if (type != null) {
-            return type;
-        }
-        m9417a(9);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11323b1
-    public AbstractC11913c0 getType() {
-        AbstractC11913c0 abstractC11913c0 = this.f22906n;
-        if (abstractC11913c0 != null) {
-            return abstractC11913c0;
-        }
-        m9417a(4);
-        throw null;
-    }
-
-    public List<InterfaceC11477z0> getTypeParameters() {
-        List<InterfaceC11477z0> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9417a(8);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11326c1> getValueParameters() {
-        List<InterfaceC11326c1> listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9417a(6);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return false;
     }
 
     public void setOutType(AbstractC11913c0 abstractC11913c0) {

@@ -10,9 +10,6 @@ import java.util.WeakHashMap;
 /* JADX INFO: loaded from: classes.dex */
 public class C1645a extends ClassLoader {
 
-    /* JADX INFO: renamed from: a */
-    public static final WeakHashMap<ClassLoader, WeakReference<C1645a>> f3009a = new WeakHashMap<>();
-
     /* JADX INFO: renamed from: b */
     public static final ClassLoader f3010b;
 
@@ -21,6 +18,9 @@ public class C1645a extends ClassLoader {
 
     /* JADX INFO: renamed from: d */
     public static volatile Method f3012d;
+
+    /* JADX INFO: renamed from: a */
+    public static final WeakHashMap<ClassLoader, WeakReference<C1645a>> f3009a = new WeakHashMap<>();
 
     static {
         ClassLoader classLoader = C1645a.class.getClassLoader();
@@ -33,6 +33,20 @@ public class C1645a extends ClassLoader {
 
     public C1645a(ClassLoader classLoader) {
         super(classLoader);
+    }
+
+    @Override // java.lang.ClassLoader
+    public Class<?> loadClass(String str, boolean z2) throws ClassNotFoundException {
+        if (str.equals(AbstractC1647c.class.getName())) {
+            return AbstractC1647c.class;
+        }
+        if (str.equals(AbstractC1648d.class.getName())) {
+            return AbstractC1648d.class;
+        }
+        if (str.equals(AbstractC1646b.class.getName())) {
+            return AbstractC1646b.class;
+        }
+        return str.equals(AbstractC1649e.class.getName()) ? AbstractC1649e.class : super.loadClass(str, z2);
     }
 
     /* JADX INFO: renamed from: b */
@@ -90,19 +104,5 @@ public class C1645a extends ClassLoader {
         } catch (Exception unused) {
             return defineClass(str, bArr, 0, bArr.length, C1645a.class.getProtectionDomain());
         }
-    }
-
-    @Override // java.lang.ClassLoader
-    public Class<?> loadClass(String str, boolean z2) throws ClassNotFoundException {
-        if (str.equals(AbstractC1647c.class.getName())) {
-            return AbstractC1647c.class;
-        }
-        if (str.equals(AbstractC1648d.class.getName())) {
-            return AbstractC1648d.class;
-        }
-        if (str.equals(AbstractC1646b.class.getName())) {
-            return AbstractC1646b.class;
-        }
-        return str.equals(AbstractC1649e.class.getName()) ? AbstractC1649e.class : super.loadClass(str, z2);
     }
 }

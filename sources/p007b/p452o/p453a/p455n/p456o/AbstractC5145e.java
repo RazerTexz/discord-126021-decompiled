@@ -18,9 +18,6 @@ import p007b.p452o.p453a.p455n.C5130d;
 @RequiresApi(21)
 public abstract class AbstractC5145e implements InterfaceC5141a {
 
-    /* JADX INFO: renamed from: a */
-    public final List<InterfaceC5142b> f13937a = new ArrayList();
-
     /* JADX INFO: renamed from: b */
     public int f13938b;
 
@@ -29,6 +26,56 @@ public abstract class AbstractC5145e implements InterfaceC5141a {
 
     /* JADX INFO: renamed from: d */
     public boolean f13940d;
+
+    /* JADX INFO: renamed from: a */
+    public final List<InterfaceC5142b> f13937a = new ArrayList();
+
+    /* JADX INFO: renamed from: f */
+    public void m7337f(@NonNull InterfaceC5142b interfaceC5142b) {
+        if (this.f13937a.contains(interfaceC5142b)) {
+            return;
+        }
+        this.f13937a.add(interfaceC5142b);
+        interfaceC5142b.mo7334a(this, this.f13938b);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public boolean m7338g() {
+        return this.f13938b == Integer.MAX_VALUE;
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: k */
+    public <T> T m7340k(@NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
+        T t2 = (T) ((C5130d) this.f13939c).f13805g0.get(key);
+        return t2 == null ? t : t2;
+    }
+
+    /* JADX INFO: renamed from: l */
+    public final void m7341l(int i) {
+        if (i != this.f13938b) {
+            this.f13938b = i;
+            Iterator<InterfaceC5142b> it = this.f13937a.iterator();
+            while (it.hasNext()) {
+                it.next().mo7334a(this, this.f13938b);
+            }
+            if (this.f13938b == Integer.MAX_VALUE) {
+                ((C5130d) this.f13939c).f13814p0.remove(this);
+                mo7339i(this.f13939c);
+            }
+        }
+    }
+
+    @Override // p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
+    /* JADX INFO: renamed from: b */
+    public void mo7248b(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
+    }
+
+    @CallSuper
+    /* JADX INFO: renamed from: j */
+    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
+        this.f13939c = interfaceC5143c;
+    }
 
     @Override // p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
     /* JADX INFO: renamed from: a */
@@ -39,11 +86,6 @@ public abstract class AbstractC5145e implements InterfaceC5141a {
             m7341l(Integer.MAX_VALUE);
         }
         this.f13940d = false;
-    }
-
-    @Override // p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
-    /* JADX INFO: renamed from: b */
-    public void mo7248b(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
     }
 
     @Override // p007b.p452o.p453a.p455n.p456o.InterfaceC5141a
@@ -76,53 +118,11 @@ public abstract class AbstractC5145e implements InterfaceC5141a {
         }
     }
 
-    /* JADX INFO: renamed from: f */
-    public void m7337f(@NonNull InterfaceC5142b interfaceC5142b) {
-        if (this.f13937a.contains(interfaceC5142b)) {
-            return;
-        }
-        this.f13937a.add(interfaceC5142b);
-        interfaceC5142b.mo7334a(this, this.f13938b);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public boolean m7338g() {
-        return this.f13938b == Integer.MAX_VALUE;
-    }
-
     /* JADX INFO: renamed from: h */
     public void mo7335h(@NonNull InterfaceC5143c interfaceC5143c) {
     }
 
     /* JADX INFO: renamed from: i */
     public void mo7339i(@NonNull InterfaceC5143c interfaceC5143c) {
-    }
-
-    @CallSuper
-    /* JADX INFO: renamed from: j */
-    public void mo7249j(@NonNull InterfaceC5143c interfaceC5143c) {
-        this.f13939c = interfaceC5143c;
-    }
-
-    @NonNull
-    /* JADX INFO: renamed from: k */
-    public <T> T m7340k(@NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
-        T t2 = (T) ((C5130d) this.f13939c).f13805g0.get(key);
-        return t2 == null ? t : t2;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public final void m7341l(int i) {
-        if (i != this.f13938b) {
-            this.f13938b = i;
-            Iterator<InterfaceC5142b> it = this.f13937a.iterator();
-            while (it.hasNext()) {
-                it.next().mo7334a(this, this.f13938b);
-            }
-            if (this.f13938b == Integer.MAX_VALUE) {
-                ((C5130d) this.f13939c).f13814p0.remove(this);
-                mo7339i(this.f13939c);
-            }
-        }
     }
 }

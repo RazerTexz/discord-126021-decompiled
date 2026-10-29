@@ -13,6 +13,9 @@ import lombok.extern.slf4j.XSlf4j;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/LoggingFramework.SCL.lombok */
 public class LoggingFramework {
+    private final String annotationAsString;
+    private final Class<? extends Annotation> annotationClass;
+    private final LogDeclaration declaration;
     public static final LoggingFramework COMMONS = new LoggingFramework(CommonsLog.class, LogDeclaration.valueOf("org.apache.commons.logging.Log org.apache.commons.logging.LogFactory.getLog(TYPE)(TOPIC)"));
     public static final LoggingFramework JUL = new LoggingFramework(Log.class, LogDeclaration.valueOf("java.util.logging.Logger java.util.logging.Logger.getLogger(NAME)(TOPIC)"));
     public static final LoggingFramework LOG4J = new LoggingFramework(Log4j.class, LogDeclaration.valueOf("org.apache.log4j.Logger org.apache.log4j.Logger.getLogger(TYPE)(TOPIC)"));
@@ -21,9 +24,6 @@ public class LoggingFramework {
     public static final LoggingFramework XSLF4J = new LoggingFramework(XSlf4j.class, LogDeclaration.valueOf("org.slf4j.ext.XLogger org.slf4j.ext.XLoggerFactory.getXLogger(TYPE)(TOPIC)"));
     public static final LoggingFramework JBOSSLOG = new LoggingFramework(JBossLog.class, LogDeclaration.valueOf("org.jboss.logging.Logger org.jboss.logging.Logger.getLogger(TYPE)(TOPIC)"));
     public static final LoggingFramework FLOGGER = new LoggingFramework(Flogger.class, LogDeclaration.valueOf("com.google.common.flogger.FluentLogger com.google.common.flogger.FluentLogger.forEnclosingClass()"));
-    private final Class<? extends Annotation> annotationClass;
-    private final String annotationAsString;
-    private final LogDeclaration declaration;
 
     public LoggingFramework(Class<? extends Annotation> annotationClass, LogDeclaration declaration) {
         this.annotationClass = annotationClass;

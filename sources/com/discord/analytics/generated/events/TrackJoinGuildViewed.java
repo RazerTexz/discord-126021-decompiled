@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackJoinGuildViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackJoinGuildViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private final transient String analyticsSchemaTypeName = "join_guild_viewed";
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
+    private final transient String analyticsSchemaTypeName = "join_guild_viewed";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

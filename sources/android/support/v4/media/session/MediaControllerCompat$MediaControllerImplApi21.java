@@ -27,6 +27,9 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
     /* JADX INFO: renamed from: a */
     public final MediaController f40a;
 
+    /* JADX INFO: renamed from: e */
+    public final MediaSessionCompat.Token f44e;
+
     /* JADX INFO: renamed from: b */
     public final Object f41b = new Object();
 
@@ -37,43 +40,8 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
     /* JADX INFO: renamed from: d */
     public HashMap<AbstractC13184c, BinderC0020a> f43d = new HashMap<>();
 
-    /* JADX INFO: renamed from: e */
-    public final MediaSessionCompat.Token f44e;
-
-    public static class ExtraBinderRequestResultReceiver extends ResultReceiver {
-
-        /* JADX INFO: renamed from: j */
-        public WeakReference<MediaControllerCompat$MediaControllerImplApi21> f45j;
-
-        public ExtraBinderRequestResultReceiver(MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21) {
-            super(null);
-            this.f45j = new WeakReference<>(mediaControllerCompat$MediaControllerImplApi21);
-        }
-
-        @Override // android.os.ResultReceiver
-        public void onReceiveResult(int i, Bundle bundle) {
-            MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21 = this.f45j.get();
-            if (mediaControllerCompat$MediaControllerImplApi21 == null || bundle == null) {
-                return;
-            }
-            synchronized (mediaControllerCompat$MediaControllerImplApi21.f41b) {
-                MediaSessionCompat.Token token = mediaControllerCompat$MediaControllerImplApi21.f44e;
-                InterfaceC13183b interfaceC13183bM11356c = InterfaceC13183b.a.m11356c(BundleCompat.getBinder(bundle, "android.support.v4.media.session.EXTRA_BINDER"));
-                synchronized (token.f50j) {
-                    token.f52l = interfaceC13183bM11356c;
-                }
-                MediaSessionCompat.Token token2 = mediaControllerCompat$MediaControllerImplApi21.f44e;
-                VersionedParcelable versionedParcelable = ParcelUtils.getVersionedParcelable(bundle, "android.support.v4.media.session.SESSION_TOKEN2");
-                synchronized (token2.f50j) {
-                    token2.f53m = versionedParcelable;
-                }
-                mediaControllerCompat$MediaControllerImplApi21.m33a();
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: android.support.v4.media.session.MediaControllerCompat$MediaControllerImplApi21$a */
-    public static class BinderC0020a extends AbstractC13184c.b {
+    public class BinderC0020a extends AbstractC13184c.b {
         public BinderC0020a(AbstractC13184c abstractC13184c) {
             super(abstractC13184c);
         }
@@ -112,6 +80,38 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
         /* JADX INFO: renamed from: z */
         public void mo39z(List<MediaSessionCompat.QueueItem> list) throws RemoteException {
             throw new AssertionError();
+        }
+    }
+
+    public class ExtraBinderRequestResultReceiver extends ResultReceiver {
+
+        /* JADX INFO: renamed from: j */
+        public WeakReference<MediaControllerCompat$MediaControllerImplApi21> f45j;
+
+        public ExtraBinderRequestResultReceiver(MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21) {
+            super(null);
+            this.f45j = new WeakReference<>(mediaControllerCompat$MediaControllerImplApi21);
+        }
+
+        @Override // android.os.ResultReceiver
+        public void onReceiveResult(int i, Bundle bundle) {
+            MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21 = this.f45j.get();
+            if (mediaControllerCompat$MediaControllerImplApi21 == null || bundle == null) {
+                return;
+            }
+            synchronized (mediaControllerCompat$MediaControllerImplApi21.f41b) {
+                MediaSessionCompat.Token token = mediaControllerCompat$MediaControllerImplApi21.f44e;
+                InterfaceC13183b interfaceC13183bM11356c = InterfaceC13183b.a.m11356c(BundleCompat.getBinder(bundle, "android.support.v4.media.session.EXTRA_BINDER"));
+                synchronized (token.f50j) {
+                    token.f52l = interfaceC13183bM11356c;
+                }
+                MediaSessionCompat.Token token2 = mediaControllerCompat$MediaControllerImplApi21.f44e;
+                VersionedParcelable versionedParcelable = ParcelUtils.getVersionedParcelable(bundle, "android.support.v4.media.session.SESSION_TOKEN2");
+                synchronized (token2.f50j) {
+                    token2.f53m = versionedParcelable;
+                }
+                mediaControllerCompat$MediaControllerImplApi21.m33a();
+            }
         }
     }
 

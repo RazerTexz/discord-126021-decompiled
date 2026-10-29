@@ -13,14 +13,14 @@ public final class WidgetGlobalSearchModel$Companion$create$1 extends AbstractC1
         super(1);
     }
 
+    @Override // kotlin.jvm.functions.Function1
+    public /* bridge */ /* synthetic */ Long invoke(WidgetGlobalSearchModel.SearchContext searchContext) {
+        return Long.valueOf(invoke2(searchContext));
+    }
+
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final long invoke2(WidgetGlobalSearchModel.SearchContext searchContext) {
         C12238m.checkNotNullParameter(searchContext, "it");
         return 0L;
-    }
-
-    @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Long invoke(WidgetGlobalSearchModel.SearchContext searchContext) {
-        return Long.valueOf(invoke2(searchContext));
     }
 }

@@ -21,9 +21,6 @@ import p007b.p109f.p161j.p177l.InterfaceC1954z;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class BasePool<V> implements InterfaceC1698e<V> {
 
-    /* JADX INFO: renamed from: a */
-    public final Class<?> f19548a = getClass();
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC1696c f19549b;
 
@@ -55,35 +52,12 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
     /* JADX INFO: renamed from: j */
     public boolean f19557j;
 
-    public static class InvalidSizeException extends RuntimeException {
-        /* JADX WARN: Illegal instructions before constructor call */
-        public InvalidSizeException(Object obj) {
-            StringBuilder sbM833U = C1643a.m833U("Invalid size: ");
-            sbM833U.append(obj.toString());
-            super(sbM833U.toString());
-        }
-    }
-
-    public static class InvalidValueException extends RuntimeException {
-    }
-
-    public static class PoolSizeViolationException extends RuntimeException {
-        /* JADX WARN: Illegal instructions before constructor call */
-        public PoolSizeViolationException(int i, int i2, int i3, int i4) {
-            StringBuilder sbM835W = C1643a.m835W("Pool hard cap violation? Hard cap = ", i, " Used size = ", i2, " Free size = ");
-            sbM835W.append(i3);
-            sbM835W.append(" Request size = ");
-            sbM835W.append(i4);
-            super(sbM835W.toString());
-        }
-    }
-
-    public static class SizeTooLargeException extends InvalidSizeException {
-    }
+    /* JADX INFO: renamed from: a */
+    public final Class<?> f19548a = getClass();
 
     /* JADX INFO: renamed from: com.facebook.imagepipeline.memory.BasePool$a */
     @VisibleForTesting
-    public static class C10661a {
+    public class C10661a {
 
         /* JADX INFO: renamed from: a */
         public int f19558a;
@@ -108,6 +82,32 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
             this.f19558a++;
             this.f19559b += i;
         }
+    }
+
+    public class InvalidSizeException extends RuntimeException {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public InvalidSizeException(Object obj) {
+            StringBuilder sbM833U = C1643a.m833U("Invalid size: ");
+            sbM833U.append(obj.toString());
+            super(sbM833U.toString());
+        }
+    }
+
+    public class InvalidValueException extends RuntimeException {
+    }
+
+    public class PoolSizeViolationException extends RuntimeException {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public PoolSizeViolationException(int i, int i2, int i3, int i4) {
+            StringBuilder sbM835W = C1643a.m835W("Pool hard cap violation? Hard cap = ", i, " Used size = ", i2, " Free size = ");
+            sbM835W.append(i3);
+            sbM835W.append(" Request size = ");
+            sbM835W.append(i4);
+            super(sbM835W.toString());
+        }
+    }
+
+    public class SizeTooLargeException extends InvalidSizeException {
     }
 
     public BasePool(InterfaceC1696c interfaceC1696c, C1953y c1953y, InterfaceC1954z interfaceC1954z) {
@@ -142,37 +142,6 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
         this.f19555h = new C10661a();
         this.f19554g = new C10661a();
     }
-
-    /* JADX INFO: renamed from: e */
-    public abstract V mo1382e(int i);
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: f */
-    public synchronized boolean m8697f(int i) {
-        if (this.f19557j) {
-            return true;
-        }
-        C1953y c1953y = this.f19550c;
-        int i2 = c1953y.f3976a;
-        int i3 = this.f19554g.f19559b;
-        if (i > i2 - i3) {
-            this.f19556i.mo1404f();
-            return false;
-        }
-        int i4 = c1953y.f3977b;
-        if (i > i4 - (i3 + this.f19555h.f19559b)) {
-            m8703r(i4 - i);
-        }
-        if (i <= i2 - (this.f19554g.f19559b + this.f19555h.f19559b)) {
-            return true;
-        }
-        this.f19556i.mo1404f();
-        return false;
-    }
-
-    @VisibleForTesting
-    /* JADX INFO: renamed from: g */
-    public abstract void mo1383g(V v);
 
     @Override // p007b.p109f.p115d.p122g.InterfaceC1698e
     public V get(int i) throws Throwable {
@@ -235,6 +204,30 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
     }
 
     @VisibleForTesting
+    /* JADX INFO: renamed from: f */
+    public synchronized boolean m8697f(int i) {
+        if (this.f19557j) {
+            return true;
+        }
+        C1953y c1953y = this.f19550c;
+        int i2 = c1953y.f3976a;
+        int i3 = this.f19554g.f19559b;
+        if (i > i2 - i3) {
+            this.f19556i.mo1404f();
+            return false;
+        }
+        int i4 = c1953y.f3977b;
+        if (i > i4 - (i3 + this.f19555h.f19559b)) {
+            m8703r(i4 - i);
+        }
+        if (i <= i2 - (this.f19554g.f19559b + this.f19555h.f19559b)) {
+            return true;
+        }
+        this.f19556i.mo1404f();
+        return false;
+    }
+
+    @VisibleForTesting
     /* JADX INFO: renamed from: h */
     public synchronized C1934f<V> m8698h(int i) {
         C1934f<V> c1934f = this.f19551d.get(i);
@@ -245,25 +238,6 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
             return c1934fM8702q;
         }
         return c1934f;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public abstract int mo1384i(int i);
-
-    /* JADX INFO: renamed from: j */
-    public abstract int mo1385j(V v);
-
-    /* JADX INFO: renamed from: k */
-    public abstract int mo1386k(int i);
-
-    /* JADX INFO: renamed from: l */
-    public synchronized V mo1387l(C1934f<V> c1934f) {
-        V vM1378c;
-        vM1378c = c1934f.m1378c();
-        if (vM1378c != null) {
-            c1934f.f3930e++;
-        }
-        return vM1378c;
     }
 
     /* JADX INFO: renamed from: m */
@@ -281,11 +255,6 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
             this.f19556i.mo1402d();
         }
         return z2;
-    }
-
-    /* JADX INFO: renamed from: o */
-    public boolean mo1388o(V v) {
-        return true;
     }
 
     @SuppressLint({"InvalidAccessToGuardedField"})
@@ -341,6 +310,37 @@ public abstract class BasePool<V> implements InterfaceC1698e<V> {
             int i6 = this.f19554g.f19559b;
             int i7 = this.f19555h.f19559b;
         }
+    }
+
+    /* JADX INFO: renamed from: e */
+    public abstract V mo1382e(int i);
+
+    @VisibleForTesting
+    /* JADX INFO: renamed from: g */
+    public abstract void mo1383g(V v);
+
+    /* JADX INFO: renamed from: i */
+    public abstract int mo1384i(int i);
+
+    /* JADX INFO: renamed from: j */
+    public abstract int mo1385j(V v);
+
+    /* JADX INFO: renamed from: k */
+    public abstract int mo1386k(int i);
+
+    /* JADX INFO: renamed from: l */
+    public synchronized V mo1387l(C1934f<V> c1934f) {
+        V vM1378c;
+        vM1378c = c1934f.m1378c();
+        if (vM1378c != null) {
+            c1934f.f3930e++;
+        }
+        return vM1378c;
+    }
+
+    /* JADX INFO: renamed from: o */
+    public boolean mo1388o(V v) {
+        return true;
     }
 
     /* JADX WARN: Code duplicated, block: B:24:0x007f A[DONT_INVERT] */

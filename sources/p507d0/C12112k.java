@@ -16,14 +16,14 @@ public final class C12112k<T> implements Serializable {
 
     /* JADX INFO: renamed from: d0.k$a */
     /* JADX INFO: compiled from: Result.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
 
     /* JADX INFO: renamed from: d0.k$b */
     /* JADX INFO: compiled from: Result.kt */
-    public static final class b implements Serializable {
+    public final class b implements Serializable {
         public final Throwable exception;
 
         public b(Throwable th) {
@@ -45,6 +45,14 @@ public final class C12112k<T> implements Serializable {
             sbM833U.append(')');
             return sbM833U.toString();
         }
+    }
+
+    public boolean equals(Object obj) {
+        return m11475equalsimpl(this.value, obj);
+    }
+
+    public int hashCode() {
+        return m11477hashCodeimpl(this.value);
     }
 
     /* JADX INFO: renamed from: constructor-impl, reason: not valid java name */
@@ -91,20 +99,12 @@ public final class C12112k<T> implements Serializable {
         return "Success(" + obj + ')';
     }
 
-    public boolean equals(Object obj) {
-        return m11475equalsimpl(this.value, obj);
-    }
-
-    public int hashCode() {
-        return m11477hashCodeimpl(this.value);
+    /* JADX INFO: renamed from: unbox-impl, reason: not valid java name */
+    public final /* synthetic */ Object m11481unboximpl() {
+        return this.value;
     }
 
     public String toString() {
         return m11480toStringimpl(this.value);
-    }
-
-    /* JADX INFO: renamed from: unbox-impl, reason: not valid java name */
-    public final /* synthetic */ Object m11481unboximpl() {
-        return this.value;
     }
 }

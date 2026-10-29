@@ -8,7 +8,6 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class SpliceInsertCommand extends SpliceCommand {
-    public static final Parcelable.Creator<SpliceInsertCommand> CREATOR = new C10743a();
 
     /* JADX INFO: renamed from: j */
     public final long f20022j;
@@ -48,6 +47,7 @@ public final class SpliceInsertCommand extends SpliceCommand {
 
     /* JADX INFO: renamed from: v */
     public final int f20034v;
+    public static final Parcelable.Creator<SpliceInsertCommand> CREATOR = new C10743a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.SpliceInsertCommand$a */
     public class C10743a implements Parcelable.Creator<SpliceInsertCommand> {
@@ -103,7 +103,7 @@ public final class SpliceInsertCommand extends SpliceCommand {
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.SpliceInsertCommand$b */
-    public static final class C10744b {
+    public final class C10744b {
 
         /* JADX INFO: renamed from: a */
         public final int f20035a;

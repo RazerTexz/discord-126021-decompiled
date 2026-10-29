@@ -31,8 +31,40 @@ public final class WidgetFriendsAdd extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAdd$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetFriendsAdd.kt */
-    public static final class Companion {
+    public final class C83781 extends AbstractC12240o implements Function0<Fragment> {
+        public static final C83781 INSTANCE = new C83781();
+
+        public C83781() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Fragment invoke() {
+            return new WidgetFriendsAddById();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAdd$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetFriendsAdd.kt */
+    public final class C83792 extends AbstractC12240o implements Function0<Fragment> {
+        public static final C83792 INSTANCE = new C83792();
+
+        public C83792() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Fragment invoke() {
+            return new WidgetFriendsFindNearby();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsAdd.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -61,38 +93,6 @@ public final class WidgetFriendsAdd extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAdd$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetFriendsAdd.kt */
-    public static final class C83781 extends AbstractC12240o implements Function0<Fragment> {
-        public static final C83781 INSTANCE = new C83781();
-
-        public C83781() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return new WidgetFriendsAddById();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsAdd$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetFriendsAdd.kt */
-    public static final class C83792 extends AbstractC12240o implements Function0<Fragment> {
-        public static final C83792 INSTANCE = new C83792();
-
-        public C83792() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return new WidgetFriendsFindNearby();
-        }
-    }
-
     public WidgetFriendsAdd() {
         super(C5419R.layout.widget_friends_add);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetFriendsAdd$binding$2.INSTANCE, null, 2, null);
@@ -100,14 +100,6 @@ public final class WidgetFriendsAdd extends AppFragment {
 
     private final WidgetFriendsAddBinding getBinding() {
         return (WidgetFriendsAddBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
-    public static final void show(Context context, String str) {
-        Companion.show$default(INSTANCE, context, null, str, 2, null);
-    }
-
-    public static final void show(Context context, String str, String str2) {
-        INSTANCE.show(context, str, str2);
     }
 
     @Override // com.discord.app.AppFragment
@@ -125,5 +117,13 @@ public final class WidgetFriendsAdd extends AppFragment {
         String string2 = getString(C5419R.string.nearby_scan);
         C12238m.checkNotNullExpressionValue(string2, "getString(R.string.nearby_scan)");
         simplePager.setAdapter(new SimplePager.Adapter(parentFragmentManager, new SimplePager.Adapter.Item(string, C83781.INSTANCE), new SimplePager.Adapter.Item(string2, C83792.INSTANCE)));
+    }
+
+    public static final void show(Context context, String str) {
+        Companion.show$default(INSTANCE, context, null, str, 2, null);
+    }
+
+    public static final void show(Context context, String str, String str2) {
+        INSTANCE.show(context, str, str2);
     }
 }

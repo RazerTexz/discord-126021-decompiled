@@ -33,7 +33,7 @@ public final class SpotifyApiClient {
 
     /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$fetchSpotifyTrack$1 */
     /* JADX INFO: compiled from: SpotifyApiClient.kt */
-    public static final class C69131 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C69131 extends AbstractC12240o implements Function1<Error, Unit> {
         public final /* synthetic */ String $trackId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,7 +62,7 @@ public final class SpotifyApiClient {
 
     /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$fetchSpotifyTrack$2 */
     /* JADX INFO: compiled from: SpotifyApiClient.kt */
-    public static final class C69142 extends AbstractC12240o implements Function1<ModelSpotifyTrack, Unit> {
+    public final class C69142 extends AbstractC12240o implements Function1<ModelSpotifyTrack, Unit> {
         public final /* synthetic */ String $trackId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -87,11 +87,11 @@ public final class SpotifyApiClient {
 
     /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$1 */
     /* JADX INFO: compiled from: SpotifyApiClient.kt */
-    public static final class C69151 extends AbstractC12240o implements Function1<ModelConnectionAccessToken, Unit> {
+    public final class C69151 extends AbstractC12240o implements Function1<ModelConnectionAccessToken, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: SpotifyApiClient.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<String> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<String> {
             public final /* synthetic */ ModelConnectionAccessToken $spotifyToken;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -132,7 +132,7 @@ public final class SpotifyApiClient {
 
     /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$2 */
     /* JADX INFO: compiled from: SpotifyApiClient.kt */
-    public static final class C69162 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C69162 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C69162() {
             super(1);
         }
@@ -157,8 +157,29 @@ public final class SpotifyApiClient {
         this.spotifyTrackSubject = BehaviorSubject.m11129k0();
     }
 
+    public final void fetchSpotifyTrack(String trackId) {
+        C12238m.checkNotNullParameter(trackId, "trackId");
+        if (getCachedTrack(trackId) != null) {
+            this.spotifyTrackSubject.onNext(getCachedTrack(trackId));
+            return;
+        }
+        this.spotifyTrackSubject.onNext(null);
+        if (isTokenExpiring()) {
+            setTrackIdToFetch(trackId);
+            refreshSpotifyToken();
+        } else {
+            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSpotify().getSpotifyTrack(trackId), false, 1, null), (Class<?>) SpotifyApiClient.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C69131(trackId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C69142(trackId));
+        }
+    }
+
     private final synchronized ModelSpotifyTrack getCachedTrack(String trackId) {
         return this.spotifyTracks.get(trackId);
+    }
+
+    public final Observable<ModelSpotifyTrack> getSpotifyTrack() {
+        BehaviorSubject<ModelSpotifyTrack> behaviorSubject = this.spotifyTrackSubject;
+        C12238m.checkNotNullExpressionValue(behaviorSubject, "spotifyTrackSubject");
+        return behaviorSubject;
     }
 
     private final synchronized long getTokenExpiresAt() {
@@ -191,36 +212,15 @@ public final class SpotifyApiClient {
         this.spotifyTracks.put(track.getId(), track);
     }
 
+    public final void setSpotifyAccountId(String id2) {
+        this.spotifyAccountId = id2;
+    }
+
     private final synchronized void setTokenExpiresAt(long expiresAt) {
         this.tokenExpiresAt = expiresAt;
     }
 
     private final synchronized void setTrackIdToFetch(String trackId) {
         this.trackIdToFetch = trackId;
-    }
-
-    public final void fetchSpotifyTrack(String trackId) {
-        C12238m.checkNotNullParameter(trackId, "trackId");
-        if (getCachedTrack(trackId) != null) {
-            this.spotifyTrackSubject.onNext(getCachedTrack(trackId));
-            return;
-        }
-        this.spotifyTrackSubject.onNext(null);
-        if (isTokenExpiring()) {
-            setTrackIdToFetch(trackId);
-            refreshSpotifyToken();
-        } else {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSpotify().getSpotifyTrack(trackId), false, 1, null), (Class<?>) SpotifyApiClient.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C69131(trackId)), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C69142(trackId));
-        }
-    }
-
-    public final Observable<ModelSpotifyTrack> getSpotifyTrack() {
-        BehaviorSubject<ModelSpotifyTrack> behaviorSubject = this.spotifyTrackSubject;
-        C12238m.checkNotNullExpressionValue(behaviorSubject, "spotifyTrackSubject");
-        return behaviorSubject;
-    }
-
-    public final void setSpotifyAccountId(String id2) {
-        this.spotifyAccountId = id2;
     }
 }

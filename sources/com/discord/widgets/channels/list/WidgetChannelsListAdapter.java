@@ -124,7 +124,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     private long selectedGuildId;
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static abstract class Item extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
+    public abstract class Item extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Item(@LayoutRes int i, WidgetChannelsListAdapter widgetChannelsListAdapter) {
             super(i, widgetChannelsListAdapter);
@@ -149,7 +149,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelAddServer extends Item {
+    public final class ItemChannelAddServer extends Item {
         private final WidgetChannelsListItemDirectoryBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -183,7 +183,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelCategory extends Item {
+    public final class ItemChannelCategory extends Item {
         private static final long ANIMATION_DURATION = 300;
         private static final RotateAnimation ARROW_ANIM_COLLAPSE;
         private static final RotateAnimation ARROW_ANIM_EXPAND;
@@ -194,7 +194,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
         private boolean isCollapsed;
 
         /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -328,7 +328,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelDirectory extends Item {
+    public final class ItemChannelDirectory extends Item {
         private final WidgetChannelsListItemDirectoryBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -377,7 +377,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelPrivate extends Item {
+    public final class ItemChannelPrivate extends Item {
         private final WidgetChannelsListItemChannelPrivateBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -445,12 +445,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
         private final String getMemberCount(Channel channel, Context context) {
             List<com.discord.api.user.User> listM7659z = channel.m7659z();
             int size = listM7659z != null ? listM7659z.size() : 0;
-            CharSequence charSequenceM216h = C1107b.m216h(context, C5419R.string.members, new Object[0], null, 4);
-            StringBuilder sb = new StringBuilder();
-            sb.append(size + 1);
-            sb.append(' ');
-            sb.append(charSequenceM216h);
-            return sb.toString();
+            return "" + (size + 1) + ' ' + C1107b.m216h(context, C5419R.string.members, new Object[0], null, 4);
         }
 
         private final int getPresenceBg(boolean selected) {
@@ -602,14 +597,14 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelStageVoice extends Item {
+    public final class ItemChannelStageVoice extends Item {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
         private final WidgetChannelsListItemChannelStageVoiceBinding binding;
 
         /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -753,7 +748,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelText extends Item {
+    public final class ItemChannelText extends Item {
         private final WidgetChannelsListItemChannelBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -962,7 +957,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelThread extends Item {
+    public final class ItemChannelThread extends Item {
         private final WidgetChannelsListItemThreadBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1095,14 +1090,14 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemChannelVoice extends Item {
+    public final class ItemChannelVoice extends Item {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
         private final WidgetChannelsListItemChannelVoiceBinding binding;
 
         /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -1337,7 +1332,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemGuildJoinRequest extends Item {
+    public final class ItemGuildJoinRequest extends Item {
         private final WidgetChannelsListItemGuildJoinRequestBinding binding;
 
         public final /* synthetic */ class WhenMappings {
@@ -1393,7 +1388,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
 
                     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListAdapter$ItemGuildJoinRequest$onConfigure$1$1 */
                     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-                    public static final class C74461 extends AbstractC12240o implements Function0<Unit> {
+                    public final class C74461 extends AbstractC12240o implements Function0<Unit> {
                         public static final C74461 INSTANCE = new C74461();
 
                         public C74461() {
@@ -1460,7 +1455,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemGuildRoleSubscriptionsOverview extends Item {
+    public final class ItemGuildRoleSubscriptionsOverview extends Item {
         private final WidgetChannelsListItemGuildRoleSubsBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1510,7 +1505,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemGuildScheduledEvents extends Item {
+    public final class ItemGuildScheduledEvents extends Item {
         private final WidgetChannelsListItemGuildScheduledEventsBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1569,7 +1564,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemHeader extends Item {
+    public final class ItemHeader extends Item {
         private final WidgetChannelsListItemHeaderBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1636,7 +1631,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemInvite extends Item {
+    public final class ItemInvite extends Item {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ItemInvite(int i, WidgetChannelsListAdapter widgetChannelsListAdapter) {
             super(i, widgetChannelsListAdapter);
@@ -1672,7 +1667,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemMFA extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
+    public final class ItemMFA extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
         private final WidgetChannelsListItemMfaBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1700,7 +1695,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemSpace extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
+    public final class ItemSpace extends MGRecyclerViewHolder<WidgetChannelsListAdapter, ChannelListItem> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ItemSpace(@LayoutRes int i, WidgetChannelsListAdapter widgetChannelsListAdapter) {
             super(i, widgetChannelsListAdapter);
@@ -1722,7 +1717,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemStageActiveEvent extends Item {
+    public final class ItemStageActiveEvent extends Item {
         private final WidgetChannelsListItemActiveEventBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1881,7 +1876,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemStageChannelAudienceCount extends Item {
+    public final class ItemStageChannelAudienceCount extends Item {
         private final WidgetChannelsListItemAudienceCountBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1919,7 +1914,7 @@ public final class WidgetChannelsListAdapter extends MGRecyclerAdapterSimple<Cha
     }
 
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public static final class ItemVoiceUser extends Item {
+    public final class ItemVoiceUser extends Item {
         private final WidgetChannelsListItemVoiceUserBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

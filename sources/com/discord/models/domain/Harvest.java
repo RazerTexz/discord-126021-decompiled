@@ -30,6 +30,10 @@ public final /* data */ class Harvest {
         return harvest.canRequest(j);
     }
 
+    public final boolean canRequest(long now) {
+        return now > nextAvailableRequestInMillis();
+    }
+
     public static /* synthetic */ Harvest copy$default(Harvest harvest, String str, long j, String str2, String str3, int i, Object obj) {
         if ((i & 1) != 0) {
             str = harvest.id;
@@ -48,38 +52,14 @@ public final /* data */ class Harvest {
         return harvest.copy(str, j2, str4, str3);
     }
 
-    private final long createdAtInMillis() {
-        return TimeUtils.parseUTCDate(this.createdAt);
-    }
-
-    public final boolean canRequest(long now) {
-        return now > nextAvailableRequestInMillis();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getCreatedAt() {
-        return this.createdAt;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final String getCompletedAt() {
-        return this.completedAt;
-    }
-
     public final Harvest copy(String id2, long userId, String createdAt, String completedAt) {
         C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         C12238m.checkNotNullParameter(createdAt, "createdAt");
         return new Harvest(id2, userId, createdAt, completedAt);
+    }
+
+    private final long createdAtInMillis() {
+        return TimeUtils.parseUTCDate(this.createdAt);
     }
 
     public boolean equals(Object other) {
@@ -93,16 +73,36 @@ public final /* data */ class Harvest {
         return C12238m.areEqual(this.id, harvest.id) && this.userId == harvest.userId && C12238m.areEqual(this.createdAt, harvest.createdAt) && C12238m.areEqual(this.completedAt, harvest.completedAt);
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final String getCompletedAt() {
         return this.completedAt;
+    }
+
+    public final String getCompletedAt() {
+        return this.completedAt;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getCreatedAt() {
+        return this.createdAt;
     }
 
     public final String getCreatedAt() {
         return this.createdAt;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final String getId() {
         return this.id;
+    }
+
+    public final String getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

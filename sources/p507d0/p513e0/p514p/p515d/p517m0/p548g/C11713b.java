@@ -8,14 +8,14 @@ import java.util.List;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11713b {
 
-    /* JADX INFO: renamed from: a */
-    public static final C11713b f24079a = new C11713b("");
-
     /* JADX INFO: renamed from: b */
     public final C11714c f24080b;
 
     /* JADX INFO: renamed from: c */
     public transient C11713b f24081c;
+
+    /* JADX INFO: renamed from: a */
+    public static final C11713b f24079a = new C11713b("");
 
     public C11713b(String str) {
         if (str != null) {
@@ -24,6 +24,38 @@ public final class C11713b {
             m9817a(1);
             throw null;
         }
+    }
+
+    public String asString() {
+        String strAsString = this.f24080b.asString();
+        if (strAsString != null) {
+            return strAsString;
+        }
+        m9817a(4);
+        throw null;
+    }
+
+    public C11713b child(C11716e c11716e) {
+        if (c11716e != null) {
+            return new C11713b(this.f24080b.child(c11716e), this);
+        }
+        m9817a(8);
+        throw null;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        return (obj instanceof C11713b) && this.f24080b.equals(((C11713b) obj).f24080b);
+    }
+
+    public int hashCode() {
+        return this.f24080b.hashCode();
+    }
+
+    public boolean isRoot() {
+        return this.f24080b.isRoot();
     }
 
     /* JADX INFO: renamed from: a */
@@ -157,46 +189,6 @@ public final class C11713b {
         }
     }
 
-    public static C11713b topLevel(C11716e c11716e) {
-        if (c11716e != null) {
-            return new C11713b(C11714c.topLevel(c11716e));
-        }
-        m9817a(13);
-        throw null;
-    }
-
-    public String asString() {
-        String strAsString = this.f24080b.asString();
-        if (strAsString != null) {
-            return strAsString;
-        }
-        m9817a(4);
-        throw null;
-    }
-
-    public C11713b child(C11716e c11716e) {
-        if (c11716e != null) {
-            return new C11713b(this.f24080b.child(c11716e), this);
-        }
-        m9817a(8);
-        throw null;
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        return (obj instanceof C11713b) && this.f24080b.equals(((C11713b) obj).f24080b);
-    }
-
-    public int hashCode() {
-        return this.f24080b.hashCode();
-    }
-
-    public boolean isRoot() {
-        return this.f24080b.isRoot();
-    }
-
     public C11713b parent() {
         C11713b c11713b = this.f24081c;
         if (c11713b != null) {
@@ -263,6 +255,14 @@ public final class C11713b {
             return c11714c;
         }
         m9817a(5);
+        throw null;
+    }
+
+    public static C11713b topLevel(C11716e c11716e) {
+        if (c11716e != null) {
+            return new C11713b(C11714c.topLevel(c11716e));
+        }
+        m9817a(13);
         throw null;
     }
 

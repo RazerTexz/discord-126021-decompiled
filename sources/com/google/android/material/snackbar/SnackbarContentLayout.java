@@ -27,29 +27,6 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
         this(context, null);
     }
 
-    private static void updateTopBottomPadding(@NonNull View view, int i, int i2) {
-        if (ViewCompat.isPaddingRelative(view)) {
-            ViewCompat.setPaddingRelative(view, ViewCompat.getPaddingStart(view), i, ViewCompat.getPaddingEnd(view), i2);
-        } else {
-            view.setPadding(view.getPaddingLeft(), i, view.getPaddingRight(), i2);
-        }
-    }
-
-    private boolean updateViewsWithinLayout(int i, int i2, int i3) {
-        boolean z2;
-        if (i != getOrientation()) {
-            setOrientation(i);
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (this.messageView.getPaddingTop() == i2 && this.messageView.getPaddingBottom() == i3) {
-            return z2;
-        }
-        updateTopBottomPadding(this.messageView, i2, i3);
-        return true;
-    }
-
     @Override // com.google.android.material.snackbar.ContentViewCallback
     public void animateContentIn(int i, int i2) {
         this.messageView.setAlpha(0.0f);
@@ -128,6 +105,29 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
         if (f != 1.0f) {
             this.actionView.setTextColor(MaterialColors.layer(MaterialColors.getColor(this, C10817R.attr.colorSurface), this.actionView.getCurrentTextColor(), f));
         }
+    }
+
+    private static void updateTopBottomPadding(@NonNull View view, int i, int i2) {
+        if (ViewCompat.isPaddingRelative(view)) {
+            ViewCompat.setPaddingRelative(view, ViewCompat.getPaddingStart(view), i, ViewCompat.getPaddingEnd(view), i2);
+        } else {
+            view.setPadding(view.getPaddingLeft(), i, view.getPaddingRight(), i2);
+        }
+    }
+
+    private boolean updateViewsWithinLayout(int i, int i2, int i3) {
+        boolean z2;
+        if (i != getOrientation()) {
+            setOrientation(i);
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (this.messageView.getPaddingTop() == i2 && this.messageView.getPaddingBottom() == i3) {
+            return z2;
+        }
+        updateTopBottomPadding(this.messageView, i2, i3);
+        return true;
     }
 
     public SnackbarContentLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {

@@ -52,7 +52,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.guildboost.SettingsGuildBoostViewModel$1 */
     /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-    public static final class C98551 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C98551 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C98551() {
             super(1);
         }
@@ -71,7 +71,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -107,10 +107,10 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-    public static abstract class PendingAction {
+    public abstract class PendingAction {
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final /* data */ class Cancel extends PendingAction {
+        public final /* data */ class Cancel extends PendingAction {
             private final long slotId;
 
             public Cancel(long j) {
@@ -125,11 +125,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return cancel.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getSlotId() {
-                return this.slotId;
-            }
-
             public final Cancel copy(long slotId) {
                 return new Cancel(slotId);
             }
@@ -139,6 +134,11 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof Cancel) && this.slotId == ((Cancel) other).slotId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getSlotId() {
+                return this.slotId;
             }
 
             public final long getSlotId() {
@@ -155,7 +155,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final /* data */ class Subscribe extends PendingAction {
+        public final /* data */ class Subscribe extends PendingAction {
             private final long slotId;
             private final Long targetGuildId;
 
@@ -173,16 +173,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return subscribe.copy(j, l);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getSlotId() {
-                return this.slotId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Long getTargetGuildId() {
-                return this.targetGuildId;
-            }
-
             public final Subscribe copy(long slotId, Long targetGuildId) {
                 return new Subscribe(slotId, targetGuildId);
             }
@@ -198,8 +188,18 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return this.slotId == subscribe.slotId && C12238m.areEqual(this.targetGuildId, subscribe.targetGuildId);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final long getSlotId() {
                 return this.slotId;
+            }
+
+            public final long getSlotId() {
+                return this.slotId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Long getTargetGuildId() {
+                return this.targetGuildId;
             }
 
             public final Long getTargetGuildId() {
@@ -227,7 +227,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final /* data */ class Transfer extends PendingAction {
+        public final /* data */ class Transfer extends PendingAction {
             private final long previousGuildId;
             private final ModelGuildBoostSlot slot;
             private final Long targetGuildId;
@@ -249,21 +249,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return transfer.copy(modelGuildBoostSlot, j, l);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelGuildBoostSlot getSlot() {
-                return this.slot;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getPreviousGuildId() {
-                return this.previousGuildId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Long getTargetGuildId() {
-                return this.targetGuildId;
-            }
-
             public final Transfer copy(ModelGuildBoostSlot slot, long previousGuildId, Long targetGuildId) {
                 C12238m.checkNotNullParameter(slot, "slot");
                 return new Transfer(slot, previousGuildId, targetGuildId);
@@ -280,12 +265,27 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return C12238m.areEqual(this.slot, transfer.slot) && this.previousGuildId == transfer.previousGuildId && C12238m.areEqual(this.targetGuildId, transfer.targetGuildId);
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final long getPreviousGuildId() {
                 return this.previousGuildId;
             }
 
+            public final long getPreviousGuildId() {
+                return this.previousGuildId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ModelGuildBoostSlot getSlot() {
                 return this.slot;
+            }
+
+            public final ModelGuildBoostSlot getSlot() {
+                return this.slot;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final Long getTargetGuildId() {
+                return this.targetGuildId;
             }
 
             public final Long getTargetGuildId() {
@@ -319,7 +319,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final /* data */ class Uncancel extends PendingAction {
+        public final /* data */ class Uncancel extends PendingAction {
             private final long slotId;
 
             public Uncancel(long j) {
@@ -334,11 +334,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return uncancel.copy(j);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getSlotId() {
-                return this.slotId;
-            }
-
             public final Uncancel copy(long slotId) {
                 return new Uncancel(slotId);
             }
@@ -348,6 +343,11 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                     return (other instanceof Uncancel) && this.slotId == ((Uncancel) other).slotId;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getSlotId() {
+                return this.slotId;
             }
 
             public final long getSlotId() {
@@ -372,7 +372,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-    public static final /* data */ class StoreState {
+    public final /* data */ class StoreState {
         private final StoreGuildBoost.State guildBoostState;
         private final Map<Long, Guild> guilds;
         private final StoreSubscriptions.SubscriptionsState subscriptionState;
@@ -387,6 +387,10 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
             this.subscriptionState = subscriptionsState;
             this.guilds = map;
             this.userPremiumTier = premiumTier;
+        }
+
+        public final Map<Long, Guild> component3() {
+            return this.guilds;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -404,25 +408,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 premiumTier = storeState.userPremiumTier;
             }
             return storeState.copy(state, subscriptionsState, map, premiumTier);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreGuildBoost.State getGuildBoostState() {
-            return this.guildBoostState;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreSubscriptions.SubscriptionsState getSubscriptionState() {
-            return this.subscriptionState;
-        }
-
-        public final Map<Long, Guild> component3() {
-            return this.guilds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final PremiumTier getUserPremiumTier() {
-            return this.userPremiumTier;
         }
 
         public final StoreState copy(StoreGuildBoost.State guildBoostState, StoreSubscriptions.SubscriptionsState subscriptionState, Map<Long, Guild> guilds, PremiumTier userPremiumTier) {
@@ -444,6 +429,11 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
             return C12238m.areEqual(this.guildBoostState, storeState.guildBoostState) && C12238m.areEqual(this.subscriptionState, storeState.subscriptionState) && C12238m.areEqual(this.guilds, storeState.guilds) && C12238m.areEqual(this.userPremiumTier, storeState.userPremiumTier);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StoreGuildBoost.State getGuildBoostState() {
+            return this.guildBoostState;
+        }
+
         public final StoreGuildBoost.State getGuildBoostState() {
             return this.guildBoostState;
         }
@@ -452,8 +442,18 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
             return this.guilds;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final StoreSubscriptions.SubscriptionsState getSubscriptionState() {
             return this.subscriptionState;
+        }
+
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionState() {
+            return this.subscriptionState;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final PremiumTier getUserPremiumTier() {
+            return this.userPremiumTier;
         }
 
         public final PremiumTier getUserPremiumTier() {
@@ -486,10 +486,10 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
     }
 
     /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final class Failure extends ViewState {
+        public final class Failure extends ViewState {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -498,7 +498,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final /* data */ class Loaded extends ViewState {
+        public final /* data */ class Loaded extends ViewState {
             private final boolean canCancelBoosts;
             private final boolean canUncancelBoosts;
             private final List<WidgetSettingsGuildBoostSubscriptionAdapter.Item> guildBoostItems;
@@ -519,6 +519,14 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 this.sampleGuildItems = list2;
                 this.pendingAction = pendingAction;
                 this.userPremiumTier = premiumTier;
+            }
+
+            public final List<WidgetSettingsGuildBoostSubscriptionAdapter.Item> component3() {
+                return this.guildBoostItems;
+            }
+
+            public final List<SettingsGuildBoostSampleGuildAdapter.Item> component4() {
+                return this.sampleGuildItems;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -548,34 +556,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return loaded.copy(z2, z4, list3, list4, pendingAction2, premiumTier);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getCanCancelBoosts() {
-                return this.canCancelBoosts;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getCanUncancelBoosts() {
-                return this.canUncancelBoosts;
-            }
-
-            public final List<WidgetSettingsGuildBoostSubscriptionAdapter.Item> component3() {
-                return this.guildBoostItems;
-            }
-
-            public final List<SettingsGuildBoostSampleGuildAdapter.Item> component4() {
-                return this.sampleGuildItems;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final PendingAction getPendingAction() {
-                return this.pendingAction;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final PremiumTier getUserPremiumTier() {
-                return this.userPremiumTier;
-            }
-
             public final Loaded copy(boolean canCancelBoosts, boolean canUncancelBoosts, List<? extends WidgetSettingsGuildBoostSubscriptionAdapter.Item> guildBoostItems, List<SettingsGuildBoostSampleGuildAdapter.Item> sampleGuildItems, PendingAction pendingAction, PremiumTier userPremiumTier) {
                 C12238m.checkNotNullParameter(guildBoostItems, "guildBoostItems");
                 C12238m.checkNotNullParameter(sampleGuildItems, "sampleGuildItems");
@@ -594,8 +574,18 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return this.canCancelBoosts == loaded.canCancelBoosts && this.canUncancelBoosts == loaded.canUncancelBoosts && C12238m.areEqual(this.guildBoostItems, loaded.guildBoostItems) && C12238m.areEqual(this.sampleGuildItems, loaded.sampleGuildItems) && C12238m.areEqual(this.pendingAction, loaded.pendingAction) && C12238m.areEqual(this.userPremiumTier, loaded.userPremiumTier);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final boolean getCanCancelBoosts() {
                 return this.canCancelBoosts;
+            }
+
+            public final boolean getCanCancelBoosts() {
+                return this.canCancelBoosts;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getCanUncancelBoosts() {
+                return this.canUncancelBoosts;
             }
 
             public final boolean getCanUncancelBoosts() {
@@ -606,12 +596,22 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
                 return this.guildBoostItems;
             }
 
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final PendingAction getPendingAction() {
+                return this.pendingAction;
+            }
+
             public final PendingAction getPendingAction() {
                 return this.pendingAction;
             }
 
             public final List<SettingsGuildBoostSampleGuildAdapter.Item> getSampleGuildItems() {
                 return this.sampleGuildItems;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final PremiumTier getUserPremiumTier() {
+                return this.userPremiumTier;
             }
 
             public final PremiumTier getUserPremiumTier() {
@@ -664,7 +664,7 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         }
 
         /* JADX INFO: compiled from: SettingsGuildBoostViewModel.kt */
-        public static final class Loading extends ViewState {
+        public final class Loading extends ViewState {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -686,6 +686,30 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
 
     public /* synthetic */ SettingsGuildBoostViewModel(StoreGuildBoost storeGuildBoost, StoreSubscriptions storeSubscriptions, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this((i & 1) != 0 ? StoreStream.INSTANCE.getGuildBoosts() : storeGuildBoost, (i & 2) != 0 ? StoreStream.INSTANCE.getSubscriptions() : storeSubscriptions, (i & 4) != 0 ? INSTANCE.observeStores() : observable);
+    }
+
+    @MainThread
+    public final void cancelClicked(long slotId, boolean cancel) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, cancel ? new PendingAction.Cancel(slotId) : new PendingAction.Uncancel(slotId), null, 47, null));
+        }
+    }
+
+    @MainThread
+    public final void consumePendingAction() {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, null, null, 47, null));
+        }
     }
 
     private final List<WidgetSettingsGuildBoostSubscriptionAdapter.Item> createGuildBoostItems(StoreGuildBoost.State.Loaded guildSubState, Map<Long, Guild> guilds, ModelSubscription subscription) {
@@ -737,6 +761,25 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
         this.storeSubscriptions.fetchSubscriptions();
     }
 
+    @MainThread
+    public final void handleGuildSearchCallback(long guildId) {
+        PendingAction pendingActionCopy$default;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
+            viewState = null;
+        }
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            PendingAction pendingAction = loaded.getPendingAction();
+            if (pendingAction instanceof PendingAction.Transfer) {
+                pendingActionCopy$default = PendingAction.Transfer.copy$default((PendingAction.Transfer) loaded.getPendingAction(), null, 0L, Long.valueOf(guildId), 3, null);
+            } else {
+                pendingActionCopy$default = pendingAction instanceof PendingAction.Subscribe ? PendingAction.Subscribe.copy$default((PendingAction.Subscribe) loaded.getPendingAction(), 0L, Long.valueOf(guildId), 1, null) : loaded.getPendingAction();
+            }
+            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, pendingActionCopy$default, null, 47, null));
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:23:0x0039  */
     @MainThread
     private final void handleStoreState(StoreState storeState) {
@@ -785,49 +828,6 @@ public final class SettingsGuildBoostViewModel extends AbstractC0859d0<ViewState
             loaded = new ViewState.Loaded(z2, z4, listCreateGuildBoostItems, arrayList, null, premiumTier);
         }
         updateViewState(loaded);
-    }
-
-    @MainThread
-    public final void cancelClicked(long slotId, boolean cancel) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, cancel ? new PendingAction.Cancel(slotId) : new PendingAction.Uncancel(slotId), null, 47, null));
-        }
-    }
-
-    @MainThread
-    public final void consumePendingAction() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, null, null, 47, null));
-        }
-    }
-
-    @MainThread
-    public final void handleGuildSearchCallback(long guildId) {
-        PendingAction pendingActionCopy$default;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
-            viewState = null;
-        }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded != null) {
-            PendingAction pendingAction = loaded.getPendingAction();
-            if (pendingAction instanceof PendingAction.Transfer) {
-                pendingActionCopy$default = PendingAction.Transfer.copy$default((PendingAction.Transfer) loaded.getPendingAction(), null, 0L, Long.valueOf(guildId), 3, null);
-            } else {
-                pendingActionCopy$default = pendingAction instanceof PendingAction.Subscribe ? PendingAction.Subscribe.copy$default((PendingAction.Subscribe) loaded.getPendingAction(), 0L, Long.valueOf(guildId), 1, null) : loaded.getPendingAction();
-            }
-            updateViewState(ViewState.Loaded.copy$default(loaded, false, false, null, null, pendingActionCopy$default, null, 47, null));
-        }
     }
 
     @MainThread

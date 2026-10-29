@@ -45,11 +45,51 @@ public final class WidgetThreadStatus extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetThreadStatus.kt */
-    public static abstract class Event {
+    public final class C101111 extends AbstractC12240o implements Function1<WidgetThreadStatusViewModel.ViewState, Unit> {
+        public C101111() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadStatusViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetThreadStatusViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "viewState");
+            WidgetThreadStatus.this.updateView(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public final /* synthetic */ class C101122 extends C12236k implements Function1<Event, Unit> {
+        public C101122(WidgetThreadStatus widgetThreadStatus) {
+            super(1, widgetThreadStatus, WidgetThreadStatus.class, "handleEvent", "handleEvent(Lcom/discord/widgets/status/WidgetThreadStatus$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Event event) {
+            invoke2(event);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Event event) {
+            C12238m.checkNotNullParameter(event, "p1");
+            ((WidgetThreadStatus) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public abstract class Event {
 
         /* JADX INFO: compiled from: WidgetThreadStatus.kt */
-        public static final /* data */ class Error extends Event {
+        public final /* data */ class Error extends Event {
             private final int code;
 
             public Error(int i) {
@@ -64,11 +104,6 @@ public final class WidgetThreadStatus extends AppFragment {
                 return error.copy(i);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getCode() {
-                return this.code;
-            }
-
             public final Error copy(int code) {
                 return new Error(code);
             }
@@ -78,6 +113,11 @@ public final class WidgetThreadStatus extends AppFragment {
                     return (other instanceof Error) && this.code == ((Error) other).code;
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getCode() {
+                return this.code;
             }
 
             public final int getCode() {
@@ -98,46 +138,6 @@ public final class WidgetThreadStatus extends AppFragment {
 
         public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
-    public static final class C101111 extends AbstractC12240o implements Function1<WidgetThreadStatusViewModel.ViewState, Unit> {
-        public C101111() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadStatusViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetThreadStatusViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetThreadStatus.this.updateView(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
-    public static final /* synthetic */ class C101122 extends C12236k implements Function1<Event, Unit> {
-        public C101122(WidgetThreadStatus widgetThreadStatus) {
-            super(1, widgetThreadStatus, WidgetThreadStatus.class, "handleEvent", "handleEvent(Lcom/discord/widgets/status/WidgetThreadStatus$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetThreadStatus) this.receiver).handleEvent(event);
         }
     }
 
@@ -162,6 +162,13 @@ public final class WidgetThreadStatus extends AppFragment {
             Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(((Event.Error) event).getCode());
             C0876m.m171i(this, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : C5419R.string.network_error_bad_request, 0, 4);
         }
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101111());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetThreadStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101122(this));
     }
 
     @MainThread
@@ -218,12 +225,5 @@ public final class WidgetThreadStatus extends AppFragment {
                 }
             });
         }
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101111());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetThreadStatus.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101122(this));
     }
 }

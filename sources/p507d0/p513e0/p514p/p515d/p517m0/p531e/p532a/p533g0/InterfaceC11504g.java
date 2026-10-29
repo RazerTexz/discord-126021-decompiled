@@ -20,7 +20,15 @@ public interface InterfaceC11504g {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.g$a */
     /* JADX INFO: compiled from: JavaResolverCache.java */
-    public static class a implements InterfaceC11504g {
+    public final class a implements InterfaceC11504g {
+        public InterfaceC11330e getClassResolvedFromSource(C11713b c11713b) {
+            if (c11713b != null) {
+                return null;
+            }
+            m9453a(0);
+            throw null;
+        }
+
         /* JADX INFO: renamed from: a */
         public static /* synthetic */ void m9453a(int i) {
             Object[] objArr = new Object[3];
@@ -70,14 +78,6 @@ public interface InterfaceC11504g {
                     break;
             }
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
-        }
-
-        public InterfaceC11330e getClassResolvedFromSource(C11713b c11713b) {
-            if (c11713b != null) {
-                return null;
-            }
-            m9453a(0);
-            throw null;
         }
 
         public void recordClass(InterfaceC11574g interfaceC11574g, InterfaceC11330e interfaceC11330e) {

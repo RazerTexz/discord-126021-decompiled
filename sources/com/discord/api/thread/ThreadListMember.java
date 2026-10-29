@@ -12,6 +12,17 @@ public final /* data */ class ThreadListMember {
     private final Presence presence;
     private final long userId;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ThreadListMember)) {
+            return false;
+        }
+        ThreadListMember threadListMember = (ThreadListMember) other;
+        return this.userId == threadListMember.userId && C12238m.areEqual(this.member, threadListMember.member) && C12238m.areEqual(this.presence, threadListMember.presence);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final GuildMember getMember() {
         return this.member;
@@ -25,17 +36,6 @@ public final /* data */ class ThreadListMember {
     /* JADX INFO: renamed from: c, reason: from getter */
     public final long getUserId() {
         return this.userId;
-    }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ThreadListMember)) {
-            return false;
-        }
-        ThreadListMember threadListMember = (ThreadListMember) other;
-        return this.userId == threadListMember.userId && C12238m.areEqual(this.member, threadListMember.member) && C12238m.areEqual(this.presence, threadListMember.presence);
     }
 
     public int hashCode() {

@@ -31,7 +31,7 @@ public class DelombokApp extends LombokApp {
                 return 1;
             }
             try {
-                Permit.getMethod(loadDelombok(args), "main", String[].class).invoke(null, args.toArray(new String[0]));
+                Permit.getMethod(loadDelombok(args), "main", String[].class).invoke(null, new Object[]{args.toArray(new String[0])});
                 return 0;
             } catch (InvocationTargetException e1) {
                 Throwable t = e1.getCause();

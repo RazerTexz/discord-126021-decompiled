@@ -29,6 +29,10 @@ import p007b.p109f.p161j.p184s.InterfaceC2033c;
 /* JADX INFO: compiled from: ImagePipelineConfigInterface.java */
 /* JADX INFO: loaded from: classes.dex */
 public interface InterfaceC1896k {
+    Context getContext();
+
+    C1897l getExperiments();
+
     /* JADX INFO: renamed from: A */
     Supplier<MemoryCacheParams> mo1264A();
 
@@ -61,10 +65,6 @@ public interface InterfaceC1896k {
 
     /* JADX INFO: renamed from: g */
     InterfaceC1852a mo1274g();
-
-    Context getContext();
-
-    C1897l getExperiments();
 
     /* JADX INFO: renamed from: h */
     InterfaceC2002o0 mo1275h();

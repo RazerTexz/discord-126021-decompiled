@@ -39,7 +39,7 @@ public class DropDownListView extends ListView {
     private GateKeeperDrawable mSelector;
     private final Rect mSelectorRect;
 
-    public static class GateKeeperDrawable extends DrawableWrapper {
+    public class GateKeeperDrawable extends DrawableWrapper {
         private boolean mEnabled;
 
         public GateKeeperDrawable(Drawable drawable) {
@@ -148,6 +148,12 @@ public class DropDownListView extends ListView {
         performItemClick(view, i, getItemIdAtPosition(i));
     }
 
+    @Override // android.widget.ListView, android.widget.AbsListView, android.view.ViewGroup, android.view.View
+    public void dispatchDraw(Canvas canvas) {
+        drawSelectorCompat(canvas);
+        super.dispatchDraw(canvas);
+    }
+
     private void drawSelectorCompat(Canvas canvas) {
         Drawable selector;
         if (this.mSelectorRect.isEmpty() || (selector = getSelector()) == null) {
@@ -155,97 +161,6 @@ public class DropDownListView extends ListView {
         }
         selector.setBounds(this.mSelectorRect);
         selector.draw(canvas);
-    }
-
-    private void positionSelectorCompat(int i, View view) {
-        Rect rect = this.mSelectorRect;
-        rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-        rect.left -= this.mSelectionLeftPadding;
-        rect.top -= this.mSelectionTopPadding;
-        rect.right += this.mSelectionRightPadding;
-        rect.bottom += this.mSelectionBottomPadding;
-        try {
-            boolean z2 = this.mIsChildViewEnabled.getBoolean(this);
-            if (view.isEnabled() != z2) {
-                this.mIsChildViewEnabled.set(this, Boolean.valueOf(!z2));
-                if (i != -1) {
-                    refreshDrawableState();
-                }
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void positionSelectorLikeFocusCompat(int i, View view) {
-        Drawable selector = getSelector();
-        boolean z2 = (selector == null || i == -1) ? false : true;
-        if (z2) {
-            selector.setVisible(false, false);
-        }
-        positionSelectorCompat(i, view);
-        if (z2) {
-            Rect rect = this.mSelectorRect;
-            float fExactCenterX = rect.exactCenterX();
-            float fExactCenterY = rect.exactCenterY();
-            selector.setVisible(getVisibility() == 0, false);
-            DrawableCompat.setHotspot(selector, fExactCenterX, fExactCenterY);
-        }
-    }
-
-    private void positionSelectorLikeTouchCompat(int i, View view, float f, float f2) {
-        positionSelectorLikeFocusCompat(i, view);
-        Drawable selector = getSelector();
-        if (selector == null || i == -1) {
-            return;
-        }
-        DrawableCompat.setHotspot(selector, f, f2);
-    }
-
-    private void setPressedItem(View view, int i, float f, float f2) {
-        View childAt;
-        this.mDrawsInPressedState = true;
-        drawableHotspotChanged(f, f2);
-        if (!isPressed()) {
-            setPressed(true);
-        }
-        layoutChildren();
-        int i2 = this.mMotionPosition;
-        if (i2 != -1 && (childAt = getChildAt(i2 - getFirstVisiblePosition())) != null && childAt != view && childAt.isPressed()) {
-            childAt.setPressed(false);
-        }
-        this.mMotionPosition = i;
-        view.drawableHotspotChanged(f - view.getLeft(), f2 - view.getTop());
-        if (!view.isPressed()) {
-            view.setPressed(true);
-        }
-        positionSelectorLikeTouchCompat(i, view, f, f2);
-        setSelectorEnabled(false);
-        refreshDrawableState();
-    }
-
-    private void setSelectorEnabled(boolean z2) {
-        GateKeeperDrawable gateKeeperDrawable = this.mSelector;
-        if (gateKeeperDrawable != null) {
-            gateKeeperDrawable.setEnabled(z2);
-        }
-    }
-
-    private boolean touchModeDrawsInPressedStateCompat() {
-        return this.mDrawsInPressedState;
-    }
-
-    private void updateSelectorStateCompat() {
-        Drawable selector = getSelector();
-        if (selector != null && touchModeDrawsInPressedStateCompat() && isPressed()) {
-            selector.setState(getDrawableState());
-        }
-    }
-
-    @Override // android.widget.ListView, android.widget.AbsListView, android.view.ViewGroup, android.view.View
-    public void dispatchDraw(Canvas canvas) {
-        drawSelectorCompat(canvas);
-        super.dispatchDraw(canvas);
     }
 
     @Override // android.widget.AbsListView, android.view.ViewGroup, android.view.View
@@ -481,8 +396,75 @@ public class DropDownListView extends ListView {
         return super.onTouchEvent(motionEvent);
     }
 
+    private void positionSelectorCompat(int i, View view) {
+        Rect rect = this.mSelectorRect;
+        rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+        rect.left -= this.mSelectionLeftPadding;
+        rect.top -= this.mSelectionTopPadding;
+        rect.right += this.mSelectionRightPadding;
+        rect.bottom += this.mSelectionBottomPadding;
+        try {
+            boolean z2 = this.mIsChildViewEnabled.getBoolean(this);
+            if (view.isEnabled() != z2) {
+                this.mIsChildViewEnabled.set(this, Boolean.valueOf(!z2));
+                if (i != -1) {
+                    refreshDrawableState();
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void positionSelectorLikeFocusCompat(int i, View view) {
+        Drawable selector = getSelector();
+        boolean z2 = (selector == null || i == -1) ? false : true;
+        if (z2) {
+            selector.setVisible(false, false);
+        }
+        positionSelectorCompat(i, view);
+        if (z2) {
+            Rect rect = this.mSelectorRect;
+            float fExactCenterX = rect.exactCenterX();
+            float fExactCenterY = rect.exactCenterY();
+            selector.setVisible(getVisibility() == 0, false);
+            DrawableCompat.setHotspot(selector, fExactCenterX, fExactCenterY);
+        }
+    }
+
+    private void positionSelectorLikeTouchCompat(int i, View view, float f, float f2) {
+        positionSelectorLikeFocusCompat(i, view);
+        Drawable selector = getSelector();
+        if (selector == null || i == -1) {
+            return;
+        }
+        DrawableCompat.setHotspot(selector, f, f2);
+    }
+
     public void setListSelectionHidden(boolean z2) {
         this.mListSelectionHidden = z2;
+    }
+
+    private void setPressedItem(View view, int i, float f, float f2) {
+        View childAt;
+        this.mDrawsInPressedState = true;
+        drawableHotspotChanged(f, f2);
+        if (!isPressed()) {
+            setPressed(true);
+        }
+        layoutChildren();
+        int i2 = this.mMotionPosition;
+        if (i2 != -1 && (childAt = getChildAt(i2 - getFirstVisiblePosition())) != null && childAt != view && childAt.isPressed()) {
+            childAt.setPressed(false);
+        }
+        this.mMotionPosition = i;
+        view.drawableHotspotChanged(f - view.getLeft(), f2 - view.getTop());
+        if (!view.isPressed()) {
+            view.setPressed(true);
+        }
+        positionSelectorLikeTouchCompat(i, view, f, f2);
+        setSelectorEnabled(false);
+        refreshDrawableState();
     }
 
     @Override // android.widget.AbsListView
@@ -498,5 +480,23 @@ public class DropDownListView extends ListView {
         this.mSelectionTopPadding = rect.top;
         this.mSelectionRightPadding = rect.right;
         this.mSelectionBottomPadding = rect.bottom;
+    }
+
+    private void setSelectorEnabled(boolean z2) {
+        GateKeeperDrawable gateKeeperDrawable = this.mSelector;
+        if (gateKeeperDrawable != null) {
+            gateKeeperDrawable.setEnabled(z2);
+        }
+    }
+
+    private boolean touchModeDrawsInPressedStateCompat() {
+        return this.mDrawsInPressedState;
+    }
+
+    private void updateSelectorStateCompat() {
+        Drawable selector = getSelector();
+        if (selector != null && touchModeDrawsInPressedStateCompat() && isPressed()) {
+            selector.setState(getDrawableState());
+        }
     }
 }

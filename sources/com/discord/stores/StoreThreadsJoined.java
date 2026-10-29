@@ -37,8 +37,39 @@ public final class StoreThreadsJoined extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final StoreUser storeUser;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThread$1 */
     /* JADX INFO: compiled from: StoreThreadsJoined.kt */
-    public static final /* data */ class JoinedThread {
+    public final class C65471 extends AbstractC12240o implements Function0<JoinedThread> {
+        public final /* synthetic */ long $threadId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65471(long j) {
+            super(0);
+            this.$threadId = j;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final JoinedThread invoke() {
+            return StoreThreadsJoined.this.getJoinedThread(this.$threadId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThreads$1 */
+    /* JADX INFO: compiled from: StoreThreadsJoined.kt */
+    public final class C65481 extends AbstractC12240o implements Function0<Map<Long, ? extends JoinedThread>> {
+        public C65481() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends JoinedThread> invoke() {
+            return StoreThreadsJoined.this.getAllJoinedThreads();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreThreadsJoined.kt */
+    public final /* data */ class JoinedThread {
         private final int flags;
         private final long guildId;
         private final UtcDateTime joinTimestamp;
@@ -55,36 +86,6 @@ public final class StoreThreadsJoined extends StoreV2 {
             this.muted = z2;
             this.muteConfig = modelMuteConfig;
             this.joinTimestamp = utcDateTime;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getThreadId() {
-            return this.threadId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getFlags() {
-            return this.flags;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getMuted() {
-            return this.muted;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final ModelMuteConfig getMuteConfig() {
-            return this.muteConfig;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final UtcDateTime getJoinTimestamp() {
-            return this.joinTimestamp;
         }
 
         public final JoinedThread copy(long threadId, long guildId, int flags, boolean muted, ModelMuteConfig muteConfig, UtcDateTime joinTimestamp) {
@@ -104,24 +105,54 @@ public final class StoreThreadsJoined extends StoreV2 {
             return this.threadId == joinedThread.threadId && this.guildId == joinedThread.guildId && this.flags == joinedThread.flags && this.muted == joinedThread.muted && C12238m.areEqual(this.muteConfig, joinedThread.muteConfig) && C12238m.areEqual(this.joinTimestamp, joinedThread.joinTimestamp);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getFlags() {
             return this.flags;
+        }
+
+        public final int getFlags() {
+            return this.flags;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final UtcDateTime getJoinTimestamp() {
             return this.joinTimestamp;
+        }
+
+        public final UtcDateTime getJoinTimestamp() {
+            return this.joinTimestamp;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final ModelMuteConfig getMuteConfig() {
+            return this.muteConfig;
         }
 
         public final ModelMuteConfig getMuteConfig() {
             return this.muteConfig;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getMuted() {
             return this.muted;
+        }
+
+        public final boolean getMuted() {
+            return this.muted;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getThreadId() {
+            return this.threadId;
         }
 
         public final long getThreadId() {
@@ -165,37 +196,6 @@ public final class StoreThreadsJoined extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThread$1 */
-    /* JADX INFO: compiled from: StoreThreadsJoined.kt */
-    public static final class C65471 extends AbstractC12240o implements Function0<JoinedThread> {
-        public final /* synthetic */ long $threadId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65471(long j) {
-            super(0);
-            this.$threadId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final JoinedThread invoke() {
-            return StoreThreadsJoined.this.getJoinedThread(this.$threadId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThreads$1 */
-    /* JADX INFO: compiled from: StoreThreadsJoined.kt */
-    public static final class C65481 extends AbstractC12240o implements Function0<Map<Long, ? extends JoinedThread>> {
-        public C65481() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends JoinedThread> invoke() {
-            return StoreThreadsJoined.this.getAllJoinedThreads();
-        }
-    }
-
     public /* synthetic */ StoreThreadsJoined(StoreUser storeUser, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeUser, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
@@ -208,19 +208,6 @@ public final class StoreThreadsJoined extends StoreV2 {
 
     private final Map<Long, JoinedThread> getAllJoinedThreads() {
         return this.joinedThreadsSnapshot;
-    }
-
-    private final void saveThreads(Guild guild) {
-        ThreadMember member;
-        List<Channel> listM7849N = guild.m7849N();
-        if (listM7849N != null) {
-            for (Channel channel : listM7849N) {
-                if (ChannelUtils.m7673H(channel) && (member = channel.getMember()) != null) {
-                    this.joinedThreads.put(Long.valueOf(channel.getId()), new JoinedThread(channel.getId(), guild.getId(), member.getFlags(), member.getMuted(), new ModelMuteConfig(member.getMuteConfig()), member.getJoinTimestamp()));
-                    markChanged();
-                }
-            }
-        }
     }
 
     @StoreThread
@@ -359,6 +346,19 @@ public final class StoreThreadsJoined extends StoreV2 {
 
     public final Observable<Map<Long, JoinedThread>> observeJoinedThreads() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C65481(), 14, null);
+    }
+
+    private final void saveThreads(Guild guild) {
+        ThreadMember member;
+        List<Channel> listM7849N = guild.m7849N();
+        if (listM7849N != null) {
+            for (Channel channel : listM7849N) {
+                if (ChannelUtils.m7673H(channel) && (member = channel.getMember()) != null) {
+                    this.joinedThreads.put(Long.valueOf(channel.getId()), new JoinedThread(channel.getId(), guild.getId(), member.getFlags(), member.getMuted(), new ModelMuteConfig(member.getMuteConfig()), member.getJoinTimestamp()));
+                    markChanged();
+                }
+            }
+        }
     }
 
     @Override // com.discord.stores.StoreV2

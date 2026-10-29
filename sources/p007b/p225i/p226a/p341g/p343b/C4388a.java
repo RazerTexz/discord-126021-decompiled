@@ -71,15 +71,6 @@ public class C4388a {
     @Nullable
     public Drawable f11550m;
 
-    /* JADX INFO: renamed from: n */
-    public boolean f11551n = false;
-
-    /* JADX INFO: renamed from: o */
-    public boolean f11552o = false;
-
-    /* JADX INFO: renamed from: p */
-    public boolean f11553p = false;
-
     /* JADX INFO: renamed from: q */
     public boolean f11554q;
 
@@ -88,6 +79,15 @@ public class C4388a {
 
     /* JADX INFO: renamed from: s */
     public int f11556s;
+
+    /* JADX INFO: renamed from: n */
+    public boolean f11551n = false;
+
+    /* JADX INFO: renamed from: o */
+    public boolean f11552o = false;
+
+    /* JADX INFO: renamed from: p */
+    public boolean f11553p = false;
 
     public C4388a(MaterialButton materialButton, @NonNull ShapeAppearanceModel shapeAppearanceModel) {
         this.f11538a = materialButton;

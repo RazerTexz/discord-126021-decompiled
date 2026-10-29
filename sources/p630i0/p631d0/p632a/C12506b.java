@@ -30,6 +30,11 @@ public final class C12506b<T> extends AtomicInteger implements Subscription, Pro
         this.subscriber = subscriber;
     }
 
+    @Override // p658rx.Subscription
+    public boolean isUnsubscribed() {
+        return this.unsubscribed;
+    }
+
     /* JADX INFO: renamed from: a */
     public final void m10701a(Response<T> response) {
         try {
@@ -102,11 +107,6 @@ public final class C12506b<T> extends AtomicInteger implements Subscription, Pro
                 }
             }
         }
-    }
-
-    @Override // p658rx.Subscription
-    public boolean isUnsubscribed() {
-        return this.unsubscribed;
     }
 
     @Override // p658rx.Producer

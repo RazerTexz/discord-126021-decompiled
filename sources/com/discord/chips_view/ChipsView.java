@@ -121,12 +121,6 @@ public final class ChipsView<K, V extends InterfaceC5465a> extends ScrollView im
     /* JADX INFO: renamed from: z, reason: from kotlin metadata */
     public final RelativeLayout mChipsContainer;
 
-    /* JADX INFO: renamed from: com.discord.chips_view.ChipsView$a */
-    /* JADX INFO: compiled from: ChipsView.kt */
-    public interface InterfaceC5465a {
-        String getDisplayString();
-    }
-
     /* JADX INFO: renamed from: com.discord.chips_view.ChipsView$b */
     /* JADX INFO: compiled from: ChipsView.kt */
     public final class C5466b implements TextWatcher {
@@ -206,9 +200,15 @@ public final class ChipsView<K, V extends InterfaceC5465a> extends ScrollView im
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.chips_view.ChipsView$a */
+    /* JADX INFO: compiled from: ChipsView.kt */
+    public interface InterfaceC5465a {
+        String getDisplayString();
+    }
+
     /* JADX INFO: renamed from: com.discord.chips_view.ChipsView$d */
     /* JADX INFO: compiled from: ChipsView.kt */
-    public static final class RunnableC5468d implements Runnable {
+    public final class RunnableC5468d implements Runnable {
         public RunnableC5468d() {
         }
 
@@ -220,7 +220,7 @@ public final class ChipsView<K, V extends InterfaceC5465a> extends ScrollView im
 
     /* JADX INFO: renamed from: com.discord.chips_view.ChipsView$e */
     /* JADX INFO: compiled from: ChipsView.kt */
-    public static final class RunnableC5469e implements Runnable {
+    public final class RunnableC5469e implements Runnable {
 
         /* JADX INFO: renamed from: k */
         public final /* synthetic */ boolean f15003k;
@@ -309,10 +309,20 @@ public final class ChipsView<K, V extends InterfaceC5465a> extends ScrollView im
         }
     }
 
-    @Override // p007b.p008a.p021f.C0898d.a
-    /* JADX INFO: renamed from: a */
-    public InputConnection mo187a(InputConnection target) {
-        return new C5467c(target);
+    public final Function1<V, Unit> getChipAddedListener() {
+        return this.chipAddedListener;
+    }
+
+    public final Function1<V, Unit> getChipDeletedListener() {
+        return this.chipDeletedListener;
+    }
+
+    public final String getText() {
+        return String.valueOf(this.mEditText.getText());
+    }
+
+    public final Function1<CharSequence, Unit> getTextChangedListener() {
+        return this.textChangedListener;
     }
 
     /* JADX INFO: renamed from: b */
@@ -517,20 +527,10 @@ public final class ChipsView<K, V extends InterfaceC5465a> extends ScrollView im
         m8377c(false);
     }
 
-    public final Function1<V, Unit> getChipAddedListener() {
-        return this.chipAddedListener;
-    }
-
-    public final Function1<V, Unit> getChipDeletedListener() {
-        return this.chipDeletedListener;
-    }
-
-    public final String getText() {
-        return String.valueOf(this.mEditText.getText());
-    }
-
-    public final Function1<CharSequence, Unit> getTextChangedListener() {
-        return this.textChangedListener;
+    @Override // p007b.p008a.p021f.C0898d.a
+    /* JADX INFO: renamed from: a */
+    public InputConnection mo187a(InputConnection target) {
+        return new C5467c(target);
     }
 
     @Override // android.widget.ScrollView, android.widget.FrameLayout, android.view.View

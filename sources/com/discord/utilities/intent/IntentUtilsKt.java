@@ -18,6 +18,13 @@ public final class IntentUtilsKt {
         return null;
     }
 
+    public static /* synthetic */ String getStringExtraOrDefault$default(Intent intent, String str, String str2, int i, Object obj) {
+        if ((i & 2) != 0) {
+            str2 = "";
+        }
+        return getStringExtraOrDefault(intent, str, str2);
+    }
+
     public static final String getStringExtraOrDefault(Intent intent, String str, String str2) {
         C12238m.checkNotNullParameter(intent, "$this$getStringExtraOrDefault");
         C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
@@ -28,12 +35,5 @@ public final class IntentUtilsKt {
         }
         C12238m.checkNotNullExpressionValue(str2, "getStringExtra(name) ?: default");
         return str2;
-    }
-
-    public static /* synthetic */ String getStringExtraOrDefault$default(Intent intent, String str, String str2, int i, Object obj) {
-        if ((i & 2) != 0) {
-            str2 = "";
-        }
-        return getStringExtraOrDefault(intent, str, str2);
     }
 }

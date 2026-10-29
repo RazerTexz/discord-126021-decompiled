@@ -11,7 +11,7 @@ public interface InterfaceC11356c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.h1.c$a */
     /* JADX INFO: compiled from: PlatformDependentDeclarationFilter.kt */
-    public static final class a implements InterfaceC11356c {
+    public final class a implements InterfaceC11356c {
 
         /* JADX INFO: renamed from: a */
         public static final a f22797a = new a();
@@ -26,7 +26,7 @@ public interface InterfaceC11356c {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.h1.c$b */
     /* JADX INFO: compiled from: PlatformDependentDeclarationFilter.kt */
-    public static final class b implements InterfaceC11356c {
+    public final class b implements InterfaceC11356c {
 
         /* JADX INFO: renamed from: a */
         public static final b f22798a = new b();

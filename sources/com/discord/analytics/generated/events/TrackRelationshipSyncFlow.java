@@ -11,25 +11,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackRelationshipSyncFlow.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
+    private final Boolean back = null;
     private final CharSequence flowType = null;
     private final CharSequence fromStep = null;
-    private final CharSequence toStep = null;
-    private final Boolean skip = null;
-    private final Boolean back = null;
-    private final Float secondsOnFromStep = null;
-    private final Long numContactsFound = null;
-    private final Long numContactsAdded = null;
-    private final CharSequence mobileContactsPermission = null;
     private final Boolean hasPhoneNumber = null;
+    private final CharSequence mobileContactsPermission = null;
+    private final Long numContactsAdded = null;
+    private final Long numContactsFound = null;
+    private final Float secondsOnFromStep = null;
+    private final Boolean skip = null;
+    private final CharSequence toStep = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "relationship_sync_flow";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSche
         }
         TrackRelationshipSyncFlow trackRelationshipSyncFlow = (TrackRelationshipSyncFlow) other;
         return C12238m.areEqual(this.flowType, trackRelationshipSyncFlow.flowType) && C12238m.areEqual(this.fromStep, trackRelationshipSyncFlow.fromStep) && C12238m.areEqual(this.toStep, trackRelationshipSyncFlow.toStep) && C12238m.areEqual(this.skip, trackRelationshipSyncFlow.skip) && C12238m.areEqual(this.back, trackRelationshipSyncFlow.back) && C12238m.areEqual(this.secondsOnFromStep, trackRelationshipSyncFlow.secondsOnFromStep) && C12238m.areEqual(this.numContactsFound, trackRelationshipSyncFlow.numContactsFound) && C12238m.areEqual(this.numContactsAdded, trackRelationshipSyncFlow.numContactsAdded) && C12238m.areEqual(this.mobileContactsPermission, trackRelationshipSyncFlow.mobileContactsPermission) && C12238m.areEqual(this.hasPhoneNumber, trackRelationshipSyncFlow.hasPhoneNumber);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -26,7 +26,7 @@ public class EglBase10Impl implements EglBase10 {
     private EGLSurface eglSurface = EGL10.EGL_NO_SURFACE;
     private final EGL10 egl = (EGL10) EGLContext.getEGL();
 
-    public static class Context implements EglBase10.Context {
+    public class Context implements EglBase10.Context {
         private final EGLContext eglContext;
 
         public Context(EGLContext eGLContext) {
@@ -59,6 +59,11 @@ public class EglBase10Impl implements EglBase10 {
         }
     }
 
+    @Override // org.webrtc.EglBase
+    public void createDummyPbufferSurface() {
+        createPbufferSurface(1, 1);
+    }
+
     private EGLContext createEglContext(@Nullable EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
         EGLContext eGLContextEglCreateContext;
         if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
@@ -77,62 +82,6 @@ public class EglBase10Impl implements EglBase10 {
         StringBuilder sbM833U = C1643a.m833U("Failed to create EGL context: 0x");
         sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
         throw new RuntimeException(sbM833U.toString());
-    }
-
-    private void createSurfaceInternal(Object obj) {
-        if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
-            throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
-        }
-        checkIsNotReleased();
-        if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
-            throw new RuntimeException("Already has an EGLSurface");
-        }
-        EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-        this.eglSurface = eGLSurfaceEglCreateWindowSurface;
-        if (eGLSurfaceEglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-            return;
-        }
-        StringBuilder sbM833U = C1643a.m833U("Failed to create window surface: 0x");
-        sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
-        throw new RuntimeException(sbM833U.toString());
-    }
-
-    private EGLConfig getEglConfig(EGLDisplay eGLDisplay, int[] iArr) {
-        EGLConfig[] eGLConfigArr = new EGLConfig[1];
-        int[] iArr2 = new int[1];
-        if (!this.egl.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
-            StringBuilder sbM833U = C1643a.m833U("eglChooseConfig failed: 0x");
-            sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(sbM833U.toString());
-        }
-        if (iArr2[0] <= 0) {
-            throw new RuntimeException("Unable to find any matching EGL config");
-        }
-        EGLConfig eGLConfig = eGLConfigArr[0];
-        if (eGLConfig != null) {
-            return eGLConfig;
-        }
-        throw new RuntimeException("eglChooseConfig returned null");
-    }
-
-    private EGLDisplay getEglDisplay() {
-        EGLDisplay eGLDisplayEglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            StringBuilder sbM833U = C1643a.m833U("Unable to get EGL10 display: 0x");
-            sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(sbM833U.toString());
-        }
-        if (this.egl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
-            return eGLDisplayEglGetDisplay;
-        }
-        StringBuilder sbM833U2 = C1643a.m833U("Unable to initialize EGL10: 0x");
-        sbM833U2.append(Integer.toHexString(this.egl.eglGetError()));
-        throw new RuntimeException(sbM833U2.toString());
-    }
-
-    @Override // org.webrtc.EglBase
-    public void createDummyPbufferSurface() {
-        createPbufferSurface(1, 1);
     }
 
     @Override // org.webrtc.EglBase
@@ -223,6 +172,24 @@ public class EglBase10Impl implements EglBase10 {
         });
     }
 
+    private void createSurfaceInternal(Object obj) {
+        if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
+            throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
+        }
+        checkIsNotReleased();
+        if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
+        }
+        EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+        this.eglSurface = eGLSurfaceEglCreateWindowSurface;
+        if (eGLSurfaceEglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+            return;
+        }
+        StringBuilder sbM833U = C1643a.m833U("Failed to create window surface: 0x");
+        sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
+        throw new RuntimeException(sbM833U.toString());
+    }
+
     @Override // org.webrtc.EglBase
     public void detachCurrent() {
         synchronized (EglBase.lock) {
@@ -238,6 +205,39 @@ public class EglBase10Impl implements EglBase10 {
     @Override // org.webrtc.EglBase
     public EglBase.Context getEglBaseContext() {
         return new Context(this.eglContext);
+    }
+
+    private EGLConfig getEglConfig(EGLDisplay eGLDisplay, int[] iArr) {
+        EGLConfig[] eGLConfigArr = new EGLConfig[1];
+        int[] iArr2 = new int[1];
+        if (!this.egl.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
+            StringBuilder sbM833U = C1643a.m833U("eglChooseConfig failed: 0x");
+            sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(sbM833U.toString());
+        }
+        if (iArr2[0] <= 0) {
+            throw new RuntimeException("Unable to find any matching EGL config");
+        }
+        EGLConfig eGLConfig = eGLConfigArr[0];
+        if (eGLConfig != null) {
+            return eGLConfig;
+        }
+        throw new RuntimeException("eglChooseConfig returned null");
+    }
+
+    private EGLDisplay getEglDisplay() {
+        EGLDisplay eGLDisplayEglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            StringBuilder sbM833U = C1643a.m833U("Unable to get EGL10 display: 0x");
+            sbM833U.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(sbM833U.toString());
+        }
+        if (this.egl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
+            return eGLDisplayEglGetDisplay;
+        }
+        StringBuilder sbM833U2 = C1643a.m833U("Unable to initialize EGL10: 0x");
+        sbM833U2.append(Integer.toHexString(this.egl.eglGetError()));
+        throw new RuntimeException(sbM833U2.toString());
     }
 
     @Override // org.webrtc.EglBase

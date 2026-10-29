@@ -11,7 +11,7 @@ public interface InterfaceC2363m {
 
     /* JADX INFO: renamed from: b.g.a.c.m$a */
     /* JADX INFO: compiled from: JsonSerializable.java */
-    public static abstract class a implements InterfaceC2363m {
+    public abstract class a implements InterfaceC2363m {
     }
 
     /* JADX INFO: renamed from: c */

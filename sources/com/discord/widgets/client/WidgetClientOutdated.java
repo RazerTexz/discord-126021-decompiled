@@ -29,7 +29,7 @@ public final class WidgetClientOutdated extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: compiled from: WidgetClientOutdated.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

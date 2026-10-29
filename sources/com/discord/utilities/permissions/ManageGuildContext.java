@@ -27,7 +27,7 @@ public final /* data */ class ManageGuildContext {
     private final boolean isOwnerWithRequiredMFALevel;
 
     /* JADX INFO: compiled from: PermissionsContexts.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -71,57 +71,8 @@ public final /* data */ class ManageGuildContext {
         this.isOwnerWithRequiredMFALevel = z10;
     }
 
-    public static final ManageGuildContext from(List<Channel> list, boolean z2, Long l, Map<Long, Long> map, int i, boolean z3) {
-        return INSTANCE.from(list, z2, l, map, i, z3);
-    }
-
     public final boolean canManage() {
         return this.canManageServer || this.canManageChannels || this.canManageRoles || this.canManageBans || this.canViewAuditLogs || this.canManageEmojisAndStickers || this.isOwnerWithRequiredMFALevel;
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final boolean getCanManageServer() {
-        return this.canManageServer;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getCanManageChannels() {
-        return this.canManageChannels;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getCanManageRoles() {
-        return this.canManageRoles;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final boolean getCanManageBans() {
-        return this.canManageBans;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getCanManageNicknames() {
-        return this.canManageNicknames;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getCanManageEmojisAndStickers() {
-        return this.canManageEmojisAndStickers;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getCanViewAuditLogs() {
-        return this.canViewAuditLogs;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final boolean getCanManageEvents() {
-        return this.canManageEvents;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final boolean getIsOwnerWithRequiredMFALevel() {
-        return this.isOwnerWithRequiredMFALevel;
     }
 
     public final ManageGuildContext copy(boolean canManageServer, boolean canManageChannels, boolean canManageRoles, boolean canManageBans, boolean canManageNicknames, boolean canManageEmojisAndStickers, boolean canViewAuditLogs, boolean canManageEvents, boolean isOwnerWithRequiredMFALevel) {
@@ -139,36 +90,85 @@ public final /* data */ class ManageGuildContext {
         return this.canManageServer == manageGuildContext.canManageServer && this.canManageChannels == manageGuildContext.canManageChannels && this.canManageRoles == manageGuildContext.canManageRoles && this.canManageBans == manageGuildContext.canManageBans && this.canManageNicknames == manageGuildContext.canManageNicknames && this.canManageEmojisAndStickers == manageGuildContext.canManageEmojisAndStickers && this.canViewAuditLogs == manageGuildContext.canViewAuditLogs && this.canManageEvents == manageGuildContext.canManageEvents && this.isOwnerWithRequiredMFALevel == manageGuildContext.isOwnerWithRequiredMFALevel;
     }
 
+    public static final ManageGuildContext from(List<Channel> list, boolean z2, Long l, Map<Long, Long> map, int i, boolean z3) {
+        return INSTANCE.from(list, z2, l, map, i, z3);
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final boolean getCanManageBans() {
         return this.canManageBans;
+    }
+
+    public final boolean getCanManageBans() {
+        return this.canManageBans;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getCanManageChannels() {
+        return this.canManageChannels;
     }
 
     public final boolean getCanManageChannels() {
         return this.canManageChannels;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getCanManageEmojisAndStickers() {
         return this.canManageEmojisAndStickers;
+    }
+
+    public final boolean getCanManageEmojisAndStickers() {
+        return this.canManageEmojisAndStickers;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final boolean getCanManageEvents() {
+        return this.canManageEvents;
     }
 
     public final boolean getCanManageEvents() {
         return this.canManageEvents;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final boolean getCanManageNicknames() {
         return this.canManageNicknames;
+    }
+
+    public final boolean getCanManageNicknames() {
+        return this.canManageNicknames;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getCanManageRoles() {
+        return this.canManageRoles;
     }
 
     public final boolean getCanManageRoles() {
         return this.canManageRoles;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final boolean getCanManageServer() {
         return this.canManageServer;
     }
 
+    public final boolean getCanManageServer() {
+        return this.canManageServer;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final boolean getCanViewAuditLogs() {
         return this.canViewAuditLogs;
+    }
+
+    public final boolean getCanViewAuditLogs() {
+        return this.canViewAuditLogs;
+    }
+
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final boolean getIsOwnerWithRequiredMFALevel() {
+        return this.isOwnerWithRequiredMFALevel;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

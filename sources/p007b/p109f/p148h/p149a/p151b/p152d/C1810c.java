@@ -9,11 +9,27 @@ import p007b.p109f.p148h.p149a.p151b.InterfaceC1806b;
 /* JADX INFO: loaded from: classes.dex */
 public class C1810c implements InterfaceC1806b {
 
+    /* JADX INFO: renamed from: b */
+    public CloseableReference<Bitmap> f3514b;
+
     /* JADX INFO: renamed from: a */
     public int f3513a = -1;
 
-    /* JADX INFO: renamed from: b */
-    public CloseableReference<Bitmap> f3514b;
+    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
+    public synchronized void clear() {
+        m1158g();
+    }
+
+    /* JADX INFO: renamed from: g */
+    public final synchronized void m1158g() {
+        CloseableReference<Bitmap> closeableReference = this.f3514b;
+        Class<CloseableReference> cls = CloseableReference.f19438j;
+        if (closeableReference != null) {
+            closeableReference.close();
+        }
+        this.f3514b = null;
+        this.f3513a = -1;
+    }
 
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
     /* JADX INFO: renamed from: a */
@@ -41,11 +57,6 @@ public class C1810c implements InterfaceC1806b {
     }
 
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
-    public synchronized void clear() {
-        m1158g();
-    }
-
-    @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
     /* JADX INFO: renamed from: d */
     public synchronized CloseableReference<Bitmap> mo1154d(int i) {
         if (this.f3513a != i) {
@@ -67,7 +78,6 @@ public class C1810c implements InterfaceC1806b {
             }
             this.f3514b = CloseableReference.m8636n(closeableReference);
             this.f3513a = i;
-            return;
         }
         if (this.f3514b != null && closeableReference.m8642u().equals(this.f3514b.m8642u())) {
             return;
@@ -79,24 +89,11 @@ public class C1810c implements InterfaceC1806b {
         }
         this.f3514b = CloseableReference.m8636n(closeableReference);
         this.f3513a = i;
-        return;
-        throw th;
     }
 
     @Override // p007b.p109f.p148h.p149a.p151b.InterfaceC1806b
     /* JADX INFO: renamed from: f */
     public synchronized CloseableReference<Bitmap> mo1156f(int i) {
         return CloseableReference.m8636n(this.f3514b);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public final synchronized void m1158g() {
-        CloseableReference<Bitmap> closeableReference = this.f3514b;
-        Class<CloseableReference> cls = CloseableReference.f19438j;
-        if (closeableReference != null) {
-            closeableReference.close();
-        }
-        this.f3514b = null;
-        this.f3513a = -1;
     }
 }

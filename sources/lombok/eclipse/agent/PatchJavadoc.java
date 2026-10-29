@@ -69,7 +69,7 @@ public class PatchJavadoc {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchJavadoc$Reflection.SCL.lombok */
-    private static class Reflection {
+    class Reflection {
         private static final Method javadoc2HTML;
         private static final Method oldJavadoc2HTML;
 

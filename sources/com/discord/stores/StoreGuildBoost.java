@@ -33,11 +33,161 @@ public final class StoreGuildBoost extends StoreV2 {
     private State state;
     private State stateSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$1 */
     /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static abstract class State {
+    public final class C60171 extends AbstractC12240o implements Function0<Unit> {
+        public C60171() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildBoost.this.handleFetchingState();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$2 */
+    /* JADX INFO: compiled from: StoreGuildBoost.kt */
+    public final class C60182 extends AbstractC12240o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGuildBoost.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreGuildBoost.this.handleFetchError();
+            }
+        }
+
+        public C60182() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            C12238m.checkNotNullParameter(error, "it");
+            StoreGuildBoost.this.getDispatcher().schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$3 */
+    /* JADX INFO: compiled from: StoreGuildBoost.kt */
+    public final class C60193 extends AbstractC12240o implements Function1<List<? extends ModelGuildBoostSlot>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGuildBoost.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final /* synthetic */ List $subscriptionsSlots;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$subscriptionsSlots = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.f27425a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreGuildBoost.this.handleFetchStateSuccess(this.$subscriptionsSlots);
+            }
+        }
+
+        public C60193() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelGuildBoostSlot> list) {
+            invoke2((List<ModelGuildBoostSlot>) list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelGuildBoostSlot> list) {
+            C12238m.checkNotNullParameter(list, "subscriptionsSlots");
+            StoreGuildBoost.this.getDispatcher().schedule(new AnonymousClass1(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$observeGuildBoostState$1 */
+    /* JADX INFO: compiled from: StoreGuildBoost.kt */
+    public final class C60201 extends AbstractC12240o implements Function0<State> {
+        public final /* synthetic */ Long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60201(Long l) {
+            super(0);
+            this.$guildId = l;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            State stateSnapshot = StoreGuildBoost.this.getStateSnapshot();
+            return stateSnapshot instanceof State.Loaded ? ((State.Loaded) stateSnapshot).filterByGuildId(this.$guildId) : stateSnapshot;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$updateGuildBoostSlot$1 */
+    /* JADX INFO: compiled from: StoreGuildBoost.kt */
+    public final class C60211 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ ModelGuildBoostSlot $newSlot;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C60211(ModelGuildBoostSlot modelGuildBoostSlot) {
+            super(0);
+            this.$newSlot = modelGuildBoostSlot;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            State state = StoreGuildBoost.this.state;
+            if (state instanceof State.Loaded) {
+                Map mapPlus = C12136h0.plus(((State.Loaded) state).getBoostSlotMap(), C12116o.m10073to(Long.valueOf(this.$newSlot.getId()), this.$newSlot));
+                StoreGuildBoost.this.state = new State.Loaded(mapPlus);
+                StoreGuildBoost.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildBoost.kt */
+    public abstract class State {
 
         /* JADX INFO: compiled from: StoreGuildBoost.kt */
-        public static final class Failure extends State {
+        public final class Failure extends State {
             public static final Failure INSTANCE = new Failure();
 
             private Failure() {
@@ -46,7 +196,7 @@ public final class StoreGuildBoost extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGuildBoost.kt */
-        public static final /* data */ class Loaded extends State {
+        public final /* data */ class Loaded extends State {
             private final Map<Long, ModelGuildBoostSlot> boostSlotMap;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -56,16 +206,16 @@ public final class StoreGuildBoost extends StoreV2 {
                 this.boostSlotMap = map;
             }
 
+            public final Map<Long, ModelGuildBoostSlot> component1() {
+                return this.boostSlotMap;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ Loaded copy$default(Loaded loaded, Map map, int i, Object obj) {
                 if ((i & 1) != 0) {
                     map = loaded.boostSlotMap;
                 }
                 return loaded.copy(map);
-            }
-
-            public final Map<Long, ModelGuildBoostSlot> component1() {
-                return this.boostSlotMap;
             }
 
             public final Loaded copy(Map<Long, ModelGuildBoostSlot> boostSlotMap) {
@@ -116,7 +266,7 @@ public final class StoreGuildBoost extends StoreV2 {
         }
 
         /* JADX INFO: compiled from: StoreGuildBoost.kt */
-        public static final class Loading extends State {
+        public final class Loading extends State {
             public static final Loading INSTANCE = new Loading();
 
             private Loading() {
@@ -132,156 +282,6 @@ public final class StoreGuildBoost extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$1 */
-    /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static final class C60171 extends AbstractC12240o implements Function0<Unit> {
-        public C60171() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreGuildBoost.this.handleFetchingState();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$2 */
-    /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static final class C60182 extends AbstractC12240o implements Function1<Error, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGuildBoost.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreGuildBoost.this.handleFetchError();
-            }
-        }
-
-        public C60182() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            StoreGuildBoost.this.getDispatcher().schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$3 */
-    /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static final class C60193 extends AbstractC12240o implements Function1<List<? extends ModelGuildBoostSlot>, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$fetchUserGuildBoostState$3$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreGuildBoost.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ List $subscriptionsSlots;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(List list) {
-                super(0);
-                this.$subscriptionsSlots = list;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreGuildBoost.this.handleFetchStateSuccess(this.$subscriptionsSlots);
-            }
-        }
-
-        public C60193() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelGuildBoostSlot> list) {
-            invoke2((List<ModelGuildBoostSlot>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<ModelGuildBoostSlot> list) {
-            C12238m.checkNotNullParameter(list, "subscriptionsSlots");
-            StoreGuildBoost.this.getDispatcher().schedule(new AnonymousClass1(list));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$observeGuildBoostState$1 */
-    /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static final class C60201 extends AbstractC12240o implements Function0<State> {
-        public final /* synthetic */ Long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60201(Long l) {
-            super(0);
-            this.$guildId = l;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final State invoke() {
-            State stateSnapshot = StoreGuildBoost.this.getStateSnapshot();
-            return stateSnapshot instanceof State.Loaded ? ((State.Loaded) stateSnapshot).filterByGuildId(this.$guildId) : stateSnapshot;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildBoost$updateGuildBoostSlot$1 */
-    /* JADX INFO: compiled from: StoreGuildBoost.kt */
-    public static final class C60211 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ ModelGuildBoostSlot $newSlot;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60211(ModelGuildBoostSlot modelGuildBoostSlot) {
-            super(0);
-            this.$newSlot = modelGuildBoostSlot;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            State state = StoreGuildBoost.this.state;
-            if (state instanceof State.Loaded) {
-                Map mapPlus = C12136h0.plus(((State.Loaded) state).getBoostSlotMap(), C12116o.m10073to(Long.valueOf(this.$newSlot.getId()), this.$newSlot));
-                StoreGuildBoost.this.state = new State.Loaded(mapPlus);
-                StoreGuildBoost.this.markChanged();
-            }
-        }
-    }
-
     public StoreGuildBoost(Dispatcher dispatcher, ObservationDeck observationDeck) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         C12238m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -292,20 +292,6 @@ public final class StoreGuildBoost extends StoreV2 {
         this.stateSnapshot = loading;
     }
 
-    public static /* synthetic */ State getGuildBoostsState$default(StoreGuildBoost storeGuildBoost, Long l, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        return storeGuildBoost.getGuildBoostsState(l);
-    }
-
-    public static /* synthetic */ Observable observeGuildBoostState$default(StoreGuildBoost storeGuildBoost, Long l, int i, Object obj) {
-        if ((i & 1) != 0) {
-            l = null;
-        }
-        return storeGuildBoost.observeGuildBoostState(l);
-    }
-
     public final void fetchUserGuildBoostState() {
         this.dispatcher.schedule(new C60171());
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getSubscriptionSlots(), false, 1, null), (Class<?>) StoreGuildBoost.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C60182()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C60193());
@@ -313,6 +299,13 @@ public final class StoreGuildBoost extends StoreV2 {
 
     public final Dispatcher getDispatcher() {
         return this.dispatcher;
+    }
+
+    public static /* synthetic */ State getGuildBoostsState$default(StoreGuildBoost storeGuildBoost, Long l, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        return storeGuildBoost.getGuildBoostsState(l);
     }
 
     public final State getGuildBoostsState(Long guildId) {
@@ -350,6 +343,13 @@ public final class StoreGuildBoost extends StoreV2 {
     public final void handleFetchingState() {
         this.state = State.Loading.INSTANCE;
         markChanged();
+    }
+
+    public static /* synthetic */ Observable observeGuildBoostState$default(StoreGuildBoost storeGuildBoost, Long l, int i, Object obj) {
+        if ((i & 1) != 0) {
+            l = null;
+        }
+        return storeGuildBoost.observeGuildBoostState(l);
     }
 
     public final Observable<State> observeGuildBoostState(Long guildId) {

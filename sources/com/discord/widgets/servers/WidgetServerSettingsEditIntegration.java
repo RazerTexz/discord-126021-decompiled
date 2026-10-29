@@ -59,6 +59,10 @@ import p658rx.functions.Func5;
 /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEditIntegration extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsEditIntegration.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEditIntegrationBinding;", 0)};
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final String INTENT_EXTRA_INTEGRATION_ID = "INTENT_EXTRA_INTEGRATION_ID";
     private static final int STATE_KEY_ENABLE_TWITCH_EMOTES = 2131363149;
@@ -71,19 +75,34 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
 
     /* JADX INFO: renamed from: expiryBehaviorRadios$delegate, reason: from kotlin metadata */
     private final Lazy expiryBehaviorRadios;
+    private static final int[] gracePeriodDays = {1, 3, 7, 14, 30};
     private RadioManager gracePeriodRadioManager;
 
     /* JADX INFO: renamed from: gracePeriodRadios$delegate, reason: from kotlin metadata */
     private final Lazy gracePeriodRadios;
     private final StatefulViews state;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsEditIntegration.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEditIntegrationBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private static final int[] gracePeriodDays = {1, 3, 7, 14, 30};
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
+    public final /* synthetic */ class C92221 extends C12236k implements Function1<Model, Unit> {
+        public C92221(WidgetServerSettingsEditIntegration widgetServerSettingsEditIntegration) {
+            super(1, widgetServerSettingsEditIntegration, WidgetServerSettingsEditIntegration.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditIntegration$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            ((WidgetServerSettingsEditIntegration) this.receiver).configureUI(model);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -101,7 +120,7 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -110,7 +129,7 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
         private final GuildRole role;
 
         /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -166,21 +185,6 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
             return model.copy(guild, modelGuildIntegration, guildRole);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ModelGuildIntegration getIntegration() {
-            return this.integration;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildRole getRole() {
-            return this.role;
-        }
-
         public final Model copy(Guild guild, ModelGuildIntegration integration, GuildRole role) {
             C12238m.checkNotNullParameter(guild, "guild");
             C12238m.checkNotNullParameter(integration, "integration");
@@ -198,12 +202,27 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
             return C12238m.areEqual(this.guild, model.guild) && C12238m.areEqual(this.integration, model.integration) && C12238m.areEqual(this.role, model.role);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
         }
 
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ModelGuildIntegration getIntegration() {
             return this.integration;
+        }
+
+        public final ModelGuildIntegration getIntegration() {
+            return this.integration;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
         }
 
         public final GuildRole getRole() {
@@ -228,25 +247,6 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
             sbM833U.append(this.role);
             sbM833U.append(")");
             return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-    public static final /* synthetic */ class C92221 extends C12236k implements Function1<Model, Unit> {
-        public C92221(WidgetServerSettingsEditIntegration widgetServerSettingsEditIntegration) {
-            super(1, widgetServerSettingsEditIntegration, WidgetServerSettingsEditIntegration.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditIntegration$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            ((WidgetServerSettingsEditIntegration) this.receiver).configureUI(model);
         }
     }
 
@@ -297,7 +297,7 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$configureUI$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
                 public AnonymousClass1() {
                     super(1);
                 }
@@ -385,7 +385,7 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$configureUI$3$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<Void, Unit> {
                 public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
                 public AnonymousClass1() {
@@ -445,28 +445,6 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
         return (List) this.gracePeriodRadios.getValue();
     }
 
-    private final RadioManager setupRadioManager(List<CheckedSetting> checkedSettings, final int stateKey) {
-        final RadioManager radioManager = new RadioManager(checkedSettings);
-        final int i = 0;
-        for (Object obj : checkedSettings) {
-            int i2 = i + 1;
-            if (i < 0) {
-                C12147n.throwIndexOverflow();
-            }
-            final CheckedSetting checkedSetting = (CheckedSetting) obj;
-            checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$setupRadioManager$$inlined$forEachIndexed$lambda$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    radioManager.m8550a(checkedSetting);
-                    this.state.put(stateKey, Integer.valueOf(i));
-                    this.state.configureSaveActionView(this.getBinding().f17625o);
-                }
-            });
-            i = i2;
-        }
-        return radioManager;
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onPause() {
         super.onPause();
@@ -520,5 +498,27 @@ public final class WidgetServerSettingsEditIntegration extends AppFragment {
         long longExtra2 = getMostRecentIntent().getLongExtra(INTENT_EXTRA_INTEGRATION_ID, -1L);
         StoreStream.INSTANCE.getGuildIntegrations().onIntegrationScreenOpened(longExtra);
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(longExtra, longExtra2), this, null, 2, null), (Class<?>) WidgetServerSettingsEditIntegration.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C92221(this));
+    }
+
+    private final RadioManager setupRadioManager(List<CheckedSetting> checkedSettings, final int stateKey) {
+        final RadioManager radioManager = new RadioManager(checkedSettings);
+        final int i = 0;
+        for (Object obj : checkedSettings) {
+            int i2 = i + 1;
+            if (i < 0) {
+                C12147n.throwIndexOverflow();
+            }
+            final CheckedSetting checkedSetting = (CheckedSetting) obj;
+            checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.servers.WidgetServerSettingsEditIntegration$setupRadioManager$$inlined$forEachIndexed$lambda$1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(View view) {
+                    radioManager.m8550a(checkedSetting);
+                    this.state.put(stateKey, Integer.valueOf(i));
+                    this.state.configureSaveActionView(this.getBinding().f17625o);
+                }
+            });
+            i = i2;
+        }
+        return radioManager;
     }
 }

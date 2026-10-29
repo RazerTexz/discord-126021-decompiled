@@ -34,22 +34,9 @@ public class C11629w {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.w$a */
     /* JADX INFO: compiled from: JavaDescriptorVisibilities.java */
-    public static class a extends AbstractC11460r {
+    public final class a extends AbstractC11460r {
         public a(AbstractC11335f1 abstractC11335f1) {
             super(abstractC11335f1);
-        }
-
-        /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9524a(int i) {
-            Object[] objArr = new Object[3];
-            if (i != 1) {
-                objArr[0] = "what";
-            } else {
-                objArr[0] = "from";
-            }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$1";
-            objArr[2] = "isVisible";
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -64,26 +51,26 @@ public class C11629w {
             m9524a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.w$b */
-    /* JADX INFO: compiled from: JavaDescriptorVisibilities.java */
-    public static class b extends AbstractC11460r {
-        public b(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9525a(int i) {
+        public static /* synthetic */ void m9524a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$2";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$1";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.w$b */
+    /* JADX INFO: compiled from: JavaDescriptorVisibilities.java */
+    public final class b extends AbstractC11460r {
+        public b(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -98,26 +85,26 @@ public class C11629w {
             m9525a(1);
             throw null;
         }
-    }
-
-    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.w$c */
-    /* JADX INFO: compiled from: JavaDescriptorVisibilities.java */
-    public static class c extends AbstractC11460r {
-        public c(AbstractC11335f1 abstractC11335f1) {
-            super(abstractC11335f1);
-        }
 
         /* JADX INFO: renamed from: a */
-        public static /* synthetic */ void m9526a(int i) {
+        public static /* synthetic */ void m9525a(int i) {
             Object[] objArr = new Object[3];
             if (i != 1) {
                 objArr[0] = "what";
             } else {
                 objArr[0] = "from";
             }
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$3";
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$2";
             objArr[2] = "isVisible";
             throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.w$c */
+    /* JADX INFO: compiled from: JavaDescriptorVisibilities.java */
+    public final class c extends AbstractC11460r {
+        public c(AbstractC11335f1 abstractC11335f1) {
+            super(abstractC11335f1);
         }
 
         @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.AbstractC11466u
@@ -131,6 +118,19 @@ public class C11629w {
             }
             m9526a(1);
             throw null;
+        }
+
+        /* JADX INFO: renamed from: a */
+        public static /* synthetic */ void m9526a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/JavaDescriptorVisibilities$3";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
         }
     }
 

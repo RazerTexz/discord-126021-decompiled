@@ -53,6 +53,7 @@ import p658rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetTabsHost.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetTabsHost extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetTabsHost.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTabsHostBinding;", 0)};
     private static final long BOTTOM_TABS_DOWNWARD_ANIMATION_DURATION_MS = 200;
     private static final long BOTTOM_TABS_UPWARD_ANIMATION_DURATION_MS = 250;
 
@@ -67,11 +68,10 @@ public final class WidgetTabsHost extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
     private TabsHostViewModel.ViewState viewState;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetTabsHost.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTabsHostBinding;", 0)};
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$configureSystemStatusBar$1 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final class C101571 extends AbstractC12240o implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
+    public final class C101571 extends AbstractC12240o implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
         public final /* synthetic */ int $defaultStatusBarColor;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -100,7 +100,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final class C101591 extends AbstractC12240o implements Function1<TabsHostViewModel.ViewState, Unit> {
+    public final class C101591 extends AbstractC12240o implements Function1<TabsHostViewModel.ViewState, Unit> {
         public C101591() {
             super(1);
         }
@@ -121,7 +121,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final /* synthetic */ class C101602 extends C12236k implements Function1<TabsHostViewModel.Event, Unit> {
+    public final /* synthetic */ class C101602 extends C12236k implements Function1<TabsHostViewModel.Event, Unit> {
         public C101602(WidgetTabsHost widgetTabsHost) {
             super(1, widgetTabsHost, WidgetTabsHost.class, "handleEvent", "handleEvent(Lcom/discord/widgets/tabs/TabsHostViewModel$Event;)V", 0);
         }
@@ -141,7 +141,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$1 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final /* synthetic */ class C101651 extends C12236k implements Function1<NavigationTab, Unit> {
+    public final /* synthetic */ class C101651 extends C12236k implements Function1<NavigationTab, Unit> {
         public C101651(TabsHostViewModel tabsHostViewModel) {
             super(1, tabsHostViewModel, TabsHostViewModel.class, "selectTab", "selectTab(Lcom/discord/widgets/tabs/NavigationTab;)V", 0);
         }
@@ -161,7 +161,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$2 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final /* synthetic */ class C101662 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C101662 extends C12236k implements Function0<Unit> {
         public C101662(WidgetTabsHost widgetTabsHost) {
             super(0, widgetTabsHost, WidgetTabsHost.class, "onSearchClick", "onSearchClick()V", 0);
         }
@@ -180,7 +180,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$3 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final /* synthetic */ class C101673 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C101673 extends C12236k implements Function0<Unit> {
         public C101673(WidgetTabsHost widgetTabsHost) {
             super(0, widgetTabsHost, WidgetTabsHost.class, "onSettingsLongPress", "onSettingsLongPress()V", 0);
         }
@@ -199,7 +199,7 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$4 */
     /* JADX INFO: compiled from: WidgetTabsHost.kt */
-    public static final /* synthetic */ class C101684 extends C12236k implements Function0<Unit> {
+    public final /* synthetic */ class C101684 extends C12236k implements Function0<Unit> {
         public C101684(WidgetTabsHost widgetTabsHost) {
             super(0, widgetTabsHost, WidgetTabsHost.class, "onSearchClick", "onSearchClick()V", 0);
         }
@@ -274,6 +274,23 @@ public final class WidgetTabsHost extends AppFragment {
         }
     }
 
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 4008) {
+            GoogleSmartLockManager.INSTANCE.handleResult(resultCode, data);
+        }
+    }
+
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onDestroyView() {
+        ValueAnimator valueAnimator = this.bottomNavAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        super.onDestroyView();
+    }
+
     private final void onSearchClick() {
         WidgetGlobalSearchDialog.Companion companion = WidgetGlobalSearchDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
@@ -283,6 +300,48 @@ public final class WidgetTabsHost extends AppFragment {
 
     private final void onSettingsLongPress() {
         WidgetUserStatusSheet.INSTANCE.show(this);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        getBinding().f18219b.addHeightChangedListener(BottomNavViewObserver.INSTANCE.getINSTANCE());
+        setPanelWindowInsetsListeners$default(this, false, 1, null);
+        AppFragment.setOnBackPressed$default(this, new Func0<Boolean>() { // from class: com.discord.widgets.tabs.WidgetTabsHost.onViewBound.1
+            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
+            public final Boolean call() {
+                return Boolean.valueOf(WidgetTabsHost.this.getViewModel().handleBackPress());
+            }
+        }, 0, 2, null);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<TabsHostViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetTabsHost.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101591());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetTabsHost.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101602(this));
+        configureSystemStatusBar();
+    }
+
+    public final void registerTabSelectionListener(NavigationTab navigationTab, OnTabSelectedListener onTabSelectedListener) {
+        C12238m.checkNotNullParameter(navigationTab, "navigationTab");
+        C12238m.checkNotNullParameter(onTabSelectedListener, "onTabSelectedListener");
+        this.tabToTabSelectionListenerMap.put(navigationTab, onTabSelectedListener);
+        TabsHostViewModel.ViewState viewState = this.viewState;
+        NavigationTab selectedTab = viewState != null ? viewState.getSelectedTab() : null;
+        if (selectedTab != null) {
+            navigateToTab(selectedTab);
+        }
+    }
+
+    public static /* synthetic */ void setPanelWindowInsetsListeners$default(WidgetTabsHost widgetTabsHost, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = false;
+        }
+        widgetTabsHost.setPanelWindowInsetsListeners(z2);
     }
 
     private final void setPanelWindowInsetsListeners(final boolean isCallStatusVisible) {
@@ -364,13 +423,6 @@ public final class WidgetTabsHost extends AppFragment {
         getBinding().f18220c.requestApplyInsets();
     }
 
-    public static /* synthetic */ void setPanelWindowInsetsListeners$default(WidgetTabsHost widgetTabsHost, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = false;
-        }
-        widgetTabsHost.setPanelWindowInsetsListeners(z2);
-    }
-
     private final void updateNavHostMargins(TabsHostViewModel.ViewState viewState) {
         NavigationTab selectedTab = viewState.getSelectedTab();
         FrameLayout frameLayout = getBinding().f18224g;
@@ -447,57 +499,5 @@ public final class WidgetTabsHost extends AppFragment {
         }
         this.previousBottomNavHeight = bottomNavHeight;
         this.previousShowBottomNav = Boolean.valueOf(showBottomNav);
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 4008) {
-            GoogleSmartLockManager.INSTANCE.handleResult(resultCode, data);
-        }
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onDestroyView() {
-        ValueAnimator valueAnimator = this.bottomNavAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        super.onDestroyView();
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        getBinding().f18219b.addHeightChangedListener(BottomNavViewObserver.INSTANCE.getINSTANCE());
-        setPanelWindowInsetsListeners$default(this, false, 1, null);
-        AppFragment.setOnBackPressed$default(this, new Func0<Boolean>() { // from class: com.discord.widgets.tabs.WidgetTabsHost.onViewBound.1
-            @Override // p658rx.functions.Func0, java.util.concurrent.Callable
-            public final Boolean call() {
-                return Boolean.valueOf(WidgetTabsHost.this.getViewModel().handleBackPress());
-            }
-        }, 0, 2, null);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<TabsHostViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetTabsHost.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101591());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetTabsHost.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101602(this));
-        configureSystemStatusBar();
-    }
-
-    public final void registerTabSelectionListener(NavigationTab navigationTab, OnTabSelectedListener onTabSelectedListener) {
-        C12238m.checkNotNullParameter(navigationTab, "navigationTab");
-        C12238m.checkNotNullParameter(onTabSelectedListener, "onTabSelectedListener");
-        this.tabToTabSelectionListenerMap.put(navigationTab, onTabSelectedListener);
-        TabsHostViewModel.ViewState viewState = this.viewState;
-        NavigationTab selectedTab = viewState != null ? viewState.getSelectedTab() : null;
-        if (selectedTab != null) {
-            navigateToTab(selectedTab);
-        }
     }
 }

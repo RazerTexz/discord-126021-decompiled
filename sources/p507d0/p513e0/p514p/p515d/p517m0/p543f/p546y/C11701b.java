@@ -21,9 +21,6 @@ import p507d0.p513e0.p514p.p515d.p517m0.p550i.C11743w;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11701b {
 
-    /* JADX INFO: renamed from: a */
-    public static final AbstractC11727g.f<C11687l, Integer> f24000a = AbstractC11727g.newSingularGeneratedExtension(C11687l.getDefaultInstance(), 0, null, null, Opcodes.DCMPL, C11743w.b.f24195n, Integer.class);
-
     /* JADX INFO: renamed from: b */
     public static final AbstractC11727g.f<C11678c, List<C11677b>> f24001b;
 
@@ -56,6 +53,9 @@ public final class C11701b {
 
     /* JADX INFO: renamed from: l */
     public static final AbstractC11727g.f<C11694s, List<C11677b>> f24011l;
+
+    /* JADX INFO: renamed from: a */
+    public static final AbstractC11727g.f<C11687l, Integer> f24000a = AbstractC11727g.newSingularGeneratedExtension(C11687l.getDefaultInstance(), 0, null, null, Opcodes.DCMPL, C11743w.b.f24195n, Integer.class);
 
     static {
         C11678c defaultInstance = C11678c.getDefaultInstance();

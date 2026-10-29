@@ -27,16 +27,6 @@ public final /* data */ class AudioOutputDeviceDescription {
         return audioOutputDeviceDescription.copy(str, str2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getGuid() {
-        return this.guid;
-    }
-
     public final AudioOutputDeviceDescription copy(String name, String guid) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         C12238m.checkNotNullParameter(guid, "guid");
@@ -54,8 +44,18 @@ public final /* data */ class AudioOutputDeviceDescription {
         return C12238m.areEqual(this.name, audioOutputDeviceDescription.name) && C12238m.areEqual(this.guid, audioOutputDeviceDescription.guid);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final String getGuid() {
         return this.guid;
+    }
+
+    public final String getGuid() {
+        return this.guid;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

@@ -40,11 +40,11 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes.EclipseS
     protected static final char[] f27478OF = {'o', 'f'};
     protected static final char[][] CGCC = {new char[]{'c', 'o', 'm'}, new char[]{'g', 'o', 'o', 'g', 'l', 'e'}, new char[]{'c', 'o', 'm', 'm', 'o', 'n'}, new char[]{'c', 'o', 'l', 'l', 'e', 'c', 't'}};
 
-    protected abstract LombokImmutableList<String> getArgumentSuffixes();
+    protected abstract String getAddAllTypeName();
 
     protected abstract String getAddMethodName();
 
-    protected abstract String getAddAllTypeName();
+    protected abstract LombokImmutableList<String> getArgumentSuffixes();
 
     EclipseGuavaSingularizer() {
     }
@@ -159,7 +159,7 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes.EclipseS
         char[] prefixedSingularName = data.getSetterPrefix().length == 0 ? data.getSingularName() : HandlerUtil.buildAccessorName(new String(data.getSetterPrefix()), new String(data.getSingularName())).toCharArray();
         md.selector = fluent ? prefixedSingularName : HandlerUtil.buildAccessorName("add", new String(data.getSingularName())).toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().m10925up()));
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().m10925up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);
@@ -193,7 +193,7 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes.EclipseS
         char[] prefixedSelector = data.getSetterPrefix().length == 0 ? data.getPluralName() : HandlerUtil.buildAccessorName(new String(data.getSetterPrefix()), new String(data.getPluralName())).toCharArray();
         md.selector = fluent ? prefixedSelector : HandlerUtil.buildAccessorName("addAll", new String(data.getPluralName())).toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().m10925up()));
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().m10925up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);

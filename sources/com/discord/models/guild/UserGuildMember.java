@@ -30,16 +30,6 @@ public final /* data */ class UserGuildMember {
         return userGuildMember.copy(user, guildMember);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final GuildMember getGuildMember() {
-        return this.guildMember;
-    }
-
     public final UserGuildMember copy(User user, GuildMember guildMember) {
         C12238m.checkNotNullParameter(user, "user");
         return new UserGuildMember(user, guildMember);
@@ -56,6 +46,11 @@ public final /* data */ class UserGuildMember {
         return C12238m.areEqual(this.user, userGuildMember.user) && C12238m.areEqual(this.guildMember, userGuildMember.guildMember);
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final GuildMember getGuildMember() {
+        return this.guildMember;
+    }
+
     public final GuildMember getGuildMember() {
         return this.guildMember;
     }
@@ -66,6 +61,11 @@ public final /* data */ class UserGuildMember {
 
     public final String getNickname() {
         return this.nickname;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public final User getUser() {

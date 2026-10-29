@@ -19,26 +19,26 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAfDmVisited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAfDmVisited implements AnalyticsSchema, TrackBaseReceiver, TrackSourceMetadataReceiver, TrackAfCardReceiver, TrackAfGameReceiver, TrackAfPartyReceiver, TrackChannelReceiver {
+    private final Long recipientId = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackAfParty trackAfParty;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackSourceMetadata trackSourceMetadata;
-    private final Long recipientId = null;
     private final transient String analyticsSchemaTypeName = "af_dm_visited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackAfDmVisited) && C12238m.areEqual(this.recipientId, ((TrackAfDmVisited) other).recipientId);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

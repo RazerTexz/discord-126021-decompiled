@@ -32,7 +32,7 @@ public final class ServerFolderView extends LinearLayout {
 
     /* JADX INFO: renamed from: com.discord.views.ServerFolderView$a */
     /* JADX INFO: compiled from: ServerFolderView.kt */
-    public static final class AnimationAnimationListenerC7092a implements Animation.AnimationListener {
+    public final class AnimationAnimationListenerC7092a implements Animation.AnimationListener {
         public AnimationAnimationListenerC7092a() {
         }
 

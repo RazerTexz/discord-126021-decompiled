@@ -46,6 +46,15 @@ public final class StageChannelRoleContext {
         return PermissionUtils.can(permission, Long.valueOf(PermissionUtils.computeNonThreadPermissions(userId, id2, ownerId, member, map, listM7655v)));
     }
 
+    public final StageRequestToSpeakState getRequestToSpeakState(long userId) {
+        return C1460d.m592y0(this.voiceStates.get(Long.valueOf(userId)));
+    }
+
+    public final boolean isModerator(long userId, GuildMember member) {
+        C12238m.checkNotNullParameter(member, "member");
+        return can(20971536L, userId, member);
+    }
+
     private final boolean isSpeaker(long userId, GuildMember member) {
         if (this.voiceStates.get(Long.valueOf(userId)) != null) {
             return getRequestToSpeakState(userId) == StageRequestToSpeakState.ON_STAGE;
@@ -53,18 +62,9 @@ public final class StageChannelRoleContext {
         return can(Permission.SPEAK, userId, member);
     }
 
-    public final StageRequestToSpeakState getRequestToSpeakState(long userId) {
-        return C1460d.m592y0(this.voiceStates.get(Long.valueOf(userId)));
-    }
-
     /* JADX INFO: renamed from: getRole-K-6mKVE, reason: not valid java name */
     public final int m11384getRoleK6mKVE(long userId, GuildMember member) {
         C12238m.checkNotNullParameter(member, "member");
         return StageRoles.INSTANCE.m11415invokeH48EO60(isSpeaker(userId, member), isModerator(userId, member), getRequestToSpeakState(userId) == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK);
-    }
-
-    public final boolean isModerator(long userId, GuildMember member) {
-        C12238m.checkNotNullParameter(member, "member");
-        return can(20971536L, userId, member);
     }
 }

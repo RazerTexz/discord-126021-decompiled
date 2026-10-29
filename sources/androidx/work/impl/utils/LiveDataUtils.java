@@ -12,15 +12,24 @@ import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class LiveDataUtils {
+    private LiveDataUtils() {
+    }
+
+    public static <In, Out> LiveData<Out> dedupedMappedLiveDataFor(@NonNull LiveData<In> liveData, @NonNull Function<In, Out> function, @NonNull TaskExecutor taskExecutor) {
+        Object obj = new Object();
+        MediatorLiveData mediatorLiveData = new MediatorLiveData();
+        mediatorLiveData.addSource(liveData, new C07751(taskExecutor, obj, function, mediatorLiveData));
+        return mediatorLiveData;
+    }
 
     /* JADX INFO: Add missing generic type declarations: [In] */
     /* JADX INFO: renamed from: androidx.work.impl.utils.LiveDataUtils$1 */
     public class C07751<In> implements Observer<In> {
-        public Out mCurrentOutput = null;
         public final /* synthetic */ Object val$lock;
         public final /* synthetic */ Function val$mappingMethod;
         public final /* synthetic */ MediatorLiveData val$outputLiveData;
         public final /* synthetic */ TaskExecutor val$workTaskExecutor;
+        public Out mCurrentOutput = null;
 
         public C07751(TaskExecutor taskExecutor, Object obj, Function function, MediatorLiveData mediatorLiveData) {
             this.val$workTaskExecutor = taskExecutor;
@@ -52,15 +61,5 @@ public class LiveDataUtils {
                 }
             });
         }
-    }
-
-    private LiveDataUtils() {
-    }
-
-    public static <In, Out> LiveData<Out> dedupedMappedLiveDataFor(@NonNull LiveData<In> liveData, @NonNull Function<In, Out> function, @NonNull TaskExecutor taskExecutor) {
-        Object obj = new Object();
-        MediatorLiveData mediatorLiveData = new MediatorLiveData();
-        mediatorLiveData.addSource(liveData, new C07751(taskExecutor, obj, function, mediatorLiveData));
-        return mediatorLiveData;
     }
 }

@@ -51,13 +51,6 @@ public final class CollectionExtensionsKt {
         return map2;
     }
 
-    public static final <K, V> HashMap<K, V> snapshot(Map<K, ? extends V> map, int i, float f) {
-        C12238m.checkNotNullParameter(map, "$this$snapshot");
-        HashMap<K, V> map2 = new HashMap<>(i, f);
-        map2.putAll(map);
-        return map2;
-    }
-
     public static /* synthetic */ HashMap snapshot$default(Map map, int i, float f, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             i = C11226f.coerceAtLeast(map.size(), 1);
@@ -66,5 +59,12 @@ public final class CollectionExtensionsKt {
             f = 0.75f;
         }
         return snapshot(map, i, f);
+    }
+
+    public static final <K, V> HashMap<K, V> snapshot(Map<K, ? extends V> map, int i, float f) {
+        C12238m.checkNotNullParameter(map, "$this$snapshot");
+        HashMap<K, V> map2 = new HashMap<>(i, f);
+        map2.putAll(map);
+        return map2;
     }
 }

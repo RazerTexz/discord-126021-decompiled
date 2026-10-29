@@ -18,14 +18,14 @@ import p007b.p452o.p453a.p455n.p456o.InterfaceC5143c;
 @RequiresApi(21)
 public class C5160c extends AbstractC5158a {
 
-    /* JADX INFO: renamed from: i */
-    public static final C5103b f13970i = new C5103b(C5160c.class.getSimpleName());
-
     /* JADX INFO: renamed from: j */
     public boolean f13971j;
 
     /* JADX INFO: renamed from: k */
     public boolean f13972k;
+
+    /* JADX INFO: renamed from: i */
+    public static final C5103b f13970i = new C5103b(C5160c.class.getSimpleName());
 
     public C5160c(@NonNull List<MeteringRectangle> list, boolean z2) {
         super(list, z2);

@@ -6,27 +6,27 @@ import java.util.regex.Pattern;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/eclipse/EclipseProductDescriptor.SCL.lombok */
 public interface EclipseProductDescriptor {
-    String getProductName();
-
-    String getWindowsExecutableName();
-
-    String getUnixAppName();
-
-    String getMacAppName();
-
     String getDirectoryName();
 
     List<String> getExecutableNames();
 
-    List<String> getSourceDirsOnWindows();
-
-    List<String> getSourceDirsOnMac();
-
-    List<String> getSourceDirsOnUnix();
+    URL getIdeIcon();
 
     String getIniFileName();
 
     Pattern getLocationSelectors();
 
-    URL getIdeIcon();
+    String getMacAppName();
+
+    String getProductName();
+
+    List<String> getSourceDirsOnMac();
+
+    List<String> getSourceDirsOnUnix();
+
+    List<String> getSourceDirsOnWindows();
+
+    String getUnixAppName();
+
+    String getWindowsExecutableName();
 }

@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackVideoStreamQualityChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackVideoStreamQualityChanged implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long guildId = null;
-    private final CharSequence rtcConnectionId = null;
     private final CharSequence mediaSessionId = null;
-    private final Long senderUserId = null;
     private final CharSequence previousQuality = null;
     private final CharSequence quality = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long senderUserId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "video_stream_quality_changed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackVideoStreamQualityChanged implements Analytic
         }
         TrackVideoStreamQualityChanged trackVideoStreamQualityChanged = (TrackVideoStreamQualityChanged) other;
         return C12238m.areEqual(this.channelId, trackVideoStreamQualityChanged.channelId) && C12238m.areEqual(this.guildId, trackVideoStreamQualityChanged.guildId) && C12238m.areEqual(this.rtcConnectionId, trackVideoStreamQualityChanged.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVideoStreamQualityChanged.mediaSessionId) && C12238m.areEqual(this.senderUserId, trackVideoStreamQualityChanged.senderUserId) && C12238m.areEqual(this.previousQuality, trackVideoStreamQualityChanged.previousQuality) && C12238m.areEqual(this.quality, trackVideoStreamQualityChanged.quality);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

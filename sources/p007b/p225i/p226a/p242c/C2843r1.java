@@ -56,16 +56,6 @@ public final class C2843r1 {
         this.f7473i = z5;
     }
 
-    /* JADX INFO: renamed from: a */
-    public C2843r1 m3360a(long j) {
-        return j == this.f7467c ? this : new C2843r1(this.f7465a, this.f7466b, j, this.f7468d, this.f7469e, this.f7470f, this.f7471g, this.f7472h, this.f7473i);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public C2843r1 m3361b(long j) {
-        return j == this.f7466b ? this : new C2843r1(this.f7465a, j, this.f7467c, this.f7468d, this.f7469e, this.f7470f, this.f7471g, this.f7472h, this.f7473i);
-    }
-
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
@@ -79,5 +69,15 @@ public final class C2843r1 {
 
     public int hashCode() {
         return ((((((((((((((((this.f7465a.hashCode() + 527) * 31) + ((int) this.f7466b)) * 31) + ((int) this.f7467c)) * 31) + ((int) this.f7468d)) * 31) + ((int) this.f7469e)) * 31) + (this.f7470f ? 1 : 0)) * 31) + (this.f7471g ? 1 : 0)) * 31) + (this.f7472h ? 1 : 0)) * 31) + (this.f7473i ? 1 : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public C2843r1 m3360a(long j) {
+        return j == this.f7467c ? this : new C2843r1(this.f7465a, this.f7466b, j, this.f7468d, this.f7469e, this.f7470f, this.f7471g, this.f7472h, this.f7473i);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public C2843r1 m3361b(long j) {
+        return j == this.f7466b ? this : new C2843r1(this.f7465a, j, this.f7467c, this.f7468d, this.f7469e, this.f7470f, this.f7471g, this.f7472h, this.f7473i);
     }
 }

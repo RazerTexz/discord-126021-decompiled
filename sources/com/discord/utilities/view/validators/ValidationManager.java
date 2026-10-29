@@ -23,13 +23,6 @@ public final class ValidationManager {
         this.inputs = new LinkedHashMap<>();
     }
 
-    public static /* synthetic */ boolean validate$default(ValidationManager validationManager, boolean z2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            z2 = true;
-        }
-        return validationManager.validate(z2);
-    }
-
     @MainThread
     public final void addInput(Input<? extends View> input) {
         C12238m.checkNotNullParameter(input, "input");
@@ -55,6 +48,13 @@ public final class ValidationManager {
             }
         }
         return C12150o0.minus((Set) errorMap.keySet(), (Iterable) arrayList);
+    }
+
+    public static /* synthetic */ boolean validate$default(ValidationManager validationManager, boolean z2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            z2 = true;
+        }
+        return validationManager.validate(z2);
     }
 
     @MainThread

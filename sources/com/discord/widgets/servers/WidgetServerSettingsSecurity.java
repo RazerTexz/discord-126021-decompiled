@@ -67,8 +67,27 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
     private final Lazy guildId;
     private final LoggingConfig loggingConfig;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsSecurity$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C93111 extends C12236k implements Function1<Model, Unit> {
+        public C93111(WidgetServerSettingsSecurity widgetServerSettingsSecurity) {
+            super(1, widgetServerSettingsSecurity, WidgetServerSettingsSecurity.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsSecurity$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) throws Exception {
+            ((WidgetServerSettingsSecurity) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -86,7 +105,7 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -95,7 +114,7 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
         private final boolean isMfaEnabled;
 
         /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -140,21 +159,6 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
             return model.copy(j, str, z2);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getGuildName() {
-            return this.guildName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsMfaEnabled() {
-            return this.isMfaEnabled;
-        }
-
         public final Model copy(long guildId, String guildName, boolean isMfaEnabled) {
             return new Model(guildId, guildName, isMfaEnabled);
         }
@@ -170,12 +174,27 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
             return this.guildId == model.guildId && C12238m.areEqual(this.guildName, model.guildName) && this.isMfaEnabled == model.isMfaEnabled;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getGuildId() {
             return this.guildId;
         }
 
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getGuildName() {
             return this.guildName;
+        }
+
+        public final String getGuildName() {
+            return this.guildName;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsMfaEnabled() {
+            return this.isMfaEnabled;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -210,9 +229,13 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-    public static final class ToggleMfaDialog extends AppDialog {
+    public final class ToggleMfaDialog extends AppDialog {
+        public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(ToggleMfaDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsSecurityDialogBinding;", 0)};
         private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
         private static final String ARG_MFA_ENABLED = "ARG_MFA_ENABLED";
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
         private final FragmentViewBindingDelegate binding;
@@ -222,13 +245,9 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
 
         /* JADX INFO: renamed from: mfaEnabled$delegate, reason: from kotlin metadata */
         private final Lazy mfaEnabled;
-        public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(ToggleMfaDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsSecurityDialogBinding;", 0)};
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -254,18 +273,6 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
             this.mfaEnabled = C12083g.lazy(new WidgetServerSettingsSecurity$ToggleMfaDialog$mfaEnabled$2(this));
         }
 
-        private final WidgetServerSettingsSecurityDialogBinding getBinding() {
-            return (WidgetServerSettingsSecurityDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-        }
-
-        private final long getGuildId() {
-            return ((Number) this.guildId.getValue()).longValue();
-        }
-
-        private final boolean getMfaEnabled() {
-            return ((Boolean) this.mfaEnabled.getValue()).booleanValue();
-        }
-
         public final void configure(final long guildId, final boolean mfaEnabled) {
             if (guildId <= 0) {
                 dismiss();
@@ -282,7 +289,7 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
 
                 /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsSecurity$ToggleMfaDialog$configure$1$1 */
                 /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-                public static final class C93091 extends AbstractC12240o implements Function1<Void, Unit> {
+                public final class C93091 extends AbstractC12240o implements Function1<Void, Unit> {
                     public C93091() {
                         super(1);
                     }
@@ -315,6 +322,18 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
             });
         }
 
+        private final WidgetServerSettingsSecurityDialogBinding getBinding() {
+            return (WidgetServerSettingsSecurityDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
+        }
+
+        private final long getGuildId() {
+            return ((Number) this.guildId.getValue()).longValue();
+        }
+
+        private final boolean getMfaEnabled() {
+            return ((Boolean) this.mfaEnabled.getValue()).booleanValue();
+        }
+
         @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener
         public void onDismiss(DialogInterface dialog) {
             C12238m.checkNotNullParameter(dialog, "dialog");
@@ -326,25 +345,6 @@ public final class WidgetServerSettingsSecurity extends AppFragment {
         public void onViewBoundOrOnResume() {
             super.onViewBoundOrOnResume();
             configure(getGuildId(), getMfaEnabled());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsSecurity$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-    public static final /* synthetic */ class C93111 extends C12236k implements Function1<Model, Unit> {
-        public C93111(WidgetServerSettingsSecurity widgetServerSettingsSecurity) {
-            super(1, widgetServerSettingsSecurity, WidgetServerSettingsSecurity.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsSecurity$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) throws Exception {
-            ((WidgetServerSettingsSecurity) this.receiver).configureUI(model);
         }
     }
 

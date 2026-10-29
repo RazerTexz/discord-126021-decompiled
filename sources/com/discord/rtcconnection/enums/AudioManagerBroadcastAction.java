@@ -19,7 +19,7 @@ public enum AudioManagerBroadcastAction {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.AudioManagerBroadcastAction$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: AudioManagerBroadcastAction.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

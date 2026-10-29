@@ -37,21 +37,6 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
         return guildTemplateEntry.copy(j3, j4, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getUserId() {
-        return this.userId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getGuildTemplateCode() {
-        return this.guildTemplateCode;
-    }
-
     public final GuildTemplateEntry copy(long userId, long messageId, String guildTemplateCode) {
         C12238m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
         return new GuildTemplateEntry(userId, messageId, guildTemplateCode);
@@ -68,6 +53,11 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
         return this.userId == guildTemplateEntry.userId && this.messageId == guildTemplateEntry.messageId && C12238m.areEqual(this.guildTemplateCode, guildTemplateEntry.guildTemplateCode);
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getGuildTemplateCode() {
+        return this.guildTemplateCode;
+    }
+
     public final String getGuildTemplateCode() {
         return this.guildTemplateCode;
     }
@@ -77,6 +67,11 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
     public final long getMessageId() {
         return this.messageId;
     }
@@ -84,6 +79,11 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getUserId() {
+        return this.userId;
     }
 
     public final long getUserId() {

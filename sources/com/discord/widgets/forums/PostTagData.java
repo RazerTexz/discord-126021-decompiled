@@ -16,7 +16,7 @@ public final /* data */ class PostTagData {
     private final String tagName;
 
     /* JADX INFO: compiled from: PostData.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -54,16 +54,6 @@ public final /* data */ class PostTagData {
         return postTagData.copy(messageReactionEmoji, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final MessageReactionEmoji getMessageReactionEmoji() {
-        return this.messageReactionEmoji;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getTagName() {
-        return this.tagName;
-    }
-
     public final PostTagData copy(MessageReactionEmoji messageReactionEmoji, String tagName) {
         C12238m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");
         C12238m.checkNotNullParameter(tagName, "tagName");
@@ -81,8 +71,18 @@ public final /* data */ class PostTagData {
         return C12238m.areEqual(this.messageReactionEmoji, postTagData.messageReactionEmoji) && C12238m.areEqual(this.tagName, postTagData.tagName);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final MessageReactionEmoji getMessageReactionEmoji() {
         return this.messageReactionEmoji;
+    }
+
+    public final MessageReactionEmoji getMessageReactionEmoji() {
+        return this.messageReactionEmoji;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getTagName() {
+        return this.tagName;
     }
 
     public final String getTagName() {

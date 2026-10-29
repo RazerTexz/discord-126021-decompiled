@@ -26,14 +26,6 @@ public class LruCache<K, V> {
         this.map = new LinkedHashMap<>(0, 0.75f, true);
     }
 
-    private int safeSizeOf(K k, V v) {
-        int iSizeOf = sizeOf(k, v);
-        if (iSizeOf >= 0) {
-            return iSizeOf;
-        }
-        throw new IllegalStateException("Negative size: " + k + "=" + v);
-    }
-
     @Nullable
     public V create(@NonNull K k) {
         return null;
@@ -148,6 +140,14 @@ public class LruCache<K, V> {
             this.maxSize = i;
         }
         trimToSize(i);
+    }
+
+    private int safeSizeOf(K k, V v) {
+        int iSizeOf = sizeOf(k, v);
+        if (iSizeOf >= 0) {
+            return iSizeOf;
+        }
+        throw new IllegalStateException("Negative size: " + k + "=" + v);
     }
 
     public final synchronized int size() {

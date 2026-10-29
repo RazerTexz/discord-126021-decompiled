@@ -13,23 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGameOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGameOpened implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver {
+    private final Long applicationId = null;
+    private final Long messageId = null;
+    private final Long numLauncherApplications = null;
+    private final Long otherUserId = null;
+    private final CharSequence partyId = null;
+    private final CharSequence source = null;
     private TrackAfCard trackAfCard;
     private TrackAfGame trackAfGame;
     private TrackBase trackBase;
     private final CharSequence type = null;
-    private final CharSequence source = null;
-    private final Long applicationId = null;
-    private final CharSequence partyId = null;
-    private final Long otherUserId = null;
-    private final Long messageId = null;
-    private final Long numLauncherApplications = null;
     private final transient String analyticsSchemaTypeName = "game_opened";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackGameOpened implements AnalyticsSchema, TrackB
         }
         TrackGameOpened trackGameOpened = (TrackGameOpened) other;
         return C12238m.areEqual(this.type, trackGameOpened.type) && C12238m.areEqual(this.source, trackGameOpened.source) && C12238m.areEqual(this.applicationId, trackGameOpened.applicationId) && C12238m.areEqual(this.partyId, trackGameOpened.partyId) && C12238m.areEqual(this.otherUserId, trackGameOpened.otherUserId) && C12238m.areEqual(this.messageId, trackGameOpened.messageId) && C12238m.areEqual(this.numLauncherApplications, trackGameOpened.numLauncherApplications);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

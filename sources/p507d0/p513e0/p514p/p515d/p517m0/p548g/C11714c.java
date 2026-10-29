@@ -12,15 +12,6 @@ import p507d0.p580t.C12141k;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C11714c {
 
-    /* JADX INFO: renamed from: a */
-    public static final C11716e f24082a = C11716e.special("<root>");
-
-    /* JADX INFO: renamed from: b */
-    public static final Pattern f24083b = Pattern.compile("\\.");
-
-    /* JADX INFO: renamed from: c */
-    public static final Function1<String, C11716e> f24084c = new a();
-
     /* JADX INFO: renamed from: d */
     public final String f24085d;
 
@@ -33,9 +24,18 @@ public final class C11714c {
     /* JADX INFO: renamed from: g */
     public transient C11716e f24088g;
 
+    /* JADX INFO: renamed from: a */
+    public static final C11716e f24082a = C11716e.special("<root>");
+
+    /* JADX INFO: renamed from: b */
+    public static final Pattern f24083b = Pattern.compile("\\.");
+
+    /* JADX INFO: renamed from: c */
+    public static final Function1<String, C11716e> f24084c = new a();
+
     /* JADX INFO: renamed from: d0.e0.p.d.m0.g.c$a */
     /* JADX INFO: compiled from: FqNameUnsafe.java */
-    public static class a implements Function1<String, C11716e> {
+    public final class a implements Function1<String, C11716e> {
         @Override // kotlin.jvm.functions.Function1
         public C11716e invoke(String str) {
             return C11716e.guessByFirstCharacter(str);
@@ -49,6 +49,48 @@ public final class C11714c {
         }
         this.f24085d = str;
         this.f24086e = c11713b;
+    }
+
+    public String asString() {
+        String str = this.f24085d;
+        if (str != null) {
+            return str;
+        }
+        m9818a(4);
+        throw null;
+    }
+
+    public C11714c child(C11716e c11716e) {
+        String strAsString;
+        if (c11716e == null) {
+            m9818a(9);
+            throw null;
+        }
+        if (isRoot()) {
+            strAsString = c11716e.asString();
+        } else {
+            strAsString = this.f24085d + "." + c11716e.asString();
+        }
+        return new C11714c(strAsString, this, c11716e);
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        return (obj instanceof C11714c) && this.f24085d.equals(((C11714c) obj).f24085d);
+    }
+
+    public int hashCode() {
+        return this.f24085d.hashCode();
+    }
+
+    public boolean isRoot() {
+        return this.f24085d.isEmpty();
+    }
+
+    public boolean isSafe() {
+        return this.f24086e != null || asString().indexOf(60) < 0;
     }
 
     /* JADX INFO: renamed from: a */
@@ -210,23 +252,6 @@ public final class C11714c {
         }
     }
 
-    public static C11714c topLevel(C11716e c11716e) {
-        if (c11716e != null) {
-            return new C11714c(c11716e.asString(), C11713b.f24079a.toUnsafe(), c11716e);
-        }
-        m9818a(16);
-        throw null;
-    }
-
-    public String asString() {
-        String str = this.f24085d;
-        if (str != null) {
-            return str;
-        }
-        m9818a(4);
-        throw null;
-    }
-
     /* JADX INFO: renamed from: b */
     public final void m9819b() {
         int iLastIndexOf = this.f24085d.lastIndexOf(46);
@@ -237,39 +262,6 @@ public final class C11714c {
             this.f24088g = C11716e.guessByFirstCharacter(this.f24085d);
             this.f24087f = C11713b.f24079a.toUnsafe();
         }
-    }
-
-    public C11714c child(C11716e c11716e) {
-        String strAsString;
-        if (c11716e == null) {
-            m9818a(9);
-            throw null;
-        }
-        if (isRoot()) {
-            strAsString = c11716e.asString();
-        } else {
-            strAsString = this.f24085d + "." + c11716e.asString();
-        }
-        return new C11714c(strAsString, this, c11716e);
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        return (obj instanceof C11714c) && this.f24085d.equals(((C11714c) obj).f24085d);
-    }
-
-    public int hashCode() {
-        return this.f24085d.hashCode();
-    }
-
-    public boolean isRoot() {
-        return this.f24085d.isEmpty();
-    }
-
-    public boolean isSafe() {
-        return this.f24086e != null || asString().indexOf(60) < 0;
     }
 
     public C11714c parent() {
@@ -381,6 +373,14 @@ public final class C11714c {
             return strAsString;
         }
         m9818a(17);
+        throw null;
+    }
+
+    public static C11714c topLevel(C11716e c11716e) {
+        if (c11716e != null) {
+            return new C11714c(c11716e.asString(), C11713b.f24079a.toUnsafe(), c11716e);
+        }
+        m9818a(16);
         throw null;
     }
 

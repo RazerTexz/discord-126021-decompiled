@@ -22,7 +22,7 @@ public final class C11991o0 extends AbstractC12014x0 {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.o0$a */
     /* JADX INFO: compiled from: StarProjectionImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
+    public final class a extends AbstractC12240o implements Function0<AbstractC11913c0> {
         public a() {
             super(0);
         }

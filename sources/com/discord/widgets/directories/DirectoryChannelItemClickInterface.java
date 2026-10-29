@@ -7,7 +7,7 @@ import com.discord.api.directory.DirectoryEntryGuild;
 public interface DirectoryChannelItemClickInterface {
 
     /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public static final class DefaultImpls {
+    public final class DefaultImpls {
         public static void onAddServerClicked(DirectoryChannelItemClickInterface directoryChannelItemClickInterface) {
         }
     }

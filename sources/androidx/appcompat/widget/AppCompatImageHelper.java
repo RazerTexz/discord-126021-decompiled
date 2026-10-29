@@ -52,14 +52,6 @@ public class AppCompatImageHelper {
         return true;
     }
 
-    private boolean shouldApplyFrameworkTintUsingColorFilter() {
-        int i = Build.VERSION.SDK_INT;
-        if (i > 21) {
-            return this.mInternalImageTint != null;
-        }
-        return i == 21;
-    }
-
     public void applySupportImageTint() {
         Drawable drawable = this.mView.getDrawable();
         if (drawable != null) {
@@ -174,5 +166,13 @@ public class AppCompatImageHelper {
         tintInfo.mTintMode = mode;
         tintInfo.mHasTintMode = true;
         applySupportImageTint();
+    }
+
+    private boolean shouldApplyFrameworkTintUsingColorFilter() {
+        int i = Build.VERSION.SDK_INT;
+        if (i > 21) {
+            return this.mInternalImageTint != null;
+        }
+        return i == 21;
     }
 }

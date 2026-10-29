@@ -7,9 +7,6 @@ import com.facebook.cache.common.CacheKey;
 /* JADX INFO: loaded from: classes.dex */
 public class C1666i {
 
-    /* JADX INFO: renamed from: a */
-    public static final Object f3072a = new Object();
-
     /* JADX INFO: renamed from: b */
     public static C1666i f3073b;
 
@@ -21,6 +18,9 @@ public class C1666i {
 
     /* JADX INFO: renamed from: e */
     public C1666i f3076e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Object f3072a = new Object();
 
     /* JADX INFO: renamed from: a */
     public static C1666i m961a() {

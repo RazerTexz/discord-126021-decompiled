@@ -42,7 +42,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$a */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public /* synthetic */ class a extends C12235j implements Function1<Member, Boolean> {
+    public final /* synthetic */ class a extends C12235j implements Function1<Member, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final a f23047j = new a();
@@ -80,7 +80,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$b */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public /* synthetic */ class b extends C12235j implements Function1<Constructor<?>, C11434m> {
+    public final /* synthetic */ class b extends C12235j implements Function1<Constructor<?>, C11434m> {
 
         /* JADX INFO: renamed from: j */
         public static final b f23048j = new b();
@@ -113,7 +113,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$c */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public /* synthetic */ class c extends C12235j implements Function1<Member, Boolean> {
+    public final /* synthetic */ class c extends C12235j implements Function1<Member, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final c f23049j = new c();
@@ -151,7 +151,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$d */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public /* synthetic */ class d extends C12235j implements Function1<Field, C11437p> {
+    public final /* synthetic */ class d extends C12235j implements Function1<Field, C11437p> {
 
         /* JADX INFO: renamed from: j */
         public static final d f23050j = new d();
@@ -184,7 +184,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$e */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public static final class e extends AbstractC12240o implements Function1<Class<?>, Boolean> {
+    public final class e extends AbstractC12240o implements Function1<Class<?>, Boolean> {
 
         /* JADX INFO: renamed from: j */
         public static final e f23051j = new e();
@@ -208,7 +208,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$f */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public static final class f extends AbstractC12240o implements Function1<Class<?>, C11716e> {
+    public final class f extends AbstractC12240o implements Function1<Class<?>, C11716e> {
 
         /* JADX INFO: renamed from: j */
         public static final f f23052j = new f();
@@ -232,7 +232,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$g */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public static final class g extends AbstractC12240o implements Function1<Method, Boolean> {
+    public final class g extends AbstractC12240o implements Function1<Method, Boolean> {
         public g() {
             super(1);
         }
@@ -260,7 +260,7 @@ public final class C11431j extends AbstractC11435n implements InterfaceC11427f, 
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.j$h */
     /* JADX INFO: compiled from: ReflectJavaClass.kt */
-    public /* synthetic */ class h extends C12235j implements Function1<Method, C11440s> {
+    public final /* synthetic */ class h extends C12235j implements Function1<Method, C11440s> {
 
         /* JADX INFO: renamed from: j */
         public static final h f23053j = new h();

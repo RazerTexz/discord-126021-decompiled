@@ -13,9 +13,11 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
     private static final int BASE_SIZE = 4;
     private static final int CACHE_SIZE = 10;
     private static final boolean DEBUG = false;
-    private static final int[] INT = new int[0];
-    private static final Object[] OBJECT = new Object[0];
     private static final String TAG = "ArraySet";
+    public Object[] mArray;
+    private MapCollections<E, E> mCollections;
+    private int[] mHashes;
+    public int mSize;
 
     @Nullable
     private static Object[] sBaseCache;
@@ -24,13 +26,73 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
     @Nullable
     private static Object[] sTwiceBaseCache;
     private static int sTwiceBaseCacheSize;
-    public Object[] mArray;
-    private MapCollections<E, E> mCollections;
-    private int[] mHashes;
-    public int mSize;
+    private static final int[] INT = new int[0];
+    private static final Object[] OBJECT = new Object[0];
 
     public ArraySet() {
         this(0);
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public boolean add(@Nullable E e) {
+        int i;
+        int iIndexOf;
+        if (e == null) {
+            iIndexOf = indexOfNull();
+            i = 0;
+        } else {
+            int iHashCode = e.hashCode();
+            i = iHashCode;
+            iIndexOf = indexOf(e, iHashCode);
+        }
+        if (iIndexOf >= 0) {
+            return false;
+        }
+        int i2 = ~iIndexOf;
+        int i3 = this.mSize;
+        int[] iArr = this.mHashes;
+        if (i3 >= iArr.length) {
+            int i4 = 4;
+            if (i3 >= 8) {
+                i4 = (i3 >> 1) + i3;
+            } else if (i3 >= 4) {
+                i4 = 8;
+            }
+            Object[] objArr = this.mArray;
+            allocArrays(i4);
+            int[] iArr2 = this.mHashes;
+            if (iArr2.length > 0) {
+                System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
+                System.arraycopy(objArr, 0, this.mArray, 0, objArr.length);
+            }
+            freeArrays(iArr, objArr, this.mSize);
+        }
+        int i5 = this.mSize;
+        if (i2 < i5) {
+            int[] iArr3 = this.mHashes;
+            int i6 = i2 + 1;
+            System.arraycopy(iArr3, i2, iArr3, i6, i5 - i2);
+            Object[] objArr2 = this.mArray;
+            System.arraycopy(objArr2, i2, objArr2, i6, this.mSize - i2);
+        }
+        this.mHashes[i2] = i;
+        this.mArray[i2] = e;
+        this.mSize++;
+        return true;
+    }
+
+    public void addAll(@NonNull ArraySet<? extends E> arraySet) {
+        int i = arraySet.mSize;
+        ensureCapacity(this.mSize + i);
+        if (this.mSize != 0) {
+            for (int i2 = 0; i2 < i; i2++) {
+                add(arraySet.valueAt(i2));
+            }
+        } else if (i > 0) {
+            System.arraycopy(arraySet.mHashes, 0, this.mHashes, 0, i);
+            System.arraycopy(arraySet.mArray, 0, this.mArray, 0, i);
+            this.mSize = i;
+        }
     }
 
     private void allocArrays(int i) {
@@ -63,6 +125,70 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
         }
         this.mHashes = new int[i];
         this.mArray = new Object[i];
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public void clear() {
+        int i = this.mSize;
+        if (i != 0) {
+            freeArrays(this.mHashes, this.mArray, i);
+            this.mHashes = INT;
+            this.mArray = OBJECT;
+            this.mSize = 0;
+        }
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public boolean contains(@Nullable Object obj) {
+        return indexOf(obj) >= 0;
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public boolean containsAll(@NonNull Collection<?> collection) {
+        Iterator<?> it = collection.iterator();
+        while (it.hasNext()) {
+            if (!contains(it.next())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void ensureCapacity(int i) {
+        int[] iArr = this.mHashes;
+        if (iArr.length < i) {
+            Object[] objArr = this.mArray;
+            allocArrays(i);
+            int i2 = this.mSize;
+            if (i2 > 0) {
+                System.arraycopy(iArr, 0, this.mHashes, 0, i2);
+                System.arraycopy(objArr, 0, this.mArray, 0, this.mSize);
+            }
+            freeArrays(iArr, objArr, this.mSize);
+        }
+    }
+
+    @Override // java.util.Collection, java.util.Set
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            if (size() != set.size()) {
+                return false;
+            }
+            for (int i = 0; i < this.mSize; i++) {
+                try {
+                    if (!set.contains(valueAt(i))) {
+                        return false;
+                    }
+                } catch (ClassCastException | NullPointerException unused) {
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     private static void freeArrays(int[] iArr, Object[] objArr, int i) {
@@ -147,6 +273,17 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
         return this.mCollections;
     }
 
+    @Override // java.util.Collection, java.util.Set
+    public int hashCode() {
+        int[] iArr = this.mHashes;
+        int i = this.mSize;
+        int i2 = 0;
+        for (int i3 = 0; i3 < i; i3++) {
+            i2 += iArr[i3];
+        }
+        return i2;
+    }
+
     private int indexOf(Object obj, int i) {
         int i2 = this.mSize;
         if (i2 == 0) {
@@ -193,143 +330,6 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
             }
         }
         return ~i2;
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public boolean add(@Nullable E e) {
-        int i;
-        int iIndexOf;
-        if (e == null) {
-            iIndexOf = indexOfNull();
-            i = 0;
-        } else {
-            int iHashCode = e.hashCode();
-            i = iHashCode;
-            iIndexOf = indexOf(e, iHashCode);
-        }
-        if (iIndexOf >= 0) {
-            return false;
-        }
-        int i2 = ~iIndexOf;
-        int i3 = this.mSize;
-        int[] iArr = this.mHashes;
-        if (i3 >= iArr.length) {
-            int i4 = 4;
-            if (i3 >= 8) {
-                i4 = (i3 >> 1) + i3;
-            } else if (i3 >= 4) {
-                i4 = 8;
-            }
-            Object[] objArr = this.mArray;
-            allocArrays(i4);
-            int[] iArr2 = this.mHashes;
-            if (iArr2.length > 0) {
-                System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
-                System.arraycopy(objArr, 0, this.mArray, 0, objArr.length);
-            }
-            freeArrays(iArr, objArr, this.mSize);
-        }
-        int i5 = this.mSize;
-        if (i2 < i5) {
-            int[] iArr3 = this.mHashes;
-            int i6 = i2 + 1;
-            System.arraycopy(iArr3, i2, iArr3, i6, i5 - i2);
-            Object[] objArr2 = this.mArray;
-            System.arraycopy(objArr2, i2, objArr2, i6, this.mSize - i2);
-        }
-        this.mHashes[i2] = i;
-        this.mArray[i2] = e;
-        this.mSize++;
-        return true;
-    }
-
-    public void addAll(@NonNull ArraySet<? extends E> arraySet) {
-        int i = arraySet.mSize;
-        ensureCapacity(this.mSize + i);
-        if (this.mSize != 0) {
-            for (int i2 = 0; i2 < i; i2++) {
-                add(arraySet.valueAt(i2));
-            }
-        } else if (i > 0) {
-            System.arraycopy(arraySet.mHashes, 0, this.mHashes, 0, i);
-            System.arraycopy(arraySet.mArray, 0, this.mArray, 0, i);
-            this.mSize = i;
-        }
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public void clear() {
-        int i = this.mSize;
-        if (i != 0) {
-            freeArrays(this.mHashes, this.mArray, i);
-            this.mHashes = INT;
-            this.mArray = OBJECT;
-            this.mSize = 0;
-        }
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public boolean contains(@Nullable Object obj) {
-        return indexOf(obj) >= 0;
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public boolean containsAll(@NonNull Collection<?> collection) {
-        Iterator<?> it = collection.iterator();
-        while (it.hasNext()) {
-            if (!contains(it.next())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void ensureCapacity(int i) {
-        int[] iArr = this.mHashes;
-        if (iArr.length < i) {
-            Object[] objArr = this.mArray;
-            allocArrays(i);
-            int i2 = this.mSize;
-            if (i2 > 0) {
-                System.arraycopy(iArr, 0, this.mHashes, 0, i2);
-                System.arraycopy(objArr, 0, this.mArray, 0, this.mSize);
-            }
-            freeArrays(iArr, objArr, this.mSize);
-        }
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            if (size() != set.size()) {
-                return false;
-            }
-            for (int i = 0; i < this.mSize; i++) {
-                try {
-                    if (!set.contains(valueAt(i))) {
-                        return false;
-                    }
-                } catch (ClassCastException | NullPointerException unused) {
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override // java.util.Collection, java.util.Set
-    public int hashCode() {
-        int[] iArr = this.mHashes;
-        int i = this.mSize;
-        int i2 = 0;
-        for (int i3 = 0; i3 < i; i3++) {
-            i2 += iArr[i3];
-        }
-        return i2;
     }
 
     @Override // java.util.Collection, java.util.Set

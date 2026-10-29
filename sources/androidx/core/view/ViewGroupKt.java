@@ -20,7 +20,7 @@ public final class ViewGroupKt {
 
     /* JADX INFO: renamed from: androidx.core.view.ViewGroupKt$iterator$1 */
     /* JADX INFO: compiled from: ViewGroup.kt */
-    public static final class C02881 implements Iterator<View>, InterfaceC12228a {
+    public final class C02881 implements Iterator<View>, InterfaceC12228a {
         public final /* synthetic */ ViewGroup $this_iterator;
         private int index;
 
@@ -167,11 +167,6 @@ public final class ViewGroupKt {
         marginLayoutParams.setMargins(i, i, i, i);
     }
 
-    public static final void updateMargins(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
-        C12238m.checkNotNullParameter(marginLayoutParams, "<this>");
-        marginLayoutParams.setMargins(i, i2, i3, i4);
-    }
-
     public static /* synthetic */ void updateMargins$default(ViewGroup.MarginLayoutParams marginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
             i = marginLayoutParams.leftMargin;
@@ -189,13 +184,9 @@ public final class ViewGroupKt {
         marginLayoutParams.setMargins(i, i2, i3, i4);
     }
 
-    @RequiresApi(17)
-    public static final void updateMarginsRelative(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
+    public static final void updateMargins(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
         C12238m.checkNotNullParameter(marginLayoutParams, "<this>");
-        marginLayoutParams.setMarginStart(i);
-        marginLayoutParams.topMargin = i2;
-        marginLayoutParams.setMarginEnd(i3);
-        marginLayoutParams.bottomMargin = i4;
+        marginLayoutParams.setMargins(i, i2, i3, i4);
     }
 
     public static /* synthetic */ void updateMarginsRelative$default(ViewGroup.MarginLayoutParams marginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
@@ -211,6 +202,15 @@ public final class ViewGroupKt {
         if ((i5 & 8) != 0) {
             i4 = marginLayoutParams.bottomMargin;
         }
+        C12238m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMarginStart(i);
+        marginLayoutParams.topMargin = i2;
+        marginLayoutParams.setMarginEnd(i3);
+        marginLayoutParams.bottomMargin = i4;
+    }
+
+    @RequiresApi(17)
+    public static final void updateMarginsRelative(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
         C12238m.checkNotNullParameter(marginLayoutParams, "<this>");
         marginLayoutParams.setMarginStart(i);
         marginLayoutParams.topMargin = i2;

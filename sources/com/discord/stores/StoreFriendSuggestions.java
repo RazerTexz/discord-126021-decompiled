@@ -27,7 +27,7 @@ public final class StoreFriendSuggestions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreFriendSuggestions$updateFriendSuggestions$1 */
     /* JADX INFO: compiled from: StoreFriendSuggestions.kt */
-    public static final class C59411 extends AbstractC12240o implements Function0<Unit> {
+    public final class C59411 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $suggestions;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

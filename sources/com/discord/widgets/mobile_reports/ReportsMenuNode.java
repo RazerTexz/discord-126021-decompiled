@@ -62,7 +62,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.ReportsMenuNode$setupBottomButton$1 */
     /* JADX INFO: compiled from: ReportsMenuNode.kt */
-    public static final /* synthetic */ class C90811 extends C12236k implements Function1<ReportNodeBottomButton, Unit> {
+    public final /* synthetic */ class C90811 extends C12236k implements Function1<ReportNodeBottomButton, Unit> {
         public C90811(ReportsMenuNode reportsMenuNode) {
             super(1, reportsMenuNode, ReportsMenuNode.class, "bottomButtonClickListener", "bottomButtonClickListener(Lcom/discord/api/report/ReportNodeBottomButton;)V", 0);
         }
@@ -129,6 +129,67 @@ public final class ReportsMenuNode extends ConstraintLayout {
             return;
         }
         function2.invoke(destination, nodeState);
+    }
+
+    public final Function0<Unit> getHandleBlock() {
+        return this.handleBlock;
+    }
+
+    public final Function0<Unit> getHandleCancel() {
+        return this.handleCancel;
+    }
+
+    public final Function1<ReportNodeBottomButton, Unit> getHandlePressBottomButton() {
+        return this.handlePressBottomButton;
+    }
+
+    public final Function2<ReportNodeChild, MobileReportsViewModel.NodeState, Unit> getHandleSelectChild() {
+        return this.handleSelectChild;
+    }
+
+    public final Function0<Unit> getHandleSubmit() {
+        return this.handleSubmit;
+    }
+
+    /* JADX INFO: renamed from: getViewState, reason: from getter */
+    public final MobileReportsViewModel.NodeState getPrevViewState() {
+        return this.prevViewState;
+    }
+
+    public final void setHandleBlock(Function0<Unit> function0) {
+        this.handleBlock = function0;
+    }
+
+    public final void setHandleCancel(Function0<Unit> function0) {
+        this.handleCancel = function0;
+    }
+
+    public final void setHandlePressBottomButton(Function1<? super ReportNodeBottomButton, Unit> function1) {
+        this.handlePressBottomButton = function1;
+    }
+
+    public final void setHandleSelectChild(Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> function2) {
+        this.handleSelectChild = function2;
+    }
+
+    public final void setHandleSubmit(Function0<Unit> function0) {
+        this.handleSubmit = function0;
+    }
+
+    public final void setup(MobileReportsViewModel.NodeState viewState) {
+        C12238m.checkNotNullParameter(viewState, "viewState");
+        setupSuccess(viewState.getSuccessElement());
+        setupMessagePreview(viewState);
+        setupChannelPreview(viewState);
+        setupDirectoryServerPreview(viewState);
+        setupEventPreview(viewState);
+        setupBreadCrumbs(viewState);
+        setupTextElements(viewState);
+        setupChildren(viewState);
+        setupCheckbox(viewState);
+        setupBottomButton(viewState);
+        setupBlockUser(viewState);
+        this.prevViewState = viewState;
     }
 
     private final void setupBlockUser(MobileReportsViewModel.NodeState viewState) {
@@ -386,67 +447,6 @@ public final class ReportsMenuNode extends ConstraintLayout {
         TextView textView2 = this.binding.f15543o;
         C12238m.checkNotNullExpressionValue(textView2, "binding.mobileReportsNodeInfoText");
         C1107b.m223o(textView2, info, new Object[0], null, 4);
-    }
-
-    public final Function0<Unit> getHandleBlock() {
-        return this.handleBlock;
-    }
-
-    public final Function0<Unit> getHandleCancel() {
-        return this.handleCancel;
-    }
-
-    public final Function1<ReportNodeBottomButton, Unit> getHandlePressBottomButton() {
-        return this.handlePressBottomButton;
-    }
-
-    public final Function2<ReportNodeChild, MobileReportsViewModel.NodeState, Unit> getHandleSelectChild() {
-        return this.handleSelectChild;
-    }
-
-    public final Function0<Unit> getHandleSubmit() {
-        return this.handleSubmit;
-    }
-
-    /* JADX INFO: renamed from: getViewState, reason: from getter */
-    public final MobileReportsViewModel.NodeState getPrevViewState() {
-        return this.prevViewState;
-    }
-
-    public final void setHandleBlock(Function0<Unit> function0) {
-        this.handleBlock = function0;
-    }
-
-    public final void setHandleCancel(Function0<Unit> function0) {
-        this.handleCancel = function0;
-    }
-
-    public final void setHandlePressBottomButton(Function1<? super ReportNodeBottomButton, Unit> function1) {
-        this.handlePressBottomButton = function1;
-    }
-
-    public final void setHandleSelectChild(Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> function2) {
-        this.handleSelectChild = function2;
-    }
-
-    public final void setHandleSubmit(Function0<Unit> function0) {
-        this.handleSubmit = function0;
-    }
-
-    public final void setup(MobileReportsViewModel.NodeState viewState) {
-        C12238m.checkNotNullParameter(viewState, "viewState");
-        setupSuccess(viewState.getSuccessElement());
-        setupMessagePreview(viewState);
-        setupChannelPreview(viewState);
-        setupDirectoryServerPreview(viewState);
-        setupEventPreview(viewState);
-        setupBreadCrumbs(viewState);
-        setupTextElements(viewState);
-        setupChildren(viewState);
-        setupCheckbox(viewState);
-        setupBottomButton(viewState);
-        setupBlockUser(viewState);
-        this.prevViewState = viewState;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

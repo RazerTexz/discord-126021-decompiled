@@ -66,8 +66,80 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private RadioManager notificationSettingsRadioManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$configureNotificationRadios$1 */
     /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public static final class Companion {
+    public final class C75871 extends AbstractC12240o implements Function3<Model, CheckedSetting, Integer, Unit> {
+        public final /* synthetic */ Ref$IntRef $notificationSetting;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C75871(Ref$IntRef ref$IntRef) {
+            super(3);
+            this.$notificationSetting = ref$IntRef;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Model model, CheckedSetting checkedSetting, Integer num) {
+            invoke(model, checkedSetting, num.intValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(final Model model, CheckedSetting checkedSetting, final int i) {
+            C12238m.checkNotNullParameter(model, "$this$configureNotificationRadio");
+            C12238m.checkNotNullParameter(checkedSetting, "radio");
+            if (model.isGuildMuted() || model.getChannelIsMuted()) {
+                checkedSetting.m8525b(C5419R.string.channel_or_guild_muted);
+            } else {
+                checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings.configureNotificationRadios.1.1
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        StoreStream.INSTANCE.getUserGuildSettings().setChannelFrequency(C1643a.m885x(view, "it", "it.context"), model.getChannel(), i);
+                    }
+                });
+            }
+            if (model.isAboveNotifyAllSize() && i == ModelNotificationSettings.FREQUENCY_ALL) {
+                CharSequence charSequenceM213e = C1107b.m213e(WidgetChannelNotificationSettings.this, C5419R.string.large_guild_notify_all_messages_description, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null);
+                int i2 = CheckedSetting.f19010j;
+                checkedSetting.m8530h(charSequenceM213e, false);
+            } else {
+                int i3 = CheckedSetting.f19010j;
+                checkedSetting.m8530h(null, false);
+            }
+            boolean z2 = this.$notificationSetting.element == i;
+            checkedSetting.setButtonAlpha((z2 && model.getNotificationSettingIsInherited()) ? 0.3f : 1.0f);
+            if (z2) {
+                WidgetChannelNotificationSettings.access$getNotificationSettingsRadioManager$p(WidgetChannelNotificationSettings.this).m8550a(checkedSetting);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$onViewBoundOrOnResume$2 */
+    /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
+    public final class C75892 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C75892() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            if (model != null) {
+                WidgetChannelNotificationSettings.this.configureUI(model);
+                return;
+            }
+            FragmentActivity fragmentActivityM95e = WidgetChannelNotificationSettings.this.m95e();
+            if (fragmentActivityM95e != null) {
+                fragmentActivityM95e.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -91,7 +163,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -110,7 +182,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         private final Integer parentNotificationSetting;
 
         /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -205,61 +277,6 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
             this.canAccessRedesignedForumChannels = z6;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Channel getChannel() {
-            return this.channel;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getIsAboveNotifyAllSize() {
-            return this.isAboveNotifyAllSize;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getCanAccessRedesignedForumChannels() {
-            return this.canAccessRedesignedForumChannels;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getChannelIsMuted() {
-            return this.channelIsMuted;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getChannelMuteEndTime() {
-            return this.channelMuteEndTime;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getIsGuildMuted() {
-            return this.isGuildMuted;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final int getNotificationSetting() {
-            return this.notificationSetting;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getChannelOverrideFlags() {
-            return this.channelOverrideFlags;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Integer getForumPostNotificationSetting() {
-            return this.forumPostNotificationSetting;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Integer getParentNotificationSetting() {
-            return this.parentNotificationSetting;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getNotificationSettingIsInherited() {
-            return this.notificationSettingIsInherited;
-        }
-
         public final Model copy(Channel channel, boolean channelIsMuted, String channelMuteEndTime, boolean isGuildMuted, int notificationSetting, Integer channelOverrideFlags, Integer forumPostNotificationSetting, Integer parentNotificationSetting, boolean notificationSettingIsInherited, boolean isAboveNotifyAllSize, boolean canAccessRedesignedForumChannels) {
             C12238m.checkNotNullParameter(channel, "channel");
             return new Model(channel, channelIsMuted, channelMuteEndTime, isGuildMuted, notificationSetting, channelOverrideFlags, forumPostNotificationSetting, parentNotificationSetting, notificationSettingIsInherited, isAboveNotifyAllSize, canAccessRedesignedForumChannels);
@@ -276,36 +293,91 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
             return C12238m.areEqual(this.channel, model.channel) && this.channelIsMuted == model.channelIsMuted && C12238m.areEqual(this.channelMuteEndTime, model.channelMuteEndTime) && this.isGuildMuted == model.isGuildMuted && this.notificationSetting == model.notificationSetting && C12238m.areEqual(this.channelOverrideFlags, model.channelOverrideFlags) && C12238m.areEqual(this.forumPostNotificationSetting, model.forumPostNotificationSetting) && C12238m.areEqual(this.parentNotificationSetting, model.parentNotificationSetting) && this.notificationSettingIsInherited == model.notificationSettingIsInherited && this.isAboveNotifyAllSize == model.isAboveNotifyAllSize && this.canAccessRedesignedForumChannels == model.canAccessRedesignedForumChannels;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
         public final boolean getCanAccessRedesignedForumChannels() {
             return this.canAccessRedesignedForumChannels;
+        }
+
+        public final boolean getCanAccessRedesignedForumChannels() {
+            return this.canAccessRedesignedForumChannels;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
         }
 
         public final Channel getChannel() {
             return this.channel;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getChannelIsMuted() {
             return this.channelIsMuted;
+        }
+
+        public final boolean getChannelIsMuted() {
+            return this.channelIsMuted;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getChannelMuteEndTime() {
+            return this.channelMuteEndTime;
         }
 
         public final String getChannelMuteEndTime() {
             return this.channelMuteEndTime;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Integer getChannelOverrideFlags() {
             return this.channelOverrideFlags;
+        }
+
+        public final Integer getChannelOverrideFlags() {
+            return this.channelOverrideFlags;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final Integer getForumPostNotificationSetting() {
+            return this.forumPostNotificationSetting;
         }
 
         public final Integer getForumPostNotificationSetting() {
             return this.forumPostNotificationSetting;
         }
 
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final boolean getIsAboveNotifyAllSize() {
+            return this.isAboveNotifyAllSize;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsGuildMuted() {
+            return this.isGuildMuted;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final int getNotificationSetting() {
             return this.notificationSetting;
         }
 
+        public final int getNotificationSetting() {
+            return this.notificationSetting;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
         public final boolean getNotificationSettingIsInherited() {
             return this.notificationSettingIsInherited;
+        }
+
+        public final boolean getNotificationSettingIsInherited() {
+            return this.notificationSettingIsInherited;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Integer getParentNotificationSetting() {
+            return this.parentNotificationSetting;
         }
 
         public final Integer getParentNotificationSetting() {
@@ -402,78 +474,6 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
             sbM833U.append(this.isAboveNotifyAllSize);
             sbM833U.append(", canAccessRedesignedForumChannels=");
             return C1643a.m827O(sbM833U, this.canAccessRedesignedForumChannels, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$configureNotificationRadios$1 */
-    /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public static final class C75871 extends AbstractC12240o implements Function3<Model, CheckedSetting, Integer, Unit> {
-        public final /* synthetic */ Ref$IntRef $notificationSetting;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C75871(Ref$IntRef ref$IntRef) {
-            super(3);
-            this.$notificationSetting = ref$IntRef;
-        }
-
-        @Override // kotlin.jvm.functions.Function3
-        public /* bridge */ /* synthetic */ Unit invoke(Model model, CheckedSetting checkedSetting, Integer num) {
-            invoke(model, checkedSetting, num.intValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(final Model model, CheckedSetting checkedSetting, final int i) {
-            C12238m.checkNotNullParameter(model, "$this$configureNotificationRadio");
-            C12238m.checkNotNullParameter(checkedSetting, "radio");
-            if (model.isGuildMuted() || model.getChannelIsMuted()) {
-                checkedSetting.m8525b(C5419R.string.channel_or_guild_muted);
-            } else {
-                checkedSetting.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings.configureNotificationRadios.1.1
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        StoreStream.INSTANCE.getUserGuildSettings().setChannelFrequency(C1643a.m885x(view, "it", "it.context"), model.getChannel(), i);
-                    }
-                });
-            }
-            if (model.isAboveNotifyAllSize() && i == ModelNotificationSettings.FREQUENCY_ALL) {
-                CharSequence charSequenceM213e = C1107b.m213e(WidgetChannelNotificationSettings.this, C5419R.string.large_guild_notify_all_messages_description, new Object[0], (4 & 4) != 0 ? C1107b.a.f1490j : null);
-                int i2 = CheckedSetting.f19010j;
-                checkedSetting.m8530h(charSequenceM213e, false);
-            } else {
-                int i3 = CheckedSetting.f19010j;
-                checkedSetting.m8530h(null, false);
-            }
-            boolean z2 = this.$notificationSetting.element == i;
-            checkedSetting.setButtonAlpha((z2 && model.getNotificationSettingIsInherited()) ? 0.3f : 1.0f);
-            if (z2) {
-                WidgetChannelNotificationSettings.access$getNotificationSettingsRadioManager$p(WidgetChannelNotificationSettings.this).m8550a(checkedSetting);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public static final class C75892 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C75892() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            if (model != null) {
-                WidgetChannelNotificationSettings.this.configureUI(model);
-                return;
-            }
-            FragmentActivity fragmentActivityM95e = WidgetChannelNotificationSettings.this.m95e();
-            if (fragmentActivityM95e != null) {
-                fragmentActivityM95e.finish();
-            }
         }
     }
 

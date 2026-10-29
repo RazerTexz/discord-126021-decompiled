@@ -14,6 +14,17 @@ public final /* data */ class ButtonComponent extends ActionComponent {
     private final ComponentType type;
     private final String url;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ButtonComponent)) {
+            return false;
+        }
+        ButtonComponent buttonComponent = (ButtonComponent) other;
+        return C12238m.areEqual(this.type, buttonComponent.type) && C12238m.areEqual(this.customId, buttonComponent.customId) && C12238m.areEqual(this.label, buttonComponent.label) && C12238m.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && C12238m.areEqual(this.emoji, buttonComponent.emoji) && C12238m.areEqual(this.url, buttonComponent.url);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getCustomId() {
         return this.customId;
@@ -39,25 +50,14 @@ public final /* data */ class ButtonComponent extends ActionComponent {
         return this.style;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ButtonComponent)) {
-            return false;
-        }
-        ButtonComponent buttonComponent = (ButtonComponent) other;
-        return C12238m.areEqual(this.type, buttonComponent.type) && C12238m.areEqual(this.customId, buttonComponent.customId) && C12238m.areEqual(this.label, buttonComponent.label) && C12238m.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && C12238m.areEqual(this.emoji, buttonComponent.emoji) && C12238m.areEqual(this.url, buttonComponent.url);
+    @Override // com.discord.api.botuikit.Component
+    public ComponentType getType() {
+        return this.type;
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
     public final String getUrl() {
         return this.url;
-    }
-
-    @Override // com.discord.api.botuikit.Component
-    public ComponentType getType() {
-        return this.type;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

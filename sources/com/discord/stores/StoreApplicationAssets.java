@@ -34,16 +34,16 @@ public final class StoreApplicationAssets extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$fetchIfNonExisting$1 */
     /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-    public static final class C56971 extends AbstractC12240o implements Function0<Unit> {
+    public final class C56971 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $appId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$fetchIfNonExisting$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ApplicationAsset>, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends ApplicationAsset>, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$fetchIfNonExisting$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-            public static final class C132471 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132471 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ List $applicationAssets;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -85,11 +85,11 @@ public final class StoreApplicationAssets extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$fetchIfNonExisting$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$fetchIfNonExisting$1$2$1, reason: invalid class name */
             /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -146,7 +146,7 @@ public final class StoreApplicationAssets extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationAssets$observeEmbeddedAppBackgrounds$1 */
     /* JADX INFO: compiled from: StoreApplicationAssets.kt */
-    public static final class C56981 extends AbstractC12240o implements Function0<Map<Long, ? extends ApplicationAsset>> {
+    public final class C56981 extends AbstractC12240o implements Function0<Map<Long, ? extends ApplicationAsset>> {
         public C56981() {
             super(0);
         }
@@ -159,6 +159,14 @@ public final class StoreApplicationAssets extends StoreV2 {
 
     public /* synthetic */ StoreApplicationAssets(Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
+    }
+
+    public final void fetchIfNonExisting(long appId) {
+        this.dispatcher.schedule(new C56971(appId));
+    }
+
+    public final Map<Long, ApplicationAsset> getEmbeddedAppBackgrounds() {
+        return this.embeddedAppBackgroundsSnapshot;
     }
 
     @StoreThread
@@ -177,14 +185,6 @@ public final class StoreApplicationAssets extends StoreV2 {
             this.embeddedAppBackgrounds.put(Long.valueOf(applicationId), applicationAsset);
             markChanged();
         }
-    }
-
-    public final void fetchIfNonExisting(long appId) {
-        this.dispatcher.schedule(new C56971(appId));
-    }
-
-    public final Map<Long, ApplicationAsset> getEmbeddedAppBackgrounds() {
-        return this.embeddedAppBackgroundsSnapshot;
     }
 
     public final Observable<Map<Long, ApplicationAsset>> observeEmbeddedAppBackgrounds() {

@@ -9,10 +9,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 public class ArgbEvaluator implements TypeEvaluator {
     private static final ArgbEvaluator sInstance = new ArgbEvaluator();
 
-    public static ArgbEvaluator getInstance() {
-        return sInstance;
-    }
-
     @Override // android.animation.TypeEvaluator
     public Object evaluate(float f, Object obj, Object obj2) {
         int iIntValue = ((Integer) obj).intValue();
@@ -32,5 +28,9 @@ public class ArgbEvaluator implements TypeEvaluator {
         float fPow7 = ((float) Math.pow(fM839a2, 0.45454545454545453d)) * 255.0f;
         float fPow8 = ((float) Math.pow(fM839a3, 0.45454545454545453d)) * 255.0f;
         return Integer.valueOf(Math.round(((float) Math.pow(fM839a4, 0.45454545454545453d)) * 255.0f) | (Math.round(fPow7) << 16) | (Math.round(fM839a * 255.0f) << 24) | (Math.round(fPow8) << 8));
+    }
+
+    public static ArgbEvaluator getInstance() {
+        return sInstance;
     }
 }

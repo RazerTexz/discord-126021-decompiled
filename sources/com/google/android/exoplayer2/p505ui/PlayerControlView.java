@@ -230,12 +230,24 @@ public class PlayerControlView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$b */
     @RequiresApi(21)
-    public static final class C10754b {
+    public final class C10754b {
         @DoNotInline
         /* JADX INFO: renamed from: a */
         public static boolean m8910a(View view) {
             return view.isAccessibilityFocused();
         }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$d */
+    public interface InterfaceC10756d {
+        /* JADX INFO: renamed from: a */
+        void m8911a(long j, long j2);
+    }
+
+    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$e */
+    public interface InterfaceC10757e {
+        /* JADX INFO: renamed from: k */
+        void mo8912k(int i);
     }
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$c */
@@ -410,6 +422,54 @@ public class PlayerControlView extends FrameLayout {
             C2528a2.m2425g(this, z2);
         }
 
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: p */
+        public /* synthetic */ void mo258p(C2836p2 c2836p2) {
+            C2528a2.m2442x(this, c2836p2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: r */
+        public /* synthetic */ void mo259r(boolean z2) {
+            C2528a2.m2424f(this, z2);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: s */
+        public /* synthetic */ void mo260s(PlaybackException playbackException) {
+            C2528a2.m2433o(this, playbackException);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: t */
+        public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
+            C2528a2.m2419a(this, bVar);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: v */
+        public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
+            C2528a2.m2441w(this, abstractC2832o2, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: w */
+        public /* synthetic */ void mo263w(float f) {
+            C2528a2.m2444z(this, f);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
+        /* JADX INFO: renamed from: y */
+        public /* synthetic */ void mo264y(int i) {
+            C2528a2.m2431m(this, i);
+        }
+
+        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
+        /* JADX INFO: renamed from: z */
+        public /* synthetic */ void mo265z(C2633c1 c2633c1) {
+            C2528a2.m2421c(this, c2633c1);
+        }
+
         @Override // p007b.p225i.p226a.p242c.p256d3.InterfaceC2671o.a
         /* JADX INFO: renamed from: k */
         public void mo2763k(InterfaceC2671o interfaceC2671o, long j) {
@@ -521,66 +581,6 @@ public class PlayerControlView extends FrameLayout {
             }
             interfaceC3128y1.mo2882E(iMo2886I);
         }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: p */
-        public /* synthetic */ void mo258p(C2836p2 c2836p2) {
-            C2528a2.m2442x(this, c2836p2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: r */
-        public /* synthetic */ void mo259r(boolean z2) {
-            C2528a2.m2424f(this, z2);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: s */
-        public /* synthetic */ void mo260s(PlaybackException playbackException) {
-            C2528a2.m2433o(this, playbackException);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: t */
-        public /* synthetic */ void mo261t(InterfaceC3128y1.b bVar) {
-            C2528a2.m2419a(this, bVar);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: v */
-        public /* synthetic */ void mo262v(AbstractC2832o2 abstractC2832o2, int i) {
-            C2528a2.m2441w(this, abstractC2832o2, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: w */
-        public /* synthetic */ void mo263w(float f) {
-            C2528a2.m2444z(this, f);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.c
-        /* JADX INFO: renamed from: y */
-        public /* synthetic */ void mo264y(int i) {
-            C2528a2.m2431m(this, i);
-        }
-
-        @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1.e
-        /* JADX INFO: renamed from: z */
-        public /* synthetic */ void mo265z(C2633c1 c2633c1) {
-            C2528a2.m2421c(this, c2633c1);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$d */
-    public interface InterfaceC10756d {
-        /* JADX INFO: renamed from: a */
-        void m8911a(long j, long j2);
-    }
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.ui.PlayerControlView$e */
-    public interface InterfaceC10757e {
-        /* JADX INFO: renamed from: k */
-        void mo8912k(int i);
     }
 
     static {
@@ -589,6 +589,43 @@ public class PlayerControlView extends FrameLayout {
 
     public PlayerControlView(Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0, attributeSet);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        return m8893a(keyEvent) || super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            removeCallbacks(this.f20107D);
+        } else if (motionEvent.getAction() == 1) {
+            m8896d();
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Nullable
+    public InterfaceC3128y1 getPlayer() {
+        return this.f20120Q;
+    }
+
+    public int getRepeatToggleModes() {
+        return this.f20128b0;
+    }
+
+    public boolean getShowShuffleButton() {
+        return this.f20133g0;
+    }
+
+    public int getShowTimeoutMs() {
+        return this.f20126W;
+    }
+
+    public boolean getShowVrButton() {
+        View view = this.f20152u;
+        return view != null && view.getVisibility() == 0;
     }
 
     /* JADX INFO: renamed from: a */
@@ -669,21 +706,6 @@ public class PlayerControlView extends FrameLayout {
         }
     }
 
-    @Override // android.view.ViewGroup, android.view.View
-    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        return m8893a(keyEvent) || super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            removeCallbacks(this.f20107D);
-        } else if (motionEvent.getAction() == 1) {
-            m8896d();
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
     /* JADX INFO: renamed from: e */
     public boolean m8897e() {
         return getVisibility() == 0;
@@ -717,28 +739,6 @@ public class PlayerControlView extends FrameLayout {
             }
             view.requestFocus();
         }
-    }
-
-    @Nullable
-    public InterfaceC3128y1 getPlayer() {
-        return this.f20120Q;
-    }
-
-    public int getRepeatToggleModes() {
-        return this.f20128b0;
-    }
-
-    public boolean getShowShuffleButton() {
-        return this.f20133g0;
-    }
-
-    public int getShowTimeoutMs() {
-        return this.f20126W;
-    }
-
-    public boolean getShowVrButton() {
-        View view = this.f20152u;
-        return view != null && view.getVisibility() == 0;
     }
 
     /* JADX INFO: renamed from: h */
@@ -933,32 +933,6 @@ public class PlayerControlView extends FrameLayout {
         }
     }
 
-    @Override // android.view.ViewGroup, android.view.View
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f20122S = true;
-        long j = this.f20134h0;
-        if (j != -9223372036854775807L) {
-            long jUptimeMillis = j - SystemClock.uptimeMillis();
-            if (jUptimeMillis <= 0) {
-                m8895c();
-            } else {
-                postDelayed(this.f20107D, jUptimeMillis);
-            }
-        } else if (m8897e()) {
-            m8896d();
-        }
-        m8902j();
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f20122S = false;
-        removeCallbacks(this.f20106C);
-        removeCallbacks(this.f20107D);
-    }
-
     /* JADX INFO: renamed from: p */
     public final void m8908p() {
         ImageView imageView;
@@ -1136,6 +1110,32 @@ public class PlayerControlView extends FrameLayout {
             this.f20155x.mo2761a(this.f20135i0, this.f20136j0, i7);
         }
         m8906n();
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f20122S = true;
+        long j = this.f20134h0;
+        if (j != -9223372036854775807L) {
+            long jUptimeMillis = j - SystemClock.uptimeMillis();
+            if (jUptimeMillis <= 0) {
+                m8895c();
+            } else {
+                postDelayed(this.f20107D, jUptimeMillis);
+            }
+        } else if (m8897e()) {
+            m8896d();
+        }
+        m8902j();
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f20122S = false;
+        removeCallbacks(this.f20106C);
+        removeCallbacks(this.f20107D);
     }
 
     public void setPlayer(@Nullable InterfaceC3128y1 interfaceC3128y1) {

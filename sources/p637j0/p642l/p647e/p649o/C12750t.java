@@ -10,6 +10,9 @@ import sun.misc.Unsafe;
 /* JADX INFO: loaded from: classes3.dex */
 public class C12750t<E> extends AbstractC12752v<E> {
 
+    /* JADX INFO: renamed from: p */
+    public static final int f27345p = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
+
     /* JADX INFO: renamed from: q */
     public static final long f27346q;
 
@@ -21,9 +24,6 @@ public class C12750t<E> extends AbstractC12752v<E> {
 
     /* JADX INFO: renamed from: t */
     public static final int f27349t;
-
-    /* JADX INFO: renamed from: p */
-    public static final int f27345p = Integer.getInteger("jctools.spsc.max.lookahead.step", 4096).intValue();
 
     /* JADX INFO: renamed from: u */
     public static final Object f27350u = new Object();
@@ -69,6 +69,10 @@ public class C12750t<E> extends AbstractC12752v<E> {
         m10855k(0L);
     }
 
+    public final Iterator<E> iterator() {
+        throw new UnsupportedOperationException();
+    }
+
     /* JADX INFO: renamed from: c */
     public static long m10848c(long j) {
         return f27348s + (j << f27349t);
@@ -102,10 +106,6 @@ public class C12750t<E> extends AbstractC12752v<E> {
     /* JADX INFO: renamed from: i */
     public final void m10854i(long j) {
         C12755y.f27357a.putOrderedLong(this, f27347r, j);
-    }
-
-    public final Iterator<E> iterator() {
-        throw new UnsupportedOperationException();
     }
 
     /* JADX INFO: renamed from: k */

@@ -29,7 +29,6 @@ import java.lang.reflect.Method;
 public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
     private static final int ID_HOME = 16908332;
     private static final String TAG = "ActionBarDrawerToggle";
-    private static final int[] THEME_ATTRS = {R.attr.homeAsUpIndicator};
     private static final float TOGGLE_DRAWABLE_OFFSET = 0.33333334f;
     public final Activity mActivity;
     private final Delegate mActivityImpl;
@@ -43,6 +42,7 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
     private final int mOpenDrawerContentDescRes;
     private SetIndicatorInfo mSetIndicatorInfo;
     private SlideDrawable mSlider;
+    private static final int[] THEME_ATTRS = {R.attr.homeAsUpIndicator};
 
     @Deprecated
     public interface Delegate {
@@ -60,7 +60,7 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
         Delegate getDrawerToggleDelegate();
     }
 
-    public static class SetIndicatorInfo {
+    public class SetIndicatorInfo {
         public Method mSetHomeActionContentDescription;
         public Method mSetHomeAsUpIndicator;
         public ImageView mUpIndicatorView;
@@ -150,31 +150,6 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
         return drawable;
     }
 
-    private void setActionBarDescription(int i) {
-        Delegate delegate = this.mActivityImpl;
-        if (delegate != null) {
-            delegate.setActionBarDescription(i);
-            return;
-        }
-        ActionBar actionBar = this.mActivity.getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeActionContentDescription(i);
-        }
-    }
-
-    private void setActionBarUpIndicator(Drawable drawable, int i) {
-        Delegate delegate = this.mActivityImpl;
-        if (delegate != null) {
-            delegate.setActionBarUpIndicator(drawable, i);
-            return;
-        }
-        ActionBar actionBar = this.mActivity.getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(drawable);
-            actionBar.setHomeActionContentDescription(i);
-        }
-    }
-
     public boolean isDrawerIndicatorEnabled() {
         return this.mDrawerIndicatorEnabled;
     }
@@ -223,6 +198,31 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
         }
         this.mDrawerLayout.openDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setActionBarDescription(int i) {
+        Delegate delegate = this.mActivityImpl;
+        if (delegate != null) {
+            delegate.setActionBarDescription(i);
+            return;
+        }
+        ActionBar actionBar = this.mActivity.getActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeActionContentDescription(i);
+        }
+    }
+
+    private void setActionBarUpIndicator(Drawable drawable, int i) {
+        Delegate delegate = this.mActivityImpl;
+        if (delegate != null) {
+            delegate.setActionBarUpIndicator(drawable, i);
+            return;
+        }
+        ActionBar actionBar = this.mActivity.getActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(drawable);
+            actionBar.setHomeActionContentDescription(i);
+        }
     }
 
     public void setDrawerIndicatorEnabled(boolean z2) {

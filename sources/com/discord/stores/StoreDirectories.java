@@ -70,7 +70,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$addServerToDirectory$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58651 extends AbstractC12240o implements Function0<Unit> {
+    public final class C58651 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ DirectoryEntryGuild $directoryEntry;
 
@@ -112,12 +112,12 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchDirectoriesForChannel$2 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58682 extends AbstractC12240o implements Function1<RestCallState<? extends List<? extends DirectoryEntryGuild>>, Unit> {
+    public final class C58682 extends AbstractC12240o implements Function1<RestCallState<? extends List<? extends DirectoryEntryGuild>>, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchDirectoriesForChannel$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreDirectories.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ RestCallState $entriesResponse;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -160,12 +160,12 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchEntryCountsForChannel$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58691 extends AbstractC12240o implements Function1<RestCallState<? extends Map<Integer, ? extends Integer>>, Unit> {
+    public final class C58691 extends AbstractC12240o implements Function1<RestCallState<? extends Map<Integer, ? extends Integer>>, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchEntryCountsForChannel$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreDirectories.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ RestCallState $response;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -208,12 +208,12 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchGuildScheduledEventsForChannel$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58701 extends AbstractC12240o implements Function1<RestCallState<? extends List<? extends DirectoryEntryEvent>>, Unit> {
+    public final class C58701 extends AbstractC12240o implements Function1<RestCallState<? extends List<? extends DirectoryEntryEvent>>, Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchGuildScheduledEventsForChannel$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreDirectories.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ RestCallState $response;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -273,7 +273,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$init$2 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58722 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
+    public final class C58722 extends AbstractC12240o implements Function1<Set<? extends Long>, Unit> {
         public C58722() {
             super(1);
         }
@@ -300,7 +300,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectories$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58731 extends AbstractC12240o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryGuild>>>> {
+    public final class C58731 extends AbstractC12240o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryGuild>>>> {
         public C58731() {
             super(0);
         }
@@ -313,7 +313,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectoriesForChannel$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58741 extends AbstractC12240o implements Function0<RestCallState<? extends List<? extends DirectoryEntryGuild>>> {
+    public final class C58741 extends AbstractC12240o implements Function0<RestCallState<? extends List<? extends DirectoryEntryGuild>>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -330,7 +330,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectoryGuildScheduledEvents$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58751 extends AbstractC12240o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryEvent>>>> {
+    public final class C58751 extends AbstractC12240o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryEvent>>>> {
         public C58751() {
             super(0);
         }
@@ -343,7 +343,7 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$1 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58761 extends AbstractC12240o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
+    public final class C58761 extends AbstractC12240o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
 
@@ -362,13 +362,13 @@ public final class StoreDirectories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$2 */
     /* JADX INFO: compiled from: StoreDirectories.kt */
-    public static final class C58772 extends AbstractC12240o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
+    public final class C58772 extends AbstractC12240o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreDirectories.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }

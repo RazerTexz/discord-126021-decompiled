@@ -10,16 +10,6 @@ public final /* data */ class GuildMemberRemove {
     private final long guildId;
     private final User user;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final User getUser() {
-        return this.user;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,6 +19,16 @@ public final /* data */ class GuildMemberRemove {
         }
         GuildMemberRemove guildMemberRemove = (GuildMemberRemove) other;
         return this.guildId == guildMemberRemove.guildId && C12238m.areEqual(this.user, guildMemberRemove.user);
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final User getUser() {
+        return this.user;
     }
 
     public int hashCode() {

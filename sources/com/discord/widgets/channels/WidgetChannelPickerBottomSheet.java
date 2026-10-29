@@ -43,12 +43,16 @@ import p658rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelPickerBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelPickerSheetBinding;", 0)};
     private static final String ARG_CHANNEL_PICKER_GUILD_ID = "ARG_CHANNEL_PICKER_GUILD_ID";
     private static final String ARG_HIDE_ANNOUNCEMENT_CHANNELS = "ARG_HIDE_ANNOUNCEMENT_CHANNELS";
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
     private static final String ARG_SELECTED_CHANNEL_ID = "ARG_SELECTED_CHANNEL_ID";
     private static final int CHANNEL_PICKER_VIEW_FLIPPER_LOADING_STATE = 0;
     private static final int CHANNEL_PICKER_VIEW_FLIPPER_RESULT = 1;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String RESULT_EXTRA_CHANNEL_ICON_RES_ID = "RESULT_EXTRA_CHANNEL_ICON_RES_ID";
     private static final String RESULT_EXTRA_CHANNEL_ID = "RESULT_EXTRA_CHANNEL_ID";
     private static final String RESULT_EXTRA_CHANNEL_NAME = "RESULT_EXTRA_CHANNEL_NAME";
@@ -71,13 +75,49 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelPickerBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelPickerSheetBinding;", 0)};
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelPickerBottomSheet$bindSubscriptions$1 */
+    /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
+    public final class C73321 extends AbstractC12240o implements Function1<WidgetChannelPickerBottomSheetViewModel.ViewState, Unit> {
+        public C73321() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelPickerBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelPickerBottomSheetViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "it");
+            WidgetChannelPickerBottomSheet.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelPickerBottomSheet$onViewCreated$1 */
+    /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
+    public final class C73331 extends AbstractC12240o implements Function1<String, Unit> {
+        public C73331() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            C12238m.checkNotNullParameter(str, "searchQuery");
+            WidgetChannelPickerBottomSheet.this.getViewModel().updateSearchQuery(str);
+        }
+    }
 
     /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -137,7 +177,7 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -149,46 +189,6 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
                 this();
             }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelPickerBottomSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
-    public static final class C73321 extends AbstractC12240o implements Function1<WidgetChannelPickerBottomSheetViewModel.ViewState, Unit> {
-        public C73321() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelPickerBottomSheetViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelPickerBottomSheetViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "it");
-            WidgetChannelPickerBottomSheet.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelPickerBottomSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetChannelPickerBottomSheet.kt */
-    public static final class C73331 extends AbstractC12240o implements Function1<String, Unit> {
-        public C73331() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "searchQuery");
-            WidgetChannelPickerBottomSheet.this.getViewModel().updateSearchQuery(str);
         }
     }
 
@@ -226,6 +226,13 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
         };
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
+        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        super.bindSubscriptions(compositeSubscription);
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelPickerBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73321());
+    }
+
     private final void configureUI(WidgetChannelPickerBottomSheetViewModel.ViewState viewState) {
         if (viewState instanceof WidgetChannelPickerBottomSheetViewModel.ViewState.Loading) {
             AppViewFlipper appViewFlipper = getBinding().f15884b;
@@ -255,6 +262,11 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
         return (WidgetChannelPickerSheetBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppBottomSheet
+    public int getContentViewResId() {
+        return C5419R.layout.widget_channel_picker_sheet;
+    }
+
     private final long getGuildId() {
         return ((Number) this.guildId.getValue()).longValue();
     }
@@ -269,26 +281,6 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
 
     private final WidgetChannelPickerBottomSheetViewModel getViewModel() {
         return (WidgetChannelPickerBottomSheetViewModel) this.viewModel.getValue();
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void setOnCancel$default(WidgetChannelPickerBottomSheet widgetChannelPickerBottomSheet, Function0 function0, int i, Object obj) {
-        if ((i & 1) != 0) {
-            function0 = null;
-        }
-        widgetChannelPickerBottomSheet.setOnCancel(function0);
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
-        super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelPickerBottomSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73321());
-    }
-
-    @Override // com.discord.app.AppBottomSheet
-    public int getContentViewResId() {
-        return C5419R.layout.widget_channel_picker_sheet;
     }
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
@@ -315,6 +307,14 @@ public final class WidgetChannelPickerBottomSheet extends AppBottomSheet {
         }
         recyclerView.setAdapter(widgetchannelPickerAdapter);
         getBinding().f15886d.m8553a(this, new C73331());
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void setOnCancel$default(WidgetChannelPickerBottomSheet widgetChannelPickerBottomSheet, Function0 function0, int i, Object obj) {
+        if ((i & 1) != 0) {
+            function0 = null;
+        }
+        widgetChannelPickerBottomSheet.setOnCancel(function0);
     }
 
     public final void setOnCancel(Function0<Unit> onCancel) {

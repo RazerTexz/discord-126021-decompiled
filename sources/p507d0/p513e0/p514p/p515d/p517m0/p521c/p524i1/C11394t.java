@@ -75,134 +75,9 @@ public class C11394t extends AbstractC11395u {
         this.f22981l = c11914c1;
     }
 
-    /* JADX WARN: Code duplicated, block: B:34:0x0051  */
-    /* JADX WARN: Code duplicated, block: B:35:0x0056  */
-    /* JADX WARN: Code duplicated, block: B:36:0x005b  */
-    /* JADX INFO: renamed from: a */
-    public static /* synthetic */ void m9428a(int i) {
-        String str = (i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10 || i == 13 || i == 22) ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
-        Object[] objArr = new Object[(i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10 || i == 13 || i == 22) ? 3 : 2];
-        if (i == 2) {
-            objArr[0] = "typeArguments";
-        } else if (i == 3) {
-            objArr[0] = "kotlinTypeRefiner";
-        } else if (i == 5) {
-            objArr[0] = "typeSubstitution";
-        } else if (i == 6) {
-            objArr[0] = "kotlinTypeRefiner";
-        } else if (i == 8) {
-            objArr[0] = "typeArguments";
-        } else if (i == 10) {
-            objArr[0] = "typeSubstitution";
-        } else if (i == 13) {
-            objArr[0] = "kotlinTypeRefiner";
-        } else if (i != 22) {
-            objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/LazySubstitutingClassDescriptor";
-        } else {
-            objArr[0] = "substitutor";
-        }
-        switch (i) {
-            case 2:
-            case 3:
-            case 5:
-            case 6:
-            case 8:
-            case 10:
-            case 13:
-            case 22:
-                objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/LazySubstitutingClassDescriptor";
-                break;
-            case 4:
-            case 7:
-            case 9:
-            case 11:
-                objArr[1] = "getMemberScope";
-                break;
-            case 12:
-            case 14:
-                objArr[1] = "getUnsubstitutedMemberScope";
-                break;
-            case 15:
-                objArr[1] = "getStaticScope";
-                break;
-            case 16:
-                objArr[1] = "getDefaultType";
-                break;
-            case 17:
-                objArr[1] = "getConstructors";
-                break;
-            case 18:
-                objArr[1] = "getAnnotations";
-                break;
-            case 19:
-                objArr[1] = "getName";
-                break;
-            case 20:
-                objArr[1] = "getOriginal";
-                break;
-            case 21:
-                objArr[1] = "getContainingDeclaration";
-                break;
-            case 23:
-                objArr[1] = "substitute";
-                break;
-            case 24:
-                objArr[1] = "getKind";
-                break;
-            case 25:
-                objArr[1] = "getModality";
-                break;
-            case 26:
-                objArr[1] = "getVisibility";
-                break;
-            case 27:
-                objArr[1] = "getUnsubstitutedInnerClassesScope";
-                break;
-            case 28:
-                objArr[1] = "getSource";
-                break;
-            case 29:
-                objArr[1] = "getDeclaredTypeParameters";
-                break;
-            case 30:
-                objArr[1] = "getSealedSubclasses";
-                break;
-            default:
-                objArr[1] = "getTypeConstructor";
-                break;
-        }
-        if (i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10) {
-            objArr[2] = "getMemberScope";
-        } else if (i == 13) {
-            objArr[2] = "getUnsubstitutedMemberScope";
-        } else if (i == 22) {
-            objArr[2] = "substitute";
-        }
-        String str2 = String.format(str, objArr);
-        if (i != 2 && i != 3 && i != 5 && i != 6 && i != 8 && i != 10 && i != 13 && i != 22) {
-            throw new IllegalStateException(str2);
-        }
-        throw new IllegalArgumentException(str2);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11450m
     public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
         return interfaceC11454o.visitClassDescriptor(this, d);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final C11914c1 m9429b() {
-        if (this.f22982m == null) {
-            if (this.f22981l.isEmpty()) {
-                this.f22982m = this.f22981l;
-            } else {
-                List<InterfaceC11477z0> parameters = this.f22980k.getTypeConstructor().getParameters();
-                this.f22983n = new ArrayList(parameters.size());
-                this.f22982m = C11990o.substituteTypeParameters(parameters, this.f22981l.getSubstitution(), this, this.f22983n);
-                this.f22984o = C12163u.filter(this.f22983n, new a(this));
-            }
-        }
-        return this.f22982m;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
@@ -448,6 +323,131 @@ public class C11394t extends AbstractC11395u {
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
     public boolean isValue() {
         return this.f22980k.isValue();
+    }
+
+    /* JADX WARN: Code duplicated, block: B:34:0x0051  */
+    /* JADX WARN: Code duplicated, block: B:35:0x0056  */
+    /* JADX WARN: Code duplicated, block: B:36:0x005b  */
+    /* JADX INFO: renamed from: a */
+    public static /* synthetic */ void m9428a(int i) {
+        String str = (i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10 || i == 13 || i == 22) ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
+        Object[] objArr = new Object[(i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10 || i == 13 || i == 22) ? 3 : 2];
+        if (i == 2) {
+            objArr[0] = "typeArguments";
+        } else if (i == 3) {
+            objArr[0] = "kotlinTypeRefiner";
+        } else if (i == 5) {
+            objArr[0] = "typeSubstitution";
+        } else if (i == 6) {
+            objArr[0] = "kotlinTypeRefiner";
+        } else if (i == 8) {
+            objArr[0] = "typeArguments";
+        } else if (i == 10) {
+            objArr[0] = "typeSubstitution";
+        } else if (i == 13) {
+            objArr[0] = "kotlinTypeRefiner";
+        } else if (i != 22) {
+            objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/LazySubstitutingClassDescriptor";
+        } else {
+            objArr[0] = "substitutor";
+        }
+        switch (i) {
+            case 2:
+            case 3:
+            case 5:
+            case 6:
+            case 8:
+            case 10:
+            case 13:
+            case 22:
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/LazySubstitutingClassDescriptor";
+                break;
+            case 4:
+            case 7:
+            case 9:
+            case 11:
+                objArr[1] = "getMemberScope";
+                break;
+            case 12:
+            case 14:
+                objArr[1] = "getUnsubstitutedMemberScope";
+                break;
+            case 15:
+                objArr[1] = "getStaticScope";
+                break;
+            case 16:
+                objArr[1] = "getDefaultType";
+                break;
+            case 17:
+                objArr[1] = "getConstructors";
+                break;
+            case 18:
+                objArr[1] = "getAnnotations";
+                break;
+            case 19:
+                objArr[1] = "getName";
+                break;
+            case 20:
+                objArr[1] = "getOriginal";
+                break;
+            case 21:
+                objArr[1] = "getContainingDeclaration";
+                break;
+            case 23:
+                objArr[1] = "substitute";
+                break;
+            case 24:
+                objArr[1] = "getKind";
+                break;
+            case 25:
+                objArr[1] = "getModality";
+                break;
+            case 26:
+                objArr[1] = "getVisibility";
+                break;
+            case 27:
+                objArr[1] = "getUnsubstitutedInnerClassesScope";
+                break;
+            case 28:
+                objArr[1] = "getSource";
+                break;
+            case 29:
+                objArr[1] = "getDeclaredTypeParameters";
+                break;
+            case 30:
+                objArr[1] = "getSealedSubclasses";
+                break;
+            default:
+                objArr[1] = "getTypeConstructor";
+                break;
+        }
+        if (i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 10) {
+            objArr[2] = "getMemberScope";
+        } else if (i == 13) {
+            objArr[2] = "getUnsubstitutedMemberScope";
+        } else if (i == 22) {
+            objArr[2] = "substitute";
+        }
+        String str2 = String.format(str, objArr);
+        if (i != 2 && i != 3 && i != 5 && i != 6 && i != 8 && i != 10 && i != 13 && i != 22) {
+            throw new IllegalStateException(str2);
+        }
+        throw new IllegalArgumentException(str2);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final C11914c1 m9429b() {
+        if (this.f22982m == null) {
+            if (this.f22981l.isEmpty()) {
+                this.f22982m = this.f22981l;
+            } else {
+                List<InterfaceC11477z0> parameters = this.f22980k.getTypeConstructor().getParameters();
+                this.f22983n = new ArrayList(parameters.size());
+                this.f22982m = C11990o.substituteTypeParameters(parameters, this.f22981l.getSubstitution(), this, this.f22983n);
+                this.f22984o = C12163u.filter(this.f22983n, new a(this));
+            }
+        }
+        return this.f22982m;
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u

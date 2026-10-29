@@ -7,9 +7,6 @@ import androidx.annotation.NonNull;
 /* JADX INFO: loaded from: classes3.dex */
 public class C3265g0 {
 
-    /* JADX INFO: renamed from: a */
-    public static final C3265g0 f9319a = new C3265g0(true, null, null);
-
     /* JADX INFO: renamed from: b */
     public final boolean f9320b;
 
@@ -18,6 +15,9 @@ public class C3265g0 {
 
     /* JADX INFO: renamed from: d */
     public final Throwable f9322d;
+
+    /* JADX INFO: renamed from: a */
+    public static final C3265g0 f9319a = new C3265g0(true, null, null);
 
     public C3265g0(boolean z2, String str, Throwable th) {
         this.f9320b = z2;

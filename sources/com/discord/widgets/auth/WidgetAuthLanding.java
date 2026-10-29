@@ -53,7 +53,7 @@ public final class WidgetAuthLanding extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLanding$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetAuthLanding.kt */
-    public static final /* synthetic */ class C71751 extends C12236k implements Function1<WidgetAuthLandingViewModel.ViewState, Unit> {
+    public final /* synthetic */ class C71751 extends C12236k implements Function1<WidgetAuthLandingViewModel.ViewState, Unit> {
         public C71751(WidgetAuthLanding widgetAuthLanding) {
             super(1, widgetAuthLanding, WidgetAuthLanding.class, "configureUI", "configureUI(Lcom/discord/widgets/auth/WidgetAuthLandingViewModel$ViewState;)V", 0);
         }
@@ -73,7 +73,7 @@ public final class WidgetAuthLanding extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthLanding$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetAuthLanding.kt */
-    public static final /* synthetic */ class C71781 extends C12236k implements Function1<WidgetAuthLandingViewModel.Event, Unit> {
+    public final /* synthetic */ class C71781 extends C12236k implements Function1<WidgetAuthLandingViewModel.Event, Unit> {
         public C71781(WidgetAuthLanding widgetAuthLanding) {
             super(1, widgetAuthLanding, WidgetAuthLanding.class, "handleEvent", "handleEvent(Lcom/discord/widgets/auth/WidgetAuthLandingViewModel$Event;)V", 0);
         }
@@ -155,6 +155,11 @@ public final class WidgetAuthLanding extends AppFragment {
         return (WidgetAuthLandingBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final WidgetAuthLandingViewModel getViewModel() {
         return (WidgetAuthLandingViewModel) this.viewModel.getValue();
     }
@@ -174,24 +179,19 @@ public final class WidgetAuthLanding extends AppFragment {
         C0870j.m156d(requireContext(), WidgetAuthLogin.class, new Intent().putExtras(bundle));
     }
 
-    private final void onRegisterPressed(Context context) {
-        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
-        companion.getINSTANCE().setRegistering(true);
-        companion.getINSTANCE().clear();
-        C0870j.m157e(context, WidgetAuthRegisterIdentity.class, null, 4);
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
-    }
-
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 4009) {
             GoogleSmartLockManager.INSTANCE.handleResult(resultCode, data);
         }
+    }
+
+    private final void onRegisterPressed(Context context) {
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        companion.getINSTANCE().setRegistering(true);
+        companion.getINSTANCE().clear();
+        C0870j.m157e(context, WidgetAuthRegisterIdentity.class, null, 4);
     }
 
     @Override // com.discord.app.AppFragment

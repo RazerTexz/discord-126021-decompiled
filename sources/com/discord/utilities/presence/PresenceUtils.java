@@ -70,6 +70,25 @@ public final class PresenceUtils {
     private PresenceUtils() {
     }
 
+    public final Comparator<Activity> getACTIVITY_COMPARATOR$app_productionGoogleRelease() {
+        return ACTIVITY_COMPARATOR;
+    }
+
+    public final Activity getActivityByType(List<Activity> list, ActivityType activityType) {
+        Object next;
+        C12238m.checkNotNullParameter(list, "$this$getActivityByType");
+        C12238m.checkNotNullParameter(activityType, "type");
+        Iterator<T> it = list.iterator();
+        while (it.hasNext()) {
+            next = it.next();
+            if (((Activity) next).getType() == activityType) {
+                return (Activity) next;
+            }
+        }
+        next = null;
+        return (Activity) next;
+    }
+
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
     java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
     	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
@@ -81,9 +100,7 @@ public final class PresenceUtils {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
     public static final CharSequence getActivityHeader(Context context, Activity activity) {
-        String str;
         Object properName;
-        String str2;
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         int iOrdinal = activity.getType().ordinal();
@@ -103,21 +120,19 @@ public final class PresenceUtils {
         if (platform != null) {
             Platform platformFrom = Platform.INSTANCE.from(platform);
             if (platform == ActivityPlatform.PS4) {
-                str2 = "PS4";
+                properName = "PS4";
             } else if (platform == ActivityPlatform.PS5) {
-                str = "PS5";
-            } else if (platformFrom != Platform.NONE) {
+                properName = "PS5";
+            } else {
                 properName = platform;
-                properName = platformFrom.getProperName();
+                if (platformFrom != Platform.NONE) {
+                    properName = platformFrom.getProperName();
+                }
             }
             if (properName != null) {
-                properName = str;
-                properName = str2;
                 return C1107b.m216h(context, C5419R.string.user_activity_header_playing_on_platform, new Object[]{properName}, null, 4);
             }
         }
-        properName = str;
-        properName = str2;
         return C1107b.m216h(context, C5419R.string.user_activity_header_playing, new Object[0], null, 4);
     }
 
@@ -160,126 +175,6 @@ public final class PresenceUtils {
     private final CharSequence getApplicationStreamingString(Context context, Presence presence) {
         Activity playingActivity;
         return (presence == null || (playingActivity = getPlayingActivity(presence)) == null) ? C1107b.m216h(context, C5419R.string.streaming_a_game, new Object[0], null, 4) : C1107b.m216h(context, C5419R.string.streaming, new Object[]{playingActivity.getName()}, null, 4);
-    }
-
-    private final DraweeSpanStringBuilder getStatusDraweeSpanStringBuilder(Context context, Presence presence, boolean isStreamingApplication, boolean hideEmoji, boolean showFallbackStatusText, boolean animateCustomStatusEmoji) {
-        Activity customStatusActivity;
-        ActivityEmoji emoji;
-        DraweeSpanStringBuilder draweeSpanStringBuilder = new DraweeSpanStringBuilder();
-        EmojiNode emojiNodeFrom$default = null;
-        if (!hideEmoji && presence != null && (customStatusActivity = getCustomStatusActivity(presence)) != null && (emoji = customStatusActivity.getEmoji()) != null) {
-            EmojiNode.Companion companion = EmojiNode.INSTANCE;
-            emojiNodeFrom$default = EmojiNode.Companion.from$default(companion, 0, companion.generateEmojiIdAndType(emoji), 1, (Object) null);
-        }
-        if (emojiNodeFrom$default != null) {
-            emojiNodeFrom$default.render((SpannableStringBuilder) draweeSpanStringBuilder, new EmojiNode.RenderContext(context, animateCustomStatusEmoji) { // from class: com.discord.utilities.presence.PresenceUtils.getStatusDraweeSpanStringBuilder.1
-                public final /* synthetic */ boolean $animateCustomStatusEmoji;
-                public final /* synthetic */ Context $context;
-                private final Context context;
-                private final boolean isAnimationEnabled;
-
-                {
-                    this.$context = context;
-                    this.$animateCustomStatusEmoji = animateCustomStatusEmoji;
-                    this.context = context;
-                    this.isAnimationEnabled = animateCustomStatusEmoji;
-                }
-
-                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
-                public Context getContext() {
-                    return this.context;
-                }
-
-                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
-                /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
-                public boolean getIsAnimationEnabled() {
-                    return this.isAnimationEnabled;
-                }
-
-                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
-                public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
-                    C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
-                    EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
-                }
-            });
-        }
-        CharSequence statusText = getStatusText(context, presence, isStreamingApplication, showFallbackStatusText);
-        if (statusText != null) {
-            if (emojiNodeFrom$default != null) {
-                draweeSpanStringBuilder.append((char) 8194);
-            }
-            draweeSpanStringBuilder.append(statusText);
-        }
-        return draweeSpanStringBuilder;
-    }
-
-    public static /* synthetic */ DraweeSpanStringBuilder getStatusDraweeSpanStringBuilder$default(PresenceUtils presenceUtils, Context context, Presence presence, boolean z2, boolean z3, boolean z4, boolean z5, int i, Object obj) {
-        return presenceUtils.getStatusDraweeSpanStringBuilder(context, presence, z2, z3, (i & 16) != 0 ? false : z4, (i & 32) != 0 ? false : z5);
-    }
-
-    private final CharSequence getStatusText(Context context, Presence presence, boolean isStreamingApplication, boolean showFallbackStatusText) {
-        Activity customStatusActivity;
-        String state = (presence == null || (customStatusActivity = getCustomStatusActivity(presence)) == null) ? null : customStatusActivity.getState();
-        if (state != null) {
-            return state;
-        }
-        if (isStreamingApplication) {
-            return getApplicationStreamingString(context, presence);
-        }
-        CharSequence activityString = getActivityString(context, presence != null ? getPrimaryActivity(presence) : null);
-        if (activityString != null) {
-            return activityString;
-        }
-        if (showFallbackStatusText) {
-            return C1107b.m216h(context, getStatusText(presence), new Object[0], null, 4);
-        }
-        return null;
-    }
-
-    public static /* synthetic */ CharSequence getStatusText$default(PresenceUtils presenceUtils, Context context, Presence presence, boolean z2, boolean z3, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z3 = false;
-        }
-        return presenceUtils.getStatusText(context, presence, z2, z3);
-    }
-
-    public static final void setPresenceText(Presence presence, boolean isStreamingApplication, SimpleDraweeSpanTextView textView, boolean showFallbackStatusText, boolean hideEmoji) {
-        C12238m.checkNotNullParameter(textView, "textView");
-        PresenceUtils presenceUtils = INSTANCE;
-        Context context = textView.getContext();
-        C12238m.checkNotNullExpressionValue(context, "textView.context");
-        DraweeSpanStringBuilder statusDraweeSpanStringBuilder$default = getStatusDraweeSpanStringBuilder$default(presenceUtils, context, presence, isStreamingApplication, hideEmoji, showFallbackStatusText, false, 32, null);
-        textView.setDraweeSpanStringBuilder(statusDraweeSpanStringBuilder$default);
-        textView.setVisibility(statusDraweeSpanStringBuilder$default.length() > 0 ? 0 : 8);
-    }
-
-    public static /* synthetic */ void setPresenceText$default(Presence presence, boolean z2, SimpleDraweeSpanTextView simpleDraweeSpanTextView, boolean z3, boolean z4, int i, Object obj) {
-        if ((i & 8) != 0) {
-            z3 = false;
-        }
-        if ((i & 16) != 0) {
-            z4 = false;
-        }
-        setPresenceText(presence, z2, simpleDraweeSpanTextView, z3, z4);
-    }
-
-    public final Comparator<Activity> getACTIVITY_COMPARATOR$app_productionGoogleRelease() {
-        return ACTIVITY_COMPARATOR;
-    }
-
-    public final Activity getActivityByType(List<Activity> list, ActivityType activityType) {
-        Object next;
-        C12238m.checkNotNullParameter(list, "$this$getActivityByType");
-        C12238m.checkNotNullParameter(activityType, "type");
-        Iterator<T> it = list.iterator();
-        while (it.hasNext()) {
-            next = it.next();
-            if (((Activity) next).getType() == activityType) {
-                return (Activity) next;
-            }
-        }
-        next = null;
-        return (Activity) next;
     }
 
     public final long getCurrentSize(ActivityParty activityParty) {
@@ -352,10 +247,91 @@ public final class PresenceUtils {
         return null;
     }
 
+    public static /* synthetic */ DraweeSpanStringBuilder getStatusDraweeSpanStringBuilder$default(PresenceUtils presenceUtils, Context context, Presence presence, boolean z2, boolean z3, boolean z4, boolean z5, int i, Object obj) {
+        return presenceUtils.getStatusDraweeSpanStringBuilder(context, presence, z2, z3, (i & 16) != 0 ? false : z4, (i & 32) != 0 ? false : z5);
+    }
+
+    private final DraweeSpanStringBuilder getStatusDraweeSpanStringBuilder(Context context, Presence presence, boolean isStreamingApplication, boolean hideEmoji, boolean showFallbackStatusText, boolean animateCustomStatusEmoji) {
+        Activity customStatusActivity;
+        ActivityEmoji emoji;
+        DraweeSpanStringBuilder draweeSpanStringBuilder = new DraweeSpanStringBuilder();
+        EmojiNode emojiNodeFrom$default = null;
+        if (!hideEmoji && presence != null && (customStatusActivity = getCustomStatusActivity(presence)) != null && (emoji = customStatusActivity.getEmoji()) != null) {
+            EmojiNode.Companion companion = EmojiNode.INSTANCE;
+            emojiNodeFrom$default = EmojiNode.Companion.from$default(companion, 0, companion.generateEmojiIdAndType(emoji), 1, (Object) null);
+        }
+        if (emojiNodeFrom$default != null) {
+            emojiNodeFrom$default.render((SpannableStringBuilder) draweeSpanStringBuilder, new EmojiNode.RenderContext(context, animateCustomStatusEmoji) { // from class: com.discord.utilities.presence.PresenceUtils.getStatusDraweeSpanStringBuilder.1
+                public final /* synthetic */ boolean $animateCustomStatusEmoji;
+                public final /* synthetic */ Context $context;
+                private final Context context;
+                private final boolean isAnimationEnabled;
+
+                {
+                    this.$context = context;
+                    this.$animateCustomStatusEmoji = animateCustomStatusEmoji;
+                    this.context = context;
+                    this.isAnimationEnabled = animateCustomStatusEmoji;
+                }
+
+                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+                public Context getContext() {
+                    return this.context;
+                }
+
+                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+                /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
+                public boolean getIsAnimationEnabled() {
+                    return this.isAnimationEnabled;
+                }
+
+                @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+                public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
+                    C12238m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+                    EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
+                }
+            });
+        }
+        CharSequence statusText = getStatusText(context, presence, isStreamingApplication, showFallbackStatusText);
+        if (statusText != null) {
+            if (emojiNodeFrom$default != null) {
+                draweeSpanStringBuilder.append((char) 8194);
+            }
+            draweeSpanStringBuilder.append(statusText);
+        }
+        return draweeSpanStringBuilder;
+    }
+
     @StringRes
     public final int getStatusStringResForPresence(Presence presence) {
         C12238m.checkNotNullParameter(presence, "presence");
         return getStatusText(presence);
+    }
+
+    public static /* synthetic */ CharSequence getStatusText$default(PresenceUtils presenceUtils, Context context, Presence presence, boolean z2, boolean z3, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z3 = false;
+        }
+        return presenceUtils.getStatusText(context, presence, z2, z3);
+    }
+
+    private final CharSequence getStatusText(Context context, Presence presence, boolean isStreamingApplication, boolean showFallbackStatusText) {
+        Activity customStatusActivity;
+        String state = (presence == null || (customStatusActivity = getCustomStatusActivity(presence)) == null) ? null : customStatusActivity.getState();
+        if (state != null) {
+            return state;
+        }
+        if (isStreamingApplication) {
+            return getApplicationStreamingString(context, presence);
+        }
+        CharSequence activityString = getActivityString(context, presence != null ? getPrimaryActivity(presence) : null);
+        if (activityString != null) {
+            return activityString;
+        }
+        if (showFallbackStatusText) {
+            return C1107b.m216h(context, getStatusText(presence), new Object[0], null, 4);
+        }
+        return null;
     }
 
     public final Activity getStreamingActivity(Presence presence) {
@@ -372,6 +348,26 @@ public final class PresenceUtils {
         ClientStatus clientStatusM8150b = clientStatuses.m8150b();
         ClientStatus clientStatus = ClientStatus.ONLINE;
         return (clientStatusM8150b != clientStatus || clientStatuses.m8151c() == clientStatus || clientStatuses.m8149a() == clientStatus) ? false : true;
+    }
+
+    public static /* synthetic */ void setPresenceText$default(Presence presence, boolean z2, SimpleDraweeSpanTextView simpleDraweeSpanTextView, boolean z3, boolean z4, int i, Object obj) {
+        if ((i & 8) != 0) {
+            z3 = false;
+        }
+        if ((i & 16) != 0) {
+            z4 = false;
+        }
+        setPresenceText(presence, z2, simpleDraweeSpanTextView, z3, z4);
+    }
+
+    public static final void setPresenceText(Presence presence, boolean isStreamingApplication, SimpleDraweeSpanTextView textView, boolean showFallbackStatusText, boolean hideEmoji) {
+        C12238m.checkNotNullParameter(textView, "textView");
+        PresenceUtils presenceUtils = INSTANCE;
+        Context context = textView.getContext();
+        C12238m.checkNotNullExpressionValue(context, "textView.context");
+        DraweeSpanStringBuilder statusDraweeSpanStringBuilder$default = getStatusDraweeSpanStringBuilder$default(presenceUtils, context, presence, isStreamingApplication, hideEmoji, showFallbackStatusText, false, 32, null);
+        textView.setDraweeSpanStringBuilder(statusDraweeSpanStringBuilder$default);
+        textView.setVisibility(statusDraweeSpanStringBuilder$default.length() > 0 ? 0 : 8);
     }
 
     public final boolean shouldShowRichPresenceIcon(Presence presence) {
@@ -396,6 +392,20 @@ public final class PresenceUtils {
         return false;
     }
 
+    public final Activity getPrimaryActivity(List<Activity> list) {
+        Object next;
+        C12238m.checkNotNullParameter(list, "$this$primaryActivity");
+        Iterator<T> it = list.iterator();
+        while (it.hasNext()) {
+            next = it.next();
+            if (((Activity) next).getType() != ActivityType.CUSTOM_STATUS) {
+                return (Activity) next;
+            }
+        }
+        next = null;
+        return (Activity) next;
+    }
+
     private final Activity getSpotifyListeningActivity(List<Activity> list) {
         Object next;
         Iterator<T> it = list.iterator();
@@ -415,20 +425,6 @@ public final class PresenceUtils {
         while (it.hasNext()) {
             next = it.next();
             if (ActivityUtilsKt.isStageChannelActivity((Activity) next)) {
-                return (Activity) next;
-            }
-        }
-        next = null;
-        return (Activity) next;
-    }
-
-    public final Activity getPrimaryActivity(List<Activity> list) {
-        Object next;
-        C12238m.checkNotNullParameter(list, "$this$primaryActivity");
-        Iterator<T> it = list.iterator();
-        while (it.hasNext()) {
-            next = it.next();
-            if (((Activity) next).getType() != ActivityType.CUSTOM_STATUS) {
                 return (Activity) next;
             }
         }

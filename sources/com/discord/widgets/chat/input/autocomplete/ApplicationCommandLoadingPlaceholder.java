@@ -28,11 +28,6 @@ public final /* data */ class ApplicationCommandLoadingPlaceholder extends Autoc
         return applicationCommandLoadingPlaceholder.copy(application);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
     public final ApplicationCommandLoadingPlaceholder copy(Application application) {
         return new ApplicationCommandLoadingPlaceholder(application);
     }
@@ -42,6 +37,11 @@ public final /* data */ class ApplicationCommandLoadingPlaceholder extends Autoc
             return (other instanceof ApplicationCommandLoadingPlaceholder) && C12238m.areEqual(this.application, ((ApplicationCommandLoadingPlaceholder) other).application);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Application getApplication() {
+        return this.application;
     }
 
     public final Application getApplication() {

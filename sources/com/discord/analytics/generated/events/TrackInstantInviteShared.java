@@ -9,20 +9,14 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackInstantInviteShared.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackInstantInviteShared implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
     private final Long channelId = null;
-    private final CharSequence inviteCode = null;
+    private final Long guildId = null;
     private final Long inviteChannelType = null;
-    private final Long inviteInviterId = null;
+    private final CharSequence inviteCode = null;
     private final Long inviteGuildScheduledEventId = null;
+    private final Long inviteInviterId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "instant_invite_shared";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackInstantInviteShared implements AnalyticsSchem
         }
         TrackInstantInviteShared trackInstantInviteShared = (TrackInstantInviteShared) other;
         return C12238m.areEqual(this.guildId, trackInstantInviteShared.guildId) && C12238m.areEqual(this.channelId, trackInstantInviteShared.channelId) && C12238m.areEqual(this.inviteCode, trackInstantInviteShared.inviteCode) && C12238m.areEqual(this.inviteChannelType, trackInstantInviteShared.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackInstantInviteShared.inviteInviterId) && C12238m.areEqual(this.inviteGuildScheduledEventId, trackInstantInviteShared.inviteGuildScheduledEventId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -14,9 +14,6 @@ public abstract class AbstractC2705g implements InterfaceC2710l {
     /* JADX INFO: renamed from: a */
     public final boolean f6528a;
 
-    /* JADX INFO: renamed from: b */
-    public final ArrayList<InterfaceC2680a0> f6529b = new ArrayList<>(1);
-
     /* JADX INFO: renamed from: c */
     public int f6530c;
 
@@ -24,25 +21,11 @@ public abstract class AbstractC2705g implements InterfaceC2710l {
     @Nullable
     public C2712n f6531d;
 
+    /* JADX INFO: renamed from: b */
+    public final ArrayList<InterfaceC2680a0> f6529b = new ArrayList<>(1);
+
     public AbstractC2705g(boolean z2) {
         this.f6528a = z2;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /* JADX INFO: renamed from: d */
-    public final void mo2587d(InterfaceC2680a0 interfaceC2680a0) {
-        Objects.requireNonNull(interfaceC2680a0);
-        if (this.f6529b.contains(interfaceC2680a0)) {
-            return;
-        }
-        this.f6529b.add(interfaceC2680a0);
-        this.f6530c++;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
-    /* JADX INFO: renamed from: j */
-    public /* synthetic */ Map mo2588j() {
-        return C2709k.m2853a(this);
     }
 
     /* JADX INFO: renamed from: p */
@@ -77,5 +60,22 @@ public abstract class AbstractC2705g implements InterfaceC2710l {
         for (int i = 0; i < this.f6530c; i++) {
             this.f6529b.get(i).mo2774b(this, c2712n, this.f6528a);
         }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /* JADX INFO: renamed from: d */
+    public final void mo2587d(InterfaceC2680a0 interfaceC2680a0) {
+        Objects.requireNonNull(interfaceC2680a0);
+        if (this.f6529b.contains(interfaceC2680a0)) {
+            return;
+        }
+        this.f6529b.add(interfaceC2680a0);
+        this.f6530c++;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.p257e3.InterfaceC2710l
+    /* JADX INFO: renamed from: j */
+    public /* synthetic */ Map mo2588j() {
+        return C2709k.m2853a(this);
     }
 }

@@ -7,7 +7,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public abstract class GuildChannelIconType {
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Announcements extends GuildChannelIconType {
+    public final class Announcements extends GuildChannelIconType {
         public static final Announcements INSTANCE = new Announcements();
 
         private Announcements() {
@@ -16,7 +16,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Directory extends GuildChannelIconType {
+    public final class Directory extends GuildChannelIconType {
         public static final Directory INSTANCE = new Directory();
 
         private Directory() {
@@ -25,7 +25,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Forum extends GuildChannelIconType {
+    public final class Forum extends GuildChannelIconType {
         public static final Forum INSTANCE = new Forum();
 
         private Forum() {
@@ -34,7 +34,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class ForumPost extends GuildChannelIconType {
+    public final class ForumPost extends GuildChannelIconType {
         public static final ForumPost INSTANCE = new ForumPost();
 
         private ForumPost() {
@@ -43,10 +43,10 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static abstract class Locked {
+    public abstract class Locked {
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Announcements extends GuildChannelIconType {
+        public final class Announcements extends GuildChannelIconType {
             public static final Announcements INSTANCE = new Announcements();
 
             private Announcements() {
@@ -55,7 +55,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Forum extends GuildChannelIconType {
+        public final class Forum extends GuildChannelIconType {
             public static final Forum INSTANCE = new Forum();
 
             private Forum() {
@@ -64,7 +64,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class ForumPost extends GuildChannelIconType {
+        public final class ForumPost extends GuildChannelIconType {
             public static final ForumPost INSTANCE = new ForumPost();
 
             private ForumPost() {
@@ -73,7 +73,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Text extends GuildChannelIconType {
+        public final class Text extends GuildChannelIconType {
             public static final Text INSTANCE = new Text();
 
             private Text() {
@@ -82,7 +82,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Thread extends GuildChannelIconType {
+        public final class Thread extends GuildChannelIconType {
             public static final Thread INSTANCE = new Thread();
 
             private Thread() {
@@ -95,10 +95,10 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static abstract class NSFW {
+    public abstract class NSFW {
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Announcements extends GuildChannelIconType {
+        public final class Announcements extends GuildChannelIconType {
             public static final Announcements INSTANCE = new Announcements();
 
             private Announcements() {
@@ -107,7 +107,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Forum extends GuildChannelIconType {
+        public final class Forum extends GuildChannelIconType {
             public static final Forum INSTANCE = new Forum();
 
             private Forum() {
@@ -116,7 +116,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class ForumPost extends GuildChannelIconType {
+        public final class ForumPost extends GuildChannelIconType {
             public static final ForumPost INSTANCE = new ForumPost();
 
             private ForumPost() {
@@ -125,7 +125,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Text extends GuildChannelIconType {
+        public final class Text extends GuildChannelIconType {
             public static final Text INSTANCE = new Text();
 
             private Text() {
@@ -134,7 +134,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Thread extends GuildChannelIconType {
+        public final class Thread extends GuildChannelIconType {
             public static final Thread INSTANCE = new Thread();
 
             private Thread() {
@@ -143,7 +143,7 @@ public abstract class GuildChannelIconType {
         }
 
         /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-        public static final class Voice extends GuildChannelIconType {
+        public final class Voice extends GuildChannelIconType {
             public static final Voice INSTANCE = new Voice();
 
             private Voice() {
@@ -156,7 +156,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Text extends GuildChannelIconType {
+    public final class Text extends GuildChannelIconType {
         public static final Text INSTANCE = new Text();
 
         private Text() {
@@ -165,7 +165,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Thread extends GuildChannelIconType {
+    public final class Thread extends GuildChannelIconType {
         public static final Thread INSTANCE = new Thread();
 
         private Thread() {
@@ -174,7 +174,7 @@ public abstract class GuildChannelIconType {
     }
 
     /* JADX INFO: compiled from: GuildChannelIconUtils.kt */
-    public static final class Voice extends GuildChannelIconType {
+    public final class Voice extends GuildChannelIconType {
         public static final Voice INSTANCE = new Voice();
 
         private Voice() {

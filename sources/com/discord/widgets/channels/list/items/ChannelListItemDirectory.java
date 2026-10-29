@@ -19,10 +19,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
         this.selected = z2;
         this.unreadCount = i;
         this.type = 17;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(channel.getId());
-        this.key = sb.toString();
+        this.key = "" + getType() + channel.getId();
     }
 
     public static /* synthetic */ ChannelListItemDirectory copy$default(ChannelListItemDirectory channelListItemDirectory, Channel channel, boolean z2, int i, int i2, Object obj) {
@@ -36,21 +33,6 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
             i = channelListItemDirectory.unreadCount;
         }
         return channelListItemDirectory.copy(channel, z2, i);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getSelected() {
-        return this.selected;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getUnreadCount() {
-        return this.unreadCount;
     }
 
     public final ChannelListItemDirectory copy(Channel channel, boolean selected, int unreadCount) {
@@ -69,6 +51,11 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
         return C12238m.areEqual(this.channel, channelListItemDirectory.channel) && this.selected == channelListItemDirectory.selected && this.unreadCount == channelListItemDirectory.unreadCount;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
     public final Channel getChannel() {
         return this.channel;
     }
@@ -78,6 +65,11 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getSelected() {
+        return this.selected;
+    }
+
     public final boolean getSelected() {
         return this.selected;
     }
@@ -85,6 +77,11 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
     public int getType() {
         return this.type;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getUnreadCount() {
+        return this.unreadCount;
     }
 
     public final int getUnreadCount() {

@@ -21,9 +21,11 @@ public class ShadowRenderer {
     private static final int COLOR_ALPHA_END = 0;
     private static final int COLOR_ALPHA_MIDDLE = 20;
     private static final int COLOR_ALPHA_START = 68;
+    private static final float[] cornerPositions = {0.0f, 0.0f, 0.5f, 1.0f};
 
     @NonNull
     private final Paint cornerShadowPaint;
+    private static final float[] edgePositions = {0.0f, 0.5f, 1.0f};
 
     @NonNull
     private final Paint edgeShadowPaint;
@@ -36,9 +38,7 @@ public class ShadowRenderer {
     private int shadowStartColor;
     private Paint transparentPaint;
     private static final int[] edgeColors = new int[3];
-    private static final float[] edgePositions = {0.0f, 0.5f, 1.0f};
     private static final int[] cornerColors = new int[4];
-    private static final float[] cornerPositions = {0.0f, 0.0f, 0.5f, 1.0f};
 
     public ShadowRenderer() {
         this(ViewCompat.MEASURED_STATE_MASK);

@@ -63,7 +63,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$4 */
     /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-    public static final class C90224 extends AbstractC12240o implements Function1<TextView, Unit> {
+    public final class C90224 extends AbstractC12240o implements Function1<TextView, Unit> {
         public C90224() {
             super(1);
         }
@@ -83,11 +83,11 @@ public final class WidgetHubDomainSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$5 */
     /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-    public static final class C90235 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C90235 extends AbstractC12240o implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$5$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -128,7 +128,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-    public static final class C90241 extends AbstractC12240o implements Function1<DomainsState, Unit> {
+    public final class C90241 extends AbstractC12240o implements Function1<DomainsState, Unit> {
         public C90241() {
             super(1);
         }
@@ -149,7 +149,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$updateView$1 */
     /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
-    public static final class C90251 extends AbstractC12240o implements Function1<Success<? extends Object>, Unit> {
+    public final class C90251 extends AbstractC12240o implements Function1<Success<? extends Object>, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ DomainsState $state;
 
@@ -180,52 +180,6 @@ public final class WidgetHubDomainSearch extends AppFragment {
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubDomainSearch$binding$2.INSTANCE, null, 2, null);
         this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetHubDomainSearch$adapter$1(this), 1, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetHubDomainsViewModel.class), new C9018xb5e5d61c(this), new C0863f0(WidgetHubDomainSearch$viewModel$2.INSTANCE));
-    }
-
-    private final void searchForGuild() {
-        TextInputEditText textInputEditText = getBinding().f17169h;
-        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchBarText");
-        String strValueOf = String.valueOf(textInputEditText.getText());
-        Locale locale = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
-        String lowerCase = strValueOf.toLowerCase(locale);
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        List<DomainGuildInfo> guildInfos = getArgs().getGuildInfos();
-        ArrayList arrayList = new ArrayList();
-        Iterator<T> it = guildInfos.iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                break;
-            }
-            Object next = it.next();
-            String name = ((DomainGuildInfo) next).getName();
-            Locale locale2 = Locale.getDefault();
-            C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
-            Objects.requireNonNull(name, "null cannot be cast to non-null type java.lang.String");
-            String lowerCase2 = name.toLowerCase(locale2);
-            C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
-            if (C12106w.contains$default((CharSequence) lowerCase2, (CharSequence) lowerCase, false, 2, (Object) null)) {
-                arrayList.add(next);
-            }
-        }
-        TextView textView = getBinding().f17165d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.emptyTitle");
-        textView.setText(getString(arrayList.isEmpty() ? C5419R.string.directory_search_no_results_title : C5419R.string.directory_search_initial_title));
-        LinearLayout linearLayout = getBinding().f17164c;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.emptyState");
-        linearLayout.setVisibility(arrayList.isEmpty() ? 0 : 8);
-        RecyclerView recyclerView = getBinding().f17166e;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
-        recyclerView.setVisibility(arrayList.isEmpty() ^ true ? 0 : 8);
-        this.adapter.setData(arrayList);
-    }
-
-    private final void updateView(DomainsState state) {
-        Context context = getContext();
-        if (context != null) {
-            C12238m.checkNotNullExpressionValue(context, "context ?: return");
-            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new C90251(context, state), 6, null);
-        }
     }
 
     public final SimpleRecyclerAdapter<DomainGuildInfo, HubDomainViewHolder> getAdapter() {
@@ -293,5 +247,51 @@ public final class WidgetHubDomainSearch extends AppFragment {
         Observable<DomainsState> observableM11112r = getViewModel().observeViewState().m11112r();
         C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetHubDomainSearch.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90241());
+    }
+
+    private final void searchForGuild() {
+        TextInputEditText textInputEditText = getBinding().f17169h;
+        C12238m.checkNotNullExpressionValue(textInputEditText, "binding.searchBarText");
+        String strValueOf = String.valueOf(textInputEditText.getText());
+        Locale locale = Locale.getDefault();
+        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+        String lowerCase = strValueOf.toLowerCase(locale);
+        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        List<DomainGuildInfo> guildInfos = getArgs().getGuildInfos();
+        ArrayList arrayList = new ArrayList();
+        Iterator<T> it = guildInfos.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                break;
+            }
+            Object next = it.next();
+            String name = ((DomainGuildInfo) next).getName();
+            Locale locale2 = Locale.getDefault();
+            C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
+            Objects.requireNonNull(name, "null cannot be cast to non-null type java.lang.String");
+            String lowerCase2 = name.toLowerCase(locale2);
+            C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
+            if (C12106w.contains$default((CharSequence) lowerCase2, (CharSequence) lowerCase, false, 2, (Object) null)) {
+                arrayList.add(next);
+            }
+        }
+        TextView textView = getBinding().f17165d;
+        C12238m.checkNotNullExpressionValue(textView, "binding.emptyTitle");
+        textView.setText(getString(arrayList.isEmpty() ? C5419R.string.directory_search_no_results_title : C5419R.string.directory_search_initial_title));
+        LinearLayout linearLayout = getBinding().f17164c;
+        C12238m.checkNotNullExpressionValue(linearLayout, "binding.emptyState");
+        linearLayout.setVisibility(arrayList.isEmpty() ? 0 : 8);
+        RecyclerView recyclerView = getBinding().f17166e;
+        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        recyclerView.setVisibility(arrayList.isEmpty() ^ true ? 0 : 8);
+        this.adapter.setData(arrayList);
+    }
+
+    private final void updateView(DomainsState state) {
+        Context context = getContext();
+        if (context != null) {
+            C12238m.checkNotNullExpressionValue(context, "context ?: return");
+            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new C90251(context, state), 6, null);
+        }
     }
 }

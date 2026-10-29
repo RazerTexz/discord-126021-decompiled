@@ -63,15 +63,15 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleSuperBuilder.SCL.lombok */
 @HandlerPriority(-1024)
 public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
+    private static /* synthetic */ int[] f27474xb87c1847;
     private static final char[] SELF_METHOD_NAME = "self".toCharArray();
     private static final char[] FILL_VALUES_METHOD_NAME = "$fillValuesFrom".toCharArray();
     private static final char[] FILL_VALUES_STATIC_METHOD_NAME = "$fillValuesFromInstanceIntoBuilder".toCharArray();
     private static final char[] INSTANCE_VARIABLE_NAME = "instance".toCharArray();
     private static final String BUILDER_VARIABLE_NAME_STRING = "b";
     private static final char[] BUILDER_VARIABLE_NAME = BUILDER_VARIABLE_NAME_STRING.toCharArray();
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27474xb87c1847;
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
     static /* synthetic */ int[] m10934xb87c1847() {
@@ -184,7 +184,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
                 bfd.rawName = fieldNode.getName().toCharArray();
                 bfd.name = EclipseHandlerUtil.removePrefixFromField(fieldNode);
                 bfd.builderFieldName = bfd.name;
-                bfd.annotations = EclipseHandlerUtil.copyAnnotations(fd, copyableAnnotations);
+                bfd.annotations = EclipseHandlerUtil.copyAnnotations(fd, new Annotation[][]{copyableAnnotations});
                 bfd.type = fd.type;
                 bfd.singularData = getSingularData(fieldNode, ast, annInstance.setterPrefix());
                 bfd.originalFieldNode = fieldNode;
@@ -859,7 +859,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             methodAnnsList = new ArrayList<>(methodAnnsList);
             methodAnnsList.add(EclipseHandlerUtil.generateNamedAnnotation(job.source, CheckerFrameworkVersion.NAME__RETURNS_RECEIVER));
         }
-        MethodDeclaration setter = HandleSetter.createSetter(td, deprecate, fieldNode, setterName, paramName, nameOfSetFlag, returnType, returnStatement, 1, job.sourceNode, methodAnnsList, annosOnParam != null ? Arrays.asList(EclipseHandlerUtil.copyAnnotations(job.source, annosOnParam)) : Collections.emptyList());
+        MethodDeclaration setter = HandleSetter.createSetter(td, deprecate, fieldNode, setterName, paramName, nameOfSetFlag, returnType, returnStatement, 1, job.sourceNode, methodAnnsList, annosOnParam != null ? Arrays.asList(EclipseHandlerUtil.copyAnnotations(job.source, new Annotation[][]{annosOnParam})) : Collections.emptyList());
         if (job.checkerFramework.generateCalledMethods()) {
             setter.receiver = HandleBuilder.generateNotCalledReceiver(job, setterName);
         }

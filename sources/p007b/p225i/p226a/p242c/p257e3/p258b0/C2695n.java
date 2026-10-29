@@ -16,17 +16,38 @@ import p007b.p225i.p355b.p356a.C4483c;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2695n implements InterfaceC2693l {
 
-    /* JADX INFO: renamed from: a */
-    public static final C2695n f6498a = new C2695n(Collections.emptyMap());
-
     /* JADX INFO: renamed from: b */
     public int f6499b;
 
     /* JADX INFO: renamed from: c */
     public final Map<String, byte[]> f6500c;
 
+    /* JADX INFO: renamed from: a */
+    public static final C2695n f6498a = new C2695n(Collections.emptyMap());
+
     public C2695n() {
         this(Collections.emptyMap());
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || C2695n.class != obj.getClass()) {
+            return false;
+        }
+        return m2816b(this.f6500c, ((C2695n) obj).f6500c);
+    }
+
+    public int hashCode() {
+        if (this.f6499b == 0) {
+            int iHashCode = 0;
+            for (Map.Entry<String, byte[]> entry : this.f6500c.entrySet()) {
+                iHashCode += Arrays.hashCode(entry.getValue()) ^ entry.getKey().hashCode();
+            }
+            this.f6499b = iHashCode;
+        }
+        return this.f6499b;
     }
 
     /* JADX INFO: renamed from: b */
@@ -75,27 +96,6 @@ public final class C2695n implements InterfaceC2693l {
             map.put(str, bytes);
         }
         return m2816b(this.f6500c, map) ? this : new C2695n(map);
-    }
-
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || C2695n.class != obj.getClass()) {
-            return false;
-        }
-        return m2816b(this.f6500c, ((C2695n) obj).f6500c);
-    }
-
-    public int hashCode() {
-        if (this.f6499b == 0) {
-            int iHashCode = 0;
-            for (Map.Entry<String, byte[]> entry : this.f6500c.entrySet()) {
-                iHashCode += Arrays.hashCode(entry.getValue()) ^ entry.getKey().hashCode();
-            }
-            this.f6499b = iHashCode;
-        }
-        return this.f6499b;
     }
 
     public C2695n(Map<String, byte[]> map) {

@@ -16,7 +16,7 @@ public interface InterfaceC2206d {
 
     /* JADX INFO: renamed from: b.g.a.c.d$a */
     /* JADX INFO: compiled from: BeanProperty.java */
-    public static class a implements InterfaceC2206d, Serializable {
+    public class a implements InterfaceC2206d, Serializable {
         private static final long serialVersionUID = 1;
         public final AbstractC2188i _member;
         public final C2369s _metadata;
@@ -30,6 +30,16 @@ public interface InterfaceC2206d {
             this._wrapperName = c2370t2;
             this._metadata = c2369s;
             this._member = abstractC2188i;
+        }
+
+        @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
+        public AbstractC2188i getMember() {
+            return this._member;
+        }
+
+        @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
+        public AbstractC2360j getType() {
+            return this._type;
         }
 
         @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
@@ -51,16 +61,6 @@ public interface InterfaceC2206d {
             AbstractC2165b abstractC2165bM2267e = abstractC2394l.m2267e();
             return (abstractC2165bM2267e == null || (abstractC2188i = this._member) == null || (bVarMo1802z = abstractC2165bM2267e.mo1802z(abstractC2188i)) == null) ? bVarMo2269g : bVarMo2269g.m1618a(bVarMo1802z);
         }
-
-        @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
-        public AbstractC2188i getMember() {
-            return this._member;
-        }
-
-        @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
-        public AbstractC2360j getType() {
-            return this._type;
-        }
     }
 
     static {
@@ -68,13 +68,13 @@ public interface InterfaceC2206d {
         InterfaceC2094p.b bVar2 = InterfaceC2094p.b.f4436j;
     }
 
+    AbstractC2188i getMember();
+
+    AbstractC2360j getType();
+
     /* JADX INFO: renamed from: a */
     InterfaceC2081i.d mo1928a(AbstractC2394l<?> abstractC2394l, Class<?> cls);
 
     /* JADX INFO: renamed from: b */
     InterfaceC2094p.b mo1929b(AbstractC2394l<?> abstractC2394l, Class<?> cls);
-
-    AbstractC2188i getMember();
-
-    AbstractC2360j getType();
 }

@@ -12,7 +12,7 @@ import com.google.android.material.math.MathUtils;
 /* JADX INFO: loaded from: classes3.dex */
 public interface CircularRevealWidget extends CircularRevealHelper.Delegate {
 
-    public static class CircularRevealEvaluator implements TypeEvaluator<RevealInfo> {
+    public class CircularRevealEvaluator implements TypeEvaluator<RevealInfo> {
         public static final TypeEvaluator<RevealInfo> CIRCULAR_REVEAL = new CircularRevealEvaluator();
         private final RevealInfo revealInfo = new RevealInfo();
 
@@ -24,7 +24,7 @@ public interface CircularRevealWidget extends CircularRevealHelper.Delegate {
         }
     }
 
-    public static class CircularRevealProperty extends Property<CircularRevealWidget, RevealInfo> {
+    public class CircularRevealProperty extends Property<CircularRevealWidget, RevealInfo> {
         public static final Property<CircularRevealWidget, RevealInfo> CIRCULAR_REVEAL = new CircularRevealProperty("circularReveal");
 
         private CircularRevealProperty(String str) {
@@ -43,7 +43,7 @@ public interface CircularRevealWidget extends CircularRevealHelper.Delegate {
         }
     }
 
-    public static class CircularRevealScrimColorProperty extends Property<CircularRevealWidget, Integer> {
+    public class CircularRevealScrimColorProperty extends Property<CircularRevealWidget, Integer> {
         public static final Property<CircularRevealWidget, Integer> CIRCULAR_REVEAL_SCRIM_COLOR = new CircularRevealScrimColorProperty("circularRevealScrimColor");
 
         private CircularRevealScrimColorProperty(String str) {
@@ -62,7 +62,7 @@ public interface CircularRevealWidget extends CircularRevealHelper.Delegate {
         }
     }
 
-    public static class RevealInfo {
+    public class RevealInfo {
         public static final float INVALID_RADIUS = Float.MAX_VALUE;
         public float centerX;
         public float centerY;

@@ -21,7 +21,7 @@ public final class TextViewOnReceiveContentListener implements OnReceiveContentL
     private static final String LOG_TAG = "ReceiveContent";
 
     @RequiresApi(16)
-    public static final class Api16Impl {
+    public final class Api16Impl {
         private Api16Impl() {
         }
 
@@ -34,7 +34,7 @@ public final class TextViewOnReceiveContentListener implements OnReceiveContentL
         }
     }
 
-    public static final class ApiImpl {
+    public final class ApiImpl {
         private ApiImpl() {
         }
 
@@ -46,15 +46,6 @@ public final class TextViewOnReceiveContentListener implements OnReceiveContentL
 
     private static CharSequence coerceToText(@NonNull Context context, @NonNull ClipData.Item item, int i) {
         return Api16Impl.coerce(context, item, i);
-    }
-
-    private static void replaceSelection(@NonNull Editable editable, @NonNull CharSequence charSequence) {
-        int selectionStart = Selection.getSelectionStart(editable);
-        int selectionEnd = Selection.getSelectionEnd(editable);
-        int iMax = Math.max(0, Math.min(selectionStart, selectionEnd));
-        int iMax2 = Math.max(0, Math.max(selectionStart, selectionEnd));
-        Selection.setSelection(editable, iMax2);
-        editable.replace(iMax, iMax2, charSequence);
     }
 
     @Override // androidx.core.view.OnReceiveContentListener
@@ -85,5 +76,14 @@ public final class TextViewOnReceiveContentListener implements OnReceiveContentL
             }
         }
         return null;
+    }
+
+    private static void replaceSelection(@NonNull Editable editable, @NonNull CharSequence charSequence) {
+        int selectionStart = Selection.getSelectionStart(editable);
+        int selectionEnd = Selection.getSelectionEnd(editable);
+        int iMax = Math.max(0, Math.min(selectionStart, selectionEnd));
+        int iMax2 = Math.max(0, Math.max(selectionStart, selectionEnd));
+        Selection.setSelection(editable, iMax2);
+        editable.replace(iMax, iMax2, charSequence);
     }
 }

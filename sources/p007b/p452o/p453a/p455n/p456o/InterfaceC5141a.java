@@ -11,11 +11,11 @@ import androidx.annotation.RequiresApi;
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
 public interface InterfaceC5141a {
-    /* JADX INFO: renamed from: a */
-    void mo7330a(@NonNull InterfaceC5143c interfaceC5143c);
-
     /* JADX INFO: renamed from: b */
     void mo7248b(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult);
+
+    /* JADX INFO: renamed from: a */
+    void mo7330a(@NonNull InterfaceC5143c interfaceC5143c);
 
     /* JADX INFO: renamed from: c */
     void mo7331c(@NonNull InterfaceC5143c interfaceC5143c, @NonNull CaptureRequest captureRequest);

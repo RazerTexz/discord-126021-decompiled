@@ -20,12 +20,12 @@ import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
-    public static final String TAG = Logger.tagWithPrefix("NetworkStateTracker");
     private NetworkStateBroadcastReceiver mBroadcastReceiver;
     private final ConnectivityManager mConnectivityManager;
 
     @RequiresApi(24)
     private NetworkStateCallback mNetworkCallback;
+    public static final String TAG = Logger.tagWithPrefix("NetworkStateTracker");
 
     public class NetworkStateBroadcastReceiver extends BroadcastReceiver {
         public NetworkStateBroadcastReceiver() {
@@ -72,6 +72,11 @@ public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
         }
     }
 
+    public NetworkState getActiveNetworkState() {
+        NetworkInfo activeNetworkInfo = this.mConnectivityManager.getActiveNetworkInfo();
+        return new NetworkState(activeNetworkInfo != null && activeNetworkInfo.isConnected(), isActiveNetworkValidated(), ConnectivityManagerCompat.isActiveNetworkMetered(this.mConnectivityManager), (activeNetworkInfo == null || activeNetworkInfo.isRoaming()) ? false : true);
+    }
+
     private boolean isActiveNetworkValidated() {
         if (Build.VERSION.SDK_INT < 23) {
             return false;
@@ -82,11 +87,6 @@ public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
 
     private static boolean isNetworkCallbackSupported() {
         return Build.VERSION.SDK_INT >= 24;
-    }
-
-    public NetworkState getActiveNetworkState() {
-        NetworkInfo activeNetworkInfo = this.mConnectivityManager.getActiveNetworkInfo();
-        return new NetworkState(activeNetworkInfo != null && activeNetworkInfo.isConnected(), isActiveNetworkValidated(), ConnectivityManagerCompat.isActiveNetworkMetered(this.mConnectivityManager), (activeNetworkInfo == null || activeNetworkInfo.isRoaming()) ? false : true);
     }
 
     @Override // androidx.work.impl.constraints.trackers.ConstraintTracker

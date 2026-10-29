@@ -60,7 +60,7 @@ public final class GooglePlaySku {
     private final GooglePlaySku upgrade;
 
     /* JADX INFO: compiled from: GooglePlaySku.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -144,7 +144,7 @@ public final class GooglePlaySku {
         public static final Companion INSTANCE = new Companion(null);
 
         /* JADX INFO: compiled from: GooglePlaySku.kt */
-        public static final class Companion {
+        public final class Companion {
 
             public final /* synthetic */ class WhenMappings {
                 public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -270,14 +270,6 @@ public final class GooglePlaySku {
         this.interval = subscriptionInterval;
     }
 
-    public static GooglePlaySku valueOf(String str) {
-        return (GooglePlaySku) Enum.valueOf(GooglePlaySku.class, str);
-    }
-
-    public static GooglePlaySku[] values() {
-        return (GooglePlaySku[]) $VALUES.clone();
-    }
-
     public final int getIconDrawableResId() {
         return this.iconDrawableResId;
     }
@@ -300,6 +292,14 @@ public final class GooglePlaySku {
 
     public final GooglePlaySku getUpgrade() {
         return this.upgrade;
+    }
+
+    public static GooglePlaySku valueOf(String str) {
+        return (GooglePlaySku) Enum.valueOf(GooglePlaySku.class, str);
+    }
+
+    public static GooglePlaySku[] values() {
+        return (GooglePlaySku[]) $VALUES.clone();
     }
 
     public /* synthetic */ GooglePlaySku(String str, int i, String str2, int i2, Type type, GooglePlaySku googlePlaySku, int i3, SubscriptionInterval subscriptionInterval, int i4, DefaultConstructorMarker defaultConstructorMarker) {

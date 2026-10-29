@@ -170,65 +170,6 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
     private static final String TAG = BaseSlider.class.getSimpleName();
     public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Slider;
 
-    public static class SliderState extends View.BaseSavedState {
-        public static final Parcelable.Creator<SliderState> CREATOR = new C10975a();
-
-        /* JADX INFO: renamed from: j */
-        public float f21107j;
-
-        /* JADX INFO: renamed from: k */
-        public float f21108k;
-
-        /* JADX INFO: renamed from: l */
-        public ArrayList<Float> f21109l;
-
-        /* JADX INFO: renamed from: m */
-        public float f21110m;
-
-        /* JADX INFO: renamed from: n */
-        public boolean f21111n;
-
-        /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$SliderState$a */
-        public static class C10975a implements Parcelable.Creator<SliderState> {
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public SliderState createFromParcel(@NonNull Parcel parcel) {
-                return new SliderState(parcel, null);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public SliderState[] newArray(int i) {
-                return new SliderState[i];
-            }
-        }
-
-        public SliderState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeFloat(this.f21107j);
-            parcel.writeFloat(this.f21108k);
-            parcel.writeList(this.f21109l);
-            parcel.writeFloat(this.f21110m);
-            parcel.writeBooleanArray(new boolean[]{this.f21111n});
-        }
-
-        public SliderState(Parcel parcel, C10976a c10976a) {
-            super(parcel);
-            this.f21107j = parcel.readFloat();
-            this.f21108k = parcel.readFloat();
-            ArrayList<Float> arrayList = new ArrayList<>();
-            this.f21109l = arrayList;
-            parcel.readList(arrayList, Float.class.getClassLoader());
-            this.f21110m = parcel.readFloat();
-            this.f21111n = parcel.createBooleanArray()[0];
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$a */
     public class C10976a implements InterfaceC10981f {
 
@@ -275,23 +216,8 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         }
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$d */
-    public class RunnableC10979d implements Runnable {
-
-        /* JADX INFO: renamed from: j */
-        public int f21117j = -1;
-
-        public RunnableC10979d(C10976a c10976a) {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            BaseSlider.this.accessibilityHelper.sendEventForVirtualView(this.f21117j, 4);
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$e */
-    public static class C10980e extends ExploreByTouchHelper {
+    public class C10980e extends ExploreByTouchHelper {
 
         /* JADX INFO: renamed from: a */
         public final BaseSlider<?, ?, ?> f21119a;
@@ -397,8 +323,75 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
     public interface InterfaceC10981f {
     }
 
+    public class SliderState extends View.BaseSavedState {
+
+        /* JADX INFO: renamed from: j */
+        public float f21107j;
+
+        /* JADX INFO: renamed from: k */
+        public float f21108k;
+
+        /* JADX INFO: renamed from: l */
+        public ArrayList<Float> f21109l;
+
+        /* JADX INFO: renamed from: m */
+        public float f21110m;
+
+        /* JADX INFO: renamed from: n */
+        public boolean f21111n;
+        public static final Parcelable.Creator<SliderState> CREATOR = new C10975a();
+
+        /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$SliderState$a */
+        public final class C10975a implements Parcelable.Creator<SliderState> {
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public SliderState createFromParcel(@NonNull Parcel parcel) {
+                return new SliderState(parcel, null);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public SliderState[] newArray(int i) {
+                return new SliderState[i];
+            }
+        }
+
+        public SliderState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeFloat(this.f21107j);
+            parcel.writeFloat(this.f21108k);
+            parcel.writeList(this.f21109l);
+            parcel.writeFloat(this.f21110m);
+            parcel.writeBooleanArray(new boolean[]{this.f21111n});
+        }
+
+        public SliderState(Parcel parcel, C10976a c10976a) {
+            super(parcel);
+            this.f21107j = parcel.readFloat();
+            this.f21108k = parcel.readFloat();
+            ArrayList<Float> arrayList = new ArrayList<>();
+            this.f21109l = arrayList;
+            parcel.readList(arrayList, Float.class.getClassLoader());
+            this.f21110m = parcel.readFloat();
+            this.f21111n = parcel.createBooleanArray()[0];
+        }
+    }
+
     public BaseSlider(@NonNull Context context) {
         this(context, null);
+    }
+
+    public void addOnChangeListener(@Nullable L l) {
+        this.changeListeners.add(l);
+    }
+
+    public void addOnSliderTouchListener(@NonNull T t) {
+        this.touchListeners.add(t);
     }
 
     private void attachLabelToContentView(TooltipDrawable tooltipDrawable) {
@@ -438,6 +431,14 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
 
     private int calculateTop() {
         return this.trackTop + (this.labelBehavior == 1 ? this.labels.get(0).getIntrinsicHeight() : 0);
+    }
+
+    public void clearOnChangeListeners() {
+        this.changeListeners.clear();
+    }
+
+    public void clearOnSliderTouchListeners() {
+        this.touchListeners.clear();
     }
 
     private ValueAnimator createLabelAnimator(boolean z2) {
@@ -493,6 +494,16 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         float f2 = (f - this.trackSidePadding) / this.trackWidth;
         float f3 = this.valueFrom;
         return C1643a.m839a(f3, this.valueTo, f2, f3);
+    }
+
+    @Override // android.view.View
+    public boolean dispatchHoverEvent(@NonNull MotionEvent motionEvent) {
+        return this.accessibilityHelper.dispatchHoverEvent(motionEvent) || super.dispatchHoverEvent(motionEvent);
+    }
+
+    @Override // android.view.View
+    public boolean dispatchKeyEvent(@NonNull KeyEvent keyEvent) {
+        return super.dispatchKeyEvent(keyEvent);
     }
 
     private void dispatchOnChangedFromUser(int i) {
@@ -558,6 +569,25 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         }
     }
 
+    @Override // android.view.View
+    public void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.inactiveTrackPaint.setColor(getColorForState(this.trackColorInactive));
+        this.activeTrackPaint.setColor(getColorForState(this.trackColorActive));
+        this.inactiveTicksPaint.setColor(getColorForState(this.tickColorInactive));
+        this.activeTicksPaint.setColor(getColorForState(this.tickColorActive));
+        for (TooltipDrawable tooltipDrawable : this.labels) {
+            if (tooltipDrawable.isStateful()) {
+                tooltipDrawable.setState(getDrawableState());
+            }
+        }
+        if (this.thumbDrawable.isStateful()) {
+            this.thumbDrawable.setState(getDrawableState());
+        }
+        this.haloPaint.setColor(getColorForState(this.haloColor));
+        this.haloPaint.setAlpha(63);
+    }
+
     private void ensureLabelsAdded() {
         if (this.labelBehavior == 2) {
             return;
@@ -609,11 +639,27 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         }
     }
 
+    @VisibleForTesting
+    public void forceDrawCompatHalo(boolean z2) {
+        this.forceDrawCompatHalo = z2;
+    }
+
     private String formatValue(float f) {
         if (hasLabelFormatter()) {
             return this.formatter.getFormattedValue(f);
         }
         return String.format(((float) ((int) f)) == f ? "%.0f" : "%.2f", Float.valueOf(f));
+    }
+
+    @Override // android.view.View
+    @NonNull
+    public CharSequence getAccessibilityClassName() {
+        return SeekBar.class.getName();
+    }
+
+    @VisibleForTesting
+    public final int getAccessibilityFocusedVirtualViewId() {
+        return this.accessibilityHelper.getAccessibilityFocusedVirtualViewId();
     }
 
     private float[] getActiveRange() {
@@ -625,6 +671,10 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         float fNormalizeValue = normalizeValue(fFloatValue2);
         float fNormalizeValue2 = normalizeValue(fFloatValue);
         return isRtl() ? new float[]{fNormalizeValue2, fNormalizeValue} : new float[]{fNormalizeValue, fNormalizeValue2};
+    }
+
+    public int getActiveThumbIndex() {
+        return this.activeThumbIdx;
     }
 
     private static float getAnimatorCurrentValueOrDefault(ValueAnimator valueAnimator, float f) {
@@ -652,477 +702,6 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
     @ColorInt
     private int getColorForState(@NonNull ColorStateList colorStateList) {
         return colorStateList.getColorForState(getDrawableState(), colorStateList.getDefaultColor());
-    }
-
-    private float getValueOfTouchPosition() {
-        double dSnapPosition = snapPosition(this.touchPosition);
-        if (isRtl()) {
-            dSnapPosition = 1.0d - dSnapPosition;
-        }
-        float f = this.valueTo;
-        float f2 = this.valueFrom;
-        return (float) ((dSnapPosition * ((double) (f - f2))) + ((double) f2));
-    }
-
-    private float getValueOfTouchPositionAbsolute() {
-        float f = this.touchPosition;
-        if (isRtl()) {
-            f = 1.0f - f;
-        }
-        float f2 = this.valueTo;
-        float f3 = this.valueFrom;
-        return C1643a.m839a(f2, f3, f, f3);
-    }
-
-    private void invalidateTrack() {
-        this.inactiveTrackPaint.setStrokeWidth(this.trackHeight);
-        this.activeTrackPaint.setStrokeWidth(this.trackHeight);
-        this.inactiveTicksPaint.setStrokeWidth(this.trackHeight / 2.0f);
-        this.activeTicksPaint.setStrokeWidth(this.trackHeight / 2.0f);
-    }
-
-    private boolean isInVerticalScrollingContainer() {
-        ViewParent parent = getParent();
-        while (true) {
-            if (!(parent instanceof ViewGroup)) {
-                return false;
-            }
-            ViewGroup viewGroup = (ViewGroup) parent;
-            if ((viewGroup.canScrollVertically(1) || viewGroup.canScrollVertically(-1)) && viewGroup.shouldDelayChildPressedState()) {
-                return true;
-            }
-            parent = parent.getParent();
-        }
-    }
-
-    private void loadResources(@NonNull Resources resources) {
-        this.widgetHeight = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_widget_height);
-        int dimensionPixelOffset = resources.getDimensionPixelOffset(C10817R.dimen.mtrl_slider_track_side_padding);
-        this.minTrackSidePadding = dimensionPixelOffset;
-        this.trackSidePadding = dimensionPixelOffset;
-        this.defaultThumbRadius = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_thumb_radius);
-        this.trackTop = resources.getDimensionPixelOffset(C10817R.dimen.mtrl_slider_track_top);
-        this.labelPadding = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_label_padding);
-    }
-
-    private void maybeCalculateTicksCoordinates() {
-        if (this.stepSize <= 0.0f) {
-            return;
-        }
-        validateConfigurationIfDirty();
-        int iMin = Math.min((int) (((this.valueTo - this.valueFrom) / this.stepSize) + 1.0f), (this.trackWidth / (this.trackHeight * 2)) + 1);
-        float[] fArr = this.ticksCoordinates;
-        if (fArr == null || fArr.length != iMin * 2) {
-            this.ticksCoordinates = new float[iMin * 2];
-        }
-        float f = this.trackWidth / (iMin - 1);
-        for (int i = 0; i < iMin * 2; i += 2) {
-            float[] fArr2 = this.ticksCoordinates;
-            fArr2[i] = ((i / 2) * f) + this.trackSidePadding;
-            fArr2[i + 1] = calculateTop();
-        }
-    }
-
-    private void maybeDrawHalo(@NonNull Canvas canvas, int i, int i2) {
-        if (shouldDrawCompatHalo()) {
-            int iNormalizeValue = (int) ((normalizeValue(this.values.get(this.focusedThumbIdx).floatValue()) * i) + this.trackSidePadding);
-            if (Build.VERSION.SDK_INT < 28) {
-                int i3 = this.haloRadius;
-                canvas.clipRect(iNormalizeValue - i3, i2 - i3, iNormalizeValue + i3, i3 + i2, Region.Op.UNION);
-            }
-            canvas.drawCircle(iNormalizeValue, i2, this.haloRadius, this.haloPaint);
-        }
-    }
-
-    private void maybeDrawTicks(@NonNull Canvas canvas) {
-        if (!this.tickVisible || this.stepSize <= 0.0f) {
-            return;
-        }
-        float[] activeRange = getActiveRange();
-        int iPivotIndex = pivotIndex(this.ticksCoordinates, activeRange[0]);
-        int iPivotIndex2 = pivotIndex(this.ticksCoordinates, activeRange[1]);
-        int i = iPivotIndex * 2;
-        canvas.drawPoints(this.ticksCoordinates, 0, i, this.inactiveTicksPaint);
-        int i2 = iPivotIndex2 * 2;
-        canvas.drawPoints(this.ticksCoordinates, i, i2 - i, this.activeTicksPaint);
-        float[] fArr = this.ticksCoordinates;
-        canvas.drawPoints(fArr, i2, fArr.length - i2, this.inactiveTicksPaint);
-    }
-
-    private void maybeIncreaseTrackSidePadding() {
-        this.trackSidePadding = this.minTrackSidePadding + Math.max(this.thumbRadius - this.defaultThumbRadius, 0);
-        if (ViewCompat.isLaidOut(this)) {
-            updateTrackWidth(getWidth());
-        }
-    }
-
-    private boolean moveFocus(int i) {
-        int i2 = this.focusedThumbIdx;
-        int iClamp = (int) MathUtils.clamp(((long) i2) + ((long) i), 0L, this.values.size() - 1);
-        this.focusedThumbIdx = iClamp;
-        if (iClamp == i2) {
-            return false;
-        }
-        if (this.activeThumbIdx != -1) {
-            this.activeThumbIdx = iClamp;
-        }
-        updateHaloHotspot();
-        postInvalidate();
-        return true;
-    }
-
-    private boolean moveFocusInAbsoluteDirection(int i) {
-        if (isRtl()) {
-            i = i == Integer.MIN_VALUE ? Integer.MAX_VALUE : -i;
-        }
-        return moveFocus(i);
-    }
-
-    private float normalizeValue(float f) {
-        float f2 = this.valueFrom;
-        float f3 = (f - f2) / (this.valueTo - f2);
-        return isRtl() ? 1.0f - f3 : f3;
-    }
-
-    private Boolean onKeyDownNoActiveThumb(int i, @NonNull KeyEvent keyEvent) {
-        if (i == 61) {
-            if (keyEvent.hasNoModifiers()) {
-                return Boolean.valueOf(moveFocus(1));
-            }
-            return keyEvent.isShiftPressed() ? Boolean.valueOf(moveFocus(-1)) : Boolean.FALSE;
-        }
-        if (i != 66) {
-            if (i != 81) {
-                if (i == 69) {
-                    moveFocus(-1);
-                    return Boolean.TRUE;
-                }
-                if (i != 70) {
-                    switch (i) {
-                        case 21:
-                            moveFocusInAbsoluteDirection(-1);
-                            return Boolean.TRUE;
-                        case 22:
-                            moveFocusInAbsoluteDirection(1);
-                            return Boolean.TRUE;
-                        case 23:
-                            break;
-                        default:
-                            return null;
-                    }
-                }
-            }
-            moveFocus(1);
-            return Boolean.TRUE;
-        }
-        this.activeThumbIdx = this.focusedThumbIdx;
-        postInvalidate();
-        return Boolean.TRUE;
-    }
-
-    private void onStartTrackingTouch() {
-        Iterator<T> it = this.touchListeners.iterator();
-        while (it.hasNext()) {
-            it.next().onStartTrackingTouch(this);
-        }
-    }
-
-    private void onStopTrackingTouch() {
-        Iterator<T> it = this.touchListeners.iterator();
-        while (it.hasNext()) {
-            it.next().onStopTrackingTouch(this);
-        }
-    }
-
-    @NonNull
-    private static TooltipDrawable parseLabelDrawable(@NonNull Context context, @NonNull TypedArray typedArray) {
-        return TooltipDrawable.createFromAttributes(context, null, 0, typedArray.getResourceId(C10817R.styleable.Slider_labelStyle, C10817R.style.Widget_MaterialComponents_Tooltip));
-    }
-
-    private static int pivotIndex(float[] fArr, float f) {
-        return Math.round(f * ((fArr.length / 2) - 1));
-    }
-
-    private void processAttributes(Context context, AttributeSet attributeSet, int i) {
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.Slider, i, DEF_STYLE_RES, new int[0]);
-        this.valueFrom = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_valueFrom, 0.0f);
-        this.valueTo = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_valueTo, 1.0f);
-        setValues(Float.valueOf(this.valueFrom));
-        this.stepSize = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_stepSize, 0.0f);
-        int i2 = C10817R.styleable.Slider_trackColor;
-        boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(i2);
-        int i3 = zHasValue ? i2 : C10817R.styleable.Slider_trackColorInactive;
-        if (!zHasValue) {
-            i2 = C10817R.styleable.Slider_trackColorActive;
-        }
-        ColorStateList colorStateList = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i3);
-        if (colorStateList == null) {
-            colorStateList = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_inactive_track_color);
-        }
-        setTrackInactiveTintList(colorStateList);
-        ColorStateList colorStateList2 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i2);
-        if (colorStateList2 == null) {
-            colorStateList2 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_active_track_color);
-        }
-        setTrackActiveTintList(colorStateList2);
-        this.thumbDrawable.setFillColor(MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, C10817R.styleable.Slider_thumbColor));
-        int i4 = C10817R.styleable.Slider_thumbStrokeColor;
-        if (typedArrayObtainStyledAttributes.hasValue(i4)) {
-            setThumbStrokeColor(MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i4));
-        }
-        setThumbStrokeWidth(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Slider_thumbStrokeWidth, 0.0f));
-        ColorStateList colorStateList3 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, C10817R.styleable.Slider_haloColor);
-        if (colorStateList3 == null) {
-            colorStateList3 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_halo_color);
-        }
-        setHaloTintList(colorStateList3);
-        this.tickVisible = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Slider_tickVisible, true);
-        int i5 = C10817R.styleable.Slider_tickColor;
-        boolean zHasValue2 = typedArrayObtainStyledAttributes.hasValue(i5);
-        int i6 = zHasValue2 ? i5 : C10817R.styleable.Slider_tickColorInactive;
-        if (!zHasValue2) {
-            i5 = C10817R.styleable.Slider_tickColorActive;
-        }
-        ColorStateList colorStateList4 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i6);
-        if (colorStateList4 == null) {
-            colorStateList4 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_inactive_tick_marks_color);
-        }
-        setTickInactiveTintList(colorStateList4);
-        ColorStateList colorStateList5 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i5);
-        if (colorStateList5 == null) {
-            colorStateList5 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_active_tick_marks_color);
-        }
-        setTickActiveTintList(colorStateList5);
-        setThumbRadius(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_thumbRadius, 0));
-        setHaloRadius(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_haloRadius, 0));
-        setThumbElevation(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Slider_thumbElevation, 0.0f));
-        setTrackHeight(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_trackHeight, 0));
-        this.labelBehavior = typedArrayObtainStyledAttributes.getInt(C10817R.styleable.Slider_labelBehavior, 0);
-        if (!typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Slider_android_enabled, true)) {
-            setEnabled(false);
-        }
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private void scheduleAccessibilityEventSender(int i) {
-        BaseSlider<S, L, T>.RunnableC10979d runnableC10979d = this.accessibilityEventSender;
-        if (runnableC10979d == null) {
-            this.accessibilityEventSender = new RunnableC10979d(null);
-        } else {
-            removeCallbacks(runnableC10979d);
-        }
-        BaseSlider<S, L, T>.RunnableC10979d runnableC10979d2 = this.accessibilityEventSender;
-        runnableC10979d2.f21117j = i;
-        postDelayed(runnableC10979d2, 200L);
-    }
-
-    private void setValueForLabel(TooltipDrawable tooltipDrawable, float f) {
-        tooltipDrawable.setText(formatValue(f));
-        int iNormalizeValue = (this.trackSidePadding + ((int) (normalizeValue(f) * this.trackWidth))) - (tooltipDrawable.getIntrinsicWidth() / 2);
-        int iCalculateTop = calculateTop() - (this.labelPadding + this.thumbRadius);
-        tooltipDrawable.setBounds(iNormalizeValue, iCalculateTop - tooltipDrawable.getIntrinsicHeight(), tooltipDrawable.getIntrinsicWidth() + iNormalizeValue, iCalculateTop);
-        Rect rect = new Rect(tooltipDrawable.getBounds());
-        DescendantOffsetUtils.offsetDescendantRect(ViewUtils.getContentView(this), this, rect);
-        tooltipDrawable.setBounds(rect);
-        ViewUtils.getContentViewOverlay(this).add(tooltipDrawable);
-    }
-
-    private void setValuesInternal(@NonNull ArrayList<Float> arrayList) {
-        if (arrayList.isEmpty()) {
-            throw new IllegalArgumentException("At least one value must be set");
-        }
-        Collections.sort(arrayList);
-        if (this.values.size() == arrayList.size() && this.values.equals(arrayList)) {
-            return;
-        }
-        this.values = arrayList;
-        this.dirtyConfig = true;
-        this.focusedThumbIdx = 0;
-        updateHaloHotspot();
-        createLabelPool();
-        dispatchOnChangedProgramatically();
-        postInvalidate();
-    }
-
-    private boolean shouldDrawCompatHalo() {
-        return this.forceDrawCompatHalo || !(getBackground() instanceof RippleDrawable);
-    }
-
-    private boolean snapActiveThumbToValue(float f) {
-        return snapThumbToValue(this.activeThumbIdx, f);
-    }
-
-    private double snapPosition(float f) {
-        float f2 = this.stepSize;
-        if (f2 <= 0.0f) {
-            return f;
-        }
-        int i = (int) ((this.valueTo - this.valueFrom) / f2);
-        return ((double) Math.round(f * i)) / ((double) i);
-    }
-
-    private boolean snapThumbToValue(int i, float f) {
-        if (Math.abs(f - this.values.get(i).floatValue()) < THRESHOLD) {
-            return false;
-        }
-        this.values.set(i, Float.valueOf(getClampedValue(i, f)));
-        this.focusedThumbIdx = i;
-        dispatchOnChangedFromUser(i);
-        return true;
-    }
-
-    private boolean snapTouchPosition() {
-        return snapActiveThumbToValue(getValueOfTouchPosition());
-    }
-
-    private void updateHaloHotspot() {
-        if (shouldDrawCompatHalo() || getMeasuredWidth() <= 0) {
-            return;
-        }
-        Drawable background = getBackground();
-        if (background instanceof RippleDrawable) {
-            int iNormalizeValue = (int) ((normalizeValue(this.values.get(this.focusedThumbIdx).floatValue()) * this.trackWidth) + this.trackSidePadding);
-            int iCalculateTop = calculateTop();
-            int i = this.haloRadius;
-            DrawableCompat.setHotspotBounds(background, iNormalizeValue - i, iCalculateTop - i, iNormalizeValue + i, iCalculateTop + i);
-        }
-    }
-
-    private void updateTrackWidth(int i) {
-        this.trackWidth = Math.max(i - (this.trackSidePadding * 2), 0);
-        maybeCalculateTicksCoordinates();
-    }
-
-    private void validateConfigurationIfDirty() {
-        if (this.dirtyConfig) {
-            validateValueFrom();
-            validateValueTo();
-            validateStepSize();
-            validateValues();
-            warnAboutFloatingPointError();
-            this.dirtyConfig = false;
-        }
-    }
-
-    private void validateStepSize() {
-        if (this.stepSize > 0.0f && !valueLandsOnTick(this.valueTo)) {
-            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_STEP_SIZE, Float.toString(this.stepSize), Float.toString(this.valueFrom), Float.toString(this.valueTo)));
-        }
-    }
-
-    private void validateValueFrom() {
-        if (this.valueFrom >= this.valueTo) {
-            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE_FROM, Float.toString(this.valueFrom), Float.toString(this.valueTo)));
-        }
-    }
-
-    private void validateValueTo() {
-        if (this.valueTo <= this.valueFrom) {
-            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE_TO, Float.toString(this.valueTo), Float.toString(this.valueFrom)));
-        }
-    }
-
-    private void validateValues() {
-        for (Float f : this.values) {
-            if (f.floatValue() < this.valueFrom || f.floatValue() > this.valueTo) {
-                throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE, Float.toString(f.floatValue()), Float.toString(this.valueFrom), Float.toString(this.valueTo)));
-            }
-            if (this.stepSize > 0.0f && !valueLandsOnTick(f.floatValue())) {
-                throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_DISCRETE_VALUE, Float.toString(f.floatValue()), Float.toString(this.valueFrom), Float.toString(this.stepSize), Float.toString(this.stepSize)));
-            }
-        }
-    }
-
-    private boolean valueLandsOnTick(float f) {
-        double dDoubleValue = new BigDecimal(Float.toString(f)).subtract(new BigDecimal(Float.toString(this.valueFrom))).divide(new BigDecimal(Float.toString(this.stepSize)), MathContext.DECIMAL64).doubleValue();
-        return Math.abs(((double) Math.round(dDoubleValue)) - dDoubleValue) < THRESHOLD;
-    }
-
-    private float valueToX(float f) {
-        return (normalizeValue(f) * this.trackWidth) + this.trackSidePadding;
-    }
-
-    private void warnAboutFloatingPointError() {
-        float f = this.stepSize;
-        if (f == 0.0f) {
-            return;
-        }
-        if (((int) f) != f) {
-            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "stepSize", Float.valueOf(f)));
-        }
-        float f2 = this.valueFrom;
-        if (((int) f2) != f2) {
-            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "valueFrom", Float.valueOf(f2)));
-        }
-        float f3 = this.valueTo;
-        if (((int) f3) != f3) {
-            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "valueTo", Float.valueOf(f3)));
-        }
-    }
-
-    public void addOnChangeListener(@Nullable L l) {
-        this.changeListeners.add(l);
-    }
-
-    public void addOnSliderTouchListener(@NonNull T t) {
-        this.touchListeners.add(t);
-    }
-
-    public void clearOnChangeListeners() {
-        this.changeListeners.clear();
-    }
-
-    public void clearOnSliderTouchListeners() {
-        this.touchListeners.clear();
-    }
-
-    @Override // android.view.View
-    public boolean dispatchHoverEvent(@NonNull MotionEvent motionEvent) {
-        return this.accessibilityHelper.dispatchHoverEvent(motionEvent) || super.dispatchHoverEvent(motionEvent);
-    }
-
-    @Override // android.view.View
-    public boolean dispatchKeyEvent(@NonNull KeyEvent keyEvent) {
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override // android.view.View
-    public void drawableStateChanged() {
-        super.drawableStateChanged();
-        this.inactiveTrackPaint.setColor(getColorForState(this.trackColorInactive));
-        this.activeTrackPaint.setColor(getColorForState(this.trackColorActive));
-        this.inactiveTicksPaint.setColor(getColorForState(this.tickColorInactive));
-        this.activeTicksPaint.setColor(getColorForState(this.tickColorActive));
-        for (TooltipDrawable tooltipDrawable : this.labels) {
-            if (tooltipDrawable.isStateful()) {
-                tooltipDrawable.setState(getDrawableState());
-            }
-        }
-        if (this.thumbDrawable.isStateful()) {
-            this.thumbDrawable.setState(getDrawableState());
-        }
-        this.haloPaint.setColor(getColorForState(this.haloColor));
-        this.haloPaint.setAlpha(63);
-    }
-
-    @VisibleForTesting
-    public void forceDrawCompatHalo(boolean z2) {
-        this.forceDrawCompatHalo = z2;
-    }
-
-    @Override // android.view.View
-    @NonNull
-    public CharSequence getAccessibilityClassName() {
-        return SeekBar.class.getName();
-    }
-
-    @VisibleForTesting
-    public final int getAccessibilityFocusedVirtualViewId() {
-        return this.accessibilityHelper.getAccessibilityFocusedVirtualViewId();
-    }
-
-    public int getActiveThumbIndex() {
-        return this.activeThumbIdx;
     }
 
     public int getFocusedThumbIndex() {
@@ -1228,6 +807,26 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         return this.valueFrom;
     }
 
+    private float getValueOfTouchPosition() {
+        double dSnapPosition = snapPosition(this.touchPosition);
+        if (isRtl()) {
+            dSnapPosition = 1.0d - dSnapPosition;
+        }
+        float f = this.valueTo;
+        float f2 = this.valueFrom;
+        return (float) ((dSnapPosition * ((double) (f - f2))) + ((double) f2));
+    }
+
+    private float getValueOfTouchPositionAbsolute() {
+        float f = this.touchPosition;
+        if (isRtl()) {
+            f = 1.0f - f;
+        }
+        float f2 = this.valueTo;
+        float f3 = this.valueFrom;
+        return C1643a.m839a(f2, f3, f, f3);
+    }
+
     public float getValueTo() {
         return this.valueTo;
     }
@@ -1241,12 +840,122 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         return this.formatter != null;
     }
 
+    private void invalidateTrack() {
+        this.inactiveTrackPaint.setStrokeWidth(this.trackHeight);
+        this.activeTrackPaint.setStrokeWidth(this.trackHeight);
+        this.inactiveTicksPaint.setStrokeWidth(this.trackHeight / 2.0f);
+        this.activeTicksPaint.setStrokeWidth(this.trackHeight / 2.0f);
+    }
+
+    private boolean isInVerticalScrollingContainer() {
+        ViewParent parent = getParent();
+        while (true) {
+            if (!(parent instanceof ViewGroup)) {
+                return false;
+            }
+            ViewGroup viewGroup = (ViewGroup) parent;
+            if ((viewGroup.canScrollVertically(1) || viewGroup.canScrollVertically(-1)) && viewGroup.shouldDelayChildPressedState()) {
+                return true;
+            }
+            parent = parent.getParent();
+        }
+    }
+
     public final boolean isRtl() {
         return ViewCompat.getLayoutDirection(this) == 1;
     }
 
     public boolean isTickVisible() {
         return this.tickVisible;
+    }
+
+    private void loadResources(@NonNull Resources resources) {
+        this.widgetHeight = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_widget_height);
+        int dimensionPixelOffset = resources.getDimensionPixelOffset(C10817R.dimen.mtrl_slider_track_side_padding);
+        this.minTrackSidePadding = dimensionPixelOffset;
+        this.trackSidePadding = dimensionPixelOffset;
+        this.defaultThumbRadius = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_thumb_radius);
+        this.trackTop = resources.getDimensionPixelOffset(C10817R.dimen.mtrl_slider_track_top);
+        this.labelPadding = resources.getDimensionPixelSize(C10817R.dimen.mtrl_slider_label_padding);
+    }
+
+    private void maybeCalculateTicksCoordinates() {
+        if (this.stepSize <= 0.0f) {
+            return;
+        }
+        validateConfigurationIfDirty();
+        int iMin = Math.min((int) (((this.valueTo - this.valueFrom) / this.stepSize) + 1.0f), (this.trackWidth / (this.trackHeight * 2)) + 1);
+        float[] fArr = this.ticksCoordinates;
+        if (fArr == null || fArr.length != iMin * 2) {
+            this.ticksCoordinates = new float[iMin * 2];
+        }
+        float f = this.trackWidth / (iMin - 1);
+        for (int i = 0; i < iMin * 2; i += 2) {
+            float[] fArr2 = this.ticksCoordinates;
+            fArr2[i] = ((i / 2) * f) + this.trackSidePadding;
+            fArr2[i + 1] = calculateTop();
+        }
+    }
+
+    private void maybeDrawHalo(@NonNull Canvas canvas, int i, int i2) {
+        if (shouldDrawCompatHalo()) {
+            int iNormalizeValue = (int) ((normalizeValue(this.values.get(this.focusedThumbIdx).floatValue()) * i) + this.trackSidePadding);
+            if (Build.VERSION.SDK_INT < 28) {
+                int i3 = this.haloRadius;
+                canvas.clipRect(iNormalizeValue - i3, i2 - i3, iNormalizeValue + i3, i3 + i2, Region.Op.UNION);
+            }
+            canvas.drawCircle(iNormalizeValue, i2, this.haloRadius, this.haloPaint);
+        }
+    }
+
+    private void maybeDrawTicks(@NonNull Canvas canvas) {
+        if (!this.tickVisible || this.stepSize <= 0.0f) {
+            return;
+        }
+        float[] activeRange = getActiveRange();
+        int iPivotIndex = pivotIndex(this.ticksCoordinates, activeRange[0]);
+        int iPivotIndex2 = pivotIndex(this.ticksCoordinates, activeRange[1]);
+        int i = iPivotIndex * 2;
+        canvas.drawPoints(this.ticksCoordinates, 0, i, this.inactiveTicksPaint);
+        int i2 = iPivotIndex2 * 2;
+        canvas.drawPoints(this.ticksCoordinates, i, i2 - i, this.activeTicksPaint);
+        float[] fArr = this.ticksCoordinates;
+        canvas.drawPoints(fArr, i2, fArr.length - i2, this.inactiveTicksPaint);
+    }
+
+    private void maybeIncreaseTrackSidePadding() {
+        this.trackSidePadding = this.minTrackSidePadding + Math.max(this.thumbRadius - this.defaultThumbRadius, 0);
+        if (ViewCompat.isLaidOut(this)) {
+            updateTrackWidth(getWidth());
+        }
+    }
+
+    private boolean moveFocus(int i) {
+        int i2 = this.focusedThumbIdx;
+        int iClamp = (int) MathUtils.clamp(((long) i2) + ((long) i), 0L, this.values.size() - 1);
+        this.focusedThumbIdx = iClamp;
+        if (iClamp == i2) {
+            return false;
+        }
+        if (this.activeThumbIdx != -1) {
+            this.activeThumbIdx = iClamp;
+        }
+        updateHaloHotspot();
+        postInvalidate();
+        return true;
+    }
+
+    private boolean moveFocusInAbsoluteDirection(int i) {
+        if (isRtl()) {
+            i = i == Integer.MIN_VALUE ? Integer.MAX_VALUE : -i;
+        }
+        return moveFocus(i);
+    }
+
+    private float normalizeValue(float f) {
+        float f2 = this.valueFrom;
+        float f3 = (f - f2) / (this.valueTo - f2);
+        return isRtl() ? 1.0f - f3 : f3;
     }
 
     @Override // android.view.View
@@ -1348,6 +1057,42 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         return true;
     }
 
+    private Boolean onKeyDownNoActiveThumb(int i, @NonNull KeyEvent keyEvent) {
+        if (i == 61) {
+            if (keyEvent.hasNoModifiers()) {
+                return Boolean.valueOf(moveFocus(1));
+            }
+            return keyEvent.isShiftPressed() ? Boolean.valueOf(moveFocus(-1)) : Boolean.FALSE;
+        }
+        if (i != 66) {
+            if (i != 81) {
+                if (i == 69) {
+                    moveFocus(-1);
+                    return Boolean.TRUE;
+                }
+                if (i != 70) {
+                    switch (i) {
+                        case 21:
+                            moveFocusInAbsoluteDirection(-1);
+                            return Boolean.TRUE;
+                        case 22:
+                            moveFocusInAbsoluteDirection(1);
+                            return Boolean.TRUE;
+                        case 23:
+                            break;
+                        default:
+                            return null;
+                    }
+                }
+            }
+            moveFocus(1);
+            return Boolean.TRUE;
+        }
+        this.activeThumbIdx = this.focusedThumbIdx;
+        postInvalidate();
+        return Boolean.TRUE;
+    }
+
     @Override // android.view.View, android.view.KeyEvent.Callback
     public boolean onKeyUp(int i, @NonNull KeyEvent keyEvent) {
         this.isLongPress = false;
@@ -1388,6 +1133,20 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
     public void onSizeChanged(int i, int i2, int i3, int i4) {
         updateTrackWidth(i);
         updateHaloHotspot();
+    }
+
+    private void onStartTrackingTouch() {
+        Iterator<T> it = this.touchListeners.iterator();
+        while (it.hasNext()) {
+            it.next().onStartTrackingTouch(this);
+        }
+    }
+
+    private void onStopTrackingTouch() {
+        Iterator<T> it = this.touchListeners.iterator();
+        while (it.hasNext()) {
+            it.next().onStopTrackingTouch(this);
+        }
     }
 
     @Override // android.view.View
@@ -1448,6 +1207,11 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         return true;
     }
 
+    @NonNull
+    private static TooltipDrawable parseLabelDrawable(@NonNull Context context, @NonNull TypedArray typedArray) {
+        return TooltipDrawable.createFromAttributes(context, null, 0, typedArray.getResourceId(C10817R.styleable.Slider_labelStyle, C10817R.style.Widget_MaterialComponents_Tooltip));
+    }
+
     public boolean pickActiveThumb() {
         if (this.activeThumbIdx != -1) {
             return true;
@@ -1483,12 +1247,89 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         return this.activeThumbIdx != -1;
     }
 
+    private static int pivotIndex(float[] fArr, float f) {
+        return Math.round(f * ((fArr.length / 2) - 1));
+    }
+
+    private void processAttributes(Context context, AttributeSet attributeSet, int i) {
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.Slider, i, DEF_STYLE_RES, new int[0]);
+        this.valueFrom = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_valueFrom, 0.0f);
+        this.valueTo = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_valueTo, 1.0f);
+        setValues(Float.valueOf(this.valueFrom));
+        this.stepSize = typedArrayObtainStyledAttributes.getFloat(C10817R.styleable.Slider_android_stepSize, 0.0f);
+        int i2 = C10817R.styleable.Slider_trackColor;
+        boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(i2);
+        int i3 = zHasValue ? i2 : C10817R.styleable.Slider_trackColorInactive;
+        if (!zHasValue) {
+            i2 = C10817R.styleable.Slider_trackColorActive;
+        }
+        ColorStateList colorStateList = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i3);
+        if (colorStateList == null) {
+            colorStateList = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_inactive_track_color);
+        }
+        setTrackInactiveTintList(colorStateList);
+        ColorStateList colorStateList2 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i2);
+        if (colorStateList2 == null) {
+            colorStateList2 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_active_track_color);
+        }
+        setTrackActiveTintList(colorStateList2);
+        this.thumbDrawable.setFillColor(MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, C10817R.styleable.Slider_thumbColor));
+        int i4 = C10817R.styleable.Slider_thumbStrokeColor;
+        if (typedArrayObtainStyledAttributes.hasValue(i4)) {
+            setThumbStrokeColor(MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i4));
+        }
+        setThumbStrokeWidth(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Slider_thumbStrokeWidth, 0.0f));
+        ColorStateList colorStateList3 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, C10817R.styleable.Slider_haloColor);
+        if (colorStateList3 == null) {
+            colorStateList3 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_halo_color);
+        }
+        setHaloTintList(colorStateList3);
+        this.tickVisible = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Slider_tickVisible, true);
+        int i5 = C10817R.styleable.Slider_tickColor;
+        boolean zHasValue2 = typedArrayObtainStyledAttributes.hasValue(i5);
+        int i6 = zHasValue2 ? i5 : C10817R.styleable.Slider_tickColorInactive;
+        if (!zHasValue2) {
+            i5 = C10817R.styleable.Slider_tickColorActive;
+        }
+        ColorStateList colorStateList4 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i6);
+        if (colorStateList4 == null) {
+            colorStateList4 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_inactive_tick_marks_color);
+        }
+        setTickInactiveTintList(colorStateList4);
+        ColorStateList colorStateList5 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, i5);
+        if (colorStateList5 == null) {
+            colorStateList5 = AppCompatResources.getColorStateList(context, C10817R.color.material_slider_active_tick_marks_color);
+        }
+        setTickActiveTintList(colorStateList5);
+        setThumbRadius(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_thumbRadius, 0));
+        setHaloRadius(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_haloRadius, 0));
+        setThumbElevation(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Slider_thumbElevation, 0.0f));
+        setTrackHeight(typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.Slider_trackHeight, 0));
+        this.labelBehavior = typedArrayObtainStyledAttributes.getInt(C10817R.styleable.Slider_labelBehavior, 0);
+        if (!typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Slider_android_enabled, true)) {
+            setEnabled(false);
+        }
+        typedArrayObtainStyledAttributes.recycle();
+    }
+
     public void removeOnChangeListener(@NonNull L l) {
         this.changeListeners.remove(l);
     }
 
     public void removeOnSliderTouchListener(@NonNull T t) {
         this.touchListeners.remove(t);
+    }
+
+    private void scheduleAccessibilityEventSender(int i) {
+        BaseSlider<S, L, T>.RunnableC10979d runnableC10979d = this.accessibilityEventSender;
+        if (runnableC10979d == null) {
+            this.accessibilityEventSender = new RunnableC10979d(null);
+        } else {
+            removeCallbacks(runnableC10979d);
+        }
+        BaseSlider<S, L, T>.RunnableC10979d runnableC10979d2 = this.accessibilityEventSender;
+        runnableC10979d2.f21117j = i;
+        postDelayed(runnableC10979d2, 200L);
     }
 
     public void setActiveThumbIndex(int i) {
@@ -1684,6 +1525,17 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         setTrackActiveTintList(colorStateList);
     }
 
+    private void setValueForLabel(TooltipDrawable tooltipDrawable, float f) {
+        tooltipDrawable.setText(formatValue(f));
+        int iNormalizeValue = (this.trackSidePadding + ((int) (normalizeValue(f) * this.trackWidth))) - (tooltipDrawable.getIntrinsicWidth() / 2);
+        int iCalculateTop = calculateTop() - (this.labelPadding + this.thumbRadius);
+        tooltipDrawable.setBounds(iNormalizeValue, iCalculateTop - tooltipDrawable.getIntrinsicHeight(), tooltipDrawable.getIntrinsicWidth() + iNormalizeValue, iCalculateTop);
+        Rect rect = new Rect(tooltipDrawable.getBounds());
+        DescendantOffsetUtils.offsetDescendantRect(ViewUtils.getContentView(this), this, rect);
+        tooltipDrawable.setBounds(rect);
+        ViewUtils.getContentViewOverlay(this).add(tooltipDrawable);
+    }
+
     public void setValueFrom(float f) {
         this.valueFrom = f;
         this.dirtyConfig = true;
@@ -1702,11 +1554,159 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         setValuesInternal(arrayList);
     }
 
+    private void setValuesInternal(@NonNull ArrayList<Float> arrayList) {
+        if (arrayList.isEmpty()) {
+            throw new IllegalArgumentException("At least one value must be set");
+        }
+        Collections.sort(arrayList);
+        if (this.values.size() == arrayList.size() && this.values.equals(arrayList)) {
+            return;
+        }
+        this.values = arrayList;
+        this.dirtyConfig = true;
+        this.focusedThumbIdx = 0;
+        updateHaloHotspot();
+        createLabelPool();
+        dispatchOnChangedProgramatically();
+        postInvalidate();
+    }
+
+    private boolean shouldDrawCompatHalo() {
+        return this.forceDrawCompatHalo || !(getBackground() instanceof RippleDrawable);
+    }
+
+    private boolean snapActiveThumbToValue(float f) {
+        return snapThumbToValue(this.activeThumbIdx, f);
+    }
+
+    private double snapPosition(float f) {
+        float f2 = this.stepSize;
+        if (f2 <= 0.0f) {
+            return f;
+        }
+        int i = (int) ((this.valueTo - this.valueFrom) / f2);
+        return ((double) Math.round(f * i)) / ((double) i);
+    }
+
+    private boolean snapThumbToValue(int i, float f) {
+        if (Math.abs(f - this.values.get(i).floatValue()) < THRESHOLD) {
+            return false;
+        }
+        this.values.set(i, Float.valueOf(getClampedValue(i, f)));
+        this.focusedThumbIdx = i;
+        dispatchOnChangedFromUser(i);
+        return true;
+    }
+
+    private boolean snapTouchPosition() {
+        return snapActiveThumbToValue(getValueOfTouchPosition());
+    }
+
     public void updateBoundsForVirturalViewId(int i, Rect rect) {
         int iNormalizeValue = this.trackSidePadding + ((int) (normalizeValue(getValues().get(i).floatValue()) * this.trackWidth));
         int iCalculateTop = calculateTop();
         int i2 = this.thumbRadius;
         rect.set(iNormalizeValue - i2, iCalculateTop - i2, iNormalizeValue + i2, iCalculateTop + i2);
+    }
+
+    private void updateHaloHotspot() {
+        if (shouldDrawCompatHalo() || getMeasuredWidth() <= 0) {
+            return;
+        }
+        Drawable background = getBackground();
+        if (background instanceof RippleDrawable) {
+            int iNormalizeValue = (int) ((normalizeValue(this.values.get(this.focusedThumbIdx).floatValue()) * this.trackWidth) + this.trackSidePadding);
+            int iCalculateTop = calculateTop();
+            int i = this.haloRadius;
+            DrawableCompat.setHotspotBounds(background, iNormalizeValue - i, iCalculateTop - i, iNormalizeValue + i, iCalculateTop + i);
+        }
+    }
+
+    private void updateTrackWidth(int i) {
+        this.trackWidth = Math.max(i - (this.trackSidePadding * 2), 0);
+        maybeCalculateTicksCoordinates();
+    }
+
+    private void validateConfigurationIfDirty() {
+        if (this.dirtyConfig) {
+            validateValueFrom();
+            validateValueTo();
+            validateStepSize();
+            validateValues();
+            warnAboutFloatingPointError();
+            this.dirtyConfig = false;
+        }
+    }
+
+    private void validateStepSize() {
+        if (this.stepSize > 0.0f && !valueLandsOnTick(this.valueTo)) {
+            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_STEP_SIZE, Float.toString(this.stepSize), Float.toString(this.valueFrom), Float.toString(this.valueTo)));
+        }
+    }
+
+    private void validateValueFrom() {
+        if (this.valueFrom >= this.valueTo) {
+            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE_FROM, Float.toString(this.valueFrom), Float.toString(this.valueTo)));
+        }
+    }
+
+    private void validateValueTo() {
+        if (this.valueTo <= this.valueFrom) {
+            throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE_TO, Float.toString(this.valueTo), Float.toString(this.valueFrom)));
+        }
+    }
+
+    private void validateValues() {
+        for (Float f : this.values) {
+            if (f.floatValue() < this.valueFrom || f.floatValue() > this.valueTo) {
+                throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_VALUE, Float.toString(f.floatValue()), Float.toString(this.valueFrom), Float.toString(this.valueTo)));
+            }
+            if (this.stepSize > 0.0f && !valueLandsOnTick(f.floatValue())) {
+                throw new IllegalStateException(String.format(EXCEPTION_ILLEGAL_DISCRETE_VALUE, Float.toString(f.floatValue()), Float.toString(this.valueFrom), Float.toString(this.stepSize), Float.toString(this.stepSize)));
+            }
+        }
+    }
+
+    private boolean valueLandsOnTick(float f) {
+        double dDoubleValue = new BigDecimal(Float.toString(f)).subtract(new BigDecimal(Float.toString(this.valueFrom))).divide(new BigDecimal(Float.toString(this.stepSize)), MathContext.DECIMAL64).doubleValue();
+        return Math.abs(((double) Math.round(dDoubleValue)) - dDoubleValue) < THRESHOLD;
+    }
+
+    private float valueToX(float f) {
+        return (normalizeValue(f) * this.trackWidth) + this.trackSidePadding;
+    }
+
+    private void warnAboutFloatingPointError() {
+        float f = this.stepSize;
+        if (f == 0.0f) {
+            return;
+        }
+        if (((int) f) != f) {
+            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "stepSize", Float.valueOf(f)));
+        }
+        float f2 = this.valueFrom;
+        if (((int) f2) != f2) {
+            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "valueFrom", Float.valueOf(f2)));
+        }
+        float f3 = this.valueTo;
+        if (((int) f3) != f3) {
+            Log.w(TAG, String.format(WARNING_FLOATING_POINT_ERRROR, "valueTo", Float.valueOf(f3)));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.slider.BaseSlider$d */
+    public class RunnableC10979d implements Runnable {
+
+        /* JADX INFO: renamed from: j */
+        public int f21117j = -1;
+
+        public RunnableC10979d(C10976a c10976a) {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BaseSlider.this.accessibilityHelper.sendEventForVirtualView(this.f21117j, 4);
+        }
     }
 
     public BaseSlider(@NonNull Context context, @Nullable AttributeSet attributeSet) {

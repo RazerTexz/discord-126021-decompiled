@@ -21,72 +21,6 @@ public final class FieldSerializerGenericsUtil {
         this.kryo = fieldSerializer.getKryo();
     }
 
-    public static Class[] getGenerics(Type type, Kryo kryo) {
-        Class concreteClass;
-        Class concreteClass2;
-        if (type instanceof GenericArrayType) {
-            Type genericComponentType = ((GenericArrayType) type).getGenericComponentType();
-            return genericComponentType instanceof Class ? new Class[]{(Class) genericComponentType} : getGenerics(genericComponentType, kryo);
-        }
-        if (!(type instanceof ParameterizedType)) {
-            return null;
-        }
-        C1644a.a aVar = C1644a.f3007a;
-        Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
-        Class[] clsArr = new Class[actualTypeArguments.length];
-        int length = actualTypeArguments.length;
-        int i = 0;
-        for (int i2 = 0; i2 < length; i2++) {
-            Type type2 = actualTypeArguments[i2];
-            C1644a.a aVar2 = C1644a.f3007a;
-            clsArr[i2] = Object.class;
-            if (type2 instanceof Class) {
-                clsArr[i2] = (Class) type2;
-            } else if (type2 instanceof ParameterizedType) {
-                clsArr[i2] = (Class) ((ParameterizedType) type2).getRawType();
-            } else {
-                if (type2 instanceof TypeVariable) {
-                    GenericsResolver genericsResolver = kryo.getGenericsResolver();
-                    if (genericsResolver.isSet() && (concreteClass2 = genericsResolver.getConcreteClass(((TypeVariable) type2).getName())) != null) {
-                        clsArr[i2] = concreteClass2;
-                    }
-                } else if (type2 instanceof GenericArrayType) {
-                    Type genericComponentType2 = ((GenericArrayType) type2).getGenericComponentType();
-                    if (genericComponentType2 instanceof Class) {
-                        clsArr[i2] = Array.newInstance((Class<?>) genericComponentType2, 0).getClass();
-                    } else if (genericComponentType2 instanceof TypeVariable) {
-                        GenericsResolver genericsResolver2 = kryo.getGenericsResolver();
-                        if (genericsResolver2.isSet() && (concreteClass = genericsResolver2.getConcreteClass(((TypeVariable) genericComponentType2).getName())) != null) {
-                            clsArr[i2] = Array.newInstance((Class<?>) concreteClass, 0).getClass();
-                        }
-                    } else {
-                        Class[] generics = getGenerics(genericComponentType2, kryo);
-                        if (generics != null) {
-                            clsArr[i2] = generics[0];
-                        }
-                    }
-                }
-            }
-            i++;
-        }
-        if (i == 0) {
-            return null;
-        }
-        return clsArr;
-    }
-
-    private Class<?> getTypeVarConcreteClass(Class[] clsArr, int i, String str) {
-        if (clsArr != null && clsArr.length > i) {
-            return clsArr[i];
-        }
-        C1644a.a aVar = C1644a.f3007a;
-        GenericsResolver genericsResolver = this.kryo.getGenericsResolver();
-        if (genericsResolver.isSet()) {
-            return genericsResolver.getConcreteClass(str);
-        }
-        return null;
-    }
-
     public Generics buildGenericsScope(Class cls, Class[] clsArr) {
         int i;
         Type genericSuperclass;
@@ -200,6 +134,72 @@ public final class FieldSerializerGenericsUtil {
         }
         C1644a.a aVar3 = C1644a.f3007a;
         return clsArr3;
+    }
+
+    public static Class[] getGenerics(Type type, Kryo kryo) {
+        Class concreteClass;
+        Class concreteClass2;
+        if (type instanceof GenericArrayType) {
+            Type genericComponentType = ((GenericArrayType) type).getGenericComponentType();
+            return genericComponentType instanceof Class ? new Class[]{(Class) genericComponentType} : getGenerics(genericComponentType, kryo);
+        }
+        if (!(type instanceof ParameterizedType)) {
+            return null;
+        }
+        C1644a.a aVar = C1644a.f3007a;
+        Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
+        Class[] clsArr = new Class[actualTypeArguments.length];
+        int length = actualTypeArguments.length;
+        int i = 0;
+        for (int i2 = 0; i2 < length; i2++) {
+            Type type2 = actualTypeArguments[i2];
+            C1644a.a aVar2 = C1644a.f3007a;
+            clsArr[i2] = Object.class;
+            if (type2 instanceof Class) {
+                clsArr[i2] = (Class) type2;
+            } else if (type2 instanceof ParameterizedType) {
+                clsArr[i2] = (Class) ((ParameterizedType) type2).getRawType();
+            } else {
+                if (type2 instanceof TypeVariable) {
+                    GenericsResolver genericsResolver = kryo.getGenericsResolver();
+                    if (genericsResolver.isSet() && (concreteClass2 = genericsResolver.getConcreteClass(((TypeVariable) type2).getName())) != null) {
+                        clsArr[i2] = concreteClass2;
+                    }
+                } else if (type2 instanceof GenericArrayType) {
+                    Type genericComponentType2 = ((GenericArrayType) type2).getGenericComponentType();
+                    if (genericComponentType2 instanceof Class) {
+                        clsArr[i2] = Array.newInstance((Class<?>) genericComponentType2, 0).getClass();
+                    } else if (genericComponentType2 instanceof TypeVariable) {
+                        GenericsResolver genericsResolver2 = kryo.getGenericsResolver();
+                        if (genericsResolver2.isSet() && (concreteClass = genericsResolver2.getConcreteClass(((TypeVariable) genericComponentType2).getName())) != null) {
+                            clsArr[i2] = Array.newInstance((Class<?>) concreteClass, 0).getClass();
+                        }
+                    } else {
+                        Class[] generics = getGenerics(genericComponentType2, kryo);
+                        if (generics != null) {
+                            clsArr[i2] = generics[0];
+                        }
+                    }
+                }
+            }
+            i++;
+        }
+        if (i == 0) {
+            return null;
+        }
+        return clsArr;
+    }
+
+    private Class<?> getTypeVarConcreteClass(Class[] clsArr, int i, String str) {
+        if (clsArr != null && clsArr.length > i) {
+            return clsArr[i];
+        }
+        C1644a.a aVar = C1644a.f3007a;
+        GenericsResolver genericsResolver = this.kryo.getGenericsResolver();
+        if (genericsResolver.isSet()) {
+            return genericsResolver.getConcreteClass(str);
+        }
+        return null;
     }
 
     public FieldSerializer.CachedField newCachedFieldOfGenericType(Field field, int i, Class[] clsArr, Type type) {

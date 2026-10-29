@@ -14,9 +14,6 @@ public final class C3077d0 implements InterfaceC3087i0 {
     /* JADX INFO: renamed from: a */
     public final InterfaceC3075c0 f8595a;
 
-    /* JADX INFO: renamed from: b */
-    public final C2757x f8596b = new C2757x(32);
-
     /* JADX INFO: renamed from: c */
     public int f8597c;
 
@@ -28,6 +25,9 @@ public final class C3077d0 implements InterfaceC3087i0 {
 
     /* JADX INFO: renamed from: f */
     public boolean f8600f;
+
+    /* JADX INFO: renamed from: b */
+    public final C2757x f8596b = new C2757x(32);
 
     public C3077d0(InterfaceC3075c0 interfaceC3075c0) {
         this.f8595a = interfaceC3075c0;

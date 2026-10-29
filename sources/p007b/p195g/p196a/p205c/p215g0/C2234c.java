@@ -92,23 +92,14 @@ public class C2234c extends AbstractC2245n implements Serializable {
         this._includeInViews = clsArr;
     }
 
-    /* JADX INFO: renamed from: c */
-    public AbstractC2364n<Object> mo1977c(AbstractC2262l abstractC2262l, Class<?> cls, AbstractC2374x abstractC2374x) throws JsonMappingException {
-        AbstractC2262l.d dVar;
-        AbstractC2360j abstractC2360j = this._nonTrivialBaseType;
-        if (abstractC2360j != null) {
-            AbstractC2360j abstractC2360jM2247k = abstractC2374x.m2247k(abstractC2360j, cls);
-            AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(abstractC2360jM2247k, this);
-            dVar = new AbstractC2262l.d(abstractC2364nM2252q, abstractC2262l.mo2033b(abstractC2360jM2247k._class, abstractC2364nM2252q));
-        } else {
-            AbstractC2364n<Object> abstractC2364nM2253r = abstractC2374x.m2253r(cls, this);
-            dVar = new AbstractC2262l.d(abstractC2364nM2253r, abstractC2262l.mo2033b(cls, abstractC2364nM2253r));
-        }
-        AbstractC2262l abstractC2262l2 = dVar.f4831b;
-        if (abstractC2262l != abstractC2262l2) {
-            this.f4794n = abstractC2262l2;
-        }
-        return dVar.f4830a;
+    @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
+    public AbstractC2188i getMember() {
+        return this._member;
+    }
+
+    @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
+    public AbstractC2360j getType() {
+        return this._declaredType;
     }
 
     /* JADX INFO: renamed from: d */
@@ -136,6 +127,25 @@ public class C2234c extends AbstractC2245n implements Serializable {
         return true;
     }
 
+    /* JADX INFO: renamed from: c */
+    public AbstractC2364n<Object> mo1977c(AbstractC2262l abstractC2262l, Class<?> cls, AbstractC2374x abstractC2374x) throws JsonMappingException {
+        AbstractC2262l.d dVar;
+        AbstractC2360j abstractC2360j = this._nonTrivialBaseType;
+        if (abstractC2360j != null) {
+            AbstractC2360j abstractC2360jM2247k = abstractC2374x.m2247k(abstractC2360j, cls);
+            AbstractC2364n<Object> abstractC2364nM2252q = abstractC2374x.m2252q(abstractC2360jM2247k, this);
+            dVar = new AbstractC2262l.d(abstractC2364nM2252q, abstractC2262l.mo2033b(abstractC2360jM2247k._class, abstractC2364nM2252q));
+        } else {
+            AbstractC2364n<Object> abstractC2364nM2253r = abstractC2374x.m2253r(cls, this);
+            dVar = new AbstractC2262l.d(abstractC2364nM2253r, abstractC2262l.mo2033b(cls, abstractC2364nM2253r));
+        }
+        AbstractC2262l abstractC2262l2 = dVar.f4831b;
+        if (abstractC2262l != abstractC2262l2) {
+            this.f4794n = abstractC2262l2;
+        }
+        return dVar.f4830a;
+    }
+
     /* JADX INFO: renamed from: e */
     public void mo1979e(AbstractC2364n<Object> abstractC2364n) {
         AbstractC2364n<Object> abstractC2364n2 = this._nullSerializer;
@@ -158,16 +168,6 @@ public class C2234c extends AbstractC2245n implements Serializable {
     public C2234c mo1981g(AbstractC2352n abstractC2352n) {
         String strMo2202a = abstractC2352n.mo2202a(this._name._value);
         return strMo2202a.equals(this._name._value) ? this : new C2234c(this, C2370t.m2227a(strMo2202a));
-    }
-
-    @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
-    public AbstractC2188i getMember() {
-        return this._member;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.InterfaceC2206d
-    public AbstractC2360j getType() {
-        return this._declaredType;
     }
 
     /* JADX INFO: renamed from: h */

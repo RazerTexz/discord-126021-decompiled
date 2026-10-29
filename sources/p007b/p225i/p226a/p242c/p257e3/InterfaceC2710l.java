@@ -18,10 +18,10 @@ public interface InterfaceC2710l extends InterfaceC2706h {
         InterfaceC2710l mo234a();
     }
 
+    void close() throws IOException;
+
     /* JADX INFO: renamed from: a */
     long mo2586a(C2712n c2712n) throws IOException;
-
-    void close() throws IOException;
 
     /* JADX INFO: renamed from: d */
     void mo2587d(InterfaceC2680a0 interfaceC2680a0);

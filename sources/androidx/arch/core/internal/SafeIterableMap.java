@@ -11,11 +11,11 @@ import p007b.p100d.p104b.p105a.C1643a;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
     private Entry<K, V> mEnd;
+    public Entry<K, V> mStart;
     private WeakHashMap<SupportRemove<K, V>, Boolean> mIterators = new WeakHashMap<>();
     private int mSize = 0;
-    public Entry<K, V> mStart;
 
-    public static class AscendingIterator<K, V> extends ListIterator<K, V> {
+    public class AscendingIterator<K, V> extends ListIterator<K, V> {
         public AscendingIterator(Entry<K, V> entry, Entry<K, V> entry2) {
             super(entry, entry2);
         }
@@ -31,7 +31,7 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
         }
     }
 
-    public static class DescendingIterator<K, V> extends ListIterator<K, V> {
+    public class DescendingIterator<K, V> extends ListIterator<K, V> {
         public DescendingIterator(Entry<K, V> entry, Entry<K, V> entry2) {
             super(entry, entry2);
         }
@@ -47,7 +47,7 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
         }
     }
 
-    public static class Entry<K, V> implements Map.Entry<K, V> {
+    public class Entry<K, V> implements Map.Entry<K, V> {
 
         @NonNull
         public final K mKey;
@@ -102,8 +102,8 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
     }
 
     public class IteratorWithAdditions implements Iterator<Map.Entry<K, V>>, SupportRemove<K, V> {
-        private boolean mBeforeStart = true;
         private Entry<K, V> mCurrent;
+        private boolean mBeforeStart = true;
 
         public IteratorWithAdditions() {
         }
@@ -140,22 +140,13 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
         }
     }
 
-    public static abstract class ListIterator<K, V> implements Iterator<Map.Entry<K, V>>, SupportRemove<K, V> {
+    public abstract class ListIterator<K, V> implements Iterator<Map.Entry<K, V>>, SupportRemove<K, V> {
         public Entry<K, V> mExpectedEnd;
         public Entry<K, V> mNext;
 
         public ListIterator(Entry<K, V> entry, Entry<K, V> entry2) {
             this.mExpectedEnd = entry2;
             this.mNext = entry;
-        }
-
-        private Entry<K, V> nextNode() {
-            Entry<K, V> entry = this.mNext;
-            Entry<K, V> entry2 = this.mExpectedEnd;
-            if (entry == entry2 || entry2 == null) {
-                return null;
-            }
-            return forward(entry);
         }
 
         public abstract Entry<K, V> backward(Entry<K, V> entry);
@@ -165,6 +156,15 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
         @Override // java.util.Iterator
         public boolean hasNext() {
             return this.mNext != null;
+        }
+
+        private Entry<K, V> nextNode() {
+            Entry<K, V> entry = this.mNext;
+            Entry<K, V> entry2 = this.mExpectedEnd;
+            if (entry == entry2 || entry2 == null) {
+                return null;
+            }
+            return forward(entry);
         }
 
         @Override // androidx.arch.core.internal.SafeIterableMap.SupportRemove

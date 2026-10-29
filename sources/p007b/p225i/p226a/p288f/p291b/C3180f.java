@@ -35,7 +35,7 @@ public final class C3180f {
     public Thread.UncaughtExceptionHandler f9199e;
 
     /* JADX INFO: renamed from: b.i.a.f.b.f$a */
-    public class a extends ThreadPoolExecutor {
+    public final class a extends ThreadPoolExecutor {
         public a() {
             super(1, 1, 1L, TimeUnit.MINUTES, new LinkedBlockingQueue());
             setThreadFactory(new b(null));
@@ -49,7 +49,7 @@ public final class C3180f {
     }
 
     /* JADX INFO: renamed from: b.i.a.f.b.f$b */
-    public static class b implements ThreadFactory {
+    public final class b implements ThreadFactory {
 
         /* JADX INFO: renamed from: j */
         public static final AtomicInteger f9201j = new AtomicInteger();
@@ -64,7 +64,7 @@ public final class C3180f {
     }
 
     /* JADX INFO: renamed from: b.i.a.f.b.f$c */
-    public static class c extends Thread {
+    public final class c extends Thread {
         public c(Runnable runnable, String str) {
             super(runnable, str);
         }

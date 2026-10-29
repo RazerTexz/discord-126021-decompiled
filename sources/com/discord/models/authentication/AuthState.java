@@ -16,7 +16,7 @@ public final /* data */ class AuthState {
     private final String token;
 
     /* JADX INFO: compiled from: AuthState.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -49,6 +49,10 @@ public final /* data */ class AuthState {
         this.requiredActions = set;
     }
 
+    public final Set<RequiredAction> component2() {
+        return this.requiredActions;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ AuthState copy$default(AuthState authState, String str, Set set, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -58,15 +62,6 @@ public final /* data */ class AuthState {
             set = authState.requiredActions;
         }
         return authState.copy(str, set);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getToken() {
-        return this.token;
-    }
-
-    public final Set<RequiredAction> component2() {
-        return this.requiredActions;
     }
 
     public final AuthState copy(String token, Set<? extends RequiredAction> requiredActions) {
@@ -88,6 +83,11 @@ public final /* data */ class AuthState {
 
     public final Set<RequiredAction> getRequiredActions() {
         return this.requiredActions;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getToken() {
+        return this.token;
     }
 
     public final String getToken() {

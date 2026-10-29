@@ -24,17 +24,6 @@ public final class SelfHealingLinearLayoutManager extends LinearLayoutManager {
         AppLog.f14950g.mo8370w("Invalid adapter configuration.", new Exception(sbM833U.toString(), exception));
     }
 
-    private final void resetAdapter(Throwable exception) {
-        this.recyclerView.post(new Runnable() { // from class: com.discord.utilities.recycler.SelfHealingLinearLayoutManager.resetAdapter.1
-            @Override // java.lang.Runnable
-            public final void run() {
-                SelfHealingLinearLayoutManager.this.adapter.notifyDataSetChanged();
-                SelfHealingLinearLayoutManager.this.recyclerView.invalidate();
-            }
-        });
-        logWarning(exception);
-    }
-
     @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         String message;
@@ -53,6 +42,17 @@ public final class SelfHealingLinearLayoutManager extends LinearLayoutManager {
             }
             resetAdapter(e3);
         }
+    }
+
+    private final void resetAdapter(Throwable exception) {
+        this.recyclerView.post(new Runnable() { // from class: com.discord.utilities.recycler.SelfHealingLinearLayoutManager.resetAdapter.1
+            @Override // java.lang.Runnable
+            public final void run() {
+                SelfHealingLinearLayoutManager.this.adapter.notifyDataSetChanged();
+                SelfHealingLinearLayoutManager.this.recyclerView.invalidate();
+            }
+        });
+        logWarning(exception);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

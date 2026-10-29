@@ -66,6 +66,12 @@ public final class WidgetChatListAdapterItemTextBinding implements ViewBinding {
         this.f16324h = constraintLayout4;
     }
 
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.f16317a;
+    }
+
     @NonNull
     /* JADX INFO: renamed from: a */
     public static WidgetChatListAdapterItemTextBinding m8408a(@NonNull View view) {
@@ -186,11 +192,5 @@ public final class WidgetChatListAdapterItemTextBinding implements ViewBinding {
             viewGroup.addView(viewInflate);
         }
         return m8408a(viewInflate);
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16317a;
     }
 }

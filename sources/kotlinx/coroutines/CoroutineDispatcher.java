@@ -23,7 +23,7 @@ public abstract class CoroutineDispatcher extends AbstractC12174a implements Int
 
     /* JADX INFO: renamed from: kotlinx.coroutines.CoroutineDispatcher$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: CoroutineDispatcher.kt */
-    public static final class Companion extends AbstractC12175b<InterfaceC12177d, CoroutineDispatcher> {
+    public final class Companion extends AbstractC12175b<InterfaceC12177d, CoroutineDispatcher> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
             super(InterfaceC12177d.b.f25236a, C13042a0.f27711j);

@@ -16,11 +16,6 @@ public class AccessibilityRecordCompat {
     }
 
     @Deprecated
-    public static AccessibilityRecordCompat obtain(AccessibilityRecordCompat accessibilityRecordCompat) {
-        return new AccessibilityRecordCompat(AccessibilityRecord.obtain(accessibilityRecordCompat.mRecord));
-    }
-
-    @Deprecated
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -162,6 +157,11 @@ public class AccessibilityRecordCompat {
     @Deprecated
     public boolean isScrollable() {
         return this.mRecord.isScrollable();
+    }
+
+    @Deprecated
+    public static AccessibilityRecordCompat obtain(AccessibilityRecordCompat accessibilityRecordCompat) {
+        return new AccessibilityRecordCompat(AccessibilityRecord.obtain(accessibilityRecordCompat.mRecord));
     }
 
     @Deprecated

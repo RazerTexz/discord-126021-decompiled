@@ -20,6 +20,7 @@ import com.discord.utilities.auth.GoogleSmartLockManager;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.string.StringUtilsKt;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -37,35 +38,9 @@ public final class NetworkUtils {
     public static final NetworkUtils INSTANCE = new NetworkUtils();
     private static final Map<Long, Function0<Unit>> onDownloadListeners = new LinkedHashMap();
 
-    /* JADX INFO: compiled from: NetworkUtils.kt */
-    public static final class DownloadManagerEnqueueFailure extends Throwable {
-    }
-
-    /* JADX INFO: compiled from: NetworkUtils.kt */
-    public static final class DownloadManagerFileNoFound extends Throwable {
-    }
-
-    /* JADX INFO: compiled from: NetworkUtils.kt */
-    public static final class DownloadManagerNotFound extends Throwable {
-    }
-
-    /* JADX INFO: compiled from: NetworkUtils.kt */
-    public static final class NetworkDownloadReceiver extends BroadcastReceiver {
-        @Override // android.content.BroadcastReceiver
-        public void onReceive(Context context, Intent intent) {
-            C12238m.checkNotNullParameter(context, "context");
-            String action = intent != null ? intent.getAction() : null;
-            if (action != null && action.hashCode() == 1248865515 && action.equals("android.intent.action.DOWNLOAD_COMPLETE")) {
-                Function0 function0 = (Function0) NetworkUtils.access$getOnDownloadListeners$p(NetworkUtils.INSTANCE).get(Long.valueOf(intent.getLongExtra("extra_download_id", 0L)));
-                if (function0 != null) {
-                }
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.utilities.io.NetworkUtils$downloadFile$1 */
     /* JADX INFO: compiled from: NetworkUtils.kt */
-    public static final class C67891 extends AbstractC12240o implements Function0<Unit> {
+    public final class C67891 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $downloadId;
         public final /* synthetic */ DownloadManager $manager;
         public final /* synthetic */ Function1 $onError;
@@ -81,13 +56,13 @@ public final class NetworkUtils {
         }
 
         @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() throws IOException {
+        public /* bridge */ /* synthetic */ Unit invoke() throws IllegalAccessException, IOException, InvocationTargetException {
             invoke2();
             return Unit.f27425a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() throws IOException {
+        public final void invoke2() throws IllegalAccessException, IOException, InvocationTargetException {
             Cursor cursorQuery;
             NetworkUtils.access$getOnDownloadListeners$p(NetworkUtils.INSTANCE).remove(Long.valueOf(this.$downloadId));
             DownloadManager downloadManager = this.$manager;
@@ -111,6 +86,32 @@ public final class NetworkUtils {
                 } catch (Throwable th2) {
                     C12201b.closeFinally(cursorQuery, th);
                     throw th2;
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerEnqueueFailure extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerFileNoFound extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerNotFound extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class NetworkDownloadReceiver extends BroadcastReceiver {
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            C12238m.checkNotNullParameter(context, "context");
+            String action = intent != null ? intent.getAction() : null;
+            if (action != null && action.hashCode() == 1248865515 && action.equals("android.intent.action.DOWNLOAD_COMPLETE")) {
+                Function0 function0 = (Function0) NetworkUtils.access$getOnDownloadListeners$p(NetworkUtils.INSTANCE).get(Long.valueOf(intent.getLongExtra("extra_download_id", 0L)));
+                if (function0 != null) {
                 }
             }
         }
@@ -162,16 +163,6 @@ public final class NetworkUtils {
         }
     }
 
-    public static /* synthetic */ boolean isDeviceConnected$default(NetworkUtils networkUtils, Context context, Intent intent, Logger logger, int i, Object obj) {
-        if ((i & 2) != 0) {
-            intent = null;
-        }
-        if ((i & 4) != 0) {
-            logger = null;
-        }
-        return networkUtils.isDeviceConnected(context, intent, logger);
-    }
-
     public final Integer getNetworkType(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         try {
@@ -192,6 +183,16 @@ public final class NetworkUtils {
     public final boolean isAirplaneModeOn(Context context) {
         C12238m.checkNotNullParameter(context, "context");
         return Settings.Global.getInt(context.getContentResolver(), "airplane_mode_on", 0) != 0;
+    }
+
+    public static /* synthetic */ boolean isDeviceConnected$default(NetworkUtils networkUtils, Context context, Intent intent, Logger logger, int i, Object obj) {
+        if ((i & 2) != 0) {
+            intent = null;
+        }
+        if ((i & 4) != 0) {
+            logger = null;
+        }
+        return networkUtils.isDeviceConnected(context, intent, logger);
     }
 
     public final boolean isDeviceConnected(Context context, Intent intent, Logger logger) {

@@ -18,16 +18,6 @@ public final /* data */ class LocalizedString implements Serializable {
         this.localizations = map;
     }
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final String getDefault() {
-        return this.default;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final Map<String, String> m8017b() {
-        return this.localizations;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -39,11 +29,21 @@ public final /* data */ class LocalizedString implements Serializable {
         return C12238m.areEqual(this.default, localizedString.default) && C12238m.areEqual(this.localizations, localizedString.localizations);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final String getDefault() {
+        return this.default;
+    }
+
     public int hashCode() {
         String str = this.default;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         Map<String, String> map = this.localizations;
         return iHashCode + (map != null ? map.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final Map<String, String> m8017b() {
+        return this.localizations;
     }
 
     public String toString() {

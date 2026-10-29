@@ -35,9 +35,9 @@ import p507d0.p592z.p594d.C12238m;
 public final class EmbedResourceUtils {
     public static final String FILE_SCHEME = "res:///";
     public static final int MAX_IMAGE_SIZE = 1440;
+    private static final List<EmbedType> PLAYABLE_EMBED_TYPES = C12147n.listOf((Object[]) new EmbedType[]{EmbedType.VIDEO, EmbedType.GIFV});
     public static final EmbedResourceUtils INSTANCE = new EmbedResourceUtils();
     private static final int MAX_IMAGE_VIEW_HEIGHT_PX = DimenUtils.dpToPixels(320);
-    private static final List<EmbedType> PLAYABLE_EMBED_TYPES = C12147n.listOf((Object[]) new EmbedType[]{EmbedType.VIDEO, EmbedType.GIFV});
 
     public final /* synthetic */ class WhenMappings {
         public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -92,19 +92,6 @@ public final class EmbedResourceUtils {
     }
 
     private EmbedResourceUtils() {
-    }
-
-    private final RenderableEmbedMedia createFileRenderableMedia(String filename) {
-        StringBuilder sbM833U = C1643a.m833U(FILE_SCHEME);
-        sbM833U.append(getFileDrawable(filename));
-        return new RenderableEmbedMedia(sbM833U.toString(), 30, 40);
-    }
-
-    public static /* synthetic */ List getPreviewUrls$default(EmbedResourceUtils embedResourceUtils, String str, int i, int i2, boolean z2, int i3, Object obj) {
-        if ((i3 & 8) != 0) {
-            z2 = true;
-        }
-        return embedResourceUtils.getPreviewUrls(str, i, i2, z2);
     }
 
     /* JADX WARN: Code duplicated, block: B:29:0x0051 A[DONT_INVERT] */
@@ -164,6 +151,12 @@ public final class EmbedResourceUtils {
         C12238m.checkNotNullParameter(context, "context");
         Resources resources = context.getResources();
         return Math.min(1440, DisplayUtils.getScreenSize(context).width() - (resources.getDimensionPixelSize(C5419R.dimen.uikit_guideline_chat) + resources.getDimensionPixelSize(C5419R.dimen.chat_cell_horizontal_spacing_total)));
+    }
+
+    private final RenderableEmbedMedia createFileRenderableMedia(String filename) {
+        StringBuilder sbM833U = C1643a.m833U(FILE_SCHEME);
+        sbM833U.append(getFileDrawable(filename));
+        return new RenderableEmbedMedia(sbM833U.toString(), 30, 40);
     }
 
     public final RenderableEmbedMedia createRenderableEmbedMediaFromAttachment(MessageAttachment attachment) {
@@ -325,6 +318,13 @@ public final class EmbedResourceUtils {
             }
         }
         return renderableEmbedMedia;
+    }
+
+    public static /* synthetic */ List getPreviewUrls$default(EmbedResourceUtils embedResourceUtils, String str, int i, int i2, boolean z2, int i3, Object obj) {
+        if ((i3 & 8) != 0) {
+            z2 = true;
+        }
+        return embedResourceUtils.getPreviewUrls(str, i, i2, z2);
     }
 
     public final List<String> getPreviewUrls(String originalUrl, int width, int height, boolean shouldAnimate) {

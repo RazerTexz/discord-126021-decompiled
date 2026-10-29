@@ -48,19 +48,19 @@ public class MaterialTextView extends AppCompatTextView {
         return dimensionPixelSize;
     }
 
-    private static boolean viewAttrsHasLineHeight(@NonNull Context context, @NonNull Resources.Theme theme, @Nullable AttributeSet attributeSet, int i, int i2) {
-        TypedArray typedArrayObtainStyledAttributes = theme.obtainStyledAttributes(attributeSet, C10817R.styleable.MaterialTextView, i, i2);
-        int firstAvailableDimension = readFirstAvailableDimension(context, typedArrayObtainStyledAttributes, C10817R.styleable.MaterialTextView_android_lineHeight, C10817R.styleable.MaterialTextView_lineHeight);
-        typedArrayObtainStyledAttributes.recycle();
-        return firstAvailableDimension != -1;
-    }
-
     @Override // androidx.appcompat.widget.AppCompatTextView, android.widget.TextView
     public void setTextAppearance(@NonNull Context context, int i) {
         super.setTextAppearance(context, i);
         if (canApplyTextAppearanceLineHeight(context)) {
             applyLineHeightFromViewAppearance(context.getTheme(), i);
         }
+    }
+
+    private static boolean viewAttrsHasLineHeight(@NonNull Context context, @NonNull Resources.Theme theme, @Nullable AttributeSet attributeSet, int i, int i2) {
+        TypedArray typedArrayObtainStyledAttributes = theme.obtainStyledAttributes(attributeSet, C10817R.styleable.MaterialTextView, i, i2);
+        int firstAvailableDimension = readFirstAvailableDimension(context, typedArrayObtainStyledAttributes, C10817R.styleable.MaterialTextView_android_lineHeight, C10817R.styleable.MaterialTextView_lineHeight);
+        typedArrayObtainStyledAttributes.recycle();
+        return firstAvailableDimension != -1;
     }
 
     public MaterialTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {

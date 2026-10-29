@@ -34,7 +34,7 @@ public class C12385b extends C12408y {
 
     /* JADX INFO: renamed from: g0.b$a */
     /* JADX INFO: compiled from: AsyncTimeout.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -75,7 +75,7 @@ public class C12385b extends C12408y {
 
     /* JADX INFO: renamed from: g0.b$b */
     /* JADX INFO: compiled from: AsyncTimeout.kt */
-    public static final class b extends Thread {
+    public final class b extends Thread {
         public b() {
             super("Okio Watchdog");
             setDaemon(true);
@@ -179,6 +179,10 @@ public class C12385b extends C12408y {
         return z2;
     }
 
+    /* JADX INFO: renamed from: l */
+    public void mo10191l() {
+    }
+
     /* JADX INFO: renamed from: k */
     public IOException mo10296k(IOException iOException) {
         InterruptedIOException interruptedIOException = new InterruptedIOException("timeout");
@@ -186,9 +190,5 @@ public class C12385b extends C12408y {
             interruptedIOException.initCause(iOException);
         }
         return interruptedIOException;
-    }
-
-    /* JADX INFO: renamed from: l */
-    public void mo10191l() {
     }
 }

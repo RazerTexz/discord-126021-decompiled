@@ -29,75 +29,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0813e extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f285j = {C1643a.m846d0(C0813e.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostUpsellDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: renamed from: b.a.a.b.e$a */
-    /* JADX INFO: compiled from: java-style lambda group */
-    /* JADX INFO: loaded from: classes2.dex */
-    public static final class a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ int f288j;
-
-        /* JADX INFO: renamed from: k */
-        public final /* synthetic */ long f289k;
-
-        /* JADX INFO: renamed from: l */
-        public final /* synthetic */ Object f290l;
-
-        /* JADX INFO: renamed from: m */
-        public final /* synthetic */ Object f291m;
-
-        /* JADX INFO: renamed from: n */
-        public final /* synthetic */ Object f292n;
-
-        /* JADX INFO: renamed from: o */
-        public final /* synthetic */ Object f293o;
-
-        public a(int i, long j, Object obj, Object obj2, Object obj3, Object obj4) {
-            this.f288j = i;
-            this.f289k = j;
-            this.f290l = obj;
-            this.f291m = obj2;
-            this.f292n = obj3;
-            this.f293o = obj4;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public final void onClick(View view) {
-            int i = this.f288j;
-            if (i == 0) {
-                AnalyticsTracker.INSTANCE.guildBoostPromotionOpened(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
-                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
-                Context contextRequireContext = ((C0813e) this.f290l).requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                companion.create(contextRequireContext, this.f289k);
-                ((C0813e) this.f290l).dismiss();
-                return;
-            }
-            if (i == 1) {
-                AnalyticsTracker.INSTANCE.guildBoostPromotionClosed(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
-                ((C0813e) this.f290l).dismiss();
-                return;
-            }
-            if (i != 2) {
-                throw null;
-            }
-            AnalyticsTracker.INSTANCE.guildBoostPromotionClosed(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
-            ((C0813e) this.f290l).dismiss();
-        }
-    }
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f285j = {C1643a.m846d0(C0813e.class, "binding", "getBinding()Lcom/discord/databinding/GuildBoostUpsellDialogBinding;", 0)};
 
     /* JADX INFO: renamed from: b.a.a.b.e$b, reason: from kotlin metadata */
     /* JADX INFO: compiled from: GuildBoostUpsellDialog.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
@@ -184,9 +127,66 @@ public final class C0813e extends AppDialog {
         }
     }
 
+    /* JADX INFO: renamed from: b.a.a.b.e$a */
+    /* JADX INFO: compiled from: java-style lambda group */
+    /* JADX INFO: loaded from: classes2.dex */
+    public final class a implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: j */
+        public final /* synthetic */ int f288j;
+
+        /* JADX INFO: renamed from: k */
+        public final /* synthetic */ long f289k;
+
+        /* JADX INFO: renamed from: l */
+        public final /* synthetic */ Object f290l;
+
+        /* JADX INFO: renamed from: m */
+        public final /* synthetic */ Object f291m;
+
+        /* JADX INFO: renamed from: n */
+        public final /* synthetic */ Object f292n;
+
+        /* JADX INFO: renamed from: o */
+        public final /* synthetic */ Object f293o;
+
+        public a(int i, long j, Object obj, Object obj2, Object obj3, Object obj4) {
+            this.f288j = i;
+            this.f289k = j;
+            this.f290l = obj;
+            this.f291m = obj2;
+            this.f292n = obj3;
+            this.f293o = obj4;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.f288j;
+            if (i == 0) {
+                AnalyticsTracker.INSTANCE.guildBoostPromotionOpened(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
+                WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
+                Context contextRequireContext = ((C0813e) this.f290l).requireContext();
+                C12238m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                companion.create(contextRequireContext, this.f289k);
+                ((C0813e) this.f290l).dismiss();
+                return;
+            }
+            if (i == 1) {
+                AnalyticsTracker.INSTANCE.guildBoostPromotionClosed(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
+                ((C0813e) this.f290l).dismiss();
+                return;
+            }
+            if (i != 2) {
+                throw null;
+            }
+            AnalyticsTracker.INSTANCE.guildBoostPromotionClosed(this.f289k, new Traits.Location((String) this.f292n, Traits.Location.Section.PREMIUM_GUILD_UPSELL_MODAL, Traits.Location.Obj.BUTTON_CTA, (String) this.f293o, null, 16, null), (Long) this.f291m);
+            ((C0813e) this.f290l).dismiss();
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.b.e$c */
     /* JADX INFO: compiled from: GuildBoostUpsellDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1072w> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1072w> {
 
         /* JADX INFO: renamed from: j */
         public static final c f294j = new c();

@@ -43,7 +43,7 @@ public enum AudioDeviceInfoType {
 
     /* JADX INFO: renamed from: com.discord.rtcconnection.enums.AudioDeviceInfoType$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: AudioDeviceInfoType.kt */
-    public static final class Companion {
+    public final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

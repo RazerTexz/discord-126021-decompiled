@@ -9,11 +9,11 @@ import p007b.p195g.p196a.p198b.p204t.C2149k;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2125e {
 
-    /* JADX INFO: renamed from: a */
-    public static final char[] f4550a = (char[]) C2121a.f4536a.clone();
-
     /* JADX INFO: renamed from: b */
     public static final C2125e f4551b;
+
+    /* JADX INFO: renamed from: a */
+    public static final char[] f4550a = (char[]) C2121a.f4536a.clone();
 
     static {
         C2121a.f4537b.clone();

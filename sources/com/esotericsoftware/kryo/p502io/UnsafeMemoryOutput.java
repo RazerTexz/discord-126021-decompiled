@@ -10,37 +10,21 @@ import java.nio.ByteOrder;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class UnsafeMemoryOutput extends ByteBufferOutput {
-    private static final boolean isLittleEndian = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
     private long bufaddress;
+    private static final boolean isLittleEndian = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
 
     public UnsafeMemoryOutput() {
         this.varIntsEnabled = false;
-    }
-
-    private void updateBufferAddress() {
-        this.bufaddress = this.niobuffer.address();
-    }
-
-    private final void writeLittleEndianInt(int i) {
-        if (isLittleEndian) {
-            writeInt(i);
-        } else {
-            writeInt(Util.swapInt(i));
-        }
-    }
-
-    private final void writeLittleEndianLong(long j) {
-        if (isLittleEndian) {
-            writeLong(j);
-        } else {
-            writeLong(Util.swapLong(j));
-        }
     }
 
     @Override // com.esotericsoftware.kryo.p502io.ByteBufferOutput
     public void setBuffer(ByteBuffer byteBuffer, int i) {
         super.setBuffer(byteBuffer, i);
         updateBufferAddress();
+    }
+
+    private void updateBufferAddress() {
+        this.bufaddress = this.niobuffer.address();
     }
 
     @Override // com.esotericsoftware.kryo.p502io.ByteBufferOutput, com.esotericsoftware.kryo.p502io.Output
@@ -112,6 +96,22 @@ public final class UnsafeMemoryOutput extends ByteBufferOutput {
             super.writeInts(iArr, z2);
         } else {
             writeBytes(iArr, UnsafeUtil.intArrayBaseOffset, 0L, iArr.length << 2);
+        }
+    }
+
+    private final void writeLittleEndianInt(int i) {
+        if (isLittleEndian) {
+            writeInt(i);
+        } else {
+            writeInt(Util.swapInt(i));
+        }
+    }
+
+    private final void writeLittleEndianLong(long j) {
+        if (isLittleEndian) {
+            writeLong(j);
+        } else {
+            writeLong(Util.swapLong(j));
         }
     }
 

@@ -41,12 +41,12 @@ public final class GuildScheduledEventDescriptionParser {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildScheduledEventDescriptionParser$Companion$INSTANCE$2.INSTANCE);
     private DescriptionCache savedDescriptionCache;
     private final WeakReference<LinkifiedTextView> weakRefTextView;
+    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildScheduledEventDescriptionParser$Companion$INSTANCE$2.INSTANCE);
 
     /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,12 +62,12 @@ public final class GuildScheduledEventDescriptionParser {
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-    public static abstract class DescriptionCache {
+    public abstract class DescriptionCache {
         private final List<Node<MessageRenderContext>> maybeAst;
         private final String maybeDescription;
 
         /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-        public static final /* data */ class HasDescription extends DescriptionCache {
+        public final /* data */ class HasDescription extends DescriptionCache {
             private final List<Node<MessageRenderContext>> ast;
             private final String description;
             private final Set<Integer> shownSpoilerIndices;
@@ -83,6 +83,14 @@ public final class GuildScheduledEventDescriptionParser {
                 this.shownSpoilerIndices = set;
             }
 
+            public final List<Node<MessageRenderContext>> component2() {
+                return this.ast;
+            }
+
+            public final Set<Integer> component3() {
+                return this.shownSpoilerIndices;
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             public static /* synthetic */ HasDescription copy$default(HasDescription hasDescription, String str, List list, Set set, int i, Object obj) {
                 if ((i & 1) != 0) {
@@ -95,19 +103,6 @@ public final class GuildScheduledEventDescriptionParser {
                     set = hasDescription.shownSpoilerIndices;
                 }
                 return hasDescription.copy(str, list, set);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getDescription() {
-                return this.description;
-            }
-
-            public final List<Node<MessageRenderContext>> component2() {
-                return this.ast;
-            }
-
-            public final Set<Integer> component3() {
-                return this.shownSpoilerIndices;
             }
 
             public final HasDescription copy(String description, List<Node<MessageRenderContext>> ast, Set<Integer> shownSpoilerIndices) {
@@ -130,6 +125,11 @@ public final class GuildScheduledEventDescriptionParser {
 
             public final List<Node<MessageRenderContext>> getAst() {
                 return this.ast;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getDescription() {
+                return this.description;
             }
 
             public final String getDescription() {
@@ -160,7 +160,7 @@ public final class GuildScheduledEventDescriptionParser {
         }
 
         /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-        public static final class NoDescription extends DescriptionCache {
+        public final class NoDescription extends DescriptionCache {
             public static final NoDescription INSTANCE = new NoDescription();
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -188,7 +188,7 @@ public final class GuildScheduledEventDescriptionParser {
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventDescriptionParser.kt */
-    public static final /* data */ class MessageRenderContextModel {
+    public final /* data */ class MessageRenderContextModel {
         private final Map<Long, String> channelNames;
         private final Map<Long, GuildRole> roles;
         private final Map<Long, String> userNames;
@@ -203,6 +203,18 @@ public final class GuildScheduledEventDescriptionParser {
             this.roles = map3;
         }
 
+        public final Map<Long, String> component1() {
+            return this.channelNames;
+        }
+
+        public final Map<Long, String> component2() {
+            return this.userNames;
+        }
+
+        public final Map<Long, GuildRole> component3() {
+            return this.roles;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ MessageRenderContextModel copy$default(MessageRenderContextModel messageRenderContextModel, Map map, Map map2, Map map3, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -215,18 +227,6 @@ public final class GuildScheduledEventDescriptionParser {
                 map3 = messageRenderContextModel.roles;
             }
             return messageRenderContextModel.copy(map, map2, map3);
-        }
-
-        public final Map<Long, String> component1() {
-            return this.channelNames;
-        }
-
-        public final Map<Long, String> component2() {
-            return this.userNames;
-        }
-
-        public final Map<Long, GuildRole> component3() {
-            return this.roles;
         }
 
         public final MessageRenderContextModel copy(Map<Long, String> channelNames, Map<Long, String> userNames, Map<Long, GuildRole> roles) {
@@ -283,6 +283,21 @@ public final class GuildScheduledEventDescriptionParser {
         C12238m.checkNotNullParameter(linkifiedTextView, "textView");
         this.weakRefTextView = new WeakReference<>(linkifiedTextView);
         this.savedDescriptionCache = DescriptionCache.NoDescription.INSTANCE;
+    }
+
+    public final void configureDescription(String description, long guildId) {
+        List<Node<MessageRenderContext>> andSaveDescription = parseAndSaveDescription(description);
+        LinkifiedTextView linkifiedTextView = this.weakRefTextView.get();
+        if (linkifiedTextView != null) {
+            if (andSaveDescription == null || !(!andSaveDescription.isEmpty())) {
+                linkifiedTextView.setVisibility(8);
+                return;
+            }
+            linkifiedTextView.setVisibility(0);
+            Observable<MessageRenderContextModel> observableM11119z = getRenderContext(guildId).m11119z();
+            C12238m.checkNotNullExpressionValue(observableM11119z, "getRenderContext(guildId)\n            .first()");
+            ObservableExtensionsKt.appSubscribe(observableM11119z, (Class<?>) LinkifiedTextView.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C8811xd8386722(linkifiedTextView, this, andSaveDescription, guildId));
+        }
     }
 
     private final Observable<MessageRenderContextModel> getRenderContext(long guildId) {
@@ -357,20 +372,5 @@ public final class GuildScheduledEventDescriptionParser {
 
     private final void updateAstForSpoiler(List<Node<MessageRenderContext>> ast, Set<Integer> visibleSpoilerNodeIndices) {
         new MessagePreprocessor(-1L, visibleSpoilerNodeIndices, null, false, null, 28, null).process(ast);
-    }
-
-    public final void configureDescription(String description, long guildId) {
-        List<Node<MessageRenderContext>> andSaveDescription = parseAndSaveDescription(description);
-        LinkifiedTextView linkifiedTextView = this.weakRefTextView.get();
-        if (linkifiedTextView != null) {
-            if (andSaveDescription == null || !(!andSaveDescription.isEmpty())) {
-                linkifiedTextView.setVisibility(8);
-                return;
-            }
-            linkifiedTextView.setVisibility(0);
-            Observable<MessageRenderContextModel> observableM11119z = getRenderContext(guildId).m11119z();
-            C12238m.checkNotNullExpressionValue(observableM11119z, "getRenderContext(guildId)\n            .first()");
-            ObservableExtensionsKt.appSubscribe(observableM11119z, (Class<?>) LinkifiedTextView.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C8811xd8386722(linkifiedTextView, this, andSaveDescription, guildId));
-        }
     }
 }

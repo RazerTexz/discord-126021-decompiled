@@ -24,7 +24,7 @@ public final class UserRequestManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$1 */
     /* JADX INFO: compiled from: UserRequestManager.kt */
-    public static final class C69841 extends AbstractC12240o implements Function1<User, Unit> {
+    public final class C69841 extends AbstractC12240o implements Function1<User, Unit> {
         public C69841() {
             super(1);
         }
@@ -45,7 +45,7 @@ public final class UserRequestManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$2 */
     /* JADX INFO: compiled from: UserRequestManager.kt */
-    public static final class C69852 extends AbstractC12240o implements Function0<Unit> {
+    public final class C69852 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -68,7 +68,7 @@ public final class UserRequestManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$3 */
     /* JADX INFO: compiled from: UserRequestManager.kt */
-    public static final class C69863 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C69863 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public final /* synthetic */ long $userId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

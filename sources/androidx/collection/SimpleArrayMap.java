@@ -70,36 +70,6 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    private static void freeArrays(int[] iArr, Object[] objArr, int i) {
-        if (iArr.length == 8) {
-            synchronized (SimpleArrayMap.class) {
-                if (mTwiceBaseCacheSize < 10) {
-                    objArr[0] = mTwiceBaseCache;
-                    objArr[1] = iArr;
-                    for (int i2 = (i << 1) - 1; i2 >= 2; i2--) {
-                        objArr[i2] = null;
-                    }
-                    mTwiceBaseCache = objArr;
-                    mTwiceBaseCacheSize++;
-                }
-            }
-            return;
-        }
-        if (iArr.length == 4) {
-            synchronized (SimpleArrayMap.class) {
-                if (mBaseCacheSize < 10) {
-                    objArr[0] = mBaseCache;
-                    objArr[1] = iArr;
-                    for (int i3 = (i << 1) - 1; i3 >= 2; i3--) {
-                        objArr[i3] = null;
-                    }
-                    mBaseCache = objArr;
-                    mBaseCacheSize++;
-                }
-            }
-        }
-    }
-
     public void clear() {
         int i = this.mSize;
         if (i > 0) {
@@ -190,6 +160,36 @@ public class SimpleArrayMap<K, V> {
             return true;
         }
         return false;
+    }
+
+    private static void freeArrays(int[] iArr, Object[] objArr, int i) {
+        if (iArr.length == 8) {
+            synchronized (SimpleArrayMap.class) {
+                if (mTwiceBaseCacheSize < 10) {
+                    objArr[0] = mTwiceBaseCache;
+                    objArr[1] = iArr;
+                    for (int i2 = (i << 1) - 1; i2 >= 2; i2--) {
+                        objArr[i2] = null;
+                    }
+                    mTwiceBaseCache = objArr;
+                    mTwiceBaseCacheSize++;
+                }
+            }
+            return;
+        }
+        if (iArr.length == 4) {
+            synchronized (SimpleArrayMap.class) {
+                if (mBaseCacheSize < 10) {
+                    objArr[0] = mBaseCache;
+                    objArr[1] = iArr;
+                    for (int i3 = (i << 1) - 1; i3 >= 2; i3--) {
+                        objArr[i3] = null;
+                    }
+                    mBaseCache = objArr;
+                    mBaseCacheSize++;
+                }
+            }
+        }
     }
 
     @Nullable

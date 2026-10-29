@@ -21,9 +21,9 @@ import p007b.p195g.p196a.p198b.p200p.C2126f;
 /* JADX INFO: compiled from: StdDateFormat.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class C2356r extends DateFormat {
-
-    /* JADX INFO: renamed from: j */
-    public static final Pattern f4968j = Pattern.compile("\\d\\d\\d\\d[-]\\d\\d[-]\\d\\d");
+    public Boolean _lenient;
+    public final Locale _locale;
+    private boolean _tzSerializedWithColon;
 
     /* JADX INFO: renamed from: k */
     public static final Pattern f4969k;
@@ -45,9 +45,6 @@ public class C2356r extends DateFormat {
 
     /* JADX INFO: renamed from: q */
     public static final Calendar f4975q;
-    public Boolean _lenient;
-    public final Locale _locale;
-    private boolean _tzSerializedWithColon;
 
     /* JADX INFO: renamed from: r */
     public transient TimeZone f4976r;
@@ -57,6 +54,9 @@ public class C2356r extends DateFormat {
 
     /* JADX INFO: renamed from: t */
     public transient DateFormat f4978t;
+
+    /* JADX INFO: renamed from: j */
+    public static final Pattern f4968j = Pattern.compile("\\d\\d\\d\\d[-]\\d\\d[-]\\d\\d");
 
     static {
         try {
@@ -79,59 +79,6 @@ public class C2356r extends DateFormat {
     public C2356r() {
         this._tzSerializedWithColon = true;
         this._locale = f4972n;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public static int m2204f(String str, int i) {
-        return (str.charAt(i + 1) - '0') + ((str.charAt(i) - '0') * 10);
-    }
-
-    /* JADX INFO: renamed from: g */
-    public static int m2205g(String str, int i) {
-        return (str.charAt(i + 3) - '0') + ((str.charAt(i + 2) - '0') * 10) + ((str.charAt(i + 1) - '0') * 100) + ((str.charAt(i) - '0') * 1000);
-    }
-
-    /* JADX INFO: renamed from: j */
-    public static void m2206j(StringBuffer stringBuffer, int i) {
-        int i2 = i / 10;
-        if (i2 == 0) {
-            stringBuffer.append('0');
-        } else {
-            stringBuffer.append((char) (i2 + 48));
-            i -= i2 * 10;
-        }
-        stringBuffer.append((char) (i + 48));
-    }
-
-    /* JADX INFO: renamed from: k */
-    public static void m2207k(StringBuffer stringBuffer, int i) {
-        int i2 = i / 100;
-        if (i2 == 0) {
-            stringBuffer.append('0');
-            stringBuffer.append('0');
-        } else {
-            if (i2 > 99) {
-                stringBuffer.append(i2);
-            } else {
-                m2206j(stringBuffer, i2);
-            }
-            i -= i2 * 100;
-        }
-        m2206j(stringBuffer, i);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public Calendar m2208b(TimeZone timeZone) {
-        Calendar calendar = this.f4977s;
-        if (calendar == null) {
-            calendar = (Calendar) f4975q.clone();
-            this.f4977s = calendar;
-        }
-        if (!calendar.getTimeZone().equals(timeZone)) {
-            calendar.setTimeZone(timeZone);
-        }
-        calendar.setLenient(isLenient());
-        return calendar;
     }
 
     @Override // java.text.DateFormat, java.text.Format
@@ -208,6 +155,70 @@ public class C2356r extends DateFormat {
         return this.f4976r;
     }
 
+    @Override // java.text.DateFormat
+    public int hashCode() {
+        return System.identityHashCode(this);
+    }
+
+    @Override // java.text.DateFormat
+    public boolean isLenient() {
+        Boolean bool = this._lenient;
+        return bool == null || bool.booleanValue();
+    }
+
+    /* JADX INFO: renamed from: f */
+    public static int m2204f(String str, int i) {
+        return (str.charAt(i + 1) - '0') + ((str.charAt(i) - '0') * 10);
+    }
+
+    /* JADX INFO: renamed from: g */
+    public static int m2205g(String str, int i) {
+        return (str.charAt(i + 3) - '0') + ((str.charAt(i + 2) - '0') * 10) + ((str.charAt(i + 1) - '0') * 100) + ((str.charAt(i) - '0') * 1000);
+    }
+
+    /* JADX INFO: renamed from: j */
+    public static void m2206j(StringBuffer stringBuffer, int i) {
+        int i2 = i / 10;
+        if (i2 == 0) {
+            stringBuffer.append('0');
+        } else {
+            stringBuffer.append((char) (i2 + 48));
+            i -= i2 * 10;
+        }
+        stringBuffer.append((char) (i + 48));
+    }
+
+    /* JADX INFO: renamed from: k */
+    public static void m2207k(StringBuffer stringBuffer, int i) {
+        int i2 = i / 100;
+        if (i2 == 0) {
+            stringBuffer.append('0');
+            stringBuffer.append('0');
+        } else {
+            if (i2 > 99) {
+                stringBuffer.append(i2);
+            } else {
+                m2206j(stringBuffer, i2);
+            }
+            i -= i2 * 100;
+        }
+        m2206j(stringBuffer, i);
+    }
+
+    /* JADX INFO: renamed from: b */
+    public Calendar m2208b(TimeZone timeZone) {
+        Calendar calendar = this.f4977s;
+        if (calendar == null) {
+            calendar = (Calendar) f4975q.clone();
+            this.f4977s = calendar;
+        }
+        if (!calendar.getTimeZone().equals(timeZone)) {
+            calendar.setTimeZone(timeZone);
+        }
+        calendar.setLenient(isLenient());
+        return calendar;
+    }
+
     /* JADX INFO: renamed from: h */
     public Date m2209h(String str) throws ParseException, IllegalArgumentException {
         char c;
@@ -273,11 +284,6 @@ public class C2356r extends DateFormat {
         objArr[c] = str2;
         objArr[2] = this._lenient;
         throw new ParseException(String.format("Cannot parse date \"%s\": while it seems to fit format '%s', parsing fails (leniency? %s)", objArr), 0);
-    }
-
-    @Override // java.text.DateFormat
-    public int hashCode() {
-        return System.identityHashCode(this);
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:45:0x009f, code lost:
@@ -364,12 +370,6 @@ public class C2356r extends DateFormat {
             this.f4978t = simpleDateFormat;
         }
         return this.f4978t.parse(str, parsePosition);
-    }
-
-    @Override // java.text.DateFormat
-    public boolean isLenient() {
-        Boolean bool = this._lenient;
-        return bool == null || bool.booleanValue();
     }
 
     /* JADX INFO: renamed from: l */

@@ -58,97 +58,13 @@ public final class StoreStickers extends StoreV2 {
     private Map<Long, ? extends StickerPackState> stickerPacksSnapshot;
     private Map<Long, Sticker> stickersSnapshot;
 
-    /* JADX INFO: compiled from: StoreStickers.kt */
-    public static abstract class StickerPackState {
-
-        /* JADX INFO: compiled from: StoreStickers.kt */
-        public static final /* data */ class Loaded extends StickerPackState {
-            private final ModelStickerPack stickerPack;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(ModelStickerPack modelStickerPack) {
-                super(null);
-                C12238m.checkNotNullParameter(modelStickerPack, "stickerPack");
-                this.stickerPack = modelStickerPack;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelStickerPack modelStickerPack, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    modelStickerPack = loaded.stickerPack;
-                }
-                return loaded.copy(modelStickerPack);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ModelStickerPack getStickerPack() {
-                return this.stickerPack;
-            }
-
-            public final Loaded copy(ModelStickerPack stickerPack) {
-                C12238m.checkNotNullParameter(stickerPack, "stickerPack");
-                return new Loaded(stickerPack);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Loaded) && C12238m.areEqual(this.stickerPack, ((Loaded) other).stickerPack);
-                }
-                return true;
-            }
-
-            public final ModelStickerPack getStickerPack() {
-                return this.stickerPack;
-            }
-
-            public int hashCode() {
-                ModelStickerPack modelStickerPack = this.stickerPack;
-                if (modelStickerPack != null) {
-                    return modelStickerPack.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(stickerPack=");
-                sbM833U.append(this.stickerPack);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreStickers.kt */
-        public static final class Loading extends StickerPackState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: StoreStickers.kt */
-        public static final class Unknown extends StickerPackState {
-            public static final Unknown INSTANCE = new Unknown();
-
-            private Unknown() {
-                super(null);
-            }
-        }
-
-        private StickerPackState() {
-        }
-
-        public /* synthetic */ StickerPackState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$fetchEnabledStickerDirectory$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64231 extends AbstractC12240o implements Function1<ModelStickerStoreDirectory, Unit> {
+    public final class C64231 extends AbstractC12240o implements Function1<ModelStickerStoreDirectory, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStickers$fetchEnabledStickerDirectory$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStickers.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ ModelStickerStoreDirectory $directory;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -190,16 +106,16 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$fetchStickerPack$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64241 extends AbstractC12240o implements Function0<Unit> {
+    public final class C64241 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $stickerPackId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStickers$fetchStickerPack$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStickers.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelStickerPack, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<ModelStickerPack, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreStickers$fetchStickerPack$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreStickers.kt */
-            public static final class C132631 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132631 extends AbstractC12240o implements Function0<Unit> {
                 public final /* synthetic */ ModelStickerPack $newPack;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -258,7 +174,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$handleDeletedStickers$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64251 extends AbstractC12240o implements Function0<Unit> {
+    public final class C64251 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ List $stickerIds;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -285,7 +201,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$observeEnabledStickerPacks$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64261 extends AbstractC12240o implements Function0<List<? extends ModelStickerPack>> {
+    public final class C64261 extends AbstractC12240o implements Function0<List<? extends ModelStickerPack>> {
         public C64261() {
             super(0);
         }
@@ -298,7 +214,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$observeStickerPack$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64281 extends AbstractC12240o implements Function0<Unit> {
+    public final class C64281 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $stickerPackId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -324,7 +240,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$observeStickerPack$2 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64292 extends AbstractC12240o implements Function0<StickerPackState> {
+    public final class C64292 extends AbstractC12240o implements Function0<StickerPackState> {
         public final /* synthetic */ long $stickerPackId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -343,7 +259,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$observeStickerPacks$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64301 extends AbstractC12240o implements Function0<List<? extends StickerPackState>> {
+    public final class C64301 extends AbstractC12240o implements Function0<List<? extends StickerPackState>> {
         public C64301() {
             super(0);
         }
@@ -356,7 +272,7 @@ public final class StoreStickers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStickers$onStickerUsed$1 */
     /* JADX INFO: compiled from: StoreStickers.kt */
-    public static final class C64311 extends AbstractC12240o implements Function0<Unit> {
+    public final class C64311 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Sticker $sticker;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -375,6 +291,90 @@ public final class StoreStickers extends StoreV2 {
         public final void invoke2() {
             FrecencyTracker.track$default(StoreStickers.this.frecency, String.valueOf(this.$sticker.getId()), 0L, 2, null);
             StoreStickers.this.frecencyCache.set(StoreStickers.this.frecency, true);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreStickers.kt */
+    public abstract class StickerPackState {
+
+        /* JADX INFO: compiled from: StoreStickers.kt */
+        public final /* data */ class Loaded extends StickerPackState {
+            private final ModelStickerPack stickerPack;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(ModelStickerPack modelStickerPack) {
+                super(null);
+                C12238m.checkNotNullParameter(modelStickerPack, "stickerPack");
+                this.stickerPack = modelStickerPack;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, ModelStickerPack modelStickerPack, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelStickerPack = loaded.stickerPack;
+                }
+                return loaded.copy(modelStickerPack);
+            }
+
+            public final Loaded copy(ModelStickerPack stickerPack) {
+                C12238m.checkNotNullParameter(stickerPack, "stickerPack");
+                return new Loaded(stickerPack);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && C12238m.areEqual(this.stickerPack, ((Loaded) other).stickerPack);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelStickerPack getStickerPack() {
+                return this.stickerPack;
+            }
+
+            public final ModelStickerPack getStickerPack() {
+                return this.stickerPack;
+            }
+
+            public int hashCode() {
+                ModelStickerPack modelStickerPack = this.stickerPack;
+                if (modelStickerPack != null) {
+                    return modelStickerPack.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbM833U = C1643a.m833U("Loaded(stickerPack=");
+                sbM833U.append(this.stickerPack);
+                sbM833U.append(")");
+                return sbM833U.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreStickers.kt */
+        public final class Loading extends StickerPackState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreStickers.kt */
+        public final class Unknown extends StickerPackState {
+            public static final Unknown INSTANCE = new Unknown();
+
+            private Unknown() {
+                super(null);
+            }
+        }
+
+        private StickerPackState() {
+        }
+
+        public /* synthetic */ StickerPackState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

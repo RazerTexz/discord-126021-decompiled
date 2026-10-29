@@ -27,7 +27,7 @@ public final class C12689y1<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.y1$a */
     /* JADX INFO: compiled from: OperatorSwitch.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final C12689y1<Object> f27126a = new C12689y1<>(false);
@@ -35,7 +35,7 @@ public final class C12689y1<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.y1$b */
     /* JADX INFO: compiled from: OperatorSwitch.java */
-    public static final class b<T> extends Subscriber<T> {
+    public final class b<T> extends Subscriber<T> {
 
         /* JADX INFO: renamed from: j */
         public final long f27127j;
@@ -149,10 +149,7 @@ public final class C12689y1<T> implements Observable.InterfaceC13006b<T, Observa
 
     /* JADX INFO: renamed from: j0.l.a.y1$c */
     /* JADX INFO: compiled from: OperatorSwitch.java */
-    public static final class c<T> extends Subscriber<Observable<? extends T>> {
-
-        /* JADX INFO: renamed from: j */
-        public static final Throwable f27129j = new Throwable("Terminal error");
+    public final class c<T> extends Subscriber<Observable<? extends T>> {
 
         /* JADX INFO: renamed from: k */
         public final Subscriber<? super T> f27130k;
@@ -180,6 +177,9 @@ public final class C12689y1<T> implements Observable.InterfaceC13006b<T, Observa
 
         /* JADX INFO: renamed from: v */
         public boolean f27141v;
+
+        /* JADX INFO: renamed from: j */
+        public static final Throwable f27129j = new Throwable("Terminal error");
 
         /* JADX INFO: renamed from: l */
         public final SerialSubscription f27131l = new SerialSubscription();

@@ -79,8 +79,12 @@ import p658rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsVoice extends AppFragment {
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsVoice.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsVoiceBinding;", 0)};
     private static final String ARG_TARGET_AUTO_TOGGLE = "ARG_TARGET_AUTO_TOGGLE";
     private static final String ARG_TARGET_RES_ID = "ARG_TARGET_RES_ID";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int OVERLAY_PERMISSION_REQUEST_CODE = 2552;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -88,14 +92,53 @@ public final class WidgetSettingsVoice extends AppFragment {
     private List<CheckedSetting> openSLESConfigRadioButtons;
     private RadioManager openSLESConfigRadioManager;
     private final BehaviorSubject<Boolean> requestListenForSensitivitySubject;
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetSettingsVoice.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsVoiceBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final MediaEngine.LocalVoiceStatus LOCAL_VOICE_STATUS_ENGINE_UNINITIALIZED = new MediaEngine.LocalVoiceStatus(-1.0f, false);
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsVoice$onOverlayToggled$3 */
     /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-    public static final class Companion {
+    public final class C97013 extends AbstractC12240o implements Function1<Pair<? extends RtcConnection.StateChange, ? extends Channel>, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C97013(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends RtcConnection.StateChange, ? extends Channel> pair) {
+            invoke2((Pair<RtcConnection.StateChange, Channel>) pair);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Pair<RtcConnection.StateChange, Channel> pair) {
+            DiscordOverlayService.INSTANCE.launchForVoice(this.$context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsVoice$onViewBoundOrOnResume$3 */
+    /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
+    public final class C97053 extends AbstractC12240o implements Function1<Model, Unit> {
+        public C97053() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "it");
+            WidgetSettingsVoice.this.configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -132,7 +175,7 @@ public final class WidgetSettingsVoice extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-    public static final class InputModeSelector extends AppBottomSheet {
+    public final class InputModeSelector extends AppBottomSheet {
         public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(InputModeSelector.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsVoiceInputModeBinding;", 0)};
 
         /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -184,49 +227,6 @@ public final class WidgetSettingsVoice extends AppFragment {
             iArr[MediaEngine.OpenSLESConfig.DEFAULT.ordinal()] = 1;
             iArr[MediaEngine.OpenSLESConfig.FORCE_ENABLED.ordinal()] = 2;
             iArr[MediaEngine.OpenSLESConfig.FORCE_DISABLED.ordinal()] = 3;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsVoice$onOverlayToggled$3 */
-    /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-    public static final class C97013 extends AbstractC12240o implements Function1<Pair<? extends RtcConnection.StateChange, ? extends Channel>, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C97013(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends RtcConnection.StateChange, ? extends Channel> pair) {
-            invoke2((Pair<RtcConnection.StateChange, Channel>) pair);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Pair<RtcConnection.StateChange, Channel> pair) {
-            DiscordOverlayService.INSTANCE.launchForVoice(this.$context);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsVoice$onViewBoundOrOnResume$3 */
-    /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-    public static final class C97053 extends AbstractC12240o implements Function1<Model, Unit> {
-        public C97053() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "it");
-            WidgetSettingsVoice.this.configureUI(model);
         }
     }
 
@@ -394,7 +394,7 @@ public final class WidgetSettingsVoice extends AppFragment {
 
             /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsVoice$configureVoiceSensitivity$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
                 public AnonymousClass1() {
                     super(0);
                 }
@@ -451,6 +451,24 @@ public final class WidgetSettingsVoice extends AppFragment {
         INSTANCE.launch(context, num, z2);
     }
 
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != OVERLAY_PERMISSION_REQUEST_CODE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+        boolean zHasOverlayPermission = INSTANCE.hasOverlayPermission(requireContext());
+        StoreStream.INSTANCE.getUserSettings().setIsMobileOverlayEnabled(zHasOverlayPermission);
+        CheckedSetting checkedSetting = getBinding().f18115u;
+        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsVoiceOverlayToggle");
+        checkedSetting.setChecked(zHasOverlayPermission);
+        CheckedSetting checkedSetting2 = getBinding().f18115u;
+        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsVoiceOverlayToggle");
+        Context context = checkedSetting2.getContext();
+        C12238m.checkNotNullExpressionValue(context, "binding.settingsVoiceOverlayToggle.context");
+        onOverlayToggled(context);
+    }
+
     private final void onOpenSLESConfigChanged() {
         MediaEngine.OpenSLESConfig openSLESConfig;
         RadioManager radioManager = this.openSLESConfigRadioManager;
@@ -493,24 +511,6 @@ public final class WidgetSettingsVoice extends AppFragment {
         });
         C12238m.checkNotNullExpressionValue(observableM11076j, "Observable\n          .co… -> rtcState to channel }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.takeSingleUntilTimeout(observableM11076j, 200L, false), this, null, 2, null), (Class<?>) WidgetSettingsVoice.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C97013(context));
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != OVERLAY_PERMISSION_REQUEST_CODE) {
-            super.onActivityResult(requestCode, resultCode, data);
-            return;
-        }
-        boolean zHasOverlayPermission = INSTANCE.hasOverlayPermission(requireContext());
-        StoreStream.INSTANCE.getUserSettings().setIsMobileOverlayEnabled(zHasOverlayPermission);
-        CheckedSetting checkedSetting = getBinding().f18115u;
-        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.settingsVoiceOverlayToggle");
-        checkedSetting.setChecked(zHasOverlayPermission);
-        CheckedSetting checkedSetting2 = getBinding().f18115u;
-        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsVoiceOverlayToggle");
-        Context context = checkedSetting2.getContext();
-        C12238m.checkNotNullExpressionValue(context, "binding.settingsVoiceOverlayToggle.context");
-        onOverlayToggled(context);
     }
 
     @Override // com.discord.app.AppFragment
@@ -624,7 +624,7 @@ public final class WidgetSettingsVoice extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-    public static final class Model {
+    public final class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -635,7 +635,7 @@ public final class WidgetSettingsVoice extends AppFragment {
         private final StoreMediaSettings.VoiceConfiguration voiceConfig;
 
         /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 

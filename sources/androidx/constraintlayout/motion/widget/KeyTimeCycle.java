@@ -35,7 +35,7 @@ public class KeyTimeCycle extends Key {
     private float mWavePeriod = Float.NaN;
     private float mWaveOffset = 0.0f;
 
-    public static class Loader {
+    public class Loader {
         private static final int ANDROID_ALPHA = 1;
         private static final int ANDROID_ELEVATION = 2;
         private static final int ANDROID_ROTATION = 4;

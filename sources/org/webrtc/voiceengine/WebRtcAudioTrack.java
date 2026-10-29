@@ -58,10 +58,6 @@ public class WebRtcAudioTrack {
             this.keepAlive = true;
         }
 
-        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
-            return audioTrack.write(byteBuffer, i, 0);
-        }
-
         @Override // java.lang.Thread, java.lang.Runnable
         public void run() {
             Process.setThreadPriority(-19);
@@ -103,6 +99,10 @@ public class WebRtcAudioTrack {
         public void stopThread() {
             Logging.m11027d(WebRtcAudioTrack.TAG, "stopThread");
             this.keepAlive = false;
+        }
+
+        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
+            return audioTrack.write(byteBuffer, i, 0);
         }
     }
 

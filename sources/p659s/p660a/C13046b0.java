@@ -1,5 +1,6 @@
 package p659s.p660a;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.coroutines.CoroutineContext;
@@ -18,7 +19,7 @@ public final class C13046b0 {
     public static final List<CoroutineExceptionHandler> f27716a = C12078q.toList(C12075n.asSequence(C0000a.m0a()));
 
     /* JADX INFO: renamed from: a */
-    public static final void m11192a(CoroutineContext coroutineContext, Throwable th) {
+    public static final void m11192a(CoroutineContext coroutineContext, Throwable th) throws IllegalAccessException, InvocationTargetException {
         Throwable runtimeException;
         Iterator<CoroutineExceptionHandler> it = f27716a.iterator();
         while (it.hasNext()) {

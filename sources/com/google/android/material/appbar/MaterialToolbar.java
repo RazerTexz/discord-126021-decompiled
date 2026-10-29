@@ -21,10 +21,10 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MaterialToolbar extends Toolbar {
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Toolbar;
 
     @Nullable
     private Integer navigationIconTint;
+    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Toolbar;
 
     public MaterialToolbar(@NonNull Context context) {
         this(context, null);

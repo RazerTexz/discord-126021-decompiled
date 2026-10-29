@@ -30,7 +30,7 @@ public final class GifCategoryAdapter extends RecyclerView.Adapter<GifCategoryVi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifCategoryAdapter$setItems$1 */
     /* JADX INFO: compiled from: GifCategoryAdapter.kt */
-    public static final class C78661 extends AbstractC12240o implements Function1<List<? extends GifCategoryItem>, Unit> {
+    public final class C78661 extends AbstractC12240o implements Function1<List<? extends GifCategoryItem>, Unit> {
         public C78661() {
             super(1);
         }

@@ -27,7 +27,7 @@ public final class C4916a {
 
     /* JADX INFO: renamed from: b.i.d.q.a$a */
     /* JADX INFO: compiled from: $Gson$Types.java */
-    public static final class a implements GenericArrayType, Serializable {
+    public final class a implements GenericArrayType, Serializable {
         private static final long serialVersionUID = 0;
         private final Type componentType;
 
@@ -55,7 +55,7 @@ public final class C4916a {
 
     /* JADX INFO: renamed from: b.i.d.q.a$b */
     /* JADX INFO: compiled from: $Gson$Types.java */
-    public static final class b implements ParameterizedType, Serializable {
+    public final class b implements ParameterizedType, Serializable {
         private static final long serialVersionUID = 0;
         private final Type ownerType;
         private final Type rawType;
@@ -129,7 +129,7 @@ public final class C4916a {
 
     /* JADX INFO: renamed from: b.i.d.q.a$c */
     /* JADX INFO: compiled from: $Gson$Types.java */
-    public static final class c implements WildcardType, Serializable {
+    public final class c implements WildcardType, Serializable {
         private static final long serialVersionUID = 0;
         private final Type lowerBound;
         private final Type upperBound;
@@ -322,9 +322,6 @@ public final class C4916a {
     /* JADX WARN: Code duplicated, block: B:23:0x004a  */
     /* JADX INFO: renamed from: h */
     public static Type m6867h(Type type, Class<?> cls, Type type2, Collection<TypeVariable> collection) {
-        Type type3;
-        WildcardType wildcardType;
-        Type[] lowerBounds;
         TypeVariable typeVariable;
         do {
             int i = 0;
@@ -363,39 +360,29 @@ public final class C4916a {
                     }
                     return z2 ? new b(typeM6867h3, parameterizedType.getRawType(), actualTypeArguments) : parameterizedType;
                 }
-                if (type2 instanceof WildcardType) {
-                    wildcardType = (WildcardType) type2;
-                    Type[] lowerBounds2 = wildcardType.getLowerBounds();
+                boolean z3 = type2 instanceof WildcardType;
+                Type type3 = type2;
+                if (z3) {
+                    WildcardType wildcardType = (WildcardType) type2;
+                    Type[] lowerBounds = wildcardType.getLowerBounds();
                     Type[] upperBounds = wildcardType.getUpperBounds();
-                    if (lowerBounds2.length == 1) {
-                        Type typeM6867h5 = m6867h(type, cls, lowerBounds2[0], collection);
-                        if (typeM6867h5 != lowerBounds2[0]) {
-                            if (typeM6867h5 instanceof WildcardType) {
-                                type3 = type2;
-                                type3 = wildcardType;
-                                lowerBounds = ((WildcardType) typeM6867h5).getLowerBounds();
-                            } else {
-                                type3 = type2;
-                                type3 = wildcardType;
-                                lowerBounds = new Type[]{typeM6867h5};
-                            }
-                            return new c(new Type[]{Object.class}, lowerBounds);
+                    if (lowerBounds.length == 1) {
+                        Type typeM6867h5 = m6867h(type, cls, lowerBounds[0], collection);
+                        type3 = wildcardType;
+                        if (typeM6867h5 != lowerBounds[0]) {
+                            return new c(new Type[]{Object.class}, typeM6867h5 instanceof WildcardType ? ((WildcardType) typeM6867h5).getLowerBounds() : new Type[]{typeM6867h5});
                         }
-                    } else if (upperBounds.length == 1) {
-                        type3 = type2;
+                    } else {
                         type3 = wildcardType;
-                        Type typeM6867h6 = m6867h(type, cls, upperBounds[0], collection);
-                        type3 = wildcardType;
-                        if (typeM6867h6 != upperBounds[0]) {
-                            return new c(typeM6867h6 instanceof WildcardType ? ((WildcardType) typeM6867h6).getUpperBounds() : new Type[]{typeM6867h6}, f13111a);
+                        if (upperBounds.length == 1) {
+                            Type typeM6867h6 = m6867h(type, cls, upperBounds[0], collection);
+                            type3 = wildcardType;
+                            if (typeM6867h6 != upperBounds[0]) {
+                                return new c(typeM6867h6 instanceof WildcardType ? ((WildcardType) typeM6867h6).getUpperBounds() : new Type[]{typeM6867h6}, f13111a);
+                            }
                         }
                     }
                 }
-                type3 = type2;
-                type3 = wildcardType;
-                type3 = type2;
-                type3 = wildcardType;
-                type3 = type2;
                 return type3;
             }
             typeVariable = (TypeVariable) type2;

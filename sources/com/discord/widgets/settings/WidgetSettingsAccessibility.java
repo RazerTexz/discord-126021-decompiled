@@ -50,8 +50,28 @@ public final class WidgetSettingsAccessibility extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private RadioManager stickersAnimationRadioManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAccessibility$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetSettingsAccessibility.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C96211 extends C12236k implements Function1<Model, Unit> {
+        public C96211(WidgetSettingsAccessibility widgetSettingsAccessibility) {
+            super(1, widgetSettingsAccessibility, WidgetSettingsAccessibility.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsAccessibility$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            C12238m.checkNotNullParameter(model, "p1");
+            ((WidgetSettingsAccessibility) this.receiver).configureUI(model);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccessibility.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -66,7 +86,7 @@ public final class WidgetSettingsAccessibility extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetSettingsAccessibility.kt */
-    public static final /* data */ class Model {
+    public final /* data */ class Model {
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -76,7 +96,7 @@ public final class WidgetSettingsAccessibility extends AppFragment {
         private final boolean reducedMotionEnabled;
 
         /* JADX INFO: compiled from: WidgetSettingsAccessibility.kt */
-        public static final class Companion {
+        public final class Companion {
             private Companion() {
             }
 
@@ -127,26 +147,6 @@ public final class WidgetSettingsAccessibility extends AppFragment {
             return model.copy(z2, z3, z4, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getReducedMotionEnabled() {
-            return this.reducedMotionEnabled;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getAllowAnimatedEmoji() {
-            return this.allowAnimatedEmoji;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getAutoPlayGifs() {
-            return this.autoPlayGifs;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getCurrentStickerAnimationSettings() {
-            return this.currentStickerAnimationSettings;
-        }
-
         public final Model copy(boolean reducedMotionEnabled, boolean allowAnimatedEmoji, boolean autoPlayGifs, int currentStickerAnimationSettings) {
             return new Model(reducedMotionEnabled, allowAnimatedEmoji, autoPlayGifs, currentStickerAnimationSettings);
         }
@@ -162,16 +162,36 @@ public final class WidgetSettingsAccessibility extends AppFragment {
             return this.reducedMotionEnabled == model.reducedMotionEnabled && this.allowAnimatedEmoji == model.allowAnimatedEmoji && this.autoPlayGifs == model.autoPlayGifs && this.currentStickerAnimationSettings == model.currentStickerAnimationSettings;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final boolean getAllowAnimatedEmoji() {
             return this.allowAnimatedEmoji;
+        }
+
+        public final boolean getAllowAnimatedEmoji() {
+            return this.allowAnimatedEmoji;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getAutoPlayGifs() {
+            return this.autoPlayGifs;
         }
 
         public final boolean getAutoPlayGifs() {
             return this.autoPlayGifs;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getCurrentStickerAnimationSettings() {
             return this.currentStickerAnimationSettings;
+        }
+
+        public final int getCurrentStickerAnimationSettings() {
+            return this.currentStickerAnimationSettings;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getReducedMotionEnabled() {
+            return this.reducedMotionEnabled;
         }
 
         public final boolean getReducedMotionEnabled() {
@@ -216,26 +236,6 @@ public final class WidgetSettingsAccessibility extends AppFragment {
             sbM833U.append(this.autoPlayGifs);
             sbM833U.append(", currentStickerAnimationSettings=");
             return C1643a.m814B(sbM833U, this.currentStickerAnimationSettings, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsAccessibility$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetSettingsAccessibility.kt */
-    public static final /* synthetic */ class C96211 extends C12236k implements Function1<Model, Unit> {
-        public C96211(WidgetSettingsAccessibility widgetSettingsAccessibility) {
-            super(1, widgetSettingsAccessibility, WidgetSettingsAccessibility.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/WidgetSettingsAccessibility$Model;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
-            invoke2(model);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Model model) {
-            C12238m.checkNotNullParameter(model, "p1");
-            ((WidgetSettingsAccessibility) this.receiver).configureUI(model);
         }
     }
 

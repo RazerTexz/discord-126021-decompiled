@@ -25,25 +25,6 @@ public class C2187h extends C2200u {
     /* JADX INFO: renamed from: f */
     public final boolean f4712f;
 
-    /* JADX INFO: renamed from: b.g.a.c.c0.h$a */
-    /* JADX INFO: compiled from: AnnotatedFieldCollector.java */
-    public static final class a {
-
-        /* JADX INFO: renamed from: a */
-        public final InterfaceC2182e0 f4713a;
-
-        /* JADX INFO: renamed from: b */
-        public final Field f4714b;
-
-        /* JADX INFO: renamed from: c */
-        public AbstractC2194o f4715c = AbstractC2194o.a.f4727c;
-
-        public a(InterfaceC2182e0 interfaceC2182e0, Field field) {
-            this.f4713a = interfaceC2182e0;
-            this.f4714b = field;
-        }
-    }
-
     public C2187h(AbstractC2165b abstractC2165b, C2335n c2335n, AbstractC2199t.a aVar, boolean z2) {
         super(abstractC2165b);
         this.f4710d = c2335n;
@@ -90,5 +71,24 @@ public class C2187h extends C2200u {
     /* JADX INFO: renamed from: g */
     public final boolean m1901g(Field field) {
         return (field.isSynthetic() || Modifier.isStatic(field.getModifiers())) ? false : true;
+    }
+
+    /* JADX INFO: renamed from: b.g.a.c.c0.h$a */
+    /* JADX INFO: compiled from: AnnotatedFieldCollector.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: a */
+        public final InterfaceC2182e0 f4713a;
+
+        /* JADX INFO: renamed from: b */
+        public final Field f4714b;
+
+        /* JADX INFO: renamed from: c */
+        public AbstractC2194o f4715c = AbstractC2194o.a.f4727c;
+
+        public a(InterfaceC2182e0 interfaceC2182e0, Field field) {
+            this.f4713a = interfaceC2182e0;
+            this.f4714b = field;
+        }
     }
 }

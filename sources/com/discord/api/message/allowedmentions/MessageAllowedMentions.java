@@ -27,26 +27,6 @@ public final /* data */ class MessageAllowedMentions {
         this.repliedUser = bool;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<MessageAllowedMentionsTypes> m8060a() {
-        return this.parse;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final Boolean getRepliedUser() {
-        return this.repliedUser;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Long> m8062c() {
-        return this.roles;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<Long> m8063d() {
-        return this.users;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -58,6 +38,11 @@ public final /* data */ class MessageAllowedMentions {
         return C12238m.areEqual(this.parse, messageAllowedMentions.parse) && C12238m.areEqual(this.users, messageAllowedMentions.users) && C12238m.areEqual(this.roles, messageAllowedMentions.roles) && C12238m.areEqual(this.repliedUser, messageAllowedMentions.repliedUser);
     }
 
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final Boolean getRepliedUser() {
+        return this.repliedUser;
+    }
+
     public int hashCode() {
         List<MessageAllowedMentionsTypes> list = this.parse;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
@@ -67,6 +52,21 @@ public final /* data */ class MessageAllowedMentions {
         int iHashCode3 = (iHashCode2 + (list3 != null ? list3.hashCode() : 0)) * 31;
         Boolean bool = this.repliedUser;
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<MessageAllowedMentionsTypes> m8060a() {
+        return this.parse;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<Long> m8062c() {
+        return this.roles;
+    }
+
+    /* JADX INFO: renamed from: d */
+    public final List<Long> m8063d() {
+        return this.users;
     }
 
     public String toString() {

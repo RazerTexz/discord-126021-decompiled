@@ -13,7 +13,7 @@ public abstract class NullSerializable<T> implements Serializable {
 
     /* JADX INFO: renamed from: com.discord.nullserializable.NullSerializable$a */
     /* JADX INFO: compiled from: NullSerializable.kt */
-    public static final class C5565a<T> extends NullSerializable<T> {
+    public final class C5565a<T> extends NullSerializable<T> {
         private final T value;
 
         public C5565a() {
@@ -25,12 +25,6 @@ public abstract class NullSerializable<T> implements Serializable {
             super(null, null);
             int i2 = i & 1;
             this.value = null;
-        }
-
-        @Override // com.discord.nullserializable.NullSerializable
-        /* JADX INFO: renamed from: a */
-        public T mo8429a() {
-            return this.value;
         }
 
         public boolean equals(Object obj) {
@@ -48,6 +42,12 @@ public abstract class NullSerializable<T> implements Serializable {
             return 0;
         }
 
+        @Override // com.discord.nullserializable.NullSerializable
+        /* JADX INFO: renamed from: a */
+        public T mo8429a() {
+            return this.value;
+        }
+
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("Null(value=");
             sbM833U.append(this.value);
@@ -58,18 +58,12 @@ public abstract class NullSerializable<T> implements Serializable {
 
     /* JADX INFO: renamed from: com.discord.nullserializable.NullSerializable$b */
     /* JADX INFO: compiled from: NullSerializable.kt */
-    public static final class C5566b<T> extends NullSerializable<T> {
+    public final class C5566b<T> extends NullSerializable<T> {
         private final T value;
 
         public C5566b(T t) {
             super(t, null);
             this.value = t;
-        }
-
-        @Override // com.discord.nullserializable.NullSerializable
-        /* JADX INFO: renamed from: a */
-        public T mo8429a() {
-            return this.value;
         }
 
         public boolean equals(Object obj) {
@@ -85,6 +79,12 @@ public abstract class NullSerializable<T> implements Serializable {
                 return t.hashCode();
             }
             return 0;
+        }
+
+        @Override // com.discord.nullserializable.NullSerializable
+        /* JADX INFO: renamed from: a */
+        public T mo8429a() {
+            return this.value;
         }
 
         public String toString() {

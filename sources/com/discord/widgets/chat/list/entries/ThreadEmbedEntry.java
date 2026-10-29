@@ -41,47 +41,12 @@ public final /* data */ class ThreadEmbedEntry extends ChatListEntry {
         this.key = C1643a.m877t("35 -- ", j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Channel getThread() {
-        return this.thread;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final int getThreadMessageCount() {
-        return this.threadMessageCount;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Message getMostRecentMessage() {
-        return this.mostRecentMessage;
-    }
-
     public final Map<Long, GuildRole> component5() {
         return this.roleMentions;
     }
 
     public final Map<Long, String> component6() {
         return this.nickOrUsernames;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getAnimateEmojis() {
-        return this.animateEmojis;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final GuildMember getMostRecentMessageGuildMember() {
-        return this.mostRecentMessageGuildMember;
-    }
-
-    /* JADX INFO: renamed from: component9, reason: from getter */
-    public final Message getParentMessage() {
-        return this.parentMessage;
     }
 
     public final ThreadEmbedEntry copy(long messageId, Channel thread, int threadMessageCount, Message mostRecentMessage, Map<Long, GuildRole> roleMentions, Map<Long, String> nickOrUsernames, boolean animateEmojis, GuildMember mostRecentMessageGuildMember, Message parentMessage) {
@@ -102,6 +67,11 @@ public final /* data */ class ThreadEmbedEntry extends ChatListEntry {
         return this.messageId == threadEmbedEntry.messageId && C12238m.areEqual(this.thread, threadEmbedEntry.thread) && this.threadMessageCount == threadEmbedEntry.threadMessageCount && C12238m.areEqual(this.mostRecentMessage, threadEmbedEntry.mostRecentMessage) && C12238m.areEqual(this.roleMentions, threadEmbedEntry.roleMentions) && C12238m.areEqual(this.nickOrUsernames, threadEmbedEntry.nickOrUsernames) && this.animateEmojis == threadEmbedEntry.animateEmojis && C12238m.areEqual(this.mostRecentMessageGuildMember, threadEmbedEntry.mostRecentMessageGuildMember) && C12238m.areEqual(this.parentMessage, threadEmbedEntry.parentMessage);
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getAnimateEmojis() {
+        return this.animateEmojis;
+    }
+
     public final boolean getAnimateEmojis() {
         return this.animateEmojis;
     }
@@ -111,12 +81,27 @@ public final /* data */ class ThreadEmbedEntry extends ChatListEntry {
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getMessageId() {
         return this.messageId;
     }
 
+    public final long getMessageId() {
+        return this.messageId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Message getMostRecentMessage() {
         return this.mostRecentMessage;
+    }
+
+    public final Message getMostRecentMessage() {
+        return this.mostRecentMessage;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final GuildMember getMostRecentMessageGuildMember() {
+        return this.mostRecentMessageGuildMember;
     }
 
     public final GuildMember getMostRecentMessageGuildMember() {
@@ -127,6 +112,11 @@ public final /* data */ class ThreadEmbedEntry extends ChatListEntry {
         return this.nickOrUsernames;
     }
 
+    /* JADX INFO: renamed from: component9, reason: from getter */
+    public final Message getParentMessage() {
+        return this.parentMessage;
+    }
+
     public final Message getParentMessage() {
         return this.parentMessage;
     }
@@ -135,8 +125,18 @@ public final /* data */ class ThreadEmbedEntry extends ChatListEntry {
         return this.roleMentions;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Channel getThread() {
         return this.thread;
+    }
+
+    public final Channel getThread() {
+        return this.thread;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final int getThreadMessageCount() {
+        return this.threadMessageCount;
     }
 
     public final int getThreadMessageCount() {

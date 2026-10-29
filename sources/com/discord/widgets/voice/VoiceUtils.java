@@ -38,7 +38,7 @@ public final class VoiceUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleCallChannel$1 */
     /* JADX INFO: compiled from: VoiceUtils.kt */
-    public static final class C104031 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104031 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ AppComponent $appComponent;
         public final /* synthetic */ AppPermissionsRequests $appPermissionsRequests;
         public final /* synthetic */ Channel $channel;
@@ -96,7 +96,7 @@ public final class VoiceUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$1 */
     /* JADX INFO: compiled from: VoiceUtils.kt */
-    public static final class C104041 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104041 extends AbstractC12240o implements Function0<Unit> {
         public static final C104041 INSTANCE = new C104041();
 
         public C104041() {
@@ -116,7 +116,7 @@ public final class VoiceUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$2 */
     /* JADX INFO: compiled from: VoiceUtils.kt */
-    public static final class C104052 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104052 extends AbstractC12240o implements Function0<Unit> {
         public static final C104052 INSTANCE = new C104052();
 
         public C104052() {
@@ -136,18 +136,18 @@ public final class VoiceUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$3 */
     /* JADX INFO: compiled from: VoiceUtils.kt */
-    public static final class C104063 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104063 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ AppPermissionsRequests $appPermissionsRequests;
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Function0 $onEventStarted;
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: VoiceUtils.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$3$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: VoiceUtils.kt */
-            public static final class C132961 extends AbstractC12240o implements Function1<Void, Unit> {
+            public final class C132961 extends AbstractC12240o implements Function1<Void, Unit> {
                 public static final C132961 INSTANCE = new C132961();
 
                 public C132961() {
@@ -204,7 +204,7 @@ public final class VoiceUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.VoiceUtils$handleConnectToEventChannel$4 */
     /* JADX INFO: compiled from: VoiceUtils.kt */
-    public static final class C104074 extends AbstractC12240o implements Function0<Unit> {
+    public final class C104074 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ FragmentManager $fragmentManager;
@@ -250,6 +250,13 @@ public final class VoiceUtils {
         handleCallChannel(channel, appBottomSheet, appBottomSheet, contextRequireContext, parentFragmentManager);
     }
 
+    public static /* synthetic */ void handleConnectToEventChannel$default(Channel channel, AppBottomSheet appBottomSheet, Function0 function0, int i, Object obj) {
+        if ((i & 4) != 0) {
+            function0 = C104041.INSTANCE;
+        }
+        handleConnectToEventChannel(channel, appBottomSheet, (Function0<Unit>) function0);
+    }
+
     public static final void handleConnectToEventChannel(Channel channel, AppBottomSheet appBottomSheet, Function0<Unit> onEventStarted) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(appBottomSheet, "appBottomSheet");
@@ -259,13 +266,6 @@ public final class VoiceUtils {
         FragmentManager parentFragmentManager = appBottomSheet.getParentFragmentManager();
         C12238m.checkNotNullExpressionValue(parentFragmentManager, "appBottomSheet.parentFragmentManager");
         handleConnectToEventChannel(channel, appBottomSheet, contextRequireContext, parentFragmentManager, onEventStarted);
-    }
-
-    public static /* synthetic */ void handleConnectToEventChannel$default(Channel channel, AppBottomSheet appBottomSheet, Function0 function0, int i, Object obj) {
-        if ((i & 4) != 0) {
-            function0 = C104041.INSTANCE;
-        }
-        handleConnectToEventChannel(channel, appBottomSheet, (Function0<Unit>) function0);
     }
 
     public static /* synthetic */ void handleConnectToEventChannel$default(Channel channel, AppFragment appFragment, Function0 function0, int i, Object obj) {

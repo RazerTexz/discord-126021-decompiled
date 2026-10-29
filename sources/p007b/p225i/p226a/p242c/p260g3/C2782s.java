@@ -21,9 +21,32 @@ public final class C2782s extends GLSurfaceView implements InterfaceC2783t {
     /* JADX INFO: renamed from: j */
     public final a f6910j;
 
+    public C2782s(Context context) {
+        super(context, null);
+        a aVar = new a(this);
+        this.f6910j = aVar;
+        setPreserveEGLContextOnPause(true);
+        setEGLContextClientVersion(2);
+        setRenderer(aVar);
+        setRenderMode(0);
+    }
+
+    @Deprecated
+    public InterfaceC2783t getVideoDecoderOutputBufferRenderer() {
+        return this;
+    }
+
+    public void setOutputBuffer(C2961i c2961i) {
+        a aVar = this.f6910j;
+        if (aVar.f6921t.getAndSet(c2961i) != null) {
+            throw null;
+        }
+        aVar.f6916o.requestRender();
+    }
+
     /* JADX INFO: renamed from: b.i.a.c.g3.s$a */
     /* JADX INFO: compiled from: VideoDecoderGLSurfaceView.java */
-    public static final class a implements GLSurfaceView.Renderer {
+    public final class a implements GLSurfaceView.Renderer {
 
         /* JADX INFO: renamed from: j */
         public static final float[] f6911j = {1.164f, 1.164f, 1.164f, 0.0f, -0.392f, 2.017f, 1.596f, -0.813f, 0.0f};
@@ -34,32 +57,8 @@ public final class C2782s extends GLSurfaceView implements InterfaceC2783t {
         /* JADX INFO: renamed from: l */
         public static final float[] f6913l = {1.168f, 1.168f, 1.168f, 0.0f, -0.188f, 2.148f, 1.683f, -0.652f, 0.0f};
 
-        /* JADX INFO: renamed from: m */
-        public static final String[] f6914m = {"y_tex", "u_tex", "v_tex"};
-
-        /* JADX INFO: renamed from: n */
-        public static final FloatBuffer f6915n = GlUtil.m8946b(new float[]{-1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f});
-
         /* JADX INFO: renamed from: o */
         public final GLSurfaceView f6916o;
-
-        /* JADX INFO: renamed from: p */
-        public final int[] f6917p = new int[3];
-
-        /* JADX INFO: renamed from: q */
-        public final int[] f6918q = new int[3];
-
-        /* JADX INFO: renamed from: r */
-        public final int[] f6919r = new int[3];
-
-        /* JADX INFO: renamed from: s */
-        public final int[] f6920s = new int[3];
-
-        /* JADX INFO: renamed from: t */
-        public final AtomicReference<C2961i> f6921t = new AtomicReference<>();
-
-        /* JADX INFO: renamed from: u */
-        public final FloatBuffer[] f6922u = new FloatBuffer[3];
 
         /* JADX INFO: renamed from: v */
         public GlUtil.C10776a f6923v;
@@ -69,6 +68,30 @@ public final class C2782s extends GLSurfaceView implements InterfaceC2783t {
 
         /* JADX INFO: renamed from: x */
         public C2961i f6925x;
+
+        /* JADX INFO: renamed from: p */
+        public final int[] f6917p = new int[3];
+
+        /* JADX INFO: renamed from: m */
+        public static final String[] f6914m = {"y_tex", "u_tex", "v_tex"};
+
+        /* JADX INFO: renamed from: q */
+        public final int[] f6918q = new int[3];
+
+        /* JADX INFO: renamed from: r */
+        public final int[] f6919r = new int[3];
+
+        /* JADX INFO: renamed from: n */
+        public static final FloatBuffer f6915n = GlUtil.m8946b(new float[]{-1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f});
+
+        /* JADX INFO: renamed from: s */
+        public final int[] f6920s = new int[3];
+
+        /* JADX INFO: renamed from: t */
+        public final AtomicReference<C2961i> f6921t = new AtomicReference<>();
+
+        /* JADX INFO: renamed from: u */
+        public final FloatBuffer[] f6922u = new FloatBuffer[3];
 
         public a(GLSurfaceView gLSurfaceView) {
             this.f6916o = gLSurfaceView;
@@ -134,28 +157,5 @@ public final class C2782s extends GLSurfaceView implements InterfaceC2783t {
             GlUtil.m8945a();
             GlUtil.m8945a();
         }
-    }
-
-    public C2782s(Context context) {
-        super(context, null);
-        a aVar = new a(this);
-        this.f6910j = aVar;
-        setPreserveEGLContextOnPause(true);
-        setEGLContextClientVersion(2);
-        setRenderer(aVar);
-        setRenderMode(0);
-    }
-
-    @Deprecated
-    public InterfaceC2783t getVideoDecoderOutputBufferRenderer() {
-        return this;
-    }
-
-    public void setOutputBuffer(C2961i c2961i) {
-        a aVar = this.f6910j;
-        if (aVar.f6921t.getAndSet(c2961i) != null) {
-            throw null;
-        }
-        aVar.f6916o.requestRender();
     }
 }

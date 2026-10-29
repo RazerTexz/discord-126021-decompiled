@@ -13,22 +13,25 @@ import p007b.p225i.p226a.p242c.p267x2.InterfaceC3041i;
 /* JADX INFO: compiled from: TsBinarySearchSeeker.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class C3081f0 extends AbstractC2999a {
+    public C3081f0(C2736d0 c2736d0, long j, long j2, int i, int i2) {
+        super(new AbstractC2999a.b(), new a(i, c2736d0, i2), j, 0L, j + 1, 0L, j2, 188L, 940);
+    }
 
     /* JADX INFO: renamed from: b.i.a.c.x2.k0.f0$a */
     /* JADX INFO: compiled from: TsBinarySearchSeeker.java */
-    public static final class a implements AbstractC2999a.f {
+    public final class a implements AbstractC2999a.f {
 
         /* JADX INFO: renamed from: a */
         public final C2736d0 f8607a;
-
-        /* JADX INFO: renamed from: b */
-        public final C2757x f8608b = new C2757x();
 
         /* JADX INFO: renamed from: c */
         public final int f8609c;
 
         /* JADX INFO: renamed from: d */
         public final int f8610d;
+
+        /* JADX INFO: renamed from: b */
+        public final C2757x f8608b = new C2757x();
 
         public a(int i, C2736d0 c2736d0, int i2) {
             this.f8609c = i;
@@ -81,9 +84,5 @@ public final class C3081f0 extends AbstractC2999a {
             }
             return j4 != -9223372036854775807L ? AbstractC2999a.e.m3626c(j4, position + j2) : AbstractC2999a.e.f8049a;
         }
-    }
-
-    public C3081f0(C2736d0 c2736d0, long j, long j2, int i, int i2) {
-        super(new AbstractC2999a.b(), new a(i, c2736d0, i2), j, 0L, j + 1, 0L, j2, 188L, 940);
     }
 }

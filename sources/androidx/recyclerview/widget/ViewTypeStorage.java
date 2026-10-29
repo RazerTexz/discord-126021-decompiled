@@ -10,9 +10,40 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public interface ViewTypeStorage {
 
-    public static class IsolatedViewTypeStorage implements ViewTypeStorage {
+    public class IsolatedViewTypeStorage implements ViewTypeStorage {
         public SparseArray<NestedAdapterWrapper> mGlobalTypeToWrapper = new SparseArray<>();
         public int mNextViewType = 0;
+
+        @Override // androidx.recyclerview.widget.ViewTypeStorage
+        @NonNull
+        public ViewTypeLookup createViewTypeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper) {
+            return new WrapperViewTypeLookup(nestedAdapterWrapper);
+        }
+
+        @Override // androidx.recyclerview.widget.ViewTypeStorage
+        @NonNull
+        public NestedAdapterWrapper getWrapperForGlobalType(int i) {
+            NestedAdapterWrapper nestedAdapterWrapper = this.mGlobalTypeToWrapper.get(i);
+            if (nestedAdapterWrapper != null) {
+                return nestedAdapterWrapper;
+            }
+            throw new IllegalArgumentException(C1643a.m871q("Cannot find the wrapper for global view type ", i));
+        }
+
+        public int obtainViewType(NestedAdapterWrapper nestedAdapterWrapper) {
+            int i = this.mNextViewType;
+            this.mNextViewType = i + 1;
+            this.mGlobalTypeToWrapper.put(i, nestedAdapterWrapper);
+            return i;
+        }
+
+        public void removeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper) {
+            for (int size = this.mGlobalTypeToWrapper.size() - 1; size >= 0; size--) {
+                if (this.mGlobalTypeToWrapper.valueAt(size) == nestedAdapterWrapper) {
+                    this.mGlobalTypeToWrapper.removeAt(size);
+                }
+            }
+        }
 
         public class WrapperViewTypeLookup implements ViewTypeLookup {
             public final NestedAdapterWrapper mWrapper;
@@ -51,40 +82,23 @@ public interface ViewTypeStorage {
                 return iObtainViewType;
             }
         }
-
-        @Override // androidx.recyclerview.widget.ViewTypeStorage
-        @NonNull
-        public ViewTypeLookup createViewTypeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper) {
-            return new WrapperViewTypeLookup(nestedAdapterWrapper);
-        }
-
-        @Override // androidx.recyclerview.widget.ViewTypeStorage
-        @NonNull
-        public NestedAdapterWrapper getWrapperForGlobalType(int i) {
-            NestedAdapterWrapper nestedAdapterWrapper = this.mGlobalTypeToWrapper.get(i);
-            if (nestedAdapterWrapper != null) {
-                return nestedAdapterWrapper;
-            }
-            throw new IllegalArgumentException(C1643a.m871q("Cannot find the wrapper for global view type ", i));
-        }
-
-        public int obtainViewType(NestedAdapterWrapper nestedAdapterWrapper) {
-            int i = this.mNextViewType;
-            this.mNextViewType = i + 1;
-            this.mGlobalTypeToWrapper.put(i, nestedAdapterWrapper);
-            return i;
-        }
-
-        public void removeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper) {
-            for (int size = this.mGlobalTypeToWrapper.size() - 1; size >= 0; size--) {
-                if (this.mGlobalTypeToWrapper.valueAt(size) == nestedAdapterWrapper) {
-                    this.mGlobalTypeToWrapper.removeAt(size);
-                }
-            }
-        }
     }
 
-    public static class SharedIdRangeViewTypeStorage implements ViewTypeStorage {
+    public interface ViewTypeLookup {
+        void dispose();
+
+        int globalToLocal(int i);
+
+        int localToGlobal(int i);
+    }
+
+    @NonNull
+    ViewTypeLookup createViewTypeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper);
+
+    @NonNull
+    NestedAdapterWrapper getWrapperForGlobalType(int i);
+
+    public class SharedIdRangeViewTypeStorage implements ViewTypeStorage {
         public SparseArray<List<NestedAdapterWrapper>> mGlobalTypeToWrapper = new SparseArray<>();
 
         public class WrapperViewTypeLookup implements ViewTypeLookup {
@@ -143,18 +157,4 @@ public interface ViewTypeStorage {
             }
         }
     }
-
-    public interface ViewTypeLookup {
-        void dispose();
-
-        int globalToLocal(int i);
-
-        int localToGlobal(int i);
-    }
-
-    @NonNull
-    ViewTypeLookup createViewTypeWrapper(@NonNull NestedAdapterWrapper nestedAdapterWrapper);
-
-    @NonNull
-    NestedAdapterWrapper getWrapperForGlobalType(int i);
 }

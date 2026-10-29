@@ -17,15 +17,15 @@ public final class C4308t implements InterfaceC3287e<Status> {
     }
 
     @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
+    /* JADX INFO: renamed from: b */
+    public final void mo3989b(Object obj) {
+        this.f11433a.f20845a.m6024s(null);
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
     /* JADX INFO: renamed from: a */
     public final void mo4067a(Status status) {
         TaskCompletionSource taskCompletionSource = this.f11433a;
         taskCompletionSource.f20845a.m6025t(new ApiException(status));
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p299e.p300h.p301j.InterfaceC3287e
-    /* JADX INFO: renamed from: b */
-    public final void mo3989b(Object obj) {
-        this.f11433a.f20845a.m6024s(null);
     }
 }

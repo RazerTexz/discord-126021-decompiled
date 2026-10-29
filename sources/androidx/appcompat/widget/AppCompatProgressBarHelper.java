@@ -30,6 +30,23 @@ public class AppCompatProgressBarHelper {
         return new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null);
     }
 
+    public Bitmap getSampleTile() {
+        return this.mSampleTile;
+    }
+
+    public void loadFromAttributes(AttributeSet attributeSet, int i) {
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, TINT_ATTRS, i, 0);
+        Drawable drawableIfKnown = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(0);
+        if (drawableIfKnown != null) {
+            this.mView.setIndeterminateDrawable(tileifyIndeterminate(drawableIfKnown));
+        }
+        Drawable drawableIfKnown2 = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(1);
+        if (drawableIfKnown2 != null) {
+            this.mView.setProgressDrawable(tileify(drawableIfKnown2, false));
+        }
+        tintTypedArrayObtainStyledAttributes.recycle();
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     private Drawable tileify(Drawable drawable, boolean z2) {
         if (drawable instanceof WrappedDrawable) {
@@ -83,22 +100,5 @@ public class AppCompatProgressBarHelper {
         }
         animationDrawable2.setLevel(10000);
         return animationDrawable2;
-    }
-
-    public Bitmap getSampleTile() {
-        return this.mSampleTile;
-    }
-
-    public void loadFromAttributes(AttributeSet attributeSet, int i) {
-        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, TINT_ATTRS, i, 0);
-        Drawable drawableIfKnown = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(0);
-        if (drawableIfKnown != null) {
-            this.mView.setIndeterminateDrawable(tileifyIndeterminate(drawableIfKnown));
-        }
-        Drawable drawableIfKnown2 = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(1);
-        if (drawableIfKnown2 != null) {
-            this.mView.setProgressDrawable(tileify(drawableIfKnown2, false));
-        }
-        tintTypedArrayObtainStyledAttributes.recycle();
     }
 }

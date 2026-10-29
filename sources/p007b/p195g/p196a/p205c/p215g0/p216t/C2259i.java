@@ -51,6 +51,87 @@ public class C2259i extends AbstractC2239h<Map.Entry<?, ?>> implements Interface
         this._suppressNulls = false;
     }
 
+    /* JADX INFO: renamed from: r */
+    public void m2030r(Map.Entry<?, ?> entry, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        AbstractC2364n<Object> abstractC2364n;
+        AbstractC2215g abstractC2215g = this._valueTypeSerializer;
+        Object key = entry.getKey();
+        AbstractC2364n<Object> abstractC2364n2 = key == null ? abstractC2374x._nullKeySerializer : this._keySerializer;
+        Object value = entry.getValue();
+        if (value != null) {
+            abstractC2364n = this._valueSerializer;
+            if (abstractC2364n == null) {
+                Class<?> cls = value.getClass();
+                AbstractC2364n<Object> abstractC2364nMo2034c = this._dynamicValueSerializers.mo2034c(cls);
+                if (abstractC2364nMo2034c != null) {
+                    abstractC2364n = abstractC2364nMo2034c;
+                } else if (this._valueType.mo2102r()) {
+                    AbstractC2262l abstractC2262l = this._dynamicValueSerializers;
+                    AbstractC2262l.d dVarM2032a = abstractC2262l.m2032a(abstractC2374x.m2247k(this._valueType, cls), abstractC2374x, this._property);
+                    AbstractC2262l abstractC2262l2 = dVarM2032a.f4831b;
+                    if (abstractC2262l != abstractC2262l2) {
+                        this._dynamicValueSerializers = abstractC2262l2;
+                    }
+                    abstractC2364n = dVarM2032a.f4830a;
+                } else {
+                    AbstractC2262l abstractC2262l3 = this._dynamicValueSerializers;
+                    InterfaceC2206d interfaceC2206d = this._property;
+                    Objects.requireNonNull(abstractC2262l3);
+                    AbstractC2364n<Object> abstractC2364nM2250n = abstractC2374x.m2250n(cls, interfaceC2206d);
+                    AbstractC2262l abstractC2262lMo2033b = abstractC2262l3.mo2033b(cls, abstractC2364nM2250n);
+                    if (abstractC2262l3 != abstractC2262lMo2033b) {
+                        this._dynamicValueSerializers = abstractC2262lMo2033b;
+                    }
+                    abstractC2364n = abstractC2364nM2250n;
+                }
+            }
+            Object obj = this._suppressableValue;
+            if (obj != null && ((obj == InterfaceC2094p.a.NON_EMPTY && abstractC2364n.mo2021d(abstractC2374x, value)) || this._suppressableValue.equals(value))) {
+                return;
+            }
+        } else if (this._suppressNulls) {
+            return;
+        } else {
+            abstractC2364n = abstractC2374x._nullValueSerializer;
+        }
+        abstractC2364n2.mo1807f(key, abstractC2108d, abstractC2374x);
+        try {
+            if (abstractC2215g == null) {
+                abstractC2364n.mo1807f(value, abstractC2108d, abstractC2374x);
+            } else {
+                abstractC2364n.mo1808g(value, abstractC2108d, abstractC2374x, abstractC2215g);
+            }
+        } catch (Exception e) {
+            m2077o(abstractC2374x, e, entry, C1643a.m881v("", key));
+            throw null;
+        }
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: f */
+    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
+        Map.Entry<?, ?> entry = (Map.Entry) obj;
+        abstractC2108d.mo1653d0(entry);
+        m2030r(entry, abstractC2108d, abstractC2374x);
+        abstractC2108d.mo1664u();
+    }
+
+    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
+    /* JADX INFO: renamed from: g */
+    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
+        Map.Entry<?, ?> entry = (Map.Entry) obj;
+        abstractC2108d.mo1654e(entry);
+        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(entry, EnumC2112h.START_OBJECT));
+        m2030r(entry, abstractC2108d, abstractC2374x);
+        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
+    }
+
+    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
+    /* JADX INFO: renamed from: p */
+    public AbstractC2239h<?> mo1995p(AbstractC2215g abstractC2215g) {
+        return new C2259i(this, this._keySerializer, this._valueSerializer, this._suppressableValue, this._suppressNulls);
+    }
+
     @Override // p007b.p195g.p196a.p205c.p215g0.InterfaceC2240i
     /* JADX INFO: renamed from: a */
     public AbstractC2364n<?> mo1997a(AbstractC2374x abstractC2374x, InterfaceC2206d interfaceC2206d) throws JsonMappingException {
@@ -155,87 +236,6 @@ public class C2259i extends AbstractC2239h<Map.Entry<?, ?>> implements Interface
             return obj2 == InterfaceC2094p.a.NON_EMPTY ? abstractC2364n.mo2021d(abstractC2374x, value) : obj2.equals(value);
         }
         return false;
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: f */
-    public void mo1807f(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        Map.Entry<?, ?> entry = (Map.Entry) obj;
-        abstractC2108d.mo1653d0(entry);
-        m2030r(entry, abstractC2108d, abstractC2374x);
-        abstractC2108d.mo1664u();
-    }
-
-    @Override // p007b.p195g.p196a.p205c.AbstractC2364n
-    /* JADX INFO: renamed from: g */
-    public void mo1808g(Object obj, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x, AbstractC2215g abstractC2215g) throws IOException {
-        Map.Entry<?, ?> entry = (Map.Entry) obj;
-        abstractC2108d.mo1654e(entry);
-        C2138b c2138bMo1959e = abstractC2215g.mo1959e(abstractC2108d, abstractC2215g.m1958d(entry, EnumC2112h.START_OBJECT));
-        m2030r(entry, abstractC2108d, abstractC2374x);
-        abstractC2215g.mo1960f(abstractC2108d, c2138bMo1959e);
-    }
-
-    @Override // p007b.p195g.p196a.p205c.p215g0.AbstractC2239h
-    /* JADX INFO: renamed from: p */
-    public AbstractC2239h<?> mo1995p(AbstractC2215g abstractC2215g) {
-        return new C2259i(this, this._keySerializer, this._valueSerializer, this._suppressableValue, this._suppressNulls);
-    }
-
-    /* JADX INFO: renamed from: r */
-    public void m2030r(Map.Entry<?, ?> entry, AbstractC2108d abstractC2108d, AbstractC2374x abstractC2374x) throws IOException {
-        AbstractC2364n<Object> abstractC2364n;
-        AbstractC2215g abstractC2215g = this._valueTypeSerializer;
-        Object key = entry.getKey();
-        AbstractC2364n<Object> abstractC2364n2 = key == null ? abstractC2374x._nullKeySerializer : this._keySerializer;
-        Object value = entry.getValue();
-        if (value != null) {
-            abstractC2364n = this._valueSerializer;
-            if (abstractC2364n == null) {
-                Class<?> cls = value.getClass();
-                AbstractC2364n<Object> abstractC2364nMo2034c = this._dynamicValueSerializers.mo2034c(cls);
-                if (abstractC2364nMo2034c != null) {
-                    abstractC2364n = abstractC2364nMo2034c;
-                } else if (this._valueType.mo2102r()) {
-                    AbstractC2262l abstractC2262l = this._dynamicValueSerializers;
-                    AbstractC2262l.d dVarM2032a = abstractC2262l.m2032a(abstractC2374x.m2247k(this._valueType, cls), abstractC2374x, this._property);
-                    AbstractC2262l abstractC2262l2 = dVarM2032a.f4831b;
-                    if (abstractC2262l != abstractC2262l2) {
-                        this._dynamicValueSerializers = abstractC2262l2;
-                    }
-                    abstractC2364n = dVarM2032a.f4830a;
-                } else {
-                    AbstractC2262l abstractC2262l3 = this._dynamicValueSerializers;
-                    InterfaceC2206d interfaceC2206d = this._property;
-                    Objects.requireNonNull(abstractC2262l3);
-                    AbstractC2364n<Object> abstractC2364nM2250n = abstractC2374x.m2250n(cls, interfaceC2206d);
-                    AbstractC2262l abstractC2262lMo2033b = abstractC2262l3.mo2033b(cls, abstractC2364nM2250n);
-                    if (abstractC2262l3 != abstractC2262lMo2033b) {
-                        this._dynamicValueSerializers = abstractC2262lMo2033b;
-                    }
-                    abstractC2364n = abstractC2364nM2250n;
-                }
-            }
-            Object obj = this._suppressableValue;
-            if (obj != null && ((obj == InterfaceC2094p.a.NON_EMPTY && abstractC2364n.mo2021d(abstractC2374x, value)) || this._suppressableValue.equals(value))) {
-                return;
-            }
-        } else if (this._suppressNulls) {
-            return;
-        } else {
-            abstractC2364n = abstractC2374x._nullValueSerializer;
-        }
-        abstractC2364n2.mo1807f(key, abstractC2108d, abstractC2374x);
-        try {
-            if (abstractC2215g == null) {
-                abstractC2364n.mo1807f(value, abstractC2108d, abstractC2374x);
-            } else {
-                abstractC2364n.mo1808g(value, abstractC2108d, abstractC2374x, abstractC2215g);
-            }
-        } catch (Exception e) {
-            m2077o(abstractC2374x, e, entry, C1643a.m881v("", key));
-            throw null;
-        }
     }
 
     public C2259i(C2259i c2259i, AbstractC2364n abstractC2364n, AbstractC2364n abstractC2364n2, Object obj, boolean z2) {

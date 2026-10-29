@@ -21,7 +21,7 @@ public final class C12509e<T> implements Observable.InterfaceC13005a<C12508d<T>>
 
     /* JADX INFO: renamed from: i0.d0.a.e$a */
     /* JADX INFO: compiled from: ResultOnSubscribe.java */
-    public static class a<R> extends Subscriber<Response<R>> {
+    public class a<R> extends Subscriber<Response<R>> {
 
         /* JADX INFO: renamed from: j */
         public final Subscriber<? super C12508d<R>> f26504j;

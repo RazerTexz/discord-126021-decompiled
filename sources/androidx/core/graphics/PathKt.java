@@ -17,14 +17,6 @@ public final class PathKt {
         return path3;
     }
 
-    @RequiresApi(26)
-    public static final Iterable<PathSegment> flatten(Path path, float f) {
-        C12238m.checkNotNullParameter(path, "<this>");
-        Collection<PathSegment> collectionFlatten = PathUtils.flatten(path, f);
-        C12238m.checkNotNullExpressionValue(collectionFlatten, "flatten(this, error)");
-        return collectionFlatten;
-    }
-
     public static /* synthetic */ Iterable flatten$default(Path path, float f, int i, Object obj) {
         if ((i & 1) != 0) {
             f = 0.5f;
@@ -32,13 +24,12 @@ public final class PathKt {
         return flatten(path, f);
     }
 
-    @RequiresApi(19)
-    public static final Path minus(Path path, Path path2) {
+    @RequiresApi(26)
+    public static final Iterable<PathSegment> flatten(Path path, float f) {
         C12238m.checkNotNullParameter(path, "<this>");
-        C12238m.checkNotNullParameter(path2, "p");
-        Path path3 = new Path(path);
-        path3.op(path2, Path.Op.DIFFERENCE);
-        return path3;
+        Collection<PathSegment> collectionFlatten = PathUtils.flatten(path, f);
+        C12238m.checkNotNullExpressionValue(collectionFlatten, "flatten(this, error)");
+        return collectionFlatten;
     }
 
     @RequiresApi(19)
@@ -48,6 +39,15 @@ public final class PathKt {
         C12238m.checkNotNullParameter(path2, "p");
         Path path3 = new Path(path);
         path3.op(path2, Path.Op.UNION);
+        return path3;
+    }
+
+    @RequiresApi(19)
+    public static final Path minus(Path path, Path path2) {
+        C12238m.checkNotNullParameter(path, "<this>");
+        C12238m.checkNotNullParameter(path2, "p");
+        Path path3 = new Path(path);
+        path3.op(path2, Path.Op.DIFFERENCE);
         return path3;
     }
 

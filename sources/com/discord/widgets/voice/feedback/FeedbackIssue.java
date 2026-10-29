@@ -31,9 +31,9 @@ public enum FeedbackIssue implements MGRecyclerDataPayload {
     GUILD_DELETE_INACTIVE(C5419R.string.guild_delete_feedback_inactive),
     GUILD_DELETE_OTHER(C5419R.string.guild_delete_feedback_other);
 
-    private final String key = String.valueOf(hashCode());
     private final int reasonStringRes;
     private final int type;
+    private final String key = String.valueOf(hashCode());
 
     FeedbackIssue(int i) {
         this.reasonStringRes = i;

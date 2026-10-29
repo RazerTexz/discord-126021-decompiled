@@ -10,7 +10,7 @@ public class C4264a implements C3266a.d {
     public final int f11403j = -1;
 
     /* JADX INFO: renamed from: b.i.a.f.j.b.a$a */
-    public static class a {
+    public class a {
     }
 
     public C4264a(a aVar, C4324h c4324h) {

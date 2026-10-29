@@ -12,10 +12,7 @@ public interface InterfaceC4560a {
 
     /* JADX INFO: renamed from: b.i.c.k.a$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
-    public static class a {
-
-        /* JADX INFO: renamed from: a */
-        public final Bundle f12163a = new Bundle();
+    public class a {
 
         /* JADX INFO: renamed from: b */
         public final String f12164b;
@@ -28,6 +25,9 @@ public interface InterfaceC4560a {
 
         /* JADX INFO: renamed from: e */
         public String f12167e;
+
+        /* JADX INFO: renamed from: a */
+        public final Bundle f12163a = new Bundle();
 
         public a(@NonNull String str) {
             this.f12164b = str;

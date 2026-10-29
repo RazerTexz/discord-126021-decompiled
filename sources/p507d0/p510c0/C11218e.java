@@ -29,7 +29,7 @@ public final class C11218e extends AbstractC11216c implements Serializable {
 
     /* JADX INFO: renamed from: d0.c0.e$a */
     /* JADX INFO: compiled from: XorWowRandom.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

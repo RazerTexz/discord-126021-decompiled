@@ -15,9 +15,6 @@ import p007b.p225i.p361c.p369m.p370d.p373k.C4628h;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4673e implements InterfaceC4669a {
 
-    /* JADX INFO: renamed from: a */
-    public static final Charset f12491a = Charset.forName(Constants.ENCODING);
-
     /* JADX INFO: renamed from: b */
     public final File f12492b;
 
@@ -26,6 +23,9 @@ public class C4673e implements InterfaceC4669a {
 
     /* JADX INFO: renamed from: d */
     public C4671c f12494d;
+
+    /* JADX INFO: renamed from: a */
+    public static final Charset f12491a = Charset.forName(Constants.ENCODING);
 
     /* JADX INFO: renamed from: b.i.c.m.d.l.e$a */
     /* JADX INFO: compiled from: QueueFileLogStore.java */
@@ -46,6 +46,20 @@ public class C4673e implements InterfaceC4669a {
     public C4673e(File file, int i) {
         this.f12492b = file;
         this.f12493c = i;
+    }
+
+    /* JADX INFO: renamed from: f */
+    public final void m6513f() {
+        if (this.f12494d == null) {
+            try {
+                this.f12494d = new C4671c(this.f12492b);
+            } catch (IOException e) {
+                C4592b c4592b = C4592b.f12227a;
+                StringBuilder sbM833U = C1643a.m833U("Could not open log file: ");
+                sbM833U.append(this.f12492b);
+                c4592b.m6374e(sbM833U.toString(), e);
+            }
+        }
     }
 
     @Override // p007b.p225i.p361c.p369m.p370d.p374l.InterfaceC4669a
@@ -129,20 +143,6 @@ public class C4673e implements InterfaceC4669a {
         } catch (IOException e) {
             if (C4592b.f12227a.m6370a(6)) {
                 Log.e("FirebaseCrashlytics", "There was a problem writing to the Crashlytics log.", e);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: f */
-    public final void m6513f() {
-        if (this.f12494d == null) {
-            try {
-                this.f12494d = new C4671c(this.f12492b);
-            } catch (IOException e) {
-                C4592b c4592b = C4592b.f12227a;
-                StringBuilder sbM833U = C1643a.m833U("Could not open log file: ");
-                sbM833U.append(this.f12492b);
-                c4592b.m6374e(sbM833U.toString(), e);
             }
         }
     }

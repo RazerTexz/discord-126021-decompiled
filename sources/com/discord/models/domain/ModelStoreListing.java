@@ -13,7 +13,7 @@ public final /* data */ class ModelStoreListing {
     private final ModelSku sku;
 
     /* JADX INFO: compiled from: ModelStoreListing.kt */
-    public static final class Parser implements Model.Parser<ModelStoreListing> {
+    public final class Parser implements Model.Parser<ModelStoreListing> {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
@@ -68,16 +68,6 @@ public final /* data */ class ModelStoreListing {
         return modelStoreListing.copy(modelSku, j);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final ModelSku getSku() {
-        return this.sku;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
     public final ModelStoreListing copy(ModelSku sku, long id2) {
         C12238m.checkNotNullParameter(sku, "sku");
         return new ModelStoreListing(sku, id2);
@@ -94,8 +84,18 @@ public final /* data */ class ModelStoreListing {
         return C12238m.areEqual(this.sku, modelStoreListing.sku) && this.id == modelStoreListing.id;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final ModelSku getSku() {
+        return this.sku;
     }
 
     public final ModelSku getSku() {

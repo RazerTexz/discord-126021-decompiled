@@ -25,11 +25,6 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
         return applicationPlaceholder.copy(application);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Application getApplication() {
-        return this.application;
-    }
-
     public final ApplicationPlaceholder copy(Application application) {
         C12238m.checkNotNullParameter(application, "application");
         return new ApplicationPlaceholder(application);
@@ -40,6 +35,11 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
             return (other instanceof ApplicationPlaceholder) && C12238m.areEqual(this.application, ((ApplicationPlaceholder) other).application);
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final Application getApplication() {
+        return this.application;
     }
 
     public final Application getApplication() {

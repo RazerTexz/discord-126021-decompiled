@@ -19,7 +19,7 @@ public enum ActivityKind {
     SUBSCRIPTION;
 
     /* JADX INFO: renamed from: com.adjust.sdk.ActivityKind$1 */
-    public static /* synthetic */ class C53601 {
+    public /* synthetic */ class C53601 {
         public static final /* synthetic */ int[] $SwitchMap$com$adjust$sdk$ActivityKind;
 
         static {

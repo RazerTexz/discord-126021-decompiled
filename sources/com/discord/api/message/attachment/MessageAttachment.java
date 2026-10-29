@@ -23,6 +23,17 @@ public final /* data */ class MessageAttachment {
     private final String url;
     private final Integer width;
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MessageAttachment)) {
+            return false;
+        }
+        MessageAttachment messageAttachment = (MessageAttachment) other;
+        return C12238m.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && C12238m.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && C12238m.areEqual(this.filename, messageAttachment.filename) && C12238m.areEqual(this.width, messageAttachment.width) && C12238m.areEqual(this.height, messageAttachment.height);
+    }
+
     /* JADX INFO: renamed from: a, reason: from getter */
     public final String getFilename() {
         return this.filename;
@@ -41,6 +52,33 @@ public final /* data */ class MessageAttachment {
     /* JADX INFO: renamed from: d, reason: from getter */
     public final long getSize() {
         return this.size;
+    }
+
+    /* JADX INFO: renamed from: f, reason: from getter */
+    public final String getUrl() {
+        return this.url;
+    }
+
+    /* JADX INFO: renamed from: g, reason: from getter */
+    public final Integer getWidth() {
+        return this.width;
+    }
+
+    public int hashCode() {
+        String str = this.url;
+        int iHashCode = str != null ? str.hashCode() : 0;
+        long j = this.size;
+        int i = ((iHashCode * 31) + ((int) (j ^ (j >>> 32)))) * 31;
+        long j2 = this.id;
+        int i2 = (i + ((int) (j2 ^ (j2 >>> 32)))) * 31;
+        String str2 = this.proxyUrl;
+        int iHashCode2 = (i2 + (str2 != null ? str2.hashCode() : 0)) * 31;
+        String str3 = this.filename;
+        int iHashCode3 = (iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31;
+        Integer num = this.width;
+        int iHashCode4 = (iHashCode3 + (num != null ? num.hashCode() : 0)) * 31;
+        Integer num2 = this.height;
+        return iHashCode4 + (num2 != null ? num2.hashCode() : 0);
     }
 
     /* JADX INFO: renamed from: e */
@@ -87,47 +125,9 @@ public final /* data */ class MessageAttachment {
         return z3 ? MessageAttachmentType.VIDEO : MessageAttachmentType.FILE;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof MessageAttachment)) {
-            return false;
-        }
-        MessageAttachment messageAttachment = (MessageAttachment) other;
-        return C12238m.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && C12238m.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && C12238m.areEqual(this.filename, messageAttachment.filename) && C12238m.areEqual(this.width, messageAttachment.width) && C12238m.areEqual(this.height, messageAttachment.height);
-    }
-
-    /* JADX INFO: renamed from: f, reason: from getter */
-    public final String getUrl() {
-        return this.url;
-    }
-
-    /* JADX INFO: renamed from: g, reason: from getter */
-    public final Integer getWidth() {
-        return this.width;
-    }
-
     /* JADX INFO: renamed from: h */
     public final boolean m8071h() {
         return C12103t.startsWith$default(this.filename, SPOILER_PREFIX, false, 2, null);
-    }
-
-    public int hashCode() {
-        String str = this.url;
-        int iHashCode = str != null ? str.hashCode() : 0;
-        long j = this.size;
-        int i = ((iHashCode * 31) + ((int) (j ^ (j >>> 32)))) * 31;
-        long j2 = this.id;
-        int i2 = (i + ((int) (j2 ^ (j2 >>> 32)))) * 31;
-        String str2 = this.proxyUrl;
-        int iHashCode2 = (i2 + (str2 != null ? str2.hashCode() : 0)) * 31;
-        String str3 = this.filename;
-        int iHashCode3 = (iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31;
-        Integer num = this.width;
-        int iHashCode4 = (iHashCode3 + (num != null ? num.hashCode() : 0)) * 31;
-        Integer num2 = this.height;
-        return iHashCode4 + (num2 != null ? num2.hashCode() : 0);
     }
 
     public String toString() {

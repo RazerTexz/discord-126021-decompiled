@@ -17,7 +17,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1 */
     /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
-    public static final class C73781<T, R> implements InterfaceC12589b<Map<Long, ? extends Integer>, Observable<? extends Map<Long, Integer>>> {
+    public final class C73781<T, R> implements InterfaceC12589b<Map<Long, ? extends Integer>, Observable<? extends Map<Long, Integer>>> {
         public final /* synthetic */ List $excludeUserIds;
 
         public C73781(List list) {

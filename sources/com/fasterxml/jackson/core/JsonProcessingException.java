@@ -12,21 +12,6 @@ public class JsonProcessingException extends JacksonException {
         this._location = null;
     }
 
-    /* JADX INFO: renamed from: a */
-    public String mo8739a() {
-        return null;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public String m8740b() {
-        return super.getMessage();
-    }
-
-    /* JADX INFO: renamed from: c */
-    public Object mo8737c() {
-        return null;
-    }
-
     @Override // java.lang.Throwable
     public String getMessage() {
         String message = super.getMessage();
@@ -49,6 +34,21 @@ public class JsonProcessingException extends JacksonException {
             sb.append(c2109e.toString());
         }
         return sb.toString();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public String m8740b() {
+        return super.getMessage();
+    }
+
+    /* JADX INFO: renamed from: c */
+    public Object mo8737c() {
+        return null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public String mo8739a() {
+        return null;
     }
 
     @Override // java.lang.Throwable

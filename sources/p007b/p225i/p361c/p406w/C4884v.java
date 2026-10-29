@@ -11,9 +11,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C4884v {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f13046a = Pattern.compile("[a-zA-Z0-9-_.~%]{1,900}");
-
     /* JADX INFO: renamed from: b */
     public final String f13047b;
 
@@ -22,6 +19,9 @@ public final class C4884v {
 
     /* JADX INFO: renamed from: d */
     public final String f13049d;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f13046a = Pattern.compile("[a-zA-Z0-9-_.~%]{1,900}");
 
     public C4884v(String str, String str2) {
         String strSubstring;

@@ -13,7 +13,7 @@ public class C1644a {
 
     /* JADX INFO: renamed from: b.e.a.a$a */
     /* JADX INFO: compiled from: Log.java */
-    public static class a {
+    public class a {
 
         /* JADX INFO: renamed from: a */
         public long f3008a = new Date().getTime();

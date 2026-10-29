@@ -20,7 +20,7 @@ public final class WidgetChatInputTruncatedHint {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputTruncatedHint$1 */
     /* JADX INFO: compiled from: WidgetChatInputTruncatedHint.kt */
-    public static final class C77551 extends AbstractC12240o implements Function1<Integer, Unit> {
+    public final class C77551 extends AbstractC12240o implements Function1<Integer, Unit> {
         public C77551() {
             super(1);
         }
@@ -41,7 +41,7 @@ public final class WidgetChatInputTruncatedHint {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputTruncatedHint$addBindedTextWatcher$1 */
     /* JADX INFO: compiled from: WidgetChatInputTruncatedHint.kt */
-    public static final class C77561 extends AbstractC12240o implements Function1<Editable, Unit> {
+    public final class C77561 extends AbstractC12240o implements Function1<Editable, Unit> {
         public C77561() {
             super(1);
         }
@@ -66,20 +66,6 @@ public final class WidgetChatInputTruncatedHint {
         flexEditText.setOnMaxLinesChangedListener(new C77551());
     }
 
-    private final void syncHint() {
-        boolean z2 = this.editText.length() == 0;
-        this.hintIsTruncated = z2;
-        if (z2) {
-            this.editText.setMaxLines(1);
-            this.editText.setEllipsize(TextUtils.TruncateAt.END);
-            this.editText.setHint(this.hint);
-        } else {
-            this.editText.setMaxLines(this.previousMaxLines);
-            this.editText.setEllipsize(null);
-            this.editText.setHint((CharSequence) null);
-        }
-    }
-
     public final void addBindedTextWatcher(AppFragment fragment) {
         C12238m.checkNotNullParameter(fragment, "fragment");
         TextWatcherKt.addBindedTextWatcher(this.editText, fragment, new C77561());
@@ -93,5 +79,19 @@ public final class WidgetChatInputTruncatedHint {
         C12238m.checkNotNullParameter(hint, "hint");
         this.hint = hint;
         syncHint();
+    }
+
+    private final void syncHint() {
+        boolean z2 = this.editText.length() == 0;
+        this.hintIsTruncated = z2;
+        if (z2) {
+            this.editText.setMaxLines(1);
+            this.editText.setEllipsize(TextUtils.TruncateAt.END);
+            this.editText.setHint(this.hint);
+        } else {
+            this.editText.setMaxLines(this.previousMaxLines);
+            this.editText.setEllipsize(null);
+            this.editText.setHint((CharSequence) null);
+        }
     }
 }

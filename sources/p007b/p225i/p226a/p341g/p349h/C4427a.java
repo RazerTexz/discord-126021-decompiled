@@ -15,14 +15,6 @@ public class C4427a {
     /* JADX INFO: renamed from: a */
     public static C4427a f11762a;
 
-    /* JADX INFO: renamed from: b */
-    @NonNull
-    public final Object f11763b = new Object();
-
-    /* JADX INFO: renamed from: c */
-    @NonNull
-    public final Handler f11764c = new Handler(Looper.getMainLooper(), new a());
-
     /* JADX INFO: renamed from: d */
     @Nullable
     public c f11765d;
@@ -30,6 +22,14 @@ public class C4427a {
     /* JADX INFO: renamed from: e */
     @Nullable
     public c f11766e;
+
+    /* JADX INFO: renamed from: b */
+    @NonNull
+    public final Object f11763b = new Object();
+
+    /* JADX INFO: renamed from: c */
+    @NonNull
+    public final Handler f11764c = new Handler(Looper.getMainLooper(), new a());
 
     /* JADX INFO: renamed from: b.i.a.g.h.a$a */
     /* JADX INFO: compiled from: SnackbarManager.java */
@@ -64,7 +64,7 @@ public class C4427a {
 
     /* JADX INFO: renamed from: b.i.a.g.h.a$c */
     /* JADX INFO: compiled from: SnackbarManager.java */
-    public static class c {
+    public class c {
 
         /* JADX INFO: renamed from: a */
         @NonNull

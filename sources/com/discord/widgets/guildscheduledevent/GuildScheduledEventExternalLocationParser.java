@@ -25,7 +25,7 @@ public final class GuildScheduledEventExternalLocationParser {
     private Cache cache = new Cache("", "");
 
     /* JADX INFO: compiled from: GuildScheduledEventExternalLocationParser.kt */
-    public static final /* data */ class Cache {
+    public final /* data */ class Cache {
         private final String location;
         private final CharSequence output;
 
@@ -46,16 +46,6 @@ public final class GuildScheduledEventExternalLocationParser {
             return cache.copy(str, charSequence);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getLocation() {
-            return this.location;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getOutput() {
-            return this.output;
-        }
-
         public final Cache copy(String location, CharSequence output) {
             C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
             C12238m.checkNotNullParameter(output, "output");
@@ -73,8 +63,18 @@ public final class GuildScheduledEventExternalLocationParser {
             return C12238m.areEqual(this.location, cache.location) && C12238m.areEqual(this.output, cache.output);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getLocation() {
             return this.location;
+        }
+
+        public final String getLocation() {
+            return this.location;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getOutput() {
+            return this.output;
         }
 
         public final CharSequence getOutput() {
@@ -97,7 +97,7 @@ public final class GuildScheduledEventExternalLocationParser {
     }
 
     /* JADX INFO: compiled from: GuildScheduledEventExternalLocationParser.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -112,15 +112,6 @@ public final class GuildScheduledEventExternalLocationParser {
         }
     }
 
-    private final CharSequence parse(Context context, String location) {
-        if (C12238m.areEqual(this.cache.getLocation(), location)) {
-            return this.cache.getOutput();
-        }
-        DraweeSpanStringBuilder draweeSpanStringBuilderRender = AstRenderer.render(Parser.parse$default(INSTANCE.getPARSER(), location, MessageParseState.INSTANCE.getInitialState(), null, 4, null), new MessageRenderContext(context, 0L, false, null, null, null, 0, null, null, 0, 0, null, null, null, 16376, null));
-        this.cache = new Cache(location, draweeSpanStringBuilderRender);
-        return draweeSpanStringBuilderRender;
-    }
-
     public final CharSequence getTextFromLocation(Context context, GuildScheduledEventLocationInfo locationInfo) {
         C12238m.checkNotNullParameter(context, "context");
         C12238m.checkNotNullParameter(locationInfo, "locationInfo");
@@ -131,5 +122,14 @@ public final class GuildScheduledEventExternalLocationParser {
             return parse(context, locationInfo.getLocationName());
         }
         throw new NoWhenBranchMatchedException();
+    }
+
+    private final CharSequence parse(Context context, String location) {
+        if (C12238m.areEqual(this.cache.getLocation(), location)) {
+            return this.cache.getOutput();
+        }
+        DraweeSpanStringBuilder draweeSpanStringBuilderRender = AstRenderer.render(Parser.parse$default(INSTANCE.getPARSER(), location, MessageParseState.INSTANCE.getInitialState(), null, 4, null), new MessageRenderContext(context, 0L, false, null, null, null, 0, null, null, 0, 0, null, null, null, 16376, null));
+        this.cache = new Cache(location, draweeSpanStringBuilderRender);
+        return draweeSpanStringBuilderRender;
     }
 }

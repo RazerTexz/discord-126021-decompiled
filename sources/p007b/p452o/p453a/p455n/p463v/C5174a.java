@@ -19,14 +19,14 @@ import p007b.p452o.p453a.p467r.C5206g;
 /* JADX INFO: loaded from: classes3.dex */
 public class C5174a {
 
-    /* JADX INFO: renamed from: a */
-    public static final C5103b f14005a = new C5103b(C5174a.class.getSimpleName());
-
     /* JADX INFO: renamed from: b */
     public final b f14006b;
 
     /* JADX INFO: renamed from: c */
     public final ArrayDeque<c<?>> f14007c = new ArrayDeque<>();
+
+    /* JADX INFO: renamed from: a */
+    public static final C5103b f14005a = new C5103b(C5174a.class.getSimpleName());
 
     /* JADX INFO: renamed from: d */
     public boolean f14008d = false;
@@ -55,33 +55,6 @@ public class C5174a {
     /* JADX INFO: renamed from: b.o.a.n.v.a$b */
     /* JADX INFO: compiled from: CameraOrchestrator.java */
     public interface b {
-    }
-
-    /* JADX INFO: renamed from: b.o.a.n.v.a$c */
-    /* JADX INFO: compiled from: CameraOrchestrator.java */
-    public static class c<T> {
-
-        /* JADX INFO: renamed from: a */
-        public final String f14011a;
-
-        /* JADX INFO: renamed from: b */
-        public final TaskCompletionSource<T> f14012b = new TaskCompletionSource<>();
-
-        /* JADX INFO: renamed from: c */
-        public final Callable<Task<T>> f14013c;
-
-        /* JADX INFO: renamed from: d */
-        public final boolean f14014d;
-
-        /* JADX INFO: renamed from: e */
-        public final long f14015e;
-
-        public c(String str, Callable callable, boolean z2, long j, a aVar) {
-            this.f14011a = str;
-            this.f14013c = callable;
-            this.f14014d = z2;
-            this.f14015e = j;
-        }
     }
 
     public C5174a(@NonNull b bVar) {
@@ -143,6 +116,33 @@ public class C5174a {
                     this.f14007c.remove((c) it.next());
                 }
             }
+        }
+    }
+
+    /* JADX INFO: renamed from: b.o.a.n.v.a$c */
+    /* JADX INFO: compiled from: CameraOrchestrator.java */
+    public class c<T> {
+
+        /* JADX INFO: renamed from: a */
+        public final String f14011a;
+
+        /* JADX INFO: renamed from: c */
+        public final Callable<Task<T>> f14013c;
+
+        /* JADX INFO: renamed from: d */
+        public final boolean f14014d;
+
+        /* JADX INFO: renamed from: e */
+        public final long f14015e;
+
+        /* JADX INFO: renamed from: b */
+        public final TaskCompletionSource<T> f14012b = new TaskCompletionSource<>();
+
+        public c(String str, Callable callable, boolean z2, long j, a aVar) {
+            this.f14011a = str;
+            this.f14013c = callable;
+            this.f14014d = z2;
+            this.f14015e = j;
         }
     }
 }

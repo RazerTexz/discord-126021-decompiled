@@ -133,14 +133,6 @@ public class ToolbarActionBar extends ActionBar {
         this.mDecorToolbar.setWindowTitle(charSequence);
     }
 
-    private Menu getMenu() {
-        if (!this.mMenuCallbackSet) {
-            this.mDecorToolbar.setMenuCallbacks(new ActionMenuPresenterCallback(), new MenuBuilderCallback());
-            this.mMenuCallbackSet = true;
-        }
-        return this.mDecorToolbar.getMenu();
-    }
-
     @Override // androidx.appcompat.app.ActionBar
     public void addOnMenuVisibilityListener(ActionBar.OnMenuVisibilityListener onMenuVisibilityListener) {
         this.mMenuVisibilityListeners.add(onMenuVisibilityListener);
@@ -195,6 +187,14 @@ public class ToolbarActionBar extends ActionBar {
     @Override // androidx.appcompat.app.ActionBar
     public int getHeight() {
         return this.mDecorToolbar.getHeight();
+    }
+
+    private Menu getMenu() {
+        if (!this.mMenuCallbackSet) {
+            this.mDecorToolbar.setMenuCallbacks(new ActionMenuPresenterCallback(), new MenuBuilderCallback());
+            this.mMenuCallbackSet = true;
+        }
+        return this.mDecorToolbar.getMenu();
     }
 
     @Override // androidx.appcompat.app.ActionBar

@@ -51,38 +51,6 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView,
         addContentView(view, -1);
     }
 
-    private LayoutInflater getInflater() {
-        if (this.mInflater == null) {
-            this.mInflater = LayoutInflater.from(getContext());
-        }
-        return this.mInflater;
-    }
-
-    private void insertCheckBox() {
-        CheckBox checkBox = (CheckBox) getInflater().inflate(C0051R.layout.abc_list_menu_item_checkbox, (ViewGroup) this, false);
-        this.mCheckBox = checkBox;
-        addContentView(checkBox);
-    }
-
-    private void insertIconView() {
-        ImageView imageView = (ImageView) getInflater().inflate(C0051R.layout.abc_list_menu_item_icon, (ViewGroup) this, false);
-        this.mIconView = imageView;
-        addContentView(imageView, 0);
-    }
-
-    private void insertRadioButton() {
-        RadioButton radioButton = (RadioButton) getInflater().inflate(C0051R.layout.abc_list_menu_item_radio, (ViewGroup) this, false);
-        this.mRadioButton = radioButton;
-        addContentView(radioButton);
-    }
-
-    private void setSubMenuArrowVisible(boolean z2) {
-        ImageView imageView = this.mSubMenuArrowView;
-        if (imageView != null) {
-            imageView.setVisibility(z2 ? 0 : 8);
-        }
-    }
-
     @Override // android.widget.AbsListView.SelectionBoundsAdjuster
     public void adjustListItemSelectionBounds(Rect rect) {
         ImageView imageView = this.mGroupDivider;
@@ -91,6 +59,13 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView,
         }
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.mGroupDivider.getLayoutParams();
         rect.top = this.mGroupDivider.getHeight() + layoutParams.topMargin + layoutParams.bottomMargin + rect.top;
+    }
+
+    private LayoutInflater getInflater() {
+        if (this.mInflater == null) {
+            this.mInflater = LayoutInflater.from(getContext());
+        }
+        return this.mInflater;
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
@@ -109,6 +84,24 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView,
         setEnabled(menuItemImpl.isEnabled());
         setSubMenuArrowVisible(menuItemImpl.hasSubMenu());
         setContentDescription(menuItemImpl.getContentDescription());
+    }
+
+    private void insertCheckBox() {
+        CheckBox checkBox = (CheckBox) getInflater().inflate(C0051R.layout.abc_list_menu_item_checkbox, (ViewGroup) this, false);
+        this.mCheckBox = checkBox;
+        addContentView(checkBox);
+    }
+
+    private void insertIconView() {
+        ImageView imageView = (ImageView) getInflater().inflate(C0051R.layout.abc_list_menu_item_icon, (ViewGroup) this, false);
+        this.mIconView = imageView;
+        addContentView(imageView, 0);
+    }
+
+    private void insertRadioButton() {
+        RadioButton radioButton = (RadioButton) getInflater().inflate(C0051R.layout.abc_list_menu_item_radio, (ViewGroup) this, false);
+        this.mRadioButton = radioButton;
+        addContentView(radioButton);
     }
 
     @Override // android.view.View
@@ -253,6 +246,13 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView,
         }
         if (this.mShortcutView.getVisibility() != i) {
             this.mShortcutView.setVisibility(i);
+        }
+    }
+
+    private void setSubMenuArrowVisible(boolean z2) {
+        ImageView imageView = this.mSubMenuArrowView;
+        if (imageView != null) {
+            imageView.setVisibility(z2 ? 0 : 8);
         }
     }
 

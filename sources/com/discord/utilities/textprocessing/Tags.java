@@ -22,6 +22,18 @@ public final /* data */ class Tags {
         this.isEmpty = set.isEmpty() && set3.isEmpty() && set2.isEmpty();
     }
 
+    public final Set<Long> component1() {
+        return this.users;
+    }
+
+    public final Set<Long> component2() {
+        return this.channels;
+    }
+
+    public final Set<Long> component3() {
+        return this.roles;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ Tags copy$default(Tags tags, Set set, Set set2, Set set3, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -34,18 +46,6 @@ public final /* data */ class Tags {
             set3 = tags.roles;
         }
         return tags.copy(set, set2, set3);
-    }
-
-    public final Set<Long> component1() {
-        return this.users;
-    }
-
-    public final Set<Long> component2() {
-        return this.channels;
-    }
-
-    public final Set<Long> component3() {
-        return this.roles;
     }
 
     public final Tags copy(Set<Long> users, Set<Long> channels, Set<Long> roles) {
@@ -70,6 +70,11 @@ public final /* data */ class Tags {
         return this.channels;
     }
 
+    /* JADX INFO: renamed from: isEmpty, reason: from getter */
+    public final boolean getIsEmpty() {
+        return this.isEmpty;
+    }
+
     public final Set<Long> getRoles() {
         return this.roles;
     }
@@ -85,11 +90,6 @@ public final /* data */ class Tags {
         int iHashCode2 = (iHashCode + (set2 != null ? set2.hashCode() : 0)) * 31;
         Set<Long> set3 = this.roles;
         return iHashCode2 + (set3 != null ? set3.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: isEmpty, reason: from getter */
-    public final boolean getIsEmpty() {
-        return this.isEmpty;
     }
 
     public String toString() {

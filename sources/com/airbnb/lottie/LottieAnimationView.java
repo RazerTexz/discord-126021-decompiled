@@ -66,12 +66,6 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 public class LottieAnimationView extends AppCompatImageView {
 
-    /* JADX INFO: renamed from: j */
-    public static final String f14517j = LottieAnimationView.class.getSimpleName();
-
-    /* JADX INFO: renamed from: k */
-    public static final InterfaceC1513l<Throwable> f14518k = new C5407a();
-
     /* JADX INFO: renamed from: A */
     public int f14519A;
 
@@ -131,68 +125,11 @@ public class LottieAnimationView extends AppCompatImageView {
     /* JADX INFO: renamed from: z */
     public Set<InterfaceC1515n> f14536z;
 
-    public static class SavedState extends View.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new C5406a();
+    /* JADX INFO: renamed from: j */
+    public static final String f14517j = LottieAnimationView.class.getSimpleName();
 
-        /* JADX INFO: renamed from: j */
-        public String f14537j;
-
-        /* JADX INFO: renamed from: k */
-        public int f14538k;
-
-        /* JADX INFO: renamed from: l */
-        public float f14539l;
-
-        /* JADX INFO: renamed from: m */
-        public boolean f14540m;
-
-        /* JADX INFO: renamed from: n */
-        public String f14541n;
-
-        /* JADX INFO: renamed from: o */
-        public int f14542o;
-
-        /* JADX INFO: renamed from: p */
-        public int f14543p;
-
-        /* JADX INFO: renamed from: com.airbnb.lottie.LottieAnimationView$SavedState$a */
-        public class C5406a implements Parcelable.Creator<SavedState> {
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeString(this.f14537j);
-            parcel.writeFloat(this.f14539l);
-            parcel.writeInt(this.f14540m ? 1 : 0);
-            parcel.writeString(this.f14541n);
-            parcel.writeInt(this.f14542o);
-            parcel.writeInt(this.f14543p);
-        }
-
-        public SavedState(Parcel parcel, C5407a c5407a) {
-            super(parcel);
-            this.f14537j = parcel.readString();
-            this.f14539l = parcel.readFloat();
-            this.f14540m = parcel.readInt() == 1;
-            this.f14541n = parcel.readString();
-            this.f14542o = parcel.readInt();
-            this.f14543p = parcel.readInt();
-        }
-    }
+    /* JADX INFO: renamed from: k */
+    public static final InterfaceC1513l<Throwable> f14518k = new C5407a();
 
     /* JADX INFO: renamed from: com.airbnb.lottie.LottieAnimationView$a */
     public class C5407a implements InterfaceC1513l<Throwable> {
@@ -240,6 +177,69 @@ public class LottieAnimationView extends AppCompatImageView {
                 interfaceC1513l = LottieAnimationView.f14518k;
             }
             interfaceC1513l.mo680a(th2);
+        }
+    }
+
+    public class SavedState extends View.BaseSavedState {
+
+        /* JADX INFO: renamed from: j */
+        public String f14537j;
+
+        /* JADX INFO: renamed from: k */
+        public int f14538k;
+
+        /* JADX INFO: renamed from: l */
+        public float f14539l;
+
+        /* JADX INFO: renamed from: m */
+        public boolean f14540m;
+
+        /* JADX INFO: renamed from: n */
+        public String f14541n;
+
+        /* JADX INFO: renamed from: o */
+        public int f14542o;
+
+        /* JADX INFO: renamed from: p */
+        public int f14543p;
+        public static final Parcelable.Creator<SavedState> CREATOR = new C5406a();
+
+        /* JADX INFO: renamed from: com.airbnb.lottie.LottieAnimationView$SavedState$a */
+        public class C5406a implements Parcelable.Creator<SavedState> {
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeString(this.f14537j);
+            parcel.writeFloat(this.f14539l);
+            parcel.writeInt(this.f14540m ? 1 : 0);
+            parcel.writeString(this.f14541n);
+            parcel.writeInt(this.f14542o);
+            parcel.writeInt(this.f14543p);
+        }
+
+        public SavedState(Parcel parcel, C5407a c5407a) {
+            super(parcel);
+            this.f14537j = parcel.readString();
+            this.f14539l = parcel.readFloat();
+            this.f14540m = parcel.readInt() == 1;
+            this.f14541n = parcel.readString();
+            this.f14542o = parcel.readInt();
+            this.f14543p = parcel.readInt();
         }
     }
 
@@ -342,53 +342,6 @@ public class LottieAnimationView extends AppCompatImageView {
         this.f14527q = true;
     }
 
-    private void setCompositionTask(C1519r<C1505d> c1519r) {
-        this.f14521C = null;
-        this.f14526p.m683c();
-        m7491a();
-        c1519r.m706b(this.f14522l);
-        c1519r.m705a(this.f14523m);
-        this.f14520B = c1519r;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final void m7491a() {
-        C1519r<C1505d> c1519r = this.f14520B;
-        if (c1519r != null) {
-            InterfaceC1513l<C1505d> interfaceC1513l = this.f14522l;
-            synchronized (c1519r) {
-                c1519r.f2453b.remove(interfaceC1513l);
-            }
-            C1519r<C1505d> c1519r2 = this.f14520B;
-            InterfaceC1513l<Throwable> interfaceC1513l2 = this.f14523m;
-            synchronized (c1519r2) {
-                c1519r2.f2454c.remove(interfaceC1513l2);
-            }
-        }
-    }
-
-    /* JADX WARN: Code duplicated, block: B:5:0x000c  */
-    /* JADX INFO: renamed from: b */
-    public final void m7492b() {
-        int iOrdinal = this.f14535y.ordinal();
-        int i = 2;
-        if (iOrdinal == 0) {
-            C1505d c1505d = this.f14521C;
-            boolean z2 = false;
-            if ((c1505d == null || !c1505d.f2349n || Build.VERSION.SDK_INT >= 28) && (c1505d == null || c1505d.f2350o <= 4)) {
-                z2 = true;
-            }
-            if (!z2) {
-                i = 1;
-            }
-        } else if (iOrdinal != 1) {
-            i = 1;
-        }
-        if (i != getLayerType()) {
-            setLayerType(i, null);
-        }
-    }
-
     @Override // android.view.View
     public void buildDrawingCache(boolean z2) {
         this.f14519A++;
@@ -398,30 +351,6 @@ public class LottieAnimationView extends AppCompatImageView {
         }
         this.f14519A--;
         C1500c.m663a("buildDrawingCache");
-    }
-
-    @MainThread
-    /* JADX INFO: renamed from: c */
-    public void m7493c() {
-        this.f14533w = false;
-        this.f14532v = false;
-        this.f14531u = false;
-        this.f14530t = false;
-        C1511j c1511j = this.f14526p;
-        c1511j.f2375p.clear();
-        c1511j.f2371l.m648m();
-        m7492b();
-    }
-
-    @MainThread
-    /* JADX INFO: renamed from: d */
-    public void m7494d() {
-        if (!isShown()) {
-            this.f14530t = true;
-        } else {
-            this.f14526p.m690j();
-            m7492b();
-        }
     }
 
     @Nullable
@@ -492,6 +421,68 @@ public class LottieAnimationView extends AppCompatImageView {
             super.invalidateDrawable(c1511j);
         } else {
             super.invalidateDrawable(drawable);
+        }
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m7491a() {
+        C1519r<C1505d> c1519r = this.f14520B;
+        if (c1519r != null) {
+            InterfaceC1513l<C1505d> interfaceC1513l = this.f14522l;
+            synchronized (c1519r) {
+                c1519r.f2453b.remove(interfaceC1513l);
+            }
+            C1519r<C1505d> c1519r2 = this.f14520B;
+            InterfaceC1513l<Throwable> interfaceC1513l2 = this.f14523m;
+            synchronized (c1519r2) {
+                c1519r2.f2454c.remove(interfaceC1513l2);
+            }
+        }
+    }
+
+    /* JADX WARN: Code duplicated, block: B:5:0x000c  */
+    /* JADX INFO: renamed from: b */
+    public final void m7492b() {
+        int iOrdinal = this.f14535y.ordinal();
+        int i = 2;
+        if (iOrdinal == 0) {
+            C1505d c1505d = this.f14521C;
+            boolean z2 = false;
+            if ((c1505d == null || !c1505d.f2349n || Build.VERSION.SDK_INT >= 28) && (c1505d == null || c1505d.f2350o <= 4)) {
+                z2 = true;
+            }
+            if (!z2) {
+                i = 1;
+            }
+        } else if (iOrdinal != 1) {
+            i = 1;
+        }
+        if (i != getLayerType()) {
+            setLayerType(i, null);
+        }
+    }
+
+    @MainThread
+    /* JADX INFO: renamed from: c */
+    public void m7493c() {
+        this.f14533w = false;
+        this.f14532v = false;
+        this.f14531u = false;
+        this.f14530t = false;
+        C1511j c1511j = this.f14526p;
+        c1511j.f2375p.clear();
+        c1511j.f2371l.m648m();
+        m7492b();
+    }
+
+    @MainThread
+    /* JADX INFO: renamed from: d */
+    public void m7494d() {
+        if (!isShown()) {
+            this.f14530t = true;
+        } else {
+            this.f14526p.m690j();
+            m7492b();
         }
     }
 
@@ -682,6 +673,15 @@ public class LottieAnimationView extends AppCompatImageView {
                 it2.next().m704a(c1505d);
             }
         }
+    }
+
+    private void setCompositionTask(C1519r<C1505d> c1519r) {
+        this.f14521C = null;
+        this.f14526p.m683c();
+        m7491a();
+        c1519r.m706b(this.f14522l);
+        c1519r.m705a(this.f14523m);
+        this.f14520B = c1519r;
     }
 
     public void setFailureListener(@Nullable InterfaceC1513l<Throwable> interfaceC1513l) {

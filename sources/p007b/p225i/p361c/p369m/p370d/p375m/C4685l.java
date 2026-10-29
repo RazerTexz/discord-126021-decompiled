@@ -27,6 +27,21 @@ public final class C4685l extends AbstractC4695v.d.AbstractC13233d.a.b {
         this.f12603d = c4696w2;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b)) {
+            return false;
+        }
+        AbstractC4695v.d.AbstractC13233d.a.b bVar = (AbstractC4695v.d.AbstractC13233d.a.b) obj;
+        return this.f12600a.equals(bVar.mo6577d()) && this.f12601b.equals(bVar.mo6575b()) && this.f12602c.equals(bVar.mo6576c()) && this.f12603d.equals(bVar.mo6574a());
+    }
+
+    public int hashCode() {
+        return ((((((this.f12600a.hashCode() ^ 1000003) * 1000003) ^ this.f12601b.hashCode()) * 1000003) ^ this.f12602c.hashCode()) * 1000003) ^ this.f12603d.hashCode();
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d.a.b
     @NonNull
     /* JADX INFO: renamed from: a */
@@ -53,21 +68,6 @@ public final class C4685l extends AbstractC4695v.d.AbstractC13233d.a.b {
     /* JADX INFO: renamed from: d */
     public C4696w<AbstractC4695v.d.AbstractC13233d.a.b.AbstractC13237d> mo6577d() {
         return this.f12600a;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d.a.b)) {
-            return false;
-        }
-        AbstractC4695v.d.AbstractC13233d.a.b bVar = (AbstractC4695v.d.AbstractC13233d.a.b) obj;
-        return this.f12600a.equals(bVar.mo6577d()) && this.f12601b.equals(bVar.mo6575b()) && this.f12602c.equals(bVar.mo6576c()) && this.f12603d.equals(bVar.mo6574a());
-    }
-
-    public int hashCode() {
-        return ((((((this.f12600a.hashCode() ^ 1000003) * 1000003) ^ this.f12601b.hashCode()) * 1000003) ^ this.f12602c.hashCode()) * 1000003) ^ this.f12603d.hashCode();
     }
 
     public String toString() {

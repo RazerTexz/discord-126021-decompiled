@@ -111,6 +111,13 @@ public final class PermissionUtils {
         return can(permission, computedPermissions) && isElevated(permission, userMfaEnabled, guildMfaLevel);
     }
 
+    public static /* synthetic */ boolean canEveryone$default(long j, Channel channel, Channel channel2, Map map, int i, Object obj) {
+        if ((i & 4) != 0) {
+            channel2 = null;
+        }
+        return canEveryone(j, channel, channel2, map);
+    }
+
     public static final boolean canEveryone(long permission, Channel channel, Channel parentChannel, Map<Long, GuildRole> roles) {
         C12238m.checkNotNullParameter(channel, "channel");
         C12238m.checkNotNullParameter(roles, "roles");
@@ -137,15 +144,31 @@ public final class PermissionUtils {
         return true;
     }
 
-    public static /* synthetic */ boolean canEveryone$default(long j, Channel channel, Channel channel2, Map map, int i, Object obj) {
-        if ((i & 4) != 0) {
-            channel2 = null;
-        }
-        return canEveryone(j, channel, channel2, map);
+    public final boolean canEveryoneRole(long permission, Channel channel, Map<Long, GuildRole> roles) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        C12238m.checkNotNullParameter(roles, "roles");
+        long guildId = channel.getGuildId();
+        GuildRole guildRole = roles.get(Long.valueOf(guildId));
+        return canRole(permission, guildRole, guildRole != null ? ChannelUtils.m7682f(channel, guildId) : null);
     }
 
     public static final boolean canManageGuildMembers(boolean isOwner, boolean userMfaEnabled, int guildMfaLevel, Long permissions) {
         return isOwner || canAndIsElevated(8L, permissions, userMfaEnabled, guildMfaLevel) || canAndIsElevated(2L, permissions, userMfaEnabled, guildMfaLevel) || canAndIsElevated(4L, permissions, userMfaEnabled, guildMfaLevel) || canAndIsElevated(Permission.MANAGE_ROLES, permissions, userMfaEnabled, guildMfaLevel) || can(Permission.MANAGE_NICKNAMES, permissions);
+    }
+
+    public final boolean canRole(long permission, GuildRole role, PermissionOverwrite roleOverwrite) {
+        if (role == null) {
+            return false;
+        }
+        long permissions = role.getPermissions();
+        return ((((permissions & (roleOverwrite != null ? roleOverwrite.getDeny() : 0L)) ^ permissions) | (roleOverwrite != null ? roleOverwrite.getAllow() : 0L)) & permission) == permission;
+    }
+
+    public final long computeChannelOverwrite(long userId, long guildId, GuildMember member, Collection<PermissionOverwrite> permissionOverwrites) {
+        if (permissionOverwrites == null || !(!permissionOverwrites.isEmpty())) {
+            return 0L;
+        }
+        return applyRoleOverwrites(member, permissionOverwrites, applyEveryoneOverwrites(guildId, permissionOverwrites, 0L), userId);
     }
 
     public static final long computeNonThreadPermissions(long userId, long guildId, long guildOwnerId, GuildMember member, Map<Long, GuildRole> guildRoles, Collection<PermissionOverwrite> permissionOverwrites) {
@@ -223,6 +246,19 @@ public final class PermissionUtils {
         return INSTANCE.hasAccess(channel, (Long) C1643a.m845d(channel, permissions));
     }
 
+    public final boolean hasAccessWrite(Channel channel, Long computedPermission) {
+        C12238m.checkNotNullParameter(channel, "channel");
+        return ChannelUtils.m7667B(channel) || can(3072L, computedPermission);
+    }
+
+    public final boolean hasBypassSlowmodePermissions(Long channelPermissions, StoreSlowMode.Type type) {
+        C12238m.checkNotNullParameter(type, "type");
+        if (C12238m.areEqual(type, StoreSlowMode.Type.MessageSend.INSTANCE)) {
+            return can(16L, channelPermissions) || can(Permission.MANAGE_MESSAGES, channelPermissions);
+        }
+        return can(Permission.MANAGE_THREADS, channelPermissions);
+    }
+
     public static final boolean isElevated(long permission, boolean userMfaEnabled, int guildMfaLevel) {
         if ((Permission.ELEVATED & permission) != permission) {
             return true;
@@ -235,42 +271,6 @@ public final class PermissionUtils {
             return true;
         }
         return userMfaEnabled;
-    }
-
-    public final boolean canEveryoneRole(long permission, Channel channel, Map<Long, GuildRole> roles) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(roles, "roles");
-        long guildId = channel.getGuildId();
-        GuildRole guildRole = roles.get(Long.valueOf(guildId));
-        return canRole(permission, guildRole, guildRole != null ? ChannelUtils.m7682f(channel, guildId) : null);
-    }
-
-    public final boolean canRole(long permission, GuildRole role, PermissionOverwrite roleOverwrite) {
-        if (role == null) {
-            return false;
-        }
-        long permissions = role.getPermissions();
-        return ((((permissions & (roleOverwrite != null ? roleOverwrite.getDeny() : 0L)) ^ permissions) | (roleOverwrite != null ? roleOverwrite.getAllow() : 0L)) & permission) == permission;
-    }
-
-    public final long computeChannelOverwrite(long userId, long guildId, GuildMember member, Collection<PermissionOverwrite> permissionOverwrites) {
-        if (permissionOverwrites == null || !(!permissionOverwrites.isEmpty())) {
-            return 0L;
-        }
-        return applyRoleOverwrites(member, permissionOverwrites, applyEveryoneOverwrites(guildId, permissionOverwrites, 0L), userId);
-    }
-
-    public final boolean hasAccessWrite(Channel channel, Long computedPermission) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        return ChannelUtils.m7667B(channel) || can(3072L, computedPermission);
-    }
-
-    public final boolean hasBypassSlowmodePermissions(Long channelPermissions, StoreSlowMode.Type type) {
-        C12238m.checkNotNullParameter(type, "type");
-        if (C12238m.areEqual(type, StoreSlowMode.Type.MessageSend.INSTANCE)) {
-            return can(16L, channelPermissions) || can(Permission.MANAGE_MESSAGES, channelPermissions);
-        }
-        return can(Permission.MANAGE_THREADS, channelPermissions);
     }
 
     public final boolean hasAccess(Channel channel, Long computedPermission) {

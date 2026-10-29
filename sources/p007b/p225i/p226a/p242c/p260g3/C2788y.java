@@ -10,9 +10,6 @@ import p007b.p225i.p226a.p242c.InterfaceC2963w0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2788y implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2788y f6954j = new C2788y(0, 0);
-
     /* JADX INFO: renamed from: k */
     @IntRange(from = 0)
     public final int f6955k;
@@ -28,6 +25,9 @@ public final class C2788y implements InterfaceC2963w0 {
     /* JADX INFO: renamed from: n */
     @FloatRange(from = 0.0d, fromInclusive = false)
     public final float f6958n;
+
+    /* JADX INFO: renamed from: j */
+    public static final C2788y f6954j = new C2788y(0, 0);
 
     public C2788y(@IntRange(from = 0) int i, @IntRange(from = 0) int i2) {
         this.f6955k = i;

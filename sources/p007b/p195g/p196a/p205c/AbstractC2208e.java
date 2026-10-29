@@ -54,9 +54,6 @@ public abstract class AbstractC2208e {
         return (InterfaceC2343e) C2342d.m2175g(cls, c2372v.m2265b());
     }
 
-    /* JADX INFO: renamed from: d */
-    public abstract C2335n mo1940d();
-
     /* JADX INFO: renamed from: e */
     public AbstractC2082i0<?> m1941e(AbstractC2175b abstractC2175b, C2174a0 c2174a0) throws JsonMappingException {
         Class<? extends AbstractC2082i0<?>> cls = c2174a0.f4629c;
@@ -65,11 +62,14 @@ public abstract class AbstractC2208e {
         return ((AbstractC2082i0) C2342d.m2175g(cls, c2372v.m2265b())).mo1609b(c2174a0.f4631e);
     }
 
-    /* JADX INFO: renamed from: f */
-    public abstract <T> T mo1942f(AbstractC2360j abstractC2360j, String str) throws JsonMappingException;
-
     /* JADX INFO: renamed from: g */
     public <T> T m1943g(Class<?> cls, String str) throws JsonMappingException {
         return (T) mo1942f(m1938b(cls), str);
     }
+
+    /* JADX INFO: renamed from: d */
+    public abstract C2335n mo1940d();
+
+    /* JADX INFO: renamed from: f */
+    public abstract <T> T mo1942f(AbstractC2360j abstractC2360j, String str) throws JsonMappingException;
 }

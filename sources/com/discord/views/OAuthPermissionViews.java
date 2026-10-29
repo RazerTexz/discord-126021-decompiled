@@ -12,26 +12,9 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class OAuthPermissionViews {
 
-    /* JADX INFO: compiled from: OAuthPermissionViews.kt */
-    public static final class InvalidScopeException extends IllegalArgumentException {
-        private final String scope;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public InvalidScopeException(String str) {
-            super("invalid scope: " + str);
-            C12238m.checkNotNullParameter(str, "scope");
-            this.scope = str;
-        }
-
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final String getScope() {
-            return this.scope;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.views.OAuthPermissionViews$a */
     /* JADX INFO: compiled from: OAuthPermissionViews.kt */
-    public static final class C7080a extends SimpleRecyclerAdapter.ViewHolder<OAuthScope> {
+    public final class C7080a extends SimpleRecyclerAdapter.ViewHolder<OAuthScope> {
 
         /* JADX INFO: renamed from: a */
         public final C1080x0 f19092a;
@@ -52,6 +35,23 @@ public final class OAuthPermissionViews {
             TextView textView = this.f19092a.f1367a;
             C12238m.checkNotNullExpressionValue(textView, "binding.root");
             OAuthPermissionViews.m8548a(textView, oAuthScope2);
+        }
+    }
+
+    /* JADX INFO: compiled from: OAuthPermissionViews.kt */
+    public final class InvalidScopeException extends IllegalArgumentException {
+        private final String scope;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public InvalidScopeException(String str) {
+            super("invalid scope: " + str);
+            C12238m.checkNotNullParameter(str, "scope");
+            this.scope = str;
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final String getScope() {
+            return this.scope;
         }
     }
 

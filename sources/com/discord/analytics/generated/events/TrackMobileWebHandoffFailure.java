@@ -26,12 +26,6 @@ public final /* data */ class TrackMobileWebHandoffFailure implements AnalyticsS
         this.analyticsSchemaTypeName = "mobile_web_handoff_failure";
     }
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -41,6 +35,12 @@ public final /* data */ class TrackMobileWebHandoffFailure implements AnalyticsS
         }
         TrackMobileWebHandoffFailure trackMobileWebHandoffFailure = (TrackMobileWebHandoffFailure) other;
         return C12238m.areEqual(this.reason, trackMobileWebHandoffFailure.reason) && C12238m.areEqual(this.fingerprint, trackMobileWebHandoffFailure.fingerprint);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

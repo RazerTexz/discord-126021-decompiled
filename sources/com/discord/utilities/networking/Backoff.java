@@ -23,6 +23,29 @@ public final class Backoff {
     private final long minBackoffMs;
     private final Scheduler scheduler;
 
+    /* JADX INFO: renamed from: com.discord.utilities.networking.Backoff$fail$1 */
+    /* JADX INFO: compiled from: Backoff.kt */
+    public final class C68191 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ Function0 $callback;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C68191(Function0 function0) {
+            super(0);
+            this.$callback = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Backoff.this.executeFailureCallback(this.$callback);
+        }
+    }
+
     /* JADX INFO: compiled from: Backoff.kt */
     public interface Scheduler {
         void cancel();
@@ -31,7 +54,7 @@ public final class Backoff {
     }
 
     /* JADX INFO: compiled from: Backoff.kt */
-    public static final class TimerScheduler extends Timer implements Scheduler {
+    public final class TimerScheduler extends Timer implements Scheduler {
         private final ExecutorService delegateExecutor;
         private final String tag;
         private TimerTask timeoutTimerTask;
@@ -63,7 +86,6 @@ public final class Backoff {
             TimerTask timerTask2 = new TimerTask() { // from class: com.discord.utilities.networking.Backoff$TimerScheduler$schedule$1
                 @Override // java.util.TimerTask, java.lang.Runnable
                 public void run() {
-                    Object obj;
                     if (this.this$0.delegateExecutor == null) {
                         action.invoke();
                         return;
@@ -76,8 +98,8 @@ public final class Backoff {
                     Logger.v$default(logger, this.this$0.tag, "TimerScheduler posting to delegate scheduler", null, 4, null);
                     ExecutorService executorService = this.this$0.delegateExecutor;
                     final Function0 function0 = action;
+                    Object obj = function0;
                     if (function0 != null) {
-                        obj = function0;
                         obj = new Runnable() { // from class: com.discord.utilities.networking.Backoff$sam$java_lang_Runnable$0
                             @Override // java.lang.Runnable
                             public final /* synthetic */ void run() {
@@ -85,7 +107,6 @@ public final class Backoff {
                             }
                         };
                     }
-                    obj = function0;
                     executorService.execute((Runnable) obj);
                 }
             };
@@ -97,29 +118,6 @@ public final class Backoff {
             C12238m.checkNotNullParameter(str, "tag");
             this.tag = str;
             this.delegateExecutor = executorService;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.networking.Backoff$fail$1 */
-    /* JADX INFO: compiled from: Backoff.kt */
-    public static final class C68191 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Function0 $callback;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68191(Function0 function0) {
-            super(0);
-            this.$callback = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Backoff.this.executeFailureCallback(this.$callback);
         }
     }
 
@@ -137,6 +135,11 @@ public final class Backoff {
         this.current = j;
     }
 
+    public final synchronized void cancel() {
+        this.scheduler.cancel();
+        this.isPending = false;
+    }
+
     private final synchronized void executeFailureCallback(Function0<Unit> callback) {
         this.isPending = false;
         callback.invoke();
@@ -148,11 +151,6 @@ public final class Backoff {
             function0 = null;
         }
         return backoff.fail(function0);
-    }
-
-    public final synchronized void cancel() {
-        this.scheduler.cancel();
-        this.isPending = false;
     }
 
     public final synchronized long fail(Function0<Unit> callback) {
@@ -167,13 +165,13 @@ public final class Backoff {
         return this.current;
     }
 
-    public final boolean hasReachedFailureThreshold() {
-        return this.fails > this.failureThreshold;
-    }
-
     /* JADX INFO: renamed from: isPending, reason: from getter */
     public final boolean getIsPending() {
         return this.isPending;
+    }
+
+    public final boolean hasReachedFailureThreshold() {
+        return this.fails > this.failureThreshold;
     }
 
     public final synchronized void succeed() {

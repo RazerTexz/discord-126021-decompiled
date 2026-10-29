@@ -25,7 +25,7 @@ public final class CustomTabColorSchemeParams {
     @ColorInt
     public final Integer toolbarColor;
 
-    public static final class Builder {
+    public final class Builder {
 
         @Nullable
         @ColorInt

@@ -38,7 +38,7 @@ public abstract class EnumC5051c {
 
     /* JADX INFO: renamed from: b.i.e.s.b.c$a */
     /* JADX INFO: compiled from: DataMask.java */
-    public static enum a extends EnumC5051c {
+    public final enum a extends EnumC5051c {
         public a(String str, int i) {
             super(str, i, null);
         }
@@ -116,17 +116,6 @@ public abstract class EnumC5051c {
         super(str, i);
     }
 
-    public static EnumC5051c valueOf(String str) {
-        return (EnumC5051c) Enum.valueOf(EnumC5051c.class, str);
-    }
-
-    public static EnumC5051c[] values() {
-        return (EnumC5051c[]) f13524r.clone();
-    }
-
-    /* JADX INFO: renamed from: f */
-    public abstract boolean mo7089f(int i, int i2);
-
     /* JADX INFO: renamed from: g */
     public final void m7090g(C4963b c4963b, int i) {
         for (int i2 = 0; i2 < i; i2++) {
@@ -136,5 +125,16 @@ public abstract class EnumC5051c {
                 }
             }
         }
+    }
+
+    /* JADX INFO: renamed from: f */
+    public abstract boolean mo7089f(int i, int i2);
+
+    public static EnumC5051c valueOf(String str) {
+        return (EnumC5051c) Enum.valueOf(EnumC5051c.class, str);
+    }
+
+    public static EnumC5051c[] values() {
+        return (EnumC5051c[]) f13524r.clone();
     }
 }

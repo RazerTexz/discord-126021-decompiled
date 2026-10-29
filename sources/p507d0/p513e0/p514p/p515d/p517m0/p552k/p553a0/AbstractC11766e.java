@@ -50,7 +50,7 @@ public abstract class AbstractC11766e extends AbstractC11771j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.e$a */
     /* JADX INFO: compiled from: GivenFunctionsMemberScope.kt */
-    public static final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11450m>> {
+    public final class a extends AbstractC12240o implements Function0<List<? extends InterfaceC11450m>> {
         public a() {
             super(0);
         }
@@ -145,14 +145,6 @@ public abstract class AbstractC11766e extends AbstractC11771j {
         return C12033a.compact(arrayList);
     }
 
-    /* JADX INFO: renamed from: a */
-    public abstract List<InterfaceC11472x> mo9372a();
-
-    /* JADX INFO: renamed from: b */
-    public final List<InterfaceC11450m> m9911b() {
-        return (List) C11904n.getValue(this.f24364d, this, (KProperty<?>) f24362b[0]);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.AbstractC11771j, p507d0.p513e0.p514p.p515d.p517m0.p552k.p553a0.InterfaceC11773l
     public Collection<InterfaceC11450m> getContributedDescriptors(C11765d c11765d, Function1<? super C11716e, Boolean> function1) {
         C12238m.checkNotNullParameter(c11765d, "kindFilter");
@@ -187,4 +179,12 @@ public abstract class AbstractC11766e extends AbstractC11771j {
         }
         return c12041i;
     }
+
+    /* JADX INFO: renamed from: b */
+    public final List<InterfaceC11450m> m9911b() {
+        return (List) C11904n.getValue(this.f24364d, this, (KProperty<?>) f24362b[0]);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public abstract List<InterfaceC11472x> mo9372a();
 }

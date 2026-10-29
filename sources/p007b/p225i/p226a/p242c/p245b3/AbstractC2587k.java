@@ -18,6 +18,22 @@ public abstract class AbstractC2587k extends AbstractC2958f implements Interface
     /* JADX INFO: renamed from: m */
     public long f5802m;
 
+    /* JADX INFO: renamed from: q */
+    public void m2618q() {
+        this.f7901j = 0;
+        this.f5801l = null;
+    }
+
+    /* JADX INFO: renamed from: r */
+    public void m2619r(long j, InterfaceC2583g interfaceC2583g, long j2) {
+        this.f7925k = j;
+        this.f5801l = interfaceC2583g;
+        if (j2 != RecyclerView.FOREVER_NS) {
+            j = j2;
+        }
+        this.f5802m = j;
+    }
+
     @Override // p007b.p225i.p226a.p242c.p245b3.InterfaceC2583g
     /* JADX INFO: renamed from: f */
     public int mo2612f(long j) {
@@ -48,21 +64,5 @@ public abstract class AbstractC2587k extends AbstractC2958f implements Interface
         InterfaceC2583g interfaceC2583g = this.f5801l;
         Objects.requireNonNull(interfaceC2583g);
         return interfaceC2583g.mo2615i();
-    }
-
-    /* JADX INFO: renamed from: q */
-    public void m2618q() {
-        this.f7901j = 0;
-        this.f5801l = null;
-    }
-
-    /* JADX INFO: renamed from: r */
-    public void m2619r(long j, InterfaceC2583g interfaceC2583g, long j2) {
-        this.f7925k = j;
-        this.f5801l = interfaceC2583g;
-        if (j2 != RecyclerView.FOREVER_NS) {
-            j = j2;
-        }
-        this.f5802m = j;
     }
 }

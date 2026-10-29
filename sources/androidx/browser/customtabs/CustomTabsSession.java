@@ -24,10 +24,10 @@ public final class CustomTabsSession {
 
     @Nullable
     private final PendingIntent mId;
-    private final Object mLock = new Object();
     private final InterfaceC13177b mService;
+    private final Object mLock = new Object();
 
-    public static class MockSession extends InterfaceC13177b.a {
+    public class MockSession extends InterfaceC13177b.a {
         @Override // p668x.p669a.p670a.InterfaceC13177b
         public Bundle extraCommand(String str, Bundle bundle) throws RemoteException {
             return null;
@@ -85,7 +85,7 @@ public final class CustomTabsSession {
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public static class PendingSession {
+    public class PendingSession {
 
         @Nullable
         private final CustomTabsCallback mCallback;

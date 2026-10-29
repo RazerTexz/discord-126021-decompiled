@@ -12,15 +12,15 @@ public class Logging {
 
     @Nullable
     public static ExternalReporter externalReporter;
-    private static final Logger fallbackLogger = createFallbackLogger();
 
     @Nullable
     private static Loggable loggable;
     private static Severity loggableSeverity;
     private static volatile boolean loggingEnabled;
+    private static final Logger fallbackLogger = createFallbackLogger();
 
     /* JADX INFO: renamed from: org.webrtc.Logging$1 */
-    public static /* synthetic */ class C129711 {
+    public /* synthetic */ class C129711 {
         public static final /* synthetic */ int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {
@@ -86,22 +86,8 @@ public class Logging {
         return logger;
     }
 
-    /* JADX INFO: renamed from: d */
-    public static void m11027d(String str, String str2) {
-        log(Severity.LS_INFO, str, str2);
-    }
-
     public static void deleteInjectedLoggable() {
         loggable = null;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public static void m11028e(String str, String str2) {
-        log(Severity.LS_ERROR, str, str2);
-        ExternalReporter externalReporter2 = externalReporter;
-        if (externalReporter2 != null) {
-            externalReporter2.mo336e(str, str2, null);
-        }
     }
 
     public static void enableLogThreads() {
@@ -167,13 +153,19 @@ public class Logging {
         fallbackLogger.log(level, str + ": " + str2);
     }
 
-    private static native void nativeEnableLogThreads();
+    /* JADX INFO: renamed from: d */
+    public static void m11027d(String str, String str2) {
+        log(Severity.LS_INFO, str, str2);
+    }
 
-    private static native void nativeEnableLogTimeStamps();
-
-    private static native void nativeEnableLogToDebugOutput(int i);
-
-    private static native void nativeLog(int i, String str, String str2);
+    /* JADX INFO: renamed from: e */
+    public static void m11028e(String str, String str2) {
+        log(Severity.LS_ERROR, str, str2);
+        ExternalReporter externalReporter2 = externalReporter;
+        if (externalReporter2 != null) {
+            externalReporter2.mo336e(str, str2, null);
+        }
+    }
 
     /* JADX INFO: renamed from: v */
     public static void m11030v(String str, String str2) {
@@ -184,6 +176,14 @@ public class Logging {
     public static void m11031w(String str, String str2) {
         log(Severity.LS_WARNING, str, str2);
     }
+
+    private static native void nativeEnableLogThreads();
+
+    private static native void nativeEnableLogTimeStamps();
+
+    private static native void nativeEnableLogToDebugOutput(int i);
+
+    private static native void nativeLog(int i, String str, String str2);
 
     /* JADX INFO: renamed from: w */
     public static void m11032w(String str, String str2, Throwable th) {

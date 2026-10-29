@@ -22,7 +22,7 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
     private final long stableId;
 
     /* JADX INFO: compiled from: EmojiCategoryItem.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -42,7 +42,7 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: EmojiCategoryItem.kt */
-    public static final /* data */ class GuildItem extends EmojiCategoryItem {
+    public final /* data */ class GuildItem extends EmojiCategoryItem {
         private final Pair<Integer, Integer> categoryRange;
         private final Guild guild;
         private final boolean isSelected;
@@ -57,6 +57,14 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
             this.isSelected = z2;
         }
 
+        public final Pair<Integer, Integer> component2() {
+            return getCategoryRange();
+        }
+
+        public final boolean component3() {
+            return getIsSelected();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ GuildItem copy$default(GuildItem guildItem, Guild guild, Pair pair, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -69,19 +77,6 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
                 z2 = guildItem.getIsSelected();
             }
             return guildItem.copy(guild, pair, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Pair<Integer, Integer> component2() {
-            return getCategoryRange();
-        }
-
-        public final boolean component3() {
-            return getIsSelected();
         }
 
         public final GuildItem copy(Guild guild, Pair<Integer, Integer> categoryRange, boolean isSelected) {
@@ -106,8 +101,19 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
             return this.categoryRange;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final Guild getGuild() {
             return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        @Override // com.discord.widgets.chat.input.emoji.EmojiCategoryItem
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public boolean getIsSelected() {
+            return this.isSelected;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -128,12 +134,6 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
             return iHashCode2 + r1;
         }
 
-        @Override // com.discord.widgets.chat.input.emoji.EmojiCategoryItem
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public boolean getIsSelected() {
-            return this.isSelected;
-        }
-
         public String toString() {
             StringBuilder sbM833U = C1643a.m833U("GuildItem(guild=");
             sbM833U.append(this.guild);
@@ -147,7 +147,7 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
     }
 
     /* JADX INFO: compiled from: EmojiCategoryItem.kt */
-    public static final /* data */ class StandardItem extends EmojiCategoryItem {
+    public final /* data */ class StandardItem extends EmojiCategoryItem {
         private final Pair<Integer, Integer> categoryRange;
         private final EmojiCategory emojiCategory;
         private final boolean isSelected;
@@ -162,6 +162,14 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
             this.isSelected = z2;
         }
 
+        public final Pair<Integer, Integer> component2() {
+            return getCategoryRange();
+        }
+
+        public final boolean component3() {
+            return getIsSelected();
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ StandardItem copy$default(StandardItem standardItem, EmojiCategory emojiCategory, Pair pair, boolean z2, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -174,19 +182,6 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
                 z2 = standardItem.getIsSelected();
             }
             return standardItem.copy(emojiCategory, pair, z2);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final EmojiCategory getEmojiCategory() {
-            return this.emojiCategory;
-        }
-
-        public final Pair<Integer, Integer> component2() {
-            return getCategoryRange();
-        }
-
-        public final boolean component3() {
-            return getIsSelected();
         }
 
         public final StandardItem copy(EmojiCategory emojiCategory, Pair<Integer, Integer> categoryRange, boolean isSelected) {
@@ -211,8 +206,19 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
             return this.categoryRange;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final EmojiCategory getEmojiCategory() {
             return this.emojiCategory;
+        }
+
+        public final EmojiCategory getEmojiCategory() {
+            return this.emojiCategory;
+        }
+
+        @Override // com.discord.widgets.chat.input.emoji.EmojiCategoryItem
+        /* JADX INFO: renamed from: isSelected, reason: from getter */
+        public boolean getIsSelected() {
+            return this.isSelected;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -231,12 +237,6 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
                 r1 = 1;
             }
             return iHashCode2 + r1;
-        }
-
-        @Override // com.discord.widgets.chat.input.emoji.EmojiCategoryItem
-        /* JADX INFO: renamed from: isSelected, reason: from getter */
-        public boolean getIsSelected() {
-            return this.isSelected;
         }
 
         public String toString() {
@@ -266,6 +266,11 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
         return this.categoryRange;
     }
 
+    /* JADX INFO: renamed from: isSelected, reason: from getter */
+    public boolean getIsSelected() {
+        return this.isSelected;
+    }
+
     @Override // com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
         return this.key;
@@ -273,11 +278,6 @@ public abstract class EmojiCategoryItem implements DiffKeyProvider {
 
     public final long getStableId() {
         return this.stableId;
-    }
-
-    /* JADX INFO: renamed from: isSelected, reason: from getter */
-    public boolean getIsSelected() {
-        return this.isSelected;
     }
 
     public /* synthetic */ EmojiCategoryItem(long j, Pair pair, boolean z2, DefaultConstructorMarker defaultConstructorMarker) {

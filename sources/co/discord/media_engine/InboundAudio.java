@@ -32,46 +32,6 @@ public final /* data */ class InboundAudio {
         this.frameOpStats = inboundFrameOpStats;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getPacketsReceived() {
-        return this.packetsReceived;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getPacketsLost() {
-        return this.packetsLost;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final double getMos() {
-        return this.mos;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final double getMosSum() {
-        return this.mosSum;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getMosCount() {
-        return this.mosCount;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final Integer[] getMosBuckets() {
-        return this.mosBuckets;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final InboundBufferStats getBufferStats() {
-        return this.bufferStats;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final InboundFrameOpStats getFrameOpStats() {
-        return this.frameOpStats;
-    }
-
     public final InboundAudio copy(long packetsReceived, long packetsLost, double mos, double mosSum, int mosCount, Integer[] mosBuckets, InboundBufferStats bufferStats, InboundFrameOpStats frameOpStats) {
         C12238m.checkNotNullParameter(mosBuckets, "mosBuckets");
         C12238m.checkNotNullParameter(bufferStats, "bufferStats");
@@ -90,32 +50,72 @@ public final /* data */ class InboundAudio {
         return this.packetsReceived == inboundAudio.packetsReceived && this.packetsLost == inboundAudio.packetsLost && Double.compare(this.mos, inboundAudio.mos) == 0 && Double.compare(this.mosSum, inboundAudio.mosSum) == 0 && this.mosCount == inboundAudio.mosCount && C12238m.areEqual(this.mosBuckets, inboundAudio.mosBuckets) && C12238m.areEqual(this.bufferStats, inboundAudio.bufferStats) && C12238m.areEqual(this.frameOpStats, inboundAudio.frameOpStats);
     }
 
+    /* JADX INFO: renamed from: component7, reason: from getter */
     public final InboundBufferStats getBufferStats() {
         return this.bufferStats;
+    }
+
+    public final InboundBufferStats getBufferStats() {
+        return this.bufferStats;
+    }
+
+    /* JADX INFO: renamed from: component8, reason: from getter */
+    public final InboundFrameOpStats getFrameOpStats() {
+        return this.frameOpStats;
     }
 
     public final InboundFrameOpStats getFrameOpStats() {
         return this.frameOpStats;
     }
 
+    /* JADX INFO: renamed from: component3, reason: from getter */
     public final double getMos() {
         return this.mos;
+    }
+
+    public final double getMos() {
+        return this.mos;
+    }
+
+    /* JADX INFO: renamed from: component6, reason: from getter */
+    public final Integer[] getMosBuckets() {
+        return this.mosBuckets;
     }
 
     public final Integer[] getMosBuckets() {
         return this.mosBuckets;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final int getMosCount() {
         return this.mosCount;
+    }
+
+    public final int getMosCount() {
+        return this.mosCount;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final double getMosSum() {
+        return this.mosSum;
     }
 
     public final double getMosSum() {
         return this.mosSum;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final long getPacketsLost() {
         return this.packetsLost;
+    }
+
+    public final long getPacketsLost() {
+        return this.packetsLost;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final long getPacketsReceived() {
+        return this.packetsReceived;
     }
 
     public final long getPacketsReceived() {

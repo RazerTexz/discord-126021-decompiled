@@ -16,7 +16,7 @@ public final class MenuKt {
 
     /* JADX INFO: renamed from: androidx.core.view.MenuKt$iterator$1 */
     /* JADX INFO: compiled from: Menu.kt */
-    public static final class C02801 implements Iterator<MenuItem>, InterfaceC12228a {
+    public final class C02801 implements Iterator<MenuItem>, InterfaceC12228a {
         public final /* synthetic */ Menu $this_iterator;
         private int index;
 
